@@ -43,113 +43,80 @@ articleLead:
 
 <!-- META: keyword_primary="descuentos de sueldo" | intent="informational-legal-classification" | cluster="sueldo-remuneraciones" -->
 
-Cuando ves un descuento en la liquidación, la pregunta correcta no es "¿por qué me descontaron tanto?" sino "¿de dónde viene esta línea?". Esta guía separa qué descuentos puede hacerte legalmente el empleador, cuáles dependen de tu autorización y qué cobros no deberían aparecer sin respaldo.
+Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal.
 
-Si lo que buscas es rehacer el número final de bruto a líquido, usa [cómo calcular tu sueldo líquido](/posts/como-calcular-sueldo-liquido/). Si ya tienes la liquidación en la mano y quieres auditar el documento, te conviene más [liquidación de sueldo](/posts/liquidacion-de-sueldo/). También puedes partir por la [sección sueldo y remuneraciones](/guias/sueldo-remuneraciones/) o cruzar con la [calculadora de sueldo líquido](/calculadoras/sueldo-liquido/).
+Algunos los exige la ley, algunos los autorizaste tú, y algunos directamente no deberían estar ahí.
 
-## Tabla de contenidos
+## Tres categorías, tres orígenes distintos
 
-## Qué descuentos te pueden hacer del sueldo
+### Descuentos legales — los que el empleador debe practicar
 
-**Respuesta rápida (regla general):** en Chile, el empleador debe descontar de la remuneración lo que manda la ley, principalmente cotizaciones previsionales, salud, seguro de cesantía cuando corresponde e impuesto único si superas el tramo exento. Además, puede aplicar descuentos autorizados por escrito o exigidos por otras normas, pero el artículo 58 del Código del Trabajo también prohíbe rebajarte pérdidas, herramientas o multas arbitrarias desde la liquidación.  
-**Excepciones comunes:** el seguro de cesantía del trabajador no se descuenta si tu contrato es a plazo fijo u obra/faena; la parte extra de Isapre depende de tu plan; el impuesto único cambia mes a mes; y algunos descuentos solo aparecen si tú los autorizaste o si existe orden judicial.  
-**Vigencia / fecha de corte:** 2026-03-08.  
-**Fuentes oficiales:** [Dirección del Trabajo, artículo 58](https://www.dt.gob.cl/portal/1628/w3-article-60593.html), [AFC](https://www.afc.cl/afiliados/seguro-de-cesantia/financiamiento/), [Superintendencia de Pensiones](https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html), [SII](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm).
+Estos descuentos no dependen de tu autorización. La ley obliga al empleador a aplicarlos y tú no puedes renunciar a ellos.
 
-En una liquidación de sueldo típica de un trabajador dependiente aparecen cuatro grupos de descuentos:
+**AFP:** la cotización obligatoria del 10% más la comisión de tu administradora. El 10% va íntegro a tu cuenta individual. La comisión varía según AFP, entre 0,49% y 1,45% sobre el imponible a marzo de 2026.
 
-| Descuento          | Cuándo aparece                       | Referencia práctica 2026                                                 |
-| ------------------ | ------------------------------------ | ------------------------------------------------------------------------ |
-| AFP obligatoria    | Siempre que cotizas como dependiente | 10% de cotización + comisión de tu AFP                                   |
-| Salud              | Siempre                              | 7% mínimo en Fonasa, o más si tu plan Isapre cuesta sobre ese piso       |
-| Seguro de cesantía | Solo contrato indefinido             | 0,6% de cargo del trabajador; a plazo fijo lo paga completo el empleador |
-| Impuesto único     | Solo si superas el tramo exento      | Escala progresiva que publica el SII cada mes                            |
+**Salud:** el 7% mínimo destinado a Fonasa o Isapre. Si estás en Fonasa, el descuento es exactamente 7%. Si estás en Isapre y tu plan cuesta más que el 7% legal, la diferencia también se descuenta — pero esa parte adicional ya es un descuento autorizado, no estrictamente legal.
 
-Si además ves descuentos por caja de compensación, seguro voluntario, cuota sindical, ahorro o dividendos, ya no estás frente al bloque "legal básico" sino a descuentos especiales o autorizados.
+**Seguro de cesantía:** el 0,6% del imponible, pero solo si tu contrato es indefinido. Con contrato a plazo fijo u obra, el trabajador no aporta nada — el empleador pone el 3% completo. Si en una liquidación de contrato a plazo fijo aparece el 0,6% descontado al trabajador, eso es un error que conviene revisar.
 
-Ese es el límite de esta URL: clasificar líneas y su fundamento. El detalle de cómo todas esas líneas terminan formando tu líquido completo vive en [cómo calcular tu sueldo líquido](/posts/como-calcular-sueldo-liquido/).
+**Impuesto único de segunda categoría:** aplica solo si tu renta tributable mensual supera el primer tramo exento de la tabla del SII. En marzo de 2026 ese tramo llega hasta $943.501,50. Si estás bajo ese umbral, el impuesto no debería aparecer. Si en un mes con bono cruzas el tramo, aparece por primera vez aunque habitualmente no lo tengas.
 
-## Descuentos obligatorios que sí deben salir de tu liquidación
+Todos estos descuentos se calculan sobre el **sueldo imponible**, no sobre el bruto total. La diferencia importa cuando tienes asignaciones no imponibles como colación o movilización.
 
-### AFP: 10% más la comisión de tu administradora
+### Descuentos autorizados — los que dependen de tu consentimiento
 
-La cotización obligatoria del trabajador sigue siendo **10% de tu remuneración imponible**. A eso se suma la **comisión de la AFP**, que cambia según la administradora. A marzo de 2026, la Superintendencia de Pensiones informa comisiones vigentes en un rango aproximado entre **0,49% y 1,45%**, por lo que el descuento previsional total del trabajador se mueve cerca de **10,49% a 11,45%** del imponible.
+Estos no son obligatorios por ley. Existen porque tú los autorizaste — por contrato, por afiliación o por una instrucción escrita. El artículo 58 del Código del Trabajo enumera las categorías que el empleador puede practicar con tu acuerdo: cuotas de dividendo hipotecario, seguros de vida, cuotas sindicales, aportes a fondos de pensiones voluntarios (APV), préstamos de caja de compensación, entre otros.
 
-Si quieres desglosar solo esta línea de tu liquidación, revisa [cuánto descuenta la AFP de tu sueldo](/posts/cuanto-descuenta-la-afp-de-tu-sueldo/). Si la duda es de definición, te sirve también el glosario de [qué es una AFP](/glosario/afp/).
+La distinción que vale la pena tener clara: un descuento de esta categoría puede ser completamente legítimo aunque no sea obligatorio. Lo que lo distingue es que debe tener un respaldo: tu firma en el contrato colectivo, la ficha de afiliación a la caja, el formulario de autorización del APV.
 
-### Salud: 7% mínimo, o más si tu plan Isapre cuesta sobre ese piso
+Si aparece un descuento de esta categoría y no recuerdas haberlo autorizado, tienes derecho a pedir el respaldo documental.
 
-En Fonasa, el descuento legal es **7% del imponible**. En Isapre, el 7% sigue siendo el piso legal, pero el descuento real puede ser mayor si tu plan cuesta más. En la práctica, la liquidación puede mostrar una sola línea de salud o separar el 7% legal de la diferencia del plan.
+### Descuentos prohibidos — lo que el empleador no puede cargar
 
-### Seguro de cesantía: 0,6% solo en contrato indefinido
+El artículo 58 también establece un límite claro: el empleador no puede descontar del sueldo pérdidas de caja, deterioro de herramientas, mercadería dañada ni multas arbitrarias que no estén respaldadas en el reglamento interno de la empresa, debidamente registrado en la Dirección del Trabajo.
 
-La AFC informa que, para un contrato indefinido, el trabajador aporta **0,6%** y el empleador **2,4%**. En contratos a plazo fijo u obra/faena, el trabajador no aporta y el empleador financia el **3%** completo. Si en una liquidación a plazo fijo te descuentan cesantía al trabajador, vale la pena revisarlo de inmediato.
+Tampoco puede retener el sueldo completo como garantía ni practicar descuentos que no tengan respaldo legal o autorización escrita del trabajador. Cualquier descuento que no pertenezca a las categorías anteriores cae en esta zona — y corresponde impugnarlo.
 
-Si quieres la lógica completa del seguro, cruza este artículo con la guía de [seguro de cesantía](/posts/seguro-de-cesantia/) y el glosario de [qué es la AFC](/glosario/afc/).
+## Cuándo el mismo descuento puede ser legal o no según tu contrato
 
-### Impuesto único: solo si superas el tramo exento
+El tipo de contrato cambia lo que corresponde. Este es el cuadro completo de las variaciones más importantes:
 
-El impuesto único de segunda categoría no aparece en todos los sueldos. Se aplica solo cuando tu renta tributable mensual supera el tramo exento que publica el SII. En **marzo de 2026**, ese primer tramo exento llega hasta **$943.501,50** mensuales. Sobre ese punto, el impuesto es progresivo, no una tasa plana sobre todo tu sueldo.
+| Descuento | Contrato indefinido | Contrato a plazo fijo / obra |
+| --- | --- | --- |
+| AFP (10% + comisión) | Siempre | Siempre |
+| Salud (7% mínimo) | Siempre | Siempre |
+| Cesantía trabajador (0,6%) | Sí | No — lo paga el empleador |
+| Impuesto único | Si supera el tramo exento | Si supera el tramo exento |
 
-Por eso un mes con bono, horas extra o comisiones puede hacer que aparezca impuesto aunque en meses anteriores no saliera nada.
+Una liquidación de contrato a plazo fijo que descuente el 0,6% por cesantía al trabajador no está bien calculada. No es un error pequeño: en un sueldo de $800.000 son $4.800 al mes que no corresponden.
 
-## Descuentos que no son automáticos
+## Cómo leer tu liquidación con este mapa
 
-No todo descuento que aparece en una liquidación es "obligatorio por ley". Hay descuentos que nacen de una decisión previa, una afiliación o una obligación específica del trabajador.
+La liquidación de sueldo tiene habitualmente dos bloques de descuentos. El primero agrupa los descuentos legales — AFP, salud, cesantía, impuesto. El segundo, generalmente llamado "otros descuentos" o similar, agrupa los autorizados.
 
-Los más comunes son estos:
+Si ves una línea en el primer bloque que no reconoces, o una cifra que no cuadra con los porcentajes conocidos, el camino es pedir el detalle al área de remuneraciones por escrito, no verbal. La respuesta verbal no deja rastro útil si después hay que escalar.
 
-- Crédito social de caja de compensación.
-- Seguro voluntario.
-- Cuota sindical.
-- APV o ahorro previsional adicional.
-- Dividendos hipotecarios o ahorro para vivienda cuando el trabajador instruye al empleador para descontarlos.
+Si ves algo en el segundo bloque que no autorizaste, pide el documento de respaldo antes de aceptarlo como correcto.
 
-En estos casos, la pregunta correcta no es solo "¿sale en la liquidación?" sino **"¿de dónde nace este descuento?"**. Si no hay respaldo documental, autorización o norma aplicable, corresponde pedir explicación antes de asumir que está bien calculado.
-
-## Qué descuentos no te pueden cargar arbitrariamente
-
-El mismo artículo 58 protege al trabajador frente a rebajas abusivas. En simple: no corresponde que el empleador te descuente desde la remuneración cosas como pérdida de caja, herramientas, mercadería dañada o multas internas improvisadas solo porque la empresa decidió traspasarte ese costo.
-
-Tampoco conviene mezclar:
-
-- **Descuentos legales**, que el empleador debe practicar.
-- **Descuentos autorizados**, que requieren tu aceptación o una base específica.
-- **Cobros arbitrarios**, que no nacen ni de la ley ni de tu autorización.
-
-Si tu liquidación tiene una línea poco clara, el primer filtro es revisar si aparece en el bloque de descuentos legales o en "otros descuentos". El segundo es pedir respaldo de cálculo y fundamento.
-
-## Cómo revisar si tus descuentos están bien
-
-Haz esta revisión rápida antes de dar por buena la liquidación:
-
-1. **Confirma el imponible.** AFP, salud y cesantía se calculan sobre imponible, no sobre todo lo que te pagan.
-2. **Mira tu AFP real.** La comisión cambia según administradora. Si usas una comisión equivocada, el cálculo se descuadra.
-3. **Verifica tu tipo de contrato.** A plazo fijo no debería descontarse el 0,6% del trabajador por cesantía.
-4. **Distingue legal vs voluntario.** Un crédito social o un seguro voluntario no son lo mismo que AFP o salud.
-5. **Revisa si apareció impuesto por un bono.** Un ingreso extraordinario puede mover tu renta tributable a un tramo superior ese mes.
-
-Si quieres revisar el líquido completo, usa la [calculadora de sueldo líquido](/calculadoras/sueldo-liquido/). Si lo que necesitas es aprender a leer cada línea de la liquidación, sigue con [liquidación de sueldo: cómo leerla y qué revisar](/posts/liquidacion-de-sueldo/).
+Para recalcular el número completo con tus datos, la [calculadora de sueldo líquido](/calculadoras/sueldo-liquido/) te da el desglose de cada descuento legal según AFP, sistema de salud y tipo de contrato.
 
 ## Preguntas frecuentes
 
-**¿Todos los descuentos salen del sueldo bruto?**  
-No. La mayoría de las cotizaciones se calcula sobre el sueldo imponible, que puede ser menor al bruto si tienes asignaciones no imponibles.
+**¿Puede el empleador descontarme si llegué tarde?**
+Solo si existe una multa por tardanza establecida en el reglamento interno de la empresa, debidamente registrado en la Dirección del Trabajo, y dentro de los topes legales. No puede inventar un descuento arbitrario.
 
-**¿La cotización adicional del empleador por la reforma previsional se descuenta de mi líquido?**  
-No. Ese aporte es de cargo del empleador, no del trabajador. No debería bajar tu depósito líquido por sí solo.
+**¿El descuento por crédito de la caja de compensación es obligatorio?**
+No. Es un descuento autorizado — lo tienes porque solicitaste el crédito y firmaste los documentos. Si lo pagas, aparece en la liquidación porque lo pediste.
 
-**¿Un descuento voluntario puede comerse gran parte del sueldo?**  
-El artículo 58 fija límites para descuentos acordados con el trabajador. Si ves un descuento grande y poco claro, pide respaldo escrito antes de asumir que está correcto.
+**¿Puede el empleador retener el sueldo si tengo una deuda con la empresa?**
+No puede retener el sueldo completo. Solo puede descontar lo que específicamente autoriza la ley o lo que tú hayas autorizado por escrito, dentro de los límites del artículo 58.
 
-**¿Dónde reclamo si la liquidación tiene descuentos que no entiendo?**  
-Primero pide el detalle al empleador o al área de remuneraciones. Si no corrigen o no justifican el descuento, puedes acudir a la [Dirección del Trabajo](https://www.dt.gob.cl).
+**¿La cotización adicional del empleador por la reforma previsional me baja el líquido?**
+No. Ese aporte es cargo exclusivo del empleador sobre el costo total de tu contrato. No se descuenta de tu remuneración ni debe aparecer como descuento en tu liquidación.
 
-## Resumen
+**¿Dónde reclamo si hay un descuento incorrecto?**
+Primero ante el empleador o el área de remuneraciones, por escrito con acuse de recibo. Si no hay corrección ni justificación, puedes presentar una denuncia en la [Dirección del Trabajo](https://www.dt.gob.cl).
 
-- Los descuentos básicos del sueldo son AFP, salud, cesantía cuando corresponde e impuesto único si superas el tramo exento.
-- No todo lo que baja tu líquido es "descuento obligatorio": también existen descuentos voluntarios, sindicales o por créditos.
-- El artículo 58 no solo habilita descuentos; también pone límites y prohíbe rebajas arbitrarias.
-- Si el problema es el número final, valida con la calculadora. Si el problema es una línea específica, revisa su base legal o autorización.
+---
 
-_Contenido informativo, revisado con fecha de corte 2026-03-08. Las comisiones AFP y la tabla de impuesto único pueden cambiar; confirma el dato vigente en la fuente oficial antes de tomar una decisión laboral o tributaria._
+*Contenido educativo con fecha de corte 2026-03-08. Las comisiones AFP y la tabla del impuesto único se actualizan regularmente — verifica los valores vigentes en la [Superintendencia de Pensiones](https://www.spensiones.cl) y el [SII](https://www.sii.cl) antes de tomar decisiones.*

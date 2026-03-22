@@ -39,78 +39,106 @@ articleLead:
     - "No resuelve cláusulas pactadas más favorables."
 ---
 
-Si tu duda puntual es "¿me corresponde indemnización por años de servicio o no?", esta URL es más útil que la guía general de finiquito. El objetivo aquí es uno solo: aislar esa partida para que no la confundas con sueldo pendiente, feriado proporcional ni aviso previo.
+El finiquito llegó con un número. El número parece razonable, pero razonable no es lo mismo que correcto. La indemnización por años de servicio es la partida donde más errores silenciosos aparecen — y la mayoría no son por mala fe sino porque la causal está mal aplicada, la base de cálculo usa el sueldo equivocado, o la antigüedad está mal contada.
 
-Si además necesitas revisar el documento completo, vuelve a la [guía de finiquito e indemnizaciones](/posts/finiquito-e-indemnizaciones-en-chile/). Si ya quieres aterrizar un caso numérico, cruza esto con la [calculadora de finiquito](/calculadoras/finiquito-indemnizacion/).
+Esta guía aísla esa sola partida. Si necesitas revisar el finiquito completo — haberes pendientes, feriado proporcional, aviso previo — la guía de [finiquito e indemnizaciones en Chile](/posts/finiquito-e-indemnizaciones-en-chile/) tiene el cuadro completo.
 
-## Cuándo corresponde y cuándo no
+## La regla base y sus tres componentes
 
-**Regla general:** la indemnización por años de servicio aparece cuando la causal de término abre el régimen indemnizatorio legal, típicamente por **necesidades de la empresa** (art. 161). No porque exista finiquito, sino porque la causal lo habilita.
+La indemnización por años de servicio funciona sobre tres variables. Si cualquiera de las tres está mal, el monto total es incorrecto.
 
-Casos prácticos de referencia:
+**Primero: la causal tiene que habilitarla.** La indemnización por años de servicio no aplica a todos los tipos de término de contrato. Solo corresponde cuando la causal de despido abre el régimen indemnizatorio legal. No es automática por el solo hecho de haber trabajado varios años en una empresa.
 
-- **Sí suele corresponder:** necesidades de la empresa.
-- **No como regla automática:** renuncia, mutuo acuerdo, vencimiento de plazo, término de obra o causal disciplinaria.
-- **Caso que exige revisar mejor:** despido injustificado declarado por tribunal, porque puede sumar recargos y efectos que esta pieza no calcula.
+**Segundo: la base es la última remuneración mensual.** No el promedio de los últimos meses. No el sueldo que tenías hace un año. La última remuneración mensual al momento del término, incluyendo los componentes que la ley considera parte de esa base.
 
-Si la carta de despido y el finiquito no coinciden en la causal, no des por bueno el cálculo.
+**Tercero: se multiplica por los años completos de servicio, con tope de 11.** La fórmula es 30 días por cada año. Si la antigüedad tiene meses incompletos, aplica la regla del año fraccionado — que no es trivial.
 
-## Cómo se calcula
+## Causales: cuándo corresponde y cuándo no
 
-La regla base es esta:
+Este es el punto donde más finiquitos tienen errores. La indemnización por años de servicio no corresponde por defecto — corresponde cuando la causal lo habilita.
 
-> **30 días de la última remuneración mensual por cada año de servicio, con tope legal de 11 años.**
+**Corresponde con estas causales principales:**
+- Necesidades de la empresa, establecimiento o servicio (art. 161 del Código del Trabajo). Es la causal más frecuente para despidos que activan la indemnización.
+- Despido declarado injustificado por tribunal (art. 168). Acá además pueden corresponder recargos.
 
-Ejemplo simple:
+**No corresponde como regla general con estas causales:**
+- Renuncia voluntaria (art. 159 N°2).
+- Mutuo acuerdo (art. 159 N°1), salvo que se pacte expresamente en el finiquito.
+- Vencimiento del plazo o término de obra (art. 159 N°4 y N°5).
+- Despido por conducta indebida (art. 160).
 
-- Última remuneración mensual: `$900.000`
-- Antigüedad: `5 años`
-- Cálculo base: `$900.000 × 5 = $4.500.000`
+La causal que aparece en la carta de despido y en el finiquito determina qué corresponde. Si esa causal está mal puesta — ya sea por error o por conveniencia del empleador — el cálculo resultante puede ser incorrecto hacia arriba o hacia abajo.
 
-### Qué pasa con el año fraccionado
+## Cómo se calcula: la fórmula y sus bordes
 
-Como referencia práctica, el año fraccionado **superior a 6 meses** se cuenta como año completo para esta estimación orientativa. Si es menor, normalmente no suma un año adicional en el cálculo base.
+La fórmula base es esta:
 
-### Qué pasa con el tope de 11 años
+> **Indemnización = 30 días de la última remuneración mensual × años de servicio (máximo 11)**
 
-Aunque lleves más tiempo en la empresa, la regla legal general usa un máximo de **11 años** para esta partida. Si ves un finiquito con menos años reconocidos y no entiendes por qué, parte revisando dos cosas:
+Ejemplo con números concretos:
 
-1. fecha de ingreso real;
-2. causal exacta de término.
+| Variable | Valor |
+|---|---|
+| Última remuneración mensual | $950.000 |
+| Antigüedad | 7 años y 4 meses |
+| Años completos | 7 |
+| Año fraccionado | 4 meses → no suma año adicional |
+| Cálculo | $950.000 × 7 = **$6.650.000** |
 
-## Qué revisar antes de asumir que el monto está bien
+Si la antigüedad fuera 7 años y 8 meses, el año fraccionado sí suma porque supera los 6 meses:
 
-No basta con multiplicar sueldo por años. Antes revisa:
+| Variable | Valor |
+|---|---|
+| Años completos + fracción > 6 meses | 8 |
+| Cálculo | $950.000 × 8 = **$7.600.000** |
 
-1. **La causal de término.** Si no habilita indemnización, la partida puede no aplicar.
-2. **La última remuneración mensual usada como base.** Si el empleador tomó una base menor, el total cae.
-3. **La antigüedad exacta.** Error clásico: contar desde un anexo o desde un contrato renovado y no desde el ingreso real.
-4. **Si hubo aviso previo o no.** Es otra partida distinta, pero muchas personas la mezclan con esta.
+La diferencia entre esos dos escenarios es $950.000 — exactamente un mes de sueldo. Vale la pena revisar la fecha de ingreso exacta.
 
-## Errores comunes
+## Qué incluye y qué no la "última remuneración mensual"
 
-- Creer que todo finiquito trae indemnización por años de servicio.
-- Confundir esta partida con la indemnización sustitutiva del aviso previo.
-- No revisar si la remuneración base usada corresponde de verdad a la última remuneración mensual.
-- Olvidar que el tope legal general es de 11 años.
+Esta es la segunda fuente más frecuente de errores. La base de cálculo no es necesariamente lo que dice la última liquidación.
+
+**Incluye como regla general:** sueldo base, horas extraordinarias si son habituales, gratificaciones proporcionales cuando corresponde.
+
+**Puede excluirse o tener tratamiento especial:** asignaciones no imponibles como colación o movilización, bonos esporádicos que no forman parte de la remuneración regular, comisiones que varían significativamente mes a mes.
+
+Cuando la remuneración tiene componentes variables relevantes — comisiones, bonos por metas, horas extra que no son constantes — el cálculo de la base puede volverse disputado. En ese escenario, antes de firmar el finiquito conviene pedir la fórmula exacta que usó el empleador para determinar la "última remuneración mensual".
+
+## El tope de 11 años
+
+La ley establece un máximo de 11 años de servicio para esta indemnización. Quien lleva 15 años en la misma empresa no recibe 15 meses — recibe 11.
+
+Esto no significa que no pueda haber más: si el contrato colectivo, el contrato individual o el acuerdo de finiquito establece algo más favorable para el trabajador, esa cláusula prevalece. El tope de 11 es el piso que establece la ley, no el techo que acuerdan las partes.
+
+## Cuatro cosas que revisar antes de firmar
+
+**1. Confirma la antigüedad real.** La fecha de ingreso que usa el empleador debe coincidir con el primer contrato firmado, no con el último. Si hubo renovaciones sucesivas, la antigüedad sigue corriendo desde el inicio de la relación laboral, no desde la última renovación.
+
+**2. Revisa la causal de la carta de despido y del finiquito.** Si no coinciden, hay un problema. Si la causal no habilita la indemnización pero el empleador dice que sí corresponde (o al revés), pide la explicación por escrito.
+
+**3. Verifica la base de cálculo usada.** Pide que el finiquito o un documento adjunto especifique cuál fue la "última remuneración mensual" tomada como base y cómo se compone.
+
+**4. Comprueba que el tope de 11 años se aplicó correctamente.** Si llevas menos de 11 años, el tope no debería afectar el cálculo. Si llevas más, verifica que el empleador no haya aplicado el tope de forma incorrecta hacia abajo.
 
 ## Preguntas frecuentes
 
-### ¿Si renuncio igual me corresponde?
+**¿Si renuncié me corresponde esta indemnización?**
+Como regla general, no. La renuncia voluntaria no activa el régimen indemnizatorio por años de servicio. Solo corresponden los haberes pendientes y el feriado proporcional.
 
-Como regla general, **no**. En renuncia voluntaria suelen corresponder haberes pendientes y feriado proporcional, pero no esta indemnización legal automática.
+**¿El mutuo acuerdo da derecho a años de servicio?**
+No de forma automática. Si en el finiquito de mutuo acuerdo se pacta expresamente el pago de esta indemnización, corresponde lo que acuerden las partes. Sin ese pacto expreso, la causal de mutuo acuerdo no la genera por sí sola.
 
-### ¿Si me avisaron con 30 días cambia esta indemnización?
+**¿Qué pasa si me despidieron con una causal disciplinaria que creo es falsa?**
+Si el tribunal declara que la causal del art. 160 fue indebida, el despido se recalifica como injustificado y corresponde indemnización por años de servicio más los recargos del art. 168. Este camino requiere acción judicial ante el Juzgado de Letras del Trabajo.
 
-No cambia la partida de años de servicio. Lo que cambia es si además corresponde o no la indemnización sustitutiva del aviso previo.
+**¿La indemnización por años de servicio paga impuesto?**
+La indemnización legal por años de servicio hasta el límite de 90 UF por año trabajado está exenta de impuesto único de segunda categoría. Lo que supere ese tope puede quedar afecto. Si recibes una indemnización grande o hubo negociación por sobre el mínimo legal, conviene revisar el tratamiento tributario con el SII o con asesoría.
 
-### ¿Y si me despidieron injustificadamente?
+**¿Puedo reclamar después de firmar el finiquito?**
+Depende de si firmaste con reserva de derechos o sin ella. Si firmaste sin reserva y sin impugnar nada, la posición se complica. Si firmaste con reserva escrita en el mismo documento indicando los montos en disputa, la puerta judicial sigue abierta. El plazo general de prescripción para acciones laborales derivadas del finiquito es de 2 años desde el término del contrato.
 
-Ese caso puede terminar con indemnizaciones legales más recargos ordenados por tribunal. Esta guía no calcula esos recargos; conviene escalar el caso.
+Para aterrizar los números con tus datos, usa la [calculadora de finiquito e indemnizaciones](/calculadoras/finiquito-indemnizacion/). Para revisar cómo encaja esta partida en el cuadro completo del finiquito, sigue con la [guía de finiquito e indemnizaciones en Chile](/posts/finiquito-e-indemnizaciones-en-chile/).
 
-## Fuentes oficiales
+---
 
-- BCN — Código del Trabajo: https://www.bcn.cl/leychile/navegar?idNorma=207436
-- Dirección del Trabajo — causales y materias laborales: https://www.dt.gob.cl/portal/1626/w3-channel.html
-
-_Contenido educativo con fecha de corte 2026-03-12. Si la causal está discutida o tu remuneración tiene variables complejas, no cierres el caso solo con esta guía._
+_Contenido educativo con fecha de corte 2026-03-12. Si la causal está discutida o el cálculo involucra remuneración variable compleja, la asesoría de un abogado laboral es el paso correcto antes de firmar.

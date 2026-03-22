@@ -42,116 +42,93 @@ articleLead:
 
 <!-- META: keyword_primary="liquidacion de sueldo" | intent="informational-document-audit" | cluster="sueldo-remuneraciones" -->
 
-Recibes la liquidación cada mes y la mayoría de las veces la archivas sin leerla. Esta guía es para cuando dejas de hacer eso: cómo auditar el comprobante que te entrega el empleador, qué bloques debe traer, qué respaldo pedir y cómo detectar una línea dudosa antes de que el error se repita otro mes.
+El depósito cayó y el número no cuadra con lo que esperabas. Abres la liquidación y ves líneas que no entiendes o cifras que no puedes verificar. Aquí empieza el problema real: la mayoría de los trabajadores no sabe qué debe mostrar el comprobante ni qué preguntar cuando algo no cierra.
 
-Si lo que quieres es recalcular el monto final, usa [cómo calcular tu sueldo líquido](/posts/como-calcular-sueldo-liquido/). Si tu foco es distinguir descuentos legales, voluntarios o prohibidos, parte por [descuentos de sueldo en Chile](/posts/descuentos-de-sueldo/). También puedes ver la [sección sueldo y remuneraciones](/guias/sueldo-remuneraciones/) o probar un escenario en la [calculadora de sueldo líquido](/calculadoras/sueldo-liquido/).
+## Qué es y para qué sirve la liquidación
 
-## Tabla de contenidos
+La liquidación de sueldo es el comprobante que el empleador debe entregarte junto con el pago de remuneraciones. No es un favor administrativo — es una obligación legal establecida en el artículo 54 del Código del Trabajo.
 
-## Qué es una liquidación de sueldo
+Su función es específica: permitirte reconstruir cómo se llegó al monto depositado. Un comprobante que no te permite hacer eso no está cumpliendo su propósito, independientemente de lo bonito que luzca el formato.
 
-**Respuesta rápida (regla general):** la liquidación de sueldo es el comprobante que tu empleador debe entregarte junto con el pago de remuneraciones. Debe mostrar cuánto te pagó, cómo se determinó ese monto y qué deducciones se aplicaron. Si te pagan comisiones, primas o tratos, además debe existir un anexo con el detalle de cálculo.  
-**Excepciones comunes:** la forma visual cambia entre empresas y softwares de remuneraciones; no todas separan igual imponible y no imponible, pero el comprobante igual debe permitir reconstruir el pago.  
-**Vigencia / fecha de corte:** 2026-03-08.  
-**Fuentes oficiales:** [Dirección del Trabajo, artículo 54](https://www.dt.gob.cl/portal/1628/w3-article-60593.html), [Dirección del Trabajo, artículo 54 bis](https://www.dt.gob.cl/legislacion/1624/w3-article-60596.html), [Dirección del Trabajo, artículo 58](https://www.dt.gob.cl/portal/1628/w3-article-60593.html).
+## Lo que debe mostrar
 
-En simple, la liquidación no es un favor administrativo: es el documento base para revisar si el pago coincide con tu contrato y para detectar errores antes de que se acumulen varios meses.
+No existe un formato único obligatorio, pero sí contenido mínimo. Una liquidación que cumple su función tiene al menos estos cuatro bloques:
 
-Ese es el alcance de esta URL: leer y auditar el documento. El cálculo completo del líquido y la clasificación legal de descuentos tienen piezas separadas dentro del cluster.
+**Haberes imponibles:** sueldo base, horas extras, bonos que cotizan. Son la base sobre la que se calculan AFP, salud, cesantía e impuesto.
 
-## Qué debería mostrar una liquidación bien armada
+**Haberes no imponibles:** asignaciones que no cotizan, como colación y movilización dentro de los límites legales. Deben aparecer separadas porque inflan el bruto visible sin entrar al cálculo previsional.
 
-Aunque el diseño cambia, normalmente vas a ver cuatro bloques:
+**Descuentos legales:** AFP, salud, seguro de cesantía e impuesto único. Cada uno con su porcentaje y monto.
 
-| Bloque                | Qué significa                                             | Qué revisar                                           |
-| --------------------- | --------------------------------------------------------- | ----------------------------------------------------- |
-| Haberes imponibles    | Sueldo base, horas extra, bonos imponibles, comisiones    | Que coincidan con contrato, asistencia y metas        |
-| Haberes no imponibles | Colación, movilización u otras asignaciones no cotizables | Que no te las hayan tratado como imponibles por error |
-| Descuentos legales    | AFP, salud, cesantía, impuesto único                      | Que la base y el porcentaje sean correctos            |
-| Otros descuentos      | Créditos, seguros, cuotas sindicales, anticipos           | Que exista autorización o fundamento claro            |
+**Otros descuentos:** cuotas de créditos, seguros, sindicato, APV. Cada uno debería tener una descripción que permita identificarlo.
 
-Si recibes remuneración variable, el artículo 54 bis obliga al empleador a entregar un anexo con el detalle de cálculo de comisiones, primas o tratos. Si ese anexo no existe, después es mucho más difícil auditar por qué te pagaron un monto y no otro.
+Si la liquidación que tienes mezcla imponibles y no imponibles en una sola línea, o agrupa varios descuentos sin distinguirlos, estás frente a un comprobante que dificulta la auditoría — aunque los números sean correctos.
 
-## Cómo leer cada parte sin perderte
+### El caso especial de la remuneración variable
 
-### 1. Parte por el bruto y el imponible
+Si parte de tu sueldo viene de comisiones, premios por metas o tratos, el artículo 54 bis obliga al empleador a entregarte un documento adicional con el detalle del cálculo. No es opcional. Si cobras comisiones y nunca has visto ese anexo, tienes derecho a pedirlo.
 
-Mucha gente mira el bruto y salta directo al líquido. El problema es que los descuentos previsionales no siempre se calculan sobre todo el bruto, sino sobre el **imponible**. Por eso una liquidación bien leída separa:
+Sin ese detalle, estás aceptando un número que no puedes verificar. Que haya pasado varios meses sin problemas no significa que esté bien calculado.
 
-- Lo que sí cotiza.
-- Lo que no cotiza.
-- Lo que efectivamente terminó pagándose.
+## Cómo auditar línea por línea
 
-Si el imponible es menor al bruto, no significa automáticamente un error. Puede deberse a asignaciones no imponibles como colación o movilización.
+### Haberes
 
-### 2. Revisa los descuentos legales uno por uno
+El primer paso es comparar el sueldo base con lo que dice tu contrato. Suena obvio, pero los errores ahí — sueldo desactualizado, bono que desapareció, hora extra que no apareció — son más frecuentes de lo que parece.
 
-La pregunta correcta no es "¿me descontaron mucho?" sino "¿cada línea corresponde a mi caso?".
+Después revisa si los haberes no imponibles están correctamente separados. Si la colación aparece como parte del sueldo imponible, AFP y salud se calculan sobre un monto mayor del que corresponde. Ese error funciona en tu contra.
 
-Chequea esto:
+### Descuentos legales
 
-- **AFP:** 10% obligatorio más la comisión vigente de tu AFP.
-- **Salud:** 7% mínimo en Fonasa, o más si tu plan Isapre lo exige.
-- **Cesantía:** 0,6% solo si tu contrato es indefinido.
-- **Impuesto único:** aparece solo cuando tu renta tributable mensual supera el tramo exento publicado por el SII.
+**AFP:** busca el porcentaje total y sepáralo en cotización (10%) y comisión (el resto). La comisión depende de tu AFP. Si el porcentaje no coincide con lo publicado por la Superintendencia de Pensiones para tu administradora, hay un error.
 
-Si quieres abrir el detalle de estas líneas, usa la guía de [cómo calcular tu sueldo líquido](/posts/como-calcular-sueldo-liquido/) y el desglose de [cuánto descuenta la AFP de tu sueldo](/posts/cuanto-descuenta-la-afp-de-tu-sueldo/).
+**Salud:** el mínimo es 7% del imponible. Si estás en Fonasa, debería ser exactamente eso. Si estás en Isapre, puede ser más — pero ese exceso debería estar identificado como descuento adicional, no mezclado con el 7% base.
 
-### 3. Separa descuentos legales de descuentos "otros"
+**Cesantía:** 0,6% del imponible solo si tu contrato es indefinido. Si tienes contrato a plazo fijo y aparece este descuento al trabajador, el cálculo está mal.
 
-En una liquidación es muy fácil mezclar un descuento obligatorio con uno voluntario. Esa confusión hace que el trabajador crea que "la ley le descontó demasiado" cuando en realidad parte del monto venía de un crédito social, un seguro o una cuota sindical.
+**Impuesto único:** si aparece un monto de impuesto, verifica que corresponde al tramo que te toca según tu renta tributable del mes. La tabla vigente la publica el SII mensualmente. Un mes con bono puede empujarte a un tramo superior y generar impuesto que normalmente no tienes — eso es correcto. Lo incorrecto sería impuesto sin haber cruzado el tramo exento.
 
-Si la línea no es AFP, salud, cesantía o impuesto, pregúntate:
+### Otros descuentos
 
-- ¿Lo autoricé yo?
-- ¿Está en mi contrato o anexo?
-- ¿Existe orden judicial o una obligación especial?
+Para cada línea que no sea AFP, salud, cesantía ni impuesto, hazte tres preguntas: ¿lo autoricé?, ¿hay un documento que lo respalde?, ¿el monto coincide con lo pactado?
 
-Si no puedes responder eso, el descuento merece revisión antes de dejarlo pasar.
+Si no puedes responder las tres, ese descuento merece un pedido de explicación por escrito antes de aceptarlo.
 
-## Checklist para detectar errores
+## Cuándo pedir respaldo y cómo pedirlo
 
-Usa este checklist corto cuando recibas la liquidación:
+Si encontraste una línea que no cierra, el camino correcto es pedir el respaldo al área de remuneraciones o al empleador por escrito — correo electrónico con asunto claro es suficiente. Esto sirve por dos razones: crea un registro y obliga a que la respuesta también sea por escrito.
 
-1. **Sueldo base:** compáralo con tu contrato.
-2. **Días trabajados / licencias / ausencias:** revisa si la base de cálculo coincide con tu asistencia real.
-3. **Horas extra y bonos:** valida que estén incluidos y en el monto correcto.
-4. **Imponible vs no imponible:** verifica que colación y movilización no se hayan tratado mal.
-5. **AFP y salud:** confirma administradora, plan y porcentaje correcto.
-6. **Cesantía:** revisa el tipo de contrato antes de aceptar el descuento.
-7. **Impuesto único:** si apareció por primera vez, revisa si ese mes hubo bono o mayor variable.
+Lo que pides depende de lo que encontraste:
 
-Si al terminar este checklist aún no entiendes por qué el líquido quedó tan bajo, prueba el mismo escenario en la [calculadora de sueldo líquido](/calculadoras/sueldo-liquido/). Te sirve como segundo control.
+- Un descuento legal con monto incorrecto → solicita el cálculo detallado con la base imponible usada y el porcentaje aplicado.
+- Un descuento que no reconoces → solicita el documento de autorización que lo respalda.
+- Una comisión cuya cifra no coincide → solicita el detalle del cálculo de la variable y el período considerado.
 
-## Qué hacer si tu liquidación no cuadra
+Si la respuesta no llega o no justifica el descuento, el siguiente paso es la Inspección del Trabajo.
 
-Primero pide el detalle al área de remuneraciones o a tu empleador por escrito. Lo ideal es pedir:
+## Lo que no resuelve la liquidación sola
 
-- Liquidación del mes.
-- Anexo de comisiones o bonos, si corresponde.
-- Base de cálculo usada para AFP, salud, cesantía e impuesto.
+La liquidación te permite auditar el mes en curso. No dice nada sobre lo que corresponde en un finiquito, no calcula indemnizaciones ni vacaciones proporcionales, y no resuelve conflictos sobre la legalidad de un descuento que ya está judicializado.
 
-Si la respuesta no aclara el problema, guarda la liquidación y evalúa reclamar ante la [Dirección del Trabajo](https://www.dt.gob.cl). Una liquidación confusa no siempre implica mala fe, pero una liquidación que no permite reconstruir el pago es una señal de alerta, especialmente si se repite varios meses.
+Si el problema es reconstruir el sueldo líquido desde el bruto, la [calculadora de sueldo líquido](/calculadoras/sueldo-liquido/) te da eso con el desglose por descuento. Si el problema es entender si un descuento específico corresponde o no, la guía de [descuentos de sueldo](/posts/descuentos-de-sueldo/) tiene la clasificación legal completa.
 
 ## Preguntas frecuentes
 
-**¿La liquidación de sueldo y el comprobante de transferencia son lo mismo?**  
-No. La transferencia te dice cuánto llegó; la liquidación explica cómo se llegó a ese monto.
+**¿Puedo exigir la liquidación en formato digital?**
+Sí. El artículo 54 permite la liquidación en papel o por medios digitales con firma electrónica. Lo que no puede hacer el empleador es negarse a entregarte el comprobante.
 
-**¿Me pueden pagar sin entregarme liquidación?**  
-La Dirección del Trabajo exige un comprobante junto con el pago de remuneraciones. Si no te entregan nada, te quedas sin una base mínima para revisar el cálculo.
+**¿Con cuánta anticipación debo recibir la liquidación?**
+Debe entregarse junto con el pago de remuneraciones. Si el pago es el último día hábil del mes, la liquidación debe estar disponible en ese momento.
 
-**¿Todas las empresas usan el mismo formato?**  
-No. Cambia el diseño, pero no cambia la obligación de transparentar monto, forma de cálculo y deducciones.
+**¿Mi empleador puede negarse a mostrarme el detalle del cálculo de comisiones?**
+No. El artículo 54 bis establece la obligación de entregar ese detalle. Si lo pides y no lo recibes, puedes denunciar en la Dirección del Trabajo.
 
-**¿Qué pasa si trabajo con comisiones?**  
-El artículo 54 bis exige un anexo con el detalle de cálculo de comisiones, primas o tratos. Si no existe, te faltará un documento clave para revisar el pago.
+**Aparece un descuento que no reconozco. ¿Qué hago si el empleador dice que es correcto pero no me explica de dónde viene?**
+Pide el respaldo documental por escrito. Si no lo entrega, ese descuento no tiene fundamento verificable y puedes presentar una denuncia en la Dirección del Trabajo indicando específicamente el descuento cuestionado.
 
-## Resumen
+**¿La liquidación sirve como comprobante de ingresos para solicitar un crédito?**
+Sí, es el documento más utilizado para acreditar renta en Chile. Algunos bancos piden las últimas tres liquidaciones para evaluar la regularidad del ingreso.
 
-- La liquidación es el documento clave para revisar si el pago está bien calculado.
-- Debe permitir reconstruir haberes, descuentos y líquido a pagar.
-- Si tienes remuneración variable, el anexo de cálculo no es opcional.
-- Leer bien la liquidación evita confundir descuentos legales con cobros voluntarios o errores de cálculo.
+---
 
-_Contenido informativo, revisado con fecha de corte 2026-03-08. Si tu caso involucra variables complejas, licencias, finiquito o descuentos discutidos, conviene revisar el respaldo documental antes de firmar conforme._
+*Contenido educativo con fecha de corte 2026-03-08. Si tu caso involucra remuneración variable compleja o descuentos discutidos formalmente, la revisión con respaldo documental y asesoría es el paso correcto antes de firmar conforme.*

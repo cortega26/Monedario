@@ -39,72 +39,94 @@ articleLead:
     - "No sustituye reclamos formales ante acreedores o reguladores."
 ---
 
-La búsqueda "ver si estoy en DICOM gratis" suele partir mal porque mezcla tres preguntas distintas: qué deudas financieras vigentes aparecen a tu nombre, si tienes protestos o antecedentes comerciales, y si una empresa privada puede armar un reporte más amplio con tus datos.
+Te llamaron por una deuda que no reconoces. O el arrendador te pidió "DICOM". O simplemente quieres saber qué aparece a tu nombre antes de pedir un crédito. En los tres casos la pregunta parece la misma, pero el reporte que necesitas no lo es — y empezar por el equivocado puede costarte tiempo, plata o sacar conclusiones falsas.
 
-La forma más barata y útil de partir es separar el reporte correcto antes de pagar. Si quieres el mapa completo del frente, entra a [Deuda y Crédito](/guias/deuda-credito/). Si quieres la explicación más completa de las diferencias entre registros, sigue con [Informe de deudas CMF vs DICOM](/posts/informe-deudas-cmf-vs-dicom/).
+## El problema con buscar "DICOM gratis"
 
-## Respuesta corta: qué revisar según tu duda
+"DICOM" no es un sistema oficial del Estado. Es el nombre comercial de un producto de Equifax, empresa privada que vende reportes comerciales. Con el tiempo ese nombre se volvió sinónimo genérico de "antecedentes financieros", igual que "Kleenex" se usa para hablar de cualquier pañuelo.
 
-Usa esta regla práctica:
+Cuando alguien dice "estoy en DICOM" puede estar describiendo tres situaciones distintas: tiene deudas morosas reportadas al sistema financiero regulado, tiene cheques o documentos protestados, o figura en algún reporte comercial privado. Cada una de esas situaciones se revisa en un lugar distinto.
 
-| Si tu pregunta es...                                      | Parte por...                                         | Por qué                                                                                                          |
-| --------------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| "¿Qué deudas financieras vigentes aparecen a mi nombre?"  | **Informe de Deudas CMF**                            | Es el reporte oficial y gratuito del sistema financiero supervisado.                                             |
-| "¿Tengo protestos o un antecedente comercial específico?" | **Boletín Comercial**                                | Sirve para revisar protestos y registros comerciales que no son lo mismo que el informe CMF.                     |
-| "Me pidieron DICOM o un informe comercial amplio."        | **Reporte privado del proveedor que te lo solicita** | Ahí ya no estás en un reporte oficial único, sino en un producto comercial que puede combinar fuentes distintas. |
+Antes de pagar por un informe privado, conviene agotar las opciones gratuitas oficiales. La mayoría de las veces responden la pregunta real.
 
-La mayoría de las personas debería partir por el **Informe de Deudas CMF** porque es gratis, oficial y suficiente para saber si hay créditos, líneas o tarjetas reportadas a tu nombre dentro del sistema financiero supervisado.
+## Los tres sistemas y cómo acceder a cada uno
 
-## Qué puedes ver gratis de inmediato con el Informe CMF
+### Informe de Deudas CMF — gratis, ilimitado
 
-La CMF permite descargar el **Informe de Deudas de Personas Naturales** con ClaveÚnica. Ese informe es el primer filtro útil cuando quieres:
+La Comisión para el Mercado Financiero publica el Informe de Deudas de Personas Naturales, que muestra todas las deudas vigentes con bancos, cooperativas, emisores de tarjetas y otras entidades supervisadas por la CMF. Es el punto de partida correcto para la mayoría de las personas.
 
-- Confirmar si hay créditos de consumo, hipotecarios, líneas o tarjetas vigentes a tu nombre.
-- Ordenar acreedores antes de repactar, prepagar o evaluar una [renegociación en Superir](/posts/renegociacion-superir/).
-- Detectar productos que no reconoces y empezar un reclamo con la institución que aparece.
+**Para qué sirve:** revisar qué deudas financieras activas aparecen a tu nombre, detectar productos que no reconoces, confirmar saldos antes de una negociación o renegociación.
 
-No te dice todo el universo de "DICOM". Te dice qué deudas financieras vigentes están siendo reportadas a la CMF. Si eso es lo que necesitas, no partas pagando otro informe.
+**Para qué no sirve:** ver protestos de documentos, confirmar deudas con casas comerciales que no reportan a la CMF, o armar un historial completo que incluya antecedentes comerciales más amplios.
 
-## Cuándo el Informe CMF no te alcanza
+**Cómo descargarlo:**
+1. Entra a [conocetudeuda.cmfchile.cl](https://conocetudeuda.cmfchile.cl)
+2. Haz clic en "Obtener Informe" e inicia sesión con ClaveÚnica
+3. El sistema genera el PDF en segundos
+4. Puedes descargarlo las veces que quieras, sin costo
 
-El informe CMF se queda corto si tu duda real es otra:
+Si no tienes ClaveÚnica, puedes obtenerla en [claveunica.gob.cl](https://www.claveunica.gob.cl) con tu RUT y número de serie del carnet.
 
-- **Quieres revisar protestos de cheques, letras o pagarés.** Eso se mira por la vía del **Boletín Comercial**, no en la CMF.
-- **Te piden un "DICOM" como requisito comercial.** Ahí normalmente están hablando de un producto privado, no del reporte oficial CMF.
-- **Tu problema es una deuda de servicios, telecomunicaciones u otro antecedente comercial fuera del sistema financiero supervisado.** No asumas que el CMF la mostrará.
+### Boletín Comercial — consulta mínima por ley
 
-El error caro es pagar un informe privado sin haber agotado antes el reporte oficial que sí resuelve tu pregunta principal.
+El Boletín Comercial, administrado por la Cámara de Comercio de Santiago, registra protestos de documentos: cheques rechazados, letras y pagarés que no fueron pagados y quedaron protestados ante notario. Si nunca has emitido un cheque sin fondos ni firmado un pagaré que quedó impago, probablemente tu informe está limpio.
 
-## Cómo decidir el siguiente paso después del reporte
+**Para qué sirve:** verificar si tienes protestos de documentos, que son un antecedente comercial distinto a las deudas que aparecen en el CMF.
 
-Sacar el informe correcto sirve solo si después haces algo con ese resultado:
+**Cómo acceder:** en [boletincomercial.cl](https://www.boletincomercial.cl). La ley contempla una modalidad de consulta básica gratuita; los reportes más detallados tienen costo.
 
-- **Aparecen deudas que sí reconoces y todavía estás evaluando el costo.** Salta a [CAE y costo real del crédito](/posts/cae-costo-real-credito-chile/) o usa la [calculadora de crédito de consumo](/calculadoras/credito-consumo/).
-- **Aparecen varias deudas morosas y ya no te da la caja.** Revisa si calificas para [renegociación en Superir](/posts/renegociacion-superir/) y filtra el caso con el [simulador de renegociación](/calculadoras/simulador-renegociacion/).
-- **Aparece una deuda o producto que no reconoces.** No negocies ni pagues primero: reclama ante la institución acreedora y reúne evidencia.
+**Dato importante:** la Ley 20.575 te da derecho a pedir la eliminación de un protesto del Boletín Comercial una vez que acredites el pago. Esa eliminación no es automática — hay que solicitarla.
 
-El journey corto es este: **reporte correcto -> diagnóstico -> siguiente paso**. No te quedes pegado en la pregunta "si estoy en DICOM" como si fuera el final del proceso.
+### Reportes privados tipo DICOM — pagados, más amplios
 
-## Errores comunes al buscar "DICOM gratis"
+Los reportes de Equifax y empresas similares combinan distintas fuentes: Boletín Comercial, morosidades reportadas por retail, deudas con servicios de telecomunicaciones, y a veces datos positivos como propiedades o vehículos registrados a tu nombre. Son los que suelen pedir arrendadores, algunas empresas en procesos de contratación y entidades financieras que quieren un perfil más completo.
 
-**Pedir un informe privado antes de sacar el CMF.** Si tu duda era deuda financiera vigente, empezaste por el lugar caro y menos claro.
+**Cuándo vale la pena pagarlos:** cuando alguien te exige explícitamente este tipo de informe, o cuando necesitas confirmar que no tienes antecedentes en fuentes que van más allá del sistema financiero supervisado.
 
-**Confundir "sin deudas en CMF" con "sin antecedentes comerciales".** Son capas distintas. El hecho de que el informe CMF salga limpio no significa automáticamente que no exista otro antecedente comercial.
+**Cuándo no es necesario:** si tu pregunta real es "¿qué deudas financieras activas tengo?" o "¿tengo protestos?", los dos sistemas anteriores te lo responden gratis.
 
-**Usar el reporte como si fuera una solución.** Ver la deuda no resuelve nada por sí solo: después tienes que decidir si corresponde reclamar, ordenar, prepagar o renegociar.
+## Qué te dice cada uno de forma práctica
+
+| ¿Qué quieres saber? | Reporte correcto | Costo |
+| --- | --- | --- |
+| Qué créditos, líneas o tarjetas vigentes aparecen a mi nombre | CMF | Gratis |
+| Si tengo deudas morosas en el sistema financiero regulado | CMF | Gratis |
+| Si hay un producto financiero a mi nombre que no reconozco | CMF | Gratis |
+| Si tengo cheques o pagarés protestados | Boletín Comercial | Gratuito básico / pagado completo |
+| Si aparezco en morosidades de retail, telecomunicaciones u otros | Reporte privado (Equifax) | Pagado |
+| El arrendador o empleador me pide "DICOM" | Reporte privado o Boletín según lo que pidan | Pagado |
+
+## Qué hacer después de revisar el informe
+
+Tener el reporte no es el final del proceso. Dependiendo de lo que encuentres, el siguiente paso cambia:
+
+**El CMF muestra deudas vigentes que reconoces y quieres ordenar.** Parte por calcular el costo real antes de repactar o prepagar. La [calculadora de crédito de consumo](/calculadoras/credito-consumo/) sirve para estimar el costo de distintos escenarios.
+
+**Tienes varias deudas morosas y ya no puedes sostener los pagos.** Antes de pagar o repactar de forma desesperada, revisa si calificas para la [renegociación en Superir](/posts/renegociacion-superir/), que es gratuita y puede darte condiciones mejores que las que ofrece cada acreedor por separado.
+
+**Aparece una deuda o producto que no reconoces.** No la pagues ni la negocies antes de reclamar. Contacta a la institución que figura como acreedora, pide el detalle del producto y deja el reclamo por escrito con número de folio. Si la institución está supervisada por la CMF y no responde, puedes escalar directamente a la CMF.
+
+**El informe CMF sale limpio pero igual tienes problemas de historial.** Significa que el problema no está en el sistema financiero regulado. Revisa el Boletín Comercial o consulta un reporte privado para identificar el origen del antecedente.
 
 ## Preguntas frecuentes
 
-**¿Entonces DICOM y CMF son lo mismo?**  
-No. El CMF es un reporte oficial del sistema financiero supervisado. "DICOM" suele usarse como nombre genérico para reportes comerciales privados o para hablar de antecedentes comerciales en general.
+**¿Cuánto demora en actualizarse el informe CMF si pagué una deuda?**
+La CMF informa que el informe se actualiza semanalmente, pero los datos pueden venir con un desfase de 10 a 20 días hábiles desde la operación real. Si pagaste hace dos días, el informe todavía puede mostrar la deuda activa.
 
-**¿Cuál es el primer reporte que debería pedir si no quiero pagar?**  
-En la mayoría de los casos, el Informe de Deudas CMF. Es gratis y te dice si hay deudas financieras vigentes reportadas a tu nombre.
+**¿Cualquier persona puede ver mi informe CMF?**
+No. Solo tú puedes descargarlo con tu ClaveÚnica. Ningún tercero puede acceder sin tu autorización.
 
-**¿Si el informe CMF sale limpio, significa que no tengo ningún problema comercial?**  
-No necesariamente. Significa que no aparecen deudas vigentes reportadas a la CMF. Puede haber otras capas de información comercial que se revisan por otras vías.
+**¿Si el informe CMF sale limpio significa que no tengo "DICOM"?**
+Significa que no tienes deudas vigentes reportadas al sistema financiero supervisado. Puede haber protestos en el Boletín Comercial o antecedentes en reportes privados que el CMF no muestra. Son capas distintas.
 
-**¿Qué hago si veo una deuda que no reconozco?**  
-Parte por reclamar ante la institución acreedora, pide el detalle del producto y deja constancia por escrito. Si el caso escala o se trata de una entidad supervisada, revisa la guía completa de [Informe de deudas CMF vs DICOM](/posts/informe-deudas-cmf-vs-dicom/) para seguir el paso correcto.
+**Me rechazaron un arriendo y dicen que "tengo DICOM". ¿Qué reviso primero?**
+Parte por el Informe de Deudas CMF para descartar deudas financieras activas. Luego consulta el Boletín Comercial para revisar si hay protestos. Si ambos salen limpios, el antecedente probablemente está en un reporte privado de Equifax u otra empresa similar — para eso necesitas contratar ese informe directamente.
 
-_La información de este artículo es de carácter educativo y está basada en la normativa y accesos oficiales vigentes a marzo de 2026. Antes de pagar por un informe privado, revisa si tu duda ya queda resuelta con la [CMF](https://www.cmfchile.cl/) y su plataforma [Conoce tu deuda](https://conocetudeuda.cmfchile.cl/)._
+**¿Puedo eliminar mis antecedentes del DICOM?**
+Depende del tipo de antecedente. Una deuda pagada en el sistema CMF deja de aparecer como activa. Un protesto en el Boletín Comercial requiere solicitud formal de eliminación una vez pagado. Un antecedente en un reporte privado sigue reglas de la empresa que lo emite, dentro de lo que permite la ley.
+
+Para entender en detalle cómo funcionan los tres sistemas y cuánto tiempo permanece cada tipo de antecedente, la guía completa de [Informe de deudas CMF vs DICOM](/posts/informe-deudas-cmf-vs-dicom/) desarrolla cada punto con más profundidad.
+
+---
+
+_Contenido educativo con fecha de corte 2026-03-12. Antes de pagar por un informe privado, revisa si tu duda ya queda resuelta con el [Informe de Deudas CMF](https://conocetudeuda.cmfchile.cl) gratuito.

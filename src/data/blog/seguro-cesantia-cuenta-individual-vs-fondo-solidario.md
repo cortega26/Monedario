@@ -39,77 +39,89 @@ articleLead:
     - "No garantiza acceso automático al FCS."
 ---
 
-En seguro de cesantía, una de las confusiones más caras es creer que toda la cobertura funciona como si fuera una sola bolsa. No es así. Esta pieza existe para separar dos preguntas distintas:
+Quedaste cesante, entraste a afc.cl y ves un saldo. La pregunta que sigue es natural: ¿eso es lo que cobro? Depende de qué parte estás mirando. El Seguro de Cesantía no es un solo fondo — son dos fondos con lógicas distintas, y confundirlos lleva a expectativas que la AFC no va a cumplir.
 
-1. qué plata es realmente tuya en la **Cuenta Individual de Cesantía (CIC)**;
-2. cuándo podrías pasar a revisar el **Fondo de Cesantía Solidario (FCS)**.
+## Las dos capas del seguro
 
-Si necesitas el camino completo de consulta, cobro y documentos, usa la [guía general del seguro de cesantía](/posts/seguro-de-cesantia/). Si ya tienes datos de sueldo, cotizaciones y saldo, cruza con la [calculadora de seguro de cesantía](/calculadoras/seguro-cesantia/).
+**La Cuenta Individual de Cesantía (CIC)** es una cuenta personal a tu nombre. Funciona parecido a tu cuenta AFP: se financia mes a mes con un porcentaje de tu remuneración imponible, acumula saldo y ese saldo es tuyo cuando lo necesitas. Es lo primero que se usa cuando quedas sin trabajo, y para cobrarla no hay que demostrar causal especial — solo cumplir el mínimo de cotizaciones.
 
-## La diferencia corta
+**El Fondo de Cesantía Solidario (FCS)** es un fondo común. No es una cuenta a tu nombre. Lo financian los empleadores del país y el Estado. Puedes acceder a él únicamente si tu saldo en la CIC es insuficiente para los pagos del seguro y, además, cumples todos los filtros que exige la ley. No es automático. No es universal. Y no entra si tu CIC alcanza.
 
-### Cuenta Individual de Cesantía (CIC)
+## Por qué el orden importa en la práctica
 
-- Es una cuenta asociada a tu historial de cotizaciones.
-- Tiene saldo propio.
-- Se usa primero cuando quedas sin trabajo.
-- El monto real depende de cotizaciones, saldo acumulado y retiros previos.
+La CIC siempre va primero. Esto tiene una consecuencia directa: si tu saldo individual alcanza para financiar los pagos, el Fondo Solidario no entra en la ecuación. La AFC ni lo evalúa.
 
-### Fondo de Cesantía Solidario (FCS)
+El error más común es calcular la cobertura esperada usando las tablas del FCS como referencia. Esas tablas son el complemento, no la base. Tu base es la CIC.
 
-- No es una cuenta personal tuya.
-- Funciona como capa adicional de cobertura.
-- No entra por defecto: exige filtro legal mínimo.
-- AFC revisa causal, cotizaciones y continuidad antes de habilitarlo.
+## Cómo se financia cada uno
 
-## Qué se cobra primero
+Con contrato **indefinido**: el 0,6% que te descuentan del sueldo va a tu CIC. El empleador pone 1,6% también a la CIC y el 0,8% restante al Fondo Solidario. En total, 3% mensual sobre tu imponible.
 
-Como regla práctica, **primero se usa la CIC**. El FCS no reemplaza esa cuenta ni la vuelve irrelevante. Solo se vuelve parte de la conversación si:
+Con contrato a **plazo fijo u obra**: el trabajador no aporta nada. El empleador pone 2,8% a tu CIC y 0,2% al FCS. El 3% completo es cargo del empleador.
 
-- la causal es compatible;
-- cumples el mínimo de cotizaciones;
-- y además puedes respaldar la continuidad exigida para el filtro base.
+Esto significa que dos personas con el mismo sueldo y el mismo tiempo trabajado pueden tener saldos distintos en la CIC si tuvieron tipos de contrato distintos.
 
-Por eso, decir "tengo seguro de cesantía" no basta. La pregunta útil es otra: **¿cuánto tengo en mi CIC y si realmente puedo pasar al filtro del FCS?**
+| Concepto | CIC | Fondo Solidario |
+|---|---|---|
+| Naturaleza | cuenta individual | fondo común |
+| Saldo | es tuyo | no es tuyo |
+| Se usa | primero | solo si la CIC no alcanza |
+| Exige causal válida | no para cobrar la CIC | sí |
+| Exige continuidad verificable | no como filtro base | sí |
 
-## Tabla rápida de comparación
+## Los filtros reales del Fondo Solidario
 
-| Tema                            | CIC                             | Fondo Solidario                     |
-| ------------------------------- | ------------------------------- | ----------------------------------- |
-| Naturaleza                      | saldo individual                | fondo común                         |
-| ¿Se usa primero?                | sí                              | no                                  |
-| ¿Depende de saldo propio?       | sí                              | no en la misma forma                |
-| ¿Exige causal válida?           | la CIC es más amplia            | sí                                  |
-| ¿Exige continuidad verificable? | no como filtro base equivalente | sí, para el análisis mínimo del FCS |
+Para que la AFC evalúe si puedes acceder al FCS, necesitas cumplir todos estos requisitos al mismo tiempo:
 
-## Qué revisar antes de asumir que tienes acceso al Fondo Solidario
+1. Estás cesante.
+2. Tu saldo en la CIC es insuficiente para los pagos del seguro.
+3. Tienes al menos 10 cotizaciones en los 24 meses anteriores al despido.
+4. Las últimas 3 cotizaciones fueron continuas con el mismo empleador.
+5. La causal de término es una de las que habilita el FCS.
 
-1. **La causal de término.** No todas habilitan el mismo camino.
-2. **Tus cotizaciones mínimas.** El filtro cambia según contrato y acceso que estés revisando.
-3. **Las últimas cotizaciones continuas con el mismo empleador.** Este punto suele pasarse por alto y cambia el resultado.
-4. **Tu saldo CIC real.** Si ya lo revisaste en AFC, úsalo; si no, no inventes que el Fondo Solidario te cubrirá automáticamente.
+El cuarto punto es el que más sorprende. Si tuviste dos empleadores distintos en los últimos 3 meses — aunque hayas cotizado sin interrupción — la continuidad no se cumple y el filtro no pasa. No porque hayas hecho algo mal, sino porque la ley lo exige así.
 
-## Error común
+## Causales que sí y causales que no
 
-El error más repetido es mirar una tabla del Fondo Solidario y asumir que ese monto ya te corresponde. No necesariamente. Primero debes pasar el filtro y, además, el monto exacto lo valida AFC, no una estimación general leída fuera de contexto.
+La causal en el finiquito no es un detalle administrativo: define lo que puedes cobrar.
+
+**Habilitan el FCS:** necesidades de la empresa (art. 161), quiebra del empleador, vencimiento de plazo convenido (art. 159 N°4), conclusión de obra o faena (art. 159 N°5), caso fortuito o fuerza mayor (art. 159 N°6), término por acuerdo mutuo bajo art. 163 bis.
+
+**No habilitan el FCS:** renuncia voluntaria (art. 159 N°2) y despido por conducta (art. 160). En estos casos solo puedes cobrar lo que tengas en tu CIC, si cumples el mínimo de cotizaciones.
+
+Esta distinción importa especialmente cuando hay presión para firmar una renuncia en situaciones que legalmente corresponden a una terminación por necesidades de la empresa. La causal que firma el empleador en el finiquito determina la cobertura — no el motivo real.
+
+## Qué revisar antes de hacer la solicitud
+
+Tener esto claro antes de llamar a la AFC evita confusiones y acelera el proceso:
+
+**Saldo real en CIC.** Entra a afc.cl con ClaveÚnica y revisa el número exacto. No lo estimes a partir de tus liquidaciones.
+
+**Cotizaciones en los últimos 24 meses.** Si tuviste lagunas, períodos fuera del sistema o cambios frecuentes de empleador, contesta esto antes de asumir que cumples el mínimo.
+
+**Continuidad de los últimos 3 meses.** Si cambiaste de trabajo recientemente, revisa si las 3 últimas cotizaciones fueron con el mismo empleador o no.
+
+**Causal del finiquito.** Léela antes de firmar. Una vez firmado, es difícil impugnarla.
 
 ## Preguntas frecuentes
 
-### ¿Si tengo saldo en la CIC ya tengo acceso al Fondo Solidario?
+**Si mi CIC tiene poco saldo, ¿el Fondo Solidario cubre la diferencia automáticamente?**
+No. Primero la AFC verifica que cumplas los filtros de causal, cotizaciones y continuidad. Si no los cumples, recibes solo lo que tiene tu CIC y los pagos se detienen cuando se agota ese saldo.
 
-No. Tener CIC y tener acceso al FCS son cosas distintas.
+**Si renuncié, ¿pierdo todo?**
+No pierdes la CIC. Puedes cobrar tu saldo individual si cumples el mínimo de cotizaciones (6 para contratos indefinidos, 3 para plazo fijo). Lo que no aplica en renuncia es el Fondo Solidario.
 
-### ¿Si renuncié puedo pasar igual al Fondo Solidario?
+**¿Los montos del FCS y de la CIC son iguales?**
+No. Los pagos de la CIC dependen de tu saldo y bajan progresivamente: 70%, 55%, 45%, 40%, 35% y 30% del promedio de tus remuneraciones en meses sucesivos hasta agotar el saldo. Los pagos del FCS tienen topes mínimos y máximos que fija la Superintendencia de Pensiones anualmente y son distintos según tipo de contrato.
 
-No lo asumas. La causal importa y debe revisarse con AFC.
+**¿El saldo de la CIC se pierde si no lo cobro después de quedar cesante?**
+No. Si no usas el seguro, el saldo sigue acumulado a tu nombre para la próxima vez que lo necesites.
 
-### ¿Dónde veo mi saldo real?
+**¿Puedo estimar cuánto recibiría antes de hacer la solicitud?**
+Sí. El [simulador de seguro de cesantía](/calculadoras/seguro-cesantia/) te permite ingresar tu saldo CIC real y te muestra los pagos estimados mes a mes. Para los montos del FCS, la AFC publica las tablas vigentes en su sitio.
 
-En AFC, con tus credenciales y el detalle de tu cuenta.
+Para el proceso completo de consulta, cobro y documentos necesarios, la [guía general del seguro de cesantía](/posts/seguro-de-cesantia/) tiene los pasos detallados.
 
-## Fuentes oficiales
+---
 
-- AFC Chile: https://www.afc.cl/
-- BCN — Ley 19.728: https://www.bcn.cl/leychile/navegar?idNorma=186175
-
-_Contenido educativo con fecha de corte 2026-03-12. Si tu caso depende de causal discutida, continuidad dudosa o un rechazo AFC, escala la revisión con respaldo documental._
+_Contenido educativo con fecha de corte 2026-03-12. Los porcentajes y topes del FCS se actualizan anualmente — verifica los valores vigentes en [afc.cl](https://www.afc.cl) antes de calcular tu cobertura.

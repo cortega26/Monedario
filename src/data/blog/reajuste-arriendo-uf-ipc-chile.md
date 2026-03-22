@@ -22,142 +22,103 @@ heroImage: /images/hero/reajuste-arriendo-uf-ipc-chile.avif
 
 <!-- META: keyword_primary="reajuste arriendo chile" | intent="informational-explainer" | cluster="uf-costo-de-vida" -->
 
-Cuando llega el aviso de pago y el arriendo subió, la duda real casi nunca es filosófica: quieres saber si el cambio corresponde, qué lo gatilla y cuánto más vas a pagar. Esta guía existe para eso. Si ya tienes la cláusula en la mano y solo quieres aterrizar el número, anda directo a la [calculadora de reajuste de arriendo](/calculadoras/reajuste-arriendo/). Si primero necesitas contexto, complétala con [qué es la UF](/posts/que-es-la-uf/) y [qué es el IPC en Chile](/posts/que-es-el-ipc-chile-como-se-calcula/). Si quieres ver el frente completo de UF, inflación y bolsillo en una sola entrada, vuelve a la [guía UF, inflación y costo de vida](/guias/uf-costo-de-vida/).
+Llegó el aviso de pago y el arriendo subió. O el arrendador avisa que el próximo mes cambia el monto. La primera reacción suele ser preguntarse si corresponde — y la respuesta depende de una sola cosa: lo que dice el contrato.
 
-Si llegaste desde una obligación reajustable más amplia, también puedes complementar con la [sección Deuda y Crédito](/guias/deuda-credito/).
+En Chile no existe un reajuste automático de arriendo que aplique por ley a todos los contratos. Lo que existe son distintas formas de pactar el reajuste — y cada una funciona distinto. Entender esa diferencia evita conflictos y permite verificar si el monto que te cobran es correcto.
 
-## Tabla de contenidos
+Si ya tienes la cláusula en la mano y solo necesitas el número, usa la [calculadora de reajuste de arriendo](/calculadoras/reajuste-arriendo/). Si quieres entender primero por qué la UF cambia todos los meses, complementa con [qué es la UF](/posts/que-es-la-uf/).
 
-## Qué significa reajustar un arriendo
+## Qué determina el reajuste
 
-**Respuesta rápida (regla general):** en Chile, el reajuste de un arriendo no aparece automáticamente solo porque subió la inflación. Depende de lo que hayan pactado arrendador y arrendatario en el contrato. Si la renta está en UF, el monto en UF puede mantenerse fijo y lo que cambia es su equivalente en pesos. Si el contrato usa IPC u otra fórmula, el aumento se calcula según esa cláusula y en la periodicidad acordada.  
-**Excepciones comunes:** algunos contratos quedan en pesos sin reajuste automático; otros mezclan regla, tope, fecha de aplicación o redondeo propio. Por eso siempre manda el texto exacto de tu contrato.  
-**Vigencia / fecha de corte:** 2026-03-12.  
-**Fuentes oficiales:** [Ley 18.101 sobre arrendamiento de predios urbanos](https://www.bcn.cl/leychile/navegar?idNorma=29526), [Banco Central de Chile, metodología de la UF](https://si3.bcentral.cl/estadisticas/Principal1/Metodologias/EMF/UF.pdf), [INE, IPC](https://www.ine.gob.cl/estadisticas/economia/indices-de-precio-e-inflacion/indice-de-precios-al-consumidor).
+El contrato de arriendo es el documento que define todo. No existe una norma que obligue a usar UF ni IPC — las partes acuerdan libremente la referencia y la periodicidad. La Ley 18.101 sobre arrendamiento de predios urbanos regula aspectos generales del contrato, pero no impone una fórmula de reajuste específica.
 
-La idea práctica es simple: el contrato define la regla de reajuste y después esa regla se traduce a pesos. Sin cláusula, no hay una subida "por defecto" solo porque el costo de vida cambió.
+Esto tiene una consecuencia práctica importante: el mismo "reajuste por inflación" puede funcionar de maneras muy distintas según cómo quedó redactado el contrato.
 
-## Cuándo suele aplicarse el reajuste
+## Arriendo pactado en UF
 
-El punto que más confunde es el momento. Mucha gente mezcla tres cosas distintas:
+Cuando el contrato fija el canon en UF, el reajuste ya está incorporado en la estructura del instrumento. No hay un aumento explícito en ninguna fecha — lo que cambia es el equivalente en pesos, porque la UF sube diariamente siguiendo la inflación.
 
-- la referencia usada para reajustar, por ejemplo UF o IPC;
-- la periodicidad, por ejemplo mensual, trimestral o anual;
-- la fecha concreta en que el cambio se refleja en el pago.
+Si tu contrato dice "12 UF mensuales", pagas 12 UF cada mes. Lo que varía es cuántos pesos equivalen a esas 12 UF según el valor del día de pago.
 
-En arriendos de vivienda, lo habitual es encontrar una de estas lógicas:
+**Ejemplo:**
 
-- **Arriendo pactado en UF:** el canon en UF se mantiene y el monto en pesos cambia cada vez que pagas, porque depende del valor de la UF de ese día o del día que indique el contrato.
-- **Arriendo en pesos con reajuste por IPC:** el canon en pesos se actualiza cuando se cumple el período pactado, muchas veces anual, aplicando la variación IPC definida en la cláusula.
-- **Arriendo en pesos sin cláusula de reajuste:** el monto no se recalcula por sí solo; cualquier cambio exige una nueva negociación o modificación contractual.
+| Mes | Valor UF | Arriendo en pesos |
+| --- | --- | --- |
+| Enero | $38.500 | $462.000 |
+| Julio (inflación 5% en el período) | $40.425 | $485.100 |
+| Diferencia | | **+$23.100** |
 
-Eso significa que no basta con leer "por UF" o "por IPC". También tienes que revisar desde cuándo corre la regla y sobre qué base se calcula.
+La diferencia no vino de una decisión del arrendador. Vino de que la UF absorbió la inflación del período. El contrato no cambió — solo cambió su equivalente en pesos.
 
-## Cómo leer la cláusula antes de calcular
+Esto puede parecer justo o no según cada caso, pero es exactamente el mecanismo para el que fue creada la UF: proteger el valor real de las obligaciones de largo plazo frente a la inflación. Cuando firmaste en UF, acordaste ese mecanismo.
 
-**Nota (resumen orientativo):** esta tabla simplifica formas habituales de redactar la cláusula de reajuste. El resultado puede variar por contrato, fecha de pago, base de cálculo, redondeos o pactos adicionales.
+**Qué mirar en el contrato:** qué fecha se usa para tomar el valor de la UF. Algunos contratos especifican el primer día del mes, otros el día del pago efectivo. El valor de la UF no es el mismo todos los días, así que esta diferencia puede impactar el monto final.
 
-| Si tu contrato dice algo parecido a...        | En la práctica suele significar...                                   | Qué mirar primero                                    |
-| --------------------------------------------- | -------------------------------------------------------------------- | ---------------------------------------------------- |
-| `12 UF mensuales`                             | El arriendo sigue siendo 12 UF y cambia solo su equivalente en pesos | valor UF usado para cobrar y fecha de pago           |
-| `$500.000 reajustables por IPC cada 12 meses` | El arriendo en pesos se recalcula al cumplir el período pactado      | IPC del período exacto y fecha del reajuste          |
-| `$500.000 mensuales` sin más detalle          | No hay reajuste automático incorporado en la fórmula                 | si existe anexo, renovación o modificación posterior |
-| `UF` o `IPC` con tope o mínimo                | La regla no es lineal y puede tener límites                          | tope, piso, redondeo y oportunidad de aplicación     |
+## Arriendo en pesos con cláusula de reajuste por IPC
 
-Si te cuesta traducir la cláusula a una regla operativa, usa esta pregunta corta: "¿el contrato fija una unidad indexada, un porcentaje de variación o un monto fijo?". Esa respuesta te dice qué camino seguir.
+Aquí el mecanismo es distinto. El canon está fijado en pesos y se mantiene constante hasta que se cumpla la periodicidad de reajuste pactada — generalmente anual. En esa fecha, el monto se actualiza aplicando la variación del IPC del período.
 
-## Qué pasa cuando el arriendo está en UF
+La variación del IPC no es fija ni predecible. Depende de cómo evolucionó la inflación durante el período que indica el contrato.
 
-Cuando el arriendo está en UF, el contrato no necesita "subir" el canon cada cierto tiempo. La indexación ya viene incorporada. Por eso es frecuente que el arrendatario sienta un reajuste mensual aunque el contrato siga diciendo exactamente lo mismo.
+**Ejemplo:**
 
-Ejemplo simple:
+- Arriendo pactado: $480.000 mensuales
+- Cláusula: reajuste anual por IPC acumulado del año anterior
+- IPC del período: 5,8%
+- Reajuste: $480.000 × 5,8% = $27.840
+- Nuevo arriendo: **$507.840**
 
-- canon pactado: `12 UF`
-- UF del mes pasado: `$38.500`
-- UF del pago actual: `$39.200`
+El arrendador no puede aplicar este reajuste antes de que se cumpla el período pactado ni usar un IPC distinto al que indica el contrato. Si el contrato dice "IPC del año anterior", usar el IPC de otro período no corresponde.
 
-Resultado:
+**Qué mirar en el contrato:** el período exacto de IPC que se usa, la fecha en que corresponde aplicarlo, y si hay algún tope o piso para el reajuste.
 
-- arriendo anterior: `12 x 38.500 = $462.000`
-- arriendo actual: `12 x 39.200 = $470.400`
-- diferencia: `$8.400`
+## Arriendo en pesos sin cláusula de reajuste
 
-La lógica importante acá no es "el dueño me subió el arriendo", sino "la UF subió y el contrato usa UF como referencia". Si quieres profundizar esa mecánica, revisa la guía de [qué es la UF y por qué afecta contratos y bolsillo](/posts/que-es-la-uf/).
+Si el contrato fija un monto en pesos sin establecer ningún mecanismo de reajuste, ese monto no cambia durante la vigencia del contrato. El arrendador no puede subir el arriendo unilateralmente mientras el contrato esté vigente.
 
-## Qué pasa cuando el contrato usa IPC u otra referencia
+Cuando vence el contrato y se renueva, las partes pueden acordar un nuevo monto. Si no se renueva formalmente y el arrendatario sigue ocupando el inmueble, la relación continúa bajo las condiciones originales.
 
-El IPC funciona distinto a la UF. La UF ya trae la indexación incorporada en su valor diario. El IPC, en cambio, es un porcentaje que mide la variación de precios en un período. Por eso un contrato que dice "reajuste por IPC" necesita definir sobre qué lapso se calcula esa variación.
+Esto protege al arrendatario de aumentos arbitrarios, pero también puede crear tensión al momento de renovar si la inflación acumulada fue alta y el arrendador quiere ajustar.
 
-Ejemplo simple:
+## Los errores más frecuentes
 
-- arriendo base: `$500.000`
-- cláusula: reajuste anual por IPC acumulado del período
-- IPC aplicable: `4,8%`
+**Asumir que un arriendo en pesos igual sube "por inflación".** Sin cláusula, no hay reajuste automático. Si el contrato dice $450.000 fijos, eso es lo que corresponde hasta el vencimiento.
 
-Resultado:
+**Confundir reajuste mensual con reajuste anual en contratos IPC.** Si la cláusula dice "reajuste anual", el monto cambia una vez al año, no todos los meses. Cobrar más antes de que se cumpla el período no corresponde.
 
-- reajuste: `$500.000 x 4,8% = $24.000`
-- nuevo arriendo: `$524.000`
+**Tomar el valor de la UF del día equivocado.** En contratos en UF, el día que se usa para convertir a pesos puede estar especificado. Si no lo está, hay ambigüedad y conviene acordarlo con el arrendador.
 
-La misma idea puede aparecer con otras referencias o fórmulas, por ejemplo porcentaje fijo anual, combinación con tope o una referencia expresada en UTM. En todos esos casos el principio sigue siendo el mismo: hay que identificar la base, la tasa o variación y la fecha en que corresponde aplicarla.
+**No revisar el período de IPC que indica el contrato.** "IPC del año anterior" y "IPC de los últimos 12 meses" pueden producir números distintos dependiendo de cuándo se aplica el reajuste.
 
-Si todavía no tienes claro qué mide exactamente el IPC y por qué no es lo mismo que la UF, vale la pena complementar con [qué es el IPC en Chile y cómo impacta tu bolsillo](/posts/que-es-el-ipc-chile-como-se-calcula/).
+**Creer que el arrendador puede cambiar la referencia de reajuste sin acuerdo.** Si el contrato dice UF, no puede pasarse a IPC unilateralmente para el período vigente. Eso requiere modificar el contrato con firma de ambas partes.
 
-## Cómo estimar el impacto en tu pago mensual
+## Cómo estimar el nuevo monto
 
-Antes de calcular, reúne estos tres datos:
+Para contratos **en UF:** multiplica las UF pactadas por el valor de la UF del día de pago. El valor oficial lo publica el Banco Central en [si3.bcentral.cl](https://si3.bcentral.cl/Indicadoressiete/secure/Indicadoresdiarios.aspx).
 
-1. El texto exacto de la cláusula.
-2. El monto base, en UF o en pesos.
-3. La referencia vigente del período, por ejemplo valor UF o variación IPC.
+Para contratos con reajuste **por IPC:** multiplica el arriendo actual por (1 + variación IPC del período). La variación la publica el INE en [ine.gob.cl](https://www.ine.gob.cl).
 
-Con eso puedes hacer una estimación rápida:
+Para contratos en **pesos fijos:** el monto no cambia. No hay cálculo que hacer hasta que se negocie una renovación.
 
-- **Si está en UF:** multiplica las UF pactadas por el valor de la UF usado para cobrar.
-- **Si es por IPC:** multiplica el arriendo base por la variación IPC del período y súmala al canon.
-- **Si es monto fijo:** no metas inflación ni UF por tu cuenta; primero confirma que exista una cláusula que lo permita.
+La [calculadora de reajuste de arriendo](/calculadoras/reajuste-arriendo/) tiene los tres modos y te permite ingresar los datos específicos de tu contrato para obtener el monto estimado.
 
-La [calculadora de reajuste de arriendo](/calculadoras/reajuste-arriendo/) sirve justo para ese paso. Úsala así:
+## Preguntas frecuentes
 
-- modo **UF** si el contrato fija el canon en UF;
-- modo **IPC** si la cláusula reajusta un monto en pesos por variación IPC;
-- modo **Pesos fijos** si quieres validar el escenario en que no existe reajuste automático.
+**¿El arrendador puede subir el arriendo en cualquier momento?**
+Solo si el contrato lo permite, en la periodicidad y con la referencia que indica. Sin cláusula de reajuste o antes del período pactado, no corresponde.
 
-## Errores frecuentes al interpretar el reajuste
+**¿Cuánto puede subir el arriendo por UF en un año?**
+Depende de cuánto subió la UF en ese período. La UF sigue la inflación, así que en años con inflación alta el aumento en pesos puede ser considerable aunque el monto en UF no cambie.
 
-**Mirar solo el valor en pesos con que firmaste.** Si el contrato quedó en UF, ese número histórico sirve como referencia emocional, no como regla vigente.
+**¿Puedo negociar sacar la cláusula de reajuste al renovar?**
+Sí. Al renovar el contrato, las partes pueden acordar cualquier condición distinta a la original. Si ambos están de acuerdo, pueden eliminar el reajuste, cambiar la referencia o fijar un tope.
 
-**Usar el IPC anual de las noticias sin revisar el período pactado.** El contrato puede pedir IPC acumulado entre fechas específicas, no cualquier dato general.
+**Si hay disputa sobre el reajuste, ¿a quién acudo?**
+El organismo competente para conflictos de arriendo es el Juzgado de Letras con competencia en arrendamiento. El SERNAC no tiene competencia en arriendos de vivienda. La Corporación de Asistencia Judicial ofrece orientación gratuita.
 
-**Creer que UF e IPC hacen lo mismo en la planilla.** La UF es una unidad indexada; el IPC es una variación porcentual que luego debes aplicar.
+**¿Los locales comerciales tienen las mismas reglas?**
+Los arriendos de locales comerciales se rigen por reglas distintas a los de vivienda. La Ley 18.101 aplica principalmente a predios urbanos destinados a habitación. Para locales comerciales, las condiciones son en general más libremente pactadas entre las partes.
 
-**Asumir que todo contrato en pesos puede subirse una vez al año.** Sin cláusula o sin acuerdo posterior, el reajuste no aparece automáticamente por costumbre.
+---
 
-**Calcular sin leer topes o redondeos.** Un tope anual, un piso mínimo o una regla de redondeo puede cambiar el monto final aunque la referencia sea correcta.
-
-## Cuándo conviene revisar el contrato con más cuidado
-
-Conviene bajar la velocidad y leer el texto completo si:
-
-- la cláusula menciona más de una referencia, por ejemplo UF más tope;
-- el reajuste se aplica en una fecha distinta al aniversario del contrato;
-- el monto cobrado no cuadra ni con UF ni con IPC del período;
-- hubo renovación, anexo o cambio de plazo después de firmar.
-
-En esos casos, esta guía y la calculadora te sirven para ordenar la lógica, pero no reemplazan la lectura del contrato ni una revisión jurídica si hay conflicto.
-
-## Resumen
-
-- El reajuste del arriendo depende de la cláusula pactada, no de una regla automática por inflación.
-- En UF, el canon suele mantenerse en UF y cambia su valor en pesos.
-- En IPC, el arriendo en pesos se actualiza cuando llega la fecha y el período definidos en el contrato.
-- Si el contrato está en pesos fijos sin cláusula, no corresponde inventar un reajuste.
-- La mejor forma de estimarlo es traducir primero la cláusula y después usar la calculadora correcta.
-
-## Fuentes oficiales
-
-- Ley 18.101 sobre arrendamiento de predios urbanos: https://www.bcn.cl/leychile/navegar?idNorma=29526
-- Banco Central de Chile, metodología de la UF: https://si3.bcentral.cl/estadisticas/Principal1/Metodologias/EMF/UF.pdf
-- INE, Índice de Precios al Consumidor: https://www.ine.gob.cl/estadisticas/economia/indices-de-precio-e-inflacion/indice-de-precios-al-consumidor
-
-_Contenido informativo, revisado con fecha de corte 2026-03-12. Si tu cláusula es ambigua o el cobro no coincide con la referencia pactada, conviene revisar el contrato completo antes de asumir que el reajuste está bien aplicado._
+*Contenido educativo con fecha de corte 2026-03-12. Para interpretación de cláusulas específicas, consulta a un abogado o la [Corporación de Asistencia Judicial](https://www.cajmetro.cl/).*

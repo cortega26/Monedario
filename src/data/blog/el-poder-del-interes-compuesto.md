@@ -20,11 +20,31 @@ lang: es-CL
 featured: true
 draft: false
 heroImage: /images/hero/el-poder-del-interes-compuesto.avif
+articleLead:
+  answer: "Invertir el 10% del sueldo mínimo durante 36 años en un índice bursátil habría producido más de $125 millones en este ejercicio. El resultado no es magia: es el interés compuesto funcionando sobre períodos largos, sin interrumpir el plan durante las crisis."
+  calculatorHref: "/calculadoras/simulador-jubilacion/"
+  calculatorLabel: "Proyectar tu jubilación"
+  nextStepHref: "/posts/como-invertir-en-etfs-desde-chile/"
+  nextStepLabel: "Ver cómo acceder a ETFs desde Chile"
+  validAsOf: 2026-03-07
+  officialSources:
+    - label: "Nasdaq — histórico NDX"
+      href: "https://www.nasdaq.com/market-activity/index/ndx/historical"
+    - label: "Banco Central — tipos de cambio"
+      href: "https://www.bcentral.cl/es/web/banco-central/areas/estadisticas/tipos-de-cambios-y-paridades"
+  covers:
+    - "Cómo funciona la simulación y qué supuestos usa."
+    - "Por qué las crisis no destruyeron el portafolio."
+    - "Cuánto habría disponible para retirar mensualmente al jubilar."
+  limits:
+    - "El NASDAQ-100 es un benchmark optimista — no representa el mercado amplio."
+    - "Los montos son nominales, no ajustados por inflación."
+    - "No modela costos de transacción ni impuestos."
 ---
 
 <!-- META: keyword_primary="interes compuesto" | intent="informacional-ejemplo" | cluster="ahorro-e-inversion" -->
 
-Imagina a alguien que nunca ganó más que el sueldo mínimo. Sin bonos, sin ascensos, sin herencias. Solo el sueldo de cada mes y la disciplina de apartar el 10% del líquido para invertirlo. Durante 36 años tuvo 24 meses sin trabajo —lagunas reales, como las que le pasan a cualquier trabajador chileno. El resto del tiempo, ese 10% fue al NASDAQ-100. Lo que ocurrió después es lo que este ejercicio trata de mostrar. Si quieres revisar más temas relacionados, mira también la [sección de ahorro e inversión](/guias/ahorro-e-inversion/).
+Imagina a alguien que nunca ganó más que el sueldo mínimo. Sin bonos, sin ascensos, sin herencias. Solo el sueldo de cada mes y la disciplina de apartar el 10% del líquido para invertirlo. Durante 36 años tuvo 24 meses sin trabajo — lagunas reales, como las que le pasan a cualquier trabajador chileno. El resto del tiempo, ese 10% fue al NASDAQ-100. Lo que ocurrió después es lo que este ejercicio trata de mostrar.
 
 ## Respuesta rápida
 
@@ -58,15 +78,15 @@ En 1990 no era práctico para un chileno de sueldo mínimo invertir en el NASDAQ
 
 El camino no fue recto. Hubo momentos en que la cartera se hundió con fuerza. Estos son los hitos de control del ejercicio:
 
-| Año          | Valor de la cartera (USD) | En pesos (CLP)       |
-| ------------ | ------------------------- | -------------------- |
-| Dic 1995     | $770                      | ~$320.000            |
-| Dic 2000     | $4.702                    | ~$3,0 millones       |
-| Dic 2005     | $4.537                    | ~$2,5 millones       |
-| Dic 2010     | $8.124                    | ~$3,9 millones       |
-| Dic 2015     | $20.258                   | ~$13,2 millones      |
-| Dic 2020     | $62.846                   | ~$50,3 millones      |
-| **Dic 2025** | **$129.495**              | **~$125,6 millones** |
+| Año | Valor de la cartera (USD) | En pesos (CLP) |
+| --- | --- | --- |
+| Dic 1995 | $770 | ~$320.000 |
+| Dic 2000 | $4.702 | ~$3,0 millones |
+| Dic 2005 | $4.537 | ~$2,5 millones |
+| Dic 2010 | $8.124 | ~$3,9 millones |
+| Dic 2015 | $20.258 | ~$13,2 millones |
+| Dic 2020 | $62.846 | ~$50,3 millones |
+| **Dic 2025** | **$129.495** | **~$125,6 millones** |
 
 Dos cosas llaman la atención. La primera: entre 2000 y 2005 la cartera bajó de valor, porque la burbuja puntocom golpeó muy fuerte al NASDAQ-100. La segunda: más del 60% del crecimiento total ocurrió en los últimos 10 años. Así funciona el interés compuesto: se ve lento al principio y mucho más agresivo al final.
 
@@ -103,11 +123,11 @@ Esta persona se jubilaría a los 54 años, suponiendo inicio laboral a los 18 y 
 
 **Advertencia importante:** estas cifras asumen un retorno promedio relativamente estable durante el retiro. En la vida real, una caída fuerte del mercado en los primeros años de jubilación puede dañar bastante más el plan que una caída igual al final. Estas mensualidades son orientativas, no garantizadas.
 
-| Escenario                            | Mensualidad estimada (CLP) | Mensualidad (USD) |
-| ------------------------------------ | -------------------------- | ----------------- |
-| Hombre (hasta ~79 años, 301 meses)   | **~$778.000**              | ~$802             |
-| Promedio (hasta ~82 años, 333 meses) | **~$748.000**              | ~$771             |
-| Mujer (hasta ~84 años, 366 meses)    | **~$723.000**              | ~$746             |
+| Escenario | Mensualidad estimada (CLP) | Mensualidad (USD) |
+| --- | --- | --- |
+| Hombre (hasta ~79 años, 301 meses) | **~$778.000** | ~$802 |
+| Promedio (hasta ~82 años, 333 meses) | **~$748.000** | ~$771 |
+| Mujer (hasta ~84 años, 366 meses) | **~$723.000** | ~$746 |
 
 En todos los escenarios, la mensualidad supera el sueldo mínimo de diciembre de 2025 ($500.000). Dicho de otra forma: bajo este ejercicio, una persona que nunca ganó más que el sueldo mínimo podría financiar un retiro mensual mayor a su último sueldo, simplemente por haber ahorrado e invertido el 10% de su líquido durante 36 años.
 
@@ -170,4 +190,6 @@ Una vez comprado, ese departamento se podría arrendar. En comunas intermedias d
 - Esta versión incorpora críticas razonables y límites metodológicos explícitos para contextualizar mejor el resultado.
 - Gatilla actualización: cambios en la metodología del ejercicio, corrección de series históricas o incorporación de costos/impuestos al modelo.
 
-Contenido informativo y educativo; no reemplaza asesoría financiera, tributaria ni previsional personalizada.
+---
+
+*Simulación educativa con fecha de corte 2025-12-31. Los retornos pasados no garantizan retornos futuros. Para el detalle metodológico completo, supuestos y fuentes, abre la [nota metodológica](/posts/interes-compuesto-nota-metodologica/).*
