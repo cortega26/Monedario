@@ -60,6 +60,7 @@ La Comisión para el Mercado Financiero publica el Informe de Deudas de Personas
 **Para qué no sirve:** ver protestos de documentos, confirmar deudas con casas comerciales que no reportan a la CMF, o armar un historial completo que incluya antecedentes comerciales más amplios.
 
 **Cómo descargarlo:**
+
 1. Entra a [conocetudeuda.cmfchile.cl](https://conocetudeuda.cmfchile.cl)
 2. Haz clic en "Obtener Informe" e inicia sesión con ClaveÚnica
 3. El sistema genera el PDF en segundos
@@ -87,14 +88,14 @@ Los reportes de Equifax y empresas similares combinan distintas fuentes: Boletí
 
 ## Qué te dice cada uno de forma práctica
 
-| ¿Qué quieres saber? | Reporte correcto | Costo |
-| --- | --- | --- |
-| Qué créditos, líneas o tarjetas vigentes aparecen a mi nombre | CMF | Gratis |
-| Si tengo deudas morosas en el sistema financiero regulado | CMF | Gratis |
-| Si hay un producto financiero a mi nombre que no reconozco | CMF | Gratis |
-| Si tengo cheques o pagarés protestados | Boletín Comercial | Gratuito básico / pagado completo |
-| Si aparezco en morosidades de retail, telecomunicaciones u otros | Reporte privado (Equifax) | Pagado |
-| El arrendador o empleador me pide "DICOM" | Reporte privado o Boletín según lo que pidan | Pagado |
+| ¿Qué quieres saber?                                              | Reporte correcto                             | Costo                             |
+| ---------------------------------------------------------------- | -------------------------------------------- | --------------------------------- |
+| Qué créditos, líneas o tarjetas vigentes aparecen a mi nombre    | CMF                                          | Gratis                            |
+| Si tengo deudas morosas en el sistema financiero regulado        | CMF                                          | Gratis                            |
+| Si hay un producto financiero a mi nombre que no reconozco       | CMF                                          | Gratis                            |
+| Si tengo cheques o pagarés protestados                           | Boletín Comercial                            | Gratuito básico / pagado completo |
+| Si aparezco en morosidades de retail, telecomunicaciones u otros | Reporte privado (Equifax)                    | Pagado                            |
+| El arrendador o empleador me pide "DICOM"                        | Reporte privado o Boletín según lo que pidan | Pagado                            |
 
 ## Qué hacer después de revisar el informe
 
@@ -129,4 +130,4 @@ Para entender en detalle cómo funcionan los tres sistemas y cuánto tiempo perm
 
 ---
 
-_Contenido educativo con fecha de corte 2026-03-12. Antes de pagar por un informe privado, revisa si tu duda ya queda resuelta con el [Informe de Deudas CMF](https://conocetudeuda.cmfchile.cl) gratuito.
+\_Contenido educativo con fecha de corte 2026-03-12. Antes de pagar por un informe privado, revisa si tu duda ya queda resuelta con el [Informe de Deudas CMF](https://conocetudeuda.cmfchile.cl) gratuito.

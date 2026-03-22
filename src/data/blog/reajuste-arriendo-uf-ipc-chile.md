@@ -42,11 +42,11 @@ Si tu contrato dice "12 UF mensuales", pagas 12 UF cada mes. Lo que varía es cu
 
 **Ejemplo:**
 
-| Mes | Valor UF | Arriendo en pesos |
-| --- | --- | --- |
-| Enero | $38.500 | $462.000 |
-| Julio (inflación 5% en el período) | $40.425 | $485.100 |
-| Diferencia | | **+$23.100** |
+| Mes                                | Valor UF | Arriendo en pesos |
+| ---------------------------------- | -------- | ----------------- |
+| Enero                              | $38.500  | $462.000          |
+| Julio (inflación 5% en el período) | $40.425  | $485.100          |
+| Diferencia                         |          | **+$23.100**      |
 
 La diferencia no vino de una decisión del arrendador. Vino de que la UF absorbió la inflación del período. El contrato no cambió — solo cambió su equivalente en pesos.
 
@@ -121,4 +121,4 @@ Los arriendos de locales comerciales se rigen por reglas distintas a los de vivi
 
 ---
 
-*Contenido educativo con fecha de corte 2026-03-12. Para interpretación de cláusulas específicas, consulta a un abogado o la [Corporación de Asistencia Judicial](https://www.cajmetro.cl/).*
+_Contenido educativo con fecha de corte 2026-03-12. Para interpretación de cláusulas específicas, consulta a un abogado o la [Corporación de Asistencia Judicial](https://www.cajmetro.cl/)._

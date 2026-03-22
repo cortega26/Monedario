@@ -61,13 +61,13 @@ Con contrato a **plazo fijo u obra**: el trabajador no aporta nada. El empleador
 
 Esto significa que dos personas con el mismo sueldo y el mismo tiempo trabajado pueden tener saldos distintos en la CIC si tuvieron tipos de contrato distintos.
 
-| Concepto | CIC | Fondo Solidario |
-|---|---|---|
-| Naturaleza | cuenta individual | fondo común |
-| Saldo | es tuyo | no es tuyo |
-| Se usa | primero | solo si la CIC no alcanza |
-| Exige causal válida | no para cobrar la CIC | sí |
-| Exige continuidad verificable | no como filtro base | sí |
+| Concepto                      | CIC                   | Fondo Solidario           |
+| ----------------------------- | --------------------- | ------------------------- |
+| Naturaleza                    | cuenta individual     | fondo común               |
+| Saldo                         | es tuyo               | no es tuyo                |
+| Se usa                        | primero               | solo si la CIC no alcanza |
+| Exige causal válida           | no para cobrar la CIC | sí                        |
+| Exige continuidad verificable | no como filtro base   | sí                        |
 
 ## Los filtros reales del Fondo Solidario
 
@@ -124,4 +124,4 @@ Para el proceso completo de consulta, cobro y documentos necesarios, la [guía g
 
 ---
 
-_Contenido educativo con fecha de corte 2026-03-12. Los porcentajes y topes del FCS se actualizan anualmente — verifica los valores vigentes en [afc.cl](https://www.afc.cl) antes de calcular tu cobertura.
+\_Contenido educativo con fecha de corte 2026-03-12. Los porcentajes y topes del FCS se actualizan anualmente — verifica los valores vigentes en [afc.cl](https://www.afc.cl) antes de calcular tu cobertura.

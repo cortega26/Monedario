@@ -81,12 +81,12 @@ Tampoco puede retener el sueldo completo como garantía ni practicar descuentos 
 
 El tipo de contrato cambia lo que corresponde. Este es el cuadro completo de las variaciones más importantes:
 
-| Descuento | Contrato indefinido | Contrato a plazo fijo / obra |
-| --- | --- | --- |
-| AFP (10% + comisión) | Siempre | Siempre |
-| Salud (7% mínimo) | Siempre | Siempre |
-| Cesantía trabajador (0,6%) | Sí | No — lo paga el empleador |
-| Impuesto único | Si supera el tramo exento | Si supera el tramo exento |
+| Descuento                  | Contrato indefinido       | Contrato a plazo fijo / obra |
+| -------------------------- | ------------------------- | ---------------------------- |
+| AFP (10% + comisión)       | Siempre                   | Siempre                      |
+| Salud (7% mínimo)          | Siempre                   | Siempre                      |
+| Cesantía trabajador (0,6%) | Sí                        | No — lo paga el empleador    |
+| Impuesto único             | Si supera el tramo exento | Si supera el tramo exento    |
 
 Una liquidación de contrato a plazo fijo que descuente el 0,6% por cesantía al trabajador no está bien calculada. No es un error pequeño: en un sueldo de $800.000 son $4.800 al mes que no corresponden.
 
@@ -119,4 +119,4 @@ Primero ante el empleador o el área de remuneraciones, por escrito con acuse de
 
 ---
 
-*Contenido educativo con fecha de corte 2026-03-08. Las comisiones AFP y la tabla del impuesto único se actualizan regularmente — verifica los valores vigentes en la [Superintendencia de Pensiones](https://www.spensiones.cl) y el [SII](https://www.sii.cl) antes de tomar decisiones.*
+_Contenido educativo con fecha de corte 2026-03-08. Las comisiones AFP y la tabla del impuesto único se actualizan regularmente — verifica los valores vigentes en la [Superintendencia de Pensiones](https://www.spensiones.cl) y el [SII](https://www.sii.cl) antes de tomar decisiones._

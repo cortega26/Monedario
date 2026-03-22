@@ -58,10 +58,12 @@ La indemnización por años de servicio funciona sobre tres variables. Si cualqu
 Este es el punto donde más finiquitos tienen errores. La indemnización por años de servicio no corresponde por defecto — corresponde cuando la causal lo habilita.
 
 **Corresponde con estas causales principales:**
+
 - Necesidades de la empresa, establecimiento o servicio (art. 161 del Código del Trabajo). Es la causal más frecuente para despidos que activan la indemnización.
 - Despido declarado injustificado por tribunal (art. 168). Acá además pueden corresponder recargos.
 
 **No corresponde como regla general con estas causales:**
+
 - Renuncia voluntaria (art. 159 N°2).
 - Mutuo acuerdo (art. 159 N°1), salvo que se pacte expresamente en el finiquito.
 - Vencimiento del plazo o término de obra (art. 159 N°4 y N°5).
@@ -77,20 +79,20 @@ La fórmula base es esta:
 
 Ejemplo con números concretos:
 
-| Variable | Valor |
-|---|---|
-| Última remuneración mensual | $950.000 |
-| Antigüedad | 7 años y 4 meses |
-| Años completos | 7 |
-| Año fraccionado | 4 meses → no suma año adicional |
-| Cálculo | $950.000 × 7 = **$6.650.000** |
+| Variable                    | Valor                           |
+| --------------------------- | ------------------------------- |
+| Última remuneración mensual | $950.000                        |
+| Antigüedad                  | 7 años y 4 meses                |
+| Años completos              | 7                               |
+| Año fraccionado             | 4 meses → no suma año adicional |
+| Cálculo                     | $950.000 × 7 = **$6.650.000**   |
 
 Si la antigüedad fuera 7 años y 8 meses, el año fraccionado sí suma porque supera los 6 meses:
 
-| Variable | Valor |
-|---|---|
-| Años completos + fracción > 6 meses | 8 |
-| Cálculo | $950.000 × 8 = **$7.600.000** |
+| Variable                            | Valor                         |
+| ----------------------------------- | ----------------------------- |
+| Años completos + fracción > 6 meses | 8                             |
+| Cálculo                             | $950.000 × 8 = **$7.600.000** |
 
 La diferencia entre esos dos escenarios es $950.000 — exactamente un mes de sueldo. Vale la pena revisar la fecha de ingreso exacta.
 
@@ -141,4 +143,4 @@ Para aterrizar los números con tus datos, usa la [calculadora de finiquito e in
 
 ---
 
-_Contenido educativo con fecha de corte 2026-03-12. Si la causal está discutida o el cálculo involucra remuneración variable compleja, la asesoría de un abogado laboral es el paso correcto antes de firmar.
+\_Contenido educativo con fecha de corte 2026-03-12. Si la causal está discutida o el cálculo involucra remuneración variable compleja, la asesoría de un abogado laboral es el paso correcto antes de firmar.

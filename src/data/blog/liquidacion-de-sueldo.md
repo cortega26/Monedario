@@ -131,4 +131,4 @@ Sí, es el documento más utilizado para acreditar renta en Chile. Algunos banco
 
 ---
 
-*Contenido educativo con fecha de corte 2026-03-08. Si tu caso involucra remuneración variable compleja o descuentos discutidos formalmente, la revisión con respaldo documental y asesoría es el paso correcto antes de firmar conforme.*
+_Contenido educativo con fecha de corte 2026-03-08. Si tu caso involucra remuneración variable compleja o descuentos discutidos formalmente, la revisión con respaldo documental y asesoría es el paso correcto antes de firmar conforme._
