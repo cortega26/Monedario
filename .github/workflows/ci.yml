@@ -122,7 +122,7 @@ jobs:
 
       - name: "📤 Upload URL check artifacts"
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: urlcheck-artifacts-ci
           retention-days: 14
@@ -174,7 +174,7 @@ jobs:
 
       - name: "📤 Upload external audit artifacts"
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: urlcheck-artifacts-external-audit
           retention-days: 14
