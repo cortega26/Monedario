@@ -1,0 +1,572 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/hero-images/scan-articles.mjs",
+  "note": "Generated file. Do not edit manually; regenerate via node scripts/hero-images/scan-articles.mjs",
+  "source": "src/data/blog/**",
+  "publishableRule": "draft !== true",
+  "ordering": "slug asc",
+  "publishedCount": 34,
+  "articles": [
+    {
+      "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
+      "title": "Ahorro e inversión en Chile: instrumentos, costos e impuestos (guía 2026)",
+      "category": "ahorro-inversion",
+      "cluster": "ahorro-e-inversion",
+      "tags": [
+        "ahorro",
+        "inversiones",
+        "impuestos",
+        "chile"
+      ],
+      "sourcePath": "src/data/blog/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.md",
+      "heroImage": "/images/hero/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.avif",
+      "summary": "<! META: keyword primary=\"ahorro e inversión en chile\" intent=\"informacional pilar\" cluster=\"ahorro e inversion\" Elegir en qué instrumento poner tu plata es una de las decisiones financieras más frecuentes —y más mal tomadas— por personas que ya tienen claro que quieren ahorrar,...",
+      "updatedDate": "2026-02-28T16:00:00Z"
+    },
+    {
+      "slug": "boleta-honorarios-2026-retencion-cobertura",
+      "title": "Boleta de honorarios 2026: retención 15,25%, líquido recibido y cobertura anual",
+      "category": "impuestos",
+      "cluster": "impuestos-personas",
+      "tags": [
+        "boletas",
+        "honorarios",
+        "retencion",
+        "seguridad-social"
+      ],
+      "sourcePath": "src/data/blog/boleta-honorarios-2026-retencion-cobertura.md",
+      "heroImage": "/images/hero/boleta-honorarios-2026-retencion-cobertura.avif",
+      "summary": "Emites boletas y cada mes te preguntas lo mismo: ¿cuánto me llega realmente? En 2026 la respuesta cambia porque subió la retención. Esta guía separa tres cosas que suelen confundirse: la retención mensual que se aplica al emitir cada boleta, el cálculo de cotizaciones que ocurre...",
+      "updatedDate": "2026-03-12T14:16:00Z"
+    },
+    {
+      "slug": "cae-costo-real-credito-chile",
+      "title": "CAE de un crédito: qué es, cómo se calcula y por qué la tasa sola engaña",
+      "category": "deuda-credito",
+      "cluster": "deuda-credito",
+      "tags": [
+        "credito",
+        "cae",
+        "tmc",
+        "deuda",
+        "consumo"
+      ],
+      "sourcePath": "src/data/blog/cae-costo-real-credito-chile.md",
+      "heroImage": "/images/hero/cae-costo-real-credito-chile.avif",
+      "summary": "<! META: keyword primary=\"qué es la CAE de un crédito\" intent=\"informacional pilar\" cluster=\"deuda credito\" Cuando comparas créditos, el número que más te empujan es la cuota o la tasa mensual. El problema es que ninguna de esas dos cifras, por sí sola, te dice cuánto terminarás...",
+      "updatedDate": "2026-03-12T18:35:00Z"
+    },
+    {
+      "slug": "como-calcular-sueldo-liquido",
+      "title": "Cómo calcular tu sueldo líquido en Chile: del imponible al depósito final",
+      "category": "empleo-ingresos",
+      "cluster": "sueldo-remuneraciones",
+      "tags": [
+        "sueldo",
+        "descuentos",
+        "afp",
+        "impuestos",
+        "liquidacion"
+      ],
+      "sourcePath": "src/data/blog/como-calcular-sueldo-liquido.md",
+      "heroImage": "/images/hero/como-calcular-sueldo-liquido.avif",
+      "summary": "<! META: keyword primary=\"calcular sueldo liquido\" intent=\"informational howto\" cluster=\"sueldo remuneraciones\" Te ofrecieron $1.200.000 brutos. Llegó el día de pago y te cayeron $950.000. Esta guía existe para rehacer ese cálculo de principio a fin: partir desde el bruto, separa...",
+      "updatedDate": "2026-03-12T14:10:00Z"
+    },
+    {
+      "slug": "como-cambiarse-de-afp",
+      "title": "¿Puedo cambiarme de AFP? Cómo hacerlo y qué considerar en 2026",
+      "category": "prevision",
+      "cluster": "pensiones-afp",
+      "tags": [
+        "afp",
+        "pensiones",
+        "cambio-afp",
+        "reforma-pensiones"
+      ],
+      "sourcePath": "src/data/blog/como-cambiarse-de-afp.md",
+      "heroImage": "/images/hero/como-cambiarse-de-afp.avif",
+      "summary": "Cambiarse de AFP es uno de los trámites más simples que puedes hacer para mejorar tu situación previsional, y sin embargo la mayoría de las personas nunca lo hace. En esta guía te explicamos cómo funciona el proceso, qué debes evaluar y qué cambia con la Reforma de Pensiones apro...",
+      "updatedDate": "2026-02-23T13:00:00Z"
+    },
+    {
+      "slug": "como-hacer-presupuesto-mensual-chile",
+      "title": "Cómo hacer un presupuesto mensual en Chile: método práctico sin plantilla mágica",
+      "category": "general",
+      "cluster": "empleo-ingresos",
+      "tags": [
+        "presupuesto",
+        "finanzas-personales",
+        "ahorro",
+        "gasto-hormiga",
+        "control-financiero"
+      ],
+      "sourcePath": "src/data/blog/como-hacer-presupuesto-mensual-chile.md",
+      "heroImage": "/images/hero/como-hacer-presupuesto-mensual-chile.avif",
+      "summary": "Antes de invertir en algo, antes de ahorrar para algo, antes de salir de una deuda, necesitas saber a dónde va tu plata. La mayoría de los problemas financieros personales no son de ingreso — son de control. Este artículo te da un método concreto para hacer un presupuesto que fun...",
+      "updatedDate": "2026-03-11T00:00:00Z"
+    },
+    {
+      "slug": "como-invertir-en-etfs-desde-chile",
+      "title": "Cómo invertir en ETFs desde Chile: comisiones, custodia e impuestos",
+      "category": "ahorro-inversion",
+      "cluster": "ahorro-e-inversion",
+      "tags": [
+        "etf",
+        "inversiones",
+        "corredoras",
+        "impuestos"
+      ],
+      "sourcePath": "src/data/blog/como-invertir-en-etfs-desde-chile.md",
+      "heroImage": "/images/hero/como-invertir-en-etfs-desde-chile.avif",
+      "summary": "<! META: keyword primary=\"como invertir en etf desde chile\" intent=\"guia procedimental\" cluster=\"ahorro e inversion\" Invertir en ETFs desde Chile es perfectamente posible, pero el costo real rara vez aparece en el primer número que ves. La comisión, los derechos de bolsa, el IVA,...",
+      "updatedDate": "2026-02-28T16:30:00Z"
+    },
+    {
+      "slug": "cuanto-descuenta-la-afp-de-tu-sueldo",
+      "title": "Descuento AFP en tu sueldo: cotización obligatoria, comisión y cómo revisarlo",
+      "category": "empleo-ingresos",
+      "cluster": "sueldo-remuneraciones",
+      "tags": [
+        "afp",
+        "pensiones",
+        "descuentos",
+        "sueldo"
+      ],
+      "sourcePath": "src/data/blog/cuanto-descuenta-la-afp-de-tu-sueldo.md",
+      "heroImage": "/images/hero/cuanto-descuenta-la-afp-de-tu-sueldo.avif",
+      "summary": "<! META: keyword primary=\"descuento afp sueldo\" intent=\"informational line item review\" cluster=\"sueldo remuneraciones\" Cada mes aparece en tu liquidación una línea que dice \"AFP\" y un número que te descuentan. Para la mayoría es un cálculo opaco que simplemente aceptan. Esta guí...",
+      "updatedDate": "2026-03-12T14:13:00Z"
+    },
+    {
+      "slug": "deposito-a-plazo-uf-vs-pesos",
+      "title": "Depósito a plazo: UF vs pesos — qué conviene y cuándo",
+      "category": "ahorro-inversion",
+      "cluster": "ahorro-e-inversion",
+      "tags": [
+        "deposito-a-plazo",
+        "uf",
+        "ahorro",
+        "inversiones"
+      ],
+      "sourcePath": "src/data/blog/deposito-a-plazo-uf-vs-pesos.md",
+      "heroImage": "/images/hero/deposito-a-plazo-uf-vs-pesos.avif",
+      "summary": "<! META: keyword primary=\"deposito a plazo en uf o pesos que conviene\" intent=\"comparativa\" cluster=\"ahorro e inversion\" La tasa en pesos parece más alta. La tasa en UF es más baja pero viene con reajuste. ¿Cuál conviene? La respuesta no está en el número de arriba sino en lo que...",
+      "updatedDate": "2026-02-28T16:10:00Z"
+    },
+    {
+      "slug": "descuentos-de-sueldo",
+      "title": "Descuentos de sueldo en Chile: cuáles son legales, voluntarios y prohibidos",
+      "category": "empleo-ingresos",
+      "cluster": "sueldo-remuneraciones",
+      "tags": [
+        "sueldo",
+        "descuentos",
+        "liquidacion",
+        "afp",
+        "impuestos"
+      ],
+      "sourcePath": "src/data/blog/descuentos-de-sueldo.md",
+      "heroImage": "/images/hero/descuentos-de-sueldo.avif",
+      "summary": "<! META: keyword primary=\"descuentos de sueldo\" intent=\"informational legal classification\" cluster=\"sueldo remuneraciones\" Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción qu...",
+      "updatedDate": "2026-03-12T14:12:00Z"
+    },
+    {
+      "slug": "devolucion-impuestos-fechas-compensaciones",
+      "title": "Devolución de impuestos en Chile: fechas de pago, estado y compensaciones",
+      "category": "impuestos",
+      "cluster": "impuestos-personas",
+      "tags": [
+        "impuestos",
+        "devolucion",
+        "operacion-renta",
+        "tgr"
+      ],
+      "sourcePath": "src/data/blog/devolucion-impuestos-fechas-compensaciones.md",
+      "heroImage": "/images/hero/devolucion-impuestos-fechas-compensaciones.avif",
+      "summary": "Ya enviaste tu declaración, tu propuesta dijo devolución y la fecha pasó. Esta guía responde la pregunta que más se repite: ¿ cuándo depositan? Y si no depositaron, te explica cómo revisar el estado y qué hacer. Qué cambia y qué debes mirar primero La devolución no depende solo d...",
+      "updatedDate": "2026-02-28T15:10:00Z"
+    },
+    {
+      "slug": "donde-ver-si-estoy-en-dicom-gratis",
+      "title": "Dónde ver si estás en DICOM gratis en Chile y qué revisar primero",
+      "category": "deuda-credito",
+      "cluster": "deuda-credito",
+      "tags": [
+        "dicom",
+        "boletin-comercial",
+        "cmf",
+        "deudas",
+        "historial-crediticio"
+      ],
+      "sourcePath": "src/data/blog/donde-ver-si-estoy-en-dicom-gratis.md",
+      "heroImage": "/images/hero/donde-ver-si-estoy-en-dicom-gratis.avif",
+      "summary": "Te llamaron por una deuda que no reconoces. O el arrendador te pidió \"DICOM\". O simplemente quieres saber qué aparece a tu nombre antes de pedir un crédito. En los tres casos la pregunta parece la misma, pero el reporte que necesitas no lo es — y empezar por el equivocado puede c...",
+      "updatedDate": "2026-03-12T19:00:00Z"
+    },
+    {
+      "slug": "el-poder-del-interes-compuesto",
+      "title": "El poder del interés compuesto: cómo el 10% del sueldo mínimo se convierte en más de $125 millones",
+      "category": "ahorro-inversion",
+      "cluster": "ahorro-e-inversion",
+      "tags": [
+        "ahorro",
+        "inversion",
+        "interes-compuesto",
+        "nasdaq-100",
+        "jubilacion",
+        "bolsa"
+      ],
+      "sourcePath": "src/data/blog/el-poder-del-interes-compuesto.md",
+      "heroImage": "/images/hero/el-poder-del-interes-compuesto.avif",
+      "summary": "<! META: keyword primary=\"interes compuesto\" intent=\"informacional ejemplo\" cluster=\"ahorro e inversion\" Imagina a alguien que nunca ganó más que el sueldo mínimo. Sin bonos, sin ascensos, sin herencias. Solo el sueldo de cada mes y la disciplina de apartar el 10% del líquido par...",
+      "updatedDate": "2026-03-07T13:09:35Z"
+    },
+    {
+      "slug": "estafas-financieras-chile-vishing-smishing-marketplace",
+      "title": "Estafas financieras en Chile: señales por canal y checklist de 24 horas",
+      "category": "seguridad-financiera",
+      "cluster": "seguridad-financiera",
+      "tags": [
+        "seguridad-financiera",
+        "fraude",
+        "vishing",
+        "smishing",
+        "portabilidad"
+      ],
+      "sourcePath": "src/data/blog/estafas-financieras-chile-vishing-smishing-marketplace.md",
+      "heroImage": "/images/hero/estafas-financieras-chile-vishing-smishing-marketplace.avif",
+      "summary": "La mayoría de las estafas financieras no empieza con un hackeo sofisticado. Empieza con una llamada que suena completamente normal, de alguien que sabe tu nombre, menciona tu banco y habla en un tono que mezcla urgencia con profesionalismo. Para cuando te das cuenta de lo que ocu...",
+      "updatedDate": "2026-03-03T00:00:00Z"
+    },
+    {
+      "slug": "finiquito-e-indemnizaciones-en-chile",
+      "title": "Finiquito e indemnizaciones en Chile: qué te corresponde y cómo revisarlo",
+      "category": "empleo-ingresos",
+      "cluster": "empleo-ingresos",
+      "tags": [
+        "empleo-ingresos",
+        "finiquito",
+        "indemnizacion",
+        "trabajo",
+        "despido"
+      ],
+      "sourcePath": "src/data/blog/finiquito-e-indemnizaciones-en-chile.md",
+      "heroImage": "/images/hero/finiquito-e-indemnizaciones-en-chile.avif",
+      "summary": "Te llega el finiquito, el empleador te apura para firmarlo ese mismo día, y tú no sabes si lo que dice es correcto. Es una situación más común de lo que parece — y firmar sin revisar puede costarte el equivalente a varios meses de sueldo. Esta guía te ayuda a entender qué debe in...",
+      "updatedDate": "2026-03-12T14:14:00Z"
+    },
+    {
+      "slug": "fondos-afp-a-b-c-d-e",
+      "title": "Fondos AFP A, B, C, D y E: diferencias, riesgo y cuál te conviene",
+      "category": "prevision",
+      "cluster": "pensiones-afp",
+      "tags": [
+        "afp",
+        "fondos",
+        "pensiones",
+        "inversiones"
+      ],
+      "sourcePath": "src/data/blog/fondos-afp-a-b-c-d-e.md",
+      "heroImage": "/images/hero/fondos-afp-a-b-c-d-e.avif",
+      "summary": "Cuando te afilias a una AFP, tu dinero no queda guardado en una caja fuerte —se invierte en uno de cinco fondos disponibles. Elegir bien puede significar una pensión significativamente mayor. Elegir mal, lo contrario. Lo que pocos saben es que si no eliges nada, la AFP elige por...",
+      "updatedDate": "2026-03-12T19:08:00Z"
+    },
+    {
+      "slug": "fondos-mutuos-comisiones-rescate-impuestos",
+      "title": "Fondos mutuos: comisiones, rescate e impuestos (sin letra chica)",
+      "category": "ahorro-inversion",
+      "cluster": "ahorro-e-inversion",
+      "tags": [
+        "fondos-mutuos",
+        "inversiones",
+        "comisiones",
+        "impuestos"
+      ],
+      "sourcePath": "src/data/blog/fondos-mutuos-comisiones-rescate-impuestos.md",
+      "heroImage": "/images/hero/fondos-mutuos-comisiones-rescate-impuestos.avif",
+      "summary": "<! META: keyword primary=\"comisiones fondos mutuos cuanto cobran\" intent=\"informacional transaccional\" cluster=\"ahorro e inversion\" Los fondos mutuos tienen costos reales que no siempre aparecen en el primer número que ves. La remuneración de administración, la comisión de rescat...",
+      "updatedDate": "2026-02-28T16:20:00Z"
+    },
+    {
+      "slug": "fraude-tarjeta-que-hacer",
+      "title": "Te hicieron un cargo que no reconoces: qué hacer en las primeras 24 horas (Ley 20.009)",
+      "category": "seguridad-financiera",
+      "cluster": "seguridad-financiera",
+      "tags": [
+        "fraude",
+        "tarjetas",
+        "seguridad-financiera",
+        "ley-20009",
+        "derechos"
+      ],
+      "sourcePath": "src/data/blog/fraude-tarjeta-que-hacer.md",
+      "heroImage": "/images/hero/fraude-tarjeta-que-hacer.avif",
+      "summary": "Revisas tu cuenta y ves un cargo que no hiciste. O peor: te llega un aviso de una transferencia que nunca autorizaste. Lo primero que sientes es pánico. Lo segundo debería ser este artículo. Si quieres revisar más temas relacionados, usa también la . En Chile existe una ley que p...",
+      "updatedDate": "2026-03-04T12:00:00Z"
+    },
+    {
+      "slug": "indemnizacion-anos-de-servicio-chile",
+      "title": "Indemnización por años de servicio en Chile: cuándo aplica y cómo calcularla",
+      "category": "empleo-ingresos",
+      "cluster": "empleo-ingresos",
+      "tags": [
+        "finiquito",
+        "indemnizacion",
+        "trabajo",
+        "empleo-ingresos"
+      ],
+      "sourcePath": "src/data/blog/indemnizacion-anos-de-servicio-chile.md",
+      "heroImage": "/images/hero/indemnizacion-anos-de-servicio-chile.avif",
+      "summary": "El finiquito llegó con un número. El número parece razonable, pero razonable no es lo mismo que correcto. La indemnización por años de servicio es la partida donde más errores silenciosos aparecen — y la mayoría no son por mala fe sino porque la causal está mal aplicada, la base...",
+      "updatedDate": "2026-03-12T14:25:00Z"
+    },
+    {
+      "slug": "informe-deudas-cmf-vs-dicom",
+      "title": "Informe de deudas CMF: cómo sacarlo, qué dice y por qué no es lo mismo que DICOM",
+      "category": "deuda-credito",
+      "cluster": "deuda-credito",
+      "tags": [
+        "deudas",
+        "credito",
+        "cmf",
+        "dicom",
+        "historial-crediticio"
+      ],
+      "sourcePath": "src/data/blog/informe-deudas-cmf-vs-dicom.md",
+      "heroImage": "/images/hero/informe-deudas-cmf-vs-dicom.avif",
+      "summary": "La frase \"estoy en DICOM\" se usa en Chile como atajo para varias cosas distintas: deudas financieras vigentes, morosidades comerciales, protestos o incluso un informe privado que te pidió un tercero. El primer error es tratarlas como si fueran el mismo registro. La regla práctica...",
+      "updatedDate": "2026-03-12T18:20:00Z"
+    },
+    {
+      "slug": "interes-compuesto-nota-metodologica",
+      "title": "Nota metodológica: simulación de interés compuesto 1990-2025",
+      "category": "ahorro-inversion",
+      "cluster": "ahorro-e-inversion",
+      "tags": [
+        "ahorro",
+        "interes-compuesto",
+        "nasdaq-100"
+      ],
+      "sourcePath": "src/data/blog/interes-compuesto-nota-metodologica.md",
+      "heroImage": "/images/hero/interes-compuesto-nota-metodologica.avif",
+      "summary": "Este documento detalla los supuestos, fuentes de datos y fórmulas del artículo . Está aquí para que cualquier lector pueda replicar los cálculos, cuestionar los supuestos o detectar errores. Si encuentras una discrepancia, el canal correcto es el mismo artículo. Fecha de corte de...",
+      "updatedDate": "2026-03-07T13:09:35Z"
+    },
+    {
+      "slug": "licencia-medica-desde-que-dia-pagan",
+      "title": "Licencia médica en Chile: desde qué día te pagan y cómo reclamar",
+      "category": "empleo-ingresos",
+      "cluster": "empleo-ingresos",
+      "tags": [
+        "empleo-ingresos",
+        "licencia-medica",
+        "subsidio",
+        "suseso",
+        "trabajo"
+      ],
+      "sourcePath": "src/data/blog/licencia-medica-desde-que-dia-pagan.md",
+      "heroImage": "/images/hero/licencia-medica-desde-que-dia-pagan.avif",
+      "summary": "Enfermarse siempre trae preocupaciones, pero cuando la licencia dura varios días, la pregunta aparece rápido: ¿desde cuándo me pagan y cuánto me llega? En Chile eso depende de cuántos días dura la licencia, de dónde cotizas y de quién paga el subsidio. Entenderlo bien puede ser l...",
+      "updatedDate": "2026-03-03T00:00:00Z"
+    },
+    {
+      "slug": "liquidacion-de-sueldo",
+      "title": "Liquidación de sueldo en Chile: cómo auditar el comprobante y sus líneas clave",
+      "category": "empleo-ingresos",
+      "cluster": "sueldo-remuneraciones",
+      "tags": [
+        "sueldo",
+        "liquidacion",
+        "descuentos",
+        "trabajo"
+      ],
+      "sourcePath": "src/data/blog/liquidacion-de-sueldo.md",
+      "heroImage": "/images/hero/liquidacion-de-sueldo.avif",
+      "summary": "<! META: keyword primary=\"liquidacion de sueldo\" intent=\"informational document audit\" cluster=\"sueldo remuneraciones\" El depósito cayó y el número no cuadra con lo que esperabas. Abres la liquidación y ves líneas que no entiendes o cifras que no puedes verificar. Aquí empieza el...",
+      "updatedDate": "2026-03-12T14:11:00Z"
+    },
+    {
+      "slug": "operacion-renta-f22-checklist",
+      "title": "Operación Renta F22 en Chile: checklist para revisar, enviar y rectificar sin errores",
+      "category": "impuestos",
+      "cluster": "impuestos-personas",
+      "tags": [
+        "impuestos",
+        "operacion-renta",
+        "f22",
+        "sii"
+      ],
+      "sourcePath": "src/data/blog/operacion-renta-f22-checklist.md",
+      "heroImage": "/images/hero/operacion-renta-f22-checklist.avif",
+      "summary": "Abres la propuesta del SII, ves los números y no sabes si aceptar o si algo está mal. Esta guía te ayuda a revisar cada punto antes de enviar el F22 y a reaccionar rápido si aparecen observaciones — para que no pierdas tiempo ni atrases tu devolución. Qué cambia y qué resuelve es...",
+      "updatedDate": "2026-02-28T15:00:00Z"
+    },
+    {
+      "slug": "que-es-el-apv",
+      "title": "APV en Chile: beneficio tributario, regímenes A y B, y cuándo conviene",
+      "category": "ahorro-inversion",
+      "cluster": "ahorro-e-inversion",
+      "tags": [
+        "apv",
+        "ahorro",
+        "impuestos",
+        "pensiones"
+      ],
+      "sourcePath": "src/data/blog/que-es-el-apv.mdx",
+      "heroImage": "/images/hero/que-es-el-apv.avif",
+      "summary": "import IndicadorEconomico from \"@/components/IndicadorEconomico.astro\"; {/ META: keyword primary=\"apv beneficio tributario\" intent=\"informational instrument choice\" cluster=\"ahorro e inversion\" /} El APV es un instrumento de ahorro con beneficio tributario. En Monedario, esta URL...",
+      "updatedDate": "2026-03-12T19:09:00Z"
+    },
+    {
+      "slug": "que-es-el-ipc-chile-como-se-calcula",
+      "title": "Qué es el IPC en Chile: cómo se calcula y por qué afecta tu bolsillo",
+      "category": "general",
+      "cluster": "uf-costo-de-vida",
+      "tags": [
+        "ipc",
+        "inflacion",
+        "uf",
+        "presupuesto",
+        "costo-de-vida"
+      ],
+      "sourcePath": "src/data/blog/que-es-el-ipc-chile-como-se-calcula.md",
+      "heroImage": "/images/hero/que-es-el-ipc-chile-como-se-calcula.avif",
+      "summary": "Cuando sale el dato del IPC cada mes, los medios hablan de \"inflación\" y tú ves que las cosas cuestan más. Pero ¿cómo se mide exactamente? ¿Por qué a veces el IPC baja pero igual sientes que todo cuesta más? Y lo más importante: ¿qué decisiones afecta directamente en tu vida? Est...",
+      "updatedDate": "2026-03-11T00:00:00Z"
+    },
+    {
+      "slug": "que-es-la-cuenta-2-afp",
+      "title": "Cuenta 2 de la AFP: ahorro flexible, retiros e impuestos",
+      "category": "prevision",
+      "cluster": "pensiones-afp",
+      "tags": [
+        "afp",
+        "ahorro",
+        "cuenta-2",
+        "pensiones"
+      ],
+      "sourcePath": "src/data/blog/que-es-la-cuenta-2-afp.md",
+      "heroImage": "/images/hero/que-es-la-cuenta-2-afp.avif",
+      "summary": "<! META: keyword primary=\"cuenta 2 afp\" intent=\"informational flexible savings\" cluster=\"pensiones afp\" Cuando la gente habla de su AFP, casi siempre se refiere a la cuenta obligatoria donde va el 10% del sueldo. Pero existe una segunda cuenta —voluntaria, flexible y mucho menos...",
+      "updatedDate": "2026-03-09T19:05:00Z"
+    },
+    {
+      "slug": "que-es-la-uf",
+      "title": "UF en simple: qué es, por qué sube todos los días y cómo te afecta",
+      "category": "general",
+      "cluster": "uf-costo-de-vida",
+      "tags": [
+        "uf",
+        "inflacion",
+        "ipc",
+        "arriendos",
+        "creditos"
+      ],
+      "sourcePath": "src/data/blog/que-es-la-uf.md",
+      "heroImage": "/images/hero/que-es-la-uf.avif",
+      "summary": "Tu arriendo sube todos los años \"por la UF\" y tu dividendo también. Pero casi nadie sabe exactamente qué es la UF ni por qué cambia todos los días. Acá te explicamos de verdad — con números y sin fórmulas intimidantes. Si quieres ver esta historia ordenada junto con IPC, reajuste...",
+      "updatedDate": "2026-03-04T12:00:00Z"
+    },
+    {
+      "slug": "reajuste-arriendo-uf-ipc-chile",
+      "title": "Reajuste de arriendo en Chile: cuándo aplica, UF vs IPC y cómo calcularlo",
+      "category": "general",
+      "cluster": "uf-costo-de-vida",
+      "tags": [
+        "arriendos",
+        "uf",
+        "ipc",
+        "inflacion",
+        "costo-de-vida"
+      ],
+      "sourcePath": "src/data/blog/reajuste-arriendo-uf-ipc-chile.md",
+      "heroImage": "/images/hero/reajuste-arriendo-uf-ipc-chile.avif",
+      "summary": "<! META: keyword primary=\"reajuste arriendo chile\" intent=\"informational explainer\" cluster=\"uf costo de vida\" Llegó el aviso de pago y el arriendo subió. O el arrendador avisa que el próximo mes cambia el monto. La primera reacción suele ser preguntarse si corresponde — y la res..."
+    },
+    {
+      "slug": "reforma-previsional-2025-que-cambia-y-como-te-afecta",
+      "title": "Reforma previsional 2025: qué cambia, cuándo y cómo te afecta (guía actualizada)",
+      "category": "prevision",
+      "cluster": "pensiones-afp",
+      "tags": [
+        "reforma-previsional",
+        "afp",
+        "pensiones",
+        "empleador",
+        "fondos-generacionales"
+      ],
+      "sourcePath": "src/data/blog/reforma-previsional-2025-que-cambia-y-como-te-afecta.md",
+      "heroImage": "/images/hero/reforma-previsional-2025-que-cambia-y-como-te-afecta.avif",
+      "summary": "En julio de 2025 se promulgó la reforma previsional más importante en décadas. Cambia cómo se financia tu jubilación, introduce nuevos componentes del Seguro Social y reemplaza los multifondos con un esquema distinto. Como su implementación se despliega por etapas entre 2025 y 20...",
+      "updatedDate": "2026-03-12T19:05:00Z"
+    },
+    {
+      "slug": "renegociacion-superir",
+      "title": "Renegociación Superir: qué es, quién puede pedir y cómo hacerlo sin abogado",
+      "category": "deuda-credito",
+      "cluster": "deuda-credito",
+      "tags": [
+        "deudas",
+        "renegociacion",
+        "superir",
+        "sobreendeudamiento",
+        "credito"
+      ],
+      "sourcePath": "src/data/blog/renegociacion-superir.md",
+      "heroImage": "/images/hero/renegociacion-superir.avif",
+      "summary": "Tener una deuda atrasada no significa automáticamente que te convenga entrar a un procedimiento concursal. La renegociación Superir es útil cuando el problema ya es estructural: varias deudas vencidas, mora acumulada y una caja que no alcanza para seguir sosteniendo los pagos. Si...",
+      "updatedDate": "2026-03-12T18:45:00Z"
+    },
+    {
+      "slug": "seguro-cesantia-cuenta-individual-vs-fondo-solidario",
+      "title": "Seguro de cesantía: Cuenta Individual vs Fondo Solidario, sin confundir ambos",
+      "category": "empleo-ingresos",
+      "cluster": "empleo-ingresos",
+      "tags": [
+        "cesantia",
+        "afc",
+        "proteccion-social",
+        "empleo-ingresos"
+      ],
+      "sourcePath": "src/data/blog/seguro-cesantia-cuenta-individual-vs-fondo-solidario.md",
+      "heroImage": "/images/hero/seguro-cesantia-cuenta-individual-vs-fondo-solidario.avif",
+      "summary": "Quedaste cesante, entraste a afc.cl y ves un saldo. La pregunta que sigue es natural: ¿eso es lo que cobro? Depende de qué parte estás mirando. El Seguro de Cesantía no es un solo fondo — son dos fondos con lógicas distintas, y confundirlos lleva a expectativas que la AFC no va a...",
+      "updatedDate": "2026-03-12T14:30:00Z"
+    },
+    {
+      "slug": "seguro-de-cesantia",
+      "title": "Seguro de cesantía: cómo saber tu saldo, cuándo puedes cobrar y cuánto te pagan",
+      "category": "empleo-ingresos",
+      "cluster": "empleo-ingresos",
+      "tags": [
+        "cesantia",
+        "afc",
+        "desempleo",
+        "proteccion-social",
+        "trabajo"
+      ],
+      "sourcePath": "src/data/blog/seguro-de-cesantia.md",
+      "heroImage": "/images/hero/seguro-de-cesantia.avif",
+      "summary": "Quedaste sin trabajo — sea porque te despidieron, se venció tu contrato o renunciaste. Lo primero que muchos no saben es que tienen plata acumulada en la AFC esperando ser cobrada. Esta guía te explica exactamente qué es, cuánto tienes y cómo cobrarlo. Si quieres revisar temas re...",
+      "updatedDate": "2026-03-12T14:15:00Z"
+    },
+    {
+      "slug": "suplantacion-identidad-creditos-no-reconocidos",
+      "title": "Suplantación de identidad y créditos no reconocidos: cómo detectar, frenar y reclamar",
+      "category": "seguridad-financiera",
+      "cluster": "seguridad-financiera",
+      "tags": [
+        "seguridad-financiera",
+        "suplantacion",
+        "credito",
+        "historial-crediticio",
+        "cmf"
+      ],
+      "sourcePath": "src/data/blog/suplantacion-identidad-creditos-no-reconocidos.md",
+      "heroImage": "/images/hero/suplantacion-identidad-creditos-no-reconocidos.avif",
+      "summary": "Recibes un correo que dice \"tu crédito ha sido aprobado\". El problema es que tú nunca pediste ningún crédito. Eso no es un error administrativo: es una señal de que alguien usó tus datos para contratar deuda a tu nombre. Esta guía te explica qué hacer para actuar rápido y evitar...",
+      "updatedDate": "2026-03-03T00:00:00Z"
+    }
+  ]
+}

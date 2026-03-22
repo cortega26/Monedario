@@ -15,6 +15,12 @@ import {
   writeJson,
 } from "./lib.mjs";
 
+const PUBLISHED_INDEX_PATH = path.join(
+  process.cwd(),
+  "context",
+  "published-articles-index.json"
+);
+
 function stripBodyForAnalysis(body) {
   return body
     .replace(/```[\s\S]*?```/g, " ")
@@ -68,6 +74,10 @@ async function main() {
     if (!isPublishable(frontmatter)) continue;
 
     const slug = normalizeSlug(frontmatter, filePath);
+    const updatedDate =
+      typeof frontmatter.updatedDate === "string" && frontmatter.updatedDate.trim()
+        ? frontmatter.updatedDate.trim()
+        : "";
     const bodyForAnalysis = stripBodyForAnalysis(body);
     const headings = extractHeadings(body);
     const leadParagraphs = extractLeadParagraphs(body);
@@ -93,6 +103,7 @@ async function main() {
         .split(" ")
         .filter(Boolean).length,
       sourceFile: path.basename(filePath),
+      updatedDate,
     });
   }
 
@@ -104,14 +115,37 @@ async function main() {
     publishableRule: "draft !== true",
     articleCount: files.length,
     publishedCount: articles.length,
-    articles,
+    articles: articles.map(({ updatedDate, ...article }) => article),
+  };
+
+  const publishedIndex = {
+    schemaVersion: 1,
+    generatedBy: "scripts/hero-images/scan-articles.mjs",
+    note: "Generated file. Do not edit manually; regenerate via node scripts/hero-images/scan-articles.mjs",
+    source: "src/data/blog/**",
+    publishableRule: "draft !== true",
+    ordering: "slug asc",
+    publishedCount: articles.length,
+    articles: articles.map(article => ({
+      slug: article.slug,
+      title: article.title,
+      category: article.category,
+      cluster: article.cluster,
+      tags: article.tags,
+      sourcePath: article.sourcePath,
+      heroImage: article.heroImage,
+      summary: article.summary,
+      ...(article.updatedDate ? { updatedDate: article.updatedDate } : {}),
+    })),
   };
 
   await writeJson(MANIFEST_PATH, manifest);
+  await writeJson(PUBLISHED_INDEX_PATH, publishedIndex);
 
   console.log(`[scan-articles] Total files: ${files.length}`);
   console.log(`[scan-articles] Publishable: ${articles.length}`);
   console.log(`[scan-articles] Manifest: ${toRepoRelative(MANIFEST_PATH)}`);
+  console.log(`[scan-articles] Published index: ${toRepoRelative(PUBLISHED_INDEX_PATH)}`);
 }
 
 main().catch(error => {

@@ -792,11 +792,10 @@ Compatibilidad transicional:
 1. Scan (`scan-articles`)
 2. Lectura del artículo y derivación semántica de escena
 3. Build prompts (`build-prompts`)
-4. Render programático opcional (`render-svg-scenes`) para escenas determinísticas
-5. Generación OpenAI opcional (`generate-images --run`) solo como benchmark o fallback
-6. Postproceso (`postprocess-images`) a `.avif` 1200x630
-7. Aplicación (`apply-images`) a `public/images/hero` + wiring de frontmatter
-8. Guardrails CI (`check-hero-images`)
+4. Generación OpenAI opcional (`generate-images --run`) solo como benchmark o fallback
+5. Postproceso (`postprocess-images`) a `.avif` 1200x630
+6. Aplicación (`apply-images`) a `public/images/hero` + wiring de frontmatter
+7. Guardrails CI (`check-hero-images`)
 
 ### 13.4.1 Regla obligatoria de lectura semántica
 
@@ -868,9 +867,6 @@ Comandos base:
 node scripts/hero-images/scan-articles.mjs
 node scripts/hero-images/build-prompts.mjs
 node scripts/check-hero-prompts.mjs
-node scripts/hero-images/render-svg-scenes.mjs
-node scripts/hero-images/render-svg-scenes.mjs --scene cesantia
-node scripts/hero-images/render-svg-scenes.mjs --slug informe-deudas-cmf-vs-dicom
 node scripts/hero-images/generate-images.mjs --dry-run
 node scripts/hero-images/generate-images.mjs --dry-run --slug que-es-la-uf --model gpt-image-1
 node scripts/hero-images/generate-images.mjs --dry-run --slug que-es-la-uf --compare-models dall-e-3,gpt-image-1
@@ -879,45 +875,15 @@ node scripts/hero-images/apply-images.mjs --enforce-public-path
 node scripts/check-hero-images.mjs
 ```
 
-### 13.4.4 Render SVG determinístico (POC activo)
+### 13.4.4 Política actual de render
 
-Cuando el objetivo visual es:
+El pipeline de hero images ya no usa render vectorial programático para producir la imagen final.
 
-- geometría simple
-- baja carga cognitiva
-- branding repetible
-- control estricto de composición
+Regla operativa vigente:
 
-el camino preferido es renderizar la imagen desde código, no pedirla a un modelo generativo.
-
-Implementación actual del POC:
-
-- `scripts/hero-images/svg/primitives.mjs`
-- `scripts/hero-images/svg/components.mjs`
-- `scripts/hero-images/svg/scene-registry.mjs`
-- `scripts/hero-images/render-svg-scenes.mjs`
-
-Escenas SVG implementadas hoy:
-
-- `cesantia`
-- `deuda-credito`
-- `ahorro`
-
-Reglas del renderer SVG:
-
-- una escena cerrada por `approvedModelId`
-- figuras geométricas sin rostro
-- props fijos y controlados
-- paleta por roles (`background`, `primary`, `dark`, `light`, `accent`)
-- sin textura
-- sin gradientes
-- sin detalle micro
-- sin deriva visual por prompt rewriting
-
-Objetivo del POC:
-
-- validar dirección visual
-- estabilizar una gramática propia de Monedario
+- la imagen final debe provenir de un asset raster real (por ejemplo PNG de origen o salida del generador)
+- la conversión a `.avif` debe hacerse desde ese asset real, sin reconstruir la imagen con un formato vectorial intermedio
+- cualquier benchmark visual futuro debe mantener fidelidad al asset fuente y no introducir una reinterpretación vectorial de la escena
 - sustituir gradualmente el uso de IA donde la consistencia pese más que la variación
 
 ### 13.5 Reproducibilidad

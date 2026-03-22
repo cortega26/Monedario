@@ -9,7 +9,7 @@ import {
   OBJETOS_SUGERIDOS,
   POSTURAS,
   SCENE_EXAMPLES,
-} from "./hero-images/config.mjs";
+} from "../src/tools/hero-images/config.mjs";
 
 export default function PromptGenerator() {
   const [template, setTemplate] = useState("A");
