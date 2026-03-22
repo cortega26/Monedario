@@ -112,10 +112,10 @@ jobs:
       - name: "🧩 Ensure URL check artifacts exist"
         if: always() && steps.urlcheck_ci.outcome == 'skipped'
         run: |
-          mkdir -p scripts/urlcheck/artifacts
-          [ -f scripts/urlcheck/artifacts/internal-broken.json ] || printf '[]\n' > scripts/urlcheck/artifacts/internal-broken.json
-          [ -f scripts/urlcheck/artifacts/internal-broken.csv ] || printf 'broken_url,status,referrer_url,context,category\n' > scripts/urlcheck/artifacts/internal-broken.csv
-          [ -f scripts/urlcheck/artifacts/urlcheck-report.json ] || printf '{"generatedAt":"%s","note":"placeholder"}\n' "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" > scripts/urlcheck/artifacts/urlcheck-report.json
+          mkdir -p output/validation/urlcheck
+          [ -f output/validation/urlcheck/internal-broken.json ] || printf '[]\n' > output/validation/urlcheck/internal-broken.json
+          [ -f output/validation/urlcheck/internal-broken.csv ] || printf 'broken_url,status,referrer_url,context,category\n' > output/validation/urlcheck/internal-broken.csv
+          [ -f output/validation/urlcheck/urlcheck-report.json ] || printf '{"generatedAt":"%s","note":"placeholder"}\n' "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" > output/validation/urlcheck/urlcheck-report.json
 
       - name: "📤 Upload URL check artifacts"
         if: always()
@@ -125,9 +125,9 @@ jobs:
           retention-days: 14
           if-no-files-found: error
           path: |
-            scripts/urlcheck/artifacts/internal-broken.json
-            scripts/urlcheck/artifacts/internal-broken.csv
-            scripts/urlcheck/artifacts/urlcheck-report.json
+            output/validation/urlcheck/internal-broken.json
+            output/validation/urlcheck/internal-broken.csv
+            output/validation/urlcheck/urlcheck-report.json
 
   external-url-audit:
     name: External URL audit (non-blocking)
@@ -164,10 +164,10 @@ jobs:
       - name: "🧩 Ensure URL check artifacts exist"
         if: always() && steps.urlcheck_external_audit.outcome == 'skipped'
         run: |
-          mkdir -p scripts/urlcheck/artifacts
-          [ -f scripts/urlcheck/artifacts/internal-broken.json ] || printf '[]\n' > scripts/urlcheck/artifacts/internal-broken.json
-          [ -f scripts/urlcheck/artifacts/internal-broken.csv ] || printf 'broken_url,status,referrer_url,context,category\n' > scripts/urlcheck/artifacts/internal-broken.csv
-          [ -f scripts/urlcheck/artifacts/urlcheck-report.json ] || printf '{"generatedAt":"%s","note":"placeholder"}\n' "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" > scripts/urlcheck/artifacts/urlcheck-report.json
+          mkdir -p output/validation/urlcheck
+          [ -f output/validation/urlcheck/internal-broken.json ] || printf '[]\n' > output/validation/urlcheck/internal-broken.json
+          [ -f output/validation/urlcheck/internal-broken.csv ] || printf 'broken_url,status,referrer_url,context,category\n' > output/validation/urlcheck/internal-broken.csv
+          [ -f output/validation/urlcheck/urlcheck-report.json ] || printf '{"generatedAt":"%s","note":"placeholder"}\n' "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" > output/validation/urlcheck/urlcheck-report.json
 
       - name: "📤 Upload external audit artifacts"
         if: always()
@@ -177,6 +177,6 @@ jobs:
           retention-days: 14
           if-no-files-found: error
           path: |
-            scripts/urlcheck/artifacts/internal-broken.json
-            scripts/urlcheck/artifacts/internal-broken.csv
-            scripts/urlcheck/artifacts/urlcheck-report.json
+            output/validation/urlcheck/internal-broken.json
+            output/validation/urlcheck/internal-broken.csv
+            output/validation/urlcheck/urlcheck-report.json
