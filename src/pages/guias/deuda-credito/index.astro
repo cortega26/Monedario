@@ -17,6 +17,14 @@ const coreLabels = {
   "cae-costo-real-credito-chile": "Costo real",
   "renegociacion-superir": "Salida formal",
 } as const;
+
+const guideCards = deudaClusterHubDecisionCards.map(card => ({
+  ...card,
+  label:
+    coreLabels[
+      card.href.replace("/posts/", "").replaceAll("/", "") as keyof typeof coreLabels
+    ] ?? card.kind,
+}));
 ---
 
 <Layout
@@ -32,11 +40,10 @@ const coreLabels = {
         Deuda y Crédito en Chile
       </h1>
       <p class="max-w-4xl text-secondary">
-        Este frente ya no funciona como una bolsa de posts: separa cuatro
-        preguntas distintas que la gente suele mezclar bajo "DICOM" o "deuda".
-        Parte por el problema real: diagnóstico de deudas, reporte comercial,
-        costo real del crédito o salida formal cuando la mora ya se volvió
-        inmanejable.
+        Esta sección separa cuatro preguntas distintas que la gente suele
+        mezclar bajo "DICOM" o "deuda". Parte por el problema real:
+        diagnóstico de deudas, reporte comercial, costo real del crédito o
+        salida formal cuando la mora ya se volvió inmanejable.
       </p>
       <div class="mt-6 grid gap-3 md:grid-cols-2">
         <div class="rounded-2xl border border-border bg-surface-muted p-5">
@@ -71,13 +78,31 @@ const coreLabels = {
     </section>
 
     <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">Elige tu punto de partida</h2>
-      <div class="grid gap-4 md:grid-cols-2">
+      <h2 class="mb-4 text-2xl font-bold">Errores comunes</h2>
+      <ul class="list-disc space-y-2 pl-6 text-secondary">
+        <li>
+          Pedir un informe privado antes de separar si necesitas CMF, Boletín
+          Comercial o simplemente ordenar tus acreedores.
+        </li>
+        <li>
+          Comparar solo cuota o tasa nominal y no el costo total en pesos con
+          CAE, seguros y gastos.
+        </li>
+        <li>
+          Entrar a renegociación sin tener claro si el caso ya cumple filtro
+          legal mínimo o si todavía estás en fase de orden financiero.
+        </li>
+      </ul>
+    </section>
+
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-2xl font-bold">Por dónde empezar</h2>
+      <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {
-          deudaClusterHubDecisionCards.map(card => (
+          guideCards.map(card => (
             <article class="rounded-2xl border border-border p-5">
               <p class="mb-2 text-xs font-semibold tracking-[0.14em] text-accent uppercase">
-                {card.kind}
+                {card.label}
               </p>
               <h3 class="text-lg font-semibold">{card.title}</h3>
               <p class="mt-2 text-sm leading-relaxed text-secondary">
@@ -91,33 +116,6 @@ const coreLabels = {
               </a>
             </article>
           ))
-        }
-      </div>
-    </section>
-
-    <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">Las tres piezas núcleo del frente</h2>
-      <div class="grid gap-4 md:grid-cols-3">
-        {
-          hubAssignments.core.map(
-            (item: (typeof hubAssignments.core)[number]) => (
-              <article class="rounded-2xl border border-border p-5">
-                <p class="mb-2 text-xs font-semibold tracking-[0.14em] text-accent uppercase">
-                  {coreLabels[item.slug as keyof typeof coreLabels] ?? "Guía"}
-                </p>
-                <h3 class="text-lg font-semibold">{item.title}</h3>
-                <p class="mt-2 text-sm leading-relaxed text-secondary">
-                  {item.summary}
-                </p>
-                <a
-                  href={getPath(item.href)}
-                  class="mt-4 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-                >
-                  Abrir guía
-                </a>
-              </article>
-            )
-          )
         }
       </div>
     </section>
@@ -154,9 +152,7 @@ const coreLabels = {
     </section>
 
     <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">
-        Relacionado, pero fuera del núcleo deuda
-      </h2>
+      <h2 class="mb-4 text-2xl font-bold">Relacionado</h2>
       <div class="grid gap-4">
         {
           hubAssignments.related.map(
@@ -177,24 +173,6 @@ const coreLabels = {
           )
         }
       </div>
-    </section>
-
-    <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">Errores comunes</h2>
-      <ul class="list-disc space-y-2 pl-6 text-secondary">
-        <li>
-          Pedir un informe privado antes de separar si necesitas CMF, Boletín
-          Comercial o simplemente ordenar tus acreedores.
-        </li>
-        <li>
-          Comparar solo cuota o tasa nominal y no el costo total en pesos con
-          CAE, seguros y gastos.
-        </li>
-        <li>
-          Entrar a renegociación sin tener claro si el caso ya cumple filtro
-          legal mínimo o si todavía estás en fase de orden financiero.
-        </li>
-      </ul>
     </section>
 
     <section class="py-8">

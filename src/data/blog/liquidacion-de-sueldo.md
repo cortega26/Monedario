@@ -40,8 +40,6 @@ articleLead:
     - "No determina la validez de descuentos discutidos judicialmente."
 ---
 
-<!-- META: keyword_primary="liquidacion de sueldo" | intent="informational-document-audit" | cluster="sueldo-remuneraciones" -->
-
 El depósito cayó y el número no cuadra con lo que esperabas. Abres la liquidación y ves líneas que no entiendes o cifras que no puedes verificar. Aquí empieza el problema real: la mayoría de los trabajadores no sabe qué debe mostrar el comprobante ni qué preguntar cuando algo no cierra.
 
 ## Qué es y para qué sirve la liquidación

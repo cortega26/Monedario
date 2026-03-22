@@ -42,11 +42,9 @@ articleLead:
     - "No modela juicios laborales ni reclamos por finiquito."
 ---
 
-<!-- META: keyword_primary="calcular sueldo liquido" | intent="informational-howto" | cluster="sueldo-remuneraciones" -->
-
 Te ofrecieron $1.200.000 brutos. Llegó el día de pago y te cayeron $950.000. Esta guía existe para rehacer ese cálculo de principio a fin: partir desde el bruto, separar el imponible y llegar al depósito final con AFP, salud, cesantía e impuesto.
 
-Si tu duda principal no es rehacer el número completo, usa mejor la [guía de descuentos de sueldo](/posts/descuentos-de-sueldo/) para distinguir qué líneas son legales o voluntarias, la de [liquidación de sueldo](/posts/liquidacion-de-sueldo/) para auditar el comprobante y la de [descuento AFP](/posts/cuanto-descuenta-la-afp-de-tu-sueldo/) si solo quieres revisar la línea previsional. También puedes partir por la [sección sueldo y remuneraciones](/guias/sueldo-remuneraciones/) o ir directo a la [calculadora de sueldo líquido](/calculadoras/sueldo-liquido/).
+Si tu duda principal no es rehacer el número completo, conviene ir a la [guía de descuentos de sueldo](/posts/descuentos-de-sueldo/) para clasificar las líneas o a la [liquidación de sueldo](/posts/liquidacion-de-sueldo/) para auditar el comprobante. Si solo necesitas el número, puedes saltar directo a la calculadora más abajo.
 
 ## Tabla de contenidos
 

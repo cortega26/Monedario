@@ -26,6 +26,11 @@ type Props = {
 const { lead, reviewedDate } = Astro.props;
 
 const validAsOf = lead.validAsOf ?? reviewedDate ?? null;
+const shouldShowValidAsOf =
+  !!validAsOf &&
+  (!reviewedDate ||
+    Math.abs(validAsOf.getTime() - reviewedDate.getTime()) >
+      7 * 24 * 60 * 60 * 1000);
 const hasSources = (lead.officialSources?.length ?? 0) > 0;
 const hasCovers = (lead.covers?.length ?? 0) > 0;
 const hasLimits = (lead.limits?.length ?? 0) > 0;
@@ -88,7 +93,7 @@ const formatDate = (date: Date) =>
         </p>
         <p class="mt-2 text-sm leading-relaxed text-foreground">
           {
-            validAsOf
+            shouldShowValidAsOf && validAsOf
               ? `Fecha de corte ${formatDate(validAsOf)}.`
               : "Revisa la fecha de actualización del artículo antes de tomar decisiones."
           }
@@ -136,32 +141,37 @@ const formatDate = (date: Date) =>
 
   {
     (hasCovers || hasLimits) && (
-      <div class="mt-6 grid gap-4 border-t border-border pt-5 sm:grid-cols-2">
-        {hasCovers && (
-          <div>
-            <p class="text-xs font-semibold tracking-[0.14em] text-muted uppercase">
-              Qué cubre
-            </p>
-            <ul class="mt-3 space-y-2 text-sm leading-relaxed text-foreground">
-              {lead.covers?.map(item => (
-                <li>• {item}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-        {hasLimits && (
-          <div>
-            <p class="text-xs font-semibold tracking-[0.14em] text-muted uppercase">
-              Qué no cubre
-            </p>
-            <ul class="mt-3 space-y-2 text-sm leading-relaxed text-foreground">
-              {lead.limits?.map(item => (
-                <li>• {item}</li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
+      <details class="mt-6 rounded-xl border border-border bg-background/70 p-4">
+        <summary class="cursor-pointer text-sm font-semibold text-foreground">
+          Ver qué cubre esta guía
+        </summary>
+        <div class="mt-4 grid gap-4 sm:grid-cols-2">
+          {hasCovers && (
+            <div>
+              <p class="text-xs font-semibold tracking-[0.14em] text-muted uppercase">
+                Qué cubre
+              </p>
+              <ul class="mt-3 space-y-2 text-sm leading-relaxed text-foreground">
+                {lead.covers?.map(item => (
+                  <li>• {item}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {hasLimits && (
+            <div>
+              <p class="text-xs font-semibold tracking-[0.14em] text-muted uppercase">
+                Qué no cubre
+              </p>
+              <ul class="mt-3 space-y-2 text-sm leading-relaxed text-foreground">
+                {lead.limits?.map(item => (
+                  <li>• {item}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </details>
     )
   }
 </section>

@@ -41,7 +41,7 @@ articleLead:
 
 La frase "estoy en DICOM" se usa en Chile como atajo para varias cosas distintas: deudas financieras vigentes, morosidades comerciales, protestos o incluso un informe privado que te pidió un tercero. El primer error es tratarlas como si fueran el mismo registro.
 
-La regla práctica es esta: si quieres ver qué deudas financieras vigentes aparecen a tu nombre, parte por el **Informe de Deudas CMF**. Si lo que buscas es revisar protestos, retail o un reporte privado usado por un arrendador o empleador, necesitas separar ese problema y no asumir que el CMF cubre todo. Si quieres revisar el mapa completo del frente, parte por la [sección Deuda y Crédito](/guias/deuda-credito/).
+La regla práctica es esta: si quieres ver qué deudas financieras vigentes aparecen a tu nombre, parte por el **Informe de Deudas CMF**. Si lo que buscas es revisar protestos, retail o un reporte privado usado por un arrendador o empleador, necesitas separar ese problema y no asumir que el CMF cubre todo. Si después quieres ampliar el mapa, puedes seguir con la [guía para ver si estás en DICOM gratis](/posts/donde-ver-si-estoy-en-dicom-gratis/) o volver a la [sección Deuda y Crédito](/guias/deuda-credito/).
 
 ## Tabla de contenidos
 

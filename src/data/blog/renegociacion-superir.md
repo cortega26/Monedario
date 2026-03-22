@@ -43,7 +43,7 @@ articleLead:
 
 Tener una deuda atrasada no significa automáticamente que te convenga entrar a un procedimiento concursal. La renegociación Superir es útil cuando el problema ya es estructural: varias deudas vencidas, mora acumulada y una caja que no alcanza para seguir sosteniendo los pagos.
 
-Si todavía estás tratando de entender qué acreedores tienes, qué reportes existen o cuánto cuesta realmente una deuda, esta no es la primera guía. En ese caso parte por [Informe de deudas CMF vs DICOM](/posts/informe-deudas-cmf-vs-dicom/) o por [CAE y costo real del crédito](/posts/cae-costo-real-credito-chile/). Si quieres revisar más temas relacionados, también te sirve entrar a la [sección Deuda y Crédito](/guias/deuda-credito/).
+Si todavía estás tratando de entender qué acreedores tienes o cuánto cuesta realmente una deuda, esta no es la primera guía. En ese caso conviene partir por [Informe de deudas CMF vs DICOM](/posts/informe-deudas-cmf-vs-dicom/) o por [CAE y costo real del crédito](/posts/cae-costo-real-credito-chile/). El resto de las salidas relacionadas aparece más abajo.
 
 ## Tabla de contenidos
 
