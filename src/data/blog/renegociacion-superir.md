@@ -205,17 +205,29 @@ Estos son los más comunes, para que no los repitas:
 
 ## Casos especiales frecuentes
 
-**¿Y si emito boletas de honorarios?**
+<details>
+<summary>¿Y si emito boletas de honorarios?</summary>
+
 Sí puedes. ChileAtiende lo confirma explícitamente. El requisito de "no tener movimientos de primera categoría" no aplica a quienes emiten boletas — eso es segunda categoría.
+</details>
 
-**¿Y si tengo un juicio de cobranza activo?**
+<details>
+<summary>¿Y si tengo un juicio de cobranza activo?</summary>
+
 Si la demanda ejecutiva ya fue **notificada formalmente**, no puedes iniciar la renegociación. Si la cobranza es extrajudicial (llamadas, cartas, cobradores), sí puedes.
+</details>
 
-**¿Y si no tengo bienes?**
+<details>
+<summary>¿Y si no tengo bienes?</summary>
+
 Puedes igualmente iniciar el proceso. La declaración de bienes puede ser "no tengo bienes". Eso no te descalifica — la renegociación busca un acuerdo de pago con tus ingresos futuros, no necesariamente con tus bienes actuales.
+</details>
 
-**¿Y si hay deudas de alimentos (pensión alimenticia)?**
+<details>
+<summary>¿Y si hay deudas de alimentos (pensión alimenticia)?</summary>
+
 Las deudas de alimentos no entran en el procedimiento de renegociación — tienen un tratamiento legal distinto.
+</details>
 
 ---
 

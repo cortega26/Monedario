@@ -184,14 +184,23 @@ Sí. Puedes dividir tu saldo entre dos fondos distintos si quieres. Por ejemplo,
 
 ## Preguntas frecuentes
 
-**¿El Fondo A siempre renta más que el E a largo plazo?**
+<details>
+<summary>¿El Fondo A siempre renta más que el E a largo plazo?</summary>
+
 Históricamente sí, aunque con mucha más volatilidad. En períodos de 20 o 30 años, los fondos más agresivos han superado consistentemente a los conservadores. En períodos cortos, puede ocurrir lo contrario.
+</details>
 
-**¿Conviene cambiarse al Fondo E cuando hay crisis?**
+<details>
+<summary>¿Conviene cambiarse al Fondo E cuando hay crisis?</summary>
+
 Generalmente no. Si cambias durante una caída, conviertes una pérdida temporal en una pérdida real. Las crisis de mercado históricamente se han recuperado. El problema es que nadie sabe exactamente cuándo.
+</details>
 
-**¿Qué fondo tiene más afiliados en Chile?**
+<details>
+<summary>¿Qué fondo tiene más afiliados en Chile?</summary>
+
 El Fondo C concentra la mayor parte de los afiliados, en parte porque es el fondo por defecto para muchos rangos de edad.
+</details>
 
 Para convertir esta elección en una decisión completa, cruza esta guía con [cómo cambiarte de AFP](/posts/como-cambiarse-de-afp/) y con el desglose de [cuánto descuenta la AFP de tu sueldo](/posts/cuanto-descuenta-la-afp-de-tu-sueldo/).
 

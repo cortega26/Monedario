@@ -20,8 +20,6 @@ draft: false
 heroImage: /images/hero/deposito-a-plazo-uf-vs-pesos.avif
 ---
 
-<!-- META: keyword_primary="deposito a plazo en uf o pesos que conviene" | intent="comparativa" | cluster="ahorro-e-inversion" -->
-
 La tasa en pesos parece más alta. La tasa en UF es más baja pero viene con reajuste. ¿Cuál conviene? La respuesta no está en el número de arriba sino en lo que pasa con la inflación durante el plazo que tú necesitas. Esta guía te ayuda a decidir con números concretos.
 
 Para una mirada más amplia de instrumentos, revisa primero la [guía de ahorro e inversión en Chile](/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/).

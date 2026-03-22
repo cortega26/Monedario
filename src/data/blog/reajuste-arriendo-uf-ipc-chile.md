@@ -20,8 +20,6 @@ description: "Guía para entender el reajuste de arriendo en Chile: cuándo depe
 heroImage: /images/hero/reajuste-arriendo-uf-ipc-chile.avif
 ---
 
-<!-- META: keyword_primary="reajuste arriendo chile" | intent="informational-explainer" | cluster="uf-costo-de-vida" -->
-
 Llegó el aviso de pago y el arriendo subió. O el arrendador avisa que el próximo mes cambia el monto. La primera reacción suele ser preguntarse si corresponde — y la respuesta depende de una sola cosa: lo que dice el contrato.
 
 En Chile no existe un reajuste automático de arriendo que aplique por ley a todos los contratos. Lo que existe son distintas formas de pactar el reajuste — y cada una funciona distinto. Entender esa diferencia evita conflictos y permite verificar si el monto que te cobran es correcto.

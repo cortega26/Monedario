@@ -41,8 +41,6 @@ articleLead:
     - "No sirve para casos de insolvencia o renegociación formal."
 ---
 
-<!-- META: keyword_primary="qué es la CAE de un crédito" | intent="informacional-pilar" | cluster="deuda-credito" -->
-
 Cuando comparas créditos, el número que más te empujan es la cuota o la tasa mensual. El problema es que ninguna de esas dos cifras, por sí sola, te dice cuánto terminarás pagando en total. El **CAE** existe precisamente para cerrar esa trampa.
 
 Usa esta guía si todavía estás evaluando una oferta, una repactación o un prepago. Si tu problema ya no es comparar sino ordenar deudas vencidas o ver qué aparece a tu nombre, salta a [Informe de deudas CMF vs DICOM](/posts/informe-deudas-cmf-vs-dicom/) o a [Renegociación Superir](/posts/renegociacion-superir/). Si quieres revisar más temas relacionados, entra a [Deuda y Crédito en Chile](/guias/deuda-credito/).

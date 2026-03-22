@@ -149,20 +149,35 @@ Cuando alguien dice "la UF subió 4% este año", está diciendo que la inflació
 
 ## Preguntas frecuentes
 
-**¿Quién fija el valor de la UF?**
+<details>
+<summary>¿Quién fija el valor de la UF?</summary>
+
 El Banco Central de Chile, usando la metodología que establece su Compendio de Normas Financieras. No es una decisión discrecional — es una fórmula matemática aplicada al IPC que publica el INE.
+</details>
 
-**¿Por qué el período es del 10 al 9 y no del 1 al 31?**
+<details>
+<summary>¿Por qué el período es del 10 al 9 y no del 1 al 31?</summary>
+
 Porque el INE publica el IPC mensual a más tardar el día 8 del mes siguiente, y el Banco Central necesita ese dato para calcular y publicar los valores diarios a más tardar el día 9. Es un tema de tiempos de publicación, no de diseño arbitrario.
+</details>
 
-**¿La UF es lo mismo en todo Chile?**
+<details>
+<summary>¿La UF es lo mismo en todo Chile?</summary>
+
 Sí. Hay un único valor de UF para todo el país en cada día. No hay UF regional ni sectorial.
+</details>
 
-**¿Puedo pactar cualquier contrato en UF?**
+<details>
+<summary>¿Puedo pactar cualquier contrato en UF?</summary>
+
 No cualquiera. La ley establece que la UF se usa principalmente en operaciones de crédito de dinero con entidades financieras supervisadas. En arriendos y otros contratos privados, las partes pueden acordar libremente usar UF como referencia, pero no están obligadas a hacerlo.
+</details>
 
-**¿Dónde veo el valor histórico de la UF?**
+<details>
+<summary>¿Dónde veo el valor histórico de la UF?</summary>
+
 En el sitio del Banco Central: [si3.bcentral.cl/Siete](https://si3.bcentral.cl/Siete/) — puedes buscar valores diarios desde décadas atrás.
+</details>
 
 ---
 

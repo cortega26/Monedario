@@ -180,20 +180,35 @@ El informe no es solo para saber si "estás en DICOM". Tiene usos prácticos con
 
 ## Preguntas frecuentes
 
-**¿Cada cuánto se actualiza el informe CMF?**
+<details>
+<summary>¿Cada cuánto se actualiza el informe CMF?</summary>
+
 La CMF informa una actualización semanal, pero los datos pueden venir con un desfase de entre 10 y 20 días hábiles respecto de las operaciones reales.
+</details>
 
-**¿El informe CMF lo puede ver cualquier persona?**
+<details>
+<summary>¿El informe CMF lo puede ver cualquier persona?</summary>
+
 No. Solo tú puedes ver tu propio informe usando tu ClaveÚnica. Ningún tercero puede descargarlo sin tu autorización.
+</details>
 
-**¿Puedo pedirlo si soy heredero de una persona fallecida?**
+<details>
+<summary>¿Puedo pedirlo si soy heredero de una persona fallecida?</summary>
+
 Sí, con documentación que acredite la calidad de heredero. El proceso es presencial en la CMF.
+</details>
 
-**¿Pagar una deuda la elimina inmediatamente del informe?**
+<details>
+<summary>¿Pagar una deuda la elimina inmediatamente del informe?</summary>
+
 No de forma inmediata. El desfase puede ser de días o semanas según el momento del reporte y la actualización que reciba la CMF desde la institución.
+</details>
 
-**¿Qué hago si tengo deudas y quiero regularizarlas?**
+<details>
+<summary>¿Qué hago si tengo deudas y quiero regularizarlas?</summary>
+
 El primer paso es tener el informe CMF completo y saber exactamente cuánto debes y a quién. Si las deudas son con el sistema financiero y ya están en mora hace tiempo, puede valer la pena explorar la **renegociación a través de Superir** — el procedimiento concursal gratuito para personas naturales. [Más sobre eso en esta guía](/posts/renegociacion-superir/). Si además hay movimientos que no reconoces, revisa la guía de [fraude con tarjeta y suplantación](/posts/fraude-tarjeta-que-hacer/).
+</details>
 
 ---
 

@@ -20,8 +20,6 @@ draft: false
 heroImage: /images/hero/fondos-mutuos-comisiones-rescate-impuestos.avif
 ---
 
-<!-- META: keyword_primary="comisiones fondos mutuos cuanto cobran" | intent="informacional-transaccional" | cluster="ahorro-e-inversion" -->
-
 Los fondos mutuos tienen costos reales que no siempre aparecen en el primer número que ves. La remuneración de administración, la comisión de rescate y el tratamiento tributario del mayor valor son los tres puntos donde más se pierde por no haber leído bien antes de invertir. Esta guía los desglosa sin rodeos.
 
 Para una mirada más amplia de instrumentos, parte por [ahorro e inversión en Chile](/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/).

@@ -40,8 +40,6 @@ articleLead:
     - "No calcula por sí solo salud, AFC ni impuesto."
 ---
 
-<!-- META: keyword_primary="descuento afp sueldo" | intent="informational-line-item-review" | cluster="sueldo-remuneraciones" -->
-
 Cada mes aparece en tu liquidación una línea que dice "AFP" y un número que te descuentan. Para la mayoría es un cálculo opaco que simplemente aceptan. Esta guía lo abre: cuánto corresponde a cotización obligatoria, cuánto es comisión y cómo verificar que ese cargo calza con tu AFP y tu imponible.
 
 Si quieres ver cómo esta línea se suma a salud, cesantía e impuesto único para llegar al depósito final, parte por [cómo calcular tu sueldo líquido](/posts/como-calcular-sueldo-liquido/). Si tu pregunta es qué descuentos puede hacerte legalmente el empleador, usa [descuentos de sueldo](/posts/descuentos-de-sueldo/). Y si estás auditando el comprobante completo, sigue con [liquidación de sueldo](/posts/liquidacion-de-sueldo/) o la [sección sueldo y remuneraciones](/guias/sueldo-remuneraciones/).
