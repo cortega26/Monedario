@@ -2,7 +2,7 @@
 title: "¿Puedo cambiarme de AFP? Cómo hacerlo y qué considerar en 2026"
 author: "Equipo Monedario"
 pubDate: 2026-02-23T13:00:00Z
-updatedDate: 2026-02-23T13:00:00Z
+updatedDate: 2026-03-22T23:01:40Z
 slug: como-cambiarse-de-afp
 featured: false
 lang: es-CL
@@ -61,16 +61,16 @@ La comisión es el porcentaje que cobra la AFP por administrar tu fondo. A menor
 | AFP       | Comisión |
 | --------- | -------- |
 | Uno       | 0.46%    |
-| PlanVital | 0.49%    |
 | Modelo    | 0.58%    |
-| Capital   | 0.58%    |
-| Cuprum    | 0.65%    |
-| ProVida   | 0.69%    |
-| Habitat   | 0.77%    |
+| PlanVital | 1.16%    |
+| Habitat   | 1.27%    |
+| Capital   | 1.44%    |
+| Cuprum    | 1.44%    |
+| ProVida   | 1.45%    |
 
 \*Comisiones sobre remuneración imponible. Pueden variar. Verifica siempre en la [Superintendencia de Pensiones](https://www.spensiones.cl).
 
-La diferencia entre la comisión más baja (0.46%) y la más alta (0.77%) puede parecer pequeña, pero en un sueldo de $1.500.000 mensuales son más de $4.600 adicionales al mes en tu bolsillo, o cerca de $55.000 al año.
+La diferencia entre la comisión más baja (0.46%) y la más alta (1.45%) puede parecer pequeña, pero en un sueldo imponible de $1.500.000 mensuales son cerca de **$14.850** al mes, o **$178.200 al año**.
 
 ### Rentabilidad
 
@@ -127,4 +127,4 @@ Antes de decidirte, compara cuánto te impacta la comisión en [cuánto descuent
 
 ---
 
-_La información de este artículo está basada en la normativa vigente a febrero de 2026, incluyendo la Ley N°21.735 de Reforma Previsional. Para asesoría personalizada consulta con un profesional o visita la [Superintendencia de Pensiones](https://www.spensiones.cl)._
+_La información de este artículo está basada en la normativa vigente con fecha de corte 2026-03-22, incluyendo la Ley N°21.735 de Reforma Previsional. Para asesoría personalizada consulta con un profesional o visita la [Superintendencia de Pensiones](https://www.spensiones.cl)._

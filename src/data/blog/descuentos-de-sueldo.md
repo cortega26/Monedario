@@ -2,7 +2,7 @@
 title: "Descuentos de sueldo en Chile: cuáles son legales, voluntarios y prohibidos"
 author: "Equipo Monedario"
 pubDate: 2026-03-08T18:10:00Z
-updatedDate: 2026-03-12T14:12:00Z
+updatedDate: 2026-03-22T23:01:40Z
 slug: descuentos-de-sueldo
 featured: false
 lang: es-CL
@@ -25,7 +25,7 @@ articleLead:
   calculatorLabel: "Ver impacto en el líquido"
   nextStepHref: "/posts/liquidacion-de-sueldo/"
   nextStepLabel: "Auditar el comprobante"
-  validAsOf: 2026-03-12
+  validAsOf: 2026-03-22
   officialSources:
     - label: "Dirección del Trabajo — artículo 58"
       href: "https://www.dt.gob.cl/portal/1628/w3-article-60593.html"
@@ -51,7 +51,7 @@ Algunos los exige la ley, algunos los autorizaste tú, y algunos directamente no
 
 Estos descuentos no dependen de tu autorización. La ley obliga al empleador a aplicarlos y tú no puedes renunciar a ellos.
 
-**AFP:** la cotización obligatoria del 10% más la comisión de tu administradora. El 10% va íntegro a tu cuenta individual. La comisión varía según AFP, entre 0,49% y 1,45% sobre el imponible a marzo de 2026.
+**AFP:** la cotización obligatoria del 10% más la comisión de tu administradora. El 10% va íntegro a tu cuenta individual. La comisión varía según AFP, entre 0,46% y 1,45% sobre el imponible a marzo de 2026.
 
 **Salud:** el 7% mínimo destinado a Fonasa o Isapre. Si estás en Fonasa, el descuento es exactamente 7%. Si estás en Isapre y tu plan cuesta más que el 7% legal, la diferencia también se descuenta — pero esa parte adicional ya es un descuento autorizado, no estrictamente legal.
 
@@ -117,4 +117,4 @@ Primero ante el empleador o el área de remuneraciones, por escrito con acuse de
 
 ---
 
-_Contenido educativo con fecha de corte 2026-03-08. Las comisiones AFP y la tabla del impuesto único se actualizan regularmente — verifica los valores vigentes en la [Superintendencia de Pensiones](https://www.spensiones.cl) y el [SII](https://www.sii.cl) antes de tomar decisiones._
+_Contenido educativo con fecha de corte 2026-03-22. Las comisiones AFP y la tabla del impuesto único se actualizan regularmente — verifica los valores vigentes en la [Superintendencia de Pensiones](https://www.spensiones.cl) y el [SII](https://www.sii.cl) antes de tomar decisiones._

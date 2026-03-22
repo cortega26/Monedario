@@ -2,7 +2,7 @@
 title: "Descuento AFP en tu sueldo: cotización obligatoria, comisión y cómo revisarlo"
 author: "Equipo Monedario"
 pubDate: 2026-02-23T10:00:00Z
-updatedDate: 2026-03-12T14:13:00Z
+updatedDate: 2026-03-22T23:01:40Z
 slug: cuanto-descuenta-la-afp-de-tu-sueldo
 featured: true
 lang: es-CL
@@ -24,7 +24,7 @@ articleLead:
   calculatorLabel: "Ver el sueldo líquido completo"
   nextStepHref: "/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/"
   nextStepLabel: "Entender la reforma previsional"
-  validAsOf: 2026-03-12
+  validAsOf: 2026-03-22
   officialSources:
     - label: "Superintendencia de Pensiones"
       href: "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html"
@@ -68,18 +68,18 @@ Calendario resumido de implementación:
 
 ## ¿Cuánto te descuenta realmente la línea AFP?
 
-**Respuesta rápida (regla general):** hoy la línea AFP del trabajador dependiente se compone de **10% de cotización obligatoria** más la **comisión de su AFP**, por lo que el descuento total suele moverse entre **10,49% y 11,45%** del imponible según administradora.  
+**Respuesta rápida (regla general):** hoy la línea AFP del trabajador dependiente se compone de **10% de cotización obligatoria** más la **comisión de su AFP**, por lo que el descuento total suele moverse entre **10,46% y 11,45%** del imponible según administradora.  
 **Excepciones comunes:** la cotización adicional de la reforma previsional es de cargo del empleador y no baja tu líquido; si tu duda es el total de descuentos de la liquidación, aquí no se cubren salud, cesantía ni el impuesto completo.  
-**Vigencia / fecha de corte:** 2026-03-09.  
+**Vigencia / fecha de corte:** 2026-03-22.  
 **Fuentes oficiales:** [Superintendencia de Pensiones](https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html), [ChileAtiende](https://www.chileatiende.gob.cl/fichas/130987-aportes-del-empleador-al-sistema-de-pensiones), [BCN, Ley N° 21.735](https://www.bcn.cl/leychile/navegar?idNorma=1212060).
 
-Si hablamos del descuento que sale desde tu remuneración imponible como trabajador, el total hoy se mueve aproximadamente entre **10.49% y 11.45%** según tu AFP. Este porcentaje se divide en dos partes:
+Si hablamos del descuento que sale desde tu remuneración imponible como trabajador, el total hoy se mueve aproximadamente entre **10.46% y 11.45%** según tu AFP. Este porcentaje se divide en dos partes:
 
 **1. Cotización obligatoria: 10%**
 
 Este es el porcentaje fijo que va directamente a tu cuenta de capitalización individual. Es tuyo, se invierte en el fondo que elegiste (A, B, C, D o E) y acumula rentabilidad hasta que te jubiles.
 
-**2. Comisión de la AFP: entre 0.49% y 1.45%**
+**2. Comisión de la AFP: entre 0.46% y 1.45%**
 
 Este porcentaje es el cobro que hace la AFP por administrar tu fondo. A diferencia del 10%, este dinero no va a tu cuenta — es el costo del servicio.
 
@@ -93,9 +93,9 @@ Este porcentaje es el cobro que hace la AFP por administrar tu fondo. A diferenc
 | Modelo    | 10%        | 0.58%    | 10.58%          |
 | PlanVital | 10%        | 1.16%    | 11.16%          |
 | ProVida   | 10%        | 1.45%    | 11.45%          |
-| Uno       | 10%        | 0.49%    | 10.49%          |
+| Uno       | 10%        | 0.46%    | 10.46%          |
 
-> 💡 **Dato importante:** La AFP con menor comisión vigente hoy es **Uno (0.49%)**. Las diferencias de comisión siguen siendo materiales en el descuento mensual.
+> 💡 **Dato importante:** La AFP con menor comisión vigente hoy es **Uno (0.46%)**. Las diferencias de comisión siguen siendo materiales en el descuento mensual.
 
 ## ¿Para qué sirve cada peso descontado?
 
@@ -142,7 +142,7 @@ Lo que debes evaluar al cambiarte no es solo la comisión, sino también:
 - La **calidad del servicio** y herramientas digitales
 - Si la diferencia en comisión justifica el cambio
 
-La diferencia entre una comisión de 0.49% y otra de 1.45% puede parecer menor en porcentaje, pero en un sueldo imponible de $1.000.000 son **$9.600 mensuales**, o cerca de **$115.200 al año**.
+La diferencia entre una comisión de 0.46% y otra de 1.45% puede parecer menor en porcentaje, pero en un sueldo imponible de $1.000.000 son **$9.900 mensuales**, o cerca de **$118.800 al año**.
 
 ## Preguntas frecuentes
 
@@ -165,4 +165,4 @@ Si estás comparando alternativas, te conviene revisar [cómo cambiarte de AFP p
 
 ---
 
-_La información de este artículo es de carácter educativo y fue revisada con fecha de corte 2026-03-08. Las comisiones pueden cambiar, así que confirma la vigencia directamente en la [Superintendencia de Pensiones](https://www.spensiones.cl)._
+_La información de este artículo es de carácter educativo y fue revisada con fecha de corte 2026-03-22. Las comisiones pueden cambiar, así que confirma la vigencia directamente en la [Superintendencia de Pensiones](https://www.spensiones.cl)._

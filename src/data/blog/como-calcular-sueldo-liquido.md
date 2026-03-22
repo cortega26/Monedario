@@ -2,7 +2,7 @@
 title: "Cómo calcular tu sueldo líquido en Chile: del imponible al depósito final"
 author: "Equipo Monedario"
 pubDate: 2026-02-24T10:00:00Z
-updatedDate: 2026-03-12T14:10:00Z
+updatedDate: 2026-03-22T23:01:40Z
 slug: como-calcular-sueldo-liquido
 featured: true
 homepagePriority: 100
@@ -26,7 +26,7 @@ articleLead:
   calculatorLabel: "Usar calculadora de sueldo líquido"
   nextStepHref: "/posts/liquidacion-de-sueldo/"
   nextStepLabel: "Auditar la liquidación"
-  validAsOf: 2026-03-12
+  validAsOf: 2026-03-22
   officialSources:
     - label: "SII — Impuesto Único 2026"
       href: "https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm"
@@ -59,7 +59,7 @@ Para un trabajador dependiente con contrato indefinido, los descuentos típicos 
 | Descuento                   | Porcentaje    | Va a...                |
 | --------------------------- | ------------- | ---------------------- |
 | AFP (cotización)            | 10%           | Tu cuenta de pensión   |
-| AFP (comisión)              | 0.49% – 1.45% | La AFP por administrar |
+| AFP (comisión)              | 0.46% – 1.45% | La AFP por administrar |
 | Salud (Fonasa o Isapre)     | 7% mínimo     | Tu cobertura médica    |
 | Seguro de cesantía          | 0.6%          | Tu fondo de cesantía   |
 | Impuesto único 2ª categoría | Variable      | El Fisco               |
@@ -93,7 +93,7 @@ El 10% de cotización obligatoria va íntegro a tu cuenta de capitalización ind
 
 | AFP       | Comisión 2026 |
 | --------- | ------------- |
-| Uno       | 0.49%         |
+| Uno       | 0.46%         |
 | Modelo    | 0.58%         |
 | PlanVital | 1.16%         |
 | Habitat   | 1.27%         |
@@ -101,7 +101,7 @@ El 10% de cotización obligatoria va íntegro a tu cuenta de capitalización ind
 | Cuprum    | 1.44%         |
 | ProVida   | 1.45%         |
 
-En un imponible de $1.000.000, la diferencia entre la AFP más barata y la más cara hoy es de **$9.600 al mes**, o cerca de **$115.200 al año**. No define toda tu jubilación, pero sí cambia tu descuento mensual real.
+En un imponible de $1.000.000, la diferencia entre la AFP más barata y la más cara hoy es de **$9.900 al mes**, o cerca de **$118.800 al año**. No define toda tu jubilación, pero sí cambia tu descuento mensual real.
 
 Fuente: [Superintendencia de Pensiones](https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html)
 
