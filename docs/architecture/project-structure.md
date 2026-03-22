@@ -105,6 +105,7 @@ tuplatainforma/
 │   ├── migrate-images.mjs
 │   ├── normalize-frontmatter.mjs
 │   ├── refresh-economic-snapshot.mjs
+│   ├── refresh-editorial-volatile-data.mjs
 │   ├── rss-to-json.mjs
 │   └── snapshot-routes.mjs
 ├── src/

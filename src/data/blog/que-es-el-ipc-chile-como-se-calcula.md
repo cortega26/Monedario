@@ -19,6 +19,11 @@ lang: es-CL
 featured: false
 draft: false
 heroImage: /images/hero/que-es-el-ipc-chile-como-se-calcula.avif
+volatileData:
+  - id: "economic.ipc.monthly_variation"
+    sync: reference
+  - id: "economic.uf.value"
+    sync: reference
 ---
 
 Cuando sale el dato del IPC cada mes, los medios hablan de "inflación" y tú ves que las cosas cuestan más. Pero ¿cómo se mide exactamente? ¿Por qué a veces el IPC baja pero igual sientes que todo cuesta más? Y lo más importante: ¿qué decisiones afecta directamente en tu vida?

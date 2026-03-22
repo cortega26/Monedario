@@ -1,4 +1,4 @@
-name: Refresh Economic Snapshot
+name: Refresh Volatile Data Snapshots
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   refresh:
-    name: Refresh economic snapshot and open PR
+    name: Refresh volatile data snapshots and open PR
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -39,19 +39,24 @@ jobs:
       - name: "🔄 Refresh economic snapshot"
         run: pnpm run economic:snapshot:refresh
 
+      - name: "🧭 Refresh editorial volatile data snapshot"
+        run: pnpm run editorial:volatile-data:refresh
+
       - name: "📬 Create pull request"
         uses: peter-evans/create-pull-request@v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore(economic): refresh economic snapshot"
-          title: "chore(economic): refresh economic snapshot"
+          commit-message: "chore(editorial): refresh volatile data snapshots"
+          title: "chore(editorial): refresh volatile data snapshots"
           body: |
-            Automated refresh of `src/infrastructure/economic/economic-parameters.snapshot.json`.
+            Automated refresh of volatile data snapshots used by runtime and editorial guards.
 
             - Trigger: scheduled workflow (`refresh-economic-snapshot.yml`) or manual dispatch.
             - Command: `pnpm run economic:snapshot:refresh`.
-            - Source: `https://mindicador.cl/api`.
-          branch: chore/refresh-economic-snapshot
+            - Command: `pnpm run editorial:volatile-data:refresh`.
+            - Sources: `https://mindicador.cl/api`, `https://www.spensiones.cl`.
+          branch: chore/refresh-volatile-data-snapshots
           delete-branch: true
           add-paths: |
             src/infrastructure/economic/economic-parameters.snapshot.json
+            src/infrastructure/editorial/editorial-volatile-data.snapshot.json

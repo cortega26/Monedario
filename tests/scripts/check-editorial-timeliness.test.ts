@@ -15,6 +15,9 @@ function createTempProject() {
   mkdirSync(path.join(root, "src", "infrastructure", "economic"), {
     recursive: true,
   });
+  mkdirSync(path.join(root, "src", "infrastructure", "editorial"), {
+    recursive: true,
+  });
   writeFileSync(
     path.join(root, "src", "config", "editorial-timeliness-policy.json"),
     JSON.stringify(
@@ -44,6 +47,30 @@ function createTempProject() {
     "utf8"
   );
   writeFileSync(
+    path.join(root, "src", "config", "editorial-volatile-data-registry.json"),
+    JSON.stringify(
+      {
+        datasets: {
+          "economic.uf.value": {
+            label: "Valor UF",
+            refreshStrategy: "economic_snapshot",
+            unit: "clp",
+            sourceUrls: ["https://mindicador.cl/api"],
+          },
+          "pensions.afp.uno_commission": {
+            label: "Comisión AFP Uno",
+            refreshStrategy: "official_page_extract",
+            unit: "percent",
+            sourceUrls: ["https://www.spensiones.cl/portal/institucional/594/w3-article-16714.html"],
+          },
+        },
+      },
+      null,
+      2
+    ),
+    "utf8"
+  );
+  writeFileSync(
     path.join(
       root,
       "src",
@@ -56,6 +83,35 @@ function createTempProject() {
         uf: 39841.72,
         utm: 69889,
         lastUpdated: "2026-03-22",
+      },
+      null,
+      2
+    ),
+    "utf8"
+  );
+  writeFileSync(
+    path.join(
+      root,
+      "src",
+      "infrastructure",
+      "editorial",
+      "editorial-volatile-data.snapshot.json"
+    ),
+    JSON.stringify(
+      {
+        lastUpdated: "2026-03-22",
+        datasets: {
+          "economic.uf.value": {
+            value: 39841.72,
+            reviewTriggerDate: "2026-03-22",
+            lastObservedAt: "2026-03-22",
+          },
+          "pensions.afp.uno_commission": {
+            value: 0.46,
+            reviewTriggerDate: "2025-10-01",
+            lastObservedAt: "2026-03-22",
+          },
+        },
       },
       null,
       2
@@ -110,7 +166,11 @@ articleLead:
   validAsOf: "2026-03-20"
   officialSources:
     - label: "Fuente oficial"
-      href: "https://example.com/oficial"`,
+      href: "https://example.com/oficial"
+volatileData:
+  - id: "pensions.afp.uno_commission"
+    sync: strict
+    expectedValue: 0.46`,
       "Contenido"
     );
 
@@ -123,9 +183,16 @@ articleLead:
         path.join(root, "output", "validation", "editorial-timeliness", "report.json"),
         "utf8"
       )
-    ) as { staleCount: number; economicSnapshotLastUpdated: string };
+    ) as {
+      staleCount: number;
+      driftCount: number;
+      economicSnapshotLastUpdated: string;
+      volatileSnapshotLastUpdated: string;
+    };
     expect(report.staleCount).toBe(0);
+    expect(report.driftCount).toBe(0);
     expect(report.economicSnapshotLastUpdated).toBe("2026-03-22");
+    expect(report.volatileSnapshotLastUpdated).toBe("2026-03-22");
   });
 
   it("fails when a review SLA is stale", () => {
@@ -147,7 +214,11 @@ articleLead:
   validAsOf: "2026-01-15"
   officialSources:
     - label: "Fuente oficial"
-      href: "https://example.com/oficial"`,
+      href: "https://example.com/oficial"
+volatileData:
+  - id: "pensions.afp.uno_commission"
+    sync: strict
+    expectedValue: 0.46`,
       "Contenido"
     );
 
@@ -173,7 +244,11 @@ cluster: pensiones-afp
 lang: es-CL
 articleLead:
   answer: "Respuesta suficientemente larga para pasar el schema local."
-  validAsOf: "2026-03-20"`,
+  validAsOf: "2026-03-20"
+volatileData:
+  - id: "pensions.afp.uno_commission"
+    sync: strict
+    expectedValue: 0.46`,
       "Contenido"
     );
 
@@ -181,5 +256,67 @@ articleLead:
 
     expect(result.status).toBe(1);
     expect(result.stderr).toContain('requires articleLead.officialSources');
+  });
+
+  it("fails when a strict volatile dataset expectedValue no longer matches the snapshot", () => {
+    const root = createTempProject();
+    writeArticle(
+      root,
+      "demo-drift.md",
+      `title: "Demo drift"
+description: "Demo article"
+slug: demo-drift
+pubDate: "2026-03-01T00:00:00Z"
+updatedDate: "2026-03-22T00:00:00Z"
+author: "Equipo Monedario"
+category: prevision
+cluster: pensiones-afp
+lang: es-CL
+articleLead:
+  answer: "Respuesta suficientemente larga para pasar el schema local."
+  validAsOf: "2026-03-22"
+  officialSources:
+    - label: "Fuente oficial"
+      href: "https://example.com/oficial"
+volatileData:
+  - id: "pensions.afp.uno_commission"
+    sync: strict
+    expectedValue: 0.49`,
+      "Contenido"
+    );
+
+    const result = runTimelinessCheck(root);
+
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain('expectedValue=0.49 does not match snapshot value=0.46');
+  });
+
+  it("fails when a runtime snapshot article omits volatileData dependencies", () => {
+    const root = createTempProject();
+    writeArticle(
+      root,
+      "demo-runtime-snapshot.md",
+      `title: "Demo runtime snapshot"
+description: "Demo article"
+slug: demo-runtime-snapshot
+pubDate: "2026-03-01T00:00:00Z"
+updatedDate: "2026-03-20T00:00:00Z"
+author: "Equipo Monedario"
+category: prevision
+cluster: pensiones-afp
+lang: es-CL
+articleLead:
+  answer: "Respuesta suficientemente larga para pasar el schema local."
+  validAsOf: "2026-03-20"
+  officialSources:
+    - label: "Fuente oficial"
+      href: "https://example.com/oficial"`,
+      "Contenido"
+    );
+
+    const result = runTimelinessCheck(root);
+
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain('requires volatileData dependencies');
   });
 });

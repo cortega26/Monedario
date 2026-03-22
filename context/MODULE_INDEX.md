@@ -35,7 +35,10 @@ Last updated: 2026-03-01
   - `docs/domain/CONTENT/INVARIANTS.md`
 - Editorial timeliness policy:
   - `src/config/editorial-timeliness-policy.json`
+  - `src/config/editorial-volatile-data-registry.json`
   - `scripts/check-editorial-timeliness.mjs`
+  - `scripts/refresh-editorial-volatile-data.mjs`
+  - `src/infrastructure/editorial/editorial-volatile-data.snapshot.json`
   - `output/validation/editorial-timeliness/report.json`
   - `.github/workflows/editorial-timeliness-audit.yml`
 

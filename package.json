@@ -40,6 +40,7 @@
     "check:toc-i18n": "node scripts/check-toc-i18n.mjs",
     "check:editorial-guard": "node scripts/check-editorial-guard.mjs",
     "economic:snapshot:refresh": "node scripts/refresh-economic-snapshot.mjs",
+    "editorial:volatile-data:refresh": "node scripts/refresh-editorial-volatile-data.mjs",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
     "lint": "eslint .",

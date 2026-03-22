@@ -51,6 +51,7 @@ const ALLOWED_CLUSTERS = new Set(
 const REQUIRED_LANG = "es-CL";
 const INLINE_IMAGE_EXCEPTION_MIN_REASON_LENGTH = 12;
 const CANONICAL_TOPIC_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const VOLATILE_DATA_SYNC_MODES = new Set(["reference", "strict"]);
 
 function listContentFiles(dirPath) {
   const result = [];
@@ -106,6 +107,13 @@ function toHttpsUrlOrNull(value) {
 
 function isPlainObject(value) {
   return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
+function isValidVolatileExpectedValue(value) {
+  return (
+    typeof value === "number" ||
+    (typeof value === "string" && value.trim().length > 0)
+  );
 }
 
 function pushIssue(collection, filePath, message) {
@@ -477,6 +485,54 @@ for (const filePath of files) {
             errors,
             relativeFilePath,
             `Field "${entryLabel}" contains unsupported keys: ${extraKeys.join(", ")}.`
+          );
+        }
+      });
+    }
+  }
+
+  const volatileData = frontmatter.volatileData;
+  if (volatileData != null) {
+    if (!Array.isArray(volatileData)) {
+      pushIssue(errors, relativeFilePath, 'Field "volatileData" must be an array.');
+    } else {
+      volatileData.forEach((entry, index) => {
+        const entryLabel = `volatileData[${index}]`;
+        if (!isPlainObject(entry)) {
+          pushIssue(
+            errors,
+            relativeFilePath,
+            `Field "${entryLabel}" must be an object.`
+          );
+          return;
+        }
+
+        if (typeof entry.id !== "string" || entry.id.trim().length < 3) {
+          pushIssue(
+            errors,
+            relativeFilePath,
+            `Field "${entryLabel}.id" must be a non-empty string.`
+          );
+        }
+
+        if (!VOLATILE_DATA_SYNC_MODES.has(entry.sync)) {
+          pushIssue(
+            errors,
+            relativeFilePath,
+            `Field "${entryLabel}.sync" must be one of: ${Array.from(
+              VOLATILE_DATA_SYNC_MODES
+            ).join(", ")}.`
+          );
+        }
+
+        if (
+          Object.hasOwn(entry, "expectedValue") &&
+          !isValidVolatileExpectedValue(entry.expectedValue)
+        ) {
+          pushIssue(
+            errors,
+            relativeFilePath,
+            `Field "${entryLabel}.expectedValue" must be a number or non-empty string when present.`
           );
         }
       });

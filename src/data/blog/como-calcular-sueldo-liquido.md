@@ -40,6 +40,19 @@ articleLead:
     - "No reemplaza el documento oficial del empleador."
     - "No resuelve casos de boletas de honorarios."
     - "No modela juicios laborales ni reclamos por finiquito."
+volatileData:
+  - id: "pensions.afp.worker_mandatory_contribution"
+    sync: strict
+    expectedValue: 10
+  - id: "pensions.afp.uno_commission"
+    sync: strict
+    expectedValue: 0.46
+  - id: "pensions.previsional.monthly_taxable_cap_uf"
+    sync: strict
+    expectedValue: 90
+  - id: "economic.afc.monthly_taxable_cap_uf"
+    sync: strict
+    expectedValue: 135.2
 ---
 
 Te ofrecieron $1.200.000 brutos. Llegó el día de pago y te cayeron $950.000. Esta guía existe para rehacer ese cálculo de principio a fin: partir desde el bruto, separar el imponible y llegar al depósito final con AFP, salud, cesantía e impuesto.

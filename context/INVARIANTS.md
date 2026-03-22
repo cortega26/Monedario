@@ -477,6 +477,23 @@ Change log:
   - Compliant: published article with `articleLead.validAsOf` or `updatedDate`, official sources when required by source mode, and review window still open.
   - Violation: published article whose review date is older than the configured cadence, or a source-assisted article with no official sources.
 
+### `INVARIANT.EDITORIAL.VOLATILE_DATA_ALIGNMENT`
+
+- Statement: Published articles that declare strict volatile datasets must remain aligned with the registered snapshot value and its material-change date.
+- Canonical source: `src/config/editorial-volatile-data-registry.json`, `src/infrastructure/editorial/editorial-volatile-data.snapshot.json`, `scripts/refresh-editorial-volatile-data.mjs`, `scripts/check-editorial-timeliness.mjs`, `docs/adr/ADR-20260322-editorial-volatile-data-pipeline.md`.
+- Rationale:
+  - Prevents silently stale numeric claims after a source dataset changes.
+  - Makes volatile editorial maintenance explicit at article level instead of relying on body-text memory.
+  - Connects scheduled source refreshes to blocking editorial verification.
+- Enforcement: `pnpm run check:editorial-timeliness`; scheduled refresh workflow `refresh-economic-snapshot.yml`.
+- Detection:
+  - Blocking output includes `volatileData "<id>" changed on <date>` when a strict article lags the dataset.
+  - Blocking output includes `expectedValue=<x> does not match snapshot value=<y>` when a strict article declares a stale number.
+  - Artifact output remains `output/validation/editorial-timeliness/report.json`.
+- Examples:
+  - Compliant: article declares `volatileData` for AFP Uno commission with `expectedValue: 0.46` and review date at or after the snapshot trigger date.
+  - Violation: article still declares `0.49` after the official snapshot moved to `0.46`.
+
 ### `INVARIANT.EDITORIAL.HERO_IMAGE_PUBLISHED_REQUIRED`
 
 - Statement: Every published article (`draft !== true`) must define a resolvable `heroImage` and have a canonical public hero asset in `public/images/hero/<slug>.avif|.webp`.

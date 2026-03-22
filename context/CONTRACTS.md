@@ -518,6 +518,31 @@ Change log:
   - Passing output includes `[check-editorial-timeliness] OK.`
   - Failing output includes stale or missing review-date entries plus the generated report path.
 
+### `CONTRACT.EDITORIAL.VOLATILE_DATA`
+
+- Scope: Article-level declaration of source-sensitive variables in `src/data/blog/**/*.md(x)`.
+- Source of truth:
+  - `src/content.config.ts`
+  - `scripts/check-frontmatter.mjs`
+  - `src/config/editorial-volatile-data-registry.json`
+  - `src/infrastructure/editorial/editorial-volatile-data.snapshot.json`
+  - `docs/adr/ADR-20260322-editorial-volatile-data-pipeline.md`
+- Baseline expectations:
+  - `volatileData` is an optional array of objects `{ id, sync, expectedValue? }`.
+  - `id` must reference a registered dataset.
+  - `sync` must be `reference` or `strict`.
+  - `expectedValue`, when present, must be a number or non-empty string.
+  - `runtime_snapshot_plus_editorial_review` articles must declare at least one `volatileData` dependency.
+- Backward-compat expectations:
+  - Registry additions are backward compatible.
+  - Tightening a dataset from `reference` to `strict` is a policy decision and should be reviewed like a gate hardening change.
+- Enforcement:
+  - `pnpm run check:frontmatter`
+  - `pnpm run check:editorial-timeliness`
+- Detection:
+  - Frontmatter failures block malformed `volatileData` entries.
+  - Timeliness failures block unregistered dataset ids, missing snapshot trigger dates, stale strict review dates, or mismatched strict `expectedValue`.
+
 ## CONTRACT.YMYL_RESPONSE_STRUCTURE
 
 **Scope:** Todo artículo clasificado como YMYL (finanzas personales, impuestos, previsión, subsidios, deudas, contratos laborales, seguridad financiera).

@@ -19,6 +19,11 @@ topicRole: owner
 canonicalTopic: uf-reajustes-costo-de-vida
 description: "Explicación práctica de la Unidad de Fomento (UF): qué es, cómo se calcula, por qué cambia cada día y cómo impacta tu arriendo, dividendo y deudas en Chile."
 heroImage: /images/hero/que-es-la-uf.avif
+volatileData:
+  - id: "economic.uf.value"
+    sync: reference
+  - id: "economic.ipc.monthly_variation"
+    sync: reference
 ---
 
 Tu arriendo sube todos los años "por la UF" y tu dividendo también. Pero casi nadie sabe exactamente qué es la UF ni por qué cambia todos los días. Acá te explicamos de verdad — con números y sin fórmulas intimidantes. Si quieres ver esta historia ordenada junto con IPC, reajustes y herramientas prácticas, parte por la [guía UF, inflación y costo de vida](/guias/uf-costo-de-vida/). Si quieres ver cómo se conecta con créditos y deudas, también puedes complementar con la [sección Deuda y Crédito](/guias/deuda-credito/).
@@ -153,30 +158,35 @@ Cuando alguien dice "la UF subió 4% este año", está diciendo que la inflació
 <summary>¿Quién fija el valor de la UF?</summary>
 
 El Banco Central de Chile, usando la metodología que establece su Compendio de Normas Financieras. No es una decisión discrecional — es una fórmula matemática aplicada al IPC que publica el INE.
+
 </details>
 
 <details>
 <summary>¿Por qué el período es del 10 al 9 y no del 1 al 31?</summary>
 
 Porque el INE publica el IPC mensual a más tardar el día 8 del mes siguiente, y el Banco Central necesita ese dato para calcular y publicar los valores diarios a más tardar el día 9. Es un tema de tiempos de publicación, no de diseño arbitrario.
+
 </details>
 
 <details>
 <summary>¿La UF es lo mismo en todo Chile?</summary>
 
 Sí. Hay un único valor de UF para todo el país en cada día. No hay UF regional ni sectorial.
+
 </details>
 
 <details>
 <summary>¿Puedo pactar cualquier contrato en UF?</summary>
 
 No cualquiera. La ley establece que la UF se usa principalmente en operaciones de crédito de dinero con entidades financieras supervisadas. En arriendos y otros contratos privados, las partes pueden acordar libremente usar UF como referencia, pero no están obligadas a hacerlo.
+
 </details>
 
 <details>
 <summary>¿Dónde veo el valor histórico de la UF?</summary>
 
 En el sitio del Banco Central: [si3.bcentral.cl/Siete](https://si3.bcentral.cl/Siete/) — puedes buscar valores diarios desde décadas atrás.
+
 </details>
 
 ---

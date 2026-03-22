@@ -39,6 +39,13 @@ articleLead:
     - "No reemplaza la revisión del contrato ni anexos."
     - "No calcula por sí sola el depósito final."
     - "No resuelve diferencias judicializadas o multas administrativas."
+volatileData:
+  - id: "pensions.afp.worker_mandatory_contribution"
+    sync: strict
+    expectedValue: 10
+  - id: "pensions.afp.uno_commission"
+    sync: strict
+    expectedValue: 0.46
 ---
 
 Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal.

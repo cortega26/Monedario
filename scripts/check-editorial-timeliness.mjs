@@ -23,6 +23,19 @@ const ECONOMIC_SNAPSHOT_PATH = path.join(
   "economic",
   "economic-parameters.snapshot.json"
 );
+const VOLATILE_REGISTRY_PATH = path.join(
+  REPO_ROOT,
+  "src",
+  "config",
+  "editorial-volatile-data-registry.json"
+);
+const VOLATILE_SNAPSHOT_PATH = path.join(
+  REPO_ROOT,
+  "src",
+  "infrastructure",
+  "editorial",
+  "editorial-volatile-data.snapshot.json"
+);
 const REPORT_PATH = path.join(
   REPO_ROOT,
   "output",
@@ -38,6 +51,7 @@ const SOURCE_MODES = new Set([
   "manual_review_with_official_sources",
   "runtime_snapshot_plus_editorial_review",
 ]);
+const VOLATILE_SYNC_MODES = new Set(["reference", "strict"]);
 
 function normalizeDateInput(value) {
   const parsed = new Date(value);
@@ -82,8 +96,12 @@ function listContentFiles(dirPath) {
   return result;
 }
 
+function readJson(filePath) {
+  return JSON.parse(readFileSync(filePath, "utf8"));
+}
+
 function loadPolicy() {
-  const raw = JSON.parse(readFileSync(POLICY_PATH, "utf8"));
+  const raw = readJson(POLICY_PATH);
   if (!Number.isInteger(raw.defaultCadenceDays) || raw.defaultCadenceDays <= 0) {
     throw new Error("editorial timeliness policy requires defaultCadenceDays > 0.");
   }
@@ -112,6 +130,22 @@ function loadPolicy() {
   return raw;
 }
 
+function loadVolatileRegistry() {
+  const registry = readJson(VOLATILE_REGISTRY_PATH);
+  if (!registry.datasets || typeof registry.datasets !== "object") {
+    throw new Error("editorial volatile registry requires a datasets object.");
+  }
+  return registry;
+}
+
+function loadVolatileSnapshot() {
+  try {
+    return readJson(VOLATILE_SNAPSHOT_PATH);
+  } catch {
+    return { lastUpdated: null, datasets: {} };
+  }
+}
+
 function parseFrontmatter(filePath) {
   const block = extractFrontmatter(filePath);
   if (!block) {
@@ -137,7 +171,7 @@ function addDays(date, days) {
 
 function loadEconomicSnapshotDate() {
   try {
-    const payload = JSON.parse(readFileSync(ECONOMIC_SNAPSHOT_PATH, "utf8"));
+    const payload = readJson(ECONOMIC_SNAPSHOT_PATH);
     return typeof payload.lastUpdated === "string" ? payload.lastUpdated : null;
   } catch {
     return null;
@@ -156,15 +190,47 @@ function resolveEffectivePolicy(frontmatter, slug, policy) {
       slugOverride.sourceMode ??
       categoryPolicy.sourceMode ??
       policy.defaultSourceMode,
-    policySource: slugOverride.sourceMode || slugOverride.cadenceDays
-      ? `slugOverrides.${slug}`
-      : categoryPolicy.cadenceDays || categoryPolicy.sourceMode
-        ? `categoryPolicies.${frontmatter.category}`
-        : "defaultPolicy",
+    policySource:
+      slugOverride.sourceMode || slugOverride.cadenceDays
+        ? `slugOverrides.${slug}`
+        : categoryPolicy.cadenceDays || categoryPolicy.sourceMode
+          ? `categoryPolicies.${frontmatter.category}`
+          : "defaultPolicy",
   };
 }
 
-function buildRecord(filePath, frontmatter, policy) {
+function normalizeExpectedValue(value) {
+  if (typeof value === "number") return value;
+  if (typeof value === "string") {
+    const trimmed = value.trim();
+    const numeric = Number(trimmed.replace(/\./g, "").replace(",", "."));
+    return Number.isNaN(numeric) ? trimmed : numeric;
+  }
+  return null;
+}
+
+function valuesMatch(expectedValue, snapshotValue) {
+  const normalizedExpected = normalizeExpectedValue(expectedValue);
+  if (typeof normalizedExpected === "number" && typeof snapshotValue === "number") {
+    return Math.abs(normalizedExpected - snapshotValue) < 1e-9;
+  }
+  return String(normalizedExpected) === String(snapshotValue);
+}
+
+function normalizeVolatileEntries(frontmatter) {
+  if (!Array.isArray(frontmatter.volatileData)) {
+    return [];
+  }
+  return frontmatter.volatileData
+    .filter(entry => entry && typeof entry === "object")
+    .map(entry => ({
+      id: typeof entry.id === "string" ? entry.id.trim() : "",
+      sync: typeof entry.sync === "string" ? entry.sync.trim() : "",
+      expectedValue: entry.expectedValue,
+    }));
+}
+
+function buildRecord(filePath, frontmatter, policy, volatileRegistry, volatileSnapshot) {
   const slug =
     typeof frontmatter.slug === "string"
       ? frontmatter.slug.trim()
@@ -183,6 +249,27 @@ function buildRecord(filePath, frontmatter, policy) {
     Array.isArray(frontmatter.articleLead?.officialSources) &&
     frontmatter.articleLead.officialSources.length > 0;
 
+  const volatileData = normalizeVolatileEntries(frontmatter).map(entry => {
+    const datasetMeta = volatileRegistry.datasets?.[entry.id] ?? null;
+    const snapshotDataset = volatileSnapshot.datasets?.[entry.id] ?? null;
+    return {
+      ...entry,
+      validSyncMode: VOLATILE_SYNC_MODES.has(entry.sync),
+      datasetExists: Boolean(datasetMeta),
+      datasetLabel: datasetMeta?.label ?? null,
+      snapshotValue:
+        snapshotDataset && Object.hasOwn(snapshotDataset, "value")
+          ? snapshotDataset.value
+          : null,
+      reviewTriggerDate: snapshotDataset?.reviewTriggerDate ?? null,
+      lastObservedAt: snapshotDataset?.lastObservedAt ?? null,
+      valueMatches:
+        entry.expectedValue !== undefined && snapshotDataset
+          ? valuesMatch(entry.expectedValue, snapshotDataset.value)
+          : null,
+    };
+  });
+
   return {
     slug,
     relativePath,
@@ -200,6 +287,7 @@ function buildRecord(filePath, frontmatter, policy) {
     policySource: effectivePolicy.policySource,
     hasOfficialSources,
     stale,
+    volatileData,
   };
 }
 
@@ -210,13 +298,21 @@ function writeReport(report) {
 
 function main() {
   const policy = loadPolicy();
+  const volatileRegistry = loadVolatileRegistry();
+  const volatileSnapshot = loadVolatileSnapshot();
   const files = listContentFiles(BLOG_DIR);
   const failures = [];
   const records = [];
 
   for (const filePath of files) {
     const frontmatter = parseFrontmatter(filePath);
-    const record = buildRecord(filePath, frontmatter, policy);
+    const record = buildRecord(
+      filePath,
+      frontmatter,
+      policy,
+      volatileRegistry,
+      volatileSnapshot
+    );
     if (record.draft) continue;
     records.push(record);
 
@@ -236,27 +332,94 @@ function main() {
       );
     }
 
+    if (
+      record.sourceMode === "runtime_snapshot_plus_editorial_review" &&
+      record.volatileData.length === 0
+    ) {
+      failures.push(
+        `${record.relativePath}: sourceMode "${record.sourceMode}" requires volatileData dependencies.`
+      );
+    }
+
     if (record.stale) {
       failures.push(
         `${record.relativePath}: review SLA expired on ${record.dueDate} (${record.cadenceDays}d cadence, sourceMode=${record.sourceMode}).`
       );
     }
+
+    for (const dataset of record.volatileData) {
+      if (!dataset.validSyncMode) {
+        failures.push(
+          `${record.relativePath}: volatileData "${dataset.id}" has unknown sync mode "${dataset.sync}".`
+        );
+        continue;
+      }
+
+      if (!dataset.datasetExists) {
+        failures.push(
+          `${record.relativePath}: volatileData "${dataset.id}" is not registered in editorial-volatile-data-registry.json.`
+        );
+        continue;
+      }
+
+      if (!dataset.reviewTriggerDate) {
+        failures.push(
+          `${record.relativePath}: volatileData "${dataset.id}" has no snapshot reviewTriggerDate.`
+        );
+        continue;
+      }
+
+      if (
+        dataset.sync === "strict" &&
+        record.reviewDate < dataset.reviewTriggerDate
+      ) {
+        failures.push(
+          `${record.relativePath}: volatileData "${dataset.id}" changed on ${dataset.reviewTriggerDate} and article reviewDate ${record.reviewDate} is behind.`
+        );
+      }
+
+      if (
+        dataset.sync === "strict" &&
+        dataset.expectedValue !== undefined &&
+        dataset.valueMatches !== true
+      ) {
+        failures.push(
+          `${record.relativePath}: volatileData "${dataset.id}" expectedValue=${JSON.stringify(
+            dataset.expectedValue
+          )} does not match snapshot value=${JSON.stringify(dataset.snapshotValue)}.`
+        );
+      }
+    }
   }
 
   const staleRecords = records.filter(record => record.stale);
+  const driftRecords = records.filter(record =>
+    record.volatileData.some(dataset =>
+      dataset.sync === "strict" &&
+      ((dataset.reviewTriggerDate && record.reviewDate < dataset.reviewTriggerDate) ||
+        (dataset.expectedValue !== undefined && dataset.valueMatches === false))
+    )
+  );
+
   const report = {
     generatedAt: new Date().toISOString(),
     today: formatIsoDate(TODAY),
     economicSnapshotLastUpdated: loadEconomicSnapshotDate(),
+    volatileSnapshotLastUpdated:
+      typeof volatileSnapshot.lastUpdated === "string"
+        ? volatileSnapshot.lastUpdated
+        : null,
     totalPublished: records.length,
     staleCount: staleRecords.length,
     staleSlugs: staleRecords.map(record => record.slug),
+    driftCount: driftRecords.length,
+    driftSlugs: driftRecords.map(record => record.slug),
     records,
   };
   writeReport(report);
 
   console.log(
-    `[check-editorial-timeliness] published=${records.length} stale=${staleRecords.length} report=${path.relative(REPO_ROOT, REPORT_PATH)}`
+    `[check-editorial-timeliness] published=${records.length} stale=${staleRecords.length} drift=${driftRecords.length} report=${path.relative(REPO_ROOT, REPORT_PATH)}`
   );
 
   if (failures.length > 0) {

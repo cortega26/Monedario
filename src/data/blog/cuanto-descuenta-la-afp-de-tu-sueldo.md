@@ -38,6 +38,13 @@ articleLead:
     - "No reemplaza una revisión AFP por AFP."
     - "No cubre elección de fondos o cambio de administradora en detalle."
     - "No calcula por sí solo salud, AFC ni impuesto."
+volatileData:
+  - id: "pensions.afp.worker_mandatory_contribution"
+    sync: strict
+    expectedValue: 10
+  - id: "pensions.afp.uno_commission"
+    sync: strict
+    expectedValue: 0.46
 ---
 
 Cada mes aparece en tu liquidación una línea que dice "AFP" y un número que te descuentan. Para la mayoría es un cálculo opaco que simplemente aceptan. Esta guía lo abre: cuánto corresponde a cotización obligatoria, cuánto es comisión y cómo verificar que ese cargo calza con tu AFP y tu imponible.

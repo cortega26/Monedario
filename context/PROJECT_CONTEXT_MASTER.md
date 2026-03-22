@@ -1,5 +1,13 @@
 # PROJECT_CONTEXT_MASTER
 
+### Checkpoint 2026-03-22 (Editorial Volatile Data Pipeline)
+
+- Se agrega un registro central de datasets volátiles en `src/config/editorial-volatile-data-registry.json`.
+- `scripts/refresh-editorial-volatile-data.mjs` consolida snapshots económicos y extracción oficial AFP en `src/infrastructure/editorial/editorial-volatile-data.snapshot.json`.
+- El frontmatter editorial incorpora `volatileData`, que enlaza cada artículo con datasets oficiales bajo modos `reference` o `strict`.
+- `scripts/check-editorial-timeliness.mjs` deja de validar solo antigüedad y ahora también bloquea drift cuando una fuente oficial cambió y el artículo quedó detrás.
+- El workflow `refresh-economic-snapshot.yml` pasa a refrescar tanto el snapshot económico runtime como el snapshot editorial de datos volátiles.
+
 ### Checkpoint 2026-03-22 (Editorial Timeliness Pipeline)
 
 - Se institucionaliza un guard de frescura editorial para artículos publicados mediante `scripts/check-editorial-timeliness.mjs`.

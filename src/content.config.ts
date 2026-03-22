@@ -22,6 +22,7 @@ const CATEGORIES = [
 ] as const;
 
 const TOPIC_ROLES = ["owner", "support", "reference"] as const;
+const VOLATILE_DATA_SYNC_MODES = ["reference", "strict"] as const;
 
 const blog = defineCollection({
   loader: safeGlob({ pattern: "**/[^_]*.{md,mdx}", base: `./${BLOG_PATH}` }),
@@ -95,6 +96,19 @@ const blog = defineCollection({
             limits: z.array(z.string().trim().min(4)).default([]),
           })
           .optional(),
+        volatileData: z
+          .array(
+            z
+              .object({
+                id: z.string().trim().min(3),
+                sync: z.enum(VOLATILE_DATA_SYNC_MODES),
+                expectedValue: z
+                  .union([z.number(), z.string().trim().min(1)])
+                  .optional(),
+              })
+              .strict()
+          )
+          .default([]),
       })
       .strict()
       .superRefine((data, ctx) => {

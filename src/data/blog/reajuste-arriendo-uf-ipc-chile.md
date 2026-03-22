@@ -18,6 +18,11 @@ topicRole: owner
 canonicalTopic: reajuste-arriendo-contrato-uf-ipc
 description: "Guía para entender el reajuste de arriendo en Chile: cuándo depende del contrato, cómo funciona en UF o IPC y cómo estimar el nuevo monto sin confusiones."
 heroImage: /images/hero/reajuste-arriendo-uf-ipc-chile.avif
+volatileData:
+  - id: "economic.uf.value"
+    sync: reference
+  - id: "economic.ipc.monthly_variation"
+    sync: reference
 ---
 
 Llegó el aviso de pago y el arriendo subió. O el arrendador avisa que el próximo mes cambia el monto. La primera reacción suele ser preguntarse si corresponde — y la respuesta depende de una sola cosa: lo que dice el contrato.

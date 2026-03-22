@@ -18,6 +18,11 @@ lang: es-CL
 featured: false
 draft: false
 heroImage: /images/hero/deposito-a-plazo-uf-vs-pesos.avif
+volatileData:
+  - id: "economic.uf.value"
+    sync: reference
+  - id: "economic.ipc.monthly_variation"
+    sync: reference
 ---
 
 La tasa en pesos parece más alta. La tasa en UF es más baja pero viene con reajuste. ¿Cuál conviene? La respuesta no está en el número de arriba sino en lo que pasa con la inflación durante el plazo que tú necesitas. Esta guía te ayuda a decidir con números concretos.
