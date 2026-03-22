@@ -1,0 +1,126 @@
+{
+  "como-calcular-sueldo-liquido": {
+    "state": "failed",
+    "score": 4,
+    "failures": [
+      "BACKGROUND",
+      "TEXT",
+      "COMPOSITION"
+    ],
+    "reason": "The image fails due to the presence of text and background not being a flat solid color.",
+    "attempts": 3,
+    "failedAt": "2026-03-22T19:35:13.093Z"
+  },
+  "liquidacion-de-sueldo": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "cuanto-descuenta-la-afp-de-tu-sueldo": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "descuentos-de-sueldo": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "fondos-afp-a-b-c-d-e": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "como-cambiarse-de-afp": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "reforma-previsional-2025-que-cambia-y-como-te-afecta": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "que-es-la-cuenta-2-afp": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "que-es-el-apv": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "deposito-a-plazo-uf-vs-pesos": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "el-poder-del-interes-compuesto": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "fondos-mutuos-comisiones-rescate-impuestos": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "como-invertir-en-etfs-desde-chile": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "operacion-renta-f22-checklist": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "devolucion-impuestos-fechas-compensaciones": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "boleta-honorarios-2026-retencion-cobertura": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "cae-costo-real-credito-chile": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "informe-deudas-cmf-vs-dicom": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "renegociacion-superir": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "fraude-tarjeta-que-hacer": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "estafas-financieras-chile-vishing-smishing-marketplace": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "suplantacion-identidad-creditos-no-reconocidos": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "que-es-la-uf": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "que-es-el-ipc-chile-como-se-calcula": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "reajuste-arriendo-uf-ipc-chile": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "seguro-de-cesantia": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "finiquito-e-indemnizaciones-en-chile": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  },
+  "licencia-medica-desde-que-dia-pagan": {
+    "state": "error",
+    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+  }
+}

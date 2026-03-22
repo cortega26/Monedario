@@ -83,6 +83,9 @@ jobs:
       - name: "🧭 Check semantic hero prompt contract"
         run: node scripts/check-hero-prompts.mjs
 
+      - name: "🔄 Convert PNG hero images to AVIF"
+        run: node scripts/png-to-avif.mjs --dir public/images/hero
+
       - name: "🖼️ Check hero image contract"
         run: node scripts/check-hero-images.mjs
 

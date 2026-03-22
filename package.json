@@ -14,7 +14,8 @@
     "test:watch": "vitest",
     "check:context": "node scripts/check-context.mjs",
     "check:docs": "node scripts/check-docs-structure.mjs",
-    "check:images": "node scripts/check-images.mjs",
+    "check:images": "pnpm run images:convert && node scripts/check-images.mjs",
+    "images:convert": "node scripts/png-to-avif.mjs --dir public/images/hero",
     "check:frontmatter": "node scripts/check-frontmatter.mjs",
     "check:legal-citations": "node scripts/check-legal-citations.mjs",
     "check:legal-citations:live": "node scripts/check-legal-citations.mjs --verify-bcn",
@@ -44,7 +45,12 @@
     "check:urls:ci": "URLCHECK_MODE=ci node scripts/check-urls.mjs",
     "check:urls:canary": "node scripts/check-urls.mjs --canary",
     "check:urls:external:audit": "URLCHECK_MODE=ci node scripts/check-urls.mjs --external-audit",
-    "check:urls:baseline:update": "node scripts/check-urls.mjs --update-baseline --allow-baseline-update"
+    "check:urls:baseline:update": "node scripts/check-urls.mjs --update-baseline --allow-baseline-update",
+    "images:generate": "node --env-file=.env scripts/hero-images/pipeline.mjs",
+    "images:generate:force": "node --env-file=.env scripts/hero-images/pipeline.mjs --force",
+    "images:generate:one": "node --env-file=.env scripts/hero-images/pipeline.mjs --slug=",
+    "images:generate:cluster": "node --env-file=.env scripts/hero-images/pipeline.mjs --cluster=",
+    "images:generate:retry": "node --env-file=.env scripts/hero-images/pipeline.mjs --retry-failed"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
@@ -56,6 +62,7 @@
     "astro": "^5.18.0",
     "dayjs": "^1.11.19",
     "lodash.kebabcase": "^4.1.1",
+    "openai": "^6.32.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "remark-collapse": "^0.1.2",
