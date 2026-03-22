@@ -48,6 +48,7 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.13",
+    "@astrojs/react": "^5.0.1",
     "@astrojs/rss": "^4.0.14",
     "@astrojs/sitemap": "^3.6.0",
     "@resvg/resvg-js": "^2.6.2",
@@ -55,6 +56,8 @@
     "astro": "^5.18.0",
     "dayjs": "^1.11.19",
     "lodash.kebabcase": "^4.1.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
     "remark-collapse": "^0.1.2",
     "remark-toc": "^9.0.0",
     "satori": "^0.26.0",

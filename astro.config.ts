@@ -13,6 +13,7 @@ import { transformerFileName } from "./src/utils/transformers/fileName";
 import { SITE } from "./src/config";
 import { getUiCopyForLocale } from "./src/i18n/ui";
 import { remarkPrefixInternalLinks } from "./src/remark-prefix-internal-links";
+import react from "@astrojs/react";
 
 import mdx from "@astrojs/mdx";
 
@@ -35,6 +36,7 @@ const SEARCH_PATH = withBasePath("/search/");
 const PAGINATED_POSTS_PATTERN = new RegExp(
   `^${escapeRegExp(withBasePath("/posts/"))}\\d+/$`
 );
+const DEV_TOOLS_PATH = withBasePath("/dev/");
 
 // https://astro.build/config
 export default defineConfig({
@@ -42,11 +44,13 @@ export default defineConfig({
   base: SITE_BASE,
   trailingSlash: "always",
   integrations: [
+    react(),
     sitemap({
       filter: page => {
         const pathname = new URL(page).pathname;
         if (SITEMAP_EXCLUDED_PATHS.has(pathname)) return false;
         if (pathname === SEARCH_PATH) return false;
+        if (pathname.startsWith(DEV_TOOLS_PATH)) return false;
         if (
           pathname === TAGS_ROOT_PATH ||
           pathname.startsWith(TAGS_ROOT_PATH)

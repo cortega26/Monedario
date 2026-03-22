@@ -128,6 +128,11 @@ Validación automatizada:
 - Sugerencias de contenido, correcciones y mejoras son bienvenidas mediante issues y pull requests.
 - Se prioriza la claridad, precisión y responsabilidad en la comunicación financiera.
 
-## Licencia
+## Licencias
 
-Este proyecto se distribuye bajo la licencia MIT. Consulta el archivo LICENSE para más detalles.
+Este proyecto usa dos licencias distintas:
+
+- **Código fuente** (`src/` excepto `src/data/`): [MIT](./LICENSE)
+- **Contenido editorial** (`src/data/`, artículos, guías, glosario):
+  [CC BY-NC 4.0](./LICENSE-CONTENT) — libre para compartir con atribución,
+  prohibido uso comercial sin permiso.
