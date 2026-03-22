@@ -136,9 +136,10 @@ function findRuleEvidence(article, articleText, rule) {
     article.bodyExcerpt,
   ]);
 
-  const matchedKeywords = rule.keywords.filter(keyword =>
-    articleText.includes(normalizeForMatching(keyword))
-  );
+  const matchedKeywords = rule.keywords.filter(keyword => {
+    const norm = normalizeForMatching(keyword);
+    return new RegExp(`\\b${norm}\\b`).test(articleText);
+  });
 
   const evidence = [];
   for (const keyword of matchedKeywords) {
@@ -229,9 +230,10 @@ export function selectPromptPlan(article) {
 
   if (!rule) {
     for (const candidate of RULES) {
-      const metadataMatches = candidate.keywords.filter(keyword =>
-        metadataText.includes(normalizeForMatching(keyword))
-      );
+      const metadataMatches = candidate.keywords.filter(keyword => {
+        const norm = normalizeForMatching(keyword);
+        return new RegExp(`\\b${norm}\\b`).test(metadataText);
+      });
       if (metadataMatches.length > 0) {
         rule = candidate;
         matchedKeywords = metadataMatches;

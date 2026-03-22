@@ -17,6 +17,7 @@ canonicalTopic: seguro-cesantia-cobertura
 lang: es-CL
 featured: false
 draft: false
+heroImage: "/images/hero/seguro-cesantia-cuenta-individual-vs-fondo-solidario.avif"
 articleLead:
   answer: "La Cuenta Individual de Cesantía y el Fondo Solidario no son la misma plata ni se activan igual. Primero manda tu CIC; el Fondo Solidario es una capa adicional que exige causal, mínimo de cotizaciones y continuidad verificable."
   calculatorHref: "/calculadoras/seguro-cesantia/"
