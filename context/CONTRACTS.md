@@ -37,6 +37,7 @@ Change log:
 - 2026-03-05: hardened hero image pipeline contract to require article-reading-based semantic selection.
 - 2026-03-06: scoped strict editorial artifact enforcement in PR CI to changed YMYL posts/artifact roots; legacy corpus debt remains explicit in backlog.
 - 2026-03-07: added inline article image format contract and justified exception allowlist semantics.
+- 2026-03-22: added editorial timeliness policy contract and scheduled audit workflow.
 
 ## 2. Contracts
 
@@ -492,6 +493,30 @@ Change log:
 - Detection:
   - Passing output includes `scope=changed` or `scope=all`.
   - Strict PR failures report only changed YMYL targets with missing artifact requirements.
+
+### `CONTRACT.EDITORIAL.TIMELINESS_POLICY`
+
+- Scope: Review cadence and freshness enforcement for published blog articles in `src/data/blog/**/*.md(x)`.
+- Source of truth:
+  - `src/config/editorial-timeliness-policy.json`
+  - `scripts/check-editorial-timeliness.mjs`
+  - `.github/workflows/editorial-timeliness-audit.yml`
+  - `docs/adr/ADR-20260322-editorial-timeliness-pipeline.md`
+- Baseline expectations:
+  - Every published article resolves to a deterministic review date using `articleLead.validAsOf`, `updatedDate`, or `pubDate`.
+  - Each article inherits a cadence from category policy plus optional slug override.
+  - Source-assisted modes (`manual_review_with_official_sources`, `runtime_snapshot_plus_editorial_review`) require `articleLead.officialSources`.
+  - The gate writes an auditable report to `output/validation/editorial-timeliness/report.json`.
+- Backward-compat expectations:
+  - Policy changes remain centralized and reviewable in the JSON policy file.
+  - Future hardening of cadences or source-mode requirements requires an explicit policy update and, when CI semantics materially change, a new ADR.
+- Enforcement:
+  - `pnpm run check:editorial-timeliness`
+  - CI step `Check editorial timeliness SLA`
+  - Scheduled workflow `editorial-timeliness-audit.yml`
+- Detection:
+  - Passing output includes `[check-editorial-timeliness] OK.`
+  - Failing output includes stale or missing review-date entries plus the generated report path.
 
 ## CONTRACT.YMYL_RESPONSE_STRUCTURE
 

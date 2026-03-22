@@ -1,0 +1,86 @@
+{
+  "defaultCadenceDays": 60,
+  "defaultSourceMode": "manual_review",
+  "categoryPolicies": {
+    "ahorro-inversion": {
+      "cadenceDays": 45,
+      "sourceMode": "manual_review"
+    },
+    "deuda-credito": {
+      "cadenceDays": 30,
+      "sourceMode": "manual_review"
+    },
+    "empleo-ingresos": {
+      "cadenceDays": 30,
+      "sourceMode": "manual_review"
+    },
+    "general": {
+      "cadenceDays": 60,
+      "sourceMode": "manual_review"
+    },
+    "impuestos": {
+      "cadenceDays": 30,
+      "sourceMode": "manual_review"
+    },
+    "prevision": {
+      "cadenceDays": 30,
+      "sourceMode": "manual_review"
+    },
+    "seguridad-financiera": {
+      "cadenceDays": 45,
+      "sourceMode": "manual_review"
+    }
+  },
+  "slugOverrides": {
+    "como-calcular-sueldo-liquido": {
+      "sourceMode": "manual_review_with_official_sources"
+    },
+    "cuanto-descuenta-la-afp-de-tu-sueldo": {
+      "sourceMode": "manual_review_with_official_sources"
+    },
+    "descuentos-de-sueldo": {
+      "sourceMode": "manual_review_with_official_sources"
+    },
+    "como-cambiarse-de-afp": {
+      "sourceMode": "manual_review"
+    },
+    "fondos-afp-a-b-c-d-e": {
+      "sourceMode": "manual_review_with_official_sources"
+    },
+    "que-es-la-cuenta-2-afp": {
+      "sourceMode": "manual_review"
+    },
+    "reforma-previsional-2025-que-cambia-y-como-te-afecta": {
+      "sourceMode": "manual_review_with_official_sources"
+    },
+    "boleta-honorarios-2026-retencion-cobertura": {
+      "sourceMode": "manual_review_with_official_sources"
+    },
+    "operacion-renta-f22-checklist": {
+      "sourceMode": "manual_review"
+    },
+    "devolucion-impuestos-fechas-compensaciones": {
+      "sourceMode": "manual_review"
+    },
+    "que-es-la-uf": {
+      "cadenceDays": 30,
+      "sourceMode": "runtime_snapshot_plus_editorial_review"
+    },
+    "que-es-el-ipc-chile-como-se-calcula": {
+      "cadenceDays": 30,
+      "sourceMode": "runtime_snapshot_plus_editorial_review"
+    },
+    "deposito-a-plazo-uf-vs-pesos": {
+      "cadenceDays": 30,
+      "sourceMode": "runtime_snapshot_plus_editorial_review"
+    },
+    "reajuste-arriendo-uf-ipc-chile": {
+      "cadenceDays": 30,
+      "sourceMode": "runtime_snapshot_plus_editorial_review"
+    },
+    "que-es-el-apv": {
+      "cadenceDays": 30,
+      "sourceMode": "runtime_snapshot_plus_editorial_review"
+    }
+  }
+}

@@ -1,5 +1,12 @@
 # PROJECT_CONTEXT_MASTER
 
+### Checkpoint 2026-03-22 (Editorial Timeliness Pipeline)
+
+- Se institucionaliza un guard de frescura editorial para artículos publicados mediante `scripts/check-editorial-timeliness.mjs`.
+- La política central queda en `src/config/editorial-timeliness-policy.json`, con SLA por categoría y overrides por slug para piezas asistidas por snapshot.
+- CI ahora valida `pnpm run check:editorial-timeliness` y un workflow programado (`editorial-timeliness-audit.yml`) deja evidencia automática y abre issue cuando hay piezas vencidas.
+- El snapshot económico existente sigue siendo la fuente automática para indicadores runtime, pero ahora convive con una disciplina explícita de revisión editorial para claims temporales.
+
 ## 0. Resumen ejecutivo
 El repositorio es un sitio estático en **Astro 5** (fork/customización sobre base AstroPaper) enfocado en educación financiera para Chile, con contenido editorial y una suite de calculadoras financieras.
 El proyecto está funcional en producción bajo dominio propio raíz (`https://monedario.cl/`) y combina contenido Markdown/MDX con páginas `.astro` de lógica cliente.

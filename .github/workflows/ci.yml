@@ -96,6 +96,9 @@ jobs:
           EDITORIAL_SCOPE: ${{ github.event_name == 'pull_request' && 'changed' || 'all' }}
           EDITORIAL_DIFF_BASE_REF: ${{ github.base_ref }}
 
+      - name: "🕒 Check editorial timeliness SLA"
+        run: pnpm run check:editorial-timeliness
+
       - name: "🚫 Guard against post.id URL regressions"
         run: pnpm run check:no-postid-urls
 

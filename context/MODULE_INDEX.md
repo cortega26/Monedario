@@ -33,6 +33,11 @@ Last updated: 2026-03-01
 - Frontmatter policy:
   - `scripts/check-frontmatter.mjs`
   - `docs/domain/CONTENT/INVARIANTS.md`
+- Editorial timeliness policy:
+  - `src/config/editorial-timeliness-policy.json`
+  - `scripts/check-editorial-timeliness.mjs`
+  - `output/validation/editorial-timeliness/report.json`
+  - `.github/workflows/editorial-timeliness-audit.yml`
 
 ## 3. Context first-read sequence for agents
 

@@ -38,6 +38,7 @@ Change log:
 - 2026-03-05: added hero-image publication invariant (published article requires resolvable hero image + canonical public asset).
 - 2026-03-05: added hero-image semantic selection invariant (image choice must derive from article reading, not metadata-only matching).
 - 2026-03-07: added inline article image format invariant (AVIF by default with justified exception allowlist).
+- 2026-03-22: added editorial timeliness invariant and scheduled audit workflow.
 
 ## 2. Invariant Index
 
@@ -74,6 +75,7 @@ Change log:
 | `INVARIANT.EDITORIAL.LINKING.INTER_CLUSTER_MAX_2_PER_EDIT` | Inter-cluster links added in one edit should not exceed 2 per article | Active (manual) | PR review + `pnpm run check:editorial` |
 | `INVARIANT.EDITORIAL.NO_DUPLICATE_TITLES` | Duplicate frontmatter titles are forbidden | Active | `pnpm run check:editorial-structure` |
 | `INVARIANT.EDITORIAL.NO_DUPLICATE_SLUGS` | Duplicate filename-derived slugs are forbidden | Active | `pnpm run check:editorial-structure` |
+| `INVARIANT.EDITORIAL.TIMELINESS_REVIEW_SLA` | Published articles must remain within their configured review cadence | Active | `pnpm run check:editorial-timeliness` |
 | `INVARIANT.EDITORIAL.HERO_IMAGE_PUBLISHED_REQUIRED` | Published article must have resolvable hero image and canonical public hero asset | Active | `node scripts/check-hero-images.mjs` |
 | `INVARIANT.EDITORIAL.HERO_IMAGE_TEXT_MATCH_REQUIRED` | Hero image selection must derive from article text and preserve situation-level match | Active | `node scripts/check-hero-prompts.mjs` + artifact review |
 | `INVARIANT.EDITORIAL.INLINE_IMAGE_AVIF_REQUIRED` | Inline article images must use AVIF unless explicitly justified | Active | `pnpm run check:images` |
@@ -457,6 +459,23 @@ Change log:
 - Examples:
   - Compliant: unique filename-derived slug per article.
   - Violation: two files derive the same slug.
+
+### `INVARIANT.EDITORIAL.TIMELINESS_REVIEW_SLA`
+
+- Statement: Every published article must have a deterministic review date and remain within the review cadence configured by the editorial timeliness policy.
+- Canonical source: `src/config/editorial-timeliness-policy.json`, `scripts/check-editorial-timeliness.mjs`, `docs/adr/ADR-20260322-editorial-timeliness-pipeline.md`.
+- Rationale:
+  - Prevents volatile editorial values from drifting silently after publication.
+  - Turns periodic review from tribal memory into an auditable pipeline rule.
+  - Aligns machine-refreshable snapshots and human-reviewed editorial claims under one freshness discipline.
+- Enforcement: `pnpm run check:editorial-timeliness`; scheduled workflow `editorial-timeliness-audit.yml`.
+- Detection:
+  - Passing output includes: `[check-editorial-timeliness] OK.`
+  - Blocking output includes: `[check-editorial-timeliness] FAIL:` plus stale or missing review-date entries.
+  - Artifact output: `output/validation/editorial-timeliness/report.json`.
+- Examples:
+  - Compliant: published article with `articleLead.validAsOf` or `updatedDate`, official sources when required by source mode, and review window still open.
+  - Violation: published article whose review date is older than the configured cadence, or a source-assisted article with no official sources.
 
 ### `INVARIANT.EDITORIAL.HERO_IMAGE_PUBLISHED_REQUIRED`
 

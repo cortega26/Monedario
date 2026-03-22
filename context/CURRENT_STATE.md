@@ -7,3 +7,4 @@ Date: 2026-03-01
 - Route/RSS guardrails active through snapshot comparison gates.
 - Frontmatter gate active and blocking on schema/deprecation errors.
 - Inline article image gate active through `pnpm run check:images` (AVIF by default with justified exception allowlist).
+- Editorial timeliness gate active through `pnpm run check:editorial-timeliness`, with category-based review cadences and scheduled audit workflow support.

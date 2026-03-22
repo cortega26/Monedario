@@ -1,0 +1,102 @@
+name: Editorial Timeliness Audit
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 9 * * 1"
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  audit:
+    name: Audit editorial timeliness
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@v6
+
+      - name: "📦 Install pnpm"
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.30.2
+
+      - name: "🟢 Setup Node.js"
+        uses: actions/setup-node@v6
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: "📦 Install dependencies"
+        run: pnpm install --frozen-lockfile
+
+      - name: "🕒 Run editorial timeliness audit"
+        id: editorial_timeliness
+        continue-on-error: true
+        run: pnpm run check:editorial-timeliness
+
+      - name: "📤 Upload editorial timeliness report"
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: editorial-timeliness-report
+          retention-days: 14
+          if-no-files-found: error
+          path: output/validation/editorial-timeliness/report.json
+
+      - name: "📝 Create or update freshness issue when stale"
+        if: steps.editorial_timeliness.outcome == 'failure'
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const fs = require("fs");
+            const report = JSON.parse(
+              fs.readFileSync("output/validation/editorial-timeliness/report.json", "utf8")
+            );
+            const title = "Editorial timeliness audit: stale review window";
+            const body = [
+              "Automated editorial timeliness audit detected stale review windows.",
+              "",
+              `- Today: ${report.today}`,
+              `- Published reviewed articles: ${report.totalPublished}`,
+              `- Stale entries: ${report.staleCount}`,
+              `- Economic snapshot last updated: ${report.economicSnapshotLastUpdated ?? "n/a"}`,
+              "",
+              "Stale slugs:",
+              ...report.staleSlugs.map(slug => `- \`${slug}\``),
+              "",
+              "Artifact: `editorial-timeliness-report` from workflow run."
+            ].join("\n");
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open"
+            });
+            const existing = issues.find(issue => issue.title === title);
+            if (existing) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body
+              });
+              core.info(`Updated issue #${existing.number}`);
+            } else {
+              const created = await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body
+              });
+              core.info(`Created issue #${created.data.number}`);
+            }
+
+      - name: "✅ Fail workflow on stale entries"
+        if: steps.editorial_timeliness.outcome == 'failure'
+        run: exit 1
