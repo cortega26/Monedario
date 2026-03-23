@@ -234,7 +234,11 @@ async function run() {
 
   for (const scene of toProcess) {
     const ok = await processScene(scene, status);
-    ok ? passed++ : failed++;
+    if (ok) {
+      passed++;
+    } else {
+      failed++;
+    }
   }
 
   console.log(`\n${"─".repeat(40)}`);

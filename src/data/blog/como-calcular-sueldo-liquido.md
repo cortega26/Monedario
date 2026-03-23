@@ -178,9 +178,10 @@ Si antes estabas en Fonasa (7% fijo) y te cambiaste a una Isapre con un plan de 
 | (-) Seguro cesantía 0.6%         | $1.350.000 × 0.6%     | -$8.100         |
 | = Renta tributable para impuesto | $1.350.000 - $257.040 | $1.092.960      |
 | (-) Impuesto único 2ª categoría  | Tramo 4% marzo 2026   | -$5.978         |
-| **= Sueldo líquido**             |                       | **~$1.087.000** |
+| (+) Ingresos no imponibles       | Colación              | +$150.000       |
+| **= Sueldo líquido**             | Bruto - Descuentos    | **~$1.237.000** |
 
-De $1.500.000 brutos a **~$1.087.000 líquidos**. La diferencia se explica por tres cosas distintas: la parte no imponible que no entra al cálculo previsional, las cotizaciones legales por **$257.040** y el impuesto único del mes por **~$5.978**.
+De $1.500.000 brutos a **~$1.237.000 líquidos**. La diferencia final de **~$263.000** se explica solo por los descuentos: las cotizaciones legales por **$257.040** y el impuesto único del mes por **~$5.978**. La porción no imponible ($150.000 por colación) llega íntegra a tu cuenta sin sufrir descuentos previsionales ni de impuestos.
 
 ---
 

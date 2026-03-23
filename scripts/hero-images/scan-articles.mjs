@@ -114,7 +114,7 @@ async function main() {
     source: "src/data/blog/**",
     publishableRule: "draft !== true",
     articleCount: files.length,
-    publishedCount: articles.length,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     articles: articles.map(({ updatedDate, ...article }) => article),
   };
 
