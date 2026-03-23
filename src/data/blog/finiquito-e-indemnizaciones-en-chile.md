@@ -43,7 +43,7 @@ articleLead:
 
 Te llega el finiquito, el empleador te apura para firmarlo ese mismo día, y tú no sabes si lo que dice es correcto. Es una situación más común de lo que parece — y firmar sin revisar puede costarte el equivalente a varios meses de sueldo.
 
-Esta guía te ayuda a entender qué debe incluir un finiquito, cómo revisar cada monto y qué hacer si los números no cuadran. Si necesitas ver más temas relacionados, revisa la [sección Empleo e Ingresos](/guias/empleo-ingresos/).
+Esta guía te ayuda a entender qué debe incluir un finiquito, cómo revisar cada monto y qué hacer si los números no cuadran.
 
 ## Qué incluye normalmente un finiquito
 

@@ -109,34 +109,66 @@ Si además quieres revisar tu declaración anual completa, complementa con el [c
 
 ## Preguntas frecuentes
 
-**1) ¿La retención de boletas en 2026 es 15,25% para todos?**
+<details>
+<summary>¿La retención de boletas en 2026 es 15,25% para todos?</summary>
+
 Según SII, desde el 1 de enero de 2026 ese porcentaje se aplica automáticamente al emitir boletas.
 
-**2) ¿Cuánto recibo líquido por una boleta de $500.000?**
+</details>
+
+<details>
+<summary>¿Cuánto recibo líquido por una boleta de $500.000?</summary>
+
 Retención: $76.250 (15,25%). Líquido: $423.750.
 
-**3) ¿Por qué sube la retención cada año?**
+</details>
+
+<details>
+<summary>¿Por qué sube la retención cada año?</summary>
+
 Por el calendario de incremento definido en la Ley N° 21.133 para financiar cotización obligatoria de independientes.
 
-**4) ¿Hasta qué porcentaje sube el esquema?**
+</details>
+
+<details>
+<summary>¿Hasta qué porcentaje sube el esquema?</summary>
+
 SII informa aumento gradual hasta llegar a 17% en 2028.
 
-**5) ¿Desde cuándo corre la cobertura anual de seguridad social?**
+</details>
+
+<details>
+<summary>¿Desde cuándo corre la cobertura anual de seguridad social?</summary>
+
 Las fuentes oficiales indican cobertura desde el 1 de julio de cada año hasta el 30 de junio del siguiente, una vez procesada la Operación Renta.
 
-**6) ¿Qué pasa si emití boletas por menos de cinco ingresos mínimos mensuales en el año base?**
-Para Operación Renta 2026 (rentas 2025), si tu renta bruta anual por boletas fue **inferior a 5 ingresos mínimos mensuales**, quedas **eximido de cotizar obligatoriamente** para pensión y salud en ese proceso.\
+</details>
+
+<details>
+<summary>¿Qué pasa si emití boletas por menos de cinco ingresos mínimos mensuales en el año base?</summary>
+
+Para Operación Renta 2026 (rentas 2025), si tu renta bruta anual por boletas fue **inferior a 5 ingresos mínimos mensuales**, quedas **eximido de cotizar obligatoriamente** para pensión y salud en ese proceso.
+
 Condiciones y matices relevantes:
 
 - La exención por monto anual no elimina la retención al emitir boletas (15,25% en 2026).
 - Puedes cotizar de forma voluntaria si quieres cobertura/cotización previsional.
 - También existen exenciones por causal legal específica (por ejemplo, pensionados y grupos con regla transitoria de edad definidos en la normativa).
+</details>
 
-**7) ¿La base de cotización es el 100% de lo boleteado?**
+<details>
+<summary>¿La base de cotización es el 100% de lo boleteado?</summary>
+
 ChileAtiende indica que la renta imponible anual para este cálculo corresponde al 80% del total bruto de boletas del año base.
 
-**8) ¿Dónde reviso el detalle final de cotizaciones pagadas?**
+</details>
+
+<details>
+<summary>¿Dónde reviso el detalle final de cotizaciones pagadas?</summary>
+
 En tu declaración de renta y en la información previsional asociada al proceso (SII calcula y TGR paga a instituciones según afiliación).
+
+</details>
 
 ## Fuentes y referencias primarias
 

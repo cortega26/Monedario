@@ -104,29 +104,61 @@ En inflación alta, UF supera en resultado nominal y protege mejor el poder de c
 
 ## Preguntas frecuentes
 
-**¿La UF siempre le gana a los pesos?**
+<details>
+<summary>¿La UF siempre le gana a los pesos?</summary>
+
 No. Depende del plazo, la tasa real pactada y la trayectoria de inflación durante ese período.
 
-**¿Pesos significa menos riesgo?**
+</details>
+
+<details>
+<summary>¿Pesos significa menos riesgo?</summary>
+
 Cambia el tipo de riesgo. Hay menos complejidad de cálculo, pero mayor exposición a que la inflación erosione el valor real de lo que recibiste.
 
-**¿Puedo rescatar un DAP antes del vencimiento?**
+</details>
+
+<details>
+<summary>¿Puedo rescatar un DAP antes del vencimiento?</summary>
+
 Depende del contrato y la institución. La lógica base del depósito a plazo es mantener hasta el vencimiento; salir antes puede implicar penalidades.
 
-**¿Cuál es el plazo mínimo en un DAP reajustable?**
+</details>
+
+<details>
+<summary>¿Cuál es el plazo mínimo en un DAP reajustable?</summary>
+
 CMF Educa indica 90 días como plazo mínimo de referencia en depósitos reajustables.
 
-**¿Cómo comparo dos tasas con plazos distintos?**
+</details>
+
+<details>
+<summary>¿Cómo comparo dos tasas con plazos distintos?</summary>
+
 Llévalas a una misma base temporal y calcula el resultado estimado para el mismo horizonte.
 
-**¿Qué hago si necesito liquidez en menos de 3 meses?**
+</details>
+
+<details>
+<summary>¿Qué hago si necesito liquidez en menos de 3 meses?</summary>
+
 Prioriza instrumentos de caja de muy corto plazo y alta disponibilidad: el DAP no es el instrumento para eso.
 
-**¿Debo declarar estas rentas al SII?**
+</details>
+
+<details>
+<summary>¿Debo declarar estas rentas al SII?</summary>
+
 Sí, con las excepciones legales aplicables según tu situación. El SII indica que las personas naturales deben declarar rentas de inversiones.
 
-**¿Esta guía reemplaza asesoría personalizada?**
+</details>
+
+<details>
+<summary>¿Esta guía reemplaza asesoría personalizada?</summary>
+
 No. Es una guía educativa para tomar mejores decisiones, no una recomendación individual.
+
+</details>
 
 ## Siguiente lectura
 

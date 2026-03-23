@@ -92,29 +92,61 @@ Si tu situación es compleja, la asesoría tributaria profesional es el camino.
 
 ## Preguntas frecuentes
 
-**¿Todos los fondos mutuos pagan en 24 horas?**
+<details>
+<summary>¿Todos los fondos mutuos pagan en 24 horas?</summary>
+
 No. La norma regulatoria establece un plazo máximo de 10 días hábiles, pero el tiempo exacto depende de cada fondo y serie.
 
-**¿Un fondo mutuo puede garantizar rentabilidad?**
+</details>
+
+<details>
+<summary>¿Un fondo mutuo puede garantizar rentabilidad?</summary>
+
 Como regla general, no. La CMF establece que la rentabilidad futura no está garantizada, salvo casos específicos regulados.
 
-**¿Qué documento me muestra los costos reales?**
+</details>
+
+<details>
+<summary>¿Qué documento me muestra los costos reales?</summary>
+
 El reglamento interno, el contrato general de fondos y el folleto informativo. Los tres deben estar disponibles antes de aportar.
 
-**¿Qué pesa más: la comisión o la rentabilidad?**
+</details>
+
+<details>
+<summary>¿Qué pesa más: la comisión o la rentabilidad?</summary>
+
 Ambas importan. La decisión correcta requiere mirar la rentabilidad neta esperada después de costos, no un solo dato aislado.
 
-**¿Si no rescato, debo declarar la ganancia igual?**
+</details>
+
+<details>
+<summary>¿Si no rescato, debo declarar la ganancia igual?</summary>
+
 No. El SII indica que los valores no rescatados no se consideran renta percibida y no se declaran en ese período.
 
-**¿Si rescato con pérdida, pago impuesto igual?**
+</details>
+
+<details>
+<summary>¿Si rescato con pérdida, pago impuesto igual?</summary>
+
 Depende del resultado tributario neto y las reglas aplicables del año. Por eso conviene consolidar los respaldos antes de declarar.
 
-**¿El asistente del SII sirve para fondos mutuos?**
+</details>
+
+<details>
+<summary>¿El asistente del SII sirve para fondos mutuos?</summary>
+
 Sí. El SII indica que apoya la determinación del mayor valor en rescates de cuotas de fondos mutuos.
 
-**¿Esta guía reemplaza asesoría tributaria?**
+</details>
+
+<details>
+<summary>¿Esta guía reemplaza asesoría tributaria?</summary>
+
 No. Es contenido educativo y no reemplaza asesoría profesional para tu situación particular.
+
+</details>
 
 ## Siguiente lectura
 

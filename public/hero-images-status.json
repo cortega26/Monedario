@@ -2,11 +2,7 @@
   "como-calcular-sueldo-liquido": {
     "state": "failed",
     "score": 4,
-    "failures": [
-      "BACKGROUND",
-      "TEXT",
-      "COMPOSITION"
-    ],
+    "failures": ["BACKGROUND", "TEXT", "COMPOSITION"],
     "reason": "The image fails due to the presence of text and background not being a flat solid color.",
     "attempts": 3,
     "failedAt": "2026-03-22T19:35:13.093Z"

@@ -22,7 +22,26 @@ const guideCards = deudaClusterHubDecisionCards.map(card => ({
   ...card,
   label:
     coreLabels[
-      card.href.replace("/posts/", "").replaceAll("/", "") as keyof typeof coreLabels
+      card.href
+        .replace("/posts/", "")
+        .replaceAll("/", "") as keyof typeof coreLabels
+    ] ?? card.kind,
+}));
+
+const toolLabels = {
+  "credito-consumo": "Calculadora",
+  "tarjeta-credito": "Calculadora",
+  "prepago-credito": "Calculadora",
+  "simulador-renegociacion": "Simulador",
+} as const;
+
+const toolCards = deudaClusterHubToolCards.map(card => ({
+  ...card,
+  label:
+    toolLabels[
+      card.href
+        .replace("/calculadoras/", "")
+        .replaceAll("/", "") as keyof typeof toolLabels
     ] ?? card.kind,
 }));
 ---
@@ -41,9 +60,9 @@ const guideCards = deudaClusterHubDecisionCards.map(card => ({
       </h1>
       <p class="max-w-4xl text-secondary">
         Esta sección separa cuatro preguntas distintas que la gente suele
-        mezclar bajo "DICOM" o "deuda". Parte por el problema real:
-        diagnóstico de deudas, reporte comercial, costo real del crédito o
-        salida formal cuando la mora ya se volvió inmanejable.
+        mezclar bajo "DICOM" o "deuda". Parte por el problema real: diagnóstico
+        de deudas, reporte comercial, costo real del crédito o salida formal
+        cuando la mora ya se volvió inmanejable.
       </p>
       <div class="mt-6 grid gap-3 md:grid-cols-2">
         <div class="rounded-2xl border border-border bg-surface-muted p-5">
@@ -78,24 +97,6 @@ const guideCards = deudaClusterHubDecisionCards.map(card => ({
     </section>
 
     <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">Errores comunes</h2>
-      <ul class="list-disc space-y-2 pl-6 text-secondary">
-        <li>
-          Pedir un informe privado antes de separar si necesitas CMF, Boletín
-          Comercial o simplemente ordenar tus acreedores.
-        </li>
-        <li>
-          Comparar solo cuota o tasa nominal y no el costo total en pesos con
-          CAE, seguros y gastos.
-        </li>
-        <li>
-          Entrar a renegociación sin tener claro si el caso ya cumple filtro
-          legal mínimo o si todavía estás en fase de orden financiero.
-        </li>
-      </ul>
-    </section>
-
-    <section class="border-b border-border py-8">
       <h2 class="mb-4 text-2xl font-bold">Por dónde empezar</h2>
       <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {
@@ -121,6 +122,24 @@ const guideCards = deudaClusterHubDecisionCards.map(card => ({
     </section>
 
     <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-2xl font-bold">Errores comunes</h2>
+      <ul class="list-disc space-y-2 pl-6 text-secondary">
+        <li>
+          Pedir un informe privado antes de separar si necesitas CMF, Boletín
+          Comercial o simplemente ordenar tus acreedores.
+        </li>
+        <li>
+          Comparar solo cuota o tasa nominal y no el costo total en pesos con
+          CAE, seguros y gastos.
+        </li>
+        <li>
+          Entrar a renegociación sin tener claro si el caso ya cumple filtro
+          legal mínimo o si todavía estás en fase de orden financiero.
+        </li>
+      </ul>
+    </section>
+
+    <section class="border-b border-border py-8">
       <h2 class="mb-4 text-2xl font-bold">Herramientas para actuar hoy</h2>
       <p class="max-w-3xl text-sm leading-relaxed text-secondary">
         Si ya tienes números, usa la herramienta que corresponde a tu etapa. No
@@ -130,10 +149,10 @@ const guideCards = deudaClusterHubDecisionCards.map(card => ({
       </p>
       <div class="mt-5 grid gap-4 md:grid-cols-2">
         {
-          deudaClusterHubToolCards.map(card => (
+          toolCards.map(card => (
             <article class="rounded-2xl border border-border bg-surface-muted p-5">
               <p class="mb-2 text-xs font-semibold tracking-[0.14em] text-accent uppercase">
-                {card.kind}
+                {card.label}
               </p>
               <h3 class="text-lg font-semibold">{card.title}</h3>
               <p class="mt-2 text-sm leading-relaxed text-secondary">
@@ -160,7 +179,7 @@ const guideCards = deudaClusterHubDecisionCards.map(card => ({
               <article class="rounded-2xl border border-border p-5">
                 <h3 class="mb-2 text-lg font-semibold">{item.title}</h3>
                 <p class="mb-3 text-sm leading-relaxed text-secondary">
-                  {item.summary} {item.rationale}
+                  {item.summary}
                 </p>
                 <a
                   href={getPath(item.href)}

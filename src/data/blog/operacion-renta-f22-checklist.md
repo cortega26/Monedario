@@ -76,29 +76,61 @@ Caso práctico breve: si tu propuesta incluye una retención de boletas que no c
 
 ## Preguntas frecuentes
 
-**1) ¿Qué diferencia hay entre reemplazar y rectificar?**
+<details>
+<summary>¿Qué diferencia hay entre reemplazar y rectificar?</summary>
+
 Según SII, el reemplazo aplica a declaraciones enviadas por Internet sin pago dentro de la ventana definida del proceso; la rectificatoria se usa cuando ya debes corregir una declaración presentada fuera de esa ventana o con observaciones.
 
-**2) ¿Hasta cuándo se puede reemplazar una declaración sin pago?**
+</details>
+
+<details>
+<summary>¿Hasta cuándo se puede reemplazar una declaración sin pago?</summary>
+
 Para AT 2025, SII indica reemplazo hasta el 25 de abril bajo condiciones específicas (incluyendo no haber solicitado devolución hasta el 8 de abril). Debes verificar el plazo del año tributario vigente.
 
-**3) ¿Dónde veo por qué mi declaración fue observada?**
+</details>
+
+<details>
+<summary>¿Dónde veo por qué mi declaración fue observada?</summary>
+
 En el menú de Renta del SII, opción "Consulta y seguimiento" > "Consultar estado de declaración".
 
-**4) Si rectifico, ¿la devolución se paga igual que la primera vez?**
+</details>
+
+<details>
+<summary>Si rectifico, ¿la devolución se paga igual que la primera vez?</summary>
+
 SII informa que una rectificatoria que origina devolución se procesa con autorización a TGR y puede tener modalidad/tiempos distintos a la devolución inicial.
 
-**5) ¿Cuándo puedo rectificar si no autorizaron en los períodos esperados?**
+</details>
+
+<details>
+<summary>¿Cuándo puedo rectificar si no autorizaron en los períodos esperados?</summary>
+
 En las FAQs de SII para AT 2025 se indica rectificación desde junio, según la observación detectada.
 
-**6) ¿Qué reviso primero si tengo devolución alta?**
+</details>
+
+<details>
+<summary>¿Qué reviso primero si tengo devolución alta?</summary>
+
 Consistencia entre retenciones, ingresos declarados y datos bancarios. Es donde más se concentran observaciones y rechazos de autorización.
 
-**7) ¿Si declaré solo con propuesta automática puedo confiarme?**
+</details>
+
+<details>
+<summary>¿Si declaré solo con propuesta automática puedo confiarme?</summary>
+
 No totalmente. La propuesta ayuda, pero la responsabilidad final del F22 enviado sigue siendo del contribuyente.
 
-**8) ¿Qué hago si mi caso incluye compensaciones por deudas?**
+</details>
+
+<details>
+<summary>¿Qué hago si mi caso incluye compensaciones por deudas?</summary>
+
 Revisa la guía de [devolución de impuestos: fechas, estado y compensaciones](/posts/devolucion-impuestos-fechas-compensaciones/) para diferenciar observación SII vs compensación informada por TGR.
+
+</details>
 
 ## Fuentes y referencias primarias
 

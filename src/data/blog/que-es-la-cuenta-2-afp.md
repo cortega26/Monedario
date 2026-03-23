@@ -110,5 +110,3 @@ No. Los fondos de la Cuenta 2 no se consideran para determinar el derecho a la G
 Si tu foco es bajar impuestos al ahorrar, revisa [qué es el APV y cómo funciona](/posts/que-es-el-apv/). Y para decidir en qué fondo invertir la Cuenta 2, te sirve la guía de [fondos AFP A, B, C, D y E](/posts/fondos-afp-a-b-c-d-e/).
 
 ---
-
-_La información de este artículo es de carácter educativo y está basada en la normativa vigente a febrero de 2026. Para asesoría personalizada consulta con un profesional o visita la [Superintendencia de Pensiones](https://www.spensiones.cl)._

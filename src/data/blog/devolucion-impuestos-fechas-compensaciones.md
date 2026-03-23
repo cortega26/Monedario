@@ -79,29 +79,61 @@ Para 2026, usa siempre el calendario oficial que publique SII/TGR para ese año 
 
 ## Preguntas frecuentes
 
-**1) ¿Quién paga efectivamente la devolución?**
+<details>
+<summary>¿Quién paga efectivamente la devolución?</summary>
+
 El SII revisa y autoriza; la Tesorería General de la República (TGR) materializa el pago, aplicando compensaciones o retenciones cuando corresponda.
 
-**2) ¿Dónde veo por qué no me depositaron?**
+</details>
+
+<details>
+<summary>¿Dónde veo por qué no me depositaron?</summary>
+
 Primero en SII (Consulta y seguimiento) para ver observaciones de declaración. Si está aceptada, el detalle de retenciones/compensaciones se revisa con TGR.
 
-**3) ¿Qué significa compensación?**
+</details>
+
+<details>
+<summary>¿Qué significa compensación?</summary>
+
 Que TGR descuenta total o parcialmente tu devolución para cubrir deudas informadas por las vías legales correspondientes.
 
-**4) ¿La pensión de alimentos puede retener devolución?**
+</details>
+
+<details>
+<summary>¿La pensión de alimentos puede retener devolución?</summary>
+
 Sí. SII informa que TGR puede retener por deudas asociadas al Registro Nacional de Deudores de Pensiones de Alimentos.
 
-**5) ¿Puedo quedar con devolución parcial?**
+</details>
+
+<details>
+<summary>¿Puedo quedar con devolución parcial?</summary>
+
 Sí. Si hay compensaciones, se paga el saldo remanente después de los descuentos aplicados por TGR.
 
-**6) ¿Si declaré temprano siempre me pagan primero?**
+</details>
+
+<details>
+<summary>¿Si declaré temprano siempre me pagan primero?</summary>
+
 No necesariamente: además de la fecha de envío, influye la revisión, eventuales observaciones y si hay retenciones/compensaciones.
 
-**7) ¿Qué pasa si mi cuenta bancaria estaba mal?**
+</details>
+
+<details>
+<summary>¿Qué pasa si mi cuenta bancaria estaba mal?</summary>
+
 SII indica que puedes terminar con pago en caja o cheque según monto y condiciones informadas por Tesorería.
 
-**8) ¿Debo rectificar si no me depositaron?**
+</details>
+
+<details>
+<summary>¿Debo rectificar si no me depositaron?</summary>
+
 Solo si hay observaciones o errores de declaración que lo requieran. Si la causa es compensación, no siempre aplica rectificatoria.
+
+</details>
 
 ## Fuentes y referencias primarias
 

@@ -19,7 +19,7 @@ description: "Guía paso a paso para actuar ante un fraude con tarjeta o transfe
 heroImage: /images/hero/fraude-tarjeta-que-hacer.avif
 ---
 
-Revisas tu cuenta y ves un cargo que no hiciste. O peor: te llega un aviso de una transferencia que nunca autorizaste. Lo primero que sientes es pánico. Lo segundo debería ser este artículo. Si quieres revisar más temas relacionados, usa también la [sección Seguridad Financiera](/guias/seguridad-financiera/).
+Revisas tu cuenta y ves un cargo que no hiciste. O peor: te llega un aviso de una transferencia que nunca autorizaste. Lo primero que sientes es pánico. Lo segundo debería ser este artículo.
 
 En Chile existe una ley que protege a las víctimas de fraude financiero. Se llama **[Ley N° 20.009](/leyes/ley-20009-tarjetas-fraude/)** y obliga a los bancos e instituciones financieras a devolverte el dinero — siempre que sigas los pasos correctos y dentro de los plazos.
 
@@ -207,5 +207,3 @@ La Ley 20.009 aplica a instituciones que operen en Chile y estén supervisadas p
 Si quieres prevenir variantes por canal antes de una nueva caída, revisa [estafas financieras en Chile](/posts/estafas-financieras-chile-vishing-smishing-marketplace/). Si además aparecen créditos o deudas desconocidas, revisa la guía de [suplantación y créditos no reconocidos](/posts/suplantacion-identidad-creditos-no-reconocidos/).
 
 ---
-
-_La información de este artículo es de carácter educativo y está basada en la normativa vigente a marzo de 2026, incluyendo la Ley N° 20.009 y la interpretación del SERNAC. Para más información visita [sernac.cl](https://www.sernac.cl/portal/604/w3-propertyname-791.html) y [cmfchile.cl](https://www.cmfchile.cl)._

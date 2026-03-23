@@ -216,9 +216,7 @@ const hubAssignments = getHubArticleAssignments("pensiones-afp");
           (item: (typeof hubAssignments.related)[number]) => (
             <div class="rounded-xl border border-border p-5">
               <h3 class="mb-2 text-lg font-semibold">{item.title}</h3>
-              <p class="mb-3 text-sm text-secondary">
-                {item.summary} {item.rationale}
-              </p>
+              <p class="mb-3 text-sm text-secondary">{item.summary}</p>
               <a
                 href={getPath(item.href)}
                 class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"

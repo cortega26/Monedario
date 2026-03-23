@@ -43,7 +43,7 @@ articleLead:
 
 En julio de 2025 se promulgó la reforma previsional más importante en décadas. Cambia cómo se financia tu jubilación, introduce nuevos componentes del Seguro Social y reemplaza los multifondos con un esquema distinto. Como su implementación se despliega por etapas entre 2025 y 2033, conviene entenderla separando con cuidado qué ya opera hoy y qué todavía viene después.
 
-Si quieres entender primero cómo funciona el sistema actual, parte por la [guía de fondos AFP A, B, C, D, E](/posts/fondos-afp-a-b-c-d-e/) o por [cuánto te descuenta la AFP de tu sueldo](/posts/cuanto-descuenta-la-afp-de-tu-sueldo/). Si quieres revisar más temas relacionados, entra a la [sección de Pensiones y AFP](/guias/pensiones-afp/).
+Si quieres entender primero cómo funciona el sistema actual, parte por la [guía de fondos AFP A, B, C, D, E](/posts/fondos-afp-a-b-c-d-e/) o por [cuánto te descuenta la AFP de tu sueldo](/posts/cuanto-descuenta-la-afp-de-tu-sueldo/).
 
 ## Lo esencial en 3 minutos
 

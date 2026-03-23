@@ -21,7 +21,7 @@ heroImage: /images/hero/licencia-medica-desde-que-dia-pagan.avif
 
 Enfermarse siempre trae preocupaciones, pero cuando la licencia dura varios días, la pregunta aparece rápido: ¿desde cuándo me pagan y cuánto me llega? En Chile eso depende de cuántos días dura la licencia, de dónde cotizas y de quién paga el subsidio. Entenderlo bien puede ser la diferencia entre recibir el pago completo o terminar apelando un rechazo.
 
-Esta guía responde las preguntas principales y te explica qué hacer si algo sale mal. Si quieres revisar más temas relacionados, entra a la [sección Empleo e Ingresos](/guias/empleo-ingresos/).
+Esta guía responde las preguntas principales y te explica qué hacer si algo sale mal.
 
 ## La regla fundamental: qué determina desde cuándo pagan
 

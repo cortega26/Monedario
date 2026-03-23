@@ -88,29 +88,61 @@ El SII dispone asistentes e instrucciones para apoyar la determinación del mayo
 
 ## Preguntas frecuentes
 
-**¿Necesito un corredor para invertir en ETFs?**
+<details>
+<summary>¿Necesito un corredor para invertir en ETFs?</summary>
+
 Para operar en mercado bursátil, sí. La CMF detalla el rol de corredores y agentes en la intermediación de valores.
 
-**¿Qué costo se subestima más?**
+</details>
+
+<details>
+<summary>¿Qué costo se subestima más?</summary>
+
 La suma de los costos pequeños: comisión + derechos de bolsa + IVA + custodia + spread. Por separado parecen menores; juntos pueden representar una proporción importante del retorno.
 
-**¿La custodia es un costo aparte que puedo evitar?**
+</details>
+
+<details>
+<summary>¿La custodia es un costo aparte que puedo evitar?</summary>
+
 No exactamente. La custodia es parte del servicio del intermediario; lo que varía es cuánto cobra por ella y cómo la estructura.
 
-**¿Puedo invertir en valores extranjeros desde Chile?**
+</details>
+
+<details>
+<summary>¿Puedo invertir en valores extranjeros desde Chile?</summary>
+
 Sí. Pero la CMF advierte que intermediarios y valores extranjeros pueden no estar bajo su supervisión directa, lo que implica responsabilidades adicionales para el inversionista.
 
-**¿Cuál es la diferencia clave entre un ETF y un fondo mutuo?**
+</details>
+
+<details>
+<summary>¿Cuál es la diferencia clave entre un ETF y un fondo mutuo?</summary>
+
 El ETF se transa en bolsa en tiempo real; el fondo mutuo opera por valor de cuota con reglas de rescate definidas en el reglamento del fondo. Son instrumentos distintos con lógicas distintas.
 
-**¿Cómo reduzco errores al empezar?**
+</details>
+
+<details>
+<summary>¿Cómo reduzco errores al empezar?</summary>
+
 Con un checklist fijo antes de cada operación: costos, custodia, mercado, riesgo de moneda y obligación tributaria. Lo que se hace hábito, se comete menos como error.
 
-**¿Debo declarar los resultados en la renta anual?**
+</details>
+
+<details>
+<summary>¿Debo declarar los resultados en la renta anual?</summary>
+
 En general sí. El SII establece la obligación de declarar rentas de inversiones según las reglas vigentes y las excepciones legales aplicables.
 
-**¿Esta guía reemplaza asesoría tributaria o legal?**
+</details>
+
+<details>
+<summary>¿Esta guía reemplaza asesoría tributaria o legal?</summary>
+
 No. Es contenido educativo; para casos con operaciones complejas o internacionales, la asesoría profesional es necesaria.
+
+</details>
 
 ## Siguiente lectura
 

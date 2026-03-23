@@ -49,8 +49,6 @@ volatileData:
 
 Cada mes aparece en tu liquidación una línea que dice "AFP" y un número que te descuentan. Para la mayoría es un cálculo opaco que simplemente aceptan. Esta guía lo abre: cuánto corresponde a cotización obligatoria, cuánto es comisión y cómo verificar que ese cargo calza con tu AFP y tu imponible.
 
-Si quieres ver cómo esta línea se suma a salud, cesantía e impuesto único para llegar al depósito final, parte por [cómo calcular tu sueldo líquido](/posts/como-calcular-sueldo-liquido/). Si tu pregunta es qué descuentos puede hacerte legalmente el empleador, usa [descuentos de sueldo](/posts/descuentos-de-sueldo/). Y si estás auditando el comprobante completo, sigue con [liquidación de sueldo](/posts/liquidacion-de-sueldo/) o la [sección sueldo y remuneraciones](/guias/sueldo-remuneraciones/).
-
 ## Qué cambia entre 2025 y 2027
 
 Este bloque separa lo vigente hoy de los cambios ya aprobados por la reforma previsional (Ley N° 21.735):
@@ -171,5 +169,3 @@ Si estás comparando alternativas, te conviene revisar [cómo cambiarte de AFP p
 - BCN, Ley N° 21.735: https://www.bcn.cl/leychile/navegar?idNorma=1212060
 
 ---
-
-_La información de este artículo es de carácter educativo y fue revisada con fecha de corte 2026-03-22. Las comisiones pueden cambiar, así que confirma la vigencia directamente en la [Superintendencia de Pensiones](https://www.spensiones.cl)._

@@ -209,24 +209,28 @@ Estos son los más comunes, para que no los repitas:
 <summary>¿Y si emito boletas de honorarios?</summary>
 
 Sí puedes. ChileAtiende lo confirma explícitamente. El requisito de "no tener movimientos de primera categoría" no aplica a quienes emiten boletas — eso es segunda categoría.
+
 </details>
 
 <details>
 <summary>¿Y si tengo un juicio de cobranza activo?</summary>
 
 Si la demanda ejecutiva ya fue **notificada formalmente**, no puedes iniciar la renegociación. Si la cobranza es extrajudicial (llamadas, cartas, cobradores), sí puedes.
+
 </details>
 
 <details>
 <summary>¿Y si no tengo bienes?</summary>
 
 Puedes igualmente iniciar el proceso. La declaración de bienes puede ser "no tengo bienes". Eso no te descalifica — la renegociación busca un acuerdo de pago con tus ingresos futuros, no necesariamente con tus bienes actuales.
+
 </details>
 
 <details>
 <summary>¿Y si hay deudas de alimentos (pensión alimenticia)?</summary>
 
 Las deudas de alimentos no entran en el procedimiento de renegociación — tienen un tratamiento legal distinto.
+
 </details>
 
 ---
@@ -254,5 +258,3 @@ No automáticamente. Después de lograr el acuerdo, tú debes solicitarlo ante l
 Antes de presentar la solicitud, estima tu escenario con el [simulador de renegociación Superir](/calculadoras/simulador-renegociacion/) y ordena tus acreedores con la guía del [Informe de Deudas CMF](/posts/informe-deudas-cmf-vs-dicom/).
 
 ---
-
-_La información de este artículo es de carácter educativo y está basada en la normativa vigente a marzo de 2026. Para iniciar el trámite visita [superir.gob.cl](https://www.superir.gob.cl/perfil-deudor-requisito-renegociacion/) o [ChileAtiende](https://www.chileatiende.gob.cl/fichas/37401-renegociacion-de-las-deudas-de-una-persona). Para asesoría gratuita contacta la [Corporación de Asistencia Judicial](https://www.cajmetro.cl/)._

@@ -201,7 +201,3 @@ En el sitio del Banco Central: [si3.bcentral.cl/Siete](https://si3.bcentral.cl/S
 - El valor oficial lo publica el Banco Central y es el mismo para todos.
 
 Si necesitas convertir montos al instante, usa el [conversor UF a pesos](/calculadoras/conversor-uf/). Si quieres entender primero cómo se traduce esa indexación en una cláusula de vivienda, revisa [reajuste de arriendo en Chile: UF, IPC y cálculo](/posts/reajuste-arriendo-uf-ipc-chile/). Y para aterrizarlo en números, prueba la [calculadora de reajuste de arriendo](/calculadoras/reajuste-arriendo/).
-
----
-
-_La información de este artículo es de carácter educativo y está basada en la metodología oficial del [Banco Central de Chile](https://si3.bcentral.cl/estadisticas/Principal1/Metodologias/EMF/UF.pdf). Los valores de UF mencionados son referenciales — consulta el valor vigente en [si3.bcentral.cl](https://si3.bcentral.cl/Indicadoressiete/secure/Indicadoresdiarios.aspx)._

@@ -241,5 +241,3 @@ El SII publica la tabla mensual del Impuesto Único de Segunda Categoría en su 
 Si quieres probar tus números exactos, usa la [calculadora de sueldo líquido](/calculadoras/sueldo-liquido/). Y si necesitas desglosar mejor el componente previsional o la liquidación, revisa también [descuentos de sueldo](/posts/descuentos-de-sueldo/), [liquidación de sueldo](/posts/liquidacion-de-sueldo/) y la guía de [seguro de cesantía](/posts/seguro-de-cesantia/).
 
 ---
-
-_La información de este artículo es de carácter educativo y está basada en la normativa vigente con fecha de corte 2026-03-08. Los topes previsionales, comisiones AFP y tramos del impuesto único pueden cambiar; confirma el dato vigente en la fuente oficial antes de tomar decisiones._

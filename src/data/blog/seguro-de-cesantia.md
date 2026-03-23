@@ -41,7 +41,7 @@ articleLead:
     - "No reemplaza la validación de continuidad y causal real."
 ---
 
-Quedaste sin trabajo — sea porque te despidieron, se venció tu contrato o renunciaste. Lo primero que muchos no saben es que tienen plata acumulada en la AFC esperando ser cobrada. Esta guía te explica exactamente qué es, cuánto tienes y cómo cobrarlo. Si quieres revisar temas relacionados, también puedes ir a la [sección Empleo e Ingresos](/guias/empleo-ingresos/).
+Quedaste sin trabajo — sea porque te despidieron, se venció tu contrato o renunciaste. Lo primero que muchos no saben es que tienen plata acumulada en la AFC esperando ser cobrada. Esta guía te explica exactamente qué es, cuánto tienes y cómo cobrarlo.
 
 ## Tabla de contenidos
 
@@ -201,34 +201,37 @@ Si prefieres ir en persona, puedes reservar hora en las sucursales AFC de todo e
 <summary>¿Qué pasa si trabajo en dos empleos y quedo sin uno?</summary>
 
 El seguro se activa por cada relación laboral en la que estés afiliado. Si perdiste uno de los dos trabajos, puedes cobrar el seguro de esa relación mientras sigues trabajando en la otra.
+
 </details>
 
 <details>
 <summary>¿Puedo cobrar el seguro si soy trabajador de casa particular?</summary>
 
 Sí. Desde el 1 de octubre de 2020 las trabajadoras y trabajadores de casa particular son afiliados obligatorios al Seguro de Cesantía. Las reglas son las mismas que para contrato indefinido.
+
 </details>
 
 <details>
 <summary>¿Puedo cobrar si soy extranjero?</summary>
 
 Sí, siempre que tengas cotizaciones registradas. Si trabajaste antes de tener tu cédula de identidad chilena definitiva, puedes tener aportes que no se acumularon correctamente — en ese caso debes regularizarlo con la AFC.
+
 </details>
 
 <details>
 <summary>¿Qué pasa con el seguro si me pensiono?</summary>
 
 Al pensionarte puedes retirar el saldo de tu CIC en un solo giro sin pagar impuestos, o traspasarlo a tu AFP. Si nunca lo cobraste, sigue ahí.
+
 </details>
 
 <details>
 <summary>¿El seguro de cesantía es lo mismo que el subsidio de cesantía?</summary>
 
 No. El **seguro de cesantía** es el que administra la AFC y es para trabajadores con contrato. El **subsidio de cesantía** lo paga el IPS (ex INP) o las cajas de compensación para trabajadores que no cumplen los requisitos del seguro — es un beneficio distinto y con condiciones diferentes.
+
 </details>
 
 Si quieres estimar cobertura con tus datos, usa la [calculadora de seguro de cesantía](/calculadoras/seguro-cesantia/). Si tu caso incluye licencia activa o rechazo de pago, revisa [licencia médica: desde qué día pagan](/posts/licencia-medica-desde-que-dia-pagan/). Y si estás cerrando contrato, valida montos con [finiquito e indemnizaciones en Chile](/posts/finiquito-e-indemnizaciones-en-chile/).
 
 ---
-
-_La información de este artículo es de carácter educativo y está basada en la normativa vigente a marzo de 2026. Para consultar tu saldo y cobrar visita [afc.cl](https://www.afc.cl). Los montos y porcentajes del FCS se actualizan anualmente — verifica los valores vigentes en el sitio de la AFC._

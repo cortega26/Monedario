@@ -45,13 +45,6 @@ La regla práctica es esta: si quieres ver qué deudas financieras vigentes apar
 
 ## Tabla de contenidos
 
-## Si tu pregunta es esta, parte por aquí
-
-- **"Quiero saber qué deudas financieras vigentes aparecen a mi nombre."** Parte por el **Informe de Deudas CMF**, porque es el reporte oficial y gratuito del sistema financiero supervisado.
-- **"Quiero ver si estoy en DICOM gratis."** No partas pagando un informe privado: primero separa qué cubren el CMF, el Boletín Comercial y los reportes privados en esta guía sobre [dónde ver si estás en DICOM gratis](/posts/donde-ver-si-estoy-en-dicom-gratis/).
-- **"Ya confirmé varias deudas morosas y no me da la caja."** El siguiente paso no es otro reporte sino revisar si calificas para [renegociación en Superir](/posts/renegociacion-superir/).
-- **"No estoy en mora, pero quiero evitar firmar un crédito caro."** Salta a [CAE y costo real del crédito](/posts/cae-costo-real-credito-chile/).
-
 ## Qué es el Informe de Deudas CMF
 
 La **Comisión para el Mercado Financiero (CMF)** es el organismo que supervisa bancos, cooperativas, emisores de tarjetas y otras entidades financieras en Chile. Como parte de esa supervisión, las instituciones reportan periódicamente las deudas de sus clientes y con esa información la CMF arma el **Informe de Deudas de Personas Naturales**.
@@ -184,32 +177,35 @@ El informe no es solo para saber si "estás en DICOM". Tiene usos prácticos con
 <summary>¿Cada cuánto se actualiza el informe CMF?</summary>
 
 La CMF informa una actualización semanal, pero los datos pueden venir con un desfase de entre 10 y 20 días hábiles respecto de las operaciones reales.
+
 </details>
 
 <details>
 <summary>¿El informe CMF lo puede ver cualquier persona?</summary>
 
 No. Solo tú puedes ver tu propio informe usando tu ClaveÚnica. Ningún tercero puede descargarlo sin tu autorización.
+
 </details>
 
 <details>
 <summary>¿Puedo pedirlo si soy heredero de una persona fallecida?</summary>
 
 Sí, con documentación que acredite la calidad de heredero. El proceso es presencial en la CMF.
+
 </details>
 
 <details>
 <summary>¿Pagar una deuda la elimina inmediatamente del informe?</summary>
 
 No de forma inmediata. El desfase puede ser de días o semanas según el momento del reporte y la actualización que reciba la CMF desde la institución.
+
 </details>
 
 <details>
 <summary>¿Qué hago si tengo deudas y quiero regularizarlas?</summary>
 
 El primer paso es tener el informe CMF completo y saber exactamente cuánto debes y a quién. Si las deudas son con el sistema financiero y ya están en mora hace tiempo, puede valer la pena explorar la **renegociación a través de Superir** — el procedimiento concursal gratuito para personas naturales. [Más sobre eso en esta guía](/posts/renegociacion-superir/). Si además hay movimientos que no reconoces, revisa la guía de [fraude con tarjeta y suplantación](/posts/fraude-tarjeta-que-hacer/).
+
 </details>
 
 ---
-
-_La información de este artículo es de carácter educativo y está basada en la normativa vigente a marzo de 2026. Para más información visita la [CMF](https://www.cmfchile.cl) o el [Boletín Comercial](https://www.boletincomercial.cl/)._

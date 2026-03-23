@@ -24,7 +24,7 @@ volatileData:
     expectedValue: 0.46
 ---
 
-Cambiarse de AFP es uno de los trámites más simples que puedes hacer para mejorar tu situación previsional, y sin embargo la mayoría de las personas nunca lo hace. En esta guía te explicamos cómo funciona el proceso, qué debes evaluar y qué cambia con la Reforma de Pensiones aprobada en 2025. Si quieres revisar más temas relacionados, entra también a la [sección de pensiones y AFP](/guias/pensiones-afp/).
+Cambiarse de AFP es uno de los trámites más simples que puedes hacer para mejorar tu situación previsional, y sin embargo la mayoría de las personas nunca lo hace. En esta guía te explicamos cómo funciona el proceso, qué debes evaluar y qué cambia con la Reforma de Pensiones aprobada en 2025.
 
 ## Tabla de contenidos
 

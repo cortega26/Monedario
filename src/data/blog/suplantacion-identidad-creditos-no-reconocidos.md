@@ -21,7 +21,7 @@ heroImage: /images/hero/suplantacion-identidad-creditos-no-reconocidos.avif
 
 Recibes un correo que dice "tu crédito ha sido aprobado". El problema es que tú nunca pediste ningún crédito. Eso no es un error administrativo: es una señal de que alguien usó tus datos para contratar deuda a tu nombre.
 
-Esta guía te explica qué hacer para actuar rápido y evitar los errores que más atrasan la solución. Si quieres revisar más temas relacionados, entra a la [sección Seguridad Financiera](/guias/seguridad-financiera/).
+Esta guía te explica qué hacer para actuar rápido y evitar los errores que más atrasan la solución.
 
 ## Cómo detectar la suplantación antes de que escale
 
@@ -148,5 +148,3 @@ Tiende a ser más difícil. La primera vía es SERNAC. Si hay delito, la vía pe
 Para complementar esta guía, revisa [estafas financieras por canal y checklist de 24 horas](/posts/estafas-financieras-chile-vishing-smishing-marketplace/). Si detectaste cargos en tarjetas o transferencias no autorizadas, sigue también la guía de [fraude con tarjeta y Ley 20.009](/posts/fraude-tarjeta-que-hacer/).
 
 ---
-
-_La información de este artículo es de carácter educativo y está basada en la normativa vigente a marzo de 2026. Para más información visita la [CMF](https://www.cmfchile.cl), el [SERNAC](https://www.sernac.cl) o denuncia en la [PDI](https://www.pdichile.cl). Para asesoría gratuita contacta la [Corporación de Asistencia Judicial](https://www.cajmetro.cl/)._
