@@ -21,7 +21,7 @@ heroImage: /images/hero/estafas-financieras-chile-vishing-smishing-marketplace.a
 
 La mayoría de las estafas financieras no empieza con un hackeo sofisticado. Empieza con una llamada que suena completamente normal, de alguien que sabe tu nombre, menciona tu banco y habla en un tono que mezcla urgencia con profesionalismo. Para cuando te das cuenta de lo que ocurrió, ya autorizaste una transferencia.
 
-Esta guía te ayuda a prevenir estafas financieras. Explica cómo operan los métodos más frecuentes, qué señales distinguen cada uno y qué hacer si ya caíste. Si quieres revisar más casos relacionados, entra a la [sección Seguridad Financiera](/guias/seguridad-financiera/).
+Esta guía te ayuda a prevenir estafas financieras. Explica cómo operan los métodos más frecuentes, qué señales distinguen cada uno y qué hacer si ya caíste.
 
 ## Cómo operan estas estafas
 
@@ -121,6 +121,8 @@ Al menos una vez por semana en tus cuentas principales. Siempre que recibas un m
 ### ¿El banco tiene responsabilidad si me estafaron?
 
 Depende del tipo de fraude. Si autorizaste tú mismo la operación (porque te engañaron), la responsabilidad es compartida. Si el fraude fue sin tu intervención (acceso no autorizado directo), la responsabilidad es mayor para la institución. La Ley 20.009 regula esto en detalle.
+
+Si quieres ampliar el mapa de este tema, revisa también la [sección Seguridad Financiera](/guias/seguridad-financiera/).
 
 ## Fuentes oficiales recomendadas
 
