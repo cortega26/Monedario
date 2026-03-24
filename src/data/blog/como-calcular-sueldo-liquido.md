@@ -59,8 +59,6 @@ Te ofrecieron $1.200.000 brutos. Llegó el día de pago y te cayeron $950.000. E
 
 Si tu duda principal no es rehacer el número completo, conviene ir a la [guía de descuentos de sueldo](/posts/descuentos-de-sueldo/) para clasificar las líneas o a la [liquidación de sueldo](/posts/liquidacion-de-sueldo/) para auditar el comprobante. Si solo necesitas el número, puedes saltar directo a la calculadora más abajo.
 
-## Tabla de contenidos
-
 ## La diferencia entre sueldo bruto y sueldo líquido
 
 Aquí el foco es el cálculo completo del líquido. No es la guía principal para discutir si un descuento es legal ni para revisar el formato del comprobante.
@@ -230,7 +228,7 @@ El SII publica la tabla mensual del Impuesto Único de Segunda Categoría en su 
 
 ---
 
-## Resumen: lo que debes recordar
+## Qué hacer ahora
 
 - Los descuentos van sobre el **imponible**, no sobre el bruto total.
 - El **10% AFP** es tuyo; la comisión adicional depende de tu administradora y hoy puede mover bastante el descuento total.

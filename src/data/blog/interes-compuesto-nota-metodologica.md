@@ -60,7 +60,7 @@ Se usaron valores del sueldo mínimo bruto chileno como puntos de control. Entre
 | 2024 | $460.000                  |
 | 2025 | $500.000                  |
 
-**Fuentes base declaradas por el ejercicio:** SUSESO, Dirección del Trabajo y Biblioteca del Congreso Nacional.
+**Fuentes base del ejercicio:** SUSESO, Dirección del Trabajo y Biblioteca del Congreso Nacional.
 
 ## 3. Descuentos previsionales y cálculo del sueldo líquido
 
@@ -252,4 +252,4 @@ Los rangos de arriendo referenciales de **$350.000 a $500.000 mensuales** para d
 
 Úsala para auditar el ejercicio, no para extrapolar rentabilidades futuras. Si quieres convertir esta idea en una decisión real, el siguiente paso no es copiar el número final, sino revisar vehículo, costos, liquidez, impuestos y tolerancia a caídas con una guía práctica como [cómo invertir en ETFs desde Chile](/posts/como-invertir-en-etfs-desde-chile/).
 
-_Documento de carácter educativo. No constituye asesoría financiera personalizada._
+_Contenido educativo. No constituye asesoría financiera personalizada._

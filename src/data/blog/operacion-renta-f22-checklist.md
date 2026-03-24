@@ -20,42 +20,24 @@ heroImage: /images/hero/operacion-renta-f22-checklist.avif
 
 Abres la propuesta del SII, ves los números y no sabes si aceptar o si algo está mal. Esta guía te ayuda a revisar cada punto antes de enviar el F22 y a reaccionar rápido si aparecen observaciones — para que no pierdas tiempo ni atrases tu devolución.
 
-## Qué cambia y qué resuelve esta guía
+## Qué hacer ahora (10 minutos)
 
-Según el portal de Operación Renta Personas del SII, el proceso parte con **revisar información y luego declarar**. También indica que la propuesta se usa desde el inicio del proceso (abril) y que la declaración se realiza en el entorno de Renta del SII.
+Según SII, el flujo correcto es revisar primero y declarar después. Para no mezclar etapas, separa el proceso en tres momentos: revisión previa, envío del F22 y corrección (reemplazo o rectificatoria).
 
-Esta guía separa tres momentos que suelen mezclarse:
+1. Entra a Renta en SII y abre tu propuesta de F22.
+2. Revisa agentes informantes, retenciones y cuenta bancaria antes de aceptar.
+3. Si hay diferencias relevantes, corrige antes de enviar.
+4. Si ya enviaste, revisa "Consulta y seguimiento" y define reemplazo o rectificatoria según etapa.
 
-1. Revisión previa de propuesta.
-2. Envío del F22.
-3. Corrección (reemplazo o rectificatoria), según etapa del calendario.
+Checklist rápido antes de enviar:
+- Clave Tributaria o ClaveÚnica activa.
+- Respaldos de ingresos y retenciones del año comercial.
+- Cuenta bancaria activa y correctamente digitada.
+- 20 a 40 minutos sin interrupciones.
 
-Si tu foco principal es saber en qué fecha te depositan, revisa esta guía específica de [fechas de devolución y compensaciones en Operación Renta](/posts/devolucion-impuestos-fechas-compensaciones/).
+Si tu foco principal es fecha de pago, revisa [devolución de impuestos: fechas, estado y compensaciones](/posts/devolucion-impuestos-fechas-compensaciones/).
 
-## Qué necesitas antes de empezar
-
-- Clave Tributaria o ClaveÚnica habilitada para ingresar a SII.
-- Información de ingresos del año comercial anterior (sueldos, boletas, arriendos u otros).
-- Datos de cuenta bancaria vigentes para devolución.
-- Verificar si tienes situaciones que pueden generar retención o compensación (por ejemplo, deudas informadas a TGR).
-- 20 a 40 minutos sin interrupciones para revisar propuesta antes de aceptar.
-
-## Checklist paso a paso (revisión y envío)
-
-1. Entra al portal de Renta del SII y abre tu propuesta de F22.
-2. Confirma datos personales y de contacto (correo y teléfono).
-3. Revisa agentes informantes: empleadores, retenedores y bancos, comparando con tus respaldos.
-4. Verifica si hay beneficios o créditos que sí te corresponden y no están cargados.
-5. Revisa si la devolución solicitada calza con tus retenciones y pagos provisionales.
-6. Valida que la cuenta bancaria esté activa y correctamente digitada.
-7. Si detectas diferencias relevantes, corrige antes de enviar.
-8. Si todo cuadra, envía el F22 y guarda comprobante.
-9. Revisa estado en "Consulta y seguimiento" para detectar observaciones.
-10. Si aparece observación, define si corresponde reemplazo (cuando la etapa lo permite) o rectificatoria.
-
-Caso práctico breve: si tu propuesta incluye una retención de boletas que no coincide con tus comprobantes, conviene corregir antes de enviar. Si aceptas con error, puedes terminar en observación y mover tu devolución a un ciclo posterior.
-
-## Si te pasa X, haz Y (árbol de decisión)
+## Escenarios frecuentes (si te pasa X, haz Y)
 
 - Si **aún no enviaste** y detectas error: corrige y recién después envía.
 - Si **enviaste sin pago** por Internet y estás dentro de ventana de reemplazo: reemplaza la declaración vigente dentro del plazo informado por SII para ese año tributario.
@@ -65,7 +47,7 @@ Caso práctico breve: si tu propuesta incluye una retención de boletas que no c
 - Si **trabajas con dos empleadores al mismo tiempo**: estás obligado a declarar, porque cada empleador retuvo de forma independiente sin saber del otro, y es probable que haya diferencia de impuesto. Revisa que ambos empleadores aparezcan como agentes informantes y contrasta las retenciones totales versus tu tramo de impuesto unificado.
 - Si **no estás obligado a declarar pero te retuvieron impuestos durante el año**: igual puedes declarar voluntariamente. Si tus retenciones superaron el impuesto que realmente te corresponde, el SII te devuelve la diferencia. Esto aplica tanto a empleados dependientes como a quienes emitieron boletas con retención.
 
-## Errores comunes que atrasan el proceso
+## Errores que más atrasan la devolución
 
 1. Aceptar propuesta sin contrastar agentes informantes.
 2. Cargar cuenta bancaria con dígitos erróneos o sin activación.
@@ -74,61 +56,40 @@ Caso práctico breve: si tu propuesta incluye una retención de boletas que no c
 5. Declarar tarde sin considerar impacto en ventana de devolución.
 6. Corregir sin respaldo documental de ingresos o retenciones.
 
-## Preguntas frecuentes
+## Preguntas frecuentes (rápidas)
 
 <details>
 <summary>¿Qué diferencia hay entre reemplazar y rectificar?</summary>
 
-Según SII, el reemplazo aplica a declaraciones enviadas por Internet sin pago dentro de la ventana definida del proceso; la rectificatoria se usa cuando ya debes corregir una declaración presentada fuera de esa ventana o con observaciones.
-
-</details>
-
-<details>
-<summary>¿Hasta cuándo se puede reemplazar una declaración sin pago?</summary>
-
-Para AT 2025, SII indica reemplazo hasta el 25 de abril bajo condiciones específicas (incluyendo no haber solicitado devolución hasta el 8 de abril). Debes verificar el plazo del año tributario vigente.
+Reemplazo: para declaraciones enviadas por Internet sin pago dentro de la ventana habilitada. Rectificatoria: cuando ya debes corregir fuera de esa ventana o por observaciones.
 
 </details>
 
 <details>
 <summary>¿Dónde veo por qué mi declaración fue observada?</summary>
 
-En el menú de Renta del SII, opción "Consulta y seguimiento" > "Consultar estado de declaración".
+En Renta del SII: "Consulta y seguimiento" > "Consultar estado de declaración".
 
 </details>
 
 <details>
 <summary>Si rectifico, ¿la devolución se paga igual que la primera vez?</summary>
 
-SII informa que una rectificatoria que origina devolución se procesa con autorización a TGR y puede tener modalidad/tiempos distintos a la devolución inicial.
+No siempre. Puede cursarse con autorización a TGR y con tiempos/modalidad distintos a la devolución inicial.
 
 </details>
 
 <details>
-<summary>¿Cuándo puedo rectificar si no autorizaron en los períodos esperados?</summary>
+<summary>¿Si declaré con propuesta automática ya está todo validado?</summary>
 
-En las FAQs de SII para AT 2025 se indica rectificación desde junio, según la observación detectada.
-
-</details>
-
-<details>
-<summary>¿Qué reviso primero si tengo devolución alta?</summary>
-
-Consistencia entre retenciones, ingresos declarados y datos bancarios. Es donde más se concentran observaciones y rechazos de autorización.
+No. La propuesta ayuda, pero la responsabilidad final del F22 enviado sigue siendo del contribuyente.
 
 </details>
 
 <details>
-<summary>¿Si declaré solo con propuesta automática puedo confiarme?</summary>
+<summary>¿Qué hago si hay compensaciones por deudas?</summary>
 
-No totalmente. La propuesta ayuda, pero la responsabilidad final del F22 enviado sigue siendo del contribuyente.
-
-</details>
-
-<details>
-<summary>¿Qué hago si mi caso incluye compensaciones por deudas?</summary>
-
-Revisa la guía de [devolución de impuestos: fechas, estado y compensaciones](/posts/devolucion-impuestos-fechas-compensaciones/) para diferenciar observación SII vs compensación informada por TGR.
+Revisa [devolución de impuestos: fechas, estado y compensaciones](/posts/devolucion-impuestos-fechas-compensaciones/) para separar observación SII de compensación informada por TGR.
 
 </details>
 
@@ -140,9 +101,9 @@ Revisa la guía de [devolución de impuestos: fechas, estado y compensaciones](/
 - SII FAQ, rectificatoria que origina devolución (autorización y pago vía TGR): https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0729.htm
 - ChileAtiende, Operación Renta (propuesta, revisión y envío): https://www.chileatiende.gob.cl/fichas/3178-declaracion-de-renta
 
-## Última revisión
+## Vigencia y actualización
 
 - Revisado el: 2026-02-28.
-- Gatilla actualización: publicación oficial del calendario AT 2026, cambios en reglas de reemplazo/rectificatoria o cambios en navegación SII/TGR.
+- Puede quedar desactualizado cuando: publicación oficial del calendario AT 2026, cambios en reglas de reemplazo/rectificatoria o cambios en navegación SII/TGR.
 
 Este contenido es informativo y no reemplaza asesoría tributaria profesional para casos complejos.

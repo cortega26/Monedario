@@ -49,7 +49,7 @@ volatileData:
 
 Cada mes aparece en tu liquidación una línea que dice "AFP" y un número que te descuentan. Para la mayoría es un cálculo opaco que simplemente aceptan. Esta guía lo abre: cuánto corresponde a cotización obligatoria, cuánto es comisión y cómo verificar que ese cargo calza con tu AFP y tu imponible.
 
-## Qué cambia entre 2025 y 2027
+## Qué mirar primero (hoy vs después)
 
 Este bloque separa lo vigente hoy de los cambios ya aprobados por la reforma previsional (Ley N° 21.735):
 
@@ -68,8 +68,6 @@ Calendario resumido de implementación:
 | Vigencia general de reforma      | Septiembre 2025 | Comienza entrada en régimen por etapas.                 |
 | Fondos generacionales            | Abril 2027      | Transición desde multifondos A-E a nuevo esquema.       |
 | Nueva etapa cotización empleador | Agosto 2027     | Aporte adicional sube a 3,5%.                           |
-
-## Tabla de contenidos
 
 ## ¿Cuánto te descuenta realmente la línea AFP?
 
@@ -149,7 +147,7 @@ Lo que debes evaluar al cambiarte no es solo la comisión, sino también:
 
 La diferencia entre una comisión de 0.46% y otra de 1.45% puede parecer menor en porcentaje, pero en un sueldo imponible de $1.000.000 son **$9.900 mensuales**, o cerca de **$118.800 al año**.
 
-## Preguntas frecuentes
+## Preguntas frecuentes (rápidas)
 
 **¿Qué pasa si no tengo AFP?**
 Si eres trabajador dependiente (con contrato), la cotización en AFP es obligatoria y la descuenta directamente tu empleador. Si eres independiente, debes cotizar por tu cuenta.

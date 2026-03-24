@@ -42,9 +42,9 @@ articleLead:
 
 Emites boletas y cada mes te preguntas lo mismo: ¿cuánto me llega realmente? En 2026 la respuesta cambia porque subió la retención. Esta guía separa tres cosas que suelen confundirse: la retención mensual que se aplica al emitir cada boleta, el cálculo de cotizaciones que ocurre en Operación Renta y la cobertura anual que resulta de ese proceso.
 
-## Qué cambia y qué resuelve esta guía
+## Qué hacer ahora (5 minutos)
 
-Desde el 1 de enero de 2026, la retención de boletas sube a **15,25%**. Este aumento forma parte del escalamiento gradual establecido por la **[Ley N° 21.133](/leyes/ley-21133-honorarios-retencion/)**, cuyo cronograma completo hasta 2028 es:
+Desde el 1 de enero de 2026, la retención de boletas sube a **15,25%**. Este aumento forma parte del escalamiento gradual establecido por la **[Ley N° 21.133](/leyes/ley-21133-honorarios-retencion/)**, cuyo cronograma hasta 2028 es:
 
 | Año      | Retención sobre bruto boleteado |
 | -------- | ------------------------------- |
@@ -61,27 +61,19 @@ Ejemplo simple oficial (SII) con la tasa 2026:
 - Retención 15,25% = $15.250.
 - Líquido recibido = **$84.750**.
 
+1. Calcula tu líquido por boleta con retención 2026: 15,25%.
+2. Separa esa retención mensual de la cotización anual de Operación Renta.
+3. Revisa tu total anual boleteado para estimar si cotizas o quedas eximido por umbral.
+4. Confirma tu afiliación previsional/salud al cierre del año base.
+
+Datos mínimos para no perderte:
+- Total bruto anual boleteado (año base).
+- Retenciones acumuladas.
+- Tu situación previsional (pensionado, exención u otras causales).
+
 Si además quieres revisar tu declaración anual completa, complementa con el [checklist para revisar y enviar tu F22 en Operación Renta](/posts/operacion-renta-f22-checklist/).
 
-## Qué necesitas antes de empezar
-
-- Total bruto anual de boletas emitidas en 2025 (base para Operación Renta 2026).
-- Registro de retenciones mensuales acumuladas.
-- Saber si estás en un grupo eximido de cotizar o no.
-- Tener claridad de tu previsión/salud afiliada al 31 de diciembre del año anterior.
-
-## Checklist paso a paso
-
-1. Confirma tu porcentaje de retención vigente al emitir boletas (2026: 15,25%).
-2. Calcula tu líquido mensual: bruto menos retención.
-3. Suma el bruto anual de boletas para evaluar obligación de cotizar en Operación Renta.
-4. Verifica si superas el umbral de cinco ingresos mínimos mensuales del año base.
-5. Identifica si caes en exenciones legales (edad de corte histórica, pensionado u otras causales).
-6. Revisa en tu propuesta de renta el cálculo de cotizaciones previsionales.
-7. Contrasta cobertura anual esperada con tu situación (salud, SIS, ATEP, SANNA, pensiones).
-8. Guarda respaldo de boletas y declaración enviada.
-
-## Tabla de escenarios por perfil
+## Escenarios por perfil
 
 | Perfil                                                        | ¿Retención mensual 2026?       | ¿Cotiza en Operación Renta 2026?                          | Efecto típico                                                                                |
 | ------------------------------------------------------------- | ------------------------------ | --------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
@@ -90,7 +82,7 @@ Si además quieres revisar tu declaración anual completa, complementa con el [c
 | Pensionado (salvo invalidez parcial)                          | Sí, 15,25% al emitir           | Puede estar eximido por norma específica                  | Revisar condición previsional antes de asumir cobertura nueva.                               |
 | Trabajador intermitente a honorarios                          | Sí, 15,25% en meses con boleta | Depende del total anual y reglas de cobertura             | Puede tener meses sin ingresos, pero evaluación anual igual aplica.                          |
 
-## Si te pasa X, haz Y (árbol de decisión)
+## Si te pasa X, haz Y
 
 - Si **solo quieres calcular líquido de una boleta**: aplica 15,25% de retención y resta.
 - Si **quieres saber cobertura anual**: mira tu total anual de boletas y resultado de Operación Renta.
@@ -98,7 +90,7 @@ Si además quieres revisar tu declaración anual completa, complementa con el [c
 - Si **eres pensionado o estás en régimen distinto a AFP**: valida si estás eximido antes de proyectar cobertura.
 - Si **tu duda es cuándo depositan tu devolución**: revisa la guía de [fechas y compensaciones de devolución de impuestos](/posts/devolucion-impuestos-fechas-compensaciones/).
 
-## Errores comunes de interpretación
+## Errores que más se repiten
 
 1. Creer que retención y cotización anual son exactamente lo mismo.
 2. Proyectar cobertura solo por una boleta, sin mirar total anual.
@@ -107,12 +99,12 @@ Si además quieres revisar tu declaración anual completa, complementa con el [c
 5. Confundir líquido mensual con resultado final de declaración anual.
 6. No verificar institución previsional afiliada al cierre del año base.
 
-## Preguntas frecuentes
+## Preguntas frecuentes (rápidas)
 
 <details>
-<summary>¿La retención de boletas en 2026 es 15,25% para todos?</summary>
+<summary>¿La retención de boletas en 2026 es 15,25%?</summary>
 
-Según SII, desde el 1 de enero de 2026 ese porcentaje se aplica automáticamente al emitir boletas.
+Sí. Según SII, desde el 1 de enero de 2026 se aplica automáticamente al emitir boletas.
 
 </details>
 
@@ -124,49 +116,23 @@ Retención: $76.250 (15,25%). Líquido: $423.750.
 </details>
 
 <details>
-<summary>¿Por qué sube la retención cada año?</summary>
+<summary>¿La retención mensual y la cotización anual son lo mismo?</summary>
 
-Por el calendario de incremento definido en la Ley N° 21.133 para financiar cotización obligatoria de independientes.
-
-</details>
-
-<details>
-<summary>¿Hasta qué porcentaje sube el esquema?</summary>
-
-SII informa aumento gradual hasta llegar a 17% en 2028.
+No. La retención se aplica al emitir cada boleta; la cotización se regulariza en Operación Renta según reglas del año base.
 
 </details>
 
 <details>
-<summary>¿Desde cuándo corre la cobertura anual de seguridad social?</summary>
+<summary>¿Qué pasa si boleteé menos de 5 ingresos mínimos mensuales?</summary>
 
-Las fuentes oficiales indican cobertura desde el 1 de julio de cada año hasta el 30 de junio del siguiente, una vez procesada la Operación Renta.
+Para OR 2026 (rentas 2025), puedes quedar eximido de cotización obligatoria de pensión/salud, pero la retención al emitir boletas se mantiene.
 
-</details>
-
-<details>
-<summary>¿Qué pasa si emití boletas por menos de cinco ingresos mínimos mensuales en el año base?</summary>
-
-Para Operación Renta 2026 (rentas 2025), si tu renta bruta anual por boletas fue **inferior a 5 ingresos mínimos mensuales**, quedas **eximido de cotizar obligatoriamente** para pensión y salud en ese proceso.
-
-Condiciones y matices relevantes:
-
-- La exención por monto anual no elimina la retención al emitir boletas (15,25% en 2026).
-- Puedes cotizar de forma voluntaria si quieres cobertura/cotización previsional.
-- También existen exenciones por causal legal específica (por ejemplo, pensionados y grupos con regla transitoria de edad definidos en la normativa).
 </details>
 
 <details>
 <summary>¿La base de cotización es el 100% de lo boleteado?</summary>
 
-ChileAtiende indica que la renta imponible anual para este cálculo corresponde al 80% del total bruto de boletas del año base.
-
-</details>
-
-<details>
-<summary>¿Dónde reviso el detalle final de cotizaciones pagadas?</summary>
-
-En tu declaración de renta y en la información previsional asociada al proceso (SII calcula y TGR paga a instituciones según afiliación).
+No. ChileAtiende informa que para este cálculo se usa 80% del total bruto anual de boletas.
 
 </details>
 
@@ -177,9 +143,9 @@ En tu declaración de renta y en la información previsional asociada al proceso
 - Ley N° 21.133 (BCN): https://www.bcn.cl/leychile/navegar?idNorma=1128420
 - SII, Operación Renta Personas (flujo anual de declaración): https://www.sii.cl/destacados/renta/2025/index_personas2025.html
 
-## Última revisión
+## Vigencia y actualización
 
 - Revisado el: 2026-03-02.
-- Gatilla actualización: cambios en porcentaje de retención, ajustes a cobertura anual o modificaciones legales/publicación de nuevas instrucciones SII.
+- Puede quedar desactualizado cuando: cambios en porcentaje de retención, ajustes a cobertura anual o modificaciones legales/publicación de nuevas instrucciones SII.
 
 Este contenido es informativo y no reemplaza asesoría tributaria profesional para casos complejos.

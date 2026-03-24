@@ -20,36 +20,22 @@ heroImage: /images/hero/devolucion-impuestos-fechas-compensaciones.avif
 
 Ya enviaste tu declaración, tu propuesta dijo devolución y la fecha pasó. Esta guía responde la pregunta que más se repite: ¿_cuándo depositan?_ Y si no depositaron, te explica cómo revisar el estado y qué hacer.
 
-## Qué cambia y qué debes mirar primero
+## Qué hacer ahora (3 pasos)
 
-La devolución no depende solo de la fecha en que declaras. También depende de:
+1. Revisa en SII si la declaración está aceptada o con observaciones.
+2. Si está aceptada y no hay depósito, revisa en TGR si hubo compensación o retención.
+3. Valida cuenta bancaria y ciclo de pago del año tributario vigente.
 
-- Si tu declaración quedó autorizada en los ciclos de revisión.
-- Si TGR aplicó compensaciones o retenciones (por ejemplo, deudas informadas por organismos competentes).
-- Si tus datos bancarios están correctos y activos.
+Datos mínimos:
+- RUT y clave SII.
+- Folio/comprobante de declaración.
+- Cuenta bancaria informada al declarar.
 
-Si todavía estás en etapa de revisión del F22, parte por este [checklist de Operación Renta para revisar y enviar tu F22](/posts/operacion-renta-f22-checklist/).
+La fecha de pago no depende solo del día en que declaras: también influyen autorización SII, compensaciones/retenciones en TGR y estado de la cuenta bancaria.
 
-## Qué necesitas antes de empezar
+Si todavía estás revisando tu F22, parte por [Operación Renta F22: checklist para revisar, enviar y rectificar](/posts/operacion-renta-f22-checklist/).
 
-- RUT y clave para entrar a SII.
-- Folio o comprobante de tu declaración enviada.
-- Cuenta bancaria informada al declarar (o confirmar si optarás por cheque).
-- Tiempo para revisar estado en SII y, si corresponde, detalle en TGR.
-
-## Checklist paso a paso (fechas y seguimiento)
-
-1. Identifica fecha exacta en que enviaste tu declaración.
-2. Revisa el calendario del año tributario vigente en SII/ChileAtiende.
-3. Ingresa a SII > Declaración de Renta > "Consulta y seguimiento" > "Consultar estado de declaración".
-4. Si estado está "aceptada" pero no recibes abono, revisa si hay retención o compensación en TGR.
-5. Revisa si hubo error en la cuenta bancaria o si la cuenta no estaba activa.
-6. Si hay observaciones SII, corrige con rectificatoria cuando corresponda.
-7. Guarda pantallazos o constancias de estado y fechas como respaldo.
-
-Caso real típico: declaración aceptada, sin depósito en fecha esperada, y luego TGR informa compensación parcial por deuda. Resultado: llega solo el saldo remanente, no el total solicitado.
-
-## Calendario de referencia y ventanas de pago
+## Fechas de referencia y ventanas de pago
 
 Como referencia oficial reciente, para Año Tributario 2025 se informaron estas ventanas:
 
@@ -60,7 +46,7 @@ Como referencia oficial reciente, para Año Tributario 2025 se informaron estas 
 
 Para 2026, usa siempre el calendario oficial que publique SII/TGR para ese año tributario antes de tomar decisiones.
 
-## Si te pasa X, haz Y (árbol de decisión)
+## Si te pasa X, haz Y
 
 - Si **no aparece depósito** y el estado SII no está aceptado: revisa observaciones y corrige según instrucción de SII.
 - Si **está aceptada** pero sin abono: revisa si TGR aplicó compensación o retención.
@@ -68,7 +54,7 @@ Para 2026, usa siempre el calendario oficial que publique SII/TGR para ese año 
 - Si **hubo rectificatoria**: revisa el nuevo ciclo de autorización y pago.
 - Si **tu caso es de boletas e impacto en devolución**: revisa [boletas de honorarios 2026: retención, líquido y cobertura](/posts/boleta-honorarios-2026-retencion-cobertura/).
 
-## Errores comunes
+## Errores que retrasan el pago
 
 1. Confundir "declaración aceptada" con "devolución pagada".
 2. No revisar "Consulta y seguimiento" después de enviar.
@@ -77,61 +63,40 @@ Para 2026, usa siempre el calendario oficial que publique SII/TGR para ese año 
 5. Ingresar datos bancarios erróneos y esperar depósito normal.
 6. No guardar evidencia de estado y fecha de cada revisión.
 
-## Preguntas frecuentes
+## Preguntas frecuentes (rápidas)
 
 <details>
 <summary>¿Quién paga efectivamente la devolución?</summary>
 
-El SII revisa y autoriza; la Tesorería General de la República (TGR) materializa el pago, aplicando compensaciones o retenciones cuando corresponda.
+El SII revisa y autoriza; TGR materializa el pago y aplica compensaciones/retenciones cuando corresponde.
 
 </details>
 
 <details>
 <summary>¿Dónde veo por qué no me depositaron?</summary>
 
-Primero en SII (Consulta y seguimiento) para ver observaciones de declaración. Si está aceptada, el detalle de retenciones/compensaciones se revisa con TGR.
-
-</details>
-
-<details>
-<summary>¿Qué significa compensación?</summary>
-
-Que TGR descuenta total o parcialmente tu devolución para cubrir deudas informadas por las vías legales correspondientes.
-
-</details>
-
-<details>
-<summary>¿La pensión de alimentos puede retener devolución?</summary>
-
-Sí. SII informa que TGR puede retener por deudas asociadas al Registro Nacional de Deudores de Pensiones de Alimentos.
+Primero en SII (Consulta y seguimiento). Si está aceptada, revisa el detalle de compensaciones en TGR.
 
 </details>
 
 <details>
 <summary>¿Puedo quedar con devolución parcial?</summary>
 
-Sí. Si hay compensaciones, se paga el saldo remanente después de los descuentos aplicados por TGR.
+Sí. Si hay compensaciones, te pagan el remanente después de los descuentos aplicados por TGR.
 
 </details>
 
 <details>
 <summary>¿Si declaré temprano siempre me pagan primero?</summary>
 
-No necesariamente: además de la fecha de envío, influye la revisión, eventuales observaciones y si hay retenciones/compensaciones.
-
-</details>
-
-<details>
-<summary>¿Qué pasa si mi cuenta bancaria estaba mal?</summary>
-
-SII indica que puedes terminar con pago en caja o cheque según monto y condiciones informadas por Tesorería.
+No necesariamente: también influyen observaciones, autorizaciones y eventuales retenciones/compensaciones.
 
 </details>
 
 <details>
 <summary>¿Debo rectificar si no me depositaron?</summary>
 
-Solo si hay observaciones o errores de declaración que lo requieran. Si la causa es compensación, no siempre aplica rectificatoria.
+Solo si hay error u observación en la declaración. Si la causa es compensación, no siempre corresponde rectificatoria.
 
 </details>
 
@@ -143,9 +108,9 @@ Solo si hay observaciones o errores de declaración que lo requieran. Si la caus
 - SII noticia Operación Renta 2025 (autorización, pagos y compensaciones por TGR): https://www.sii.cl/noticias/2025/150425noti01msf.htm
 - ChileAtiende, Operación Renta (calendario de referencia y canales de pago): https://www.chileatiende.gob.cl/fichas/3178-declaracion-de-renta
 
-## Última revisión
+## Vigencia y actualización
 
 - Revisado el: 2026-02-28.
-- Gatilla actualización: publicación de calendario oficial del año tributario vigente, cambios en causales de compensación o ajustes de canales de pago TGR.
+- Puede quedar desactualizado cuando: publicación de calendario oficial del año tributario vigente, cambios en causales de compensación o ajustes de canales de pago TGR.
 
 Este contenido es informativo y no reemplaza asesoría tributaria profesional para casos complejos.

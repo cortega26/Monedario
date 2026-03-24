@@ -127,26 +127,6 @@ No. El SII indica que los valores no rescatados no se consideran renta percibida
 
 </details>
 
-<details>
-<summary>¿Si rescato con pérdida, pago impuesto igual?</summary>
-
-Depende del resultado tributario neto y las reglas aplicables del año. Por eso conviene consolidar los respaldos antes de declarar.
-
-</details>
-
-<details>
-<summary>¿El asistente del SII sirve para fondos mutuos?</summary>
-
-Sí. El SII indica que apoya la determinación del mayor valor en rescates de cuotas de fondos mutuos.
-
-</details>
-
-<details>
-<summary>¿Esta guía reemplaza asesoría tributaria?</summary>
-
-No. Es contenido educativo y no reemplaza asesoría profesional para tu situación particular.
-
-</details>
 
 ## Siguiente lectura
 
@@ -160,10 +140,10 @@ Para decidir cómo encajan los fondos mutuos en una estrategia integral de ahorr
 - SII FAQ, asistente de enajenación (acciones/cuotas): https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8415.htm
 - SII, Suplemento de Renta (líneas e instrucciones vigentes): https://www.sii.cl/pagina/renta/suplemento/Linea_22.htm
 
-## Última revisión
+## Vigencia y actualización
 
 - Revisado el: 2026-02-28.
-- Gatilla actualización: cambios CMF sobre información obligatoria de fondos o cambios en instrucciones SII de renta anual.
+- Puede quedar desactualizado cuando: cambios CMF sobre información obligatoria de fondos o cambios en instrucciones SII de renta anual.
 
 ---
 

@@ -180,13 +180,13 @@ Una vez comprado, ese departamento se podría arrendar. En comunas intermedias d
 - Nasdaq, cierre anual 2025 del Nasdaq-100: https://www.nasdaq.com/articles/index-monthly-scorecard-december-2025
 - INE, proyecciones de población y esperanza de vida: https://www.ine.gob.cl/estadisticas/sociales/demografia-y-vitales/proyecciones-de-poblacion
 
-## Última revisión
+## Vigencia y actualización
 
 - Revisado el: 2026-03-07.
 - Fecha de corte visible para lectores: 2025-12-31.
 - Actualización 2026-03-07: la serie 2025 del NASDAQ-100 dejó de usar un dato parcial conservador y pasó a usar el cierre anual reportado para 2025; por eso el resultado final sube desde la versión anterior.
 - Esta versión incorpora críticas razonables y límites metodológicos explícitos para contextualizar mejor el resultado.
-- Gatilla actualización: cambios en la metodología del ejercicio, corrección de series históricas o incorporación de costos/impuestos al modelo.
+- Puede quedar desactualizado cuando: cambios en la metodología del ejercicio, corrección de series históricas o incorporación de costos/impuestos al modelo.
 
 ---
 

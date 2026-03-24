@@ -139,26 +139,6 @@ Llévalas a una misma base temporal y calcula el resultado estimado para el mism
 
 </details>
 
-<details>
-<summary>¿Qué hago si necesito liquidez en menos de 3 meses?</summary>
-
-Prioriza instrumentos de caja de muy corto plazo y alta disponibilidad: el DAP no es el instrumento para eso.
-
-</details>
-
-<details>
-<summary>¿Debo declarar estas rentas al SII?</summary>
-
-Sí, con las excepciones legales aplicables según tu situación. El SII indica que las personas naturales deben declarar rentas de inversiones.
-
-</details>
-
-<details>
-<summary>¿Esta guía reemplaza asesoría personalizada?</summary>
-
-No. Es una guía educativa para tomar mejores decisiones, no una recomendación individual.
-
-</details>
 
 ## Siguiente lectura
 
@@ -170,10 +150,10 @@ Si quieres integrar esta decisión en una estrategia más amplia de instrumentos
 - CMF Educa, Depósitos a plazo (definiciones y plazos mínimos): https://www.cmfchile.cl/educa/621/w3-article-27170.html
 - SII FAQ, obligación de declarar rentas de inversiones: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0597.htm
 
-## Última revisión
+## Vigencia y actualización
 
 - Revisado el: 2026-02-28.
-- Gatilla actualización: cambios en metodología oficial de UF, modificaciones regulatorias de DAP o cambios en criterios tributarios aplicables.
+- Puede quedar desactualizado cuando: cambios en metodología oficial de UF, modificaciones regulatorias de DAP o cambios en criterios tributarios aplicables.
 
 ---
 

@@ -148,10 +148,10 @@ No. Es contenido educativo y no reemplaza asesoría profesional para tu situaci�
 - [CAE y costo real del crédito en Chile](/posts/cae-costo-real-credito-chile/) — si tienes deudas de consumo, entiende su costo real antes de invertir.
 - [Qué es el IPC y cómo impacta tu bolsillo](/posts/que-es-el-ipc-chile-como-se-calcula/) — la inflación afecta directamente qué instrumentos en UF o pesos convienen.
 
-## Última revisión
+## Vigencia y actualización
 
 - Revisado el: 2026-02-28.
-- Gatilla actualización: cambios regulatorios CMF, instrucciones de renta del SII o cambios metodológicos oficiales de UF en Banco Central.
+- Puede quedar desactualizado cuando: cambios regulatorios CMF, instrucciones de renta del SII o cambios metodológicos oficiales de UF en Banco Central.
 
 ---
 

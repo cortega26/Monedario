@@ -123,26 +123,6 @@ El ETF se transa en bolsa en tiempo real; el fondo mutuo opera por valor de cuot
 
 </details>
 
-<details>
-<summary>¿Cómo reduzco errores al empezar?</summary>
-
-Con un checklist fijo antes de cada operación: costos, custodia, mercado, riesgo de moneda y obligación tributaria. Lo que se hace hábito, se comete menos como error.
-
-</details>
-
-<details>
-<summary>¿Debo declarar los resultados en la renta anual?</summary>
-
-En general sí. El SII establece la obligación de declarar rentas de inversiones según las reglas vigentes y las excepciones legales aplicables.
-
-</details>
-
-<details>
-<summary>¿Esta guía reemplaza asesoría tributaria o legal?</summary>
-
-No. Es contenido educativo; para casos con operaciones complejas o internacionales, la asesoría profesional es necesaria.
-
-</details>
 
 ## Siguiente lectura
 
@@ -155,10 +135,10 @@ Para conectar esta decisión con una estrategia más amplia de instrumentos y ob
 - SII FAQ, obligación de declarar rentas de inversiones: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0597.htm
 - SII FAQ, asistente de enajenación: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8415.htm
 
-## Última revisión
+## Vigencia y actualización
 
 - Revisado el: 2026-02-28.
-- Gatilla actualización: cambios en normativa CMF de intermediarios/custodia o ajustes de instrucciones tributarias SII para inversiones.
+- Puede quedar desactualizado cuando: cambios en normativa CMF de intermediarios/custodia o ajustes de instrucciones tributarias SII para inversiones.
 
 ---
 
