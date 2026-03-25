@@ -1,5 +1,12 @@
 # PROJECT_CONTEXT_MASTER
 
+### Checkpoint 2026-03-25 (Critical IA Remediation Round 2)
+
+- `src/layouts/PostDetails.astro` ahora excluye de `RelatedPosts` los slugs ya expuestos como navegación anterior/siguiente y los destinos ya ocupados por `articleLead` o secciones contextuales, reduciendo reinyectado redundante en una misma vista.
+- `src/config/deudaClusterLinks.ts` recorta el cluster deuda a una sola capa contextual breve por owner y elimina constantes sin uso; el patrón deja de comportarse como malla circular sin presupuesto visible.
+- `src/data/blog/cae-costo-real-credito-chile.md` y `src/data/blog/renegociacion-superir.md` eliminan enlaces inline y cierres redundantes que repetían CTAs ya presentes en intro o contexto.
+- El render de deuda baja de duplicaciones severas a un estado contenido pero todavía no objetivo; `SA-008` y `SA-011` siguen abiertos como trabajo de afinamiento, no como descontrol sistémico inmediato.
+
 ### Checkpoint 2026-03-25 (Critical IA Remediation Round 1)
 
 - `src/pages/guias/impuestos-personas/index.astro` deja de duplicar el owner F22: el hub queda consolidado en una sola capa principal de decisión y un bloque de no mezclar.

@@ -1,14 +1,5 @@
 import type { LinkCard, LinkSection } from "./sueldoClusterLinks";
 
-const deudaHubCard: LinkCard = {
-  kind: "Sección",
-  title: "Deuda y crédito",
-  description:
-    "Ordena el journey entre diagnóstico, costo real del crédito y salidas formales cuando la deuda ya no se sostiene.",
-  href: "/guias/deuda-credito/",
-  cta: "Volver al hub",
-};
-
 const informeCmfCard: LinkCard = {
   kind: "Guía",
   title: "Informe de deudas CMF vs DICOM",
@@ -81,15 +72,6 @@ const renegociacionCalculatorCard: LinkCard = {
   cta: "Filtrar elegibilidad",
 };
 
-const ufBridgeCard: LinkCard = {
-  kind: "Puente",
-  title: "UF, inflación y costo de vida",
-  description:
-    "Entra aquí si tu cuota o repactación está en UF y la duda real es el reajuste, no el reporte ni la mora.",
-  href: "/posts/que-es-la-uf/",
-  cta: "Entender la UF",
-};
-
 export const deudaClusterHubDecisionCards: LinkCard[] = [
   informeCmfCard,
   dicomGratisCard,
@@ -111,26 +93,7 @@ const deudaArticleSectionsBySlug: Record<string, LinkSection[]> = {
       title: "Convierte el informe en una decisión concreta",
       description:
         "Después del diagnóstico puedes separar si el problema es reporte comercial, sobreendeudamiento o costo real de una obligación que todavía estás evaluando.",
-      items: [
-        dicomGratisCard,
-        renegociacionGuideCard,
-        renegociacionCalculatorCard,
-        caeGuideCard,
-        deudaHubCard,
-      ],
-    },
-    {
-      eyebrow: "No mezcles",
-      title: "Problemas vecinos que parecen lo mismo y no lo son",
-      description:
-        "Usa estas salidas cuando tu duda ya no es el reporte sino la cuota, el prepago o una obligación reajustable en UF.",
-      items: [
-        creditCalculatorCard,
-        tarjetaCalculatorCard,
-        prepagoCalculatorCard,
-        ufBridgeCard,
-        deudaHubCard,
-      ],
+      items: [dicomGratisCard, caeGuideCard, renegociacionGuideCard],
     },
   ],
   "donde-ver-si-estoy-en-dicom-gratis": [
@@ -139,26 +102,7 @@ const deudaArticleSectionsBySlug: Record<string, LinkSection[]> = {
       title: "Parte por el reporte correcto",
       description:
         "La consulta gratis útil cambia según si buscas deuda financiera vigente, protestos o un problema de mora que ya requiere acción.",
-      items: [
-        informeCmfCard,
-        deudaHubCard,
-        renegociacionGuideCard,
-        renegociacionCalculatorCard,
-        ufBridgeCard,
-      ],
-    },
-    {
-      eyebrow: "Después del reporte",
-      title: "Qué hacer cuando ya viste el problema",
-      description:
-        "No te quedes solo con el dato: desde aquí puedes medir costo real, ordenar una deuda rotativa o pasar a una salida formal.",
-      items: [
-        caeGuideCard,
-        creditCalculatorCard,
-        tarjetaCalculatorCard,
-        prepagoCalculatorCard,
-        renegociacionGuideCard,
-      ],
+      items: [informeCmfCard, caeGuideCard, renegociacionGuideCard],
     },
   ],
   "cae-costo-real-credito-chile": [
@@ -167,26 +111,7 @@ const deudaArticleSectionsBySlug: Record<string, LinkSection[]> = {
       title: "De la comparación teórica a la oferta real",
       description:
         "Estas herramientas sirven cuando el crédito todavía se puede evitar, renegociar mejor o prepagar antes de que escale.",
-      items: [
-        creditCalculatorCard,
-        prepagoCalculatorCard,
-        tarjetaCalculatorCard,
-        informeCmfCard,
-        deudaHubCard,
-      ],
-    },
-    {
-      eyebrow: "Si el problema ya cambió",
-      title: "Cuándo dejar de comparar y pasar a ordenar la deuda",
-      description:
-        "Si la cuota ya no se sostiene, tu siguiente paso no es seguir mirando tasas sino filtrar elegibilidad, reportes y salidas formales.",
-      items: [
-        renegociacionGuideCard,
-        renegociacionCalculatorCard,
-        dicomGratisCard,
-        informeCmfCard,
-        ufBridgeCard,
-      ],
+      items: [creditCalculatorCard, prepagoCalculatorCard, renegociacionGuideCard],
     },
   ],
   "renegociacion-superir": [
@@ -195,27 +120,7 @@ const deudaArticleSectionsBySlug: Record<string, LinkSection[]> = {
       title: "Llega con el diagnóstico ya ordenado",
       description:
         "Superir funciona mejor cuando ya separaste acreedores, mora real y reportes comerciales antes de subir documentos.",
-      items: [
-        renegociacionCalculatorCard,
-        informeCmfCard,
-        dicomGratisCard,
-        deudaHubCard,
-        ufBridgeCard,
-      ],
-    },
-    {
-      eyebrow: "Si todavía no es concursal",
-      title:
-        "Opciones para cuando aún estás en etapa de ordenar, no de insolvencia",
-      description:
-        "Si tu problema sigue siendo comparar costos, sostener una tarjeta o decidir un prepago, conviene salir de esta guía y medir mejor el caso.",
-      items: [
-        caeGuideCard,
-        creditCalculatorCard,
-        tarjetaCalculatorCard,
-        prepagoCalculatorCard,
-        deudaHubCard,
-      ],
+      items: [renegociacionCalculatorCard, informeCmfCard, caeGuideCard],
     },
   ],
 };

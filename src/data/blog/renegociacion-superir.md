@@ -43,7 +43,7 @@ articleLead:
 
 Tener una deuda atrasada no significa automáticamente que te convenga entrar a un procedimiento concursal. La renegociación Superir es útil cuando el problema ya es estructural: varias deudas vencidas, mora acumulada y una caja que no alcanza para seguir sosteniendo los pagos.
 
-Si todavía estás tratando de entender qué acreedores tienes o cuánto cuesta realmente una deuda, esta no es la primera guía. En ese caso conviene partir por [Informe de deudas CMF vs DICOM](/posts/informe-deudas-cmf-vs-dicom/) o por [CAE y costo real del crédito](/posts/cae-costo-real-credito-chile/). El resto de las salidas relacionadas aparece más abajo.
+Si todavía estás tratando de entender qué acreedores tienes o cuánto cuesta realmente una deuda, esta no es la primera guía. En ese caso conviene partir por un diagnóstico de acreedores o por una comparación seria del costo real del crédito. El resto de las salidas relacionadas aparece más abajo.
 
 ## Tabla de contenidos
 
@@ -52,7 +52,7 @@ Si todavía estás tratando de entender qué acreedores tienes o cuánto cuesta 
 Antes de seguir, conviene separar tres escenarios:
 
 - **Tienes una o dos cuotas atrasadas, pero todavía puedes ordenar el pago.** Aquí primero conviene medir el costo real, el prepago o la repactación, no entrar a un proceso concursal.
-- **Tienes varias deudas activas y no sabes bien qué aparece a tu nombre.** Parte por ordenar acreedores con el [Informe de Deudas CMF](/posts/informe-deudas-cmf-vs-dicom/).
+- **Tienes varias deudas activas y no sabes bien qué aparece a tu nombre.** Primero ordena acreedores y montos antes de intentar una salida formal.
 - **Ya tienes varias deudas vencidas, pasan los meses y no ves cómo cumplir sin un acuerdo estructural.** Ahí sí esta guía empieza a ser relevante.
 
 ## Qué es la Superir y qué hace
@@ -255,6 +255,6 @@ Si no hay acuerdo en la audiencia de renegociación, el proceso pasa a la audien
 **¿Me limpian el historial de deudas automáticamente?**
 No automáticamente. Después de lograr el acuerdo, tú debes solicitarlo ante la CMF y el Boletín Comercial, presentando la resolución de acuerdo.
 
-Antes de presentar la solicitud, estima tu escenario con el [simulador de renegociación Superir](/calculadoras/simulador-renegociacion/) y ordena tus acreedores con la guía del [Informe de Deudas CMF](/posts/informe-deudas-cmf-vs-dicom/).
+Antes de presentar la solicitud, estima tu escenario con un simulador de renegociación y llega con tus acreedores ya ordenados.
 
 ---

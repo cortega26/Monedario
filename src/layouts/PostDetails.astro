@@ -101,12 +101,40 @@ const contextualSections = [
   ...getDeudaArticleSections(article.slug),
 ];
 const articleLead = post.data.articleLead;
+const excludedContextHrefs = new Set<string>();
+
+if (articleLead?.calculatorHref) {
+  excludedContextHrefs.add(articleLead.calculatorHref);
+}
+
+if (articleLead?.nextStepHref) {
+  excludedContextHrefs.add(articleLead.nextStepHref);
+}
+
+for (const section of contextualSections) {
+  for (const item of section.items) {
+    excludedContextHrefs.add(item.href);
+  }
+}
+
+const excludedRelatedSlugs = [...excludedContextHrefs]
+  .map(href =>
+    href
+      .replace(/^\/(?:posts|calculadoras|guias)\//, "")
+      .replace(/\/$/, "")
+  )
+  .filter(Boolean);
 
 const prevPost = currentPostIndex > 0 ? allPosts[currentPostIndex - 1] : null;
 const nextPost =
   currentPostIndex >= 0 && currentPostIndex < allPosts.length - 1
     ? allPosts[currentPostIndex + 1]
     : null;
+const relatedPostsExcludedSlugs = [
+  ...excludedRelatedSlugs,
+  prevPost?.slug,
+  nextPost?.slug,
+].filter(Boolean) as string[];
 ---
 
 <Layout {...layoutProps}>
@@ -296,6 +324,7 @@ const nextPost =
       currentSlug={article.slug}
       currentTags={tags}
       allPosts={posts}
+      excludedSlugs={relatedPostsExcludedSlugs}
     />
   </main>
 
