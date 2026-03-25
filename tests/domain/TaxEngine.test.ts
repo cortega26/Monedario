@@ -37,8 +37,56 @@ describe("TaxEngine.calculateSecondCategoryTax", () => {
       taxableIncome: 180 * UTM,
       utm: UTM,
     });
-    expect(result.taxAmount).toBeCloseTo(1885577.88, 2);
+    // d8 = 30.82 × UTM = 2,074,001.08 → tax = 180×UTM×0.4 − d8 = 2,771,166.92
+    expect(result.taxAmount).toBeCloseTo(2771166.92, 2);
     expect(result.marginalRate).toBe(0.4);
+  });
+
+  it("produces continuous tax at the bracket 2/3 boundary (30 UTM)", () => {
+    const fromBelow = calculateSecondCategoryTax({
+      taxableIncome: 30 * UTM,
+      utm: UTM,
+    });
+    const fromAbove = calculateSecondCategoryTax({
+      taxableIncome: 30 * UTM + 1,
+      utm: UTM,
+    });
+    expect(Math.abs(fromAbove.taxAmount - fromBelow.taxAmount)).toBeLessThan(1);
+  });
+
+  it("produces continuous tax at the bracket 3/4 boundary (50 UTM)", () => {
+    const fromBelow = calculateSecondCategoryTax({
+      taxableIncome: 50 * UTM,
+      utm: UTM,
+    });
+    const fromAbove = calculateSecondCategoryTax({
+      taxableIncome: 50 * UTM + 1,
+      utm: UTM,
+    });
+    expect(Math.abs(fromAbove.taxAmount - fromBelow.taxAmount)).toBeLessThan(1);
+  });
+
+  it("produces continuous tax at the bracket 4/5 boundary (70 UTM)", () => {
+    const fromBelow = calculateSecondCategoryTax({
+      taxableIncome: 70 * UTM,
+      utm: UTM,
+    });
+    const fromAbove = calculateSecondCategoryTax({
+      taxableIncome: 70 * UTM + 1,
+      utm: UTM,
+    });
+    expect(Math.abs(fromAbove.taxAmount - fromBelow.taxAmount)).toBeLessThan(1);
+  });
+
+  it("computes exact tax for an income in bracket 4 (60 UTM)", () => {
+    const result = calculateSecondCategoryTax({
+      taxableIncome: 60 * UTM,
+      utm: UTM,
+    });
+    // tax = 60×UTM×0.135 − 4.49×UTM = (60×0.135 − 4.49) × UTM = (8.1 − 4.49) × UTM = 3.61 × UTM
+    const expected = 3.61 * UTM;
+    expect(result.taxAmount).toBeCloseTo(expected, 0);
+    expect(result.marginalRate).toBe(0.135);
   });
 
   it("maintains monotonic tax amount as taxable income increases", () => {

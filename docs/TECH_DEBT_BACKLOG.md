@@ -1,19 +1,19 @@
 # TECH_DEBT_BACKLOG
 
-Fecha de corte: 2026-03-12
+Fecha de corte: 2026-03-25
 
 ## Métricas
 
 ### Total de items por urgencia
 - **P0:** 3
-- **P1:** 11
+- **P1:** 12
 - **P2:** 13
 - **P3:** 1
 
-### Estado de avance (2026-03-12)
+### Estado de avance (2026-03-25)
 - **Completados:** 31 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 0
-- **Backlog sin iniciar:** 0
+- **Backlog sin iniciar:** 1 (`TD-0030`)
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -22,7 +22,7 @@ Fecha de corte: 2026-03-12
 ### Top riesgos restantes
 | Ranking | ID | Riesgo | Motivo principal |
 |---|---|---|---|
-| - | - | - | Sin riesgos técnicos abiertos registrados en este backlog. |
+| 1 | TD-0030 | Assertions incorrectas en tests de tarjeta de crédito bloquean CI gate | `doubledPayment.totalPaid` esperado `0` pero la función retorna el total real |
 
 ### Quick wins (alto impacto / bajo esfuerzo)
 - [x] `TD-0007` Corregir email placeholder en enlaces sociales.
@@ -632,3 +632,22 @@ Fecha de corte: 2026-03-12
 - **Estado:** Completado
 - **Fecha de creación:** 2026-02-26
 - **Última actualización:** 2026-02-27
+
+## TD-0030 — Assertions incorrectas en regression tests de tarjeta de crédito
+- **ID:** TD-0030
+- **Título corto:** Corregir `doubledPayment.totalPaid` esperado en regression test
+- **Descripción:** Los casos 1 y 3 de "Regression - Tarjeta de Crédito" en `tests/application/FinancialUseCases.regression.test.ts` (líneas 246 y 274) aseveran `expect(round2(result.doubledPayment.totalPaid)).toBe(0)`, pero la función retorna el total acumulado real (2,307,304.91 y 881,223.20 respectivamente). El valor `0` nunca fue correcto; parece un error al escribir la assertion original.
+- **Evidencia:** Pre-existente antes del commit 2026-03-25. Verificado con `git stash` + `pnpm run test` — mismos 2 fallos en rama limpia.
+- **Impacto:** Bloquea CI gate `pnpm run test` (Rule 5.1). Los demás 158 tests pasan.
+- **Riesgo:** alto (gate roto)
+- **Severidad (1-5):** 4
+- **Urgencia:** P1
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Calcular los valores correctos de `doubledPayment.totalPaid` para cada caso ejecutando el simulador de referencia, y reemplazar `0` por el valor real en ambas assertions.
+- **Criterios de cierre (checklist verificable):**
+- [ ] `pnpm run test` pasa sin errores.
+- [ ] Las assertions reflejan el total pagado real según la simulación.
+- **Owner:** TBD
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-03-25
+- **Última actualización:** 2026-03-25

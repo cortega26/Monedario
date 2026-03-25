@@ -25,39 +25,25 @@ function assertTaxInput(input: TaxInput): void {
 }
 
 function buildSecondCategoryTaxBrackets(utm: number): readonly TaxBracket[] {
+  // Recursive formula: d_i = upperLimit_{i-1} × (rate_i − rate_{i-1}) + d_{i-1}
+  // Ensures tax is continuous at every bracket boundary (matches tabla SII).
+  const d2 = 13.5 * utm * 0.04;                      // 0.54 UTM
+  const d3 = 30  * utm * (0.08  - 0.04 ) + d2;       // 1.74 UTM
+  const d4 = 50  * utm * (0.135 - 0.08 ) + d3;       // 4.49 UTM
+  const d5 = 70  * utm * (0.23  - 0.135) + d4;       // 11.14 UTM
+  const d6 = 90  * utm * (0.304 - 0.23 ) + d5;       // 17.80 UTM
+  const d7 = 120 * utm * (0.35  - 0.304) + d6;       // 23.32 UTM
+  const d8 = 150 * utm * (0.4   - 0.35 ) + d7;       // 30.82 UTM
+
   return [
-    { upperLimit: 13.5 * utm, rate: 0, deduction: 0 },
-    { upperLimit: 30 * utm, rate: 0.04, deduction: 13.5 * utm * 0.04 },
-    {
-      upperLimit: 50 * utm,
-      rate: 0.08,
-      deduction: 30 * utm * (0.08 - 0.04) + 13.5 * utm * 0.04,
-    },
-    {
-      upperLimit: 70 * utm,
-      rate: 0.135,
-      deduction: 50 * utm * (0.135 - 0.08) + 30 * utm * 0.04,
-    },
-    {
-      upperLimit: 90 * utm,
-      rate: 0.23,
-      deduction: 70 * utm * (0.23 - 0.135) + 50 * utm * 0.08,
-    },
-    {
-      upperLimit: 120 * utm,
-      rate: 0.304,
-      deduction: 90 * utm * (0.304 - 0.23) + 70 * utm * 0.135,
-    },
-    {
-      upperLimit: 150 * utm,
-      rate: 0.35,
-      deduction: 120 * utm * (0.35 - 0.304) + 90 * utm * 0.23,
-    },
-    {
-      upperLimit: Number.POSITIVE_INFINITY,
-      rate: 0.4,
-      deduction: 150 * utm * (0.4 - 0.35) + 120 * utm * 0.304,
-    },
+    { upperLimit: 13.5 * utm,               rate: 0,     deduction: 0  },
+    { upperLimit: 30   * utm,               rate: 0.04,  deduction: d2 },
+    { upperLimit: 50   * utm,               rate: 0.08,  deduction: d3 },
+    { upperLimit: 70   * utm,               rate: 0.135, deduction: d4 },
+    { upperLimit: 90   * utm,               rate: 0.23,  deduction: d5 },
+    { upperLimit: 120  * utm,               rate: 0.304, deduction: d6 },
+    { upperLimit: 150  * utm,               rate: 0.35,  deduction: d7 },
+    { upperLimit: Number.POSITIVE_INFINITY, rate: 0.4,   deduction: d8 },
   ] as const;
 }
 

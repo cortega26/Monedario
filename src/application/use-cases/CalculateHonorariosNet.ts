@@ -6,6 +6,7 @@ export interface HonorariosNetInput {
   withholdingRatePercent?: number;
   issuedMonthsPerYear?: number;
   annualGrossFees?: number;
+  currentDate?: string;
 }
 
 export interface HonorariosNetOutput {
@@ -23,6 +24,22 @@ export interface HonorariosNetOutput {
     endsOn: string;
   };
   assumptions: string[];
+}
+
+function computeFiscalYearWindow(currentDate?: string): {
+  startsOn: string;
+  endsOn: string;
+} {
+  const d = currentDate
+    ? new Date(`${currentDate}T00:00:00.000Z`)
+    : new Date();
+  const year = d.getUTCFullYear();
+  const month = d.getUTCMonth() + 1; // 1–12
+  const startYear = month >= 7 ? year : year - 1;
+  return {
+    startsOn: `${startYear}-07-01`,
+    endsOn: `${startYear + 1}-06-30`,
+  };
 }
 
 function assertInput(input: HonorariosNetInput): void {
@@ -87,10 +104,7 @@ export function calculateHonorariosNet(
     coverageBaseRatePercent: DEFAULT_COVERAGE_BASE_PERCENT,
     annualCoverageBase,
     monthlyCoverageBaseEquivalent,
-    annualCoverageWindow: {
-      startsOn: "2026-07-01",
-      endsOn: "2027-06-30",
-    },
+    annualCoverageWindow: computeFiscalYearWindow(input.currentDate),
     assumptions: [
       "El líquido mensual se calcula como bruto menos retención al emitir la boleta.",
       "La base de cobertura anual se estima como 80% del total bruto anual boleteado.",
