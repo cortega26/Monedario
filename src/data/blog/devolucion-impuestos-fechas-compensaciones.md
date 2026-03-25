@@ -108,7 +108,7 @@ Solo si hay error u observación en la declaración. Si la causa es compensació
 - SII noticia Operación Renta 2025 (autorización, pagos y compensaciones por TGR): https://www.sii.cl/noticias/2025/150425noti01msf.htm
 - ChileAtiende, Operación Renta (calendario de referencia y canales de pago): https://www.chileatiende.gob.cl/fichas/3178-declaracion-de-renta
 
-## Vigencia y actualización
+## Información de vigencia
 
 - Revisado el: 2026-02-28.
 - Puede quedar desactualizado cuando: publicación de calendario oficial del año tributario vigente, cambios en causales de compensación o ajustes de canales de pago TGR.

@@ -101,7 +101,7 @@ Revisa [devolución de impuestos: fechas, estado y compensaciones](/posts/devolu
 - SII FAQ, rectificatoria que origina devolución (autorización y pago vía TGR): https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0729.htm
 - ChileAtiende, Operación Renta (propuesta, revisión y envío): https://www.chileatiende.gob.cl/fichas/3178-declaracion-de-renta
 
-## Vigencia y actualización
+## Información de vigencia
 
 - Revisado el: 2026-02-28.
 - Puede quedar desactualizado cuando: publicación oficial del calendario AT 2026, cambios en reglas de reemplazo/rectificatoria o cambios en navegación SII/TGR.

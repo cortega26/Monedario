@@ -140,7 +140,7 @@ Para decidir cómo encajan los fondos mutuos en una estrategia integral de ahorr
 - SII FAQ, asistente de enajenación (acciones/cuotas): https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8415.htm
 - SII, Suplemento de Renta (líneas e instrucciones vigentes): https://www.sii.cl/pagina/renta/suplemento/Linea_22.htm
 
-## Vigencia y actualización
+## Información de vigencia
 
 - Revisado el: 2026-02-28.
 - Puede quedar desactualizado cuando: cambios CMF sobre información obligatoria de fondos o cambios en instrucciones SII de renta anual.

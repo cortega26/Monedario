@@ -107,9 +107,11 @@ const heroDescription =
                     >
                       <div class="order-2 p-5 sm:p-6 md:order-1">
                         <div class="mb-3 flex flex-wrap items-center gap-3 text-sm text-secondary">
-                          <span class="rounded-full bg-accent/10 px-2.5 py-1 font-semibold text-accent">
-                            Abre la portada
-                          </span>
+                          {heroPost.data.tags?.[0] && (
+                            <span class="rounded-full bg-accent/10 px-2.5 py-1 font-semibold text-accent">
+                              {heroPost.data.tags[0]}
+                            </span>
+                          )}
                           {heroHub && (
                             <span class="font-semibold text-foreground">
                               {heroHub.nombre}
@@ -205,12 +207,8 @@ const heroDescription =
             <div class="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
               <div>
                 <h2 class="homepage-body-heading text-xl font-semibold tracking-wide">
-                  Actualizaciones que amplían la portada
+                  Publicaciones recientes
                 </h2>
-                <p class="mt-2 max-w-2xl text-sm leading-relaxed text-secondary">
-                  Artículos recientes para descubrir dudas nuevas y revisar
-                  temas distintos al destacado principal.
-                </p>
               </div>
               <LinkButton
                 href={getPath("/posts/")}
@@ -236,10 +234,6 @@ const heroDescription =
                   <h3 class="homepage-body-heading text-lg font-semibold">
                     Más reciente
                   </h3>
-                  <p class="max-w-2xl text-sm text-secondary">
-                    Una lista más compacta para seguir explorando sin sumar otra
-                    grilla de cajas.
-                  </p>
                 </div>
 
                 <ul class="divide-y divide-border/80">
@@ -281,11 +275,11 @@ const heroDescription =
       >
         <div>
           <h2 class="homepage-body-heading text-lg font-semibold">
-            Calculadoras para pasar del texto al número
+            Calcula tu caso
           </h2>
           <p class="mt-2 max-w-2xl text-sm leading-relaxed text-secondary">
-            Usa estas herramientas para estimar montos, comparar escenarios y
-            aterrizar la información de las guías a tu caso.
+            Estima tu sueldo líquido, AFP, crédito o costo en UF con datos
+            reales. Sin registro.
           </p>
         </div>
         <LinkButton

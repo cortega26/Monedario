@@ -29,6 +29,9 @@ function assertInput(input: ConsumerCreditInput): void {
   if (!Number.isFinite(input.rateValue) || input.rateValue <= 0) {
     throw new Error("rateValue must be a finite number greater than 0.");
   }
+  if (input.operatingCosts !== undefined && input.operatingCosts >= input.principal) {
+    throw new Error("operatingCosts must be strictly less than principal to avoid negative or zero net disbursed principal.");
+  }
 }
 
 function estimateCaePercent(
@@ -75,7 +78,7 @@ export function calculateConsumerCredit(
   const monthlyPaymentTotal = monthlyPaymentBase + monthlyInsurance;
   const totalPaid = monthlyPaymentTotal * input.termMonths + operatingCosts;
   const totalInterest = totalPaid - input.principal;
-  const netDisbursedPrincipal = Math.max(1, input.principal - operatingCosts);
+  const netDisbursedPrincipal = input.principal - operatingCosts;
 
   return {
     monthlyRateDecimal,

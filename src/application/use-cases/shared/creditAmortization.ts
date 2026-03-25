@@ -34,7 +34,8 @@ export function calculateAnnuityPayment(
 export function simulateCreditRepayment(
   input: SimulateCreditRepaymentInput
 ): CreditRepaymentSimulation {
-  const payoffThreshold = input.payoffThreshold ?? 100;
+  // Use 0.01 as a generous epsilon for financial calculations, preventing early exit on large residues
+  const payoffThreshold = input.payoffThreshold ?? 0.01;
   const trackedMonths = input.trackedMonths ?? 0;
   let balance = input.principal;
   let totalPaid = 0;

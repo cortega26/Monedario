@@ -150,7 +150,7 @@ Si quieres integrar esta decisión en una estrategia más amplia de instrumentos
 - CMF Educa, Depósitos a plazo (definiciones y plazos mínimos): https://www.cmfchile.cl/educa/621/w3-article-27170.html
 - SII FAQ, obligación de declarar rentas de inversiones: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0597.htm
 
-## Vigencia y actualización
+## Información de vigencia
 
 - Revisado el: 2026-02-28.
 - Puede quedar desactualizado cuando: cambios en metodología oficial de UF, modificaciones regulatorias de DAP o cambios en criterios tributarios aplicables.
