@@ -44,6 +44,14 @@ const toolCards = deudaClusterHubToolCards.map(card => ({
         .replaceAll("/", "") as keyof typeof toolLabels
     ] ?? card.kind,
 }));
+
+const visibleHubHrefs = new Set(
+  [...guideCards, ...toolCards].map(card => getPath(card.href))
+);
+
+const relatedCards = hubAssignments.related.filter(
+  item => !visibleHubHrefs.has(getPath(item.href))
+);
 ---
 
 <Layout
@@ -174,8 +182,7 @@ const toolCards = deudaClusterHubToolCards.map(card => ({
       <h2 class="mb-4 text-2xl font-bold">Relacionado</h2>
       <div class="grid gap-4">
         {
-          hubAssignments.related.map(
-            (item: (typeof hubAssignments.related)[number]) => (
+          relatedCards.map((item: (typeof relatedCards)[number]) => (
               <article class="rounded-2xl border border-border p-5">
                 <h3 class="mb-2 text-lg font-semibold">{item.title}</h3>
                 <p class="mb-3 text-sm leading-relaxed text-secondary">

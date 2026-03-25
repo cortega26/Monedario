@@ -4,10 +4,19 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import ContextLinkSection from "@/components/ContextLinkSection.astro";
+import { getPath } from "@/utils/getPath";
 import {
   pensionHubPrimaryCards,
   pensionHubRelatedCards,
 } from "@/config/pensionClusterLinks";
+
+const primaryCardHrefs = new Set(
+  pensionHubPrimaryCards.map(card => getPath(card.href))
+);
+
+const relatedCards = pensionHubRelatedCards.filter(
+  card => !primaryCardHrefs.has(getPath(card.href))
+);
 ---
 
 <Layout
@@ -41,7 +50,7 @@ import {
       eyebrow="Fuera del núcleo AFP"
       title="Comparaciones y herramientas cercanas"
       description="Usa estas salidas solo cuando tu duda dejó de ser AFP obligatoria y pasó a ser ahorro con beneficio tributario o proyección de pensión."
-      items={pensionHubRelatedCards}
+      items={relatedCards}
     />
 
     <section class="border-b border-border py-8">

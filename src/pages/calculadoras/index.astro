@@ -64,43 +64,31 @@ const tagStyles: Record<string, string> = {
       </p>
     </section>
 
-    <section class="py-8">
-      <div
-        class="rounded-xl border border-border bg-surface-muted/22 p-5 sm:p-6"
-      >
-        <div class="max-w-3xl">
-          <h2 class="text-2xl font-semibold">Empieza por el tipo de decisión</h2>
+    <section class="border-b border-border py-6">
+      <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div class="max-w-2xl">
+          <h2 class="text-xl font-semibold">Ir directo a una familia</h2>
           <p class="mt-2 text-sm leading-relaxed text-secondary">
-            Primero elige la familia correcta. Después abre solo la herramienta
-            que corresponde a tu caso. Esta portada no debería obligarte a
-            evaluar la misma calculadora dos veces.
+            Este hub ya es un índice de calculadoras. Elige la familia y entra
+            directo al bloque que corresponde.
           </p>
         </div>
 
-        <ol class="mt-6 grid gap-4 lg:grid-cols-2">
+        <ul class="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
           {
             familyJumpGuides.map(guide => (
-              <li class="rounded-lg border border-border bg-background p-4">
-                <h3 class="text-lg leading-snug font-semibold">
-                  {guide.title}
-                </h3>
-                <p class="mt-2 text-sm leading-relaxed text-secondary">
-                  {guide.description}
-                </p>
-                <p class="mt-3 text-sm leading-relaxed text-secondary">
-                  Baja a{" "}
-                  <a
-                    href={guide.href}
-                    class="font-semibold text-foreground underline decoration-border underline-offset-4 hover:text-accent"
-                  >
-                    {guide.title}
-                  </a>
-                  . {guide.chooserPrompt}
-                </p>
+              <li>
+                <a
+                  href={guide.href}
+                  class="flex h-full min-h-20 flex-col justify-between rounded-lg border border-border bg-background px-4 py-3 transition-colors hover:border-accent/30 hover:bg-accent/5"
+                >
+                  <span class="text-base font-semibold">{guide.title}</span>
+                  <span class="mt-2 text-sm text-secondary">Ver familia</span>
+                </a>
               </li>
             ))
           }
-        </ol>
+        </ul>
       </div>
     </section>
 

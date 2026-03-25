@@ -8,10 +8,11 @@
   - cluster wiring updates across hub/config and related sueldo articles
   - authenticated-access diagnostic with verified Google persistent-profile path and verified Bing gap
 - Not implemented:
-  - homepage redesign
-  - next cluster expansion
-  - broad sitewide linking rollout
-  - full Search Console/Bing operational task `MB-002`
+  - cierre sistémico de `SA-008` sobre budget visible de salidas en todos los componentes
+  - traducción UX completa de roles `owner` / `support` / `reference` / `tool` de `SA-014`
+  - clarificación de rol en `/tags/`, `/glosario/` y `/search/` de `SA-015`
+  - corrección de `TD-0030`
+  - normalización de `TD-0032`
 
 ## Change Control Record
 
@@ -126,6 +127,7 @@
 ## Next sprint recommendation
 
 - Keep the next sprint narrow:
-  - use the verified persistent-profile path to complete Google Search Console operations
-  - do one manual Bing login inside the dedicated automation profile
-  - only then execute the full `MB-002` workflow before expanding to the next content cluster
+  - do not continue cleaning critical clusters as the primary front
+  - attack `SA-008` and `SA-014` first, because the remaining open work is systemic rather than local
+  - resolve `SA-015` immediately after the visible ownership model is translated into UX
+  - close `TD-0030` and normalize `TD-0032` to recover cleaner verification hygiene
