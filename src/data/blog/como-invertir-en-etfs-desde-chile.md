@@ -123,7 +123,6 @@ El ETF se transa en bolsa en tiempo real; el fondo mutuo opera por valor de cuot
 
 </details>
 
-
 ## Siguiente lectura
 
 Para conectar esta decisión con una estrategia más amplia de instrumentos y objetivos, vuelve a la guía general: [Ahorro e inversión en Chile: instrumentos, costos e impuestos (guía 2026)](/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/).

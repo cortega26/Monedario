@@ -67,6 +67,7 @@ Ejemplo simple oficial (SII) con la tasa 2026:
 4. Confirma tu afiliación previsional/salud al cierre del año base.
 
 Datos mínimos para no perderte:
+
 - Total bruto anual boleteado (año base).
 - Retenciones acumuladas.
 - Tu situación previsional (pensionado, exención u otras causales).

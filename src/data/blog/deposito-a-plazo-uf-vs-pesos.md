@@ -139,7 +139,6 @@ Llévalas a una misma base temporal y calcula el resultado estimado para el mism
 
 </details>
 
-
 ## Siguiente lectura
 
 Si quieres integrar esta decisión en una estrategia más amplia de instrumentos y costos, vuelve a la guía general: [Ahorro e inversión en Chile: instrumentos, costos e impuestos (guía 2026)](/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/).

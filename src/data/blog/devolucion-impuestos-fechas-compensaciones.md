@@ -27,6 +27,7 @@ Ya enviaste tu declaración, tu propuesta dijo devolución y la fecha pasó. Est
 3. Valida cuenta bancaria y ciclo de pago del año tributario vigente.
 
 Datos mínimos:
+
 - RUT y clave SII.
 - Folio/comprobante de declaración.
 - Cuenta bancaria informada al declarar.

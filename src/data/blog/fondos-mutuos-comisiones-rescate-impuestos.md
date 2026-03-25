@@ -127,7 +127,6 @@ No. El SII indica que los valores no rescatados no se consideran renta percibida
 
 </details>
 
-
 ## Siguiente lectura
 
 Para decidir cómo encajan los fondos mutuos en una estrategia integral de ahorro e inversión, vuelve a la guía general: [Ahorro e inversión en Chile: instrumentos, costos e impuestos (guía 2026)](/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/).

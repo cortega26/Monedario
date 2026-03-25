@@ -29,8 +29,13 @@ function assertInput(input: ConsumerCreditInput): void {
   if (!Number.isFinite(input.rateValue) || input.rateValue <= 0) {
     throw new Error("rateValue must be a finite number greater than 0.");
   }
-  if (input.operatingCosts !== undefined && input.operatingCosts >= input.principal) {
-    throw new Error("operatingCosts must be strictly less than principal to avoid negative or zero net disbursed principal.");
+  if (
+    input.operatingCosts !== undefined &&
+    input.operatingCosts >= input.principal
+  ) {
+    throw new Error(
+      "operatingCosts must be strictly less than principal to avoid negative or zero net disbursed principal."
+    );
   }
 }
 

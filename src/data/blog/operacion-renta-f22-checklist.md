@@ -30,6 +30,7 @@ Según SII, el flujo correcto es revisar primero y declarar después. Para no me
 4. Si ya enviaste, revisa "Consulta y seguimiento" y define reemplazo o rectificatoria según etapa.
 
 Checklist rápido antes de enviar:
+
 - Clave Tributaria o ClaveÚnica activa.
 - Respaldos de ingresos y retenciones del año comercial.
 - Cuenta bancaria activa y correctamente digitada.
