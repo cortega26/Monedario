@@ -114,7 +114,9 @@ if (articleLead?.nextStepHref) {
 const contextualSectionsWithoutPrimaryDuplicates = contextualSections
   .map(section => ({
     ...section,
-    items: section.items.filter(item => !primaryDestinationHrefs.has(item.href)),
+    items: section.items.filter(
+      item => !primaryDestinationHrefs.has(item.href)
+    ),
   }))
   .filter(section => section.items.length > 0);
 
@@ -128,9 +130,7 @@ for (const section of contextualSectionsWithoutPrimaryDuplicates) {
 
 const excludedRelatedSlugs = [...excludedContextHrefs]
   .map(href =>
-    href
-      .replace(/^\/(?:posts|calculadoras|guias)\//, "")
-      .replace(/\/$/, "")
+    href.replace(/^\/(?:posts|calculadoras|guias)\//, "").replace(/\/$/, "")
   )
   .filter(Boolean);
 

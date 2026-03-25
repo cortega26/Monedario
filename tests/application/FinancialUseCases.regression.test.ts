@@ -243,7 +243,7 @@ describe("Regression - Tarjeta de Crédito", () => {
     expect(round2(result.baseline.totalPaid)).toBe(4992338.53);
     expect(round2(result.baseline.totalInterest)).toBe(3492338.53);
     expect(result.doubledPayment.months).toBe(118);
-    expect(round2(result.doubledPayment.totalPaid)).toBe(0);
+    expect(round2(result.doubledPayment.totalPaid)).toBe(2307304.91);
   });
 
   it("case 2", () => {
@@ -271,7 +271,7 @@ describe("Regression - Tarjeta de Crédito", () => {
     expect(round2(result.baseline.totalPaid)).toBe(1367022.2);
     expect(round2(result.baseline.totalInterest)).toBe(717022.2);
     expect(result.doubledPayment.months).toBe(62);
-    expect(round2(result.doubledPayment.totalPaid)).toBe(0);
+    expect(round2(result.doubledPayment.totalPaid)).toBe(881223.20);
   });
 });
 

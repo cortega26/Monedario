@@ -111,7 +111,11 @@ const deudaArticleSectionsBySlug: Record<string, LinkSection[]> = {
       title: "De la comparación teórica a la oferta real",
       description:
         "Estas herramientas sirven cuando el crédito todavía se puede evitar, renegociar mejor o prepagar antes de que escale.",
-      items: [creditCalculatorCard, prepagoCalculatorCard, renegociacionGuideCard],
+      items: [
+        creditCalculatorCard,
+        prepagoCalculatorCard,
+        renegociacionGuideCard,
+      ],
     },
   ],
   "renegociacion-superir": [

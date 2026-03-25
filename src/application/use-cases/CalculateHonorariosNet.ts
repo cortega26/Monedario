@@ -30,9 +30,7 @@ function computeFiscalYearWindow(currentDate?: string): {
   startsOn: string;
   endsOn: string;
 } {
-  const d = currentDate
-    ? new Date(`${currentDate}T00:00:00.000Z`)
-    : new Date();
+  const d = currentDate ? new Date(`${currentDate}T00:00:00.000Z`) : new Date();
   const year = d.getUTCFullYear();
   const month = d.getUTCMonth() + 1; // 1–12
   const startYear = month >= 7 ? year : year - 1;

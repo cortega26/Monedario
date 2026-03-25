@@ -125,7 +125,10 @@ export function getHomepageHubRail(
 
   if (rail.length < maxItems) {
     for (const cluster of GUIDE_HUB_ORDER) {
-      if (!(cluster in GUIDE_HUBS) || rail.some(item => item.slug === cluster)) {
+      if (
+        !(cluster in GUIDE_HUBS) ||
+        rail.some(item => item.slug === cluster)
+      ) {
         continue;
       }
 

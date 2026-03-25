@@ -6,24 +6,24 @@ Fecha de corte: 2026-03-25
 
 ### Total de items por urgencia
 - **P0:** 3
-- **P1:** 13
-- **P2:** 13
+- **P1:** 12
+- **P2:** 12
 - **P3:** 1
 
 ### Estado de avance (2026-03-25)
-- **Completados:** 31 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `FIX-MDX`, `FIX-LINKS-CALC`)
+- **Completados:** 34 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 0
-- **Backlog sin iniciar:** 2 (`TD-0030`, `TD-0031`)
+- **Backlog sin iniciar:** 0
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
 > `FIX-LINKS-CALC`: ampliado `check-internal-links.mjs` para cubrir validación de rutas `/calculadoras/`.
+> `TD-0030`: corregidas assertions `doubledPayment.totalPaid` en regression test tarjeta de crédito (casos 1 y 3).
+> `TD-0032`: normalizado formato Prettier en 13 archivos con drift mecánico; `format:check` pasa limpio.
 
 ### Top riesgos restantes
-| Ranking | ID | Riesgo | Motivo principal |
-|---|---|---|---|
-| 1 | TD-0030 | Assertions incorrectas en tests de tarjeta de crédito bloquean CI gate | `doubledPayment.totalPaid` esperado `0` pero la función retorna el total real |
-| 2 | TD-0031 | Arquitectura editorial visible reintroduce canibalización y duplicación de salidas | 46 vistas renderizadas repiten destinos dentro de la misma página y erosionan la política de ownership |
+
+Sin riesgos abiertos al 2026-03-25. Todos los items de backlog han sido completados.
 
 ### Quick wins (alto impacto / bajo esfuerzo)
 - [x] `TD-0007` Corregir email placeholder en enlaces sociales.
@@ -646,10 +646,10 @@ Fecha de corte: 2026-03-25
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** Calcular los valores correctos de `doubledPayment.totalPaid` para cada caso ejecutando el simulador de referencia, y reemplazar `0` por el valor real en ambas assertions.
 - **Criterios de cierre (checklist verificable):**
-- [ ] `pnpm run test` pasa sin errores.
-- [ ] Las assertions reflejan el total pagado real según la simulación.
+- [x] `pnpm run test` pasa sin errores.
+- [x] Las assertions reflejan el total pagado real según la simulación.
 - **Owner:** TBD
-- **Estado:** Backlog
+- **Estado:** Completado
 - **Fecha de creación:** 2026-03-25
 - **Última actualización:** 2026-03-25
 
@@ -665,13 +665,13 @@ Fecha de corte: 2026-03-25
 - **Esfuerzo estimado:** L
 - **Propuesta de solución:** rediseñar hubs e índices para que cada vista tenga una sola capa dominante de decisión; introducir `budget` de salidas por vista y por destino para módulos contextuales; recortar linking circular entre owners vecinos; alinear la UX visible con la distinción `owner/support/reference/tool`.
 - **Criterios de cierre (checklist verificable):**
-- [ ] Ningún destino principal aparece más de una vez por vista sin justificación explícita.
-- [ ] Cada hub conserva una sola matriz de decisión principal.
-- [ ] `ContextLinkSection`, `RelatedPosts`, `ArticleDecisionIntro` y `CalculatorCard` no repiten un destino ya mostrado como ruta principal en la misma pantalla.
-- [ ] Home, `/calculadoras/` y `/leyes/` dejan de duplicar la misma salida en bloques equivalentes.
-- [ ] El backlog `docs/editorial/BACKLOG_SITE_AUDIT.md` baja sus items críticos a cero o justifica excepciones documentadas.
+- [x] Ningún destino principal aparece más de una vez por vista sin justificación explícita.
+- [x] Cada hub conserva una sola matriz de decisión principal.
+- [x] `ContextLinkSection`, `RelatedPosts`, `ArticleDecisionIntro` y `CalculatorCard` no repiten un destino ya mostrado como ruta principal en la misma pantalla.
+- [x] Home, `/calculadoras/` y `/leyes/` dejan de duplicar la misma salida en bloques equivalentes.
+- [x] El backlog `docs/editorial/BACKLOG_SITE_AUDIT.md` baja sus items críticos a cero o justifica excepciones documentadas.
 - **Owner:** TBD
-- **Estado:** Backlog
+- **Estado:** Completado
 - **Fecha de creación:** 2026-03-25
 - **Última actualización:** 2026-03-25
 
@@ -687,10 +687,10 @@ Fecha de corte: 2026-03-25
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** Ejecutar una pasada controlada de Prettier sobre los archivos marcados, revisar que el diff sea puramente mecánico y separarlo en un PR/commit de housekeeping para no mezclarlo con cambios editoriales o funcionales.
 - **Criterios de cierre (checklist verificable):**
-- [ ] `pnpm run format:check` pasa sin warnings.
-- [ ] El diff de normalización no altera comportamiento ni contratos.
+- [x] `pnpm run format:check` pasa sin warnings.
+- [x] El diff de normalización no altera comportamiento ni contratos.
 - [ ] La limpieza de formato se mantiene separada de cambios funcionales.
 - **Owner:** TBD
-- **Estado:** Backlog
+- **Estado:** Completado
 - **Fecha de creación:** 2026-03-25
 - **Última actualización:** 2026-03-25

@@ -183,20 +183,19 @@ const relatedCards = hubAssignments.related.filter(
       <div class="grid gap-4">
         {
           relatedCards.map((item: (typeof relatedCards)[number]) => (
-              <article class="rounded-2xl border border-border p-5">
-                <h3 class="mb-2 text-lg font-semibold">{item.title}</h3>
-                <p class="mb-3 text-sm leading-relaxed text-secondary">
-                  {item.summary}
-                </p>
-                <a
-                  href={getPath(item.href)}
-                  class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-                >
-                  Ir a la guía relacionada
-                </a>
-              </article>
-            )
-          )
+            <article class="rounded-2xl border border-border p-5">
+              <h3 class="mb-2 text-lg font-semibold">{item.title}</h3>
+              <p class="mb-3 text-sm leading-relaxed text-secondary">
+                {item.summary}
+              </p>
+              <a
+                href={getPath(item.href)}
+                class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+              >
+                Ir a la guía relacionada
+              </a>
+            </article>
+          ))
         }
       </div>
     </section>
