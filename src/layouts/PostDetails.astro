@@ -22,6 +22,7 @@ import RelatedPosts from "@/components/RelatedPosts.astro";
 import ArticleJsonLd from "@/components/ArticleJsonLd.astro";
 import ContextLinkSection from "@/components/ContextLinkSection.astro";
 import ArticleDecisionIntro from "@/components/ArticleDecisionIntro.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getPath } from "@/utils/getPath";
 import { SITE } from "@/config";
 import { getSueldoArticleSections } from "@/config/sueldoClusterLinks";
@@ -120,6 +121,7 @@ const nextPost =
     ogImageUrl={ogImage}
   />
   <Header />
+  <Breadcrumb />
   <BackButton />
   <main
     id="main-content"
