@@ -180,7 +180,7 @@ Una vez comprado, ese departamento se podría arrendar. En comunas intermedias d
 - Nasdaq, cierre anual 2025 del Nasdaq-100: https://www.nasdaq.com/articles/index-monthly-scorecard-december-2025
 - INE, proyecciones de población y esperanza de vida: https://www.ine.gob.cl/estadisticas/sociales/demografia-y-vitales/proyecciones-de-poblacion
 
-## Vigencia y actualización
+## Información de vigencia
 
 - Revisado el: 2026-03-07.
 - Fecha de corte visible para lectores: 2025-12-31.

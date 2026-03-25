@@ -53,7 +53,7 @@ const articulosSeccion = [
     </section>
 
     <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">Temas que puedes revisar</h2>
+      <h2 class="mb-4 text-2xl font-bold">Elige por el problema principal</h2>
       <ul class="grid gap-4">
         {
           articulosSeccion.map(item => (
@@ -64,7 +64,7 @@ const articulosSeccion = [
                 href={item.href}
                 class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
               >
-                Leer artículo
+                Ir a esta guía
               </a>
             </li>
           ))
@@ -73,41 +73,19 @@ const articulosSeccion = [
     </section>
 
     <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">Empieza aquí si...</h2>
+      <h2 class="mb-4 text-2xl font-bold">Cómo separar bien los casos</h2>
       <ul class="list-disc space-y-2 pl-6 text-secondary">
         <li>
-          Detectaste un movimiento no autorizado hoy: parte por{" "}
-          <a
-            class="text-accent underline underline-offset-4 hover:opacity-80"
-            href={getPath("/posts/fraude-tarjeta-que-hacer/")}
-          >
-            fraude en primeras 24 horas
-          </a>
-          .
+          Fraude con cargo o transferencia no reconocida no es lo mismo que una
+          estafa que todavía no te generó pérdida.
         </li>
         <li>
-          Quieres prevenir antes de que pase algo: revisa{" "}
-          <a
-            class="text-accent underline underline-offset-4 hover:opacity-80"
-            href={getPath(
-              "/posts/estafas-financieras-chile-vishing-smishing-marketplace/"
-            )}
-          >
-            señales por canal y checklist preventivo
-          </a>
-          .
+          Suplantación de identidad es un flujo distinto: cambia la evidencia,
+          el reclamo y los plazos.
         </li>
         <li>
-          Apareció deuda o crédito que no reconoces: continúa con{" "}
-          <a
-            class="text-accent underline underline-offset-4 hover:opacity-80"
-            href={getPath(
-              "/posts/suplantacion-identidad-creditos-no-reconocidos/"
-            )}
-          >
-            suplantación y créditos no reconocidos
-          </a>
-          .
+          Si el problema ya ocurrió, no empieces por prevención; si aún no
+          ocurrió, no empieces por recuperación.
         </li>
       </ul>
     </section>

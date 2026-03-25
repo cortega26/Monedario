@@ -41,7 +41,7 @@ articleLead:
 
 La frase "estoy en DICOM" se usa en Chile como atajo para varias cosas distintas: deudas financieras vigentes, morosidades comerciales, protestos o incluso un informe privado que te pidió un tercero. El primer error es tratarlas como si fueran el mismo registro.
 
-La regla práctica es esta: si quieres ver qué deudas financieras vigentes aparecen a tu nombre, parte por el **Informe de Deudas CMF**. Si lo que buscas es revisar protestos, retail o un reporte privado usado por un arrendador o empleador, necesitas separar ese problema y no asumir que el CMF cubre todo. Si después quieres ampliar el mapa, puedes seguir con la [guía para ver si estás en DICOM gratis](/posts/donde-ver-si-estoy-en-dicom-gratis/) o volver a la [sección Deuda y Crédito](/guias/deuda-credito/).
+La regla práctica es esta: si quieres ver qué deudas financieras vigentes aparecen a tu nombre, parte por el **Informe de Deudas CMF**. Si lo que buscas es revisar protestos, retail o un reporte privado usado por un arrendador o empleador, separa ese problema y no asumas que el CMF cubre todo.
 
 ## Tabla de contenidos
 
@@ -204,7 +204,7 @@ No de forma inmediata. El desfase puede ser de días o semanas según el momento
 <details>
 <summary>¿Qué hago si tengo deudas y quiero regularizarlas?</summary>
 
-El primer paso es tener el informe CMF completo y saber exactamente cuánto debes y a quién. Si las deudas son con el sistema financiero y ya están en mora hace tiempo, puede valer la pena explorar la **renegociación a través de Superir** — el procedimiento concursal gratuito para personas naturales. [Más sobre eso en esta guía](/posts/renegociacion-superir/). Si además hay movimientos que no reconoces, revisa la guía de [fraude con tarjeta y suplantación](/posts/fraude-tarjeta-que-hacer/).
+El primer paso es tener el informe CMF completo y saber exactamente cuánto debes y a quién. Si las deudas son con el sistema financiero y ya están en mora hace tiempo, puede valer la pena evaluar una salida formal. Si además hay movimientos que no reconoces, cambia al flujo de fraude y suplantación antes de negociar o pagar.
 
 </details>
 

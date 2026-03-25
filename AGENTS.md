@@ -239,6 +239,12 @@ A regression is any change that degrades previously valid behavior in contracts,
 - Compliant behavior: Provide JSON report in `artifacts/` meeting thresholds.
 - Violation: Merging font/layout change without performance evidence.
 
+### Rule 5.5 - Pre-change test baseline verification
+- Rationale: Pre-existing failures must be distinguished from regressions introduced by the current change. Conflating them wastes investigation time and risks silently shipping pre-existing debt.
+- Enforcement: Before editing any runtime file, run `pnpm run test` on the unmodified branch and record which tests fail. Any failure present in that baseline is pre-existing and must be logged in `docs/TECH_DEBT_BACKLOG.md` with severity; it does NOT block the current PR unless its fix falls within declared scope.
+- Compliant behavior: "Baseline run shows 2 pre-existing failures in `FinancialUseCases.regression.test.ts`; logged as TD-0030; out of scope for this PR."
+- Violation: Treating a pre-existing failure as a regression introduced by the current PR, or silently ignoring it without a backlog entry.
+
 ### Assumptions (explicit)
 - A1: As of 2026-02-28, numeric line/function coverage gate is not configured in CI (`@vitest/coverage-v8` missing). This protocol therefore enforces change-impact coverage thresholds until a numeric coverage gate is added by ADR.
 

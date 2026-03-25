@@ -131,9 +131,9 @@ De ese total, **$100.000 son tuyos** y se acumulan en tu cuenta de pensión. Los
 
 ## ¿Cómo se relaciona esta línea con el resto de tu liquidación?
 
-La línea AFP no vive sola, pero esta URL no intenta explicar toda la liquidación. Salud, cesantía e impuesto único también afectan tu sueldo líquido, pero su owner está en [cómo calcular tu sueldo líquido](/posts/como-calcular-sueldo-liquido/) y en [descuentos de sueldo](/posts/descuentos-de-sueldo/) si quieres revisar la clasificación completa.
+La línea AFP no vive sola, pero esta URL no intenta explicar toda la liquidación. Salud, cesantía e impuesto único también afectan tu sueldo líquido, así que conviene separar entre cálculo completo y clasificación de descuentos antes de seguir saltando entre artículos.
 
-> 🧮 ¿Quieres saber exactamente cuánto recibirás este mes? Usa nuestra [calculadora de sueldo líquido](/calculadoras/sueldo-liquido/) para obtener el desglose total en segundos.
+> 🧮 ¿Quieres saber exactamente cuánto recibirás este mes? Usa una calculadora de sueldo líquido para obtener el desglose total en segundos.
 
 ## ¿Puedo cambiarme de AFP para pagar menos comisión?
 
@@ -158,7 +158,7 @@ Solo en casos excepcionales permitidos por ley. Los retiros extraordinarios que 
 **¿El dinero de mi AFP desaparece si fallezco?**
 No. El saldo acumulado en tu cuenta individual pasa a tus herederos o beneficiarios legales como herencia.
 
-Si estás comparando alternativas, te conviene revisar [cómo cambiarte de AFP paso a paso](/posts/como-cambiarse-de-afp/), la guía de [fondos AFP A, B, C, D y E](/posts/fondos-afp-a-b-c-d-e/) y, para el resto de la liquidación, [descuentos de sueldo](/posts/descuentos-de-sueldo/).
+Si estás comparando alternativas, te conviene revisar cómo cambiarte de AFP, la lógica de fondos previsionales y, si el problema ya no es solo AFP, pasar después al cálculo completo o a la clasificación de descuentos.
 
 ### Fuentes oficiales para el bloque 2025-2027
 

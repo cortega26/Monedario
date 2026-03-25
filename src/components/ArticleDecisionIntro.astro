@@ -50,7 +50,7 @@ const formatDate = (date: Date) =>
   <div class="grid gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.95fr)]">
     <div>
       <p class="text-xs font-semibold tracking-[0.18em] text-accent uppercase">
-        Respuesta rápida
+        En resumen
       </p>
       <p class="mt-3 text-base leading-relaxed text-foreground sm:text-lg">
         {lead.answer}
@@ -86,31 +86,22 @@ const formatDate = (date: Date) =>
       }
     </div>
 
-    <aside class="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+    <aside class="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
       <div class="rounded-xl border border-border bg-background p-4">
         <p class="text-xs font-semibold tracking-[0.14em] text-muted uppercase">
-          Vigencia
+          Fecha de corte
         </p>
         <p class="mt-2 text-sm leading-relaxed text-foreground">
           {
             shouldShowValidAsOf && validAsOf
-              ? `Fecha de corte ${formatDate(validAsOf)}.`
-              : "Revisa la fecha de actualización del artículo antes de tomar decisiones."
+              ? `Información con fecha de corte ${formatDate(validAsOf)}. Para casos complejos, considera revisión profesional antes de decidir.`
+              : "Contenido educativo orientado a decidir el siguiente paso. Para casos complejos, considera revisión profesional."
           }
         </p>
       </div>
       <div class="rounded-xl border border-border bg-background p-4">
         <p class="text-xs font-semibold tracking-[0.14em] text-muted uppercase">
-          Uso
-        </p>
-        <p class="mt-2 text-sm leading-relaxed text-foreground">
-          Contenido educativo orientado a decidir el siguiente paso, no a
-          reemplazar revisión profesional.
-        </p>
-      </div>
-      <div class="rounded-xl border border-border bg-background p-4">
-        <p class="text-xs font-semibold tracking-[0.14em] text-muted uppercase">
-          Fuentes
+          Fuentes oficiales
         </p>
         {
           hasSources ? (

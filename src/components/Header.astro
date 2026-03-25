@@ -157,7 +157,7 @@ const isActive = (path: string) => {
               { "active-nav text-foreground": isActive("/leyes") },
             ]}
           >
-            Marco Legal
+            Leyes
           </a>
         </li>
         <li class="col-span-2">
@@ -173,10 +173,13 @@ const isActive = (path: string) => {
         </li>
         <li class="col-span-1 flex items-center justify-center">
           <LinkButton
-            href={getPath("/search/")}
+            href={getPath("/buscar/")}
             class:list={[
               "focus-outline flex p-3 sm:p-1",
-              { "[&>svg]:stroke-accent": isActive("/search") },
+              {
+                "[&>svg]:stroke-accent":
+                  isActive("/buscar") || isActive("/search"),
+              },
             ]}
             title="Buscar"
             aria-label="buscar"

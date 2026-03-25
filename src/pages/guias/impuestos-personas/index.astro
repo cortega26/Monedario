@@ -5,12 +5,12 @@ import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getPath } from "@/utils/getPath";
 
-const articulosSeccion = [
+const rutasPrincipales = [
   {
     titulo:
       "Operación Renta F22 en Chile: checklist para revisar, enviar y rectificar sin errores",
     resumen:
-      "Guía para revisar la propuesta, enviar el F22 y corregir observaciones sin atrasarte.",
+      "Úsala si vas a declarar, si ya viste la propuesta o si necesitas revisar reemplazo y rectificatoria sin saltar entre varias páginas.",
     href: getPath("/posts/operacion-renta-f22-checklist/"),
   },
   {
@@ -44,17 +44,23 @@ const articulosSeccion = [
         Impuestos para personas en Chile
       </h1>
       <p class="max-w-3xl text-secondary">
-        Esta página te ayuda a elegir qué leer primero según tu situación
-        tributaria. Úsala para ir directo a la guía que necesitas si vas a
-        declarar, revisar una devolución o entender tus boletas.
+        Esta sección separa tres preguntas distintas que suelen mezclarse bajo
+        “impuestos”: declarar y corregir el F22, revisar una devolución o
+        entender boletas de honorarios. Parte por la ruta que resuelve tu caso
+        real hoy, no por la palabra que más se repite en el calendario.
       </p>
     </section>
 
     <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">Temas que puedes revisar</h2>
+      <h2 class="mb-4 text-2xl font-bold">Elige la ruta correcta</h2>
+      <p class="mb-5 max-w-3xl text-sm leading-relaxed text-secondary">
+        Si tu duda es declaración, observaciones o rectificatoria, todo eso vive
+        en la misma guía del F22. Solo cambia de ruta cuando el problema real ya
+        es la devolución o el líquido de honorarios.
+      </p>
       <ul class="grid gap-4">
         {
-          articulosSeccion.map(item => (
+          rutasPrincipales.map(item => (
             <li class="rounded-xl border border-border p-5">
               <h3 class="mb-2 text-lg font-semibold">{item.titulo}</h3>
               <p class="mb-3 text-sm text-secondary">{item.resumen}</p>
@@ -62,7 +68,7 @@ const articulosSeccion = [
                 href={item.href}
                 class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
               >
-                Leer artículo
+                Resolver esta duda
               </a>
             </li>
           ))
@@ -71,71 +77,21 @@ const articulosSeccion = [
     </section>
 
     <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">Empieza aquí si...</h2>
-      <div class="grid gap-4 sm:grid-cols-2">
-        <article class="rounded-xl border border-border p-5">
-          <h3 class="mb-2 text-lg font-semibold">
-            Vas a declarar y no sabes por dónde partir
-          </h3>
-          <p class="text-sm text-secondary">
-            Parte por el checklist F22 para ordenar revisión, envío y
-            correcciones.
-          </p>
-          <a
-            href={getPath("/posts/operacion-renta-f22-checklist/")}
-            class="mt-3 inline-block text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-          >
-            Ir al checklist F22
-          </a>
-        </article>
-
-        <article class="rounded-xl border border-border p-5">
-          <h3 class="mb-2 text-lg font-semibold">
-            Ya declaraste y no te cuadra la devolución
-          </h3>
-          <p class="text-sm text-secondary">
-            Revisa primero calendario, estado y causales de compensación.
-          </p>
-          <a
-            href={getPath("/posts/devolucion-impuestos-fechas-compensaciones/")}
-            class="mt-3 inline-block text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-          >
-            Ver guía de devolución
-          </a>
-        </article>
-
-        <article class="rounded-xl border border-border p-5">
-          <h3 class="mb-2 text-lg font-semibold">
-            Trabajas a honorarios y quieres estimar líquido
-          </h3>
-          <p class="text-sm text-secondary">
-            Prioriza retención vigente, cobertura anual y casos exentos antes de
-            decidir.
-          </p>
-          <a
-            href={getPath("/posts/boleta-honorarios-2026-retencion-cobertura/")}
-            class="mt-3 inline-block text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-          >
-            Ver guía de boletas 2026
-          </a>
-        </article>
-
-        <article class="rounded-xl border border-border p-5">
-          <h3 class="mb-2 text-lg font-semibold">
-            Tienes observaciones y dudas de rectificatoria
-          </h3>
-          <p class="text-sm text-secondary">
-            Vuelve a la guía del F22 y revisa cuándo conviene reemplazar o
-            rectificar.
-          </p>
-          <a
-            href={getPath("/posts/operacion-renta-f22-checklist/")}
-            class="mt-3 inline-block text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-          >
-            Revisar guía del F22
-          </a>
-        </article>
-      </div>
+      <h2 class="mb-4 text-2xl font-bold">No mezcles estas decisiones</h2>
+      <ul class="list-disc space-y-2 pl-6 text-secondary">
+        <li>
+          Declarar el F22 y corregir observaciones es la misma conversación: no
+          necesitas otra salida aparte del checklist principal.
+        </li>
+        <li>
+          Devolución no es lo mismo que declaración aceptada: cambia de ruta
+          solo cuando el problema ya es pago, estado o compensación.
+        </li>
+        <li>
+          Honorarios no se resuelven mirando F22 si tu duda principal es cuánto
+          líquido recibes hoy y cómo opera la retención vigente.
+        </li>
+      </ul>
     </section>
 
     <section class="border-b border-border py-8">

@@ -9,10 +9,17 @@ interface Props {
   currentSlug: string;
   currentTags: string[];
   allPosts: CollectionEntry<"blog">[];
+  excludedSlugs?: string[];
 }
 
-const { currentSlug, currentTags, allPosts } = Astro.props as Props;
+const {
+  currentSlug,
+  currentTags,
+  allPosts,
+  excludedSlugs = [],
+} = Astro.props as Props;
 const normalizedCurrentTags = currentTags.map(tag => tag.toLowerCase());
+const excludedSlugSet = new Set(excludedSlugs);
 
 const normalizedPosts = allPosts.map(post => ({
   post,
@@ -21,7 +28,10 @@ const normalizedPosts = allPosts.map(post => ({
 
 const candidatePosts = normalizedPosts.filter(
   ({ article }) =>
-    article.slug !== currentSlug && !article.draft && !article.unlisted
+    article.slug !== currentSlug &&
+    !excludedSlugSet.has(article.slug) &&
+    !article.draft &&
+    !article.unlisted
 );
 
 const scoredPosts = candidatePosts.map(item => {

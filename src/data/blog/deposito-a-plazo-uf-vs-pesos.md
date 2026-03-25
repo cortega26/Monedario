@@ -139,7 +139,6 @@ Llévalas a una misma base temporal y calcula el resultado estimado para el mism
 
 </details>
 
-
 ## Siguiente lectura
 
 Si quieres integrar esta decisión en una estrategia más amplia de instrumentos y costos, vuelve a la guía general: [Ahorro e inversión en Chile: instrumentos, costos e impuestos (guía 2026)](/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/).
@@ -150,7 +149,7 @@ Si quieres integrar esta decisión en una estrategia más amplia de instrumentos
 - CMF Educa, Depósitos a plazo (definiciones y plazos mínimos): https://www.cmfchile.cl/educa/621/w3-article-27170.html
 - SII FAQ, obligación de declarar rentas de inversiones: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0597.htm
 
-## Vigencia y actualización
+## Información de vigencia
 
 - Revisado el: 2026-02-28.
 - Puede quedar desactualizado cuando: cambios en metodología oficial de UF, modificaciones regulatorias de DAP o cambios en criterios tributarios aplicables.

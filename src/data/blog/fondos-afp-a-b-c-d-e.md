@@ -44,11 +44,11 @@ Cuando te afilias a una AFP, tu dinero no queda guardado en una caja fuerte —s
 
 Aquí te explicamos qué es cada fondo, sin tecnicismos.
 
-## Si tu duda real es otra, cambia de pieza ahora
+## Si tu duda real es otra, cambia de tema ahora
 
-- **Quieres entender la transición 2027+ y no solo elegir fondo hoy:** revisa la [reforma previsional 2025](/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/).
-- **Tu decisión es tributaria y no de riesgo:** sal a [APV](/posts/que-es-el-apv/) o al [simulador APV](/calculadoras/apv/).
-- **Tu pregunta ya es cuánto podrías acumular al jubilar:** usa el [simulador de jubilación](/calculadoras/simulador-jubilacion/).
+- **Quieres entender la transición 2027+ y no solo elegir fondo hoy:** cambia a una guía de reforma previsional.
+- **Tu decisión es tributaria y no de riesgo:** cambia a una guía o simulador de APV.
+- **Tu pregunta ya es cuánto podrías acumular al jubilar:** cambia a una proyección previsional.
 
 ## Qué cambia entre 2025 y 2027
 
@@ -58,7 +58,7 @@ Este artículo mantiene la explicación histórica de multifondos A-E, pero debe
   - Los multifondos **A, B, C, D y E siguen vigentes** y puedes elegir/cambiar fondo como hasta ahora.
   - La cotización adicional del empleador ya comenzó en **1%** (agosto 2025), sin descuento adicional a tu sueldo líquido.
 - **Qué cambia después (2027 en adelante):**
-  - Desde **abril de 2027** empieza el paso a **fondos generacionales**. [Lee la guía completa de la reforma previsional 2025](/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/) para entender el cronograma y el impacto del 7% del empleador.
+  - Desde **abril de 2027** empieza el paso a **fondos generacionales**. Conviene revisar ese cronograma por separado para no mezclar transición del sistema con elección de fondo vigente hoy.
   - En paralelo, desde **agosto de 2027** el aporte adicional del empleador sube a **3,5%**, dentro del calendario que llega a 7%.
 
 Calendario resumido:
@@ -205,9 +205,9 @@ El Fondo C concentra la mayor parte de los afiliados, en parte porque es el fond
 
 </details>
 
-Para convertir esta elección en una decisión completa, cruza esta guía con [cómo cambiarte de AFP](/posts/como-cambiarse-de-afp/) y con el desglose de [cuánto descuenta la AFP de tu sueldo](/posts/cuanto-descuenta-la-afp-de-tu-sueldo/).
+Para convertir esta elección en una decisión completa, cruza esta guía con una decisión de administradora o con un desglose de cotización solo si esa pregunta realmente cambió.
 
-Si quieres salir de la lógica "fondo por fondo" y mirar el cambio estructural del sistema, vuelve a la [guía de reforma previsional 2025](/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/).
+Si quieres salir de la lógica "fondo por fondo" y mirar el cambio estructural del sistema, cambia después a una guía de reforma previsional.
 
 ### Fuentes oficiales para el bloque 2025-2027
 

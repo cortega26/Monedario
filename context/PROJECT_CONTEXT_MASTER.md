@@ -1,5 +1,52 @@
 # PROJECT_CONTEXT_MASTER
 
+### Checkpoint 2026-03-25 (Critical IA Remediation Round 6)
+
+- `src/data/blog/que-es-el-apv.mdx`, `src/data/blog/que-es-la-cuenta-2-afp.md`, `src/data/blog/fondos-afp-a-b-c-d-e.md` y `src/data/blog/reforma-previsional-2025-que-cambia-y-como-te-afecta.md` cierran la ronda crítica de previsión: se eliminan rutas inline/contextuales redundantes y se deja solo el patrón tolerable de siguiente paso secuencial donde todavía aplica.
+- La verificación de residuos en deuda, sueldo y previsión muestra que los dobles restantes ya no provienen de competencia editorial interna, sino de navegación legítima (`articleLead`, `article-nav` o retorno al hub), por lo que `SA-011`, `SA-012` y `SA-013` salen del estado crítico abierto.
+- `docs/editorial/BACKLOG_SITE_AUDIT.md` se actualiza para reflejar que el remanente prioritario ya no es limpieza de clusters concretos, sino la política sistémica visible de ownership y budget de salidas (`SA-008`, `SA-014`, `SA-015`).
+- El siguiente paso lógico deja de ser otra ronda de limpieza por clusters: lo abierto ahora es sistémico, con prioridad en `SA-008` (budget visible de salidas) y `SA-014` (traducción UX de roles `owner` / `support` / `reference` / `tool`); `SA-015` queda como clarificación complementaria de superficies de soporte.
+- Validación final de cierre: `build`, `astro check`, `check:urls`, `check:no-postid-urls`, `check:routes`, `check:rss`, `lint` y el test de homepage quedan alineados; persisten como deuda preexistente `TD-0030` (dos assertions incorrectas en `FinancialUseCases.regression.test.ts`) y `TD-0032` (`format:check` fuera de presupuesto por drift de Prettier).
+
+### Checkpoint 2026-03-25 (Critical IA Remediation Round 5)
+
+- `src/layouts/PostDetails.astro` deja de renderizar tarjetas contextuales que repiten destinos ya usados por `articleLead`, aplicando una contención sistémica útil también para el cluster sueldo.
+- `src/data/blog/como-calcular-sueldo-liquido.md`, `src/data/blog/liquidacion-de-sueldo.md`, `src/data/blog/descuentos-de-sueldo.md` y `src/data/blog/cuanto-descuenta-la-afp-de-tu-sueldo.md` eliminan enlaces inline redundantes que reinyectaban el mismo owner o la misma calculadora ya expuestos por la interfaz.
+- Verificación renderizada posterior al build: el cluster sueldo baja desde 3-4 repeticiones por destino a una presencia principalmente única por owner, con residuos acotados todavía abiertos en `SA-012`.
+
+### Checkpoint 2026-03-25 (Critical IA Remediation Round 4)
+
+- `src/utils/homepage.ts` cambia la lógica del rail de hubs para excluir el cluster ya dominante en hero y los clusters ya visibles en recientes antes de completar el resto de la selección.
+- `src/pages/index.astro` reescribe el rail lateral para explicitar su nueva función: complementar el hero y las publicaciones recientes, no repetirlas.
+- Verificación renderizada posterior al build: la portada conserva una historia principal, tres recientes y un rail de hubs complementarios, cerrando `SA-009` como problema de sobrepromoción estructural en la home.
+
+### Checkpoint 2026-03-25 (Critical IA Remediation Round 3)
+
+- `src/pages/leyes/index.astro` elimina la duplicación mecánica título+CTA por ficha: cada ley queda con una sola salida interna primaria y un enlace aparte al texto oficial.
+- `src/pages/guias/ahorro-e-inversion/index.astro`, `src/pages/guias/seguridad-financiera/index.astro`, `src/pages/guias/empleo-ingresos/index.astro` y `src/pages/guias/uf-costo-de-vida/index.astro` pierden la segunda capa clickeable redundante y pasan a un patrón consistente: una sola matriz de rutas + una capa secundaria no enlazada para orientar o separar casos.
+- Verificación renderizada posterior al build: en estas cinco superficies los destinos principales auditados aparecen una sola vez por vista, cerrando `SA-003`, `SA-004`, `SA-005`, `SA-006` y `SA-010`.
+
+### Checkpoint 2026-03-25 (Critical IA Remediation Round 2)
+
+- `src/layouts/PostDetails.astro` ahora excluye de `RelatedPosts` los slugs ya expuestos como navegación anterior/siguiente y los destinos ya ocupados por `articleLead` o secciones contextuales, reduciendo reinyectado redundante en una misma vista.
+- `src/config/deudaClusterLinks.ts` recorta el cluster deuda a una sola capa contextual breve por owner y elimina constantes sin uso; el patrón deja de comportarse como malla circular sin presupuesto visible.
+- `src/data/blog/cae-costo-real-credito-chile.md` y `src/data/blog/renegociacion-superir.md` eliminan enlaces inline y cierres redundantes que repetían CTAs ya presentes en intro o contexto.
+- El render de deuda baja de duplicaciones severas a un estado contenido pero todavía no objetivo; `SA-008` y `SA-011` siguen abiertos como trabajo de afinamiento, no como descontrol sistémico inmediato.
+
+### Checkpoint 2026-03-25 (Critical IA Remediation Round 1)
+
+- `src/pages/guias/impuestos-personas/index.astro` deja de duplicar el owner F22: el hub queda consolidado en una sola capa principal de decisión y un bloque de no mezclar.
+- `src/pages/guias/pensiones-afp/index.astro` deja el patrón inflado `hero + core + listado + empieza aquí + related duplicado` y pasa a una estructura más limpia: intro, núcleo previsional, comparaciones cercanas y errores de clasificación.
+- `src/pages/calculadoras/index.astro` cambia la capa superior desde una lista de calculadoras repetidas a un selector por familias, para que la decisión primaria ocurra una sola vez.
+- `src/components/CalculatorCard.astro` y `src/components/ContextLinkSection.astro` incorporan mitigaciones iniciales contra duplicación de salidas dentro de una misma vista, pero la política sistémica completa sigue abierta en `SA-008` / `TD-0031`.
+
+### Checkpoint 2026-03-25 (Site IA / Editorial Diffusion Audit Baseline)
+
+- Se incorpora una auditoría integral de arquitectura editorial, carga cognitiva y difusión interna en `docs/editorial/SITE_AUDIT_2026-03-25.md`.
+- Se crea backlog persistente de remediación en `docs/editorial/BACKLOG_SITE_AUDIT.md`, con foco en duplicación de salidas, inflación de CTAs, competencia entre owners y sobrerrepresentación de clusters.
+- La auditoría deja explícito que la política de ownership editorial ya es más madura que su representación visible en UX: el riesgo actual está en hubs inflados, índices redundantes y módulos contextuales que reinyectan rutas vecinas.
+- Se registra deuda transversal `TD-0031` en `docs/TECH_DEBT_BACKLOG.md` para tratar el problema como riesgo sistémico de arquitectura visible, no como suma de defectos locales.
+
 ### Checkpoint 2026-03-22 (Editorial Volatile Data Pipeline)
 
 - Se agrega un registro central de datasets volátiles en `src/config/editorial-volatile-data-registry.json`.

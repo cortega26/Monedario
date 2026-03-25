@@ -67,6 +67,7 @@ Ejemplo simple oficial (SII) con la tasa 2026:
 4. Confirma tu afiliación previsional/salud al cierre del año base.
 
 Datos mínimos para no perderte:
+
 - Total bruto anual boleteado (año base).
 - Retenciones acumuladas.
 - Tu situación previsional (pensionado, exención u otras causales).
@@ -143,7 +144,7 @@ No. ChileAtiende informa que para este cálculo se usa 80% del total bruto anual
 - Ley N° 21.133 (BCN): https://www.bcn.cl/leychile/navegar?idNorma=1128420
 - SII, Operación Renta Personas (flujo anual de declaración): https://www.sii.cl/destacados/renta/2025/index_personas2025.html
 
-## Vigencia y actualización
+## Información de vigencia
 
 - Revisado el: 2026-03-02.
 - Puede quedar desactualizado cuando: cambios en porcentaje de retención, ajustes a cobertura anual o modificaciones legales/publicación de nuevas instrucciones SII.

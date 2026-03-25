@@ -101,9 +101,9 @@ Los reportes de Equifax y empresas similares combinan distintas fuentes: Boletí
 
 Tener el reporte no es el final del proceso. Dependiendo de lo que encuentres, el siguiente paso cambia:
 
-**El CMF muestra deudas vigentes que reconoces y quieres ordenar.** Parte por calcular el costo real antes de repactar o prepagar. La [calculadora de crédito de consumo](/calculadoras/credito-consumo/) sirve para estimar el costo de distintos escenarios.
+**El CMF muestra deudas vigentes que reconoces y quieres ordenar.** El siguiente paso ya no es pedir otro reporte, sino medir el costo real de tus opciones antes de repactar o prepagar.
 
-**Tienes varias deudas morosas y ya no puedes sostener los pagos.** Antes de pagar o repactar de forma desesperada, revisa si calificas para la [renegociación en Superir](/posts/renegociacion-superir/), que es gratuita y puede darte condiciones mejores que las que ofrece cada acreedor por separado.
+**Tienes varias deudas morosas y ya no puedes sostener los pagos.** Antes de pagar o repactar de forma desesperada, cambia desde la lógica de reporte a una lógica de salida formal.
 
 **Aparece una deuda o producto que no reconoces.** No la pagues ni la negocies antes de reclamar. Contacta a la institución que figura como acreedora, pide el detalle del producto y deja el reclamo por escrito con número de folio. Si la institución está supervisada por la CMF y no responde, puedes escalar directamente a la CMF.
 
@@ -126,7 +126,7 @@ Parte por el Informe de Deudas CMF para descartar deudas financieras activas. Lu
 **¿Puedo eliminar mis antecedentes del DICOM?**
 Depende del tipo de antecedente. Una deuda pagada en el sistema CMF deja de aparecer como activa. Un protesto en el Boletín Comercial requiere solicitud formal de eliminación una vez pagado. Un antecedente en un reporte privado sigue reglas de la empresa que lo emite, dentro de lo que permite la ley.
 
-Para entender en detalle cómo funcionan los tres sistemas y cuánto tiempo permanece cada tipo de antecedente, la guía completa de [Informe de deudas CMF vs DICOM](/posts/informe-deudas-cmf-vs-dicom/) desarrolla cada punto con más profundidad.
+Si tu problema real son deudas financieras activas dentro del sistema supervisado, cambia a la guía completa del Informe de Deudas CMF. Si el problema ya es morosidad o salida formal, conviene cambiar de ruta otra vez y no seguir acumulando reportes.
 
 ---
 

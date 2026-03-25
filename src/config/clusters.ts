@@ -45,55 +45,62 @@ export const GUIDE_HUBS: Record<HubCluster, GuideHubMeta> = {
     descripcion:
       "Sección sobre previsión obligatoria en Chile: cotización, fondos y decisiones que afectan tu pensión futura.",
     capa: "prevision",
-    homepageResumen: "Cotizaciones, fondos, APV y cambios de AFP.",
+    homepageResumen:
+      "¿Cuánto cotizas, en qué fondo estás y cómo te afecta la reforma?",
   },
   "ahorro-e-inversion": {
     nombre: "Ahorro e inversión",
     descripcion:
       "Sección para aprender a ahorrar e invertir según instrumento, costo, impuestos y plazo.",
     capa: "ahorro-inversion",
-    homepageResumen: "Depósitos, fondos, ETF y decisiones de largo plazo.",
+    homepageResumen:
+      "¿Dónde poner el excedente según plazo, riesgo e impuestos?",
   },
   "impuestos-personas": {
     nombre: "Impuestos para personas",
     descripcion:
       "Sección para declarar renta, revisar devoluciones y entender tus principales dudas tributarias.",
     capa: "impuestos",
-    homepageResumen: "Operación Renta, boletas y devoluciones.",
+    homepageResumen:
+      "¿Cómo declarar, cuándo hay devolución y qué pagar como independiente?",
   },
   "deuda-credito": {
     nombre: "Deuda y crédito",
     descripcion:
       "Sección para entender el CAE, revisar tus deudas y tomar mejores decisiones de crédito.",
     capa: "deuda",
-    homepageResumen: "CAE, informe CMF y renegociación.",
+    homepageResumen: "¿Cuánto te cuesta la deuda real y cómo salir de ella?",
   },
   "uf-costo-de-vida": {
     nombre: "UF, inflación y costo de vida",
     descripcion:
       "Sección para entender cómo se conectan UF, IPC y reajustes con tu bolsillo, tu arriendo y otros contratos indexados.",
     capa: "bolsillo",
-    homepageResumen: "UF, IPC, reajustes y herramientas para aterrizar montos.",
+    homepageResumen:
+      "¿Cómo afecta la UF y la inflación a tu arriendo y contratos?",
   },
   "empleo-ingresos": {
     nombre: "Empleo e ingresos",
     descripcion:
       "Sección para cesantía, licencias médicas, finiquito y otros problemas que afectan tu ingreso laboral.",
     capa: "ingresos",
-    homepageResumen: "Cesantía, finiquito y continuidad de ingresos.",
+    homepageResumen:
+      "¿Qué pasa con tu ingreso si te despiden, renuncias o te enfermas?",
   },
   "sueldo-remuneraciones": {
     nombre: "Sueldo y remuneraciones",
     descripcion:
       "Sección para entender tu sueldo líquido, la liquidación y los descuentos de cada mes.",
     capa: "ingresos",
-    homepageResumen: "Sueldo líquido, descuentos y liquidación mensual.",
+    homepageResumen:
+      "¿Por qué tu sueldo líquido es menor que el bruto y qué descuentan?",
   },
   "seguridad-financiera": {
     nombre: "Seguridad financiera",
     descripcion:
       "Sección para fraudes, cargos no reconocidos y protección de tus cuentas frente a suplantaciones o estafas.",
     capa: "otros",
-    homepageResumen: "Fraudes, suplantación y reacción rápida ante cargos.",
+    homepageResumen:
+      "¿Qué hacer si detectas un cargo no reconocido o suplantación?",
   },
 };

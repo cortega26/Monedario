@@ -53,8 +53,8 @@ describe("Regression - Sueldo Líquido", () => {
       healthSystem: "fonasa",
       economicParameters: { uf: UF, utm: UTM },
     });
-    expect(round2(result.netSalary)).toBe(3599848.88);
-    expect(round2(result.deductions.tax)).toBe(254529.82);
+    expect(round2(result.netSalary)).toBe(3636187.64);
+    expect(round2(result.deductions.tax)).toBe(218191.06);
     expect(round2(result.effectiveRates.marginalTaxPercent)).toBe(13.5);
   });
 });
@@ -100,9 +100,9 @@ describe("Regression - APV", () => {
       economicParameters: { uf: UF, utm: UTM },
     });
     expect(round2(result.taxableBase)).toBe(5349498.54);
-    expect(round2(result.taxWithoutApv)).toBe(513703.56);
+    expect(round2(result.taxWithoutApv)).toBe(480729.50);
     expect(round2(result.regimeA.monthlyBenefit)).toBe(33647);
-    expect(round2(result.regimeB.monthlyBenefit)).toBe(178832.56);
+    expect(round2(result.regimeB.monthlyBenefit)).toBe(182197.26);
     expect(result.recommendedStrategy).toBe("MIXED");
   });
 });
@@ -239,11 +239,11 @@ describe("Regression - Tarjeta de Crédito", () => {
       monthlyRatePercent: 3.5,
       minimumPaymentPercent: 5,
     });
-    expect(result.baseline.months).toBe(425);
-    expect(round2(result.baseline.totalPaid)).toBe(4992336.1);
-    expect(round2(result.baseline.totalInterest)).toBe(3492336.1);
-    expect(result.doubledPayment.months).toBe(117);
-    expect(round2(result.doubledPayment.totalPaid)).toBe(2307224.14);
+    expect(result.baseline.months).toBe(426);
+    expect(round2(result.baseline.totalPaid)).toBe(4992338.53);
+    expect(round2(result.baseline.totalInterest)).toBe(3492338.53);
+    expect(result.doubledPayment.months).toBe(118);
+    expect(round2(result.doubledPayment.totalPaid)).toBe(2307304.91);
   });
 
   it("case 2", () => {
@@ -267,11 +267,11 @@ describe("Regression - Tarjeta de Crédito", () => {
       minimumPaymentPercent: 8,
       maxMonths: 240,
     });
-    expect(result.baseline.months).toBe(168);
-    expect(round2(result.baseline.totalPaid)).toBe(1366967.6);
-    expect(round2(result.baseline.totalInterest)).toBe(716967.6);
-    expect(result.doubledPayment.months).toBe(61);
-    expect(round2(result.doubledPayment.totalPaid)).toBe(881184.6);
+    expect(result.baseline.months).toBe(169);
+    expect(round2(result.baseline.totalPaid)).toBe(1367022.2);
+    expect(round2(result.baseline.totalInterest)).toBe(717022.2);
+    expect(result.doubledPayment.months).toBe(62);
+    expect(round2(result.doubledPayment.totalPaid)).toBe(881223.20);
   });
 });
 

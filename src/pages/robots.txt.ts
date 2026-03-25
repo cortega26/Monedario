@@ -12,7 +12,7 @@ Allow: /
 Disallow: ${BASE}/og.png
 Disallow: ${BASE}/pagefind/
 
-# /search/ y /tags/ quedan crawlables para que los bots vean el noindex
+# /buscar/, /search/ y /tags/ quedan crawlables para que los bots vean el noindex
 # pero se excluyen del sitemap y de los objetivos de indexación.
 
 # La URL canónica del sitio está en el sitemap

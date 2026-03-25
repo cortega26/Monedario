@@ -45,11 +45,31 @@ function makePost(
 describe("homepage content helpers", () => {
   it("does not contain internal editorial-facing homepage copy", () => {
     const source = readFileSync("src/pages/index.astro", "utf8");
+    const calcSource = readFileSync("src/pages/calculadoras/index.astro", "utf8");
 
     expect(source).not.toMatch(/taxonom[ií]a de Monedario/i);
     expect(source).not.toMatch(/apertura editorial/i);
-    expect(source).not.toMatch(/lo dej[ée]/i);
+    expect(source).not.toMatch(/lo dej[eé]/i);
     expect(source).not.toMatch(/abrir la portada con m[aá]s amplitud/i);
+    // Audit 2026-03-24: metamessage guards
+    expect(source).not.toMatch(/Abre la portada/i);
+    expect(source).not.toMatch(/Actualizaciones que ampl[ií]an la portada/i);
+    expect(source).not.toMatch(/lista m[aá]s compacta.*grilla de cajas/i);
+    expect(source).not.toMatch(/del texto al n[uú]mero/i);
+    expect(calcSource).not.toMatch(/portafolio ya no est[aá] ordenado/i);
+    expect(calcSource).not.toMatch(/herramientas activas/i);
+  });
+
+  it("does not contain internal template labels in ArticleDecisionIntro", () => {
+    const source = readFileSync(
+      "src/components/ArticleDecisionIntro.astro",
+      "utf8"
+    );
+    expect(source).not.toMatch(/>\s*Respuesta r[aá]pida\s*</i);
+    expect(source).not.toMatch(/>\s*Vigencia\s*</i);
+    // Note: \bUso\b to avoid matching 'Uso' inside longer words
+    expect(source).not.toMatch(/>\s*Uso\s*</i);
+    expect(source).not.toMatch(/>\s*Fuentes\s*<\/p>/i);
   });
 
   it("does not contain internal editorial-facing release notes in reader-facing content", () => {
@@ -192,10 +212,10 @@ describe("homepage content helpers", () => {
     const rail = getHomepageHubRail("sueldo-remuneraciones", recentPosts, 4);
 
     expect(rail.map(entry => entry.slug)).toEqual([
-      "sueldo-remuneraciones",
-      "ahorro-e-inversion",
-      "deuda-credito",
-      "seguridad-financiera",
+      "empleo-ingresos",
+      "pensiones-afp",
+      "uf-costo-de-vida",
+      "impuestos-personas",
     ]);
   });
 });

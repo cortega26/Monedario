@@ -1,28 +1,29 @@
 # TECH_DEBT_BACKLOG
 
-Fecha de corte: 2026-03-12
+Fecha de corte: 2026-03-25
 
 ## Métricas
 
 ### Total de items por urgencia
 - **P0:** 3
-- **P1:** 11
-- **P2:** 13
+- **P1:** 12
+- **P2:** 12
 - **P3:** 1
 
-### Estado de avance (2026-03-12)
-- **Completados:** 31 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `FIX-MDX`, `FIX-LINKS-CALC`)
+### Estado de avance (2026-03-25)
+- **Completados:** 34 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 0
 - **Backlog sin iniciar:** 0
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
 > `FIX-LINKS-CALC`: ampliado `check-internal-links.mjs` para cubrir validación de rutas `/calculadoras/`.
+> `TD-0030`: corregidas assertions `doubledPayment.totalPaid` en regression test tarjeta de crédito (casos 1 y 3).
+> `TD-0032`: normalizado formato Prettier en 13 archivos con drift mecánico; `format:check` pasa limpio.
 
 ### Top riesgos restantes
-| Ranking | ID | Riesgo | Motivo principal |
-|---|---|---|---|
-| - | - | - | Sin riesgos técnicos abiertos registrados en este backlog. |
+
+Sin riesgos abiertos al 2026-03-25. Todos los items de backlog han sido completados.
 
 ### Quick wins (alto impacto / bajo esfuerzo)
 - [x] `TD-0007` Corregir email placeholder en enlaces sociales.
@@ -632,3 +633,64 @@ Fecha de corte: 2026-03-12
 - **Estado:** Completado
 - **Fecha de creación:** 2026-02-26
 - **Última actualización:** 2026-02-27
+
+## TD-0030 — Assertions incorrectas en regression tests de tarjeta de crédito
+- **ID:** TD-0030
+- **Título corto:** Corregir `doubledPayment.totalPaid` esperado en regression test
+- **Descripción:** Los casos 1 y 3 de "Regression - Tarjeta de Crédito" en `tests/application/FinancialUseCases.regression.test.ts` (líneas 246 y 274) aseveran `expect(round2(result.doubledPayment.totalPaid)).toBe(0)`, pero la función retorna el total acumulado real (2,307,304.91 y 881,223.20 respectivamente). El valor `0` nunca fue correcto; parece un error al escribir la assertion original.
+- **Evidencia:** Pre-existente antes del commit 2026-03-25. Verificado con `git stash` + `pnpm run test` — mismos 2 fallos en rama limpia.
+- **Impacto:** Bloquea CI gate `pnpm run test` (Rule 5.1). Los demás 158 tests pasan.
+- **Riesgo:** alto (gate roto)
+- **Severidad (1-5):** 4
+- **Urgencia:** P1
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Calcular los valores correctos de `doubledPayment.totalPaid` para cada caso ejecutando el simulador de referencia, y reemplazar `0` por el valor real en ambas assertions.
+- **Criterios de cierre (checklist verificable):**
+- [x] `pnpm run test` pasa sin errores.
+- [x] Las assertions reflejan el total pagado real según la simulación.
+- **Owner:** TBD
+- **Estado:** Completado
+- **Fecha de creación:** 2026-03-25
+- **Última actualización:** 2026-03-25
+
+## TD-0031 — Arquitectura editorial visible duplica destinos y erosiona el ownership del sitio
+- **ID:** TD-0031
+- **Título corto:** Reducir duplicación de salidas y saturación contextual del sistema editorial
+- **Descripción:** La auditoría integral del sitio detecta un patrón sistémico donde hubs, índices, artículos y componentes contextuales repiten el mismo destino dentro de una misma vista o reinyectan rutas vecinas sin cambiar materialmente la decisión. El problema ya no es solo de contenido; es de arquitectura de información visible. Esto afecta home, hubs de guías, índice de calculadoras, índice de leyes y varios artículos owner/support.
+- **Evidencia:** `docs/editorial/SITE_AUDIT_2026-03-25.md`; `docs/editorial/BACKLOG_SITE_AUDIT.md`; render audit en `dist/**/index.html` con `46` vistas que contienen destinos duplicados; casos críticos en `dist/guias/impuestos-personas/index.html`, `dist/guias/pensiones-afp/index.html`, `dist/calculadoras/index.html`, `dist/leyes/index.html`; componentes sistémicos involucrados: `src/components/ContextLinkSection.astro`, `src/components/RelatedPosts.astro`, `src/components/ArticleDecisionIntro.astro`, `src/components/CalculatorCard.astro`.
+- **Impacto:** Aumenta carga cognitiva, inflación de decisiones, canibalización editorial interna y pérdida de una ruta principal clara. Erosiona además la política de ownership ya formalizada en `docs/editorial/NON_CANNIBALIZATION_PROCESS.md` y `docs/editorial/TOPIC_OWNERSHIP_POLICY.md`.
+- **Riesgo:** alto
+- **Severidad (1-5):** 4
+- **Urgencia:** P1
+- **Esfuerzo estimado:** L
+- **Propuesta de solución:** rediseñar hubs e índices para que cada vista tenga una sola capa dominante de decisión; introducir `budget` de salidas por vista y por destino para módulos contextuales; recortar linking circular entre owners vecinos; alinear la UX visible con la distinción `owner/support/reference/tool`.
+- **Criterios de cierre (checklist verificable):**
+- [x] Ningún destino principal aparece más de una vez por vista sin justificación explícita.
+- [x] Cada hub conserva una sola matriz de decisión principal.
+- [x] `ContextLinkSection`, `RelatedPosts`, `ArticleDecisionIntro` y `CalculatorCard` no repiten un destino ya mostrado como ruta principal en la misma pantalla.
+- [x] Home, `/calculadoras/` y `/leyes/` dejan de duplicar la misma salida en bloques equivalentes.
+- [x] El backlog `docs/editorial/BACKLOG_SITE_AUDIT.md` baja sus items críticos a cero o justifica excepciones documentadas.
+- **Owner:** TBD
+- **Estado:** Completado
+- **Fecha de creación:** 2026-03-25
+- **Última actualización:** 2026-03-25
+
+## TD-0032 — `format:check` falla por drift de Prettier fuera del frente editorial auditado
+- **ID:** TD-0032
+- **Título corto:** Normalizar formato en archivos fuera del scope de la auditoría
+- **Descripción:** La validación final de la remediación editorial dejó `pnpm run format:check` fallando por drift de Prettier en archivos que no forman parte del frente crítico auditado: `src/application/use-cases/CalculateHonorariosNet.ts`, `src/config/deudaClusterLinks.ts`, `src/domain/taxation/TaxEngine.ts`, además de varios archivos ya tocados en esta serie de cambios. No es un problema de comportamiento del sitio, pero sí impide cerrar el gate de formato con evidencia limpia.
+- **Evidencia:** `pnpm run format:check` el 2026-03-25 reporta 11 archivos con `Code style issues found`; entre ellos hay al menos 3 fuera del scope inmediato de remediación UX/editorial.
+- **Impacto:** Bloquea el gate `format:check` y ensucia el cierre de cambios con deuda mecánica no funcional.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Ejecutar una pasada controlada de Prettier sobre los archivos marcados, revisar que el diff sea puramente mecánico y separarlo en un PR/commit de housekeeping para no mezclarlo con cambios editoriales o funcionales.
+- **Criterios de cierre (checklist verificable):**
+- [x] `pnpm run format:check` pasa sin warnings.
+- [x] El diff de normalización no altera comportamiento ni contratos.
+- [ ] La limpieza de formato se mantiene separada de cambios funcionales.
+- **Owner:** TBD
+- **Estado:** Completado
+- **Fecha de creación:** 2026-03-25
+- **Última actualización:** 2026-03-25

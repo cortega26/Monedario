@@ -43,7 +43,7 @@ articleLead:
 
 Cuando comparas créditos, el número que más te empujan es la cuota o la tasa mensual. El problema es que ninguna de esas dos cifras, por sí sola, te dice cuánto terminarás pagando en total. El **CAE** existe precisamente para cerrar esa trampa.
 
-Usa esta guía si todavía estás evaluando una oferta, una repactación o un prepago. Si tu problema ya no es comparar sino ordenar deudas vencidas o ver qué aparece a tu nombre, salta a [Informe de deudas CMF vs DICOM](/posts/informe-deudas-cmf-vs-dicom/) o a [Renegociación Superir](/posts/renegociacion-superir/).
+Usa esta guía si todavía estás evaluando una oferta, una repactación o un prepago. Si tu problema ya no es comparar sino ordenar deudas vencidas o revisar qué aparece a tu nombre, cambia de ruta: primero diagnóstico; después, si corresponde, salida formal.
 
 ## Dos CAE que no tienen nada que ver entre sí
 
@@ -57,8 +57,8 @@ En esta guía, "CAE" siempre se refiere al primer significado: el indicador de c
 ## Esta guía sí te sirve cuando... y cuándo no
 
 - **Sí te sirve** si estás comparando un crédito nuevo, una repactación o un refinanciamiento y quieres separar cuota, tasa, CAE y costo total.
-- **No te alcanza** si el crédito ya está tomado y el problema real es una deuda rotativa o una mora que ya no puedes sostener. En ese caso, mide primero el [costo real de tu tarjeta](/calculadoras/tarjeta-credito/) o revisa si calificas para [renegociación en Superir](/posts/renegociacion-superir/).
-- **Tampoco reemplaza** el diagnóstico de tus acreedores. Si no tienes claro qué deudas vigentes siguen activas, parte por el [Informe de Deudas CMF](/posts/informe-deudas-cmf-vs-dicom/).
+- **No te alcanza** si el crédito ya está tomado y el problema real es una deuda rotativa o una mora que ya no puedes sostener.
+- **Tampoco reemplaza** el diagnóstico de tus acreedores cuando ni siquiera tienes claro qué deudas vigentes siguen activas.
 
 ## Qué es el CAE y por qué existe
 
@@ -209,7 +209,7 @@ En hipotecarios el CAE incluye seguros de incendio y desgravamen. También puede
 - **El CAE ofrecido supera el de otro banco por el mismo monto y plazo:** negocia o cambia de institución. La portabilidad financiera permite llevarte deudas entre bancos.
 - **No entiendes por qué el CAE es distinto en dos sucursales del mismo banco:** pide que te detallen qué seguros u otros costos están incluidos en cada versión.
 - **Quieres saber si tu deuda actual podría exceder el límite legal:** consulta la TMC vigente en la CMF para el segmento de tu crédito y pide el detalle de tasa, intereses y cargos del contrato. No uses el CAE como reemplazo de esa revisión.
-- **Estás sobreendeudado y evalúas consolidar deudas:** antes de repactar, revisa si calificarías para [renegociación en Superir](/posts/renegociacion-superir/), que puede ofrecer condiciones distintas.
+- **Estás sobreendeudado y evalúas consolidar deudas:** sal del modo comparación y revisa primero tu diagnóstico completo de deudas y si existe una salida formal más adecuada.
 
 ## Preguntas frecuentes
 
@@ -232,7 +232,7 @@ Sí, cuando los seguros tienen IVA, el CAE lo incorpora en el cálculo del costo
 Son esencialmente el mismo concepto con distintos nombres en distintos países. En Chile se usa CAE; en otros se usa TCEA (Tasa de Costo Efectivo Anual). La lógica es idéntica: costo anualizado total.
 
 **¿Cómo simulo el CAE antes de contratar?**
-Puedes usar la [calculadora de crédito de consumo](/calculadoras/credito-consumo/) para estimar CAE, cuota y costo total con los datos de tu oferta específica. Los datos de tasa, seguro y gastos los debes obtener del prestamista.
+Usa una calculadora de crédito de consumo para estimar CAE, cuota y costo total con los datos de tu oferta específica. Los datos de tasa, seguro y gastos los debes obtener del prestamista.
 
 ## Fuentes y vigencia normativa
 
@@ -244,9 +244,3 @@ La información de esta guía se basa en la normativa vigente a marzo de 2026. L
 - **CMF Educa — Crédito de consumo y Hoja de Información Precontractual:** [cmfchile.cl/educa](https://www.cmfchile.cl/educa/621/w3-propertyvalue-43579.html)
 
 _Esta guía es educativa y no reemplaza la revisión de tu contrato específico ni asesoría profesional cuando el monto o la complejidad del crédito lo requieran._
-
-## Siguiente lectura
-
-- [Informe de deudas CMF: cómo sacarlo y qué dice (y qué no dice)](/posts/informe-deudas-cmf-vs-dicom/) — para diagnosticar el estado real de tus deudas antes de contratar un nuevo crédito.
-- [Renegociación Superir: requisitos, paso a paso y errores que te rechazan](/posts/renegociacion-superir/) — si ya estás en mora y buscas una salida formal.
-- [Calculadora de crédito de consumo](/calculadoras/credito-consumo/) — simula cuota, CAE y costo total con los datos de tu oferta.

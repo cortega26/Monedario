@@ -58,7 +58,7 @@ const articulosSeccion = [
     </section>
 
     <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">Temas que puedes revisar</h2>
+      <h2 class="mb-4 text-2xl font-bold">Elige por la contingencia laboral</h2>
       <ul class="grid gap-4">
         {
           articulosSeccion.map(item => (
@@ -69,7 +69,7 @@ const articulosSeccion = [
                 href={item.href}
                 class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
               >
-                Leer artículo
+                Ir a esta guía
               </a>
             </li>
           ))
@@ -78,37 +78,19 @@ const articulosSeccion = [
     </section>
 
     <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">Empieza aquí si...</h2>
+      <h2 class="mb-4 text-2xl font-bold">No mezcles estas situaciones</h2>
       <ul class="list-disc space-y-2 pl-6 text-secondary">
         <li>
-          Te quedaste sin trabajo y necesitas liquidez rápida: parte por{" "}
-          <a
-            class="text-accent underline underline-offset-4 hover:opacity-80"
-            href={getPath("/posts/seguro-de-cesantia/")}
-          >
-            seguro de cesantía
-          </a>
-          .
+          Cesantía resuelve caja por pérdida de empleo; no reemplaza revisión de
+          finiquito.
         </li>
         <li>
-          Tienes licencia y no entiendes pagos o rechazos: revisa{" "}
-          <a
-            class="text-accent underline underline-offset-4 hover:opacity-80"
-            href={getPath("/posts/licencia-medica-desde-que-dia-pagan/")}
-          >
-            licencia médica y apelación
-          </a>
-          .
+          Licencia médica es un flujo de subsidio y rechazo administrativo, no
+          un problema de término de contrato.
         </li>
         <li>
-          Estás cerrando contrato y debes firmar finiquito: continúa con{" "}
-          <a
-            class="text-accent underline underline-offset-4 hover:opacity-80"
-            href={getPath("/posts/finiquito-e-indemnizaciones-en-chile/")}
-          >
-            finiquito e indemnizaciones
-          </a>
-          .
+          Si tu duda es sueldo mensual, descuentos o liquidación, esta no es la
+          sección correcta.
         </li>
       </ul>
     </section>

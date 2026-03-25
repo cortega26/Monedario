@@ -123,7 +123,6 @@ El ETF se transa en bolsa en tiempo real; el fondo mutuo opera por valor de cuot
 
 </details>
 
-
 ## Siguiente lectura
 
 Para conectar esta decisión con una estrategia más amplia de instrumentos y objetivos, vuelve a la guía general: [Ahorro e inversión en Chile: instrumentos, costos e impuestos (guía 2026)](/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/).
@@ -135,7 +134,7 @@ Para conectar esta decisión con una estrategia más amplia de instrumentos y ob
 - SII FAQ, obligación de declarar rentas de inversiones: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0597.htm
 - SII FAQ, asistente de enajenación: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8415.htm
 
-## Vigencia y actualización
+## Información de vigencia
 
 - Revisado el: 2026-02-28.
 - Puede quedar desactualizado cuando: cambios en normativa CMF de intermediarios/custodia o ajustes de instrucciones tributarias SII para inversiones.
