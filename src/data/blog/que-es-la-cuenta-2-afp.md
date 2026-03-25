@@ -22,7 +22,7 @@ heroImage: /images/hero/que-es-la-cuenta-2-afp.avif
 
 Cuando la gente habla de su AFP, casi siempre se refiere a la cuenta obligatoria donde va el 10% del sueldo. Pero existe una segunda cuenta —voluntaria, flexible y mucho menos conocida— que puede servir como instrumento de ahorro de mediano plazo con rentabilidades similares a las de tu cotización obligatoria: la **Cuenta 2**, también llamada Cuenta de Ahorro Voluntario (CAV).
 
-En esta guía te explicamos cuándo sirve para ahorro flexible dentro del ecosistema AFP. Si tu foco principal es bajar impuesto mientras ahorras, el owner de esa decisión está en [APV](/posts/que-es-el-apv/) dentro de [ahorro e inversión](/guias/ahorro-e-inversion/). Si quieres ver más temas del sistema previsional, revisa la [sección de pensiones y AFP](/guias/pensiones-afp/).
+En esta guía te explicamos cuándo sirve para ahorro flexible dentro del ecosistema AFP. Si tu foco principal es bajar impuesto mientras ahorras, cambia hacia una decisión tributaria. Si quieres ver más temas del sistema previsional, vuelve al hub del sistema.
 
 ## Tabla de contenidos
 
@@ -107,6 +107,6 @@ El saldo acumulado pasa a formar parte de tu herencia y se distribuye entre tus 
 **¿El saldo de la Cuenta 2 cuenta para acceder a pensión mínima garantizada?**
 No. Los fondos de la Cuenta 2 no se consideran para determinar el derecho a la Garantía Estatal de Pensión Mínima.
 
-Si tu foco es bajar impuestos al ahorrar, revisa [qué es el APV y cómo funciona](/posts/que-es-el-apv/). Y para decidir en qué fondo invertir la Cuenta 2, te sirve la guía de [fondos AFP A, B, C, D y E](/posts/fondos-afp-a-b-c-d-e/).
+Si tu foco es bajar impuestos al ahorrar, cambia a una guía de APV. Y para decidir en qué fondo invertir la Cuenta 2, cambia después a una guía de fondos AFP.
 
 ---

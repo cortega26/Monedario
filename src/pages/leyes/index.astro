@@ -110,12 +110,7 @@ const totalLaws = allLaws.length;
                   {law.data.numero}
                 </p>
                 <h3 class="mb-2 text-base leading-snug font-semibold">
-                  <a
-                    href={getPath(`/leyes/${law.id}/`)}
-                    class="underline-offset-4 transition-colors hover:text-accent hover:underline"
-                  >
-                    {law.data.shortName}
-                  </a>
+                  {law.data.shortName}
                 </h3>
                 <p class="mb-3 line-clamp-2 text-sm leading-relaxed text-secondary">
                   {law.data.description}
@@ -125,7 +120,7 @@ const totalLaws = allLaws.length;
                     href={getPath(`/leyes/${law.id}/`)}
                     class="font-medium text-accent underline-offset-4 hover:underline"
                   >
-                    Ver ficha →
+                    Ver ficha explicada →
                   </a>
                   <a
                     href={law.data.bcnUrl}

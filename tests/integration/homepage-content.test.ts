@@ -212,10 +212,10 @@ describe("homepage content helpers", () => {
     const rail = getHomepageHubRail("sueldo-remuneraciones", recentPosts, 4);
 
     expect(rail.map(entry => entry.slug)).toEqual([
-      "sueldo-remuneraciones",
-      "ahorro-e-inversion",
-      "deuda-credito",
-      "seguridad-financiera",
+      "empleo-ingresos",
+      "pensiones-afp",
+      "uf-costo-de-vida",
+      "impuestos-personas",
     ]);
   });
 });

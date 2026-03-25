@@ -43,7 +43,7 @@ articleLead:
 
 En julio de 2025 se promulgó la reforma previsional más importante en décadas. Cambia cómo se financia tu jubilación, introduce nuevos componentes del Seguro Social y reemplaza los multifondos con un esquema distinto. Como su implementación se despliega por etapas entre 2025 y 2033, conviene entenderla separando con cuidado qué ya opera hoy y qué todavía viene después.
 
-Si quieres entender primero cómo funciona el sistema actual, parte por la [guía de fondos AFP A, B, C, D, E](/posts/fondos-afp-a-b-c-d-e/) o por [cuánto te descuenta la AFP de tu sueldo](/posts/cuanto-descuenta-la-afp-de-tu-sueldo/).
+Si quieres entender primero cómo funciona el sistema actual, conviene separar la elección de fondo vigente del descuento previsional del trabajador antes de volver a esta pieza.
 
 ## Lo esencial en 3 minutos
 
@@ -53,12 +53,12 @@ La reforma tiene **tres grandes cambios**, pero no todos operan igual hoy:
 2. **No todo ese nuevo aporte entra directo a tu cuenta individual.** Hoy solo una fracción de ese nuevo 1% va a tu AFP; el resto alimenta componentes colectivos del nuevo Seguro Social.
 3. **Los multifondos A-E se reemplazan por fondos generacionales.** La transición operativa parte en **abril de 2027**, no antes.
 
-## Si tu pregunta real es una de estas, parte por aquí
+## Si tu pregunta real es una de estas, cambia de tema
 
-- **"¿Me cambia el sueldo líquido hoy?"** No por esta vía. Revisa mejor [cuánto descuenta la AFP de tu sueldo](/posts/cuanto-descuenta-la-afp-de-tu-sueldo/).
-- **"¿Qué fondo AFP me conviene mientras siguen existiendo los A-E?"** Parte por [fondos AFP A, B, C, D y E](/posts/fondos-afp-a-b-c-d-e/).
-- **"¿Mi decisión hoy es tributaria, no de sistema?"** Anda al [APV](/posts/que-es-el-apv/) o directo al [simulador APV](/calculadoras/apv/).
-- **"¿Quiero proyectar cuánto podría acumular?"** Usa el [simulador de jubilación](/calculadoras/simulador-jubilacion/).
+- **"¿Me cambia el sueldo líquido hoy?"** No por esta vía: eso es una pregunta de descuento previsional del trabajador.
+- **"¿Qué fondo AFP me conviene mientras siguen existiendo los A-E?"** Esa es una pregunta de elección de fondo vigente hoy.
+- **"¿Mi decisión hoy es tributaria, no de sistema?"** Esa es una decisión de APV, no de cronograma previsional.
+- **"¿Quiero proyectar cuánto podría acumular?"** Eso requiere una proyección de jubilación, no esta guía calendario.
 
 ---
 

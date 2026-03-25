@@ -107,22 +107,33 @@ export function getHomepageHubRail(
   recentPosts: BlogEntry[],
   maxItems = 5
 ): HomepageHub[] {
-  const clusterSequence = [
-    heroCluster,
-    ...recentPosts.map(post => getCluster(post)),
-    ...GUIDE_HUB_ORDER,
-  ];
-  const seen = new Set<string>();
+  const excludedClusters = new Set<string>(
+    [heroCluster, ...recentPosts.map(post => getCluster(post))].filter(
+      (cluster): cluster is string => Boolean(cluster)
+    )
+  );
   const rail: HomepageHub[] = [];
 
-  for (const cluster of clusterSequence) {
-    if (!cluster || seen.has(cluster) || !(cluster in GUIDE_HUBS)) continue;
+  for (const cluster of GUIDE_HUB_ORDER) {
+    if (excludedClusters.has(cluster) || !(cluster in GUIDE_HUBS)) continue;
 
-    seen.add(cluster);
     const slug = cluster as HubCluster;
     rail.push({ slug, ...GUIDE_HUBS[slug] });
 
     if (rail.length === maxItems) break;
+  }
+
+  if (rail.length < maxItems) {
+    for (const cluster of GUIDE_HUB_ORDER) {
+      if (!(cluster in GUIDE_HUBS) || rail.some(item => item.slug === cluster)) {
+        continue;
+      }
+
+      const slug = cluster as HubCluster;
+      rail.push({ slug, ...GUIDE_HUBS[slug] });
+
+      if (rail.length === maxItems) break;
+    }
   }
 
   return rail;

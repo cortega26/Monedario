@@ -101,17 +101,26 @@ const contextualSections = [
   ...getDeudaArticleSections(article.slug),
 ];
 const articleLead = post.data.articleLead;
-const excludedContextHrefs = new Set<string>();
+const primaryDestinationHrefs = new Set<string>();
 
 if (articleLead?.calculatorHref) {
-  excludedContextHrefs.add(articleLead.calculatorHref);
+  primaryDestinationHrefs.add(articleLead.calculatorHref);
 }
 
 if (articleLead?.nextStepHref) {
-  excludedContextHrefs.add(articleLead.nextStepHref);
+  primaryDestinationHrefs.add(articleLead.nextStepHref);
 }
 
-for (const section of contextualSections) {
+const contextualSectionsWithoutPrimaryDuplicates = contextualSections
+  .map(section => ({
+    ...section,
+    items: section.items.filter(item => !primaryDestinationHrefs.has(item.href)),
+  }))
+  .filter(section => section.items.length > 0);
+
+const excludedContextHrefs = new Set<string>(primaryDestinationHrefs);
+
+for (const section of contextualSectionsWithoutPrimaryDuplicates) {
   for (const item of section.items) {
     excludedContextHrefs.add(item.href);
   }
@@ -200,7 +209,11 @@ const relatedPostsExcludedSlugs = [
       <Content />
     </article>
 
-    {contextualSections.map(section => <ContextLinkSection {...section} />)}
+    {
+      contextualSectionsWithoutPrimaryDuplicates.map(section => (
+        <ContextLinkSection {...section} />
+      ))
+    }
 
     <!-- Author Card -->
     <aside

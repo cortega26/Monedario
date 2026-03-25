@@ -674,3 +674,23 @@ Fecha de corte: 2026-03-25
 - **Estado:** Backlog
 - **Fecha de creación:** 2026-03-25
 - **Última actualización:** 2026-03-25
+
+## TD-0032 — `format:check` falla por drift de Prettier fuera del frente editorial auditado
+- **ID:** TD-0032
+- **Título corto:** Normalizar formato en archivos fuera del scope de la auditoría
+- **Descripción:** La validación final de la remediación editorial dejó `pnpm run format:check` fallando por drift de Prettier en archivos que no forman parte del frente crítico auditado: `src/application/use-cases/CalculateHonorariosNet.ts`, `src/config/deudaClusterLinks.ts`, `src/domain/taxation/TaxEngine.ts`, además de varios archivos ya tocados en esta serie de cambios. No es un problema de comportamiento del sitio, pero sí impide cerrar el gate de formato con evidencia limpia.
+- **Evidencia:** `pnpm run format:check` el 2026-03-25 reporta 11 archivos con `Code style issues found`; entre ellos hay al menos 3 fuera del scope inmediato de remediación UX/editorial.
+- **Impacto:** Bloquea el gate `format:check` y ensucia el cierre de cambios con deuda mecánica no funcional.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Ejecutar una pasada controlada de Prettier sobre los archivos marcados, revisar que el diff sea puramente mecánico y separarlo en un PR/commit de housekeeping para no mezclarlo con cambios editoriales o funcionales.
+- **Criterios de cierre (checklist verificable):**
+- [ ] `pnpm run format:check` pasa sin warnings.
+- [ ] El diff de normalización no altera comportamiento ni contratos.
+- [ ] La limpieza de formato se mantiene separada de cambios funcionales.
+- **Owner:** TBD
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-03-25
+- **Última actualización:** 2026-03-25

@@ -1,5 +1,30 @@
 # PROJECT_CONTEXT_MASTER
 
+### Checkpoint 2026-03-25 (Critical IA Remediation Round 6)
+
+- `src/data/blog/que-es-el-apv.mdx`, `src/data/blog/que-es-la-cuenta-2-afp.md`, `src/data/blog/fondos-afp-a-b-c-d-e.md` y `src/data/blog/reforma-previsional-2025-que-cambia-y-como-te-afecta.md` cierran la ronda crítica de previsión: se eliminan rutas inline/contextuales redundantes y se deja solo el patrón tolerable de siguiente paso secuencial donde todavía aplica.
+- La verificación de residuos en deuda, sueldo y previsión muestra que los dobles restantes ya no provienen de competencia editorial interna, sino de navegación legítima (`articleLead`, `article-nav` o retorno al hub), por lo que `SA-011`, `SA-012` y `SA-013` salen del estado crítico abierto.
+- `docs/editorial/BACKLOG_SITE_AUDIT.md` se actualiza para reflejar que el remanente prioritario ya no es limpieza de clusters concretos, sino la política sistémica visible de ownership y budget de salidas (`SA-008`, `SA-014`, `SA-015`).
+- Validación final de cierre: `build`, `astro check`, `check:urls`, `check:no-postid-urls`, `check:routes`, `check:rss`, `lint` y el test de homepage quedan alineados; persisten como deuda preexistente `TD-0030` (dos assertions incorrectas en `FinancialUseCases.regression.test.ts`) y `TD-0032` (`format:check` fuera de presupuesto por drift de Prettier).
+
+### Checkpoint 2026-03-25 (Critical IA Remediation Round 5)
+
+- `src/layouts/PostDetails.astro` deja de renderizar tarjetas contextuales que repiten destinos ya usados por `articleLead`, aplicando una contención sistémica útil también para el cluster sueldo.
+- `src/data/blog/como-calcular-sueldo-liquido.md`, `src/data/blog/liquidacion-de-sueldo.md`, `src/data/blog/descuentos-de-sueldo.md` y `src/data/blog/cuanto-descuenta-la-afp-de-tu-sueldo.md` eliminan enlaces inline redundantes que reinyectaban el mismo owner o la misma calculadora ya expuestos por la interfaz.
+- Verificación renderizada posterior al build: el cluster sueldo baja desde 3-4 repeticiones por destino a una presencia principalmente única por owner, con residuos acotados todavía abiertos en `SA-012`.
+
+### Checkpoint 2026-03-25 (Critical IA Remediation Round 4)
+
+- `src/utils/homepage.ts` cambia la lógica del rail de hubs para excluir el cluster ya dominante en hero y los clusters ya visibles en recientes antes de completar el resto de la selección.
+- `src/pages/index.astro` reescribe el rail lateral para explicitar su nueva función: complementar el hero y las publicaciones recientes, no repetirlas.
+- Verificación renderizada posterior al build: la portada conserva una historia principal, tres recientes y un rail de hubs complementarios, cerrando `SA-009` como problema de sobrepromoción estructural en la home.
+
+### Checkpoint 2026-03-25 (Critical IA Remediation Round 3)
+
+- `src/pages/leyes/index.astro` elimina la duplicación mecánica título+CTA por ficha: cada ley queda con una sola salida interna primaria y un enlace aparte al texto oficial.
+- `src/pages/guias/ahorro-e-inversion/index.astro`, `src/pages/guias/seguridad-financiera/index.astro`, `src/pages/guias/empleo-ingresos/index.astro` y `src/pages/guias/uf-costo-de-vida/index.astro` pierden la segunda capa clickeable redundante y pasan a un patrón consistente: una sola matriz de rutas + una capa secundaria no enlazada para orientar o separar casos.
+- Verificación renderizada posterior al build: en estas cinco superficies los destinos principales auditados aparecen una sola vez por vista, cerrando `SA-003`, `SA-004`, `SA-005`, `SA-006` y `SA-010`.
+
 ### Checkpoint 2026-03-25 (Critical IA Remediation Round 2)
 
 - `src/layouts/PostDetails.astro` ahora excluye de `RelatedPosts` los slugs ya expuestos como navegación anterior/siguiente y los destinos ya ocupados por `articleLead` o secciones contextuales, reduciendo reinyectado redundante en una misma vista.

@@ -108,7 +108,7 @@ Si la respuesta no llega o no justifica el descuento, el siguiente paso es la In
 
 La liquidación te permite auditar el mes en curso. No dice nada sobre lo que corresponde en un finiquito, no calcula indemnizaciones ni vacaciones proporcionales, y no resuelve conflictos sobre la legalidad de un descuento que ya está judicializado.
 
-Si el problema es reconstruir el sueldo líquido desde el bruto, la [calculadora de sueldo líquido](/calculadoras/sueldo-liquido/) te da eso con el desglose por descuento. Si el problema es entender si un descuento específico corresponde o no, la guía de [descuentos de sueldo](/posts/descuentos-de-sueldo/) tiene la clasificación legal completa.
+Si el problema es reconstruir el sueldo líquido desde el bruto, usa una calculadora con desglose por descuento. Si el problema es entender si una línea específica corresponde o no, cambia a una guía de clasificación legal de descuentos.
 
 ## Preguntas frecuentes
 

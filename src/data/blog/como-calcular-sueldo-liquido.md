@@ -57,7 +57,7 @@ volatileData:
 
 Te ofrecieron $1.200.000 brutos. Llegó el día de pago y te cayeron $950.000. Esta guía existe para rehacer ese cálculo de principio a fin: partir desde el bruto, separar el imponible y llegar al depósito final con AFP, salud, cesantía e impuesto.
 
-Si tu duda principal no es rehacer el número completo, conviene ir a la [guía de descuentos de sueldo](/posts/descuentos-de-sueldo/) para clasificar las líneas o a la [liquidación de sueldo](/posts/liquidacion-de-sueldo/) para auditar el comprobante. Si solo necesitas el número, puedes saltar directo a la calculadora más abajo.
+Si tu duda principal no es rehacer el número completo, conviene separar primero si necesitas clasificar descuentos o auditar el comprobante. Si solo necesitas el número, puedes saltar directo a la calculadora más abajo.
 
 ## La diferencia entre sueldo bruto y sueldo líquido
 
@@ -237,6 +237,6 @@ El SII publica la tabla mensual del Impuesto Único de Segunda Categoría en su 
 - Si te subieron el sueldo y te bajó el líquido, probablemente cruzaste un tramo de impuesto.
 - Puedes reducir legalmente tu impuesto mensual ahorrando en **APV Régimen B**.
 
-Si quieres probar tus números exactos, usa la [calculadora de sueldo líquido](/calculadoras/sueldo-liquido/). Y si necesitas desglosar mejor el componente previsional o la liquidación, revisa también [descuentos de sueldo](/posts/descuentos-de-sueldo/), [liquidación de sueldo](/posts/liquidacion-de-sueldo/) y la guía de [seguro de cesantía](/posts/seguro-de-cesantia/).
+Si quieres probar tus números exactos, usa una calculadora de sueldo líquido. Y si después necesitas desglosar mejor descuentos, comprobante o contingencias de empleo, cambia de ruta según esa necesidad específica.
 
 ---

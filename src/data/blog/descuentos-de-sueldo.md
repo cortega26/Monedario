@@ -103,7 +103,7 @@ Si ves una línea en el primer bloque que no reconoces, o una cifra que no cuadr
 
 Si ves algo en el segundo bloque que no autorizaste, pide el documento de respaldo antes de aceptarlo como correcto.
 
-Para recalcular el número completo con tus datos, la [calculadora de sueldo líquido](/calculadoras/sueldo-liquido/) te da el desglose de cada descuento legal según AFP, sistema de salud y tipo de contrato.
+Para recalcular el número completo con tus datos, usa una calculadora de sueldo líquido con desglose por AFP, salud y tipo de contrato.
 
 ## Preguntas frecuentes
 
