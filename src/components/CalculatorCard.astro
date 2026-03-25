@@ -6,9 +6,10 @@ type Props = {
   calc: CalculatorPortfolioEntry;
   familyId: string;
   tagClass: string;
+  showAlternative?: boolean;
 };
 
-const { calc, familyId, tagClass } = Astro.props;
+const { calc, familyId, tagClass, showAlternative = true } = Astro.props;
 ---
 
 <article
@@ -26,17 +27,7 @@ const { calc, familyId, tagClass } = Astro.props;
     </span>
   </div>
 
-  <h3 class="mt-4 text-lg leading-snug font-semibold">
-    <a
-      href={getPath(calc.href)}
-      class="underline decoration-transparent underline-offset-4 transition-colors hover:text-accent hover:decoration-border"
-      data-analytics-cta="calculator-index"
-      data-analytics-label={calc.title}
-      data-analytics-location={`calculator_family_${familyId}_title`}
-    >
-      {calc.title}
-    </a>
-  </h3>
+  <h3 class="mt-4 text-lg leading-snug font-semibold">{calc.title}</h3>
   <p class="mt-2 text-sm leading-relaxed text-secondary">
     {calc.description}
   </p>
@@ -57,7 +48,7 @@ const { calc, familyId, tagClass } = Astro.props;
   </div>
 
   {
-    calc.related[0] && (
+    showAlternative && calc.related[0] && (
       <div class="mt-4 border-t border-border pt-4 text-sm leading-relaxed text-secondary">
         <span class="font-semibold text-foreground">Cámbiate si:</span>{" "}
         {calc.related[0].when}{" "}

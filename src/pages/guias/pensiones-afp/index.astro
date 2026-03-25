@@ -3,15 +3,11 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
-import { getPath } from "@/utils/getPath";
-import { getHubArticleAssignments } from "@/config/editorial-hub-model.mjs";
 import ContextLinkSection from "@/components/ContextLinkSection.astro";
 import {
   pensionHubPrimaryCards,
   pensionHubRelatedCards,
 } from "@/config/pensionClusterLinks";
-
-const hubAssignments = getHubArticleAssignments("pensiones-afp");
 ---
 
 <Layout
@@ -27,161 +23,42 @@ const hubAssignments = getHubArticleAssignments("pensiones-afp");
         Pensiones y AFP en Chile
       </h1>
       <p class="max-w-3xl text-secondary">
-        Esta página te ayuda a elegir qué leer primero si estás revisando tu
-        AFP, tus fondos, tu Cuenta 2 o cambios previsionales del sistema. Úsala
-        para ir directo al tema que te importa hoy. Si tu foco principal es un
-        instrumento de ahorro con beneficio tributario, el owner vive en ahorro
-        e inversión.
+        Esta página ordena cuatro decisiones distintas: entender la reforma,
+        elegir fondos, cambiarte de AFP o revisar Cuenta 2. Si tu foco
+        principal es APV y beneficio tributario, esa decisión vive fuera del
+        núcleo AFP y aparece más abajo solo como comparación cercana.
       </p>
-    </section>
-
-    <section class="border-b border-border py-8">
-      <div class="grid gap-4 lg:grid-cols-3">
-        <article class="rounded-xl border border-border bg-background p-5">
-          <p
-            class="text-xs font-semibold tracking-[0.16em] text-accent uppercase"
-          >
-            Sobre el sistema previsional
-          </p>
-          <h2 class="mt-3 text-xl font-semibold">Empieza por la reforma</h2>
-          <p class="mt-2 text-sm leading-relaxed text-secondary">
-            Úsala para separar qué cambió hoy, qué entra después y por qué el
-            nuevo aporte del empleador no equivale a saldo directo en tu AFP.
-          </p>
-          <a
-            href={getPath(
-              "/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/"
-            )}
-            class="mt-4 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-          >
-            Ver cronograma
-          </a>
-        </article>
-        <article class="rounded-xl border border-border bg-background p-5">
-          <p
-            class="text-xs font-semibold tracking-[0.16em] text-accent uppercase"
-          >
-            Si tu decisión es de riesgo
-          </p>
-          <h2 class="mt-3 text-xl font-semibold">Elige fondo o proyecta</h2>
-          <p class="mt-2 text-sm leading-relaxed text-secondary">
-            Los multifondos A-E siguen vivos en 2026. Parte por fondos si
-            decides riesgo; usa jubilación si tu pregunta ya es resultado
-            futuro.
-          </p>
-          <div class="mt-4 flex flex-wrap gap-3 text-sm font-semibold">
-            <a
-              href={getPath("/posts/fondos-afp-a-b-c-d-e/")}
-              class="text-accent underline underline-offset-4 hover:opacity-80"
-            >
-              Ver fondos A-E
-            </a>
-            <a
-              href={getPath("/calculadoras/simulador-jubilacion/")}
-              class="text-accent underline underline-offset-4 hover:opacity-80"
-            >
-              Simular jubilación
-            </a>
-          </div>
-        </article>
-        <article class="rounded-xl border border-border bg-background p-5">
-          <p
-            class="text-xs font-semibold tracking-[0.16em] text-accent uppercase"
-          >
-            Si tu decisión es tributaria
-          </p>
-          <h2 class="mt-3 text-xl font-semibold">Salta a APV o Cuenta 2</h2>
-          <p class="mt-2 text-sm leading-relaxed text-secondary">
-            No todo lo previsional se resuelve dentro de AFP obligatoria. Si
-            buscas beneficio tributario o más liquidez, cambia de ruta a tiempo.
-          </p>
-          <div class="mt-4 flex flex-wrap gap-3 text-sm font-semibold">
-            <a
-              href={getPath("/posts/que-es-el-apv/")}
-              class="text-accent underline underline-offset-4 hover:opacity-80"
-            >
-              Ir a APV
-            </a>
-            <a
-              href={getPath("/posts/que-es-la-cuenta-2-afp/")}
-              class="text-accent underline underline-offset-4 hover:opacity-80"
-            >
-              Ver Cuenta 2
-            </a>
-          </div>
-        </article>
-      </div>
     </section>
 
     <ContextLinkSection
       eyebrow="Núcleo previsional"
-      title="Empieza por la decisión correcta"
-      description="Estas son las piezas núcleo del hub AFP: reforma, fondos, cambio de AFP y Cuenta 2. Cada una resuelve un trabajo distinto."
+      title="Elige la decisión previsional que sí corresponde"
+      description="Estas son las cuatro rutas núcleo del hub AFP. Cada una resuelve un trabajo distinto y no deberían competir entre sí en esta misma vista."
       items={pensionHubPrimaryCards}
     />
 
-    <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">Temas que puedes revisar</h2>
-      <ul class="grid gap-4">
-        {
-          hubAssignments.core.map(
-            (item: (typeof hubAssignments.core)[number]) => (
-              <li class="rounded-xl border border-border p-5">
-                <h3 class="mb-2 text-lg font-semibold">{item.title}</h3>
-                <p class="mb-3 text-sm text-secondary">{item.summary}</p>
-                <a
-                  href={getPath(item.href)}
-                  class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-                >
-                  Leer artículo
-                </a>
-              </li>
-            )
-          )
-        }
-      </ul>
-    </section>
-
     <ContextLinkSection
-      eyebrow="Relacionado"
-      title="Instrumentos y herramientas cercanas"
-      description="APV vive fuera del núcleo AFP, pero debe aparecer aquí cuando la comparación con Cuenta 2, beneficio tributario o pensión futura sí ayuda a decidir."
+      eyebrow="Fuera del núcleo AFP"
+      title="Comparaciones y herramientas cercanas"
+      description="Usa estas salidas solo cuando tu duda dejó de ser AFP obligatoria y pasó a ser ahorro con beneficio tributario o proyección de pensión."
       items={pensionHubRelatedCards}
     />
 
     <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">Empieza aquí si...</h2>
+      <h2 class="mb-4 text-2xl font-bold">No mezcles estas preguntas</h2>
       <ul class="list-disc space-y-2 pl-6 text-secondary">
         <li>
-          Estás evaluando cambio de AFP: parte por{" "}
-          <a
-            class="text-accent underline underline-offset-4 hover:opacity-80"
-            href={getPath("/posts/como-cambiarse-de-afp/")}
-          >
-            la guía de cambio de AFP
-          </a>{" "}
-          y luego revisa fondos A-E.
+          Elegir fondo no es lo mismo que cambiar administradora. Primero
+          define si tu decisión es riesgo o trámite.
         </li>
         <li>
-          Quieres bajar impuesto mientras ahorras: parte por la sección de{" "}
-          <a
-            class="text-accent underline underline-offset-4 hover:opacity-80"
-            href={getPath("/guias/ahorro-e-inversion/")}
-          >
-            ahorro e inversión
-          </a>{" "}
-          y luego revisa la guía de APV. Desde este hub te conviene volver solo si
-          después quieres comparar con Cuenta 2, fondos o cambio de AFP.
+          APV no reemplaza la conversación de AFP obligatoria. Cambia de ruta
+          solo cuando tu pregunta principal ya es beneficio tributario.
         </li>
         <li>
-          Buscas ahorro previsional con mayor flexibilidad: revisa{" "}
-          <a
-            class="text-accent underline underline-offset-4 hover:opacity-80"
-            href={getPath("/posts/que-es-la-cuenta-2-afp/")}
-          >
-            Cuenta 2 AFP
-          </a>{" "}
-          después de entender tu perfil de fondos.
+          Cuenta 2 no resuelve por sí sola una decisión de fondo, una reforma o
+          un cambio de AFP. Es una comparación lateral, no la puerta de entrada
+          universal del cluster.
         </li>
       </ul>
     </section>
@@ -205,26 +82,6 @@ const hubAssignments = getHubArticleAssignments("pensiones-afp");
           caso, te conviene ir a sueldo y remuneraciones.
         </li>
       </ul>
-    </section>
-
-    <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">También puede interesarte</h2>
-      {
-        hubAssignments.related.map(
-          (item: (typeof hubAssignments.related)[number]) => (
-            <div class="rounded-xl border border-border p-5">
-              <h3 class="mb-2 text-lg font-semibold">{item.title}</h3>
-              <p class="mb-3 text-sm text-secondary">{item.summary}</p>
-              <a
-                href={getPath(item.href)}
-                class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-              >
-                Ir a la guía relacionada
-              </a>
-            </div>
-          )
-        )
-      }
     </section>
 
     <section class="py-8">

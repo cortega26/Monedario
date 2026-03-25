@@ -5,10 +5,14 @@ import type { LinkSection } from "@/config/sueldoClusterLinks";
 type Props = LinkSection;
 
 const { eyebrow, title, description, items } = Astro.props as Props;
+const uniqueItems = items.filter(
+  (item, index, allItems) =>
+    allItems.findIndex(candidate => candidate.href === item.href) === index
+);
 ---
 
 {
-  items.length > 0 && (
+  uniqueItems.length > 0 && (
     <section class="mt-10 rounded-2xl border border-border bg-surface-muted p-6">
       {eyebrow && (
         <p class="mb-2 text-xs font-semibold tracking-widest text-accent uppercase">
@@ -21,7 +25,7 @@ const { eyebrow, title, description, items } = Astro.props as Props;
       </p>
 
       <div class="mt-5 grid gap-4 md:grid-cols-2">
-        {items.map(item => (
+        {uniqueItems.map(item => (
           <article class="rounded-xl border border-border bg-background p-5">
             <p class="mb-2 text-xs font-semibold tracking-wide text-accent uppercase">
               {item.kind}

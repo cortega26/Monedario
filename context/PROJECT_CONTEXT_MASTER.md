@@ -1,5 +1,12 @@
 # PROJECT_CONTEXT_MASTER
 
+### Checkpoint 2026-03-25 (Critical IA Remediation Round 1)
+
+- `src/pages/guias/impuestos-personas/index.astro` deja de duplicar el owner F22: el hub queda consolidado en una sola capa principal de decisión y un bloque de no mezclar.
+- `src/pages/guias/pensiones-afp/index.astro` deja el patrón inflado `hero + core + listado + empieza aquí + related duplicado` y pasa a una estructura más limpia: intro, núcleo previsional, comparaciones cercanas y errores de clasificación.
+- `src/pages/calculadoras/index.astro` cambia la capa superior desde una lista de calculadoras repetidas a un selector por familias, para que la decisión primaria ocurra una sola vez.
+- `src/components/CalculatorCard.astro` y `src/components/ContextLinkSection.astro` incorporan mitigaciones iniciales contra duplicación de salidas dentro de una misma vista, pero la política sistémica completa sigue abierta en `SA-008` / `TD-0031`.
+
 ### Checkpoint 2026-03-25 (Site IA / Editorial Diffusion Audit Baseline)
 
 - Se incorpora una auditoría integral de arquitectura editorial, carga cognitiva y difusión interna en `docs/editorial/SITE_AUDIT_2026-03-25.md`.
