@@ -1,5 +1,12 @@
 # PROJECT_CONTEXT_MASTER
 
+### Checkpoint 2026-03-25 (Site IA / Editorial Diffusion Audit Baseline)
+
+- Se incorpora una auditoría integral de arquitectura editorial, carga cognitiva y difusión interna en `docs/editorial/SITE_AUDIT_2026-03-25.md`.
+- Se crea backlog persistente de remediación en `docs/editorial/BACKLOG_SITE_AUDIT.md`, con foco en duplicación de salidas, inflación de CTAs, competencia entre owners y sobrerrepresentación de clusters.
+- La auditoría deja explícito que la política de ownership editorial ya es más madura que su representación visible en UX: el riesgo actual está en hubs inflados, índices redundantes y módulos contextuales que reinyectan rutas vecinas.
+- Se registra deuda transversal `TD-0031` en `docs/TECH_DEBT_BACKLOG.md` para tratar el problema como riesgo sistémico de arquitectura visible, no como suma de defectos locales.
+
 ### Checkpoint 2026-03-22 (Editorial Volatile Data Pipeline)
 
 - Se agrega un registro central de datasets volátiles en `src/config/editorial-volatile-data-registry.json`.
