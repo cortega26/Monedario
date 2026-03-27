@@ -53,9 +53,9 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           DALL_E_MODEL: ${{ vars.DALL_E_MODEL }}
+          RUN_MODE: ${{ github.event.inputs.run_mode || 'dry-run' }}
         run: |
-          MODE="${{ github.event.inputs.run_mode || 'dry-run' }}"
-          if [ "$MODE" = "run" ] && [ -n "$OPENAI_API_KEY" ]; then
+          if [ "$RUN_MODE" = "run" ] && [ -n "$OPENAI_API_KEY" ]; then
             node scripts/hero-images/generate-images.mjs --run
             node scripts/hero-images/postprocess-images.mjs
           else

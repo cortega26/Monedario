@@ -19,11 +19,18 @@ import mdx from "@astrojs/mdx";
 
 const tocUi = getUiCopyForLocale(SITE.lang);
 
-const escapeRegExp = (value: string) =>
-  value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
 
+function safeRegExp(pattern: string, flags = "i", maxLength = 256) {
+  if (pattern.length > maxLength) {
+    throw new Error(`RegExp pattern too long: ${pattern.slice(0, 32)}...`);
+  }
+  return new RegExp(pattern, flags);
+}
 const tocHeadingPattern = tocUi.toc.title;
-const tocHeadingRegex = new RegExp(`^${escapeRegExp(tocHeadingPattern)}$`, "i");
+const tocHeadingRegex = safeRegExp(`^${escapeRegExp(tocHeadingPattern)}$`);
 const SITE_BASE = new URL(SITE.website).pathname.replace(/\/$/, "") || "/";
 const HOME_PATH = SITE_BASE === "/" ? "/" : `${SITE_BASE}/`;
 const withBasePath = (path: string) =>
@@ -33,7 +40,7 @@ const SITEMAP_EXCLUDED_PATHS = new Set([
 ]);
 const TAGS_ROOT_PATH = withBasePath("/tags/");
 const SEARCH_PATH = withBasePath("/search/");
-const PAGINATED_POSTS_PATTERN = new RegExp(
+const PAGINATED_POSTS_PATTERN = safeRegExp(
   `^${escapeRegExp(withBasePath("/posts/"))}\\d+/$`
 );
 const DEV_TOOLS_PATH = withBasePath("/dev/");

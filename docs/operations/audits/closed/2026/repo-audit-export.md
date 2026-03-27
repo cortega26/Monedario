@@ -1,9 +1,9 @@
 # Repo audit export
 
-- Generated: `2026-02-23T22:21:18`
+- Generated: `2026-03-26T23:18:18`
 - Repo: `/home/carlos/VS_Code_Projects/tuplatainforma`
 - Branch: `main`
-- HEAD: `c521d8847dc7b6025137104af45a99a6ba19f77c`
+- HEAD: `beeb10d7511c3fa746ad44803380917ac5ac727e`
 - Path filters: `astro.config.* src/config.ts src/pages src/components src/layouts src/utils package.json`
 
 ## Context snapshot
@@ -11,36 +11,48 @@
 **git status (short):**
 
 ```text
-?? scripts/repo/git_audit_export.py
+ M .github/workflows/hero-images-generate.yml
+ M astro.config.ts
+ M scripts/audit-topic-overlap.mjs
+ M scripts/download-og-fonts.mjs
+ M scripts/legal-citations/core.mjs
+ M scripts/repo/git_audit_export.py
+ M scripts/urlcheck/retry.mjs
+ M src/utils/loadGoogleFont.ts
 ```
 **Recent history (top 30):**
 
 ```text
-c521d88 fix(pagination): avoid double base prefix
-5ff16c5 FIx Pagination
-a35f82d added .mdx support online
-154e636 Nuevos artículos y soporte a .mdx
-2e1357c feat: artículo Cuenta 2 AFP
-90104f4 Update README.md
-047670a Tag corregido
-20d26e3 remoción de texto involuntario
-e8e04da Fix #5
-e59431a Correción de URL
-24131b6 Traducción a Español
-d555b77 Corregidos errores de paginación
-1a56b4c Correción path
-8a8e04f Corrección en ruta
-21ceaff Rutas corregidas
-caf9247 feat: calculadora sueldo líquido + sección calculadoras en menú
-c35dd54 First 2 articles
-71da976 feat: personalizar homepage, about y limpiar contenido demo
-c466441 Fixed path
-144f862 config: personalizar SITE para TuPlataInforma
-7da316f Updates tailwind dependency path
-c1e4efb Moved deploy to correct folder
-c7e270c Update astro.config.mjs
-bfbc80f Setup inicial con Astro + Tailwind + GitHub Actions
-87275d7 Initial commit from Astro
+beeb10d Merge pull request #40 from cortega26/chore/refresh-volatile-data-snapshots
+a38b667 Merge pull request #36 from cortega26/dependabot/npm_and_yarn/slugify-1.6.8
+7ad390a Bump slugify from 1.6.6 to 1.6.8
+a781b3a Merge pull request #39 from cortega26/dependabot/npm_and_yarn/typescript-eslint/parser-8.57.2
+19149ea Merge pull request #38 from cortega26/dependabot/npm_and_yarn/dayjs-1.11.20
+2c55ca8 Merge pull request #35 from cortega26/dependabot/npm_and_yarn/tailwindcss-4.2.2
+274ca5b Merge pull request #34 from cortega26/dependabot/github_actions/pnpm/action-setup-5
+4a9f4b3 Remediación integral: bugs financieros + arquitectura editorial (TD-0031)
+9a7454e Deduplicación de calculadoras
+fb24010 Deduplicación final.
+2912130 Deduplicación parte 2
+34e6665 Deduplicación de contenido crítica
+4ebce0d Problemas con el buscador solucionado
+ef812aa Errores en tabla de impuestos reparado
+a82167c Correcciones menores de estilo
+9246276 última eliminación de metamensajes
+a43f668 Eliminación de metamensajes
+90081a3 Actualización de guías y artículos: se modificaron secciones para mejorar claridad y precisión, incluyendo cambios en títulos, criterios de actualización y eliminación de contenido redundante. Se añadió un nuevo script de verificación en package.json para el chequeo de copias dirigidas al lector.
+1cdb669 Actualización de la guía sobre estafas financieras: se eliminó un enlace redundante y se añadió una referencia a la sección de Seguridad Financiera para ampliar la información disponible.
+9c73d08 Corrección de doble bullets.
+6ae6d38 chore(editorial): refresh volatile data snapshots
+30c6c8d Bump @typescript-eslint/parser from 8.57.1 to 8.57.2
+4e0394a Bump dayjs from 1.11.19 to 1.11.20
+954e279 Bump tailwindcss from 4.2.1 to 4.2.2
+fea6009 Bump pnpm/action-setup from 4 to 5
+cf13a1d Merge branch 'main' of https://github.com/cortega26/tuplatainforma
+cedb031 Error en artículo sobre sueldo corregido
+797ad4d Merge pull request #33 from cortega26/chore/refresh-volatile-data-snapshots
+06967d9 Eliminación de metamentajes
+7566d2e chore(editorial): refresh volatile data snapshots
 ```
 
 ## Per-commit details
@@ -1839,7 +1851,7 @@ index 561196b..e709158 100644
 +  <main id="main-content" data-layout="index" class="app-layout">
 +    <section id="hero" class:list={["pt-8 pb-6", "border-b border-border"]}>
 +      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-+        Tu Plata Informa
++        Mingalaba
 +      </h1>
 +      <a
 +        target="_blank"

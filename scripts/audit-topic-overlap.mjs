@@ -120,7 +120,9 @@ function jaccard(setA, setB) {
 function readArticle(filePath) {
   const raw = readFileSync(filePath, "utf8");
   const frontmatterMatch = raw.match(/^---\n([\s\S]*?)\n---\n?/);
-  const frontmatter = frontmatterMatch ? yaml.load(frontmatterMatch[1]) ?? {} : {};
+  const frontmatter = frontmatterMatch
+    ? yaml.load(frontmatterMatch[1], { schema: yaml.JSON_SCHEMA }) ?? {}
+    : {};
   const body = frontmatterMatch ? raw.slice(frontmatterMatch[0].length) : raw;
   const metaMatch = raw.match(
     /META:\s*keyword_primary="([^"]+)"\s*\|\s*intent="([^"]+)"(?:\s*\|\s*cluster="([^"]+)")?/i

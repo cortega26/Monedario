@@ -38,6 +38,19 @@ const FONTS = [
 const UA =
   "Mozilla/5.0 (Linux; U; Android 4.4; en-us; Nexus 5 Build/KRT16M) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30";
 
+function isTrustedFontUrl(url) {
+  try {
+    const parsed = new URL(url);
+    return (
+      parsed.protocol === "https:" &&
+      (parsed.host === "fonts.googleapis.com" ||
+        parsed.host === "fonts.gstatic.com")
+    );
+  } catch {
+    return false;
+  }
+}
+
 // Caracteres representativos para que Google devuelva un subset útil.
 // Incluye: números, letras con tilde, signos comunes en finanzas chilenas.
 const SAMPLE_TEXT =
@@ -59,7 +72,10 @@ async function downloadFont(family, weight, outFile) {
   const fontUrl = match[1];
   console.log(`  URL: ${fontUrl}`);
 
-  const fontData = await fetch(fontUrl).then(r => r.arrayBuffer());
+    if (!isTrustedFontUrl(fontUrl)) {
+      throw new Error(`[og-fonts] Untrusted font URL: ${fontUrl}`);
+    }
+    const fontData = await fetch(fontUrl).then(r => r.arrayBuffer());
   const signature = Buffer.from(fontData).subarray(0, 4).toString("latin1");
   if (signature === "wOF2") {
     throw new Error(

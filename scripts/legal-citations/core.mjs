@@ -203,7 +203,7 @@ function parseFrontmatter(source, filePath) {
     throw new Error(`Missing frontmatter: ${filePath}`);
   }
 
-  const data = yaml.load(match[1]);
+  const data = yaml.load(match[1], { schema: yaml.JSON_SCHEMA });
   if (!data || typeof data !== "object") {
     throw new Error(`Invalid frontmatter: ${filePath}`);
   }

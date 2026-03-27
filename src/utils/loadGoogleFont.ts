@@ -59,6 +59,19 @@ const WOFF2_SIGNATURE = "wOF2";
 const GOOGLE_FONTS_TTF_UA =
   "Mozilla/5.0 (Linux; U; Android 4.4; en-us; Nexus 5 Build/KRT16M) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30";
 
+function isTrustedFontUrl(url: string) {
+  try {
+    const parsed = new URL(url);
+    return (
+      parsed.protocol === "https:" &&
+      (parsed.host === "fonts.googleapis.com" ||
+        parsed.host === "fonts.gstatic.com")
+    );
+  } catch {
+    return false;
+  }
+}
+
 // ─── LEER DESDE DISCO ────────────────────────────────────────────────────────
 
 function readFontFromDisk(file: string): ArrayBuffer | null {
@@ -118,6 +131,9 @@ async function fetchFontFromGoogle(
       `[og-fonts] No se pudo parsear CSS de Google Fonts para ${family}:${weight}`
     );
 
+  if (!isTrustedFontUrl(resource[1])) {
+    throw new Error(`[og-fonts] Untrusted font URL: ${resource[1]}`);
+  }
   const res = await fetch(resource[1]);
   if (!res.ok)
     throw new Error(`[og-fonts] Fetch de fuente falló: ${res.status}`);

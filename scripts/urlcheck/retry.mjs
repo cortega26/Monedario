@@ -51,6 +51,14 @@ async function probeUrl(url, timeoutMs) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
+    const parsed = new URL(url);
+    if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+      return {
+        status: null,
+        ok: false,
+        failureDetails: ["untrusted_protocol"],
+      };
+    }
     const response = await fetch(url, {
       method: "GET",
       redirect: "follow",

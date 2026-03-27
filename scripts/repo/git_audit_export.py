@@ -19,6 +19,7 @@ import argparse
 import datetime as dt
 import os
 import re
+import shlex
 import subprocess
 import sys
 from typing import List, Optional, Tuple
@@ -61,6 +62,7 @@ RED_FLAG_PATTERNS: List[Tuple[str, re.Pattern]] = [
 
 def run_git(repo: str, args: List[str]) -> str:
     """Run git command in repo, return stdout, raise on error."""
+    # Ensure command starts with git and shell=False (default) is respected
     cmd = ["git"] + args
     try:
         proc = subprocess.run(
@@ -70,11 +72,13 @@ def run_git(repo: str, args: List[str]) -> str:
             stderr=subprocess.PIPE,
             text=True,
             check=True,
+            shell=False,  # Explicitly disable shell to prevent interpolation
         )
         return proc.stdout
     except subprocess.CalledProcessError as e:
+        safe_cmd = " ".join(shlex.quote(c) for c in cmd)
         raise RuntimeError(
-            f"git command failed: {' '.join(cmd)}\n"
+            f"git command failed: {safe_cmd}\n"
             f"cwd: {repo}\n"
             f"exit: {e.returncode}\n"
             f"stderr:\n{e.stderr}"
