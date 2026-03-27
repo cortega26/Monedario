@@ -44,7 +44,7 @@
     "editorial:volatile-data:refresh": "node scripts/refresh-editorial-volatile-data.mjs",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
-    "lint": "eslint .",
+    "lint": "astro sync && eslint .",
     "check:urls:ci": "URLCHECK_MODE=ci node scripts/check-urls.mjs",
     "check:urls:canary": "node scripts/check-urls.mjs --canary",
     "check:urls:external:audit": "URLCHECK_MODE=ci node scripts/check-urls.mjs --external-audit",

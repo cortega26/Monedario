@@ -74,21 +74,46 @@ export default defineConfig({
         if (pathname === HOME_PATH) {
           return { ...item, changefreq: EnumChangefreq.DAILY, priority: 1.0 };
         }
-        if (/\/posts\/[^/]+\/$/.test(url)) {
-          return { ...item, changefreq: EnumChangefreq.MONTHLY, priority: 0.8 };
+
+        // Extract the last two parts of the path for section identification
+        const pathParts = pathname.split("/").filter(Boolean);
+        const section = pathParts[0];
+
+        if (pathParts.length === 2) {
+          if (section === "posts") {
+            return {
+              ...item,
+              changefreq: EnumChangefreq.MONTHLY,
+              priority: 0.8,
+            };
+          }
+          if (section === "leyes") {
+            return {
+              ...item,
+              changefreq: EnumChangefreq.MONTHLY,
+              priority: 0.8,
+            };
+          }
+          if (section === "calculadoras") {
+            return {
+              ...item,
+              changefreq: EnumChangefreq.WEEKLY,
+              priority: 0.7,
+            };
+          }
         }
-        if (/\/leyes\/[^/]+\/$/.test(url)) {
-          return { ...item, changefreq: EnumChangefreq.MONTHLY, priority: 0.8 };
-        }
-        if (/\/calculadoras\/[^/]+\/$/.test(url)) {
-          return { ...item, changefreq: EnumChangefreq.WEEKLY, priority: 0.7 };
-        }
+
+        // Hubs and generic top-level sections
+        const hubs = ["guias", "leyes", "calculadoras", "tags"];
+        const pages = ["about", "autor", "search", "archives"];
+
         if (
-          /\/(guias|leyes|calculadoras|tags)(\/[^/]+)?\/$/.test(url) ||
-          /\/(about|autor|search|archives)\/$/.test(url)
+          (hubs.includes(section) && pathParts.length <= 2) ||
+          (pages.includes(section) && pathParts.length === 1)
         ) {
           return { ...item, changefreq: EnumChangefreq.MONTHLY, priority: 0.6 };
         }
+
         return { ...item, changefreq: EnumChangefreq.YEARLY, priority: 0.5 };
       },
     }),

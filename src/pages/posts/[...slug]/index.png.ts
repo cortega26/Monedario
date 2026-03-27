@@ -28,8 +28,10 @@ export const GET: APIRoute = async ({ props }) => {
     });
   }
 
-  const buffer = await generateOgImageForPost(props as CollectionEntry<"blog">);
-  return new Response(new Uint8Array(buffer), {
+  const buffer: Uint8Array = await generateOgImageForPost(
+    props as CollectionEntry<"blog">
+  );
+  return new Response(buffer as unknown as BodyInit, {
     headers: { "Content-Type": "image/png" },
   });
 };

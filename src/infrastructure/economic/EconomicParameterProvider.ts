@@ -118,8 +118,15 @@ function resolveSnapshotFilePath(): string {
 }
 
 function loadSnapshotEconomicParameters(): EconomicParameters {
+  const snapshotPath = resolveSnapshotFilePath();
+
+  // Validate that the resolved path is indeed our expected snapshot file
+  if (!snapshotPath.endsWith(SNAPSHOT_FILE_NAME)) {
+    throw new Error(`Security breach: invalid snapshot path ${snapshotPath}`);
+  }
+
   const payload = JSON.parse(
-    readFileSync(resolveSnapshotFilePath(), "utf-8")
+    readFileSync(snapshotPath, "utf-8")
   ) as EconomicSnapshotPayload;
 
   const snapshotParameters: EconomicParameters = {

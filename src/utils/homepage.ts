@@ -14,7 +14,7 @@ export type HomepageHub = GuideHubMeta & {
 };
 
 function getPostSortTime(post: BlogEntry): number {
-  const article = toArticleView(post);
+  const article: import("./articleView").ArticleView = toArticleView(post);
   return (article.updatedDate ?? article.pubDate).getTime();
 }
 
