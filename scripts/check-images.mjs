@@ -56,6 +56,7 @@ function splitFrontmatter(source) {
 
   let frontmatter = {};
   try {
+    // SECURITY: Use js-yaml v4's load() with JSON_SCHEMA to safely parse frontmatter.
     const parsed = yaml.load(match[1], { schema: yaml.JSON_SCHEMA }) ?? {};
     if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
       frontmatter = parsed;

@@ -59,6 +59,21 @@ async function probeUrl(url, timeoutMs) {
         failureDetails: ["untrusted_protocol"],
       };
     }
+    // Safety check: reject private/local hostnames to prevent SSRF
+    const isPrivate =
+      parsed.hostname === "localhost" ||
+      parsed.hostname === "127.0.0.1" ||
+      parsed.hostname.startsWith("10.") ||
+      parsed.hostname.startsWith("192.168.") ||
+      parsed.hostname === "169.254.169.254";
+    if (isPrivate) {
+      return {
+        status: null,
+        ok: false,
+        failureDetails: ["private_hostname_blocked"],
+      };
+    }
+
     const response = await fetch(url, {
       method: "GET",
       redirect: "follow",

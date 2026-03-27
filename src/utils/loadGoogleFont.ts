@@ -62,15 +62,17 @@ const GOOGLE_FONTS_TTF_UA =
 function isTrustedFontUrl(url: string) {
   try {
     const parsed = new URL(url);
+    // Strict protocol and hostname check to prevent SSRF
     return (
       parsed.protocol === "https:" &&
-      (parsed.host === "fonts.googleapis.com" ||
-        parsed.host === "fonts.gstatic.com")
+      (parsed.hostname === "fonts.googleapis.com" ||
+        parsed.hostname === "fonts.gstatic.com")
     );
   } catch {
     return false;
   }
 }
+
 
 // ─── LEER DESDE DISCO ────────────────────────────────────────────────────────
 

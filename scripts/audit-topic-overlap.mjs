@@ -120,6 +120,7 @@ function jaccard(setA, setB) {
 function readArticle(filePath) {
   const raw = readFileSync(filePath, "utf8");
   const frontmatterMatch = raw.match(/^---\n([\s\S]*?)\n---\n?/);
+  // SECURITY: Use js-yaml v4's load() with JSON_SCHEMA for safe frontmatter parsing.
   const frontmatter = frontmatterMatch
     ? yaml.load(frontmatterMatch[1], { schema: yaml.JSON_SCHEMA }) ?? {}
     : {};

@@ -41,15 +41,17 @@ const UA =
 function isTrustedFontUrl(url) {
   try {
     const parsed = new URL(url);
+    // Strict protocol and hostname check to prevent SSRF
     return (
       parsed.protocol === "https:" &&
-      (parsed.host === "fonts.googleapis.com" ||
-        parsed.host === "fonts.gstatic.com")
+      (parsed.hostname === "fonts.googleapis.com" ||
+        parsed.hostname === "fonts.gstatic.com")
     );
   } catch {
     return false;
   }
 }
+
 
 // Caracteres representativos para que Google devuelva un subset útil.
 // Incluye: números, letras con tilde, signos comunes en finanzas chilenas.

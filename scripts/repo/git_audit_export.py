@@ -62,7 +62,8 @@ RED_FLAG_PATTERNS: List[Tuple[str, re.Pattern]] = [
 
 def run_git(repo: str, args: List[str]) -> str:
     """Run git command in repo, return stdout, raise on error."""
-    # Ensure command starts with git and shell=False (default) is respected
+    # Ensure command starts with git literal and shell=False (default) is respected
+    # Python's list-based subprocess.run with shell=False is safe against shell injection.
     cmd = ["git"] + args
     try:
         proc = subprocess.run(
@@ -76,13 +77,16 @@ def run_git(repo: str, args: List[str]) -> str:
         )
         return proc.stdout
     except subprocess.CalledProcessError as e:
-        safe_cmd = " ".join(shlex.quote(c) for c in cmd)
+        # Using shlex.join for safe and readable command representation in exceptions.
+        # This is safe because it's for display/logging only.
+        safe_cmd = shlex.join(cmd)
         raise RuntimeError(
             f"git command failed: {safe_cmd}\n"
             f"cwd: {repo}\n"
             f"exit: {e.returncode}\n"
             f"stderr:\n{e.stderr}"
         ) from e
+
 
 
 def ensure_repo(repo: str) -> None:
@@ -114,25 +118,25 @@ def git_show_commit(
     out.append(section(f"Commit {sha}", 2))
 
     out.append("**Resumen:**\n\n")
-    out.append(md_code_block(run_git(repo, ["show", "--no-patch", "--oneline", sha]), "text"))
+    out.append(md_code_block(run_git(repo, ["show", "--no-patch", "--oneline", "--", sha]), "text"))
 
     out.append("**Archivos tocados:**\n\n")
-    name_only_args = ["show", "--name-only", "--pretty=format:", sha]
+    name_only_args = ["show", "--name-only", "--pretty=format:", sha, "--"]
     if path_filters:
-        name_only_args += ["--"] + path_filters
+        name_only_args += path_filters
     out.append(md_code_block(run_git(repo, name_only_args), "text"))
 
     out.append("**Diff stat:**\n\n")
-    stat_args = ["show", "--stat", "--pretty=format:", sha]
+    stat_args = ["show", "--stat", "--pretty=format:", sha, "--"]
     if path_filters:
-        stat_args += ["--"] + path_filters
+        stat_args += path_filters
     out.append(md_code_block(run_git(repo, stat_args), "text"))
 
     if include_patch:
         out.append("**Patch:**\n\n")
-        patch_args = ["show", sha]
+        patch_args = ["show", sha, "--"]
         if path_filters:
-            patch_args += ["--"] + path_filters
+            patch_args += path_filters
         patch = run_git(repo, patch_args)
         out.append(md_code_block(patch, "diff"))
 
@@ -160,21 +164,21 @@ def git_range_diff(
     out.append(section(f"Diff acumulado {base}..{head}", 2))
 
     out.append("**Archivos cambiados (name-only):**\n\n")
-    args = ["diff", "--name-only", f"{base}..{head}"]
+    args = ["diff", "--name-only", f"{base}..{head}", "--"]
     if path_filters:
-        args += ["--"] + path_filters
+        args += path_filters
     out.append(md_code_block(run_git(repo, args), "text"))
 
     out.append("**Diff stat:**\n\n")
-    args = ["diff", "--stat", f"{base}..{head}"]
+    args = ["diff", "--stat", f"{base}..{head}", "--"]
     if path_filters:
-        args += ["--"] + path_filters
+        args += path_filters
     out.append(md_code_block(run_git(repo, args), "text"))
 
     out.append("**Patch completo:**\n\n")
-    args = ["diff", f"{base}..{head}"]
+    args = ["diff", f"{base}..{head}", "--"]
     if path_filters:
-        args += ["--"] + path_filters
+        args += path_filters
     patch = run_git(repo, args)
     out.append(md_code_block(patch, "diff"))
 

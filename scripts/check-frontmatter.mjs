@@ -149,6 +149,7 @@ for (const filePath of files) {
 
   let frontmatter;
   try {
+    // SECURITY: Use js-yaml v4's load() with JSON_SCHEMA to prevent code injection.
     const parsed = yaml.load(frontmatterBlock, { schema: yaml.JSON_SCHEMA }) || {};
     frontmatter = typeof parsed === "object" ? parsed : {};
   } catch (err) {

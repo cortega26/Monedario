@@ -77,6 +77,8 @@ export function splitFrontmatter(source) {
 export function parseFrontmatter(frontmatterRaw, sourcePath = "") {
   if (!frontmatterRaw) return {};
   try {
+    // SECURITY: Use js-yaml v4's load() which is safe by default.
+    // We explicitly use JSON_SCHEMA to further restrict parsing to JSON-compatible types.
     const parsed = yaml.load(frontmatterRaw, { schema: yaml.JSON_SCHEMA }) ?? {};
     return typeof parsed === "object" ? parsed : {};
   } catch (error) {

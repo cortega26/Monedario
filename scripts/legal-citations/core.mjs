@@ -7,6 +7,18 @@ const BCN_URL_RE = /https:\/\/www\.bcn\.cl\/leychile\/navegar\?idNorma=(\d+)/g;
 const FRONTMATTER_RE = /^---\n([\s\S]*?)\n---\n?/;
 const LAW_FILE_EXTENSIONS = new Set([".md", ".mdx"]);
 
+function isTrustedBcnUrl(url) {
+  try {
+    const parsed = new URL(url);
+    return (
+      parsed.protocol === "https:" &&
+      (parsed.hostname === "www.bcn.cl" || parsed.hostname === "bcn.cl")
+    );
+  } catch {
+    return false;
+  }
+}
+
 export async function runLegalCitationAudit({
   rootDir,
   verifyBcn = false,
@@ -96,6 +108,14 @@ export async function runLegalCitationAudit({
 
     for (const entry of LEGAL_CITATION_REGISTRY) {
       const historyUrl = getHistoryUrl(entry.historyPageId);
+      if (!isTrustedBcnUrl(historyUrl)) {
+        issues.push({
+          type: "history_fetch_blocked",
+          file: historyUrl,
+          message: "Blocked untrusted BCN history URL.",
+        });
+        continue;
+      }
       const response = await fetchImpl(historyUrl, {
         headers: { "user-agent": "Mozilla/5.0 legal-citation-audit" },
       });
@@ -203,6 +223,7 @@ function parseFrontmatter(source, filePath) {
     throw new Error(`Missing frontmatter: ${filePath}`);
   }
 
+  // SECURITY: Use js-yaml v4's load() with JSON_SCHEMA for safe frontmatter parsing.
   const data = yaml.load(match[1], { schema: yaml.JSON_SCHEMA });
   if (!data || typeof data !== "object") {
     throw new Error(`Invalid frontmatter: ${filePath}`);

@@ -151,7 +151,13 @@ function parseFrontmatter(filePath) {
   if (!block) {
     throw new Error(`Missing frontmatter block in ${filePath}`);
   }
-  const parsed = yaml.load(block, { schema: yaml.JSON_SCHEMA }) || {};
+  let parsed = {};
+  try {
+    // SECURITY: Use js-yaml v4's load() with JSON_SCHEMA to prevent code injection.
+    parsed = yaml.load(block, { schema: yaml.JSON_SCHEMA }) || {};
+  } catch (err) {
+    throw new Error(`Failed to parse frontmatter in ${filePath}: ${err.message}`);
+  }
   return typeof parsed === "object" && parsed ? parsed : {};
 }
 
