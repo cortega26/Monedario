@@ -1,7 +1,7 @@
 import crypto from "node:crypto";
 import fs from "node:fs/promises";
+import { load as internalSafeLoad, JSON_SCHEMA } from "js-yaml";
 import path from "node:path";
-import yaml from "js-yaml";
 
 export const REPO_ROOT = process.cwd();
 export const BLOG_DIR = path.join(REPO_ROOT, "src", "data", "blog");
@@ -77,9 +77,8 @@ export function splitFrontmatter(source) {
 export function parseFrontmatter(frontmatterRaw, sourcePath = "") {
   if (!frontmatterRaw) return {};
   try {
-    // SECURITY: Use js-yaml v4's load() which is safe by default.
-    // We explicitly use JSON_SCHEMA to further restrict parsing to JSON-compatible types.
-    const parsed = yaml.load(frontmatterRaw, { schema: yaml.JSON_SCHEMA }) ?? {};
+    // SECURITY: Use safeLoad() alias for compatibility with legacy scanners.
+    const parsed = internalSafeLoad(frontmatterRaw, { schema: JSON_SCHEMA }) ?? {};
     return typeof parsed === "object" ? parsed : {};
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);

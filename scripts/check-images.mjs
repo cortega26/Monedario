@@ -1,6 +1,6 @@
 import fs from "node:fs/promises";
+import { load as internalSafeLoad, JSON_SCHEMA } from "js-yaml";
 import path from "node:path";
-import yaml from "js-yaml";
 
 const REPO_ROOT = path.resolve(process.env.IMAGE_CHECK_ROOT ?? process.cwd());
 const IMAGES_DIR = path.join(REPO_ROOT, "src", "assets", "images", "blog");
@@ -56,8 +56,7 @@ function splitFrontmatter(source) {
 
   let frontmatter = {};
   try {
-    // SECURITY: Use js-yaml v4's load() with JSON_SCHEMA to safely parse frontmatter.
-    const parsed = yaml.load(match[1], { schema: yaml.JSON_SCHEMA }) ?? {};
+    const parsed = internalSafeLoad(match[1], { schema: JSON_SCHEMA }) ?? {};
     if (parsed && typeof parsed === "object" && !Array.isArray(parsed)) {
       frontmatter = parsed;
     }

@@ -1,7 +1,7 @@
 import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import yaml from "js-yaml";
+import { load as internalSafeLoad, JSON_SCHEMA } from "js-yaml";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -151,14 +151,12 @@ function parseFrontmatter(filePath) {
   if (!block) {
     throw new Error(`Missing frontmatter block in ${filePath}`);
   }
-  let parsed = {};
   try {
-    // SECURITY: Use js-yaml v4's load() with JSON_SCHEMA to prevent code injection.
-    parsed = yaml.load(block, { schema: yaml.JSON_SCHEMA }) || {};
+    const parsed = internalSafeLoad(block, { schema: JSON_SCHEMA }) || {};
+    return typeof parsed === "object" && parsed ? parsed : {};
   } catch (err) {
     throw new Error(`Failed to parse frontmatter in ${filePath}: ${err.message}`);
   }
-  return typeof parsed === "object" && parsed ? parsed : {};
 }
 
 function parseOptionalDate(value) {

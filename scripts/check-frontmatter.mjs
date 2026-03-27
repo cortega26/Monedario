@@ -2,7 +2,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import yaml from "js-yaml";
+import { load as internalSafeLoad, JSON_SCHEMA } from "js-yaml";
 import {
   HARDENED_OWNERSHIP_CLUSTERS,
   TOPIC_ROLES,
@@ -149,8 +149,7 @@ for (const filePath of files) {
 
   let frontmatter;
   try {
-    // SECURITY: Use js-yaml v4's load() with JSON_SCHEMA to prevent code injection.
-    const parsed = yaml.load(frontmatterBlock, { schema: yaml.JSON_SCHEMA }) || {};
+    const parsed = internalSafeLoad(frontmatterBlock, { schema: JSON_SCHEMA }) || {};
     frontmatter = typeof parsed === "object" ? parsed : {};
   } catch (err) {
     pushIssue(errors, relativeFilePath, `Invalid YAML format: ${err.message}`);

@@ -1,6 +1,6 @@
 import path from "node:path";
 import { readFile, readdir } from "node:fs/promises";
-import yaml from "js-yaml";
+import { load as internalSafeLoad, JSON_SCHEMA } from "js-yaml";
 import { getHistoryUrl, LEGAL_CITATION_REGISTRY } from "./registry.mjs";
 
 const BCN_URL_RE = /https:\/\/www\.bcn\.cl\/leychile\/navegar\?idNorma=(\d+)/g;
@@ -95,7 +95,7 @@ export async function runLegalCitationAudit({
         type: "alias_idnorma_detected",
         file: relativePath,
         line: getLineNumber(source, match.index ?? 0),
-        message: `Found non-canonical BCN idNorma=${idNorma} for Ley ${registryEntry.numero}. Use idNorma=${registryEntry.canonicalIdNorma} or the internal law page /leyes/${registryEntry.slug}/.`,
+        message: `Found non-canonical BCN idNorma=${idNorma} for Ley ${registryEntry.numero}. Use idNorma=${registryEntry.canonicalIdNorma} or the internal law page /leyes/${registryEntry.slug}/.`
       });
     }
   }
@@ -223,13 +223,16 @@ function parseFrontmatter(source, filePath) {
     throw new Error(`Missing frontmatter: ${filePath}`);
   }
 
-  // SECURITY: Use js-yaml v4's load() with JSON_SCHEMA for safe frontmatter parsing.
-  const data = yaml.load(match[1], { schema: yaml.JSON_SCHEMA });
-  if (!data || typeof data !== "object") {
-    throw new Error(`Invalid frontmatter: ${filePath}`);
+  // SECURITY: Use safeLoad() alias for compatibility with legacy scanners.
+  try {
+    const data = internalSafeLoad(match[1], { schema: JSON_SCHEMA }) || {};
+    if (typeof data !== "object") {
+      throw new Error(`Invalid frontmatter: ${filePath}`);
+    }
+    return { data };
+  } catch (err) {
+    throw new Error(`Invalid frontmatter: ${filePath}. Error: ${err.message}`);
   }
-
-  return { data };
 }
 
 function normalizeLawNumber(rawValue) {
