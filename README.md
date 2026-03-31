@@ -132,7 +132,7 @@ Validación automatizada:
 
 Este proyecto usa dos licencias distintas:
 
-- **Código fuente** (`src/` excepto `src/data/`): [MIT](./LICENSE)
+- **Código fuente** (`src/` excepto `src/data/`): [MIT](./LICENSE.md)
 - **Contenido editorial** (`src/data/`, artículos, guías, glosario):
-  [CC BY-NC 4.0](./LICENSE-CONTENT) — libre para compartir con atribución,
+  [CC BY-NC 4.0](./LICENSE-CONTENT.md) — libre para compartir con atribución,
   prohibido uso comercial sin permiso.
