@@ -1,6 +1,6 @@
 # NORMA EDITORIAL YMYL - Precision, Credibilidad y Autoridad (v1.0)
 
-**Proyecto:** Tu Plata Informa  
+**Proyecto:** Monedario.cl  
 **Fecha:** 2026-03-02  
 **Estado:** ACTIVA (obligatoria para todo contenido nuevo y toda revision sustantiva)
 

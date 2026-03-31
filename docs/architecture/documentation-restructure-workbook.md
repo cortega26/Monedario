@@ -11,13 +11,13 @@ Markdown files discovered (excluding build/dependency artifacts): **114**.
 | File | Path | Topic | Category | Authority Level |
 |---|---|---|---|---|
 | CODE_OF_CONDUCT.md | `.github/CODE_OF_CONDUCT.md` | Contributor Covenant Code of Conduct | Community template/process doc | Governance |
-| CONTRIBUTING.md | `.github/CONTRIBUTING.md` | How to contribute to Tu Plata Informa | Community template/process doc | Governance |
+| CONTRIBUTING.md | `.github/CONTRIBUTING.md` | How to contribute to Monedario.cl | Community template/process doc | Governance |
 | ✨-feature-request.md | `.github/ISSUE_TEMPLATE/✨-feature-request.md` | ✨-feature-request | Community template/process doc | Governance |
 | 🐞-bug-report.md | `.github/ISSUE_TEMPLATE/🐞-bug-report.md` | 🐞-bug-report | Community template/process doc | Governance |
 | 📝-documentation-improvement.md | `.github/ISSUE_TEMPLATE/📝-documentation-improvement.md` | 📝-documentation-improvement | Community template/process doc | Governance |
 | PULL_REQUEST_TEMPLATE.md | `.github/PULL_REQUEST_TEMPLATE.md` | PULL_REQUEST_TEMPLATE | Community template/process doc | Governance |
 | AGENTS.md | `AGENTS.md` | AGENTS.md | Agent execution protocol | Governance |
-| README.md | `README.md` | Tu Plata Informa | Repository overview | Informational |
+| README.md | `README.md` | Monedario.cl | Repository overview | Informational |
 | CONTRACTS.md | `context/CONTRACTS.md` | Context Contracts Registry | Context registry/policy | Governance |
 | CURRENT_STATE.md | `context/CURRENT_STATE.md` | Current State | Context registry/policy | Governance |
 | DOMAIN_CONTRACT_BOUNDARIES.md | `context/DOMAIN_CONTRACT_BOUNDARIES.md` | Domain Contract Boundaries (Phase 1) | Layer/domain boundaries | Architecture |
@@ -67,7 +67,7 @@ Markdown files discovered (excluding build/dependency artifacts): **114**.
 | PERFORMANCE_REMOTE_CLOSURE_REPORT.md | `docs/operations/reports/performance/PERFORMANCE_REMOTE_CLOSURE_REPORT.md` | Remote Performance Closure Report | Closure/performance report | Operational |
 | PHASE1_CLOSURE_REPORT.md | `docs/operations/reports/closures/PHASE1_CLOSURE_REPORT.md` | PHASE 1 CLOSURE REPORT | Closure/performance report | Operational |
 | README.md | `docs/research/README.md` | Research Docs | Documentation index | Governance |
-| deep-research-report.md | `docs/research/deep-research-report.md` | Estrategia de Contenido SEO para Tu Plata Informa | Research dossier | Informational |
+| deep-research-report.md | `docs/research/deep-research-report.md` | Estrategia de Contenido SEO para Monedario.cl | Research dossier | Informational |
 | tuplatainforma-contexto.md | `docs/archive/internal-docs/tuplatainforma-contexto.md` | Contexto Maestro — tuplatainforma | Archived historical local context note (non-canonical) | Informational |
 | ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.md | `src/data/blog/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.md` | ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026 | Published article content | Informational |
 | boleta-honorarios-2026-retencion-cobertura.md | `src/data/blog/boleta-honorarios-2026-retencion-cobertura.md` | boleta-honorarios-2026-retencion-cobertura | Published article content | Informational |

@@ -24,7 +24,7 @@ IMPORTANT:
 This license applies ONLY to the source code of this repository.
 
 All editorial content, articles, images, branding, design assets, and
-the name "Tu Plata Informa" are NOT covered by this license and remain ©
+the name "Monedario.cl" are NOT covered by this license and remain ©
 2026 Carlos Ortega González. All rights reserved.
 
 Use of the name, logo, or visual identity without explicit written

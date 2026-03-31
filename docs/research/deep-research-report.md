@@ -1,4 +1,4 @@
-# Estrategia de Contenido SEO para Tu Plata Informa
+# Estrategia de Contenido SEO para Monedario.cl
 
 ## Contexto, alcance y metodología
 
