@@ -4,7 +4,7 @@ description: "Guía para saber cuándo depositan la devolución, cómo revisar e
 slug: devolucion-impuestos-fechas-compensaciones
 author: "Equipo Monedario"
 pubDate: 2026-02-28T15:10:00Z
-updatedDate: 2026-02-28T15:10:00Z
+updatedDate: 2026-03-30T00:00:00Z
 tags:
   - impuestos
   - devolucion

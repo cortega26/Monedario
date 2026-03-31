@@ -4,7 +4,7 @@ description: "Comparativa práctica para elegir depósito a plazo en UF o pesos 
 slug: deposito-a-plazo-uf-vs-pesos
 author: "Equipo Monedario"
 pubDate: 2026-02-28T16:10:00Z
-updatedDate: 2026-02-28T16:10:00Z
+updatedDate: 2026-03-30T00:00:00Z
 tags:
   - deposito-a-plazo
   - uf

@@ -4,7 +4,7 @@ description: "Checklist práctico para revisar la propuesta del SII, enviar tu F
 slug: operacion-renta-f22-checklist
 author: "Equipo Monedario"
 pubDate: 2026-02-28T15:00:00Z
-updatedDate: 2026-02-28T15:00:00Z
+updatedDate: 2026-03-30T00:00:00Z
 tags:
   - impuestos
   - operacion-renta

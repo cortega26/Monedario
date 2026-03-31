@@ -46,3 +46,7 @@ docs/reports/rss_snapshot_after.json
 
 # urlcheck generated artifacts
 output/validation/urlcheck/**
+
+
+#Ignore vscode AI rules
+.github/instructions/codacy.instructions.md
