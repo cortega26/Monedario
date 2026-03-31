@@ -73,7 +73,6 @@ function isTrustedFontUrl(url: string) {
   }
 }
 
-
 // ─── LEER DESDE DISCO ────────────────────────────────────────────────────────
 
 function readFontFromDisk(file: string): ArrayBuffer | null {

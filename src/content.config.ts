@@ -1,4 +1,5 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection } from "astro:content";
+import { z } from "astro:schema";
 import { SITE } from "@/config";
 import { safeGlob } from "./content/loaders/safeGlob";
 import { CLUSTERS } from "./config/clusters";

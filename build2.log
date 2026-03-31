@@ -1,0 +1,620 @@
+
+> tuplatainforma@5.5.1 build
+> pnpm run check:images && pnpm run check:frontmatter && pnpm run check:legal-citations && astro check && astro build && pnpm run check:toc-i18n && pnpm run check:editorial-guard && pagefind --site dist && cp -r dist/pagefind public/ && pnpm run check:urls
+
+
+> tuplatainforma@5.5.1 check:images /home/carlos/VS_Code_Projects/tuplatainforma
+> pnpm run images:convert && node scripts/check-images.mjs
+
+
+> tuplatainforma@5.5.1 images:convert /home/carlos/VS_Code_Projects/tuplatainforma
+> node scripts/png-to-avif.mjs --dir public/images/hero
+
+  No se encontraron archivos PNG en la ruta indicada.
+[check:images] ✅ All blog images pass format and size constraints. assets=26 inline=1
+
+> tuplatainforma@5.5.1 check:frontmatter /home/carlos/VS_Code_Projects/tuplatainforma
+> node scripts/check-frontmatter.mjs
+
+[check-frontmatter] Scanned 34 articles.
+[check-frontmatter] Warnings: 1
+- src/data/blog/como-hacer-presupuesto-mensual-chile.md: Category "general" inside cluster "empleo-ingresos" is a documented transitional placement toward "presupuesto-control-financiero"; do not normalize it as definitive taxonomy before "/guias/presupuesto-control-financiero/" exists.
+[check-frontmatter] Deprecation counters:
+- pubDatetime: 0
+- modDatetime: 0
+- canonicalURL: 0
+- ogImage: 0
+[check-frontmatter] Transition defaults:
+- slug_missing: 0
+- category_missing: 0
+[check-frontmatter] Quality warnings (Level 2):
+- title_range: 0
+- description_range: 0
+[check-frontmatter] OK (no blocking errors).
+
+> tuplatainforma@5.5.1 check:legal-citations /home/carlos/VS_Code_Projects/tuplatainforma
+> node scripts/check-legal-citations.mjs
+
+[check-legal-citations] OK. laws=15 blog=34 registry=13
+22:15:01 [vite] Re-optimizing dependencies because vite config has changed
+22:15:01 [content] Syncing content
+22:15:01 [content] Content config changed
+22:15:01 [content] Clearing content store
+22:15:02 [content] Synced content
+22:15:02 [types] Generated 1.61s
+22:15:02 [check] Getting diagnostics for Astro files in /home/carlos/VS_Code_Projects/tuplatainforma...
+[96msrc/content.config.ts[0m:[93m230[0m:[93m12[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m230[0m     draft: z.boolean().default(false),
+[7m   [0m [93m           ~[0m
+[96msrc/content.config.ts[0m:[93m229[0m:[93m27[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m229[0m     relatedTerms: z.array(z.string()).default([]), // Slugs de glosario relacionados
+[7m   [0m [93m                          ~[0m
+[96msrc/content.config.ts[0m:[93m229[0m:[93m19[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m229[0m     relatedTerms: z.array(z.string()).default([]), // Slugs de glosario relacionados
+[7m   [0m [93m                  ~[0m
+[96msrc/content.config.ts[0m:[93m228[0m:[93m22[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m228[0m     shortDefinition: z.string().trim().min(10).max(160), // Definición concisa (SEO/Tooltip)
+[7m   [0m [93m                     ~[0m
+[96msrc/content.config.ts[0m:[93m227[0m:[93m11[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m227[0m     term: z.string().trim().min(1), // Término oficial completo
+[7m   [0m [93m          ~[0m
+[96msrc/content.config.ts[0m:[93m226[0m:[93m11[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m226[0m   schema: z.object({
+[7m   [0m [93m          ~[0m
+[96msrc/content.config.ts[0m:[93m220[0m:[93m12[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m220[0m     draft: z.boolean().default(false),
+[7m   [0m [93m           ~[0m
+[96msrc/content.config.ts[0m:[93m219[0m:[93m30[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m219[0m     relatedArticles: z.array(z.string()).default([]), // slugs de blog relacionados
+[7m   [0m [93m                             ~[0m
+[96msrc/content.config.ts[0m:[93m219[0m:[93m22[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m219[0m     relatedArticles: z.array(z.string()).default([]), // slugs de blog relacionados
+[7m   [0m [93m                     ~[0m
+[96msrc/content.config.ts[0m:[93m218[0m:[93m20[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m218[0m     updateTrigger: z.string().trim().min(1), // qué gatilla actualización
+[7m   [0m [93m                   ~[0m
+[96msrc/content.config.ts[0m:[93m217[0m:[93m19[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m217[0m     lastVerified: z.date(), // cuándo verificamos el contenido
+[7m   [0m [93m                  ~[0m
+[96msrc/content.config.ts[0m:[93m216[0m:[93m18[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m216[0m     description: z.string().trim().min(1), // para meta
+[7m   [0m [93m                 ~[0m
+[96msrc/content.config.ts[0m:[93m215[0m:[93m24[0m - [93mwarning[0m[90m ts(6385): [0m'(params?: string | { normalize?: boolean | undefined; abort?: boolean | undefined; pattern?: RegExp | undefined; hostname?: RegExp | undefined; protocol?: RegExp | undefined; error?: string | ... 1 more ... | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.
+
+[7m215[0m     bcnUrl: z.string().url(), // texto oficial en BCN
+[7m   [0m [93m                       ~~~[0m
+[96msrc/content.config.ts[0m:[93m215[0m:[93m13[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m215[0m     bcnUrl: z.string().url(), // texto oficial en BCN
+[7m   [0m [93m            ~[0m
+[96msrc/content.config.ts[0m:[93m214[0m:[93m18[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m214[0m     lastAmended: z.date().optional(), // última modificación oficial
+[7m   [0m [93m                 ~[0m
+[96msrc/content.config.ts[0m:[93m213[0m:[93m16[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m213[0m     effective: z.date(), // fecha de entrada en vigor
+[7m   [0m [93m               ~[0m
+[96msrc/content.config.ts[0m:[93m212[0m:[93m11[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m212[0m     area: z.enum(LEGAL_AREAS),
+[7m   [0m [93m          ~[0m
+[96msrc/content.config.ts[0m:[93m211[0m:[93m16[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m211[0m     shortName: z.string().trim().min(1), // nombre corto para cards
+[7m   [0m [93m               ~[0m
+[96msrc/content.config.ts[0m:[93m210[0m:[93m12[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m210[0m     title: z.string().trim().min(1), // título oficial
+[7m   [0m [93m           ~[0m
+[96msrc/content.config.ts[0m:[93m209[0m:[93m13[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m209[0m     numero: z.string().trim().min(1), // "20.009" | "DL 824"
+[7m   [0m [93m            ~[0m
+[96msrc/content.config.ts[0m:[93m208[0m:[93m11[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m208[0m   schema: z.object({
+[7m   [0m [93m          ~[0m
+[96msrc/content.config.ts[0m:[93m107[0m:[93m39[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m107[0m                   .union([z.number(), z.string().trim().min(1)])
+[7m   [0m [93m                                      ~[0m
+[96msrc/content.config.ts[0m:[93m107[0m:[93m27[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m107[0m                   .union([z.number(), z.string().trim().min(1)])
+[7m   [0m [93m                          ~[0m
+[96msrc/content.config.ts[0m:[93m106[0m:[93m32[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m106[0m                 expectedValue: z
+[7m   [0m [93m                               ~[0m
+[96msrc/content.config.ts[0m:[93m105[0m:[93m23[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m105[0m                 sync: z.enum(VOLATILE_DATA_SYNC_MODES),
+[7m   [0m [93m                      ~[0m
+[96msrc/content.config.ts[0m:[93m104[0m:[93m21[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m104[0m                 id: z.string().trim().min(3),
+[7m   [0m [93m                    ~[0m
+[96msrc/content.config.ts[0m:[93m102[0m:[93m13[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m102[0m             z
+[7m   [0m [93m            ~[0m
+[96msrc/content.config.ts[0m:[93m100[0m:[93m23[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m100[0m         volatileData: z
+[7m   [0m [93m                      ~[0m
+[96msrc/content.config.ts[0m:[93m97[0m:[93m29[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m97[0m             limits: z.array(z.string().trim().min(4)).default([]),
+[7m  [0m [93m                            ~[0m
+[96msrc/content.config.ts[0m:[93m97[0m:[93m21[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m97[0m             limits: z.array(z.string().trim().min(4)).default([]),
+[7m  [0m [93m                    ~[0m
+[96msrc/content.config.ts[0m:[93m96[0m:[93m29[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m96[0m             covers: z.array(z.string().trim().min(4)).default([]),
+[7m  [0m [93m                            ~[0m
+[96msrc/content.config.ts[0m:[93m96[0m:[93m21[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m96[0m             covers: z.array(z.string().trim().min(4)).default([]),
+[7m  [0m [93m                    ~[0m
+[96msrc/content.config.ts[0m:[93m91[0m:[93m38[0m - [93mwarning[0m[90m ts(6385): [0m'(params?: string | { normalize?: boolean | undefined; abort?: boolean | undefined; pattern?: RegExp | undefined; hostname?: RegExp | undefined; protocol?: RegExp | undefined; error?: string | ... 1 more ... | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.
+
+[7m91[0m                     href: z.string().url(),
+[7m  [0m [93m                                     ~~~[0m
+[96msrc/content.config.ts[0m:[93m91[0m:[93m27[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m91[0m                     href: z.string().url(),
+[7m  [0m [93m                          ~[0m
+[96msrc/content.config.ts[0m:[93m90[0m:[93m28[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m90[0m                     label: z.string().trim().min(2),
+[7m  [0m [93m                           ~[0m
+[96msrc/content.config.ts[0m:[93m88[0m:[93m17[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m88[0m                 z
+[7m  [0m [93m                ~[0m
+[96msrc/content.config.ts[0m:[93m86[0m:[93m30[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m86[0m             officialSources: z
+[7m  [0m [93m                             ~[0m
+[96msrc/content.config.ts[0m:[93m85[0m:[93m24[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m85[0m             validAsOf: z.date().optional(),
+[7m  [0m [93m                       ~[0m
+[96msrc/content.config.ts[0m:[93m84[0m:[93m28[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m84[0m             nextStepLabel: z.string().trim().min(3).optional(),
+[7m  [0m [93m                           ~[0m
+[96msrc/content.config.ts[0m:[93m83[0m:[93m27[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m83[0m             nextStepHref: z.string().trim().min(1).optional(),
+[7m  [0m [93m                          ~[0m
+[96msrc/content.config.ts[0m:[93m82[0m:[93m30[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m82[0m             calculatorLabel: z.string().trim().min(3).optional(),
+[7m  [0m [93m                             ~[0m
+[96msrc/content.config.ts[0m:[93m81[0m:[93m29[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m81[0m             calculatorHref: z.string().trim().min(1).optional(),
+[7m  [0m [93m                            ~[0m
+[96msrc/content.config.ts[0m:[93m80[0m:[93m21[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m80[0m             answer: z.string().trim().min(24),
+[7m  [0m [93m                    ~[0m
+[96msrc/content.config.ts[0m:[93m78[0m:[93m22[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m78[0m         articleLead: z
+[7m  [0m [93m                     ~[0m
+[96msrc/content.config.ts[0m:[93m77[0m:[93m23[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m77[0m         hideEditPost: z.boolean().optional(),
+[7m  [0m [93m                      ~[0m
+[96msrc/content.config.ts[0m:[93m76[0m:[93m19[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m76[0m         timezone: z.string().optional(),
+[7m  [0m [93m                  ~[0m
+[96msrc/content.config.ts[0m:[93m75[0m:[93m17[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m75[0m         series: z.string().trim().min(1).optional(),
+[7m  [0m [93m                ~[0m
+[96msrc/content.config.ts[0m:[93m69[0m:[93m25[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m69[0m                 reason: z.string().trim().min(12),
+[7m  [0m [93m                        ~[0m
+[96msrc/content.config.ts[0m:[93m68[0m:[93m22[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m68[0m                 src: z.string().trim().min(1),
+[7m  [0m [93m                     ~[0m
+[96msrc/content.config.ts[0m:[93m66[0m:[93m13[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m66[0m             z
+[7m  [0m [93m            ~[0m
+[96msrc/content.config.ts[0m:[93m64[0m:[93m32[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m64[0m         inlineImageExceptions: z
+[7m  [0m [93m                               ~[0m
+[96msrc/content.config.ts[0m:[93m63[0m:[93m20[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m63[0m         heroImage: z.string().or(image()).optional(),
+[7m  [0m [93m                   ~[0m
+[96msrc/content.config.ts[0m:[93m58[0m:[93m12[0m - [93mwarning[0m[90m ts(6385): [0m'(params?: string | { normalize?: boolean | undefined; abort?: boolean | undefined; pattern?: RegExp | undefined; hostname?: RegExp | undefined; protocol?: RegExp | undefined; error?: string | ... 1 more ... | undefined; message?: string | undefined; } | undefined): ZodString' is deprecated.
+
+[7m58[0m           .url()
+[7m  [0m [93m           ~~~[0m
+[96msrc/content.config.ts[0m:[93m56[0m:[93m20[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m56[0m         canonical: z
+[7m  [0m [93m                   ~[0m
+[96msrc/content.config.ts[0m:[93m55[0m:[93m17[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m55[0m         author: z.string().trim().min(1).default(SITE.author),
+[7m  [0m [93m                ~[0m
+[96msrc/content.config.ts[0m:[93m54[0m:[93m27[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m54[0m         homepagePriority: z.number().int().min(0).default(0),
+[7m  [0m [93m                          ~[0m
+[96msrc/content.config.ts[0m:[93m53[0m:[93m19[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m53[0m         featured: z.boolean().default(false),
+[7m  [0m [93m                  ~[0m
+[96msrc/content.config.ts[0m:[93m52[0m:[93m19[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m52[0m         unlisted: z.boolean().default(false),
+[7m  [0m [93m                  ~[0m
+[96msrc/content.config.ts[0m:[93m51[0m:[93m16[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m51[0m         draft: z.boolean().default(false),
+[7m  [0m [93m               ~[0m
+[96msrc/content.config.ts[0m:[93m50[0m:[93m15[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m50[0m         lang: z.literal("es-CL").default("es-CL"),
+[7m  [0m [93m              ~[0m
+[96msrc/content.config.ts[0m:[93m42[0m:[93m25[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m42[0m         canonicalTopic: z
+[7m  [0m [93m                        ~[0m
+[96msrc/content.config.ts[0m:[93m41[0m:[93m20[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m41[0m         topicRole: z.enum(TOPIC_ROLES).optional(),
+[7m  [0m [93m                   ~[0m
+[96msrc/content.config.ts[0m:[93m40[0m:[93m18[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m40[0m         cluster: z.enum(CLUSTERS),
+[7m  [0m [93m                 ~[0m
+[96msrc/content.config.ts[0m:[93m39[0m:[93m19[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m39[0m         category: z.enum(CATEGORIES),
+[7m  [0m [93m                  ~[0m
+[96msrc/content.config.ts[0m:[93m38[0m:[93m23[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m38[0m         tags: z.array(z.string().trim()).default([]),
+[7m  [0m [93m                      ~[0m
+[96msrc/content.config.ts[0m:[93m38[0m:[93m15[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m38[0m         tags: z.array(z.string().trim()).default([]),
+[7m  [0m [93m              ~[0m
+[96msrc/content.config.ts[0m:[93m37[0m:[93m22[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m37[0m         updatedDate: z.date().optional().nullable(),
+[7m  [0m [93m                     ~[0m
+[96msrc/content.config.ts[0m:[93m36[0m:[93m18[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m36[0m         pubDate: z.date(),
+[7m  [0m [93m                 ~[0m
+[96msrc/content.config.ts[0m:[93m35[0m:[93m15[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m35[0m         slug: z.string().trim().min(1),
+[7m  [0m [93m              ~[0m
+[96msrc/content.config.ts[0m:[93m34[0m:[93m22[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m34[0m         description: z.string().trim().min(1),
+[7m  [0m [93m                     ~[0m
+[96msrc/content.config.ts[0m:[93m33[0m:[93m16[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m33[0m         title: z.string().trim().min(1),
+[7m  [0m [93m               ~[0m
+[96msrc/content.config.ts[0m:[93m31[0m:[93m5[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m31[0m     z
+[7m  [0m [93m    ~[0m
+[96msrc/content.config.ts[0m:[93m2[0m:[93m10[0m - [93mwarning[0m[90m ts(6385): [0m'z' is deprecated.
+
+[7m2[0m import { z } from "astro:schema";
+[7m [0m [93m         ~[0m
+
+[96msrc/tools/hero-images/PromptGenerator.jsx[0m:[93m152[0m:[93m16[0m - [93mwarning[0m[90m ts(6387): [0mThe signature '(commandId: string, showUI?: boolean | undefined, value?: string | undefined): boolean' of 'document.execCommand' is deprecated.
+
+[7m152[0m       document.execCommand("copy");
+[7m   [0m [93m               ~~~~~~~~~~~[0m
+[96msrc/tools/hero-images/PromptGenerator.jsx[0m:[93m10[0m:[93m3[0m - [93mwarning[0m[90m ts(6133): [0m'lightenHex' is declared but its value is never read.
+
+[7m10[0m   lightenHex,
+[7m  [0m [93m  ~~~~~~~~~~[0m
+[96msrc/tools/hero-images/PromptGenerator.jsx[0m:[93m5[0m:[93m3[0m - [93mwarning[0m[90m ts(6133): [0m'getAllScenes' is declared but its value is never read.
+
+[7m5[0m   getAllScenes,
+[7m [0m [93m  ~~~~~~~~~~~~[0m
+
+Result (229 files): 
+- 0 errors
+- 0 warnings
+- 76 hints
+
+22:15:14 [vite] Re-optimizing dependencies because vite config has changed
+22:15:15 [content] Syncing content
+22:15:15 [content] Synced content
+22:15:15 [types] Generated 498ms
+22:15:15 [build] output: "static"
+22:15:15 [build] mode: "static"
+22:15:15 [build] directory: /home/carlos/VS_Code_Projects/tuplatainforma/dist/
+22:15:15 [build] Collecting build info...
+22:15:15 [build] ✓ Completed in 524ms.
+22:15:15 [build] Building static entrypoints...
+22:15:17 [vite] ✓ built in 2.19s
+22:15:17 [vite] ✓ built in 646ms
+22:15:17 [build] Rearranging server assets...
+
+ generating static routes 
+22:15:18   ├─ /404.html (+14ms) 
+22:15:18   ├─ /about/index.html (+4ms) 
+22:15:18   ├─ /archives/index.html (+21ms) 
+22:15:18   ├─ /autor/index.html (+12ms) 
+22:15:18   ├─ /buscar/index.html (+3ms) 
+22:15:18   ├─ /calculadoras/apv/index.html (+10ms) 
+22:15:18   ├─ /calculadoras/boleta-honorarios-liquido/index.html (+3ms) 
+22:15:18   ├─ /calculadoras/conversor-uf/index.html (+3ms) 
+22:15:18   ├─ /calculadoras/credito-consumo/index.html (+4ms) 
+22:15:18   ├─ /calculadoras/finiquito-indemnizacion/index.html (+3ms) 
+22:15:18   ├─ /calculadoras/prepago-credito/index.html (+3ms) 
+22:15:18   ├─ /calculadoras/reajuste-arriendo/index.html (+5ms) 
+22:15:18   ├─ /calculadoras/seguro-cesantia/index.html (+3ms) 
+22:15:18   ├─ /calculadoras/simulador-jubilacion/index.html (+3ms) 
+22:15:18   ├─ /calculadoras/simulador-renegociacion/index.html (+3ms) 
+22:15:18   ├─ /calculadoras/sueldo-liquido/index.html (+6ms) 
+22:15:18   ├─ /calculadoras/tarjeta-credito/index.html (+4ms) 
+22:15:18   ├─ /calculadoras/index.html (+4ms) 
+22:15:18   ├─ /glosario/afc/index.html (+3ms) 
+22:15:18   ├─ /glosario/afp/index.html (+2ms) 
+22:15:18   ├─ /glosario/apv/index.html (+2ms) 
+22:15:18   ├─ /glosario/cae/index.html (+4ms) 
+22:15:18   ├─ /glosario/cmf/index.html (+2ms) 
+22:15:18   ├─ /glosario/ctc/index.html (+2ms) 
+22:15:18   ├─ /glosario/dicom/index.html (+2ms) 
+22:15:18   ├─ /glosario/ipc/index.html (+2ms) 
+22:15:18   ├─ /glosario/sbif/index.html (+15ms) 
+22:15:18   ├─ /glosario/sernac/index.html (+82ms) 
+22:15:18   ├─ /glosario/sii/index.html (+22ms) 
+22:15:18   ├─ /glosario/tmc/index.html (+3ms) 
+22:15:18   ├─ /glosario/tpm/index.html (+3ms) 
+22:15:18   ├─ /glosario/uf/index.html (+3ms) 
+22:15:18   ├─ /glosario/utm/index.html (+2ms) 
+22:15:18   ├─ /glosario/index.html (+5ms) 
+22:15:18   ├─ /guias/ahorro-e-inversion/index.html (+4ms) 
+22:15:18   ├─ /guias/deuda-credito/index.html (+4ms) 
+22:15:18   ├─ /guias/empleo-ingresos/index.html (+3ms) 
+22:15:18   ├─ /guias/impuestos-personas/index.html (+3ms) 
+22:15:18   ├─ /guias/pensiones-afp/index.html (+3ms) 
+22:15:18   ├─ /guias/seguridad-financiera/index.html (+6ms) 
+22:15:18   ├─ /guias/sueldo-remuneraciones/index.html (+3ms) 
+22:15:18   ├─ /guias/uf-costo-de-vida/index.html (+3ms) 
+22:15:18   ├─ /guias/index.html (+3ms) 
+22:15:18   ├─ /leyes/dl-824-impuesto-renta/index.html (+5ms) 
+22:15:18   ├─ /leyes/dl-830-codigo-tributario/index.html (+2ms) 
+22:15:18   ├─ /leyes/ley-18010-credito-dinero/index.html (+2ms) 
+22:15:18   ├─ /leyes/ley-19496-proteccion-consumidor/index.html (+2ms) 
+22:15:18   ├─ /leyes/ley-19628-proteccion-datos/index.html (+4ms) 
+22:15:18   ├─ /leyes/ley-19728-seguro-cesantia/index.html (+3ms) 
+22:15:18   ├─ /leyes/ley-20009-tarjetas-fraude/index.html (+5ms) 
+22:15:18   ├─ /leyes/ley-20555-sernac-financiero/index.html (+3ms) 
+22:15:18   ├─ /leyes/ley-20575-datos-comerciales/index.html (+3ms) 
+22:15:18   ├─ /leyes/ley-21133-honorarios-retencion/index.html (+3ms) 
+22:15:18   ├─ /leyes/ley-21236-portabilidad-financiera/index.html (+3ms) 
+22:15:18   ├─ /leyes/ley-21521-fintech/index.html (+2ms) 
+22:15:18   ├─ /leyes/ley-21680-registro-deuda-consolidada/index.html (+2ms) 
+22:15:18   ├─ /leyes/ley-21719-proteccion-datos-modernizacion/index.html (+5ms) 
+22:15:18   ├─ /leyes/proyecto-reforma-previsional-2025/index.html (+8ms) 
+22:15:18   ├─ /leyes/index.html (+3ms) 
+22:15:18   ├─ /og.png (+204ms) 
+22:15:18   ├─ /posts/index.html (+8ms) 
+22:15:18   ├─ /posts/2/index.html (+5ms) 
+22:15:18   ├─ /posts/3/index.html (+11ms) 
+22:15:18   ├─ /posts/4/index.html (+6ms) 
+22:15:18   ├─ /posts/5/index.html (+2ms) 
+22:15:18   ├─ /posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/index.html (+10ms) 
+22:15:18   ├─ /posts/boleta-honorarios-2026-retencion-cobertura/index.html (+5ms) 
+22:15:18   ├─ /posts/cae-costo-real-credito-chile/index.html (+10ms) 
+22:15:18   ├─ /posts/como-calcular-sueldo-liquido/index.html (+5ms) 
+22:15:18   ├─ /posts/como-cambiarse-de-afp/index.html (+5ms) 
+22:15:18   ├─ /posts/como-hacer-presupuesto-mensual-chile/index.html (+7ms) 
+22:15:18   ├─ /posts/como-invertir-en-etfs-desde-chile/index.html (+6ms) 
+22:15:18   ├─ /posts/cuanto-descuenta-la-afp-de-tu-sueldo/index.html (+10ms) 
+22:15:18   ├─ /posts/deposito-a-plazo-uf-vs-pesos/index.html (+6ms) 
+22:15:18   ├─ /posts/descuentos-de-sueldo/index.html (+6ms) 
+22:15:18   ├─ /posts/devolucion-impuestos-fechas-compensaciones/index.html (+10ms) 
+22:15:18   ├─ /posts/donde-ver-si-estoy-en-dicom-gratis/index.html (+6ms) 
+22:15:18   ├─ /posts/el-poder-del-interes-compuesto/index.html (+13ms) 
+22:15:18   ├─ /posts/estafas-financieras-chile-vishing-smishing-marketplace/index.html (+11ms) 
+22:15:18   ├─ /posts/finiquito-e-indemnizaciones-en-chile/index.html (+12ms) 
+22:15:18   ├─ /posts/fondos-afp-a-b-c-d-e/index.html (+8ms) 
+22:15:18   ├─ /posts/fondos-mutuos-comisiones-rescate-impuestos/index.html (+5ms) 
+22:15:18   ├─ /posts/fraude-tarjeta-que-hacer/index.html (+7ms) 
+22:15:18   ├─ /posts/indemnizacion-anos-de-servicio-chile/index.html (+6ms) 
+22:15:18   ├─ /posts/informe-deudas-cmf-vs-dicom/index.html (+7ms) 
+22:15:18   ├─ /posts/interes-compuesto-nota-metodologica/index.html (+6ms) 
+22:15:18   ├─ /posts/licencia-medica-desde-que-dia-pagan/index.html (+5ms) 
+22:15:18   ├─ /posts/liquidacion-de-sueldo/index.html (+15ms) 
+22:15:18   ├─ /posts/operacion-renta-f22-checklist/index.html (+9ms) 
+22:15:18   ├─ /posts/que-es-el-apv/index.html (+16ms) 
+22:15:18   ├─ /posts/que-es-el-ipc-chile-como-se-calcula/index.html (+6ms) 
+22:15:18   ├─ /posts/que-es-la-cuenta-2-afp/index.html (+9ms) 
+22:15:19   ├─ /posts/que-es-la-uf/index.html (+7ms) 
+22:15:19   ├─ /posts/reajuste-arriendo-uf-ipc-chile/index.html (+4ms) 
+22:15:19   ├─ /posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/index.html (+9ms) 
+22:15:19   ├─ /posts/renegociacion-superir/index.html (+7ms) 
+22:15:19   ├─ /posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/index.html (+9ms) 
+22:15:19   ├─ /posts/seguro-de-cesantia/index.html (+5ms) 
+22:15:19   ├─ /posts/suplantacion-identidad-creditos-no-reconocidos/index.html (+6ms) 
+22:15:19   ├─ /robots.txt (+3ms) 
+22:15:19   ├─ /rss.xml (+30ms) 
+22:15:19   ├─ /search/index.html (+6ms) 
+22:15:19   ├─ /tags/afc/index.html (+4ms) 
+22:15:19   ├─ /tags/afp/index.html (+3ms) 
+22:15:19   ├─ /tags/ahorro/index.html (+5ms) 
+22:15:19   ├─ /tags/apv/index.html (+5ms) 
+22:15:19   ├─ /tags/arriendos/index.html (+3ms) 
+22:15:19   ├─ /tags/boletas/index.html (+4ms) 
+22:15:19   ├─ /tags/boletin-comercial/index.html (+4ms) 
+22:15:19   ├─ /tags/bolsa/index.html (+4ms) 
+22:15:19   ├─ /tags/cae/index.html (+3ms) 
+22:15:19   ├─ /tags/cambio-afp/index.html (+2ms) 
+22:15:19   ├─ /tags/cesantia/index.html (+4ms) 
+22:15:19   ├─ /tags/chile/index.html (+3ms) 
+22:15:19   ├─ /tags/cmf/index.html (+5ms) 
+22:15:19   ├─ /tags/comisiones/index.html (+3ms) 
+22:15:19   ├─ /tags/consumo/index.html (+2ms) 
+22:15:19   ├─ /tags/control-financiero/index.html (+2ms) 
+22:15:19   ├─ /tags/corredoras/index.html (+2ms) 
+22:15:19   ├─ /tags/costo-de-vida/index.html (+8ms) 
+22:15:19   ├─ /tags/credito/index.html (+5ms) 
+22:15:19   ├─ /tags/creditos/index.html (+3ms) 
+22:15:19   ├─ /tags/cuenta-2/index.html (+7ms) 
+22:15:19   ├─ /tags/deposito-a-plazo/index.html (+7ms) 
+22:15:19   ├─ /tags/derechos/index.html (+2ms) 
+22:15:19   ├─ /tags/descuentos/index.html (+3ms) 
+22:15:19   ├─ /tags/desempleo/index.html (+4ms) 
+22:15:19   ├─ /tags/despido/index.html (+3ms) 
+22:15:19   ├─ /tags/deuda/index.html (+3ms) 
+22:15:19   ├─ /tags/deudas/index.html (+3ms) 
+22:15:19   ├─ /tags/devolucion/index.html (+2ms) 
+22:15:19   ├─ /tags/dicom/index.html (+3ms) 
+22:15:19   ├─ /tags/empleador/index.html (+4ms) 
+22:15:19   ├─ /tags/empleo-ingresos/index.html (+4ms) 
+22:15:19   ├─ /tags/etf/index.html (+2ms) 
+22:15:19   ├─ /tags/f22/index.html (+2ms) 
+22:15:19   ├─ /tags/finanzas-personales/index.html (+1ms) 
+22:15:19   ├─ /tags/finiquito/index.html (+3ms) 
+22:15:19   ├─ /tags/fondos/index.html (+7ms) 
+22:15:19   ├─ /tags/fondos-generacionales/index.html (+3ms) 
+22:15:19   ├─ /tags/fondos-mutuos/index.html (+2ms) 
+22:15:19   ├─ /tags/fraude/index.html (+2ms) 
+22:15:19   ├─ /tags/gasto-hormiga/index.html (+2ms) 
+22:15:19   ├─ /tags/historial-crediticio/index.html (+3ms) 
+22:15:19   ├─ /tags/honorarios/index.html (+3ms) 
+22:15:19   ├─ /tags/impuestos/index.html (+3ms) 
+22:15:19   ├─ /tags/indemnizacion/index.html (+2ms) 
+22:15:19   ├─ /tags/inflacion/index.html (+2ms) 
+22:15:19   ├─ /tags/interes-compuesto/index.html (+2ms) 
+22:15:19   ├─ /tags/inversion/index.html (+2ms) 
+22:15:19   ├─ /tags/inversiones/index.html (+4ms) 
+22:15:19   ├─ /tags/ipc/index.html (+4ms) 
+22:15:19   ├─ /tags/jubilacion/index.html (+2ms) 
+22:15:19   ├─ /tags/ley-20009/index.html (+1ms) 
+22:15:19   ├─ /tags/licencia-medica/index.html (+1ms) 
+22:15:19   ├─ /tags/liquidacion/index.html (+2ms) 
+22:15:19   ├─ /tags/nasdaq-100/index.html (+6ms) 
+22:15:19   ├─ /tags/operacion-renta/index.html (+4ms) 
+22:15:19   ├─ /tags/pensiones/index.html (+3ms) 
+22:15:19   ├─ /tags/portabilidad/index.html (+2ms) 
+22:15:19   ├─ /tags/presupuesto/index.html (+2ms) 
+22:15:19   ├─ /tags/proteccion-social/index.html (+4ms) 
+22:15:19   ├─ /tags/reforma-pensiones/index.html (+4ms) 
+22:15:19   ├─ /tags/reforma-previsional/index.html (+3ms) 
+22:15:19   ├─ /tags/renegociacion/index.html (+3ms) 
+22:15:19   ├─ /tags/retencion/index.html (+4ms) 
+22:15:19   ├─ /tags/seguridad-financiera/index.html (+7ms) 
+22:15:19   ├─ /tags/seguridad-social/index.html (+4ms) 
+22:15:19   ├─ /tags/sii/index.html (+4ms) 
+22:15:19   ├─ /tags/smishing/index.html (+6ms) 
+22:15:19   ├─ /tags/sobreendeudamiento/index.html (+4ms) 
+22:15:19   ├─ /tags/subsidio/index.html (+3ms) 
+22:15:19   ├─ /tags/sueldo/index.html (+6ms) 
+22:15:19   ├─ /tags/superir/index.html (+3ms) 
+22:15:19   ├─ /tags/suplantacion/index.html (+3ms) 
+22:15:19   ├─ /tags/suseso/index.html (+1ms) 
+22:15:19   ├─ /tags/tarjetas/index.html (+3ms) 
+22:15:19   ├─ /tags/tgr/index.html (+3ms) 
+22:15:19   ├─ /tags/tmc/index.html (+3ms) 
+22:15:19   ├─ /tags/trabajo/index.html (+3ms) 
+22:15:19   ├─ /tags/uf/index.html (+2ms) 
+22:15:19   ├─ /tags/vishing/index.html (+2ms) 
+22:15:19   ├─ /tags/index.html (+6ms) 
+22:15:19   ├─ /index.html (+10ms) 
+22:15:19 ✓ Completed in 1.40s.
+
+22:15:19 [build] ✓ Completed in 4.29s.
+22:15:19 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+22:15:19 [build] 181 page(s) built in 4.85s
+22:15:19 [build] Complete!
+
+> tuplatainforma@5.5.1 check:toc-i18n /home/carlos/VS_Code_Projects/tuplatainforma
+> node scripts/check-toc-i18n.mjs
+
+[check-toc-i18n] OK: TOC i18n is consistent in source and build output.
+
+> tuplatainforma@5.5.1 check:editorial-guard /home/carlos/VS_Code_Projects/tuplatainforma
+> node scripts/check-editorial-guard.mjs
+
+[check-editorial-guard] OK: 34 blog files, 13 calculator files, and 24 page files validated.
+
+Running Pagefind v1.4.0 (Extended)
+Running from: "/home/carlos/VS_Code_Projects/tuplatainforma"
+Source:       "dist"
+Output:       "dist/pagefind"
+
+[Walking source directory]
+Found 181 files matching **/*.{html}
+
+[Parsing files]
+Found a data-pagefind-body element on the site.
+↳ Ignoring pages without this tag.
+
+[Reading languages]
+Discovered 1 language: es
+
+[Building search indexes]
+Total: 
+  Indexed 1 language
+  Indexed 33 pages
+  Indexed 3091 words
+  Indexed 0 filters
+  Indexed 0 sorts
+
+Finished in 0.441 seconds
+
+> tuplatainforma@5.5.1 check:urls /home/carlos/VS_Code_Projects/tuplatainforma
+> node scripts/check-urls.mjs
+
+URL CHECK REPORT
+mode: local
+scanned_links: 812
+
+internal_broken:
+  none: 0
+
+external_failures:
+  none: 0
+
+top_external_hosts_by_failures:
+  none: 0
+
+retries:
+  total_retries: 0
+  by_host:
+    none: 0
+[check-urls] artifacts: output/validation/urlcheck/internal-broken.json, output/validation/urlcheck/internal-broken.csv, output/validation/urlcheck/urlcheck-report.json
+[check-urls] baseline_policy.max_internal_broken_total=0
+[check-urls] OK. scanned=812 internal_broken=0 external_failures=0
