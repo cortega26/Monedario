@@ -245,8 +245,27 @@ function buildRecord(filePath, frontmatter, policy, volatileRegistry, volatileSn
   const updatedDate = parseOptionalDate(frontmatter.updatedDate);
   const pubDate = parseOptionalDate(frontmatter.pubDate);
   const reviewDate = validAsOf ?? updatedDate ?? pubDate;
-  const dueDate = reviewDate ? addDays(reviewDate, effectivePolicy.cadenceDays) : null;
-  const daysSinceReview = reviewDate ? diffInDays(reviewDate, TODAY) : null;
+
+  // For runtime_snapshot_plus_editorial_review articles the volatile snapshot is
+  // refreshed automatically (daily workflow). A fresh snapshot confirms the data
+  // is still valid, so it counts as an effective editorial check. Using the
+  // snapshot's lastUpdated date as an upper bound on the review date prevents
+  // the SLA from expiring whenever the data hasn't actually changed — without
+  // bypassing the strict-sync drift checks, which still compare against the
+  // frontmatter reviewDate.
+  let effectiveReviewDate = reviewDate;
+  if (
+    effectivePolicy.sourceMode === "runtime_snapshot_plus_editorial_review" &&
+    volatileSnapshot.lastUpdated
+  ) {
+    const snapshotDate = parseOptionalDate(volatileSnapshot.lastUpdated);
+    if (snapshotDate && (!effectiveReviewDate || snapshotDate > effectiveReviewDate)) {
+      effectiveReviewDate = snapshotDate;
+    }
+  }
+
+  const dueDate = effectiveReviewDate ? addDays(effectiveReviewDate, effectivePolicy.cadenceDays) : null;
+  const daysSinceReview = effectiveReviewDate ? diffInDays(effectiveReviewDate, TODAY) : null;
   const daysUntilDue = dueDate ? diffInDays(TODAY, dueDate) : null;
   const stale = dueDate ? TODAY.getTime() > dueDate.getTime() : true;
   const hasOfficialSources =
@@ -280,6 +299,7 @@ function buildRecord(filePath, frontmatter, policy, volatileRegistry, volatileSn
     category: String(frontmatter.category || ""),
     draft: frontmatter.draft === true,
     reviewDate: reviewDate ? formatIsoDate(reviewDate) : null,
+    effectiveReviewDate: effectiveReviewDate !== reviewDate ? formatIsoDate(effectiveReviewDate) : null,
     validAsOf: validAsOf ? formatIsoDate(validAsOf) : null,
     updatedDate: updatedDate ? formatIsoDate(updatedDate) : null,
     pubDate: pubDate ? formatIsoDate(pubDate) : null,

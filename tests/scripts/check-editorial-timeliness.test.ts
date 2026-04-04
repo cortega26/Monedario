@@ -291,6 +291,105 @@ volatileData:
     expect(result.stderr).toContain('expectedValue=0.49 does not match snapshot value=0.46');
   });
 
+  it("passes for a runtime_snapshot article whose frontmatter date is stale but the volatile snapshot was refreshed within the cadence", () => {
+    // Scenario: article has updatedDate = 2026-01-01 (>30 days ago), but the
+    // volatile snapshot was refreshed on 2026-03-10 (12 days before TODAY).
+    // The snapshot freshness should serve as the effective review date,
+    // keeping the SLA from expiring.
+    const root = createTempProject();
+    // Override the volatile snapshot to have a recent lastUpdated
+    writeFileSync(
+      path.join(root, "src", "infrastructure", "editorial", "editorial-volatile-data.snapshot.json"),
+      JSON.stringify(
+        {
+          lastUpdated: "2026-03-10",
+          datasets: {
+            "economic.uf.value": {
+              value: 39841.72,
+              reviewTriggerDate: "2026-03-10",
+              lastObservedAt: "2026-03-10",
+            },
+          },
+        },
+        null,
+        2
+      ),
+      "utf8"
+    );
+    writeArticle(
+      root,
+      "demo-runtime-snapshot.md",
+      `title: "Demo runtime snapshot"
+description: "Demo article"
+slug: demo-runtime-snapshot
+pubDate: "2026-01-01T00:00:00Z"
+updatedDate: "2026-01-01T00:00:00Z"
+author: "Equipo Monedario"
+category: general
+cluster: uf-costo-de-vida
+lang: es-CL
+volatileData:
+  - id: "economic.uf.value"
+    sync: reference`,
+      "Contenido"
+    );
+
+    // TODAY = 2026-03-22; snapshot lastUpdated = 2026-03-10; cadence = 30d
+    // effectiveReviewDate = max(2026-01-01, 2026-03-10) = 2026-03-10
+    // dueDate = 2026-04-09 → not stale
+    const result = runTimelinessCheck(root);
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("[check-editorial-timeliness] OK.");
+  });
+
+  it("fails for a runtime_snapshot article when both frontmatter date and snapshot lastUpdated are beyond the cadence", () => {
+    const root = createTempProject();
+    // Snapshot is also old (60 days ago relative to TODAY 2026-03-22)
+    writeFileSync(
+      path.join(root, "src", "infrastructure", "editorial", "editorial-volatile-data.snapshot.json"),
+      JSON.stringify(
+        {
+          lastUpdated: "2026-01-20",
+          datasets: {
+            "economic.uf.value": {
+              value: 39841.72,
+              reviewTriggerDate: "2026-01-20",
+              lastObservedAt: "2026-01-20",
+            },
+          },
+        },
+        null,
+        2
+      ),
+      "utf8"
+    );
+    writeArticle(
+      root,
+      "demo-runtime-snapshot.md",
+      `title: "Demo runtime snapshot"
+description: "Demo article"
+slug: demo-runtime-snapshot
+pubDate: "2026-01-01T00:00:00Z"
+updatedDate: "2026-01-01T00:00:00Z"
+author: "Equipo Monedario"
+category: general
+cluster: uf-costo-de-vida
+lang: es-CL
+volatileData:
+  - id: "economic.uf.value"
+    sync: reference`,
+      "Contenido"
+    );
+
+    // effectiveReviewDate = max(2026-01-01, 2026-01-20) = 2026-01-20
+    // dueDate = 2026-02-19 → stale (TODAY = 2026-03-22)
+    const result = runTimelinessCheck(root);
+
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain("review SLA expired");
+  });
+
   it("fails when a runtime snapshot article omits volatileData dependencies", () => {
     const root = createTempProject();
     writeArticle(
