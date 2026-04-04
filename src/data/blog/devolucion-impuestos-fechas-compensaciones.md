@@ -4,7 +4,7 @@ description: "Guía para saber cuándo depositan la devolución, cómo revisar e
 slug: devolucion-impuestos-fechas-compensaciones
 author: "Equipo Monedario"
 pubDate: 2026-02-28T15:10:00Z
-updatedDate: 2026-03-30T00:00:00Z
+updatedDate: 2026-04-04T00:00:00Z
 tags:
   - impuestos
   - devolucion
@@ -38,14 +38,17 @@ Si todavía estás revisando tu F22, parte por [Operación Renta F22: checklist 
 
 ## Fechas de referencia y ventanas de pago
 
-Como referencia oficial reciente, para Año Tributario 2025 se informaron estas ventanas:
+Para Año Tributario 2026, el SII publicó el calendario oficial el 31 de marzo de 2026:
 
-- Declaración del 1 al 8 de abril de 2025: depósito el 25 de abril de 2025.
-- Declaración del 9 al 21 de abril de 2025: depósito el 14 de mayo de 2025.
-- Declaración del 22 al 28 de abril de 2025: depósito el 23 de mayo de 2025.
-- Declaración del 29 de abril al 9 de mayo de 2025: depósito el 30 de mayo de 2025.
+| Fecha de presentación | Depósito bancario | Cheque |
+|---|---|---|
+| 1 al 8 de abril | 29 de abril de 2026 | 29 de mayo de 2026 |
+| 9 al 23 de abril | 15 de mayo de 2026 | 29 de mayo de 2026 |
+| 24 de abril al 8 de mayo | 27 de mayo de 2026 | 29 de mayo de 2026 |
 
-Para 2026, usa siempre el calendario oficial que publique SII/TGR para ese año tributario antes de tomar decisiones.
+La primera emisión (29 de abril) aplica solo a personas naturales. Cheques sobre $3.000.000 se envían al domicilio registrado en el SII; los de menor monto se retiran en BancoEstado.
+
+Usa siempre el calendario oficial que publique SII/TGR para el año tributario vigente antes de tomar decisiones.
 
 ## Si te pasa X, haz Y
 
@@ -103,6 +106,7 @@ Solo si hay error u observación en la declaración. Si la causa es compensació
 
 ## Fuentes y referencias primarias
 
+- SII, comunicado 31 de marzo de 2026 — calendario AT 2026 y novedades: https://www.sii.cl/noticias/2026/310326noti01pcr.htm
 - SII FAQ, fechas de devolución AT 2025: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8507.htm
 - SII FAQ, consulta de estado y observaciones en "Consulta y seguimiento": https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8548.htm
 - SII FAQ, causas de no recepción pese a declaración aceptada (retenciones y datos bancarios): https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8546.htm
@@ -111,7 +115,7 @@ Solo si hay error u observación en la declaración. Si la causa es compensació
 
 ## Información de vigencia
 
-- Revisado el: 2026-02-28.
+- Revisado el: 2026-04-04. Calendario AT 2026 verificado contra comunicado SII del 31 de marzo de 2026.
 - Puede quedar desactualizado cuando: publicación de calendario oficial del año tributario vigente, cambios en causales de compensación o ajustes de canales de pago TGR.
 
 Este contenido es informativo y no reemplaza asesoría tributaria profesional para casos complejos.
