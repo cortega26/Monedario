@@ -1,17 +1,19 @@
 ---
 numero: "20.575"
 title: "Ley Nº 20.575 — Establece el principio de finalidad en el tratamiento de datos personales"
-shortName: "Ley de Datos Comerciales (Finalidad)"
+shortName: "Ley 20.575: DICOM solo sirve para crédito"
 area: privacidad-y-datos
 effective: 2012-02-17
 bcnUrl: https://www.bcn.cl/leychile/navegar?idNorma=1037366
-description: "Limita el uso de información comercial de personas (datos del boletín comercial, DICOM y similares) a la evaluación de solvencia económica. Prohíbe su uso para fines distintos, como la selección de empleados."
+description: "La Ley 20.575 prohíbe usar tu historial DICOM para rechazarte en un empleo. Solo puede consultarse para evaluar solvencia crediticia. Acá qué dice exactamente y cómo te afecta."
 lastVerified: 2026-03-03
 updateTrigger: "Modificación del principio de finalidad o de los tipos de información cubiertos, o nueva normativa sobre uso de datos comerciales en procesos de selección laboral."
 relatedArticles:
   - informe-deudas-cmf-vs-dicom
 draft: false
 ---
+
+La **Ley 20.575** dice una cosa muy concreta: tu historial de deudas (DICOM, Boletín Comercial) solo puede usarse para evaluar si te van a dar un crédito. **No pueden usarlo para rechazarte en un proceso de selección laboral.** Eso está expresamente prohibido desde 2012, y muchas personas no lo saben.
 
 ## ¿Qué regula?
 

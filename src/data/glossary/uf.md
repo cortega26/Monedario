@@ -23,3 +23,7 @@ La Unidad de Fomento es omnipresente en la economía chilena a mediano y largo p
 - **Arriendos:** Crecientemente se fijan en UF en lugar de aplicar reajustes por IPC anual.
 - **Seguros:** Las coberturas y deducibles de automóviles y salud se valorizan en UF.
 - **Tope Imponible:** El máximo de sueldo sobre el cual pagas leyes sociales (AFP, Salud) está fijado en UF (y cambia cada año).
+
+---
+
+**Lee la guía completa:** [UF, inflación y costo de vida en Chile](/guias/uf-costo-de-vida/) →

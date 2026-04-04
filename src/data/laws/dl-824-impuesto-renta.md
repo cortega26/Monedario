@@ -1,7 +1,7 @@
 ---
 numero: "DL 824"
 title: "Decreto Ley Nº 824 — Aprueba el texto de la Ley sobre Impuesto a la Renta"
-shortName: "Ley de Impuesto a la Renta"
+shortName: "Decreto Ley 824: Ley de Impuesto a la Renta"
 area: tributaria
 effective: 1974-12-31
 lastAmended: 2024-01-01
@@ -15,6 +15,8 @@ relatedArticles:
   - ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026
 draft: false
 ---
+
+El **DL 824 (Ley de Impuesto a la Renta)** es la norma que define cómo tributan las personas y las empresas en Chile. Para un trabajador dependiente, lo más relevante es el impuesto de segunda categoría que sale en tu liquidación. Para independientes, determina cómo se declara la renta en abril.
 
 ## ¿Qué regula?
 

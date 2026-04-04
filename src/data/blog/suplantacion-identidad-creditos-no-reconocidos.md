@@ -1,7 +1,7 @@
 ---
-title: "Suplantación de identidad y créditos no reconocidos: cómo detectar, frenar y reclamar"
+title: "¿Suplantaron tu identidad? Cómo detectarlo y frenarlo"
 author: "Equipo Monedario"
-description: "Guía práctica en Chile para detectar suplantación de identidad, frenar créditos no reconocidos y reclamar ante banco, CMF y autoridades."
+description: "Si aparecen créditos que nunca pediste, puede que suplantaron tu identidad. Cómo detectarlo, frenarlo y reclamar ante el banco, CMF y Carabineros."
 slug: suplantacion-identidad-creditos-no-reconocidos
 pubDate: 2026-03-02T18:20:00Z
 updatedDate: 2026-03-03T00:00:00Z

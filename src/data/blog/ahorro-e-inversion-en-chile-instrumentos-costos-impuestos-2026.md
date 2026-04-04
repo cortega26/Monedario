@@ -1,6 +1,6 @@
 ---
-title: "Ahorro e inversión en Chile: instrumentos, costos e impuestos (guía 2026)"
-description: "Guía 2026 para elegir instrumentos de ahorro e inversión en Chile comparando riesgo, costos e impuestos sin mezclar objetivos ni plazos."
+title: "Inversión en Chile 2026: ETF, DAP y costos reales"
+description: "¿Qué conviene más en Chile: ETF, DAP o fondos mutuos? Guía 2026 con costos reales, impuestos y criterios para elegir según tu objetivo y plazo."
 slug: ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026
 author: "Equipo Monedario"
 pubDate: 2026-02-28T16:00:00Z
@@ -122,7 +122,7 @@ Compáralo contra alternativas de riesgo y plazo similares, sumando todos los co
 En general sí. Mayor rotación suele aumentar la fricción por costos e impuestos, erosionando el rendimiento neto.
 
 **¿La UF sirve solo para créditos hipotecarios?**
-No. También se usa en instrumentos de ahorro e inversión reajustables según inflación.
+No. También se usa en instrumentos de ahorro e inversión reajustables según inflación. Si quieres entender cómo funciona la UF y por qué sube, la [guía UF, inflación y costo de vida](/guias/uf-costo-de-vida/) lo explica desde el principio.
 
 **¿Puedo proyectar retorno futuro con datos históricos?**
 Solo como referencia, no como garantía. La CMF recuerda expresamente que la rentabilidad pasada no asegura la futura, salvo en casos específicos regulados.

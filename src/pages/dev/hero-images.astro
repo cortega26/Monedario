@@ -1,0 +1,27 @@
+---
+import PromptGenerator from "@/tools/hero-images/PromptGenerator.jsx";
+---
+
+<!doctype html>
+<html lang="es" style="background:#0a0a0a; color:#e5e5e5;">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Hero Images – Dev Tool</title>
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        padding: 1.5rem;
+        font-family: "DM Mono", "Courier New", monospace;
+        background: #0a0a0a;
+        color: #e5e5e5;
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <PromptGenerator client:only="react" />
+  </body>
+</html>

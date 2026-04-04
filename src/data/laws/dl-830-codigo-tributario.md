@@ -1,7 +1,7 @@
 ---
 numero: "Código Tributario"
 title: "Decreto Ley Nº 830 — Código Tributario"
-shortName: "Código Tributario"
+shortName: "Código Tributario (DL 830)"
 area: tributaria
 effective: 1975-01-01
 lastAmended: 2023-12-01
@@ -14,6 +14,8 @@ relatedArticles:
   - boleta-honorarios-2026-retencion-cobertura
 draft: false
 ---
+
+El **Código Tributario (DL 830)** establece las reglas del juego entre el SII y los contribuyentes: plazos para declarar, cómo se fiscaliza, qué pasa si hay errores y cómo reclamar si el SII te cobra de más.
 
 ## ¿Qué regula?
 

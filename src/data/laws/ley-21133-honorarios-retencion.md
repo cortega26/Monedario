@@ -1,7 +1,7 @@
 ---
 numero: "21.133"
 title: "Ley Nº 21.133 — Adecua el sistema previsional de los trabajadores independientes"
-shortName: "Retención Boletas de Honorarios"
+shortName: "Ley 21.133: Retención Boletas de Honorarios"
 area: prevision-y-trabajo
 effective: 2019-01-05
 lastAmended: 2022-01-01
@@ -13,6 +13,8 @@ relatedArticles:
   - boleta-honorarios-2026-retencion-cobertura
 draft: false
 ---
+
+La **Ley 21.133** estableció el sistema de retención obligatoria sobre boletas de honorarios en Chile. Si eres independiente y emites boletas, el SII retiene un porcentaje directamente —sin que tengas que declararlo tú— y lo destina a tu cobertura previsional y de salud.
 
 ## ¿Qué regula?
 

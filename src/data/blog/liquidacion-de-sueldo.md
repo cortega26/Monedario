@@ -56,7 +56,7 @@ No existe un formato único obligatorio, pero sí contenido mínimo. Una liquida
 
 **Haberes no imponibles:** asignaciones que no cotizan, como colación y movilización dentro de los límites legales. Deben aparecer separadas porque inflan el bruto visible sin entrar al cálculo previsional.
 
-**Descuentos legales:** AFP, salud, seguro de cesantía e impuesto único. Cada uno con su porcentaje y monto.
+**Descuentos legales:** AFP, salud, [seguro de cesantía](/posts/seguro-de-cesantia/) e impuesto único. Cada uno con su porcentaje y monto.
 
 **Otros descuentos:** cuotas de créditos, seguros, sindicato, APV. Cada uno debería tener una descripción que permita identificarlo.
 

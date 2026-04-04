@@ -131,7 +131,13 @@ function extractFaqItems(body: string): { question: string; answer: string }[] {
     );
 }
 
-const faqItems = extractFaqItems(post.body ?? "");
+const autoFaqItems = extractFaqItems(post.body ?? "");
+const frontmatterFaqs = (post.data.faqs ?? []).map(({ q, a }) => ({
+  question: q,
+  answer: a,
+}));
+const faqItems = autoFaqItems.length > 0 ? autoFaqItems : frontmatterFaqs;
+
 const faqSchema =
   faqItems.length > 0
     ? {

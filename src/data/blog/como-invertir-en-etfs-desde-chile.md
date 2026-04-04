@@ -1,6 +1,6 @@
 ---
-title: "Cómo invertir en ETFs desde Chile: comisiones, custodia e impuestos"
-description: "Paso a paso para invertir en ETFs desde Chile: cómo elegir intermediario, revisar costos, custodia, liquidez e impuestos básicos."
+title: "¿Cómo comprar ETF en Chile? Corredoras, costos y más"
+description: "Para comprar ETF en Chile necesitas una corredora habilitada. Acá explicamos cuánto cobran, cómo funciona la custodia y qué impuestos aplican."
 slug: como-invertir-en-etfs-desde-chile
 author: "Equipo Monedario"
 pubDate: 2026-02-28T16:30:00Z

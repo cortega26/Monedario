@@ -1,7 +1,7 @@
 ---
 numero: "19.728"
 title: "Ley Nº 19.728 — Establece un seguro de cesantía"
-shortName: "Seguro de Cesantía"
+shortName: "Ley 19.728: Seguro de Cesantía"
 area: prevision-y-trabajo
 effective: 2002-05-14
 lastAmended: 2022-01-01
@@ -13,6 +13,8 @@ relatedArticles:
   - seguro-de-cesantia
 draft: false
 ---
+
+La **Ley 19.728** creó el Seguro de Cesantía en Chile, el fondo que acumulas cada mes trabajando y que puedes cobrar cuando quedas sin empleo. Acá te explicamos qué dice la ley, quién paga, cuándo puedes cobrar y qué cubre la Cuenta Individual versus el Fondo Solidario.
 
 ## ¿Qué regula?
 

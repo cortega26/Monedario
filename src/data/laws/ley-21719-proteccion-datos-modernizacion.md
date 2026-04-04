@@ -1,11 +1,11 @@
 ---
 numero: "21.719"
 title: "Ley Nº 21.719 — Regula la protección y el tratamiento de los datos personales y crea la Agencia de Protección de Datos Personales"
-shortName: "Nueva Ley de Datos Personales (ARCO+)"
+shortName: "Ley 21.719: tus derechos sobre datos personales"
 area: privacidad-y-datos
 effective: 2024-12-13
 bcnUrl: https://www.bcn.cl/leychile/navegar?idNorma=1209272
-description: "Moderniza el marco de protección de datos personales en Chile. Crea la Agencia de Protección de Datos Personales, amplía los derechos del titular (ARCO+), endurece las sanciones y regula el tratamiento automatizado de decisiones."
+description: "La Ley 21.719 te da el derecho de saber qué datos tienen de ti, corregirlos o eliminarlos. Crea la Agencia de Datos Personales y endurece las sanciones para empresas que incumplan."
 lastVerified: 2026-03-03
 updateTrigger: "Publicación de la normativa reglamentaria de la Agencia de Protección de Datos. La ley entra en plena vigencia en etapas — revisar cronograma oficial en BCN."
 relatedArticles:
@@ -13,6 +13,8 @@ relatedArticles:
   - suplantacion-identidad-creditos-no-reconocidos
 draft: false
 ---
+
+La **Ley 21.719** es la nueva ley de protección de datos personales en Chile, vigente desde diciembre de 2024. Te da el derecho de saber qué información tienen de ti, corregirla, eliminarla o limitar cómo la usan. Si una empresa te envía publicidad sin tu permiso o comparte tus datos sin consentimiento, esta ley es la que te protege.
 
 ## ¿Qué regula?
 

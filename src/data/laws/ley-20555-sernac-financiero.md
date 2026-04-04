@@ -1,7 +1,7 @@
 ---
 numero: "20.555"
 title: "Ley Nº 20.555 — Modifica la Ley Nº 19.496, sobre Protección de los Derechos de los Consumidores, para dotar de atribuciones en materias financieras, de seguros e intermediación previsional al Servicio Nacional del Consumidor"
-shortName: "SERNAC Financiero"
+shortName: "Ley 20.555: SERNAC Financiero"
 area: proteccion-al-consumidor
 effective: 2012-03-14
 lastAmended: 2018-04-01
@@ -14,6 +14,8 @@ relatedArticles:
   - informe-deudas-cmf-vs-dicom
 draft: false
 ---
+
+La **Ley 20.555 (SERNAC Financiero)** le dio al SERNAC la facultad de fiscalizar productos financieros: créditos, seguros y servicios de AFP. Si un banco te cobró algo que no corresponde o el seguro que contrataste no fue explicado claramente, el SERNAC puede actuar.
 
 ## ¿Qué regula?
 

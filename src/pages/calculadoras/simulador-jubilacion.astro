@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
+import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
@@ -16,6 +17,7 @@ const economicSourceLabel =
   title="Simulador de Jubilación Chile | Proyección AFP"
   description="Proyecta tu ahorro previsional y una pensión estimada según sueldo, edad y rentabilidad esperada."
 >
+  <CalculatorJsonLd name="Simulador de Jubilación Chile | Proyección AFP" description="Proyecta tu ahorro previsional y una pensión estimada según sueldo, edad y rentabilidad esperada." />
   <Header />
   <Breadcrumb />
   <main

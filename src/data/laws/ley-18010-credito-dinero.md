@@ -1,7 +1,7 @@
 ---
 numero: "18.010"
 title: "Ley Nº 18.010 — Establece normas para las operaciones de crédito y otras obligaciones de dinero"
-shortName: "Operaciones de Crédito y TMC"
+shortName: "Ley 18.010: Operaciones de Crédito y TMC"
 area: credito-y-deuda
 effective: 1981-06-27
 lastAmended: 2023-01-01
@@ -14,6 +14,8 @@ relatedArticles:
   - informe-deudas-cmf-vs-dicom
 draft: false
 ---
+
+La **Ley 18.010** regula los créditos de dinero en Chile y fija el concepto de Tasa Máxima Convencional (TMC): el techo que ningún préstamo puede superar. Si te están cobrando una tasa que parece excesiva, esta ley es la referencia.
 
 ## ¿Qué regula?
 

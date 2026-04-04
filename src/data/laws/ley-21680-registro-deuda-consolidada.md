@@ -1,7 +1,7 @@
 ---
 numero: "21.680"
 title: "Ley Nº 21.680 — Crea el Registro de Deuda Consolidada"
-shortName: "Registro de Deuda Consolidada"
+shortName: "Ley 21.680: Registro de Deuda Consolidada"
 area: credito-y-deuda
 effective: 2024-07-01
 bcnUrl: https://www.bcn.cl/leychile/navegar?idNorma=1204681
@@ -14,6 +14,8 @@ relatedArticles:
   - renegociacion-superir
 draft: false
 ---
+
+La **Ley 21.680** creó el Registro de Deuda Consolidada en Chile, un sistema donde las instituciones financieras reportan las deudas vigentes de cada persona. Esto le permite al Estado —y a ti mismo— tener una foto real de cuánto debes en total y dónde.
 
 ## ¿Qué regula?
 

@@ -62,7 +62,7 @@ Estos descuentos no dependen de tu autorización. La ley obliga al empleador a a
 
 **Salud:** el 7% mínimo destinado a Fonasa o Isapre. Si estás en Fonasa, el descuento es exactamente 7%. Si estás en Isapre y tu plan cuesta más que el 7% legal, la diferencia también se descuenta — pero esa parte adicional ya es un descuento autorizado, no estrictamente legal.
 
-**Seguro de cesantía:** el 0,6% del imponible, pero solo si tu contrato es indefinido. Con contrato a plazo fijo u obra, el trabajador no aporta nada — el empleador pone el 3% completo. Si en una liquidación de contrato a plazo fijo aparece el 0,6% descontado al trabajador, eso es un error que conviene revisar.
+**Seguro de cesantía:** el 0,6% del imponible, pero solo si tu contrato es indefinido. Con contrato a plazo fijo u obra, el trabajador no aporta nada — el empleador pone el 3% completo. Si en una liquidación de contrato a plazo fijo aparece el 0,6% descontado al trabajador, eso es un error que conviene revisar. Si quedas sin trabajo, ese fondo se cobra ante la AFC — la [guía del seguro de cesantía](/posts/seguro-de-cesantia/) explica cuándo y cuánto.
 
 **Impuesto único de segunda categoría:** aplica solo si tu renta tributable mensual supera el primer tramo exento de la tabla del SII. En marzo de 2026 ese tramo llega hasta $943.501,50. Si estás bajo ese umbral, el impuesto no debería aparecer. Si en un mes con bono cruzas el tramo, aparece por primera vez aunque habitualmente no lo tengas.
 

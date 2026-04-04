@@ -1,7 +1,7 @@
 ---
 numero: "21.735"
 title: "Ley Nº 21.735 — Reforma el sistema de pensiones"
-shortName: "Reforma Previsional 2025"
+shortName: "Ley 21.735: Reforma Previsional 2025"
 area: prevision-y-trabajo
 effective: 2025-07-01
 bcnUrl: https://www.bcn.cl/leychile/navegar?idNorma=1212060
@@ -13,6 +13,8 @@ relatedArticles:
   - fondos-afp-a-b-c-d-e
 draft: false
 ---
+
+La **Ley 21.735 (Reforma Previsional 2025)** modifica el sistema AFP en Chile: crea una cotización adicional de cargo del empleador, introduce fondos generacionales en reemplazo de los multifondos A-E, y modifica las pensiones de vejez. Acá qué ya cambió, qué cambia pronto y qué significa para tu liquidación y tu pensión futura.
 
 ## ¿Qué regula?
 

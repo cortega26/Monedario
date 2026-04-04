@@ -1,12 +1,12 @@
 ---
 numero: "19.496"
 title: "Ley Nº 19.496 — Establece normas sobre protección de los derechos de los consumidores"
-shortName: "Protección al Consumidor (LPC)"
+shortName: "Ley del Consumidor (19.496): cómo te protege"
 area: proteccion-al-consumidor
 effective: 1997-03-07
 lastAmended: 2023-05-01
 bcnUrl: https://www.bcn.cl/leychile/navegar?idNorma=61438
-description: "Ley base del derecho del consumidor en Chile: define derechos irrenunciables, regula la publicidad, la garantía legal, los contratos de adhesión y el acceso a SERNAC."
+description: "La Ley del Consumidor te protege cuando compras algo defectuoso, te cobran de más o no respetan la garantía. Acá los artículos clave que necesitas conocer para reclamar."
 lastVerified: 2026-03-03
 updateTrigger: "Modificación de los plazos de garantía, los montos de las multas, o la incorporación de nuevas categorías de protección (ej. consumidores digitales)."
 relatedArticles:
@@ -14,6 +14,8 @@ relatedArticles:
   - fraude-tarjeta-que-hacer
 draft: false
 ---
+
+La **Ley del Consumidor (19.496)** es la que te protege cuando compras un producto defectuoso, te cobran de más o no respetan una garantía. Acá te explicamos los artículos clave que necesitas conocer para reclamar con fundamento ante una tienda, un banco o cualquier proveedor de servicios.
 
 ## ¿Qué regula?
 

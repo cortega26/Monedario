@@ -1,17 +1,19 @@
 ---
 numero: "21.521"
 title: "Ley Nº 21.521 — Incentiva la Industria Fintec e instruye la portabilidad de información financiera (Ley Fintech)"
-shortName: "Ley Fintech"
+shortName: "Ley Fintech (21.521): qué regula en Chile"
 area: bancaria-y-financiera
 effective: 2023-01-04
 bcnUrl: https://www.bcn.cl/leychile/navegar?idNorma=1187323
-description: "Regula los servicios de tecnología financiera en Chile: plataformas de crowdfunding, robo-advisors, intermediadores de pago y open banking. Establece requisitos de registro, capital y seguridad bajo la supervisión de la CMF."
+description: "La Ley Fintech regula las apps financieras en Chile: crowdfunding, robo-advisors y open banking. Si usas estas plataformas, acá qué pueden y no pueden hacer con tus datos e inversiones."
 lastVerified: 2026-03-03
 updateTrigger: "Publicación de normativas secundarias de la CMF que definan requisitos operativos para los nuevos tipos de entidades reguladas."
 relatedArticles:
   - ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026
 draft: false
 ---
+
+La **Ley Fintech (21.521)** regula las apps y plataformas financieras que no son bancos tradicionales: crowdfunding, robo-advisors, pasarelas de pago y servicios de open banking. Si usas alguna de estas plataformas en Chile, esta ley define qué les pueden y no pueden hacer a tus datos e inversiones.
 
 ## ¿Qué regula?
 

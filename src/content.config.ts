@@ -110,6 +110,15 @@ const blog = defineCollection({
               .strict()
           )
           .default([]),
+        faqs: z
+          .array(
+            z.object({
+              q: z.string().trim().min(1),
+              a: z.string().trim().min(1),
+            })
+          )
+          .optional()
+          .default([]),
       })
       .strict()
       .superRefine((data, ctx) => {

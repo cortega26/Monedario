@@ -9,7 +9,7 @@ export const COLORS = {
   "navy-profundo": {
     hex: "#1a4f8a",
     label: "Navy principal",
-    uso: "Sueldo, impuestos, AFP, crédito — artículos de peso",
+    uso: "Sueldo, impuestos, AFP, crédito — artículos de peso institucional",
     figura: "#ffffff",
     acento: "#4a9edd",
     detalle: "#0d3060",
@@ -57,22 +57,25 @@ export const COLORS = {
 };
 
 // Ancla de estilo — va en TODOS los prompts
-// Explícita y repetitiva a propósito — gpt-image-1 necesita refuerzo
-const STYLE_ANCHOR = `Flat 2D editorial vector illustration. Scandinavian minimal financial design.
+// Define el lenguaje visual propio de Monedario — no modificar sin revisión editorial.
+const STYLE_ANCHOR = `STYLE: Monedario Flat Editorial — the proprietary visual language of monedario.cl.
+Flat 2D vector illustration. Deep solid background. One bold primary geometric form in white or light figure color, occupying 50–60% of the frame height. One supporting element. One accent detail only.
+VISUAL GRAMMAR: every image is a visual sentence — a primary subject and a visible action (arrow, cut, overlap, separation, growth, comparison). The action must be immediately readable without labels.
+WEIGHT AND CHARACTER: forms are architectural, weighted, and precise — not decorative, not cute, not illustrative. Think editorial diagram, not icon pack.
 BACKGROUND: one single completely flat solid color fill — zero gradients, zero noise, zero vignette, zero texture, zero glow.
-STYLE: clean geometric vector shapes only — zero 3D, zero drop shadows, zero glassmorphism, zero photorealism, zero blur.
-COMPLEXITY: maximum 3 distinct visual elements total — one dominant, one supporting, one accent detail.`;
+COMPLEXITY: maximum 3 distinct visual objects. Repeating elements that form a single visual unit (grouped bars, document lines, grid cells, staircase steps) count as one object.
+LEGIBILITY: the financial concept must be identifiable at 300×170px thumbnail size. One unambiguous focal point — the supporting element must never compete with the primary form.`;
 
-// Señal de industria — Chilean personal finance context
-const INDUSTRY_SIGNAL = `This image is for a Chilean personal finance education website. The visual must immediately communicate financial concepts — money management, savings, taxes, or employment — not technology, healthcare, or generic business.`;
+// Señal de industria y audiencia
+const INDUSTRY_SIGNAL = `This image appears on monedario.cl, a Chilean personal finance education website. Readers range from 18-year-olds entering the workforce for the first time to adults approaching retirement — no financial literacy assumed. The image must communicate the core financial concept in under 3 seconds, without text, labels, or captions. A first-time viewer with no prior context must identify the topic area instantly.`;
 
-// Reglas de composición fijas
-const COMPOSITION_RULES = `COMPOSITION: landscape 3:2 format. Main subject positioned in the left or center-left third of the frame. Right third is deliberately empty clean space for text overlay. One clear focal point only.`;
+// Reglas de composición — Template A (escenas narrativas)
+const COMPOSITION_RULES = `COMPOSITION: landscape 16:9 format. Primary subject anchored in the left or center-left third of the frame. Right third is deliberately clean empty space reserved for text overlay in post-production. One unambiguous focal point — the supporting element must not compete with the primary form for visual weight.`;
 
-// Prohibiciones absolutas
-const NEVER = `NEVER include: text, letters, numbers, words, labels, or symbols that read as text. NEVER use gradients or color transitions. NEVER use more than 3 visual elements. NEVER use photorealistic textures. NEVER use drop shadows or 3D effects.`;
+// Prohibiciones absolutas — no negociar
+const NEVER = `NEVER include: text, letters, numbers, words, labels, or any symbol that reads as text. NEVER use gradients, color transitions, or tints within any single element. NEVER use more than 3 distinct visual objects. NEVER use photorealistic textures, materials, or lighting. NEVER use drop shadows, glow, blur, or any 3D effect. NEVER use decorative, organic, or ornamental detail.`;
 
-// ─── TEMPLATE A: Escena con metáfora (artículos principales) ──────────────────
+// ─── TEMPLATE A: Escena con metáfora narrativa (artículos principales) ─────────
 export function buildPromptA(colorKey, escena, nota = "") {
   const c = COLORS[colorKey];
   if (!c) throw new Error(`Color key "${colorKey}" no existe en COLORS`);
@@ -81,17 +84,17 @@ export function buildPromptA(colorKey, escena, nota = "") {
 
 ${INDUSTRY_SIGNAL}
 
-BACKGROUND COLOR: solid flat fill ${c.hex} — this exact hex, uniform edge to edge, no variation.
-PRIMARY ELEMENT: ${escena}
-Render the primary element as clean bold vector shapes in ${c.figura}.
-Use ${c.acento} sparingly on one single accent detail only.
-Use ${c.detalle} for one subtle dark edge or depth plane — flat, not shadowed.
+BACKGROUND COLOR: solid flat fill ${c.hex} — this exact hex, uniform edge to edge, zero variation.
+PRIMARY FORM: ${escena}
+Render all forms as clean bold vector shapes in ${c.figura}.
+Use ${c.acento} sparingly on one single accent detail only — never on the primary form.
+Use ${c.detalle} for one structural dark plane that adds weight — flat, never shadowed.
 
 ${nota ? `CREATIVE DIRECTION: ${nota}` : ""}
 
 ${COMPOSITION_RULES}
 
-Mood: calm financial confidence, clarity, approachability.
+Mood: authoritative clarity. The image feels like a well-designed explanation — confident, structured, trustworthy. Not alarming, not clinical, not corporate.
 
 ${NEVER}`;
 }
@@ -107,13 +110,13 @@ ${INDUSTRY_SIGNAL}
 
 BACKGROUND COLOR: solid flat fill ${c.hex} — uniform, zero variation.
 SINGLE ICON: ${icono}
-Render as one large bold clean ${c.figura} vector form. Geometric, not decorative. Occupies 40–50% of frame height.
+Render as one large bold ${c.figura} vector form. Geometric, not decorative. Occupies 40–50% of frame height. The icon IS the entire message — it requires no caption.
 One accent detail only in ${c.acento}.
 
 ${nota ? `CREATIVE DIRECTION: ${nota}` : ""}
 
 COMPOSITION: icon perfectly centered, generous equal padding on all sides.
-Mood: tool-like precision, immediate visual recognition.
+Mood: precision and immediacy — the form is self-explanatory.
 
 ${NEVER}`;
 }
@@ -130,8 +133,8 @@ export function buildPromptC(
   return `${STYLE_ANCHOR}
 
 BACKGROUND COLOR: solid flat fill ${c.hex} — uniform, zero variation.
-SUBTLE PATTERN: ${patron} rendered in ${c.detalle} at approximately 8% opacity — nearly invisible, only sensed not seen.
-NO focal element. NO subject. NO icons. Pure texture background layer only.
+SUBTLE PATTERN: ${patron} rendered in ${c.detalle} at approximately 8% opacity — nearly invisible, sensed not seen.
+NO focal element. NO subject. NO icons. Pure texture background layer for post-production text overlay.
 
 ${nota ? `CREATIVE DIRECTION: ${nota}` : ""}
 
@@ -145,6 +148,9 @@ ${NEVER} No focal point. No subject matter. No icons.`;
 // Organizadas por cluster editorial del sitio.
 // REGLA DE COLOR: usar solo colores oscuros — navy, slate, indigo, teal, amber, forest.
 // cream-claro (#f1f5f9) está ELIMINADO — produce BACKGROUND failures en gpt-image-1.
+// REGLA DE ESCENA: máximo 3 objetos visuales distintos. Elementos repetidos que forman
+// una unidad (barras agrupadas, líneas de documento, pasos de escalera) cuentan como 1.
+// REGLA DE NOTA: solo art direction — qué enfatizar y por qué. Nunca re-explicar la escena.
 
 export const SCENE_LIBRARY = {
   // ── SUELDO Y REMUNERACIONES ──────────────────────────────────────────────────
@@ -155,8 +161,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "navy-profundo",
       escena:
-        "a bold Chilean peso coin symbol on the left, with three horizontal white bars of decreasing length stacked vertically on the right — the top bar is longest (gross salary), middle is medium (after deductions), bottom is shortest and highlighted in teal (net salary received)",
-      nota: "The three bars and peso symbol together communicate salary calculation immediately. The shrinking bars ARE the deduction logic.",
+        "a bold circular coin disc form on the left, with three horizontal bars of decreasing length stacked vertically on the right — top bar is longest in figura color, middle bar is medium in figura color, bottom bar is shortest in acento color",
+      nota: "The shrinking bars are the argument — each step down is a deduction, no explanation needed. Bottom bar in accent color is the point of arrival: the take-home amount. Coin establishes the monetary context without any text or currency symbol.",
     },
     {
       slug: "liquidacion-de-sueldo",
@@ -165,7 +171,7 @@ export const SCENE_LIBRARY = {
       colorKey: "slate-neutro",
       escena:
         "a clean rectangular payslip document with five horizontal lines of varying length inside it, and a bold magnifying glass overlaid on the lower half of the document",
-      nota: "Audit and verification of a financial document. Document is primary, magnifying glass shows scrutiny.",
+      nota: "Document is the primary form. Magnifying glass = careful examination and verification, not suspicion or investigation. The action is understanding what is already there — scrutiny in service of knowledge.",
     },
     {
       slug: "cuanto-descuenta-la-afp-de-tu-sueldo",
@@ -173,8 +179,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "navy-profundo",
       escena:
-        "a wide horizontal rectangle representing a salary bar, with a clean vertical cut separating a smaller portion on the right — the separated portion has a downward arrow pointing into a small circular savings vessel below it",
-      nota: "Money being deducted from salary into a pension fund. The cut and arrow are the story.",
+        "a wide horizontal rectangle representing a full salary, split cleanly by a bold vertical cut — the smaller right portion is detached and falls away with a downward arrow below it, becoming a visually separated deducted amount",
+      nota: "The cut and the falling portion are the entire story — no containers or vessels needed. The separation IS the deduction. The falling arrow gives the detached piece a clear destination: away from the worker's pocket and into the pension fund.",
     },
     {
       slug: "descuentos-de-sueldo",
@@ -182,8 +188,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "slate-neutro",
       escena:
-        "three clean horizontal bars stacked vertically with clear space between them — top bar is full width labeled implicitly as mandatory, middle bar is 70% width as voluntary, bottom bar is 40% width as prohibited — each bar a slightly different shade",
-      nota: "Three tiers of deductions. The decreasing width IS the classification hierarchy.",
+        "three clean horizontal bars stacked vertically — top bar is full width in figura color, middle bar is 70% width in acento color, bottom bar is 40% width in detalle color — all bars the same height, each bar a single flat solid color with zero internal variation",
+      nota: "Width encodes importance — broadest means mandatory and unavoidable. Three tiers, three colors, decreasing: the classification reads as a hierarchy at a glance, not a chart. No shade variation within any single bar.",
     },
   ],
 
@@ -195,8 +201,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "navy-profundo",
       escena:
-        "five clean vertical bars of strictly decreasing heights from left to right — leftmost bar is tallest and boldest (aggressive fund A), rightmost is shortest and thinnest (conservative fund E) — bars in graduated shades from bright to muted",
-      nota: "The five bars ARE the five funds. Height equals risk/return. Abstract, not a data chart.",
+        "five clean vertical bars of strictly decreasing heights from left to right — tallest bar in figura color, next three bars in acento color, shortest bar in detalle color — all bars the same width, equally spaced, each bar a single flat solid color with zero internal variation",
+      nota: "Abstract, not a data chart. Height encodes risk and return only — no axes, no labels, no values. Five bars read as a family of options. Left = most aggressive. Right = most conservative. The gradient of height is the entire message.",
     },
     {
       slug: "como-cambiarse-de-afp",
@@ -205,7 +211,7 @@ export const SCENE_LIBRARY = {
       colorKey: "teal-confianza",
       escena:
         "two identical clean rectangular blocks side by side, with a bold curved arrow arcing from the top of the left block over to land on top of the right block",
-      nota: "Simple portability metaphor. The arc IS the transfer. Both blocks are equal — no better/worse implied.",
+      nota: "Both blocks are equal weight — no hierarchy, no better or worse implied. The arc carries all meaning: smooth, voluntary movement from one to the other. The action is simple, accessible, and reversible.",
     },
     {
       slug: "reforma-previsional-2025-que-cambia-y-como-te-afecta",
@@ -213,8 +219,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "indigo-inversion",
       escena:
-        "a clean circle (clock face) with two bold hands indicating time, with a bold upward-right arrow emerging from the circle's right edge indicating forward change",
-      nota: "Time moving forward plus positive change direction. No coins, no people, no buildings.",
+        "a clean circle outline representing the existing system, with a bold forward-pointing arrow emerging from its right edge and crossing beyond the circle's boundary into open space on the right",
+      nota: "The arrow exits the circle — the reform extends past the current system's boundary. No coins, no people, no buildings. Circle = existing structure, exiting arrow = a structural change that goes beyond what is already there.",
     },
     {
       slug: "que-es-la-cuenta-2-afp",
@@ -222,8 +228,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "indigo-inversion",
       escena:
-        "two clean rectangular slabs stacked vertically — the bottom slab is wider and taller representing the mandatory AFP account, the top slab is narrower and slightly offset to the right representing the voluntary layer — a bold plus sign floats between them",
-      nota: "Two account layers clearly distinct. Bottom is foundation, top is the voluntary addition.",
+        "two clean rectangular slabs stacked vertically — the bottom slab is wider and taller, the top slab is narrower and offset slightly to the right — a bold plus sign floats in the gap between them",
+      nota: "Bottom slab is the foundation — heavier, wider, non-optional. Top slab is lighter and offset — it belongs to the worker, not the system. The plus sign is an invitation, not a requirement. Optionality is the concept.",
     },
   ],
 
@@ -235,8 +241,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "indigo-inversion",
       escena:
-        "a clean upward-trending line chart with three distinct data points marked as bold circles — each circle slightly larger than the previous — representing growth over time across different investment instruments",
-      nota: "Growth trajectory with distinct milestones. The ascending line with three nodes represents diversified instruments over time.",
+        "a bold ascending staircase of three equal steps — each step taller than the previous, forming a clear upward progression from left to right — a small accent circle rests on the topmost step as a destination marker",
+      nota: "Steps represent the progression from basic savings to advanced investment instruments. Not a chart — a journey with a clear direction and a reachable destination. Three steps communicates accessible, not overwhelming.",
     },
     {
       slug: "que-es-el-apv",
@@ -244,8 +250,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "indigo-inversion",
       escena:
-        "a bold shield outline on the left with a small upward-growing sprout shape centered inside it — the shield represents protection, the sprout represents voluntary growth",
-      nota: "Protected voluntary savings. Shield = tax benefit protection. Sprout = pension growth.",
+        "a bold shield outline with a small upward-growing sprout shape centered inside it — the shield represents protection, the sprout represents voluntary pension growth happening inside the protected layer",
+      nota: "Shield = tax protection. Sprout = long-term growth happening inside the protection, not despite it. The sprout is intentionally small — early stage, not yet matured. This is a patient instrument, not an instant return.",
     },
     {
       slug: "deposito-a-plazo-uf-vs-pesos",
@@ -253,8 +259,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "slate-neutro",
       escena:
-        "two identical clean rectangular blocks side by side connected at the top by a thin horizontal balance beam — the left block has a small circle accent (representing UF), the right block is plain (representing pesos) — the beam is perfectly level",
-      nota: "Equal comparison scale. Neither side tips — the decision depends on inflation context.",
+        "two identical clean rectangular blocks of the same height, connected at the top by a thin horizontal bar and a small triangular fulcrum at the center forming a perfect balance scale in equilibrium — the left block has a small circle accent on its surface, the right block is plain",
+      nota: "The level bar is the key message: neither instrument is universally better — context decides. The only visual difference between the blocks is the accent circle on the left. Neither side tips. The decision is the reader's, not the image's.",
     },
     {
       slug: "el-poder-del-interes-compuesto",
@@ -262,8 +268,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "indigo-inversion",
       escena:
-        "a single bold exponential curve starting thin and flat at the bottom-left, sweeping upward steeply toward the upper-right — the curve starts in accent color and ends in the figure color, growing visibly thicker as it rises",
-      nota: "The curve alone tells the compound interest story. No coins, no people, no charts behind it.",
+        "a single bold exponential curve in figura color — thin at the bottom-left, sweeping upward steeply and growing progressively thicker toward the upper-right, ending nearly vertical",
+      nota: "The curve alone makes the argument. No coins, no charts, no annotations behind it. The growing line weight reinforces the acceleration. Start slow, end steep — that IS compound interest. One form, one idea.",
     },
     {
       slug: "fondos-mutuos-comisiones-rescate-impuestos",
@@ -271,8 +277,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "indigo-inversion",
       escena:
-        "a clean circle divided into four equal pie segments — one segment is pulled outward and slightly separated from the circle, highlighted in the accent color, representing a redemption or extraction from a diversified portfolio",
-      nota: "Portfolio allocation with one segment being extracted. The pulled segment = rescate concept.",
+        "a clean circle divided into four equal pie segments — one segment is pulled outward and slightly separated from the circle, highlighted in acento color, representing a redemption extraction from the portfolio",
+      nota: "The extracted segment breaks the symmetry of the whole circle — that disruption IS the rescate concept. The circle had integrity until one part was pulled out. The separation creates the visual tension that tells the story.",
     },
     {
       slug: "como-invertir-en-etfs-desde-chile",
@@ -280,8 +286,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "indigo-inversion",
       escena:
-        "a minimal globe wireframe (just the outline circle and two or three latitude lines) with a single bold straight arrow crossing horizontally through its center from left to right — representing cross-border investment access",
-      nota: "Global reach from Chile. Arrow crosses the globe = international ETF access. Globe is wireframe only — no continents, no detail.",
+        "a minimal globe wireframe — a circle outline with two or three horizontal latitude lines only — with a single bold straight arrow crossing horizontally through its center from left to right",
+      nota: "Globe is context, arrow is the action. The arrow crosses the globe without detour — direct, accessible, no intermediary. No continents, no country borders, no flags — a pure geometric wireframe. International access made simple.",
     },
   ],
 
@@ -293,8 +299,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "slate-neutro",
       escena:
-        "a clean rectangular form document with three rows — each row has a small square checkbox on the left and a horizontal line on the right — top two checkboxes are filled solid, the bottom checkbox is empty and highlighted with an accent color circle around it",
-      nota: "Two done, one pending. The empty highlighted checkbox creates the action tension that drives the article.",
+        "a clean rectangular form document with three rows — each row has a small square checkbox on the left and a horizontal line on the right — top two checkboxes are filled solid, the bottom checkbox is empty with an accent color circle highlighting it",
+      nota: "Two checked boxes signal progress already made. The empty highlighted box is the reader's one remaining action. That single incomplete box creates the action tension that drives the article — and the reassurance that completion is close.",
     },
     {
       slug: "devolucion-impuestos-fechas-compensaciones",
@@ -302,8 +308,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "forest-ahorro",
       escena:
-        "a bold rightward arrow with a small calendar rectangle at its tail end — the calendar shows a simple grid of lines — and a small circular coin form at the arrowhead, representing money returning on a specific date",
-      nota: "Date triggers money return. Calendar → arrow → coin. Green/forest color signals positive financial outcome.",
+        "a bold rightward arrow with a small calendar rectangle at its tail end — the calendar shows a simple grid of lines — and a small circular coin form at the arrowhead",
+      nota: "Calendar triggers the movement, coin is the destination. The arrow is the promise: on this specific date, money returns. Forest green signals money arriving, not being deducted — a positive financial event.",
     },
     {
       slug: "boleta-honorarios-2026-retencion-cobertura",
@@ -311,8 +317,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "slate-neutro",
       escena:
-        "a clean receipt-style document with horizontal lines, and a bold percentage sign as a large foreground element overlapping the top-right corner of the document",
-      nota: "The retention percentage IS the hero. Document provides context. Percentage symbol dominates.",
+        "a clean receipt-style document with four horizontal lines inside, and a bold percentage sign as a large foreground element overlapping the top-right corner of the document",
+      nota: "The percentage sign dominates because the retention rate IS the article's central question. Document provides context — a freelancer's work invoice, not a bill. The percentage overlaps and claims authority over the document: it is the number that matters most.",
     },
   ],
 
@@ -324,8 +330,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "amber-alerta",
       escena:
-        "two clean rectangular loan document forms side by side — the left document is simple and plain, the right document has a large bold highlighted rectangle at the bottom revealing a hidden cost area in amber accent color — a small magnifying glass hovers over the right document",
-      nota: "The hidden cost revelation is the message. Right document reveals what left document hides.",
+        "a single clean rectangular loan document with four horizontal lines inside — the bottom section has a bold highlighted rectangle in acento color revealing a hidden cost area, as if the fine print is being exposed — a bold magnifying glass overlaid precisely on that highlighted zone",
+      nota: "One document, one revelation. The CAE was always in the contract but hidden by complexity. The magnifying glass focuses on what was hiding in plain sight. Amber creates urgency without alarm — this is actionable knowledge, not a warning to avoid.",
     },
     {
       slug: "informe-deudas-cmf-vs-dicom",
@@ -333,8 +339,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "slate-neutro",
       escena:
-        "a clean rectangular report document with four horizontal lines of text represented as bars, and a bold circular checkmark badge overlaid on the top-right corner of the document",
-      nota: "Official verified financial report. The checkmark badge signals trust and official status.",
+        "a clean rectangular report document with four horizontal lines of varying length inside, and a bold circular checkmark badge overlaid on the top-right corner of the document",
+      nota: "Document lines are the data, badge is the authority. The checkmark signals official verified status — this is the public registry, not a personal credit score. Trust through institutional weight, not personal judgment.",
     },
     {
       slug: "renegociacion-superir",
@@ -342,8 +348,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "teal-confianza",
       escena:
-        "two clean rectangular blocks facing each other from opposite sides — a bold horizontal line extends from each block toward the center where they meet and connect — above the connection point is a small circular checkmark indicating agreement reached",
-      nota: "Two parties reaching agreement. The meeting point with checkmark = successful mediation.",
+        "two clean equal rectangular blocks positioned on opposite sides of the frame facing each other, with a bold circular checkmark badge floating at the exact midpoint between them",
+      nota: "Two equal parties, one outcome. The blocks are equidistant from the checkmark — no winner, no loser. The agreement IS the product of the mediation. Teal signals a constructive, trust-based resolution.",
     },
   ],
 
@@ -355,8 +361,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "amber-alerta",
       escena:
-        "a clean credit card rectangle outline — inside it, a bold X mark in amber accent color — overlaid on top of the card, a shield outline in the figure color providing protection context",
-      nota: "Card fraud (X) plus protection response (shield). Amber urgency, shield offers resolution path.",
+        "a clean credit card rectangle outline with a bold X mark centered inside it in acento color, and a shield outline in figura color overlaid on top of the card",
+      nota: "X inside the card = the fraud event. Shield over it = the response and resolution path. Amber signals urgency without panic — this is actionable, not hopeless. The shield reclaims authority over the card.",
     },
     {
       slug: "estafas-financieras-chile-vishing-smishing-marketplace",
@@ -364,8 +370,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "amber-alerta",
       escena:
-        "a clean smartphone rectangle outline with a bold triangular warning sign centered inside the screen area — the triangle has an exclamation mark shape inside it — both forms are geometric and flat",
-      nota: "Phone as the attack vector, warning triangle as the threat signal. Clean and immediately alarming.",
+        "a clean smartphone rectangle outline with a bold triangular warning sign centered inside the screen area — the triangle contains a bold vertical exclamation mark shape — both forms flat and geometric",
+      nota: "Phone = universal digital threat vector. Warning triangle = universal danger signal. Their combination identifies digital financial threat immediately. Simplicity IS the message — one surface, one warning, zero ambiguity.",
     },
     {
       slug: "suplantacion-identidad-creditos-no-reconocidos",
@@ -373,8 +379,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "amber-alerta",
       escena:
-        "two identical ID card rectangle outlines — one solid and positioned normally, one semi-transparent and offset diagonally behind and slightly to the right of the first — representing a duplicate or shadow identity",
-      nota: "The offset duplicate IS the impersonation metaphor. One real, one shadow.",
+        "two identical ID card rectangle outlines — one solid in the foreground positioned normally, one semi-transparent offset diagonally behind and to the right — representing a duplicate shadow identity",
+      nota: "The shadow duplicate IS the impersonation. Front card = the victim's identity. Offset ghost = the attacker using it without permission. Semi-transparency signals falseness without requiring text. Amber = threat requiring immediate action.",
     },
   ],
 
@@ -386,8 +392,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "navy-profundo",
       escena:
-        "a bold circular coin-like form with a small upward arrow integrated into its upper-right edge — the circle represents the UF unit, the arrow represents its daily upward adjustment with inflation",
-      nota: "The UF as an adjustable unit. Circle = monetary unit, integrated arrow = automatic daily adjustment.",
+        "a bold circular form with a small upward arrow emerging directly from its upper-right edge — the arrow and circle form one continuous unified outline, as if the arrow grows from the circle itself",
+      nota: "The arrow is non-detachable from the circle — the daily upward adjustment IS the UF's nature, built in, not applied externally. One unified form communicates the concept: a monetary unit that automatically adjusts with inflation.",
     },
     {
       slug: "que-es-el-ipc-chile-como-se-calcula",
@@ -395,8 +401,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "navy-profundo",
       escena:
-        "a clean shopping basket outline — a simple trapezoid with a handle arc — with a bold upward-pointing arrow rising from inside the basket, representing the price level of consumer goods increasing",
-      nota: "Classic inflation basket metaphor executed minimally. Basket = consumer goods, arrow = price rise.",
+        "a clean shopping basket outline — a simple trapezoid with a handle arc — with a bold upward-pointing arrow rising from inside the basket",
+      nota: "Classic inflation basket executed as pure geometry. Basket = the measured consumer goods. Arrow = price level rising from within them. No products, no prices, no coins inside — pure form communicates the concept universally.",
     },
     {
       slug: "reajuste-arriendo-uf-ipc-chile",
@@ -404,8 +410,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "navy-profundo",
       escena:
-        "a minimal house outline — an inverted V roofline with a rectangle below for walls — inside the house shape, three small horizontal bars step upward like a staircase from left to right, representing rent increasing over time",
-      nota: "House = rent context, ascending bars inside = periodic adjustment upward. Purely geometric.",
+        "a minimal house outline — an inverted-V roofline over a rectangular base — with three small horizontal bars ascending like a staircase from left to right inside the house shape, each step higher than the previous",
+      nota: "House shape establishes rental context immediately. Ascending staircase inside = periodic rent increases over renewal periods. Each step is one adjustment cycle. Purely geometric — no lease documents, no keys, no people.",
     },
   ],
 
@@ -417,8 +423,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "teal-confianza",
       escena:
-        "a clean safety net shape — five or six horizontal parallel lines spanning the width, slightly curved downward in the center like a hammock or net — with a single bold circle above it representing a person or asset being caught",
-      nota: "Safety net catching something that fell. The net curves = it has caught the load. Reassuring and protective.",
+        "a clean safety net shape — five or six horizontal parallel lines spanning the width, curved downward in the center like a taut net — with a single bold circle above it representing a person or asset being caught safely",
+      nota: "The net is already curved — it has already caught the load, not waiting to catch it. Reassurance over alarm: the safety net is active and proven. Teal reinforces trust and protection. This image must feel like relief, not warning.",
     },
     {
       slug: "finiquito-e-indemnizaciones-en-chile",
@@ -426,8 +432,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "slate-neutro",
       escena:
-        "a clean rectangular document form with four horizontal lines inside and a long horizontal line at the bottom representing a signature line — a bold diagonal pen shape crosses over the signature line",
-      nota: "The signing moment. Document with signature line and pen = final settlement document being signed.",
+        "a clean rectangular document form with four horizontal lines inside and a long horizontal line at the bottom representing a signature line — a bold diagonal pen shape crosses over the signature line at an angle",
+      nota: "The pen crossing the signature line is the definitive moment — the finiquito is being signed right now. Pen diagonal = active, in-motion. This is completion and closure, not termination or loss.",
     },
     {
       slug: "licencia-medica-desde-que-dia-pagan",
@@ -435,8 +441,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "teal-confianza",
       escena:
-        "a clean calendar grid — a rectangle divided into rows and columns of small squares — with one cell highlighted in the accent color, and a bold medical cross shape overlaid on top of that highlighted cell",
-      nota: "Specific date plus medical event. The highlighted cell with cross = the day the medical leave starts and pay begins.",
+        "a clean calendar grid — a rectangle divided into rows and columns of small squares — with one cell highlighted in acento color, and a bold medical cross shape overlaid on top of that highlighted cell",
+      nota: "The highlighted cell locates the medical event in time — this specific day is the answer to the article's question. Medical cross on the highlighted cell = from this day, pay begins. Calendar grid = bureaucratic precision paired with the reassurance of a clear answer.",
     },
   ],
 };

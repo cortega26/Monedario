@@ -1,5 +1,5 @@
 ---
-title: "Reajuste de arriendo en Chile: cuándo aplica, UF vs IPC y cómo calcularlo"
+title: "¿Cuánto puede subir tu arriendo en Chile? UF vs IPC"
 author: "Equipo Monedario"
 pubDate: 2026-03-12T12:00:00Z
 slug: reajuste-arriendo-uf-ipc-chile
@@ -16,7 +16,7 @@ category: general
 cluster: uf-costo-de-vida
 topicRole: owner
 canonicalTopic: reajuste-arriendo-contrato-uf-ipc
-description: "Guía para entender el reajuste de arriendo en Chile: cuándo depende del contrato, cómo funciona en UF o IPC y cómo estimar el nuevo monto sin confusiones."
+description: "¿Cuánto puede subir tu arriendo? Depende del contrato. Explicamos UF vs IPC, cuándo aplica cada uno y cómo calcular el nuevo monto sin confundirte."
 heroImage: /images/hero/reajuste-arriendo-uf-ipc-chile.avif
 volatileData:
   - id: "economic.uf.value"

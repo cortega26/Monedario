@@ -1,7 +1,7 @@
 ---
 numero: "20.009 / 21.234"
 title: "Ley Nº 20.009 y su modificación Ley Nº 21.234 — Estatuto de protección al titular de tarjeta de crédito y débito (Ley de Fraudes)"
-shortName: "Ley de Tarjetas y Fraude (20.009 + 21.234)"
+shortName: "Leyes 20.009 y 21.234: Fraude con Tarjetas"
 area: proteccion-al-consumidor
 effective: 2005-04-01
 lastAmended: 2020-06-05
@@ -15,6 +15,8 @@ relatedArticles:
   - estafas-financieras-chile-vishing-smishing-marketplace
 draft: false
 ---
+
+Las **Leyes 20.009 y 21.234** te protegen cuando te roban, clonan o usan sin permiso una tarjeta de crédito o débito. La regla central es clara: si reportas el fraude a tu banco, ellos deben devolverte el dinero. Acá qué plazos tienes y qué obligaciones tiene tu banco.
 
 ## ¿Qué regula?
 

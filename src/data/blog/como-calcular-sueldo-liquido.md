@@ -135,7 +135,7 @@ Lo importante: el porcentaje cambia según el tipo de contrato.
 | Indefinido                | 0.6%                 | 2.4%             |
 | Plazo fijo / obra o faena | 0%                   | 3%               |
 
-Si tienes contrato a plazo fijo, **no te descuentan** el seguro de cesantía — pero igual acumulas porque el empleador paga el 3%.
+Si tienes contrato a plazo fijo, **no te descuentan** el seguro de cesantía — pero igual acumulas porque el empleador paga el 3%. Cuando quedes sin trabajo, puedes cobrar ese fondo. La [guía del seguro de cesantía](/posts/seguro-de-cesantia/) detalla cuándo y cuánto te pagan.
 
 Fuente: [Dirección del Trabajo](https://www.dt.gob.cl/portal/1628/w3-article-95306.html)
 

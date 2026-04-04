@@ -1,7 +1,7 @@
 ---
 numero: "21.236"
 title: "Ley Nº 21.236 — Portabilidad Financiera"
-shortName: "Portabilidad Financiera"
+shortName: "Ley 21.236: Portabilidad Financiera"
 area: bancaria-y-financiera
 effective: 2020-07-17
 lastAmended: 2021-01-01
@@ -14,6 +14,8 @@ relatedArticles:
   - informe-deudas-cmf-vs-dicom
 draft: false
 ---
+
+La **Ley 21.236 de Portabilidad Financiera** te permite mover un crédito hipotecario o de consumo de un banco a otro sin pagar comisiones de prepago. Si encontraste una tasa mejor, esta ley le obliga al banco original a no cobrarte por cambiarte.
 
 ## ¿Qué regula?
 

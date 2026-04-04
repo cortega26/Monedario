@@ -158,7 +158,7 @@ Solo en casos excepcionales permitidos por ley. Los retiros extraordinarios que 
 **¿El dinero de mi AFP desaparece si fallezco?**
 No. El saldo acumulado en tu cuenta individual pasa a tus herederos o beneficiarios legales como herencia.
 
-Si estás comparando alternativas, te conviene revisar cómo cambiarte de AFP, la lógica de fondos previsionales y, si el problema ya no es solo AFP, pasar después al cálculo completo o a la clasificación de descuentos.
+Si estás comparando alternativas, te conviene revisar cómo cambiarte de AFP, la lógica de fondos previsionales y, si el problema ya no es solo AFP, pasar después al cálculo completo o a la clasificación de descuentos. La [guía de pensiones y AFP en Chile](/guias/pensiones-afp/) ordena todas esas dudas previsionales en un solo lugar.
 
 ### Fuentes oficiales para el bloque 2025-2027
 

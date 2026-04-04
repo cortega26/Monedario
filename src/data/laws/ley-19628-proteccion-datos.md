@@ -1,7 +1,7 @@
 ---
 numero: "19.628"
 title: "Ley Nº 19.628 — Sobre Protección de la Vida Privada (Protección de Datos Personales)"
-shortName: "Ley de Datos Personales (Base)"
+shortName: "Ley 19.628: Datos Personales Chile (base)"
 area: privacidad-y-datos
 effective: 1999-08-28
 lastAmended: 2026-03-01
@@ -14,6 +14,8 @@ relatedArticles:
   - suplantacion-identidad-creditos-no-reconocidos
 draft: false
 ---
+
+La **Ley 19.628** fue la primera norma de protección de datos personales en Chile (1999) y sigue vigente parcialmente mientras la Ley 21.719 completa su entrada en vigor. Si alguna empresa tiene información tuya y no quieres que la use, esta ley te da el derecho de solicitarle que la elimine o corrija.
 
 ## ¿Qué regula?
 

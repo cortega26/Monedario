@@ -23,3 +23,7 @@ Los ahorros se diversifican según el perfil de riesgo del afiliado:
 - **C (Intermedio)**
 - **D (Conservador)**
 - **E (Más conservador):** Mayor rentabilidad fija. Más seguro ante colapsos del mercado y sugerido para ahorristas cercanos a jubilar.
+
+---
+
+**Lee la guía completa:** [Pensiones y AFP en Chile](/guias/pensiones-afp/) →
