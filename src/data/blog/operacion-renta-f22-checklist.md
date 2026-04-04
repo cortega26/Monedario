@@ -25,14 +25,14 @@ La plataforma del SII está abierta desde el 1 de abril. El plazo para personas 
 
 ## ¿Tienes que declarar o solo aceptar la propuesta?
 
-| Situación | Qué hacer |
-|---|---|
-| Un solo empleador, sin otras rentas | Acepta la propuesta si los datos son correctos. No necesitas hacer nada más. |
-| Dos o más empleadores simultáneos | Debes declarar. Cada empleador retuvo de forma independiente; casi siempre hay diferencia de impuesto. |
-| Trabajador con boletas de honorarios (además del sueldo, o solo honorarios) | Debes declarar. |
-| Ingresos por arriendo, dividendos o fondos mutuos | Debes declarar. |
-| Tienes APV en Régimen B y quieres aplicar el beneficio | Debes declarar para que se descuente de tu base imponible. |
-| Solo quieres recuperar impuesto retenido en exceso | Puedes declarar voluntariamente aunque no estés obligado. |
+| Situación                                                                   | Qué hacer                                                                                              |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Un solo empleador, sin otras rentas                                         | Acepta la propuesta si los datos son correctos. No necesitas hacer nada más.                           |
+| Dos o más empleadores simultáneos                                           | Debes declarar. Cada empleador retuvo de forma independiente; casi siempre hay diferencia de impuesto. |
+| Trabajador con boletas de honorarios (además del sueldo, o solo honorarios) | Debes declarar.                                                                                        |
+| Ingresos por arriendo, dividendos o fondos mutuos                           | Debes declarar.                                                                                        |
+| Tienes APV en Régimen B y quieres aplicar el beneficio                      | Debes declarar para que se descuente de tu base imponible.                                             |
+| Solo quieres recuperar impuesto retenido en exceso                          | Puedes declarar voluntariamente aunque no estés obligado.                                              |
 
 ## ¿Te van a devolver o debes pagar?
 

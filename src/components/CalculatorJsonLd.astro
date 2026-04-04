@@ -12,10 +12,7 @@ const SITE_URL = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
   /\/$/,
   ""
 );
-const canonicalUrl = new URL(
-  Astro.url.pathname,
-  Astro.site ?? Astro.url
-).href;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
 
 const schema = {
   "@context": "https://schema.org",

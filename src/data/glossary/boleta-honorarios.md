@@ -15,6 +15,7 @@ Ese porcentaje retenido no es todo para impuestos: una parte va a cotizaciones p
 ### Sueldo bruto vs. sueldo líquido en honorarios
 
 Si emites una boleta de $1.000.000:
+
 - El cliente te paga $1.000.000 brutos.
 - Retiene $152.500 (15,25%) y lo paga al SII.
 - Recibes $847.500 líquidos en tu cuenta.

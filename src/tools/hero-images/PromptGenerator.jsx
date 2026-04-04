@@ -2,12 +2,10 @@ import { useState, useMemo } from "react";
 import {
   COLORS,
   SCENE_LIBRARY,
-  getAllScenes,
   buildPromptFromScene,
   buildPromptA,
   buildPromptB,
   buildPromptC,
-  lightenHex,
   darkenHex,
 } from "./config.mjs";
 
@@ -143,14 +141,12 @@ export default function PromptGenerator() {
   async function handleCopy() {
     if (!ready) return;
     try {
+      if (!navigator.clipboard?.writeText) {
+        throw new Error("Clipboard API unavailable");
+      }
       await navigator.clipboard.writeText(prompt);
     } catch {
-      const el = document.createElement("textarea");
-      el.value = prompt;
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand("copy");
-      document.body.removeChild(el);
+      window.prompt("Copia el prompt manualmente:", prompt);
     }
     setCopied(true);
     setTimeout(() => setCopied(false), 2200);

@@ -1,7 +1,8 @@
 ---
 term: "Impuesto Único de Segunda Categoría"
 shortDefinition: "Impuesto mensual progresivo para trabajadores dependientes en Chile. Aplica cuando el sueldo supera el primer tramo exento y se descuenta en la liquidación."
-relatedTerms: ["renta-imponible", "sueldo-bruto", "global-complementario", "sii", "utm"]
+relatedTerms:
+  ["renta-imponible", "sueldo-bruto", "global-complementario", "sii", "utm"]
 ---
 
 El **impuesto único de segunda categoría** es el impuesto a la renta que pagan los trabajadores dependientes (con contrato) en Chile. Se llama "único" porque, si solo tienes un empleador, este impuesto reemplaza completamente la obligación anual del Global Complementario.
@@ -17,12 +18,12 @@ Es un impuesto **progresivo**: solo la parte del sueldo que supera cada tramo pa
 La tabla tiene varios tramos (el SII la actualiza mensualmente según UTM). Ejemplo simplificado para 2026:
 
 | Renta tributable mensual | Tasa marginal |
-|---|---|
-| Hasta ~$943.000 | 0% (exento) |
-| Hasta ~$2.094.000 | 4% |
-| Hasta ~$3.490.000 | 8% |
-| Hasta ~$4.886.000 | 13,5% |
-| Tramos superiores | Hasta 40% |
+| ------------------------ | ------------- |
+| Hasta ~$943.000          | 0% (exento)   |
+| Hasta ~$2.094.000        | 4%            |
+| Hasta ~$3.490.000        | 8%            |
+| Hasta ~$4.886.000        | 13,5%         |
+| Tramos superiores        | Hasta 40%     |
 
 ### ¿Qué es la renta tributable?
 

@@ -18,6 +18,7 @@ Los trabajadores dependientes con un solo empleador generalmente no necesitan de
 ### Devolución vs. pago
 
 El resultado puede ser:
+
 - **Devolución:** si te retuvieron más impuesto del que corresponde durante el año (pago provisional mensual excedente).
 - **Pago:** si retuvieron menos, debes enterar la diferencia.
 - **Cero a pagar / cero a devolver:** cuando los pagos provisionales calzan exactamente con la obligación final.

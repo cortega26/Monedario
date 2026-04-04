@@ -17,12 +17,12 @@ Fonasa tiene dos modalidades de atención:
 
 El copago que pagas depende de tu ingreso:
 
-| Tramo | Ingresos mensuales | Copago MAI |
-|---|---|---|
-| A | Sin ingresos o Pensión Básica Solidaria | 0% |
-| B | Hasta ~$490.000 brutos aprox. | 0% |
-| C | Hasta ~$735.000 brutos aprox. | 10% |
-| D | Sobre eso | 20% |
+| Tramo | Ingresos mensuales                      | Copago MAI |
+| ----- | --------------------------------------- | ---------- |
+| A     | Sin ingresos o Pensión Básica Solidaria | 0%         |
+| B     | Hasta ~$490.000 brutos aprox.           | 0%         |
+| C     | Hasta ~$735.000 brutos aprox.           | 10%        |
+| D     | Sobre eso                               | 20%        |
 
 ### Fonasa vs. Isapre: ¿qué conviene?
 

@@ -14,14 +14,14 @@ La administradora cobra una **comisión de administración** anual, expresada co
 
 ### Tipos principales en Chile
 
-| Tipo | Perfil | Liquidez |
-|---|---|---|
-| Money market / efectivo | Muy conservador | Alta (1-2 días) |
-| Renta fija nacional | Conservador-moderado | Alta |
-| Renta fija internacional | Moderado | Alta |
-| Balanceado (mixto) | Moderado | Alta |
-| Renta variable | Agresivo | Alta |
-| Inmobiliario | Variable | Baja |
+| Tipo                     | Perfil               | Liquidez        |
+| ------------------------ | -------------------- | --------------- |
+| Money market / efectivo  | Muy conservador      | Alta (1-2 días) |
+| Renta fija nacional      | Conservador-moderado | Alta            |
+| Renta fija internacional | Moderado             | Alta            |
+| Balanceado (mixto)       | Moderado             | Alta            |
+| Renta variable           | Agresivo             | Alta            |
+| Inmobiliario             | Variable             | Baja            |
 
 ### Lo que debes revisar antes de invertir
 

@@ -123,6 +123,7 @@ function pushIssue(collection, filePath, message) {
 const files = listContentFiles(BLOG_DIR);
 const errors = [];
 const warnings = [];
+const notes = [];
 const deprecationCounters = new Map(
   DEPRECATED_FIELDS.map(field => [field, 0])
 );
@@ -297,7 +298,7 @@ for (const filePath of files) {
             ? getTransitionalOwnershipEntry(frontmatter.slug)
             : null;
         pushIssue(
-          warnings,
+          documentedTransition ? notes : warnings,
           relativeFilePath,
           documentedTransition
             ? `Category "general" inside cluster "${cluster}" is a documented transitional placement toward "${documentedTransition.canonicalOwnerCluster}"; do not normalize it as definitive taxonomy before "${documentedTransition.targetHubPath}" exists.`
@@ -671,6 +672,13 @@ if (warnings.length > 0) {
   console.warn(`[check-frontmatter] Warnings: ${warnings.length}`);
   for (const warning of warnings) {
     console.warn(`- ${warning.filePath}: ${warning.message}`);
+  }
+}
+
+if (notes.length > 0) {
+  console.log(`[check-frontmatter] Notes: ${notes.length}`);
+  for (const note of notes) {
+    console.log(`- ${note.filePath}: ${note.message}`);
   }
 }
 

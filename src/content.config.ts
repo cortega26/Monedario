@@ -1,5 +1,5 @@
 import { defineCollection } from "astro:content";
-import { z } from "astro:schema";
+import { z } from "astro/zod";
 import { SITE } from "@/config";
 import { safeGlob } from "./content/loaders/safeGlob";
 import { CLUSTERS } from "./config/clusters";
@@ -54,9 +54,8 @@ const blog = defineCollection({
         homepagePriority: z.number().int().min(0).default(0),
         author: z.string().trim().min(1).default(SITE.author),
         canonical: z
-          .string()
-          .url()
-          .refine(url => new URL(url).protocol === "https:", {
+          .url({
+            protocol: /^https$/,
             message: 'Field "canonical" must be an absolute HTTPS URL.',
           })
           .optional(),
@@ -88,7 +87,7 @@ const blog = defineCollection({
                 z
                   .object({
                     label: z.string().trim().min(2),
-                    href: z.string().url(),
+                    href: z.url(),
                   })
                   .strict()
               )
@@ -221,7 +220,7 @@ const laws = defineCollection({
     area: z.enum(LEGAL_AREAS),
     effective: z.date(), // fecha de entrada en vigor
     lastAmended: z.date().optional(), // última modificación oficial
-    bcnUrl: z.string().url(), // texto oficial en BCN
+    bcnUrl: z.url(), // texto oficial en BCN
     description: z.string().trim().min(1), // para meta
     lastVerified: z.date(), // cuándo verificamos el contenido
     updateTrigger: z.string().trim().min(1), // qué gatilla actualización

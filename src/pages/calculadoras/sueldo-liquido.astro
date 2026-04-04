@@ -22,7 +22,10 @@ const economicSourceLabel =
   title="Calculadora de Sueldo Líquido Chile 2026"
   description="¿Cuánto te depositan cada mes? Ingresa tu bruto y obtén el desglose de AFP, salud, cesantía e impuesto. Calculadora gratuita actualizada 2026."
 >
-  <CalculatorJsonLd name="Calculadora de Sueldo Líquido Chile 2026" description="¿Cuánto te depositan cada mes? Ingresa tu bruto y obtén el desglose de AFP, salud, cesantía e impuesto. Calculadora gratuita actualizada 2026." />
+  <CalculatorJsonLd
+    name="Calculadora de Sueldo Líquido Chile 2026"
+    description="¿Cuánto te depositan cada mes? Ingresa tu bruto y obtén el desglose de AFP, salud, cesantía e impuesto. Calculadora gratuita actualizada 2026."
+  />
   <Header />
   <Breadcrumb />
   <main
@@ -301,19 +304,18 @@ const economicSourceLabel =
 
       <h3>¿Cómo se calcula el sueldo líquido en Chile?</h3>
       <p>
-        Se parte del sueldo bruto y se descuentan las cotizaciones
-        previsionales obligatorias (AFP, salud, seguro de cesantía) y, si
-        corresponde, el impuesto de segunda categoría. La base de cálculo es
-        el sueldo imponible, que puede ser menor al bruto si tu liquidación
-        incluye asignaciones no imponibles como colación o movilización.
+        Se parte del sueldo bruto y se descuentan las cotizaciones previsionales
+        obligatorias (AFP, salud, seguro de cesantía) y, si corresponde, el
+        impuesto de segunda categoría. La base de cálculo es el sueldo
+        imponible, que puede ser menor al bruto si tu liquidación incluye
+        asignaciones no imponibles como colación o movilización.
       </p>
 
       <h3>¿Cuánto descuenta la AFP de mi sueldo?</h3>
       <p>
-        Entre 10,46% y 11,45% del sueldo imponible según tu AFP. Ese
-        porcentaje incluye el 10% de cotización obligatoria —que va a tu
-        cuenta personal y es tuyo— más la comisión de la AFP, que es el costo
-        del servicio.
+        Entre 10,46% y 11,45% del sueldo imponible según tu AFP. Ese porcentaje
+        incluye el 10% de cotización obligatoria —que va a tu cuenta personal y
+        es tuyo— más la comisión de la AFP, que es el costo del servicio.
       </p>
 
       <h3>¿Qué es el sueldo imponible?</h3>
@@ -321,15 +323,15 @@ const economicSourceLabel =
         Es la base sobre la que se calculan AFP, salud y seguro de cesantía.
         Equivale al sueldo bruto menos las asignaciones no imponibles (como
         colación y movilización dentro de los límites legales). Si tu
-        liquidación no separa esos conceptos, tu imponible suele ser igual a
-        tu bruto.
+        liquidación no separa esos conceptos, tu imponible suele ser igual a tu
+        bruto.
       </p>
 
       <h3>¿Cuánto me descuentan de salud?</h3>
       <p>
-        El 7% del sueldo imponible si estás en Fonasa. Si estás en Isapre y
-        tu plan cuesta más que el 7%, la diferencia adicional también se
-        descuenta directamente de tu sueldo.
+        El 7% del sueldo imponible si estás en Fonasa. Si estás en Isapre y tu
+        plan cuesta más que el 7%, la diferencia adicional también se descuenta
+        directamente de tu sueldo.
       </p>
 
       <h3>¿El seguro de cesantía se descuenta en todos los contratos?</h3>
@@ -342,13 +344,13 @@ const economicSourceLabel =
 
       <h3>¿Desde qué sueldo pago impuesto de segunda categoría?</h3>
       <p>
-        Solo si tu renta tributable mensual supera el primer tramo exento de
-        la tabla del SII. En 2026 ese umbral es aproximadamente{" "}
+        Solo si tu renta tributable mensual supera el primer tramo exento de la
+        tabla del SII. En 2026 ese umbral es aproximadamente{" "}
         <strong>
-          {("$" + Math.round(firstTaxExemptBracket).toLocaleString("es-CL"))}
+          {"$" + Math.round(firstTaxExemptBracket).toLocaleString("es-CL")}
         </strong>
-        . El impuesto es progresivo: solo paga la parte del sueldo que supera
-        cada tramo.
+        . El impuesto es progresivo: solo paga la parte del sueldo que supera cada
+        tramo.
       </p>
     </section>
 
