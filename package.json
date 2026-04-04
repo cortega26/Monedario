@@ -4,6 +4,7 @@
   "version": "5.5.1",
   "packageManager": "pnpm@10.30.2",
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "astro dev",
     "build": "pnpm run check:images && pnpm run check:frontmatter && pnpm run check:legal-citations && astro check && astro build && pnpm run check:toc-i18n && pnpm run check:editorial-guard && pagefind --site dist && cp -r dist/pagefind public/ && pnpm run check:urls",
     "preview": "astro preview",
