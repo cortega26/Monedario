@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-03-11T00:22:33.483Z",
-  "total": 30,
+  "generatedAt": "2026-04-04T02:15:39.102Z",
+  "total": 34,
   "routes": [
     {
       "file": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.md",
@@ -47,6 +47,10 @@
       "route": "/posts/devolucion-impuestos-fechas-compensaciones/"
     },
     {
+      "file": "donde-ver-si-estoy-en-dicom-gratis.md",
+      "route": "/posts/donde-ver-si-estoy-en-dicom-gratis/"
+    },
+    {
       "file": "el-poder-del-interes-compuesto.md",
       "route": "/posts/el-poder-del-interes-compuesto/"
     },
@@ -69,6 +73,10 @@
     {
       "file": "fraude-tarjeta-que-hacer.md",
       "route": "/posts/fraude-tarjeta-que-hacer/"
+    },
+    {
+      "file": "indemnizacion-anos-de-servicio-chile.md",
+      "route": "/posts/indemnizacion-anos-de-servicio-chile/"
     },
     {
       "file": "informe-deudas-cmf-vs-dicom.md",
@@ -107,12 +115,20 @@
       "route": "/posts/que-es-la-uf/"
     },
     {
+      "file": "reajuste-arriendo-uf-ipc-chile.md",
+      "route": "/posts/reajuste-arriendo-uf-ipc-chile/"
+    },
+    {
       "file": "reforma-previsional-2025-que-cambia-y-como-te-afecta.md",
       "route": "/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/"
     },
     {
       "file": "renegociacion-superir.md",
       "route": "/posts/renegociacion-superir/"
+    },
+    {
+      "file": "seguro-cesantia-cuenta-individual-vs-fondo-solidario.md",
+      "route": "/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/"
     },
     {
       "file": "seguro-de-cesantia.md",

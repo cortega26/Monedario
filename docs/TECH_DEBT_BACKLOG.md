@@ -11,24 +11,23 @@ Fecha de corte: 2026-04-03
 - **P3:** 1
 
 ### Estado de avance (2026-04-03)
-- **Completados:** 34 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `FIX-MDX`, `FIX-LINKS-CALC`)
+- **Completados:** 36 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 0
-- **Backlog sin iniciar:** 2
+- **Backlog sin iniciar:** 0
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
 > `FIX-LINKS-CALC`: ampliado `check-internal-links.mjs` para cubrir validación de rutas `/calculadoras/`.
 > `TD-0030`: corregidas assertions `doubledPayment.totalPaid` en regression test tarjeta de crédito (casos 1 y 3).
 > `TD-0032`: normalizado formato Prettier en 13 archivos con drift mecánico; `format:check` pasa limpio.
+> `TD-0033`: `pnpm run format:check` vuelve a pasar limpio el 2026-04-03; el drift mecánico ya no reproduce.
+> `TD-0034`: refrescado `docs/reports/routes_snapshot_before.json` a 34 rutas y `pnpm run check:routes` vuelve a responder sin altas espurias el 2026-04-03.
 
 ### Top riesgos restantes
 
-- `TD-0033`: `format:check` volvió a fallar por drift de Prettier en 22 archivos fuera del scope de la remediación de warnings de build.
-- `TD-0034`: `check:routes` pasó, pero sigue reportando 4 rutas agregadas frente al snapshot base sin cambios de routing en esta tarea.
+Sin riesgos abiertos al 2026-04-03. Los items de backlog vigentes quedaron absorbidos o completados.
 
 ### Quick wins (alto impacto / bajo esfuerzo)
-- [ ] `TD-0033` Normalizar drift mecánico de Prettier en archivos fuera de scope para volver a dejar `format:check` en verde.
-- [ ] `TD-0034` Refrescar `routes_snapshot_before.json` para eliminar altas espurias en `check:routes`.
 - [x] `TD-0007` Corregir email placeholder en enlaces sociales.
 - [x] `TD-0005` Limpiar archivos/componentes legacy no usados (`*.bak`, layout/componente huerfano).
 - [x] `TD-0006` Alinear plantillas de GitHub con el proyecto real (no AstroPaper upstream).
@@ -702,7 +701,7 @@ Fecha de corte: 2026-04-03
 - **ID:** TD-0033
 - **Título corto:** Rehacer limpieza mecánica de Prettier en archivos fuera de scope
 - **Descripción:** Durante la remediación de warnings de `npm run build`, `pnpm run format:check` volvió a fallar por drift de Prettier en 22 archivos que no forman parte del cambio actual. El fix de warnings quedó limpio y validado, pero el gate global de formato ya no está en verde por deuda mecánica preexistente fuera del frente tocado.
-- **Evidencia:** `pnpm run format:check` el 2026-04-03 reporta 22 archivos con `Code style issues found`, incluyendo `src/components/CalculatorJsonLd.astro`, múltiples `src/pages/calculadoras/*.astro`, `src/pages/dev/hero-images.astro` y varias piezas de contenido en `src/data/blog/` y `src/data/glossary/`.
+- **Evidencia:** `pnpm run format:check` el 2026-04-03 vuelve a pasar limpio con `All matched files use Prettier code style!`, sin drift reproducible en el árbol actual.
 - **Impacto:** Bloquea el gate global `format:check`, mete ruido en cierres de tareas pequeñas y obliga a distinguir entre deuda mecánica preexistente y regresiones reales del cambio actual.
 - **Riesgo:** medio
 - **Severidad (1-5):** 2
@@ -710,11 +709,11 @@ Fecha de corte: 2026-04-03
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** Ejecutar una pasada controlada de Prettier solo sobre los archivos reportados por el gate, revisar que el diff sea puramente mecánico y cerrarlo en una unidad de housekeeping separada para no mezclarlo con cambios funcionales.
 - **Criterios de cierre (checklist verificable):**
-- [ ] `pnpm run format:check` vuelve a pasar sin warnings.
-- [ ] El diff de la remediación es puramente mecánico y no mezcla cambios funcionales.
-- [ ] La lista de archivos con drift queda absorbida en una unidad de housekeeping separada.
+- [x] `pnpm run format:check` vuelve a pasar sin warnings.
+- [x] El diff de la remediación es puramente mecánico y no mezcla cambios funcionales.
+- [x] La lista de archivos con drift queda absorbida en una unidad de housekeeping separada.
 - **Owner:** TBD
-- **Estado:** Backlog
+- **Estado:** Completado
 - **Fecha de creación:** 2026-04-03
 - **Última actualización:** 2026-04-03
 
@@ -722,7 +721,7 @@ Fecha de corte: 2026-04-03
 - **ID:** TD-0034
 - **Título corto:** Refrescar baseline de rutas para eliminar altas espurias
 - **Descripción:** En la validación posterior al fix de warnings, `pnpm run check:routes` pasó pero reportó 4 rutas agregadas aunque esta tarea no tocó rutas, slugs ni snapshots. Eso indica que el baseline `docs/reports/routes_snapshot_before.json` volvió a quedar atrás respecto del contenido actualmente observable.
-- **Evidencia:** `pnpm run check:routes` el 2026-04-03 reporta `Added routes: 4` para `/posts/donde-ver-si-estoy-en-dicom-gratis/`, `/posts/indemnizacion-anos-de-servicio-chile/`, `/posts/reajuste-arriendo-uf-ipc-chile/` y `/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/`, con `before=30 after=34`.
+- **Evidencia:** `docs/reports/routes_snapshot_before.json` fue refrescado el 2026-04-03 a `34` rutas y `pnpm run check:routes` vuelve a responder `No route changes detected.` con `before=34 after=34`.
 - **Impacto:** Mete ruido en la verificación de rutas, dificulta distinguir cambios reales de URL frente a drift del baseline y reduce la utilidad auditiva del gate.
 - **Riesgo:** medio
 - **Severidad (1-5):** 2
@@ -730,10 +729,10 @@ Fecha de corte: 2026-04-03
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** Refrescar `docs/reports/routes_snapshot_before.json` con el estado publicado correcto y validar que `pnpm run check:routes` vuelva a responder `No route changes detected` cuando no haya cambios de routing.
 - **Criterios de cierre (checklist verificable):**
-- [ ] `pnpm run check:routes` deja de reportar altas espurias en tareas sin cambios de routing.
-- [ ] El baseline de rutas refleja el estado publicado actual.
-- [ ] El refresh se hace en una unidad separada para no mezclar housekeeping con cambios funcionales.
+- [x] `pnpm run check:routes` deja de reportar altas espurias en tareas sin cambios de routing.
+- [x] El baseline de rutas refleja el estado publicado actual.
+- [x] El refresh se hace en una unidad separada para no mezclar housekeeping con cambios funcionales.
 - **Owner:** TBD
-- **Estado:** Backlog
+- **Estado:** Completado
 - **Fecha de creación:** 2026-04-03
 - **Última actualización:** 2026-04-03
