@@ -25,16 +25,16 @@ La plataforma del SII está abierta desde el 1 de abril. El plazo depende de si 
 
 ## ¿Tienes que declarar o solo aceptar la propuesta?
 
-| Situación                                                                   | Qué hacer                                                                                              |
-| --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| Un solo empleador, sin otras rentas                                         | Acepta la propuesta si los datos son correctos. No necesitas hacer nada más.                           |
-| Dos o más empleadores simultáneos                                           | Debes declarar. Cada empleador retuvo de forma independiente; casi siempre hay diferencia de impuesto. |
-| Trabajador con boletas de honorarios (además del sueldo, o solo honorarios) | Debes declarar.                                                                                        |
-| Ingresos por arriendo, dividendos o fondos mutuos                           | Debes declarar.                                                                                        |
-| Tienes APV en Régimen B y quieres aplicar el beneficio                      | Debes declarar para que se descuente de tu base imponible.                                             |
-| Solo quieres recuperar impuesto retenido en exceso                          | Puedes declarar voluntariamente aunque no estés obligado.                                              |
-| Recibiste el Préstamo Solidario COVID-19 en 2021                            | El SII descuenta automáticamente la 4ª y última cuota al declarar (30% del monto solicitado, con tope del 5% de tus ingresos anuales). Si durante el año te retuvieron el 3% mensual y tienes excedente, puedes recuperarlo al declarar. |
-| Vendiste por marketplace o recibiste pagos por medios electrónicos sin inicio de actividades | El SII puede haberte enviado un correo en marzo-abril. Incluye esas rentas en tu declaración. |
+| Situación                                                                                    | Qué hacer                                                                                                                                                                                                                                |
+| -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Un solo empleador, sin otras rentas                                                          | Acepta la propuesta si los datos son correctos. No necesitas hacer nada más.                                                                                                                                                             |
+| Dos o más empleadores simultáneos                                                            | Debes declarar. Cada empleador retuvo de forma independiente; casi siempre hay diferencia de impuesto.                                                                                                                                   |
+| Trabajador con boletas de honorarios (además del sueldo, o solo honorarios)                  | Debes declarar.                                                                                                                                                                                                                          |
+| Ingresos por arriendo, dividendos o fondos mutuos                                            | Debes declarar.                                                                                                                                                                                                                          |
+| Tienes APV en Régimen B y quieres aplicar el beneficio                                       | Debes declarar para que se descuente de tu base imponible.                                                                                                                                                                               |
+| Solo quieres recuperar impuesto retenido en exceso                                           | Puedes declarar voluntariamente aunque no estés obligado.                                                                                                                                                                                |
+| Recibiste el Préstamo Solidario COVID-19 en 2021                                             | El SII descuenta automáticamente la 4ª y última cuota al declarar (30% del monto solicitado, con tope del 5% de tus ingresos anuales). Si durante el año te retuvieron el 3% mensual y tienes excedente, puedes recuperarlo al declarar. |
+| Vendiste por marketplace o recibiste pagos por medios electrónicos sin inicio de actividades | El SII puede haberte enviado un correo en marzo-abril. Incluye esas rentas en tu declaración.                                                                                                                                            |
 
 ## ¿Te van a devolver o debes pagar?
 
@@ -61,11 +61,11 @@ Si quieres estimar tu resultado completo (devolución o pago adicional) con suel
 
 Si te devuelven, la fecha depende de cuándo declares:
 
-| Fecha de presentación | Depósito bancario | Cheque |
-|---|---|---|
-| 1 al 8 de abril | 29 de abril de 2026 | 29 de mayo de 2026 |
-| 9 al 23 de abril | 15 de mayo de 2026 | 29 de mayo de 2026 |
-| 24 de abril al 8 de mayo | 27 de mayo de 2026 | 29 de mayo de 2026 |
+| Fecha de presentación    | Depósito bancario   | Cheque             |
+| ------------------------ | ------------------- | ------------------ |
+| 1 al 8 de abril          | 29 de abril de 2026 | 29 de mayo de 2026 |
+| 9 al 23 de abril         | 15 de mayo de 2026  | 29 de mayo de 2026 |
+| 24 de abril al 8 de mayo | 27 de mayo de 2026  | 29 de mayo de 2026 |
 
 La primera emisión (29 de abril) aplica solo a personas naturales. Cheques sobre $3.000.000 se envían al domicilio registrado en el SII; los de menor monto se retiran en BancoEstado.
 

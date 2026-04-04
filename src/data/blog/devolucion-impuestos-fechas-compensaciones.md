@@ -40,11 +40,11 @@ Si todavía estás revisando tu F22, parte por [Operación Renta F22: checklist 
 
 Para Año Tributario 2026, el SII publicó el calendario oficial el 31 de marzo de 2026:
 
-| Fecha de presentación | Depósito bancario | Cheque |
-|---|---|---|
-| 1 al 8 de abril | 29 de abril de 2026 | 29 de mayo de 2026 |
-| 9 al 23 de abril | 15 de mayo de 2026 | 29 de mayo de 2026 |
-| 24 de abril al 8 de mayo | 27 de mayo de 2026 | 29 de mayo de 2026 |
+| Fecha de presentación    | Depósito bancario   | Cheque             |
+| ------------------------ | ------------------- | ------------------ |
+| 1 al 8 de abril          | 29 de abril de 2026 | 29 de mayo de 2026 |
+| 9 al 23 de abril         | 15 de mayo de 2026  | 29 de mayo de 2026 |
+| 24 de abril al 8 de mayo | 27 de mayo de 2026  | 29 de mayo de 2026 |
 
 La primera emisión (29 de abril) aplica solo a personas naturales. Cheques sobre $3.000.000 se envían al domicilio registrado en el SII; los de menor monto se retiran en BancoEstado.
 

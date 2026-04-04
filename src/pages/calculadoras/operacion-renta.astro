@@ -182,7 +182,9 @@ const economicSourceLabel =
               class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
             />
             <p class="mt-1 text-xs text-muted">
-              Solo Régimen B rebaja la base imponible del IGC. Tope: 600 UF.{" "}
+              Solo Régimen B rebaja la base imponible del IGC. Tope: 600 UF.{
+                " "
+              }
               <a href={apvPath} class="underline">¿Cuál régimen te conviene?</a>
             </p>
           </div>
@@ -279,17 +281,17 @@ const economicSourceLabel =
           (art. 55 bis DL 824). Solo aplican para vivienda habitacional propia.
         </li>
         <li>
-          <strong>Créditos acreditables:</strong> el impuesto único retenido por
-          el empleador y el PPM de boletas de honorarios (12.25%) se descuentan
-          directamente del IGC calculado.
+          <strong>Créditos acreditables:</strong> el impuesto único retenido por el
+          empleador y el PPM de boletas de honorarios (12.25%) se descuentan directamente
+          del IGC calculado.
         </li>
       </ul>
       <h3>Limitaciones de este simulador</h3>
       <p>
         Este simulador no incluye dividendos de acciones ni crédito por impuesto
-        de primera categoría, retiros de FUT/FUNT, créditos por zona extrema,
-        ni la situación especial de dos empleadores simultáneos con liquidación
-        de tramos compartida. Para casos complejos, revisa directamente la
+        de primera categoría, retiros de FUT/FUNT, créditos por zona extrema, ni
+        la situación especial de dos empleadores simultáneos con liquidación de
+        tramos compartida. Para casos complejos, revisa directamente la
         propuesta del SII.
       </p>
       <p>
@@ -301,8 +303,8 @@ const economicSourceLabel =
           data-analytics-location="calculator_explainer"
         >
           guía de Operación Renta y F22
-        </a>. Si decides hacer APV antes del cierre del año para reducir tu base,
-        compara primero Régimen A vs B en el{" "}
+        </a>. Si decides hacer APV antes del cierre del año para reducir tu
+        base, compara primero Régimen A vs B en el{" "}
         <a
           href={apvPath}
           data-analytics-cta="calculator-related"
@@ -315,7 +317,9 @@ const economicSourceLabel =
       <p class="text-sm text-muted">
         ⚠️ Estimación orientativa. No reemplaza la propuesta oficial del SII ni
         asesoría tributaria. Parámetros económicos vigentes al momento del
-        build. Visita <a href="https://www.sii.cl" target="_blank">sii.cl</a>{" "}
+        build. Visita <a href="https://www.sii.cl" target="_blank">sii.cl</a>{
+          " "
+        }
         para tu declaración oficial.
       </p>
     </section>
@@ -426,7 +430,8 @@ const economicSourceLabel =
       const card = document.createElement("div");
       card.className = "mb-4 rounded-lg border border-border p-4";
       const h = document.createElement("h3");
-      h.className = "mb-3 text-sm font-semibold text-secondary uppercase tracking-wide";
+      h.className =
+        "mb-3 text-sm font-semibold text-secondary uppercase tracking-wide";
       h.textContent = title;
       card.appendChild(h);
       for (const r of rows) {
@@ -447,8 +452,13 @@ const economicSourceLabel =
     }`;
 
     const bannerLabel = document.createElement("p");
-    bannerLabel.className = "text-xs font-bold tracking-widest uppercase mb-1 " +
-      (isRefund ? "text-green-400" : resultado.saldoFinal === 0 ? "text-secondary" : "text-amber-400");
+    bannerLabel.className =
+      "text-xs font-bold tracking-widest uppercase mb-1 " +
+      (isRefund
+        ? "text-green-400"
+        : resultado.saldoFinal === 0
+          ? "text-secondary"
+          : "text-amber-400");
     bannerLabel.textContent = isRefund
       ? "Devolución estimada"
       : resultado.saldoFinal === 0
@@ -456,8 +466,13 @@ const economicSourceLabel =
         : "Pago adicional estimado";
 
     const bannerAmount = document.createElement("p");
-    bannerAmount.className = "text-2xl font-bold font-mono " +
-      (isRefund ? "text-green-400" : resultado.saldoFinal === 0 ? "text-foreground" : "text-amber-400");
+    bannerAmount.className =
+      "text-2xl font-bold font-mono " +
+      (isRefund
+        ? "text-green-400"
+        : resultado.saldoFinal === 0
+          ? "text-foreground"
+          : "text-amber-400");
     bannerAmount.textContent = isRefund
       ? fmt(resultado.montoDevolución)
       : resultado.saldoFinal === 0
@@ -475,9 +490,16 @@ const economicSourceLabel =
     banner.append(bannerLabel, bannerAmount, bannerSub);
 
     // Tarjeta ingresos
-    const ingresosRows: Array<{ label: string; value: string; className?: string }> = [];
+    const ingresosRows: Array<{
+      label: string;
+      value: string;
+      className?: string;
+    }> = [];
     if (resultado.sueldosBrutos > 0) {
-      ingresosRows.push({ label: "Sueldos brutos", value: fmt(resultado.sueldosBrutos) });
+      ingresosRows.push({
+        label: "Sueldos brutos",
+        value: fmt(resultado.sueldosBrutos),
+      });
     }
     if (honorariosBrutos > 0) {
       ingresosRows.push({
@@ -485,7 +507,7 @@ const economicSourceLabel =
         value: fmt(honorariosBrutos),
       });
       ingresosRows.push({
-        label: `Gastos presuntos (${(resultado.gastosPresuntos / honorariosBrutos * 100).toFixed(1)}%)`,
+        label: `Gastos presuntos (${((resultado.gastosPresuntos / honorariosBrutos) * 100).toFixed(1)}%)`,
         value: `− ${fmt(resultado.gastosPresuntos)}`,
         className: "text-muted",
       });
@@ -495,7 +517,10 @@ const economicSourceLabel =
       });
     }
     if (resultado.arriendos > 0) {
-      ingresosRows.push({ label: "Arriendos", value: fmt(resultado.arriendos) });
+      ingresosRows.push({
+        label: "Arriendos",
+        value: fmt(resultado.arriendos),
+      });
     }
     ingresosRows.push({
       label: "Renta bruta global",
@@ -528,7 +553,11 @@ const economicSourceLabel =
     }
 
     // Tarjeta impuesto y créditos
-    const impuestoRows: Array<{ label: string; value: string; className?: string }> = [
+    const impuestoRows: Array<{
+      label: string;
+      value: string;
+      className?: string;
+    }> = [
       {
         label: "Base imponible IGC",
         value: fmt(resultado.baseImponibleIGC),
@@ -554,8 +583,14 @@ const economicSourceLabel =
     }
     impuestoRows.push({
       label: "Saldo neto",
-      value: (resultado.esDevolución ? "−" : "+") + fmt(Math.abs(resultado.saldoFinal)),
-      className: resultado.esDevolución ? "text-green-400 font-semibold" : resultado.saldoFinal > 0 ? "text-amber-400 font-semibold" : "",
+      value:
+        (resultado.esDevolución ? "−" : "+") +
+        fmt(Math.abs(resultado.saldoFinal)),
+      className: resultado.esDevolución
+        ? "text-green-400 font-semibold"
+        : resultado.saldoFinal > 0
+          ? "text-amber-400 font-semibold"
+          : "",
     });
     const impuestoCard = buildCard("IGC y créditos", impuestoRows);
 
@@ -564,13 +599,15 @@ const economicSourceLabel =
     note.textContent =
       "Estimación orientativa. No incluye dividendos, crédito 1ª categoría ni situaciones especiales de dos empleadores. Usa la propuesta del SII como fuente oficial.";
 
-    document.getElementById("resultado-contenido")!.replaceChildren(
-      banner,
-      ingresosCard,
-      ...(deduccionesCard ? [deduccionesCard] : []),
-      impuestoCard,
-      note
-    );
+    document
+      .getElementById("resultado-contenido")!
+      .replaceChildren(
+        banner,
+        ingresosCard,
+        ...(deduccionesCard ? [deduccionesCard] : []),
+        impuestoCard,
+        note
+      );
 
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "operacion-renta",
