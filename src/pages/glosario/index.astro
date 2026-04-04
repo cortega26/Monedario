@@ -13,10 +13,18 @@ const glossaryEntries = await getCollection("glossary", ({ data }) => {
 // Ordenar alfabéticamente por el término (ignorando mayúsculas/minúsculas)
 glossaryEntries.sort((a, b) => a.data.term.localeCompare(b.data.term, "es"));
 
-// Agrupar por la primera letra
+// Normaliza una letra para agrupación: elimina diacríticos (Í→I, Á→A, etc.)
+function normalizeInitial(char: string): string {
+  return char
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toUpperCase();
+}
+
+// Agrupar por la primera letra (normalizada, sin tilde)
 const groupedEntries = glossaryEntries.reduce(
   (acc, entry) => {
-    const firstLetter = entry.data.term.charAt(0).toUpperCase();
+    const firstLetter = normalizeInitial(entry.data.term.charAt(0));
     if (!acc[firstLetter]) {
       acc[firstLetter] = [];
     }

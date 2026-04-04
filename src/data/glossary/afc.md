@@ -1,7 +1,7 @@
 ---
 term: "Administradora de Fondos de Cesantía (AFC)"
 shortDefinition: "Institución privada fiscalizada por la Superintendencia de Pensiones en Chile que administra los dineros formales de las cuentas de desempleo."
-relatedTerms: ["afp"]
+relatedTerms: ["afp", "renta-imponible"]
 ---
 
 La **Administradora de Fondos de Cesantía (AFC)** es la sociedad anónima de giro único (actualmente licitada por operadores que agrupan a las Cajas de Compensación y AFP del país) encargada en Chile exclusívamente de gestionar y rentabilizar los dineros del **Seguro de Cesantía**.

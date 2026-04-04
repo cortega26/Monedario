@@ -1,7 +1,7 @@
 ---
 term: "Asociación de Fondos de Pensiones (AFP)"
 shortDefinition: "Sociedades anónimas privadas que administran los ahorros obligatorios para la pensión por vejez de los trabajadores en Chile."
-relatedTerms: ["apv", "sernac"]
+relatedTerms: ["apv", "renta-imponible", "fonasa"]
 ---
 
 Las **Administradoras de Fondos de Pensiones (AFP)** son instituciones financieras privadas encargadas de administrar los fondos y ahorros de jubilación obligatorios de los trabajadores dependientes e independientes afiliados al sistema previsional de capitalización individual en Chile.

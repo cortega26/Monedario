@@ -4,7 +4,7 @@ description: "Checklist práctico para revisar la propuesta del SII, enviar tu F
 slug: operacion-renta-f22-checklist
 author: "Equipo Monedario"
 pubDate: 2026-02-28T15:00:00Z
-updatedDate: 2026-03-30T00:00:00Z
+updatedDate: 2026-04-03T00:00:00Z
 tags:
   - impuestos
   - operacion-renta
@@ -13,12 +13,43 @@ tags:
 category: impuestos
 cluster: impuestos-personas
 lang: es-CL
-featured: false
+featured: true
+homepagePriority: 200
 draft: false
 heroImage: /images/hero/operacion-renta-f22-checklist.avif
 ---
 
 Abres la propuesta del SII, ves los números y no sabes si aceptar o si algo está mal. Esta guía te ayuda a revisar cada punto antes de enviar el F22 y a reaccionar rápido si aparecen observaciones — para que no pierdas tiempo ni atrases tu devolución.
+
+La plataforma del SII está abierta desde el 1 de abril. El plazo para personas naturales vence el **30 de abril de 2026**. Las devoluciones se procesan entre mayo y julio según la fecha en que declares.
+
+## ¿Tienes que declarar o solo aceptar la propuesta?
+
+| Situación | Qué hacer |
+|---|---|
+| Un solo empleador, sin otras rentas | Acepta la propuesta si los datos son correctos. No necesitas hacer nada más. |
+| Dos o más empleadores simultáneos | Debes declarar. Cada empleador retuvo de forma independiente; casi siempre hay diferencia de impuesto. |
+| Trabajador con boletas de honorarios (además del sueldo, o solo honorarios) | Debes declarar. |
+| Ingresos por arriendo, dividendos o fondos mutuos | Debes declarar. |
+| Tienes APV en Régimen B y quieres aplicar el beneficio | Debes declarar para que se descuente de tu base imponible. |
+| Solo quieres recuperar impuesto retenido en exceso | Puedes declarar voluntariamente aunque no estés obligado. |
+
+## ¿Te van a devolver o debes pagar?
+
+La propuesta ya te muestra el resultado. Busca las líneas "Impuesto determinado" y "Total créditos y retenciones":
+
+- **Créditos > Impuesto** → devolución (pagaste más de lo que corresponde durante el año).
+- **Impuesto > Créditos** → pago adicional (te retuvieron menos de lo que corresponde).
+- **Iguales** → cero a pagar y cero a devolver.
+
+Variables que más mueven el resultado antes de enviar:
+
+- **APV en Régimen B**: cada peso ahorrado rebaja la base del [Impuesto Global Complementario](/glosario/global-complementario/) — y puede bajar de tramo.
+- **Intereses de crédito hipotecario**: deducibles hasta el tope legal (línea 69 del F22).
+- **PPM de boletas de honorarios**: lo que retuvo cada pagador se acredita contra el impuesto final.
+- **Dos empleadores simultáneos**: generan casi siempre un pago adicional porque cada empleador retuvo sin saber del otro.
+
+Si quieres calcular el beneficio del APV antes de declarar: [Simulador APV Chile](/calculadoras/apv/).
 
 ## Qué hacer ahora (10 minutos)
 
