@@ -122,6 +122,34 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     ],
   },
   {
+    href: "/calculadoras/operacion-renta/",
+    slug: "operacion-renta",
+    title: "Simulador Operación Renta 2026",
+    description:
+      "Estima si el SII te devuelve o debes pagar más: consolida sueldos, honorarios y arriendos, descuenta retenciones y APV, y ve el resultado antes de enviar el F22.",
+    icon: "🧾",
+    tag: "Contingencia",
+    family: "ingresos",
+    primaryJtbd:
+      "Saber si habrá devolución o pago adicional antes de enviar el F22.",
+    whenToUse:
+      "Cuando tienes más de una fuente de ingreso o retenciones del año y quieres estimar el resultado antes de abrir la propuesta del SII.",
+    notFor:
+      "No reemplaza la propuesta oficial del SII ni cubre dividendos, crédito de primera categoría ni dos empleadores simultáneos con situación compleja.",
+    related: [
+      {
+        href: "/calculadoras/apv/",
+        label: "Simulador APV",
+        when: "si quieres reducir tu base imponible con APV Régimen B antes del cierre del año.",
+      },
+      {
+        href: "/calculadoras/boleta-honorarios-liquido/",
+        label: "Boleta de honorarios",
+        when: "si tu duda es el líquido mensual por boleta, no el resultado anual en la declaración.",
+      },
+    ],
+  },
+  {
     href: "/calculadoras/finiquito-indemnizacion/",
     slug: "finiquito-indemnizacion",
     title: "Finiquito e Indemnización",

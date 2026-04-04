@@ -1,0 +1,581 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+import { getPath } from "@/utils/getPath";
+
+const { parameters: economicParameters } = await getEconomicParameters();
+const f22GuidePath = getPath("/posts/operacion-renta-f22-checklist/");
+const apvPath = getPath("/calculadoras/apv/");
+const glosarioGlobalPath = getPath("/glosario/global-complementario/");
+const glosarioOperacionRentaPath = getPath("/glosario/operacion-renta/");
+const economicSourceLabel =
+  economicParameters.source === "live"
+    ? "dato en línea"
+    : "fallback controlado";
+---
+
+<Layout
+  title="Simulador Operación Renta 2026 Chile: ¿Te devuelven o debes pagar?"
+  description="Calcula tu Impuesto Global Complementario 2026: ingresa sueldos, honorarios y arriendos, descuenta retenciones y APV, y descubre si el SII te devuelve o debes pagar."
+>
+  <CalculatorJsonLd
+    name="Simulador Operación Renta 2026: ¿Devolución o pago adicional?"
+    description="Calcula tu Impuesto Global Complementario 2026: ingresa sueldos, honorarios y arriendos, descuenta retenciones y APV, y descubre si el SII te devuelve o debes pagar."
+  />
+  <Header />
+  <Breadcrumb />
+  <main
+    id="main-content"
+    class="app-layout"
+    data-analytics-page-type="calculator"
+    data-analytics-calculator="operacion-renta"
+    data-analytics-calculator-name="Simulador Operación Renta"
+  >
+    <section class="border-b border-border pt-8 pb-6">
+      <h1 class="my-4 text-3xl font-bold sm:text-4xl">
+        🧾 Simulador Operación Renta 2026
+      </h1>
+      <p class="max-w-xl text-secondary">
+        Estima si el SII te devolverá dinero o deberás pagar más impuesto este
+        abril. Ingresa tus ingresos del año, las retenciones ya pagadas y las
+        deducciones disponibles.
+      </p>
+    </section>
+
+    <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
+      <!-- FORMULARIO -->
+      <div class="space-y-6">
+        <!-- Ingresos -->
+        <div class="rounded-xl border border-border p-6">
+          <h2 class="mb-5 text-lg font-semibold">📥 Ingresos del año</h2>
+
+          <div class="mb-4">
+            <label
+              for="sueldos-brutos"
+              class="mb-1 block text-sm font-medium text-secondary"
+            >
+              Sueldos brutos anuales ($)
+            </label>
+            <input
+              type="number"
+              id="sueldos-brutos"
+              placeholder="Ej: 18.000.000"
+              min="0"
+              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+            />
+            <p class="mt-1 text-xs text-muted">
+              Suma todos los sueldos brutos del año. Encuéntralo en el
+              certificado de remuneraciones (F1887) que emite tu empleador.
+            </p>
+          </div>
+
+          <div class="mb-4">
+            <label
+              for="honorarios-brutos"
+              class="mb-1 block text-sm font-medium text-secondary"
+            >
+              Honorarios brutos anuales ($)
+            </label>
+            <input
+              type="number"
+              id="honorarios-brutos"
+              placeholder="Ej: 4.000.000"
+              min="0"
+              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+            />
+            <p class="mt-1 text-xs text-muted">
+              Total de boletas emitidas en 2025. El simulador aplica
+              automáticamente los gastos presuntos legales (30%, tope 15 UTA).
+            </p>
+          </div>
+
+          <div class="mb-0">
+            <label
+              for="arriendos"
+              class="mb-1 block text-sm font-medium text-secondary"
+            >
+              Ingresos por arriendos anuales ($)
+            </label>
+            <input
+              type="number"
+              id="arriendos"
+              placeholder="Ej: 2.400.000"
+              min="0"
+              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+            />
+            <p class="mt-1 text-xs text-muted">
+              Rentas de arriendo percibidas durante el año. Ingrésalas tal como
+              las declararás en el F22.
+            </p>
+          </div>
+        </div>
+
+        <!-- Retenciones -->
+        <div class="rounded-xl border border-border p-6">
+          <h2 class="mb-5 text-lg font-semibold">✅ Retenciones ya pagadas</h2>
+
+          <div class="mb-4">
+            <label
+              for="impuesto-unico"
+              class="mb-1 block text-sm font-medium text-secondary"
+            >
+              Impuesto único retenido ($)
+            </label>
+            <input
+              type="number"
+              id="impuesto-unico"
+              placeholder="Ej: 800.000"
+              min="0"
+              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+            />
+            <p class="mt-1 text-xs text-muted">
+              Lo retiene tu empleador mensualmente. Está en el certificado de
+              remuneraciones (F1887).
+            </p>
+          </div>
+
+          <div class="mb-0">
+            <label
+              for="ppm-honorarios"
+              class="mb-1 block text-sm font-medium text-secondary"
+            >
+              PPM de honorarios pagado ($)
+            </label>
+            <input
+              type="number"
+              id="ppm-honorarios"
+              placeholder="Ej: 490.000"
+              min="0"
+              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+            />
+            <p class="mt-1 text-xs text-muted">
+              Retención del 12.25% que hizo cada pagador de tus boletas. Suma el
+              total del año.
+            </p>
+          </div>
+        </div>
+
+        <!-- Deducciones -->
+        <div class="rounded-xl border border-border p-6">
+          <h2 class="mb-1 text-lg font-semibold">🔽 Deducciones (opcional)</h2>
+          <p class="mb-5 text-xs text-muted">
+            Cada peso aquí reduce tu base imponible antes de calcular el
+            impuesto.
+          </p>
+
+          <div class="mb-4">
+            <label
+              for="apv-regimen-b"
+              class="mb-1 block text-sm font-medium text-secondary"
+            >
+              APV Régimen B anual ($)
+            </label>
+            <input
+              type="number"
+              id="apv-regimen-b"
+              placeholder="Ej: 1.200.000"
+              min="0"
+              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+            />
+            <p class="mt-1 text-xs text-muted">
+              Solo Régimen B rebaja la base imponible del IGC. Tope: 600 UF.{" "}
+              <a href={apvPath} class="underline">¿Cuál régimen te conviene?</a>
+            </p>
+          </div>
+
+          <div class="mb-0">
+            <label
+              for="intereses-hipotecarios"
+              class="mb-1 block text-sm font-medium text-secondary"
+            >
+              Intereses hipotecarios pagados ($)
+            </label>
+            <input
+              type="number"
+              id="intereses-hipotecarios"
+              placeholder="Ej: 600.000"
+              min="0"
+              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+            />
+            <p class="mt-1 text-xs text-muted">
+              Intereses de crédito hipotecario para vivienda propia. Tope: 8
+              UTA. Aparecen en el certificado del banco (línea 69 del F22).
+            </p>
+          </div>
+        </div>
+
+        <button
+          id="calcBtn"
+          class="w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90"
+        >
+          Calcular Operación Renta →
+        </button>
+        <div
+          id="form-error"
+          class="hidden rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-200"
+          role="alert"
+        >
+        </div>
+      </div>
+
+      <!-- RESULTADO -->
+      <div
+        id="resultado"
+        class="rounded-xl border border-border bg-background p-6"
+      >
+        <h2 class="mb-5 text-lg font-semibold">💡 Estimación de resultado</h2>
+        <div id="resultado-contenido" class="py-8 text-center text-muted">
+          <p class="mb-3 text-4xl">🧮</p>
+          <p class="text-sm">Ingresa tus datos y presiona calcular.</p>
+        </div>
+        <div
+          id="economic-parameters"
+          data-utm={String(economicParameters.utm)}
+          data-uf={String(economicParameters.uf)}
+          class="hidden"
+          aria-hidden="true"
+        >
+        </div>
+        <p class="mt-3 text-xs text-muted">
+          Fuente económica: {economicSourceLabel} ({
+            economicParameters.lastUpdated
+          }).
+        </p>
+      </div>
+    </section>
+
+    <!-- EXPLICACIÓN -->
+    <section
+      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
+    >
+      <h2>¿Qué calcula este simulador?</h2>
+      <p>
+        Este simulador estima el <strong
+          ><a href={glosarioGlobalPath}>Impuesto Global Complementario (IGC)</a
+          ></strong
+        > que corresponde pagar en la{" "}
+        <a href={glosarioOperacionRentaPath}>Operación Renta</a> de 2026 (año tributario
+        2025). El IGC consolida todos tus ingresos del año —sueldos, honorarios y
+        arriendos— y aplica la tabla progresiva anual. Contra ese impuesto se acreditan
+        las retenciones ya pagadas durante el año.
+      </p>
+      <h3>¿Cómo se calcula cada parte?</h3>
+      <ul>
+        <li>
+          <strong>Honorarios:</strong> se aplica deducción de gastos presuntos del
+          30% del bruto (tope 15 UTA), conforme al artículo 50 del DL 824. Si tienes
+          gastos efectivos superiores, consulta al SII.
+        </li>
+        <li>
+          <strong>APV Régimen B:</strong> cada peso aportado se descuenta de la base
+          imponible antes de aplicar la tabla. El tope es 600 UF anuales.
+        </li>
+        <li>
+          <strong>Intereses hipotecarios:</strong> deducibles hasta 8 UTA anuales
+          (art. 55 bis DL 824). Solo aplican para vivienda habitacional propia.
+        </li>
+        <li>
+          <strong>Créditos acreditables:</strong> el impuesto único retenido por
+          el empleador y el PPM de boletas de honorarios (12.25%) se descuentan
+          directamente del IGC calculado.
+        </li>
+      </ul>
+      <h3>Limitaciones de este simulador</h3>
+      <p>
+        Este simulador no incluye dividendos de acciones ni crédito por impuesto
+        de primera categoría, retiros de FUT/FUNT, créditos por zona extrema,
+        ni la situación especial de dos empleadores simultáneos con liquidación
+        de tramos compartida. Para casos complejos, revisa directamente la
+        propuesta del SII.
+      </p>
+      <p>
+        Antes de enviar el F22, revisa el proceso completo en la{" "}
+        <a
+          href={f22GuidePath}
+          data-analytics-cta="calculator-guide"
+          data-analytics-label="Guia F22 Operacion Renta"
+          data-analytics-location="calculator_explainer"
+        >
+          guía de Operación Renta y F22
+        </a>. Si decides hacer APV antes del cierre del año para reducir tu base,
+        compara primero Régimen A vs B en el{" "}
+        <a
+          href={apvPath}
+          data-analytics-cta="calculator-related"
+          data-analytics-label="Simulador APV"
+          data-analytics-location="calculator_explainer"
+        >
+          simulador APV
+        </a>.
+      </p>
+      <p class="text-sm text-muted">
+        ⚠️ Estimación orientativa. No reemplaza la propuesta oficial del SII ni
+        asesoría tributaria. Parámetros económicos vigentes al momento del
+        build. Visita <a href="https://www.sii.cl" target="_blank">sii.cl</a>{" "}
+        para tu declaración oficial.
+      </p>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  import { simulateOperacionRenta } from "@/application/use-cases/SimulateOperacionRenta";
+  import { trackAnalyticsEvent } from "@/utils/analytics";
+
+  function fmt(n: number): string {
+    return "$" + Math.round(n).toLocaleString("es-CL");
+  }
+
+  function fmtPct(n: number): string {
+    return (n * 100).toFixed(1) + "%";
+  }
+
+  function showFormError(message: string): void {
+    const el = document.getElementById("form-error");
+    if (!el) return;
+    el.textContent = message;
+    el.classList.remove("hidden");
+  }
+
+  function clearFormError(): void {
+    const el = document.getElementById("form-error");
+    if (!el) return;
+    el.textContent = "";
+    el.classList.add("hidden");
+  }
+
+  function readEconomicParameters(): { uf: number; utm: number } {
+    const element = document.getElementById("economic-parameters");
+    const uf = Number(element?.dataset?.uf);
+    const utm = Number(element?.dataset?.utm);
+    if (!Number.isFinite(uf) || uf <= 0 || !Number.isFinite(utm) || utm <= 0) {
+      throw new Error("No se pudieron cargar los parámetros económicos.");
+    }
+    return { uf, utm };
+  }
+
+  const economicParameters = readEconomicParameters();
+
+  function val(id: string): number {
+    return (
+      parseFloat((document.getElementById(id) as HTMLInputElement).value) || 0
+    );
+  }
+
+  document.getElementById("calcBtn")?.addEventListener("click", () => {
+    clearFormError();
+
+    const sueldosBrutos = val("sueldos-brutos");
+    const honorariosBrutos = val("honorarios-brutos");
+    const arriendos = val("arriendos");
+
+    if (sueldosBrutos + honorariosBrutos + arriendos <= 0) {
+      showFormError(
+        "Ingresa al menos una fuente de ingreso: sueldos, honorarios o arriendos."
+      );
+      return;
+    }
+
+    let resultado;
+    try {
+      resultado = simulateOperacionRenta({
+        sueldosBrutos,
+        honorariosBrutos,
+        arriendos,
+        impuestoUnicoRetenido: val("impuesto-unico"),
+        ppmHonorarios: val("ppm-honorarios"),
+        apvRegimenB: val("apv-regimen-b"),
+        interesesHipotecarios: val("intereses-hipotecarios"),
+        economicParameters,
+      });
+    } catch (error) {
+      showFormError(
+        error instanceof Error
+          ? error.message
+          : "No se pudo calcular la Operación Renta."
+      );
+      return;
+    }
+
+    const buildRow = (
+      label: string,
+      value: string,
+      className = ""
+    ): HTMLDivElement => {
+      const row = document.createElement("div");
+      row.className = `flex justify-between border-b border-border py-1.5 text-sm last:border-0 ${className}`;
+      const lEl = document.createElement("span");
+      lEl.className = "text-secondary";
+      lEl.textContent = label;
+      const vEl = document.createElement("span");
+      vEl.className = "font-mono font-semibold";
+      vEl.textContent = value;
+      row.append(lEl, vEl);
+      return row;
+    };
+
+    const buildCard = (
+      title: string,
+      rows: Array<{ label: string; value: string; className?: string }>
+    ): HTMLDivElement => {
+      const card = document.createElement("div");
+      card.className = "mb-4 rounded-lg border border-border p-4";
+      const h = document.createElement("h3");
+      h.className = "mb-3 text-sm font-semibold text-secondary uppercase tracking-wide";
+      h.textContent = title;
+      card.appendChild(h);
+      for (const r of rows) {
+        card.appendChild(buildRow(r.label, r.value, r.className ?? ""));
+      }
+      return card;
+    };
+
+    // Banner de resultado
+    const banner = document.createElement("div");
+    const isRefund = resultado.esDevolución;
+    banner.className = `mb-4 rounded-lg border p-4 ${
+      isRefund
+        ? "border-green-500/40 bg-green-500/10"
+        : resultado.saldoFinal === 0
+          ? "border-border bg-background"
+          : "border-amber-500/40 bg-amber-500/10"
+    }`;
+
+    const bannerLabel = document.createElement("p");
+    bannerLabel.className = "text-xs font-bold tracking-widest uppercase mb-1 " +
+      (isRefund ? "text-green-400" : resultado.saldoFinal === 0 ? "text-secondary" : "text-amber-400");
+    bannerLabel.textContent = isRefund
+      ? "Devolución estimada"
+      : resultado.saldoFinal === 0
+        ? "Sin diferencia"
+        : "Pago adicional estimado";
+
+    const bannerAmount = document.createElement("p");
+    bannerAmount.className = "text-2xl font-bold font-mono " +
+      (isRefund ? "text-green-400" : resultado.saldoFinal === 0 ? "text-foreground" : "text-amber-400");
+    bannerAmount.textContent = isRefund
+      ? fmt(resultado.montoDevolución)
+      : resultado.saldoFinal === 0
+        ? "$0"
+        : fmt(resultado.montoPago);
+
+    const bannerSub = document.createElement("p");
+    bannerSub.className = "mt-1 text-xs text-muted";
+    bannerSub.textContent = isRefund
+      ? "El SII debería devolverte esta diferencia entre mayo y julio."
+      : resultado.saldoFinal === 0
+        ? "Las retenciones cubren exactamente el impuesto calculado."
+        : "Deberás pagar esta diferencia al enviar tu F22.";
+
+    banner.append(bannerLabel, bannerAmount, bannerSub);
+
+    // Tarjeta ingresos
+    const ingresosRows: Array<{ label: string; value: string; className?: string }> = [];
+    if (resultado.sueldosBrutos > 0) {
+      ingresosRows.push({ label: "Sueldos brutos", value: fmt(resultado.sueldosBrutos) });
+    }
+    if (honorariosBrutos > 0) {
+      ingresosRows.push({
+        label: "Honorarios brutos",
+        value: fmt(honorariosBrutos),
+      });
+      ingresosRows.push({
+        label: `Gastos presuntos (${(resultado.gastosPresuntos / honorariosBrutos * 100).toFixed(1)}%)`,
+        value: `− ${fmt(resultado.gastosPresuntos)}`,
+        className: "text-muted",
+      });
+      ingresosRows.push({
+        label: "Honorarios netos",
+        value: fmt(resultado.rentaNetaHonorarios),
+      });
+    }
+    if (resultado.arriendos > 0) {
+      ingresosRows.push({ label: "Arriendos", value: fmt(resultado.arriendos) });
+    }
+    ingresosRows.push({
+      label: "Renta bruta global",
+      value: fmt(resultado.rentaBrutaGlobal),
+      className: "font-semibold text-foreground",
+    });
+    const ingresosCard = buildCard("Ingresos", ingresosRows);
+
+    // Tarjeta deducciones (solo si hay alguna)
+    let deduccionesCard: HTMLDivElement | null = null;
+    if (resultado.totalDeducciones > 0) {
+      const dedRows: Array<{ label: string; value: string }> = [];
+      if (resultado.apvAplicado > 0) {
+        dedRows.push({
+          label: `APV Régimen B (tope ${fmt(resultado.apvCap)})`,
+          value: `− ${fmt(resultado.apvAplicado)}`,
+        });
+      }
+      if (resultado.interesesAplicados > 0) {
+        dedRows.push({
+          label: `Intereses hipotecarios (tope ${fmt(resultado.interesesCap)})`,
+          value: `− ${fmt(resultado.interesesAplicados)}`,
+        });
+      }
+      dedRows.push({
+        label: "Base imponible IGC",
+        value: fmt(resultado.baseImponibleIGC),
+      });
+      deduccionesCard = buildCard("Deducciones", dedRows);
+    }
+
+    // Tarjeta impuesto y créditos
+    const impuestoRows: Array<{ label: string; value: string; className?: string }> = [
+      {
+        label: "Base imponible IGC",
+        value: fmt(resultado.baseImponibleIGC),
+      },
+      {
+        label: `IGC calculado (tasa marginal ${fmtPct(resultado.tasaMarginal)})`,
+        value: fmt(resultado.igcCalculado),
+      },
+    ];
+    if (resultado.impuestoUnicoRetenido > 0) {
+      impuestoRows.push({
+        label: "Impuesto único retenido",
+        value: `− ${fmt(resultado.impuestoUnicoRetenido)}`,
+        className: "text-muted",
+      });
+    }
+    if (resultado.ppmHonorarios > 0) {
+      impuestoRows.push({
+        label: "PPM honorarios",
+        value: `− ${fmt(resultado.ppmHonorarios)}`,
+        className: "text-muted",
+      });
+    }
+    impuestoRows.push({
+      label: "Saldo neto",
+      value: (resultado.esDevolución ? "−" : "+") + fmt(Math.abs(resultado.saldoFinal)),
+      className: resultado.esDevolución ? "text-green-400 font-semibold" : resultado.saldoFinal > 0 ? "text-amber-400 font-semibold" : "",
+    });
+    const impuestoCard = buildCard("IGC y créditos", impuestoRows);
+
+    const note = document.createElement("p");
+    note.className = "mt-2 text-xs text-muted";
+    note.textContent =
+      "Estimación orientativa. No incluye dividendos, crédito 1ª categoría ni situaciones especiales de dos empleadores. Usa la propuesta del SII como fuente oficial.";
+
+    document.getElementById("resultado-contenido")!.replaceChildren(
+      banner,
+      ingresosCard,
+      ...(deduccionesCard ? [deduccionesCard] : []),
+      impuestoCard,
+      note
+    );
+
+    trackAnalyticsEvent("calculator_complete", {
+      calculator_slug: "operacion-renta",
+      calculator_name: "Simulador Operación Renta",
+      outcome: "success",
+    });
+  });
+</script>

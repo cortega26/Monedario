@@ -51,6 +51,8 @@ Variables que más mueven el resultado antes de enviar:
 
 Si quieres calcular el beneficio del APV antes de declarar: [Simulador APV Chile](/calculadoras/apv/).
 
+Si quieres estimar tu resultado completo (devolución o pago adicional) con sueldos, honorarios y arriendos: [Simulador Operación Renta 2026](/calculadoras/operacion-renta/).
+
 ## Qué hacer ahora (10 minutos)
 
 Según SII, el flujo correcto es revisar primero y declarar después. Para no mezclar etapas, separa el proceso en tres momentos: revisión previa, envío del F22 y corrección (reemplazo o rectificatoria).
