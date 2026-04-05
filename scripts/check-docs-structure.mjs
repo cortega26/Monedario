@@ -12,6 +12,7 @@ const ROOT_ALLOWED_MARKDOWN = new Set([
   "AGENTS.md",
   "LICENSE",
   "LICENSE.md",
+  "LICENSE-CONTENT.md",
 ]);
 
 const ALLOWED_PREFIXES = [
