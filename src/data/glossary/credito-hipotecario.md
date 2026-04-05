@@ -26,4 +26,6 @@ Los plazos más comunes van de 15 a 30 años.
 
 Los bancos usan como regla general que el dividendo no supere el **25%–30% de tus ingresos mensuales netos**. También revisan historial crediticio (DICOM/CMF), antigüedad laboral y nivel de endeudamiento total.
 
+**¿Te conviene hacer un abono extraordinario?** [Simulador de prepago de crédito](/calculadoras/prepago-credito/) →
+
 **Entiende cómo impacta la UF en tu dividendo:** [Guía UF, inflación y costo de vida](/guias/uf-costo-de-vida/) →

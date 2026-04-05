@@ -34,7 +34,7 @@ Datos mínimos:
 
 La fecha de pago no depende solo del día en que declaras: también influyen autorización SII, compensaciones/retenciones en TGR y estado de la cuenta bancaria.
 
-Si todavía estás revisando tu F22, parte por [Operación Renta F22: checklist para revisar, enviar y rectificar](/posts/operacion-renta-f22-checklist/).
+Si todavía estás revisando tu F22, parte por [Operación Renta F22: checklist para revisar, enviar y rectificar](/posts/operacion-renta-f22-checklist/). Para estimar si te devolverán o deberás pagar antes de abrir el SII: [Simulador Operación Renta 2026](/calculadoras/operacion-renta/).
 
 ## Fechas de referencia y ventanas de pago
 

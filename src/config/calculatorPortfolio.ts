@@ -300,7 +300,7 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     slug: "prepago-credito",
     title: "¿Conviene prepagar el crédito?",
     description:
-      "Compara el ahorro por prepago contra la alternativa de invertir o guardar ese dinero.",
+      "Calcula cuánto ahorras en intereses al hacer un abono extraordinario a tu crédito hipotecario o de consumo.",
     icon: "💡",
     tag: "Abono extra",
     family: "deuda-credito",

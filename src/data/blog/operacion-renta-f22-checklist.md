@@ -53,6 +53,8 @@ Variables que más mueven el resultado antes de enviar:
 - **Crédito por gastos en educación**: hasta $174.803 (4,4 UF) por hijo. El SII lo precarga automáticamente; verifica que los datos de tus hijos estén correctos antes de aceptar la propuesta.
 - **Contribuciones (Impuesto Territorial)**: si declaras ingresos por arriendo, puedes descontar las contribuciones pagadas durante 2025 de tu base del Impuesto Global Complementario.
 
+Antes de abrir la propuesta del SII, estima tu resultado: [Simulador Operación Renta 2026](/calculadoras/operacion-renta/).
+
 Si quieres calcular el beneficio del APV antes de declarar: [Simulador APV Chile](/calculadoras/apv/).
 
 Si quieres estimar tu resultado completo (devolución o pago adicional) con sueldos, honorarios y arriendos: [Simulador Operación Renta 2026](/calculadoras/operacion-renta/).
