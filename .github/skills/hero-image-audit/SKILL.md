@@ -1,7 +1,7 @@
 ---
 name: hero-image-audit
-description: 'Audit, generate, and evaluate hero images for Monedario articles. Use when: a new article needs a hero image, an existing image fails the quality rubric, the pipeline shows error or failed status entries, or you want to run a batch quality review of all hero images. Covers: pre-generation checks, pipeline run commands, 7-point automated rubric, 3-point human review, and post-generation verification.'
-argument-hint: 'Optional: a specific article slug to scope the audit'
+description: "Audit, generate, and evaluate hero images for Monedario articles. Use when: a new article needs a hero image, an existing image fails the quality rubric, the pipeline shows error or failed status entries, or you want to run a batch quality review of all hero images. Covers: pre-generation checks, pipeline run commands, 7-point automated rubric, 3-point human review, and post-generation verification."
+argument-hint: "Optional: a specific article slug to scope the audit"
 ---
 
 # Hero Image Audit
@@ -19,15 +19,15 @@ Two layers — automated and human. Both must pass before an image is considered
 
 ### Layer 1: Automated (7-point AI rubric, evaluated by GPT-4o vision)
 
-| # | Criterion | Pass condition |
-|---|---|---|
-| 1 | BACKGROUND | Single flat solid color — zero gradients, textures, vignette, or noise |
-| 2 | ELEMENTS | ≤ 3 distinct visual elements total |
-| 3 | STYLE | Flat 2D illustration only — zero 3D, shadows, or photorealism |
-| 4 | COMPOSITION | Main subject left/center-left, clean empty space on the right third |
-| 5 | TEXT | Zero letters, numbers, or readable symbols |
-| 6 | INDUSTRY | Clearly communicates personal finance — not confusable with tech or healthcare |
-| 7 | SIMPLICITY | Core concept understandable in under 2 seconds |
+| #   | Criterion   | Pass condition                                                                 |
+| --- | ----------- | ------------------------------------------------------------------------------ |
+| 1   | BACKGROUND  | Single flat solid color — zero gradients, textures, vignette, or noise         |
+| 2   | ELEMENTS    | ≤ 3 distinct visual elements total                                             |
+| 3   | STYLE       | Flat 2D illustration only — zero 3D, shadows, or photorealism                  |
+| 4   | COMPOSITION | Main subject left/center-left, clean empty space on the right third            |
+| 5   | TEXT        | Zero letters, numbers, or readable symbols                                     |
+| 6   | INDUSTRY    | Clearly communicates personal finance — not confusable with tech or healthcare |
+| 7   | SIMPLICITY  | Core concept understandable in under 2 seconds                                 |
 
 **Pass threshold:** score ≥ 5/7. Pipeline retries up to 3 times with progressive enforcement of failed criteria.
 
@@ -71,21 +71,25 @@ This confirms all published articles have a valid `.avif` file under `public/ima
 ### 2. Generate Images
 
 **All images not yet marked "done" (including errors):**
+
 ```bash
 pnpm run images:generate
 ```
 
 **Retry only "failed" quality images:**
+
 ```bash
 pnpm run images:generate:retry
 ```
 
 **Single article:**
+
 ```bash
 pnpm run images:generate:one --slug=<article-slug>
 ```
 
 **Force regenerate everything:**
+
 ```bash
 pnpm run images:generate:force
 ```
@@ -148,26 +152,26 @@ Both must exit 0 before the change is merged.
 
 ## Key Files
 
-| File | Purpose |
-|---|---|
-| `scripts/hero-images/pipeline.mjs` | Generation + evaluation engine (gpt-image-1, 1536×1024) |
-| `scripts/hero-images/status.json` | Per-slug pipeline state (done/failed/error) |
-| `public/hero-images-status.json` | Public copy for the dev monitor UI |
-| `scripts/hero-images/prompts.json` | Per-slug prompt metadata (scene, tone, intent) |
+| File                                  | Purpose                                                    |
+| ------------------------------------- | ---------------------------------------------------------- |
+| `scripts/hero-images/pipeline.mjs`    | Generation + evaluation engine (gpt-image-1, 1536×1024)    |
+| `scripts/hero-images/status.json`     | Per-slug pipeline state (done/failed/error)                |
+| `public/hero-images-status.json`      | Public copy for the dev monitor UI                         |
+| `scripts/hero-images/prompts.json`    | Per-slug prompt metadata (scene, tone, intent)             |
 | `scripts/hero-images/prompt-plan.mjs` | Default model plan (gpt-image-1, 1536×1024, quality: auto) |
-| `public/images/hero/<slug>.avif` | Canonical hero image files |
-| `src/tools/hero-images/config.mjs` | Approved scene models (Templates A/B/C) |
-| `scripts/check-hero-images.mjs` | CI validation (presence, format, size budget) |
-| `scripts/check-hero-prompts.mjs` | CI validation (prompt metadata completeness) |
+| `public/images/hero/<slug>.avif`      | Canonical hero image files                                 |
+| `src/tools/hero-images/config.mjs`    | Approved scene models (Templates A/B/C)                    |
+| `scripts/check-hero-images.mjs`       | CI validation (presence, format, size budget)              |
+| `scripts/check-hero-prompts.mjs`      | CI validation (prompt metadata completeness)               |
 
 ## Canvas Dimensions
 
-| Parameter | Value |
-|---|---|
-| Generation size | 1536×1024 (gpt-image-1) |
-| Output canvas | 1200×630 (resized by `postprocess-images.mjs`) |
-| Max file size | 80KB (build-enforced); target ≤ 50KB |
-| Card display | 16:9 crop from center — safe zone: central 1134×596px |
+| Parameter       | Value                                                 |
+| --------------- | ----------------------------------------------------- |
+| Generation size | 1536×1024 (gpt-image-1)                               |
+| Output canvas   | 1200×630 (resized by `postprocess-images.mjs`)        |
+| Max file size   | 80KB (build-enforced); target ≤ 50KB                  |
+| Card display    | 16:9 crop from center — safe zone: central 1134×596px |
 
 ## Adding a New Article
 

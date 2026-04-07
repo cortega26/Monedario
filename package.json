@@ -50,6 +50,7 @@
     "check:urls:canary": "node scripts/check-urls.mjs --canary",
     "check:urls:external:audit": "URLCHECK_MODE=ci node scripts/check-urls.mjs --external-audit",
     "check:urls:baseline:update": "node scripts/check-urls.mjs --update-baseline --allow-baseline-update",
+    "images:build-prompts": "node scripts/hero-images/build-prompts.mjs",
     "images:generate": "node --env-file=.env scripts/hero-images/pipeline.mjs",
     "images:generate:force": "node --env-file=.env scripts/hero-images/pipeline.mjs --force",
     "images:generate:one": "node --env-file=.env scripts/hero-images/pipeline.mjs --slug=",

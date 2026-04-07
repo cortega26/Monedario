@@ -34,6 +34,48 @@ const RULES = [
     readerSituation: "Persona revisando una alerta o contacto sospechoso en su telefono.",
     toneClass: "alerta",
   },
+  // prevision before renta: AFP/pension articles often mention "impuesto" (wage tax),
+  // which would incorrectly trigger the renta rule if it came first.
+  {
+    id: "prevision",
+    keywords: ["afp", "pension", "previsional", "cuenta 2"],
+    colorKey: "Finanzas general / AFP / Empleo / Ahorro",
+    template: "A",
+    recipeId: "afp-pension",
+    readerSituation: "Persona evaluando ahorro previsional y decisiones de largo plazo.",
+    toneClass: "educativo",
+  },
+  // liquidacion before renta: pay-stub articles mention "impuesto unico al trabajo"
+  // which would incorrectly trigger the renta scene without this rule.
+  {
+    id: "liquidacion",
+    keywords: ["liquidacion de sueldo", "liquidacion", "comprobante de pago"],
+    colorKey: "Finanzas general / AFP / Empleo / Ahorro",
+    template: "A",
+    recipeId: "liquidacion-documento",
+    readerSituation: "Persona revisando o interpretando su liquidacion de sueldo.",
+    toneClass: "neutral",
+  },
+  // sueldo before renta: salary-calculation articles also mention "impuesto"
+  // in payroll context, not tax-declaration context.
+  {
+    id: "sueldo",
+    keywords: ["sueldo liquido", "sueldo bruto", "sueldo neto", "calculo de sueldo"],
+    colorKey: "Finanzas general / AFP / Empleo / Ahorro",
+    template: "A",
+    recipeId: "sueldo-liquido",
+    readerSituation: "Persona calculando o verificando su sueldo neto.",
+    toneClass: "neutral",
+  },
+  {
+    id: "empleo",
+    keywords: ["sueldo", "finiquito", "cesantia", "desempleo", "honorarios"],
+    colorKey: "Finanzas general / AFP / Empleo / Ahorro",
+    template: "A",
+    recipeId: "cesantia",
+    readerSituation: "Persona revisando ingresos laborales, pagos o periodos sin trabajo.",
+    toneClass: "neutral",
+  },
   {
     id: "renta",
     keywords: ["impuesto", "renta", "f22", "sii", "retencion"],
@@ -69,24 +111,6 @@ const RULES = [
     recipeId: "ahorro",
     readerSituation: "Persona organizando ahorro o controlando gastos cotidianos.",
     toneClass: "progreso",
-  },
-  {
-    id: "empleo",
-    keywords: ["sueldo", "finiquito", "cesantia", "desempleo", "honorarios"],
-    colorKey: "Finanzas general / AFP / Empleo / Ahorro",
-    template: "A",
-    recipeId: "cesantia",
-    readerSituation: "Persona revisando ingresos laborales, pagos o periodos sin trabajo.",
-    toneClass: "neutral",
-  },
-  {
-    id: "prevision",
-    keywords: ["afp", "pension", "previsional", "cuenta 2"],
-    colorKey: "Finanzas general / AFP / Empleo / Ahorro",
-    template: "A",
-    recipeId: "afp-pension",
-    readerSituation: "Persona evaluando ahorro previsional y decisiones de largo plazo.",
-    toneClass: "educativo",
   },
   {
     id: "salud",
@@ -207,12 +231,201 @@ function buildSemanticProfile(article, rule, evidence) {
   };
 }
 
+// Slug-level overrides for articles whose content overlaps multiple keyword rules.
+// These are checked before the RULES loop and take absolute precedence.
+const SLUG_OVERRIDES = {
+  "como-calcular-sueldo-liquido": {
+    id: "sueldo",
+    template: "A",
+    recipeId: "sueldo-liquido",
+    colorKey: "Finanzas general / AFP / Empleo / Ahorro",
+    readerSituation: "Persona calculando o verificando su sueldo neto.",
+    toneClass: "neutral",
+    overrideEvidence: ["slug override: payroll-calculation article"],
+    overrideKeywords: ["sueldo liquido"],
+  },
+  "liquidacion-de-sueldo": {
+    id: "liquidacion",
+    template: "A",
+    recipeId: "liquidacion-documento",
+    colorKey: "Finanzas general / AFP / Empleo / Ahorro",
+    readerSituation: "Persona revisando o interpretando su liquidacion de sueldo.",
+    toneClass: "neutral",
+    overrideEvidence: ["slug override: pay-stub audit article"],
+    overrideKeywords: ["liquidacion de sueldo"],
+  },
+  "cuanto-descuenta-la-afp-de-tu-sueldo": {
+    id: "prevision",
+    template: "A",
+    recipeId: "afp-pension",
+    colorKey: "Finanzas general / AFP / Empleo / Ahorro",
+    readerSituation: "Persona evaluando el descuento previsional en su liquidacion.",
+    toneClass: "educativo",
+    overrideEvidence: ["slug override: AFP deduction article"],
+    overrideKeywords: ["afp", "descuento afp"],
+  },
+  // AFP switching article: use dedicated cambio-afp scene (comparing two institution docs)
+  // instead of the generic afp-pension shield+arrow which doesn't communicate 'choice'.
+  "como-cambiarse-de-afp": {
+    id: "prevision",
+    template: "A",
+    recipeId: "cambio-afp",
+    colorKey: "Finanzas general / AFP / Empleo / Ahorro",
+    readerSituation: "Persona decidiendo cambiarse de AFP y comparando sus opciones.",
+    toneClass: "educativo",
+    overrideEvidence: ["slug override: AFP switching decision article"],
+    overrideKeywords: ["afp", "cambio de afp"],
+  },
+  // Fondos AFP A-B-C-D-E: use the specific fondos-afp model (figure pointing at 5 bars)
+  // instead of generic afp-pension; clearly communicates the fund comparison concept.
+  "fondos-afp-a-b-c-d-e": {
+    id: "prevision",
+    template: "A",
+    recipeId: "fondos-afp",
+    colorKey: "Finanzas general / AFP / Empleo / Ahorro",
+    readerSituation: "Persona comparando los cinco fondos AFP para elegir el mas adecuado.",
+    toneClass: "educativo",
+    overrideEvidence: ["slug override: AFP funds A-B-C-D-E comparison article"],
+    overrideKeywords: ["afp", "fondos afp"],
+  },
+  // Cuenta 2 AFP: use dedicated cuenta-2-afp model (two layered savings blocks)
+  // instead of generic afp-pension which gives no 'second account' visual signal.
+  "que-es-la-cuenta-2-afp": {
+    id: "prevision",
+    template: "A",
+    recipeId: "cuenta-2-afp",
+    colorKey: "Finanzas general / AFP / Empleo / Ahorro",
+    readerSituation: "Persona descubriendo la Cuenta 2 de AFP como herramienta de ahorro voluntario.",
+    toneClass: "educativo",
+    overrideEvidence: ["slug override: Cuenta 2 AFP voluntary savings article"],
+    overrideKeywords: ["cuenta 2", "afp"],
+  },
+  // Compound interest: body mentions 'sueldo liquido' triggering the sueldo rule,
+  // but the article is about long-term growth — use ahorro (savings growth) scene.
+  "el-poder-del-interes-compuesto": {
+    id: "ahorro",
+    template: "A",
+    recipeId: "ahorro",
+    colorKey: "Ahorro activo / Metas / Logros",
+    readerSituation: "Persona visualizando el crecimiento de su ahorro a largo plazo.",
+    toneClass: "progreso",
+    overrideEvidence: ["slug override: compound interest long-term growth article"],
+    overrideKeywords: ["ahorro", "interes compuesto"],
+  },
+  // Compound interest methodology note: same body-text false-positive as main article.
+  "interes-compuesto-nota-metodologica": {
+    id: "ahorro",
+    template: "A",
+    recipeId: "ahorro",
+    colorKey: "Ahorro activo / Metas / Logros",
+    readerSituation: "Persona entendiendo la mecanica del interes compuesto y su efecto acumulativo.",
+    toneClass: "progreso",
+    overrideEvidence: ["slug override: compound interest methodology note"],
+    overrideKeywords: ["ahorro", "interes compuesto"],
+  },
+  // ETF investment: body mentions 'sii' triggering the renta rule,
+  // but this is an investment/growth article — use ahorro scene over tax-form scene.
+  "como-invertir-en-etfs-desde-chile": {
+    id: "ahorro",
+    template: "A",
+    recipeId: "ahorro",
+    colorKey: "Ahorro activo / Metas / Logros",
+    readerSituation: "Persona evaluando instrumentos de inversion para hacer crecer sus ahorros.",
+    toneClass: "progreso",
+    overrideEvidence: ["slug override: ETF investment article"],
+    overrideKeywords: ["ahorro", "inversion"],
+  },
+  // IPC article: body mentions 'sueldo' triggering empleo rule before uf rule;
+  // override to ipc-indicadores Template C for correct educational indicator framing.
+  "que-es-el-ipc-chile-como-se-calcula": {
+    id: "uf",
+    template: "C",
+    recipeId: "ipc-indicadores",
+    colorKey: "Educativo / Conceptos / Guias",
+    readerSituation: "Persona entendiendo como el IPC mide la inflacion y afecta su poder adquisitivo.",
+    toneClass: "educativo",
+    overrideEvidence: ["slug override: IPC inflation indicator educational article"],
+    overrideKeywords: ["ipc", "inflacion"],
+  },
+  // Cesantia comparison article: body mentions 'afp' triggering prevision rule,
+  // but the article is about unemployment insurance — use cesantia not afp-pension.
+  "seguro-cesantia-cuenta-individual-vs-fondo-solidario": {
+    id: "empleo",
+    template: "A",
+    recipeId: "cesantia",
+    colorKey: "Finanzas general / AFP / Empleo / Ahorro",
+    readerSituation: "Persona comparando las dos modalidades del seguro de cesantia.",
+    toneClass: "neutral",
+    overrideEvidence: ["slug override: cesantia insurance comparison article"],
+    overrideKeywords: ["cesantia"],
+  },
+  // Debt renegotiation: body mentions 'uf' triggering indicator rule,
+  // but the article is about restructuring debt — use deuda-credito scene.
+  "renegociacion-superir": {
+    id: "deuda",
+    template: "A",
+    recipeId: "deuda-credito",
+    colorKey: "Credito / Deuda / Impuestos / Riesgo",
+    readerSituation: "Persona negociando condiciones de deuda para mejorar su situacion financiera.",
+    toneClass: "serio",
+    overrideEvidence: ["slug override: debt renegotiation process article"],
+    overrideKeywords: ["renegociacion", "deuda"],
+  },
+  // APV article: generic afp-pension (shield+arrow) doesn't communicate voluntary savings;
+  // use apv-crecimiento Template C (upward-trending arrow over savings stack) instead.
+  "que-es-el-apv": {
+    id: "prevision",
+    template: "C",
+    recipeId: "apv-crecimiento",
+    colorKey: "Finanzas general / AFP / Empleo / Ahorro",
+    readerSituation: "Persona evaluando el APV como herramienta de ahorro previsional voluntario.",
+    toneClass: "educativo",
+    overrideEvidence: ["slug override: APV voluntary pension savings article"],
+    overrideKeywords: ["apv", "ahorro previsional voluntario"],
+  },
+};
+
 export function selectPromptPlan(article) {
   const category = String(article.category ?? "general").trim().toLowerCase();
   const articleText = normalizeForMatching(buildArticleText(article));
   const metadataText = normalizeForMatching(
     [article.slug, ...(article.tags ?? []), article.cluster ?? ""].join(" ")
   );
+
+  // Check slug overrides first — these take precedence over keyword rules.
+  const slugOverride = SLUG_OVERRIDES[article.slug];
+  if (slugOverride) {
+    const colorEntry = COLORS[slugOverride.colorKey] ?? COLORS["Banca / Instituciones / Referencia tecnica"];
+    const semantic = buildSemanticProfile(
+      article,
+      { id: slugOverride.id, readerSituation: slugOverride.readerSituation, toneClass: slugOverride.toneClass },
+      slugOverride.overrideEvidence
+    );
+    const overrideModel = findApprovedPromptModel(slugOverride.template, slugOverride.recipeId);
+    if (!overrideModel) {
+      throw new Error(
+        `[hero-images] Missing approved prompt model for slug override '${article.slug}': template '${slugOverride.template}', recipe '${slugOverride.recipeId}'.`
+      );
+    }
+    const basePlan = {
+      ruleId: slugOverride.id,
+      colorKey: slugOverride.colorKey,
+      hex: colorEntry.hex,
+      modelPlan: { ...DEFAULT_MODEL_PLAN },
+      semantic,
+      matchedKeywords: slugOverride.overrideKeywords,
+    };
+    return {
+      ...basePlan,
+      template: slugOverride.template,
+      approvedModelId: overrideModel.id,
+      sceneId: overrideModel.sceneId,
+      postura: overrideModel.postura,
+      objetos: overrideModel.objetos,
+      icon: overrideModel.icono,
+      sceneChoice: overrideModel.label,
+    };
+  }
 
   let rule = null;
   let evidence = [];

@@ -1,122 +1,184 @@
 {
   "como-calcular-sueldo-liquido": {
     "state": "failed",
-    "score": 4,
-    "failures": ["BACKGROUND", "TEXT", "COMPOSITION"],
-    "reason": "The image fails due to the presence of text and background not being a flat solid color.",
+    "score": 3,
+    "failures": ["STYLE", "COMPOSITION", "INDUSTRY", "SIMPLICITY"],
+    "reason": "The image fails to clearly communicate personal finance and uses 3D rendering.",
     "attempts": 3,
-    "failedAt": "2026-03-22T19:35:13.093Z"
+    "failedAt": "2026-04-07T17:33:28.301Z"
   },
   "liquidacion-de-sueldo": {
-    "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "state": "failed",
+    "score": 4,
+    "failures": ["BACKGROUND", "TEXT", "INDUSTRY"],
+    "reason": "The background is not a single flat color, there is text, and the image does not clearly communicate personal finance.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:35:34.998Z"
   },
   "cuanto-descuenta-la-afp-de-tu-sueldo": {
-    "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "state": "failed",
+    "score": 4,
+    "failures": ["ELEMENTS", "INDUSTRY", "SIMPLICITY"],
+    "reason": "The image does not clearly communicate personal finance and is not understandable in under 2 seconds.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:37:47.507Z"
   },
   "descuentos-de-sueldo": {
-    "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "state": "done",
+    "score": 7,
+    "attempts": 2,
+    "savedAt": "2026-04-07T17:39:20.440Z"
   },
   "fondos-afp-a-b-c-d-e": {
-    "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "state": "done",
+    "score": 7,
+    "attempts": 1,
+    "savedAt": "2026-04-07T17:40:12.406Z"
   },
   "como-cambiarse-de-afp": {
-    "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "state": "failed",
+    "score": 4,
+    "failures": ["COMPOSITION", "INDUSTRY", "SIMPLICITY"],
+    "reason": "The image does not clearly communicate personal finance and lacks simplicity in concept.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:42:19.409Z"
   },
   "reforma-previsional-2025-que-cambia-y-como-te-afecta": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:42:59.733Z"
   },
   "que-es-la-cuenta-2-afp": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:43:49.210Z"
   },
   "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:43:50.214Z"
   },
   "que-es-el-apv": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:43:50.829Z"
   },
   "deposito-a-plazo-uf-vs-pesos": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:43:51.546Z"
   },
   "el-poder-del-interes-compuesto": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:44:25.264Z"
   },
   "fondos-mutuos-comisiones-rescate-impuestos": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:46:02.008Z"
   },
   "como-invertir-en-etfs-desde-chile": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:46:02.881Z"
   },
   "operacion-renta-f22-checklist": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:47:38.143Z"
   },
   "devolucion-impuestos-fechas-compensaciones": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:47:38.865Z"
   },
   "boleta-honorarios-2026-retencion-cobertura": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:47:39.380Z"
   },
   "cae-costo-real-credito-chile": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:47:40.108Z"
   },
   "informe-deudas-cmf-vs-dicom": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:47:40.722Z"
   },
   "renegociacion-superir": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:47:41.263Z"
   },
   "fraude-tarjeta-que-hacer": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:47:41.919Z"
   },
   "estafas-financieras-chile-vishing-smishing-marketplace": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:47:42.552Z"
   },
   "suplantacion-identidad-creditos-no-reconocidos": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:47:43.180Z"
   },
   "que-es-la-uf": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:47:43.896Z"
   },
   "que-es-el-ipc-chile-como-se-calcula": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:47:44.430Z"
   },
   "reajuste-arriendo-uf-ipc-chile": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:47:44.968Z"
   },
   "seguro-de-cesantia": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:47:45.454Z"
   },
   "finiquito-e-indemnizaciones-en-chile": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:47:45.963Z"
   },
   "licencia-medica-desde-que-dia-pagan": {
     "state": "error",
-    "error": "400 Invalid value: '1792x1024'. Supported values are: '1024x1024', '1024x1536', '1536x1024', and 'auto'."
+    "error": "400 Billing hard limit has been reached.",
+    "attempts": 3,
+    "failedAt": "2026-04-07T17:47:46.513Z"
   }
 }

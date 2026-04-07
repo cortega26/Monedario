@@ -40,6 +40,7 @@ internal-docs/
 context/.cache/
 context/tmp/
 context/**/*.generated.*
+.github/skills/
 
 # generated report snapshots
 docs/reports/rss_snapshot_after.json

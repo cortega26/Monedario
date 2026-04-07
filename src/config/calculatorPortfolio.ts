@@ -173,6 +173,28 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     ],
   },
   {
+    href: "/calculadoras/impuesto-segunda-categoria/",
+    slug: "impuesto-segunda-categoria",
+    title: "Calculadora Impuesto Segunda Categoría",
+    description:
+      "Calcula cuánto pagas de impuesto único al trabajo según tu sueldo imponible mensual y en qué tramo de la tabla SII quedas.",
+    icon: "📊",
+    tag: "Más usada",
+    family: "ingresos",
+    primaryJtbd: "Saber si pagas impuesto de segunda categoría y cuánto.",
+    whenToUse:
+      "Cuando quieres revisar el impuesto de forma aislada, entender en qué tramo tributas o verificar la retención mensual.",
+    notFor:
+      "No reemplaza el cálculo completo de sueldo líquido con AFP, salud y cesantía.",
+    related: [
+      {
+        href: "/calculadoras/sueldo-liquido/",
+        label: "Sueldo líquido",
+        when: "si además del impuesto necesitas el desglose completo de todos los descuentos de planilla.",
+      },
+    ],
+  },
+  {
     href: "/calculadoras/seguro-cesantia/",
     slug: "seguro-cesantia",
     title: "Seguro de Cesantía",
@@ -215,6 +237,34 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
         href: "/calculadoras/simulador-jubilacion/",
         label: "Simulador de jubilación",
         when: "si tu pregunta principal es cuánto saldo o pensión podrías tener al jubilar, no qué régimen APV conviene este año.",
+      },
+    ],
+  },
+  {
+    href: "/calculadoras/comisiones-afp/",
+    slug: "comisiones-afp",
+    title: "Comparador de Comisiones AFP",
+    description:
+      "Compara la comisión de cada AFP con tu sueldo imponible y ve cuánto ahorrarías al año eligiendo la más barata.",
+    icon: "🏛️",
+    tag: "Referencia",
+    family: "ahorro-prevision",
+    primaryJtbd:
+      "Elegir AFP comparando el costo real de comisión mensual sobre tu sueldo.",
+    whenToUse:
+      "Cuando evalúas cambiarte de AFP y quieres ver el impacto en pesos sobre tu liquidación.",
+    notFor:
+      "No modela rentabilidad de fondos ni proyecta pensión futura — solo compara el costo de comisión.",
+    related: [
+      {
+        href: "/calculadoras/simulador-jubilacion/",
+        label: "Simulador de jubilación",
+        when: "si tu decisión es de largo plazo y quieres proyectar pensión futura, no comparar comisiones.",
+      },
+      {
+        href: "/calculadoras/sueldo-liquido/",
+        label: "Sueldo líquido",
+        when: "si quieres ver el impacto completo de la AFP en tu liquidación mensual junto con los demás descuentos.",
       },
     ],
   },

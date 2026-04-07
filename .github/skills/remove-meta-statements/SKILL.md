@@ -1,7 +1,7 @@
 ---
 name: remove-meta-statements
-description: 'Detect and remove AI/editorial meta-information that has leaked into reader-facing content. Use when: meta-statements appear in published articles or pages, editorial pipeline phrases are visible to end users, audit:reader-copy reports violations, internal notes or process language surfaces in blog posts or page copy.'
-argument-hint: 'Optional: a specific file path or slug to scope the audit'
+description: "Detect and remove AI/editorial meta-information that has leaked into reader-facing content. Use when: meta-statements appear in published articles or pages, editorial pipeline phrases are visible to end users, audit:reader-copy reports violations, internal notes or process language surfaces in blog posts or page copy."
+argument-hint: "Optional: a specific file path or slug to scope the audit"
 ---
 
 # Remove Meta-Statements from Reader-Facing Content
@@ -13,19 +13,20 @@ Removes internal editorial/AI pipeline language that has leaked into **any text 
 ## What Counts as a Meta-Statement
 
 A piece of text is a meta-statement if **any** of these conditions is true:
+
 - It is internal editorial or AI pipeline language not intended for readers.
 - It increases cognitive friction for the end user (unclear, abstract, or confusing).
 - It is not clear or meaningful to someone reading the article.
 
-| Category | Examples |
-|---|---|
-| Editorial pipeline terms | "apertura editorial", "taxonomía de monedario", "esta capa", "alineado con la taxonomía" |
-| AI process phrases | "corrección aplicada en esta revisión", "refuerzo editorial aplicado en esta revisión", "ajustado en esta revisión" |
-| First-person editor notes | "lo dejé", "lo deje" |
-| Methodology artifacts | "fuentes base declaradas por el ejercicio", "gatilla actualización" |
-| AI tooling terms | "prompt", "pipeline" (when used as nouns in article prose) |
-| Competitive positioning notes | "no compita con la apertura editorial", "para abrir la portada con más amplitud" |
-| Any text that is opaque or friction-generating | Jargon, internal abbreviations, or abstract structural labels with no reader meaning |
+| Category                                       | Examples                                                                                                            |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| Editorial pipeline terms                       | "apertura editorial", "taxonomía de monedario", "esta capa", "alineado con la taxonomía"                            |
+| AI process phrases                             | "corrección aplicada en esta revisión", "refuerzo editorial aplicado en esta revisión", "ajustado en esta revisión" |
+| First-person editor notes                      | "lo dejé", "lo deje"                                                                                                |
+| Methodology artifacts                          | "fuentes base declaradas por el ejercicio", "gatilla actualización"                                                 |
+| AI tooling terms                               | "prompt", "pipeline" (when used as nouns in article prose)                                                          |
+| Competitive positioning notes                  | "no compita con la apertura editorial", "para abrir la portada con más amplitud"                                    |
+| Any text that is opaque or friction-generating | Jargon, internal abbreviations, or abstract structural labels with no reader meaning                                |
 
 ## Procedure
 
@@ -36,6 +37,7 @@ pnpm run audit:reader-copy
 ```
 
 Review severity in the output:
+
 - **error** → must fix before publishing; also fails `pnpm run check:reader-facing-copy`
 - **warn** → must fix if the phrase is meta-information, increases cognitive friction, or is not clear to the end user; only keep if the phrase is unambiguously appropriate for readers and adds value
 
@@ -53,13 +55,13 @@ The BLOCKING_PATTERNS in `scripts/check-reader-facing-copy.mjs` cover additional
 
 For every violation, apply the surgical edit strategy:
 
-| Finding context | Correct action |
-|---|---|
-| Sentence is **entirely** internal (no reader value) | Delete the sentence |
-| Sentence is partially reader-appropriate | Rewrite removing only the meta-phrase; keep the reader-facing meaning |
-| Heading contains a meta-phrase | Rewrite the heading; never leave an orphaned or empty section |
+| Finding context                                                                                                            | Correct action                                                            |
+| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| Sentence is **entirely** internal (no reader value)                                                                        | Delete the sentence                                                       |
+| Sentence is partially reader-appropriate                                                                                   | Rewrite removing only the meta-phrase; keep the reader-facing meaning     |
+| Heading contains a meta-phrase                                                                                             | Rewrite the heading; never leave an orphaned or empty section             |
 | Meta-phrase is inside a frontmatter field rendered to readers (`title`, `description`, `summary`, `answer`, OG/SEO fields) | Remove or rewrite only that field value; preserve field key and structure |
-| Text causes cognitive friction even without explicit meta-language | Rewrite for clarity from the reader's perspective; remove or simplify |
+| Text causes cognitive friction even without explicit meta-language                                                         | Rewrite for clarity from the reader's perspective; remove or simplify     |
 
 **Do not** leave blank lines or empty sections after removal. Ensure prose flows naturally from the surrounding copy.
 
@@ -101,6 +103,7 @@ pnpm run check:frontmatter
 ## Scope Boundaries
 
 **In scope:** All text visible to the end user:
+
 - `src/data/blog/**/*.{md,mdx}` — article body and all frontmatter fields rendered to readers (`title`, `description`, `summary`, `answer`, tags, OG/SEO fields)
 - `src/pages/**/*.astro` (excluding `src/pages/calculadoras/**`) — page copy and UI strings
 - `scripts/editorial-copy-rules.mjs`, `scripts/check-reader-facing-copy.mjs` — pattern registry updates

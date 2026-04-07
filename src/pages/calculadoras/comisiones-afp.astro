@@ -1,0 +1,297 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import { getPath } from "@/utils/getPath";
+
+const simuladorJubilacionPath = getPath("/calculadoras/simulador-jubilacion/");
+const pensionesHubPath = getPath("/guias/pensiones-afp/");
+const cambiarseAfpPath = getPath("/posts/como-cambiarse-de-afp/");
+
+// AFP rates — total = 10% fondo personal + comisión AFP
+// Fuente: tasas de la calculadora de sueldo líquido (vigentes 2026)
+const AFP_LIST = [
+  { name: "Capital",   total: 10.58, commission: 0.58 },
+  { name: "Cuprum",    total: 10.65, commission: 0.65 },
+  { name: "Habitat",   total: 10.77, commission: 0.77 },
+  { name: "Modelo",    total: 10.58, commission: 0.58 },
+  { name: "PlanVital", total: 10.49, commission: 0.49 },
+  { name: "ProVida",   total: 10.69, commission: 0.69 },
+  { name: "Uno",       total: 10.75, commission: 0.75 },
+].sort((a, b) => a.commission - b.commission);
+
+const cheapest = AFP_LIST[0]; // PlanVital after sort
+---
+
+<Layout
+  title="Comparador Comisiones AFP Chile 2026 | Monedario"
+  description="Compara la comisión de cada AFP en Chile, calcula cuánto te descuentan al mes según tu sueldo imponible y cuánto ahorrarías eligiendo la más barata."
+>
+  <CalculatorJsonLd
+    name="Comparador de Comisiones AFP Chile 2026"
+    description="Compara la comisión de cada AFP en Chile y calcula el impacto real en tu sueldo mensual."
+  />
+  <Header />
+  <Breadcrumb />
+  <main
+    id="main-content"
+    class="app-layout"
+    data-analytics-page-type="calculator"
+    data-analytics-calculator="comisiones-afp"
+    data-analytics-calculator-name="Comparador Comisiones AFP"
+  >
+    <section class="border-b border-border pt-8 pb-6">
+      <h1 class="my-4 text-3xl font-bold sm:text-4xl">
+        🏛️ Comparador de Comisiones AFP
+      </h1>
+      <p class="max-w-xl text-secondary">
+        Ingresa tu sueldo imponible y compara cuánto te descuenta cada AFP solo
+        en comisión. El 10% siempre va a tu fondo personal — lo que cambia según
+        la AFP es la comisión adicional.
+      </p>
+    </section>
+
+    <!-- CALCULADORA -->
+    <section class="py-8">
+      <div class="mb-6 max-w-sm">
+        <label
+          for="imponible"
+          class="mb-1 block text-sm font-medium text-secondary"
+        >
+          Sueldo imponible mensual ($) — opcional
+        </label>
+        <div class="flex gap-2">
+          <input
+            type="number"
+            id="imponible"
+            placeholder="Ej: 1.200.000"
+            min="0"
+            class="flex-1 rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+          />
+          <button
+            id="calcBtn"
+            class="rounded-lg bg-accent px-4 py-2 text-sm font-bold text-background transition-opacity hover:opacity-90"
+          >
+            Calcular
+          </button>
+        </div>
+        <p class="mt-1 text-xs text-muted">
+          Si lo dejas vacío, la tabla muestra solo los porcentajes sin montos.
+        </p>
+      </div>
+
+      <!-- TABLA AFP -->
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr
+              class="border-b border-border text-left text-xs font-semibold text-muted uppercase"
+            >
+              <th class="pb-2 pr-4">AFP</th>
+              <th class="pb-2 pr-4 text-right">Comisión</th>
+              <th class="pb-2 pr-4 text-right">Tasa total</th>
+              <th class="pb-2 pr-4 text-right" id="col-mensual">
+                Comisión/mes
+              </th>
+              <th class="pb-2 text-right" id="col-extra">
+                Extra vs {cheapest.name}
+              </th>
+            </tr>
+          </thead>
+          <tbody id="afp-table-body">
+            {
+              AFP_LIST.map((afp, i) => {
+                const isCheapest = afp.commission === cheapest.commission;
+                return (
+                  <tr
+                    data-total={afp.total}
+                    data-commission={afp.commission}
+                    class:list={[
+                      "border-b border-border/50 transition-colors last:border-0",
+                      { "bg-accent/5": isCheapest },
+                    ]}
+                  >
+                    <td class="py-3 pr-4">
+                      <span class="font-semibold">{afp.name}</span>
+                      {isCheapest && (
+                        <span class="ml-2 rounded-full bg-accent/15 px-2 py-0.5 text-xs font-medium text-accent">
+                          más barata
+                        </span>
+                      )}
+                    </td>
+                    <td class="py-3 pr-4 text-right font-mono">
+                      {afp.commission.toFixed(2)}%
+                    </td>
+                    <td class="py-3 pr-4 text-right font-mono text-secondary">
+                      {afp.total.toFixed(2)}%
+                    </td>
+                    <td
+                      class="py-3 pr-4 text-right font-mono"
+                      data-cell="mensual"
+                    >
+                      —
+                    </td>
+                    <td
+                      class:list={[
+                        "py-3 text-right font-mono",
+                        { "text-red-400": !isCheapest },
+                        { "text-green-500": isCheapest },
+                      ]}
+                      data-cell="extra"
+                    >
+                      {isCheapest ? "referencia" : "—"}
+                    </td>
+                  </tr>
+                );
+              })
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <p class="mt-3 text-xs text-muted">
+        Tasas vigentes 2026. El 10% de cotización va siempre a tu cuenta
+        personal independientemente de la AFP. Solo la comisión es el costo real
+        del servicio.
+      </p>
+
+      <!-- RESUMEN DE AHORRO -->
+      <div
+        id="savings-summary"
+        class="mt-6 hidden rounded-xl border border-accent/20 bg-accent/5 p-5"
+      >
+        <h3 class="mb-2 text-base font-semibold">Ahorro anual estimado</h3>
+        <p id="savings-text" class="text-sm text-secondary"></p>
+      </div>
+    </section>
+
+    <!-- EXPLICACIÓN -->
+    <section
+      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
+    >
+      <h2>¿Qué es la comisión AFP y por qué importa?</h2>
+      <p>
+        Cada AFP descuenta de tu sueldo imponible dos cosas distintas: el{" "}
+        <strong>10% de cotización obligatoria</strong>, que va íntegramente a tu
+        cuenta individual de capitalización (es tuyo), y la{" "}
+        <strong>comisión</strong>, que es el costo del servicio de administración
+        y va a la AFP.
+      </p>
+      <ul>
+        <li>
+          La cotización del 10% es igual en todas las AFP — no cambia si te
+          cambias.
+        </li>
+        <li>
+          La comisión varía entre AFP: en 2026 va desde{" "}
+          {cheapest.commission.toFixed(2)}% hasta 0,77% según la administradora.
+        </li>
+        <li>
+          Cambiarte a la AFP más barata reduce el descuento mensual sin afectar
+          el saldo que acumulas (el 10% es el mismo).
+        </li>
+        <li>
+          La diferencia de comisión puede parecer pequeña en porcentaje, pero en
+          sueldos altos o en plazos largos acumula un costo real significativo.
+        </li>
+      </ul>
+      <p>
+        Para decidir si te conviene cambiar de AFP, revisa también la{" "}
+        <a href={cambiarseAfpPath}>guía de cómo cambiarse de AFP</a> y el{" "}
+        <a href={pensionesHubPath}>hub de pensiones y AFP</a>. Si tu decisión es
+        de largo plazo y quieres proyectar pensión futura, usa el{" "}
+        <a href={simuladorJubilacionPath}>simulador de jubilación</a>.
+      </p>
+      <p class="text-sm text-muted">
+        ⚠️ Las comisiones AFP pueden cambiar. Verifica la tasa vigente en la{" "}
+        <a href="https://www.spensiones.cl" target="_blank"
+          >Superintendencia de Pensiones</a
+        > antes de tomar una decisión.
+      </p>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  import { trackAnalyticsEvent } from "@/utils/analytics";
+
+  const fmt = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+
+  function calcular() {
+    const imponible =
+      parseFloat(
+        (document.getElementById("imponible") as HTMLInputElement).value
+      ) || 0;
+
+    const rows = document.querySelectorAll<HTMLTableRowElement>(
+      "#afp-table-body tr"
+    );
+
+    let cheapestCommission = Infinity;
+    rows.forEach(row => {
+      const commission = parseFloat(row.dataset.commission ?? "0");
+      if (commission < cheapestCommission) cheapestCommission = commission;
+    });
+
+    rows.forEach(row => {
+      const commission = parseFloat(row.dataset.commission ?? "0");
+      const isCheapest = commission === cheapestCommission;
+
+      const mensualCell = row.querySelector<HTMLElement>('[data-cell="mensual"]');
+      const extraCell = row.querySelector<HTMLElement>('[data-cell="extra"]');
+
+      if (!mensualCell || !extraCell) return;
+
+      if (imponible > 0) {
+        const monthlyCost = (commission / 100) * imponible;
+        mensualCell.textContent = fmt(monthlyCost);
+
+        if (isCheapest) {
+          extraCell.textContent = "referencia";
+        } else {
+          const extraMonthly = ((commission - cheapestCommission) / 100) * imponible;
+          extraCell.textContent = `+${fmt(extraMonthly)}/mes`;
+        }
+      } else {
+        mensualCell.textContent = "—";
+        if (!isCheapest) extraCell.textContent = "—";
+      }
+    });
+
+    // Savings summary
+    const summaryEl = document.getElementById("savings-summary");
+    const summaryText = document.getElementById("savings-text");
+    if (summaryEl && summaryText && imponible > 0) {
+      const rows2 = Array.from(
+        document.querySelectorAll<HTMLTableRowElement>("#afp-table-body tr")
+      );
+      const maxCommission = Math.max(
+        ...rows2.map(r => parseFloat(r.dataset.commission ?? "0"))
+      );
+      const maxExtraMonthly =
+        ((maxCommission - cheapestCommission) / 100) * imponible;
+      const maxExtraAnnual = maxExtraMonthly * 12;
+
+      summaryText.textContent = `Con un imponible de ${fmt(imponible)}, elegir la AFP más barata frente a la más cara te ahorraría ${fmt(maxExtraMonthly)}/mes — ${fmt(maxExtraAnnual)} al año solo en comisiones.`;
+      summaryEl.classList.remove("hidden");
+
+      trackAnalyticsEvent("calculator_complete", {
+        calculator_slug: "comisiones-afp",
+        calculator_name: "Comparador Comisiones AFP",
+        outcome: "success",
+      });
+    } else if (summaryEl) {
+      summaryEl.classList.add("hidden");
+    }
+  }
+
+  document.getElementById("calcBtn")?.addEventListener("click", calcular);
+  document
+    .getElementById("imponible")
+    ?.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Enter") calcular();
+    });
+</script>

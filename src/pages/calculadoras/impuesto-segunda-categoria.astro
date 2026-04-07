@@ -1,0 +1,349 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+import { getPath } from "@/utils/getPath";
+
+const { parameters: economicParameters } = await getEconomicParameters();
+const utm = economicParameters.utm;
+const economicSourceLabel =
+  economicParameters.source === "live" ? "dato en línea" : "fallback controlado";
+
+const fmt = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+
+// Cuantías a rebajar (fórmula continua — idéntica a TaxEngine.ts)
+const d2 = 13.5 * utm * 0.04;
+const d3 = 30 * utm * (0.08 - 0.04) + d2;
+const d4 = 50 * utm * (0.135 - 0.08) + d3;
+const d5 = 70 * utm * (0.23 - 0.135) + d4;
+const d6 = 90 * utm * (0.304 - 0.23) + d5;
+const d7 = 120 * utm * (0.35 - 0.304) + d6;
+const d8 = 150 * utm * (0.4 - 0.35) + d7;
+
+const bracketRows = [
+  { desde: "0",    hasta: "13,5",  hastaPesos: fmt(13.5 * utm), tasa: "Exento (0%)", rebaja: "—" },
+  { desde: "13,5", hasta: "30",    hastaPesos: fmt(30 * utm),   tasa: "4%",          rebaja: fmt(d2) },
+  { desde: "30",   hasta: "50",    hastaPesos: fmt(50 * utm),   tasa: "8%",          rebaja: fmt(d3) },
+  { desde: "50",   hasta: "70",    hastaPesos: fmt(70 * utm),   tasa: "13,5%",       rebaja: fmt(d4) },
+  { desde: "70",   hasta: "90",    hastaPesos: fmt(90 * utm),   tasa: "23%",         rebaja: fmt(d5) },
+  { desde: "90",   hasta: "120",   hastaPesos: fmt(120 * utm),  tasa: "30,4%",       rebaja: fmt(d6) },
+  { desde: "120",  hasta: "150",   hastaPesos: fmt(150 * utm),  tasa: "35%",         rebaja: fmt(d7) },
+  { desde: "150",  hasta: "∞",     hastaPesos: "Sin límite",    tasa: "40%",         rebaja: fmt(d8) },
+];
+
+const sueldoLiquidoPath = getPath("/calculadoras/sueldo-liquido/");
+---
+
+<Layout
+  title="Calculadora Impuesto Segunda Categoría Chile 2026"
+  description="Calcula cuánto pagas de impuesto único al trabajo según tu sueldo imponible mensual y en qué tramo de la tabla SII quedas. Tabla actualizada con UTM vigente."
+>
+  <CalculatorJsonLd
+    name="Calculadora Impuesto Segunda Categoría Chile 2026"
+    description="Calcula cuánto pagas de impuesto único al trabajo según tu sueldo imponible mensual y en qué tramo de la tabla SII quedas."
+  />
+  <Header />
+  <Breadcrumb />
+  <main
+    id="main-content"
+    class="app-layout"
+    data-analytics-page-type="calculator"
+    data-analytics-calculator="impuesto-segunda-categoria"
+    data-analytics-calculator-name="Calculadora Impuesto Segunda Categoría"
+  >
+    <section class="border-b border-border pt-8 pb-6">
+      <h1 class="my-4 text-3xl font-bold sm:text-4xl">
+        📊 Calculadora Impuesto Segunda Categoría
+      </h1>
+      <p class="max-w-xl text-secondary">
+        Ingresa tu sueldo imponible mensual y calcula cuánto pagas de impuesto
+        único al trabajo, en qué tramo tributas y cuál es tu tasa marginal.
+      </p>
+    </section>
+
+    <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
+      <!-- FORMULARIO -->
+      <div class="rounded-xl border border-border p-6">
+        <h2 class="mb-5 text-lg font-semibold">📝 Ingresa tu imponible</h2>
+
+        <div class="mb-4">
+          <label
+            for="imponible"
+            class="mb-1 block text-sm font-medium text-secondary"
+          >
+            Sueldo imponible mensual ($)
+          </label>
+          <input
+            type="number"
+            id="imponible"
+            placeholder="Ej: 1.200.000"
+            min="0"
+            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+          />
+          <p class="mt-1 text-xs text-muted">
+            El imponible es el bruto menos asignaciones no imponibles (colación,
+            movilización). Si no lo separas, ingresa tu bruto total.
+          </p>
+        </div>
+
+        <button
+          id="calcBtn"
+          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90"
+        >
+          Calcular impuesto →
+        </button>
+      </div>
+
+      <!-- RESULTADO -->
+      <div
+        id="resultado"
+        class="rounded-xl border border-border bg-background p-6"
+      >
+        <h2 class="mb-5 text-lg font-semibold">💡 Resultado</h2>
+        <div id="resultado-contenido" class="py-8 text-center text-muted">
+          <p class="mb-3 text-4xl">📊</p>
+          <p class="text-sm">Ingresa tu imponible y presiona calcular.</p>
+        </div>
+        <div
+          id="economic-parameters"
+          data-utm={String(utm)}
+          class="hidden"
+          aria-hidden="true"
+        >
+        </div>
+        <p class="mt-3 text-xs text-muted">
+          Fuente económica: {economicSourceLabel} ({
+            economicParameters.lastUpdated
+          }). UTM usada: {fmt(utm)}.
+        </p>
+      </div>
+    </section>
+
+    <!-- TABLA DE TRAMOS -->
+    <section class="border-t border-border py-8">
+      <h2 class="mb-2 text-xl font-bold">Tabla de tramos vigente 2026</h2>
+      <p class="mb-4 max-w-3xl text-sm text-secondary">
+        Calculada con UTM {fmt(utm)}. Fórmula: <strong
+          >impuesto = imponible × tasa − cuantía a rebajar</strong
+        >. El impuesto es progresivo: solo tributa la parte del sueldo que
+        supera cada umbral.
+      </p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-border text-left text-xs font-semibold text-muted uppercase">
+              <th class="pb-2 pr-4">Tramo (UTM)</th>
+              <th class="pb-2 pr-4">Hasta ($)</th>
+              <th class="pb-2 pr-4">Tasa</th>
+              <th class="pb-2">Cuantía a rebajar</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              bracketRows.map((row, i) => (
+                <tr
+                  id={`tramo-${i}`}
+                  class="border-b border-border/50 transition-colors last:border-0"
+                >
+                  <td class="py-2 pr-4 font-mono text-secondary">
+                    {row.desde}–{row.hasta} UTM
+                  </td>
+                  <td class="py-2 pr-4 font-mono">{row.hastaPesos}</td>
+                  <td class="py-2 pr-4 font-semibold">{row.tasa}</td>
+                  <td class="py-2 font-mono text-muted">{row.rebaja}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- EXPLICACIÓN -->
+    <section
+      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
+    >
+      <h2>¿Cómo funciona el impuesto de segunda categoría?</h2>
+      <p>
+        El impuesto único al trabajo (segunda categoría) aplica a sueldos de
+        trabajadores dependientes. Se calcula sobre el <strong
+          >sueldo imponible mensual</strong
+        > y usa una tabla progresiva del SII que se actualiza con la UTM.
+      </p>
+      <ul>
+        <li>
+          <strong>Tramo exento:</strong> Si tu imponible no supera las 13,5 UTM
+          mensuales (~{fmt(13.5 * utm)}), no pagas impuesto.
+        </li>
+        <li>
+          <strong>Progresividad:</strong> Solo paga impuesto la parte de tu sueldo
+          que supera el umbral de cada tramo, no el total.
+        </li>
+        <li>
+          <strong>Cuantía a rebajar:</strong> Equivale a la suma de los tramos inferiores
+          ya pagados. La fórmula SII es: impuesto = imponible × tasa − rebaja.
+        </li>
+        <li>
+          <strong>Retención mensual:</strong> El empleador retiene y entera este
+          impuesto cada mes directamente al SII.
+        </li>
+      </ul>
+      <p class="text-sm text-muted">
+        ⚠️ Valores de referencia calculados con UTM vigente. El SII publica la
+        tabla oficial cada mes. Para información oficial consulta{" "}
+        <a href="https://www.sii.cl" target="_blank">sii.cl</a>.
+      </p>
+      <p>
+        Si necesitas el cálculo completo con AFP, salud y cesantía, usa la{" "}
+        <a
+          href={sueldoLiquidoPath}
+          data-analytics-cta="calculator-related"
+          data-analytics-label="Calculadora sueldo liquido"
+          data-analytics-location="calculator_explainer"
+          >calculadora de sueldo líquido</a
+        >.
+      </p>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  import { calculateSecondCategoryTax } from "@/domain/taxation/TaxEngine";
+  import { trackAnalyticsEvent } from "@/utils/analytics";
+
+  function fmt(n: number): string {
+    return "$" + Math.round(n).toLocaleString("es-CL");
+  }
+
+  function fmtPct(n: number): string {
+    return (n * 100).toFixed(1) + "%";
+  }
+
+  function readUtm(): number {
+    const utm = Number(
+      document.getElementById("economic-parameters")?.dataset?.utm
+    );
+    if (!Number.isFinite(utm) || utm <= 0) throw new Error("UTM no disponible");
+    return utm;
+  }
+
+  const utm = readUtm();
+
+  // Highlight the active bracket row
+  const BRACKET_UPPER_LIMITS_UTM = [13.5, 30, 50, 70, 90, 120, 150, Infinity];
+
+  function highlightBracket(taxableIncome: number) {
+    BRACKET_UPPER_LIMITS_UTM.forEach((limit, i) => {
+      const row = document.getElementById(`tramo-${i}`);
+      if (!row) return;
+      const isActive = taxableIncome <= limit * utm;
+      const prevActive = i === 0 || taxableIncome > BRACKET_UPPER_LIMITS_UTM[i - 1] * utm;
+      row.classList.toggle(
+        "bg-accent/10",
+        isActive && prevActive
+      );
+    });
+  }
+
+  document.getElementById("calcBtn")?.addEventListener("click", () => {
+    const imponible =
+      parseFloat(
+        (document.getElementById("imponible") as HTMLInputElement).value
+      ) || 0;
+
+    if (imponible <= 0) {
+      alert("Por favor ingresa un sueldo imponible válido.");
+      return;
+    }
+
+    let result;
+    try {
+      result = calculateSecondCategoryTax({ taxableIncome: imponible, utm });
+    } catch (e) {
+      alert(
+        e instanceof Error ? e.message : "No se pudo calcular el impuesto."
+      );
+      return;
+    }
+
+    highlightBracket(imponible);
+
+    const contenido = document.getElementById("resultado-contenido")!;
+
+    const headline = document.createElement("div");
+    headline.className =
+      "mb-5 rounded-lg border border-accent/20 bg-accent/10 p-4 text-center";
+
+    const headlineLabel = document.createElement("p");
+    headlineLabel.className =
+      "mb-1 text-xs font-bold tracking-widest text-accent uppercase";
+    headlineLabel.textContent =
+      result.taxAmount === 0 ? "Sin impuesto" : "Impuesto mensual";
+
+    const headlineValue = document.createElement("p");
+    headlineValue.className = "text-4xl font-bold";
+    headlineValue.textContent = fmt(result.taxAmount);
+
+    headline.append(headlineLabel, headlineValue);
+
+    const buildRow = (label: string, value: string, color = "") => {
+      const row = document.createElement("div");
+      row.className =
+        "flex justify-between border-b border-border py-2 text-sm last:border-0";
+      const l = document.createElement("span");
+      l.className = "text-secondary";
+      l.textContent = label;
+      const v = document.createElement("span");
+      v.className = `font-mono font-semibold ${color}`.trim();
+      v.textContent = value;
+      row.append(l, v);
+      return row;
+    };
+
+    const rows = [
+      buildRow("Sueldo imponible", fmt(imponible)),
+      buildRow(
+        "Tasa marginal",
+        result.taxAmount === 0 ? "Exento" : fmtPct(result.marginalRate)
+      ),
+      buildRow(
+        "Impuesto mensual",
+        fmt(result.taxAmount),
+        result.taxAmount > 0 ? "text-red-400" : "text-green-500"
+      ),
+      buildRow("Impuesto anual estimado", fmt(result.taxAmount * 12)),
+      buildRow(
+        "% sobre imponible",
+        imponible > 0
+          ? ((result.taxAmount / imponible) * 100).toFixed(2) + "%"
+          : "—"
+      ),
+    ];
+
+    const note = document.createElement("p");
+    note.className = "mt-3 text-xs text-muted";
+    note.textContent =
+      result.taxAmount === 0
+        ? "Tu imponible está dentro del tramo exento. No pagas impuesto de segunda categoría."
+        : "El impuesto anual es una estimación asumiendo el mismo imponible mensual los 12 meses.";
+
+    contenido.replaceChildren(headline, ...rows, note);
+
+    trackAnalyticsEvent("calculator_complete", {
+      calculator_slug: "impuesto-segunda-categoria",
+      calculator_name: "Calculadora Impuesto Segunda Categoría",
+      outcome: "success",
+    });
+  });
+
+  document
+    .getElementById("imponible")
+    ?.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Enter")
+        (document.getElementById("calcBtn") as HTMLButtonElement)?.click();
+    });
+</script>

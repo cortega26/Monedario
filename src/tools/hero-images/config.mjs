@@ -201,8 +201,8 @@ export const SCENE_LIBRARY = {
       template: "A",
       colorKey: "navy-profundo",
       escena:
-        "five clean vertical bars of strictly decreasing heights from left to right — tallest bar in figura color, next three bars in acento color, shortest bar in detalle color — all bars the same width, equally spaced, each bar a single flat solid color with zero internal variation",
-      nota: "Abstract, not a data chart. Height encodes risk and return only — no axes, no labels, no values. Five bars read as a family of options. Left = most aggressive. Right = most conservative. The gradient of height is the entire message.",
+        "exactly five — not four, not six, exactly five — clean vertical bars of strictly increasing heights from left to right. All bars identical width, equally spaced. Color assignment: bar 1 (shortest, leftmost) is #4a9edd; bar 2 is #0d3060; bar 3 is #0d3060; bar 4 is #0d3060; bar 5 (tallest, rightmost) is #ffffff. Every bar is a single flat solid color with zero internal variation. One thin flat horizontal baseline plane in #0d3060 running under all five bars. No arrows, no curves, no lines, no sixth bar.",
+      nota: "The accent color on the shortest bar marks the entry point — most conservative, most common starting place. The white tallest bar is aspirational — highest potential, highest risk. The three detalle bars form a neutral middle spectrum. No chart axes, no labels, no values. Five bars read as a family. Height is the only message: a spectrum from cautious to bold. No decorative arrows or curves of any kind.",
     },
     {
       slug: "como-cambiarse-de-afp",

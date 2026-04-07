@@ -58,7 +58,8 @@ Scene: one geometric human figure ${postura}, shown from behind or as a faceless
 The figure is near ${objetos}. All objects are flat geometric shapes, same illustration style.
 Lighting: none. Flat uniform background only. No shadows, no highlights, no depth.
 Color palette: 3 colors maximum, all flat fills.
-Composition: all elements within the central 80% of the canvas.
+Composition: figure placed left-of-center; right third of canvas is clean solid background only.
+No text, no letters, no numbers anywhere in the image.
 Canvas: 1200x630 pixels, landscape.
 Do not add extra objects beyond the named scene props.`;
 }
@@ -67,17 +68,21 @@ export function buildPromptB(colorKeyOrHex, icono) {
   const hex = resolveHex(colorKeyOrHex);
   return `Flat 2D editorial vector illustration.
 Background: solid color ${hex}.
-Scene: one simple geometric ${icono} icon, centered.
+Scene: one simple geometric ${icono}, centered.
+Lighting: none. Flat uniform background only. No shadows, no highlights, no depth.
 Color palette: 2 colors maximum, all flat fills.
+No text, no letters, no numbers anywhere in the image.
 Canvas: 1200x630 pixels, landscape.`;
 }
 
 export function buildPromptC(colorKeyOrHex, icono) {
   const hex = resolveHex(colorKeyOrHex);
   return `Flat 2D editorial vector illustration.
-Background: solid color ${hex}
-Scene: one simple geometric ${icono} icon, aligned to the right third; keep the left two-thirds of the canvas completely empty for text overlay.
+Background: solid color ${hex}.
+Scene: one simple geometric ${icono}, aligned to the right third of the canvas; left two-thirds is clean solid background only.
+Lighting: none. No shadows, no highlights, no depth.
 Color palette: 2 colors maximum, all flat fills.
+No text, no letters, no numbers anywhere in the image.
 Canvas: 1200x630 pixels, landscape.`;
 }
 
@@ -136,32 +141,36 @@ export const APPROVED_PROMPT_MODELS = {
       postura: "standing, reviewing savings",
       objetos: "two layered savings blocks",
     }),
+    model("A", "cambio-afp", "Cambio de AFP", {
+      postura: "standing, holding two documents and looking between them",
+      objetos: "two institution document sheets side by side",
+    }),
   ],
   B: [
-    model("B", "afp-cotizacion", "AFP / Cotizacion", { icono: "pension shield icon" }),
-    model("B", "cae-credito-educacion", "CAE / Credito", { icono: "education loan icon" }),
+    model("B", "afp-cotizacion", "AFP / Cotizacion", { icono: "flat shield shape with a small clock dial inside" }),
+    model("B", "cae-credito-educacion", "CAE / Credito", { icono: "graduation cap shape above a coin stack" }),
     model("B", "cuenta-corriente-banco", "Cuenta corriente / Banco", {
-      icono: "bank account card icon",
+      icono: "rectangular card shape with two horizontal stripes and a small chip symbol",
     }),
-    model("B", "dicom-alerta", "DICOM / Alerta", { icono: "warning document icon" }),
+    model("B", "dicom-alerta", "DICOM / Alerta", { icono: "document shape with a bold exclamation mark" }),
     model("B", "impuesto-documento", "Impuesto / Documento", {
-      icono: "tax document icon",
+      icono: "folded page shape with a percent symbol",
     }),
     model("B", "calculadora-financiera", "Calculadora financiera", {
-      icono: "calculator icon",
+      icono: "rectangular calculator shape with grid buttons and a display bar",
     }),
-    model("B", "salud-documento", "Salud / Documento", { icono: "health document icon" }),
-    model("B", "pension-shield", "Pension / Proteccion", { icono: "shield growth icon" }),
+    model("B", "salud-documento", "Salud / Documento", { icono: "document shape with a cross symbol" }),
+    model("B", "pension-shield", "Pension / Proteccion", { icono: "shield shape with an upward arrow inside" }),
   ],
   C: [
-    model("C", "uf-indicadores", "UF / Indicadores", { icono: "UF / Indicadores" }),
-    model("C", "ipc-indicadores", "IPC / Indicadores", { icono: "IPC / Indicadores" }),
-    model("C", "apv-crecimiento", "APV / Crecimiento", { icono: "APV growth icon" }),
-    model("C", "ahorro-metas", "Ahorro / Metas", { icono: "savings target icon" }),
-    model("C", "sueldo-barras", "Sueldo / Barras", { icono: "salary bars icon" }),
-    model("C", "credito-comparador", "Credito / Comparador", { icono: "credit compare icon" }),
-    model("C", "cesantia-fondo", "Cesantia / Fondo", { icono: "unemployment fund icon" }),
-    model("C", "renta-calendario", "Renta / Calendario", { icono: "tax calendar icon" }),
+    model("C", "uf-indicadores", "UF / Indicadores", { icono: "rising line chart with a small coin symbol" }),
+    model("C", "ipc-indicadores", "IPC / Indicadores", { icono: "bar chart with three rising bars" }),
+    model("C", "apv-crecimiento", "APV / Crecimiento", { icono: "upward-trending arrow arcing over a savings stack" }),
+    model("C", "ahorro-metas", "Ahorro / Metas", { icono: "target circle with a coin in the center" }),
+    model("C", "sueldo-barras", "Sueldo / Barras", { icono: "three vertical bars of ascending heights" }),
+    model("C", "credito-comparador", "Credito / Comparador", { icono: "two overlapping rectangles one with a checkmark" }),
+    model("C", "cesantia-fondo", "Cesantia / Fondo", { icono: "safety net shape with coins above it" }),
+    model("C", "renta-calendario", "Renta / Calendario", { icono: "calendar page with a date circled" }),
   ],
 };
 
