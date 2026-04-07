@@ -352,6 +352,13 @@ const economicSourceLabel =
             economicParameters.lastUpdated
           }).
         </p>
+        <button
+          id="copy-btn"
+          type="button"
+          class="mt-4 hidden w-full rounded-lg border border-border px-4 py-2 text-sm font-medium text-secondary transition-colors hover:border-accent/60 hover:text-foreground"
+        >
+          Copiar resumen
+        </button>
       </div>
     </section>
 
@@ -517,6 +524,11 @@ const economicSourceLabel =
     return n.toFixed(2) + "%";
   }
 
+  // Stores last result for copy-to-clipboard
+  let lastResultado: ReturnType<typeof calculateNetSalary> | null = null;
+  let lastOtrosDescuentos = 0;
+  let lastModoLabel = "";
+
   function readEconomicParameters(): { uf: number; utm: number } {
     const element = document.getElementById("economic-parameters");
     const utm = Number(element?.dataset?.utm);
@@ -669,6 +681,10 @@ const economicSourceLabel =
     extraNote?: string,
     otrosDescuentos?: number
   ) {
+    lastResultado = resultado;
+    lastOtrosDescuentos = otrosDescuentos ?? 0;
+    lastModoLabel = modoLabel;
+
     const netFinal = resultado.netSalary - (otrosDescuentos ?? 0);
 
     const headline = document.createElement("div");
@@ -750,6 +766,10 @@ const economicSourceLabel =
     document
       .getElementById("resultado-contenido")!
       .replaceChildren(headline, ...rows, totals, assumption);
+
+    // Show copy button after result renders
+    const copyBtn = document.getElementById("copy-btn");
+    if (copyBtn) copyBtn.classList.remove("hidden");
   }
 
   document.getElementById("calcBtn")?.addEventListener("click", () => {
@@ -861,6 +881,56 @@ const economicSourceLabel =
         mode: "bruto-a-liquido",
       });
     }
+  });
+
+  document.getElementById("copy-btn")?.addEventListener("click", async () => {
+    if (!lastResultado) return;
+
+    const r = lastResultado;
+    const netFinal = r.netSalary - lastOtrosDescuentos;
+    const totalDed = r.deductions.total + lastOtrosDescuentos;
+    const pctDed = ((totalDed / r.grossSalary) * 100).toFixed(2);
+    const isInverso = lastModoLabel === "Sueldo Bruto Estimado";
+
+    const pad = (s: string, n = 24) => s.padEnd(n, " ");
+
+    const lines = [
+      "Calculadora de Sueldo Líquido — monedario.cl",
+      "─".repeat(44),
+      `${pad("Bruto:")}${fmt(r.grossSalary)}`,
+      `${pad("Imponible:")}${fmt(r.taxableSalary)}`,
+      `${pad("No imponibles:")}${fmt(r.nonTaxableIncome)}`,
+      "─".repeat(44),
+      `${pad(`AFP (${fmtPct(r.effectiveRates.afpPercent)}):`)}−${fmt(r.deductions.afp)}`,
+      `${pad(`Salud (${fmtPct(r.effectiveRates.healthPercent)}):`)}−${fmt(r.deductions.health)}`,
+      `${pad(`Seg. cesantía (${fmtPct(r.effectiveRates.unemploymentInsurancePercent)}):`)}−${fmt(r.deductions.unemploymentInsurance)}`,
+      `${pad("Imp. 2ª categoría:")}−${fmt(r.deductions.tax)}`,
+      ...(lastOtrosDescuentos > 0
+        ? [`${pad("Otros descuentos:")}−${fmt(lastOtrosDescuentos)}`]
+        : []),
+      "─".repeat(44),
+      `${pad("Total descuentos:")}−${fmt(totalDed)} (${pctDed}%)`,
+      isInverso
+        ? `${pad("BRUTO ESTIMADO:")}${fmt(r.grossSalary)}`
+        : `${pad("SUELDO LÍQUIDO:")}${fmt(netFinal)}`,
+    ];
+
+    const text = lines.join("\n");
+    const btn = document.getElementById("copy-btn") as HTMLButtonElement;
+
+    try {
+      await navigator.clipboard.writeText(text);
+      btn.textContent = "¡Copiado!";
+      trackAnalyticsEvent("calculator_copy_result", {
+        calculator_slug: "sueldo-liquido",
+      });
+    } catch {
+      btn.textContent = "No se pudo copiar";
+    }
+
+    setTimeout(() => {
+      btn.textContent = "Copiar resumen";
+    }, 2000);
   });
 
   document

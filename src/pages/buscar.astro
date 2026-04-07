@@ -9,6 +9,19 @@ import { getPath } from "@/utils/getPath";
 
 const backUrl = SITE.showBackButton ? `${Astro.url.pathname}` : getPath("/");
 const initialQuery = Astro.url.searchParams.get("q") ?? "";
+
+const searchChips = [
+  { label: "Sueldo líquido", q: "sueldo líquido" },
+  { label: "Liquidación", q: "liquidación de sueldo" },
+  { label: "DICOM", q: "DICOM informe" },
+  { label: "AFP", q: "AFP fondos" },
+  { label: "Finiquito", q: "finiquito" },
+  { label: "Operación Renta", q: "operación renta" },
+  { label: "Cesantía", q: "seguro cesantía" },
+  { label: "UF y arriendo", q: "UF arriendo" },
+  { label: "APV", q: "APV régimen" },
+  { label: "Honorarios", q: "boleta honorarios" },
+];
 ---
 
 <Layout
@@ -51,6 +64,23 @@ const initialQuery = Astro.url.searchParams.get("q") ?? "";
         Escribe una palabra clave y te mostraremos coincidencias del sitio.
       </p>
     </form>
+
+    <div class="mb-6" id="search-chips">
+      <p class="mb-3 text-sm font-medium text-secondary">Búsquedas frecuentes</p>
+      <div class="flex flex-wrap gap-2">
+        {
+          searchChips.map(chip => (
+            <a
+              href={`${Astro.url.pathname}?q=${encodeURIComponent(chip.q)}`}
+              class="inline-flex items-center rounded-full border border-border bg-surface-muted px-3 py-1 text-sm text-secondary transition-colors hover:border-accent/60 hover:text-foreground"
+              data-chip-query={chip.q}
+            >
+              {chip.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
 
     <div id="pagefind-search" transition:persist data-backurl={backUrl}></div>
   </Main>
@@ -185,6 +215,18 @@ const initialQuery = Astro.url.searchParams.get("q") ?? "";
         if (searchField.value.trim() === "") {
           runSearch("");
         }
+      });
+
+      // Wire up chip shortcuts (intercept click once pagefind is ready)
+      document.querySelectorAll("[data-chip-query]").forEach(chip => {
+        chip.addEventListener("click", (e: Event) => {
+          e.preventDefault();
+          const term = (chip as HTMLElement).dataset.chipQuery ?? "";
+          searchField.value = term;
+          trackAnalyticsEvent("search_submit", { search_term: term, source: "chip" });
+          runSearch(term);
+          searchField.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        });
       });
 
       const query = params.get("q");

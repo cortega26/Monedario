@@ -171,22 +171,24 @@ const isActive = (path: string) => {
             Nosotros
           </a>
         </li>
-        <li class="col-span-1 flex items-center justify-center">
-          <LinkButton
+        <li class="col-span-2 flex items-center">
+          <a
             href={getPath("/buscar/")}
             class:list={[
-              "focus-outline flex p-3 sm:p-1",
+              "focus-outline flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition-colors",
               {
-                "[&>svg]:stroke-accent":
+                "border-accent text-accent":
                   isActive("/buscar") || isActive("/search"),
+                "border-border text-secondary hover:border-accent/60 hover:text-foreground":
+                  !(isActive("/buscar") || isActive("/search")),
               },
             ]}
-            title="Buscar"
-            aria-label="buscar"
+            title="Buscar en Monedario"
+            aria-label="Buscar"
           >
-            <IconSearch />
-            <span class="sr-only">Buscar</span>
-          </LinkButton>
+            <IconSearch class="size-3.5 shrink-0" />
+            <span>Buscar</span>
+          </a>
         </li>
         {
           SITE.lightAndDarkMode && (

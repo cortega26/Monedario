@@ -83,6 +83,12 @@ export const INTERNAL_EDITORIAL_VISIBLE_RULES = [
     regex: /\b(varias revisiones editoriales|proceso editorial dise[nñ]ado|consistencia interna)\b/gi,
     allowedPaths: READER_FACING_ALLOWLIST_PATHS,
   },
+  {
+    id: "report-historia-editorial",
+    severity: "error",
+    reason: "Internal/editorial-facing visible copy",
+    regex: /\bhistoria editorial\b/gi,
+  },
 ];
 
 export function shouldSkipRuleForPath(rule, filePath) {

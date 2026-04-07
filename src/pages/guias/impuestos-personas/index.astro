@@ -3,7 +3,44 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
+import ResumeWidget from "@/components/ResumeWidget.astro";
 import { getPath } from "@/utils/getPath";
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Impuestos para Personas en Chile",
+  description:
+    "Guías sobre Operación Renta F22, devolución de impuestos y boletas de honorarios en Chile.",
+  url: "https://monedario.cl/guias/impuestos-personas/",
+  numberOfItems: 4,
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Centro Operación Renta 2026: F22, rectificación, devolución y retenciones",
+      url: "https://monedario.cl/guias/impuestos-personas/operacion-renta/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Operación Renta F22 en Chile: checklist para revisar, enviar y rectificar sin errores",
+      url: "https://monedario.cl/posts/operacion-renta-f22-checklist/",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Devolución de impuestos en Chile: fechas de pago, estado y compensaciones",
+      url: "https://monedario.cl/posts/devolucion-impuestos-fechas-compensaciones/",
+    },
+    {
+      "@type": "ListItem",
+      position: 4,
+      name: "Boleta de honorarios 2026: retención 15,25%, líquido recibido y cobertura anual",
+      url: "https://monedario.cl/posts/boleta-honorarios-2026-retencion-cobertura/",
+    },
+  ],
+};
 
 const rutasPrincipales = [
   {
@@ -45,6 +82,11 @@ const rutasPrincipales = [
   title="Impuestos para Personas en Chile | Monedario"
   description="Guías y artículos sobre impuestos para personas en Chile para elegir qué leer primero si vas a declarar, revisar una devolución o entender tus boletas."
 >
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(itemListSchema)}
+  />
   <Header />
   <Breadcrumb />
 
@@ -54,7 +96,7 @@ const rutasPrincipales = [
       <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
         Impuestos para personas en Chile
       </h1>
-      <p class="max-w-3xl text-secondary">
+      <p class=”max-w-3xl text-secondary”>
         Esta sección separa tres preguntas distintas que suelen mezclarse bajo
         “impuestos”: declarar y corregir el F22, revisar una devolución o
         entender boletas de honorarios. Parte por la ruta que resuelve tu caso
@@ -62,8 +104,12 @@ const rutasPrincipales = [
       </p>
     </section>
 
-    <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">Elige la ruta correcta</h2>
+    <section class=”py-4”>
+      <ResumeWidget />
+    </section>
+
+    <section class=”border-b border-border py-8”>
+      <h2 class=”mb-4 text-2xl font-bold”>Elige la ruta correcta</h2>
       <p class="mb-5 max-w-3xl text-sm leading-relaxed text-secondary">
         Si tu duda es declaración, observaciones o rectificatoria, todo eso vive
         en la misma guía del F22. Solo cambia de ruta cuando el problema real ya

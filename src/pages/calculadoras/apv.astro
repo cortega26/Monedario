@@ -4,6 +4,7 @@ import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
+import CompareTable from "@/components/CompareTable.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { getPath } from "@/utils/getPath";
 
@@ -298,6 +299,48 @@ const economicSourceLabel =
           }).
         </p>
       </div>
+    </section>
+
+    <!-- COMPARACIÓN ESTÁTICA RÉGIMEN A vs B -->
+    <section class="border-t border-border pt-8 pb-4">
+      <h2 class="mb-2 text-xl font-bold">Régimen A vs Régimen B: diferencias clave</h2>
+      <p class="mb-4 max-w-3xl text-sm text-secondary">
+        Ambos regímenes te dan un beneficio tributario, pero funciona de forma distinta. Elige según tu tramo de impuesto actual.
+      </p>
+      <CompareTable
+        columns={[
+          { header: "Régimen A", key: "a" },
+          { header: "Régimen B", key: "b" },
+        ]}
+        rows={[
+          {
+            aspecto: "Mecanismo",
+            a: "El Estado deposita un bono directo del 15% sobre lo ahorrado",
+            b: "Tus aportes reducen la base imponible: pagas menos impuesto mensual",
+          },
+          {
+            aspecto: "Tope de beneficio anual",
+            a: `Bono máximo 6 UTM (~${formatCurrency(annualRegimeABonusCap)})`,
+            b: "Sin tope de beneficio — depende de tu tasa marginal y del aporte",
+          },
+          {
+            aspecto: "Tope de aporte con beneficio",
+            a: `40 UTM anuales para agotar el bono (~${formatCurrency(annualRegimeABonusCap / 0.15)})`,
+            b: `600 UF anuales en total (planilla + depósito directo)`,
+          },
+          {
+            aspecto: "¿Cuándo conviene más?",
+            a: "Tramo cero o bajo (tasa marginal < 15%)",
+            b: "Tramo alto (tasa marginal ≥ 23%)",
+          },
+          {
+            aspecto: "Retiro anticipado",
+            a: "Debes devolver el bono recibido",
+            b: "Pagas impuesto diferido + sobretasa del 3%",
+          },
+        ]}
+        nota="Valores de referencia calculados con parámetros económicos vigentes. Para casos individuales, revisa la guía completa de APV."
+      />
     </section>
 
     <!-- EXPLICACIÓN -->

@@ -3,8 +3,51 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
+import ResumeWidget from "@/components/ResumeWidget.astro";
 import { getPath } from "@/utils/getPath";
 import { getHubArticleAssignments } from "@/config/editorial-hub-model.mjs";
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "UF, Inflación y Costo de Vida en Chile",
+  description:
+    "Guías y herramientas sobre UF, IPC, reajuste de arriendo y costo de vida en Chile.",
+  url: "https://monedario.cl/guias/uf-costo-de-vida/",
+  numberOfItems: 5,
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "UF en simple: qué es, por qué sube todos los días y cómo te afecta",
+      url: "https://monedario.cl/posts/que-es-la-uf/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Qué es el IPC en Chile: cómo se calcula y por qué afecta tu bolsillo",
+      url: "https://monedario.cl/posts/que-es-el-ipc-chile-como-se-calcula/",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Reajuste de arriendo en UF e IPC en Chile",
+      url: "https://monedario.cl/posts/reajuste-arriendo-uf-ipc-chile/",
+    },
+    {
+      "@type": "ListItem",
+      position: 4,
+      name: "Conversor UF a pesos",
+      url: "https://monedario.cl/calculadoras/conversor-uf/",
+    },
+    {
+      "@type": "ListItem",
+      position: 5,
+      name: "Calculadora de reajuste de arriendo",
+      url: "https://monedario.cl/calculadoras/reajuste-arriendo/",
+    },
+  ],
+};
 
 const hubAssignments = getHubArticleAssignments("uf-costo-de-vida");
 
@@ -39,6 +82,11 @@ const relatedBridges = [
   title="UF, inflación y costo de vida en Chile | Monedario"
   description="Guía temática para entender cómo se conectan UF, IPC, reajustes y herramientas prácticas de costo de vida en Chile."
 >
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(itemListSchema)}
+  />
   <Header />
   <Breadcrumb />
 
@@ -53,12 +101,16 @@ const relatedBridges = [
         UF, inflación y costo de vida en Chile
       </h1>
       <p class="max-w-3xl text-secondary">
-        Esta sección ordena una misma historia editorial: cómo el IPC mueve la
-        inflación, cómo esa inflación se traduce a UF y cómo ambos terminan
-        pegando en arriendos, cuotas y gastos reales. Aquí el foco no es la
-        macro por sí sola, sino el impacto práctico en tu bolsillo y en
-        contratos reajustables de todos los días.
+        Tres conceptos conectados: cómo el IPC mide la inflación, cómo esa
+        inflación se traduce a UF y cómo ambos terminan pegando en arriendos,
+        cuotas y gastos reales. El foco no es la macro por sí sola, sino el
+        impacto práctico en tu bolsillo y en contratos reajustables de todos
+        los días.
       </p>
+    </section>
+
+    <section class="py-4">
+      <ResumeWidget />
     </section>
 
     <section class="border-b border-border py-8">

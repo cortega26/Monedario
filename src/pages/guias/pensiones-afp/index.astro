@@ -4,11 +4,54 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import ContextLinkSection from "@/components/ContextLinkSection.astro";
+import ResumeWidget from "@/components/ResumeWidget.astro";
 import { getPath } from "@/utils/getPath";
 import {
   pensionHubPrimaryCards,
   pensionHubRelatedCards,
 } from "@/config/pensionClusterLinks";
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Pensiones y AFP en Chile",
+  description:
+    "Guías y calculadoras sobre fondos AFP, cambio de administradora, reforma previsional y simulador de jubilación en Chile.",
+  url: "https://monedario.cl/guias/pensiones-afp/",
+  numberOfItems: 5,
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Reforma previsional 2025",
+      url: "https://monedario.cl/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Fondos AFP A, B, C, D y E: diferencias, riesgo y cuál te conviene",
+      url: "https://monedario.cl/posts/fondos-afp-a-b-c-d-e/",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Cómo cambiarse de AFP",
+      url: "https://monedario.cl/posts/como-cambiarse-de-afp/",
+    },
+    {
+      "@type": "ListItem",
+      position: 4,
+      name: "Cuenta 2 de la AFP",
+      url: "https://monedario.cl/posts/que-es-la-cuenta-2-afp/",
+    },
+    {
+      "@type": "ListItem",
+      position: 5,
+      name: "Simulador de jubilación",
+      url: "https://monedario.cl/calculadoras/simulador-jubilacion/",
+    },
+  ],
+};
 
 const primaryCardHrefs = new Set(
   pensionHubPrimaryCards.map(card => getPath(card.href))
@@ -23,6 +66,11 @@ const relatedCards = pensionHubRelatedCards.filter(
   title="¿Cuánto te va a dar tu AFP? Guía Chile 2026"
   description="Guías y calculadoras sobre AFP en Chile: cómo estimar tu pensión, qué fondos elegir, cómo cambiarte y qué cambia con la reforma previsional 2025."
 >
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(itemListSchema)}
+  />
   <Header />
   <Breadcrumb />
 
@@ -37,6 +85,10 @@ const relatedCards = pensionHubRelatedCards.filter(
         es APV y beneficio tributario, esa decisión vive fuera del núcleo AFP y
         aparece más abajo solo como comparación cercana.
       </p>
+    </section>
+
+    <section class="py-4">
+      <ResumeWidget />
     </section>
 
     <ContextLinkSection

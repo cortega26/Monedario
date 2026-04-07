@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
+import ResumeWidget from "@/components/ResumeWidget.astro";
 import { getPath } from "@/utils/getPath";
 
 const itemListSchema = {
@@ -101,6 +102,10 @@ const articulosSeccion = [
         no reconocidos y actuar si usaron tu identidad para pedir créditos o
         abrir productos.
       </p>
+    </section>
+
+    <section class="py-4">
+      <ResumeWidget />
     </section>
 
     <section class="border-b border-border py-8">

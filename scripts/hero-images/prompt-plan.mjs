@@ -9,9 +9,9 @@ import { normalizeForMatching } from "./lib.mjs";
 
 export const DEFAULT_MODEL_PLAN = {
   provider: "openai",
-  model: process.env.OPENAI_IMAGE_MODEL || process.env.DALL_E_MODEL || "dall-e-3",
-  quality: "standard",
-  size: "1792x1024",
+  model: process.env.OPENAI_IMAGE_MODEL || process.env.DALL_E_MODEL || "gpt-image-1",
+  quality: "auto",
+  size: "1536x1024",
 };
 
 const CATEGORY_COLOR_FALLBACK = {

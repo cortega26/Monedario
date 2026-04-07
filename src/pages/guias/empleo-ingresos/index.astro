@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
+import ResumeWidget from "@/components/ResumeWidget.astro";
 import { getPath } from "@/utils/getPath";
 
 const itemListSchema = {
@@ -106,6 +107,10 @@ const articulosSeccion = [
         </a>
         .
       </p>
+    </section>
+
+    <section class="py-4">
+      <ResumeWidget />
     </section>
 
     <section class="border-b border-border py-8">
