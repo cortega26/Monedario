@@ -58,6 +58,8 @@ const initialQuery = Astro.url.searchParams.get("q") ?? "";
 </Layout>
 
 <script>
+  import { trackAnalyticsEvent } from "@/utils/analytics";
+
   function initSearch() {
     const pageFindSearch = document.querySelector("#pagefind-search");
     const searchForm = document.querySelector("#search-form");
@@ -160,7 +162,23 @@ const initialQuery = Astro.url.searchParams.get("q") ?? "";
 
       searchForm.addEventListener("submit", event => {
         event.preventDefault();
+        const term = searchField.value.trim();
+        if (term) {
+          trackAnalyticsEvent("search_submit", { search_term: term });
+        }
         runSearch(searchField.value);
+      });
+
+      // Track result clicks via event delegation
+      pageFindSearch.addEventListener("click", (e: Event) => {
+        const target = e.target as HTMLElement;
+        const link = target.closest(".pagefind-ui__result-title a");
+        if (link instanceof HTMLAnchorElement) {
+          trackAnalyticsEvent("search_result_click", {
+            result_url: link.href,
+            search_term: searchField.value.trim(),
+          });
+        }
       });
 
       searchField.addEventListener("input", () => {

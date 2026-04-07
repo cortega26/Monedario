@@ -5,6 +5,42 @@ import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getPath } from "@/utils/getPath";
 
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Contingencias de Empleo e Ingresos en Chile",
+  description:
+    "Herramientas y guías para cesantía, licencia médica y finiquito en Chile.",
+  url: "https://monedario.cl/guias/empleo-ingresos/",
+  numberOfItems: 4,
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Seguro de cesantía: cuándo puedes cobrar y cuánto te pagan",
+      url: "https://monedario.cl/posts/seguro-de-cesantia/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Wizard: ¿desde qué día pagan la licencia médica?",
+      url: "https://monedario.cl/guias/empleo-ingresos/licencia-medica-wizard/",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "Licencia médica en Chile: desde qué día te pagan y cómo reclamar",
+      url: "https://monedario.cl/posts/licencia-medica-desde-que-dia-pagan/",
+    },
+    {
+      "@type": "ListItem",
+      position: 4,
+      name: "Finiquito e indemnizaciones en Chile: qué te corresponde y cómo revisarlo",
+      url: "https://monedario.cl/posts/finiquito-e-indemnizaciones-en-chile/",
+    },
+  ],
+};
+
 const articulosSeccion = [
   {
     titulo:
@@ -12,12 +48,21 @@ const articulosSeccion = [
     resumen:
       "Explica cuánto tienes, cuándo puedes cobrar y qué necesitas para pedir el seguro de cesantía.",
     href: getPath("/posts/seguro-de-cesantia/"),
+    esHerramienta: false,
+  },
+  {
+    titulo: "🧭 Wizard: ¿desde qué día pagan la licencia médica?",
+    resumen:
+      "Responde 2–3 preguntas y obtén la regla exacta para tu caso: duración, continuación y sector.",
+    href: getPath("/guias/empleo-ingresos/licencia-medica-wizard/"),
+    esHerramienta: true,
   },
   {
     titulo: "Licencia médica en Chile: desde qué día te pagan y cómo reclamar",
     resumen:
       "Explica desde qué día te pagan, qué hacer si la rechazan y cómo reclamar.",
     href: getPath("/posts/licencia-medica-desde-que-dia-pagan/"),
+    esHerramienta: false,
   },
   {
     titulo:
@@ -25,6 +70,7 @@ const articulosSeccion = [
     resumen:
       "Qué revisar en tu finiquito para no firmar con errores de cálculo.",
     href: getPath("/posts/finiquito-e-indemnizaciones-en-chile/"),
+    esHerramienta: false,
   },
 ];
 ---
@@ -33,6 +79,11 @@ const articulosSeccion = [
   title="Contingencias de Empleo e Ingresos en Chile | Monedario"
   description="Guías y artículos sobre cesantía, licencias médicas y finiquito para saber qué hacer cuando se interrumpe tu ingreso laboral."
 >
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(itemListSchema)}
+  />
   <Header />
   <Breadcrumb />
 
@@ -63,13 +114,21 @@ const articulosSeccion = [
         {
           articulosSeccion.map(item => (
             <li class="rounded-xl border border-border p-5">
+              {item.esHerramienta && (
+                <p class="mb-2 text-xs font-bold uppercase tracking-widest text-accent">
+                  Herramienta interactiva
+                </p>
+              )}
               <h3 class="mb-2 text-lg font-semibold">{item.titulo}</h3>
               <p class="mb-3 text-sm text-secondary">{item.resumen}</p>
               <a
                 href={item.href}
                 class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+                data-analytics-cta={item.esHerramienta ? "hub-tool" : "hub-article"}
+                data-analytics-label={item.titulo}
+                data-analytics-location="empleo_ingresos_hub"
               >
-                Ir a esta guía
+                {item.esHerramienta ? "Ir a la herramienta" : "Ir a esta guía"}
               </a>
             </li>
           ))

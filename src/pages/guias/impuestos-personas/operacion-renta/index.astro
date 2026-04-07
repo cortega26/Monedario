@@ -1,0 +1,254 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import { getPath } from "@/utils/getPath";
+
+const hubPath = getPath("/guias/impuestos-personas/");
+
+const subcasos = [
+  {
+    id: "envio-f22",
+    titulo: "Envío y declaración del F22",
+    resumen:
+      "Cómo revisar la propuesta del SII, cuándo usar reemplazo y cómo declarar desde cero.",
+    href: getPath("/posts/operacion-renta-f22-checklist/"),
+    cta: "Ver checklist F22",
+  },
+  {
+    id: "rectificacion",
+    titulo: "Rectificatoria y observaciones",
+    resumen:
+      "Qué hacer si el SII observó tu declaración o si cometiste un error y necesitas rectificar.",
+    href: getPath("/posts/operacion-renta-f22-checklist/"),
+    cta: "Ver pasos de rectificación",
+  },
+  {
+    id: "devolucion",
+    titulo: "Estado de devolución",
+    resumen:
+      "Cómo consultar el estado, fechas de pago por banco y qué hacer si hay compensaciones o retenciones.",
+    href: getPath("/posts/devolucion-impuestos-fechas-compensaciones/"),
+    cta: "Consultar estado y fechas",
+  },
+  {
+    id: "retenciones",
+    titulo: "Retenciones y compensaciones",
+    resumen:
+      "Por qué TGR puede retener parte de tu devolución y cómo verificarlo.",
+    href: getPath("/posts/devolucion-impuestos-fechas-compensaciones/"),
+    cta: "Entender retenciones",
+  },
+  {
+    id: "honorarios",
+    titulo: "Honorarios y retención 2026",
+    resumen:
+      "Cómo impacta la retención del 15,25% en tu líquido mensual y en la declaración anual.",
+    href: getPath("/posts/boleta-honorarios-2026-retencion-cobertura/"),
+    cta: "Ver guía de honorarios",
+  },
+];
+
+const calendarioOR = [
+  { evento: "SII publica propuestas de declaración", plazo: "Marzo 2026" },
+  { evento: "Período de revisión de propuestas", plazo: "Marzo–Abril 2026" },
+  { evento: "Plazo para declarar (trabajadores dependientes)", plazo: "30 de abril 2026" },
+  { evento: "Plazo para declarar (trabajadores independientes)", plazo: "30 de abril 2026" },
+  { evento: "Inicio de devoluciones (primera ventana)", plazo: "Mayo 2026" },
+  { evento: "Ventana final de devoluciones", plazo: "Junio 2026" },
+];
+
+const erroresComunes = [
+  "Confundir declaración aceptada con devolución pagada: son pasos distintos.",
+  "No revisar si la propuesta incluye todos tus empleadores o modificaciones.",
+  "Usar reemplazo cuando corresponde rectificatoria (o viceversa).",
+  "No consultar TGR si la devolución no llega: puede haber compensación activa.",
+  "Dejar vencer el plazo de rectificatoria creyendo que la declaración fue correcta.",
+];
+
+const canonicalUrl =
+  "https://monedario.cl/guias/impuestos-personas/operacion-renta/";
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Subhub Operación Renta Chile 2026",
+  description:
+    "Guías y herramientas para Operación Renta en Chile: F22, rectificación, devolución y retenciones.",
+  url: canonicalUrl,
+  numberOfItems: subcasos.length,
+  itemListElement: subcasos.map((item, idx) => ({
+    "@type": "ListItem",
+    position: idx + 1,
+    name: item.titulo,
+    description: item.resumen,
+    url: `https://monedario.cl${item.href}`,
+  })),
+};
+---
+
+<Layout
+  title="Operación Renta 2026: F22, rectificación, devolución y retenciones | Monedario"
+  description="Centro de Operación Renta para Chile 2026: calendario OR, checklist del F22, cómo rectificar, estado de devolución y qué hacer con las compensaciones de TGR."
+>
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(itemListSchema)}
+  />
+  <Header />
+  <Breadcrumb />
+
+  <main id="main-content" class="app-layout">
+    <section class="border-b border-border py-8">
+      <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-accent">
+        Impuestos para personas
+      </p>
+      <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
+        Operación Renta 2026
+      </h1>
+      <p class="max-w-3xl text-secondary">
+        Todo lo que necesitas para Operación Renta en Chile: desde revisar la
+        propuesta del SII hasta consultar el estado de tu devolución o resolver
+        una observación. Elige el subcaso que corresponde a tu situación hoy.
+      </p>
+    </section>
+
+    <!-- SUBCASOS -->
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-2xl font-bold">Elige tu situación</h2>
+      <ul class="grid gap-4 sm:grid-cols-2">
+        {
+          subcasos.map(item => (
+            <li class="rounded-xl border border-border p-5">
+              <h3 class="mb-2 text-lg font-semibold">{item.titulo}</h3>
+              <p class="mb-3 text-sm text-secondary">{item.resumen}</p>
+              <a
+                href={item.href}
+                class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+              >
+                {item.cta}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- CALENDARIO OR -->
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-2xl font-bold">Calendario Operación Renta 2026</h2>
+      <p class="mb-4 text-sm text-muted">
+        Fechas referenciales. Verifica siempre en{" "}
+        <a
+          href="https://www.sii.cl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-accent underline underline-offset-4 hover:opacity-80"
+        >sii.cl</a> ya que el SII publica el calendario oficial con antelación.
+      </p>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse text-sm">
+          <thead>
+            <tr class="border-b border-border">
+              <th class="py-2 pr-4 text-left font-semibold text-secondary"
+                >Evento</th
+              >
+              <th class="py-2 text-left font-semibold text-secondary"
+                >Plazo orientativo</th
+              >
+            </tr>
+          </thead>
+          <tbody>
+            {
+              calendarioOR.map(row => (
+                <tr class="border-b border-border/50">
+                  <td class="py-2 pr-4 text-foreground">{row.evento}</td>
+                  <td class="py-2 font-mono text-secondary">{row.plazo}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ERRORES COMUNES -->
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-2xl font-bold">Errores comunes en OR</h2>
+      <ul class="list-disc space-y-2 pl-6 text-secondary">
+        {erroresComunes.map(error => <li>{error}</li>)}
+      </ul>
+    </section>
+
+    <!-- LINKS OFICIALES -->
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-2xl font-bold">Canales oficiales</h2>
+      <ul class="space-y-2 text-sm">
+        <li>
+          <a
+            href="https://www.sii.cl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+          >
+            SII — declaración y propuestas
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.tesoreria.cl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+          >
+            TGR — estado de devolución y compensaciones
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.chileatiende.gob.cl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+          >
+            ChileAtiende — información general
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- QUÉ CAMBIÓ 2026 -->
+    <section class="border-b border-border py-8">
+      <div class="rounded-xl border border-accent/20 bg-accent/5 p-6">
+        <h2 class="mb-2 text-xl font-bold">Qué cambió en 2026</h2>
+        <p class="text-sm text-secondary">
+          Para 2026, la retención de honorarios aumentó al 15,25%. Verifica las
+          actualizaciones de tablas de impuesto de segunda categoría y topes de
+          UTM en{" "}
+          <a
+            href="https://www.sii.cl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+          >sii.cl</a>.
+        </p>
+        <p class="mt-2 text-xs text-muted">
+          Última actualización: 2026-04-06. Se revisa cuando el SII publica
+          cambios en calendarios o tablas.
+        </p>
+      </div>
+    </section>
+
+    <section class="py-8">
+      <a
+        href={hubPath}
+        class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+      >
+        ← Volver a Impuestos para personas
+      </a>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

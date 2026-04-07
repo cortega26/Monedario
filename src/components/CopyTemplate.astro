@@ -1,0 +1,70 @@
+---
+interface Props {
+  title: string;
+  template: string;
+  disclaimer?: string;
+  /** Unique ID for this template instance */
+  id: string;
+}
+
+const { title, template, disclaimer, id } = Astro.props;
+const containerId = `copy-template-${id}`;
+---
+
+<div id={containerId} class="my-6 rounded-xl border border-border">
+  <div class="flex items-center justify-between border-b border-border px-4 py-3">
+    <p class="text-sm font-semibold">{title}</p>
+    <button
+      id={`${containerId}-btn`}
+      type="button"
+      class="rounded-lg border border-border px-3 py-1 text-xs font-medium transition-colors hover:border-accent hover:text-accent"
+    >
+      Copiar
+    </button>
+  </div>
+  <pre
+    id={`${containerId}-text`}
+    class="whitespace-pre-wrap break-words px-4 py-4 text-sm text-secondary font-sans leading-relaxed"
+  >{template}</pre>
+  {
+    disclaimer && (
+      <div class="border-t border-border px-4 py-3">
+        <p class="text-xs text-muted">{disclaimer}</p>
+      </div>
+    )
+  }
+</div>
+
+<script is:inline define:vars={{ containerId }}>
+  (function () {
+    const btn = document.getElementById(`${containerId}-btn`);
+    const textEl = document.getElementById(`${containerId}-text`);
+    if (!btn || !textEl) return;
+
+    btn.addEventListener("click", async () => {
+      const text = textEl.textContent ?? "";
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = "¡Copiado!";
+        setTimeout(() => {
+          btn.textContent = "Copiar";
+        }, 2000);
+        window.monedarioAnalytics?.track("copy_template", {
+          template_id: containerId,
+        });
+      } catch {
+        // Fallback for older browsers
+        const selection = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(textEl);
+        selection?.removeAllRanges();
+        selection?.addRange(range);
+        btn.textContent = "Seleccionado — Ctrl+C para copiar";
+        setTimeout(() => {
+          btn.textContent = "Copiar";
+          selection?.removeAllRanges();
+        }, 3000);
+      }
+    });
+  })();
+</script>

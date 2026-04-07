@@ -19,12 +19,12 @@ const economicSourceLabel =
 ---
 
 <Layout
-  title="Calculadora de Sueldo Líquido Chile 2026"
-  description="¿Cuánto te depositan cada mes? Ingresa tu bruto y obtén el desglose de AFP, salud, cesantía e impuesto. Calculadora gratuita actualizada 2026."
+  title="Calculadora de Sueldo Líquido y Bruto Chile 2026"
+  description="Calcula tu sueldo líquido desde el bruto, o el bruto necesario para recibir el líquido que quieres. Desglose de AFP, salud, cesantía e impuesto. Gratis y actualizada 2026."
 >
   <CalculatorJsonLd
-    name="Calculadora de Sueldo Líquido Chile 2026"
-    description="¿Cuánto te depositan cada mes? Ingresa tu bruto y obtén el desglose de AFP, salud, cesantía e impuesto. Calculadora gratuita actualizada 2026."
+    name="Calculadora de Sueldo Líquido y Bruto Chile 2026"
+    description="Calcula tu sueldo líquido desde el bruto, o el bruto necesario para recibir el líquido que quieres. Desglose de AFP, salud, cesantía e impuesto. Gratis y actualizada 2026."
   />
   <Header />
   <Breadcrumb />
@@ -37,12 +37,12 @@ const economicSourceLabel =
   >
     <section class="border-b border-border pt-8 pb-6">
       <h1 class="my-4 text-3xl font-bold sm:text-4xl">
-        💰 Calculadora de Sueldo Líquido
+        💰 Calculadora de Sueldo Líquido y Bruto
       </h1>
       <p class="max-w-xl text-secondary">
-        Ingresa tu sueldo bruto y, si lo conoces, tu imponible real para obtener
-        un desglose orientativo de AFP, salud, seguro de cesantía e impuesto de
-        segunda categoría.
+        Calcula cuánto recibirás desde tu bruto, o estima el bruto necesario
+        para recibir el líquido que quieres. Desglose de AFP, salud, cesantía e
+        impuesto de segunda categoría.
       </p>
     </section>
 
@@ -51,9 +51,46 @@ const economicSourceLabel =
       <div class="rounded-xl border border-border p-6">
         <h2 class="mb-5 text-lg font-semibold">📝 Ingresa tus datos</h2>
 
+        <!-- MODO TOGGLE -->
+        <div class="mb-5">
+          <p class="mb-2 text-sm font-medium text-secondary">Modo de cálculo</p>
+          <div class="flex gap-2">
+            <label class="flex-1 cursor-pointer">
+              <input
+                type="radio"
+                name="modo-calculo"
+                id="modo-bruto"
+                value="bruto-a-liquido"
+                checked
+                class="peer sr-only"
+              />
+              <span
+                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
+              >
+                Bruto → Líquido
+              </span>
+            </label>
+            <label class="flex-1 cursor-pointer">
+              <input
+                type="radio"
+                name="modo-calculo"
+                id="modo-liquido"
+                value="liquido-a-bruto"
+                class="peer sr-only"
+              />
+              <span
+                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
+              >
+                Líquido → Bruto
+              </span>
+            </label>
+          </div>
+        </div>
+
         <div class="mb-4">
           <label
             for="sueldo"
+            id="sueldo-label"
             class="mb-1 block text-sm font-medium text-secondary"
           >
             Sueldo bruto mensual ($)
@@ -65,13 +102,14 @@ const economicSourceLabel =
             min="0"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
           />
-          <p class="mt-1 text-xs text-muted">
+          <p id="sueldo-hint" class="mt-1 text-xs text-muted">
             El total antes de descuentos, incluyendo bonos o asignaciones no
             imponibles si vienen en tu liquidación.
           </p>
         </div>
 
-        <div class="mb-4">
+        <!-- Imponible (solo visible en modo bruto→líquido) -->
+        <div id="imponible-field" class="mb-4">
           <label
             for="sueldo-imponible"
             class="mb-1 block text-sm font-medium text-secondary"
@@ -207,11 +245,84 @@ const economicSourceLabel =
           </select>
         </div>
 
+        <!-- MODO AVANZADO -->
+        <div class="mb-4 border-t border-border pt-4">
+          <button
+            id="advanced-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="advanced-fields"
+            class="flex w-full items-center justify-between text-sm font-medium text-secondary hover:text-foreground"
+          >
+            <span>Modo avanzado</span>
+            <span id="advanced-arrow" class="transition-transform">▼</span>
+          </button>
+          <div id="advanced-fields" class="hidden mt-4 space-y-4">
+            <p class="text-xs text-muted">
+              Agrega conceptos adicionales para un cálculo más preciso. Solo en modo Bruto → Líquido.
+            </p>
+            <div>
+              <label
+                for="gratificacion"
+                class="mb-1 block text-sm font-medium text-secondary"
+              >
+                Gratificación mensual ($) - opcional
+              </label>
+              <input
+                type="number"
+                id="gratificacion"
+                placeholder="Ej: 150.000"
+                min="0"
+                class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+              />
+              <p class="mt-1 text-xs text-muted">
+                Si recibes gratificación mensualizada, ingrésala aquí. Se suma al imponible.
+              </p>
+            </div>
+            <div>
+              <label
+                for="horas-extra"
+                class="mb-1 block text-sm font-medium text-secondary"
+              >
+                Horas extra ($) - opcional
+              </label>
+              <input
+                type="number"
+                id="horas-extra"
+                placeholder="Ej: 80.000"
+                min="0"
+                class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+              />
+              <p class="mt-1 text-xs text-muted">
+                Monto total de horas extra del mes. Son imponibles y tributan.
+              </p>
+            </div>
+            <div>
+              <label
+                for="otros-descuentos"
+                class="mb-1 block text-sm font-medium text-secondary"
+              >
+                Otros descuentos ($) - opcional
+              </label>
+              <input
+                type="number"
+                id="otros-descuentos"
+                placeholder="Ej: 50.000"
+                min="0"
+                class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+              />
+              <p class="mt-1 text-xs text-muted">
+                Descuentos adicionales no previsionales (préstamo empresa, caja, etc.). Se restan del líquido final.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <button
           id="calcBtn"
           class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90"
         >
-          Calcular sueldo líquido →
+          <span id="calcBtn-label">Calcular sueldo líquido →</span>
         </button>
       </div>
 
@@ -352,6 +463,30 @@ const economicSourceLabel =
         . El impuesto es progresivo: solo paga la parte del sueldo que supera cada
         tramo.
       </p>
+
+      <h3>¿Cómo calculo el bruto si sé cuánto quiero recibir?</h3>
+      <p>
+        Usa el modo "Líquido → Bruto" de esta calculadora: ingresa el monto que
+        quieres recibir en tu cuenta y el sistema estima el bruto necesario bajo
+        los supuestos de AFP, salud y contrato que indiques. Es útil al negociar
+        sueldo o evaluar una oferta laboral.
+      </p>
+
+      <h3>¿Qué incluye la gratificación en el sueldo?</h3>
+      <p>
+        La gratificación legal en Chile puede pagarse mensualizada (25% de lo
+        devengado con tope de 4,75 IMM) o como porcentaje de utilidades. Si la
+        recibes mes a mes como parte de tu liquidación, es imponible: afecta tu
+        AFP, salud, cesantía e impuesto. Ingrésala en el Modo avanzado de esta
+        calculadora para un resultado más preciso.
+      </p>
+
+      <h3>¿Las horas extra se descuentan de AFP y salud?</h3>
+      <p>
+        Sí. Las horas extra son remuneración imponible: se suman a la base de
+        cálculo de AFP, salud y seguro de cesantía, y también entran a la base
+        de impuesto de segunda categoría. Puedes incluirlas en el Modo avanzado.
+      </p>
     </section>
 
     {
@@ -364,8 +499,12 @@ const economicSourceLabel =
 </Layout>
 
 <script>
-  import { calculateNetSalary } from "@/application/use-cases/CalculateNetSalary";
+  import {
+    calculateNetSalary,
+    estimateGrossFromNet,
+  } from "@/application/use-cases/CalculateNetSalary";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { saveCalculatorResult } from "@/utils/resumeState";
 
   function fmt(n: number): string {
     return "$" + Math.round(n).toLocaleString("es-CL");
@@ -387,6 +526,66 @@ const economicSourceLabel =
 
   const economicParameters = readEconomicParameters();
 
+  function getModo(): "bruto-a-liquido" | "liquido-a-bruto" {
+    return (
+      document.querySelector(
+        "input[name='modo-calculo']:checked"
+      ) as HTMLInputElement
+    )?.value === "liquido-a-bruto"
+      ? "liquido-a-bruto"
+      : "bruto-a-liquido";
+  }
+
+  function updateModoUI() {
+    const modo = getModo();
+    const esLiquidoABruto = modo === "liquido-a-bruto";
+
+    const label = document.getElementById("sueldo-label");
+    const hint = document.getElementById("sueldo-hint");
+    const input = document.getElementById("sueldo") as HTMLInputElement;
+    const btnLabel = document.getElementById("calcBtn-label");
+    const imponibleField = document.getElementById("imponible-field");
+    const advancedFields = document.getElementById("advanced-fields");
+    const advancedToggle = document.getElementById("advanced-toggle");
+
+    if (label)
+      label.textContent = esLiquidoABruto
+        ? "Sueldo líquido deseado ($)"
+        : "Sueldo bruto mensual ($)";
+    if (hint)
+      hint.textContent = esLiquidoABruto
+        ? "Lo que quieres recibir depositado cada mes."
+        : "El total antes de descuentos, incluyendo bonos o asignaciones no imponibles si vienen en tu liquidación.";
+    if (input)
+      input.placeholder = esLiquidoABruto ? "Ej: 900.000" : "Ej: 1.200.000";
+    if (btnLabel)
+      btnLabel.textContent = esLiquidoABruto
+        ? "Estimar sueldo bruto necesario →"
+        : "Calcular sueldo líquido →";
+    if (imponibleField)
+      imponibleField.classList.toggle("hidden", esLiquidoABruto);
+    // Advanced mode only works in bruto→líquido
+    if (esLiquidoABruto && advancedFields && advancedToggle) {
+      advancedFields.classList.add("hidden");
+      advancedToggle.setAttribute("aria-expanded", "false");
+      const arrow = document.getElementById("advanced-arrow");
+      if (arrow) arrow.style.transform = "";
+    }
+    if (advancedToggle)
+      advancedToggle.classList.toggle("opacity-40 pointer-events-none", esLiquidoABruto);
+  }
+
+  // Toggle Modo
+  document.querySelectorAll("input[name='modo-calculo']").forEach(radio => {
+    radio.addEventListener("change", () => {
+      updateModoUI();
+      trackAnalyticsEvent("calculator_mode_toggle", {
+        calculator_slug: "sueldo-liquido",
+        mode: getModo(),
+      });
+    });
+  });
+
   // Toggle Isapre
   document.querySelectorAll("input[name='salud']").forEach(radio => {
     radio.addEventListener("change", () => {
@@ -401,23 +600,18 @@ const economicSourceLabel =
     });
   });
 
-  document.getElementById("calcBtn")?.addEventListener("click", () => {
-    const bruto =
-      parseFloat(
-        (document.getElementById("sueldo") as HTMLInputElement).value
-      ) || 0;
-    const imponibleRaw = parseFloat(
-      (document.getElementById("sueldo-imponible") as HTMLInputElement).value
-    );
-    const imponible =
-      Number.isFinite(imponibleRaw) && imponibleRaw > 0
-        ? imponibleRaw
-        : undefined;
-    if (bruto <= 0) {
-      alert("Por favor ingresa un sueldo válido.");
-      return;
-    }
+  // Toggle Modo Avanzado
+  document.getElementById("advanced-toggle")?.addEventListener("click", () => {
+    const fields = document.getElementById("advanced-fields");
+    const arrow = document.getElementById("advanced-arrow");
+    const btn = document.getElementById("advanced-toggle");
+    if (!fields) return;
+    const isHidden = fields.classList.toggle("hidden");
+    btn?.setAttribute("aria-expanded", String(!isHidden));
+    if (arrow) arrow.style.transform = isHidden ? "" : "rotate(180deg)";
+  });
 
+  function getCommonInputs() {
     const afpTasaPercent = parseFloat(
       (document.getElementById("afp-tasa") as HTMLSelectElement).value
     );
@@ -441,43 +635,30 @@ const economicSourceLabel =
       parseFloat(
         (document.getElementById("isapre-adicional") as HTMLInputElement).value
       ) || 0;
+    return { afpTasaPercent, healthSystem, contractType, isapreAdicional } as const;
+  }
 
-    let resultado;
-    try {
-      resultado = calculateNetSalary({
-        grossSalary: bruto,
-        taxableSalary: imponible,
-        afpRatePercent: afpTasaPercent,
-        healthSystem,
-        contractType,
-        isapreAdditionalPercent: isapreAdicional,
-        economicParameters,
-      });
-    } catch (error) {
-      alert(
-        error instanceof Error
-          ? error.message
-          : "No se pudo calcular el sueldo líquido."
-      );
-      return;
-    }
+  const buildRow = (label: string, value: string, colorClass = "") => {
+    const line = document.createElement("div");
+    line.className =
+      "flex items-center justify-between border-b border-border py-2 text-sm last:border-0";
+    const labelElement = document.createElement("span");
+    labelElement.className = "text-secondary";
+    labelElement.textContent = label;
+    const valueElement = document.createElement("span");
+    valueElement.className = `font-mono font-semibold ${colorClass}`.trim();
+    valueElement.textContent = value;
+    line.append(labelElement, valueElement);
+    return line;
+  };
 
-    const buildRow = (label: string, value: string, colorClass = "") => {
-      const line = document.createElement("div");
-      line.className =
-        "flex items-center justify-between border-b border-border py-2 text-sm last:border-0";
-
-      const labelElement = document.createElement("span");
-      labelElement.className = "text-secondary";
-      labelElement.textContent = label;
-
-      const valueElement = document.createElement("span");
-      valueElement.className = `font-mono font-semibold ${colorClass}`.trim();
-      valueElement.textContent = value;
-
-      line.append(labelElement, valueElement);
-      return line;
-    };
+  function renderResultado(
+    resultado: ReturnType<typeof calculateNetSalary>,
+    modoLabel: string,
+    extraNote?: string,
+    otrosDescuentos?: number
+  ) {
+    const netFinal = resultado.netSalary - (otrosDescuentos ?? 0);
 
     const headline = document.createElement("div");
     headline.className =
@@ -485,10 +666,14 @@ const economicSourceLabel =
     const headlineLabel = document.createElement("p");
     headlineLabel.className =
       "mb-1 text-xs font-bold tracking-widest text-accent uppercase";
-    headlineLabel.textContent = "Sueldo Líquido";
+    headlineLabel.textContent = modoLabel;
     const headlineValue = document.createElement("p");
     headlineValue.className = "text-4xl font-bold";
-    headlineValue.textContent = fmt(resultado.netSalary);
+    headlineValue.textContent = fmt(
+      modoLabel === "Sueldo Bruto Estimado"
+        ? resultado.grossSalary
+        : netFinal
+    );
     headline.append(headlineLabel, headlineValue);
 
     const totals = document.createElement("div");
@@ -497,60 +682,162 @@ const economicSourceLabel =
     totalsLabel.textContent = "Total descuentos";
     const totalsValue = document.createElement("span");
     totalsValue.className = "text-red-400";
-    totalsValue.textContent = `${fmt(resultado.deductions.total)} (${fmtPct(resultado.effectiveRates.totalDeductionPercent)})`;
+    const totalDed =
+      resultado.deductions.total + (otrosDescuentos ?? 0);
+    totalsValue.textContent = `${fmt(totalDed)} (${fmtPct((totalDed / resultado.grossSalary) * 100)})`;
     totals.append(totalsLabel, totalsValue);
 
     const assumption = document.createElement("p");
     assumption.className = "mt-3 text-xs text-muted";
     assumption.textContent =
-      imponible === undefined
+      extraNote ??
+      (resultado.taxableSalary === resultado.grossSalary
         ? "Supuesto aplicado: bruto total = imponible mensual."
-        : "Usando imponible explícito distinto del bruto total.";
+        : "Usando imponible explícito distinto del bruto total.");
+
+    const rows = [
+      buildRow("Sueldo bruto", fmt(resultado.grossSalary), "text-green-500"),
+      buildRow("Sueldo imponible", fmt(resultado.taxableSalary), "text-secondary"),
+      buildRow("No imponibles", fmt(resultado.nonTaxableIncome), "text-secondary"),
+      buildRow(
+        `AFP (${fmtPct(resultado.effectiveRates.afpPercent)})`,
+        `− ${fmt(resultado.deductions.afp)}`,
+        "text-red-400"
+      ),
+      buildRow(
+        `Salud (${fmtPct(resultado.effectiveRates.healthPercent)})`,
+        `− ${fmt(resultado.deductions.health)}`,
+        "text-red-400"
+      ),
+      buildRow(
+        `Seg. cesantía (${fmtPct(resultado.effectiveRates.unemploymentInsurancePercent)})`,
+        `− ${fmt(resultado.deductions.unemploymentInsurance)}`,
+        "text-red-400"
+      ),
+      buildRow(
+        "Imp. 2ª categoría",
+        `− ${fmt(resultado.deductions.tax)}`,
+        "text-red-400"
+      ),
+    ];
+
+    if (otrosDescuentos && otrosDescuentos > 0) {
+      rows.push(
+        buildRow("Otros descuentos", `− ${fmt(otrosDescuentos)}`, "text-red-400")
+      );
+    }
 
     document
       .getElementById("resultado-contenido")!
-      .replaceChildren(
-        headline,
-        buildRow("Sueldo bruto", fmt(bruto), "text-green-500"),
-        buildRow(
-          "Sueldo imponible usado",
-          fmt(resultado.taxableSalary),
-          "text-secondary"
-        ),
-        buildRow(
-          "Ingresos no imponibles",
-          fmt(resultado.nonTaxableIncome),
-          "text-secondary"
-        ),
-        buildRow(
-          `AFP (${fmtPct(resultado.effectiveRates.afpPercent)})`,
-          `− ${fmt(resultado.deductions.afp)}`,
-          "text-red-400"
-        ),
-        buildRow(
-          `Salud (${fmtPct(resultado.effectiveRates.healthPercent)})`,
-          `− ${fmt(resultado.deductions.health)}`,
-          "text-red-400"
-        ),
-        buildRow(
-          `Seg. cesantía (${fmtPct(resultado.effectiveRates.unemploymentInsurancePercent)})`,
-          `− ${fmt(resultado.deductions.unemploymentInsurance)}`,
-          "text-red-400"
-        ),
-        buildRow(
-          "Imp. 2ª categoría",
-          `− ${fmt(resultado.deductions.tax)}`,
-          "text-red-400"
-        ),
-        totals,
-        assumption
-      );
+      .replaceChildren(headline, ...rows, totals, assumption);
+  }
 
-    trackAnalyticsEvent("calculator_complete", {
-      calculator_slug: "sueldo-liquido",
-      calculator_name: "Calculadora de Sueldo Liquido",
-      outcome: "success",
-    });
+  document.getElementById("calcBtn")?.addEventListener("click", () => {
+    const modo = getModo();
+    const rawInput =
+      parseFloat(
+        (document.getElementById("sueldo") as HTMLInputElement).value
+      ) || 0;
+    if (rawInput <= 0) {
+      alert("Por favor ingresa un monto válido.");
+      return;
+    }
+
+    const { afpTasaPercent, healthSystem, contractType, isapreAdicional } =
+      getCommonInputs();
+
+    if (modo === "liquido-a-bruto") {
+      let resultado;
+      try {
+        resultado = estimateGrossFromNet({
+          targetNetSalary: rawInput,
+          afpRatePercent: afpTasaPercent,
+          healthSystem,
+          contractType,
+          isapreAdditionalPercent: isapreAdicional,
+          economicParameters,
+        });
+      } catch (error) {
+        alert(
+          error instanceof Error
+            ? error.message
+            : "No se pudo estimar el sueldo bruto."
+        );
+        return;
+      }
+      renderResultado(
+        resultado,
+        "Sueldo Bruto Estimado",
+        "Estimación inversa: supuesto bruto = imponible. AFP, salud y contrato según tu selección."
+      );
+      saveCalculatorResult(
+        window.location.pathname,
+        "Calculadora de Sueldo Líquido y Bruto"
+      );
+      trackAnalyticsEvent("calculator_complete", {
+        calculator_slug: "sueldo-liquido",
+        calculator_name: "Calculadora de Sueldo Liquido",
+        outcome: "success",
+        mode: "liquido-a-bruto",
+      });
+    } else {
+      const imponibleRaw = parseFloat(
+        (document.getElementById("sueldo-imponible") as HTMLInputElement).value
+      );
+      const imponible =
+        Number.isFinite(imponibleRaw) && imponibleRaw > 0
+          ? imponibleRaw
+          : undefined;
+
+      // Advanced mode extras
+      const gratificacion =
+        parseFloat(
+          (document.getElementById("gratificacion") as HTMLInputElement)?.value
+        ) || 0;
+      const horasExtra =
+        parseFloat(
+          (document.getElementById("horas-extra") as HTMLInputElement)?.value
+        ) || 0;
+      const otrosDescuentos =
+        parseFloat(
+          (document.getElementById("otros-descuentos") as HTMLInputElement)?.value
+        ) || 0;
+
+      const grossBase = rawInput + gratificacion + horasExtra;
+      const taxableAdjusted =
+        imponible !== undefined ? imponible + gratificacion + horasExtra : undefined;
+
+      let resultado;
+      try {
+        resultado = calculateNetSalary({
+          grossSalary: grossBase,
+          taxableSalary: taxableAdjusted,
+          afpRatePercent: afpTasaPercent,
+          healthSystem,
+          contractType,
+          isapreAdditionalPercent: isapreAdicional,
+          economicParameters,
+        });
+      } catch (error) {
+        alert(
+          error instanceof Error
+            ? error.message
+            : "No se pudo calcular el sueldo líquido."
+        );
+        return;
+      }
+      renderResultado(resultado, "Sueldo Líquido", undefined, otrosDescuentos);
+      saveCalculatorResult(
+        window.location.pathname,
+        "Calculadora de Sueldo Líquido y Bruto"
+      );
+      trackAnalyticsEvent("calculator_complete", {
+        calculator_slug: "sueldo-liquido",
+        calculator_name: "Calculadora de Sueldo Liquido",
+        outcome: "success",
+        mode: "bruto-a-liquido",
+      });
+    }
   });
 
   document

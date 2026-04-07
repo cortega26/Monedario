@@ -1,0 +1,386 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import DecisionWizard from "@/components/DecisionWizard.astro";
+import CopyTemplate from "@/components/CopyTemplate.astro";
+import { getPath } from "@/utils/getPath";
+import type { WizardConfig } from "@/domain/wizard/WizardConfig";
+
+const articuloFraudePath = getPath("/posts/fraude-tarjeta-que-hacer/");
+const hubPath = getPath("/guias/seguridad-financiera/");
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "Cómo actuar ante un cargo no reconocido en Chile (Ley 20.009)",
+  description:
+    "Pasos para bloquear, reclamar y escalar un cargo no reconocido en tarjeta o transferencia bajo la Ley 20.009.",
+  step: [
+    {
+      "@type": "HowToStep",
+      position: 1,
+      name: "Avisa al banco inmediatamente",
+      text: "Llama al número de emergencias de tu banco (24/7) para bloquear la tarjeta y dejar constancia del cargo no reconocido.",
+    },
+    {
+      "@type": "HowToStep",
+      position: 2,
+      name: "Solicita el número de folio del reclamo",
+      text: "El banco debe entregarte un registro de tu reclamo. Guárdalo.",
+    },
+    {
+      "@type": "HowToStep",
+      position: 3,
+      name: "Haz una denuncia policial",
+      text: "Presenta denuncia en Carabineros o PDI (en línea o presencial).",
+    },
+    {
+      "@type": "HowToStep",
+      position: 4,
+      name: "Presenta el reclamo formal al banco",
+      text: "Entrega el folio del aviso y la denuncia al banco para iniciar el proceso formal de devolución.",
+    },
+    {
+      "@type": "HowToStep",
+      position: 5,
+      name: "Si el banco rechaza, escala a CMF",
+      text: "Presenta reclamo en el formulario en línea de la Comisión para el Mercado Financiero (cmfchile.cl).",
+    },
+  ],
+  tool: [
+    {
+      "@type": "HowToTool",
+      name: "Número de emergencias de tu banco (24/7)",
+    },
+  ],
+  supply: [
+    {
+      "@type": "HowToSupply",
+      name: "Captura de pantalla del cargo no reconocido",
+    },
+    { "@type": "HowToSupply", name: "Denuncia policial" },
+  ],
+};
+
+const wizardConfig: WizardConfig = {
+  id: "fraude-cargo-no-reconocido",
+  firstStep: "tipo-producto",
+  steps: {
+    "tipo-producto": {
+      id: "tipo-producto",
+      pregunta: "¿Qué tipo de operación no reconoces?",
+      opciones: [
+        {
+          label: "Cargo en tarjeta de débito o crédito",
+          next: "aviso-banco-tarjeta",
+        },
+        {
+          label: "Transferencia electrónica no autorizada",
+          next: "aviso-banco-transferencia",
+        },
+        {
+          label: "Compra online o suscripción que no autoricé",
+          next: "aviso-banco-tarjeta",
+        },
+      ],
+    },
+    "aviso-banco-tarjeta": {
+      id: "aviso-banco-tarjeta",
+      pregunta: "¿Ya diste aviso al banco o emisor de la tarjeta?",
+      opciones: [
+        {
+          label: "Sí, ya avisé y bloqueé la tarjeta",
+          next: "tiene-folio",
+        },
+        {
+          label: "No, todavía no he avisado",
+          resultado: {
+            titulo: "Avisa al banco AHORA — tienes 5 días hábiles",
+            descripcion:
+              "La Ley 20.009 te protege si avisas dentro de 5 días hábiles desde que detectaste el cargo. Llama inmediatamente al número de emergencias de tu banco para bloquear la tarjeta y dejar constancia.",
+            pasos: [
+              "Llama ahora al número de emergencias de tu banco (24/7).",
+              "Solicita el bloqueo de la tarjeta comprometida.",
+              "Pide un número de folio o registro del aviso.",
+              "Guarda captura de pantalla del cargo en tu app o cartola.",
+              "Haz una denuncia en Carabineros o PDI (en línea o presencial).",
+              "Presenta el reclamo formal al banco con el folio del aviso y la denuncia.",
+            ],
+            links: [
+              {
+                label: "Ley 20.009 — texto oficial (BCN)",
+                href: "https://www.bcn.cl/leychile/navegar?idNorma=236366",
+              },
+              {
+                label: "CMF: guía de protección al consumidor financiero",
+                href: "https://www.cmfchile.cl/portal/principal/613/w3-article-27264.html",
+              },
+              {
+                label: "PDI: denuncia en línea",
+                href: "https://www.pdichile.cl/",
+              },
+            ],
+            nota: "Esta información es educativa. Monedario no entrega asesoría legal. Para situaciones complejas consulta a un abogado o a SERNAC.",
+          },
+        },
+      ],
+    },
+    "aviso-banco-transferencia": {
+      id: "aviso-banco-transferencia",
+      pregunta: "¿Ya contactaste a tu banco para reportar la transferencia?",
+      opciones: [
+        {
+          label: "Sí, ya reporté la transferencia no autorizada",
+          next: "tiene-folio",
+        },
+        {
+          label: "No, no he contactado al banco todavía",
+          resultado: {
+            titulo: "Contacta al banco DE INMEDIATO",
+            descripcion:
+              "En transferencias no autorizadas el tiempo es crítico. Algunos bancos pueden solicitar bloqueo o recuperación si actúas dentro de pocas horas. Llama ahora.",
+            pasos: [
+              "Llama al número de emergencias de tu banco (24/7) ahora.",
+              "Informa que hubo una transferencia no autorizada e indica el monto.",
+              "Solicita bloqueo preventivo de tu cuenta si es necesario.",
+              "Pide número de folio del reporte.",
+              "Haz denuncia en PDI o Carabineros.",
+              "Presenta reclamo formal ante el banco con los antecedentes.",
+            ],
+            links: [
+              {
+                label: "CMF: canales de reclamo",
+                href: "https://www.cmfchile.cl/portal/principal/613/w3-article-27264.html",
+              },
+              {
+                label: "SERNAC: reclamo financiero",
+                href: "https://www.sernac.cl/portal/604/w3-propertyvalue-24390.html",
+              },
+            ],
+            nota: "Esta información es educativa. Monedario no entrega asesoría legal.",
+          },
+        },
+      ],
+    },
+    "tiene-folio": {
+      id: "tiene-folio",
+      pregunta: "¿Tienes el número de folio o registro del aviso al banco?",
+      opciones: [
+        {
+          label: "Sí, tengo el folio del reclamo",
+          next: "estado-devolucion",
+        },
+        {
+          label: "No, no me dieron folio",
+          resultado: {
+            titulo: "Solicita el folio por escrito",
+            descripcion:
+              "El banco está obligado a darte un registro de tu reclamo. Si no lo tienes, vuelve a llamar o escribe por los canales escritos (correo, sucursal) y solicita el comprobante explícitamente.",
+            pasos: [
+              "Contacta nuevamente al banco por escrito (email o chat oficial).",
+              "Solicita el 'número de folio', 'número de caso' o 'comprobante de reclamo'.",
+              "Guarda el correo o captura del chat como respaldo.",
+              "Si el banco no responde en 48 horas, presenta queja ante CMF.",
+            ],
+            links: [
+              {
+                label: "CMF: formulario de denuncia",
+                href: "https://www.cmfchile.cl/educa/621/w3-channel.html",
+              },
+            ],
+            nota: "Esta información es educativa. Monedario no entrega asesoría legal.",
+          },
+        },
+      ],
+    },
+    "estado-devolucion": {
+      id: "estado-devolucion",
+      pregunta: "¿El banco ya respondió tu reclamo?",
+      opciones: [
+        {
+          label: "El banco aceptó devolver el dinero",
+          resultado: {
+            titulo: "Bien — monitorea que el depósito se concrete",
+            descripcion:
+              "El banco tiene plazo para devolver. Revisa los plazos que te indicaron y guarda el comprobante de aceptación.",
+            pasos: [
+              "Verifica en tu aplicación el depósito en el plazo prometido.",
+              "Si no llega, envía un recordatorio escrito al banco.",
+              "Si supera 10 días hábiles sin depósito, presenta queja a CMF.",
+            ],
+            links: [
+              {
+                label: "CMF: seguimiento de reclamos",
+                href: "https://www.cmfchile.cl/educa/621/w3-channel.html",
+              },
+            ],
+            nota: "Esta información es educativa. Monedario no entrega asesoría legal.",
+          },
+        },
+        {
+          label: "El banco rechazó mi reclamo",
+          resultado: {
+            titulo: "Puedes escalar a CMF y SERNAC",
+            descripcion:
+              "Si el banco rechaza tu reclamo y no estás de acuerdo, tienes derecho a escalar. La CMF supervisa a bancos e instituciones financieras. SERNAC puede intermediar en servicios financieros.",
+            pasos: [
+              "Pide al banco la respuesta del rechazo por escrito.",
+              "Reúne: folio del reclamo, respuesta del banco, denuncia policial, capturas del cargo.",
+              "Presenta reclamo ante CMF (formulario en línea en cmfchile.cl).",
+              "También puedes presentar reclamo ante SERNAC.",
+              "Si el monto es significativo, evalúa consultar un abogado.",
+            ],
+            links: [
+              {
+                label: "CMF: formulario de reclamo",
+                href: "https://www.cmfchile.cl/educa/621/w3-channel.html",
+              },
+              {
+                label: "SERNAC: reclamo financiero",
+                href: "https://www.sernac.cl/portal/604/w3-propertyvalue-24390.html",
+              },
+            ],
+            nota: "Esta información es educativa y no reemplaza asesoría legal. Para situaciones de alto monto, considera consultar a un abogado especializado en derecho del consumidor.",
+          },
+        },
+        {
+          label: "El banco todavía no responde",
+          resultado: {
+            titulo: "Haz seguimiento y exige respuesta dentro del plazo legal",
+            descripcion:
+              "El banco tiene 20 días hábiles para responder un reclamo formal bajo la Ley 20.009. Si no responde, puedes escalar directamente a CMF.",
+            pasos: [
+              "Verifica cuántos días hábiles han pasado desde tu reclamo.",
+              "Envía un recordatorio escrito al banco solicitando respuesta.",
+              "Si superan 20 días hábiles sin respuesta, presenta queja a CMF.",
+              "Guarda todos los registros de comunicación.",
+            ],
+            links: [
+              {
+                label: "CMF: formulario de reclamo",
+                href: "https://www.cmfchile.cl/educa/621/w3-channel.html",
+              },
+            ],
+            nota: "Esta información es educativa. Monedario no entrega asesoría legal.",
+          },
+        },
+      ],
+    },
+  },
+};
+---
+
+<Layout
+  title="Cargo no reconocido: qué hacer paso a paso (Ley 20.009) | Monedario"
+  description="Sigue este wizard para saber exactamente qué hacer si tienes un cargo no reconocido en tu tarjeta o transferencia no autorizada. Basado en Ley 20.009 Chile."
+>
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(howToSchema)}
+  />
+  <Header />
+  <Breadcrumb />
+
+  <main id="main-content" class="app-layout">
+    <section class="border-b border-border py-8">
+      <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-accent">
+        Herramienta de seguridad financiera
+      </p>
+      <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
+        Cargo no reconocido: ¿qué hago ahora?
+      </h1>
+      <p class="max-w-2xl text-secondary">
+        Responde 2–4 preguntas y obtén tu ruta de acción concreta bajo la Ley
+        20.009, con los pasos y canales oficiales para tu caso específico.
+      </p>
+      <p class="mt-3 text-sm text-muted">
+        ⚠️ Información educativa — no reemplaza asesoría legal. Para situaciones
+        complejas, consulta a un profesional.
+      </p>
+    </section>
+
+    <section class="py-8">
+      <DecisionWizard config={wizardConfig} />
+    </section>
+
+    <section class="border-t border-border py-8">
+      <h2 class="mb-4 text-xl font-bold">Plantilla de reclamo formal al banco</h2>
+      <p class="mb-4 text-sm text-secondary">
+        Copia este texto y ajusta los datos en corchetes antes de enviarlo.
+      </p>
+      <CopyTemplate
+        id="reclamo-banco-fraude"
+        title="Carta de reclamo — cargo no reconocido"
+        template={`[Ciudad], [Fecha]
+
+Señores
+[Nombre del Banco / Institución]
+Presente
+
+De mi consideración:
+
+Por medio de la presente, yo, [Tu Nombre Completo], RUT [Tu RUT], titular de la [tarjeta de crédito/débito / cuenta corriente] N° [últimos 4 dígitos], vengo en interponer reclamo formal por cargo/operación no reconocido/a por la suma de $[Monto], con fecha [Fecha del cargo].
+
+Declaro que no autoricé dicha operación ni estoy en posesión del medio de pago desde [fecha o descripción de lo ocurrido, si corresponde].
+
+En virtud de lo dispuesto en la Ley N° 20.009, solicito:
+1. La devolución del monto indicado.
+2. El bloqueo del medio de pago comprometido.
+3. Una respuesta formal dentro del plazo legal.
+
+Adjunto:
+- Copia de mi RUT / cédula de identidad.
+- Captura de pantalla del cargo no reconocido.
+- N° de denuncia policial: [N° de denuncia, si corresponde].
+
+Quedo a su disposición para entregar antecedentes adicionales.
+
+Atentamente,
+[Tu Nombre Completo]
+[Tu RUT]
+[Tu correo de contacto]
+[Tu teléfono]`}
+        disclaimer="Esta plantilla es de referencia educativa. Adáptala a tu caso. Monedario no entrega asesoría legal."
+      />
+    </section>
+
+    <section
+      class="prose prose-sm max-w-none border-t border-border py-8 dark:prose-invert"
+    >
+      <h2>¿Qué es la Ley 20.009 y cómo te protege?</h2>
+      <p>
+        La Ley 20.009 establece que si reportas un cargo no reconocido dentro de
+        los plazos legales y el banco no puede demostrar que fue una operación
+        tuya, debe devolverte el dinero. El aviso oportuno es lo más importante.
+      </p>
+      <p>
+        Los 5 días hábiles corren desde que <strong>detectas</strong> el cargo,
+        no desde que ocurrió. Actuar rápido es fundamental.
+      </p>
+      <p>
+        Para el detalle completo del proceso, lee la{" "}
+        <a
+          href={articuloFraudePath}
+          data-analytics-cta="wizard-to-article"
+          data-analytics-location="fraude_wizard_explainer"
+        >
+          guía paso a paso de cargo no reconocido
+        </a>.
+      </p>
+    </section>
+
+    <section class="border-t border-border py-8">
+      <a
+        href={hubPath}
+        class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+      >
+        ← Volver a Seguridad Financiera
+      </a>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

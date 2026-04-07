@@ -1,0 +1,116 @@
+---
+// ResumeWidget — shows the user's recent pages and last calculator result.
+// Rendered only client-side (reads localStorage); server renders nothing visible.
+---
+
+<div
+  id="resume-widget"
+  class="hidden rounded-xl border border-border p-5"
+  aria-label="Continúa donde lo dejaste"
+>
+  <div class="mb-3 flex items-center justify-between">
+    <p class="text-sm font-semibold">Continúa donde lo dejaste</p>
+    <button
+      id="resume-clear"
+      type="button"
+      class="text-xs text-muted hover:text-foreground transition-colors"
+    >
+      Borrar historial
+    </button>
+  </div>
+
+  <div id="resume-calculator" class="hidden mb-3">
+    <p class="mb-1 text-xs text-muted uppercase tracking-wide font-semibold">Última calculadora</p>
+    <a
+      id="resume-calculator-link"
+      href="#"
+      class="text-sm font-medium text-accent underline underline-offset-4 hover:opacity-80"
+    ></a>
+  </div>
+
+  <div id="resume-pages" class="hidden">
+    <p class="mb-1 text-xs text-muted uppercase tracking-wide font-semibold">Páginas recientes</p>
+    <ul id="resume-pages-list" class="space-y-1"></ul>
+  </div>
+</div>
+
+<script>
+  import {
+    getResumeData,
+    clearResumeData,
+    savePageVisit,
+  } from "@/utils/resumeState";
+  import { trackAnalyticsEvent } from "@/utils/analytics";
+
+  // Save current page visit
+  savePageVisit(window.location.pathname, document.title);
+
+  const data = getResumeData();
+  const widget = document.getElementById("resume-widget");
+
+  if (widget) {
+
+  let hasContent = false;
+
+  // Calculator section
+  if (data.calculator) {
+    const calcSection = document.getElementById("resume-calculator");
+    const calcLink = document.getElementById(
+      "resume-calculator-link"
+    ) as HTMLAnchorElement;
+    if (calcSection && calcLink) {
+      calcLink.href = data.calculator.id;
+      calcLink.textContent = data.calculator.label;
+      calcSection.classList.remove("hidden");
+      hasContent = true;
+
+      calcLink.addEventListener("click", () => {
+        trackAnalyticsEvent("resume_click", {
+          item_type: "calculator",
+          item_id: data.calculator!.id,
+        });
+      });
+    }
+  }
+
+  // Pages section — filter out current page
+  const otherPages = data.pages.filter(
+    p => p.url !== window.location.pathname
+  );
+  if (otherPages.length > 0) {
+    const pagesSection = document.getElementById("resume-pages");
+    const pagesList = document.getElementById("resume-pages-list");
+    if (pagesSection && pagesList) {
+      otherPages.forEach(page => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = page.url;
+        a.textContent = page.title;
+        a.className =
+          "text-sm text-secondary hover:text-foreground hover:underline underline-offset-4 transition-colors";
+        a.addEventListener("click", () => {
+          trackAnalyticsEvent("resume_click", {
+            item_type: "page",
+            item_url: page.url,
+          });
+        });
+        li.appendChild(a);
+        pagesList.appendChild(li);
+      });
+      pagesSection.classList.remove("hidden");
+      hasContent = true;
+    }
+  }
+
+  if (hasContent) {
+    widget.classList.remove("hidden");
+  }
+
+  // Clear button
+  document.getElementById("resume-clear")?.addEventListener("click", () => {
+    clearResumeData();
+    widget.classList.add("hidden");
+    trackAnalyticsEvent("resume_cleared", {});
+  });
+  } // end if (widget)
+</script>

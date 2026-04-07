@@ -1,0 +1,167 @@
+---
+import type { WizardConfig } from "@/domain/wizard/WizardConfig";
+
+interface Props {
+  config: WizardConfig;
+}
+
+const { config } = Astro.props;
+
+// Serialize config to pass to client-side script
+const configJson = JSON.stringify(config);
+const wizardId = `wizard-${config.id}`;
+---
+
+<div id={wizardId} class="rounded-xl border border-border p-6" data-wizard-config={configJson}>
+  <!-- Step view -->
+  <div id={`${wizardId}-step`}>
+    <p class="mb-4 text-sm text-muted">
+      Responde las preguntas para ver tu ruta recomendada.
+    </p>
+    <p id={`${wizardId}-pregunta`} class="mb-4 text-base font-semibold"></p>
+    <div id={`${wizardId}-opciones`} class="flex flex-col gap-2"></div>
+  </div>
+
+  <!-- Result view (hidden initially) -->
+  <div id={`${wizardId}-resultado`} class="hidden">
+    <div class="mb-4 rounded-lg border border-accent/20 bg-accent/5 p-4">
+      <p id={`${wizardId}-res-titulo`} class="text-base font-bold"></p>
+      <p id={`${wizardId}-res-descripcion`} class="mt-1 text-sm text-secondary"></p>
+    </div>
+    <div id={`${wizardId}-res-pasos`} class="hidden mb-4">
+      <p class="mb-2 text-sm font-semibold">Pasos a seguir:</p>
+      <ol id={`${wizardId}-res-pasos-lista`} class="list-decimal space-y-1 pl-5 text-sm text-secondary"></ol>
+    </div>
+    <div id={`${wizardId}-res-links`} class="hidden mb-4 flex flex-col gap-2">
+      <p class="text-sm font-semibold">Canales oficiales:</p>
+      <ul id={`${wizardId}-res-links-lista`} class="space-y-1"></ul>
+    </div>
+    <p id={`${wizardId}-res-nota`} class="hidden mt-3 text-xs text-muted border-t border-border pt-3"></p>
+    <button
+      id={`${wizardId}-reiniciar`}
+      type="button"
+      class="mt-4 rounded-lg border border-border px-4 py-2 text-sm font-medium hover:border-accent hover:text-accent transition-colors"
+    >
+      ← Volver al inicio
+    </button>
+  </div>
+</div>
+
+<script is:inline define:vars={{ configJson, wizardId }}>
+  (function () {
+    const config = JSON.parse(configJson);
+    const root = document.getElementById(wizardId);
+    if (!root) return;
+
+    const stepEl = document.getElementById(`${wizardId}-step`);
+    const resultEl = document.getElementById(`${wizardId}-resultado`);
+    const preguntaEl = document.getElementById(`${wizardId}-pregunta`);
+    const opcionesEl = document.getElementById(`${wizardId}-opciones`);
+    const resTituloEl = document.getElementById(`${wizardId}-res-titulo`);
+    const resDescEl = document.getElementById(`${wizardId}-res-descripcion`);
+    const resPasosSection = document.getElementById(`${wizardId}-res-pasos`);
+    const resPasosLista = document.getElementById(`${wizardId}-res-pasos-lista`);
+    const resLinksSection = document.getElementById(`${wizardId}-res-links`);
+    const resLinksLista = document.getElementById(`${wizardId}-res-links-lista`);
+    const resNotaEl = document.getElementById(`${wizardId}-res-nota`);
+    const reiniciarBtn = document.getElementById(`${wizardId}-reiniciar`);
+
+    let stepHistory = [];
+
+    function trackEvent(eventName, extra) {
+      window.monedarioAnalytics?.track(eventName, {
+        wizard_id: config.id,
+        ...extra,
+      });
+    }
+
+    function showStep(stepId) {
+      const step = config.steps[stepId];
+      if (!step) return;
+
+      stepEl.classList.remove("hidden");
+      resultEl.classList.add("hidden");
+
+      preguntaEl.textContent = step.pregunta;
+      opcionesEl.innerHTML = "";
+
+      step.opciones.forEach((opcion, idx) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className =
+          "w-full rounded-lg border border-border px-4 py-3 text-left text-sm font-medium hover:border-accent hover:text-accent transition-colors";
+        btn.textContent = opcion.label;
+        btn.addEventListener("click", () => {
+          trackEvent("wizard_step", {
+            step_id: stepId,
+            option_index: idx,
+            option_label: opcion.label,
+          });
+          stepHistory.push(stepId);
+          if (opcion.next) {
+            showStep(opcion.next);
+          } else if (opcion.resultado) {
+            showResult(opcion.resultado);
+          }
+        });
+        opcionesEl.appendChild(btn);
+      });
+    }
+
+    function showResult(resultado) {
+      stepEl.classList.add("hidden");
+      resultEl.classList.remove("hidden");
+
+      resTituloEl.textContent = resultado.titulo;
+      resDescEl.textContent = resultado.descripcion;
+
+      if (resultado.pasos && resultado.pasos.length > 0) {
+        resPasosSection.classList.remove("hidden");
+        resPasosLista.innerHTML = "";
+        resultado.pasos.forEach(paso => {
+          const li = document.createElement("li");
+          li.textContent = paso;
+          resPasosLista.appendChild(li);
+        });
+      } else {
+        resPasosSection.classList.add("hidden");
+      }
+
+      if (resultado.links && resultado.links.length > 0) {
+        resLinksSection.classList.remove("hidden");
+        resLinksLista.innerHTML = "";
+        resultado.links.forEach(link => {
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = link.href;
+          a.textContent = link.label;
+          a.target = "_blank";
+          a.rel = "noopener noreferrer";
+          a.className = "text-sm text-accent underline underline-offset-4 hover:opacity-80";
+          li.appendChild(a);
+          resLinksLista.appendChild(li);
+        });
+      } else {
+        resLinksSection.classList.add("hidden");
+      }
+
+      if (resultado.nota) {
+        resNotaEl.classList.remove("hidden");
+        resNotaEl.textContent = resultado.nota;
+      } else {
+        resNotaEl.classList.add("hidden");
+      }
+
+      trackEvent("wizard_complete", { result_titulo: resultado.titulo });
+    }
+
+    reiniciarBtn?.addEventListener("click", () => {
+      stepHistory = [];
+      showStep(config.firstStep);
+    });
+
+    // Init
+    trackEvent("wizard_start", {});
+    showStep(config.firstStep);
+  })();
+</script>

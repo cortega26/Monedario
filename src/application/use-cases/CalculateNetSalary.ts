@@ -77,6 +77,61 @@ function assertInput(input: NetSalaryInput): void {
   }
 }
 
+export interface GrossFromNetInput {
+  targetNetSalary: number;
+  afpRatePercent: number;
+  healthSystem: "fonasa" | "isapre";
+  isapreAdditionalPercent?: number;
+  contractType?: PayrollContractType;
+  economicParameters: Pick<
+    EconomicParameters,
+    "uf" | "utm" | "afcTopes" | "previsionalTopes"
+  >;
+}
+
+/**
+ * Estimates the gross salary needed to obtain the desired net salary.
+ * Uses binary search because gross→net is strictly monotone increasing.
+ * Assumes taxableSalary == grossSalary (no non-taxable allowances).
+ */
+export function estimateGrossFromNet(
+  input: GrossFromNetInput
+): NetSalaryOutput {
+  if (!Number.isFinite(input.targetNetSalary) || input.targetNetSalary <= 0) {
+    throw new Error("targetNetSalary must be a finite number greater than 0.");
+  }
+
+  // Upper bound: at worst ~55% deductions, so gross < net * 3 is safe.
+  let lo = input.targetNetSalary;
+  let hi = input.targetNetSalary * 3;
+
+  for (let i = 0; i < 60; i++) {
+    const mid = (lo + hi) / 2;
+    const net = calculateNetSalary({
+      grossSalary: mid,
+      afpRatePercent: input.afpRatePercent,
+      healthSystem: input.healthSystem,
+      isapreAdditionalPercent: input.isapreAdditionalPercent,
+      contractType: input.contractType,
+      economicParameters: input.economicParameters,
+    }).netSalary;
+    if (net < input.targetNetSalary) {
+      lo = mid;
+    } else {
+      hi = mid;
+    }
+  }
+
+  return calculateNetSalary({
+    grossSalary: (lo + hi) / 2,
+    afpRatePercent: input.afpRatePercent,
+    healthSystem: input.healthSystem,
+    isapreAdditionalPercent: input.isapreAdditionalPercent,
+    contractType: input.contractType,
+    economicParameters: input.economicParameters,
+  });
+}
+
 export function calculateNetSalary(input: NetSalaryInput): NetSalaryOutput {
   assertInput(input);
 

@@ -1,0 +1,63 @@
+---
+interface CompareColumn {
+  header: string;
+  key: string;
+}
+
+interface CompareRow {
+  aspecto: string;
+  [key: string]: string;
+}
+
+interface Props {
+  title?: string;
+  columns: CompareColumn[];
+  rows: CompareRow[];
+  nota?: string;
+}
+
+const { title, columns, rows, nota } = Astro.props;
+---
+
+<div class="my-6 overflow-x-auto rounded-xl border border-border">
+  {
+    title && (
+      <div class="border-b border-border px-4 py-3">
+        <p class="text-sm font-semibold">{title}</p>
+      </div>
+    )
+  }
+  <table class="w-full border-collapse text-sm">
+    <thead>
+      <tr class="border-b border-border bg-surface-muted/30">
+        <th class="px-4 py-3 text-left font-semibold text-secondary">Aspecto</th>
+        {
+          columns.map(col => (
+            <th class="px-4 py-3 text-left font-semibold text-secondary">
+              {col.header}
+            </th>
+          ))
+        }
+      </tr>
+    </thead>
+    <tbody>
+      {
+        rows.map(row => (
+          <tr class="border-b border-border/50 last:border-0">
+            <td class="px-4 py-3 font-medium text-foreground">{row.aspecto}</td>
+            {columns.map(col => (
+              <td class="px-4 py-3 text-secondary">{row[col.key] ?? "—"}</td>
+            ))}
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+  {
+    nota && (
+      <div class="border-t border-border px-4 py-3">
+        <p class="text-xs text-muted">{nota}</p>
+      </div>
+    )
+  }
+</div>

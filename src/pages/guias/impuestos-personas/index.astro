@@ -7,11 +7,19 @@ import { getPath } from "@/utils/getPath";
 
 const rutasPrincipales = [
   {
+    titulo: "Centro Operación Renta 2026: F22, rectificación, devolución y retenciones",
+    resumen:
+      "Subcaso por subcaso: calendario OR, checklist del F22, cómo rectificar observaciones, estado de devolución y compensaciones TGR.",
+    href: getPath("/guias/impuestos-personas/operacion-renta/"),
+    esSubhub: true,
+  },
+  {
     titulo:
       "Operación Renta F22 en Chile: checklist para revisar, enviar y rectificar sin errores",
     resumen:
       "Úsala si vas a declarar, si ya viste la propuesta o si necesitas revisar reemplazo y rectificatoria sin saltar entre varias páginas.",
     href: getPath("/posts/operacion-renta-f22-checklist/"),
+    esSubhub: false,
   },
   {
     titulo:
@@ -19,6 +27,7 @@ const rutasPrincipales = [
     resumen:
       "Explica ventanas de pago, seguimiento en SII/TGR y qué hacer ante retenciones o compensaciones.",
     href: getPath("/posts/devolucion-impuestos-fechas-compensaciones/"),
+    esSubhub: false,
   },
   {
     titulo:
@@ -26,6 +35,7 @@ const rutasPrincipales = [
     resumen:
       "Aclara retención vigente, impacto en líquido mensual y cobertura previsional asociada.",
     href: getPath("/posts/boleta-honorarios-2026-retencion-cobertura/"),
+    esSubhub: false,
   },
 ];
 ---
@@ -62,13 +72,18 @@ const rutasPrincipales = [
         {
           rutasPrincipales.map(item => (
             <li class="rounded-xl border border-border p-5">
+              {item.esSubhub && (
+                <p class="mb-2 text-xs font-bold uppercase tracking-widest text-accent">
+                  Centro de recursos
+                </p>
+              )}
               <h3 class="mb-2 text-lg font-semibold">{item.titulo}</h3>
               <p class="mb-3 text-sm text-secondary">{item.resumen}</p>
               <a
                 href={item.href}
                 class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
               >
-                Resolver esta duda
+                {item.esSubhub ? "Ir al centro OR" : "Resolver esta duda"}
               </a>
             </li>
           ))

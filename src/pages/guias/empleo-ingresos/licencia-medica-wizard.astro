@@ -1,0 +1,300 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import DecisionWizard from "@/components/DecisionWizard.astro";
+import { getPath } from "@/utils/getPath";
+import type { WizardConfig } from "@/domain/wizard/WizardConfig";
+
+const articuloPath = getPath("/posts/licencia-medica-desde-que-dia-pagan/");
+const hubPath = getPath("/guias/empleo-ingresos/");
+
+const wizardConfig: WizardConfig = {
+  id: "licencia-medica-dia-pago",
+  firstStep: "duracion",
+  steps: {
+    duracion: {
+      id: "duracion",
+      pregunta: "¿Cuántos días dura tu licencia autorizada?",
+      opciones: [
+        {
+          label: "1 a 10 días (menos de 11 días)",
+          next: "continuacion-corta",
+        },
+        {
+          label: "11 días o más",
+          next: "sector-largo",
+        },
+      ],
+    },
+    "continuacion-corta": {
+      id: "continuacion-corta",
+      pregunta:
+        "¿Es una continuación de una licencia anterior (misma enfermedad, sin intervalo)?",
+      opciones: [
+        {
+          label: "Sí, continúa una licencia anterior de la misma enfermedad",
+          next: "sector-corta-continuacion",
+        },
+        {
+          label: "No, es una licencia nueva",
+          next: "sector-corta-nueva",
+        },
+      ],
+    },
+    "sector-corta-nueva": {
+      id: "sector-corta-nueva",
+      pregunta: "¿Eres trabajador dependiente privado o del sector público?",
+      opciones: [
+        {
+          label: "Dependiente privado (Fonasa o Isapre)",
+          resultado: {
+            titulo: "Pagan desde el día 4",
+            descripcion:
+              "Para licencias de 1 a 10 días en el sector privado, el subsidio se paga desde el día 4. Los días 1, 2 y 3 no generan subsidio. El cálculo se basa en tu promedio imponible de los últimos 3 meses.",
+            pasos: [
+              "Verifica que tu empleador ingresó la licencia al sistema.",
+              "Espera la resolución de tu COMPIN o Isapre.",
+              "Si rechazan la licencia, tienes 15 días hábiles para apelar.",
+              "Si reducen los días, el pago aplica sobre los días autorizados.",
+            ],
+            links: [
+              {
+                label: "SUSESO: información sobre licencias médicas",
+                href: "https://www.suseso.cl/608/w3-propertyvalue-22799.html",
+              },
+              {
+                label: "ChileAtiende: licencia médica",
+                href: "https://www.chileatiende.gob.cl/fichas/12528-licencia-medica",
+              },
+            ],
+            nota: "Esta información es educativa. Para situaciones específicas, consulta directamente con SUSESO o la COMPIN de tu región.",
+          },
+        },
+        {
+          label: "Funcionario público o estatuto especial",
+          resultado: {
+            titulo: "En el sector público se mantiene remuneración",
+            descripcion:
+              "Los funcionarios públicos con estatuto propio generalmente mantienen su remuneración íntegra durante la licencia médica. No aplica la regla de subsidio con días de espera del sector privado. Consulta las normas de tu institución.",
+            pasos: [
+              "Informa a tu empleador dentro del plazo exigido (usualmente 2 días hábiles).",
+              "El departamento de RRHH tramitará la licencia.",
+              "Verifica que el trámite fue ingresado al sistema.",
+            ],
+            links: [
+              {
+                label: "ChileAtiende: licencia médica",
+                href: "https://www.chileatiende.gob.cl/fichas/12528-licencia-medica",
+              },
+            ],
+            nota: "Esta información es educativa. Cada institución puede tener normas específicas.",
+          },
+        },
+      ],
+    },
+    "sector-corta-continuacion": {
+      id: "sector-corta-continuacion",
+      pregunta: "¿Eres trabajador dependiente privado o del sector público?",
+      opciones: [
+        {
+          label: "Dependiente privado (Fonasa o Isapre)",
+          resultado: {
+            titulo: "Si la suma total supera 10 días, puede aplicar desde el día 1",
+            descripcion:
+              "Cuando una licencia continúa a otra de la misma enfermedad sin intervalo, las jornadas se suman para determinar la duración total. Si la suma supera 10 días, el subsidio de la continuación puede aplicar desde el día 1 de ese período extendido.",
+            pasos: [
+              "Verifica que ambas licencias tienen el mismo diagnóstico.",
+              "Confirma con tu COMPIN o Isapre la suma de días y la regla de pago aplicada.",
+              "Si hay discrepancia en el cálculo, apela dentro de 15 días hábiles.",
+            ],
+            links: [
+              {
+                label: "SUSESO: apelaciones de licencias",
+                href: "https://www.suseso.cl/608/w3-propertyvalue-22799.html",
+              },
+              {
+                label: "ChileAtiende: licencia médica",
+                href: "https://www.chileatiende.gob.cl/fichas/12528-licencia-medica",
+              },
+            ],
+            nota: "Esta información es educativa. La regla de continuidad tiene matices; consulta tu caso directamente con SUSESO.",
+          },
+        },
+        {
+          label: "Funcionario público o estatuto especial",
+          resultado: {
+            titulo: "En el sector público se mantiene remuneración",
+            descripcion:
+              "Los funcionarios públicos con estatuto propio generalmente mantienen su remuneración íntegra durante la licencia médica. Consulta las normas de tu institución.",
+            pasos: [
+              "Informa a tu empleador dentro del plazo exigido.",
+              "Tu departamento de RRHH tramitará la continuación.",
+            ],
+            links: [
+              {
+                label: "ChileAtiende: licencia médica",
+                href: "https://www.chileatiende.gob.cl/fichas/12528-licencia-medica",
+              },
+            ],
+            nota: "Esta información es educativa.",
+          },
+        },
+      ],
+    },
+    "sector-largo": {
+      id: "sector-largo",
+      pregunta: "¿Eres trabajador dependiente privado o del sector público?",
+      opciones: [
+        {
+          label: "Dependiente privado (Fonasa o Isapre)",
+          next: "rechazada-largo",
+        },
+        {
+          label: "Funcionario público o estatuto especial",
+          resultado: {
+            titulo: "En el sector público se mantiene remuneración",
+            descripcion:
+              "Los funcionarios públicos con estatuto propio generalmente mantienen su remuneración íntegra durante la licencia médica. No aplica la regla de subsidio del sector privado.",
+            pasos: [
+              "Informa a tu empleador dentro del plazo exigido.",
+              "Tu departamento de RRHH tramitará la licencia.",
+            ],
+            links: [
+              {
+                label: "ChileAtiende: licencia médica",
+                href: "https://www.chileatiende.gob.cl/fichas/12528-licencia-medica",
+              },
+            ],
+            nota: "Esta información es educativa.",
+          },
+        },
+      ],
+    },
+    "rechazada-largo": {
+      id: "rechazada-largo",
+      pregunta: "¿La licencia fue aprobada o hay algún problema?",
+      opciones: [
+        {
+          label: "Fue aprobada sin problemas",
+          resultado: {
+            titulo: "Pagan desde el día 1",
+            descripcion:
+              "Para licencias de 11 días o más en el sector privado, el subsidio se paga desde el primer día de la licencia. El monto se calcula sobre el promedio de tus remuneraciones imponibles de los últimos 3 meses dividido en 30.",
+            pasos: [
+              "Verifica que tu empleador ingresó la licencia al sistema.",
+              "El pago lo gestiona tu COMPIN (si es Fonasa) o tu Isapre.",
+              "El plazo habitual de pago es dentro de 30 días corridos.",
+            ],
+            links: [
+              {
+                label: "SUSESO: información sobre licencias médicas",
+                href: "https://www.suseso.cl/608/w3-propertyvalue-22799.html",
+              },
+            ],
+            nota: "Esta información es educativa.",
+          },
+        },
+        {
+          label: "La rechazaron o redujeron días",
+          resultado: {
+            titulo: "Tienes 15 días hábiles para apelar",
+            descripcion:
+              "Si tu licencia fue rechazada o reducida, puedes apelar ante la COMPIN o tu Isapre dentro de 15 días hábiles desde la notificación de la resolución. Reúne los antecedentes médicos que respalden tu caso.",
+            pasos: [
+              "Pide la resolución de rechazo o reducción por escrito.",
+              "Reúne los antecedentes médicos: historial, exámenes, informe del médico.",
+              "Presenta la apelación ante la COMPIN o Isapre dentro de 15 días hábiles.",
+              "Si la apelación es rechazada, puedes recurrir a SUSESO.",
+            ],
+            links: [
+              {
+                label: "SUSESO: apelaciones de licencias",
+                href: "https://www.suseso.cl/608/w3-propertyvalue-22799.html",
+              },
+              {
+                label: "ChileAtiende: reclamar licencia médica",
+                href: "https://www.chileatiende.gob.cl/fichas/12528-licencia-medica",
+              },
+            ],
+            nota: "Esta información es educativa. Para situaciones complejas, considera asistencia legal.",
+          },
+        },
+      ],
+    },
+  },
+};
+---
+
+<Layout
+  title="¿Desde qué día pagan la licencia médica? — Encuentra tu respuesta | Monedario"
+  description="Responde 2–3 preguntas y sabe exactamente desde qué día te pagan la licencia médica en Chile: regla SUSESO para licencias cortas, largas y continuaciones."
+>
+  <Header />
+  <Breadcrumb />
+
+  <main id="main-content" class="app-layout">
+    <section class="border-b border-border py-8">
+      <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-accent">
+        Herramienta — Empleo e ingresos
+      </p>
+      <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
+        ¿Desde qué día pagan la licencia médica?
+      </h1>
+      <p class="max-w-2xl text-secondary">
+        La regla depende de la duración autorizada y si es continuación de otra
+        licencia. Responde 2–3 preguntas para saber cuál aplica en tu caso.
+      </p>
+      <p class="mt-3 text-sm text-muted">
+        ⚠️ Información educativa basada en SUSESO — no reemplaza asesoría
+        profesional.
+      </p>
+    </section>
+
+    <section class="py-8">
+      <DecisionWizard config={wizardConfig} />
+    </section>
+
+    <section
+      class="prose prose-sm max-w-none border-t border-border py-8 dark:prose-invert"
+    >
+      <h2>La regla fundamental: duración ≥ 11 días vs. menos de 11 días</h2>
+      <p>
+        En Chile, la duración total de la licencia <strong>autorizada</strong> (no
+        la solicitada) determina desde cuándo se paga el subsidio:
+      </p>
+      <ul>
+        <li>
+          <strong>1 a 10 días autorizados:</strong> el subsidio parte desde el
+          día 4. Los 3 primeros días no generan pago.
+        </li>
+        <li>
+          <strong>11 días o más autorizados:</strong> el subsidio parte desde el
+          día 1, sin días de espera.
+        </li>
+      </ul>
+      <p>
+        Para el detalle completo del cálculo y los pasos de apelación, lee la{" "}
+        <a
+          href={articuloPath}
+          data-analytics-cta="wizard-to-article"
+          data-analytics-location="licencia_wizard_explainer"
+        >
+          guía completa de licencia médica
+        </a>.
+      </p>
+    </section>
+
+    <section class="border-t border-border py-8">
+      <a
+        href={hubPath}
+        class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+      >
+        ← Volver a Empleo e Ingresos
+      </a>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

@@ -9,6 +9,7 @@ import {
   deudaClusterHubDecisionCards,
   deudaClusterHubToolCards,
 } from "@/config/deudaClusterLinks";
+import CompareTable from "@/components/CompareTable.astro";
 
 const hubAssignments = getHubArticleAssignments("deuda-credito");
 
@@ -127,6 +128,61 @@ const relatedCards = hubAssignments.related.filter(
           ))
         }
       </div>
+    </section>
+
+    <!-- TABLA COMPARATIVA CMF vs DICOM vs BOLETÍN -->
+    <section class="border-b border-border py-8">
+      <h2 class="mb-2 text-2xl font-bold">CMF vs DICOM vs Boletín Comercial</h2>
+      <p class="mb-4 text-sm text-secondary max-w-3xl">
+        Son tres sistemas distintos. Cuál necesitas depende de para qué necesitas
+        el reporte.
+      </p>
+      <CompareTable
+        columns={[
+          { header: "Informe CMF", key: "cmf" },
+          { header: "DICOM (Equifax)", key: "dicom" },
+          { header: "Boletín Comercial", key: "boletin" },
+        ]}
+        rows={[
+          {
+            aspecto: "¿Qué incluye?",
+            cmf: "Deudas en el sistema financiero regulado (bancos, cooperativas, cajas, financieras fiscalizadas por CMF)",
+            dicom: "Protestos, morosidades y deudas en empresas privadas adscritas al sistema Equifax",
+            boletin: "Protestos de documentos mercantiles y algunos otros registros",
+          },
+          {
+            aspecto: "¿Es gratis?",
+            cmf: "Sí, en portal CMF",
+            dicom: "Versión básica gratuita; informes detallados son de pago",
+            boletin: "Hay consulta gratuita limitada; informes completos son de pago",
+          },
+          {
+            aspecto: "¿Quién lo emite?",
+            cmf: "Comisión para el Mercado Financiero (organismo público)",
+            dicom: "Equifax Chile (empresa privada)",
+            boletin: "Cámara de Comercio de Santiago y otras cámaras (privadas)",
+          },
+          {
+            aspecto: "¿Cuándo lo piden?",
+            cmf: "Al pedir un crédito bancario o financiero regulado",
+            dicom: "Arriendos, empleos, créditos con comercio",
+            boletin: "Comercio, arriendos, algunos empleos",
+          },
+          {
+            aspecto: "¿Cómo eliminarse?",
+            cmf: "Los datos se actualizan automáticamente cuando se paga la deuda",
+            dicom: "Pagando y solicitando eliminación a Equifax",
+            boletin: "Pagando el protesto y solicitando alzamiento",
+          },
+        ]}
+        nota="Esta información es educativa. Verifica con cada sistema el proceso actual para consultar o reclamar datos."
+      />
+      <a
+        href={getPath("/posts/informe-deudas-cmf-vs-dicom/")}
+        class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+      >
+        Ver guía completa: Informe CMF vs DICOM
+      </a>
     </section>
 
     <section class="border-b border-border py-8">
