@@ -101,7 +101,8 @@ const wizardConfig: WizardConfig = {
         {
           label: "Dependiente privado (Fonasa o Isapre)",
           resultado: {
-            titulo: "Si la suma total supera 10 días, puede aplicar desde el día 1",
+            titulo:
+              "Si la suma total supera 10 días, puede aplicar desde el día 1",
             descripcion:
               "Cuando una licencia continúa a otra de la misma enfermedad sin intervalo, las jornadas se suman para determinar la duración total. Si la suma supera 10 días, el subsidio de la continuación puede aplicar desde el día 1 de ese período extendido.",
             pasos: [
@@ -236,7 +237,9 @@ const wizardConfig: WizardConfig = {
 
   <main id="main-content" class="app-layout">
     <section class="border-b border-border py-8">
-      <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-accent">
+      <p
+        class="mb-2 text-sm font-semibold tracking-widest text-accent uppercase"
+      >
         Herramienta — Empleo e ingresos
       </p>
       <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
@@ -266,16 +269,18 @@ const wizardConfig: WizardConfig = {
       </p>
       <ul>
         <li>
-          <strong>1 a 10 días autorizados:</strong> el subsidio parte desde el
-          día 4. Los 3 primeros días no generan pago.
+          <strong>1 a 10 días autorizados:</strong> el subsidio parte desde el día
+          4. Los 3 primeros días no generan pago.
         </li>
         <li>
-          <strong>11 días o más autorizados:</strong> el subsidio parte desde el
-          día 1, sin días de espera.
+          <strong>11 días o más autorizados:</strong> el subsidio parte desde el día
+          1, sin días de espera.
         </li>
       </ul>
       <p>
-        Para el detalle completo del cálculo y los pasos de apelación, lee la{" "}
+        Para el detalle completo del cálculo y los pasos de apelación, lee la{
+          " "
+        }
         <a
           href={articuloPath}
           data-analytics-cta="wizard-to-article"

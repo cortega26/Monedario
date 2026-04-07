@@ -115,7 +115,7 @@ const articulosSeccion = [
           articulosSeccion.map(item => (
             <li class="rounded-xl border border-border p-5">
               {item.esHerramienta && (
-                <p class="mb-2 text-xs font-bold uppercase tracking-widest text-accent">
+                <p class="mb-2 text-xs font-bold tracking-widest text-accent uppercase">
                   Herramienta interactiva
                 </p>
               )}
@@ -124,7 +124,9 @@ const articulosSeccion = [
               <a
                 href={item.href}
                 class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-                data-analytics-cta={item.esHerramienta ? "hub-tool" : "hub-article"}
+                data-analytics-cta={
+                  item.esHerramienta ? "hub-tool" : "hub-article"
+                }
                 data-analytics-label={item.titulo}
                 data-analytics-location="empleo_ingresos_hub"
               >

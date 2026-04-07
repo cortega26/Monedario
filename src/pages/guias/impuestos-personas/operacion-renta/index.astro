@@ -53,8 +53,14 @@ const subcasos = [
 const calendarioOR = [
   { evento: "SII publica propuestas de declaración", plazo: "Marzo 2026" },
   { evento: "Período de revisión de propuestas", plazo: "Marzo–Abril 2026" },
-  { evento: "Plazo para declarar (trabajadores dependientes)", plazo: "30 de abril 2026" },
-  { evento: "Plazo para declarar (trabajadores independientes)", plazo: "30 de abril 2026" },
+  {
+    evento: "Plazo para declarar (trabajadores dependientes)",
+    plazo: "30 de abril 2026",
+  },
+  {
+    evento: "Plazo para declarar (trabajadores independientes)",
+    plazo: "30 de abril 2026",
+  },
   { evento: "Inicio de devoluciones (primera ventana)", plazo: "Mayo 2026" },
   { evento: "Ventana final de devoluciones", plazo: "Junio 2026" },
 ];
@@ -101,12 +107,12 @@ const itemListSchema = {
 
   <main id="main-content" class="app-layout">
     <section class="border-b border-border py-8">
-      <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-accent">
+      <p
+        class="mb-2 text-sm font-semibold tracking-widest text-accent uppercase"
+      >
         Impuestos para personas
       </p>
-      <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
-        Operación Renta 2026
-      </h1>
+      <h1 class="mb-4 text-3xl font-bold sm:text-4xl">Operación Renta 2026</h1>
       <p class="max-w-3xl text-secondary">
         Todo lo que necesitas para Operación Renta en Chile: desde revisar la
         propuesta del SII hasta consultar el estado de tu devolución o resolver
@@ -145,7 +151,8 @@ const itemListSchema = {
           target="_blank"
           rel="noopener noreferrer"
           class="text-accent underline underline-offset-4 hover:opacity-80"
-        >sii.cl</a> ya que el SII publica el calendario oficial con antelación.
+          >sii.cl</a
+        > ya que el SII publica el calendario oficial con antelación.
       </p>
       <div class="overflow-x-auto">
         <table class="w-full border-collapse text-sm">
@@ -231,7 +238,8 @@ const itemListSchema = {
             target="_blank"
             rel="noopener noreferrer"
             class="text-accent underline underline-offset-4 hover:opacity-80"
-          >sii.cl</a>.
+            >sii.cl</a
+          >.
         </p>
         <p class="mt-2 text-xs text-muted">
           Última actualización: 2026-04-06. Se revisa cuando el SII publica

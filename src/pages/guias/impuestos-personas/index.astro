@@ -7,7 +7,8 @@ import { getPath } from "@/utils/getPath";
 
 const rutasPrincipales = [
   {
-    titulo: "Centro Operación Renta 2026: F22, rectificación, devolución y retenciones",
+    titulo:
+      "Centro Operación Renta 2026: F22, rectificación, devolución y retenciones",
     resumen:
       "Subcaso por subcaso: calendario OR, checklist del F22, cómo rectificar observaciones, estado de devolución y compensaciones TGR.",
     href: getPath("/guias/impuestos-personas/operacion-renta/"),
@@ -73,7 +74,7 @@ const rutasPrincipales = [
           rutasPrincipales.map(item => (
             <li class="rounded-xl border border-border p-5">
               {item.esSubhub && (
-                <p class="mb-2 text-xs font-bold uppercase tracking-widest text-accent">
+                <p class="mb-2 text-xs font-bold tracking-widest text-accent uppercase">
                   Centro de recursos
                 </p>
               )}

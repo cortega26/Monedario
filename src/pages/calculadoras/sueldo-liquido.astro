@@ -257,9 +257,10 @@ const economicSourceLabel =
             <span>Modo avanzado</span>
             <span id="advanced-arrow" class="transition-transform">▼</span>
           </button>
-          <div id="advanced-fields" class="hidden mt-4 space-y-4">
+          <div id="advanced-fields" class="mt-4 hidden space-y-4">
             <p class="text-xs text-muted">
-              Agrega conceptos adicionales para un cálculo más preciso. Solo en modo Bruto → Líquido.
+              Agrega conceptos adicionales para un cálculo más preciso. Solo en
+              modo Bruto → Líquido.
             </p>
             <div>
               <label
@@ -276,7 +277,8 @@ const economicSourceLabel =
                 class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
               />
               <p class="mt-1 text-xs text-muted">
-                Si recibes gratificación mensualizada, ingrésala aquí. Se suma al imponible.
+                Si recibes gratificación mensualizada, ingrésala aquí. Se suma
+                al imponible.
               </p>
             </div>
             <div>
@@ -312,7 +314,8 @@ const economicSourceLabel =
                 class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
               />
               <p class="mt-1 text-xs text-muted">
-                Descuentos adicionales no previsionales (préstamo empresa, caja, etc.). Se restan del líquido final.
+                Descuentos adicionales no previsionales (préstamo empresa, caja,
+                etc.). Se restan del líquido final.
               </p>
             </div>
           </div>
@@ -572,7 +575,10 @@ const economicSourceLabel =
       if (arrow) arrow.style.transform = "";
     }
     if (advancedToggle)
-      advancedToggle.classList.toggle("opacity-40 pointer-events-none", esLiquidoABruto);
+      advancedToggle.classList.toggle(
+        "opacity-40 pointer-events-none",
+        esLiquidoABruto
+      );
   }
 
   // Toggle Modo
@@ -635,7 +641,12 @@ const economicSourceLabel =
       parseFloat(
         (document.getElementById("isapre-adicional") as HTMLInputElement).value
       ) || 0;
-    return { afpTasaPercent, healthSystem, contractType, isapreAdicional } as const;
+    return {
+      afpTasaPercent,
+      healthSystem,
+      contractType,
+      isapreAdicional,
+    } as const;
   }
 
   const buildRow = (label: string, value: string, colorClass = "") => {
@@ -670,9 +681,7 @@ const economicSourceLabel =
     const headlineValue = document.createElement("p");
     headlineValue.className = "text-4xl font-bold";
     headlineValue.textContent = fmt(
-      modoLabel === "Sueldo Bruto Estimado"
-        ? resultado.grossSalary
-        : netFinal
+      modoLabel === "Sueldo Bruto Estimado" ? resultado.grossSalary : netFinal
     );
     headline.append(headlineLabel, headlineValue);
 
@@ -682,8 +691,7 @@ const economicSourceLabel =
     totalsLabel.textContent = "Total descuentos";
     const totalsValue = document.createElement("span");
     totalsValue.className = "text-red-400";
-    const totalDed =
-      resultado.deductions.total + (otrosDescuentos ?? 0);
+    const totalDed = resultado.deductions.total + (otrosDescuentos ?? 0);
     totalsValue.textContent = `${fmt(totalDed)} (${fmtPct((totalDed / resultado.grossSalary) * 100)})`;
     totals.append(totalsLabel, totalsValue);
 
@@ -697,8 +705,16 @@ const economicSourceLabel =
 
     const rows = [
       buildRow("Sueldo bruto", fmt(resultado.grossSalary), "text-green-500"),
-      buildRow("Sueldo imponible", fmt(resultado.taxableSalary), "text-secondary"),
-      buildRow("No imponibles", fmt(resultado.nonTaxableIncome), "text-secondary"),
+      buildRow(
+        "Sueldo imponible",
+        fmt(resultado.taxableSalary),
+        "text-secondary"
+      ),
+      buildRow(
+        "No imponibles",
+        fmt(resultado.nonTaxableIncome),
+        "text-secondary"
+      ),
       buildRow(
         `AFP (${fmtPct(resultado.effectiveRates.afpPercent)})`,
         `− ${fmt(resultado.deductions.afp)}`,
@@ -723,7 +739,11 @@ const economicSourceLabel =
 
     if (otrosDescuentos && otrosDescuentos > 0) {
       rows.push(
-        buildRow("Otros descuentos", `− ${fmt(otrosDescuentos)}`, "text-red-400")
+        buildRow(
+          "Otros descuentos",
+          `− ${fmt(otrosDescuentos)}`,
+          "text-red-400"
+        )
       );
     }
 
@@ -800,12 +820,15 @@ const economicSourceLabel =
         ) || 0;
       const otrosDescuentos =
         parseFloat(
-          (document.getElementById("otros-descuentos") as HTMLInputElement)?.value
+          (document.getElementById("otros-descuentos") as HTMLInputElement)
+            ?.value
         ) || 0;
 
       const grossBase = rawInput + gratificacion + horasExtra;
       const taxableAdjusted =
-        imponible !== undefined ? imponible + gratificacion + horasExtra : undefined;
+        imponible !== undefined
+          ? imponible + gratificacion + horasExtra
+          : undefined;
 
       let resultado;
       try {

@@ -15,12 +15,12 @@ relatedTerms: ["sernac", "cmf", "dicom"]
 
 ### ¿Cuándo usar la LPC?
 
-| Situación | Qué dice la LPC |
-|---|---|
-| Compraste algo defectuoso | Tienes 6 meses para reclamar garantía al vendedor |
-| Te cobraron más del precio publicado | El precio del aviso es el que se aplica |
-| Te inscribieron en un servicio sin pedirlo | Puedes exigir la baja y devolución |
-| Una empresa no responde al reclamo | Puedes recurrir al SERNAC o a los Juzgados de Policía Local |
+| Situación                                  | Qué dice la LPC                                             |
+| ------------------------------------------ | ----------------------------------------------------------- |
+| Compraste algo defectuoso                  | Tienes 6 meses para reclamar garantía al vendedor           |
+| Te cobraron más del precio publicado       | El precio del aviso es el que se aplica                     |
+| Te inscribieron en un servicio sin pedirlo | Puedes exigir la baja y devolución                          |
+| Una empresa no responde al reclamo         | Puedes recurrir al SERNAC o a los Juzgados de Policía Local |
 
 ### ¿Dónde se presenta el reclamo?
 

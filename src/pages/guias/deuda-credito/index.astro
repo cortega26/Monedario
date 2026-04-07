@@ -133,9 +133,9 @@ const relatedCards = hubAssignments.related.filter(
     <!-- TABLA COMPARATIVA CMF vs DICOM vs BOLETÍN -->
     <section class="border-b border-border py-8">
       <h2 class="mb-2 text-2xl font-bold">CMF vs DICOM vs Boletín Comercial</h2>
-      <p class="mb-4 text-sm text-secondary max-w-3xl">
-        Son tres sistemas distintos. Cuál necesitas depende de para qué necesitas
-        el reporte.
+      <p class="mb-4 max-w-3xl text-sm text-secondary">
+        Son tres sistemas distintos. Cuál necesitas depende de para qué
+        necesitas el reporte.
       </p>
       <CompareTable
         columns={[
@@ -147,20 +147,24 @@ const relatedCards = hubAssignments.related.filter(
           {
             aspecto: "¿Qué incluye?",
             cmf: "Deudas en el sistema financiero regulado (bancos, cooperativas, cajas, financieras fiscalizadas por CMF)",
-            dicom: "Protestos, morosidades y deudas en empresas privadas adscritas al sistema Equifax",
-            boletin: "Protestos de documentos mercantiles y algunos otros registros",
+            dicom:
+              "Protestos, morosidades y deudas en empresas privadas adscritas al sistema Equifax",
+            boletin:
+              "Protestos de documentos mercantiles y algunos otros registros",
           },
           {
             aspecto: "¿Es gratis?",
             cmf: "Sí, en portal CMF",
             dicom: "Versión básica gratuita; informes detallados son de pago",
-            boletin: "Hay consulta gratuita limitada; informes completos son de pago",
+            boletin:
+              "Hay consulta gratuita limitada; informes completos son de pago",
           },
           {
             aspecto: "¿Quién lo emite?",
             cmf: "Comisión para el Mercado Financiero (organismo público)",
             dicom: "Equifax Chile (empresa privada)",
-            boletin: "Cámara de Comercio de Santiago y otras cámaras (privadas)",
+            boletin:
+              "Cámara de Comercio de Santiago y otras cámaras (privadas)",
           },
           {
             aspecto: "¿Cuándo lo piden?",

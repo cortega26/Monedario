@@ -12,7 +12,11 @@ const configJson = JSON.stringify(config);
 const wizardId = `wizard-${config.id}`;
 ---
 
-<div id={wizardId} class="rounded-xl border border-border p-6" data-wizard-config={configJson}>
+<div
+  id={wizardId}
+  class="rounded-xl border border-border p-6"
+  data-wizard-config={configJson}
+>
   <!-- Step view -->
   <div id={`${wizardId}-step`}>
     <p class="mb-4 text-sm text-muted">
@@ -26,21 +30,30 @@ const wizardId = `wizard-${config.id}`;
   <div id={`${wizardId}-resultado`} class="hidden">
     <div class="mb-4 rounded-lg border border-accent/20 bg-accent/5 p-4">
       <p id={`${wizardId}-res-titulo`} class="text-base font-bold"></p>
-      <p id={`${wizardId}-res-descripcion`} class="mt-1 text-sm text-secondary"></p>
+      <p id={`${wizardId}-res-descripcion`} class="mt-1 text-sm text-secondary">
+      </p>
     </div>
-    <div id={`${wizardId}-res-pasos`} class="hidden mb-4">
+    <div id={`${wizardId}-res-pasos`} class="mb-4 hidden">
       <p class="mb-2 text-sm font-semibold">Pasos a seguir:</p>
-      <ol id={`${wizardId}-res-pasos-lista`} class="list-decimal space-y-1 pl-5 text-sm text-secondary"></ol>
+      <ol
+        id={`${wizardId}-res-pasos-lista`}
+        class="list-decimal space-y-1 pl-5 text-sm text-secondary"
+      >
+      </ol>
     </div>
-    <div id={`${wizardId}-res-links`} class="hidden mb-4 flex flex-col gap-2">
+    <div id={`${wizardId}-res-links`} class="mb-4 flex hidden flex-col gap-2">
       <p class="text-sm font-semibold">Canales oficiales:</p>
       <ul id={`${wizardId}-res-links-lista`} class="space-y-1"></ul>
     </div>
-    <p id={`${wizardId}-res-nota`} class="hidden mt-3 text-xs text-muted border-t border-border pt-3"></p>
+    <p
+      id={`${wizardId}-res-nota`}
+      class="mt-3 hidden border-t border-border pt-3 text-xs text-muted"
+    >
+    </p>
     <button
       id={`${wizardId}-reiniciar`}
       type="button"
-      class="mt-4 rounded-lg border border-border px-4 py-2 text-sm font-medium hover:border-accent hover:text-accent transition-colors"
+      class="mt-4 rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:border-accent hover:text-accent"
     >
       ← Volver al inicio
     </button>
@@ -60,9 +73,13 @@ const wizardId = `wizard-${config.id}`;
     const resTituloEl = document.getElementById(`${wizardId}-res-titulo`);
     const resDescEl = document.getElementById(`${wizardId}-res-descripcion`);
     const resPasosSection = document.getElementById(`${wizardId}-res-pasos`);
-    const resPasosLista = document.getElementById(`${wizardId}-res-pasos-lista`);
+    const resPasosLista = document.getElementById(
+      `${wizardId}-res-pasos-lista`
+    );
     const resLinksSection = document.getElementById(`${wizardId}-res-links`);
-    const resLinksLista = document.getElementById(`${wizardId}-res-links-lista`);
+    const resLinksLista = document.getElementById(
+      `${wizardId}-res-links-lista`
+    );
     const resNotaEl = document.getElementById(`${wizardId}-res-nota`);
     const reiniciarBtn = document.getElementById(`${wizardId}-reiniciar`);
 
@@ -137,7 +154,8 @@ const wizardId = `wizard-${config.id}`;
           a.textContent = link.label;
           a.target = "_blank";
           a.rel = "noopener noreferrer";
-          a.className = "text-sm text-accent underline underline-offset-4 hover:opacity-80";
+          a.className =
+            "text-sm text-accent underline underline-offset-4 hover:opacity-80";
           li.appendChild(a);
           resLinksLista.appendChild(li);
         });
