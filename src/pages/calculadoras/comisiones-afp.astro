@@ -102,7 +102,7 @@ const cheapest = AFP_LIST[0]; // PlanVital after sort
           </thead>
           <tbody id="afp-table-body">
             {
-              AFP_LIST.map((afp, i) => {
+              AFP_LIST.map((afp) => {
                 const isCheapest = afp.commission === cheapest.commission;
                 return (
                   <tr
