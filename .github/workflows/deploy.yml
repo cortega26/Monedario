@@ -17,6 +17,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - run: npm install -g pnpm@10.30.2
@@ -44,9 +45,21 @@ jobs:
           retention-days: 1
           if-no-files-found: error
 
-  deploy:
+  gate:
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 5
+    environment:
+      name: production
+      url: https://monedario.cl
+    steps:
+      - name: Await approval
+        run: echo "Production deployment approved."
+
+  deploy:
+    needs: gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

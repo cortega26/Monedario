@@ -19,6 +19,7 @@ canonicalTopic: cuenta2-afp
 description: "Guía sobre la Cuenta 2 de la AFP como ahorro flexible: cómo funciona, cuánto puedes retirar, qué impuestos pagas y cuándo conviene frente al APV."
 heroImage: /images/hero/que-es-la-cuenta-2-afp.avif
 articleLead:
+  answer: "La Cuenta 2 AFP es una cuenta de ahorro voluntario (CAV) que puedes usar libremente: depositas lo que quieras y puedes retirar hasta 24 veces al año."
   nextStepHref: "/posts/que-es-el-apv/"
   nextStepLabel: "APV: beneficio tributario complementario"
 ---

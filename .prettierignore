@@ -5,6 +5,7 @@
 !/src
 !/public
 !/.github
+.github/prompts
 !tsconfig.json
 !astro.config.ts
 !.prettierrc.mjs

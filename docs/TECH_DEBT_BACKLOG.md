@@ -24,6 +24,7 @@ Fecha de corte: 2026-04-07
 > `TD-0034`: refrescado `docs/reports/routes_snapshot_before.json` a 34 rutas y `pnpm run check:routes` vuelve a responder sin altas espurias el 2026-04-03.
 > `TD-0035`: actualizado `toHaveLength(13)` → `toHaveLength(15)` en `CalculatorPortfolio.test.ts` para reflejar las 15 calculadoras vigentes en el portfolio.
 > `TD-0036`: re-sincronizadas las aserciones numéricas en `hero-image-pool.test.ts` (pool entries: 12/28, canonicalCombinationCount: 56, requestedAssetCount: 112, approvedModelCount: 28, byTemplate A: 24) y los strings de prompts en `hero-images-config.test.ts` (Composition, Scene B, Scene C) con la configuración actual. `pnpm run test` pasa limpio: 37 archivos, 166 tests.
+> `TD-0037` (PRE-EXISTING, Severity 3): `pnpm run lint` fails with `[InvalidContentEntryDataError] blog → que-es-la-cuenta-2-afp data does not match collection schema` — missing `articleLead.answer` field. Present on unmodified main branch as of 2026-04-08. Out of scope for functionality-audit-fixes PR. Fix: add required `articleLead.answer` to `src/data/blog/que-es-la-cuenta-2-afp.md` frontmatter.
 
 ### Top riesgos restantes
 

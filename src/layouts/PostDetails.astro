@@ -62,7 +62,10 @@ if (typeof initOgImage === "string") {
   } else if (/\.(avif|webp)$/i.test(initOgImage)) {
     // AVIF/WebP: social crawlers (LinkedIn, etc.) don't support these formats.
     // Use the pre-generated JPEG from /images/og/ (see scripts/generate-og-jpegs.mjs).
-    const slug = initOgImage.split("/").pop()!.replace(/\.[^.]+$/, "");
+    const slug = initOgImage
+      .split("/")
+      .pop()!
+      .replace(/\.[^.]+$/, "");
     ogImageUrl = `/images/og/${slug}.jpg`;
   } else {
     ogImageUrl = initOgImage;
@@ -439,7 +442,13 @@ const relatedPostsExcludedSlugs = [
         : "-top-3";
 
       const copyButton = document.createElement("button");
-      copyButton.className = `copy-code absolute end-3 ${topClass} rounded bg-surface-muted border border-surface-muted px-2 py-1 text-xs leading-4 text-foreground font-medium`;
+      const copyBtnClasses = [
+        "copy-code absolute end-3",
+        topClass,
+        "rounded bg-surface-muted border border-surface-muted",
+        "px-2 py-1 text-xs leading-4 text-foreground font-medium",
+      ].join(" ");
+      copyButton.className = copyBtnClasses;
       copyButton.innerHTML = copyButtonLabel;
       codeBlock.setAttribute("tabindex", "0");
       codeBlock.appendChild(copyButton);
