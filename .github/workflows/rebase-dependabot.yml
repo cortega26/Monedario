@@ -1,0 +1,72 @@
+name: Rebase Dependabot PRs
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  rebase:
+    name: Rebase stale Dependabot PRs
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "🔄 Rebase open Dependabot PRs onto main"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          # Configure git identity for rebase commits
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # List all open Dependabot PRs (author = app/dependabot)
+          prs=$(gh pr list \
+            --author "app/dependabot" \
+            --state open \
+            --json number,headRefName \
+            --jq '.[] | "\(.number) \(.headRefName)"')
+
+          if [ -z "$prs" ]; then
+            echo "No open Dependabot PRs found. Nothing to do."
+            exit 0
+          fi
+
+          echo "$prs" | while IFS=' ' read -r pr_number branch; do
+            echo "──────────────────────────────────────────"
+            echo "Processing PR #${pr_number} → branch: ${branch}"
+
+            # Fetch the dependabot branch
+            git fetch origin "${branch}" || {
+              echo "⚠️  Could not fetch ${branch}, skipping."
+              continue
+            }
+
+            # Skip if already up-to-date with main
+            base_commit=$(git merge-base origin/main "origin/${branch}")
+            main_head=$(git rev-parse origin/main)
+            if [ "$base_commit" = "$main_head" ]; then
+              echo "✅ PR #${pr_number} already based on current main. Skipping."
+              continue
+            fi
+
+            # Rebase the dependabot branch onto main
+            git checkout -B "${branch}" "origin/${branch}"
+            if git rebase origin/main; then
+              git push origin "${branch}" --force-with-lease
+              echo "✅ PR #${pr_number} rebased and pushed."
+            else
+              git rebase --abort || true
+              echo "⚠️  PR #${pr_number} has conflicts — skipping (manual resolution needed)."
+            fi
+          done
