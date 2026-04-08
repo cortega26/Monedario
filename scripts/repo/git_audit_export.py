@@ -250,7 +250,7 @@ def main() -> int:
     branch = run_git(repo, ["rev-parse", "--abbrev-ref", "HEAD"]).strip()
 
     out = []
-    out.append(f"# Repo audit export\n\n")
+    out.append("# Repo audit export\n\n")
     out.append(f"- Generated: `{now}`\n")
     out.append(f"- Repo: `{toplevel}`\n")
     out.append(f"- Branch: `{branch}`\n")
@@ -258,7 +258,7 @@ def main() -> int:
     if path_filters:
         out.append(f"- Path filters: `{filter_hint(path_filters)}`\n")
     else:
-        out.append(f"- Path filters: `NONE (full repo diffs)`\n")
+        out.append("- Path filters: `NONE (full repo diffs)`\n")
 
     out.append(section("Context snapshot", 2))
     out.append("**git status (short):**\n\n")
