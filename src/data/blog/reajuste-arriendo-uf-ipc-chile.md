@@ -27,6 +27,8 @@ volatileData:
 
 Llegó el aviso de pago y el arriendo subió. O el arrendador avisa que el próximo mes cambia el monto. La primera reacción suele ser preguntarse si corresponde — y la respuesta depende de una sola cosa: lo que dice el contrato.
 
+> **Información vigente al 2026-03-12.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.
+
 En Chile no existe un reajuste automático de arriendo que aplique por ley a todos los contratos. Lo que existe son distintas formas de pactar el reajuste — y cada una funciona distinto. Entender esa diferencia evita conflictos y permite verificar si el monto que te cobran es correcto.
 
 Si ya tienes la cláusula en la mano y solo necesitas el número, usa la [calculadora de reajuste de arriendo](/calculadoras/reajuste-arriendo/). Si quieres entender primero por qué la UF cambia todos los meses, complementa con [qué es la UF](/posts/que-es-la-uf/).

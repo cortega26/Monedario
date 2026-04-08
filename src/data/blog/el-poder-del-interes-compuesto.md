@@ -46,6 +46,8 @@ Imagina a alguien que nunca ganó más que el sueldo mínimo. Sin bonos, sin asc
 
 ## Respuesta rápida
 
+> **En resumen:** Invertir el 10% del sueldo mínimo en el NASDAQ-100 durante 36 años (1990–2025) habría producido ~$125,6 millones CLP (~USD 129.495), partiendo de aportes totales de ~$6,2 millones. El capital final equivale a 13,7 veces lo aportado.
+
 **Resultado del ejercicio:** si alguien hubiera invertido el 10% de su sueldo líquido entre enero de 1990 y diciembre de 2025, la cartera cerraría cerca de **USD 129.495**, equivalentes a **$125,6 millones CLP** al tipo de cambio de cierre usado en la simulación.
 
 **Aporte total estimado:** alrededor de **$6.183.108 CLP** de bolsillo, equivalentes a unos **USD 9.453** al tipo de cambio histórico de cada aporte.
@@ -114,6 +116,8 @@ No 13,7% más. Trece coma siete veces. Cada peso que invirtió trajo aproximadam
 Dicho eso, hay que ser honesto: ese resultado es **nominal**. No está ajustado por inflación. El poder adquisitivo real de esos $125,6 millones es menor que lo que el número sugiere, aunque sigue siendo muy superior al monto efectivamente aportado.
 
 Eso es el interés compuesto trabajando: los retornos de un año generan retornos al año siguiente, que generan retornos el año siguiente, que generan retornos el año siguiente. Al principio parece poco. Al final, cambia de escala todo lo que construiste.
+
+> **Resumen orientativo:** Esta simulación es educativa y no garantiza rentabilidades futuras. Los rendimientos históricos del índice S&P 500 no son representativos de opciones de inversión disponibles en Chile. Verifique condiciones actuales con una corredora registrada en la CMF.
 
 ## ¿Y con esos $125 millones, cuánto se puede retirar por mes?
 

@@ -23,8 +23,8 @@ articleLead:
   answer: "La renegociación Superir no es para cualquier mora: te sirve cuando ya tienes al menos dos deudas vencidas por más de 90 días, que en conjunto superan 80 UF, y el problema dejó de ser 'ordenarme un poco' para pasar a 'ya no puedo sostener esto sin una salida formal'."
   calculatorHref: "/calculadoras/simulador-renegociacion/"
   calculatorLabel: "Filtrar elegibilidad básica"
-  nextStepHref: "/posts/informe-deudas-cmf-vs-dicom/"
-  nextStepLabel: "Ordenar acreedores primero"
+  nextStepHref: "/posts/cae-costo-real-credito-chile/"
+  nextStepLabel: "Entiende el CAE antes de renegociar"
   validAsOf: 2026-03-12
   officialSources:
     - label: "Superir - Requisitos de renegociación"

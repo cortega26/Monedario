@@ -27,6 +27,8 @@ volatileData:
 
 La tasa en pesos parece más alta. La tasa en UF es más baja pero viene con reajuste. ¿Cuál conviene? La respuesta no está en el número de arriba sino en lo que pasa con la inflación durante el plazo que tú necesitas. Esta guía te ayuda a decidir con números concretos.
 
+> **Información vigente al 2026-03-30.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.
+
 Para una mirada más amplia de instrumentos, revisa primero la [guía de ahorro e inversión en Chile](/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/). Si quieres entender cómo funciona la UF antes de comparar tasas, parte por la [guía UF, inflación y costo de vida](/guias/uf-costo-de-vida/).
 
 ## Antes de comparar: lo que esta guía asume

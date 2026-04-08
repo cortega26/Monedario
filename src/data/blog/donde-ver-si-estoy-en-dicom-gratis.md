@@ -22,7 +22,7 @@ heroImage: /images/hero/donde-ver-si-estoy-en-dicom-gratis.avif
 articleLead:
   answer: "No existe un solo botón oficial que te diga 'estás en DICOM'. Si quieres revisar deudas financieras vigentes, parte por el Informe de Deudas CMF. Si buscas protestos o un reporte comercial más amplio, necesitas separar Boletín Comercial y reportes privados antes de pagar o sacar conclusiones."
   nextStepHref: "/posts/informe-deudas-cmf-vs-dicom/"
-  nextStepLabel: "Separar CMF, DICOM y Boletín"
+  nextStepLabel: "Obtén tu informe de deudas CMF gratis"
   validAsOf: 2026-03-12
   officialSources:
     - label: "CMF Chile - Informe de Deudas de Personas"

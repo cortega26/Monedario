@@ -28,6 +28,8 @@ volatileData:
 
 Cuando sale el dato del IPC cada mes, los medios hablan de "inflación" y tú ves que las cosas cuestan más. Pero ¿cómo se mide exactamente? ¿Por qué a veces el IPC baja pero igual sientes que todo cuesta más? Y lo más importante: ¿qué decisiones afecta directamente en tu vida?
 
+> **Información vigente al 2026-03-11.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.
+
 Esta guía lo explica desde cero, con ejemplos concretos y sin economía de facultad. Si quieres ver este frente completo junto con UF, reajustes y herramientas, entra a la [guía UF, inflación y costo de vida](/guias/uf-costo-de-vida/). Si lo que te interesa es el efecto específico sobre la UF, complementa con [qué es la UF y cómo impacta tu arriendo](/posts/que-es-la-uf/).
 
 ## Qué es el IPC

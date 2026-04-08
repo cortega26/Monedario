@@ -18,6 +18,9 @@ topicRole: owner
 canonicalTopic: cuenta2-afp
 description: "Guía sobre la Cuenta 2 de la AFP como ahorro flexible: cómo funciona, cuánto puedes retirar, qué impuestos pagas y cuándo conviene frente al APV."
 heroImage: /images/hero/que-es-la-cuenta-2-afp.avif
+articleLead:
+  nextStepHref: "/posts/que-es-el-apv/"
+  nextStepLabel: "APV: beneficio tributario complementario"
 ---
 
 Cuando la gente habla de su AFP, casi siempre se refiere a la cuenta obligatoria donde va el 10% del sueldo. Pero existe una segunda cuenta —voluntaria, flexible y mucho menos conocida— que puede servir como instrumento de ahorro de mediano plazo con rentabilidades similares a las de tu cotización obligatoria: la **Cuenta 2**, también llamada Cuenta de Ahorro Voluntario (CAV).

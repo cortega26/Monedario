@@ -24,7 +24,7 @@ articleLead:
   calculatorHref: "/calculadoras/credito-consumo/"
   calculatorLabel: "Simular una oferta"
   nextStepHref: "/posts/renegociacion-superir/"
-  nextStepLabel: "Ver salida si ya no puedes pagar"
+  nextStepLabel: "Conoce el proceso de renegociación Superir"
   validAsOf: 2026-03-12
   officialSources:
     - label: "CMF Educa - CAE y hoja resumen"

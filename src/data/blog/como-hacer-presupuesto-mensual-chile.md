@@ -4,7 +4,7 @@ author: "Equipo Monedario"
 description: "Guía práctica para crear un presupuesto mensual real en Chile: identificar ingresos, clasificar gastos, detectar fugas y construir hábitos de control financiero."
 slug: como-hacer-presupuesto-mensual-chile
 pubDate: 2026-03-03T23:45:00Z
-updatedDate: 2026-03-11T00:00:00Z
+updatedDate: 2026-04-08T00:00:00Z
 tags:
   - presupuesto
   - finanzas-personales
@@ -19,9 +19,15 @@ draft: false
 heroImage: /images/hero/como-hacer-presupuesto-mensual-chile.avif
 ---
 
+> **Respuesta rápida:** Una guía de base ampliamente utilizada en educación financiera es la regla 50/30/20: destinar hasta un 50% del ingreso neto a gastos fijos (arriendo, deudas, servicios), hasta un 30% a gastos variables (alimentación, ocio) y al menos un 20% a ahorro o reducción de deudas. Es un punto de partida, no una obligación, y debe ajustarse a tu situación real.
+>
+> **Resumen orientativo:** Esta distribución es una referencia orientativa de educación financiera, no una norma legal. Adáptala según tu ingreso, carga familiar y metas.
+
 Antes de invertir en algo, antes de ahorrar para algo, antes de salir de una deuda, necesitas saber a dónde va tu plata. La mayoría de los problemas financieros personales no son de ingreso — son de control. Este artículo te da un método concreto para hacer un presupuesto que funcione en la realidad chilena, no en una hoja teórica.
 
 Si ya tienes claro cuánto recibes de sueldo líquido, complementa con la [guía de cómo calcular tu sueldo líquido](/posts/como-calcular-sueldo-liquido/).
+
+> **Resumen orientativo:** Los patrones de gasto descritos a continuación son referencias de educación financiera basadas en comportamiento general del consumidor. No representan datos estadísticos oficiales de Chile.
 
 ## Por qué los presupuestos fallan (y cómo evitarlo)
 
@@ -82,6 +88,8 @@ Al cabo de 30 días tendrás una foto real de tus gastos. Probablemente te sorpr
 
 ---
 
+> **Resumen orientativo:** Los patrones de gasto descritos a continuación son referencias de educación financiera basadas en comportamiento general del consumidor. No representan datos estadísticos oficiales de Chile.
+
 ## Paso 4: Identifica fugas
 
 Las fugas más comunes en presupuestos chilenos:
@@ -136,6 +144,14 @@ No importa cuál uses — lo que importa es que la uses consistentemente.
 | YNAB (You Need A Budget)          | Quienes quieren estructura con metodología + app móvil |
 | Fintual                           | Quien quiere lo básico integrado con inversión         |
 | Notas del celular                 | Punto de partida para el primer mes de registro        |
+
+---
+
+### Fuentes y recursos oficiales
+
+- [CMF Educa — Educación financiera](https://www.cmfeduca.cl/) — Comisión para el Mercado Financiero
+- [SERNAC — Guías de finanzas personales](https://www.sernac.cl/) — Servicio Nacional del Consumidor
+- [Banco Central de Chile](https://www.bcentral.cl/) — contexto macroeconómico de referencia
 
 ---
 

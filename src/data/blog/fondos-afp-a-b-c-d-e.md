@@ -22,8 +22,8 @@ articleLead:
   answer: "En 2026 los multifondos A, B, C, D y E siguen vigentes. La decisión útil hoy todavía es elegir riesgo según horizonte y tolerancia, pero sin olvidar que la reforma ya aprobó el paso a fondos generacionales desde 2027."
   calculatorHref: "/calculadoras/simulador-jubilacion/"
   calculatorLabel: "Proyectar jubilación"
-  nextStepHref: "/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/"
-  nextStepLabel: "Entender transición 2027+"
+  nextStepHref: "/posts/como-cambiarse-de-afp/"
+  nextStepLabel: "Cómo cambiarte de AFP paso a paso"
   validAsOf: 2026-03-12
   officialSources:
     - label: "Superintendencia de Pensiones"
@@ -161,6 +161,8 @@ Una guía orientativa por edad:
 - **55 años en adelante:** Fondo D o E. Proteger lo acumulado es prioritario.
 
 > ⚠️ Esta es una guía general, no asesoría financiera. Tu situación personal puede ser diferente.
+
+> **Resumen orientativo:** La elección del fondo depende de tu perfil de riesgo personal y horizonte de inversión, no solo de la edad. Este análisis es una guía general; para una decisión informada considera consultar a un asesor previsional registrado en la Superintendencia de Pensiones.
 
 ## ¿Qué pasa si no eliges ningún fondo?
 

@@ -22,6 +22,8 @@ heroImage: /images/hero/como-invertir-en-etfs-desde-chile.avif
 
 Invertir en ETFs desde Chile es perfectamente posible, pero el costo real rara vez aparece en el primer número que ves. La comisión, los derechos de bolsa, el IVA, la custodia y el spread se acumulan en silencio. Esta guía te lleva paso a paso para que sepas exactamente qué estás pagando y qué debes declarar al SII.
 
+> **Información vigente al 2026-02-28.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.
+
 Para contexto más amplio sobre instrumentos, revisa [ahorro e inversión en Chile](/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/).
 
 ## Qué necesitas tener claro antes de empezar

@@ -42,6 +42,8 @@ articleLead:
 
 El depósito cayó y el número no cuadra con lo que esperabas. Abres la liquidación y ves líneas que no entiendes o cifras que no puedes verificar. Aquí empieza el problema real: la mayoría de los trabajadores no sabe qué debe mostrar el comprobante ni qué preguntar cuando algo no cierra.
 
+> **Información vigente al 2026-03-12.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.
+
 ## Qué es y para qué sirve la liquidación
 
 La liquidación de sueldo es el comprobante que el empleador debe entregarte junto con el pago de remuneraciones. No es un favor administrativo — es una obligación legal establecida en el artículo 54 del Código del Trabajo.
@@ -129,4 +131,4 @@ Sí, es el documento más utilizado para acreditar renta en Chile. Algunos banco
 
 ---
 
-_Contenido educativo con fecha de corte 2026-03-08. Si tu caso involucra remuneración variable compleja o descuentos discutidos formalmente, la revisión con respaldo documental y asesoría es el paso correcto antes de firmar conforme._
+_Contenido educativo con fecha de corte 2026-03-12. Si tu caso involucra remuneración variable compleja o descuentos discutidos formalmente, la revisión con respaldo documental y asesoría es el paso correcto antes de firmar conforme._

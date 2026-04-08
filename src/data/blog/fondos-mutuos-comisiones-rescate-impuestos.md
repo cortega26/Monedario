@@ -45,6 +45,8 @@ Por definición regulatoria de la CMF, un fondo mutuo debe permitir el rescate t
 
 En algunas series, la comisión de rescate disminuye o desaparece si cumples una permanencia mínima. Verificarlo antes de salir puede evitarte un costo innecesario.
 
+> **Nota:** El plazo exacto de rescate varía según el reglamento interno de cada fondo. Los plazos indicados son los máximos permitidos por la CMF; el fondo específico puede ofrecer plazos menores. Verifique en el reglamento del fondo o en el sitio de la CMF.
+
 ### Paso a paso para rescatar sin errores
 
 1. Revisa la comisión de salida de tu serie específica y la permanencia mínima exigida.
