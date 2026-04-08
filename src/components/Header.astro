@@ -30,6 +30,10 @@ const guiasDropdown: DropdownItem[] = [
     label: "Sueldo y Remuneraciones",
   },
   {
+    href: getPath("/guias/uf-costo-de-vida/"),
+    label: "UF y Costo de Vida",
+  },
+  {
     href: getPath("/guias/impuestos-personas/"),
     label: "Impuestos",
   },
@@ -146,6 +150,17 @@ const isActive = (path: string) => {
             ]}
           >
             Calculadoras
+          </a>
+        </li>
+        <li class="col-span-2">
+          <a
+            href={getPath("/glosario/")}
+            class:list={[
+              "header-nav-item block px-4 py-3 text-center sm:px-2 sm:py-1",
+              { "active-nav text-foreground": isActive("/glosario") },
+            ]}
+          >
+            Glosario
           </a>
         </li>
         <li class="col-span-2">
