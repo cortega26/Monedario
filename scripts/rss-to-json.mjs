@@ -32,11 +32,11 @@ function parseCliArgs(argv) {
 
 function decodeXmlEntities(value) {
   return value
-    .replace(/&amp;/g, "&")
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
     .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'");
+    .replace(/&#39;/g, "'")
+    .replace(/&amp;/g, "&");
 }
 
 function getTagValue(xml, tagName) {
