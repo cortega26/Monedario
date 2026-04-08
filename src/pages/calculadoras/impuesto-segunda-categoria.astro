@@ -10,7 +10,9 @@ import { getPath } from "@/utils/getPath";
 const { parameters: economicParameters } = await getEconomicParameters();
 const utm = economicParameters.utm;
 const economicSourceLabel =
-  economicParameters.source === "live" ? "dato en línea" : "fallback controlado";
+  economicParameters.source === "live"
+    ? "dato en línea"
+    : "fallback controlado";
 
 const fmt = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
 
@@ -24,14 +26,62 @@ const d7 = 120 * utm * (0.35 - 0.304) + d6;
 const d8 = 150 * utm * (0.4 - 0.35) + d7;
 
 const bracketRows = [
-  { desde: "0",    hasta: "13,5",  hastaPesos: fmt(13.5 * utm), tasa: "Exento (0%)", rebaja: "—" },
-  { desde: "13,5", hasta: "30",    hastaPesos: fmt(30 * utm),   tasa: "4%",          rebaja: fmt(d2) },
-  { desde: "30",   hasta: "50",    hastaPesos: fmt(50 * utm),   tasa: "8%",          rebaja: fmt(d3) },
-  { desde: "50",   hasta: "70",    hastaPesos: fmt(70 * utm),   tasa: "13,5%",       rebaja: fmt(d4) },
-  { desde: "70",   hasta: "90",    hastaPesos: fmt(90 * utm),   tasa: "23%",         rebaja: fmt(d5) },
-  { desde: "90",   hasta: "120",   hastaPesos: fmt(120 * utm),  tasa: "30,4%",       rebaja: fmt(d6) },
-  { desde: "120",  hasta: "150",   hastaPesos: fmt(150 * utm),  tasa: "35%",         rebaja: fmt(d7) },
-  { desde: "150",  hasta: "∞",     hastaPesos: "Sin límite",    tasa: "40%",         rebaja: fmt(d8) },
+  {
+    desde: "0",
+    hasta: "13,5",
+    hastaPesos: fmt(13.5 * utm),
+    tasa: "Exento (0%)",
+    rebaja: "—",
+  },
+  {
+    desde: "13,5",
+    hasta: "30",
+    hastaPesos: fmt(30 * utm),
+    tasa: "4%",
+    rebaja: fmt(d2),
+  },
+  {
+    desde: "30",
+    hasta: "50",
+    hastaPesos: fmt(50 * utm),
+    tasa: "8%",
+    rebaja: fmt(d3),
+  },
+  {
+    desde: "50",
+    hasta: "70",
+    hastaPesos: fmt(70 * utm),
+    tasa: "13,5%",
+    rebaja: fmt(d4),
+  },
+  {
+    desde: "70",
+    hasta: "90",
+    hastaPesos: fmt(90 * utm),
+    tasa: "23%",
+    rebaja: fmt(d5),
+  },
+  {
+    desde: "90",
+    hasta: "120",
+    hastaPesos: fmt(120 * utm),
+    tasa: "30,4%",
+    rebaja: fmt(d6),
+  },
+  {
+    desde: "120",
+    hasta: "150",
+    hastaPesos: fmt(150 * utm),
+    tasa: "35%",
+    rebaja: fmt(d7),
+  },
+  {
+    desde: "150",
+    hasta: "∞",
+    hastaPesos: "Sin límite",
+    tasa: "40%",
+    rebaja: fmt(d8),
+  },
 ];
 
 const sueldoLiquidoPath = getPath("/calculadoras/sueldo-liquido/");
@@ -134,10 +184,12 @@ const sueldoLiquidoPath = getPath("/calculadoras/sueldo-liquido/");
       <div class="overflow-x-auto">
         <table class="w-full text-sm">
           <thead>
-            <tr class="border-b border-border text-left text-xs font-semibold text-muted uppercase">
-              <th class="pb-2 pr-4">Tramo (UTM)</th>
-              <th class="pb-2 pr-4">Hasta ($)</th>
-              <th class="pb-2 pr-4">Tasa</th>
+            <tr
+              class="border-b border-border text-left text-xs font-semibold text-muted uppercase"
+            >
+              <th class="pr-4 pb-2">Tramo (UTM)</th>
+              <th class="pr-4 pb-2">Hasta ($)</th>
+              <th class="pr-4 pb-2">Tasa</th>
               <th class="pb-2">Cuantía a rebajar</th>
             </tr>
           </thead>
@@ -175,8 +227,8 @@ const sueldoLiquidoPath = getPath("/calculadoras/sueldo-liquido/");
       </p>
       <ul>
         <li>
-          <strong>Tramo exento:</strong> Si tu imponible no supera las 13,5 UTM
-          mensuales (~{fmt(13.5 * utm)}), no pagas impuesto.
+          <strong>Tramo exento:</strong> Si tu imponible no supera las 13,5 UTM mensuales
+          (~{fmt(13.5 * utm)}), no pagas impuesto.
         </li>
         <li>
           <strong>Progresividad:</strong> Solo paga impuesto la parte de tu sueldo
@@ -187,8 +239,8 @@ const sueldoLiquidoPath = getPath("/calculadoras/sueldo-liquido/");
           ya pagados. La fórmula SII es: impuesto = imponible × tasa − rebaja.
         </li>
         <li>
-          <strong>Retención mensual:</strong> El empleador retiene y entera este
-          impuesto cada mes directamente al SII.
+          <strong>Retención mensual:</strong> El empleador retiene y entera este impuesto
+          cada mes directamente al SII.
         </li>
       </ul>
       <p class="text-sm text-muted">
@@ -241,11 +293,9 @@ const sueldoLiquidoPath = getPath("/calculadoras/sueldo-liquido/");
       const row = document.getElementById(`tramo-${i}`);
       if (!row) return;
       const isActive = taxableIncome <= limit * utm;
-      const prevActive = i === 0 || taxableIncome > BRACKET_UPPER_LIMITS_UTM[i - 1] * utm;
-      row.classList.toggle(
-        "bg-accent/10",
-        isActive && prevActive
-      );
+      const prevActive =
+        i === 0 || taxableIncome > BRACKET_UPPER_LIMITS_UTM[i - 1] * utm;
+      row.classList.toggle("bg-accent/10", isActive && prevActive);
     });
   }
 
