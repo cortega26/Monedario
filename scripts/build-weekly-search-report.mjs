@@ -497,7 +497,9 @@ function formatPathForMarkdown(value) {
 }
 
 function sanitizeMarkdownCell(value) {
-  return `${value ?? ""}`.replace(/\|/g, "\\|");
+  const stringValue = `${value ?? ""}`;
+  // First escape backslashes, then escape pipe characters for Markdown tables.
+  return stringValue.replace(/\\/g, "\\\\").replace(/\|/g, "\\|");
 }
 
 function table(headers, rows) {
