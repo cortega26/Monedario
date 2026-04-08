@@ -4,6 +4,7 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import ResumeWidget from "@/components/ResumeWidget.astro";
+import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
 
 const itemListSchema = {
@@ -113,6 +114,15 @@ const articulosSeccion = [
         administradora, te conviene ir a pensiones y AFP.
       </p>
     </section>
+
+    <StartHere
+      steps={[
+        { step: 1, title: "Guía general de ahorro e inversión en Chile", description: "Elige instrumentos según plazo, riesgo e impuestos.", href: "/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/" },
+        { step: 2, title: "APV: beneficio tributario Régimen A y B", description: "Cuándo conviene y cómo compararlo con alternativas más líquidas.", href: "/posts/que-es-el-apv/" },
+        { step: 3, title: "Depósito a plazo: UF vs pesos", description: "Cómo elegir según inflación esperada y plazo de tu meta.", href: "/posts/deposito-a-plazo-uf-vs-pesos/" },
+        { step: 4, title: "Simulador APV", description: "Calcula el ahorro tributario real de tu aporte mensual.", href: "/calculadoras/apv/" }
+      ]}
+    />
 
     <section class="py-4">
       <ResumeWidget />

@@ -1,0 +1,46 @@
+---
+import { getPath } from "@/utils/getPath";
+
+interface Step {
+  step: number;
+  title: string;
+  description: string;
+  href: string;
+}
+
+interface Props {
+  steps: Step[];
+}
+
+const { steps } = Astro.props;
+---
+
+<section class="border-b border-border py-8">
+  <h2 class="mb-1 text-xs font-semibold tracking-widest text-accent uppercase">
+    Empieza aquí
+  </h2>
+  <p class="mb-6 text-2xl font-bold">Orden de lectura recomendado</p>
+  <ol class="grid gap-4 sm:grid-cols-2">
+    {
+      steps.map(step => (
+        <li class="flex gap-4 rounded-xl border border-border bg-surface-muted p-5">
+          <span
+            class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent text-sm font-bold text-background"
+            aria-hidden="true"
+          >
+            {step.step}
+          </span>
+          <div>
+            <a
+              href={getPath(step.href)}
+              class="font-semibold text-foreground underline-offset-4 hover:text-accent hover:underline"
+            >
+              {step.title}
+            </a>
+            <p class="mt-1 text-sm text-secondary">{step.description}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</section>

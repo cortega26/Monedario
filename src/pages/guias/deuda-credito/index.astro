@@ -4,6 +4,7 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import ResumeWidget from "@/components/ResumeWidget.astro";
+import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
 import { getHubArticleAssignments } from "@/config/editorial-hub-model.mjs";
 import {
@@ -158,6 +159,15 @@ const relatedCards = hubAssignments.related.filter(
         </div>
       </div>
     </section>
+
+    <StartHere
+      steps={[
+        { step: 1, title: "DICOM: cómo ver si estás en el buró gratis", description: "Dónde consultar, qué deudas aparecen y cuándo salen.", href: "/posts/donde-ver-si-estoy-en-dicom-gratis/" },
+        { step: 2, title: "CAE: el costo real de un crédito en Chile", description: "Cómo comparar ofertas más allá de la tasa nominal.", href: "/posts/cae-costo-real-credito-chile/" },
+        { step: 3, title: "Renegociación en la Superir: paso a paso", description: "El proceso para refinanciar deudas con la SuperIR.", href: "/posts/renegociacion-superir/" },
+        { step: 4, title: "Simulador de crédito de consumo", description: "Calcula cuotas, interés total y CAE de tu crédito.", href: "/calculadoras/credito-consumo/" }
+      ]}
+    />
 
     <section class="py-4">
       <ResumeWidget />

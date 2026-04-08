@@ -5,6 +5,7 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
+import GlossaryJsonLd from "@/components/GlossaryJsonLd.astro";
 import { getPath } from "@/utils/getPath";
 
 export async function getStaticPaths() {
@@ -30,17 +31,6 @@ const glossaryIndexUrl = new URL(
   Astro.site ?? Astro.url.origin
 ).href;
 
-const definedTermSchema = {
-  "@context": "https://schema.org",
-  "@type": "DefinedTerm",
-  "@id": canonicalUrl,
-  name: term,
-  description: shortDefinition,
-  url: canonicalUrl,
-  inDefinedTermSet: glossaryIndexUrl,
-  inLanguage: "es-CL",
-};
-
 const { Content } = await render(entry);
 
 // Fetch related terms metadata
@@ -58,10 +48,11 @@ if (relatedTerms.length > 0) {
   description={shortDefinition}
   canonicalURL={canonicalUrl}
 >
-  <script
-    type="application/ld+json"
-    is:inline
-    set:html={JSON.stringify(definedTermSchema)}
+  <GlossaryJsonLd
+    term={term}
+    shortDefinition={shortDefinition}
+    canonicalUrl={canonicalUrl}
+    glossaryIndexUrl={glossaryIndexUrl}
   />
   <Header />
   <div class="mx-auto flex w-full max-w-3xl justify-start px-2">

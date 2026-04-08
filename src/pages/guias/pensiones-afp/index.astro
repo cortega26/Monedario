@@ -5,6 +5,7 @@ import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import ContextLinkSection from "@/components/ContextLinkSection.astro";
 import ResumeWidget from "@/components/ResumeWidget.astro";
+import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
 import {
   pensionHubPrimaryCards,
@@ -86,6 +87,15 @@ const relatedCards = pensionHubRelatedCards.filter(
         aparece más abajo solo como comparación cercana.
       </p>
     </section>
+
+    <StartHere
+      steps={[
+        { step: 1, title: "Qué es la AFP y cómo funciona", description: "Entiende la diferencia entre fondo personal y comisión.", href: "/glosario/afp/" },
+        { step: 2, title: "Fondos AFP A, B, C, D y E: cuál elegir", description: "Diferencias de riesgo y rentabilidad según tu edad y perfil.", href: "/posts/fondos-afp-a-b-c-d-e/" },
+        { step: 3, title: "Cómo cambiarse de AFP", description: "Proceso, plazos y cuándo tiene sentido cambiar de administradora.", href: "/posts/como-cambiarse-de-afp/" },
+        { step: 4, title: "Comparador de comisiones AFP", description: "Cuánto te descuenta cada AFP y cuánto ahorrarías con la más barata.", href: "/calculadoras/comisiones-afp/" }
+      ]}
+    />
 
     <section class="py-4">
       <ResumeWidget />

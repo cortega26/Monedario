@@ -4,6 +4,7 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import ResumeWidget from "@/components/ResumeWidget.astro";
+import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
 
 const itemListSchema = {
@@ -108,6 +109,15 @@ const articulosSeccion = [
         .
       </p>
     </section>
+
+    <StartHere
+      steps={[
+        { step: 1, title: "Seguro de cesantía en Chile", description: "Qué cubre, cuánto paga y cuándo puedes usarlo.", href: "/posts/seguro-de-cesantia/" },
+        { step: 2, title: "Finiquito e indemnizaciones en Chile", description: "Derechos según causal de despido y cómo calcular el monto.", href: "/posts/finiquito-e-indemnizaciones-en-chile/" },
+        { step: 3, title: "Licencia médica: ¿desde qué día pagan?", description: "Plazos, topes y diferencias entre CCAF, Fonasa e Isapre.", href: "/posts/licencia-medica-desde-que-dia-pagan/" },
+        { step: 4, title: "Calculadora de finiquito", description: "Estima sueldo pendiente, vacaciones, aviso previo e indemnización.", href: "/calculadoras/finiquito-indemnizacion/" }
+      ]}
+    />
 
     <section class="py-4">
       <ResumeWidget />

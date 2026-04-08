@@ -1,0 +1,23 @@
+---
+import { getPath } from "@/utils/getPath";
+
+interface Props {
+  text: string;
+  href: string;
+  context?: string;
+}
+
+const { text, href, context } = Astro.props;
+---
+
+<section class="mt-6 rounded-2xl border border-accent/30 bg-accent/5 p-6">
+  {context && <p class="mb-3 text-sm text-secondary">{context}</p>}
+  <a
+    href={getPath(href)}
+    class="inline-flex w-full items-center justify-center rounded-xl bg-accent px-6 py-4 text-base font-bold text-background transition-opacity hover:opacity-90 sm:w-auto"
+    data-analytics-cta="primary-cta"
+    data-analytics-label={text}
+  >
+    {text}
+  </a>
+</section>

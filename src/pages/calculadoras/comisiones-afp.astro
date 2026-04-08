@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
+import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getPath } from "@/utils/getPath";
 
@@ -213,6 +214,13 @@ const cheapest = AFP_LIST[0]; // PlanVital after sort
         > antes de tomar una decisión.
       </p>
     </section>
+
+    <MethodologyBlock
+      notes="Las comisiones muestran la tasa total de descuento del trabajador: 10% va íntegro al fondo personal y el resto es la comisión de la AFP. Los datos se actualizan con las tasas publicadas por la Superintendencia de Pensiones, que las revisa periódicamente."
+      sources={[
+        { name: "Superintendencia de Pensiones — Comisiones AFP vigentes", url: "https://www.spensiones.cl/portal/institucional/594/w3-article-13665.html", date: "2026-03" }
+      ]}
+    />
   </main>
   <Footer />
 </Layout>

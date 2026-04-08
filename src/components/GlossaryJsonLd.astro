@@ -1,0 +1,61 @@
+---
+interface Props {
+  term: string;
+  shortDefinition: string;
+  canonicalUrl: string;
+  glossaryIndexUrl: string;
+}
+
+const { term, shortDefinition, canonicalUrl, glossaryIndexUrl } = Astro.props;
+
+const definedTermSchema = {
+  "@context": "https://schema.org",
+  "@type": "DefinedTerm",
+  "@id": canonicalUrl,
+  name: term,
+  description: shortDefinition,
+  url: canonicalUrl,
+  inDefinedTermSet: {
+    "@type": "DefinedTermSet",
+    name: "Glosario Monedario",
+    url: glossaryIndexUrl,
+  },
+  inLanguage: "es-CL",
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Inicio",
+      item: (Astro.site ?? new URL(canonicalUrl)).origin + "/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Glosario",
+      item: glossaryIndexUrl,
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: term,
+      item: canonicalUrl,
+    },
+  ],
+};
+---
+
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(definedTermSchema)}
+/>
+<script
+  type="application/ld+json"
+  is:inline
+  set:html={JSON.stringify(breadcrumbSchema)}
+/>

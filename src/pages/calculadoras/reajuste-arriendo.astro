@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
+import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { getPath } from "@/utils/getPath";
@@ -294,16 +295,15 @@ const ufHubPath = getPath("/guias/uf-costo-de-vida/");
       <p>
         Ante cualquier duda o conflicto, el organismo competente es el <strong
           >Juzgado de Letras con competencia en arrendamiento</strong
-        >. El SERNAC no tiene competencia en arriendos de vivienda.
-      </p>
-      <p class="text-sm text-muted">
-        ⚠️ Esta calculadora entrega valores referenciales. Para interpretación
-        legal de tu contrato, consulta a un abogado o la <a
-          href="https://www.corporacionderechopublico.cl"
-          target="_blank">Corporación de Asistencia Judicial</a
-        >.
+        >.  
       </p>
     </section>
+
+    <PrimaryCTA
+      text="Todo sobre el reajuste de arriendo en Chile →"
+      href="/posts/reajuste-arriendo-uf-ipc-chile/"
+      context="Interpreta la cláusula de tu contrato y entiende cuándo aplica UF o IPC."
+    />
   </main>
   <Footer />
 </Layout>

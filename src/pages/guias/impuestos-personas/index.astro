@@ -4,6 +4,7 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import ResumeWidget from "@/components/ResumeWidget.astro";
+import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
 
 const itemListSchema = {
@@ -103,6 +104,15 @@ const rutasPrincipales = [
         real hoy, no por la palabra que más se repite en el calendario.
       </p>
     </section>
+
+    <StartHere
+      steps={[
+        { step: 1, title: "Boleta de honorarios 2026", description: "Retención, cobertura previsional y declaración anual paso a paso.", href: "/posts/boleta-honorarios-2026-retencion-cobertura/" },
+        { step: 2, title: "Devolución de impuestos: fechas y compensaciones", description: "Cuándo pagan, cuánto devuelven y cómo revisar tu estado.", href: "/posts/devolucion-impuestos-fechas-compensaciones/" },
+        { step: 3, title: "Operación Renta: checklist del F-22", description: "Los pasos que no debes saltarte al hacer la declaración anual.", href: "/posts/operacion-renta-f22-checklist/" },
+        { step: 4, title: "Calculadora de impuesto de segunda categoría", description: "Estima el impuesto mensual según tu sueldo bruto y AFP.", href: "/calculadoras/impuesto-segunda-categoria/" }
+      ]}
+    />
 
     <section class="py-4">
       <ResumeWidget />

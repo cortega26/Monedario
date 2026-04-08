@@ -4,6 +4,7 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import ResumeWidget from "@/components/ResumeWidget.astro";
+import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
 
 const itemListSchema = {
@@ -103,6 +104,14 @@ const articulosSeccion = [
         abrir productos.
       </p>
     </section>
+
+    <StartHere
+      steps={[
+        { step: 1, title: "Fraude con tarjeta: qué hacer paso a paso", description: "Pasos inmediatos, plazos y cómo formalizar el reclamo.", href: "/posts/fraude-tarjeta-que-hacer/" },
+        { step: 2, title: "Estafas financieras en Chile: vishing, smishing y marketplace", description: "Cómo reconocerlas y qué hacer si ya caiste en una.", href: "/posts/estafas-financieras-chile-vishing-smishing-marketplace/" },
+        { step: 3, title: "Suplantación de identidad y créditos no reconocidos", description: "Pasos para bloquear, reclamar y limpiar tu historial crediticio.", href: "/posts/suplantacion-identidad-creditos-no-reconocidos/" }
+      ]}
+    />
 
     <section class="py-4">
       <ResumeWidget />

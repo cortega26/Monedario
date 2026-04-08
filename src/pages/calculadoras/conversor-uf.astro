@@ -3,6 +3,8 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
+import MethodologyBlock from "@/components/MethodologyBlock.astro";
+import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { getPath } from "@/utils/getPath";
@@ -195,6 +197,19 @@ const ufDateDisplay = new Intl.DateTimeFormat("es-CL", {
         por la <a href={ufHubPath}>guía UF, inflación y costo de vida</a>.
       </p>
     </section>
+
+    <PrimaryCTA
+      text="¿Qué es la UF y cómo se calcula? →"
+      href="/posts/que-es-la-uf/"
+      context="Entiende por qué la UF cambia cada día y cómo afecta tus contratos y deudas en Chile."
+    />
+    <MethodologyBlock
+      notes="El valor UF se obtiene en tiempo real desde la API de mindicador.cl, que replica la publicación oficial del Banco Central. La UF se actualiza diariamente entre el día 10 de cada mes y el día 9 del siguiente, en base al IPC del mes anterior publicado por el INE."
+      sources={[
+        { name: "mindicador.cl — API valor UF diario", url: "https://mindicador.cl/api/uf", date: "2026-04" },
+        { name: "Banco Central de Chile — Metodología UF", url: "https://www.bcentral.cl/web/banco-central/areas/estadisticas/uf", date: "2025-12" }
+      ]}
+    />
   </main>
   <Footer />
 </Layout>
