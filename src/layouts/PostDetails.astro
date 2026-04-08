@@ -56,7 +56,17 @@ let ogImageUrl: string | undefined;
 
 // Determine OG image source
 if (typeof initOgImage === "string") {
-  ogImageUrl = initOgImage; // Remote OG image (absolute URL)
+  if (/^https?:\/\//i.test(initOgImage)) {
+    // Absolute remote URL — use as-is
+    ogImageUrl = initOgImage;
+  } else if (/\.(avif|webp)$/i.test(initOgImage)) {
+    // AVIF/WebP: social crawlers (LinkedIn, etc.) don't support these formats.
+    // Use the pre-generated JPEG from /images/og/ (see scripts/generate-og-jpegs.mjs).
+    const slug = initOgImage.split("/").pop()!.replace(/\.[^.]+$/, "");
+    ogImageUrl = `/images/og/${slug}.jpg`;
+  } else {
+    ogImageUrl = initOgImage;
+  }
 } else if (initOgImage?.src) {
   ogImageUrl = initOgImage.src; // Local asset
 }
