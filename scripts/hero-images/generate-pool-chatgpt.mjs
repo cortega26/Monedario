@@ -227,6 +227,24 @@ async function connectToBrowser(cdpUrl) {
   }
 }
 
+function isChatgptHost(urlString) {
+  try {
+    const url = new URL(urlString);
+    return url.hostname === "chatgpt.com";
+  } catch {
+    return false;
+  }
+}
+
+function isChatgptImagesUrl(urlString) {
+  try {
+    const url = new URL(urlString);
+    return url.hostname === "chatgpt.com" && url.pathname.startsWith("/images");
+  } catch {
+    return false;
+  }
+}
+
 async function getWorkPage(browser, targetUrl) {
   const contexts = browser.contexts();
   if (contexts.length === 0) {
@@ -234,12 +252,12 @@ async function getWorkPage(browser, targetUrl) {
   }
 
   const context = contexts[0];
-  const existingPage = context.pages().find(page => page.url().includes("chatgpt.com"));
+  const existingPage = context.pages().find(page => isChatgptHost(page.url()));
   const page = existingPage ?? (await context.newPage());
 
-  if (!page.url().includes("chatgpt.com")) {
+  if (!isChatgptHost(page.url())) {
     await page.goto(targetUrl, { waitUntil: "domcontentloaded" });
-  } else if (!page.url().includes("/images")) {
+  } else if (!isChatgptImagesUrl(page.url())) {
     await page.goto(targetUrl, { waitUntil: "domcontentloaded" });
   }
 
