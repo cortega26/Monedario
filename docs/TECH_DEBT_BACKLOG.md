@@ -4,11 +4,11 @@ Fecha de corte: 2026-04-08
 
 ## Métricas
 
-### Total de items por urgencia
-- **P0:** 5
-- **P1:** 13
-- **P2:** 15
-- **P3:** 1
+### Total de items abiertos por urgencia
+- **P0:** 2
+- **P1:** 1
+- **P2:** 1
+- **P3:** 0
 
 ### Estado de avance (2026-04-08)
 - **Completados:** 36 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `FIX-MDX`, `FIX-LINKS-CALC`)
