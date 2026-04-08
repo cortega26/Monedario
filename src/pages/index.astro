@@ -21,6 +21,8 @@ import {
   getHomepageLeadPost,
 } from "@/utils/homepage";
 import ResumeWidget from "@/components/ResumeWidget.astro";
+import HeroHomepage from "@/components/HeroHomepage.astro";
+import ProblemCards from "@/components/ProblemCards.astro";
 
 const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
@@ -69,27 +71,7 @@ const heroDescription =
         class="grid gap-6 lg:grid-cols-[minmax(0,1.12fr)_minmax(300px,0.78fr)] xl:grid-cols-[minmax(0,1.22fr)_minmax(320px,0.82fr)]"
       >
         <div class="space-y-6">
-          <div class="max-w-3xl">
-            <h1
-              class="homepage-body-heading mb-3 max-w-3xl text-2xl leading-tight font-bold sm:text-4xl"
-            >
-              {heroTitle}
-            </h1>
-            <p class="mb-5 max-w-3xl text-base leading-relaxed text-secondary">
-              {heroDescription}
-            </p>
-            <LinkButton
-              href={getPath("/guias/")}
-              class="text-sm font-semibold"
-              data-analytics-cta="home-hero"
-              data-analytics-label="Explorar guías por tema"
-              data-analytics-location="home_hero"
-            >
-              Explorar guías por tema <IconArrowRight
-                class="inline-block rtl:-rotate-180"
-              />
-            </LinkButton>
-          </div>
+          <HeroHomepage headline={heroTitle} description={heroDescription} />
 
           {
             heroPost &&
@@ -199,6 +181,8 @@ const heroDescription =
         </aside>
       </div>
     </section>
+
+    <ProblemCards />
 
     <SectionDivider />
 

@@ -1,0 +1,93 @@
+---
+import { getPath } from "@/utils/getPath";
+
+interface Props {
+  headline?: string;
+  description?: string;
+}
+
+const {
+  headline = "Entiende tu plata en Chile — guías, calculadoras y herramientas",
+  description = "Sueldo líquido, AFP, impuestos, crédito, UF y presupuesto en lenguaje claro. Sin publicidad. Sin registro.",
+} = Astro.props;
+
+const ctaLinks = [
+  {
+    label: "💵 Sueldo líquido",
+    href: "/calculadoras/sueldo-liquido/",
+    secondary: false,
+  },
+  {
+    label: "📄 Finiquito",
+    href: "/calculadoras/finiquito-indemnizacion/",
+    secondary: false,
+  },
+  {
+    label: "📐 Conversor UF",
+    href: "/calculadoras/conversor-uf/",
+    secondary: true,
+  },
+  {
+    label: "🔍 ¿Estoy en DICOM?",
+    href: "/posts/donde-ver-si-estoy-en-dicom-gratis/",
+    secondary: true,
+  },
+];
+
+const trustSignals = [
+  "Sin publicidad",
+  "Fuentes oficiales",
+  "Open source",
+  "Por un abogado chileno",
+];
+---
+
+<div class="max-w-3xl">
+  <h1
+    class="homepage-body-heading mb-3 max-w-3xl text-2xl leading-tight font-bold sm:text-4xl"
+  >
+    {headline}
+  </h1>
+  <p class="mb-5 max-w-3xl text-base leading-relaxed text-secondary">
+    {description}
+  </p>
+
+  <!-- 4 CTAs directos -->
+  <div class="mb-5 flex flex-wrap gap-2 sm:gap-3">
+    {
+      ctaLinks.map(link => (
+        <a
+          href={getPath(link.href)}
+          class:list={[
+            "rounded-lg px-4 py-2 text-sm font-semibold transition-opacity hover:opacity-85",
+            link.secondary
+              ? "border border-border bg-surface-muted/40 text-foreground"
+              : "bg-accent text-background",
+          ]}
+          data-analytics-cta="home-hero-cta"
+          data-analytics-label={link.label}
+          data-analytics-location="home_hero"
+        >
+          {link.label}
+        </a>
+      ))
+    }
+  </div>
+
+  <!-- Señales de confianza -->
+  <ul
+    class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted"
+    aria-label="Características del sitio"
+  >
+    {
+      trustSignals.map((signal, i) => (
+        <>
+          <li>{signal}</li>
+          {i < trustSignals.length - 1 && (
+            <li aria-hidden="true" class="hidden sm:inline">·</li>
+          )}
+        </>
+      ))
+    }
+  </ul>
+</div>

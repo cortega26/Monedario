@@ -1,0 +1,113 @@
+---
+// TOCSidebar.astro
+// Reads H2/H3 headings from #article at runtime.
+// • Desktop (lg+): sticky sidebar on the right column.
+// • Mobile: collapsible <details> block, prepended to #article by the script.
+// • Condition: only displayed in articles with ≥3 H2 headings.
+// • No framework dependency; uses <script is:inline> with IntersectionObserver.
+---
+
+<!-- Desktop sidebar — hidden by default; script shows it if ≥3 H2s found -->
+<aside
+  id="toc-sidebar"
+  class="hidden"
+  aria-label="Tabla de contenidos"
+>
+  <div class="sticky top-24 w-52 shrink-0">
+    <p class="mb-3 text-xs font-semibold uppercase tracking-wider text-muted">
+      En este artículo
+    </p>
+    <ul id="toc-list" class="space-y-1.5 text-sm"></ul>
+  </div>
+</aside>
+
+<script is:inline>
+  (function () {
+    const article = document.getElementById("article");
+    const sidebar = document.getElementById("toc-sidebar");
+    const tocList = document.getElementById("toc-list");
+    if (!article || !sidebar || !tocList) return;
+
+    const headings = Array.from(article.querySelectorAll("h2, h3"));
+    const h2Count = headings.filter(function (h) {
+      return h.tagName === "H2";
+    }).length;
+
+    if (h2Count < 3) return;
+
+    // Ensure each heading has a stable id
+    headings.forEach(function (heading, i) {
+      if (!heading.id) {
+        heading.id = "toc-h-" + i;
+      }
+    });
+
+    function buildLinks(containerEl) {
+      headings.forEach(function (heading) {
+        const isH3 = heading.tagName === "H3";
+        const li = document.createElement("li");
+        if (isH3) li.className = "pl-3";
+        const a = document.createElement("a");
+        a.href = "#" + heading.id;
+        a.textContent = heading.textContent || "";
+        a.className =
+          "block py-0.5 text-secondary hover:text-accent transition-colors line-clamp-2 toc-link";
+        a.setAttribute("data-toc-target", heading.id);
+        li.appendChild(a);
+        containerEl.appendChild(li);
+      });
+    }
+
+    // Build desktop TOC list
+    buildLinks(tocList);
+
+    // Build mobile collapsible and prepend to article
+    const mobileDetails = document.createElement("details");
+    mobileDetails.className =
+      "lg:hidden mb-6 rounded-lg border border-border bg-surface-muted/30 px-4 py-3";
+    const summary = document.createElement("summary");
+    summary.className =
+      "cursor-pointer select-none text-sm font-semibold text-secondary";
+    summary.textContent = "En este artículo";
+    const mobileList = document.createElement("ul");
+    mobileList.className = "mt-3 space-y-1.5 text-sm";
+    buildLinks(mobileList);
+    mobileDetails.appendChild(summary);
+    mobileDetails.appendChild(mobileList);
+    article.prepend(mobileDetails);
+
+    // Reveal desktop sidebar
+    sidebar.classList.remove("hidden");
+    sidebar.classList.add("lg:block");
+
+    // IntersectionObserver — highlight active section in desktop TOC
+    const allDesktopLinks = tocList.querySelectorAll(".toc-link");
+    if (!allDesktopLinks.length) return;
+
+    const observer = new IntersectionObserver(
+      function (entries) {
+        const visible = entries.filter(function (e) {
+          return e.isIntersecting;
+        });
+        if (visible.length === 0) return;
+        const topEntry = visible.reduce(function (a, b) {
+          return a.boundingClientRect.top <= b.boundingClientRect.top ? a : b;
+        });
+        allDesktopLinks.forEach(function (l) {
+          l.classList.remove("text-accent", "font-semibold");
+        });
+        const activeLink = tocList.querySelector(
+          '.toc-link[data-toc-target="' + topEntry.target.id + '"]'
+        );
+        if (activeLink) {
+          activeLink.classList.add("text-accent", "font-semibold");
+        }
+      },
+      { rootMargin: "-10% 0px -80% 0px", threshold: 0 }
+    );
+
+    headings.forEach(function (h) {
+      observer.observe(h);
+    });
+  })();
+</script>

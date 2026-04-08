@@ -27,6 +27,7 @@ import { getPath } from "@/utils/getPath";
 import { SITE } from "@/config";
 import { getSueldoArticleSections } from "@/config/sueldoClusterLinks";
 import { getDeudaArticleSections } from "@/config/deudaClusterLinks";
+import TOCSidebar from "@/components/TOCSidebar.astro";
 
 type Props = {
   post: CollectionEntry<"blog">;
@@ -205,22 +206,25 @@ const relatedPostsExcludedSlugs = [
       <EditPost {hideEditPost} {post} class="max-sm:hidden" />
     </div>
 
-    <article
-      id="article"
-      class="app-prose mt-8 w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"
-      data-analytics-article={article.slug}
-      data-analytics-article-title={title}
-    >
-      {
-        articleLead && (
-          <ArticleDecisionIntro
-            lead={articleLead}
-            reviewedDate={article.updatedDate ?? article.pubDate}
-          />
-        )
-      }
-      <Content />
-    </article>
+    <div class="lg:flex lg:items-start lg:gap-10">
+      <article
+        id="article"
+        class="app-prose mt-8 min-w-0 grow w-full max-w-app prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"
+        data-analytics-article={article.slug}
+        data-analytics-article-title={title}
+      >
+        {
+          articleLead && (
+            <ArticleDecisionIntro
+              lead={articleLead}
+              reviewedDate={article.updatedDate ?? article.pubDate}
+            />
+          )
+        }
+        <Content />
+      </article>
+      <TOCSidebar />
+    </div>
 
     {
       contextualSectionsWithoutPrimaryDuplicates.map(section => (

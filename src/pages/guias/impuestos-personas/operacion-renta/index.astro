@@ -3,9 +3,35 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
+import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
 
 const hubPath = getPath("/guias/impuestos-personas/");
+
+// ACTUALIZAR ANUALMENTE: ajustar fechas cuando el SII publique el calendario oficial
+const startHereSteps = [
+  {
+    step: 1,
+    title: "Qué necesitas presentar en el F-22",
+    description:
+      "Revisa el checklist completo antes de declarar: documentos requeridos, cómo leer la propuesta del SII y cuándo usar reemplazo.",
+    href: "/posts/operacion-renta-f22-checklist/",
+  },
+  {
+    step: 2,
+    title: "Calcula tu impuesto estimado",
+    description:
+      "Usa la calculadora de Operación Renta para estimar cuánto debes pagar o cuánto te corresponde de devolución.",
+    href: "/calculadoras/operacion-renta/",
+  },
+  {
+    step: 3,
+    title: "Fechas de devolución y compensaciones",
+    description:
+      "Cuándo te depositan la devolución según tu banco y qué hacer si la TGR tiene compensaciones activas.",
+    href: "/posts/devolucion-impuestos-fechas-compensaciones/",
+  },
+];
 
 const subcasos = [
   {
@@ -118,6 +144,28 @@ const itemListSchema = {
         propuesta del SII hasta consultar el estado de tu devolución o resolver
         una observación. Elige el subcaso que corresponde a tu situación hoy.
       </p>
+    </section>
+
+    <StartHere steps={startHereSteps} />
+
+    <!-- CALCULADORA CTA -->
+    <section class="border-b border-border py-8">
+      <div class="rounded-xl border border-accent/20 bg-accent/5 p-6">
+        <p class="mb-1 text-xs font-semibold tracking-widest text-accent uppercase">
+          Herramienta
+        </p>
+        <h2 class="mb-2 text-xl font-bold">Calculadora Operación Renta</h2>
+        <p class="mb-4 max-w-2xl text-sm text-secondary">
+          Estima cuánto deberías pagar o recibir de devolución según tu sueldo,
+          retenciones y cotizaciones del año tributario.
+        </p>
+        <a
+          href={getPath("/calculadoras/operacion-renta/")}
+          class="inline-block rounded-lg bg-accent px-5 py-2.5 text-sm font-bold text-background transition-opacity hover:opacity-90"
+        >
+          Abrir calculadora →
+        </a>
+      </div>
     </section>
 
     <!-- SUBCASOS -->

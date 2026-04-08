@@ -839,21 +839,35 @@ Sin riesgos abiertos al 2026-04-03. Los items de backlog vigentes quedaron absor
 - **Fecha de creación:** 2026-04-07
 - **Última actualización:** 2026-04-07
 
-## TD-0036 — Tests de hero-image-pool y hero-images-config desactualizados
-- **ID:** TD-0036
-- **Título corto:** Actualizar snapshots numéricos y assertions de prompts en hero-image tests
-- **Descripción:** Tres tests en `hero-image-pool.test.ts` y tres en `hero-images-config.test.ts` fallan porque los valores hardcodeados de conteo de pool entries y las cadenas esperadas en los prompts de imágenes no coinciden con la configuración actual. Fallo pre-existente confirmado con baseline limpio.
-- **Evidencia:** `pnpm run test` → `AssertionError: expected [...] to have a length of 11 but got 12`; `expected [...] to have a length of 27 but got 28`; `expected { canonicalCombinationCount: 56 } to deeply equal { canonicalCombinationCount: 54 }`; y 3 fallos de `toContain` en strings de prompts en `hero-images-config.test.ts`.
-- **Impacto:** 6 tests permanentemente en rojo, reducen confiabilidad de la suite y enmascaran regresiones reales en el sistema de imágenes.
-- **Riesgo:** bajo
-- **Severidad (1-5):** 2
-- **Urgencia:** P2
-- **Esfuerzo estimado:** S
-- **Propuesta de solución:** Re-sincronizar las aserciones numéricas con los valores reales del pool y actualizar las cadenas esperadas de los prompts A/B/C al contenido actual de la configuración.
-- **Criterios de cierre (checklist verificable):**
-  - [x] `pnpm run test` pasa sin fallos en `hero-image-pool.test.ts` y `hero-images-config.test.ts`.
-  - [x] Las aserciones reflejan la configuración vigente.
-- **Owner:** TBD
 - **Estado:** Completado
 - **Fecha de creación:** 2026-04-07
 - **Última actualización:** 2026-04-07
+
+## TD-0039 — Mobile CWV por debajo de umbrales §5.4 en todas las plantillas
+- **ID:** TD-0039
+- **Título corto:** Mejorar LCP y Performance Score mobile (baseline 2026-04-08)
+- **Descripción:** Las mediciones Lighthouse CLI del 2026-04-08 muestran que todas las plantillas del sitio fallan los umbrales AGENTS.md §5.4 en mobile. Desktop cumple todos los umbrales (Performance 99-100, LCP ≤0.89s, TBT 0ms, CLS 0). El gap mobile se debe principalmente a LCP alto (imágenes hero y fuentes web) y Speed Index elevado.
+- **Evidencia baseline (mobile, Lighthouse 13.1.0, producción):**
+  - `/` homepage: Perf 90, LCP 3.07s, TBT 14ms, SI 4.39s, CLS 0
+  - `/posts/liquidacion-de-sueldo/`: Perf 88, LCP 3.24s, TBT 56ms, SI 4.64s, CLS 0
+  - `/calculadoras/sueldo-liquido/`: Perf 95, LCP 2.67s, TBT 38ms, SI 2.02s, CLS 0
+  - `/guias/ahorro-e-inversion/`: Perf 93, LCP 2.96s, TBT 51ms, SI 3.10s, CLS 0
+- **Umbrales §5.4:** Perf ≥99, LCP ≤1.7s, SI ≤3.0s, TBT = 0ms, CLS = 0
+- **Métricas en rojo:** LCP (todas), Perf Score (todas), TBT (todas), SI (artículo, homepage, hub)
+- **Impacto:** SEO ranking signals; §5.4 bloquea merge de cambios en layouts/fonts si no mejora baseline.
+- **Riesgo:** medio — no bloquea funcionalidad pero restringe futuros cambios de layout
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** (1) Auditar LCP element por plantilla y optimizar imagen/fuente que lo cause; (2) preload de la imagen hero LCP; (3) revisar si hay render-blocking resources; (4) considerar lazy-loading de componentes React pesados; (5) volver a medir post-fix y comparar contra este baseline.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] Mobile Perf Score ≥ 99 en las 4 URLs
+  - [ ] LCP ≤ 1.7s en mobile en las 4 URLs
+  - [ ] TBT = 0ms en mobile en las 4 URLs
+  - [ ] SI ≤ 3.0s en mobile en las 4 URLs
+  - [ ] CLS = 0 (ya cumple — no regresar)
+  - [ ] Nuevo reporte Lighthouse guardado en `artifacts/lighthouse/` con fecha post-fix
+- **Owner:** TBD
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-04-08
+- **Última actualización:** 2026-04-08

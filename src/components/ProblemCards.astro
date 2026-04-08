@@ -1,0 +1,74 @@
+---
+import { getPath } from "@/utils/getPath";
+
+const cards = [
+  {
+    emoji: "🤝",
+    title: "Me contrataron",
+    description: "Entiende tu liquidación, cotizaciones y qué derechos tienes desde el primer día.",
+    href: "/posts/liquidacion-de-sueldo/",
+  },
+  {
+    emoji: "📋",
+    title: "Me van a despedir / me despidieron",
+    description: "Calcula tu finiquito, aviso previo e indemnización según la causal de término.",
+    href: "/calculadoras/finiquito-indemnizacion/",
+  },
+  {
+    emoji: "💳",
+    title: "Tengo deudas",
+    description: "Entiende tus opciones: renegociación, DICOM, Ley del consumidor y derechos frente al cobrador.",
+    href: "/guias/deuda-credito/",
+  },
+  {
+    emoji: "📊",
+    title: "Debo declarar renta",
+    description: "Calcula cuánto pagar o cuánto te devuelven, y navega el proceso del F-22 sin errores.",
+    href: "/calculadoras/operacion-renta/",
+  },
+  {
+    emoji: "🐷",
+    title: "Quiero ahorrar",
+    description: "APV, fondos mutuos, UF y estrategias de ahorro con herramientas concretas.",
+    href: "/guias/ahorro-e-inversion/",
+  },
+  {
+    emoji: "🚨",
+    title: "Me cobraron algo que no reconozco",
+    description: "Qué hacer si apareces en DICOM sin saber por qué, o si detectas fraude en tu tarjeta.",
+    href: "/posts/fraude-tarjeta-que-hacer/",
+  },
+];
+---
+
+<section class="border-b border-border py-8">
+  <h2 class="mb-1 text-xs font-semibold tracking-widest text-accent uppercase">
+    ¿Qué necesitas resolver?
+  </h2>
+  <p class="mb-6 text-xl font-bold">Elige tu situación y entra directo</p>
+  <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      cards.map(card => (
+        <li>
+          <a
+            href={getPath(card.href)}
+            class="group flex h-full flex-col gap-2 rounded-xl border border-border bg-background p-4 transition-colors hover:border-accent/40 hover:bg-accent/5"
+            data-analytics-cta="home-problem-card"
+            data-analytics-label={card.title}
+            data-analytics-location="home_problem_cards"
+          >
+            <span class="text-2xl" aria-hidden="true">
+              {card.emoji}
+            </span>
+            <span class="font-semibold text-foreground transition-colors group-hover:text-accent">
+              {card.title}
+            </span>
+            <span class="text-sm leading-relaxed text-secondary">
+              {card.description}
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</section>
