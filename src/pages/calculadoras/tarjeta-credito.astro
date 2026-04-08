@@ -3,6 +3,8 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
+import MethodologyBlock from "@/components/MethodologyBlock.astro";
+import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 ---
 
@@ -174,6 +176,19 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
         >.
       </p>
     </section>
+
+    <PrimaryCTA
+      text="¿Te cobraron algo que no reconoces? Qué hacer →"
+      href="/posts/fraude-tarjeta-que-hacer/"
+      context="Pasos y plazos legales para disputar cargos no autorizados en tarjetas."
+    />
+    <MethodologyBlock
+      notes="El costo total de la deuda con pago mínimo se calcula con la fórmula de amortización iterativa mes a mes. El pago mínimo usa el porcentaje informado por el emisor. La tasa de referencia máxima corresponde a la tasa máxima convencional CMF vigente para tarjetas de crédito."
+      sources={[
+        { name: "CMF Chile — Tasa máxima convencional tarjetas", url: "https://www.cmfchile.cl", date: "2026-03" },
+        { name: "SERNAC — Derechos en productos financieros", url: "https://www.sernac.cl", date: "2026-01" }
+      ]}
+    />
   </main>
   <Footer />
 </Layout>

@@ -20,6 +20,60 @@ const economicSourceLabel =
   economicParameters.source === "live"
     ? "dato en línea"
     : "fallback controlado";
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "¿Qué es el APV y en qué se diferencia del ahorro en la AFP?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "El APV es un ahorro complementario y voluntario a la cotización obligatoria del 10% en la AFP. Tiene beneficios tributarios que el ahorro común no ofrece (Régimen A: bonificación estatal del 15%; Régimen B: deducción de la base imponible del IGC).",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Cuándo conviene el Régimen A y cuándo el Régimen B?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Régimen A conviene si tus ingresos son bajos o medianos y el bono estatal del 15% supera al ahorro tributario. Régimen B conviene si tienes ingresos altos y una tasa marginal elevada en el Impuesto Global Complementario, ya que el aporte reduce tu base imponible.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Puedo retirar mi APV antes de jubilar?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Sí, pero un retiro anticipado tiene costo tributario: en Régimen A debes devolver la bonificación estatal; en Régimen B el monto se agrega a tu renta del año y tributa con un recargo adicional del 3%.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Cuánto es el monto máximo de APV que puedo aportar al año?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "El tope con beneficio tributario es 600 UF anuales en Régimen B. En Régimen A, el bono estatal se topa en 6 UTM anuales (15% sobre lo aportado hasta ese límite).",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿El APV reduce mi impuesto en la Operación Renta?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Solo en Régimen B: los aportes se deducen de la renta imponible antes de calcular el IGC en el formulario F-22, lo que puede reducir lo que debes pagar o aumentar tu devolución en abril.",
+      },
+    },
+    {
+      "@type": "Question",
+      name: "¿Qué pasa con mi APV si me cambio de AFP o de institución?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "Si el APV está en tu AFP, se traspasa junto con tu cuenta individual al cambiar de AFP. Si está en otra institución (banco, fondo mutuo o seguro), el cambio de AFP no lo afecta.",
+      },
+    },
+  ],
+};
 ---
 
 <Layout
@@ -30,6 +84,7 @@ const economicSourceLabel =
     name="Simulador APV Chile: ¿Régimen A o B conviene más?"
     description="¿Te conviene APV en Chile? Compara Régimen A y B según tu sueldo y aporte mensual, y calcula el ahorro tributario real antes de decidir."
   />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
   <Header />
   <Breadcrumb />
   <main
@@ -417,7 +472,71 @@ const economicSourceLabel =
         { name: "SII — Beneficios tributarios APV (Régimen A y B)", url: "https://www.sii.cl/contribuyentes/temas_de_ayuda/APV.html", date: "2026-01" },
         { name: "Superintendencia de Pensiones — Límites APV", url: "https://www.spensiones.cl/portal/institucional/594/w3-article-3557.html", date: "2026-01" }
       ]}
-    />  </main>
+    />
+
+    <section
+      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
+      aria-label="Preguntas frecuentes sobre APV"
+    >
+      <h2>Preguntas frecuentes sobre APV</h2>
+
+      <h3>¿Qué es el APV y en qué se diferencia del ahorro en la AFP?</h3>
+      <p>
+        El Ahorro Previsional Voluntario (APV) es un instrumento de ahorro
+        complementario a la cotización obligatoria en la AFP (10% del sueldo
+        imponible). Mientras la cotización obligatoria va a tu cuenta individual
+        de capitalización, el APV se realiza de forma adicional y voluntaria, y
+        tiene beneficios tributarios que el ahorro común no tiene.
+      </p>
+
+      <h3>¿Cuándo conviene el Régimen A y cuándo el Régimen B?</h3>
+      <p>
+        El <strong>Régimen A</strong> conviene si tus ingresos son bajos o medianos
+        y estás exento o en tramos bajos del impuesto a la renta: el Estado te
+        bonifica directamente el 15% de tus aportes (hasta 6 UTM anuales de
+        bono). El <strong>Régimen B</strong> conviene si tienes ingresos altos y
+        pagas una tasa marginal elevada en el Impuesto Global Complementario,
+        ya que el aporte reduce tu base imponible y el ahorro tributario puede
+        superar la bonificación del Régimen A.
+      </p>
+
+      <h3>¿Puedo retirar mi APV antes de jubilar?</h3>
+      <p>
+        Sí, puedes retirar el APV antes de pensionarte, pero el retiro anticipado
+        conlleva un costo tributario: si usaste Régimen A, debes devolver la
+        bonificación estatal recibida. Si usaste Régimen B, el monto retirado
+        se agrega a tu renta del año y tributa según tu tasa marginal, más un
+        recargo adicional del 3%. Por este motivo el APV es más útil si el
+        horizonte de ahorro supera los 10 años.
+      </p>
+
+      <h3>¿Cuánto es el monto máximo de APV que puedo aportar al año?</h3>
+      <p>
+        El tope del APV con beneficio tributario es <strong>600 UF anuales</strong>
+        en Régimen B. Para el Régimen A, el bono estatal se topa en el equivalente
+        a 6 UTM anuales (15% sobre lo aportado hasta ese tope). Puedes aportar
+        más allá de estos límites, pero el exceso no recibe beneficio tributario.
+      </p>
+
+      <h3>¿El APV reduce mi impuesto en la Operación Renta?</h3>
+      <p>
+        Sí, pero solo en <strong>Régimen B</strong>. Los aportes al APV en
+        Régimen B se deducen de tu renta imponible antes de calcular el Impuesto
+        Global Complementario (F-22). Esto puede reducir lo que debes pagar o
+        aumentar tu devolución en abril. En Régimen A, la bonificación es un
+        abono directo en tu cuenta de APV, no una deducción del impuesto.
+      </p>
+
+      <h3>¿Qué pasa con mi APV si me cambio de AFP o de institución?</h3>
+      <p>
+        El APV puede estar depositado en tu AFP, en un banco, en una
+        administradora de fondos mutuos o en una compañía de seguros. Si te
+        cambias de AFP, el APV que tengas en esa AFP se traspasa junto con tu
+        saldo de cuenta individual. Si el APV está en otra institución
+        (banco o fondo mutuo), el traspaso de AFP no lo afecta.
+      </p>
+    </section>
+  </main>
   <Footer />
 </Layout>
 

@@ -3,6 +3,8 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
+import MethodologyBlock from "@/components/MethodologyBlock.astro";
+import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { getPath } from "@/utils/getPath";
@@ -297,6 +299,19 @@ const economicSourceLabel =
         >.
       </p>
     </section>
+
+    <PrimaryCTA
+      text="Guía completa de deudas y renegociación →"
+      href="/guias/deuda-credito/"
+      context="Pasos concretos para ordenar tus deudas y negociar antes de llegar a la Superir."
+    />
+    <MethodologyBlock
+      notes="El filtro de elegibilidad Superir verifica umbrales de deuda y documentación según la normativa CMF vigente. La cuota orientativa usa la tasa máxima convencional como referencia y no considera descuentos ni acuerdos particulares con acreedores."
+      sources={[
+        { name: "CMF Chile — Tasa máxima convencional vigente", url: "https://www.cmfchile.cl", date: "2026-03" },
+        { name: "Superir — Proceso de renegociación", url: "https://www.cmfchile.cl", date: "2026-01" }
+      ]}
+    />
   </main>
   <Footer />
 </Layout>

@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
+import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
@@ -303,6 +304,13 @@ const ufHubPath = getPath("/guias/uf-costo-de-vida/");
       text="Todo sobre el reajuste de arriendo en Chile →"
       href="/posts/reajuste-arriendo-uf-ipc-chile/"
       context="Interpreta la cláusula de tu contrato y entiende cuándo aplica UF o IPC."
+    />
+    <MethodologyBlock
+      notes="El reajuste en UF usa el valor oficial de la UF publicado por el Banco Central de Chile (BCCh). El reajuste en IPC usa la variación anual del Índice de Precios al Consumidor publicado por el INE. La aplicación exacta del reajuste depende de la cláusula contractual pactada."
+      sources={[
+        { name: "INE — Índice de Precios al Consumidor (IPC)", url: "https://www.ine.gob.cl", date: "2026-03" },
+        { name: "BCCh — Valor oficial de la UF", url: "https://www.bcentral.cl", date: "2026-03" }
+      ]}
     />
   </main>
   <Footer />

@@ -15,6 +15,10 @@ export interface EstimateFiniquitoInput {
   additionalVacationDaysWorked?: number;
   terminationCause: FiniquitoTerminationCause;
   noticeGiven?: boolean;
+  /** art. 47 CT: empleado tiene gratificación anual (no mensual). Si true,
+   * se estima la gratificación proporcional al período fraccionado del año
+   * en curso usando `additionalMonthsWorked` como proxy del ciclo parcial. */
+  gratificacionAnual?: boolean;
 }
 
 export interface EstimateFiniquitoOutput {
@@ -26,6 +30,14 @@ export interface EstimateFiniquitoOutput {
   proportionalVacationDays: number;
   proportionalVacationAmount: number;
   yearsOfServiceIndemnity: number;
+  /** art. 168 CT: porcentaje de recargo sobre indemnización por años de servicio
+   * cuando el despido es declarado injustificado judicialmente (0 si no aplica). */
+  art168SurchargePercent: number;
+  /** art. 168 CT: monto del recargo (yearsOfServiceIndemnity × art168SurchargePercent). */
+  art168SurchargeAmount: number;
+  /** art. 47 CT: gratificación proporcional estimada al período fraccionado del año
+   * en curso. Cero cuando gratificacionAnual no es true o additionalMonthsWorked = 0. */
+  gratificacionProporcionalAmount: number;
   substituteNoticeIndemnity: number;
   totalEstimate: number;
   compensationProfile: {
@@ -124,6 +136,27 @@ export function estimateFiniquito(
   const yearsOfServiceIndemnity = appliesYearsOfService
     ? cappedServiceYears * input.monthlySalary
     : 0;
+
+  // art. 168 CT: recargo sobre indemnización por años de servicio cuando el
+  // despido es declarado injustificado judicialmente. Solo aplica sobre
+  // yearsOfServiceIndemnity (no sobre aviso previo ni conceptos adicionales).
+  const art168SurchargePercent =
+    input.terminationCause === "judicial" && yearsOfServiceIndemnity > 0
+      ? serviceYearsCounted <= 3
+        ? 0.3
+        : serviceYearsCounted <= 6
+          ? 0.5
+          : 0.8
+      : 0;
+  const art168SurchargeAmount = yearsOfServiceIndemnity * art168SurchargePercent;
+
+  // art. 47 CT: gratificación proporcional estimada usando additionalMonthsWorked
+  // como proxy del período fraccionado del año en curso.
+  const gratificacionProporcionalAmount =
+    input.gratificacionAnual === true
+      ? (input.monthlySalary * additionalMonthsWorked) / 12
+      : 0;
+
   const substituteNoticeIndemnity = appliesSubstituteNotice
     ? input.monthlySalary
     : 0;
@@ -132,7 +165,9 @@ export function estimateFiniquito(
     pendingSalaryAmount +
     proportionalVacationAmount +
     yearsOfServiceIndemnity +
-    substituteNoticeIndemnity;
+    art168SurchargeAmount +
+    substituteNoticeIndemnity +
+    gratificacionProporcionalAmount;
 
   return {
     monthlySalary: input.monthlySalary,
@@ -143,6 +178,9 @@ export function estimateFiniquito(
     proportionalVacationDays,
     proportionalVacationAmount,
     yearsOfServiceIndemnity,
+    art168SurchargePercent,
+    art168SurchargeAmount,
+    gratificacionProporcionalAmount,
     substituteNoticeIndemnity,
     totalEstimate,
     compensationProfile: {
@@ -154,7 +192,9 @@ export function estimateFiniquito(
       "La indemnización por años de servicio se estima como 30 días por año con tope legal de 11 años.",
       "El año fraccionado superior a 6 meses se cuenta como año completo para esta estimación.",
       "El feriado proporcional usa base de 15 días hábiles por año y valor diario mensual dividido por 30.",
-      "No incorpora recargos judiciales, cláusulas pactadas, remuneraciones variables complejas ni descuentos en disputa.",
+      "Recargo art. 168 CT (30%/50%/80%) estimado solo sobre indemnización por años de servicio; el cálculo exacto lo fija el tribunal.",
+      "Gratificación proporcional estimada al 25% del período fraccionado (proxy); el monto real depende de las utilidades del empleador (art. 47 CT).",
+      "No incorpora cláusulas pactadas, remuneraciones variables complejas ni descuentos en disputa.",
     ],
   };
 }

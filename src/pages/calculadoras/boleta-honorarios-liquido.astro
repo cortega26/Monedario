@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
+import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getPath } from "@/utils/getPath";
@@ -204,6 +205,13 @@ const rentaGuidePath = getPath("/posts/operacion-renta-f22-checklist/");
       text="Guía completa de boleta de honorarios 2026 →"
       href="/posts/boleta-honorarios-2026-retencion-cobertura/"
       context="Entiende la retención, la cobertura previsional y la declaración anual."
+    />
+    <MethodologyBlock
+      notes="La retención del 13,75% sobre el bruto es la tasa transitoria vigente para el año tributario 2026 (cambia gradualmente hasta llegar al 17%). El líquido a recibir = bruto − retención. Para emisión oficial usa el Portal del SII con tu RUT y Clave Tributaria."
+      sources={[
+        { name: "SII — Tasas de retención boleta de honorarios (transitoria 13,75%)", url: "https://www.sii.cl", date: "2026-03" },
+        { name: "SII — Art. 74 nº2 Ley de la Renta (texto vigente)", url: "https://www.bcn.cl/leychile/navegar?idNorma=235839", date: "2026-01" }
+      ]}
     />
   </main>
   <Footer />

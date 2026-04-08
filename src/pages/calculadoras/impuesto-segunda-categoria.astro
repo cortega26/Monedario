@@ -3,6 +3,8 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
+import MethodologyBlock from "@/components/MethodologyBlock.astro";
+import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { getPath } from "@/utils/getPath";
@@ -259,6 +261,19 @@ const sueldoLiquidoPath = getPath("/calculadoras/sueldo-liquido/");
         >.
       </p>
     </section>
+
+    <PrimaryCTA
+      text="Simula tu Operación Renta completa →"
+      href="/calculadoras/operacion-renta/"
+      context="Si tienes más de un empleador, boletas o arriendos, el impuesto de segunda categoría es solo una parte del cálculo."
+    />
+    <MethodologyBlock
+      notes="El impuesto de segunda categoría se calcula aplicando la tabla de tramos progresivos publicada por el SII, usando la UTM vigente para convertir los tramos a pesos. La fórmula es: impuesto = base imponible × tasa del tramo — cantidad a rebajar del tramo correspondiente."
+      sources={[
+        { name: "SII — Tabla impuesto único de segunda categoría", url: "https://www.sii.cl", date: "2026-03" },
+        { name: "SII — Valores UTM vigentes", url: "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm", date: "2026-03" }
+      ]}
+    />
   </main>
   <Footer />
 </Layout>
