@@ -120,11 +120,11 @@ function cleanAnchorText(value) {
 
 function decodeBasicEntities(value) {
   return value
-    .replaceAll("&amp;", "&")
     .replaceAll("&quot;", '"')
     .replaceAll("&#39;", "'")
     .replaceAll("&lt;", "<")
-    .replaceAll("&gt;", ">");
+    .replaceAll("&gt;", ">")
+    .replaceAll("&amp;", "&");
 }
 
 function normalizeSiteBase(siteBase) {
