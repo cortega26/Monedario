@@ -28,7 +28,7 @@ describe("hero-images prompt builders", () => {
     );
     expect(first).toContain("Lighting: none. Flat uniform background only. No shadows, no highlights, no depth.");
     expect(first).toContain("Color palette: 3 colors maximum, all flat fills.");
-    expect(first).toContain("Composition: all elements within the central 80% of the canvas.");
+    expect(first).toContain("Composition: figure placed left-of-center; right third of canvas is clean solid background only.");
     expect(first).toContain("Canvas: 1200x630 pixels, landscape.");
     expect(first).toContain("Do not add extra objects beyond the named scene props.");
   });
@@ -36,7 +36,7 @@ describe("hero-images prompt builders", () => {
   it("buildPromptB keeps icon-focused constraints", () => {
     const prompt = buildPromptB("#4f46e5", "activity pulse line");
 
-    expect(prompt).toContain("Scene: one simple geometric activity pulse line icon, centered");
+    expect(prompt).toContain("Scene: one simple geometric activity pulse line, centered.");
     expect(prompt).toContain("Background: solid color #4f46e5.");
     expect(prompt).toContain("Color palette: 2 colors maximum, all flat fills.");
     expect(prompt).toContain("Canvas: 1200x630 pixels, landscape.");
@@ -46,7 +46,7 @@ describe("hero-images prompt builders", () => {
     const prompt = buildPromptC("#059669", "bar chart icon");
 
     expect(prompt).toContain("Background: solid color #059669");
-    expect(prompt).toContain("keep the left two-thirds of the canvas completely empty for text overlay");
+    expect(prompt).toContain("left two-thirds is clean solid background only.");
     expect(prompt).toContain("Color palette: 2 colors maximum, all flat fills.");
     expect(prompt).toContain("Canvas: 1200x630 pixels, landscape.");
   });

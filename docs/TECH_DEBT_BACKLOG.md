@@ -1,17 +1,17 @@
 # TECH_DEBT_BACKLOG
 
-Fecha de corte: 2026-04-03
+Fecha de corte: 2026-04-07
 
 ## Métricas
 
 ### Total de items por urgencia
 - **P0:** 3
 - **P1:** 12
-- **P2:** 14
+- **P2:** 12
 - **P3:** 1
 
 ### Estado de avance (2026-04-03)
-- **Completados:** 36 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `FIX-MDX`, `FIX-LINKS-CALC`)
+- **Completados:** 38 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 0
 - **Backlog sin iniciar:** 0
 - **Backlog en validación/diseño:** 0
@@ -22,6 +22,8 @@ Fecha de corte: 2026-04-03
 > `TD-0032`: normalizado formato Prettier en 13 archivos con drift mecánico; `format:check` pasa limpio.
 > `TD-0033`: `pnpm run format:check` vuelve a pasar limpio el 2026-04-03; el drift mecánico ya no reproduce.
 > `TD-0034`: refrescado `docs/reports/routes_snapshot_before.json` a 34 rutas y `pnpm run check:routes` vuelve a responder sin altas espurias el 2026-04-03.
+> `TD-0035`: actualizado `toHaveLength(13)` → `toHaveLength(15)` en `CalculatorPortfolio.test.ts` para reflejar las 15 calculadoras vigentes en el portfolio.
+> `TD-0036`: re-sincronizadas las aserciones numéricas en `hero-image-pool.test.ts` (pool entries: 12/28, canonicalCombinationCount: 56, requestedAssetCount: 112, approvedModelCount: 28, byTemplate A: 24) y los strings de prompts en `hero-images-config.test.ts` (Composition, Scene B, Scene C) con la configuración actual. `pnpm run test` pasa limpio: 37 archivos, 166 tests.
 
 ### Top riesgos restantes
 
@@ -749,10 +751,10 @@ Sin riesgos abiertos al 2026-04-03. Los items de backlog vigentes quedaron absor
 - **Esfuerzo estimado:** XS
 - **Propuesta de solución:** Actualizar la aserción `toHaveLength(13)` al valor actual (15) y considerar no hardcodear la longitud total si el número continuará creciendo.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] `pnpm run test` pasa sin fallos en `CalculatorPortfolio.test.ts`.
-  - [ ] El número hardcodeado refleja el estado actual del registro.
+  - [x] `pnpm run test` pasa sin fallos en `CalculatorPortfolio.test.ts`.
+  - [x] El número hardcodeado refleja el estado actual del registro.
 - **Owner:** TBD
-- **Estado:** Abierto
+- **Estado:** Completado
 - **Fecha de creación:** 2026-04-07
 - **Última actualización:** 2026-04-07
 
@@ -768,9 +770,9 @@ Sin riesgos abiertos al 2026-04-03. Los items de backlog vigentes quedaron absor
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** Re-sincronizar las aserciones numéricas con los valores reales del pool y actualizar las cadenas esperadas de los prompts A/B/C al contenido actual de la configuración.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] `pnpm run test` pasa sin fallos en `hero-image-pool.test.ts` y `hero-images-config.test.ts`.
-  - [ ] Las aserciones reflejan la configuración vigente.
+  - [x] `pnpm run test` pasa sin fallos en `hero-image-pool.test.ts` y `hero-images-config.test.ts`.
+  - [x] Las aserciones reflejan la configuración vigente.
 - **Owner:** TBD
-- **Estado:** Abierto
+- **Estado:** Completado
 - **Fecha de creación:** 2026-04-07
 - **Última actualización:** 2026-04-07

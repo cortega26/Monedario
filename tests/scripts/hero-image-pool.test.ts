@@ -19,7 +19,7 @@ describe("hero-image pool manifest", () => {
 
     const debt = entries.find(entry => entry.approvedModelId === "deuda-credito");
 
-    expect(entries).toHaveLength(11);
+    expect(entries).toHaveLength(12);
     expect(debt).toBeTruthy();
     expect(debt?.poolId).toBe(poolIdFromParts("A", "deuda-credito", "#d97706"));
     expect(debt?.variants).toBe(2);
@@ -33,7 +33,7 @@ describe("hero-image pool manifest", () => {
       colorKeys: ["Credito / Deuda / Impuestos / Riesgo"],
     });
 
-    expect(entries).toHaveLength(27);
+    expect(entries).toHaveLength(28);
   });
 
   it("reports the manifest breakdown explicitly", () => {
@@ -44,19 +44,19 @@ describe("hero-image pool manifest", () => {
     });
 
     expect(summarizePoolEntries(entries)).toEqual({
-      canonicalCombinationCount: 54,
-      requestedAssetCount: 108,
+      canonicalCombinationCount: 56,
+      requestedAssetCount: 112,
       templateCount: 3,
       colorCount: 2,
-      approvedModelCount: 27,
+      approvedModelCount: 28,
       byTemplate: {
-        A: 22,
+        A: 24,
         B: 16,
         C: 16,
       },
       byTemplateAndColor: {
-        "A::Credito / Deuda / Impuestos / Riesgo": 11,
-        "A::Educativo / Conceptos / Guias": 11,
+        "A::Credito / Deuda / Impuestos / Riesgo": 12,
+        "A::Educativo / Conceptos / Guias": 12,
         "B::Credito / Deuda / Impuestos / Riesgo": 8,
         "B::Educativo / Conceptos / Guias": 8,
         "C::Credito / Deuda / Impuestos / Riesgo": 8,
