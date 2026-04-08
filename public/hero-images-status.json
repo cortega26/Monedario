@@ -93,10 +93,11 @@
     "failedAt": "2026-04-07T17:46:02.881Z"
   },
   "operacion-renta-f22-checklist": {
-    "state": "error",
-    "error": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",
-    "attempts": 3,
-    "failedAt": "2026-04-07T17:47:38.143Z"
+    "state": "done",
+    "score": 7,
+    "attempts": 1,
+    "savedAt": "2026-04-07T00:00:00.000Z",
+    "note": "manually approved from ISLR-F22.png"
   },
   "devolucion-impuestos-fechas-compensaciones": {
     "state": "error",
