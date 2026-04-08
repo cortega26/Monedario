@@ -68,10 +68,11 @@
     "failedAt": "2026-04-07T17:42:59.733Z"
   },
   "que-es-la-cuenta-2-afp": {
-    "state": "error",
-    "error": "400 Billing hard limit has been reached.",
-    "attempts": 3,
-    "failedAt": "2026-04-07T17:43:49.210Z"
+    "state": "done",
+    "score": 7,
+    "attempts": 1,
+    "savedAt": "2026-04-07T00:00:00.000Z",
+    "note": "manually approved from Cuenta-2.png"
   },
   "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026": {
     "state": "error",
