@@ -1,19 +1,19 @@
 # TECH_DEBT_BACKLOG
 
-Fecha de corte: 2026-04-03
+Fecha de corte: 2026-04-08
 
 ## Métricas
 
 ### Total de items por urgencia
-- **P0:** 3
-- **P1:** 12
-- **P2:** 14
+- **P0:** 5
+- **P1:** 13
+- **P2:** 15
 - **P3:** 1
 
-### Estado de avance (2026-04-03)
+### Estado de avance (2026-04-08)
 - **Completados:** 36 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 0
-- **Backlog sin iniciar:** 0
+- **Backlog sin iniciar:** 4
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -716,6 +716,86 @@ Sin riesgos abiertos al 2026-04-03. Los items de backlog vigentes quedaron absor
 - **Estado:** Completado
 - **Fecha de creación:** 2026-04-03
 - **Última actualización:** 2026-04-03
+
+## TD-0035 — Lint global falla por variables sin uso y parse error en guías/calculadoras
+- **ID:** TD-0035
+- **Título corto:** Limpiar lint en Header y calculadoras/impuestos
+- **Descripción:** El gate `pnpm run lint` cae por imports/variables sin uso y un caracter inválido en guías de impuestos. Esto deja el pipeline rojo y oculta regresiones nuevas de lint.
+- **Evidencia:** `pnpm run lint` (2026-04-08) reporta `@typescript-eslint/no-unused-vars` en `src/components/Header.astro:8` y `src/pages/calculadoras/comisiones-afp.astro:105`, más un `Parsing error: Invalid character` en `src/pages/guias/impuestos-personas/index.astro:99`.
+- **Impacto:** Bloquea el gate de lint y puede permitir drift silencioso en componentes y páginas críticas si se ignora.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P1
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Eliminar imports/variables no usados y corregir el caracter inválido en la guía de impuestos; revalidar `pnpm run lint`.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `pnpm run lint` pasa sin errores.
+  - [ ] No se introducen cambios funcionales adicionales fuera de los tres archivos señalados.
+  - [ ] Se mantiene cobertura de tipos y ESLint sin desactivar reglas.
+- **Owner:** TBD
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-04-08
+- **Última actualización:** 2026-04-08
+
+## TD-0036 — Drift de Prettier en calculadoras deja el gate `format:check` en rojo
+- **ID:** TD-0036
+- **Título corto:** Normalizar formato en calculadoras con Prettier
+- **Descripción:** El check `prettier --check .` falla por drift mecánico en dos calculadoras, lo que vuelve a encender el gate global de formato.
+- **Evidencia:** `pnpm run format:check` (2026-04-08) advierte drift en `src/pages/calculadoras/comisiones-afp.astro` y `src/pages/calculadoras/impuesto-segunda-categoria.astro`.
+- **Impacto:** El gate de formato queda rojo y dificulta distinguir regresiones reales de cambios funcionales.
+- **Riesgo:** medio-bajo
+- **Severidad (1-5):** 2
+- **Urgencia:** P2
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Ejecutar Prettier sólo sobre los archivos señalados y confirmar que el diff es mecánico.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `pnpm run format:check` pasa sin advertencias.
+  - [ ] El diff de corrección es exclusivamente de formato.
+  - [ ] No se modifica comportamiento ni contenido visible.
+- **Owner:** TBD
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-04-08
+- **Última actualización:** 2026-04-08
+
+## TD-0037 — Tests de hero images fallan por drift en manifest y prompts canónicos
+- **ID:** TD-0037
+- **Título corto:** Alinear manifest y prompts de hero images con las expectativas de control
+- **Descripción:** Los guardas de hero images quedaron desalineados: el manifest calcula 56 combinaciones y 28 modelos aprobados vs el baseline de 54/27, y los prompts A/B/C no incluyen las cláusulas esperadas de composición/escena.
+- **Evidencia:** `pnpm run test` (2026-04-08) falla en `tests/scripts/hero-image-pool.test.ts` (conteos esperados 11/27/54) y `tests/scripts/hero-images-config.test.ts` (faltan cláusulas de composición, escena y espacio para texto).
+- **Impacto:** Gate de tests rojo; riesgo de publicar prompts/manifest incompletos que rompan generación de assets o rompan determinismo.
+- **Riesgo:** alto
+- **Severidad (1-5):** 4
+- **Urgencia:** P0
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** Revisar assets aprobados y plantillas A/B/C, actualizar manifest/pool o expectativas de conteo, y restaurar los constraints textuales en los builders de prompt.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `tests/scripts/hero-image-pool.test.ts` pasa con conteos actualizados y justificables.
+  - [ ] `tests/scripts/hero-images-config.test.ts` pasa con prompts que incluyan constraints de composición, escena y espacio para texto.
+  - [ ] Documentar en `scripts/` o README dev cómo actualizar el manifest/pool sin romper determinismo.
+- **Owner:** TBD
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-04-08
+- **Última actualización:** 2026-04-08
+
+## TD-0038 — Registro de calculadoras desalineado con las familias declaradas
+- **ID:** TD-0038
+- **Título corto:** Corregir CALCULATOR_PORTFOLIO para cumplir familias y recuentos
+- **Descripción:** El test del portafolio de calculadoras detecta 15 entradas en vez de 13, lo que indica duplicidad o familias nuevas sin curar.
+- **Evidencia:** `pnpm run test` (2026-04-08) falla `tests/application/CalculatorPortfolio.test.ts` con `expected length 13 but got 15`.
+- **Impacto:** Riesgo medio-alto de mostrar calculadoras duplicadas o mal agrupadas y de romper UX de navegación/calendario editorial; gate de tests rojo.
+- **Riesgo:** alto
+- **Severidad (1-5):** 4
+- **Urgencia:** P0
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Revisar `CALCULATOR_PORTFOLIO` y `CALCULATOR_FAMILY_ORDER`, eliminar duplicados o ajustar familias declaradas y actualizar fixtures asociados.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `tests/application/CalculatorPortfolio.test.ts` pasa limpio con los recuentos esperados.
+  - [ ] Las familias declaradas reflejan la intención de producto y no generan huecos ni duplicados.
+  - [ ] Se documenta el recuento final en fixtures o README dev correspondiente.
+- **Owner:** TBD
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-04-08
+- **Última actualización:** 2026-04-08
 
 ## TD-0034 — `check:routes` volvió a quedar desalineado del baseline publicado
 - **ID:** TD-0034
