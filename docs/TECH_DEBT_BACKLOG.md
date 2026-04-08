@@ -816,3 +816,41 @@ Sin riesgos abiertos al 2026-04-03. Los items de backlog vigentes quedaron absor
 - **Estado:** Completado
 - **Fecha de creación:** 2026-04-03
 - **Última actualización:** 2026-04-03
+
+## TD-0035 — Tests de CalculatorPortfolio desactualizados tras agregar 2 calculadoras nuevas
+- **ID:** TD-0035
+- **Título corto:** Actualizar aserciones de longitud en CalculatorPortfolio.test.ts
+- **Descripción:** `tests/application/CalculatorPortfolio.test.ts` espera exactamente 13 calculadoras en `CALCULATOR_PORTFOLIO` pero el registro tiene 15. El hardcode de longitud no se actualizó cuando se agregaron las dos últimas calculadoras.
+- **Evidencia:** `pnpm run test` → `AssertionError: expected [...] to have a length of 13 but got 15` en `CalculatorPortfolio.test.ts:13`. Fallo pre-existente confirmado con baseline limpio (antes de commits de la sesión 2026-04-07).
+- **Impacto:** La suite de tests reporta 1 fallo de forma permanente, enmascarando posibles regresiones reales en el portfolio.
+- **Riesgo:** bajo
+- **Severidad (1-5):** 2
+- **Urgencia:** P2
+- **Esfuerzo estimado:** XS
+- **Propuesta de solución:** Actualizar la aserción `toHaveLength(13)` al valor actual (15) y considerar no hardcodear la longitud total si el número continuará creciendo.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `pnpm run test` pasa sin fallos en `CalculatorPortfolio.test.ts`.
+  - [ ] El número hardcodeado refleja el estado actual del registro.
+- **Owner:** TBD
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-04-07
+- **Última actualización:** 2026-04-07
+
+## TD-0036 — Tests de hero-image-pool y hero-images-config desactualizados
+- **ID:** TD-0036
+- **Título corto:** Actualizar snapshots numéricos y assertions de prompts en hero-image tests
+- **Descripción:** Tres tests en `hero-image-pool.test.ts` y tres en `hero-images-config.test.ts` fallan porque los valores hardcodeados de conteo de pool entries y las cadenas esperadas en los prompts de imágenes no coinciden con la configuración actual. Fallo pre-existente confirmado con baseline limpio.
+- **Evidencia:** `pnpm run test` → `AssertionError: expected [...] to have a length of 11 but got 12`; `expected [...] to have a length of 27 but got 28`; `expected { canonicalCombinationCount: 56 } to deeply equal { canonicalCombinationCount: 54 }`; y 3 fallos de `toContain` en strings de prompts en `hero-images-config.test.ts`.
+- **Impacto:** 6 tests permanentemente en rojo, reducen confiabilidad de la suite y enmascaran regresiones reales en el sistema de imágenes.
+- **Riesgo:** bajo
+- **Severidad (1-5):** 2
+- **Urgencia:** P2
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Re-sincronizar las aserciones numéricas con los valores reales del pool y actualizar las cadenas esperadas de los prompts A/B/C al contenido actual de la configuración.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `pnpm run test` pasa sin fallos en `hero-image-pool.test.ts` y `hero-images-config.test.ts`.
+  - [ ] Las aserciones reflejan la configuración vigente.
+- **Owner:** TBD
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-04-07
+- **Última actualización:** 2026-04-07
