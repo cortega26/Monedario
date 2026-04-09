@@ -209,6 +209,8 @@ El Fondo C concentra la mayor parte de los afiliados, en parte porque es el fond
 
 Para convertir esta elección en una decisión completa, cruza esta guía con una decisión de administradora o con un desglose de cotización solo si esa pregunta realmente cambió.
 
+Para verificar en qué fondo estás efectivamente registrado y ver la rentabilidad del período, consulta tu [cartola AFP trimestral](/posts/como-leer-cartola-afp-chile/).
+
 Si quieres salir de la lógica "fondo por fondo" y mirar el cambio estructural del sistema, cambia después a una guía de reforma previsional.
 
 ### Fuentes oficiales para el bloque 2025-2027

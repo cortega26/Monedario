@@ -160,6 +160,8 @@ No. El saldo acumulado en tu cuenta individual pasa a tus herederos o beneficiar
 
 Si estás comparando alternativas, te conviene revisar cómo cambiarte de AFP, la lógica de fondos previsionales y, si el problema ya no es solo AFP, pasar después al cálculo completo o a la clasificación de descuentos. La [guía de pensiones y AFP en Chile](/guias/pensiones-afp/) ordena todas esas dudas previsionales en un solo lugar.
 
+Para confirmar que el descuento que aparece en tu liquidación coincide con lo que la AFP registró en tu cuenta, revisa tu [cartola trimestral AFP](/posts/como-leer-cartola-afp-chile/).
+
 ### Fuentes oficiales para el bloque 2025-2027
 
 - ChileAtiende, aportes del empleador al sistema de pensiones: https://www.chileatiende.gob.cl/fichas/130987-aportes-del-empleador-al-sistema-de-pensiones

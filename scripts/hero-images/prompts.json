@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceManifest": "scripts/hero-images/manifest.json",
-  "count": 36,
+  "count": 37,
   "entries": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -254,6 +254,43 @@
         "matchedKeywords": [
           "ahorro",
           "inversion"
+        ]
+      }
+    },
+    {
+      "slug": "como-leer-cartola-afp-chile",
+      "sourcePath": "src/data/blog/como-leer-cartola-afp-chile.md",
+      "targetImagePath": "/images/hero/como-leer-cartola-afp-chile.avif",
+      "template": "A",
+      "approvedModelId": "liquidacion-documento",
+      "sceneId": "A:liquidacion-documento",
+      "readerSituation": "Persona revisando e interpretando la cartola AFP trimestral para verificar cotizaciones y rentabilidad.",
+      "primaryIntent": "explicar",
+      "toneClass": "educativo",
+      "visualEvidence": [
+        "slug override: AFP quarterly statement document-review article — afp-pension shield scene too generic for document-reading context",
+        "primary intent classified as 'explicar' from article text",
+        "reader situation anchored to scene rule 'prevision'"
+      ],
+      "palette": {
+        "category": "Finanzas general / AFP / Empleo / Ahorro",
+        "hex": "#0d9488"
+      },
+      "modelPlan": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "auto",
+        "size": "1536x1024"
+      },
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one geometric human figure standing, holding a document, shown from behind or as a faceless silhouette.\nThe figure is near document sheet, magnifier. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
+      "promptHash": "27f6d94e8f581818883cc59d386b666452307c009bb4172ba16feec226190397",
+      "selectors": {
+        "ruleId": "prevision",
+        "category": "prevision",
+        "cluster": "pensiones-afp",
+        "matchedKeywords": [
+          "afp",
+          "cartola"
         ]
       }
     },

@@ -82,6 +82,10 @@ export const CANONICAL_TOPIC_REGISTRY = {
       ownerSlug: "reforma-previsional-2025-que-cambia-y-como-te-afecta",
       intentLabel: "reforma previsional y cambios vigentes",
     },
+    "cartola-afp": {
+      ownerSlug: "como-leer-cartola-afp-chile",
+      intentLabel: "leer e interpretar la cartola AFP",
+    },
   },
   "ahorro-e-inversion": {
     "elegir-instrumento-ahorro-inversion": {

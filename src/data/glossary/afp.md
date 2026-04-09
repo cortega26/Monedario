@@ -27,3 +27,5 @@ Los ahorros se diversifican según el perfil de riesgo del afiliado:
 ---
 
 **Lee la guía completa:** [Pensiones y AFP en Chile](/guias/pensiones-afp/) →
+
+**Cómo leer tu estado de cuenta:** [Cómo leer la cartola AFP](/posts/como-leer-cartola-afp-chile/) →

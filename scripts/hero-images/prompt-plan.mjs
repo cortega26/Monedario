@@ -408,6 +408,19 @@ const SLUG_OVERRIDES = {
     overrideEvidence: ["slug override: mixed-income tax declaration article — empleo rule false-positive on 'sueldo'+'honorarios' keywords"],
     overrideKeywords: ["impuesto", "renta", "declaracion", "global complementario"],
   },
+  // Cartola AFP: generic afp-pension (shield+upward arrow) doesn't communicate
+  // 'reading a document'; liquidacion-documento (figure holding a document with magnifier)
+  // directly represents the act of inspecting a financial statement.
+  "como-leer-cartola-afp-chile": {
+    id: "prevision",
+    template: "A",
+    recipeId: "liquidacion-documento",
+    colorKey: "Finanzas general / AFP / Empleo / Ahorro",
+    readerSituation: "Persona revisando e interpretando la cartola AFP trimestral para verificar cotizaciones y rentabilidad.",
+    toneClass: "educativo",
+    overrideEvidence: ["slug override: AFP quarterly statement document-review article — afp-pension shield scene too generic for document-reading context"],
+    overrideKeywords: ["afp", "cartola"],
+  },
 };
 
 export function selectPromptPlan(article) {

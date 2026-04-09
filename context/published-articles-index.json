@@ -5,7 +5,7 @@
   "source": "src/data/blog/**",
   "publishableRule": "draft !== true",
   "ordering": "slug asc",
-  "publishedCount": 36,
+  "publishedCount": 37,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -121,6 +121,22 @@
       "heroImage": "/images/hero/como-invertir-en-etfs-desde-chile.avif",
       "summary": "Invertir en ETFs desde Chile es perfectamente posible, pero el costo real rara vez aparece en el primer número que ves. La comisión, los derechos de bolsa, el IVA, la custodia y el spread se acumulan en silencio. Esta guía te lleva paso a paso para que sepas exactamente qué estás...",
       "updatedDate": "2026-02-28T16:30:00Z"
+    },
+    {
+      "slug": "como-leer-cartola-afp-chile",
+      "title": "Cómo leer la cartola AFP: qué significa cada campo y cómo detectar errores",
+      "category": "prevision",
+      "cluster": "pensiones-afp",
+      "tags": [
+        "afp",
+        "pensiones",
+        "cartola",
+        "previsión"
+      ],
+      "sourcePath": "src/data/blog/como-leer-cartola-afp-chile.md",
+      "heroImage": "/images/hero/como-leer-cartola-afp-chile.avif",
+      "summary": "La cartola AFP es tu estado de cuenta previsional trimestral. Llega cuatro veces al año —en enero, abril, julio y octubre— y resume lo que pasó con tu dinero durante ese período. Respuesta rápida: La cartola AFP llega trimestralmente (enero, abril, julio, octubre), muestra tu sal...",
+      "updatedDate": "2026-04-09T12:00:00Z"
     },
     {
       "slug": "cuanto-descuenta-la-afp-de-tu-sueldo",
