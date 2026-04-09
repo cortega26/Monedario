@@ -28,3 +28,5 @@ Entre las protecciones clave para los consumidores destacan:
 ### DICOM vs CMF (Comisión para el Mercado Financiero)
 
 La CMF maneja un "Estado de Deuda" que muestra _toda_ tu deuda formal vigente (esté al día o atrasada) pero sólo con instituciones reguladas por ellos (bancos, cooperativas, retail financiero). Dicom, en cambio, sólo muestra la morosidad, pero se alimenta también de entes no regulados (universidades, pagarés notariales, gastos comunes).
+
+Si tienes anotaciones, consulta [cómo salir del Boletín Comercial](/posts/como-salir-boletin-comercial-chile/).

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "source": "src/data/blog/**",
   "publishableRule": "draft !== true",
-  "articleCount": 39,
+  "articleCount": 40,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -100,7 +100,7 @@
         "Cómo funciona la cuota: lo que pagas y a qué va"
       ],
       "bodyExcerpt": "Cuando comparas créditos, el número que más te empujan es la cuota o la tasa mensual. El problema es que ninguna de esas dos cifras, por sí sola, te dice cuánto terminarás pagando en total. El **CAE** existe precisamente para cerrar esa trampa. Usa esta guía si todavía estás evaluando una oferta, una repactación o un prepago. Si tu problema ya no es comparar sino ordenar deudas vencidas o revisar qué aparece a tu nombre, cambia de ruta: primero diagnóstico; después, si corresponde, salida formal. ## Dos CAE que no tienen nada que ver entre sí Antes de entrar al tema, hay que despejar una confusión frecuente de vocabulario chileno: - **CAE (Carga Anual Equivalente):** Indicador del costo total anual de un crédito. Incluye tasas, comisiones y seguros. Es el número que te permite comparar dos créditos de forma justa. - **CAE (Crédito con Aval del Estado):** Préstamo estudiantil gestionado por la Comisión Ingresa. No tiene relación directa con el indicador financiero anterior. En esta guía, \"CAE\" siempre se refiere al primer significado: el indicador de costo del crédito. ## Esta guía sí te sirve cuando... y cuándo no - **Sí te sirve** si estás comparando un crédito nuevo, una repactac",
-      "wordCount": 2300,
+      "wordCount": 2320,
       "sourceFile": "cae-costo-real-credito-chile.md"
     },
     {
@@ -266,9 +266,42 @@
         "5. Cotizaciones de trabajador independiente (PPM)",
         "Cómo reclamar si hay un error"
       ],
-      "bodyExcerpt": "La **cartola AFP** es tu estado de cuenta previsional trimestral. Llega cuatro veces al año —en enero, abril, julio y octubre— y resume lo que pasó con tu dinero durante ese período. **Respuesta rápida:** La cartola AFP llega trimestralmente (enero, abril, julio, octubre), muestra tu saldo por tipo de cuenta, las cotizaciones del período con la comisión cobrada, y la rentabilidad de tu fondo. **Vigencia:** 2026-04-09. **Fuente:** . Puedes recibirla por correo físico si tienes domicilio registrado en la AFP, y también está disponible en el portal web o app de tu . Revisarla sistemáticamente —no solo guardarla— te permite detectar errores antes de que se conviertan en problemas mayores. --- ## Las secciones de tu cartola AFP La Superintendencia de Pensiones exige un formato mínimo estandarizado para todas las AFP. Las cinco secciones que verás en cualquier cartola son las siguientes *(resumen orientativo — fuente: normativa SP)*: | Sección | Qué muestra | Qué verificar | |---------|-------------|---------------| | **Datos del afiliado** | Nombre completo, RUT, AFP, tipo de fondo actual (A, B, C, D o E) | Que el fondo sea el que elegiste. Si ves un fondo equivocado, revisa . | | **Sal",
-      "wordCount": 1325,
+      "bodyExcerpt": "La **cartola AFP** es tu estado de cuenta previsional trimestral. Llega cuatro veces al año —en enero, abril, julio y octubre— y resume lo que pasó con tu dinero durante ese período. **Respuesta rápida:** La cartola AFP llega trimestralmente (enero, abril, julio, octubre), muestra tu saldo por tipo de cuenta, las cotizaciones del período con la comisión cobrada, y la rentabilidad de tu fondo. **Vigencia:** 2026-04-09. **Fuente:** . Puedes recibirla por correo físico si tienes domicilio registrado en la AFP, y también está disponible en el portal web o app de tu . Revisarla sistemáticamente —no solo guardarla— te permite detectar errores antes de que se conviertan en problemas mayores. --- ## Las secciones de tu cartola AFP La Superintendencia de Pensiones exige un formato mínimo estandarizado para todas las AFP. Las cinco secciones que verás en cualquier cartola son las siguientes _(resumen orientativo — fuente: normativa SP)_: | Sección | Qué muestra | Qué verificar | | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",
+      "wordCount": 1331,
       "sourceFile": "como-leer-cartola-afp-chile.md"
+    },
+    {
+      "slug": "como-salir-boletin-comercial-chile",
+      "title": "Cómo salir del Boletín Comercial: plazos, pasos y qué hacer si hay un error",
+      "tags": [
+        "boletin-comercial",
+        "dicom",
+        "deudas",
+        "credito"
+      ],
+      "category": "deuda-credito",
+      "cluster": "deuda-credito",
+      "sourcePath": "src/data/blog/como-salir-boletin-comercial-chile.md",
+      "heroImage": "/images/hero/como-salir-boletin-comercial-chile.avif",
+      "summary": "En Chile, estar \"en el Boletín Comercial\" es la causa concreta de lo que coloquialmente se llama \"estar en DICOM\". No son lo mismo, pero están relacionados: el Boletín Comercial es el registro oficial de protestos y documentos impagos; DICOM es un producto privado que recoge ese...",
+      "leadParagraphs": [
+        "En Chile, estar \"en el Boletín Comercial\" es la causa concreta de lo que coloquialmente se llama \"estar en DICOM\". No son lo mismo, pero están relacionados: el Boletín Comercial es el registro oficial de protestos y documentos impagos; DICOM es un producto privado que recoge ese y otros datos.",
+        "La regla de fondo es esta: si pagaste la deuda, la ley te da derecho a que te eliminen en **5 días hábiles**. Si la deuda sigue impaga, la anotación persiste indefinidamente — no hay un plazo automático de borrado mientras no haya pago. Así lo establece la **Ley 20.575**, vigente a 2026-04-09.",
+        "El **Boletín Comercial** es el registro nacional de documentos comerciales protestados e impagos. Lo administra la **Cámara de Comercio de Santiago (CCS)** bajo supervisión de la **Comisión para el Mercado Financiero (CMF)**. No es un sistema privado ni discrecional: su funcionamiento está regulado por la Ley 20.575 y normas de la CMF."
+      ],
+      "headings": [
+        "Tabla de contenidos",
+        "¿Qué es el Boletín Comercial y qué registra?",
+        "Boletín Comercial vs DICOM",
+        "Plazos de eliminación según la ley",
+        "Cómo solicitar la eliminación voluntaria",
+        "Paso 1 — Paga y obtén comprobante",
+        "Paso 2 — Exige al acreedor que notifique a la CCS",
+        "Paso 3 — Si el acreedor no cumple en el plazo, reclama ante la CMF"
+      ],
+      "bodyExcerpt": "En Chile, estar \"en el Boletín Comercial\" es la causa concreta de lo que coloquialmente se llama \"estar en DICOM\". No son lo mismo, pero están relacionados: el Boletín Comercial es el registro oficial de protestos y documentos impagos; DICOM es un producto privado que recoge ese y otros datos. La regla de fondo es esta: si pagaste la deuda, la ley te da derecho a que te eliminen en **5 días hábiles**. Si la deuda sigue impaga, la anotación persiste indefinidamente — no hay un plazo automático de borrado mientras no haya pago. Así lo establece la **Ley 20.575**, vigente a 2026-04-09. ## Tabla de contenidos ## ¿Qué es el Boletín Comercial y qué registra? El **Boletín Comercial** es el registro nacional de documentos comerciales protestados e impagos. Lo administra la **Cámara de Comercio de Santiago (CCS)** bajo supervisión de la **Comisión para el Mercado Financiero (CMF)**. No es un sistema privado ni discrecional: su funcionamiento está regulado por la Ley 20.575 y normas de la CMF. Qué registra principalmente: - Cheques rechazados por falta de fondos o por orden de no pago. - Letras de cambio y pagarés protestados ante notario. - Otros documentos mercantiles que el sistema financ",
+      "wordCount": 1320,
+      "sourceFile": "como-salir-boletin-comercial-chile.md"
     },
     {
       "slug": "credito-hipotecario-chile-guia-completa",
@@ -301,7 +334,7 @@
         "LTV y flujo de documentos"
       ],
       "bodyExcerpt": "Un **crédito hipotecario** es, en términos simples, un préstamo a largo plazo donde la propiedad que compras queda como garantía. En Chile casi todos se expresan en ** ** (Unidad de Fomento), lo que significa que tu dividendo se reajusta con la inflación cada mes. Esta guía cubre el proceso completo — desde que decides que quieres comprar hasta que firmas en notaría y el Conservador inscribe la propiedad a tu nombre — con los costos reales que los bancos no siempre adelantan. > **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifica en las fuentes oficiales referenciadas al final. Para estimar cuánto pagarías de dividendo mensual antes de hablar con un banco, usa la ## Tabla de contenidos ## ¿Qué es un crédito hipotecario y quién lo otorga? El **crédito hipotecario** es el financiamiento que entrega una institución financiera para comprar un bien raíz. La propiedad queda como garantía (eso es la \"hipoteca\"): si dejas de pagar, el acreedor puede ejecutarla y recuperar el capital prestado. En Chile lo otorgan: - **Bancos comerciales** (BancoEstado, Santander, BCI, Scotiabank, Itaú, entre otros) - **Cajas de compensación** (Los Andes, Los Héroes,",
-      "wordCount": 1615,
+      "wordCount": 1627,
       "sourceFile": "credito-hipotecario-chile-guia-completa.md"
     },
     {
@@ -466,7 +499,7 @@
         "Preguntas frecuentes"
       ],
       "bodyExcerpt": "Te llamaron por una deuda que no reconoces. O el arrendador te pidió \"DICOM\". O simplemente quieres saber qué aparece a tu nombre antes de pedir un crédito. En los tres casos la pregunta parece la misma, pero el reporte que necesitas no lo es — y empezar por el equivocado puede costarte tiempo, plata o sacar conclusiones falsas. ## El problema con buscar \"DICOM gratis\" \"DICOM\" no es un sistema oficial del Estado. Es el nombre comercial de un producto de Equifax, empresa privada que vende reportes comerciales. Con el tiempo ese nombre se volvió sinónimo genérico de \"antecedentes financieros\", igual que \"Kleenex\" se usa para hablar de cualquier pañuelo. Cuando alguien dice \"estoy en DICOM\" puede estar describiendo tres situaciones distintas: tiene deudas morosas reportadas al sistema financiero regulado, tiene cheques o documentos protestados, o figura en algún reporte comercial privado. Cada una de esas situaciones se revisa en un lugar distinto. Antes de pagar por un informe privado, conviene agotar las opciones gratuitas oficiales. La mayoría de las veces responden la pregunta real. ## Los tres sistemas y cómo acceder a cada uno ### Informe de Deudas CMF — gratis, ilimitado La Com",
-      "wordCount": 1210,
+      "wordCount": 1227,
       "sourceFile": "donde-ver-si-estoy-en-dicom-gratis.md"
     },
     {
@@ -603,7 +636,7 @@
         "Cuándo puede convenir una Isapre"
       ],
       "bodyExcerpt": "Fonasa sirve a más del 80% de los chilenos. Isapre, al resto. Pero la única pregunta que importa es: ¿cuál te conviene a ti? Esta guía da una respuesta concreta según tu situación: si tienes enfermedades previas, si tienes familia a cargo, si tu ingreso es variable o si estás buscando red privada. ## Tabla de contenidos ## Fonasa o Isapre: la respuesta según tu caso **Respuesta rápida (regla general):** Fonasa conviene a la mayoría de los trabajadores chilenos porque garantiza cobertura universal sin discriminar por enfermedades previas, incluye cargas familiares sin costo adicional y cubre las patologías del GES igual que cualquier Isapre. Isapre puede convenir si tienes ingresos altos, no tienes preexistencias relevantes y priorizas atención en clínicas privadas. **Excepción(es) comunes:** - Si tienes una enfermedad crónica diagnosticada, una Isapre puede excluirla del contrato o incrementar el precio del plan por esa condición. - Si tu sueldo es alto y encuentras un plan Isapre cuyo precio total (incluyendo el extra sobre el 7%) es competitivo con lo que pagarías en copagos por uso frecuente de red privada, la Isapre puede ser conveniente. - Si tienes muchas cargas familiares (h",
-      "wordCount": 2005,
+      "wordCount": 2017,
       "sourceFile": "fonasa-vs-isapre-comparativa.md"
     },
     {
@@ -769,7 +802,7 @@
         "Tu informe comercial gratuito: Boletín Comercial"
       ],
       "bodyExcerpt": "La frase \"estoy en DICOM\" se usa en Chile como atajo para varias cosas distintas: deudas financieras vigentes, morosidades comerciales, protestos o incluso un informe privado que te pidió un tercero. El primer error es tratarlas como si fueran el mismo registro. La regla práctica es esta: si quieres ver qué deudas financieras vigentes aparecen a tu nombre, parte por el **Informe de Deudas CMF**. Si lo que buscas es revisar protestos, retail o un reporte privado usado por un arrendador o empleador, separa ese problema y no asumas que el CMF cubre todo. ## Tabla de contenidos ## Qué es el Informe de Deudas CMF La **Comisión para el Mercado Financiero (CMF)** es el organismo que supervisa bancos, cooperativas, emisores de tarjetas y otras entidades financieras en Chile. Como parte de esa supervisión, las instituciones reportan periódicamente las deudas de sus clientes y con esa información la CMF arma el **Informe de Deudas de Personas Naturales**. Ese informe muestra el detalle de tus **deudas vigentes con el sistema financiero supervisado**. Es gratuito, oficial y lo puedes descargar con ClaveÚnica. Es el punto de partida correcto cuando necesitas ordenar acreedores, confirmar produ",
-      "wordCount": 1572,
+      "wordCount": 1584,
       "sourceFile": "informe-deudas-cmf-vs-dicom.md"
     },
     {
@@ -1155,8 +1188,8 @@
       "heroImage": "/images/hero/rentas-mixtas-sueldo-honorarios.avif",
       "summary": "Si en 2025 tuviste sueldo y emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas...",
       "leadParagraphs": [
-        "Si en 2025 tuviste sueldo *y* emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas más— para que llegues al F22 sin sorpresas.",
-        "**Respuesta rápida (regla general):** Quienes percibieron sueldo *y* emitieron boletas de honorarios en 2025 **deben declarar** Operación Renta 2026 (F22) obligatoriamente. El SII puede generar una propuesta, pero esa propuesta no incluye automáticamente tus boletas de honorarios, porque cada pagador retiene de forma independiente sin conocer tus otras fuentes de ingreso.",
+        "Si en 2025 tuviste sueldo _y_ emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas más— para que llegues al F22 sin sorpresas.",
+        "**Respuesta rápida (regla general):** Quienes percibieron sueldo _y_ emitieron boletas de honorarios en 2025 **deben declarar** Operación Renta 2026 (F22) obligatoriamente. El SII puede generar una propuesta, pero esa propuesta no incluye automáticamente tus boletas de honorarios, porque cada pagador retiene de forma independiente sin conocer tus otras fuentes de ingreso.",
         "**Excepción relevante:** Si el total de tus ingresos anuales (sueldo + honorarios brutos) no supera el tramo exento del Global Complementario (~$11.322.018 anuales para AT 2026, equivalente a 13,5 UTA), no generarás impuesto adicional. Aun así, **la obligación de declarar subsiste**."
       ],
       "headings": [
@@ -1169,7 +1202,7 @@
         "Paso a paso para declarar con rentas mixtas",
         "Lo que necesitas antes de entrar al SII"
       ],
-      "bodyExcerpt": "Si en 2025 tuviste sueldo *y* emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas más— para que llegues al F22 sin sorpresas. ## Regla general: con rentas mixtas siempre debes declarar **Respuesta rápida (regla general):** Quienes percibieron sueldo *y* emitieron boletas de honorarios en 2025 **deben declarar** Operación Renta 2026 (F22) obligatoriamente. El SII puede generar una propuesta, pero esa propuesta no incluye automáticamente tus boletas de honorarios, porque cada pagador retiene de forma independiente sin conocer tus otras fuentes de ingreso. **Excepción relevante:** Si el total de tus ingresos anuales (sueldo + honorarios brutos) no supera el tramo exento del Global Complementario (~$11.322.018 anuales para AT 2026, equivalente a 13,5 UTA), no generarás impuesto adicional. Aun así, **la obligación de declarar subsiste**. **Vigencia:** Operación Renta Año Tributario 2026 (ingresos enero–diciembre 2025), vigente a 2026-04-09. **Fuentes:** ; . | Situación | ¿Hay propuesta del",
+      "bodyExcerpt": "Si en 2025 tuviste sueldo _y_ emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas más— para que llegues al F22 sin sorpresas. ## Regla general: con rentas mixtas siempre debes declarar **Respuesta rápida (regla general):** Quienes percibieron sueldo _y_ emitieron boletas de honorarios en 2025 **deben declarar** Operación Renta 2026 (F22) obligatoriamente. El SII puede generar una propuesta, pero esa propuesta no incluye automáticamente tus boletas de honorarios, porque cada pagador retiene de forma independiente sin conocer tus otras fuentes de ingreso. **Excepción relevante:** Si el total de tus ingresos anuales (sueldo + honorarios brutos) no supera el tramo exento del Global Complementario (~$11.322.018 anuales para AT 2026, equivalente a 13,5 UTA), no generarás impuesto adicional. Aun así, **la obligación de declarar subsiste**. **Vigencia:** Operación Renta Año Tributario 2026 (ingresos enero–diciembre 2025), vigente a 2026-04-09. **Fuentes:** ; . | Situación | ¿Hay propuesta del",
       "wordCount": 1769,
       "sourceFile": "rentas-mixtas-sueldo-honorarios.md"
     },
@@ -1305,7 +1338,7 @@
         "Usos prácticos de la UTM"
       ],
       "bodyExcerpt": "La **UTM (Unidad Tributaria Mensual)** es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Cambia el primer día hábil de cada mes. > **Respuesta rápida** > > **Qué es:** Unidad de medida del valor monetario que el Estado usa para expresar multas, impuestos y aranceles — no es una moneda, sino un indicador de referencia reajustable. > > **Cómo cambia:** Se reajusta cada mes según la variación del IPC del mes anterior. > > **Valor vigente (abril 2026):** $69.889 > > **Fuente oficial:** > > **Vigencia:** Válido durante todo abril 2026. El valor cambia el primer día hábil de cada mes — verifica siempre en SII.cl. Si pagas una multa de tránsito mañana, el monto en pesos que te cobran depende de cuántas UTM tiene la multa multiplicado por el valor vigente **en ese momento**. El mismo número de UTM puede significar más o menos pesos según el mes. > **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Si quieres ver este frente completo junto con UF, reajustes y herramientas, entra a la . ## Tabla de contenidos ## ¿Qué es l",
-      "wordCount": 1696,
+      "wordCount": 1720,
       "sourceFile": "utm-chile-que-es-como-funciona.md"
     }
   ]

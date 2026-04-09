@@ -78,11 +78,11 @@ Aunque en el lenguaje cotidiano ambos términos se usan indistintamente, son sis
 
 Los plazos dependen del estado de la deuda, no del tiempo transcurrido. La tabla siguiente es un **resumen orientativo** basado en la Ley 20.575 y el Código Civil; no reemplaza asesoría legal para situaciones específicas (vigente a 2026-04-09).
 
-| Situación | Plazo de eliminación | Base legal |
-| --- | --- | --- |
-| Deuda pagada — acreedor comunica a CCS | 5 días hábiles desde la comunicación | Ley 20.575 |
-| Deuda pagada — acreedor no comunica en plazo | CMF puede exigir al acreedor el cumplimiento | Ley 20.575 |
-| Deuda impagada | Indefinida — no se elimina sin pago o acuerdo | — |
+| Situación                                             | Plazo de eliminación                                                            | Base legal              |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------- | ----------------------- |
+| Deuda pagada — acreedor comunica a CCS                | 5 días hábiles desde la comunicación                                            | Ley 20.575              |
+| Deuda pagada — acreedor no comunica en plazo          | CMF puede exigir al acreedor el cumplimiento                                    | Ley 20.575              |
+| Deuda impagada                                        | Indefinida — no se elimina sin pago o acuerdo                                   | —                       |
 | Prescripción civil de la acción (acciones ordinarias) | 5 años — impide persecución judicial, pero no borra el registro automáticamente | Código Civil, art. 2515 |
 
 > **Nota:** La prescripción extingue la acción judicial, no la anotación en el Boletín. Para eliminar un registro prescrito es necesario reclamar ante la CMF acreditando la prescripción o negociar con el acreedor.

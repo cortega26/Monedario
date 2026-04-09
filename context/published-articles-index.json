@@ -5,7 +5,7 @@
   "source": "src/data/blog/**",
   "publishableRule": "draft !== true",
   "ordering": "slug asc",
-  "publishedCount": 39,
+  "publishedCount": 40,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -136,6 +136,22 @@
       "sourcePath": "src/data/blog/como-leer-cartola-afp-chile.md",
       "heroImage": "/images/hero/como-leer-cartola-afp-chile.avif",
       "summary": "La cartola AFP es tu estado de cuenta previsional trimestral. Llega cuatro veces al año —en enero, abril, julio y octubre— y resume lo que pasó con tu dinero durante ese período. Respuesta rápida: La cartola AFP llega trimestralmente (enero, abril, julio, octubre), muestra tu sal...",
+      "updatedDate": "2026-04-09T12:00:00Z"
+    },
+    {
+      "slug": "como-salir-boletin-comercial-chile",
+      "title": "Cómo salir del Boletín Comercial: plazos, pasos y qué hacer si hay un error",
+      "category": "deuda-credito",
+      "cluster": "deuda-credito",
+      "tags": [
+        "boletin-comercial",
+        "dicom",
+        "deudas",
+        "credito"
+      ],
+      "sourcePath": "src/data/blog/como-salir-boletin-comercial-chile.md",
+      "heroImage": "/images/hero/como-salir-boletin-comercial-chile.avif",
+      "summary": "En Chile, estar \"en el Boletín Comercial\" es la causa concreta de lo que coloquialmente se llama \"estar en DICOM\". No son lo mismo, pero están relacionados: el Boletín Comercial es el registro oficial de protestos y documentos impagos; DICOM es un producto privado que recoge ese...",
       "updatedDate": "2026-04-09T12:00:00Z"
     },
     {

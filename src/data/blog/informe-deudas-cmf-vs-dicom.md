@@ -141,7 +141,7 @@ La **Ley 20.575** contempla una consulta gratuita mínima del informe comercial 
 
 El Boletín Comercial registra protestos de documentos: cheques rechazados, letras y pagarés protestados. Si nunca has protestado un documento, probablemente tu informe está limpio.
 
-Puedes consultarlo en [boletincomercial.cl](https://www.boletincomercial.cl/).
+Puedes consultarlo en [boletincomercial.cl](https://www.boletincomercial.cl/). Si tienes anotaciones y quieres eliminarlas, consulta la guía completa sobre [cómo salir del Boletín Comercial](/posts/como-salir-boletin-comercial-chile/).
 
 ---
 

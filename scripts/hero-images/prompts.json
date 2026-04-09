@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceManifest": "scripts/hero-images/manifest.json",
-  "count": 39,
+  "count": 40,
   "entries": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -291,6 +291,44 @@
         "matchedKeywords": [
           "afp",
           "cartola"
+        ]
+      }
+    },
+    {
+      "slug": "como-salir-boletin-comercial-chile",
+      "sourcePath": "src/data/blog/como-salir-boletin-comercial-chile.md",
+      "targetImagePath": "/images/hero/como-salir-boletin-comercial-chile.avif",
+      "template": "A",
+      "approvedModelId": "deuda-credito",
+      "sceneId": "A:deuda-credito",
+      "readerSituation": "Persona enfrentando documentos, cuotas o decisiones de deuda.",
+      "primaryIntent": "comparar",
+      "toneClass": "serio",
+      "visualEvidence": [
+        "text contains 'deuda' in article body/title context",
+        "text contains 'dicom' in article body/title context",
+        "primary intent classified as 'comparar' from article text",
+        "reader situation anchored to scene rule 'deuda'"
+      ],
+      "palette": {
+        "category": "Credito / Deuda / Impuestos / Riesgo",
+        "hex": "#d97706"
+      },
+      "modelPlan": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "auto",
+        "size": "1536x1024"
+      },
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one geometric human figure one hand raised to head, shown from behind or as a faceless silhouette.\nThe figure is near pile of documents, credit card shape. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
+      "promptHash": "b0d91cddeebae1fdf23588a2c2520efddd1021ce74e0d80f2f0599e2f12ebf51",
+      "selectors": {
+        "ruleId": "deuda",
+        "category": "deuda-credito",
+        "cluster": "deuda-credito",
+        "matchedKeywords": [
+          "deuda",
+          "dicom"
         ]
       }
     },

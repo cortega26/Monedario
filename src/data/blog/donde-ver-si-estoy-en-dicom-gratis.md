@@ -123,6 +123,8 @@ Significa que no tienes deudas vigentes reportadas al sistema financiero supervi
 **Me rechazaron un arriendo y dicen que "tengo DICOM". ¿Qué reviso primero?**
 Parte por el Informe de Deudas CMF para descartar deudas financieras activas. Luego consulta el Boletín Comercial para revisar si hay protestos. Si ambos salen limpios, el antecedente probablemente está en un reporte privado de Equifax u otra empresa similar — para eso necesitas contratar ese informe directamente.
 
+**¿Tienes protestos en el Boletín Comercial y quieres eliminarlos?** Consulta la guía paso a paso sobre [cómo salir del Boletín Comercial](/posts/como-salir-boletin-comercial-chile/).
+
 **¿Puedo eliminar mis antecedentes del DICOM?**
 Depende del tipo de antecedente. Una deuda pagada en el sistema CMF deja de aparecer como activa. Un protesto en el Boletín Comercial requiere solicitud formal de eliminación una vez pagado. Un antecedente en un reporte privado sigue reglas de la empresa que lo emite, dentro de lo que permite la ley.
 
