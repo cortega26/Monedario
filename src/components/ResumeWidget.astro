@@ -46,22 +46,36 @@
   } from "@/utils/resumeState";
   import { trackAnalyticsEvent } from "@/utils/analytics";
 
-  // Save current page visit
-  savePageVisit(window.location.pathname, document.title);
+  function scheduleIdle(callback: () => void) {
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(callback, { timeout: 1200 });
+      return;
+    }
 
-  const data = getResumeData();
-  const widget = document.getElementById("resume-widget");
+    globalThis.setTimeout(callback, 120);
+  }
 
-  if (widget) {
+  scheduleIdle(() => {
+    savePageVisit(window.location.pathname, document.title);
+  });
+
+  function initResumeWidget() {
+    const widget = document.getElementById("resume-widget");
+    if (!(widget instanceof HTMLElement)) return;
+    if (widget.dataset.resumeHydrated === "true") return;
+
+    widget.dataset.resumeHydrated = "true";
+
+    const data = getResumeData();
     let hasContent = false;
 
-    // Calculator section
     if (data.calculator) {
       const calcSection = document.getElementById("resume-calculator");
       const calcLink = document.getElementById(
         "resume-calculator-link"
-      ) as HTMLAnchorElement;
-      if (calcSection && calcLink) {
+      ) as HTMLAnchorElement | null;
+
+      if (calcSection instanceof HTMLElement && calcLink) {
         calcLink.href = data.calculator.id;
         calcLink.textContent = data.calculator.label;
         calcSection.classList.remove("hidden");
@@ -76,14 +90,18 @@
       }
     }
 
-    // Pages section — filter out current page
     const otherPages = data.pages.filter(
-      p => p.url !== window.location.pathname
+      page => page.url !== window.location.pathname
     );
+
     if (otherPages.length > 0) {
       const pagesSection = document.getElementById("resume-pages");
       const pagesList = document.getElementById("resume-pages-list");
-      if (pagesSection && pagesList) {
+
+      if (
+        pagesSection instanceof HTMLElement &&
+        pagesList instanceof HTMLElement
+      ) {
         otherPages.forEach(page => {
           const li = document.createElement("li");
           const a = document.createElement("a");
@@ -109,11 +127,42 @@
       widget.classList.remove("hidden");
     }
 
-    // Clear button
     document.getElementById("resume-clear")?.addEventListener("click", () => {
       clearResumeData();
       widget.classList.add("hidden");
       trackAnalyticsEvent("resume_cleared", {});
     });
-  } // end if (widget)
+  }
+
+  function scheduleResumeWidget() {
+    const widget = document.getElementById("resume-widget");
+    if (!(widget instanceof HTMLElement)) return;
+    if (widget.dataset.resumeScheduled === "true") return;
+
+    widget.dataset.resumeScheduled = "true";
+
+    const run = () => {
+      scheduleIdle(initResumeWidget);
+    };
+
+    if (!("IntersectionObserver" in window)) {
+      run();
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      entries => {
+        if (!entries.some(entry => entry.isIntersecting)) return;
+
+        observer.disconnect();
+        run();
+      },
+      { rootMargin: "240px 0px" }
+    );
+
+    observer.observe(widget);
+  }
+
+  scheduleResumeWidget();
+  document.addEventListener("astro:page-load", scheduleResumeWidget);
 </script>

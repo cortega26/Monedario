@@ -20,6 +20,10 @@ type Props = {
   enableClientRouter?: boolean;
 };
 
+const performanceSensitivePath = /^\/(?:posts|guias|calculadoras)(?:\/|$)/.test(
+  Astro.url.pathname
+);
+
 const {
   title = SITE.title,
   author = SITE.author,
@@ -29,7 +33,7 @@ const {
   pubDatetime,
   modDatetime,
   scrollSmooth = false,
-  enableClientRouter = true,
+  enableClientRouter = !performanceSensitivePath,
 } = Astro.props;
 
 const siteContext = Astro.site ?? Astro.url;

@@ -10,6 +10,7 @@ type AnalyticsConfig = {
 };
 
 type Cleanup = () => void;
+type IdleHandle = number | ReturnType<typeof globalThis.setTimeout>;
 
 declare global {
   interface Window {
@@ -19,6 +20,15 @@ declare global {
 
 const CLICK_HANDLER_FLAG = "data-analytics-click-handler-attached";
 let pageCleanup: Cleanup | null = null;
+let pendingAnalyticsInit: IdleHandle | null = null;
+
+function scheduleIdle(callback: () => void): IdleHandle {
+  if ("requestIdleCallback" in window) {
+    return window.requestIdleCallback(callback, { timeout: 1200 });
+  }
+
+  return globalThis.setTimeout(callback, 120);
+}
 
 function getConfig(): AnalyticsConfig {
   return window.__monedarioAnalyticsConfig__ ?? {};
@@ -181,11 +191,25 @@ function initPageTracking() {
   };
 }
 
+function initNonCriticalAnalytics() {
+  installGlobalClickTracking();
+  initPageTracking();
+}
+
+function scheduleAnalyticsInit() {
+  if (pendingAnalyticsInit !== null) return;
+
+  // Defers non-critical listeners until after the browser gets a chance to paint.
+  pendingAnalyticsInit = scheduleIdle(() => {
+    pendingAnalyticsInit = null;
+    initNonCriticalAnalytics();
+  });
+}
+
 window.monedarioAnalytics = {
   track,
 };
 
-installGlobalClickTracking();
-initPageTracking();
-document.addEventListener("astro:page-load", initPageTracking);
-document.addEventListener("astro:after-swap", initPageTracking);
+scheduleAnalyticsInit();
+document.addEventListener("astro:page-load", scheduleAnalyticsInit);
+document.addEventListener("astro:after-swap", scheduleAnalyticsInit);

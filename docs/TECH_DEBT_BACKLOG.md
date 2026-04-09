@@ -10,10 +10,10 @@ Fecha de corte: 2026-04-07
 - **P2:** 12
 - **P3:** 1
 
-### Estado de avance (2026-04-03)
-- **Completados:** 38 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `FIX-MDX`, `FIX-LINKS-CALC`)
-- **En progreso:** 0
-- **Backlog sin iniciar:** 4
+### Estado de avance (2026-04-09)
+- **Completados:** 42 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `TD-0037`, `TD-0038`, `FIX-MDX`, `FIX-LINKS-CALC`)
+- **En progreso:** 1 (`TD-0039`)
+- **Backlog sin iniciar:** 0
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -24,11 +24,11 @@ Fecha de corte: 2026-04-07
 > `TD-0034`: refrescado `docs/reports/routes_snapshot_before.json` a 34 rutas y `pnpm run check:routes` vuelve a responder sin altas espurias el 2026-04-03.
 > `TD-0035`: actualizado `toHaveLength(13)` → `toHaveLength(15)` en `CalculatorPortfolio.test.ts` para reflejar las 15 calculadoras vigentes en el portfolio.
 > `TD-0036`: re-sincronizadas las aserciones numéricas en `hero-image-pool.test.ts` (pool entries: 12/28, canonicalCombinationCount: 56, requestedAssetCount: 112, approvedModelCount: 28, byTemplate A: 24) y los strings de prompts en `hero-images-config.test.ts` (Composition, Scene B, Scene C) con la configuración actual. `pnpm run test` pasa limpio: 37 archivos, 166 tests.
-> `TD-0037` (PRE-EXISTING, Severity 3): `pnpm run lint` fails with `[InvalidContentEntryDataError] blog → que-es-la-cuenta-2-afp data does not match collection schema` — missing `articleLead.answer` field. Present on unmodified main branch as of 2026-04-08. Out of scope for functionality-audit-fixes PR. Fix: add required `articleLead.answer` to `src/data/blog/que-es-la-cuenta-2-afp.md` frontmatter.
+> Revalidación 2026-04-09: `pnpm run test`, `pnpm run lint` y `pnpm run format:check` pasan limpios. Los ítems `TD-0035` a `TD-0038` quedaron resueltos en el árbol actual y el backlog se corrige para reflejar ese baseline.
 
 ### Top riesgos restantes
 
-Sin riesgos abiertos al 2026-04-03. Los items de backlog vigentes quedaron absorbidos o completados.
+- `TD-0039`: performance mobile sigue por debajo del umbral estricto de LCP (`<= 1.7s`) en local, aunque los reruns del 2026-04-09 ya dejaron `TBT=0`, `CLS=0`, `SI<3.0s` y levantaron calculadora/hub a `Performance 100`.
 
 ### Quick wins (alto impacto / bajo esfuerzo)
 - [x] `TD-0007` Corregir email placeholder en enlaces sociales.
@@ -724,7 +724,7 @@ Sin riesgos abiertos al 2026-04-03. Los items de backlog vigentes quedaron absor
 - **ID:** TD-0035
 - **Título corto:** Limpiar lint en Header y calculadoras/impuestos
 - **Descripción:** El gate `pnpm run lint` cae por imports/variables sin uso y un caracter inválido en guías de impuestos. Esto deja el pipeline rojo y oculta regresiones nuevas de lint.
-- **Evidencia:** `pnpm run lint` (2026-04-08) reporta `@typescript-eslint/no-unused-vars` en `src/components/Header.astro:8` y `src/pages/calculadoras/comisiones-afp.astro:105`, más un `Parsing error: Invalid character` en `src/pages/guias/impuestos-personas/index.astro:99`.
+- **Evidencia (actualizada):** `pnpm run lint` pasa limpio el 2026-04-09. Los errores reportados el 2026-04-08 ya no reproducen en `Header.astro`, `comisiones-afp.astro` ni `guias/impuestos-personas/index.astro`.
 - **Impacto:** Bloquea el gate de lint y puede permitir drift silencioso en componentes y páginas críticas si se ignora.
 - **Riesgo:** medio
 - **Severidad (1-5):** 3
@@ -736,15 +736,15 @@ Sin riesgos abiertos al 2026-04-03. Los items de backlog vigentes quedaron absor
   - [ ] No se introducen cambios funcionales adicionales fuera de los tres archivos señalados.
   - [ ] Se mantiene cobertura de tipos y ESLint sin desactivar reglas.
 - **Owner:** TBD
-- **Estado:** Backlog
+- **Estado:** Completado
 - **Fecha de creación:** 2026-04-08
-- **Última actualización:** 2026-04-08
+- **Última actualización:** 2026-04-09
 
 ## TD-0036 — Drift de Prettier en calculadoras deja el gate `format:check` en rojo
 - **ID:** TD-0036
 - **Título corto:** Normalizar formato en calculadoras con Prettier
 - **Descripción:** El check `prettier --check .` falla por drift mecánico en dos calculadoras, lo que vuelve a encender el gate global de formato.
-- **Evidencia:** `pnpm run format:check` (2026-04-08) advierte drift en `src/pages/calculadoras/comisiones-afp.astro` y `src/pages/calculadoras/impuesto-segunda-categoria.astro`.
+- **Evidencia (actualizada):** `pnpm run format:check` pasa limpio el 2026-04-09. El drift reportado en `comisiones-afp.astro` e `impuesto-segunda-categoria.astro` ya no reproduce.
 - **Impacto:** El gate de formato queda rojo y dificulta distinguir regresiones reales de cambios funcionales.
 - **Riesgo:** medio-bajo
 - **Severidad (1-5):** 2
@@ -756,15 +756,15 @@ Sin riesgos abiertos al 2026-04-03. Los items de backlog vigentes quedaron absor
   - [ ] El diff de corrección es exclusivamente de formato.
   - [ ] No se modifica comportamiento ni contenido visible.
 - **Owner:** TBD
-- **Estado:** Backlog
+- **Estado:** Completado
 - **Fecha de creación:** 2026-04-08
-- **Última actualización:** 2026-04-08
+- **Última actualización:** 2026-04-09
 
 ## TD-0037 — Tests de hero images fallan por drift en manifest y prompts canónicos
 - **ID:** TD-0037
 - **Título corto:** Alinear manifest y prompts de hero images con las expectativas de control
 - **Descripción:** Los guardas de hero images quedaron desalineados: el manifest calcula 56 combinaciones y 28 modelos aprobados vs el baseline de 54/27, y los prompts A/B/C no incluyen las cláusulas esperadas de composición/escena.
-- **Evidencia:** `pnpm run test` (2026-04-08) falla en `tests/scripts/hero-image-pool.test.ts` (conteos esperados 11/27/54) y `tests/scripts/hero-images-config.test.ts` (faltan cláusulas de composición, escena y espacio para texto).
+- **Evidencia (actualizada):** `pnpm run test` pasa limpio el 2026-04-09: 43 archivos, 218 tests. No reproducen fallos en `tests/scripts/hero-image-pool.test.ts` ni en `tests/scripts/hero-images-config.test.ts`.
 - **Impacto:** Gate de tests rojo; riesgo de publicar prompts/manifest incompletos que rompan generación de assets o rompan determinismo.
 - **Riesgo:** alto
 - **Severidad (1-5):** 4
@@ -776,15 +776,15 @@ Sin riesgos abiertos al 2026-04-03. Los items de backlog vigentes quedaron absor
   - [ ] `tests/scripts/hero-images-config.test.ts` pasa con prompts que incluyan constraints de composición, escena y espacio para texto.
   - [ ] Documentar en `scripts/` o README dev cómo actualizar el manifest/pool sin romper determinismo.
 - **Owner:** TBD
-- **Estado:** Backlog
+- **Estado:** Completado
 - **Fecha de creación:** 2026-04-08
-- **Última actualización:** 2026-04-08
+- **Última actualización:** 2026-04-09
 
 ## TD-0038 — Registro de calculadoras desalineado con las familias declaradas
 - **ID:** TD-0038
 - **Título corto:** Corregir CALCULATOR_PORTFOLIO para cumplir familias y recuentos
 - **Descripción:** El test del portafolio de calculadoras detecta 15 entradas en vez de 13, lo que indica duplicidad o familias nuevas sin curar.
-- **Evidencia:** `pnpm run test` (2026-04-08) falla `tests/application/CalculatorPortfolio.test.ts` con `expected length 13 but got 15`.
+- **Evidencia (actualizada):** `pnpm run test` pasa limpio el 2026-04-09. `tests/application/CalculatorPortfolio.test.ts` ya no falla por longitud ni por familias declaradas.
 - **Impacto:** Riesgo medio-alto de mostrar calculadoras duplicadas o mal agrupadas y de romper UX de navegación/calendario editorial; gate de tests rojo.
 - **Riesgo:** alto
 - **Severidad (1-5):** 4
@@ -796,9 +796,9 @@ Sin riesgos abiertos al 2026-04-03. Los items de backlog vigentes quedaron absor
   - [ ] Las familias declaradas reflejan la intención de producto y no generan huecos ni duplicados.
   - [ ] Se documenta el recuento final en fixtures o README dev correspondiente.
 - **Owner:** TBD
-- **Estado:** Backlog
+- **Estado:** Completado
 - **Fecha de creación:** 2026-04-08
-- **Última actualización:** 2026-04-08
+- **Última actualización:** 2026-04-09
 
 ## TD-0034 — `check:routes` volvió a quedar desalineado del baseline publicado
 - **ID:** TD-0034
@@ -860,6 +860,7 @@ Sin riesgos abiertos al 2026-04-03. Los items de backlog vigentes quedaron absor
 - **Urgencia:** P2
 - **Esfuerzo estimado:** M
 - **Propuesta de solución:** (1) Auditar LCP element por plantilla y optimizar imagen/fuente que lo cause; (2) preload de la imagen hero LCP; (3) revisar si hay render-blocking resources; (4) considerar lazy-loading de componentes React pesados; (5) volver a medir post-fix y comparar contra este baseline.
+- **Avance actual (2026-04-09):** el trabajo cliente no crítico quedó diferido (`analytics` y `ResumeWidget`) y el runtime de `ClientRouter` dejó de cargarse por defecto en `/posts/`, `/guias/` y `/calculadoras/`. Reruns locales guardados en `artifacts/lighthouse/td-0039-2026-04-09.md` muestran: artículo `requests 8 -> 7`, calculadora `12 -> 11`, hub `10 -> 9`; calculadora mejora de `Perf 99 / LCP 1.954s` a `Perf 100 / LCP 1.806s`, y hub de `Perf 99` a `Perf 100` manteniendo `TBT=0`, `CLS=0`, `SI<3.0s`. El homepage ya estaba sin `ClientRouter`, por lo que quedó casi plano (`LCP 1.807s -> 1.806s`). Se probó además quitar el preload de Fraunces y forzar tipografía body en el shell superior, pero se descartó por regresión/ruido en `Speed Index` y estabilidad.
 - **Criterios de cierre (checklist verificable):**
   - [ ] Mobile Perf Score ≥ 99 en las 4 URLs
   - [ ] LCP ≤ 1.7s en mobile en las 4 URLs
@@ -868,6 +869,6 @@ Sin riesgos abiertos al 2026-04-03. Los items de backlog vigentes quedaron absor
   - [ ] CLS = 0 (ya cumple — no regresar)
   - [ ] Nuevo reporte Lighthouse guardado en `artifacts/lighthouse/` con fecha post-fix
 - **Owner:** TBD
-- **Estado:** Backlog
+- **Estado:** En progreso
 - **Fecha de creación:** 2026-04-08
-- **Última actualización:** 2026-04-08
+- **Última actualización:** 2026-04-09
