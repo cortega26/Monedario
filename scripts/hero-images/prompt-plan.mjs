@@ -347,6 +347,22 @@ const SLUG_OVERRIDES = {
     overrideEvidence: ["slug override: IPC inflation indicator educational article"],
     overrideKeywords: ["ipc", "inflacion"],
   },
+  // UTM article: tags include 'impuesto' triggering the renta rule (declaracion-renta scene)
+  // before the uf rule; override to uf-indicadores Template C because UTM is an educational
+  // monetary indicator article (monthly fiscal reference unit), not a tax-filing article.
+  // promptOverride: rubric failures on v1/v2 images (grain, 3D coin, $ symbol) require explicit
+  // per-slug prompt to enforce flat disc, anti-grain background, and composition correction.
+  "utm-chile-que-es-como-funciona": {
+    id: "uf",
+    template: "C",
+    recipeId: "uf-indicadores",
+    colorKey: "Educativo / Conceptos / Guias",
+    readerSituation: "Persona entendiendo la UTM como unidad tributaria mensual: que es, su valor, como afecta multas e impuestos.",
+    toneClass: "educativo",
+    overrideEvidence: ["slug override: UTM monthly fiscal indicator educational article — renta rule false-positive on 'impuesto' tag"],
+    overrideKeywords: ["utm", "tributaria", "indicador", "mensual"],
+    promptOverride: "Flat 2D editorial vector illustration.\nBackground: solid color #4f46e5, perfectly flat with zero grain, noise, or texture.\nScene: one simple geometric rising line chart with a plain coin disc (no markings, no symbols), positioned in the left and center of the canvas; right third is clean solid background only.\nLighting: none. No shadows, no highlights, no depth.\nColor palette: 2 colors maximum, all flat fills.\nNo text, no letters, no numbers, no currency symbols ($, \u20ac, %) anywhere in the image.\nCanvas: 1200x630 pixels, landscape.",
+  },
   // Cesantia comparison article: body mentions 'afp' triggering prevision rule,
   // but the article is about unemployment insurance — use cesantia not afp-pension.
   "seguro-cesantia-cuenta-individual-vs-fondo-solidario": {
@@ -462,6 +478,7 @@ export function selectPromptPlan(article) {
       objetos: overrideModel.objetos,
       icon: overrideModel.icono,
       sceneChoice: overrideModel.label,
+      ...(slugOverride.promptOverride ? { promptOverride: slugOverride.promptOverride } : {}),
     };
   }
 
@@ -553,6 +570,9 @@ export function selectPromptPlan(article) {
 }
 
 export function buildPromptFromPlan(plan) {
+  if (plan.promptOverride) {
+    return plan.promptOverride;
+  }
   if (plan.template === "A") {
     return buildPromptA(plan.hex, plan.postura, plan.objetos);
   }

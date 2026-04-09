@@ -128,6 +128,8 @@ El INE publica un IPC nacional. También publica algunas mediciones regionales, 
 **¿Dónde veo el historial del IPC?**
 En el portal de estadísticas del INE: [www.ine.gob.cl/estadisticas/economia/indices-de-precio-e-inflacion/indice-de-precios-al-consumidor](https://www.ine.gob.cl/estadisticas/economia/indices-de-precio-e-inflacion/indice-de-precios-al-consumidor).
 
+La UTM (Unidad Tributaria Mensual) también usa el IPC mensual como base de reajuste — si recibes o pagas multas, realizas trámites estatales, o calculas tramos de impuesto a la renta, revisa [UTM en Chile: qué es y para qué sirve](/posts/utm-chile-que-es-como-funciona/).
+
 ---
 
 ## Fuentes

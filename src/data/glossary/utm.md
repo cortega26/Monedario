@@ -24,3 +24,5 @@ La UTM tiene derivadas:
 
 - **Unidad Tributaria Anual (UTA):** Equivale a la UTM vigente el último mes del año fiscal comercializada por 12 meses.
 - Ocasionalmente se ve referenciada su métrica prorrateada diaria por el Servicio de Impuestos Internos.
+
+**Artículo relacionado:** [UTM en Chile: qué es, cómo funciona y para qué sirve](/posts/utm-chile-que-es-como-funciona/) →

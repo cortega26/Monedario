@@ -5,7 +5,7 @@
   "source": "src/data/blog/**",
   "publishableRule": "draft !== true",
   "ordering": "slug asc",
-  "publishedCount": 37,
+  "publishedCount": 38,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -617,6 +617,24 @@
       "heroImage": "/images/hero/suplantacion-identidad-creditos-no-reconocidos.avif",
       "summary": "Recibes un correo que dice \"tu crédito ha sido aprobado\". El problema es que tú nunca pediste ningún crédito. Eso no es un error administrativo: es una señal de que alguien usó tus datos para contratar deuda a tu nombre. Esta guía te explica qué hacer para actuar rápido y evitar...",
       "updatedDate": "2026-03-03T00:00:00Z"
+    },
+    {
+      "slug": "utm-chile-que-es-como-funciona",
+      "title": "UTM en Chile: qué es, cómo funciona y para qué sirve",
+      "category": "general",
+      "cluster": "uf-costo-de-vida",
+      "tags": [
+        "utm",
+        "uta",
+        "uf",
+        "ipc",
+        "inflacion",
+        "impuestos"
+      ],
+      "sourcePath": "src/data/blog/utm-chile-que-es-como-funciona.md",
+      "heroImage": "/images/hero/utm-chile-que-es-como-funciona.avif",
+      "summary": "La UTM (Unidad Tributaria Mensual) es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Cambia el primer día hábil de cada mes. Respuesta rápida Qué es: Unidad de medida del valor monetario que el Estado usa para expresar...",
+      "updatedDate": "2026-04-09T12:00:00Z"
     }
   ]
 }

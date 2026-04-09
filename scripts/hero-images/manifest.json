@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "source": "src/data/blog/**",
   "publishableRule": "draft !== true",
-  "articleCount": 37,
+  "articleCount": 38,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -934,7 +934,7 @@
         "Deudas y obligaciones en UF"
       ],
       "bodyExcerpt": "Cuando sale el dato del IPC cada mes, los medios hablan de \"inflación\" y tú ves que las cosas cuestan más. Pero ¿cómo se mide exactamente? ¿Por qué a veces el IPC baja pero igual sientes que todo cuesta más? Y lo más importante: ¿qué decisiones afecta directamente en tu vida? > **Información vigente al 2026-03-11.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Esta guía lo explica desde cero, con ejemplos concretos y sin economía de facultad. Si quieres ver este frente completo junto con UF, reajustes y herramientas, entra a la . Si lo que te interesa es el efecto específico sobre la UF, complementa con . ## Qué es el IPC El **Índice de Precios al Consumidor (IPC)** es el indicador que mide cuánto cambia, en promedio, el precio de una canasta representativa de bienes y servicios que compran los hogares chilenos. No mide el precio de todo lo que existe — mide la variación de lo que compra una familia \"tipo\" chilena: alimentos, transporte, vivienda, salud, educación, vestuario, comunicaciones y ocio. Lo calcula y publica el **INE (Instituto Nacional de Estadísticas)** todos los meses, generalmente la primer",
-      "wordCount": 1030,
+      "wordCount": 1063,
       "sourceFile": "que-es-el-ipc-chile-como-se-calcula.md"
     },
     {
@@ -1001,7 +1001,7 @@
         "Arriendo en UF"
       ],
       "bodyExcerpt": "Tu arriendo sube todos los años \"por la UF\" y tu dividendo también. Pero casi nadie sabe exactamente qué es la UF ni por qué cambia todos los días. Acá te explicamos de verdad — con números y sin fórmulas intimidantes. Si quieres ver esta historia ordenada junto con IPC, reajustes y herramientas prácticas, parte por la . Si quieres ver cómo se conecta con créditos y deudas, también puedes complementar con la . ## Tabla de contenidos ## Qué es la UF La **Unidad de Fomento (UF)** es una unidad de medida del valor del dinero que se ajusta automáticamente con la inflación. No es un tipo de cambio, no es una moneda y no la emite ningún banco privado — la calcula y publica el **Banco Central de Chile** todos los meses. La idea detrás de la UF es simple: si precias algo en pesos y hay inflación, ese precio pierde valor real con el tiempo. Pero si lo precias en UF, el valor se mantiene constante en términos de poder adquisitivo, porque la UF sube exactamente lo mismo que sube el costo de vida. Por eso se usa en contratos de arriendo, créditos hipotecarios, deudas de largo plazo, multas y cualquier obligación donde ambas partes quieren protegerse de la inflación. --- ## Cuánto vale la UF ho",
-      "wordCount": 1520,
+      "wordCount": 1549,
       "sourceFile": "que-es-la-uf.md"
     },
     {
@@ -1238,6 +1238,41 @@
       "bodyExcerpt": "Recibes un correo que dice \"tu crédito ha sido aprobado\". El problema es que tú nunca pediste ningún crédito. Eso no es un error administrativo: es una señal de que alguien usó tus datos para contratar deuda a tu nombre. Esta guía te explica qué hacer para actuar rápido y evitar los errores que más atrasan la solución. ## Cómo detectar la suplantación antes de que escale Las señales más comunes aparecen antes de que te llegue una carta de cobranza: - **Correos o SMS de aprobaciones que no solicitaste.** Un crédito aprobado que nadie pidió es la señal más directa. - **Cuentas nuevas asociadas a tu RUT.** Si revisas tu y aparecen productos que no reconoces, actúa de inmediato. - **Llamados de cobranza por deudas desconocidas.** Cuando te llaman exigiendo pago de cuotas de algo que nunca contrataste. - **Cambios de datos de contacto sin tu autorización.** Si una institución tiene un correo o teléfono distinto al tuyo en su sistema, alguien los modificó. - **Alertas de consultas de crédito en tu historial.** Cada vez que alguien pide un crédito usando tu RUT, queda registrado como consulta. Puede aparecer en tu informe CMF. Tener claro el problema es siempre el primer paso. Antes de di",
       "wordCount": 1395,
       "sourceFile": "suplantacion-identidad-creditos-no-reconocidos.md"
+    },
+    {
+      "slug": "utm-chile-que-es-como-funciona",
+      "title": "UTM en Chile: qué es, cómo funciona y para qué sirve",
+      "tags": [
+        "utm",
+        "uta",
+        "uf",
+        "ipc",
+        "inflacion",
+        "impuestos"
+      ],
+      "category": "general",
+      "cluster": "uf-costo-de-vida",
+      "sourcePath": "src/data/blog/utm-chile-que-es-como-funciona.md",
+      "heroImage": "/images/hero/utm-chile-que-es-como-funciona.avif",
+      "summary": "La UTM (Unidad Tributaria Mensual) es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Cambia el primer día hábil de cada mes. Respuesta rápida Qué es: Unidad de medida del valor monetario que el Estado usa para expresar...",
+      "leadParagraphs": [
+        "La **UTM (Unidad Tributaria Mensual)** es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Cambia el primer día hábil de cada mes.",
+        "> **Respuesta rápida** > > **Qué es:** Unidad de medida del valor monetario que el Estado usa para expresar multas, impuestos y aranceles — no es una moneda, sino un indicador de referencia reajustable. > > **Cómo cambia:** Se reajusta cada mes según la variación del IPC del mes anterior. > > **Valor vigente (abril 2026):** $69.889 > > **Fuente oficial:** [SII — UTM/UTA/IPC 2026](https://www.sii.cl/valores_y_fechas/utm/utm2026.htm) > > **Vigencia:** Válido durante todo abril 2026. El valor cambia el primer día hábil de cada mes — verifica siempre en SII.cl.",
+        "Si pagas una multa de tránsito mañana, el monto en pesos que te cobran depende de cuántas UTM tiene la multa multiplicado por el valor vigente **en ese momento**. El mismo número de UTM puede significar más o menos pesos según el mes."
+      ],
+      "headings": [
+        "Tabla de contenidos",
+        "¿Qué es la UTM?",
+        "Cómo se reajusta la UTM",
+        "Base legal",
+        "UTM y UTA: dos unidades de la misma familia",
+        "¿Cómo se calcula la UTA?",
+        "La UTM vs la UF — ¿cuál es la diferencia?",
+        "Usos prácticos de la UTM"
+      ],
+      "bodyExcerpt": "La **UTM (Unidad Tributaria Mensual)** es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Cambia el primer día hábil de cada mes. > **Respuesta rápida** > > **Qué es:** Unidad de medida del valor monetario que el Estado usa para expresar multas, impuestos y aranceles — no es una moneda, sino un indicador de referencia reajustable. > > **Cómo cambia:** Se reajusta cada mes según la variación del IPC del mes anterior. > > **Valor vigente (abril 2026):** $69.889 > > **Fuente oficial:** > > **Vigencia:** Válido durante todo abril 2026. El valor cambia el primer día hábil de cada mes — verifica siempre en SII.cl. Si pagas una multa de tránsito mañana, el monto en pesos que te cobran depende de cuántas UTM tiene la multa multiplicado por el valor vigente **en ese momento**. El mismo número de UTM puede significar más o menos pesos según el mes. > **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Si quieres ver este frente completo junto con UF, reajustes y herramientas, entra a la . ## Tabla de contenidos ## ¿Qué es l",
+      "wordCount": 1696,
+      "sourceFile": "utm-chile-que-es-como-funciona.md"
     }
   ]
 }

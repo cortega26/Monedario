@@ -141,6 +141,10 @@ export const CANONICAL_TOPIC_REGISTRY = {
       ownerSlug: "reajuste-arriendo-uf-ipc-chile",
       intentLabel: "interpretar reajuste de arriendo en UF o IPC",
     },
+    "utm-uta-unidades-tributarias": {
+      ownerSlug: "utm-chile-que-es-como-funciona",
+      intentLabel: "entender UTM y UTA como unidades tributarias reajustables en Chile",
+    },
   },
 };
 

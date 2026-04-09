@@ -31,3 +31,5 @@ Al calcular el beneficio del APV Régimen A, el tope del bono estatal es de **6 
 ---
 
 **Lee la guía completa:** [Operación Renta 2026: F22, proceso y devolución](/guias/impuestos-personas/operacion-renta/) →
+
+**Ver también:** [UTM en Chile: qué es y para qué sirve](/posts/utm-chile-que-es-como-funciona/) — incluye UTM, UTA y diferencias con la UF.

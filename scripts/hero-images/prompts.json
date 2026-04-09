@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceManifest": "scripts/hero-images/manifest.json",
-  "count": 37,
+  "count": 38,
   "entries": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -1378,6 +1378,45 @@
         "cluster": "seguridad-financiera",
         "matchedKeywords": [
           "suplantacion"
+        ]
+      }
+    },
+    {
+      "slug": "utm-chile-que-es-como-funciona",
+      "sourcePath": "src/data/blog/utm-chile-que-es-como-funciona.md",
+      "targetImagePath": "/images/hero/utm-chile-que-es-como-funciona.avif",
+      "template": "C",
+      "approvedModelId": "uf-indicadores",
+      "sceneId": "C:uf-indicadores",
+      "readerSituation": "Persona entendiendo la UTM como unidad tributaria mensual: que es, su valor, como afecta multas e impuestos.",
+      "primaryIntent": "explicar",
+      "toneClass": "educativo",
+      "visualEvidence": [
+        "slug override: UTM monthly fiscal indicator educational article — renta rule false-positive on 'impuesto' tag",
+        "primary intent classified as 'explicar' from article text",
+        "reader situation anchored to scene rule 'uf'"
+      ],
+      "palette": {
+        "category": "Educativo / Conceptos / Guias",
+        "hex": "#4f46e5"
+      },
+      "modelPlan": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "auto",
+        "size": "1536x1024"
+      },
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #4f46e5, perfectly flat with zero grain, noise, or texture.\nScene: one simple geometric rising line chart with a plain coin disc (no markings, no symbols), positioned in the left and center of the canvas; right third is clean solid background only.\nLighting: none. No shadows, no highlights, no depth.\nColor palette: 2 colors maximum, all flat fills.\nNo text, no letters, no numbers, no currency symbols ($, €, %) anywhere in the image.\nCanvas: 1200x630 pixels, landscape.",
+      "promptHash": "ed8e2ceb7de79b8bb20bcb3891913abedd4c021afe120a44b490e3aa1afec8db",
+      "selectors": {
+        "ruleId": "uf",
+        "category": "general",
+        "cluster": "uf-costo-de-vida",
+        "matchedKeywords": [
+          "utm",
+          "tributaria",
+          "indicador",
+          "mensual"
         ]
       }
     }
