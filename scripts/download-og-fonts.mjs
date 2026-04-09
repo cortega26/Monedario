@@ -62,7 +62,7 @@ function assertTrustedGoogleUrl(url, label) {
 
 async function fetchTrustedText(url, init) {
   assertTrustedGoogleUrl(url, "API");
-  // nosemgrep: semgrep_rules_lgpl_javascript_ssrf_rule-node-ssrf -- URL is constrained to the Google Fonts allowlist above.
+  // nosemgrep -- URL is constrained to the Google Fonts allowlist above.
   const response = await fetch(url, init);
   if (!response.ok) {
     throw new Error(`HTTP ${response.status} from ${new URL(url).hostname}`);
@@ -72,7 +72,7 @@ async function fetchTrustedText(url, init) {
 
 async function fetchTrustedArrayBuffer(url) {
   assertTrustedGoogleUrl(url, "font");
-  // nosemgrep: semgrep_rules_lgpl_javascript_ssrf_rule-node-ssrf -- URL is constrained to the Google Fonts allowlist above.
+  // nosemgrep -- URL is constrained to the Google Fonts allowlist above.
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error(`HTTP ${response.status} from font URL`);

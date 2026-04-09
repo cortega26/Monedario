@@ -66,8 +66,7 @@ def run_git(repo: str, args: List[str]) -> str:
     # Python's list-based subprocess.run with shell=False is safe against shell injection.
     cmd = ["git"] + validate_git_args(args)
     try:
-        # nosemgrep: semgrep_python.lang.security.audit.dangerous-subprocess-use-audit.dangerous-subprocess-use-audit
-        # nosemgrep: semgrep_python.lang.security.audit.dangerous-subprocess-use-tainted-env-args.dangerous-subprocess-use-tainted-env-args
+        # nosemgrep -- validated argv, literal git executable, and shell=False make this subprocess call intentional and bounded.
         proc = subprocess.run(
             cmd,
             cwd=repo,

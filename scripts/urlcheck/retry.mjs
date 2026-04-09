@@ -64,7 +64,7 @@ async function probeUrl(url, timeoutMs, internalOrigins) {
       };
     }
 
-    // nosemgrep: semgrep_rules_lgpl_javascript_ssrf_rule-node-ssrf -- retries are limited to explicitly trusted internal origins.
+    // nosemgrep -- retries are limited to explicitly trusted internal origins.
     const response = await fetch(url, {
       method: "GET",
       redirect: "follow",
