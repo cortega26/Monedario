@@ -52,11 +52,11 @@ faqs:
     a: "Sí, si tu renta total anual (sueldo bruto + honorarios brutos) no supera el tramo exento del Global Complementario (13,5 UTA anuales para AT 2026, aproximadamente $11.322.018 anuales), no pagas impuesto adicional. Pero igual debes declarar."
 ---
 
-Si en 2025 tuviste sueldo *y* emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas más— para que llegues al F22 sin sorpresas.
+Si en 2025 tuviste sueldo _y_ emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas más— para que llegues al F22 sin sorpresas.
 
 ## Regla general: con rentas mixtas siempre debes declarar
 
-**Respuesta rápida (regla general):** Quienes percibieron sueldo *y* emitieron boletas de honorarios en 2025 **deben declarar** Operación Renta 2026 (F22) obligatoriamente. El SII puede generar una propuesta, pero esa propuesta no incluye automáticamente tus boletas de honorarios, porque cada pagador retiene de forma independiente sin conocer tus otras fuentes de ingreso.
+**Respuesta rápida (regla general):** Quienes percibieron sueldo _y_ emitieron boletas de honorarios en 2025 **deben declarar** Operación Renta 2026 (F22) obligatoriamente. El SII puede generar una propuesta, pero esa propuesta no incluye automáticamente tus boletas de honorarios, porque cada pagador retiene de forma independiente sin conocer tus otras fuentes de ingreso.
 
 **Excepción relevante:** Si el total de tus ingresos anuales (sueldo + honorarios brutos) no supera el tramo exento del Global Complementario (~$11.322.018 anuales para AT 2026, equivalente a 13,5 UTA), no generarás impuesto adicional. Aun así, **la obligación de declarar subsiste**.
 
@@ -64,15 +64,15 @@ Si en 2025 tuviste sueldo *y* emitiste boletas de honorarios, la propuesta del S
 
 **Fuentes:** [SII — Boletas de honorarios](https://www.sii.cl/destacados/boletas_honorarios/); [SII — Información AT 2026 Personas Naturales](https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html).
 
-| Situación                                    | ¿Hay propuesta del SII? | ¿Debes declarar? | Herramienta                                         |
-| -------------------------------------------- | ----------------------- | ---------------- | --------------------------------------------------- |
-| Solo sueldo (un empleador)                   | Sí                      | Opcional         | Acepta si los datos son correctos                   |
-| Solo boletas de honorarios                   | Parcial                 | Sí               | Declaración completa F22                            |
-| **Sueldo y boletas (rentas mixtas)**         | **Parcial**             | **Sí, siempre**  | **Declaración completa F22**                        |
-| Dos o más empleadores simultáneos            | Sí                      | Sí               | Declaración completa F22                            |
-| Sueldo + arriendo u otros ingresos pasivos   | Parcial                 | Sí               | Declaración completa F22                            |
+| Situación                                  | ¿Hay propuesta del SII? | ¿Debes declarar? | Herramienta                       |
+| ------------------------------------------ | ----------------------- | ---------------- | --------------------------------- |
+| Solo sueldo (un empleador)                 | Sí                      | Opcional         | Acepta si los datos son correctos |
+| Solo boletas de honorarios                 | Parcial                 | Sí               | Declaración completa F22          |
+| **Sueldo y boletas (rentas mixtas)**       | **Parcial**             | **Sí, siempre**  | **Declaración completa F22**      |
+| Dos o más empleadores simultáneos          | Sí                      | Sí               | Declaración completa F22          |
+| Sueldo + arriendo u otros ingresos pasivos | Parcial                 | Sí               | Declaración completa F22          |
 
-*Resumen orientativo. Verifica tu situación específica en [sii.cl](https://www.sii.cl). Nota: el SII muestra la propuesta pero puede estar incompleta si no tiene información de todas tus fuentes.*
+_Resumen orientativo. Verifica tu situación específica en [sii.cl](https://www.sii.cl). Nota: el SII muestra la propuesta pero puede estar incompleta si no tiene información de todas tus fuentes._
 
 ## ¿Por qué no existe una propuesta completa para rentas mixtas?
 
@@ -101,18 +101,18 @@ La lógica central es la siguiente:
 
 Los tramos anuales son equivalentes a los tramos mensuales del Impuesto de Segunda Categoría multiplicados por 12. La siguiente tabla es **resumen orientativo** para AT 2026; los valores exactos en pesos dependen de la UTA vigente a diciembre 2025:
 
-| Renta anual (en UTA)       | Tasa marginal | Tasa efectiva máxima del tramo |
-| -------------------------- | ------------- | ------------------------------ |
-| 0 a 13,5 UTA               | Exento        | 0%                             |
-| Más de 13,5 a 30 UTA       | 4%            | hasta 2,2%                     |
-| Más de 30 a 50 UTA         | 8%            | hasta 4,5%                     |
-| Más de 50 a 70 UTA         | 13,5%         | hasta 7,1%                     |
-| Más de 70 a 90 UTA         | 23%           | hasta 10,6%                    |
-| Más de 90 a 120 UTA        | 30,4%         | hasta 15,6%                    |
-| Más de 120 a 310 UTA       | 35%           | hasta 27,5%                    |
-| Más de 310 UTA             | 40%           | más de 27,5%                   |
+| Renta anual (en UTA) | Tasa marginal | Tasa efectiva máxima del tramo |
+| -------------------- | ------------- | ------------------------------ |
+| 0 a 13,5 UTA         | Exento        | 0%                             |
+| Más de 13,5 a 30 UTA | 4%            | hasta 2,2%                     |
+| Más de 30 a 50 UTA   | 8%            | hasta 4,5%                     |
+| Más de 50 a 70 UTA   | 13,5%         | hasta 7,1%                     |
+| Más de 70 a 90 UTA   | 23%           | hasta 10,6%                    |
+| Más de 90 a 120 UTA  | 30,4%         | hasta 15,6%                    |
+| Más de 120 a 310 UTA | 35%           | hasta 27,5%                    |
+| Más de 310 UTA       | 40%           | más de 27,5%                   |
 
-*Resumen orientativo basado en Art. 52 LIR y tabla [SII Impuesto Segunda Categoría 2026](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm). Verifica el valor exacto de la UTA en SII para el año correspondiente.*
+_Resumen orientativo basado en Art. 52 LIR y tabla [SII Impuesto Segunda Categoría 2026](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm). Verifica el valor exacto de la UTA en SII para el año correspondiente._
 
 Para simular tu resultado completo antes de abrir el F22: [Simulador Operación Renta 2026](/calculadoras/operacion-renta/).
 
@@ -157,14 +157,14 @@ Para los detalles del proceso de revisión y los errores más frecuentes, consul
 
 ### Campos clave del F22 para rentas mixtas
 
-| Sección del F22        | Qué ingresa                                                         |
-| ---------------------- | ------------------------------------------------------------------- |
-| Ingresos del trabajo   | Sueldos brutos del año (según certificado del empleador)            |
-| Retenciones de sueldo  | Total de Impuesto de Segunda Categoría retenido por empleador(es)   |
-| Ingresos de honorarios | Total de honorarios brutos emitidos en el año                       |
-| Retenciones boletas    | Total del 15,25% retenido en todas las boletas del año              |
+| Sección del F22        | Qué ingresa                                                       |
+| ---------------------- | ----------------------------------------------------------------- |
+| Ingresos del trabajo   | Sueldos brutos del año (según certificado del empleador)          |
+| Retenciones de sueldo  | Total de Impuesto de Segunda Categoría retenido por empleador(es) |
+| Ingresos de honorarios | Total de honorarios brutos emitidos en el año                     |
+| Retenciones boletas    | Total del 15,25% retenido en todas las boletas del año            |
 
-*Resumen orientativo. El F22 real puede tener códigos de línea específicos que varían por año tributario. Revisa el instructivo oficial del SII para AT 2026.*
+_Resumen orientativo. El F22 real puede tener códigos de línea específicos que varían por año tributario. Revisa el instructivo oficial del SII para AT 2026._
 
 ## Casos frecuentes y excepciones
 
@@ -181,6 +181,7 @@ Sí. Aunque el monto de honorarios sea pequeño y no genere impuesto adicional, 
 ### APV y cómo puede reducir tu impuesto final
 
 Si realizaste aportes a APV durante 2025:
+
 - **Régimen A:** El aporte reduce tu base imponible del IGC (se descuenta de la renta gravada antes de aplicar los tramos). Especialmente útil si estás en un tramo intermedio.
 - **Régimen B:** Generas un crédito fiscal del 15% sobre los aportes, que se aplica directamente en el F22 reduciendo el impuesto determinado.
 

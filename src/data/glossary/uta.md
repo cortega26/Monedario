@@ -8,17 +8,18 @@ La **Unidad Tributaria Anual (UTA)** es una unidad de medida tributaria chilena 
 
 ### UTA vs. UTM
 
-| Característica | UTM | UTA |
-|----------------|-----|-----|
-| Período | Mensual | Anual |
-| Equivalencia | Valor base | 12 UTM de diciembre |
-| Uso principal | Multas, cotizaciones, APV | Tramos del impuesto a la renta |
+| Característica | UTM                       | UTA                            |
+| -------------- | ------------------------- | ------------------------------ |
+| Período        | Mensual                   | Anual                          |
+| Equivalencia   | Valor base                | 12 UTM de diciembre            |
+| Uso principal  | Multas, cotizaciones, APV | Tramos del impuesto a la renta |
 
 ### ¿Para qué se usa la UTA?
 
 La UTA aparece principalmente en los **tramos del Impuesto Global Complementario** (Operación Renta). El SII publica cada año la tabla con los rangos de renta imponible expresados en UTA y la tasa marginal que corresponde a cada tramo.
 
 **Ejemplo orientativo (renta anual):**
+
 - Hasta 13,5 UTA → exento de impuesto
 - Entre 13,5 y 30 UTA → tasa efectiva del 4%
 - Entre 30 y 50 UTA → tasa del 8%

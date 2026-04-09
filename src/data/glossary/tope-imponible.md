@@ -25,7 +25,7 @@ Si tu sueldo supera el tope:
 
 ### Tope imponible vs. renta imponible
 
-El tope imponible es el *límite máximo posible* de la base de cotización. La **renta imponible** es el monto efectivo que aplica a tu caso (que puede ser igual o menor al tope, pero nunca mayor).
+El tope imponible es el _límite máximo posible_ de la base de cotización. La **renta imponible** es el monto efectivo que aplica a tu caso (que puede ser igual o menor al tope, pero nunca mayor).
 
 ---
 

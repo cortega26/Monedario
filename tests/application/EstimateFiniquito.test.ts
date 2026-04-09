@@ -185,4 +185,24 @@ describe("estimateFiniquito", () => {
 
     expect(result.gratificacionProporcionalAmount).toBe(0);
   });
+
+  it("preserves optional input range validation after the refactor", () => {
+    expect(() =>
+      estimateFiniquito({
+        monthlySalary: 900000,
+        yearsWorked: 3,
+        additionalMonthsWorked: 12,
+        terminationCause: "renuncia",
+      })
+    ).toThrow("additionalMonthsWorked must be a finite number between 0 and 11.");
+
+    expect(() =>
+      estimateFiniquito({
+        monthlySalary: 900000,
+        yearsWorked: 3,
+        pendingSalaryDays: 31,
+        terminationCause: "renuncia",
+      })
+    ).toThrow("pendingSalaryDays must be a finite number between 0 and 30.");
+  });
 });

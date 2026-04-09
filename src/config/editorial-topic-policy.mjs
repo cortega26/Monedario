@@ -129,7 +129,8 @@ export const CANONICAL_TOPIC_REGISTRY = {
     },
     "credito-hipotecario-proceso": {
       ownerSlug: "credito-hipotecario-chile-guia-completa",
-      intentLabel: "entender y obtener un credito hipotecario en Chile paso a paso",
+      intentLabel:
+        "entender y obtener un credito hipotecario en Chile paso a paso",
     },
   },
   "uf-costo-de-vida": {
@@ -147,7 +148,8 @@ export const CANONICAL_TOPIC_REGISTRY = {
     },
     "utm-uta-unidades-tributarias": {
       ownerSlug: "utm-chile-que-es-como-funciona",
-      intentLabel: "entender UTM y UTA como unidades tributarias reajustables en Chile",
+      intentLabel:
+        "entender UTM y UTA como unidades tributarias reajustables en Chile",
     },
   },
 };

@@ -20,7 +20,7 @@ import datetime as dt
 import os
 import re
 import shlex
-import subprocess
+import subprocess  # nosec B404
 import sys
 from typing import List, Optional, Tuple
 
@@ -64,8 +64,10 @@ def run_git(repo: str, args: List[str]) -> str:
     """Run git command in repo, return stdout, raise on error."""
     # Ensure command starts with git literal and shell=False (default) is respected
     # Python's list-based subprocess.run with shell=False is safe against shell injection.
-    cmd = ["git"] + args
+    cmd = ["git"] + validate_git_args(args)
     try:
+        # nosemgrep: semgrep_python.lang.security.audit.dangerous-subprocess-use-audit.dangerous-subprocess-use-audit
+        # nosemgrep: semgrep_python.lang.security.audit.dangerous-subprocess-use-tainted-env-args.dangerous-subprocess-use-tainted-env-args
         proc = subprocess.run(
             cmd,
             cwd=repo,
@@ -87,6 +89,16 @@ def run_git(repo: str, args: List[str]) -> str:
             f"stderr:\n{e.stderr}"
         ) from e
 
+
+def validate_git_args(args: List[str]) -> List[str]:
+    validated: List[str] = []
+    for arg in args:
+        if not isinstance(arg, str):
+            raise RuntimeError("git args must be strings")
+        if "\x00" in arg or "\n" in arg or "\r" in arg:
+            raise RuntimeError(f"unsupported control characters in git arg: {arg!r}")
+        validated.append(arg)
+    return validated
 
 
 def ensure_repo(repo: str) -> None:

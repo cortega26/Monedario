@@ -206,8 +206,16 @@ const ufDateDisplay = new Intl.DateTimeFormat("es-CL", {
     <MethodologyBlock
       notes="El valor UF se obtiene en tiempo real desde la API de mindicador.cl, que replica la publicación oficial del Banco Central. La UF se actualiza diariamente entre el día 10 de cada mes y el día 9 del siguiente, en base al IPC del mes anterior publicado por el INE."
       sources={[
-        { name: "mindicador.cl — API valor UF diario", url: "https://mindicador.cl/api/uf", date: "2026-04" },
-        { name: "Banco Central de Chile — Metodología UF", url: "https://www.bcentral.cl/web/banco-central/areas/estadisticas/uf", date: "2025-12" }
+        {
+          name: "mindicador.cl — API valor UF diario",
+          url: "https://mindicador.cl/api/uf",
+          date: "2026-04",
+        },
+        {
+          name: "Banco Central de Chile — Metodología UF",
+          url: "https://www.bcentral.cl/web/banco-central/areas/estadisticas/uf",
+          date: "2025-12",
+        },
       ]}
     />
   </main>

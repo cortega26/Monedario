@@ -84,7 +84,11 @@ const faqSchema = {
     name="Simulador APV Chile: ¿Régimen A o B conviene más?"
     description="¿Te conviene APV en Chile? Compara Régimen A y B según tu sueldo y aporte mensual, y calcula el ahorro tributario real antes de decidir."
   />
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(faqSchema)}
+  />
   <Header />
   <Breadcrumb />
   <main
@@ -469,8 +473,16 @@ const faqSchema = {
     <MethodologyBlock
       notes="Los beneficios tributarios del APV se calculan según la legislación vigente (Ley 20.255 y normativas SII). Régimen A: el Estado bonifica el 15% de los aportes (con tope de 6 UTM anuales). Régimen B: el aporte se deduce de la base imponible del impuesto global complementario. Los límites de aporte se expresan en UF (600 UF anuales para Régimen B) según valores al momento del cálculo."
       sources={[
-        { name: "SII — Beneficios tributarios APV (Régimen A y B)", url: "https://www.sii.cl/contribuyentes/temas_de_ayuda/APV.html", date: "2026-01" },
-        { name: "Superintendencia de Pensiones — Límites APV", url: "https://www.spensiones.cl/portal/institucional/594/w3-article-3557.html", date: "2026-01" }
+        {
+          name: "SII — Beneficios tributarios APV (Régimen A y B)",
+          url: "https://www.sii.cl/contribuyentes/temas_de_ayuda/APV.html",
+          date: "2026-01",
+        },
+        {
+          name: "Superintendencia de Pensiones — Límites APV",
+          url: "https://www.spensiones.cl/portal/institucional/594/w3-article-3557.html",
+          date: "2026-01",
+        },
       ]}
     />
 
@@ -492,30 +504,32 @@ const faqSchema = {
       <h3>¿Cuándo conviene el Régimen A y cuándo el Régimen B?</h3>
       <p>
         El <strong>Régimen A</strong> conviene si tus ingresos son bajos o medianos
-        y estás exento o en tramos bajos del impuesto a la renta: el Estado te
-        bonifica directamente el 15% de tus aportes (hasta 6 UTM anuales de
-        bono). El <strong>Régimen B</strong> conviene si tienes ingresos altos y
-        pagas una tasa marginal elevada en el Impuesto Global Complementario,
-        ya que el aporte reduce tu base imponible y el ahorro tributario puede
-        superar la bonificación del Régimen A.
+        y estás exento o en tramos bajos del impuesto a la renta: el Estado te bonifica
+        directamente el 15% de tus aportes (hasta 6 UTM anuales de bono). El <strong
+          >Régimen B</strong
+        > conviene si tienes ingresos altos y pagas una tasa marginal elevada en el
+        Impuesto Global Complementario, ya que el aporte reduce tu base imponible
+        y el ahorro tributario puede superar la bonificación del Régimen A.
       </p>
 
       <h3>¿Puedo retirar mi APV antes de jubilar?</h3>
       <p>
-        Sí, puedes retirar el APV antes de pensionarte, pero el retiro anticipado
-        conlleva un costo tributario: si usaste Régimen A, debes devolver la
-        bonificación estatal recibida. Si usaste Régimen B, el monto retirado
-        se agrega a tu renta del año y tributa según tu tasa marginal, más un
-        recargo adicional del 3%. Por este motivo el APV es más útil si el
-        horizonte de ahorro supera los 10 años.
+        Sí, puedes retirar el APV antes de pensionarte, pero el retiro
+        anticipado conlleva un costo tributario: si usaste Régimen A, debes
+        devolver la bonificación estatal recibida. Si usaste Régimen B, el monto
+        retirado se agrega a tu renta del año y tributa según tu tasa marginal,
+        más un recargo adicional del 3%. Por este motivo el APV es más útil si
+        el horizonte de ahorro supera los 10 años.
       </p>
 
       <h3>¿Cuánto es el monto máximo de APV que puedo aportar al año?</h3>
       <p>
-        El tope del APV con beneficio tributario es <strong>600 UF anuales</strong>
+        El tope del APV con beneficio tributario es <strong
+          >600 UF anuales</strong
+        >
         en Régimen B. Para el Régimen A, el bono estatal se topa en el equivalente
-        a 6 UTM anuales (15% sobre lo aportado hasta ese tope). Puedes aportar
-        más allá de estos límites, pero el exceso no recibe beneficio tributario.
+        a 6 UTM anuales (15% sobre lo aportado hasta ese tope). Puedes aportar más
+        allá de estos límites, pero el exceso no recibe beneficio tributario.
       </p>
 
       <h3>¿El APV reduce mi impuesto en la Operación Renta?</h3>
@@ -532,8 +546,8 @@ const faqSchema = {
         El APV puede estar depositado en tu AFP, en un banco, en una
         administradora de fondos mutuos o en una compañía de seguros. Si te
         cambias de AFP, el APV que tengas en esa AFP se traspasa junto con tu
-        saldo de cuenta individual. Si el APV está en otra institución
-        (banco o fondo mutuo), el traspaso de AFP no lo afecta.
+        saldo de cuenta individual. Si el APV está en otra institución (banco o
+        fondo mutuo), el traspaso de AFP no lo afecta.
       </p>
     </section>
   </main>

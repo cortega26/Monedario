@@ -9,6 +9,7 @@ La **gratificación** es la parte de las utilidades de la empresa que la ley obl
 ### ¿Cuándo es obligatoria?
 
 La empresa debe pagar gratificación cuando:
+
 1. Ha tenido **utilidades líquidas** en el año calendario, y
 2. Sus actividades están sujetas al Impuesto de Primera Categoría.
 

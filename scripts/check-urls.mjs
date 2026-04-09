@@ -96,6 +96,7 @@ async function main() {
     const retryResult = await applyRetries(links, {
       modeConfig,
       maxConcurrency: modeConfig.concurrency,
+      internalOrigins: target.internalOrigins,
     });
 
     links = retryResult.links;

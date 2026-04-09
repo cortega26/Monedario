@@ -26,14 +26,19 @@ import { getPath } from "@/utils/getPath";
   <Breadcrumb />
   <main id="main-content" class="app-layout">
     <section class="border-b border-border py-10">
-      <p class="mb-2 text-sm font-semibold tracking-widest text-accent uppercase">
+      <p
+        class="mb-2 text-sm font-semibold tracking-widest text-accent uppercase"
+      >
         Contacto
       </p>
-      <h1 class="mb-4 text-3xl font-bold sm:text-4xl">¿Tienes algo que decirnos?</h1>
+      <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
+        ¿Tienes algo que decirnos?
+      </h1>
       <p class="max-w-2xl text-secondary">
-        Monedario es un proyecto educativo mantenido por Carlos Ortega — Abogado (Venezuela),
-        analista de datos y desarrollador. Si encontraste un error factual, tienes
-        una consulta sobre el contenido o quieres sugerir una mejora, escríbenos.
+        Monedario es un proyecto educativo mantenido por Carlos Ortega — Abogado
+        (Venezuela), analista de datos y desarrollador. Si encontraste un error
+        factual, tienes una consulta sobre el contenido o quieres sugerir una
+        mejora, escríbenos.
       </p>
     </section>
 
@@ -46,29 +51,44 @@ import { getPath } from "@/utils/getPath";
           </p>
           <!-- Protección anti-scraper: dirección ofuscada con CSS unicode-bidi -->
           <p
-            class="inline-block select-none rounded-lg border border-border bg-surface-muted/40 px-4 py-2 font-mono text-sm text-foreground"
+            class="inline-block rounded-lg border border-border bg-surface-muted/40 px-4 py-2 font-mono text-sm text-foreground select-none"
             aria-label="Dirección de correo electrónico: contacto arroba monedario punto cl"
           >
-            <span style="unicode-bidi: bidi-override; direction: ltr;" aria-hidden="true">contacto</span
-            ><span aria-hidden="true">[at]</span
-            ><span style="unicode-bidi: bidi-override; direction: ltr;" aria-hidden="true">monedario.cl</span>
+            <span
+              style="unicode-bidi: bidi-override; direction: ltr;"
+              aria-hidden="true">contacto</span
+            ><span aria-hidden="true">[at]</span><span
+              style="unicode-bidi: bidi-override; direction: ltr;"
+              aria-hidden="true">monedario.cl</span
+            >
           </p>
         </div>
 
         <div>
-          <h2 class="mb-2 text-xl font-semibold">¿Para qué sirve este canal?</h2>
+          <h2 class="mb-2 text-xl font-semibold">
+            ¿Para qué sirve este canal?
+          </h2>
           <ul class="space-y-2 text-sm text-secondary">
             <li class="flex gap-2">
               <span class="shrink-0 text-accent">✔</span>
-              <span>Reportar un dato desactualizado o un error factual en un artículo o calculadora.</span>
+              <span
+                >Reportar un dato desactualizado o un error factual en un
+                artículo o calculadora.</span
+              >
             </li>
             <li class="flex gap-2">
               <span class="shrink-0 text-accent">✔</span>
-              <span>Sugerir un tema, calculadora o glosario que te gustaría ver en el sitio.</span>
+              <span
+                >Sugerir un tema, calculadora o glosario que te gustaría ver en
+                el sitio.</span
+              >
             </li>
             <li class="flex gap-2">
               <span class="shrink-0 text-accent">✔</span>
-              <span>Preguntas sobre el contenido publicado o sobre cómo funciona una herramienta.</span>
+              <span
+                >Preguntas sobre el contenido publicado o sobre cómo funciona
+                una herramienta.</span
+              >
             </li>
           </ul>
         </div>
@@ -78,11 +98,16 @@ import { getPath } from "@/utils/getPath";
           <ul class="space-y-2 text-sm text-secondary">
             <li class="flex gap-2">
               <span class="shrink-0 text-red-400">✕</span>
-              <span>Asesoría legal, tributaria o financiera personalizada. No podemos dar ese servicio.</span>
+              <span
+                >Asesoría legal, tributaria o financiera personalizada. No
+                podemos dar ese servicio.</span
+              >
             </li>
             <li class="flex gap-2">
               <span class="shrink-0 text-red-400">✕</span>
-              <span>Resolver casos individuales o revisión de documentos privados.</span>
+              <span
+                >Resolver casos individuales o revisión de documentos privados.</span
+              >
             </li>
           </ul>
         </div>
@@ -90,15 +115,17 @@ import { getPath } from "@/utils/getPath";
     </section>
 
     <section class="py-8">
-      <div class="max-w-2xl rounded-xl border border-border bg-surface-muted/30 p-6 text-sm text-secondary">
+      <div
+        class="max-w-2xl rounded-xl border border-border bg-surface-muted/30 p-6 text-sm text-secondary"
+      >
         <p class="font-semibold text-foreground">Aviso importante</p>
         <p class="mt-2 leading-relaxed">
           Monedario es un sitio de <strong>educación financiera</strong>. El
           contenido publicado tiene fines informativos y pedagógicos únicamente.
           No constituye asesoría legal, tributaria ni financiera, y no debe
-          utilizarse como sustituto de la consulta con un profesional habilitado.
-          Las calculadoras y artículos son estimativos y pueden no reflejar
-          situaciones individuales particulares.
+          utilizarse como sustituto de la consulta con un profesional
+          habilitado. Las calculadoras y artículos son estimativos y pueden no
+          reflejar situaciones individuales particulares.
         </p>
       </div>
     </section>

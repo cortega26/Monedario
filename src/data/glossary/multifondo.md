@@ -8,17 +8,18 @@ Los **Multifondos** son los cinco fondos de inversión que administran las AFP c
 
 ### Los cinco fondos
 
-| Fondo | Nombre | Riesgo | Perfil típico |
-|-------|--------|--------|---------------|
-| **A** | Más riesgoso | Alto | Menores de 35 años con horizonte largo |
-| **B** | Riesgoso | Medio-alto | 35-45 años |
-| **C** | Intermedio | Medio | Sin preferencia particular o por defecto |
-| **D** | Conservador | Medio-bajo | Cercanos a jubilar (mujeres 50+, hombres 55+) |
-| **E** | Más conservador | Bajo | Jubilados o muy próximos a jubilar |
+| Fondo | Nombre          | Riesgo     | Perfil típico                                 |
+| ----- | --------------- | ---------- | --------------------------------------------- |
+| **A** | Más riesgoso    | Alto       | Menores de 35 años con horizonte largo        |
+| **B** | Riesgoso        | Medio-alto | 35-45 años                                    |
+| **C** | Intermedio      | Medio      | Sin preferencia particular o por defecto      |
+| **D** | Conservador     | Medio-bajo | Cercanos a jubilar (mujeres 50+, hombres 55+) |
+| **E** | Más conservador | Bajo       | Jubilados o muy próximos a jubilar            |
 
 ### ¿Cómo se invierte cada fondo?
 
 La diferencia principal está en la **proporción de renta variable (acciones) vs. renta fija (bonos)**:
+
 - Fondo A: hasta un 80% en renta variable
 - Fondo E: mínimo un 80% en instrumentos de renta fija (deuda, depósitos)
 

@@ -54,10 +54,30 @@ const MONTHS_PER_YEAR = 12;
 const DAYS_PER_MONTH_FOR_SALARY = 30;
 const DAYS_PER_YEAR_FOR_VACATION = 360;
 
-function assertInput(input: EstimateFiniquitoInput): void {
-  if (!Number.isFinite(input.monthlySalary) || input.monthlySalary <= 0) {
-    throw new Error("monthlySalary must be a finite number greater than 0.");
+function assertPositiveNumber(value: number, field: string): void {
+  if (!Number.isFinite(value) || value <= 0) {
+    throw new Error(`${field} must be a finite number greater than 0.`);
   }
+}
+
+function assertRange(
+  value: number | undefined,
+  field: string,
+  min: number,
+  max: number
+): void {
+  if (
+    value !== undefined &&
+    (!Number.isFinite(value) || value < min || value > max)
+  ) {
+    throw new Error(
+      `${field} must be a finite number between ${min} and ${max}.`
+    );
+  }
+}
+
+function assertInput(input: EstimateFiniquitoInput): void {
+  assertPositiveNumber(input.monthlySalary, "monthlySalary");
   if (!Number.isFinite(input.yearsWorked) || input.yearsWorked < 0) {
     throw new Error("yearsWorked must be a finite number >= 0.");
   }
@@ -71,36 +91,60 @@ function assertInput(input: EstimateFiniquitoInput): void {
       "additionalMonthsWorked must be a finite number between 0 and 11."
     );
   }
-  if (
-    input.pendingSalaryDays !== undefined &&
-    (!Number.isFinite(input.pendingSalaryDays) ||
-      input.pendingSalaryDays < 0 ||
-      input.pendingSalaryDays > 30)
-  ) {
-    throw new Error(
-      "pendingSalaryDays must be a finite number between 0 and 30."
-    );
+  assertRange(input.pendingSalaryDays, "pendingSalaryDays", 0, 30);
+  assertRange(
+    input.monthsSinceLastVacationCycle,
+    "monthsSinceLastVacationCycle",
+    0,
+    12
+  );
+  assertRange(
+    input.additionalVacationDaysWorked,
+    "additionalVacationDaysWorked",
+    0,
+    30
+  );
+}
+
+function resolveServiceYears(
+  yearsWorked: number,
+  additionalMonthsWorked: number
+) {
+  const serviceYearsCounted =
+    yearsWorked + (additionalMonthsWorked >= 6 ? 1 : 0);
+
+  return {
+    serviceYearsCounted,
+    cappedServiceYears: Math.min(serviceYearsCounted, MAX_SERVICE_YEARS),
+  };
+}
+
+function resolveCompensationProfile(
+  terminationCause: FiniquitoTerminationCause,
+  noticeGiven: boolean | undefined
+) {
+  const appliesYearsOfService =
+    terminationCause === "necesidad" || terminationCause === "judicial";
+
+  return {
+    appliesYearsOfService,
+    appliesSubstituteNotice: appliesYearsOfService && noticeGiven !== true,
+    requiresProfessionalReview: terminationCause === "judicial",
+  };
+}
+
+function getArt168SurchargePercent(
+  terminationCause: FiniquitoTerminationCause,
+  serviceYearsCounted: number,
+  yearsOfServiceIndemnity: number
+) {
+  if (terminationCause !== "judicial" || yearsOfServiceIndemnity <= 0) {
+    return 0;
   }
-  if (
-    input.monthsSinceLastVacationCycle !== undefined &&
-    (!Number.isFinite(input.monthsSinceLastVacationCycle) ||
-      input.monthsSinceLastVacationCycle < 0 ||
-      input.monthsSinceLastVacationCycle > 12)
-  ) {
-    throw new Error(
-      "monthsSinceLastVacationCycle must be a finite number between 0 and 12."
-    );
-  }
-  if (
-    input.additionalVacationDaysWorked !== undefined &&
-    (!Number.isFinite(input.additionalVacationDaysWorked) ||
-      input.additionalVacationDaysWorked < 0 ||
-      input.additionalVacationDaysWorked > 30)
-  ) {
-    throw new Error(
-      "additionalVacationDaysWorked must be a finite number between 0 and 30."
-    );
-  }
+
+  if (serviceYearsCounted <= 3) return 0.3;
+  if (serviceYearsCounted <= 6) return 0.5;
+  return 0.8;
 }
 
 export function estimateFiniquito(
@@ -112,18 +156,14 @@ export function estimateFiniquito(
   const pendingSalaryDays = input.pendingSalaryDays ?? 0;
   const monthsSinceLastVacationCycle = input.monthsSinceLastVacationCycle ?? 0;
   const additionalVacationDaysWorked = input.additionalVacationDaysWorked ?? 0;
-  const serviceYearsCounted =
-    input.yearsWorked + (additionalMonthsWorked >= 6 ? 1 : 0);
-  const cappedServiceYears = Math.min(serviceYearsCounted, MAX_SERVICE_YEARS);
-
-  const appliesYearsOfService =
-    input.terminationCause === "necesidad" ||
-    input.terminationCause === "judicial";
-  const appliesSubstituteNotice =
-    (input.terminationCause === "necesidad" ||
-      input.terminationCause === "judicial") &&
-    input.noticeGiven !== true;
-  const requiresProfessionalReview = input.terminationCause === "judicial";
+  const { serviceYearsCounted, cappedServiceYears } = resolveServiceYears(
+    input.yearsWorked,
+    additionalMonthsWorked
+  );
+  const compensationProfile = resolveCompensationProfile(
+    input.terminationCause,
+    input.noticeGiven
+  );
 
   const dailySalary = input.monthlySalary / DAYS_PER_MONTH_FOR_SALARY;
   const proportionalVacationDays =
@@ -133,22 +173,20 @@ export function estimateFiniquito(
 
   const pendingSalaryAmount = dailySalary * pendingSalaryDays;
   const proportionalVacationAmount = dailySalary * proportionalVacationDays;
-  const yearsOfServiceIndemnity = appliesYearsOfService
+  const yearsOfServiceIndemnity = compensationProfile.appliesYearsOfService
     ? cappedServiceYears * input.monthlySalary
     : 0;
 
   // art. 168 CT: recargo sobre indemnización por años de servicio cuando el
   // despido es declarado injustificado judicialmente. Solo aplica sobre
   // yearsOfServiceIndemnity (no sobre aviso previo ni conceptos adicionales).
-  const art168SurchargePercent =
-    input.terminationCause === "judicial" && yearsOfServiceIndemnity > 0
-      ? serviceYearsCounted <= 3
-        ? 0.3
-        : serviceYearsCounted <= 6
-          ? 0.5
-          : 0.8
-      : 0;
-  const art168SurchargeAmount = yearsOfServiceIndemnity * art168SurchargePercent;
+  const art168SurchargePercent = getArt168SurchargePercent(
+    input.terminationCause,
+    serviceYearsCounted,
+    yearsOfServiceIndemnity
+  );
+  const art168SurchargeAmount =
+    yearsOfServiceIndemnity * art168SurchargePercent;
 
   // art. 47 CT: gratificación proporcional estimada usando additionalMonthsWorked
   // como proxy del período fraccionado del año en curso.
@@ -157,7 +195,7 @@ export function estimateFiniquito(
       ? (input.monthlySalary * additionalMonthsWorked) / 12
       : 0;
 
-  const substituteNoticeIndemnity = appliesSubstituteNotice
+  const substituteNoticeIndemnity = compensationProfile.appliesSubstituteNotice
     ? input.monthlySalary
     : 0;
 
@@ -183,11 +221,7 @@ export function estimateFiniquito(
     gratificacionProporcionalAmount,
     substituteNoticeIndemnity,
     totalEstimate,
-    compensationProfile: {
-      appliesYearsOfService,
-      appliesSubstituteNotice,
-      requiresProfessionalReview,
-    },
+    compensationProfile,
     assumptions: [
       "La indemnización por años de servicio se estima como 30 días por año con tope legal de 11 años.",
       "El año fraccionado superior a 6 meses se cuenta como año completo para esta estimación.",

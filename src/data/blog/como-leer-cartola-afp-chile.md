@@ -62,15 +62,15 @@ Puedes recibirla por correo físico si tienes domicilio registrado en la AFP, y 
 
 ## Las secciones de tu cartola AFP
 
-La Superintendencia de Pensiones exige un formato mínimo estandarizado para todas las AFP. Las cinco secciones que verás en cualquier cartola son las siguientes *(resumen orientativo — fuente: normativa SP)*:
+La Superintendencia de Pensiones exige un formato mínimo estandarizado para todas las AFP. Las cinco secciones que verás en cualquier cartola son las siguientes _(resumen orientativo — fuente: normativa SP)_:
 
-| Sección | Qué muestra | Qué verificar |
-|---------|-------------|---------------|
-| **Datos del afiliado** | Nombre completo, RUT, AFP, tipo de fondo actual (A, B, C, D o E) | Que el fondo sea el que elegiste. Si ves un fondo equivocado, revisa [aquí qué implica cada fondo](/posts/fondos-afp-a-b-c-d-e/). |
-| **Saldo por tipo de cuenta** | Saldo en cuenta obligatoria (CCI), Cuenta 2 si la tienes, y cuenta de ahorro de indemnización (CAI) si aplica | Que los saldos sean coherentes con el período anterior más cotizaciones menos retiros autorizados |
-| **Cotizaciones del período** | Mes a mes: renta imponible declarada, cotización obligatoria (10%), comisión AFP cobrada, SIS (seguro de invalidez y sobrevivencia), y aporte adicional del empleador si aplica | Que aparezcan los tres meses del trimestre; que la renta imponible coincida con tu liquidación de sueldo; que la comisión coincida con la tabla vigente de tu AFP |
-| **Rentabilidad** | Rentabilidad del fondo en el período (trimestre) y rentabilidad acumulada | No compare porcentajes entre trimestres sin contexto; son normales las variaciones negativas en fondos más riesgosos (A, B) |
-| **Información de contacto y reclamo** | Datos del fondo, canales de atención de la AFP, referencia a la Superintendencia de Pensiones | Que tengas el fono y portal web de tu AFP anotados por si necesitas reclamar |
+| Sección                               | Qué muestra                                                                                                                                                                     | Qué verificar                                                                                                                                                     |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Datos del afiliado**                | Nombre completo, RUT, AFP, tipo de fondo actual (A, B, C, D o E)                                                                                                                | Que el fondo sea el que elegiste. Si ves un fondo equivocado, revisa [aquí qué implica cada fondo](/posts/fondos-afp-a-b-c-d-e/).                                 |
+| **Saldo por tipo de cuenta**          | Saldo en cuenta obligatoria (CCI), Cuenta 2 si la tienes, y cuenta de ahorro de indemnización (CAI) si aplica                                                                   | Que los saldos sean coherentes con el período anterior más cotizaciones menos retiros autorizados                                                                 |
+| **Cotizaciones del período**          | Mes a mes: renta imponible declarada, cotización obligatoria (10%), comisión AFP cobrada, SIS (seguro de invalidez y sobrevivencia), y aporte adicional del empleador si aplica | Que aparezcan los tres meses del trimestre; que la renta imponible coincida con tu liquidación de sueldo; que la comisión coincida con la tabla vigente de tu AFP |
+| **Rentabilidad**                      | Rentabilidad del fondo en el período (trimestre) y rentabilidad acumulada                                                                                                       | No compare porcentajes entre trimestres sin contexto; son normales las variaciones negativas en fondos más riesgosos (A, B)                                       |
+| **Información de contacto y reclamo** | Datos del fondo, canales de atención de la AFP, referencia a la Superintendencia de Pensiones                                                                                   | Que tengas el fono y portal web de tu AFP anotados por si necesitas reclamar                                                                                      |
 
 > **Nota sobre la comisión:** Cada AFP cobra una comisión porcentual sobre la renta imponible. Puedes comparar las comisiones vigentes en nuestra [calculadora de comisiones AFP](/calculadoras/comisiones-afp/). El SIS (Seguro de Invalidez y Sobrevivencia) es un cargo separado que también aparece en la cotización.
 
@@ -83,6 +83,7 @@ No todos los errores son visibles a simple vista. Estos son los cinco problemas 
 ### 1. Mes con cotización faltante
 
 Si el período cubre enero–marzo y solo aparecen dos meses de cotización, hay un mes sin movimiento. Las causas pueden ser:
+
 - El empleador no cotizó (mora previsional).
 - Estuviste con licencia médica y el pago quedó en nombre de CCAF o Isapre.
 - Eres trabajador independiente y la declaración PPM no se procesó.
@@ -114,6 +115,7 @@ Si emites boletas de honorarios, tus cotizaciones se canalizan como PPM (Pago Pr
 ### Paso 1: Contactar a tu AFP directamente
 
 Toda AFP tiene obligación de atenderte. Canales disponibles:
+
 - **Portal web o app** de tu AFP (la mayoría acepta reclamos escritos en línea).
 - **Fono de atención** (publicado en el sitio de cada AFP y en la SP).
 - **Sucursal presencial** con comprobante de tu reclamo.

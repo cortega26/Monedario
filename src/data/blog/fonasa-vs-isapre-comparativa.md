@@ -71,12 +71,12 @@ La diferencia estructural entre los dos sistemas:
 
 Fonasa clasifica a sus beneficiarios en cuatro tramos según ingreso imponible mensual y situación previsional:
 
-| Tramo | Quiénes son | Copago en red Fonasa (MAI) |
-|-------|-------------|---------------------------|
+| Tramo | Quiénes son                                                                                                                          | Copago en red Fonasa (MAI) |
+| ----- | ------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- |
 | **A** | Personas sin capacidad de pago: indigentes, pensionados con monto inferior al umbral mínimo, personas con Ficha de Protección Social | **0%** (atención gratuita) |
-| **B** | Cotizantes con ingreso imponible hasta \[umbral vigente\] | Verificar en fonasa.cl |
-| **C** | Ingreso en tramo medio | Verificar en fonasa.cl |
-| **D** | Ingreso superior | Verificar en fonasa.cl |
+| **B** | Cotizantes con ingreso imponible hasta \[umbral vigente\]                                                                            | Verificar en fonasa.cl     |
+| **C** | Ingreso en tramo medio                                                                                                               | Verificar en fonasa.cl     |
+| **D** | Ingreso superior                                                                                                                     | Verificar en fonasa.cl     |
 
 > **Nota:** Los umbrales exactos de cada tramo y los copagos específicos se actualizan periódicamente mediante resolución de Fonasa. Consulta los valores vigentes en [fonasa.cl](https://www.fonasa.cl/sites/fonasa/beneficiarios/informacion-general/tramos) antes de tomar una decisión. En atención primaria (CESFAM, postas), los copagos son menores o cero para la mayoría de los tramos.
 
@@ -101,17 +101,17 @@ El precio del plan Isapre **sube con la edad, el sexo (tabla de factores regulad
 
 > **Nota (resumen orientativo):** Esta tabla simplifica la normativa para fines informativos. El resultado puede variar según plan específico, edad, cargas y condiciones del contrato. Verifica en [supersalud.gob.cl](https://www.supersalud.gob.cl) antes de tomar una decisión.
 
-| Criterio | Fonasa | Isapre |
-|----------|--------|--------|
-| **Cotización base** | 7% sueldo imponible | 7% + precio del plan |
-| **Aceptación con enfermedades previas** | Sí, sin condiciones | Puede excluirlas o cobrar más |
-| **Cargas familiares (cónyuge, hijos)** | Sin costo adicional | Aumenta el precio del plan |
-| **GES (patologías garantizadas)** | Sí, garantizado | Sí, garantizado |
-| **Cobertura catastrófica** | Red hospitalaria pública sin límite de gasto | CAEC (sobre deducible anual del plan) |
-| **Red de atención** | CESFAM, hospitales y clínicas públicas | Clínicas y médicos de la red del plan |
-| **Libre elección de médico** | Vía MLE (copago mayor) | Dentro de red del plan |
-| **Embarazo y parto** | Cubierto por GES sin condición | GES cubre; verificar exclusiones del plan |
-| **Precio estable en el tiempo** | Sí (varía por cambio de tramo de ingreso) | No: varía por edad y ajustes de tabla |
+| Criterio                                | Fonasa                                       | Isapre                                    |
+| --------------------------------------- | -------------------------------------------- | ----------------------------------------- |
+| **Cotización base**                     | 7% sueldo imponible                          | 7% + precio del plan                      |
+| **Aceptación con enfermedades previas** | Sí, sin condiciones                          | Puede excluirlas o cobrar más             |
+| **Cargas familiares (cónyuge, hijos)**  | Sin costo adicional                          | Aumenta el precio del plan                |
+| **GES (patologías garantizadas)**       | Sí, garantizado                              | Sí, garantizado                           |
+| **Cobertura catastrófica**              | Red hospitalaria pública sin límite de gasto | CAEC (sobre deducible anual del plan)     |
+| **Red de atención**                     | CESFAM, hospitales y clínicas públicas       | Clínicas y médicos de la red del plan     |
+| **Libre elección de médico**            | Vía MLE (copago mayor)                       | Dentro de red del plan                    |
+| **Embarazo y parto**                    | Cubierto por GES sin condición               | GES cubre; verificar exclusiones del plan |
+| **Precio estable en el tiempo**         | Sí (varía por cambio de tramo de ingreso)    | No: varía por edad y ajustes de tabla     |
 
 ---
 
@@ -217,4 +217,4 @@ Para otros problemas de protección financiera en Chile, puedes consultar nuestr
 
 ---
 
-*Última actualización de esta guía: 2026-04-08. Fonasa actualiza sus tramos e instrucciones periódicamente; verifica siempre en [fonasa.cl](https://www.fonasa.cl) y [supersalud.gob.cl](https://www.supersalud.gob.cl) antes de tomar una decisión de salud.*
+_Última actualización de esta guía: 2026-04-08. Fonasa actualiza sus tramos e instrucciones periódicamente; verifica siempre en [fonasa.cl](https://www.fonasa.cl) y [supersalud.gob.cl](https://www.supersalud.gob.cl) antes de tomar una decisión de salud._

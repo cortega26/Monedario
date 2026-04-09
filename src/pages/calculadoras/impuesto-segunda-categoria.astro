@@ -270,8 +270,16 @@ const sueldoLiquidoPath = getPath("/calculadoras/sueldo-liquido/");
     <MethodologyBlock
       notes="El impuesto de segunda categoría se calcula aplicando la tabla de tramos progresivos publicada por el SII, usando la UTM vigente para convertir los tramos a pesos. La fórmula es: impuesto = base imponible × tasa del tramo — cantidad a rebajar del tramo correspondiente."
       sources={[
-        { name: "SII — Tabla impuesto único de segunda categoría", url: "https://www.sii.cl", date: "2026-03" },
-        { name: "SII — Valores UTM vigentes", url: "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm", date: "2026-03" }
+        {
+          name: "SII — Tabla impuesto único de segunda categoría",
+          url: "https://www.sii.cl",
+          date: "2026-03",
+        },
+        {
+          name: "SII — Valores UTM vigentes",
+          url: "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm",
+          date: "2026-03",
+        },
       ]}
     />
   </main>

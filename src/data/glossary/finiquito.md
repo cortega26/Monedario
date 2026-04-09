@@ -20,12 +20,12 @@ Dependiendo de la causal, el finiquito puede incluir:
 
 El contenido económico del finiquito cambia radicalmente según la causal:
 
-| Causal | Indemnización años de servicio | Aviso previo |
-|--------|-------------------------------|--------------|
-| Art. 159 (mutuo acuerdo, vencimiento plazo, etc.) | ❌ No corresponde | ❌ No aplica |
-| Art. 160 (despido por justa causa) | ❌ No corresponde | ❌ No aplica |
-| Art. 161 (necesidades de la empresa) | ✔ Sí corresponde (cap. 11 años) | ✔ Si no se avisó |
-| Despido injustificado (declarado judicialmente) | ✔ Sí + recargo del 30%–100% | ✔ Si no se avisó |
+| Causal                                            | Indemnización años de servicio  | Aviso previo     |
+| ------------------------------------------------- | ------------------------------- | ---------------- |
+| Art. 159 (mutuo acuerdo, vencimiento plazo, etc.) | ❌ No corresponde               | ❌ No aplica     |
+| Art. 160 (despido por justa causa)                | ❌ No corresponde               | ❌ No aplica     |
+| Art. 161 (necesidades de la empresa)              | ✔ Sí corresponde (cap. 11 años) | ✔ Si no se avisó |
+| Despido injustificado (declarado judicialmente)   | ✔ Sí + recargo del 30%–100%     | ✔ Si no se avisó |
 
 ### Importante antes de firmar
 

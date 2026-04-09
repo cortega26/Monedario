@@ -111,18 +111,18 @@ La UTM está definida en el **Código Tributario** (DL 830/1974). Es la unidad d
 
 La UTM tiene una derivada anual: la **UTA (Unidad Tributaria Anual)**. Son dos caras del mismo sistema:
 
-| Característica | UTM | UTA |
-|---|---|---|
-| Período | Mensual | Anual |
-| Definición | Valor base mensual | 12 × UTM de diciembre |
-| Actualización | Primer día hábil de cada mes | Una vez al año (fija por año calendario) |
-| Uso principal | Multas, cotizaciones, trámites | Tramos del Impuesto a la Renta anual |
+| Característica | UTM                            | UTA                                      |
+| -------------- | ------------------------------ | ---------------------------------------- |
+| Período        | Mensual                        | Anual                                    |
+| Definición     | Valor base mensual             | 12 × UTM de diciembre                    |
+| Actualización  | Primer día hábil de cada mes   | Una vez al año (fija por año calendario) |
+| Uso principal  | Multas, cotizaciones, trámites | Tramos del Impuesto a la Renta anual     |
 
 ### ¿Cómo se calcula la UTA?
 
 La UTA de un año equivale a **12 veces la UTM del mes de diciembre** de ese año. Una vez calculada, sirve para definir los tramos del Impuesto Global Complementario (IGC) de ese año tributario.
 
-**Ejemplo orientativo** *(solo referencia — verifica siempre el valor vigente en SII.cl)*:
+**Ejemplo orientativo** _(solo referencia — verifica siempre el valor vigente en SII.cl)_:
 
 - UTM abril 2026: $69.889
 - Referencia SII para UTA abril 2026: $838.668 (= $69.889 × 12)
@@ -137,13 +137,13 @@ Para el concepto completo de UTA y sus usos tributarios, consulta el [glosario U
 
 La duda más frecuente es confundir la UTM con la UF. Aunque ambas siguen la inflación, tienen propósitos y frecuencias completamente distintas:
 
-| Característica | UTM | UF |
-|---|---|---|
-| Frecuencia de actualización | Mensual (1 vez por mes) | Diaria (cada día) |
-| Quién la define | SII (Servicio de Impuestos Internos) | Banco Central de Chile |
-| Ámbito principal | Estado: multas, impuestos, trámites | Privado: hipotecas, arriendos, créditos |
-| Sigue la inflación | Sí (IPC del mes anterior) | Sí (IPC mensual, distribuido diariamente) |
-| Efecto directo sobre ti | En pagos al Estado | En contratos privados indexados |
+| Característica              | UTM                                  | UF                                        |
+| --------------------------- | ------------------------------------ | ----------------------------------------- |
+| Frecuencia de actualización | Mensual (1 vez por mes)              | Diaria (cada día)                         |
+| Quién la define             | SII (Servicio de Impuestos Internos) | Banco Central de Chile                    |
+| Ámbito principal            | Estado: multas, impuestos, trámites  | Privado: hipotecas, arriendos, créditos   |
+| Sigue la inflación          | Sí (IPC del mes anterior)            | Sí (IPC mensual, distribuido diariamente) |
+| Efecto directo sobre ti     | En pagos al Estado                   | En contratos privados indexados           |
 
 **Regla para recordar:** Si la obligación es **con el Estado** → UTM. Si es **con un banco o arrendador privado** → UF.
 
@@ -157,13 +157,13 @@ Para entender en detalle cómo funciona la UF y cómo afecta tu arriendo o divid
 
 La **Ley de Tránsito N°18.290** expresa la mayoría de sus multas en UTM. Cuando pagas una multa, el monto en pesos se calcula multiplicando las UTM de la sanción por el valor vigente **al momento del pago**, no al momento de la infracción.
 
-**Ejemplo orientativo** *(solo referencia — el monto exacto depende de la infracción y del UTM vigente al pago)*:
+**Ejemplo orientativo** _(solo referencia — el monto exacto depende de la infracción y del UTM vigente al pago)_:
 
 | Multa (en UTM) | Equivalente aprox. en pesos (UTM abril 2026: $69.889) |
-|---|---|
-| 1 UTM | ~$69.889 |
-| 2 UTM | ~$139.778 |
-| 5 UTM | ~$349.445 |
+| -------------- | ----------------------------------------------------- |
+| 1 UTM          | ~$69.889                                              |
+| 2 UTM          | ~$139.778                                             |
+| 5 UTM          | ~$349.445                                             |
 
 > **Importante:** El valor exacto en pesos depende de la UTM **del mes en que efectúas el pago**. Si la multa vence en un mes distinto al de la infracción, el monto en pesos puede variar. Verifica siempre el UTM vigente en SII.cl antes de pagar.
 
@@ -176,15 +176,15 @@ El Estado usa UTM (para cálculo mensual) y UTA (para cálculo anual) para fijar
 El umbral de exención es de **13,5 UTM mensuales**. Para abril 2026 (UTM = $69.889), el umbral de exención equivale a **$943.501 bruto/mes aproximado**.
 
 | Tramo mensual — orientativo, abril 2026 | Tasa marginal |
-|---|---|
-| Hasta $943.501 (13,5 UTM) | Exento |
-| $943.502 – $2.096.670 | 4% |
-| $2.096.671 – $3.494.450 | 8% |
-| $3.494.451 – $4.892.230 | 13,5% |
-| $4.892.231 – $6.290.010 | 23% |
-| $6.290.011 – $8.386.680 | 30,4% |
-| $8.386.681 – $21.665.590 | 35% |
-| Más de $21.665.590 | 40% |
+| --------------------------------------- | ------------- |
+| Hasta $943.501 (13,5 UTM)               | Exento        |
+| $943.502 – $2.096.670                   | 4%            |
+| $2.096.671 – $3.494.450                 | 8%            |
+| $3.494.451 – $4.892.230                 | 13,5%         |
+| $4.892.231 – $6.290.010                 | 23%           |
+| $6.290.011 – $8.386.680                 | 30,4%         |
+| $8.386.681 – $21.665.590                | 35%           |
+| Más de $21.665.590                      | 40%           |
 
 > **Tabla orientativa — datos de abril 2026.** Los tramos en pesos cambian cada mes con la UTM. Fuente: [SII — Impuesto Única 2da Categoría 2026](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm). Verifica siempre la tabla vigente del mes correspondiente.
 
@@ -198,18 +198,18 @@ El IGC usa la UTA para definir los tramos anuales. El umbral estándar de exenci
 
 Si tienes APV (Ahorro Previsional Voluntario) en el Régimen A, el Estado bonifica con el 15% del ahorro anual. El monto máximo del bono está limitado en UTM: **6 UTM anuales de subsidio máximo** según LIR Art. 42 bis.
 
-**Ejemplo orientativo** (referencia para el período de escritura): 6 × $69.889 = ~$419.334 máximo *(orientativo — el valor exacto en pesos depende del UTM de cada mes del año; verifica en [tabla SII AT 2026](https://www.sii.cl/valores_y_fechas/renta/datos_informativos_2026.html))*.
+**Ejemplo orientativo** (referencia para el período de escritura): 6 × $69.889 = ~$419.334 máximo _(orientativo — el valor exacto en pesos depende del UTM de cada mes del año; verifica en [tabla SII AT 2026](https://www.sii.cl/valores_y_fechas/renta/datos_informativos_2026.html))_.
 
 ### Aranceles y trámites del Estado
 
 Muchos costos de servicios estatales se expresan en UTM:
 
-| Tipo de trámite | Referencia |
-|---|---|
-| Aranceles consulares | Expresados en UTM según arancel consular vigente |
-| Aranceles CBR (Conservador de Bienes Raíces) | Según arancel vigente en UTM |
-| Aranceles notariales | Según arancel notarial vigente |
-| Algunos procedimientos judiciales | Según tabla procesal vigente |
+| Tipo de trámite                              | Referencia                                       |
+| -------------------------------------------- | ------------------------------------------------ |
+| Aranceles consulares                         | Expresados en UTM según arancel consular vigente |
+| Aranceles CBR (Conservador de Bienes Raíces) | Según arancel vigente en UTM                     |
+| Aranceles notariales                         | Según arancel notarial vigente                   |
+| Algunos procedimientos judiciales            | Según tabla procesal vigente                     |
 
 > **Tabla orientativa** — los aranceles específicos los fija cada institución. Verifica los montos actuales directamente con el organismo correspondiente.
 
@@ -251,4 +251,4 @@ El valor oficial de la UTM lo publica mensualmente el SII:
 
 ---
 
-*La información de este artículo es educativa. Los valores de UTM y tramos de impuesto cambian mes a mes — consulta siempre las fuentes oficiales antes de aplicar cualquier cálculo.*
+_La información de este artículo es educativa. Los valores de UTM y tramos de impuesto cambian mes a mes — consulta siempre las fuentes oficiales antes de aplicar cualquier cálculo._

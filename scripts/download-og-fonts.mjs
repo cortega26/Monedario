@@ -37,6 +37,8 @@ const FONTS = [
 
 const UA =
   "Mozilla/5.0 (Linux; U; Android 4.4; en-us; Nexus 5 Build/KRT16M) AppleWebKit/534.30 (KHTML, like Gecko) Version/4.0 Mobile Safari/534.30";
+const GOOGLE_FONTS_API_HOST = "fonts.googleapis.com";
+const GOOGLE_FONTS_STATIC_HOST = "fonts.gstatic.com";
 
 function isTrustedFontUrl(url) {
   try {
@@ -44,12 +46,38 @@ function isTrustedFontUrl(url) {
     // Strict protocol and hostname check to prevent SSRF
     return (
       parsed.protocol === "https:" &&
-      (parsed.hostname === "fonts.googleapis.com" ||
-        parsed.hostname === "fonts.gstatic.com")
+      (parsed.hostname === GOOGLE_FONTS_API_HOST ||
+        parsed.hostname === GOOGLE_FONTS_STATIC_HOST)
     );
   } catch {
     return false;
   }
+}
+
+function assertTrustedGoogleUrl(url, label) {
+  if (!isTrustedFontUrl(url)) {
+    throw new Error(`[og-fonts] Untrusted ${label} URL: ${url}`);
+  }
+}
+
+async function fetchTrustedText(url, init) {
+  assertTrustedGoogleUrl(url, "API");
+  // nosemgrep: semgrep_rules_lgpl_javascript_ssrf_rule-node-ssrf -- URL is constrained to the Google Fonts allowlist above.
+  const response = await fetch(url, init);
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status} from ${new URL(url).hostname}`);
+  }
+  return response.text();
+}
+
+async function fetchTrustedArrayBuffer(url) {
+  assertTrustedGoogleUrl(url, "font");
+  // nosemgrep: semgrep_rules_lgpl_javascript_ssrf_rule-node-ssrf -- URL is constrained to the Google Fonts allowlist above.
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status} from font URL`);
+  }
+  return response.arrayBuffer();
 }
 
 
@@ -63,18 +91,9 @@ async function downloadFont(family, weight, outFile) {
 
   console.log(`Descargando ${family} ${weight}...`);
 
-  if (!isTrustedFontUrl(api)) {
-    throw new Error(`[og-fonts] Untrusted API URL: ${api}`);
-  }
-
   let css;
   try {
-    // Verified URL is safe through isTrustedFontUrl check above
-    const response = await fetch(api, { headers: { "User-Agent": UA } });
-    if (!response.ok) {
-      throw new Error(`HTTP ${response.status} from fonts.googleapis.com`);
-    }
-    css = await response.text();
+    css = await fetchTrustedText(api, { headers: { "User-Agent": UA } });
   } catch (err) {
     throw new Error(`Failed to fetch from fonts.googleapis.com: ${err.message}`);
   }
@@ -88,20 +107,12 @@ async function downloadFont(family, weight, outFile) {
   const fontUrl = match[1];
   console.log(`  URL: ${fontUrl}`);
 
-  if (!isTrustedFontUrl(fontUrl)) {
-    throw new Error(`[og-fonts] Untrusted font URL: ${fontUrl}`);
-  }
-
   let fontData;
   try {
-    const response = await fetch(fontUrl);
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status} from font URL`);
-      }
-      fontData = await response.arrayBuffer();
-    } catch (err) {
-      throw new Error(`Failed to fetch font: ${err.message}`);
-    }
+    fontData = await fetchTrustedArrayBuffer(fontUrl);
+  } catch (err) {
+    throw new Error(`Failed to fetch font: ${err.message}`);
+  }
   const signature = Buffer.from(fontData).subarray(0, 4).toString("latin1");
   if (signature === "wOF2") {
     throw new Error(

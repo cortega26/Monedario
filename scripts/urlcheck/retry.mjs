@@ -4,6 +4,7 @@ export async function applyRetries(links, options) {
   const {
     modeConfig,
     maxConcurrency,
+    internalOrigins,
   } = options;
 
   const retryable = links.filter(isRetryCandidate);
@@ -16,15 +17,19 @@ export async function applyRetries(links, options) {
 
   const linkMap = new Map(links.map((item) => [item.url, item]));
   await runPool(retryable, maxConcurrency, async (item) => {
-    const updated = await retryLink(item, modeConfig, retryStats);
+    const updated = await retryLink(item, modeConfig, retryStats, internalOrigins);
     if (updated) linkMap.set(updated.url, updated);
   });
 
   return { links: Array.from(linkMap.values()), retryStats };
 }
 
-async function retryLink(link, modeConfig, retryStats) {
+async function retryLink(link, modeConfig, retryStats, internalOrigins) {
   let current = { ...link };
+  if (!isTrustedRetryTarget(link.url, internalOrigins)) {
+    return current;
+  }
+
   for (let attempt = 1; attempt <= modeConfig.retryMax; attempt += 1) {
     retryStats.totalRetries += 1;
     const host = safeHost(link.url);
@@ -32,7 +37,7 @@ async function retryLink(link, modeConfig, retryStats) {
 
     await sleep(backoffMs(modeConfig.retryBackoffMs, attempt));
 
-    const probed = await probeUrl(link.url, modeConfig.timeoutMs);
+    const probed = await probeUrl(link.url, modeConfig.timeoutMs, internalOrigins);
     current = {
       ...current,
       status: probed.status,
@@ -47,33 +52,19 @@ async function retryLink(link, modeConfig, retryStats) {
   return current;
 }
 
-async function probeUrl(url, timeoutMs) {
+async function probeUrl(url, timeoutMs, internalOrigins) {
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const parsed = new URL(url);
-    if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+    if (!isTrustedRetryTarget(url, internalOrigins)) {
       return {
         status: null,
         ok: false,
-        failureDetails: ["untrusted_protocol"],
-      };
-    }
-    // Safety check: reject private/local hostnames to prevent SSRF
-    const isPrivate =
-      parsed.hostname === "localhost" ||
-      parsed.hostname === "127.0.0.1" ||
-      parsed.hostname.startsWith("10.") ||
-      parsed.hostname.startsWith("192.168.") ||
-      parsed.hostname === "169.254.169.254";
-    if (isPrivate) {
-      return {
-        status: null,
-        ok: false,
-        failureDetails: ["private_hostname_blocked"],
+        failureDetails: ["untrusted_retry_target"],
       };
     }
 
+    // nosemgrep: semgrep_rules_lgpl_javascript_ssrf_rule-node-ssrf -- retries are limited to explicitly trusted internal origins.
     const response = await fetch(url, {
       method: "GET",
       redirect: "follow",
@@ -92,6 +83,23 @@ async function probeUrl(url, timeoutMs) {
     };
   } finally {
     clearTimeout(timer);
+  }
+}
+
+function isTrustedRetryTarget(value, internalOrigins = new Set()) {
+  try {
+    const parsed = new URL(value);
+    if (parsed.protocol !== "http:" && parsed.protocol !== "https:") {
+      return false;
+    }
+
+    if (parsed.hostname === "localhost" || parsed.hostname === "127.0.0.1") {
+      return true;
+    }
+
+    return internalOrigins.has(parsed.origin);
+  } catch {
+    return false;
   }
 }
 

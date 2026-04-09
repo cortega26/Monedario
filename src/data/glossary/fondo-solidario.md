@@ -8,12 +8,12 @@ El **Fondo Solidario de Cesantía** es uno de los dos componentes del **Seguro d
 
 ### Diferencia entre Cuenta Individual y Fondo Solidario
 
-| Característica | Cuenta Individual | Fondo Solidario |
-|----------------|-------------------|-----------------|
-| ¿De quién es el dinero? | Del trabajador (su cuenta) | Del fondo común |
-| Fuente | Trabajador (0,6%) + Empleador (1,6% en contrato indefinido) | Empleador (0,8%) + Estado |
-| Acceso | Siempre al quedar sin trabajo | Sólo si se cumplen requisitos |
-| Necesita cotizaciones | 6+ meses con el mismo empleador | 12+ cotizaciones en los últimos 24 meses (primer acceso) |
+| Característica          | Cuenta Individual                                           | Fondo Solidario                                          |
+| ----------------------- | ----------------------------------------------------------- | -------------------------------------------------------- |
+| ¿De quién es el dinero? | Del trabajador (su cuenta)                                  | Del fondo común                                          |
+| Fuente                  | Trabajador (0,6%) + Empleador (1,6% en contrato indefinido) | Empleador (0,8%) + Estado                                |
+| Acceso                  | Siempre al quedar sin trabajo                               | Sólo si se cumplen requisitos                            |
+| Necesita cotizaciones   | 6+ meses con el mismo empleador                             | 12+ cotizaciones en los últimos 24 meses (primer acceso) |
 
 ### ¿Cuándo puedes acceder al Fondo Solidario?
 
