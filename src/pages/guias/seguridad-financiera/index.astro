@@ -14,7 +14,7 @@ const itemListSchema = {
   description:
     "Herramientas y guías para prevenir estafas, actuar ante fraudes y resolver suplantación de identidad.",
   url: "https://monedario.cl/guias/seguridad-financiera/",
-  numberOfItems: 4,
+  numberOfItems: 5,
   itemListElement: [
     {
       "@type": "ListItem",
@@ -39,6 +39,12 @@ const itemListSchema = {
       position: 4,
       name: "Suplantación de identidad y créditos no reconocidos: qué hacer paso a paso",
       url: "https://monedario.cl/posts/suplantacion-identidad-creditos-no-reconocidos/",
+    },
+    {
+      "@type": "ListItem",
+      position: 5,
+      name: "Fonasa o Isapre: cuál conviene según tu caso (2026)",
+      url: "https://monedario.cl/posts/fonasa-vs-isapre-comparativa/",
     },
   ],
 };
@@ -75,6 +81,13 @@ const articulosSeccion = [
     resumen:
       "Qué hacer para detectar la suplantación, reunir pruebas y reclamar ante la institución.",
     href: getPath("/posts/suplantacion-identidad-creditos-no-reconocidos/"),
+    esHerramienta: false,
+  },
+  {
+    titulo: "Fonasa o Isapre: cuál conviene según tu caso (2026)",
+    resumen:
+      "Comparativa de ambos sistemas: tramos, copagos, GES, CAEC y cuándo conviene cada uno según tu situación.",
+    href: getPath("/posts/fonasa-vs-isapre-comparativa/"),
     esHerramienta: false,
   },
 ];
