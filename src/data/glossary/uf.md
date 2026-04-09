@@ -1,7 +1,7 @@
 ---
 term: "Unidad de Fomento (UF)"
 shortDefinition: "Unidad de cuenta chilena que se reajusta diariamente según la inflación (IPC) para mantener el poder adquisitivo del dinero."
-relatedTerms: ["ipc", "credito-hipotecario", "dividendo-hipotecario"]
+relatedTerms: ["ipc", "inflacion", "credito-hipotecario", "dividendo-hipotecario"]
 ---
 
 La **Unidad de Fomento (UF)** es una unidad de cuenta creada en Chile en 1967. No es una moneda física que puedas guardar en la billetera; es un valor referencial que se actualiza todos los días según el cálculo de la inflación oficial.
