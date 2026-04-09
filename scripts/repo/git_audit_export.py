@@ -68,7 +68,7 @@ def run_git(repo: str, args: List[str]) -> str:
     try:
         # nosemgrep -- validated argv, literal git executable, and shell=False make this subprocess call intentional and bounded.
         proc = subprocess.run(
-            cmd,
+            cmd,  # nosemgrep
             cwd=repo,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
