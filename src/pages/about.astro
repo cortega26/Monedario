@@ -9,7 +9,7 @@ import { SITE } from "@/config";
 
 <Layout
   title={`¿Quiénes somos? | ${SITE.title}`}
-  description="Conoce qué es Monedario, quién escribe el contenido, cómo se revisa y cuál es la política editorial del sitio."
+  description="Qué es Monedario, quién lo escribe y cómo funciona su proceso editorial de siete etapas: fuentes oficiales, auditoría de cálculos, verificación regulatoria y política de vigencia."
 >
   <Header />
   <Breadcrumb />
@@ -81,33 +81,312 @@ import { SITE } from "@/config";
       </div>
     </section>
 
-    <!-- CÓMO CONTROLAMOS ERRORES -->
-    <section class="border-b border-border py-10">
-      <h2 class="mb-4 text-2xl font-bold">
-        ¿Cómo controlamos errores antes de publicar?
-      </h2>
-      <p class="max-w-2xl text-base leading-relaxed text-secondary">
-        Monedario no publica contenido propio en un solo paso. Salvo contenidos
-        claramente identificados como material externo, referencia o
-        reproducción de otra fuente, nuestros artículos pasan por
-        <strong class="text-foreground">varias revisiones editoriales</strong>
-        antes de publicarse o de actualizarse de forma sustantiva.
+    <!-- PROCESO EDITORIAL -->
+    <section id="metodologia" class="border-b border-border py-10">
+      <h2 class="mb-2 text-2xl font-bold">Proceso editorial</h2>
+      <p class="mb-8 max-w-2xl text-sm leading-relaxed text-secondary">
+        El contenido de Monedario describe normas tributarias, tasas de
+        cotización, plazos legales e instrumentos financieros — información con
+        consecuencias reales para quien la lee. Por eso cada artículo sobre
+        estas materias sigue siete etapas de elaboración antes de publicarse.
       </p>
-      <p class="mt-3 max-w-2xl text-base leading-relaxed text-secondary">
-        Esas revisiones buscan detectar y corregir errores de
-        <strong class="text-foreground"
-          >fuentes, vigencia, estructura, links, cálculos y consistencia interna</strong
-        >. Cuando el tema lo exige, también incorporamos controles adicionales
-        para contenido más sensible: por ejemplo, revisión metodológica,
-        verificación de números o chequeos específicos en artículos sobre
-        inversiones, impuestos, pensiones, crédito o decisiones que pueden
-        afectar directamente tu plata.
-      </p>
-      <p class="mt-3 max-w-2xl text-base leading-relaxed text-secondary">
-        No prometemos infalibilidad. Sí prometemos algo más serio:
-        <strong class="text-foreground"
-          >un proceso editorial diseñado para reducir al mínimo errores
-          evitables antes de que el contenido llegue al lector</strong
+
+      <ol class="max-w-2xl space-y-5">
+        <li class="flex gap-4">
+          <span
+            class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent"
+            >1</span
+          >
+          <div>
+            <p class="font-semibold text-foreground">Brief</p>
+            <p class="mt-0.5 text-sm leading-relaxed text-secondary">
+              Se define la pregunta concreta que el artículo responde, qué
+              queda fuera del alcance, qué organismos reguladores son relevantes
+              y qué tan sensible es el tema para el lector.
+            </p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span
+            class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent"
+            >2</span
+          >
+          <div>
+            <p class="font-semibold text-foreground">Dossier de fuentes</p>
+            <p class="mt-0.5 text-sm leading-relaxed text-secondary">
+              Se recopilan las fuentes primarias: textos legales, resoluciones y
+              circulares de organismos reguladores, documentos técnicos y
+              estadísticas oficiales. Todos los números citables se rastrean
+              hasta su origen antes de entrar al borrador.
+            </p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span
+            class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent"
+            >3</span
+          >
+          <div>
+            <p class="font-semibold text-foreground">Esquema</p>
+            <p class="mt-0.5 text-sm leading-relaxed text-secondary">
+              Se estructura el artículo en torno a la decisión real del lector.
+              La respuesta concreta va primero; el contexto y las excepciones,
+              después.
+            </p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span
+            class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent"
+            >4</span
+          >
+          <div>
+            <p class="font-semibold text-foreground">Borrador</p>
+            <p class="mt-0.5 text-sm leading-relaxed text-secondary">
+              Se redacta el artículo siguiendo el esquema aprobado y las
+              fuentes del dossier.
+            </p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span
+            class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent"
+            >5</span
+          >
+          <div>
+            <p class="font-semibold text-foreground">Auditoría de cálculos</p>
+            <p class="mt-0.5 text-sm leading-relaxed text-secondary">
+              Todos los números, fórmulas y ejemplos del artículo se verifican
+              de forma independiente antes de publicar. Si hay una discrepancia
+              entre el borrador y la fuente, el borrador se corrige.
+            </p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span
+            class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent"
+            >6</span
+          >
+          <div>
+            <p class="font-semibold text-foreground">Revisión regulatoria</p>
+            <p class="mt-0.5 text-sm leading-relaxed text-secondary">
+              Se verifica que las afirmaciones sobre leyes, plazos, tasas y
+              requisitos correspondan a la normativa vigente. Se confirman las
+              citas legales y se añade el aviso de que la información es
+              educativa y no reemplaza asesoría profesional.
+            </p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span
+            class="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent"
+            >7</span
+          >
+          <div>
+            <p class="font-semibold text-foreground">Lista de chequeo final</p>
+            <p class="mt-0.5 text-sm leading-relaxed text-secondary">
+              Se verifica que todos los enlaces funcionen, que la fecha de
+              vigencia esté declarada, que no haya contradicciones internas y
+              que el artículo esté listo para publicar.
+            </p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="mt-10 max-w-2xl space-y-8">
+        <div>
+          <h3 class="mb-2 text-lg font-semibold">Verificación independiente</h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            En artículos sobre impuestos, pensiones, inversiones, deuda y
+            cualquier contenido que incluya cálculos, la auditoría de números
+            (etapa 5) y la revisión regulatoria (etapa 6) las realiza un rol
+            diferente al que redactó el borrador. El objetivo es evitar que
+            quien escribe valide su propio trabajo.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="mb-2 text-lg font-semibold">Política de vigencia</h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            Cada artículo declara la fecha hasta la cual es válida su
+            información — visible en el encabezado del artículo. El sitio
+            ejecuta comprobaciones automáticas que identifican artículos cuya
+            vigencia puede haberse vencido por cambios regulatorios, nuevas
+            tasas publicadas o fechas límite superadas, y los marca para
+            revisión.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="mb-3 text-lg font-semibold">Fuentes que utilizamos</h3>
+          <p class="mb-4 text-sm text-secondary">
+            Las fuentes primarias varían según el tema. Estas son las
+            principales:
+          </p>
+          <div class="grid gap-3 sm:grid-cols-2">
+            <div class="rounded-lg border border-border p-4">
+              <p
+                class="mb-1.5 text-xs font-semibold uppercase tracking-wide text-accent"
+              >
+                Impuestos y tributación
+              </p>
+              <ul class="space-y-1 text-sm text-secondary">
+                <li>
+                  <a
+                    href="https://www.sii.cl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-accent hover:underline"
+                    >SII — Servicio de Impuestos Internos</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://www.bcn.cl/leychile"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-accent hover:underline"
+                    >Ley Chile (Biblioteca del Congreso Nacional)</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="rounded-lg border border-border p-4">
+              <p
+                class="mb-1.5 text-xs font-semibold uppercase tracking-wide text-accent"
+              >
+                Pensiones y AFP
+              </p>
+              <ul class="space-y-1 text-sm text-secondary">
+                <li>
+                  <a
+                    href="https://www.spensiones.cl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-accent hover:underline"
+                    >Superintendencia de Pensiones</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="rounded-lg border border-border p-4">
+              <p
+                class="mb-1.5 text-xs font-semibold uppercase tracking-wide text-accent"
+              >
+                Crédito, deuda e inversiones
+              </p>
+              <ul class="space-y-1 text-sm text-secondary">
+                <li>
+                  <a
+                    href="https://www.cmfchile.cl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-accent hover:underline"
+                    >CMF — Comisión para el Mercado Financiero</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://www.sernac.cl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-accent hover:underline"
+                    >SERNAC</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="rounded-lg border border-border p-4">
+              <p
+                class="mb-1.5 text-xs font-semibold uppercase tracking-wide text-accent"
+              >
+                Indicadores económicos
+              </p>
+              <ul class="space-y-1 text-sm text-secondary">
+                <li>
+                  <a
+                    href="https://www.bcentral.cl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-accent hover:underline"
+                    >Banco Central de Chile</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://www.ine.gob.cl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-accent hover:underline"
+                    >INE — Instituto Nacional de Estadísticas</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="rounded-lg border border-border p-4">
+              <p
+                class="mb-1.5 text-xs font-semibold uppercase tracking-wide text-accent"
+              >
+                Empleo y salud laboral
+              </p>
+              <ul class="space-y-1 text-sm text-secondary">
+                <li>
+                  <a
+                    href="https://www.dt.gob.cl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-accent hover:underline"
+                    >Dirección del Trabajo</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://www.suseso.cl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-accent hover:underline"
+                    >SUSESO</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="https://www.afc.cl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-accent hover:underline"
+                    >AFC Chile</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="rounded-lg border border-border p-4">
+              <p
+                class="mb-1.5 text-xs font-semibold uppercase tracking-wide text-accent"
+              >
+                Trámites del Estado
+              </p>
+              <ul class="space-y-1 text-sm text-secondary">
+                <li>
+                  <a
+                    href="https://www.chileatiende.gob.cl"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-accent hover:underline"
+                    >ChileAtiende</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="mt-8 max-w-2xl text-sm leading-relaxed text-secondary">
+        No prometemos infalibilidad. Sí prometemos un proceso diseñado para
+        reducir al mínimo errores evitables. Si encuentras un error factual,
+        <a
+          href={getPath("/contacto/")}
+          class="text-accent underline-offset-4 hover:underline">escríbenos</a
         >.
       </p>
     </section>
@@ -139,10 +418,10 @@ import { SITE } from "@/config";
             </a>
           </p>
           <p class="mt-1 text-sm text-secondary">
-            Abogado, analista de datos y desarrollador especializado en
-            educación financiera práctica. Investiga normativa financiera
-            chilena, compara instrumentos de ahorro e inversión y desarrolla
-            herramientas claras y basadas en evidencia.
+            Abogado (Venezuela), analista de datos y desarrollador
+            especializado en educación financiera práctica. Investiga normativa
+            financiera chilena, compara instrumentos de ahorro e inversión y
+            desarrolla herramientas claras y basadas en evidencia.
           </p>
           <div class="mt-2 flex flex-wrap gap-3 text-xs">
             <a
@@ -204,12 +483,13 @@ import { SITE } from "@/config";
         </p>
       </div>
       <p class="mt-6 text-sm text-muted">
-        ¿Tienes alguna sugerencia o encontraste un error?
+        ¿Tienes alguna sugerencia o encontraste un error? Escríbenos a
+        <!-- Protección anti-scraper: dirección ofuscada con HTML entities + CSS unicode-bidi -->
         <a
-          href="https://github.com/cortega26/tuplatainforma"
-          target="_blank"
+          href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#99;&#111;&#110;&#116;&#97;&#99;&#116;&#111;&#64;&#109;&#111;&#110;&#101;&#100;&#97;&#114;&#105;&#111;&#46;&#99;&#108;"
+          aria-label="Correo electrónico: contacto arroba monedario punto cl"
           class="text-accent underline underline-offset-4 hover:opacity-80"
-          >Escríbenos en GitHub</a
+          ><span style="unicode-bidi: bidi-override; direction: ltr;" aria-hidden="true">contacto</span><span aria-hidden="true">[at]</span><span style="unicode-bidi: bidi-override; direction: ltr;" aria-hidden="true">monedario.cl</span></a
         >.
       </p>
     </section>
