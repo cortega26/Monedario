@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "source": "src/data/blog/**",
   "publishableRule": "draft !== true",
-  "articleCount": 35,
+  "articleCount": 36,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -1071,6 +1071,40 @@
       "bodyExcerpt": "Tener una deuda atrasada no significa automáticamente que te convenga entrar a un procedimiento concursal. La renegociación Superir es útil cuando el problema ya es estructural: varias deudas vencidas, mora acumulada y una caja que no alcanza para seguir sosteniendo los pagos. Si todavía estás tratando de entender qué acreedores tienes o cuánto cuesta realmente una deuda, esta no es la primera guía. En ese caso conviene partir por un diagnóstico de acreedores o por una comparación seria del costo real del crédito. El resto de las salidas relacionadas aparece más abajo. ## Tabla de contenidos ## Mora no es lo mismo que sobreendeudamiento Antes de seguir, conviene separar tres escenarios: - **Tienes una o dos cuotas atrasadas, pero todavía puedes ordenar el pago.** Aquí primero conviene medir el costo real, el prepago o la repactación, no entrar a un proceso concursal. - **Tienes varias deudas activas y no sabes bien qué aparece a tu nombre.** Primero ordena acreedores y montos antes de intentar una salida formal. - **Ya tienes varias deudas vencidas, pasan los meses y no ves cómo cumplir sin un acuerdo estructural.** Ahí sí esta guía empieza a ser relevante. ## Qué es la Superir y q",
       "wordCount": 1845,
       "sourceFile": "renegociacion-superir.md"
+    },
+    {
+      "slug": "rentas-mixtas-sueldo-honorarios",
+      "title": "Rentas mixtas en Chile: cómo declarar cuando tienes sueldo y boletas de honorarios",
+      "tags": [
+        "impuestos",
+        "rentas-mixtas",
+        "honorarios",
+        "operacion-renta",
+        "sii"
+      ],
+      "category": "impuestos",
+      "cluster": "impuestos-personas",
+      "sourcePath": "src/data/blog/rentas-mixtas-sueldo-honorarios.md",
+      "heroImage": "/images/hero/rentas-mixtas-sueldo-honorarios.avif",
+      "summary": "Si en 2025 tuviste sueldo y emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas...",
+      "leadParagraphs": [
+        "Si en 2025 tuviste sueldo *y* emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas más— para que llegues al F22 sin sorpresas.",
+        "**Respuesta rápida (regla general):** Quienes percibieron sueldo *y* emitieron boletas de honorarios en 2025 **deben declarar** Operación Renta 2026 (F22) obligatoriamente. El SII puede generar una propuesta, pero esa propuesta no incluye automáticamente tus boletas de honorarios, porque cada pagador retiene de forma independiente sin conocer tus otras fuentes de ingreso.",
+        "**Excepción relevante:** Si el total de tus ingresos anuales (sueldo + honorarios brutos) no supera el tramo exento del Global Complementario (~$11.322.018 anuales para AT 2026, equivalente a 13,5 UTA), no generarás impuesto adicional. Aun así, **la obligación de declarar subsiste**."
+      ],
+      "headings": [
+        "Regla general: con rentas mixtas siempre debes declarar",
+        "¿Por qué no existe una propuesta completa para rentas mixtas?",
+        "Cómo se calcula el resultado: ¿pagas más o recuperas?",
+        "Tramos del Global Complementario AT 2026 (Art. 52 LIR)",
+        "Cuándo casi siempre pagas más",
+        "Cuándo normalmente recuperas",
+        "Paso a paso para declarar con rentas mixtas",
+        "Lo que necesitas antes de entrar al SII"
+      ],
+      "bodyExcerpt": "Si en 2025 tuviste sueldo *y* emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas más— para que llegues al F22 sin sorpresas. ## Regla general: con rentas mixtas siempre debes declarar **Respuesta rápida (regla general):** Quienes percibieron sueldo *y* emitieron boletas de honorarios en 2025 **deben declarar** Operación Renta 2026 (F22) obligatoriamente. El SII puede generar una propuesta, pero esa propuesta no incluye automáticamente tus boletas de honorarios, porque cada pagador retiene de forma independiente sin conocer tus otras fuentes de ingreso. **Excepción relevante:** Si el total de tus ingresos anuales (sueldo + honorarios brutos) no supera el tramo exento del Global Complementario (~$11.322.018 anuales para AT 2026, equivalente a 13,5 UTA), no generarás impuesto adicional. Aun así, **la obligación de declarar subsiste**. **Vigencia:** Operación Renta Año Tributario 2026 (ingresos enero–diciembre 2025), vigente a 2026-04-09. **Fuentes:** ; . | Situación | ¿Hay propuesta del",
+      "wordCount": 1769,
+      "sourceFile": "rentas-mixtas-sueldo-honorarios.md"
     },
     {
       "slug": "seguro-cesantia-cuenta-individual-vs-fondo-solidario",

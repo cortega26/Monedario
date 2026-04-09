@@ -395,6 +395,19 @@ const SLUG_OVERRIDES = {
     overrideEvidence: ["slug override: APV voluntary pension savings article"],
     overrideKeywords: ["apv", "ahorro previsional voluntario"],
   },
+  // Rentas mixtas article: body mentions 'sueldo' and 'honorarios' triggering the empleo
+  // rule (cesantia scene) before the renta rule; override to declaracion-renta scene because
+  // this is a tax-declaration article (Impuesto Global Complementario, F22, Operacion Renta).
+  "rentas-mixtas-sueldo-honorarios": {
+    id: "renta",
+    template: "A",
+    recipeId: "declaracion-renta",
+    colorKey: "Credito / Deuda / Impuestos / Riesgo",
+    readerSituation: "Persona con sueldo y boletas de honorarios que necesita entender su declaracion anual de impuestos y si pagara mas o recuperara.",
+    toneClass: "serio",
+    overrideEvidence: ["slug override: mixed-income tax declaration article — empleo rule false-positive on 'sueldo'+'honorarios' keywords"],
+    overrideKeywords: ["impuesto", "renta", "declaracion", "global complementario"],
+  },
 };
 
 export function selectPromptPlan(article) {

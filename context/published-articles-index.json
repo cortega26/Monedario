@@ -5,7 +5,7 @@
   "source": "src/data/blog/**",
   "publishableRule": "draft !== true",
   "ordering": "slug asc",
-  "publishedCount": 35,
+  "publishedCount": 36,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -534,6 +534,23 @@
       "heroImage": "/images/hero/renegociacion-superir.avif",
       "summary": "Tener una deuda atrasada no significa automáticamente que te convenga entrar a un procedimiento concursal. La renegociación Superir es útil cuando el problema ya es estructural: varias deudas vencidas, mora acumulada y una caja que no alcanza para seguir sosteniendo los pagos. Si...",
       "updatedDate": "2026-03-12T18:45:00Z"
+    },
+    {
+      "slug": "rentas-mixtas-sueldo-honorarios",
+      "title": "Rentas mixtas en Chile: cómo declarar cuando tienes sueldo y boletas de honorarios",
+      "category": "impuestos",
+      "cluster": "impuestos-personas",
+      "tags": [
+        "impuestos",
+        "rentas-mixtas",
+        "honorarios",
+        "operacion-renta",
+        "sii"
+      ],
+      "sourcePath": "src/data/blog/rentas-mixtas-sueldo-honorarios.md",
+      "heroImage": "/images/hero/rentas-mixtas-sueldo-honorarios.avif",
+      "summary": "Si en 2025 tuviste sueldo y emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas...",
+      "updatedDate": "2026-04-09T12:00:00Z"
     },
     {
       "slug": "seguro-cesantia-cuenta-individual-vs-fondo-solidario",

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceManifest": "scripts/hero-images/manifest.json",
-  "count": 35,
+  "count": 36,
   "entries": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -1194,6 +1194,45 @@
         "matchedKeywords": [
           "renegociacion",
           "deuda"
+        ]
+      }
+    },
+    {
+      "slug": "rentas-mixtas-sueldo-honorarios",
+      "sourcePath": "src/data/blog/rentas-mixtas-sueldo-honorarios.md",
+      "targetImagePath": "/images/hero/rentas-mixtas-sueldo-honorarios.avif",
+      "template": "A",
+      "approvedModelId": "declaracion-renta",
+      "sceneId": "A:declaracion-renta",
+      "readerSituation": "Persona con sueldo y boletas de honorarios que necesita entender su declaracion anual de impuestos y si pagara mas o recuperara.",
+      "primaryIntent": "calcular",
+      "toneClass": "serio",
+      "visualEvidence": [
+        "slug override: mixed-income tax declaration article — empleo rule false-positive on 'sueldo'+'honorarios' keywords",
+        "primary intent classified as 'calcular' from article text",
+        "reader situation anchored to scene rule 'renta'"
+      ],
+      "palette": {
+        "category": "Credito / Deuda / Impuestos / Riesgo",
+        "hex": "#d97706"
+      },
+      "modelPlan": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "auto",
+        "size": "1536x1024"
+      },
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one geometric human figure seated at a desk reviewing a form, shown from behind or as a faceless silhouette.\nThe figure is near tax form, calendar marker. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
+      "promptHash": "10653d418b49c0d383374d1a42b3f9f5dfcd2083061c8122606d9bb5b32d309a",
+      "selectors": {
+        "ruleId": "renta",
+        "category": "impuestos",
+        "cluster": "impuestos-personas",
+        "matchedKeywords": [
+          "impuesto",
+          "renta",
+          "declaracion",
+          "global complementario"
         ]
       }
     },
