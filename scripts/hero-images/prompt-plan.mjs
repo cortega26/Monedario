@@ -371,6 +371,18 @@ const SLUG_OVERRIDES = {
     overrideEvidence: ["slug override: debt renegotiation process article"],
     overrideKeywords: ["renegociacion", "deuda"],
   },
+  // Fonasa vs Isapre comparison: body mentions 'sueldo' (7% health deduction context)
+  // triggering the empleo rule before the salud rule; override to fonasa-vs-isapre scene.
+  "fonasa-vs-isapre-comparativa": {
+    id: "salud",
+    template: "A",
+    recipeId: "fonasa-vs-isapre",
+    colorKey: "Salud / FONASA / ISAPRE",
+    readerSituation: "Persona comparando Fonasa e Isapre para elegir el sistema de salud que mejor se adapta a su situacion.",
+    toneClass: "neutral",
+    overrideEvidence: ["slug override: Fonasa vs Isapre health system comparison article"],
+    overrideKeywords: ["fonasa", "isapre"],
+  },
   // APV article: generic afp-pension (shield+arrow) doesn't communicate voluntary savings;
   // use apv-crecimiento Template C (upward-trending arrow over savings stack) instead.
   "que-es-el-apv": {

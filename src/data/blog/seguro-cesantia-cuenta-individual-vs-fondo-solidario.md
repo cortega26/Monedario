@@ -56,7 +56,7 @@ El error más común es calcular la cobertura esperada usando las tablas del FCS
 
 ## Cómo se financia cada uno
 
-Con contrato **indefinido**: el 0,6% que te descuentan del sueldo va a tu CIC. El empleador pone 1,6% también a la CIC y el 0,8% restante al Fondo Solidario. En total, 3% mensual sobre tu imponible.
+Con contrato **indefinido**: el 0,6% que te descuentan del sueldo va a tu CIC. El empleador pone 1,6% también a la CIC y el 0,8% restante al [Fondo Solidario](/glosario/fondo-solidario/). En total, 3% mensual sobre tu imponible.
 
 Con contrato a **plazo fijo u obra**: el trabajador no aporta nada. El empleador pone 2,8% a tu CIC y 0,2% al FCS. El 3% completo es cargo del empleador.
 
@@ -96,7 +96,7 @@ Esta distinción importa especialmente cuando hay presión para firmar una renun
 
 Tener esto claro antes de llamar a la AFC evita confusiones y acelera el proceso:
 
-**Saldo real en CIC.** Entra a afc.cl con ClaveÚnica y revisa el número exacto. No lo estimes a partir de tus liquidaciones.
+**Saldo real en CIC.** Entra a afc.cl con [ClaveÚnica](/glosario/clave-unica/) y revisa el número exacto. No lo estimes a partir de tus liquidaciones.
 
 **Cotizaciones en los últimos 24 meses.** Si tuviste lagunas, períodos fuera del sistema o cambios frecuentes de empleador, contesta esto antes de asumir que cumples el mínimo.
 

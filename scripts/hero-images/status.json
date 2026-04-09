@@ -200,5 +200,8 @@
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
     "failedAt": "2026-04-07T17:47:46.513Z"
+  },
+  "fonasa-vs-isapre-comparativa": {
+    "state": "pending"
   }
 }

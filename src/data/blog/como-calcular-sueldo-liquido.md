@@ -92,7 +92,7 @@ El sueldo imponible es la parte de tu remuneración sobre la que se aplican las 
 
 Si tu liquidación dice "sueldo bruto $1.200.000" pero el imponible es $1.050.000, los porcentajes de AFP, salud y cesantía se calculan sobre los $1.050.000, no sobre $1.200.000.
 
-Esto también tiene un límite superior: existe un **tope imponible** para las cotizaciones previsionales. En 2026, la Superintendencia de Pensiones informa **87,8 UF** para AFP y salud, mientras la AFC informa **135,2 UF** para seguro de cesantía. Si ganas más que esos topes, esas cotizaciones se calculan solo hasta el límite respectivo. El impuesto único, en cambio, usa su propia tabla mensual del SII.
+Esto también tiene un límite superior: existe un **[tope imponible](/glosario/tope-imponible/)** para las cotizaciones previsionales. En 2026, la Superintendencia de Pensiones informa **87,8 UF** para AFP y salud, mientras la AFC informa **135,2 UF** para seguro de cesantía. Si ganas más que esos topes, esas cotizaciones se calculan solo hasta el límite respectivo. El impuesto único, en cambio, usa su propia tabla mensual del SII.
 
 ---
 

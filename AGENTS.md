@@ -100,6 +100,17 @@ Constitutional precedence is absolute: when AGENTS.md conflicts with Constitutio
 - Compliant behavior: distinct role identities across draft/audit/compliance stages.
 - Violation: same role signs draft and math/compliance verification.
 
+### Rule 2.10 - Every new article requires a hero image prompt
+- Rationale: The hero image pipeline (`scripts/hero-images/`) auto-generates prompts from `manifest.json` using keyword rules and slug overrides. Articles whose body content triggers the wrong rule silently produce a mismatched image. Prompt accuracy must be verified at article-creation time, not after image generation fails.
+- Enforcement: When a new article is added to `src/data/blog/`:
+  1. Run `node scripts/hero-images/scan-articles.mjs` to update `manifest.json` and `context/published-articles-index.json`.
+  2. Run `node scripts/hero-images/build-prompts.mjs` to (re)generate `scripts/hero-images/prompts.json`.
+  3. Inspect the generated entry for the new slug in `prompts.json`. Verify `approvedModelId`, `sceneId`, `palette.hex`, and `prompt` are semantically correct for the article topic.
+  4. If the auto-selected scene is wrong (keyword false-positive from body text), add a `SLUG_OVERRIDES` entry in `scripts/hero-images/prompt-plan.mjs` with the correct `id`, `recipeId`, `colorKey`, and `overrideEvidence`, then re-run step 2.
+  5. Add the new slug to `scripts/hero-images/status.json` with `{ "state": "pending" }`.
+- Compliant behavior: PR that adds a new article includes updated `manifest.json`, `prompts.json`, and `status.json`, with a verified prompt entry for the new slug.
+- Violation: Merging a new article without a corresponding verified hero image prompt entry.
+
 ### Execution checklist (required before code edits)
 - [ ] Scope declared (in-scope/out-of-scope).
 - [ ] Authority check recorded.

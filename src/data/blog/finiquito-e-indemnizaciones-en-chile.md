@@ -54,9 +54,9 @@ Un finiquito es el documento que liquida todos los pagos pendientes al término 
 - **Indemnizaciones que correspondan** según causal de despido y años de servicio.
 - **Descuentos legales o pactados** cuando procedan (por ejemplo, anticipos de sueldo).
 
-Hay algo que muchos trabajadores no saben: no todo despido genera los mismos pagos. La causal que aparece en la carta de despido no es un detalle — es la variable que determina si te corresponde indemnización por años de servicio, si hay aviso previo o indemnización sustitutiva, y cuánto vale cada uno.
+Hay algo que muchos trabajadores no saben: no todo despido genera los mismos pagos. La causal que aparece en la carta de despido no es un detalle — es la variable que determina si te corresponde [indemnización](/glosario/indemnizacion/) por años de servicio, si hay aviso previo o indemnización sustitutiva, y cuánto vale cada uno.
 
-Si solo quieres aislar la partida de años de servicio antes de volver al finiquito completo, usa esta guía corta de [indemnización por años de servicio en Chile](/posts/indemnizacion-anos-de-servicio-chile/).
+Si solo quieres aislar la partida de años de servicio antes de volver al [finiquito](/glosario/finiquito/) completo, usa esta guía corta de [indemnización por años de servicio en Chile](/posts/indemnizacion-anos-de-servicio-chile/).
 
 ## Las dos indemnizaciones más importantes
 

@@ -52,7 +52,7 @@ Aquí te explicamos qué es cada fondo, sin tecnicismos.
 
 ## Qué cambia entre 2025 y 2027
 
-Este artículo mantiene la explicación histórica de multifondos A-E, pero debes separar contexto actual vs transición aprobada:
+Este artículo mantiene la explicación histórica de [multifondos](/glosario/multifondo/) A-E, pero debes separar contexto actual vs transición aprobada:
 
 - **Qué cambia hoy (2026):**
   - Los multifondos **A, B, C, D y E siguen vigentes** y puedes elegir/cambiar fondo como hasta ahora.

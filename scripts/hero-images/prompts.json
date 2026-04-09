@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceManifest": "scripts/hero-images/manifest.json",
-  "count": 34,
+  "count": 35,
   "entries": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -14,10 +14,9 @@
       "primaryIntent": "comparar",
       "toneClass": "progreso",
       "visualEvidence": [
-        "text contains 'ahorro' in article body/title context",
         "text contains 'fondo de emergencia' in article body/title context",
-        "text contains 'meta' in article body/title context",
-        "primary intent classified as 'comparar' from article text"
+        "primary intent classified as 'comparar' from article text",
+        "reader situation anchored to scene rule 'ahorro'"
       ],
       "palette": {
         "category": "Ahorro activo / Metas / Logros",
@@ -36,9 +35,7 @@
         "category": "ahorro-inversion",
         "cluster": "ahorro-e-inversion",
         "matchedKeywords": [
-          "ahorro",
-          "fondo de emergencia",
-          "meta"
+          "fondo de emergencia"
         ]
       }
     },
@@ -47,15 +44,15 @@
       "sourcePath": "src/data/blog/boleta-honorarios-2026-retencion-cobertura.md",
       "targetImagePath": "/images/hero/boleta-honorarios-2026-retencion-cobertura.avif",
       "template": "A",
-      "approvedModelId": "cesantia",
-      "sceneId": "A:cesantia",
-      "readerSituation": "Persona revisando ingresos laborales, pagos o periodos sin trabajo.",
-      "primaryIntent": "calcular",
-      "toneClass": "neutral",
+      "approvedModelId": "afp-pension",
+      "sceneId": "A:afp-pension",
+      "readerSituation": "Persona evaluando ahorro previsional y decisiones de largo plazo.",
+      "primaryIntent": "explicar",
+      "toneClass": "educativo",
       "visualEvidence": [
-        "text contains 'honorarios' in article body/title context",
-        "primary intent classified as 'calcular' from article text",
-        "reader situation anchored to scene rule 'empleo'"
+        "text contains 'previsional' in article body/title context",
+        "primary intent classified as 'explicar' from article text",
+        "reader situation anchored to scene rule 'prevision'"
       ],
       "palette": {
         "category": "Finanzas general / AFP / Empleo / Ahorro",
@@ -67,14 +64,14 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one geometric human figure seated, shoulders slightly down, shown from behind or as a faceless silhouette.\nThe figure is near closed laptop, document envelope. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "59e3246d5aa8c5d3e5b0fb66184788ce5f325f1774866bf40a5936f4aa3b2688",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one geometric human figure standing upright, shown from behind or as a faceless silhouette.\nThe figure is near shield, upward arrow. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
+      "promptHash": "5a6a3376dd19c47dbca3f73af15eb56c3a3fc25303bf4af0777eedd5bf27dafa",
       "selectors": {
-        "ruleId": "empleo",
+        "ruleId": "prevision",
         "category": "impuestos",
         "cluster": "impuestos-personas",
         "matchedKeywords": [
-          "honorarios"
+          "previsional"
         ]
       }
     },
@@ -309,9 +306,9 @@
       "toneClass": "educativo",
       "visualEvidence": [
         "text contains 'uf' in article body/title context",
-        "text contains 'ipc' in article body/title context",
         "text contains 'inflacion' in article body/title context",
-        "primary intent classified as 'explicar' from article text"
+        "primary intent classified as 'explicar' from article text",
+        "reader situation anchored to scene rule 'uf'"
       ],
       "palette": {
         "category": "Educativo / Conceptos / Guias",
@@ -331,7 +328,6 @@
         "cluster": "ahorro-e-inversion",
         "matchedKeywords": [
           "uf",
-          "ipc",
           "inflacion"
         ]
       }
@@ -383,9 +379,9 @@
       "primaryIntent": "guiar",
       "toneClass": "serio",
       "visualEvidence": [
-        "text contains 'renta' in article body/title context",
         "text contains 'f22' in article body/title context",
         "text contains 'sii' in article body/title context",
+        "text contains 'retencion' in article body/title context",
         "primary intent classified as 'guiar' from article text"
       ],
       "palette": {
@@ -405,9 +401,9 @@
         "category": "impuestos",
         "cluster": "impuestos-personas",
         "matchedKeywords": [
-          "renta",
           "f22",
-          "sii"
+          "sii",
+          "retencion"
         ]
       }
     },
@@ -565,6 +561,43 @@
       }
     },
     {
+      "slug": "fonasa-vs-isapre-comparativa",
+      "sourcePath": "src/data/blog/fonasa-vs-isapre-comparativa.md",
+      "targetImagePath": "/images/hero/fonasa-vs-isapre-comparativa.avif",
+      "template": "A",
+      "approvedModelId": "fonasa-vs-isapre",
+      "sceneId": "A:fonasa-vs-isapre",
+      "readerSituation": "Persona comparando Fonasa e Isapre para elegir el sistema de salud que mejor se adapta a su situacion.",
+      "primaryIntent": "comparar",
+      "toneClass": "neutral",
+      "visualEvidence": [
+        "slug override: Fonasa vs Isapre health system comparison article",
+        "primary intent classified as 'comparar' from article text",
+        "reader situation anchored to scene rule 'salud'"
+      ],
+      "palette": {
+        "category": "Salud / FONASA / ISAPRE",
+        "hex": "#0284c7"
+      },
+      "modelPlan": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "auto",
+        "size": "1536x1024"
+      },
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0284c7.\nScene: one geometric human figure standing, comparing two cards, shown from behind or as a faceless silhouette.\nThe figure is near two health cards. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
+      "promptHash": "272a34c8bf1398584ea4bb769f1923d957742d5ff61010204bddb9ee6a2e8558",
+      "selectors": {
+        "ruleId": "salud",
+        "category": "seguridad-financiera",
+        "cluster": "seguridad-financiera",
+        "matchedKeywords": [
+          "fonasa",
+          "isapre"
+        ]
+      }
+    },
+    {
       "slug": "fondos-afp-a-b-c-d-e",
       "sourcePath": "src/data/blog/fondos-afp-a-b-c-d-e.md",
       "targetImagePath": "/images/hero/fondos-afp-a-b-c-d-e.avif",
@@ -609,12 +642,11 @@
       "approvedModelId": "ahorro",
       "sceneId": "A:ahorro",
       "readerSituation": "Persona organizando ahorro o controlando gastos cotidianos.",
-      "primaryIntent": "calcular",
+      "primaryIntent": "guiar",
       "toneClass": "progreso",
       "visualEvidence": [
         "text contains 'ahorro' in article body/title context",
-        "text contains 'meta' in article body/title context",
-        "primary intent classified as 'calcular' from article text",
+        "primary intent classified as 'guiar' from article text",
         "reader situation anchored to scene rule 'ahorro'"
       ],
       "palette": {
@@ -634,8 +666,7 @@
         "category": "ahorro-inversion",
         "cluster": "ahorro-e-inversion",
         "matchedKeywords": [
-          "ahorro",
-          "meta"
+          "ahorro"
         ]
       }
     },
@@ -725,9 +756,9 @@
       "toneClass": "serio",
       "visualEvidence": [
         "text contains 'deuda' in article body/title context",
-        "text contains 'credito' in article body/title context",
         "text contains 'dicom' in article body/title context",
-        "primary intent classified as 'comparar' from article text"
+        "primary intent classified as 'comparar' from article text",
+        "reader situation anchored to scene rule 'deuda'"
       ],
       "palette": {
         "category": "Credito / Deuda / Impuestos / Riesgo",
@@ -747,7 +778,6 @@
         "cluster": "deuda-credito",
         "matchedKeywords": [
           "deuda",
-          "credito",
           "dicom"
         ]
       }
@@ -875,9 +905,9 @@
       "primaryIntent": "guiar",
       "toneClass": "serio",
       "visualEvidence": [
+        "text contains 'impuesto' in article body/title context",
         "text contains 'renta' in article body/title context",
         "text contains 'f22' in article body/title context",
-        "text contains 'sii' in article body/title context",
         "primary intent classified as 'guiar' from article text"
       ],
       "palette": {
@@ -897,10 +927,10 @@
         "category": "impuestos",
         "cluster": "impuestos-personas",
         "matchedKeywords": [
+          "impuesto",
           "renta",
           "f22",
-          "sii",
-          "retencion"
+          "sii"
         ]
       }
     },
@@ -1067,8 +1097,8 @@
       "visualEvidence": [
         "text contains 'uf' in article body/title context",
         "text contains 'ipc' in article body/title context",
-        "text contains 'inflacion' in article body/title context",
-        "primary intent classified as 'explicar' from article text"
+        "primary intent classified as 'explicar' from article text",
+        "reader situation anchored to scene rule 'uf'"
       ],
       "palette": {
         "category": "Educativo / Conceptos / Guias",
@@ -1088,8 +1118,7 @@
         "cluster": "uf-costo-de-vida",
         "matchedKeywords": [
           "uf",
-          "ipc",
-          "inflacion"
+          "ipc"
         ]
       }
     },

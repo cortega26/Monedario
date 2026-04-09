@@ -46,7 +46,7 @@ La propuesta ya te muestra el resultado. Busca las líneas "Impuesto determinado
 
 Variables que más mueven el resultado antes de enviar:
 
-- **APV en Régimen B**: cada peso ahorrado rebaja la base del [Impuesto Global Complementario](/glosario/global-complementario/) — y puede bajar de tramo.
+- **APV en Régimen B**: cada peso ahorrado rebaja la base del [Impuesto Global Complementario](/glosario/global-complementario/) — y puede bajar de tramo (los tramos se expresan en [UTA](/glosario/uta/)).
 - **Intereses de crédito hipotecario**: deducibles hasta el tope legal (línea 69 del F22).
 - **PPM de boletas de honorarios**: lo que retuvo cada pagador se acredita contra el impuesto final.
 - **Dos empleadores simultáneos**: generan casi siempre un pago adicional porque cada empleador retuvo sin saber del otro.
@@ -84,7 +84,7 @@ Según SII, el flujo correcto es revisar primero y declarar después. Para no me
 
 Checklist rápido antes de enviar:
 
-- Clave Tributaria o ClaveÚnica activa.
+- Clave Tributaria o [ClaveÚnica](/glosario/clave-unica/) activa.
 - Respaldos de ingresos y retenciones del año comercial.
 - Cuenta bancaria activa y correctamente digitada.
 - 20 a 40 minutos sin interrupciones.

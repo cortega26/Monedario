@@ -101,7 +101,7 @@ La diferencia entre esos dos escenarios es $950.000 — exactamente un mes de su
 
 Esta es la segunda fuente más frecuente de errores. La base de cálculo no es necesariamente lo que dice la última liquidación.
 
-**Incluye como regla general:** sueldo base, horas extraordinarias si son habituales, gratificaciones proporcionales cuando corresponde.
+**Incluye como regla general:** sueldo base, horas extraordinarias si son habituales, [gratificaciones](/glosario/gratificacion/) proporcionales cuando corresponde.
 
 **Puede excluirse o tener tratamiento especial:** asignaciones no imponibles como colación o movilización, bonos esporádicos que no forman parte de la remuneración regular, comisiones que varían significativamente mes a mes.
 
