@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-04-04T02:15:39.102Z",
-  "total": 34,
+  "generatedAt": "2026-04-09T19:45:05.422Z",
+  "total": 39,
   "routes": [
     {
       "file": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.md",
@@ -29,6 +29,14 @@
     {
       "file": "como-invertir-en-etfs-desde-chile.md",
       "route": "/posts/como-invertir-en-etfs-desde-chile/"
+    },
+    {
+      "file": "como-leer-cartola-afp-chile.md",
+      "route": "/posts/como-leer-cartola-afp-chile/"
+    },
+    {
+      "file": "credito-hipotecario-chile-guia-completa.md",
+      "route": "/posts/credito-hipotecario-chile-guia-completa/"
     },
     {
       "file": "cuanto-descuenta-la-afp-de-tu-sueldo.md",
@@ -61,6 +69,10 @@
     {
       "file": "finiquito-e-indemnizaciones-en-chile.md",
       "route": "/posts/finiquito-e-indemnizaciones-en-chile/"
+    },
+    {
+      "file": "fonasa-vs-isapre-comparativa.md",
+      "route": "/posts/fonasa-vs-isapre-comparativa/"
     },
     {
       "file": "fondos-afp-a-b-c-d-e.md",
@@ -127,6 +139,10 @@
       "route": "/posts/renegociacion-superir/"
     },
     {
+      "file": "rentas-mixtas-sueldo-honorarios.md",
+      "route": "/posts/rentas-mixtas-sueldo-honorarios/"
+    },
+    {
       "file": "seguro-cesantia-cuenta-individual-vs-fondo-solidario.md",
       "route": "/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/"
     },
@@ -137,6 +153,10 @@
     {
       "file": "suplantacion-identidad-creditos-no-reconocidos.md",
       "route": "/posts/suplantacion-identidad-creditos-no-reconocidos/"
+    },
+    {
+      "file": "utm-chile-que-es-como-funciona.md",
+      "route": "/posts/utm-chile-que-es-como-funciona/"
     }
   ]
 }

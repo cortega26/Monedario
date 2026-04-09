@@ -28,3 +28,5 @@ Prepagar reduce el capital pendiente, lo que baja el total de intereses que paga
 **Estima cuánto ahorras prepagando:** [Calculadora de prepago de crédito](/calculadoras/prepago-credito/) →
 
 **Entiende cómo la UF afecta tu dividendo:** [Guía UF, inflación y costo de vida](/guias/uf-costo-de-vida/) →
+
+**Guía completa:** [Crédito hipotecario en Chile: guía paso a paso](/posts/credito-hipotecario-chile-guia-completa/) →

@@ -387,6 +387,19 @@ const SLUG_OVERRIDES = {
     overrideEvidence: ["slug override: debt renegotiation process article"],
     overrideKeywords: ["renegociacion", "deuda"],
   },
+  // Credito hipotecario: body mentions 'uf' heavily (dividendo in UF, UF reajuste)
+  // triggering the uf-indicadores scene before the deuda rule;
+  // override to deuda-credito Template A because this is a debt-process article.
+  "credito-hipotecario-chile-guia-completa": {
+    id: "deuda",
+    template: "A",
+    recipeId: "deuda-credito",
+    colorKey: "Credito / Deuda / Impuestos / Riesgo",
+    readerSituation: "Persona evaluando o solicitando un credito hipotecario para comprar su primera vivienda.",
+    toneClass: "serio",
+    overrideEvidence: ["slug override: mortgage process article — uf keyword false-positive on deuda rule"],
+    overrideKeywords: ["credito-hipotecario", "dividendo", "hipoteca", "vivienda"],
+  },
   // Fonasa vs Isapre comparison: body mentions 'sueldo' (7% health deduction context)
   // triggering the empleo rule before the salud rule; override to fonasa-vs-isapre scene.
   "fonasa-vs-isapre-comparativa": {

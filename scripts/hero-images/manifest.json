@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "source": "src/data/blog/**",
   "publishableRule": "draft !== true",
-  "articleCount": 38,
+  "articleCount": 39,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -269,6 +269,40 @@
       "bodyExcerpt": "La **cartola AFP** es tu estado de cuenta previsional trimestral. Llega cuatro veces al año —en enero, abril, julio y octubre— y resume lo que pasó con tu dinero durante ese período. **Respuesta rápida:** La cartola AFP llega trimestralmente (enero, abril, julio, octubre), muestra tu saldo por tipo de cuenta, las cotizaciones del período con la comisión cobrada, y la rentabilidad de tu fondo. **Vigencia:** 2026-04-09. **Fuente:** . Puedes recibirla por correo físico si tienes domicilio registrado en la AFP, y también está disponible en el portal web o app de tu . Revisarla sistemáticamente —no solo guardarla— te permite detectar errores antes de que se conviertan en problemas mayores. --- ## Las secciones de tu cartola AFP La Superintendencia de Pensiones exige un formato mínimo estandarizado para todas las AFP. Las cinco secciones que verás en cualquier cartola son las siguientes *(resumen orientativo — fuente: normativa SP)*: | Sección | Qué muestra | Qué verificar | |---------|-------------|---------------| | **Datos del afiliado** | Nombre completo, RUT, AFP, tipo de fondo actual (A, B, C, D o E) | Que el fondo sea el que elegiste. Si ves un fondo equivocado, revisa . | | **Sal",
       "wordCount": 1325,
       "sourceFile": "como-leer-cartola-afp-chile.md"
+    },
+    {
+      "slug": "credito-hipotecario-chile-guia-completa",
+      "title": "Crédito hipotecario en Chile: guía paso a paso para compradores 2026",
+      "tags": [
+        "credito-hipotecario",
+        "dividendo",
+        "uf",
+        "vivienda",
+        "deuda"
+      ],
+      "category": "deuda-credito",
+      "cluster": "deuda-credito",
+      "sourcePath": "src/data/blog/credito-hipotecario-chile-guia-completa.md",
+      "heroImage": "/images/hero/credito-hipotecario-chile-guia-completa.avif",
+      "summary": "Un crédito hipotecario es, en términos simples, un préstamo a largo plazo donde la propiedad que compras queda como garantía. En Chile casi todos se expresan en (Unidad de Fomento), lo que significa que tu dividendo se reajusta con la inflación cada mes. Esta guía cubre el proces...",
+      "leadParagraphs": [
+        "Un **crédito hipotecario** es, en términos simples, un préstamo a largo plazo donde la propiedad que compras queda como garantía. En Chile casi todos se expresan en **[UF](/posts/que-es-la-uf/)** (Unidad de Fomento), lo que significa que tu dividendo se reajusta con la inflación cada mes.",
+        "Esta guía cubre el proceso completo — desde que decides que quieres comprar hasta que firmas en notaría y el Conservador inscribe la propiedad a tu nombre — con los costos reales que los bancos no siempre adelantan.",
+        "> **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifica en las fuentes oficiales referenciadas al final."
+      ],
+      "headings": [
+        "Tabla de contenidos",
+        "¿Qué es un crédito hipotecario y quién lo otorga?",
+        "Requisitos: qué evalúa el banco",
+        "Capacidad de pago (relación dividendo/renta)",
+        "Pie requerido y LTV",
+        "Historial crediticio",
+        "Antigüedad laboral",
+        "LTV y flujo de documentos"
+      ],
+      "bodyExcerpt": "Un **crédito hipotecario** es, en términos simples, un préstamo a largo plazo donde la propiedad que compras queda como garantía. En Chile casi todos se expresan en ** ** (Unidad de Fomento), lo que significa que tu dividendo se reajusta con la inflación cada mes. Esta guía cubre el proceso completo — desde que decides que quieres comprar hasta que firmas en notaría y el Conservador inscribe la propiedad a tu nombre — con los costos reales que los bancos no siempre adelantan. > **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifica en las fuentes oficiales referenciadas al final. Para estimar cuánto pagarías de dividendo mensual antes de hablar con un banco, usa la ## Tabla de contenidos ## ¿Qué es un crédito hipotecario y quién lo otorga? El **crédito hipotecario** es el financiamiento que entrega una institución financiera para comprar un bien raíz. La propiedad queda como garantía (eso es la \"hipoteca\"): si dejas de pagar, el acreedor puede ejecutarla y recuperar el capital prestado. En Chile lo otorgan: - **Bancos comerciales** (BancoEstado, Santander, BCI, Scotiabank, Itaú, entre otros) - **Cajas de compensación** (Los Andes, Los Héroes,",
+      "wordCount": 1615,
+      "sourceFile": "credito-hipotecario-chile-guia-completa.md"
     },
     {
       "slug": "cuanto-descuenta-la-afp-de-tu-sueldo",

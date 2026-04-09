@@ -5,7 +5,7 @@
   "source": "src/data/blog/**",
   "publishableRule": "draft !== true",
   "ordering": "slug asc",
-  "publishedCount": 38,
+  "publishedCount": 39,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -136,6 +136,23 @@
       "sourcePath": "src/data/blog/como-leer-cartola-afp-chile.md",
       "heroImage": "/images/hero/como-leer-cartola-afp-chile.avif",
       "summary": "La cartola AFP es tu estado de cuenta previsional trimestral. Llega cuatro veces al año —en enero, abril, julio y octubre— y resume lo que pasó con tu dinero durante ese período. Respuesta rápida: La cartola AFP llega trimestralmente (enero, abril, julio, octubre), muestra tu sal...",
+      "updatedDate": "2026-04-09T12:00:00Z"
+    },
+    {
+      "slug": "credito-hipotecario-chile-guia-completa",
+      "title": "Crédito hipotecario en Chile: guía paso a paso para compradores 2026",
+      "category": "deuda-credito",
+      "cluster": "deuda-credito",
+      "tags": [
+        "credito-hipotecario",
+        "dividendo",
+        "uf",
+        "vivienda",
+        "deuda"
+      ],
+      "sourcePath": "src/data/blog/credito-hipotecario-chile-guia-completa.md",
+      "heroImage": "/images/hero/credito-hipotecario-chile-guia-completa.avif",
+      "summary": "Un crédito hipotecario es, en términos simples, un préstamo a largo plazo donde la propiedad que compras queda como garantía. En Chile casi todos se expresan en (Unidad de Fomento), lo que significa que tu dividendo se reajusta con la inflación cada mes. Esta guía cubre el proces...",
       "updatedDate": "2026-04-09T12:00:00Z"
     },
     {

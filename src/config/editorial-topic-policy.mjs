@@ -127,6 +127,10 @@ export const CANONICAL_TOPIC_REGISTRY = {
       ownerSlug: "renegociacion-superir",
       intentLabel: "renegociacion Superir",
     },
+    "credito-hipotecario-proceso": {
+      ownerSlug: "credito-hipotecario-chile-guia-completa",
+      intentLabel: "entender y obtener un credito hipotecario en Chile paso a paso",
+    },
   },
   "uf-costo-de-vida": {
     "uf-reajustes-costo-de-vida": {

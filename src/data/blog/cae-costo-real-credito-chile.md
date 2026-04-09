@@ -181,7 +181,7 @@ El CAE en tarjetas se calcula sobre una operación de referencia (monto y plazo 
 
 **Caso 4: Crédito hipotecario**
 
-En hipotecarios el CAE incluye seguros de incendio y desgravamen. También puede haber gastos notariales y de tasación que en algunos productos se cargan al crédito. Si se financian, elevan el CAE. Si los pagas al contado, no aparecen en él. Pide claridad sobre qué gastos van dentro y cuáles van fuera del cálculo.
+En hipotecarios el CAE incluye seguros de incendio y desgravamen. Para entender el proceso completo del crédito hipotecario, incluyendo cómo comparar tasas y los costos de cierre, consulta la [Guía completa del crédito hipotecario](/posts/credito-hipotecario-chile-guia-completa/). También puede haber gastos notariales y de tasación que en algunos productos se cargan al crédito. Si se financian, elevan el CAE. Si los pagas al contado, no aparecen en él. Pide claridad sobre qué gastos van dentro y cuáles van fuera del cálculo.
 
 ## Checklist antes de firmar cualquier crédito
 

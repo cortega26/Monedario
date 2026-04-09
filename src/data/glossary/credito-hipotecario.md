@@ -29,3 +29,5 @@ Los bancos usan como regla general que el dividendo no supere el **25%–30% de 
 **¿Te conviene hacer un abono extraordinario?** [Simulador de prepago de crédito](/calculadoras/prepago-credito/) →
 
 **Entiende cómo impacta la UF en tu dividendo:** [Guía UF, inflación y costo de vida](/guias/uf-costo-de-vida/) →
+
+**Guía completa:** [Crédito hipotecario en Chile: guía paso a paso](/posts/credito-hipotecario-chile-guia-completa/) →
