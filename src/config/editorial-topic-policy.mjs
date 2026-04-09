@@ -132,6 +132,10 @@ export const CANONICAL_TOPIC_REGISTRY = {
       intentLabel:
         "entender y obtener un credito hipotecario en Chile paso a paso",
     },
+    "boletin-comercial-eliminacion": {
+      ownerSlug: "como-salir-boletin-comercial-chile",
+      intentLabel: "eliminar anotaciones del Boletin Comercial",
+    },
   },
   "uf-costo-de-vida": {
     "uf-reajustes-costo-de-vida": {

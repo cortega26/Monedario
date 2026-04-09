@@ -38,21 +38,59 @@
   </div>
 </div>
 
-<script>
-  import {
-    getResumeData,
-    clearResumeData,
-    savePageVisit,
-  } from "@/utils/resumeState";
-  import { trackAnalyticsEvent } from "@/utils/analytics";
-
-  function scheduleIdle(callback: () => void) {
+<script is:inline>
+  function scheduleIdle(callback) {
     if ("requestIdleCallback" in window) {
       window.requestIdleCallback(callback, { timeout: 1200 });
       return;
     }
 
     globalThis.setTimeout(callback, 120);
+  }
+
+  const STORAGE_KEY = "monedario_resume";
+  const MAX_PAGES = 3;
+
+  function loadResumeData() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return { pages: [] };
+      return JSON.parse(raw);
+    } catch {
+      return { pages: [] };
+    }
+  }
+
+  function saveResumeData(data) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    } catch {
+      // Ignore storage errors (private mode, quota exceeded)
+    }
+  }
+
+  function getResumeData() {
+    return loadResumeData();
+  }
+
+  function clearResumeData() {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+    } catch {
+      // Ignore
+    }
+  }
+
+  function savePageVisit(url, title) {
+    const data = loadResumeData();
+    const filtered = data.pages.filter(page => page.url !== url);
+    filtered.unshift({ url, title, ts: Date.now() });
+    data.pages = filtered.slice(0, MAX_PAGES);
+    saveResumeData(data);
+  }
+
+  function trackAnalyticsEvent(eventName, params = {}) {
+    window.monedarioAnalytics?.track(eventName, params);
   }
 
   scheduleIdle(() => {
@@ -71,11 +109,12 @@
 
     if (data.calculator) {
       const calcSection = document.getElementById("resume-calculator");
-      const calcLink = document.getElementById(
-        "resume-calculator-link"
-      ) as HTMLAnchorElement | null;
+      const calcLink = document.getElementById("resume-calculator-link");
 
-      if (calcSection instanceof HTMLElement && calcLink) {
+      if (
+        calcSection instanceof HTMLElement &&
+        calcLink instanceof HTMLAnchorElement
+      ) {
         calcLink.href = data.calculator.id;
         calcLink.textContent = data.calculator.label;
         calcSection.classList.remove("hidden");
@@ -84,7 +123,7 @@
         calcLink.addEventListener("click", () => {
           trackAnalyticsEvent("resume_click", {
             item_type: "calculator",
-            item_id: data.calculator!.id,
+            item_id: data.calculator.id,
           });
         });
       }
