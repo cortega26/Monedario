@@ -5,6 +5,7 @@ import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
+import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 
@@ -284,6 +285,7 @@ const economicSourceLabel =
       href="/calculadoras/apv/"
       context="Calcula cuánto extra puedes ahorrar en APV Régimen A o B y el ahorro tributario real."
     />
+    <ShareCalculatorResult />
     <MethodologyBlock
       notes="La proyección de pensiones se realiza con interés compuesto, cotización obligatoria del 10% del sueldo imponible y tope imponible vigente. Las tasas de rentabilidad son escenarios ilustrativos. Para una proyección oficial, usa el simulador de la Superintendencia de Pensiones en spensiones.cl."
       sources={[
@@ -306,6 +308,12 @@ const economicSourceLabel =
 <script>
   import { simulateRetirementProjection } from "@/application/use-cases/SimulateRetirementProjection";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+
+  declare global {
+    interface Window {
+      showShareResult?: (text: string) => void;
+    }
+  }
 
   function fmt(n: number): string {
     return "$" + Math.round(n).toLocaleString("es-CL");
@@ -589,6 +597,9 @@ const economicSourceLabel =
         scopeBox
       );
 
+    if (typeof window.showShareResult === "function") {
+      window.showShareResult(`Jubilación estimada: ${fmt(proyeccion.selectedScenario.estimatedMonthlyPension)}/mes`);
+    }
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "simulador-jubilacion",
       calculator_name: "Simulador de Jubilacion",

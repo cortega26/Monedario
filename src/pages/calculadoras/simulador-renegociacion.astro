@@ -5,6 +5,7 @@ import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
+import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { getPath } from "@/utils/getPath";
@@ -305,6 +306,7 @@ const economicSourceLabel =
       href="/guias/deuda-credito/"
       context="Pasos concretos para ordenar tus deudas y negociar antes de llegar a la Superir."
     />
+    <ShareCalculatorResult />
     <MethodologyBlock
       notes="El filtro de elegibilidad Superir verifica umbrales de deuda y documentación según la normativa CMF vigente. La cuota orientativa usa la tasa máxima convencional como referencia y no considera descuentos ni acuerdos particulares con acreedores."
       sources={[
@@ -327,6 +329,12 @@ const economicSourceLabel =
 <script>
   import { simulateDebtRenegotiation } from "@/application/use-cases/SimulateDebtRenegotiation";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+
+  declare global {
+    interface Window {
+      showShareResult?: (text: string) => void;
+    }
+  }
 
   function fmt(n: number) {
     return "$" + Math.round(n).toLocaleString("es-CL");
@@ -602,6 +610,9 @@ const economicSourceLabel =
       guideLink
     );
 
+    if (typeof window.showShareResult === "function") {
+      window.showShareResult(`Renegociación Superir: cuota ${fmt(simulacion.monthlyPayment)}/mes, deuda ${fmt(simulacion.totalDebtClp)}`);
+    }
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "simulador-renegociacion",
       calculator_name: "Simulador de Renegociacion Superir",

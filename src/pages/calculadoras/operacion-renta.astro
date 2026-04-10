@@ -5,6 +5,7 @@ import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
+import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { getPath } from "@/utils/getPath";
@@ -339,6 +340,7 @@ const economicSourceLabel =
       href="/posts/operacion-renta-f22-checklist/"
       context="Errores comunes, plazos y cómo leer la propuesta del SII paso a paso."
     />
+    <ShareCalculatorResult />
     <MethodologyBlock
       notes="El Impuesto Global Complementario (IGC) se calcula aplicando la tabla de tramos progresivos del SII usando la UTA (12 UTM). La estimación no incluye: crédito de primera categoría, dividendos ni situaciones de dos empleadores simultáneos. Para el cálculo oficial, usa la propuesta del SII en www.sii.cl."
       sources={[
@@ -361,6 +363,12 @@ const economicSourceLabel =
 <script>
   import { simulateOperacionRenta } from "@/application/use-cases/SimulateOperacionRenta";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+
+  declare global {
+    interface Window {
+      showShareResult?: (text: string) => void;
+    }
+  }
 
   function fmt(n: number): string {
     return "$" + Math.round(n).toLocaleString("es-CL");
@@ -640,6 +648,9 @@ const economicSourceLabel =
         note
       );
 
+    if (typeof window.showShareResult === "function") {
+      window.showShareResult(`Operación Renta: ${resultado.esDevolución ? "devolución" : "pago adicional"} ${fmt(Math.abs(resultado.saldoFinal))}`);
+    }
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "operacion-renta",
       calculator_name: "Simulador Operación Renta",

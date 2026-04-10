@@ -5,6 +5,7 @@ import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
+import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 ---
 
@@ -182,6 +183,7 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
       href="/posts/fraude-tarjeta-que-hacer/"
       context="Pasos y plazos legales para disputar cargos no autorizados en tarjetas."
     />
+    <ShareCalculatorResult />
     <MethodologyBlock
       notes="El costo total de la deuda con pago mínimo se calcula con la fórmula de amortización iterativa mes a mes. El pago mínimo usa el porcentaje informado por el emisor. La tasa de referencia máxima corresponde a la tasa máxima convencional CMF vigente para tarjetas de crédito."
       sources={[
@@ -204,6 +206,12 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 <script>
   import { simulateCreditCardCost } from "@/application/use-cases/SimulateCreditCardCost";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+
+  declare global {
+    interface Window {
+      showShareResult?: (text: string) => void;
+    }
+  }
 
   function fmt(n: number): string {
     return "$" + Math.round(n).toLocaleString("es-CL");
@@ -348,6 +356,9 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
         doublePaymentBox
       );
 
+    if (typeof window.showShareResult === "function") {
+      window.showShareResult(`Tarjeta de crédito: intereses totales ${fmt(resultado.totalInterest)} (deuda ${fmt(deuda)})`);
+    }
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "tarjeta-credito",
       calculator_name: "Costo Real Tarjeta de Credito",

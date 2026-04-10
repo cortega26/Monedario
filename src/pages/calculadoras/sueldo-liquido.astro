@@ -7,6 +7,7 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import ContextLinkSection from "@/components/ContextLinkSection.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
+import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { getPath } from "@/utils/getPath";
 import { sueldoCalculatorSections } from "@/config/sueldoClusterLinks";
@@ -516,6 +517,7 @@ const economicSourceLabel =
       href="/posts/liquidacion-de-sueldo/"
       context="Entiende cada línea de tu liquidación y detecta errores comunes."
     />
+    <ShareCalculatorResult />
     <MethodologyBlock
       notes="Esta calculadora aplica las tasas de cotización previsional vigentes en Chile: AFP (tasa total según administradora, que incluye 10% fondo personal + comisión), salud (7% Fonasa o cotización diferenciada Isapre), seguro de cesantía (0.6% contrato indefinido, 3% plazo fijo) e impuesto de segunda categoría por tramos UTM según tabla del SII. El sueldo mínimo legal se usa solo como referencia de validación."
       sources={[
@@ -557,6 +559,12 @@ const economicSourceLabel =
   } from "@/application/use-cases/CalculateNetSalary";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { saveCalculatorResult } from "@/utils/resumeState";
+
+  declare global {
+    interface Window {
+      showShareResult?: (text: string) => void;
+    }
+  }
 
   function fmt(n: number): string {
     return "$" + Math.round(n).toLocaleString("es-CL");
@@ -856,6 +864,9 @@ const economicSourceLabel =
         window.location.pathname,
         "Calculadora de Sueldo Líquido y Bruto"
       );
+      if (typeof window.showShareResult === "function") {
+        window.showShareResult(`Sueldo Líquido y Bruto: bruto estimado ${fmt(resultado.grossSalary)}`);
+      }
       trackAnalyticsEvent("calculator_complete", {
         calculator_slug: "sueldo-liquido",
         calculator_name: "Calculadora de Sueldo Liquido",
@@ -916,6 +927,9 @@ const economicSourceLabel =
         window.location.pathname,
         "Calculadora de Sueldo Líquido y Bruto"
       );
+      if (typeof window.showShareResult === "function") {
+        window.showShareResult(`Sueldo Líquido y Bruto: líquido ${fmt(resultado.netSalary - (otrosDescuentos ?? 0))}`);
+      }
       trackAnalyticsEvent("calculator_complete", {
         calculator_slug: "sueldo-liquido",
         calculator_name: "Calculadora de Sueldo Liquido",
