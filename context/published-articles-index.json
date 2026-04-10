@@ -5,7 +5,7 @@
   "source": "src/data/blog/**",
   "publishableRule": "draft !== true",
   "ordering": "slug asc",
-  "publishedCount": 41,
+  "publishedCount": 43,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -469,6 +469,22 @@
       "updatedDate": "2026-04-04T00:00:00Z"
     },
     {
+      "slug": "prepago-credito-cuando-conviene-chile",
+      "title": "¿Cuándo conviene hacer un prepago de crédito en Chile?",
+      "category": "deuda-credito",
+      "cluster": "deuda-credito",
+      "tags": [
+        "prepago",
+        "credito",
+        "deuda",
+        "amortizacion",
+        "consumo"
+      ],
+      "sourcePath": "src/data/blog/prepago-credito-cuando-conviene-chile.md",
+      "heroImage": "/images/hero/prepago-credito-cuando-conviene-chile.avif",
+      "summary": "Tienes un crédito vigente y un dinero extra. La pregunta inmediata es: ¿lo pago anticipadamente o hago algo más con ese dinero? La respuesta depende de cuánto te ahorras en intereses versus qué alternativas tienes. Esta guía y la calculadora te dan el primer número: el ahorro con..."
+    },
+    {
       "slug": "primer-empleo-chile-guia-completa",
       "title": "Primer empleo en Chile: guía completa para saber qué firmar, qué te descuentan y cómo empezar",
       "category": "empleo-ingresos",
@@ -666,6 +682,22 @@
       "heroImage": "/images/hero/suplantacion-identidad-creditos-no-reconocidos.avif",
       "summary": "Recibes un correo que dice \"tu crédito ha sido aprobado\". El problema es que tú nunca pediste ningún crédito. Eso no es un error administrativo: es una señal de que alguien usó tus datos para contratar deuda a tu nombre. Esta guía te explica qué hacer para actuar rápido y evitar...",
       "updatedDate": "2026-03-03T00:00:00Z"
+    },
+    {
+      "slug": "tarjeta-credito-costo-real-chile",
+      "title": "Cómo calcular el costo real de una tarjeta de crédito en Chile",
+      "category": "deuda-credito",
+      "cluster": "deuda-credito",
+      "tags": [
+        "tarjeta-credito",
+        "deuda",
+        "consumo",
+        "credito",
+        "interes"
+      ],
+      "sourcePath": "src/data/blog/tarjeta-credito-costo-real-chile.md",
+      "heroImage": "/images/hero/tarjeta-credito-costo-real-chile.avif",
+      "summary": "Una tarjeta de crédito te da liquidez inmediata, pero tiene un precio. Ese precio no siempre es obvio porque los estados de cuenta muestran el pago mínimo — una cifra baja que parece manejable — sin mostrar cuánto terminarás pagando si te quedas en ese nivel. Antes de usar la cal..."
     },
     {
       "slug": "utm-chile-que-es-como-funciona",

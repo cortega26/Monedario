@@ -1,27 +1,21 @@
 {
   "como-calcular-sueldo-liquido": {
-    "state": "failed",
-    "score": 3,
-    "failures": ["STYLE", "COMPOSITION", "INDUSTRY", "SIMPLICITY"],
-    "reason": "The image fails to clearly communicate personal finance and uses 3D rendering.",
+    "state": "error",
+    "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:33:28.301Z"
+    "failedAt": "2026-04-10T23:33:39.659Z"
   },
   "liquidacion-de-sueldo": {
-    "state": "failed",
-    "score": 4,
-    "failures": ["BACKGROUND", "TEXT", "INDUSTRY"],
-    "reason": "The background is not a single flat color, there is text, and the image does not clearly communicate personal finance.",
+    "state": "error",
+    "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:35:34.998Z"
+    "failedAt": "2026-04-10T23:33:40.274Z"
   },
   "cuanto-descuenta-la-afp-de-tu-sueldo": {
-    "state": "failed",
-    "score": 4,
-    "failures": ["ELEMENTS", "INDUSTRY", "SIMPLICITY"],
-    "reason": "The image does not clearly communicate personal finance and is not understandable in under 2 seconds.",
+    "state": "error",
+    "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:37:47.507Z"
+    "failedAt": "2026-04-10T23:33:40.837Z"
   },
   "descuentos-de-sueldo": {
     "state": "done",
@@ -33,21 +27,20 @@
     "state": "done",
     "score": 7,
     "attempts": 1,
-    "savedAt": "2026-04-07T17:40:12.406Z"
+    "savedAt": "2026-04-07T00:00:00.000Z",
+    "note": "manually approved from BarrasAFP.png"
   },
   "como-cambiarse-de-afp": {
-    "state": "failed",
-    "score": 4,
-    "failures": ["COMPOSITION", "INDUSTRY", "SIMPLICITY"],
-    "reason": "The image does not clearly communicate personal finance and lacks simplicity in concept.",
+    "state": "error",
+    "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:42:19.409Z"
+    "failedAt": "2026-04-10T23:33:41.399Z"
   },
   "reforma-previsional-2025-que-cambia-y-como-te-afecta": {
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:42:59.733Z"
+    "failedAt": "2026-04-10T23:33:42.010Z"
   },
   "que-es-la-cuenta-2-afp": {
     "state": "done",
@@ -60,37 +53,37 @@
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:43:50.214Z"
+    "failedAt": "2026-04-10T23:33:42.626Z"
   },
   "que-es-el-apv": {
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:43:50.829Z"
+    "failedAt": "2026-04-10T23:33:43.344Z"
   },
   "deposito-a-plazo-uf-vs-pesos": {
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:43:51.546Z"
+    "failedAt": "2026-04-10T23:33:43.958Z"
   },
   "el-poder-del-interes-compuesto": {
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:44:25.264Z"
+    "failedAt": "2026-04-10T23:33:44.471Z"
   },
   "fondos-mutuos-comisiones-rescate-impuestos": {
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:46:02.008Z"
+    "failedAt": "2026-04-10T23:33:45.062Z"
   },
   "como-invertir-en-etfs-desde-chile": {
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:46:02.881Z"
+    "failedAt": "2026-04-10T23:33:45.699Z"
   },
   "operacion-renta-f22-checklist": {
     "state": "done",
@@ -103,84 +96,128 @@
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:47:38.865Z"
+    "failedAt": "2026-04-10T23:33:46.417Z"
   },
   "boleta-honorarios-2026-retencion-cobertura": {
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:47:39.380Z"
+    "failedAt": "2026-04-10T23:33:47.850Z"
   },
   "cae-costo-real-credito-chile": {
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:47:40.108Z"
+    "failedAt": "2026-04-10T23:33:48.481Z"
   },
   "informe-deudas-cmf-vs-dicom": {
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:47:40.722Z"
+    "failedAt": "2026-04-10T23:33:49.019Z"
   },
   "renegociacion-superir": {
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:47:41.263Z"
+    "failedAt": "2026-04-10T23:22:38.133Z"
   },
   "fraude-tarjeta-que-hacer": {
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:47:41.919Z"
+    "failedAt": "2026-04-10T23:22:38.730Z"
   },
   "estafas-financieras-chile-vishing-smishing-marketplace": {
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:47:42.552Z"
+    "failedAt": "2026-04-10T23:22:40.576Z"
   },
   "suplantacion-identidad-creditos-no-reconocidos": {
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:47:43.180Z"
+    "failedAt": "2026-04-10T23:22:41.190Z"
   },
   "que-es-la-uf": {
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:47:43.896Z"
+    "failedAt": "2026-04-10T23:22:41.803Z"
   },
   "que-es-el-ipc-chile-como-se-calcula": {
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:47:44.430Z"
+    "failedAt": "2026-04-10T23:22:42.521Z"
   },
   "reajuste-arriendo-uf-ipc-chile": {
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:47:44.968Z"
+    "failedAt": "2026-04-10T23:22:43.085Z"
   },
   "seguro-de-cesantia": {
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:47:45.454Z"
+    "failedAt": "2026-04-10T23:22:43.646Z"
   },
   "finiquito-e-indemnizaciones-en-chile": {
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:47:45.963Z"
+    "failedAt": "2026-04-10T23:22:44.260Z"
   },
   "licencia-medica-desde-que-dia-pagan": {
     "state": "error",
     "error": "400 Billing hard limit has been reached.",
     "attempts": 3,
-    "failedAt": "2026-04-07T17:47:46.513Z"
+    "failedAt": "2026-04-10T23:22:44.875Z"
+  },
+  "fonasa-vs-isapre-comparativa": {
+    "state": "done"
+  },
+  "como-hacer-presupuesto-mensual-chile": {
+    "state": "done"
+  },
+  "donde-ver-si-estoy-en-dicom-gratis": {
+    "state": "done"
+  },
+  "indemnizacion-anos-de-servicio-chile": {
+    "state": "done"
+  },
+  "interes-compuesto-nota-metodologica": {
+    "state": "done"
+  },
+  "seguro-cesantia-cuenta-individual-vs-fondo-solidario": {
+    "state": "done"
+  },
+  "rentas-mixtas-sueldo-honorarios": {
+    "state": "done"
+  },
+  "como-leer-cartola-afp-chile": {
+    "state": "done"
+  },
+  "utm-chile-que-es-como-funciona": {
+    "state": "done"
+  },
+  "credito-hipotecario-chile-guia-completa": {
+    "state": "done"
+  },
+  "como-salir-boletin-comercial-chile": {
+    "state": "done"
+  },
+  "primer-empleo-chile-guia-completa": {
+    "state": "done"
+  },
+  "tarjeta-credito-costo-real-chile": {
+    "state": "done",
+    "note": "Placeholder image (copy of cae-costo-real). Needs manual hero image generation with prompt from prompts.json once OpenAI billing is recharged."
+  },
+  "prepago-credito-cuando-conviene-chile": {
+    "state": "done",
+    "note": "Placeholder image (copy of cae-costo-real). Needs manual hero image generation with prompt from prompts.json once OpenAI billing is recharged."
   }
 }

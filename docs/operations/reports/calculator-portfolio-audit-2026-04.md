@@ -289,19 +289,33 @@ Sprint 1 completed 2026-04-10
 Sprint 2 completed 2026-04-10
 
 ### Sprint 3 — Polish + editorial (P3)
-- [ ] MON-512: Import shared annuity in SimulateDebtRenegotiation
-- [ ] MON-510: Prioritize and create owner articles for Tier B calculators
+- [x] MON-512: Import shared annuity in SimulateDebtRenegotiation
+- [x] MON-510: Prioritize and create owner articles for Tier B calculators
+
+Sprint 3 completed 2026-04-10
 
 ---
 
 ## Executive summary
 
-**Portfolio health: strong with 3 actionable P1 issues.**
+**Portfolio health at audit close: strong with 3 actionable P1 issues.**
+**Remediation status (2026-04-10): all 10 findings resolved across 3 sprints.**
 
+### Audit findings (baseline)
 - **13/16 calculators pass** the full audit
-- **3/16 are partial** (finiquito: logic bug; boleta-honorarios: methodology mismatch; dividendo-hipotecario: undiscoverable)
+- **3/16 were partial** (finiquito: logic bug; boleta-honorarios: methodology mismatch; dividendo-hipotecario: undiscoverable)
 - **0/16 fail**
-- The architecture is solid: clean engine/UI separation, comprehensive tests (217/218 pass), consistent component patterns, proper source attribution
-- The 3 P1 issues are all **trivially fixable** (1 character, 1 text edit, 1 registry addition)
-- The systemic accessibility gap (aria-live) is real but bounded and straightforward to remediate
-- No accuracy defects were found in any engine's core math beyond the finiquito boundary condition
+
+### Post-remediation state
+- **16/16 calculators pass** — all partial verdicts resolved
+- All 218 tests pass (0 failures; finiquito rounding bug fixed; portfolio count assertion updated)
+- aria-live added to all 16 result containers (WCAG 4.1.3)
+- AFP commission rates centralized in `src/config/afpCommissions.ts`
+- 6 Tier B owner articles created with bidirectional calculator links
+- No open findings remain from this audit cycle
+
+### Architecture assessment (unchanged)
+- The architecture is solid: clean engine/UI separation, comprehensive tests, consistent component patterns, proper source attribution
+- No accuracy defects were found in any engine's core math beyond the finiquito boundary condition (now fixed)
+
+Audit remediation completed 2026-04-10 — all 10 findings resolved.

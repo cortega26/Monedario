@@ -1,3 +1,5 @@
+import { calculateAnnuityPayment } from "./shared/creditAmortization";
+
 export interface DebtItemInput {
   amount: number;
   overdueDays: number;
@@ -37,16 +39,6 @@ export interface DebtRenegotiationOutput {
   totalPaid: number;
   totalInterest: number;
   incomeBurdenPercent: number;
-}
-
-function annuityPayment(
-  principal: number,
-  monthlyRateDecimal: number,
-  termMonths: number
-): number {
-  if (monthlyRateDecimal === 0) return principal / termMonths;
-  const factor = Math.pow(1 + monthlyRateDecimal, termMonths);
-  return (principal * monthlyRateDecimal * factor) / (factor - 1);
 }
 
 function assertInput(input: DebtRenegotiationInput): void {
@@ -115,7 +107,7 @@ export function simulateDebtRenegotiation(
     meetsBasicEligibility && input.hasRequiredDocuments;
 
   const monthlyRateDecimal = input.monthlyRatePercent / 100;
-  const monthlyPayment = annuityPayment(
+  const monthlyPayment = calculateAnnuityPayment(
     totalDebtClp,
     monthlyRateDecimal,
     input.termMonths

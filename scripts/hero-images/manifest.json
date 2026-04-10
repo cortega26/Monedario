@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "source": "src/data/blog/**",
   "publishableRule": "draft !== true",
-  "articleCount": 41,
+  "articleCount": 43,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -736,7 +736,7 @@
         "Los plazos para que te devuelvan el dinero"
       ],
       "bodyExcerpt": "Revisas tu cuenta y ves un cargo que no hiciste. O peor: te llega un aviso de una transferencia que nunca autorizaste. Lo primero que sientes es pánico. Lo segundo debería ser este artículo. En Chile existe una ley que protege a las víctimas de fraude financiero. Se llama ** ** y obliga a los bancos e instituciones financieras a devolverte el dinero — siempre que sigas los pasos correctos y dentro de los plazos. ## Tabla de contenidos ## Lo que tienes que hacer ahora mismo Si acabas de darte cuenta del fraude, no leas el artículo completo todavía. Haz esto primero: **1. Llama a tu banco o entra a la app y bloquea todo.** Pide el bloqueo inmediato de tu tarjeta y cualquier producto asociado. Hazlo ahora. Cada minuto que pasa sin bloquear es un minuto en que pueden seguir usando tus medios de pago. **2. Anota el número de atención y la hora exacta de tu llamado.** El banco tiene obligación de entregarte un número de recepción con fecha y hora. Si no lo hacen, guarda el registro de tu llamada desde el teléfono — sirve igual. **3. Respira. Tienes plazo.** La ley te da 30 días hábiles desde el aviso para presentar el reclamo formal. No es urgente en las próximas horas — lo urgente es el",
-      "wordCount": 1566,
+      "wordCount": 1565,
       "sourceFile": "fraude-tarjeta-que-hacer.md"
     },
     {
@@ -768,7 +768,7 @@
         "Preguntas frecuentes"
       ],
       "bodyExcerpt": "El finiquito llegó con un número. El número parece razonable, pero razonable no es lo mismo que correcto. La indemnización por años de servicio es la partida donde más errores silenciosos aparecen — y la mayoría no son por mala fe sino porque la causal está mal aplicada, la base de cálculo usa el sueldo equivocado, o la antigüedad está mal contada. Esta guía aísla esa sola partida. Si necesitas revisar el finiquito completo — haberes pendientes, feriado proporcional, aviso previo — la guía de tiene el cuadro completo. ## La regla base y sus tres componentes La indemnización por años de servicio funciona sobre tres variables. Si cualquiera de las tres está mal, el monto total es incorrecto. **Primero: la causal tiene que habilitarla.** La indemnización por años de servicio no aplica a todos los tipos de término de contrato. Solo corresponde cuando la causal de despido abre el régimen indemnizatorio legal. No es automática por el solo hecho de haber trabajado varios años en una empresa. **Segundo: la base es la última remuneración mensual.** No el promedio de los últimos meses. No el sueldo que tenías hace un año. La última remuneración mensual al momento del término, incluyendo los ",
-      "wordCount": 1276,
+      "wordCount": 1275,
       "sourceFile": "indemnizacion-anos-de-servicio-chile.md"
     },
     {
@@ -938,6 +938,37 @@
       "sourceFile": "operacion-renta-f22-checklist.md"
     },
     {
+      "slug": "prepago-credito-cuando-conviene-chile",
+      "title": "¿Cuándo conviene hacer un prepago de crédito en Chile?",
+      "tags": [
+        "prepago",
+        "credito",
+        "deuda",
+        "amortizacion",
+        "consumo"
+      ],
+      "category": "deuda-credito",
+      "cluster": "deuda-credito",
+      "sourcePath": "src/data/blog/prepago-credito-cuando-conviene-chile.md",
+      "heroImage": "/images/hero/prepago-credito-cuando-conviene-chile.avif",
+      "summary": "Tienes un crédito vigente y un dinero extra. La pregunta inmediata es: ¿lo pago anticipadamente o hago algo más con ese dinero? La respuesta depende de cuánto te ahorras en intereses versus qué alternativas tienes. Esta guía y la calculadora te dan el primer número: el ahorro con...",
+      "leadParagraphs": [
+        "Tienes un crédito vigente y un dinero extra. La pregunta inmediata es: ¿lo pago anticipadamente o hago algo más con ese dinero? La respuesta depende de cuánto te ahorras en intereses versus qué alternativas tienes. Esta guía y la calculadora te dan el primer número: el ahorro concreto en pesos que lograrías al abonar hoy.",
+        "Si tu situación es un crédito hipotecario y estás evaluando el abono en ese contexto específico, la [guía completa del crédito hipotecario](/posts/credito-hipotecario-chile-guia-completa/) cubre cómo funciona la amortización en UF y por qué el prepago hipotecario tiene sus propias variables.",
+        "Un crédito de amortización francesa tiene cuota constante: cada mes pagas lo mismo, pero la proporción entre intereses y capital cambia. Al inicio del crédito, la mayor parte de la cuota va a intereses; con el tiempo, más cuota va al capital."
+      ],
+      "headings": [
+        "Qué pasa cuando haces un prepago",
+        "Tu derecho legal a prepagar sin multa",
+        "Cuándo conviene prepagar y cuándo no",
+        "Cómo usar esta calculadora",
+        "Lo que muestra el resultado y cómo interpretarlo"
+      ],
+      "bodyExcerpt": "Tienes un crédito vigente y un dinero extra. La pregunta inmediata es: ¿lo pago anticipadamente o hago algo más con ese dinero? La respuesta depende de cuánto te ahorras en intereses versus qué alternativas tienes. Esta guía y la calculadora te dan el primer número: el ahorro concreto en pesos que lograrías al abonar hoy. Si tu situación es un crédito hipotecario y estás evaluando el abono en ese contexto específico, la cubre cómo funciona la amortización en UF y por qué el prepago hipotecario tiene sus propias variables. ## Qué pasa cuando haces un prepago Un crédito de amortización francesa tiene cuota constante: cada mes pagas lo mismo, pero la proporción entre intereses y capital cambia. Al inicio del crédito, la mayor parte de la cuota va a intereses; con el tiempo, más cuota va al capital. Cuando haces un pago extraordinario, ese dinero se aplica directamente al **capital pendiente**. Al reducir el saldo, los intereses futuros se calculan sobre una base menor — y ahí está el ahorro. El resultado concreto depende de cuándo haces el abono: - **Al inicio del crédito:** el saldo es alto, así que reducirlo impacta muchos meses de intereses futuros. El ahorro es mayor. - **Hacia el",
+      "wordCount": 695,
+      "sourceFile": "prepago-credito-cuando-conviene-chile.md"
+    },
+    {
       "slug": "primer-empleo-chile-guia-completa",
       "title": "Primer empleo en Chile: guía completa para saber qué firmar, qué te descuentan y cómo empezar",
       "tags": [
@@ -1068,7 +1099,7 @@
         "Cuenta 2 vs APV: ¿cuál es la diferencia?"
       ],
       "bodyExcerpt": "Cuando la gente habla de su AFP, casi siempre se refiere a la cuenta obligatoria donde va el 10% del sueldo. Pero existe una segunda cuenta —voluntaria, flexible y mucho menos conocida— que puede servir como instrumento de ahorro de mediano plazo con rentabilidades similares a las de tu cotización obligatoria: la **Cuenta 2**, también llamada Cuenta de Ahorro Voluntario (CAV). En esta guía te explicamos cuándo sirve para ahorro flexible dentro del ecosistema AFP. Si tu foco principal es bajar impuesto mientras ahorras, cambia hacia una decisión tributaria. Si quieres ver más temas del sistema previsional, vuelve al hub del sistema. ## Tabla de contenidos ## ¿Qué es la Cuenta 2? La Cuenta 2 es una cuenta de ahorro individual y voluntaria que puedes abrir en cualquier AFP — no necesariamente en la que tienes tu cotización obligatoria. Es completamente independiente de tu cuenta de pensión y puedes depositar en ella la cantidad de dinero que quieras, cuando quieras. A diferencia de la cotización obligatoria, que solo puedes retirar al jubilarte, el dinero de la Cuenta 2 es accesible: puedes hacer hasta **24 retiros por año calendario**, sin necesidad de justificar para qué lo usas. ##",
-      "wordCount": 1187,
+      "wordCount": 1186,
       "sourceFile": "que-es-la-cuenta-2-afp.md"
     },
     {
@@ -1339,6 +1370,37 @@
       "bodyExcerpt": "Recibes un correo que dice \"tu crédito ha sido aprobado\". El problema es que tú nunca pediste ningún crédito. Eso no es un error administrativo: es una señal de que alguien usó tus datos para contratar deuda a tu nombre. Esta guía te explica qué hacer para actuar rápido y evitar los errores que más atrasan la solución. ## Cómo detectar la suplantación antes de que escale Las señales más comunes aparecen antes de que te llegue una carta de cobranza: - **Correos o SMS de aprobaciones que no solicitaste.** Un crédito aprobado que nadie pidió es la señal más directa. - **Cuentas nuevas asociadas a tu RUT.** Si revisas tu y aparecen productos que no reconoces, actúa de inmediato. - **Llamados de cobranza por deudas desconocidas.** Cuando te llaman exigiendo pago de cuotas de algo que nunca contrataste. - **Cambios de datos de contacto sin tu autorización.** Si una institución tiene un correo o teléfono distinto al tuyo en su sistema, alguien los modificó. - **Alertas de consultas de crédito en tu historial.** Cada vez que alguien pide un crédito usando tu RUT, queda registrado como consulta. Puede aparecer en tu informe CMF. Tener claro el problema es siempre el primer paso. Antes de di",
       "wordCount": 1395,
       "sourceFile": "suplantacion-identidad-creditos-no-reconocidos.md"
+    },
+    {
+      "slug": "tarjeta-credito-costo-real-chile",
+      "title": "Cómo calcular el costo real de una tarjeta de crédito en Chile",
+      "tags": [
+        "tarjeta-credito",
+        "deuda",
+        "consumo",
+        "credito",
+        "interes"
+      ],
+      "category": "deuda-credito",
+      "cluster": "deuda-credito",
+      "sourcePath": "src/data/blog/tarjeta-credito-costo-real-chile.md",
+      "heroImage": "/images/hero/tarjeta-credito-costo-real-chile.avif",
+      "summary": "Una tarjeta de crédito te da liquidez inmediata, pero tiene un precio. Ese precio no siempre es obvio porque los estados de cuenta muestran el pago mínimo — una cifra baja que parece manejable — sin mostrar cuánto terminarás pagando si te quedas en ese nivel. Antes de usar la cal...",
+      "leadParagraphs": [
+        "Una tarjeta de crédito te da liquidez inmediata, pero tiene un precio. Ese precio no siempre es obvio porque los estados de cuenta muestran el pago mínimo — una cifra baja que parece manejable — sin mostrar cuánto terminarás pagando si te quedas en ese nivel. Antes de usar la calculadora, conviene entender por qué ese número importa.",
+        "Si estás evaluando pedir un crédito nuevo o comparar ofertas, complementa esto con la [guía del CAE](/posts/cae-costo-real-credito-chile/), que explica cómo comparar el costo total de un crédito antes de firmar.",
+        "Las tarjetas de crédito cobran interés sobre el **saldo vigente** cada período de facturación. La tasa puede expresarse mensual o anual, y varía según el emisor y el segmento de la tarjeta. La CMF publica la **tasa máxima convencional (TMC)** para tarjetas, que es el techo legal que ningún emisor puede superar."
+      ],
+      "headings": [
+        "Cómo funciona el interés en una tarjeta",
+        "Por qué el pago mínimo prolonga la deuda",
+        "Cómo usar esta calculadora",
+        "Cuándo usar esta herramienta",
+        "Señales de que la deuda rotativa ya es un problema"
+      ],
+      "bodyExcerpt": "Una tarjeta de crédito te da liquidez inmediata, pero tiene un precio. Ese precio no siempre es obvio porque los estados de cuenta muestran el pago mínimo — una cifra baja que parece manejable — sin mostrar cuánto terminarás pagando si te quedas en ese nivel. Antes de usar la calculadora, conviene entender por qué ese número importa. Si estás evaluando pedir un crédito nuevo o comparar ofertas, complementa esto con la , que explica cómo comparar el costo total de un crédito antes de firmar. ## Cómo funciona el interés en una tarjeta Las tarjetas de crédito cobran interés sobre el **saldo vigente** cada período de facturación. La tasa puede expresarse mensual o anual, y varía según el emisor y el segmento de la tarjeta. La CMF publica la **tasa máxima convencional (TMC)** para tarjetas, que es el techo legal que ningún emisor puede superar. El mecanismo central es este: si no pagas el saldo completo al vencimiento del estado de cuenta, sobre el saldo restante se calculan intereses. Esos intereses se suman al siguiente saldo, y el ciclo continúa. A diferencia de un crédito de consumo con cuota fija, la tarjeta no tiene fecha de término definida si solo pagas el mínimo. El plazo de pa",
+      "wordCount": 737,
+      "sourceFile": "tarjeta-credito-costo-real-chile.md"
     },
     {
       "slug": "utm-chile-que-es-como-funciona",

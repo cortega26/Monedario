@@ -449,8 +449,19 @@ const SLUG_OVERRIDES = {
     toneClass: "educativo",
     overrideEvidence: ["slug override: AFP quarterly statement document-review article — afp-pension shield scene too generic for document-reading context"],
     overrideKeywords: ["afp", "cartola"],
-  },
-  // Primer empleo integral: body mentions 'afp' and 'previsional' triggering the prevision
+  },  // Prepago credito: body mentions 'uf' in hipotecario context triggering the uf-indicadores
+  // scene before the deuda rule; override to deuda-credito Template A because this is a
+  // debt-management/prepayment article, not an economic indicator article.
+  "prepago-credito-cuando-conviene-chile": {
+    id: "deuda",
+    template: "A",
+    recipeId: "deuda-credito",
+    colorKey: "Credito / Deuda / Impuestos / Riesgo",
+    readerSituation: "Persona con un credito vigente evaluando si conviene hacer un abono extraordinario para reducir intereses.",
+    toneClass: "serio",
+    overrideEvidence: ["slug override: prepago/early-repayment article — uf keyword false-positive from hipotecario context"],
+    overrideKeywords: ["prepago", "credito", "deuda", "cuota"],
+  },  // Primo empleo integral: body mentions 'afp' and 'previsional' triggering the prevision
   // rule (afp-pension shield+arrow) before the empleo rule; override to cesantia template
   // (empleo category) with a custom promptOverride — figure walking through an open doorway
   // holding a contract page — directly communicating 'starting a new job', not pension planning

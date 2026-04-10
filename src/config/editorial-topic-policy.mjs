@@ -140,6 +140,14 @@ export const CANONICAL_TOPIC_REGISTRY = {
       ownerSlug: "como-salir-boletin-comercial-chile",
       intentLabel: "eliminar anotaciones del Boletin Comercial",
     },
+    "tarjeta-credito-costo-interes": {
+      ownerSlug: "tarjeta-credito-costo-real-chile",
+      intentLabel: "calcular costo real tarjeta de credito",
+    },
+    "prepago-credito-calculo": {
+      ownerSlug: "prepago-credito-cuando-conviene-chile",
+      intentLabel: "cuando conviene hacer un prepago de credito",
+    },
   },
   "uf-costo-de-vida": {
     "uf-reajustes-costo-de-vida": {
