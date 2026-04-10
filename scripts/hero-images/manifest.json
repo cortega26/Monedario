@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "source": "src/data/blog/**",
   "publishableRule": "draft !== true",
-  "articleCount": 40,
+  "articleCount": 41,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -188,7 +188,7 @@
       "leadParagraphs": [
         "> **Respuesta rápida:** Una guía de base ampliamente utilizada en educación financiera es la regla 50/30/20: destinar hasta un 50% del ingreso neto a gastos fijos (arriendo, deudas, servicios), hasta un 30% a gastos variables (alimentación, ocio) y al menos un 20% a ahorro o reducción de deudas. Es un punto de partida, no una obligación, y debe ajustarse a tu situación real. > > **Resumen orientativo:** Esta distribución es una referencia orientativa de educación financiera, no una norma legal. Adáptala según tu ingreso, carga familiar y metas.",
         "Antes de invertir en algo, antes de ahorrar para algo, antes de salir de una deuda, necesitas saber a dónde va tu plata. La mayoría de los problemas financieros personales no son de ingreso — son de control. Este artículo te da un método concreto para hacer un presupuesto que funcione en la realidad chilena, no en una hoja teórica.",
-        "Si ya tienes claro cuánto recibes de sueldo líquido, complementa con la [guía de cómo calcular tu sueldo líquido](/posts/como-calcular-sueldo-liquido/)."
+        "Si ya tienes claro cuánto recibes de sueldo líquido, complementa con la [guía de cómo calcular tu sueldo líquido](/posts/como-calcular-sueldo-liquido/). Si es tu primer empleo, la [guía integral del primer empleo en Chile](/posts/primer-empleo-chile-guia-completa/) te explica además contrato, AFP y Fonasa antes de llegar al presupuesto."
       ],
       "headings": [
         "Por qué los presupuestos fallan (y cómo evitarlo)",
@@ -200,8 +200,8 @@
         "Paso 4: Identifica fugas",
         "Paso 5: El método 50/30/20 y por qué no siempre aplica en Chile"
       ],
-      "bodyExcerpt": "> **Respuesta rápida:** Una guía de base ampliamente utilizada en educación financiera es la regla 50/30/20: destinar hasta un 50% del ingreso neto a gastos fijos (arriendo, deudas, servicios), hasta un 30% a gastos variables (alimentación, ocio) y al menos un 20% a ahorro o reducción de deudas. Es un punto de partida, no una obligación, y debe ajustarse a tu situación real. > > **Resumen orientativo:** Esta distribución es una referencia orientativa de educación financiera, no una norma legal. Adáptala según tu ingreso, carga familiar y metas. Antes de invertir en algo, antes de ahorrar para algo, antes de salir de una deuda, necesitas saber a dónde va tu plata. La mayoría de los problemas financieros personales no son de ingreso — son de control. Este artículo te da un método concreto para hacer un presupuesto que funcione en la realidad chilena, no en una hoja teórica. Si ya tienes claro cuánto recibes de sueldo líquido, complementa con la . > **Resumen orientativo:** Los patrones de gasto descritos a continuación son referencias de educación financiera basadas en comportamiento general del consumidor. No representan datos estadísticos oficiales de Chile. ## Por qué los presupue",
-      "wordCount": 1313,
+      "bodyExcerpt": "> **Respuesta rápida:** Una guía de base ampliamente utilizada en educación financiera es la regla 50/30/20: destinar hasta un 50% del ingreso neto a gastos fijos (arriendo, deudas, servicios), hasta un 30% a gastos variables (alimentación, ocio) y al menos un 20% a ahorro o reducción de deudas. Es un punto de partida, no una obligación, y debe ajustarse a tu situación real. > > **Resumen orientativo:** Esta distribución es una referencia orientativa de educación financiera, no una norma legal. Adáptala según tu ingreso, carga familiar y metas. Antes de invertir en algo, antes de ahorrar para algo, antes de salir de una deuda, necesitas saber a dónde va tu plata. La mayoría de los problemas financieros personales no son de ingreso — son de control. Este artículo te da un método concreto para hacer un presupuesto que funcione en la realidad chilena, no en una hoja teórica. Si ya tienes claro cuánto recibes de sueldo líquido, complementa con la . Si es tu primer empleo, la te explica además contrato, AFP y Fonasa antes de llegar al presupuesto. > **Resumen orientativo:** Los patrones de gasto descritos a continuación son referencias de educación financiera basadas en comportamiento g",
+      "wordCount": 1331,
       "sourceFile": "como-hacer-presupuesto-mensual-chile.md"
     },
     {
@@ -432,8 +432,8 @@
         "Cómo leer tu liquidación con este mapa",
         "Preguntas frecuentes"
       ],
-      "bodyExcerpt": "Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal. Algunos los exige la ley, algunos los autorizaste tú, y algunos directamente no deberían estar ahí. ## Tres categorías, tres orígenes distintos ### Descuentos legales — los que el empleador debe practicar Estos descuentos no dependen de tu autorización. La ley obliga al empleador a aplicarlos y tú no puedes renunciar a ellos. **AFP:** la cotización obligatoria del 10% más la comisión de tu administradora. El 10% va íntegro a tu cuenta individual. La comisión varía según AFP, entre 0,46% y 1,45% sobre el imponible a marzo de 2026. **Salud:** el 7% mínimo destinado a Fonasa o Isapre. Si estás en Fonasa, el descuento es exactamente 7%. Si estás en Isapre y tu plan cuesta más que el 7% legal, la diferencia también se descuenta — pero esa parte adicional ya es un descuento autorizado, no estrictamente legal. **Seguro de cesantía:** el 0,6% del imponible, pero solo si tu contrato es indefinido. Con contrato a plazo",
-      "wordCount": 1076,
+      "bodyExcerpt": "Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal. Algunos los exige la ley, algunos los autorizaste tú, y algunos directamente no deberían estar ahí. ## Tres categorías, tres orígenes distintos ### Descuentos legales — los que el empleador debe practicar Estos descuentos no dependen de tu autorización. La ley obliga al empleador a aplicarlos y tú no puedes renunciar a ellos. Si es tu primer empleo formal y estás viendo estos descuentos por primera vez, la explica contrato, AFP y Fonasa desde cero. **AFP:** la cotización obligatoria del 10% más la comisión de tu administradora. El 10% va íntegro a tu cuenta individual. La comisión varía según AFP, entre 0,46% y 1,45% sobre el imponible a marzo de 2026. **Salud:** el 7% mínimo destinado a Fonasa o Isapre. Si estás en Fonasa, el descuento es exactamente 7%. Si estás en Isapre y tu plan cuesta más que el 7% legal, la diferencia también se descuenta — pero esa parte adicional ya es un descuento autorizado, no est",
+      "wordCount": 1098,
       "sourceFile": "descuentos-de-sueldo.md"
     },
     {
@@ -887,8 +887,8 @@
       "summary": "El depósito cayó y el número no cuadra con lo que esperabas. Abres la liquidación y ves líneas que no entiendes o cifras que no puedes verificar. Aquí empieza el problema real: la mayoría de los trabajadores no sabe qué debe mostrar el comprobante ni qué preguntar cuando algo no...",
       "leadParagraphs": [
         "El depósito cayó y el número no cuadra con lo que esperabas. Abres la liquidación y ves líneas que no entiendes o cifras que no puedes verificar. Aquí empieza el problema real: la mayoría de los trabajadores no sabe qué debe mostrar el comprobante ni qué preguntar cuando algo no cierra.",
-        "> **Información vigente al 2026-03-12.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.",
-        "La liquidación de sueldo es el comprobante que el empleador debe entregarte junto con el pago de remuneraciones. No es un favor administrativo — es una obligación legal establecida en el artículo 54 del Código del Trabajo."
+        "Si estás ante tu primera liquidación y todavía tienes dudas sobre el contrato o la afiliación AFP, empieza por la [guía integral del primer empleo en Chile](/posts/primer-empleo-chile-guia-completa/).",
+        "> **Información vigente al 2026-03-12.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo."
       ],
       "headings": [
         "Qué es y para qué sirve la liquidación",
@@ -900,8 +900,8 @@
         "Otros descuentos",
         "Cuándo pedir respaldo y cómo pedirlo"
       ],
-      "bodyExcerpt": "El depósito cayó y el número no cuadra con lo que esperabas. Abres la liquidación y ves líneas que no entiendes o cifras que no puedes verificar. Aquí empieza el problema real: la mayoría de los trabajadores no sabe qué debe mostrar el comprobante ni qué preguntar cuando algo no cierra. > **Información vigente al 2026-03-12.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. ## Qué es y para qué sirve la liquidación La liquidación de sueldo es el comprobante que el empleador debe entregarte junto con el pago de remuneraciones. No es un favor administrativo — es una obligación legal establecida en el artículo 54 del Código del Trabajo. Su función es específica: permitirte reconstruir cómo se llegó al monto depositado. Un comprobante que no te permite hacer eso no está cumpliendo su propósito, independientemente de lo bonito que luzca el formato. ## Lo que debe mostrar No existe un formato único obligatorio, pero sí contenido mínimo. Una liquidación que cumple su función tiene al menos estos cuatro bloques: **Haberes imponibles:** sueldo base, horas extras, bonos que cotizan. Son la base sobre la que se calcula",
-      "wordCount": 1131,
+      "bodyExcerpt": "El depósito cayó y el número no cuadra con lo que esperabas. Abres la liquidación y ves líneas que no entiendes o cifras que no puedes verificar. Aquí empieza el problema real: la mayoría de los trabajadores no sabe qué debe mostrar el comprobante ni qué preguntar cuando algo no cierra. Si estás ante tu primera liquidación y todavía tienes dudas sobre el contrato o la afiliación AFP, empieza por la . > **Información vigente al 2026-03-12.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. ## Qué es y para qué sirve la liquidación La liquidación de sueldo es el comprobante que el empleador debe entregarte junto con el pago de remuneraciones. No es un favor administrativo — es una obligación legal establecida en el artículo 54 del Código del Trabajo. Su función es específica: permitirte reconstruir cómo se llegó al monto depositado. Un comprobante que no te permite hacer eso no está cumpliendo su propósito, independientemente de lo bonito que luzca el formato. ## Lo que debe mostrar No existe un formato único obligatorio, pero sí contenido mínimo. Una liquidación que cumple su función tiene al menos estos cuatr",
+      "wordCount": 1152,
       "sourceFile": "liquidacion-de-sueldo.md"
     },
     {
@@ -936,6 +936,40 @@
       "bodyExcerpt": "Abres la propuesta del SII, ves los números y no sabes si aceptar o si algo está mal. Esta guía te ayuda a revisar cada punto antes de enviar el F22 y a reaccionar rápido si aparecen observaciones — para que no pierdas tiempo ni atrases tu devolución. La plataforma del SII está abierta desde el 1 de abril. El plazo depende de si debes pagar: declaraciones **con pago**, del 8 al **30 de abril**; declaraciones **sin pago** (con devolución), hasta el **8 de mayo de 2026**. Cuándo declares dentro de ese período determina cuándo recibes tu devolución. ## ¿Tienes que declarar o solo aceptar la propuesta? | Situación | Qué hacer | | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | | Un solo empleador, sin otras rentas | Acepta la propuesta si los datos son correctos. No necesitas hacer nada más. | | Dos o más empleadores simultáneos | Debes declarar. Cada empleador retuvo de forma independiente; casi siempre hay ",
       "wordCount": 1444,
       "sourceFile": "operacion-renta-f22-checklist.md"
+    },
+    {
+      "slug": "primer-empleo-chile-guia-completa",
+      "title": "Primer empleo en Chile: guía completa para saber qué firmar, qué te descuentan y cómo empezar",
+      "tags": [
+        "primer-empleo",
+        "contrato",
+        "liquidacion",
+        "afp",
+        "presupuesto"
+      ],
+      "category": "empleo-ingresos",
+      "cluster": "empleo-ingresos",
+      "sourcePath": "src/data/blog/primer-empleo-chile-guia-completa.md",
+      "heroImage": "/images/hero/primer-empleo-chile-guia-completa.avif",
+      "summary": "Empezar a trabajar por primera vez trae más preguntas legales y financieras que lo que anticipas. Esta guía te acompaña en los cuatro frentes que hay que resolver en el primer mes: el contrato, la primera liquidación, la afiliación previsional y el presupuesto real con tu sueldo...",
+      "leadParagraphs": [
+        "Empezar a trabajar por primera vez trae más preguntas legales y financieras que lo que anticipas. Esta guía te acompaña en los cuatro frentes que hay que resolver en el primer mes: el contrato, la primera liquidación, la afiliación previsional y el presupuesto real con tu sueldo neto.",
+        "> **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.",
+        "Si llegas aquí recién iniciando la búsqueda de empleo, complementa con la guía completa sobre [descuentos de sueldo en Chile](/posts/descuentos-de-sueldo/) para entender de entrada qué parte del bruto no llega a tu cuenta."
+      ],
+      "headings": [
+        "Antes de firmar: qué revisar en el contrato",
+        "Plazo legal para escriturar",
+        "Datos que debes verificar antes de firmar",
+        "La primera liquidación de sueldo: líneas que debes entender",
+        "Estructura básica",
+        "Verificación rápida con la calculadora",
+        "AFP: qué es, cómo te afilian y qué hacer si el empleador no lo hace",
+        "Qué es la AFP y para qué sirve"
+      ],
+      "bodyExcerpt": "Empezar a trabajar por primera vez trae más preguntas legales y financieras que lo que anticipas. Esta guía te acompaña en los cuatro frentes que hay que resolver en el primer mes: el contrato, la primera liquidación, la afiliación previsional y el presupuesto real con tu sueldo neto. > **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Si llegas aquí recién iniciando la búsqueda de empleo, complementa con la guía completa sobre para entender de entrada qué parte del bruto no llega a tu cuenta. ## Antes de firmar: qué revisar en el contrato El contrato de trabajo es el documento que define las reglas de la relación laboral. Firmarlo sin leerlo es el error más frecuente en el primer empleo — y también el que más cuesta corregir después. ### Plazo legal para escriturar El empleador tiene **15 días corridos** desde el inicio de la relación laboral para entregarte el contrato escrito (5 días si el contrato es por obra o faena). Si no lo cumple, te expone a multas de la Dirección del Trabajo y tú adquieres el derecho de declarar tus propias condiciones en caso de disputa. Acció",
+      "wordCount": 2000,
+      "sourceFile": "primer-empleo-chile-guia-completa.md"
     },
     {
       "slug": "que-es-el-apv",
@@ -1269,7 +1303,7 @@
         "Si cobras por la CIC"
       ],
       "bodyExcerpt": "Quedaste sin trabajo — sea porque te despidieron, se venció tu contrato o renunciaste. Lo primero que muchos no saben es que tienen plata acumulada en la AFC esperando ser cobrada. Esta guía te explica exactamente qué es, cuánto tienes y cómo cobrarlo. ## Tabla de contenidos ## Qué es el Seguro de Cesantía El **Seguro de Cesantía** es un seguro obligatorio administrado por la **AFC Chile (Administradora de Fondos de Cesantía)** que protege a los trabajadores cuando quedan sin empleo. Está compuesto por dos fondos distintos con reglas diferentes: **Cuenta Individual de Cesantía (CIC):** Es tuya. Se financia con el 3% de tu remuneración imponible mensual — una parte la pones tú y otra tu empleador, según el tipo de contrato. El dinero acumulado aquí es exclusivamente tuyo y puedes usarlo cuando quedes cesante, independientemente de la causa del término del contrato. **Fondo de Cesantía Solidario (FCS):** Es un fondo común financiado principalmente por los empleadores y el Estado. No es tuyo en particular, pero puedes acceder a él si cumples ciertos requisitos y tu cuenta individual no tiene saldo suficiente. Tiene montos mínimos y máximos definidos por ley. Si tu confusión principal ",
-      "wordCount": 1575,
+      "wordCount": 1606,
       "sourceFile": "seguro-de-cesantia.md"
     },
     {

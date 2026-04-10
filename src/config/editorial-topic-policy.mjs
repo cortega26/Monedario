@@ -50,6 +50,10 @@ export const CANONICAL_TOPIC_REGISTRY = {
       ownerSlug: "licencia-medica-desde-que-dia-pagan",
       intentLabel: "licencia medica pago y rechazo",
     },
+    "primer-empleo-integral": {
+      ownerSlug: "primer-empleo-chile-guia-completa",
+      intentLabel: "guia integral de primer empleo en Chile",
+    },
   },
   "impuestos-personas": {
     "operacion-renta-f22": {

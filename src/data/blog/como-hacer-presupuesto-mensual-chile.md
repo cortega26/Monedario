@@ -25,7 +25,7 @@ heroImage: /images/hero/como-hacer-presupuesto-mensual-chile.avif
 
 Antes de invertir en algo, antes de ahorrar para algo, antes de salir de una deuda, necesitas saber a dónde va tu plata. La mayoría de los problemas financieros personales no son de ingreso — son de control. Este artículo te da un método concreto para hacer un presupuesto que funcione en la realidad chilena, no en una hoja teórica.
 
-Si ya tienes claro cuánto recibes de sueldo líquido, complementa con la [guía de cómo calcular tu sueldo líquido](/posts/como-calcular-sueldo-liquido/).
+Si ya tienes claro cuánto recibes de sueldo líquido, complementa con la [guía de cómo calcular tu sueldo líquido](/posts/como-calcular-sueldo-liquido/). Si es tu primer empleo, la [guía integral del primer empleo en Chile](/posts/primer-empleo-chile-guia-completa/) te explica además contrato, AFP y Fonasa antes de llegar al presupuesto.
 
 > **Resumen orientativo:** Los patrones de gasto descritos a continuación son referencias de educación financiera basadas en comportamiento general del consumidor. No representan datos estadísticos oficiales de Chile.
 

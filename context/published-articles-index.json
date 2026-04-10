@@ -5,7 +5,7 @@
   "source": "src/data/blog/**",
   "publishableRule": "draft !== true",
   "ordering": "slug asc",
-  "publishedCount": 40,
+  "publishedCount": 41,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -467,6 +467,22 @@
       "heroImage": "/images/hero/operacion-renta-f22-checklist.avif",
       "summary": "Abres la propuesta del SII, ves los números y no sabes si aceptar o si algo está mal. Esta guía te ayuda a revisar cada punto antes de enviar el F22 y a reaccionar rápido si aparecen observaciones — para que no pierdas tiempo ni atrases tu devolución. La plataforma del SII está a...",
       "updatedDate": "2026-04-04T00:00:00Z"
+    },
+    {
+      "slug": "primer-empleo-chile-guia-completa",
+      "title": "Primer empleo en Chile: guía completa para saber qué firmar, qué te descuentan y cómo empezar",
+      "category": "empleo-ingresos",
+      "cluster": "empleo-ingresos",
+      "tags": [
+        "primer-empleo",
+        "contrato",
+        "liquidacion",
+        "afp",
+        "presupuesto"
+      ],
+      "sourcePath": "src/data/blog/primer-empleo-chile-guia-completa.md",
+      "heroImage": "/images/hero/primer-empleo-chile-guia-completa.avif",
+      "summary": "Empezar a trabajar por primera vez trae más preguntas legales y financieras que lo que anticipas. Esta guía te acompaña en los cuatro frentes que hay que resolver en el primer mes: el contrato, la primera liquidación, la afiliación previsional y el presupuesto real con tu sueldo..."
     },
     {
       "slug": "que-es-el-apv",

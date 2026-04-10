@@ -450,6 +450,20 @@ const SLUG_OVERRIDES = {
     overrideEvidence: ["slug override: AFP quarterly statement document-review article — afp-pension shield scene too generic for document-reading context"],
     overrideKeywords: ["afp", "cartola"],
   },
+  // Primer empleo integral: body mentions 'afp' and 'previsional' triggering the prevision
+  // rule (afp-pension shield+arrow) before the empleo rule; override to liquidacion-documento
+  // (figure reviewing a document) because this is an onboarding article about reviewing the
+  // employment contract and first pay slip, not a pension-planning article.
+  "primer-empleo-chile-guia-completa": {
+    id: "empleo",
+    template: "A",
+    recipeId: "liquidacion-documento",
+    colorKey: "Finanzas general / AFP / Empleo / Ahorro",
+    readerSituation: "Persona recien contratada revisando su primer contrato de trabajo y entendiendo sus descuentos legales.",
+    toneClass: "neutral",
+    overrideEvidence: ["slug override: first-employment onboarding guide — prevision rule false-positive on 'afp'+'previsional' body keywords"],
+    overrideKeywords: ["primer empleo", "contrato", "liquidacion"],
+  },
 };
 
 export function selectPromptPlan(article) {

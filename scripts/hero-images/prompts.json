@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceManifest": "scripts/hero-images/manifest.json",
-  "count": 40,
+  "count": 41,
   "entries": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -189,15 +189,15 @@
       "sourcePath": "src/data/blog/como-hacer-presupuesto-mensual-chile.md",
       "targetImagePath": "/images/hero/como-hacer-presupuesto-mensual-chile.avif",
       "template": "A",
-      "approvedModelId": "sueldo-liquido",
-      "sceneId": "A:sueldo-liquido",
-      "readerSituation": "Persona calculando o verificando su sueldo neto.",
-      "primaryIntent": "calcular",
-      "toneClass": "neutral",
+      "approvedModelId": "afp-pension",
+      "sceneId": "A:afp-pension",
+      "readerSituation": "Persona evaluando ahorro previsional y decisiones de largo plazo.",
+      "primaryIntent": "explicar",
+      "toneClass": "educativo",
       "visualEvidence": [
-        "text contains 'sueldo liquido' in article body/title context",
-        "primary intent classified as 'calcular' from article text",
-        "reader situation anchored to scene rule 'sueldo'"
+        "text contains 'afp' in article body/title context",
+        "primary intent classified as 'explicar' from article text",
+        "reader situation anchored to scene rule 'prevision'"
       ],
       "palette": {
         "category": "Finanzas general / AFP / Empleo / Ahorro",
@@ -209,14 +209,14 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one geometric human figure seated at a table, leaning slightly forward, shown from behind or as a faceless silhouette.\nThe figure is near calculator, stacked papers. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "114b744c0b2d8d65d9dab81b132a0abe2d888b2fa89fdc711ef63a9bc5b65255",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one geometric human figure standing upright, shown from behind or as a faceless silhouette.\nThe figure is near shield, upward arrow. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
+      "promptHash": "5a6a3376dd19c47dbca3f73af15eb56c3a3fc25303bf4af0777eedd5bf27dafa",
       "selectors": {
-        "ruleId": "sueldo",
+        "ruleId": "prevision",
         "category": "general",
         "cluster": "empleo-ingresos",
         "matchedKeywords": [
-          "sueldo liquido"
+          "afp"
         ]
       }
     },
@@ -1045,6 +1045,44 @@
           "renta",
           "f22",
           "sii"
+        ]
+      }
+    },
+    {
+      "slug": "primer-empleo-chile-guia-completa",
+      "sourcePath": "src/data/blog/primer-empleo-chile-guia-completa.md",
+      "targetImagePath": "/images/hero/primer-empleo-chile-guia-completa.avif",
+      "template": "A",
+      "approvedModelId": "liquidacion-documento",
+      "sceneId": "A:liquidacion-documento",
+      "readerSituation": "Persona recien contratada revisando su primer contrato de trabajo y entendiendo sus descuentos legales.",
+      "primaryIntent": "guiar",
+      "toneClass": "neutral",
+      "visualEvidence": [
+        "slug override: first-employment onboarding guide — prevision rule false-positive on 'afp'+'previsional' body keywords",
+        "primary intent classified as 'guiar' from article text",
+        "reader situation anchored to scene rule 'empleo'"
+      ],
+      "palette": {
+        "category": "Finanzas general / AFP / Empleo / Ahorro",
+        "hex": "#0d9488"
+      },
+      "modelPlan": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "auto",
+        "size": "1536x1024"
+      },
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one geometric human figure standing, holding a document, shown from behind or as a faceless silhouette.\nThe figure is near document sheet, magnifier. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
+      "promptHash": "27f6d94e8f581818883cc59d386b666452307c009bb4172ba16feec226190397",
+      "selectors": {
+        "ruleId": "empleo",
+        "category": "empleo-ingresos",
+        "cluster": "empleo-ingresos",
+        "matchedKeywords": [
+          "primer empleo",
+          "contrato",
+          "liquidacion"
         ]
       }
     },

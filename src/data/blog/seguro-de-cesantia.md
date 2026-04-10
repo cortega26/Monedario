@@ -59,6 +59,8 @@ Si tu confusión principal es qué parte corresponde a tu cuenta y cuál depende
 
 ## Quién aporta y cuánto
 
+Si es tu primera relación laboral y todavía no tienes claro cómo funciona el seguro en el primer empleo, la [guía integral del primer empleo en Chile](/posts/primer-empleo-chile-guia-completa/) cubre el seguro de cesantía junto con contrato, AFP y Fonasa.
+
 El aporte mensual al seguro varía según el tipo de contrato:
 
 | Tipo de contrato          | Aporte trabajador | Aporte empleador | Total |

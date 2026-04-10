@@ -58,6 +58,8 @@ Algunos los exige la ley, algunos los autorizaste tú, y algunos directamente no
 
 Estos descuentos no dependen de tu autorización. La ley obliga al empleador a aplicarlos y tú no puedes renunciar a ellos.
 
+Si es tu primer empleo formal y estás viendo estos descuentos por primera vez, la [guía integral del primer empleo en Chile](/posts/primer-empleo-chile-guia-completa/) explica contrato, AFP y Fonasa desde cero.
+
 **AFP:** la cotización obligatoria del 10% más la comisión de tu administradora. El 10% va íntegro a tu cuenta individual. La comisión varía según AFP, entre 0,46% y 1,45% sobre el imponible a marzo de 2026.
 
 **Salud:** el 7% mínimo destinado a Fonasa o Isapre. Si estás en Fonasa, el descuento es exactamente 7%. Si estás en Isapre y tu plan cuesta más que el 7% legal, la diferencia también se descuenta — pero esa parte adicional ya es un descuento autorizado, no estrictamente legal.
