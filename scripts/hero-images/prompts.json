@@ -1053,8 +1053,8 @@
       "sourcePath": "src/data/blog/primer-empleo-chile-guia-completa.md",
       "targetImagePath": "/images/hero/primer-empleo-chile-guia-completa.avif",
       "template": "A",
-      "approvedModelId": "liquidacion-documento",
-      "sceneId": "A:liquidacion-documento",
+      "approvedModelId": "cesantia",
+      "sceneId": "A:cesantia",
       "readerSituation": "Persona recien contratada revisando su primer contrato de trabajo y entendiendo sus descuentos legales.",
       "primaryIntent": "guiar",
       "toneClass": "neutral",
@@ -1073,8 +1073,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one geometric human figure standing, holding a document, shown from behind or as a faceless silhouette.\nThe figure is near document sheet, magnifier. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "27f6d94e8f581818883cc59d386b666452307c009bb4172ba16feec226190397",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488, perfectly flat with zero grain, noise, or texture.\nScene: one geometric human figure walking forward through a simple open rectangular doorway shape, the figure holds a single flat document page in one hand.\nAll objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure and doorway centered-left; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
+      "promptHash": "386f6c2eb3d6f82fdae2c85ee6c1e70137a3c7a2baac586e0b9259996bd7adfd",
       "selectors": {
         "ruleId": "empleo",
         "category": "empleo-ingresos",

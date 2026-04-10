@@ -91,41 +91,41 @@ const rutasPrincipales = [
   <Header />
   <Breadcrumb />
 
-  <main id=”main-content” class=”app-layout”>
-    <section class=”border-b border-border py-8”>
+  <main id="main-content" class="app-layout">
+    <section class="border-b border-border py-8">
       <!-- Removed Topic Authority Layer tag -->
-      <h1 class=”mb-4 text-3xl font-bold sm:text-4xl”>
+      <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
         Impuestos para personas en Chile
       </h1>
     </section>
 
-    <section class=”py-4”>
+    <section class="py-4">
       <ResumeWidget />
     </section>
 
-    <section class=”border-b border-border py-8”>
-      <h2 class=”mb-4 text-2xl font-bold”>Elige la ruta correcta</h2>
-      <p class=”mb-5 max-w-3xl text-sm leading-relaxed text-secondary”>
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-2xl font-bold">Elige la ruta correcta</h2>
+      <p class="mb-5 max-w-3xl text-sm leading-relaxed text-secondary">
         Si tu duda es declaración, observaciones o rectificatoria, todo eso vive
         en la misma guía del F22. Solo cambia de ruta cuando el problema real ya
         es la devolución o el líquido de honorarios.
       </p>
-      <ul class=”grid gap-4”>
+      <ul class="grid gap-4">
         {
           rutasPrincipales.map(item => (
-            <li class=”rounded-xl border border-border p-5”>
+            <li class="rounded-xl border border-border p-5">
               {item.esSubhub && (
-                <p class=”mb-2 text-xs font-bold tracking-widest text-accent uppercase”>
+                <p class="mb-2 text-xs font-bold tracking-widest text-accent uppercase">
                   Centro de recursos
                 </p>
               )}
-              <h3 class=”mb-2 text-lg font-semibold”>{item.titulo}</h3>
-              <p class=”mb-3 text-sm text-secondary”>{item.resumen}</p>
+              <h3 class="mb-2 text-lg font-semibold">{item.titulo}</h3>
+              <p class="mb-3 text-sm text-secondary">{item.resumen}</p>
               <a
                 href={item.href}
-                class=”text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80”
+                class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
               >
-                {item.esSubhub ? “Ir al centro OR” : “Resolver esta duda”}
+                {item.esSubhub ? "Ir al centro OR" : "Resolver esta duda"}
               </a>
             </li>
           ))
@@ -133,9 +133,9 @@ const rutasPrincipales = [
       </ul>
     </section>
 
-    <section class=”border-b border-border py-8”>
-      <h2 class=”mb-4 text-2xl font-bold”>Errores comunes de la sección</h2>
-      <ul class=”list-disc space-y-2 pl-6 text-secondary”>
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-2xl font-bold">Errores comunes de la sección</h2>
+      <ul class="list-disc space-y-2 pl-6 text-secondary">
         <li>Confundir declaración aceptada con devolución pagada.</li>
         <li>Revisar estado solo una vez y no hacer seguimiento en SII/TGR.</li>
         <li>Mezclar reglas de reemplazo con rectificatoria.</li>
@@ -150,31 +150,31 @@ const rutasPrincipales = [
       steps={[
         {
           step: 1,
-          title: “Boleta de honorarios 2026”,
+          title: "Boleta de honorarios 2026",
           description:
-            “Retención, cobertura previsional y declaración anual paso a paso.”,
-          href: “/posts/boleta-honorarios-2026-retencion-cobertura/”,
+            "Retención, cobertura previsional y declaración anual paso a paso.",
+          href: "/posts/boleta-honorarios-2026-retencion-cobertura/",
         },
         {
           step: 2,
-          title: “Devolución de impuestos: fechas y compensaciones”,
+          title: "Devolución de impuestos: fechas y compensaciones",
           description:
-            “Cuándo pagan, cuánto devuelven y cómo revisar tu estado.”,
-          href: “/posts/devolucion-impuestos-fechas-compensaciones/”,
+            "Cuándo pagan, cuánto devuelven y cómo revisar tu estado.",
+          href: "/posts/devolucion-impuestos-fechas-compensaciones/",
         },
         {
           step: 3,
-          title: “Operación Renta: checklist del F-22”,
+          title: "Operación Renta: checklist del F-22",
           description:
-            “Los pasos que no debes saltarte al hacer la declaración anual.”,
-          href: “/posts/operacion-renta-f22-checklist/”,
+            "Los pasos que no debes saltarte al hacer la declaración anual.",
+          href: "/posts/operacion-renta-f22-checklist/",
         },
         {
           step: 4,
-          title: “Calculadora de impuesto de segunda categoría”,
+          title: "Calculadora de impuesto de segunda categoría",
           description:
-            “Estima el impuesto mensual según tu sueldo bruto y AFP.”,
-          href: “/calculadoras/impuesto-segunda-categoria/”,
+            "Estima el impuesto mensual según tu sueldo bruto y AFP.",
+          href: "/calculadoras/impuesto-segunda-categoria/",
         },
       ]}
     />

@@ -451,18 +451,20 @@ const SLUG_OVERRIDES = {
     overrideKeywords: ["afp", "cartola"],
   },
   // Primer empleo integral: body mentions 'afp' and 'previsional' triggering the prevision
-  // rule (afp-pension shield+arrow) before the empleo rule; override to liquidacion-documento
-  // (figure reviewing a document) because this is an onboarding article about reviewing the
-  // employment contract and first pay slip, not a pension-planning article.
+  // rule (afp-pension shield+arrow) before the empleo rule; override to cesantia template
+  // (empleo category) with a custom promptOverride — figure walking through an open doorway
+  // holding a contract page — directly communicating 'starting a new job', not pension planning
+  // and not document auditing (liquidacion scene already used by liquidacion-de-sueldo and cartola).
   "primer-empleo-chile-guia-completa": {
     id: "empleo",
     template: "A",
-    recipeId: "liquidacion-documento",
+    recipeId: "cesantia",
     colorKey: "Finanzas general / AFP / Empleo / Ahorro",
     readerSituation: "Persona recien contratada revisando su primer contrato de trabajo y entendiendo sus descuentos legales.",
     toneClass: "neutral",
     overrideEvidence: ["slug override: first-employment onboarding guide — prevision rule false-positive on 'afp'+'previsional' body keywords"],
     overrideKeywords: ["primer empleo", "contrato", "liquidacion"],
+    promptOverride: "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488, perfectly flat with zero grain, noise, or texture.\nScene: one geometric human figure walking forward through a simple open rectangular doorway shape, the figure holds a single flat document page in one hand.\nAll objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure and doorway centered-left; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
   },
 };
 
