@@ -8,6 +8,7 @@ import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+import { buildSecondCategoryTaxBrackets } from "@/domain/taxation/TaxEngine";
 import { getPath } from "@/utils/getPath";
 
 const { parameters: economicParameters } = await getEconomicParameters();
@@ -19,14 +20,7 @@ const economicSourceLabel =
 
 const fmt = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
 
-// Cuantías a rebajar (fórmula continua — idéntica a TaxEngine.ts)
-const d2 = 13.5 * utm * 0.04;
-const d3 = 30 * utm * (0.08 - 0.04) + d2;
-const d4 = 50 * utm * (0.135 - 0.08) + d3;
-const d5 = 70 * utm * (0.23 - 0.135) + d4;
-const d6 = 90 * utm * (0.304 - 0.23) + d5;
-const d7 = 120 * utm * (0.35 - 0.304) + d6;
-const d8 = 150 * utm * (0.4 - 0.35) + d7;
+const taxBrackets = buildSecondCategoryTaxBrackets(utm);
 
 const bracketRows = [
   {
@@ -41,49 +35,49 @@ const bracketRows = [
     hasta: "30",
     hastaPesos: fmt(30 * utm),
     tasa: "4%",
-    rebaja: fmt(d2),
+    rebaja: fmt(taxBrackets[1].deduction),
   },
   {
     desde: "30",
     hasta: "50",
     hastaPesos: fmt(50 * utm),
     tasa: "8%",
-    rebaja: fmt(d3),
+    rebaja: fmt(taxBrackets[2].deduction),
   },
   {
     desde: "50",
     hasta: "70",
     hastaPesos: fmt(70 * utm),
     tasa: "13,5%",
-    rebaja: fmt(d4),
+    rebaja: fmt(taxBrackets[3].deduction),
   },
   {
     desde: "70",
     hasta: "90",
     hastaPesos: fmt(90 * utm),
     tasa: "23%",
-    rebaja: fmt(d5),
+    rebaja: fmt(taxBrackets[4].deduction),
   },
   {
     desde: "90",
     hasta: "120",
     hastaPesos: fmt(120 * utm),
     tasa: "30,4%",
-    rebaja: fmt(d6),
+    rebaja: fmt(taxBrackets[5].deduction),
   },
   {
     desde: "120",
     hasta: "150",
     hastaPesos: fmt(150 * utm),
     tasa: "35%",
-    rebaja: fmt(d7),
+    rebaja: fmt(taxBrackets[6].deduction),
   },
   {
     desde: "150",
     hasta: "∞",
     hastaPesos: "Sin límite",
     tasa: "40%",
-    rebaja: fmt(d8),
+    rebaja: fmt(taxBrackets[7].deduction),
   },
 ];
 
@@ -148,6 +142,12 @@ const sueldoLiquidoPath = getPath("/calculadoras/sueldo-liquido/");
         >
           Calcular impuesto →
         </button>
+        <div
+          id="segunda-categoria-error"
+          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-200"
+          role="alert"
+        >
+        </div>
       </div>
 
       <!-- RESULTADO -->
@@ -156,7 +156,7 @@ const sueldoLiquidoPath = getPath("/calculadoras/sueldo-liquido/");
         class="rounded-xl border border-border bg-background p-6"
       >
         <h2 class="mb-5 text-lg font-semibold">💡 Resultado</h2>
-        <div id="resultado-contenido" class="py-8 text-center text-muted">
+        <div id="resultado-contenido" class="py-8 text-center text-muted" aria-live="polite">
           <p class="mb-3 text-4xl">📊</p>
           <p class="text-sm">Ingresa tu imponible y presiona calcular.</p>
         </div>
@@ -330,14 +330,29 @@ const sueldoLiquidoPath = getPath("/calculadoras/sueldo-liquido/");
     });
   }
 
+  function showInlineError(message: string) {
+    const errorBox = document.getElementById("segunda-categoria-error");
+    if (!errorBox) return;
+    errorBox.textContent = message;
+    errorBox.classList.remove("hidden");
+  }
+
+  function clearInlineError() {
+    const errorBox = document.getElementById("segunda-categoria-error");
+    if (!errorBox) return;
+    errorBox.textContent = "";
+    errorBox.classList.add("hidden");
+  }
+
   document.getElementById("calcBtn")?.addEventListener("click", () => {
+    clearInlineError();
     const imponible =
       parseFloat(
         (document.getElementById("imponible") as HTMLInputElement).value
       ) || 0;
 
     if (imponible <= 0) {
-      alert("Por favor ingresa un sueldo imponible válido.");
+      showInlineError("Por favor ingresa un sueldo imponible válido.");
       return;
     }
 
@@ -345,7 +360,7 @@ const sueldoLiquidoPath = getPath("/calculadoras/sueldo-liquido/");
     try {
       result = calculateSecondCategoryTax({ taxableIncome: imponible, utm });
     } catch (e) {
-      alert(
+      showInlineError(
         e instanceof Error ? e.message : "No se pudo calcular el impuesto."
       );
       return;

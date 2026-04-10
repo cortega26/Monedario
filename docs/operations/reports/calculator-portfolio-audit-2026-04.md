@@ -281,10 +281,12 @@ Sprint 1 completed 2026-04-10
 **Expected outcome:** 0 failing tests, all P1 findings resolved, portfolio complete.
 
 ### Sprint 2 — Accessibility + maintainability (P2 systemic)
-- [ ] MON-501: Add aria-live="polite" to all 16 result containers
-- [ ] MON-505: Replace alert() with inline error in impuesto-segunda-categoria
-- [ ] MON-511: Create shared AFP rates constant file
-- [ ] MON-506: Export bracket deductions from TaxEngine, import in astro page
+- [x] MON-501: Add aria-live="polite" to all 16 result containers
+- [x] MON-505: Replace alert() with inline error in impuesto-segunda-categoria
+- [x] MON-511: Create shared AFP rates constant file
+- [x] MON-506: Export bracket deductions from TaxEngine, import in astro page
+
+Sprint 2 completed 2026-04-10
 
 ### Sprint 3 — Polish + editorial (P3)
 - [ ] MON-512: Import shared annuity in SimulateDebtRenegotiation

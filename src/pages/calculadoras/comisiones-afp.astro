@@ -8,22 +8,13 @@ import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getPath } from "@/utils/getPath";
+import { AFP_COMMISSIONS_PERCENT } from "@/config/afpCommissions";
 
 const simuladorJubilacionPath = getPath("/calculadoras/simulador-jubilacion/");
 const pensionesHubPath = getPath("/guias/pensiones-afp/");
 const cambiarseAfpPath = getPath("/posts/como-cambiarse-de-afp/");
 
-// AFP rates — total = 10% fondo personal + comisión AFP
-// Fuente: tasas de la calculadora de sueldo líquido (vigentes 2026)
-const AFP_LIST = [
-  { name: "Capital", total: 10.58, commission: 0.58 },
-  { name: "Cuprum", total: 10.65, commission: 0.65 },
-  { name: "Habitat", total: 10.77, commission: 0.77 },
-  { name: "Modelo", total: 10.58, commission: 0.58 },
-  { name: "PlanVital", total: 10.49, commission: 0.49 },
-  { name: "ProVida", total: 10.69, commission: 0.69 },
-  { name: "Uno", total: 10.75, commission: 0.75 },
-].sort((a, b) => a.commission - b.commission);
+const AFP_LIST = [...AFP_COMMISSIONS_PERCENT].sort((a, b) => a.commission - b.commission);
 
 const cheapest = AFP_LIST[0]; // PlanVital after sort
 ---
@@ -103,7 +94,7 @@ const cheapest = AFP_LIST[0]; // PlanVital after sort
               </th>
             </tr>
           </thead>
-          <tbody id="afp-table-body">
+          <tbody id="afp-table-body" aria-live="polite">
             {
               AFP_LIST.map(afp => {
                 const isCheapest = afp.commission === cheapest.commission;

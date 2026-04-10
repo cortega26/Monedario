@@ -11,6 +11,7 @@ import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { getPath } from "@/utils/getPath";
 import { sueldoCalculatorSections } from "@/config/sueldoClusterLinks";
+import { AFP_COMMISSIONS_PERCENT } from "@/config/afpCommissions";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 const salaryGuidePath = getPath("/posts/como-calcular-sueldo-liquido/");
@@ -244,13 +245,11 @@ const economicSourceLabel =
             id="afp-tasa"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
           >
-            <option value="10.58">Capital – 10.58%</option>
-            <option value="10.65">Cuprum – 10.65%</option>
-            <option value="10.77" selected>Habitat – 10.77%</option>
-            <option value="10.58">Modelo – 10.58%</option>
-            <option value="10.49">PlanVital – 10.49%</option>
-            <option value="10.69">ProVida – 10.69%</option>
-            <option value="10.75">Uno – 10.75%</option>
+            {AFP_COMMISSIONS_PERCENT.map(afp => (
+              <option value={String(afp.total)} selected={afp.name === "Habitat"}>
+                {afp.name} – {afp.total.toFixed(2)}%
+              </option>
+            ))}
           </select>
         </div>
 
@@ -344,7 +343,7 @@ const economicSourceLabel =
         class="rounded-xl border border-border bg-background p-6"
       >
         <h2 class="mb-5 text-lg font-semibold">💵 Resultado</h2>
-        <div id="resultado-contenido" data-is-example="true">
+        <div id="resultado-contenido" data-is-example="true" aria-live="polite">
           <div class="mb-6 rounded-lg border border-border bg-surface-muted/40 p-4 text-center">
             <p class="mb-1 text-xs font-bold tracking-widest text-muted uppercase">Sueldo Líquido (Ejemplo)</p>
             <p class="text-4xl font-bold text-foreground/60">$985.000</p>
