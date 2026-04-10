@@ -23,6 +23,9 @@ type Props = {
 const performanceSensitivePath = /^\/(?:posts|guias|calculadoras)(?:\/|$)/.test(
   Astro.url.pathname
 );
+const shouldPreloadPrimaryFonts =
+  Astro.url.pathname !== "/" &&
+  !/^\/calculadoras(?:\/|$)/.test(Astro.url.pathname);
 
 const {
   title = SITE.title,
@@ -71,20 +74,28 @@ const structuredData = !pubDatetime
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link
-      rel="preload"
-      href={getPath("/fonts/source-sans-3-latin-400-600.7a19a702.woff2")}
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href={getPath("/fonts/fraunces-latin-400-700.7234ed86.woff2")}
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
+    {
+      shouldPreloadPrimaryFonts && (
+        <link
+          rel="preload"
+          href={getPath("/fonts/source-sans-3-latin-400-600.7a19a702.woff2")}
+          as="font"
+          type="font/woff2"
+          crossorigin
+        />
+      )
+    }
+    {
+      shouldPreloadPrimaryFonts && (
+        <link
+          rel="preload"
+          href={getPath("/fonts/fraunces-latin-400-700.7234ed86.woff2")}
+          as="font"
+          type="font/woff2"
+          crossorigin
+        />
+      )
+    }
     <link rel="icon" type="image/svg+xml" href={getPath("/favicon.svg")} />
     <link rel="canonical" href={resolvedCanonicalURL} />
     <meta name="generator" content={Astro.generator} />
