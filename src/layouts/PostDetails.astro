@@ -107,6 +107,7 @@ const allPosts = posts.map(entry => {
   return {
     slug: relatedArticle.slug,
     title: relatedArticle.title,
+    cluster: relatedArticle.cluster,
   };
 });
 
@@ -149,11 +150,44 @@ const excludedRelatedSlugs = [...excludedContextHrefs]
   )
   .filter(Boolean);
 
-const prevPost = currentPostIndex > 0 ? allPosts[currentPostIndex - 1] : null;
-const nextPost =
-  currentPostIndex >= 0 && currentPostIndex < allPosts.length - 1
-    ? allPosts[currentPostIndex + 1]
-    : null;
+const clusterHubNames: Record<string, string> = {
+  "sueldo-remuneraciones": "Sueldo y Remuneraciones",
+  "empleo-ingresos": "Empleo e Ingresos",
+  "deuda-credito": "Deuda y Crédito",
+  "impuestos-personas": "Impuestos",
+  "pensiones-afp": "Pensiones y AFP",
+  "ahorro-e-inversion": "Ahorro e Inversión",
+  "uf-costo-de-vida": "UF y Costo de Vida",
+  "seguridad-financiera": "Seguridad Financiera",
+};
+
+let prevPost: (typeof allPosts)[number] | null = null;
+let nextPost: (typeof allPosts)[number] | null = null;
+let useTopicalNav = false;
+let hubLabel: string | undefined;
+
+const currentCluster = article.cluster;
+if (currentCluster) {
+  const clusterPosts = allPosts.filter(p => p.cluster === currentCluster);
+  const clusterIndex = clusterPosts.findIndex(p => p.slug === article.slug);
+  if (clusterPosts.length >= 2 && clusterIndex !== -1) {
+    prevPost = clusterIndex > 0 ? clusterPosts[clusterIndex - 1] : null;
+    nextPost =
+      clusterIndex < clusterPosts.length - 1
+        ? clusterPosts[clusterIndex + 1]
+        : null;
+    useTopicalNav = true;
+    hubLabel = clusterHubNames[currentCluster] ?? currentCluster;
+  }
+}
+
+if (!useTopicalNav) {
+  prevPost = currentPostIndex > 0 ? allPosts[currentPostIndex - 1] : null;
+  nextPost =
+    currentPostIndex >= 0 && currentPostIndex < allPosts.length - 1
+      ? allPosts[currentPostIndex + 1]
+      : null;
+}
 const relatedPostsExcludedSlugs = [
   ...excludedRelatedSlugs,
   prevPost?.slug,
@@ -334,7 +368,7 @@ const relatedPostsExcludedSlugs = [
           >
             <IconChevronLeft class="inline-block flex-none rtl:rotate-180" />
             <div>
-              <span>Artículo anterior</span>
+              <span>{useTopicalNav ? `Anterior en ${hubLabel}` : "Artículo anterior"}</span>
               <div class="text-sm text-accent/85">{prevPost.title}</div>
             </div>
           </a>
@@ -350,7 +384,7 @@ const relatedPostsExcludedSlugs = [
             data-analytics-location="article_next"
           >
             <div>
-              <span>Artículo siguiente</span>
+              <span>{useTopicalNav ? `Siguiente en ${hubLabel}` : "Artículo siguiente"}</span>
               <div class="text-sm text-accent/85">{nextPost.title}</div>
             </div>
             <IconChevronRight class="inline-block flex-none rtl:rotate-180" />

@@ -164,7 +164,7 @@ Las herramientas para hacerlo existen hoy en Chile. Algunas opciones para explor
 
 Si los números anteriores se sienten abstractos, hay otra forma de pensar en esos **$125,6 millones**: como un departamento.
 
-Con ese capital al contado, sin crédito hipotecario ni dividendo, se dispone de aproximadamente **3.263 UF** a la UF de diciembre de 2025. Según los rangos usados como referencia en la nota metodológica, eso alcanza para comprar un departamento nuevo de 2 dormitorios en comunas como Estación Central o Independencia, y con bastante más holgura en varias ciudades regionales.
+Con ese capital al contado, sin crédito hipotecario ni dividendo, se dispone de aproximadamente **3.263 [UF](/guias/uf-costo-de-vida/)** a la UF de diciembre de 2025. Según los rangos usados como referencia en la nota metodológica, eso alcanza para comprar un departamento nuevo de 2 dormitorios en comunas como Estación Central o Independencia, y con bastante más holgura en varias ciudades regionales.
 
 Una vez comprado, ese departamento se podría arrendar. En comunas intermedias de Santiago, los rangos de arriendo usados como referencia para 2025 se mueven aproximadamente entre **$350.000 y $500.000 mensuales** para unidades de 2 dormitorios. La conclusión no es inmobiliaria: es que el tiempo convierte un flujo pequeño y persistente de ahorro en un activo de una escala que la mayoría subestima al principio.
 

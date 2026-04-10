@@ -135,7 +135,7 @@ No de forma automática. Si en el finiquito de mutuo acuerdo se pacta expresamen
 Si el tribunal declara que la causal del art. 160 fue indebida, el despido se recalifica como injustificado y corresponde indemnización por años de servicio más los recargos del art. 168. Este camino requiere acción judicial ante el Juzgado de Letras del Trabajo.
 
 **¿La indemnización por años de servicio paga impuesto?**
-La indemnización legal por años de servicio hasta el límite de 90 UF por año trabajado está exenta de impuesto único de segunda categoría. Lo que supere ese tope puede quedar afecto. Si recibes una indemnización grande o hubo negociación por sobre el mínimo legal, conviene revisar el tratamiento tributario con el SII o con asesoría.
+La indemnización legal por años de servicio hasta el límite de 90 [UF](/guias/uf-costo-de-vida/) por año trabajado está exenta de impuesto único de segunda categoría. Lo que supere ese tope puede quedar afecto. Si recibes una indemnización grande o hubo negociación por sobre el mínimo legal, conviene revisar el tratamiento tributario con el SII o con asesoría.
 
 **¿Puedo reclamar después de firmar el finiquito?**
 Depende de si firmaste con reserva de derechos o sin ella. Si firmaste sin reserva y sin impugnar nada, la posición se complica. Si firmaste con reserva escrita en el mismo documento indicando los montos en disputa, la puerta judicial sigue abierta. El plazo general de prescripción para acciones laborales derivadas del finiquito es de 2 años desde el término del contrato.

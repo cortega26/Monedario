@@ -86,7 +86,7 @@ Tampoco conviene si necesitas el dinero con urgencia inmediata, ya que la AFP ti
 | Beneficio al depositar | No                                   | Sí (Régimen A o B)           |
 | Beneficio al retirar   | Sí (exento si rentabilidad < 30 UTM) | Depende del régimen          |
 | Flexibilidad de retiro | Alta (24 retiros/año)                | Menor                        |
-| Límite de depósito     | Sin límite                           | 600 UF anuales con beneficio |
+| Límite de depósito     | Sin límite                           | 600 [UF](/guias/uf-costo-de-vida/) anuales con beneficio |
 | Para quién es ideal    | Ahorro flexible mediano plazo        | Reducir impuestos hoy        |
 
 Si tienes capacidad de ahorro y pagas impuesto de segunda categoría, lo ideal es combinar ambos instrumentos: APV para el beneficio tributario inmediato, y Cuenta 2 para el ahorro flexible.

@@ -50,7 +50,7 @@ Variables que más mueven el resultado antes de enviar:
 - **Intereses de crédito hipotecario**: deducibles hasta el tope legal (línea 69 del F22).
 - **PPM de boletas de honorarios**: lo que retuvo cada pagador se acredita contra el impuesto final.
 - **Dos empleadores simultáneos**: generan casi siempre un pago adicional porque cada empleador retuvo sin saber del otro.
-- **Crédito por gastos en educación**: hasta $174.803 (4,4 UF) por hijo. El SII lo precarga automáticamente; verifica que los datos de tus hijos estén correctos antes de aceptar la propuesta.
+- **Crédito por gastos en educación**: hasta $174.803 (4,4 [UF](/guias/uf-costo-de-vida/)) por hijo. El SII lo precarga automáticamente; verifica que los datos de tus hijos estén correctos antes de aceptar la propuesta.
 - **Contribuciones (Impuesto Territorial)**: si declaras ingresos por arriendo, puedes descontar las contribuciones pagadas durante 2025 de tu base del Impuesto Global Complementario.
 
 Antes de abrir la propuesta del SII, estima tu resultado: [Simulador Operación Renta 2026](/calculadoras/operacion-renta/).

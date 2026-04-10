@@ -83,7 +83,7 @@ Ojo con los detalles de esta regla:
 
 - Deben ser **dos o más deudas distintas** — no sirve una sola deuda grande con un solo acreedor
 - Cada deuda debe tener **más de 90 días corridos** de atraso al momento de presentar la solicitud
-- El total de esas deudas vencidas debe superar las **80 UF** (~$3.500.000 aproximadamente, según el valor del día)
+- El total de esas deudas vencidas debe superar las **80 [UF](/guias/uf-costo-de-vida/)** (~$3.500.000 aproximadamente, según el valor del día)
 
 **Error frecuente:** Pensar que las 80 UF se refieren a cada deuda individual. No — es el total de todas las deudas vencidas sumadas.
 

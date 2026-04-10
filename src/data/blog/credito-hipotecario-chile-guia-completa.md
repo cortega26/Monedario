@@ -219,7 +219,7 @@ Las propiedades con **Decreto con Fuerza de Ley N°2 (DFL2)** (superficie constr
 
 3. **No leer la Hoja de Condiciones.** Este documento —que el banco está obligado a darte antes de que firmes— detalla tasa, CAE, seguros, gastos y condiciones de prepago. Exígelo siempre.
 
-4. **No considerar el impacto de la UF a largo plazo.** Tu dividendo está en UF. Si la inflación es 4% anual, en 10 años pagas ~50% más en pesos por el mismo número de UF. Planifica con margen.
+4. **No considerar el impacto de la UF a largo plazo.** Tu dividendo está en [UF](/guias/uf-costo-de-vida/). Si la inflación es 4% anual, en 10 años pagas ~50% más en pesos por el mismo número de UF. Planifica con margen.
 
 5. **No evaluar la opción de prepago.** La **Ley 21.236 (Portabilidad Financiera)** eliminó las comisiones de prepago. Cuando tengas excedentes, un abono extraordinario reduce el capital y baja el total de intereses que pagarás. [Simula cuánto ahorras prepagando →](/calculadoras/prepago-credito/)
 

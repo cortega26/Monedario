@@ -96,7 +96,7 @@ Una vez que cumpliste los tres pasos, la ley establece plazos concretos para la 
 
 | Situación                                               | Plazo para devolver                                                              |
 | ------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| Montos hasta 35 UF (~$1.550.000 aprox.)                 | 10 días hábiles desde el reclamo                                                 |
+| Montos hasta 35 [UF](/guias/uf-costo-de-vida/) (~$1.550.000 aprox.)                 | 10 días hábiles desde el reclamo                                                 |
 | Giros en cajero automático o avances en efectivo        | 15 días hábiles                                                                  |
 | Montos sobre 35 UF                                      | 10 días hábiles por las primeras 35 UF + 7 días hábiles adicionales por el resto |
 | Entregaste el comprobante de denuncia después del plazo | 24 horas desde que lo entregues                                                  |

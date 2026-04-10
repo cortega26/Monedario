@@ -244,7 +244,7 @@ Para la imagen mental del departamento se usaron rangos de mercado de 2025:
 | Santiago Centro  | ~3.100 UF                            | BDO Chile / BioBioChile |
 | Estación Central | ~2.600 UF                            | BDO Chile / BioBioChile |
 
-El capital final de **$125,6 millones CLP** equivale aproximadamente a **3.263 UF**, usando una UF cercana a $38.500 en diciembre de 2025. En esa lógica, el resultado permite comprar al contado una unidad en el rango inferior de las comunas listadas o una propiedad de mayor estándar en varias ciudades regionales.
+El capital final de **$125,6 millones CLP** equivale aproximadamente a **3.263 [UF](/guias/uf-costo-de-vida/)**, usando una UF cercana a $38.500 en diciembre de 2025. En esa lógica, el resultado permite comprar al contado una unidad en el rango inferior de las comunas listadas o una propiedad de mayor estándar en varias ciudades regionales.
 
 Los rangos de arriendo referenciales de **$350.000 a $500.000 mensuales** para departamentos de 2 dormitorios en comunas intermedias de Santiago se atribuyen en el documento corregido a datos publicados por TocToc y HDI Seguros para 2025.
 
