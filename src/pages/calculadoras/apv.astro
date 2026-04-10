@@ -4,6 +4,8 @@ import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
+import PrimaryCTA from "@/components/PrimaryCTA.astro";
+import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import CompareTable from "@/components/CompareTable.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
@@ -470,6 +472,23 @@ const faqSchema = {
         >.
       </p>
     </section>
+    <section class="border-t border-border py-8">
+      <h2 class="mb-6 text-xl font-semibold">Preguntas frecuentes sobre APV</h2>
+      <dl class="space-y-6">
+        {faqSchema.mainEntity.map((faq) => (
+          <div>
+            <dt class="mb-1 font-medium text-foreground">{faq.name}</dt>
+            <dd class="text-sm text-secondary leading-relaxed">{faq.acceptedAnswer.text}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+    <PrimaryCTA
+      text="Aprende todo sobre el APV →"
+      href="/posts/que-es-el-apv/"
+      context="Entiende las reglas del Régimen A y B antes de elegir dónde ahorrar para tu jubilación."
+    />
+    <ShareCalculatorResult />
     <MethodologyBlock
       notes="Los beneficios tributarios del APV se calculan según la legislación vigente (Ley 20.255 y normativas SII). Régimen A: el Estado bonifica el 15% de los aportes (con tope de 6 UTM anuales). Régimen B: el aporte se deduce de la base imponible del impuesto global complementario. Los límites de aporte se expresan en UF (600 UF anuales para Régimen B) según valores al momento del cálculo."
       sources={[
@@ -557,6 +576,12 @@ const faqSchema = {
 <script>
   import { calculateApvComparison } from "@/application/use-cases/CalculateApvComparison";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+
+  declare global {
+    interface Window {
+      showShareResult?: (text: string) => void;
+    }
+  }
 
   function fmt(n: number): string {
     return "$" + Math.round(n).toLocaleString("es-CL");
@@ -912,6 +937,19 @@ const faqSchema = {
         ...(mixedCard ? [mixedCard] : []),
         note
       );
+
+    const _annualBenefit =
+      resultado.recommendedStrategy === "A"
+        ? resultado.regimeA.annualBonus
+        : resultado.recommendedStrategy === "B"
+          ? resultado.regimeB.annualBenefit
+          : resultado.mixedStrategy.monthlyBenefit * 12;
+
+    if (typeof window.showShareResult === "function") {
+      window.showShareResult(
+        `Simulador APV: régimen recomendado ${resultado.recommendedStrategy} — beneficio anual estimado ${fmt(_annualBenefit)}`
+      );
+    }
 
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "apv",
