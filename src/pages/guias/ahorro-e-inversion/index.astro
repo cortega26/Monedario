@@ -106,13 +106,50 @@ const articulosSeccion = [
       <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
         Ahorro e inversión en Chile
       </h1>
-      <p class="max-w-3xl text-secondary">
-        Esta página te ayuda a elegir qué leer primero según tu objetivo, tu
-        plazo y el nivel de riesgo que estás dispuesto a asumir. Aquí también
-        viven instrumentos de ahorro con beneficio tributario como el APV. Si tu
-        duda es AFP obligatoria, fondos previsionales o cambio de
-        administradora, te conviene ir a pensiones y AFP.
-      </p>
+    </section>
+
+    <section class="py-4">
+      <ResumeWidget />
+    </section>
+
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-2xl font-bold">Elige por objetivo principal</h2>
+      <ul class="grid gap-4">
+        {
+          articulosSeccion.map(item => (
+            <li class="rounded-xl border border-border p-5">
+              <h3 class="mb-2 text-lg font-semibold">{item.titulo}</h3>
+              <p class="mb-3 text-sm text-secondary">{item.resumen}</p>
+              <a
+                href={item.href}
+                class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+              >
+                Ir a esta guía
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-2xl font-bold">Errores comunes de la sección</h2>
+      <ul class="list-disc space-y-2 pl-6 text-secondary">
+        <li>Comparar solo rentabilidad y no costo total neto.</li>
+        <li>
+          Usar instrumentos de alta volatilidad para metas de corto plazo.
+        </li>
+        <li>Invertir sin revisar reglas de rescate, vencimiento o custodia.</li>
+        <li>
+          Asumir que todos los intermediarios tienen el mismo nivel de
+          supervisión aplicable.
+        </li>
+        <li>Postergar revisión tributaria hasta el cierre del año.</li>
+        <li>
+          Confundir una decisión de ahorro con beneficio tributario con una duda
+          operativa sobre AFP obligatoria.
+        </li>
+      </ul>
     </section>
 
     <StartHere
@@ -147,30 +184,6 @@ const articulosSeccion = [
       ]}
     />
 
-    <section class="py-4">
-      <ResumeWidget />
-    </section>
-
-    <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">Elige por objetivo principal</h2>
-      <ul class="grid gap-4">
-        {
-          articulosSeccion.map(item => (
-            <li class="rounded-xl border border-border p-5">
-              <h3 class="mb-2 text-lg font-semibold">{item.titulo}</h3>
-              <p class="mb-3 text-sm text-secondary">{item.resumen}</p>
-              <a
-                href={item.href}
-                class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-              >
-                Ir a esta guía
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
-
     <section class="border-b border-border py-8">
       <h2 class="mb-4 text-2xl font-bold">No mezcles estas decisiones</h2>
       <ul class="list-disc space-y-2 pl-6 text-secondary">
@@ -189,26 +202,6 @@ const articulosSeccion = [
         <li>
           Si todavía no sabes qué instrumento comparar, parte por la guía
           general y no por un producto aislado.
-        </li>
-      </ul>
-    </section>
-
-    <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">Errores comunes de la sección</h2>
-      <ul class="list-disc space-y-2 pl-6 text-secondary">
-        <li>Comparar solo rentabilidad y no costo total neto.</li>
-        <li>
-          Usar instrumentos de alta volatilidad para metas de corto plazo.
-        </li>
-        <li>Invertir sin revisar reglas de rescate, vencimiento o custodia.</li>
-        <li>
-          Asumir que todos los intermediarios tienen el mismo nivel de
-          supervisión aplicable.
-        </li>
-        <li>Postergar revisión tributaria hasta el cierre del año.</li>
-        <li>
-          Confundir una decisión de ahorro con beneficio tributario con una duda
-          operativa sobre AFP obligatoria.
         </li>
       </ul>
     </section>

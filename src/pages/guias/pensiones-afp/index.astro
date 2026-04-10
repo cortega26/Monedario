@@ -80,12 +80,38 @@ const relatedCards = pensionHubRelatedCards.filter(
       <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
         Pensiones y AFP en Chile
       </h1>
-      <p class="max-w-3xl text-secondary">
-        Esta página ordena cuatro decisiones distintas: entender la reforma,
-        elegir fondos, cambiarte de AFP o revisar Cuenta 2. Si tu foco principal
-        es APV y beneficio tributario, esa decisión vive fuera del núcleo AFP y
-        aparece más abajo solo como comparación cercana.
-      </p>
+    </section>
+
+    <section class="py-4">
+      <ResumeWidget />
+    </section>
+
+    <ContextLinkSection
+      eyebrow="Núcleo previsional"
+      title="Elige la decisión previsional que sí corresponde"
+      description="Estas son las cuatro rutas núcleo del hub AFP. Cada una resuelve un trabajo distinto y no deberían competir entre sí en esta misma vista."
+      items={pensionHubPrimaryCards}
+    />
+
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-2xl font-bold">Errores comunes</h2>
+      <ul class="list-disc space-y-2 pl-6 text-secondary">
+        <li>
+          Elegir AFP o fondo solo por una foto de rentabilidad de corto plazo.
+        </li>
+        <li>Confundir comisión baja con mejor resultado previsional total.</li>
+        <li>
+          Leer la reforma como si todo ya operara igual hoy, sin separar 2026,
+          2027 y 2033.
+        </li>
+        <li>
+          Confundir APV con elección de fondo AFP o con proyección de pensión.
+        </li>
+        <li>
+          Seguir aquí cuando tu duda real es la liquidación mensual. En ese
+          caso, te conviene ir a sueldo y remuneraciones.
+        </li>
+      </ul>
     </section>
 
     <StartHere
@@ -121,17 +147,6 @@ const relatedCards = pensionHubRelatedCards.filter(
       ]}
     />
 
-    <section class="py-4">
-      <ResumeWidget />
-    </section>
-
-    <ContextLinkSection
-      eyebrow="Núcleo previsional"
-      title="Elige la decisión previsional que sí corresponde"
-      description="Estas son las cuatro rutas núcleo del hub AFP. Cada una resuelve un trabajo distinto y no deberían competir entre sí en esta misma vista."
-      items={pensionHubPrimaryCards}
-    />
-
     <ContextLinkSection
       eyebrow="Fuera del núcleo AFP"
       title="Comparaciones y herramientas cercanas"
@@ -154,27 +169,6 @@ const relatedCards = pensionHubRelatedCards.filter(
           Cuenta 2 no resuelve por sí sola una decisión de fondo, una reforma o
           un cambio de AFP. Es una comparación lateral, no la puerta de entrada
           universal del cluster.
-        </li>
-      </ul>
-    </section>
-
-    <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">Errores comunes</h2>
-      <ul class="list-disc space-y-2 pl-6 text-secondary">
-        <li>
-          Elegir AFP o fondo solo por una foto de rentabilidad de corto plazo.
-        </li>
-        <li>Confundir comisión baja con mejor resultado previsional total.</li>
-        <li>
-          Leer la reforma como si todo ya operara igual hoy, sin separar 2026,
-          2027 y 2033.
-        </li>
-        <li>
-          Confundir APV con elección de fondo AFP o con proyección de pensión.
-        </li>
-        <li>
-          Seguir aquí cuando tu duda real es la liquidación mensual. En ese
-          caso, te conviene ir a sueldo y remuneraciones.
         </li>
       </ul>
     </section>

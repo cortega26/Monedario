@@ -95,52 +95,7 @@ const articulosSeccion = [
       <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
         Contingencias de Empleo e Ingresos en Chile
       </h1>
-      <p class="max-w-3xl text-secondary">
-        Esta sección reúne ayudas para cuando el ingreso laboral se interrumpe:
-        cesantía, licencia médica o término de contrato con finiquito e
-        indemnizaciones. Si tu duda es la liquidación mensual o el sueldo
-        líquido, parte mejor por la sección de{" "}
-        <a
-          href={getPath("/guias/sueldo-remuneraciones/")}
-          class="text-accent underline underline-offset-4 hover:opacity-80"
-        >
-          sueldo y remuneraciones
-        </a>
-        .
-      </p>
     </section>
-
-    <StartHere
-      steps={[
-        {
-          step: 1,
-          title: "Seguro de cesantía en Chile",
-          description: "Qué cubre, cuánto paga y cuándo puedes usarlo.",
-          href: "/posts/seguro-de-cesantia/",
-        },
-        {
-          step: 2,
-          title: "Finiquito e indemnizaciones en Chile",
-          description:
-            "Derechos según causal de despido y cómo calcular el monto.",
-          href: "/posts/finiquito-e-indemnizaciones-en-chile/",
-        },
-        {
-          step: 3,
-          title: "Licencia médica: ¿desde qué día pagan?",
-          description:
-            "Plazos, topes y diferencias entre CCAF, Fonasa e Isapre.",
-          href: "/posts/licencia-medica-desde-que-dia-pagan/",
-        },
-        {
-          step: 4,
-          title: "Calculadora de finiquito",
-          description:
-            "Estima sueldo pendiente, vacaciones, aviso previo e indemnización.",
-          href: "/calculadoras/finiquito-indemnizacion/",
-        },
-      ]}
-    />
 
     <section class="py-4">
       <ResumeWidget />
@@ -177,24 +132,6 @@ const articulosSeccion = [
     </section>
 
     <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">No mezcles estas situaciones</h2>
-      <ul class="list-disc space-y-2 pl-6 text-secondary">
-        <li>
-          Cesantía resuelve caja por pérdida de empleo; no reemplaza revisión de
-          finiquito.
-        </li>
-        <li>
-          Licencia médica es un flujo de subsidio y rechazo administrativo, no
-          un problema de término de contrato.
-        </li>
-        <li>
-          Si tu duda es sueldo mensual, descuentos o liquidación, esta no es la
-          sección correcta.
-        </li>
-      </ul>
-    </section>
-
-    <section class="border-b border-border py-8">
       <h2 class="mb-4 text-2xl font-bold">Errores comunes</h2>
       <ul class="list-disc space-y-2 pl-6 text-secondary">
         <li>
@@ -208,6 +145,56 @@ const articulosSeccion = [
         <li>
           Tratar cesantía, licencia y finiquito como temas aislados cuando
           afectan la misma caja.
+        </li>
+      </ul>
+    </section>
+
+    <StartHere
+      steps={[
+        {
+          step: 1,
+          title: "Seguro de cesantía en Chile",
+          description: "Qué cubre, cuánto paga y cuándo puedes usarlo.",
+          href: "/posts/seguro-de-cesantia/",
+        },
+        {
+          step: 2,
+          title: "Finiquito e indemnizaciones en Chile",
+          description:
+            "Derechos según causal de despido y cómo calcular el monto.",
+          href: "/posts/finiquito-e-indemnizaciones-en-chile/",
+        },
+        {
+          step: 3,
+          title: "Licencia médica: ¿desde qué día pagan?",
+          description:
+            "Plazos, topes y diferencias entre CCAF, Fonasa e Isapre.",
+          href: "/posts/licencia-medica-desde-que-dia-pagan/",
+        },
+        {
+          step: 4,
+          title: "Calculadora de finiquito",
+          description:
+            "Estima sueldo pendiente, vacaciones, aviso previo e indemnización.",
+          href: "/calculadoras/finiquito-indemnizacion/",
+        },
+      ]}
+    />
+
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-2xl font-bold">No mezcles estas situaciones</h2>
+      <ul class="list-disc space-y-2 pl-6 text-secondary">
+        <li>
+          Cesantía resuelve caja por pérdida de empleo; no reemplaza revisión de
+          finiquito.
+        </li>
+        <li>
+          Licencia médica es un flujo de subsidio y rechazo administrativo, no
+          un problema de término de contrato.
+        </li>
+        <li>
+          Si tu duda es sueldo mensual, descuentos o liquidación, esta no es la
+          sección correcta.
         </li>
       </ul>
     </section>

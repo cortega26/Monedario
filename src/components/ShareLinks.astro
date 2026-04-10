@@ -7,19 +7,33 @@ const URL = Astro.url;
 
 {
   SHARE_LINKS.length > 0 && (
-    <div class="flex flex-none flex-col items-center justify-center gap-1 md:items-start">
+    <div class="flex flex-none flex-col items-center justify-center gap-2 md:items-start">
       <span class="italic">Comparte este artículo en:</span>
       <div class="text-center">
-        {SHARE_LINKS.map(social => (
+        {/* WhatsApp — primary */}
+        {SHARE_LINKS[0] && (
           <LinkButton
-            href={`${social.href + URL}`}
-            class="scale-90 p-2 hover:rotate-6 sm:p-1"
-            title={social.linkTitle}
+            href={`${SHARE_LINKS[0].href + URL}`}
+            class="scale-100 p-3 hover:rotate-6 sm:p-2 inline-block mr-3"
+            title={SHARE_LINKS[0].linkTitle}
           >
-            <social.icon class="inline-block size-6 scale-125 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-110" />
-            <span class="sr-only">{social.linkTitle}</span>
+            <SHARE_LINKS[0].icon class="inline-block size-6 scale-150 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-130" />
+            <span class="sr-only">{SHARE_LINKS[0].linkTitle}</span>
           </LinkButton>
-        ))}
+        )}
+        {/* Secondary buttons */}
+        <div class="inline-flex gap-1">
+          {SHARE_LINKS.slice(1).map(social => (
+            <LinkButton
+              href={`${social.href + URL}`}
+              class="scale-75 p-1 hover:rotate-6"
+              title={social.linkTitle}
+            >
+              <social.icon class="inline-block size-6 scale-100 fill-transparent stroke-current stroke-2 opacity-75 group-hover:fill-transparent group-hover:opacity-100" />
+              <span class="sr-only">{social.linkTitle}</span>
+            </LinkButton>
+          ))}
+        </div>
       </div>
     </div>
   )

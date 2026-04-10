@@ -114,45 +114,7 @@ const adjacentRoutes = [
       <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
         Sueldo líquido y remuneraciones en Chile
       </h1>
-      <p class="max-w-3xl text-secondary">
-        Aquí puedes entender cuánto te descuentan, por qué tu sueldo líquido
-        cambia y qué leer o calcular según tu duda. Usa esta sección para ir
-        directo a la guía, a la calculadora o a la ayuda específica que
-        necesites.
-      </p>
     </section>
-
-    <StartHere
-      steps={[
-        {
-          step: 1,
-          title: "Cómo calcular el sueldo líquido",
-          description:
-            "Fórmula, descuentos legales y qué pasa con el imponible.",
-          href: "/posts/como-calcular-sueldo-liquido/",
-        },
-        {
-          step: 2,
-          title: "Descuentos de sueldo en Chile",
-          description:
-            "AFP, salud, cesantía, impuesto: qué descuenta cada uno y por qué.",
-          href: "/posts/descuentos-de-sueldo/",
-        },
-        {
-          step: 3,
-          title: "Cómo leer tu liquidación de sueldo",
-          description: "Entiende cada línea y detecta errores comunes.",
-          href: "/posts/liquidacion-de-sueldo/",
-        },
-        {
-          step: 4,
-          title: "Calculadora de sueldo líquido",
-          description:
-            "Calcula tu líquido desde el bruto o el bruto desde el líquido deseado.",
-          href: "/calculadoras/sueldo-liquido/",
-        },
-      ]}
-    />
 
     <section class="py-4">
       <ResumeWidget />
@@ -225,6 +187,38 @@ const adjacentRoutes = [
       title="Elige la opción que mejor te ayude"
       description="La decisión correcta depende del trabajo que tienes delante: calcular el depósito, auditar el comprobante, clasificar un descuento o pasar a otra sección porque el problema ya cambió."
       items={primaryCards}
+    />
+
+    <StartHere
+      steps={[
+        {
+          step: 1,
+          title: "Cómo calcular el sueldo líquido",
+          description:
+            "Fórmula, descuentos legales y qué pasa con el imponible.",
+          href: "/posts/como-calcular-sueldo-liquido/",
+        },
+        {
+          step: 2,
+          title: "Descuentos de sueldo en Chile",
+          description:
+            "AFP, salud, cesantía, impuesto: qué descuenta cada uno y por qué.",
+          href: "/posts/descuentos-de-sueldo/",
+        },
+        {
+          step: 3,
+          title: "Cómo leer tu liquidación de sueldo",
+          description: "Entiende cada línea y detecta errores comunes.",
+          href: "/posts/liquidacion-de-sueldo/",
+        },
+        {
+          step: 4,
+          title: "Calculadora de sueldo líquido",
+          description:
+            "Calcula tu líquido desde el bruto o el bruto desde el líquido deseado.",
+          href: "/calculadoras/sueldo-liquido/",
+        },
+      ]}
     />
 
     <section class="border-b border-border py-8">
