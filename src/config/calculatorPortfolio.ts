@@ -445,6 +445,34 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
       },
     ],
   },
+  {
+    href: "/calculadoras/dividendo-hipotecario/",
+    slug: "dividendo-hipotecario",
+    title: "Calculadora de Dividendo Hipotecario",
+    description:
+      "Estima tu dividendo mensual en UF y pesos según el valor de la propiedad, el pie, la tasa y el plazo. Incluye seguros opcionales y tabla de amortización.",
+    icon: "🏠",
+    tag: "Crédito hipotecario",
+    family: "vivienda-uf",
+    primaryJtbd:
+      "Saber cuánto pagarás de dividendo mensual antes de tomar un crédito hipotecario.",
+    whenToUse:
+      "Cuando estás evaluando la compra de una vivienda y necesitas estimar la cuota mensual en UF y pesos.",
+    notFor:
+      "No reemplaza la oferta formal del banco ni cubre seguros obligatorios con detalle legal.",
+    related: [
+      {
+        href: "/calculadoras/prepago-credito/",
+        label: "Prepago de crédito",
+        when: "si el crédito hipotecario ya está tomado y evalúas un abono extraordinario.",
+      },
+      {
+        href: "/calculadoras/conversor-uf/",
+        label: "Conversor UF",
+        when: "si solo necesitas convertir un monto en UF a pesos sin calcular una cuota hipotecaria.",
+      },
+    ],
+  },
 ];
 
 export const CALCULATOR_DECISION_GUIDES: CalculatorDecisionGuide[] = [
@@ -543,5 +571,13 @@ export const CALCULATOR_DECISION_GUIDES: CalculatorDecisionGuide[] = [
     recommendedHref: "/calculadoras/reajuste-arriendo/",
     recommendedLabel: "Reajuste de Arriendo",
     why: "Aplica la regla del contrato; un conversor simple no alcanza para esa decisión.",
+  },
+  {
+    title: "Quiero saber cuánto pagaré de dividendo hipotecario",
+    situation:
+      "Estás evaluando la compra de una vivienda y necesitas estimar la cuota mensual en UF y pesos según precio, pie, tasa y plazo.",
+    recommendedHref: "/calculadoras/dividendo-hipotecario/",
+    recommendedLabel: "Calculadora de Dividendo Hipotecario",
+    why: "Diseñada específicamente para estimar el dividendo mensual con tabla de amortización, a diferencia del conversor UF que solo traduce montos.",
   },
 ];

@@ -111,7 +111,7 @@ function resolveServiceYears(
   additionalMonthsWorked: number
 ) {
   const serviceYearsCounted =
-    yearsWorked + (additionalMonthsWorked > 6 ? 1 : 0);
+    yearsWorked + (additionalMonthsWorked >= 6 ? 1 : 0);
 
   return {
     serviceYearsCounted,
