@@ -6,14 +6,14 @@ Fecha de corte: 2026-04-07
 
 ### Total de items por urgencia
 - **P0:** 3
-- **P1:** 12
+- **P1:** 13
 - **P2:** 12
 - **P3:** 1
 
-### Estado de avance (2026-04-09)
+### Estado de avance (2026-04-10)
 - **Completados:** 42 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `TD-0037`, `TD-0038`, `FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 1 (`TD-0039`)
-- **Backlog sin iniciar:** 0
+- **Backlog sin iniciar:** 1 (`TD-0040`)
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -872,3 +872,22 @@ Fecha de corte: 2026-04-07
 - **Estado:** En progreso
 - **Fecha de creación:** 2026-04-08
 - **Última actualización:** 2026-04-09
+
+## TD-0040 — Baseline de `pnpm run test` volvió a quedar en rojo por `EstimateFiniquito`
+- **ID:** TD-0040
+- **Título corto:** Investigar regresión numérica en `EstimateFiniquito.test.ts`
+- **Descripción:** El baseline requerido por AGENTS §5.5 antes de editar runtime UI volvió a fallar en `tests/application/EstimateFiniquito.test.ts`. El caso judicial que debe conservar una estimación base espera `yearsOfServiceIndemnity = 3000000`, pero el árbol actual entrega `2000000`.
+- **Evidencia:** `pnpm run test` (2026-04-10, árbol sin cambios de runtime para esta tarea) falla en `tests/application/EstimateFiniquito.test.ts:60` con `AssertionError: expected 2000000 to be 3000000`.
+- **Impacto:** La suite deja de ser una señal confiable para cambios futuros y bloquea verificación completa aunque el trabajo actual no toque finiquitos.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P1
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Revalidar la fórmula/fixture del caso judicial en `EstimateFiniquito` y alinear el test con la lógica vigente solo si el cálculo actual es correcto; de lo contrario, restaurar la estimación base esperada.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `pnpm run test` pasa sin fallos en `tests/application/EstimateFiniquito.test.ts`.
+  - [ ] Queda documentado si el drift provino del motor o del fixture esperado.
+- **Owner:** TBD
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-04-10
+- **Última actualización:** 2026-04-10

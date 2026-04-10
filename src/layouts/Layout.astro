@@ -162,27 +162,28 @@ const structuredData = !pubDatetime
         />
       )
     }
-    <script
-      is:inline
-      define:vars={{ analyticsMeasurementId: PUBLIC_GA_MEASUREMENT_ID ?? "" }}
-    >
-      window.__monedarioAnalyticsConfig__ = {
-        measurementId: analyticsMeasurementId || undefined,
-      };
-      window.dataLayer = window.dataLayer || [];
-      window.gtag =
-        window.gtag ||
-        ((...args) => {
-          window.dataLayer?.push(args);
-        });
-
-      if (analyticsMeasurementId) {
-        window.gtag("js", new Date());
-        window.gtag("config", analyticsMeasurementId, {
-          anonymize_ip: true,
-        });
-      }
-    </script>
+    {
+      PUBLIC_GA_MEASUREMENT_ID && (
+        <script
+          is:inline
+          define:vars={{ analyticsMeasurementId: PUBLIC_GA_MEASUREMENT_ID }}
+        >
+          window.__monedarioAnalyticsConfig__ = {
+            measurementId: analyticsMeasurementId,
+          };
+          window.dataLayer = window.dataLayer || [];
+          window.gtag =
+            window.gtag ||
+            ((...args) => {
+              window.dataLayer?.push(args);
+            });
+          window.gtag("js", new Date());
+          window.gtag("config", analyticsMeasurementId, {
+            anonymize_ip: true,
+          });
+        </script>
+      )
+    }
 
     {
       // If PUBLIC_GOOGLE_SITE_VERIFICATION is set in the environment variable,

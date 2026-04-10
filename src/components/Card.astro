@@ -8,9 +8,10 @@ import ArticlePlaceholder from "./ArticlePlaceholder.astro";
 
 type Props = {
   variant?: "h2" | "h3";
+  earlyLoad?: boolean;
 } & CollectionEntry<"blog">;
 
-const { variant: Heading = "h2", data, body } = Astro.props;
+const { variant: Heading = "h2", earlyLoad = false, data, body } = Astro.props;
 const { title, description, tags, ogImage, ...props } = data;
 const href = getCanonicalPathFromSlug(data.slug);
 const firstTag = tags?.[0] ?? "";
@@ -44,8 +45,9 @@ const readingTime = getReadingTime(body ?? "");
             height="675"
             sizes="(min-width: 1280px) 560px, (min-width: 768px) 45vw, 100vw"
             class="aspect-video w-full object-cover"
-            loading="lazy"
-            decoding="async"
+            loading={earlyLoad ? "eager" : "lazy"}
+            fetchpriority={earlyLoad ? "high" : undefined}
+            decoding={earlyLoad ? "sync" : "async"}
           />
         ) : (
           <ArticlePlaceholder tag={firstTag} />

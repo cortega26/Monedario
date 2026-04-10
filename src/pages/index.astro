@@ -62,7 +62,7 @@ const heroDescription =
     <ProblemCards />
 
     <section
-      class="mb-10 rounded-xl border border-accent/15 bg-accent/5 px-6 py-5"
+      class="mt-6 mb-10 rounded-xl border border-accent/15 bg-accent/5 px-6 py-5"
     >
       <div
         class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
@@ -112,8 +112,8 @@ const heroDescription =
             </div>
 
             <ul class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {recentRichPosts.map(post => (
-                <Card variant="h3" {...post} />
+              {recentRichPosts.map((post, i) => (
+                <Card variant="h3" {...post} earlyLoad={i === 0} />
               ))}
             </ul>
           </div>

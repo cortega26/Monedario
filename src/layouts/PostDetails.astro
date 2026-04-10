@@ -216,7 +216,6 @@ const relatedPostsExcludedSlugs = [
     data-analytics-page-type="article"
   >
     <h1
-      transition:name={slugifyStr(title.replaceAll(".", "-"))}
       class="inline-block text-2xl font-bold text-accent sm:text-3xl"
       style="font-family: var(--font-display);"
     >
@@ -241,21 +240,21 @@ const relatedPostsExcludedSlugs = [
       <EditPost {hideEditPost} {post} class="max-sm:hidden" />
     </div>
 
+    {
+      articleLead && (
+        <ArticleDecisionIntro
+          lead={articleLead}
+          reviewedDate={article.updatedDate ?? article.pubDate}
+        />
+      )
+    }
     <div class="lg:flex lg:items-start lg:gap-10">
       <article
         id="article"
-        class="app-prose mt-8 w-full max-w-app min-w-0 grow prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"
+        class="prose app-prose mt-8 w-full max-w-app min-w-0 grow prose-pre:bg-(--shiki-light-bg) dark:prose-pre:bg-(--shiki-dark-bg)"
         data-analytics-article={article.slug}
         data-analytics-article-title={title}
       >
-        {
-          articleLead && (
-            <ArticleDecisionIntro
-              lead={articleLead}
-              reviewedDate={article.updatedDate ?? article.pubDate}
-            />
-          )
-        }
         <Content />
         {
           articleLead?.calculatorHref && articleLead.calculatorLabel && (
