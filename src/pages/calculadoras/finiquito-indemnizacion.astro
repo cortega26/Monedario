@@ -219,6 +219,45 @@ const cesantiaGuidePath = getPath("/posts/seguro-de-cesantia/");
           </p>
         </div>
 
+        <div class="mb-4">
+          <label class="mb-2 block text-sm font-medium text-secondary">
+            ¿Tu empresa paga gratificación anual (art. 47)?
+          </label>
+          <div class="flex gap-2">
+            <label class="flex-1 cursor-pointer">
+              <input
+                type="radio"
+                name="gratificacion-anual"
+                value="no"
+                checked
+                class="peer sr-only"
+              />
+              <span
+                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
+              >
+                No / No sé
+              </span>
+            </label>
+            <label class="flex-1 cursor-pointer">
+              <input
+                type="radio"
+                name="gratificacion-anual"
+                value="si"
+                class="peer sr-only"
+              />
+              <span
+                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
+              >
+                Sí, pago anual
+              </span>
+            </label>
+          </div>
+          <p class="mt-1 text-xs text-muted">
+            Solo si la gratificación se paga en una suma anual en balance, no integrada
+            en el sueldo mensual.
+          </p>
+        </div>
+
         <button
           id="calcBtn"
           class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90"
@@ -418,6 +457,11 @@ const cesantiaGuidePath = getPath("/posts/seguro-de-cesantia/");
         ) as HTMLInputElement
       )?.value === "si";
 
+    const gratificacionAnualEl = document.querySelector(
+      'input[name="gratificacion-anual"]:checked'
+    ) as HTMLInputElement | null;
+    const gratificacionAnual = gratificacionAnualEl?.value === "si";
+
     if (monthlySalary <= 0) {
       showInlineError(
         "Ingresa una remuneración mensual válida antes de calcular."
@@ -442,6 +486,7 @@ const cesantiaGuidePath = getPath("/posts/seguro-de-cesantia/");
           | "vencimiento-obra"
           | "judicial",
         noticeGiven,
+        gratificacionAnual,
       });
     } catch (error) {
       showInlineError(
@@ -551,6 +596,16 @@ const cesantiaGuidePath = getPath("/posts/seguro-de-cesantia/");
           result.substituteNoticeIndemnity > 0
             ? "text-accent"
             : "text-secondary"
+        ),
+        buildRow(
+          "Gratificación proporcional (art. 47)",
+          fmtCurrency(result.gratificacionProporcionalAmount),
+          result.gratificacionProporcionalAmount > 0 ? "text-accent" : "text-secondary"
+        ),
+        buildRow(
+          `Recargo despido injustificado (art. 168 — ${(result.art168SurchargePercent * 100).toFixed(0)}%)`,
+          fmtCurrency(result.art168SurchargeAmount),
+          result.art168SurchargeAmount > 0 ? "text-accent" : "text-secondary"
         ),
         flags,
         notes
