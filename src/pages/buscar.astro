@@ -137,6 +137,7 @@ const searchChips = [
         bundlePath: BASE + "pagefind/",
         showImages: false,
         showSubResults: true,
+        pageSize: 8,
         translations: {
           language: "es",
           placeholder: "Buscar",
@@ -213,10 +214,21 @@ const searchChips = [
         }
       });
 
+      let debounceTimer: ReturnType<typeof setTimeout> | null = null;
       searchField.addEventListener("input", () => {
-        if (searchField.value.trim() === "") {
+        const term = searchField.value.trim();
+        if (debounceTimer !== null) clearTimeout(debounceTimer);
+        if (term === "") {
           runSearch("");
+          return;
         }
+        debounceTimer = setTimeout(() => {
+          trackAnalyticsEvent("search_submit", {
+            search_term: term,
+            source: "debounce",
+          });
+          runSearch(searchField.value);
+        }, 300);
       });
 
       // Wire up chip shortcuts (intercept click once pagefind is ready)

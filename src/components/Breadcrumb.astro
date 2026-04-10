@@ -5,10 +5,18 @@
  * - Stripea el basePath de Astro.site para el cálculo de segmentos.
  * - Construye hrefs acumulados correctos (no por segmento suelto).
  * - Labels (display) separados del href real.
+ * - Acepta `tags` para mostrar hub contextual en artículos.
  *
  * Nota TS: Astro.site es URL | undefined. Usamos fallback seguro para evitar error de tipos.
  */
 import { getPath } from "@/utils/getPath";
+import { getHubFromTags } from "@/config/tagHubMap";
+
+type Props = {
+  tags?: string[];
+}
+
+const { tags } = Astro.props;
 
 const SITE_URL = Astro.site ?? new URL("http://localhost");
 
@@ -69,6 +77,15 @@ if (segments[0] === "tags" && !isNaN(Number(segments[2]))) {
   );
 }
 
+// Contextual hub: for article pages, replace "Artículos" crumb with the matched hub
+const hub = tags && segments[0] === "posts" && segments.length === 2
+  ? getHubFromTags(tags)
+  : null;
+
+if (hub) {
+  labels[0] = hub.label;
+}
+
 const breadcrumbItems = [
   {
     "@type": "ListItem",
@@ -80,7 +97,10 @@ const breadcrumbItems = [
     "@type": "ListItem",
     position: index + 2,
     name: labels[index],
-    item: new URL(getPath(crumb.href), Astro.site ?? Astro.url.origin).href,
+    item: new URL(
+      getPath(index === 0 && hub ? hub.href : crumb.href),
+      Astro.site ?? Astro.url.origin
+    ).href,
   })),
 ];
 ---
@@ -126,7 +146,10 @@ const breadcrumbItems = [
           </li>
         ) : (
           <li>
-            <a href={getPath(crumb.href)} class="capitalize opacity-70">
+            <a
+              href={getPath(index === 0 && hub ? hub.href : crumb.href)}
+              class="capitalize opacity-70"
+            >
               {labels[index]}
             </a>
             <span aria-hidden="true">&raquo;</span>

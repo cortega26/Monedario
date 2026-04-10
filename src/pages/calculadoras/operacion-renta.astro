@@ -232,9 +232,17 @@ const economicSourceLabel =
         class="rounded-xl border border-border bg-background p-6"
       >
         <h2 class="mb-5 text-lg font-semibold">💡 Estimación de resultado</h2>
-        <div id="resultado-contenido" class="py-8 text-center text-muted">
-          <p class="mb-3 text-4xl">🧮</p>
-          <p class="text-sm">Ingresa tus datos y presiona calcular.</p>
+        <div id="resultado-contenido" data-is-example="true">
+          <div class="mb-6 rounded-lg border border-green-500/20 bg-green-500/10 p-4 text-center">
+            <p class="mb-1 text-xs font-bold tracking-widest text-muted uppercase">Devolución estimada (Ejemplo)</p>
+            <p class="text-4xl font-bold text-green-400/70">$287.000</p>
+          </div>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between"><span class="text-secondary">Sueldos brutos anuales</span><span class="font-medium text-foreground/60">$18.000.000</span></div>
+            <div class="flex justify-between"><span class="text-secondary">IGC calculado</span><span class="font-medium text-foreground/60">$863.000</span></div>
+            <div class="flex justify-between"><span class="text-secondary">Imp. único retenido</span><span class="text-green-400/70">− $1.150.000</span></div>
+          </div>
+          <p class="mt-4 text-xs text-muted">Ejemplo: sueldos brutos $18.000.000 anuales, sin honorarios ni deducciones adicionales. Ingresa tus datos reales para calcular.</p>
         </div>
         <div
           id="economic-parameters"

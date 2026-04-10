@@ -236,9 +236,18 @@ const cesantiaGuidePath = getPath("/posts/seguro-de-cesantia/");
 
       <div class="rounded-xl border border-border bg-background p-6">
         <h2 class="mb-5 text-lg font-semibold">💰 Estimación orientativa</h2>
-        <div id="resultado-contenido" class="py-8 text-center text-muted">
-          <p class="mb-3 text-4xl">📄</p>
-          <p class="text-sm">Completa los datos y presiona calcular.</p>
+        <div id="resultado-contenido" data-is-example="true">
+          <div class="mb-6 rounded-lg border border-border bg-surface-muted/40 p-4 text-center">
+            <p class="mb-1 text-xs font-bold tracking-widest text-muted uppercase">Total estimado (Ejemplo)</p>
+            <p class="text-4xl font-bold text-foreground/60">$3.600.000</p>
+          </div>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between"><span class="text-secondary">Sueldo pendiente (15 días)</span><span class="font-medium text-foreground/60">$450.000</span></div>
+            <div class="flex justify-between"><span class="text-secondary">Feriado proporcional</span><span class="font-medium text-foreground/60">$450.000</span></div>
+            <div class="flex justify-between"><span class="text-secondary">Aviso previo</span><span class="font-medium text-foreground/60">$900.000</span></div>
+            <div class="flex justify-between"><span class="text-secondary">Indemnización (3 años)</span><span class="font-medium text-foreground/60">$2.700.000</span></div>
+          </div>
+          <p class="mt-4 text-xs text-muted">Ejemplo: sueldo $900.000, 3 años, necesidades de la empresa, sin aviso previo. Ingresa tu caso real para estimar tu finiquito.</p>
         </div>
       </div>
     </section>

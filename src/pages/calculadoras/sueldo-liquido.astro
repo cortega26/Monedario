@@ -337,9 +337,19 @@ const economicSourceLabel =
         class="rounded-xl border border-border bg-background p-6"
       >
         <h2 class="mb-5 text-lg font-semibold">💵 Resultado</h2>
-        <div id="resultado-contenido" class="py-8 text-center text-muted">
-          <p class="mb-3 text-4xl">🧮</p>
-          <p class="text-sm">Ingresa tu sueldo y presiona calcular.</p>
+        <div id="resultado-contenido" data-is-example="true">
+          <div class="mb-6 rounded-lg border border-border bg-surface-muted/40 p-4 text-center">
+            <p class="mb-1 text-xs font-bold tracking-widest text-muted uppercase">Sueldo Líquido (Ejemplo)</p>
+            <p class="text-4xl font-bold text-foreground/60">$985.000</p>
+          </div>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between"><span class="text-secondary">Sueldo bruto</span><span class="font-medium text-foreground/60">$1.200.000</span></div>
+            <div class="flex justify-between"><span class="text-secondary">AFP (10.77%)</span><span class="text-red-400/70">− $129.240</span></div>
+            <div class="flex justify-between"><span class="text-secondary">Salud (7%)</span><span class="text-red-400/70">− $84.000</span></div>
+            <div class="flex justify-between"><span class="text-secondary">Seg. cesantía (0.6%)</span><span class="text-red-400/70">− $7.200</span></div>
+            <div class="flex justify-between"><span class="text-secondary">Imp. 2ª categoría</span><span class="text-red-400/70">− $0</span></div>
+          </div>
+          <p class="mt-4 text-xs text-muted">Ejemplo para sueldo bruto $1.200.000 con Fonasa y Habitat. Ingresa tus datos para calcular tu caso real.</p>
         </div>
         <div
           id="economic-parameters"

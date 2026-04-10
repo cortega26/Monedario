@@ -1,0 +1,32 @@
+---
+import { getPath } from "@/utils/getPath";
+
+type Props = {
+  href: string;
+  label: string;
+  description?: string;
+};
+
+const { href, label, description } = Astro.props;
+---
+
+<aside
+  class="not-prose my-8 flex items-start gap-4 rounded-xl border border-accent/25 bg-accent/5 px-5 py-4"
+  aria-label="Calculadora relacionada"
+>
+  <span class="text-2xl leading-none" aria-hidden="true">🧮</span>
+  <div class="flex-1">
+    <p class="text-sm font-semibold text-foreground">{label}</p>
+    {description && <p class="mt-0.5 text-sm text-secondary">{description}</p>}
+    <a
+      href={getPath(href)}
+      class="mt-3 inline-flex items-center rounded-full bg-accent px-4 py-1.5 text-sm font-semibold text-background transition-opacity hover:opacity-90"
+      data-analytics-cta="article-calculator-cta"
+      data-analytics-label={label}
+      data-analytics-location="article_body"
+      onclick="window.monedarioAnalytics?.track('article_calculator_cta_click', { calculator_href: this.href, label: this.dataset.analyticsLabel })"
+    >
+      Abrir calculadora →
+    </a>
+  </div>
+</aside>
