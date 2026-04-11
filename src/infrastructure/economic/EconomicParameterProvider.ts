@@ -11,6 +11,7 @@ type MindicadorResponse = {
   utm?: { valor?: number; fecha?: string };
   ipc?: { valor?: number };
   tmc?: { valor?: number };
+  dolar?: { valor?: number };
 };
 
 interface EconomicSnapshotPayload {
@@ -18,6 +19,7 @@ interface EconomicSnapshotPayload {
   utm: number;
   ipc?: number;
   tmc?: number;
+  dolar?: number;
   afcTopes?: {
     monthlyTaxableCapUf?: number;
   };
@@ -134,6 +136,8 @@ function loadSnapshotEconomicParameters(): EconomicParameters {
     utm: Number(payload.utm),
     ipc: Number(payload.ipc ?? 0),
     tmc: payload.tmc !== undefined ? Number(payload.tmc) : 3.49,
+    dolar:
+      payload.dolar !== undefined ? Number(payload.dolar) : undefined,
     afcTopes: {
       monthlyTaxableCapUf: Number(
         payload.afcTopes?.monthlyTaxableCapUf ??
@@ -169,6 +173,10 @@ async function fetchLiveEconomicParameters(): Promise<EconomicParameters> {
     utm: Number(payload.utm?.valor),
     ipc: Number(payload.ipc?.valor ?? 0),
     tmc: payload.tmc?.valor !== undefined ? Number(payload.tmc.valor) : 3.49,
+    dolar:
+      payload.dolar?.valor !== undefined
+        ? Number(payload.dolar.valor)
+        : undefined,
     afcTopes: {
       monthlyTaxableCapUf: DEFAULT_AFC_MONTHLY_TAXABLE_CAP_UF,
     },

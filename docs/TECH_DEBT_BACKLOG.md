@@ -11,7 +11,7 @@ Fecha de corte: 2026-04-07
 - **P3:** 1
 
 ### Estado de avance (2026-04-10)
-- **Completados:** 42 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `TD-0037`, `TD-0038`, `FIX-MDX`, `FIX-LINKS-CALC`)
+- **Completados:** 45 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `TD-0037`, `TD-0038`, `TD-0041`, `TD-0043`, `FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 1 (`TD-0039`)
 - **Backlog sin iniciar:** 1 (`TD-0040`)
 - **Backlog en validación/diseño:** 0
@@ -907,6 +907,31 @@ Fecha de corte: 2026-04-07
   - [x] `pnpm run check:editorial` deja de fallar por `presupuesto-control-financiero`.
   - [x] `pnpm run test` pasa en `tests/integration/cluster-source-of-truth.test.ts`.
   - [x] La verdad operativa queda alineada registrando el hub en `src/config/clusters.ts` y ajustando el test de conteo.
+- **Owner:** TBD
+- **Estado:** Completado
+- **Fecha de creación:** 2026-04-11
+- **Última actualización:** 2026-04-11
+
+## TD-0043 — AFP commission rates publicadas con 6/7 valores incorrectos; sin validación automatizada
+- **ID:** TD-0043
+- **Título corto:** Blindar calidad de datos financieros críticos (AFP commissions)
+- **Descripción:** `src/config/afpCommissions.ts` fue creado el 2026-04-10 con 6 de 7 tasas de comisión AFP incorrectas (ningún valor fue verificado contra fuente oficial antes del merge). No existía herramienta ni workflow que detectara el drift. Las calculadoras `sueldo-liquido`, `apv` y `comisiones-afp` consumían esos valores erróneos directamente. El texto estático hardcoded en `sueldo-liquido.astro` también usaba cifras incorrectas.
+- **Evidencia:** Commit `9f03e05` (2026-04-10): `afpCommissions.ts` creado con valores que no coinciden con ninguna fuente oficial verificable. Verificación posterior contra Previred Indicadores Previsionales abril 2026 mostró: Capital 0.58% (debía ser 1.44%), Cuprum 0.65% (1.44%), Habitat 0.77% (1.27%), PlanVital 0.49% (1.16%), ProVida 0.69% (1.45%), Uno 0.75% (0.46%). Solo Modelo (0.58%) era correcto.
+- **Impacto:** Calculadoras YMYL publicaban resultados de descuento AFP incorrectos para 6 de 7 AFPs. Riesgo directo de decisiones financieras equivocadas por parte de los usuarios.
+- **Riesgo:** crítico (datos financieros YMYL incorrectos en producción)
+- **Severidad (1-5):** 5
+- **Urgencia:** P0
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** (1) Corregir todos los valores en `afpCommissions.ts` con verificación de ≥2 fuentes oficiales. (2) Crear script de verificación automatizado contra Previred. (3) Crear workflow mensual en GitHub Actions. (4) Crear política de verificación de datos financieros. (5) Actualizar texto hardcoded en páginas de calculadoras.
+- **Avance actual (2026-04-11):** RESUELTO. Los 7 valores fueron corregidos en `afpCommissions.ts` verificados contra Previred (abril 2026) + AFP Capital + AFP Uno + SP oficial. El texto estático en `sueldo-liquido.astro` fue actualizado a AFP Habitat 11.27% con los montos correctos. Se creó `scripts/check-afp-commissions.mjs`, `.github/workflows/check-afp-commissions.yml` (cron mensual, abre issue automático en GitHub si detecta drift), y `docs/governance/FINANCIAL_DATA_VERIFICATION_POLICY.md` con reglas FDV-001 a FDV-005.
+- **Criterios de cierre (checklist verificable):**
+  - [x] `src/config/afpCommissions.ts` tiene los 7 valores correctos con fuentes citadas en comentario de cabecera.
+  - [x] `src/pages/calculadoras/sueldo-liquido.astro` muestra valores de ejemplo y texto de rango consistentes con el config.
+  - [x] `scripts/check-afp-commissions.mjs` existe y valida contra Previred.
+  - [x] `.github/workflows/check-afp-commissions.yml` existe con cron mensual y apertura automática de issue.
+  - [x] `docs/governance/FINANCIAL_DATA_VERIFICATION_POLICY.md` define FDV-001 a FDV-005 y tabla de fuentes oficiales.
+  - [x] `docs/governance/README.md` referencia la nueva política.
+  - [x] `package.json` incluye script `check:afp-commissions`.
 - **Owner:** TBD
 - **Estado:** Completado
 - **Fecha de creación:** 2026-04-11

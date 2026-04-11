@@ -47,6 +47,7 @@
     "check:editorial-guard": "node scripts/check-editorial-guard.mjs",
     "economic:snapshot:refresh": "node scripts/refresh-economic-snapshot.mjs",
     "editorial:volatile-data:refresh": "node scripts/refresh-editorial-volatile-data.mjs",
+    "check:afp-commissions": "node scripts/check-afp-commissions.mjs",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
     "lint": "astro sync && eslint .",

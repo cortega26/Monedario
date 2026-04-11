@@ -3,6 +3,7 @@ import { getEconomicParameters } from "@/application/use-cases/GetEconomicParame
 export interface Indicadores {
   uf: number;
   utm: number;
+  dolar?: number;
   fecha: string;
   source: "live" | "fallback";
   telemetryFlag: string;
@@ -13,6 +14,7 @@ export async function getIndicadores(): Promise<Indicadores> {
   return {
     uf: parameters.uf,
     utm: parameters.utm,
+    dolar: parameters.dolar,
     fecha: parameters.lastUpdated,
     source: parameters.source,
     telemetryFlag,

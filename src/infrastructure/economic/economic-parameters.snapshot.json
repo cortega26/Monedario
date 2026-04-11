@@ -3,6 +3,7 @@
   "utm": 69889,
   "ipc": -0.2,
   "tmc": 3.49,
+  "dolar": 894.17,
   "afcTopes": {
     "monthlyTaxableCapUf": 135.2
   },
@@ -10,6 +11,6 @@
     "pensionAndHealthMonthlyTaxableCapUf": 90
   },
   "lastUpdated": "2026-04-11",
-  "capturedAt": "2026-04-11T10:56:18.841Z",
+  "capturedAt": "2026-04-11T19:14:10.124Z",
   "source": "mindicador.cl/api"
 }

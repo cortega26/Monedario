@@ -17,6 +17,7 @@ import {
 import ResumeWidget from "@/components/ResumeWidget.astro";
 import HeroHomepage from "@/components/HeroHomepage.astro";
 import ProblemCards from "@/components/ProblemCards.astro";
+import IndicadoresHoy from "@/components/IndicadoresHoy.astro";
 
 const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
@@ -53,6 +54,10 @@ const heroDescription =
   >
     <section class="border-b border-border py-8 lg:py-10">
       <HeroHomepage headline={heroTitle} description={heroDescription} />
+    </section>
+
+    <section class="border-b border-border py-3">
+      <IndicadoresHoy />
     </section>
 
     <section class="py-4">

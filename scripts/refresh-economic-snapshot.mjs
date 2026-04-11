@@ -41,6 +41,9 @@ async function fetchLiveParameters() {
   const ipc = Number(payload?.ipc?.valor ?? 0);
   const tmc =
     payload?.tmc?.valor !== undefined ? Number(payload.tmc.valor) : 3.49;
+  const dolarRaw = payload?.dolar?.valor;
+  const dolar =
+    dolarRaw !== undefined ? Number(dolarRaw) : undefined;
   const lastUpdated = toIsoDate(payload?.uf?.fecha ?? payload?.utm?.fecha);
 
   assertFinitePositive(uf, "UF");
@@ -49,12 +52,16 @@ async function fetchLiveParameters() {
     throw new Error("IPC must be a finite number.");
   }
   assertFinitePositive(tmc, "TMC");
+  if (dolar !== undefined) {
+    assertFinitePositive(dolar, "Dolar");
+  }
 
   return {
     uf,
     utm,
     ipc,
     tmc,
+    ...(dolar !== undefined && { dolar }),
     afcTopes: {
       monthlyTaxableCapUf: DEFAULT_AFC_MONTHLY_TAXABLE_CAP_UF,
     },
