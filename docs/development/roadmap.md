@@ -74,7 +74,7 @@ Phase 2 completed: 2026-04-11
 
 ## Phase 3 - Conversion and Distribution Readiness
 
-> **Note:** Phase 3 items are IDEA-stage — require founder decision before implementation. Dependencies for MB-022 (CTA framework): MB-019 now satisfied.
+> **Note:** Phase 3 items are IDEA-stage — require founder decision before implementation. Dependencies for MB-022 (CTA framework): MB-019 now satisfied. Research update (2026-04-11): MB-021 (newsletter) deferred until MB-039 (localStorage) produces return-visit signal. MB-022 refined to diagnosis-type CTAs. MB-024 distribution candidates are MB-040 (FES simulator) and MB-041 (SOAP comparador).
 
 **Goal**  
 Add an owned-audience and conversion layer so search traffic compounds into repeat visits, email capture, and disciplined distribution.
@@ -100,3 +100,63 @@ Distribution should start only after Monedario's landing pages and topic archite
 - MB-022
 - MB-023
 - MB-024
+
+---
+
+## Horizon 1 — Regulatory Accuracy and Behavioral Retention
+
+> Derived from deep research synthesis (2026-04-11). MB-038 is a factual correction and does not require founder approval. All others are IDEA-stage.
+
+**Goal**  
+Correct legally-mandated content accuracy issues, add behavioral retention infrastructure, and open two first-mover tool opportunities before competitors do.
+
+**Strategic rationale**  
+AI Overview erosion of CTR on informational queries is already measurable. The defensive response is (a) tools that require interactivity AI cannot replace, and (b) regulatory freshness that makes Monedario the first reliable source when laws change. Both levers require acting before search demand crystallizes around other players.
+
+**Expected outcomes**
+- Calculadora sueldo-líquido accurate under Ley 40h.
+- Return-visit rate measurable via localStorage restore events.
+- FES/CAE simulator live before first enrollment window.
+- SOAP comparador live before March renewal peak (validates affiliate model).
+- Calculator result blocks surface loss-framing alongside the answer.
+
+**Key metrics to monitor**
+- Calculator sessions with localStorage restore event (return rate proxy).
+- FES simulator sessions and CTA click-through in first 30 days.
+- SOAP comparador affiliate click-through and CPA revenue.
+- Calculator result-block CTA click-through before and after MB-042 framing.
+
+**Horizon 1 Tasks**
+- MB-038
+- MB-039
+- MB-040
+- MB-042
+- MB-046
+- MB-047
+
+---
+
+## Horizon 2 — Monetization and Topical Expansion
+
+> IDEA-stage. Gate on Horizon 1 results before committing. MB-041 (SOAP) moved here: 2026 seasonal window passed, target is February 2027. MB-043/MB-044 deferred pending traffic growth and affiliate readiness.
+
+**Goal**  
+Extend the affiliate model to higher-value financial products, add journey-based tools for the deuda cluster, and add conditional B2B lead CTAs where user signals indicate professional-advice need.
+
+**Horizon 2 Tasks**
+- MB-041
+- MB-043
+- MB-044
+- MB-048
+
+---
+
+## Horizon 3 — Infrastructure for Scale
+
+> IDEA-stage. Gate on Horizon 2 results and data-maintenance capacity validation.
+
+**Goal**  
+Build SERP-independent revenue through B2B widget licensing, insulating Monedario against continued AI Overview CTR erosion.
+
+**Horizon 3 Tasks**
+- MB-045

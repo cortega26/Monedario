@@ -339,17 +339,17 @@ Priority Score Formula: `Impact x Confidence / Effort`
 ## Phase 3 - Conversion and Distribution Readiness
 
 ### MB-021 - Define the newsletter or email capture offer
-- **Description:** Decide the value proposition for owned audience capture, such as weekly financial clarity, calculator updates, or practical alerts, and align it with Monedario's trust positioning.
+- **Description:** Decide the value proposition for owned audience capture, such as weekly financial clarity, calculator updates, or practical alerts, and align it with Monedario's trust positioning. Decision (2026-04-11): definitively deferred until MB-039 (localStorage persistence) generates return-visit data. If localStorage shows strong unaided return rate, newsletter value prop weakens; if return rate is low, newsletter becomes the primary retention mechanism. Do not reopen this item before MB-039 has at least 4 weeks of restore-event data.
 - **Impact:** 4
 - **Effort:** 2
 - **Confidence:** 4
 - **Priority Score:** 8.0
 - **Status:** IDEA
-- **Dependencies:** MB-001, MB-018
+- **Dependencies:** MB-001, MB-018, MB-039
 - **Roadmap Phase:** Phase 3 - Conversion and Distribution Readiness
 
 ### MB-022 - Implement CTA framework by page intent
-- **Description:** Define which CTA appears on each template type, such as calculator CTA on explanatory articles, newsletter CTA on evergreen hubs, and deeper-guide CTA on calculators.
+- **Description:** Define which CTA appears on each template type. Research refinement (2026-04-11): CTAs should be segmented by user diagnosis type, not just template type. Debt-cluster pages → "¿Cuánto debo realmente?" (calculator entry). AFP/pension cluster → "¿Tu fondo está bien elegido?" (simulador). Labor/cesantía cluster → "¿A cuánto tienes derecho?" (finiquito/cesantía calculator). Avoid generic newsletter CTA until MB-021 is resolved. Loss aversion framing (MB-042) should be woven into result-block CTAs, not treated separately.
 - **Impact:** 4
 - **Effort:** 2
 - **Confidence:** 4
@@ -369,11 +369,135 @@ Priority Score Formula: `Impact x Confidence / Effort`
 - **Roadmap Phase:** Phase 3 - Conversion and Distribution Readiness
 
 ### MB-024 - Run limited distribution tests for flagship assets
-- **Description:** Promote only the strongest cluster pages and calculators on selected channels such as X, LinkedIn, Reddit, or niche communities, then measure assisted traffic and repeat visits.
+- **Description:** Promote only the strongest cluster pages and calculators on selected channels such as X, LinkedIn, Reddit, or niche communities, then measure assisted traffic and repeat visits. Research refinement (2026-04-11): the natural PR candidates are MB-040 (simulador FES/CAE at launch, first-mover window) and MB-041 (comparador SOAP in March seasonal window). Do not use generic evergreen pages as first distribution push — regulatory novelty is the hook that earns organic sharing.
 - **Impact:** 4
 - **Effort:** 3
 - **Confidence:** 3
 - **Priority Score:** 4.0
 - **Status:** IDEA
-- **Dependencies:** MB-018, MB-021, MB-022, MB-023
+- **Dependencies:** MB-018, MB-021, MB-022, MB-023, MB-040, MB-041
 - **Roadmap Phase:** Phase 3 - Conversion and Distribution Readiness
+
+---
+
+## Horizon 1 — Regulatory Accuracy and Behavioral Retention (0–3 months)
+
+Items derived from deep research synthesis (2026-04-11). Founder decision required for IDEA items. MB-038 is a factual correction, not optional.
+
+### MB-038 - Update calculadora sueldo-líquido for Ley 40h (semana de 40 horas)
+- **Description:** The Ley 40h (reducción de la jornada laboral) is legally in effect from April 2026. The sueldo-líquido calculator must reflect the 40-hour week as the default legal maximum. Any hardcoded reference to 45h/week in the calculator logic, UI copy, or explanatory articles is now a factual error. Verify the current implementation, correct the default, and add a visible note explaining the transition from 45h to 40h for users comparing old and new contracts.
+- **Impact:** 5
+- **Effort:** 2
+- **Confidence:** 5
+- **Priority Score:** 12.5
+- **Status:** TODO
+- **Dependencies:** MB-018
+- **Roadmap Phase:** Horizon 1 — Regulatory Accuracy
+
+### MB-039 - localStorage persistence for calculator scenarios
+- **Description:** Persist the last-used calculator inputs in localStorage so users who close and return find their scenario pre-filled. Implementation: on input change, write the form state to a namespaced key per calculator (e.g. `monedario:sueldo-liquido:inputs`); on mount, read and restore it silently. Add a subtle "Tus datos se guardaron localmente" note near the form. This item does not depend on the CTA framework (MB-022); it's a standalone retention layer. After 4–6 weeks, use existing analytics events (MB-003) to measure sessions with localStorage restore vs. clean session — that return-visit rate determines whether MB-021 (newsletter) is worth building at all.
+- **Impact:** 4
+- **Effort:** 3
+- **Confidence:** 3
+- **Priority Score:** 4.0
+- **Status:** IDEA
+- **Dependencies:** MB-003
+- **Roadmap Phase:** Horizon 1 — Behavioral Retention
+
+### MB-040 - Simulador FES/CAE (Fondo de Educación Superior)
+- **Description:** Build a calculator for the Fondo de Educación Superior (FES), the instrument replacing CAE under the reforma de financiamiento estudiantil. The FES reform creates a first-mover search window: high search volume, few reliable tools, and regulatory novelty that naturally generates sharing. The calculator should cover: cuota mensual estimada, plazo, condonación parcial por tramo de ingreso, comparación con deuda CAE vigente (for users with existing debt). Launch must coincide with the first FES enrollment window — this date gates everything. **First step before any development: verify the FES enrollment timeline** (check mineduc.cl or the official FES legislation text — Ley 21.886 or its implementing regulations). If the window is more than 3 months away, the item can be scoped properly; if it is imminent, start immediately and cut scope to cuota + plazo only.
+- **Impact:** 5
+- **Effort:** 4
+- **Confidence:** 4
+- **Priority Score:** 5.0
+- **Status:** IDEA
+- **Dependencies:** MB-024
+- **Roadmap Phase:** Horizon 1 — New Tools
+
+### MB-042 - Loss aversion framing in calculator result blocks
+- **Description:** Reframe calculator result displays to surface the cost of inaction alongside the answer. Pilot on **simulador-jubilacion** first: retirement adequacy is inherently loss-framed and users calculating a low projected pension are already primed — add a line like "Con tu fondo actual, recibirás $X/mes menos que el promedio de tu tramo etario". Instrument using existing MB-003 analytics events: record CTA click-through rate in the result block for 4 weeks before and 4 weeks after the framing change. If click-through uplift is ≥15%, scale the pattern to simulador-finiquito and calculadora-deuda. If uplift is below threshold, discard — do not add loss framing to other calculators speculatively. Component changes are minimal; effort is primarily copywriting and event tagging.
+- **Impact:** 3
+- **Effort:** 2
+- **Confidence:** 3
+- **Priority Score:** 4.5
+- **Status:** IDEA
+- **Dependencies:** MB-003, MB-022
+- **Roadmap Phase:** Horizon 1 — Behavioral UX
+
+### MB-046 - Artículo explicativo: Regla de 50 transferencias
+- **Description:** The CMF rule limiting free inter-bank electronic transfers affects how Chilean users move money between accounts, including CuentaRUT and digital wallets. Many users don't know the limit exists or what triggers a fee. Publish a short explainer covering: what the rule is, which accounts and banks it applies to, how to track your count, and how to avoid unnecessary charges. Link to the deuda-credito and seguridad-financiera clusters. This is an article, not a calculator — effort is editorial, not development.
+- **Impact:** 3
+- **Effort:** 2
+- **Confidence:** 4
+- **Priority Score:** 6.0
+- **Status:** IDEA
+- **Dependencies:** None
+- **Roadmap Phase:** Horizon 1 — Regulatory Clarity
+
+### MB-047 - Conversor UF: decisión estratégica ante riesgo de AI Overview
+- **Description:** The UF conversor is a commodity query ("UF a pesos hoy") that Google's AI Overview answers directly — the existing tool will lose organic clicks regardless of quality. This item is a decision task, not development: choose one of three paths and implement it. Path A (enrich): expand the conversor into a UF hub tool covering IPC history, arriendo adjustment table, and projected UF for the next 3 months — differentiated enough that AI cannot replicate it inline. Path B (redirect): demote the conversor from its current URL emphasis, redirect SEO effort to the UF cluster hub at `/guias/uf-costo-de-vida/`, and accept the conversor as a utility with no SEO ambition. Path C (deprecate): remove the conversor from the homepage navigation and let it decay naturally while the hub captures the cluster's search demand. Recommendation: Path A if development time exists; Path B if it doesn't.
+- **Impact:** 4
+- **Effort:** 2
+- **Confidence:** 4
+- **Priority Score:** 8.0
+- **Status:** IDEA
+- **Dependencies:** MB-013
+- **Roadmap Phase:** Horizon 1 — Strategic Decision
+
+---
+
+## Horizon 2 — Monetization and Topical Expansion (3–6 months)
+
+### MB-041 - Comparador SOAP con modelo CPA
+- **Description:** Build a SOAP vehicle insurance comparador with CPA affiliate structure. The 2026 seasonal window (March–April) has already passed; target launch is February 2027, ahead of the 2027 renewal peak. The comparador should: show side-by-side annual premium by insurer (sourced from CMF public data or affiliate API), display coverage equivalence, and link to purchase via CPA affiliate. This is Monedario's first monetization proof-of-concept; execution validates whether the affiliate model is viable before investing in larger comparadores (MB-044). Deferred until Monedario has sufficient organic traffic to negotiate an affiliate partnership from a position of value.
+- **Impact:** 4
+- **Effort:** 3
+- **Confidence:** 3
+- **Priority Score:** 4.0
+- **Status:** IDEA
+- **Dependencies:** MB-022, MB-024
+- **Roadmap Phase:** Horizon 2 — Monetization Proof
+
+### MB-048 - Deuda multi-stage playbook con seguimiento de etapa
+- **Description:** A journey-based tool for users working through debt resolution across multiple sessions. The journey has three stages: (1) Diagnóstico — total deuda, número de acreedores, relación deuda/ingreso; (2) Acción — renegociación, prepago, priorización de cuotas; (3) Recuperación — control de avance, historial crediticio. Each stage surfaces different calculators and articles from the deuda-credito cluster. State is persisted via localStorage (gate on MB-039 proving the model). This is a UX architecture decision before a development task: the first step is a wireframe of the three stages and what tool/article appears at each. Do not build until MB-039 is live and shows meaningful return-visit rates on debt-cluster calculators.
+- **Impact:** 4
+- **Effort:** 4
+- **Confidence:** 3
+- **Priority Score:** 3.0
+- **Status:** IDEA
+- **Dependencies:** MB-039, MB-011
+- **Roadmap Phase:** Horizon 2 — Journey Tools
+
+### MB-043 - B2B lead CTAs on renegociación and DICOM simulators
+- **Description:** Add conditional CTAs at the calculator result step for users whose inputs signal a deuda crisis (e.g., deuda total > 6 sueldos, multiple creditors, DICOM lookup intent). CTA pattern: "¿Necesitas asesoría profesional? Habla con un experto →" linking to a lead-capture form or affiliate (estudio de abogados, empresa de renegociación). Do not add the CTA without a functional destination. Gate on MB-041 validating the affiliate model first. Deferred: requires an affiliate or B2B partner, which will not be pursued until Monedario has sufficient traffic to negotiate from a position of value.
+- **Impact:** 3
+- **Effort:** 2
+- **Confidence:** 2
+- **Priority Score:** 3.0
+- **Status:** IDEA
+- **Dependencies:** MB-022, MB-041
+- **Roadmap Phase:** Horizon 2 — B2B Monetization Seed
+
+### MB-044 - Comparadores de productos financieros (TAC/CAE/DAP)
+- **Description:** Build rate comparators for consumer credit (using CAE/TAC from CMF), deposit accounts (DAP), and possibly mortgages (dividendo mensual vs. plazo). Data sourced from CMF public datasets or affiliate APIs. Affiliate CPA on product application. This is a significant commitment: CMF data requires ongoing maintenance; comparadores only retain credibility if rates are current (max 30-day staleness). Gate on MB-041 (SOAP comparador) proving the comparador model works at lower complexity before investing in this. The TAC comparador alone is a category-defining asset if executed with real data fidelity. Deferred: requires affiliate partnerships and data-maintenance commitment; revisit once MB-041 is complete and traffic justifies the investment.
+- **Impact:** 4
+- **Effort:** 5
+- **Confidence:** 3
+- **Priority Score:** 2.4
+- **Status:** IDEA
+- **Dependencies:** MB-041
+- **Roadmap Phase:** Horizon 2 — Comparadores
+
+---
+
+## Horizon 3 — Infrastructure for Scale (6–12 months)
+
+### MB-045 - B2B embeddable calculator widgets
+- **Description:** Package priority calculators (sueldo-liquido, finiquito) as embeddable iFrame or web component widgets for HR platforms, contadores, media sites, and colegios profesionales. Revenue model: license fee or usage-based B2B pricing. Value proposition: Monedario handles regulatory updates; partners embed without maintenance burden. SERP-independent revenue stream — insulates against AI Overview CTR erosion on informational queries. Requires: dedicated B2B landing page, pricing model decision, support commitment, and at least one design partner willing to test the integration. Do not build before MB-044 validates the data-maintenance commitment Monedario can sustain. Deferred: long-horizon item requiring B2B market validation; not actionable at current traffic levels.
+- **Impact:** 4
+- **Effort:** 5
+- **Confidence:** 2
+- **Priority Score:** 1.6
+- **Status:** IDEA
+- **Dependencies:** MB-044
+- **Roadmap Phase:** Horizon 3 — B2B Infrastructure
