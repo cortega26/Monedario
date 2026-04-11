@@ -93,6 +93,23 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
           <p class="mt-1 text-xs text-muted">
             Hipotecarios: ~0.4–0.8% mensual. Consumo: ~1.5–3.5% mensual.
           </p>
+          <div class="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted">
+            <span>¿Solo conoces tu tasa anual o CAE?</span>
+            <div class="flex items-center gap-1">
+              <input
+                id="tasa-anual-helper"
+                type="number"
+                placeholder="Ej: 12"
+                min="0"
+                max="200"
+                step="0.1"
+                aria-label="Tasa anual para convertir a mensual"
+                class="w-20 rounded border border-border bg-background px-2 py-1 text-xs text-foreground focus:border-accent focus:outline-none"
+              />
+              <span>% anual</span>
+            </div>
+            <span id="tasa-conversion-resultado" class="font-medium text-accent"></span>
+          </div>
         </div>
 
         <div class="mb-4">
@@ -565,5 +582,21 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
       calculator_name: "Calculadora de Prepago de Credito",
       outcome: "success",
     });
+  });
+
+  // Annual-to-monthly rate conversion helper
+  const tasaAnualHelper = document.getElementById("tasa-anual-helper") as HTMLInputElement | null;
+  const tasaConversionResultado = document.getElementById("tasa-conversion-resultado");
+  const tasaCreditoInput = document.getElementById("tasa-credito") as HTMLInputElement | null;
+
+  tasaAnualHelper?.addEventListener("input", () => {
+    const anual = parseFloat(tasaAnualHelper!.value);
+    if (!isNaN(anual) && anual > 0) {
+      const mensual = (Math.pow(1 + anual / 100, 1 / 12) - 1) * 100;
+      if (tasaCreditoInput) tasaCreditoInput.value = mensual.toFixed(2);
+      if (tasaConversionResultado) tasaConversionResultado.textContent = `≈ ${mensual.toFixed(2)}% mensual`;
+    } else {
+      if (tasaConversionResultado) tasaConversionResultado.textContent = "";
+    }
   });
 </script>
