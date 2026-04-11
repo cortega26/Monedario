@@ -523,13 +523,28 @@ const economicSourceLabel =
 
       <h3>¿La Ley 40h cambia mi sueldo líquido?</h3>
       <p>
-        No directamente. La Ley 40h reduce la jornada legal ordinaria de 45 a
-        42 horas semanales en abril de 2026 (con bajadas adicionales hasta llegar
-        a 40 h en 2028), pero no modifica tu sueldo bruto mensual pactado. Lo
-        que cambia es que si trabajas más de 42 horas a la semana, cada hora
+        No directamente. La Ley 40h (Ley 21.561) reduce la jornada legal
+        ordinaria de 45 a 42 horas semanales en abril de 2026 (con una bajada
+        final a 40 h en 2028), pero no modifica tu sueldo bruto mensual pactado.
+        Lo que cambia es que si trabajas más de 42 horas a la semana, cada hora
         adicional es hora extra y debe pagarse con un recargo mínimo del 50%.
         Esta calculadora ya contempla las horas extra en el Modo avanzado: si
         las ingresas, se suman correctamente a la base imponible.
+      </p>
+      <p>
+        Lo que sí sube es el <strong>valor unitario de cada hora</strong>. Por
+        doctrina de la Dirección del Trabajo, el precio de la hora ordinaria se
+        obtiene dividiendo el sueldo mensual entre las horas semanales pactadas
+        × 4,333 (semanas promedio por mes). Al bajar la jornada de 45 a 42
+        horas manteniendo el mismo sueldo —protección que garantiza la propia
+        Ley 21.561—, el denominador disminuye y el valor por hora aumenta cerca
+        de un 7%. En la práctica: con un bruto de $1.200.000, el valor de la
+        hora ordinaria pasa de ≈ $6.154 (con 45 h/semana) a ≈ $6.593 (con
+        42 h/semana), y la hora extra —con el recargo mínimo del 50% que fija
+        el Art. 32 del Código del Trabajo— sube de ≈ $9.231 a ≈ $9.890. Esto
+        no lo calcula la calculadora (que trabaja con montos mensuales totales),
+        pero es el efecto que percibes si negocias horas extra o evalúas un
+        contrato que las contempla.
       </p>
     </section>
 
@@ -561,6 +576,16 @@ const economicSourceLabel =
           name: "AFC Chile — Tasas seguro de cesantía",
           url: "https://www.afc.cl/cotizaciones/",
           date: "2026-01",
+        },
+        {
+          name: "Dirección del Trabajo — Código del Trabajo (Art. 32 horas extraordinarias)",
+          url: "https://www.dt.gob.cl/legislacion/1624/w3-article-95516.html",
+          date: "2026-04",
+        },
+        {
+          name: "Ministerio del Trabajo — Ley 21.561 reducción gradual de jornada laboral (Ley 40h)",
+          url: "https://www.mintrab.gob.cl/reduccion-jornada-laboral/",
+          date: "2023-04",
         },
       ]}
     />
