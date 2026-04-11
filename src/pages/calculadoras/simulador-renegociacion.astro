@@ -11,6 +11,7 @@ import { getEconomicParameters } from "@/application/use-cases/GetEconomicParame
 import { getPath } from "@/utils/getPath";
 
 const renegociacionGuidePath = getPath("/posts/renegociacion-superir/");
+const dicomGuidePath = getPath("/posts/donde-ver-si-estoy-en-dicom-gratis/");
 const { parameters: economicParameters } = await getEconomicParameters();
 const economicSourceLabel =
   economicParameters.source === "live"
@@ -298,6 +299,27 @@ const economicSourceLabel =
           data-analytics-label="Guia de renegociacion Superir"
           data-analytics-location="calculator_explainer"
           >guía de renegociación Superir paso a paso</a
+        >.
+      </p>
+    </section>
+
+    <section
+      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
+    >
+      <h2>¿Cómo afecta la renegociación Superir a mi DICOM?</h2>
+      <p>
+        La renegociación ante la Superir <strong>no limpia automáticamente tu historial DICOM</strong>. El DICOM (Equifax/TransUnion) refleja deudas impagadas que los acreedores reportan a los burós de información financiera; el acuerdo de renegociación por sí solo no borra ese registro.
+      </p>
+      <p>
+        Una vez que el acuerdo está firmado y comienzas a pagar según las nuevas condiciones, tus acreedores deben actualizar tu estado en el buró. En la práctica, el plazo varía: algunos acredores realizan la actualización dentro de los 30 días siguientes al primer pago regularizado, mientras que otros pueden demorar más. Conviene solicitarles confirmación escrita una vez que el acuerdo quede vigente.
+      </p>
+      <p>
+        La <strong>Ley 21.214 («Ley DICOM»)</strong> establece que las deudas inferiores a 2,5 millones de pesos que queden totalmente pagadas se eliminan del registro. Para deudas de mayor monto, el antecedente permanece por 5 años contados desde la fecha del pago total. Si quieres revisar tu situación actual, puedes <a
+          href={dicomGuidePath}
+          data-analytics-cta="calculator-guide"
+          data-analytics-label="Guia DICOM gratis"
+          data-analytics-location="calculator_explainer_dicom"
+          >consultar tu DICOM gratis</a
         >.
       </p>
     </section>
