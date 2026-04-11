@@ -70,7 +70,11 @@ Once the acquisition layer is in place, growth will depend on building clear top
 - MB-019
 - MB-020
 
+Phase 2 completed: 2026-04-11
+
 ## Phase 3 - Conversion and Distribution Readiness
+
+> **Note:** Phase 3 items are IDEA-stage — require founder decision before implementation. Dependencies for MB-022 (CTA framework): MB-019 now satisfied.
 
 **Goal**  
 Add an owned-audience and conversion layer so search traffic compounds into repeat visits, email capture, and disciplined distribution.

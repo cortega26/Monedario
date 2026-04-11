@@ -8,6 +8,17 @@ Backlog completions recorded below.
 - If a task is partially advanced but not finished, update its status in `docs/development/backlog.md` instead of adding a completion entry here.
 - Record measurable impact only when there is observable evidence.
 
+2026-04-11
+MB-019
+Cluster navigation fortalecida: 9 hubs con StartHere, 8 con calculadora enlazada (seguridad-financiera sin calculadora en portfolio — TODO comment added), CTA primario en 4 artículos refresh (ArticleDecisionIntro con calculatorHref + nextStepHref activo en boleta-honorarios, sueldo-liquido, finiquito, seguro-cesantia). Breadcrumb auto-generado desde URL en los 9 hubs.
+Observed impact: pathway discovery → herramienta en 1-2 clics desde cada hub; estructura StartHere consistente en los 9 clusters.
+
+2026-04-11
+MB-020
+Cadencia de refresh definida en docs/operations/runbooks/content-refresh-cadence.md.
+Observed impact: 9 clusters con frecuencia y fuentes documentadas; 5 triggers de refresh obligatorio identificados (tasas AFP, UF/UTM, legislación, retención honorarios, Operación Renta) con fuentes oficiales enlazadas.
+
+
 ## Entry Template
 
 ```md

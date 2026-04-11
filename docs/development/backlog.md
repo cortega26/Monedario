@@ -317,22 +317,22 @@ Priority Score Formula: `Impact x Confidence / Effort`
 - **Roadmap Phase:** Phase 2 - Authority Building
 
 ### MB-019 - Strengthen cluster navigation and next-step pathways
-- **Description:** Improve local navigation, related-content logic, breadcrumbs, and "next best action" pathways so users can move from discovery to understanding to tool usage. All dependencies now satisfied (MB-015 completed 2026-04-10). Ready to execute in next sprint.
+- **Description:** Improve local navigation, related-content logic, breadcrumbs, and "next best action" pathways so users can move from discovery to understanding to tool usage. Sprint Final Phase 2 executed 2026-04-11: discovery confirmed all 9 hubs have StartHere blocks and Breadcrumb; 8/9 hubs link to their cluster calculator in StartHere; seguridad-financiera has no calculator in portfolio (TODO comment added); all 4 refresh articles have ArticleDecisionIntro rendering primary CTA (calculator) + secondary CTA (nextStep).
 - **Impact:** 4
 - **Effort:** 3
 - **Confidence:** 4
 - **Priority Score:** 5.3
-- **Status:** IN_PROGRESS
+- **Status:** DONE
 - **Dependencies:** MB-009, MB-010, MB-011, MB-012, MB-013, MB-014, MB-015
 - **Roadmap Phase:** Phase 2 - Authority Building
 
 ### MB-020 - Define content refresh cadence and cluster ownership
-- **Description:** Establish a lightweight operating cadence for updating priority clusters, including review frequency, source-check expectations, and ownership by content area.
+- **Description:** Establish a lightweight operating cadence for updating priority clusters, including review frequency, source-check expectations, and ownership by content area. Sprint Final Phase 2 created `docs/operations/runbooks/content-refresh-cadence.md` on 2026-04-11: 9 clusters with scheduled cadence and official sources, 5 out-of-cycle triggers (AFP rates, UF/UTM, legislation, honorarios retention, Operación Renta), per-cycle checklist, and ownership rule.
 - **Impact:** 3
 - **Effort:** 2
 - **Confidence:** 4
 - **Priority Score:** 6.0
-- **Status:** TODO
+- **Status:** DONE
 - **Dependencies:** MB-018
 - **Roadmap Phase:** Phase 2 - Authority Building
 
