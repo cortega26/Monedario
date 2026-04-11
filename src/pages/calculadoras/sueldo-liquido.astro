@@ -1041,4 +1041,85 @@ const economicSourceLabel =
       if (e.key === "Enter")
         (document.getElementById("calcBtn") as HTMLButtonElement)?.click();
     });
+
+  // URL parameter pre-fill (e.g. ?bruto=1200000&afp=Habitat&contrato=plazo-fijo)
+  document.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+
+    const bruto = params.get("bruto");
+    const liquido = params.get("liquido");
+    const imponible = params.get("imponible");
+    const afpParam = params.get("afp");
+    const contrato = params.get("contrato");
+    const salud = params.get("salud");
+
+    // Set mode and fill amount
+    if (bruto || liquido) {
+      const targetMode = liquido ? "liquido-a-bruto" : "bruto-a-liquido";
+      const radio = document.querySelector(
+        `input[name='modo-calculo'][value='${targetMode}']`
+      ) as HTMLInputElement | null;
+      if (radio) {
+        radio.checked = true;
+        updateModoUI();
+      }
+      const amount = parseFloat((bruto ?? liquido)!.replace(/\./g, "").replace(",", "."));
+      if (Number.isFinite(amount) && amount > 0) {
+        const sueldoInput = document.getElementById("sueldo") as HTMLInputElement | null;
+        if (sueldoInput) sueldoInput.value = String(amount);
+      }
+    }
+
+    // Pre-fill imponible (bruto mode only)
+    if (imponible && !liquido) {
+      const amount = parseFloat(imponible.replace(/\./g, "").replace(",", "."));
+      if (Number.isFinite(amount) && amount > 0) {
+        const imponibleInput = document.getElementById("sueldo-imponible") as HTMLInputElement | null;
+        if (imponibleInput) imponibleInput.value = String(amount);
+      }
+    }
+
+    // Select AFP by case-insensitive startsWith match
+    if (afpParam) {
+      const select = document.getElementById("afp-tasa") as HTMLSelectElement | null;
+      if (select) {
+        const needle = afpParam.toLowerCase();
+        for (const option of Array.from(select.options)) {
+          if (option.text.toLowerCase().startsWith(needle)) {
+            option.selected = true;
+            break;
+          }
+        }
+      }
+    }
+
+    // Select contract type radio and trigger change
+    if (contrato === "plazo-fijo" || contrato === "indefinido") {
+      const radio = document.querySelector(
+        `input[name='tipo-contrato'][value='${contrato}']`
+      ) as HTMLInputElement | null;
+      if (radio) {
+        radio.checked = true;
+        radio.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+    }
+
+    // Select health system radio and trigger change (so isapre field shows if needed)
+    if (salud === "fonasa" || salud === "isapre") {
+      const radio = document.querySelector(
+        `input[name='salud'][value='${salud}']`
+      ) as HTMLInputElement | null;
+      if (radio) {
+        radio.checked = true;
+        radio.dispatchEvent(new Event("change", { bubbles: true }));
+      }
+    }
+
+    // Auto-calculate only when a main amount is provided
+    if (bruto || liquido) {
+      setTimeout(() => {
+        (document.getElementById("calcBtn") as HTMLButtonElement | null)?.click();
+      }, 100);
+    }
+  });
 </script>
