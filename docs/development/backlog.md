@@ -390,7 +390,8 @@ Items derived from deep research synthesis (2026-04-11). Founder decision requir
 - **Effort:** 2
 - **Confidence:** 5
 - **Priority Score:** 12.5
-- **Status:** TODO
+- **Status:** DONE
+- **Completion note:** 2026-04-11 — Calculator logic required no changes (monthly salary math is independent of weekly hours). Updated three editorial sections in `src/pages/calculadoras/sueldo-liquido.astro`: (1) horas extra hint now mentions 42h/week threshold for April 2026 under Ley 40h; (2) FAQ "¿Las horas extra se descuentan de AFP y salud?" updated to note overtime starts at hour 43 (42h step April 2026) with 50% surcharge; (3) new FAQ "¿La Ley 40h cambia mi sueldo líquido?" added explaining gradual reduction (42h in 2026, 40h in 2028) with no direct impact on gross salary.
 - **Dependencies:** MB-018
 - **Roadmap Phase:** Horizon 1 — Regulatory Accuracy
 

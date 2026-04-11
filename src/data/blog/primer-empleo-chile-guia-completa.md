@@ -73,7 +73,7 @@ Antes de estampar tu firma, revisa estos campos clave:
 
 **Sueldo base e imponible:** el sueldo base es la cifra sobre la que se calculan AFP, salud, seguro de cesantía e impuesto. Las asignaciones de colación y movilización no son imponibles (dentro de límites legales) — asegúrate de que aparezcan separadas.
 
-**Jornada y horario:** horas semanales pactadas, días libres, sistema de turnos si aplica. El máximo legal ordinario es 45 horas semanales (en transición a 40 horas según la Ley 21.561 vigente 2026).
+**Jornada y horario:** horas semanales pactadas, días libres, sistema de turnos si aplica. El máximo legal ordinario bajó a 42 horas semanales en abril de 2026 (Ley 21.561, Ley 40h); la reducción continúa hasta llegar a 40 h semanales en 2028.
 
 **Funciones y lugar de trabajo:** una descripción vaga te expone a ser reasignado a tareas distintas sin fundamento. Busca que las funciones correspondan a lo conversado en la entrevista.
 
