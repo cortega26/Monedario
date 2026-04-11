@@ -492,6 +492,12 @@ Items derived from deep research synthesis (2026-04-11). Founder decision requir
 
 ## Horizon 3 — Infrastructure for Scale (6–12 months)
 
+### MB-049 - SEO title rewrite: simulador-renegociacion
+- **Description:** Rewrote the SEO title, meta description, and CalculatorJsonLd on `/calculadoras/simulador-renegociacion/` to target head queries ("renegociación de deudas", "Chile", "2026") after GSC showed 0 head-term impressions despite position 4.82 at day 33. Previous title led with institutional jargon ("Simulador de Renegociación de Deudas | Superir"); new title: "Renegociación de Deudas Chile 2026 | Simulador Superir". H1 and calculator logic unchanged.
+- **Status:** DONE
+- **Completed:** 2026-04-11
+- **Roadmap Phase:** Horizon 1 — SEO Quick Wins
+
 ### MB-045 - B2B embeddable calculator widgets
 - **Description:** Package priority calculators (sueldo-liquido, finiquito) as embeddable iFrame or web component widgets for HR platforms, contadores, media sites, and colegios profesionales. Revenue model: license fee or usage-based B2B pricing. Value proposition: Monedario handles regulatory updates; partners embed without maintenance burden. SERP-independent revenue stream — insulates against AI Overview CTR erosion on informational queries. Requires: dedicated B2B landing page, pricing model decision, support commitment, and at least one design partner willing to test the integration. Do not build before MB-044 validates the data-maintenance commitment Monedario can sustain. Deferred: long-horizon item requiring B2B market validation; not actionable at current traffic levels.
 - **Impact:** 4
