@@ -299,14 +299,52 @@ const economicSourceLabel =
               <input
                 type="number"
                 id="horas-extra"
-                placeholder="Ej: 80.000"
+                placeholder="Ej: 50.000"
                 min="0"
                 class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
               />
               <p class="mt-1 text-xs text-muted">
-                Monto total de horas extra del mes. Son imponibles y tributan.
-                Desde abril de 2026 (Ley 40h), la jornada máxima es 42 h/semana:
-                toda hora trabajada sobre ese límite es extra.
+                Monto total en pesos del mes (p. ej. 5 horas × valor hora × 1,5).
+                Son imponibles y tributan. Desde abril de 2026 (Ley 40h), la
+                jornada máxima es 42 h/semana: toda hora sobre ese límite es extra.
+              </p>
+            </div>
+            <div>
+              <label
+                for="colacion"
+                class="mb-1 block text-sm font-medium text-secondary"
+              >
+                Colación ($) - no imponible
+              </label>
+              <input
+                type="number"
+                id="colacion"
+                placeholder="Ej: 40.000"
+                min="0"
+                class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+              />
+              <p class="mt-1 text-xs text-muted">
+                Si tu liquidación incluye asignación de colación, ingrésala aquí.
+                Reduce el sueldo imponible (no se descuenta de AFP ni salud).
+              </p>
+            </div>
+            <div>
+              <label
+                for="movilizacion"
+                class="mb-1 block text-sm font-medium text-secondary"
+              >
+                Movilización ($) - no imponible
+              </label>
+              <input
+                type="number"
+                id="movilizacion"
+                placeholder="Ej: 20.000"
+                min="0"
+                class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+              />
+              <p class="mt-1 text-xs text-muted">
+                Asignación de movilización visible en tu liquidación. Reduce el
+                imponible igual que la colación.
               </p>
             </div>
             <div>
@@ -782,39 +820,60 @@ const economicSourceLabel =
     lastModoLabel = modoLabel;
 
     const netFinal = resultado.netSalary - (otrosDescuentos ?? 0);
+    const totalDed = resultado.deductions.total + (otrosDescuentos ?? 0);
+    const isInverso = modoLabel === "Sueldo Bruto Estimado";
+    const displayAmount = isInverso ? resultado.grossSalary : netFinal;
+    const retainedPct = Math.round(100 - (totalDed / resultado.grossSalary) * 100);
 
+    // — HEADLINE —
     const headline = document.createElement("div");
     headline.className =
-      "mb-6 rounded-lg border border-accent/20 bg-accent/10 p-4 text-center";
+      "mb-4 rounded-lg border border-accent/20 bg-accent/10 p-4 text-center";
     const headlineLabel = document.createElement("p");
     headlineLabel.className =
       "mb-1 text-xs font-bold tracking-widest text-accent uppercase";
     headlineLabel.textContent = modoLabel;
     const headlineValue = document.createElement("p");
     headlineValue.className = "text-4xl font-bold";
-    headlineValue.textContent = fmt(
-      modoLabel === "Sueldo Bruto Estimado" ? resultado.grossSalary : netFinal
-    );
-    headline.append(headlineLabel, headlineValue);
+    headlineValue.textContent = fmt(displayAmount);
+    const headlineSub = document.createElement("p");
+    headlineSub.className = "mt-1.5 text-xs text-foreground/60";
+    if (isInverso) {
+      headlineSub.textContent = `Bruto estimado para recibir ${fmt(netFinal)} al mes`;
+    } else {
+      headlineSub.innerHTML = `De cada $100 brutos, recibes <strong class="text-foreground/80">$${retainedPct}</strong>`;
+    }
+    headline.append(headlineLabel, headlineValue, headlineSub);
 
-    const totals = document.createElement("div");
-    totals.className = "mt-3 flex justify-between pt-3 text-sm font-semibold";
-    const totalsLabel = document.createElement("span");
-    totalsLabel.textContent = "Total descuentos";
-    const totalsValue = document.createElement("span");
-    totalsValue.className = "text-red-400";
-    const totalDed = resultado.deductions.total + (otrosDescuentos ?? 0);
-    totalsValue.textContent = `${fmt(totalDed)} (${fmtPct((totalDed / resultado.grossSalary) * 100)})`;
-    totals.append(totalsLabel, totalsValue);
+    // — BARRAS VISUALES DE DESCUENTOS —
+    const barsData: { label: string; value: number; color: string }[] = [
+      { label: "AFP", value: resultado.deductions.afp, color: "bg-blue-400" },
+      { label: "Salud", value: resultado.deductions.health, color: "bg-cyan-400" },
+      { label: "Seg. cesantía", value: resultado.deductions.unemploymentInsurance, color: "bg-emerald-400" },
+      { label: "Imp. 2ª cat.", value: resultado.deductions.tax, color: "bg-amber-400" },
+    ];
+    if (otrosDescuentos && otrosDescuentos > 0) {
+      barsData.push({ label: "Otros desc.", value: otrosDescuentos, color: "bg-rose-400" });
+    }
+    const bars = document.createElement("div");
+    bars.className = "mb-4 space-y-1.5";
+    for (const { label, value, color } of barsData) {
+      const pct = (value / resultado.grossSalary) * 100;
+      const barWrap = document.createElement("div");
+      const barMeta = document.createElement("div");
+      barMeta.className = "mb-0.5 flex justify-between text-xs text-muted";
+      barMeta.innerHTML = `<span>${label}</span><span>${fmt(value)} (${pct.toFixed(1)}%)</span>`;
+      const barTrack = document.createElement("div");
+      barTrack.className = "h-1.5 w-full overflow-hidden rounded-full bg-border";
+      const barFill = document.createElement("div");
+      barFill.className = `h-full rounded-full ${color}`;
+      barFill.style.width = `${Math.min(pct, 100)}%`;
+      barTrack.append(barFill);
+      barWrap.append(barMeta, barTrack);
+      bars.append(barWrap);
+    }
 
-    const assumption = document.createElement("p");
-    assumption.className = "mt-3 text-xs text-muted";
-    assumption.textContent =
-      extraNote ??
-      (resultado.taxableSalary === resultado.grossSalary
-        ? "Supuesto aplicado: bruto total = imponible mensual."
-        : "Usando imponible explícito distinto del bruto total.");
-
+    // — FILAS DE DETALLE —
     const rows = [
       buildRow("Sueldo bruto", fmt(resultado.grossSalary), "text-green-500"),
       buildRow(
@@ -859,9 +918,56 @@ const economicSourceLabel =
       );
     }
 
+    // — TOTAL DESCUENTOS —
+    const totals = document.createElement("div");
+    totals.className = "mt-3 flex justify-between pt-3 text-sm font-semibold";
+    const totalsLabel = document.createElement("span");
+    totalsLabel.textContent = "Total descuentos";
+    const totalsValue = document.createElement("span");
+    totalsValue.className = "text-red-400";
+    totalsValue.textContent = `${fmt(totalDed)} (${fmtPct((totalDed / resultado.grossSalary) * 100)})`;
+    totals.append(totalsLabel, totalsValue);
+
+    // — FILAS INFORMATIVAS: ANUAL + COSTO EMPLEADOR —
+    const mkInfoRow = (label: string, value: string, tooltip?: string): HTMLElement => {
+      const row = document.createElement("div");
+      row.className = "flex items-center justify-between rounded border border-border/50 bg-surface-muted/30 px-3 py-2 text-xs";
+      const lbl = document.createElement("span");
+      lbl.className = "text-muted";
+      if (tooltip) lbl.title = tooltip;
+      lbl.textContent = label;
+      const val = document.createElement("span");
+      val.className = "font-semibold text-foreground/80";
+      val.textContent = value;
+      row.append(lbl, val);
+      return row;
+    };
+    const extraRows = document.createElement("div");
+    extraRows.className = "mt-2 space-y-1";
+    extraRows.append(mkInfoRow("Al año (× 12)", fmt(displayAmount * 12)));
+    const afcEmployerRate = resultado.contractType === "plazo-fijo" ? 0.03 : 0.024;
+    const employerAfc = resultado.cappedBases.unemploymentInsurance * afcEmployerRate;
+    extraRows.append(
+      mkInfoRow(
+        "Costo total para tu empleador ①",
+        `≈ ${fmt(resultado.grossSalary + employerAfc)}`,
+        `AFC empleador: ${fmt(employerAfc)}`
+      )
+    );
+
+    // — SUPUESTO Y NOTAS —
+    const assumption = document.createElement("p");
+    assumption.className = "mt-3 text-xs text-muted";
+    const baseNote =
+      extraNote ??
+      (resultado.taxableSalary === resultado.grossSalary
+        ? "Supuesto aplicado: bruto total = imponible mensual."
+        : "Usando imponible explícito distinto del bruto total.");
+    assumption.textContent = `${baseNote} ① Solo AFC empleador; no incluye mutual de seguridad ni beneficios pactados.`;
+
     document
       .getElementById("resultado-contenido")!
-      .replaceChildren(headline, ...rows, totals, assumption);
+      .replaceChildren(headline, bars, ...rows, totals, extraRows, assumption);
 
     // Show copy button after result renders
     const copyBtn = document.getElementById("copy-btn");
@@ -937,6 +1043,14 @@ const economicSourceLabel =
         parseFloat(
           (document.getElementById("horas-extra") as HTMLInputElement)?.value
         ) || 0;
+      const colacion =
+        parseFloat(
+          (document.getElementById("colacion") as HTMLInputElement)?.value
+        ) || 0;
+      const movilizacion =
+        parseFloat(
+          (document.getElementById("movilizacion") as HTMLInputElement)?.value
+        ) || 0;
       const otrosDescuentos =
         parseFloat(
           (document.getElementById("otros-descuentos") as HTMLInputElement)
@@ -944,10 +1058,13 @@ const economicSourceLabel =
         ) || 0;
 
       const grossBase = rawInput + gratificacion + horasExtra;
+      const noImponiblesExtra = colacion + movilizacion;
       const taxableAdjusted =
         imponible !== undefined
           ? imponible + gratificacion + horasExtra
-          : undefined;
+          : noImponiblesExtra > 0
+            ? Math.max(0, rawInput - noImponiblesExtra) + gratificacion + horasExtra
+            : undefined;
 
       let resultado;
       try {
@@ -1041,6 +1158,20 @@ const economicSourceLabel =
       if (e.key === "Enter")
         (document.getElementById("calcBtn") as HTMLButtonElement)?.click();
     });
+
+  // Auto-cálculo en tiempo real (debounced 600 ms)
+  let autoCalcTimer: ReturnType<typeof setTimeout> | undefined;
+  document.getElementById("sueldo")?.addEventListener("input", () => {
+    clearTimeout(autoCalcTimer);
+    autoCalcTimer = setTimeout(() => {
+      const val = parseFloat(
+        (document.getElementById("sueldo") as HTMLInputElement).value
+      );
+      if (val > 0) {
+        (document.getElementById("calcBtn") as HTMLButtonElement)?.click();
+      }
+    }, 600);
+  });
 
   // URL parameter pre-fill (e.g. ?bruto=1200000&afp=Habitat&contrato=plazo-fijo)
   document.addEventListener("DOMContentLoaded", () => {
