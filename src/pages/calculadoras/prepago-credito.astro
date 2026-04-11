@@ -7,6 +7,12 @@ import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
+import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+const { parameters: economicParameters } = await getEconomicParameters();
+const economicSourceLabel =
+  economicParameters.source === "live"
+    ? "dato en línea"
+    : "fallback controlado";
 ---
 
 <Layout
@@ -39,7 +45,43 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
       <div class="rounded-xl border border-border p-6">
-        <h2 class="mb-5 text-lg font-semibold">📝 Tu crédito actual</h2>
+        <h2 class="mb-4 text-lg font-semibold">📝 Tu crédito actual</h2>
+
+        <div class="mb-5">
+          <p class="mb-2 text-xs font-medium text-secondary">Moneda de ingreso</p>
+          <div class="flex gap-2">
+            <label class="flex-1 cursor-pointer">
+              <input
+                type="radio"
+                name="moneda"
+                value="CLP"
+                checked
+                class="peer sr-only"
+              />
+              <span
+                class="block rounded-lg border border-border px-3 py-2 text-center text-xs font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
+              >
+                $ CLP
+              </span>
+            </label>
+            <label class="flex-1 cursor-pointer">
+              <input
+                type="radio"
+                name="moneda"
+                value="UF"
+                class="peer sr-only"
+              />
+              <span
+                class="block rounded-lg border border-border px-3 py-2 text-center text-xs font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
+              >
+                UF
+              </span>
+            </label>
+          </div>
+          <p class="mt-1 text-xs text-muted">
+            UF del día: ${economicParameters.uf.toLocaleString("es-CL", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (fuente: {economicSourceLabel})
+          </p>
+        </div>
 
         <div class="mb-4">
           <label
@@ -241,7 +283,7 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
       <!-- RESULTADO -->
       <div class="rounded-xl border border-border bg-background p-6">
         <h2 class="mb-5 text-lg font-semibold">💰 ¿Conviene prepagar?</h2>
-        <div id="resultado-contenido" class="py-8 text-center text-muted" aria-live="polite">
+        <div id="resultado-contenido" data-uf={String(economicParameters.uf)} class="py-8 text-center text-muted" aria-live="polite">
           <p class="mb-3 text-4xl">💡</p>
           <p class="text-sm">
             Ingresa los datos del crédito y el monto a prepagar.
@@ -331,6 +373,31 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
     return fmt(n);
   }
 
+  function getUFValue(): number {
+    const container = document.getElementById("resultado-contenido") as HTMLElement | null;
+    return parseFloat(container?.dataset.uf ?? "0") || 0;
+  }
+
+  function isUFMode(): boolean {
+    return (document.querySelector("input[name='moneda']:checked") as HTMLInputElement | null)?.value === "UF";
+  }
+
+  function fmtR(n: number): string {
+    if (isUFMode()) {
+      const uf = getUFValue();
+      if (uf > 0) {
+        const ufVal = n / uf;
+        return "UF\u00a0" + ufVal.toLocaleString("es-CL", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      }
+    }
+    return fmt(n);
+  }
+
+  function fmtMR(n: number): string {
+    if (isUFMode()) return fmtR(n);
+    return fmtM(n);
+  }
+
   function buildRow(
     label: string,
     value: string,
@@ -368,11 +435,13 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 
   document.getElementById("calcBtn")?.addEventListener("click", () => {
     clearInlineError();
-    const saldo =
+    const isUF = isUFMode();
+    const ufValue = getUFValue();
+    let saldo =
       parseFloat(
         (document.getElementById("saldo") as HTMLInputElement).value
       ) || 0;
-    const cuota =
+    let cuota =
       parseFloat(
         (document.getElementById("cuota") as HTMLInputElement).value
       ) || 0;
@@ -384,14 +453,21 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
       parseInt(
         (document.getElementById("meses-restantes") as HTMLInputElement).value
       ) || 0;
-    const montoPrepago =
+    let montoPrepago =
       parseFloat(
         (document.getElementById("monto-prepago") as HTMLInputElement).value
       ) || 0;
-    const costoPrepago =
+    let costoPrepago =
       parseFloat(
         (document.getElementById("costo-prepago") as HTMLInputElement).value
       ) || 0;
+    const inputMontoPrepago = montoPrepago;
+    if (isUF && ufValue > 0) {
+      saldo *= ufValue;
+      cuota *= ufValue;
+      montoPrepago *= ufValue;
+      costoPrepago *= ufValue;
+    }
     const efecto = (
       document.querySelector("input[name='efecto']:checked") as HTMLInputElement
     )?.value;
@@ -463,7 +539,7 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 
     const verdictValue = document.createElement("p");
     verdictValue.className = "text-2xl font-bold";
-    verdictValue.textContent = fmtM(simulacion.netSavingsAfterPrepaymentCost);
+    verdictValue.textContent = fmtMR(simulacion.netSavingsAfterPrepaymentCost);
 
     const verdictSub = document.createElement("p");
     verdictSub.className = "text-sm text-muted";
@@ -476,31 +552,31 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 
     const withLabel = document.createElement("p");
     withLabel.className = "mb-2 mt-4 text-xs font-bold text-muted uppercase";
-    withLabel.textContent = `Con prepago de ${fmt(montoPrepago)}`;
+    withLabel.textContent = isUF
+      ? `Con prepago de UF\u00a0${inputMontoPrepago.toLocaleString("es-CL", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+      : `Con prepago de ${fmt(montoPrepago)}`;
 
     const investmentBox = document.createElement("div");
     investmentBox.className = "mt-5 rounded-lg bg-foreground/5 p-3";
     const investmentLabel = document.createElement("p");
     investmentLabel.className = "mb-2 text-xs font-bold text-muted uppercase";
-    investmentLabel.textContent = `Alternativa: invertir ${fmt(montoPrepago)} al ${
-      rentAlternativa * 100
-    }% anual`;
+    investmentLabel.textContent = `Alternativa: invertir ${isUF ? `UF\u00a0${inputMontoPrepago.toLocaleString("es-CL", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}` : fmt(montoPrepago)} al ${rentAlternativa * 100}% anual`;
     investmentBox.append(
       investmentLabel,
       buildRow(
         `Valor futuro (en ${simulacion.withoutPrepayment.months} meses)`,
-        fmtM(simulacion.futureInvestmentValue)
+        fmtMR(simulacion.futureInvestmentValue)
       ),
       buildRow(
         "Ganancia estimada",
-        fmtM(simulacion.investmentGain),
+        fmtMR(simulacion.investmentGain),
         simulacion.investmentGain > simulacion.interestSavings
           ? "text-green-500"
           : "text-secondary"
       ),
       buildRow(
         "vs ahorro por prepago",
-        fmtM(simulacion.netSavingsAfterPrepaymentCost),
+        fmtMR(simulacion.netSavingsAfterPrepaymentCost),
         simulacion.netSavingsAfterPrepaymentCost >= simulacion.investmentGain
           ? "text-green-500"
           : "text-secondary"
@@ -529,7 +605,7 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
         : buildRow(
             "Nueva cuota mensual",
             simulacion.newMonthlyPaymentIfReducePayment !== null
-              ? fmt(simulacion.newMonthlyPaymentIfReducePayment)
+              ? fmtR(simulacion.newMonthlyPaymentIfReducePayment)
               : "Saldado",
             "text-green-500"
           );
@@ -543,29 +619,29 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
       ),
       buildRow(
         "Total intereses",
-        fmt(simulacion.withoutPrepayment.totalInterest),
+        fmtR(simulacion.withoutPrepayment.totalInterest),
         "text-red-400"
       ),
       withLabel,
       conditionalRow,
       buildRow(
         "Total intereses con prepago",
-        fmt(simulacion.withPrepayment.totalInterest),
+        fmtR(simulacion.withPrepayment.totalInterest),
         "text-green-500"
       ),
       buildRow(
         "Costo de prepago informado",
-        fmt(simulacion.prepaymentCost),
+        fmtR(simulacion.prepaymentCost),
         simulacion.prepaymentCost > 0 ? "text-yellow-500" : "text-secondary"
       ),
       buildRow(
         "Ahorro bruto en intereses",
-        fmt(simulacion.interestSavings),
+        fmtR(simulacion.interestSavings),
         "text-green-500"
       ),
       buildRow(
         "Beneficio neto tras costo",
-        fmt(simulacion.netSavingsAfterPrepaymentCost),
+        fmtR(simulacion.netSavingsAfterPrepaymentCost),
         simulacion.netSavingsAfterPrepaymentCost >= 0
           ? "text-green-500"
           : "text-red-400"
@@ -575,7 +651,7 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
     );
 
     if (typeof window.showShareResult === "function") {
-      window.showShareResult(`Prepago crédito: ahorro neto ${fmt(simulacion.netSavingsAfterPrepaymentCost)}`);
+      window.showShareResult(`Prepago crédito: ahorro neto ${fmtMR(simulacion.netSavingsAfterPrepaymentCost)}`);
     }
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "prepago-credito",
@@ -598,5 +674,27 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
     } else {
       if (tasaConversionResultado) tasaConversionResultado.textContent = "";
     }
+  });
+
+  // Currency toggle: update labels and placeholders when switching CLP ↔ UF
+  const labelFields: Record<string, { clp: string; uf: string; phClp: string; phUf: string }> = {
+    saldo: { clp: "Saldo pendiente ($)", uf: "Saldo pendiente (UF)", phClp: "Ej: 15.000.000", phUf: "Ej: 400" },
+    cuota: { clp: "Cuota mensual actual ($)", uf: "Cuota mensual actual (UF)", phClp: "Ej: 350.000", phUf: "Ej: 15" },
+    "monto-prepago": { clp: "Monto del abono extraordinario ($)", uf: "Monto del abono extraordinario (UF)", phClp: "Ej: 2.000.000", phUf: "Ej: 50" },
+    "costo-prepago": { clp: "Comisión o costo de prepago ($)", uf: "Comisión o costo de prepago (UF)", phClp: "Ej: 120.000", phUf: "Ej: 3" },
+  };
+
+  function updateCurrencyLabels(): void {
+    const uf = isUFMode();
+    for (const [fieldId, texts] of Object.entries(labelFields)) {
+      const label = document.querySelector(`label[for="${fieldId}"]`);
+      const input = document.getElementById(fieldId) as HTMLInputElement | null;
+      if (label) label.textContent = uf ? texts.uf : texts.clp;
+      if (input) input.placeholder = uf ? texts.phUf : texts.phClp;
+    }
+  }
+
+  document.querySelectorAll("input[name='moneda']").forEach((radio) => {
+    radio.addEventListener("change", updateCurrencyLabels);
   });
 </script>
