@@ -15,14 +15,21 @@ applyTo: 'src/**,scripts/**,public/**'
   - `pnpm run check:frontmatter`
   - `pnpm run build`
 - **Deliverable:** OG fallback live, orphan links resolved, ETF scope callouts added, HowTo schemas implemented; all 5 gates pass
+- **Benchmark observed:** record only if a layout/schema/linking pattern is adapted from external sites
+- **Why it worked externally:** `N/A`
+- **Proposed local delta:** preserve slug-only public identity and owner/support/reference/tool IA while improving SEO clarity
+- **What will not be copied:** competitor copy, public URL design, ownership-defining promises
+- **Owner/surface affected:** SEO-visible surfaces touched by the fix
+- **Success signal:** audit issues close without route regressions or cannibalization
 
 ## Authority Check (AGENTS.md Rule 1.1)
 Before starting, read these files in order:
 1. `docs/AI_ENGINEERING_CONSTITUTION.md`
 2. `AGENTS.md`
 3. `context/INVARIANTS.md`
-4. `context/INTER_CLUSTER_LINKING.md` — inbound link policy for orphan fixes
-5. `output/audit/seo-audit-20260408.md` — full SEO audit report with all findings
+4. `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md` — preserve ownership and no-copy boundaries for visible SEO surfaces
+5. `context/INTER_CLUSTER_LINKING.md` — inbound link policy for orphan fixes
+6. `output/audit/seo-audit-20260408.md` — full SEO audit report with all findings
 
 ---
 
@@ -192,3 +199,13 @@ Additionally, inspect the built HTML for one article with `ogImageStatus !== "do
 6. **Test coverage:** No domain/application layer changes — no new tests required. If `ArticleJsonLd.astro` has unit tests, update them.
 7. **Rollback:** Revert via `git checkout -- <file>`. No data migration. OG image fallback is additive.
 8. **Regression risk:** MEDIUM for `Layout.astro` (affects every page). Validate with `pnpm run build` + spot-check 3 built HTML files. LOW for all other changes.
+
+## Competitive Adaptation Appendix
+
+- **benchmarkSet:** `N/A` unless the SEO fix explicitly borrows an external pattern
+- **patternHypothesis:** `N/A`
+- **localDelta:** keep SEO improvements inside the repo's ownership and URL contracts
+- **nonCopyBoundaries:** no copied title promises, snippets, or slug patterns
+- **ownerTarget:** declare which owner, hub, tool, or visible surface is affected
+- **successSignal:** SEO fix improves discoverability without creating owner overlap
+- **ownership conflict check:** PASS required before merge

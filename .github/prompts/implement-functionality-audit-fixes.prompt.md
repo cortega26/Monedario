@@ -15,14 +15,21 @@ applyTo: 'src/**,tests/**,.github/workflows/**,Dockerfile'
   - `pnpm run check:boundaries`
   - `pnpm astro check`
 - **Deliverable:** format:check unblocked; 3 YMYL use-cases with tests; Dockerfile hardened; deploy.yml timeout pinned; all 5 gates pass
+- **Benchmark observed:** document only if a visible feature/UX pattern is borrowed; otherwise `N/A`
+- **Why it worked externally:** `N/A`
+- **Proposed local delta:** any borrowed visible pattern must be adapted to repo constraints and ownership model
+- **What will not be copied:** reader-facing copy, public URL strategy, unreviewed IA patterns
+- **Owner/surface affected:** state the feature, view, or workflow touched
+- **Success signal:** functionality audit closes with no new ownership or boundary conflict
 
 ## Authority Check (AGENTS.md Rule 1.1)
 Before starting, read these files in order:
 1. `docs/AI_ENGINEERING_CONSTITUTION.md`
 2. `AGENTS.md`
 3. `context/INVARIANTS.md`
-4. `docs/TECH_DEBT_BACKLOG.md`
-5. `output/audit/functionality-audit-20260408.md` — full functionality audit report
+4. `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md` — required if any visible feature pattern is adapted from outside
+5. `docs/TECH_DEBT_BACKLOG.md`
+6. `output/audit/functionality-audit-20260408.md` — full functionality audit report
 
 ---
 
@@ -256,3 +263,13 @@ Before starting any edits, run `pnpm run test` to confirm the 166-test baseline.
 6. **Test coverage impact:** 5 new test files for `src/application/**` — satisfies AGENTS.md Rule 5.2. Coverage increases from ~40% to ~73% of use-cases.
 7. **Rollback:** Revert via `git checkout -- <file>`. Deploy environment gate requires manual rollback in GitHub repo settings if removed. Docker image re-pinning is forward-only (no regression — `node:22` was already the LTS).
 8. **Regression risk:** MEDIUM for `deploy.yml` (first deploy after merge requires reviewer approval — ensure reviewer is set up in GitHub Environments before merging). LOW for all other changes.
+
+## Competitive Adaptation Appendix
+
+- **benchmarkSet:** `N/A` unless a visible feature intentionally reuses an external pattern
+- **patternHypothesis:** `N/A`
+- **localDelta:** adapt only if the repo ships a clearer or safer local implementation
+- **nonCopyBoundaries:** no copied copywriting, URL structure, or owner-colliding IA
+- **ownerTarget:** declare the product surface or feature affected
+- **successSignal:** functionality fix lands without visible duplication or ownership drift
+- **ownership conflict check:** PASS required before merge

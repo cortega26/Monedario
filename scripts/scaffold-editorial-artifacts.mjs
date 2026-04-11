@@ -288,6 +288,14 @@ requires_calculation: ${requiresCalculation ? "true" : "false"}
 regulatory_sensitivity: ${regulatorySensitivity}
 target_audience: "TODO: define lector objetivo principal"
 cut_off_date: ${cutOffDate}
+benchmarkSet:
+  - "TODO: listar competidores, productos o URLs revisadas; usar N/A si este run no usa benchmark externo"
+patternHypothesis: "TODO: explicar que patron parece funcionar afuera y por que"
+localDelta: "TODO: explicar la mejora, simplificacion o reordenamiento local"
+nonCopyBoundaries:
+  - "TODO: declarar que NO se copiara literal (texto, claims, URL, IA, CTA)"
+ownerTarget: "TODO: declarar owner, cluster, hub o superficie visible afectada"
+successSignal: "TODO: definir la senal observable que mostraria que la adaptacion funciono"
 `;
 
   const dossier = `# Dossier
@@ -314,6 +322,16 @@ cut_off_date: ${cutOffDate}
 - TODO: agregar fuentes oficiales con fecha de consulta.
 - Sugerencia inicial segun categoria \`${category}\`: revisar regulador, ChileAtiende, BCN y fuente sectorial primaria aplicable.
 
+## Benchmark observations
+
+- TODO: documentar patrones externos observados; usar \`N/A\` si este run no usa benchmark externo.
+- TODO: registrar que parte del patron parece resolver mejor la necesidad.
+
+## Gap / opportunity
+
+- TODO: explicar la brecha local que justifica la adaptacion.
+- TODO: nombrar el \`localDelta\` visible que deberia llegar al entregable.
+
 ## Cambios / hallazgos a validar en el articulo actual
 
 - TODO: listar reglas, cifras, plazos o excepciones que exigen verificacion.
@@ -329,6 +347,11 @@ cut_off_date: ${cutOffDate}
 ## Respuesta ancla
 
 - TODO: regla concreta + excepciones + vigencia + fuente.
+
+## Diferenciacion visible
+
+- TODO: explicitar como se vera el \`localDelta\` en H1/intencion/snippet/CTA o equivalente.
+- TODO: confirmar que la pieza no invade un owner existente.
 
 ## Secciones
 
@@ -401,12 +424,15 @@ TODO: desarrollar el refresh siguiendo \`docs/editorial/NORMA_YMYL.md\`.
 - [ ] Math audit listo o no aplica
 - [ ] Compliance listo
 - [ ] Fuentes completas
+- [ ] Benchmark observations separadas de fuentes oficiales
+- [ ] \`localDelta\` visible en el entregable final
+- [ ] Ownership/no-canibalizacion revisado
 - [ ] Fecha de corte visible para lectores
 - [ ] HumanEditor sign-off
 
 ## Nota
 
-Este scaffold no vuelve el articulo compliant por si solo. Completar \`sources.yaml\`, dossier y verificaciones antes de reclamar cierre de \`TD-0016\`.
+Este scaffold no vuelve el articulo compliant por si solo. Completar \`sources.yaml\`, dossier, diferenciacion y verificaciones antes de reclamar cierre de \`TD-0016\`.
 `;
 
   const metadata = `slug: ${slug}

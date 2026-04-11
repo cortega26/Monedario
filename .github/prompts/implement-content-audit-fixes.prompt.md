@@ -15,6 +15,12 @@ applyTo: 'src/data/blog/**'
   - `pnpm run check:reader-facing-copy`
   - `pnpm run audit:reader-copy`
 - **Deliverable:** All 6 fixes implemented; all 5 gates pass with 0 blocking errors
+- **Benchmark observed:** `N/A` unless a fix intentionally adapts an external pattern
+- **Why it worked externally:** `N/A`
+- **Proposed local delta:** `N/A`
+- **What will not be copied:** `reader-facing text, normative claims, public URL strategy`
+- **Owner/surface affected:** existing article owners only; no new owner creation
+- **Success signal:** audit findings closed with no new ownership conflict
 
 ## Authority Check (AGENTS.md Rule 1.1)
 Before starting, read these files in order:
@@ -22,8 +28,9 @@ Before starting, read these files in order:
 2. `AGENTS.md`
 3. `docs/editorial/NORMA_YMYL.md` — scoring rubric and all 8 MUST criteria
 4. `context/INVARIANTS.md` — invariants to preserve
-5. `context/INTER_CLUSTER_LINKING.md` — cluster linking policy for nextStepHref decisions
-6. `output/audit/content-audit-20260408.md` — full audit report with all P0 findings
+5. `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md` — benchmark-driven work remains subordinate to ownership and source authority
+6. `context/INTER_CLUSTER_LINKING.md` — cluster linking policy for nextStepHref decisions
+7. `output/audit/content-audit-20260408.md` — full audit report with all P0 findings
 
 ---
 
@@ -180,3 +187,13 @@ All 5 must pass with 0 blocking errors before declaring done.
 6. **Test coverage:** No runtime changes — no test updates required.
 7. **Rollback:** Revert individual file edits via `git checkout -- <file>`; no data migration needed.
 8. **Regression risk:** LOW — content-only edits, no routing or schema changes.
+
+## Competitive Adaptation Appendix
+
+- **benchmarkSet:** `N/A`
+- **patternHypothesis:** `N/A`
+- **localDelta:** keep fixes aligned to existing owner/support structure; no benchmark-driven reshaping in this prompt
+- **nonCopyBoundaries:** do not import competitor copy, claims, or URL choices
+- **ownerTarget:** preserve current article ownership and cluster placement
+- **successSignal:** content audit issues close without creating a new cannibalization conflict
+- **ownership conflict check:** PASS required before merge

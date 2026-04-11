@@ -1,6 +1,6 @@
 # Module Index (Agent Quick Map)
 
-Last updated: 2026-03-01
+Last updated: 2026-04-11
 
 ## 1. Repository map
 
@@ -10,6 +10,7 @@ Last updated: 2026-03-01
 | `src/data/blog/` | Editorial content (`.md/.mdx`) | Out of scope unless explicit content task. |
 | `scripts/` | Quality gates and snapshots (`check:*`, `compare-*`, `snapshot-*`) | Primary enforcement source for context invariants/contracts. |
 | `docs/` | Constitution, domain docs, reports, issue docs | Constitutional/domain source of truth. |
+| `docs/governance/` | Stable governance policies and ADR-adjacent execution rules | Read for strategy/process changes before inventing new visible patterns. |
 | `docs/reports/` | Canonical route and RSS baselines only | Inputs tracked for `check:routes` and `check:rss`. |
 | `output/validation/` | Generated route/RSS validation snapshots | Local current snapshots emitted by validation scripts. |
 | `context/` | Agent context layer and project state docs | Keep concise and cross-referenced. |
@@ -33,6 +34,10 @@ Last updated: 2026-03-01
 - Frontmatter policy:
   - `scripts/check-frontmatter.mjs`
   - `docs/domain/CONTENT/INVARIANTS.md`
+- Competitive adaptation policy:
+  - `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md`
+  - `docs/editorial/NON_CANNIBALIZATION_PROCESS.md`
+  - `docs/editorial/TOPIC_OWNERSHIP_POLICY.md`
 - Editorial timeliness policy:
   - `src/config/editorial-timeliness-policy.json`
   - `src/config/editorial-volatile-data-registry.json`
@@ -49,3 +54,4 @@ Last updated: 2026-03-01
 3. `context/INVARIANTS.md`
 4. `context/CONTRACTS.md`
 5. Relevant script(s) in `scripts/`
+6. `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md` for new visible features, editorial refreshes, hubs, or benchmark-driven work

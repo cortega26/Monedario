@@ -1,6 +1,6 @@
 # Context Invariants Registry
 
-Last updated: 2026-03-03
+Last updated: 2026-04-11
 Status: Active
 
 ## 1. Introduction
@@ -39,6 +39,7 @@ Change log:
 - 2026-03-05: added hero-image semantic selection invariant (image choice must derive from article reading, not metadata-only matching).
 - 2026-03-07: added inline article image format invariant (AVIF by default with justified exception allowlist).
 - 2026-03-22: added editorial timeliness invariant and scheduled audit workflow.
+- 2026-04-11: added competitive adaptation invariants for external benchmarking authority, differentiation, and ownership-before-expansion.
 
 ## 2. Invariant Index
 
@@ -48,6 +49,9 @@ Change log:
 | `ROUTES.NO_SILENT_CHANGES` | Public route deltas are detected | Active | `pnpm run check:routes` |
 | `RSS.NO_REMOVALS` | RSS snapshot does not allow removals | Active | `pnpm run check:rss` |
 | `FRONTMATTER.VALID` | Blog frontmatter meets required policy | Active | `pnpm run check:frontmatter` |
+| `INVARIANT.STRATEGY.EXTERNAL_PATTERNS_NON_AUTHORITATIVE` | External patterns never replace official sources, public contracts, or canonical policies | Active (manual) | PR review + `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md` |
+| `INVARIANT.STRATEGY.DIFFERENTIATED_ADOPTION_REQUIRED` | Substantive adaptations must state the local improvement and explicit non-copy boundaries | Active (manual) | Task Brief + artifact review |
+| `INVARIANT.STRATEGY.OWNERSHIP_BEFORE_EXPANSION` | New visible/indexable surfaces require explicit ownership resolution before expansion | Active (manual) | PR review + ownership policy review |
 | `INVARIANT.EDITORIAL.STRUCTURE_MIN` | Articles meet minimum structural shape | Active | `pnpm run check:editorial-structure` |
 | `INVARIANT.EDITORIAL.DIALECT_ES_CL` | Editorial dialect guard for Chilean Spanish | Active | `pnpm run check:dialect` |
 | `INVARIANT.EDITORIAL.CUT_OFF_DATE_REQUIRED` | YMYL content must display explicit cut-off date | Active | Manual review + `context/EDITORIAL_AI_PIPELINE.md` |
@@ -148,6 +152,57 @@ Change log:
 - Examples:
   - Compliant: article defines `slug`, `category`, `pubDate` with timezone, valid types.
   - Violation: missing `slug` or use of deprecated `canonicalURL`.
+
+### `INVARIANT.STRATEGY.EXTERNAL_PATTERNS_NON_AUTHORITATIVE`
+
+- Statement: External benchmarks may inform structure or packaging, but they must never replace official sources, public contracts, or canonical internal policies as the basis for correctness.
+- Canonical source: `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md`, `docs/editorial/NORMA_YMYL.md`.
+- Rationale:
+  - Prevents benchmark-driven drift from overriding repo truth sources.
+  - Preserves YMYL reliability where only official sources can support critical claims.
+  - Keeps strategic inspiration subordinate to constitutional and contract constraints.
+- Enforcement: Manual review via Task Brief, dossier, publish packet, and PR notes (warning-first).
+- Detection:
+  - Benchmark observations are explicitly separated from official sources.
+  - YMYL claims still point to official/primary sources, not competitor pages.
+  - Missing separation or benchmark-as-authority treatment is a policy violation.
+- Examples:
+  - Compliant: use competitor layout as input, but cite SII/SPensiones for the rule itself.
+  - Violation: justify a tax rule because “other sites explain it that way”.
+
+### `INVARIANT.STRATEGY.DIFFERENTIATED_ADOPTION_REQUIRED`
+
+- Statement: Every substantive benchmark-informed adaptation must explicitly state what is improved, simplified, or reordered locally, plus what will not be copied.
+- Canonical source: `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md`, `AGENTS.md`.
+- Rationale:
+  - Prevents shallow imitation with no local advantage.
+  - Makes the adaptation reviewable as a product/editorial decision instead of taste.
+  - Creates a durable record of why the pattern belongs in this repo.
+- Enforcement: Manual review through Task Brief fields, editorial artifacts, and change control appendix.
+- Detection:
+  - Required fields include `localDelta` and `nonCopyBoundaries`.
+  - Missing or empty differentiation statement is a policy violation.
+  - “Improve later” without a defined local delta is non-compliant.
+- Examples:
+  - Compliant: adopt a comparison widget pattern but simplify decision branches for Chilean users.
+  - Violation: “we copied the competitor flow because it works”.
+
+### `INVARIANT.STRATEGY.OWNERSHIP_BEFORE_EXPANSION`
+
+- Statement: No new visible or indexable surface may expand into an existing canonical owner space without an explicit ownership decision.
+- Canonical source: `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md`, `docs/editorial/NON_CANNIBALIZATION_PROCESS.md`, `docs/editorial/TOPIC_OWNERSHIP_POLICY.md`.
+- Rationale:
+  - Prevents benchmark-inspired expansion from creating internal cannibalization.
+  - Protects the site's owner/support/reference/tool architecture before new surfaces are added.
+  - Forces differentiation decisions to happen before publication or implementation.
+- Enforcement: Manual review through ownership policy review and publish packet/PR review (warning-first).
+- Detection:
+  - New owner-like surface must declare `ownerTarget`.
+  - If ownership conflict exists and is unresolved, work must halt.
+  - Publish packet or PR notes must record the ownership decision for adjacent surfaces.
+- Examples:
+  - Compliant: reframe a new support article under an existing owner after overlap review.
+  - Violation: publish a “better” second head-term page without redefining canonical ownership.
 
 ### `INVARIANT.EDITORIAL.STRUCTURE_MIN`
 

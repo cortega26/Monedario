@@ -1,6 +1,6 @@
 # Current State
 
-Date: 2026-03-01
+Date: 2026-04-11
 
 - Context layer added: `context/INVARIANTS.md`, `context/CONTRACTS.md`, `context/MODULE_INDEX.md`.
 - Canonical URL identity invariant active: `URL.PUBLIC.NO_POST_ID`.
@@ -9,3 +9,4 @@ Date: 2026-03-01
 - Inline article image gate active through `pnpm run check:images` (AVIF by default with justified exception allowlist).
 - Editorial timeliness gate active through `pnpm run check:editorial-timeliness`, with category-based review cadences and scheduled audit workflow support.
 - Volatile editorial data pipeline active through `volatileData` frontmatter, unified snapshot refresh, and drift checks against registered datasets.
+- Competitive adaptation policy active in warning-first mode through governance docs, AGENTS protocol, editorial artifacts, and prompt templates.

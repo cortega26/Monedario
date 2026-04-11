@@ -1,6 +1,6 @@
 # Context Contracts Registry
 
-Last updated: 2026-03-03
+Last updated: 2026-04-11
 Status: Active
 
 ## 1. Introduction
@@ -38,6 +38,7 @@ Change log:
 - 2026-03-06: scoped strict editorial artifact enforcement in PR CI to changed YMYL posts/artifact roots; legacy corpus debt remains explicit in backlog.
 - 2026-03-07: added inline article image format contract and justified exception allowlist semantics.
 - 2026-03-22: added editorial timeliness policy contract and scheduled audit workflow.
+- 2026-04-11: added competitive adaptation contract and benchmark-aware editorial artifact expectations.
 
 ## 2. Contracts
 
@@ -370,19 +371,41 @@ Change log:
   - Gradual adoption.
   - Inter-cluster linking remains recommendation-first and non-blocking unless future ADR hardens gate semantics.
 
+### `CONTRACT.STRATEGY.COMPETITIVE_ADAPTATION_BRIEF`
+
+- Scope: Repo-wide planning contract for benchmark-informed visible work (editorial, product, UX, calculators, hubs, navigation, prompts, and PR notes).
+- Source of truth:
+  - `AGENTS.md` (`## Task Brief`, change control appendix)
+  - `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md`
+- Baseline expectations:
+  - The brief declares: `benchmarkSet`, `patternHypothesis`, `localDelta`, `nonCopyBoundaries`, `ownerTarget`, `successSignal`.
+  - These fields are mandatory for substantive benchmark-informed work and may be `N/A` only when the work is not benchmark-driven.
+  - `ownerTarget` must describe the internal owner, cluster, hub, or visible surface affected.
+  - `nonCopyBoundaries` must explicitly call out text/claims/URL strategy or other reader-facing surfaces that will not be copied.
+- Backward-compat expectations:
+  - Warning-first in v1; no CI-blocking semantics are introduced here.
+  - Future hardening to script-validated checks requires an ADR because it changes enforcement semantics.
+- Enforcement: Manual-enforced through Task Briefs, PR review, and change control appendix.
+- Detection:
+  - Required fields are present in the planning artifact or explicitly marked `N/A`.
+  - Benchmark-informed work without `localDelta` or `ownerTarget` is non-compliant with this contract.
+
 ### `CONTRACT.EDITORIAL.BRIEF`
 
 - Scope: Structured execution input for one editorial run.
 - Source of truth:
   - `artifacts/editorial/<slug>/<run-id>/01-brief.yaml`
   - Canonical pipeline spec: `context/EDITORIAL_AI_PIPELINE.md`
+  - Strategy policy: `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md`
 - Backward-compat expectations:
   - Required keys remain stable: `slug`, `query_anchor`, `ymyl`, `requires_calculation`, `regulatory_sensitivity`, `target_audience`, `cut_off_date`.
-  - Optional keys may be added without breaking existing consumers.
+  - Competitive adaptation keys are now expected for benchmark-informed runs: `benchmarkSet`, `patternHypothesis`, `localDelta`, `nonCopyBoundaries`, `ownerTarget`, `successSignal`.
+  - Additive keys remain backward compatible because current artifact validation is manual/warning-first.
 - Enforcement: Manual-enforced (current phase), reviewed in PR/editorial workflow.
 - Detection:
   - File exists and parses as YAML.
   - Required keys are present with valid scalar values.
+  - Benchmark-informed briefs declare the competitive adaptation field set or explicit `N/A` placeholders.
 
 ### `CONTRACT.EDITORIAL.DOSSIER`
 
@@ -392,11 +415,13 @@ Change log:
   - Source list aligned to brief cut-off date.
 - Backward-compat expectations:
   - Must include source references, retrieval date, and confidence/context notes.
+  - Benchmark-informed dossiers must separate `official sources`, `benchmark observations`, and `gap/opportunity`.
   - Section names may evolve if required fields remain present.
 - Enforcement: Manual-enforced (current phase).
 - Detection:
   - Dossier contains explicit `Fecha de corte`.
   - Every critical claim candidate has citation mapping or explicit unresolved marker.
+  - Benchmark observations do not replace the official-source section.
 
 ### `CONTRACT.EDITORIAL.OUTLINE`
 
@@ -406,11 +431,13 @@ Change log:
   - Must align with YMYL response structure requirements.
 - Backward-compat expectations:
   - Must keep explicit anchor answer section and section-level intent mapping.
+  - Benchmark-informed outlines must include an explicit differentiation line for H1/intention/snippet/CTA or equivalent visible promise.
   - Heading style may vary without changing semantic fields.
 - Enforcement: Manual-enforced (current phase).
 - Detection:
   - Outline includes `Respuesta rapida` (or equivalent), exceptions, and vigencia blocks.
   - Outline references at least one source-backed section from dossier.
+  - Outline records how the final piece will differ from the benchmark in reader-facing terms.
 
 ### `CONTRACT.EDITORIAL.DRAFT`
 
@@ -464,6 +491,7 @@ Change log:
   - Aggregates references to all previous artifacts.
 - Backward-compat expectations:
   - Must preserve decision-critical fields: gate checklist, role separation evidence, unresolved TODO count, final decision (`publish`/`hold`).
+  - Benchmark-informed packets must confirm the promised `localDelta` shipped and no unresolved ownership conflict remains.
   - New optional metadata can be added without breaking compatibility.
 - Enforcement: Manual-enforced with existing script evidence attached.
 - Detection:
@@ -471,6 +499,8 @@ Change log:
   - Confirms `DraftAgent != MathAuditAgent != ComplianceAgent`.
   - Confirms unresolved `TODO:SOURCE=0` for publish-ready state.
   - Includes command evidence for `check:frontmatter` and `check:editorial`.
+  - Confirms benchmark observations remained separate from official sources.
+  - Confirms no unresolved owner/support/reference/tool conflict blocks publication.
 
 ### `CONTRACT.EDITORIAL.ARTIFACT_GATE`
 

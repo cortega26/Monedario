@@ -50,6 +50,15 @@ Si existe conflicto con URL previa:
 - Resolver con fusión, reposicionamiento de intención o redirección.
 - No publicar nueva pieza hasta resolver conflicto.
 
+## 4.1) Adaptación competitiva explícita (warning-first)
+
+Si la pieza nace de benchmark externo o refresh comparativo:
+
+- declarar `benchmarkSet`, `patternHypothesis`, `localDelta`, `nonCopyBoundaries`, `ownerTarget`, `successSignal`;
+- separar benchmark observations de fuentes oficiales;
+- dejar visible en la pieza final la mejora prometida frente al benchmark;
+- no copiar texto, claims, URL pública ni promesa editorial de forma literal.
+
 ## 5) Revisión YMYL (si aplica)
 
 Aplica a: impuestos, deudas, fraude, pensiones, derechos del consumidor, salud laboral/licencias.

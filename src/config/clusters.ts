@@ -3,6 +3,7 @@ export const CLUSTERS = [
   "impuestos-personas",
   "pensiones-afp",
   "deuda-credito",
+  "presupuesto-control-financiero",
   "uf-costo-de-vida",
   "seguridad-financiera",
   "sueldo-remuneraciones",
@@ -31,6 +32,7 @@ export type GuideHubMeta = {
 export const GUIDE_HUB_ORDER: HubCluster[] = [
   "sueldo-remuneraciones",
   "empleo-ingresos",
+  "presupuesto-control-financiero",
   "pensiones-afp",
   "deuda-credito",
   "uf-costo-de-vida",
@@ -70,6 +72,14 @@ export const GUIDE_HUBS: Record<HubCluster, GuideHubMeta> = {
       "Sección para entender el CAE, revisar tus deudas y tomar mejores decisiones de crédito.",
     capa: "deuda",
     homepageResumen: "¿Cuánto te cuesta la deuda real y cómo salir de ella?",
+  },
+  "presupuesto-control-financiero": {
+    nombre: "Presupuesto y control financiero",
+    descripcion:
+      "Sección para ordenar ingresos, gastos y hábitos de control financiero antes de tomar decisiones más complejas.",
+    capa: "ingresos",
+    homepageResumen:
+      "¿Cómo ordenar tu caja mensual y construir un presupuesto realista?",
   },
   "uf-costo-de-vida": {
     nombre: "UF, inflación y costo de vida",

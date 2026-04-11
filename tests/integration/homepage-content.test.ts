@@ -213,9 +213,9 @@ describe("homepage content helpers", () => {
 
     expect(rail.map(entry => entry.slug)).toEqual([
       "empleo-ingresos",
+      "presupuesto-control-financiero",
       "pensiones-afp",
       "uf-costo-de-vida",
-      "impuestos-personas",
     ]);
   });
 });

@@ -891,3 +891,43 @@ Fecha de corte: 2026-04-07
 - **Estado:** Backlog
 - **Fecha de creación:** 2026-04-10
 - **Última actualización:** 2026-04-10
+
+## TD-0041 — Cluster source-of-truth desalineado para `presupuesto-control-financiero`
+- **ID:** TD-0041
+- **Título corto:** Registrar o retirar coherentemente el hub `presupuesto-control-financiero`
+- **Descripción:** El árbol actual contiene el folder físico `src/pages/guias/presupuesto-control-financiero`, pero `src/config/clusters.ts` no incluye `presupuesto-control-financiero` en `CLUSTERS` ni en `GUIDE_HUBS`. Esto deja al repo con dos fuentes de verdad divergentes para la arquitectura de clusters.
+- **Evidencia:** `pnpm run check:editorial` (2026-04-11) falla con `[check-editorial-structure] FAIL. Physical cluster folder present in src/pages/guias/presupuesto-control-financiero is not registered in src/config/clusters.ts.`; `pnpm run test` (2026-04-11) falla en `tests/integration/cluster-source-of-truth.test.ts:21` por la misma causa.
+- **Impacto:** Rompe el gate editorial agregado y deja la suite de integración en rojo aunque cambios no relacionados no toquen clusters. También vuelve ambiguo el estado operativo real del cluster transitorio documentado en policy/runbooks.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P1
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Elegir una sola verdad operativa en un cambio dedicado: o (A) registrar `presupuesto-control-financiero` formalmente en `src/config/clusters.ts` y sus metadatos visibles, o (B) retirar el folder físico/hub hasta que la migración esté lista. En ambos casos, alinear tests, check-editorial-structure, policy de transición y navegación.
+- **Criterios de cierre (checklist verificable):**
+  - [x] `pnpm run check:editorial` deja de fallar por `presupuesto-control-financiero`.
+  - [x] `pnpm run test` pasa en `tests/integration/cluster-source-of-truth.test.ts`.
+  - [x] La verdad operativa queda alineada registrando el hub en `src/config/clusters.ts` y ajustando el test de conteo.
+- **Owner:** TBD
+- **Estado:** Completado
+- **Fecha de creación:** 2026-04-11
+- **Última actualización:** 2026-04-11
+
+## TD-0042 — Transition editorial de presupuesto sigue incoherente tras registrar el hub
+- **ID:** TD-0042
+- **Título corto:** Resolver migración pendiente de `como-hacer-presupuesto-mensual-chile`
+- **Descripción:** Al registrar `presupuesto-control-financiero` en `src/config/clusters.ts`, el hub ya quedó formalizado como fuente de verdad operativa. Sin embargo, la pieza `como-hacer-presupuesto-mensual-chile` sigue en `cluster: empleo-ingresos` con `category: general`, y algunos documentos/policies siguen describiendo la migración como futura o condicionada a un hub que ya existe.
+- **Evidencia:** `src/pages/guias/presupuesto-control-financiero/index.astro` ya está publicado y `src/config/clusters.ts` ahora lo registra; `docs/editorial/TOPIC_OWNERSHIP_POLICY.md` y `docs/TECH_DEBT_BACKLOG.md` todavía describen la ubicación de la pieza como transición pendiente ligada a la inexistencia del hub productivo.
+- **Impacto:** Mantiene ambigüedad entre owner canónico, cluster operativo y narrativa de transición; aumenta el riesgo de decisiones editoriales inconsistentes y de warnings engañosos en revisiones futuras.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** En un cambio separado, decidir una de dos rutas: (A) migrar `como-hacer-presupuesto-mensual-chile` a `cluster: presupuesto-control-financiero` y alinear category/interlinks; o (B) mantener la transición pero actualizar policy/runbooks/checks para que ya no dependan de que el hub “no exista”.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `docs/editorial/TOPIC_OWNERSHIP_POLICY.md` refleja el estado real del hub y la decisión de transición.
+  - [ ] `docs/TECH_DEBT_BACKLOG.md` deja de describir el hub como inexistente.
+  - [ ] La metadata/frontmatter de `como-hacer-presupuesto-mensual-chile` o la policy de transición cuentan la misma historia.
+- **Owner:** TBD
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-04-11
+- **Última actualización:** 2026-04-11

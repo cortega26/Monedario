@@ -22,7 +22,7 @@ describe("Cluster Source of Truth", () => {
     }
   });
 
-  it("exports exactly 9 unique editorial clusters including the general bucket", () => {
-    expect(CLUSTERS.length).toBe(9);
+  it("exports exactly 10 unique editorial clusters including the general bucket", () => {
+    expect(CLUSTERS.length).toBe(10);
   });
 });

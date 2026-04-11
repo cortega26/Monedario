@@ -19,8 +19,11 @@ Constitutional precedence is absolute: when AGENTS.md conflicts with Constitutio
   - `context/CURRENT_STATE.md`
 - Canonical editorial policy for YMYL execution:
   - `docs/editorial/NORMA_YMYL.md`
+- Canonical strategy policy for benchmark-driven work:
+  - `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md`
 - Rule: before changes that touch routes, RSS, canonical URL strategy, or guard gates, agents must read `context/INVARIANTS.md` and `context/CONTRACTS.md` plus the referenced scripts.
 - Rule: before new YMYL content or substantive editorial refresh, agents must read `docs/editorial/NORMA_YMYL.md` and `context/EDITORIAL_AI_PIPELINE.md`, then apply the required MUST/SHOULD criteria, checklist, scorecard, and artifact protocol.
+- Rule: before creating a new URL, calculator, hub, visible module, navigation surface, or substantive benchmark-driven refresh, agents must read `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md`, `docs/editorial/NON_CANNIBALIZATION_PROCESS.md`, and `docs/editorial/TOPIC_OWNERSHIP_POLICY.md`.
 - Anti-duplication: AGENTS.md defines process/protocol; `context/*.md` defines concise invariant/contract state and cross-references canonical sources.
 
 ## 1. Authority Hierarchy
@@ -84,7 +87,7 @@ Constitutional precedence is absolute: when AGENTS.md conflicts with Constitutio
 
 ### Rule 2.6 - Mandatory halt conditions
 - Rationale: Certain conditions make safe progress impossible.
-- Enforcement: Halt immediately on any of: constitutional conflict, missing invariant source for required change, unresolved contract ambiguity, inability to verify critical gate, unexpected non-user edits in touched files.
+- Enforcement: Halt immediately on any of: constitutional conflict, missing invariant source for required change, unresolved contract ambiguity, inability to verify critical gate, unexpected non-user edits in touched files, unresolved ownership conflict for a new visible/indexable surface, or benchmark-driven work with no explicit differentiation.
 - Compliant behavior: Stop when route comparison baseline file is missing.
 - Violation: Shipping routing change without route diff verification.
 
@@ -115,10 +118,17 @@ Constitutional precedence is absolute: when AGENTS.md conflicts with Constitutio
 - Compliant behavior: PR includes updated `manifest.json`, `prompts.json`, `status.json` (`state: done`), and `public/images/hero/{slug}.avif`.
 - Violation: Merging a new article without its `.avif` image — `pnpm run build` will fail at the `check:hero-images` gate.
 
+### Rule 2.11 - Competitive adaptation must be explicit
+- Rationale: Benchmarking is useful only when it produces differentiated local value without breaking ownership or source authority.
+- Enforcement: Any substantive benchmark-driven work must declare `benchmarkSet`, `patternHypothesis`, `localDelta`, `nonCopyBoundaries`, `ownerTarget`, and `successSignal` in the Task Brief or equivalent artifact.
+- Compliant behavior: "Pattern observed in 3 competitor flows; local delta is fewer branches and clearer Chile-specific thresholds; we will not copy copywriting or URL structure."
+- Violation: "Implement what competitor X shipped" with no local delta or ownership decision.
+
 ### Execution checklist (required before code edits)
 - [ ] Scope declared (in-scope/out-of-scope).
 - [ ] Authority check recorded.
 - [ ] Invariants/contracts referenced by document path.
+- [ ] Competitive adaptation refs reviewed when work is benchmark-driven or creates a new visible surface.
 - [ ] Risky assumptions listed or task halted.
 
 ## 3. Change Control Protocol
@@ -175,6 +185,16 @@ Constitutional precedence is absolute: when AGENTS.md conflicts with Constitutio
 - Risk level: low/medium/high
 - Primary regression vectors:
 - Mitigations:
+
+## Competitive Adaptation Appendix
+
+- benchmarkSet:
+- patternHypothesis:
+- localDelta:
+- nonCopyBoundaries:
+- ownerTarget:
+- successSignal:
+- ownership conflict check: pass/fail
 ```
 
 ## 4. Constitution Binding Rules
@@ -289,6 +309,12 @@ A regression is any change that degrades previously valid behavior in contracts,
 - Invariants/Contracts to preserve:
 - Required gates:
 - Deliverable:
+- Benchmark observed:
+- Why it worked externally:
+- Proposed local delta:
+- What will not be copied:
+- Owner/surface affected:
+- Success signal:
 ```
 
 - Compliant behavior: Request includes objective, scope, invariants, and gates before implementation.

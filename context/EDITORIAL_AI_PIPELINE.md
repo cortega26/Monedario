@@ -1,6 +1,6 @@
 # Editorial AI Pipeline (Quality-First, Canonical)
 
-Last updated: 2026-03-03
+Last updated: 2026-04-11
 Status: Active (mixed enforcement: scripts + manual review)
 
 Authority order:
@@ -18,6 +18,9 @@ Authority order:
   - Non-YMYL content may follow this pipeline as recommendation.
 - Canonical references:
   - `docs/editorial/NORMA_YMYL.md`
+  - `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md`
+  - `docs/editorial/NON_CANNIBALIZATION_PROCESS.md`
+  - `docs/editorial/TOPIC_OWNERSHIP_POLICY.md`
   - `context/INVARIANTS.md`
   - `context/CONTRACTS.md`
   - `CONTRACT.YMYL_RESPONSE_STRUCTURE` (in `context/CONTRACTS.md`)
@@ -53,6 +56,12 @@ Required artifacts (minimum):
 6. `06-compliance.md`
 7. `07-publish-packet.md`
 
+Competitive adaptation expectations for benchmark-informed runs:
+- `01-brief.yaml` declares `benchmarkSet`, `patternHypothesis`, `localDelta`, `nonCopyBoundaries`, `ownerTarget`, `successSignal`.
+- `02-dossier.md` separates `official sources`, `benchmark observations`, and `gap/opportunity`.
+- `03-outline.md` includes a visible differentiation line (H1/intention/snippet/CTA or equivalent).
+- `07-publish-packet.md` confirms no unresolved ownership conflict and that the promised `localDelta` is visible in the final deliverable.
+
 Artifact contracts are defined in:
 - `CONTRACT.EDITORIAL.BRIEF`
 - `CONTRACT.EDITORIAL.DOSSIER`
@@ -80,6 +89,9 @@ Publication is allowed only when all checks are satisfied:
 - If `regulatory_sensitivity=alta`, `06-compliance.md` plus explicit `HumanEditor` sign-off is mandatory.
 - `CONTRACT.YMYL_RESPONSE_STRUCTURE` is satisfied.
 - `docs/editorial/NORMA_YMYL.md` checklist and scorecard are attached.
+- Benchmark observations, if used, are explicitly separated from official sources.
+- No benchmark-driven refresh may proceed with unresolved ownership or cannibalization conflict.
+- The declared `localDelta` is visible in the final article/package.
 
 Execution evidence:
 - Script-enforced: `pnpm run check:frontmatter`, `pnpm run check:editorial`, `pnpm run check:dialect`.
@@ -104,6 +116,7 @@ Policy:
 - No critical number is publishable without source traceability.
 - Every YMYL output must include explicit cut-off date (`fecha de corte`) in visible article content.
 - Dossier must include source list with retrieval date and confidence notes.
+- Benchmark observations may inform structure or packaging, but never replace official source traceability.
 
 ## 7. Integration with NORMA_YMYL
 
