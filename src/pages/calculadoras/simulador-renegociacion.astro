@@ -254,6 +254,13 @@ const economicSourceLabel =
       </div>
     </section>
 
+    <div
+      id="comparacion-plazos"
+      hidden
+      class="border-t border-border py-8"
+      aria-live="polite"
+    ></div>
+
     <section
       class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
     >
@@ -632,6 +639,118 @@ const economicSourceLabel =
       advisory,
       guideLink
     );
+
+    // Comparison table — same debt/income/rate, different terms
+    const compTerms = (() => {
+      const base = [24, 36, 60];
+      if (base.includes(plazo)) return base;
+      const all = [...new Set([...base, plazo])].sort((a, b) => a - b);
+      const pi = all.indexOf(plazo);
+      if (pi === 0) return all.slice(0, 3);
+      if (pi === all.length - 1) return all.slice(-3);
+      return [all[pi - 1], plazo, all[pi + 1]] as number[];
+    })();
+
+    const compRows: { term: number; sim: ReturnType<typeof simulateDebtRenegotiation> }[] = [];
+    for (const term of compTerms) {
+      try {
+        compRows.push({
+          term,
+          sim: simulateDebtRenegotiation({
+            debts: deudas.map(deuda => ({
+              amount: deuda.monto,
+              overdueDays: deuda.dias,
+            })),
+            monthlyIncome: ingreso,
+            termMonths: term,
+            monthlyRatePercent: tasaMensual * 100,
+            ufValue,
+            hasFirstCategoryActivityLast24Months: primeraCategoria === "si",
+            hasNotifiedExecutiveProceeding: juicioEjecutivo === "si",
+            hasRequiredDocuments: documentosCompletos === "si",
+          }),
+        });
+      } catch {
+        // skip term if simulation fails
+      }
+    }
+
+    const compSection = document.getElementById("comparacion-plazos")!;
+    if (compRows.length > 0) {
+      const compHeading = document.createElement("h2");
+      compHeading.className = "mb-1 text-base font-bold";
+      compHeading.textContent = "📊 Compara plazos";
+
+      const compSubtitle = document.createElement("p");
+      compSubtitle.className = "mb-4 text-sm text-secondary";
+      compSubtitle.textContent = "Misma deuda y tasa, distinto plazo.";
+
+      const tableWrapper = document.createElement("div");
+      tableWrapper.className = "overflow-x-auto";
+
+      const table = document.createElement("table");
+      table.className = "w-full min-w-[480px] text-sm border-collapse";
+
+      const thead = document.createElement("thead");
+      const headerRow = document.createElement("tr");
+      headerRow.className = "border-b border-border";
+      for (const h of ["Plazo", "Cuota mensual", "% del ingreso", "Total intereses", "Total a pagar"]) {
+        const th = document.createElement("th");
+        th.className = "py-2 px-3 text-left text-xs font-bold text-secondary uppercase tracking-wide";
+        th.textContent = h;
+        headerRow.appendChild(th);
+      }
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+      for (const { term, sim } of compRows) {
+        const isSelected = term === plazo;
+        const burdenColor =
+          sim.incomeBurdenPercent <= 30
+            ? "text-green-500"
+            : sim.incomeBurdenPercent <= 50
+              ? "text-yellow-500"
+              : "text-red-400";
+
+        const tr = document.createElement("tr");
+        tr.className = `border-b border-border last:border-0${isSelected ? " bg-accent/10" : ""}`;
+
+        const termTd = document.createElement("td");
+        termTd.className = "py-2 px-3 whitespace-nowrap font-semibold";
+        termTd.textContent = `${term} meses`;
+        if (isSelected) {
+          const badge = document.createElement("span");
+          badge.className =
+            "ml-1.5 rounded-full bg-accent px-1.5 py-0.5 text-[10px] font-bold text-background";
+          badge.textContent = "tu elección";
+          termTd.appendChild(badge);
+        }
+
+        const cuotaTd = document.createElement("td");
+        cuotaTd.className = "py-2 px-3 font-mono";
+        cuotaTd.textContent = fmt(sim.monthlyPayment);
+
+        const burdenTd = document.createElement("td");
+        burdenTd.className = `py-2 px-3 font-mono ${burdenColor}`;
+        burdenTd.textContent = `${sim.incomeBurdenPercent.toFixed(1)}%`;
+
+        const interestTd = document.createElement("td");
+        interestTd.className = "py-2 px-3 font-mono";
+        interestTd.textContent = fmt(sim.totalInterest);
+
+        const totalTd = document.createElement("td");
+        totalTd.className = "py-2 px-3 font-mono";
+        totalTd.textContent = fmt(sim.totalPaid);
+
+        tr.append(termTd, cuotaTd, burdenTd, interestTd, totalTd);
+        tbody.appendChild(tr);
+      }
+      table.appendChild(tbody);
+      tableWrapper.appendChild(table);
+      compSection.replaceChildren(compHeading, compSubtitle, tableWrapper);
+      compSection.removeAttribute("hidden");
+    }
 
     if (typeof window.showShareResult === "function") {
       window.showShareResult(`Renegociación Superir: cuota ${fmt(simulacion.monthlyPayment)}/mes, deuda ${fmt(simulacion.totalDebtClp)}`);
