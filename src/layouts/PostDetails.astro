@@ -248,6 +248,28 @@ const relatedPostsExcludedSlugs = [
         />
       )
     }
+
+    {
+      post.data.topicRole === "support" &&
+        post.data.articleLead?.nextStepHref &&
+        post.data.articleLead?.nextStepLabel && (
+          <aside
+            aria-label="Guía de referencia"
+            class="my-4 border-l-4 border-accent bg-accent/5 px-4 py-3 text-sm"
+          >
+            <span class="font-medium text-foreground">Guía de referencia: </span>
+            <a
+              href={getPath(post.data.articleLead.nextStepHref)}
+              class="font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+            >
+              {post.data.articleLead.nextStepLabel}
+            </a>
+            <span class="text-secondary">
+              {" "}— contiene la cobertura completa del tema.
+            </span>
+          </aside>
+        )
+    }
     <div class="lg:flex lg:items-start lg:gap-10">
       <article
         id="article"

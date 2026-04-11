@@ -1,0 +1,167 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import ResumeWidget from "@/components/ResumeWidget.astro";
+import StartHere from "@/components/StartHere.astro";
+import { getPath } from "@/utils/getPath";
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Presupuesto y Control Financiero en Chile",
+  description:
+    "Guías y herramientas para crear un presupuesto mensual, controlar gastos y ordenar las finanzas personales en Chile.",
+  url: "https://monedario.cl/guias/presupuesto-control-financiero/",
+  numberOfItems: 2,
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Cómo hacer un presupuesto mensual en Chile: método práctico sin plantilla mágica",
+      url: "https://monedario.cl/posts/como-hacer-presupuesto-mensual-chile/",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Calculadora de sueldo líquido",
+      url: "https://monedario.cl/calculadoras/sueldo-liquido/",
+    },
+  ],
+};
+
+const articulosSeccion = [
+  {
+    titulo: "Cómo hacer un presupuesto mensual en Chile: método práctico sin plantilla mágica",
+    resumen:
+      "Guía completa para identificar ingresos reales, clasificar gastos, detectar fugas y construir hábitos de control financiero duraderos.",
+    href: getPath("/posts/como-hacer-presupuesto-mensual-chile/"),
+    esHerramienta: false,
+    etiqueta: "Guía principal",
+  },
+  {
+    titulo: "Calculadora de sueldo líquido",
+    resumen:
+      "Convierte sueldo bruto a líquido con AFP, salud, cesantía e impuesto único. El presupuesto parte por saber cuánto entra realmente.",
+    href: getPath("/calculadoras/sueldo-liquido/"),
+    esHerramienta: true,
+    etiqueta: "Herramienta",
+  },
+];
+---
+
+<Layout
+  title="Presupuesto y Control Financiero en Chile | Monedario"
+  description="Guías y herramientas para hacer un presupuesto mensual real, controlar gastos y ordenar las finanzas personales en Chile."
+>
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(itemListSchema)}
+  />
+  <Header />
+  <Breadcrumb />
+
+  <main id="main-content" class="app-layout">
+    <section class="border-b border-border py-8">
+      <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
+        Presupuesto y control financiero en Chile
+      </h1>
+      <p class="max-w-2xl text-base text-secondary">
+        El paso previo a cualquier decisión financiera: saber a dónde va tu
+        plata. Esta sección reúne el método, la guía y la calculadora para
+        construir un presupuesto que funcione en la realidad chilena.
+      </p>
+    </section>
+
+    <section class="py-4">
+      <ResumeWidget />
+    </section>
+
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-2xl font-bold">Por dónde empezar</h2>
+      <ul class="grid gap-4">
+        {
+          articulosSeccion.map(item => (
+            <li class="rounded-xl border border-border p-5">
+              <p class="mb-2 text-xs font-bold tracking-widest text-accent uppercase">
+                {item.etiqueta}
+              </p>
+              <h3 class="mb-2 text-lg font-semibold">{item.titulo}</h3>
+              <p class="mb-3 text-sm text-secondary">{item.resumen}</p>
+              <a
+                href={item.href}
+                class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+                data-analytics-cta={item.esHerramienta ? "hub-tool" : "hub-article"}
+                data-analytics-label={item.titulo}
+                data-analytics-location="presupuesto_hub"
+              >
+                {item.esHerramienta ? "Ir a la herramienta" : "Ir a esta guía"}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-2xl font-bold">Errores comunes</h2>
+      <ul class="list-disc space-y-2 pl-6 text-secondary">
+        <li>
+          Hacer el presupuesto con el sueldo bruto en lugar del líquido real
+          depositado en la cuenta.
+        </li>
+        <li>
+          Registrar solo gastos fijos y olvidar los gastos irregulares
+          (revisión técnica, dentista, regalos, vacaciones).
+        </li>
+        <li>
+          Intentar optimizar antes de registrar al menos un mes completo — sin
+          datos reales, los recortes no duran.
+        </li>
+        <li>
+          Confundir la regla 50/30/20 con una norma universal: en Santiago, el
+          solo arriendo puede consumir el 40–50% del sueldo.
+        </li>
+      </ul>
+    </section>
+
+    <StartHere
+      steps={[
+        {
+          step: 1,
+          title: "Calcula tu sueldo líquido real",
+          description:
+            "El presupuesto parte por lo que entra, no por el bruto. Usa la calculadora para saber el líquido exacto.",
+          href: "/calculadoras/sueldo-liquido/",
+        },
+        {
+          step: 2,
+          title: "Lee la guía de presupuesto mensual",
+          description:
+            "Método práctico para clasificar gastos, detectar fugas y construir hábitos de control sin plantillas rígidas.",
+          href: "/posts/como-hacer-presupuesto-mensual-chile/",
+        },
+        {
+          step: 3,
+          title: "Registra un mes completo antes de recortar",
+          description:
+            "Sin una foto real de tus gastos, el presupuesto es solo una intención. Un mes de registro te da los datos para decidir.",
+          href: "/posts/como-hacer-presupuesto-mensual-chile/#paso-3-registra-un-mes-completo-en-serio",
+        },
+      ]}
+    />
+
+    <section class="py-8">
+      <div class="rounded-xl border border-accent/20 bg-accent/5 p-6">
+        <h2 class="mb-2 text-xl font-bold">Última actualización de la sección</h2>
+        <p class="text-sm text-secondary">
+          Actualizado: 2026-04-10. Esta sección se revisa cuando cambian referencias de ingresos mínimos, tasas AFP/salud o metodologías de educación financiera aplicadas a Chile.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

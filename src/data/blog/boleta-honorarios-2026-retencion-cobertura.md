@@ -4,7 +4,7 @@ description: "Explicación práctica de la retención 2026 en boletas de honorar
 slug: boleta-honorarios-2026-retencion-cobertura
 author: "Equipo Monedario"
 pubDate: 2026-02-28T15:20:00Z
-updatedDate: 2026-03-12T14:16:00Z
+updatedDate: 2026-04-10T00:00:00Z
 tags:
   - boletas
   - honorarios
@@ -24,7 +24,7 @@ articleLead:
   calculatorLabel: "Calcular líquido por boleta"
   nextStepHref: "/posts/operacion-renta-f22-checklist/"
   nextStepLabel: "Ir al checklist F22"
-  validAsOf: 2026-03-12
+  validAsOf: 2026-04-10
   officialSources:
     - label: "SII — Boletas de honorarios"
       href: "https://www.sii.cl/destacados/boletas_honorarios/"

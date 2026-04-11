@@ -2,7 +2,7 @@
 title: "Cómo calcular tu sueldo líquido en Chile: del imponible al depósito final"
 author: "Equipo Monedario"
 pubDate: 2026-02-24T10:00:00Z
-updatedDate: 2026-03-22T23:01:40Z
+updatedDate: 2026-04-10T00:00:00Z
 slug: como-calcular-sueldo-liquido
 featured: true
 homepagePriority: 100
@@ -26,7 +26,7 @@ articleLead:
   calculatorLabel: "Usar calculadora de sueldo líquido"
   nextStepHref: "/posts/liquidacion-de-sueldo/"
   nextStepLabel: "Auditar la liquidación"
-  validAsOf: 2026-03-22
+  validAsOf: 2026-04-10
   officialSources:
     - label: "SII — Impuesto Único 2026"
       href: "https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm"
@@ -143,7 +143,7 @@ Fuente: [Dirección del Trabajo](https://www.dt.gob.cl/portal/1628/w3-article-95
 
 Este es el más variable y el que más confusión genera. Es el equivalente al impuesto a la renta para trabajadores dependientes, y se paga mensualmente directo en tu liquidación — no en abril como en la Operación Renta.
 
-Se calcula aplicando una tabla progresiva sobre tu **renta tributable mensual**. El SII actualiza los valores cada mes. Como referencia, en **marzo de 2026** el primer tramo exento llega hasta **$943.501,50**. Sobre ese monto empiezan a correr los tramos y la rebaja correspondiente.
+Se calcula aplicando una tabla progresiva sobre tu **renta tributable mensual**. El SII actualiza los valores cada mes. Como referencia, en **abril de 2026** el primer tramo exento llega hasta **$943.501,50**. Sobre ese monto empiezan a correr los tramos y la rebaja correspondiente.
 
 _(Los montos exactos del mes los publica el SII en su [tabla vigente](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm))._
 
@@ -165,21 +165,21 @@ Si antes estabas en Fonasa (7% fijo) y te cambiaste a una Isapre con un plan de 
 
 ## Ejemplo completo: de bruto a líquido
 
-**Supuesto:** Trabajador con contrato indefinido, sueldo bruto $1.500.000, imponible $1.350.000 (incluye colación no imponible de $150.000), afiliado a Capital AFP (1.44%) y Fonasa.
+**Supuesto:** Trabajador con contrato indefinido, sueldo bruto $1.500.000, imponible $1.350.000 (incluye colación no imponible de $150.000), afiliado a Capital AFP (comisión 0,58%, total AFP 10,58%) y Fonasa.
 
 | Concepto                         | Cálculo               | Monto           |
 | -------------------------------- | --------------------- | --------------- |
 | Sueldo bruto                     | —                     | $1.500.000      |
 | (-) AFP cotización 10%           | $1.350.000 × 10%      | -$135.000       |
-| (-) AFP comisión 1.44%           | $1.350.000 × 1.44%    | -$19.440        |
+| (-) AFP comisión 0,58%           | $1.350.000 × 0,58%    | -$7.830         |
 | (-) Salud Fonasa 7%              | $1.350.000 × 7%       | -$94.500        |
-| (-) Seguro cesantía 0.6%         | $1.350.000 × 0.6%     | -$8.100         |
-| = Renta tributable para impuesto | $1.350.000 - $257.040 | $1.092.960      |
-| (-) Impuesto único 2ª categoría  | Tramo 4% marzo 2026   | -$5.978         |
+| (-) Seguro cesantía 0,6%         | $1.350.000 × 0,6%     | -$8.100         |
+| = Renta tributable para impuesto | $1.350.000 - $245.430 | $1.104.570      |
+| (-) Impuesto único 2ª categoría  | Tramo 4% abril 2026   | -$6.443         |
 | (+) Ingresos no imponibles       | Colación              | +$150.000       |
-| **= Sueldo líquido**             | Bruto - Descuentos    | **~$1.237.000** |
+| **= Sueldo líquido**             | Bruto - Descuentos    | **~$1.248.000** |
 
-De $1.500.000 brutos a **~$1.237.000 líquidos**. La diferencia final de **~$263.000** se explica solo por los descuentos: las cotizaciones legales por **$257.040** y el impuesto único del mes por **~$5.978**. La porción no imponible ($150.000 por colación) llega íntegra a tu cuenta sin sufrir descuentos previsionales ni de impuestos.
+De $1.500.000 brutos a **~$1.248.000 líquidos**. La diferencia final de **~$252.000** se explica solo por los descuentos: las cotizaciones legales por **$245.430** y el impuesto único del mes por **~$6.443**. La porción no imponible ($150.000 por colación) llega íntegra a tu cuenta sin sufrir descuentos previsionales ni de impuestos.
 
 ---
 

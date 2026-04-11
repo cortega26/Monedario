@@ -4,7 +4,7 @@ author: "Equipo Monedario"
 description: "Guía para revisar tu finiquito, calcular lo que te corresponde y detectar errores antes de firmar o aceptar montos sin revisar."
 slug: finiquito-e-indemnizaciones-en-chile
 pubDate: 2026-03-02T18:40:00Z
-updatedDate: 2026-03-12T14:14:00Z
+updatedDate: 2026-04-10T00:00:00Z
 tags:
   - empleo-ingresos
   - finiquito
@@ -25,7 +25,7 @@ articleLead:
   calculatorLabel: "Estimar finiquito"
   nextStepHref: "/posts/indemnizacion-anos-de-servicio-chile/"
   nextStepLabel: "Ver años de servicio en detalle"
-  validAsOf: 2026-03-12
+  validAsOf: 2026-04-10
   officialSources:
     - label: "BCN — Código del Trabajo"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=207436"

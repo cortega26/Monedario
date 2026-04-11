@@ -257,12 +257,12 @@ Priority Score Formula: `Impact x Confidence / Effort`
 - **Roadmap Phase:** Phase 2 - Authority Building
 
 ### MB-015 - Create future cluster hub for presupuesto y control financiero
-- **Description:** Build a future hub page around presupuesto, gastos hormiga, control financiero, and basic planning habits, designed as an entry point for less technical users. Current repo truth only has the pillar article `/posts/como-hacer-presupuesto-mensual-chile/`; no dedicated `/guias/presupuesto-control-financiero/` exists yet. This hub is also the migration gate for `/posts/como-hacer-presupuesto-mensual-chile/`, which must remain a documented transitional placement until the hub exists and at least one aligned satellite or tool is live. The minimum opening condition is still unmet, so this remains a future-hub task rather than an active rollout.
+- **Description:** Build a future hub page around presupuesto, gastos hormiga, control financiero, and basic planning habits, designed as an entry point for less technical users. Sprint Phase2-A shipped `/guias/presupuesto-control-financiero/` with pillar article, sueldo calculator link, StartHere steps, and hub nav entry. Article `como-hacer-presupuesto-mensual-chile` updated to link back. Hub added to Header dropdown.
 - **Impact:** 4
 - **Effort:** 3
 - **Confidence:** 4
 - **Priority Score:** 5.3
-- **Status:** TODO
+- **Status:** DONE
 - **Dependencies:** MB-006, MB-026
 - **Roadmap Phase:** Phase 2 - Authority Building
 
@@ -307,22 +307,22 @@ Priority Score Formula: `Impact x Confidence / Effort`
 - **Roadmap Phase:** Phase 2 - Authority Building
 
 ### MB-018 - Refresh top high-intent evergreen articles
-- **Description:** Update the highest-intent pages with improved intros, FAQ sections, stronger source citations, calculator links, and explicit freshness markers.
+- **Description:** Update the highest-intent pages with improved intros, FAQ sections, stronger source citations, calculator links, and explicit freshness markers. Sprint Phase2-A refreshed 4 articles: boleta-honorarios-2026-retencion-cobertura, como-calcular-sueldo-liquido (fixed Capital AFP comisión 1.44%→0.58%, recalculated table), finiquito-e-indemnizaciones-en-chile, seguro-de-cesantia. All `updatedDate` and `validAsOf` set to 2026-04-10. operacion-renta-f22-checklist confirmed up-to-date (updatedDate 2026-04-04, 5 FAQs). Revisions logged in BACKLOG_EDITORIAL.md.
 - **Impact:** 5
 - **Effort:** 4
 - **Confidence:** 5
 - **Priority Score:** 6.3
-- **Status:** TODO
+- **Status:** DONE
 - **Dependencies:** MB-004, MB-016, MB-017
 - **Roadmap Phase:** Phase 2 - Authority Building
 
 ### MB-019 - Strengthen cluster navigation and next-step pathways
-- **Description:** Improve local navigation, related-content logic, breadcrumbs, and "next best action" pathways so users can move from discovery to understanding to tool usage.
+- **Description:** Improve local navigation, related-content logic, breadcrumbs, and "next best action" pathways so users can move from discovery to understanding to tool usage. All dependencies now satisfied (MB-015 completed 2026-04-10). Ready to execute in next sprint.
 - **Impact:** 4
 - **Effort:** 3
 - **Confidence:** 4
 - **Priority Score:** 5.3
-- **Status:** TODO
+- **Status:** IN_PROGRESS
 - **Dependencies:** MB-009, MB-010, MB-011, MB-012, MB-013, MB-014, MB-015
 - **Roadmap Phase:** Phase 2 - Authority Building
 

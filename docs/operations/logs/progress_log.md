@@ -138,3 +138,18 @@ Observed impact: build now ships a dedicated analytics client bundle, 10 calcula
 MB-026
 Canonical internal-link architecture mapping was documented for the live and future Phase 2 clusters, including hub ownership, article/tool/support inventories, cross-cluster exits, and unresolved taxonomy splits that must constrain later hub work.
 Observed impact: the repo now has one source-of-truth map for sueldo, pensiones/APV, deuda, cesantia, UF/costo de vida, impuestos, and presupuesto linking patterns, which narrows the next hub sprint to `MB-010` without widening runtime scope.
+
+2026-04-10
+MB-015
+Hub /guias/presupuesto-control-financiero/ creado con artículo pilar (como-hacer-presupuesto-mensual-chile) y calculadora de sueldo líquido. Artículo pilar actualizado para enlazar al hub padre. Hub agregado al dropdown de Guías en navegación global (Header.astro).
+Observed impact: cluster presupuesto ahora es navegable desde el sitio; condición de migración de placement transitional satisfecha.
+
+2026-04-10
+MB-018
+Refresh batch: boleta-honorarios-2026-retencion-cobertura, como-calcular-sueldo-liquido, finiquito-e-indemnizaciones-en-chile, seguro-de-cesantia. operacion-renta-f22-checklist confirmado actualizado (updatedDate 2026-04-04, 5 FAQs). Corrección material: comisión Capital AFP en ejemplo de como-calcular-sueldo-liquido (1,44% → 0,58%, recálculo de tabla). updatedDate y validAsOf de 4 artículos actualizados a 2026-04-10.
+Observed impact: 4 artículos actualizados con cifras 2026 verificadas. Registro de revisiones en docs/development/BACKLOG_EDITORIAL.md.
+
+2026-04-10
+SPRINT Phase2-A
+MB-015, MB-018, SA-014, SA-015 completados.
+Observed impact: hub presupuesto navegable, refresh de 4 artículos con cifras 2026 y validación de FAQs, ownership UX visible en artículos support (bloque "Guía de referencia" en PostDetails.astro), microcopy de las tres superficies de soporte (/tags/, /glosario/, /buscar/) actualizado con propósito explícito.

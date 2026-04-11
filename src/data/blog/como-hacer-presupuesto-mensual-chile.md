@@ -176,6 +176,8 @@ Sí, y es recomendable para hogares con ingresos compartidos. Lo más simple: un
 
 ## Siguiente paso
 
+Esta guía forma parte de la sección [Presupuesto y control financiero](/guias/presupuesto-control-financiero/), donde encontrarás la ruta completa y las herramientas asociadas.
+
 Una vez que tienes el presupuesto bajo control, el paso siguiente es poner el excedente a trabajar. El [artículo de ahorro e inversión en Chile](/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/) te da una visión de los instrumentos disponibles según plazo y riesgo.
 
 ---

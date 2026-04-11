@@ -2,7 +2,7 @@
 title: "Seguro de cesantía: cómo saber tu saldo, cuándo puedes cobrar y cuánto te pagan"
 author: "Equipo Monedario"
 pubDate: 2026-02-25T10:00:00Z
-updatedDate: 2026-03-12T14:15:00Z
+updatedDate: 2026-04-10T00:00:00Z
 slug: seguro-de-cesantia
 featured: false
 lang: es-CL
@@ -25,7 +25,7 @@ articleLead:
   calculatorLabel: "Estimar cobertura AFC"
   nextStepHref: "/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/"
   nextStepLabel: "Separar CIC y Fondo Solidario"
-  validAsOf: 2026-03-12
+  validAsOf: 2026-04-10
   officialSources:
     - label: "AFC Chile"
       href: "https://www.afc.cl/"
