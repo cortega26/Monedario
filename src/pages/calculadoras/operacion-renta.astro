@@ -666,15 +666,15 @@ const exampleResult = simulateOperacionRenta({
     note.textContent =
       "Estimación orientativa. No incluye dividendos, crédito 1ª categoría ni situaciones especiales de dos empleadores. Usa la propuesta del SII como fuente oficial.";
 
-    document
-      .getElementById("resultado-contenido")!
-      .replaceChildren(
-        banner,
-        ingresosCard,
-        ...(deduccionesCard ? [deduccionesCard] : []),
-        impuestoCard,
-        note
-      );
+    const contenido = document.getElementById("resultado-contenido")!;
+    contenido.replaceChildren(
+      banner,
+      ingresosCard,
+      ...(deduccionesCard ? [deduccionesCard] : []),
+      impuestoCard,
+      note
+    );
+    contenido.removeAttribute("data-is-example");
 
     if (typeof window.showShareResult === "function") {
       window.showShareResult(`Operación Renta: ${resultado.esDevolución ? "devolución" : "pago adicional"} ${fmt(Math.abs(resultado.saldoFinal))}`);
