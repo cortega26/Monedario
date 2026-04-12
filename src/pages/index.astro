@@ -7,13 +7,8 @@ import Card from "@/components/Card.astro";
 import LinkButton from "@/components/LinkButton.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
-import { getCanonicalPathFromSlug } from "@/domain/content/path";
 import { getPath } from "@/utils/getPath";
-import { toArticleView } from "@/utils/articleView";
-import {
-  getBalancedHomepagePosts,
-  getHomepageLeadPost,
-} from "@/utils/homepage";
+import { getBalancedHomepagePosts } from "@/utils/homepage";
 import ResumeWidget from "@/components/ResumeWidget.astro";
 import HeroHomepage from "@/components/HeroHomepage.astro";
 import ProblemCards from "@/components/ProblemCards.astro";
@@ -21,12 +16,8 @@ import IndicadoresHoy from "@/components/IndicadoresHoy.astro";
 
 const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
-const heroPost = getHomepageLeadPost(sortedPosts);
-const heroArticle = heroPost ? toArticleView(heroPost) : null;
 const { richPosts: recentRichPosts } =
   getBalancedHomepagePosts(sortedPosts, {
-    heroSlug: heroArticle?.slug ?? null,
-    heroCluster: heroArticle?.cluster ?? null,
     richCount: 3,
     totalCount: 3,
   });
@@ -126,20 +117,6 @@ const heroDescription =
       )
     }
 
-    {heroPost && heroArticle && (
-      <section class="py-5">
-        <a
-          href={getCanonicalPathFromSlug(heroArticle.slug)}
-          class="group inline-flex items-center gap-2 rounded-lg border border-border bg-surface-muted/50 px-4 py-3 text-sm font-semibold transition-colors hover:bg-surface-muted hover:text-accent"
-          data-analytics-cta="home-featured-compact"
-          data-analytics-label={heroPost.data.title}
-          data-analytics-location="home_featured_banner"
-        >
-          Destacado: {heroPost.data.title}
-          <IconArrowRight class="inline-block rtl:-rotate-180" />
-        </a>
-      </section>
-    )}
 
   </main>
   <Footer />
