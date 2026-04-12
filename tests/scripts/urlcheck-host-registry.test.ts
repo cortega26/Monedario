@@ -15,11 +15,16 @@ describe("classifyHost", () => {
     expect(classifyHost("www.bcentral.cl")).toBe("official_source");
     expect(classifyHost("bcentral.cl")).toBe("official_source");
     expect(classifyHost("www.cmfchile.cl")).toBe("official_source");
+    expect(classifyHost("conocetudeuda.cmfchile.cl")).toBe("official_source");
     expect(classifyHost("www.sii.cl")).toBe("official_source");
     expect(classifyHost("www.spensiones.cl")).toBe("official_source");
     expect(classifyHost("www.bcn.cl")).toBe("official_source");
     expect(classifyHost("www.ine.cl")).toBe("official_source");
     expect(classifyHost("afc.cl")).toBe("official_source");
+    expect(classifyHost("www.dt.gob.cl")).toBe("official_source");
+    expect(classifyHost("www.tgr.cl")).toBe("official_source");
+    expect(classifyHost("tesoreria.cl")).toBe("official_source");
+    expect(classifyHost("www.afcchile.cl")).toBe("official_source");
   });
 
   it("classifies AFP sites as official_source", () => {
@@ -108,6 +113,22 @@ describe("getAllowedFamily", () => {
     const familyWww = getAllowedFamily("www.sii.cl");
     const familyBare = getAllowedFamily("sii.cl");
     expect([...familyWww].sort()).toEqual([...familyBare].sort());
+  });
+
+  it("tgr.cl and tesoreria.cl are treated as the same official family", () => {
+    const family = getAllowedFamily("www.tesoreria.cl");
+    expect(family.has("www.tesoreria.cl")).toBe(true);
+    expect(family.has("tesoreria.cl")).toBe(true);
+    expect(family.has("www.tgr.cl")).toBe(true);
+    expect(family.has("tgr.cl")).toBe(true);
+  });
+
+  it("afc.cl and afcchile.cl are treated as the same official family", () => {
+    const family = getAllowedFamily("www.afc.cl");
+    expect(family.has("www.afc.cl")).toBe(true);
+    expect(family.has("afc.cl")).toBe(true);
+    expect(family.has("www.afcchile.cl")).toBe(true);
+    expect(family.has("afcchile.cl")).toBe(true);
   });
 
   it("wikipedia variants are in the same family", () => {

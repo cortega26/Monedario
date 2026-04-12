@@ -7,7 +7,7 @@ effective: 2002-05-14
 lastAmended: 2022-01-01
 bcnUrl: https://www.bcn.cl/leychile/navegar?idNorma=184979
 description: "Crea el Seguro de Cesantía chileno: cómo se financia, qué montos puede cobrar el trabajador despedido y en qué condiciones."
-lastVerified: 2026-03-12
+lastVerified: 2026-04-12
 updateTrigger: "Modificación de los porcentajes de cobertura, cambio del tope imponible para cotización AFC, o cambio en las condiciones de acceso al Fondo de Cesantía Solidario."
 relatedArticles:
   - seguro-de-cesantia
@@ -28,7 +28,7 @@ La Ley 19.728 creó el Seguro de Cesantía en Chile (vigente desde octubre 2002)
 
 **Vigencia / fecha de corte:** contenido verificado al **2026-03-12** con tablas AFC vigentes hasta el **2027-02-28** para montos FCS.
 
-**Fuentes primarias críticas:** [BCN Ley 19.728](https://www.bcn.cl/leychile/navegar?idNorma=184979), [AFC - ¿Cómo se financia?](https://www.afc.cl/que-es-el-seguro-de-cesantia/como-se-financia/), [AFC - Beneficios del Seguro de Cesantía](https://www.afc.cl/que-es-el-seguro-de-cesantia/beneficios/beneficios-del-seguro-de-cesantia/), [AFC - Fondo de Cesantía Solidario](https://www.afc.cl/afiliados/quedo-cesante-o-esta-cobrando-su-seguro/que-es-el-fondo-solidario-de-cesantia/) y [AFC - Requisitos para cobrar el seguro](https://www.afc.cl/afiliados/quedo-cesante-o-esta-cobrando-su-seguro/requisitos-y-condiciones-para-cobrar-el-seguro/).
+**Fuentes primarias críticas:** [BCN Ley 19.728](https://www.bcn.cl/leychile/navegar?idNorma=184979), [AFC - ¿Cómo se financia?](https://www.afc.cl/que-es-el-seguro-de-cesantia/como-se-financia/), [AFC - Mis cotizaciones](https://www.afc.cl/afiliados/es-trabajador/mis-cotizaciones/), [AFC - Fondo de Cesantía Solidario](https://www.afc.cl/afiliados/quedo-cesante-o-esta-cobrando-su-seguro/que-es-el-fondo-solidario-de-cesantia/) y [AFC - Requisitos para cobrar el seguro](https://www.afc.cl/afiliados/quedo-cesante-o-esta-cobrando-su-seguro/requisitos-y-condiciones-para-cobrar-el-seguro/).
 
 ## Puntos clave para personas
 
