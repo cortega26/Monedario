@@ -62,7 +62,7 @@ En esta guía, "CAE" siempre se refiere al primer significado: el indicador de c
 
 ## Qué es la CAE y por qué existe
 
-El **CAE (Carga Anual Equivalente)** es un indicador expresado como porcentaje anual que resume el costo total de un crédito: tasa de interés, seguros obligatorios, comisiones y gastos. Lo establece la CMF como estándar de comparación para que no puedas ser engañado comparando una tasa mensual sin costos con otra que sí los incluye.
+La **CAE (Carga Anual Equivalente)** es un indicador expresado como porcentaje anual que resume el costo total de un crédito: tasa de interés, seguros obligatorios, comisiones y gastos. Lo establece la CMF como estándar de comparación para que no puedas ser engañado comparando una tasa mensual sin costos con otra que sí los incluye.
 
 Un ejemplo directo:
 
