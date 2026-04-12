@@ -4,7 +4,7 @@ author: "Equipo Monedario"
 description: "Explicación corta y práctica para separar CIC y Fondo de Cesantía Solidario: quién financia cada uno, cuál se cobra primero y qué filtro exige el FCS."
 slug: seguro-cesantia-cuenta-individual-vs-fondo-solidario
 pubDate: 2026-03-12T14:30:00Z
-updatedDate: 2026-03-12T14:30:00Z
+updatedDate: 2026-04-12T19:05:00Z
 tags:
   - cesantia
   - afc
@@ -24,12 +24,14 @@ articleLead:
   calculatorLabel: "Estimar cobertura AFC"
   nextStepHref: "/posts/seguro-de-cesantia/"
   nextStepLabel: "Volver a la guía completa"
-  validAsOf: 2026-03-12
+  validAsOf: 2026-04-12
   officialSources:
-    - label: "AFC Chile"
-      href: "https://www.afc.cl/"
+    - label: "ChileAtiende — Seguro de Cesantía"
+      href: "https://www.chileatiende.gob.cl/fichas/62932-solicitud-del-pago-del-seguro-de-cesantia"
+    - label: "ChileAtiende — Fondo de Cesantía Solidario"
+      href: "https://www.chileatiende.gob.cl/fichas/36646-fondo-de-cesantia-solidario"
     - label: "BCN — Ley 19.728"
-      href: "https://www.bcn.cl/leychile/navegar?idNorma=186175"
+      href: "https://www.bcn.cl/leychile/navegar?idNorma=184979"
   covers:
     - "Qué financia cada fondo."
     - "Qué se usa primero cuando quedas cesante."
@@ -125,4 +127,4 @@ Para el proceso completo de consulta, cobro y documentos necesarios, la [guía g
 
 ---
 
-\_Contenido educativo con fecha de corte 2026-03-12. Los porcentajes y topes del FCS se actualizan anualmente — verifica los valores vigentes en [afc.cl](https://www.afc.cl) antes de calcular tu cobertura.
+\_Contenido educativo con fecha de corte 2026-04-12. Los porcentajes y topes del FCS se actualizan anualmente — verifica los valores vigentes en [ChileAtiende](https://www.chileatiende.gob.cl/fichas/36646-fondo-de-cesantia-solidario) y la [Superintendencia de Pensiones](https://www.spensiones.cl) antes de calcular tu cobertura.

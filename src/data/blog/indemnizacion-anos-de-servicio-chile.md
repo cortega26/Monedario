@@ -24,7 +24,7 @@ articleLead:
   calculatorLabel: "Calcular indemnización"
   nextStepHref: "/posts/finiquito-e-indemnizaciones-en-chile/"
   nextStepLabel: "Volver a la guía de finiquito"
-  validAsOf: 2026-03-12
+  validAsOf: 2026-04-12
   officialSources:
     - label: "BCN — Código del Trabajo"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=207436"

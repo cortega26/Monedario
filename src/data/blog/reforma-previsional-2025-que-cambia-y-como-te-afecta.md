@@ -25,12 +25,14 @@ articleLead:
   calculatorLabel: "Comparar APV ahora"
   nextStepHref: "/posts/fondos-afp-a-b-c-d-e/"
   nextStepLabel: "Ver fondos AFP vigentes"
-  validAsOf: 2026-03-12
+  validAsOf: 2026-04-12
   officialSources:
     - label: "BCN — Ley 21.735"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=1212060"
-    - label: "Superintendencia de Pensiones"
-      href: "https://www.spensiones.cl/"
+    - label: "Superintendencia de Pensiones — aporte del empleador"
+      href: "https://www.spensiones.cl/portal/institucional/594/w3-article-16615.html"
+    - label: "Superintendencia de Pensiones — fondos generacionales"
+      href: "https://www.spensiones.cl/portal/institucional/594/w3-article-16668.html"
   covers:
     - "Qué cambió hoy y qué viene después en el calendario."
     - "Cómo afecta el aporte del empleador y el BAC."
@@ -70,7 +72,7 @@ La reforma obliga al empleador a pagar un porcentaje adicional sobre tu remunera
 
 ### Qué cambia hoy versus después
 
-| Bloque                                      | Hoy (fecha de corte 2026-03-12)                                | Después                                                           |
+| Bloque                                      | Hoy (fecha de corte 2026-04-12)                                | Después                                                           |
 | ------------------------------------------- | -------------------------------------------------------------- | ----------------------------------------------------------------- |
 | Nuevo aporte del empleador                  | Ya existe una nueva cotización de **1%** desde agosto de 2025. | Sube gradualmente hasta llegar a **7%** en agosto de 2033.        |
 | Tramo que va directo a tu cuenta individual | Hoy solo **0,1%** de ese nuevo 1% entra directo a tu AFP.      | La fracción directa sube gradualmente hasta **4,5%** en 2033.     |
@@ -175,8 +177,9 @@ Ahora, nada urgente. Para el cambio de fondos generacionales (abril 2027) la SPe
 ## Fuentes oficiales
 
 - BCN, Ley Fácil Reforma Previsional 2025: https://www.bcn.cl/leyfacil/recurso/reforma-de-pensiones-de-2025
-- Superintendencia de Pensiones, comunicado Fondos Generacionales: https://www.spensiones.cl
-- ChileAtiende, nueva cotización de empleadores: https://www.chileatiende.gob.cl/preguntas-frecuentes/nueva-cotizacion-empleadores
+- Superintendencia de Pensiones, recaudación del aporte del empleador: https://www.spensiones.cl/portal/institucional/594/w3-article-16615.html
+- Superintendencia de Pensiones, diseño de fondos generacionales: https://www.spensiones.cl/portal/institucional/594/w3-article-16668.html
+- Superintendencia de Pensiones, beneficios por años cotizados (BAC): https://www.spensiones.cl/portal/institucional/594/w3-article-16708.html
 
 ---
 
