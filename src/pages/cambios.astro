@@ -4,11 +4,12 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { changelog } from "@/data/changelog";
+import { SITE } from "@/config";
 ---
 
 <Layout
   title="Novedades y cambios | Monedario"
-  description="Registro de cambios editoriales, correcciones y mejoras en Monedario.cl."
+  description={`Registro de cambios editoriales, correcciones y mejoras en ${SITE.title}.`}
 >
   <Header />
   <Breadcrumb />

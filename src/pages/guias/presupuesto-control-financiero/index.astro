@@ -7,26 +7,27 @@ import ResumeWidget from "@/components/ResumeWidget.astro";
 import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
 
+const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(/\/$/, "");
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Presupuesto y Control Financiero en Chile",
   description:
     "Guías y herramientas para crear un presupuesto mensual, controlar gastos y ordenar las finanzas personales en Chile.",
-  url: "https://monedario.cl/guias/presupuesto-control-financiero/",
+  url: `${SITE_BASE}/guias/presupuesto-control-financiero/`,
   numberOfItems: 2,
   itemListElement: [
     {
       "@type": "ListItem",
       position: 1,
       name: "Cómo hacer un presupuesto mensual en Chile: método práctico sin plantilla mágica",
-      url: "https://monedario.cl/posts/como-hacer-presupuesto-mensual-chile/",
+      url: `${SITE_BASE}/posts/como-hacer-presupuesto-mensual-chile/`,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Calculadora de sueldo líquido",
-      url: "https://monedario.cl/calculadoras/sueldo-liquido/",
+      url: `${SITE_BASE}/calculadoras/sueldo-liquido/`,
     },
   ],
 };

@@ -12,50 +12,51 @@ import {
   sueldoClusterHubSupportCards,
 } from "@/config/sueldoClusterLinks";
 
+const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(/\/$/, "");
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Sueldo Líquido y Remuneraciones en Chile",
   description:
     "Calculadoras y guías para calcular sueldo líquido, leer liquidaciones y entender descuentos previsionales en Chile.",
-  url: "https://monedario.cl/guias/sueldo-remuneraciones/",
+  url: `${SITE_BASE}/guias/sueldo-remuneraciones/`,
   numberOfItems: 6,
   itemListElement: [
     {
       "@type": "ListItem",
       position: 1,
       name: "Calculadora de sueldo líquido",
-      url: "https://monedario.cl/calculadoras/sueldo-liquido/",
+      url: `${SITE_BASE}/calculadoras/sueldo-liquido/`,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Liquidación de sueldo: cómo leerla",
-      url: "https://monedario.cl/posts/liquidacion-de-sueldo/",
+      url: `${SITE_BASE}/posts/liquidacion-de-sueldo/`,
     },
     {
       "@type": "ListItem",
       position: 3,
       name: "Cómo calcular tu sueldo líquido",
-      url: "https://monedario.cl/posts/como-calcular-sueldo-liquido/",
+      url: `${SITE_BASE}/posts/como-calcular-sueldo-liquido/`,
     },
     {
       "@type": "ListItem",
       position: 4,
       name: "Cuánto descuenta la AFP de tu sueldo",
-      url: "https://monedario.cl/posts/cuanto-descuenta-la-afp-de-tu-sueldo/",
+      url: `${SITE_BASE}/posts/cuanto-descuenta-la-afp-de-tu-sueldo/`,
     },
     {
       "@type": "ListItem",
       position: 5,
       name: "Boleta de honorarios 2026",
-      url: "https://monedario.cl/calculadoras/boleta-honorarios-liquido/",
+      url: `${SITE_BASE}/calculadoras/boleta-honorarios-liquido/`,
     },
     {
       "@type": "ListItem",
       position: 6,
       name: "Descuentos de sueldo en Chile",
-      url: "https://monedario.cl/posts/descuentos-de-sueldo/",
+      url: `${SITE_BASE}/posts/descuentos-de-sueldo/`,
     },
   ],
 };

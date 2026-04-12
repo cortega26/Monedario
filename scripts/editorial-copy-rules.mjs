@@ -89,6 +89,12 @@ export const INTERNAL_EDITORIAL_VISIBLE_RULES = [
     reason: "Internal/editorial-facing visible copy",
     regex: /\bhistoria editorial\b/gi,
   },
+  {
+    id: "meta-widget",
+    severity: "warn",
+    reason: "UI implementation term not intended for readers",
+    regex: /\bwidget\b/gi,
+  },
 ];
 
 export function shouldSkipRuleForPath(rule, filePath) {

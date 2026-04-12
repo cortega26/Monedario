@@ -12,44 +12,45 @@ import {
   pensionHubRelatedCards,
 } from "@/config/pensionClusterLinks";
 
+const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(/\/$/, "");
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Pensiones y AFP en Chile",
   description:
     "Guías y calculadoras sobre fondos AFP, cambio de administradora, reforma previsional y simulador de jubilación en Chile.",
-  url: "https://monedario.cl/guias/pensiones-afp/",
+  url: `${SITE_BASE}/guias/pensiones-afp/`,
   numberOfItems: 5,
   itemListElement: [
     {
       "@type": "ListItem",
       position: 1,
       name: "Reforma previsional 2025",
-      url: "https://monedario.cl/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/",
+      url: `${SITE_BASE}/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/`,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Fondos AFP A, B, C, D y E: diferencias, riesgo y cuál te conviene",
-      url: "https://monedario.cl/posts/fondos-afp-a-b-c-d-e/",
+      url: `${SITE_BASE}/posts/fondos-afp-a-b-c-d-e/`,
     },
     {
       "@type": "ListItem",
       position: 3,
       name: "Cómo cambiarse de AFP",
-      url: "https://monedario.cl/posts/como-cambiarse-de-afp/",
+      url: `${SITE_BASE}/posts/como-cambiarse-de-afp/`,
     },
     {
       "@type": "ListItem",
       position: 4,
       name: "Cuenta 2 de la AFP",
-      url: "https://monedario.cl/posts/que-es-la-cuenta-2-afp/",
+      url: `${SITE_BASE}/posts/que-es-la-cuenta-2-afp/`,
     },
     {
       "@type": "ListItem",
       position: 5,
       name: "Simulador de jubilación",
-      url: "https://monedario.cl/calculadoras/simulador-jubilacion/",
+      url: `${SITE_BASE}/calculadoras/simulador-jubilacion/`,
     },
   ],
 };

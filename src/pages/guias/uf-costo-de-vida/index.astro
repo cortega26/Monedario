@@ -8,44 +8,45 @@ import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
 import { getHubArticleAssignments } from "@/config/editorial-hub-model.mjs";
 
+const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(/\/$/, "");
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "UF, Inflación y Costo de Vida en Chile",
   description:
     "Guías y herramientas sobre UF, IPC, reajuste de arriendo y costo de vida en Chile.",
-  url: "https://monedario.cl/guias/uf-costo-de-vida/",
+  url: `${SITE_BASE}/guias/uf-costo-de-vida/`,
   numberOfItems: 5,
   itemListElement: [
     {
       "@type": "ListItem",
       position: 1,
       name: "UF en simple: qué es, por qué sube todos los días y cómo te afecta",
-      url: "https://monedario.cl/posts/que-es-la-uf/",
+      url: `${SITE_BASE}/posts/que-es-la-uf/`,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Qué es el IPC en Chile: cómo se calcula y por qué afecta tu bolsillo",
-      url: "https://monedario.cl/posts/que-es-el-ipc-chile-como-se-calcula/",
+      url: `${SITE_BASE}/posts/que-es-el-ipc-chile-como-se-calcula/`,
     },
     {
       "@type": "ListItem",
       position: 3,
       name: "Reajuste de arriendo en UF e IPC en Chile",
-      url: "https://monedario.cl/posts/reajuste-arriendo-uf-ipc-chile/",
+      url: `${SITE_BASE}/posts/reajuste-arriendo-uf-ipc-chile/`,
     },
     {
       "@type": "ListItem",
       position: 4,
       name: "Conversor UF a pesos",
-      url: "https://monedario.cl/calculadoras/conversor-uf/",
+      url: `${SITE_BASE}/calculadoras/conversor-uf/`,
     },
     {
       "@type": "ListItem",
       position: 5,
       name: "Calculadora de reajuste de arriendo",
-      url: "https://monedario.cl/calculadoras/reajuste-arriendo/",
+      url: `${SITE_BASE}/calculadoras/reajuste-arriendo/`,
     },
   ],
 };

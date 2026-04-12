@@ -7,38 +7,39 @@ import ResumeWidget from "@/components/ResumeWidget.astro";
 import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
 
+const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(/\/$/, "");
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Contingencias de Empleo e Ingresos en Chile",
   description:
     "Herramientas y guías para cesantía, licencia médica y finiquito en Chile.",
-  url: "https://monedario.cl/guias/empleo-ingresos/",
+  url: `${SITE_BASE}/guias/empleo-ingresos/`,
   numberOfItems: 4,
   itemListElement: [
     {
       "@type": "ListItem",
       position: 1,
       name: "Seguro de cesantía: cuándo puedes cobrar y cuánto te pagan",
-      url: "https://monedario.cl/posts/seguro-de-cesantia/",
+      url: `${SITE_BASE}/posts/seguro-de-cesantia/`,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Wizard: ¿desde qué día pagan la licencia médica?",
-      url: "https://monedario.cl/guias/empleo-ingresos/licencia-medica-wizard/",
+      url: `${SITE_BASE}/guias/empleo-ingresos/licencia-medica-wizard/`,
     },
     {
       "@type": "ListItem",
       position: 3,
       name: "Licencia médica en Chile: desde qué día te pagan y cómo reclamar",
-      url: "https://monedario.cl/posts/licencia-medica-desde-que-dia-pagan/",
+      url: `${SITE_BASE}/posts/licencia-medica-desde-que-dia-pagan/`,
     },
     {
       "@type": "ListItem",
       position: 4,
       name: "Finiquito e indemnizaciones en Chile: qué te corresponde y cómo revisarlo",
-      url: "https://monedario.cl/posts/finiquito-e-indemnizaciones-en-chile/",
+      url: `${SITE_BASE}/posts/finiquito-e-indemnizaciones-en-chile/`,
     },
   ],
 };

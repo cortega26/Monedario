@@ -7,44 +7,45 @@ import ResumeWidget from "@/components/ResumeWidget.astro";
 import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
 
+const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(/\/$/, "");
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Seguridad Financiera en Chile",
   description:
     "Herramientas y guías para prevenir estafas, actuar ante fraudes y resolver suplantación de identidad.",
-  url: "https://monedario.cl/guias/seguridad-financiera/",
+  url: `${SITE_BASE}/guias/seguridad-financiera/`,
   numberOfItems: 5,
   itemListElement: [
     {
       "@type": "ListItem",
       position: 1,
       name: "Wizard: cargo no reconocido — tu ruta paso a paso (Ley 20.009)",
-      url: "https://monedario.cl/guias/seguridad-financiera/fraude-cargo-no-reconocido/",
+      url: `${SITE_BASE}/guias/seguridad-financiera/fraude-cargo-no-reconocido/`,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Te hicieron un cargo que no reconoces: qué hacer en las primeras 24 horas",
-      url: "https://monedario.cl/posts/fraude-tarjeta-que-hacer/",
+      url: `${SITE_BASE}/posts/fraude-tarjeta-que-hacer/`,
     },
     {
       "@type": "ListItem",
       position: 3,
       name: "Estafas financieras en Chile: señales por canal y checklist de 24 horas",
-      url: "https://monedario.cl/posts/estafas-financieras-chile-vishing-smishing-marketplace/",
+      url: `${SITE_BASE}/posts/estafas-financieras-chile-vishing-smishing-marketplace/`,
     },
     {
       "@type": "ListItem",
       position: 4,
       name: "Suplantación de identidad y créditos no reconocidos: qué hacer paso a paso",
-      url: "https://monedario.cl/posts/suplantacion-identidad-creditos-no-reconocidos/",
+      url: `${SITE_BASE}/posts/suplantacion-identidad-creditos-no-reconocidos/`,
     },
     {
       "@type": "ListItem",
       position: 5,
       name: "Fonasa o Isapre: cuál conviene según tu caso (2026)",
-      url: "https://monedario.cl/posts/fonasa-vs-isapre-comparativa/",
+      url: `${SITE_BASE}/posts/fonasa-vs-isapre-comparativa/`,
     },
   ],
 };

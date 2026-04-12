@@ -7,38 +7,39 @@ import ResumeWidget from "@/components/ResumeWidget.astro";
 import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
 
+const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(/\/$/, "");
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Impuestos para Personas en Chile",
   description:
     "Guías sobre Operación Renta F22, devolución de impuestos y boletas de honorarios en Chile.",
-  url: "https://monedario.cl/guias/impuestos-personas/",
+  url: `${SITE_BASE}/guias/impuestos-personas/`,
   numberOfItems: 4,
   itemListElement: [
     {
       "@type": "ListItem",
       position: 1,
       name: "Centro Operación Renta 2026: F22, rectificación, devolución y retenciones",
-      url: "https://monedario.cl/guias/impuestos-personas/operacion-renta/",
+      url: `${SITE_BASE}/guias/impuestos-personas/operacion-renta/`,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "Operación Renta F22 en Chile: checklist para revisar, enviar y rectificar sin errores",
-      url: "https://monedario.cl/posts/operacion-renta-f22-checklist/",
+      url: `${SITE_BASE}/posts/operacion-renta-f22-checklist/`,
     },
     {
       "@type": "ListItem",
       position: 3,
       name: "Devolución de impuestos en Chile: fechas de pago, estado y compensaciones",
-      url: "https://monedario.cl/posts/devolucion-impuestos-fechas-compensaciones/",
+      url: `${SITE_BASE}/posts/devolucion-impuestos-fechas-compensaciones/`,
     },
     {
       "@type": "ListItem",
       position: 4,
       name: "Boleta de honorarios 2026: retención 15,25%, líquido recibido y cobertura anual",
-      url: "https://monedario.cl/posts/boleta-honorarios-2026-retencion-cobertura/",
+      url: `${SITE_BASE}/posts/boleta-honorarios-2026-retencion-cobertura/`,
     },
   ],
 };

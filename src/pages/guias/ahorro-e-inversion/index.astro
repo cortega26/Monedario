@@ -7,44 +7,45 @@ import ResumeWidget from "@/components/ResumeWidget.astro";
 import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
 
+const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(/\/$/, "");
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Ahorro e Inversión en Chile",
   description:
     "Guías y herramientas para elegir instrumentos de ahorro e inversión según plazo, riesgo e impuestos en Chile.",
-  url: "https://monedario.cl/guias/ahorro-e-inversion/",
+  url: `${SITE_BASE}/guias/ahorro-e-inversion/`,
   numberOfItems: 5,
   itemListElement: [
     {
       "@type": "ListItem",
       position: 1,
       name: "Ahorro e inversión en Chile: instrumentos, costos e impuestos (guía 2026)",
-      url: "https://monedario.cl/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/",
+      url: `${SITE_BASE}/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/`,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "APV en Chile: beneficio tributario, regímenes A y B, y cuándo conviene",
-      url: "https://monedario.cl/posts/que-es-el-apv/",
+      url: `${SITE_BASE}/posts/que-es-el-apv/`,
     },
     {
       "@type": "ListItem",
       position: 3,
       name: "Depósito a plazo: UF vs pesos — qué conviene y cuándo",
-      url: "https://monedario.cl/posts/deposito-a-plazo-uf-vs-pesos/",
+      url: `${SITE_BASE}/posts/deposito-a-plazo-uf-vs-pesos/`,
     },
     {
       "@type": "ListItem",
       position: 4,
       name: "Fondos mutuos: comisiones, rescate e impuestos (sin letra chica)",
-      url: "https://monedario.cl/posts/fondos-mutuos-comisiones-rescate-impuestos/",
+      url: `${SITE_BASE}/posts/fondos-mutuos-comisiones-rescate-impuestos/`,
     },
     {
       "@type": "ListItem",
       position: 5,
       name: "Cómo invertir en ETFs desde Chile: comisiones, custodia e impuestos",
-      url: "https://monedario.cl/posts/como-invertir-en-etfs-desde-chile/",
+      url: `${SITE_BASE}/posts/como-invertir-en-etfs-desde-chile/`,
     },
   ],
 };

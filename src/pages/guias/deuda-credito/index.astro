@@ -13,50 +13,51 @@ import {
 } from "@/config/deudaClusterLinks";
 import CompareTable from "@/components/CompareTable.astro";
 
+const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(/\/$/, "");
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
   name: "Deuda y Crédito en Chile",
   description:
     "Guías y calculadoras sobre informes de deuda, costo real del crédito y renegociación en Chile.",
-  url: "https://monedario.cl/guias/deuda-credito/",
+  url: `${SITE_BASE}/guias/deuda-credito/`,
   numberOfItems: 6,
   itemListElement: [
     {
       "@type": "ListItem",
       position: 1,
       name: "Informe de deudas CMF vs DICOM",
-      url: "https://monedario.cl/posts/informe-deudas-cmf-vs-dicom/",
+      url: `${SITE_BASE}/posts/informe-deudas-cmf-vs-dicom/`,
     },
     {
       "@type": "ListItem",
       position: 2,
       name: "CAE y costo real del crédito",
-      url: "https://monedario.cl/posts/cae-costo-real-credito-chile/",
+      url: `${SITE_BASE}/posts/cae-costo-real-credito-chile/`,
     },
     {
       "@type": "ListItem",
       position: 3,
       name: "Renegociación Superir",
-      url: "https://monedario.cl/posts/renegociacion-superir/",
+      url: `${SITE_BASE}/posts/renegociacion-superir/`,
     },
     {
       "@type": "ListItem",
       position: 4,
       name: "Calculadora de crédito de consumo",
-      url: "https://monedario.cl/calculadoras/credito-consumo/",
+      url: `${SITE_BASE}/calculadoras/credito-consumo/`,
     },
     {
       "@type": "ListItem",
       position: 5,
       name: "Costo real de tarjeta de crédito",
-      url: "https://monedario.cl/calculadoras/tarjeta-credito/",
+      url: `${SITE_BASE}/calculadoras/tarjeta-credito/`,
     },
     {
       "@type": "ListItem",
       position: 6,
       name: "Simulador Renegociación Superir",
-      url: "https://monedario.cl/calculadoras/simulador-renegociacion/",
+      url: `${SITE_BASE}/calculadoras/simulador-renegociacion/`,
     },
   ],
 };

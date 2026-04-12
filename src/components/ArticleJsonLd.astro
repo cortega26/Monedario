@@ -21,7 +21,6 @@ export interface Props {
 const { post, canonicalUrl, ogImageUrl } = Astro.props;
 const { title, description, pubDate, updatedDate, author } = post.data;
 
-const AUTHOR_NAME = "Carlos Ortega González";
 const AUTHOR_URL = new URL("/autor/", Astro.site ?? Astro.url.origin).href;
 const AUTHOR_IMAGE_URL = new URL(
   SITE.authorImage,
@@ -46,7 +45,7 @@ const articleSchema = {
   inLanguage: "es-CL",
   author: {
     "@type": "Person",
-    name: author ?? SITE.authorFullName ?? AUTHOR_NAME,
+    name: author ?? SITE.authorFullName,
     url: AUTHOR_URL,
     image: AUTHOR_IMAGE_URL,
     sameAs: [SITE.authorLinkedIn, SITE.profile],

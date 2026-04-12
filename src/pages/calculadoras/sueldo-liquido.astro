@@ -12,6 +12,7 @@ import { getEconomicParameters } from "@/application/use-cases/GetEconomicParame
 import { getPath } from "@/utils/getPath";
 import { sueldoCalculatorSections } from "@/config/sueldoClusterLinks";
 import { AFP_COMMISSIONS_PERCENT } from "@/config/afpCommissions";
+import { SITE } from "@/config";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 const salaryGuidePath = getPath("/posts/como-calcular-sueldo-liquido/");
@@ -38,6 +39,7 @@ const economicSourceLabel =
     data-analytics-page-type="calculator"
     data-analytics-calculator="sueldo-liquido"
     data-analytics-calculator-name="Calculadora de Sueldo Liquido"
+    data-site-title={SITE.title}
   >
     <section class="border-b border-border pt-8 pb-6">
       <h1
@@ -1114,7 +1116,7 @@ const economicSourceLabel =
     const pad = (s: string, n = 24) => s.padEnd(n, " ");
 
     const lines = [
-      "Calculadora de Sueldo Líquido — monedario.cl",
+      `Calculadora de Sueldo Líquido — ${document.getElementById("main-content")?.dataset.siteTitle ?? "Monedario"}`,
       "─".repeat(44),
       `${pad("Bruto:")}${fmt(r.grossSalary)}`,
       `${pad("Imponible:")}${fmt(r.taxableSalary)}`,
