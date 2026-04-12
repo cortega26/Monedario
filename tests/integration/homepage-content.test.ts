@@ -218,4 +218,15 @@ describe("homepage content helpers", () => {
       "uf-costo-de-vida",
     ]);
   });
+
+  it("operacion-renta calculator page does not reference the outdated 12.25% PPM rate", () => {
+    // Ley 21.133 raised the honorarios PPM retention to 15.25% for 2026.
+    // This guard ensures stale copy never ships again.
+    const source = readFileSync(
+      "src/pages/calculadoras/operacion-renta.astro",
+      "utf8"
+    );
+    expect(source).not.toContain("12.25%");
+    expect(source).not.toContain("12.25");
+  });
 });
