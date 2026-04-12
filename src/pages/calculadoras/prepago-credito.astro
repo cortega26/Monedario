@@ -50,7 +50,9 @@ const economicSourceLabel =
         <h2 class="mb-4 text-lg font-semibold">📝 Tu crédito actual</h2>
 
         <div class="mb-5">
-          <p class="mb-2 text-xs font-medium text-secondary">Moneda de ingreso</p>
+          <p class="mb-2 text-xs font-medium text-secondary">
+            Moneda de ingreso
+          </p>
           <div class="flex gap-2">
             <label class="flex-1 cursor-pointer">
               <input
@@ -81,7 +83,12 @@ const economicSourceLabel =
             </label>
           </div>
           <p class="mt-1 text-xs text-muted">
-            UF del día: ${economicParameters.uf.toLocaleString("es-CL", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (fuente: {economicSourceLabel})
+            UF del día: ${
+              economicParameters.uf.toLocaleString("es-CL", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })
+            } (fuente: {economicSourceLabel})
           </p>
         </div>
 
@@ -137,7 +144,9 @@ const economicSourceLabel =
           <p class="mt-1 text-xs text-muted">
             Hipotecarios: ~0.4–0.8% mensual. Consumo: ~1.5–3.5% mensual.
           </p>
-          <div class="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted">
+          <div
+            class="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted"
+          >
             <span>¿Solo conoces tu tasa anual o CAE?</span>
             <div class="flex items-center gap-1">
               <input
@@ -152,7 +161,8 @@ const economicSourceLabel =
               />
               <span>% anual</span>
             </div>
-            <span id="tasa-conversion-resultado" class="font-medium text-accent"></span>
+            <span id="tasa-conversion-resultado" class="font-medium text-accent"
+            ></span>
           </div>
         </div>
 
@@ -285,7 +295,12 @@ const economicSourceLabel =
       <!-- RESULTADO -->
       <div class="rounded-xl border border-border bg-background p-6">
         <h2 class="mb-5 text-lg font-semibold">💰 ¿Conviene prepagar?</h2>
-        <div id="resultado-contenido" data-uf={String(economicParameters.uf)} class="py-8 text-center text-muted" aria-live="polite">
+        <div
+          id="resultado-contenido"
+          data-uf={String(economicParameters.uf)}
+          class="py-8 text-center text-muted"
+          aria-live="polite"
+        >
           <p class="mb-3 text-4xl">💡</p>
           <p class="text-sm">
             Ingresa los datos del crédito y el monto a prepagar.
@@ -376,12 +391,20 @@ const economicSourceLabel =
   }
 
   function getUFValue(): number {
-    const container = document.getElementById("resultado-contenido") as HTMLElement | null;
+    const container = document.getElementById(
+      "resultado-contenido"
+    ) as HTMLElement | null;
     return parseFloat(container?.dataset.uf ?? "0") || 0;
   }
 
   function isUFMode(): boolean {
-    return (document.querySelector("input[name='moneda']:checked") as HTMLInputElement | null)?.value === "UF";
+    return (
+      (
+        document.querySelector(
+          "input[name='moneda']:checked"
+        ) as HTMLInputElement | null
+      )?.value === "UF"
+    );
   }
 
   function fmtR(n: number): string {
@@ -389,7 +412,13 @@ const economicSourceLabel =
       const uf = getUFValue();
       if (uf > 0) {
         const ufVal = n / uf;
-        return "UF\u00a0" + ufVal.toLocaleString("es-CL", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        return (
+          "UF\u00a0" +
+          ufVal.toLocaleString("es-CL", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })
+        );
       }
     }
     return fmt(n);
@@ -653,7 +682,9 @@ const economicSourceLabel =
     );
 
     if (typeof window.showShareResult === "function") {
-      window.showShareResult(`Prepago crédito: ahorro neto ${fmtMR(simulacion.netSavingsAfterPrepaymentCost)}`);
+      window.showShareResult(
+        `Prepago crédito: ahorro neto ${fmtMR(simulacion.netSavingsAfterPrepaymentCost)}`
+      );
     }
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "prepago-credito",
@@ -663,27 +694,57 @@ const economicSourceLabel =
   });
 
   // Annual-to-monthly rate conversion helper
-  const tasaAnualHelper = document.getElementById("tasa-anual-helper") as HTMLInputElement | null;
-  const tasaConversionResultado = document.getElementById("tasa-conversion-resultado");
-  const tasaCreditoInput = document.getElementById("tasa-credito") as HTMLInputElement | null;
+  const tasaAnualHelper = document.getElementById(
+    "tasa-anual-helper"
+  ) as HTMLInputElement | null;
+  const tasaConversionResultado = document.getElementById(
+    "tasa-conversion-resultado"
+  );
+  const tasaCreditoInput = document.getElementById(
+    "tasa-credito"
+  ) as HTMLInputElement | null;
 
   tasaAnualHelper?.addEventListener("input", () => {
     const anual = parseFloat(tasaAnualHelper!.value);
     if (!isNaN(anual) && anual > 0) {
       const mensual = (Math.pow(1 + anual / 100, 1 / 12) - 1) * 100;
       if (tasaCreditoInput) tasaCreditoInput.value = mensual.toFixed(2);
-      if (tasaConversionResultado) tasaConversionResultado.textContent = `≈ ${mensual.toFixed(2)}% mensual`;
+      if (tasaConversionResultado)
+        tasaConversionResultado.textContent = `≈ ${mensual.toFixed(2)}% mensual`;
     } else {
       if (tasaConversionResultado) tasaConversionResultado.textContent = "";
     }
   });
 
   // Currency toggle: update labels and placeholders when switching CLP ↔ UF
-  const labelFields: Record<string, { clp: string; uf: string; phClp: string; phUf: string }> = {
-    saldo: { clp: "Saldo pendiente ($)", uf: "Saldo pendiente (UF)", phClp: "Ej: 15.000.000", phUf: "Ej: 400" },
-    cuota: { clp: "Cuota mensual actual ($)", uf: "Cuota mensual actual (UF)", phClp: "Ej: 350.000", phUf: "Ej: 15" },
-    "monto-prepago": { clp: "Monto del abono extraordinario ($)", uf: "Monto del abono extraordinario (UF)", phClp: "Ej: 2.000.000", phUf: "Ej: 50" },
-    "costo-prepago": { clp: "Comisión o costo de prepago ($)", uf: "Comisión o costo de prepago (UF)", phClp: "Ej: 120.000", phUf: "Ej: 3" },
+  const labelFields: Record<
+    string,
+    { clp: string; uf: string; phClp: string; phUf: string }
+  > = {
+    saldo: {
+      clp: "Saldo pendiente ($)",
+      uf: "Saldo pendiente (UF)",
+      phClp: "Ej: 15.000.000",
+      phUf: "Ej: 400",
+    },
+    cuota: {
+      clp: "Cuota mensual actual ($)",
+      uf: "Cuota mensual actual (UF)",
+      phClp: "Ej: 350.000",
+      phUf: "Ej: 15",
+    },
+    "monto-prepago": {
+      clp: "Monto del abono extraordinario ($)",
+      uf: "Monto del abono extraordinario (UF)",
+      phClp: "Ej: 2.000.000",
+      phUf: "Ej: 50",
+    },
+    "costo-prepago": {
+      clp: "Comisión o costo de prepago ($)",
+      uf: "Comisión o costo de prepago (UF)",
+      phClp: "Ej: 120.000",
+      phUf: "Ej: 3",
+    },
   };
 
   function updateCurrencyLabels(): void {
@@ -696,7 +757,7 @@ const economicSourceLabel =
     }
   }
 
-  document.querySelectorAll("input[name='moneda']").forEach((radio) => {
+  document.querySelectorAll("input[name='moneda']").forEach(radio => {
     radio.addEventListener("change", updateCurrencyLabels);
   });
 </script>

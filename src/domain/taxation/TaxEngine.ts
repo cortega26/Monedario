@@ -24,7 +24,9 @@ function assertTaxInput(input: TaxInput): void {
   }
 }
 
-export function buildSecondCategoryTaxBrackets(utm: number): readonly TaxBracket[] {
+export function buildSecondCategoryTaxBrackets(
+  utm: number
+): readonly TaxBracket[] {
   // Recursive formula: d_i = upperLimit_{i-1} × (rate_i − rate_{i-1}) + d_{i-1}
   // Ensures tax is continuous at every bracket boundary (matches tabla SII).
   const d2 = 13.5 * utm * 0.04; // 0.54 UTM

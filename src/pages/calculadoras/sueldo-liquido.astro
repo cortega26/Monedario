@@ -249,11 +249,16 @@ const economicSourceLabel =
             id="afp-tasa"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
           >
-            {AFP_COMMISSIONS_PERCENT.map(afp => (
-              <option value={String(afp.total)} selected={afp.name === "Habitat"}>
-                {afp.name} – {afp.total.toFixed(2)}%
-              </option>
-            ))}
+            {
+              AFP_COMMISSIONS_PERCENT.map(afp => (
+                <option
+                  value={String(afp.total)}
+                  selected={afp.name === "Habitat"}
+                >
+                  {afp.name} – {afp.total.toFixed(2)}%
+                </option>
+              ))
+            }
           </select>
         </div>
 
@@ -308,9 +313,10 @@ const economicSourceLabel =
                 class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
               />
               <p class="mt-1 text-xs text-muted">
-                Monto total en pesos del mes (p. ej. 5 horas × valor hora × 1,5).
-                Son imponibles y tributan. Desde abril de 2026 (Ley 40h), la
-                jornada máxima es 42 h/semana: toda hora sobre ese límite es extra.
+                Monto total en pesos del mes (p. ej. 5 horas × valor hora ×
+                1,5). Son imponibles y tributan. Desde abril de 2026 (Ley 40h),
+                la jornada máxima es 42 h/semana: toda hora sobre ese límite es
+                extra.
               </p>
             </div>
             <div>
@@ -328,8 +334,9 @@ const economicSourceLabel =
                 class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
               />
               <p class="mt-1 text-xs text-muted">
-                Si tu liquidación incluye asignación de colación, ingrésala aquí.
-                Reduce el sueldo imponible (no se descuenta de AFP ni salud).
+                Si tu liquidación incluye asignación de colación, ingrésala
+                aquí. Reduce el sueldo imponible (no se descuenta de AFP ni
+                salud).
               </p>
             </div>
             <div>
@@ -388,18 +395,47 @@ const economicSourceLabel =
       >
         <h2 class="mb-5 text-lg font-semibold">💵 Resultado</h2>
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
-          <div class="mb-6 rounded-lg border border-border bg-surface-muted/40 p-4 text-center">
-            <p class="mb-1 text-xs font-bold tracking-widest text-muted uppercase">Sueldo Líquido (Ejemplo)</p>
+          <div
+            class="mb-6 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
+          >
+            <p
+              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
+            >
+              Sueldo Líquido (Ejemplo)
+            </p>
             <p class="text-4xl font-bold text-foreground/60">$973.560</p>
           </div>
           <div class="space-y-2 text-sm">
-            <div class="flex justify-between"><span class="text-secondary">Sueldo bruto</span><span class="font-medium text-foreground/60">$1.200.000</span></div>
-            <div class="flex justify-between"><span class="text-secondary">AFP (11.27%)</span><span class="text-red-400/70">− $135.240</span></div>
-            <div class="flex justify-between"><span class="text-secondary">Salud (7%)</span><span class="text-red-400/70">− $84.000</span></div>
-            <div class="flex justify-between"><span class="text-secondary">Seg. cesantía (0.6%)</span><span class="text-red-400/70">− $7.200</span></div>
-            <div class="flex justify-between"><span class="text-secondary">Imp. 2ª categoría</span><span class="text-red-400/70">− $0</span></div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Sueldo bruto</span><span
+                class="font-medium text-foreground/60">$1.200.000</span
+              >
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">AFP (11.27%)</span><span
+                class="text-red-400/70">− $135.240</span
+              >
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Salud (7%)</span><span
+                class="text-red-400/70">− $84.000</span
+              >
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Seg. cesantía (0.6%)</span><span
+                class="text-red-400/70">− $7.200</span
+              >
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Imp. 2ª categoría</span><span
+                class="text-red-400/70">− $0</span
+              >
+            </div>
           </div>
-          <p class="mt-4 text-xs text-muted">Ejemplo para sueldo bruto $1.200.000 con Fonasa y Habitat. Ingresa tus datos para calcular tu caso real.</p>
+          <p class="mt-4 text-xs text-muted">
+            Ejemplo para sueldo bruto $1.200.000 con Fonasa y Habitat. Ingresa
+            tus datos para calcular tu caso real.
+          </p>
         </div>
         <div
           id="economic-parameters"
@@ -577,16 +613,16 @@ const economicSourceLabel =
         Lo que sí sube es el <strong>valor unitario de cada hora</strong>. Por
         doctrina de la Dirección del Trabajo, el precio de la hora ordinaria se
         obtiene dividiendo el sueldo mensual entre las horas semanales pactadas
-        × 4,333 (semanas promedio por mes). Al bajar la jornada de 45 a 42
-        horas manteniendo el mismo sueldo —protección que garantiza la propia
-        Ley 21.561—, el denominador disminuye y el valor por hora aumenta cerca
-        de un 7%. En la práctica: con un bruto de $1.200.000, el valor de la
-        hora ordinaria pasa de ≈ $6.154 (con 45 h/semana) a ≈ $6.593 (con
-        42 h/semana), y la hora extra —con el recargo mínimo del 50% que fija
-        el Art. 32 del Código del Trabajo— sube de ≈ $9.231 a ≈ $9.890. Esto
-        no lo calcula la calculadora (que trabaja con montos mensuales totales),
-        pero es el efecto que percibes si negocias horas extra o evalúas un
-        contrato que las contempla.
+        × 4,333 (semanas promedio por mes). Al bajar la jornada de 45 a 42 horas
+        manteniendo el mismo sueldo —protección que garantiza la propia Ley
+        21.561—, el denominador disminuye y el valor por hora aumenta cerca de
+        un 7%. En la práctica: con un bruto de $1.200.000, el valor de la hora
+        ordinaria pasa de ≈ $6.154 (con 45 h/semana) a ≈ $6.593 (con 42
+        h/semana), y la hora extra —con el recargo mínimo del 50% que fija el
+        Art. 32 del Código del Trabajo— sube de ≈ $9.231 a ≈ $9.890. Esto no lo
+        calcula la calculadora (que trabaja con montos mensuales totales), pero
+        es el efecto que percibes si negocias horas extra o evalúas un contrato
+        que las contempla.
       </p>
     </section>
 
@@ -827,7 +863,9 @@ const economicSourceLabel =
     const totalDed = resultado.deductions.total + (otrosDescuentos ?? 0);
     const isInverso = modoLabel === "Sueldo Bruto Estimado";
     const displayAmount = isInverso ? resultado.grossSalary : netFinal;
-    const retainedPct = Math.round(100 - (totalDed / resultado.grossSalary) * 100);
+    const retainedPct = Math.round(
+      100 - (totalDed / resultado.grossSalary) * 100
+    );
 
     // — HEADLINE —
     const headline = document.createElement("div");
@@ -852,12 +890,28 @@ const economicSourceLabel =
     // — BARRAS VISUALES DE DESCUENTOS —
     const barsData: { label: string; value: number; color: string }[] = [
       { label: "AFP", value: resultado.deductions.afp, color: "bg-blue-400" },
-      { label: "Salud", value: resultado.deductions.health, color: "bg-cyan-400" },
-      { label: "Seg. cesantía", value: resultado.deductions.unemploymentInsurance, color: "bg-emerald-400" },
-      { label: "Imp. 2ª cat.", value: resultado.deductions.tax, color: "bg-amber-400" },
+      {
+        label: "Salud",
+        value: resultado.deductions.health,
+        color: "bg-cyan-400",
+      },
+      {
+        label: "Seg. cesantía",
+        value: resultado.deductions.unemploymentInsurance,
+        color: "bg-emerald-400",
+      },
+      {
+        label: "Imp. 2ª cat.",
+        value: resultado.deductions.tax,
+        color: "bg-amber-400",
+      },
     ];
     if (otrosDescuentos && otrosDescuentos > 0) {
-      barsData.push({ label: "Otros desc.", value: otrosDescuentos, color: "bg-rose-400" });
+      barsData.push({
+        label: "Otros desc.",
+        value: otrosDescuentos,
+        color: "bg-rose-400",
+      });
     }
     const bars = document.createElement("div");
     bars.className = "mb-4 space-y-1.5";
@@ -868,7 +922,8 @@ const economicSourceLabel =
       barMeta.className = "mb-0.5 flex justify-between text-xs text-muted";
       barMeta.innerHTML = `<span>${label}</span><span>${fmt(value)} (${pct.toFixed(1)}%)</span>`;
       const barTrack = document.createElement("div");
-      barTrack.className = "h-1.5 w-full overflow-hidden rounded-full bg-border";
+      barTrack.className =
+        "h-1.5 w-full overflow-hidden rounded-full bg-border";
       const barFill = document.createElement("div");
       barFill.className = `h-full rounded-full ${color}`;
       barFill.style.width = `${Math.min(pct, 100)}%`;
@@ -933,9 +988,14 @@ const economicSourceLabel =
     totals.append(totalsLabel, totalsValue);
 
     // — FILAS INFORMATIVAS: ANUAL + COSTO EMPLEADOR —
-    const mkInfoRow = (label: string, value: string, tooltip?: string): HTMLElement => {
+    const mkInfoRow = (
+      label: string,
+      value: string,
+      tooltip?: string
+    ): HTMLElement => {
       const row = document.createElement("div");
-      row.className = "flex items-center justify-between rounded border border-border/50 bg-surface-muted/30 px-3 py-2 text-xs";
+      row.className =
+        "flex items-center justify-between rounded border border-border/50 bg-surface-muted/30 px-3 py-2 text-xs";
       const lbl = document.createElement("span");
       lbl.className = "text-muted";
       if (tooltip) lbl.title = tooltip;
@@ -949,8 +1009,10 @@ const economicSourceLabel =
     const extraRows = document.createElement("div");
     extraRows.className = "mt-2 space-y-1";
     extraRows.append(mkInfoRow("Al año (× 12)", fmt(displayAmount * 12)));
-    const afcEmployerRate = resultado.contractType === "plazo-fijo" ? 0.03 : 0.024;
-    const employerAfc = resultado.cappedBases.unemploymentInsurance * afcEmployerRate;
+    const afcEmployerRate =
+      resultado.contractType === "plazo-fijo" ? 0.03 : 0.024;
+    const employerAfc =
+      resultado.cappedBases.unemploymentInsurance * afcEmployerRate;
     extraRows.append(
       mkInfoRow(
         "Costo total para tu empleador ①",
@@ -1021,7 +1083,9 @@ const economicSourceLabel =
         "Calculadora de Sueldo Líquido y Bruto"
       );
       if (typeof window.showShareResult === "function") {
-        window.showShareResult(`Sueldo Líquido y Bruto: bruto estimado ${fmt(resultado.grossSalary)}`);
+        window.showShareResult(
+          `Sueldo Líquido y Bruto: bruto estimado ${fmt(resultado.grossSalary)}`
+        );
       }
       trackAnalyticsEvent("calculator_complete", {
         calculator_slug: "sueldo-liquido",
@@ -1067,7 +1131,9 @@ const economicSourceLabel =
         imponible !== undefined
           ? imponible + gratificacion + horasExtra
           : noImponiblesExtra > 0
-            ? Math.max(0, rawInput - noImponiblesExtra) + gratificacion + horasExtra
+            ? Math.max(0, rawInput - noImponiblesExtra) +
+              gratificacion +
+              horasExtra
             : undefined;
 
       let resultado;
@@ -1095,7 +1161,9 @@ const economicSourceLabel =
         "Calculadora de Sueldo Líquido y Bruto"
       );
       if (typeof window.showShareResult === "function") {
-        window.showShareResult(`Sueldo Líquido y Bruto: líquido ${fmt(resultado.netSalary - (otrosDescuentos ?? 0))}`);
+        window.showShareResult(
+          `Sueldo Líquido y Bruto: líquido ${fmt(resultado.netSalary - (otrosDescuentos ?? 0))}`
+        );
       }
       trackAnalyticsEvent("calculator_complete", {
         calculator_slug: "sueldo-liquido",
@@ -1198,9 +1266,13 @@ const economicSourceLabel =
         radio.checked = true;
         updateModoUI();
       }
-      const amount = parseFloat((bruto ?? liquido)!.replace(/\./g, "").replace(",", "."));
+      const amount = parseFloat(
+        (bruto ?? liquido)!.replace(/\./g, "").replace(",", ".")
+      );
       if (Number.isFinite(amount) && amount > 0) {
-        const sueldoInput = document.getElementById("sueldo") as HTMLInputElement | null;
+        const sueldoInput = document.getElementById(
+          "sueldo"
+        ) as HTMLInputElement | null;
         if (sueldoInput) sueldoInput.value = String(amount);
       }
     }
@@ -1209,14 +1281,18 @@ const economicSourceLabel =
     if (imponible && !liquido) {
       const amount = parseFloat(imponible.replace(/\./g, "").replace(",", "."));
       if (Number.isFinite(amount) && amount > 0) {
-        const imponibleInput = document.getElementById("sueldo-imponible") as HTMLInputElement | null;
+        const imponibleInput = document.getElementById(
+          "sueldo-imponible"
+        ) as HTMLInputElement | null;
         if (imponibleInput) imponibleInput.value = String(amount);
       }
     }
 
     // Select AFP by case-insensitive startsWith match
     if (afpParam) {
-      const select = document.getElementById("afp-tasa") as HTMLSelectElement | null;
+      const select = document.getElementById(
+        "afp-tasa"
+      ) as HTMLSelectElement | null;
       if (select) {
         const needle = afpParam.toLowerCase();
         for (const option of Array.from(select.options)) {
@@ -1253,7 +1329,9 @@ const economicSourceLabel =
     // Auto-calculate only when a main amount is provided
     if (bruto || liquido) {
       setTimeout(() => {
-        (document.getElementById("calcBtn") as HTMLButtonElement | null)?.click();
+        (
+          document.getElementById("calcBtn") as HTMLButtonElement | null
+        )?.click();
       }, 100);
     }
   });

@@ -252,7 +252,11 @@ const economicSourceLabel =
         class="rounded-xl border border-border bg-background p-6"
       >
         <h2 class="mb-5 text-lg font-semibold">💰 Tu cobertura estimada</h2>
-        <div id="resultado-contenido" class="py-8 text-center text-muted" aria-live="polite">
+        <div
+          id="resultado-contenido"
+          class="py-8 text-center text-muted"
+          aria-live="polite"
+        >
           <p class="mb-3 text-4xl">🛡️</p>
           <p class="text-sm">Ingresa tus datos y presiona calcular.</p>
         </div>
@@ -736,7 +740,9 @@ const economicSourceLabel =
           finalNote
         );
       if (typeof window.showShareResult === "function") {
-        window.showShareResult(`Seguro cesantía: cobertura ${fmtCurrency(estimacion.totalCoverage)} · ${estimacion.monthsCovered} meses`);
+        window.showShareResult(
+          `Seguro cesantía: cobertura ${fmtCurrency(estimacion.totalCoverage)} · ${estimacion.monthsCovered} meses`
+        );
       }
       trackAnalyticsEvent("calculator_complete", {
         calculator_slug: "seguro-cesantia",

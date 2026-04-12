@@ -8,7 +8,10 @@ import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
 import { getHubArticleAssignments } from "@/config/editorial-hub-model.mjs";
 
-const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(/\/$/, "");
+const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
+  /\/$/,
+  ""
+);
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",

@@ -99,7 +99,10 @@ const erroresComunes = [
   "Dejar vencer el plazo de rectificatoria creyendo que la declaración fue correcta.",
 ];
 
-const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(/\/$/, "");
+const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
+  /\/$/,
+  ""
+);
 const canonicalUrl = `${SITE_BASE}/guias/impuestos-personas/operacion-renta/`;
 const itemListSchema = {
   "@context": "https://schema.org",

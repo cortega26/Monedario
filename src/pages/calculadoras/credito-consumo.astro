@@ -179,7 +179,11 @@ import { getPath } from "@/utils/getPath";
         class="rounded-xl border border-border bg-background p-6"
       >
         <h2 class="mb-5 text-lg font-semibold">📋 Desglose del crédito</h2>
-        <div id="resultado-contenido" class="py-8 text-center text-muted" aria-live="polite">
+        <div
+          id="resultado-contenido"
+          class="py-8 text-center text-muted"
+          aria-live="polite"
+        >
           <p class="mb-3 text-4xl">🏦</p>
           <p class="text-sm">Ingresa los datos y presiona calcular.</p>
         </div>
@@ -396,7 +400,9 @@ import { getPath } from "@/utils/getPath";
       .replaceChildren(headline, ...rows, insight);
 
     if (typeof window.showShareResult === "function") {
-      window.showShareResult(`Crédito consumo: cuota ${fmt(resultado.monthlyPaymentTotal)}/mes, total ${fmt(resultado.totalPaid)}`);
+      window.showShareResult(
+        `Crédito consumo: cuota ${fmt(resultado.monthlyPaymentTotal)}/mes, total ${fmt(resultado.totalPaid)}`
+      );
     }
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "credito-consumo",

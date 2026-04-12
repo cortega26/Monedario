@@ -12,7 +12,10 @@ import {
   sueldoClusterHubSupportCards,
 } from "@/config/sueldoClusterLinks";
 
-const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(/\/$/, "");
+const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
+  /\/$/,
+  ""
+);
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
