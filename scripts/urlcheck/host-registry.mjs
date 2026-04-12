@@ -197,9 +197,9 @@ const HOST_SOFT_404_MARKERS = new Map([
 export const SOFT_404_TITLE_PHRASES = [
   "página no encontrada",
   "no encontramos la página",
+  "page not found",
   "not found",
   "page does not exist",
-  "page not found",
   "no se encontró la página",
   "recurso no encontrado",
   "this page does not exist",
