@@ -88,6 +88,9 @@ export default defineConfig({
   site: SITE.website,
   base: SITE_BASE,
   trailingSlash: "always",
+  build: {
+    inlineStylesheets: "always",
+  },
   integrations: [
     react(),
     sitemap({

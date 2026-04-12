@@ -139,7 +139,7 @@ const breadcrumbItems = [
         index + 1 === crumbs.length ? (
           <li>
             <span
-              class:list={["capitalize opacity-75", { lowercase: index > 0 }]}
+              class="opacity-75"
               aria-current="page"
             >
               {labels[index]}
@@ -149,7 +149,7 @@ const breadcrumbItems = [
           <li>
             <a
               href={getPath(index === 0 && hub ? hub.href : crumb.href)}
-              class="capitalize opacity-70"
+              class="opacity-70"
             >
               {labels[index]}
             </a>
