@@ -1,12 +1,14 @@
+import type { EconomicParameters } from "@/domain/economic/EconomicParameters";
+import type { EconomicTelemetryFlag } from "@/infrastructure/economic/EconomicParameterProvider";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 
 export interface Indicadores {
-  uf: number;
-  utm: number;
-  dolar?: number;
-  fecha: string;
-  source: "live" | "fallback";
-  telemetryFlag: string;
+  uf: EconomicParameters["uf"];
+  utm: EconomicParameters["utm"];
+  dolar?: EconomicParameters["dolar"];
+  fecha: EconomicParameters["lastUpdated"];
+  source: EconomicParameters["source"];
+  telemetryFlag: EconomicTelemetryFlag;
 }
 
 export async function getIndicadores(): Promise<Indicadores> {

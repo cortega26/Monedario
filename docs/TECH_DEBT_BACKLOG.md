@@ -7,13 +7,13 @@ Fecha de corte: 2026-04-12
 ### Total de items por urgencia
 - **P0:** 3
 - **P1:** 13
-- **P2:** 12
+- **P2:** 13
 - **P3:** 1
 
 ### Estado de avance (2026-04-12)
 - **Completados:** 55 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `TD-0037`, `TD-0038`, `TD-0040`, `TD-0041`, `TD-0043`, `TD-0044`, `TD-0045`, `TD-0046`, `TD-0047`, `TD-0048`, `TD-0049`, `TD-0050`, `TD-0051`, `TD-0052`, `FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 1 (`TD-0039`)
-- **Backlog sin iniciar:** 1 (`TD-0042`)
+- **Backlog sin iniciar:** 2 (`TD-0042`, `TD-0053`)
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -1148,3 +1148,22 @@ Fecha de corte: 2026-04-12
 - **Fecha de creación:** 2026-04-12
 - **Última actualización:** 2026-04-12
 - **Nota de cierre:** Ya resuelto en el árbol al registrar. El array `sources` en `operacion-renta.astro:365–379` incluye: Ley 21.133 (`/noticias/2025/261225noti01smn.htm`), FAQ PPM honorarios (`/preguntas_frecuentes/declaracion_renta/001_140_8398.htm`), y guía operacion renta (`/sobre_el_sii/operacion_renta.html`). Las dos primeras son las citas directas requeridas. Verificado 2026-04-12.
+
+## TD-0053 — `pnpm run test` falla por aserción desalineada en soft-404 de URL check
+- **ID:** TD-0053
+- **Título corto:** Alinear test de `detectSoft404` con la precedencia real de frases
+- **Descripción:** La baseline previa al fix de build muestra un fallo ajeno en `tests/scripts/urlcheck-host-registry.test.ts`: el test espera `matchedPhrase = "page not found"` para un H1 `"Page not found"`, pero la implementación devuelve `"not found"` porque la detección actual recorre primero la frase más corta. Esto no afecta el bug de build de indicadores, pero sí rompe el gate obligatorio `pnpm run test`.
+- **Evidencia:** `pnpm run test` en baseline (2026-04-12) falla en `tests/scripts/urlcheck-host-registry.test.ts:175` con `Expected: "page not found" / Received: "not found"`.
+- **Impacto:** Bloquea verificaciones completas de cambios no relacionados y reduce la confianza en el suite de validación de URLs externas.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** XS
+- **Propuesta de solución:** Ordenar la detección para priorizar frases más específicas o relajar la aserción del test para reflejar el contrato real del detector.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `pnpm run test` vuelve a pasar sin tocar el comportamiento esperado del detector.
+  - [ ] La suite deja explícita la precedencia entre `"not found"` y `"page not found"`.
+- **Owner:** TBD
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-04-12
+- **Última actualización:** 2026-04-12
