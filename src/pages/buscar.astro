@@ -11,16 +11,16 @@ const backUrl = SITE.showBackButton ? `${Astro.url.pathname}` : getPath("/");
 const initialQuery = Astro.url.searchParams.get("q") ?? "";
 
 const searchChips = [
-  { label: "Sueldo líquido", q: "sueldo líquido" },
-  { label: "Liquidación de sueldo", q: "liquidación" },
-  { label: "DICOM", q: "DICOM informe" },
-  { label: "AFP", q: "AFP fondos" },
-  { label: "Finiquito", q: "finiquito" },
-  { label: "Operación Renta", q: "operación renta" },
-  { label: "Cesantía", q: "seguro cesantía" },
-  { label: "UF y arriendo", q: "UF arriendo" },
-  { label: "APV", q: "APV régimen" },
-  { label: "Honorarios", q: "boleta honorarios" },
+  { label: "Sueldo líquido",       href: getPath("/calculadoras/sueldo-liquido/") },
+  { label: "Liquidación de sueldo", href: getPath("/posts/liquidacion-de-sueldo/") },
+  { label: "DICOM",                href: getPath("/posts/donde-ver-si-estoy-en-dicom-gratis/") },
+  { label: "AFP",                  href: getPath("/posts/cuanto-descuenta-la-afp-de-tu-sueldo/") },
+  { label: "Finiquito",            href: getPath("/calculadoras/finiquito-indemnizacion/") },
+  { label: "Operación Renta",      href: getPath("/posts/operacion-renta-f22-checklist/") },
+  { label: "Cesantía",             href: getPath("/calculadoras/seguro-cesantia/") },
+  { label: "UF y arriendo",        href: getPath("/calculadoras/reajuste-arriendo/") },
+  { label: "APV",                  href: getPath("/calculadoras/apv/") },
+  { label: "Honorarios",           href: getPath("/posts/boleta-honorarios-2026-retencion-cobertura/") },
 ];
 ---
 
@@ -73,9 +73,8 @@ const searchChips = [
         {
           searchChips.map(chip => (
             <a
-              href={`${Astro.url.pathname}?q=${encodeURIComponent(chip.q)}`}
+              href={chip.href}
               class="inline-flex items-center rounded-full border border-border bg-surface-muted px-3 py-1 text-sm text-secondary transition-colors hover:border-accent/60 hover:text-foreground"
-              data-chip-query={chip.q}
             >
               {chip.label}
             </a>
@@ -229,21 +228,6 @@ const searchChips = [
           });
           runSearch(searchField.value);
         }, 300);
-      });
-
-      // Wire up chip shortcuts (intercept click once pagefind is ready)
-      document.querySelectorAll("[data-chip-query]").forEach(chip => {
-        chip.addEventListener("click", (e: Event) => {
-          e.preventDefault();
-          const term = (chip as HTMLElement).dataset.chipQuery ?? "";
-          searchField.value = term;
-          trackAnalyticsEvent("search_submit", {
-            search_term: term,
-            source: "chip",
-          });
-          runSearch(term);
-          searchField.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        });
       });
 
       const query = params.get("q");
