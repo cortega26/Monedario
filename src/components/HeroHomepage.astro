@@ -1,5 +1,6 @@
 ---
 import { getPath } from "@/utils/getPath";
+import { changelog } from "@/data/changelog";
 
 interface Props {
   headline?: string;
@@ -39,7 +40,17 @@ const trustSignals: Array<string | { label: string; href: string }> = [
   "Fuentes oficiales",
   "Sin registro requerido",
   "Legislación chilena vigente",
-  { label: "Actualizado al 12 de abril de 2026", href: "/cambios" },
+  {
+    label: `Actualizado al ${(() => {
+      const [y, m, d] = changelog[0].date.split("-").map(Number);
+      return new Date(y, m - 1, d).toLocaleDateString("es-CL", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+    })()}`,
+    href: "/cambios",
+  },
 ];
 ---
 

@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
+import { changelog } from "@/data/changelog";
 ---
 
 <Layout
@@ -22,30 +23,20 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 
     <section class="py-8">
       <ol class="space-y-8 border-l border-border pl-10">
-        <li class="relative">
-          <span class="absolute -left-8 flex h-6 w-6 items-center justify-center rounded-full bg-accent/15 text-xs font-bold text-accent">✦</span>
-          <p class="mb-1 text-xs font-medium text-muted uppercase tracking-wide">2026-04-10</p>
-          <h2 class="mb-1 text-base font-semibold">Calculadora APV — sección FAQ y schema FAQPage</h2>
-          <p class="text-sm text-secondary">Añadida sección de preguntas frecuentes visible y emisión del schema FAQPage como JSON-LD. 6 preguntas sobre régimen A, régimen B y retiro anticipado.</p>
-        </li>
-        <li class="relative">
-          <span class="absolute -left-8 flex h-6 w-6 items-center justify-center rounded-full bg-accent/15 text-xs font-bold text-accent">✦</span>
-          <p class="mb-1 text-xs font-medium text-muted uppercase tracking-wide">2026-04-10</p>
-          <h2 class="mb-1 text-base font-semibold">Calculadora Finiquito — gratificación proporcional y recargo art. 168</h2>
-          <p class="text-sm text-secondary">Corregida la regla del año fraccionado (> 6 meses, no ≥ 6). Añadido cálculo de gratificación proporcional anual y recargo por despido injustificado según art. 168 CT (30%, 50% u 80% según antigüedad).</p>
-        </li>
-        <li class="relative">
-          <span class="absolute -left-8 flex h-6 w-6 items-center justify-center rounded-full bg-accent/15 text-xs font-bold text-accent">✦</span>
-          <p class="mb-1 text-xs font-medium text-muted uppercase tracking-wide">2026-04-09</p>
-          <h2 class="mb-1 text-base font-semibold">Búsqueda instantánea con Pagefind</h2>
-          <p class="text-sm text-secondary">Integrada búsqueda en tiempo real (MON-404). Los resultados están disponibles en todas las páginas desde la barra de navegación.</p>
-        </li>
-        <li class="relative">
-          <span class="absolute -left-8 flex h-6 w-6 items-center justify-center rounded-full bg-accent/15 text-xs font-bold text-accent">✦</span>
-          <p class="mb-1 text-xs font-medium text-muted uppercase tracking-wide">2026-04-08</p>
-          <h2 class="mb-1 text-base font-semibold">Fase 2 — calculadoras, artículos y homepage</h2>
-          <p class="text-sm text-secondary">MethodologyBlock en todas las calculadoras, PrimaryCTA en los 16 calculadores, 5 artículos nuevos (Fonasa vs Isapre, Primer empleo, Crédito hipotecario, Cartola AFP, Boletín comercial), 8 entradas de glosario, TOC automático en artículos largos.</p>
-        </li>
+        {
+          changelog.map(entry => (
+            <li class="relative">
+              <span class="absolute -left-8 flex h-6 w-6 items-center justify-center rounded-full bg-accent/15 text-xs font-bold text-accent">
+                ✦
+              </span>
+              <p class="mb-1 text-xs font-medium text-muted uppercase tracking-wide">
+                {entry.date}
+              </p>
+              <h2 class="mb-1 text-base font-semibold">{entry.title}</h2>
+              <p class="text-sm text-secondary">{entry.description}</p>
+            </li>
+          ))
+        }
       </ol>
     </section>
   </main>
