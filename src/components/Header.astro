@@ -109,6 +109,17 @@ const isActive = (path: string) => {
       href={getPath("/")}
       class="brand-mark absolute py-1 whitespace-nowrap sm:static sm:my-auto sm:me-8"
     >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        class="brand-icon"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <rect x="6"   y="1.5"  width="12" height="5" rx="2.5"/>
+        <rect x="3"   y="9.5"  width="18" height="5" rx="2.5"/>
+        <rect x="0"   y="17.5" width="24" height="5" rx="2.5"/>
+      </svg>
       {SITE.title}
     </a>
     <nav
@@ -217,6 +228,9 @@ const isActive = (path: string) => {
   }
 
   .brand-mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38em;
     font-family: "General Sans", var(--font-body);
     font-size: clamp(1.5rem, 1.3rem + 0.78vw, 1.82rem);
     font-weight: 600;
@@ -225,6 +239,14 @@ const isActive = (path: string) => {
     color: var(--text-primary);
     text-decoration: none;
     transition: opacity 150ms ease;
+  }
+
+  .brand-icon {
+    width: 1.1em;
+    height: 1.1em;
+    fill: var(--color-accent);
+    flex-shrink: 0;
+    translate: 0 0.04em; /* optical alignment with cap-height */
   }
 
   .brand-mark:hover,
