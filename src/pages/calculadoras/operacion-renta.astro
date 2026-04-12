@@ -8,6 +8,7 @@ import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+import { simulateOperacionRenta } from "@/application/use-cases/SimulateOperacionRenta";
 import { getPath } from "@/utils/getPath";
 
 const { parameters: economicParameters } = await getEconomicParameters();
@@ -19,6 +20,22 @@ const economicSourceLabel =
   economicParameters.source === "live"
     ? "dato en línea"
     : "fallback controlado";
+
+const formatPeso = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+
+const exampleResult = simulateOperacionRenta({
+  sueldosBrutos: 18_000_000,
+  honorariosBrutos: 0,
+  arriendos: 0,
+  impuestoUnicoRetenido: 1_150_000,
+  ppmHonorarios: 0,
+  apvRegimenB: 0,
+  interesesHipotecarios: 0,
+  economicParameters: {
+    uf: economicParameters.uf,
+    utm: economicParameters.utm,
+  },
+});
 ---
 
 <Layout
@@ -236,14 +253,14 @@ const economicSourceLabel =
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
           <div class="mb-6 rounded-lg border border-green-500/20 bg-green-500/10 p-4 text-center">
             <p class="mb-1 text-xs font-bold tracking-widest text-muted uppercase">Devolución estimada (Ejemplo)</p>
-            <p class="text-4xl font-bold text-green-400/70">$287.000</p>
+            <p class="text-4xl font-bold text-green-400/70">{formatPeso(exampleResult.montoDevolución)}</p>
           </div>
           <div class="space-y-2 text-sm">
-            <div class="flex justify-between"><span class="text-secondary">Sueldos brutos anuales</span><span class="font-medium text-foreground/60">$18.000.000</span></div>
-            <div class="flex justify-between"><span class="text-secondary">IGC calculado</span><span class="font-medium text-foreground/60">$863.000</span></div>
-            <div class="flex justify-between"><span class="text-secondary">Imp. único retenido</span><span class="text-green-400/70">− $1.150.000</span></div>
+            <div class="flex justify-between"><span class="text-secondary">Sueldos brutos anuales</span><span class="font-medium text-foreground/60">{formatPeso(exampleResult.sueldosBrutos)}</span></div>
+            <div class="flex justify-between"><span class="text-secondary">IGC calculado</span><span class="font-medium text-foreground/60">{formatPeso(exampleResult.igcCalculado)}</span></div>
+            <div class="flex justify-between"><span class="text-secondary">Imp. único retenido</span><span class="text-green-400/70">− {formatPeso(exampleResult.impuestoUnicoRetenido)}</span></div>
           </div>
-          <p class="mt-4 text-xs text-muted">Ejemplo: sueldos brutos $18.000.000 anuales, sin honorarios ni deducciones adicionales. Ingresa tus datos reales para calcular.</p>
+          <p class="mt-4 text-xs text-muted">Ejemplo: sueldos brutos {formatPeso(exampleResult.sueldosBrutos)} anuales, imp. único retenido {formatPeso(exampleResult.impuestoUnicoRetenido)}, sin honorarios ni deducciones adicionales. Ingresa tus datos reales para calcular.</p>
         </div>
         <div
           id="economic-parameters"
