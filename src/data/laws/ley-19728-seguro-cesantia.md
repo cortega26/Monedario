@@ -26,9 +26,9 @@ La Ley 19.728 creó el Seguro de Cesantía en Chile (vigente desde octubre 2002)
 
 **Excepciones o condiciones comunes:** para cobrar con cargo a tu **CIC** debes estar cesante y tener al menos **10 cotizaciones** si tu contrato era indefinido o de trabajador(a) de casa particular, o **5 cotizaciones** si era a plazo fijo/obra/servicio. Para acceder al **FCS** además debes tener saldo CIC insuficiente, **10 cotizaciones pagadas en los 24 meses previos al despido**, las **3 últimas continuas y con el mismo empleador**, y una causal de término habilitada por la ley.
 
-**Vigencia / fecha de corte:** contenido verificado al **2026-03-12** con tablas AFC vigentes hasta el **2027-02-28** para montos FCS.
+**Vigencia / fecha de corte:** contenido verificado al **2026-04-12** con tablas FCS vigentes hasta el **2027-02-28** para montos de referencia.
 
-**Fuentes primarias críticas:** [BCN Ley 19.728](https://www.bcn.cl/leychile/navegar?idNorma=184979), [AFC - ¿Cómo se financia?](https://www.afc.cl/que-es-el-seguro-de-cesantia/como-se-financia/), [AFC - Mis cotizaciones](https://www.afc.cl/afiliados/es-trabajador/mis-cotizaciones/), [AFC - Fondo de Cesantía Solidario](https://www.afc.cl/afiliados/quedo-cesante-o-esta-cobrando-su-seguro/que-es-el-fondo-solidario-de-cesantia/) y [AFC - Requisitos para cobrar el seguro](https://www.afc.cl/afiliados/quedo-cesante-o-esta-cobrando-su-seguro/requisitos-y-condiciones-para-cobrar-el-seguro/).
+**Fuentes primarias críticas:** [BCN Ley 19.728](https://www.bcn.cl/leychile/navegar?idNorma=184979), [ChileAtiende - Seguro de Cesantía](https://www.chileatiende.gob.cl/fichas/62932-solicitud-del-pago-del-seguro-de-cesantia), [ChileAtiende - Fondo de Cesantía Solidario](https://www.chileatiende.gob.cl/fichas/36646-fondo-de-cesantia-solidario) y [Superintendencia de Pensiones - tabla vigente del FCS](https://www.spensiones.cl/portal/institucional/594/w3-article-16337.html).
 
 ## Puntos clave para personas
 
@@ -42,7 +42,7 @@ La Ley 19.728 creó el Seguro de Cesantía en Chile (vigente desde octubre 2002)
 
 No conviene mezclar los fondos: la **CIC** es tu saldo individual; el **FCS** es un fondo común con acceso condicionado. La calculadora de cesantía del sitio estima primero la parte que sí va a la CIC y deja los montos FCS referenciados a la tabla oficial vigente.
 
-El tope imponible para calcular estas cotizaciones se actualiza anualmente. Consulta el valor vigente en [AFC](https://www.afc.cl/que-es-el-seguro-de-cesantia/como-se-financia/).
+El tope imponible para calcular estas cotizaciones se actualiza anualmente. Consulta el valor vigente en la [Superintendencia de Pensiones](https://www.spensiones.cl/).
 
 ### ¿Cuándo puedo cobrar?
 
@@ -74,7 +74,7 @@ El tope imponible para calcular estas cotizaciones se actualiza anualmente. Cons
 | Indefinido / casa particular | 70%   | 60%   | 45%   | 40%   | 35%   |
 | Plazo fijo / obra / servicio | 60%   | 40%   | 35%   | 30%   | 30%   |
 
-La AFC además publica **valores inferiores y superiores** por mes. Al 2026-03-12 esos montos están vigentes hasta el **2027-02-28**, por resolución exenta N° 383 de la Superintendencia de Pensiones (06-03-2026).
+La Superintendencia de Pensiones publica **valores inferiores y superiores** por mes. Al 2026-04-12 esos montos siguen vigentes hasta el **2027-02-28**, según la resolución exenta N° 383 de la Superintendencia de Pensiones (06-03-2026).
 
 > **Nota (resumen orientativo):** esta ficha simplifica la ley para fines informativos. El resultado real puede variar por saldo acumulado, causal exacta de término, continuidad de cotizaciones, topes legales y verificación AFC/BNE.
 
@@ -92,8 +92,8 @@ La AFC además publica **valores inferiores y superiores** por mes. Al 2026-03-1
 
 Texto completo y modificaciones: [BCN — Ley 19.728](https://www.bcn.cl/leychile/navegar?idNorma=184979)
 
-Simulador y tablas vigentes: [AFC](https://www.afc.cl/afiliados/quedo-cesante-o-esta-cobrando-su-seguro/)
+Simulador y tablas vigentes: [ChileAtiende - Seguro de Cesantía](https://www.chileatiende.gob.cl/fichas/62932-solicitud-del-pago-del-seguro-de-cesantia)
 
 ---
 
-_Última verificación: 12 de marzo de 2026. Esta ficha es educativa, no asesoría laboral._
+_Última verificación: 12 de abril de 2026. Esta ficha es educativa, no asesoría laboral._

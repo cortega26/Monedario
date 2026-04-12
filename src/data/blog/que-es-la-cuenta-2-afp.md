@@ -2,7 +2,7 @@
 title: "Cuenta 2 de la AFP: ahorro flexible, retiros e impuestos"
 author: "Equipo Monedario"
 pubDate: 2026-02-23T12:00:00Z
-updatedDate: 2026-03-09T19:05:00Z
+updatedDate: 2026-04-12T18:55:00Z
 slug: que-es-la-cuenta-2-afp
 featured: false
 lang: es-CL
@@ -19,9 +19,15 @@ canonicalTopic: cuenta2-afp
 description: "Guía sobre la Cuenta 2 de la AFP como ahorro flexible: cómo funciona, cuánto puedes retirar, qué impuestos pagas y cuándo conviene frente al APV."
 heroImage: /images/hero/que-es-la-cuenta-2-afp.avif
 articleLead:
-  answer: "La Cuenta 2 AFP es una cuenta de ahorro voluntario (CAV) que puedes usar libremente: depositas lo que quieras y puedes retirar hasta 24 veces al año."
+  answer: "La Cuenta 2 AFP es una cuenta de ahorro voluntario (CAV) que puedes usar libremente: depositas lo que quieras, eliges fondo y puedes hacer hasta 24 giros al año."
   nextStepHref: "/posts/que-es-el-apv/"
   nextStepLabel: "APV: beneficio tributario complementario"
+  validAsOf: 2026-04-12
+  officialSources:
+    - label: "Superintendencia de Pensiones - Cuenta 2"
+      href: "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9930.html"
+    - label: "Superintendencia de Pensiones - giros Cuenta 2"
+      href: "https://www.spensiones.cl/portal/institucional/594/w3-article-2906.html"
 ---
 
 Cuando la gente habla de su AFP, casi siempre se refiere a la cuenta obligatoria donde va el 10% del sueldo. Pero existe una segunda cuenta —voluntaria, flexible y mucho menos conocida— que puede servir como instrumento de ahorro de mediano plazo con rentabilidades similares a las de tu cotización obligatoria: la **Cuenta 2**, también llamada Cuenta de Ahorro Voluntario (CAV).
@@ -112,5 +118,11 @@ El saldo acumulado pasa a formar parte de tu herencia y se distribuye entre tus 
 No. Los fondos de la Cuenta 2 no se consideran para determinar el derecho a la Garantía Estatal de Pensión Mínima.
 
 Si tu foco es bajar impuestos al ahorrar, cambia a una guía de APV. Y para decidir en qué fondo invertir la Cuenta 2, cambia después a una guía de fondos AFP.
+
+### Fuentes oficiales verificadas
+
+- Superintendencia de Pensiones, Cuenta de Ahorro Voluntario o Cuenta 2: https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9930.html
+- Superintendencia de Pensiones, giros desde la Cuenta 2: https://www.spensiones.cl/portal/institucional/594/w3-article-2906.html
+- SII, valor vigente de la UTM para revisar el umbral tributario: https://www.sii.cl/valores_y_fechas/utm/utm2026.htm
 
 ---

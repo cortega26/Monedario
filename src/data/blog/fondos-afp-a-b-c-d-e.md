@@ -24,7 +24,7 @@ articleLead:
   calculatorLabel: "Proyectar jubilación"
   nextStepHref: "/posts/como-cambiarse-de-afp/"
   nextStepLabel: "Cómo cambiarte de AFP paso a paso"
-  validAsOf: 2026-03-12
+  validAsOf: 2026-04-12
   officialSources:
     - label: "Superintendencia de Pensiones"
       href: "https://www.spensiones.cl/"
@@ -216,7 +216,7 @@ Si quieres salir de la lógica "fondo por fondo" y mirar el cambio estructural d
 ### Fuentes oficiales para el bloque 2025-2027
 
 - ChileAtiende, aportes del empleador al sistema de pensiones: https://www.chileatiende.gob.cl/fichas/130987-aportes-del-empleador-al-sistema-de-pensiones
-- Superintendencia de Pensiones, inicio de fondos generacionales (abril 2027): https://www.spensiones.cl/portal/institucional/594/w3-article-17026.html
+- Superintendencia de Pensiones, implementación de fondos generacionales: https://www.spensiones.cl/portal/institucional/594/w3-article-16668.html
 - BCN, Ley N° 21.735: https://www.bcn.cl/leychile/navegar?idNorma=1212060
 
 ---
