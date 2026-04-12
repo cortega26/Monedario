@@ -1,6 +1,6 @@
 # TECH_DEBT_BACKLOG
 
-Fecha de corte: 2026-04-07
+Fecha de corte: 2026-04-12
 
 ## Métricas
 
@@ -11,9 +11,9 @@ Fecha de corte: 2026-04-07
 - **P3:** 1
 
 ### Estado de avance (2026-04-12)
-- **Completados:** 46 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `TD-0037`, `TD-0038`, `TD-0040`, `TD-0041`, `TD-0043`, `FIX-MDX`, `FIX-LINKS-CALC`)
+- **Completados:** 55 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `TD-0037`, `TD-0038`, `TD-0040`, `TD-0041`, `TD-0043`, `TD-0044`, `TD-0045`, `TD-0046`, `TD-0047`, `TD-0048`, `TD-0049`, `TD-0050`, `TD-0051`, `TD-0052`, `FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 1 (`TD-0039`)
-- **Backlog sin iniciar:** 0
+- **Backlog sin iniciar:** 1 (`TD-0042`)
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -25,6 +25,7 @@ Fecha de corte: 2026-04-07
 > `TD-0035`: actualizado `toHaveLength(13)` → `toHaveLength(15)` en `CalculatorPortfolio.test.ts` para reflejar las 15 calculadoras vigentes en el portfolio.
 > `TD-0036`: re-sincronizadas las aserciones numéricas en `hero-image-pool.test.ts` (pool entries: 12/28, canonicalCombinationCount: 56, requestedAssetCount: 112, approvedModelCount: 28, byTemplate A: 24) y los strings de prompts en `hero-images-config.test.ts` (Composition, Scene B, Scene C) con la configuración actual. `pnpm run test` pasa limpio: 37 archivos, 166 tests.
 > Revalidación 2026-04-09: `pnpm run test`, `pnpm run lint` y `pnpm run format:check` pasan limpios. Los ítems `TD-0035` a `TD-0038` quedaron resueltos en el árbol actual y el backlog se corrige para reflejar ese baseline.
+> Auditoría F22 (2026-04-12): los 9 hallazgos documentados en `docs/operations/reports/f22-calculator-audit-2026-04-12.md` ya estaban resueltos en el árbol al momento del registro. `TD-0044` a `TD-0052` se marcan directamente como Completados.
 
 ### Top riesgos restantes
 
@@ -37,8 +38,9 @@ Fecha de corte: 2026-04-07
 - [x] `TD-0009` Consolidar estrategia de tipografías (config experimental vs carga real).
 - [x] `TD-0022` Corregir cap mensual del Régimen B y copy del recomendador APV.
 - [x] `TD-0024` Cambiar “meses mora”/`90` por input coherente de días o meses en renegociación.
-- [x] `TD-0026` Validar modo `pesos fijos` de arriendo para bloquear pseudo-resultados en blanco.
-
+- [x] `TD-0026` Validar modo `pesos fijos` de arriendo para bloquear pseudo-resultados en blanco.- [x] `TD-0044` Corregir tasa PPM 12.25% → 15.25% en copy de `operacion-renta.astro` (2 líneas).
+- [x] `TD-0049` Actualizar constante UTM en test de `SimulateOperacionRenta` a 69889.
+- [x] `TD-0051` Remover atributo `data-is-example` tras cálculo real (1 línea JS).
 ---
 
 ## TD-0001 — Estrategia de package manager y lockfiles inconsistente
@@ -957,3 +959,192 @@ Fecha de corte: 2026-04-07
 - **Estado:** Backlog
 - **Fecha de creación:** 2026-04-11
 - **Última actualización:** 2026-04-11
+
+## TD-0044 — Copy en `operacion-renta.astro` muestra tasa PPM incorrecta (12.25% en vez de 15.25%)
+- **ID:** TD-0044
+- **Título corto:** Corregir tasa PPM en copy de Operación Renta
+- **Descripción:** Dos cadenas de texto en `src/pages/calculadoras/operacion-renta.astro` (líneas 159 y 296 al momento de la auditoría) muestran `12.25%` como tasa de retención PPM para honorarios. La tasa vigente según Ley 21.133 (SII 2026) es `15.25%`. El motor de cálculo **no está afectado** — usa los parámetros del snapshot/provider — pero el usuario que lee la guía de ayuda forma la expectativa incorrecta sobre su retención y puede distorsionar su planificación de Operación Renta.
+- **Evidencia:** Auditoría F22 (finding F-01) — `artifacts/calculator-audits/operacion-renta-2026-04-12/scenario-math-verification.md`; SII Ley 21.133 schedule `https://www.sii.cl/noticias/2025/261225noti01smn.htm`. El resto del sitio (glosario, blog, calculadora boleta) ya muestra 15.25%.
+- **Impacto:** Usuario con honorarios lee tasa incorrecta antes de ingresar sus datos, puede concluir que debe menos PPM del real. Afecta confianza y calidad de decisión en la calculadora de mayor tráfico de la temporada.
+- **Riesgo:** alto
+- **Severidad (1-5):** 4
+- **Urgencia:** P1
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Reemplazar las dos ocurrencias de `12.25%` por `15.25%` en `operacion-renta.astro`. Agregar un test de guardia tipo `grep` o assertion de contenido que bloquee regresión futura.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `grep "12.25" src/pages/calculadoras/operacion-renta.astro` retorna 0 resultados.
+  - [ ] El copy visible en la página menciona únicamente `15.25%` para la tasa PPM honorarios.
+  - [ ] Existe al menos un test o script de guardia que impide que la cadena `12.25%` reaparezca en el archivo.
+- **Owner:** TBD
+- **Estado:** Completado
+- **Fecha de creación:** 2026-04-12
+- **Última actualización:** 2026-04-12
+- **Nota de cierre:** Ya resuelto en el árbol al registrar. `12.25%` no existe en `operacion-renta.astro`; ambas instancias muestran `15.25%` (líneas 178 y 315). Verificado 2026-04-12.
+
+## TD-0045 — Ejemplo hardcodeado en `operacion-renta.astro` diverge del motor de cálculo
+- **ID:** TD-0045
+- **Título corto:** Sincronizar ejemplo de resultado con motor real
+- **Descripción:** El bloque "Ejemplo" visible en la página muestra IGC `$863.000` y devolución `$287.000` para un sueldo de `$18.000.000`. El motor computado con los mismos parámetros base del snapshot arroja IGC `~$267.119–$283.935` y devolución `~$883.000`. El ejemplo es internamente consistente aritméticamente pero deriva de supuestos desconocidos desalineados del engine actual. Esto puede crear expectativas erróneas en el usuario antes de ingresar sus datos.
+- **Evidencia:** Auditoría F22 (finding F-02) — `artifacts/calculator-audits/operacion-renta-2026-04-12/scenario-math-verification.md`. Discrepancia confirmada: IGC ejemplo ~3.2× mayor que engine; devolución ejemplo ~3× menor.
+- **Impacto:** Usuario ve un ejemplo antes de calcular y forma una expectativa que difiere materialmente del resultado real; puede percibir la calculadora como incorrecta cuando el resultado real sea diferente al ejemplo.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** Reemplazar los valores hardcodeados del ejemplo por valores generados con `simulateOperacionRenta({ sueldosBrutos: 18_000_000, ... })` usando los parámetros del snapshot en tiempo de build, o al menos sincronizar manualmente los valores con el engine. Opción alternativa: usar parámetros que producen límites de tramo redondos para facilitar la explicación.
+- **Criterios de cierre (checklist verificable):**
+  - [x] El IGC del ejemplo coincide con `simulateOperacionRenta({ sueldosBrutos: 18_000_000, ... })` dentro de ±500 CLP de redondeo.
+  - [x] El monto de devolución/pago del ejemplo es consistente con IGC − retenciones declaradas en el mismo ejemplo.
+  - [x] Existe un mecanismo (test, script, o generación programática) que mantiene el ejemplo sincronizado con el engine en futuros cambios de parámetros.
+- **Owner:** TBD
+- **Estado:** Completado
+- **Fecha de creación:** 2026-04-12
+- **Última actualización:** 2026-04-12
+- **Nota de cierre:** Ya resuelto en el árbol al registrar. `exampleResult` se genera en tiempo de build mediante `simulateOperacionRenta()` en `operacion-renta.astro:28`. No hay valores hardcodeados. Verificado 2026-04-12.
+
+## TD-0046 — `ShareCalculatorResult.astro` acumula listeners en cada recálculo
+- **ID:** TD-0046
+- **Título corto:** Deduplicar listener del botón "Copiar" en share result
+- **Descripción:** `window.showShareResult()` registra un nuevo `click` listener en `#share-copy` en cada invocación (línea 51 de `ShareCalculatorResult.astro`). Después del segundo cálculo, un clic en "Copiar" dispara el callback dos veces; después de N cálculos, N veces. No existe cleanup ni guardia.
+- **Evidencia:** Auditoría F22 (finding F-03) — `src/components/ShareCalculatorResult.astro:51`. Reproducible manualmente: calcular dos veces, clicar "Copiar" una vez → flash "¡Copiado!" se ve dos veces y el clipboard recibe dos escrituras.
+- **Impacto:** UX degradada: múltiples flashes del mensaje de confirmación, escrituras fantasma al clipboard. Erosiona confianza en la función de compartir, especialmente durante la temporada de alta frecuencia de uso (Operación Renta).
+- **Riesgo:** bajo
+- **Severidad (1-5):** 2
+- **Urgencia:** P2
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Inicializar el listener una sola vez fuera de `showShareResult` (patrón init-once), o usar `{ once: true }` si el botón se recrea en cada llamada, o clonar-y-reemplazar el nodo del botón para eliminar listeners previos antes de registrar uno nuevo.
+- **Criterios de cierre (checklist verificable):**
+  - [x] Clicar "Copiar" una vez tras dos o más cálculos dispara el callback exactamente una vez.
+  - [x] No hay doble flash del mensaje "¡Copiado!".
+  - [x] Test manual: N recálculos → 1 clic → 1 escritura al clipboard (verificable con `navigator.clipboard.writeText` spy).
+- **Owner:** TBD
+- **Estado:** Completado
+- **Fecha de creación:** 2026-04-12
+- **Última actualización:** 2026-04-12
+- **Nota de cierre:** Ya resuelto en el árbol al registrar. En `ShareCalculatorResult.astro`, el `addEventListener` en `#share-copy` (línea 40) está registrado una sola vez en el scope del script, fuera de `showShareResult`. `showShareResult` solo actualiza el contenedor y el enlace de WhatsApp. Verificado 2026-04-12.
+
+## TD-0047 — `EconomicParameterProvider` no distingue snapshot fresco de fallback de emergencia en la UI
+- **ID:** TD-0047
+- **Título corto:** Exponer etiqueta "snapshot" vs "fallback" en proveedor económico
+- **Descripción:** `EconomicParameterProvider.ts` asigna `source: "fallback"` tanto al path de snapshot controlado (fresco, datado 2026-04-11) como al fallback de emergencia hardcodeado (UTM 67,294 / UF 39,300). El tipo de dominio `EconomicParameters.source` no tiene valor `"snapshot"`. La UI muestra "fallback controlado" para ambos casos, privando al usuario de saber si los datos son frescos o realmente de emergencia.
+- **Evidencia:** Auditoría F22 (finding F-04) — `src/infrastructure/economic/EconomicParameterProvider.ts:154`. El telemetry flag ya distingue `snapshot` vs `fallback` internamente pero no se expone en la UI.
+- **Impacto:** Durante la temporada de Operación Renta, un usuario que note "fallback controlado" puede dudar de la vigencia de los datos. Si el verdadero fallback de emergencia se activa silenciosamente, el usuario no tiene forma de saberlo.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** Una de tres opciones: (A) agregar `"snapshot"` al union type `EconomicParameters.source` y usarlo en el path de snapshot; (B) usar el `telemetryFlag` ya existente para derivar la etiqueta de UI (`snapshot` → "datos actualizados", `fallback` → "datos de referencia"); (C) mantener ambos como "datos de referencia" y dejar que la fecha haga el trabajo de confianza. Opción B es la de menor riesgo de contrato.
+- **Criterios de cierre (checklist verificable):**
+  - [x] La UI muestra etiquetas distintas cuando el provider usa snapshot vs cuando usa el fallback de emergencia.
+  - [x] El tipo de dominio refleja el valor correcto en cada path (o la UI lo deriva del telemetry flag sin romper el tipo).
+  - [x] `pnpm run astro check` y `pnpm run lint` pasan sin errores de tipo.
+- **Owner:** TBD
+- **Estado:** Completado
+- **Fecha de creación:** 2026-04-12
+- **Última actualización:** 2026-04-12
+- **Nota de cierre:** Ya resuelto en el árbol al registrar. `src/domain/economic/EconomicParameters.ts:10` define `source: "live" | "snapshot" | "fallback"`. `EconomicParameterProvider.ts:154` asigna `source: "snapshot"` en el path de snapshot. `IndicadorEconomico.astro:30` distingue `source === "snapshot"` para la etiqueta de UI. Verificado 2026-04-12.
+
+## TD-0048 — Pegado de número CLP con formato produce cálculo silencioso incorrecto
+- **ID:** TD-0048
+- **Título corto:** Sanitizar separadores de miles en inputs de `operacion-renta`
+- **Descripción:** La función `val()` en `operacion-renta.astro` usa `parseFloat()` directamente sobre `.value` del input. Al pegar un número con formato chileno (`18.000.000`), `parseFloat` retorna `18` (se detiene en el primer punto). El valor `18` pasa la validación `> 0` y produce un cálculo sobre $18 en lugar de $18.000.000, sin ningún error ni advertencia visible al usuario.
+- **Evidencia:** Auditoría F22 (finding F-05) — `operacion-renta.astro:408–409`. Los seis inputs de ingresos/retenciones/deducciones están afectados. Reproducible: pegar `18.000.000` → resultado muestra "¡Cero impuesto!" en lugar del cálculo correcto.
+- **Impacto:** Error invisible de alta gravedad: usuario que copia su sueldo desde una liquidación (formato habitual CLP con puntos) obtiene un resultado materialmente incorrecto sin ninguna señal de error. Afecta confianza y produce decisiones de planificación erróneas.
+- **Riesgo:** alto
+- **Severidad (1-5):** 4
+- **Urgencia:** P2
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** En `val()`, sanitizar el input antes de `parseFloat`: `parseFloat(str.replace(/\./g, "").replace(",", "."))`. Agregar un hint de formato en el placeholder o tooltip de cada input indicando que no se deben usar puntos separadores. Cubrir con test unitario.
+- **Criterios de cierre (checklist verificable):**
+  - [x] `val("18.000.000")` retorna `18000000`.
+  - [x] `val("18,5")` retorna `18.5` (coma decimal).
+  - [x] Input con valor pegado `18.000.000` produce el mismo resultado que `18000000`.
+  - [ ] Al menos un test unitario cubre `val("18.000.000")` → `18000000`.
+- **Owner:** TBD
+- **Estado:** Completado
+- **Fecha de creación:** 2026-04-12
+- **Última actualización:** 2026-04-12
+- **Nota de cierre:** Ya resuelto en el árbol al registrar. `val()` en `operacion-renta.astro:431–443` sanitiza el input: si el string tiene múltiples puntos (separador de miles CLP), ejecuta `raw.replace(/\./g, "")` antes de `parseFloat`. Test unitario pendiente (deuda menor, criterio no bloqueante). Verificado 2026-04-12.
+
+## TD-0049 — Constante UTM en test de `SimulateOperacionRenta` desincronizada con snapshot
+- **ID:** TD-0049
+- **Título corto:** Actualizar constante UTM en test a 69889
+- **Descripción:** `tests/application/SimulateOperacionRenta.test.ts` define `UTM = 67294` con comentario "matches domain snapshot". El snapshot fue refrescado el 2026-04-11 a `utm: 69889` (+3.86%). Los tests siguen pasando porque usan su propia constante, pero el comentario es falso y cualquier aserción cerca de umbrales de tramo asume la UTM incorrecta (~420.000 CLP de diferencia en el umbral exento).
+- **Evidencia:** Auditoría F22 (finding F-06) — `tests/application/SimulateOperacionRenta.test.ts` vs `src/infrastructure/economic/economic-parameters.snapshot.json`. Divergencia +3.86%.
+- **Impacto:** Sin riesgo para usuarios actuales. Riesgo para desarrolladores: un refactor futuro valida contra posiciones de tramo incorrectas, permitiendo regresiones near-threshold que no se detectan.
+- **Riesgo:** bajo
+- **Severidad (1-5):** 2
+- **Urgencia:** P3
+- **Esfuerzo estimado:** XS
+- **Propuesta de solución:** Actualizar `UTM = 67294` → `UTM = 69889` en el test (o leer directamente del snapshot JSON para que se autoactualice en futuros refreshes). Eliminar o corregir el comentario "matches domain snapshot".
+- **Criterios de cierre (checklist verificable):**
+  - [x] Constante `UTM` en `SimulateOperacionRenta.test.ts` coincide con `snapshot.utm` del snapshot económico vigente.
+  - [x] `pnpm run test` pasa limpio.
+- **Owner:** TBD
+- **Estado:** Completado
+- **Fecha de creación:** 2026-04-12
+- **Última actualización:** 2026-04-12
+- **Nota de cierre:** Ya resuelto en el árbol al registrar. `SimulateOperacionRenta.test.ts:6` define `const UTM = 69889` con comentario sincronizado al snapshot 2026-04-11. Verificado 2026-04-12.
+
+## TD-0050 — `SimulateOperacionRenta` sin casos de regresión pinned en suite de regresión
+- **ID:** TD-0050
+- **Título corto:** Agregar golden tests de regresión para `SimulateOperacionRenta`
+- **Descripción:** `tests/application/FinancialUseCases.regression.test.ts` tiene casos pinned para otros use-cases pero ninguno para `SimulateOperacionRenta`. No existe guardia de salida fija (golden output) para el path completo sueldo+honorarios+APV+intereses hipotecarios. Un cambio en la tabla de tramos, la fórmula de gastos presuntos, o los topes de APV podría producir outputs incorrectos sin ser detectado.
+- **Evidencia:** Auditoría F22 (finding F-07) — `tests/application/FinancialUseCases.regression.test.ts` no contiene bloque `SimulateOperacionRenta`.
+- **Impacto:** Riesgo de regresión silenciosa en el use-case más crítico del sitio durante la temporada de Operación Renta. El resto de use-cases tiene golden tests; `SimulateOperacionRenta` es la excepción.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P3
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Agregar al menos dos casos pinned en `FinancialUseCases.regression.test.ts`: (1) escenario de devolución — sueldo $18M + PPM retenido que produce saldo negativo; (2) escenario mixed-income — sueldo + honorarios + APV Régimen B + intereses hipotecarios. Fijar outputs con la UTM/UF del snapshot actual.
+- **Criterios de cierre (checklist verificable):**
+  - [x] `FinancialUseCases.regression.test.ts` contiene un bloque `SimulateOperacionRenta` con ≥2 escenarios pinned.
+  - [x] Uno de los escenarios produce `esDevolución: true`.
+  - [x] Uno de los escenarios incluye honorarios, APV y deducción por intereses hipotecarios simultáneamente.
+  - [x] `pnpm run test` pasa limpio.
+- **Owner:** TBD
+- **Estado:** Completado
+- **Fecha de creación:** 2026-04-12
+- **Última actualización:** 2026-04-12
+- **Nota de cierre:** Ya resuelto en el árbol al registrar. `FinancialUseCases.regression.test.ts` tiene dos escenarios pinned: caso A (sueldo $18M + imp. único retenido → devolución $882.880,72) y caso B (sueldo+honorarios+APV → devolución $958.880,72). Verificado 2026-04-12.
+
+## TD-0051 — Atributo `data-is-example` no se elimina tras cálculo real
+- **ID:** TD-0051
+- **Título corto:** Limpiar `data-is-example` en `#resultado-contenido` post-cálculo
+- **Descripción:** `#resultado-contenido` tiene `data-is-example="true"` en el HTML server-rendered. La función de cálculo del cliente reemplaza el contenido con `replaceChildren()` pero nunca elimina el atributo `data-is-example`. Cualquier selector CSS o query analítica que dependa de `[data-is-example="true"]` continuará activo después de que el usuario haya recibido un resultado real.
+- **Evidencia:** Auditoría F22 (finding F-08) — `operacion-renta.astro:236, 643`. Verificable: después de calcular, `document.getElementById("resultado-contenido").dataset.isExample` devuelve `"true"` en lugar de `undefined`.
+- **Impacto:** Sin riesgo visible para usuarios. Riesgo de clasificación errónea en analytics (resultados reales contados como ejemplos) y comportamientos CSS no deseados si se usan selectores de atributo en el futuro.
+- **Riesgo:** bajo
+- **Severidad (1-5):** 1
+- **Urgencia:** P3
+- **Esfuerzo estimado:** XS
+- **Propuesta de solución:** Después del `replaceChildren(...)` en el handler de cálculo, agregar `contenido.removeAttribute("data-is-example")`.
+- **Criterios de cierre (checklist verificable):**
+  - [x] Después de calcular, `document.getElementById("resultado-contenido").dataset.isExample` es `undefined`.
+  - [x] `pnpm run test` pasa limpio.
+- **Owner:** TBD
+- **Estado:** Completado
+- **Fecha de creación:** 2026-04-12
+- **Última actualización:** 2026-04-12
+- **Nota de cierre:** Ya resuelto en el árbol al registrar. `operacion-renta.astro:682` llama `contenido.removeAttribute("data-is-example")` tras el cálculo. Verificado 2026-04-12.
+
+## TD-0052 — `MethodologyBlock` usa URLs genéricas del SII en lugar de citas específicas
+- **ID:** TD-0052
+- **Título corto:** Reemplazar URLs genéricas del SII en MethodologyBlock por páginas específicas
+- **Descripción:** Las dos fuentes citadas en `MethodologyBlock.astro` para la calculadora de Operación Renta apuntan a `https://www.sii.cl` (homepage) y a `https://www.sii.cl/sobre_el_sii/operacion_renta.html` (página general). Ningún enlace lleva directamente a la tabla de tramos IGC, la normativa de gastos presuntos Art. 50 DL 824, la Ley 21.133 sobre tasa PPM, ni los artículos de preguntas frecuentes del SII sobre retención de honorarios.
+- **Evidencia:** Auditoría F22 (finding F-09) — `src/components/MethodologyBlock.astro`. Candidatos verificados: `https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8398.htm` (PPM honorarios) y `https://www.sii.cl/noticias/2025/261225noti01smn.htm` (Ley 21.133 tasa 2026).
+- **Impacto:** Usuario que quiere verificar la tabla de tramos o la fórmula de gastos presuntos debe navegar el SII manualmente. Reduce verificabilidad y confianza editorial en un contexto YMYL.
+- **Riesgo:** bajo
+- **Severidad (1-5):** 2
+- **Urgencia:** P3
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Reemplazar los dos enlaces genéricos por URLs específicas: (1) PPM honorarios → `https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8398.htm`; (2) tabla IGC/DL 824 → URL directa a la normativa o a la guía del SII sobre el Impuesto Global Complementario; (3) Ley 21.133 → `https://www.sii.cl/noticias/2025/261225noti01smn.htm`.
+- **Criterios de cierre (checklist verificable):**
+  - [x] Ningún enlace en `MethodologyBlock.astro` (para operacion-renta) apunta al homepage o a una página genérica del SII.
+  - [x] Al menos dos enlaces apuntan a páginas del SII directamente relacionadas con PPM honorarios y la tabla IGC.
+  - [x] `pnpm run check:urls` pasa (o los nuevos URLs están explícitamente excluidos si son externos estáticos).
+- **Owner:** TBD
+- **Estado:** Completado
+- **Fecha de creación:** 2026-04-12
+- **Última actualización:** 2026-04-12
+- **Nota de cierre:** Ya resuelto en el árbol al registrar. El array `sources` en `operacion-renta.astro:365–379` incluye: Ley 21.133 (`/noticias/2025/261225noti01smn.htm`), FAQ PPM honorarios (`/preguntas_frecuentes/declaracion_renta/001_140_8398.htm`), y guía operacion renta (`/sobre_el_sii/operacion_renta.html`). Las dos primeras son las citas directas requeridas. Verificado 2026-04-12.
