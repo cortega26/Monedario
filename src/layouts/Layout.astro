@@ -48,6 +48,25 @@ const SITE_ORIGIN = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
   ""
 );
 
+const analyticsBootstrapScript = PUBLIC_GA_MEASUREMENT_ID
+  ? `(function () {
+  const analyticsMeasurementId = ${JSON.stringify(PUBLIC_GA_MEASUREMENT_ID)};
+  window.__monedarioAnalyticsConfig__ =
+    window.__monedarioAnalyticsConfig__ || {};
+  window.__monedarioAnalyticsConfig__.measurementId = analyticsMeasurementId;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag =
+    window.gtag ||
+    function (...args) {
+      window.dataLayer.push(args);
+    };
+  window.gtag("js", new Date());
+  window.gtag("config", analyticsMeasurementId, {
+    anonymize_ip: true,
+  });
+})();`
+  : null;
+
 const structuredData = !pubDatetime
   ? {
       "@context": "https://schema.org",
@@ -68,8 +87,8 @@ const structuredData = !pubDatetime
 <!doctype html>
 <html
   dir={SITE.dir}
-  lang=`${SITE.lang ?? "en"}`
-  class={`${scrollSmooth && "scroll-smooth"}`}
+  lang={SITE.lang ?? "en"}
+  class={scrollSmooth ? "scroll-smooth" : undefined}
 >
   <head>
     <meta charset="UTF-8" />
@@ -174,25 +193,8 @@ const structuredData = !pubDatetime
       )
     }
     {
-      PUBLIC_GA_MEASUREMENT_ID && (
-        <script
-          is:inline
-          define:vars={{ analyticsMeasurementId: PUBLIC_GA_MEASUREMENT_ID }}
-        >
-          window.__monedarioAnalyticsConfig__ = {
-            measurementId: analyticsMeasurementId,
-          };
-          window.dataLayer = window.dataLayer || [];
-          window.gtag =
-            window.gtag ||
-            ((...args) => {
-              window.dataLayer?.push(args);
-            });
-          window.gtag("js", new Date());
-          window.gtag("config", analyticsMeasurementId, {
-            anonymize_ip: true,
-          });
-        </script>
+      analyticsBootstrapScript && (
+        <script is:inline set:html={analyticsBootstrapScript} />
       )
     }
 
