@@ -12,6 +12,7 @@ import {
   calculateUfRentAdjustment,
 } from "@/application/use-cases/CalculateRentAdjustment";
 import { simulateRetirementProjection } from "@/application/use-cases/SimulateRetirementProjection";
+import { simulateOperacionRenta } from "@/application/use-cases/SimulateOperacionRenta";
 
 const UTM = 67294;
 const UF = 39300;
@@ -523,4 +524,69 @@ describe("Regression - Simulador de Jubilación", () => {
     );
     expect(result.monthsWithContributions).toBe(346);
   });
+});
+
+describe("Regression - Simulador Operación Renta", () => {
+  // 2026-04-11 snapshot: UTM 69 889, UF 39 868 (different from the older
+  // UTM/UF constants at the top of this file which belong to an earlier snapshot).
+  const UTM_RENTA = 69889;
+  const UF_RENTA = 39868;
+  // UTA = UTM_RENTA × 12 = 838_668 (used as the "utm" parameter to the annual IGC engine)
+
+  it("case A — sueldo + retenciones (devolución)", () => {
+    // Derived:
+    //   gastosPresuntos = 0 (no honorarios)
+    //   rentaBrutaGlobal = 18_000_000
+    //   baseImponibleIGC = 18_000_000 (no deductions)
+    //   18_000_000 falls in the 4% bracket (13.5–30 UTA)
+    //   d2 = 13.5 × 838_668 × 0.04 = 452_880.72
+    //   igcCalculado = 18_000_000 × 0.04 − 452_880.72 = 267_119.28
+    //   totalCréditos = 1_150_000
+    //   saldoFinal = 267_119.28 − 1_150_000 = −882_880.72  → devolución
+    const result = simulateOperacionRenta({
+      sueldosBrutos: 18_000_000,
+      honorariosBrutos: 0,
+      arriendos: 0,
+      impuestoUnicoRetenido: 1_150_000,
+      ppmHonorarios: 0,
+      apvRegimenB: 0,
+      interesesHipotecarios: 0,
+      economicParameters: { utm: UTM_RENTA, uf: UF_RENTA },
+    });
+
+    expect(result.esDevolución).toBe(true);
+    expect(round2(result.baseImponibleIGC)).toBe(18_000_000);
+    expect(round2(result.igcCalculado)).toBe(267_119.28);
+    expect(round2(result.montoDevolución)).toBe(882_880.72);
+    expect(result.montoPago).toBe(0);
+  });
+
+  it("case B — ingresos mixtos con APV", () => {
+    // Derived:
+    //   gastosPresuntos = min(4_000_000 × 0.3, 15 × 838_668) = min(1_200_000, 12_580_020) = 1_200_000
+    //   rentaNetaHonorarios = 4_000_000 − 1_200_000 = 2_800_000
+    //   rentaBrutaGlobal = 18_000_000 + 2_800_000 = 20_800_000
+    //   apvAplicado = min(1_200_000, 600 × 39_868) = 1_200_000 (below 600-UF cap)
+    //   baseImponibleIGC = 20_800_000 − 1_200_000 = 19_600_000
+    //   19_600_000 falls in the 4% bracket (13.5–30 UTA)
+    //   d2 = 13.5 × 838_668 × 0.04 = 452_880.72
+    //   igcCalculado = 19_600_000 × 0.04 − 452_880.72 = 331_119.28
+    //   totalCréditos = 800_000 + 490_000 = 1_290_000
+    //   saldoFinal = 331_119.28 − 1_290_000 = −958_880.72  → devolución
+    const result = simulateOperacionRenta({
+      sueldosBrutos: 18_000_000,
+      honorariosBrutos: 4_000_000,
+      arriendos: 0,
+      impuestoUnicoRetenido: 800_000,
+      ppmHonorarios: 490_000,
+      apvRegimenB: 1_200_000,
+      interesesHipotecarios: 0,
+      economicParameters: { utm: UTM_RENTA, uf: UF_RENTA },
+    });
+
+    expect(round2(result.baseImponibleIGC)).toBe(19_600_000);
+    expect(round2(result.igcCalculado)).toBe(331_119.28);
+    expect(round2(result.saldoFinal)).toBe(-958_880.72);
+  });
+
 });
