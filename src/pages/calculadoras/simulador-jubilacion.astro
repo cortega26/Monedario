@@ -83,7 +83,7 @@ const economicSourceLabel =
             min="60"
             max="75"
             value="65"
-            class="focus:outline-none w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent"
+            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
           />
           <p class="mt-1 text-xs text-muted">
             Edad legal: 65 hombres, 60 mujeres (puede anticiparse).
@@ -209,7 +209,11 @@ const economicSourceLabel =
         class="rounded-xl border border-border bg-background p-6"
       >
         <h2 class="mb-5 text-lg font-semibold">📊 Proyección</h2>
-        <div id="resultado-contenido" class="py-8 text-center text-muted" aria-live="polite">
+        <div
+          id="resultado-contenido"
+          class="py-8 text-center text-muted"
+          aria-live="polite"
+        >
           <p class="mb-3 text-4xl">🏖️</p>
           <p class="text-sm">Ingresa tus datos y presiona simular.</p>
         </div>
@@ -600,7 +604,9 @@ const economicSourceLabel =
       );
 
     if (typeof window.showShareResult === "function") {
-      window.showShareResult(`Jubilación estimada: ${fmt(proyeccion.selectedScenario.estimatedMonthlyPension)}/mes`);
+      window.showShareResult(
+        `Jubilación estimada: ${fmt(proyeccion.selectedScenario.estimatedMonthlyPension)}/mes`
+      );
     }
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "simulador-jubilacion",

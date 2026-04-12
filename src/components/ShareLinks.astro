@@ -11,19 +11,20 @@ const URL = Astro.url;
       <span class="italic">Comparte este artículo en:</span>
       <div class="text-center">
         {/* WhatsApp — primary */}
-        {SHARE_LINKS[0] && (() => {
-          const WhatsAppIcon = SHARE_LINKS[0].icon;
-          return (
-            <LinkButton
-              href={`${SHARE_LINKS[0].href + URL}`}
-              class="scale-100 p-3 hover:rotate-6 sm:p-2 inline-block mr-3"
-              title={SHARE_LINKS[0].linkTitle}
-            >
-              <WhatsAppIcon class="inline-block size-6 scale-150 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-130" />
-              <span class="sr-only">{SHARE_LINKS[0].linkTitle}</span>
-            </LinkButton>
-          );
-        })()}
+        {SHARE_LINKS[0] &&
+          (() => {
+            const WhatsAppIcon = SHARE_LINKS[0].icon;
+            return (
+              <LinkButton
+                href={`${SHARE_LINKS[0].href + URL}`}
+                class="mr-3 inline-block scale-100 p-3 hover:rotate-6 sm:p-2"
+                title={SHARE_LINKS[0].linkTitle}
+              >
+                <WhatsAppIcon class="inline-block size-6 scale-150 fill-transparent stroke-current stroke-2 opacity-90 group-hover:fill-transparent sm:scale-130" />
+                <span class="sr-only">{SHARE_LINKS[0].linkTitle}</span>
+              </LinkButton>
+            );
+          })()}
         {/* Secondary buttons */}
         <div class="inline-flex gap-1">
           {SHARE_LINKS.slice(1).map(social => {

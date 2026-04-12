@@ -167,7 +167,50 @@ Regla:
 Falla esperada:
 - `Invalid canonical URL: must be absolute https URL`
 
-## 5) Compatibilidad runtime y deprecaciones
+## 5) Visual identity (hero image)
+
+### INV-015: `prompt` único por artículo en `prompts.json`
+
+Regla:
+- Cada entrada de `scripts/hero-images/prompts.json` debe tener un `prompt` distinto.
+- Dos artículos no pueden compartir el mismo texto de prompt exacto.
+- La `sceneId` de cada entrada debe ser única (refleja la escena visual específica del artículo).
+
+Por qué importa:
+- El router automático (`build-prompts.mjs`) asigna la misma plantilla de escena a artículos del mismo cluster. Sin corrección manual, artículos distintos sobre el mismo tema (ej. dos artículos de cesantía) terminan con prompts idénticos y, por tanto, imágenes visualmente indistinguibles.
+- Hero images duplicadas no ayudan al lector a reconocer de qué trata el artículo antes de leer el título — objetivo central del sistema visual.
+
+Falla esperada:
+- `Duplicate prompt detected in prompts.json: ["slug-a", "slug-b"]`
+- `Duplicate sceneId detected in prompts.json: ["slug-a", "slug-b"]`
+
+Cómo detectar (antes de generar imágenes):
+```bash
+python3 -c "
+import json
+from collections import defaultdict
+with open('scripts/hero-images/prompts.json') as f:
+    data = json.load(f)
+by_prompt = defaultdict(list)
+for e in data['entries']:
+    by_prompt[e['prompt']].append(e['slug'])
+dupes = {p: slugs for p, slugs in by_prompt.items() if len(slugs) > 1}
+print(f'Duplicate groups: {len(dupes)}')
+for p, slugs in dupes.items():
+    print('  DUPLICATES:', slugs)
+    print('  Prompt:', p[:80])
+"
+```
+
+Cómo corregir:
+1. Identifica el grupo duplicado (slugs que comparten prompt).
+2. Para cada artículo del grupo, edita su entrada en `prompts.json` directamente.
+3. Elige props visuales únicos (objetos, postura, composición) que reflejen el tema específico del artículo. Ver guía en `docs/operations/runbooks/hero-images-runbook.md` § Prompt Uniqueness.
+4. Actualiza `sceneId` al nuevo identificador (formato `Template:topic-escena`).
+5. Recalcula `promptHash`: `echo -n "<prompt>" | sha256sum`.
+6. Verifica cero duplicados antes de ejecutar `pnpm run images:generate`.
+
+## 6) Compatibilidad runtime y deprecaciones
 
 ### INV-013: campos runtime no pueden ser "a veces"
 

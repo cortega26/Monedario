@@ -2,7 +2,7 @@
 title: "Seguro de cesantía: cómo saber tu saldo, cuándo puedes cobrar y cuánto te pagan"
 author: "Equipo Monedario"
 pubDate: 2026-02-25T10:00:00Z
-updatedDate: 2026-04-10T00:00:00Z
+updatedDate: 2026-04-12T18:30:00Z
 slug: seguro-de-cesantia
 featured: false
 lang: es-CL
@@ -141,7 +141,7 @@ Los pagos continúan mientras haya saldo en tu cuenta. Si se acaba antes del mes
 
 ### Si cobras por el FCS
 
-El FCS cubre hasta **5 meses** (o más si hay alta cesantía nacional) con topes mínimos y máximos definidos anualmente por la Superintendencia de Pensiones. Los montos exactos vigentes los puedes consultar en [afc.cl](https://www.afc.cl/que-es-el-seguro-de-cesantia/beneficios/beneficios-del-seguro-de-cesantia/).
+El FCS cubre hasta **5 meses** (o más si hay alta cesantía nacional) con topes mínimos y máximos definidos anualmente por la Superintendencia de Pensiones. Los montos exactos vigentes los puedes consultar en [afc.cl](https://www.afc.cl/afiliados/quedo-cesante-o-esta-cobrando-su-seguro/que-es-el-fondo-solidario-de-cesantia/).
 
 El FCS también financia los primeros pagos con lo que quede en tu CIC antes de usar el fondo común.
 

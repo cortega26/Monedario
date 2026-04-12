@@ -32,10 +32,10 @@ const UA =
  *   – Body read is bounded to BODY_READ_LIMIT bytes.
  *
  * @param {string} url
- * @param {{ timeoutMs: number }} opts
+ * @param {{ timeoutMs: number, allowPrivateHosts?: boolean }} opts
  * @returns {Promise<ProbeResult>}
  */
-export async function probeUrl(url, { timeoutMs = 12_000 } = {}) {
+export async function probeUrl(url, { timeoutMs = 12_000, allowPrivateHosts = false } = {}) {
   // Validate scheme before any network I/O
   let parsed;
   try {
@@ -76,7 +76,7 @@ export async function probeUrl(url, { timeoutMs = 12_000 } = {}) {
       return errorResult(url, "invalid_final_url");
     }
 
-    if (isPrivateHostname(finalParsed.hostname)) {
+    if (!allowPrivateHosts && isPrivateHostname(finalParsed.hostname)) {
       return {
         url,
         finalUrl,
@@ -120,10 +120,13 @@ export async function probeUrl(url, { timeoutMs = 12_000 } = {}) {
  * Probes a batch of URLs with bounded concurrency.
  *
  * @param {string[]} urls
- * @param {{ concurrency?: number, timeoutMs?: number }} opts
+ * @param {{ concurrency?: number, timeoutMs?: number, allowPrivateHosts?: boolean }} opts
  * @returns {Promise<Map<string, ProbeResult>>}
  */
-export async function runProbePool(urls, { concurrency = 6, timeoutMs = 12_000 } = {}) {
+export async function runProbePool(
+  urls,
+  { concurrency = 6, timeoutMs = 12_000, allowPrivateHosts = false } = {}
+) {
   const results = new Map();
   const queue = [...urls];
 
@@ -131,7 +134,7 @@ export async function runProbePool(urls, { concurrency = 6, timeoutMs = 12_000 }
     while (queue.length > 0) {
       const url = queue.shift();
       if (!url) break;
-      const result = await probeUrl(url, { timeoutMs });
+      const result = await probeUrl(url, { timeoutMs, allowPrivateHosts });
       results.set(url, result);
     }
   }

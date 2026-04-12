@@ -92,6 +92,61 @@ Confirms all 34 published articles have a valid AVIF file under 80 KB. Must exit
 
 ---
 
+## Prompt Uniqueness
+
+**Invariant:** every entry in `prompts.json` must have a distinct `prompt` text and a distinct `sceneId`. See `docs/domain/CONTENT/INVARIANTS.md` § INV-015 for the formal rule.
+
+**Why this breaks silently:** `build-prompts.mjs` routes articles by keyword match. Multiple articles in the same cluster (e.g. several cesantía articles) will match the same rule and receive identical prompts. The router is not aware of cross-article uniqueness — that responsibility falls on the human operator.
+
+**When to check:** before running `images:generate` any time `build-prompts` has been re-run or new articles have been added.
+
+**Check command:**
+```bash
+python3 -c "
+import json
+from collections import defaultdict
+with open('scripts/hero-images/prompts.json') as f:
+    data = json.load(f)
+by_prompt = defaultdict(list)
+for e in data['entries']:
+    by_prompt[e['prompt']].append(e['slug'])
+dupes = {p: slugs for p, slugs in by_prompt.items() if len(slugs) > 1}
+print(f'Duplicate groups: {len(dupes)}')
+for p, slugs in dupes.items():
+    print('  DUPLICATES:', slugs)
+    print('  Prompt:', p[:80])
+"
+```
+
+**How to fix a duplicate group:**
+
+1. Identify what makes each article's topic distinct (different props, posture, or composition).
+2. Edit each duplicate entry's `"prompt"` in `prompts.json` directly — do **not** re-run `build-prompts` (it will overwrite your fixes).
+3. For each change, also update:
+   - `"sceneId"` → unique identifier, format `Template:topic-specific-scene`
+   - `"promptHash"` → SHA-256 of the new prompt string
+4. Re-run the check command above to confirm zero duplicates.
+5. Then proceed to `images:generate` or `images:generate:one`.
+
+**Scene prop vocabulary (for unique differentiation):**
+
+| Topic pattern | Distinguishing props |
+|---|---|
+| Comparison (A vs B) | balance scale / two side-by-side containers / two bars |
+| Payment / settlement | coin stack + document + signing gesture |
+| Checklist / process | checkbox list with checkmarks |
+| Protection / coverage | umbrella arc + shield |
+| Compound growth | stepped pyramid / parabolic arrow |
+| Fees / costs | funnel with coin in / coin out |
+| Fraud / blocked | card with X + shield / cracked ID + question mark |
+| Rent / housing | house silhouette + upward arrow |
+| Prepayment / payoff | descending staircase of blocks + calendar |
+| Reform / change | document + gear cog |
+| Multiple deductions | strips peeling off a rectangle |
+| Renegotiation | extended arm / handshake + signature line |
+
+---
+
 ## Quality Rubric (automated, 7 points)
 
 | # | Criterion | Pass condition |

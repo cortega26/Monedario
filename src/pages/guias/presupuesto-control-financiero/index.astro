@@ -7,7 +7,10 @@ import ResumeWidget from "@/components/ResumeWidget.astro";
 import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
 
-const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(/\/$/, "");
+const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
+  /\/$/,
+  ""
+);
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
@@ -34,7 +37,8 @@ const itemListSchema = {
 
 const articulosSeccion = [
   {
-    titulo: "Cómo hacer un presupuesto mensual en Chile: método práctico sin plantilla mágica",
+    titulo:
+      "Cómo hacer un presupuesto mensual en Chile: método práctico sin plantilla mágica",
     resumen:
       "Guía completa para identificar ingresos reales, clasificar gastos, detectar fugas y construir hábitos de control financiero duraderos.",
     href: getPath("/posts/como-hacer-presupuesto-mensual-chile/"),
@@ -94,7 +98,9 @@ const articulosSeccion = [
               <a
                 href={item.href}
                 class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-                data-analytics-cta={item.esHerramienta ? "hub-tool" : "hub-article"}
+                data-analytics-cta={
+                  item.esHerramienta ? "hub-tool" : "hub-article"
+                }
                 data-analytics-label={item.titulo}
                 data-analytics-location="presupuesto_hub"
               >
@@ -114,8 +120,8 @@ const articulosSeccion = [
           depositado en la cuenta.
         </li>
         <li>
-          Registrar solo gastos fijos y olvidar los gastos irregulares
-          (revisión técnica, dentista, regalos, vacaciones).
+          Registrar solo gastos fijos y olvidar los gastos irregulares (revisión
+          técnica, dentista, regalos, vacaciones).
         </li>
         <li>
           Intentar optimizar antes de registrar al menos un mes completo — sin
@@ -156,9 +162,13 @@ const articulosSeccion = [
 
     <section class="py-8">
       <div class="rounded-xl border border-accent/20 bg-accent/5 p-6">
-        <h2 class="mb-2 text-xl font-bold">Última actualización de la sección</h2>
+        <h2 class="mb-2 text-xl font-bold">
+          Última actualización de la sección
+        </h2>
         <p class="text-sm text-secondary">
-          Actualizado: 2026-04-10. Esta sección se revisa cuando cambian referencias de ingresos mínimos, tasas AFP/salud o metodologías de educación financiera aplicadas a Chile.
+          Actualizado: 2026-04-10. Esta sección se revisa cuando cambian
+          referencias de ingresos mínimos, tasas AFP/salud o metodologías de
+          educación financiera aplicadas a Chile.
         </p>
       </div>
     </section>

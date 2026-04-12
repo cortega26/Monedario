@@ -2,7 +2,7 @@
 title: "Descuentos de sueldo en Chile: cuáles son legales, voluntarios y prohibidos"
 author: "Equipo Monedario"
 pubDate: 2026-03-08T18:10:00Z
-updatedDate: 2026-03-22T23:01:40Z
+updatedDate: 2026-04-12T18:30:00Z
 slug: descuentos-de-sueldo
 featured: false
 lang: es-CL
@@ -29,8 +29,8 @@ articleLead:
   officialSources:
     - label: "Dirección del Trabajo — artículo 58"
       href: "https://www.dt.gob.cl/portal/1628/w3-article-60593.html"
-    - label: "AFC — financiamiento del seguro"
-      href: "https://www.afc.cl/afiliados/seguro-de-cesantia/financiamiento/"
+    - label: "BCN — Ley 19.728 (cotizaciones de cesantía)"
+      href: "https://www.bcn.cl/leychile/navegar?idNorma=184979"
   covers:
     - "Clasificación entre descuentos legales, autorizados y prohibidos."
     - "Excepciones típicas por tipo de contrato o sistema de salud."

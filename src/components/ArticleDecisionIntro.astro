@@ -26,11 +26,7 @@ type Props = {
 const { lead, reviewedDate } = Astro.props;
 
 const validAsOf = lead.validAsOf ?? reviewedDate ?? null;
-const shouldShowValidAsOf =
-  !!validAsOf &&
-  (!reviewedDate ||
-    Math.abs(validAsOf.getTime() - reviewedDate.getTime()) >
-      7 * 24 * 60 * 60 * 1000);
+const shouldShowValidAsOf = !!validAsOf;
 const hasSources = (lead.officialSources?.length ?? 0) > 0;
 const hasCovers = (lead.covers?.length ?? 0) > 0;
 const hasLimits = (lead.limits?.length ?? 0) > 0;

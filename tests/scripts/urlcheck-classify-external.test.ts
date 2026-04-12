@@ -89,6 +89,17 @@ describe("classifyExternalResult – hard_fail", () => {
     expect(result.classification).toBe("hard_fail");
     expect(result.blocking).toBe(false);
   });
+
+  it("preserves source_url and blocking classification for dt.gob.cl", () => {
+    const result = classifyExternalResult(
+      makeLink("https://www.dt.gob.cl/legislacion/1624/w3-article-999999.html"),
+      makeProbe("https://www.dt.gob.cl/legislacion/1624/w3-article-999999.html", { status: 404 })
+    );
+    expect(result.source_url).toBe("https://www.dt.gob.cl/legislacion/1624/w3-article-999999.html");
+    expect(result.host_category).toBe("official_source");
+    expect(result.classification).toBe("hard_fail");
+    expect(result.blocking).toBe(true);
+  });
 });
 
 // ---- soft_404 tests ----
@@ -201,6 +212,21 @@ describe("classifyExternalResult – redirect/host mismatch", () => {
       })
     );
     // bcentral.cl is in the allowed family for www.bcentral.cl
+    expect(result.classification).toBe("ok");
+    expect(result.blocking).toBe(false);
+  });
+
+  it("does NOT flag redirects between tesoreria.cl and tgr.cl host family", () => {
+    const result = classifyExternalResult(
+      makeLink("https://www.tesoreria.cl/web/Contenido/Documentos/4013/cn16.pdf", {
+        linkType: "structured",
+      }),
+      makeProbe("https://www.tesoreria.cl/web/Contenido/Documentos/4013/cn16.pdf", {
+        status: 200,
+        contentType: "application/pdf",
+        finalUrl: "https://www.tgr.cl/web/Contenido/Documentos/4013/cn16.pdf",
+      })
+    );
     expect(result.classification).toBe("ok");
     expect(result.blocking).toBe(false);
   });

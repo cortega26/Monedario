@@ -253,7 +253,11 @@ const ufDisplay = ufValuePesos.toLocaleString("es-CL", {
         class="rounded-xl border border-border bg-background p-6"
       >
         <h2 class="mb-5 text-lg font-semibold">📋 Resumen del crédito</h2>
-        <div id="resultado-contenido" class="py-8 text-center text-muted" aria-live="polite">
+        <div
+          id="resultado-contenido"
+          class="py-8 text-center text-muted"
+          aria-live="polite"
+        >
           <p class="mb-3 text-4xl">🏠</p>
           <p class="text-sm">Ingresa los datos y presiona calcular.</p>
         </div>
@@ -336,8 +340,8 @@ const ufDisplay = ufValuePesos.toLocaleString("es-CL", {
       notes="El dividendo base se calcula con amortización francesa (cuota de capital+interés constante en UF). Los seguros son opcionales: el desgravamen varía según el saldo pendiente (decrece con el tiempo); el seguro de incendio/sismo es fijo. Las tasas son aproximadas — solicita la Hoja de Condiciones (CAE) a tu institución financiera."
       sources={[
         {
-          name: "CMF Chile — Estadísticas créditos hipotecarios",
-          url: "https://www.cmfchile.cl/portal/estadisticas/618/w3-propertyvalue-20153.html",
+          name: "CMF Educa — Créditos hipotecarios",
+          url: "https://www.cmfchile.cl/educa/621/w3-propertyvalue-45015.html",
           date: "2026-04",
         },
         {
@@ -632,7 +636,9 @@ const ufDisplay = ufValuePesos.toLocaleString("es-CL", {
     };
 
     if (typeof window.showShareResult === "function") {
-      window.showShareResult(`Dividendo hipotecario: ${fmtPesos(resultado.basePaymentPesos)}/mes (${resultado.basePaymentUF.toFixed(2)} UF)`);
+      window.showShareResult(
+        `Dividendo hipotecario: ${fmtPesos(resultado.basePaymentPesos)}/mes (${resultado.basePaymentUF.toFixed(2)} UF)`
+      );
     }
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "dividendo-hipotecario",

@@ -257,7 +257,9 @@ const relatedPostsExcludedSlugs = [
             aria-label="Guía de referencia"
             class="my-4 border-l-4 border-accent bg-accent/5 px-4 py-3 text-sm"
           >
-            <span class="font-medium text-foreground">Guía de referencia: </span>
+            <span class="font-medium text-foreground">
+              Guía de referencia:{" "}
+            </span>
             <a
               href={getPath(post.data.articleLead.nextStepHref)}
               class="font-semibold text-accent underline underline-offset-4 hover:opacity-80"
@@ -265,7 +267,8 @@ const relatedPostsExcludedSlugs = [
               {post.data.articleLead.nextStepLabel}
             </a>
             <span class="text-secondary">
-              {" "}— contiene la cobertura completa del tema.
+              {" "}
+              — contiene la cobertura completa del tema.
             </span>
           </aside>
         )
@@ -389,7 +392,11 @@ const relatedPostsExcludedSlugs = [
           >
             <IconChevronLeft class="inline-block flex-none rtl:rotate-180" />
             <div>
-              <span>{useTopicalNav ? `Anterior en ${hubLabel}` : "Artículo anterior"}</span>
+              <span>
+                {useTopicalNav
+                  ? `Anterior en ${hubLabel}`
+                  : "Artículo anterior"}
+              </span>
               <div class="text-sm text-accent/85">{prevPost.title}</div>
             </div>
           </a>
@@ -405,7 +412,11 @@ const relatedPostsExcludedSlugs = [
             data-analytics-location="article_next"
           >
             <div>
-              <span>{useTopicalNav ? `Siguiente en ${hubLabel}` : "Artículo siguiente"}</span>
+              <span>
+                {useTopicalNav
+                  ? `Siguiente en ${hubLabel}`
+                  : "Artículo siguiente"}
+              </span>
               <div class="text-sm text-accent/85">{nextPost.title}</div>
             </div>
             <IconChevronRight class="inline-block flex-none rtl:rotate-180" />

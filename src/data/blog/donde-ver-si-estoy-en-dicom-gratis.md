@@ -4,7 +4,7 @@ author: "Equipo Monedario"
 description: "Guía práctica para separar Informe de Deudas CMF, Boletín Comercial y reportes privados tipo DICOM, y partir por el reporte correcto sin pagar de más."
 slug: donde-ver-si-estoy-en-dicom-gratis
 pubDate: 2026-03-12T19:00:00Z
-updatedDate: 2026-03-12T19:00:00Z
+updatedDate: 2026-04-12T18:30:00Z
 tags:
   - dicom
   - boletin-comercial
@@ -23,12 +23,12 @@ articleLead:
   answer: "No existe un solo botón oficial que te diga 'estás en DICOM'. Si quieres revisar deudas financieras vigentes, parte por el Informe de Deudas CMF. Si buscas protestos o un reporte comercial más amplio, necesitas separar Boletín Comercial y reportes privados antes de pagar o sacar conclusiones."
   nextStepHref: "/posts/informe-deudas-cmf-vs-dicom/"
   nextStepLabel: "Obtén tu informe de deudas CMF gratis"
-  validAsOf: 2026-03-12
+  validAsOf: 2026-04-12
   officialSources:
     - label: "CMF Chile - Informe de Deudas de Personas"
-      href: "https://www.cmfchile.cl/portal/principal/613/w3-article-95457.html"
+      href: "https://www.cmfchile.cl/educa/621/w3-article-27663.html"
     - label: "CMF Chile - Preguntas frecuentes Conoce tu deuda"
-      href: "https://conocetudeuda.cmfchile.cl/publico/preguntasFrecuentes"
+      href: "https://conocetudeuda.cmfchile.cl/"
   covers:
     - "Qué reporte gratis conviene pedir primero según tu duda."
     - "Cuándo el Informe CMF basta y cuándo no."

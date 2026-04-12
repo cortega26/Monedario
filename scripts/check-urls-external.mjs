@@ -164,6 +164,7 @@ async function runCanary() {
     const probeResults = await runProbePool(uniqueUrls, {
       concurrency: 4,
       timeoutMs: 5_000,
+      allowPrivateHosts: true,
     });
 
     // Classify — canary test server is not in the self-origins or host registry,
@@ -191,6 +192,7 @@ function buildCanaryLinkMap(baseUrl) {
   for (const p of paths) {
     const url = `${baseUrl}${p}`;
     m.set(url, {
+      href: url,
       referrers: ["https://monedario.cl/canary"],
       linkType: "inline",
       anchorText: p.slice(1),

@@ -261,7 +261,8 @@ const economicSourceLabel =
       hidden
       class="border-t border-border py-8"
       aria-live="polite"
-    ></div>
+    >
+    </div>
 
     <section
       class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
@@ -317,13 +318,25 @@ const economicSourceLabel =
     >
       <h2>¿Cómo afecta la renegociación Superir a mi DICOM?</h2>
       <p>
-        La renegociación ante la Superir <strong>no limpia automáticamente tu historial DICOM</strong>. El DICOM (Equifax/TransUnion) refleja deudas impagadas que los acreedores reportan a los burós de información financiera; el acuerdo de renegociación por sí solo no borra ese registro.
+        La renegociación ante la Superir <strong
+          >no limpia automáticamente tu historial DICOM</strong
+        >. El DICOM (Equifax/TransUnion) refleja deudas impagadas que los
+        acreedores reportan a los burós de información financiera; el acuerdo de
+        renegociación por sí solo no borra ese registro.
       </p>
       <p>
-        Una vez que el acuerdo está firmado y comienzas a pagar según las nuevas condiciones, tus acreedores deben actualizar tu estado en el buró. En la práctica, el plazo varía: algunos acredores realizan la actualización dentro de los 30 días siguientes al primer pago regularizado, mientras que otros pueden demorar más. Conviene solicitarles confirmación escrita una vez que el acuerdo quede vigente.
+        Una vez que el acuerdo está firmado y comienzas a pagar según las nuevas
+        condiciones, tus acreedores deben actualizar tu estado en el buró. En la
+        práctica, el plazo varía: algunos acredores realizan la actualización
+        dentro de los 30 días siguientes al primer pago regularizado, mientras
+        que otros pueden demorar más. Conviene solicitarles confirmación escrita
+        una vez que el acuerdo quede vigente.
       </p>
       <p>
-        La <strong>Ley 21.214 («Ley DICOM»)</strong> establece que las deudas inferiores a 2,5 millones de pesos que queden totalmente pagadas se eliminan del registro. Para deudas de mayor monto, el antecedente permanece por 5 años contados desde la fecha del pago total. Si quieres revisar tu situación actual, puedes <a
+        La <strong>Ley 21.214 («Ley DICOM»)</strong> establece que las deudas inferiores
+        a 2,5 millones de pesos que queden totalmente pagadas se eliminan del registro.
+        Para deudas de mayor monto, el antecedente permanece por 5 años contados desde
+        la fecha del pago total. Si quieres revisar tu situación actual, puedes <a
           href={dicomGuidePath}
           data-analytics-cta="calculator-guide"
           data-analytics-label="Guia DICOM gratis"
@@ -653,7 +666,10 @@ const economicSourceLabel =
       return [all[pi - 1], plazo, all[pi + 1]] as number[];
     })();
 
-    const compRows: { term: number; sim: ReturnType<typeof simulateDebtRenegotiation> }[] = [];
+    const compRows: {
+      term: number;
+      sim: ReturnType<typeof simulateDebtRenegotiation>;
+    }[] = [];
     for (const term of compTerms) {
       try {
         compRows.push({
@@ -696,9 +712,16 @@ const economicSourceLabel =
       const thead = document.createElement("thead");
       const headerRow = document.createElement("tr");
       headerRow.className = "border-b border-border";
-      for (const h of ["Plazo", "Cuota mensual", "% del ingreso", "Total intereses", "Total a pagar"]) {
+      for (const h of [
+        "Plazo",
+        "Cuota mensual",
+        "% del ingreso",
+        "Total intereses",
+        "Total a pagar",
+      ]) {
         const th = document.createElement("th");
-        th.className = "py-2 px-3 text-left text-xs font-bold text-secondary uppercase tracking-wide";
+        th.className =
+          "py-2 px-3 text-left text-xs font-bold text-secondary uppercase tracking-wide";
         th.textContent = h;
         headerRow.appendChild(th);
       }
@@ -755,7 +778,9 @@ const economicSourceLabel =
     }
 
     if (typeof window.showShareResult === "function") {
-      window.showShareResult(`Renegociación Superir: cuota ${fmt(simulacion.monthlyPayment)}/mes, deuda ${fmt(simulacion.totalDebtClp)}`);
+      window.showShareResult(
+        `Renegociación Superir: cuota ${fmt(simulacion.monthlyPayment)}/mes, deuda ${fmt(simulacion.totalDebtClp)}`
+      );
     }
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "simulador-renegociacion",

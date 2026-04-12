@@ -304,11 +304,16 @@ const faqSchema = {
             id="afp-tasa"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
           >
-            {AFP_COMMISSIONS_PERCENT.map(afp => (
-              <option value={String(afp.total)} selected={afp.name === "Habitat"}>
-                {afp.name} – {afp.total.toFixed(2)}%
-              </option>
-            ))}
+            {
+              AFP_COMMISSIONS_PERCENT.map(afp => (
+                <option
+                  value={String(afp.total)}
+                  selected={afp.name === "Habitat"}
+                >
+                  {afp.name} – {afp.total.toFixed(2)}%
+                </option>
+              ))
+            }
           </select>
         </div>
 
@@ -344,7 +349,11 @@ const faqSchema = {
         class="rounded-xl border border-border bg-background p-6"
       >
         <h2 class="mb-5 text-lg font-semibold">💡 Comparación de regímenes</h2>
-        <div id="resultado-contenido" class="py-8 text-center text-muted" aria-live="polite">
+        <div
+          id="resultado-contenido"
+          class="py-8 text-center text-muted"
+          aria-live="polite"
+        >
           <p class="mb-3 text-4xl">📊</p>
           <p class="text-sm">Ingresa tus datos y presiona comparar.</p>
         </div>
@@ -476,12 +485,16 @@ const faqSchema = {
     <section class="border-t border-border py-8">
       <h2 class="mb-6 text-xl font-semibold">Preguntas frecuentes sobre APV</h2>
       <dl class="space-y-6">
-        {faqSchema.mainEntity.map((faq) => (
-          <div>
-            <dt class="mb-1 font-medium text-foreground">{faq.name}</dt>
-            <dd class="text-sm text-secondary leading-relaxed">{faq.acceptedAnswer.text}</dd>
-          </div>
-        ))}
+        {
+          faqSchema.mainEntity.map(faq => (
+            <div>
+              <dt class="mb-1 font-medium text-foreground">{faq.name}</dt>
+              <dd class="text-sm leading-relaxed text-secondary">
+                {faq.acceptedAnswer.text}
+              </dd>
+            </div>
+          ))
+        }
       </dl>
     </section>
     <PrimaryCTA
@@ -494,8 +507,8 @@ const faqSchema = {
       notes="Los beneficios tributarios del APV se calculan según la legislación vigente (Ley 20.255 y normativas SII). Régimen A: el Estado bonifica el 15% de los aportes (con tope de 6 UTM anuales). Régimen B: el aporte se deduce de la base imponible del impuesto global complementario. Los límites de aporte se expresan en UF (600 UF anuales para Régimen B) según valores al momento del cálculo."
       sources={[
         {
-          name: "SII — Beneficios tributarios APV (Régimen A y B)",
-          url: "https://www.sii.cl/contribuyentes/temas_de_ayuda/APV.html",
+          name: "BCN — Ley sobre Impuesto a la Renta (art. 42 bis APV)",
+          url: "https://www.bcn.cl/leychile/navegar?idNorma=6368",
           date: "2026-01",
         },
         {
