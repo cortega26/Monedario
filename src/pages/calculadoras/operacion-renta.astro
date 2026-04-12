@@ -85,7 +85,7 @@ const exampleResult = simulateOperacionRenta({
             <input
               type="number"
               id="sueldos-brutos"
-              placeholder="Ej: 18.000.000"
+              placeholder="Ej: 18000000"
               min="0"
               class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
             />
@@ -105,7 +105,7 @@ const exampleResult = simulateOperacionRenta({
             <input
               type="number"
               id="honorarios-brutos"
-              placeholder="Ej: 4.000.000"
+              placeholder="Ej: 4000000"
               min="0"
               class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
             />
@@ -125,7 +125,7 @@ const exampleResult = simulateOperacionRenta({
             <input
               type="number"
               id="arriendos"
-              placeholder="Ej: 2.400.000"
+              placeholder="Ej: 2400000"
               min="0"
               class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
             />
@@ -150,7 +150,7 @@ const exampleResult = simulateOperacionRenta({
             <input
               type="number"
               id="impuesto-unico"
-              placeholder="Ej: 800.000"
+              placeholder="Ej: 800000"
               min="0"
               class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
             />
@@ -170,7 +170,7 @@ const exampleResult = simulateOperacionRenta({
             <input
               type="number"
               id="ppm-honorarios"
-              placeholder="Ej: 490.000"
+              placeholder="Ej: 490000"
               min="0"
               class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
             />
@@ -199,7 +199,7 @@ const exampleResult = simulateOperacionRenta({
             <input
               type="number"
               id="apv-regimen-b"
-              placeholder="Ej: 1.200.000"
+              placeholder="Ej: 1200000"
               min="0"
               class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
             />
@@ -221,7 +221,7 @@ const exampleResult = simulateOperacionRenta({
             <input
               type="number"
               id="intereses-hipotecarios"
-              placeholder="Ej: 600.000"
+              placeholder="Ej: 600000"
               min="0"
               class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
             />
@@ -424,9 +424,18 @@ const exampleResult = simulateOperacionRenta({
   const economicParameters = readEconomicParameters();
 
   function val(id: string): number {
-    return (
-      parseFloat((document.getElementById(id) as HTMLInputElement).value) || 0
-    );
+    const raw = (document.getElementById(id) as HTMLInputElement).value;
+    // Strip CLP thousand-separator dots (e.g. "18.000.000" → "18000000").
+    // Only strip when the string contains dots but no comma (unambiguous CLP format).
+    // If both dot and comma are present, or only a single dot that looks like a
+    // decimal, leave the string alone and let parseFloat handle it naturally.
+    const hasDot = raw.includes(".");
+    const hasComma = raw.includes(",");
+    const sanitized =
+      hasDot && !hasComma && (raw.match(/\./g) ?? []).length > 1
+        ? raw.replace(/\./g, "")
+        : raw;
+    return parseFloat(sanitized) || 0;
   }
 
   document.getElementById("calcBtn")?.addEventListener("click", () => {
