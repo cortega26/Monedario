@@ -73,7 +73,13 @@ export function extractAnchorsFromHtml(html, pageUrl, selfOrigins) {
     const rawHref = hrefMatch ? (hrefMatch[1] ?? hrefMatch[2] ?? "") : "";
     const href = decodeBasicEntities(rawHref).trim();
 
-    if (!href || href.startsWith("#") || href.startsWith("javascript:")) {
+    if (
+      !href ||
+      href.startsWith("#") ||
+      href.startsWith("javascript:") ||
+      href.startsWith("data:") ||
+      href.startsWith("vbscript:")
+    ) {
       match = ANCHOR_REGEX.exec(html);
       continue;
     }
