@@ -254,43 +254,54 @@ const exampleResult = simulateOperacionRenta({
         <h2 class="mb-5 text-lg font-semibold">💡 Estimación de resultado</h2>
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
           <div
-            class="mb-6 rounded-lg border border-green-500/20 bg-green-500/10 p-4 text-center"
+            class="mb-4 rounded-lg border border-green-500/40 bg-green-500/10 p-4"
           >
             <p
-              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
+              class="mb-1 text-xs font-bold tracking-widest text-green-400/80 uppercase"
             >
               Devolución estimada (Ejemplo)
             </p>
-            <p class="text-4xl font-bold text-green-400/70">
+            <p class="font-mono text-3xl font-bold text-green-400">
               {formatPeso(exampleResult.montoDevolución)}
             </p>
+            <p class="mt-1 text-xs text-muted">
+              Ingresa tus datos reales para calcular.
+            </p>
           </div>
-          <div class="space-y-2 text-sm">
-            <div class="flex justify-between">
-              <span class="text-secondary">Sueldos brutos anuales</span><span
-                class="font-medium text-foreground/60"
+          <div class="mb-4 rounded-lg border border-border p-4">
+            <h3
+              class="mb-3 text-xs font-semibold uppercase tracking-wide text-secondary"
+            >
+              Resumen del ejemplo
+            </h3>
+            <div
+              class="flex justify-between border-b border-border py-1.5 text-sm"
+            >
+              <span class="text-secondary">Sueldos brutos anuales</span>
+              <span class="font-mono font-semibold text-foreground/70"
                 >{formatPeso(exampleResult.sueldosBrutos)}</span
               >
             </div>
-            <div class="flex justify-between">
-              <span class="text-secondary">IGC calculado</span><span
-                class="font-medium text-foreground/60"
+            <div
+              class="flex justify-between border-b border-border py-1.5 text-sm"
+            >
+              <span class="text-secondary">IGC calculado</span>
+              <span class="font-mono font-semibold text-foreground/70"
                 >{formatPeso(exampleResult.igcCalculado)}</span
               >
             </div>
-            <div class="flex justify-between">
-              <span class="text-secondary">Imp. único retenido</span><span
-                class="text-green-400/70"
+            <div class="flex justify-between py-1.5 text-sm">
+              <span class="text-secondary">Imp. único retenido</span>
+              <span class="font-mono font-semibold text-green-400"
                 >− {formatPeso(exampleResult.impuestoUnicoRetenido)}</span
               >
             </div>
           </div>
-          <p class="mt-4 text-xs text-muted">
+          <p class="text-xs text-muted">
             Ejemplo: sueldos brutos {formatPeso(exampleResult.sueldosBrutos)} anuales,
             imp. único retenido {
               formatPeso(exampleResult.impuestoUnicoRetenido)
-            }, sin honorarios ni deducciones adicionales. Ingresa tus datos
-            reales para calcular.
+            }, sin honorarios ni deducciones adicionales.
           </p>
         </div>
         <div
@@ -532,7 +543,7 @@ const exampleResult = simulateOperacionRenta({
       card.className = "mb-4 rounded-lg border border-border p-4";
       const h = document.createElement("h3");
       h.className =
-        "mb-3 text-sm font-semibold text-secondary uppercase tracking-wide";
+        "mb-3 text-xs font-semibold text-secondary uppercase tracking-wide";
       h.textContent = title;
       card.appendChild(h);
       for (const r of rows) {
@@ -568,7 +579,7 @@ const exampleResult = simulateOperacionRenta({
 
     const bannerAmount = document.createElement("p");
     bannerAmount.className =
-      "text-2xl font-bold font-mono " +
+      "text-3xl font-bold font-mono " +
       (isRefund
         ? "text-green-400"
         : resultado.saldoFinal === 0
