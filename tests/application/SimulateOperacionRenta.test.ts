@@ -1,16 +1,17 @@
 import { describe, expect, it } from "vitest";
 import { simulateOperacionRenta } from "@/application/use-cases/SimulateOperacionRenta";
 
-// UTM 2026 value (published by SII — matches domain snapshot)
-const UTM = 67294;
-// UF 2026 reference value
-const UF = 39300;
+// UTM from economic-parameters.snapshot.json (2026-04-11). Keep in sync
+// with the snapshot; if the snapshot is updated, update this constant too.
+const UTM = 69889;
+// UF from economic-parameters.snapshot.json (2026-04-11), rounded to pesos.
+const UF = 39868;
 
 // UTA = UTM × 12 (annual unit used by the IGC progressive table)
-const UTA = UTM * 12; // 807_528
+const UTA = UTM * 12; // 838_668
 
 // First bracket exempt limit: 13.5 UTA
-const EXEMPT_THRESHOLD = 13.5 * UTA; // ~10_901_628 CLP
+const EXEMPT_THRESHOLD = 13.5 * UTA; // ~11_322_018 CLP
 
 const BASE_INCOME_PARAMS = { utm: UTM, uf: UF };
 
