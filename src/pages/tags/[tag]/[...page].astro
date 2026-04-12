@@ -37,11 +37,11 @@ const pageTitle =
 const pageDescription =
   currentPage > 1
     ? `Página ${currentPage} del listado interno de artículos etiquetados con "${tagName}" en Monedario.`
-    : `Listado interno de artículos etiquetados con "${tagName}" en Monedario. Página de navegación excluida del objetivo de indexación orgánica.`;
+    : `Artículos etiquetados con "${tagName}" en Monedario. Finanzas personales, calculadoras y guías para Chile.`;
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <meta name="robots" content="noindex,follow" slot="head" />
+  {currentPage > 1 && <meta name="robots" content="noindex,follow" slot="head" />}
   <Header />
   <Main
     pageTitle={["Etiqueta:", `${tagName}`]}
