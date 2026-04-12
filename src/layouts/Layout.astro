@@ -23,9 +23,9 @@ type Props = {
 const performanceSensitivePath = /^\/(?:posts|guias|calculadoras)(?:\/|$)/.test(
   Astro.url.pathname
 );
-const shouldPreloadPrimaryFonts =
-  Astro.url.pathname !== "/" &&
-  !/^\/calculadoras(?:\/|$)/.test(Astro.url.pathname);
+const shouldPreloadPrimaryFonts = !/^\/calculadoras(?:\/|$)/.test(
+  Astro.url.pathname
+);
 
 const {
   title = SITE.title,
