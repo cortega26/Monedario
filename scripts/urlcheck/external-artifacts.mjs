@@ -153,9 +153,23 @@ function csvEscape(value) {
 }
 
 async function assertArtifactIntegrity(filePaths) {
-  try {
-    await Promise.all(filePaths.map(access));
-  } catch {
-    throw new Error("external_artifact_generation_failed");
+  const missing = [];
+
+  for (const filePath of filePaths) {
+    try {
+      await access(filePath);
+    } catch (error) {
+      const detail =
+        error instanceof Error && "code" in error && typeof error.code === "string"
+          ? error.code
+          : error instanceof Error
+            ? error.message
+            : "unknown_error";
+      missing.push(`${filePath} (${detail})`);
+    }
+  }
+
+  if (missing.length > 0) {
+    throw new Error(`external_artifact_generation_failed:${missing.join(", ")}`);
   }
 }

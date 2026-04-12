@@ -126,11 +126,11 @@ export function extractAnchorsFromHtml(html, pageUrl, selfOrigins) {
  *
  * @param {string} distDir – path to the built site output (e.g. "dist/")
  * @param {Set<string>} extraSelfOrigins – additional hostnames to treat as self-origin
- * @returns {Promise<Map<string, {referrers: string[], linkType: 'structured'|'inline', anchorText: string}>>}
+ * @returns {Promise<Map<string, {href: string, referrers: string[], linkType: 'structured'|'inline', anchorText: string}>>}
  */
 export async function extractExternalLinks(distDir, extraSelfOrigins = new Set()) {
   const combined = new Set([...extraSelfOrigins]);
-  /** @type {Map<string, {referrers: string[], linkType: 'structured'|'inline', anchorText: string}>} */
+  /** @type {Map<string, {href: string, referrers: string[], linkType: 'structured'|'inline', anchorText: string}>} */
   const linkMap = new Map();
 
   for await (const filePath of walkHtmlFiles(distDir)) {
@@ -157,7 +157,7 @@ export async function extractExternalLinks(distDir, extraSelfOrigins = new Set()
           existing.linkType = "structured";
         }
       } else {
-        linkMap.set(href, { referrers: [pageUrl], linkType, anchorText });
+        linkMap.set(href, { href, referrers: [pageUrl], linkType, anchorText });
       }
     }
   }

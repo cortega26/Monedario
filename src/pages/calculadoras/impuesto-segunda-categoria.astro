@@ -158,7 +158,11 @@ const sueldoLiquidoPath = getPath("/calculadoras/sueldo-liquido/");
         class="rounded-xl border border-border bg-background p-6"
       >
         <h2 class="mb-5 text-lg font-semibold">💡 Resultado</h2>
-        <div id="resultado-contenido" class="py-8 text-center text-muted" aria-live="polite">
+        <div
+          id="resultado-contenido"
+          class="py-8 text-center text-muted"
+          aria-live="polite"
+        >
           <p class="mb-3 text-4xl">📊</p>
           <p class="text-sm">Ingresa tu imponible y presiona calcular.</p>
         </div>
@@ -432,7 +436,9 @@ const sueldoLiquidoPath = getPath("/calculadoras/sueldo-liquido/");
     contenido.replaceChildren(headline, ...rows, note);
 
     if (typeof window.showShareResult === "function") {
-      window.showShareResult(`Impuesto 2ª categoría: ${fmt(result.taxAmount)}/mes sobre imponible ${fmt(imponible)}`);
+      window.showShareResult(
+        `Impuesto 2ª categoría: ${fmt(result.taxAmount)}/mes sobre imponible ${fmt(imponible)}`
+      );
     }
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "impuesto-segunda-categoria",

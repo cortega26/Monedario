@@ -47,8 +47,9 @@ const fechaDisplay = fmtFecha(indicadores.fecha);
           <span class="text-xs font-semibold tracking-wide text-muted uppercase">
             {item.label}
           </span>
-          <span class="font-semibold tabular-nums text-foreground">
-            {item.prefix}{item.value}
+          <span class="font-semibold text-foreground tabular-nums">
+            {item.prefix}
+            {item.value}
           </span>
         </span>
       );
@@ -68,7 +69,10 @@ const fechaDisplay = fmtFecha(indicadores.fecha);
       );
     })
   }
-  <span class="text-xs text-muted" title={`Fuente: mindicador.cl — ${fechaDisplay}`}>
+  <span
+    class="text-xs text-muted"
+    title={`Fuente: mindicador.cl — ${fechaDisplay}`}
+  >
     al {fechaDisplay}
   </span>
 </div>

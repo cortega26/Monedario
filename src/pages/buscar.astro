@@ -11,16 +11,34 @@ const backUrl = SITE.showBackButton ? `${Astro.url.pathname}` : getPath("/");
 const initialQuery = Astro.url.searchParams.get("q") ?? "";
 
 const searchChips = [
-  { label: "Sueldo líquido",       href: getPath("/calculadoras/sueldo-liquido/") },
-  { label: "Liquidación de sueldo", href: getPath("/posts/liquidacion-de-sueldo/") },
-  { label: "DICOM",                href: getPath("/posts/donde-ver-si-estoy-en-dicom-gratis/") },
-  { label: "AFP",                  href: getPath("/posts/cuanto-descuenta-la-afp-de-tu-sueldo/") },
-  { label: "Finiquito",            href: getPath("/calculadoras/finiquito-indemnizacion/") },
-  { label: "Operación Renta",      href: getPath("/posts/operacion-renta-f22-checklist/") },
-  { label: "Cesantía",             href: getPath("/calculadoras/seguro-cesantia/") },
-  { label: "UF y arriendo",        href: getPath("/calculadoras/reajuste-arriendo/") },
-  { label: "APV",                  href: getPath("/calculadoras/apv/") },
-  { label: "Honorarios",           href: getPath("/posts/boleta-honorarios-2026-retencion-cobertura/") },
+  { label: "Sueldo líquido", href: getPath("/calculadoras/sueldo-liquido/") },
+  {
+    label: "Liquidación de sueldo",
+    href: getPath("/posts/liquidacion-de-sueldo/"),
+  },
+  {
+    label: "DICOM",
+    href: getPath("/posts/donde-ver-si-estoy-en-dicom-gratis/"),
+  },
+  {
+    label: "AFP",
+    href: getPath("/posts/cuanto-descuenta-la-afp-de-tu-sueldo/"),
+  },
+  {
+    label: "Finiquito",
+    href: getPath("/calculadoras/finiquito-indemnizacion/"),
+  },
+  {
+    label: "Operación Renta",
+    href: getPath("/posts/operacion-renta-f22-checklist/"),
+  },
+  { label: "Cesantía", href: getPath("/calculadoras/seguro-cesantia/") },
+  { label: "UF y arriendo", href: getPath("/calculadoras/reajuste-arriendo/") },
+  { label: "APV", href: getPath("/calculadoras/apv/") },
+  {
+    label: "Honorarios",
+    href: getPath("/posts/boleta-honorarios-2026-retencion-cobertura/"),
+  },
 ];
 ---
 
@@ -66,9 +84,7 @@ const searchChips = [
     </form>
 
     <div class="mb-6" id="search-chips">
-      <p class="mb-3 text-sm font-medium text-secondary">
-        Temas frecuentes
-      </p>
+      <p class="mb-3 text-sm font-medium text-secondary">Temas frecuentes</p>
       <div class="flex flex-wrap gap-2">
         {
           searchChips.map(chip => (

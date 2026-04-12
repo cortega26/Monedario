@@ -14,7 +14,7 @@ import { getHubFromTags } from "@/config/tagHubMap";
 
 type Props = {
   tags?: string[];
-}
+};
 
 const { tags } = Astro.props;
 
@@ -78,9 +78,10 @@ if (segments[0] === "tags" && !isNaN(Number(segments[2]))) {
 }
 
 // Contextual hub: for article pages, replace "Artículos" crumb with the matched hub
-const hub = tags && segments[0] === "posts" && segments.length === 2
-  ? getHubFromTags(tags)
-  : null;
+const hub =
+  tags && segments[0] === "posts" && segments.length === 2
+    ? getHubFromTags(tags)
+    : null;
 
 if (hub) {
   labels[0] = hub.label;
@@ -138,7 +139,7 @@ const breadcrumbItems = [
         index + 1 === crumbs.length ? (
           <li>
             <span
-              class:list={["capitalize opacity-75", { lowercase: index > 0 }]}
+              class="opacity-75"
               aria-current="page"
             >
               {labels[index]}
@@ -148,7 +149,7 @@ const breadcrumbItems = [
           <li>
             <a
               href={getPath(index === 0 && hub ? hub.href : crumb.href)}
-              class="capitalize opacity-70"
+              class="opacity-70"
             >
               {labels[index]}
             </a>
