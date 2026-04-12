@@ -39,6 +39,7 @@ Change log:
 - 2026-03-07: added inline article image format contract and justified exception allowlist semantics.
 - 2026-03-22: added editorial timeliness policy contract and scheduled audit workflow.
 - 2026-04-11: added competitive adaptation contract and benchmark-aware editorial artifact expectations.
+- 2026-04-12: added CONTRACT.EXTERNAL_URLCHECK for external link validation engine; see ADR-20260412-external-link-ci-gate.
 
 ## 2. Contracts
 
@@ -598,3 +599,42 @@ Change log:
 ### Severidad
 
 Violación de este contrato se considera severidad ALTA en contexto YMYL y bloquea publicación hasta corrección.
+---
+
+### `CONTRACT.EXTERNAL_URLCHECK`
+
+- Scope: External link validation for the whole-site built output (`dist/**/*.html`).
+- Source of truth:
+  - Host registry: `scripts/urlcheck/host-registry.mjs`
+  - Engine: `scripts/check-urls-external.mjs`, `scripts/urlcheck/{extract-external,probe-external,classify-external,external-artifacts}.mjs`
+  - ADR: `docs/adr/ADR-20260412-external-link-ci-gate.md`
+- Self-origin exclusion: `monedario.cl` and `www.monedario.cl` absolute URLs are treated as internal-equivalent and excluded from external checks.
+- Host classification:
+  - `official_source` — Chilean government/regulatory institutions; hard-fail is blocking.
+  - `trusted_reference` — International reference bodies (IMF, World Bank, Wikipedia); hard-fail is blocking.
+  - `brand_profile`, `share_endpoint`, `known_soft_nonblocking` — Non-blocking telemetry only.
+  - `unknown` — Non-blocking.
+- Failure classes (stable `classification` field):
+  - `hard_fail` — HTTP 404/410/5xx on final URL.
+  - `soft_404` — 200/3xx but title/H1/body matches bilingual soft-404 phrase set or host-specific markers.
+  - `host_mismatch` — Structured link on official/trusted host redirects outside allowed host family (blocking).
+  - `redirect_mismatch` — Redirect lands on unexpected domain (non-blocking in phase 1).
+  - `non_blocking_host_issue` — Any failure on brand_profile/share_endpoint/known_soft_nonblocking.
+  - `network_error` — DNS/timeout/TLS errors; non-blocking.
+- Artifact schema (stable fields per record):
+  - `source_url`, `final_url`, `referrer_url`, `link_type`, `host_category`, `classification`, `blocking`, `matched_signal`, `expected_host_family`, `status`, `error`.
+- Artifact paths:
+  - `output/validation/urlcheck/external-hard-fail.json`
+  - `output/validation/urlcheck/external-soft-404.json`
+  - `output/validation/urlcheck/external-host-mismatch.json`
+  - `output/validation/urlcheck/external-non-blocking.json`
+  - `output/validation/urlcheck/external-summary.json`
+  - `output/validation/urlcheck/external-full.csv`
+- Commands:
+  - `pnpm run check:urls:external:ci` — Whole-site blocking PR validation; exits 1 if `blocking=true`.
+  - `pnpm run check:urls:external:audit` — Nightly full audit; always exits 0.
+  - `pnpm run check:urls:canary` — Smoke-test; includes internal + external canary assertions.
+- Backward-compat expectations:
+  - Artifact schema fields listed above are stable; consumers must not depend on fields outside this list.
+  - The `blocking` flag on each result is authoritative; CI job `continue-on-error` is a deployment parameter, not a contract change.
+- Linked invariant: `INVARIANT.URLCHECK.EXTERNAL_LINK_POLICY`.

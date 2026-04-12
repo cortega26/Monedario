@@ -140,7 +140,7 @@ jobs:
   external-url-audit:
     name: External URL audit (non-blocking)
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 15
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     continue-on-error: true
 
@@ -167,22 +167,87 @@ jobs:
         id: urlcheck_external_audit
         run: pnpm run check:urls:external:audit
 
-      - name: "🧩 Ensure URL check artifacts exist"
+      - name: "🧩 Ensure external URL audit artifacts exist"
         if: always() && steps.urlcheck_external_audit.outcome == 'skipped'
         run: |
           mkdir -p output/validation/urlcheck
-          [ -f output/validation/urlcheck/internal-broken.json ] || printf '[]\n' > output/validation/urlcheck/internal-broken.json
-          [ -f output/validation/urlcheck/internal-broken.csv ] || printf 'broken_url,status,referrer_url,context,category\n' > output/validation/urlcheck/internal-broken.csv
-          [ -f output/validation/urlcheck/urlcheck-report.json ] || printf '{"generatedAt":"%s","note":"placeholder"}\n' "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" > output/validation/urlcheck/urlcheck-report.json
+          [ -f output/validation/urlcheck/external-summary.json ] || printf '{"generatedAt":"%s","note":"placeholder"}\n' "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" > output/validation/urlcheck/external-summary.json
+          [ -f output/validation/urlcheck/external-hard-fail.json ] || printf '[]\n' > output/validation/urlcheck/external-hard-fail.json
+          [ -f output/validation/urlcheck/external-soft-404.json ] || printf '[]\n' > output/validation/urlcheck/external-soft-404.json
+          [ -f output/validation/urlcheck/external-host-mismatch.json ] || printf '[]\n' > output/validation/urlcheck/external-host-mismatch.json
+          [ -f output/validation/urlcheck/external-non-blocking.json ] || printf '[]\n' > output/validation/urlcheck/external-non-blocking.json
+          [ -f output/validation/urlcheck/external-full.csv ] || printf 'source_url,final_url,referrer_url,link_type,host_category,classification,blocking,matched_signal,status,error\n' > output/validation/urlcheck/external-full.csv
 
       - name: "📤 Upload external audit artifacts"
         if: always()
         uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
         with:
           name: urlcheck-artifacts-external-audit
+          retention-days: 30
+          if-no-files-found: error
+          path: |
+            output/validation/urlcheck/external-summary.json
+            output/validation/urlcheck/external-hard-fail.json
+            output/validation/urlcheck/external-soft-404.json
+            output/validation/urlcheck/external-host-mismatch.json
+            output/validation/urlcheck/external-non-blocking.json
+            output/validation/urlcheck/external-full.csv
+
+  external-url-check-pr:
+    name: External URL check – PR (non-blocking rollout)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # Runs on every PR. continue-on-error:true keeps the workflow green during
+    # initial rollout. Remove continue-on-error once the corpus is clean and
+    # the engine has been validated against the full site.
+    if: github.event_name == 'pull_request'
+    continue-on-error: true
+
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: "📦 Install pnpm"
+        run: npm install -g pnpm@10.30.2
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: "📦 Install dependencies"
+        run: pnpm install --frozen-lockfile
+
+      - name: "🏗️ Build static output"
+        run: pnpm run astro build
+
+      - name: "🔗 External URL check (blocking gate – CI mode)"
+        id: urlcheck_external_ci
+        run: pnpm run check:urls:external:ci
+
+      - name: "🧩 Ensure external URL CI artifacts exist"
+        if: always() && steps.urlcheck_external_ci.outcome == 'skipped'
+        run: |
+          mkdir -p output/validation/urlcheck
+          [ -f output/validation/urlcheck/external-summary.json ] || printf '{"generatedAt":"%s","note":"placeholder"}\n' "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" > output/validation/urlcheck/external-summary.json
+          [ -f output/validation/urlcheck/external-hard-fail.json ] || printf '[]\n' > output/validation/urlcheck/external-hard-fail.json
+          [ -f output/validation/urlcheck/external-soft-404.json ] || printf '[]\n' > output/validation/urlcheck/external-soft-404.json
+          [ -f output/validation/urlcheck/external-host-mismatch.json ] || printf '[]\n' > output/validation/urlcheck/external-host-mismatch.json
+          [ -f output/validation/urlcheck/external-non-blocking.json ] || printf '[]\n' > output/validation/urlcheck/external-non-blocking.json
+          [ -f output/validation/urlcheck/external-full.csv ] || printf 'source_url,final_url,referrer_url,link_type,host_category,classification,blocking,matched_signal,status,error\n' > output/validation/urlcheck/external-full.csv
+
+      - name: "📤 Upload external URL CI artifacts"
+        if: always()
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0
+        with:
+          name: urlcheck-artifacts-external-ci
           retention-days: 14
           if-no-files-found: error
           path: |
-            output/validation/urlcheck/internal-broken.json
-            output/validation/urlcheck/internal-broken.csv
-            output/validation/urlcheck/urlcheck-report.json
+            output/validation/urlcheck/external-summary.json
+            output/validation/urlcheck/external-hard-fail.json
+            output/validation/urlcheck/external-soft-404.json
+            output/validation/urlcheck/external-host-mismatch.json
+            output/validation/urlcheck/external-non-blocking.json
+            output/validation/urlcheck/external-full.csv

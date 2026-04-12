@@ -40,6 +40,7 @@ Change log:
 - 2026-03-07: added inline article image format invariant (AVIF by default with justified exception allowlist).
 - 2026-03-22: added editorial timeliness invariant and scheduled audit workflow.
 - 2026-04-11: added competitive adaptation invariants for external benchmarking authority, differentiation, and ownership-before-expansion.
+- 2026-04-12: added external link policy invariant (INVARIANT.URLCHECK.EXTERNAL_LINK_POLICY) and CI gate for official/trusted host validation; see ADR-20260412-external-link-ci-gate.
 
 ## 2. Invariant Index
 
@@ -83,6 +84,7 @@ Change log:
 | `INVARIANT.EDITORIAL.HERO_IMAGE_PUBLISHED_REQUIRED` | Published article must have resolvable hero image and canonical public hero asset | Active | `node scripts/check-hero-images.mjs` |
 | `INVARIANT.EDITORIAL.HERO_IMAGE_TEXT_MATCH_REQUIRED` | Hero image selection must derive from article text and preserve situation-level match | Active | `node scripts/check-hero-prompts.mjs` + artifact review |
 | `INVARIANT.EDITORIAL.INLINE_IMAGE_AVIF_REQUIRED` | Inline article images must use AVIF unless explicitly justified | Active | `pnpm run check:images` |
+| `INVARIANT.URLCHECK.EXTERNAL_LINK_POLICY` | External links to official/trusted hosts must resolve live within the expected host family | Active (phase 1 non-blocking) | `pnpm run check:urls:external:ci` |
 
 ## 3. Invariants
 
@@ -749,3 +751,26 @@ Change log:
 - Examples:
   - Compliant: each article has unique normalized description.
   - Violation: two files share the same normalized description text.
+
+### `INVARIANT.URLCHECK.EXTERNAL_LINK_POLICY`
+
+- Statement: External links in published articles to `official_source` and `trusted_reference` hosts must resolve to a live, non-soft-404 page within the expected host family.
+- Canonical source: `docs/adr/ADR-20260412-external-link-ci-gate.md`, `scripts/urlcheck/host-registry.mjs`.
+- Rationale:
+  - YMYL editorial credibility depends on official source links being live and correct.
+  - Redirect hijacking (link silently redirects to a different institution) erodes trust.
+  - Soft-404 pages appear as 200 OK to automated Tools but deliver no content to readers.
+- Enforcement:
+  - `pnpm run check:urls:external:ci` (whole-site; now a PR gate, non-blocking in phase 1).
+  - `pnpm run check:urls:external:audit` (nightly trend audit).
+  - Both enforced via `scripts/check-urls-external.mjs`.
+- Detection:
+  - Per-result `blocking: true` when `host_category` is `official_source` or `trusted_reference` AND `classification` is `hard_fail`, `soft_404`, or `host_mismatch`.
+  - Blocking exit: `[check-urls-external] FAIL: external_blocking_failures_detected:count=N`.
+  - Non-blocking classes (`brand_profile`, `share_endpoint`, `known_soft_nonblocking`, `unknown`) are written to artifacts but never exit non-zero.
+- Self-origin rule: `monedario.cl` and `www.monedario.cl` absolute URLs are excluded from external checks (treated as internal-equivalent).
+- Rollout state: Phase 1 – `external-url-check-pr` CI job uses `continue-on-error: true`. Remove after corpus remediation and engine validation.
+- Examples:
+  - Compliant: `https://www.bcentral.cl/estadisticas/` returns 200 with normal Banco Central content.
+  - Violation: `https://www.bcentral.cl/publicacion-antigua/` returns 200 with "Página no encontrada" title.
+  - Violation: `https://www.sii.cl/old-doc/` returns 404.
