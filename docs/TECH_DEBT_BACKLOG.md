@@ -10,10 +10,10 @@ Fecha de corte: 2026-04-07
 - **P2:** 12
 - **P3:** 1
 
-### Estado de avance (2026-04-10)
-- **Completados:** 45 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `TD-0037`, `TD-0038`, `TD-0041`, `TD-0043`, `FIX-MDX`, `FIX-LINKS-CALC`)
+### Estado de avance (2026-04-12)
+- **Completados:** 46 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `TD-0037`, `TD-0038`, `TD-0040`, `TD-0041`, `TD-0043`, `FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 1 (`TD-0039`)
-- **Backlog sin iniciar:** 1 (`TD-0040`)
+- **Backlog sin iniciar:** 0
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -885,12 +885,13 @@ Fecha de corte: 2026-04-07
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** Revalidar la fórmula/fixture del caso judicial en `EstimateFiniquito` y alinear el test con la lógica vigente solo si el cálculo actual es correcto; de lo contrario, restaurar la estimación base esperada.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] `pnpm run test` pasa sin fallos en `tests/application/EstimateFiniquito.test.ts`.
-  - [ ] Queda documentado si el drift provino del motor o del fixture esperado.
+  - [x] `pnpm run test` pasa sin fallos en `tests/application/EstimateFiniquito.test.ts`.
+  - [x] Queda documentado si el drift provino del motor o del fixture esperado.
 - **Owner:** TBD
-- **Estado:** Backlog
+- **Estado:** Completado
+- **Nota de cierre:** El motor ya tenía `>= 6` en `resolveServiceYears` (línea 114). `pnpm run test` pasa limpio: 43 archivos, 218 tests. El drift era del backlog, no del código.
 - **Fecha de creación:** 2026-04-10
-- **Última actualización:** 2026-04-10
+- **Última actualización:** 2026-04-12
 
 ## TD-0041 — Cluster source-of-truth desalineado para `presupuesto-control-financiero`
 - **ID:** TD-0041
