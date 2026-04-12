@@ -4,7 +4,7 @@ description: "Todo lo que necesitas saber antes de firmar un crédito hipotecari
 slug: credito-hipotecario-chile-guia-completa
 author: "Equipo Monedario"
 pubDate: 2026-04-09T12:00:00Z
-updatedDate: 2026-04-09T12:00:00Z
+updatedDate: 2026-04-12T18:30:00Z
 tags:
   - credito-hipotecario
   - dividendo
@@ -28,11 +28,11 @@ articleLead:
   validAsOf: 2026-04-09
   officialSources:
     - label: "CMF Chile — Créditos hipotecarios"
-      href: "https://www.cmfchile.cl/portal/estadisticas/618/w3-propertyvalue-20153.html"
+      href: "https://www.cmfchile.cl/educa/621/w3-propertyvalue-45015.html"
     - label: "BCCh — Tasas de interés hipotecarias"
       href: "https://www.bcentral.cl/areas/estadisticas/tasas-de-interes"
     - label: "SII — Beneficio DFL2"
-      href: "https://www.sii.cl/aprenda_sobre_impuestos/estudios/dfl2_2005.pdf"
+      href: "https://www.sii.cl/preguntas_frecuentes/aval_contrib_bbrr/001_165_2439.htm"
   covers:
     - "Requisitos bancarios y cómo se evalúa la capacidad de pago"
     - "Qué es el pie y cuánto necesitas realmente"
@@ -209,7 +209,7 @@ Los bancos exigen dos seguros que van incluidos en tu dividendo mensual:
 
 ### Beneficio tributario DFL2
 
-Las propiedades con **Decreto con Fuerza de Ley N°2 (DFL2)** (superficie construida ≤ 140 m²) tienen un beneficio tributario relevante al vender: la ganancia de capital queda **exenta del Impuesto Global Complementario** si has vendido menos de dos propiedades en los últimos 10 años. Verifica con el [SII](https://www.sii.cl/aprenda_sobre_impuestos/estudios/dfl2_2005.pdf) si tu propiedad califica.
+Las propiedades con **Decreto con Fuerza de Ley N°2 (DFL2)** (superficie construida ≤ 140 m²) tienen un beneficio tributario relevante al vender: la ganancia de capital queda **exenta del Impuesto Global Complementario** si has vendido menos de dos propiedades en los últimos 10 años. Verifica con el [SII](https://www.sii.cl/preguntas_frecuentes/aval_contrib_bbrr/001_165_2439.htm) si tu propiedad califica.
 
 ## Errores más comunes
 
@@ -229,10 +229,10 @@ Las propiedades con **Decreto con Fuerza de Ley N°2 (DFL2)** (superficie constr
 
 La información de esta guía corresponde al marco normativo vigente a abril 2026. Los valores de tasas y costos son orientativos y varían entre instituciones.
 
-- **CMF Chile — Estadísticas créditos hipotecarios:** [cmfchile.cl](https://www.cmfchile.cl/portal/estadisticas/618/w3-propertyvalue-20153.html)
+- **CMF Educa — Créditos hipotecarios:** [cmfchile.cl](https://www.cmfchile.cl/educa/621/w3-propertyvalue-45015.html)
 - **BCCh — Tasas de interés hipotecarias:** [bcentral.cl](https://www.bcentral.cl/areas/estadisticas/tasas-de-interes)
 - **Ley 21.236 — Portabilidad Financiera (prepago sin multa):** [bcn.cl](https://www.bcn.cl/leychile/navegar?idNorma=1142271)
-- **SII — Beneficio tributario DFL2:** [sii.cl](https://www.sii.cl/aprenda_sobre_impuestos/estudios/dfl2_2005.pdf)
-- **CMF — LTV y condiciones de los créditos hipotecarios:** [cmfchile.cl](https://www.cmfchile.cl/portal/estadisticas/618/w3-propertyvalue-20153.html)
+- **SII — Cómo saber si una vivienda está acogida al DFL2:** [sii.cl](https://www.sii.cl/preguntas_frecuentes/aval_contrib_bbrr/001_165_2439.htm)
+- **CMF Educa — Problemas de pago de un crédito hipotecario:** [cmfchile.cl](https://www.cmfchile.cl/educa/621/w3-article-27510.html)
 
 _Esta guía es educativa y no reemplaza la asesoría de un profesional financiero o legal para tu operación específica._

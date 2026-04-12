@@ -30,6 +30,7 @@ registerHosts("official_source", [
   // CMF – Comisión para el Mercado Financiero
   "www.cmfchile.cl",
   "cmfchile.cl",
+  "conocetudeuda.cmfchile.cl",
   // SII – Servicio de Impuestos Internos
   "www.sii.cl",
   "sii.cl",
@@ -42,6 +43,9 @@ registerHosts("official_source", [
   // ChileAtiende
   "www.chileatiende.gob.cl",
   "chileatiende.gob.cl",
+  // Dirección del Trabajo
+  "www.dt.gob.cl",
+  "dt.gob.cl",
   // Gobierno de Chile portal
   "www.gob.cl",
   "gob.cl",
@@ -83,6 +87,13 @@ registerHosts("official_source", [
   // AFC Chile – Seguro de Cesantía
   "www.afc.cl",
   "afc.cl",
+  "www.afcchile.cl",
+  "afcchile.cl",
+  // Tesorería General de la República
+  "www.tesoreria.cl",
+  "tesoreria.cl",
+  "www.tgr.cl",
+  "tgr.cl",
 ]);
 
 registerHosts("trusted_reference", [
@@ -136,6 +147,7 @@ const FAMILY_MAP = new Map([
   ["bcentral.cl", new Set(["www.bcentral.cl", "bcentral.cl"])],
   ["www.cmfchile.cl", new Set(["www.cmfchile.cl", "cmfchile.cl"])],
   ["cmfchile.cl", new Set(["www.cmfchile.cl", "cmfchile.cl"])],
+  ["conocetudeuda.cmfchile.cl", new Set(["conocetudeuda.cmfchile.cl"])],
   ["www.sii.cl", new Set(["www.sii.cl", "sii.cl"])],
   ["sii.cl", new Set(["www.sii.cl", "sii.cl"])],
   ["www.spensiones.cl", new Set(["www.spensiones.cl", "spensiones.cl"])],
@@ -152,6 +164,16 @@ const FAMILY_MAP = new Map([
   ["economia.gob.cl", new Set(["www.economia.gob.cl", "economia.gob.cl", "www.gob.cl", "gob.cl"])],
   ["www.chileatiende.gob.cl", new Set(["www.chileatiende.gob.cl", "chileatiende.gob.cl"])],
   ["chileatiende.gob.cl", new Set(["www.chileatiende.gob.cl", "chileatiende.gob.cl"])],
+  ["www.dt.gob.cl", new Set(["www.dt.gob.cl", "dt.gob.cl"])],
+  ["dt.gob.cl", new Set(["www.dt.gob.cl", "dt.gob.cl"])],
+  ["www.afc.cl", new Set(["www.afc.cl", "afc.cl", "www.afcchile.cl", "afcchile.cl"])],
+  ["afc.cl", new Set(["www.afc.cl", "afc.cl", "www.afcchile.cl", "afcchile.cl"])],
+  ["www.afcchile.cl", new Set(["www.afc.cl", "afc.cl", "www.afcchile.cl", "afcchile.cl"])],
+  ["afcchile.cl", new Set(["www.afc.cl", "afc.cl", "www.afcchile.cl", "afcchile.cl"])],
+  ["www.tesoreria.cl", new Set(["www.tesoreria.cl", "tesoreria.cl", "www.tgr.cl", "tgr.cl"])],
+  ["tesoreria.cl", new Set(["www.tesoreria.cl", "tesoreria.cl", "www.tgr.cl", "tgr.cl"])],
+  ["www.tgr.cl", new Set(["www.tesoreria.cl", "tesoreria.cl", "www.tgr.cl", "tgr.cl"])],
+  ["tgr.cl", new Set(["www.tesoreria.cl", "tesoreria.cl", "www.tgr.cl", "tgr.cl"])],
   ["es.wikipedia.org", new Set(["es.wikipedia.org", "en.wikipedia.org", "www.wikipedia.org"])],
   ["en.wikipedia.org", new Set(["es.wikipedia.org", "en.wikipedia.org", "www.wikipedia.org"])],
 ]);
@@ -175,9 +197,9 @@ const HOST_SOFT_404_MARKERS = new Map([
 export const SOFT_404_TITLE_PHRASES = [
   "página no encontrada",
   "no encontramos la página",
+  "page not found",
   "not found",
   "page does not exist",
-  "page not found",
   "no se encontró la página",
   "recurso no encontrado",
   "this page does not exist",
@@ -255,7 +277,8 @@ export function isPrivateHostname(hostname) {
 
 /** @param {string} text @param {readonly string[]} phrases @returns {string|null} */
 function matchPhraseSet(text, phrases) {
-  for (const phrase of phrases) {
+  const ordered = [...phrases].sort((a, b) => b.length - a.length);
+  for (const phrase of ordered) {
     if (text.includes(phrase.toLowerCase())) return phrase;
   }
   return null;

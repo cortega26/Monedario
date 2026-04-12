@@ -4,7 +4,7 @@ description: "Guía práctica para entender la CAE en Chile, qué incluye frente
 slug: cae-costo-real-credito-chile
 author: "Equipo Monedario"
 pubDate: 2026-03-02T19:00:00Z
-updatedDate: 2026-03-12T18:35:00Z
+updatedDate: 2026-04-12T18:30:00Z
 tags:
   - credito
   - cae
@@ -25,10 +25,10 @@ articleLead:
   calculatorLabel: "Simular una oferta"
   nextStepHref: "/posts/renegociacion-superir/"
   nextStepLabel: "Conoce el proceso de renegociación Superir"
-  validAsOf: 2026-03-12
+  validAsOf: 2026-04-12
   officialSources:
     - label: "CMF Educa - CAE y hoja resumen"
-      href: "https://www.cmfchile.cl/educa/621/w3-propertyvalue-29975.html"
+      href: "https://www.cmfchile.cl/educa/621/w3-propertyvalue-43579.html"
     - label: "BCN - Ley 18.010"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=29438"
   covers:

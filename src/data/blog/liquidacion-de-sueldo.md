@@ -2,7 +2,7 @@
 title: "Liquidación de sueldo en Chile: cómo auditar el comprobante y sus líneas clave"
 author: "Equipo Monedario"
 pubDate: 2026-03-08T18:20:00Z
-updatedDate: 2026-03-12T14:11:00Z
+updatedDate: 2026-04-12T18:30:00Z
 slug: liquidacion-de-sueldo
 featured: false
 lang: es-CL
@@ -24,12 +24,12 @@ articleLead:
   calculatorLabel: "Cruzar con la calculadora"
   nextStepHref: "/posts/descuentos-de-sueldo/"
   nextStepLabel: "Revisar descuentos legales"
-  validAsOf: 2026-03-12
+  validAsOf: 2026-04-12
   officialSources:
     - label: "Dirección del Trabajo — artículo 54"
       href: "https://www.dt.gob.cl/portal/1628/w3-article-60593.html"
     - label: "Dirección del Trabajo — artículo 54 bis"
-      href: "https://www.dt.gob.cl/legislacion/1624/w3-article-60596.html"
+      href: "https://www.dt.gob.cl/legislacion/1624/w3-article-119939.html"
   covers:
     - "Qué bloques mínimos debe traer el comprobante."
     - "Qué respaldo pedir si una línea no cuadra."

@@ -4,6 +4,7 @@ description: "Entiende cuánto te cuesta realmente tu tarjeta de crédito en Chi
 slug: tarjeta-credito-costo-real-chile
 author: "Equipo Monedario"
 pubDate: 2026-04-10T12:00:00Z
+updatedDate: 2026-04-12T18:30:00Z
 tags:
   - tarjeta-credito
   - deuda
@@ -27,7 +28,7 @@ articleLead:
   validAsOf: 2026-04-10
   officialSources:
     - label: "CMF Chile — Tasa máxima convencional tarjetas de crédito"
-      href: "https://www.cmfchile.cl/portal/estadisticas/618/w3-propertyvalue-20153.html"
+      href: "https://www.cmfchile.cl/educa/621/w3-propertyvalue-1188.html"
     - label: "BCN — Ley 18.010 operaciones de crédito de dinero"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=29438"
   covers:

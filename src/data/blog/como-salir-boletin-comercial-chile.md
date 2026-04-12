@@ -4,7 +4,7 @@ description: "Guía legal para eliminar anotaciones del Boletín Comercial en Ch
 slug: como-salir-boletin-comercial-chile
 author: "Equipo Monedario"
 pubDate: 2026-04-09T12:00:00Z
-updatedDate: 2026-04-09T12:00:00Z
+updatedDate: 2026-04-12T18:30:00Z
 tags:
   - boletin-comercial
   - dicom
@@ -25,7 +25,7 @@ articleLead:
   validAsOf: 2026-04-09
   officialSources:
     - label: "CMF Chile — Boletín Comercial"
-      href: "https://www.cmfchile.cl/portal/principal/613/w3-propertyvalue-19963.html"
+      href: "https://www.cmfchile.cl/portal/principal/613/w3-article-27659"
     - label: "Ley 20.575 — Derecho al olvido"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=1038453"
   covers:
@@ -161,4 +161,4 @@ Puedes consultar en [boletincomercial.cl](https://www.boletincomercial.cl/). La 
 
 ---
 
-_Contenido educativo con fecha de corte 2026-04-09. Este artículo no constituye asesoría legal. Para situaciones de cobranza judicial o deudas complejas, consulta a un abogado. Fuentes principales: [Ley 20.575](https://www.bcn.cl/leychile/navegar?idNorma=1038453), [Ley 21.719](https://www.bcn.cl/leychile/navegar?idNorma=1198115), [CMF Chile — Boletín Comercial](https://www.cmfchile.cl/portal/principal/613/w3-propertyvalue-19963.html)._
+_Contenido educativo con fecha de corte 2026-04-09. Este artículo no constituye asesoría legal. Para situaciones de cobranza judicial o deudas complejas, consulta a un abogado. Fuentes principales: [Ley 20.575](https://www.bcn.cl/leychile/navegar?idNorma=1038453), [Ley 21.719](https://www.bcn.cl/leychile/navegar?idNorma=1198115), [CMF Chile — Boletín Comercial](https://www.cmfchile.cl/portal/principal/613/w3-article-27659)._

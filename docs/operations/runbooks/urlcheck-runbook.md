@@ -13,6 +13,12 @@ Core artifacts written on each run:
 - `output/validation/urlcheck/internal-broken.json`
 - `output/validation/urlcheck/internal-broken.csv`
 - `output/validation/urlcheck/urlcheck-report.json`
+- `output/validation/urlcheck/external-hard-fail.json`
+- `output/validation/urlcheck/external-soft-404.json`
+- `output/validation/urlcheck/external-host-mismatch.json`
+- `output/validation/urlcheck/external-non-blocking.json`
+- `output/validation/urlcheck/external-summary.json`
+- `output/validation/urlcheck/external-full.csv`
 
 ## Commands
 
@@ -24,6 +30,8 @@ Core artifacts written on each run:
   - Synthetic validation that must detect a known internal 404 fixture.
 - `pnpm run check:urls:external:audit`
   - Non-blocking external-host audit mode for external volatility analysis.
+- `pnpm run check:urls:external:ci`
+  - Blocking external-host validation for official/trusted sources against built HTML output.
 - `pnpm run check:urls:baseline:update`
   - Baseline refresh command (explicitly authorized and forbidden in CI).
 
@@ -58,6 +66,20 @@ Core artifacts written on each run:
   1. Review `urlcheck-report.json` (`retryStats`, host distribution).
   2. Keep CI focused on internal-gate outcome; use external audit trend for ops.
   3. If persistent on critical hosts, evaluate host-specific soft policy.
+
+### external blocking failures
+- Meaning: an `official_source` or `trusted_reference` URL now returns `hard_fail`, `soft_404`, or `host_mismatch`.
+- Response:
+  1. Inspect `external-summary.json` and the class-specific JSON files to isolate the failing URL family.
+  2. Verify the source page still exists and choose a stable official replacement before editing content.
+  3. Re-run `pnpm run check:urls:external:ci` after every replacement batch until `blocking_failures: 0`.
+
+### external canary failure
+- Meaning: the external checker no longer detects known-good / known-bad local fixtures.
+- Response:
+  1. Run `pnpm run check:urls:canary`.
+  2. If the external phase fails, inspect `scripts/check-urls-external.mjs`, `scripts/urlcheck/probe-external.mjs`, and `scripts/urlcheck/extract-external.mjs`.
+  3. Restore canary success before trusting any whole-site external audit output.
 
 ### DNS failures
 - Category usually `dns` or `network` in external failures.

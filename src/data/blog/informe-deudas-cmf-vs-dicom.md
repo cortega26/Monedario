@@ -2,7 +2,7 @@
 title: "Informe de deudas CMF: cómo sacarlo, qué dice y por qué no es lo mismo que DICOM"
 author: "Equipo Monedario"
 pubDate: 2026-02-24T11:00:00Z
-updatedDate: 2026-03-12T18:20:00Z
+updatedDate: 2026-04-12T18:30:00Z
 slug: informe-deudas-cmf-vs-dicom
 featured: true
 lang: es-CL
@@ -23,12 +23,12 @@ articleLead:
   answer: "Si quieres saber qué deudas financieras vigentes aparecen a tu nombre, parte por el Informe de Deudas CMF. Si tu duda es 'estoy en DICOM' o buscas protestos y morosidades fuera del sistema financiero regulado, necesitas separar ese reporte de CMF antes de pagar o sacar conclusiones."
   nextStepHref: "/posts/donde-ver-si-estoy-en-dicom-gratis/"
   nextStepLabel: "Separar CMF, DICOM y Boletín"
-  validAsOf: 2026-03-12
+  validAsOf: 2026-04-12
   officialSources:
     - label: "CMF Chile - Informe de Deudas de Personas"
-      href: "https://www.cmfchile.cl/portal/principal/613/w3-article-95457.html"
+      href: "https://www.cmfchile.cl/educa/621/w3-article-27663.html"
     - label: "CMF Chile - Preguntas frecuentes"
-      href: "https://conocetudeuda.cmfchile.cl/publico/preguntasFrecuentes"
+      href: "https://conocetudeuda.cmfchile.cl/"
   covers:
     - "Qué muestra el Informe de Deudas CMF y qué deudas quedan fuera."
     - "Cómo diferenciar CMF, Boletín Comercial y reportes privados tipo DICOM."
@@ -99,7 +99,7 @@ Si no tienes ClaveÚnica, puedes obtenerla en [claveunica.gob.cl](https://www.cl
 
 > **Dato importante:** Según la CMF, el informe se actualiza semanalmente, pero los datos pueden venir con un desfase de entre 10 y 20 días hábiles respecto de la operación real. Si recién pagaste o cerraste una deuda, no asumas que el reporte se corregirá el mismo día.
 
-Fuente oficial: [CMF Chile](https://www.cmfchile.cl/portal/principal/613/w3-article-95457.html)
+Fuente oficial: [CMF Chile](https://www.cmfchile.cl/educa/621/w3-article-27663.html)
 
 ---
 
