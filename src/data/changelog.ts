@@ -22,7 +22,8 @@ export const changelog: ChangelogEntry[] = [
   },
   {
     date: "2026-04-10",
-    title: "Calculadora Finiquito — gratificación proporcional y recargo art. 168",
+    title:
+      "Calculadora Finiquito — gratificación proporcional y recargo art. 168",
     description:
       "Corregida la regla del año fraccionado (> 6 meses, no ≥ 6). Añadido cálculo de gratificación proporcional anual y recargo por despido injustificado según art. 168 CT (30%, 50% u 80% según antigüedad).",
   },

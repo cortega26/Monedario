@@ -136,8 +136,7 @@ function loadSnapshotEconomicParameters(): EconomicParameters {
     utm: Number(payload.utm),
     ipc: Number(payload.ipc ?? 0),
     tmc: payload.tmc !== undefined ? Number(payload.tmc) : 3.49,
-    dolar:
-      payload.dolar !== undefined ? Number(payload.dolar) : undefined,
+    dolar: payload.dolar !== undefined ? Number(payload.dolar) : undefined,
     afcTopes: {
       monthlyTaxableCapUf: Number(
         payload.afcTopes?.monthlyTaxableCapUf ??

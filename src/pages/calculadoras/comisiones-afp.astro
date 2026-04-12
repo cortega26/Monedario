@@ -14,7 +14,9 @@ const simuladorJubilacionPath = getPath("/calculadoras/simulador-jubilacion/");
 const pensionesHubPath = getPath("/guias/pensiones-afp/");
 const cambiarseAfpPath = getPath("/posts/como-cambiarse-de-afp/");
 
-const AFP_LIST = [...AFP_COMMISSIONS_PERCENT].sort((a, b) => a.commission - b.commission);
+const AFP_LIST = [...AFP_COMMISSIONS_PERCENT].sort(
+  (a, b) => a.commission - b.commission
+);
 
 const cheapest = AFP_LIST[0]; // PlanVital after sort
 ---
@@ -300,7 +302,9 @@ const cheapest = AFP_LIST[0]; // PlanVital after sort
       summaryEl.classList.remove("hidden");
 
       if (typeof window.showShareResult === "function") {
-        window.showShareResult(`Comisiones AFP: imponible ${fmt(imponible)}, ahorro máx. ${fmt(maxExtraAnnual)}/año`);
+        window.showShareResult(
+          `Comisiones AFP: imponible ${fmt(imponible)}, ahorro máx. ${fmt(maxExtraAnnual)}/año`
+        );
       }
       trackAnalyticsEvent("calculator_complete", {
         calculator_slug: "comisiones-afp",

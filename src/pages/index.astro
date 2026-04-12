@@ -16,11 +16,10 @@ import IndicadoresHoy from "@/components/IndicadoresHoy.astro";
 
 const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
-const { richPosts: recentRichPosts } =
-  getBalancedHomepagePosts(sortedPosts, {
-    richCount: 3,
-    totalCount: 3,
-  });
+const { richPosts: recentRichPosts } = getBalancedHomepagePosts(sortedPosts, {
+  richCount: 3,
+  totalCount: 3,
+});
 const homePath = getPath("/");
 const homeTitle =
   "Monedario | Calculadoras y guías para decisiones financieras en Chile";
@@ -116,8 +115,6 @@ const heroDescription =
         </section>
       )
     }
-
-
   </main>
   <Footer />
 </Layout>

@@ -87,7 +87,7 @@ Para una revisión detallada de los descuentos que aparecerán en tu liquidació
 
 ## La primera liquidación de sueldo: líneas que debes entender
 
-La liquidación es el comprobante mensual que el empleador debe entregarte junto con el pago. No es opcional: el artículo 54 del Código del Trabajo lo obliga. 
+La liquidación es el comprobante mensual que el empleador debe entregarte junto con el pago. No es opcional: el artículo 54 del Código del Trabajo lo obliga.
 
 Cuando llegue la primera, no la firmes por inercia. Tómate 10 minutos para verificar que las cifras cuadran.
 
@@ -209,12 +209,12 @@ Antes de diseñar cualquier presupuesto, tienes que saber exactamente cuánto ll
 
 Con un contrato indefinido, los descuentos legales típicos son:
 
-| Descuento | % sobre imponible |
-|---|---|
-| AFP (ahorro previsional) | 10,5 % |
-| Salud (Fonasa) | 7,0 % |
-| Seguro de cesantía (trabajador) | 0,6 % |
-| **Total descuentos legales** | **~18,1 %** |
+| Descuento                       | % sobre imponible |
+| ------------------------------- | ----------------- |
+| AFP (ahorro previsional)        | 10,5 %            |
+| Salud (Fonasa)                  | 7,0 %             |
+| Seguro de cesantía (trabajador) | 0,6 %             |
+| **Total descuentos legales**    | **~18,1 %**       |
 
 Además, si superas el tramo exento del impuesto a la renta (referencia ~$950.000 brutos mensuales en 2026), habrá retención de impuesto adicional. El total con impuesto puede llegar a 20-22 % o más dependiendo del rango de ingreso.
 
@@ -225,12 +225,14 @@ Usa la [calculadora de sueldo líquido](/calculadoras/sueldo-liquido/) para obte
 No esperes recibir el primer sueldo para empezar a presupuestar. Haz la lista antes:
 
 **Gastos fijos (los que no cambian mes a mes):**
+
 - Arriendo o dividendo
 - Transporte (si hay mensualidad fija)
 - Seguros
 - Deudas en cuotas
 
 **Gastos variables (los que fluctúan):**
+
 - Alimentación
 - Entretenimiento
 - Ropa y cuidado personal
@@ -261,6 +263,7 @@ Las respuestas a las preguntas más comunes están en el bloque de FAQs al inici
 ---
 
 > **Fuentes oficiales:**
+>
 > - [Dirección del Trabajo — contratos de trabajo](https://www.dt.gob.cl/portal/1626/w3-propertyvalue-22777.html)
 > - [Superintendencia de Pensiones](https://www.spensiones.cl)
 > - [Fonasa — afiliación](https://www.fonasa.cl)

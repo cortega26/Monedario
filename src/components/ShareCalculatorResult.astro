@@ -9,7 +9,7 @@
     href="#"
     target="_blank"
     rel="noopener noreferrer"
-    class="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent/10 mr-2"
+    class="mr-2 inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent/10"
     data-analytics-cta="share-result"
     data-analytics-label="whatsapp"
   >
@@ -56,7 +56,9 @@
       container.classList.remove("hidden");
     }
 
-    const waLink = document.getElementById("share-whatsapp") as HTMLAnchorElement | null;
+    const waLink = document.getElementById(
+      "share-whatsapp"
+    ) as HTMLAnchorElement | null;
     if (waLink) {
       waLink.href = `https://wa.me/?text=${encodeURIComponent(summaryText + "\n" + window.location.href)}`;
     }

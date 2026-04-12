@@ -102,7 +102,10 @@ const trustSignals: Array<string | { label: string; href: string }> = [
             {typeof signal === "string" ? (
               signal
             ) : (
-              <a href={getPath(signal.href)} class="underline underline-offset-2 hover:text-foreground transition-colors">
+              <a
+                href={getPath(signal.href)}
+                class="underline underline-offset-2 transition-colors hover:text-foreground"
+              >
                 {signal.label}
               </a>
             )}
