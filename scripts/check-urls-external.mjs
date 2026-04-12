@@ -28,7 +28,6 @@ import { extractExternalLinks } from "./urlcheck/extract-external.mjs";
 import { runProbePool } from "./urlcheck/probe-external.mjs";
 import { classifyExternalResult, buildExternalSummary } from "./urlcheck/classify-external.mjs";
 import { writeExternalArtifacts } from "./urlcheck/external-artifacts.mjs";
-import { SELF_ORIGINS } from "./urlcheck/host-registry.mjs";
 
 // ---- Canary test server port range ----
 const CANARY_PORT_BASE = 4500;
