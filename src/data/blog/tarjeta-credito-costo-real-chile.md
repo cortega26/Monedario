@@ -24,7 +24,7 @@ articleLead:
   calculatorHref: "/calculadoras/tarjeta-credito/"
   calculatorLabel: "Calcular costo de mi tarjeta"
   nextStepHref: "/posts/cae-costo-real-credito-chile/"
-  nextStepLabel: "Entiende el CAE antes de pedir más crédito"
+  nextStepLabel: "Entiende la CAE antes de pedir más crédito"
   validAsOf: 2026-04-10
   officialSources:
     - label: "CMF Chile — Tasa máxima convencional tarjetas de crédito"
@@ -43,7 +43,7 @@ articleLead:
 
 Una tarjeta de crédito te da liquidez inmediata, pero tiene un precio. Ese precio no siempre es obvio porque los estados de cuenta muestran el pago mínimo — una cifra baja que parece manejable — sin mostrar cuánto terminarás pagando si te quedas en ese nivel. Antes de usar la calculadora, conviene entender por qué ese número importa.
 
-Si estás evaluando pedir un crédito nuevo o comparar ofertas, complementa esto con la [guía del CAE](/posts/cae-costo-real-credito-chile/), que explica cómo comparar el costo total de un crédito antes de firmar.
+Si estás evaluando pedir un crédito nuevo o comparar ofertas, complementa esto con la [guía de la CAE](/posts/cae-costo-real-credito-chile/), que explica cómo comparar el costo total de un crédito antes de firmar.
 
 ## Cómo funciona el interés en una tarjeta
 
@@ -81,7 +81,7 @@ Esta calculadora es útil cuando:
 - Estás comparando pagar el mínimo versus hacer un esfuerzo adicional y quieres ver el ahorro concreto en pesos.
 - Estás evaluando si conviene pagar la tarjeta con un crédito de consumo a menor tasa.
 
-No usarla si lo que necesitas es comparar ofertas de nuevas tarjetas — para eso usa el CAE de cada emisor.
+No usarla si lo que necesitas es comparar ofertas de nuevas tarjetas — para eso usa la CAE de cada emisor.
 
 ## Señales de que la deuda rotativa ya es un problema
 

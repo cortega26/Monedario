@@ -24,7 +24,7 @@ articleLead:
   calculatorHref: "/calculadoras/simulador-renegociacion/"
   calculatorLabel: "Filtrar elegibilidad básica"
   nextStepHref: "/posts/cae-costo-real-credito-chile/"
-  nextStepLabel: "Entiende el CAE antes de renegociar"
+  nextStepLabel: "Entiende la CAE antes de renegociar"
   validAsOf: 2026-04-12
   officialSources:
     - label: "Superir - Requisitos de renegociación"

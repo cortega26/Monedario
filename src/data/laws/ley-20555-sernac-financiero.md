@@ -25,7 +25,7 @@ La Ley 20.555 (conocida como SERNAC Financiero) dio a SERNAC competencias espec�
 
 ### La "Hoja de Resumen" estandarizada
 
-Toda institución financiera que ofrezca un crédito de consumo, hipotecario o tarjeta de crédito debe entregar una **Hoja de Resumen** con el CAE (Carga Anual Equivalente), el costo total del crédito en pesos, la tasa de interés mensual y el desglose de todos los seguros asociados. Esto permite comparar productos entre distintas instituciones de forma directa.
+Toda institución financiera que ofrezca un crédito de consumo, hipotecario o tarjeta de crédito debe entregar una **Hoja de Resumen** con la CAE (Carga Anual Equivalente), el costo total del crédito en pesos, la tasa de interés mensual y el desglose de todos los seguros asociados. Esto permite comparar productos entre distintas instituciones de forma directa.
 
 ### ¿Para qué sirve en la práctica?
 
@@ -36,7 +36,7 @@ Toda institución financiera que ofrezca un crédito de consumo, hipotecario o t
 ### ¿Qué casos puede tomar SERNAC Financiero?
 
 - Cobros no informados de seguros asociados a créditos.
-- Información de costo incompleta o que omite el CAE real.
+- Información de costo incompleta o que omite la CAE real.
 - Cambios unilaterales en condiciones de tarjetas o créditos sin notificación adecuada.
 - Ventas atadas de seguros obligados con créditos.
 

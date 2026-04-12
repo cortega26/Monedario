@@ -135,7 +135,7 @@ La tasa de interés determina cuánto pagarás en total. En Chile existen tres m
 - Fija a 20 años: aproximadamente **4,0%–5,5%** anual
 - Variable (TPM + spread): depende del ciclo monetario del BCCh
 
-> Estos rangos son orientativos. Las tasas reales varían diariamente entre instituciones y según tu perfil. Pide siempre la **Hoja de Condiciones** (que incluye el [CAE](/posts/cae-costo-real-credito-chile/)) para comparar ofertas en igualdad de condiciones.
+> Estos rangos son orientativos. Las tasas reales varían diariamente entre instituciones y según tu perfil. Pide siempre la **Hoja de Condiciones** (que incluye la [CAE](/posts/cae-costo-real-credito-chile/)) para comparar ofertas en igualdad de condiciones.
 
 **Impacto de la TPM:** el Banco Central fija la Tasa de Política Monetaria para controlar la inflación. Cuando la TPM sube, las tasas hipotecarias variables suben también; cuando la TPM baja, pueden bajar. Las tasas fijas están más influidas por las expectativas de largo plazo del mercado de capitales.
 
@@ -215,7 +215,7 @@ Las propiedades con **Decreto con Fuerza de Ley N°2 (DFL2)** (superficie constr
 
 1. **No incluir los costos de cierre en el presupuesto.** El pie no es el único desembolso inicial. Prever 1%–1,5% adicional evita sorpresas desagradables al momento de firmar.
 
-2. **Comparar solo el dividendo mensual en vez del CAE.** Una cuota más baja puede venir con un plazo más largo que duplica el costo total. Compara siempre el [CAE](/posts/cae-costo-real-credito-chile/) entre ofertas.
+2. **Comparar solo el dividendo mensual en vez de la CAE.** Una cuota más baja puede venir con un plazo más largo que duplica el costo total. Compara siempre la [CAE](/posts/cae-costo-real-credito-chile/) entre ofertas.
 
 3. **No leer la Hoja de Condiciones.** Este documento —que el banco está obligado a darte antes de que firmes— detalla tasa, CAE, seguros, gastos y condiciones de prepago. Exígelo siempre.
 
