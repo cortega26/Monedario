@@ -15,7 +15,9 @@ const ufHubPath = getPath("/guias/uf-costo-de-vida/");
 const economicSourceLabel =
   economicParameters.source === "live"
     ? "dato en línea"
-    : "fallback controlado";
+    : economicParameters.source === "snapshot"
+      ? "dato de referencia"
+      : "fallback de emergencia";
 const ufDisplay = economicParameters.uf.toLocaleString("es-CL", {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,

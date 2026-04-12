@@ -20,7 +20,9 @@ const firstTaxExemptBracket = 13.5 * economicParameters.utm;
 const economicSourceLabel =
   economicParameters.source === "live"
     ? "dato en línea"
-    : "fallback controlado";
+    : economicParameters.source === "snapshot"
+      ? "dato de referencia"
+      : "fallback de emergencia";
 ---
 
 <Layout

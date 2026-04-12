@@ -16,7 +16,9 @@ const { parameters: economicParameters } = await getEconomicParameters();
 const economicSourceLabel =
   economicParameters.source === "live"
     ? "dato en línea"
-    : "fallback controlado";
+    : economicParameters.source === "snapshot"
+      ? "dato de referencia"
+      : "fallback de emergencia";
 ---
 
 <Layout

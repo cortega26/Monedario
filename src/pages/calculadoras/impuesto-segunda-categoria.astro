@@ -16,7 +16,9 @@ const utm = economicParameters.utm;
 const economicSourceLabel =
   economicParameters.source === "live"
     ? "dato en línea"
-    : "fallback controlado";
+    : economicParameters.source === "snapshot"
+      ? "dato de referencia"
+      : "fallback de emergencia";
 
 const fmt = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
 

@@ -15,7 +15,9 @@ const unemploymentGuidePath = getPath("/posts/seguro-de-cesantia/");
 const economicSourceLabel =
   economicParameters.source === "live"
     ? "dato en línea"
-    : "fallback controlado";
+    : economicParameters.source === "snapshot"
+      ? "dato de referencia"
+      : "fallback de emergencia";
 ---
 
 <Layout

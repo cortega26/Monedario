@@ -67,7 +67,7 @@ describe("EconomicParameterProvider", () => {
     const bundle = await getEconomicParameterBundle();
 
     expect(bundle.telemetryFlag).toBe("economic_parameters_snapshot");
-    expect(bundle.parameters.source).toBe("fallback");
+    expect(bundle.parameters.source).toBe("snapshot");
     expect(bundle.parameters.uf).toBe(SNAPSHOT.uf);
     expect(bundle.parameters.utm).toBe(SNAPSHOT.utm);
     expect(bundle.parameters.afcTopes?.monthlyTaxableCapUf).toBe(
@@ -81,7 +81,7 @@ describe("EconomicParameterProvider", () => {
 
     const telemetry = getEconomicProviderTelemetry();
     expect(telemetry.externalFetchCount).toBe(0);
-    expect(telemetry.lastSource).toBe("fallback");
+    expect(telemetry.lastSource).toBe("snapshot");
   });
 
   it("resolves the snapshot from a real filesystem path", async () => {
@@ -150,14 +150,14 @@ describe("EconomicParameterProvider", () => {
     const bundle = await getEconomicParameterBundle();
 
     expect(bundle.telemetryFlag).toBe("economic_parameters_snapshot");
-    expect(bundle.parameters.source).toBe("fallback");
+    expect(bundle.parameters.source).toBe("snapshot");
     expect(bundle.parameters.uf).toBe(SNAPSHOT.uf);
     expect(bundle.parameters.utm).toBe(SNAPSHOT.utm);
     expect(bundle.fallbackReason).toContain("network failure");
 
     const telemetry = getEconomicProviderTelemetry();
     expect(telemetry.externalFetchCount).toBe(1);
-    expect(telemetry.lastSource).toBe("fallback");
+    expect(telemetry.lastSource).toBe("snapshot");
     expect(telemetry.lastFallbackReason).toContain("network failure");
   });
 

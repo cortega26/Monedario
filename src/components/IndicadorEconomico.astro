@@ -25,7 +25,11 @@ const indicadores = await getIndicadores();
 const base = tipo === "uf" ? indicadores.uf : indicadores.utm;
 const valor = base * multiplicador;
 const sourceLabel =
-  indicadores.source === "live" ? "dato en línea" : "fallback controlado";
+  indicadores.source === "live"
+    ? "dato en línea"
+    : indicadores.source === "snapshot"
+      ? "dato de referencia"
+      : "fallback de emergencia";
 ---
 
 <span class="indicador-economico">

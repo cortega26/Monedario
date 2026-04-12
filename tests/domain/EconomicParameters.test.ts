@@ -40,7 +40,7 @@ describe("EconomicParameters.assertEconomicParameters", () => {
         ...validParameters,
         source: "cached" as EconomicParameters["source"],
       })
-    ).toThrow("source must be explicitly set to 'live' or 'fallback'.");
+    ).toThrow("source must be explicitly set to 'live', 'snapshot', or 'fallback'.");
   });
 
   it("rejects invalid afcTopes values", () => {

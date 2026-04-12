@@ -7,7 +7,7 @@ export interface EconomicParameters {
   afcTopes?: Record<string, number>;
   previsionalTopes?: Record<string, number>;
   lastUpdated: string;
-  source: "live" | "fallback";
+  source: "live" | "snapshot" | "fallback";
 }
 
 const ISO_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
@@ -69,9 +69,13 @@ export function assertEconomicParameters(
     );
   }
 
-  if (parameters.source !== "live" && parameters.source !== "fallback") {
+  if (
+    parameters.source !== "live" &&
+    parameters.source !== "snapshot" &&
+    parameters.source !== "fallback"
+  ) {
     throw new EconomicParameterInvariantError(
-      "source must be explicitly set to 'live' or 'fallback'."
+      "source must be explicitly set to 'live', 'snapshot', or 'fallback'."
     );
   }
 

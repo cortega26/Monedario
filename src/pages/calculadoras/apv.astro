@@ -22,7 +22,9 @@ const annualRegimeBContributionCap = 600 * economicParameters.uf;
 const economicSourceLabel =
   economicParameters.source === "live"
     ? "dato en línea"
-    : "fallback controlado";
+    : economicParameters.source === "snapshot"
+      ? "dato de referencia"
+      : "fallback de emergencia";
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",

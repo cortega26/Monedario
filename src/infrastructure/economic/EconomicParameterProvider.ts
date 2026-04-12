@@ -151,7 +151,7 @@ function loadSnapshotEconomicParameters(): EconomicParameters {
       ),
     },
     lastUpdated: String(payload.lastUpdated),
-    source: "fallback",
+    source: "snapshot",
   };
 
   return assertEconomicParameters(snapshotParameters);
