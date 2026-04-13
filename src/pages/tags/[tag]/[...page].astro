@@ -41,7 +41,11 @@ const pageDescription =
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  {currentPage > 1 && <meta name="robots" content="noindex,follow" slot="head" />}
+  {
+    currentPage > 1 && (
+      <meta name="robots" content="noindex,follow" slot="head" />
+    )
+  }
   <Header />
   <Main
     pageTitle={["Etiqueta:", `${tagName}`]}
