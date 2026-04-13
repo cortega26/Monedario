@@ -212,8 +212,8 @@ function extractBodyText(html) {
 
 function stripTags(value) {
   return value
-    .replace(/<script[\s\S]*?<\/script>/gi, " ")
-    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script(?:\s+[^>]*)?>/gi, " ")
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style(?:\s+[^>]*)?>/gi, " ")
     .replace(/<[^>]+>/g, " ");
 }
 
