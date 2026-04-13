@@ -106,9 +106,9 @@ function parsePreviredRates(html) {
   // 2. Strip HTML tags and decode basic entities, then collapse whitespace.
   const text = tableSection
     .replace(/<[^>]+>/g, " ")
-    .replace(/&amp;/g, "&")
     .replace(/&nbsp;/g, " ")
     .replace(/&\w{1,8};/g, " ")
+    .replace(/&amp;/g, "&")
     .replace(/\s+/g, " ");
 
   const rates = {};
