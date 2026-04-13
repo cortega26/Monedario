@@ -178,12 +178,12 @@ function filePathToPageUrl(filePath, distDir) {
 
 function decodeBasicEntities(value) {
   return value
-    .replaceAll("&amp;", "&")
     .replaceAll("&lt;", "<")
     .replaceAll("&gt;", ">")
     .replaceAll("&quot;", '"')
     .replaceAll("&#39;", "'")
-    .replaceAll("&apos;", "'");
+    .replaceAll("&apos;", "'")
+    .replaceAll("&amp;", "&");
 }
 
 function cleanText(value) {
