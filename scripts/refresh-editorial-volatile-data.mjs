@@ -207,6 +207,32 @@ function extractAfpUnoDataset(html, overviewHtml, registry, previousSnapshot, ob
   };
 }
 
+async function fetchAfpDatasetsWithFallback(registry, previousSnapshot, observedAt) {
+  try {
+    const [afpUnoHtml, afpOverviewHtml] = await Promise.all([
+      fetchHtml(AFP_UNO_NEWS_URL),
+      fetchHtml(AFP_OVERVIEW_URL),
+    ]);
+    return extractAfpUnoDataset(afpUnoHtml, afpOverviewHtml, registry, previousSnapshot, observedAt);
+  } catch (err) {
+    const previousAfpUno = previousSnapshot?.datasets?.["pensions.afp.uno_commission"];
+    const previousMandatory =
+      previousSnapshot?.datasets?.["pensions.afp.worker_mandatory_contribution"];
+    if (previousAfpUno && previousMandatory) {
+      console.warn(
+        `[editorial-volatile-data] AFP source unavailable (${err.message}); retaining previous snapshot values.`
+      );
+      return {
+        "pensions.afp.uno_commission": previousAfpUno,
+        "pensions.afp.worker_mandatory_contribution": previousMandatory,
+      };
+    }
+    throw new Error(
+      `AFP data fetch/parse failed and no previous snapshot to fall back to: ${err.message}`
+    );
+  }
+}
+
 async function main() {
   const registry = readJson(REGISTRY_PATH);
   const previousSnapshot = (() => {
@@ -221,13 +247,7 @@ async function main() {
     registry,
     previousSnapshot
   );
-  const [afpUnoHtml, afpOverviewHtml] = await Promise.all([
-    fetchHtml(AFP_UNO_NEWS_URL),
-    fetchHtml(AFP_OVERVIEW_URL),
-  ]);
-  const pensionDatasets = extractAfpUnoDataset(
-    afpUnoHtml,
-    afpOverviewHtml,
+  const pensionDatasets = await fetchAfpDatasetsWithFallback(
     registry,
     previousSnapshot,
     observedAt
