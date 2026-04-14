@@ -15,6 +15,11 @@ import { getPath } from "@/utils/getPath";
 const { parameters: economicParameters } = await getEconomicParameters();
 const utm = economicParameters.utm;
 const utmLastUpdated = resolveEconomicIndicatorDate(economicParameters, "utm");
+const utmMonthLabel = new Intl.DateTimeFormat("es-CL", {
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+}).format(new Date(`${utmLastUpdated}T00:00:00.000Z`));
 const economicSourceLabel =
   economicParameters.source === "live"
     ? "dato en línea"
@@ -176,8 +181,8 @@ const sueldoLiquidoPath = getPath("/calculadoras/sueldo-liquido/");
         >
         </div>
         <p class="mt-3 text-xs text-muted">
-          Fuente económica: {economicSourceLabel} (UTM al {utmLastUpdated}). UTM
-          usada: {fmt(utm)}.
+          Fuente económica: {economicSourceLabel}. UTM vigente: {utmMonthLabel}.
+          Valor usado: {fmt(utm)}.
         </p>
       </div>
     </section>

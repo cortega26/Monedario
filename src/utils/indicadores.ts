@@ -48,8 +48,3 @@ export function fmtFecha(fecha: string): string {
   const [y, m, d] = fecha.split("-");
   return `${d}/${m}/${y}`;
 }
-
-export function fmtFechaCorta(fecha: string): string {
-  const [, m, d] = fecha.split("-");
-  return `${d}/${m}`;
-}

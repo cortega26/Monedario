@@ -1,10 +1,5 @@
 ---
-import {
-  getIndicadores,
-  fmt,
-  fmtFecha,
-  fmtFechaCorta,
-} from "@/utils/indicadores";
+import { getIndicadores, fmt, fmtFecha } from "@/utils/indicadores";
 import { getPath } from "@/utils/getPath";
 
 const indicadores = await getIndicadores();
@@ -57,7 +52,6 @@ const items = [
             {item.prefix}
             {item.value}
           </span>
-          <span class="text-xs text-muted">· {fmtFechaCorta(item.fecha)}</span>
         </span>
       );
 
@@ -81,4 +75,5 @@ const items = [
       );
     })
   }
+  <span class="text-xs text-muted">Valores vigentes</span>
 </div>
