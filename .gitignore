@@ -2,13 +2,18 @@
 dist/
 
 # generated types
+.agent/
+.agents/
 .astro/
 .cache/
+.claude/
+.continue/
 .vscode/
 .qodo/
 .playwright-cli/
 artifacts/
 output/
+skills/
 
 
 # dependencies
