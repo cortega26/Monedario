@@ -1,3 +1,13 @@
+export type EconomicIndicatorKey = "uf" | "utm" | "ipc" | "tmc" | "dolar";
+
+export interface EconomicIndicatorUpdatedAt {
+  uf?: string;
+  utm?: string;
+  ipc?: string;
+  tmc?: string;
+  dolar?: string;
+}
+
 export interface EconomicParameters {
   uf: number;
   utm: number;
@@ -6,6 +16,7 @@ export interface EconomicParameters {
   dolar?: number;
   afcTopes?: Record<string, number>;
   previsionalTopes?: Record<string, number>;
+  indicatorUpdatedAt?: EconomicIndicatorUpdatedAt;
   lastUpdated: string;
   source: "live" | "snapshot" | "fallback";
 }
@@ -30,6 +41,16 @@ function isIsoDate(value: string): boolean {
     !Number.isNaN(asDate.getTime()) &&
     asDate.toISOString().slice(0, 10) === value
   );
+}
+
+export function resolveEconomicIndicatorDate(
+  parameters: EconomicParameters,
+  indicator: EconomicIndicatorKey
+): string {
+  const indicatorDate = parameters.indicatorUpdatedAt?.[indicator];
+  return indicatorDate && isIsoDate(indicatorDate)
+    ? indicatorDate
+    : parameters.lastUpdated;
 }
 
 export function assertEconomicParameters(
@@ -67,6 +88,16 @@ export function assertEconomicParameters(
     throw new EconomicParameterInvariantError(
       "lastUpdated must be an ISO date in YYYY-MM-DD format."
     );
+  }
+
+  if (parameters.indicatorUpdatedAt) {
+    for (const [key, value] of Object.entries(parameters.indicatorUpdatedAt)) {
+      if (value !== undefined && !isIsoDate(value)) {
+        throw new EconomicParameterInvariantError(
+          `indicatorUpdatedAt.${key} must be an ISO date in YYYY-MM-DD format when provided.`
+        );
+      }
+    }
   }
 
   if (

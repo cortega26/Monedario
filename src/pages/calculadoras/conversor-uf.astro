@@ -7,11 +7,13 @@ import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
 import { getPath } from "@/utils/getPath";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 const ufGuidePath = getPath("/posts/que-es-la-uf/");
 const ufHubPath = getPath("/guias/uf-costo-de-vida/");
+const ufLastUpdated = resolveEconomicIndicatorDate(economicParameters, "uf");
 const economicSourceLabel =
   economicParameters.source === "live"
     ? "dato en línea"
@@ -25,7 +27,7 @@ const ufDisplay = economicParameters.uf.toLocaleString("es-CL", {
 const ufDateDisplay = new Intl.DateTimeFormat("es-CL", {
   dateStyle: "long",
   timeZone: "UTC",
-}).format(new Date(`${economicParameters.lastUpdated}T00:00:00.000Z`));
+}).format(new Date(`${ufLastUpdated}T00:00:00.000Z`));
 ---
 
 <Layout
@@ -134,7 +136,7 @@ const ufDateDisplay = new Intl.DateTimeFormat("es-CL", {
         <div
           id="economic-parameters"
           data-uf={String(economicParameters.uf)}
-          data-last-updated={economicParameters.lastUpdated}
+          data-last-updated={ufLastUpdated}
           class="hidden"
           aria-hidden="true"
         >
@@ -148,9 +150,7 @@ const ufDateDisplay = new Intl.DateTimeFormat("es-CL", {
         </h2>
         <div id="tabla-ref" class="space-y-2 text-sm"></div>
         <p class="mt-3 text-xs text-muted">
-          Fuente económica: {economicSourceLabel} ({
-            economicParameters.lastUpdated
-          }).
+          Fuente económica: {economicSourceLabel} (UF al {ufLastUpdated}).
         </p>
       </div>
     </section>

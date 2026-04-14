@@ -19,6 +19,14 @@ function toIsoDate(value) {
   return new Date().toISOString().slice(0, 10);
 }
 
+function getLatestIsoDate(values, fallback) {
+  return values
+    .map(value => (value ? toIsoDate(value) : undefined))
+    .filter(Boolean)
+    .sort()
+    .at(-1) ?? fallback;
+}
+
 function assertFinitePositive(value, label) {
   if (!Number.isFinite(value) || value <= 0) {
     throw new Error(`${label} must be a finite number greater than 0.`);
@@ -42,9 +50,25 @@ async function fetchLiveParameters() {
   const tmc =
     payload?.tmc?.valor !== undefined ? Number(payload.tmc.valor) : 3.49;
   const dolarRaw = payload?.dolar?.valor;
-  const dolar =
-    dolarRaw !== undefined ? Number(dolarRaw) : undefined;
-  const lastUpdated = toIsoDate(payload?.uf?.fecha ?? payload?.utm?.fecha);
+  const dolar = dolarRaw !== undefined ? Number(dolarRaw) : undefined;
+  const indicatorUpdatedAt = {
+    uf: payload?.uf?.fecha ? toIsoDate(payload.uf.fecha) : undefined,
+    utm: payload?.utm?.fecha ? toIsoDate(payload.utm.fecha) : undefined,
+    ipc: payload?.ipc?.fecha ? toIsoDate(payload.ipc.fecha) : undefined,
+    tmc: payload?.tmc?.fecha ? toIsoDate(payload.tmc.fecha) : undefined,
+    dolar: payload?.dolar?.fecha ? toIsoDate(payload.dolar.fecha) : undefined,
+  };
+  const lastUpdated = getLatestIsoDate(
+    [
+      payload?.fecha,
+      indicatorUpdatedAt.uf,
+      indicatorUpdatedAt.utm,
+      indicatorUpdatedAt.ipc,
+      indicatorUpdatedAt.tmc,
+      indicatorUpdatedAt.dolar,
+    ],
+    toIsoDate(undefined)
+  );
 
   assertFinitePositive(uf, "UF");
   assertFinitePositive(utm, "UTM");
@@ -68,6 +92,15 @@ async function fetchLiveParameters() {
     previsionalTopes: {
       pensionAndHealthMonthlyTaxableCapUf:
         DEFAULT_PENSION_AND_HEALTH_MONTHLY_TAXABLE_CAP_UF,
+    },
+    indicatorUpdatedAt: {
+      uf: indicatorUpdatedAt.uf ?? lastUpdated,
+      utm: indicatorUpdatedAt.utm ?? lastUpdated,
+      ...(indicatorUpdatedAt.ipc ? { ipc: indicatorUpdatedAt.ipc } : {}),
+      ...(indicatorUpdatedAt.tmc ? { tmc: indicatorUpdatedAt.tmc } : {}),
+      ...(dolar !== undefined
+        ? { dolar: indicatorUpdatedAt.dolar ?? lastUpdated }
+        : {}),
     },
     lastUpdated,
     capturedAt: new Date().toISOString(),

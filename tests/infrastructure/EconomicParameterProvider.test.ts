@@ -9,6 +9,11 @@ const SNAPSHOT = JSON.parse(
 ) as {
   uf: number;
   utm: number;
+  indicatorUpdatedAt?: {
+    uf?: string;
+    utm?: string;
+    dolar?: string;
+  };
   afcTopes?: {
     monthlyTaxableCapUf?: number;
   };
@@ -19,10 +24,12 @@ const SNAPSHOT = JSON.parse(
 };
 
 const LIVE_RESPONSE = {
-  uf: { valor: 40123, fecha: "2026-03-01T00:00:00.000Z" },
+  fecha: "2026-03-15T12:00:00.000Z",
+  uf: { valor: 40123, fecha: "2026-03-15T00:00:00.000Z" },
   utm: { valor: 68000, fecha: "2026-03-01T00:00:00.000Z" },
-  ipc: { valor: 0.3 },
+  ipc: { valor: 0.3, fecha: "2026-02-01T00:00:00.000Z" },
   tmc: { valor: 3.75 },
+  dolar: { valor: 945.12, fecha: "2026-03-14T00:00:00.000Z" },
 };
 
 const MODE_ENV = "TPI_ECONOMIC_PROVIDER_MODE";
@@ -77,6 +84,12 @@ describe("EconomicParameterProvider", () => {
       bundle.parameters.previsionalTopes?.pensionAndHealthMonthlyTaxableCapUf
     ).toBe(SNAPSHOT.previsionalTopes?.pensionAndHealthMonthlyTaxableCapUf);
     expect(bundle.parameters.lastUpdated).toBe(SNAPSHOT.lastUpdated);
+    expect(bundle.parameters.indicatorUpdatedAt?.uf).toBe(
+      SNAPSHOT.indicatorUpdatedAt?.uf ?? SNAPSHOT.lastUpdated
+    );
+    expect(bundle.parameters.indicatorUpdatedAt?.utm).toBe(
+      SNAPSHOT.indicatorUpdatedAt?.utm ?? SNAPSHOT.lastUpdated
+    );
     expect(fetchMock).not.toHaveBeenCalled();
 
     const telemetry = getEconomicProviderTelemetry();
@@ -96,6 +109,11 @@ describe("EconomicParameterProvider", () => {
       previsionalTopes?: {
         pensionAndHealthMonthlyTaxableCapUf?: number;
       };
+      indicatorUpdatedAt?: {
+        uf?: string;
+        utm?: string;
+        dolar?: string;
+      };
       lastUpdated: string;
     };
 
@@ -111,6 +129,9 @@ describe("EconomicParameterProvider", () => {
       SNAPSHOT.previsionalTopes?.pensionAndHealthMonthlyTaxableCapUf
     );
     expect(payload.lastUpdated).toBe(SNAPSHOT.lastUpdated);
+    expect(payload.indicatorUpdatedAt?.uf).toBe(
+      SNAPSHOT.indicatorUpdatedAt?.uf
+    );
   });
 
   it("returns live payload when live mode is explicitly enabled", async () => {
@@ -127,9 +148,13 @@ describe("EconomicParameterProvider", () => {
 
     expect(bundle.telemetryFlag).toBe("economic_parameters_live");
     expect(bundle.parameters.source).toBe("live");
-    expect(bundle.parameters.lastUpdated).toBe("2026-03-01");
+    expect(bundle.parameters.lastUpdated).toBe("2026-03-15");
     expect(bundle.parameters.uf).toBe(LIVE_RESPONSE.uf.valor);
     expect(bundle.parameters.utm).toBe(LIVE_RESPONSE.utm.valor);
+    expect(bundle.parameters.dolar).toBe(LIVE_RESPONSE.dolar.valor);
+    expect(bundle.parameters.indicatorUpdatedAt?.uf).toBe("2026-03-15");
+    expect(bundle.parameters.indicatorUpdatedAt?.utm).toBe("2026-03-01");
+    expect(bundle.parameters.indicatorUpdatedAt?.dolar).toBe("2026-03-14");
     expect(bundle.parameters.afcTopes?.monthlyTaxableCapUf).toBe(135.2);
     expect(
       bundle.parameters.previsionalTopes?.pensionAndHealthMonthlyTaxableCapUf

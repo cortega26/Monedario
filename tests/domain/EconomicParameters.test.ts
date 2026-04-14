@@ -16,6 +16,11 @@ const validParameters: EconomicParameters = {
   previsionalTopes: {
     pensionAndHealthMonthlyTaxableCapUf: 90,
   },
+  indicatorUpdatedAt: {
+    uf: "2026-02-27",
+    utm: "2026-02-01",
+    dolar: "2026-02-27",
+  },
   lastUpdated: "2026-02-27",
   source: "live",
 };
@@ -32,6 +37,20 @@ describe("EconomicParameters.assertEconomicParameters", () => {
         lastUpdated: "27-02-2026",
       })
     ).toThrow(EconomicParameterInvariantError);
+  });
+
+  it("rejects invalid indicator-specific dates", () => {
+    expect(() =>
+      assertEconomicParameters({
+        ...validParameters,
+        indicatorUpdatedAt: {
+          ...validParameters.indicatorUpdatedAt,
+          utm: "01-02-2026",
+        },
+      })
+    ).toThrow(
+      "indicatorUpdatedAt.utm must be an ISO date in YYYY-MM-DD format when provided."
+    );
   });
 
   it("rejects unsupported source values", () => {

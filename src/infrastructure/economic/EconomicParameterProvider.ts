@@ -1,5 +1,6 @@
 import {
   assertEconomicParameters,
+  type EconomicIndicatorUpdatedAt,
   type EconomicParameters,
 } from "@/domain/economic/EconomicParameters";
 import { existsSync, readFileSync } from "fs";
@@ -7,11 +8,12 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 type MindicadorResponse = {
+  fecha?: string;
   uf?: { valor?: number; fecha?: string };
   utm?: { valor?: number; fecha?: string };
-  ipc?: { valor?: number };
-  tmc?: { valor?: number };
-  dolar?: { valor?: number };
+  ipc?: { valor?: number; fecha?: string };
+  tmc?: { valor?: number; fecha?: string };
+  dolar?: { valor?: number; fecha?: string };
 };
 
 interface EconomicSnapshotPayload {
@@ -26,6 +28,7 @@ interface EconomicSnapshotPayload {
   previsionalTopes?: {
     pensionAndHealthMonthlyTaxableCapUf?: number;
   };
+  indicatorUpdatedAt?: EconomicIndicatorUpdatedAt;
   lastUpdated: string;
 }
 
@@ -70,6 +73,10 @@ const FALLBACK_PARAMETERS: EconomicParameters = {
     pensionAndHealthMonthlyTaxableCapUf:
       DEFAULT_PENSION_AND_HEALTH_MONTHLY_TAXABLE_CAP_UF,
   },
+  indicatorUpdatedAt: {
+    uf: FALLBACK_LAST_UPDATED,
+    utm: FALLBACK_LAST_UPDATED,
+  },
   lastUpdated: FALLBACK_LAST_UPDATED,
   source: "fallback",
 };
@@ -94,6 +101,37 @@ function toIsoDate(value: string | undefined): string {
     return value.slice(0, 10);
   }
   return new Date().toISOString().slice(0, 10);
+}
+
+function getLatestIsoDate(
+  values: Array<string | undefined>,
+  fallback: string
+): string {
+  return (
+    values
+      .map(value => (value ? toIsoDate(value) : undefined))
+      .filter((value): value is string => Boolean(value))
+      .sort()
+      .at(-1) ?? fallback
+  );
+}
+
+function normalizeIndicatorUpdatedAt(
+  indicatorUpdatedAt: EconomicIndicatorUpdatedAt | undefined,
+  lastUpdated: string,
+  hasDolar: boolean
+): EconomicIndicatorUpdatedAt {
+  return {
+    uf: indicatorUpdatedAt?.uf ?? lastUpdated,
+    utm: indicatorUpdatedAt?.utm ?? lastUpdated,
+    ipc: indicatorUpdatedAt?.ipc,
+    tmc: indicatorUpdatedAt?.tmc,
+    ...(hasDolar
+      ? {
+          dolar: indicatorUpdatedAt?.dolar ?? lastUpdated,
+        }
+      : {}),
+  };
 }
 
 function normalizeReason(reason: unknown): string {
@@ -149,6 +187,11 @@ function loadSnapshotEconomicParameters(): EconomicParameters {
           DEFAULT_PENSION_AND_HEALTH_MONTHLY_TAXABLE_CAP_UF
       ),
     },
+    indicatorUpdatedAt: normalizeIndicatorUpdatedAt(
+      payload.indicatorUpdatedAt,
+      String(payload.lastUpdated),
+      payload.dolar !== undefined
+    ),
     lastUpdated: String(payload.lastUpdated),
     source: "snapshot",
   };
@@ -167,6 +210,24 @@ async function fetchLiveEconomicParameters(): Promise<EconomicParameters> {
   }
 
   const payload = (await response.json()) as MindicadorResponse;
+  const indicatorUpdatedAt: EconomicIndicatorUpdatedAt = {
+    uf: payload.uf?.fecha ? toIsoDate(payload.uf.fecha) : undefined,
+    utm: payload.utm?.fecha ? toIsoDate(payload.utm.fecha) : undefined,
+    ipc: payload.ipc?.fecha ? toIsoDate(payload.ipc.fecha) : undefined,
+    tmc: payload.tmc?.fecha ? toIsoDate(payload.tmc.fecha) : undefined,
+    dolar: payload.dolar?.fecha ? toIsoDate(payload.dolar.fecha) : undefined,
+  };
+  const lastUpdated = getLatestIsoDate(
+    [
+      payload.fecha,
+      indicatorUpdatedAt.uf,
+      indicatorUpdatedAt.utm,
+      indicatorUpdatedAt.ipc,
+      indicatorUpdatedAt.tmc,
+      indicatorUpdatedAt.dolar,
+    ],
+    FALLBACK_LAST_UPDATED
+  );
   const liveParameters: EconomicParameters = {
     uf: Number(payload.uf?.valor),
     utm: Number(payload.utm?.valor),
@@ -183,7 +244,12 @@ async function fetchLiveEconomicParameters(): Promise<EconomicParameters> {
       pensionAndHealthMonthlyTaxableCapUf:
         DEFAULT_PENSION_AND_HEALTH_MONTHLY_TAXABLE_CAP_UF,
     },
-    lastUpdated: toIsoDate(payload.uf?.fecha ?? payload.utm?.fecha),
+    indicatorUpdatedAt: normalizeIndicatorUpdatedAt(
+      indicatorUpdatedAt,
+      lastUpdated,
+      payload.dolar?.valor !== undefined
+    ),
+    lastUpdated,
     source: "live",
   };
 

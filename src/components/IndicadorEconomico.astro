@@ -23,6 +23,8 @@ const { tipo, multiplicador, descripcion, mostrarFecha = true } = Astro.props;
 
 const indicadores = await getIndicadores();
 const base = tipo === "uf" ? indicadores.uf : indicadores.utm;
+const indicatorDate =
+  tipo === "uf" ? indicadores.fechas.uf : indicadores.fechas.utm;
 const valor = base * multiplicador;
 const sourceLabel =
   indicadores.source === "live"
@@ -38,7 +40,7 @@ const sourceLabel =
   {
     mostrarFecha && (
       <sup
-        title={`Basado en ${tipo.toUpperCase()} = ${fmt(base)} al ${fmtFecha(indicadores.fecha)} (${sourceLabel})`}
+        title={`Basado en ${tipo.toUpperCase()} = ${fmt(base)} al ${fmtFecha(indicatorDate)} (${sourceLabel})`}
         class="ml-0.5 cursor-help text-xs text-muted"
       >
         ⓘ

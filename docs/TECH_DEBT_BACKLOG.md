@@ -1,19 +1,19 @@
 # TECH_DEBT_BACKLOG
 
-Fecha de corte: 2026-04-12
+Fecha de corte: 2026-04-14
 
 ## Métricas
 
 ### Total de items por urgencia
 - **P0:** 3
 - **P1:** 13
-- **P2:** 13
+- **P2:** 14
 - **P3:** 1
 
 ### Estado de avance (2026-04-12)
 - **Completados:** 55 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `TD-0037`, `TD-0038`, `TD-0040`, `TD-0041`, `TD-0043`, `TD-0044`, `TD-0045`, `TD-0046`, `TD-0047`, `TD-0048`, `TD-0049`, `TD-0050`, `TD-0051`, `TD-0052`, `FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 1 (`TD-0039`)
-- **Backlog sin iniciar:** 2 (`TD-0042`, `TD-0053`)
+- **Backlog sin iniciar:** 3 (`TD-0042`, `TD-0053`, `TD-0054`)
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -1167,3 +1167,23 @@ Fecha de corte: 2026-04-12
 - **Estado:** Backlog
 - **Fecha de creación:** 2026-04-12
 - **Última actualización:** 2026-04-12
+
+## TD-0054 — `check:hero-prompts` falla por desalineación masiva entre `sceneId` y `approvedModelId`
+- **ID:** TD-0054
+- **Título corto:** Reconciliar manifest de hero prompts con modelo aprobado
+- **Descripción:** El gate `pnpm run check:hero-prompts` falla con 35 artículos porque `sceneId` y `approvedModelId` no pertenecen a la misma familia de plantilla/modelo. La validación se rompe antes de llegar a `check:frontmatter`, `check:links`, `check:editorial` y `astro check`, así que hoy el agregado `pnpm run check` no es confiable como gate de regresión para cambios no relacionados.
+- **Evidencia:** corrida local del 2026-04-14: `pnpm run check` falla dentro de `pnpm run check:hero-prompts` con 35 errores del tipo `sceneId '<...>' does not match approved model '<...>'` en slugs como `que-es-la-uf`, `reajuste-arriendo-uf-ipc-chile`, `seguro-de-cesantia`, `tarjeta-credito-costo-real-chile` y otros.
+- **Impacto:** Bloquea la validación agregada del repo y oculta el estado real de otros gates de calidad. Aumenta el costo de verificar fixes de runtime/editorial aunque el código tocado no modifique imágenes hero.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** auditar `scripts/hero-images/manifest.json`, `scripts/hero-images/prompts.json` y el plan de escenas/modelos para realinear cada `sceneId` con su `approvedModelId` o ajustar el checker si la regla contractual cambió y quedó desactualizada.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `pnpm run check:hero-prompts` pasa sin errores.
+  - [ ] `pnpm run check` vuelve a completar todos sus subgates.
+  - [ ] La relación válida entre `sceneId` y `approvedModelId` queda documentada o automatizada en la generación de prompts.
+- **Owner:** TBD
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-04-14
+- **Última actualización:** 2026-04-14
