@@ -25,7 +25,7 @@ async function main() {
     ? ` live_registry_checks=${result.liveChecks.length}`
     : "";
   console.log(
-    `[check-legal-citations] OK. laws=${result.scannedLawFiles} blog=${result.scannedBlogFiles} registry=${result.registryEntries}${liveSuffix}`
+    `[check-legal-citations] OK. laws=${result.scannedLawFiles} blog=${result.scannedBlogFiles} pages=${result.scannedAstroFiles} registry=${result.registryEntries}${liveSuffix}`
   );
 }
 

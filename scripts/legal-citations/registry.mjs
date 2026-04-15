@@ -92,6 +92,26 @@ export const LEGAL_CITATION_REGISTRY = [
     canonicalIdNorma: "1212060",
     aliases: [],
   },
+  {
+    slug: "ley-20255-reforma-previsional-2008",
+    numero: "20.255",
+    historyPageId: "5981",
+    canonicalIdNorma: "269892",
+    aliases: [],
+  },
+];
+
+/**
+ * BCN idNorma values that appear in content but belong to laws without a
+ * dedicated page in src/data/laws/. Each entry must be manually verified
+ * against BCN before addition.
+ *
+ * Format: { idNorma, label } — label is for human reference only.
+ */
+export const KNOWN_IDS_WITHOUT_LAW_PAGES = [
+  { idNorma: "207436", label: "DFL 1 — Código del Trabajo (texto refundido)" },
+  { idNorma: "29581",  label: "Ley 18.469 — Fonasa" },
+  { idNorma: "30208",  label: "Ley 18.933 — Isapres" },
 ];
 
 export function getHistoryUrl(historyPageId) {

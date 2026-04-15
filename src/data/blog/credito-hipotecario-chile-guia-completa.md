@@ -231,7 +231,7 @@ La información de esta guía corresponde al marco normativo vigente a abril 202
 
 - **CMF Educa — Créditos hipotecarios:** [cmfchile.cl](https://www.cmfchile.cl/educa/621/w3-propertyvalue-45015.html)
 - **BCCh — Tasas de interés hipotecarias:** [bcentral.cl](https://www.bcentral.cl/areas/estadisticas/tasas-de-interes)
-- **Ley 21.236 — Portabilidad Financiera (prepago sin multa):** [bcn.cl](https://www.bcn.cl/leychile/navegar?idNorma=1142271)
+- **Ley 21.236 — Portabilidad Financiera (prepago sin multa):** [bcn.cl](https://www.bcn.cl/leychile/navegar?idNorma=1146340)
 - **SII — Cómo saber si una vivienda está acogida al DFL2:** [sii.cl](https://www.sii.cl/preguntas_frecuentes/aval_contrib_bbrr/001_165_2439.htm)
 - **CMF Educa — Problemas de pago de un crédito hipotecario:** [cmfchile.cl](https://www.cmfchile.cl/educa/621/w3-article-27510.html)
 

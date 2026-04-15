@@ -30,7 +30,7 @@ articleLead:
     - label: "AFC Chile"
       href: "https://www.afc.cl/"
     - label: "BCN — Ley 19.728"
-      href: "https://www.bcn.cl/leychile/navegar?idNorma=186175"
+      href: "https://www.bcn.cl/leychile/navegar?idNorma=184979"
   covers:
     - "Qué es la CIC y cuándo manda sobre el Fondo Solidario."
     - "Mínimos de cotización y causales frecuentes."

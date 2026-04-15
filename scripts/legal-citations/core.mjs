@@ -1,11 +1,12 @@
 import path from "node:path";
 import { readFile, readdir } from "node:fs/promises";
 import { load as internalSafeLoad, JSON_SCHEMA } from "js-yaml";
-import { getHistoryUrl, LEGAL_CITATION_REGISTRY } from "./registry.mjs";
+import { getHistoryUrl, LEGAL_CITATION_REGISTRY, KNOWN_IDS_WITHOUT_LAW_PAGES } from "./registry.mjs";
 
 const BCN_URL_RE = /https:\/\/www\.bcn\.cl\/leychile\/navegar\?idNorma=(\d+)/g;
 const FRONTMATTER_RE = /^---\n([\s\S]*?)\n---\n?/;
 const LAW_FILE_EXTENSIONS = new Set([".md", ".mdx"]);
+const ASTRO_FILE_EXTENSIONS = new Set([".astro"]);
 
 function isTrustedBcnUrl(url) {
   try {
@@ -26,13 +27,17 @@ export async function runLegalCitationAudit({
 }) {
   const lawsDir = path.join(rootDir, "src", "data", "laws");
   const blogDir = path.join(rootDir, "src", "data", "blog");
+  const pagesDir = path.join(rootDir, "src", "pages");
 
   const lawFiles = await listMarkdownFiles(lawsDir);
   const blogFiles = await listMarkdownFiles(blogDir);
+  const astroFiles = await listAstroFiles(pagesDir);
   const registryBySlug = new Map(
     LEGAL_CITATION_REGISTRY.map(entry => [entry.slug, entry])
   );
   const issues = [];
+  // Collect all idNorma values from validated law files to populate knownGoodIds.
+  const lawFileIds = new Set();
 
   for (const filePath of lawFiles) {
     const relativePath = toRepoRelative(rootDir, filePath);
@@ -50,6 +55,8 @@ export async function runLegalCitationAudit({
       });
       continue;
     }
+
+    lawFileIds.add(idNorma);
 
     if (!slug.startsWith("dl-") && !numero.startsWith("DL ")) {
       const registryEntry = registryBySlug.get(slug);
@@ -81,22 +88,33 @@ export async function runLegalCitationAudit({
   }
 
   const aliasMap = buildAliasMap();
-  const scannedFiles = [...lawFiles, ...blogFiles];
+  const knownGoodIds = buildKnownGoodIdsSet(lawFileIds);
+  const scannedFiles = [...lawFiles, ...blogFiles, ...astroFiles];
   for (const filePath of scannedFiles) {
     const relativePath = toRepoRelative(rootDir, filePath);
     const source = await readFile(filePath, "utf8");
     const matches = [...source.matchAll(BCN_URL_RE)];
     for (const match of matches) {
       const idNorma = match[1];
-      const registryEntry = aliasMap.get(idNorma);
-      if (!registryEntry) continue;
+      const aliasEntry = aliasMap.get(idNorma);
+      if (aliasEntry) {
+        issues.push({
+          type: "alias_idnorma_detected",
+          file: relativePath,
+          line: getLineNumber(source, match.index ?? 0),
+          message: `Found non-canonical BCN idNorma=${idNorma} for Ley ${aliasEntry.numero}. Use idNorma=${aliasEntry.canonicalIdNorma} or the internal law page /leyes/${aliasEntry.slug}/.`
+        });
+        continue;
+      }
 
-      issues.push({
-        type: "alias_idnorma_detected",
-        file: relativePath,
-        line: getLineNumber(source, match.index ?? 0),
-        message: `Found non-canonical BCN idNorma=${idNorma} for Ley ${registryEntry.numero}. Use idNorma=${registryEntry.canonicalIdNorma} or the internal law page /leyes/${registryEntry.slug}/.`
-      });
+      if (!knownGoodIds.has(idNorma)) {
+        issues.push({
+          type: "unknown_idnorma",
+          file: relativePath,
+          line: getLineNumber(source, match.index ?? 0),
+          message: `BCN idNorma=${idNorma} is not registered in LEGAL_CITATION_REGISTRY, KNOWN_IDS_WITHOUT_LAW_PAGES, or any law file. Verify it is correct and register it.`,
+        });
+      }
     }
   }
 
@@ -159,6 +177,7 @@ export async function runLegalCitationAudit({
     issues,
     scannedLawFiles: lawFiles.length,
     scannedBlogFiles: blogFiles.length,
+    scannedAstroFiles: astroFiles.length,
     registryEntries: LEGAL_CITATION_REGISTRY.length,
     liveChecks,
   };
@@ -198,6 +217,29 @@ function buildAliasMap() {
   return map;
 }
 
+/**
+ * Builds the complete set of BCN idNorma values that are known-good:
+ * - canonical IDs from LEGAL_CITATION_REGISTRY
+ * - alias IDs from LEGAL_CITATION_REGISTRY (already flagged separately via aliasMap)
+ * - IDs from law files on disk (includes DL files not in registry)
+ * - IDs from KNOWN_IDS_WITHOUT_LAW_PAGES (manually verified, no dedicated page)
+ *
+ * Any idNorma NOT in this set triggers an `unknown_idnorma` issue.
+ */
+function buildKnownGoodIdsSet(lawFileIds) {
+  const known = new Set(lawFileIds);
+  for (const entry of LEGAL_CITATION_REGISTRY) {
+    known.add(entry.canonicalIdNorma);
+    for (const alias of entry.aliases) {
+      known.add(alias);
+    }
+  }
+  for (const item of KNOWN_IDS_WITHOUT_LAW_PAGES) {
+    known.add(item.idNorma);
+  }
+  return known;
+}
+
 async function listMarkdownFiles(rootDir) {
   const entries = await readdir(rootDir, { withFileTypes: true });
   const files = [];
@@ -210,6 +252,30 @@ async function listMarkdownFiles(rootDir) {
     }
 
     if (LAW_FILE_EXTENSIONS.has(path.extname(entry.name))) {
+      files.push(target);
+    }
+  }
+
+  return files.sort();
+}
+
+async function listAstroFiles(rootDir) {
+  let entries;
+  try {
+    entries = await readdir(rootDir, { withFileTypes: true });
+  } catch {
+    return [];
+  }
+  const files = [];
+
+  for (const entry of entries) {
+    const target = path.join(rootDir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...(await listAstroFiles(target)));
+      continue;
+    }
+
+    if (ASTRO_FILE_EXTENSIONS.has(path.extname(entry.name))) {
       files.push(target);
     }
   }

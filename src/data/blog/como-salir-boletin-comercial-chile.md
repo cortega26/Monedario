@@ -27,7 +27,7 @@ articleLead:
     - label: "CMF Chile — Boletín Comercial"
       href: "https://www.cmfchile.cl/portal/principal/613/w3-article-27659"
     - label: "Ley 20.575 — Derecho al olvido"
-      href: "https://www.bcn.cl/leychile/navegar?idNorma=1038453"
+      href: "https://www.bcn.cl/leychile/navegar?idNorma=1037366"
   covers:
     - "Qué es el Boletín Comercial y qué registra."
     - "Plazos legales de eliminación según estado de la deuda."
@@ -161,4 +161,4 @@ Puedes consultar en [boletincomercial.cl](https://www.boletincomercial.cl/). La 
 
 ---
 
-_Contenido educativo con fecha de corte 2026-04-09. Este artículo no constituye asesoría legal. Para situaciones de cobranza judicial o deudas complejas, consulta a un abogado. Fuentes principales: [Ley 20.575](https://www.bcn.cl/leychile/navegar?idNorma=1038453), [Ley 21.719](https://www.bcn.cl/leychile/navegar?idNorma=1198115), [CMF Chile — Boletín Comercial](https://www.cmfchile.cl/portal/principal/613/w3-article-27659)._
+_Contenido educativo con fecha de corte 2026-04-09. Este artículo no constituye asesoría legal. Para situaciones de cobranza judicial o deudas complejas, consulta a un abogado. Fuentes principales: [Ley 20.575](https://www.bcn.cl/leychile/navegar?idNorma=1037366), [Ley 21.719](https://www.bcn.cl/leychile/navegar?idNorma=1209272), [CMF Chile — Boletín Comercial](https://www.cmfchile.cl/portal/principal/613/w3-article-27659)._
