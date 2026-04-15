@@ -2,11 +2,13 @@
 
 Operational protocol for AI/human agents in this repository.
 
-Binding document: `/docs/AI_ENGINEERING_CONSTITUTION.md`.
+Binding document: `docs/AI_ENGINEERING_CONSTITUTION.md`.
 
 Non-override clause: this file defines execution procedure only. It never overrides constitutional constraints, invariants, or prohibitions.
 
 Constitutional precedence is absolute: when AGENTS.md conflicts with Constitution, Constitution wins.
+
+**Design principle — índice, no enciclopedia:** Este archivo es el mapa de entrada, no el manual exhaustivo. Las reglas detalladas viven en `docs/development/`. Si sientes la necesidad de agregar más de 5 líneas aquí, crea o actualiza un documento en `docs/development/` y enlázalo desde la sección correspondiente.
 
 ## Canonical Context
 
@@ -17,403 +19,59 @@ Constitutional precedence is absolute: when AGENTS.md conflicts with Constitutio
   - `CONTRACT.YMYL_RESPONSE_STRUCTURE` (ver `context/CONTRACTS.md`)
   - `context/MODULE_INDEX.md`
   - `context/CURRENT_STATE.md`
-- Canonical editorial policy for YMYL execution:
-  - `docs/editorial/NORMA_YMYL.md`
-- Canonical strategy policy for benchmark-driven work:
-  - `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md`
-- Rule: before changes that touch routes, RSS, canonical URL strategy, or guard gates, agents must read `context/INVARIANTS.md` and `context/CONTRACTS.md` plus the referenced scripts.
-- Rule: before new YMYL content or substantive editorial refresh, agents must read `docs/editorial/NORMA_YMYL.md` and `context/EDITORIAL_AI_PIPELINE.md`, then apply the required MUST/SHOULD criteria, checklist, scorecard, and artifact protocol.
-- Rule: before creating a new URL, calculator, hub, visible module, navigation surface, or substantive benchmark-driven refresh, agents must read `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md`, `docs/editorial/NON_CANNIBALIZATION_PROCESS.md`, and `docs/editorial/TOPIC_OWNERSHIP_POLICY.md`.
-- Anti-duplication: AGENTS.md defines process/protocol; `context/*.md` defines concise invariant/contract state and cross-references canonical sources.
+- Canonical editorial policy for YMYL execution: `docs/editorial/NORMA_YMYL.md`
+- Canonical strategy policy for benchmark-driven work: `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md`
+- Before changes touching routes/RSS/canonical/guard gates → read `context/INVARIANTS.md` + `context/CONTRACTS.md`.
+- Before new YMYL content or refresh → read `docs/editorial/NORMA_YMYL.md` + `context/EDITORIAL_AI_PIPELINE.md`.
+- Before new URL/calculator/hub/surface → read `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md`, `docs/editorial/NON_CANNIBALIZATION_PROCESS.md`, `docs/editorial/TOPIC_OWNERSHIP_POLICY.md`.
 
 ## 1. Authority Hierarchy
 
-### Rule 1.1 - Precedence order is fixed
-- Rationale: Prevents conflicting instructions and architectural drift.
-- Enforcement: Before any change, the agent must include an "Authority Check" with this exact order: `1) docs/AI_ENGINEERING_CONSTITUTION.md`, `2) AGENTS.md`, `3) context/*.md`, `4) source code/comments`.
-- Compliant behavior: "Authority Check: Constitution > AGENTS > context/*.md > code."
-- Violation: Applying instructions from a source file that conflicts with constitutional invariants.
+**Precedence order (fixed):** `docs/AI_ENGINEERING_CONSTITUTION.md` > `AGENTS.md` > `context/*.md` > source code.
 
-### Rule 1.2 - Constitution conflict handling is halt-only
-- Rationale: Workarounds around constitutional constraints create hidden debt and regressions.
-- Enforcement: If any requested change conflicts with constitution or domain invariants (`docs/domain/CONTENT/INVARIANTS.md`), stop implementation and return a conflict report.
-- Compliant behavior: "Halt: requested domain-side fetch conflicts with side-effect isolation in Constitution §2.2."
-- Violation: Moving `fetch` into `src/domain/**` to satisfy a feature request.
-
-### Rule 1.3 - Invariants are non-interpretable by agents
-- Rationale: Reinterpretation creates non-deterministic behavior across sessions.
-- Enforcement: Architectural invariants must be quoted by ID/name from source docs before modification (`INVARIANTS.md`, `CONTRACTS.md`, `DOMAIN_CONTRACT_BOUNDARIES.md`).
-- Compliant behavior: "Preserving INV-003: draft articles excluded from list/RSS/sitemap."
-- Violation: Treating `draft=true` as "visible in preview lists" without documented invariant change.
+- If any requested change conflicts with the Constitution or domain invariants, stop and return a conflict report — no workarounds.
+- Architectural invariants must be quoted by ID/name from `context/INVARIANTS.md`, `context/CONTRACTS.md`, or `docs/architecture/DOMAIN_CONTRACT_BOUNDARIES.md` before modification.
 - Mandatory citation for URL identity work: `URL.PUBLIC.NO_POST_ID`.
 
-## 2. Agent Execution Model
+## 2. Agent Execution Model → [`docs/development/AGENT_EXECUTION_PROTOCOL.md`](docs/development/AGENT_EXECUTION_PROTOCOL.md)
 
-### Rule 2.1 - Scope declaration is mandatory before editing
-- Rationale: Full repo visibility does not permit unconstrained changes.
-- Enforcement: Every task starts with a scope block listing in-scope paths, out-of-scope paths, and allowed operation type.
-- Compliant behavior: In-scope `src/data/blog/**`, `scripts/check-frontmatter.mjs`; out-of-scope `src/domain/**`.
-- Violation: Editing `src/layouts/Layout.astro` during a frontmatter-only task.
+Rules 2.1–2.13 + execution checklist. Key rules at a glance:
+- Scope block required before any edit (Rule 2.1).
+- Minimal diffs only; full rewrites are exceptional (Rules 2.2–2.3).
+- Halt conditions are enumerated and non-negotiable (Rule 2.6).
+- `post.id` must never derive public URLs (Rule 2.7).
+- YMYL content requires full editorial pipeline (Rule 2.8).
+- New articles require a manually placed hero image (Rule 2.10).
+- Failed tasks require capability gap diagnosis, not retries (Rule 2.12).
+- Multi-session tasks require a plan artifact in `docs/backlog/` (Rule 2.13).
 
-### Rule 2.2 - Diff-first modification strategy
-- Rationale: Minimizes regression surface and review complexity.
-- Enforcement: Prefer minimal hunks; each changed file must map to one declared objective in change control template.
-- Compliant behavior: Editing 8 lines in `check-frontmatter.mjs` to enforce one invariant.
-- Violation: Reformatting entire files unrelated to the requested behavior.
+## 3. Change Control Protocol → [`docs/development/CHANGE_CONTROL_PROTOCOL.md`](docs/development/CHANGE_CONTROL_PROTOCOL.md)
 
-### Rule 2.3 - Full-file rewrites are exceptional
-- Rationale: Rewrites obscure intent and increase accidental breakage.
-- Enforcement: Full rewrite allowed only if one condition is true: generated artifact refresh, file is <200 LOC and structurally replaced, or user explicitly requested rewrite. Condition must be declared in PR notes.
-- Compliant behavior: Regenerating route snapshot JSON via script.
-- Violation: Rewriting `src/pages/index.astro` for minor text change.
+Eight-step change declaration template + Competitive Adaptation Appendix. Route-affecting changes must also pass `check:no-postid-urls`, `check:routes`, `check:rss`.
 
-### Rule 2.4 - Prohibited execution behaviors
-- Rationale: These patterns violate Constitution §1 and §11.
-- Enforcement: Reject actions that: modify undeclared scope, refactor unrelated modules, add dependencies without justification, remove tests to pass CI, weaken types, or hide errors.
-- Compliant behavior: Add targeted fix plus tests without altering unrelated modules.
-- Violation: Deleting failing test cases to make `pnpm run test` pass.
+## 4. Constitution Binding Rules → [`docs/development/CONSTITUTION_BINDING_RULES.md`](docs/development/CONSTITUTION_BINDING_RULES.md)
 
-### Rule 2.7 - Forbidden public URL derivation from `post.id`
-- Rationale: Preserves invariant `URL.PUBLIC.NO_POST_ID` and prevents SEO/runtime coupling to technical IDs.
-- Enforcement: Any construction of public paths/canonical/RSS URLs from `post.id` is forbidden.
-- Compliant behavior: `getCanonicalPathFromSlug(article.slug)`.
-- Violation: `` `/posts/${post.id}/` `` or `params.slug = post.id`.
+Architectural edits require constitutional citation. ADRs required for layer/contract/URL/CI changes. Refactors forbidden during bugfix tasks.
 
-### Rule 2.5 - Uncertainty handling is explicit
-- Rationale: Silent assumptions cause contract violations.
-- Enforcement: If requirement ambiguity affects contracts/invariants, stop and request clarification; if low-risk and local, proceed with labeled assumption.
-- Compliant behavior: "Assumption A1: no URL slug migration requested; preserving current public routes."
-- Violation: Renaming canonical fields without stating assumptions.
+## 5. Regression Prevention → [`docs/development/REGRESSION_PREVENTION.md`](docs/development/REGRESSION_PREVENTION.md)
 
-### Rule 2.6 - Mandatory halt conditions
-- Rationale: Certain conditions make safe progress impossible.
-- Enforcement: Halt immediately on any of: constitutional conflict, missing invariant source for required change, unresolved contract ambiguity, inability to verify critical gate, unexpected non-user edits in touched files, unresolved ownership conflict for a new visible/indexable surface, or benchmark-driven work with no explicit differentiation.
-- Compliant behavior: Stop when route comparison baseline file is missing.
-- Violation: Shipping routing change without route diff verification.
+Mandatory CI gate set (`lint`, `check:boundaries`, `format:check`, `test`, `check:frontmatter`, `check:routes`, `astro check`, `build`). Domain/application/infrastructure changes require co-located test updates. Performance guardrails for hot paths (Mobile Perf ≥ 99, LCP ≤ 1.7s, CLS = 0).
 
-### Rule 2.8 - Mandatory editorial AI pipeline for YMYL/refresh
-- Rationale: High-risk editorial quality requires deterministic multi-stage controls, not ad-hoc drafting.
-- Enforcement: For every new YMYL piece or substantive YMYL refresh, the full artifact chain in `context/EDITORIAL_AI_PIPELINE.md` is mandatory (`brief`, `dossier`, `outline`, `draft`, `math audit`, `compliance`, `publish packet`).
-- Compliant behavior: PR includes pipeline artifacts (or references) and gate evidence before publication.
-- Violation: Publishing YMYL content from a single-step draft without artifact-level verification.
+## 6. Context Engineering Discipline → [`docs/development/CONTEXT_ENGINEERING.md`](docs/development/CONTEXT_ENGINEERING.md)
 
-### Rule 2.9 - Separation of duties in editorial verification
-- Rationale: Self-auditing degrades reliability in YMYL content.
-- Enforcement: `DraftAgent` cannot be the same role identity as `MathAuditAgent` or `ComplianceAgent` in one run; evidence must be recorded in publish packet.
-- Compliant behavior: distinct role identities across draft/audit/compliance stages.
-- Violation: same role signs draft and math/compliance verification.
+Minimal context extraction; no raw file dumps; Task Brief template required; explicit scope boundary in every response; external knowledge must be committed to repo before it can guide agent work.
 
-### Rule 2.10 - Every new article requires a manually created hero image
-- Rationale: Hero images are created manually — the pipeline (`scripts/hero-images/`) generates prompts only, it does NOT call the image API automatically. Automatic generation is intentionally disabled because AI APIs produce inconsistent results. Every image file must be manually created from the prompt and placed in the repo before the build can pass.
-- CI gate: `pnpm run check:hero-images` (wired into `build` and `check`) blocks the build if `public/images/hero/{slug}.avif` is absent for any published article.
-- Enforcement: When a new article is added to `src/data/blog/`:
-  1. Run `node scripts/hero-images/scan-articles.mjs` to update `manifest.json` and `context/published-articles-index.json`.
-  2. Run `node scripts/hero-images/build-prompts.mjs` to (re)generate `scripts/hero-images/prompts.json`.
-  3. Inspect the generated entry for the new slug in `prompts.json`. Verify `approvedModelId`, `sceneId`, `palette.hex`, and `prompt` are semantically correct for the article topic.
-  4. If the auto-selected scene is wrong (keyword false-positive from body text), add a `SLUG_OVERRIDES` entry in `scripts/hero-images/prompt-plan.mjs` with the correct `id`, `recipeId`, `colorKey`, and `overrideEvidence`, then re-run step 2.
-  5. Use the `prompt` field from `prompts.json` in the AI image tool of choice to manually generate the hero image.
-  6. Convert the output to `.avif` and place it at `public/images/hero/{slug}.avif` (max 80 KB).
-  7. Set the slug in `scripts/hero-images/status.json` to `{ "state": "done" }`.
-  8. Run `pnpm run check:hero-images` to confirm the image passes all constraints before committing.
-- Compliant behavior: PR includes updated `manifest.json`, `prompts.json`, `status.json` (`state: done`), and `public/images/hero/{slug}.avif`.
-- Violation: Merging a new article without its `.avif` image — `pnpm run build` will fail at the `check:hero-images` gate.
+## 7. Technical Debt Governance → [`docs/development/TECH_DEBT_GOVERNANCE.md`](docs/development/TECH_DEBT_GOVERNANCE.md)
 
-### Rule 2.11 - Competitive adaptation must be explicit
-- Rationale: Benchmarking is useful only when it produces differentiated local value without breaking ownership or source authority.
-- Enforcement: Any substantive benchmark-driven work must declare `benchmarkSet`, `patternHypothesis`, `localDelta`, `nonCopyBoundaries`, `ownerTarget`, and `successSignal` in the Task Brief or equivalent artifact.
-- Compliant behavior: "Pattern observed in 3 competitor flows; local delta is fewer branches and clearer Chile-specific thresholds; we will not copy copywriting or URL structure."
-- Violation: "Implement what competitor X shipped" with no local delta or ownership decision.
+All debt logged in `docs/TECH_DEBT_BACKLOG.md` with severity 1–5. Severity 4–5 blocks feature work. Periodic doc-gardening required. Custom lint scripts must emit file+rule+remediation in error messages.
 
-### Execution checklist (required before code edits)
-- [ ] Scope declared (in-scope/out-of-scope).
-- [ ] Authority check recorded.
-- [ ] Invariants/contracts referenced by document path.
-- [ ] Competitive adaptation refs reviewed when work is benchmark-driven or creates a new visible surface.
-- [ ] Risky assumptions listed or task halted.
+## 8. Commit & PR Standards → [`docs/development/COMMIT_PR_STANDARDS.md`](docs/development/COMMIT_PR_STANDARDS.md)
 
-## 3. Change Control Protocol
+Conventional commits (`feat|fix|refactor|chore|test|perf|docs`). PR requires change control record + test evidence. Breaking changes require `BREAKING CHANGE:` block + ADR.
 
-### Rule 3.1 - Eight-step change declaration is required
-- Rationale: Standardized review data prevents omissions.
-- Enforcement: Every change must include all eight items below; omission blocks merge.
-- Compliant behavior: PR description includes all eight confirmations.
-- Violation: Merging without rollback strategy or regression risk statement.
+## 9. Conversation Management → [`docs/development/CONVERSATION_MANAGEMENT.md`](docs/development/CONVERSATION_MANAGEMENT.md)
 
-### Rule 3.2 - Mandatory route-impact verification commands
-- Rationale: Public URL regressions must be blocked before merge.
-- Enforcement: Any change touching routes/canonical/RSS/sitemap, or URL helpers, must run:
-  - `pnpm run check:no-postid-urls`
-  - `pnpm run check:routes`
-  - `pnpm run check:rss`
-- Violation: Routing-affecting PR without the three command results.
-
-### Reusable template (mandatory)
-
-```md
-## Change Control Record
-
-1. Scope declaration
-- In scope:
-- Out of scope:
-
-2. Impacted modules
-- Paths:
-- Reason for each path:
-
-3. Invariant preservation
-- Referenced invariants:
-- Preservation proof:
-
-4. Contract preservation
-- Referenced contracts:
-- Breaking changes: yes/no
-
-5. Boundary integrity
-- Layer boundary check (`pnpm run check:boundaries`): pass/fail
-- Unauthorized cross-layer imports introduced: yes/no
-
-6. Test coverage impact
-- Changed runtime layers:
-- Related tests added/updated:
-- Coverage threshold status (see Section 5): pass/fail
-
-7. Rollback strategy
-- Revert unit:
-- Data/content rollback needed: yes/no
-
-8. Regression risk
-- Risk level: low/medium/high
-- Primary regression vectors:
-- Mitigations:
-
-## Competitive Adaptation Appendix
-
-- benchmarkSet:
-- patternHypothesis:
-- localDelta:
-- nonCopyBoundaries:
-- ownerTarget:
-- successSignal:
-- ownership conflict check: pass/fail
-```
-
-## 4. Constitution Binding Rules
-
-### Rule 4.1 - Constitution reference before architectural edits
-- Rationale: Architectural edits without constitutional mapping are non-deterministic.
-- Enforcement: Any change in `src/domain/**`, `src/application/**`, `src/infrastructure/**`, routing model, or content contract must cite relevant constitutional sections in change record.
-- Compliant behavior: "Constitution §2.1 dependency direction preserved; §2.2 side-effects remain in infrastructure."
-- Violation: Altering layer dependencies without constitutional citation.
-
-### Rule 4.2 - Conflict surfacing protocol
-- Rationale: Conflicts must be auditable, not implicit.
-- Enforcement: Conflict report must contain: requested action, conflicting rule, affected paths, reason change is blocked, accepted alternatives (if any).
-- Compliant behavior: Structured conflict report posted instead of code workaround.
-- Violation: Silent reinterpretation of invariant to satisfy task.
-
-### Rule 4.5 - Halt on `post.id` URL requirement
-- Rationale: Workarounds would violate constitutional invariant `URL.PUBLIC.NO_POST_ID`.
-- Enforcement: If a requested implementation requires deriving public URL identity from `post.id`, stop immediately, document conflict, and do not implement workaround.
-- Compliant behavior: Halt + conflict report with alternative slug-based path.
-- Violation: Introducing temporary helper that maps `post.id` to public route.
-
-### Rule 4.3 - ADR trigger conditions
-- Rationale: Architectural decisions need durable traceability.
-- Enforcement: ADR required when any of these occur: layer dependency rule change, contract field lifecycle change (add/remove/deprecate), URL/canonical strategy change, CI gate semantics change, performance SLO threshold change.
-- Compliant behavior: Add `docs/adr/ADR-YYYYMMDD-<topic>.md` in same PR as architectural change.
-- Violation: Changing slug identity strategy without ADR.
-
-### Rule 4.4 - Forbidden refactor windows
-- Rationale: Opportunistic refactors increase risk during focused tasks.
-- Enforcement: Refactors are forbidden during bugfix/content-only tasks unless directly required for invariant or contract preservation and declared in scope.
-- Compliant behavior: Keep refactor out of an editorial typo fix PR.
-- Violation: Restructuring use-case folders while fixing one article frontmatter issue.
-
-## 5. Regression Prevention Framework
-
-### Definition: what qualifies as regression
-A regression is any change that degrades previously valid behavior in contracts, invariants, boundaries, routes, build integrity, editorial outputs, or measured performance guardrails.
-
-### Rule 5.1 - CI gate set is mandatory
-- Rationale: Constitutional gates must be executable, not advisory.
-- Enforcement: All commands below must pass for merge:
-  - `pnpm run lint`
-  - `pnpm run check:boundaries`
-  - `pnpm run format:check`
-  - `pnpm run test`
-  - `pnpm run check:frontmatter`
-  - `pnpm run check:routes`
-  - `pnpm run astro check`
-  - `pnpm run build`
-- Compliant behavior: PR includes successful run evidence (CI or local command log).
-- Violation: Merging after skipping `check:routes` on routing-related change.
-
-### Rule 5.2 - Coverage thresholds (change-impact)
-- Rationale: Numeric coverage tooling is not fully wired; regression risk still requires measurable thresholds.
-- Enforcement: Thresholds for touched runtime layers:
-  - If `src/domain/**` changes, at least one file in `tests/domain/**` must be added or modified in same PR. Threshold: 100% of domain-changing PRs.
-  - If `src/application/**` changes, at least one file in `tests/application/**` must be added or modified in same PR. Threshold: 100%.
-  - If `src/infrastructure/**` changes, at least one file in `tests/infrastructure/**` must be added or modified in same PR. Threshold: 100%.
-- Compliant behavior: Update `tests/domain/TaxEngine.test.ts` when changing `src/domain/taxation/TaxEngine.ts`.
-- Violation: Changing calculator use-case formulas with no test updates.
-
-### Rule 5.3 - Static analysis enforcement
-- Rationale: Boundary/type drift appears before runtime failures.
-- Enforcement: `eslint`, `astro check`, and `check-domain-boundaries` must pass with no waivers in the same change.
-- Compliant behavior: Fix forbidden import in domain before merge.
-- Violation: Suppressing lint/type errors to merge quickly.
-
-### Rule 5.4 - Performance guardrails for hot paths
-- Rationale: Home and article entry paths are user-critical and historically performance-sensitive.
-- Enforcement: For changes touching `src/layouts/**`, `src/pages/index.astro`, `src/pages/posts/**`, `src/styles/global.css`, or `public/fonts/**`, attach Lighthouse evidence and meet all thresholds:
-  - Mobile Performance >= 99
-  - LCP <= 1.7s
-  - Speed Index <= 3.0s
-  - CLS = 0
-  - TBT = 0ms
-- Compliant behavior: Provide JSON report in `artifacts/` meeting thresholds.
-- Violation: Merging font/layout change without performance evidence.
-
-### Rule 5.5 - Pre-change test baseline verification
-- Rationale: Pre-existing failures must be distinguished from regressions introduced by the current change. Conflating them wastes investigation time and risks silently shipping pre-existing debt.
-- Enforcement: Before editing any runtime file, run `pnpm run test` on the unmodified branch and record which tests fail. Any failure present in that baseline is pre-existing and must be logged in `docs/TECH_DEBT_BACKLOG.md` with severity; it does NOT block the current PR unless its fix falls within declared scope.
-- Compliant behavior: "Baseline run shows 2 pre-existing failures in `FinancialUseCases.regression.test.ts`; logged as TD-0030; out of scope for this PR."
-- Violation: Treating a pre-existing failure as a regression introduced by the current PR, or silently ignoring it without a backlog entry.
-
-### Assumptions (explicit)
-- A1: As of 2026-02-28, numeric line/function coverage gate is not configured in CI (`@vitest/coverage-v8` missing). This protocol therefore enforces change-impact coverage thresholds until a numeric coverage gate is added by ADR.
-
-## 6. Context Engineering Discipline
-
-### Rule 6.1 - Minimal relevant context extraction
-- Rationale: Token and attention efficiency increase correctness.
-- Enforcement: Load only files required for declared scope; cap initial discovery to directly relevant docs/modules; expand only on blocker.
-- Compliant behavior: Read Constitution + affected contract docs before editing frontmatter checks.
-- Violation: Dumping entire repository contents into analysis for a single script fix.
-
-### Rule 6.2 - No raw file dumps unless requested
-- Rationale: Large dumps obscure decisions and waste context budget.
-- Enforcement: Summarize findings; quote only necessary lines/paths; full dumps allowed only if explicitly requested by reviewer.
-- Compliant behavior: Provide invariant IDs and impacted paths instead of pasting full files.
-- Violation: Posting full 300-line script when a 5-line diff summary is enough.
-
-### Rule 6.3 - Structured prompt/request format required
-- Rationale: Deterministic execution depends on stable input schema.
-- Enforcement: Each execution request must include this block:
-
-```md
-## Task Brief
-- Objective:
-- In scope:
-- Out of scope:
-- Invariants/Contracts to preserve:
-- Required gates:
-- Deliverable:
-- Benchmark observed:
-- Why it worked externally:
-- Proposed local delta:
-- What will not be copied:
-- Owner/surface affected:
-- Success signal:
-```
-
-- Compliant behavior: Request includes objective, scope, invariants, and gates before implementation.
-- Violation: "Fix SEO quickly" with no scope or constraints.
-
-### Rule 6.4 - Explicit scope boundary in every response
-- Rationale: Prevents silent scope creep across turns.
-- Enforcement: Agent response must include "Implemented" and "Not implemented" path-level lists.
-- Compliant behavior: "Implemented: scripts/check-frontmatter.mjs; Not implemented: runtime routing files."
-- Violation: Hidden edits outside declared scope.
-
-## 7. Technical Debt Governance
-
-### Rule 7.1 - Debt ledger location is fixed
-- Rationale: Centralized debt tracking is required for prioritization and audits.
-- Enforcement: All debt items must be logged in `/docs/TECH_DEBT_BACKLOG.md`.
-- Compliant behavior: Add new debt item with ID, impact, severity, resolution strategy.
-- Violation: Mentioning debt only in PR comments.
-
-### Rule 7.2 - Severity scoring is mandatory (1-5)
-- Rationale: Consistent severity enables deterministic triage.
-- Enforcement: Every new debt item must include severity score:
-  - 1: Cosmetic/no behavior risk
-  - 2: Maintainability friction
-  - 3: Medium regression risk
-  - 4: High risk to correctness/performance/security
-  - 5: Active production risk
-- Compliant behavior: "Severity 4 - boundary checker bypass possibility."
-- Violation: Logging debt without severity.
-
-### Rule 7.3 - Debt that blocks feature work
-- Rationale: High-severity debt must not compound.
-- Enforcement: Severity 4-5 debt in touched area blocks feature delivery unless resolved in same release cycle or explicit waiver ADR is approved.
-- Compliant behavior: Resolve severity-4 routing debt before adding new routing feature.
-- Violation: Shipping new feature on top of unresolved severity-5 defect.
-
-### Rule 7.4 - Agent obligations on debt discovery
-- Rationale: Agents must surface systemic risks, not only task-local fixes.
-- Enforcement: When debt is discovered, agent must either fix it in-scope or log it with severity and mitigation; silent ignore is forbidden.
-- Compliant behavior: Log missing coverage tooling as debt with mitigation plan.
-- Violation: Not reporting repeated fallback failures discovered during change.
-
-## 8. Commit & PR Standards
-
-### Rule 8.1 - Commit message format is mandatory
-- Rationale: Structured history improves traceability and release automation.
-- Enforcement: Use `type(scope): description` with allowed types from Constitution: `feat|fix|refactor|chore|test|perf|docs`.
-- Compliant behavior: `fix(frontmatter): block deprecated canonicalURL field`.
-- Violation: `misc updates`.
-
-### Rule 8.2 - PR structure requirements
-- Rationale: Review quality depends on predictable evidence structure.
-- Enforcement: PR must include: summary, scope boundaries, change control record, test evidence, risk/rollback, related issue.
-- Compliant behavior: PR body follows template and includes all mandatory sections.
-- Violation: PR with only a one-line description and no verification evidence.
-
-### Rule 8.3 - Verification checklist is blocking
-- Rationale: Prevents partial validation merges.
-- Enforcement: PR checkbox list must confirm completion of Section 5 gates and Section 3 change control.
-- Compliant behavior: All checks marked with linked evidence.
-- Violation: Unchecked validation items at merge time.
-
-### Rule 8.4 - Breaking change protocol
-- Rationale: Contract/routing breaks require explicit migration path.
-- Enforcement: If breaking change exists, PR must include `BREAKING CHANGE:` block with impacted consumers, migration steps, rollback, and ADR reference.
-- Compliant behavior: Breaking slug policy change with migration + redirects + ADR.
-- Violation: Removing contract field used by runtime without migration plan.
-
-## 9. Conversation Management Rules
-
-### Rule 9.1 - Start a new conversation when architectural context changes
-- Rationale: Separates decision domains and limits cross-contamination.
-- Enforcement: New conversation required when scope crosses bounded contexts, introduces ADR-level decisions, or exceeds one primary objective.
-- Compliant behavior: Separate conversation for "taxonomy contract redesign" after finishing "frontmatter lint fix".
-- Violation: Mixing architecture redesign into a bugfix thread.
-
-### Rule 9.2 - Continue conversation for same bounded objective
-- Rationale: Maintains momentum and avoids repeated context loading.
-- Enforcement: Continue existing thread when objective, scope boundaries, and invariants remain unchanged.
-- Compliant behavior: Follow-up edits on same route-check script in same thread.
-- Violation: Opening new thread for minor iteration of same fix.
-
-### Rule 9.3 - Checkpoint architectural state explicitly
-- Rationale: Durable checkpoints prevent loss of rationale between sessions.
-- Enforcement: When architecture-affecting work completes, update checkpoint in `context/PROJECT_CONTEXT_MASTER.md` or add `context/PHASE*_CLOSURE_REPORT.md` entry referencing ADR/PR.
-- Compliant behavior: Add decision note summarizing preserved invariants and changed contracts.
-- Violation: Finishing architecture change with no persistent checkpoint.
-
-### Rule 9.4 - Token bloat prevention
-- Rationale: Excessive context inflates error rate and latency.
-- Enforcement: Keep active context to relevant files only; replace repeated long content with path+summary references.
-- Compliant behavior: "See docs/domain/CONTENT/INVARIANTS.md INV-001..INV-014" instead of repeated full text.
-- Violation: Re-pasting unchanged docs in every turn.
-
-### Rule 9.5 - Separate structural tasks from content tasks
-- Rationale: Different risk profiles require different validation gates.
-- Enforcement: Do not combine architecture/runtime refactors with bulk editorial content updates in one PR.
-- Compliant behavior: PR A for runtime contract change, PR B for article updates.
-- Violation: Single PR modifies routing architecture and 20 article bodies.
+New conversation on context/domain change. Checkpoint architectural state in `context/PROJECT_CONTEXT_MASTER.md`. Structural tasks and content tasks in separate PRs.
 
 ## Deterministic Closure Conditions
 
@@ -425,3 +83,4 @@ A change is complete only if all are true:
 - Regression risk and rollback are explicitly documented.
 
 If any condition fails, task status is `HALT` until resolved.
+
