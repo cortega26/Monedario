@@ -1,6 +1,6 @@
 # Module Index (Agent Quick Map)
 
-Last updated: 2026-04-11
+Last updated: 2026-04-15
 
 ## 1. Repository map
 
@@ -14,6 +14,7 @@ Last updated: 2026-04-11
 | `docs/reports/` | Canonical route and RSS baselines only | Inputs tracked for `check:routes` and `check:rss`. |
 | `output/validation/` | Generated route/RSS validation snapshots | Local current snapshots emitted by validation scripts. |
 | `context/` | Agent context layer and project state docs | Keep concise and cross-referenced. |
+| `context/AGENT_PREFLIGHT.md` | Single-file session warm-up: hard stops, gate map, invariant IDs, env vars | Load first when starting any agent session to cut cold-start token cost. |
 | `tests/` | Vitest suites by layer | Required when runtime layers change per AGENTS rules. |
 
 ## 2. Where key behaviors are defined

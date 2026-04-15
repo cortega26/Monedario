@@ -21,6 +21,7 @@ Guia minima para arrancar en este repositorio sin tener que reconstruir el flujo
 
 ## Entry points por intencion
 
+- Quiero arrancar una sesion de agente rapido: `context/AGENT_PREFLIGHT.md`
 - Quiero entender la estructura del repo: `docs/codebase/README.md`
 - Quiero ubicar el entry point correcto para una tarea: `docs/operations/AGENT_TASK_INDEX.md`
 - Quiero validar que mi entorno local quedo bien: `docs/operations/runbooks/bootstrap-checklist.md`

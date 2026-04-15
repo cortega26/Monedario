@@ -6,14 +6,14 @@ Fecha de corte: 2026-04-14
 
 ### Total de items por urgencia
 - **P0:** 3
-- **P1:** 13
+- **P1:** 14
 - **P2:** 14
 - **P3:** 1
 
 ### Estado de avance (2026-04-12)
 - **Completados:** 55 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `TD-0037`, `TD-0038`, `TD-0040`, `TD-0041`, `TD-0043`, `TD-0044`, `TD-0045`, `TD-0046`, `TD-0047`, `TD-0048`, `TD-0049`, `TD-0050`, `TD-0051`, `TD-0052`, `FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 1 (`TD-0039`)
-- **Backlog sin iniciar:** 3 (`TD-0042`, `TD-0053`, `TD-0054`)
+- **Backlog sin iniciar:** 4 (`TD-0042`, `TD-0053`, `TD-0054`, `TD-0055`)
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -30,6 +30,7 @@ Fecha de corte: 2026-04-14
 ### Top riesgos restantes
 
 - `TD-0039`: performance mobile sigue por debajo del umbral estricto de LCP (`<= 1.7s`) en local, aunque los reruns del 2026-04-09 ya dejaron `TBT=0`, `CLS=0`, `SI<3.0s` y levantaron calculadora/hub a `Performance 100`.
+- `TD-0055`: el gate `check:hero-prompts` falla con 35 desalineaciones `sceneId` vs `approvedModelId`, bloqueando `pnpm run check` y el cierre de la suite pre-merge completa.
 
 ### Quick wins (alto impacto / bajo esfuerzo)
 - [x] `TD-0007` Corregir email placeholder en enlaces sociales.
@@ -42,6 +43,27 @@ Fecha de corte: 2026-04-14
 - [x] `TD-0049` Actualizar constante UTM en test de `SimulateOperacionRenta` a 69889.
 - [x] `TD-0051` Remover atributo `data-is-example` tras cálculo real (1 línea JS).
 ---
+
+## TD-0055 — Desalineación masiva scene/model en hero prompts
+- **ID:** TD-0055
+- **Título corto:** Alinear `sceneId` con `approvedModelId` en prompts hero
+- **Descripción:** La validación `check:hero-prompts` falla porque múltiples entradas de `scripts/hero-images/prompts.json` tienen `sceneId` fuera del modelo aprobado por `approvedModelId`. El desalineamiento es transversal (35 artículos) y corta el pipeline en `pnpm run check`, impidiendo completar la suite pre-merge.
+- **Evidencia:** salida de `pnpm run check` del 2026-04-15 (`[check-hero-prompts] FAIL: 35 issue(s)`); archivos involucrados: `scripts/hero-images/prompts.json`, `scripts/hero-images/manifest.json`, `scripts/hero-images/prompt-plan.mjs`, `scripts/check-hero-prompts.mjs`.
+- **Impacto:** Bloquea validaciones integrales de CI/local y deja sin cierre automático cambios no relacionados con imágenes.
+- **Riesgo:** alto
+- **Severidad (1-5):** 4
+- **Urgencia:** P1
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** normalizar el mapeo `approvedModelId -> sceneId` en `prompt-plan` (o en la generación de prompts), regenerar `prompts.json`, revisar overrides por slug donde corresponda y revalidar con `pnpm run check:hero-prompts` hasta `OK`.
+- **Criterios de cierre (checklist verificable):**
+- [ ] `pnpm run check:hero-prompts` retorna `OK` con 0 issues.
+- [ ] `pnpm run check` completa sin cortar en el gate de hero prompts.
+- [ ] `scripts/hero-images/prompts.json` queda consistente con `approvedModelId` para todos los artículos publicados.
+- [ ] Se documenta en runbook la regla de consistencia scene/model para evitar regresión.
+- **Owner:** TBD
+- **Estado:** Backlog sin iniciar
+- **Fecha de creación:** 2026-04-15
+- **Última actualización:** 2026-04-15
 
 ## TD-0001 — Estrategia de package manager y lockfiles inconsistente
 - **ID:** TD-0001

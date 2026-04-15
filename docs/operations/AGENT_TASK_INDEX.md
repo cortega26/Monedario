@@ -33,6 +33,8 @@ Usa `docs/operations/templates/TASK_BRIEF.md` para abrir una tarea nueva con sco
 ## References
 
 - `START_HERE.md`
+- `context/AGENT_PREFLIGHT.md` ← single-file session warm-up (hard stops, gate map, env vars)
+- `docs/operations/GATE_MANIFEST.json` ← machine-readable gate definitions with scope and known failures
 - `docs/operations/runbooks/task-cookbook.md`
 - `docs/codebase/TESTING.md`
 - `docs/README.md`

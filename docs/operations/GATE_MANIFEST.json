@@ -1,0 +1,219 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_comment": "Machine-readable gate manifest. Authoritative list of quality gates, their scope, failure mode, and known pre-existing issues. Keep in sync with package.json scripts and docs/operations/AGENT_TASK_INDEX.md.",
+  "version": "1.0.0",
+  "lastUpdated": "2026-04-15",
+  "requiresBuild": [
+    "check:routes",
+    "check:rss",
+    "check:urls",
+    "check:toc-i18n",
+    "check:editorial-guard"
+  ],
+  "_requiresBuildNote": "Gates listed in requiresBuild need `astro build` to produce a dist/ folder first. Do not run them without a prior build.",
+  "gates": [
+    {
+      "id": "test",
+      "command": "pnpm run test",
+      "scope": ["domain", "application", "infrastructure", "any-runtime"],
+      "failureMode": "blocking",
+      "knownFlakyItems": [],
+      "preExistingFailures": 0,
+      "note": "Vitest suite. 37 files, 166 tests as of 2026-04-15."
+    },
+    {
+      "id": "lint",
+      "command": "pnpm run lint",
+      "scope": ["any-source"],
+      "failureMode": "blocking",
+      "knownFlakyItems": [],
+      "preExistingFailures": 0,
+      "note": "Runs `astro sync` then ESLint."
+    },
+    {
+      "id": "format:check",
+      "command": "pnpm run format:check",
+      "scope": ["any-source"],
+      "failureMode": "blocking",
+      "knownFlakyItems": [],
+      "preExistingFailures": 0,
+      "note": "Prettier check over all files."
+    },
+    {
+      "id": "check",
+      "command": "pnpm run check",
+      "scope": ["all"],
+      "failureMode": "blocking",
+      "knownFlakyItems": ["TD-0055"],
+      "preExistingFailures": 35,
+      "note": "Umbrella gate. Runs check:context, check:docs, check:images, check:hero-images, check:hero-prompts (35 pre-existing failures — TD-0055), check:frontmatter, check:legal-citations, check:links, check:editorial, check:editorial-timeliness, check:no-postid-urls, astro check. Does NOT include check:routes, check:rss, or check:urls (those require a prior build)."
+    },
+    {
+      "id": "check:context",
+      "command": "pnpm run check:context",
+      "scope": ["docs", "context"],
+      "failureMode": "blocking",
+      "knownFlakyItems": [],
+      "preExistingFailures": 0
+    },
+    {
+      "id": "check:docs",
+      "command": "pnpm run check:docs",
+      "scope": ["docs", "governance", "adr"],
+      "failureMode": "blocking",
+      "knownFlakyItems": [],
+      "preExistingFailures": 0
+    },
+    {
+      "id": "check:images",
+      "command": "pnpm run check:images",
+      "scope": ["article", "content", "hero-image"],
+      "failureMode": "blocking",
+      "knownFlakyItems": [],
+      "preExistingFailures": 0,
+      "note": "Runs images:convert + og:jpegs then validates image presence and format."
+    },
+    {
+      "id": "check:hero-images",
+      "command": "pnpm run check:hero-images",
+      "scope": ["article", "hero-image"],
+      "failureMode": "blocking",
+      "knownFlakyItems": [],
+      "preExistingFailures": 0,
+      "note": "Checks that every published article has a resolvable public/images/hero/{slug}.avif."
+    },
+    {
+      "id": "check:hero-prompts",
+      "command": "pnpm run check:hero-prompts",
+      "scope": ["hero-image", "article"],
+      "failureMode": "blocking",
+      "knownFlakyItems": ["TD-0055"],
+      "preExistingFailures": 35,
+      "note": "35 sceneId/approvedModelId misalignments as of 2026-04-15. Pre-existing; not a regression for unrelated changes. See TD-0055 in docs/TECH_DEBT_BACKLOG.md."
+    },
+    {
+      "id": "check:frontmatter",
+      "command": "pnpm run check:frontmatter",
+      "scope": ["article", "content"],
+      "failureMode": "blocking",
+      "knownFlakyItems": [],
+      "preExistingFailures": 0,
+      "invariants": ["FRONTMATTER.VALID", "INVARIANT.EDITORIAL.TOPIC_OWNER_UNIQUENESS"]
+    },
+    {
+      "id": "check:legal-citations",
+      "command": "pnpm run check:legal-citations",
+      "scope": ["article", "content"],
+      "failureMode": "blocking",
+      "knownFlakyItems": [],
+      "preExistingFailures": 0
+    },
+    {
+      "id": "check:links",
+      "command": "pnpm run check:links",
+      "scope": ["article", "content", "route"],
+      "failureMode": "blocking",
+      "knownFlakyItems": [],
+      "preExistingFailures": 0
+    },
+    {
+      "id": "check:editorial",
+      "command": "pnpm run check:editorial",
+      "scope": ["article", "content"],
+      "failureMode": "blocking",
+      "knownFlakyItems": [],
+      "preExistingFailures": 0,
+      "note": "Umbrella: check:editorial-structure + check:dialect + check:reader-facing-copy + check:editorial-artifacts.",
+      "invariants": [
+        "INVARIANT.EDITORIAL.STRUCTURE_MIN",
+        "INVARIANT.EDITORIAL.DIALECT_ES_CL",
+        "INVARIANT.EDITORIAL.NO_EMPTY_SECTIONS",
+        "INVARIANT.EDITORIAL.META_DESCRIPTION_REQUIRED",
+        "INVARIANT.EDITORIAL.NO_MARKDOWN_H1"
+      ]
+    },
+    {
+      "id": "check:editorial-timeliness",
+      "command": "pnpm run check:editorial-timeliness",
+      "scope": ["article", "content"],
+      "failureMode": "blocking",
+      "knownFlakyItems": [],
+      "preExistingFailures": 0,
+      "note": "Controlled by EDITORIAL_TIMELINESS_TODAY env var for date override."
+    },
+    {
+      "id": "check:no-postid-urls",
+      "command": "pnpm run check:no-postid-urls",
+      "scope": ["route", "url", "slug", "canonical"],
+      "failureMode": "blocking",
+      "knownFlakyItems": [],
+      "preExistingFailures": 0,
+      "invariants": ["URL.PUBLIC.NO_POST_ID"]
+    },
+    {
+      "id": "check:boundaries",
+      "command": "pnpm run check:boundaries",
+      "scope": ["domain", "application", "infrastructure"],
+      "failureMode": "blocking",
+      "knownFlakyItems": [],
+      "preExistingFailures": 0
+    },
+    {
+      "id": "check:routes",
+      "command": "pnpm run check:routes",
+      "scope": ["route", "url", "slug"],
+      "failureMode": "blocking",
+      "requiresBuild": true,
+      "knownFlakyItems": [],
+      "preExistingFailures": 0,
+      "invariants": ["ROUTES.NO_SILENT_CHANGES"],
+      "note": "Requires astro build to have produced dist/. Snapshots routes against docs/reports/routes_snapshot_before.json."
+    },
+    {
+      "id": "check:rss",
+      "command": "pnpm run check:rss",
+      "scope": ["route", "rss", "article"],
+      "failureMode": "blocking",
+      "requiresBuild": true,
+      "knownFlakyItems": [],
+      "preExistingFailures": 0,
+      "invariants": ["RSS.NO_REMOVALS"],
+      "note": "Requires astro build to have produced dist/rss.xml."
+    },
+    {
+      "id": "check:urls",
+      "command": "pnpm run check:urls",
+      "scope": ["route", "url", "canonical"],
+      "failureMode": "blocking",
+      "requiresBuild": true,
+      "knownFlakyItems": [],
+      "preExistingFailures": 0
+    },
+    {
+      "id": "check:toc-i18n",
+      "command": "pnpm run check:toc-i18n",
+      "scope": ["article", "content"],
+      "failureMode": "blocking",
+      "requiresBuild": true,
+      "knownFlakyItems": [],
+      "preExistingFailures": 0
+    },
+    {
+      "id": "check:editorial-guard",
+      "command": "pnpm run check:editorial-guard",
+      "scope": ["article", "content"],
+      "failureMode": "blocking",
+      "requiresBuild": true,
+      "knownFlakyItems": [],
+      "preExistingFailures": 0
+    }
+  ],
+  "taskGateMap": {
+    "bootstrap": ["test", "check"],
+    "article": ["check:frontmatter", "check:hero-images", "check:editorial"],
+    "calculator-logic": ["test", "check:boundaries", "lint"],
+    "route-url-slug": ["check:no-postid-urls", "check:routes", "check:rss"],
+    "docs-governance": ["check:docs"],
+    "merge-ready": ["lint", "format:check", "test", "check"]
+  }
+}
