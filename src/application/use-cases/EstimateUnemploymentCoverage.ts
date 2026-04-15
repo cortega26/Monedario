@@ -20,7 +20,7 @@ const CIC_MINIMUM_CONTRIBUTIONS = {
 
 const SOLIDARITY_FUND_REFERENCE = {
   label: "AFC Chile - valores del Fondo de Cesantía Solidario vigentes 2026-03",
-  url: "https://www.afcchile.cl/beneficios/valores-superiores-e-inferiores-fcs",
+  url: "https://www.afc.cl/que-es-el-seguro-de-cesantia/beneficios/",
   validUntil: "2027-02-28",
 } as const;
 
