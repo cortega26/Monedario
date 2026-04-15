@@ -10,9 +10,12 @@ const REPO_ROOT = path.resolve(__dirname, "..");
 const ROOT_ALLOWED_MARKDOWN = new Set([
   "README.md",
   "AGENTS.md",
+  "START_HERE.md",
   "LICENSE",
   "LICENSE.md",
   "LICENSE-CONTENT.md",
+  "spec.md",
+  "todo.md",
 ]);
 
 const ALLOWED_PREFIXES = [

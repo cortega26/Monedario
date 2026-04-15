@@ -41,7 +41,11 @@ Este sitio es 100% educativo: no solicita datos personales, no ofrece asesoría 
 
 ## Desarrollo local
 
-Requisitos: Node 20
+Requisitos: Node 22
+
+Inicio rapido:
+
+- Ver [START_HERE.md](/home/carlos/VS_Code_Projects/tuplatainforma/START_HERE.md) para el flujo de bootstrap y los entry points operativos.
 
 - Instalar dependencias:
   - pnpm install --frozen-lockfile
@@ -54,6 +58,7 @@ Notas:
 
 - El proyecto usa dominio raíz (`/`) en producción. Para evitar enlaces rotos, los componentes generan URLs usando `import.meta.env.BASE_URL` normalizada con barra final.
 - La generación de páginas de artículos se basa en contenido Markdown dentro de src/data/blog.
+- El runtime alineado con CI es Node 22; `.nvmrc` fija esa versión para bootstrap local.
 
 ## Editorial Artifact Gate (Phase 1)
 

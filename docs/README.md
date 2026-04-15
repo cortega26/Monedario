@@ -11,6 +11,8 @@ This repository uses authority-layered documentation.
 
 ## Structure index
 
+- `docs/codebase/`
+- Fast orientation layer for contributors and agents (structure, architecture, testing, integrations).
 - `docs/governance/`
 - Governance model and authority policy for contributors and agents.
 - `docs/architecture/`
@@ -35,6 +37,7 @@ This repository uses authority-layered documentation.
 - `docs/AI_ENGINEERING_CONSTITUTION.md`
 - `docs/TECH_DEBT_BACKLOG.md`
 - `AGENTS.md`
+- `START_HERE.md`
 - `context/INVARIANTS.md`
 - `context/CONTRACTS.md`
 - `docs/adr/`
