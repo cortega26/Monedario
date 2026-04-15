@@ -2,18 +2,18 @@
 
 ## Overview
 
-The hero image system generates, evaluates, and post-processes AVIF hero images for every published article. It uses OpenAI `gpt-image-1` for generation and GPT-4o vision for automated quality evaluation against a 7-point rubric.
+The hero image system builds deterministic prompt artifacts and validates final AVIF hero images for every published article. Final assets are created/curated manually; automatic API generation is out of policy.
 
 Core artifacts:
 - `scripts/hero-images/prompts.json` — pre-built prompt library (one entry per article)
-- `scripts/hero-images/status.json` — per-slug pipeline state (`pending`, `done`, `error`, `failed`)
+- `scripts/hero-images/status.json` — per-slug operational state (`pending`, `done`, `error`, `failed`)
 - `public/images/hero/<slug>.avif` — final 1200×630 AVIF images served to users
 
 Key scripts:
 - `scripts/hero-images/prompt-plan.mjs` — routing rules that map article content → scene recipe
 - `scripts/hero-images/config.mjs` — approved scene models (postures, objects, icons, colors)
 - `scripts/hero-images/build-prompts.mjs` — regenerates `prompts.json` from manifest + routing rules
-- `scripts/hero-images/pipeline.mjs` — generation + evaluation engine (idempotent)
+- `scripts/check-hero-images.mjs` — blocking gate for published assets (presence, format, size)
 
 ---
 
@@ -29,37 +29,17 @@ pnpm run images:build-prompts
 
 Reads `scripts/hero-images/manifest.json`, applies routing in `prompt-plan.mjs`, and writes `scripts/hero-images/prompts.json`.
 
-### Step 2 — Generate images
+### Step 2 — Create image manually
 
-```bash
-pnpm run images:generate
+1. Open the entry for your slug in `scripts/hero-images/prompts.json`.
+2. Create or curate the visual manually in your design workflow.
+3. Save the final file as:
+
+```text
+public/images/hero/<slug>.avif
 ```
 
-Processes all slugs not yet in `done` state. Idempotent — safe to re-run.
-
-```bash
-pnpm run images:generate:retry
-```
-
-Retries only slugs in `failed` or `error` state.
-
-```bash
-pnpm run images:generate:one --slug=<slug>
-```
-
-Generate a single image by slug (append slug value directly, e.g. `pnpm run images:generate:one --slug=como-calcular-sueldo-liquido`).
-
-```bash
-pnpm run images:generate:cluster --cluster=<cluster>
-```
-
-Generate all images for one content cluster (e.g. `sueldo-remuneraciones`).
-
-```bash
-pnpm run images:generate:force
-```
-
-Regenerate all images, including ones already in `done` state.
+4. Keep the file within 80 KB and aligned to 1200×630 output requirements.
 
 ### Step 3 — Verify
 
@@ -73,11 +53,11 @@ Confirms all 34 published articles have a valid AVIF file under 80 KB. Must exit
 
 ## Typical workflow: fix a failing slug
 
-1. Identify the failure in `status.json` or pipeline output (`score < 5/7`)
+1. Identify the failure in `status.json` or quality review notes
 2. Check which rule matched in `prompt-plan.mjs` (look at `selectors.ruleId` in `prompts.json`)
 3. If wrong scene: fix routing rule in `prompt-plan.mjs` or add a slug-level override
 4. Rebuild prompts: `pnpm run images:build-prompts`
-5. Retry: `pnpm run images:generate:retry`
+5. Recreate the image manually for the slug and replace `public/images/hero/<slug>.avif`
 6. Verify: `pnpm run check:hero-images`
 
 ---
@@ -85,9 +65,9 @@ Confirms all 34 published articles have a valid AVIF file under 80 KB. Must exit
 ## Typical workflow: new article
 
 1. Run `pnpm run images:build-prompts` after the article is added to the manifest
-2. Run `pnpm run images:generate:one --slug=<new-slug>`
-3. Inspect the generated image manually (see Quality Rubric below)
-4. If score < 5/7, fix the prompt or routing and retry
+2. Create/curate `public/images/hero/<new-slug>.avif` manually using the generated prompt as guidance
+3. Inspect the image manually (see Quality Rubric below)
+4. If quality is not acceptable, fix the prompt or routing and recreate the image
 5. Run `pnpm run check:hero-images`
 
 ---
@@ -98,7 +78,7 @@ Confirms all 34 published articles have a valid AVIF file under 80 KB. Must exit
 
 **Why this breaks silently:** `build-prompts.mjs` routes articles by keyword match. Multiple articles in the same cluster (e.g. several cesantía articles) will match the same rule and receive identical prompts. The router is not aware of cross-article uniqueness — that responsibility falls on the human operator.
 
-**When to check:** before running `images:generate` any time `build-prompts` has been re-run or new articles have been added.
+**When to check:** before creating/updating hero assets any time `build-prompts` has been re-run or new articles have been added.
 
 **Check command:**
 ```bash
@@ -126,7 +106,7 @@ for p, slugs in dupes.items():
    - `"sceneId"` → unique identifier, format `Template:topic-specific-scene`
    - `"promptHash"` → SHA-256 of the new prompt string
 4. Re-run the check command above to confirm zero duplicates.
-5. Then proceed to `images:generate` or `images:generate:one`.
+5. Then proceed to manual image creation for each affected slug.
 
 **Scene prop vocabulary (for unique differentiation):**
 
@@ -147,7 +127,7 @@ for p, slugs in dupes.items():
 
 ---
 
-## Quality Rubric (automated, 7 points)
+## Quality Rubric (manual review, 7 points)
 
 | # | Criterion | Pass condition |
 |---|-----------|----------------|
@@ -159,7 +139,7 @@ for p, slugs in dupes.items():
 | 6 | INDUSTRY | Clearly communicates personal finance |
 | 7 | SIMPLICITY | Understandable concept within 2 seconds |
 
-Pass threshold: **5 / 7**. Images scoring below 5 are flagged for manual review.
+Pass threshold: **5 / 7** minimum. Images scoring below 5 must be redesigned before publish.
 
 ---
 
@@ -183,18 +163,14 @@ Rules are evaluated in declaration order; first keyword match wins. Rule priorit
 
 ## Failure modes
 
+### `images:generate*` command blocked
+Automatic generation commands are intentionally deprecated.
+**Fix:** follow the manual workflow in this runbook and run `pnpm run check:hero-images`.
+
 ### `400 Invalid value` (dimension error)
 Old `prompts.json` entries with DALL-E 3 size `1792x1024` — incompatible with `gpt-image-1`.
 **Fix:** `pnpm run images:build-prompts` to regenerate with correct `1536x1024`.
 
-### `400 Billing hard limit has been reached`
-OpenAI account spend cap reached.
-**Fix:** Raise the hard limit at <https://platform.openai.com/account/billing>, then re-run `pnpm run images:generate:retry`.
-
-### `429 quota exceeded`
-Rate limit or quota exhausted.
-**Fix:** Wait and retry: `pnpm run images:generate:retry`.
-
-### `score < 5/7` after 3 attempts (state: `failed`)
-Prompt produces wrong style (3D, gradients, text leak).
-**Fix:** Inspect `selectors.ruleId` and `sceneId` in `prompts.json`. Likely wrong scene matched. Update routing rules, rebuild prompts, retry.
+### `score < 5/7` in manual review
+Visual does not meet style constraints (3D, gradients, text leak, weak clarity).
+**Fix:** Inspect `selectors.ruleId` and `sceneId` in `prompts.json`. Update routing rules if needed, rebuild prompts, and recreate the image manually.

@@ -1,8 +1,8 @@
 # Editorial Image System
 
-Last updated: 2026-03-05\
+Last updated: 2026-04-15\
 Status: Active\
-Version: 3.4 — selección semántica obligatoria + prompt recipes validados
+Version: 3.5 — selección semántica obligatoria + creación manual de assets finales
 
 ---
 
@@ -29,7 +29,7 @@ Version: 3.4 — selección semántica obligatoria + prompt recipes validados
 
 ## 1. Propósito y alcance
 
-Este documento define el sistema visual de imágenes destacadas (`heroImage`) para monedario. Es la referencia única para creación de contenido nuevo, migraciones visuales y generación automatizada.
+Este documento define el sistema visual de imágenes destacadas (`heroImage`) para monedario. Es la referencia única para creación de contenido nuevo, migraciones visuales y creación manual de assets finales.
 
 > **⚠️ Dominio YMYL**\
 > Este sitio opera en el dominio "Tu dinero o tu vida". La evolución visual de v3 no relaja ese principio — lo reencuadra. La credibilidad ahora se construye también a través de cercanía y reconocimiento, no solo a través de sobriedad. Un lector que se identifica con la imagen confía más en el contenido.
@@ -39,7 +39,7 @@ Aplica a:
 - Todos los artículos nuevos en `src/data/blog/`
 - Actualizaciones de contenido existente (content refresh)
 - Migraciones visuales de artículos legacy
-- Generación automatizada vía pipeline editorial
+- Curación y producción manual de hero images vía pipeline editorial
 
 Regla mandatoria desde v3.3:
 
@@ -792,7 +792,7 @@ Compatibilidad transicional:
 1. Scan (`scan-articles`)
 2. Lectura del artículo y derivación semántica de escena
 3. Build prompts (`build-prompts`)
-4. Generación OpenAI opcional (`generate-images --run`) solo como benchmark o fallback
+4. Creación/selección manual del asset final (fuera de automatización API)
 5. Postproceso (`postprocess-images`) a `.avif` 1200x630
 6. Aplicación (`apply-images`) a `public/images/hero` + wiring de frontmatter
 7. Guardrails CI (`check-hero-images`)
@@ -867,9 +867,6 @@ Comandos base:
 node scripts/hero-images/scan-articles.mjs
 node scripts/hero-images/build-prompts.mjs
 node scripts/check-hero-prompts.mjs
-node scripts/hero-images/generate-images.mjs --dry-run
-node scripts/hero-images/generate-images.mjs --dry-run --slug que-es-la-uf --model gpt-image-1
-node scripts/hero-images/generate-images.mjs --dry-run --slug que-es-la-uf --compare-models dall-e-3,gpt-image-1
 node scripts/hero-images/postprocess-images.mjs
 node scripts/hero-images/apply-images.mjs --enforce-public-path
 node scripts/check-hero-images.mjs
@@ -912,20 +909,16 @@ Garantías:
 
 En CI estándar:
 
-- no se ejecuta generación OpenAI
+- no se ejecuta generación automática por API
 - sí se ejecuta scan/build/check
 - `check-hero-prompts` bloquea ausencia de evidencia textual o selección metadata-only
 - `check-hero-images` bloquea falta de asset público, formato inválido o presupuesto excedido
 
-En workflow manual/scheduled con secretos:
+En workflow manual/scheduled:
 
-- se habilita `generate-images --run`
-- `generate-images` acepta:
-  - `--slug <slug>` para probar un solo artículo
-  - `--model <model>` para fijar el modelo (`dall-e-3`, `gpt-image-1`, etc.)
-  - `--compare-models modelA,modelB` para comparar dos modelos con el mismo prompt
-  - `OPENAI_IMAGE_MODEL` como override global de modelo por entorno
-- la salida queda en staging para revisión humana (sin commit automático)
+- no se habilita generación automática por API
+- solo se recalculan artefactos determinísticos (manifest/prompts) y checks
+- la creación de la imagen final ocurre manualmente antes del merge
 
 Estado de enforcement:
 

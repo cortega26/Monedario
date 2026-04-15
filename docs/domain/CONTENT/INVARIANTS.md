@@ -208,7 +208,7 @@ Cómo corregir:
 3. Elige props visuales únicos (objetos, postura, composición) que reflejen el tema específico del artículo. Ver guía en `docs/operations/runbooks/hero-images-runbook.md` § Prompt Uniqueness.
 4. Actualiza `sceneId` al nuevo identificador (formato `Template:topic-escena`).
 5. Recalcula `promptHash`: `echo -n "<prompt>" | sha256sum`.
-6. Verifica cero duplicados antes de ejecutar `pnpm run images:generate`.
+6. Verifica cero duplicados antes de crear o actualizar hero images manualmente.
 
 ## 6) Compatibilidad runtime y deprecaciones
 

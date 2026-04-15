@@ -68,33 +68,19 @@ pnpm run check:hero-images
 
 This confirms all published articles have a valid `.avif` file under `public/images/hero/` within the 80KB budget.
 
-### 2. Generate Images
+### 2. Create Images Manually
 
-**All images not yet marked "done" (including errors):**
+Generate/curate the image manually in your design workflow and place the final file at:
 
-```bash
-pnpm run images:generate
+```text
+public/images/hero/<article-slug>.avif
 ```
 
-**Retry only "failed" quality images:**
+Requirements:
 
-```bash
-pnpm run images:generate:retry
-```
-
-**Single article:**
-
-```bash
-pnpm run images:generate:one --slug=<article-slug>
-```
-
-**Force regenerate everything:**
-
-```bash
-pnpm run images:generate:force
-```
-
-Requires `OPENAI_API_KEY` in `.env`. Model: `gpt-image-1`, size: `1536×1024`, output: `.avif` at 80-quality AVIF to `public/images/hero/`.
+- Keep the final image within the visual policy and composition rules.
+- Ensure file size is within the 80KB budget.
+- Do not rely on automatic API generation as the source of truth.
 
 ### 3. Review Pipeline Output
 
@@ -129,15 +115,15 @@ Or view it on the live site (article card on homepage/listing, and in the articl
 
 ### 5. Handle Persistently Failing Images
 
-If an image fails 3 automated attempts (score < 5/7), check:
+If an image repeatedly fails review, check:
 
 1. Read the `failures` array in `status.json` for this slug.
 2. Open `scripts/hero-images/prompts.json` and find the entry for this slug.
 3. Check `sceneId`, `toneClass`, and `primaryIntent` — are they appropriate for this article?
 4. If the wrong scene is assigned: update the prompt entry in `prompts.json` to use a better-matched approved model from `src/tools/hero-images/config.mjs`.
-5. Then regenerate: `pnpm run images:generate:one --slug=<slug>`.
+5. Then recreate the image manually and replace `public/images/hero/<slug>.avif`.
 
-If failures persist across 3 full cycles, escalate to manual scene design using a vector tool — do not publish with a failed image in place.
+If failures persist across multiple cycles, escalate to manual scene redesign — do not publish with a failed image in place.
 
 ### 6. Post-Generation Verification
 
@@ -154,11 +140,11 @@ Both must exit 0 before the change is merged.
 
 | File                                  | Purpose                                                    |
 | ------------------------------------- | ---------------------------------------------------------- |
-| `scripts/hero-images/pipeline.mjs`    | Generation + evaluation engine (gpt-image-1, 1536×1024)    |
+| `scripts/hero-images/pipeline.mjs`    | Legacy generation/evaluation engine (not policy-required)   |
 | `scripts/hero-images/status.json`     | Per-slug pipeline state (done/failed/error)                |
 | `public/hero-images-status.json`      | Public copy for the dev monitor UI                         |
 | `scripts/hero-images/prompts.json`    | Per-slug prompt metadata (scene, tone, intent)             |
-| `scripts/hero-images/prompt-plan.mjs` | Default model plan (gpt-image-1, 1536×1024, quality: auto) |
+| `scripts/hero-images/prompt-plan.mjs` | Deterministic prompt planning metadata                      |
 | `public/images/hero/<slug>.avif`      | Canonical hero image files                                 |
 | `src/tools/hero-images/config.mjs`    | Approved scene models (Templates A/B/C)                    |
 | `scripts/check-hero-images.mjs`       | CI validation (presence, format, size budget)              |
@@ -168,7 +154,6 @@ Both must exit 0 before the change is merged.
 
 | Parameter       | Value                                                 |
 | --------------- | ----------------------------------------------------- |
-| Generation size | 1536×1024 (gpt-image-1)                               |
 | Output canvas   | 1200×630 (resized by `postprocess-images.mjs`)        |
 | Max file size   | 80KB (build-enforced); target ≤ 50KB                  |
 | Card display    | 16:9 crop from center — safe zone: central 1134×596px |
@@ -180,7 +165,7 @@ Checklist for every new published article:
 - [ ] Frontmatter `heroImage` field set to `/images/hero/<slug>.avif`
 - [ ] Entry exists in `scripts/hero-images/prompts.json` with valid `sceneId`, `primaryIntent`, `toneClass`
 - [ ] `pnpm run check:hero-prompts` passes
-- [ ] `pnpm run images:generate:one --slug=<slug>` completes with score ≥ 5/7
+- [ ] Hero image manually created and saved as `public/images/hero/<slug>.avif`
 - [ ] Human spot-check: ≥ 2/3 Layer 2 questions pass
 - [ ] `pnpm run check:hero-images` passes
 - [ ] File size in `public/images/hero/<slug>.avif` is ≤ 80KB

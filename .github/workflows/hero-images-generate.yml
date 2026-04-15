@@ -1,4 +1,4 @@
-name: Hero Images Generation
+name: Hero Images Manual Workflow
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
@@ -7,21 +7,12 @@ permissions:
   contents: read
 
 on:
-  workflow_dispatch:
-    inputs:
-      run_mode:
-        description: "dry-run or run"
-        required: false
-        default: "dry-run"
-        type: choice
-        options:
-          - dry-run
-          - run
+  workflow_dispatch: {}
   schedule:
     - cron: "0 7 * * 1"
 
 jobs:
-  generate-hero-images:
+  refresh-hero-image-prompts:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
@@ -47,19 +38,10 @@ jobs:
       - name: "🧠 Build deterministic prompts"
         run: node scripts/hero-images/build-prompts.mjs
 
-      - name: "🧪 Generate images (dry-run fallback)"
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          DALL_E_MODEL: ${{ vars.DALL_E_MODEL }}
-          RUN_MODE: ${{ github.event.inputs.run_mode || 'dry-run' }}
+      - name: "📝 Manual-only reminder"
         run: |
-          if [ "$RUN_MODE" = "run" ] && [ -n "$OPENAI_API_KEY" ]; then
-            node scripts/hero-images/generate-images.mjs --run
-            node scripts/hero-images/postprocess-images.mjs
-          else
-            node scripts/hero-images/generate-images.mjs --dry-run
-            echo "[hero-images] Generation skipped (dry-run or missing OPENAI_API_KEY)."
-          fi
+          echo "[hero-images] Automatic API generation is disabled by policy."
+          echo "[hero-images] Create/update hero images manually in public/images/hero and validate with check:hero-images."
 
       - name: "📤 Upload hero-image artifacts"
         if: always()
@@ -71,4 +53,3 @@ jobs:
           path: |
             scripts/hero-images/manifest.json
             scripts/hero-images/prompts.json
-            scripts/hero-images/downloads

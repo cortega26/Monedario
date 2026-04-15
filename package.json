@@ -57,11 +57,11 @@
     "check:urls:external:audit": "node scripts/check-urls-external.mjs --audit",
     "check:urls:baseline:update": "node scripts/check-urls.mjs --update-baseline --allow-baseline-update",
     "images:build-prompts": "node scripts/hero-images/build-prompts.mjs",
-    "images:generate": "node --env-file=.env scripts/hero-images/pipeline.mjs",
-    "images:generate:force": "node --env-file=.env scripts/hero-images/pipeline.mjs --force",
-    "images:generate:one": "node --env-file=.env scripts/hero-images/pipeline.mjs --slug=",
-    "images:generate:cluster": "node --env-file=.env scripts/hero-images/pipeline.mjs --cluster=",
-    "images:generate:retry": "node --env-file=.env scripts/hero-images/pipeline.mjs --retry-failed"
+    "images:generate": "node scripts/hero-images/manual-only.mjs images:generate",
+    "images:generate:force": "node scripts/hero-images/manual-only.mjs images:generate:force",
+    "images:generate:one": "node scripts/hero-images/manual-only.mjs images:generate:one",
+    "images:generate:cluster": "node scripts/hero-images/manual-only.mjs images:generate:cluster",
+    "images:generate:retry": "node scripts/hero-images/manual-only.mjs images:generate:retry"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.3",

@@ -1,6 +1,6 @@
 # Context Contracts Registry
 
-Last updated: 2026-04-11
+Last updated: 2026-04-15
 Status: Active
 
 ## 1. Introduction
@@ -40,6 +40,7 @@ Change log:
 - 2026-03-22: added editorial timeliness policy contract and scheduled audit workflow.
 - 2026-04-11: added competitive adaptation contract and benchmark-aware editorial artifact expectations.
 - 2026-04-12: added CONTRACT.EXTERNAL_URLCHECK for external link validation engine; see ADR-20260412-external-link-ci-gate.
+- 2026-04-15: hero image contract updated to manual-only creation; automated API generation removed from policy/workflow.
 
 ## 2. Contracts
 
@@ -211,7 +212,7 @@ Change log:
 
 ### `CONTRACT.EDITORIAL.HERO_IMAGE_PIPELINE`
 
-- Scope: Deterministic hero-image prompt derivation, optional generation, and publication-time asset validation for `src/data/blog/**/*.md(x)`.
+- Scope: Deterministic hero-image prompt derivation, manual image creation workflow, and publication-time asset validation for `src/data/blog/**/*.md(x)`.
 - Source of truth:
   - Pipeline scripts: `scripts/hero-images/*`
   - Guard gate: `scripts/check-hero-images.mjs`
@@ -224,7 +225,8 @@ Change log:
   - Image selection is mandatory from article reading, not metadata-only matching.
   - Each prompt entry must preserve a situation-level mapping between article text and selected template/scene/icon.
   - The final visual choice must remain inside the controlled scene system defined by `context/EDITORIAL_IMAGE_SYSTEM.md`.
-  - Generation is optional and key-gated; CI standard mode must not require API secrets.
+  - Final hero assets are manually created/curated; automated image API generation is out of policy.
+  - CI and scheduled workflows must not require API secrets for hero image generation.
 - Backward-compat expectations:
   - Legacy `heroImage` path styles may coexist during migration, provided canonical public assets exist.
   - Hardening to public-only path mode requires explicit policy update.
@@ -234,7 +236,7 @@ Change log:
   - `node scripts/hero-images/build-prompts.mjs`
   - `node scripts/check-hero-prompts.mjs`
   - `node scripts/check-hero-images.mjs`
-  - Artifact/manual review for final text-to-scene quality until deeper semantic checks are automated
+  - Manual review for final text-to-scene quality and visual fidelity
 
 ### `CONTRACT.EDITORIAL.INLINE_IMAGE_FORMAT`
 
