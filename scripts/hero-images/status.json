@@ -6,10 +6,7 @@
     "failedAt": "2026-04-10T23:33:39.659Z"
   },
   "liquidacion-de-sueldo": {
-    "state": "error",
-    "error": "400 Billing hard limit has been reached.",
-    "attempts": 3,
-    "failedAt": "2026-04-10T23:33:40.274Z"
+    "state": "done"
   },
   "cuanto-descuenta-la-afp-de-tu-sueldo": {
     "state": "error",
