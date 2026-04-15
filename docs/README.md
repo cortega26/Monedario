@@ -19,6 +19,10 @@ This repository uses authority-layered documentation.
 - Architecture boundaries, structure maps, and architecture-level analysis docs.
 - `docs/operations/`
 - Audits, issue execution records, and closure/performance reports.
+- `docs/operations/AGENT_TASK_INDEX.md`
+- Single task-entry index for agents and contributors.
+- `docs/operations/templates/`
+- Reusable task templates for scoped work.
 - `docs/development/`
 - Development planning artifacts and execution backlogs.
 - `docs/editorial/`
