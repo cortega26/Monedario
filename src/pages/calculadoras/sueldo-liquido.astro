@@ -23,6 +23,59 @@ const economicSourceLabel =
     : economicParameters.source === "snapshot"
       ? "dato de referencia"
       : "fallback de emergencia";
+const firstTaxExemptBracketLabel =
+  "$" + Math.round(firstTaxExemptBracket).toLocaleString("es-CL");
+const sueldoLiquidoFaqs = [
+  {
+    question: "¿Cómo se calcula el sueldo líquido en Chile?",
+    answer:
+      "Se parte del sueldo bruto y se descuentan las cotizaciones previsionales obligatorias (AFP, salud, seguro de cesantía) y, si corresponde, el impuesto de segunda categoría. La base de cálculo es el sueldo imponible, que puede ser menor al bruto si tu liquidación incluye asignaciones no imponibles como colación o movilización.",
+  },
+  {
+    question: "¿Cuánto descuenta la AFP de mi sueldo?",
+    answer:
+      "Entre 10,46% y 11,45% del sueldo imponible según tu AFP. Ese porcentaje incluye el 10% de cotización obligatoria —que va a tu cuenta personal y es tuyo— más la comisión de la AFP, que es el costo del servicio.",
+  },
+  {
+    question: "¿Qué es el sueldo imponible?",
+    answer:
+      "Es la base sobre la que se calculan AFP, salud y seguro de cesantía. Equivale al sueldo bruto menos las asignaciones no imponibles (como colación y movilización dentro de los límites legales). Si tu liquidación no separa esos conceptos, tu imponible suele ser igual a tu bruto.",
+  },
+  {
+    question: "¿Cuánto me descuentan de salud?",
+    answer:
+      "El 7% del sueldo imponible si estás en Fonasa. Si estás en Isapre y tu plan cuesta más que el 7%, la diferencia adicional también se descuenta directamente de tu sueldo.",
+  },
+  {
+    question: "¿El seguro de cesantía se descuenta en todos los contratos?",
+    answer:
+      "Solo si tienes contrato indefinido (0,6% a tu cargo). Con contrato a plazo fijo u obra, el trabajador no aporta nada — el empleador paga el 3% completo. En ambos casos acumulas saldo en tu Cuenta Individual de Cesantía.",
+  },
+  {
+    question: "¿Desde qué sueldo pago impuesto de segunda categoría?",
+    answer: `Solo si tu renta tributable mensual supera el primer tramo exento de la tabla del SII. En 2026 ese umbral es aproximadamente ${firstTaxExemptBracketLabel}. El impuesto es progresivo: solo paga la parte del sueldo que supera cada tramo.`,
+  },
+  {
+    question: "¿Cómo calculo el bruto si sé cuánto quiero recibir?",
+    answer:
+      'Usa el modo "Líquido → Bruto" de esta calculadora: ingresa el monto que quieres recibir en tu cuenta y el sistema estima el bruto necesario bajo los supuestos de AFP, salud y contrato que indiques. Es útil al negociar sueldo o evaluar una oferta laboral.',
+  },
+  {
+    question: "¿Qué incluye la gratificación en el sueldo?",
+    answer:
+      "La gratificación legal en Chile puede pagarse mensualizada (25% de lo devengado con tope de 4,75 IMM) o como porcentaje de utilidades. Si la recibes mes a mes como parte de tu liquidación, es imponible: afecta tu AFP, salud, cesantía e impuesto. Ingrésala en el Modo avanzado de esta calculadora para un resultado más preciso.",
+  },
+  {
+    question: "¿Las horas extra se descuentan de AFP y salud?",
+    answer:
+      "Sí. Las horas extra son remuneración imponible: se suman a la base de cálculo de AFP, salud y seguro de cesantía, y también entran a la base de impuesto de segunda categoría. Puedes incluirlas en el Modo avanzado. Desde abril de 2026 (Ley 40h), las horas extra comienzan en la hora 43 de la semana —no en la 46— y cada una debe pagarse con un recargo mínimo del 50%.",
+  },
+  {
+    question: "¿La Ley 40h cambia mi sueldo líquido?",
+    answer:
+      "No directamente. La Ley 40h (Ley 21.561) reduce la jornada legal ordinaria de 45 a 42 horas semanales en abril de 2026 (con una bajada final a 40 h en 2028), pero no modifica tu sueldo bruto mensual pactado. Lo que cambia es que si trabajas más de 42 horas a la semana, cada hora adicional es hora extra y debe pagarse con un recargo mínimo del 50%. Lo que sí sube es el valor unitario de cada hora ordinaria, porque el denominador (horas semanales × 4,333) se reduce manteniendo el mismo sueldo.",
+  },
+];
 ---
 
 <Layout
@@ -32,6 +85,7 @@ const economicSourceLabel =
   <CalculatorJsonLd
     name="Calculadora de Sueldo Líquido y Bruto Chile 2026"
     description="Calcula tu sueldo líquido desde el bruto, o el bruto necesario para recibir el líquido que quieres. Desglose de AFP, salud, cesantía e impuesto. Gratis y actualizada 2026."
+    faqs={sueldoLiquidoFaqs}
   />
   <Header />
   <Breadcrumb />
@@ -42,6 +96,7 @@ const economicSourceLabel =
     data-analytics-calculator="sueldo-liquido"
     data-analytics-calculator-name="Calculadora de Sueldo Liquido"
     data-site-title={SITE.title}
+    data-profile-prefill-host="#calculator-form-card"
   >
     <section class="border-b border-border pt-8 pb-6">
       <h1
@@ -62,7 +117,10 @@ const economicSourceLabel =
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
-      <div class="rounded-xl border border-border p-6">
+      <div
+        id="calculator-form-card"
+        class="rounded-xl border border-border p-6"
+      >
         <h2 class="mb-5 text-lg font-semibold">📝 Ingresa tus datos</h2>
 
         <!-- MODO TOGGLE -->
@@ -133,6 +191,7 @@ const economicSourceLabel =
           <input
             type="number"
             id="sueldo-imponible"
+            data-profile-bind="sueldoImponible"
             placeholder="Ej: 1.050.000"
             min="0"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
@@ -226,6 +285,7 @@ const economicSourceLabel =
           <input
             type="number"
             id="isapre-adicional"
+            data-profile-bind="isapreAdicionalPct"
             placeholder="Ej: 2.5"
             min="0"
             max="20"
@@ -677,6 +737,7 @@ const economicSourceLabel =
 </Layout>
 
 <script>
+  import "@/scripts/calculator-prefill";
   import {
     calculateNetSalary,
     estimateGrossFromNet,

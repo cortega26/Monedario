@@ -37,6 +37,7 @@ const cheapest = AFP_LIST[0]; // PlanVital after sort
     data-analytics-page-type="calculator"
     data-analytics-calculator="comisiones-afp"
     data-analytics-calculator-name="Comparador Comisiones AFP"
+    data-profile-prefill-host="#calculator-form-card"
   >
     <section class="border-b border-border pt-8 pb-6">
       <h1 class="my-4 text-3xl font-bold sm:text-4xl">
@@ -51,7 +52,7 @@ const cheapest = AFP_LIST[0]; // PlanVital after sort
 
     <!-- CALCULADORA -->
     <section class="py-8">
-      <div class="mb-6 max-w-sm">
+      <div id="calculator-form-card" class="mb-6 max-w-sm">
         <label
           for="imponible"
           class="mb-1 block text-sm font-medium text-secondary"
@@ -64,6 +65,7 @@ const cheapest = AFP_LIST[0]; // PlanVital after sort
             id="imponible"
             placeholder="Ej: 1.200.000"
             min="0"
+            data-profile-bind="sueldoImponible"
             class="flex-1 rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
           />
           <button
@@ -231,6 +233,7 @@ const cheapest = AFP_LIST[0]; // PlanVital after sort
 </Layout>
 
 <script>
+  import "@/scripts/calculator-prefill";
   import { trackAnalyticsEvent } from "@/utils/analytics";
 
   declare global {

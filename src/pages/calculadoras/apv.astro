@@ -25,60 +25,38 @@ const economicSourceLabel =
     : economicParameters.source === "snapshot"
       ? "dato de referencia"
       : "fallback de emergencia";
-const faqSchema = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: [
-    {
-      "@type": "Question",
-      name: "¿Qué es el APV y en qué se diferencia del ahorro en la AFP?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "El APV es un ahorro complementario y voluntario a la cotización obligatoria del 10% en la AFP. Tiene beneficios tributarios que el ahorro común no ofrece (Régimen A: bonificación estatal del 15%; Régimen B: deducción de la base imponible del IGC).",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Cuándo conviene el Régimen A y cuándo el Régimen B?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Régimen A conviene si tus ingresos son bajos o medianos y el bono estatal del 15% supera al ahorro tributario. Régimen B conviene si tienes ingresos altos y una tasa marginal elevada en el Impuesto Global Complementario, ya que el aporte reduce tu base imponible.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Puedo retirar mi APV antes de jubilar?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Sí, pero un retiro anticipado tiene costo tributario: en Régimen A debes devolver la bonificación estatal; en Régimen B el monto se agrega a tu renta del año y tributa con un recargo adicional del 3%.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Cuánto es el monto máximo de APV que puedo aportar al año?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "El tope con beneficio tributario es 600 UF anuales en Régimen B. En Régimen A, el bono estatal se topa en 6 UTM anuales (15% sobre lo aportado hasta ese límite).",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿El APV reduce mi impuesto en la Operación Renta?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Solo en Régimen B: los aportes se deducen de la renta imponible antes de calcular el IGC en el formulario F-22, lo que puede reducir lo que debes pagar o aumentar tu devolución en abril.",
-      },
-    },
-    {
-      "@type": "Question",
-      name: "¿Qué pasa con mi APV si me cambio de AFP o de institución?",
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: "Si el APV está en tu AFP, se traspasa junto con tu cuenta individual al cambiar de AFP. Si está en otra institución (banco, fondo mutuo o seguro), el cambio de AFP no lo afecta.",
-      },
-    },
-  ],
-};
+const apvFaqs = [
+  {
+    question: "¿Qué es el APV y en qué se diferencia del ahorro en la AFP?",
+    answer:
+      "El APV es un ahorro complementario y voluntario a la cotización obligatoria del 10% en la AFP. Tiene beneficios tributarios que el ahorro común no ofrece (Régimen A: bonificación estatal del 15%; Régimen B: deducción de la base imponible del IGC).",
+  },
+  {
+    question: "¿Cuándo conviene el Régimen A y cuándo el Régimen B?",
+    answer:
+      "Régimen A conviene si tus ingresos son bajos o medianos y el bono estatal del 15% supera al ahorro tributario. Régimen B conviene si tienes ingresos altos y una tasa marginal elevada en el Impuesto Global Complementario, ya que el aporte reduce tu base imponible.",
+  },
+  {
+    question: "¿Puedo retirar mi APV antes de jubilar?",
+    answer:
+      "Sí, pero un retiro anticipado tiene costo tributario: en Régimen A debes devolver la bonificación estatal; en Régimen B el monto se agrega a tu renta del año y tributa con un recargo adicional del 3%.",
+  },
+  {
+    question: "¿Cuánto es el monto máximo de APV que puedo aportar al año?",
+    answer:
+      "El tope con beneficio tributario es 600 UF anuales en Régimen B. En Régimen A, el bono estatal se topa en 6 UTM anuales (15% sobre lo aportado hasta ese límite).",
+  },
+  {
+    question: "¿El APV reduce mi impuesto en la Operación Renta?",
+    answer:
+      "Solo en Régimen B: los aportes se deducen de la renta imponible antes de calcular el IGC en el formulario F-22, lo que puede reducir lo que debes pagar o aumentar tu devolución en abril.",
+  },
+  {
+    question: "¿Qué pasa con mi APV si me cambio de AFP o de institución?",
+    answer:
+      "Si el APV está en tu AFP, se traspasa junto con tu cuenta individual al cambiar de AFP. Si está en otra institución (banco, fondo mutuo o seguro), el cambio de AFP no lo afecta.",
+  },
+];
 ---
 
 <Layout
@@ -88,11 +66,7 @@ const faqSchema = {
   <CalculatorJsonLd
     name="Simulador APV Chile: ¿Régimen A o B conviene más?"
     description="¿Te conviene APV en Chile? Compara Régimen A y B según tu sueldo y aporte mensual, y calcula el ahorro tributario real antes de decidir."
-  />
-  <script
-    type="application/ld+json"
-    is:inline
-    set:html={JSON.stringify(faqSchema)}
+    faqs={apvFaqs}
   />
   <Header />
   <Breadcrumb />
@@ -102,6 +76,7 @@ const faqSchema = {
     data-analytics-page-type="calculator"
     data-analytics-calculator="apv"
     data-analytics-calculator-name="Simulador APV"
+    data-profile-prefill-host="#calculator-form-card"
   >
     <section class="border-b border-border pt-8 pb-6">
       <h1 class="my-4 text-3xl font-bold sm:text-4xl">📈 Simulador APV</h1>
@@ -114,7 +89,10 @@ const faqSchema = {
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
-      <div class="rounded-xl border border-border p-6">
+      <div
+        id="calculator-form-card"
+        class="rounded-xl border border-border p-6"
+      >
         <h2 class="mb-5 text-lg font-semibold">📝 Ingresa tus datos</h2>
 
         <div class="mb-4">
@@ -148,6 +126,7 @@ const faqSchema = {
           <input
             type="number"
             id="sueldo-imponible"
+            data-profile-bind="sueldoImponible"
             placeholder="Ej: 1.350.000"
             min="0"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
@@ -286,6 +265,7 @@ const faqSchema = {
           <input
             type="number"
             id="isapre-adicional"
+            data-profile-bind="isapreAdicionalPct"
             placeholder="Ej: 2.5"
             min="0"
             max="20"
@@ -486,11 +466,11 @@ const faqSchema = {
       <h2 class="mb-6 text-xl font-semibold">Preguntas frecuentes sobre APV</h2>
       <dl class="space-y-6">
         {
-          faqSchema.mainEntity.map(faq => (
+          apvFaqs.map(faq => (
             <div>
-              <dt class="mb-1 font-medium text-foreground">{faq.name}</dt>
+              <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
               <dd class="text-sm leading-relaxed text-secondary">
-                {faq.acceptedAnswer.text}
+                {faq.answer}
               </dd>
             </div>
           ))
@@ -588,6 +568,7 @@ const faqSchema = {
 </Layout>
 
 <script>
+  import "@/scripts/calculator-prefill";
   import { calculateApvComparison } from "@/application/use-cases/CalculateApvComparison";
   import { trackAnalyticsEvent } from "@/utils/analytics";
 

@@ -1,0 +1,177 @@
+// Generic prefill wiring for calculator inputs that opt in via `data-profile-bind`.
+// Authoritative spec: docs/adr/ADR-20260416-calculator-profile-persistence.md
+
+import {
+  clearProfile,
+  getProfile,
+  isKnownProfileField,
+  updateProfile,
+  type ProfilePatch,
+  type UserProfileField,
+} from "@/utils/userProfile";
+
+const DEBOUNCE_MS = 500;
+const HINT_ID = "profile-prefill-hint";
+
+type BindableInput = HTMLInputElement | HTMLSelectElement;
+
+function isBindable(el: Element): el is BindableInput {
+  return el instanceof HTMLInputElement || el instanceof HTMLSelectElement;
+}
+
+function readField(
+  el: BindableInput,
+  field: UserProfileField
+): ProfilePatch[UserProfileField] {
+  const raw = el.value.trim();
+  if (raw === "") return undefined;
+
+  const numericFields: UserProfileField[] = [
+    "sueldoImponible",
+    "isapreAdicionalPct",
+    "gratificacion",
+    "horasExtra",
+    "apvRegimenBAnual",
+  ];
+
+  if (numericFields.includes(field)) {
+    const parsed = Number(raw.replace(/\./g, "").replace(/,/g, "."));
+    return Number.isFinite(parsed) ? parsed : undefined;
+  }
+
+  return raw;
+}
+
+function writeField(el: BindableInput, value: unknown): boolean {
+  if (value === undefined || value === null || value === "") return false;
+
+  const next = String(value);
+  if (el.value !== "" || next === "") return false;
+
+  el.value = next;
+  el.dispatchEvent(new Event("input", { bubbles: true }));
+  el.dispatchEvent(new Event("change", { bubbles: true }));
+  return true;
+}
+
+function ensureHint(host: HTMLElement): HTMLElement {
+  const existing = host.querySelector<HTMLElement>(`#${HINT_ID}`);
+  if (existing) return existing;
+
+  const hint = document.createElement("div");
+  hint.id = HINT_ID;
+  hint.className =
+    "mb-4 flex items-center justify-between gap-3 rounded-lg border border-border bg-muted/40 px-3 py-2 text-xs text-secondary";
+  hint.setAttribute("role", "note");
+
+  const label = document.createElement("span");
+  label.textContent = "✓ Pre-rellenado de tu última simulación";
+
+  const button = document.createElement("button");
+  button.type = "button";
+  button.id = "profile-prefill-clear";
+  button.className =
+    "text-xs font-medium text-accent underline underline-offset-4 hover:opacity-80";
+  button.textContent = "Limpiar";
+
+  hint.appendChild(label);
+  hint.appendChild(button);
+  host.prepend(hint);
+
+  return hint;
+}
+
+function clearPrefilled(inputs: ReadonlyArray<BindableInput>): void {
+  for (const el of inputs) {
+    if (el.dataset.profilePrefilled !== "true") continue;
+    el.value = "";
+    delete el.dataset.profilePrefilled;
+    el.dispatchEvent(new Event("input", { bubbles: true }));
+    el.dispatchEvent(new Event("change", { bubbles: true }));
+  }
+}
+
+function init(): void {
+  const root = document.querySelector<HTMLElement>(
+    "[data-analytics-page-type='calculator']"
+  );
+  if (!root) return;
+  if (root.dataset.profilePrefillHydrated === "true") return;
+  root.dataset.profilePrefillHydrated = "true";
+
+  const candidates = Array.from(
+    root.querySelectorAll<Element>("[data-profile-bind]")
+  ).filter(isBindable);
+
+  if (candidates.length === 0) return;
+
+  const profile = getProfile();
+  let prefillCount = 0;
+  const prefilledInputs: BindableInput[] = [];
+
+  for (const el of candidates) {
+    const field = el.dataset.profileBind ?? "";
+    if (!isKnownProfileField(field)) continue;
+
+    const stored = profile[field];
+    if (writeField(el, stored)) {
+      el.dataset.profilePrefilled = "true";
+      prefilledInputs.push(el);
+      prefillCount += 1;
+    }
+
+    const handler = debounce(() => {
+      const value = readField(el, field);
+      const patch = { [field]: value } as ProfilePatch;
+      updateProfile(patch);
+      delete el.dataset.profilePrefilled;
+    }, DEBOUNCE_MS);
+
+    el.addEventListener("input", handler);
+    el.addEventListener("change", handler);
+  }
+
+  if (prefillCount > 0) {
+    const hostSelector = root.dataset.profilePrefillHost ?? "form, .grid";
+    const host =
+      root.querySelector<HTMLElement>(hostSelector) ??
+      (root.firstElementChild as HTMLElement | null) ??
+      root;
+    const hint = ensureHint(host);
+    hint
+      .querySelector<HTMLButtonElement>("#profile-prefill-clear")
+      ?.addEventListener("click", () => {
+        clearProfile();
+        clearPrefilled(prefilledInputs);
+        hint.remove();
+      });
+  }
+}
+
+function debounce<T extends (...args: unknown[]) => void>(
+  fn: T,
+  ms: number
+): (...args: Parameters<T>) => void {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  return (...args: Parameters<T>) => {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(() => fn(...args), ms);
+  };
+}
+
+function schedule(): void {
+  if ("requestIdleCallback" in window) {
+    window.requestIdleCallback(init, { timeout: 1200 });
+    return;
+  }
+  setTimeout(init, 120);
+}
+
+schedule();
+document.addEventListener("astro:page-load", () => {
+  const root = document.querySelector<HTMLElement>(
+    "[data-analytics-page-type='calculator']"
+  );
+  if (root) delete root.dataset.profilePrefillHydrated;
+  schedule();
+});

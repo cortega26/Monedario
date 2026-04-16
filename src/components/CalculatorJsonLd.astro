@@ -1,12 +1,18 @@
 ---
 import { SITE } from "@/config";
 
+export interface CalculatorFaq {
+  question: string;
+  answer: string;
+}
+
 interface Props {
   name: string;
   description: string;
+  faqs?: CalculatorFaq[];
 }
 
-const { name, description } = Astro.props;
+const { name, description, faqs } = Astro.props;
 
 const SITE_URL = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
   /\/$/,
@@ -14,7 +20,7 @@ const SITE_URL = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
 );
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
 
-const schema = {
+const applicationSchema = {
   "@context": "https://schema.org",
   "@type": "WebApplication",
   name,
@@ -34,10 +40,35 @@ const schema = {
     url: SITE_URL,
   },
 };
+
+const faqSchema =
+  faqs && faqs.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map(({ question, answer }: CalculatorFaq) => ({
+          "@type": "Question",
+          name: question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: answer,
+          },
+        })),
+      }
+    : null;
 ---
 
 <script
   type="application/ld+json"
   is:inline
-  set:html={JSON.stringify(schema)}
+  set:html={JSON.stringify(applicationSchema)}
 />
+{
+  faqSchema && (
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(faqSchema)}
+    />
+  )
+}
