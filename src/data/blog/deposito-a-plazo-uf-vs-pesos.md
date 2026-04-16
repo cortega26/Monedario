@@ -148,7 +148,7 @@ Si quieres integrar esta decisión en una estrategia más amplia de instrumentos
 ## Fuentes y referencias primarias
 
 - Banco Central, UF y mecanismo de reajuste: https://www.bcentral.cl/web/banco-central/preguntas-frecuentes/-/asset_publisher/0u850BwdK7p5/content/que-es-la-uf-y-como-se-reajusta-
-- CMF Educa, Depósitos a plazo (definiciones y plazos mínimos): https://www.cmfchile.cl/educa/621/w3-article-27170.html
+- CMF Educa, Depósitos a plazo (definiciones y plazos mínimos): <https://www.cmfchile.cl/educa/621/w3-article-27170.html>
 - SII FAQ, obligación de declarar rentas de inversiones: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0597.htm
 
 ## Información de vigencia

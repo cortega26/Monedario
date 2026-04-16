@@ -53,4 +53,5 @@ A regression is any change that degrades previously valid behavior in contracts,
 - Violation: Treating a pre-existing failure as a regression introduced by the current PR, or silently ignoring it without a backlog entry.
 
 ## Assumptions (explicit)
+
 - A1: As of 2026-02-28, numeric line/function coverage gate is not configured in CI (`@vitest/coverage-v8` missing). This protocol therefore enforces change-impact coverage thresholds until a numeric coverage gate is added by ADR.

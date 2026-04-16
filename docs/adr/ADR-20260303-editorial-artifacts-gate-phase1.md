@@ -26,6 +26,7 @@ YMYL detection priority:
 3. optional fallback allowlist (`context/EDITORIAL_YMYL_ALLOWLIST.txt`) if present
 
 Artifact path policy:
+
 - canonical: `artifacts/editorial/<post_id>/<run-id>/`
 - temporary fallback read support: `context/editorial/artifacts/<post_id>/`
 

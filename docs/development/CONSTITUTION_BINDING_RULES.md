@@ -10,6 +10,7 @@ Referenced from `AGENTS.md §4`. Source of truth: `docs/AI_ENGINEERING_CONSTITUT
 - Violation: Altering layer dependencies without constitutional citation.
 
 ## Rule 4.2 - Conflict surfacing protocol
+
 - Rationale: Conflicts must be auditable, not implicit.
 - Enforcement: Conflict report must contain: requested action, conflicting rule, affected paths, reason change is blocked, accepted alternatives (if any).
 - Compliant behavior: Structured conflict report posted instead of code workaround.
@@ -22,6 +23,7 @@ Referenced from `AGENTS.md §4`. Source of truth: `docs/AI_ENGINEERING_CONSTITUT
 - Violation: Changing slug identity strategy without ADR.
 
 ## Rule 4.4 - Forbidden refactor windows
+
 - Rationale: Opportunistic refactors increase risk during focused tasks.
 - Enforcement: Refactors are forbidden during bugfix/content-only tasks unless directly required for invariant or contract preservation and declared in scope.
 - Compliant behavior: Keep refactor out of an editorial typo fix PR.

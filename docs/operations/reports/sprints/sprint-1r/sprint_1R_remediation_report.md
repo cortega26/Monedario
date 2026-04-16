@@ -150,6 +150,7 @@
 ## Change Control Record
 
 1. Scope declaration
+
 - In scope: shared metadata/schema/layout files, sitemap/indexation files, Sprint 1R operational artifacts, backlog/progress records, and the content files containing confirmed Sprint 1A broken official-source links.
 - Out of scope: Search Console/Bing ownership itself, Phase 2 content expansion, homepage redesign, and unrelated refactors.
 
@@ -167,6 +168,7 @@
   - required operational evidence
 
 3. Invariant preservation
+
 - Referenced invariants:
   - `URL.PUBLIC.NO_POST_ID`
   - `ROUTES.NO_SILENT_CHANGES`
@@ -179,6 +181,7 @@
   - `pnpm run check:frontmatter` passed
 
 4. Contract preservation
+
 - Referenced contracts:
   - `CONTRACT.PUBLIC_URLS`
   - `CONTRACT.ROUTES_SNAPSHOT`

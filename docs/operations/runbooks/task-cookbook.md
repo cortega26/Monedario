@@ -21,6 +21,7 @@ Pasos:
 9. Ejecutar `pnpm run check:editorial-artifacts` y confirmar que pasa antes de merge.
 
 Checklist mínimo de salida:
+
 - Frontmatter válido.
 - Hero image publicada y registrada.
 - Artefactos editoriales creados.

@@ -51,6 +51,7 @@ G5. `pnpm test` passes (full suite, exit 0).
 - Confirm no branch-protection / required-check configuration guards the merge.
 
 ### Phase 2 — Apply the fix
+
 - In the "🔀 Enable auto-merge" step, replace:
   ```bash
   gh pr merge --auto --squash ${{ steps.create-pr.outputs.pull-request-number }}
@@ -63,6 +64,7 @@ G5. `pnpm test` passes (full suite, exit 0).
 - This ensures: auto-merge when checks are required, direct merge when the PR is already clean.
 
 ### Phase 3 — Verify with tests
+
 - Add `tests/e2e/refresh-snapshot-workflow.e2e.test.ts` with assertions that:
   - The workflow file exists.
   - The "Enable auto-merge" step contains the `||` fallback pattern.

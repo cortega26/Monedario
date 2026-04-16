@@ -122,9 +122,9 @@ Scope of that sprint:
 
 Representative live SERP sources used in this sprint included:
 
-- AFC: https://www.afc.cl/
+- AFC: <https://www.afc.cl/>
 - ChileAtiende: https://www.chileatiende.gob.cl/
-- Banco Central de Chile BDE: https://si3.bcentral.cl/
+- Banco Central de Chile BDE: <https://si3.bcentral.cl/>
 - INE IPC pages: https://www.ine.gob.cl/
 - Superir: https://www.superir.gob.cl/
 - Provider / market explainers for APV, Cuenta 2, salary, credit-card minimum payment, and rent adjustment where those page types were visibly ranking.

@@ -17,6 +17,7 @@
 - Article-to-calculator entry flows for each calculator
 
 ### Methodology
+
 - **Baseline commands:** `pnpm run test`, `pnpm run astro check`, `pnpm run check:boundaries`, `pnpm run build`
 - **Engine audit:** Read every use-case file, verified formulas against legal sources, traced data flow
 - **Benchmark execution:** Worked cases computed against engine logic and existing test assertions
@@ -27,6 +28,7 @@
 - **Maintainability:** Code duplication, shared modules, test coverage, source-of-truth drift
 
 ### Limitations
+
 - **No browser rendering verification** — responsive behavior assessed from code, not visual testing
 - **No Lighthouse runs** — performance assessed qualitatively from architecture (static build, client-only calculations)
 - **No assistive technology verification** — accessibility assessed from markup and ARIA attributes
@@ -176,6 +178,7 @@ AFP rates appear as independent literals in `sueldo-liquido.astro`, `apv.astro`,
 ## 7. Cross-calculator patterns
 
 ### Positive patterns
+
 1. **Clean engine/UI separation** — 15 of 16 calculators have dedicated engine files with pure functions
 2. **Consistent component architecture** — CalculatorJsonLd, MethodologyBlock, PrimaryCTA, ShareCalculatorResult, Breadcrumb used uniformly
 3. **Economic parameter injection** — live/fallback pattern with source labeling across all calculators needing UF/UTM

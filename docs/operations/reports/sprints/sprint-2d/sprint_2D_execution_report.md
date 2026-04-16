@@ -101,10 +101,12 @@
 ## Change Control Record
 
 1. Scope declaration
+
 - In scope: `docs/development/backlog.md`, Sprint 2D operational reports, repo-local browser artifacts used to test platform access
 - Out of scope: `src/**`, routes, sitemap generation logic, content expansion
 
 2. Impacted modules
+
 - Paths:
   - `docs/development/backlog.md`
   - `docs/operations/reports/sprints/sprint-2d/*.md`
@@ -137,10 +139,12 @@
 - Coverage threshold status (see Section 5): pass
 
 7. Rollback strategy
+
 - Revert unit: revert the Sprint 2D doc patch and backlog entries as one logical change
 - Data/content rollback needed: no
 
 8. Regression risk
+
 - Risk level: low
 - Primary regression vectors:
   - backlog wording drift

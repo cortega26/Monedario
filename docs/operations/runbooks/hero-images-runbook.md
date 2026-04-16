@@ -5,6 +5,7 @@
 The hero image system builds deterministic prompt artifacts and validates final AVIF hero images for every published article. Final assets are created/curated manually; automatic API generation is out of policy.
 
 Core artifacts:
+
 - `scripts/hero-images/prompts.json` — pre-built prompt library (one entry per article)
 - `scripts/hero-images/status.json` — per-slug operational state (`pending`, `done`, `error`, `failed`)
 - `public/images/hero/<slug>.avif` — final 1200×630 AVIF images served to users

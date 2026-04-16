@@ -31,6 +31,7 @@
   - architecture refactors outside the touched cluster
 
 2. Impacted modules
+
 - Paths:
   - `src/data/blog/descuentos-de-sueldo.md`
   - `src/data/blog/liquidacion-de-sueldo.md`
@@ -63,6 +64,7 @@
   - frontmatter and editorial artifacts were added for the new YMYL posts
 
 4. Contract preservation
+
 - Referenced contracts:
   - `CONTRACT.PUBLIC_URLS`
   - `CONTRACT.ROUTES_SNAPSHOT`

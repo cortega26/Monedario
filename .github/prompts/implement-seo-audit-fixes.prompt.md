@@ -24,6 +24,7 @@ applyTo: 'src/**,scripts/**,public/**'
 
 ## Authority Check (AGENTS.md Rule 1.1)
 Before starting, read these files in order:
+
 1. `docs/AI_ENGINEERING_CONSTITUTION.md`
 2. `AGENTS.md`
 3. `context/INVARIANTS.md`

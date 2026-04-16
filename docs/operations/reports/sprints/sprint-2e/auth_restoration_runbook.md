@@ -39,6 +39,7 @@
 10. Verified that the fresh session reopened:
    - Google Search Console overview for `sc-domain:monedario.cl`
    - Bing Webmaster site for `https://monedario.cl/`
+
 11. Executed live platform work from the restored authenticated state.
 
 ## Auth-restoration checklist

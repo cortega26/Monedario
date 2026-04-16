@@ -10,6 +10,7 @@ Referenced from `AGENTS.md §3`. Constitutional precedence applies — see `docs
 - Violation: Merging without rollback strategy or regression risk statement.
 
 ## Rule 3.2 - Mandatory route-impact verification commands
+
 - Rationale: Public URL regressions must be blocked before merge.
 - Enforcement: Any change touching routes/canonical/RSS/sitemap, or URL helpers, must run:
   - `pnpm run check:no-postid-urls`

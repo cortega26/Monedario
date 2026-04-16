@@ -46,6 +46,7 @@ The following were verified and found correct. They should not be re-investigate
 - Side-effect isolation: `TaxEngine.ts` and `EconomicParameters.ts` are pure. All IO in infrastructure. ✓
 
 ### Accessibility
+
 - All 7 inputs have matching `<label for="...">` / `id="..."` pairs. ✓
 - `#form-error` has `role="alert"` — announced immediately on error injection. ✓
 - `#resultado-contenido` has `aria-live="polite"` — result announced after `replaceChildren`. ✓
@@ -61,6 +62,7 @@ The following were verified and found correct. They should not be re-investigate
 - Economic parameters read from `data-uf`/`data-utm` attributes at runtime; failure throws with explicit error. ✓
 
 ### APV Régimen B explanation consistency
+
 - `operacion-renta.astro` calls it "Solo Régimen B rebaja la base imponible del IGC. Tope: 600 UF." — consistent with `apv.astro` and the use case. ✓
 - No contradiction between the APV calculator and the operacion-renta calculator on Régimen B semantics. ✓
 
@@ -103,6 +105,7 @@ All located at `artifacts/calculator-audits/operacion-renta-2026-04-12/`:
 ## 5. Workstream results
 
 ### System map and baseline
+
 Complete. See `artifacts/calculator-audits/operacion-renta-2026-04-12/system-map.md`. The flow from UI to `SimulateOperacionRenta` → `calculateSecondCategoryTax` → economic provider is documented. Baseline (43 files, 218 tests, snapshot 2026-04-11) confirmed.
 
 ### Front-end and rendering audit

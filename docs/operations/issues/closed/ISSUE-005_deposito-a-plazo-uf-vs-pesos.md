@@ -12,6 +12,7 @@ Crear artículo comparativo para query `deposito a plazo en uf o pesos que convi
 - H2: FAQ
 
 ## Fuentes obligatorias
+
 - Banco Central (UF/metodología)
 - Fuentes oficiales o institucionales de condiciones DAP (bancos/CMF)
 

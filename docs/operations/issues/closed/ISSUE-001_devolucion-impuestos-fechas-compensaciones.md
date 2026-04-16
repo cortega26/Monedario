@@ -18,11 +18,13 @@ Crear artículo pilar para query `cuando depositan la devolucion de impuestos 20
 - TGR o fuente oficial equivalente para compensaciones
 
 ## Criterios de aceptación
+
 - Cumple [DoD editorial](../../editorial/DEFINITION_OF_DONE.md)
 - Incluye árbol de decisión accionable
 - Incluye fecha de vigencia visible
 - Incluye 2+ casos reales frecuentes
 
 ## No-regressions
+
 - No duplicar intención de `operación renta` (separar “devolución/estado” vs “enviar F22”)
 - Title/meta/canonical únicos respecto de futuras piezas tributarias

@@ -89,6 +89,7 @@ Distribution should start only after Monedario's landing pages and topic archite
 - Distribution experiments that amplify already-strong assets instead of weak ones.
 
 **Key metrics to monitor**
+
 - Email signup conversion rate by template and channel.
 - CTA click-through rate from homepage, articles, and calculators.
 - Returning visitor share.
@@ -114,6 +115,7 @@ Correct legally-mandated content accuracy issues, add behavioral retention infra
 AI Overview erosion of CTR on informational queries is already measurable. The defensive response is (a) tools that require interactivity AI cannot replace, and (b) regulatory freshness that makes Monedario the first reliable source when laws change. Both levers require acting before search demand crystallizes around other players.
 
 **Expected outcomes**
+
 - Calculadora sueldo-líquido accurate under Ley 40h.
 - Return-visit rate measurable via localStorage restore events.
 - FES/CAE simulator live before first enrollment window.

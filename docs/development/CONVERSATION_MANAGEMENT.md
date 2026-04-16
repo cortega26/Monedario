@@ -22,6 +22,7 @@ Referenced from `AGENTS.md §9`. Constitutional precedence applies — see `docs
 - Violation: Finishing architecture change with no persistent checkpoint.
 
 ## Rule 9.4 - Token bloat prevention
+
 - Rationale: Excessive context inflates error rate and latency.
 - Enforcement: Keep active context to relevant files only; replace repeated long content with path+summary references.
 - Compliant behavior: "See docs/domain/CONTENT/INVARIANTS.md INV-001..INV-014" instead of repeated full text.

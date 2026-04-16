@@ -68,6 +68,7 @@ Core artifacts written on each run:
   3. If persistent on critical hosts, evaluate host-specific soft policy.
 
 ### external blocking failures
+
 - Meaning: an `official_source` or `trusted_reference` URL now returns `hard_fail`, `soft_404`, or `host_mismatch`.
 - Response:
   1. Inspect `external-summary.json` and the class-specific JSON files to isolate the failing URL family.

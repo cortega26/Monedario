@@ -1,12 +1,14 @@
 # Outline
 
 ## Respuesta rápida
+
 - Resultado principal.
 - Aporte total.
 - Fecha de corte.
 - Advertencia de simulación educativa.
 
 ## Qué se modela
+
 - Período.
 - Aporte.
 - Lagunas.
@@ -19,6 +21,7 @@
 - Rol de las crisis.
 
 ## Cierre
+
 - Qué demuestra.
 - Qué no demuestra.
 - Siguientes lecturas internas.

@@ -4,6 +4,7 @@ Rules governing how agents scope, execute, and close tasks in this repository.
 Referenced from `AGENTS.md §2`. Constitutional precedence applies — see `docs/AI_ENGINEERING_CONSTITUTION.md`.
 
 ## Rule 2.1 - Scope declaration is mandatory before editing
+
 - Rationale: Full repo visibility does not permit unconstrained changes.
 - Enforcement: Every task starts with a scope block listing in-scope paths, out-of-scope paths, and allowed operation type.
 - Compliant behavior: In-scope `src/data/blog/**`, `scripts/check-frontmatter.mjs`; out-of-scope `src/domain/**`.
@@ -16,6 +17,7 @@ Referenced from `AGENTS.md §2`. Constitutional precedence applies — see `docs
 - Violation: Reformatting entire files unrelated to the requested behavior.
 
 ## Rule 2.3 - Full-file rewrites are exceptional
+
 - Rationale: Rewrites obscure intent and increase accidental breakage.
 - Enforcement: Full rewrite allowed only if one condition is true: generated artifact refresh, file is <200 LOC and structurally replaced, or user explicitly requested rewrite. Condition must be declared in PR notes.
 - Compliant behavior: Regenerating route snapshot JSON via script.
@@ -28,6 +30,7 @@ Referenced from `AGENTS.md §2`. Constitutional precedence applies — see `docs
 - Violation: Deleting failing test cases to make `pnpm run test` pass.
 
 ## Rule 2.5 - Uncertainty handling is explicit
+
 - Rationale: Silent assumptions cause contract violations.
 - Enforcement: If requirement ambiguity affects contracts/invariants, stop and request clarification; if low-risk and local, proceed with labeled assumption.
 - Compliant behavior: "Assumption A1: no URL slug migration requested; preserving current public routes."
@@ -46,18 +49,21 @@ Referenced from `AGENTS.md §2`. Constitutional precedence applies — see `docs
 - Violation: `` `/posts/${post.id}/` `` or `params.slug = post.id`.
 
 ## Rule 2.8 - Mandatory editorial AI pipeline for YMYL/refresh
+
 - Rationale: High-risk editorial quality requires deterministic multi-stage controls, not ad-hoc drafting.
 - Enforcement: For every new YMYL piece or substantive YMYL refresh, the full artifact chain in `context/EDITORIAL_AI_PIPELINE.md` is mandatory (`brief`, `dossier`, `outline`, `draft`, `math audit`, `compliance`, `publish packet`).
 - Compliant behavior: PR includes pipeline artifacts (or references) and gate evidence before publication.
 - Violation: Publishing YMYL content from a single-step draft without artifact-level verification.
 
 ## Rule 2.9 - Separation of duties in editorial verification
+
 - Rationale: Self-auditing degrades reliability in YMYL content.
 - Enforcement: `DraftAgent` cannot be the same role identity as `MathAuditAgent` or `ComplianceAgent` in one run; evidence must be recorded in publish packet.
 - Compliant behavior: Distinct role identities across draft/audit/compliance stages.
 - Violation: Same role signs draft and math/compliance verification.
 
 ## Rule 2.10 - Every new article requires a manually created hero image
+
 - Rationale: Hero images are created manually — the pipeline (`scripts/hero-images/`) generates guidance artifacts only, it does NOT call image APIs automatically. Automatic generation is intentionally disabled because AI APIs produce inconsistent results. Every image file must be manually created/curated and placed in the repo before the build can pass.
 - CI gate: `pnpm run check:hero-images` (wired into `build` and `check`) blocks the build if `public/images/hero/{slug}.avif` is absent for any published article.
 - Enforcement: When a new article is added to `src/data/blog/`:

@@ -5,12 +5,14 @@ Fecha de corte: 2026-04-14
 ## Métricas
 
 ### Total de items por urgencia
+
 - **P0:** 3
 - **P1:** 14
 - **P2:** 14
 - **P3:** 1
 
 ### Estado de avance (2026-04-12)
+
 - **Completados:** 55 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `TD-0037`, `TD-0038`, `TD-0040`, `TD-0041`, `TD-0043`, `TD-0044`, `TD-0045`, `TD-0046`, `TD-0047`, `TD-0048`, `TD-0049`, `TD-0050`, `TD-0051`, `TD-0052`, `FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 1 (`TD-0039`)
 - **Backlog sin iniciar:** 4 (`TD-0042`, `TD-0053`, `TD-0054`, `TD-0055`)
@@ -33,6 +35,7 @@ Fecha de corte: 2026-04-14
 - `TD-0055`: el gate `check:hero-prompts` falla con 35 desalineaciones `sceneId` vs `approvedModelId`, bloqueando `pnpm run check` y el cierre de la suite pre-merge completa.
 
 ### Quick wins (alto impacto / bajo esfuerzo)
+
 - [x] `TD-0007` Corregir email placeholder en enlaces sociales.
 - [x] `TD-0005` Limpiar archivos/componentes legacy no usados (`*.bak`, layout/componente huerfano).
 - [x] `TD-0006` Alinear plantillas de GitHub con el proyecto real (no AstroPaper upstream).

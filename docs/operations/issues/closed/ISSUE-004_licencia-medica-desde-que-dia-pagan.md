@@ -4,6 +4,7 @@
 Crear artículo pilar para query `licencia medica menos de 11 dias quien paga`, incluyendo regla de pago, excepciones y ruta de apelación.
 
 ## Outline mínimo
+
 - H1: Licencia médica en Chile: desde qué día te pagan y cómo reclamar
 - H2: Regla general de pago (incluye <11 días)
 - H2: Quién paga según situación
@@ -22,5 +23,6 @@ Crear artículo pilar para query `licencia medica menos de 11 dias quien paga`, 
 - Incluye diagrama simple de decisión
 
 ## No-regressions
+
 - No publicar con fuentes secundarias como base principal
 - Mantener lenguaje no médico-legal ambiguo

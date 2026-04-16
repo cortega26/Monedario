@@ -131,6 +131,7 @@ Before writing tests, read each use-case file to understand its API (input/outpu
 ### Test file A: `tests/application/CalculateMonthlyPayrollBase.test.ts`
 
 This use-case calculates net salary / sueldo líquido. Read the source file first. Write tests that:
+
 - Cover at least 3 known input/output pairs using real Chilean payroll examples (verify thresholds against current values in the use-case or `src/domain/` constants)
 - Test the minimum wage boundary (sueldo mínimo Chile 2026)
 - Test APV deduction if the use-case supports it

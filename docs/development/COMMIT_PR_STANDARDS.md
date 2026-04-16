@@ -16,12 +16,14 @@ Referenced from `AGENTS.md §8`. Constitutional precedence applies — see `docs
 - Violation: PR with only a one-line description and no verification evidence.
 
 ## Rule 8.3 - Verification checklist is blocking
+
 - Rationale: Prevents partial validation merges.
 - Enforcement: PR checkbox list must confirm completion of Section 5 gates (see `REGRESSION_PREVENTION.md`) and Section 3 change control (see `CHANGE_CONTROL_PROTOCOL.md`).
 - Compliant behavior: All checks marked with linked evidence.
 - Violation: Unchecked validation items at merge time.
 
 ## Rule 8.4 - Breaking change protocol
+
 - Rationale: Contract/routing breaks require explicit migration path.
 - Enforcement: If breaking change exists, PR must include `BREAKING CHANGE:` block with impacted consumers, migration steps, rollback, and ADR reference.
 - Compliant behavior: Breaking slug policy change with migration + redirects + ADR.

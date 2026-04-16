@@ -18,6 +18,7 @@ Related context docs:
 - `context/CURRENT_STATE.md`
 
 Authority order:
+
 1. `docs/AI_ENGINEERING_CONSTITUTION.md`
 2. `AGENTS.md`
 3. `context/*.md`

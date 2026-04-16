@@ -3,12 +3,14 @@
 Fecha de corte: 2026-03-25
 
 Authority Check:
+
 1. `docs/AI_ENGINEERING_CONSTITUTION.md`
 2. `AGENTS.md`
 3. `context/*.md`
 4. `source code/comments`
 
 Base de evidencia:
+
 - Source audit en `src/pages/**`, `src/components/**`, `src/layouts/**`, `src/config/**`.
 - Render audit en `dist/**/index.html`.
 - Señales de ownership y overlap en `pnpm run audit:topic-overlap`.
@@ -64,6 +66,7 @@ La corrección principal no es “agregar claridad visual” ni “mejorar copie
 - **Recomendación precisa:** mantener la guía rápida o el catálogo, pero no ambos con igual prominencia; si coexisten, el catálogo debe degradarse visualmente.
 
 ### Alto — La portada concentra y repite zonas editoriales ganadoras
+
 - **Qué detectamos:** `dist/index.html` promociona guías principales en el hero lateral y vuelve a mandar varias de esas mismas secciones en zonas posteriores.
 - **Por qué es un problema:** la home debería distribuir atención; hoy refuerza principalmente los mismos clusters duros.
 - **Impacto concreto en el usuario:** sesgo hacia secciones ya dominantes y menor descubrimiento de superficies secundarias.

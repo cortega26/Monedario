@@ -4,6 +4,7 @@
 Crear artículo pilar para query `como invertir en etf desde chile` con pasos y criterios de selección de plataforma/corredora.
 
 ## Outline mínimo
+
 - H1: Cómo invertir en ETFs desde Chile: guía práctica
 - H2: Qué necesitas antes de invertir
 - H2: Cómo comparar plataforma/corredora (comisión, spread, custodia)

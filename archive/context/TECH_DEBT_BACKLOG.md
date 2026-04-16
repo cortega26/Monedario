@@ -11,6 +11,7 @@ Fecha de corte: 2026-02-27
 - **P3:** 1
 
 ### Estado de avance (2026-02-27)
+
 - **Completados:** 10 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`)
 - **En progreso:** 0 (—)
 - **Backlog sin iniciar:** 0 (—)
@@ -21,6 +22,7 @@ Fecha de corte: 2026-02-27
 | 1 | — | Bajo | Sin ítems abiertos en backlog de deuda técnica al corte 2026-02-27 |
 
 ### Quick wins (alto impacto / bajo esfuerzo)
+
 - [x] `TD-0007` Corregir email placeholder en enlaces sociales.
 - [x] `TD-0005` Limpiar archivos/componentes legacy no usados (`*.bak`, layout/componente huérfano).
 - [x] `TD-0006` Alinear plantillas de GitHub con el proyecto real (no AstroPaper upstream).
@@ -126,6 +128,7 @@ Fecha de corte: 2026-02-27
 - **Última actualización:** 2026-02-27
 
 ## TD-0006 — Metadata de contribución aún ligada a AstroPaper upstream
+
 - **ID:** TD-0006
 - **Título corto:** Alinear templates de GitHub al proyecto
 - **Descripción:** Varias plantillas y docs de contribución apuntan al upstream AstroPaper y contactos externos, no al proyecto actual.
@@ -145,6 +148,7 @@ Fecha de corte: 2026-02-27
 - **Última actualización:** 2026-02-27
 
 ## TD-0007 — Email social placeholder en producción
+
 - **ID:** TD-0007
 - **Título corto:** Reemplazar `mailto:[EMAIL_ADDRESS]`
 - **Descripción:** El enlace de correo en redes sociales contiene placeholder sin configurar, lo que rompe la acción de contacto.

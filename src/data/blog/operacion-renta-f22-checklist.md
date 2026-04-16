@@ -150,7 +150,7 @@ Revisa [devolución de impuestos: fechas, estado y compensaciones](/posts/devolu
 
 ## Fuentes y referencias primarias
 
-- SII, comunicado 31 de marzo de 2026 — calendario AT 2026 y novedades: https://www.sii.cl/noticias/2026/310326noti01pcr.htm
+- SII, comunicado 31 de marzo de 2026 — calendario AT 2026 y novedades: <https://www.sii.cl/noticias/2026/310326noti01pcr.htm>
 - SII, Operación Renta Personas AT 2026: https://www.sii.cl/destacados/renta/2026/personas/
 - SII FAQ, reemplazo de declaración enviada por Internet: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8508.htm
 - SII FAQ, consulta de estado y observaciones, rectificatoria: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8548.htm

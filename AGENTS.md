@@ -36,6 +36,7 @@ Constitutional precedence is absolute: when AGENTS.md conflicts with Constitutio
 ## 2. Agent Execution Model → [`docs/development/AGENT_EXECUTION_PROTOCOL.md`](docs/development/AGENT_EXECUTION_PROTOCOL.md)
 
 Rules 2.1–2.13 + execution checklist. Key rules at a glance:
+
 - Scope block required before any edit (Rule 2.1).
 - Minimal diffs only; full rewrites are exceptional (Rules 2.2–2.3).
 - Halt conditions are enumerated and non-negotiable (Rule 2.6).

@@ -75,6 +75,7 @@ Trade-off:
 ## Verification
 
 Executed gates:
+
 - `pnpm run lint`
 - `pnpm run check:boundaries`
 - `pnpm run format:check` (fails due pre-existing unrelated formatting debt)

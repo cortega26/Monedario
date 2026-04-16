@@ -4,6 +4,7 @@
 Crear artículo pilar para query `como revisar la propuesta del sii (f22)` con flujo completo: revisar, corregir, enviar y rectificar.
 
 ## Outline mínimo
+
 - H1: Operación Renta sin pánico: cómo revisar y enviar tu F22
 - H2: Qué necesitas antes de entrar
 - H2: Cómo revisar la propuesta del SII
@@ -18,6 +19,7 @@ Crear artículo pilar para query `como revisar la propuesta del sii (f22)` con f
 - SII: plazos Operación Renta vigente
 
 ## Criterios de aceptación
+
 - Cumple [DoD editorial](../../editorial/DEFINITION_OF_DONE.md)
 - Incluye checklist descargable o checklist visible en bloque
 - Separa claramente flujo normal vs rectificación

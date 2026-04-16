@@ -4,6 +4,7 @@
 Crear artículo satélite para query `me llamaron del banco y me estafaron (vishing) que hago`, extendiendo cobertura a prevención por canal y primeros pasos de contención.
 
 ## Outline mínimo
+
 - H1: Estafas financieras comunes en Chile y qué hacer al instante
 - H2: Vishing, SMS, WhatsApp, marketplace, portabilidad fraudulenta
 - H2: Señales rojas por canal

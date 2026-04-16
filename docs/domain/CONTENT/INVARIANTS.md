@@ -44,9 +44,11 @@ Error esperado:
 ### INV-002: estabilidad de identidad post-publicación
 
 Regla:
+
 - Un artículo ya publicado no puede cambiar `slug` sin declarar alias/redirect/canonical de compatibilidad.
 
 Falla esperada:
+
 - `Slug changed for published article without compatibility mapping`
 
 ### INV-003: `draft=true` excluye publicación
@@ -115,6 +117,7 @@ Error esperado:
 ### INV-008: `tags` siempre array (default `[]`)
 
 Regla:
+
 - `tags` debe existir y ser array.
 - Elementos no vacíos, trim, deduplicados case-insensitive.
 
@@ -129,6 +132,7 @@ Error esperado:
 ### INV-009: `category` obligatoria y controlada
 
 Regla:
+
 - `category` debe existir en vocabulario permitido:
   - `ahorro-inversion`
   - `impuestos`
@@ -149,6 +153,7 @@ Regla:
 - Longitud: `20..110` caracteres.
 
 Falla esperada:
+
 - `title length out of range (20..110)`
 
 ### INV-011: `description` no vacía y rango de longitud
@@ -203,6 +208,7 @@ for p, slugs in dupes.items():
 ```
 
 Cómo corregir:
+
 1. Identifica el grupo duplicado (slugs que comparten prompt).
 2. Para cada artículo del grupo, edita su entrada en `prompts.json` directamente.
 3. Elige props visuales únicos (objetos, postura, composición) que reflejen el tema específico del artículo. Ver guía en `docs/operations/runbooks/hero-images-runbook.md` § Prompt Uniqueness.
@@ -218,6 +224,7 @@ Regla:
 - Todo campo consumido por runtime debe existir o tener default explícito de schema.
 
 Falla esperada:
+
 - `Runtime-required field missing without default: <field>`
 
 ### INV-014: campos deprecados bloqueados tras normalización
@@ -226,5 +233,6 @@ Regla:
 - Prohibidos: `pubDatetime`, `modDatetime`, `canonicalURL`.
 
 Falla esperada:
+
 - `Deprecated field not allowed: <field>`
 

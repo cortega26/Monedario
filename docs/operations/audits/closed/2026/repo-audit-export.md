@@ -1840,7 +1840,7 @@ index 561196b..e709158 100644
 -		<link rel="icon" href="/favicon.ico" />
 -		<meta name="viewport" content="width=device-width" />
 -		<meta name="generator" content={Astro.generator} />
--		<title>Astro</title>
+-  <title>Astro</title>
 -	</head>
 -	<body>
 -		<h1>Astro</h1>

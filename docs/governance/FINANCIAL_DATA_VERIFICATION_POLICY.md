@@ -38,6 +38,7 @@ When a new file with hardcoded financial rates is added, it **must** be register
 ## 3. Classification: Critical Volatile Financial Data
 
 Files classified as **critical volatile financial data** (CVFD) are:
+
 - Directly consumed by user-facing calculator logic
 - Subject to regulatory change on a predictable schedule (monthly, quarterly, annually)
 - YMYL-adjacent: errors create material risk of incorrect financial decisions

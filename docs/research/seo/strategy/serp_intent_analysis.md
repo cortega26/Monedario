@@ -42,7 +42,7 @@ Representative sources:
 
 - https://www.greele.cl/
 - https://cuantogano.cl/
-- https://www.buk.cl/blog/liquidaciones-de-sueldo-como-calcular-el-sueldo-liquido-y-bruto
+- <https://www.buk.cl/blog/liquidaciones-de-sueldo-como-calcular-el-sueldo-liquido-y-bruto>
 - https://www.meganoticias.cl/dato-util/511640-como-calcular-sueldo-liquido-que-es-salario-bruto-1ab.html
 
 ## 2. AFP / APV / Cuenta 2 / fondos
@@ -81,7 +81,7 @@ Representative sources:
 - https://ayuda.fintual.cl/es/articles/3207271-que-apv-me-conviene
 - https://www.afpcapital.cl/centro-de-ayuda/preguntas-frecuentes/ahorro-previsional-voluntario/concretamente-que-regimenes-de-tributacion-del-ahorro-previsional-voluntario-existen
 - https://www.uno.cl/productos/cuenta2
-- https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9930.html
+- <https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9930.html>
 
 ## 3. Credito / deuda / CAE / prepago / tarjetas
 
@@ -154,7 +154,7 @@ Decision:
 Representative sources:
 
 - https://www.afc.cl/empleadores/esta-formando-una-empresa/que-es-el-seguro-de-cesantia/
-- https://www.afc.cl/afc-informa/noticias/como-saber-el-saldo-de-mi-seguro-de-cesantia/
+- <https://www.afc.cl/afc-informa/noticias/como-saber-el-saldo-de-mi-seguro-de-cesantia/>
 - https://www.afc.cl/afiliados/quedo-cesante-o-esta-cobrando-su-seguro/que-es-el-fondo-solidario-de-cesantia/
 - https://www.chileatiende.gob.cl/fichas/ver/12016
 

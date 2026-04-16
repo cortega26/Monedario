@@ -140,8 +140,8 @@ No. ChileAtiende informa que para este cálculo se usa 80% del total bruto anual
 ## Fuentes y referencias primarias
 
 - SII, retención 2026 de boletas (15,25%) y progresión a 2028: https://www.sii.cl/noticias/2025/261225noti01smn.htm
-- ChileAtiende, cotización de trabajadores que emiten boletas (OR 2026, umbral 5 IMM, coberturas y exenciones): https://www.chileatiende.gob.cl/fichas/12016-cotizacion-de-trabajadores-que-emiten-boletas-de-honorarios
-- Ley N° 21.133 (BCN): https://www.bcn.cl/leychile/navegar?idNorma=1128420
+- ChileAtiende, cotización de trabajadores que emiten boletas (OR 2026, umbral 5 IMM, coberturas y exenciones): <https://www.chileatiende.gob.cl/fichas/12016-cotizacion-de-trabajadores-que-emiten-boletas-de-honorarios>
+- Ley N° 21.133 (BCN): <https://www.bcn.cl/leychile/navegar?idNorma=1128420>
 - SII, Operación Renta Personas (flujo anual de declaración): https://www.sii.cl/destacados/renta/2025/index_personas2025.html
 
 ## Información de vigencia

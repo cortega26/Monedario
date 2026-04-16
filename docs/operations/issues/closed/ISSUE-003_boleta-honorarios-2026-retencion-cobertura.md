@@ -4,6 +4,7 @@
 Crear artículo pilar para query `boleta de honorarios 2026 15,25 cuanto me llega liquido`, explicando conexión entre retención mensual y cobertura anual por Operación Renta.
 
 ## Outline mínimo
+
 - H1: Boleta de honorarios 2026: cuánto te llega líquido y qué cobertura ganas
 - H2: Retención vigente y escalamiento normativo
 - H2: Líquido mensual vs cotización anual
@@ -21,5 +22,6 @@ Crear artículo pilar para query `boleta de honorarios 2026 15,25 cuanto me lleg
 - Incluye fecha de vigencia y próximos hitos normativos
 
 ## No-regressions
+
 - No mezclar con guía general de Operación Renta; mantener enfoque honorarios
 - Evitar afirmaciones sin soporte en fuentes primarias

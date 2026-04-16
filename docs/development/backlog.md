@@ -35,6 +35,7 @@ Priority Score Formula: `Impact x Confidence / Effort`
 - **Roadmap Phase:** Phase 1 - Acquisition Engine
 
 ### MB-032 - Obtain authenticated agent-side Search Console and Bing access
+
 - **Description:** Secure reusable authenticated operational access for the execution environment so future work can submit sitemaps, inspect coverage, and read platform diagnostics directly without relying on founder-side confirmation only. Sprint 2E created a dedicated persistent automation profile at `output/playwright/search-platform-profile-2e`, the founder signed in manually inside that exact profile for both Google and Microsoft, and the session was exported to `output/playwright/search-platform-state-2e-authenticated.json`. That saved state was then loaded into a fresh browser session, which reopened the authenticated Google Search Console property `sc-domain:monedario.cl` and the authenticated Bing Webmaster site `https://monedario.cl/` without manual re-login. Reusable authenticated agent-side access is now restored.
 - **Impact:** 4
 - **Effort:** 2
@@ -75,6 +76,7 @@ Priority Score Formula: `Impact x Confidence / Effort`
 - **Roadmap Phase:** Phase 1 - Acquisition Engine
 
 ### MB-004 - Build the keyword universe and URL map
+
 - **Description:** Create the initial keyword set for core Chilean financial decisions and map each term cluster to an existing or planned landing page to avoid cannibalization.
 - **Impact:** 5
 - **Effort:** 3
@@ -85,6 +87,7 @@ Priority Score Formula: `Impact x Confidence / Effort`
 - **Roadmap Phase:** Phase 1 - Acquisition Engine
 
 ### MB-005 - Rewrite homepage metadata and hero positioning
+
 - **Description:** Replace generic homepage title, description, and H1 framing with a Chile-specific value proposition that clearly signals calculators, guides, and practical financial education.
 - **Impact:** 5
 - **Effort:** 2
@@ -95,6 +98,7 @@ Priority Score Formula: `Impact x Confidence / Effort`
 - **Roadmap Phase:** Phase 1 - Acquisition Engine
 
 ### MB-006 - Restructure homepage around problem-based entry points
+
 - **Description:** Reorganize the homepage so users can enter by intent cluster such as sueldo, AFP/APV, crédito, cesantía, impuestos, and presupuesto instead of relying primarily on recency.
 - **Impact:** 5
 - **Effort:** 3
@@ -155,6 +159,7 @@ Priority Score Formula: `Impact x Confidence / Effort`
 - **Roadmap Phase:** Phase 1 - Acquisition Engine
 
 ### MB-030 - Remediate structured data on article, glossary, calculator, and hub templates
+
 - **Description:** Remove duplicate `BlogPosting` output on article pages, make article schema URLs absolute, add `BreadcrumbList` where missing, and add justified glossary/hub schema such as `DefinedTerm` or `CollectionPage` only where appropriate.
 - **Impact:** 4
 - **Effort:** 3
@@ -165,6 +170,7 @@ Priority Score Formula: `Impact x Confidence / Effort`
 - **Roadmap Phase:** Phase 1 - Acquisition Engine
 
 ### MB-028 - SERP intent analysis for priority keywords
+
 - **Description:** Analyze dominant content formats, calculator presence, featured snippets, FAQ boxes, government sources, and ranking patterns for each priority keyword cluster, then update cluster strategy based on observed SERP intent.
 - **Impact:** 5
 - **Effort:** 3

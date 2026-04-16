@@ -28,6 +28,7 @@
 ## Change Control Record
 
 1. Scope declaration
+
 - In scope:
   - `docs/operations/reports/sprints/sprint-2f/**`
   - `docs/development/backlog.md`
@@ -71,10 +72,12 @@
 - Breaking changes: `no`
 
 5. Boundary integrity
+
 - Layer boundary check (`pnpm run check:boundaries`): pending validation at report authoring time
 - Unauthorized cross-layer imports introduced: `no`
 
 6. Test coverage impact
+
 - Changed runtime layers:
   - none
 - Related tests added/updated:
@@ -82,6 +85,7 @@
 - Coverage threshold status (see Section 5): `pass`
 
 7. Rollback strategy
+
 - Revert unit:
   - revert the Sprint 2F documentation patch as one logical change
 - Data/content rollback needed: `no`

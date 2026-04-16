@@ -110,6 +110,7 @@ All external check artifacts are written to `output/validation/urlcheck/`. Stabl
 - No changes to `pnpm run build` build time; external checks are CI-only.
 
 **Negative / trade-offs:**
+
 - Phase 1 non-blocking setup means the gate needs a manual flip to become actionable.
 - External HTTP requests introduce nondeterminism in nightly runs (transient DNS, anti-bot 429).
 - Nightly job timeout set to 15 minutes; sites with very large link counts may need concurrency tuning.

@@ -14,6 +14,7 @@ Sprint 2B - Taxonomy Realignment and First Cluster Build
 ## Change Control Record
 
 1. Scope declaration
+
 - In scope: `src/pages/guias/**`, `src/layouts/PostDetails.astro`, `src/pages/calculadoras/sueldo-liquido.astro`, sueldo-related blog entries, backlog/progress/context/docs sprint artifacts.
 - Out of scope: homepage redesign, otros clusters productivos, rollout sitewide de módulos, cambios en dominio/canonical strategy, cualquier fake de acceso autenticado.
 
@@ -64,6 +65,7 @@ Sprint 2B - Taxonomy Realignment and First Cluster Build
 - Breaking changes: no
 
 5. Boundary integrity
+
 - Layer boundary check (`pnpm run check:boundaries`): pass
 - Unauthorized cross-layer imports introduced: no
 
@@ -73,10 +75,12 @@ Sprint 2B - Taxonomy Realignment and First Cluster Build
 - Coverage threshold status (see Section 5): pass
 
 7. Rollback strategy
+
 - Revert unit: revert the sueldo cluster patchset and remove `/guias/sueldo-remuneraciones/`
 - Data/content rollback needed: no external data rollback
 
 8. Regression risk
+
 - Risk level: medium
 - Primary regression vectors:
   - route additions and guide navigation changes

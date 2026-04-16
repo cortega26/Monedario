@@ -41,9 +41,11 @@ auditable, and non-contradictory.
 - ADR files must live only in `docs/adr/`.
 
 4. Documentation structure guard is mandatory.
+
 - Run `pnpm run check:docs` before merge.
 
 5. Scope discipline for docs changes.
+
 - Documentation-only changes must not modify runtime behavior in `src/**`.
 
 ## Current cross-reference policy

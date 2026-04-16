@@ -39,11 +39,13 @@ Authority order:
 | Final publication decision | `HumanEditor` | Human |
 
 Hard rule:
+
 - `DraftAgent` must be different from both `MathAuditAgent` and `ComplianceAgent` for the same editorial run.
 
 ## 3. Artifact Set by Phase
 
 Canonical run folder:
+
 - `artifacts/editorial/<slug>/<run-id>/`
 - `run-id` format: `YYYYMMDD-HHMM-<shortid>`
 
