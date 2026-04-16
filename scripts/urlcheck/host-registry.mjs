@@ -228,7 +228,10 @@ const BINARY_CONTENT_TYPE_PREFIXES = [
 // ---- Private/loopback IP ranges for SSRF guard ----
 
 const PRIVATE_HOSTNAME_RE =
-  /^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2[0-9]|3[01])\.|::1$|0\.0\.0\.0)/;
+  // Covers: loopback (127/::1), RFC-1918 private (10, 172.16-31, 192.168),
+  // link-local / cloud metadata (169.254, fe80::/10), IPv6 unique-local (fc00::/7),
+  // IPv4-mapped loopback (::ffff:127.), and INADDR_ANY.
+  /^(?:localhost|127\.|10\.|192\.168\.|172\.(?:1[6-9]|2\d|3[01])\.|169\.254\.|0\.0\.0\.0|::1$|(?:fc|fd)[0-9a-f]{2}:|fe[89ab][0-9a-f]:|::ffff:127\.)/i;
 
 // ---- Exported pure functions ----
 

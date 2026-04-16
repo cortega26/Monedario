@@ -48,14 +48,21 @@ export async function probeUrl(url, { timeoutMs = 12_000, allowPrivateHosts = fa
     return errorResult(url, "unsupported_scheme");
   }
 
+  // SSRF guard (pre-request): reject before any I/O if the initial hostname resolves to
+  // a private, loopback, or link-local address (includes cloud metadata endpoints such
+  // as 169.254.169.254). A second guard below catches private redirects.
+  if (!allowPrivateHosts && isPrivateHostname(parsed.hostname)) {
+    return errorResult(url, "ssrf_guard_private_host");
+  }
+
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), timeoutMs);
 
   try {
-    // External URLs are extracted from our own built HTML and only http/https schemes
-    // are accepted. Final URL is checked for private IP addresses after the request.
-    // nosemgrep: javascript.lang.security.audit.ssrf.node-fetch-ssrf, codacy.tools-configs.rules_lgpl_javascript_ssrf_rule-node-ssrf
-    const response = await fetch(url, {
+    // Only http/https schemes are accepted (validated above). The hostname is checked
+    // against private ranges both before the request (ssrf_guard_private_host) and
+    // again after following redirects (ssrf_guard_private_redirect).
+    const response = await fetch(url, { // nosemgrep: javascript.lang.security.audit.ssrf.node-fetch-ssrf, codacy.tools-configs.rules_lgpl_javascript_ssrf_rule-node-ssrf
       method: "GET",
       redirect: "follow",
       signal: controller.signal,
