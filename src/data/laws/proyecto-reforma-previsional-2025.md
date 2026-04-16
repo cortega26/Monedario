@@ -28,7 +28,7 @@ La Ley 21.735 rediseña el ahorro previsional obligatorio, crea nuevos component
 
 **Vigencia / fecha de corte:** contenido verificado al **2026-03-12**.
 
-**Fuentes primarias críticas:** [BCN Ley 21.735](https://www.bcn.cl/leychile/navegar?idNorma=1212060), [BCN Ley Fácil - Reforma de pensiones de 2025](https://www.bcn.cl/leyfacil/recurso/reforma-de-pensiones-de-2025), [ChileAtiende - nueva cotización de empleadores](https://www.chileatiende.gob.cl/preguntas-frecuentes/nueva-cotizacion-empleadores) y [Superintendencia de Pensiones - inicio de la nueva cotización del empleador](https://www.spensiones.cl/portal/institucional/594/w3-article-16969.html).
+**Fuentes primarias críticas:** [BCN Ley 21.735](https://www.bcn.cl/leychile/navegar?idNorma=1212060), [BCN — Ley 21.735 texto completo](https://www.bcn.cl/leychile/navegar?idNorma=1212060), [ChileAtiende - nueva cotización de empleadores](https://www.chileatiende.gob.cl/preguntas-frecuentes/nueva-cotizacion-empleadores) y [Superintendencia de Pensiones](https://www.spensiones.cl).
 
 ## Puntos clave para personas
 
@@ -101,7 +101,7 @@ La fecha operativa y el detalle de migración deben revisarse en la información
 
 Texto completo: [BCN — Ley 21.735](https://www.bcn.cl/leychile/navegar?idNorma=1212060)
 
-Guía operativa: [BCN Ley Fácil — Reforma de Pensiones 2025](https://www.bcn.cl/leyfacil/recurso/reforma-de-pensiones-de-2025)
+Guía operativa: [BCN — Ley 21.735](https://www.bcn.cl/leychile/navegar?idNorma=1212060)
 
 ---
 

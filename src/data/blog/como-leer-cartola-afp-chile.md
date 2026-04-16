@@ -164,6 +164,6 @@ Primero contacta a tu AFP directamente (portal web, fono de atención, sucursal)
 ### Fuentes oficiales
 
 - Superintendencia de Pensiones — Portal SP Atiende y reclamos: <https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-6200.html>
-- Superintendencia de Pensiones — Inicio fondos generacionales (abril 2027): <https://www.spensiones.cl/portal/institucional/594/w3-article-17026.html>
+- Superintendencia de Pensiones — Inicio fondos generacionales (abril 2027): <https://www.spensiones.cl>
 - BCN — Ley N° 21.735 (reforma previsional): <https://www.bcn.cl/leychile/navegar?idNorma=1212060>
 - ChileAtiende — Aportes del empleador al sistema de pensiones: <https://www.chileatiende.gob.cl/fichas/130987-aportes-del-empleador-al-sistema-de-pensiones>

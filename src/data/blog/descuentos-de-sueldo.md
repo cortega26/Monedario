@@ -122,7 +122,7 @@ No puede retener el sueldo completo. Solo puede descontar lo que específicament
 No. Ese aporte es cargo exclusivo del empleador sobre el costo total de tu contrato. No se descuenta de tu remuneración ni debe aparecer como descuento en tu liquidación.
 
 **¿Dónde reclamo si hay un descuento incorrecto?**
-Primero ante el empleador o el área de remuneraciones, por escrito con acuse de recibo. Si no hay corrección ni justificación, puedes presentar una denuncia en la [Dirección del Trabajo](https://www.dt.gob.cl).
+Primero ante el empleador o el área de remuneraciones, por escrito con acuse de recibo. Si no hay corrección ni justificación, puedes presentar una denuncia en la [Dirección del Trabajo](https://www.dt.gob.cl/portal/1626/w3-channel.html).
 
 ---
 

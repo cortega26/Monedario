@@ -247,7 +247,7 @@ El valor oficial de la UTM lo publica mensualmente el SII:
 - SII, Impuesto Único de Segunda Categoría 2026: https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm
 - SII, datos informativos AT 2026 (personas naturales): https://www.sii.cl/valores_y_fechas/renta/datos_informativos_2026.html
 - Banco Central de Chile, series estadísticas: https://si3.bcentral.cl/Siete/
-- INE, publicaciones IPC: https://www.ine.gob.cl/estadisticas/economia/indices-de-precio-e-inflacion/indice-de-precios-al-consumidor
+- INE, publicaciones IPC: https://www.ine.gob.cl/estadisticas-por-tema/precios-e-inflacion/indice-de-precios-al-consumidor
 
 ---
 

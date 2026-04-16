@@ -132,7 +132,7 @@ Para conectar esta decisión con una estrategia más amplia de instrumentos y ob
 ## Fuentes y referencias primarias
 
 - CMF Educa, Corredores de bolsa (rol, costos, custodia, supervisión): https://www.cmfchile.cl/educa/621/w3-propertyvalue-994.html
-- CMF, Registro de Corredores y Agentes: https://www.cmfchile.cl/mascerca/601/w3-article-1264.html
+- CMF, Registro de Corredores y Agentes: https://www.cmfchile.cl/portal/principal/613/w3-article-1264
 - SII FAQ, obligación de declarar rentas de inversiones: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0597.htm
 - SII FAQ, asistente de enajenación: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8415.htm
 

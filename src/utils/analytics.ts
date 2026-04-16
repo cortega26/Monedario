@@ -11,7 +11,7 @@ const OFFICIAL_HOSTNAMES = new Set([
   "previsionsocial.gob.cl",
   "sii.cl",
   "spensiones.cl",
-  "suseso.cl",
+  "suseso.gob.cl",
   "superir.gob.cl",
   "tesoreria.cl",
   "si3.bcentral.cl",

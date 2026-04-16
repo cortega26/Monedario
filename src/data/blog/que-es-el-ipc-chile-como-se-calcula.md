@@ -126,7 +126,7 @@ Generalmente entre el 7 y el 10 del mes siguiente. El Banco Central espera ese d
 El INE publica un IPC nacional. También publica algunas mediciones regionales, pero el índice oficial que se usa para ajustar arriendos, UF y negociaciones es el nacional.
 
 **¿Dónde veo el historial del IPC?**
-En el portal de estadísticas del INE: [www.ine.gob.cl/estadisticas/economia/indices-de-precio-e-inflacion/indice-de-precios-al-consumidor](https://www.ine.gob.cl/estadisticas/economia/indices-de-precio-e-inflacion/indice-de-precios-al-consumidor).
+En el portal de estadísticas del INE: [www.ine.gob.cl/estadisticas-por-tema/precios-e-inflacion/indice-de-precios-al-consumidor](https://www.ine.gob.cl/estadisticas-por-tema/precios-e-inflacion/indice-de-precios-al-consumidor).
 
 La UTM (Unidad Tributaria Mensual) también usa el IPC mensual como base de reajuste — si recibes o pagas multas, realizas trámites estatales, o calculas tramos de impuesto a la renta, revisa [UTM en Chile: qué es y para qué sirve](/posts/utm-chile-que-es-como-funciona/).
 
@@ -134,7 +134,7 @@ La UTM (Unidad Tributaria Mensual) también usa el IPC mensual como base de reaj
 
 ## Fuentes
 
-- INE, metodología y publicaciones del IPC: https://www.ine.gob.cl/estadisticas/economia/indices-de-precio-e-inflacion/indice-de-precios-al-consumidor
+- INE, metodología y publicaciones del IPC: https://www.ine.gob.cl/estadisticas-por-tema/precios-e-inflacion/indice-de-precios-al-consumidor
 - Banco Central de Chile, relación IPC-UF: https://si3.bcentral.cl/estadisticas/Principal1/Metodologias/EMF/UF.pdf
 
 ---

@@ -155,7 +155,7 @@ Si terminas en un tribunal de policía local, esta documentación es lo que dete
 
 Tienes dos caminos:
 
-**SERNAC:** Puedes presentar un reclamo en [sernac.cl](https://www.sernac.cl/app/consumidor). El SERNAC media entre tú y la institución y puede aplicar presión institucional.
+**SERNAC:** Puedes presentar un reclamo en [sernac.cl](https://www.sernac.cl/app/consumidor/). El SERNAC media entre tú y la institución y puede aplicar presión institucional.
 
 **CMF:** La Comisión para el Mercado Financiero supervisa a bancos y entidades financieras. También puedes presentar un reclamo en [cmfchile.cl](https://www.cmfchile.cl/portal/principal/613/w3-propertyvalue-43332.html).
 

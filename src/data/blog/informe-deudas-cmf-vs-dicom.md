@@ -28,7 +28,7 @@ articleLead:
     - label: "CMF Chile - Informe de Deudas de Personas"
       href: "https://www.cmfchile.cl/educa/621/w3-article-27663.html"
     - label: "CMF Chile - Preguntas frecuentes"
-      href: "https://conocetudeuda.cmfchile.cl/"
+      href: "https://conocetudeuda.cmfchile.cl/informe-deudas/"
   covers:
     - "Qué muestra el Informe de Deudas CMF y qué deudas quedan fuera."
     - "Cómo diferenciar CMF, Boletín Comercial y reportes privados tipo DICOM."
@@ -79,7 +79,7 @@ Aquí está la confusión más común, aclarada de una vez:
 | **Quién lo emite** | CMF (organismo del Estado)                                      | Cámara de Comercio de Santiago                                   | Equifax (empresa privada)                                                         |
 | **Qué incluye**    | Deudas con bancos y entidades supervisadas                      | Documentos protestados sin pagar (cheques, pagarés)              | Combina varias fuentes: Boletín Comercial, morosidades de retail, servicios, etc. |
 | **Costo**          | Gratis, ilimitado                                               | Tiene consulta gratuita mínima por ley y otras consultas pagadas | Depende del producto                                                              |
-| **Cómo se accede** | [conocetudeuda.cmfchile.cl](https://conocetudeuda.cmfchile.cl/) | [boletincomercial.cl](https://www.boletincomercial.cl/)          | equifax.cl                                                                        |
+| **Cómo se accede** | [conocetudeuda.cmfchile.cl](https://conocetudeuda.cmfchile.cl/informe-deudas/) | [boletincomercial.cl](https://www.boletincomercial.cl/)          | equifax.cl                                                                        |
 
 Cuando alguien dice "estoy en DICOM", normalmente está mezclando varias capas: el reporte oficial CMF, el Boletín Comercial y uno o más informes privados. Cada uno recoge información distinta y te sirve para decisiones distintas.
 
@@ -89,7 +89,7 @@ Cuando alguien dice "estoy en DICOM", normalmente está mezclando varias capas: 
 
 El trámite es online y requiere **ClaveÚnica**.
 
-**Paso 1.** Entra a [conocetudeuda.cmfchile.cl](https://conocetudeuda.cmfchile.cl/)
+**Paso 1.** Entra a [conocetudeuda.cmfchile.cl](https://conocetudeuda.cmfchile.cl/informe-deudas/)
 
 **Paso 2.** Haz clic en "Obtener Informe" e inicia sesión con tu ClaveÚnica.
 

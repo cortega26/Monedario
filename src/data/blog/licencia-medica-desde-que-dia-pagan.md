@@ -61,7 +61,7 @@ La fórmula general (para dependientes):
 - Promedio: ($800.000 + $850.000 + $900.000) ÷ 3 = $850.000
 - Subsidio diario: $850.000 ÷ 30 = **$28.333 por día**
 
-**Tope del subsidio:** Existe un tope mensual establecido por SUSESO que limita el subsidio máximo independientemente de tu remuneración. Si tu sueldo supera ese tope, el subsidio se paga hasta el límite fijado. Consulta el valor vigente en [suseso.cl](https://www.suseso.cl), ya que se actualiza periódicamente.
+**Tope del subsidio:** Existe un tope mensual establecido por SUSESO que limita el subsidio máximo independientemente de tu remuneración. Si tu sueldo supera ese tope, el subsidio se paga hasta el límite fijado. Consulta el valor vigente en [suseso.gob.cl](https://www.suseso.gob.cl), ya que se actualiza periódicamente.
 
 ## Regla especial: licencias continuadas
 
@@ -129,5 +129,5 @@ Los requisitos de meses cotizados pueden afectar tu derecho al subsidio si el ca
 
 ## Fuentes oficiales recomendadas
 
-- SUSESO — subsidio por incapacidad laboral, criterios de pago y topes vigentes: https://www.suseso.cl
+- SUSESO — subsidio por incapacidad laboral, criterios de pago y topes vigentes: https://www.suseso.gob.cl
 - ChileAtiende — orientación sobre licencias médicas y trámites asociados: https://www.chileatiende.gob.cl/

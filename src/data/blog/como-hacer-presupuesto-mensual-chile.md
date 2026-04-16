@@ -149,7 +149,7 @@ No importa cuál uses — lo que importa es que la uses consistentemente.
 
 ### Fuentes y recursos oficiales
 
-- [CMF Educa — Educación financiera](https://www.cmfeduca.cl/) — Comisión para el Mercado Financiero
+- [CMF Educa — Educación financiera](https://www.cmfeduca.cl/educa/) — Comisión para el Mercado Financiero
 - [SERNAC — Guías de finanzas personales](https://www.sernac.cl/) — Servicio Nacional del Consumidor
 - [Banco Central de Chile](https://www.bcentral.cl/) — contexto macroeconómico de referencia
 

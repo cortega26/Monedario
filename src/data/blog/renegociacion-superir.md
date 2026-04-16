@@ -125,7 +125,7 @@ Debes declarar bajo juramento:
 ### Documentos de deudas
 
 - Certificados o estados de deuda emitidos por cada acreedor (banco, retail, cooperativa, etc.)
-- **Informe de deudas CMF** — descárgalo gratis en [conocetudeuda.cmfchile.cl](https://conocetudeuda.cmfchile.cl/)
+- **Informe de deudas CMF** — descárgalo gratis en [conocetudeuda.cmfchile.cl](https://conocetudeuda.cmfchile.cl/informe-deudas/)
 - **Certificado del Boletín Comercial** — revisa la modalidad de obtención vigente en [boletincomercial.cl](https://www.boletincomercial.cl/)
 
 ### Documentos de ingresos

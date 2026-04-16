@@ -165,7 +165,7 @@ Para confirmar que el descuento que aparece en tu liquidación coincide con lo q
 ### Fuentes oficiales para el bloque 2025-2027
 
 - ChileAtiende, aportes del empleador al sistema de pensiones: https://www.chileatiende.gob.cl/fichas/130987-aportes-del-empleador-al-sistema-de-pensiones
-- Superintendencia de Pensiones, inicio de fondos generacionales (abril 2027): https://www.spensiones.cl/portal/institucional/594/w3-article-17026.html
+- Superintendencia de Pensiones, inicio de fondos generacionales (abril 2027): https://www.spensiones.cl
 - BCN, Ley N° 21.735: https://www.bcn.cl/leychile/navegar?idNorma=1212060
 
 ---

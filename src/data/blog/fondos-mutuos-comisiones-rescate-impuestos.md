@@ -135,7 +135,7 @@ Para decidir cómo encajan los fondos mutuos en una estrategia integral de ahorr
 
 ## Fuentes y referencias primarias
 
-- CMF Educa, Fondos mutuos (definición, rescate, costos, regulación): https://www.cmfchile.cl/educa/600/w3-propertyvalue-988.html
+- CMF Educa, Fondos mutuos (definición, rescate, costos, regulación): https://www.cmfchile.cl/educa/621/w3-propertyvalue-988.html
 - CMF Educa, Cuotas de fondos mutuos (liquidez, comisiones, reglamento interno): https://www.cmfchile.cl/educa/621/w3-propertyvalue-504.html
 - SII FAQ, fondos mutuos no rescatados y mayor valor en rescate: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_1428.htm
 - SII FAQ, asistente de enajenación (acciones/cuotas): https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8415.htm

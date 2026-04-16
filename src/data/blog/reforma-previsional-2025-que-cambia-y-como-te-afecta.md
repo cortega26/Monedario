@@ -176,7 +176,7 @@ Ahora, nada urgente. Para el cambio de fondos generacionales (abril 2027) la SPe
 
 ## Fuentes oficiales
 
-- BCN, Ley Fácil Reforma Previsional 2025: https://www.bcn.cl/leyfacil/recurso/reforma-de-pensiones-de-2025
+- BCN, Ley 21.735: https://www.bcn.cl/leychile/navegar?idNorma=1212060
 - Superintendencia de Pensiones, recaudación del aporte del empleador: https://www.spensiones.cl/portal/institucional/594/w3-article-16615.html
 - Superintendencia de Pensiones, diseño de fondos generacionales: https://www.spensiones.cl/portal/institucional/594/w3-article-16668.html
 - Superintendencia de Pensiones, beneficios por años cotizados (BAC): https://www.spensiones.cl/portal/institucional/594/w3-article-16708.html

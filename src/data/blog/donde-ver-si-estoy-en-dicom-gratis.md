@@ -28,7 +28,7 @@ articleLead:
     - label: "CMF Chile - Informe de Deudas de Personas"
       href: "https://www.cmfchile.cl/educa/621/w3-article-27663.html"
     - label: "CMF Chile - Preguntas frecuentes Conoce tu deuda"
-      href: "https://conocetudeuda.cmfchile.cl/"
+      href: "https://conocetudeuda.cmfchile.cl/informe-deudas/"
   covers:
     - "Qué reporte gratis conviene pedir primero según tu duda."
     - "Cuándo el Informe CMF basta y cuándo no."
@@ -61,7 +61,7 @@ La Comisión para el Mercado Financiero publica el Informe de Deudas de Personas
 
 **Cómo descargarlo:**
 
-1. Entra a [conocetudeuda.cmfchile.cl](https://conocetudeuda.cmfchile.cl)
+1. Entra a [conocetudeuda.cmfchile.cl](https://conocetudeuda.cmfchile.cl/informe-deudas/)
 2. Haz clic en "Obtener Informe" e inicia sesión con ClaveÚnica
 3. El sistema genera el PDF en segundos
 4. Puedes descargarlo las veces que quieras, sin costo
@@ -132,4 +132,4 @@ Si tu problema real son deudas financieras activas dentro del sistema supervisad
 
 ---
 
-\_Contenido educativo con fecha de corte 2026-03-12. Antes de pagar por un informe privado, revisa si tu duda ya queda resuelta con el [Informe de Deudas CMF](https://conocetudeuda.cmfchile.cl) gratuito.
+\_Contenido educativo con fecha de corte 2026-03-12. Antes de pagar por un informe privado, revisa si tu duda ya queda resuelta con el [Informe de Deudas CMF](https://conocetudeuda.cmfchile.cl/informe-deudas/) gratuito.

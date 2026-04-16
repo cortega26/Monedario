@@ -29,7 +29,7 @@ articleLead:
     - label: "BCN — Ley 18.010 art. 10 (derecho a prepago)"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=29438"
     - label: "CMF Chile — Educación financiera: prepago de créditos"
-      href: "https://www.cmfchile.cl/educa"
+      href: "https://www.cmfchile.cl/educa/"
   covers:
     - "Qué es el prepago y cómo reduce los intereses que pagarás."
     - "Cuándo pagar anticipado tiene más impacto: al inicio o al final del crédito."
