@@ -31,6 +31,7 @@ const cesantiaGuidePath = getPath("/posts/seguro-de-cesantia/");
     data-analytics-page-type="calculator"
     data-analytics-calculator="finiquito-indemnizacion"
     data-analytics-calculator-name="Calculadora Finiquito e Indemnizacion"
+    data-profile-prefill-host="#calculator-form-card"
   >
     <section class="border-b border-border pt-8 pb-6">
       <h1 class="my-4 text-3xl font-bold sm:text-4xl">
@@ -46,7 +47,10 @@ const cesantiaGuidePath = getPath("/posts/seguro-de-cesantia/");
     <section
       class="grid items-start gap-6 py-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)]"
     >
-      <div class="rounded-xl border border-border p-6">
+      <div
+        id="calculator-form-card"
+        class="rounded-xl border border-border p-6"
+      >
         <h2 class="mb-5 text-lg font-semibold">📝 Datos del caso</h2>
 
         <div class="mb-4">
@@ -61,6 +65,7 @@ const cesantiaGuidePath = getPath("/posts/seguro-de-cesantia/");
             type="number"
             min="0"
             placeholder="Ej: 900.000"
+            data-profile-bind="sueldoImponible"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
           />
         </div>
@@ -396,6 +401,7 @@ const cesantiaGuidePath = getPath("/posts/seguro-de-cesantia/");
 </Layout>
 
 <script>
+  import "@/scripts/calculator-prefill";
   import { estimateFiniquito } from "@/application/use-cases/EstimateFiniquito";
   import { trackAnalyticsEvent } from "@/utils/analytics";
 
