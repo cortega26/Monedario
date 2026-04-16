@@ -64,4 +64,9 @@ jobs:
         if: steps.create-pr.outputs.pull-request-number != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr merge --auto --squash ${{ steps.create-pr.outputs.pull-request-number }}
+        run: |
+          # Try auto-merge first (works when branch-protection required checks exist).
+          # Fall back to direct squash-merge when the PR is already in "clean" status
+          # (no pending required checks), which causes enablePullRequestAutoMerge to fail.
+          gh pr merge --auto --squash ${{ steps.create-pr.outputs.pull-request-number }} || \
+            gh pr merge --squash ${{ steps.create-pr.outputs.pull-request-number }}
