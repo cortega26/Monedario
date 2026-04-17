@@ -213,6 +213,7 @@ const sueldoLiquidoFaqs = [
                 name="tipo-contrato"
                 value="indefinido"
                 checked
+                data-profile-bind="contratoTipo"
                 class="peer sr-only"
               />
               <span
@@ -226,6 +227,7 @@ const sueldoLiquidoFaqs = [
                 type="radio"
                 name="tipo-contrato"
                 value="plazo-fijo"
+                data-profile-bind="contratoTipo"
                 class="peer sr-only"
               />
               <span
@@ -251,6 +253,7 @@ const sueldoLiquidoFaqs = [
                 name="salud"
                 value="fonasa"
                 checked
+                data-profile-bind="saludRegimen"
                 class="peer sr-only"
               />
               <span
@@ -264,6 +267,7 @@ const sueldoLiquidoFaqs = [
                 type="radio"
                 name="salud"
                 value="isapre"
+                data-profile-bind="saludRegimen"
                 class="peer sr-only"
               />
               <span
@@ -307,12 +311,14 @@ const sueldoLiquidoFaqs = [
           </label>
           <select
             id="afp-tasa"
+            data-profile-bind="afpId"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
           >
             {
               AFP_COMMISSIONS_PERCENT.map(afp => (
                 <option
-                  value={String(afp.total)}
+                  value={afp.name}
+                  data-commission={String(afp.total)}
                   selected={afp.name === "Habitat"}
                 >
                   {afp.name} – {afp.total.toFixed(2)}%
@@ -865,8 +871,9 @@ const sueldoLiquidoFaqs = [
   });
 
   function getCommonInputs() {
+    const afpSelect = document.getElementById("afp-tasa") as HTMLSelectElement;
     const afpTasaPercent = parseFloat(
-      (document.getElementById("afp-tasa") as HTMLSelectElement).value
+      afpSelect.options[afpSelect.selectedIndex]?.dataset.commission ?? "0"
     );
     const healthSystem =
       (
