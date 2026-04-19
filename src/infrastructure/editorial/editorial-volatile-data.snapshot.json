@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-04-18",
-  "capturedAt": "2026-04-18T11:02:55.719Z",
+  "lastUpdated": "2026-04-19",
+  "capturedAt": "2026-04-19T11:02:15.777Z",
   "datasets": {
     "economic.uf.value": {
       "label": "Valor UF",
-      "value": 39960.83,
+      "value": 39974.09,
       "unit": "clp",
-      "lastObservedAt": "2026-04-18",
-      "reviewTriggerDate": "2026-04-18",
+      "lastObservedAt": "2026-04-19",
+      "reviewTriggerDate": "2026-04-19",
       "sourceUrl": "https://mindicador.cl/api",
       "sourceLabel": "mindicador.cl/api"
     },
@@ -15,7 +15,7 @@
       "label": "Valor UTM",
       "value": 69889,
       "unit": "clp",
-      "lastObservedAt": "2026-04-18",
+      "lastObservedAt": "2026-04-19",
       "reviewTriggerDate": "2026-03-22",
       "sourceUrl": "https://mindicador.cl/api",
       "sourceLabel": "mindicador.cl/api"
@@ -24,7 +24,7 @@
       "label": "IPC mensual",
       "value": -0.2,
       "unit": "percent",
-      "lastObservedAt": "2026-04-18",
+      "lastObservedAt": "2026-04-19",
       "reviewTriggerDate": "2026-03-22",
       "sourceUrl": "https://mindicador.cl/api",
       "sourceLabel": "mindicador.cl/api"
@@ -33,7 +33,7 @@
       "label": "Tope imponible AFC",
       "value": 135.2,
       "unit": "uf",
-      "lastObservedAt": "2026-04-18",
+      "lastObservedAt": "2026-04-19",
       "reviewTriggerDate": "2026-03-22",
       "sourceUrl": "https://mindicador.cl/api",
       "sourceLabel": "mindicador.cl/api"
@@ -42,19 +42,10 @@
       "label": "Tope imponible AFP y salud",
       "value": 90,
       "unit": "uf",
-      "lastObservedAt": "2026-04-18",
+      "lastObservedAt": "2026-04-19",
       "reviewTriggerDate": "2026-03-22",
       "sourceUrl": "https://mindicador.cl/api",
       "sourceLabel": "mindicador.cl/api"
-    },
-    "pensions.afp.worker_mandatory_contribution": {
-      "label": "Cotización obligatoria trabajador AFP",
-      "value": 10,
-      "unit": "percent",
-      "lastObservedAt": "2026-04-18",
-      "reviewTriggerDate": "2026-03-22",
-      "sourceUrl": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html",
-      "sourceLabel": "Superintendencia de Pensiones"
     },
     "pensions.afp.uno_commission": {
       "label": "Comisión AFP Uno",
@@ -66,6 +57,15 @@
       "previousValue": 0.49,
       "sourceUrl": "https://www.spensiones.cl/portal/institucional/594/w3-article-16714.html",
       "sourceLabel": "Superintendencia de Pensiones recuerda que desde este 1 de octubre quienes ingresen por primera vez al sistema deberán afiliarse a AFP Uno, cuya comisión de administración es la más baja: 0,46% - SP. Superintendencia de Pensiones - Gobierno de Chile"
+    },
+    "pensions.afp.worker_mandatory_contribution": {
+      "label": "Cotización obligatoria trabajador AFP",
+      "value": 10,
+      "unit": "percent",
+      "lastObservedAt": "2026-04-18",
+      "reviewTriggerDate": "2026-03-22",
+      "sourceUrl": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html",
+      "sourceLabel": "Superintendencia de Pensiones"
     }
   }
 }
