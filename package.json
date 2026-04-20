@@ -102,7 +102,7 @@
     "js-yaml": "^4.1.1",
     "linkinator": "^7.6.1",
     "pagefind": "^1.5.2",
-    "prettier": "^3.7.4",
+    "prettier": "^3.8.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.7.2",
     "sitemap": "^9.0.1",
