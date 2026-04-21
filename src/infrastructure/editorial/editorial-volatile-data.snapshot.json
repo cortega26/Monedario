@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-04-20",
-  "capturedAt": "2026-04-20T11:43:36.845Z",
+  "lastUpdated": "2026-04-21",
+  "capturedAt": "2026-04-21T11:33:34.551Z",
   "datasets": {
     "economic.uf.value": {
       "label": "Valor UF",
-      "value": 39987.35,
+      "value": 40000.61,
       "unit": "clp",
-      "lastObservedAt": "2026-04-20",
-      "reviewTriggerDate": "2026-04-20",
+      "lastObservedAt": "2026-04-21",
+      "reviewTriggerDate": "2026-04-21",
       "sourceUrl": "https://mindicador.cl/api",
       "sourceLabel": "mindicador.cl/api"
     },
@@ -15,7 +15,7 @@
       "label": "Valor UTM",
       "value": 69889,
       "unit": "clp",
-      "lastObservedAt": "2026-04-20",
+      "lastObservedAt": "2026-04-21",
       "reviewTriggerDate": "2026-03-22",
       "sourceUrl": "https://mindicador.cl/api",
       "sourceLabel": "mindicador.cl/api"
@@ -24,7 +24,7 @@
       "label": "IPC mensual",
       "value": -0.2,
       "unit": "percent",
-      "lastObservedAt": "2026-04-20",
+      "lastObservedAt": "2026-04-21",
       "reviewTriggerDate": "2026-03-22",
       "sourceUrl": "https://mindicador.cl/api",
       "sourceLabel": "mindicador.cl/api"
@@ -33,7 +33,7 @@
       "label": "Tope imponible AFC",
       "value": 135.2,
       "unit": "uf",
-      "lastObservedAt": "2026-04-20",
+      "lastObservedAt": "2026-04-21",
       "reviewTriggerDate": "2026-03-22",
       "sourceUrl": "https://mindicador.cl/api",
       "sourceLabel": "mindicador.cl/api"
@@ -42,7 +42,7 @@
       "label": "Tope imponible AFP y salud",
       "value": 90,
       "unit": "uf",
-      "lastObservedAt": "2026-04-20",
+      "lastObservedAt": "2026-04-21",
       "reviewTriggerDate": "2026-03-22",
       "sourceUrl": "https://mindicador.cl/api",
       "sourceLabel": "mindicador.cl/api"
@@ -51,7 +51,7 @@
       "label": "Cotización obligatoria trabajador AFP",
       "value": 10,
       "unit": "percent",
-      "lastObservedAt": "2026-04-20",
+      "lastObservedAt": "2026-04-21",
       "reviewTriggerDate": "2026-03-22",
       "sourceUrl": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html",
       "sourceLabel": "Superintendencia de Pensiones"
@@ -60,7 +60,7 @@
       "label": "Comisión AFP Uno",
       "value": 0.46,
       "unit": "percent",
-      "lastObservedAt": "2026-04-20",
+      "lastObservedAt": "2026-04-21",
       "reviewTriggerDate": "2025-10-01",
       "effectiveDate": "2025-10-01",
       "previousValue": 0.49,
