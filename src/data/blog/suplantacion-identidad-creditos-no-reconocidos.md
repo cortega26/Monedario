@@ -4,7 +4,7 @@ author: "Equipo Monedario"
 description: "Si aparecen créditos que nunca pediste, puede que suplantaron tu identidad. Cómo detectarlo, frenarlo y reclamar ante el banco, CMF y Carabineros."
 slug: suplantacion-identidad-creditos-no-reconocidos
 pubDate: 2026-03-02T18:20:00Z
-updatedDate: 2026-03-03T00:00:00Z
+updatedDate: 2026-04-22T00:00:00Z
 tags:
   - seguridad-financiera
   - suplantacion
@@ -22,6 +22,8 @@ heroImage: /images/hero/suplantacion-identidad-creditos-no-reconocidos.avif
 Recibes un correo que dice "tu crédito ha sido aprobado". El problema es que tú nunca pediste ningún crédito. Eso no es un error administrativo: es una señal de que alguien usó tus datos para contratar deuda a tu nombre.
 
 Esta guía te explica qué hacer para actuar rápido y evitar los errores que más atrasan la solución.
+
+> **Revisión editorial 2026-04-22:** se revalidaron los canales de escalamiento y la lógica de reclamo ante instituciones supervisadas por la CMF. Si el caso involucra movimientos de medios de pago, complementa esta guía con la ruta de la Ley 20.009.
 
 ## Cómo detectar la suplantación antes de que escale
 
@@ -64,7 +66,7 @@ Esa información es tu evidencia para acreditar que no fuiste tú.
 
 ### Paso 2 — Ingresa reclamo formal escrito
 
-El reclamo verbal no deja rastro útil. Ingresa un reclamo escrito con número de folio. La institución tiene plazos regulatorios para responder (generalmente 15 días hábiles para una respuesta de fondo según normativa CMF).
+El reclamo verbal no deja rastro útil. Ingresa un reclamo escrito con número de folio. La institución debe entregarte una respuesta formal según su procedimiento y la normativa aplicable; si no responde o rechaza sin fundamento, ese folio es la base para escalar.
 
 En el reclamo indica explícitamente:
 

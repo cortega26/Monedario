@@ -4,7 +4,7 @@ description: "Supuestos, fórmulas, fuentes y cálculos corregidos del ejercicio
 slug: interes-compuesto-nota-metodologica
 author: "Equipo Monedario"
 pubDate: 2026-03-06T15:00:00Z
-updatedDate: 2026-03-07T13:09:35Z
+updatedDate: 2026-04-22T00:00:00Z
 tags:
   - ahorro
   - interes-compuesto
@@ -25,6 +25,8 @@ Este documento detalla los supuestos, fuentes de datos y fórmulas del artículo
 **Fecha de corte del ejercicio:** **2025-12-31**.
 
 **Actualización 2026-03-07:** la serie 2025 del NASDAQ-100 dejó de usar un dato parcial conservador y pasó a usar el cierre anual reportado para 2025. Ese ajuste cambia el resultado final del ejercicio de **USD 104.018 / CLP 100,9 millones** a **USD 129.495 / CLP 125,6 millones**.
+
+**Revisión editorial 2026-04-22:** se revalidaron las referencias históricas y la fecha de corte; el ejercicio sigue cerrado al 2025-12-31 y no incorpora datos posteriores.
 
 ## 1. Período y estructura de la simulación
 

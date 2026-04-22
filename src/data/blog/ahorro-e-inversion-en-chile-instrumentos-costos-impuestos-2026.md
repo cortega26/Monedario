@@ -4,7 +4,7 @@ description: "¿Qué conviene más en Chile: ETF, DAP o fondos mutuos? Guía 202
 slug: ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026
 author: "Equipo Monedario"
 pubDate: 2026-02-28T16:00:00Z
-updatedDate: 2026-02-28T16:00:00Z
+updatedDate: 2026-04-22T00:00:00Z
 tags:
   - ahorro
   - inversiones
@@ -21,6 +21,8 @@ heroImage: /images/hero/ahorro-e-inversion-en-chile-instrumentos-costos-impuesto
 ---
 
 Elegir en qué instrumento poner tu plata es una de las decisiones financieras más frecuentes —y más mal tomadas— por personas que ya tienen claro que quieren ahorrar, pero no saben bien cómo organizarlo. Esta guía te ayuda a comparar depósitos a plazo, fondos mutuos y ETFs según plazo, riesgo, costo real y tributación, sin rodeos y con foco en Chile 2026.
+
+> **Revisión editorial 2026-04-22:** se revalidaron los criterios generales de costos, rescate/custodia y tributación base contra CMF y SII. Antes de invertir, confirma además las comisiones y reglamentos del producto específico.
 
 ## Antes de comparar: lo que esta guía asume
 
@@ -150,7 +152,7 @@ No. Es contenido educativo y no reemplaza asesoría profesional para tu situaci�
 
 ## Información de vigencia
 
-- Revisado el: 2026-02-28.
+- Revisado el: 2026-04-22.
 - Puede quedar desactualizado cuando: cambios regulatorios CMF, instrucciones de renta del SII o cambios metodológicos oficiales de UF en Banco Central.
 
 ---

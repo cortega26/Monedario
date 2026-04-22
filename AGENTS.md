@@ -90,13 +90,13 @@ If any condition fails, task status is `HALT` until resolved.
 <claude-mem-context>
 # Memory Context
 
-# [tuplatainforma] recent context, 2026-04-22 6:01pm GMT-4
+# [tuplatainforma] recent context, 2026-04-22 6:08pm GMT-4
 
 Legend: 🎯session 🔴bugfix 🟣feature 🔄refactor ✅change 🔵discovery ⚖️decision
 Format: ID TIME TYPE TITLE
 Fetch details: get_observations([IDs]) | Search: mem-search skill
 
-Stats: 12 obs (5,230t read) | 71,386t work | 93% savings
+Stats: 14 obs (6,051t read) | 80,276t work | 92% savings
 
 ### Apr 22, 2026
 176 5:16p 🔵 tuplatainforma — Ahrefs Broken Link Audit Initiated on Astro Project
@@ -112,6 +112,8 @@ S42 Broken SII FAQ URLs Replaced in operacion-renta-f22-checklist.md (Apr 22, 5:
 185 5:59p 🔵 tuplatainforma — pnpm Not in PATH Blocks lint and check:editorial
 186 6:00p 🔵 tuplatainforma — Lint Error Root Cause: Unused globSync Import in redirect-links.e2e.test.ts
 189 6:01p 🔴 Lint Error Fixed — Removed Unused globSync Import from redirect-links.e2e.test.ts
+190 6:02p 🔵 tuplatainforma — `npm run check:editorial` Fails Because pnpm Is Not Installed
+191 " 🔵 tuplatainforma — Project Is pnpm-Only; npm Run Fails for Most Scripts
 
-Access 71k tokens of past work via get_observations([IDs]) or mem-search skill.
+Access 80k tokens of past work via get_observations([IDs]) or mem-search skill.
 </claude-mem-context>

@@ -4,7 +4,7 @@ author: "Equipo Monedario"
 description: "Guía para detectar estafas financieras en Chile por llamada, SMS, WhatsApp, marketplace y portabilidad, y saber qué hacer en 24 horas."
 slug: estafas-financieras-chile-vishing-smishing-marketplace
 pubDate: 2026-03-02T18:10:00Z
-updatedDate: 2026-03-03T00:00:00Z
+updatedDate: 2026-04-22T00:00:00Z
 tags:
   - seguridad-financiera
   - fraude
@@ -22,6 +22,8 @@ heroImage: /images/hero/estafas-financieras-chile-vishing-smishing-marketplace.a
 La mayoría de las estafas financieras no empieza con un hackeo sofisticado. Empieza con una llamada que suena completamente normal, de alguien que sabe tu nombre, menciona tu banco y habla en un tono que mezcla urgencia con profesionalismo. Para cuando te das cuenta de lo que ocurrió, ya autorizaste una transferencia.
 
 Esta guía te ayuda a prevenir estafas financieras. Explica cómo operan los métodos más frecuentes, qué señales distinguen cada uno y qué hacer si ya caíste.
+
+> **Revisión editorial 2026-04-22:** se revalidaron las recomendaciones de contención, denuncia y escalamiento contra SERNAC, CMF y los canales vigentes de reclamo.
 
 ## Cómo operan estas estafas
 
@@ -53,7 +55,7 @@ La señal más clara: urgencia, emoción y un pedido de acción que no puede esp
 
 Te contactan por redes sociales, correo o WhatsApp ofreciendo "rentabilidades garantizadas" del 5%, 10% o más por mes. Usan testimonios, logos de empresas reales y términos técnicos (criptomonedas, trading, forex) para aparecer legítimos. Son esquemas Ponzi: los "retornos" de los primeros participantes se pagan con el dinero de los nuevos, hasta que el esquema colapsa.
 
-La señal más clara: nadie puede garantizar rentabilidad en inversiones. Ninguna entidad supervisada por la CMF lo hace. Antes de poner dinero en cualquier instrumento, verifica que la entidad esté en el [registro oficial de entidades autorizadas de la CMF](https://www.cmfchile.cl/portal/principal/613/w3-propertyvalue-43332.html). Si no aparece, no deposites.
+La señal más clara: nadie puede garantizar rentabilidad en inversiones. Ninguna entidad supervisada por la CMF lo hace. Si te ofrecen intermediación bursátil o compra de valores, verifica primero que la entidad figure en el [listado público de corredores de bolsa de la CMF](https://www.cmfchile.cl/institucional/mercados/consulta.php?Estado=VI&entidad=COBOL&mercado=V); si no aparece o te presionan para depositar antes de verificar, no transfieras.
 
 ### Marketplace y portabilidad fraudulenta
 
@@ -129,4 +131,5 @@ Si quieres ampliar el mapa de este tema, revisa también la [sección Seguridad 
 - SERNAC, fraude en medios de pago y orientación al consumidor: https://www.sernac.cl/portal/604/w3-propertyname-791.html
 - CSIRT de Gobierno, alertas de ciberseguridad: https://csirt.gob.cl/
 - CMF, canal de reclamos para entidades supervisadas: https://www.cmfchile.cl/portal/principal/613/w3-propertyvalue-43332.html
+- CMF, listado público de corredores de bolsa: https://www.cmfchile.cl/institucional/mercados/consulta.php?Estado=VI&entidad=COBOL&mercado=V
 - Ley N° 20.009, responsabilidad bancaria por uso fraudulento de tarjetas: <https://www.bcn.cl/leychile/navegar?idNorma=236736>

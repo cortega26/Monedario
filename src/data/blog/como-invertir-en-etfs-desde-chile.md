@@ -4,7 +4,7 @@ description: "Para comprar ETF en Chile necesitas una corredora habilitada. Acá
 slug: como-invertir-en-etfs-desde-chile
 author: "Equipo Monedario"
 pubDate: 2026-02-28T16:30:00Z
-updatedDate: 2026-02-28T16:30:00Z
+updatedDate: 2026-04-22T00:00:00Z
 tags:
   - etf
   - inversiones
@@ -22,7 +22,7 @@ heroImage: /images/hero/como-invertir-en-etfs-desde-chile.avif
 
 Invertir en ETFs desde Chile es perfectamente posible, pero el costo real rara vez aparece en el primer número que ves. La comisión, los derechos de bolsa, el IVA, la custodia y el spread se acumulan en silencio. Esta guía te lleva paso a paso para que sepas exactamente qué estás pagando y qué debes declarar al SII.
 
-> **Información vigente al 2026-02-28.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.
+> **Información vigente al 2026-04-22.** Se revalidaron costos transaccionales base, custodia y filtros de supervisión CMF. Ante cambios normativos o de política pública, verifica siempre en las fuentes oficiales referenciadas al final de este artículo.
 
 Para contexto más amplio sobre instrumentos, revisa [ahorro e inversión en Chile](/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/).
 
@@ -38,7 +38,7 @@ Antes de elegir ETF o plataforma, hay cinco cosas que deben estar definidas. Sin
 
 ## Paso a paso: qué revisar antes de comprar tu primer ETF
 
-1. **Verifica si el intermediario está inscrito** en los registros CMF (si opera en Chile). Es el primer filtro, no el último.
+1. **Verifica si el intermediario aparece en el listado público de la CMF** (si opera en Chile). Es el primer filtro, no el último.
 2. **Revisa la estructura completa de cobros:** comisión por orden, derechos de bolsa, IVA, custodia y cualquier cargo administrativo adicional.
 3. **Revisa el spread y la liquidez** del instrumento que quieres comprar —liquidez baja puede costarte más en la ejecución que la comisión del broker.
 4. **Define mercado objetivo y moneda de referencia** antes de operar, no durante.
@@ -132,13 +132,13 @@ Para conectar esta decisión con una estrategia más amplia de instrumentos y ob
 ## Fuentes y referencias primarias
 
 - CMF Educa, Corredores de bolsa (rol, costos, custodia, supervisión): https://www.cmfchile.cl/educa/621/w3-propertyvalue-994.html
-- CMF, Registro de Corredores y Agentes: https://www.cmfchile.cl/portal/principal/613/w3-article-1264
+- CMF, listado público de corredores de bolsa: https://www.cmfchile.cl/institucional/mercados/consulta.php?Estado=VI&entidad=COBOL&mercado=V
 - SII FAQ, obligación de declarar rentas de inversiones: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0597.htm
 - SII FAQ, asistente de enajenación: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8415.htm
 
 ## Información de vigencia
 
-- Revisado el: 2026-02-28.
+- Revisado el: 2026-04-22.
 - Puede quedar desactualizado cuando: cambios en normativa CMF de intermediarios/custodia o ajustes de instrucciones tributarias SII para inversiones.
 
 ---

@@ -2,7 +2,7 @@
 title: "Te hicieron un cargo que no reconoces: qué hacer en las primeras 24 horas (Ley 20.009)"
 author: "Equipo Monedario"
 pubDate: 2026-02-24T13:00:00Z
-updatedDate: 2026-03-04T12:00:00Z
+updatedDate: 2026-04-22T00:00:00Z
 slug: fraude-tarjeta-que-hacer
 featured: true
 lang: es-CL
@@ -22,6 +22,8 @@ heroImage: /images/hero/fraude-tarjeta-que-hacer.avif
 Revisas tu cuenta y ves un cargo que no hiciste. O peor: te llega un aviso de una transferencia que nunca autorizaste. Lo primero que sientes es pánico. Lo segundo debería ser este artículo.
 
 En Chile existe una ley que protege a las víctimas de fraude financiero. Se llama **[Ley N° 20.009](/leyes/ley-20009-tarjetas-fraude/)** y obliga a los bancos e instituciones financieras a devolverte el dinero — siempre que sigas los pasos correctos y dentro de los plazos.
+
+> **Revisión editorial 2026-04-22:** se revalidaron plazos de reclamo, denuncia y restitución contra SERNAC y CMF Educa.
 
 ## Tabla de contenidos
 
@@ -96,7 +98,7 @@ Una vez que cumpliste los tres pasos, la ley establece plazos concretos para la 
 
 | Situación                                                           | Plazo para devolver                                                              |
 | ------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| Montos hasta 35 [UF](/guias/uf-costo-de-vida/) (~$1.550.000 aprox.) | 10 días hábiles desde el reclamo                                                 |
+| Montos hasta 35 [UF](/guias/uf-costo-de-vida/) (equivalente vigente) | 10 días hábiles desde el reclamo                                                 |
 | Giros en cajero automático o avances en efectivo                    | 15 días hábiles                                                                  |
 | Montos sobre 35 UF                                                  | 10 días hábiles por las primeras 35 UF + 7 días hábiles adicionales por el resto |
 | Entregaste el comprobante de denuncia después del plazo             | 24 horas desde que lo entregues                                                  |

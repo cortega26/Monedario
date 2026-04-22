@@ -2,7 +2,7 @@
 title: "¿Puedo cambiarme de AFP? Cómo hacerlo y qué considerar en 2026"
 author: "Equipo Monedario"
 pubDate: 2026-02-23T13:00:00Z
-updatedDate: 2026-03-22T23:01:40Z
+updatedDate: 2026-04-22T00:00:00Z
 slug: como-cambiarse-de-afp
 featured: false
 lang: es-CL
@@ -25,6 +25,8 @@ volatileData:
 ---
 
 Cambiarse de AFP es uno de los trámites más simples que puedes hacer para mejorar tu situación previsional, y sin embargo la mayoría de las personas nunca lo hace. En esta guía te explicamos cómo funciona el proceso, qué debes evaluar y qué cambia con la Reforma de Pensiones aprobada en 2025.
+
+> **Revisión editorial 2026-04-22:** se revalidaron las comisiones vigentes, la regla de permanencia de nuevos afiliados en AFP Uno y el calendario base de la Ley 21.735 contra la Superintendencia de Pensiones y BCN.
 
 ## Tabla de contenidos
 
@@ -60,7 +62,7 @@ El error más común es fijarse solo en la comisión. Aunque es importante, no e
 
 ### Comisión
 
-La comisión es el porcentaje que cobra la AFP por administrar tu fondo. A menor comisión, más dinero queda en tu cuenta cada mes. Las comisiones vigentes al inicio de 2026 son:
+La comisión es el porcentaje que cobra la AFP por administrar tu fondo. A menor comisión, más dinero queda en tu cuenta cada mes. Las comisiones vigentes revisadas al 2026-04-22 son:
 
 | AFP       | Comisión |
 | --------- | -------- |
@@ -131,4 +133,4 @@ Antes de decidirte, compara cuánto te impacta la comisión en [cuánto descuent
 
 ---
 
-_La información de este artículo está basada en la normativa vigente con fecha de corte 2026-03-22, incluyendo la Ley N°21.735 de Reforma Previsional. Para asesoría personalizada consulta con un profesional o visita la [Superintendencia de Pensiones](https://www.spensiones.cl)._
+_La información de este artículo está basada en la normativa vigente con fecha de corte 2026-04-22, incluyendo la Ley N°21.735 de Reforma Previsional. Para asesoría personalizada consulta con un profesional o visita la [Superintendencia de Pensiones](https://www.spensiones.cl)._

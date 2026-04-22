@@ -26,7 +26,7 @@ articleLead:
   calculatorLabel: "Proyectar tu jubilación"
   nextStepHref: "/posts/como-invertir-en-etfs-desde-chile/"
   nextStepLabel: "Ver cómo acceder a ETFs desde Chile"
-  validAsOf: 2026-03-07
+  validAsOf: 2026-04-22
   officialSources:
     - label: "Nasdaq — histórico NDX"
       href: "https://www.nasdaq.com/market-activity/index/ndx/historical"
@@ -186,7 +186,7 @@ Una vez comprado, ese departamento se podría arrendar. En comunas intermedias d
 
 ## Información de vigencia
 
-- Revisado el: 2026-03-07.
+- Revisado el: 2026-04-22.
 - Fecha de corte visible para lectores: 2025-12-31.
 - Actualización 2026-03-07: la serie 2025 del NASDAQ-100 dejó de usar un dato parcial conservador y pasó a usar el cierre anual reportado para 2025; por eso el resultado final sube desde la versión anterior.
 - Esta versión incorpora críticas razonables y límites metodológicos explícitos para contextualizar mejor el resultado.

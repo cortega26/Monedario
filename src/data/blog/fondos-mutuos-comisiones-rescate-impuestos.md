@@ -4,7 +4,7 @@ description: "Guía práctica para entender costos reales, plazos de rescate y t
 slug: fondos-mutuos-comisiones-rescate-impuestos
 author: "Equipo Monedario"
 pubDate: 2026-02-28T16:20:00Z
-updatedDate: 2026-02-28T16:20:00Z
+updatedDate: 2026-04-22T00:00:00Z
 tags:
   - fondos-mutuos
   - inversiones
@@ -21,6 +21,8 @@ heroImage: /images/hero/fondos-mutuos-comisiones-rescate-impuestos.avif
 ---
 
 Los fondos mutuos tienen costos reales que no siempre aparecen en el primer número que ves. La remuneración de administración, la comisión de rescate y el tratamiento tributario del mayor valor son los tres puntos donde más se pierde por no haber leído bien antes de invertir. Esta guía los desglosa sin rodeos.
+
+> **Revisión editorial 2026-04-22:** se revalidaron la regla de rescate en hasta 10 días hábiles, la exigencia de reglamento interno y la orientación tributaria base del SII para rescates y mayor valor.
 
 Para una mirada más amplia de instrumentos, parte por [ahorro e inversión en Chile](/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/).
 
@@ -143,7 +145,7 @@ Para decidir cómo encajan los fondos mutuos en una estrategia integral de ahorr
 
 ## Información de vigencia
 
-- Revisado el: 2026-02-28.
+- Revisado el: 2026-04-22.
 - Puede quedar desactualizado cuando: cambios CMF sobre información obligatoria de fondos o cambios en instrucciones SII de renta anual.
 
 ---
