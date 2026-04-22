@@ -90,13 +90,13 @@ If any condition fails, task status is `HALT` until resolved.
 <claude-mem-context>
 # Memory Context
 
-# [tuplatainforma] recent context, 2026-04-22 6:08pm GMT-4
+# [tuplatainforma] recent context, 2026-04-22 6:35pm GMT-4
 
 Legend: 🎯session 🔴bugfix 🟣feature 🔄refactor ✅change 🔵discovery ⚖️decision
 Format: ID TIME TYPE TITLE
 Fetch details: get_observations([IDs]) | Search: mem-search skill
 
-Stats: 14 obs (6,051t read) | 80,276t work | 92% savings
+Stats: 17 obs (7,521t read) | 106,914t work | 93% savings
 
 ### Apr 22, 2026
 176 5:16p 🔵 tuplatainforma — Ahrefs Broken Link Audit Initiated on Astro Project
@@ -114,6 +114,9 @@ S42 Broken SII FAQ URLs Replaced in operacion-renta-f22-checklist.md (Apr 22, 5:
 189 6:01p 🔴 Lint Error Fixed — Removed Unused globSync Import from redirect-links.e2e.test.ts
 190 6:02p 🔵 tuplatainforma — `npm run check:editorial` Fails Because pnpm Is Not Installed
 191 " 🔵 tuplatainforma — Project Is pnpm-Only; npm Run Fails for Most Scripts
+192 6:08p 🔵 tuplatainforma — 11 Blog Articles Failing Editorial Timeliness CI Check
+193 6:09p 🔵 tuplatainforma — 11 Blog Articles Fail Editorial Timeliness CI Check
+194 " 🔵 tuplatainforma — 11 Blog Articles Failing Editorial Timeliness CI Check
 
-Access 80k tokens of past work via get_observations([IDs]) or mem-search skill.
+Access 107k tokens of past work via get_observations([IDs]) or mem-search skill.
 </claude-mem-context>
