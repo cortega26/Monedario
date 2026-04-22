@@ -73,12 +73,12 @@ Por eso conviene evitar la pregunta genérica "¿estoy en DICOM?". El informe CM
 
 Aquí está la confusión más común, aclarada de una vez:
 
-|                    | Informe CMF                                                     | Boletín Comercial                                                | DICOM (Equifax)                                                                   |
-| ------------------ | --------------------------------------------------------------- | ---------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| **Qué es**         | Registro oficial de deudas con el sistema financiero regulado   | Registro de protestos de documentos (cheques, letras, pagarés)   | Producto comercial de Equifax (empresa privada)                                   |
-| **Quién lo emite** | CMF (organismo del Estado)                                      | Cámara de Comercio de Santiago                                   | Equifax (empresa privada)                                                         |
-| **Qué incluye**    | Deudas con bancos y entidades supervisadas                      | Documentos protestados sin pagar (cheques, pagarés)              | Combina varias fuentes: Boletín Comercial, morosidades de retail, servicios, etc. |
-| **Costo**          | Gratis, ilimitado                                               | Tiene consulta gratuita mínima por ley y otras consultas pagadas | Depende del producto                                                              |
+|                    | Informe CMF                                                                    | Boletín Comercial                                                | DICOM (Equifax)                                                                   |
+| ------------------ | ------------------------------------------------------------------------------ | ---------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| **Qué es**         | Registro oficial de deudas con el sistema financiero regulado                  | Registro de protestos de documentos (cheques, letras, pagarés)   | Producto comercial de Equifax (empresa privada)                                   |
+| **Quién lo emite** | CMF (organismo del Estado)                                                     | Cámara de Comercio de Santiago                                   | Equifax (empresa privada)                                                         |
+| **Qué incluye**    | Deudas con bancos y entidades supervisadas                                     | Documentos protestados sin pagar (cheques, pagarés)              | Combina varias fuentes: Boletín Comercial, morosidades de retail, servicios, etc. |
+| **Costo**          | Gratis, ilimitado                                                              | Tiene consulta gratuita mínima por ley y otras consultas pagadas | Depende del producto                                                              |
 | **Cómo se accede** | [conocetudeuda.cmfchile.cl](https://conocetudeuda.cmfchile.cl/informe-deudas/) | [boletincomercial.cl](https://www.boletincomercial.cl/)          | equifax.cl                                                                        |
 
 Cuando alguien dice "estoy en DICOM", normalmente está mezclando varias capas: el reporte oficial CMF, el Boletín Comercial y uno o más informes privados. Cada uno recoge información distinta y te sirve para decisiones distintas.
