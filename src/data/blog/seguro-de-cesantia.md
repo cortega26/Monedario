@@ -141,7 +141,7 @@ Los pagos continúan mientras haya saldo en tu cuenta. Si se acaba antes del mes
 
 ### Si cobras por el FCS
 
-El FCS cubre hasta **5 meses** (o más si hay alta cesantía nacional) con topes mínimos y máximos definidos anualmente por la Superintendencia de Pensiones. Los montos exactos vigentes los puedes consultar en [afc.cl](https://www.afc.cl/afiliados/quedo-cesante-o-esta-cobrando-su-seguro/que-es-el-fondo-solidario-de-cesantia/).
+El FCS cubre hasta **5 meses** (o más si hay alta cesantía nacional) con topes mínimos y máximos definidos anualmente por la Superintendencia de Pensiones. Para revisar los montos vigentes y simular tu beneficio, consulta directamente la [Sucursal Virtual de AFC Chile](https://www.afc.cl/).
 
 El FCS también financia los primeros pagos con lo que quede en tu CIC antes de usar el fondo común.
 
