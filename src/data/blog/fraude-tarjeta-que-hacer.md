@@ -96,12 +96,12 @@ Una vez que tengas el comprobante de la denuncia, entrégaselo a tu banco dentro
 
 Una vez que cumpliste los tres pasos, la ley establece plazos concretos para la devolución:
 
-| Situación                                                           | Plazo para devolver                                                              |
-| ------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Situación                                                            | Plazo para devolver                                                              |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | Montos hasta 35 [UF](/guias/uf-costo-de-vida/) (equivalente vigente) | 10 días hábiles desde el reclamo                                                 |
-| Giros en cajero automático o avances en efectivo                    | 15 días hábiles                                                                  |
-| Montos sobre 35 UF                                                  | 10 días hábiles por las primeras 35 UF + 7 días hábiles adicionales por el resto |
-| Entregaste el comprobante de denuncia después del plazo             | 24 horas desde que lo entregues                                                  |
+| Giros en cajero automático o avances en efectivo                     | 15 días hábiles                                                                  |
+| Montos sobre 35 UF                                                   | 10 días hábiles por las primeras 35 UF + 7 días hábiles adicionales por el resto |
+| Entregaste el comprobante de denuncia después del plazo              | 24 horas desde que lo entregues                                                  |
 
 Fuente: [SERNAC — Especial Ley de Fraude](https://www.sernac.cl/portal/604/w3-propertyname-791.html)
 
