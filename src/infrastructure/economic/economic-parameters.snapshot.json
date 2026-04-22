@@ -1,9 +1,9 @@
 {
-  "uf": 39934.33,
+  "uf": 40013.88,
   "utm": 69889,
   "ipc": -0.2,
   "tmc": 3.49,
-  "dolar": 886.09,
+  "dolar": 887.79,
   "afcTopes": {
     "monthlyTaxableCapUf": 135.2
   },
@@ -11,12 +11,12 @@
     "pensionAndHealthMonthlyTaxableCapUf": 90
   },
   "indicatorUpdatedAt": {
-    "uf": "2026-04-16",
+    "uf": "2026-04-22",
     "utm": "2026-04-01",
     "ipc": "2025-12-01",
-    "dolar": "2026-04-16"
+    "dolar": "2026-04-22"
   },
-  "lastUpdated": "2026-04-16",
-  "capturedAt": "2026-04-16T11:31:42.860Z",
+  "lastUpdated": "2026-04-22",
+  "capturedAt": "2026-04-22T11:33:00.438Z",
   "source": "mindicador.cl/api"
 }
