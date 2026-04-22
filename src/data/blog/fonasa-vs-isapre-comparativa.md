@@ -80,7 +80,7 @@ Fonasa clasifica a sus beneficiarios en cuatro tramos según ingreso imponible m
 
 > **Nota:** Los umbrales exactos de cada tramo y los copagos específicos se actualizan periódicamente mediante resolución de Fonasa. Consulta los valores vigentes en [fonasa.cl](https://www.fonasa.cl/sites/fonasa/beneficiarios/informacion-general/tramos) antes de tomar una decisión. En atención primaria (CESFAM, postas), los copagos son menores o cero para la mayoría de los tramos.
 
-**Modalidad de Libre Elección (MLE):** Fonasa también permite atenderse con médicos y clínicas privadas registradas, pagando un bono. Fonasa subsidia parte del arancel oficial y el paciente paga el resto. El copago en MLE es generalmente mayor que en la red hospitalaria pública y no depende del tramo. Consulta los valores de bonificación MLE en [fonasa.cl](https://www.fonasa.cl/sites/fonasa/beneficiarios/informacion-general/modalidades).
+**Modalidad de Libre Elección (MLE):** Fonasa también permite atenderse con médicos y clínicas privadas registradas, pagando un bono. Fonasa subsidia parte del arancel oficial y el paciente paga el resto. El copago en MLE es generalmente mayor que en la red hospitalaria pública y no depende del tramo. Consulta los valores de bonificación MLE en [fonasa.cl](https://www.fonasa.cl/sites/fonasa/beneficiarios/tramites/valor-bono).
 
 ### Cómo funciona el precio en Isapres
 

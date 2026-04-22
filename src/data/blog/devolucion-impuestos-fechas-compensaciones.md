@@ -107,9 +107,9 @@ Solo si hay error u observación en la declaración. Si la causa es compensació
 ## Fuentes y referencias primarias
 
 - SII, comunicado 31 de marzo de 2026 — calendario AT 2026 y novedades: https://www.sii.cl/noticias/2026/310326noti01pcr.htm
-- SII FAQ, fechas de devolución AT 2025: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8507.htm
-- SII FAQ, consulta de estado y observaciones en "Consulta y seguimiento": https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8548.htm
-- SII FAQ, causas de no recepción pese a declaración aceptada (retenciones y datos bancarios): https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8546.htm
+- SII FAQ, fechas de devolución AT 2026: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8951.htm
+- SII FAQ, consulta de estado y observaciones en "Consulta y seguimiento": https://www.sii.cl/servicios_online/1044-2696.html
+- SII FAQ, causas de no recepción pese a declaración aceptada (retenciones y datos bancarios): https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8951.htm
 - SII noticia Operación Renta 2025 (autorización, pagos y compensaciones por TGR): https://www.sii.cl/noticias/2025/150425noti01msf.htm
 - ChileAtiende, Operación Renta (calendario de referencia y canales de pago): https://www.chileatiende.gob.cl/fichas/3178-declaracion-de-renta
 
