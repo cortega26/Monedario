@@ -31,7 +31,7 @@
     "check:editorial-artifacts": "node scripts/check-editorial-artifacts.mjs",
     "check:editorial-timeliness": "node scripts/check-editorial-timeliness.mjs",
     "check:reader-facing-copy": "node scripts/check-reader-facing-copy.mjs",
-    "check:editorial": "pnpm run check:editorial-structure && pnpm run check:dialect && pnpm run check:reader-facing-copy && pnpm run check:editorial-artifacts",
+    "check:editorial": "node scripts/check-editorial-structure.mjs && node scripts/check-dialect.mjs && node scripts/check-reader-facing-copy.mjs && node scripts/check-editorial-artifacts.mjs",
     "scaffold:editorial-artifacts": "node scripts/scaffold-editorial-artifacts.mjs",
     "audit:reader-copy": "node scripts/audit-reader-facing-copy.mjs",
     "audit:topic-overlap": "node scripts/audit-topic-overlap.mjs",

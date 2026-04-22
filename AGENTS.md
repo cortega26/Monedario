@@ -85,3 +85,33 @@ A change is complete only if all are true:
 
 If any condition fails, task status is `HALT` until resolved.
 
+
+
+<claude-mem-context>
+# Memory Context
+
+# [tuplatainforma] recent context, 2026-04-22 6:01pm GMT-4
+
+Legend: 🎯session 🔴bugfix 🟣feature 🔄refactor ✅change 🔵discovery ⚖️decision
+Format: ID TIME TYPE TITLE
+Fetch details: get_observations([IDs]) | Search: mem-search skill
+
+Stats: 12 obs (5,230t read) | 71,386t work | 93% savings
+
+### Apr 22, 2026
+176 5:16p 🔵 tuplatainforma — Ahrefs Broken Link Audit Initiated on Astro Project
+177 5:17p 🔵 tuplatainforma — Content Directory Contains No Markdown Pages
+178 " 🔵 tuplatainforma — One Broken Internal Post Link Found: /posts/que-es-el-apv
+179 5:18p 🔵 tuplatainforma — que-es-el-apv Is a False Positive: File Exists as .mdx, Not .md
+180 " 🔵 tuplatainforma — Broken Link Audit via Ahrefs: No Broken Internal /posts/ Links Found
+181 5:19p 🔵 tuplatainforma — Full Internal Link Inventory: Glossary, Laws, and Source Files All Clean
+182 5:24p 🔵 tuplatainforma Blog — Full Inventory of SII and Fonasa External Links
+183 5:25p 🔴 Broken SII FAQ URLs Replaced in operacion-renta-f22-checklist.md
+S42 Broken SII FAQ URLs Replaced in operacion-renta-f22-checklist.md (Apr 22, 5:25 PM)
+184 5:48p 🔵 FONASA MLE Deep-Link URLs Confirmed for tuplatainforma
+185 5:59p 🔵 tuplatainforma — pnpm Not in PATH Blocks lint and check:editorial
+186 6:00p 🔵 tuplatainforma — Lint Error Root Cause: Unused globSync Import in redirect-links.e2e.test.ts
+189 6:01p 🔴 Lint Error Fixed — Removed Unused globSync Import from redirect-links.e2e.test.ts
+
+Access 71k tokens of past work via get_observations([IDs]) or mem-search skill.
+</claude-mem-context>
