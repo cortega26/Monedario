@@ -138,7 +138,11 @@ Validación automatizada:
 
 Este proyecto usa dos licencias distintas:
 
-- **Código fuente** (`src/` excepto `src/data/`): [MIT](./LICENSE.md)
+- **Código fuente y scripts**: [AGPL-3.0-only](./LICENSE.md).
+  Si alguien modifica y ofrece el software como servicio, debe publicar el
+  código fuente correspondiente bajo los términos de la AGPL.
 - **Contenido editorial** (`src/data/`, artículos, guías, glosario):
-  [CC BY-NC 4.0](./LICENSE-CONTENT.md) — libre para compartir con atribución,
-  prohibido uso comercial sin permiso.
+  [CC BY-NC 4.0](./LICENSE-CONTENT.md) — libre para compartir y adaptar con
+  atribución, prohibido uso comercial sin permiso.
+- **Marca, nombre, logo, imágenes y activos de diseño**: no están cubiertos por
+  la licencia del código; quedan reservados salvo autorización explícita.

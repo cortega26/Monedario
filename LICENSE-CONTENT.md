@@ -1,20 +1,51 @@
-Atribución-NoComercial 4.0 Internacional (CC BY-NC 4.0)
+# Licencia de contenido editorial
 
-Este es un resumen legible por humanos (y no un sustituto) de la licencia. 
-Para ver el código legal o licencia completa, por favor visite: 
+Copyright (C) 2026 Carlos Ortega González
+
+Salvo indicación expresa en contrario, el contenido editorial de este
+repositorio se publica bajo la licencia Creative Commons
+Atribución-NoComercial 4.0 Internacional (CC BY-NC 4.0).
+
+Código legal canónico:
 https://creativecommons.org/licenses/by-nc/4.0/legalcode.es
 
-Usted es libre para:
-- Compartir: copiar y redistribuir el material en cualquier medio o formato.
-- Adaptar: remezclar, transformar y construir a partir del material.
+Resumen legible por humanos:
+https://creativecommons.org/licenses/by-nc/4.0/deed.es
 
-El licenciante no puede revocar estas libertades en tanto usted siga los términos de la licencia.
+## Alcance
 
-Bajo los siguientes términos:
-- Atribución: Usted debe dar crédito de manera adecuada, brindar un enlace a la licencia, e indicar si se han realizado cambios. Puede hacerlo en cualquier forma razonable, pero no de forma tal que sugiera que usted o su uso tienen el apoyo del licenciante.
-- NoComercial: Usted no puede hacer uso del material con propósitos comerciales.
-- No hay restricciones adicionales: Usted no puede aplicar términos legales ni medidas tecnológicas que restrinjan legalmente a otros a hacer cualquier uso permitido por la licencia.
+Esta licencia aplica al contenido editorial del proyecto, incluyendo
+artículos, guías, glosario y otros textos educativos publicados en el sitio.
 
-Avisos:
-- No tiene que cumplir con la licencia para elementos del material en el dominio público o donde su uso esté permitido por una excepción o limitación aplicable.
-- No se dan garantías. La licencia podría no darle todos los permisos necesarios para el uso que tenga previsto. Por ejemplo, otros derechos como la publicidad, privacidad, o derechos morales pueden limitar la forma en que utilice el material.
+Esta licencia no aplica al código fuente, scripts, marca, nombre comercial,
+logo, imágenes, iconografía, activos de diseño ni identidad visual. El código
+fuente y los scripts se licencian por separado en `LICENSE.md`.
+
+## Permisos principales
+
+Bajo los términos de CC BY-NC 4.0, puedes:
+
+- Compartir: copiar y redistribuir el contenido en cualquier medio o formato.
+- Adaptar: remezclar, transformar y construir a partir del contenido.
+
+## Condiciones principales
+
+Debes:
+
+- Dar atribución adecuada a Monedario.cl y a Carlos Ortega González.
+- Incluir un enlace a la licencia CC BY-NC 4.0.
+- Indicar si realizaste cambios.
+- Usar el contenido solo con fines no comerciales, salvo autorización explícita
+  por escrito.
+
+No puedes aplicar términos legales ni medidas tecnológicas que restrinjan a
+otras personas de ejercer los permisos otorgados por la licencia.
+
+## Avisos
+
+Este archivo resume el alcance de uso del contenido dentro de este proyecto,
+pero no reemplaza el texto legal canónico de Creative Commons.
+
+La licencia no garantiza que tengas todos los permisos necesarios para un uso
+específico. Otros derechos, como derechos de imagen, privacidad, marcas,
+publicidad o derechos morales, pueden limitar ciertos usos.

@@ -4,7 +4,7 @@ Copyright (C) 2026 Carlos Ortega González
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU Affero General Public License as published by
-the Free Software Foundation, either version 3 of the License.
+the Free Software Foundation, version 3 only.
 
 This program is distributed in the hope that it will be useful, but
 WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -21,11 +21,12 @@ SPDX-License-Identifier: AGPL-3.0-only
 
 IMPORTANT:
 
-This license applies ONLY to the source code of this repository.
+This license applies ONLY to the source code and scripts of this repository.
 
-All editorial content, articles, images, branding, design assets, and
-the name "Monedario.cl" are NOT covered by this license and remain ©
-2026 Carlos Ortega González. All rights reserved.
+All editorial content, articles, images, branding, design assets, datasets
+intended as editorial content, and the name "Monedario.cl" are NOT covered
+by this license and remain © 2026 Carlos Ortega González. All rights
+reserved unless a separate license file says otherwise.
 
 Use of the name, logo, or visual identity without explicit written
 authorization is strictly prohibited.
