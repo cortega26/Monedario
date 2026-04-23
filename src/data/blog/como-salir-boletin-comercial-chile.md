@@ -18,6 +18,7 @@ lang: es-CL
 featured: false
 draft: false
 heroImage: /images/hero/como-salir-boletin-comercial-chile.avif
+articleAdvisory: "Contenido educativo; no reemplaza asesoría legal si hay cobranza judicial, prescripción discutida o errores persistentes."
 articleLead:
   answer: "Para salir del Boletín Comercial debes pagar la deuda y comunicarlo al acreedor: tienes 5 días hábiles para que te eliminen. Las deudas pagadas se eliminan por ley; las impagas persisten indefinidamente."
   nextStepHref: "/posts/informe-deudas-cmf-vs-dicom/"

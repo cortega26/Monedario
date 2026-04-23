@@ -18,6 +18,7 @@ topicRole: owner
 canonicalTopic: auditar-liquidacion-sueldo
 description: "Guía para auditar tu liquidación de sueldo en Chile: qué debe mostrar el comprobante, qué respaldos pedir y qué líneas revisar antes de darlo por bueno."
 heroImage: /images/hero/liquidacion-de-sueldo.avif
+articleAdvisory: "Contenido educativo; si hay descuentos discutidos o remuneración variable compleja, pide respaldo antes de firmar."
 articleLead:
   answer: "La liquidación de sueldo sirve para auditar el comprobante del mes, no para adivinarlo: tiene que mostrar haberes, descuentos y bases suficientes para reconstruir por qué tu depósito terminó en ese número."
   calculatorHref: "/calculadoras/sueldo-liquido/"

@@ -18,6 +18,7 @@ lang: es-CL
 featured: false
 draft: false
 heroImage: "/images/hero/seguro-cesantia-cuenta-individual-vs-fondo-solidario.avif"
+articleAdvisory: "Contenido educativo; revisa tu causal, continuidad y saldo real antes de asumir cobertura AFC."
 articleLead:
   answer: "La Cuenta Individual de Cesantía y el Fondo Solidario no son la misma plata ni se activan igual. Primero manda tu CIC; el Fondo Solidario es una capa adicional que exige causal, mínimo de cotizaciones y continuidad verificable."
   calculatorHref: "/calculadoras/seguro-cesantia/"

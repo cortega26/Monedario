@@ -18,6 +18,7 @@ topicRole: owner
 canonicalTopic: reajuste-arriendo-contrato-uf-ipc
 description: "¿Cuánto puede subir tu arriendo? Depende del contrato. Explicamos UF vs IPC, cuándo aplica cada uno y cómo calcular el nuevo monto sin confundirte."
 heroImage: /images/hero/reajuste-arriendo-uf-ipc-chile.avif
+articleAdvisory: "Contenido educativo; no reemplaza la revisión de tu contrato ni asesoría legal ante cláusulas discutidas."
 volatileData:
   - id: "economic.uf.value"
     sync: reference

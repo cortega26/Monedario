@@ -20,6 +20,7 @@ lang: es-CL
 featured: true
 draft: false
 heroImage: /images/hero/el-poder-del-interes-compuesto.avif
+articleAdvisory: "Simulación educativa; no garantiza retornos futuros ni reemplaza una evaluación de riesgo o de impuestos."
 articleLead:
   answer: "Invertir el 10% del sueldo mínimo durante 36 años en un índice bursátil habría producido más de $125 millones en este ejercicio. El resultado no es magia: es el interés compuesto funcionando sobre períodos largos, sin interrumpir el plan durante las crisis."
   calculatorHref: "/calculadoras/simulador-jubilacion/"

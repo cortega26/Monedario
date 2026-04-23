@@ -20,6 +20,7 @@ Definir un contrato mínimo, estable y validable para artículos en `src/data/bl
 | `topicRole` | string (enum) | No (sí en clusters endurecidos publicados) | `owner`, `support`, `reference`. |
 | `canonicalTopic` | string | No (sí cuando existe `topicRole`; sí en clusters endurecidos publicados) | Identificador estable en kebab-case de la necesidad primaria. |
 | `canonical` | string (URL absoluta) | No (si aplica) | Obligatorio cuando exista contenido duplicado/cross-domain. |
+| `articleAdvisory` | string | No | Advisory breve de cierre. Plain text, sin HTML ni links, máximo 220 caracteres. Si falta, usa el fallback central. |
 | `draft` | boolean | Sí | `false` para publicar. |
 
 ## Valores permitidos: `category` y `cluster`
@@ -96,9 +97,21 @@ tags:
   - ...
 lang: es-CL
 canonical: https://dominio.cl/posts/slug/ # opcional
+articleAdvisory: "Contenido educativo; no reemplaza asesoría profesional personalizada." # opcional
 draft: false
 ---
 ```
+
+## Contrato de `articleAdvisory`
+
+- Usar solo cuando la pieza necesita un cierre distinto al default del sistema.
+- Debe ser una sola frase breve en plain text.
+- No puede contener:
+  - HTML
+  - markdown links
+  - URLs o rutas internas
+  - bloques multilinea
+- Si una pieza necesita vigencia, fuentes o notas metodológicas, eso va en el cuerpo o en metadata existente (`articleLead`, secciones finales, etc.), no en el advisory.
 
 ## Hallazgos de Sprint 0 (estado actual)
 

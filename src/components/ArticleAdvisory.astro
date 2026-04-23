@@ -1,13 +1,11 @@
 ---
 type Props = {
-  html: string;
+  text: string;
 };
 
-const { html } = Astro.props;
+const { text } = Astro.props;
 ---
 
-<p
-  aria-label="Aviso editorial"
-  class="not-prose mt-8 text-sm leading-relaxed text-secondary italic"
-  set:html={html}
-/>
+<p aria-label="Aviso editorial" class="not-prose mt-8 text-sm leading-relaxed text-secondary italic">
+  {text}
+</p>

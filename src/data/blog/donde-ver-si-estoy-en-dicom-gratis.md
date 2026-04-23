@@ -19,6 +19,7 @@ lang: es-CL
 featured: false
 draft: false
 heroImage: /images/hero/donde-ver-si-estoy-en-dicom-gratis.avif
+articleAdvisory: "Contenido educativo; un reporte por sí solo no reemplaza el reclamo formal ni confirma la eliminación de antecedentes."
 articleLead:
   answer: "No existe un solo botón oficial que te diga 'estás en DICOM'. Si quieres revisar deudas financieras vigentes, parte por el Informe de Deudas CMF. Si buscas protestos o un reporte comercial más amplio, necesitas separar Boletín Comercial y reportes privados antes de pagar o sacar conclusiones."
   nextStepHref: "/posts/informe-deudas-cmf-vs-dicom/"

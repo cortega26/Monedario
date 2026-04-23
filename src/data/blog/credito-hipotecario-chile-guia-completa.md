@@ -19,6 +19,7 @@ lang: es-CL
 featured: false
 draft: false
 heroImage: /images/hero/credito-hipotecario-chile-guia-completa.avif
+articleAdvisory: "Guía educativa; no reemplaza la revisión financiera o legal de tu operación hipotecaria específica."
 articleLead:
   answer: "Un crédito hipotecario te sirve si tienes el pie (mínimo 10%–20% del valor de la propiedad), ingresos estables, y el dividendo mensual estimado no supera el 25–30% de tu renta neta. Esta guía cubre el proceso completo: desde precalificación hasta escritura, con los costos reales que los bancos no siempre adelantan."
   calculatorHref: "/calculadoras/dividendo-hipotecario/"

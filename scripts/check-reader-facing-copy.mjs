@@ -13,6 +13,17 @@ const CALCULATORS_DIR = path.join(PAGES_DIR, "calculadoras");
 const EDITORIAL_SCOPE = normalizeToken(process.env.EDITORIAL_SCOPE || "all");
 const EDITORIAL_DIFF_BASE_REF = String(process.env.EDITORIAL_DIFF_BASE_REF ?? "").trim();
 const FAQ_MAX_ITEMS = 5;
+const TRAILING_INLINE_ADVISORY_MAX_LENGTH = 280;
+const TRAILING_INLINE_ADVISORY_PATTERNS = [
+  /\bno reemplaza\b/i,
+  /\bno sustituye\b/i,
+  /\bcontenido educativo\b/i,
+  /\bcontenido informativo\b/i,
+  /\bverifica siempre\b/i,
+  /\bfecha de corte\b/i,
+  /\bultima actualizaci[oó]n\b/i,
+  /\bvigencia\b/i,
+];
 
 const BLOCKING_PATTERNS = [
   {
@@ -164,6 +175,43 @@ function splitFrontmatter(source) {
   return { body: source.slice(match[0].length) };
 }
 
+function normalizeTrailingBlock(block) {
+  return block
+    .replace(/^>\s?/gm, "")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/[*_`]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function getTrailingContentBlock(body) {
+  const blocks = body
+    .trimEnd()
+    .split(/\n\s*\n/)
+    .map(block => block.trim())
+    .filter(Boolean);
+
+  if (blocks.length === 0) return null;
+
+  return blocks[blocks.length - 1];
+}
+
+function isStandaloneTrailingAdvisoryBlock(block) {
+  if (!block) return false;
+  if (/^(?:#{1,6}\s|[-*]\s|\d+\.\s|```|~~~|\|)/m.test(block)) {
+    return false;
+  }
+
+  const normalized = normalizeTrailingBlock(block);
+  if (!normalized || normalized.length > TRAILING_INLINE_ADVISORY_MAX_LENGTH) {
+    return false;
+  }
+
+  return TRAILING_INLINE_ADVISORY_PATTERNS.some(pattern =>
+    pattern.test(normalized)
+  );
+}
+
 const target = collectTargetFiles();
 const issues = [];
 
@@ -194,6 +242,18 @@ for (const filePath of target.files) {
         id: "faq-too-long",
         reason: `FAQ section exceeds max ${FAQ_MAX_ITEMS} items`,
         snippet: `<details> count: ${faqItems}`,
+      });
+    }
+
+    const trailingBlock = getTrailingContentBlock(body);
+    if (isStandaloneTrailingAdvisoryBlock(trailingBlock)) {
+      issues.push({
+        file: relative,
+        line: body.split("\n").length,
+        id: "inline-closing-advisory",
+        reason:
+          "Inline closing advisory detected in article body; move it to frontmatter articleAdvisory or the shared fallback.",
+        snippet: normalizeTrailingBlock(trailingBlock).slice(0, 140),
       });
     }
   }

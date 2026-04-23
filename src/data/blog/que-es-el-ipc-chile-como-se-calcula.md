@@ -19,6 +19,7 @@ lang: es-CL
 featured: false
 draft: false
 heroImage: /images/hero/que-es-el-ipc-chile-como-se-calcula.avif
+articleAdvisory: "Contenido educativo; los datos de inflación cambian mes a mes y deben verificarse en su fuente oficial."
 volatileData:
   - id: "economic.ipc.monthly_variation"
     sync: reference

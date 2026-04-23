@@ -19,6 +19,7 @@ lang: es-CL
 featured: false
 draft: false
 heroImage: /images/hero/cae-costo-real-credito-chile.avif
+articleAdvisory: "Guía educativa; no reemplaza revisar tu oferta específica ni la hoja precontractual antes de firmar."
 articleLead:
   answer: "Si estás comparando un crédito nuevo, la pregunta correcta no es '¿qué cuota me ofrecen?' sino '¿cuánto me costará en total?'. Para eso mira CAE y costo total en pesos, no solo la tasa ni la primera cuota. Si la deuda ya existe y no la puedes sostener, esta guía ya no es suficiente."
   calculatorHref: "/calculadoras/credito-consumo/"

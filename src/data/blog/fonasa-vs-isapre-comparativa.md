@@ -19,6 +19,7 @@ lang: es-CL
 featured: false
 draft: false
 heroImage: /images/hero/fonasa-vs-isapre-comparativa.avif
+articleAdvisory: "Contenido educativo; no reemplaza la revisión de tu plan, preexistencias ni asesoría médica para decidir."
 articleLead:
   answer: "Fonasa conviene si tienes enfermedades preexistentes, ingresos variables o carga familiar amplia. Isapre puede convenir si buscas red privada y tienes ingresos estables sin preexistencias relevantes."
   validAsOf: 2026-04-08

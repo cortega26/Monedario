@@ -20,6 +20,7 @@ lang: es-CL
 featured: false
 draft: false
 heroImage: /images/hero/utm-chile-que-es-como-funciona.avif
+articleAdvisory: "Contenido educativo; el valor de la UTM cambia cada mes y debe verificarse en la fuente oficial antes de usarlo."
 volatileData:
   - id: "economic.utm.value"
     sync: reference

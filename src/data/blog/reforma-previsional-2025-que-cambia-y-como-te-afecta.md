@@ -19,6 +19,7 @@ lang: es-CL
 featured: false
 draft: false
 heroImage: /images/hero/reforma-previsional-2025-que-cambia-y-como-te-afecta.avif
+articleAdvisory: "Guía educativa; el calendario y la implementación pueden ajustarse por norma o instrucción posterior."
 articleLead:
   answer: "La forma correcta de leer la reforma previsional es separar qué ya está operando hoy de lo que recién entra después. Si mezclas aporte del empleador, BAC y fondos generacionales como si todo rigiera al mismo tiempo, terminas tomando malas decisiones con información aprobada pero no implementada."
   calculatorHref: "/calculadoras/apv/"

@@ -19,6 +19,7 @@ topicRole: owner
 canonicalTopic: clasificacion-descuentos-sueldo
 description: "Guía para separar descuentos legales, autorizados y prohibidos en tu sueldo en Chile, sin confundir la clasificación jurídica con el cálculo completo del líquido."
 heroImage: /images/hero/descuentos-de-sueldo.avif
+articleAdvisory: "Contenido educativo; verifica porcentajes y tablas vigentes antes de reclamar o firmar conforme."
 articleLead:
   answer: "La pregunta útil no es solo cuánto te descontaron, sino de qué tipo de descuento se trata: en Chile no todo lo que baja tu líquido es legal, obligatorio o libremente imponible por el empleador."
   calculatorHref: "/calculadoras/sueldo-liquido/"

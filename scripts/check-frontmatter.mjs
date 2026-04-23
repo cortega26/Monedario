@@ -50,6 +50,12 @@ const ALLOWED_CLUSTERS = new Set(
 
 const REQUIRED_LANG = "es-CL";
 const INLINE_IMAGE_EXCEPTION_MIN_REASON_LENGTH = 12;
+const ARTICLE_ADVISORY_MIN_LENGTH = 12;
+const ARTICLE_ADVISORY_MAX_LENGTH = 220;
+const ARTICLE_ADVISORY_HTML_PATTERN = /<[^>]+>/;
+const ARTICLE_ADVISORY_MARKDOWN_LINK_PATTERN = /\[[^\]]+\]\([^)]+\)/;
+const ARTICLE_ADVISORY_URL_PATTERN =
+  /(?:https?:\/\/|www\.|\/(?:posts|calculadoras|guias|glosario|laws)\/)/i;
 const CANONICAL_TOPIC_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 const VOLATILE_DATA_SYNC_MODES = new Set(["reference", "strict"]);
 
@@ -411,6 +417,61 @@ for (const filePath of files) {
         relativeFilePath,
         'Field "canonical" must be an absolute HTTPS URL.'
       );
+    }
+  }
+
+  const articleAdvisory = frontmatter.articleAdvisory;
+  if (articleAdvisory != null) {
+    if (typeof articleAdvisory !== "string") {
+      pushIssue(
+        errors,
+        relativeFilePath,
+        'Field "articleAdvisory" must be a plain-text string; replace rich content with one short sentence.'
+      );
+    } else {
+      const normalizedArticleAdvisory = articleAdvisory.trim();
+      if (normalizedArticleAdvisory.length < ARTICLE_ADVISORY_MIN_LENGTH) {
+        pushIssue(
+          errors,
+          relativeFilePath,
+          `Field "articleAdvisory" must be at least ${ARTICLE_ADVISORY_MIN_LENGTH} characters; use one brief plain-text sentence.`
+        );
+      }
+      if (normalizedArticleAdvisory.length > ARTICLE_ADVISORY_MAX_LENGTH) {
+        pushIssue(
+          errors,
+          relativeFilePath,
+          `Field "articleAdvisory" exceeds max ${ARTICLE_ADVISORY_MAX_LENGTH} characters; move richer notes into the article body.`
+        );
+      }
+      if (/[\r\n]/.test(articleAdvisory)) {
+        pushIssue(
+          errors,
+          relativeFilePath,
+          'Field "articleAdvisory" must stay on one line; remove multiline formatting.'
+        );
+      }
+      if (ARTICLE_ADVISORY_HTML_PATTERN.test(articleAdvisory)) {
+        pushIssue(
+          errors,
+          relativeFilePath,
+          'Field "articleAdvisory" must not contain HTML; keep it plain text.'
+        );
+      }
+      if (ARTICLE_ADVISORY_MARKDOWN_LINK_PATTERN.test(articleAdvisory)) {
+        pushIssue(
+          errors,
+          relativeFilePath,
+          'Field "articleAdvisory" must not contain markdown links; move links into the article body.'
+        );
+      }
+      if (ARTICLE_ADVISORY_URL_PATTERN.test(articleAdvisory)) {
+        pushIssue(
+          errors,
+          relativeFilePath,
+          'Field "articleAdvisory" must not contain URLs or internal routes; move them into the article body.'
+        );
+      }
     }
   }
 

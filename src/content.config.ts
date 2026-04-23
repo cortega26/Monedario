@@ -24,6 +24,13 @@ const CATEGORIES = [
 
 const TOPIC_ROLES = ["owner", "support", "reference"] as const;
 const VOLATILE_DATA_SYNC_MODES = ["reference", "strict"] as const;
+const ARTICLE_ADVISORY_MIN_LENGTH = 12;
+const ARTICLE_ADVISORY_MAX_LENGTH = 220;
+const ARTICLE_ADVISORY_HTML_PATTERN = /<[^>]+>/;
+const ARTICLE_ADVISORY_MARKDOWN_LINK_PATTERN = /\[[^\]]+\]\([^)]+\)/;
+const ARTICLE_ADVISORY_URL_PATTERN =
+  /(?:https?:\/\/|www\.|\/(?:posts|calculadoras|guias|glosario|laws)\/)/i;
+const ARTICLE_ADVISORY_MULTILINE_PATTERN = /[\r\n]/;
 
 const blog = defineCollection({
   loader: safeGlob({ pattern: "**/[^_]*.{md,mdx}", base: `./${BLOG_PATH}` }),
@@ -60,6 +67,12 @@ const blog = defineCollection({
           })
           .optional(),
         heroImage: z.string().or(image()).optional(),
+        articleAdvisory: z
+          .string()
+          .trim()
+          .min(ARTICLE_ADVISORY_MIN_LENGTH)
+          .max(ARTICLE_ADVISORY_MAX_LENGTH)
+          .optional(),
         inlineImageExceptions: z
           .array(
             z
@@ -136,6 +149,37 @@ const blog = defineCollection({
             code: "custom",
             message: 'Field "slug" must be a non-empty string.',
           });
+        }
+        if (data.articleAdvisory) {
+          if (ARTICLE_ADVISORY_HTML_PATTERN.test(data.articleAdvisory)) {
+            ctx.addIssue({
+              code: "custom",
+              message:
+                'Field "articleAdvisory" must be plain text only; remove HTML tags.',
+            });
+          }
+          if (
+            ARTICLE_ADVISORY_MARKDOWN_LINK_PATTERN.test(data.articleAdvisory)
+          ) {
+            ctx.addIssue({
+              code: "custom",
+              message:
+                'Field "articleAdvisory" must not contain markdown links.',
+            });
+          }
+          if (ARTICLE_ADVISORY_URL_PATTERN.test(data.articleAdvisory)) {
+            ctx.addIssue({
+              code: "custom",
+              message: 'Field "articleAdvisory" must not contain URLs or routes.',
+            });
+          }
+          if (ARTICLE_ADVISORY_MULTILINE_PATTERN.test(data.articleAdvisory)) {
+            ctx.addIssue({
+              code: "custom",
+              message:
+                'Field "articleAdvisory" must stay on one line; remove multiline formatting.',
+            });
+          }
         }
         if (data.topicRole && !data.canonicalTopic) {
           ctx.addIssue({

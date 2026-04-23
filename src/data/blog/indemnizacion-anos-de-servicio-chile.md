@@ -18,6 +18,7 @@ lang: es-CL
 featured: false
 draft: false
 heroImage: "/images/hero/indemnizacion-anos-de-servicio-chile.avif"
+articleAdvisory: "Contenido educativo; si la causal o la base de cálculo están discutidas, busca asesoría laboral antes de firmar."
 articleLead:
   answer: "La indemnización por años de servicio no aparece por defecto en todo finiquito. Como regla base, se activa cuando la causal sí abre régimen indemnizatorio, se calcula como 30 días de la última remuneración mensual por cada año de servicio y tiene tope legal de 11 años."
   calculatorHref: "/calculadoras/finiquito-indemnizacion/"
