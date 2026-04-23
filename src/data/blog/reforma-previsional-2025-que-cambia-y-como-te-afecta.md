@@ -180,7 +180,3 @@ Ahora, nada urgente. Para el cambio de fondos generacionales (abril 2027) la SPe
 - Superintendencia de Pensiones, recaudación del aporte del empleador: https://www.spensiones.cl/portal/institucional/594/w3-article-16615.html
 - Superintendencia de Pensiones, diseño de fondos generacionales: https://www.spensiones.cl/portal/institucional/594/w3-article-16668.html
 - Superintendencia de Pensiones, beneficios por años cotizados (BAC): <https://www.spensiones.cl/portal/institucional/594/w3-article-16708.html>
-
----
-
-_Esta guía es educativa. El cronograma de implementación y las tablas de porcentajes específicos por año pueden ajustarse por reglamento. Verifica siempre la información más reciente en la [Superintendencia de Pensiones](https://www.spensiones.cl) antes de tomar decisiones previsionales._

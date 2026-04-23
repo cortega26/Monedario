@@ -141,7 +141,3 @@ La indemnización legal por años de servicio hasta el límite de 90 [UF](/guias
 Depende de si firmaste con reserva de derechos o sin ella. Si firmaste sin reserva y sin impugnar nada, la posición se complica. Si firmaste con reserva escrita en el mismo documento indicando los montos en disputa, la puerta judicial sigue abierta. El plazo general de prescripción para acciones laborales derivadas del finiquito es de 2 años desde el término del contrato.
 
 Para aterrizar los números con tus datos, usa la [calculadora de finiquito e indemnizaciones](/calculadoras/finiquito-indemnizacion/). Para revisar cómo encaja esta partida en el cuadro completo del finiquito, sigue con la [guía de finiquito e indemnizaciones en Chile](/posts/finiquito-e-indemnizaciones-en-chile/).
-
----
-
-_Contenido educativo con fecha de corte 2026-03-12. Si la causal está discutida o el cálculo involucra remuneración variable compleja, la asesoría de un abogado laboral es el paso correcto antes de firmar._

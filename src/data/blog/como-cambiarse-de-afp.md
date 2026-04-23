@@ -130,7 +130,3 @@ No. El traspaso es un derecho del afiliado y la AFP no puede rechazarlo ni condi
 Recházalo. Ofrecer incentivos económicos o materiales para conseguir traspasos es ilegal. Puedes denunciarlo a la Superintendencia de Pensiones.
 
 Antes de decidirte, compara cuánto te impacta la comisión en [cuánto descuenta la AFP de tu sueldo](/posts/cuanto-descuenta-la-afp-de-tu-sueldo/) y revisa el perfil de riesgo de cada fondo en [Fondos AFP A, B, C, D y E](/posts/fondos-afp-a-b-c-d-e/).
-
----
-
-_La información de este artículo está basada en la normativa vigente con fecha de corte 2026-04-22, incluyendo la Ley N°21.735 de Reforma Previsional. Para asesoría personalizada consulta con un profesional o visita la [Superintendencia de Pensiones](https://www.spensiones.cl)._

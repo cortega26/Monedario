@@ -124,7 +124,3 @@ No. Si no usas el seguro, el saldo sigue acumulado a tu nombre para la próxima 
 Sí. El [simulador de seguro de cesantía](/calculadoras/seguro-cesantia/) te permite ingresar tu saldo CIC real y te muestra los pagos estimados mes a mes. Para los montos del FCS, la AFC publica las tablas vigentes en su sitio.
 
 Para el proceso completo de consulta, cobro y documentos necesarios, la [guía general del seguro de cesantía](/posts/seguro-de-cesantia/) tiene los pasos detallados.
-
----
-
-_Contenido educativo con fecha de corte 2026-04-12. Los porcentajes y topes del FCS se actualizan anualmente — verifica los valores vigentes en [ChileAtiende](https://www.chileatiende.gob.cl/fichas/36646-fondo-de-cesantia-solidario) y la [Superintendencia de Pensiones](https://www.spensiones.cl) antes de calcular tu cobertura._

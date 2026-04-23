@@ -191,7 +191,3 @@ Una vez comprado, ese departamento se podría arrendar. En comunas intermedias d
 - Actualización 2026-03-07: la serie 2025 del NASDAQ-100 dejó de usar un dato parcial conservador y pasó a usar el cierre anual reportado para 2025; por eso el resultado final sube desde la versión anterior.
 - Esta versión incorpora críticas razonables y límites metodológicos explícitos para contextualizar mejor el resultado.
 - Puede quedar desactualizado cuando: cambios en la metodología del ejercicio, corrección de series históricas o incorporación de costos/impuestos al modelo.
-
----
-
-_Simulación educativa con fecha de corte 2025-12-31. Los retornos pasados no garantizan retornos futuros. Para el detalle metodológico completo, supuestos y fuentes, abre la [nota metodológica](/posts/interes-compuesto-nota-metodologica/)._

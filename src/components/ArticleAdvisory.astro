@@ -1,0 +1,13 @@
+---
+type Props = {
+  html: string;
+};
+
+const { html } = Astro.props;
+---
+
+<p
+  aria-label="Aviso editorial"
+  class="not-prose mt-8 text-sm leading-relaxed text-secondary italic"
+  set:html={html}
+/>

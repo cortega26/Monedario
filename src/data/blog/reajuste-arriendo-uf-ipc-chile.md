@@ -123,7 +123,3 @@ El organismo competente para conflictos de arriendo es el Juzgado de Letras con 
 
 **¿Los locales comerciales tienen las mismas reglas?**
 Los arriendos de locales comerciales se rigen por reglas distintas a los de vivienda. La Ley 18.101 aplica principalmente a predios urbanos destinados a habitación. Para locales comerciales, las condiciones son en general más libremente pactadas entre las partes.
-
----
-
-_Contenido educativo con fecha de corte 2026-03-12. Para interpretación de cláusulas específicas, consulta a un abogado o la [Corporación de Asistencia Judicial](https://www.cajmetro.cl/)._

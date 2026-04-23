@@ -125,7 +125,3 @@ No. Ese aporte es cargo exclusivo del empleador sobre el costo total de tu contr
 
 **¿Dónde reclamo si hay un descuento incorrecto?**
 Primero ante el empleador o el área de remuneraciones, por escrito con acuse de recibo. Si no hay corrección ni justificación, puedes presentar una denuncia en la [Dirección del Trabajo](https://www.dt.gob.cl/portal/1626/w3-channel.html).
-
----
-
-_Contenido educativo con fecha de corte 2026-04-22. Las comisiones AFP y la tabla del impuesto único se actualizan regularmente — verifica los valores vigentes en la [Superintendencia de Pensiones](https://www.spensiones.cl) y el [SII](https://www.sii.cl) antes de tomar decisiones._

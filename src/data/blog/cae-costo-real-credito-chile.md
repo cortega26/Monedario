@@ -242,5 +242,3 @@ La información de esta guía se basa en la normativa vigente a marzo de 2026. L
 - **SERNAC — Derechos del consumidor financiero, simulador de créditos y denuncias:** [sernac.cl](https://www.sernac.cl)
 - **Ley N° 18.010 — Operaciones de crédito de dinero (prepago, tasa, TMC):** [bcn.cl](https://www.bcn.cl/leychile/navegar?idNorma=29438)
 - **CMF Educa — Crédito de consumo y Hoja de Información Precontractual:** [cmfchile.cl/educa](https://www.cmfchile.cl/educa/621/w3-propertyvalue-43579.html)
-
-_Esta guía es educativa y no reemplaza la revisión de tu contrato específico ni asesoría profesional cuando el monto o la complejidad del crédito lo requieran._

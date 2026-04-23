@@ -214,7 +214,3 @@ Esta guía cubre los criterios generales para elegir sistema. No reemplaza:
 - **El comparador oficial** de la Superintendencia de Salud ([supersalud.gob.cl](https://www.supersalud.gob.cl)) para comparar planes Isapre específicos con precios reales.
 
 Para otros problemas de protección financiera en Chile, puedes consultar nuestra [guía de seguridad financiera](/guias/seguridad-financiera/). Si ya enfrentaste un cobro no autorizado o un cargo que no reconoces, consulta [qué hacer ante fraude con tarjeta](/posts/fraude-tarjeta-que-hacer/). Si te preocupa el robo de identidad o líneas de crédito abiertas sin tu autorización, revisa [cómo actuar ante suplantación de identidad](/posts/suplantacion-identidad-creditos-no-reconocidos/).
-
----
-
-_Última actualización de esta guía: 2026-04-08. Fonasa actualiza sus tramos e instrucciones periódicamente; verifica siempre en [fonasa.cl](https://www.fonasa.cl) y [supersalud.gob.cl](https://www.supersalud.gob.cl) antes de tomar una decisión de salud._

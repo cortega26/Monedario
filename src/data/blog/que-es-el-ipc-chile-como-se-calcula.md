@@ -136,7 +136,3 @@ La UTM (Unidad Tributaria Mensual) también usa el IPC mensual como base de reaj
 
 - INE, metodología y publicaciones del IPC: https://www.ine.gob.cl/estadisticas-por-tema/precios-e-inflacion/indice-de-precios-al-consumidor
 - Banco Central de Chile, relación IPC-UF: https://si3.bcentral.cl/estadisticas/Principal1/Metodologias/EMF/UF.pdf
-
----
-
-_La información de este artículo es educativa. Los datos de inflación cambian mes a mes — consulta siempre el último informe en [ine.gob.cl](https://www.ine.gob.cl)._

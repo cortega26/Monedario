@@ -158,7 +158,3 @@ Solo si la anotación es incorrecta: errores de datos, deuda que no te correspon
 **¿Cómo sé si tengo anotaciones en el Boletín Comercial?**
 
 Puedes consultar en [boletincomercial.cl](https://www.boletincomercial.cl/). La Ley 20.575 obliga al servicio a ofrecer una consulta básica gratuita. Si aparece una anotación que no reconoces, tienes derecho a pedir información al acreedor y, si hay error, reclamar ante la CMF.
-
----
-
-_Contenido educativo con fecha de corte 2026-04-09. Este artículo no constituye asesoría legal. Para situaciones de cobranza judicial o deudas complejas, consulta a un abogado. Fuentes principales: [Ley 20.575](https://www.bcn.cl/leychile/navegar?idNorma=1037366), [Ley 21.719](https://www.bcn.cl/leychile/navegar?idNorma=1209272), [CMF Chile — Boletín Comercial](https://www.cmfchile.cl/portal/principal/613/w3-article-27659)._
