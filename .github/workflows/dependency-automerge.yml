@@ -23,15 +23,96 @@ jobs:
     if: github.event.pull_request.user.login == 'dependabot[bot]'
 
     steps:
+      - name: "🧭 Detect workflow self-update"
+        id: pr_context
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
+        run: |
+          set -euo pipefail
+
+          if gh pr view "$PR_URL" --json files --jq '.files[].path' | grep -Fxq ".github/workflows/dependency-automerge.yml"; then
+            echo "self_update=true" >> "$GITHUB_OUTPUT"
+            echo "reason=self-update" >> "$GITHUB_OUTPUT"
+          else
+            echo "self_update=false" >> "$GITHUB_OUTPUT"
+            echo "reason=standard" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: "📦 Fetch Dependabot metadata"
         id: metadata
+        if: steps.pr_context.outputs.self_update != 'true'
+        continue-on-error: true
         uses: dependabot/fetch-metadata@d7267f607e9d3fb96fc2fbe83e0af444713e90b7
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
 
-      - name: "🔀 Enable auto-merge for patch updates"
-        if: startsWith(steps.metadata.outputs.update-type, 'version-update:semver-patch')
-        run: gh pr merge --auto --squash "$PR_URL"
+      - name: "🧾 Decide auto-merge policy"
+        id: decision
+        env:
+          METADATA_OUTCOME: ${{ steps.metadata.outcome }}
+          UPDATE_TYPE: ${{ steps.metadata.outputs.update-type }}
+        run: |
+          set -euo pipefail
+
+          eligible="false"
+          reason="manual-review"
+
+          if [ "${{ steps.pr_context.outputs.self_update }}" = "true" ]; then
+            reason="self-update"
+          elif [ "${METADATA_OUTCOME:-}" != "success" ]; then
+            reason="metadata-unavailable"
+          elif [[ "${UPDATE_TYPE}" == version-update:semver-patch* ]]; then
+            eligible="true"
+            reason="eligible-patch"
+          else
+            reason="${UPDATE_TYPE:-manual-review}"
+          fi
+
+          echo "eligible=${eligible}" >> "$GITHUB_OUTPUT"
+          echo "reason=${reason}" >> "$GITHUB_OUTPUT"
+
+      - name: "🔀 Enable auto-merge for eligible patch updates"
+        if: steps.decision.outputs.eligible == 'true'
+        run: |
+          set -euo pipefail
+
+          auto_log="$(mktemp)"
+          direct_log="$(mktemp)"
+
+          if gh pr merge --auto --squash "$PR_URL" >"$auto_log" 2>&1; then
+            cat "$auto_log"
+            exit 0
+          fi
+
+          cat "$auto_log"
+
+          if grep -Eq "Merge already in progress|Pull request is already merged" "$auto_log"; then
+            echo "Auto-merge was already enabled or the PR is already merged."
+            exit 0
+          fi
+
+          if gh pr merge --squash "$PR_URL" >"$direct_log" 2>&1; then
+            cat "$direct_log"
+            exit 0
+          fi
+
+          cat "$direct_log"
+
+          if grep -Eq "Merge already in progress|Pull request is already merged" "$direct_log"; then
+            echo "Merge was already in progress or the PR is already merged."
+            exit 0
+          fi
+
+          exit 1
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: "ℹ️ Skip with manual review"
+        if: steps.decision.outputs.eligible != 'true'
+        run: |
+          echo "Skipping auto-merge: $REASON"
+          echo "Dependabot PR left clean for manual review."
+        env:
+          REASON: ${{ steps.decision.outputs.reason }}
