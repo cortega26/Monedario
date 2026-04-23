@@ -162,5 +162,3 @@ Revisa [devolución de impuestos: fechas, estado y compensaciones](/posts/devolu
 
 - Revisado el: 2026-04-04. Datos verificados contra comunicado SII del 31 de marzo de 2026.
 - Puede quedar desactualizado cuando: cambios en reglas de reemplazo/rectificatoria, modificaciones al calendario de devoluciones, o actualizaciones en navegación SII/TGR.
-
-Este contenido es informativo y no reemplaza asesoría tributaria profesional para casos complejos.

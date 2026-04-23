@@ -154,7 +154,3 @@ No. Es contenido educativo y no reemplaza asesoría profesional para tu situaci�
 
 - Revisado el: 2026-04-22.
 - Puede quedar desactualizado cuando: cambios regulatorios CMF, instrucciones de renta del SII o cambios metodológicos oficiales de UF en Banco Central.
-
----
-
-_Esto es contenido informativo y no reemplaza asesoría financiera o tributaria personalizada._

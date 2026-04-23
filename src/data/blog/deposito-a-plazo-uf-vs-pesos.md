@@ -155,7 +155,3 @@ Si quieres integrar esta decisión en una estrategia más amplia de instrumentos
 
 - Revisado el: 2026-02-28.
 - Puede quedar desactualizado cuando: cambios en metodología oficial de UF, modificaciones regulatorias de DAP o cambios en criterios tributarios aplicables.
-
----
-
-_Esto es contenido informativo y no reemplaza asesoría financiera o tributaria profesional._

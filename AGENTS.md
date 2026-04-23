@@ -90,13 +90,13 @@ If any condition fails, task status is `HALT` until resolved.
 <claude-mem-context>
 # Memory Context
 
-# [tuplatainforma] recent context, 2026-04-22 11:10pm GMT-4
+# [tuplatainforma] recent context, 2026-04-22 11:16pm GMT-4
 
 Legend: 🎯session 🔴bugfix 🟣feature 🔄refactor ✅change 🔵discovery ⚖️decision 🚨security_alert 🔐security_note
 Format: ID TIME TYPE TITLE
 Fetch details: get_observations([IDs]) | Search: mem-search skill
 
-Stats: 18 obs (7,994t read) | 118,283t work | 93% savings
+Stats: 20 obs (8,764t read) | 135,497t work | 94% savings
 
 ### Apr 22, 2026
 176 5:16p 🔵 tuplatainforma — Ahrefs Broken Link Audit Initiated on Astro Project
@@ -118,6 +118,8 @@ S42 Broken SII FAQ URLs Replaced in operacion-renta-f22-checklist.md (Apr 22, 5:
 193 6:09p 🔵 tuplatainforma — 11 Blog Articles Fail Editorial Timeliness CI Check
 194 " 🔵 tuplatainforma — 11 Blog Articles Failing Editorial Timeliness CI Check
 195 11:06p 🔵 tuplatainforma — Investigating Trailing `#` on Article Headings via rehype-autolink
+196 11:10p 🔵 tuplatainforma — Trailing `#` on Headings Caused by addHeadingLinks() in PostDetails.astro
+197 11:11p 🔴 tuplatainforma — addHeadingLinks() Removed; `heading-link` Class Fully Purged from Codebase
 
-Access 118k tokens of past work via get_observations([IDs]) or mem-search skill.
+Access 135k tokens of past work via get_observations([IDs]) or mem-search skill.
 </claude-mem-context>

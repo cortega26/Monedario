@@ -148,5 +148,3 @@ No. ChileAtiende informa que para este cálculo se usa 80% del total bruto anual
 
 - Revisado el: 2026-03-02.
 - Puede quedar desactualizado cuando: cambios en porcentaje de retención, ajustes a cobertura anual o modificaciones legales/publicación de nuevas instrucciones SII.
-
-Este contenido es informativo y no reemplaza asesoría tributaria profesional para casos complejos.

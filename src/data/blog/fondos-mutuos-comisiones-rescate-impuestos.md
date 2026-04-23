@@ -147,7 +147,3 @@ Para decidir cómo encajan los fondos mutuos en una estrategia integral de ahorr
 
 - Revisado el: 2026-04-22.
 - Puede quedar desactualizado cuando: cambios CMF sobre información obligatoria de fondos o cambios en instrucciones SII de renta anual.
-
----
-
-_Contenido informativo; no reemplaza asesoría financiera ni tributaria personalizada._

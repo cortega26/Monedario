@@ -253,5 +253,3 @@ Los rangos de arriendo referenciales de **$350.000 a $500.000 mensuales** para d
 ## Uso correcto de esta nota
 
 Úsala para auditar el ejercicio, no para extrapolar rentabilidades futuras. Si quieres convertir esta idea en una decisión real, el siguiente paso no es copiar el número final, sino revisar vehículo, costos, liquidez, impuestos y tolerancia a caídas con una guía práctica como [cómo invertir en ETFs desde Chile](/posts/como-invertir-en-etfs-desde-chile/).
-
-_Contenido educativo. No constituye asesoría financiera personalizada._

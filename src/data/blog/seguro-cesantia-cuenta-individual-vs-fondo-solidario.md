@@ -127,4 +127,4 @@ Para el proceso completo de consulta, cobro y documentos necesarios, la [guía g
 
 ---
 
-\_Contenido educativo con fecha de corte 2026-04-12. Los porcentajes y topes del FCS se actualizan anualmente — verifica los valores vigentes en [ChileAtiende](https://www.chileatiende.gob.cl/fichas/36646-fondo-de-cesantia-solidario) y la [Superintendencia de Pensiones](https://www.spensiones.cl) antes de calcular tu cobertura.
+_Contenido educativo con fecha de corte 2026-04-12. Los porcentajes y topes del FCS se actualizan anualmente — verifica los valores vigentes en [ChileAtiende](https://www.chileatiende.gob.cl/fichas/36646-fondo-de-cesantia-solidario) y la [Superintendencia de Pensiones](https://www.spensiones.cl) antes de calcular tu cobertura._

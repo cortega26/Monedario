@@ -144,4 +144,4 @@ Para aterrizar los números con tus datos, usa la [calculadora de finiquito e in
 
 ---
 
-\_Contenido educativo con fecha de corte 2026-03-12. Si la causal está discutida o el cálculo involucra remuneración variable compleja, la asesoría de un abogado laboral es el paso correcto antes de firmar.
+_Contenido educativo con fecha de corte 2026-03-12. Si la causal está discutida o el cálculo involucra remuneración variable compleja, la asesoría de un abogado laboral es el paso correcto antes de firmar._

@@ -132,4 +132,4 @@ Si tu problema real son deudas financieras activas dentro del sistema supervisad
 
 ---
 
-\_Contenido educativo con fecha de corte 2026-03-12. Antes de pagar por un informe privado, revisa si tu duda ya queda resuelta con el [Informe de Deudas CMF](https://conocetudeuda.cmfchile.cl/informe-deudas/) gratuito.
+_Contenido educativo con fecha de corte 2026-03-12. Antes de pagar por un informe privado, revisa si tu duda ya queda resuelta con el [Informe de Deudas CMF](https://conocetudeuda.cmfchile.cl/informe-deudas/) gratuito._

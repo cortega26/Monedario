@@ -140,7 +140,3 @@ Para conectar esta decisión con una estrategia más amplia de instrumentos y ob
 
 - Revisado el: 2026-04-22.
 - Puede quedar desactualizado cuando: cambios en normativa CMF de intermediarios/custodia o ajustes de instrucciones tributarias SII para inversiones.
-
----
-
-_Contenido informativo; no reemplaza asesoría financiera, legal ni tributaria profesional._

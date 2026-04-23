@@ -30,6 +30,7 @@ import { getDeudaArticleSections } from "@/config/deudaClusterLinks";
 import TOCSidebar from "@/components/TOCSidebar.astro";
 import CalculatorCTA from "@/components/CalculatorCTA.astro";
 import { formatMetadataDate } from "@/utils/metadataDate";
+import { BLOG_ARTICLE_ADVISORY_NOTE } from "@/config/blogAdvisory";
 
 type Props = {
   post: CollectionEntry<"blog">;
@@ -291,6 +292,12 @@ const relatedPostsExcludedSlugs = [
             />
           )
         }
+        <aside
+          aria-label="Aviso editorial"
+          class="not-prose mt-8 rounded-xl border border-border bg-surface-muted px-4 py-3 text-sm leading-relaxed text-secondary"
+        >
+          <p>{BLOG_ARTICLE_ADVISORY_NOTE}</p>
+        </aside>
       </article>
       <TOCSidebar />
     </div>
