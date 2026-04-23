@@ -29,6 +29,7 @@ import { getSueldoArticleSections } from "@/config/sueldoClusterLinks";
 import { getDeudaArticleSections } from "@/config/deudaClusterLinks";
 import TOCSidebar from "@/components/TOCSidebar.astro";
 import CalculatorCTA from "@/components/CalculatorCTA.astro";
+import { formatMetadataDate } from "@/utils/metadataDate";
 
 type Props = {
   post: CollectionEntry<"blog">;
@@ -352,12 +353,7 @@ const relatedPostsExcludedSlugs = [
           {
             article.updatedDate && (
               <span class="text-muted">
-                Revisado el{" "}
-                {new Date(article.updatedDate).toLocaleDateString("es-CL", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
+                Revisado el {formatMetadataDate(article.updatedDate, "long")}
               </span>
             )
           }

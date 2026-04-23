@@ -82,6 +82,7 @@ Aplicar para cada revisión programada o trigger obligatorio:
 
 - [ ] Verificar cifras clave del cluster contra fuente oficial (ver columna "Qué verificar" de la tabla anterior)
 - [ ] Verificar que `updatedDate` es correcto en frontmatter de los artículos revisados
+- [ ] Verificar que `updatedDate`, `validAsOf` y cualquier bloque visible de "Revisado el" o "Vigencia" resuelven a la misma fecha calendario para el lector
 - [ ] Verificar que `validAsOf` (si existe en `articleLead`) no ha expirado (>90 días)
 - [ ] Verificar que los links a fuentes oficiales no están rotos (`pnpm run check:urls` o revisión manual)
 - [ ] Verificar que las calculadoras asociadas usan los datos actualizados (revisar constantes del cluster en `src/data/` o `src/config/`)

@@ -1,5 +1,6 @@
 ---
 import { getPath } from "@/utils/getPath";
+import { formatMetadataDate } from "@/utils/metadataDate";
 
 type SourceLink = {
   label: string;
@@ -30,13 +31,6 @@ const shouldShowValidAsOf = !!validAsOf;
 const hasSources = (lead.officialSources?.length ?? 0) > 0;
 const hasCovers = (lead.covers?.length ?? 0) > 0;
 const hasLimits = (lead.limits?.length ?? 0) > 0;
-
-const formatDate = (date: Date) =>
-  new Intl.DateTimeFormat("es-CL", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  }).format(date);
 ---
 
 <section
@@ -90,7 +84,7 @@ const formatDate = (date: Date) =>
         <p class="mt-2 text-sm leading-relaxed text-foreground">
           {
             shouldShowValidAsOf && validAsOf
-              ? `Información con fecha de corte ${formatDate(validAsOf)}. Para casos complejos, considera revisión profesional antes de decidir.`
+              ? `Información con fecha de corte ${formatMetadataDate(validAsOf, "long")}. Para casos complejos, considera revisión profesional antes de decidir.`
               : "Contenido educativo orientado a decidir el siguiente paso. Para casos complejos, considera revisión profesional."
           }
         </p>
