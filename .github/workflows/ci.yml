@@ -58,6 +58,9 @@ jobs:
       - name: "📚 Check context layer"
         run: pnpm run check:context
 
+      - name: "🧭 Check policy registry"
+        run: pnpm run check:policy-registry
+
       - name: "🔎 Lint code"
         run: pnpm run lint
 

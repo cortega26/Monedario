@@ -16,13 +16,15 @@ Pasos:
 4. Generar manualmente la hero image desde el prompt y guardar `public/images/hero/{slug}.avif` con peso máximo de 80 KB.
 5. Marcar la entrada correspondiente en `scripts/hero-images/status.json` como `{ "state": "done" }`.
 6. Ejecutar `pnpm run check:frontmatter` y confirmar que pasa.
-7. Ejecutar `pnpm run check:hero-images` y confirmar que pasa.
-8. Ejecutar `node scripts/scaffold-editorial-artifacts.mjs {slug}` para crear los artefactos editoriales requeridos.
-9. Ejecutar `pnpm run check:editorial-artifacts` y confirmar que pasa antes de merge.
+7. Ejecutar `pnpm run check:hero-prompts` y confirmar que pasa.
+8. Ejecutar `pnpm run check:hero-images` y confirmar que pasa.
+9. Ejecutar `node scripts/scaffold-editorial-artifacts.mjs {slug}` para crear los artefactos editoriales requeridos.
+10. Ejecutar `pnpm run check:editorial-artifacts` y confirmar que pasa antes de merge.
 
 Checklist mínimo de salida:
 
 - Frontmatter válido.
+- Hero prompt semánticamente consistente.
 - Hero image publicada y registrada.
 - Artefactos editoriales creados.
 - Gates editoriales en verde.

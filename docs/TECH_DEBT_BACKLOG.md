@@ -1,21 +1,21 @@
 # TECH_DEBT_BACKLOG
 
-Fecha de corte: 2026-04-14
+Fecha de corte: 2026-04-23
 
 ## Métricas
 
 ### Total de items por urgencia
 
 - **P0:** 3
-- **P1:** 14
+- **P1:** 13
 - **P2:** 14
 - **P3:** 1
 
-### Estado de avance (2026-04-12)
+### Estado de avance (2026-04-23)
 
-- **Completados:** 55 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `TD-0037`, `TD-0038`, `TD-0040`, `TD-0041`, `TD-0043`, `TD-0044`, `TD-0045`, `TD-0046`, `TD-0047`, `TD-0048`, `TD-0049`, `TD-0050`, `TD-0051`, `TD-0052`, `FIX-MDX`, `FIX-LINKS-CALC`)
+- **Completados:** 56 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `TD-0037`, `TD-0038`, `TD-0040`, `TD-0041`, `TD-0043`, `TD-0044`, `TD-0045`, `TD-0046`, `TD-0047`, `TD-0048`, `TD-0049`, `TD-0050`, `TD-0051`, `TD-0052`, `TD-0055`, `FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 1 (`TD-0039`)
-- **Backlog sin iniciar:** 4 (`TD-0042`, `TD-0053`, `TD-0054`, `TD-0055`)
+- **Backlog sin iniciar:** 3 (`TD-0042`, `TD-0053`, `TD-0054`)
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -28,11 +28,11 @@ Fecha de corte: 2026-04-14
 > `TD-0036`: re-sincronizadas las aserciones numéricas en `hero-image-pool.test.ts` (pool entries: 12/28, canonicalCombinationCount: 56, requestedAssetCount: 112, approvedModelCount: 28, byTemplate A: 24) y los strings de prompts en `hero-images-config.test.ts` (Composition, Scene B, Scene C) con la configuración actual. `pnpm run test` pasa limpio: 37 archivos, 166 tests.
 > Revalidación 2026-04-09: `pnpm run test`, `pnpm run lint` y `pnpm run format:check` pasan limpios. Los ítems `TD-0035` a `TD-0038` quedaron resueltos en el árbol actual y el backlog se corrige para reflejar ese baseline.
 > Auditoría F22 (2026-04-12): los 9 hallazgos documentados en `docs/operations/reports/f22-calculator-audit-2026-04-12.md` ya estaban resueltos en el árbol al momento del registro. `TD-0044` a `TD-0052` se marcan directamente como Completados.
+> `TD-0055`: regenerado `scripts/hero-images/prompts.json` desde el planner vigente y reforzada la capa anti-drift con `POLICY_REGISTRY` + `check:policy-registry`; `pnpm run check:hero-prompts` vuelve a `OK` el 2026-04-23.
 
 ### Top riesgos restantes
 
 - `TD-0039`: performance mobile sigue por debajo del umbral estricto de LCP (`<= 1.7s`) en local, aunque los reruns del 2026-04-09 ya dejaron `TBT=0`, `CLS=0`, `SI<3.0s` y levantaron calculadora/hub a `Performance 100`.
-- `TD-0055`: el gate `check:hero-prompts` falla con 35 desalineaciones `sceneId` vs `approvedModelId`, bloqueando `pnpm run check` y el cierre de la suite pre-merge completa.
 
 ### Quick wins (alto impacto / bajo esfuerzo)
 
@@ -59,14 +59,14 @@ Fecha de corte: 2026-04-14
 - **Esfuerzo estimado:** M
 - **Propuesta de solución:** normalizar el mapeo `approvedModelId -> sceneId` en `prompt-plan` (o en la generación de prompts), regenerar `prompts.json`, revisar overrides por slug donde corresponda y revalidar con `pnpm run check:hero-prompts` hasta `OK`.
 - **Criterios de cierre (checklist verificable):**
-- [ ] `pnpm run check:hero-prompts` retorna `OK` con 0 issues.
-- [ ] `pnpm run check` completa sin cortar en el gate de hero prompts.
-- [ ] `scripts/hero-images/prompts.json` queda consistente con `approvedModelId` para todos los artículos publicados.
-- [ ] Se documenta en runbook la regla de consistencia scene/model para evitar regresión.
+- [x] `pnpm run check:hero-prompts` retorna `OK` con 0 issues.
+- [x] `pnpm run check` completa sin cortar en el gate de hero prompts.
+- [x] `scripts/hero-images/prompts.json` queda consistente con `approvedModelId` para todos los artículos publicados.
+- [x] Se documenta en runbook la regla de consistencia scene/model para evitar regresión.
 - **Owner:** TBD
-- **Estado:** Backlog sin iniciar
+- **Estado:** Completado
 - **Fecha de creación:** 2026-04-15
-- **Última actualización:** 2026-04-15
+- **Última actualización:** 2026-04-23
 
 ## TD-0001 — Estrategia de package manager y lockfiles inconsistente
 - **ID:** TD-0001

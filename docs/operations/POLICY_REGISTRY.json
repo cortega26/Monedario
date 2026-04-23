@@ -1,0 +1,494 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "_comment": "Canonical anti-drift registry for repo guardrails, manual policies, and operational automation. Keep this file synchronized with package.json, GATE_MANIFEST, AGENT_TASK_INDEX, AGENT_PREFLIGHT, and workflow wiring.",
+  "version": "1.0.0",
+  "lastUpdated": "2026-04-23",
+  "policies": [
+    {
+      "id": "check:policy-registry",
+      "type": "governance-gate",
+      "source_of_truth": [
+        "docs/operations/POLICY_REGISTRY.json",
+        "package.json",
+        "docs/operations/GATE_MANIFEST.json"
+      ],
+      "gateManifestId": "check:policy-registry",
+      "command": "pnpm run check:policy-registry",
+      "scope": ["docs", "context", "workflows", "ops-automation"],
+      "mode": "block",
+      "owner": "engineering",
+      "workflow": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/guardrail-drift-audit.yml"
+      ],
+      "docs": [
+        "docs/operations/AGENT_TASK_INDEX.md",
+        "context/AGENT_PREFLIGHT.md",
+        "context/AGENT_ENTRYPOINTS.md",
+        "context/AGENT_ENTRYPOINTS.json"
+      ],
+      "sync": {
+        "agentTaskIndex": true,
+        "agentPreflight": true,
+        "entrypoints": ["bootstrap", "guardrails-docs", "ops-audit"]
+      },
+      "remediation": "Update POLICY_REGISTRY, GATE_MANIFEST, AGENT_TASK_INDEX, AGENT_PREFLIGHT, AGENT_ENTRYPOINTS, and workflow/package wiring together, then rerun pnpm run check:policy-registry."
+    },
+    {
+      "id": "check:context",
+      "type": "repo-gate",
+      "source_of_truth": [
+        "context/INVARIANTS.md",
+        "context/CONTRACTS.md",
+        "context/MODULE_INDEX.md",
+        "context/CURRENT_STATE.md"
+      ],
+      "gateManifestId": "check:context",
+      "command": "pnpm run check:context",
+      "scope": ["context", "docs"],
+      "mode": "block",
+      "owner": "engineering",
+      "workflow": [".github/workflows/ci.yml", ".github/workflows/doc-gardening.yml"],
+      "docs": ["docs/operations/AGENT_TASK_INDEX.md", "context/AGENT_PREFLIGHT.md"],
+      "sync": {
+        "agentTaskIndex": true,
+        "agentPreflight": true,
+        "entrypoints": ["bootstrap", "bugfix", "calculator-logic", "guardrails-docs"]
+      },
+      "remediation": "Restore the canonical context layer and keep AGENT_TASK_INDEX / AGENT_PREFLIGHT aligned with the context contract."
+    },
+    {
+      "id": "check:docs",
+      "type": "repo-gate",
+      "source_of_truth": ["docs/README.md", "scripts/check-docs-structure.mjs"],
+      "gateManifestId": "check:docs",
+      "command": "pnpm run check:docs",
+      "scope": ["docs", "context", "templates", "runbooks"],
+      "mode": "block",
+      "owner": "engineering",
+      "workflow": [".github/workflows/doc-gardening.yml"],
+      "docs": ["docs/operations/AGENT_TASK_INDEX.md", "context/AGENT_PREFLIGHT.md"],
+      "sync": {
+        "agentTaskIndex": true,
+        "agentPreflight": true,
+        "entrypoints": ["bootstrap", "guardrails-docs", "ops-audit"]
+      },
+      "remediation": "Move docs back into allowed paths and keep canonical entrypoints in sync before merging."
+    },
+    {
+      "id": "test",
+      "type": "repo-gate",
+      "source_of_truth": ["docs/codebase/TESTING.md", "docs/development/REGRESSION_PREVENTION.md"],
+      "gateManifestId": "test",
+      "command": "pnpm run test",
+      "scope": ["domain", "application", "infrastructure", "runtime"],
+      "mode": "block",
+      "owner": "engineering",
+      "workflow": [".github/workflows/ci.yml"],
+      "docs": ["docs/codebase/TESTING.md"],
+      "sync": {
+        "entrypoints": ["bootstrap", "bugfix", "calculator-logic"]
+      },
+      "remediation": "Fix failing tests or log the pre-existing failure as technical debt before merge."
+    },
+    {
+      "id": "lint",
+      "type": "repo-gate",
+      "source_of_truth": ["docs/development/REGRESSION_PREVENTION.md", "eslint.config.js"],
+      "gateManifestId": "lint",
+      "command": "pnpm run lint",
+      "scope": ["any-source"],
+      "mode": "block",
+      "owner": "engineering",
+      "workflow": [".github/workflows/ci.yml", ".github/workflows/doc-gardening.yml"],
+      "docs": ["docs/codebase/CONVENTIONS.md"],
+      "sync": {
+        "entrypoints": ["bugfix", "calculator-logic"]
+      },
+      "remediation": "Fix the reported lint violations instead of suppressing them."
+    },
+    {
+      "id": "format:check",
+      "type": "repo-gate",
+      "source_of_truth": [".prettierrc.mjs", "docs/development/REGRESSION_PREVENTION.md"],
+      "gateManifestId": "format:check",
+      "command": "pnpm run format:check",
+      "scope": ["any-source"],
+      "mode": "block",
+      "owner": "engineering",
+      "workflow": [".github/workflows/ci.yml", ".github/workflows/doc-gardening.yml"],
+      "docs": ["docs/codebase/CONVENTIONS.md"],
+      "sync": {
+        "entrypoints": ["guardrails-docs"]
+      },
+      "remediation": "Normalize formatting drift and keep the PR small enough to review quickly."
+    },
+    {
+      "id": "check",
+      "type": "umbrella-gate",
+      "source_of_truth": ["package.json", "docs/operations/GATE_MANIFEST.json"],
+      "gateManifestId": "check",
+      "command": "pnpm run check",
+      "scope": ["all"],
+      "mode": "block",
+      "owner": "engineering",
+      "workflow": [".github/workflows/ci.yml"],
+      "docs": ["START_HERE.md", "docs/operations/AGENT_TASK_INDEX.md"],
+      "sync": {
+        "entrypoints": ["bootstrap"]
+      },
+      "remediation": "Resolve the failing sub-gate and rerun pnpm run check before merge."
+    },
+    {
+      "id": "check:images",
+      "type": "editorial-gate",
+      "source_of_truth": ["scripts/check-images.mjs", "context/EDITORIAL_IMAGE_SYSTEM.md"],
+      "gateManifestId": "check:images",
+      "command": "pnpm run check:images",
+      "scope": ["article", "content", "hero-image"],
+      "mode": "block",
+      "owner": "editorial-platform",
+      "workflow": [".github/workflows/ci.yml"],
+      "docs": ["docs/operations/runbooks/hero-images-runbook.md"],
+      "remediation": "Regenerate or convert images into the expected format and rerun pnpm run check:images."
+    },
+    {
+      "id": "check:hero-images",
+      "type": "editorial-gate",
+      "source_of_truth": ["scripts/check-hero-images.mjs", "docs/operations/runbooks/hero-images-runbook.md"],
+      "gateManifestId": "check:hero-images",
+      "command": "pnpm run check:hero-images",
+      "scope": ["article", "hero-image"],
+      "mode": "block",
+      "owner": "editorial-platform",
+      "workflow": [".github/workflows/ci.yml", ".github/workflows/hero-images-generate.yml"],
+      "docs": ["docs/operations/runbooks/hero-images-runbook.md"],
+      "remediation": "Create or restore the required public/images/hero/<slug>.avif asset and rerun pnpm run check:hero-images."
+    },
+    {
+      "id": "check:frontmatter",
+      "type": "editorial-gate",
+      "source_of_truth": ["scripts/check-frontmatter.mjs", "docs/editorial/FRONTMATTER_SCHEMA.md"],
+      "gateManifestId": "check:frontmatter",
+      "command": "pnpm run check:frontmatter",
+      "scope": ["article", "content"],
+      "mode": "block",
+      "owner": "editorial",
+      "workflow": [".github/workflows/ci.yml"],
+      "docs": ["docs/editorial/FRONTMATTER_SCHEMA.md"],
+      "remediation": "Fix the offending frontmatter field and keep the content contract valid before merge."
+    },
+    {
+      "id": "check:legal-citations",
+      "type": "editorial-gate",
+      "source_of_truth": ["scripts/check-legal-citations.mjs", "docs/governance/FINANCIAL_DATA_VERIFICATION_POLICY.md"],
+      "gateManifestId": "check:legal-citations",
+      "command": "pnpm run check:legal-citations",
+      "scope": ["article", "content"],
+      "mode": "block",
+      "owner": "editorial",
+      "workflow": [".github/workflows/ci.yml"],
+      "docs": ["docs/governance/FINANCIAL_DATA_VERIFICATION_POLICY.md"],
+      "remediation": "Replace generic or broken legal citations with the specific authoritative source expected by policy."
+    },
+    {
+      "id": "check:links",
+      "type": "repo-gate",
+      "source_of_truth": ["scripts/check-internal-links.mjs", "docs/development/REGRESSION_PREVENTION.md"],
+      "gateManifestId": "check:links",
+      "command": "pnpm run check:links",
+      "scope": ["article", "content", "route"],
+      "mode": "block",
+      "owner": "engineering",
+      "workflow": [".github/workflows/ci.yml"],
+      "docs": ["docs/codebase/TESTING.md"],
+      "remediation": "Repair or remove the broken internal link and rerun pnpm run check:links."
+    },
+    {
+      "id": "check:editorial",
+      "type": "editorial-gate",
+      "source_of_truth": ["scripts/check-editorial-structure.mjs", "scripts/check-reader-facing-copy.mjs", "docs/editorial/NORMA_YMYL.md"],
+      "gateManifestId": "check:editorial",
+      "command": "pnpm run check:editorial",
+      "scope": ["article", "content"],
+      "mode": "block",
+      "owner": "editorial",
+      "workflow": [".github/workflows/ci.yml"],
+      "docs": ["docs/editorial/NORMA_YMYL.md"],
+      "remediation": "Resolve the editorial invariant violation and rerun pnpm run check:editorial."
+    },
+    {
+      "id": "check:boundaries",
+      "type": "repo-gate",
+      "source_of_truth": ["scripts/check-domain-boundaries.mjs", "docs/architecture/DOMAIN_CONTRACT_BOUNDARIES.md"],
+      "gateManifestId": "check:boundaries",
+      "command": "pnpm run check:boundaries",
+      "scope": ["domain", "application", "infrastructure"],
+      "mode": "block",
+      "owner": "engineering",
+      "workflow": [".github/workflows/ci.yml"],
+      "docs": ["docs/architecture/DOMAIN_CONTRACT_BOUNDARIES.md"],
+      "remediation": "Move the violating import or behavior back behind the correct layer boundary."
+    },
+    {
+      "id": "check:routes",
+      "type": "routing-gate",
+      "source_of_truth": ["scripts/compare-routes.mjs", "context/INVARIANTS.md"],
+      "gateManifestId": "check:routes",
+      "command": "pnpm run check:routes",
+      "scope": ["route", "url", "slug"],
+      "mode": "block",
+      "owner": "engineering",
+      "workflow": [".github/workflows/ci.yml"],
+      "docs": ["docs/reports/routes_snapshot_before.json"],
+      "remediation": "Review route additions/removals, then update the baseline only if the public route change is intentional."
+    },
+    {
+      "id": "check:rss",
+      "type": "routing-gate",
+      "source_of_truth": ["scripts/compare-rss.mjs", "context/INVARIANTS.md"],
+      "gateManifestId": "check:rss",
+      "command": "pnpm run check:rss",
+      "scope": ["route", "rss", "article"],
+      "mode": "block",
+      "owner": "engineering",
+      "workflow": [".github/workflows/ci.yml"],
+      "docs": ["docs/reports/rss_snapshot.json"],
+      "remediation": "Restore removed RSS items or update the baseline only when the change is intentionally reviewed."
+    },
+    {
+      "id": "check:urls",
+      "type": "routing-gate",
+      "source_of_truth": ["scripts/check-urls.mjs", "docs/adr/ADR-20260304-urlcheck-operational-hardening.md"],
+      "gateManifestId": "check:urls",
+      "command": "pnpm run check:urls",
+      "scope": ["route", "url", "canonical"],
+      "mode": "block",
+      "owner": "engineering",
+      "workflow": [".github/workflows/ci.yml"],
+      "docs": ["docs/operations/runbooks/urlcheck-runbook.md"],
+      "remediation": "Fix the broken URL or adjust the URL baseline according to the urlcheck policy."
+    },
+    {
+      "id": "check:toc-i18n",
+      "type": "editorial-gate",
+      "source_of_truth": ["scripts/check-toc-i18n.mjs", "docs/editorial/NORMA_YMYL.md"],
+      "gateManifestId": "check:toc-i18n",
+      "command": "pnpm run check:toc-i18n",
+      "scope": ["article", "content"],
+      "mode": "block",
+      "owner": "editorial",
+      "workflow": [".github/workflows/ci.yml"],
+      "docs": ["docs/editorial/NORMA_YMYL.md"],
+      "remediation": "Fix TOC/i18n labels so rendered article navigation stays Spanish-first and deterministic."
+    },
+    {
+      "id": "check:editorial-guard",
+      "type": "editorial-gate",
+      "source_of_truth": ["scripts/check-editorial-guard.mjs", "docs/editorial/NORMA_YMYL.md"],
+      "gateManifestId": "check:editorial-guard",
+      "command": "pnpm run check:editorial-guard",
+      "scope": ["article", "content"],
+      "mode": "block",
+      "owner": "editorial",
+      "workflow": [".github/workflows/ci.yml"],
+      "docs": ["docs/editorial/NORMA_YMYL.md"],
+      "remediation": "Resolve the editorial guard failure and rerun the post-build content checks."
+    },
+    {
+      "id": "check:hero-prompts",
+      "type": "editorial-gate",
+      "source_of_truth": [
+        "scripts/check-hero-prompts.mjs",
+        "scripts/hero-images/prompt-plan.mjs",
+        "context/EDITORIAL_IMAGE_SYSTEM.md"
+      ],
+      "gateManifestId": "check:hero-prompts",
+      "command": "pnpm run check:hero-prompts",
+      "scope": ["hero-image", "article"],
+      "mode": "block",
+      "owner": "editorial-platform",
+      "workflow": [".github/workflows/ci.yml", ".github/workflows/guardrail-drift-audit.yml"],
+      "docs": [
+        "context/AGENT_PREFLIGHT.md",
+        "docs/operations/runbooks/hero-images-runbook.md"
+      ],
+      "sync": {
+        "agentPreflight": true,
+        "entrypoints": ["article-refresh"]
+      },
+      "remediation": "Regenerate prompts with node scripts/hero-images/build-prompts.mjs. If mismatches persist, fix the approved model selection or slug override in scripts/hero-images/prompt-plan.mjs."
+    },
+    {
+      "id": "check:editorial-timeliness",
+      "type": "editorial-gate",
+      "source_of_truth": [
+        "docs/operations/runbooks/content-refresh-cadence.md",
+        "docs/operations/runbooks/phase1-refresh-policy.md",
+        "src/config/editorial-timeliness-policy.json"
+      ],
+      "gateManifestId": "check:editorial-timeliness",
+      "command": "pnpm run check:editorial-timeliness",
+      "scope": ["article", "content", "freshness"],
+      "mode": "block",
+      "owner": "editorial",
+      "workflow": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/editorial-timeliness-audit.yml"
+      ],
+      "docs": ["context/AGENT_PREFLIGHT.md", "docs/operations/runbooks/content-refresh-cadence.md"],
+      "sync": {
+        "agentPreflight": true,
+        "entrypoints": ["article-refresh"]
+      },
+      "remediation": "Refresh the affected article or its volatile data source, then rerun pnpm run check:editorial-timeliness."
+    },
+    {
+      "id": "check:no-postid-urls",
+      "type": "routing-gate",
+      "source_of_truth": [
+        "context/INVARIANTS.md",
+        "docs/AI_ENGINEERING_CONSTITUTION.md",
+        "scripts/check-no-postid-urls.mjs"
+      ],
+      "gateManifestId": "check:no-postid-urls",
+      "command": "pnpm run check:no-postid-urls",
+      "scope": ["route", "url", "slug", "canonical"],
+      "mode": "block",
+      "owner": "engineering",
+      "workflow": [".github/workflows/ci.yml"],
+      "docs": [
+        "docs/operations/AGENT_TASK_INDEX.md",
+        "context/AGENT_PREFLIGHT.md",
+        "START_HERE.md"
+      ],
+      "sync": {
+        "agentTaskIndex": true,
+        "agentPreflight": true,
+        "entrypoints": ["route-work", "guardrails-docs"]
+      },
+      "remediation": "Replace any public URL derivation from post.id with slug-based helpers and rerun pnpm run check:no-postid-urls."
+    },
+    {
+      "id": "docs.entrypoints.consistency",
+      "type": "documentation-policy",
+      "source_of_truth": [
+        "START_HERE.md",
+        "docs/operations/AGENT_TASK_INDEX.md",
+        "context/AGENT_PREFLIGHT.md",
+        "context/AGENT_ENTRYPOINTS.md",
+        "context/AGENT_ENTRYPOINTS.json"
+      ],
+      "scope": ["docs", "context", "agent-onboarding"],
+      "mode": "warn",
+      "owner": "engineering",
+      "workflow": [".github/workflows/guardrail-drift-audit.yml", ".github/workflows/doc-gardening.yml"],
+      "docs": [
+        "START_HERE.md",
+        "docs/operations/AGENT_TASK_INDEX.md",
+        "context/AGENT_PREFLIGHT.md",
+        "context/AGENT_ENTRYPOINTS.md"
+      ],
+      "sync": {
+        "entrypoints": [
+          "bootstrap",
+          "bugfix",
+          "calculator-logic",
+          "guardrails-docs",
+          "article-refresh",
+          "route-work",
+          "ops-audit"
+        ]
+      },
+      "remediation": "Keep all agent entrypoint docs synchronized so a new session can start from 2-4 files instead of reconstructing repo truth."
+    },
+    {
+      "id": "dependency-automerge.patch-only",
+      "type": "automation-policy",
+      "source_of_truth": [
+        ".github/dependabot.yml",
+        ".github/workflows/dependency-automerge.yml"
+      ],
+      "scope": ["dependencies", "github-actions"],
+      "mode": "warn",
+      "owner": "engineering",
+      "workflow": [".github/workflows/dependency-automerge.yml"],
+      "docs": ["docs/operations/AGENT_TASK_INDEX.md"],
+      "remediation": "Restrict automerge to Dependabot patch updates that already passed CI. Minor and major updates stay manual by policy."
+    },
+    {
+      "id": "weekly-search-ops",
+      "type": "operational-routine",
+      "source_of_truth": [
+        "docs/operations/runbooks/weekly-search-performance-ritual.md",
+        "scripts/build-weekly-search-report.mjs",
+        ".github/workflows/weekly-search-ops.yml"
+      ],
+      "scope": ["ops", "search-performance", "issue-driven-rituals"],
+      "mode": "warn",
+      "owner": "ops",
+      "workflow": [".github/workflows/weekly-search-ops.yml"],
+      "docs": [
+        "docs/operations/runbooks/weekly-search-performance-ritual.md",
+        "docs/operations/runbooks/apps-mcp-operations.md"
+      ],
+      "sync": {
+        "entrypoints": ["ops-audit"]
+      },
+      "remediation": "Keep the weekly loop issue-driven: initialize the bundle, capture the current week, and generate a scorecard whenever exports exist."
+    },
+    {
+      "id": "strategy.ownership-before-expansion",
+      "type": "manual-policy",
+      "source_of_truth": [
+        "context/INVARIANTS.md",
+        "docs/governance/COMPETITIVE_ADAPTATION_POLICY.md",
+        "docs/editorial/TOPIC_OWNERSHIP_POLICY.md"
+      ],
+      "scope": ["strategy", "indexable-surfaces", "editorial"],
+      "mode": "warn",
+      "owner": "editorial-strategy",
+      "workflow": [".github/workflows/guardrail-drift-audit.yml"],
+      "docs": [
+        "context/AGENT_PREFLIGHT.md",
+        "docs/operations/templates/AGENT_PROMPTS.md"
+      ],
+      "remediation": "Resolve owner/support/reference/tool ownership before adding any new visible surface or benchmark-driven expansion."
+    },
+    {
+      "id": "editorial.high-risk-human-signoff",
+      "type": "manual-policy",
+      "source_of_truth": [
+        "context/EDITORIAL_AI_PIPELINE.md",
+        "docs/editorial/NORMA_YMYL.md"
+      ],
+      "scope": ["ymyl", "editorial", "human-review"],
+      "mode": "advisory",
+      "owner": "human-editor",
+      "workflow": [],
+      "docs": [
+        "context/EDITORIAL_AI_PIPELINE.md",
+        "docs/editorial/NORMA_YMYL.md"
+      ],
+      "remediation": "Do not automate final publication of high-risk YMYL content. Keep the human sign-off and compliance packet mandatory."
+    },
+    {
+      "id": "hero-images.manual-final-asset",
+      "type": "manual-policy",
+      "source_of_truth": [
+        "docs/development/AGENT_EXECUTION_PROTOCOL.md",
+        "docs/operations/runbooks/hero-images-runbook.md",
+        "context/EDITORIAL_IMAGE_SYSTEM.md"
+      ],
+      "scope": ["hero-image", "editorial-assets"],
+      "mode": "advisory",
+      "owner": "editorial-design",
+      "workflow": [".github/workflows/hero-images-generate.yml"],
+      "docs": [
+        "docs/operations/runbooks/hero-images-runbook.md",
+        "context/AGENT_PREFLIGHT.md"
+      ],
+      "remediation": "Automate prompts, validation, reminders, and issue opening only. Final hero assets remain manual by policy."
+    }
+  ]
+}

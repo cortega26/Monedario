@@ -14,10 +14,22 @@ Este ritual no busca construir un BI paralelo. Busca responder todas las semanas
 - qué alertas de indexación/cobertura necesitan seguimiento;
 - qué cambios editoriales o de packaging conviene hacer primero.
 
+## Modo operativo actual
+
+El ritual ahora es **híbrido e issue-driven**:
+
+- workflow programado: `.github/workflows/weekly-search-ops.yml`
+- bundle estándar: `output/operations/weekly-search-performance/<week>/`
+- scorecard por script: `scripts/build-weekly-search-report.mjs`
+- soporte apps/MCP: `docs/operations/runbooks/apps-mcp-operations.md`
+
+Si no existen exports para la semana, el workflow igual deja issue + checklist + bundle inicializado. Si los exports existen, genera scorecard automáticamente.
+
 ## Fuentes de verdad
 
 - Watchlist estratégica: `docs/operations/runbooks/weekly-search-performance-watchlist.json`
 - Script de scorecard: `scripts/build-weekly-search-report.mjs`
+- Workflow híbrido semanal: `.github/workflows/weekly-search-ops.yml`
 - Baseline operacional Phase 1: `docs/operations/reports/phase1_measurement_baseline.md`
 - SLA de refresh: `docs/operations/runbooks/phase1-refresh-policy.md`
 - Ownership y anti-canibalización: `docs/research/seo/strategy/topic_ownership_matrix.md`
@@ -40,6 +52,8 @@ Eso crea el bundle mínimo:
 
 - `README.md`
 - `indexation-summary.json`
+
+El workflow semanal usa la misma convención y, si no encuentra exports, deja el bundle listo para completar sin depender de memoria humana.
 
 Luego se dejan en esa misma carpeta:
 
@@ -197,6 +211,12 @@ Si la scorecard no produce decisiones, el ritual se está volviendo ceremonial y
 3. Anotar estado de sitemap/indexación en `indexation-summary.json`.
 4. Exportar el CSV mínimo de analytics.
 5. Ejecutar el script.
+
+Alternativa programada:
+
+1. Dejar que `weekly-search-ops.yml` abra o actualice el issue de la semana.
+2. Completar el bundle estándar con exports reales.
+3. Re-ejecutar el workflow o correr localmente `build-weekly-search-report.mjs`.
 
 ### Mismo bloque de trabajo
 

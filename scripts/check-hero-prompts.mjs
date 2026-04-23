@@ -100,7 +100,7 @@ async function main() {
         pushIssue(
           errors,
           article.slug,
-          `sceneId '${entry.sceneId}' does not match approved model '${approvedModel.sceneId}'.`
+          `sceneId '${entry.sceneId}' does not match approved model '${approvedModel.sceneId}'. Remediation: rerun node scripts/hero-images/build-prompts.mjs; if it persists, fix the approved model or slug override in scripts/hero-images/prompt-plan.mjs.`
         );
       }
     }
@@ -143,11 +143,11 @@ async function main() {
       if (
         normalizedEvidence.some(item => PURE_FALLBACK_PATTERNS.some(pattern => pattern.test(item)))
       ) {
-        pushIssue(
-          strictFallback ? errors : warnings,
-          article.slug,
-          `Fallback scene detected after article read${strictFallback ? " (strict mode)." : "."}`
-        );
+      pushIssue(
+        strictFallback ? errors : warnings,
+        article.slug,
+          `Fallback scene detected after article read${strictFallback ? " (strict mode)." : "."} Remediation: tighten the scene rule or add a slug override in scripts/hero-images/prompt-plan.mjs if the fallback is no longer acceptable.`
+      );
       }
     }
 

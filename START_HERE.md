@@ -14,14 +14,17 @@ Guia minima para arrancar en este repositorio sin tener que reconstruir el flujo
 
 1. `README.md`
 2. `AGENTS.md`
-3. `context/MODULE_INDEX.md`
-4. `docs/operations/AGENT_TASK_INDEX.md`
-5. `docs/operations/runbooks/bootstrap-checklist.md`
-6. `docs/operations/runbooks/task-cookbook.md`
+3. `context/AGENT_PREFLIGHT.md`
+4. `context/AGENT_ENTRYPOINTS.md`
+5. `context/MODULE_INDEX.md`
+6. `docs/operations/AGENT_TASK_INDEX.md`
+7. `docs/operations/runbooks/bootstrap-checklist.md`
+8. `docs/operations/runbooks/task-cookbook.md`
 
 ## Entry points por intencion
 
 - Quiero arrancar una sesion de agente rapido: `context/AGENT_PREFLIGHT.md`
+- Quiero elegir el camino mínimo por intención: `context/AGENT_ENTRYPOINTS.md`
 - Quiero entender la estructura del repo: `docs/codebase/README.md`
 - Quiero ubicar el entry point correcto para una tarea: `docs/operations/AGENT_TASK_INDEX.md`
 - Quiero validar que mi entorno local quedo bien: `docs/operations/runbooks/bootstrap-checklist.md`
@@ -34,6 +37,7 @@ Guia minima para arrancar en este repositorio sin tener que reconstruir el flujo
 
 - La identidad publica de una URL sale de `slug`, nunca de `post.id`.
 - Los gates editoriales, de imagenes, rutas, RSS y URLs forman parte del flujo normal, no son validaciones opcionales.
+- Los cambios de CI, docs de gobernanza y workflows ahora pasan por `pnpm run check:policy-registry`.
 - `docs/` tiene estructura con autoridad explicita y se valida con `pnpm run check:docs`.
 
 ## Comandos comunes

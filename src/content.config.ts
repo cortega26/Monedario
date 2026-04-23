@@ -170,7 +170,8 @@ const blog = defineCollection({
           if (ARTICLE_ADVISORY_URL_PATTERN.test(data.articleAdvisory)) {
             ctx.addIssue({
               code: "custom",
-              message: 'Field "articleAdvisory" must not contain URLs or routes.',
+              message:
+                'Field "articleAdvisory" must not contain URLs or routes.',
             });
           }
           if (ARTICLE_ADVISORY_MULTILINE_PATTERN.test(data.articleAdvisory)) {

@@ -1,0 +1,138 @@
+name: Doc Gardening
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 8 * * 4"
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  audit:
+    name: Audit docs and mechanical drift
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: "📦 Install pnpm"
+        run: npm install -g pnpm@10.30.2
+
+      - name: "🟢 Setup Node.js"
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: "📦 Install dependencies"
+        run: pnpm install --frozen-lockfile
+
+      - name: "📁 Prepare output directory"
+        run: mkdir -p output/validation/doc-gardening
+
+      - name: "📚 Check context"
+        id: check_context
+        continue-on-error: true
+        run: pnpm run check:context > output/validation/doc-gardening/check-context.log 2>&1
+
+      - name: "🗂️ Check docs structure"
+        id: check_docs
+        continue-on-error: true
+        run: pnpm run check:docs > output/validation/doc-gardening/check-docs.log 2>&1
+
+      - name: "🔎 Lint"
+        id: lint
+        continue-on-error: true
+        run: pnpm run lint > output/validation/doc-gardening/lint.log 2>&1
+
+      - name: "📝 Format check"
+        id: format_check
+        continue-on-error: true
+        run: pnpm run format:check > output/validation/doc-gardening/format-check.log 2>&1
+
+      - name: "📤 Upload doc-gardening logs"
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: doc-gardening-logs
+          retention-days: 14
+          if-no-files-found: error
+          path: output/validation/doc-gardening/
+
+      - name: "📝 Create or update doc-gardening issue"
+        if: always()
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const title = "Doc gardening audit: repo drift detected";
+            const checks = [
+              { id: "check_context", label: "check:context", outcome: "${{ steps.check_context.outcome }}" },
+              { id: "check_docs", label: "check:docs", outcome: "${{ steps.check_docs.outcome }}" },
+              { id: "lint", label: "lint", outcome: "${{ steps.lint.outcome }}" },
+              { id: "format_check", label: "format:check", outcome: "${{ steps.format_check.outcome }}" },
+            ];
+            const failed = checks.filter(item => item.outcome === "failure");
+
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+            });
+            const existing = issues.find(issue => issue.title === title);
+
+            if (failed.length === 0) {
+              if (existing) {
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: existing.number,
+                  state: "closed",
+                });
+                core.info(`Closed issue #${existing.number}`);
+              } else {
+                core.info("No open doc-gardening issue to close.");
+              }
+              return;
+            }
+
+            const body = [
+              "Automated doc-gardening detected repo drift that should be cleaned up in a small follow-up.",
+              "",
+              "### Failed checks",
+              ...failed.map(item => `- \`${item.label}\``),
+              "",
+              "### Next step",
+              "",
+              "Open the `doc-gardening-logs` artifact, fix one small cluster of drift, and keep the cleanup PR reviewable in under a minute.",
+            ].join("\n");
+
+            if (existing) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body,
+                labels: ["docs", "automation", "maintenance"],
+              });
+              core.info(`Updated existing issue #${existing.number}`);
+            } else {
+              const created = await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+                labels: ["docs", "automation", "maintenance"],
+              });
+              core.info(`Created issue #${created.data.number}`);
+            }
+
+      - name: "✅ Fail workflow on detected drift"
+        if: steps.check_context.outcome == 'failure' || steps.check_docs.outcome == 'failure' || steps.lint.outcome == 'failure' || steps.format_check.outcome == 'failure'
+        run: exit 1

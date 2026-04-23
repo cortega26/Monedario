@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "_comment": "Machine-readable gate manifest. Authoritative list of quality gates, their scope, failure mode, and known pre-existing issues. Keep in sync with package.json scripts and docs/operations/AGENT_TASK_INDEX.md.",
   "version": "1.0.0",
-  "lastUpdated": "2026-04-15",
+  "lastUpdated": "2026-04-23",
   "requiresBuild": [
     "check:routes",
     "check:rss",
@@ -44,9 +44,9 @@
       "command": "pnpm run check",
       "scope": ["all"],
       "failureMode": "blocking",
-      "knownFlakyItems": ["TD-0055"],
-      "preExistingFailures": 35,
-      "note": "Umbrella gate. Runs check:context, check:docs, check:images, check:hero-images, check:hero-prompts (35 pre-existing failures — TD-0055), check:frontmatter, check:legal-citations, check:links, check:editorial, check:editorial-timeliness, check:no-postid-urls, astro check. Does NOT include check:routes, check:rss, or check:urls (those require a prior build)."
+      "knownFlakyItems": [],
+      "preExistingFailures": 0,
+      "note": "Umbrella gate. Runs check:context, check:policy-registry, check:docs, check:images, check:hero-images, check:hero-prompts, check:frontmatter, check:legal-citations, check:links, check:editorial, check:editorial-timeliness, check:no-postid-urls, astro check. Does NOT include check:routes, check:rss, or check:urls (those require a prior build)."
     },
     {
       "id": "check:context",
@@ -55,6 +55,15 @@
       "failureMode": "blocking",
       "knownFlakyItems": [],
       "preExistingFailures": 0
+    },
+    {
+      "id": "check:policy-registry",
+      "command": "pnpm run check:policy-registry",
+      "scope": ["docs", "context", "governance", "ci"],
+      "failureMode": "blocking",
+      "knownFlakyItems": [],
+      "preExistingFailures": 0,
+      "note": "Detects drift between POLICY_REGISTRY, package scripts, GATE_MANIFEST, AGENT_TASK_INDEX, AGENT_PREFLIGHT, AGENT_ENTRYPOINTS, and linked workflow/doc files."
     },
     {
       "id": "check:docs",
@@ -87,9 +96,9 @@
       "command": "pnpm run check:hero-prompts",
       "scope": ["hero-image", "article"],
       "failureMode": "blocking",
-      "knownFlakyItems": ["TD-0055"],
-      "preExistingFailures": 35,
-      "note": "35 sceneId/approvedModelId misalignments as of 2026-04-15. Pre-existing; not a regression for unrelated changes. See TD-0055 in docs/TECH_DEBT_BACKLOG.md."
+      "knownFlakyItems": [],
+      "preExistingFailures": 0,
+      "note": "Semantic hero prompt contract. Validate approved model/catalog alignment, text-backed evidence, and fallback behavior before merge."
     },
     {
       "id": "check:frontmatter",
@@ -210,10 +219,10 @@
   ],
   "taskGateMap": {
     "bootstrap": ["test", "check"],
-    "article": ["check:frontmatter", "check:hero-images", "check:editorial"],
+    "article": ["check:frontmatter", "check:hero-images", "check:hero-prompts", "check:editorial"],
     "calculator-logic": ["test", "check:boundaries", "lint"],
     "route-url-slug": ["check:no-postid-urls", "check:routes", "check:rss"],
-    "docs-governance": ["check:docs"],
+    "docs-governance": ["check:policy-registry", "check:docs"],
     "merge-ready": ["lint", "format:check", "test", "check"]
   }
 }

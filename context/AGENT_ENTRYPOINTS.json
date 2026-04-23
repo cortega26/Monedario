@@ -1,0 +1,124 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-04-23",
+  "entrypoints": [
+    {
+      "id": "bootstrap",
+      "intent": "Bootstrap / local setup",
+      "readFirst": [
+        "START_HERE.md",
+        "context/AGENT_PREFLIGHT.md",
+        "docs/operations/runbooks/bootstrap-checklist.md"
+      ],
+      "requiredGates": ["pnpm run test", "pnpm run check"],
+      "notes": [
+        "Use Node 22 and pnpm 10.",
+        "Default local mode should stay TPI_ECONOMIC_PROVIDER_MODE=snapshot unless the task explicitly needs live economic data."
+      ]
+    },
+    {
+      "id": "bugfix",
+      "intent": "Bugfix / targeted repair",
+      "readFirst": [
+        "context/AGENT_PREFLIGHT.md",
+        "docs/operations/AGENT_TASK_INDEX.md",
+        "docs/codebase/TESTING.md"
+      ],
+      "requiredGates": ["pnpm run test", "pnpm run lint"],
+      "notes": [
+        "Declare scope before edits and log any pre-existing unrelated failures as debt instead of folding them into the fix."
+      ]
+    },
+    {
+      "id": "calculator-logic",
+      "intent": "Calculator / domain logic change",
+      "readFirst": [
+        "context/MODULE_INDEX.md",
+        "context/AGENT_PREFLIGHT.md",
+        "docs/operations/AGENT_TASK_INDEX.md"
+      ],
+      "requiredGates": [
+        "pnpm run test",
+        "pnpm run check:boundaries",
+        "pnpm run lint",
+        "pnpm run check:context"
+      ],
+      "notes": [
+        "Preserve Constitution §2.1 dependency direction and §2.2 side-effect isolation."
+      ]
+    },
+    {
+      "id": "guardrails-docs",
+      "intent": "Governance / docs / CI / guardrail work",
+      "readFirst": [
+        "context/AGENT_PREFLIGHT.md",
+        "docs/operations/AGENT_TASK_INDEX.md",
+        "docs/operations/POLICY_REGISTRY.json",
+        "docs/operations/GATE_MANIFEST.json"
+      ],
+      "requiredGates": [
+        "pnpm run check:policy-registry",
+        "pnpm run check:docs",
+        "pnpm run check:context"
+      ],
+      "notes": [
+        "If CI semantics change, add or update an ADR in docs/adr/.",
+        "Keep AGENT_TASK_INDEX, AGENT_PREFLIGHT, START_HERE, and AGENT_ENTRYPOINTS synchronized."
+      ]
+    },
+    {
+      "id": "article-refresh",
+      "intent": "Editorial refresh / article maintenance",
+      "readFirst": [
+        "context/AGENT_PREFLIGHT.md",
+        "context/EDITORIAL_AI_PIPELINE.md",
+        "docs/operations/runbooks/task-cookbook.md",
+        "docs/operations/runbooks/content-refresh-cadence.md"
+      ],
+      "requiredGates": [
+        "pnpm run check:frontmatter",
+        "pnpm run check:hero-images",
+        "pnpm run check:hero-prompts",
+        "pnpm run check:editorial",
+        "pnpm run check:editorial-timeliness"
+      ],
+      "notes": [
+        "High-risk YMYL refreshes still require artifact completeness, role separation, and human sign-off."
+      ]
+    },
+    {
+      "id": "route-work",
+      "intent": "Route / slug / canonical work",
+      "readFirst": [
+        "context/INVARIANTS.md",
+        "context/CONTRACTS.md",
+        "context/AGENT_PREFLIGHT.md"
+      ],
+      "requiredGates": [
+        "pnpm run check:no-postid-urls",
+        "pnpm run check:routes",
+        "pnpm run check:rss"
+      ],
+      "notes": [
+        "URL.PUBLIC.NO_POST_ID, ROUTES.NO_SILENT_CHANGES, and RSS.NO_REMOVALS are non-negotiable."
+      ]
+    },
+    {
+      "id": "ops-audit",
+      "intent": "Operational audit / weekly ops / external platforms",
+      "readFirst": [
+        "context/AGENT_PREFLIGHT.md",
+        "docs/operations/runbooks/weekly-search-performance-ritual.md",
+        "docs/operations/runbooks/apps-mcp-operations.md",
+        "docs/operations/POLICY_REGISTRY.json"
+      ],
+      "requiredGates": [
+        "pnpm run check:policy-registry",
+        "pnpm run check:docs"
+      ],
+      "notes": [
+        "Use GitHub + apps for authenticated or scheduled work, but always land the outcome as a repo-local artifact, issue, or report."
+      ]
+    }
+  ]
+}

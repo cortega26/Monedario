@@ -4,7 +4,7 @@
 Authoritative order: `docs/AI_ENGINEERING_CONSTITUTION.md` → `AGENTS.md` → `context/*.md` → source code.
 When any item here conflicts with those sources, the sources win.
 
-Last updated: 2026-04-15
+Last updated: 2026-04-23
 
 ---
 
@@ -38,25 +38,25 @@ Last updated: 2026-04-15
 | Task type | Minimum required gate set |
 |---|---|
 | Bootstrap / local setup | `pnpm run test` + `pnpm run check` |
-| Add or refresh article | `check:frontmatter` · `check:hero-images` · `check:editorial` |
+| Add or refresh article | `check:frontmatter` · `check:hero-images` · `check:hero-prompts` · `check:editorial` · `check:editorial-timeliness` |
 | Calculator / domain logic | `test` · `check:boundaries` · `lint` |
 | Route / URL / slug change | `check:no-postid-urls` · `check:routes` · `check:rss` |
 | Docs / governance update | `check:docs` |
+| CI / guardrails / ops automation | `check:policy-registry` · `check:docs` · `check:context` |
 | Any merge-ready change | `lint` · `format:check` · `test` · `check` |
 | CI / validation failure | Reproduce failing command locally; see `docs/codebase/TESTING.md` |
 
 Full gate command list: `docs/operations/GATE_MANIFEST.json`
 Full intent index: `docs/operations/AGENT_TASK_INDEX.md`
+Fast intent map: `context/AGENT_ENTRYPOINTS.md`
 
 ---
 
 ## Known pre-existing gate failures (not introduced by your change)
 
-| Gate | Command | Tracking ID | Failure count | Safe to proceed? |
-|---|---|---|---|---|
-| `check:hero-prompts` | `pnpm run check:hero-prompts` | `TD-0055` | 35 `sceneId`/`approvedModelId` misalignments | Yes — pre-existing, unrelated to non-hero-image changes |
+No pre-existing blocking gate failures are currently registered.
 
-If you see failures not in this table, investigate before merging.
+If you see a failure that is not explained by current scope or debt records, investigate before merging.
 
 ---
 
@@ -84,7 +84,7 @@ Full registry: `context/INVARIANTS.md`
 | `TPI_ECONOMIC_PROVIDER_MODE` | `snapshot` | `snapshot` = deterministic fixtures; `live` = Mindicador API call |
 | `EDITORIAL_ENFORCE` | `0` | Set to `1` for blocking mode in `check:editorial-artifacts` |
 | `EDITORIAL_SCOPE` | `all` | Set to `changed` to scope `check:reader-facing-copy` to modified files |
-| `HERO_PROMPTS_STRICT_FALLBACK` | `0` | Set to `1` to fail on any fallback `sceneId` (do not enable while TD-0055 is open) |
+| `HERO_PROMPTS_STRICT_FALLBACK` | `0` | Keep warn-first during rollout. Promote to `1` only when fallback warnings are intentionally resolved. |
 
 Full variable reference: `.env.example`
 
@@ -96,5 +96,6 @@ Full variable reference: `.env.example`
 2. `AGENTS.md`
 3. `context/INVARIANTS.md`
 4. `context/CONTRACTS.md`
-5. Relevant script(s) in `scripts/`
-6. `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md` ← new visible features or benchmark-driven work only
+5. `context/AGENT_ENTRYPOINTS.md`
+6. Relevant script(s) in `scripts/`
+7. `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md` ← new visible features or benchmark-driven work only
