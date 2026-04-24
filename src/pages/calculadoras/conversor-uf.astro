@@ -6,6 +6,9 @@ import Footer from "@/components/Footer.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
+import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
+import NextSteps from "@/components/NextSteps.astro";
+import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
 import { getPath } from "@/utils/getPath";
@@ -28,6 +31,28 @@ const ufDateDisplay = new Intl.DateTimeFormat("es-CL", {
   dateStyle: "long",
   timeZone: "UTC",
 }).format(new Date(`${ufLastUpdated}T00:00:00.000Z`));
+const currentCalculator = CALCULATOR_PORTFOLIO.find(
+  calc => calc.slug === "conversor-uf"
+);
+const calculatorRelatedItems = (currentCalculator?.related ?? []).map(item => ({
+  href: item.href,
+  title: item.label,
+  description: item.when,
+  label: "Relacionado",
+}));
+const calculatorNextStepItems = [
+  ...calculatorRelatedItems,
+  ...(calculatorRelatedItems.length < 2
+    ? [
+        {
+          href: "/calculadoras/",
+          title: "Ver todas las calculadoras",
+          description: "Compara otra herramienta si tu pregunta cambió.",
+          label: "Herramientas",
+        },
+      ]
+    : []),
+];
 ---
 
 <Layout
@@ -40,6 +65,7 @@ const ufDateDisplay = new Intl.DateTimeFormat("es-CL", {
   />
   <Header />
   <Breadcrumb />
+  <CalculatorTrustBadge location="calculator_header" />
   <main
     id="main-content"
     class="app-layout"
@@ -220,6 +246,13 @@ const ufDateDisplay = new Intl.DateTimeFormat("es-CL", {
           date: "2025-12",
         },
       ]}
+    />
+    <NextSteps
+      currentHref="/calculadoras/conversor-uf/"
+      items={calculatorNextStepItems}
+      title="Qué hacer con este resultado"
+      description="Sigue con una herramienta relacionada o vuelve al índice si necesitas resolver otra pregunta."
+      location="calculator_next_steps"
     />
   </main>
   <Footer />

@@ -29,6 +29,7 @@ import { getSueldoArticleSections } from "@/config/sueldoClusterLinks";
 import { getDeudaArticleSections } from "@/config/deudaClusterLinks";
 import TOCSidebar from "@/components/TOCSidebar.astro";
 import CalculatorCTA from "@/components/CalculatorCTA.astro";
+import NextSteps from "@/components/NextSteps.astro";
 import { formatMetadataDate } from "@/utils/metadataDate";
 import ArticleAdvisory from "@/components/ArticleAdvisory.astro";
 import { resolveBlogArticleAdvisory } from "@/config/blogAdvisory";
@@ -164,6 +165,8 @@ const clusterHubNames: Record<string, string> = {
   "seguridad-financiera": "Seguridad Financiera",
 };
 
+const getHubHrefFromCluster = (cluster: string) => `/guias/${cluster}/`;
+
 let prevPost: (typeof allPosts)[number] | null = null;
 let nextPost: (typeof allPosts)[number] | null = null;
 let useTopicalNav = false;
@@ -191,8 +194,66 @@ if (!useTopicalNav) {
       ? allPosts[currentPostIndex + 1]
       : null;
 }
+const contextualNextStepItems = contextualSectionsWithoutPrimaryDuplicates
+  .flatMap(section =>
+    section.items.map(item => ({
+      href: item.href,
+      title: item.title,
+      description: item.description,
+      label: section.eyebrow ?? item.kind,
+    }))
+  )
+  .slice(0, 2);
+const nextStepItems = [
+  ...(articleLead?.nextStepHref && articleLead.nextStepLabel
+    ? [
+        {
+          href: articleLead.nextStepHref,
+          title: articleLead.nextStepLabel,
+          description: "Continúa con la guía principal de este tema.",
+          label: "Guía",
+        },
+      ]
+    : []),
+  ...contextualNextStepItems,
+  ...(nextPost
+    ? [
+        {
+          href: getCanonicalPathFromSlug(nextPost.slug),
+          title: nextPost.title,
+          description: useTopicalNav
+            ? `Siguiente lectura dentro de ${hubLabel}.`
+            : "Otra guía reciente para seguir explorando.",
+          label: "Siguiente",
+        },
+      ]
+    : []),
+  ...(currentCluster
+    ? [
+        {
+          href: getHubHrefFromCluster(currentCluster),
+          title: hubLabel ?? clusterHubNames[currentCluster] ?? currentCluster,
+          description: "Vuelve al hub para ver el mapa completo del tema.",
+          label: "Hub",
+        },
+      ]
+    : []),
+];
+const nextStepExcludedHrefs = nextStepItems.map(item => item.href);
+const contextualSectionsWithoutNextStepDuplicates =
+  contextualSectionsWithoutPrimaryDuplicates
+    .map(section => ({
+      ...section,
+      items: section.items.filter(
+        item => !nextStepExcludedHrefs.includes(item.href)
+      ),
+    }))
+    .filter(section => section.items.length > 0);
 const relatedPostsExcludedSlugs = [
   ...excludedRelatedSlugs,
+  ...nextStepExcludedHrefs.map(href =>
+    href.replace(/^\/(?:posts|calculadoras|guias)\//, "").replace(/\/$/, "")
+  ),
   prevPost?.slug,
   nextPost?.slug,
 ].filter(Boolean) as string[];
@@ -300,10 +361,20 @@ const articleAdvisoryText = resolveBlogArticleAdvisory(post);
     </div>
 
     {
-      contextualSectionsWithoutPrimaryDuplicates.map(section => (
+      contextualSectionsWithoutNextStepDuplicates.map(section => (
         <ContextLinkSection {...section} />
       ))
     }
+
+    <NextSteps
+      currentHref={getCanonicalPathFromSlug(article.slug)}
+      cluster={currentCluster}
+      items={nextStepItems}
+      excludeHrefs={[]}
+      title="Qué sigue"
+      description="Sigue con una herramienta, una guía relacionada o vuelve al hub del tema."
+      location="article_next_steps"
+    />
 
     <!-- Author Card -->
     <aside
@@ -430,6 +501,8 @@ const articleAdvisoryText = resolveBlogArticleAdvisory(post);
       currentTags={tags}
       allPosts={posts}
       excludedSlugs={relatedPostsExcludedSlugs}
+      currentCluster={currentCluster}
+      currentCanonicalTopic={post.data.canonicalTopic}
     />
   </main>
 

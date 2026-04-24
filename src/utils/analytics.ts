@@ -22,6 +22,20 @@ export type AnalyticsEventParams = Record<
   string | number | boolean | undefined
 >;
 
+const CTA_EVENT_NAMES: Record<string, string> = {
+  "calculator-trust-link": "calculator_trust_link_click",
+  "hub-route": "hub_route_click",
+  "next-step": "next_step_click",
+  "related-post": "related_content_click",
+  "search-chip": "search_chip_click",
+};
+
+export function getAnalyticsEventNameForCta(ctaType?: string): string {
+  if (!ctaType) return "cta_click";
+
+  return CTA_EVENT_NAMES[ctaType] ?? "cta_click";
+}
+
 export function getReachedScrollMilestones(progressPercent: number): number[] {
   if (!Number.isFinite(progressPercent) || progressPercent <= 0) {
     return [];

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import {
+  getAnalyticsEventNameForCta,
   getReachedScrollMilestones,
   isOfficialSourceUrl,
 } from "@/utils/analytics";
@@ -26,5 +27,20 @@ describe("analytics utilities", () => {
     ).toBe(true);
     expect(isOfficialSourceUrl("https://www.comparaonline.cl")).toBe(false);
     expect(isOfficialSourceUrl("/posts/que-es-la-uf/")).toBe(false);
+  });
+
+  it("maps continuity CTA identifiers to explicit analytics events", () => {
+    expect(getAnalyticsEventNameForCta("next-step")).toBe("next_step_click");
+    expect(getAnalyticsEventNameForCta("related-post")).toBe(
+      "related_content_click"
+    );
+    expect(getAnalyticsEventNameForCta("calculator-trust-link")).toBe(
+      "calculator_trust_link_click"
+    );
+    expect(getAnalyticsEventNameForCta("hub-route")).toBe("hub_route_click");
+    expect(getAnalyticsEventNameForCta("search-chip")).toBe(
+      "search_chip_click"
+    );
+    expect(getAnalyticsEventNameForCta("unknown-cta")).toBe("cta_click");
   });
 });

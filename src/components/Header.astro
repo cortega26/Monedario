@@ -151,6 +151,8 @@ const isActive = (path: string) => {
             items={guiasDropdown.map(i => ({
               ...i,
               isActive: isActive(i.href),
+              analyticsCta: "hub-route",
+              analyticsLocation: "header_guides",
             }))}
             isActive={isActive("/guias")}
           />
@@ -163,8 +165,25 @@ const isActive = (path: string) => {
               "header-nav-item block px-4 py-3 text-center sm:px-2 sm:py-1",
               { "active-nav text-foreground": isActive("/calculadoras") },
             ]}
+            data-analytics-cta="hub-route"
+            data-analytics-label="Calculadoras"
+            data-analytics-location="header_primary"
           >
             Calculadoras
+          </a>
+        </li>
+        <li class="col-span-2">
+          <a
+            href={getPath("/glosario/")}
+            class:list={[
+              "header-nav-item block px-4 py-3 text-center sm:px-2 sm:py-1",
+              { "active-nav text-foreground": isActive("/glosario") },
+            ]}
+            data-analytics-cta="hub-route"
+            data-analytics-label="Glosario"
+            data-analytics-location="header_primary"
+          >
+            Glosario
           </a>
         </li>
         <li class="col-span-2">
@@ -174,6 +193,9 @@ const isActive = (path: string) => {
               "header-nav-item block px-4 py-3 text-center sm:px-2 sm:py-1",
               { "active-nav text-foreground": isActive("/about") },
             ]}
+            data-analytics-cta="hub-route"
+            data-analytics-label="Nosotros"
+            data-analytics-location="header_primary"
           >
             Nosotros
           </a>

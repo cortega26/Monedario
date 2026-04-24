@@ -7,6 +7,9 @@ import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
+import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
+import NextSteps from "@/components/NextSteps.astro";
+import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
 import { buildSecondCategoryTaxBrackets } from "@/domain/taxation/TaxEngine";
@@ -91,6 +94,28 @@ const bracketRows = [
 ];
 
 const sueldoLiquidoPath = getPath("/calculadoras/sueldo-liquido/");
+const currentCalculator = CALCULATOR_PORTFOLIO.find(
+  calc => calc.slug === "impuesto-segunda-categoria"
+);
+const calculatorRelatedItems = (currentCalculator?.related ?? []).map(item => ({
+  href: item.href,
+  title: item.label,
+  description: item.when,
+  label: "Relacionado",
+}));
+const calculatorNextStepItems = [
+  ...calculatorRelatedItems,
+  ...(calculatorRelatedItems.length < 2
+    ? [
+        {
+          href: "/calculadoras/",
+          title: "Ver todas las calculadoras",
+          description: "Compara otra herramienta si tu pregunta cambió.",
+          label: "Herramientas",
+        },
+      ]
+    : []),
+];
 ---
 
 <Layout
@@ -103,6 +128,7 @@ const sueldoLiquidoPath = getPath("/calculadoras/sueldo-liquido/");
   />
   <Header />
   <Breadcrumb />
+  <CalculatorTrustBadge location="calculator_header" />
   <main
     id="main-content"
     class="app-layout"
@@ -300,6 +326,13 @@ const sueldoLiquidoPath = getPath("/calculadoras/sueldo-liquido/");
           date: "2026-03",
         },
       ]}
+    />
+    <NextSteps
+      currentHref="/calculadoras/impuesto-segunda-categoria/"
+      items={calculatorNextStepItems}
+      title="Qué hacer con este resultado"
+      description="Sigue con una herramienta relacionada o vuelve al índice si necesitas resolver otra pregunta."
+      location="calculator_next_steps"
     />
   </main>
   <Footer />

@@ -1,0 +1,99 @@
+---
+import { getPath } from "@/utils/getPath";
+
+export type NextStepItem = {
+  href: string;
+  title: string;
+  description?: string;
+  label?: string;
+};
+
+type Props = {
+  currentHref: string;
+  cluster?: string;
+  items?: NextStepItem[];
+  excludeHrefs?: string[];
+  title?: string;
+  description?: string;
+  location?: string;
+};
+
+const {
+  currentHref,
+  cluster,
+  items = [],
+  excludeHrefs = [],
+  title = "Qué sigue",
+  description = "Elige el siguiente paso según lo que necesitas resolver ahora.",
+  location = "next_steps",
+} = Astro.props as Props;
+
+function normalizeHref(href: string): string {
+  return href.replace(/\/+$/, "") || "/";
+}
+
+const excluded = new Set([
+  normalizeHref(currentHref),
+  ...excludeHrefs.map(normalizeHref),
+]);
+const seen = new Set<string>();
+const visibleItems = items
+  .filter(item => {
+    const normalizedHref = normalizeHref(item.href);
+    if (excluded.has(normalizedHref) || seen.has(normalizedHref)) return false;
+    seen.add(normalizedHref);
+    return true;
+  })
+  .slice(0, 3);
+---
+
+{
+  visibleItems.length > 0 && (
+    <section
+      class="mt-10 border-t border-border pt-8"
+      data-next-steps-cluster={cluster}
+      aria-labelledby="next-steps-title"
+    >
+      <div class="mb-5 max-w-2xl">
+        <h2
+          id="next-steps-title"
+          class="text-2xl font-bold"
+          style="font-family: var(--font-display);"
+        >
+          {title}
+        </h2>
+        {description && (
+          <p class="mt-2 text-sm leading-relaxed text-secondary">
+            {description}
+          </p>
+        )}
+      </div>
+      <ul class="grid gap-4 md:grid-cols-3">
+        {visibleItems.map(item => (
+          <li class="rounded-lg border border-border bg-background p-4">
+            {item.label && (
+              <p class="mb-2 text-xs font-semibold tracking-[0.14em] text-accent uppercase">
+                {item.label}
+              </p>
+            )}
+            <h3 class="text-base leading-snug font-semibold">{item.title}</h3>
+            {item.description && (
+              <p class="mt-2 text-sm leading-relaxed text-secondary">
+                {item.description}
+              </p>
+            )}
+            <a
+              href={getPath(item.href)}
+              class="mt-4 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+              data-analytics-cta="next-step"
+              data-analytics-label={item.title}
+              data-analytics-location={location}
+            >
+              Abrir
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}

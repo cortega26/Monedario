@@ -1,0 +1,40 @@
+---
+import { getPath } from "@/utils/getPath";
+
+type Props = {
+  location?: string;
+  aboutHref?: string;
+};
+
+const { location = "calculator_header", aboutHref = "/about/" } =
+  Astro.props as Props;
+
+const trustItems = [
+  "Sin registro",
+  "Sin publicidad",
+  "Calculo local",
+  "No almacenamos tus datos",
+];
+---
+
+<aside
+  class="app-layout mt-5 rounded-lg border border-border bg-surface-muted/40 px-4 py-3"
+  aria-label="Privacidad y confianza de la calculadora"
+>
+  <div
+    class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+  >
+    <ul class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-secondary">
+      {trustItems.map(item => <li>{item}</li>)}
+    </ul>
+    <a
+      href={getPath(aboutHref)}
+      class="shrink-0 text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+      data-analytics-cta="calculator-trust-link"
+      data-analytics-label="Proceso editorial y privacidad"
+      data-analytics-location={location}
+    >
+      Ver proceso editorial
+    </a>
+  </div>
+</aside>

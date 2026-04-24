@@ -91,6 +91,9 @@ const searchChips = [
             <a
               href={chip.href}
               class="inline-flex items-center rounded-full border border-border bg-surface-muted px-3 py-1 text-sm text-secondary transition-colors hover:border-accent/60 hover:text-foreground"
+              data-analytics-cta="search-chip"
+              data-analytics-label={chip.label}
+              data-analytics-location="search_chips"
             >
               {chip.label}
             </a>

@@ -4,6 +4,27 @@ import Socials from "./Socials.astro";
 import { getPath } from "@/utils/getPath";
 
 const currentYear = new Date().getFullYear();
+const topicLinks = [
+  { href: "/guias/sueldo-remuneraciones/", label: "Sueldo" },
+  { href: "/guias/deuda-credito/", label: "Deuda" },
+  { href: "/guias/pensiones-afp/", label: "AFP" },
+  { href: "/guias/impuestos-personas/", label: "Impuestos" },
+  { href: "/guias/uf-costo-de-vida/", label: "UF" },
+];
+const toolLinks = [
+  { href: "/calculadoras/sueldo-liquido/", label: "Sueldo líquido" },
+  { href: "/calculadoras/finiquito-indemnizacion/", label: "Finiquito" },
+  { href: "/calculadoras/credito-consumo/", label: "Crédito" },
+  { href: "/calculadoras/apv/", label: "APV" },
+  { href: "/calculadoras/", label: "Todas" },
+];
+const trustLinks = [
+  { href: "/about/", label: "Proceso editorial" },
+  { href: "/glosario/", label: "Glosario" },
+  { href: "/leyes/", label: "Leyes" },
+  { href: "/cambios/", label: "Novedades" },
+  { href: "/contacto/", label: "Contacto" },
+];
 
 type Props = {
   noMarginTop?: boolean;
@@ -16,47 +37,85 @@ const { noMarginTop = false, class: className, ...attrs } = Astro.props;
   class:list={["app-layout", { "mt-auto": !noMarginTop }, className]}
   {...attrs}
 >
-  <div
-    class:list={[
-      "py-6 sm:py-4",
-      "border-t border-border",
-      "flex flex-col items-center justify-between sm:flex-row-reverse",
-    ]}
-  >
-    <Socials />
-    <div class="my-2 flex flex-col items-center whitespace-nowrap sm:flex-row">
-      <div class="mb-2 flex gap-4 text-sm sm:mr-4 sm:mb-0">
-        <a
-          href={getPath("/glosario/")}
-          class="hover:text-accent hover:underline">Glosario</a
-        >
-        <a href={getPath("/leyes/")} class="hover:text-accent hover:underline"
-          >Leyes</a
-        >
-        <a href={getPath("/about/")} class="hover:text-accent hover:underline"
-          >Nosotros</a
-        >
-        <a
-          href={getPath("/contacto/")}
-          class="hover:text-accent hover:underline">Contacto</a
-        >
-        <a href={getPath("/cambios/")} class="hover:text-accent hover:underline"
-          >Novedades</a
-        >
-      </div>
-      <span class="mx-2 hidden h-4 border-l border-border sm:inline-block"
-      ></span>
-      <div class="mt-2 text-sm sm:mt-0">
+  <div class="border-t border-border py-8">
+    <div class="grid gap-7 md:grid-cols-3">
+      <nav aria-label="Explora por tema">
+        <h2 class="text-sm font-semibold text-foreground">Explora por tema</h2>
+        <ul class="mt-3 space-y-2 text-sm text-secondary">
+          {
+            topicLinks.map(link => (
+              <li>
+                <a
+                  href={getPath(link.href)}
+                  class="hover:text-accent hover:underline"
+                  data-analytics-cta="hub-route"
+                  data-analytics-label={link.label}
+                  data-analytics-location="footer_topics"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <nav aria-label="Herramientas">
+        <h2 class="text-sm font-semibold text-foreground">Herramientas</h2>
+        <ul class="mt-3 space-y-2 text-sm text-secondary">
+          {
+            toolLinks.map(link => (
+              <li>
+                <a
+                  href={getPath(link.href)}
+                  class="hover:text-accent hover:underline"
+                  data-analytics-cta="hub-route"
+                  data-analytics-label={link.label}
+                  data-analytics-location="footer_tools"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <nav aria-label="Confianza">
+        <h2 class="text-sm font-semibold text-foreground">Confianza</h2>
+        <ul class="mt-3 space-y-2 text-sm text-secondary">
+          {
+            trustLinks.map(link => (
+              <li>
+                <a
+                  href={getPath(link.href)}
+                  class="hover:text-accent hover:underline"
+                  data-analytics-cta="hub-route"
+                  data-analytics-label={link.label}
+                  data-analytics-location="footer_trust"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+
+    <div
+      class="mt-8 flex flex-col items-center justify-between gap-4 border-t border-border pt-5 text-sm text-secondary sm:flex-row-reverse"
+    >
+      <Socials />
+      <div class="text-center sm:text-left">
         <span>Contenido &#169; {currentYear} Monedario</span>
         <span class="hidden sm:inline">&nbsp;·&nbsp;</span>
-        <span
-          >Hecho con ❤️ por <a
+        <span>
+          Hecho por <a
             href="https://tooltician.com/"
             target="_blank"
             rel="noopener"
             class="hover:text-accent hover:underline">Tooltician</a
-          ></span
-        >
+          >
+        </span>
       </div>
     </div>
   </div>

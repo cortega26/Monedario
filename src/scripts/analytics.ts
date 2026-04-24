@@ -1,5 +1,6 @@
 import {
   cleanAnalyticsParams,
+  getAnalyticsEventNameForCta,
   getReachedScrollMilestones,
   isOfficialSourceUrl,
   type AnalyticsEventParams,
@@ -72,7 +73,7 @@ function installGlobalClickTracking() {
     if (ctaElement) {
       const href =
         ctaElement instanceof HTMLAnchorElement ? ctaElement.href : undefined;
-      track("cta_click", {
+      track(getAnalyticsEventNameForCta(ctaElement.dataset.analyticsCta), {
         cta_type: ctaElement.dataset.analyticsCta,
         cta_label:
           ctaElement.dataset.analyticsLabel ?? ctaElement.textContent?.trim(),

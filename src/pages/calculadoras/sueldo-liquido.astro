@@ -4,6 +4,9 @@ import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
+import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
+import NextSteps from "@/components/NextSteps.astro";
+import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import ContextLinkSection from "@/components/ContextLinkSection.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
@@ -76,6 +79,28 @@ const sueldoLiquidoFaqs = [
       "No directamente. La Ley 40h (Ley 21.561) reduce la jornada legal ordinaria de 45 a 42 horas semanales en abril de 2026 (con una bajada final a 40 h en 2028), pero no modifica tu sueldo bruto mensual pactado. Lo que cambia es que si trabajas más de 42 horas a la semana, cada hora adicional es hora extra y debe pagarse con un recargo mínimo del 50%. Lo que sí sube es el valor unitario de cada hora ordinaria, porque el denominador (horas semanales × 4,333) se reduce manteniendo el mismo sueldo.",
   },
 ];
+const currentCalculator = CALCULATOR_PORTFOLIO.find(
+  calc => calc.slug === "sueldo-liquido"
+);
+const calculatorRelatedItems = (currentCalculator?.related ?? []).map(item => ({
+  href: item.href,
+  title: item.label,
+  description: item.when,
+  label: "Relacionado",
+}));
+const calculatorNextStepItems = [
+  ...calculatorRelatedItems,
+  ...(calculatorRelatedItems.length < 2
+    ? [
+        {
+          href: "/calculadoras/",
+          title: "Ver todas las calculadoras",
+          description: "Compara otra herramienta si tu pregunta cambió.",
+          label: "Herramientas",
+        },
+      ]
+    : []),
+];
 ---
 
 <Layout
@@ -89,6 +114,7 @@ const sueldoLiquidoFaqs = [
   />
   <Header />
   <Breadcrumb />
+  <CalculatorTrustBadge location="calculator_header" />
   <main
     id="main-content"
     class="app-layout"
@@ -738,6 +764,13 @@ const sueldoLiquidoFaqs = [
         <ContextLinkSection {...section} />
       ))
     }
+    <NextSteps
+      currentHref="/calculadoras/sueldo-liquido/"
+      items={calculatorNextStepItems}
+      title="Qué hacer con este resultado"
+      description="Sigue con una herramienta relacionada o vuelve al índice si necesitas resolver otra pregunta."
+      location="calculator_next_steps"
+    />
   </main>
   <Footer />
 </Layout>

@@ -7,6 +7,9 @@ import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
+import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
+import NextSteps from "@/components/NextSteps.astro";
+import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import CompareTable from "@/components/CompareTable.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { getPath } from "@/utils/getPath";
@@ -57,6 +60,28 @@ const apvFaqs = [
       "Si el APV está en tu AFP, se traspasa junto con tu cuenta individual al cambiar de AFP. Si está en otra institución (banco, fondo mutuo o seguro), el cambio de AFP no lo afecta.",
   },
 ];
+const currentCalculator = CALCULATOR_PORTFOLIO.find(
+  calc => calc.slug === "apv"
+);
+const calculatorRelatedItems = (currentCalculator?.related ?? []).map(item => ({
+  href: item.href,
+  title: item.label,
+  description: item.when,
+  label: "Relacionado",
+}));
+const calculatorNextStepItems = [
+  ...calculatorRelatedItems,
+  ...(calculatorRelatedItems.length < 2
+    ? [
+        {
+          href: "/calculadoras/",
+          title: "Ver todas las calculadoras",
+          description: "Compara otra herramienta si tu pregunta cambió.",
+          label: "Herramientas",
+        },
+      ]
+    : []),
+];
 ---
 
 <Layout
@@ -70,6 +95,7 @@ const apvFaqs = [
   />
   <Header />
   <Breadcrumb />
+  <CalculatorTrustBadge location="calculator_header" />
   <main
     id="main-content"
     class="app-layout"
@@ -569,6 +595,13 @@ const apvFaqs = [
         fondo mutuo), el traspaso de AFP no lo afecta.
       </p>
     </section>
+    <NextSteps
+      currentHref="/calculadoras/apv/"
+      items={calculatorNextStepItems}
+      title="Qué hacer con este resultado"
+      description="Sigue con una herramienta relacionada o vuelve al índice si necesitas resolver otra pregunta."
+      location="calculator_next_steps"
+    />
   </main>
   <Footer />
 </Layout>
