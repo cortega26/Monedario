@@ -6,6 +6,7 @@ import Footer from "@/components/Footer.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
+import CalculatorResultNextActions from "@/components/CalculatorResultNextActions.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
 import NextSteps from "@/components/NextSteps.astro";
@@ -515,6 +516,14 @@ const calculatorNextStepItems = [
       context="Entiende las reglas del Régimen A y B antes de elegir dónde ahorrar para tu jubilación."
     />
     <ShareCalculatorResult />
+    <CalculatorResultNextActions
+      calculatorSlug="apv"
+      actions={[
+        { label: "Imprimir resultado", href: "#", type: "print" },
+        { label: "¿Qué es el APV?", href: "/posts/que-es-el-apv/", type: "article" },
+        { label: "Simulador Operación Renta", href: "/calculadoras/operacion-renta/", type: "calculator" },
+      ]}
+    />
     <MethodologyBlock
       notes="Los beneficios tributarios del APV se calculan según la legislación vigente (Ley 20.255 y normativas SII). Régimen A: el Estado bonifica el 15% de los aportes (con tope de 6 UTM anuales). Régimen B: el aporte se deduce de la base imponible del impuesto global complementario. Los límites de aporte se expresan en UF (600 UF anuales para Régimen B) según valores al momento del cálculo."
       sources={[
@@ -614,6 +623,7 @@ const calculatorNextStepItems = [
   declare global {
     interface Window {
       showShareResult?: (text: string) => void;
+      showCalculatorNextActions?: () => void;
     }
   }
 
@@ -985,11 +995,14 @@ const calculatorNextStepItems = [
         `Simulador APV: régimen recomendado ${resultado.recommendedStrategy} — beneficio anual estimado ${fmt(_annualBenefit)}`
       );
     }
-
+    window.showCalculatorNextActions?.();
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "apv",
       calculator_name: "Simulador APV",
       outcome: "success",
+    });
+    trackAnalyticsEvent("calculator_completed", {
+      calculator_slug: "apv",
     });
   });
 </script>

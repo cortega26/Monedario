@@ -6,6 +6,7 @@ import Footer from "@/components/Footer.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
+import CalculatorResultNextActions from "@/components/CalculatorResultNextActions.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
 import NextSteps from "@/components/NextSteps.astro";
@@ -428,6 +429,14 @@ const calculatorNextStepItems = [
       context="Errores comunes, plazos y cómo leer la propuesta del SII paso a paso."
     />
     <ShareCalculatorResult />
+    <CalculatorResultNextActions
+      calculatorSlug="operacion-renta"
+      actions={[
+        { label: "Imprimir resultado", href: "#", type: "print" },
+        { label: "Checklist F-22", href: "/posts/operacion-renta-f22-checklist/", type: "article" },
+        { label: "Simulador APV", href: "/calculadoras/apv/", type: "calculator" },
+      ]}
+    />
     <MethodologyBlock
       notes="El Impuesto Global Complementario (IGC) se calcula aplicando la tabla de tramos progresivos del SII usando la UTA (12 UTM). La estimación no incluye: crédito de primera categoría, dividendos ni situaciones de dos empleadores simultáneos. Para el cálculo oficial, usa la propuesta del SII en www.sii.cl."
       sources={[
@@ -467,6 +476,7 @@ const calculatorNextStepItems = [
   declare global {
     interface Window {
       showShareResult?: (text: string) => void;
+      showCalculatorNextActions?: () => void;
     }
   }
 
@@ -762,10 +772,14 @@ const calculatorNextStepItems = [
         `Operación Renta: ${resultado.esDevolución ? "devolución" : "pago adicional"} ${fmt(Math.abs(resultado.saldoFinal))}`
       );
     }
+    window.showCalculatorNextActions?.();
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "operacion-renta",
       calculator_name: "Simulador Operación Renta",
       outcome: "success",
+    });
+    trackAnalyticsEvent("calculator_completed", {
+      calculator_slug: "operacion-renta",
     });
   });
 </script>

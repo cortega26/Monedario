@@ -1,0 +1,120 @@
+---
+export interface Props {
+  actions: Array<{
+    label: string;
+    href: string;
+    type: "article" | "calculator" | "print" | "share";
+  }>;
+  calculatorSlug: string;
+}
+
+const { actions, calculatorSlug } = Astro.props;
+
+const iconFor = (type: string) => {
+  if (type === "article") return "📄";
+  if (type === "calculator") return "🧮";
+  if (type === "print") return "🖨️";
+  if (type === "share") return "📲";
+  return "→";
+};
+---
+
+<div
+  id="calculator-result-next-actions"
+  data-testid="calculator-result-next-actions"
+  data-calculator-slug={calculatorSlug}
+  class="mt-6 hidden"
+>
+  <p class="mb-3 text-sm font-medium text-secondary">¿Qué hacer ahora?</p>
+  <div class="flex flex-wrap gap-2">
+    {
+      actions.map(action =>
+        action.type === "print" ? (
+          <button
+            class="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent/10"
+            data-analytics-cta="result-next-action"
+            data-analytics-label={action.label}
+            data-analytics-location="calculator_result_next_actions"
+            data-action-type="print"
+          >
+            {iconFor(action.type)} {action.label}
+          </button>
+        ) : action.type === "share" ? (
+          <button
+            class="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent/10"
+            data-analytics-cta="result-next-action"
+            data-analytics-label={action.label}
+            data-analytics-location="calculator_result_next_actions"
+            data-action-type="share"
+          >
+            {iconFor(action.type)} {action.label}
+          </button>
+        ) : (
+          <a
+            href={action.href}
+            class="inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium transition-colors hover:bg-accent/10"
+            data-analytics-cta="result-next-action"
+            data-analytics-label={action.label}
+            data-analytics-location="calculator_result_next_actions"
+            data-action-type={action.type}
+            data-action-href={action.href}
+          >
+            {iconFor(action.type)} {action.label}
+          </a>
+        )
+      )
+    }
+  </div>
+</div>
+
+<script>
+  import { trackAnalyticsEvent } from "@/utils/analytics";
+
+  declare global {
+    interface Window {
+      showCalculatorNextActions?: () => void;
+    }
+  }
+
+  const container = document.getElementById("calculator-result-next-actions");
+  const calculatorSlug = container?.dataset.calculatorSlug ?? "";
+
+  if (container) {
+    container.addEventListener("click", (e: Event) => {
+      const target = e.target as HTMLElement;
+      const actionEl = target.closest("[data-action-type]") as HTMLElement | null;
+      if (!actionEl) return;
+
+      const actionType = actionEl.dataset.actionType ?? "";
+      const actionLabel = actionEl.dataset.analyticsLabel ?? "";
+      const actionHref = actionEl.dataset.actionHref ?? "";
+
+      if (actionType === "print") {
+        trackAnalyticsEvent("calculator_print_click", {
+          calculator_slug: calculatorSlug,
+        });
+        window.print();
+        return;
+      }
+
+      if (actionType === "share") {
+        trackAnalyticsEvent("calculator_share_click", {
+          calculator_slug: calculatorSlug,
+        });
+        window.showShareResult?.("");
+        return;
+      }
+
+      trackAnalyticsEvent("calculator_result_action_click", {
+        calculator_slug: calculatorSlug,
+        action_label: actionLabel,
+        action_type: actionType,
+        destination_href: actionHref,
+      });
+    });
+  }
+
+  window.showCalculatorNextActions = function (): void {
+    container?.classList.remove("hidden");
+  };
+</script>

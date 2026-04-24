@@ -6,6 +6,7 @@ import Footer from "@/components/Footer.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
+import CalculatorResultNextActions from "@/components/CalculatorResultNextActions.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
 import NextSteps from "@/components/NextSteps.astro";
@@ -407,6 +408,14 @@ const calculatorNextStepItems = [
       context="Antes de firmar, asegúrate de entender qué corresponde en cada causal de término."
     />
     <ShareCalculatorResult />
+    <CalculatorResultNextActions
+      calculatorSlug="finiquito-indemnizacion"
+      actions={[
+        { label: "Imprimir resultado", href: "#", type: "print" },
+        { label: "Guía completa: finiquito", href: "/posts/finiquito-e-indemnizaciones-en-chile/", type: "article" },
+        { label: "Seguro de cesantía", href: "/calculadoras/seguro-cesantia/", type: "calculator" },
+      ]}
+    />
     <MethodologyBlock
       notes="Esta calculadora estima el finiquito según las reglas del Código del Trabajo de Chile: indemnización por años de servicio (art. 163), aviso previo (art. 161), vacaciones proporcionales (art. 73) y sueldo pendiente del mes. Los montos son orientativos; remuneraciones variables o cláusulas especiales requieren revisión profesional."
       sources={[
@@ -441,6 +450,7 @@ const calculatorNextStepItems = [
   declare global {
     interface Window {
       showShareResult?: (text: string) => void;
+      showCalculatorNextActions?: () => void;
     }
   }
 
@@ -689,11 +699,14 @@ const calculatorNextStepItems = [
         `Finiquito estimado: ${fmtCurrency(result.totalEstimate)} (causal: ${terminationCause})`
       );
     }
-
+    window.showCalculatorNextActions?.();
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "finiquito-indemnizacion",
       calculator_name: "Calculadora Finiquito e Indemnizacion",
       outcome: "success",
+    });
+    trackAnalyticsEvent("calculator_completed", {
+      calculator_slug: "finiquito-indemnizacion",
     });
   });
 </script>

@@ -11,6 +11,7 @@ import ContextLinkSection from "@/components/ContextLinkSection.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
+import CalculatorResultNextActions from "@/components/CalculatorResultNextActions.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { getPath } from "@/utils/getPath";
 import { sueldoCalculatorSections } from "@/config/sueldoClusterLinks";
@@ -724,6 +725,14 @@ const calculatorNextStepItems = [
       context="Entiende cada línea de tu liquidación y detecta errores comunes."
     />
     <ShareCalculatorResult />
+    <CalculatorResultNextActions
+      calculatorSlug="sueldo-liquido"
+      actions={[
+        { label: "Imprimir resultado", href: "#", type: "print" },
+        { label: "Guía: liquidación de sueldo", href: "/posts/liquidacion-de-sueldo/", type: "article" },
+        { label: "Calcular finiquito", href: "/calculadoras/finiquito-indemnizacion/", type: "calculator" },
+      ]}
+    />
     <MethodologyBlock
       notes="Esta calculadora aplica las tasas de cotización previsional vigentes en Chile: AFP (tasa total según administradora, que incluye 10% fondo personal + comisión), salud (7% Fonasa o cotización diferenciada Isapre), seguro de cesantía (0.6% contrato indefinido, 3% plazo fijo) e impuesto de segunda categoría por tramos UTM según tabla del SII. El sueldo mínimo legal se usa solo como referencia de validación."
       sources={[
@@ -787,6 +796,7 @@ const calculatorNextStepItems = [
   declare global {
     interface Window {
       showShareResult?: (text: string) => void;
+      showCalculatorNextActions?: () => void;
     }
   }
 
@@ -1188,11 +1198,15 @@ const calculatorNextStepItems = [
           `Sueldo Líquido y Bruto: bruto estimado ${fmt(resultado.grossSalary)}`
         );
       }
+      window.showCalculatorNextActions?.();
       trackAnalyticsEvent("calculator_complete", {
         calculator_slug: "sueldo-liquido",
         calculator_name: "Calculadora de Sueldo Liquido",
         outcome: "success",
         mode: "liquido-a-bruto",
+      });
+      trackAnalyticsEvent("calculator_completed", {
+        calculator_slug: "sueldo-liquido",
       });
     } else {
       const imponibleRaw = parseFloat(
@@ -1266,11 +1280,15 @@ const calculatorNextStepItems = [
           `Sueldo Líquido y Bruto: líquido ${fmt(resultado.netSalary - (otrosDescuentos ?? 0))}`
         );
       }
+      window.showCalculatorNextActions?.();
       trackAnalyticsEvent("calculator_complete", {
         calculator_slug: "sueldo-liquido",
         calculator_name: "Calculadora de Sueldo Liquido",
         outcome: "success",
         mode: "bruto-a-liquido",
+      });
+      trackAnalyticsEvent("calculator_completed", {
+        calculator_slug: "sueldo-liquido",
       });
     }
   });

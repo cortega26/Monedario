@@ -6,6 +6,7 @@ import Footer from "@/components/Footer.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
+import CalculatorResultNextActions from "@/components/CalculatorResultNextActions.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
 import NextSteps from "@/components/NextSteps.astro";
@@ -267,6 +268,14 @@ const calculatorNextStepItems = [
       context="Antes de firmar, compara tasas usando el CAE como referencia única."
     />
     <ShareCalculatorResult />
+    <CalculatorResultNextActions
+      calculatorSlug="credito-consumo"
+      actions={[
+        { label: "Imprimir resultado", href: "#", type: "print" },
+        { label: "Tarjeta de crédito", href: "/calculadoras/tarjeta-credito/", type: "calculator" },
+        { label: "Prepago de crédito", href: "/calculadoras/prepago-credito/", type: "calculator" },
+      ]}
+    />
     <MethodologyBlock
       notes="La cuota mensual se calcula con la fórmula de amortización francesa (cuota fija). El CAE se estima integrando gastos asociados. Las tasas de referencia corresponden a la tasa máxima convencional vigente publicada por la CMF para operaciones de crédito de consumo."
       sources={[
@@ -300,6 +309,7 @@ const calculatorNextStepItems = [
   declare global {
     interface Window {
       showShareResult?: (text: string) => void;
+      showCalculatorNextActions?: () => void;
     }
   }
 
@@ -437,10 +447,14 @@ const calculatorNextStepItems = [
         `Crédito consumo: cuota ${fmt(resultado.monthlyPaymentTotal)}/mes, total ${fmt(resultado.totalPaid)}`
       );
     }
+    window.showCalculatorNextActions?.();
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "credito-consumo",
       calculator_name: "Calculadora de Credito de Consumo",
       outcome: "success",
+    });
+    trackAnalyticsEvent("calculator_completed", {
+      calculator_slug: "credito-consumo",
     });
   });
 
