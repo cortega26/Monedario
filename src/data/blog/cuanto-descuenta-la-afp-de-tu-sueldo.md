@@ -16,7 +16,7 @@ category: empleo-ingresos
 cluster: sueldo-remuneraciones
 topicRole: owner
 canonicalTopic: descuento-afp-trabajador
-description: "Desglose de la línea AFP en tu sueldo: cotización obligatoria, comisión, reforma vigente y cómo revisar ese descuento sin abrir todo el cálculo del líquido."
+description: "Desglose de la línea AFP en tu sueldo: cotización obligatoria, comisión, reforma vigente y cómo revisar ese descuento sin recalcular el líquido."
 heroImage: /images/hero/cuanto-descuenta-la-afp-de-tu-sueldo.avif
 articleLead:
   answer: "En tu liquidación, la línea AFP no es solo '10%': mezcla cotización obligatoria y comisión, y además convive con cambios previsionales que hoy afectan al empleador pero no necesariamente tu descuento mensual."

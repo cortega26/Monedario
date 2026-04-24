@@ -230,3 +230,60 @@ describe("homepage content helpers", () => {
     expect(source).not.toContain("12.25");
   });
 });
+
+describe("Wave 1 structural guards", () => {
+  it("HeroHomepage has exactly 4 hero CTAs (≤4 requirement)", () => {
+    const source = readFileSync("src/components/HeroHomepage.astro", "utf8");
+    const ctaMatches = source.match(/data-analytics-cta="home-hero-cta"/g);
+    expect(ctaMatches).not.toBeNull();
+    expect(ctaMatches!.length).toBeLessThanOrEqual(4);
+  });
+
+  it("all hero CTAs carry required analytics attributes", () => {
+    const source = readFileSync("src/components/HeroHomepage.astro", "utf8");
+    expect(source).toContain('data-analytics-location="home_hero"');
+    expect(source).toContain('data-analytics-cta="home-hero-cta"');
+    expect(source).toContain("data-analytics-label");
+  });
+
+  it("trust signals are present in HeroHomepage", () => {
+    const source = readFileSync("src/components/HeroHomepage.astro", "utf8");
+    expect(source).toContain("Sin publicidad");
+    expect(source).toContain("Sin registro requerido");
+    expect(source).toContain("Fuentes oficiales");
+  });
+
+  it("buscar.astro uses grouped chip structure with intent groups", () => {
+    const source = readFileSync("src/pages/buscar.astro", "utf8");
+    expect(source).toContain("searchGroups");
+    expect(source).toContain('"Ingresos"');
+    expect(source).toContain('"Deudas"');
+    expect(source).toContain('"Impuestos"');
+    expect(source).toContain('"Previsión"');
+  });
+
+  it("buscar.astro chips preserve anonymous analytics attributes", () => {
+    const source = readFileSync("src/pages/buscar.astro", "utf8");
+    expect(source).toContain('data-analytics-cta="search-chip"');
+    expect(source).toContain('data-analytics-location="search_chips"');
+    expect(source).toContain("data-analytics-label");
+    expect(source).not.toContain("user_id");
+    expect(source).not.toContain("userId");
+  });
+
+  it("buscar.astro search input placeholder contains example queries", () => {
+    const source = readFileSync("src/pages/buscar.astro", "utf8");
+    expect(source).toContain("Ej:");
+    expect(source).toContain("AFP");
+    expect(source).toContain("DICOM");
+  });
+
+  it("GlossaryJsonLd does not emit a standalone BreadcrumbList schema block", () => {
+    const source = readFileSync(
+      "src/components/GlossaryJsonLd.astro",
+      "utf8"
+    );
+    expect(source).toContain("DefinedTerm");
+    expect(source).not.toContain("BreadcrumbList");
+  });
+});
