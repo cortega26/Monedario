@@ -19,7 +19,7 @@ export const SITE = {
   editPost: {
     enabled: false,
     text: "Editar página",
-    url: "https://github.com/cortega26/tuplatainforma/edit/main/",
+    url: "https://github.com/cortega26/Monedario/edit/main/",
   },
   dynamicOgImage: true,
   dir: "ltr", // "rtl" | "auto"

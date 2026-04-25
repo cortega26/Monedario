@@ -45,8 +45,8 @@ Requisitos: Node 22
 
 Inicio rapido:
 
-- Ver [START_HERE.md](/home/carlos/VS_Code_Projects/tuplatainforma/START_HERE.md) para el flujo de bootstrap y los entry points operativos.
-- Ver [docs/operations/runbooks/bootstrap-checklist.md](/home/carlos/VS_Code_Projects/tuplatainforma/docs/operations/runbooks/bootstrap-checklist.md) para validar un entorno local limpio antes de empezar a editar.
+- Ver [START_HERE.md](/home/carlos/VS_Code_Projects/Monedario/START_HERE.md) para el flujo de bootstrap y los entry points operativos.
+- Ver [docs/operations/runbooks/bootstrap-checklist.md](/home/carlos/VS_Code_Projects/Monedario/docs/operations/runbooks/bootstrap-checklist.md) para validar un entorno local limpio antes de empezar a editar.
 
 - Instalar dependencias:
   - pnpm install --frozen-lockfile

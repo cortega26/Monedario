@@ -16,7 +16,7 @@ const expectedLines = {
   expires: "Expires: 2027-04-03T00:00:00.000Z",
   canonical: "Canonical: https://monedario.cl/.well-known/security.txt",
   policy:
-    "Policy: https://github.com/cortega26/tuplatainforma/blob/main/.github/SECURITY.md",
+    "Policy: https://github.com/cortega26/Monedario/blob/main/.github/SECURITY.md",
   preferredLanguages: "Preferred-Languages: es, en",
 };
 

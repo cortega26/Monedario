@@ -38,7 +38,7 @@ Markdown files discovered (excluding build/dependency artifacts): **114**.
 | DOMAIN_CONTRACT_BOUNDARIES.md | `docs/architecture/DOMAIN_CONTRACT_BOUNDARIES.md` | Domain Contract Boundaries (Phase 1) | Layer/domain boundaries | Architecture |
 | README.md | `docs/architecture/README.md` | Architecture Docs | Documentation index | Governance |
 | documentation-restructure-workbook.md | `docs/architecture/documentation-restructure-workbook.md` | Documentation Restructure Workbook | General documentation | Informational |
-| project-structure.md | `docs/architecture/project-structure.md` | Project Structure: tuplatainforma | Repository structure snapshot | Architecture |
+| project-structure.md | `docs/architecture/project-structure.md` | Project Structure: Monedario | Repository structure snapshot | Architecture |
 | BACKLOG_EDITORIAL.md | `docs/development/BACKLOG_EDITORIAL.md` | Backlog Editorial Priorizado | Editorial backlog | Operational |
 | README.md | `docs/development/README.md` | Development Docs | Documentation index | Governance |
 | CONTRACTS.md | `docs/domain/CONTENT/CONTRACTS.md` | Article Aggregate Contract (DDD) | Domain contracts/invariants | Architecture |

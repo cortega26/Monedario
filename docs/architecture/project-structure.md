@@ -1,8 +1,8 @@
-# Project Structure: tuplatainforma
+# Project Structure: Monedario
 > *Nota: Se han omitido dependencias, builds y archivos de reporte para optimizar el contexto.*
 
 ```text
-tuplatainforma/
+Monedario/
 ├── context/
 │   ├── CONTRACTS.md
 │   ├── CURRENT_STATE.md
