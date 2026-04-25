@@ -1,15 +1,6 @@
 # CLAUDE.md — Claude Code entry point
 
-This file is read automatically by Claude Code at session start.
-
-## Authority order
-
-1. `docs/AI_ENGINEERING_CONSTITUTION.md`
-2. `AGENTS.md`
-3. `context/*.md`
-4. Source code
-
-When any instruction conflicts with a higher-authority document, stop and emit a conflict report. Never work around constitutional constraints.
+This file is read automatically by Claude Code at session start. For the full authority hierarchy, execution model, and operational protocol, read `AGENTS.md` next.
 
 ## Hard stops — never do these
 
