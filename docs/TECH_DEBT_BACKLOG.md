@@ -570,7 +570,7 @@ Fecha de corte: 2026-04-23
 - **ID:** TD-0006
 - **Título corto:** Alinear templates de GitHub al proyecto
 - **Descripción:** Varias plantillas y docs de contribución apuntan al upstream AstroPaper y contactos externos, no al proyecto actual.
-- **Evidencia (actualizada):** `.github/CONTRIBUTING.md`, `.github/PULL_REQUEST_TEMPLATE.md`, `.github/ISSUE_TEMPLATE/*` y `.github/CODE_OF_CONDUCT.md` alineados a `cortega26/tuplatainforma`; `rg -n "astro-paper|satnaing|AstroPaper" .github` devuelve 0.
+- **Evidencia (actualizada):** `.github/CONTRIBUTING.md`, `.github/PULL_REQUEST_TEMPLATE.md`, `.github/ISSUE_TEMPLATE/*` y `.github/CODE_OF_CONDUCT.md` alineados a `cortega26/Monedario`; `rg -n "astro-paper|satnaing|AstroPaper" .github` devuelve 0.
 - **Impacto:** Fricción para colaboradores, issues en repos equivocados, ruido de gobernanza.
 - **Riesgo:** medio
 - **Severidad (1-5):** 2

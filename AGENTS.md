@@ -92,7 +92,7 @@ If any condition fails, task status is `HALT` until resolved.
 <claude-mem-context>
 # Memory Context
 
-# [tuplatainforma] recent context, 2026-04-23 5:42pm GMT-4
+# [Monedario] recent context, 2026-04-23 5:42pm GMT-4
 
 Legend: 🎯session 🔴bugfix 🟣feature 🔄refactor ✅change 🔵discovery ⚖️decision 🚨security_alert 🔐security_note
 Format: ID TIME TYPE TITLE

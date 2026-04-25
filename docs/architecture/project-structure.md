@@ -83,7 +83,7 @@ Monedario/
 │   │   ├── inter-latin-900.woff2
 │   │   └── source-sans-3-latin-400-600.7a19a702.woff2
 │   ├── favicon.svg
-│   └── tuplatainforma-og.jpg
+│   └── images/og/[article].jpg
 ├── scripts/
 │   ├── check-context.mjs
 │   ├── check-dialect.mjs
