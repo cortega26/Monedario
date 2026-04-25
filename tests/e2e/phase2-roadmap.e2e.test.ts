@@ -383,3 +383,56 @@ describe("Wave 5 CCR governance", () => {
     }
   });
 });
+
+describe("Phase 3 CCR governance", () => {
+  const phase3CcrPath =
+    "docs/backlog/MONEDARIO_PHASE3_OPERACION-RENTA-CENTRO_CCR_2026-04-24.md";
+
+  it("Phase 3 CCR file exists and is unignored in .gitignore", () => {
+    expect(existsSync(join(root, phase3CcrPath))).toBe(true);
+
+    const gitignore = read(".gitignore");
+    expect(gitignore).toContain(
+      "!docs/backlog/MONEDARIO_PHASE3_OPERACION-RENTA-CENTRO_CCR_2026-04-24.md"
+    );
+  });
+
+  it("Phase 3 CCR contains all required governance sections", () => {
+    const ccr = read(phase3CcrPath);
+
+    expect(ccr).toContain("Scope Declaration");
+    expect(ccr).toContain("Authority Check");
+    expect(ccr).toContain("Competitive Adaptation Appendix");
+    expect(ccr).toContain("Rollback Strategy");
+    expect(ccr).toContain("Test Plan");
+    expect(ccr).toContain("Deterministic Closure Criteria");
+  });
+
+  it("Phase 3 CCR declares YMYL publication remains blocked", () => {
+    const ccr = read(phase3CcrPath);
+
+    expect(ccr).toContain("NORMA_YMYL.md");
+    expect(ccr).toContain("human sign-off");
+  });
+
+  it("Phase 3 CCR references all required invariants and contracts", () => {
+    const ccr = read(phase3CcrPath);
+
+    for (const ref of [
+      "URL.PUBLIC.NO_POST_ID",
+      "ROUTES.NO_SILENT_CHANGES",
+      "RSS.NO_REMOVALS",
+      "FRONTMATTER.VALID",
+      "CONTRACT.EDITORIAL.META_DESCRIPTION",
+      "INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES",
+    ]) {
+      expect(ccr).toContain(ref);
+    }
+  });
+
+  it("Phase 3 CCR declares the operacion-renta-centro slug", () => {
+    const ccr = read(phase3CcrPath);
+
+    expect(ccr).toContain("operacion-renta-centro");
+  });
+});

@@ -544,3 +544,76 @@ describe("Wave 5 structural guards", () => {
     }
   });
 });
+
+describe("Phase 3 structural guards", () => {
+  const artifactDir = "docs/editorial/artifacts/operacion-renta-centro";
+
+  it("Phase 3 CCR file exists and is unignored in .gitignore", () => {
+    expect(
+      existsSync(
+        "docs/backlog/MONEDARIO_PHASE3_OPERACION-RENTA-CENTRO_CCR_2026-04-24.md"
+      )
+    ).toBe(true);
+
+    const gitignore = readFileSync(".gitignore", "utf8");
+    expect(gitignore).toContain(
+      "!docs/backlog/MONEDARIO_PHASE3_OPERACION-RENTA-CENTRO_CCR_2026-04-24.md"
+    );
+  });
+
+  it("artifact folder contains 02-research.md with Status: DRAFT", () => {
+    const path = `${artifactDir}/02-research.md`;
+    expect(existsSync(path)).toBe(true);
+
+    const content = readFileSync(path, "utf8");
+    expect(content).toContain("Status: DRAFT");
+  });
+
+  it("artifact folder contains 03-outline.md with Status: DRAFT", () => {
+    const path = `${artifactDir}/03-outline.md`;
+    expect(existsSync(path)).toBe(true);
+
+    const content = readFileSync(path, "utf8");
+    expect(content).toContain("Status: DRAFT");
+  });
+
+  it("artifact folder contains 04-draft.md with Status: DRAFT", () => {
+    const path = `${artifactDir}/04-draft.md`;
+    expect(existsSync(path)).toBe(true);
+
+    const content = readFileSync(path, "utf8");
+    expect(content).toContain("Status: DRAFT");
+  });
+
+  it("artifact folder contains 05-math-audit.md with Status: DRAFT", () => {
+    const path = `${artifactDir}/05-math-audit.md`;
+    expect(existsSync(path)).toBe(true);
+
+    const content = readFileSync(path, "utf8");
+    expect(content).toContain("Status: DRAFT");
+  });
+
+  it("artifact folder contains 06-compliance.md with Status: BLOCKED", () => {
+    const path = `${artifactDir}/06-compliance.md`;
+    expect(existsSync(path)).toBe(true);
+
+    const content = readFileSync(path, "utf8");
+    expect(content).toContain("Status: BLOCKED");
+  });
+
+  it("07-publish-packet.md status remains BLOCKED — pending human sign-off", () => {
+    const path = `${artifactDir}/07-publish-packet.md`;
+    expect(existsSync(path)).toBe(true);
+
+    const content = readFileSync(path, "utf8");
+    expect(content).toContain("Status: BLOCKED — pending human sign-off");
+    expect(content).toContain("human sign-off");
+  });
+
+  it("no .astro or .ts source files exist in the operacion-renta-centro artifact folder", () => {
+    const files = readdirSync(artifactDir);
+    for (const file of files) {
+      expect(file).not.toMatch(/\.(astro|ts)$/);
+    }
+  });
+});
