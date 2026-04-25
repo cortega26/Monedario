@@ -11,6 +11,7 @@ import {
   sueldoClusterHubPrimaryCards,
   sueldoClusterHubSupportCards,
 } from "@/config/sueldoClusterLinks";
+import { sueldoRemuneracionesCalcCards } from "@/config/hubPillarConfig";
 
 const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
   /\/$/,
@@ -193,37 +194,67 @@ const adjacentRoutes = [
       items={primaryCards}
     />
 
-    <StartHere
-      steps={[
+    <div data-hub-section="recommended-route">
+      <StartHere
+        steps={[
+          {
+            step: 1,
+            title: "Cómo calcular el sueldo líquido",
+            description:
+              "Fórmula, descuentos legales y qué pasa con el imponible.",
+            href: "/posts/como-calcular-sueldo-liquido/",
+          },
+          {
+            step: 2,
+            title: "Descuentos de sueldo en Chile",
+            description:
+              "AFP, salud, cesantía, impuesto: qué descuenta cada uno y por qué.",
+            href: "/posts/descuentos-de-sueldo/",
+          },
+          {
+            step: 3,
+            title: "Cómo leer tu liquidación de sueldo",
+            description: "Entiende cada línea y detecta errores comunes.",
+            href: "/posts/liquidacion-de-sueldo/",
+          },
+          {
+            step: 4,
+            title: "Calculadora de sueldo líquido",
+            description:
+              "Calcula tu líquido desde el bruto o el bruto desde el líquido deseado.",
+            href: "/calculadoras/sueldo-liquido/",
+          },
+        ]}
+      />
+    </div>
+
+    <section
+      data-hub-section="related-calculators"
+      class="border-b border-border py-8"
+    >
+      <h2 class="mb-4 text-2xl font-bold">Calculadoras de esta sección</h2>
+      <div class="grid gap-4 md:grid-cols-2">
         {
-          step: 1,
-          title: "Cómo calcular el sueldo líquido",
-          description:
-            "Fórmula, descuentos legales y qué pasa con el imponible.",
-          href: "/posts/como-calcular-sueldo-liquido/",
-        },
-        {
-          step: 2,
-          title: "Descuentos de sueldo en Chile",
-          description:
-            "AFP, salud, cesantía, impuesto: qué descuenta cada uno y por qué.",
-          href: "/posts/descuentos-de-sueldo/",
-        },
-        {
-          step: 3,
-          title: "Cómo leer tu liquidación de sueldo",
-          description: "Entiende cada línea y detecta errores comunes.",
-          href: "/posts/liquidacion-de-sueldo/",
-        },
-        {
-          step: 4,
-          title: "Calculadora de sueldo líquido",
-          description:
-            "Calcula tu líquido desde el bruto o el bruto desde el líquido deseado.",
-          href: "/calculadoras/sueldo-liquido/",
-        },
-      ]}
-    />
+          sueldoRemuneracionesCalcCards.map(card => (
+            <article class="rounded-2xl border border-border bg-surface-muted p-5">
+              <p class="mb-2 text-xs font-semibold tracking-[0.14em] text-accent uppercase">
+                {card.kind}
+              </p>
+              <h3 class="text-lg font-semibold">{card.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-secondary">
+                {card.description}
+              </p>
+              <a
+                href={card.href}
+                class="mt-4 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+              >
+                {card.cta}
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </section>
 
     <section class="border-b border-border py-8">
       <h2 class="mb-4 text-2xl font-bold">Qué encontrarás en esta sección</h2>

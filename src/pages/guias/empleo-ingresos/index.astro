@@ -6,6 +6,7 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import ResumeWidget from "@/components/ResumeWidget.astro";
 import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
+import { empleoIngresosCalcCards } from "@/config/hubPillarConfig";
 
 const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
   /\/$/,
@@ -153,37 +154,67 @@ const articulosSeccion = [
       </ul>
     </section>
 
-    <StartHere
-      steps={[
+    <div data-hub-section="recommended-route">
+      <StartHere
+        steps={[
+          {
+            step: 1,
+            title: "Seguro de cesantía en Chile",
+            description: "Qué cubre, cuánto paga y cuándo puedes usarlo.",
+            href: "/posts/seguro-de-cesantia/",
+          },
+          {
+            step: 2,
+            title: "Finiquito e indemnizaciones en Chile",
+            description:
+              "Derechos según causal de despido y cómo calcular el monto.",
+            href: "/posts/finiquito-e-indemnizaciones-en-chile/",
+          },
+          {
+            step: 3,
+            title: "Licencia médica: ¿desde qué día pagan?",
+            description:
+              "Plazos, topes y diferencias entre CCAF, Fonasa e Isapre.",
+            href: "/posts/licencia-medica-desde-que-dia-pagan/",
+          },
+          {
+            step: 4,
+            title: "Calculadora de finiquito",
+            description:
+              "Estima sueldo pendiente, vacaciones, aviso previo e indemnización.",
+            href: "/calculadoras/finiquito-indemnizacion/",
+          },
+        ]}
+      />
+    </div>
+
+    <section
+      data-hub-section="related-calculators"
+      class="border-b border-border py-8"
+    >
+      <h2 class="mb-4 text-2xl font-bold">Calculadoras de esta sección</h2>
+      <div class="grid gap-4 md:grid-cols-2">
         {
-          step: 1,
-          title: "Seguro de cesantía en Chile",
-          description: "Qué cubre, cuánto paga y cuándo puedes usarlo.",
-          href: "/posts/seguro-de-cesantia/",
-        },
-        {
-          step: 2,
-          title: "Finiquito e indemnizaciones en Chile",
-          description:
-            "Derechos según causal de despido y cómo calcular el monto.",
-          href: "/posts/finiquito-e-indemnizaciones-en-chile/",
-        },
-        {
-          step: 3,
-          title: "Licencia médica: ¿desde qué día pagan?",
-          description:
-            "Plazos, topes y diferencias entre CCAF, Fonasa e Isapre.",
-          href: "/posts/licencia-medica-desde-que-dia-pagan/",
-        },
-        {
-          step: 4,
-          title: "Calculadora de finiquito",
-          description:
-            "Estima sueldo pendiente, vacaciones, aviso previo e indemnización.",
-          href: "/calculadoras/finiquito-indemnizacion/",
-        },
-      ]}
-    />
+          empleoIngresosCalcCards.map(card => (
+            <article class="rounded-2xl border border-border bg-surface-muted p-5">
+              <p class="mb-2 text-xs font-semibold tracking-[0.14em] text-accent uppercase">
+                {card.kind}
+              </p>
+              <h3 class="text-lg font-semibold">{card.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-secondary">
+                {card.description}
+              </p>
+              <a
+                href={card.href}
+                class="mt-4 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+              >
+                {card.cta}
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </section>
 
     <section class="border-b border-border py-8">
       <h2 class="mb-4 text-2xl font-bold">No mezcles estas situaciones</h2>

@@ -456,3 +456,42 @@ describe("Wave 3 structural guards", () => {
     expect(source).not.toContain("@/application/");
   });
 });
+
+describe("Wave 4 structural guards", () => {
+  const hubSlugs = [
+    "sueldo-remuneraciones",
+    "deuda-credito",
+    "empleo-ingresos",
+    "impuestos-personas",
+    "pensiones-afp",
+  ];
+
+  it("Wave 4 CCR file exists and is unignored in .gitignore", () => {
+    expect(existsSync("docs/backlog/MONEDARIO_WAVE4_CCR_2026-04-24.md")).toBe(true);
+
+    const gitignore = readFileSync(".gitignore", "utf8");
+    expect(gitignore).toContain("!docs/backlog/MONEDARIO_WAVE4_CCR_2026-04-24.md");
+  });
+
+  it("hubPillarConfig.ts exists and has no domain or application imports", () => {
+    expect(existsSync("src/config/hubPillarConfig.ts")).toBe(true);
+
+    const source = readFileSync("src/config/hubPillarConfig.ts", "utf8");
+    expect(source).not.toContain("@/domain/");
+    expect(source).not.toContain("@/application/");
+  });
+
+  it("all 5 hub pages carry data-hub-section=recommended-route marker", () => {
+    for (const slug of hubSlugs) {
+      const source = readFileSync(`src/pages/guias/${slug}/index.astro`, "utf8");
+      expect(source).toContain('data-hub-section="recommended-route"');
+    }
+  });
+
+  it("all 5 hub pages carry data-hub-section=related-calculators marker", () => {
+    for (const slug of hubSlugs) {
+      const source = readFileSync(`src/pages/guias/${slug}/index.astro`, "utf8");
+      expect(source).toContain('data-hub-section="related-calculators"');
+    }
+  });
+});

@@ -11,6 +11,7 @@ import {
   pensionHubPrimaryCards,
   pensionHubRelatedCards,
 } from "@/config/pensionClusterLinks";
+import { pensionesAfpCalcCards } from "@/config/hubPillarConfig";
 
 const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
   /\/$/,
@@ -118,38 +119,68 @@ const relatedCards = pensionHubRelatedCards.filter(
       </ul>
     </section>
 
-    <StartHere
-      steps={[
+    <div data-hub-section="recommended-route">
+      <StartHere
+        steps={[
+          {
+            step: 1,
+            title: "Qué es la AFP y cómo funciona",
+            description:
+              "Entiende la diferencia entre fondo personal y comisión.",
+            href: "/glosario/afp/",
+          },
+          {
+            step: 2,
+            title: "Fondos AFP A, B, C, D y E: cuál elegir",
+            description:
+              "Diferencias de riesgo y rentabilidad según tu edad y perfil.",
+            href: "/posts/fondos-afp-a-b-c-d-e/",
+          },
+          {
+            step: 3,
+            title: "Cómo cambiarse de AFP",
+            description:
+              "Proceso, plazos y cuándo tiene sentido cambiar de administradora.",
+            href: "/posts/como-cambiarse-de-afp/",
+          },
+          {
+            step: 4,
+            title: "Comparador de comisiones AFP",
+            description:
+              "Cuánto te descuenta cada AFP y cuánto ahorrarías con la más barata.",
+            href: "/calculadoras/comisiones-afp/",
+          },
+        ]}
+      />
+    </div>
+
+    <section
+      data-hub-section="related-calculators"
+      class="border-b border-border py-8"
+    >
+      <h2 class="mb-4 text-2xl font-bold">Calculadoras de esta sección</h2>
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {
-          step: 1,
-          title: "Qué es la AFP y cómo funciona",
-          description:
-            "Entiende la diferencia entre fondo personal y comisión.",
-          href: "/glosario/afp/",
-        },
-        {
-          step: 2,
-          title: "Fondos AFP A, B, C, D y E: cuál elegir",
-          description:
-            "Diferencias de riesgo y rentabilidad según tu edad y perfil.",
-          href: "/posts/fondos-afp-a-b-c-d-e/",
-        },
-        {
-          step: 3,
-          title: "Cómo cambiarse de AFP",
-          description:
-            "Proceso, plazos y cuándo tiene sentido cambiar de administradora.",
-          href: "/posts/como-cambiarse-de-afp/",
-        },
-        {
-          step: 4,
-          title: "Comparador de comisiones AFP",
-          description:
-            "Cuánto te descuenta cada AFP y cuánto ahorrarías con la más barata.",
-          href: "/calculadoras/comisiones-afp/",
-        },
-      ]}
-    />
+          pensionesAfpCalcCards.map(card => (
+            <article class="rounded-2xl border border-border bg-surface-muted p-5">
+              <p class="mb-2 text-xs font-semibold tracking-[0.14em] text-accent uppercase">
+                {card.kind}
+              </p>
+              <h3 class="text-lg font-semibold">{card.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-secondary">
+                {card.description}
+              </p>
+              <a
+                href={card.href}
+                class="mt-4 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+              >
+                {card.cta}
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </section>
 
     <ContextLinkSection
       eyebrow="Fuera del núcleo AFP"

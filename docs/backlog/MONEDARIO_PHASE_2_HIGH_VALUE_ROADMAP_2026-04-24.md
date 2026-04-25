@@ -1,6 +1,6 @@
 # Monedario Phase 2 High-Value Roadmap 2026-04-24
 
-Status: Waves 1–3 complete (2026-04-24) — Wave 4 next
+Status: Waves 1–4 complete (2026-04-24) — Wave 5 next
 Owner target: Monedario product, SEO, calculator UX, hubs, and editorial pipeline
 Source benchmark: `/home/carlos/Documentos/monedario-dr-24042026-deepseek.md`
 
@@ -443,7 +443,7 @@ Recommended execution tickets:
 | PH2-006 | 2 | Calculator journey analytics | Analytics | Medium | Events emit no PII or input values | ✅ done 2026-04-24 |
 | PH2-007 | 3 | Glossary term data layer | Content infra | Medium | Allowlist resolves to existing glossary pages | ✅ done 2026-04-24 |
 | PH2-008 | 3 | Accessible glossary inline links/tooltips | UX/Content | Medium | No overlinking and keyboard behavior works | ✅ done 2026-04-24 |
-| PH2-009 | 4 | Reusable hub/pillar pattern | IA/SEO | Medium | Five target hubs use the pattern safely |
+| PH2-009 | 4 | Reusable hub/pillar pattern | IA/SEO | Medium | Five target hubs use the pattern safely | ✅ done 2026-04-24 |
 | PH2-010 | 5 | DICOM editorial artifact pack | Editorial YMYL | High | Pack complete, unpublished |
 | PH2-011 | 5 | Cotizaciones impagas artifact pack | Editorial YMYL | High | Pack complete, unpublished |
 | PH2-012 | 5 | Licencia médica wizard artifact pack | Editorial YMYL | High | Pack complete, unpublished |
