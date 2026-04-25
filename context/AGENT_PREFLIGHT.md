@@ -16,7 +16,8 @@ Last updated: 2026-04-23
 | Move `fetch` calls into `src/domain/**` | Violates side-effect isolation, Constitution §2.2 | `docs/AI_ENGINEERING_CONSTITUTION.md` |
 | Ship YMYL content without pipeline artifacts | Violates `AGENTS.md` §2.8 and editorial separation-of-duties | `docs/editorial/NORMA_YMYL.md` + `context/EDITORIAL_AI_PIPELINE.md` |
 | Change a public slug without route/RSS snapshot + ADR | Silent public URL change | `context/INVARIANTS.md` (`ROUTES.NO_SILENT_CHANGES`, `RSS.NO_REMOVALS`) |
-| Let the same agent role draft and audit/comply a YMYL piece | Violates `INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES` | `context/INVARIANTS.md` + `AGENTS.md` §2.9 |
+| Let the same agent instance draft and audit/comply a YMYL piece in one session | Violates `INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES` | `context/INVARIANTS.md` + `AGENTS.md` §2.9 |
+| Mark a gate `[X]` in `07-publish-packet.md` | Only human editors may sign off publication gates | `AGENTS.md` §2.9 + `context/EDITORIAL_AI_PIPELINE.md` §9.5 |
 | Create a new visible/indexable surface without ownership resolution | Violates `INVARIANT.STRATEGY.OWNERSHIP_BEFORE_EXPANSION` | `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md` |
 
 ---
@@ -45,6 +46,7 @@ Last updated: 2026-04-23
 | CI / guardrails / ops automation | `check:policy-registry` · `check:docs` · `check:context` |
 | Any merge-ready change | `lint` · `format:check` · `test` · `check` |
 | CI / validation failure | Reproduce failing command locally; see `docs/codebase/TESTING.md` |
+| Editorial pipeline blocked | Read `context/EDITORIAL_AI_PIPELINE.md` §9; emit Triage Report; resolve Bucket C only |
 
 Full gate command list: `docs/operations/GATE_MANIFEST.json`
 Full intent index: `docs/operations/AGENT_TASK_INDEX.md`

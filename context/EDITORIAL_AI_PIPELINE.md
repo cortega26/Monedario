@@ -1,6 +1,6 @@
 # Editorial AI Pipeline (Quality-First, Canonical)
 
-Last updated: 2026-04-11
+Last updated: 2026-04-25
 Status: Active (mixed enforcement: scripts + manual review)
 
 Authority order:
@@ -27,20 +27,22 @@ Authority order:
 
 ## 2. Canonical Roles (Separation of Duties)
 
-| Phase | Canonical role | Assigned model family |
-|---|---|---|
-| Research | `ResearchAgent` | Gemini |
-| Outline | `OutlineAgent` | GPT-5.2 |
-| Draft | `DraftAgent` | Claude |
-| Math audit | `MathAuditAgent` | GPT-5.2 |
-| Compliance (Chile) | `ComplianceAgent` | Gemini |
-| Final proofreading | `CopyEditAgent` | Claude |
-| SEO structural pass | `SEOStructureAgent` | GPT-5.2 |
-| Final publication decision | `HumanEditor` | Human |
+| Phase | Canonical role | Assigned tool | Nature |
+|---|---|---|---|
+| Research | `ResearchAgent` | ChatGPT | Fact-gathering; no prose |
+| Outline | `OutlineAgent` | Claude | Structure + voice planning |
+| Draft | `DraftAgent` | Claude | Primary writing |
+| Math audit | `MathAuditAgent` | ChatGPT | Adversarial — find errors |
+| Compliance (Chile) | `ComplianceAgent` | Claude Code (fresh session) | Adversarial — find defects |
+| Final proofreading | `CopyEditAgent` | Claude | Prose refinement |
+| SEO structural pass | `SEOStructureAgent` | Claude | Metadata + structure pass |
+| Final publication decision | `HumanEditor` | Human | Sign-off gate |
 
-Hard rule:
+Hard rules:
 
-- `DraftAgent` must be different from both `MathAuditAgent` and `ComplianceAgent` for the same editorial run.
+- `DraftAgent` must not be the same agent instance as `MathAuditAgent` or `ComplianceAgent` for the same editorial run.
+- When `DraftAgent` and an audit role use the same model family (e.g., Claude), the auditor must operate in a **fresh session with zero exposure to the draft context**, previous session state, or conversation history. A Claude Code session started clean — with no prior load of the draft conversation — satisfies this requirement for `ComplianceAgent`.
+- Adversarial audit roles (`MathAuditAgent`, `ComplianceAgent`) must be prompted to **find flaws**, not confirm correctness. Each audit must conclude with an explicit verdict: `FAIL` / `CONDITIONAL` / `PASS`. A CONDITIONAL verdict blocks publication until all open items are resolved.
 
 ## 3. Artifact Set by Phase
 
@@ -86,7 +88,7 @@ Publication is allowed only when all checks are satisfied:
   - each critical number has a source citation; or
   - in draft-only state, unresolved values are marked `TODO:SOURCE`;
   - final publish packet cannot contain unresolved `TODO:SOURCE`.
-- Separation of duties proof is present (`draft_agent != math_audit_agent != compliance_agent` by role identity).
+- Separation of duties proof is present: `DraftAgent`, `MathAuditAgent`, and `ComplianceAgent` are different agent instances; if same-family auditors were used (e.g. Claude Code as ComplianceAgent after a Claude draft), the fresh-session requirement must be documented in the publish packet.
 - If `requires_calculation=true`, `05-math-audit.md` is mandatory and must end with pass/fail verdict.
 - If `regulatory_sensitivity=alta`, `06-compliance.md` plus explicit `HumanEditor` sign-off is mandatory.
 - `CONTRACT.YMYL_RESPONSE_STRUCTURE` is satisfied.
@@ -127,3 +129,194 @@ Policy:
 - If any conflict appears:
   - Apply authority order.
   - Halt and emit conflict report per `AGENTS.md` Rule 1.2 and Rule 4.2.
+
+## 8. Role Playbooks — Operational Instructions per Tool
+
+These playbooks are the guardrails for each tool. When you invoke a tool for a pipeline stage, paste the relevant playbook prompt verbatim as the first message of the session (after loading the listed input files).
+
+---
+
+### Stage 02 — `ResearchAgent` (ChatGPT)
+
+**Input files to provide:** `docs/editorial/artifacts/<slug>/01-artifact.md`
+
+**Prompt:**
+
+> You are ResearchAgent in a YMYL editorial pipeline. Your only task is to gather and structure factual claims from official sources. Do not write article prose.
+>
+> Input: [paste contents of 01-artifact.md]
+>
+> Rules:
+> - Cite every claim to an official URL (SII, TGR, CMF, Superintendencia de Pensiones, etc.). No unnamed sources.
+> - Mark any figure you cannot verify from an official source as `TODO:SOURCE` with a note on where it should be verified.
+> - Separate official sources from benchmark observations. Benchmarks are strategic input only — they cannot source factual claims.
+> - Do not invent figures. If a year-specific threshold or deadline is not retrievable, mark it `TODO:SOURCE`.
+>
+> Output: produce `02-research.md` with these sections:
+> - Status line: `Status: DRAFT — pending ComplianceAgent review`
+> - Role line: `Role: ResearchAgent (ChatGPT)`
+> - **Official Sources** — list with retrieval URLs and dates
+> - **Claims Catalogue** — table: Claim | Source URL | Status (VERIFIED / TODO:SOURCE) | Notes
+> - **Benchmark Observations** — clearly marked as non-authoritative strategic input
+> - **Open Research Questions** — each TODO:SOURCE item with the suggested official path for resolution
+
+---
+
+### Stage 05 — `MathAuditAgent` (ChatGPT — adversarial)
+
+**Input files to provide:** `04-draft.md` and `02-research.md`
+
+**Prompt:**
+
+> You are MathAuditAgent in a YMYL editorial pipeline. This is an **adversarial audit**: your goal is to find arithmetic errors, unsupported numbers, and claim inconsistencies — not to confirm correctness.
+>
+> Inputs: [paste contents of 04-draft.md] [paste contents of 02-research.md]
+>
+> Rules:
+> - Challenge **every** numeric claim in the draft. Verify each one against 02-research.md citations.
+> - If a figure is marked TODO:SOURCE in the draft, record it as a TODO:SOURCE finding in your audit.
+> - Explicitly challenge the central quantitative claims: tax rates, bracket thresholds, filing deadlines, penalty amounts. Do not treat any figure as obviously correct.
+> - Do not defer to the draft author's framing. Your job is to find what is wrong.
+> - An arithmetic check is not complete until you have independently recalculated or traced the figure to its source.
+>
+> Output: produce `05-math-audit.md` with:
+> - Status line: `Status: DRAFT — pending ComplianceAgent review`
+> - Role line: `Role: MathAuditAgent (ChatGPT — adversarial)`
+> - Audit table: Claim | Source in 02-research | Status (VERIFIED / TODO:SOURCE / ERROR) | Notes
+> - Summary: total claims audited, VERIFIED count, TODO:SOURCE count, ERROR count
+> - Verdict (mandatory, one of):
+>   - `FAIL` — one or more ERROR findings; publication blocked
+>   - `CONDITIONAL` — zero errors but one or more TODO:SOURCE items remain; publication blocked until resolved
+>   - `PASS` — all claims verified, zero errors, zero TODO:SOURCE
+
+---
+
+### Stage 06 — `ComplianceAgent` (Claude Code — fresh session, adversarial)
+
+**How to start:** Open a **new** Claude Code terminal session. Do not reuse the session that produced stages 02–05. Do not load any prior conversation history. The fresh-session requirement enforces Separation of Duties.
+
+**Files to read at session start:**
+- `docs/editorial/NORMA_YMYL.md`
+- `docs/editorial/artifacts/<slug>/01-artifact.md`
+- `docs/editorial/artifacts/<slug>/04-draft.md`
+- `docs/editorial/artifacts/<slug>/05-math-audit.md`
+
+**Prompt (paste as first message):**
+
+> You are ComplianceAgent in a YMYL editorial pipeline. This is an **adversarial compliance review**: your goal is to identify defects — not to confirm compliance.
+>
+> Read these files in order before writing anything:
+> 1. `docs/editorial/NORMA_YMYL.md` — this is the quality standard you will apply
+> 2. `docs/editorial/artifacts/<slug>/01-artifact.md` — brief, declared sources, risk classification
+> 3. `docs/editorial/artifacts/<slug>/04-draft.md` — the draft under review
+> 4. `docs/editorial/artifacts/<slug>/05-math-audit.md` — the math audit result
+>
+> Rules:
+> - Apply the NORMA_YMYL.md scorecard. Score each dimension honestly. Do not inflate scores.
+> - Challenge every legal, regulatory, and eligibility claim. If the draft says "según el SII" without a specific URL or article number, that is a defect.
+> - Verify that every TODO:SOURCE marker in the draft is also flagged in the math audit. If any were missed, add a defect.
+> - Identify Separation of Duties: declare who produced each pipeline stage and whether any role was the same agent instance.
+> - Write a DEFECT entry for every problem you find. Do not minimize or soften defects. A defect is a defect regardless of whether it is resolvable.
+> - Your verdict must be exactly one of: `FAIL` / `CONDITIONAL` / `PASS`.
+>   - `FAIL` — any blocking DEFECT present (SoD violation, unsourced critical claim, compliance error)
+>   - `CONDITIONAL` — no blocking compliance defects but TODO:SOURCE items remain; publication blocked until resolved
+>   - `PASS` — zero defects, zero TODO:SOURCE, NORMA_YMYL score ≥ 9.5/10
+>
+> Output: produce `06-compliance.md` with:
+> - Status line: `Status: BLOCKED — DEFECTS FOUND` (or `CONDITIONAL` or `PASS`)
+> - Role line: `Role: ComplianceAgent (Claude Code — fresh session, adversarial)`
+> - NORMA_YMYL scorecard table with dimension scores and weighted total
+> - DEFECTS section: each defect as `DEFECT #N — [severity] — [description] — Resolution: [path]`
+> - Separation of Duties declaration: table mapping each stage to the agent/session that produced it
+> - Overall verdict with justification
+
+---
+
+### Note on existing `operacion-renta-centro` artifacts (Phase 3, 2026-04-24)
+
+Stages 02–06 for `operacion-renta-centro` were produced before this policy update under a SoD-defective single-Claude-session assignment. Those files are preserved as historical record. Under the current policy, a re-audit by ChatGPT (`MathAuditAgent`) and a fresh-session Claude Code (`ComplianceAgent`) is required before publication. The re-audit should replace `05-math-audit.md` and `06-compliance.md` in the artifact folder and is a prerequisite for opening the publish gates in `07-publish-packet.md`.
+
+---
+
+## 9. Blocked Pipeline Protocol
+
+This section defines what any agent must do when it encounters a blocked editorial pipeline. Read this section before taking any action on a blocked artifact.
+
+### 9.1 What BLOCKED means
+
+| Status string | Meaning |
+|---|---|
+| `Status: BLOCKED — DEFECTS FOUND` | `06-compliance.md` contains at least one open DEFECT. Publication is prohibited. |
+| `Status: BLOCKED — pending human sign-off` | `07-publish-packet.md` has one or more unchecked `[ ]` gates. Publication is prohibited. |
+| `Status: CONDITIONAL` | No blocking compliance defects but unresolved `TODO:SOURCE` items remain. Publication is prohibited until all TODO:SOURCE items are resolved. |
+| `Status: DRAFT` | Pipeline stage artifact exists but has not been through compliance review. Not yet publishable. |
+
+A blocked pipeline is not an agent error. It is the expected state for any artifact that has not completed the full pipeline with human sign-off.
+
+### 9.2 Defect classification and ownership
+
+When you encounter a blocked artifact, classify each defect or open item into exactly one bucket:
+
+| Bucket | Owner | Examples |
+|---|---|---|
+| **A — Human-only** | Human editor | Resolving `TODO:SOURCE` items (requires live SII/TGR verification); signing off `07-publish-packet.md` gates; authorising publication. No agent may perform these actions. |
+| **B — Fresh-session re-audit** | ChatGPT (MathAuditAgent) + Claude Code fresh session (ComplianceAgent) | SoD defects where draft agent = audit agent; arithmetic errors requiring independent recalculation; compliance defects in `06-compliance.md` that require a clean re-audit. |
+| **C — This session** | Current Claude Code session | Missing artifact files (create scaffold); malformed frontmatter; build errors; structural lint failures; missing cut-off date header in draft. |
+
+**Hard rule:** An agent in this session must never resolve Bucket A items or mark gates in `07-publish-packet.md`. Attempting to do so violates `INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES` and `AGENTS.md` Rule 2.8.
+
+### 9.3 Blocked pipeline action tree
+
+When instructed to work on a blocked pipeline, execute these steps in order:
+
+1. **Read** the artifact folder: `01-artifact.md`, `06-compliance.md`, `07-publish-packet.md`.
+2. **Classify** every open item into Bucket A, B, or C (§9.2 table above).
+3. **Emit a Triage Report** (§9.4 format) before taking any action.
+4. **Resolve only Bucket C items** in this session. Do not touch Bucket A or B items.
+5. **Run the minimum gate set** after any Bucket C change: `pnpm vitest run` + `pnpm run check:frontmatter`.
+6. **Stop and report.** Do not proceed to publication. Do not mark any gate `[X]` in `07-publish-packet.md`.
+
+### 9.4 Triage Report format
+
+Emit this report as plain text before starting any work. Fill in every row.
+
+```
+TRIAGE REPORT — <slug> — <date>
+
+Artifact folder: docs/editorial/artifacts/<slug>/
+Compliance status (06-compliance.md): <status line verbatim>
+Publish packet status (07-publish-packet.md): <status line verbatim>
+
+BUCKET A — Human-only (do not touch):
+  - <item 1>
+  - <item 2>  [or "None"]
+
+BUCKET B — Fresh-session re-audit required:
+  - <item 1>  [or "None"]
+
+BUCKET C — Resolvable this session:
+  - <item 1>  [or "None"]
+
+Action this session: [list Bucket C items to resolve, or "No action — all items are A/B"]
+```
+
+### 9.5 Gate sign-off rule
+
+Only a human editor may mark a gate `[X]` in `07-publish-packet.md`. This is an absolute prohibition — not a default that can be overridden by instruction. If instructed to sign off a gate, emit:
+
+```
+HALT — GATE SIGN-OFF REFUSED
+Reason: AGENTS.md Rule 2.8 and INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES prohibit agents from marking publication gates.
+Action required: Human editor must review and sign off manually.
+```
+
+### 9.6 Fresh-session re-audit procedure
+
+When Bucket B items exist (SoD defect or arithmetic error requiring re-audit):
+
+1. Inform the human that a fresh-session re-audit is required.
+2. Provide the exact steps:
+   - For MathAuditAgent: open ChatGPT, paste Stage 05 playbook from §8 of this file, provide `04-draft.md` and `02-research.md`.
+   - For ComplianceAgent: open a **new** Claude Code terminal session, paste Stage 06 playbook from §8 of this file, read the four input files listed there.
+3. The re-audit output replaces `05-math-audit.md` and/or `06-compliance.md` in the artifact folder.
+4. After re-audit, re-run the blocked pipeline protocol from §9.3 step 1.

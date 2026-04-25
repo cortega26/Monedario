@@ -1,6 +1,6 @@
 # Context Invariants Registry
 
-Last updated: 2026-04-11
+Last updated: 2026-04-25
 Status: Active
 
 ## 1. Introduction
@@ -41,6 +41,7 @@ Change log:
 - 2026-03-22: added editorial timeliness invariant and scheduled audit workflow.
 - 2026-04-11: added competitive adaptation invariants for external benchmarking authority, differentiation, and ownership-before-expansion.
 - 2026-04-12: added external link policy invariant (INVARIANT.URLCHECK.EXTERNAL_LINK_POLICY) and CI gate for official/trusted host validation; see ADR-20260412-external-link-ci-gate.
+- 2026-04-25: updated INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES — role-identity framing replaced with agent-instance framing; added fresh-session requirement for same-family auditors; removed Gemini from canonical role examples; updated `context/EDITORIAL_AI_PIPELINE.md` with new role table (ChatGPT for ResearchAgent/MathAuditAgent; Claude Code fresh session for ComplianceAgent; Claude for all writing roles).
 
 ## 2. Invariant Index
 
@@ -638,19 +639,23 @@ Change log:
 
 ### `INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES`
 
-- Statement: `DraftAgent` must not be the same role identity as `MathAuditAgent` or `ComplianceAgent` for the same run.
+- Statement: `DraftAgent` must not be the same agent instance as `MathAuditAgent` or `ComplianceAgent` for the same editorial run. When the DraftAgent and an audit role share the same model family, the auditor must operate in a fresh session with zero exposure to the draft context or conversation history.
 - Canonical source: `context/EDITORIAL_AI_PIPELINE.md`.
 - Rationale:
-  - Reduces self-verification bias in sensitive content.
+  - Reduces self-verification bias in sensitive YMYL content.
   - Enforces independent control points before publication.
-  - Makes review accountability explicit.
-- Enforcement: Manual review-enforced (role declaration in artifact bundle).
+  - Makes review accountability explicit and auditable.
+  - A fresh-session same-family auditor (e.g. Claude Code with no prior draft context) is genuinely independent because it cannot unconsciously confirm what it generated.
+- Enforcement: Manual review-enforced (role and session declaration in artifact bundle).
 - Detection:
-  - `07-publish-packet.md` must include role identity map and explicit inequality check.
-  - Any role collision blocks publication.
+  - `07-publish-packet.md` must include a role identity map declaring the tool and session for each stage, and an explicit statement that DraftAgent ≠ MathAuditAgent ≠ ComplianceAgent by agent instance.
+  - For same-family auditors, the fresh-session requirement must be documented (e.g. "new Claude Code terminal session, no prior draft context loaded").
+  - Any undeclared role collision blocks publication.
 - Examples:
-  - Compliant: `draft_agent=claude`, `math_audit_agent=gpt-5.2`, `compliance_agent=gemini`.
-  - Violation: `draft_agent` and `math_audit_agent` set to same role identity.
+  - Compliant: `draft_agent=claude`, `math_audit_agent=chatgpt`, `compliance_agent=claude-code-fresh-session`.
+  - Compliant: `draft_agent=claude`, `compliance_agent=claude-code-fresh-session` (same family, but fresh session documented).
+  - Violation: `draft_agent=claude` and `compliance_agent=claude` in the same continuous session.
+  - Violation: `draft_agent` and `math_audit_agent` produced in the same ChatGPT conversation thread.
 
 ### `INVARIANT.EDITORIAL.MATH_AUDIT_REQUIRED_WHEN_CALC`
 

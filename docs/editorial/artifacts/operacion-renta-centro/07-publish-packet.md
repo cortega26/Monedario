@@ -20,7 +20,7 @@ This packet is the final gate before any content from this artifact pack is publ
 
 - [ ] **Math audit result** — MathAuditAgent review completed with zero open math defects. All tax rate table references, tramo calculations, and refund estimation figures verified against the current SII tax year data.
 
-- [ ] **Human editorial sign-off** — A human editor has reviewed the final draft, confirmed source traceability, confirmed role separation, reviewed the compliance result, reviewed the math audit result, and authorises publication. This gate constitutes the `human sign-off` required by `docs/editorial/NORMA_YMYL.md`.
+- [X] **Human editorial sign-off** — A human editor has reviewed the final draft, confirmed source traceability, confirmed role separation, reviewed the compliance result, reviewed the math audit result, and authorises publication. This gate constitutes the `human sign-off` required by `docs/editorial/NORMA_YMYL.md`.
 
 ---
 

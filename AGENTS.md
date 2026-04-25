@@ -42,9 +42,11 @@ Rules 2.1–2.13 + execution checklist. Key rules at a glance:
 - Halt conditions are enumerated and non-negotiable (Rule 2.6).
 - `post.id` must never derive public URLs (Rule 2.7).
 - YMYL content requires full editorial pipeline (Rule 2.8).
+- **Rule 2.9 — Separation of Duties:** `DraftAgent` must not be the same agent instance as `MathAuditAgent` or `ComplianceAgent` for the same editorial run. When `DraftAgent` and an audit role share the same model family (e.g., Claude), the auditor must operate in a fresh session with zero exposure to draft context or conversation history. A Claude Code session started clean satisfies this for `ComplianceAgent`. No agent may mark gates `[X]` in `07-publish-packet.md`.
 - New articles require a manually placed hero image (Rule 2.10).
 - Failed tasks require capability gap diagnosis, not retries (Rule 2.12).
 - Multi-session tasks require a plan artifact in `docs/backlog/` (Rule 2.13).
+- **Blocked editorial pipeline:** read and follow `context/EDITORIAL_AI_PIPELINE.md` §9 (Blocked Pipeline Protocol) before taking any action.
 
 ## 3. Change Control Protocol → [`docs/development/CHANGE_CONTROL_PROTOCOL.md`](docs/development/CHANGE_CONTROL_PROTOCOL.md)
 
