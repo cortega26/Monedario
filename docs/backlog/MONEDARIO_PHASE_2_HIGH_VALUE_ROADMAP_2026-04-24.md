@@ -1,6 +1,6 @@
 # Monedario Phase 2 High-Value Roadmap 2026-04-24
 
-Status: Wave 1 complete (2026-04-24) — Wave 2 next
+Status: Waves 1–3 complete (2026-04-24) — Wave 4 next
 Owner target: Monedario product, SEO, calculator UX, hubs, and editorial pipeline
 Source benchmark: `/home/carlos/Documentos/monedario-dr-24042026-deepseek.md`
 
@@ -439,10 +439,10 @@ Recommended execution tickets:
 | PH2-002 | 1 | Search suggestions and category UI | UX/Search | Low | Chips grouped, Pagefind works, events tested | ✅ done 2026-04-24 |
 | PH2-003 | 1 | Schema inventory and safe additions | SEO technical | Medium | JSON-LD valid and no duplicates | ✅ done 2026-04-24 — BreadcrumbList deduplication fix in GlossaryJsonLd.astro |
 | PH2-004 | 1 | Title/meta proposal inventory | SEO/editorial | Medium | Proposal doc exists with review flags | ✅ done 2026-04-24 — 1 no-claim-change applied, 1 editorial-review-needed deferred |
-| PH2-005 | 2 | Calculator post-result actions component | Calculator UX | Medium | Component integrated in six initial calculators |
-| PH2-006 | 2 | Calculator journey analytics | Analytics | Medium | Events emit no PII or input values |
-| PH2-007 | 3 | Glossary term data layer | Content infra | Medium | Allowlist resolves to existing glossary pages |
-| PH2-008 | 3 | Accessible glossary inline links/tooltips | UX/Content | Medium | No overlinking and keyboard behavior works |
+| PH2-005 | 2 | Calculator post-result actions component | Calculator UX | Medium | Component integrated in six initial calculators | ✅ done 2026-04-24 |
+| PH2-006 | 2 | Calculator journey analytics | Analytics | Medium | Events emit no PII or input values | ✅ done 2026-04-24 |
+| PH2-007 | 3 | Glossary term data layer | Content infra | Medium | Allowlist resolves to existing glossary pages | ✅ done 2026-04-24 |
+| PH2-008 | 3 | Accessible glossary inline links/tooltips | UX/Content | Medium | No overlinking and keyboard behavior works | ✅ done 2026-04-24 |
 | PH2-009 | 4 | Reusable hub/pillar pattern | IA/SEO | Medium | Five target hubs use the pattern safely |
 | PH2-010 | 5 | DICOM editorial artifact pack | Editorial YMYL | High | Pack complete, unpublished |
 | PH2-011 | 5 | Cotizaciones impagas artifact pack | Editorial YMYL | High | Pack complete, unpublished |

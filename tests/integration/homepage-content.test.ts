@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import type { CollectionEntry } from "astro:content";
 import {
   getBalancedHomepagePosts,
@@ -395,5 +395,64 @@ describe("Wave 2 structural guards", () => {
     expect(source).toContain('data-analytics-cta="result-next-action"');
     expect(source).not.toContain("user_id");
     expect(source).not.toContain("userId");
+  });
+});
+
+describe("Wave 3 structural guards", () => {
+  it("Wave 3 CCR file exists and is unignored in .gitignore", () => {
+    expect(
+      existsSync("docs/backlog/MONEDARIO_WAVE3_CCR_2026-04-24.md")
+    ).toBe(true);
+
+    const gitignore = readFileSync(".gitignore", "utf8");
+    expect(gitignore).toContain(
+      "!docs/backlog/MONEDARIO_WAVE3_CCR_2026-04-24.md"
+    );
+  });
+
+  it("glossaryAllowlist has exactly 11 terms", () => {
+    const source = readFileSync("src/utils/glossaryAllowlist.ts", "utf8");
+    const termMatches = source.match(/\bterm:\s*"/g) ?? [];
+    expect(termMatches.length).toBe(11);
+  });
+
+  it("GlossaryInlineLink component exists with required analytics attributes", () => {
+    const source = readFileSync(
+      "src/components/GlossaryInlineLink.astro",
+      "utf8"
+    );
+    expect(source).toContain('data-analytics-cta="glossary-inline-link"');
+    expect(source).toContain('data-analytics-location="article_body"');
+    expect(source).toContain("data-analytics-label");
+  });
+
+  it("GlossaryInlineLink component contains no PII field references", () => {
+    const source = readFileSync(
+      "src/components/GlossaryInlineLink.astro",
+      "utf8"
+    );
+    expect(source).not.toContain("salary");
+    expect(source).not.toContain("sueldo");
+    expect(source).not.toContain("user_id");
+    expect(source).not.toContain("userId");
+    expect(source).not.toContain("email");
+    expect(source).not.toContain("rut");
+  });
+
+  it("PostDetails.astro imports and uses GlossaryContentWrapper", () => {
+    const source = readFileSync("src/layouts/PostDetails.astro", "utf8");
+    expect(source).toContain(
+      'import GlossaryContentWrapper from "@/components/GlossaryContentWrapper.astro"'
+    );
+    expect(source).toContain("<GlossaryContentWrapper>");
+  });
+
+  it("injectGlossaryLinks utility has no imports from domain or application layers", () => {
+    const source = readFileSync(
+      "src/utils/injectGlossaryLinks.ts",
+      "utf8"
+    );
+    expect(source).not.toContain("@/domain/");
+    expect(source).not.toContain("@/application/");
   });
 });

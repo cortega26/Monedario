@@ -1,0 +1,8 @@
+---
+import { injectGlossaryLinks } from "@/utils/injectGlossaryLinks";
+
+const rawHtml = await Astro.slots.render("default");
+const processedHtml = injectGlossaryLinks(rawHtml);
+---
+
+<Fragment set:html={processedHtml} />

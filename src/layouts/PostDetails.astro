@@ -33,6 +33,7 @@ import NextSteps from "@/components/NextSteps.astro";
 import { formatMetadataDate } from "@/utils/metadataDate";
 import ArticleAdvisory from "@/components/ArticleAdvisory.astro";
 import { resolveBlogArticleAdvisory } from "@/config/blogAdvisory";
+import GlossaryContentWrapper from "@/components/GlossaryContentWrapper.astro";
 
 type Props = {
   post: CollectionEntry<"blog">;
@@ -345,7 +346,7 @@ const articleAdvisoryText = resolveBlogArticleAdvisory(post);
         data-analytics-article={article.slug}
         data-analytics-article-title={title}
       >
-        <Content />
+        <GlossaryContentWrapper><Content /></GlossaryContentWrapper>
         {
           articleLead?.calculatorHref && articleLead.calculatorLabel && (
             <CalculatorCTA
