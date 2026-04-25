@@ -287,3 +287,113 @@ describe("Wave 1 structural guards", () => {
     expect(source).not.toContain("BreadcrumbList");
   });
 });
+
+describe("Wave 2 structural guards", () => {
+  const calculatorPages = [
+    "sueldo-liquido",
+    "finiquito-indemnizacion",
+    "operacion-renta",
+    "credito-consumo",
+    "tarjeta-credito",
+    "apv",
+  ];
+
+  it("CalculatorResultNextActions component exists with required container attributes", () => {
+    const source = readFileSync(
+      "src/components/CalculatorResultNextActions.astro",
+      "utf8"
+    );
+    expect(source).toContain('data-testid="calculator-result-next-actions"');
+    expect(source).toContain('class="mt-6 hidden"');
+    expect(source).toContain("showCalculatorNextActions");
+  });
+
+  it("CalculatorResultNextActions component contains no PII field references", () => {
+    const source = readFileSync(
+      "src/components/CalculatorResultNextActions.astro",
+      "utf8"
+    );
+    expect(source).not.toContain("salary");
+    expect(source).not.toContain("sueldo");
+    expect(source).not.toContain("deuda");
+    expect(source).not.toContain("monto");
+    expect(source).not.toContain("user_id");
+    expect(source).not.toContain("userId");
+    expect(source).not.toContain("rut");
+    expect(source).not.toContain("email");
+  });
+
+  it("all 6 calculator pages import and use CalculatorResultNextActions", () => {
+    for (const slug of calculatorPages) {
+      const source = readFileSync(
+        `src/pages/calculadoras/${slug}.astro`,
+        "utf8"
+      );
+      expect(source).toContain(
+        'import CalculatorResultNextActions from "@/components/CalculatorResultNextActions.astro"'
+      );
+      expect(source).toContain("<CalculatorResultNextActions");
+      expect(source).toContain(`calculatorSlug="${slug}"`);
+    }
+  });
+
+  it("all 6 calculator pages call showCalculatorNextActions after result", () => {
+    for (const slug of calculatorPages) {
+      const source = readFileSync(
+        `src/pages/calculadoras/${slug}.astro`,
+        "utf8"
+      );
+      expect(source).toContain("showCalculatorNextActions?.()");
+    }
+  });
+
+  it("all 6 calculator pages fire calculator_completed with only calculator_slug", () => {
+    for (const slug of calculatorPages) {
+      const source = readFileSync(
+        `src/pages/calculadoras/${slug}.astro`,
+        "utf8"
+      );
+      expect(source).toContain('"calculator_completed"');
+      expect(source).toContain(`calculator_slug: "${slug}"`);
+    }
+  });
+
+  it("all 6 calculator pages still fire the original calculator_complete event", () => {
+    for (const slug of calculatorPages) {
+      const source = readFileSync(
+        `src/pages/calculadoras/${slug}.astro`,
+        "utf8"
+      );
+      expect(source).toContain('"calculator_complete"');
+    }
+  });
+
+  it("calculator_result_action_click event payload contains no PII field names", () => {
+    const source = readFileSync(
+      "src/components/CalculatorResultNextActions.astro",
+      "utf8"
+    );
+    const eventCallMatch = source.match(
+      /calculator_result_action_click[\s\S]*?}\s*\)/
+    );
+    expect(eventCallMatch).not.toBeNull();
+    const eventBlock = eventCallMatch![0];
+    expect(eventBlock).not.toContain("salary");
+    expect(eventBlock).not.toContain("sueldo");
+    expect(eventBlock).not.toContain("deuda");
+    expect(eventBlock).not.toContain("monto");
+    expect(eventBlock).not.toContain("user_id");
+    expect(eventBlock).not.toContain("userId");
+  });
+
+  it("all analytics attributes use data-analytics-location calculator_result_next_actions", () => {
+    const source = readFileSync(
+      "src/components/CalculatorResultNextActions.astro",
+      "utf8"
+    );
+    expect(source).toContain('data-analytics-location="calculator_result_next_actions"');
+    expect(source).toContain('data-analytics-cta="result-next-action"');
+    expect(source).not.toContain("user_id");
+    expect(source).not.toContain("userId");
+  });
+});

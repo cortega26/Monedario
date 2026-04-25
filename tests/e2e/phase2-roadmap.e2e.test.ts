@@ -147,3 +147,61 @@ describe("Wave 1 CCR governance", () => {
     }
   });
 });
+
+describe("Wave 2 CCR governance", () => {
+  const wave2CcrPath = "docs/backlog/MONEDARIO_WAVE2_CCR_2026-04-24.md";
+
+  it("Wave 2 CCR file exists and is unignored in .gitignore", () => {
+    expect(existsSync(join(root, wave2CcrPath))).toBe(true);
+
+    const gitignore = read(".gitignore");
+    expect(gitignore).toContain("!docs/backlog/MONEDARIO_WAVE2_CCR_2026-04-24.md");
+  });
+
+  it("Wave 2 CCR contains all required governance sections", () => {
+    const ccr = read(wave2CcrPath);
+
+    expect(ccr).toContain("Scope Declaration");
+    expect(ccr).toContain("Authority Check");
+    expect(ccr).toContain("Competitive Adaptation Appendix");
+    expect(ccr).toContain("Rollback Strategy");
+    expect(ccr).toContain("Test Plan");
+    expect(ccr).toContain("Deterministic Closure Criteria");
+  });
+
+  it("Wave 2 CCR declares YMYL publication remains blocked", () => {
+    const ccr = read(wave2CcrPath);
+
+    expect(ccr).toContain("NORMA_YMYL.md");
+    expect(ccr).toContain("human sign-off");
+  });
+
+  it("Wave 2 CCR references all required invariants and contracts", () => {
+    const ccr = read(wave2CcrPath);
+
+    for (const ref of [
+      "URL.PUBLIC.NO_POST_ID",
+      "ROUTES.NO_SILENT_CHANGES",
+      "RSS.NO_REMOVALS",
+      "FRONTMATTER.VALID",
+      "CONTRACT.EDITORIAL.META_DESCRIPTION",
+    ]) {
+      expect(ccr).toContain(ref);
+    }
+  });
+
+  it("Wave 2 CCR documents the 6 target calculator surfaces", () => {
+    const ccr = read(wave2CcrPath);
+
+    for (const slug of [
+      "sueldo-liquido",
+      "finiquito-indemnizacion",
+      "operacion-renta",
+      "credito-consumo",
+      "tarjeta-credito",
+      "apv",
+    ]) {
+      expect(ccr).toContain(slug);
+    }
+  });
+});

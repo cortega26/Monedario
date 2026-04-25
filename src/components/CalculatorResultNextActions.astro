@@ -82,7 +82,9 @@ const iconFor = (type: string) => {
   if (container) {
     container.addEventListener("click", (e: Event) => {
       const target = e.target as HTMLElement;
-      const actionEl = target.closest("[data-action-type]") as HTMLElement | null;
+      const actionEl = target.closest(
+        "[data-action-type]"
+      ) as HTMLElement | null;
       if (!actionEl) return;
 
       const actionType = actionEl.dataset.actionType ?? "";
