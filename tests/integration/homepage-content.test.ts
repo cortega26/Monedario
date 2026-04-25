@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import type { CollectionEntry } from "astro:content";
 import {
   getBalancedHomepagePosts,
@@ -492,6 +492,55 @@ describe("Wave 4 structural guards", () => {
     for (const slug of hubSlugs) {
       const source = readFileSync(`src/pages/guias/${slug}/index.astro`, "utf8");
       expect(source).toContain('data-hub-section="related-calculators"');
+    }
+  });
+});
+
+describe("Wave 5 structural guards", () => {
+  const artifactSlugs = [
+    "dicom-salida",
+    "cotizaciones-impagas",
+    "licencia-medica-wizard",
+    "operacion-renta-centro",
+    "afp-comparador-ampliado",
+    "fraude-cargo-no-reconocido",
+  ];
+
+  it("Wave 5 CCR file exists and is unignored in .gitignore", () => {
+    expect(existsSync("docs/backlog/MONEDARIO_WAVE5_CCR_2026-04-24.md")).toBe(true);
+
+    const gitignore = readFileSync(".gitignore", "utf8");
+    expect(gitignore).toContain("!docs/backlog/MONEDARIO_WAVE5_CCR_2026-04-24.md");
+  });
+
+  it("all 6 artifact folders contain 01-artifact.md with Status: UNPUBLISHED", () => {
+    for (const slug of artifactSlugs) {
+      const artifactPath = `docs/editorial/artifacts/${slug}/01-artifact.md`;
+      expect(existsSync(artifactPath)).toBe(true);
+
+      const content = readFileSync(artifactPath, "utf8");
+      expect(content).toContain("Status: UNPUBLISHED");
+    }
+  });
+
+  it("all 6 artifact folders contain 07-publish-packet.md with Status: BLOCKED", () => {
+    for (const slug of artifactSlugs) {
+      const packetPath = `docs/editorial/artifacts/${slug}/07-publish-packet.md`;
+      expect(existsSync(packetPath)).toBe(true);
+
+      const content = readFileSync(packetPath, "utf8");
+      expect(content).toContain("Status: BLOCKED — pending human sign-off");
+      expect(content).toContain("human sign-off");
+    }
+  });
+
+  it("no .astro or .ts source files exist in artifact folders", () => {
+    for (const slug of artifactSlugs) {
+      const folderPath = `docs/editorial/artifacts/${slug}`;
+      const files = readdirSync(folderPath);
+      for (const file of files) {
+        expect(file).not.toMatch(/\.(astro|ts)$/);
+      }
     }
   });
 });

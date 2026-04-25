@@ -325,3 +325,61 @@ describe("Wave 4 CCR governance", () => {
     }
   });
 });
+
+describe("Wave 5 CCR governance", () => {
+  const wave5CcrPath = "docs/backlog/MONEDARIO_WAVE5_CCR_2026-04-24.md";
+
+  it("Wave 5 CCR file exists and is unignored in .gitignore", () => {
+    expect(existsSync(join(root, wave5CcrPath))).toBe(true);
+
+    const gitignore = read(".gitignore");
+    expect(gitignore).toContain("!docs/backlog/MONEDARIO_WAVE5_CCR_2026-04-24.md");
+  });
+
+  it("Wave 5 CCR contains all required governance sections", () => {
+    const ccr = read(wave5CcrPath);
+
+    expect(ccr).toContain("Scope Declaration");
+    expect(ccr).toContain("Authority Check");
+    expect(ccr).toContain("Competitive Adaptation Appendix");
+    expect(ccr).toContain("Rollback Strategy");
+    expect(ccr).toContain("Test Plan");
+    expect(ccr).toContain("Deterministic Closure Criteria");
+  });
+
+  it("Wave 5 CCR declares YMYL publication remains blocked", () => {
+    const ccr = read(wave5CcrPath);
+
+    expect(ccr).toContain("NORMA_YMYL.md");
+    expect(ccr).toContain("human sign-off");
+  });
+
+  it("Wave 5 CCR references all required invariants and contracts", () => {
+    const ccr = read(wave5CcrPath);
+
+    for (const ref of [
+      "URL.PUBLIC.NO_POST_ID",
+      "ROUTES.NO_SILENT_CHANGES",
+      "RSS.NO_REMOVALS",
+      "FRONTMATTER.VALID",
+      "CONTRACT.EDITORIAL.META_DESCRIPTION",
+    ]) {
+      expect(ccr).toContain(ref);
+    }
+  });
+
+  it("Wave 5 CCR documents all 6 artifact slugs", () => {
+    const ccr = read(wave5CcrPath);
+
+    for (const slug of [
+      "dicom-salida",
+      "cotizaciones-impagas",
+      "licencia-medica-wizard",
+      "operacion-renta-centro",
+      "afp-comparador-ampliado",
+      "fraude-cargo-no-reconocido",
+    ]) {
+      expect(ccr).toContain(slug);
+    }
+  });
+});
