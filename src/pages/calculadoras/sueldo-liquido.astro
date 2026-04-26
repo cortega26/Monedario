@@ -12,6 +12,7 @@ import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import CalculatorResultNextActions from "@/components/CalculatorResultNextActions.astro";
+import NextBestStep from "@/components/NextBestStep.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { getPath } from "@/utils/getPath";
 import { sueldoCalculatorSections } from "@/config/sueldoClusterLinks";
@@ -552,6 +553,8 @@ const calculatorNextStepItems = [
         </button>
       </div>
     </section>
+
+    <NextBestStep slug="sueldo-liquido" />
 
     <!-- EXPLICACIÓN -->
     <section

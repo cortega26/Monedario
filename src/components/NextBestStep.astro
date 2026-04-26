@@ -1,0 +1,17 @@
+---
+type Props = {
+  slug: string;
+};
+
+const { slug } = Astro.props;
+---
+
+<section
+  data-next-best-step
+  data-calculator-slug={slug}
+  aria-label="Próximos pasos sugeridos"
+></section>
+
+<script>
+  import "@/scripts/next-best-step";
+</script>

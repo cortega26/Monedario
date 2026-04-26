@@ -413,6 +413,8 @@ function readAnalyticsCsv(filePath) {
         cta_click: { current: 0, previous: 0 },
         calculator_start: { current: 0, previous: 0 },
         calculator_complete: { current: 0, previous: 0 },
+        next_best_step_shown: { current: 0, previous: 0 },
+        next_best_step_click: { current: 0, previous: 0 },
       },
       available: false,
     };
@@ -424,6 +426,8 @@ function readAnalyticsCsv(filePath) {
     cta_click: { current: 0, previous: 0 },
     calculator_start: { current: 0, previous: 0 },
     calculator_complete: { current: 0, previous: 0 },
+    next_best_step_shown: { current: 0, previous: 0 },
+    next_best_step_click: { current: 0, previous: 0 },
   };
 
   for (const row of rows) {
@@ -984,7 +988,7 @@ function buildHeadline(summary) {
     )}\``,
     `- Tracked assets: \`${summary.trackedPages.length}\` (\`${summary.totals.trackedWinnerCount}\` winners, \`${summary.totals.trackedLoserCount}\` losers, \`${summary.totals.trackedActionCount}\` action-needed)`,
     summary.analyticsAvailable
-      ? `- Analytics totals: \`cta_click ${summary.analyticsTotals.cta_click.current}\`, \`calculator_start ${summary.analyticsTotals.calculator_start.current}\`, \`calculator_complete ${summary.analyticsTotals.calculator_complete.current}\``
+      ? `- Analytics totals: \`cta_click ${summary.analyticsTotals.cta_click.current}\`, \`calculator_start ${summary.analyticsTotals.calculator_start.current}\`, \`calculator_complete ${summary.analyticsTotals.calculator_complete.current}\`, \`next_best_step_shown ${summary.analyticsTotals.next_best_step_shown?.current ?? 0}\`, \`next_best_step_click ${summary.analyticsTotals.next_best_step_click?.current ?? 0}\``
       : "- Analytics totals: `analytics-events.csv` not provided",
   ];
 }
