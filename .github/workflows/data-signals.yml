@@ -1,0 +1,106 @@
+name: Data Signals
+
+on:
+  schedule:
+    # Runs daily at 06:00 UTC (03:00 Chile summer, 02:00 winter)
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+    inputs:
+      week:
+        description: "ISO week to fetch (e.g. 2026-W17). Leave blank for previous complete week."
+        required: false
+        default: ""
+      dry_run:
+        description: "Dry run — print output without writing files or committing"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    name: Fetch GSC + Cloudflare signals
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Resolve week
+        id: week
+        env:
+          INPUT_WEEK: ${{ github.event.inputs.week }}
+        run: |
+          if [ -n "$INPUT_WEEK" ]; then
+            echo "value=$INPUT_WEEK" >> "$GITHUB_OUTPUT"
+          else
+            # previous complete ISO week (ends last Sunday)
+            python3 - <<'EOF'
+            import datetime, sys
+            today = datetime.date.today()
+            dow = today.weekday()          # 0=Mon, 6=Sun
+            days_back = dow + 1            # back to last Sunday
+            last_sunday = today - datetime.timedelta(days=days_back)
+            week_monday = last_sunday - datetime.timedelta(days=6)
+            iso = week_monday.isocalendar()
+            week_str = f"{iso[0]}-W{iso[1]:02d}"
+            print(f"value={week_str}", file=open("$GITHUB_OUTPUT", "a"))
+            print(f"Resolved previous complete week: {week_str}")
+            EOF
+          fi
+
+      - name: Fetch GSC signals
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}
+          WEEK: ${{ steps.week.outputs.value }}
+        run: |
+          node scripts/data-signals/gsc-fetch.mjs --week="$WEEK"
+
+      - name: Fetch GSC signals (dry run)
+        if: ${{ github.event.inputs.dry_run == 'true' }}
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS_JSON: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_JSON }}
+          WEEK: ${{ steps.week.outputs.value }}
+        run: |
+          node scripts/data-signals/gsc-fetch.mjs --week="$WEEK" --dry-run
+
+      - name: Fetch Cloudflare signals
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        env:
+          CLOUDFLARE_ANALYTICS_TOKEN: ${{ secrets.CLOUDFLARE_ANALYTICS_TOKEN }}
+          WEEK: ${{ steps.week.outputs.value }}
+        run: |
+          node scripts/data-signals/cloudflare-fetch.mjs --week="$WEEK"
+
+      - name: Fetch Cloudflare signals (dry run)
+        if: ${{ github.event.inputs.dry_run == 'true' }}
+        env:
+          CLOUDFLARE_ANALYTICS_TOKEN: ${{ secrets.CLOUDFLARE_ANALYTICS_TOKEN }}
+          WEEK: ${{ steps.week.outputs.value }}
+        run: |
+          node scripts/data-signals/cloudflare-fetch.mjs --week="$WEEK" --dry-run
+
+      - name: Commit data signals
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        env:
+          WEEK: ${{ steps.week.outputs.value }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add output/operations/data-signals/
+          if git diff --cached --quiet; then
+            echo "No new signal files to commit."
+          else
+            git commit -m "data-signals: $WEEK [skip ci]"
+            git push
+          fi

@@ -25,6 +25,85 @@ afterEach(() => {
   }
 });
 
+function makeGscJsonDir(root: string, week: string) {
+  const gscDir = path.join(root, "gsc");
+  mkdirSync(gscDir, { recursive: true });
+
+  const header = {
+    fetchedAt: "2026-04-25T00:00:00Z",
+    schemaVersion: 1,
+    source: "gsc",
+    week,
+    window: { from: "2026-04-13", to: "2026-04-19" },
+  };
+
+  writeFileSync(
+    path.join(gscDir, `${week}-pages.json`),
+    JSON.stringify({
+      ...header,
+      data: [
+        { clicks: 40, ctr: 0.08, impressions: 500, page: "https://monedario.cl/posts/winner/", position: 3.2 },
+        { clicks: 15, ctr: 0.02, impressions: 450, page: "https://monedario.cl/posts/loser/", position: 8.2 },
+        { clicks: 60, ctr: 0.1, impressions: 120, page: "https://monedario.cl/calculadoras/tool/", position: 2.8 },
+      ],
+    }),
+    "utf8"
+  );
+
+  writeFileSync(
+    path.join(gscDir, `${week}-queries.json`),
+    JSON.stringify({
+      ...header,
+      data: [
+        { clicks: 35, ctr: 0.11, impressions: 300, position: 3.5, query: "winner query chile" },
+        { clicks: 40, ctr: 0.03, impressions: 500, position: 7.0, query: "loser query chile" },
+        { clicks: 30, ctr: 0.13, impressions: 220, position: 2.6, query: "tool query chile" },
+      ],
+    }),
+    "utf8"
+  );
+
+  return gscDir;
+}
+
+function makeCfJsonDir(root: string, week: string) {
+  const cfDir = path.join(root, "cloudflare");
+  mkdirSync(cfDir, { recursive: true });
+
+  const header = {
+    fetchedAt: "2026-04-25T00:00:00Z",
+    schemaVersion: 1,
+    source: "cloudflare-rum",
+    week,
+    window: { from: "2026-04-13", to: "2026-04-19" },
+  };
+
+  writeFileSync(
+    path.join(cfDir, `${week}-rum.json`),
+    JSON.stringify({
+      ...header,
+      data: [
+        { clsP75: 0.008, count: 60, inpP75Ms: 48, lcpP75Ms: 1128, path: "/calculadoras/operacion-renta/" },
+        { clsP75: null, count: 10, inpP75Ms: null, lcpP75Ms: 5200, path: "/posts/loser/" },
+      ],
+    }),
+    "utf8"
+  );
+
+  writeFileSync(
+    path.join(cfDir, `${week}-traffic.json`),
+    JSON.stringify({
+      ...header,
+      source: "cloudflare-traffic",
+      summary: { bandwidthMB: 278.9, cacheRatioPct: 8.3, pageViews: 5088, requests: 14252 },
+      data: [],
+    }),
+    "utf8"
+  );
+
+  return cfDir;
+}
+
 describe("build-weekly-search-report script", () => {
   it("initializes a weekly input bundle", () => {
     const root = createTempRoot();
@@ -180,5 +259,158 @@ describe("build-weekly-search-report script", () => {
     expect(json.totals.trackedWinnerCount).toBe(1);
     expect(json.totals.trackedLoserCount).toBe(1);
     expect(json.totals.trackedActionCount).toBe(1);
+    expect(json.source).toBe("csv");
+  });
+
+  it("uses GSC JSON when available and reports source=json", () => {
+    const root = createTempRoot();
+    const week = "2026-W16";
+    const inputDir = path.join(root, week);
+    mkdirSync(inputDir, { recursive: true });
+
+    const watchlistPath = path.join(root, "watchlist.json");
+    writeFileSync(
+      watchlistPath,
+      JSON.stringify({ site: "monedario.cl", pages: [] }),
+      "utf8"
+    );
+
+    writeFileSync(
+      path.join(inputDir, "indexation-summary.json"),
+      JSON.stringify({
+        weekLabel: week,
+        dateRange: { currentStart: "2026-04-13", currentEnd: "2026-04-19", previousStart: "2026-04-06", previousEnd: "2026-04-12" },
+        google: { sitemapStatus: "ok", coverageNotes: "ok", alerts: [], manualActions: "none", enhancementIssues: [] },
+        bing: { sitemapStatus: "ok", coverageNotes: "ok", alerts: [] },
+        notes: [],
+      }),
+      "utf8"
+    );
+
+    const gscDir = makeGscJsonDir(root, week);
+    const markdownOut = path.join(inputDir, "scorecard.md");
+    const jsonOut = path.join(inputDir, "scorecard.json");
+
+    const result = runScript([
+      "--input", inputDir,
+      "--watchlist", watchlistPath,
+      "--out", markdownOut,
+      "--json-out", jsonOut,
+      "--gsc-json-dir", gscDir,
+      "--cloudflare-json-dir", path.join(root, "nonexistent-cf"),
+    ]);
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("GSC source: JSON");
+    expect(result.stdout).toContain("gsc-source=json");
+
+    const json = JSON.parse(readFileSync(jsonOut, "utf8"));
+    expect(json.source).toBe("json");
+    expect(json.totals.clicks).toBeGreaterThan(0);
+    expect(json.cloudflarePerf).toBeNull();
+  });
+
+  it("falls back to CSV when JSON files are missing (hermetic test)", () => {
+    const root = createTempRoot();
+    const inputDir = path.join(root, "2026-W11");
+    mkdirSync(inputDir, { recursive: true });
+
+    const watchlistPath = path.join(root, "watchlist.json");
+    writeFileSync(
+      watchlistPath,
+      JSON.stringify({ site: "monedario.cl", pages: [] }),
+      "utf8"
+    );
+
+    writeFileSync(
+      path.join(inputDir, "gsc-pages.csv"),
+      ["Top pages,Clicks,Clicks Difference,Impressions,Impressions Difference,CTR,CTR Difference,Position,Position Difference",
+       "https://monedario.cl/,10,2,100,10,10%,0.5%,5.0,-0.2"].join("\n"),
+      "utf8"
+    );
+    writeFileSync(
+      path.join(inputDir, "gsc-queries.csv"),
+      ["Top queries,Clicks,Clicks Difference,Impressions,Impressions Difference,CTR,CTR Difference,Position,Position Difference",
+       "monedario,8,1,80,5,10%,0.1%,4.0,-0.1"].join("\n"),
+      "utf8"
+    );
+    writeFileSync(
+      path.join(inputDir, "indexation-summary.json"),
+      JSON.stringify({
+        weekLabel: "2026-W11",
+        google: { sitemapStatus: "ok", coverageNotes: "ok", alerts: [], manualActions: "none", enhancementIssues: [] },
+        bing: { sitemapStatus: "ok", coverageNotes: "ok", alerts: [] },
+        notes: [],
+      }),
+      "utf8"
+    );
+
+    const emptyGscDir = path.join(root, "empty-gsc");
+    mkdirSync(emptyGscDir, { recursive: true });
+    const jsonOut = path.join(inputDir, "scorecard.json");
+
+    const result = runScript([
+      "--input", inputDir,
+      "--watchlist", watchlistPath,
+      "--json-out", jsonOut,
+      "--gsc-json-dir", emptyGscDir,
+    ]);
+
+    expect(result.status).toBe(0);
+    const json = JSON.parse(readFileSync(jsonOut, "utf8"));
+    expect(json.source).toBe("csv");
+  });
+
+  it("includes cloudflare performance section in markdown when RUM/traffic JSON exist", () => {
+    const root = createTempRoot();
+    const week = "2026-W16";
+    const inputDir = path.join(root, week);
+    mkdirSync(inputDir, { recursive: true });
+
+    const watchlistPath = path.join(root, "watchlist.json");
+    writeFileSync(
+      watchlistPath,
+      JSON.stringify({ site: "monedario.cl", pages: [] }),
+      "utf8"
+    );
+    writeFileSync(
+      path.join(inputDir, "indexation-summary.json"),
+      JSON.stringify({
+        weekLabel: week,
+        google: { sitemapStatus: "ok", coverageNotes: "ok", alerts: [], manualActions: "none", enhancementIssues: [] },
+        bing: { sitemapStatus: "ok", coverageNotes: "ok", alerts: [] },
+        notes: [],
+      }),
+      "utf8"
+    );
+
+    const gscDir = makeGscJsonDir(root, week);
+    const cfDir = makeCfJsonDir(root, week);
+    const markdownOut = path.join(inputDir, "scorecard.md");
+    const jsonOut = path.join(inputDir, "scorecard.json");
+
+    const result = runScript([
+      "--input", inputDir,
+      "--watchlist", watchlistPath,
+      "--out", markdownOut,
+      "--json-out", jsonOut,
+      "--gsc-json-dir", gscDir,
+      "--cloudflare-json-dir", cfDir,
+    ]);
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("cloudflare=yes");
+
+    const markdown = readFileSync(markdownOut, "utf8");
+    expect(markdown).toContain("Performance real (Cloudflare RUM");
+    expect(markdown).toContain("1128ms ✅");
+    expect(markdown).toContain("5200ms ❌");
+    expect(markdown).toContain("0.008 ✅");
+    expect(markdown).toContain("5088 pageviews");
+    expect(markdown).toContain("cache 8.3%");
+
+    const json = JSON.parse(readFileSync(jsonOut, "utf8"));
+    expect(json.cloudflarePerf).not.toBeNull();
+    expect(json.cloudflarePerf.traffic.summary.pageViews).toBe(5088);
   });
 });

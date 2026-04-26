@@ -4,6 +4,8 @@ import path from "node:path";
 const DEFAULT_WATCHLIST_PATH = path.resolve(
   "docs/operations/runbooks/weekly-search-performance-watchlist.json"
 );
+const DEFAULT_GSC_JSON_DIR = "output/operations/data-signals/gsc";
+const DEFAULT_CF_JSON_DIR = "output/operations/data-signals/cloudflare";
 
 function parseArgs(argv) {
   const options = {
@@ -11,6 +13,8 @@ function parseArgs(argv) {
     outputFile: null,
     jsonFile: null,
     watchlistFile: DEFAULT_WATCHLIST_PATH,
+    gscJsonDir: DEFAULT_GSC_JSON_DIR,
+    cloudflareJsonDir: DEFAULT_CF_JSON_DIR,
     init: false,
   };
 
@@ -30,6 +34,14 @@ function parseArgs(argv) {
     }
     if (arg === "--watchlist") {
       options.watchlistFile = argv[++index] ?? DEFAULT_WATCHLIST_PATH;
+      continue;
+    }
+    if (arg === "--gsc-json-dir") {
+      options.gscJsonDir = argv[++index] ?? DEFAULT_GSC_JSON_DIR;
+      continue;
+    }
+    if (arg === "--cloudflare-json-dir") {
+      options.cloudflareJsonDir = argv[++index] ?? DEFAULT_CF_JSON_DIR;
       continue;
     }
     if (arg === "--init") {
@@ -69,12 +81,20 @@ function printUsage(code, errorMessage) {
     console.error(`[weekly-search-report] ${errorMessage}`);
   }
   console.log(`Usage:
-  node scripts/build-weekly-search-report.mjs --input <directory> [--out <file>] [--json-out <file>] [--watchlist <file>] [--init]
+  node scripts/build-weekly-search-report.mjs --input <directory> [options]
+
+Options:
+  --out <file>                    Output markdown path (default: <input>/weekly-search-scorecard.md)
+  --json-out <file>               Output JSON path (default: <input>/weekly-search-scorecard.json)
+  --watchlist <file>              Watchlist JSON (default: docs/operations/runbooks/weekly-search-performance-watchlist.json)
+  --gsc-json-dir <path>           Dir for GSC JSON signals (default: ${DEFAULT_GSC_JSON_DIR})
+  --cloudflare-json-dir <path>    Dir for Cloudflare JSON signals (default: ${DEFAULT_CF_JSON_DIR})
+  --init                          Initialize an empty input bundle
 
 Input directory files:
-  - gsc-pages.csv
-  - gsc-queries.csv
-  - analytics-events.csv (optional)
+  - gsc-pages.csv          (fallback if no JSON found)
+  - gsc-queries.csv        (fallback if no JSON found)
+  - analytics-events.csv   (optional)
   - indexation-summary.json
 `);
   process.exit(code);
@@ -457,6 +477,118 @@ function readAnalyticsCsv(filePath) {
   };
 }
 
+function extractWeekFromDir(inputDir) {
+  const base = path.basename(inputDir);
+  return /^\d{4}-W\d{2}$/.test(base) ? base : null;
+}
+
+function readGscJson(gscJsonDir, week) {
+  const queriesPath = path.join(gscJsonDir, `${week}-queries.json`);
+  const pagesPath = path.join(gscJsonDir, `${week}-pages.json`);
+  if (!existsSync(queriesPath) || !existsSync(pagesPath)) return null;
+
+  let queriesDoc, pagesDoc;
+  try {
+    queriesDoc = JSON.parse(readFileSync(queriesPath, "utf8"));
+    pagesDoc = JSON.parse(readFileSync(pagesPath, "utf8"));
+  } catch {
+    return null;
+  }
+  if (queriesDoc.schemaVersion !== 1 || pagesDoc.schemaVersion !== 1) return null;
+
+  const pageRows = (pagesDoc.data ?? []).map(item => ({
+    label: item.page,
+    path: normalizePathLabel(item.page),
+    clicks: item.clicks ?? 0,
+    clicksDelta: 0,
+    impressions: item.impressions ?? 0,
+    impressionsDelta: 0,
+    ctr: (item.ctr ?? 0) * 100,
+    ctrDelta: 0,
+    position: item.position ?? 0,
+    positionDelta: 0,
+  }));
+
+  const queryRows = (queriesDoc.data ?? []).map(item => ({
+    label: item.query,
+    path: null,
+    clicks: item.clicks ?? 0,
+    clicksDelta: 0,
+    impressions: item.impressions ?? 0,
+    impressionsDelta: 0,
+    ctr: (item.ctr ?? 0) * 100,
+    ctrDelta: 0,
+    position: item.position ?? 0,
+    positionDelta: 0,
+  }));
+
+  return { pageRows, queryRows };
+}
+
+function readCloudflarePerf(cloudflareJsonDir, week) {
+  const rumPath = path.join(cloudflareJsonDir, `${week}-rum.json`);
+  const trafficPath = path.join(cloudflareJsonDir, `${week}-traffic.json`);
+
+  let rum = null;
+  let traffic = null;
+  if (existsSync(rumPath)) {
+    try { rum = JSON.parse(readFileSync(rumPath, "utf8")); } catch {}
+  }
+  if (existsSync(trafficPath)) {
+    try { traffic = JSON.parse(readFileSync(trafficPath, "utf8")); } catch {}
+  }
+  if (!rum && !traffic) return null;
+  return { rum, traffic };
+}
+
+function rateLcp(ms) {
+  if (ms === null || ms === undefined) return "—";
+  if (ms < 2500) return `${ms}ms ✅`;
+  if (ms < 4000) return `${ms}ms ⚠️`;
+  return `${ms}ms ❌`;
+}
+
+function rateCls(score) {
+  if (score === null || score === undefined) return "—";
+  if (score < 0.1) return `${score} ✅`;
+  if (score < 0.25) return `${score} ⚠️`;
+  return `${score} ❌`;
+}
+
+function rateInp(ms) {
+  if (ms === null || ms === undefined) return "—";
+  if (ms < 200) return `${ms}ms ✅`;
+  if (ms < 500) return `${ms}ms ⚠️`;
+  return `${ms}ms ❌`;
+}
+
+function buildPerformanceSection(cloudflarePerf, weekLabel) {
+  if (!cloudflarePerf) return "";
+  const { rum, traffic } = cloudflarePerf;
+  const parts = [`\n## Performance real (Cloudflare RUM — ${weekLabel})\n`];
+
+  if (rum?.data?.length > 0) {
+    parts.push(table(
+      ["Ruta", "Visitas RUM", "LCP p75", "CLS p75", "INP p75"],
+      rum.data.map(row => [
+        `\`${row.path}\``,
+        String(row.count),
+        rateLcp(row.lcpP75Ms),
+        rateCls(row.clsP75),
+        rateInp(row.inpP75Ms),
+      ])
+    ));
+    parts.push("");
+  }
+
+  if (traffic?.summary) {
+    const s = traffic.summary;
+    parts.push(`**Tráfico semanal:** ${s.pageViews} pageviews · ${s.requests} requests · cache ${s.cacheRatioPct}% · ${s.bandwidthMB} MB\n`);
+  }
+
+  return parts.join("\n");
+}
+
 function loadJson(filePath, label) {
   try {
     return JSON.parse(readFileSync(filePath, "utf8"));
@@ -746,7 +878,7 @@ function buildIndexationStatus(indexation) {
   return sections;
 }
 
-function buildSummary({ watchlist, indexation, pageRows, queryRows, analytics }) {
+function buildSummary({ watchlist, indexation, pageRows, queryRows, analytics, gscSource, cloudflarePerf }) {
   const pageByPath = new Map(pageRows.map(row => [row.path, row]));
 
   const trackedPages = watchlist.pages.map(entry => {
@@ -803,6 +935,7 @@ function buildSummary({ watchlist, indexation, pageRows, queryRows, analytics })
     generatedAt: new Date().toISOString(),
     site: watchlist.site,
     weekLabel: indexation.weekLabel ?? "weekly-review",
+    source: gscSource ?? "csv",
     dateRange: indexation.dateRange ?? null,
     totals: {
       clicks: sumMetric(pageRows, "clicks"),
@@ -829,6 +962,7 @@ function buildSummary({ watchlist, indexation, pageRows, queryRows, analytics })
     indexationStatus: buildIndexationStatus(indexation),
     notes: indexation.notes ?? [],
     analyticsAvailable: analytics.available,
+    cloudflarePerf: cloudflarePerf ?? null,
   };
 }
 
@@ -996,7 +1130,7 @@ ${
     ? summary.notes.map(note => `- ${note}`).join("\n")
     : "- No additional manual notes were logged in `indexation-summary.json`."
 }
-`;
+${buildPerformanceSection(summary.cloudflarePerf, summary.weekLabel)}`;
 }
 
 function main() {
@@ -1012,17 +1146,36 @@ function main() {
     path.join(options.inputDir, "indexation-summary.json"),
     "indexation summary"
   );
-  const pageRows = readSearchCsv(
-    path.join(options.inputDir, "gsc-pages.csv"),
-    "pages"
-  );
-  const queryRows = readSearchCsv(
-    path.join(options.inputDir, "gsc-queries.csv"),
-    "queries"
-  );
+
+  const week = extractWeekFromDir(options.inputDir);
+  const gscJson = week ? readGscJson(options.gscJsonDir, week) : null;
+
+  let pageRows, queryRows, gscSource;
+  if (gscJson) {
+    pageRows = gscJson.pageRows;
+    queryRows = gscJson.queryRows;
+    gscSource = "json";
+    console.log(
+      `[weekly-search-report] GSC source: JSON (${path.resolve(options.gscJsonDir)}/${week}-*.json)`
+    );
+  } else {
+    pageRows = readSearchCsv(
+      path.join(options.inputDir, "gsc-pages.csv"),
+      "pages"
+    );
+    queryRows = readSearchCsv(
+      path.join(options.inputDir, "gsc-queries.csv"),
+      "queries"
+    );
+    gscSource = "csv";
+  }
+
   const analytics = readAnalyticsCsv(
     path.join(options.inputDir, "analytics-events.csv")
   );
+  const cloudflarePerf = week
+    ? readCloudflarePerf(options.cloudflareJsonDir, week)
+    : null;
 
   const summary = buildSummary({
     watchlist,
@@ -1030,6 +1183,8 @@ function main() {
     pageRows,
     queryRows,
     analytics,
+    gscSource,
+    cloudflarePerf,
   });
   const markdown = buildMarkdown(summary);
 
@@ -1047,7 +1202,7 @@ function main() {
   console.log(
     `[weekly-search-report] Inputs loaded: pages=${pageRows.length} queries=${queryRows.length} analytics=${
       analytics.available ? "yes" : "no"
-    }`
+    } gsc-source=${gscSource} cloudflare=${cloudflarePerf ? "yes" : "no"}`
   );
 }
 
