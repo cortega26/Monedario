@@ -104,3 +104,10 @@ jobs:
             git commit -m "data-signals: $WEEK [skip ci]"
             git push
           fi
+
+      - name: LCP gate — alert if owner route p75 > 4000 ms
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        env:
+          WEEK: ${{ steps.week.outputs.value }}
+        run: |
+          node scripts/data-signals/lcp-gate.mjs --week="$WEEK"
