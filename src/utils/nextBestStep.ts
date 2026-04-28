@@ -22,7 +22,10 @@ export interface Suggestion {
 export interface Rule {
   id: string;
   when: (profile: UserProfileV1, ctx: PageContext) => boolean;
-  suggest: (profile: UserProfileV1, ctx: PageContext) => Omit<Suggestion, "id" | "priority">;
+  suggest: (
+    profile: UserProfileV1,
+    ctx: PageContext
+  ) => Omit<Suggestion, "id" | "priority">;
   priority: number;
   mutexGroup?: string;
 }

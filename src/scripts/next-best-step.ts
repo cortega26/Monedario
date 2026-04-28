@@ -2,7 +2,11 @@
 // Authoritative spec: docs/adr/ADR-20260416-next-best-step-framework.md
 
 import { getProfile } from "@/utils/userProfile";
-import { evaluate, type PageContext, type Suggestion } from "@/utils/nextBestStep";
+import {
+  evaluate,
+  type PageContext,
+  type Suggestion,
+} from "@/utils/nextBestStep";
 import { RULES } from "@/data/nextBestStep/rules";
 import { trackAnalyticsEvent } from "@/utils/analytics";
 

@@ -51,7 +51,8 @@ export const RULES: Rule[] = [
     suggest: () => ({
       href: "/calculadoras/finiquito-indemnizacion",
       headline: "Estima tu finiquito",
-      rationale: "contratoTipo === 'indefinido' y sueldoImponible presente en sueldo-liquido",
+      rationale:
+        "contratoTipo === 'indefinido' y sueldoImponible presente en sueldo-liquido",
       ctaLabel: "Calcular finiquito →",
       ymylTag: "labor",
     }),
@@ -157,7 +158,8 @@ export const RULES: Rule[] = [
     suggest: () => ({
       href: "/calculadoras/apv",
       headline: "Podrías pagar menos el próximo año con APV",
-      rationale: "apvRegimenBAnual ausente y sueldoImponible >= 1_000_000 en operacion-renta",
+      rationale:
+        "apvRegimenBAnual ausente y sueldoImponible >= 1_000_000 en operacion-renta",
       ctaLabel: "Calcular APV →",
       ymylTag: "tax",
     }),
