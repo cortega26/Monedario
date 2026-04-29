@@ -45,7 +45,6 @@ scripts/credentials/
 .idea/
 
 # pagefind
-
 public/pagefind
 internal-docs/
 
@@ -59,13 +58,12 @@ context/**/*.generated.*
 # generated report snapshots
 docs/reports/rss_snapshot_after.json
 
-
-
 #Ignore vscode AI rules
 .github/instructions/codacy.instructions.md
 
 dr2.md
 dr3.md
+private/
 docs/backlog/*
 !docs/backlog/MONEDARIO_OPTIMIZATION_2026-04-24.md
 !docs/backlog/MONEDARIO_PHASE_2_HIGH_VALUE_ROADMAP_2026-04-24.md
