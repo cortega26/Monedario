@@ -111,8 +111,38 @@ function writeTemplateFile(filePath, content) {
   writeFileSync(filePath, content, "utf8");
 }
 
+function isoWeekToMonday(year, week) {
+  const jan4 = new Date(Date.UTC(year, 0, 4));
+  const jan4Day = jan4.getUTCDay() || 7;
+  const weekOneMonday = new Date(jan4.getTime() - (jan4Day - 1) * 86400000);
+  return new Date(weekOneMonday.getTime() + (week - 1) * 7 * 86400000);
+}
+
+function toIsoDateString(date) {
+  return date.toISOString().slice(0, 10);
+}
+
+function weekLabelToDateRange(weekLabel) {
+  const match = /^(\d{4})-W(\d{2})$/.exec(weekLabel);
+  if (!match) return null;
+  const year = parseInt(match[1], 10);
+  const week = parseInt(match[2], 10);
+  const currentMonday = isoWeekToMonday(year, week);
+  const currentSunday = new Date(currentMonday.getTime() + 6 * 86400000);
+  const previousMonday = new Date(currentMonday.getTime() - 7 * 86400000);
+  const previousSunday = new Date(currentMonday.getTime() - 1 * 86400000);
+  return {
+    currentStart: toIsoDateString(currentMonday),
+    currentEnd: toIsoDateString(currentSunday),
+    previousStart: toIsoDateString(previousMonday),
+    previousEnd: toIsoDateString(previousSunday),
+  };
+}
+
 function initInputDirectory(inputDir) {
   ensureDirectory(inputDir);
+
+  const weekLabel = path.basename(inputDir);
 
   writeTemplateFile(
     path.join(inputDir, "README.md"),
@@ -144,23 +174,25 @@ Optional file:
 
 Notes:
 
-- Keep one folder per week, for example \`output/operations/weekly-search-performance/2026-W11/\`.
+- Keep one folder per week, for example \`output/operations/weekly-search-performance/${weekLabel}/\`.
 - The script supports English or Spanish GSC column headers.
 - If analytics export is missing, the scorecard still renders, but CTA/tool signals stay blank.
 `,
   );
 
+  const dateRange = weekLabelToDateRange(weekLabel) ?? {
+    currentStart: "YYYY-MM-DD",
+    currentEnd: "YYYY-MM-DD",
+    previousStart: "YYYY-MM-DD",
+    previousEnd: "YYYY-MM-DD",
+  };
+
   writeTemplateFile(
     path.join(inputDir, "indexation-summary.json"),
     JSON.stringify(
       {
-        weekLabel: path.basename(inputDir),
-        dateRange: {
-          currentStart: "2026-03-09",
-          currentEnd: "2026-03-15",
-          previousStart: "2026-03-02",
-          previousEnd: "2026-03-08",
-        },
+        weekLabel,
+        dateRange,
         google: {
           property: "sc-domain:monedario.cl",
           sitemapStatus: "processing",
