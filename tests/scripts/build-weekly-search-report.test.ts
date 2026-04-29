@@ -116,11 +116,48 @@ describe("build-weekly-search-report script", () => {
     expect(readFileSync(path.join(inputDir, "README.md"), "utf8")).toContain(
       "gsc-pages.csv"
     );
-    expect(
-      JSON.parse(
+    const indexation = JSON.parse(
+      readFileSync(path.join(inputDir, "indexation-summary.json"), "utf8")
+    );
+    expect(indexation.weekLabel).toBe("2026-W11");
+    expect(indexation.dateRange.currentStart).toBe("2026-03-09");
+    expect(indexation.dateRange.currentEnd).toBe("2026-03-15");
+    expect(indexation.dateRange.previousStart).toBe("2026-03-02");
+    expect(indexation.dateRange.previousEnd).toBe("2026-03-08");
+  });
+
+  it("generates correct date ranges for arbitrary ISO weeks on --init", () => {
+    const cases = [
+      {
+        week: "2026-W18",
+        currentStart: "2026-04-27",
+        currentEnd: "2026-05-03",
+        previousStart: "2026-04-20",
+        previousEnd: "2026-04-26",
+      },
+      {
+        week: "2026-W01",
+        currentStart: "2025-12-29",
+        currentEnd: "2026-01-04",
+        previousStart: "2025-12-22",
+        previousEnd: "2025-12-28",
+      },
+    ];
+
+    for (const tc of cases) {
+      const root = createTempRoot();
+      const inputDir = path.join(root, tc.week);
+      const result = runScript(["--input", inputDir, "--init"]);
+      expect(result.status).toBe(0);
+      const indexation = JSON.parse(
         readFileSync(path.join(inputDir, "indexation-summary.json"), "utf8")
-      ).weekLabel
-    ).toBe("2026-W11");
+      );
+      expect(indexation.weekLabel).toBe(tc.week);
+      expect(indexation.dateRange.currentStart).toBe(tc.currentStart);
+      expect(indexation.dateRange.currentEnd).toBe(tc.currentEnd);
+      expect(indexation.dateRange.previousStart).toBe(tc.previousStart);
+      expect(indexation.dateRange.previousEnd).toBe(tc.previousEnd);
+    }
   });
 
   it("builds a scorecard with winners, losers, refresh cues, and linking actions", () => {
