@@ -77,36 +77,53 @@ import { SITE } from "@/config";
       </div>
     </section>
 
-    <!-- Segunda opción: donar -->
+    <!-- Aporte voluntario: panel Ko-fi embebido + enlace de respaldo -->
     <section class="border-b border-border py-8">
-      <h2 class="mb-3 text-xl font-semibold">Donación voluntaria</h2>
-      <p class="mb-5 max-w-xl text-sm leading-relaxed text-secondary">
-        Si quieres contribuir un poco más, puedes hacer una pequeña donación
-        voluntaria a través de Ko-fi. Cualquier aporte ayuda a
-        sostener el trabajo de investigación, actualización y mantenimiento del
-        proyecto.
+      <h2 class="mb-3 text-xl font-semibold">Aporte voluntario</h2>
+      <p class="mb-1 max-w-xl text-sm leading-relaxed text-secondary">
+        Puedes hacer un aporte puntual a través de Ko-fi, una plataforma de
+        pagos para proyectos independientes. El proceso es seguro y no requiere
+        registro. Puedes pagar con tarjeta de crédito o débito, PayPal, Apple
+        Pay o Google Pay.
       </p>
-      <a
-        id="btn-donar"
-        href="https://ko-fi.com/monedario?utm_source=monedario&utm_medium=apoyar&utm_campaign=apoya_monedario"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-accent-foreground inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-semibold transition-opacity hover:opacity-90"
-        data-analytics-cta="donate"
-        data-analytics-label="kofi"
-        data-analytics-location="apoyar_page"
+      <p class="mb-5 max-w-xl text-xs text-secondary">
+        El aporte mínimo es de 3 USD. Si eliges PayPal, es posible que el
+        navegador te redirija brevemente a PayPal para completar el pago.
+      </p>
+
+      <!--
+        Contenedor del widget Ko-fi.
+        min-height reservado previene desplazamiento de contenido (CLS)
+        mientras el widget inicializa. El script se carga de forma
+        perezosa cuando este contenedor entra al viewport.
+      -->
+      <div
+        id="kofi-widget-container"
+        aria-label="Panel de aporte voluntario a través de Ko-fi"
+        class="mb-4 min-h-[200px] max-w-sm"
       >
-        Apoyar en Ko-fi →
-      </a>
-      <p class="mt-3 text-xs text-secondary">
-        Si el botón no funciona correctamente, puedes acceder directamente a
+        <div
+          id="kofi-widget-placeholder"
+          class="flex min-h-[200px] max-w-sm items-center justify-center rounded-xl border border-border bg-surface-muted/30 text-sm text-secondary"
+        >
+          <span>Cargando panel de aporte…</span>
+        </div>
+      </div>
+
+      <!-- Enlace de respaldo: siempre visible, no depende del widget -->
+      <p class="text-xs text-secondary">
+        También puedes apoyar directamente en
         <a
-          href="https://ko-fi.com/monedario?utm_source=monedario&utm_medium=apoyar&utm_campaign=apoya_monedario&utm_content=fallback"
+          id="btn-donar"
+          href="https://ko-fi.com/monedario?utm_source=monedario&utm_medium=apoyar&utm_campaign=apoya_monedario"
           target="_blank"
           rel="noopener noreferrer"
           class="text-accent underline-offset-4 hover:underline"
-          >ko-fi.com/monedario</a
-        >.
+          data-analytics-cta="donate"
+          data-analytics-label="kofi-fallback"
+          data-analytics-location="apoyar_page"
+          >ko-fi.com/monedario →</a
+        >
       </p>
     </section>
 
@@ -273,6 +290,97 @@ import { SITE } from "@/config";
     } else {
       applyVariant();
       setupCopyButton();
+    }
+  })();
+</script>
+
+<!--
+  Ko-fi widget: carga perezosa vía IntersectionObserver.
+  El script de Ko-fi se inyecta solo cuando #kofi-widget-container
+  entra al viewport, y solo en esta página — nunca globalmente.
+-->
+<script>
+  (function () {
+    "use strict";
+
+    const widgetContainer = document.getElementById("kofi-widget-container");
+    const placeholder = document.getElementById("kofi-widget-placeholder");
+    if (!widgetContainer) return;
+
+    let loaded = false;
+
+    function hidePlaceholder(): void {
+      if (placeholder) placeholder.style.display = "none";
+    }
+
+    function showWidgetError(): void {
+      if (placeholder) {
+        const span = placeholder.querySelector("span");
+        if (span) {
+          span.textContent = "El panel no está disponible. Usa el enlace de respaldo.";
+        }
+      }
+    }
+
+    function initWidget(target: HTMLElement): void {
+      // Snapshot body children before draw() appends anything
+      const before = new Set(Array.from(document.body.children));
+
+      type KofiWidget2 = {
+        init: (title: string, color: string, id: string) => void;
+        draw: () => void;
+      };
+
+      const kofi = (window as unknown as Record<string, unknown>)
+        .kofiwidget2 as KofiWidget2 | undefined;
+
+      if (!kofi) {
+        showWidgetError();
+        return;
+      }
+
+      // Use the site's teal accent (--color-accent-2) for the Ko-fi panel button.
+      // Teal is distinct from the navy used for links/nav, reads as a clear CTA,
+      // and Ko-fi renders white button text on this background.
+      kofi.init("Apoya Monedario", "#0d9488", "monedario");
+      kofi.draw();
+
+      // Move any element Ko-fi appended to <body> into our container
+      for (const el of Array.from(document.body.children)) {
+        if (!before.has(el)) {
+          target.appendChild(el);
+        }
+      }
+
+      hidePlaceholder();
+    }
+
+    function loadKofiScript(target: HTMLElement): void {
+      if (loaded) return;
+      loaded = true;
+
+      const script = document.createElement("script");
+      script.src = "https://storage.ko-fi.com/cdn/widget/Widget_2.js";
+      script.onload = () => initWidget(target);
+      script.onerror = showWidgetError;
+      document.head.appendChild(script);
+    }
+
+    // Lazy-load: fire when the container is within 300 px of the viewport
+    if (typeof IntersectionObserver !== "undefined") {
+      const observer = new IntersectionObserver(
+        function (entries) {
+          if (entries[0]?.isIntersecting) {
+            loadKofiScript(widgetContainer);
+            observer.disconnect();
+          }
+        },
+        { rootMargin: "300px" }
+      );
+      observer.observe(widgetContainer);
+    } else {
+      // Fallback for browsers without IntersectionObserver support
+      loadKofiScript(widgetContainer);
     }
   })();
 </script>
