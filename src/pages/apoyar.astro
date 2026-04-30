@@ -346,6 +346,16 @@ import { SITE } from "@/config";
 
       // getHTML() returns the style + button markup as a string — safe to inject.
       target.innerHTML = kofi.getHTML();
+
+      // Ko-fi uses a dynamic class (e.g. kofi-button0) and injects its own
+      // <style> into <head> asynchronously, so CSS overrides are unreliable.
+      // Setting the inline style with priority "important" is the only
+      // guaranteed way to force white text on the teal background.
+      const kofiLink = target.querySelector<HTMLElement>("a");
+      if (kofiLink) {
+        kofiLink.style.setProperty("color", "#ffffff", "important");
+      }
+
       hidePlaceholder();
     }
 
