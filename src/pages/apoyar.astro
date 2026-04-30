@@ -338,8 +338,11 @@ import { SITE } from "@/config";
         return;
       }
 
-      // Use the site's teal accent (--color-accent-2) for the Ko-fi button.
-      kofi.init("Apoya Monedario", "#0d9488", "monedario");
+      // Use the site's teal accent; pick darker/lighter shade per theme.
+      const isDark =
+        document.documentElement.getAttribute("data-theme") === "dark";
+      const btnColor = isDark ? "#14b8a6" : "#0d9488";
+      kofi.init("Apoya Monedario", btnColor, "monedario");
 
       // getHTML() returns the style + button markup as a string — safe to inject.
       target.innerHTML = kofi.getHTML();
@@ -375,3 +378,15 @@ import { SITE } from "@/config";
     }
   })();
 </script>
+
+<style is:global>
+  /*
+    The Ko-fi widget button (<a class="kofi-button">) inherits the site's dark
+    body text color. Override here to ensure white text on the teal background
+    regardless of theme, and cover both the widget class and the bare <a> tag.
+  */
+  #kofi-widget-container .kofi-button,
+  #kofi-widget-container a {
+    color: #fff !important;
+  }
+</style>
