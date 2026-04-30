@@ -4,11 +4,11 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import StartHere from "@/components/StartHere.astro";
+import SupportCallout from "@/components/SupportCallout.astro";
 import { getPath } from "@/utils/getPath";
 
 const hubPath = getPath("/guias/impuestos-personas/");
 
-// ACTUALIZAR ANUALMENTE: ajustar fechas cuando el SII publique el calendario oficial
 const startHereSteps = [
   {
     step: 1,
@@ -19,7 +19,7 @@ const startHereSteps = [
   },
   {
     step: 2,
-    title: "Calcula tu impuesto estimado",
+    title: "Calcula tu resultado estimado",
     description:
       "Usa la calculadora de Operación Renta para estimar cuánto debes pagar o cuánto te corresponde de devolución.",
     href: "/calculadoras/operacion-renta/",
@@ -28,7 +28,7 @@ const startHereSteps = [
     step: 3,
     title: "Fechas de devolución y compensaciones",
     description:
-      "Cuándo te depositan la devolución según tu banco y qué hacer si la TGR tiene compensaciones activas.",
+      "Cuándo te depositan la devolución según cuándo declaraste y qué hacer si TGR tiene compensaciones activas.",
     href: "/posts/devolucion-impuestos-fechas-compensaciones/",
   },
 ];
@@ -54,7 +54,7 @@ const subcasos = [
     id: "devolucion",
     titulo: "Estado de devolución",
     resumen:
-      "Cómo consultar el estado, fechas de pago por banco y qué hacer si hay compensaciones o retenciones.",
+      "Cómo consultar el estado, fechas de pago y qué hacer si hay compensaciones o retenciones.",
     href: getPath("/posts/devolucion-impuestos-fechas-compensaciones/"),
     cta: "Consultar estado y fechas",
   },
@@ -77,26 +77,96 @@ const subcasos = [
 ];
 
 const calendarioOR = [
-  { evento: "SII publica propuestas de declaración", plazo: "Marzo 2026" },
-  { evento: "Período de revisión de propuestas", plazo: "Marzo–Abril 2026" },
   {
-    evento: "Plazo para declarar (trabajadores dependientes)",
-    plazo: "30 de abril 2026",
+    evento: "Apertura del portal y propuestas de declaración",
+    plazo: "1 de abril de 2026",
   },
   {
-    evento: "Plazo para declarar (trabajadores independientes)",
-    plazo: "30 de abril 2026",
+    evento: "Plazo para declarar por internet (Formulario 22)",
+    plazo: "8 de mayo de 2026",
   },
-  { evento: "Inicio de devoluciones (primera ventana)", plazo: "Mayo 2026" },
-  { evento: "Ventana final de devoluciones", plazo: "Junio 2026" },
+  {
+    evento: "Devolución automática (declaró entre 1–8 de abril)",
+    plazo: "29 de abril de 2026",
+  },
+  {
+    evento: "Devolución (declaró entre 9–23 de abril)",
+    plazo: "15 de mayo de 2026",
+  },
+  {
+    evento: "Devolución (declaró entre 24 de abril y 8 de mayo)",
+    plazo: "27 de mayo de 2026",
+  },
+  {
+    evento: "Devolución por cheque (sin cuenta bancaria en TGR)",
+    plazo: "29 de mayo de 2026",
+  },
 ];
 
-const erroresComunes = [
-  "Confundir declaración aceptada con devolución pagada: son pasos distintos.",
-  "No revisar si la propuesta incluye todos tus empleadores o modificaciones.",
-  "Usar reemplazo cuando corresponde rectificatoria (o viceversa).",
-  "No consultar TGR si la devolución no llega: puede haber compensación activa.",
-  "Dejar vencer el plazo de rectificatoria creyendo que la declaración fue correcta.",
+const f22Secciones = [
+  {
+    seccion: "Rentas del trabajo",
+    contenido: "Sueldos, gratificaciones, horas extra",
+    preLlenada: "Sí — desde DJ de empleadores",
+  },
+  {
+    seccion: "Honorarios (boletas)",
+    contenido: "Total de boletas emitidas en 2025",
+    preLlenada: "Sí — desde plataforma boletas SII",
+  },
+  {
+    seccion: "Retenciones de honorarios (PPM)",
+    contenido: "15,25% retenido por clientes",
+    preLlenada: "Sí — calculado automáticamente",
+  },
+  {
+    seccion: "Bienes raíces / arriendos",
+    contenido: "Ingresos por arriendo",
+    preLlenada: "No — ingreso manual",
+  },
+  {
+    seccion: "Créditos (educación, APV, etc.)",
+    contenido: "Crédito por gastos en educación, APV",
+    preLlenada: "Parcialmente — verificar",
+  },
+  {
+    seccion: "Impuesto determinado",
+    contenido: "Total según tabla de tramos IGC",
+    preLlenada: "Auto-calculado",
+  },
+  {
+    seccion: "Retenciones totales",
+    contenido: "Total retenido durante el año",
+    preLlenada: "Pre-llenado",
+  },
+  {
+    seccion: "Diferencia (resultado final)",
+    contenido: "Positivo = debes pagar; Negativo = devolución",
+    preLlenada: "Auto-calculado",
+  },
+];
+
+const faqs = [
+  {
+    q: "¿Puedo declarar después del 8 de mayo?",
+    a: "Sí. Si debes pagar, el SII aplica multa del 10% del impuesto más interés del 1,5% mensual desde el vencimiento (Art. 97 N°2 y Art. 53 CT). Si tienes devolución a tu favor, declarar tarde no genera multa económica, pero retrasa el pago. Es siempre preferible declarar tarde que no declarar.",
+  },
+  {
+    q: "¿Qué pasa si tengo deudas con el SII y me corresponde devolución?",
+    a: "Si tienes deudas tributarias vigentes, el SII puede compensar el monto de devolución con la deuda (Art. 51 CT). Lo que quede a tu favor después de la compensación lo transfiere TGR. Si la deuda supera la devolución, recibes $0 y la deuda queda reducida.",
+  },
+  {
+    q: "¿Cómo sé si tengo propuesta automática?",
+    a: "Ingresa a sii.cl con tu RUT y clave tributaria durante el período de Operación Renta. Si el SII tiene información suficiente de tus empleadores, AFP y boletas, habrá una propuesta pre-llenada disponible. Puedes revisarla, modificarla si hay errores y aceptarla o declararla manualmente.",
+  },
+  {
+    q: "¿Necesito contador para declarar?",
+    a: "Para la mayoría de trabajadores dependientes o independientes con ingresos simples (un empleador o solo honorarios), el portal del SII es suficiente sin contador. Si tienes múltiples fuentes de ingreso, rentas del exterior o ganancias de capital, un contador puede reducir el riesgo de errores.",
+  },
+  {
+    q: "¿Qué documentos necesito tener a mano?",
+    a: "Cédula de identidad y RUT; clave tributaria SII (o ClaveÚnica); certificado de remuneraciones del empleador (retenciones anuales); certificado de AFP (movimientos y retenciones del año); número de cuenta bancaria para registrar la devolución en TGR.",
+  },
 ];
 
 const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
@@ -104,49 +174,107 @@ const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
   ""
 );
 const canonicalUrl = `${SITE_BASE}/guias/impuestos-personas/operacion-renta/`;
-const itemListSchema = {
+
+const articleSchema = {
   "@context": "https://schema.org",
-  "@type": "ItemList",
-  name: "Subhub Operación Renta Chile 2026",
+  "@type": "Article",
+  headline:
+    "Centro Operación Renta 2026: guía completa para declarar en Chile",
   description:
-    "Guías y herramientas para Operación Renta en Chile: F22, rectificación, devolución y retenciones.",
+    "Quién debe declarar el F22, plazos 2026, calculadora, calendario de devoluciones TGR y qué hacer si debes pagar.",
   url: canonicalUrl,
-  numberOfItems: subcasos.length,
-  itemListElement: subcasos.map((item, idx) => ({
-    "@type": "ListItem",
-    position: idx + 1,
-    name: item.titulo,
-    description: item.resumen,
-    url: `${SITE_BASE}${item.href}`,
+  datePublished: "2026-04-29",
+  dateModified: "2026-04-29",
+  author: { "@type": "Organization", name: "Monedario" },
+  publisher: { "@type": "Organization", name: "Monedario", url: SITE_BASE },
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map(faq => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: { "@type": "Answer", text: faq.a },
   })),
 };
 ---
 
 <Layout
-  title="Operación Renta 2026: F22, rectificación, devolución y retenciones | Monedario"
-  description="Centro de Operación Renta para Chile 2026: calendario OR, checklist del F22, cómo rectificar, estado de devolución y qué hacer con las compensaciones de TGR."
+  title="Operación Renta 2026: guía completa para declarar en Chile | Monedario"
+  description="Quién debe declarar el F22, plazos 2026, calculadora, calendario de devoluciones TGR y qué hacer si debes pagar. Guía completa Operación Renta Chile."
 >
   <script
     is:inline
     type="application/ld+json"
-    set:html={JSON.stringify(itemListSchema)}
+    set:html={JSON.stringify(articleSchema)}
+  />
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(faqSchema)}
   />
   <Header />
   <Breadcrumb />
 
   <main id="main-content" class="app-layout">
+    <!-- HERO -->
     <section class="border-b border-border py-8">
       <p
         class="mb-2 text-sm font-semibold tracking-widest text-accent uppercase"
       >
         Impuestos para personas
       </p>
-      <h1 class="mb-4 text-3xl font-bold sm:text-4xl">Operación Renta 2026</h1>
+      <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
+        Centro Operación Renta 2026
+      </h1>
       <p class="max-w-3xl text-secondary">
-        Todo lo que necesitas para Operación Renta en Chile: desde revisar la
-        propuesta del SII hasta consultar el estado de tu devolución o resolver
-        una observación. Elige el subcaso que corresponde a tu situación hoy.
+        Guía completa para declarar en Chile: quién debe presentar el F22,
+        plazos verificados, cómo calcular tu resultado y cuándo recibes la
+        devolución.
       </p>
+    </section>
+
+    <!-- RESPUESTA RÁPIDA -->
+    <section class="border-b border-border py-8">
+      <div class="rounded-xl border border-accent/30 bg-accent/5 p-6">
+        <p
+          class="mb-3 text-xs font-semibold tracking-widest text-accent uppercase"
+        >
+          Respuesta rápida
+        </p>
+        <h2 class="mb-3 text-xl font-bold">¿Debo declarar la renta en 2026?</h2>
+        <p class="mb-2 text-sm text-secondary">
+          <strong>Regla general:</strong> Debes declarar el Formulario 22 si en
+          2025 tuviste dos o más empleadores, emitiste boletas de honorarios,
+          recibiste rentas del exterior, o tuviste ingresos por arriendo u otras
+          rentas distintas al sueldo único.
+        </p>
+        <p class="mb-2 text-sm text-secondary">
+          <strong>Excepción:</strong> Si trabajaste todo 2025 con un solo
+          empleador y no tuviste otros ingresos, tu empleador ya realizó las
+          retenciones y probablemente estás exento.
+        </p>
+        <p class="text-sm text-secondary">
+          <strong>Plazo 2026:</strong> El plazo para declarar por internet es el{
+            " "
+          }<strong>8 de mayo de 2026</strong>. Fuentes:{" "}
+          <a
+            href="https://www.sii.cl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-accent underline underline-offset-2 hover:opacity-80"
+            >sii.cl</a
+          > y{" "}
+          <a
+            href="https://www.tgr.cl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-accent underline underline-offset-2 hover:opacity-80"
+            >tgr.cl</a
+          >.
+        </p>
+      </div>
     </section>
 
     <StartHere steps={startHereSteps} />
@@ -173,9 +301,122 @@ const itemListSchema = {
       </div>
     </section>
 
-    <!-- SUBCASOS -->
+    <!-- QUIÉN DEBE DECLARAR -->
     <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">Elige tu situación</h2>
+      <h2 class="mb-4 text-2xl font-bold">
+        ¿Quién DEBE declarar el Formulario 22?
+      </h2>
+      <p class="mb-6 max-w-3xl text-sm text-secondary">
+        La obligación de declarar depende del tipo de ingresos que tuviste
+        durante 2025. Si te encuentras en cualquiera de los siguientes casos,
+        debes presentar el F22 antes del <strong>8 de mayo de 2026</strong>.
+      </p>
+      <div class="space-y-4">
+        <div class="rounded-xl border border-border p-5">
+          <h3 class="mb-2 text-base font-semibold">
+            Trabajadores con dos o más empleadores
+          </h3>
+          <p class="text-sm text-secondary">
+            Si tuviste dos empleos simultáneos o sucesivos durante 2025
+            —aunque cada empleador haya retenido impuesto correctamente—, es
+            probable que el impuesto global complementario sobre tus ingresos
+            totales supere la suma de las retenciones individuales. El SII lo
+            detecta automáticamente, pero declarar es tu responsabilidad.
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-5">
+          <h3 class="mb-2 text-base font-semibold">
+            Trabajadores con ingresos por honorarios
+          </h3>
+          <p class="text-sm text-secondary">
+            Si emitiste boletas de honorarios en 2025, tu cliente retuvo el{" "}
+            <strong>15,25%</strong> como pago provisional mensual (PPM) por cada
+            boleta (Ley 21.133). Ese monto aparece como crédito en tu F22.
+            Debes declarar si tus ingresos anuales por honorarios y otras rentas
+            superaron los <strong>$11.265.804</strong> en 2025 (equivalente a
+            13,5 UTA).
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-5">
+          <h3 class="mb-2 text-base font-semibold">
+            Personas con rentas del exterior
+          </h3>
+          <p class="text-sm text-secondary">
+            Cualquier ingreso recibido desde fuera de Chile —sueldos,
+            honorarios, dividendos, arriendos— está sujeto a impuesto en Chile
+            y obliga a declarar, sin importar el monto (Art. 3° DL 824).
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-5">
+          <h3 class="mb-2 text-base font-semibold">
+            Personas con ingresos por arriendo
+          </h3>
+          <p class="text-sm text-secondary">
+            Si arrendaste una propiedad en 2025 y tus ingresos totales
+            —incluyendo arriendos— superaron los{" "}
+            <strong>$11.265.804 anuales</strong>, debes declarar. Para bienes
+            raíces no agrícolas pueden aplicar reglas especiales del Art. 20
+            N°1 LIR; verifica tu situación en sii.cl.
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-5">
+          <h3 class="mb-2 text-base font-semibold">Ganancias de capital</h3>
+          <p class="text-sm text-secondary">
+            Si vendiste acciones, fondos mutuos, bienes raíces u otros activos
+            en 2025 con ganancia, podrías estar obligado a declarar dependiendo
+            del monto y tipo de activo. La Ley 21.210 estableció que la venta
+            de bienes raíces por personas naturales tributa solo sobre la
+            ganancia que supere 8.000 UF acumuladas en la vida del
+            contribuyente (Art. 17 N°8 LIR). Verifica el régimen específico de
+            cada instrumento en sii.cl.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIÉN NO NECESITA DECLARAR -->
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-2xl font-bold">¿Quién NO necesita declarar?</h2>
+      <div class="space-y-4">
+        <div class="rounded-xl border border-border p-5">
+          <h3 class="mb-2 text-base font-semibold">
+            Trabajador con un solo empleador
+          </h3>
+          <p class="text-sm text-secondary">
+            Si trabajaste todo 2025 con un único empleador, sin otros ingresos,
+            y el empleador realizó las retenciones de segunda categoría mes a
+            mes, estás exento de declarar. Puedes hacerlo voluntariamente si
+            crees que te retuvieron más de lo que correspondía.
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-5">
+          <h3 class="mb-2 text-base font-semibold">
+            Pensionados con una sola pensión
+          </h3>
+          <p class="text-sm text-secondary">
+            Si tu única renta en 2025 fue una pensión de AFP u organismo
+            previsional y la entidad pagadora realizó las retenciones
+            correspondientes, generalmente no necesitas declarar (Art. 43 N°1
+            LIR). Debes declarar si tuviste ingresos adicionales a la pensión.
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-5">
+          <h3 class="mb-2 text-base font-semibold">
+            Ingresos bajo el umbral de exención
+          </h3>
+          <p class="text-sm text-secondary">
+            Si tus ingresos anuales totales durante 2025 estuvieron por debajo
+            de <strong>$11.265.804</strong> (equivalente a 13,5 UTA — umbral de
+            exención del IGC para el año tributario 2025), el impuesto global
+            complementario es cero.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUBCASOS NAV -->
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-2xl font-bold">Elige tu situación específica</h2>
       <ul class="grid gap-4 sm:grid-cols-2">
         {
           subcasos.map(item => (
@@ -196,16 +437,24 @@ const itemListSchema = {
 
     <!-- CALENDARIO OR -->
     <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">Calendario Operación Renta 2026</h2>
-      <p class="mb-4 text-sm text-muted">
-        Fechas referenciales. Verifica siempre en{" "}
+      <h2 class="mb-4 text-2xl font-bold">Plazos Operación Renta 2026</h2>
+      <p class="mb-4 text-sm text-secondary">
+        Fechas verificadas contra el calendario oficial TGR y SII campaña 2026.
+        Confirma siempre en{" "}
         <a
           href="https://www.sii.cl"
           target="_blank"
           rel="noopener noreferrer"
           class="text-accent underline underline-offset-4 hover:opacity-80"
           >sii.cl</a
-        > ya que el SII publica el calendario oficial con antelación.
+        > y{" "}
+        <a
+          href="https://www.tgr.cl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-accent underline underline-offset-4 hover:opacity-80"
+          >tgr.cl</a
+        >.
       </p>
       <div class="overflow-x-auto">
         <table class="w-full border-collapse text-sm">
@@ -215,7 +464,7 @@ const itemListSchema = {
                 >Evento</th
               >
               <th class="py-2 text-left font-semibold text-secondary"
-                >Plazo orientativo</th
+                >Fecha 2026</th
               >
             </tr>
           </thead>
@@ -233,15 +482,182 @@ const itemListSchema = {
       </div>
     </section>
 
-    <!-- ERRORES COMUNES -->
+    <!-- CUÁNDO TE PAGAN -->
     <section class="border-b border-border py-8">
-      <h2 class="mb-4 text-2xl font-bold">Errores comunes en OR</h2>
-      <ul class="list-disc space-y-2 pl-6 text-secondary">
-        {erroresComunes.map(error => <li>{error}</li>)}
-      </ul>
+      <h2 class="mb-4 text-2xl font-bold">¿Cuándo te pagan la devolución?</h2>
+      <p class="mb-5 max-w-3xl text-sm text-secondary">
+        Si el F22 muestra saldo a tu favor, el SII aprueba la declaración y la
+        Tesorería General de la República (TGR) realiza el pago. La fecha
+        depende de cuándo presentaste la declaración.
+      </p>
+      <div class="space-y-3">
+        <div class="rounded-lg border border-border p-4">
+          <p class="text-sm font-semibold">
+            Declaró entre 1 y 8 de abril → devolución el 29 de abril
+          </p>
+          <p class="mt-1 text-xs text-secondary">
+            Vía transferencia bancaria a la cuenta registrada en TGR.
+          </p>
+        </div>
+        <div class="rounded-lg border border-border p-4">
+          <p class="text-sm font-semibold">
+            Declaró entre 9 y 23 de abril → devolución el 15 de mayo
+          </p>
+        </div>
+        <div class="rounded-lg border border-border p-4">
+          <p class="text-sm font-semibold">
+            Declaró entre 24 de abril y 8 de mayo → devolución el 27 de mayo
+          </p>
+        </div>
+        <div class="rounded-lg border border-border p-4">
+          <p class="text-sm font-semibold">
+            Sin cuenta bancaria registrada → cheque el 29 de mayo
+          </p>
+          <p class="mt-1 text-xs text-secondary">
+            Para registrar tu cuenta en TGR: ingresa a tgr.cl con tu RUT y
+            clave SII, selecciona "Registro de cuenta bancaria para devolución
+            de impuestos" y confirma con tu segundo factor de autenticación.
+          </p>
+        </div>
+      </div>
+      <p class="mt-4 text-xs text-secondary">
+        Fuente: TGR, calendario de devoluciones campaña 2026, tgr.cl/consulta-renta/,
+        consultado 2026-04-29.
+      </p>
     </section>
 
-    <!-- LINKS OFICIALES -->
+    <!-- FORMULARIO 22 SECCIONES -->
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-2xl font-bold">
+        Formulario 22: secciones principales
+      </h2>
+      <p class="mb-4 text-sm text-secondary">
+        El F22 en línea pre-carga la mayoría de los datos desde las
+        declaraciones juradas de empleadores, AFP y plataforma de boletas
+        electrónicas SII.
+      </p>
+      <div class="overflow-x-auto">
+        <table class="w-full border-collapse text-sm">
+          <thead>
+            <tr class="border-b border-border">
+              <th class="py-2 pr-4 text-left font-semibold text-secondary"
+                >Sección</th
+              >
+              <th class="py-2 pr-4 text-left font-semibold text-secondary"
+                >Qué contiene</th
+              >
+              <th class="py-2 text-left font-semibold text-secondary"
+                >¿Pre-llenada?</th
+              >
+            </tr>
+          </thead>
+          <tbody>
+            {
+              f22Secciones.map(row => (
+                <tr class="border-b border-border/50">
+                  <td class="py-2 pr-4 font-medium text-foreground">
+                    {row.seccion}
+                  </td>
+                  <td class="py-2 pr-4 text-secondary">{row.contenido}</td>
+                  <td class="py-2 text-secondary">{row.preLlenada}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- QUÉ HACER SI DEBES PAGAR -->
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-2xl font-bold">
+        ¿Qué hacer si el resultado es que debes pagar?
+      </h2>
+      <div class="space-y-4">
+        <div class="rounded-xl border border-border p-5">
+          <h3 class="mb-2 text-base font-semibold">
+            Pagar en línea (recomendado)
+          </h3>
+          <p class="text-sm text-secondary">
+            Directamente en el portal SII al momento de enviar el formulario,
+            mediante Webpay o transferencia bancaria. Paga antes del{" "}
+            <strong>8 de mayo de 2026</strong> para evitar multas.
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-5">
+          <h3 class="mb-2 text-base font-semibold">Convenio de pago</h3>
+          <p class="text-sm text-secondary">
+            Si no puedes pagar el monto completo, TGR ofrece convenios en
+            cuotas. Los convenios generan un interés del{" "}
+            <strong>1,5% mensual</strong> sobre el saldo insoluto (Art. 53 CT).
+            Para montos mayores, hasta 36 cuotas.
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-5">
+          <h3 class="mb-2 text-base font-semibold">
+            Si no declaras ni pagas
+          </h3>
+          <p class="text-sm text-secondary">
+            Declarar fuera de plazo genera multa del{" "}
+            <strong>10% del impuesto adeudado</strong> más{" "}
+            <strong>1,5% mensual</strong> de interés desde el vencimiento (Art.
+            97 N°2 y Art. 53 CT). Si tienes devolución, declarar tarde no
+            genera multa económica —pero sí retrasa tu pago.
+          </p>
+        </div>
+      </div>
+      <p class="mt-4 text-xs text-secondary">
+        Esta guía describe el procedimiento general. No es asesoría tributaria.
+        Si tu situación es compleja, considera consultar con un contador
+        habilitado.
+      </p>
+    </section>
+
+    <!-- RETENCIÓN HONORARIOS -->
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-2xl font-bold">
+        Retención de honorarios: el 15,25% explicado
+      </h2>
+      <p class="mb-4 text-sm text-secondary">
+        Si emitiste boletas de honorarios en 2025, cada boleta tuvo una
+        retención del <strong>15,25%</strong> que tu cliente envió directamente
+        al SII como pago provisional mensual (PPM), según la tasa vigente
+        establecida por la Ley 21.133.
+      </p>
+      <div class="mb-4 rounded-lg border border-border p-5">
+        <p class="mb-2 text-sm font-semibold">Ejemplo conceptual</p>
+        <p class="text-sm text-secondary">
+          Si emitiste $1.000.000 en boletas, tus clientes retuvieron y enviaron
+          al SII $152.500 (15,25%). Al declarar, el SII calcula el impuesto que
+          corresponde sobre tu renta total del año. Si ese impuesto es $80.000,
+          el SII te devuelve $72.500. Si es $200.000, debes pagar $47.500
+          adicionales.
+        </p>
+      </div>
+      <a
+        href={getPath("/posts/boleta-honorarios-2026-retencion-cobertura/")}
+        class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+      >
+        Ver guía completa: boleta de honorarios 2026, líquido y cobertura →
+      </a>
+    </section>
+
+    <!-- FAQ -->
+    <section class="border-b border-border py-8">
+      <h2 class="mb-6 text-2xl font-bold">Preguntas frecuentes</h2>
+      <div class="space-y-4">
+        {
+          faqs.map(faq => (
+            <div class="rounded-xl border border-border p-5">
+              <p class="mb-2 text-sm font-semibold">{faq.q}</p>
+              <p class="text-sm text-secondary">{faq.a}</p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- CANALES OFICIALES -->
     <section class="border-b border-border py-8">
       <h2 class="mb-4 text-2xl font-bold">Canales oficiales</h2>
       <ul class="space-y-2 text-sm">
@@ -252,27 +668,27 @@ const itemListSchema = {
             rel="noopener noreferrer"
             class="text-accent underline underline-offset-4 hover:opacity-80"
           >
-            SII — declaración y propuestas
+            SII — declaración, propuestas, tablas y valores tributarios
           </a>
         </li>
         <li>
           <a
-            href="https://www.tesoreria.cl/web/Contenido/Documentos/4013/cn16.pdf"
+            href="https://www.tgr.cl"
             target="_blank"
             rel="noopener noreferrer"
             class="text-accent underline underline-offset-4 hover:opacity-80"
           >
-            TGR — resultado de devolución, compensaciones y retenciones (PDF)
+            TGR — estado de devolución, calendario de pagos y convenios
           </a>
         </li>
         <li>
           <a
-            href="https://www.chileatiende.gob.cl"
+            href="https://www.bcn.cl"
             target="_blank"
             rel="noopener noreferrer"
             class="text-accent underline underline-offset-4 hover:opacity-80"
           >
-            ChileAtiende — información general
+            BCN — texto del DL 824 (LIR) y DL 830 (Código Tributario)
           </a>
         </li>
       </ul>
@@ -283,9 +699,11 @@ const itemListSchema = {
       <div class="rounded-xl border border-accent/20 bg-accent/5 p-6">
         <h2 class="mb-2 text-xl font-bold">Qué cambió en 2026</h2>
         <p class="text-sm text-secondary">
-          Para 2026, la retención de honorarios aumentó al 15,25%. Verifica las
-          actualizaciones de tablas de impuesto de segunda categoría y topes de
-          UTM en{" "}
+          La retención de honorarios se mantiene en <strong>15,25%</strong> para
+          el año tributario 2025 (tasa fijada por Ley 21.133). El plazo de
+          declaración online cambió al <strong>8 de mayo de 2026</strong> (en
+          campañas anteriores era el 30 de abril). Verifica las tablas de
+          impuesto y topes de UTM vigentes en{" "}
           <a
             href="https://www.sii.cl"
             target="_blank"
@@ -294,9 +712,9 @@ const itemListSchema = {
             >sii.cl</a
           >.
         </p>
-        <p class="mt-2 text-xs text-muted">
-          Última actualización: 2026-04-06. Se revisa cuando el SII publica
-          cambios en calendarios o tablas.
+        <p class="mt-2 text-xs text-secondary">
+          Última actualización: 2026-04-29. Fuentes: SII y TGR, campaña
+          Operación Renta 2026.
         </p>
       </div>
     </section>
@@ -309,6 +727,11 @@ const itemListSchema = {
         ← Volver a Impuestos para personas
       </a>
     </section>
+
+    <SupportCallout
+      context="guia-impuestos"
+      pageTitle="esta guía sobre Operación Renta"
+    />
   </main>
 
   <Footer />

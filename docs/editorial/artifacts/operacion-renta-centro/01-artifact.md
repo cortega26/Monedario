@@ -1,6 +1,6 @@
 # Artifact: Centro Operación Renta
 
-**Status: UNPUBLISHED**
+**Status: PUBLISHED — 2026-04-29**
 
 ---
 
