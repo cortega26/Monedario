@@ -195,7 +195,7 @@ Los riesgos principales están en deuda de mantenibilidad y consistencia operati
 | `sharp` | `^0.34.5` | `0.34.5` | Pipeline de imágenes |
 | `slugify` | `^1.6.6` | `1.6.6` | Slugs |
 | `lodash.kebabcase` | `^4.1.1` | `4.1.1` | Slug fallback |
-| `typescript` | `^5.9.3` | `5.9.3` | Tipado |
+| `typescript` | `^6.0.3` | `6.0.3` | Tipado |
 | `eslint` | `^9.39.2` | `9.39.3` | Lint |
 | `eslint-plugin-astro` | `^1.5.0` | `1.6.0` | Lint Astro |
 | `@astrojs/check` | `^0.9.2` | `0.9.6` | Typecheck Astro |

@@ -1,0 +1,81 @@
+name: TS7 Readiness Check
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 9 * * 1" # Every Monday at 09:30 UTC
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    name: Check TypeScript 7 readiness
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: "🟢 Setup Node.js"
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: "🔎 Check TS7 readiness"
+        id: check
+        run: node scripts/check-ts7-readiness.mjs
+
+      - name: "📝 Create or update readiness issue when TS7 ships"
+        if: steps.check.outputs.ts7_released == 'true'
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const title = "TS7 shipped — execute compatibility audit";
+            const tsVersion = "${{ steps.check.outputs.ts_latest }}";
+            const astroCheckVersion = "${{ steps.check.outputs.astro_check_latest }}";
+            const astroPeerTs = "${{ steps.check.outputs.astro_peer_ts }}";
+            const body = [
+              "## TypeScript 7 stable has shipped 🎉",
+              "",
+              `- \`typescript@${tsVersion}\` is now the stable release.`,
+              `- \`@astrojs/check@${astroCheckVersion}\` peerDep typescript: \`${astroPeerTs}\``,
+              "",
+              "## Next steps",
+              "",
+              "Execute the audit plan in `docs/backlog/TS7_COMPATIBILITY_AUDIT_2026-04-30.md`:",
+              "",
+              "1. Verify `@astrojs/check` Volar layer supports TS7 (check peer dep range and release notes).",
+              "2. Execute Phases 1–6 of the audit plan.",
+              "3. Produce `docs/reports/ts7-compatibility-audit.md`.",
+              "4. Disable this workflow (`.github/workflows/check-ts7-readiness.yml`) once the audit is complete.",
+            ].join("\n");
+
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+            });
+            const existing = issues.find((i) => i.title === title);
+            if (existing) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                body,
+              });
+              core.info(`Updated issue #${existing.number}`);
+            } else {
+              const created = await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title,
+                body,
+              });
+              core.info(`Created issue #${created.data.number}`);
+            }
