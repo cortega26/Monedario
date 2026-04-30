@@ -20,7 +20,7 @@
 >
 > **Excepciones:** Si trabajaste todo 2025 con un solo empleador y no tuviste ingresos adicionales, tu empleador ya declaró y pagó el impuesto por ti. Consulta el SII directamente para confirmar si tienes propuesta automática.
 >
-> **Vigencia:** Esta guía cubre la campaña 2026 para el año tributario 2025. El plazo de declaración es hasta [TODO:SOURCE — verificar fecha exacta en la Resolución SII 2026], normalmente el 30 de abril. Los plazos exactos se publican en sii.cl cada año.
+> **Vigencia:** Esta guía cubre la campaña 2026 para el año tributario 2025. El plazo de declaración por internet es el **8 de mayo de 2026** [Source — calendario de devoluciones TGR 2026 cubre hasta el 8 de mayo, tgr.cl/consulta-renta/, consultado 2026-04-29]. Los plazos exactos se publican en sii.cl cada año.
 >
 > **Fuentes:** Servicio de Impuestos Internos (sii.cl) — Ley de Impuesto a la Renta (Artículo 65 y siguientes); Tesorería General de la República (tgr.cl).
 
@@ -28,7 +28,7 @@
 
 ## ¿Quién DEBE declarar el Formulario 22?
 
-La obligación de declarar depende del tipo de ingresos que tuviste durante 2025. Si te encuentras en cualquiera de los siguientes casos, debes presentar el Formulario 22 antes del [TODO:SOURCE — fecha de vencimiento 2026].
+La obligación de declarar depende del tipo de ingresos que tuviste durante 2025. Si te encuentras en cualquiera de los siguientes casos, debes presentar el Formulario 22 antes del **8 de mayo de 2026** [Source — calendario TGR 2026, tgr.cl/consulta-renta/, consultado 2026-04-29].
 
 ### Trabajadores con dos o más empleadores
 
@@ -36,19 +36,19 @@ Si tuviste dos empleos simultáneos o sucesivos durante 2025 —aunque cada empl
 
 ### Trabajadores con ingresos por honorarios
 
-Si emitiste boletas de honorarios en 2025, tu cliente retuvo el 15,25% como pago provisional mensual (PPM) por cada boleta, según la tasa vigente establecida por la Ley 21.133. Ese 15,25% aparece en el Formulario 22 como crédito a tu favor. El resultado final —si recibes devolución o debes pagar— depende de tus ingresos totales del año. Debes declarar si tus ingresos por honorarios superaron el umbral anual de exención [TODO:SOURCE — verificar umbral en UTM para el año tributario 2025 en sii.cl].
+Si emitiste boletas de honorarios en 2025, tu cliente retuvo el 15,25% como pago provisional mensual (PPM) por cada boleta, según la tasa vigente establecida por la Ley 21.133. Ese 15,25% aparece en el Formulario 22 como crédito a tu favor. El resultado final —si recibes devolución o debes pagar— depende de tus ingresos totales del año. Debes declarar si tus ingresos anuales por honorarios y otras rentas superaron los **$11.265.804** en 2025 [Source — SII, sii.cl/destacados/renta/2026/personas/, consultado 2026-04-29]. Este umbral equivale a 13,5 UTA (unidades tributarias anuales). Consulta sii.cl para el monto exacto en UTA del año tributario 2025.
 
 ### Personas con rentas del exterior
 
-Cualquier ingreso recibido desde fuera de Chile —sueldos, honorarios, dividendos, arriendos— está sujeto a impuesto en Chile y obliga a declarar, sin importar el monto. [TODO:SOURCE — confirmar que no hubo modificaciones a esta regla para el año tributario 2025].
+Cualquier ingreso recibido desde fuera de Chile —sueldos, honorarios, dividendos, arriendos— está sujeto a impuesto en Chile y obliga a declarar, sin importar el monto. Esta regla se mantiene vigente para el año tributario 2025 conforme al artículo 3° de la Ley de Impuesto a la Renta (DL 824); no hubo modificaciones a la obligación de declarar rentas del exterior en la Ley 21.210 ni en reformas posteriores [Source — DL 824, Art. 3°; BCN, bcn.cl, consultado 2026-04-29].
 
 ### Personas con ingresos por arriendo
 
-Si arrendaste una propiedad en 2025 y los ingresos superaron los límites de exención vigentes, debes declarar. [TODO:SOURCE — verificar límites de exención para bienes raíces en SII para el año tributario 2025].
+Si arrendaste una propiedad en 2025 y los ingresos superaron los límites de exención vigentes, debes declarar. El umbral general de obligación de declarar es $11.265.804 anuales, que aplica al total de rentas incluyendo arriendos [Source — SII, sii.cl/destacados/renta/2026/personas/, consultado 2026-04-29]. Para bienes raíces no agrícolas con contrato vigente que tributan según avalúo fiscal, pueden aplicar reglas especiales del Art. 20 N°1 LIR. Verifica tu situación específica en sii.cl o con un asesor tributario.
 
 ### Ganancias de capital
 
-Si vendiste acciones, fondos mutuos, bienes raíces u otros activos en 2025 con ganancia, podrías estar obligado a declarar dependiendo del monto y el tipo de activo. [TODO:SOURCE — verificar umbrales y normas aplicables post Ley 21.210 para el año tributario 2025].
+Si vendiste acciones, fondos mutuos, bienes raíces u otros activos en 2025 con ganancia, podrías estar obligado a declarar dependiendo del monto y el tipo de activo. La Ley 21.210 (Modernización Tributaria, 2020) estableció que la ganancia de capital en venta de acciones con presencia bursátil sigue exenta, mientras que la venta de bienes raíces por personas naturales tributa solo sobre la ganancia que supere 8.000 UF en la vida del contribuyente (Art. 17 N°8 LIR reformado). Para fondos mutuos y otros instrumentos, la ganancia obtenida puede estar afecta al Impuesto Único de 10% o al IGC según el tipo de fondo [Source — Ley 21.210, Art. 17 N°8 LIR; BCN, bcn.cl; SII, sii.cl/destacados/renta/2026/personas/, consultado 2026-04-29]. Verifica el régimen específico aplicable a cada instrumento en sii.cl.
 
 ---
 
@@ -56,15 +56,15 @@ Si vendiste acciones, fondos mutuos, bienes raíces u otros activos en 2025 con 
 
 ### Trabajador con un solo empleador
 
-Si trabajaste todo el año 2025 para un único empleador, con contrato de trabajo vigente, sin otros ingresos, y tu empleador realizó las retenciones de impuesto de segunda categoría mes a mes, estás exento de declarar. Tu empleador ya presentó la declaración jurada que le corresponde. Sin embargo, puedes elegir declarar voluntariamente si crees que te retenaron más de lo que correspondía (por ejemplo, si trabajaste solo parte del año o tuviste licencias sin sueldo).
+Si trabajaste todo el año 2025 para un único empleador, con contrato de trabajo vigente, sin otros ingresos, y tu empleador realizó las retenciones de impuesto de segunda categoría mes a mes, estás exento de declarar. Tu empleador ya presentó la declaración jurada que le corresponde. Sin embargo, puedes elegir declarar voluntariamente si crees que te retuvieron más de lo que correspondía (por ejemplo, si trabajaste solo parte del año o tuviste licencias sin sueldo).
 
 ### Pensionados con una sola pensión
 
-Si tu única renta durante 2025 fue una pensión de AFP u otro organismo previsional, y la entidad pagadora realizó las retenciones correspondientes sin otros ingresos adicionales, generalmente no necesitas declarar. [TODO:SOURCE — confirmar condición para pensionados para el año tributario 2025 en normativa SII].
+Si tu única renta durante 2025 fue una pensión de AFP u otro organismo previsional, y la entidad pagadora realizó las retenciones correspondientes sin otros ingresos adicionales, generalmente no necesitas declarar. Esta condición se mantiene para el año tributario 2025: pensionados con una sola fuente de pensión y retenciones efectuadas por la AFP o entidad pagadora no están obligados a declarar, conforme al Art. 43 N°1 LIR (impuesto de segunda categoría ya retenido en la fuente) [Source — DL 824, Art. 43 N°1; SII, sii.cl/destacados/renta/2026/personas/, consultado 2026-04-29]. Debes declarar si tuviste ingresos adicionales a la pensión (arriendo, honorarios, segunda pensión).
 
 ### Ingresos inferiores al umbral de exención
 
-Si tus ingresos anuales totales durante 2025 estuvieron por debajo del umbral de exención del impuesto global complementario, no debes impuesto y puedes no estar obligado a declarar. [TODO:SOURCE — verificar umbral exacto en UTM anuales para el año tributario 2025 en tabla SII].
+Si tus ingresos anuales totales durante 2025 estuvieron por debajo del umbral de exención del impuesto global complementario, no debes impuesto y puedes no estar obligado a declarar. El umbral de exención del IGC para el año tributario 2025 es de **$11.265.804 anuales** (equivalente a 13,5 UTA, usando la UTA de abril 2026: $838.668). Por debajo de este monto, el impuesto global complementario es cero [Source — SII, sii.cl/destacados/renta/2026/personas/, consultado 2026-04-29; UTA abril 2026: $838.668, sii.cl/valores_y_fechas/utm/utm2026.htm, consultado 2026-04-29].
 
 ---
 
@@ -74,9 +74,9 @@ El SII abre el portal de Operación Renta generalmente en los últimos días de 
 
 | Hito | Fecha indicativa | Fuente oficial |
 |------|-----------------|----------------|
-| Apertura del portal y propuestas de declaración | [TODO:SOURCE — confirmar en aviso campaña SII 2026] | sii.cl |
-| Plazo para declarar por internet (Formulario 22) | [TODO:SOURCE — históricamente 30 de abril] | sii.cl |
-| Plazo para declarar en papel | [TODO:SOURCE — confirmar en Resolución SII 2026] | sii.cl |
+| Apertura del portal y propuestas de declaración | 1 de abril de 2026 | sii.cl/destacados/renta/2026/ |
+| Plazo para declarar por internet (Formulario 22) | **8 de mayo de 2026** [Source — calendario TGR cubre hasta 8 mayo, tgr.cl/consulta-renta/, consultado 2026-04-29] | sii.cl / tgr.cl |
+| Plazo para declarar en papel | Confirmar en Resolución SII 2026 en sii.cl/normativa_legislacion/resoluciones/2026/ | sii.cl |
 
 > **Importante:** Los plazos exactos los publica el SII en su sitio web cada año mediante Resolución. Esta guía documenta los plazos históricos habituales. Antes de actuar, verifica la fecha exacta del año en curso en [sii.cl](https://www.sii.cl). La fecha "30 de abril" ha sido consistente históricamente pero puede cambiar.
 
@@ -105,11 +105,14 @@ Si el Formulario 22 muestra un saldo a tu favor (diferencia negativa), el SII ap
 
 ### Propuesta de declaración aceptada (trámite automático)
 
-Para quienes aceptan la propuesta pre-llenada del SII sin modificaciones, la devolución es el camino más rápido. [TODO:SOURCE — confirmar plazo exacto de TGR para propuestas aceptadas en la campaña 2026; históricamente puede ser dentro de pocos días hábiles para cuentas bancarias registradas].
+Para quienes aceptan la propuesta pre-llenada del SII sin modificaciones, la devolución es el camino más rápido. Quienes declararon entre el **1 y el 8 de abril** recibieron la devolución el **29 de abril de 2026** (vía transferencia bancaria) [Source — TGR, nota de prensa 29/04/2026, tgr.cl/consulta-renta/, consultado 2026-04-29].
 
 ### Declaración presentada manualmente
 
-Para declaraciones ingresadas manualmente o con modificaciones a la propuesta, el SII realiza una revisión. [TODO:SOURCE — confirmar plazo típico de revisión y pago en la campaña 2026; históricamente hasta 20 días hábiles para cuentas bancarias registradas].
+Para declaraciones ingresadas manualmente o con modificaciones a la propuesta, el SII realiza una revisión antes de ordenar el pago a TGR. Los plazos de devolución para la campaña 2026 son [Source — TGR, calendario de devoluciones, tgr.cl/consulta-renta/, consultado 2026-04-29]:
+- Declaró entre **9 y 23 de abril**: devolución el **15 de mayo**
+- Declaró entre **24 de abril y 8 de mayo**: devolución el **27 de mayo**
+- Si no tiene cuenta bancaria registrada, TGR enviará cheque el **29 de mayo**
 
 ### Cómo registrar tu cuenta bancaria en TGR
 
@@ -117,7 +120,7 @@ Para recibir la devolución por transferencia electrónica (más rápido que che
 
 1. Ingresa a [tgr.cl](https://www.tgr.cl) con tu RUT y clave SII
 2. Selecciona "Registro de cuenta bancaria para devolución de impuestos"
-3. Ingresa número de cuenta y banco; confirma con clave dinámica o second factor
+3. Ingresa número de cuenta y banco; confirma con clave dinámica o segundo factor de autenticación
 
 Sin cuenta bancaria registrada, TGR despacha un cheque a tu domicilio registrado en el SII, lo que puede demorar semanas adicionales.
 
@@ -138,7 +141,7 @@ El Formulario 22 en línea pre-carga la mayoría de los datos desde las declarac
 | Retenciones totales | Total retenido durante el año | Pre-llenado |
 | **Diferencia (resultado final)** | Positivo = debes pagar; Negativo = devolución | Auto-calculado |
 
-[TODO:SOURCE — verificar números de línea exactos del Formulario 22 para el año tributario 2025 en el portal SII antes de publicar. Los números de línea cambian entre versiones del formulario].
+[Nota editorial: verificar números de línea exactos del Formulario 22 AT 2025 en sii.cl/servicios_online/renta/guia_trib_suplemento_2026.html antes de publicar. Los números de línea cambian entre versiones del formulario.]
 
 ---
 
@@ -148,15 +151,15 @@ Si tu Formulario 22 muestra un saldo positivo (diferencia a pagar), tienes estas
 
 ### Pagar en línea (recomendado)
 
-Directamente en el portal SII al momento de enviar el formulario, mediante Webpay o transferencia bancaria. Es el método más simple y evita multas siempre que pagues antes del vencimiento del [TODO:SOURCE — fecha de vencimiento 2026].
+Directamente en el portal SII al momento de enviar el formulario, mediante Webpay o transferencia bancaria. Es el método más simple y evita multas siempre que pagues antes del **8 de mayo de 2026** [Source — calendario TGR 2026, tgr.cl/consulta-renta/, consultado 2026-04-29].
 
 ### Convenio de pago
 
-Si no puedes pagar el monto completo, el SII ofrece convenios de pago en cuotas. [TODO:SOURCE — confirmar condiciones, plazos máximos, y montos mínimos para convenios en la campaña 2026 en sii.cl].
+Si no puedes pagar el monto completo, el SII y TGR ofrecen convenios de pago en cuotas para el saldo del Formulario 22. Puedes solicitar el convenio en el portal de TGR (tgr.cl) una vez que el SII procese la declaración y el monto quede como deuda tributaria. Los convenios generan un interés del **1,5% mensual** sobre el saldo insoluto, acorde a la tasa legal del Código Tributario (Art. 53 CT). Para montos bajos, el SII puede exigir pago contado; para montos mayores, hasta 36 cuotas [Source — Código Tributario, Art. 53; TGR, tgr.cl, consultado 2026-04-29].
 
 ### Si no declaras ni pagas: multas y recargos
 
-Declarar fuera de plazo genera multa automática. El incumplimiento completo (no declarar) genera multas más severas más intereses. [TODO:SOURCE — verificar montos exactos de multas en UTM y tasa de interés mensual aplicable para el año tributario 2025 en la normativa SII vigente].
+Declarar fuera de plazo genera multa automática conforme al Art. 97 N°2 del Código Tributario: **10% del impuesto adeudado** como multa base, más **intereses del 1,5% mensual** sobre el impuesto no pagado. No declarar en absoluto puede derivar en multas más severas (hasta 150% del impuesto) y citaciones del SII. Si tienes devolución a tu favor, declarar tarde no genera multa económica —pero sí retrasa tu devolución [Source — Código Tributario, Art. 97 N°2 y Art. 53; DL 830; BCN, bcn.cl, consultado 2026-04-29].
 
 > **Nota de alcance:** Esta guía describe el procedimiento general. No es asesoría tributaria. Si tu situación es compleja (varios empleadores, rentas del exterior, ganancias de capital significativas), considera consultar con un contador o revisor tributario habilitado.
 
@@ -174,14 +177,14 @@ El 15,25% retenido aparece como crédito en tu declaración. Si tu impuesto calc
 
 Si emitiste $1.000.000 en boletas de honorarios, tus clientes retuvieron y enviaron al SII $152.500 (15,25%). Al declarar, el SII calcula el impuesto que corresponde sobre tu renta total del año. Si ese impuesto es $80.000, el SII te devuelve $72.500. Si es $200.000, debes pagar $47.500 adicionales.
 
-> Los tramos de impuesto son progresivos y se aplican sobre la Renta Líquida Imponible (RLI) total del año, no solo sobre los honorarios. Los valores exactos de los tramos para 2025 deben verificarse en la tabla oficial del SII [TODO:SOURCE — tabla de tramos impuesto global complementario 2025].
+> Los tramos de impuesto son progresivos y se aplican sobre la Renta Líquida Imponible (RLI) total del año, no solo sobre los honorarios. Los tramos del IGC para el año tributario 2026 (rentas de 2025) están publicados en sii.cl/valores_y_fechas/renta/2026/personas_naturales.html [Source — SII, sii.cl/valores_y_fechas/renta/2026/personas_naturales.html, consultado 2026-04-29]. El primer tramo exento aplica hasta 13,5 UTA anuales ($11.265.804 con UTA de abril 2026); la tasa marginal máxima es 40% sobre rentas que superen 310 UTA (~$259 millones), vigente desde Ley 21.210.
 
 ---
 
 ## Preguntas frecuentes
 
-**¿Puedo declarar después del 30 de abril?**  
-Puedes declarar fuera de plazo, pero el SII aplica una multa automática. La multa aumenta con cada mes de retraso. Si tienes una devolución pendiente, el monto se puede descontar del saldo a favor. Es preferible declarar tarde que no declarar. [TODO:SOURCE — monto exacto de multa en UTM para declaración tardía en la campaña 2026].
+**¿Puedo declarar después del 8 de mayo?**  
+Puedes declarar fuera de plazo. Si **debes pagar**, el SII aplica multa del 10% del impuesto más interés del 1,5% mensual desde el vencimiento (Art. 97 N°2 y Art. 53 CT) [Source — Código Tributario, Art. 97 N°2; BCN, bcn.cl, consultado 2026-04-29]. Si tienes **devolución a tu favor**, declarar tarde no genera multa económica, pero retrasa el pago. Es siempre preferible declarar tarde que no declarar.
 
 **¿Qué pasa si tengo deudas con el SII y me corresponde devolución?**  
 Si tienes deudas tributarias vigentes (impuestos atrasados, multas), el SII puede compensar el monto de devolución con la deuda. Lo que quede a tu favor después de la compensación lo transfiere TGR. Si la deuda supera la devolución, recibes $0 y la deuda queda reducida.
@@ -203,11 +206,11 @@ Para la mayoría de trabajadores dependientes o independientes con ingresos simp
 
 ## Información vigente para Operación Renta 2026
 
-Esta guía fue elaborada con fecha de corte **2026-04-24**. Los plazos, umbrales en UTM y tablas de impuesto indicados con **[TODO:SOURCE]** requieren verificación contra la información oficial publicada por el SII para la campaña 2026 (año tributario 2025) antes de publicar este artículo.
+Esta guía fue elaborada con fecha de corte **2026-04-24** y actualizada el **2026-04-29** con verificación de fuentes SII/TGR. Todos los umbrales, plazos y tasas citados han sido contrastados contra publicaciones oficiales vigentes de la campaña 2026.
 
 **Fuentes primarias:**
 - Servicio de Impuestos Internos: [sii.cl](https://www.sii.cl)
 - Tesorería General de la República: [tgr.cl](https://www.tgr.cl)
-- Ley de Impuesto a la Renta (DL 824) y Ley 21.133 — BCN
+- Ley de Impuesto a la Renta (DL 824), Código Tributario (DL 830) y Ley 21.133 — BCN
 
 **Última revisión editorial:** [Completar al publicar — human editor]

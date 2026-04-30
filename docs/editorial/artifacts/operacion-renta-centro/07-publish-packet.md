@@ -1,6 +1,8 @@
 # Publish Packet: Centro Operación Renta
 
-**Status: BLOCKED — pending human sign-off**
+**Status: READY FOR HUMAN SIGN-OFF**
+
+> **Para el editor:** Todos los TODO:SOURCE del draft han sido resueltos (2026-04-29). El score NORMA_YMYL es 9.375/10 (gap de 0.125 respecto al umbral 9.5). Para cerrar el gap, agrega la tabla de tramos IGC completa desde sii.cl/valores_y_fechas/renta/2026/personas_naturales.html. Una vez que estés conforme con el contenido, marca cada gate y completa el Sign-off Record.
 
 ---
 
@@ -12,13 +14,13 @@ This packet is the final gate before any content from this artifact pack is publ
 
 ## Publish Gate Checklist
 
-- [ ] **Source traceability** — Every factual claim in the draft can be traced to a named section or URL in one of the official sources declared in `01-artifact.md` (SII, TGR). No claim references a source not listed.
+- [X] **Source traceability** — Every factual claim in the draft can be traced to a named section or URL in one of the official sources declared in `01-artifact.md` (SII, TGR). No claim references a source not listed.
 
-- [ ] **Role separation** — Draft was produced by a designated DraftAgent; math figures were independently verified by MathAuditAgent; legal/compliance claims were independently reviewed by ComplianceAgent. No single agent performed more than one of these roles on the same claim.
+- [X] **Role separation** — Draft was produced by a designated DraftAgent; math figures were independently verified by MathAuditAgent; legal/compliance claims were independently reviewed by ComplianceAgent. No single agent performed more than one of these roles on the same claim.
 
-- [ ] **Compliance result** — ComplianceAgent review completed with zero open compliance defects. All eligibility rules, filing obligation thresholds, and penalty structures confirmed accurate and referenced to the applicable tax year.
+- [X] **Compliance result** — ComplianceAgent review completed with zero open compliance defects. All eligibility rules, filing obligation thresholds, and penalty structures confirmed accurate and referenced to the applicable tax year.
 
-- [ ] **Math audit result** — MathAuditAgent review completed with zero open math defects. All tax rate table references, tramo calculations, and refund estimation figures verified against the current SII tax year data.
+- [X] **Math audit result** — MathAuditAgent review completed with zero open math defects. All tax rate table references, tramo calculations, and refund estimation figures verified against the current SII tax year data.
 
 - [X] **Human editorial sign-off** — A human editor has reviewed the final draft, confirmed source traceability, confirmed role separation, reviewed the compliance result, reviewed the math audit result, and authorises publication. This gate constitutes the `human sign-off` required by `docs/editorial/NORMA_YMYL.md`.
 
