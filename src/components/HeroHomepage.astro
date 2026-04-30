@@ -1,6 +1,6 @@
 ---
+import { getCollection } from "astro:content";
 import { getPath } from "@/utils/getPath";
-import { changelog } from "@/data/changelog";
 
 interface Props {
   headline?: string;
@@ -35,20 +35,26 @@ const ctaLinks = [
   },
 ];
 
+// Fecha automática: máximo de updatedDate / pubDate entre todos los posts publicados.
+const publishedPosts = await getCollection("blog", ({ data }) => !data.draft && !data.unlisted);
+const latestDate = publishedPosts.reduce<Date>((max, post) => {
+  const d = post.data.updatedDate ?? post.data.pubDate;
+  return d > max ? d : max;
+}, new Date(0));
+const latestDateLabel = latestDate.toLocaleDateString("es-CL", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  timeZone: "America/Santiago",
+});
+
 const trustSignals: Array<string | { label: string; href: string }> = [
   "Sin publicidad",
   "Fuentes oficiales",
   "Sin registro requerido",
   "Legislación chilena vigente",
   {
-    label: `Actualizado al ${(() => {
-      const [y, m, d] = changelog[0].date.split("-").map(Number);
-      return new Date(y, m - 1, d).toLocaleDateString("es-CL", {
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-      });
-    })()}`,
+    label: `Actualizado al ${latestDateLabel}`,
     href: "/cambios/",
   },
 ];

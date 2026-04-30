@@ -49,12 +49,11 @@ Si la respuesta es sí → entra. Si es no → no entra.
 
 ## Regla del umbral: ¿actualizo la fecha del trust badge?
 
-La fecha "Actualizado al [fecha]" en la homepage se actualiza **solo cuando se añade al menos una entrada** en `/cambios/` ese día.
+La fecha "Actualizado al [fecha]" en la homepage **se calcula automáticamente** en tiempo de build: es el máximo de `updatedDate` / `pubDate` entre todos los posts publicados (`draft: false`, `unlisted: false`) de la colección `blog`.
 
-No se actualiza por:
-- Deploys sin cambio editorial
-- Fixes técnicos
-- Rebuilds automáticos
+No requiere ninguna acción manual. Publicar o actualizar un artículo actualiza la fecha automáticamente.
+
+El archivo `src/data/changelog.ts` sigue siendo la fuente de las entradas editoriales que se muestran en `/cambios/` (título + descripción orientada al lector). No controla la fecha del trust badge.
 
 ---
 
