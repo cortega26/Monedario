@@ -77,6 +77,8 @@ Confirms all 34 published articles have a valid AVIF file under 80 KB. Must exit
 
 **Invariant:** every entry in `prompts.json` must have a distinct `prompt` text and a distinct `sceneId`. See `docs/domain/CONTENT/INVARIANTS.md` § INV-015 for the formal rule.
 
+**Current rule of thumb:** prompt uniqueness should be solved in `scripts/hero-images/prompt-plan.mjs`, not by long-lived manual edits to generated JSON. `sceneId` is article-specific and deterministic: `Template:approvedModelId--slug`.
+
 **Why this breaks silently:** `build-prompts.mjs` routes articles by keyword match. Multiple articles in the same cluster (e.g. several cesantía articles) will match the same rule and receive identical prompts. The router is not aware of cross-article uniqueness — that responsibility falls on the human operator.
 
 **When to check:** before creating/updating hero assets any time `build-prompts` has been re-run or new articles have been added.
@@ -101,12 +103,12 @@ for p, slugs in dupes.items():
 
 **How to fix a duplicate group:**
 
-1. Identify what makes each article's topic distinct (different props, posture, or composition).
-2. Edit each duplicate entry's `"prompt"` in `prompts.json` directly — do **not** re-run `build-prompts` (it will overwrite your fixes).
-3. For each change, also update:
-   - `"sceneId"` → unique identifier, format `Template:topic-specific-scene`
-   - `"promptHash"` → SHA-256 of the new prompt string
-4. Re-run the check command above to confirm zero duplicates.
+1. Identify what makes each article's topic distinct (different props, posture, document type, comparison shape, or timeline).
+2. Update `scripts/hero-images/prompt-plan.mjs`:
+   - add or refine a slug override if the article is misrouted;
+   - add an article-specific prompt variant if the routing family is correct but the scene is too generic.
+3. Rebuild prompts with `pnpm run images:build-prompts`.
+4. Re-run the duplicate check and confirm zero repeated `prompt` / `sceneId`.
 5. Then proceed to manual image creation for each affected slug.
 
 **Scene prop vocabulary (for unique differentiation):**

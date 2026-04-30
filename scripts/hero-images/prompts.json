@@ -9,7 +9,7 @@
       "targetImagePath": "/images/hero/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.avif",
       "template": "A",
       "approvedModelId": "ahorro",
-      "sceneId": "A:ahorro",
+      "sceneId": "A:ahorro--ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
       "readerSituation": "Persona organizando ahorro o controlando gastos cotidianos.",
       "primaryIntent": "comparar",
       "toneClass": "progreso",
@@ -28,8 +28,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #059669.\nScene: one geometric human figure standing, reaching forward, shown from behind or as a faceless silhouette.\nThe figure is near glass jar with coins. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "2517c953376fcb6ad0bfd7aa5184e4bb349a564d1c3b445d89fe9d870fe55c3e",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #059669.\nScene: three flat investment containers arranged side by side with clearly different profiles: one stable block, one medium stepped stack, and one taller volatile stack.\nUse only geometric containers, divider blocks, and one small comparison arrow between the middle and right options.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: the three containers occupy the central 70% of the canvas with generous horizontal margins.\nSemantic focus: choosing between DAP, mutual funds, and ETFs according to risk and cost.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the three containers and the comparison arrow.",
+      "promptHash": "3d14c1d2f37b534aed129a59972dee38fe8be162a7567b8586c25ba51230665f",
       "selectors": {
         "ruleId": "ahorro",
         "category": "ahorro-inversion",
@@ -44,19 +44,19 @@
       "sourcePath": "src/data/blog/boleta-honorarios-2026-retencion-cobertura.md",
       "targetImagePath": "/images/hero/boleta-honorarios-2026-retencion-cobertura.avif",
       "template": "A",
-      "approvedModelId": "afp-pension",
-      "sceneId": "A:afp-pension",
-      "readerSituation": "Persona evaluando ahorro previsional y decisiones de largo plazo.",
-      "primaryIntent": "explicar",
+      "approvedModelId": "liquidacion-documento",
+      "sceneId": "A:liquidacion-documento--boleta-honorarios-2026-retencion-cobertura",
+      "readerSituation": "Persona que emite boletas de honorarios y necesita separar retencion, liquido recibido y cobertura anual.",
+      "primaryIntent": "calcular",
       "toneClass": "educativo",
       "visualEvidence": [
-        "text contains 'previsional' in article body/title context",
-        "primary intent classified as 'explicar' from article text",
-        "reader situation anchored to scene rule 'prevision'"
+        "slug override: honorarios cash-flow and retention article",
+        "primary intent classified as 'calcular' from article text",
+        "reader situation anchored to scene rule 'honorarios'"
       ],
       "palette": {
-        "category": "Finanzas general / AFP / Empleo / Ahorro",
-        "hex": "#0d9488"
+        "category": "Credito / Deuda / Impuestos / Riesgo",
+        "hex": "#d97706"
       },
       "modelPlan": {
         "provider": "openai",
@@ -64,14 +64,16 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one geometric human figure standing upright, shown from behind or as a faceless silhouette.\nThe figure is near shield, upward arrow. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "5a6a3376dd19c47dbca3f73af15eb56c3a3fc25303bf4af0777eedd5bf27dafa",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one flat honorarios receipt sheet divided into a retained amount band and a final net amount block.\nUse only the receipt silhouette, one subtraction bar, and one compact coverage marker shape in the corner.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: monthly retention and net cash received from honorarios.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the receipt, subtraction bar, and coverage marker.",
+      "promptHash": "360a7bdf4fb920e18c09082f452e7e735c98faf4ba36bc425c3c6e0b46fc9ed1",
       "selectors": {
-        "ruleId": "prevision",
+        "ruleId": "honorarios",
         "category": "impuestos",
         "cluster": "impuestos-personas",
         "matchedKeywords": [
-          "previsional"
+          "honorarios",
+          "retencion",
+          "liquido"
         ]
       }
     },
@@ -80,19 +82,19 @@
       "sourcePath": "src/data/blog/cae-costo-real-credito-chile.md",
       "targetImagePath": "/images/hero/cae-costo-real-credito-chile.avif",
       "template": "C",
-      "approvedModelId": "uf-indicadores",
-      "sceneId": "C:uf-indicadores",
-      "readerSituation": "Persona entendiendo un indicador economico que afecta pagos cotidianos.",
-      "primaryIntent": "explicar",
-      "toneClass": "educativo",
+      "approvedModelId": "credito-comparador",
+      "sceneId": "C:credito-comparador--cae-costo-real-credito-chile",
+      "readerSituation": "Persona comparando el costo real de un credito mas alla de la tasa o la cuota mensual.",
+      "primaryIntent": "comparar",
+      "toneClass": "serio",
       "visualEvidence": [
-        "text contains 'indicador' in article body/title context",
-        "primary intent classified as 'explicar' from article text",
-        "reader situation anchored to scene rule 'uf'"
+        "slug override: CAE article is a debt-cost comparison, not an indicator article",
+        "primary intent classified as 'comparar' from article text",
+        "reader situation anchored to scene rule 'deuda'"
       ],
       "palette": {
-        "category": "Educativo / Conceptos / Guias",
-        "hex": "#4f46e5"
+        "category": "Credito / Deuda / Impuestos / Riesgo",
+        "hex": "#d97706"
       },
       "modelPlan": {
         "provider": "openai",
@@ -100,14 +102,16 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #4f46e5.\nScene: one simple geometric rising line chart with a small coin symbol, aligned to the right third of the canvas; left two-thirds is clean solid background only.\nLighting: none. No shadows, no highlights, no depth.\nColor palette: 2 colors maximum, all flat fills.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.",
-      "promptHash": "2b3d736b49b7e9f521fca6a7b4accad4e3ef91f5548afaf24af5ca89d4515c61",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: two stacked cost bars with one small monthly bar below a larger total-cost block, aligned to the right third of the canvas; left two-thirds is clean solid background only.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 2 colors maximum, all flat fills.\nSemantic focus: total borrowing cost versus the misleading monthly payment view.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the two cost bars.",
+      "promptHash": "2be61eaec20f6d5c9a7ffe0b03a2e153e36f60b0d8d1023bf6d0edeae232b2bc",
       "selectors": {
-        "ruleId": "uf",
+        "ruleId": "deuda",
         "category": "deuda-credito",
         "cluster": "deuda-credito",
         "matchedKeywords": [
-          "indicador"
+          "cae",
+          "credito",
+          "costo real"
         ]
       }
     },
@@ -117,7 +121,7 @@
       "targetImagePath": "/images/hero/como-calcular-sueldo-liquido.avif",
       "template": "A",
       "approvedModelId": "sueldo-liquido",
-      "sceneId": "A:sueldo-liquido",
+      "sceneId": "A:sueldo-liquido--como-calcular-sueldo-liquido",
       "readerSituation": "Persona calculando o verificando su sueldo neto.",
       "primaryIntent": "comparar",
       "toneClass": "neutral",
@@ -136,8 +140,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one geometric human figure seated at a table, leaning slightly forward, shown from behind or as a faceless silhouette.\nThe figure is near calculator, stacked papers. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "114b744c0b2d8d65d9dab81b132a0abe2d888b2fa89fdc711ef63a9bc5b65255",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488. Perfectly flat with zero gradient, zero vignette, zero texture, zero glow, and zero edge darkening.\nScene: one simplified vertical payslip with five clearly separated stacked deduction blocks feeding a larger final net deposit block at the bottom.\nUse only crisp opaque rectangles, divider lines, and one strong downward arrow that clearly guides the eye from the upper section through the deductions toward the final block.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth, no soft shading, and no translucent surfaces.\nColor palette: 3 colors maximum, all flat fills.\nComposition: the payslip occupies the left-center of the canvas; the final bottom block must read more prominently than the deduction blocks; right third of canvas is clean solid background only.\nSemantic focus: payroll calculation from gross salary to final net deposit.\nAll visible shapes must feel architectural, crisp, opaque, and strictly geometric.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the payslip blocks and the arrow. Avoid soft gradients inside blocks, airy translucency, timid arrows, or a generic form-like look.",
+      "promptHash": "5e924806bb63b81463df0db809cf103aa7fb88c784e7791ceae48e151cdc48eb",
       "selectors": {
         "ruleId": "sueldo",
         "category": "empleo-ingresos",
@@ -153,7 +157,7 @@
       "targetImagePath": "/images/hero/como-cambiarse-de-afp.avif",
       "template": "A",
       "approvedModelId": "cambio-afp",
-      "sceneId": "A:cambio-afp",
+      "sceneId": "A:cambio-afp--como-cambiarse-de-afp",
       "readerSituation": "Persona decidiendo cambiarse de AFP y comparando sus opciones.",
       "primaryIntent": "explicar",
       "toneClass": "educativo",
@@ -189,19 +193,19 @@
       "sourcePath": "src/data/blog/como-hacer-presupuesto-mensual-chile.md",
       "targetImagePath": "/images/hero/como-hacer-presupuesto-mensual-chile.avif",
       "template": "A",
-      "approvedModelId": "afp-pension",
-      "sceneId": "A:afp-pension",
-      "readerSituation": "Persona evaluando ahorro previsional y decisiones de largo plazo.",
-      "primaryIntent": "explicar",
-      "toneClass": "educativo",
+      "approvedModelId": "ahorro",
+      "sceneId": "A:ahorro--como-hacer-presupuesto-mensual-chile",
+      "readerSituation": "Persona ordenando gastos fijos, gastos variables y ahorro para construir un presupuesto mensual realista.",
+      "primaryIntent": "calcular",
+      "toneClass": "progreso",
       "visualEvidence": [
-        "text contains 'afp' in article body/title context",
-        "primary intent classified as 'explicar' from article text",
-        "reader situation anchored to scene rule 'prevision'"
+        "slug override: budgeting article — prevision false-positive on AFP mentions in cross-links",
+        "primary intent classified as 'calcular' from article text",
+        "reader situation anchored to scene rule 'ahorro'"
       ],
       "palette": {
-        "category": "Finanzas general / AFP / Empleo / Ahorro",
-        "hex": "#0d9488"
+        "category": "Ahorro activo / Metas / Logros",
+        "hex": "#059669"
       },
       "modelPlan": {
         "provider": "openai",
@@ -209,14 +213,16 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one geometric human figure standing upright, shown from behind or as a faceless silhouette.\nThe figure is near shield, upward arrow. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "5a6a3376dd19c47dbca3f73af15eb56c3a3fc25303bf4af0777eedd5bf27dafa",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #059669.\nScene: a top-down flat desk layout with one open notebook, one calculator, and two grouped expense stacks.\nKeep the notebook dominant and use only simple paper blocks and one small coin jar as supporting props.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: practical household budgeting with fixed expenses, variable expenses, and savings.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the notebook, calculator, expense stacks, and coin jar.",
+      "promptHash": "b31a11ee886d18ee84b876c1425887f8c7feba3134711641e16e134337ffde9f",
       "selectors": {
-        "ruleId": "prevision",
+        "ruleId": "ahorro",
         "category": "general",
         "cluster": "empleo-ingresos",
         "matchedKeywords": [
-          "afp"
+          "presupuesto",
+          "gastos",
+          "ahorro"
         ]
       }
     },
@@ -226,7 +232,7 @@
       "targetImagePath": "/images/hero/como-invertir-en-etfs-desde-chile.avif",
       "template": "A",
       "approvedModelId": "ahorro",
-      "sceneId": "A:ahorro",
+      "sceneId": "A:ahorro--como-invertir-en-etfs-desde-chile",
       "readerSituation": "Persona evaluando instrumentos de inversion para hacer crecer sus ahorros.",
       "primaryIntent": "comparar",
       "toneClass": "progreso",
@@ -245,8 +251,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #059669.\nScene: one geometric human figure standing, reaching forward, shown from behind or as a faceless silhouette.\nThe figure is near glass jar with coins. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "2517c953376fcb6ad0bfd7aa5184e4bb349a564d1c3b445d89fe9d870fe55c3e",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #059669.\nScene: one simplified brokerage window card beside a rising stack of flat ETF blocks.\nUse only a rectangular platform card, three ascending blocks, and one small direction arrow.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: entering ETFs through a broker while understanding fees and platform choice.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the brokerage card, ascending blocks, and arrow.",
+      "promptHash": "3a94c631c81f3d4c10d3dfa47a3502f6e2b7a0d589661f809287fb9ce993c38c",
       "selectors": {
         "ruleId": "ahorro",
         "category": "ahorro-inversion",
@@ -263,7 +269,7 @@
       "targetImagePath": "/images/hero/como-leer-cartola-afp-chile.avif",
       "template": "A",
       "approvedModelId": "liquidacion-documento",
-      "sceneId": "A:liquidacion-documento",
+      "sceneId": "A:liquidacion-documento--como-leer-cartola-afp-chile",
       "readerSituation": "Persona revisando e interpretando la cartola AFP trimestral para verificar cotizaciones y rentabilidad.",
       "primaryIntent": "explicar",
       "toneClass": "educativo",
@@ -282,8 +288,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one geometric human figure standing, holding a document, shown from behind or as a faceless silhouette.\nThe figure is near document sheet, magnifier. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "27f6d94e8f581818883cc59d386b666452307c009bb4172ba16feec226190397",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one flat AFP statement page with a slim performance band and a magnifier positioned over contribution lines.\nUse only the statement sheet, the magnifier, and three highlighted horizontal bars inside the document.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: reading an AFP statement line by line.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the statement, the magnifier, and the highlighted bars.",
+      "promptHash": "6ad83fdb5bfc91df0986e2116ec3602efb337170c1142a5f7e7bd144d72cd286",
       "selectors": {
         "ruleId": "prevision",
         "category": "prevision",
@@ -300,7 +306,7 @@
       "targetImagePath": "/images/hero/como-salir-boletin-comercial-chile.avif",
       "template": "A",
       "approvedModelId": "deuda-credito",
-      "sceneId": "A:deuda-credito",
+      "sceneId": "A:deuda-credito--como-salir-boletin-comercial-chile",
       "readerSituation": "Persona enfrentando documentos, cuotas o decisiones de deuda.",
       "primaryIntent": "comparar",
       "toneClass": "serio",
@@ -320,8 +326,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one geometric human figure one hand raised to head, shown from behind or as a faceless silhouette.\nThe figure is near pile of documents, credit card shape. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "b0d91cddeebae1fdf23588a2c2520efddd1021ce74e0d80f2f0599e2f12ebf51",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one commercial bulletin document sliding out from behind a barrier line toward a clean approval circle.\nUse only the document silhouette, one horizontal barrier, and one approval circle with a simple check shape.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: leaving the commercial bulletin without criminalizing the user.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the document, barrier line, and approval circle.",
+      "promptHash": "b90785267348fe9020d6fb959903acb2daa078dcf9e889dd3308b7899209fceb",
       "selectors": {
         "ruleId": "deuda",
         "category": "deuda-credito",
@@ -338,7 +344,7 @@
       "targetImagePath": "/images/hero/credito-hipotecario-chile-guia-completa.avif",
       "template": "A",
       "approvedModelId": "deuda-credito",
-      "sceneId": "A:deuda-credito",
+      "sceneId": "A:deuda-credito--credito-hipotecario-chile-guia-completa",
       "readerSituation": "Persona evaluando o solicitando un credito hipotecario para comprar su primera vivienda.",
       "primaryIntent": "guiar",
       "toneClass": "serio",
@@ -357,8 +363,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one geometric human figure one hand raised to head, shown from behind or as a faceless silhouette.\nThe figure is near pile of documents, credit card shape. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "b0d91cddeebae1fdf23588a2c2520efddd1021ce74e0d80f2f0599e2f12ebf51",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one house silhouette anchored to a long amortization bar made of monthly blocks.\nUse only the house, the amortization bar, and one small downward interest arrow at the far end.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: the long-term structure of a mortgage credit.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the house, amortization bar, and interest arrow.",
+      "promptHash": "94f839449f2e7cf126f0a498cc3ba90152c22d92ddebbb2d075102bbe62110e2",
       "selectors": {
         "ruleId": "deuda",
         "category": "deuda-credito",
@@ -376,15 +382,15 @@
       "sourcePath": "src/data/blog/cuanto-descuenta-la-afp-de-tu-sueldo.md",
       "targetImagePath": "/images/hero/cuanto-descuenta-la-afp-de-tu-sueldo.avif",
       "template": "A",
-      "approvedModelId": "afp-pension",
-      "sceneId": "A:afp-pension",
+      "approvedModelId": "liquidacion-documento",
+      "sceneId": "A:liquidacion-documento--cuanto-descuenta-la-afp-de-tu-sueldo",
       "readerSituation": "Persona evaluando el descuento previsional en su liquidacion.",
-      "primaryIntent": "explicar",
+      "primaryIntent": "comparar",
       "toneClass": "educativo",
       "visualEvidence": [
         "slug override: AFP deduction article",
-        "primary intent classified as 'explicar' from article text",
-        "reader situation anchored to scene rule 'prevision'"
+        "primary intent classified as 'comparar' from article text",
+        "reader situation anchored to scene rule 'empleo'"
       ],
       "palette": {
         "category": "Finanzas general / AFP / Empleo / Ahorro",
@@ -396,10 +402,10 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one geometric human figure standing upright, shown from behind or as a faceless silhouette.\nThe figure is near shield, upward arrow. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "5a6a3376dd19c47dbca3f73af15eb56c3a3fc25303bf4af0777eedd5bf27dafa",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one horizontal deduction strip divided into a large pension segment and a smaller commission segment beside a payslip edge.\nUse only the payslip edge, the two-part deduction strip, and one small verification marker.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: separating mandatory AFP contribution from commission.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the payslip edge, deduction strip, and verification marker.",
+      "promptHash": "6a6af2faac89763a07afac979416deb8c5abc41607b6321e2524d8536cee871a",
       "selectors": {
-        "ruleId": "prevision",
+        "ruleId": "empleo",
         "category": "empleo-ingresos",
         "cluster": "sueldo-remuneraciones",
         "matchedKeywords": [
@@ -414,7 +420,7 @@
       "targetImagePath": "/images/hero/deposito-a-plazo-uf-vs-pesos.avif",
       "template": "C",
       "approvedModelId": "uf-indicadores",
-      "sceneId": "C:uf-indicadores",
+      "sceneId": "C:uf-indicadores--deposito-a-plazo-uf-vs-pesos",
       "readerSituation": "Persona entendiendo un indicador economico que afecta pagos cotidianos.",
       "primaryIntent": "explicar",
       "toneClass": "educativo",
@@ -434,8 +440,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #4f46e5.\nScene: one simple geometric rising line chart with a small coin symbol, aligned to the right third of the canvas; left two-thirds is clean solid background only.\nLighting: none. No shadows, no highlights, no depth.\nColor palette: 2 colors maximum, all flat fills.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.",
-      "promptHash": "2b3d736b49b7e9f521fca6a7b4accad4e3ef91f5548afaf24af5ca89d4515c61",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #4f46e5.\nScene: two flat deposit blocks side by side, one stable and one indexed upward, aligned to the right third of the canvas; left two-thirds is clean solid background only.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 2 colors maximum, all flat fills.\nSemantic focus: comparing fixed-rate pesos with inflation-indexed UF deposits.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the two deposit blocks and the small upward index cue.",
+      "promptHash": "f0f5824c8f0ba53f02ca78ffbb59bfb518aee377ae378bab28ed31693da57d8d",
       "selectors": {
         "ruleId": "uf",
         "category": "ahorro-inversion",
@@ -451,15 +457,15 @@
       "sourcePath": "src/data/blog/descuentos-de-sueldo.md",
       "targetImagePath": "/images/hero/descuentos-de-sueldo.avif",
       "template": "A",
-      "approvedModelId": "afp-pension",
-      "sceneId": "A:afp-pension",
-      "readerSituation": "Persona evaluando ahorro previsional y decisiones de largo plazo.",
-      "primaryIntent": "explicar",
-      "toneClass": "educativo",
+      "approvedModelId": "liquidacion-documento",
+      "sceneId": "A:liquidacion-documento--descuentos-de-sueldo",
+      "readerSituation": "Persona clasificando descuentos de sueldo para distinguir los legales, autorizados y prohibidos.",
+      "primaryIntent": "guiar",
+      "toneClass": "neutral",
       "visualEvidence": [
-        "text contains 'afp' in article body/title context",
-        "primary intent classified as 'explicar' from article text",
-        "reader situation anchored to scene rule 'prevision'"
+        "slug override: payroll-deductions classification article",
+        "primary intent classified as 'guiar' from article text",
+        "reader situation anchored to scene rule 'empleo'"
       ],
       "palette": {
         "category": "Finanzas general / AFP / Empleo / Ahorro",
@@ -471,14 +477,16 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one geometric human figure standing upright, shown from behind or as a faceless silhouette.\nThe figure is near shield, upward arrow. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "5a6a3376dd19c47dbca3f73af15eb56c3a3fc25303bf4af0777eedd5bf27dafa",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: three grouped deduction cards arranged in a row, one mandatory, one consent-based, and one blocked.\nUse only flat cards, one small check shape, one approval hand shape, and one prohibition shape as non-text markers.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: legal, authorized, and prohibited payroll deductions.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the three cards and the three simple markers.",
+      "promptHash": "4f69fe53a8ab675537205f485dcf9d8bd3eb9ad9edad8327090eb015602e5205",
       "selectors": {
-        "ruleId": "prevision",
+        "ruleId": "empleo",
         "category": "empleo-ingresos",
         "cluster": "sueldo-remuneraciones",
         "matchedKeywords": [
-          "afp"
+          "descuentos de sueldo",
+          "descuento legal",
+          "descuento prohibido"
         ]
       }
     },
@@ -488,7 +496,7 @@
       "targetImagePath": "/images/hero/devolucion-impuestos-fechas-compensaciones.avif",
       "template": "A",
       "approvedModelId": "declaracion-renta",
-      "sceneId": "A:declaracion-renta",
+      "sceneId": "A:declaracion-renta--devolucion-impuestos-fechas-compensaciones",
       "readerSituation": "Persona completando o revisando formularios y fechas tributarias.",
       "primaryIntent": "guiar",
       "toneClass": "serio",
@@ -508,8 +516,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one geometric human figure seated at a desk reviewing a form, shown from behind or as a faceless silhouette.\nThe figure is near tax form, calendar marker. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "10653d418b49c0d383374d1a42b3f9f5dfcd2083061c8122606d9bb5b32d309a",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one calendar page connected to a deposit arrow and a compact status dot.\nUse only the calendar, the arrow, and one small offset block representing compensations or delays.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: refund timing, status review, and possible offsets.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the calendar, deposit arrow, status dot, and offset block.",
+      "promptHash": "8ebf4a54e95b693fa217990fffb1a5cdd36131cb2b4788487a287c997b023967",
       "selectors": {
         "ruleId": "renta",
         "category": "impuestos",
@@ -527,7 +535,7 @@
       "targetImagePath": "/images/hero/donde-ver-si-estoy-en-dicom-gratis.avif",
       "template": "A",
       "approvedModelId": "deuda-credito",
-      "sceneId": "A:deuda-credito",
+      "sceneId": "A:deuda-credito--donde-ver-si-estoy-en-dicom-gratis",
       "readerSituation": "Persona enfrentando documentos, cuotas o decisiones de deuda.",
       "primaryIntent": "guiar",
       "toneClass": "serio",
@@ -547,8 +555,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one geometric human figure one hand raised to head, shown from behind or as a faceless silhouette.\nThe figure is near pile of documents, credit card shape. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "b0d91cddeebae1fdf23588a2c2520efddd1021ce74e0d80f2f0599e2f12ebf51",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: three flat report cards partially overlapped under one large magnifier.\nKeep the front report brighter than the two rear cards to signal comparison without adding logos.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: checking debt status across several report sources for free.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the three report cards and the magnifier.",
+      "promptHash": "e7b8b4b4a2b0b7e77e725ba7e10fd19f5e6a2af9b28c3f970f2676b6a67c7717",
       "selectors": {
         "ruleId": "deuda",
         "category": "deuda-credito",
@@ -566,7 +574,7 @@
       "targetImagePath": "/images/hero/el-poder-del-interes-compuesto.avif",
       "template": "A",
       "approvedModelId": "ahorro",
-      "sceneId": "A:ahorro",
+      "sceneId": "A:ahorro--el-poder-del-interes-compuesto",
       "readerSituation": "Persona visualizando el crecimiento de su ahorro a largo plazo.",
       "primaryIntent": "calcular",
       "toneClass": "progreso",
@@ -585,8 +593,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #059669.\nScene: one geometric human figure standing, reaching forward, shown from behind or as a faceless silhouette.\nThe figure is near glass jar with coins. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "2517c953376fcb6ad0bfd7aa5184e4bb349a564d1c3b445d89fe9d870fe55c3e",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #059669.\nScene: a stepped contribution staircase feeding one tall curved growth arc and a final large savings block.\nUse only flat steps, one growth arc, and one final block at the top-right of the scene.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: long-term compounding from repeated small contributions.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the steps, growth arc, and final savings block.",
+      "promptHash": "a6bf2729bdc31b7855a19ef37fe4f76d110f8cbf983d11178d7ddb4e077deebc",
       "selectors": {
         "ruleId": "ahorro",
         "category": "ahorro-inversion",
@@ -603,7 +611,7 @@
       "targetImagePath": "/images/hero/estafas-financieras-chile-vishing-smishing-marketplace.avif",
       "template": "A",
       "approvedModelId": "fraude-estafa",
-      "sceneId": "A:fraude-estafa",
+      "sceneId": "A:fraude-estafa--estafas-financieras-chile-vishing-smishing-marketplace",
       "readerSituation": "Persona revisando una alerta o contacto sospechoso en su telefono.",
       "primaryIntent": "alertar",
       "toneClass": "alerta",
@@ -623,8 +631,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one geometric human figure one hand raised to head, shown from behind or as a faceless silhouette.\nThe figure is near smartphone alert icon. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "ca0173d45048663a95c08ef132ca91184f575debf2c9e1d5b7d5f2500fe66f2a",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one smartphone receiving three flat alert shapes from different channels: call, message, and marketplace badge.\nUse only the phone silhouette and the three incoming alert shapes with no logos or brand signals.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: multi-channel scam detection within the first 24 hours.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the smartphone and the three alert shapes.",
+      "promptHash": "8f0f99bca661e4caf73aba3a7526c056b5e7f1371d0b7afcb906210661e7c4e5",
       "selectors": {
         "ruleId": "fraude",
         "category": "seguridad-financiera",
@@ -642,7 +650,7 @@
       "targetImagePath": "/images/hero/finiquito-e-indemnizaciones-en-chile.avif",
       "template": "A",
       "approvedModelId": "cesantia",
-      "sceneId": "A:cesantia",
+      "sceneId": "A:cesantia--finiquito-e-indemnizaciones-en-chile",
       "readerSituation": "Persona revisando ingresos laborales, pagos o periodos sin trabajo.",
       "primaryIntent": "calcular",
       "toneClass": "neutral",
@@ -662,8 +670,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one geometric human figure seated, shoulders slightly down, shown from behind or as a faceless silhouette.\nThe figure is near closed laptop, document envelope. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "59e3246d5aa8c5d3e5b0fb66184788ce5f325f1774866bf40a5936f4aa3b2688",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one closing folder with a checklist block stack and a signature line.\nUse only the folder silhouette, the checklist bars, and one simple signing stroke.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: reviewing a severance settlement before signing.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the folder, checklist bars, and signature line.",
+      "promptHash": "7a395019faaa6c225d31a91fcc9183ee864d0c81a7977a430bd52d45f3ad6ef6",
       "selectors": {
         "ruleId": "empleo",
         "category": "empleo-ingresos",
@@ -680,7 +688,7 @@
       "targetImagePath": "/images/hero/fonasa-vs-isapre-comparativa.avif",
       "template": "A",
       "approvedModelId": "fonasa-vs-isapre",
-      "sceneId": "A:fonasa-vs-isapre",
+      "sceneId": "A:fonasa-vs-isapre--fonasa-vs-isapre-comparativa",
       "readerSituation": "Persona comparando Fonasa e Isapre para elegir el sistema de salud que mejor se adapta a su situacion.",
       "primaryIntent": "comparar",
       "toneClass": "neutral",
@@ -699,8 +707,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0284c7.\nScene: one geometric human figure standing, comparing two cards, shown from behind or as a faceless silhouette.\nThe figure is near two health cards. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "272a34c8bf1398584ea4bb769f1923d957742d5ff61010204bddb9ee6a2e8558",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0284c7.\nScene: two flat health cards balanced on a central axis with equal visual weight.\nUse only the central axis, the two cards, and one small geometric medical cross above them.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: comparing Fonasa and Isapre without implying one premium default.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the axis, two cards, and medical cross.",
+      "promptHash": "705cb9dbc1dfef229bc99d3fae298c1a01fbd05963b0e9a69fd1c5e114709bd8",
       "selectors": {
         "ruleId": "salud",
         "category": "seguridad-financiera",
@@ -717,7 +725,7 @@
       "targetImagePath": "/images/hero/fondos-afp-a-b-c-d-e.avif",
       "template": "A",
       "approvedModelId": "fondos-afp",
-      "sceneId": "A:fondos-afp",
+      "sceneId": "A:fondos-afp--fondos-afp-a-b-c-d-e",
       "readerSituation": "Persona comparando los cinco fondos AFP para elegir el mas adecuado.",
       "primaryIntent": "explicar",
       "toneClass": "educativo",
@@ -754,7 +762,7 @@
       "targetImagePath": "/images/hero/fondos-mutuos-comisiones-rescate-impuestos.avif",
       "template": "A",
       "approvedModelId": "ahorro",
-      "sceneId": "A:ahorro",
+      "sceneId": "A:ahorro--fondos-mutuos-comisiones-rescate-impuestos",
       "readerSituation": "Persona organizando ahorro o controlando gastos cotidianos.",
       "primaryIntent": "guiar",
       "toneClass": "progreso",
@@ -773,8 +781,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #059669.\nScene: one geometric human figure standing, reaching forward, shown from behind or as a faceless silhouette.\nThe figure is near glass jar with coins. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "2517c953376fcb6ad0bfd7aa5184e4bb349a564d1c3b445d89fe9d870fe55c3e",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #059669.\nScene: one flat fund statement page with a fee funnel on the left and an exit tray on the right.\nUse only the document, one funnel shape, one payout tray, and two small cost blocks between them.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: fees, redemption, and taxes inside mutual funds.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the statement, funnel, payout tray, and cost blocks.",
+      "promptHash": "fd48092de21ac1dbcb8bf5c9284edc270af6e7e19bf7cfd3c9b52c237659fd5b",
       "selectors": {
         "ruleId": "ahorro",
         "category": "ahorro-inversion",
@@ -790,7 +798,7 @@
       "targetImagePath": "/images/hero/fraude-tarjeta-que-hacer.avif",
       "template": "A",
       "approvedModelId": "fraude-estafa",
-      "sceneId": "A:fraude-estafa",
+      "sceneId": "A:fraude-estafa--fraude-tarjeta-que-hacer",
       "readerSituation": "Persona revisando una alerta o contacto sospechoso en su telefono.",
       "primaryIntent": "alertar",
       "toneClass": "alerta",
@@ -809,8 +817,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one geometric human figure one hand raised to head, shown from behind or as a faceless silhouette.\nThe figure is near smartphone alert icon. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "ca0173d45048663a95c08ef132ca91184f575debf2c9e1d5b7d5f2500fe66f2a",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one blocked card shape beside a compact claim document and an alert badge.\nUse only the card, the document, and one sharp alert badge to suggest the first 24-hour response.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: immediate response to an unrecognized card charge.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the card, claim document, and alert badge.",
+      "promptHash": "2ae2dacef54f46f65cd9127571d0b1c5f5d9e2b069ebfc5f6c13d2df611c3b91",
       "selectors": {
         "ruleId": "fraude",
         "category": "seguridad-financiera",
@@ -826,7 +834,7 @@
       "targetImagePath": "/images/hero/indemnizacion-anos-de-servicio-chile.avif",
       "template": "A",
       "approvedModelId": "cesantia",
-      "sceneId": "A:cesantia",
+      "sceneId": "A:cesantia--indemnizacion-anos-de-servicio-chile",
       "readerSituation": "Persona revisando ingresos laborales, pagos o periodos sin trabajo.",
       "primaryIntent": "calcular",
       "toneClass": "neutral",
@@ -846,8 +854,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one geometric human figure seated, shoulders slightly down, shown from behind or as a faceless silhouette.\nThe figure is near closed laptop, document envelope. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "59e3246d5aa8c5d3e5b0fb66184788ce5f325f1774866bf40a5936f4aa3b2688",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one employment timeline bar built from annual blocks ending in a final payout block.\nUse only the timeline bar, the annual blocks, and one final settlement block at the right end.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: years-of-service accumulation leading to severance pay.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the timeline bar, annual blocks, and payout block.",
+      "promptHash": "d9186f81faf15ddc0bad8171acc453deedce8ebaedec62ebd77385cd73fe3d7f",
       "selectors": {
         "ruleId": "empleo",
         "category": "empleo-ingresos",
@@ -864,7 +872,7 @@
       "targetImagePath": "/images/hero/informe-deudas-cmf-vs-dicom.avif",
       "template": "A",
       "approvedModelId": "deuda-credito",
-      "sceneId": "A:deuda-credito",
+      "sceneId": "A:deuda-credito--informe-deudas-cmf-vs-dicom",
       "readerSituation": "Persona enfrentando documentos, cuotas o decisiones de deuda.",
       "primaryIntent": "comparar",
       "toneClass": "serio",
@@ -884,8 +892,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one geometric human figure one hand raised to head, shown from behind or as a faceless silhouette.\nThe figure is near pile of documents, credit card shape. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "b0d91cddeebae1fdf23588a2c2520efddd1021ce74e0d80f2f0599e2f12ebf51",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: two overlapping debt report cards inside one large magnifier.\nKeep the overlap crisp and geometric so the comparison reads instantly at thumbnail size.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: distinguishing the CMF debt report from DICOM-style records.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the two report cards and the magnifier.",
+      "promptHash": "4adc5748ad72b91d3a068aaacdd11848e4a7b5a9413967b89142493476089f80",
       "selectors": {
         "ruleId": "deuda",
         "category": "deuda-credito",
@@ -902,7 +910,7 @@
       "targetImagePath": "/images/hero/interes-compuesto-nota-metodologica.avif",
       "template": "A",
       "approvedModelId": "ahorro",
-      "sceneId": "A:ahorro",
+      "sceneId": "A:ahorro--interes-compuesto-nota-metodologica",
       "readerSituation": "Persona entendiendo la mecanica del interes compuesto y su efecto acumulativo.",
       "primaryIntent": "guiar",
       "toneClass": "progreso",
@@ -921,8 +929,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #059669.\nScene: one geometric human figure standing, reaching forward, shown from behind or as a faceless silhouette.\nThe figure is near glass jar with coins. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "2517c953376fcb6ad0bfd7aa5184e4bb349a564d1c3b445d89fe9d870fe55c3e",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #059669.\nScene: one flat methodology board with a grid, stepped accumulation bars, and a final result block.\nUse only the board, the grid lines, the stepped bars, and one final output block.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: methodology and assumptions behind a compound-interest simulation.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the board, grid, bars, and output block.",
+      "promptHash": "3989587c4c0e0ac27bc5e8f5a1cdab9aa57541d13bd2ef050c341dcbedd9acbd",
       "selectors": {
         "ruleId": "ahorro",
         "category": "ahorro-inversion",
@@ -939,7 +947,7 @@
       "targetImagePath": "/images/hero/licencia-medica-desde-que-dia-pagan.avif",
       "template": "A",
       "approvedModelId": "fonasa-vs-isapre",
-      "sceneId": "A:fonasa-vs-isapre",
+      "sceneId": "A:fonasa-vs-isapre--licencia-medica-desde-que-dia-pagan",
       "readerSituation": "Persona comparando cobertura, documentos o protecciones de salud.",
       "primaryIntent": "comparar",
       "toneClass": "neutral",
@@ -959,8 +967,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0284c7.\nScene: one geometric human figure standing, comparing two cards, shown from behind or as a faceless silhouette.\nThe figure is near two health cards. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "272a34c8bf1398584ea4bb769f1923d957742d5ff61010204bddb9ee6a2e8558",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0284c7.\nScene: one horizontal calendar strip with shaded leave days and a marked payment-start block.\nUse only the calendar strip, one payment-start marker, and one smaller continuity marker.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: subsidy payment starting day within a medical leave period.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the calendar strip and the two markers.",
+      "promptHash": "2083466fa1b80d773f0a187e4dfec9df2355e9b1c0c8b04605df31b9d20c2ea7",
       "selectors": {
         "ruleId": "salud",
         "category": "empleo-ingresos",
@@ -978,7 +986,7 @@
       "targetImagePath": "/images/hero/liquidacion-de-sueldo.avif",
       "template": "A",
       "approvedModelId": "liquidacion-documento",
-      "sceneId": "A:liquidacion-documento",
+      "sceneId": "A:liquidacion-documento--liquidacion-de-sueldo",
       "readerSituation": "Persona revisando o interpretando su liquidacion de sueldo.",
       "primaryIntent": "guiar",
       "toneClass": "neutral",
@@ -997,8 +1005,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one geometric human figure standing, holding a document, shown from behind or as a faceless silhouette.\nThe figure is near document sheet, magnifier. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "27f6d94e8f581818883cc59d386b666452307c009bb4172ba16feec226190397",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one vertical payslip with three highlighted lines and a magnifier.\nUse only the document sheet, the magnifier, and the three highlighted horizontal bars.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: auditing the key lines of a pay stub.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the payslip, magnifier, and highlighted bars.",
+      "promptHash": "1902e91dc0134568ad937e1b8195648cd0e97e8d38897e387770cbb3b17272e1",
       "selectors": {
         "ruleId": "liquidacion",
         "category": "empleo-ingresos",
@@ -1014,7 +1022,7 @@
       "targetImagePath": "/images/hero/operacion-renta-f22-checklist.avif",
       "template": "A",
       "approvedModelId": "declaracion-renta",
-      "sceneId": "A:declaracion-renta",
+      "sceneId": "A:declaracion-renta--operacion-renta-f22-checklist",
       "readerSituation": "Persona completando o revisando formularios y fechas tributarias.",
       "primaryIntent": "guiar",
       "toneClass": "serio",
@@ -1034,8 +1042,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one geometric human figure seated at a desk reviewing a form, shown from behind or as a faceless silhouette.\nThe figure is near tax form, calendar marker. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "10653d418b49c0d383374d1a42b3f9f5dfcd2083061c8122606d9bb5b32d309a",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one flat tax checklist form with five checked boxes and one review magnifier.\nUse only the form, the check boxes, and one compact magnifier over the lower section.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: reviewing, sending, and rectifying the F22 without mistakes.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the form, check boxes, and magnifier.",
+      "promptHash": "8d406dfcc7b91bc8e0aed412a88e9652ff041be37829fe68531ce0abb230da09",
       "selectors": {
         "ruleId": "renta",
         "category": "impuestos",
@@ -1054,7 +1062,7 @@
       "targetImagePath": "/images/hero/prepago-credito-cuando-conviene-chile.avif",
       "template": "A",
       "approvedModelId": "deuda-credito",
-      "sceneId": "A:deuda-credito",
+      "sceneId": "A:deuda-credito--prepago-credito-cuando-conviene-chile",
       "readerSituation": "Persona con un credito vigente evaluando si conviene hacer un abono extraordinario para reducir intereses.",
       "primaryIntent": "comparar",
       "toneClass": "serio",
@@ -1073,8 +1081,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one geometric human figure one hand raised to head, shown from behind or as a faceless silhouette.\nThe figure is near pile of documents, credit card shape. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "b0d91cddeebae1fdf23588a2c2520efddd1021ce74e0d80f2f0599e2f12ebf51",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: a descending staircase of debt blocks beside one calendar page.\nUse only the debt staircase, the calendar page, and one small savings arrow pointing downward.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: deciding whether an early prepayment reduces enough interest.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the debt staircase, calendar page, and savings arrow.",
+      "promptHash": "329ce82005e8ee890dbc1fa4adbc6d7099cddd482ee6dc839c96f7f8c12b77a1",
       "selectors": {
         "ruleId": "deuda",
         "category": "deuda-credito",
@@ -1093,7 +1101,7 @@
       "targetImagePath": "/images/hero/primer-empleo-chile-guia-completa.avif",
       "template": "A",
       "approvedModelId": "cesantia",
-      "sceneId": "A:cesantia",
+      "sceneId": "A:cesantia--primer-empleo-chile-guia-completa",
       "readerSituation": "Persona recien contratada revisando su primer contrato de trabajo y entendiendo sus descuentos legales.",
       "primaryIntent": "guiar",
       "toneClass": "neutral",
@@ -1131,7 +1139,7 @@
       "targetImagePath": "/images/hero/que-es-el-apv.avif",
       "template": "C",
       "approvedModelId": "apv-crecimiento",
-      "sceneId": "C:apv-crecimiento",
+      "sceneId": "C:apv-crecimiento--que-es-el-apv",
       "readerSituation": "Persona evaluando el APV como herramienta de ahorro previsional voluntario.",
       "primaryIntent": "explicar",
       "toneClass": "educativo",
@@ -1150,8 +1158,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one simple geometric upward-trending arrow arcing over a savings stack, aligned to the right third of the canvas; left two-thirds is clean solid background only.\nLighting: none. No shadows, no highlights, no depth.\nColor palette: 2 colors maximum, all flat fills.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.",
-      "promptHash": "4a1c7c869af99260ce933503f3fa9ba3da10ec0272ed465adb257aeb02108297",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one simple geometric upward-trending arrow arcing over a savings stack, aligned to the right third of the canvas; left two-thirds is clean solid background only.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 2 colors maximum, all flat fills.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.",
+      "promptHash": "dbafebf1394b39f9139305e5e791d860329a08ffc35c089c8a62dce6dfd38529",
       "selectors": {
         "ruleId": "prevision",
         "category": "ahorro-inversion",
@@ -1168,7 +1176,7 @@
       "targetImagePath": "/images/hero/que-es-el-ipc-chile-como-se-calcula.avif",
       "template": "C",
       "approvedModelId": "ipc-indicadores",
-      "sceneId": "C:ipc-indicadores",
+      "sceneId": "C:ipc-indicadores--que-es-el-ipc-chile-como-se-calcula",
       "readerSituation": "Persona entendiendo como el IPC mide la inflacion y afecta su poder adquisitivo.",
       "primaryIntent": "explicar",
       "toneClass": "educativo",
@@ -1187,8 +1195,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #4f46e5.\nScene: one simple geometric bar chart with three rising bars, aligned to the right third of the canvas; left two-thirds is clean solid background only.\nLighting: none. No shadows, no highlights, no depth.\nColor palette: 2 colors maximum, all flat fills.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.",
-      "promptHash": "955635f40c95efefd4f012cb25774c8ef7b13b1e07e0c9146615a1daf2fff288",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #4f46e5.\nScene: one simple geometric bar chart with three rising bars, aligned to the right third of the canvas; left two-thirds is clean solid background only.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 2 colors maximum, all flat fills.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.",
+      "promptHash": "e587e313e4ecb5e2e48fb0fafdaa774c3c6a9b3b6c00ee5be7bc496d8d1171d1",
       "selectors": {
         "ruleId": "uf",
         "category": "general",
@@ -1205,7 +1213,7 @@
       "targetImagePath": "/images/hero/que-es-la-cuenta-2-afp.avif",
       "template": "A",
       "approvedModelId": "cuenta-2-afp",
-      "sceneId": "A:cuenta-2-afp",
+      "sceneId": "A:cuenta-2-afp--que-es-la-cuenta-2-afp",
       "readerSituation": "Persona descubriendo la Cuenta 2 de AFP como herramienta de ahorro voluntario.",
       "primaryIntent": "explicar",
       "toneClass": "educativo",
@@ -1242,7 +1250,7 @@
       "targetImagePath": "/images/hero/que-es-la-uf.avif",
       "template": "C",
       "approvedModelId": "uf-indicadores",
-      "sceneId": "C:uf-indicadores",
+      "sceneId": "C:uf-indicadores--que-es-la-uf",
       "readerSituation": "Persona entendiendo un indicador economico que afecta pagos cotidianos.",
       "primaryIntent": "explicar",
       "toneClass": "educativo",
@@ -1262,8 +1270,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #4f46e5.\nScene: one simple geometric rising line chart with a small coin symbol, aligned to the right third of the canvas; left two-thirds is clean solid background only.\nLighting: none. No shadows, no highlights, no depth.\nColor palette: 2 colors maximum, all flat fills.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.",
-      "promptHash": "2b3d736b49b7e9f521fca6a7b4accad4e3ef91f5548afaf24af5ca89d4515c61",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #4f46e5.\nScene: one indexed circular token beside a slim calendar strip with upward daily ticks, aligned to the right third of the canvas; left two-thirds is clean solid background only.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 2 colors maximum, all flat fills.\nSemantic focus: the UF as a daily indexed unit that affects common payments.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the circular token and the calendar strip.",
+      "promptHash": "67aab8413a61aa3ddfd658c5f3b23bb03eff41f6a25721aec7e744163ad35031",
       "selectors": {
         "ruleId": "uf",
         "category": "general",
@@ -1281,7 +1289,7 @@
       "targetImagePath": "/images/hero/reajuste-arriendo-uf-ipc-chile.avif",
       "template": "C",
       "approvedModelId": "uf-indicadores",
-      "sceneId": "C:uf-indicadores",
+      "sceneId": "C:uf-indicadores--reajuste-arriendo-uf-ipc-chile",
       "readerSituation": "Persona entendiendo un indicador economico que afecta pagos cotidianos.",
       "primaryIntent": "explicar",
       "toneClass": "educativo",
@@ -1301,8 +1309,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #4f46e5.\nScene: one simple geometric rising line chart with a small coin symbol, aligned to the right third of the canvas; left two-thirds is clean solid background only.\nLighting: none. No shadows, no highlights, no depth.\nColor palette: 2 colors maximum, all flat fills.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.",
-      "promptHash": "2b3d736b49b7e9f521fca6a7b4accad4e3ef91f5548afaf24af5ca89d4515c61",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #4f46e5.\nScene: one flat house outline connected to an upward contract line and a small calendar tick, aligned to the right third of the canvas; left two-thirds is clean solid background only.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 2 colors maximum, all flat fills.\nSemantic focus: rent adjustment by UF or IPC depending on the contract.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the house outline, contract line, and calendar tick.",
+      "promptHash": "cdb61f1393abc6e9754fa5e220c7db2017881cb3a1f582db166154c053a58cc0",
       "selectors": {
         "ruleId": "uf",
         "category": "general",
@@ -1319,7 +1327,7 @@
       "targetImagePath": "/images/hero/reforma-previsional-2025-que-cambia-y-como-te-afecta.avif",
       "template": "A",
       "approvedModelId": "afp-pension",
-      "sceneId": "A:afp-pension",
+      "sceneId": "A:afp-pension--reforma-previsional-2025-que-cambia-y-como-te-afecta",
       "readerSituation": "Persona evaluando ahorro previsional y decisiones de largo plazo.",
       "primaryIntent": "explicar",
       "toneClass": "educativo",
@@ -1339,8 +1347,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one geometric human figure standing upright, shown from behind or as a faceless silhouette.\nThe figure is near shield, upward arrow. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "5a6a3376dd19c47dbca3f73af15eb56c3a3fc25303bf4af0777eedd5bf27dafa",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one horizontal reform timeline with a present block, a future block, and a central gear node.\nUse only the timeline rail, the two time blocks, one gear node, and one pension shield at the far end.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: staged pension reform implementation over time.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the timeline rail, time blocks, gear node, and pension shield.",
+      "promptHash": "92892ac7955f503e52b9b6e6a970e5e15ffd339be74d165f7eebf5622d055da8",
       "selectors": {
         "ruleId": "prevision",
         "category": "prevision",
@@ -1357,7 +1365,7 @@
       "targetImagePath": "/images/hero/renegociacion-superir.avif",
       "template": "A",
       "approvedModelId": "deuda-credito",
-      "sceneId": "A:deuda-credito",
+      "sceneId": "A:deuda-credito--renegociacion-superir",
       "readerSituation": "Persona negociando condiciones de deuda para mejorar su situacion financiera.",
       "primaryIntent": "comparar",
       "toneClass": "serio",
@@ -1376,8 +1384,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one geometric human figure one hand raised to head, shown from behind or as a faceless silhouette.\nThe figure is near pile of documents, credit card shape. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "b0d91cddeebae1fdf23588a2c2520efddd1021ce74e0d80f2f0599e2f12ebf51",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: two flat debt documents meeting at one central agreement bar.\nUse only the two documents, the central agreement bar, and one small stabilization block underneath.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: formal debt renegotiation for structural over-indebtedness.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the two documents, agreement bar, and stabilization block.",
+      "promptHash": "517e3649ca026a406346bfd05a4fba46f2a24dfe92f54329d9d781b47073cd61",
       "selectors": {
         "ruleId": "deuda",
         "category": "deuda-credito",
@@ -1394,7 +1402,7 @@
       "targetImagePath": "/images/hero/rentas-mixtas-sueldo-honorarios.avif",
       "template": "A",
       "approvedModelId": "declaracion-renta",
-      "sceneId": "A:declaracion-renta",
+      "sceneId": "A:declaracion-renta--rentas-mixtas-sueldo-honorarios",
       "readerSituation": "Persona con sueldo y boletas de honorarios que necesita entender su declaracion anual de impuestos y si pagara mas o recuperara.",
       "primaryIntent": "calcular",
       "toneClass": "serio",
@@ -1413,8 +1421,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one geometric human figure seated at a desk reviewing a form, shown from behind or as a faceless silhouette.\nThe figure is near tax form, calendar marker. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "10653d418b49c0d383374d1a42b3f9f5dfcd2083061c8122606d9bb5b32d309a",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: two separate income sheets converging into one tax form block.\nUse only the two input sheets, the central merge path, and the final tax form block.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: combining salary and honorarios into one annual tax declaration.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the two income sheets, merge path, and final form block.",
+      "promptHash": "60289e5b488b35e0c9da4ddb2863bb29f4843c4304e503d2dc148b413093e2bf",
       "selectors": {
         "ruleId": "renta",
         "category": "impuestos",
@@ -1433,7 +1441,7 @@
       "targetImagePath": "/images/hero/seguro-cesantia-cuenta-individual-vs-fondo-solidario.avif",
       "template": "A",
       "approvedModelId": "cesantia",
-      "sceneId": "A:cesantia",
+      "sceneId": "A:cesantia--seguro-cesantia-cuenta-individual-vs-fondo-solidario",
       "readerSituation": "Persona comparando las dos modalidades del seguro de cesantia.",
       "primaryIntent": "comparar",
       "toneClass": "neutral",
@@ -1452,8 +1460,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one geometric human figure seated, shoulders slightly down, shown from behind or as a faceless silhouette.\nThe figure is near closed laptop, document envelope. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "59e3246d5aa8c5d3e5b0fb66184788ce5f325f1774866bf40a5936f4aa3b2688",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: two payout containers side by side feeding one shared safety rail.\nUse only the two containers, the safety rail, and one small flow connector from each source.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: comparing the individual unemployment account with the solidarity fund.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the two containers, safety rail, and flow connectors.",
+      "promptHash": "8d5c8f562d80b155b2d92c357b32f83bbef9e9984710d09f2c9834a41df32454",
       "selectors": {
         "ruleId": "empleo",
         "category": "empleo-ingresos",
@@ -1469,7 +1477,7 @@
       "targetImagePath": "/images/hero/seguro-de-cesantia.avif",
       "template": "A",
       "approvedModelId": "cesantia",
-      "sceneId": "A:cesantia",
+      "sceneId": "A:cesantia--seguro-de-cesantia",
       "readerSituation": "Persona revisando ingresos laborales, pagos o periodos sin trabajo.",
       "primaryIntent": "calcular",
       "toneClass": "neutral",
@@ -1488,8 +1496,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one geometric human figure seated, shoulders slightly down, shown from behind or as a faceless silhouette.\nThe figure is near closed laptop, document envelope. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "59e3246d5aa8c5d3e5b0fb66184788ce5f325f1774866bf40a5936f4aa3b2688",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488.\nScene: one unemployment account statement with stepped withdrawal bars.\nUse only the statement page, the stepped withdrawal bars, and one compact balance block.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: checking unemployment balance, eligibility, and payout sequence.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the statement page, withdrawal bars, and balance block.",
+      "promptHash": "9a40c0a7d8efd56587f31d7a4f3d9141863121c04d0edc358a0a12ea84584483",
       "selectors": {
         "ruleId": "empleo",
         "category": "empleo-ingresos",
@@ -1505,7 +1513,7 @@
       "targetImagePath": "/images/hero/suplantacion-identidad-creditos-no-reconocidos.avif",
       "template": "A",
       "approvedModelId": "fraude-estafa",
-      "sceneId": "A:fraude-estafa",
+      "sceneId": "A:fraude-estafa--suplantacion-identidad-creditos-no-reconocidos",
       "readerSituation": "Persona revisando una alerta o contacto sospechoso en su telefono.",
       "primaryIntent": "alertar",
       "toneClass": "alerta",
@@ -1524,8 +1532,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one geometric human figure one hand raised to head, shown from behind or as a faceless silhouette.\nThe figure is near smartphone alert icon. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "ca0173d45048663a95c08ef132ca91184f575debf2c9e1d5b7d5f2500fe66f2a",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one cracked identity card beside a warning document and a compact shield block.\nUse only the ID card, the warning document, and the shield block with no faces or realistic features.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: identity theft detection and immediate containment.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the ID card, warning document, and shield block.",
+      "promptHash": "f5ce4bbed828fb59253d9d806269b95dc6f3b11b5627b9d636628c0970c4be5e",
       "selectors": {
         "ruleId": "fraude",
         "category": "seguridad-financiera",
@@ -1541,7 +1549,7 @@
       "targetImagePath": "/images/hero/tarjeta-credito-costo-real-chile.avif",
       "template": "A",
       "approvedModelId": "deuda-credito",
-      "sceneId": "A:deuda-credito",
+      "sceneId": "A:deuda-credito--tarjeta-credito-costo-real-chile",
       "readerSituation": "Persona enfrentando documentos, cuotas o decisiones de deuda.",
       "primaryIntent": "comparar",
       "toneClass": "serio",
@@ -1561,8 +1569,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one geometric human figure one hand raised to head, shown from behind or as a faceless silhouette.\nThe figure is near pile of documents, credit card shape. All objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
-      "promptHash": "b0d91cddeebae1fdf23588a2c2520efddd1021ce74e0d80f2f0599e2f12ebf51",
+      "prompt": "Flat 2D editorial vector illustration.\nBackground: solid color #d97706.\nScene: one credit card shape feeding a long payment path that ends in a larger total-cost block.\nUse only the card, the payment path, and the final larger cost block.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure placed left-of-center; right third of canvas is clean solid background only.\nSemantic focus: the hidden long-term cost of revolving card debt.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the card, payment path, and total-cost block.",
+      "promptHash": "4a28dc0e2797c85e18062fca4c6ac4ae745b0e8fe2d3336a8f2bad005a43ccb3",
       "selectors": {
         "ruleId": "deuda",
         "category": "deuda-credito",
@@ -1580,7 +1588,7 @@
       "targetImagePath": "/images/hero/utm-chile-que-es-como-funciona.avif",
       "template": "C",
       "approvedModelId": "uf-indicadores",
-      "sceneId": "C:uf-indicadores",
+      "sceneId": "C:uf-indicadores--utm-chile-que-es-como-funciona",
       "readerSituation": "Persona entendiendo la UTM como unidad tributaria mensual: que es, su valor, como afecta multas e impuestos.",
       "primaryIntent": "explicar",
       "toneClass": "educativo",

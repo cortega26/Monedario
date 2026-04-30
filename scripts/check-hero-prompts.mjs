@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import path from "node:path";
 import { findApprovedPromptModel } from "./hero-images/config.mjs";
+import { buildArticleSceneId } from "./hero-images/prompt-plan.mjs";
 import {
   MANIFEST_PATH,
   PROMPTS_PATH,
@@ -54,6 +55,8 @@ async function main() {
 
   const errors = [];
   const warnings = [];
+  const promptsByText = new Map();
+  const sceneIdsByValue = new Map();
 
   if (entries.length !== articles.length) {
     pushIssue(
@@ -84,6 +87,15 @@ async function main() {
 
     if (typeof entry.sceneId !== "string" || entry.sceneId.trim() === "") {
       pushIssue(errors, article.slug, "Missing sceneId.");
+    } else {
+      const expectedSceneId = buildArticleSceneId(entry.template, entry.approvedModelId, article.slug);
+      if (entry.sceneId !== expectedSceneId) {
+        pushIssue(
+          errors,
+          article.slug,
+          `sceneId '${entry.sceneId}' does not match deterministic sceneId '${expectedSceneId}'.`
+        );
+      }
     }
 
     if (typeof entry.approvedModelId !== "string" || entry.approvedModelId.trim() === "") {
@@ -95,12 +107,6 @@ async function main() {
           errors,
           article.slug,
           `approvedModelId '${entry.approvedModelId}' is not part of the approved template catalog.`
-        );
-      } else if (entry.sceneId !== approvedModel.sceneId) {
-        pushIssue(
-          errors,
-          article.slug,
-          `sceneId '${entry.sceneId}' does not match approved model '${approvedModel.sceneId}'. Remediation: rerun node scripts/hero-images/build-prompts.mjs; if it persists, fix the approved model or slug override in scripts/hero-images/prompt-plan.mjs.`
         );
       }
     }
@@ -153,8 +159,14 @@ async function main() {
 
     if (typeof entry.prompt !== "string" || entry.prompt.trim() === "") {
       pushIssue(errors, article.slug, "Missing prompt.");
-    } else if (entry.promptHash !== sha256Hex(entry.prompt)) {
-      pushIssue(errors, article.slug, "promptHash does not match prompt content.");
+    } else {
+      if (entry.promptHash !== sha256Hex(entry.prompt)) {
+        pushIssue(errors, article.slug, "promptHash does not match prompt content.");
+      }
+
+      const promptSiblings = promptsByText.get(entry.prompt) ?? [];
+      promptSiblings.push(article.slug);
+      promptsByText.set(entry.prompt, promptSiblings);
     }
 
     if (typeof entry.selectors?.ruleId !== "string" || entry.selectors.ruleId.trim() === "") {
@@ -163,6 +175,32 @@ async function main() {
 
     if (!Array.isArray(entry.selectors?.matchedKeywords)) {
       pushIssue(errors, article.slug, "Missing selectors.matchedKeywords.");
+    }
+
+    if (typeof entry.sceneId === "string" && entry.sceneId.trim()) {
+      const sceneIdSiblings = sceneIdsByValue.get(entry.sceneId) ?? [];
+      sceneIdSiblings.push(article.slug);
+      sceneIdsByValue.set(entry.sceneId, sceneIdSiblings);
+    }
+  }
+
+  for (const slugs of promptsByText.values()) {
+    if (slugs.length > 1) {
+      pushIssue(
+        errors,
+        slugs[0] ?? "*",
+        `Duplicate prompt detected in prompts.json: ${JSON.stringify(slugs)}`
+      );
+    }
+  }
+
+  for (const [sceneId, slugs] of sceneIdsByValue.entries()) {
+    if (slugs.length > 1) {
+      pushIssue(
+        errors,
+        slugs[0] ?? "*",
+        `Duplicate sceneId detected in prompts.json: ${JSON.stringify(slugs)} (${sceneId})`
+      );
     }
   }
 

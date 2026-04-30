@@ -1,6 +1,6 @@
 # TECH_DEBT_BACKLOG
 
-Fecha de corte: 2026-04-23
+Fecha de corte: 2026-04-30
 
 ## Métricas
 
@@ -8,14 +8,14 @@ Fecha de corte: 2026-04-23
 
 - **P0:** 3
 - **P1:** 13
-- **P2:** 14
+- **P2:** 15
 - **P3:** 1
 
 ### Estado de avance (2026-04-23)
 
 - **Completados:** 56 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `TD-0037`, `TD-0038`, `TD-0040`, `TD-0041`, `TD-0043`, `TD-0044`, `TD-0045`, `TD-0046`, `TD-0047`, `TD-0048`, `TD-0049`, `TD-0050`, `TD-0051`, `TD-0052`, `TD-0055`, `FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 1 (`TD-0039`)
-- **Backlog sin iniciar:** 3 (`TD-0042`, `TD-0053`, `TD-0054`)
+- **Backlog sin iniciar:** 4 (`TD-0042`, `TD-0053`, `TD-0054`, `TD-0056`)
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -29,6 +29,7 @@ Fecha de corte: 2026-04-23
 > Revalidación 2026-04-09: `pnpm run test`, `pnpm run lint` y `pnpm run format:check` pasan limpios. Los ítems `TD-0035` a `TD-0038` quedaron resueltos en el árbol actual y el backlog se corrige para reflejar ese baseline.
 > Auditoría F22 (2026-04-12): los 9 hallazgos documentados en `docs/operations/reports/f22-calculator-audit-2026-04-12.md` ya estaban resueltos en el árbol al momento del registro. `TD-0044` a `TD-0052` se marcan directamente como Completados.
 > `TD-0055`: regenerado `scripts/hero-images/prompts.json` desde el planner vigente y reforzada la capa anti-drift con `POLICY_REGISTRY` + `check:policy-registry`; `pnpm run check:hero-prompts` vuelve a `OK` el 2026-04-23.
+> `TD-0056`: baseline pre-change del 2026-04-30 detecta 5 fallas preexistentes en `tests/integration/homepage-content.test.ts` por drift entre el contrato del test y el estado actual de artifacts editoriales publicados.
 
 ### Top riesgos restantes
 
@@ -67,6 +68,26 @@ Fecha de corte: 2026-04-23
 - **Estado:** Completado
 - **Fecha de creación:** 2026-04-15
 - **Última actualización:** 2026-04-23
+
+## TD-0056 — Baseline rota en `homepage-content.test.ts` por artifacts editoriales ya publicados
+- **ID:** TD-0056
+- **Título corto:** Resolver drift entre homepage-content tests y artifacts editoriales
+- **Descripción:** La baseline exigida por `REGRESSION_PREVENTION.md` §5.5 ya llega con 5 fallas en `tests/integration/homepage-content.test.ts`. El test todavía exige `Status: UNPUBLISHED` y `Status: BLOCKED — pending human sign-off`, pero al menos `docs/editorial/artifacts/operacion-renta-centro/01-artifact.md` ya está `PUBLISHED` y su `07-publish-packet.md` está `APPROVED`, además de drift relacionado en `05-math-audit.md` y `06-compliance.md`.
+- **Evidencia:** `pnpm run test` en el baseline del 2026-04-30 falla en `tests/integration/homepage-content.test.ts` con 5 errores dentro de `Wave 5 structural guards` y `Phase 3 structural guards`; el diff visible apunta a `docs/editorial/artifacts/operacion-renta-centro/`.
+- **Impacto:** La suite completa de tests pierde valor como gate limpio para cambios no relacionados y mezcla deuda editorial previa con regresiones nuevas.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** decidir si la fuente de verdad son los artifacts ya publicados o el contrato histórico del test. Luego actualizar assertions/fixtures o restaurar el estado editorial anterior con trazabilidad.
+- **Criterios de cierre (checklist verificable):**
+- [ ] `pnpm run test` deja de fallar por los 5 asserts de `homepage-content.test.ts`.
+- [ ] Queda documentado si el estado editorial correcto es `PUBLISHED/APPROVED` o `UNPUBLISHED/BLOCKED`.
+- [ ] La corrección se acompaña con backlog/CCR o con ajuste explícito del pipeline editorial.
+- **Owner:** TBD
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-04-30
+- **Última actualización:** 2026-04-30
 
 ## TD-0001 — Estrategia de package manager y lockfiles inconsistente
 - **ID:** TD-0001

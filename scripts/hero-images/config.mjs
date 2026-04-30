@@ -50,40 +50,93 @@ function resolveHex(colorKeyOrHex) {
   return color.hex;
 }
 
-export function buildPromptA(colorKeyOrHex, postura, objetos = "") {
-  const hex = resolveHex(colorKeyOrHex);
-  return `Flat 2D editorial vector illustration.
-Background: solid color ${hex}.
-Scene: one geometric human figure ${postura}, shown from behind or as a faceless silhouette.
-The figure is near ${objetos}. All objects are flat geometric shapes, same illustration style.
-Lighting: none. Flat uniform background only. No shadows, no highlights, no depth.
-Color palette: 3 colors maximum, all flat fills.
-Composition: figure placed left-of-center; right third of canvas is clean solid background only.
-No text, no letters, no numbers anywhere in the image.
-Canvas: 1200x630 pixels, landscape.
-Do not add extra objects beyond the named scene props.`;
+function normalizePromptOptions(options = {}) {
+  return {
+    backgroundNote: options.backgroundNote ?? "",
+    sceneLine: options.sceneLine,
+    propsLine: Object.prototype.hasOwnProperty.call(options, "propsLine")
+      ? options.propsLine
+      : undefined,
+    lightingLine:
+      options.lightingLine ??
+      "Lighting: none. Flat uniform background only. No shadows, no highlights, no depth.",
+    paletteLine: options.paletteLine ?? "",
+    compositionLine: options.compositionLine ?? "",
+    extraLines: Array.isArray(options.extraLines)
+      ? options.extraLines.filter(Boolean)
+      : [],
+    noTextLine:
+      options.noTextLine ?? "No text, no letters, no numbers anywhere in the image.",
+    canvasLine: options.canvasLine ?? "Canvas: 1200x630 pixels, landscape.",
+    negativeLine: options.negativeLine ?? "",
+  };
 }
 
-export function buildPromptB(colorKeyOrHex, icono) {
-  const hex = resolveHex(colorKeyOrHex);
-  return `Flat 2D editorial vector illustration.
-Background: solid color ${hex}.
-Scene: one simple geometric ${icono}, centered.
-Lighting: none. Flat uniform background only. No shadows, no highlights, no depth.
-Color palette: 2 colors maximum, all flat fills.
-No text, no letters, no numbers anywhere in the image.
-Canvas: 1200x630 pixels, landscape.`;
+function joinPromptLines(lines) {
+  return lines.filter(Boolean).join("\n");
 }
 
-export function buildPromptC(colorKeyOrHex, icono) {
+export function buildPromptA(colorKeyOrHex, postura, objetos = "", options = {}) {
   const hex = resolveHex(colorKeyOrHex);
-  return `Flat 2D editorial vector illustration.
-Background: solid color ${hex}.
-Scene: one simple geometric ${icono}, aligned to the right third of the canvas; left two-thirds is clean solid background only.
-Lighting: none. No shadows, no highlights, no depth.
-Color palette: 2 colors maximum, all flat fills.
-No text, no letters, no numbers anywhere in the image.
-Canvas: 1200x630 pixels, landscape.`;
+  const promptOptions = normalizePromptOptions(options);
+  const defaultPropsLine = objetos
+    ? `The figure is near ${objetos}. All objects are flat geometric shapes, same illustration style.`
+    : "All objects are flat geometric shapes, same illustration style.";
+  const propsLine =
+    promptOptions.propsLine === undefined ? defaultPropsLine : promptOptions.propsLine;
+
+  return joinPromptLines([
+    "Flat 2D editorial vector illustration.",
+    `Background: solid color ${hex}.${promptOptions.backgroundNote ? ` ${promptOptions.backgroundNote}` : ""}`,
+    promptOptions.sceneLine ??
+      `Scene: one geometric human figure ${postura}, shown from behind or as a faceless silhouette.`,
+    propsLine,
+    promptOptions.lightingLine,
+    promptOptions.paletteLine || "Color palette: 3 colors maximum, all flat fills.",
+    promptOptions.compositionLine ||
+      "Composition: figure placed left-of-center; right third of canvas is clean solid background only.",
+    ...promptOptions.extraLines,
+    promptOptions.noTextLine,
+    promptOptions.canvasLine,
+    promptOptions.negativeLine || "Do not add extra objects beyond the named scene props.",
+  ]);
+}
+
+export function buildPromptB(colorKeyOrHex, icono, options = {}) {
+  const hex = resolveHex(colorKeyOrHex);
+  const promptOptions = normalizePromptOptions(options);
+
+  return joinPromptLines([
+    "Flat 2D editorial vector illustration.",
+    `Background: solid color ${hex}.${promptOptions.backgroundNote ? ` ${promptOptions.backgroundNote}` : ""}`,
+    promptOptions.sceneLine ?? `Scene: one simple geometric ${icono}, centered.`,
+    promptOptions.lightingLine,
+    promptOptions.paletteLine || "Color palette: 2 colors maximum, all flat fills.",
+    promptOptions.compositionLine,
+    ...promptOptions.extraLines,
+    promptOptions.noTextLine,
+    promptOptions.canvasLine,
+    promptOptions.negativeLine,
+  ]);
+}
+
+export function buildPromptC(colorKeyOrHex, icono, options = {}) {
+  const hex = resolveHex(colorKeyOrHex);
+  const promptOptions = normalizePromptOptions(options);
+
+  return joinPromptLines([
+    "Flat 2D editorial vector illustration.",
+    `Background: solid color ${hex}.${promptOptions.backgroundNote ? ` ${promptOptions.backgroundNote}` : ""}`,
+    promptOptions.sceneLine ??
+      `Scene: one simple geometric ${icono}, aligned to the right third of the canvas; left two-thirds is clean solid background only.`,
+    promptOptions.lightingLine || "Lighting: none. No shadows, no highlights, no depth.",
+    promptOptions.paletteLine || "Color palette: 2 colors maximum, all flat fills.",
+    promptOptions.compositionLine,
+    ...promptOptions.extraLines,
+    promptOptions.noTextLine,
+    promptOptions.canvasLine,
+    promptOptions.negativeLine,
+  ]);
 }
 
 function model(template, id, label, fields = {}) {

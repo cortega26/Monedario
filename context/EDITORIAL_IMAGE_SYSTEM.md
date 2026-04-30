@@ -77,7 +77,26 @@ Lo que estos referentes tienen en común con monedario: **hablan de plata sin ha
 
 > Las imágenes deben hacer que el lector piense *"esto es para mí"* antes de leer el título.
 
-Eso requiere que las imágenes representen situaciones, no conceptos. Una persona mirando una pantalla con números. Una mano sosteniendo un documento. Una mesa con una taza y una calculadora. Escenas que cualquier chileno reconoce como parte de su vida financiera cotidiana.
+Eso no siempre significa una escena narrativa completa. En artículos de alta sensibilidad YMYL, comparación técnica o procedimiento institucional, la imagen puede y debe representar el **mecanismo central** del artículo: un comprobante, una línea de tiempo, dos sistemas comparados, una cartola o un calendario de pago. En piezas más cotidianas o emocionales, la escena cercana sigue siendo válida.
+
+Una persona mirando una pantalla con números. Una mano sosteniendo un documento. Una mesa con una taza y una calculadora. Un comprobante con bloques bien definidos. Un calendario con el día de pago marcado. Todo eso puede pertenecer al mismo sistema si la lectura es inmediata y la metáfora es correcta.
+
+### 2.4 Dirección híbrida YMYL
+
+Regla operativa:
+
+- **Scene-first** cuando el lector necesita reconocerse en una situación cotidiana.
+- **Mechanism-first** cuando el artículo explica una regla, una comparación, un cálculo, un documento o un proceso.
+
+Aplicación recomendada:
+
+| Tipo de artículo | Sesgo visual recomendado |
+|---|---|
+| Presupuesto, primer empleo, ahorro cotidiano | Escena cercana y simple |
+| Liquidación, descuentos, boletas, cartolas | Documento o desglose visual |
+| Deuda, CMF vs DICOM, prepago, renegociación | Comparación, statement o flujo |
+| Devoluciones, F22, licencia médica | Calendario, checklist o secuencia |
+| Indicadores (UF, IPC, UTM) | Ícono o composición semántica austera |
 
 ---
 
@@ -140,6 +159,7 @@ Una escena cotidiana abstracta con personaje(s) simplificado(s), ilustrada en es
 - El artículo describe una situación que el lector puede estar viviendo (cesantía, deuda, jubilación, primer sueldo)
 - El contenido tiene carga emocional relevante
 - El artículo es un punto de entrada — alguien llegará sin saber qué busca exactamente
+- El mecanismo documental o comparativo no es más importante que la vivencia del lector
 
 **Estructura:**
 - Fondo de color semántico sólido (ver sección 5)
@@ -171,6 +191,7 @@ Fondo sólido de color semántico con ícono centrado. Ideal cuando el artículo
 - El artículo es una referencia técnica (qué es la UF, cómo funciona el CAE)
 - El artículo presenta una calculadora o herramienta
 - El concepto es inequívoco y el ícono lo comunica sin ambigüedad
+- El tema exige más precisión institucional que narrativa
 
 **Estructura de capas:**
 1. **Fondo:** color sólido semántico

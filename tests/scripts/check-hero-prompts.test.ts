@@ -4,6 +4,7 @@ import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { afterEach, describe, expect, it } from "vitest";
+import { buildArticleSceneId } from "../../scripts/hero-images/prompt-plan.mjs";
 
 const SCRIPT_PATH = path.resolve("scripts/check-hero-prompts.mjs");
 const tempRoots: string[] = [];
@@ -60,7 +61,7 @@ describe("check-hero-prompts script", () => {
           sourcePath: "src/data/blog/que-es-la-uf.md",
           template: "C",
           approvedModelId: "uf-indicadores",
-          sceneId: "C:uf-indicadores",
+          sceneId: buildArticleSceneId("C", "uf-indicadores", "que-es-la-uf"),
           readerSituation: "Persona entendiendo un indicador economico que afecta pagos cotidianos.",
           primaryIntent: "explicar",
           toneClass: "educativo",
@@ -104,7 +105,7 @@ describe("check-hero-prompts script", () => {
           sourcePath: "src/data/blog/deuda-generica.md",
           template: "A",
           approvedModelId: "deuda-credito",
-          sceneId: "A:deuda-credito",
+          sceneId: buildArticleSceneId("A", "deuda-credito", "deuda-generica"),
           readerSituation: "Persona enfrentando documentos, cuotas o decisiones de deuda.",
           primaryIntent: "explicar",
           toneClass: "serio",
@@ -145,7 +146,7 @@ describe("check-hero-prompts script", () => {
           sourcePath: "src/data/blog/general.md",
           template: "B",
           approvedModelId: "cuenta-corriente-banco",
-          sceneId: "B:cuenta-corriente-banco",
+          sceneId: buildArticleSceneId("B", "cuenta-corriente-banco", "general"),
           readerSituation: "Persona revisando informacion financiera practica para tomar una decision.",
           primaryIntent: "explicar",
           toneClass: "neutral",
@@ -191,7 +192,7 @@ describe("check-hero-prompts script", () => {
           sourcePath: "src/data/blog/invalid-model.md",
           template: "A",
           approvedModelId: "custom-scene",
-          sceneId: "A:custom-scene",
+          sceneId: buildArticleSceneId("A", "custom-scene", "invalid-model"),
           readerSituation: "Persona revisando informacion financiera practica para tomar una decision.",
           primaryIntent: "explicar",
           toneClass: "neutral",
@@ -212,5 +213,60 @@ describe("check-hero-prompts script", () => {
 
     expect(result.status).toBe(1);
     expect(result.stderr).toContain("is not part of the approved template catalog");
+  });
+
+  it("fails when prompts are duplicated across multiple slugs", () => {
+    const root = createTempDir();
+    const prompt = "Flat 2D editorial vector illustration.\nBackground: solid color #059669.";
+
+    writeJson(path.join(root, "manifest.json"), {
+      articles: [
+        { slug: "slug-a", sourcePath: "src/data/blog/slug-a.md" },
+        { slug: "slug-b", sourcePath: "src/data/blog/slug-b.md" },
+      ],
+    });
+    writeJson(path.join(root, "prompts.json"), {
+      entries: [
+        {
+          slug: "slug-a",
+          sourcePath: "src/data/blog/slug-a.md",
+          template: "A",
+          approvedModelId: "ahorro",
+          sceneId: buildArticleSceneId("A", "ahorro", "slug-a"),
+          readerSituation: "Persona organizando ahorro o controlando gastos cotidianos.",
+          primaryIntent: "explicar",
+          toneClass: "progreso",
+          visualEvidence: ["text contains 'ahorro' in article body/title context"],
+          prompt,
+          promptHash: sha256(prompt),
+          selectors: {
+            ruleId: "ahorro",
+            matchedKeywords: ["ahorro"],
+          },
+        },
+        {
+          slug: "slug-b",
+          sourcePath: "src/data/blog/slug-b.md",
+          template: "A",
+          approvedModelId: "ahorro",
+          sceneId: buildArticleSceneId("A", "ahorro", "slug-b"),
+          readerSituation: "Persona organizando ahorro o controlando gastos cotidianos.",
+          primaryIntent: "explicar",
+          toneClass: "progreso",
+          visualEvidence: ["text contains 'meta' in article body/title context"],
+          prompt,
+          promptHash: sha256(prompt),
+          selectors: {
+            ruleId: "ahorro",
+            matchedKeywords: ["meta"],
+          },
+        },
+      ],
+    });
+
+    const result = runCheck(root);
+
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain("Duplicate prompt detected in prompts.json");
   });
 });

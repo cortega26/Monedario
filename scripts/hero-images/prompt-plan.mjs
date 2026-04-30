@@ -231,9 +231,46 @@ function buildSemanticProfile(article, rule, evidence) {
   };
 }
 
+function normalizeSceneToken(value) {
+  return String(value ?? "")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+export function buildArticleSceneId(template, approvedModelId, slug) {
+  const templateToken = normalizeSceneToken(template).toUpperCase();
+  const modelToken = normalizeSceneToken(approvedModelId);
+  const slugToken = normalizeSceneToken(slug);
+  return `${templateToken}:${modelToken}--${slugToken}`;
+}
+
 // Slug-level overrides for articles whose content overlaps multiple keyword rules.
 // These are checked before the RULES loop and take absolute precedence.
 const SLUG_OVERRIDES = {
+  "boleta-honorarios-2026-retencion-cobertura": {
+    id: "honorarios",
+    template: "A",
+    recipeId: "liquidacion-documento",
+    colorKey: "Credito / Deuda / Impuestos / Riesgo",
+    readerSituation:
+      "Persona que emite boletas de honorarios y necesita separar retencion, liquido recibido y cobertura anual.",
+    toneClass: "educativo",
+    overrideEvidence: ["slug override: honorarios cash-flow and retention article"],
+    overrideKeywords: ["honorarios", "retencion", "liquido"],
+  },
+  "cae-costo-real-credito-chile": {
+    id: "deuda",
+    template: "C",
+    recipeId: "credito-comparador",
+    colorKey: "Credito / Deuda / Impuestos / Riesgo",
+    readerSituation:
+      "Persona comparando el costo real de un credito mas alla de la tasa o la cuota mensual.",
+    toneClass: "serio",
+    overrideEvidence: ["slug override: CAE article is a debt-cost comparison, not an indicator article"],
+    overrideKeywords: ["cae", "credito", "costo real"],
+  },
   "como-calcular-sueldo-liquido": {
     id: "sueldo",
     template: "A",
@@ -255,9 +292,9 @@ const SLUG_OVERRIDES = {
     overrideKeywords: ["liquidacion de sueldo"],
   },
   "cuanto-descuenta-la-afp-de-tu-sueldo": {
-    id: "prevision",
+    id: "empleo",
     template: "A",
-    recipeId: "afp-pension",
+    recipeId: "liquidacion-documento",
     colorKey: "Finanzas general / AFP / Empleo / Ahorro",
     readerSituation: "Persona evaluando el descuento previsional en su liquidacion.",
     toneClass: "educativo",
@@ -334,6 +371,17 @@ const SLUG_OVERRIDES = {
     toneClass: "progreso",
     overrideEvidence: ["slug override: ETF investment article"],
     overrideKeywords: ["ahorro", "inversion"],
+  },
+  "como-hacer-presupuesto-mensual-chile": {
+    id: "ahorro",
+    template: "A",
+    recipeId: "ahorro",
+    colorKey: "Ahorro activo / Metas / Logros",
+    readerSituation:
+      "Persona ordenando gastos fijos, gastos variables y ahorro para construir un presupuesto mensual realista.",
+    toneClass: "progreso",
+    overrideEvidence: ["slug override: budgeting article — prevision false-positive on AFP mentions in cross-links"],
+    overrideKeywords: ["presupuesto", "gastos", "ahorro"],
   },
   // IPC article: body mentions 'sueldo' triggering empleo rule before uf rule;
   // override to ipc-indicadores Template C for correct educational indicator framing.
@@ -437,6 +485,17 @@ const SLUG_OVERRIDES = {
     overrideEvidence: ["slug override: mixed-income tax declaration article — empleo rule false-positive on 'sueldo'+'honorarios' keywords"],
     overrideKeywords: ["impuesto", "renta", "declaracion", "global complementario"],
   },
+  "descuentos-de-sueldo": {
+    id: "empleo",
+    template: "A",
+    recipeId: "liquidacion-documento",
+    colorKey: "Finanzas general / AFP / Empleo / Ahorro",
+    readerSituation:
+      "Persona clasificando descuentos de sueldo para distinguir los legales, autorizados y prohibidos.",
+    toneClass: "neutral",
+    overrideEvidence: ["slug override: payroll-deductions classification article"],
+    overrideKeywords: ["descuentos de sueldo", "descuento legal", "descuento prohibido"],
+  },
   // Cartola AFP: generic afp-pension (shield+upward arrow) doesn't communicate
   // 'reading a document'; liquidacion-documento (figure holding a document with magnifier)
   // directly represents the act of inspecting a financial statement.
@@ -479,6 +538,443 @@ const SLUG_OVERRIDES = {
   },
 };
 
+const ARTICLE_PROMPT_VARIANTS = {
+  "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026": {
+    promptOptions: {
+      sceneLine:
+        "Scene: three flat investment containers arranged side by side with clearly different profiles: one stable block, one medium stepped stack, and one taller volatile stack.",
+      propsLine:
+        "Use only geometric containers, divider blocks, and one small comparison arrow between the middle and right options.",
+      compositionLine:
+        "Composition: the three containers occupy the central 70% of the canvas with generous horizontal margins.",
+      extraLines: ["Semantic focus: choosing between DAP, mutual funds, and ETFs according to risk and cost."],
+      negativeLine:
+        "Do not add extra objects beyond the three containers and the comparison arrow.",
+    },
+  },
+  "boleta-honorarios-2026-retencion-cobertura": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one flat honorarios receipt sheet divided into a retained amount band and a final net amount block.",
+      propsLine:
+        "Use only the receipt silhouette, one subtraction bar, and one compact coverage marker shape in the corner.",
+      extraLines: ["Semantic focus: monthly retention and net cash received from honorarios."],
+      negativeLine:
+        "Do not add extra objects beyond the receipt, subtraction bar, and coverage marker.",
+    },
+  },
+  "cae-costo-real-credito-chile": {
+    promptOptions: {
+      sceneLine:
+        "Scene: two stacked cost bars with one small monthly bar below a larger total-cost block, aligned to the right third of the canvas; left two-thirds is clean solid background only.",
+      extraLines: ["Semantic focus: total borrowing cost versus the misleading monthly payment view."],
+      negativeLine: "Do not add extra objects beyond the two cost bars.",
+    },
+  },
+  "como-calcular-sueldo-liquido": {
+    promptOptions: {
+      backgroundNote:
+        "Perfectly flat with zero gradient, zero vignette, zero texture, zero glow, and zero edge darkening.",
+      sceneLine:
+        "Scene: one simplified vertical payslip with five clearly separated stacked deduction blocks feeding a larger final net deposit block at the bottom.",
+      propsLine:
+        "Use only crisp opaque rectangles, divider lines, and one strong downward arrow that clearly guides the eye from the upper section through the deductions toward the final block.",
+      lightingLine:
+        "Lighting: none. Flat uniform background only. No shadows, no highlights, no depth, no soft shading, and no translucent surfaces.",
+      compositionLine:
+        "Composition: the payslip occupies the left-center of the canvas; the final bottom block must read more prominently than the deduction blocks; right third of canvas is clean solid background only.",
+      extraLines: [
+        "Semantic focus: payroll calculation from gross salary to final net deposit.",
+        "All visible shapes must feel architectural, crisp, opaque, and strictly geometric.",
+      ],
+      negativeLine:
+        "Do not add extra objects beyond the payslip blocks and the arrow. Avoid soft gradients inside blocks, airy translucency, timid arrows, or a generic form-like look.",
+    },
+  },
+  "como-hacer-presupuesto-mensual-chile": {
+    promptOptions: {
+      sceneLine:
+        "Scene: a top-down flat desk layout with one open notebook, one calculator, and two grouped expense stacks.",
+      propsLine:
+        "Keep the notebook dominant and use only simple paper blocks and one small coin jar as supporting props.",
+      extraLines: ["Semantic focus: practical household budgeting with fixed expenses, variable expenses, and savings."],
+      negativeLine:
+        "Do not add extra objects beyond the notebook, calculator, expense stacks, and coin jar.",
+    },
+  },
+  "como-invertir-en-etfs-desde-chile": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one simplified brokerage window card beside a rising stack of flat ETF blocks.",
+      propsLine:
+        "Use only a rectangular platform card, three ascending blocks, and one small direction arrow.",
+      extraLines: ["Semantic focus: entering ETFs through a broker while understanding fees and platform choice."],
+      negativeLine:
+        "Do not add extra objects beyond the brokerage card, ascending blocks, and arrow.",
+    },
+  },
+  "como-leer-cartola-afp-chile": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one flat AFP statement page with a slim performance band and a magnifier positioned over contribution lines.",
+      propsLine:
+        "Use only the statement sheet, the magnifier, and three highlighted horizontal bars inside the document.",
+      extraLines: ["Semantic focus: reading an AFP statement line by line."],
+      negativeLine:
+        "Do not add extra objects beyond the statement, the magnifier, and the highlighted bars.",
+    },
+  },
+  "como-salir-boletin-comercial-chile": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one commercial bulletin document sliding out from behind a barrier line toward a clean approval circle.",
+      propsLine:
+        "Use only the document silhouette, one horizontal barrier, and one approval circle with a simple check shape.",
+      extraLines: ["Semantic focus: leaving the commercial bulletin without criminalizing the user."],
+      negativeLine:
+        "Do not add extra objects beyond the document, barrier line, and approval circle.",
+    },
+  },
+  "credito-hipotecario-chile-guia-completa": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one house silhouette anchored to a long amortization bar made of monthly blocks.",
+      propsLine:
+        "Use only the house, the amortization bar, and one small downward interest arrow at the far end.",
+      extraLines: ["Semantic focus: the long-term structure of a mortgage credit."],
+      negativeLine:
+        "Do not add extra objects beyond the house, amortization bar, and interest arrow.",
+    },
+  },
+  "cuanto-descuenta-la-afp-de-tu-sueldo": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one horizontal deduction strip divided into a large pension segment and a smaller commission segment beside a payslip edge.",
+      propsLine:
+        "Use only the payslip edge, the two-part deduction strip, and one small verification marker.",
+      extraLines: ["Semantic focus: separating mandatory AFP contribution from commission."],
+      negativeLine:
+        "Do not add extra objects beyond the payslip edge, deduction strip, and verification marker.",
+    },
+  },
+  "deposito-a-plazo-uf-vs-pesos": {
+    promptOptions: {
+      sceneLine:
+        "Scene: two flat deposit blocks side by side, one stable and one indexed upward, aligned to the right third of the canvas; left two-thirds is clean solid background only.",
+      extraLines: ["Semantic focus: comparing fixed-rate pesos with inflation-indexed UF deposits."],
+      negativeLine: "Do not add extra objects beyond the two deposit blocks and the small upward index cue.",
+    },
+  },
+  "devolucion-impuestos-fechas-compensaciones": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one calendar page connected to a deposit arrow and a compact status dot.",
+      propsLine:
+        "Use only the calendar, the arrow, and one small offset block representing compensations or delays.",
+      extraLines: ["Semantic focus: refund timing, status review, and possible offsets."],
+      negativeLine:
+        "Do not add extra objects beyond the calendar, deposit arrow, status dot, and offset block.",
+    },
+  },
+  "descuentos-de-sueldo": {
+    promptOptions: {
+      sceneLine:
+        "Scene: three grouped deduction cards arranged in a row, one mandatory, one consent-based, and one blocked.",
+      propsLine:
+        "Use only flat cards, one small check shape, one approval hand shape, and one prohibition shape as non-text markers.",
+      extraLines: ["Semantic focus: legal, authorized, and prohibited payroll deductions."],
+      negativeLine:
+        "Do not add extra objects beyond the three cards and the three simple markers.",
+    },
+  },
+  "donde-ver-si-estoy-en-dicom-gratis": {
+    promptOptions: {
+      sceneLine:
+        "Scene: three flat report cards partially overlapped under one large magnifier.",
+      propsLine:
+        "Keep the front report brighter than the two rear cards to signal comparison without adding logos.",
+      extraLines: ["Semantic focus: checking debt status across several report sources for free."],
+      negativeLine:
+        "Do not add extra objects beyond the three report cards and the magnifier.",
+    },
+  },
+  "el-poder-del-interes-compuesto": {
+    promptOptions: {
+      sceneLine:
+        "Scene: a stepped contribution staircase feeding one tall curved growth arc and a final large savings block.",
+      propsLine:
+        "Use only flat steps, one growth arc, and one final block at the top-right of the scene.",
+      extraLines: ["Semantic focus: long-term compounding from repeated small contributions."],
+      negativeLine:
+        "Do not add extra objects beyond the steps, growth arc, and final savings block.",
+    },
+  },
+  "estafas-financieras-chile-vishing-smishing-marketplace": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one smartphone receiving three flat alert shapes from different channels: call, message, and marketplace badge.",
+      propsLine:
+        "Use only the phone silhouette and the three incoming alert shapes with no logos or brand signals.",
+      extraLines: ["Semantic focus: multi-channel scam detection within the first 24 hours."],
+      negativeLine:
+        "Do not add extra objects beyond the smartphone and the three alert shapes.",
+    },
+  },
+  "finiquito-e-indemnizaciones-en-chile": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one closing folder with a checklist block stack and a signature line.",
+      propsLine:
+        "Use only the folder silhouette, the checklist bars, and one simple signing stroke.",
+      extraLines: ["Semantic focus: reviewing a severance settlement before signing."],
+      negativeLine:
+        "Do not add extra objects beyond the folder, checklist bars, and signature line.",
+    },
+  },
+  "fondos-mutuos-comisiones-rescate-impuestos": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one flat fund statement page with a fee funnel on the left and an exit tray on the right.",
+      propsLine:
+        "Use only the document, one funnel shape, one payout tray, and two small cost blocks between them.",
+      extraLines: ["Semantic focus: fees, redemption, and taxes inside mutual funds."],
+      negativeLine:
+        "Do not add extra objects beyond the statement, funnel, payout tray, and cost blocks.",
+    },
+  },
+  "fonasa-vs-isapre-comparativa": {
+    promptOptions: {
+      sceneLine:
+        "Scene: two flat health cards balanced on a central axis with equal visual weight.",
+      propsLine:
+        "Use only the central axis, the two cards, and one small geometric medical cross above them.",
+      extraLines: ["Semantic focus: comparing Fonasa and Isapre without implying one premium default."],
+      negativeLine:
+        "Do not add extra objects beyond the axis, two cards, and medical cross.",
+    },
+  },
+  "fraude-tarjeta-que-hacer": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one blocked card shape beside a compact claim document and an alert badge.",
+      propsLine:
+        "Use only the card, the document, and one sharp alert badge to suggest the first 24-hour response.",
+      extraLines: ["Semantic focus: immediate response to an unrecognized card charge."],
+      negativeLine:
+        "Do not add extra objects beyond the card, claim document, and alert badge.",
+    },
+  },
+  "indemnizacion-anos-de-servicio-chile": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one employment timeline bar built from annual blocks ending in a final payout block.",
+      propsLine:
+        "Use only the timeline bar, the annual blocks, and one final settlement block at the right end.",
+      extraLines: ["Semantic focus: years-of-service accumulation leading to severance pay."],
+      negativeLine:
+        "Do not add extra objects beyond the timeline bar, annual blocks, and payout block.",
+    },
+  },
+  "informe-deudas-cmf-vs-dicom": {
+    promptOptions: {
+      sceneLine:
+        "Scene: two overlapping debt report cards inside one large magnifier.",
+      propsLine:
+        "Keep the overlap crisp and geometric so the comparison reads instantly at thumbnail size.",
+      extraLines: ["Semantic focus: distinguishing the CMF debt report from DICOM-style records."],
+      negativeLine:
+        "Do not add extra objects beyond the two report cards and the magnifier.",
+    },
+  },
+  "interes-compuesto-nota-metodologica": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one flat methodology board with a grid, stepped accumulation bars, and a final result block.",
+      propsLine:
+        "Use only the board, the grid lines, the stepped bars, and one final output block.",
+      extraLines: ["Semantic focus: methodology and assumptions behind a compound-interest simulation."],
+      negativeLine:
+        "Do not add extra objects beyond the board, grid, bars, and output block.",
+    },
+  },
+  "licencia-medica-desde-que-dia-pagan": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one horizontal calendar strip with shaded leave days and a marked payment-start block.",
+      propsLine:
+        "Use only the calendar strip, one payment-start marker, and one smaller continuity marker.",
+      extraLines: ["Semantic focus: subsidy payment starting day within a medical leave period."],
+      negativeLine:
+        "Do not add extra objects beyond the calendar strip and the two markers.",
+    },
+  },
+  "liquidacion-de-sueldo": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one vertical payslip with three highlighted lines and a magnifier.",
+      propsLine:
+        "Use only the document sheet, the magnifier, and the three highlighted horizontal bars.",
+      extraLines: ["Semantic focus: auditing the key lines of a pay stub."],
+      negativeLine:
+        "Do not add extra objects beyond the payslip, magnifier, and highlighted bars.",
+    },
+  },
+  "operacion-renta-f22-checklist": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one flat tax checklist form with five checked boxes and one review magnifier.",
+      propsLine:
+        "Use only the form, the check boxes, and one compact magnifier over the lower section.",
+      extraLines: ["Semantic focus: reviewing, sending, and rectifying the F22 without mistakes."],
+      negativeLine:
+        "Do not add extra objects beyond the form, check boxes, and magnifier.",
+    },
+  },
+  "prepago-credito-cuando-conviene-chile": {
+    promptOptions: {
+      sceneLine:
+        "Scene: a descending staircase of debt blocks beside one calendar page.",
+      propsLine:
+        "Use only the debt staircase, the calendar page, and one small savings arrow pointing downward.",
+      extraLines: ["Semantic focus: deciding whether an early prepayment reduces enough interest."],
+      negativeLine:
+        "Do not add extra objects beyond the debt staircase, calendar page, and savings arrow.",
+    },
+  },
+  "que-es-la-uf": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one indexed circular token beside a slim calendar strip with upward daily ticks, aligned to the right third of the canvas; left two-thirds is clean solid background only.",
+      extraLines: ["Semantic focus: the UF as a daily indexed unit that affects common payments."],
+      negativeLine:
+        "Do not add extra objects beyond the circular token and the calendar strip.",
+    },
+  },
+  "reajuste-arriendo-uf-ipc-chile": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one flat house outline connected to an upward contract line and a small calendar tick, aligned to the right third of the canvas; left two-thirds is clean solid background only.",
+      extraLines: ["Semantic focus: rent adjustment by UF or IPC depending on the contract."],
+      negativeLine:
+        "Do not add extra objects beyond the house outline, contract line, and calendar tick.",
+    },
+  },
+  "renegociacion-superir": {
+    promptOptions: {
+      sceneLine:
+        "Scene: two flat debt documents meeting at one central agreement bar.",
+      propsLine:
+        "Use only the two documents, the central agreement bar, and one small stabilization block underneath.",
+      extraLines: ["Semantic focus: formal debt renegotiation for structural over-indebtedness."],
+      negativeLine:
+        "Do not add extra objects beyond the two documents, agreement bar, and stabilization block.",
+    },
+  },
+  "reforma-previsional-2025-que-cambia-y-como-te-afecta": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one horizontal reform timeline with a present block, a future block, and a central gear node.",
+      propsLine:
+        "Use only the timeline rail, the two time blocks, one gear node, and one pension shield at the far end.",
+      extraLines: ["Semantic focus: staged pension reform implementation over time."],
+      negativeLine:
+        "Do not add extra objects beyond the timeline rail, time blocks, gear node, and pension shield.",
+    },
+  },
+  "rentas-mixtas-sueldo-honorarios": {
+    promptOptions: {
+      sceneLine:
+        "Scene: two separate income sheets converging into one tax form block.",
+      propsLine:
+        "Use only the two input sheets, the central merge path, and the final tax form block.",
+      extraLines: ["Semantic focus: combining salary and honorarios into one annual tax declaration."],
+      negativeLine:
+        "Do not add extra objects beyond the two income sheets, merge path, and final form block.",
+    },
+  },
+  "seguro-cesantia-cuenta-individual-vs-fondo-solidario": {
+    promptOptions: {
+      sceneLine:
+        "Scene: two payout containers side by side feeding one shared safety rail.",
+      propsLine:
+        "Use only the two containers, the safety rail, and one small flow connector from each source.",
+      extraLines: ["Semantic focus: comparing the individual unemployment account with the solidarity fund."],
+      negativeLine:
+        "Do not add extra objects beyond the two containers, safety rail, and flow connectors.",
+    },
+  },
+  "seguro-de-cesantia": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one unemployment account statement with stepped withdrawal bars.",
+      propsLine:
+        "Use only the statement page, the stepped withdrawal bars, and one compact balance block.",
+      extraLines: ["Semantic focus: checking unemployment balance, eligibility, and payout sequence."],
+      negativeLine:
+        "Do not add extra objects beyond the statement page, withdrawal bars, and balance block.",
+    },
+  },
+  "suplantacion-identidad-creditos-no-reconocidos": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one cracked identity card beside a warning document and a compact shield block.",
+      propsLine:
+        "Use only the ID card, the warning document, and the shield block with no faces or realistic features.",
+      extraLines: ["Semantic focus: identity theft detection and immediate containment."],
+      negativeLine:
+        "Do not add extra objects beyond the ID card, warning document, and shield block.",
+    },
+  },
+  "tarjeta-credito-costo-real-chile": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one credit card shape feeding a long payment path that ends in a larger total-cost block.",
+      propsLine:
+        "Use only the card, the payment path, and the final larger cost block.",
+      extraLines: ["Semantic focus: the hidden long-term cost of revolving card debt."],
+      negativeLine:
+        "Do not add extra objects beyond the card, payment path, and total-cost block.",
+    },
+  },
+  "utm-chile-que-es-como-funciona": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one simple geometric rising line chart with a plain fiscal reference disc, positioned in the left and center of the canvas; right third is clean solid background only.",
+      backgroundNote: "Perfectly flat with zero grain, noise, or texture.",
+      extraLines: ["Semantic focus: the UTM as a monthly fiscal reference unit."],
+      noTextLine:
+        "No text, no letters, no numbers, no currency symbols ($, €, %) anywhere in the image.",
+      negativeLine: "Do not add extra objects beyond the line chart and the plain fiscal disc.",
+    },
+  },
+};
+
+function mergePromptOptions(baseOptions, variantOptions) {
+  if (!baseOptions && !variantOptions) return undefined;
+  return {
+    ...(baseOptions ?? {}),
+    ...(variantOptions ?? {}),
+    extraLines: [
+      ...((baseOptions?.extraLines ?? []).filter(Boolean)),
+      ...((variantOptions?.extraLines ?? []).filter(Boolean)),
+    ],
+  };
+}
+
+function applyArticlePromptVariant(article, plan) {
+  const variant = ARTICLE_PROMPT_VARIANTS[article.slug];
+  if (!variant) return plan;
+
+  return {
+    ...plan,
+    postura: variant.postura ?? plan.postura,
+    objetos: variant.objetos ?? plan.objetos,
+    icon: variant.icon ?? plan.icon,
+    promptOptions: mergePromptOptions(plan.promptOptions, variant.promptOptions),
+    promptOverride: variant.promptOverride ?? plan.promptOverride,
+  };
+}
+
 export function selectPromptPlan(article) {
   const category = String(article.category ?? "general").trim().toLowerCase();
   const articleText = normalizeForMatching(buildArticleText(article));
@@ -509,17 +1005,18 @@ export function selectPromptPlan(article) {
       semantic,
       matchedKeywords: slugOverride.overrideKeywords,
     };
-    return {
+    return applyArticlePromptVariant(article, {
       ...basePlan,
       template: slugOverride.template,
       approvedModelId: overrideModel.id,
-      sceneId: overrideModel.sceneId,
-      postura: overrideModel.postura,
-      objetos: overrideModel.objetos,
-      icon: overrideModel.icono,
+      sceneId: buildArticleSceneId(slugOverride.template, overrideModel.id, article.slug),
+      postura: slugOverride.postura ?? overrideModel.postura,
+      objetos: slugOverride.objetos ?? overrideModel.objetos,
+      icon: slugOverride.icon ?? overrideModel.icono,
       sceneChoice: overrideModel.label,
+      promptOptions: slugOverride.promptOptions,
       ...(slugOverride.promptOverride ? { promptOverride: slugOverride.promptOverride } : {}),
-    };
+    });
   }
 
   let rule = null;
@@ -588,25 +1085,25 @@ export function selectPromptPlan(article) {
   }
 
   if (rule.template === "A") {
-    return {
+    return applyArticlePromptVariant(article, {
       ...basePlan,
       template: "A",
       approvedModelId: approvedModel.id,
-      sceneId: approvedModel.sceneId,
+      sceneId: buildArticleSceneId("A", approvedModel.id, article.slug),
       postura: approvedModel.postura,
       objetos: approvedModel.objetos,
       sceneChoice: approvedModel.label,
-    };
+    });
   }
 
-  return {
+  return applyArticlePromptVariant(article, {
     ...basePlan,
     template: rule.template,
     approvedModelId: approvedModel.id,
-    sceneId: approvedModel.sceneId,
+    sceneId: buildArticleSceneId(rule.template, approvedModel.id, article.slug),
     icon: approvedModel.icono,
     iconChoice: approvedModel.label,
-  };
+  });
 }
 
 export function buildPromptFromPlan(plan) {
@@ -614,10 +1111,10 @@ export function buildPromptFromPlan(plan) {
     return plan.promptOverride;
   }
   if (plan.template === "A") {
-    return buildPromptA(plan.hex, plan.postura, plan.objetos);
+    return buildPromptA(plan.hex, plan.postura, plan.objetos, plan.promptOptions);
   }
   if (plan.template === "C") {
-    return buildPromptC(plan.hex, plan.icon);
+    return buildPromptC(plan.hex, plan.icon, plan.promptOptions);
   }
-  return buildPromptB(plan.hex, plan.icon);
+  return buildPromptB(plan.hex, plan.icon, plan.promptOptions);
 }

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  buildArticleSceneId,
   buildPromptFromPlan,
   selectPromptPlan,
 } from "../../scripts/hero-images/prompt-plan.mjs";
@@ -21,7 +22,9 @@ describe("hero-images deterministic selector", () => {
     expect(plan.template).toBe("A");
     expect(plan.colorKey).toBe("Fraude / Perdida grave");
     expect(plan.approvedModelId).toBe("fraude-estafa");
-    expect(plan.sceneId).toBe("A:fraude-estafa");
+    expect(plan.sceneId).toBe(
+      buildArticleSceneId("A", "fraude-estafa", "estafas-financieras-chile")
+    );
     if (!("sceneChoice" in plan)) {
       throw new Error("Expected Template A plan.");
     }
@@ -46,7 +49,7 @@ describe("hero-images deterministic selector", () => {
     expect(plan.template).toBe("C");
     expect(plan.colorKey).toBe("Educativo / Conceptos / Guias");
     expect(plan.approvedModelId).toBe("uf-indicadores");
-    expect(plan.sceneId).toBe("C:uf-indicadores");
+    expect(plan.sceneId).toBe(buildArticleSceneId("C", "uf-indicadores", "que-es-la-uf"));
     if (!("iconChoice" in plan)) {
       throw new Error("Expected Template C plan.");
     }
@@ -92,5 +95,26 @@ describe("hero-images deterministic selector", () => {
     expect(plan.template).toBe("C");
     expect(plan.approvedModelId).toBe("uf-indicadores");
     expect(plan.matchedKeywords).toContain("uf");
+  });
+
+  it("uses article-specific slug overrides for budgeting content", () => {
+    const plan = selectPromptPlan({
+      slug: "como-hacer-presupuesto-mensual-chile",
+      title: "Como hacer presupuesto mensual",
+      tags: ["presupuesto"],
+      category: "general",
+      cluster: "empleo-ingresos",
+      summary: "guia para ordenar gastos y ahorro",
+      headings: ["Paso 1", "Paso 2"],
+      leadParagraphs: ["Necesitas ordenar tus gastos."],
+      bodyExcerpt: "La guia explica como separar gastos fijos, variables y ahorro.",
+    });
+
+    expect(plan.ruleId).toBe("ahorro");
+    expect(plan.approvedModelId).toBe("ahorro");
+    expect(plan.sceneId).toBe(
+      buildArticleSceneId("A", "ahorro", "como-hacer-presupuesto-mensual-chile")
+    );
+    expect(buildPromptFromPlan(plan)).toContain("top-down flat desk layout");
   });
 });
