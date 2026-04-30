@@ -7,6 +7,7 @@ import ResumeWidget from "@/components/ResumeWidget.astro";
 import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
 import { impuestosPersonasCalcCards } from "@/config/hubPillarConfig";
+import SupportCallout from "@/components/SupportCallout.astro";
 
 const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
   /\/$/,
@@ -244,6 +245,10 @@ const rutasPrincipales = [
         </p>
       </div>
     </section>
+    <SupportCallout
+      context="guia-impuestos"
+      pageTitle="esta guía sobre impuestos"
+    />
   </main>
 
   <Footer />

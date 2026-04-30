@@ -12,6 +12,7 @@ import {
   sueldoClusterHubSupportCards,
 } from "@/config/sueldoClusterLinks";
 import { sueldoRemuneracionesCalcCards } from "@/config/hubPillarConfig";
+import SupportCallout from "@/components/SupportCallout.astro";
 
 const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
   /\/$/,
@@ -320,6 +321,10 @@ const adjacentRoutes = [
         </p>
       </div>
     </section>
+    <SupportCallout
+      context="guia"
+      pageTitle="esta guía sobre sueldo y remuneraciones"
+    />
   </main>
 
   <Footer />
