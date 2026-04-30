@@ -323,12 +323,11 @@ import { SITE } from "@/config";
     }
 
     function initWidget(target: HTMLElement): void {
-      // Snapshot body children before draw() appends anything
-      const before = new Set(Array.from(document.body.children));
-
       type KofiWidget2 = {
         init: (title: string, color: string, id: string) => void;
-        draw: () => void;
+        // NOTE: draw() calls document.writeln() which destroys the page when
+        // called after load. Use getHTML() to obtain the markup safely.
+        getHTML: () => string;
       };
 
       const kofi = (window as unknown as Record<string, unknown>)
@@ -339,19 +338,11 @@ import { SITE } from "@/config";
         return;
       }
 
-      // Use the site's teal accent (--color-accent-2) for the Ko-fi panel button.
-      // Teal is distinct from the navy used for links/nav, reads as a clear CTA,
-      // and Ko-fi renders white button text on this background.
+      // Use the site's teal accent (--color-accent-2) for the Ko-fi button.
       kofi.init("Apoya Monedario", "#0d9488", "monedario");
-      kofi.draw();
 
-      // Move any element Ko-fi appended to <body> into our container
-      for (const el of Array.from(document.body.children)) {
-        if (!before.has(el)) {
-          target.appendChild(el);
-        }
-      }
-
+      // getHTML() returns the style + button markup as a string — safe to inject.
+      target.innerHTML = kofi.getHTML();
       hidePlaceholder();
     }
 
