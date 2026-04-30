@@ -44,18 +44,14 @@ jobs:
             echo "value=$INPUT_WEEK" >> "$GITHUB_OUTPUT"
           else
             # previous complete ISO week (ends last Sunday)
-            python3 - <<'EOF'
-            import datetime, sys
-            today = datetime.date.today()
-            dow = today.weekday()          # 0=Mon, 6=Sun
-            days_back = dow + 1            # back to last Sunday
-            last_sunday = today - datetime.timedelta(days=days_back)
-            week_monday = last_sunday - datetime.timedelta(days=6)
-            iso = week_monday.isocalendar()
-            week_str = f"{iso[0]}-W{iso[1]:02d}"
-            print(f"value={week_str}", file=open("$GITHUB_OUTPUT", "a"))
-            print(f"Resolved previous complete week: {week_str}")
-            EOF
+            DOW=$(date +%u)   # 1=Mon … 7=Sun (GNU date, ubuntu-latest)
+            LAST_SUNDAY=$(date -d "today - ${DOW} days" +%Y-%m-%d)
+            WEEK_MONDAY=$(date -d "${LAST_SUNDAY} - 6 days" +%Y-%m-%d)
+            YEAR=$(date -d "${WEEK_MONDAY}" +%G)
+            WEEK=$(date -d "${WEEK_MONDAY}" +%V)
+            WEEK_STR="${YEAR}-W${WEEK}"
+            echo "value=${WEEK_STR}" >> "$GITHUB_OUTPUT"
+            echo "Resolved previous complete week: ${WEEK_STR}"
           fi
 
       - name: Fetch GSC signals

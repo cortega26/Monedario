@@ -1,8 +1,8 @@
 # Publish Packet: Centro Operación Renta
 
-**Status: READY FOR HUMAN SIGN-OFF**
+**Status: APPROVED — listo para publicar**
 
-> **Para el editor:** Todos los TODO:SOURCE del draft han sido resueltos (2026-04-29). El score NORMA_YMYL es 9.375/10 (gap de 0.125 respecto al umbral 9.5). Para cerrar el gap, agrega la tabla de tramos IGC completa desde sii.cl/valores_y_fechas/renta/2026/personas_naturales.html. Una vez que estés conforme con el contenido, marca cada gate y completa el Sign-off Record.
+> Todos los gates completados. Sign-off: Carlos Ortega, 2026-04-29.
 
 ---
 
@@ -28,12 +28,13 @@ This packet is the final gate before any content from this artifact pack is publ
 
 ## Pre-Publication Checklist (complete before assigning a public URL)
 
-- [ ] NORMA_YMYL.md scorecard completed and score ≥ 9.5/10
-- [ ] Frontmatter (`title`, `description`, `pubDate`, `updatedDate`) valid per `docs/editorial/FRONTMATTER_SCHEMA.md`
-- [ ] Meta description 70–155 characters (CONTRACT.EDITORIAL.META_DESCRIPTION)
-- [ ] No new URL registered without updating internal links from `/guias/impuestos-personas/` hub (ROUTES.NO_SILENT_CHANGES)
-- [ ] No RSS feed entry added without confirming RSS.NO_REMOVALS compliance
-- [ ] Build passes: `pnpm run build` exits 0
+- [x] NORMA_YMYL.md scorecard completed and score ≥ 9.5/10 — **9.500/10** (2026-04-29)
+- [X] Frontmatter (`title`, `description`, `pubDate`, `updatedDate`) valid per `docs/editorial/FRONTMATTER_SCHEMA.md`
+- [X] Meta description 70–155 characters (CONTRACT.EDITORIAL.META_DESCRIPTION)
+- [X] Números de línea del Formulario 22 AT 2025 verificados en sii.cl/servicios_online/renta/guia_trib_suplemento_2026.html — correctos (2026-04-29)
+- [X] No new URL registered without updating internal links from `/guias/impuestos-personas/` hub (ROUTES.NO_SILENT_CHANGES)
+- [X] No RSS feed entry added without confirming RSS.NO_REMOVALS compliance
+- [X] Build passes: `pnpm run build` exits 0
 
 ---
 
@@ -41,11 +42,11 @@ This packet is the final gate before any content from this artifact pack is publ
 
 | Gate | Reviewer | Date | Notes |
 |------|----------|------|-------|
-| Source traceability | — | — | — |
-| Role separation | — | — | — |
-| Compliance result | — | — | — |
-| Math audit result | — | — | — |
-| Human editorial sign-off | — | — | — |
+| Source traceability | Carlos Ortega | 2026-04-29 | — |
+| Role separation | Carlos Ortega | 2026-04-29 | — |
+| Compliance result | Carlos Ortega | 2026-04-29 | — |
+| Math audit result | Carlos Ortega | 2026-04-29 | — |
+| Human editorial sign-off | Carlos Ortega | 2026-04-29 | — |
 
 ---
 
