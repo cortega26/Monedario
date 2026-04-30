@@ -15,6 +15,30 @@ export interface ChangelogEntry {
 
 export const changelog: ChangelogEntry[] = [
   {
+    date: "2026-04-29",
+    title: "Artículo nuevo — Centro Operación Renta 2026",
+    description:
+      "Publicada guía completa para declarar Operación Renta 2026: quién debe presentar el F-22, plazos del SII, cuándo llega la devolución y qué hacer si se debe pagar.",
+  },
+  {
+    date: "2026-04-26",
+    title: "Paso siguiente recomendado en calculadoras",
+    description:
+      "Las calculadoras de sueldo líquido, finiquito, APV, impuesto de segunda categoría, Operación Renta y comisiones AFP ahora sugieren un próximo paso útil según el contexto de cada herramienta.",
+  },
+  {
+    date: "2026-04-11",
+    title: "Actualización editorial — 5 artículos y nuevo hub de presupuesto",
+    description:
+      "Revisados y actualizados: boleta de honorarios 2026, cómo calcular tu sueldo líquido, finiquito e indemnizaciones, seguro de cesantía y cómo hacer un presupuesto mensual. Se incorporó además el hub de Presupuesto y Control Financiero.",
+  },
+  {
+    date: "2026-04-10",
+    title: "Dos artículos nuevos — prepago de crédito y tarjeta de crédito",
+    description:
+      "Publicados: «¿Cuándo conviene hacer un prepago de crédito?» (con cálculo del ahorro real y derechos legales) y «Cómo calcular el costo real de tu tarjeta de crédito en Chile» (intereses, pago mínimo y estrategias para reducir deuda).",
+  },
+  {
     date: "2026-04-10",
     title: "Calculadora APV — sección FAQ y schema FAQPage",
     description:
