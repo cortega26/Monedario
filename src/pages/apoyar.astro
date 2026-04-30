@@ -104,9 +104,16 @@ import { SITE } from "@/config";
       >
         <div
           id="kofi-widget-placeholder"
-          class="flex min-h-[200px] max-w-sm items-center justify-center rounded-xl border border-border bg-surface-muted/30 text-sm text-secondary"
+          class="flex min-h-[200px] max-w-sm items-center justify-center rounded-xl border border-border bg-surface-muted/30"
         >
-          <span>Cargando panel de aporte…</span>
+          <a
+            href="https://ko-fi.com/monedario?utm_source=monedario&utm_medium=apoyar&utm_campaign=apoya_monedario"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 rounded-lg bg-[#0d9488] px-5 py-3 text-sm font-semibold text-white hover:opacity-90"
+          >
+            ☕ Apoya en Ko-fi
+          </a>
         </div>
       </div>
 
@@ -157,12 +164,9 @@ import { SITE } from "@/config";
   about | footer | calculadora | calculadora-sueldo-liquido |
   guia | guia-impuestos | linkedin | facebook
 -->
-<script>
+<script is:inline data-cfasync="false">
   (function () {
-    const WHITELIST: Record<
-      string,
-      { titulo: string; cuerpo: string; utmContent: string }
-    > = {
+    var WHITELIST = {
       about: {
         titulo: "Apoya el proyecto Monedario",
         cuerpo:
@@ -213,43 +217,38 @@ import { SITE } from "@/config";
       },
     };
 
-    const BMC_BASE =
+    var BMC_BASE =
       "https://ko-fi.com/monedario?utm_source=monedario&utm_medium=apoyar&utm_campaign=apoya_monedario";
 
-    function getSrcParam(): string {
+    function getSrcParam() {
       try {
-        const raw =
-          new URLSearchParams(window.location.search).get("src") ?? "";
-        // Strip to safe chars only (alphanumeric and hyphens)
+        var raw =
+          new URLSearchParams(window.location.search).get("src") || "";
         return raw.replace(/[^a-z0-9-]/gi, "").toLowerCase();
-      } catch {
+      } catch (e) {
         return "";
       }
     }
 
-    function applyVariant(): void {
-      const src = getSrcParam();
-      const variant = Object.prototype.hasOwnProperty.call(WHITELIST, src)
-        ? WHITELIST[src as keyof typeof WHITELIST]
+    function applyVariant() {
+      var src = getSrcParam();
+      var variant = Object.prototype.hasOwnProperty.call(WHITELIST, src)
+        ? WHITELIST[src]
         : null;
 
-      if (!variant) return; // keep default static content
+      if (!variant) return;
 
-      const titulo = document.getElementById("apoyar-titulo");
-      const cuerpo = document.getElementById("apoyar-cuerpo");
-      const btnDonar = document.getElementById(
-        "btn-donar"
-      ) as HTMLAnchorElement | null;
+      var titulo = document.getElementById("apoyar-titulo");
+      var cuerpo = document.getElementById("apoyar-cuerpo");
+      var btnDonar = document.getElementById("btn-donar");
 
       if (titulo) titulo.textContent = variant.titulo;
 
       if (cuerpo) {
-        // Convert newlines to <br><br> for paragraph breaks
         cuerpo.innerHTML = variant.cuerpo
           .split("\n\n")
-          .map(p => {
-            // Escape HTML to prevent injection; variant values are static strings
-            const div = document.createElement("div");
+          .map(function (p) {
+            var div = document.createElement("div");
             div.textContent = p;
             return div.innerHTML;
           })
@@ -257,33 +256,32 @@ import { SITE } from "@/config";
       }
 
       if (btnDonar) {
-        const utmUrl = `${BMC_BASE}&utm_content=${encodeURIComponent(variant.utmContent)}`;
+        var utmUrl = BMC_BASE + "&utm_content=" + encodeURIComponent(variant.utmContent);
         btnDonar.href = utmUrl;
       }
     }
 
-    // Copy-link button
-    function setupCopyButton(): void {
-      const btn = document.getElementById("btn-copiar-enlace");
+    function setupCopyButton() {
+      var btn = document.getElementById("btn-copiar-enlace");
       if (!btn) return;
       btn.addEventListener("click", function () {
-        const url = window.location.origin + "/apoyar/";
+        var url = window.location.origin + "/apoyar/";
         navigator.clipboard
           .writeText(url)
-          .then(() => {
+          .then(function () {
             btn.textContent = "¡Enlace copiado!";
-            setTimeout(() => {
+            setTimeout(function () {
               btn.textContent = "Copiar enlace";
             }, 2000);
           })
-          .catch(() => {
+          .catch(function () {
             btn.textContent = "Copiar enlace";
           });
       });
     }
 
     if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", () => {
+      document.addEventListener("DOMContentLoaded", function () {
         applyVariant();
         setupCopyButton();
       });
@@ -299,59 +297,47 @@ import { SITE } from "@/config";
   El script de Ko-fi se inyecta solo cuando #kofi-widget-container
   entra al viewport, y solo en esta página — nunca globalmente.
 -->
-<script>
+<script is:inline data-cfasync="false">
   (function () {
     "use strict";
 
-    const widgetContainer = document.getElementById("kofi-widget-container");
-    const placeholder = document.getElementById("kofi-widget-placeholder");
+    var widgetContainer = document.getElementById("kofi-widget-container");
+    var placeholder = document.getElementById("kofi-widget-placeholder");
     if (!widgetContainer) return;
 
-    let loaded = false;
+    // Guard: skip if already initialized (SPA navigation re-runs inline scripts)
+    if (widgetContainer.dataset.initialized) return;
+    widgetContainer.dataset.initialized = "true";
 
-    function hidePlaceholder(): void {
+    var loaded = false;
+
+    function hidePlaceholder() {
       if (placeholder) placeholder.style.display = "none";
     }
 
-    function showWidgetError(): void {
+    function showWidgetError() {
       if (placeholder) {
-        const span = placeholder.querySelector("span");
-        if (span) {
-          span.textContent = "El panel no está disponible. Usa el enlace de respaldo.";
-        }
+        var link = placeholder.querySelector("a");
+        if (link) link.textContent = "Apoya en Ko-fi →";
       }
     }
 
-    function initWidget(target: HTMLElement): void {
-      type KofiWidget2 = {
-        init: (title: string, color: string, id: string) => void;
-        // NOTE: draw() calls document.writeln() which destroys the page when
-        // called after load. Use getHTML() to obtain the markup safely.
-        getHTML: () => string;
-      };
-
-      const kofi = (window as unknown as Record<string, unknown>)
-        .kofiwidget2 as KofiWidget2 | undefined;
+    function initWidget(target) {
+      var kofi = window.kofiwidget2;
 
       if (!kofi) {
         showWidgetError();
         return;
       }
 
-      // Use the site's teal accent; pick darker/lighter shade per theme.
-      const isDark =
+      var isDark =
         document.documentElement.getAttribute("data-theme") === "dark";
-      const btnColor = isDark ? "#14b8a6" : "#0d9488";
+      var btnColor = isDark ? "#14b8a6" : "#0d9488";
       kofi.init("Apoya Monedario", btnColor, "monedario");
 
-      // getHTML() returns the style + button markup as a string — safe to inject.
       target.innerHTML = kofi.getHTML();
 
-      // Ko-fi uses a dynamic class (e.g. kofi-button0) and injects its own
-      // <style> into <head> asynchronously, so CSS overrides are unreliable.
-      // Setting the inline style with priority "important" is the only
-      // guaranteed way to force white text on the teal background.
-      const kofiLink = target.querySelector<HTMLElement>("a");
+      var kofiLink = target.querySelector("a");
       if (kofiLink) {
         kofiLink.style.setProperty("color", "#ffffff", "important");
       }
@@ -359,22 +345,21 @@ import { SITE } from "@/config";
       hidePlaceholder();
     }
 
-    function loadKofiScript(target: HTMLElement): void {
+    function loadKofiScript(target) {
       if (loaded) return;
       loaded = true;
 
-      const script = document.createElement("script");
+      var script = document.createElement("script");
       script.src = "https://storage.ko-fi.com/cdn/widget/Widget_2.js";
-      script.onload = () => initWidget(target);
+      script.onload = function () { initWidget(target); };
       script.onerror = showWidgetError;
       document.head.appendChild(script);
     }
 
-    // Lazy-load: fire when the container is within 300 px of the viewport
     if (typeof IntersectionObserver !== "undefined") {
-      const observer = new IntersectionObserver(
+      var observer = new IntersectionObserver(
         function (entries) {
-          if (entries[0]?.isIntersecting) {
+          if (entries[0] && entries[0].isIntersecting) {
             loadKofiScript(widgetContainer);
             observer.disconnect();
           }
@@ -383,7 +368,6 @@ import { SITE } from "@/config";
       );
       observer.observe(widgetContainer);
     } else {
-      // Fallback for browsers without IntersectionObserver support
       loadKofiScript(widgetContainer);
     }
   })();
