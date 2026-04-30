@@ -1,0 +1,105 @@
+---
+/**
+ * SupportCallout.astro
+ *
+ * Bloque editorial de apoyo para usar al final de guías y calculadoras.
+ * Dirige al usuario a /apoyar/?src={context} para explicación completa.
+ *
+ * Props:
+ *   context — identificador de la página fuente (src param).
+ *             Debe ser uno de los valores reconocidos por /apoyar/.
+ *             Ej: "calculadora-sueldo-liquido", "guia-impuestos", "about".
+ *   pageTitle — título descriptivo de la página actual (para compartir).
+ *               Si se omite, se usa el título genérico.
+ */
+
+interface Props {
+  context: string;
+  pageTitle?: string;
+}
+
+const { context, pageTitle } = Astro.props;
+
+// Whitelist de contextos reconocidos. Valores fuera de esta lista
+// se degradan al fallback general en /apoyar/.
+const ALLOWED_CONTEXTS = new Set([
+  "about",
+  "footer",
+  "calculadora",
+  "calculadora-sueldo-liquido",
+  "guia",
+  "guia-impuestos",
+  "linkedin",
+  "facebook",
+]);
+
+const safeContext = ALLOWED_CONTEXTS.has(context) ? context : "general";
+const apoyarHref = `/apoyar/?src=${safeContext}`;
+---
+
+<aside
+  aria-label="Apoya Monedario"
+  class="mt-10 rounded-xl border border-border bg-surface-muted/30 p-5 sm:p-6"
+>
+  <p class="mb-1 text-xs font-semibold tracking-widest text-accent uppercase">
+    ¿Te sirvió esta página?
+  </p>
+  <h2 class="mb-2 text-base font-semibold text-foreground">
+    Monedario es gratuito e independiente
+  </h2>
+  <p class="mb-4 max-w-prose text-sm leading-relaxed text-secondary">
+    Puedes ayudar compartiendo
+    {
+      pageTitle ? (
+        <strong class="text-foreground">{pageTitle}</strong>
+      ) : (
+        "esta página"
+      )
+    }
+    {" "}con alguien a quien le pueda servir, o apoyando el mantenimiento del
+    proyecto.
+  </p>
+  <div class="flex flex-wrap gap-3">
+    <button
+      type="button"
+      class="support-callout-share inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-border bg-surface-muted/40 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
+      data-analytics-cta="share"
+      data-analytics-label={`callout-${safeContext}`}
+      data-analytics-location="support_callout"
+    >
+      Compartir esta página
+    </button>
+    <a
+      href={apoyarHref}
+      class="text-accent-foreground inline-flex items-center gap-1.5 rounded-lg bg-accent px-4 py-2 text-sm font-semibold transition-opacity hover:opacity-90"
+      data-analytics-cta="support-page"
+      data-analytics-label={`callout-${safeContext}`}
+      data-analytics-location="support_callout"
+    >
+      Apoyar Monedario →
+    </a>
+  </div>
+</aside>
+
+<script>
+  // Inicializa el botón "Compartir esta página" en todos los SupportCallout
+  // del documento actual. Copia la URL actual al portapapeles.
+  document
+    .querySelectorAll<HTMLButtonElement>(".support-callout-share")
+    .forEach(btn => {
+      btn.addEventListener("click", function () {
+        navigator.clipboard
+          .writeText(window.location.href)
+          .then(() => {
+            const original = btn.textContent ?? "Compartir esta página";
+            btn.textContent = "¡Enlace copiado!";
+            setTimeout(() => {
+              btn.textContent = original;
+            }, 2000);
+          })
+          .catch(() => {
+            // Silenciar: el usuario puede copiar la URL manualmente
+          });
+      });
+    });
+</script>

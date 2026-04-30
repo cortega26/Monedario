@@ -1,0 +1,278 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import { SITE } from "@/config";
+---
+
+<Layout
+  title={`Apoya Monedario | ${SITE.title}`}
+  description="Monedario es un proyecto gratuito de educación financiera para personas en Chile. Puedes apoyar su mantenimiento con una donación voluntaria o compartiendo sus guías y calculadoras."
+>
+  <Header />
+  <Breadcrumb />
+  <main id="main-content" class="app-layout">
+    <!-- Hero / Cabecera -->
+    <section class="border-b border-border py-10">
+      <p
+        class="mb-3 text-xs font-semibold tracking-widest text-accent uppercase"
+      >
+        Apoya el proyecto
+      </p>
+      <h1 id="apoyar-titulo" class="mb-4 text-3xl font-bold sm:text-4xl">
+        Ayuda a mantener Monedario gratuito
+      </h1>
+      <p
+        id="apoyar-cuerpo"
+        class="max-w-2xl text-base leading-relaxed text-secondary"
+      >
+        Monedario.cl publica guías y calculadoras financieras para personas en
+        Chile. El sitio no cobra por leer sus contenidos ni por usar sus
+        herramientas.
+        <br /><br />
+        Mantenerlo toma muchas horas cada semana: revisar fuentes oficiales, actualizar
+        cambios normativos, corregir errores, mejorar calculadoras y cuidar que la
+        información sea clara, responsable y útil.
+        <br /><br />
+        Si Monedario te ha servido, puedes apoyar el proyecto con una pequeña donación
+        voluntaria. También ayuda mucho compartir la página con alguien a quien le
+        pueda servir.
+      </p>
+    </section>
+
+    <!-- Primera opción: compartir -->
+    <section class="border-b border-border py-8">
+      <h2 class="mb-3 text-xl font-semibold">Comparte Monedario</h2>
+      <p class="mb-5 max-w-xl text-sm leading-relaxed text-secondary">
+        La forma más directa de apoyar este proyecto es pasarle el enlace a
+        alguien que lo necesite: una guía, una calculadora o el sitio completo.
+        Es gratis, tarda segundos y es lo que más ayuda a que llegue a más
+        personas.
+      </p>
+      <div class="flex flex-wrap gap-3">
+        <a
+          id="btn-compartir-whatsapp"
+          href="https://wa.me/?text=Te%20comparto%20Monedario%2C%20un%20sitio%20de%20educaci%C3%B3n%20financiera%20para%20Chile%3A%20https%3A%2F%2Fmonedario.cl%2F"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-lg border border-border bg-surface-muted/40 px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
+          aria-label="Compartir Monedario por WhatsApp"
+          data-analytics-cta="share"
+          data-analytics-label="whatsapp"
+          data-analytics-location="apoyar_page"
+        >
+          Compartir por WhatsApp
+        </a>
+        <button
+          id="btn-copiar-enlace"
+          type="button"
+          class="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-border bg-surface-muted/40 px-4 py-2.5 text-sm font-medium text-foreground transition-colors hover:border-accent hover:text-accent"
+          data-analytics-cta="share"
+          data-analytics-label="copy-link"
+          data-analytics-location="apoyar_page"
+        >
+          Copiar enlace
+        </button>
+      </div>
+    </section>
+
+    <!-- Segunda opción: donar -->
+    <section class="border-b border-border py-8">
+      <h2 class="mb-3 text-xl font-semibold">Donación voluntaria</h2>
+      <p class="mb-5 max-w-xl text-sm leading-relaxed text-secondary">
+        Si quieres contribuir un poco más, puedes hacer una pequeña donación
+        voluntaria a través de Buy Me a Coffee. Cualquier aporte ayuda a
+        sostener el trabajo de investigación, actualización y mantenimiento del
+        proyecto.
+      </p>
+      <a
+        id="btn-donar"
+        href="https://buymeacoffee.com/cortega26?utm_source=monedario&utm_medium=apoyar&utm_campaign=apoya_monedario"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-accent-foreground inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 text-sm font-semibold transition-opacity hover:opacity-90"
+        data-analytics-cta="donate"
+        data-analytics-label="buymeacoffee"
+        data-analytics-location="apoyar_page"
+      >
+        Apoyar en Buy Me a Coffee →
+      </a>
+      <p class="mt-3 text-xs text-secondary">
+        Si el botón no funciona correctamente, puedes acceder directamente a
+        <a
+          href="https://buymeacoffee.com/cortega26?utm_source=monedario&utm_medium=apoyar&utm_campaign=apoya_monedario&utm_content=fallback"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-accent underline-offset-4 hover:underline"
+          >buymeacoffee.com/cortega26</a
+        >.
+      </p>
+    </section>
+
+    <!-- Nota de transparencia editorial -->
+    <section class="mb-10 py-8">
+      <div
+        class="max-w-2xl rounded-xl border border-border bg-surface-muted/30 p-5"
+      >
+        <p
+          class="mb-2 text-xs font-semibold tracking-widest text-accent uppercase"
+        >
+          Transparencia editorial
+        </p>
+        <p class="text-sm leading-relaxed text-secondary">
+          Las donaciones son voluntarias y no compran recomendaciones, menciones
+          ni contenido patrocinado. Monedario mantiene un enfoque editorial
+          independiente, responsable y basado en fuentes verificables.
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<!--
+  Personalización del copy según el parámetro ?src=
+  Solo se ejecuta en el cliente; el contenido estático (variante general)
+  sirve como fallback para crawlers y usuarios sin JS.
+
+  Whitelist de valores reconocidos:
+  about | footer | calculadora | calculadora-sueldo-liquido |
+  guia | guia-impuestos | linkedin | facebook
+-->
+<script>
+  (function () {
+    const WHITELIST: Record<
+      string,
+      { titulo: string; cuerpo: string; utmContent: string }
+    > = {
+      about: {
+        titulo: "Apoya el proyecto Monedario",
+        cuerpo:
+          "Monedario es un proyecto independiente creado para hacer más clara la educación financiera en Chile.\n\nEl sitio es gratuito, pero mantenerlo requiere muchas horas de investigación, actualización, revisión y desarrollo. Si te parece valioso, puedes compartirlo o apoyar su mantenimiento con una donación voluntaria.",
+        utmContent: "about",
+      },
+      footer: {
+        titulo: "Ayuda a mantener Monedario gratuito",
+        cuerpo:
+          "Monedario.cl publica guías y calculadoras financieras para personas en Chile. El sitio no cobra por leer sus contenidos ni por usar sus herramientas.\n\nMantenerlo toma muchas horas cada semana. Si te ha servido, puedes apoyar el proyecto con una pequeña donación voluntaria o compartiendo la página.",
+        utmContent: "footer",
+      },
+      calculadora: {
+        titulo: "¿Te sirvió esta calculadora?",
+        cuerpo:
+          "Monedario mantiene herramientas gratuitas para ayudar a personas en Chile a entender mejor su dinero.\n\nSi esta calculadora te ahorró tiempo, dudas o cálculos manuales, puedes apoyar su mantenimiento con una pequeña donación voluntaria. También ayuda mucho compartirla con alguien a quien le pueda servir.",
+        utmContent: "calculadora",
+      },
+      "calculadora-sueldo-liquido": {
+        titulo: "¿Te sirvió esta calculadora?",
+        cuerpo:
+          "Monedario mantiene herramientas gratuitas para ayudar a personas en Chile a entender mejor su dinero.\n\nSi esta calculadora te ahorró tiempo, dudas o cálculos manuales, puedes apoyar su mantenimiento con una pequeña donación voluntaria. También ayuda mucho compartirla con alguien a quien le pueda servir.",
+        utmContent: "calculadora_sueldo_liquido",
+      },
+      guia: {
+        titulo: "Ayuda a mantener esta guía actualizada",
+        cuerpo:
+          "Investigar, revisar y actualizar contenidos financieros toma tiempo. En Monedario intento mantener guías claras, gratuitas y verificables para personas en Chile.\n\nSi esta guía te sirvió, puedes apoyar el proyecto con una pequeña donación voluntaria. También ayuda mucho compartirla con alguien a quien le pueda servir.",
+        utmContent: "guia",
+      },
+      "guia-impuestos": {
+        titulo: "Ayuda a mantener esta guía actualizada",
+        cuerpo:
+          "Investigar, revisar y actualizar contenidos financieros toma tiempo. En Monedario intento mantener guías claras, gratuitas y verificables para personas en Chile.\n\nSi esta guía te sirvió, puedes apoyar el proyecto con una pequeña donación voluntaria. También ayuda mucho compartirla con alguien a quien le pueda servir.",
+        utmContent: "guia_impuestos",
+      },
+      linkedin: {
+        titulo: "Gracias por apoyar Monedario",
+        cuerpo:
+          "Monedario.cl busca entregar guías y herramientas financieras claras, gratuitas y útiles para personas en Chile.\n\nSi llegaste desde LinkedIn y el proyecto te parece valioso, puedes ayudar compartiéndolo o haciendo una pequeña donación voluntaria para apoyar su mantenimiento.",
+        utmContent: "linkedin",
+      },
+      facebook: {
+        titulo: "Gracias por apoyar Monedario",
+        cuerpo:
+          "Monedario.cl busca entregar guías y herramientas financieras claras, gratuitas y útiles para personas en Chile.\n\nSi llegaste desde Facebook y el proyecto te parece valioso, puedes ayudar compartiéndolo o haciendo una pequeña donación voluntaria para apoyar su mantenimiento.",
+        utmContent: "facebook",
+      },
+    };
+
+    const BMC_BASE =
+      "https://buymeacoffee.com/cortega26?utm_source=monedario&utm_medium=apoyar&utm_campaign=apoya_monedario";
+
+    function getSrcParam(): string {
+      try {
+        const raw =
+          new URLSearchParams(window.location.search).get("src") ?? "";
+        // Strip to safe chars only (alphanumeric and hyphens)
+        return raw.replace(/[^a-z0-9-]/gi, "").toLowerCase();
+      } catch {
+        return "";
+      }
+    }
+
+    function applyVariant(): void {
+      const src = getSrcParam();
+      const variant = Object.prototype.hasOwnProperty.call(WHITELIST, src)
+        ? WHITELIST[src as keyof typeof WHITELIST]
+        : null;
+
+      if (!variant) return; // keep default static content
+
+      const titulo = document.getElementById("apoyar-titulo");
+      const cuerpo = document.getElementById("apoyar-cuerpo");
+      const btnDonar = document.getElementById(
+        "btn-donar"
+      ) as HTMLAnchorElement | null;
+
+      if (titulo) titulo.textContent = variant.titulo;
+
+      if (cuerpo) {
+        // Convert newlines to <br><br> for paragraph breaks
+        cuerpo.innerHTML = variant.cuerpo
+          .split("\n\n")
+          .map(p => {
+            // Escape HTML to prevent injection; variant values are static strings
+            const div = document.createElement("div");
+            div.textContent = p;
+            return div.innerHTML;
+          })
+          .join("<br><br>");
+      }
+
+      if (btnDonar) {
+        const utmUrl = `${BMC_BASE}&utm_content=${encodeURIComponent(variant.utmContent)}`;
+        btnDonar.href = utmUrl;
+      }
+    }
+
+    // Copy-link button
+    function setupCopyButton(): void {
+      const btn = document.getElementById("btn-copiar-enlace");
+      if (!btn) return;
+      btn.addEventListener("click", function () {
+        const url = window.location.origin + "/apoyar/";
+        navigator.clipboard
+          .writeText(url)
+          .then(() => {
+            btn.textContent = "¡Enlace copiado!";
+            setTimeout(() => {
+              btn.textContent = "Copiar enlace";
+            }, 2000);
+          })
+          .catch(() => {
+            btn.textContent = "Copiar enlace";
+          });
+      });
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", () => {
+        applyVariant();
+        setupCopyButton();
+      });
+    } else {
+      applyVariant();
+      setupCopyButton();
+    }
+  })();
+</script>

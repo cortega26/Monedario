@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
+import SupportCallout from "@/components/SupportCallout.astro";
 import { getPath } from "@/utils/getPath";
 import { SITE } from "@/config";
 ---
@@ -482,11 +483,9 @@ import { SITE } from "@/config";
           <p class="mt-1.5 text-sm leading-relaxed text-secondary">
             Puedes{" "}
             <a
-              href="https://buymeacoffee.com/cortega26"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/apoyar/?src=about"
               class="font-medium text-accent underline-offset-4 hover:underline"
-              >invitarme a un café</a
+              >apoyar el proyecto</a
             >{" "}— cualquier aporte ayuda a sostener el trabajo.
           </p>
         </div>
@@ -549,6 +548,8 @@ import { SITE } from "@/config";
         >.
       </p>
     </section>
+
+    <SupportCallout context="about" pageTitle="Monedario" />
   </main>
   <Footer />
 </Layout>
