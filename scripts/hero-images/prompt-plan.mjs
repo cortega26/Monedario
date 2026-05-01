@@ -14,6 +14,12 @@ export const DEFAULT_MODEL_PLAN = {
   size: "1536x1024",
 };
 
+export const PROMPT_TRACK_LABELS = {
+  A: "Human Editorial Scene",
+  B: "Hybrid Scene + Mechanism",
+  C: "Editorial Mechanism",
+};
+
 const CATEGORY_COLOR_FALLBACK = {
   "ahorro-inversion": "Ahorro activo / Metas / Logros",
   impuestos: "Credito / Deuda / Impuestos / Riesgo",
@@ -52,6 +58,7 @@ const RULES = [
     keywords: ["liquidacion de sueldo", "liquidacion", "comprobante de pago"],
     colorKey: "Finanzas general / AFP / Empleo / Ahorro",
     template: "A",
+    promptTrack: "B",
     recipeId: "liquidacion-documento",
     readerSituation: "Persona revisando o interpretando su liquidacion de sueldo.",
     toneClass: "neutral",
@@ -63,6 +70,7 @@ const RULES = [
     keywords: ["sueldo liquido", "sueldo bruto", "sueldo neto", "calculo de sueldo"],
     colorKey: "Finanzas general / AFP / Empleo / Ahorro",
     template: "A",
+    promptTrack: "B",
     recipeId: "sueldo-liquido",
     readerSituation: "Persona calculando o verificando su sueldo neto.",
     toneClass: "neutral",
@@ -90,6 +98,7 @@ const RULES = [
     keywords: ["uf", "ipc", "inflacion", "indicador"],
     colorKey: "Educativo / Conceptos / Guias",
     template: "C",
+    promptTrack: "C",
     recipeId: "uf-indicadores",
     readerSituation: "Persona entendiendo un indicador economico que afecta pagos cotidianos.",
     toneClass: "educativo",
@@ -231,6 +240,69 @@ function buildSemanticProfile(article, rule, evidence) {
   };
 }
 
+function normalizePromptTrack(value, fallback = "A") {
+  const track = String(value ?? "").trim().toUpperCase();
+  return Object.prototype.hasOwnProperty.call(PROMPT_TRACK_LABELS, track) ? track : fallback;
+}
+
+function defaultPromptTrackForRule(rule) {
+  if (rule?.promptTrack) {
+    return normalizePromptTrack(rule.promptTrack);
+  }
+  if (rule?.template === "C" || rule?.template === "B") {
+    return "C";
+  }
+  return "A";
+}
+
+function sceneAlreadyHasHumanAnchor(options = {}) {
+  const combined = [options.sceneLine, options.propsLine, options.humanAnchorLine]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  return /(human figure|person|worker|visible hand|visible hands|pair of hands|partial figure)/.test(combined);
+}
+
+function buildAutoHumanAnchorLine(promptTrack, semantic, humanAnchorAlreadyEmbedded = false) {
+  if (humanAnchorAlreadyEmbedded) {
+    if (promptTrack === "B") {
+      return `The human interaction should make the mechanism feel lived, consequential, and relevant to ${semantic.readerSituation.toLowerCase()}`;
+    }
+
+    return "The gesture should make the image feel like an everyday financial moment, not a sterile diagram.";
+  }
+
+  if (promptTrack === "B") {
+    return `Include one simplified person, partial figure, or visible hands actively interacting with the main object so the mechanism feels lived, consequential, and relevant to ${semantic.readerSituation.toLowerCase()}`;
+  }
+
+  return "Include one simplified human figure or visible hands performing a readable gesture so the image feels like an everyday financial moment, not a sterile diagram.";
+}
+
+function humanizeSceneLine(sceneLine, promptTrack) {
+  if (typeof sceneLine !== "string" || sceneLine.trim() === "") return undefined;
+
+  const body = sceneLine
+    .replace(/^Scene:\s*/i, "")
+    .replace(/^one\s+/i, "a ")
+    .trim();
+
+  if (promptTrack === "B") {
+    return `Scene: a simplified person, partial figure, or visible hands are actively interacting with ${body}`;
+  }
+
+  return `Scene: a simplified person or visible hands are engaged in an everyday money moment built around ${body}`;
+}
+
+function softenObjectOnlyPropsLine(propsLine) {
+  if (typeof propsLine !== "string" || propsLine.trim() === "") return undefined;
+  if (!/^Use only /i.test(propsLine)) return propsLine;
+
+  const body = propsLine.replace(/^Use only /i, "").replace(/\.\s*$/u, "").trim();
+  return `Keep the supporting mechanism limited to ${body}, while the human presence stays secondary and the main moment stays readable.`;
+}
+
 function normalizeSceneToken(value) {
   return String(value ?? "")
     .trim()
@@ -252,6 +324,7 @@ const SLUG_OVERRIDES = {
   "boleta-honorarios-2026-retencion-cobertura": {
     id: "honorarios",
     template: "A",
+    promptTrack: "B",
     recipeId: "liquidacion-documento",
     colorKey: "Credito / Deuda / Impuestos / Riesgo",
     readerSituation:
@@ -263,6 +336,7 @@ const SLUG_OVERRIDES = {
   "cae-costo-real-credito-chile": {
     id: "deuda",
     template: "C",
+    promptTrack: "C",
     recipeId: "credito-comparador",
     colorKey: "Credito / Deuda / Impuestos / Riesgo",
     readerSituation:
@@ -274,6 +348,7 @@ const SLUG_OVERRIDES = {
   "como-calcular-sueldo-liquido": {
     id: "sueldo",
     template: "A",
+    promptTrack: "B",
     recipeId: "sueldo-liquido",
     colorKey: "Finanzas general / AFP / Empleo / Ahorro",
     readerSituation: "Persona calculando o verificando su sueldo neto.",
@@ -284,6 +359,7 @@ const SLUG_OVERRIDES = {
   "liquidacion-de-sueldo": {
     id: "liquidacion",
     template: "A",
+    promptTrack: "B",
     recipeId: "liquidacion-documento",
     colorKey: "Finanzas general / AFP / Empleo / Ahorro",
     readerSituation: "Persona revisando o interpretando su liquidacion de sueldo.",
@@ -294,6 +370,7 @@ const SLUG_OVERRIDES = {
   "cuanto-descuenta-la-afp-de-tu-sueldo": {
     id: "empleo",
     template: "A",
+    promptTrack: "B",
     recipeId: "liquidacion-documento",
     colorKey: "Finanzas general / AFP / Empleo / Ahorro",
     readerSituation: "Persona evaluando el descuento previsional en su liquidacion.",
@@ -306,6 +383,7 @@ const SLUG_OVERRIDES = {
   "como-cambiarse-de-afp": {
     id: "prevision",
     template: "A",
+    promptTrack: "A",
     recipeId: "cambio-afp",
     colorKey: "Finanzas general / AFP / Empleo / Ahorro",
     readerSituation: "Persona decidiendo cambiarse de AFP y comparando sus opciones.",
@@ -318,6 +396,7 @@ const SLUG_OVERRIDES = {
   "fondos-afp-a-b-c-d-e": {
     id: "prevision",
     template: "A",
+    promptTrack: "A",
     recipeId: "fondos-afp",
     colorKey: "Finanzas general / AFP / Empleo / Ahorro",
     readerSituation: "Persona comparando los cinco fondos AFP para elegir el mas adecuado.",
@@ -330,6 +409,7 @@ const SLUG_OVERRIDES = {
   "que-es-la-cuenta-2-afp": {
     id: "prevision",
     template: "A",
+    promptTrack: "A",
     recipeId: "cuenta-2-afp",
     colorKey: "Finanzas general / AFP / Empleo / Ahorro",
     readerSituation: "Persona descubriendo la Cuenta 2 de AFP como herramienta de ahorro voluntario.",
@@ -342,6 +422,7 @@ const SLUG_OVERRIDES = {
   "el-poder-del-interes-compuesto": {
     id: "ahorro",
     template: "A",
+    promptTrack: "A",
     recipeId: "ahorro",
     colorKey: "Ahorro activo / Metas / Logros",
     readerSituation: "Persona visualizando el crecimiento de su ahorro a largo plazo.",
@@ -353,6 +434,7 @@ const SLUG_OVERRIDES = {
   "interes-compuesto-nota-metodologica": {
     id: "ahorro",
     template: "A",
+    promptTrack: "B",
     recipeId: "ahorro",
     colorKey: "Ahorro activo / Metas / Logros",
     readerSituation: "Persona entendiendo la mecanica del interes compuesto y su efecto acumulativo.",
@@ -365,6 +447,7 @@ const SLUG_OVERRIDES = {
   "como-invertir-en-etfs-desde-chile": {
     id: "ahorro",
     template: "A",
+    promptTrack: "A",
     recipeId: "ahorro",
     colorKey: "Ahorro activo / Metas / Logros",
     readerSituation: "Persona evaluando instrumentos de inversion para hacer crecer sus ahorros.",
@@ -375,6 +458,7 @@ const SLUG_OVERRIDES = {
   "como-hacer-presupuesto-mensual-chile": {
     id: "ahorro",
     template: "A",
+    promptTrack: "A",
     recipeId: "ahorro",
     colorKey: "Ahorro activo / Metas / Logros",
     readerSituation:
@@ -388,6 +472,7 @@ const SLUG_OVERRIDES = {
   "que-es-el-ipc-chile-como-se-calcula": {
     id: "uf",
     template: "C",
+    promptTrack: "C",
     recipeId: "ipc-indicadores",
     colorKey: "Educativo / Conceptos / Guias",
     readerSituation: "Persona entendiendo como el IPC mide la inflacion y afecta su poder adquisitivo.",
@@ -403,19 +488,20 @@ const SLUG_OVERRIDES = {
   "utm-chile-que-es-como-funciona": {
     id: "uf",
     template: "C",
+    promptTrack: "C",
     recipeId: "uf-indicadores",
     colorKey: "Educativo / Conceptos / Guias",
     readerSituation: "Persona entendiendo la UTM como unidad tributaria mensual: que es, su valor, como afecta multas e impuestos.",
     toneClass: "educativo",
     overrideEvidence: ["slug override: UTM monthly fiscal indicator educational article — renta rule false-positive on 'impuesto' tag"],
     overrideKeywords: ["utm", "tributaria", "indicador", "mensual"],
-    promptOverride: "Flat 2D editorial vector illustration.\nBackground: solid color #4f46e5, perfectly flat with zero grain, noise, or texture.\nScene: one simple geometric rising line chart with a plain coin disc (no markings, no symbols), positioned in the left and center of the canvas; right third is clean solid background only.\nLighting: none. No shadows, no highlights, no depth.\nColor palette: 2 colors maximum, all flat fills.\nNo text, no letters, no numbers, no currency symbols ($, \u20ac, %) anywhere in the image.\nCanvas: 1200x630 pixels, landscape.",
   },
   // Cesantia comparison article: body mentions 'afp' triggering prevision rule,
   // but the article is about unemployment insurance — use cesantia not afp-pension.
   "seguro-cesantia-cuenta-individual-vs-fondo-solidario": {
     id: "empleo",
     template: "A",
+    promptTrack: "B",
     recipeId: "cesantia",
     colorKey: "Finanzas general / AFP / Empleo / Ahorro",
     readerSituation: "Persona comparando las dos modalidades del seguro de cesantia.",
@@ -428,6 +514,7 @@ const SLUG_OVERRIDES = {
   "renegociacion-superir": {
     id: "deuda",
     template: "A",
+    promptTrack: "B",
     recipeId: "deuda-credito",
     colorKey: "Credito / Deuda / Impuestos / Riesgo",
     readerSituation: "Persona negociando condiciones de deuda para mejorar su situacion financiera.",
@@ -441,6 +528,7 @@ const SLUG_OVERRIDES = {
   "credito-hipotecario-chile-guia-completa": {
     id: "deuda",
     template: "A",
+    promptTrack: "B",
     recipeId: "deuda-credito",
     colorKey: "Credito / Deuda / Impuestos / Riesgo",
     readerSituation: "Persona evaluando o solicitando un credito hipotecario para comprar su primera vivienda.",
@@ -453,6 +541,7 @@ const SLUG_OVERRIDES = {
   "fonasa-vs-isapre-comparativa": {
     id: "salud",
     template: "A",
+    promptTrack: "B",
     recipeId: "fonasa-vs-isapre",
     colorKey: "Salud / FONASA / ISAPRE",
     readerSituation: "Persona comparando Fonasa e Isapre para elegir el sistema de salud que mejor se adapta a su situacion.",
@@ -465,6 +554,7 @@ const SLUG_OVERRIDES = {
   "que-es-el-apv": {
     id: "prevision",
     template: "C",
+    promptTrack: "C",
     recipeId: "apv-crecimiento",
     colorKey: "Finanzas general / AFP / Empleo / Ahorro",
     readerSituation: "Persona evaluando el APV como herramienta de ahorro previsional voluntario.",
@@ -478,6 +568,7 @@ const SLUG_OVERRIDES = {
   "rentas-mixtas-sueldo-honorarios": {
     id: "renta",
     template: "A",
+    promptTrack: "B",
     recipeId: "declaracion-renta",
     colorKey: "Credito / Deuda / Impuestos / Riesgo",
     readerSituation: "Persona con sueldo y boletas de honorarios que necesita entender su declaracion anual de impuestos y si pagara mas o recuperara.",
@@ -488,6 +579,7 @@ const SLUG_OVERRIDES = {
   "descuentos-de-sueldo": {
     id: "empleo",
     template: "A",
+    promptTrack: "B",
     recipeId: "liquidacion-documento",
     colorKey: "Finanzas general / AFP / Empleo / Ahorro",
     readerSituation:
@@ -502,6 +594,7 @@ const SLUG_OVERRIDES = {
   "como-leer-cartola-afp-chile": {
     id: "prevision",
     template: "A",
+    promptTrack: "B",
     recipeId: "liquidacion-documento",
     colorKey: "Finanzas general / AFP / Empleo / Ahorro",
     readerSituation: "Persona revisando e interpretando la cartola AFP trimestral para verificar cotizaciones y rentabilidad.",
@@ -514,6 +607,7 @@ const SLUG_OVERRIDES = {
   "prepago-credito-cuando-conviene-chile": {
     id: "deuda",
     template: "A",
+    promptTrack: "B",
     recipeId: "deuda-credito",
     colorKey: "Credito / Deuda / Impuestos / Riesgo",
     readerSituation: "Persona con un credito vigente evaluando si conviene hacer un abono extraordinario para reducir intereses.",
@@ -528,13 +622,13 @@ const SLUG_OVERRIDES = {
   "primer-empleo-chile-guia-completa": {
     id: "empleo",
     template: "A",
+    promptTrack: "A",
     recipeId: "cesantia",
     colorKey: "Finanzas general / AFP / Empleo / Ahorro",
     readerSituation: "Persona recien contratada revisando su primer contrato de trabajo y entendiendo sus descuentos legales.",
     toneClass: "neutral",
     overrideEvidence: ["slug override: first-employment onboarding guide — prevision rule false-positive on 'afp'+'previsional' body keywords"],
     overrideKeywords: ["primer empleo", "contrato", "liquidacion"],
-    promptOverride: "Flat 2D editorial vector illustration.\nBackground: solid color #0d9488, perfectly flat with zero grain, noise, or texture.\nScene: one geometric human figure walking forward through a simple open rectangular doorway shape, the figure holds a single flat document page in one hand.\nAll objects are flat geometric shapes, same illustration style.\nLighting: none. Flat uniform background only. No shadows, no highlights, no depth.\nColor palette: 3 colors maximum, all flat fills.\nComposition: figure and doorway centered-left; right third of canvas is clean solid background only.\nNo text, no letters, no numbers anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the named scene props.",
   },
 };
 
@@ -553,53 +647,62 @@ const ARTICLE_PROMPT_VARIANTS = {
     },
   },
   "boleta-honorarios-2026-retencion-cobertura": {
+    promptTrack: "B",
     promptOptions: {
       sceneLine:
-        "Scene: one flat honorarios receipt sheet divided into a retained amount band and a final net amount block.",
+        "Scene: a simplified independent worker is reviewing a boleta de honorarios while the receipt remains the dominant object, split into a retained amount band and a final net amount block.",
       propsLine:
-        "Use only the receipt silhouette, one subtraction bar, and one compact coverage marker shape in the corner.",
+        "Use the receipt as the focal object, with one subtraction bar and one compact coverage marker shaping the explanation.",
       extraLines: ["Semantic focus: monthly retention and net cash received from honorarios."],
       negativeLine:
-        "Do not add extra objects beyond the receipt, subtraction bar, and coverage marker.",
+        "Avoid clutter, realistic app screens, tax-software UI, or decorative office props.",
     },
   },
   "cae-costo-real-credito-chile": {
+    promptTrack: "C",
     promptOptions: {
       sceneLine:
-        "Scene: two stacked cost bars with one small monthly bar below a larger total-cost block, aligned to the right third of the canvas; left two-thirds is clean solid background only.",
-      extraLines: ["Semantic focus: total borrowing cost versus the misleading monthly payment view."],
-      negativeLine: "Do not add extra objects beyond the two cost bars.",
+        "Scene: one borrowing-cost comparison built from a smaller monthly-payment block and a much larger total-cost block, with a directional path connecting them so the hidden scale difference is immediately visible.",
+      extraLines: [
+        "Semantic focus: total borrowing cost versus the misleading monthly payment view.",
+        "Use the size contrast as the tension device so the mechanism feels consequential, not generic.",
+      ],
+      negativeLine:
+        "Avoid generic chart dashboards, screen UIs, or realistic bank-app framing.",
     },
   },
   "como-calcular-sueldo-liquido": {
+    promptTrack: "B",
     promptOptions: {
-      backgroundNote:
-        "Perfectly flat with zero gradient, zero vignette, zero texture, zero glow, and zero edge darkening.",
       sceneLine:
-        "Scene: one simplified vertical payslip with five clearly separated stacked deduction blocks feeding a larger final net deposit block at the bottom.",
+        "Scene: a simplified person is reviewing a payslip at a table, with the document as the main focal object and a clean deduction-to-deposit flow integrated into the same composition.",
       propsLine:
-        "Use only crisp opaque rectangles, divider lines, and one strong downward arrow that clearly guides the eye from the upper section through the deductions toward the final block.",
-      lightingLine:
-        "Lighting: none. Flat uniform background only. No shadows, no highlights, no depth, no soft shading, and no translucent surfaces.",
+        "Keep the payslip dominant; show a few clear deduction slices feeding into a smaller final deposit shape near the reader's hand or phone.",
+      humanAnchorLine:
+        "The emotional stake is understanding why the deposited salary feels lower than the headline salary, so the reader should sense recognition before calculation.",
       compositionLine:
-        "Composition: the payslip occupies the left-center of the canvas; the final bottom block must read more prominently than the deduction blocks; right third of canvas is clean solid background only.",
+        "Composition: keep the person and payslip in the left or center-left area, and let the embedded flow travel through the page rather than floating as a separate chart.",
       extraLines: [
         "Semantic focus: payroll calculation from gross salary to final net deposit.",
-        "All visible shapes must feel architectural, crisp, opaque, and strictly geometric.",
+        "The mechanism must support the lived moment of checking a payslip, not replace it.",
       ],
       negativeLine:
-        "Do not add extra objects beyond the payslip blocks and the arrow. Avoid soft gradients inside blocks, airy translucency, timid arrows, or a generic form-like look.",
+        "Avoid standalone payroll diagrams, fake mobile UI, checklist layouts, dashboard tiles, or decorative office clutter.",
     },
   },
   "como-hacer-presupuesto-mensual-chile": {
+    promptTrack: "A",
     promptOptions: {
       sceneLine:
-        "Scene: a top-down flat desk layout with one open notebook, one calculator, and two grouped expense stacks.",
+        "Scene: a simplified person or visible hands are organizing a monthly budget at a home table, with one open notebook as the dominant object and grouped expenses being actively sorted.",
       propsLine:
-        "Keep the notebook dominant and use only simple paper blocks and one small coin jar as supporting props.",
-      extraLines: ["Semantic focus: practical household budgeting with fixed expenses, variable expenses, and savings."],
+        "Keep the notebook dominant, with a calculator, two grouped expense piles, and one small savings jar as supporting cues.",
+      extraLines: [
+        "Semantic focus: practical household budgeting with fixed expenses, variable expenses, and savings.",
+        "The scene should feel lived-in and hopeful, not like a top-down still life.",
+      ],
       negativeLine:
-        "Do not add extra objects beyond the notebook, calculator, expense stacks, and coin jar.",
+        "Avoid workspace stock-photo cues, realistic tabletop texture, excessive stationery, or a sterile flat-lay aesthetic.",
     },
   },
   "como-invertir-en-etfs-desde-chile": {
@@ -649,12 +752,18 @@ const ARTICLE_PROMPT_VARIANTS = {
   "cuanto-descuenta-la-afp-de-tu-sueldo": {
     promptOptions: {
       sceneLine:
-        "Scene: one horizontal deduction strip divided into a large pension segment and a smaller commission segment beside a payslip edge.",
+        "Scene: a simplified worker is reviewing a payslip where one connected payroll line contains a large AFP deduction band and a smaller commission band.",
       propsLine:
-        "Use only the payslip edge, the two-part deduction strip, and one small verification marker.",
-      extraLines: ["Semantic focus: separating mandatory AFP contribution from commission."],
+        "Keep the payslip edge visible and let the two deduction bands stay aligned inside the same salary line so the split feels explanatory, not abstract.",
+      compositionLine:
+        "Composition: the payslip edge and split deduction bar occupy the left-center of the canvas; the large pension segment must visibly dominate the smaller commission segment; right third is clean solid background only.",
+      extraLines: [
+        "Semantic focus: separating mandatory AFP contribution from commission.",
+        "Both segments must read as one split payroll deduction line, not as two unrelated blocks.",
+        "The visual should explain ratio and separation at a glance, not imply a chart, badge set, or app widget.",
+      ],
       negativeLine:
-        "Do not add extra objects beyond the payslip edge, deduction strip, and verification marker.",
+        "Do not add extra objects beyond the payslip edge and the split deduction bar. Avoid pie-chart logic, dashboard widgets, floating legends, app pills, or badge-like markers.",
     },
   },
   "deposito-a-plazo-uf-vs-pesos": {
@@ -668,23 +777,33 @@ const ARTICLE_PROMPT_VARIANTS = {
   "devolucion-impuestos-fechas-compensaciones": {
     promptOptions: {
       sceneLine:
-        "Scene: one calendar page connected to a deposit arrow and a compact status dot.",
+        "Scene: a simplified person or visible hands are checking a tax-refund calendar page where one deposit cue and one offset block are embedded into the same date-driven scene.",
       propsLine:
-        "Use only the calendar, the arrow, and one small offset block representing compensations or delays.",
-      extraLines: ["Semantic focus: refund timing, status review, and possible offsets."],
+        "Keep the calendar page dominant, with one compact deposit cue and one smaller offset block representing compensations or delays.",
+      extraLines: [
+        "Semantic focus: refund timing, status review, and possible offsets.",
+        "The calendar must dominate; the offset block must remain secondary and diagnostic.",
+        "The image should read as one official date-and-refund mechanism, not as an invoice, payment receipt, or banking dashboard.",
+      ],
       negativeLine:
-        "Do not add extra objects beyond the calendar, deposit arrow, status dot, and offset block.",
+        "Do not add extra objects beyond the calendar page, deposit arrow, and offset block. Avoid invoice-like tables, mobile banking UI, receipt layouts, or floating date chips.",
     },
   },
   "descuentos-de-sueldo": {
     promptOptions: {
       sceneLine:
-        "Scene: three grouped deduction cards arranged in a row, one mandatory, one consent-based, and one blocked.",
+        "Scene: a simplified worker or visible hands are sorting three payroll deduction categories across one shared row: one mandatory, one consent-based, and one blocked.",
       propsLine:
-        "Use only flat cards, one small check shape, one approval hand shape, and one prohibition shape as non-text markers.",
-      extraLines: ["Semantic focus: legal, authorized, and prohibited payroll deductions."],
+        "Keep the three panels as part of one payroll review moment, with tiny embedded markers for approved, authorized, and prohibited deductions. The markers must stay secondary and never become badges.",
+      compositionLine:
+        "Composition: three panels of equal outer size and equal visual weight in one clear row; the markers must clarify category without turning the panels into app buttons, badges, or menu cards.",
+      extraLines: [
+        "Semantic focus: legal, authorized, and prohibited payroll deductions.",
+        "The image must read as classification, not as one generic payroll panel.",
+        "The three panels should feel like part of a real payroll decision moment, not UI components or a compliance poster.",
+      ],
       negativeLine:
-        "Do not add extra objects beyond the three cards and the three simple markers.",
+        "Do not add extra objects beyond the three panels and the three simple markers. Avoid app-button styling, rounded UI chips, menu-card aesthetics, floating labels, or dashboard tiles.",
     },
   },
   "donde-ver-si-estoy-en-dicom-gratis": {
@@ -776,14 +895,21 @@ const ARTICLE_PROMPT_VARIANTS = {
     },
   },
   "informe-deudas-cmf-vs-dicom": {
+    promptTrack: "B",
     promptOptions: {
       sceneLine:
-        "Scene: two overlapping debt report cards inside one large magnifier.",
+        "Scene: a simplified person, visible hand, or partial figure is comparing two debt report sheets through one large magnifier, with the report cards remaining the dominant objects.",
       propsLine:
-        "Keep the overlap crisp and geometric so the comparison reads instantly at thumbnail size.",
-      extraLines: ["Semantic focus: distinguishing the CMF debt report from DICOM-style records."],
+        "Keep the overlap crisp and geometric so the comparison reads instantly at thumbnail size. The report cards must read as simple report sheets, not app cards or mobile screens.",
+      compositionLine:
+        "Composition: the magnifier and two report cards occupy the left-center of the canvas; one card slightly in front of the other; right third clean solid background only.",
+      extraLines: [
+        "Semantic focus: distinguishing the CMF debt report from DICOM-style records.",
+        "The image must communicate comparison and clarity, never panic or punishment.",
+        "The overlap should feel investigative and neutral, not alarming or accusatory.",
+      ],
       negativeLine:
-        "Do not add extra objects beyond the two report cards and the magnifier.",
+        "Avoid warning sirens, prison metaphors, chains, crushed figures, red-alert drama, or mobile-app card styling.",
     },
   },
   "interes-compuesto-nota-metodologica": {
@@ -800,34 +926,53 @@ const ARTICLE_PROMPT_VARIANTS = {
   "licencia-medica-desde-que-dia-pagan": {
     promptOptions: {
       sceneLine:
-        "Scene: one horizontal calendar strip with shaded leave days and a marked payment-start block.",
+        "Scene: one horizontal calendar strip built from equal day blocks, with one contiguous leave band and one clearly marked payment-start block.",
       propsLine:
-        "Use only the calendar strip, one payment-start marker, and one smaller continuity marker.",
-      extraLines: ["Semantic focus: subsidy payment starting day within a medical leave period."],
+        "Use only the calendar strip, the payment-start block, and one smaller continuity marker. Keep every day cell rectangular and evenly spaced.",
+      compositionLine:
+        "Composition: the calendar strip occupies the left-center and reads horizontally in one glance; the payment-start block must stand out immediately from the other leave days.",
+      extraLines: [
+        "Semantic focus: subsidy payment starting day within a medical leave period.",
+        "The image must explain timing, not illness or medical treatment.",
+        "The reader should understand the exact start moment within a sequence of days, not a generic health concept.",
+      ],
       negativeLine:
-        "Do not add extra objects beyond the calendar strip and the two markers.",
+        "Do not add extra objects beyond the calendar strip and the two markers. Avoid hospital beds, medicine, doctors, faces, bodily suffering cues, or agenda-app styling.",
     },
   },
   "liquidacion-de-sueldo": {
+    promptTrack: "B",
     promptOptions: {
       sceneLine:
-        "Scene: one vertical payslip with three highlighted lines and a magnifier.",
+        "Scene: a simplified worker is auditing a payroll document, with one tall payslip sheet as the main object and a magnifier revealing three key internal lines.",
       propsLine:
-        "Use only the document sheet, the magnifier, and the three highlighted horizontal bars.",
-      extraLines: ["Semantic focus: auditing the key lines of a pay stub."],
+        "Use the payroll sheet as the focal object, with the magnifier and three highlighted bars embedded inside the same document.",
+      compositionLine:
+        "Composition: the payroll sheet and magnifier occupy the left-center; the three highlighted lines must feel embedded in the document, not like separate UI rows; right third clean solid background only.",
+      extraLines: [
+        "Semantic focus: auditing the key lines of a pay stub.",
+        "The image must feel like document inspection, not gross-to-net calculation.",
+        "The document should read as one inspected payroll artifact, never as a phone screen or dashboard panel.",
+      ],
       negativeLine:
-        "Do not add extra objects beyond the payslip, magnifier, and highlighted bars.",
+        "Do not add extra objects beyond the payroll sheet, magnifier, and highlighted bars. Avoid dashboard panels, list app screens, mobile-device framing, or decorative double borders.",
     },
   },
   "operacion-renta-f22-checklist": {
     promptOptions: {
       sceneLine:
-        "Scene: one flat tax checklist form with five checked boxes and one review magnifier.",
+        "Scene: one official rectangular tax-review form with five aligned square check boxes and one review magnifier.",
       propsLine:
-        "Use only the form, the check boxes, and one compact magnifier over the lower section.",
-      extraLines: ["Semantic focus: reviewing, sending, and rectifying the F22 without mistakes."],
+        "Use only the form, the five square check boxes, and one compact magnifier over the lower section. Keep the form as one institutional object, not a floating checklist.",
+      compositionLine:
+        "Composition: the checklist form occupies the left-center and reads as one institutional workflow object; the magnifier stays secondary; right third clean solid background only.",
+      extraLines: [
+        "Semantic focus: reviewing, sending, and rectifying the F22 without mistakes.",
+        "The image must feel methodical and official, not casual productivity UI.",
+        "The check boxes must feel embedded in an official process form, not in a personal to-do app.",
+      ],
       negativeLine:
-        "Do not add extra objects beyond the form, check boxes, and magnifier.",
+        "Do not add extra objects beyond the form, check boxes, and magnifier. Avoid app-like to-do list aesthetics, soft paper texture, office stationery scenes, or floating productivity cards.",
     },
   },
   "prepago-credito-cuando-conviene-chile": {
@@ -841,22 +986,43 @@ const ARTICLE_PROMPT_VARIANTS = {
         "Do not add extra objects beyond the debt staircase, calendar page, and savings arrow.",
     },
   },
-  "que-es-la-uf": {
+  "primer-empleo-chile-guia-completa": {
+    promptTrack: "A",
     promptOptions: {
       sceneLine:
-        "Scene: one indexed circular token beside a slim calendar strip with upward daily ticks, aligned to the right third of the canvas; left two-thirds is clean solid background only.",
-      extraLines: ["Semantic focus: the UF as a daily indexed unit that affects common payments."],
+        "Scene: a simplified person is stepping through an open doorway into a first-job moment, holding one contract page as the dominant financial object.",
+      propsLine:
+        "Keep the contract page clearly visible, with the doorway acting as the contextual cue for entering working life.",
+      compositionLine:
+        "Composition: place the figure and doorway in the left or center-left area so the forward motion feels optimistic and immediate.",
+      extraLines: [
+        "Semantic focus: entering a first job and understanding what the contract and legal deductions mean.",
+      ],
       negativeLine:
-        "Do not add extra objects beyond the circular token and the calendar strip.",
+        "Avoid pension-planning symbolism, generic office stock scenes, celebratory confetti, or corporate onboarding aesthetics.",
+    },
+  },
+  "que-es-la-uf": {
+    promptTrack: "C",
+    promptOptions: {
+      sceneLine:
+        "Scene: one indexed unit marker beside a slim calendar strip with upward daily ticks, arranged so the daily progression feels clear and consequential rather than purely symbolic.",
+      extraLines: [
+        "Semantic focus: the UF as a daily indexed unit that affects common payments.",
+        "Use the daily rise and the contract-time cue as the tension device.",
+      ],
+      negativeLine:
+        "Avoid stock market dashboards, currency-symbol clutter, or generic fintech iconography.",
     },
   },
   "reajuste-arriendo-uf-ipc-chile": {
+    promptTrack: "C",
     promptOptions: {
       sceneLine:
-        "Scene: one flat house outline connected to an upward contract line and a small calendar tick, aligned to the right third of the canvas; left two-thirds is clean solid background only.",
+        "Scene: one house outline connected to an upward contract line and a calendar tick, arranged so the adjustment over time feels contractual and consequential, not like a generic housing icon.",
       extraLines: ["Semantic focus: rent adjustment by UF or IPC depending on the contract."],
       negativeLine:
-        "Do not add extra objects beyond the house outline, contract line, and calendar tick.",
+        "Avoid generic real-estate marketing cues, mortgage dashboards, or decorative skyline motifs.",
     },
   },
   "renegociacion-superir": {
@@ -937,14 +1103,18 @@ const ARTICLE_PROMPT_VARIANTS = {
     },
   },
   "utm-chile-que-es-como-funciona": {
+    promptTrack: "C",
     promptOptions: {
       sceneLine:
-        "Scene: one simple geometric rising line chart with a plain fiscal reference disc, positioned in the left and center of the canvas; right third is clean solid background only.",
-      backgroundNote: "Perfectly flat with zero grain, noise, or texture.",
-      extraLines: ["Semantic focus: the UTM as a monthly fiscal reference unit."],
+        "Scene: one fiscal reference disc beside a restrained rising monthly line, arranged so the monthly reference function feels official and practical rather than speculative.",
+      backgroundNote: "Mostly flat color background with one gentle grounding shape if it improves hierarchy. No gradients, no grain, and no texture noise.",
+      extraLines: [
+        "Semantic focus: the UTM as a monthly fiscal reference unit.",
+        "Use the monthly cadence as the anchor, not a trader-chart aesthetic.",
+      ],
       noTextLine:
         "No text, no letters, no numbers, no currency symbols ($, €, %) anywhere in the image.",
-      negativeLine: "Do not add extra objects beyond the line chart and the plain fiscal disc.",
+      negativeLine: "Avoid trader dashboards, stock-app styling, currency-symbol clutter, or speculative-finance cues.",
     },
   },
 };
@@ -961,18 +1131,53 @@ function mergePromptOptions(baseOptions, variantOptions) {
   };
 }
 
-function applyArticlePromptVariant(article, plan) {
-  const variant = ARTICLE_PROMPT_VARIANTS[article.slug];
-  if (!variant) return plan;
+function maybeInjectHumanAnchor(plan) {
+  const promptTrack = normalizePromptTrack(plan.promptTrack, defaultPromptTrackForRule(plan));
+
+  if (plan.template !== "A" || promptTrack === "C") {
+    return {
+      ...plan,
+      promptTrack,
+    };
+  }
+
+  if (sceneAlreadyHasHumanAnchor(plan.promptOptions)) {
+    return {
+      ...plan,
+      promptTrack,
+    };
+  }
+
+  const humanizedSceneLine = humanizeSceneLine(plan.promptOptions?.sceneLine, promptTrack);
 
   return {
     ...plan,
+    promptTrack,
+    promptOptions: mergePromptOptions(plan.promptOptions, {
+      sceneLine: humanizedSceneLine,
+      propsLine: softenObjectOnlyPropsLine(plan.promptOptions?.propsLine),
+      humanAnchorLine: buildAutoHumanAnchorLine(
+        promptTrack,
+        plan.semantic,
+        Boolean(humanizedSceneLine)
+      ),
+    }),
+  };
+}
+
+function applyArticlePromptVariant(article, plan) {
+  const variant = ARTICLE_PROMPT_VARIANTS[article.slug];
+  if (!variant) return maybeInjectHumanAnchor(plan);
+
+  return maybeInjectHumanAnchor({
+    ...plan,
+    promptTrack: normalizePromptTrack(variant.promptTrack, plan.promptTrack ?? "A"),
     postura: variant.postura ?? plan.postura,
     objetos: variant.objetos ?? plan.objetos,
     icon: variant.icon ?? plan.icon,
     promptOptions: mergePromptOptions(plan.promptOptions, variant.promptOptions),
     promptOverride: variant.promptOverride ?? plan.promptOverride,
-  };
+  });
 }
 
 export function selectPromptPlan(article) {
@@ -1002,6 +1207,10 @@ export function selectPromptPlan(article) {
       colorKey: slugOverride.colorKey,
       hex: colorEntry.hex,
       modelPlan: { ...DEFAULT_MODEL_PLAN },
+      promptTrack: normalizePromptTrack(
+        slugOverride.promptTrack,
+        defaultPromptTrackForRule(slugOverride)
+      ),
       semantic,
       matchedKeywords: slugOverride.overrideKeywords,
     };
@@ -1073,6 +1282,7 @@ export function selectPromptPlan(article) {
     colorKey: rule.colorKey,
     hex: colorEntry.hex,
     modelPlan: { ...DEFAULT_MODEL_PLAN },
+    promptTrack: defaultPromptTrackForRule(rule),
     semantic,
     matchedKeywords,
   };

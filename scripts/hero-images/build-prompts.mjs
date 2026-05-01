@@ -8,7 +8,7 @@ import {
   toRepoRelative,
   writeJson,
 } from "./lib.mjs";
-import { buildPromptFromPlan, selectPromptPlan } from "./prompt-plan.mjs";
+import { PROMPT_TRACK_LABELS, buildPromptFromPlan, selectPromptPlan } from "./prompt-plan.mjs";
 
 async function main() {
   const manifest = await readJson(MANIFEST_PATH);
@@ -23,6 +23,8 @@ async function main() {
       sourcePath: article.sourcePath,
       targetImagePath: heroPublicPath(article.slug, ".avif"),
       template: plan.template,
+      promptTrack: plan.promptTrack,
+      promptTrackLabel: PROMPT_TRACK_LABELS[plan.promptTrack] ?? PROMPT_TRACK_LABELS.A,
       approvedModelId: plan.approvedModelId,
       sceneId: plan.sceneId,
       readerSituation: plan.semantic.readerSituation,

@@ -23,6 +23,14 @@ const PURE_FALLBACK_PATTERNS = [/used fallback scene/i];
 const VALID_INTENTS = new Set(["explicar", "alertar", "comparar", "guiar", "calcular"]);
 const VALID_TONES = new Set(["neutral", "serio", "alerta", "educativo", "progreso"]);
 const VALID_TEMPLATES = new Set(["A", "B", "C"]);
+const VALID_PROMPT_TRACKS = new Set(["A", "B", "C"]);
+const HUMAN_ANCHOR_PATTERNS = [
+  /simplified person/i,
+  /human figure/i,
+  /visible hands?/i,
+  /partial figure/i,
+  /worker/i,
+];
 
 function getPathOverride(envKey, fallback) {
   const value = process.env[envKey];
@@ -83,6 +91,10 @@ async function main() {
 
     if (!VALID_TEMPLATES.has(entry.template)) {
       pushIssue(errors, article.slug, `Invalid template '${entry.template}'.`);
+    }
+
+    if (!VALID_PROMPT_TRACKS.has(entry.promptTrack)) {
+      pushIssue(errors, article.slug, `Invalid promptTrack '${entry.promptTrack}'.`);
     }
 
     if (typeof entry.sceneId !== "string" || entry.sceneId.trim() === "") {
@@ -162,6 +174,18 @@ async function main() {
     } else {
       if (entry.promptHash !== sha256Hex(entry.prompt)) {
         pushIssue(errors, article.slug, "promptHash does not match prompt content.");
+      }
+
+      if (
+        VALID_PROMPT_TRACKS.has(entry.promptTrack) &&
+        entry.promptTrack !== "C" &&
+        !HUMAN_ANCHOR_PATTERNS.some(pattern => pattern.test(entry.prompt))
+      ) {
+        pushIssue(
+          errors,
+          article.slug,
+          `Prompt track '${entry.promptTrack}' requires a human/editorial anchor in the prompt text.`
+        );
       }
 
       const promptSiblings = promptsByText.get(entry.prompt) ?? [];

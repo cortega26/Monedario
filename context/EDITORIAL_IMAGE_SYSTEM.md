@@ -1,8 +1,8 @@
 # Editorial Image System
 
-Last updated: 2026-04-15\
+Last updated: 2026-05-01\
 Status: Active\
-Version: 3.5 — selección semántica obligatoria + creación manual de assets finales
+Version: 4.0 — prompt tracks humanos + jerarquía scene-first restaurada
 
 ---
 
@@ -77,7 +77,11 @@ Lo que estos referentes tienen en común con monedario: **hablan de plata sin ha
 
 > Las imágenes deben hacer que el lector piense *"esto es para mí"* antes de leer el título.
 
-Eso no siempre significa una escena narrativa completa. En artículos de alta sensibilidad YMYL, comparación técnica o procedimiento institucional, la imagen puede y debe representar el **mecanismo central** del artículo: un comprobante, una línea de tiempo, dos sistemas comparados, una cartola o un calendario de pago. En piezas más cotidianas o emocionales, la escena cercana sigue siendo válida.
+Eso no siempre significa una escena narrativa completa. Pero sí significa una jerarquía clara:
+
+- primero, una situación humana o editorial reconocible;
+- después, el mecanismo financiero que da contexto;
+- solo en artículos genuinamente técnicos o de referencia, el mecanismo puede ocupar casi todo el encuadre.
 
 Una persona mirando una pantalla con números. Una mano sosteniendo un documento. Una mesa con una taza y una calculadora. Un comprobante con bloques bien definidos. Un calendario con el día de pago marcado. Todo eso puede pertenecer al mismo sistema si la lectura es inmediata y la metáfora es correcta.
 
@@ -86,17 +90,28 @@ Una persona mirando una pantalla con números. Una mano sosteniendo un documento
 Regla operativa:
 
 - **Scene-first** cuando el lector necesita reconocerse en una situación cotidiana.
-- **Mechanism-first** cuando el artículo explica una regla, una comparación, un cálculo, un documento o un proceso.
+- **Hybrid scene + mechanism** cuando el artículo explica un proceso, cálculo o comparación con consecuencias claras para la vida real del lector.
+- **Mechanism-first** solo cuando el artículo es genuinamente técnico, institucional o de referencia y una escena humana distraería más de lo que ayudaría.
 
 Aplicación recomendada:
 
 | Tipo de artículo | Sesgo visual recomendado |
 |---|---|
 | Presupuesto, primer empleo, ahorro cotidiano | Escena cercana y simple |
-| Liquidación, descuentos, boletas, cartolas | Documento o desglose visual |
-| Deuda, CMF vs DICOM, prepago, renegociación | Comparación, statement o flujo |
-| Devoluciones, F22, licencia médica | Calendario, checklist o secuencia |
-| Indicadores (UF, IPC, UTM) | Ícono o composición semántica austera |
+| Liquidación, descuentos, boletas, cartolas | Escena + documento/mecanismo embebido |
+| Deuda, CMF vs DICOM, prepago, renegociación | Comparación con ancla editorial humana |
+| Devoluciones, F22, licencia médica | Escena + calendario/secuencia o proceso con ancla |
+| Indicadores (UF, IPC, UTM) | Mecanismo editorial austero con tensión visual, no ícono vacío |
+
+### 2.5 Taxonomía de prompt tracks
+
+Los **prompt tracks** no reemplazan a los templates visuales. Son la capa de dirección editorial que define cómo debe sentirse el prompt antes de entrar al detalle compositivo.
+
+| Prompt track | Uso | Regla |
+|---|---|---|
+| `A — Human Editorial Scene` | Default para la mayoría de los artículos reader-facing | Debe partir de un momento financiero reconocible, con presencia humana, gesto y stake claro. |
+| `B — Hybrid Scene + Mechanism` | Procesos, cálculos y comparaciones con relevancia humana evidente | El mecanismo apoya la escena; nunca reemplaza el momento editorial. |
+| `C — Editorial Mechanism` | Referencia técnica o institucional genuina | El mecanismo puede dominar, pero debe tener tensión visual o ancla situacional. |
 
 ---
 
@@ -163,9 +178,9 @@ Una escena cotidiana abstracta con personaje(s) simplificado(s), ilustrada en es
 
 **Estructura:**
 - Fondo de color semántico sólido (ver sección 5)
-- Escena con 1 elemento humano simplificado y 1–2 objetos de contexto
+- Escena con 1 presencia humana simplificada, 1 objeto financiero dominante y 0–2 cues de contexto
 - Sin texto en la imagen
-- Sin textura, sombra ni degradado
+- Sin textura fotográfica ni degradados complejos; se permite una sombra simple o grounding shape si mejora jerarquía
 - Lectura inmediata con una sola acción clara
 
 **Ejemplos de escenas por tema:**
@@ -185,7 +200,7 @@ Una escena cotidiana abstracta con personaje(s) simplificado(s), ilustrada en es
 
 ### Template B — Icon Focus `[DEFAULT para artículos técnicos y de referencia]`
 
-Fondo sólido de color semántico con ícono centrado. Ideal cuando el artículo es principalmente una referencia técnica o una guía de conceptos donde la claridad importa más que la narrativa.
+Fondo sólido de color semántico con objeto o mecanismo editorial dominante. Ideal cuando el artículo es principalmente una referencia técnica o una guía de conceptos donde la claridad importa más que la narrativa, pero sin caer en un ícono vacío o perfectamente centrado.
 
 **Cuándo usar:**
 - El artículo es una referencia técnica (qué es la UF, cómo funciona el CAE)
@@ -195,8 +210,8 @@ Fondo sólido de color semántico con ícono centrado. Ideal cuando el artículo
 
 **Estructura de capas:**
 1. **Fondo:** color sólido semántico
-2. **Textura:** patrón geométrico a ≤8% de opacidad. **Obligatorio.**
-3. **Ícono:** centrado, 35–45% del ancho total
+2. **Separación opcional:** una textura geométrica muy sutil o un grounding shape simple a baja opacidad
+3. **Ícono / mecanismo:** dominante, 35–45% del ancho total, preferentemente con leve offset en vez de centro perfecto
 4. **Etiqueta** *(opcional)*: categoría en mayúsculas pequeñas, tercio inferior, blanco al 85%
 
 **Selección de ícono:** usar criterio narrativo de la tabla en sección 6.3.
@@ -311,14 +326,14 @@ Esta sección aplica principalmente a Template A (Scene Illustration). Define la
 
 ### 6.1 Estilo de personajes
 
-**Abstracción geométrica simple.** Los personajes se construyen con formas básicas: círculo para la cabeza, rectángulos y curvas para el cuerpo. Sin detalles anatómicos. Sin expresiones faciales detalladas — preferiblemente sin rostro visible.
+**Abstracción editorial simple.** Los personajes suelen construirse con formas básicas y controladas, pero eso no obliga a rigidez extrema. La meta es simplificación legible, no muñecos mecánicos. Sin detalles anatómicos realistas. Sin expresiones faciales detalladas — preferiblemente sin rostro visible.
 
 **Por qué sin rostro:** los rostros generados por IA son el marcador más reconocible de contenido artificial. Eliminarlos también evita el problema de representación (género, etnia, edad) y hace los personajes más universalmente identificables.
 
 **Paleta de personajes:**
 - Color de forma: tono cálido neutro plano (`#d4a574` o equivalente), nunca fotorrealista
 - Ropa: colores planos dentro de la paleta del sistema
-- Sin sombras complejas — máximo una sombra sólida simple a 15% de opacidad
+- Sin sombras complejas — máximo una sombra sólida simple o separación tonal controlada si mejora la jerarquía
 
 ### 6.2 Objetos de contexto
 
@@ -328,13 +343,13 @@ Los objetos anclan la escena al tema financiero. Deben ser:
 - **Planos** — mismo estilo ilustrado que los personajes
 - **En escala coherente** con el personaje
 
-Máximo 2 objetos por escena. Más elementos no añaden claridad, la reducen.
+Máximo 1 objeto dominante y hasta 2 cues de apoyo. Más elementos no añaden claridad, la reducen.
 
 Reglas adicionales:
 
 - Debe existir **1 objeto principal dominante**.
 - El segundo objeto, si existe, solo apoya la lectura.
-- Evitar mesas, escritorios o mobiliario grande salvo que sean indispensables para entender la acción.
+- Permitir mesas, escritorios o superficies simples cuando hagan la escena más reconocible o humana.
 - Evitar pilas de tarjetas, dashboards, paneles o UI flotante: elevan la carga cognitiva y enfrían la escena.
 
 ### 6.3 Tabla de íconos — criterio narrativo
@@ -527,9 +542,9 @@ El lector moderno reconoce las imágenes IA por marcadores específicos, no por 
 
 | Marcador IA más reconocido | Por qué ocurre | Cómo neutralizarlo en el prompt |
 |---------------------------|----------------|----------------------------------|
-| Iluminación volumétrica / rim light / god rays | El modelo por defecto dramatiza la luz | Pedir explícitamente `flat lighting`, `no shadows`, `uniform illumination` |
-| Piel o cabello hiperrealistas | El modelo optimiza para fotorrealismo | Pedir `geometric shapes only`, `no skin texture`, `vector-style characters` |
-| Profundidad de campo y bokeh | Estética fotográfica que los modelos emulan | `flat composition`, `no depth of field`, `no blur` |
+| Iluminación volumétrica / rim light / god rays | El modelo por defecto dramatiza la luz | Pedir `soft even lighting`, `no cinematic light`, `one simple grounding shadow only if needed` |
+| Piel o cabello hiperrealistas | El modelo optimiza para fotorrealismo | Pedir `flat editorial vector style`, `no skin texture`, `simplified characters or visible hands` |
+| Profundidad de campo y bokeh | Estética fotográfica que los modelos emulan | `flat editorial illustration`, `no depth of field`, `no blur`; la profundidad válida viene por overlap o escala, no por lentes |
 | Objetos imposibles o deformados | Falla del modelo en geometría compleja | Limitar objetos a 1–2 máximo, simples y reconocibles |
 | Colores saturados y gradientes complejos | El modelo maximiza impacto visual por defecto | Especificar paleta hex exacta, `solid color background`, `no gradients` |
 | Tipografía generada (letras incorrectas) | Debilidad estructural de los modelos | Nunca pedir texto en la imagen; añadirlo en post-proceso |
@@ -545,40 +560,42 @@ Todo prompt para monedario debe parecerse a los prompts validados manualmente. L
 Estructura fija:
 
 ```
-[ESTILO BASE] + [BACKGROUND] + [SCENE] + [LIGHTING] + [PALETA] + [COMPOSICION] + [CANVAS] + [NEGATIVOS]
+[ESTILO BASE] + [MOMENTO / MECANISMO] + [COMPOSICION] + [RIQUEZA CONTROLADA] + [PALETA] + [CANVAS] + [NEGATIVOS]
 ```
 
 **ESTILO BASE**
 ```
-Create a flat vector editorial illustration for a personal finance website.
-2D flat design, geometric shapes only, no gradients, no photorealism, no 3D rendering.
+Create a flat editorial vector illustration for a trusted personal finance publication.
+Use simple controlled shapes, a minimal but expressive scene, and a calm human tone.
 ```
 
-**BACKGROUND**
+**BACKGROUND / COLOR**
 ```
-Background: solid color [HEX].
-```
-
-**SCENE**
-```
-Scene: one geometric human figure [postura], shown from behind or as a faceless silhouette -
-simple circle for head, basic rectangles for body. The figure is near [1-2 objetos].
-All objects are flat geometric shapes, same illustration style.
+Background: solid color [HEX], mostly flat, with room for one gentle grounding shape or tonal separation if it improves hierarchy.
 ```
 
-**LIGHTING**
+**MOMENTO / MECANISMO**
 ```
-Lighting: none. Flat uniform background only. No shadows, no highlights, no depth.
+Scene: [momento humano reconocible] o [mecanismo editorial con ancla situacional].
+Primary subject: [objeto financiero dominante].
+Context cue: [0-1 cue secundario].
+Stake: [qué está entendiendo, comparando, perdiendo, protegiendo o decidiendo el lector].
+```
+
+**RIQUEZA CONTROLADA**
+```
+Allow one controlled depth cue through overlap, scale contrast, or a simple grounding shape.
+No photorealistic depth, no CGI, no cinematic light, no glossy rendering.
 ```
 
 **PALETA**
 ```
-Color palette: 3 colors maximum, all flat fills.
+Color palette: 4-5 flat colors maximum when needed. Keep the palette restrained; one softer accent is allowed for warmth or hierarchy.
 ```
 
 **COMPOSICION**
 ```
-Composition: all elements within the central 80% of the canvas.
+Composition: asymmetrical, clear focal hierarchy, key elements inside safe area, and enough breathing room for card readability.
 ```
 
 **CANVAS**
@@ -596,110 +613,86 @@ Este bloque se incluye en **todos los prompts** sin excepción. Es el núcleo de
 NEGATIVE PROMPT (copiar íntegro):
 
 Do not include text, letters, numbers, logos, or watermarks.
-Do not add photorealistic details, skin texture, hair texture, or facial features.
-Do not add depth of field, bokeh, rim lighting, volumetric light, lens flare,
-drop shadows, gradients, glows, or neon colors.
-Do not use 3D rendering or CGI.
-No cinematic lighting.
-No realistic anatomy.
-Do not add extra objects beyond the named scene props.
+Do not add photorealistic details, skin texture, hair texture, or malformed anatomy.
+Do not use 3D rendering, CGI, neon colors, golden-coin finance clichés, fake dashboards, or generic fintech marketing UI.
+Do not add clutter, decorative filler, or extra objects that weaken the main moment.
+Do not use cinematic lighting, glossy highlights, lens flare, or dramatic volumetric effects.
 ```
 
 ---
 
-### 12.4 Plantillas de prompt por template
+### 12.4 Tracks de prompt
 
-#### Template A — Scene Illustration
+#### Track A — Human Editorial Scene
+
+Usar por defecto cuando el lector se reconoce en una situación cotidiana.
+
+Debe incluir:
+
+- una figura humana simplificada o presencia humana parcial;
+- un gesto legible;
+- un objeto financiero dominante;
+- un cue contextual opcional;
+- un stake práctico o emocional reconocible.
+
+Ejemplo:
 
 ```
-Create a flat vector editorial illustration for a personal finance website.
-2D flat design, geometric shapes only, no gradients, no photorealism, no 3D rendering.
+Create a flat editorial vector illustration for a trusted personal finance publication.
+Use simple controlled shapes, a minimal but expressive scene, and a calm human tone.
 
-Background: solid color [HEX de la categoria].
+Background: solid color [HEX], mostly flat, with one grounding shape if needed.
 
-Scene: one geometric human figure [postura], shown from behind or as a faceless silhouette -
-simple circle for head, basic rectangles for body. The figure is near [1-2 objetos].
-All objects are flat geometric shapes, same illustration style.
+Scene: one simplified person [gesto] in a recognizable money moment.
+Primary subject: [objeto financiero dominante].
+Context cue: [0-1 cue].
+Stake: the reader should immediately feel what is being checked, compared, protected, or understood.
 
-Lighting: none. Flat uniform background only. No shadows, no highlights, no depth.
-Color palette: 3 colors maximum, all flat fills.
-Composition: all elements within the central 80% of the canvas.
+Allow one controlled depth cue through overlap, scale contrast, or a simple grounding shape.
+Color palette: 4-5 flat colors maximum when needed.
+Composition: asymmetrical, strong focal hierarchy, safe-area compliant.
 Canvas: 1200x630 pixels, landscape.
 
 [negativos permanentes de 12.3]
 ```
 
-**Ejemplo — artículo sobre presupuesto familiar:**
-```
-Create a flat vector editorial illustration for a personal finance website.
-2D flat design, geometric shapes only, no gradients, no photorealism, no 3D rendering.
+#### Track B — Hybrid Scene + Mechanism
 
-Background: solid color #0d9488.
+Usar cuando el artículo explica un proceso o cálculo con relevancia humana evidente.
 
-Scene: one geometric human figure seated at a table, leaning slightly forward, shown from behind or as a faceless silhouette - simple circle for head, basic rectangles for body. The figure is near calculator, stacked papers. All objects are flat geometric shapes, same illustration style.
+Debe incluir:
 
-Lighting: none. Flat uniform background only. No shadows, no highlights, no depth.
-Color palette: 3 colors maximum, all flat fills.
-Composition: all elements within the central 80% of the canvas.
-Canvas: 1200x630 pixels, landscape.
+- ancla humana o editorial clara;
+- mecanismo simplificado embebido en la escena;
+- cero diagramas autónomos;
+- cero UI mockups;
+- una consecuencia visual legible.
 
-Do not include text, letters, numbers, logos, or watermarks. Do not add photorealistic details, skin texture, hair texture, or facial features. Do not add depth of field, bokeh, rim lighting, volumetric light, lens flare, drop shadows, gradients, glows, or neon colors. Do not use 3D rendering or CGI. No cinematic lighting. No realistic anatomy. Do not add extra objects beyond the named scene props.
-```
-
----
-
-#### Template B — Icon Focus
+Ejemplo:
 
 ```
-Create a flat vector editorial illustration for a personal finance website.
-2D flat design, geometric shapes only, no gradients, no photorealism, no 3D rendering.
-
-Background: solid color [HEX].
-Scene: one simple geometric [nombre del icono / objeto] icon, centered, occupying 40% of the canvas width. Use flat filled shapes only. No secondary elements.
-
-Lighting: none. Flat uniform background only. No shadows, no highlights, no depth.
-Color palette: 2 colors maximum, all flat fills.
-Composition: all elements within the central 80% of the canvas.
-Canvas: 1200x630 pixels, landscape.
-
-[negativos permanentes de 12.3]
+Scene: a simplified person reviews a payslip while a deduction-to-deposit flow is integrated into the same composition.
+The mechanism must support the lived moment, not replace it.
+Avoid standalone diagrams or dashboard panels.
 ```
 
-**Ejemplo — artículo sobre AFP:**
-```
-Create a flat vector editorial illustration for a personal finance website.
-2D flat design, geometric shapes only, no gradients, no photorealism, no 3D rendering.
+#### Track C — Editorial Mechanism
 
-Background: solid color #0d9488.
-Scene: one simple geometric hourglass shape icon, centered, occupying 40% of the canvas width. Use flat filled shapes only. No secondary elements.
+Usar solo cuando agregar una escena humana distraería o degradaría la claridad editorial.
 
-Lighting: none. Flat uniform background only. No shadows, no highlights, no depth.
-Color palette: 2 colors maximum, all flat fills.
-Composition: all elements within the central 80% of the canvas.
-Canvas: 1200x630 pixels, landscape.
+Debe incluir:
 
-Do not include text, letters, numbers, logos, or watermarks. Do not add photorealistic details, skin texture, hair texture, or facial features. Do not add depth of field, bokeh, rim lighting, volumetric light, lens flare, drop shadows, gradients, glows, or neon colors. Do not use 3D rendering or CGI. No cinematic lighting. No realistic anatomy. Do not add extra objects beyond the named scene props.
-```
+- un mecanismo, comparación o metáfora documental clara;
+- un device de tensión visual;
+- un ancla situacional;
+- cero íconos centrados sin contexto;
+- cero dashboards genéricos.
 
----
-
-#### Template C — Type + Icon
-
-> ⚠️ No pedir texto al modelo. Generar solo el fondo + ícono secundario. El texto se agrega en post-proceso con Figma, Canva o equivalente usando las especificaciones de sección 7.
+Ejemplo:
 
 ```
-Create a flat vector editorial illustration for a personal finance website.
-2D flat design, geometric shapes only, no gradients, no photorealism, no 3D rendering.
-
-Background: solid color [HEX].
-Scene: one small geometric [nombre del icono] icon in the bottom right area. Use flat filled shapes only. No other objects.
-
-Lighting: none. Flat uniform background only. No shadows, no highlights, no depth.
-Color palette: 2 colors maximum, all flat fills.
-Composition: keep the left two-thirds of the canvas completely empty for text overlay. All visible elements must stay within the rightmost 30% of the canvas.
-Canvas: 1200x630 pixels, landscape.
-
-[negativos permanentes de 12.3]
+Scene: one contractual adjustment mechanism built from a house outline, an upward contract line, and a calendar cue.
+The mechanism should feel consequential and reader-relevant, not like a generic housing icon.
 ```
 
 ---
@@ -737,12 +730,13 @@ Antes de usar cualquier imagen generada, verificar:
 - [ ] Sin rostros visibles ni expresiones faciales
 - [ ] Sin texturas de piel, cabello o tela realista
 - [ ] Sin iluminación volumétrica, rim light o bokeh
-- [ ] Sin gradientes en el fondo (el fondo es color sólido)
+- [ ] Sin gradientes de estilo IA, glow o glossy rendering
 - [ ] Sin texto generado en la imagen
 - [ ] Sin objetos deformados o anatómicamente incorrectos
-- [ ] Paleta de hasta 3 colores planos, todos dentro del sistema
+- [ ] Paleta contenida; puede usar 4-5 colores planos si mejora calidez y jerarquía
 - [ ] La escena se entiende en menos de 2 segundos
 - [ ] Hay una sola acción clara y un objeto principal dominante
+- [ ] La imagen tiene tirón editorial humano: no se siente como diagrama de compliance
 - [ ] No se percibe como clipart corporativo, dashboard o anuncio fintech
 - [ ] La escena completa es legible en crop 16:9 (safe area 1134×596)
 - [ ] Tamaño del archivo ≤ 80 KB tras exportar en .avif
@@ -828,6 +822,7 @@ Campos obligatorios de decisión:
 - `primaryIntent`: intención dominante del artículo (`explicar`, `alertar`, `comparar`, `guiar`, `calcular`)
 - `toneClass`: tono visual esperado (`neutral`, `serio`, `alerta`, `educativo`, `progreso`)
 - `templateChoice`: `A`, `B` o `C`
+- `promptTrack`: `A`, `B` o `C` según taxonomía editorial del §2.5
 - `approvedModelId`: id del modelo aprobado elegido desde `SCENE_EXAMPLES`
 - `sceneChoice` o `iconChoice`
 - `visualEvidence`: frases breves que expliquen por qué esa escena sí corresponde al texto
@@ -914,6 +909,7 @@ Artefactos determinísticos:
 Artefactos semánticos obligatorios por entrada:
 
 - `template`
+- `promptTrack`
 - `sceneId`
 - `selectors.ruleId`
 - `visualEvidence` o campo equivalente de justificación semántica

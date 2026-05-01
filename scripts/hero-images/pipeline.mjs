@@ -91,7 +91,7 @@ function getRetryEnforcement(attempt, failures) {
   }
 
   if (failures.includes("STYLE")) {
-    parts.push(`RETRY CORRECTION — STYLE WRONG: The previous attempt used 3D rendering, drop shadows, or glassmorphism. Use only flat 2D vector shapes. No depth, no shadows, no 3D.`);
+    parts.push(`RETRY CORRECTION — STYLE WRONG: The previous attempt used 3D rendering, glassmorphism, or photoreal polish. Return to a flat editorial vector style. A single simple grounding shadow or tonal separation is allowed if it improves hierarchy, but avoid realistic depth, glossy effects, and cinematic lighting.`);
   }
 
   if (failures.includes("ELEMENTS")) {

@@ -44,7 +44,7 @@ describe("check-hero-prompts script", () => {
   it("passes when prompts include text-backed semantic evidence", () => {
     const root = createTempDir();
     const prompt =
-      "Create a flat vector background for a personal finance graphic. Background: solid color #4f46e5.";
+      "Create a flat editorial vector illustration for a trusted personal finance publication. Scene: one strong editorial mechanism built around a rising line chart with a small coin symbol, aligned to the right third of the canvas.";
 
     writeJson(path.join(root, "manifest.json"), {
       articles: [
@@ -60,6 +60,7 @@ describe("check-hero-prompts script", () => {
           slug: "que-es-la-uf",
           sourcePath: "src/data/blog/que-es-la-uf.md",
           template: "C",
+          promptTrack: "C",
           approvedModelId: "uf-indicadores",
           sceneId: buildArticleSceneId("C", "uf-indicadores", "que-es-la-uf"),
           readerSituation: "Persona entendiendo un indicador economico que afecta pagos cotidianos.",
@@ -88,7 +89,7 @@ describe("check-hero-prompts script", () => {
   it("fails when evidence is metadata-only", () => {
     const root = createTempDir();
     const prompt =
-      "Create a flat vector editorial illustration for a personal finance website.";
+      "Create a flat editorial vector illustration for a trusted personal finance publication. Scene: a simplified person is facing a stack of debt documents.";
 
     writeJson(path.join(root, "manifest.json"), {
       articles: [
@@ -104,6 +105,7 @@ describe("check-hero-prompts script", () => {
           slug: "deuda-generica",
           sourcePath: "src/data/blog/deuda-generica.md",
           template: "A",
+          promptTrack: "A",
           approvedModelId: "deuda-credito",
           sceneId: buildArticleSceneId("A", "deuda-credito", "deuda-generica"),
           readerSituation: "Persona enfrentando documentos, cuotas o decisiones de deuda.",
@@ -129,7 +131,8 @@ describe("check-hero-prompts script", () => {
 
   it("warns on fallback scene by default and fails in strict fallback mode", () => {
     const root = createTempDir();
-    const prompt = "Create a flat vector icon illustration for a personal finance website.";
+    const prompt =
+      "Create a flat editorial vector illustration for a trusted personal finance publication. Scene: one clear editorial finance object built around a rectangular card shape with two horizontal stripes and a small chip symbol.";
 
     writeJson(path.join(root, "manifest.json"), {
       articles: [
@@ -145,6 +148,7 @@ describe("check-hero-prompts script", () => {
           slug: "general",
           sourcePath: "src/data/blog/general.md",
           template: "B",
+          promptTrack: "C",
           approvedModelId: "cuenta-corriente-banco",
           sceneId: buildArticleSceneId("B", "cuenta-corriente-banco", "general"),
           readerSituation: "Persona revisando informacion financiera practica para tomar una decision.",
@@ -175,7 +179,8 @@ describe("check-hero-prompts script", () => {
 
   it("fails when prompt entry references a model outside the approved catalog", () => {
     const root = createTempDir();
-    const prompt = "Create a flat vector editorial illustration for a personal finance website.";
+    const prompt =
+      "Create a flat editorial vector illustration for a trusted personal finance publication. Scene: a simplified person is reviewing a financial decision.";
 
     writeJson(path.join(root, "manifest.json"), {
       articles: [
@@ -191,6 +196,7 @@ describe("check-hero-prompts script", () => {
           slug: "invalid-model",
           sourcePath: "src/data/blog/invalid-model.md",
           template: "A",
+          promptTrack: "A",
           approvedModelId: "custom-scene",
           sceneId: buildArticleSceneId("A", "custom-scene", "invalid-model"),
           readerSituation: "Persona revisando informacion financiera practica para tomar una decision.",
@@ -217,7 +223,8 @@ describe("check-hero-prompts script", () => {
 
   it("fails when prompts are duplicated across multiple slugs", () => {
     const root = createTempDir();
-    const prompt = "Flat 2D editorial vector illustration.\nBackground: solid color #059669.";
+    const prompt =
+      "Create a flat editorial vector illustration for a trusted personal finance publication.\nScene: a simplified person is organizing savings around one jar and one notebook.\nBackground: solid color #059669.";
 
     writeJson(path.join(root, "manifest.json"), {
       articles: [
@@ -231,6 +238,7 @@ describe("check-hero-prompts script", () => {
           slug: "slug-a",
           sourcePath: "src/data/blog/slug-a.md",
           template: "A",
+          promptTrack: "A",
           approvedModelId: "ahorro",
           sceneId: buildArticleSceneId("A", "ahorro", "slug-a"),
           readerSituation: "Persona organizando ahorro o controlando gastos cotidianos.",
@@ -248,6 +256,7 @@ describe("check-hero-prompts script", () => {
           slug: "slug-b",
           sourcePath: "src/data/blog/slug-b.md",
           template: "A",
+          promptTrack: "A",
           approvedModelId: "ahorro",
           sceneId: buildArticleSceneId("A", "ahorro", "slug-b"),
           readerSituation: "Persona organizando ahorro o controlando gastos cotidianos.",
@@ -268,5 +277,44 @@ describe("check-hero-prompts script", () => {
 
     expect(result.status).toBe(1);
     expect(result.stderr).toContain("Duplicate prompt detected in prompts.json");
+  });
+
+  it("fails when a human-scene track loses its human anchor", () => {
+    const root = createTempDir();
+    const prompt =
+      "Create a flat editorial vector illustration for a trusted personal finance publication. Scene: one centered debt document with two abstract bars.";
+
+    writeJson(path.join(root, "manifest.json"), {
+      articles: [
+        { slug: "deuda-sin-ancla", sourcePath: "src/data/blog/deuda-sin-ancla.md" },
+      ],
+    });
+    writeJson(path.join(root, "prompts.json"), {
+      entries: [
+        {
+          slug: "deuda-sin-ancla",
+          sourcePath: "src/data/blog/deuda-sin-ancla.md",
+          template: "A",
+          promptTrack: "B",
+          approvedModelId: "deuda-credito",
+          sceneId: buildArticleSceneId("A", "deuda-credito", "deuda-sin-ancla"),
+          readerSituation: "Persona enfrentando documentos, cuotas o decisiones de deuda.",
+          primaryIntent: "explicar",
+          toneClass: "serio",
+          visualEvidence: ["text contains 'deuda' in article body/title context"],
+          prompt,
+          promptHash: sha256(prompt),
+          selectors: {
+            ruleId: "deuda",
+            matchedKeywords: ["deuda"],
+          },
+        },
+      ],
+    });
+
+    const result = runCheck(root);
+
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain("requires a human/editorial anchor");
   });
 });

@@ -112,9 +112,32 @@ describe("hero-images deterministic selector", () => {
 
     expect(plan.ruleId).toBe("ahorro");
     expect(plan.approvedModelId).toBe("ahorro");
+    expect(plan.promptTrack).toBe("A");
     expect(plan.sceneId).toBe(
       buildArticleSceneId("A", "ahorro", "como-hacer-presupuesto-mensual-chile")
     );
-    expect(buildPromptFromPlan(plan)).toContain("top-down flat desk layout");
+    const prompt = buildPromptFromPlan(plan);
+    expect(prompt).toContain("organizing a monthly budget at a home table");
+    expect(prompt).toContain("The scene should feel lived-in and hopeful");
+  });
+
+  it("humanizes stale mechanism overrides for hybrid payroll/document topics", () => {
+    const plan = selectPromptPlan({
+      slug: "como-leer-cartola-afp-chile",
+      title: "Como leer cartola AFP Chile",
+      tags: ["afp", "cartola"],
+      category: "prevision",
+      cluster: "pensiones-afp",
+      summary: "guia para entender tu cartola afp",
+      headings: ["Cotizaciones", "Rentabilidad"],
+      leadParagraphs: ["Necesitas revisar si tus cotizaciones aparecen bien en la cartola."],
+      bodyExcerpt: "La cartola se entiende mejor si distingues aportes, saldo y movimientos clave.",
+    });
+
+    expect(plan.ruleId).toBe("prevision");
+    expect(plan.promptTrack).toBe("B");
+    const prompt = buildPromptFromPlan(plan);
+    expect(prompt).toContain("a simplified person, partial figure, or visible hands are actively interacting");
+    expect(prompt).toContain("Keep the supporting mechanism limited to the statement sheet");
   });
 });

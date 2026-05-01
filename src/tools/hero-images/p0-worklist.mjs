@@ -15,7 +15,7 @@ export const HERO_P0_METADATA = {
     subgroup: "Payroll mechanics",
     whyFirst: "Core payroll explainer; needs precision before warmth.",
     concept:
-      "Vertical payslip with five stacked deduction blocks flowing into one final net deposit block.",
+      "Strict payroll-flow diagram with one gross block, five deduction bars, and one dominant final net-deposit block.",
     passCue:
       "The reader should see gross-to-net transformation, not generic money imagery.",
     observedFailures: [
@@ -24,9 +24,10 @@ export const HERO_P0_METADATA = {
       "The downward arrow was too timid and did not guide the eye strongly enough.",
       "The final bottom block did not stand out enough as the net deposit outcome.",
       "Overall feel leaned toward a generic form instead of a payroll-calculation mechanism.",
+      "Further steering drifted toward list rows, bullets, or a simplified app-layout vocabulary instead of a strict payroll-flow diagram.",
     ],
     revisionGoal:
-      "Push the image toward stricter flatness, stronger visual hierarchy, and more explicit gross-to-net flow.",
+      "Restart from scratch with a strict payroll-flow diagram: one gross block, five deduction bars, one dominant net block, and no document frame or UI-panel behavior.",
   },
   "liquidacion-de-sueldo": {
     priority: "P0-2",

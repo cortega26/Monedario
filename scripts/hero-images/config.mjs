@@ -52,23 +52,41 @@ function resolveHex(colorKeyOrHex) {
 
 function normalizePromptOptions(options = {}) {
   return {
-    backgroundNote: options.backgroundNote ?? "",
+    styleBaseLine:
+      options.styleBaseLine ??
+      "Create a flat editorial vector illustration for a trusted personal finance publication.",
+    styleGuardLine:
+      options.styleGuardLine ??
+      "Use simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.",
+    backgroundNote:
+      options.backgroundNote ??
+      "Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.",
     sceneLine: options.sceneLine,
     propsLine: Object.prototype.hasOwnProperty.call(options, "propsLine")
       ? options.propsLine
       : undefined,
+    humanAnchorLine: options.humanAnchorLine ?? "",
+    richnessLine:
+      options.richnessLine ??
+      "Allow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.",
     lightingLine:
       options.lightingLine ??
-      "Lighting: none. Flat uniform background only. No shadows, no highlights, no depth.",
+      "Lighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.",
+    shapeLine:
+      options.shapeLine ??
+      "Keep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.",
     paletteLine: options.paletteLine ?? "",
     compositionLine: options.compositionLine ?? "",
     extraLines: Array.isArray(options.extraLines)
       ? options.extraLines.filter(Boolean)
       : [],
     noTextLine:
-      options.noTextLine ?? "No text, no letters, no numbers anywhere in the image.",
+      options.noTextLine ??
+      "No text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.",
     canvasLine: options.canvasLine ?? "Canvas: 1200x630 pixels, landscape.",
-    negativeLine: options.negativeLine ?? "",
+    negativeLine:
+      options.negativeLine ??
+      "Avoid photorealism, 3D rendering, CGI, neon, fake UI, clutter, golden-coin finance clichés, and malformed interfaces.",
   };
 }
 
@@ -80,25 +98,30 @@ export function buildPromptA(colorKeyOrHex, postura, objetos = "", options = {})
   const hex = resolveHex(colorKeyOrHex);
   const promptOptions = normalizePromptOptions(options);
   const defaultPropsLine = objetos
-    ? `The figure is near ${objetos}. All objects are flat geometric shapes, same illustration style.`
-    : "All objects are flat geometric shapes, same illustration style.";
+    ? `Place one dominant financial object near the figure: ${objetos}. Add at most one supporting contextual cue if it strengthens the moment.`
+    : "Include one dominant financial object and keep any supporting cue secondary.";
   const propsLine =
     promptOptions.propsLine === undefined ? defaultPropsLine : promptOptions.propsLine;
 
   return joinPromptLines([
-    "Flat 2D editorial vector illustration.",
+    promptOptions.styleBaseLine,
+    promptOptions.styleGuardLine,
     `Background: solid color ${hex}.${promptOptions.backgroundNote ? ` ${promptOptions.backgroundNote}` : ""}`,
     promptOptions.sceneLine ??
-      `Scene: one geometric human figure ${postura}, shown from behind or as a faceless silhouette.`,
+      `Scene: one simplified human figure ${postura}, in a recognizable everyday money situation.`,
     propsLine,
+    promptOptions.humanAnchorLine,
+    promptOptions.richnessLine,
     promptOptions.lightingLine,
-    promptOptions.paletteLine || "Color palette: 3 colors maximum, all flat fills.",
+    promptOptions.shapeLine,
+    promptOptions.paletteLine ||
+      "Color palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.",
     promptOptions.compositionLine ||
-      "Composition: figure placed left-of-center; right third of canvas is clean solid background only.",
+      "Composition: build the main action in the left or center-left area, with asymmetry, clear focal hierarchy, and breathing room on the right. Keep key elements inside the safe area.",
     ...promptOptions.extraLines,
     promptOptions.noTextLine,
     promptOptions.canvasLine,
-    promptOptions.negativeLine || "Do not add extra objects beyond the named scene props.",
+    promptOptions.negativeLine,
   ]);
 }
 
@@ -107,12 +130,19 @@ export function buildPromptB(colorKeyOrHex, icono, options = {}) {
   const promptOptions = normalizePromptOptions(options);
 
   return joinPromptLines([
-    "Flat 2D editorial vector illustration.",
+    promptOptions.styleBaseLine,
+    promptOptions.styleGuardLine,
     `Background: solid color ${hex}.${promptOptions.backgroundNote ? ` ${promptOptions.backgroundNote}` : ""}`,
-    promptOptions.sceneLine ?? `Scene: one simple geometric ${icono}, centered.`,
+    promptOptions.sceneLine ??
+      `Scene: one clear editorial finance object built around ${icono}, dominant in frame and composed to feel like an article cover rather than a plain centered icon.`,
+    promptOptions.humanAnchorLine,
+    promptOptions.richnessLine,
     promptOptions.lightingLine,
-    promptOptions.paletteLine || "Color palette: 2 colors maximum, all flat fills.",
-    promptOptions.compositionLine,
+    promptOptions.shapeLine,
+    promptOptions.paletteLine ||
+      "Color palette: 3 to 4 flat colors maximum, restrained and high-contrast enough for immediate recognition.",
+    promptOptions.compositionLine ||
+      "Composition: keep one dominant mechanism or document metaphor, slightly offset rather than perfectly centered, with enough negative space to stay calm.",
     ...promptOptions.extraLines,
     promptOptions.noTextLine,
     promptOptions.canvasLine,
@@ -125,13 +155,20 @@ export function buildPromptC(colorKeyOrHex, icono, options = {}) {
   const promptOptions = normalizePromptOptions(options);
 
   return joinPromptLines([
-    "Flat 2D editorial vector illustration.",
+    promptOptions.styleBaseLine,
+    promptOptions.styleGuardLine,
     `Background: solid color ${hex}.${promptOptions.backgroundNote ? ` ${promptOptions.backgroundNote}` : ""}`,
     promptOptions.sceneLine ??
-      `Scene: one simple geometric ${icono}, aligned to the right third of the canvas; left two-thirds is clean solid background only.`,
-    promptOptions.lightingLine || "Lighting: none. No shadows, no highlights, no depth.",
-    promptOptions.paletteLine || "Color palette: 2 colors maximum, all flat fills.",
-    promptOptions.compositionLine,
+      `Scene: one strong editorial mechanism built around ${icono}, aligned to the right third of the canvas so the left side remains open for hierarchy or post-production type.`,
+    promptOptions.humanAnchorLine,
+    promptOptions.richnessLine,
+    promptOptions.lightingLine ||
+      "Lighting: soft and even. One controlled grounding shape or overlap is allowed. No photoreal depth or cinematic light.",
+    promptOptions.shapeLine,
+    promptOptions.paletteLine ||
+      "Color palette: 3 to 4 flat colors maximum, with one accent allowed to create hierarchy or consequence.",
+    promptOptions.compositionLine ||
+      "Composition: keep the left two-thirds quiet enough for hierarchy, but make the visible mechanism feel alive through scale contrast or directional tension.",
     ...promptOptions.extraLines,
     promptOptions.noTextLine,
     promptOptions.canvasLine,
