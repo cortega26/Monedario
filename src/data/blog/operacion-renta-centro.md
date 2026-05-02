@@ -1,6 +1,6 @@
 ---
 title: "Centro Operación Renta 2026: guía completa para declarar en Chile"
-description: "Todo para declarar Operación Renta 2026 en Chile: quién debe presentar el F22, plazos, cuándo te devuelven y qué hacer si debes pagar."
+description: "Respuestas clave sobre Operación Renta 2026 en Chile: quién debe declarar, los plazos del F22, cuándo llega la devolución y qué hacer si debes pagar."
 slug: operacion-renta-centro
 author: "Equipo Monedario"
 pubDate: 2026-04-29T00:00:00Z
@@ -13,13 +13,17 @@ tags:
   - declaracion-renta
 category: impuestos
 cluster: impuestos-personas
+topicRole: support
+canonicalTopic: operacion-renta-centro-legacy
 lang: es-CL
-featured: true
-homepagePriority: 210
+featured: false
+homepagePriority: 0
 draft: false
 heroImage: /images/hero/operacion-renta-centro.avif
 articleAdvisory: "Esta guía es informativa y no constituye asesoría tributaria. Verifica siempre los plazos y montos vigentes en sii.cl antes de actuar."
 ---
+
+Esta guía responde preguntas frecuentes sobre la campaña. Para la información estructurada completa, incluyendo calculadora y acceso por perfil, visita el [Centro Operación Renta 2026](/guias/impuestos-personas/operacion-renta/).
 
 ## Respuesta rápida: ¿debo declarar la renta en 2026?
 

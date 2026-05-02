@@ -12,6 +12,8 @@ tags:
   - sii
 category: impuestos
 cluster: impuestos-personas
+topicRole: owner
+canonicalTopic: f22-revisar-enviar
 lang: es-CL
 featured: true
 homepagePriority: 200

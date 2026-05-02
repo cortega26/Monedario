@@ -166,6 +166,8 @@ En Chile, tienes derecho a prepagar cualquier crédito de consumo en cualquier m
 
 Si planeas prepagar, el momento óptimo es durante el primer tercio del plazo, cuando el saldo de capital aún es alto y los intereses futuros evitados son mayores. Pregunta el costo de prepago antes de contratar.
 
+Para evaluar si un abono extraordinario conviene en tu caso específico, revisa [cuándo y cuánto conviene prepagar un crédito en Chile](/posts/prepago-credito-cuando-conviene-chile/).
+
 ## Casos frecuentes y cómo leerlos
 
 **Caso 1: Te ofrecen "cuota cero" los primeros tres meses**
@@ -179,6 +181,8 @@ El nuevo CAE debe calcularse sobre el monto total refinanciado (saldo anterior +
 **Caso 3: Tarjeta de crédito con cupo**
 
 La CAE en tarjetas se calcula sobre una operación de referencia (monto y plazo estándar según la CMF). No refleja tu uso real, que cambia cada mes. Sirve para comparar tarjetas entre sí en igualdad de condiciones, no para proyectar tu costo exacto.
+
+Para entender el costo real de la deuda rotativa y cómo calcular el total que terminas pagando, revisa [tarjeta de crédito: el costo real de la deuda rotativa en Chile](/posts/tarjeta-credito-costo-real-chile/).
 
 **Caso 4: Crédito hipotecario**
 

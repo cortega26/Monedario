@@ -28,10 +28,11 @@
     "note": "manually approved from BarrasAFP.png"
   },
   "como-cambiarse-de-afp": {
-    "state": "error",
-    "error": "400 Billing hard limit has been reached.",
-    "attempts": 3,
-    "failedAt": "2026-04-10T23:33:41.399Z"
+    "state": "done",
+    "score": 7,
+    "attempts": 1,
+    "savedAt": "2026-05-02T18:04:24.000Z",
+    "note": "manual replacement from /home/carlos/Imágenes/cambiar-AFP.png"
   },
   "reforma-previsional-2025-que-cambia-y-como-te-afecta": {
     "state": "error",
@@ -77,10 +78,11 @@
     "failedAt": "2026-04-10T23:33:45.062Z"
   },
   "como-invertir-en-etfs-desde-chile": {
-    "state": "error",
-    "error": "400 Billing hard limit has been reached.",
-    "attempts": 3,
-    "failedAt": "2026-04-10T23:33:45.699Z"
+    "state": "done",
+    "score": 7,
+    "attempts": 1,
+    "savedAt": "2026-05-02T18:09:06.000Z",
+    "note": "manual replacement from /home/carlos/Imágenes/como-comprar-etf-en-chile.png"
   },
   "operacion-renta-f22-checklist": {
     "state": "done",
@@ -102,16 +104,18 @@
     "failedAt": "2026-04-10T23:33:47.850Z"
   },
   "cae-costo-real-credito-chile": {
-    "state": "error",
-    "error": "400 Billing hard limit has been reached.",
-    "attempts": 3,
-    "failedAt": "2026-04-10T23:33:48.481Z"
+    "state": "done",
+    "score": 7,
+    "attempts": 1,
+    "savedAt": "2026-05-02T18:16:24.000Z",
+    "note": "manual replacement from /home/carlos/Imágenes/CAE-de-un-credito.png"
   },
   "informe-deudas-cmf-vs-dicom": {
-    "state": "error",
-    "error": "400 Billing hard limit has been reached.",
-    "attempts": 3,
-    "failedAt": "2026-04-10T23:33:49.019Z"
+    "state": "done",
+    "score": 7,
+    "attempts": 1,
+    "savedAt": "2026-05-02T18:24:15.000Z",
+    "note": "manual replacement from /home/carlos/Imágenes/informe-de-deudas-CMF.png"
   },
   "renegociacion-superir": {
     "state": "error",
@@ -132,10 +136,11 @@
     "failedAt": "2026-04-10T23:22:40.576Z"
   },
   "suplantacion-identidad-creditos-no-reconocidos": {
-    "state": "error",
-    "error": "400 Billing hard limit has been reached.",
-    "attempts": 3,
-    "failedAt": "2026-04-10T23:22:41.190Z"
+    "state": "done",
+    "score": 7,
+    "attempts": 1,
+    "savedAt": "2026-05-02T18:12:38.000Z",
+    "note": "manual replacement from /home/carlos/Imágenes/suplantaron-tu-identidad.png"
   },
   "que-es-la-uf": {
     "state": "error",
@@ -180,7 +185,11 @@
     "state": "done"
   },
   "donde-ver-si-estoy-en-dicom-gratis": {
-    "state": "done"
+    "state": "done",
+    "score": 7,
+    "attempts": 1,
+    "savedAt": "2026-05-02T18:19:07.000Z",
+    "note": "manual replacement from /home/carlos/Imágenes/donde-ver-si-estas-en-DICOM.png"
   },
   "indemnizacion-anos-de-servicio-chile": {
     "state": "done"
@@ -211,7 +220,10 @@
   },
   "tarjeta-credito-costo-real-chile": {
     "state": "done",
-    "note": "Placeholder image (copy of cae-costo-real). Needs manual hero image generation with prompt from prompts.json once OpenAI billing is recharged."
+    "score": 7,
+    "attempts": 1,
+    "savedAt": "2026-05-02T18:34:18.000Z",
+    "note": "manual replacement from /home/carlos/Imágenes/como-calcular-el-costo-real-de-una-tarjeta-de-crédito.png"
   },
   "prepago-credito-cuando-conviene-chile": {
     "state": "done",
