@@ -1,9 +1,10 @@
 {
   "como-calcular-sueldo-liquido": {
-    "state": "error",
-    "error": "400 Billing hard limit has been reached.",
-    "attempts": 3,
-    "failedAt": "2026-04-10T23:33:39.659Z"
+    "state": "done",
+    "score": 7,
+    "attempts": 1,
+    "savedAt": "2026-05-02T18:58:57.000Z",
+    "note": "manual replacement from /home/carlos/Imágenes/como-calcular-tu-sueldo-liquido.png"
   },
   "liquidacion-de-sueldo": {
     "state": "error",
@@ -101,10 +102,11 @@
     "failedAt": "2026-04-10T23:33:46.417Z"
   },
   "boleta-honorarios-2026-retencion-cobertura": {
-    "state": "error",
-    "error": "400 Billing hard limit has been reached.",
-    "attempts": 3,
-    "failedAt": "2026-04-10T23:33:47.850Z"
+    "state": "done",
+    "score": 7,
+    "attempts": 1,
+    "savedAt": "2026-05-02T18:56:24.000Z",
+    "note": "manual replacement from /home/carlos/Imágenes/boleta-de-honorarios-2026.png"
   },
   "cae-costo-real-credito-chile": {
     "state": "done",
@@ -158,10 +160,11 @@
     "failedAt": "2026-04-10T23:22:42.521Z"
   },
   "reajuste-arriendo-uf-ipc-chile": {
-    "state": "error",
-    "error": "400 Billing hard limit has been reached.",
-    "attempts": 3,
-    "failedAt": "2026-04-10T23:22:43.085Z"
+    "state": "done",
+    "score": 7,
+    "attempts": 1,
+    "savedAt": "2026-05-02T19:13:12.000Z",
+    "note": "manual replacement from /home/carlos/Imágenes/cuanto-puede-subir-tu-arriendo.png"
   },
   "seguro-de-cesantia": {
     "state": "error",
@@ -170,16 +173,18 @@
     "failedAt": "2026-04-10T23:22:43.646Z"
   },
   "finiquito-e-indemnizaciones-en-chile": {
-    "state": "error",
-    "error": "400 Billing hard limit has been reached.",
-    "attempts": 3,
-    "failedAt": "2026-04-10T23:22:44.260Z"
+    "state": "done",
+    "score": 7,
+    "attempts": 1,
+    "savedAt": "2026-05-02T19:01:06.000Z",
+    "note": "manual replacement from /home/carlos/Imágenes/finiquito-e-indemnizaciones.png"
   },
   "licencia-medica-desde-que-dia-pagan": {
-    "state": "error",
-    "error": "400 Billing hard limit has been reached.",
-    "attempts": 3,
-    "failedAt": "2026-04-10T23:22:44.875Z"
+    "state": "done",
+    "score": 7,
+    "attempts": 1,
+    "savedAt": "2026-05-02T19:09:04.000Z",
+    "note": "manual replacement from /home/carlos/Imágenes/licencia-medica.png"
   },
   "fonasa-vs-isapre-comparativa": {
     "state": "done"
@@ -230,6 +235,9 @@
   },
   "prepago-credito-cuando-conviene-chile": {
     "state": "done",
-    "note": "Placeholder image (copy of cae-costo-real). Needs manual hero image generation with prompt from prompts.json once OpenAI billing is recharged."
+    "score": 7,
+    "attempts": 1,
+    "savedAt": "2026-05-02T18:53:07.000Z",
+    "note": "manual replacement from /home/carlos/Imágenes/cuando-conviene-hacer-un-prepago-de-crédito.png"
   }
 }
