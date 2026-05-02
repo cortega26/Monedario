@@ -21,8 +21,9 @@
   "descuentos-de-sueldo": {
     "state": "done",
     "score": 7,
-    "attempts": 2,
-    "savedAt": "2026-04-07T17:39:20.440Z"
+    "attempts": 1,
+    "savedAt": "2026-05-02T22:45:48.000Z",
+    "note": "manual replacement from /home/carlos/Imágenes/descuentos-de-sueldo.png"
   },
   "fondos-afp-a-b-c-d-e": {
     "state": "done",
