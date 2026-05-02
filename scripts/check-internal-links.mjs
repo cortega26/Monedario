@@ -6,7 +6,7 @@
  *
  * Checks:
  *   1. All /posts/<slug>/ links resolve to a published article (slug exists).
- *   2. All /guias/<slug>/ links resolve to a directory in src/pages/guias/.
+ *   2. All /guias/<slug>/ links resolve to a directory in src/pages/guias/ (supports nested subhub paths).
  *   3. All /leyes/<slug>/ links resolve to a file in src/data/laws/.
  *   4. Detects orphan articles (articles with zero inbound internal links).
  *   5. Reports broken links with file + line number for easy fixing.
@@ -175,11 +175,17 @@ for (const [slug, { filePath, source }] of publishedSlugs.entries()) {
         });
       }
     } else if (link.type === "guias") {
-      if (!validGuias.has(link.target)) {
+      const guiaPath = link.target.replace(/\/+$/, "");
+      const guiaTopSlug = guiaPath.split("/")[0];
+      const isValidTop = validGuias.has(guiaTopSlug);
+      const isValidFull = !guiaPath.includes("/") || existsSync(path.join(GUIAS_DIR, guiaPath));
+      if (!isValidTop || !isValidFull) {
         errors.push({
           filePath: relPath,
           lineNumber: link.lineNumber,
-          message: `Broken /guias/ link: directory "${link.target}" not found in src/pages/guias/.`,
+          message: isValidTop
+            ? `Broken /guias/ link: subdirectory "${link.target}" not found in src/pages/guias/.`
+            : `Broken /guias/ link: cluster directory "${guiaTopSlug}" not found in src/pages/guias/.`,
         });
       }
     } else if (link.type === "calculadoras") {

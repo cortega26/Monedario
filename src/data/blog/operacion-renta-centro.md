@@ -23,7 +23,7 @@ heroImage: /images/hero/operacion-renta-centro.avif
 articleAdvisory: "Esta guía es informativa y no constituye asesoría tributaria. Verifica siempre los plazos y montos vigentes en sii.cl antes de actuar."
 ---
 
-Esta guía responde preguntas frecuentes sobre la campaña. Para la información estructurada completa, incluyendo calculadora y acceso por perfil, visita el [Centro Operación Renta 2026](/guias/impuestos-personas/operacion-renta/).
+Esta guía responde preguntas frecuentes sobre la campaña. Para la información estructurada completa y acceso a la calculadora, visita el [Centro Operación Renta 2026](/guias/impuestos-personas/operacion-renta/).
 
 ## Respuesta rápida: ¿debo declarar la renta en 2026?
 
@@ -83,15 +83,15 @@ Si tus ingresos anuales totales durante 2025 estuvieron por debajo del umbral de
 
 El SII abre el portal de Operación Renta generalmente en los últimos días de marzo o primeros días de abril. Los plazos para 2026 son:
 
-| Hito | Fecha |
-|------|-------|
-| Apertura del portal y propuestas de declaración | 1 de abril de 2026 |
-| Plazo para declarar por internet (Formulario 22) | **8 de mayo de 2026** |
-| Plazo para declarar en papel | Confirmar en sii.cl/normativa_legislacion/resoluciones/2026/ |
+| Hito                                             | Fecha                                                        |
+| ------------------------------------------------ | ------------------------------------------------------------ |
+| Apertura del portal y propuestas de declaración  | 1 de abril de 2026                                           |
+| Plazo para declarar por internet (Formulario 22) | **8 de mayo de 2026**                                        |
+| Plazo para declarar en papel                     | Confirmar en sii.cl/normativa_legislacion/resoluciones/2026/ |
 
 > **Importante:** Los plazos exactos los publica el SII en su sitio web cada año mediante Resolución. Antes de actuar, verifica la fecha exacta del año en curso en [sii.cl](https://www.sii.cl).
 
-Si no declaras antes del plazo, el SII aplica multas. Más detalles en la sección *¿Qué hacer si debo pagar?*
+Si no declaras antes del plazo, el SII aplica multas. Más detalles en la sección _¿Qué hacer si debo pagar?_
 
 ---
 
@@ -102,6 +102,7 @@ La forma más rápida de estimar tu devolución (o lo que deberías pagar) es us
 **[→ Ir a la Calculadora Operación Renta](/calculadoras/operacion-renta/)**
 
 La calculadora necesita tres datos básicos:
+
 1. Tus ingresos brutos de 2025 (suma de sueldos, honorarios, pensiones)
 2. Las retenciones totales que te aplicaron (aparecen en tus liquidaciones de sueldo y en el informe anual de tu AFP/empleador)
 3. Tu tipo de renta principal (dependiente, independiente, mixto)
@@ -142,16 +143,16 @@ Sin cuenta bancaria registrada, TGR despacha un cheque a tu domicilio registrado
 
 El Formulario 22 en línea pre-carga la mayoría de los datos desde las declaraciones juradas de empleadores, AFP y plataformas de boletas electrónicas. Las secciones que requieren más atención:
 
-| Sección | Qué contiene | ¿Es pre-llenada? |
-|---------|-------------|-----------------|
-| Rentas del trabajo (empleados) | Sueldos, gratificaciones, horas extra | Sí — desde DJ de empleadores |
-| Honorarios (boletas) | Total de boletas emitidas en 2025 | Sí — desde plataforma boletas electrónicas SII |
-| Retenciones de honorarios (PPM) | 15,25% retenido por clientes | Sí — calculado automáticamente |
-| Bienes raíces / arriendos | Ingresos por arriendo | No — ingreso manual |
-| Créditos (educación, APV, etc.) | Crédito por gastos en educación, APV | Parcialmente — verificar |
-| Impuesto determinado | Total impuesto según tabla de tramos | Auto-calculado |
-| Retenciones totales | Total retenido durante el año | Pre-llenado |
-| **Diferencia (resultado final)** | Positivo = debes pagar; Negativo = devolución | Auto-calculado |
+| Sección                          | Qué contiene                                  | ¿Es pre-llenada?                               |
+| -------------------------------- | --------------------------------------------- | ---------------------------------------------- |
+| Rentas del trabajo (empleados)   | Sueldos, gratificaciones, horas extra         | Sí — desde DJ de empleadores                   |
+| Honorarios (boletas)             | Total de boletas emitidas en 2025             | Sí — desde plataforma boletas electrónicas SII |
+| Retenciones de honorarios (PPM)  | 15,25% retenido por clientes                  | Sí — calculado automáticamente                 |
+| Bienes raíces / arriendos        | Ingresos por arriendo                         | No — ingreso manual                            |
+| Créditos (educación, APV, etc.)  | Crédito por gastos en educación, APV          | Parcialmente — verificar                       |
+| Impuesto determinado             | Total impuesto según tabla de tramos          | Auto-calculado                                 |
+| Retenciones totales              | Total retenido durante el año                 | Pre-llenado                                    |
+| **Diferencia (resultado final)** | Positivo = debes pagar; Negativo = devolución | Auto-calculado                                 |
 
 ---
 
@@ -205,11 +206,12 @@ Ingresa a sii.cl con tu RUT y clave tributaria durante el período de Operación
 **¿Necesito contador para declarar?**  
 Para la mayoría de trabajadores dependientes o independientes con ingresos simples (un empleador o solo honorarios), el portal del SII es suficiente sin contador. Si tienes múltiples fuentes de ingreso, rentas del exterior, o ganancias de capital, un contador puede reducir el riesgo de errores.
 
-**¿Qué documentos necesito tener a mano?**  
-- Cédula de identidad y RUT  
-- Clave tributaria SII (o ClaveÚnica)  
-- Liquidaciones de sueldo o certificado de remuneraciones del empleador (certificado anual de retenciones)  
-- Certificado de AFP (movimientos y retenciones del año)  
+**¿Qué documentos necesito tener a mano?**
+
+- Cédula de identidad y RUT
+- Clave tributaria SII (o ClaveÚnica)
+- Liquidaciones de sueldo o certificado de remuneraciones del empleador (certificado anual de retenciones)
+- Certificado de AFP (movimientos y retenciones del año)
 - Número de cuenta bancaria para registrar devolución en TGR
 
 ---
@@ -219,6 +221,7 @@ Para la mayoría de trabajadores dependientes o independientes con ingresos simp
 Esta guía fue elaborada con fecha de corte 2026-04-24 y actualizada el 2026-04-29 con verificación de fuentes SII/TGR. Todos los umbrales, plazos y tasas citados han sido contrastados contra publicaciones oficiales vigentes de la campaña 2026.
 
 **Fuentes primarias:**
+
 - Servicio de Impuestos Internos: [sii.cl](https://www.sii.cl)
 - Tesorería General de la República: [tgr.cl](https://www.tgr.cl)
 - Ley de Impuesto a la Renta (DL 824), Código Tributario (DL 830) y Ley 21.133 — BCN
