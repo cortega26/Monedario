@@ -83,6 +83,7 @@ A change is complete only if all are true:
 - Constitution and AGENTS checks are satisfied with no unresolved conflict.
 - Required CI gates passed.
 - Change control record is complete.
+- If the task worked from a plan, backlog, roadmap, or equivalent tracking artifact, that artifact was updated as part of the DoD work.
 - Regression risk and rollback are explicitly documented.
 
 If any condition fails, task status is `HALT` until resolved.

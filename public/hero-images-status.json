@@ -76,10 +76,11 @@
     "failedAt": "2026-04-10T23:33:44.471Z"
   },
   "fondos-mutuos-comisiones-rescate-impuestos": {
-    "state": "error",
-    "error": "400 Billing hard limit has been reached.",
-    "attempts": 3,
-    "failedAt": "2026-04-10T23:33:45.062Z"
+    "state": "done",
+    "score": 7,
+    "attempts": 1,
+    "savedAt": "2026-05-02T22:36:16.000Z",
+    "note": "manual replacement from /home/carlos/Imágenes/fondos-mutuos.png"
   },
   "como-invertir-en-etfs-desde-chile": {
     "state": "done",

@@ -92,9 +92,9 @@ Referenced from `AGENTS.md §2`. Constitutional precedence applies — see `docs
 
 ## Rule 2.13 - Execution plans as first-class artifacts
 - Rationale: Plans stored only in conversation context are lost between sessions. Versioned plans allow agents to resume complex work without re-deriving intent.
-- Enforcement: For tasks that span more than one editing session or touch more than three files: create a lightweight plan document in `docs/backlog/` before starting. For complex multi-PR work, use a full exec-plan in `docs/backlog/` with a progress log that is updated as work advances.
-- Compliant behavior: Creating `docs/backlog/PLAN-slug-migration.md` with phases, decisions, and progress log before executing a multi-step migration.
-- Violation: Starting a multi-file refactor with no plan artifact, reconstructing intent from conversation history on every new session.
+- Enforcement: For tasks that span more than one editing session or touch more than three files: create a lightweight plan document in `docs/backlog/` before starting. For complex multi-PR work, use a full exec-plan in `docs/backlog/` with a progress log that is updated as work advances. For any task executed from a plan, backlog item, roadmap, or equivalent tracking artifact, the agent must update that artifact as part of the DoD work whenever status, scope, decisions, blockers, or completion evidence changed. The final response must cite the updated artifact path. If the artifact cannot be updated, task status is `HALT` until the documentation gap is resolved.
+- Compliant behavior: Creating `docs/backlog/PLAN-slug-migration.md` with phases, decisions, and progress log before executing a multi-step migration, then updating it before closure with status, evidence, and any decisions made.
+- Violation: Starting a multi-file refactor with no plan artifact, reconstructing intent from conversation history on every new session, or closing a plan-driven task without updating the source tracking artifact.
 
 ## Execution checklist (required before code edits)
 - [ ] Scope declared (in-scope/out-of-scope).
