@@ -74,9 +74,28 @@ Mapa operativo de owners canonicos para priorizar crecimiento SEO sin canibaliza
 
 ## Pendientes
 
-- Resolver owner operativo de Operacion Renta centro.
+- Resolver owner operativo de Operacion Renta centro (disponible cuando GSC tenga senales del subhub).
 - Definir owner de seguridad financiera principal en metadata si se endurece el cluster.
-- Agregar canonical topics futuros antes de publicar P1 nuevos.
+- Registrar canonical topics P1 en `CANONICAL_TOPIC_REGISTRY` (`src/config/editorial-topic-policy.mjs`) antes de publicar cada articulo:
+  - `gratificacion-legal-calculo-tope` en `sueldo-remuneraciones` (cluster endurecido)
+  - `sueldo-imponible-base-descuentos` en `sueldo-remuneraciones` (cluster endurecido)
+  - `pgu-pension-garantizada` en `pensiones-afp` (cluster endurecido)
+  - `igc-impuesto-global-complementario` en `impuestos-personas`
+  - `contribuciones-bienes-raices-tramite` en `impuestos-personas`
+  - `fondo-emergencia-colchon` en `presupuesto-control-financiero`
+
+## Sprint 2 — Briefs P1 creados (2026-05-03)
+
+Briefs editoriales P1 en `docs/editorial/artifacts/briefs/`:
+
+| Brief | Cluster | canonicalTopic propuesto | Cluster endurecido | Riesgo YMYL |
+|---|---|---|---|---|
+| `fondo-emergencia.md` | `presupuesto-control-financiero` | `fondo-emergencia-colchon` | No | Bajo/Medio |
+| `gratificacion-legal.md` | `sueldo-remuneraciones` | `gratificacion-legal-calculo-tope` | Si | Medio |
+| `sueldo-imponible.md` | `sueldo-remuneraciones` | `sueldo-imponible-base-descuentos` | Si | Medio |
+| `pgu.md` | `pensiones-afp` | `pgu-pension-garantizada` | Si | Alto |
+| `contribuciones-bienes-raices.md` | `impuestos-personas` | `contribuciones-bienes-raices-tramite` | No | Medio/Alto |
+| `igc.md` | `impuestos-personas` | `igc-impuesto-global-complementario` | No | Alto |
 
 ## Criterios de actualizacion
 
