@@ -38,12 +38,19 @@ const ctaLinks = [
 // Fecha automática: máximo de updatedDate / pubDate entre todos los posts publicados.
 // Se usa la parte de fecha en UTC (YYYY-MM-DD del ISO string) para evitar que el offset
 // de Santiago (UTC-4 en otoño) retroceda la fecha en medianoche UTC.
-const publishedPosts = await getCollection("blog", ({ data }) => !data.draft && !data.unlisted);
+const publishedPosts = await getCollection(
+  "blog",
+  ({ data }) => !data.draft && !data.unlisted
+);
 const latestDate = publishedPosts.reduce<Date>((max, post) => {
   const d = post.data.updatedDate ?? post.data.pubDate;
   return d > max ? d : max;
 }, new Date(0));
-const [ly, lm, ld] = latestDate.toISOString().slice(0, 10).split("-").map(Number);
+const [ly, lm, ld] = latestDate
+  .toISOString()
+  .slice(0, 10)
+  .split("-")
+  .map(Number);
 const latestDateLabel = new Date(ly, lm - 1, ld).toLocaleDateString("es-CL", {
   year: "numeric",
   month: "long",
