@@ -225,7 +225,7 @@ import { SITE } from "@/config";
         const raw =
           new URLSearchParams(window.location.search).get("src") || "";
         return raw.replace(/[^a-z0-9-]/gi, "").toLowerCase();
-      } catch (_e) {
+      } catch {
         return "";
       }
     }
