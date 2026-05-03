@@ -128,10 +128,11 @@
     "failedAt": "2026-04-10T23:22:38.133Z"
   },
   "fraude-tarjeta-que-hacer": {
-    "state": "error",
-    "error": "400 Billing hard limit has been reached.",
-    "attempts": 3,
-    "failedAt": "2026-04-10T23:22:38.730Z"
+    "state": "done",
+    "score": 7,
+    "attempts": 1,
+    "savedAt": "2026-05-02T23:47:09.000Z",
+    "note": "manual replacement from /home/carlos/Imágenes/te-hicieron-un-cargo-que-no-reconoces.png"
   },
   "estafas-financieras-chile-vishing-smishing-marketplace": {
     "state": "error",
