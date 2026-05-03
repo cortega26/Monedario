@@ -191,6 +191,20 @@ const HOST_SOFT_404_MARKERS = new Map([
 ]);
 
 /**
+ * Hosts exempt from the global SOFT_404_TITLE_PHRASES / SOFT_404_BODY_PHRASES check.
+ * These are official sources whose valid pages (e.g. homepages) can contain generic
+ * "not found" phrases in navigation, footers, or JavaScript bundles, causing false
+ * positives when probed from CI runner IP ranges. Host-specific markers in
+ * HOST_SOFT_404_MARKERS still apply for these hosts.
+ */
+const SOFT_404_PHRASE_EXEMPT_HOSTS = new Set([
+  "www.tgr.cl",
+  "tgr.cl",
+  "www.tesoreria.cl",
+  "tesoreria.cl",
+]);
+
+/**
  * Bilingual soft-404 phrase set checked against title + H1.
  * Body text uses only the most discriminating phrases to reduce false-positives.
  */
@@ -328,10 +342,13 @@ export function detectSoft404(content, { hostname, contentType }) {
   const fields = extractTextFields(content, contentType);
   if (!fields) return { detected: false, matchedPhrase: null };
 
+  const phraseExempt = SOFT_404_PHRASE_EXEMPT_HOSTS.has(hostname);
+  const globalMatch =
+    !phraseExempt &&
+    (matchPhraseSet(fields.titleAndH1, SOFT_404_TITLE_PHRASES) ||
+      matchPhraseSet(fields.body, SOFT_404_BODY_PHRASES));
   const matched =
-    matchPhraseSet(fields.titleAndH1, SOFT_404_TITLE_PHRASES) ||
-    matchHostMarkers(hostname, fields.titleAndH1, fields.body) ||
-    matchPhraseSet(fields.body, SOFT_404_BODY_PHRASES);
+    globalMatch || matchHostMarkers(hostname, fields.titleAndH1, fields.body);
 
   return matched
     ? { detected: true, matchedPhrase: matched }
