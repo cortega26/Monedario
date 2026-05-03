@@ -166,7 +166,7 @@ import { SITE } from "@/config";
 -->
 <script is:inline data-cfasync="false">
   (function () {
-    var WHITELIST = {
+    const WHITELIST = {
       about: {
         titulo: "Apoya el proyecto Monedario",
         cuerpo:
@@ -217,30 +217,30 @@ import { SITE } from "@/config";
       },
     };
 
-    var BMC_BASE =
+    const BMC_BASE =
       "https://ko-fi.com/monedario?utm_source=monedario&utm_medium=apoyar&utm_campaign=apoya_monedario";
 
     function getSrcParam() {
       try {
-        var raw =
+        const raw =
           new URLSearchParams(window.location.search).get("src") || "";
         return raw.replace(/[^a-z0-9-]/gi, "").toLowerCase();
-      } catch (e) {
+      } catch (_e) {
         return "";
       }
     }
 
     function applyVariant() {
-      var src = getSrcParam();
-      var variant = Object.prototype.hasOwnProperty.call(WHITELIST, src)
+      const src = getSrcParam();
+      const variant = Object.prototype.hasOwnProperty.call(WHITELIST, src)
         ? WHITELIST[src]
         : null;
 
       if (!variant) return;
 
-      var titulo = document.getElementById("apoyar-titulo");
-      var cuerpo = document.getElementById("apoyar-cuerpo");
-      var btnDonar = document.getElementById("btn-donar");
+      const titulo = document.getElementById("apoyar-titulo");
+      const cuerpo = document.getElementById("apoyar-cuerpo");
+      const btnDonar = document.getElementById("btn-donar");
 
       if (titulo) titulo.textContent = variant.titulo;
 
@@ -248,7 +248,7 @@ import { SITE } from "@/config";
         cuerpo.innerHTML = variant.cuerpo
           .split("\n\n")
           .map(function (p) {
-            var div = document.createElement("div");
+            const div = document.createElement("div");
             div.textContent = p;
             return div.innerHTML;
           })
@@ -256,16 +256,16 @@ import { SITE } from "@/config";
       }
 
       if (btnDonar) {
-        var utmUrl = BMC_BASE + "&utm_content=" + encodeURIComponent(variant.utmContent);
+        const utmUrl = BMC_BASE + "&utm_content=" + encodeURIComponent(variant.utmContent);
         btnDonar.href = utmUrl;
       }
     }
 
     function setupCopyButton() {
-      var btn = document.getElementById("btn-copiar-enlace");
+      const btn = document.getElementById("btn-copiar-enlace");
       if (!btn) return;
       btn.addEventListener("click", function () {
-        var url = window.location.origin + "/apoyar/";
+        const url = window.location.origin + "/apoyar/";
         navigator.clipboard
           .writeText(url)
           .then(function () {
@@ -301,15 +301,15 @@ import { SITE } from "@/config";
   (function () {
     "use strict";
 
-    var widgetContainer = document.getElementById("kofi-widget-container");
-    var placeholder = document.getElementById("kofi-widget-placeholder");
+    const widgetContainer = document.getElementById("kofi-widget-container");
+    const placeholder = document.getElementById("kofi-widget-placeholder");
     if (!widgetContainer) return;
 
     // Guard: skip if already initialized (SPA navigation re-runs inline scripts)
     if (widgetContainer.dataset.initialized) return;
     widgetContainer.dataset.initialized = "true";
 
-    var loaded = false;
+    let loaded = false;
 
     function hidePlaceholder() {
       if (placeholder) placeholder.style.display = "none";
@@ -317,27 +317,27 @@ import { SITE } from "@/config";
 
     function showWidgetError() {
       if (placeholder) {
-        var link = placeholder.querySelector("a");
+        const link = placeholder.querySelector("a");
         if (link) link.textContent = "Apoya en Ko-fi →";
       }
     }
 
     function initWidget(target) {
-      var kofi = window.kofiwidget2;
+      const kofi = window.kofiwidget2;
 
       if (!kofi) {
         showWidgetError();
         return;
       }
 
-      var isDark =
+      const isDark =
         document.documentElement.getAttribute("data-theme") === "dark";
-      var btnColor = isDark ? "#14b8a6" : "#0d9488";
+      const btnColor = isDark ? "#14b8a6" : "#0d9488";
       kofi.init("Apoya Monedario", btnColor, "monedario");
 
       target.innerHTML = kofi.getHTML();
 
-      var kofiLink = target.querySelector("a");
+      const kofiLink = target.querySelector("a");
       if (kofiLink) {
         kofiLink.style.setProperty("color", "#ffffff", "important");
       }
@@ -349,7 +349,7 @@ import { SITE } from "@/config";
       if (loaded) return;
       loaded = true;
 
-      var script = document.createElement("script");
+      const script = document.createElement("script");
       script.src = "https://storage.ko-fi.com/cdn/widget/Widget_2.js";
       script.onload = function () { initWidget(target); };
       script.onerror = showWidgetError;
@@ -357,7 +357,7 @@ import { SITE } from "@/config";
     }
 
     if (typeof IntersectionObserver !== "undefined") {
-      var observer = new IntersectionObserver(
+      const observer = new IntersectionObserver(
         function (entries) {
           if (entries[0] && entries[0].isIntersecting) {
             loadKofiScript(widgetContainer);
