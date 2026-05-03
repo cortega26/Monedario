@@ -128,8 +128,7 @@ import { SITE } from "@/config";
           class="text-accent underline-offset-4 hover:underline"
           data-analytics-cta="donate"
           data-analytics-label="kofi-fallback"
-          data-analytics-location="apoyar_page"
-          >ko-fi.com/monedario →</a
+          data-analytics-location="apoyar_page">ko-fi.com/monedario →</a
         >
       </p>
     </section>
@@ -256,7 +255,8 @@ import { SITE } from "@/config";
       }
 
       if (btnDonar) {
-        const utmUrl = BMC_BASE + "&utm_content=" + encodeURIComponent(variant.utmContent);
+        const utmUrl =
+          BMC_BASE + "&utm_content=" + encodeURIComponent(variant.utmContent);
         btnDonar.href = utmUrl;
       }
     }
@@ -351,7 +351,9 @@ import { SITE } from "@/config";
 
       const script = document.createElement("script");
       script.src = "https://storage.ko-fi.com/cdn/widget/Widget_2.js";
-      script.onload = function () { initWidget(target); };
+      script.onload = function () {
+        initWidget(target);
+      };
       script.onerror = showWidgetError;
       document.head.appendChild(script);
     }
