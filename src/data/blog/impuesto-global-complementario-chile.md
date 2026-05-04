@@ -1,0 +1,125 @@
+---
+title: "Impuesto Global Complementario en Chile: qué es, tramos y quién lo paga"
+author: "Equipo Monedario"
+description: "Qué es el IGC, quiénes deben pagarlo, qué rentas suma, cuáles son los tramos vigentes en UTA y qué créditos permiten reducirlo: ISC, honorarios y APV."
+slug: impuesto-global-complementario-chile
+pubDate: 2026-05-03T12:00:00-04:00
+tags:
+  - igc
+  - impuesto-global-complementario
+  - renta
+  - operacion-renta
+  - impuestos
+category: impuestos
+cluster: impuestos-personas
+lang: es-CL
+featured: false
+draft: true
+heroImage: /images/hero/impuesto-global-complementario-chile.avif
+topicRole: owner
+canonicalTopic: igc-impuesto-global-complementario
+articleAdvisory: "Contenido educativo. Los tramos del IGC se expresan en UTA, que varía anualmente. Verifica los valores vigentes en el SII antes del cierre de tu Operación Renta."
+articleLead:
+  answer: "El IGC es el impuesto anual que grava la totalidad de tus rentas del año: suma sueldo, honorarios, dividendos y arriendos para determinar tu tramo real. Los trabajadores con solo sueldo lo pagan indirectamente vía ISC; quienes tienen rentas mixtas deben liquidarlo en el F22."
+  nextStepHref: "/posts/operacion-renta-f22-checklist/"
+  nextStepLabel: "Completar el F22"
+  validAsOf: 2026-05-03
+  officialSources:
+    - label: "SII — Impuesto Global Complementario"
+      href: "https://www.sii.cl/"
+    - label: "BCN — Ley de Impuesto a la Renta, arts. 52–57"
+      href: "https://www.bcn.cl/leychile/navegar?idNorma=8657"
+  covers:
+    - "Por qué el IGC suma todas tus rentas del año, no solo el sueldo."
+    - "Los cuatro perfiles de contribuyentes que lo pagan directamente."
+    - "Los tramos vigentes y cómo funciona la progresividad."
+    - "Qué créditos reducen el IGC: ISC, retenciones de honorarios y APV."
+  limits:
+    - "No predice el resultado exacto de tu F22 — usa la calculadora o el SII."
+    - "Ganancias de capital: excluidas del scope de este artículo por su complejidad."
+    - "Los tramos se actualizan cada año tributario; verifica en el SII la tabla vigente."
+---
+
+> **Información vigente al 2026-05-03.** Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el [SII](https://www.sii.cl/) antes de tu Operación Renta. Este artículo no cubre ganancias de capital.
+
+Tienes sueldo y además emites boletas de honorarios. O eres socio de una empresa y también recibes sueldo. O arriendas una propiedad. En todos esos casos, el Impuesto de Segunda Categoría que te retienen mensualmente no cierra el ciclo: al final del año, el SII suma todas tus rentas y liquida el Impuesto Global Complementario (IGC) en el F22.
+
+## ¿Qué es el Impuesto Global Complementario?
+
+El IGC es el impuesto anual que grava la totalidad de las rentas obtenidas durante el año por personas naturales domiciliadas en Chile, regulado en los artículos 52 a 57 de la [Ley de Impuesto a la Renta](https://www.bcn.cl/leychile/navegar?idNorma=8657).
+
+El nombre lo explica: "global" porque suma todas las fuentes de renta; "complementario" porque complementa el ISC que se retuvo mensualmente durante el año. Si tus retenciones durante el año fueron suficientes para cubrir el IGC calculado, no pagas nada adicional — o recibes devolución. Si fueron insuficientes, pagas la diferencia.
+
+## ¿Quiénes deben pagarlo?
+
+No todos los contribuyentes liquidan IGC directamente. Los cuatro perfiles que sí lo hacen:
+
+**1. Trabajador dependiente con ingresos por honorarios adicionales.**
+El ISC cubre el sueldo, pero los honorarios se suman a la base global y pueden subir el tramo efectivo.
+
+**2. Socio o accionista que también recibe sueldo.**
+Los dividendos o retiros de utilidades de sociedades se suman al sueldo para determinar el IGC.
+
+**3. Propietario que arrienda bienes raíces.**
+La renta de arrendamiento (neta de gastos deducibles) se agrega a las demás rentas.
+
+**4. Inversionista con rentas de capital.**
+Intereses, dividendos de acciones y otros ingresos de capital entran en la base del IGC (ganancias de capital quedan fuera del scope de este artículo).
+
+Los trabajadores con **solo sueldo** cuyo ISC retenido mensualmente coincide con lo que corresponde pagan el IGC a través de las retenciones — no tienen impuesto adicional que pagar al declarar.
+
+## Qué rentas suma el IGC
+
+El IGC consolida en una sola base todas las rentas del año:
+
+- **Sueldos y salarios**: ya cubiertos por ISC, pero se suman para determinar el tramo global.
+- **Honorarios**: la retención aplicada mensualmente es un crédito, pero la renta bruta entra en la base.
+- **Dividendos de sociedades**: los retiros de utilidades se agregan con sus propias reglas de crédito.
+- **Rentas de arrendamiento**: la renta bruta menos gastos presuntos o efectivos.
+
+**Fuera del scope de este artículo**: ganancias de capital por venta de acciones, bienes raíces y otros activos tienen reglas específicas de tributación que exceden el alcance de esta guía.
+
+## Tramos y tasas vigentes
+
+El IGC tiene 7 tramos progresivos, expresados en UTA (Unidad Tributaria Anual). La UTA se calcula como 12 × UTM del mes de diciembre del año tributario.
+
+> **TODO:SOURCE**: la tabla completa de tramos en UTA y el valor de la UTA 2026 deben verificarse en el [SII](https://www.sii.cl/) antes de publicar. Los valores que aparezcan en la versión publicada de este artículo serán verificados por el MathAuditAgent.
+
+La progresividad funciona así: solo el tramo que supera cada umbral paga la tasa correspondiente. Si tu renta global queda en el cuarto tramo, solo esa porción marginal paga la tasa del cuarto tramo — los tramos inferiores pagan sus tasas más bajas.
+
+## Créditos y deducciones disponibles
+
+Varios pagos realizados durante el año se convierten en créditos que reducen el IGC final:
+
+**ISC retenido mensualmente**
+Lo que tu empleador descontó mes a mes como Impuesto de Segunda Categoría se imputa directamente contra el IGC. Es el crédito más importante para los trabajadores dependientes.
+
+**Retenciones de boletas de honorarios**
+La retención aplicada a tus boletas (tasa vigente a verificar en el SII para el año tributario correspondiente) es un crédito contra el IGC. Si cotizaste independiente, también aplica la cotización previsional.
+
+**APV Modalidad A vs Modalidad B**
+
+- **Modalidad A**: genera un crédito directo del 15% sobre el monto cotizado, aplicable contra el IGC.
+- **Modalidad B**: el monto cotizado reduce la base imponible del IGC.
+  Las condiciones exactas y los topes vigentes deben verificarse en el [SII](https://www.sii.cl/) — las instrucciones del F22 de cada año tributario detallan la mecánica.
+
+**Contribuciones de bienes raíces** (solo para arrendadores)
+Si arriendas una propiedad y pagas contribuciones, esas contribuciones son un gasto deducible de la renta de arrendamiento, lo que reduce la base del IGC indirectamente. Para el detalle, revisa la guía de [contribuciones de bienes raíces](/posts/contribuciones-bienes-raices-chile/).
+
+## Cómo se declara: el F22
+
+El IGC se liquida a través del Formulario 22 (F22) de la Operación Renta, en abril de cada año por el período tributario del año anterior. El SII prellenará el F22 con la información disponible (retenciones, boletas, etc.); el contribuyente verifica, agrega lo que falte y envía.
+
+Para el proceso paso a paso de cómo completar y enviar el F22, revisa la [guía de Operación Renta F22](/posts/operacion-renta-f22-checklist/).
+
+## ¿Resultado: pago adicional o devolución?
+
+Si tus créditos (ISC retenido + retenciones de honorarios + APV + otros) superan el IGC calculado sobre tu renta global, obtienes devolución. Si el IGC calculado supera tus créditos, pagas la diferencia.
+
+El resultado exacto depende de tus rentas totales del año y los créditos específicos de tu situación. Para una estimación orientativa, usa la [calculadora de Operación Renta](/calculadoras/operacion-renta/). Si tu situación es compleja (sociedades, múltiples fuentes de renta, ganancias de capital), consulta con un contador.
+
+Si el resultado es devolución, la guía de [devolución de impuestos](/posts/devolucion-impuestos-fechas-compensaciones/) explica los plazos y mecanismos.
+
+---
+
+> **Fecha de corte: 2026-05-03.** Los tramos del IGC (expresados en UTA) y el valor de la UTA se actualizan cada año tributario. Verifica la tabla vigente en el [SII](https://www.sii.cl/) antes de tu Operación Renta. Los artículos 52–57 de la Ley de Impuesto a la Renta están disponibles en la [BCN](https://www.bcn.cl/leychile/navegar?idNorma=8657).

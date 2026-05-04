@@ -20,6 +20,14 @@ export const PRIMARY_CATEGORY_BY_CLUSTER = {
 
 export const CANONICAL_TOPIC_REGISTRY = {
   "sueldo-remuneraciones": {
+    "gratificacion-legal-calculo-tope": {
+      ownerSlug: "gratificacion-legal-chile",
+      intentLabel: "calcular gratificacion legal y tope IMM",
+    },
+    "sueldo-imponible-base-descuentos": {
+      ownerSlug: "sueldo-imponible-chile",
+      intentLabel: "entender sueldo imponible y su efecto en descuentos",
+    },
     "calcular-sueldo-liquido": {
       ownerSlug: "como-calcular-sueldo-liquido",
       intentLabel: "calcular sueldo liquido",
@@ -56,6 +64,14 @@ export const CANONICAL_TOPIC_REGISTRY = {
     },
   },
   "impuestos-personas": {
+    "contribuciones-bienes-raices-tramite": {
+      ownerSlug: "contribuciones-bienes-raices-chile",
+      intentLabel: "calcular y pagar contribuciones de bienes raices en Chile",
+    },
+    "igc-impuesto-global-complementario": {
+      ownerSlug: "impuesto-global-complementario-chile",
+      intentLabel: "entender y calcular el impuesto global complementario",
+    },
     "operacion-renta-f22": {
       ownerSlug: "operacion-renta-f22-checklist",
       intentLabel: "operacion renta F22 checklist",
@@ -70,6 +86,10 @@ export const CANONICAL_TOPIC_REGISTRY = {
     },
   },
   "pensiones-afp": {
+    "pgu-pension-garantizada": {
+      ownerSlug: "pgu-pension-garantizada-universal",
+      intentLabel: "requisitos y tramite de la PGU en Chile",
+    },
     "cambio-afp": {
       ownerSlug: "como-cambiarse-de-afp",
       intentLabel: "cambiarse de AFP",
@@ -116,6 +136,12 @@ export const CANONICAL_TOPIC_REGISTRY = {
     "interes-compuesto-caso": {
       ownerSlug: "el-poder-del-interes-compuesto",
       intentLabel: "interes compuesto caso",
+    },
+  },
+  "presupuesto-control-financiero": {
+    "fondo-emergencia-colchon": {
+      ownerSlug: "fondo-emergencia-chile",
+      intentLabel: "construir fondo de emergencia en Chile",
     },
   },
   "deuda-credito": {
