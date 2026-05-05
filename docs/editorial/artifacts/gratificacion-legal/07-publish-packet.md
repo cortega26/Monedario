@@ -19,7 +19,7 @@ regulatory_sensitivity: media
 | 02 Research | ResearchAgent | Claude Code Sprint 2B | ✓ Completado — TODO:SOURCE pendientes (C4 IMM, C5 tope) |
 | 03 Outline | OutlineAgent | Claude Code Sprint 2B | ✓ Completado |
 | 04 Draft | DraftAgent | Claude Code Sprint 2B | ✓ Completado — TODO:SOURCE en cifras IMM |
-| **05 Math audit** | **MathAuditAgent** | **ChatGPT — sesión fresca (pendiente)** | ⬜ PENDIENTE — **OBLIGATORIO** (`requires_calculation=true`) |
+| **05 Math audit** | **MathAuditAgent** | **ChatGPT — sesión fresca** | ✓ COMPLETADO — ver `05-math-audit.md` (`FAIL`; remediación DraftAgent requerida) |
 | **06 Compliance** | **ComplianceAgent** | **Claude Code — sesión fresca separada (pendiente)** | ⬜ PENDIENTE |
 | 07 Publish | HumanEditor | Human | ⬜ PENDIENTE |
 
@@ -96,7 +96,7 @@ regulatory_sensitivity: media
 
 ## Handoff — instrucciones para Gate 05 y Gate 06
 
-### Gate 05 — MathAuditAgent (ChatGPT) — OBLIGATORIO
+### Gate 05 — MathAuditAgent (ChatGPT) — completado 2026-05-05
 
 1. Abre ChatGPT (nueva conversación).
 2. Pega el playbook del Stage 05 de `context/EDITORIAL_AI_PIPELINE.md` §8.
@@ -104,7 +104,14 @@ regulatory_sensitivity: media
    - `docs/editorial/artifacts/gratificacion-legal/04-draft.md`
    - `docs/editorial/artifacts/gratificacion-legal/02-research.md`
 4. **Instrucción adicional**: verificar todos los placeholders `TODO:SOURCE` en el draft y calcular el ejemplo numérico con el IMM vigente confirmado.
-5. Output reemplaza: `docs/editorial/artifacts/gratificacion-legal/05-math-audit.md`.
+5. Output generado: `docs/editorial/artifacts/gratificacion-legal/05-math-audit.md`.
+
+### Remediación requerida para DraftAgent antes de reabrir Gate 06
+
+1. Reemplazar la referencia al instrumento del reajuste del IMM: no usar “decreto supremo”; la fuente verificada en esta auditoría es la Ley 21.751 (Mintrab).
+2. Sustituir los placeholders del artículo con los valores ya verificados: IMM `CLP $539.000`, tope anual `CLP $2.560.250`, referencia mensual simple `CLP $213.354,17` y resultado del ejemplo `CLP $2.400.000`.
+3. No publicar la regla de “30 días trabajados” salvo que se agregue fuente oficial específica en BCN o DT; si no se consigue, reescribir sin ese umbral numérico.
+4. No publicar la presunción “si nunca se comunicó formalmente modalidad 30%, se presume modalidad 25%” sin respaldo oficial expreso; si la fuente no aparece, eliminar o convertir en consulta a DT.
 
 ### Gate 06 — ComplianceAgent (Claude Code — nueva sesión)
 

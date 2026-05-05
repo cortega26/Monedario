@@ -15,7 +15,7 @@ regulatory_sensitivity: media-alta
 |---|---|---|
 | PRE-02 | Claude Code Sprint 2B | ✓ |
 | 02–04 | DraftAgent — Claude Code Sprint 2B | ✓ — TODO:SOURCE en tasas, exenciones, calendario |
-| **05** | **MathAuditAgent — ChatGPT** | ⬜ OBLIGATORIO |
+| **05** | **MathAuditAgent — ChatGPT** | ✓ COMPLETADO — ver `05-math-audit.md` (`FAIL`; remediación DraftAgent requerida) |
 | **06** | **ComplianceAgent — Claude Code fresh session** | ⬜ PENDIENTE |
 | 07 | HumanEditor | ⬜ PENDIENTE |
 
@@ -45,5 +45,13 @@ regulatory_sensitivity: media-alta
 
 ## Handoff Gate 05 y 06
 
-- **Gate 05 (ChatGPT)**: playbook Stage 05, `context/EDITORIAL_AI_PIPELINE.md` §8. Inputs: `04-draft.md` + `02-research.md`.
+- **Gate 05 (ChatGPT)**: ejecutado 2026-05-05. Resultado en `05-math-audit.md` con veredicto `FAIL`.
 - **Gate 06 (nueva sesión)**: playbook Stage 06. Leer: `NORMA_YMYL.md`, brief, `04-draft.md`, `05-math-audit.md`.
+
+### Remediación requerida para DraftAgent antes de reabrir Gate 06
+
+1. Reescribir la apertura del artículo: no afirmar que toda persona con propiedad “paga contribuciones”, porque el propio tema contempla exenciones totales o parciales.
+2. Actualizar el calendario con las fechas exactas ya verificadas en TGR 2026: `30 de abril`, `30 de junio`, `30 de septiembre` y `30 de noviembre`.
+3. No publicar tasas `1,2%` ni `1,0%` mientras no haya fuente oficial SII cerrada a la fecha de corte; si no se consigue, reformular el artículo como guía procedimental centrada en avalúo, consulta y pago.
+4. Si se mantiene la mención a DFL-2, usar sólo lo verificado en BCN: norma correcta `decreto 1101` (`i=16842`), vivienda económica con superficie edificada no superior a `140 m²`, beneficio restringido a personas naturales y a un máximo de dos viviendas.
+5. No publicar la sección de deducibilidad en F22 como regla cerrada hasta que exista instrucción oficial SII que la respalde en este artefacto.
