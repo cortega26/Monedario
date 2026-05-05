@@ -102,7 +102,7 @@
     "@types/js-yaml": "^4.0.9",
     "@types/lodash.kebabcase": "^4.1.9",
     "@typescript-eslint/parser": "^8.59.2",
-    "eslint": "^10.2.1",
+    "eslint": "^10.3.0",
     "eslint-plugin-astro": "^1.7.0",
     "globals": "^17.5.0",
     "js-yaml": "^4.1.1",
