@@ -28,7 +28,7 @@ articleLead:
     - label: "SII — Impuesto Global Complementario"
       href: "https://www.sii.cl/"
     - label: "BCN — Ley de Impuesto a la Renta, arts. 52–57"
-      href: "https://www.bcn.cl/leychile/navegar?idNorma=8657"
+      href: "https://www.bcn.cl/leychile/navegar?idNorma=6368"
   covers:
     - "Por qué el IGC suma todas tus rentas del año, no solo el sueldo."
     - "Los cuatro perfiles de contribuyentes que lo pagan directamente."
@@ -46,7 +46,7 @@ Tienes sueldo y además emites boletas de honorarios. O eres socio de una empres
 
 ## ¿Qué es el Impuesto Global Complementario?
 
-El IGC es el impuesto anual que grava la totalidad de las rentas obtenidas durante el año por personas naturales domiciliadas en Chile, regulado en los artículos 52 a 57 de la [Ley de Impuesto a la Renta](https://www.bcn.cl/leychile/navegar?idNorma=8657).
+El IGC es el impuesto anual que grava la totalidad de las rentas obtenidas durante el año por personas naturales domiciliadas en Chile, regulado en los artículos 52 a 57 de la [Ley de Impuesto a la Renta](https://www.bcn.cl/leychile/navegar?idNorma=6368).
 
 El nombre lo explica: "global" porque suma todas las fuentes de renta; "complementario" porque complementa el ISC que se retuvo mensualmente durante el año. Si tus retenciones durante el año fueron suficientes para cubrir el IGC calculado, no pagas nada adicional — o recibes devolución. Si fueron insuficientes, pagas la diferencia.
 
@@ -83,7 +83,7 @@ El IGC consolida en una sola base todas las rentas del año:
 
 El IGC tiene 7 tramos progresivos, expresados en UTA (Unidad Tributaria Anual). La UTA se calcula como 12 × UTM del mes de diciembre del año tributario.
 
-> **TODO:SOURCE**: la tabla completa de tramos en UTA y el valor de la UTA 2026 deben verificarse en el [SII](https://www.sii.cl/) antes de publicar. Los valores que aparezcan en la versión publicada de este artículo serán verificados por el MathAuditAgent.
+La UTA 2026 es **$834.504**. El primer tramo exento (0%) aplica a rentas globales anuales hasta **$11.265.804** (equivalente a 13,5 UTA). Para la tabla completa de los 7 tramos vigentes con tasas y montos a rebajar, consulta la [página oficial del SII](https://www.sii.cl/).
 
 La progresividad funciona así: solo el tramo que supera cada umbral paga la tasa correspondiente. Si tu renta global queda en el cuarto tramo, solo esa porción marginal paga la tasa del cuarto tramo — los tramos inferiores pagan sus tasas más bajas.
 
@@ -95,16 +95,18 @@ Varios pagos realizados durante el año se convierten en créditos que reducen e
 Lo que tu empleador descontó mes a mes como Impuesto de Segunda Categoría se imputa directamente contra el IGC. Es el crédito más importante para los trabajadores dependientes.
 
 **Retenciones de boletas de honorarios**
-La retención aplicada a tus boletas (tasa vigente a verificar en el SII para el año tributario correspondiente) es un crédito contra el IGC. Si cotizaste independiente, también aplica la cotización previsional.
+La retención aplicada a tus boletas de honorarios es un crédito contra el IGC. Para el año tributario 2026, la tasa de retención es **15,25%** (verifica en el [SII](https://www.sii.cl/) ante posibles actualizaciones). Si cotizaste independiente, también aplica la cotización previsional.
 
 **APV Modalidad A vs Modalidad B**
 
-- **Modalidad A**: genera un crédito directo del 15% sobre el monto cotizado, aplicable contra el IGC.
-- **Modalidad B**: el monto cotizado reduce la base imponible del IGC.
-  Las condiciones exactas y los topes vigentes deben verificarse en el [SII](https://www.sii.cl/) — las instrucciones del F22 de cada año tributario detallan la mecánica.
+El APV puede reducir el IGC según la modalidad elegida, de acuerdo con el artículo 42 bis de la LIR:
+- **Modalidad A**: genera un beneficio tributario sobre el monto cotizado, con topes expresados en UF.
+- **Modalidad B**: reduce la base imponible del IGC, con topes distintos establecidos en el mismo artículo.
+
+Las condiciones exactas y los topes vigentes deben verificarse en el [SII](https://www.sii.cl/) — las instrucciones del F22 del año tributario correspondiente detallan la mecánica aplicable.
 
 **Contribuciones de bienes raíces** (solo para arrendadores)
-Si arriendas una propiedad y pagas contribuciones, esas contribuciones son un gasto deducible de la renta de arrendamiento, lo que reduce la base del IGC indirectamente. Para el detalle, revisa la guía de [contribuciones de bienes raíces](/posts/contribuciones-bienes-raices-chile/).
+Si arriendas una propiedad y pagas contribuciones, esas contribuciones pueden ser consideradas como gasto de la renta de arrendamiento según las instrucciones SII del año tributario correspondiente, reduciendo la base del IGC indirectamente. Verifica las condiciones en el [SII](https://www.sii.cl/) o con un contador. Para el contexto del impuesto territorial, revisa la guía de [contribuciones de bienes raíces](/posts/contribuciones-bienes-raices-chile/).
 
 ## Cómo se declara: el F22
 
@@ -122,4 +124,4 @@ Si el resultado es devolución, la guía de [devolución de impuestos](/posts/de
 
 ---
 
-> **Fecha de corte: 2026-05-03.** Los tramos del IGC (expresados en UTA) y el valor de la UTA se actualizan cada año tributario. Verifica la tabla vigente en el [SII](https://www.sii.cl/) antes de tu Operación Renta. Los artículos 52–57 de la Ley de Impuesto a la Renta están disponibles en la [BCN](https://www.bcn.cl/leychile/navegar?idNorma=8657).
+> **Fecha de corte: 2026-05-03.** Los tramos del IGC (expresados en UTA) y el valor de la UTA se actualizan cada año tributario. Verifica la tabla vigente en el [SII](https://www.sii.cl/) antes de tu Operación Renta. Los artículos 52–57 de la Ley de Impuesto a la Renta están disponibles en la [BCN](https://www.bcn.cl/leychile/navegar?idNorma=6368).

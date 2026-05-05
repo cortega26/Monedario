@@ -50,7 +50,7 @@ La gratificación legal es una parte de las remuneraciones que el empleador debe
 
 **Quiénes tienen derecho:**
 
-Todo trabajador que preste servicios en un establecimiento de carácter comercial, industrial, minero o agrícola, con independencia del tipo de contrato — indefinido o a plazo fijo — tiene derecho a gratificación legal, siempre que haya trabajado al menos 30 días durante el ejercicio.
+Todo trabajador que preste servicios en un establecimiento de carácter comercial, industrial, minero o agrícola, con independencia del tipo de contrato — indefinido o a plazo fijo — tiene derecho a gratificación legal según el artículo 47 del Código del Trabajo.
 
 **Quiénes pueden quedar fuera:**
 
@@ -80,7 +80,7 @@ Tope anual                 = IMM mensual vigente × 4,75
 Gratificación efectiva     = el menor entre (gratificación bruta) y (tope anual)
 ```
 
-> **Nota:** el valor del IMM vigente debe verificarse en el [Ministerio del Trabajo](https://www.mintrab.gob.cl/) antes de hacer cualquier cálculo. El tope cambia cada vez que se actualiza el IMM por decreto supremo.
+> **Nota:** el valor del IMM vigente debe verificarse en el [Ministerio del Trabajo](https://www.mintrab.gob.cl/) antes de hacer cualquier cálculo. El tope cambia cada vez que se actualiza el IMM (actualmente fijado por la Ley 21.751, Ministerio del Trabajo).
 
 ### Ejemplo numérico
 
@@ -88,10 +88,11 @@ Trabajador con sueldo imponible mensual de **$800.000**, año completo:
 
 - Remuneraciones imponibles anuales: $800.000 × 12 = **$9.600.000**
 - Gratificación bruta (25 %): $9.600.000 × 0,25 = **$2.400.000**
-- Tope legal: IMM vigente × 4,75 (ver IMM actual en Ministerio del Trabajo)
-- Gratificación efectiva: el menor entre $2.400.000 y el tope calculado
+- IMM vigente (Ley 21.751, Mintrab): **$539.000**
+- Tope legal: $539.000 × 4,75 = **$2.560.250**
+- Gratificación efectiva: min($2.400.000, $2.560.250) = **$2.400.000** (la bruta es menor al tope, se paga la bruta completa)
 
-Si la gratificación bruta supera el tope, se paga el tope. Si es menor, se paga la gratificación bruta. Si se provisiona mensualmente, el monto mensual es la gratificación efectiva anual dividida en 12.
+En este ejemplo la gratificación bruta anual no supera el tope, por lo que se paga la gratificación bruta completa. Si se provisiona mensualmente: $2.400.000 ÷ 12 = **$200.000 por mes**. El tope mensual de referencia (útil cuando el sueldo es alto) es $2.560.250 ÷ 12 = **$213.354 por mes**.
 
 Para entender cómo se integra la gratificación al total de tu sueldo, consulta [cómo calcular tu sueldo líquido](/posts/como-calcular-sueldo-liquido/).
 
@@ -109,9 +110,9 @@ Para aprender a leer la [línea de gratificación en tu comprobante de sueldo](/
 
 Si el empleador usa la **modalidad 25 %**, la obligación **subsiste aunque la empresa haya tenido pérdidas**. Esta modalidad no depende del resultado del ejercicio.
 
-Si el empleador usa la **modalidad 30 % de utilidades** y no hay utilidades, no hay obligación de pago por esa vía. Pero si el empleador nunca comunicó formalmente que usa la modalidad 30 %, se presume la modalidad 25 %, que sí genera obligación de pago.
+Si el empleador usa la **modalidad 30 % de utilidades** y no hay utilidades, no hay obligación de pago por esa vía.
 
-Si tu empleador argumenta que "no hubo gratificación por pérdidas" y no consta formalmente que usa la modalidad 30 %, tienes motivos para consultar con la [Dirección del Trabajo](https://www.dt.gob.cl/).
+Si tienes dudas sobre qué modalidad aplica a tu contrato o crees que la gratificación que recibes es incorrecta, consulta directamente con la [Dirección del Trabajo](https://www.dt.gob.cl/).
 
 ## Preguntas frecuentes
 
@@ -129,4 +130,4 @@ Habitualmente como "Gratificación" o "Provisión Gratificación" en el bloque d
 
 ---
 
-> **Fecha de corte: 2026-05-03.** El Ingreso Mínimo Mensual (IMM) se actualiza por decreto supremo; ante cambios, el tope de 4,75 IMM también cambia. Verifica el IMM vigente en el [Ministerio del Trabajo](https://www.mintrab.gob.cl/) antes de hacer cualquier cálculo. Los artículos 47–52 del Código del Trabajo están disponibles en la [Biblioteca del Congreso Nacional](https://www.bcn.cl/leychile/navegar?idNorma=207436).
+> **Fecha de corte: 2026-05-03.** El Ingreso Mínimo Mensual (IMM) se actualiza por ley (actualmente Ley 21.751, Ministerio del Trabajo). IMM vigente a la fecha de corte: **$539.000**; tope anual de gratificación: **$2.560.250**. Verifica el IMM vigente en el [Ministerio del Trabajo](https://www.mintrab.gob.cl/) antes de hacer cualquier cálculo. Los artículos 47–52 del Código del Trabajo están disponibles en la [Biblioteca del Congreso Nacional](https://www.bcn.cl/leychile/navegar?idNorma=207436).

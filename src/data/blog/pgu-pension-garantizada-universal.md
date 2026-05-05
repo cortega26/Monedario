@@ -59,15 +59,15 @@ Para acceder a la PGU debes cumplir tres requisitos simultáneamente:
 **1. Edad: 65 años cumplidos.**
 El derecho se activa el mes en que se cumplen los 65 años.
 
-**2. Residencia: mínimo 20 años en Chile a partir de los 20 años de edad.**
-Los años de residencia deben ser acreditables. Este requisito aplica tanto a chilenos como a extranjeros con residencia legal — verifica el texto exacto vigente de la ley en el [IPS](https://www.ips.gob.cl/) o [BCN](https://www.bcn.cl/).
+**2. Residencia: mínimo 20 años en Chile a partir de los 20 años de edad, más 4 años de residencia en los últimos 5 años anteriores a la solicitud (Ley 21.419).**
+Los años de residencia deben ser acreditables. Este requisito aplica tanto a chilenos como a extranjeros con residencia legal — verifica el texto exacto vigente en el [IPS](https://www.ips.gob.cl/) o [BCN](https://www.bcn.cl/).
 
 **3. Pertenecer al 90% de menores ingresos.**
 El Ministerio de Desarrollo Social determina este criterio. En la práctica, la mayoría de adultos mayores con pensión AFP base baja o sin pensión lo cumple. Si tienes patrimonio o ingresos altos, podrías quedar fuera del percentil.
 
 ## ¿Cuánto se paga? Monto y calendario de ajuste
 
-El monto de la PGU se reajusta periódicamente por ley. Verifica el valor actualizado en el [IPS](https://www.ips.gob.cl/) — es el único canal oficial que refleja el monto vigente en tiempo real.
+El monto vigente de la PGU es **$231.732 mensuales** para personas de 65 a 81 años. Desde febrero 2026, personas de **82 años o más** acceden al monto ampliado de **$250.275 mensuales** (fuente: ChileAtiende). El monto se reajusta periódicamente por ley — verifica el valor actualizado en el [IPS](https://www.ips.gob.cl/).
 
 El pago es mensual y se deposita en la cuenta que registres al tramitar. Los reajustes se informan con anticipación por el IPS y el Ministerio del Trabajo.
 
@@ -93,11 +93,13 @@ El trámite se realiza ante el IPS (Instituto de Previsión Social):
 
 Si ya tienes pensión AFP, la PGU no se suma de manera íntegra. Existe un mecanismo de complemento que reduce el monto de la PGU en función de tu pensión base — de modo que el total (pensión AFP + PGU) sea mayor que solo la PGU, pero no igual a la suma completa de ambos montos.
 
-La fórmula exacta de complemento debe verificarse en la [Superintendencia de Pensiones](https://www.spensiones.cl/) — es técnica y depende de los umbrales vigentes al año del cálculo. El MathAuditAgent debe verificar y documentar la fórmula antes de publicar este artículo.
+Los umbrales vigentes (Superintendencia de Pensiones) son:
 
-> TODO:SOURCE (MathAuditAgent + Human): verificar fórmula de reducción PGU según pensión AFP base, con el umbral vigente a la fecha de corte. Sin este dato, la sección de complemento no puede publicarse con cifras.
+- Pensión base **hasta $789.139**: corresponde PGU completa de **$231.732**.
+- Pensión base entre **$789.139 y $1.252.602**: corresponde un monto variable de PGU. El IPS calcula el aporte aplicable a tu caso.
+- Pensión base **desde $1.252.602**: no corresponde PGU.
 
-Lo que no cambia: si tu pensión AFP es muy baja o no tienes pensión AFP, recibes la PGU completa. Si tienes una pensión AFP alta, la PGU se reduce o puede no corresponder.
+Si tu pensión AFP es muy baja o no tienes pensión AFP, recibes la PGU completa. Si tienes pensión AFP alta, la PGU se reduce o puede no corresponder. Para conocer el monto exacto en tu situación, consulta directamente al [IPS](https://www.ips.gob.cl/) o a la [Superintendencia de Pensiones](https://www.spensiones.cl/).
 
 ## Casos frecuentes
 

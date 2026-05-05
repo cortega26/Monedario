@@ -1,17 +1,29 @@
 # Gate 06 — Compliance Review: gratificacion-legal-chile
 
-Status: CONDITIONAL — TODO:SOURCE items (IMM vigente, tope calculado) y ejemplo incompleto bloquean publicación
-Role: ComplianceAgent (Claude Code — fresh session, adversarial)
-Fecha de revisión: 2026-05-04
+Status: CONDITIONAL — residual TODO:SOURCE y score NORMA_YMYL < 9,5 bloquean PASS
+Role: ComplianceAgent (Claude Code — sesión fresca, adversarial)
+Fecha de revisión: 2026-05-05
+Reemplaza: 06-compliance.md del 2026-05-04 (pre-remediación)
+
 Archivos revisados:
   - `docs/editorial/NORMA_YMYL.md`
-  - `docs/editorial/artifacts/gratificacion-legal/02-research.md`
+  - `docs/editorial/artifacts/briefs/gratificacion-legal.md`
   - `docs/editorial/artifacts/gratificacion-legal/04-draft.md`
-  - `src/data/blog/gratificacion-legal-chile.md` (blog file — versión publicable; se revisó el blog file)
-  - `docs/editorial/artifacts/gratificacion-legal/07-publish-packet.md`
-  - `docs/editorial/artifacts/gratificacion-legal/05-math-audit.md` — AUSENTE (Gate 05 no ejecutado; **OBLIGATORIO** por `requires_calculation: true`)
+  - `docs/editorial/artifacts/gratificacion-legal/05-math-audit.md`
+  - `src/data/blog/gratificacion-legal-chile.md` (versión post-remediación 2026-05-05)
 
-> **Alerta Gate 05:** `requires_calculation: true` activa `INVARIANT.EDITORIAL.MATH_AUDIT_REQUIRED_WHEN_CALC`. Gate 05 no ha corrido. Este compliance se emite sobre el estado actual del draft; Gate 05 podría cambiar el veredicto si encuentra errores en la fórmula o en la aplicación del tope. Se **recomienda fuertemente** ejecutar Gate 05 antes de resolver los defectos de Gate 06 para evitar trabajo duplicado.
+---
+
+## Verificación de remediaciones del 2026-05-05
+
+| Punto de atención | Estado |
+|---|---|
+| Umbral "30 días" eliminado | ✓ RESUELTO — no aparece en el artículo publicable |
+| IMM $539.000 insertado | ✓ RESUELTO — presente y verificado por MathAuditAgent |
+| Tope $2.560.250 calculado e insertado | ✓ RESUELTO — verificado (`539.000 × 4,75 = 2.560.250`) |
+| Ejemplo $2.400.000 completo | ✓ RESUELTO — verificado (`800.000 × 12 × 0,25 = 2.400.000`) |
+| Presunción modalidad 25% eliminada | ✓ RESUELTO — sección "sin utilidades" correcta sin presunción |
+| "Decreto supremo" → Ley 21.751 | ✓ RESUELTO — corregido en cuerpo y footer del artículo |
 
 ---
 
@@ -19,86 +31,84 @@ Archivos revisados:
 
 | Dimensión | Peso | Puntuación | Ponderado | Notas |
 |---|---|---|---|---|
-| Respuesta ancla | 35% | 9.0/10 | 3.15/3.50 | `articleLead.answer` declara modalidad 25 % y tope 4,75 IMM con claridad. Fuentes oficiales en frontmatter y en cuerpo (BCN, DT). Penalización leve: el ejemplo numérico queda incompleto (tope y resultado sin calcular por IMM pendiente). |
-| Precisión + fuentes | 25% | 7.5/10 | 1.88/2.50 | BCN (arts. 47–52) y DT linkeados en cuerpo. IMM vigente (C4) sin verificar; tope calculado (C5) sin resolver. Claim "30 días" sin artículo CT específico. C9 (ordinario DT periodicidad) no verificado aunque suavizado a "práctica". |
-| Vigencia + calendario | 15% | 9.5/10 | 1.43/1.50 | "Vigente al 2026-05-03" al inicio; "Fecha de corte" con link a Mintrab al final. Nota explícita sobre actualización del IMM por decreto supremo. |
-| Excepciones + cobertura | 15% | 9.5/10 | 1.43/1.50 | Ambas modalidades explicadas; escenario de pérdidas cubierto; pago proporcional (art. 52 CT) tratado; FAQ con 3 casos reales comunes. |
-| Claridad + estructura | 10% | 8.5/10 | 0.85/1.00 | Flujo H2 claro. Penalización por ejemplo numérico incompleto: la sección promete "fórmula exacta y tope de 4,75 IMM" y el resultado final queda en blanco. |
-| **TOTAL** | 100% | — | **8.74/10** | **Por debajo del umbral 9.5 — no PASS** |
+| Respuesta ancla | 35% | 9,5/10 | 3,33/3,50 | `articleLead.answer` declara 25% y tope 4,75 IMM. Ejemplo completo y verificado ($2.400.000 < $2.560.250). Fuentes BCN y DT presentes. Fecha de corte prominente. |
+| Precisión + fuentes | 25% | 8,5/10 | 2,13/2,50 | Penalización: (1) apertura define gratificación solo desde art. 47 ("cuando obtiene utilidades"), creando framing parcial vs. obligación del art. 50 que no requiere utilidades. (2) "la ley permite pago anual" sin artículo CT citado. (3) provisión mensual 1/12 phrased como "práctica", DT ordinario no obtenido formalmente. |
+| Vigencia + calendario | 15% | 9,5/10 | 1,43/1,50 | "Vigente al 2026-05-03" al inicio; footer con IMM y tope explícitos; Ley 21.751 correctamente identificada en lugar de "decreto supremo". |
+| Excepciones + cobertura | 15% | 9,0/10 | 1,35/1,50 | Ambas modalidades cubiertas; escenario de pérdidas correcto; proporcional art. 52 CT tratado; FAQ completo. Leve gap: sin requisito mínimo de duración de empleo (30 días eliminado sin alternativa). |
+| Claridad + estructura | 10% | 9,0/10 | 0,90/1,00 | Flujo H2 claro. Leve penalización: apertura de definición ("cuando el establecimiento obtiene utilidades") contradice implícitamente el mensaje de la sección de sin-utilidades. |
+| **TOTAL** | 100% | — | **9,14/10** | **Por debajo del umbral 9,5 — no PASS** |
 
 ---
 
 ## DEFECTS
 
-### DEFECT #1 — CONDITIONAL — Ejemplo numérico incompleto: tope y resultado sin valor
+### DEFECT #1 — MINOR — Apertura de definición incompleta: framing de art. 47 contradice modalidad art. 50
 
-**Severidad:** CONDITIONAL (bloquea publicación)
-**Ubicación:** Blog file líneas 85–95; draft líneas 129–145
-**Descripción:** El artículo promete "la fórmula exacta y el tope de 4,75 IMM" (`articleLead.covers`). El ejemplo numérico calcula la gratificación bruta correctamente ($9.600.000 × 0,25 = $2.400.000), pero el tope y el resultado final quedan sin calcular porque el valor del IMM vigente (C4) no fue confirmado antes de publicar el blog file. El lector ve:
-  - ✅ Remuneraciones imponibles: $9.600.000
-  - ✅ Gratificación bruta (25%): $2.400.000
-  - ❌ Tope legal: "IMM vigente × 4,75 (ver IMM actual en Ministerio del Trabajo)" — sin número
-  - ❌ Gratificación efectiva: "el menor entre $2.400.000 y el tope calculado" — sin número
-Un ejemplo que no se completa no cumple la función del artículo y contradice la promesa del frontmatter.
-**NORMA_YMYL:** MUST #1 (Respuesta Ancla — el cálculo prometido no se completa) y §1.2 SHOULD (ejemplo numérico cuando la intención es cálculo).
-**Resolución (Bucket A — human + MathAuditAgent):**
-1. Ejecutar Gate 05 (MathAuditAgent ChatGPT): verificar IMM vigente desde Mintrab y completar el ejemplo (tope = IMM × 4,75; resultado = min($2.400.000, tope)).
-2. Actualizar el blog file `src/data/blog/gratificacion-legal-chile.md` líneas 91–94 con los valores reales.
-3. Si el IMM cambió desde 2026-05-03, actualizar `validAsOf` y `articleAdvisory`.
+**Severidad:** MINOR (contribuye al score < 9,5)
+**Ubicación:** Cuerpo del artículo, sección "¿Qué es la gratificación legal y a quiénes aplica?", primer párrafo.
+**Descripción:** El artículo define la gratificación como "la parte de las remuneraciones que el empleador debe compartir con los trabajadores cuando el establecimiento donde prestan servicios obtiene utilidades en el ejercicio comercial (artículo 47 del Código del Trabajo)." La condición "cuando obtiene utilidades" es propia del marco del art. 47, pero la modalidad 25% del art. 50 — presentada más adelante como la más habitual — subsiste sin utilidades. Un lector que lea solo la apertura concluirá que la gratificación requiere utilidades, lo que es opuesto al mensaje central del artículo.
+**NORMA_YMYL:** MUST #8 (Coherencia interna — no puede haber contradicciones entre secciones).
+**Resolución:** Ampliar la apertura para distinguir: "El art. 47 CT establece el derecho general; la modalidad 25% (art. 50 CT) opera independientemente de si la empresa tuvo utilidades."
 
 ---
 
-### DEFECT #2 — CONDITIONAL — IMM vigente (C4) y tope calculado (C5) sin verificar
+### DEFECT #2 — MINOR — "La ley permite pago anual" sin artículo CT específico
 
-**Severidad:** CONDITIONAL (bloquea publicación — dato volátil central del artículo)
-**Ubicación:** Research dossier R1/R2; draft líneas 123–128; blog file línea 91
-**Descripción:** El valor del IMM vigente (C4) y el tope calculado de 4,75 × IMM (C5) son los datos centrales del artículo. Ambos están marcados como TODO:SOURCE en el research dossier. El blog file no incluye ningún valor concreto, redirigiendo al lector a Mintrab. Sin estos valores, el artículo no puede cumplir su propósito editorial de calcular el tope real.
-**Nota:** Este defecto no es independiente de D1 — resolverlos en conjunto es lo correcto.
-**Resolución (Bucket A — human):** Verificar el IMM vigente en https://www.mintrab.gob.cl/, calcular 4,75 × IMM, e integrar al ejemplo numérico (D1).
-
----
-
-### DEFECT #3 — NOTE (no bloquea CONDITIONAL) — Claim "30 días" sin artículo CT explícito
-
-**Severidad:** NOTE
-**Ubicación:** Blog file línea 53
-**Descripción:** "Todo trabajador...tiene derecho a gratificación legal, siempre que haya trabajado al menos 30 días durante el ejercicio." Este es un claim de elegibilidad específico. El research dossier lista C8 como "VERIFIED (fuente conocida)" apuntando al art. 47 CT, pero no especifica si los "30 días" está en el texto del artículo o es una interpretación DT. El artículo no cita el artículo CT que establece este requisito.
-**Resolución (Bucket A — human):** Verificar en el texto del art. 47 CT (BCN) si el requisito de 30 días está explícito. Si está en el texto legal, agregar la referencia "(art. 47 CT)" junto al claim. Si es interpretación DT, citarlo como "según la Dirección del Trabajo".
+**Severidad:** MINOR
+**Ubicación:** Sección "¿Cuándo y cómo se paga?", párrafo "Pago anual".
+**Descripción:** El artículo afirma "la ley permite pagar la gratificación en una sola cuota, dentro del ejercicio correspondiente o el siguiente" sin citar el artículo del Código del Trabajo que sustenta esta afirmación. El brief referencia arts. 47–52 CT; el artículo debe identificar cuál de ellos permite el pago anual.
+**NORMA_YMYL:** MUST #4 (Fuentes oficiales mínimas para cada regla crítica YMYL).
+**Resolución:** Agregar referencia al artículo CT específico (ej. "según el art. 47 CT").
 
 ---
 
-### DEFECT #4 — NOTE (no bloquea CONDITIONAL) — Gate 05 obligatorio no ejecutado
+### DEFECT #3 — MINOR — TODO:SOURCE residual: provisión mensual 1/12 sin ordinario DT
 
-**Severidad:** NOTE de proceso
-**Descripción:** `requires_calculation: true` activa `INVARIANT.EDITORIAL.MATH_AUDIT_REQUIRED_WHEN_CALC`. La fórmula `min(gratificación_bruta, tope_anual)` y el ejemplo numérico deben ser verificados adversarialmente por MathAuditAgent (ChatGPT) antes de publicar. Este gate no es opcional para este artículo.
-**Resolución (Bucket A — human):** Ejecutar Gate 05 con el playbook de `context/EDITORIAL_AI_PIPELINE.md §8` en ChatGPT antes de resolver D1/D2.
+**Severidad:** MINOR
+**Ubicación:** Sección "¿Cuándo y cómo se paga?", párrafo "Provisión mensual".
+**Descripción:** El math audit marcó este claim como TODO:SOURCE por ausencia de ordinario DT sobre periodicidad. La remediación suavizó el claim a "práctica más extendida" — mitigación válida pero que no cierra formalmente el TODO:SOURCE. La frase no se presenta como norma legal, lo que es aceptable para publicación condicional, pero la fuente de respaldo sigue sin obtenerse.
+**NORMA_YMYL:** §3.1 (inferencias solo si respaldadas por artículos citados o etiquetadas como orientativas).
+**Resolución:** Obtener ordinario DT sobre periodicidad, o reformular explícitamente: "La ley no impone una periodicidad mensual obligatoria; la provisión mensual es práctica empresarial extendida, no un requisito legal."
+
+---
+
+### DEFECT #4 — NOTE — Gap de elegibilidad: sin requisito mínimo de duración de empleo
+
+**Severidad:** NOTE (no bloquea)
+**Descripción:** El umbral de "30 días" fue eliminado correctamente (no tenía fuente verificada). El artículo dice "Todo trabajador que preste servicios... tiene derecho a gratificación legal" sin indicar ningún requisito mínimo de tiempo de servicio. Esto puede sobrestimar elegibilidad para contratos muy breves dentro del ejercicio.
+**Resolución:** Si el texto del art. 47 CT no establece mínimo, dejar como está. Alternativamente, señalar que el derecho es proporcional al tiempo trabajado (art. 52 CT), lo que de hecho implica que cualquier período genera derecho proporcional.
 
 ---
 
 ## Separation of Duties Declaration
 
-| Stage | Role | Tool / Session | SoD Status |
+| Stage | Role | Agente / Sesión | Estado |
 |---|---|---|---|
-| 02 Research | ResearchAgent | Claude Code — Sprint 2B session (2026-05-03) | ✓ |
-| 03 Outline | OutlineAgent | Claude Code — Sprint 2B session (2026-05-03) | ✓ |
-| 04 Draft | DraftAgent | Claude Code — Sprint 2B session (2026-05-03) | ✓ |
-| 05 Math audit | MathAuditAgent | ChatGPT — sesión fresca (PENDIENTE — OBLIGATORIO) | ⬜ |
-| 06 Compliance | ComplianceAgent | Claude Code — sesión fresca 2026-05-04 (esta sesión) | ✓ SoD cumplido |
+| 02 Research | ResearchAgent | Claude Code — Sprint 2B (2026-05-03) | ✓ |
+| 03 Outline | OutlineAgent | Claude Code — Sprint 2B (2026-05-03) | ✓ |
+| 04 Draft | DraftAgent | Claude Code — Sprint 2B (2026-05-03) | ✓ |
+| Remediation | DraftAgent | Claude Code — sesión 2026-05-05 | ✓ |
+| 05 Math audit | MathAuditAgent | ChatGPT — sesión fresca 2026-05-05 | ✓ Ejecutado |
+| 06 Compliance | ComplianceAgent | Claude Code — sesión fresca 2026-05-05 (esta sesión) | ✓ SoD cumplido |
+| 07 Publish packet | Solo humano | — | ⬜ Pendiente |
 
-**SoD verdict:** ✅ No violación de roles. DraftAgent (Sprint 2B) es sesión distinta de ComplianceAgent (sesión 2026-05-04).
+**SoD verdict:** ✓ Sin violación de roles. DraftAgent (Sprint 2B + sesión 2026-05-05) y ComplianceAgent (sesión fresca sin acceso al historial de draft) son sesiones separadas. MathAuditAgent es ChatGPT (modelo diferente). INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES cumplido.
 
 ---
 
-## Overall Verdict
+## Veredicto Final
 
 **CONDITIONAL**
 
-El artículo tiene sólida estructura legal, fuentes oficiales (BCN, DT, Mintrab) linkeadas en el cuerpo, vigencia explícita, excepciones cubiertas y tono educativo apropiado. No hay claims falsos ni inferencias sin etiquetar.
+La remediación del 2026-05-05 resolvió todos los defectos bloqueantes del Gate 06 anterior: IMM y tope insertados y verificados ($539.000 / $2.560.250), ejemplo completo, error de "decreto supremo" corregido a Ley 21.751, presunción de modalidad 25% eliminada, umbral de 30 días eliminado. No quedan errores factuales materiales ni marcadores TODO:SOURCE visibles en el artículo publicable.
 
-**Bloqueantes para pasar a PASS:**
-1. **D1 + D2 (dependientes):** Verificar IMM vigente en Mintrab → completar ejemplo numérico (tope y resultado) → actualizar blog file.
-2. Ejecutar Gate 05 (MathAuditAgent — ChatGPT, obligatorio) antes de modificar el blog file para evitar doble trabajo si el math audit detecta errores en la fórmula.
-3. Verificar claim "30 días" contra texto art. 47 CT (D3) — menor pero recomendado.
-4. Re-evaluar Gate 06 en sesión fresca tras resolución de D1/D2 para emitir veredicto PASS.
+**Razones del CONDITIONAL (no PASS):**
+1. DEFECT #1: apertura define gratificación solo desde el art. 47, generando framing incompleto para la modalidad más común (art. 50).
+2. DEFECT #3: TODO:SOURCE de provisión mensual 1/12 no cerrado con ordinario DT, aunque el claim fue suavizado aceptablemente.
+3. Score NORMA_YMYL 9,14/10 < 9,5 — umbral de PASS no alcanzado.
 
-**NORMA_YMYL score estimado post-resolución:** ~9.6/10 (precisión+fuentes sube cuando IMM verificado y ejemplo completo; claridad+estructura sube cuando ejemplo queda completo).
+**Ruta a PASS:**
+- Resolver DEFECT #1 (ampliar apertura de definición).
+- Resolver o documentar DEFECT #2 (citar artículo CT para pago anual).
+- Cierre de DEFECT #3 (ordinario DT o reformulación explícita de "práctica no obligatoria").
+- **Nueva ronda de DraftAgent requerida antes de Gate 07.**

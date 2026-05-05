@@ -91,7 +91,7 @@ Cada descuento previsional se aplica como un porcentaje de la remuneración impo
 - **Cotización de salud**: 7% Fonasa o el plan isapre pactado.
 - **AFC (Seguro de Cesantía)**: 0,6% el trabajador; 2,4% el empleador.
 
-**Tope máximo imponible**: las cotizaciones se aplican solo hasta el límite legal vigente en UF (valor de referencia: ~87,1 UF mensuales; verifica el valor actualizado en la [Superintendencia de Pensiones](https://www.spensiones.cl/)). Lo que se gana por sobre ese tope no cotiza — lo que también significa que no genera pensión sobre esa porción.
+**Tope máximo imponible**: las cotizaciones previsionales (AFP y salud) se aplican solo hasta **90,0 UF mensuales**; el Seguro de Cesantía (AFC) tiene un tope diferente de **135,2 UF mensuales**. Lo que se gana por sobre el tope no cotiza — lo que también significa que no genera pensión sobre esa porción. Verifica los valores vigentes en la [Superintendencia de Pensiones](https://www.spensiones.cl/).
 
 ## Cómo determina el Impuesto de Segunda Categoría
 
@@ -101,7 +101,12 @@ La estructura vigente tiene 7 tramos expresados en UTM, desde 0% para ingresos b
 
 ## APV y reducción de la base imponible
 
-El Ahorro Previsional Voluntario (APV) en Modalidad A reduce directamente la base afecta al ISC, hasta un tope legal anual definido en UTM (verifica el límite vigente con tu AFP o en el SII). El efecto práctico es que puedes bajar al tramo marginal inferior, reduciendo la retención mensual de ISC.
+El Ahorro Previsional Voluntario (APV) puede reducir tu carga tributaria según la modalidad elegida:
+
+- **Modalidad A**: genera un beneficio tributario directo sobre el monto cotizado, de acuerdo con el artículo 42 bis de la LIR.
+- **Modalidad B**: reduce la base imponible del ISC, con topes distintos establecidos en el mismo artículo.
+
+Los topes se expresan en UF — verifica los montos exactos vigentes con tu AFP o en el [SII](https://www.sii.cl/) (instrucciones del F22 del año tributario correspondiente).
 
 El resultado exacto depende de tu base imponible, tu tramo y el monto cotizado en APV. Esto no es asesoría tributaria: consulta con tu AFP o institución APV los efectos específicos de tu situación.
 
@@ -110,10 +115,10 @@ El resultado exacto depende de tu base imponible, tu tramo y el monto cotizado e
 Para un trabajador con sueldo bruto de $1.200.000 sin componentes no imponibles relevantes:
 
 1. Remuneración imponible: $1.200.000
-2. AFP (~10,5%): ~$126.000 + comisión de la AFP
+2. Cotización obligatoria AFP (~10,5%): ~$126.000. La comisión AFP es adicional y varía por institución.
 3. Salud (7%): $84.000
 4. AFC (0,6%): $7.200
-5. ISC: depende del tramo marginal vigente — consultar tabla SII actualizada
+5. ISC (tabla SII AT 2026): **$9.882** — calculado sobre el tramo correspondiente a $1.200.000 de remuneración imponible
 6. Sueldo líquido: $1.200.000 menos los descuentos anteriores
 
 Para el cálculo completo con todas las líneas, usa la guía de [liquidación de sueldo](/posts/liquidacion-de-sueldo/) o la calculadora de sueldo líquido.

@@ -42,7 +42,7 @@ articleLead:
 
 > **Información vigente al 2026-05-03.** Las tasas de contribuciones, los montos de exención y las fechas exactas de pago se actualizan periódicamente. Verifica los valores vigentes en el [SII](https://www.sii.cl/) y la [TGR](https://www.tgr.cl/) antes de realizar cualquier pago o trámite.
 
-Si tienes una propiedad en Chile, pagas contribuciones de bienes raíces — sea que la habites, la arriendas o la tengas sin usar. Es un impuesto territorial anual que se cobra en cuatro cuotas. Muchos propietarios de primera vivienda tienen exención total o parcial sin saberlo.
+Si tienes una propiedad en Chile, puede corresponder el pago de contribuciones de bienes raíces. Es un impuesto territorial anual que se cobra hasta en cuatro cuotas, aunque muchos propietarios de primera vivienda tienen exención total o parcial sin saberlo — conviene verificar en el SII antes de asumir que el cobro aplica.
 
 ## ¿Qué son las contribuciones de bienes raíces?
 
@@ -50,25 +50,15 @@ Las contribuciones de bienes raíces son el impuesto territorial que grava la pr
 
 ## ¿Cómo se calcula el monto?
 
-La fórmula es:
+La base de cálculo es el **avalúo fiscal** de tu propiedad — un valor oficial fijado por el SII, generalmente inferior al precio de mercado. La tasa exacta que aplica depende de la clasificación de tu propiedad y del régimen tributario correspondiente.
 
-```
-Contribución anual = Avalúo fiscal × Tasa legal
-Contribución por cuota = Contribución anual ÷ 4
-```
+La tasa vigente se consulta directamente en el [SII](https://www.sii.cl/), donde también puedes verificar el avalúo fiscal y el monto de contribuciones determinado para tu propiedad.
 
-Las tasas legales vigentes son (verificar en SII ante posibles actualizaciones):
-
-- **Bienes raíces no agrícolas**: tasa general (~1,2% del avalúo fiscal).
-- **DFL-2 — vivienda económica**: tasa reducida (~1,0%), sujeta a condiciones de superficie y uso habitacional.
-
-**Ejemplo orientativo**: una propiedad con avalúo fiscal de $80.000.000 y tasa general pagaría aproximadamente $960.000 anuales, en 4 cuotas de $240.000 cada una.
-
-> Los valores exactos de tasas deben verificarse en el [SII](https://www.sii.cl/) antes de publicar y calcular.
+**Para conocer el monto que te corresponde**: si ya recibiste un aviso de pago de la TGR, ese es el monto oficial para el período. Si no has recibido aviso o quieres verificar el avalúo, ingresa al portal del [SII](https://www.sii.cl/).
 
 ## Cuotas y calendario de pago
 
-Las contribuciones se pagan en **4 cuotas anuales**, con vencimientos aproximados en abril, junio, septiembre y noviembre. Las fechas exactas de cada año se publican en el portal de la [TGR](https://www.tgr.cl/) — verifica el calendario vigente para 2026 antes del primer vencimiento.
+Las contribuciones se pagan en **4 cuotas anuales**, con vencimientos el **30 de abril**, **30 de junio**, **30 de septiembre** y **30 de noviembre**. Las fechas exactas de cada año se publican en el portal de la [TGR](https://www.tgr.cl/) — verifica el calendario vigente para 2026 antes del primer vencimiento.
 
 **Canales de pago habilitados:**
 
@@ -89,7 +79,7 @@ Propietarios de 65 años o más con propiedad de avalúo bajo cierto umbral pued
 
 ### DFL-2 — Vivienda económica
 
-Las propiedades acogidas al DFL-2 de 1959 (vivienda económica, con límite de superficie) acceden a la tasa reducida y a algunas exenciones. El beneficio tiene restricciones de uso (habitacional) y de número de propiedades por beneficiario.
+Las propiedades acogidas al régimen de vivienda económica (Decreto 1101) acceden a beneficios tributarios, incluyendo tasas diferenciadas. El beneficio tiene restricciones: **superficie edificada máxima de 140 m²**, uso habitacional, restringido a **personas naturales** y a un máximo de **dos propiedades** por beneficiario. Verifica si tu propiedad está acogida a este régimen en el [SII](https://www.sii.cl/).
 
 ## ¿Qué pasa si no pagas?
 
@@ -101,11 +91,11 @@ Si crees que el SII sobrevaluó tu propiedad, tienes derecho a reclamar el aval�
 
 ## Contribuciones y F22: cuándo son gasto deducible
 
-Las contribuciones de bienes raíces son **gasto tributable deducible en el F22 únicamente para propietarios que arriendan el bien raíz**. En ese caso, el monto pagado en contribuciones puede rebajarse como gasto de la renta de arrendamiento.
+Para propietarios que arriendan el bien raíz, las contribuciones pueden ser consideradas gasto tributario al declarar la renta de arrendamiento en el F22. Las condiciones exactas dependen de las instrucciones SII vigentes para el año tributario correspondiente — verifica en el [SII](https://www.sii.cl/) o con un contador la aplicación específica a tu caso.
 
-Si habitas tu propiedad como vivienda principal, **no puedes deducir las contribuciones como gasto** en tu F22.
+Si habitas tu propiedad como vivienda principal, en general no corresponde deducir las contribuciones como gasto en el F22. Consulta las instrucciones del SII para tu situación.
 
-Para el detalle de cómo declarar esta deducción, revisa la [guía de Operación Renta F22](/posts/operacion-renta-f22-checklist/).
+Para el proceso de Operación Renta, revisa la [guía del F22](/posts/operacion-renta-f22-checklist/).
 
 ---
 

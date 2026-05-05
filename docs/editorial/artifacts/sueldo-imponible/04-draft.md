@@ -65,19 +65,22 @@ Cada descuento previsional se aplica como un porcentaje de la remuneración impo
 - **Cotización de salud**: 7% Fonasa o el plan isapre pactado.
 - **AFC (Seguro de Cesantía)**: 0,6% el trabajador; 2,4% el empleador.
 
-**Tope máximo imponible**: las cotizaciones previsionales solo se aplican hasta el límite legal de **[TOPE_UF_TODO:SOURCE] UF mensuales** (valor referencial: ~87,1 UF; verificar valor vigente en la [Superintendencia de Pensiones](https://www.spensiones.cl/)). Lo que ganas por sobre ese tope no cotiza — lo que también significa que no genera pensión por esa porción.
+**Tope máximo imponible**: las cotizaciones previsionales (AFP y salud) se aplican solo hasta **90,0 UF mensuales**; el Seguro de Cesantía (AFC) tiene un tope diferente de **135,2 UF mensuales**. Lo que ganas por sobre el tope no cotiza — lo que también significa que no genera pensión por esa porción. Verifica los valores vigentes en la [Superintendencia de Pensiones](https://www.spensiones.cl/).
 
 ## Cómo determina el Impuesto de Segunda Categoría
 
 El ISC es progresivo: se aplica por tramos sobre la remuneración imponible mensual. Solo el tramo que supera cada umbral paga la tasa correspondiente — no todo el ingreso paga la tasa más alta.
 
-Los tramos vigentes para el año tributario [AÑO_TODO:SOURCE] son [TODO:SOURCE C5 — verificar tabla en SII]. La estructura general es 7 tramos, desde 0% para ingresos bajos hasta 40% para el tramo más alto, expresados en UTM.
-
-> La tabla exacta de tramos, tasas y montos en UTM debe obtenerse desde el [SII](https://www.sii.cl/) antes de publicar este artículo.
+La estructura vigente tiene 7 tramos expresados en UTM, desde 0% para ingresos bajos hasta 40% para el tramo más alto. La tabla completa y actualizada se encuentra en el [SII](https://www.sii.cl/).
 
 ## APV y reducción de la base imponible
 
-El Ahorro Previsional Voluntario (APV) en Modalidad A reduce directamente la base afecta al ISC, hasta un tope legal de [TOPE_APV_TODO:SOURCE] UTM anuales (verificar con SII). El efecto es que el trabajador puede bajar al tramo marginal inferior, reduciendo la retención mensual de ISC.
+El Ahorro Previsional Voluntario (APV) puede reducir tu carga tributaria según la modalidad elegida:
+
+- **Modalidad A**: genera un beneficio tributario directo sobre el monto cotizado, de acuerdo con el artículo 42 bis de la LIR.
+- **Modalidad B**: reduce la base imponible del ISC, con topes distintos establecidos en el mismo artículo.
+
+Los topes se expresan en UF — verifica los montos exactos vigentes con tu AFP o en el [SII](https://www.sii.cl/) (instrucciones del F22 del año tributario correspondiente).
 
 Esto no es asesoría tributaria: el resultado exacto depende de tu base imponible, tu tramo y el monto cotizado. Consulta con tu AFP o institución APV los efectos específicos de tu cotización.
 
@@ -86,13 +89,11 @@ Esto no es asesoría tributaria: el resultado exacto depende de tu base imponibl
 Para un trabajador con sueldo bruto de $1.200.000 y sin componentes no imponibles relevantes:
 
 1. Remuneración imponible = $1.200.000 (toda imponible en este caso).
-2. AFP (~10,5% + comisión): ~$126.000 + comisión de tu AFP.
+2. Cotización obligatoria AFP (~10,5%): ~$126.000. La comisión AFP es adicional y varía por institución.
 3. Salud (7%): $84.000.
 4. AFC (0,6%): $7.200.
-5. ISC: depende del tramo — verificar tabla SII vigente [TODO:SOURCE C5].
+5. ISC (tabla SII AT 2026): **$9.882** — calculado sobre el tramo correspondiente a $1.200.000 de remuneración imponible.
 6. Sueldo líquido estimado: $1.200.000 menos los descuentos anteriores.
-
-> TODO:SOURCE (MathAuditAgent): completar el cálculo ISC del ejemplo con los tramos verificados.
 
 Para una [liquidación de sueldo completa con todas las líneas](/posts/liquidacion-de-sueldo/), revisa la guía dedicada.
 
