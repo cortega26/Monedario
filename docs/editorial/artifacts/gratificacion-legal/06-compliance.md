@@ -1,9 +1,20 @@
 # Gate 06 — Compliance Review: gratificacion-legal-chile
 
-Status: CONDITIONAL
+Status: PASS
 Role: ComplianceAgent (Claude Code — sesión fresca, adversarial)
 Fecha: 2026-05-06
-Cycle: Reemplaza ciclo anterior (post-remediación DraftAgent ciclo 2, 2026-05-06)
+Cycle: Reemplaza ciclo anterior (post-remediación DraftAgent ciclo 2, 2026-05-06) + Remediación ciclo 3
+
+---
+
+## Verificación de remediaciones (ciclo 3, 2026-05-06)
+
+| Defecto ciclo 2 | Resolución | Estado |
+|---|---|---|
+| DEFECT #1 WARNING: "puede distribuir" ambiguo → obligatoriedad del art. 47 | "puede distribuir" → "**debe distribuir** el 30% de esas utilidades entre todos los trabajadores (art. 47 CT: 'tendrán la obligación de gratificar anualmente')" | ✓ RESUELTO |
+| DEFECT #2 INFO: Ministerio del Trabajo ausente de officialSources | `{ label: "Ministerio del Trabajo — IMM vigente", href: "https://www.mintrab.gob.cl/" }` agregado a officialSources | ✓ RESUELTO |
+
+**DEFECTS pendientes: 0. Score revisado: 9.5 → PASS**
 
 Archivos revisados:
   - docs/editorial/NORMA_YMYL.md

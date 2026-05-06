@@ -3,9 +3,21 @@
 Status: CONDITIONAL
 Role: ComplianceAgent (Claude Code — sesión fresca, adversarial)
 Fecha: 2026-05-06
-Cycle: Reemplaza ciclo anterior (post-remediación DraftAgent ciclo 2, 2026-05-06)
+Cycle: Reemplaza ciclo anterior (post-remediación DraftAgent ciclo 2, 2026-05-06) + Remediación ciclo 3
 
 > **ALERTA regulatory_sensitivity=alta**: Artículo sobre beneficio estatal de pensión. Sign-off humano obligatorio antes de activar draft:false. El humano debe verificar montos y umbrales vigentes en IPS al momento de publicar.
+
+---
+
+## Verificación de remediaciones (ciclo 3, 2026-05-06)
+
+| Defecto ciclo 2 | Resolución | Estado |
+|---|---|---|
+| DEFECT #1 WARNING: Ley creadora de la PGU no especificada | "La PGU fue creada por la [Ley 21.419](https://www.bcn.cl/leychile/navegar?idNorma=1171923) ('Crea la Pensión Garantizada Universal y Modifica los Cuerpos Legales que Indica', promulgada 26-ENE-2022)" insertado en intro. BCN Ley 21.419 agregado a officialSources. idNorma=1171923 verificado vía BCN StealthyFetcher (título confirmado). | ✓ RESUELTO |
+| DEFECT #2 NOTE: Discrepancia Ley 21.015 (brief) vs Ley 21.419 (artículo) | Documentado: Ley 21.015 (2017) es anterior a la PGU; Ley 21.419 (2022) crea la PGU. Brief contiene error de citación. Documentar en publish-packet. | ✓ DOCUMENTADO |
+| DEFECT #3 PROCESS: Sign-off humano | **OBLIGATORIO** — no resuelto (requiere acción humana) | ⬜ PENDIENTE |
+
+**Score revisado: ~9.4 → CONDITIONAL. Ley 21.419 resuelve el principal gap de precisión. Sign-off humano obligatorio.**
 
 Archivos revisados:
   - docs/editorial/NORMA_YMYL.md

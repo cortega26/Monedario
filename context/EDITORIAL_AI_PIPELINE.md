@@ -88,6 +88,8 @@ Publication is allowed only when all checks are satisfied:
   - each critical number has a source citation; or
   - in draft-only state, unresolved values are marked `TODO:SOURCE`;
   - final publish packet cannot contain unresolved `TODO:SOURCE`.
+- No VERIFIED item from `05-math-audit.md` appears as a deferral or omission in the published article. Each VERIFIED item must be present in the blog file with its source cited.
+- No unjustified deferral in the blog file. Every "consulta el SII / verifica en IPS" construction in the published article must be a legitimate deferral per `docs/editorial/NORMA_YMYL.md §2.4` (source not publicly accessible, or intrinsically case-dependent answer).
 - Separation of duties proof is present: `DraftAgent`, `MathAuditAgent`, and `ComplianceAgent` are different agent instances; if same-family auditors were used (e.g. Claude Code as ComplianceAgent after a Claude draft), the fresh-session requirement must be documented in the publish packet.
 - If `requires_calculation=true`, `05-math-audit.md` is mandatory and must end with pass/fail verdict.
 - If `regulatory_sensitivity=alta`, `06-compliance.md` plus explicit `HumanEditor` sign-off is mandatory.
@@ -121,6 +123,8 @@ Policy:
 - Every YMYL output must include explicit cut-off date (`fecha de corte`) in visible article content.
 - Dossier must include source list with retrieval date and confidence notes.
 - Benchmark observations may inform structure or packaging, but never replace official source traceability.
+- **Deferral prohibition:** Deferral ("consulta el SII", "verifica en IPS", etc.) is prohibited when the official source is publicly accessible online and the value is concrete. A claim deferred under these conditions is treated as an unresolved `TODO:SOURCE` and blocks publication. See `docs/editorial/NORMA_YMYL.md §2.4` for the full deferral policy and the conditions under which deferral is legitimate.
+- **VERIFIED carry-forward:** Every item with status `VERIFIED` in `05-math-audit.md` must be present in the published article with its source cited. The publish gate check (§4) must confirm this before sign-off.
 
 ## 7. Integration with NORMA_YMYL
 
@@ -159,6 +163,38 @@ These playbooks are the guardrails for each tool. When you invoke a tool for a p
 > - **Claims Catalogue** — table: Claim | Source URL | Status (VERIFIED / TODO:SOURCE) | Notes
 > - **Benchmark Observations** — clearly marked as non-authoritative strategic input
 > - **Open Research Questions** — each TODO:SOURCE item with the suggested official path for resolution
+
+**Fetch requirement (mandatory):** For each source listed in the brief's §Fuentes section, fetch the URL directly — do not cite from memory or training data. Paste the literal text of the applicable article, figure, or legal clause into the Claims Catalogue. If a URL returns no usable result or requires authentication, document it as `TODO:SOURCE: <URL> — fetch result: <reason>` and do not attempt to fill it from memory.
+
+---
+
+### Stage 04 — `DraftAgent` (Claude)
+
+**Input files to provide:** `01-artifact.md`, `02-dossier.md` (or `02-research.md`), `03-outline.md`
+For remediation runs, also provide: `05-math-audit.md`
+
+**Prompt:**
+
+> You are DraftAgent in a YMYL editorial pipeline. Your task is to write (or remediate) the article following the outline and research dossier exactly.
+>
+> Rules:
+>
+> **1. VERIFIED carry-forward (mandatory for remediation runs):**
+> Read `05-math-audit.md` before writing. Every item with status `VERIFIED` must appear in the article with its source cited. No VERIFIED item may be deferred, softened, or omitted. Treat omitting a VERIFIED value as a pipeline error equivalent to introducing a new TODO:SOURCE.
+>
+> **2. Deferral policy (applies to all runs):**
+> Deferral to an official source ("consulta el SII", "verifica en IPS") is only valid when:
+> (a) The official source is not publicly accessible (paywalled, login-required, or not digitally available), OR
+> (b) The answer is intrinsically case-dependent and no general verified answer exists.
+> Before deferring any claim: (1) attempt to fetch the source URL, (2) if the fetch fails, document it as `TODO:SOURCE: <URL> — <reason>` in the artifact (not in the blog file), (3) never defer when the value is fetchable and concrete.
+>
+> **3. Legal citation standard:**
+> For any legal obligation, quote the operative clause literally first, then gloss. Never paraphrase without first quoting. Cite the specific article number and instrument (e.g., "art. 47 CT" not "el Código del Trabajo").
+>
+> **4. No blog file can contain TODO:SOURCE markers or unjustified deferrals.**
+> These belong in the draft artifact only. The blog file must contain the resolved value or a legitimate deferral per rule 2.
+>
+> Output: `04-draft.md` following `CONTRACT.EDITORIAL.DRAFT`, and the corresponding blog file in `src/data/blog/`.
 
 ---
 

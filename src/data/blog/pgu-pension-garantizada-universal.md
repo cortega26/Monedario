@@ -29,6 +29,8 @@ articleLead:
       href: "https://www.ips.gob.cl/"
     - label: "ChileAtiende — PGU"
       href: "https://www.chileatiende.gob.cl/"
+    - label: "BCN — Ley 21.419 (crea la PGU)"
+      href: "https://www.bcn.cl/leychile/navegar?idNorma=1171923"
   covers:
     - "Quiénes cumplen los requisitos de edad, residencia e ingresos."
     - "El monto vigente y cuándo se reajusta."
@@ -46,7 +48,7 @@ Llegaste a los 65 años y no sabes si te corresponde la PGU, cuánto recibirías
 
 ## ¿Qué es la PGU?
 
-La Pensión Garantizada Universal (PGU) es una pensión estatal mensual que el Estado de Chile paga a adultos mayores que cumplan los requisitos legales. La PGU fue establecida por ley y está administrada por el IPS — consulta el texto legal vigente en [BCN](https://www.bcn.cl/). Su objetivo es garantizar un ingreso mínimo en la vejez, independientemente de si la persona cotizó en el sistema AFP o no.
+La Pensión Garantizada Universal (PGU) es una pensión estatal mensual que el Estado de Chile paga a adultos mayores que cumplan los requisitos legales. La PGU fue creada por la [Ley 21.419](https://www.bcn.cl/leychile/navegar?idNorma=1171923) ("Crea la Pensión Garantizada Universal y Modifica los Cuerpos Legales que Indica", promulgada 26-ENE-2022) y está administrada por el IPS. Su objetivo es garantizar un ingreso mínimo en la vejez, independientemente de si la persona cotizó en el sistema AFP o no.
 
 El monto vigente al 2026-05-03 debe verificarse directamente en el [IPS](https://www.ips.gob.cl/) — se reajusta por decreto y puede haber cambiado desde la fecha de corte de este artículo.
 

@@ -33,7 +33,8 @@ Un articulo se considera **>= 9.5/10** si cumple **TODOS** los requisitos MUST y
 3. **Vigencia explicita**  
    Cada regla debe indicar su **marco temporal**: "vigente a 2026-03-02" o "desde/hasta".
 4. **Fuentes oficiales minimas**  
-   Para cada regla critica YMYL: al menos **1 fuente oficial** (SII, SUSESO, ChileAtiende, BCN, SPensiones, CMF, etc.).
+   Para cada regla critica YMYL: al menos **1 fuente oficial** (SII, SUSESO, ChileAtiende, BCN, SPensiones, CMF, etc.).  
+   Si la fuente oficial es publica y accesible en web, el agente debe **fetchearla** y citar el texto literal o valor concreto. No se admite deferral de informacion fetcheable — es un defecto de pipeline equivalente a un `TODO:SOURCE` no resuelto. Ver §2.4 para la politica completa de deferral.
 5. **Excepciones relevantes**  
    Si existen excepciones comunes o condiciones, se enumeran (aunque sea breve).
 6. **No confundir**: aprobacion, vigencia, implementacion  
@@ -67,6 +68,7 @@ La explicacion puede ser profunda, pero **no puede sustituir** la regla.
 - "Es un criterio relevante..." sin decir el efecto.
 - "Primero hay que entender..." antes de dar el numero/regla.
 - "Generalmente..." si existe norma especifica accesible.
+- "Consulta el SII / verifica en IPS / pregunta a un contador" cuando el valor es concreto, publico y fetcheable en linea (deferral injustificado — ver §2.4).
 
 ### 2.3 Plantilla obligatoria "Respuesta Ancla"
 
@@ -76,6 +78,39 @@ Insertar al inicio de la seccion clave:
 > **Excepcion(es) comun(es):** {lista breve}.  
 > **Vigencia:** {fecha/marco}.  
 > **Fuente(s):** {link(s) oficial(es)}.
+
+---
+
+### 2.4 Politica de deferral
+
+El deferral ("consulta el SII", "verifica en IPS", "pregunta a un contador") es valido **unicamente** cuando se cumple al menos una de estas condiciones:
+
+1. **Fuente no publica:** la fuente oficial existe pero no es accesible en web (requiere login, esta en papel, o es de pago).
+2. **Respuesta intrinsecamente individual:** la respuesta depende de la situacion especifica del contribuyente (regimen tributario particular, clausula contractual, casuistica jurisprudencial) y no existe una respuesta general verificable.
+
+**Cuando ninguna de estas condiciones aplica, el deferral es un defecto de pipeline.** El agente debe:
+
+1. Fetchear la URL de la fuente oficial.
+2. Extraer el valor o texto literal relevante.
+3. Citarlo con URL + fecha de recuperacion.
+
+**Antes de deferir, documentar obligatoriamente:**
+
+```
+TODO:SOURCE: <URL intentada> — resultado: <razon por la que el valor no es publicable>
+```
+
+Este marcador debe aparecer en el artifact (04-draft.md), no en el blog file. El blog file publicado no puede contener deferrals de informacion fetcheable ni marcadores TODO:SOURCE.
+
+**Deferral legitimo ejemplos:**
+- Deducibilidad de gastos para un contribuyente con regimen mixto (depende del caso — no hay respuesta general)
+- Condiciones de un beneficio que requiere inscripcion presencial (fuente no digital)
+
+**Deferral ilegitimo ejemplos:**
+- Tasas de contribuciones bienes raices (tabla publica en SII)
+- Tramos ISC (tabla publica en SII)
+- Topes APV en UF (art. 42 bis LIR, texto en BCN)
+- Ley creadora de un beneficio (BCN tiene todos los textos legales chilenos)
 
 ---
 
@@ -161,6 +196,8 @@ Toda actualizacion de `updatedDate` requiere **registro** (1 linea) en backlog/r
 - [ ] Cada regla critica tiene **fuente oficial**.
 - [ ] Se indica **vigencia** o marco temporal.
 - [ ] No hay contradicciones entre secciones/FAQ.
+- [ ] Todo valor con status `VERIFIED` en el math audit (05) esta presente en el articulo con su fuente citada.
+- [ ] Todo deferral esta justificado segun §2.4 (fuente no publica o respuesta intrinsecamente individual). Los deferrals injustificados estan resueltos.
 
 ### 6.3 Reformas/calendario (si aplica)
 

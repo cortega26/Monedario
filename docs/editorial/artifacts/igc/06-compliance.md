@@ -3,9 +3,21 @@
 Status: CONDITIONAL
 Role: ComplianceAgent (Claude Code — sesión fresca, adversarial)
 Fecha: 2026-05-06
-Cycle: Reemplaza ciclo anterior (post-remediación DraftAgent ciclo 2, 2026-05-06)
+Cycle: Reemplaza ciclo anterior (post-remediación DraftAgent ciclo 2, 2026-05-06) + Remediación ciclo 3
 
 > **ALERTA regulatory_sensitivity=alta**: Artículo sobre impuesto de renta con implicancias directas en el F22 anual del contribuyente. Claims incorrectos sobre tramos, créditos o tasas pueden llevar al contribuyente a calcular mal su impuesto o esperar una devolución que no existe. Sign-off humano obligatorio antes de activar draft:false.
+
+---
+
+## Verificación de remediaciones (ciclo 3, 2026-05-06)
+
+| Defecto ciclo 2 | Resolución | Estado |
+|---|---|---|
+| DEFECT #1 WARNING: APV topes 50 UF/600 UF no cuantificados | "hasta **50 UF mensuales o 600 UF anuales** ([art. 42 bis LIR](https://www.bcn.cl/leychile/navegar?idNorma=6368))" insertado en sección Modalidad A; mismo tope 600 UF confirmado para Modalidad B. | ✓ RESUELTO |
+| DEFECT #2 NOTE: Contribuciones deducción sin artículo LIR | **NO RESUELTO** — deferral al F22/contador aceptable como política editorial. | ⚠ PENDIENTE (decisión editorial) |
+| DEFECT #3 PROCESS: Sign-off humano | **OBLIGATORIO** — no resuelto (requiere acción humana) | ⬜ PENDIENTE |
+
+**Score revisado: ~9.275 → CONDITIONAL. DEFECT #1 resuelto. Sign-off humano obligatorio.**
 
 Archivos revisados:
   - docs/editorial/NORMA_YMYL.md

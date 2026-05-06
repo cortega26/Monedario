@@ -29,6 +29,8 @@ articleLead:
       href: "https://www.sii.cl/"
     - label: "TGR — Portal de pago"
       href: "https://www.tgr.cl/"
+    - label: "BCN — DL 3.063 (Ley de Rentas Municipales)"
+      href: "https://www.bcn.cl/leychile/navegar?idNorma=7054"
   covers:
     - "Qué es el avalúo fiscal y cómo consultar el monto de tus contribuciones en el SII."
     - "El calendario de 4 cuotas anuales y los canales de pago."
@@ -46,7 +48,7 @@ Si tienes una propiedad en Chile, puede corresponder el pago de contribuciones d
 
 ## ¿Qué son las contribuciones de bienes raíces?
 
-Las contribuciones de bienes raíces son el impuesto territorial que grava la propiedad inmueble en Chile. Lo administra el SII (determina el avalúo y las tasas) y lo recauda la TGR (Tesorería General de la República). No se cobra sobre el valor de mercado de la propiedad, sino sobre el **avalúo fiscal** — un valor oficial fijado por el SII, generalmente inferior al precio de mercado.
+Las contribuciones de bienes raíces son el impuesto territorial que grava la propiedad inmueble en Chile, establecido por la [Ley de Rentas Municipales DL 3.063](https://www.bcn.cl/leychile/navegar?idNorma=7054) (29-DIC-1979, Ministerio del Interior). Lo administra el SII (determina el avalúo y las tasas) y lo recauda la TGR (Tesorería General de la República). No se cobra sobre el valor de mercado de la propiedad, sino sobre el **avalúo fiscal** — un valor oficial fijado por el SII, generalmente inferior al precio de mercado.
 
 ## ¿Cómo se calcula el monto?
 

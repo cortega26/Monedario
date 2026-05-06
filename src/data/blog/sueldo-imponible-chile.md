@@ -103,10 +103,10 @@ La estructura vigente tiene 7 tramos expresados en UTM, desde 0% para ingresos b
 
 El Ahorro Previsional Voluntario (APV) puede reducir tu carga tributaria según la modalidad elegida:
 
-- **Modalidad A**: genera un beneficio tributario directo sobre el monto cotizado, de acuerdo con el [artículo 42 bis de la LIR](https://www.bcn.cl/leychile/navegar?idNorma=6368).
-- **Modalidad B**: reduce la base imponible del ISC, con topes distintos establecidos en el mismo artículo.
+- **Modalidad A**: genera un crédito tributario directo sobre el monto cotizado, hasta **50 UF mensuales o 600 UF anuales** ([art. 42 bis LIR](https://www.bcn.cl/leychile/navegar?idNorma=6368)).
+- **Modalidad B**: reduce la base imponible del ISC, con el mismo tope de 600 UF anuales establecido en el mismo artículo.
 
-Los topes se expresan en UF — verifica los montos exactos vigentes con tu AFP o en el [SII](https://www.sii.cl/) (instrucciones del F22 del año tributario correspondiente).
+Los topes se expresan en UF — verifica los valores vigentes en el [SII](https://www.sii.cl/) (instrucciones del F22 del año tributario correspondiente).
 
 El resultado exacto depende de tu base imponible, tu tramo y el monto cotizado en APV. Esto no es asesoría tributaria: consulta con tu AFP o institución APV los efectos específicos de tu situación.
 

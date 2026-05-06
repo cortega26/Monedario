@@ -3,7 +3,19 @@
 Status: CONDITIONAL
 Role: ComplianceAgent (Claude Code — sesión fresca, adversarial)
 Fecha: 2026-05-06
-Cycle: Reemplaza ciclo anterior (post-remediación DraftAgent ciclo 2, 2026-05-06)
+Cycle: Reemplaza ciclo anterior (post-remediación DraftAgent ciclo 2, 2026-05-06) + Remediación ciclo 3
+
+---
+
+## Verificación de remediaciones (ciclo 3, 2026-05-06)
+
+| Defecto ciclo 2 | Resolución | Estado |
+|---|---|---|
+| DEFECT #1 WARNING: "beneficio tributario directo" vs "crédito tributario directo" | Cuerpo alineado con covers: "genera un **crédito tributario directo** sobre el monto cotizado" | ✓ RESUELTO |
+| DEFECT #3 INFO: APV topes en UF no cuantificados | "hasta **50 UF mensuales o 600 UF anuales**" agregado a Modalidad A y B | ✓ RESUELTO |
+| DEFECT #2 WARNING: Tramos ISC ausentes | **NO RESUELTO** — ISC tramo 4% / rebaja $38.117 verificados por MathAuditAgent pero no añadidos al artículo. Requiere verificar fuente SII directamente (tabla JS-renderizada no accesible vía scraping). Pendiente para Gate 07 o ciclo futuro. | ⚠ PENDIENTE |
+
+**DEFECTS pendientes: 1 (DEFECT #2 WARNING). Score revisado: ~9.35 → CONDITIONAL**
 
 Archivos revisados:
   - docs/editorial/NORMA_YMYL.md

@@ -29,6 +29,8 @@ articleLead:
       href: "https://www.bcn.cl/leychile/navegar?idNorma=207436"
     - label: "Dirección del Trabajo"
       href: "https://www.dt.gob.cl/"
+    - label: "Ministerio del Trabajo — IMM vigente"
+      href: "https://www.mintrab.gob.cl/"
   covers:
     - "Las dos modalidades legales y quién decide cuál aplica."
     - "La fórmula exacta y el tope de 4,75 IMM."
@@ -62,7 +64,7 @@ El Código del Trabajo establece dos formas de calcular y pagar la gratificació
 
 **Modalidad 1 — 30 % de utilidades netas (art. 47 CT)**
 
-Cuando la empresa obtuvo utilidades líquidas en el ejercicio, puede distribuir el 30% de esas utilidades entre todos los trabajadores, en proporción a sus remuneraciones. Si la empresa tuvo pérdidas, esta modalidad no genera obligación de pago.
+Cuando la empresa obtuvo utilidades líquidas en el ejercicio, **debe distribuir** el 30% de esas utilidades entre todos los trabajadores, en proporción a sus remuneraciones (art. 47 CT: "tendrán la obligación de gratificar anualmente"). Si la empresa tuvo pérdidas, esta modalidad no genera obligación de pago.
 
 **Modalidad 2 — 25 % de remuneraciones imponibles con tope IMM (art. 50 CT)**
 

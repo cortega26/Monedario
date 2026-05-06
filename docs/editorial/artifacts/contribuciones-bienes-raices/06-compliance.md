@@ -3,7 +3,18 @@
 Status: CONDITIONAL
 Role: ComplianceAgent (Claude Code — sesión fresca, adversarial)
 Fecha: 2026-05-06
-Cycle: Reemplaza ciclo anterior (post-remediación DraftAgent ciclo 2, 2026-05-06)
+Cycle: Reemplaza ciclo anterior (post-remediación DraftAgent ciclo 2, 2026-05-06) + Remediación ciclo 3
+
+---
+
+## Verificación de remediaciones (ciclo 3, 2026-05-06)
+
+| Defecto ciclo 2 | Resolución | Estado |
+|---|---|---|
+| DEFECT #1 WARNING: DL 3.063 no citado | Sección "¿Qué son las contribuciones?" actualizada: "establecido por la [Ley de Rentas Municipales DL 3.063](https://www.bcn.cl/leychile/navegar?idNorma=7054) (29-DIC-1979, Ministerio del Interior)". BCN agregado a officialSources. idNorma=7054 verificado vía BCN. | ✓ RESUELTO |
+| DEFECT #2 INFO: Sin tasa concreta (limitación estructural) | **NO RESUELTO** — Limitación editorial: tasas SII no verificables vía scraping (JS API). Decisión editorial: enfoque procedimental. Score de respuesta ancla permanece 8.5. | ⚠ PENDIENTE (decisión editorial Gate 07) |
+
+**Score revisado: ~9.0 → CONDITIONAL. DEFECT #1 resuelto; DEFECT #2 pendiente por decisión editorial.**
 
 Archivos revisados:
   - docs/editorial/NORMA_YMYL.md
