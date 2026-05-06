@@ -1,5 +1,4 @@
 import type { Props } from "astro";
-import IconGitHub from "@/assets/icons/IconGitHub.svg";
 import IconBrandX from "@/assets/icons/IconBrandX.svg";
 import IconLinkedin from "@/assets/icons/IconLinkedin.svg";
 import IconWhatsapp from "@/assets/icons/IconWhatsapp.svg";
@@ -15,12 +14,6 @@ interface Social {
 }
 
 export const SOCIALS: Social[] = [
-  {
-    name: "GitHub",
-    href: "https://github.com/cortega26/Monedario",
-    linkTitle: `${SITE.title} en GitHub`,
-    icon: IconGitHub,
-  },
   {
     name: "X",
     href: "https://x.com/monedario_cl",
