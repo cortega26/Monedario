@@ -105,6 +105,7 @@ function buildEconomicDatasets(registry, previousSnapshot) {
   const economicMappings = [
     ["economic.uf.value", economicSnapshot.uf],
     ["economic.utm.value", economicSnapshot.utm],
+    ["economic.uta.value", economicSnapshot.uta],
     ["economic.ipc.monthly_variation", economicSnapshot.ipc],
     ["economic.afc.monthly_taxable_cap_uf", economicSnapshot.afcTopes?.monthlyTaxableCapUf],
     [

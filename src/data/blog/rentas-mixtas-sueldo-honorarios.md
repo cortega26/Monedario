@@ -50,6 +50,15 @@ faqs:
     a: "La retención del 15,25% que el pagador descuenta al momento de emitir cada boleta actúa como pago provisional mensual (PPM) para efectos del F22. Esa retención acumulada durante el año se descuenta del impuesto anual final."
   - q: "¿Puedo tener sueldo, boletas y aun así quedar exento del Global Complementario?"
     a: "Sí, si tu renta total anual (sueldo bruto + honorarios brutos) no supera el tramo exento del Global Complementario (13,5 UTA anuales para AT 2026, aproximadamente $11.322.018 anuales), no pagas impuesto adicional. Pero igual debes declarar."
+reviewPolicy:
+  cadenceLabel: monthly
+  maxDays: 30
+  dataTriggers: []
+  derivationFactors:
+    - category:impuestos
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 Si en 2025 tuviste sueldo _y_ emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas más— para que llegues al F22 sin sorpresas.

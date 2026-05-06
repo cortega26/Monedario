@@ -33,6 +33,13 @@ articleLead:
     - "No compara tasas de interés entre bancos ni productos específicos."
     - "No reemplaza asesoría financiera personalizada."
     - "Las características operativas de cada instrumento pueden cambiar; verifica directamente con tu banco."
+reviewPolicy:
+  cadenceLabel: quarterly
+  maxDays: 60
+  dataTriggers: []
+  derivationFactors:
+    - validAsOf
+  computedAt: '2026-05-06'
 ---
 
 > **Información vigente al 2026-05-03.** Ante cambios normativos o en los productos de ahorro disponibles, verifica directamente con tu entidad financiera o en las fuentes oficiales referenciadas en este artículo.

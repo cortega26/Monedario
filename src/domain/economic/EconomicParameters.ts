@@ -1,8 +1,9 @@
-export type EconomicIndicatorKey = "uf" | "utm" | "ipc" | "tmc" | "dolar";
+export type EconomicIndicatorKey = "uf" | "utm" | "uta" | "ipc" | "tmc" | "dolar";
 
 export interface EconomicIndicatorUpdatedAt {
   uf?: string;
   utm?: string;
+  uta?: string;
   ipc?: string;
   tmc?: string;
   dolar?: string;
@@ -11,6 +12,7 @@ export interface EconomicIndicatorUpdatedAt {
 export interface EconomicParameters {
   uf: number;
   utm: number;
+  uta?: number;
   ipc: number;
   tmc?: number;
   dolar?: number;

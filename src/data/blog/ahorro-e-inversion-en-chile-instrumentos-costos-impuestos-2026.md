@@ -18,6 +18,13 @@ lang: es-CL
 featured: false
 draft: false
 heroImage: /images/hero/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.avif
+reviewPolicy:
+  cadenceLabel: quarterly
+  maxDays: 45
+  dataTriggers: []
+  derivationFactors:
+    - category:ahorro-inversion
+  computedAt: '2026-05-06'
 ---
 
 Elegir en qué instrumento poner tu plata es una de las decisiones financieras más frecuentes —y más mal tomadas— por personas que ya tienen claro que quieren ahorrar, pero no saben bien cómo organizarlo. Esta guía te ayuda a comparar depósitos a plazo, fondos mutuos y ETFs según plazo, riesgo, costo real y tributación, sin rodeos y con foco en Chile 2026.

@@ -19,6 +19,13 @@ featured: true
 homepagePriority: 200
 draft: false
 heroImage: /images/hero/operacion-renta-f22-checklist.avif
+reviewPolicy:
+  cadenceLabel: monthly
+  maxDays: 30
+  dataTriggers: []
+  derivationFactors:
+    - category:impuestos
+  computedAt: '2026-05-06'
 ---
 
 Abres la propuesta del SII, ves los números y no sabes si aceptar o si algo está mal. Esta guía te ayuda a revisar cada punto antes de enviar el F22 y a reaccionar rápido si aparecen observaciones — para que no pierdas tiempo ni atrases tu devolución.

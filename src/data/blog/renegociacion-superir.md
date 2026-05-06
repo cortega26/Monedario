@@ -39,6 +39,14 @@ articleLead:
     - "No garantiza admisibilidad ni acuerdo con acreedores."
     - "No reemplaza asesoría legal en juicios ya notificados."
     - "No sirve para comparar créditos nuevos o medir una sola cuota aislada."
+reviewPolicy:
+  cadenceLabel: quarterly
+  maxDays: 60
+  dataTriggers: []
+  derivationFactors:
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 Tener una deuda atrasada no significa automáticamente que te convenga entrar a un procedimiento concursal. La renegociación Superir es útil cuando el problema ya es estructural: varias deudas vencidas, mora acumulada y una caja que no alcanza para seguir sosteniendo los pagos.

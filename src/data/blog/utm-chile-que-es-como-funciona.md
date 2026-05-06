@@ -58,6 +58,14 @@ faqs:
     a: "Sí. La Ley de Tránsito N°18.290 expresa muchas sanciones en UTM. El monto en pesos se calcula multiplicando las UTM de la multa por el valor de la UTM vigente al momento del pago."
   - q: "¿Cómo afecta el IPC a la UTM?"
     a: "La UTM se reajusta cada mes según la variación del IPC del mes anterior. Si el IPC fue positivo (inflación), la UTM sube; si fue negativo (deflación), puede bajar o mantenerse."
+reviewPolicy:
+  cadenceLabel: quarterly
+  maxDays: 60
+  dataTriggers: []
+  derivationFactors:
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 La **UTM (Unidad Tributaria Mensual)** es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Cambia el primer día hábil de cada mes.

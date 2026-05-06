@@ -46,6 +46,7 @@ async function fetchLiveParameters() {
   const payload = await response.json();
   const uf = Number(payload?.uf?.valor);
   const utm = Number(payload?.utm?.valor);
+  const uta = payload?.uta?.valor !== undefined ? Number(payload.uta.valor) : undefined;
   const ipc = Number(payload?.ipc?.valor ?? 0);
   const tmc =
     payload?.tmc?.valor !== undefined ? Number(payload.tmc.valor) : 3.49;
@@ -54,6 +55,7 @@ async function fetchLiveParameters() {
   const indicatorUpdatedAt = {
     uf: payload?.uf?.fecha ? toIsoDate(payload.uf.fecha) : undefined,
     utm: payload?.utm?.fecha ? toIsoDate(payload.utm.fecha) : undefined,
+    uta: payload?.uta?.fecha ? toIsoDate(payload.uta.fecha) : undefined,
     ipc: payload?.ipc?.fecha ? toIsoDate(payload.ipc.fecha) : undefined,
     tmc: payload?.tmc?.fecha ? toIsoDate(payload.tmc.fecha) : undefined,
     dolar: payload?.dolar?.fecha ? toIsoDate(payload.dolar.fecha) : undefined,
@@ -63,6 +65,7 @@ async function fetchLiveParameters() {
       payload?.fecha,
       indicatorUpdatedAt.uf,
       indicatorUpdatedAt.utm,
+      indicatorUpdatedAt.uta,
       indicatorUpdatedAt.ipc,
       indicatorUpdatedAt.tmc,
       indicatorUpdatedAt.dolar,
@@ -79,10 +82,14 @@ async function fetchLiveParameters() {
   if (dolar !== undefined) {
     assertFinitePositive(dolar, "Dolar");
   }
+  if (uta !== undefined) {
+    assertFinitePositive(uta, "UTA");
+  }
 
   return {
     uf,
     utm,
+    ...(uta !== undefined && { uta }),
     ipc,
     tmc,
     ...(dolar !== undefined && { dolar }),
@@ -100,6 +107,9 @@ async function fetchLiveParameters() {
       ...(indicatorUpdatedAt.tmc ? { tmc: indicatorUpdatedAt.tmc } : {}),
       ...(dolar !== undefined
         ? { dolar: indicatorUpdatedAt.dolar ?? lastUpdated }
+        : {}),
+      ...(uta !== undefined
+        ? { uta: indicatorUpdatedAt.uta ?? lastUpdated }
         : {}),
     },
     lastUpdated,

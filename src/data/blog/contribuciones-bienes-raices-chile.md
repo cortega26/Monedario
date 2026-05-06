@@ -40,6 +40,15 @@ articleLead:
     - "No es una tasadora de propiedades ni calcula avalúos de mercado."
     - "Las tasas y exenciones se actualizan; verifica los valores vigentes en el SII."
     - "No reemplaza asesoría tributaria específica para tu propiedad."
+reviewPolicy:
+  cadenceLabel: monthly
+  maxDays: 30
+  dataTriggers: []
+  derivationFactors:
+    - category:impuestos
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 > **Información vigente al 2026-05-03.** Las tasas de contribuciones, los montos de exención y las fechas exactas de pago se actualizan periódicamente. Verifica los valores vigentes en el [SII](https://www.sii.cl/) y la [TGR](https://www.tgr.cl/) antes de realizar cualquier pago o trámite.

@@ -48,6 +48,15 @@ faqs:
     a: "Revisa tu liquidación de sueldo para ese mes. Si el empleador declaró pero no pagó, está en mora con la AFP. Puedes verificarlo en el portal de tu AFP. Si tampoco declaró, tienes derecho a denunciarlo ante la Superintendencia de Pensiones (SP Atiende)."
   - q: "¿Dónde puedo reclamar si hay un error?"
     a: "Primero contacta a tu AFP directamente (portal web, fono de atención, sucursal). Si no resuelve en 15 días hábiles, presenta un reclamo en SP Atiende de la Superintendencia de Pensiones en spensiones.cl. El plazo para reclamar ante la SP es de hasta 4 años desde el período en cuestión."
+reviewPolicy:
+  cadenceLabel: monthly
+  maxDays: 30
+  dataTriggers: []
+  derivationFactors:
+    - category:prevision
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 La **cartola AFP** es tu estado de cuenta previsional trimestral. Llega cuatro veces al año —en enero, abril, julio y octubre— y resume lo que pasó con tu dinero durante ese período.

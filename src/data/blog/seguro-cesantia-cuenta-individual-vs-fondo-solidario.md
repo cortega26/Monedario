@@ -41,6 +41,15 @@ articleLead:
     - "No liquida montos oficiales AFC."
     - "No reemplaza revisar continuidad y causal real."
     - "No garantiza acceso automático al FCS."
+reviewPolicy:
+  cadenceLabel: monthly
+  maxDays: 30
+  dataTriggers: []
+  derivationFactors:
+    - category:empleo-ingresos
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 Quedaste cesante, entraste a afc.cl y ves un saldo. La pregunta que sigue es natural: ¿eso es lo que cobro? Depende de qué parte estás mirando. El Seguro de Cesantía no es un solo fondo — son dos fondos con lógicas distintas, y confundirlos lleva a expectativas que la AFC no va a cumplir.

@@ -35,6 +35,15 @@ articleLead:
   limits:
     - "No sustituye asesoría médica ni revisión del contrato del plan."
     - "Los precios de planes Isapre varían por edad y carga familiar."
+reviewPolicy:
+  cadenceLabel: quarterly
+  maxDays: 45
+  dataTriggers: []
+  derivationFactors:
+    - category:seguridad-financiera
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 Fonasa sirve a más del 80% de los chilenos. Isapre, al resto. Pero la única pregunta que importa es: ¿cuál te conviene a ti?

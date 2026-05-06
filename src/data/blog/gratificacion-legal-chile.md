@@ -40,6 +40,15 @@ articleLead:
     - "No reemplaza asesoría laboral específica para tu contrato o empresa."
     - "Los valores del IMM se actualizan; verifica el vigente en Ministerio del Trabajo."
     - "No cubre regímenes especiales ni contratos sujetos a estatutos particulares."
+reviewPolicy:
+  cadenceLabel: monthly
+  maxDays: 30
+  dataTriggers: []
+  derivationFactors:
+    - category:empleo-ingresos
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 > **Información vigente al 2026-05-03 según el Código del Trabajo y el IMM vigente a esa fecha.** El Ingreso Mínimo Mensual se actualiza periódicamente por ley; ante cambios, verifica el valor actual en el Ministerio del Trabajo antes de hacer cualquier cálculo.

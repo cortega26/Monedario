@@ -28,6 +28,15 @@ articleLead:
       href: "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9930.html"
     - label: "Superintendencia de Pensiones - giros Cuenta 2"
       href: "https://www.spensiones.cl/portal/institucional/594/w3-article-2906.html"
+reviewPolicy:
+  cadenceLabel: monthly
+  maxDays: 30
+  dataTriggers: []
+  derivationFactors:
+    - category:prevision
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 Cuando la gente habla de su AFP, casi siempre se refiere a la cuenta obligatoria donde va el 10% del sueldo. Pero existe una segunda cuenta —voluntaria, flexible y mucho menos conocida— que puede servir como instrumento de ahorro de mediano plazo con rentabilidades similares a las de tu cotización obligatoria: la **Cuenta 2**, también llamada Cuenta de Ahorro Voluntario (CAV).

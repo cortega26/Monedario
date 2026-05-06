@@ -41,6 +41,15 @@ articleLead:
 volatileData:
   - id: "economic.uf.value"
     sync: reference
+reviewPolicy:
+  cadenceLabel: quarterly
+  maxDays: 45
+  dataTriggers: []
+  derivationFactors:
+    - category:ahorro-inversion
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 import IndicadorEconomico from "@/components/IndicadorEconomico.astro";

@@ -131,6 +131,22 @@ const blog = defineCollection({
           )
           .optional()
           .default([]),
+        reviewPolicy: z
+          .object({
+            cadenceLabel: z.enum([
+              "on_data_change",
+              "monthly",
+              "quarterly",
+              "semiannual",
+              "annual",
+            ]),
+            maxDays: z.number().int().nonnegative(),
+            dataTriggers: z.array(z.string()).default([]),
+            derivationFactors: z.array(z.string()).default([]),
+            computedAt: z.string(),
+            _manual: z.boolean().optional(),
+          })
+          .optional(),
       })
       .strict()
       .superRefine((data, ctx) => {

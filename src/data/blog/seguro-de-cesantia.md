@@ -39,6 +39,15 @@ articleLead:
     - "No entrega liquidación oficial AFC."
     - "No garantiza acceso automático al Fondo Solidario."
     - "No reemplaza la validación de continuidad y causal real."
+reviewPolicy:
+  cadenceLabel: monthly
+  maxDays: 30
+  dataTriggers: []
+  derivationFactors:
+    - category:empleo-ingresos
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 Quedaste sin trabajo — sea porque te despidieron, se venció tu contrato o renunciaste. Lo primero que muchos no saben es que tienen plata acumulada en la AFC esperando ser cobrada. Esta guía te explica exactamente qué es, cuánto tienes y cómo cobrarlo.

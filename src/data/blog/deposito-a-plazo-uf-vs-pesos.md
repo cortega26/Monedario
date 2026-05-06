@@ -23,6 +23,13 @@ volatileData:
     sync: reference
   - id: "economic.ipc.monthly_variation"
     sync: reference
+reviewPolicy:
+  cadenceLabel: quarterly
+  maxDays: 45
+  dataTriggers: []
+  derivationFactors:
+    - category:ahorro-inversion
+  computedAt: '2026-05-06'
 ---
 
 La tasa en pesos parece más alta. La tasa en UF es más baja pero viene con reajuste. ¿Cuál conviene? La respuesta no está en el número de arriba sino en lo que pasa con la inflación durante el plazo que tú necesitas. Esta guía te ayuda a decidir con números concretos.

@@ -1,0 +1,163 @@
+- generic [active] [ref=e1]:
+  - text:   
+  - generic [ref=e2]:
+    - generic [ref=e4]:
+      - navigation [ref=e5]:
+        - list [ref=e8]:
+          - listitem [ref=e9]:
+            - link "Ingresar a Mi Sii" [ref=e10] [cursor=pointer]:
+              - /url: https://misiir.sii.cl/cgi_misii/siihome.cgi
+      - generic [ref=e11]:
+        - heading "Sii - Servicio de impuestos internos" [level=1] [ref=e12]:
+          - link "Sii - Servicio de impuestos internos" [ref=e13] [cursor=pointer]:
+            - /url: https://homer.sii.cl/
+            - img "Sii - Servicio de impuestos internos" [ref=e14]
+        - list [ref=e15]:
+          - listitem [ref=e16]:
+            - button "Mi Sii" [ref=e17] [cursor=pointer]
+          - listitem [ref=e18]:
+            - link "Servicios online" [ref=e19] [cursor=pointer]:
+              - /url: https://www.sii.cl/servicios_online/
+              - text: Servicios online
+              - generic [ref=e20]: 
+          - listitem [ref=e21]:
+            - button "Ayudas" [ref=e22] [cursor=pointer]
+          - listitem [ref=e23]:
+            - link "" [ref=e24] [cursor=pointer]:
+              - /url: https://www.sii.cl/buscador/buscador.html
+              - generic [ref=e25]: 
+      - list [ref=e27]
+    - generic [ref=e31]:
+      - generic [ref=e32]:
+        - heading "NO SE ENCONTRÓ LA PÁGINA" [level=1] [ref=e33]
+        - paragraph [ref=e36]: Puede que la página solicitada ya no exista, haya cambiado su nombre o no esté disponible.
+        - generic [ref=e37]: ■ Compruebe que la conexión a Internet funcione correctamente.
+        - button "Volver" [ref=e38] [cursor=pointer]
+      - img [ref=e39]
+    - contentinfo [ref=e41]:
+      - generic [ref=e42]:
+        - generic [ref=e43]:
+          - generic [ref=e44]:
+            - heading "Valores y fechas" [level=3] [ref=e45]
+            - text: 
+            - list [ref=e46]:
+              - listitem [ref=e47]:
+                - link "UF" [ref=e48] [cursor=pointer]:
+                  - /url: https://www.sii.cl/valores_y_fechas/uf/uf2026.htm
+              - listitem [ref=e49]:
+                - link "Dólar" [ref=e50] [cursor=pointer]:
+                  - /url: https://www.sii.cl/valores_y_fechas/dolar/dolar2026.htm
+              - listitem [ref=e51]:
+                - link "UTM-UTA-IPC" [ref=e52] [cursor=pointer]:
+                  - /url: https://www.sii.cl/valores_y_fechas/utm/utm2026.htm
+              - listitem [ref=e53]:
+                - link "Datos y valores de Renta" [ref=e54] [cursor=pointer]:
+                  - /url: https://www.sii.cl/valores_y_fechas/renta/datos_valores_renta.html
+              - listitem [ref=e55]:
+                - link "Datos y valores de IVA" [ref=e56] [cursor=pointer]:
+                  - /url: https://www.sii.cl/valores_y_fechas/iva/datos_valores_iva.html
+              - listitem [ref=e57]:
+                - link "Otros valores" [ref=e58] [cursor=pointer]:
+                  - /url: https://www.sii.cl/valores_y_fechas/otros_valores/otros_valores.html
+          - generic [ref=e59]:
+            - heading "Normativa y legislación" [level=3] [ref=e60]
+            - text: 
+            - list [ref=e61]:
+              - listitem [ref=e62]:
+                - link "Circulares" [ref=e63] [cursor=pointer]:
+                  - /url: https://www.sii.cl/normativa_legislacion/circulares/2026/indcir2026.htm
+              - listitem [ref=e64]:
+                - link "Resoluciones" [ref=e65] [cursor=pointer]:
+                  - /url: https://www.sii.cl/normativa_legislacion/resoluciones/2026/res_ind2026.htm
+              - listitem [ref=e66]:
+                - link "Consulta pública de normas" [ref=e67] [cursor=pointer]:
+                  - /url: https://www4.sii.cl/consultaProyectosNormativosInternet/#Inicio
+              - listitem [ref=e68]:
+                - link "Administrador de contenido normativo" [ref=e69] [cursor=pointer]:
+                  - /url: https://www3.sii.cl/normaInternet/
+              - listitem [ref=e70]:
+                - link "Administrador de contenido de Jurisprudencia" [ref=e71] [cursor=pointer]:
+                  - /url: https://www4.sii.cl/acjui/internet/#/instancia/1
+              - listitem [ref=e72]:
+                - link "Legislación tributaria y convenios internacionales" [ref=e73] [cursor=pointer]:
+                  - /url: https://www.sii.cl/normativa_legislacion/legislacion_tributaria.html
+              - listitem [ref=e74]:
+                - link "Jurisprudencia y tribunales" [ref=e75] [cursor=pointer]:
+                  - /url: https://www.sii.cl/normativa_legislacion/jurisprudencia_y_tribunales.html
+          - generic [ref=e76]:
+            - heading "Redes Sociales y APPs" [level=3] [ref=e77]
+            - text: 
+            - list [ref=e78]:
+              - listitem [ref=e79]:
+                - link "Instagram" [ref=e80] [cursor=pointer]:
+                  - /url: https://www.instagram.com/sii_chile/?hl=es
+              - listitem [ref=e81]:
+                - link "LinkedIn" [ref=e82] [cursor=pointer]:
+                  - /url: https://cl.linkedin.com/company/servicio-de-impuestos-internos
+              - listitem [ref=e83]:
+                - link "X" [ref=e84] [cursor=pointer]:
+                  - /url: https://x.com/SII_Chile/
+              - listitem [ref=e85]:
+                - link "Facebook" [ref=e86] [cursor=pointer]:
+                  - /url: https://www.facebook.com/impuestosinternoschile/
+              - listitem [ref=e87]:
+                - link "Youtube" [ref=e88] [cursor=pointer]:
+                  - /url: https://www.youtube.com/user/sii/
+              - listitem [ref=e89]:
+                - link "APPs" [ref=e90] [cursor=pointer]:
+                  - /url: https://www.sii.cl/ayudas/apps/
+              - listitem [ref=e91]:
+                - link "RSS" [ref=e92] [cursor=pointer]:
+                  - /url: https://www.sii.cl/redes_sociales/rss.html
+          - generic [ref=e93]:
+            - heading "Sitios de interés" [level=3] [ref=e94]
+            - text: 
+            - list [ref=e95]:
+              - listitem [ref=e96]:
+                - link "Aplicaciones y documentos" [ref=e97] [cursor=pointer]:
+                  - /url: https://www.sii.cl/sitios_de_interes/sinteres_appdoc.html
+              - listitem [ref=e98]:
+                - link "Licitaciones del SII" [ref=e99] [cursor=pointer]:
+                  - /url: https://www.mercadopublico.cl/Portal/FeedOrg.aspx?qs=uA+9eO9RsExrBBji2XDfuw==
+              - listitem [ref=e100]:
+                - link "Sitios de gobierno relacionados" [ref=e101] [cursor=pointer]:
+                  - /url: https://www.sii.cl/sitios_de_interes/sinteres_sgob.html
+              - listitem [ref=e102]:
+                - link "Organismos relacionados" [ref=e103] [cursor=pointer]:
+                  - /url: https://www.sii.cl/sitios_de_interes/sinteres_orgrelacionados.html
+              - listitem [ref=e104]:
+                - link "Estándar de Intercambio Automático de información Financiera" [ref=e105] [cursor=pointer]:
+                  - /url: https://www.sii.cl/asuntos_internacionales/
+              - listitem [ref=e106]:
+                - link "Asuntos internacionales" [ref=e107] [cursor=pointer]:
+                  - /url: https://www.sii.cl/sitios_de_interes/sinteres_asuntos_internacionales.html
+          - generic [ref=e108]:
+            - heading "Sobre el SII" [level=3] [ref=e109]
+            - text: 
+            - list [ref=e110]:
+              - listitem [ref=e111]:
+                - link "Nuestro Servicio" [ref=e112] [cursor=pointer]:
+                  - /url: https://www.sii.cl/sobre_el_sii/nuestro_servicio.htm
+              - listitem [ref=e113]:
+                - link "Trabaja con nosotros" [ref=e114] [cursor=pointer]:
+                  - /url: https://www.sii.cl/sobre_el_sii/trabaja_con_nosotros.html
+              - listitem [ref=e115]:
+                - link "Gestión y estadísticas" [ref=e116] [cursor=pointer]:
+                  - /url: https://www.sii.cl/sobre_el_sii/gestion_y_estadisticas.html
+              - listitem [ref=e117]:
+                - link "Capacitación y formación en el SII" [ref=e118] [cursor=pointer]:
+                  - /url: https://capacita.sii.cl:433/
+              - listitem [ref=e119]:
+                - link "Derechos de los contribuyentes" [ref=e120] [cursor=pointer]:
+                  - /url: https://www.sii.cl/sobre_el_sii/derechos_contribuyentes.htm
+              - listitem [ref=e121]:
+                - link "Términos de uso del sitio web" [ref=e122] [cursor=pointer]:
+                  - /url: https://www.sii.cl/sobre_el_sii/terminos_sitio_web.html
+              - listitem [ref=e123]:
+                - link "Declaración de Privacidad" [ref=e124] [cursor=pointer]:
+                  - /url: https://www.sii.cl/sobre_el_sii/declaracion_de_privacidad.html
+              - listitem [ref=e125]:
+                - link "Recomendaciones de seguridad" [ref=e126] [cursor=pointer]:
+                  - /url: https://www.sii.cl/sobre_el_sii/recomendaciones_seguridad.htm
+        - text:  > > > > > >  > > > > > > >  > > > > > > >  > > > > > >  > > > > > > > >
+  - text: 

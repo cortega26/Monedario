@@ -39,6 +39,15 @@ articleLead:
     - "No incorpora recargos judiciales ni cláusulas pactadas complejas."
     - "No sustituye asesoría laboral si la causal está discutida."
     - "No reemplaza revisar el documento y sus respaldos."
+reviewPolicy:
+  cadenceLabel: monthly
+  maxDays: 30
+  dataTriggers: []
+  derivationFactors:
+    - category:empleo-ingresos
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 Te llega el finiquito, el empleador te apura para firmarlo ese mismo día, y tú no sabes si lo que dice es correcto. Es una situación más común de lo que parece — y firmar sin revisar puede costarte el equivalente a varios meses de sueldo.

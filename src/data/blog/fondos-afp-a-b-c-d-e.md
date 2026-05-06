@@ -38,6 +38,15 @@ articleLead:
     - "No sustituye recomendación personalizada de inversión."
     - "No define por sí sola si debes cambiarte de AFP."
     - "No resume toda la reforma previsional."
+reviewPolicy:
+  cadenceLabel: monthly
+  maxDays: 30
+  dataTriggers: []
+  derivationFactors:
+    - category:prevision
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 Cuando te afilias a una AFP, tu dinero no queda guardado en una caja fuerte —se invierte en uno de cinco fondos disponibles. Elegir bien puede significar una pensión significativamente mayor. Elegir mal, lo contrario. Lo que pocos saben es que si no eliges nada, la AFP elige por ti.

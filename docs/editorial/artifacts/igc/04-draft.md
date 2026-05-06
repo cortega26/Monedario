@@ -72,7 +72,7 @@ El IGC consolida en una sola base todas las rentas del año:
 
 El IGC tiene 7 tramos progresivos, expresados en UTA (Unidad Tributaria Anual). La UTA se calcula como 12 × UTM del mes de diciembre del año tributario.
 
-La UTA 2026 es **$834.504**. El primer tramo exento (0%) aplica a rentas globales anuales hasta **$11.265.804** (equivalente a 13,5 UTA). Para la tabla completa de los 7 tramos vigentes con tasas y montos a rebajar, consulta la [página oficial del SII](https://www.sii.cl/).
+La UTA 2026 es **[[uta | clp]]**. El primer tramo exento (0%) aplica a rentas globales anuales hasta **[[uta * 13.5 | clp]]** (equivalente a 13,5 UTA). Para la tabla completa de los 7 tramos vigentes con tasas y montos a rebajar, consulta la [página oficial del SII](https://www.sii.cl/).
 
 La progresividad funciona así: solo el tramo que supera cada umbral paga la tasa correspondiente. Si tu renta global queda en el cuarto tramo, solo esa porción marginal paga la tasa del cuarto tramo — los tramos inferiores pagan sus tasas más bajas.
 

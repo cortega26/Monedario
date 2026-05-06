@@ -1,0 +1,118 @@
+- generic [ref=e2]:
+  - generic:
+    - generic:
+      - button "Ingresar" [ref=e3] [cursor=pointer]:
+        - generic [ref=e4]: 
+      - text:          
+  - generic [ref=e5]:
+    - banner [ref=e7]:
+      - navigation "Navegación principal" [ref=e8]:
+        - generic [ref=e9]:
+          - link "Ir a la página de inicio de la Biblioteca del Congreso Nacional de Chile" [ref=e10] [cursor=pointer]:
+            - /url: https://www.bcn.cl
+            - img "Logo BCN" [ref=e11]
+          - link "︱Ley Chile" [ref=e12] [cursor=pointer]:
+            - /url: /leychile
+        - menubar "Menú principal" [ref=e13]:
+          - button "BCN" [ref=e14] [cursor=pointer]:
+            - generic [ref=e15]: BCN
+            - img [ref=e16]
+          - button "Ley Chile" [ref=e17] [cursor=pointer]:
+            - generic [ref=e18]: Ley Chile
+            - img [ref=e19]
+          - button "Colecciones" [ref=e20] [cursor=pointer]:
+            - generic [ref=e21]: Colecciones
+            - img [ref=e22]
+          - button "Información Territorial" [ref=e23] [cursor=pointer]:
+            - generic [ref=e24]: Información Territorial
+            - img [ref=e25]
+          - button "Historia Política" [ref=e26] [cursor=pointer]:
+            - generic [ref=e27]: Historia Política
+            - img [ref=e28]
+          - button "Formación Cívica" [ref=e29] [cursor=pointer]:
+            - generic [ref=e30]: Formación Cívica
+            - img [ref=e31]
+          - link "Transparencia" [ref=e32] [cursor=pointer]:
+            - /url: https://www.bcn.cl/transparencia
+            - generic [ref=e33]: Transparencia
+          - menuitem "Formulario de contacto" [ref=e34] [cursor=pointer]:
+            - img [ref=e35]
+      - text:   
+    - main [ref=e36]:
+      - generic [ref=e39]:
+        - generic [ref=e41]:
+          - textbox "Buscar en Ley Chile" [ref=e42]
+          - button "Clic para buscar" [ref=e43] [cursor=pointer]:
+            - generic [ref=e44]: 
+          - generic [ref=e45] [cursor=pointer]: Búsqueda avanzada
+        - generic [ref=e49]:
+          - generic [ref=e52] [cursor=pointer]:
+            - generic [ref=e53]: 
+            - text: Modo oscuro
+          - generic [ref=e56] [cursor=pointer]:
+            - generic [ref=e57]: 
+            - text: Alto contraste
+          - link "Ir a mi selección de normas" [ref=e59] [cursor=pointer]:
+            - /url: /leychile/consulta/maletin
+            - generic [ref=e60]: 
+            - text: Selección
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - generic [ref=e71]:
+            - generic [ref=e72] [cursor=pointer]:
+              - generic [ref=e73]: 
+              - text: Cerrar Navegar Norma
+            - text: 
+          - generic [ref=e74]:
+            - link "Portada" [ref=e77] [cursor=pointer]:
+              - /url: /leychile/
+            - button "Volver" [ref=e78] [cursor=pointer]:
+              - generic [ref=e79]: 
+              - text: Volver
+        - generic [ref=e81]:
+          - separator [ref=e82]
+          - generic [ref=e84]:
+            - generic [ref=e85]: 
+            - generic [ref=e86]: Loading...
+            - paragraph [ref=e87]
+      - text:              
+  - contentinfo [ref=e89]:
+    - generic [ref=e91]:
+      - generic [ref=e92]: "Síguenos en:"
+      - generic [ref=e93]:
+        - link "Cuenta de X de la Biblioteca del Congreso Nacional" [ref=e94] [cursor=pointer]:
+          - /url: https://x.com/bcnchile
+          - img "Cuenta de X de la Biblioteca del Congreso Nacional" [ref=e95]
+        - link "Facebook Biblioteca del Congreso Nacional" [ref=e96] [cursor=pointer]:
+          - /url: https://www.facebook.com/BCNChile
+          - img "Facebook Biblioteca del Congreso Nacional" [ref=e97]
+        - link "Cuenta de Instagram de la Biblioteca del Congreso Nacional" [ref=e98] [cursor=pointer]:
+          - /url: https://www.instagram.com/bcnchile/
+          - img "Cuenta de Instagram de la Biblioteca del Congreso Nacional" [ref=e99]
+        - link "Cuenta de Flickr de la Biblioteca del Congreso Nacional" [ref=e100] [cursor=pointer]:
+          - /url: https://www.flickr.com/photos/bcnchile/
+          - img "Cuenta de Flickr de la Biblioteca del Congreso Nacional" [ref=e101]
+        - link "Cuenta de Tiktok de la Biblioteca del Congreso Nacional" [ref=e102] [cursor=pointer]:
+          - /url: https://www.tiktok.com/@bcnchile
+          - img "Cuenta de Tiktok de la Biblioteca del Congreso Nacional" [ref=e103]
+        - link "Canal de Youtube de Biblioteca del Congreso Nacional" [ref=e104] [cursor=pointer]:
+          - /url: https://www.youtube.com/channel/UCIH51ss4JpKtGT1a41aqJvA
+          - img "Canal de Youtube de Biblioteca del Congreso Nacional" [ref=e105]
+      - generic [ref=e106]:
+        - link "Políticas de privacidad|" [ref=e107] [cursor=pointer]:
+          - /url: https://www.bcn.cl/portal/pagina/privacidad
+        - link "Mapa del sitio|" [ref=e108] [cursor=pointer]:
+          - /url: https://www.bcn.cl/portal/mapa-sitio
+        - link "Ubicación, horarios y teléfonos" [ref=e109] [cursor=pointer]:
+          - /url: https://www.bcn.cl/portal/pagina/ubicacion
+      - generic [ref=e110]:
+        - link "logo ISO-9001" [ref=e111] [cursor=pointer]:
+          - /url: https://www.bcn.cl/obtienearchivo?id=documentos/10221.1/44246/19/Certificado_ICONTEC.pdf
+          - img "logo ISO-9001" [ref=e112]
+        - link "logo IQNET" [ref=e113] [cursor=pointer]:
+          - /url: https://www.bcn.cl/obtienearchivo?id=documentos/10221.1/44246/18/Certificado-IQNET.pdf
+          - img "logo IQNET" [ref=e114]
+      - link "Creative Commons" [ref=e116] [cursor=pointer]:
+        - /url: https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es
+        - img "Creative Commons" [ref=e117]
+  - generic:  

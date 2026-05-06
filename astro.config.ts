@@ -12,6 +12,7 @@ import { transformerFileName } from "./src/utils/transformers/fileName";
 import { SITE } from "./src/config";
 import { getUiCopyForLocale } from "./src/i18n/ui";
 import { remarkPrefixInternalLinks } from "./src/remark-prefix-internal-links";
+import { remarkEconomicVariables } from "./src/remark-economic-variables";
 import react from "@astrojs/react";
 
 import mdx from "@astrojs/mdx";
@@ -162,6 +163,7 @@ export default defineConfig({
   ],
   markdown: {
     remarkPlugins: [
+      remarkEconomicVariables,
       [remarkPrefixInternalLinks, SITE_BASE],
       remarkStripTocSection,
     ],

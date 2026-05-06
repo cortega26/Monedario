@@ -42,6 +42,15 @@ articleLead:
     - "No reemplaza planificación previsional individual."
     - "No calcula pensión final ni proyección completa."
     - "No debe leerse como si todos los hitos ya estuvieran vigentes."
+reviewPolicy:
+  cadenceLabel: monthly
+  maxDays: 30
+  dataTriggers: []
+  derivationFactors:
+    - category:prevision
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 En julio de 2025 se promulgó la reforma previsional más importante en décadas. Cambia cómo se financia tu jubilación, introduce nuevos componentes del Seguro Social y reemplaza los multifondos con un esquema distinto. Como su implementación se despliega por etapas entre 2025 y 2033, conviene entenderla separando con cuidado qué ya opera hoy y qué todavía viene después.

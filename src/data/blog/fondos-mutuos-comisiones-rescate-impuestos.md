@@ -18,6 +18,13 @@ lang: es-CL
 featured: false
 draft: false
 heroImage: /images/hero/fondos-mutuos-comisiones-rescate-impuestos.avif
+reviewPolicy:
+  cadenceLabel: quarterly
+  maxDays: 45
+  dataTriggers: []
+  derivationFactors:
+    - category:ahorro-inversion
+  computedAt: '2026-05-06'
 ---
 
 Los fondos mutuos tienen costos reales que no siempre aparecen en el primer número que ves. La remuneración de administración, la comisión de rescate y el tratamiento tributario del mayor valor son los tres puntos donde más se pierde por no haber leído bien antes de invertir. Esta guía los desglosa sin rodeos.

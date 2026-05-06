@@ -40,6 +40,14 @@ articleLead:
     - "No reemplaza la hoja de información precontractual del oferente."
     - "No audita automáticamente la legalidad del contrato."
     - "No sirve para casos de insolvencia o renegociación formal."
+reviewPolicy:
+  cadenceLabel: quarterly
+  maxDays: 60
+  dataTriggers: []
+  derivationFactors:
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 Cuando comparas créditos, el número que más te empujan es la cuota o la tasa mensual. El problema es que ninguna de esas dos cifras, por sí sola, te dice cuánto terminarás pagando en total. La **CAE** existe precisamente para cerrar esa trampa.

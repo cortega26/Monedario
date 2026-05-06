@@ -15,6 +15,12 @@
       "unit": "clp",
       "sourceUrls": ["https://mindicador.cl/api"]
     },
+    "economic.uta.value": {
+      "label": "Valor UTA (Unidad Tributaria Anual)",
+      "refreshStrategy": "economic_snapshot",
+      "unit": "clp",
+      "sourceUrls": ["https://mindicador.cl/api"]
+    },
     "economic.ipc.monthly_variation": {
       "label": "IPC mensual",
       "refreshStrategy": "economic_snapshot",

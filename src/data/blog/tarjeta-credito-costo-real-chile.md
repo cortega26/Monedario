@@ -39,6 +39,14 @@ articleLead:
     - "Las tasas reales varían según el emisor y el perfil del titular."
     - "No incluye cargos por mantención, seguros ni multas por atraso."
     - "No reemplaza la cartola oficial de tu tarjeta ni la hoja de condiciones del emisor."
+reviewPolicy:
+  cadenceLabel: quarterly
+  maxDays: 60
+  dataTriggers: []
+  derivationFactors:
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 Una tarjeta de crédito te da liquidez inmediata, pero tiene un precio. Ese precio no siempre es obvio porque los estados de cuenta muestran el pago mínimo — una cifra baja que parece manejable — sin mostrar cuánto terminarás pagando si te quedas en ese nivel. Antes de usar la calculadora, conviene entender por qué ese número importa.

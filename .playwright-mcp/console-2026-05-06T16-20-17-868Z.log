@@ -1,0 +1,13 @@
+[     295ms] [LOG] eliminarNormasVeryOld @ https://www.bcn.cl/leychile/main.624f09e276197ff12055.bundle.js:0
+[     312ms] [LOG] LcSidebarNavComponent.ngAfterViewInit @ https://www.bcn.cl/leychile/main.624f09e276197ff12055.bundle.js:0
+[     323ms] [LOG] Se carga archivo para carga de header y footer unificado @ https://www.bcn.cl/static/unificado/js/unificado.js:1
+[     324ms] [LOG] DOMContentLoaded  @ https://www.bcn.cl/static/unificado/js/unificado.js:89
+[     330ms] [LOG] Se carga archivo sociales @ https://www.bcn.cl/static/unificado/js/sociales.js:0
+[     413ms] [LOG] LcSidebarNavComponent.ngAfterViewInit @ https://www.bcn.cl/leychile/main.624f09e276197ff12055.bundle.js:0
+[     420ms] [LOG] Inicializando accesibilidad del menú @ https://www.bcn.cl/static/unificado/js/unificado.js:497
+[     520ms] [LOG] Configurando navegación por teclado @ https://www.bcn.cl/static/unificado/js/unificado.js:584
+[     522ms] [LOG] Accesibilidad inicializada correctamente @ https://www.bcn.cl/static/unificado/js/unificado.js:513
+[     571ms] [LOG] Labels y botones configurados @ https://www.bcn.cl/static/unificado/js/unificado.js:977
+[    1218ms] [LOG] {metadatos: Object, html: Array(4), alertas: Array(0), alerta_global: , estructura: Array(4)} @ https://www.bcn.cl/leychile/main.624f09e276197ff12055.bundle.js:0
+[    1702ms] [LOG] onNodosAgregados [] 4 @ https://www.bcn.cl/leychile/main.624f09e276197ff12055.bundle.js:0
+[    1924ms] [LOG] [] @ https://www.bcn.cl/leychile/main.624f09e276197ff12055.bundle.js:0

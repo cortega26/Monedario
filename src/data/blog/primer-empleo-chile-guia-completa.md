@@ -45,6 +45,15 @@ faqs:
     a: "En un contrato indefinido típico, los descuentos legales suman entre un 20 % y un 22 % del sueldo bruto: AP 10,5 %, salud (Fonasa) 7 %, seguro de cesantía 0,6 %. El SIS (Seguro de Invalidez y Sobrevivencia) lo paga el empleador, no tú. Usa la calculadora de sueldo líquido para ver el número exacto."
   - q: "¿Debo firmar el contrato el primer día?"
     a: "No es obligatorio firmar el primer día, pero sí debes revisar el documento antes de hacerlo. Pide una copia en borrador, léela con calma y consulta dudas antes de estampar tu firma. Una vez firmado, las condiciones quedan vigentes hasta que se acuerde una modificación por escrito."
+reviewPolicy:
+  cadenceLabel: monthly
+  maxDays: 30
+  dataTriggers: []
+  derivationFactors:
+    - category:empleo-ingresos
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 Empezar a trabajar por primera vez trae más preguntas legales y financieras que lo que anticipas. Esta guía te acompaña en los cuatro frentes que hay que resolver en el primer mes: el contrato, la primera liquidación, la afiliación previsional y el presupuesto real con tu sueldo neto.

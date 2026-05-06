@@ -21,6 +21,13 @@ homepagePriority: 0
 draft: false
 heroImage: /images/hero/operacion-renta-centro.avif
 articleAdvisory: "Esta guía es informativa y no constituye asesoría tributaria. Verifica siempre los plazos y montos vigentes en sii.cl antes de actuar."
+reviewPolicy:
+  cadenceLabel: monthly
+  maxDays: 30
+  dataTriggers: []
+  derivationFactors:
+    - category:impuestos
+  computedAt: '2026-05-06'
 ---
 
 Esta guía responde preguntas frecuentes sobre la campaña. Para la información estructurada completa y acceso a la calculadora, visita el [Centro Operación Renta 2026](/guias/impuestos-personas/operacion-renta/).

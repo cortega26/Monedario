@@ -37,6 +37,14 @@ articleLead:
     - "No reemplaza un informe comercial privado."
     - "No confirma por sí solo protestos o morosidades fuera del sistema financiero supervisado."
     - "No resuelve disputas por fraude sin reclamo ante la institución acreedora."
+reviewPolicy:
+  cadenceLabel: quarterly
+  maxDays: 60
+  dataTriggers: []
+  derivationFactors:
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 La frase "estoy en DICOM" se usa en Chile como atajo para varias cosas distintas: deudas financieras vigentes, morosidades comerciales, protestos o incluso un informe privado que te pidió un tercero. El primer error es tratarlas como si fueran el mismo registro.

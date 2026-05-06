@@ -48,6 +48,14 @@ faqs:
     a: "Solo si la anotación es incorrecta: errores de datos, deuda que no te corresponde, o duplicados. En ese caso puedes reclamar ante la CMF sin necesidad de pago. Si la deuda es tuya y está impaga, no existe un mecanismo legal para eliminarla sin pagar o negociar con el acreedor."
   - q: "¿Cómo sé si tengo anotaciones en el Boletín Comercial?"
     a: "Puedes consultar en boletincomercial.cl. La Ley 20.575 obliga al servicio a ofrecer una consulta básica gratuita. Si aparece una anotación que no reconoces, tienes derecho a pedir información al acreedor y, si hay error, reclamar ante la CMF."
+reviewPolicy:
+  cadenceLabel: quarterly
+  maxDays: 60
+  dataTriggers: []
+  derivationFactors:
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 En Chile, estar "en el Boletín Comercial" es la causa concreta de lo que coloquialmente se llama "estar en DICOM". No son lo mismo, pero están relacionados: el Boletín Comercial es el registro oficial de protestos y documentos impagos; DICOM es un producto privado que recoge ese y otros datos.

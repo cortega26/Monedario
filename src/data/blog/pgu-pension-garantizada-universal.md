@@ -40,6 +40,15 @@ articleLead:
     - "No predice el monto individual definitivo — eso lo resuelve el IPS."
     - "No recomienda AFP ni estrategia de inversión."
     - "El monto se actualiza; verifica siempre en el IPS el valor vigente."
+reviewPolicy:
+  cadenceLabel: monthly
+  maxDays: 30
+  dataTriggers: []
+  derivationFactors:
+    - category:prevision
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 > **Información vigente al 2026-05-03.** El monto de la PGU se reajusta periódicamente por ley. Verifica el valor actualizado directamente en el [IPS](https://www.ips.gob.cl/) o [ChileAtiende](https://www.chileatiende.gob.cl/) antes de tomar cualquier decisión.

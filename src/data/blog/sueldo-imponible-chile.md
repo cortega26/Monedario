@@ -40,6 +40,21 @@ articleLead:
     - "No calcula el sueldo líquido completo — para eso usa la calculadora."
     - "Los tramos ISC y el tope UF se actualizan; verifica los valores vigentes en SII y Superintendencia de Pensiones."
     - "No reemplaza asesoría tributaria o laboral especializada."
+volatileData:
+  - id: economic.utm.value
+    sync: strict
+    expectedValue: 70588
+reviewPolicy:
+  cadenceLabel: monthly
+  maxDays: 30
+  dataTriggers:
+    - economic.utm.value
+  derivationFactors:
+    - category:empleo-ingresos
+    - template:utm
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 > **Información vigente al 2026-05-03.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo.
@@ -99,7 +114,7 @@ El ISC es progresivo: se aplica por tramos sobre la remuneración imponible mens
 
 La estructura vigente tiene 7 tramos expresados en UTM, desde 0% para ingresos bajos hasta 40% para el tramo más alto. La tabla completa y actualizada se encuentra en el [SII](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm). La retención se aplica mensualmente en la liquidación de sueldo.
 
-Para el rango mensual de $952.938 a $2.117.640 (mayo 2026), la fórmula es: remuneración imponible × 0,04 − $38.117,52 ([tabla SII AT 2026](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm)).
+Para el rango mensual de [[utm * 13.5 | clp]] a [[utm * 30 | clp]] (mayo 2026), la fórmula es: remuneración imponible × 0,04 − $38.117,52 ([tabla SII AT 2026](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm)).
 
 ## APV y reducción de la base imponible
 
@@ -120,7 +135,7 @@ Para un trabajador con sueldo bruto de $1.200.000 sin componentes no imponibles 
 2. Cotización obligatoria AFP (~10,5%): ~$126.000. La comisión AFP es adicional y varía por institución.
 3. Salud (7%): $84.000
 4. AFC (0,6%): $7.200
-5. ISC (tramo mayo 2026: $952.938–$2.117.640, factor 0,04 − rebaja $38.117,52): **$9.882** → $1.200.000 × 0,04 − $38.117,52 ([fuente: SII](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm))
+5. ISC (tramo mayo 2026: [[utm * 13.5 | clp]]–[[utm * 30 | clp]], factor 0,04 − rebaja $38.117,52): **$9.882** → $1.200.000 × 0,04 − $38.117,52 ([fuente: SII](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm))
 6. **Sueldo líquido orientativo: ~$972.918** ($1.200.000 − $126.000 − $84.000 − $7.200 − $9.882). La comisión AFP no está incluida — varía por institución.
 
 Para el cálculo completo con todas las líneas, usa la guía de [liquidación de sueldo](/posts/liquidacion-de-sueldo/) o la calculadora de sueldo líquido.

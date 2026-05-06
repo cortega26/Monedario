@@ -11,6 +11,7 @@ type MindicadorResponse = {
   fecha?: string;
   uf?: { valor?: number; fecha?: string };
   utm?: { valor?: number; fecha?: string };
+  uta?: { valor?: number; fecha?: string };
   ipc?: { valor?: number; fecha?: string };
   tmc?: { valor?: number; fecha?: string };
   dolar?: { valor?: number; fecha?: string };
@@ -19,6 +20,7 @@ type MindicadorResponse = {
 interface EconomicSnapshotPayload {
   uf: number;
   utm: number;
+  uta?: number;
   ipc?: number;
   tmc?: number;
   dolar?: number;
@@ -64,6 +66,7 @@ const FETCH_TIMEOUT_MS = 5000;
 const FALLBACK_PARAMETERS: EconomicParameters = {
   uf: 39300,
   utm: 67294,
+  uta: 834504,
   ipc: 0,
   tmc: 3.49,
   afcTopes: {
@@ -119,7 +122,8 @@ function getLatestIsoDate(
 function normalizeIndicatorUpdatedAt(
   indicatorUpdatedAt: EconomicIndicatorUpdatedAt | undefined,
   lastUpdated: string,
-  hasDolar: boolean
+  hasDolar: boolean,
+  hasUta: boolean
 ): EconomicIndicatorUpdatedAt {
   return {
     uf: indicatorUpdatedAt?.uf ?? lastUpdated,
@@ -129,6 +133,11 @@ function normalizeIndicatorUpdatedAt(
     ...(hasDolar
       ? {
           dolar: indicatorUpdatedAt?.dolar ?? lastUpdated,
+        }
+      : {}),
+    ...(hasUta
+      ? {
+          uta: indicatorUpdatedAt?.uta ?? lastUpdated,
         }
       : {}),
   };
@@ -175,6 +184,7 @@ function loadSnapshotEconomicParameters(): EconomicParameters {
     ipc: Number(payload.ipc ?? 0),
     tmc: payload.tmc !== undefined ? Number(payload.tmc) : 3.49,
     dolar: payload.dolar !== undefined ? Number(payload.dolar) : undefined,
+    uta: payload.uta !== undefined ? Number(payload.uta) : undefined,
     afcTopes: {
       monthlyTaxableCapUf: Number(
         payload.afcTopes?.monthlyTaxableCapUf ??
@@ -190,7 +200,8 @@ function loadSnapshotEconomicParameters(): EconomicParameters {
     indicatorUpdatedAt: normalizeIndicatorUpdatedAt(
       payload.indicatorUpdatedAt,
       String(payload.lastUpdated),
-      payload.dolar !== undefined
+      payload.dolar !== undefined,
+      payload.uta !== undefined
     ),
     lastUpdated: String(payload.lastUpdated),
     source: "snapshot",
@@ -213,6 +224,7 @@ async function fetchLiveEconomicParameters(): Promise<EconomicParameters> {
   const indicatorUpdatedAt: EconomicIndicatorUpdatedAt = {
     uf: payload.uf?.fecha ? toIsoDate(payload.uf.fecha) : undefined,
     utm: payload.utm?.fecha ? toIsoDate(payload.utm.fecha) : undefined,
+    uta: payload.uta?.fecha ? toIsoDate(payload.uta.fecha) : undefined,
     ipc: payload.ipc?.fecha ? toIsoDate(payload.ipc.fecha) : undefined,
     tmc: payload.tmc?.fecha ? toIsoDate(payload.tmc.fecha) : undefined,
     dolar: payload.dolar?.fecha ? toIsoDate(payload.dolar.fecha) : undefined,
@@ -222,6 +234,7 @@ async function fetchLiveEconomicParameters(): Promise<EconomicParameters> {
       payload.fecha,
       indicatorUpdatedAt.uf,
       indicatorUpdatedAt.utm,
+      indicatorUpdatedAt.uta,
       indicatorUpdatedAt.ipc,
       indicatorUpdatedAt.tmc,
       indicatorUpdatedAt.dolar,
@@ -237,6 +250,10 @@ async function fetchLiveEconomicParameters(): Promise<EconomicParameters> {
       payload.dolar?.valor !== undefined
         ? Number(payload.dolar.valor)
         : undefined,
+    uta:
+      payload.uta?.valor !== undefined
+        ? Number(payload.uta.valor)
+        : undefined,
     afcTopes: {
       monthlyTaxableCapUf: DEFAULT_AFC_MONTHLY_TAXABLE_CAP_UF,
     },
@@ -247,7 +264,8 @@ async function fetchLiveEconomicParameters(): Promise<EconomicParameters> {
     indicatorUpdatedAt: normalizeIndicatorUpdatedAt(
       indicatorUpdatedAt,
       lastUpdated,
-      payload.dolar?.valor !== undefined
+      payload.dolar?.valor !== undefined,
+      payload.uta?.valor !== undefined
     ),
     lastUpdated,
     source: "live",

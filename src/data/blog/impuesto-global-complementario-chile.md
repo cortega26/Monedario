@@ -38,6 +38,21 @@ articleLead:
     - "No predice el resultado exacto de tu F22 — usa la calculadora o el SII."
     - "Ganancias de capital: excluidas del scope de este artículo por su complejidad."
     - "Los tramos se actualizan cada año tributario; verifica en el SII la tabla vigente."
+volatileData:
+  - id: economic.uta.value
+    sync: strict
+    expectedValue: 834504
+reviewPolicy:
+  cadenceLabel: monthly
+  maxDays: 30
+  dataTriggers:
+    - economic.uta.value
+  derivationFactors:
+    - category:impuestos
+    - template:uta
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 > **Información vigente al 2026-05-03.** Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el [SII](https://www.sii.cl/) antes de tu Operación Renta. Este artículo no cubre ganancias de capital.
@@ -83,7 +98,7 @@ El IGC consolida en una sola base todas las rentas del año:
 
 El IGC tiene 7 tramos progresivos, expresados en UTA (Unidad Tributaria Anual). La UTA se calcula como 12 × UTM del mes de diciembre del año tributario.
 
-La UTA 2026 es **$834.504**. El primer tramo exento (0%) aplica a rentas globales anuales hasta **$11.265.804** (equivalente a 13,5 UTA). Para la tabla completa de los 7 tramos vigentes con tasas y montos a rebajar, consulta la [página oficial del SII](https://www.sii.cl/).
+La UTA 2026 es **[[uta | clp]]**. El primer tramo exento (0%) aplica a rentas globales anuales hasta **[[uta * 13.5 | clp]]** (equivalente a 13,5 UTA). Para la tabla completa de los 7 tramos vigentes con tasas y montos a rebajar, consulta la [página oficial del SII](https://www.sii.cl/).
 
 La progresividad funciona así: solo el tramo que supera cada umbral paga la tasa correspondiente. Si tu renta global queda en el cuarto tramo, solo esa porción marginal paga la tasa del cuarto tramo — los tramos inferiores pagan sus tasas más bajas.
 

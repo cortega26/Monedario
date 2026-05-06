@@ -39,6 +39,14 @@ articleLead:
     - "El ahorro calculado asume tasa y condiciones fijas; un refinanciamiento tiene variables adicionales."
     - "Para créditos hipotecarios, pueden aplicar condiciones contractuales distintas."
     - "No considera el costo de oportunidad de ese dinero en inversiones alternativas."
+reviewPolicy:
+  cadenceLabel: quarterly
+  maxDays: 60
+  dataTriggers: []
+  derivationFactors:
+    - validAsOf
+    - officialSources
+  computedAt: '2026-05-06'
 ---
 
 Tienes un crédito vigente y un dinero extra. La pregunta inmediata es: ¿lo pago anticipadamente o hago algo más con ese dinero? La respuesta depende de cuánto te ahorras en intereses versus qué alternativas tienes. Esta guía y la calculadora te dan el primer número: el ahorro concreto en pesos que lograrías al abonar hoy.

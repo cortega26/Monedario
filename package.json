@@ -51,6 +51,7 @@
     "data-signals:gsc": "node scripts/data-signals/gsc-fetch.mjs",
     "data-signals:cloudflare": "node scripts/data-signals/cloudflare-fetch.mjs",
     "editorial:volatile-data:refresh": "node scripts/refresh-editorial-volatile-data.mjs",
+    "editorial:review-policies:compute": "node scripts/compute-review-policies.mjs",
     "check:afp-commissions": "node scripts/check-afp-commissions.mjs",
     "format:check": "prettier --check .",
     "format": "prettier --write .",
