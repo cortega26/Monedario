@@ -19,6 +19,7 @@ output/validation/
 .vscode/
 .qodo/
 .playwright-cli/
+.playwright-mcp/
 artifacts/
 skills/
 
