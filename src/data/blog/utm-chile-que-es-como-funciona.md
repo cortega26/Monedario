@@ -65,7 +65,7 @@ reviewPolicy:
   derivationFactors:
     - validAsOf
     - officialSources
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 La **UTM (Unidad Tributaria Mensual)** es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Cambia el primer día hábil de cada mes.

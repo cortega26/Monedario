@@ -22,7 +22,7 @@ reviewPolicy:
   dataTriggers: []
   derivationFactors:
     - category:impuestos
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 Ya enviaste tu declaración, tu propuesta dijo devolución y la fecha pasó. Esta guía responde la pregunta que más se repite: ¿_cuándo depositan?_ Y si no depositaron, te explica cómo revisar el estado y qué hacer.

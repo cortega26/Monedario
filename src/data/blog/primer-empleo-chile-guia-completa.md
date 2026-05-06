@@ -53,7 +53,7 @@ reviewPolicy:
     - category:empleo-ingresos
     - validAsOf
     - officialSources
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 Empezar a trabajar por primera vez trae más preguntas legales y financieras que lo que anticipas. Esta guía te acompaña en los cuatro frentes que hay que resolver en el primer mes: el contrato, la primera liquidación, la afiliación previsional y el presupuesto real con tu sueldo neto.

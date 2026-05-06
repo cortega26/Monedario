@@ -29,7 +29,7 @@ reviewPolicy:
   maxDays: 180
   dataTriggers: []
   derivationFactors: []
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 Tu arriendo sube todos los años "por la UF" y tu dividendo también. Pero casi nadie sabe exactamente qué es la UF ni por qué cambia todos los días. Acá te explicamos de verdad — con números y sin fórmulas intimidantes. Si quieres ver esta historia ordenada junto con IPC, reajustes y herramientas prácticas, parte por la [guía UF, inflación y costo de vida](/guias/uf-costo-de-vida/). Si quieres ver cómo se conecta con créditos y deudas, también puedes complementar con la [sección Deuda y Crédito](/guias/deuda-credito/).

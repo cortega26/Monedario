@@ -251,9 +251,7 @@ async function fetchLiveEconomicParameters(): Promise<EconomicParameters> {
         ? Number(payload.dolar.valor)
         : undefined,
     uta:
-      payload.uta?.valor !== undefined
-        ? Number(payload.uta.valor)
-        : undefined,
+      payload.uta?.valor !== undefined ? Number(payload.uta.valor) : undefined,
     afcTopes: {
       monthlyTaxableCapUf: DEFAULT_AFC_MONTHLY_TAXABLE_CAP_UF,
     },

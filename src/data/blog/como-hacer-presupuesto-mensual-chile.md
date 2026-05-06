@@ -23,7 +23,7 @@ reviewPolicy:
   maxDays: 180
   dataTriggers: []
   derivationFactors: []
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 > **Respuesta rápida:** Una guía de base ampliamente utilizada en educación financiera es la regla 50/30/20: destinar hasta un 50% del ingreso neto a gastos fijos (arriendo, deudas, servicios), hasta un 30% a gastos variables (alimentación, ocio) y al menos un 20% a ahorro o reducción de deudas. Es un punto de partida, no una obligación, y debe ajustarse a tu situación real.

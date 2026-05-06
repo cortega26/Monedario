@@ -23,7 +23,7 @@ reviewPolicy:
   dataTriggers: []
   derivationFactors:
     - category:seguridad-financiera
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 Revisas tu cuenta y ves un cargo que no hiciste. O peor: te llega un aviso de una transferencia que nunca autorizaste. Lo primero que sientes es pánico. Lo segundo debería ser este artículo.

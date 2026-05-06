@@ -29,7 +29,7 @@ reviewPolicy:
   maxDays: 180
   dataTriggers: []
   derivationFactors: []
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 Llegó el aviso de pago y el arriendo subió. O el arrendador avisa que el próximo mes cambia el monto. La primera reacción suele ser preguntarse si corresponde — y la respuesta depende de una sola cosa: lo que dice el contrato.

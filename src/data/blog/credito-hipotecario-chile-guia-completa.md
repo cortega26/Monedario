@@ -70,7 +70,7 @@ reviewPolicy:
   derivationFactors:
     - validAsOf
     - officialSources
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 Un **crédito hipotecario** es, en términos simples, un préstamo a largo plazo donde la propiedad que compras queda como garantía. En Chile casi todos se expresan en **[UF](/posts/que-es-la-uf/)** (Unidad de Fomento), lo que significa que tu dividendo se reajusta con la inflación cada mes.

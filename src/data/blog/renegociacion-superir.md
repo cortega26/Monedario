@@ -46,7 +46,7 @@ reviewPolicy:
   derivationFactors:
     - validAsOf
     - officialSources
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 Tener una deuda atrasada no significa automáticamente que te convenga entrar a un procedimiento concursal. La renegociación Superir es útil cuando el problema ya es estructural: varias deudas vencidas, mora acumulada y una caja que no alcanza para seguir sosteniendo los pagos.

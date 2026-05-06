@@ -44,7 +44,7 @@ reviewPolicy:
   derivationFactors:
     - validAsOf
     - officialSources
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 La frase "estoy en DICOM" se usa en Chile como atajo para varias cosas distintas: deudas financieras vigentes, morosidades comerciales, protestos o incluso un informe privado que te pidió un tercero. El primer error es tratarlas como si fueran el mismo registro.

@@ -47,7 +47,7 @@ reviewPolicy:
     - category:empleo-ingresos
     - validAsOf
     - officialSources
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 El depósito cayó y el número no cuadra con lo que esperabas. Abres la liquidación y ves líneas que no entiendes o cifras que no puedes verificar. Aquí empieza el problema real: la mayoría de los trabajadores no sabe qué debe mostrar el comprobante ni qué preguntar cuando algo no cierra.

@@ -45,7 +45,7 @@ reviewPolicy:
   derivationFactors:
     - validAsOf
     - officialSources
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 Te llamaron por una deuda que no reconoces. O el arrendador te pidió "DICOM". O simplemente quieres saber qué aparece a tu nombre antes de pedir un crédito. En los tres casos la pregunta parece la misma, pero el reporte que necesitas no lo es — y empezar por el equivocado puede costarte tiempo, plata o sacar conclusiones falsas.

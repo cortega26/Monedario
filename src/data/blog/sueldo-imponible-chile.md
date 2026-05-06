@@ -54,7 +54,7 @@ reviewPolicy:
     - template:utm
     - validAsOf
     - officialSources
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 > **Información vigente al 2026-05-03.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo.

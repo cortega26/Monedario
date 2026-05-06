@@ -27,7 +27,7 @@ reviewPolicy:
   dataTriggers: []
   derivationFactors:
     - category:impuestos
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 Esta guía responde preguntas frecuentes sobre la campaña. Para la información estructurada completa y acceso a la calculadora, visita el [Centro Operación Renta 2026](/guias/impuestos-personas/operacion-renta/).
