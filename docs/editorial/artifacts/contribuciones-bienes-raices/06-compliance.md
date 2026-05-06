@@ -1,28 +1,26 @@
 # Gate 06 — Compliance Review: contribuciones-bienes-raices-chile
 
-Status: CONDITIONAL — score NORMA_YMYL 8.23/10 < 9.5; gap entre promesa editorial y contenido disponible; no hay errores factuales activos
+Status: CONDITIONAL
 Role: ComplianceAgent (Claude Code — sesión fresca, adversarial)
 Fecha: 2026-05-06
-Cycle: Reemplaza 06-compliance.md del 2026-05-05 (post-remediación anterior)
+Cycle: Reemplaza ciclo anterior (post-remediación DraftAgent ciclo 2, 2026-05-06)
 
 Archivos revisados:
-  - `docs/editorial/NORMA_YMYL.md`
-  - `docs/editorial/artifacts/briefs/contribuciones-bienes-raices.md`
-  - `docs/editorial/artifacts/contribuciones-bienes-raices/04-draft.md`
-  - `docs/editorial/artifacts/contribuciones-bienes-raices/05-math-audit.md`
-  - `src/data/blog/contribuciones-bienes-raices-chile.md` (versión post-remediación 2026-05-05)
+  - docs/editorial/NORMA_YMYL.md
+  - docs/editorial/artifacts/briefs/contribuciones-bienes-raices.md
+  - docs/editorial/artifacts/contribuciones-bienes-raices/04-draft.md
+  - docs/editorial/artifacts/contribuciones-bienes-raices/05-math-audit.md
+  - src/data/blog/contribuciones-bienes-raices-chile.md
 
 ---
 
-## Verificación de remediaciones (puntos de atención post-2026-05-05)
+## Verificación de remediaciones (puntos de atención post-2026-05-06, ciclo 2)
 
 | Punto de atención | Estado |
 |---|---|
-| ERROR: Apertura "toda persona con propiedad paga" → suavizado | ✓ RESUELTO — "Si tienes una propiedad en Chile, **puede** corresponder el pago... muchos propietarios de primera vivienda tienen exención total o parcial sin saberlo — conviene verificar en el SII" |
-| Tasas 1,2%/1,0% eliminadas (sin fuente SII cerrada) | ✓ RESUELTO — no aparecen en el blog file; artículo reformulado como guía procedimental |
-| Calendario TGR 2026 actualizado a fechas exactas | ✓ RESUELTO — "30 de abril, 30 de junio, 30 de septiembre y 30 de noviembre" verificado por MathAuditAgent |
-| DFL-2 → Decreto 1101: 140 m², personas naturales, máx 2 propiedades | ✓ RESUELTO — condiciones verificadas presentes en el cuerpo |
-| Deducibilidad F22 suavizada a condicional | ✓ RESUELTO — "pueden ser consideradas gasto tributario... Las condiciones exactas dependen de las instrucciones SII vigentes" |
+| covers bullet #1: "Qué es el avalúo fiscal y cómo consultar el monto de tus contribuciones en el SII." | ✓ RESUELTO — resuelve DEFECT #1 del ciclo anterior (Opción B): covers ahora coherente con el enfoque procedimental del artículo |
+| DFL-2: "conocido popularmente como DFL-2 o vivienda económica, actualmente regido por el Decreto 1101" con URL BCN i=16842 | ✓ RESUELTO — resuelve DEFECT #2 del ciclo anterior; enlace BCN presente |
+| F22 habitante principal: reformulado sin calificador vago | ✓ RESUELTO — "habitualmente no son gasto deducible en el F22 — consulta las instrucciones SII del año tributario correspondiente o a un contador." Resuelve DEFECT #3 del ciclo anterior |
 
 ---
 
@@ -30,60 +28,30 @@ Archivos revisados:
 
 | Dimensión | Peso | Puntuación | Ponderado | Notas |
 |---|---|---|---|---|
-| Respuesta ancla | 35% | 7.5/10 | 2.625 | Apertura corregida. Calendario TGR verificado y útil. Guía procedimental (canales de pago, reclamo de avalúo, documentos) valiosa. Deducción MATERIAL: la query ancla "cómo calcular contribuciones" no tiene respuesta concreta — ninguna tasa. NORMA_YMYL MUST #1 parcialmente incumplido. El artículo dirige al SII sin dar ningún valor. |
-| Precisión + fuentes | 25% | 8.5/10 | 2.125 | Sin tasas no verificadas (eliminadas correctamente). Calendario TGR verificado. Decreto 1101 correcto. F22 deducibilidad condicional. Apertura correcta. Deducción: (1) DFL-2 (Decreto 1101) sin URL BCN (i=16842). (2) "En general no corresponde deducir" para habitante principal — vago y no citado. |
-| Vigencia + calendario | 15% | 9.5/10 | 1.425 | Fechas exactas TGR 2026 verificadas. `validAsOf: 2026-05-03`. Disclaimers de actualización prominentes en header y footer. |
-| Excepciones + cobertura | 15% | 8.5/10 | 1.275 | Primera vivienda, DFL-2 (Decreto 1101), adultos mayores mencionados con deferred a SII. Mora y consecuencias cubiertos. Reclamo de avalúo cubierto. Deducción: topes de avalúo para exenciones no provistos (no verificados — deferrido a SII). |
-| Claridad + estructura | 10% | 8.0/10 | 0.800 | H2 clara. Canales de pago listados. Tono educativo. Deducción: `articleLead.covers` ítem 1 "Cómo se calcula el monto según el avalúo fiscal y la tasa legal" promete cálculo con tasa — el artículo no provee ninguna tasa; coherencia covers↔cuerpo rota. |
-| **TOTAL** | 100% | — | **8.25/10** | **Por debajo del umbral 9.5 — no PASS** |
+| Respuesta ancla | 35% | 8.5 | 2.975 | Definición clara; calendar 4 cuotas verificado con fechas exactas; covers coherente con cuerpo (deferral a SII para tasas); guía procedimental (aviso TGR, portal SII) concreta. Deducción: sin ninguna tasa publicable, NORMA_YMYL MUST #1 parcialmente cumplido — la query "cómo calcular mis contribuciones" recibe proceso pero no número |
+| Precisión + fuentes | 25% | 9.0 | 2.250 | Sin tasas no verificadas (omisión correcta); calendario TGR verificado; DFL-2/Decreto 1101 con URL BCN; F22 correctamente condicional; ERROR apertura resuelto; DL 3.063 no citado (ver DEFECT #1) |
+| Vigencia + calendario | 15% | 9.5 | 1.425 | "vigente al 2026-05-03"; fechas exactas TGR 2026 verificadas; disclaimers prominentes en apertura y cierre; articleAdvisory presente |
+| Excepciones + cobertura | 15% | 9.0 | 1.350 | Primera vivienda, DFL-2, adultos mayores cubiertos; condiciones diferidas a SII (aceptable dado TODO:SOURCE no cerrado); mora y embargo explicados; reclamo de avalúo cubierto |
+| Claridad + estructura | 10% | 9.0 | 0.900 | H2 sigue brief; canales de pago listados; covers coherente con cuerpo; "habitualmente" en F22 es apropiado para YMYL con casos borde |
+| **TOTAL** | 100% | — | **8.9** | Por debajo del umbral 9.5 — CONDITIONAL |
+
+Score mejoró de 8.25 (ciclo anterior) a 8.9 (este ciclo).
 
 ---
 
 ## DEFECTS
 
-**DEFECT #1 — MEDIUM — NORMA_YMYL MUST #1 parcialmente incumplido + covers incoherente (MUST #2 + MUST #8)**
+**DEFECT #1 — WARNING — DL 3.063 (Ley de Rentas Municipales) no citado (Brief §Fuentes / NORMA_YMYL MUST #4)**
 
-Ubicación: (a) Sección "¿Cómo se calcula el monto?"; (b) Frontmatter `articleLead.covers` ítem 1.
+Ubicación: Sección "¿Qué son las contribuciones de bienes raíces?" y officialSources
+Descripción: El brief requiere "BCN — DL 3.063 (Ley de Rentas Municipales)" como fuente oficial. El artículo no menciona el DL 3.063 en ninguna sección. La existencia del impuesto y la obligación de pago se respaldan solo con el link al SII, sin citar el instrumento legal que lo establece. officialSources incluye SII y TGR pero no BCN. NORMA_YMYL MUST #4 requiere "al menos 1 fuente oficial" para cada regla crítica YMYL — la regla crítica "el impuesto territorial existe y debe pagarse" carece de cita legal específica.
+Resolution: Agregar mención de DL 3.063 en la sección introductoria ("establecido por el DL 3.063, Ley de Rentas Municipales") y agregar BCN como officialSource, o al menos un enlace en el cuerpo. Clasificado WARNING — no bloquea Gate 07 si el humano acepta que el SII link es suficiente como proxy, pero el brief lo requiere explícitamente.
 
-(a) La sección de cálculo dice: "La tasa exacta que aplica depende de la clasificación de tu propiedad y del régimen tributario correspondiente. La tasa vigente se consulta directamente en el SII." Esto es un redirect sin respuesta concreta. NORMA_YMYL MUST #1 exige "una respuesta concreta (número/regla/criterio) en la primera sección útil." Para la query "¿cómo calcular mis contribuciones?" el lector recibe zero. NORMA_YMYL §2.2 también prohíbe "Depende..." sin listar condiciones (la sección dice "depende de la clasificación" sin explicar las clasificaciones relevantes).
+**DEFECT #2 — INFO — NORMA_YMYL MUST #1 parcialmente cumplido: enfoque procedimental por decisión editorial**
 
-(b) El covers ítem 1 promete "Cómo se calcula el monto según el avalúo fiscal y la tasa legal" — pero el artículo no provee la tasa legal. El covers crea una expectativa que el cuerpo no cumple: NORMA_YMYL MUST #8 (Coherencia interna).
-
-Nota: La decisión de eliminar las tasas no verificadas fue CORRECTA (publicar tasas incorrectas en un artículo de impuestos es el riesgo más alto). El defecto no es la decisión editorial — es que el artículo y su covers no fueron alineados a la nueva promesa reducida.
-
-Resolution — Opción A (preferida): Verificar las tasas vigentes directamente en el portal SII, reincorporarlas con fuente, fecha de vigencia y advertencia "sujeto a actualización — verifica en SII antes de calcular." Esto resuelve simultáneamente covers y cuerpo.
-
-Resolution — Opción B (conservadora): Actualizar `articleLead.covers` ítem 1 a "Qué es el avalúo fiscal y cómo consultar tu monto en el SII" para alinear la promesa con el contenido real. El artículo sigue siendo inferior en utilidad pero elimina la incoherencia.
-
----
-
-**DEFECT #2 — MINOR — Decreto 1101 (DFL-2) sin URL BCN (NORMA_YMYL MUST #4)**
-
-Ubicación: Sección "Exenciones — DFL-2 — Vivienda económica".
-
-El artículo referencia "Decreto 1101" con las condiciones verificadas (140 m², personas naturales, máx dos propiedades) pero sin enlazar al texto legal en BCN. El math audit confirmó `decreto 1101, i=16842` en BCN. Adicionalmente, el header de la sección usa el término "DFL-2" (nombre histórico) sin explicar que el instrumento legal vigente es el Decreto 1101 — esto puede confundir a lectores que busquen la fuente legal.
-
-Resolution: (1) Convertir "Decreto 1101" en enlace BCN con el `i=16842` correspondiente. (2) Aclarar brevemente la relación: "conocido como DFL-2 o vivienda económica, actualmente regido por el Decreto 1101."
-
----
-
-**DEFECT #3 — MINOR — "En general no corresponde deducir" para habitante principal: vago y sin fuente (NORMA_YMYL MUST #4)**
-
-Ubicación: Sección "Contribuciones y F22 — cuándo son gasto deducible", segundo párrafo.
-
-El artículo afirma: "Si habitas tu propiedad como vivienda principal, en general no corresponde deducir las contribuciones como gasto en el F22." El calificador "en general" introduce una excepción sin explicarla. La deducibilidad para arrendadores es condicional (correctamente softened), pero la no-deducibilidad para habitante principal se presenta como "en general" sin citar la norma SII que lo sustenta.
-
-Resolution: Eliminar "en general" y citar la instrucción SII o artículo LIR aplicable, o bien reformular: "Si habitas tu propiedad como vivienda principal, las contribuciones habitualmente no son gasto deducible en el F22 — consulta las instrucciones SII del año tributario correspondiente para tu situación específica."
-
----
-
-**DEFECT #4 — NOTE — Exenciones primera vivienda y adultos mayores sin topes de avalúo**
-
-Ubicación: Sección "Exenciones".
-
-Las exenciones se describen sin los topes de avalúo que definen la elegibilidad, deferidas al SII. Esto es editorialmente correcto dado que los topes son TODO:SOURCE no verificados, pero el lector no puede estimar si califica antes de ingresar al SII. No bloquea publicación condicional.
-
-Resolution (opcional): Verificar los topes de avalúo vigentes en SII e incluirlos con fecha y fuente. Aumentaría significativamente el score de respuesta ancla.
+Ubicación: Sección "¿Cómo se calcula el monto?"
+Descripción: La query ancla "cómo calcular contribuciones" no recibe ninguna tasa concreta — el artículo dirige al SII para obtener el monto determinado. Esta es una decisión editorial deliberada (Opción B del ciclo anterior) dado que las tasas no pudieron verificarse con fuente oficial. El covers ahora es coherente con esta limitación. No es un error factual ni una incoherencia interna, pero el artículo no puede alcanzar el MUST #1 plenamente sin alguna tasa verificada.
+Resolution (para alcanzar PASS): verificar la tasa general vigente (1,2% bienes raíces no agrícolas) y la tasa DFL-2 directamente en el portal SII, reincorporarlas con fuente, fecha y advertencia de actualización. Esto elevaría significativamente el score de respuesta ancla. Clasificado INFO — decisión que compete al humano en Gate 07.
 
 ---
 
@@ -91,15 +59,15 @@ Resolution (opcional): Verificar los topes de avalúo vigentes en SII e incluirl
 
 | TODO:SOURCE / ERROR del math audit | Resolución en blog file | Estado |
 |---|---|---|
-| ERROR: "Toda persona con propiedad paga" | Corregido a "puede corresponder el pago" | RESUELTO |
-| TODO:SOURCE: Tasa general ~1,2% sin verificar | Eliminada — artículo no menciona ninguna tasa | RESUELTO (por omisión) |
-| TODO:SOURCE: Tasa DFL-2 ~1,0% sin verificar | Eliminada — artículo no menciona ninguna tasa | RESUELTO (por omisión) |
-| VERIFIED: Calendario TGR 2026 (30 abril, 30 junio, 30 sept, 30 nov) | Insertado con fechas exactas | RESUELTO |
-| TODO:SOURCE: Exención primera vivienda — topes | Deferida al SII | ACEPTABLE PARA PUBLICACIÓN CONDICIONAL |
-| TODO:SOURCE: Exención adultos mayores — condiciones | Deferida al SII | ACEPTABLE PARA PUBLICACIÓN CONDICIONAL |
-| TODO:SOURCE: Deducibilidad F22 arrendadores | Suavizada a condicional con deferred al SII | ACEPTABLE PARA PUBLICACIÓN CONDICIONAL |
+| ERROR: "Toda persona con propiedad paga" | Corregido a "puede corresponder el pago"; exenciones destacadas en apertura | ✓ RESUELTO |
+| TODO:SOURCE: Tasa general ~1,2% sin verificar | Eliminada — artículo toma enfoque procedimental deferido a SII | ✓ RESUELTO (por omisión deliberada) |
+| TODO:SOURCE: Tasa DFL-2 ~1,0% sin verificar | Eliminada — artículo toma enfoque procedimental deferido a SII | ✓ RESUELTO (por omisión deliberada) |
+| VERIFIED: Calendario TGR 2026 (30 abril, 30 junio, 30 sept, 30 nov) | Insertado con fechas exactas | ✓ RESUELTO |
+| TODO:SOURCE: Exención primera vivienda — topes | Deferida al SII con instrucción al lector | ✓ RESUELTO (por deferral) |
+| TODO:SOURCE: Exención adultos mayores — condiciones | Deferida al SII con instrucción al lector | ✓ RESUELTO (por deferral) |
+| TODO:SOURCE: Deducibilidad F22 arrendadores | Suavizada a condicional; deferred SII/contador | ✓ RESUELTO |
 
-**TODO:SOURCE activos en blog file: 0**
+**TODO:SOURCE activos en el blog file: 0**
 
 ---
 
@@ -108,14 +76,13 @@ Resolution (opcional): Verificar los topes de avalúo vigentes en SII e incluirl
 | Stage | Rol | Agente / Sesión | Estado |
 |---|---|---|---|
 | Gate 01 Brief | Autor | Humano | ✓ |
-| Gate 02–03 Research / Outline | DraftAgent | Claude Code — Sprint 2B (2026-05-03) | ✓ |
-| Gate 04 Draft | DraftAgent | Claude Code — Sprint 2B (2026-05-03) | ✓ |
-| Remediación | DraftAgent | Claude Code — sesión fresca 2026-05-05 | ✓ |
-| Gate 05 Math Audit | MathAuditAgent | ChatGPT — sesión fresca 2026-05-05 | ✓ Ejecutado — Veredicto FAIL (resuelto) |
+| Gate 02–03 Research / Outline | DraftAgent | Claude Code — Sprint 2B | ✓ |
+| Gate 04 Draft | DraftAgent | Claude Code — Sprint 2B | ✓ |
+| Remediación (ciclo 1) | DraftAgent | Claude Code — sesión fresca 2026-05-05 | ✓ |
+| Remediación (ciclo 2) | DraftAgent | Claude Code — sesión fresca 2026-05-06 | ✓ |
+| Gate 05 Math Audit | MathAuditAgent | ChatGPT — sesión fresca 2026-05-05 | ✓ |
 | Gate 06 Compliance | ComplianceAgent | Claude Code — sesión fresca 2026-05-06 (esta sesión) | ✓ SoD cumplido |
 | Gate 07 Publish Packet | Solo humano | — | ⬜ Pendiente |
-
-SoD: CONFORME. INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES cumplido.
 
 ---
 
@@ -123,14 +90,10 @@ SoD: CONFORME. INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES cumplido.
 
 **CONDITIONAL**
 
-La remediación del 2026-05-05 resolvió los defectos de alta severidad del ciclo anterior: tasas no verificadas eliminadas, calendario TGR 2026 confirmado con fechas exactas, DFL-2 referenciado correctamente al Decreto 1101 con condiciones verificadas, F22 deducibilidad suavizada a condicional, apertura reformulada. No quedan claims falsos ni marcadores TODO:SOURCE en el blog file.
+Justificación: Los tres defectos del ciclo anterior están resueltos. La covers ahora es coherente con el enfoque procedimental del artículo (Opción B del ciclo anterior implementada). La URL BCN del Decreto 1101 está presente. La sección F22 para habitante principal está reformulada sin el calificador vago, con instrucción explícita al SII/contador. No hay TODO:SOURCE activos ni claims falsos.
 
-El artículo no puede alcanzar PASS por:
-1. **DEFECT #1 (MEDIUM)**: La sección de cálculo no provee ninguna tasa y el covers promete calcular "según el avalúo fiscal y la tasa legal" — incoherencia covers↔cuerpo + MUST #1 parcialmente incumplido.
-2. **DEFECT #2 (MINOR)**: Decreto 1101 sin URL BCN y sin aclaración de relación con "DFL-2".
-3. **DEFECT #3 (MINOR)**: "En general no corresponde deducir" para habitante principal — vago y sin fuente.
-4. Score NORMA_YMYL 8.25/10 < 9.5.
+Score mejoró de 8.25 (ciclo anterior) a 8.9 (este ciclo). El artículo permanece CONDITIONAL porque:
+1. **DEFECT #1** (WARNING): DL 3.063 no citado — requerido por brief. Una línea de texto + BCN link resuelve esto.
+2. **DEFECT #2** (INFO): Sin tasa concreta publicable, NORMA_YMYL MUST #1 queda parcialmente cumplido — decisión que compete al humano en Gate 07.
 
-**Observación sobre la decisión editorial**: El artículo está atrapado entre dos requisitos del pipeline: no publicar tasas sin fuente oficial (correcto) y proveer respuesta concreta a la query de cálculo (también requerido). La única ruta a PASS es verificar las tasas SII directamente (Opción A de DEFECT #1). La Opción B reduce la incoherencia pero no alcanza 9.5.
-
-**Artículo no autorizado para Gate 07 hasta que DraftAgent resuelva DEFECTS #1–#3.**
+Nota para Gate 07: Este artículo tiene una limitación estructural: la ruta a PASS requiere verificar y publicar las tasas SII con fuente oficial. Si el humano acepta el enfoque procedimental como política editorial para este artículo, debe documentarlo en Gate 07 y aceptar que el score permanecerá por debajo de 9.5. DEFECT #1 (DL 3.063) puede resolverse sin desbloquear esta tensión estructural.

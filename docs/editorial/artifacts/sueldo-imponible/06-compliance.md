@@ -1,30 +1,28 @@
 # Gate 06 — Compliance Review: sueldo-imponible-chile
 
-Status: BLOCKED — DEFECTS FOUND (1 defecto bloqueante en covers frontmatter)
+Status: CONDITIONAL
 Role: ComplianceAgent (Claude Code — sesión fresca, adversarial)
 Fecha: 2026-05-06
-Cycle: Reemplaza 06-compliance.md del 2026-05-05 (post-remediación anterior)
+Cycle: Reemplaza ciclo anterior (post-remediación DraftAgent ciclo 2, 2026-05-06)
 
 Archivos revisados:
-  - `docs/editorial/NORMA_YMYL.md`
-  - `docs/editorial/artifacts/briefs/sueldo-imponible.md`
-  - `docs/editorial/artifacts/sueldo-imponible/04-draft.md`
-  - `docs/editorial/artifacts/sueldo-imponible/05-math-audit.md`
-  - `src/data/blog/sueldo-imponible-chile.md` (versión post-remediación 2026-05-05)
+  - docs/editorial/NORMA_YMYL.md
+  - docs/editorial/artifacts/briefs/sueldo-imponible.md
+  - docs/editorial/artifacts/sueldo-imponible/04-draft.md
+  - docs/editorial/artifacts/sueldo-imponible/05-math-audit.md
+  - src/data/blog/sueldo-imponible-chile.md
 
 ---
 
-## Verificación de remediaciones (puntos de atención post-2026-05-05)
+## Verificación de remediaciones (puntos de atención post-2026-05-06, ciclo 2)
 
 | Punto de atención | Estado |
 |---|---|
-| ERROR: Tope AFP/salud ~87,1 UF → 90,0 UF | ✓ RESUELTO — blog file dice "90,0 UF mensuales" |
-| Tope AFC 135,2 UF diferenciado | ✓ RESUELTO — diferenciado correctamente de 90,0 UF AFP/salud |
-| ERROR: AFP "dobla comisión" → separado | ✓ RESUELTO — "$126.000 (10,5%); comisión AFP es adicional y varía" |
-| ERROR: APV topes en UTM → UF | ✓ RESUELTO — "Los topes se expresan en UF" |
-| ISC ejemplo $9.882 insertado | ✓ RESUELTO — verificado por MathAuditAgent (tabla SII AT 2026) |
-| APV Modalidad A "beneficio 15%" eliminado | ✓ RESUELTO EN CUERPO — "beneficio tributario directo" sin tasa (conservador) |
-| APV Modalidad A covers bullet | ✗ DEFECTO BLOQUEANTE — ver DEFECT #1 |
+| covers bullet #4: "Cómo el APV puede reducir la base del ISC (Modalidad B) o generar un crédito tributario directo (Modalidad A)." | ✓ RESUELTO — corrige DEFECT #1 BLOQUEANTE del ciclo anterior |
+| Salud 7%: cita "Ley 18.469 Fonasa / Ley 18.933 Isapres" | ✓ RESUELTO — corrige DEFECT #2 del ciclo anterior |
+| AFC: cita "Ley 19.728, Seguro de Cesantía" | ✓ RESUELTO — corrige DEFECT #3 del ciclo anterior |
+| APV art. 42 bis: URL BCN idNorma=6368 | ✓ RESUELTO — corrige DEFECT #4 del ciclo anterior |
+| Ejemplo: "Sueldo líquido orientativo: ~$972.918" con nota de comisión AFP | ✓ RESUELTO — corrige DEFECT #5 del ciclo anterior |
 
 ---
 
@@ -32,77 +30,34 @@ Archivos revisados:
 
 | Dimensión | Peso | Puntuación | Ponderado | Notas |
 |---|---|---|---|---|
-| Respuesta ancla | 35% | 8.0/10 | 2.800 | `articleLead.answer` preciso y directo. Tabla imponibles/no imponibles es fortaleza. Topes 90,0/135,2 UF diferenciados. Deducción: (1) covers bullet #4 "Cómo el APV Modalidad A puede reducir la base del ISC" es factualmente incorrecto — Modalidad A es crédito; Modalidad B reduce la base. (2) Ejemplo no muestra el sueldo líquido final calculado. |
-| Precisión + fuentes | 25% | 7.5/10 | 1.875 | Topes UF corregidos y verificados. ISC $9.882 verificado. AFP separado correctamente. UF vs UTM corregido. Deducción: (1) covers bullet APV Modalidad A = error normativo activo. (2) Cotización salud 7% sin cita de Ley 18.469/18.933. (3) AFC 0,6%/2,4% sin cita de Ley 19.728. (4) APV art. 42 bis LIR sin URL BCN. |
-| Vigencia + calendario | 15% | 9.0/10 | 1.350 | `validAsOf: 2026-05-03` presente. Notas de actualización para tope UF e ISC presentes. Links SP y SII. |
-| Excepciones + cobertura | 15% | 8.5/10 | 1.275 | Bono de asistencia condicional cubierto. Colación/movilización claros. APV explicado con art. 42 bis LIR. Deducción: ISC tramos no reproducidos (solo "7 tramos, 0% a 40%, ver SII"). |
-| Claridad + estructura | 10% | 8.5/10 | 0.850 | H2 claros. Pseudocódigo de cálculo útil. Tabla bien formateada. Deducción: ejemplo no cierra con sueldo líquido calculado. |
-| **TOTAL** | 100% | — | **8.15/10** | **Por debajo del umbral 9.5 — no PASS; error bloqueante presente → FAIL** |
+| Respuesta ancla | 35% | 9.5 | 3.325 | articleLead.answer concreto y definitorio; covers enumeran cobertura exacta y correcta; fuentes oficiales presentes; vigencia explícita |
+| Precisión + fuentes | 25% | 9.0 | 2.250 | BCN art.41, Ley 18.469/18.933, Ley 19.728, art. 42 bis BCN idNorma=6368; topes 90,0 UF y 135,2 UF verificados; ISC $9.882 auditado; APV topes en UF (sin monto específico — deferred a SII) |
+| Vigencia + calendario | 15% | 9.5 | 1.425 | "vigente al 2026-05-03" en apertura y cierre; articleAdvisory advierte actualización periódica; validAsOf en frontmatter |
+| Excepciones + cobertura | 15% | 9.0 | 1.350 | Bono de asistencia "Depende" explicado; Modalidad A/B APV distinguidas correctamente; anti-cannibalización en limits; tramos ISC no reproducidos (solo ejemplo verificado) |
+| Claridad + estructura | 10% | 9.0 | 0.900 | H2 sigue brief; tabla inclusión/exclusión; code block fórmula; terminología menor inconsistente entre covers y cuerpo para Modalidad A |
+| **TOTAL** | 100% | — | **9.25** | Por debajo del umbral 9.5 — CONDITIONAL |
 
 ---
 
 ## DEFECTS
 
-**DEFECT #1 — BLOQUEANTE — Error normativo en covers frontmatter: APV Modalidad A mal atribuida (NORMA_YMYL MUST #8 + error de cumplimiento)**
+**DEFECT #1 — WARNING — Inconsistencia terminológica Modalidad A APV: covers vs. cuerpo (NORMA_YMYL §1.1.8)**
 
-Ubicación: `src/data/blog/sueldo-imponible-chile.md`, frontmatter `articleLead.covers`, ítem #4.
+Ubicación: frontmatter `articleLead.covers[3]` vs. body sección "APV y reducción de la base imponible"
+Descripción: El covers dice "crédito tributario directo (Modalidad A)". El cuerpo dice "genera un beneficio tributario directo sobre el monto cotizado". En derecho tributario chileno, *crédito tributario* (deducción directa contra la obligación fiscal) y *beneficio tributario* (genérico) no son sinónimos. El art. 42 bis Modalidad A sí opera como crédito contra el IGC/ISC, por lo que "crédito tributario" es la terminología más precisa. La inconsistencia viola NORMA_YMYL §1.1.8.
+Resolution: Alinear el cuerpo con el covers: en la sección APV reemplazar "genera un beneficio tributario directo" por "genera un crédito tributario directo". El porcentaje 15% permanece eliminado (correcto: no verificado con fuente oficial).
 
-El frontmatter contiene:
-```
-- "Cómo el APV Modalidad A puede reducir la base del ISC."
-```
+**DEFECT #2 — WARNING — Tramos ISC ausentes: ejemplo verificado pero no verificable por el lector (Brief §8.5 / NORMA_YMYL §2.2)**
 
-Esta afirmación es **factualmente incorrecta**. APV Modalidad A genera un crédito tributario directo sobre el monto cotizado (beneficio fiscal). APV Modalidad B es la que reduce la base imponible del ISC. El propio cuerpo del artículo lo dice correctamente:
-- "Modalidad A: genera un beneficio tributario directo sobre el monto cotizado" ✓
-- "Modalidad B: reduce la base imponible del ISC" ✓
+Ubicación: Sección "Cómo determina el Impuesto de Segunda Categoría"
+Descripción: El brief exige "Cómo determina el ISC (tramos y ejemplo)". El artículo incluye el resultado del ejemplo ($9.882, auditado por MathAuditAgent: $1.200.000 × 0,04 − $38.117,52 = $9.882) pero no los tramos. El texto dice solo "7 tramos expresados en UTM, desde 0% hasta 40%, ver SII". Un lector que quiera verificar el $9.882 debe salir al SII sin saber ni qué tramo ni qué tasa buscar — roza el patrón anti-abstracción prohibido (NORMA_YMYL §2.2).
+Resolution: Incluir al menos el umbral y tasa del tramo aplicado al ejemplo, con vigencia AT 2026 y fuente SII. No es necesario reproducir la tabla completa. Ejemplo: "En el tramo AT 2026 de $X UTM a $Y UTM, la tasa es 4% menos un factor de $38.117 (fuente: SII)."
 
-La sección `articleLead.covers` es contenido user-facing que aparece en la vista previa del artículo y en snippets de búsqueda. Un lector que decide si APV Modalidad A o B le conviene puede tomar una decisión incorrecta basándose en este bullet.
+**DEFECT #3 — INFO — APV topes en UF: math audit los verificó pero el artículo no los incluye**
 
-Esto viola NORMA_YMYL MUST #8 (Coherencia interna: contradice directamente el cuerpo del artículo) y constituye un "error de cumplimiento" per las instrucciones de auditoría (claim crítico con contenido incorrecto sobre una decisión financiera).
-
-El report del 2026-05-05 clasificó este como MINOR y no lo identificó como bloqueante. Esta auditoría lo clasifica como BLOQUEANTE porque el covers bullet es contenido user-facing con información factualmente incorrecta sobre una elección financiera con implicancias tributarias reales.
-
-Resolution: Corregir el covers bullet #4 a: `"Cómo el APV puede reducir la base del ISC (Modalidad B) o generar un crédito tributario directo (Modalidad A)."` O bien: `"Cómo el APV Modalidad B reduce la base del ISC y qué diferencia a la Modalidad A."` Verificar también que no haya inconsistencia similar en otros artículos del cluster (cross-article coherence).
-
----
-
-**DEFECT #2 — MINOR — Cotización salud 7%: sin cita legal (NORMA_YMYL MUST #4)**
-
-Ubicación: Sección "Cómo afecta el imponible a AFP, salud y AFC" y ejemplo numérico.
-
-El artículo afirma "Cotización de salud: 7% Fonasa o el plan isapre pactado" y calcula $84.000 en el ejemplo. La aritmética es correcta (math audit: TODO:SOURCE resuelto por softening). Sin embargo, la tasa del 7% obligatorio de salud no tiene cita legal (Ley 18.469 Fonasa / Ley 18.933 Isapre). Para contenido YMYL de cotizaciones laborales, la fuente de la tasa obligatoria debe ser trazable.
-
-Resolution: Agregar referencia a la norma legal ("según Ley 18.469/18.933") o reformular como "la tasa mínima legal de salud (verifica con tu institución o en el Ministerio de Salud)."
-
----
-
-**DEFECT #3 — MINOR — AFC 0,6% / 2,4%: sin cita de Ley 19.728 (NORMA_YMYL MUST #4)**
-
-Ubicación: Sección "Cómo afecta el imponible a AFP, salud y AFC" y ejemplo.
-
-Las tasas del Seguro de Cesantía se presentan sin citar la Ley 19.728 que las establece ni enlace a AFC Chile. El math audit marcó esto como TODO:SOURCE.
-
-Resolution: Agregar "Ley 19.728 (Seguro de Cesantía)" o enlace a AFC Chile con nota "tasas vigentes según Ley 19.728 — verifica actualizaciones en AFC Chile."
-
----
-
-**DEFECT #4 — MINOR — APV: terminología "Modalidad A/B" sin URL art. 42 bis LIR (NORMA_YMYL MUST #4)**
-
-Ubicación: Sección "APV y reducción de la base imponible".
-
-El artículo referencia "artículo 42 bis de la LIR" sin enlace a BCN. La terminología "Modalidad A / B" es denominación de mercado — el art. 42 bis no necesariamente usa ese lenguaje. La referencia al artículo sin URL reduce la trazabilidad.
-
-Resolution: Agregar URL a BCN para art. 42 bis LIR (`idNorma=6368`), o a la FAQ SII sobre APV que use el lenguaje "Modalidad A/B" explícitamente.
-
----
-
-**DEFECT #5 — NOTE — Ejemplo no muestra sueldo líquido final (NORMA_YMYL SHOULD)**
-
-Ubicación: Sección "Ejemplo numérico orientativo".
-
-El ejemplo muestra todos los descuentos pero termina con "Sueldo líquido: $1.200.000 menos los descuentos anteriores" sin dar el número calculado. Los descuentos verificados suman ~$227.082 ($126.000 + $84.000 + $7.200 + $9.882), dando un líquido orientativo de ~$972.918. No calcular este total reduce la utilidad del ejemplo sin reducir el riesgo.
-
-Resolution: Calcular el sueldo líquido final orientativo con nota "La comisión AFP no está incluida — varía por institución y puede agregar entre $X y $Y al descuento total."
+Ubicación: Sección "APV y reducción de la base imponible"
+Descripción: El MathAuditAgent confirmó topes de 50 UF mensuales / 600 UF anuales (art. 42 bis). El artículo dice solo "Los topes se expresan en UF — verifica los montos exactos vigentes con tu AFP o en el SII". No es error factual, pero reduce utilidad informativa para quien evalúa APV como herramienta tributaria.
+Resolution (opcional): Agregar "hasta 50 UF mensuales o 600 UF anuales (vigentes según art. 42 bis — verifica actualizaciones en SII)". Clasificado INFO: no bloquea Gate 07 si el equipo opta por mantener el deferred.
 
 ---
 
@@ -110,16 +65,31 @@ Resolution: Calcular el sueldo líquido final orientativo con nota "La comisión
 
 | TODO:SOURCE del math audit | Resolución en blog file | Estado |
 |---|---|---|
-| ERROR: Tope ~87,1 UF (desactualizado) | Corregido a 90,0 UF / 135,2 UF diferenciados | RESUELTO |
-| ERROR: AFP "dobla comisión" | Separado correctamente en cuerpo y ejemplo | RESUELTO |
-| ERROR: APV topes en UTM | Corregido a "Los topes se expresan en UF" | RESUELTO |
-| VERIFIED: ISC $9.882 en ejemplo | Insertado y verificado | RESUELTO |
-| TODO:SOURCE: Salud 7% sin fuente | No resuelto — claim permanece sin cita legal | PENDIENTE → DEFECT #2 |
-| TODO:SOURCE: AFC 0,6%/2,4% sin fuente | No resuelto — claim permanece sin Ley 19.728 | PENDIENTE → DEFECT #3 |
-| TODO:SOURCE: APV Modalidad A "15%" | Eliminado (conservador: "beneficio tributario directo") | RESUELTO EN CUERPO |
-| ⚠️ NUEVO: covers bullet APV Modalidad A = base reduction | No detectado en ciclo anterior — error en frontmatter | NUEVO → DEFECT #1 BLOQUEANTE |
+| ERROR: Tope ~87,1 UF desactualizado | Corregido a 90,0 UF (AFP/salud) y 135,2 UF (AFC) diferenciados | ✓ RESUELTO |
+| ERROR: AFP "dobla comisión" | "$126.000 (10,5%); comisión AFP adicional" | ✓ RESUELTO |
+| ERROR: APV topes en UTM | "Los topes se expresan en UF" | ✓ RESUELTO |
+| VERIFIED: ISC $9.882 en ejemplo | Insertado y auditado | ✓ RESUELTO |
+| TODO:SOURCE: Salud 7% sin fuente | Citadas Ley 18.469 / Ley 18.933 | ✓ RESUELTO |
+| TODO:SOURCE: AFC 0,6%/2,4% sin fuente | Citada Ley 19.728 Seguro de Cesantía | ✓ RESUELTO |
+| TODO:SOURCE: APV Modalidad A "15%" sin fuente | Eliminado; reemplazado por "beneficio tributario directo" sin porcentaje | ✓ RESUELTO (por eliminación del claim no verificado) |
 
-**TODO:SOURCE activos en el blog file: 0 (pero 1 defecto bloqueante en frontmatter y 2 claims sin fuente en cuerpo)**
+**TODO:SOURCE activos en el blog file: 0**
+
+---
+
+## Verificación aritmética independiente (ComplianceAgent)
+
+Ejemplo $1.200.000 bruto = imponible (sin componentes no imponibles):
+- AFP 10,5%: $1.200.000 × 0,105 = **$126.000** ✓
+- Salud 7%: $1.200.000 × 0,07 = **$84.000** ✓
+- AFC 0,6%: $1.200.000 × 0,006 = **$7.200** ✓
+- ISC AT 2026 (MathAuditAgent): $1.200.000 × 0,04 − $38.117,52 = **$9.882** ✓
+- Líquido orientativo: $1.200.000 − $126.000 − $84.000 − $7.200 − $9.882 = **$972.918** ✓
+- Nota comisión AFP: declarada explícitamente como excluida ✓
+
+Topes UF verificados por MathAuditAgent y presentes en blog file:
+- AFP/salud: 90,0 UF ✓
+- AFC: 135,2 UF ✓
 
 ---
 
@@ -128,32 +98,24 @@ Resolution: Calcular el sueldo líquido final orientativo con nota "La comisión
 | Stage | Rol | Agente / Sesión | Estado |
 |---|---|---|---|
 | Gate 01 Brief | Autor | Humano | ✓ |
-| Gate 02–03 Research / Outline | DraftAgent | Claude Code — Sprint 2B (2026-05-03) | ✓ |
-| Gate 04 Draft | DraftAgent | Claude Code — Sprint 2B (2026-05-03) | ✓ |
-| Remediación | DraftAgent | Claude Code — sesión fresca 2026-05-05 | ✓ |
-| Gate 05 Math Audit | MathAuditAgent | ChatGPT — sesión fresca 2026-05-05 | ✓ Ejecutado — Veredicto FAIL (parcialmente resuelto) |
+| Gate 02–03 Research / Outline | DraftAgent | Claude Code — Sprint 2B | ✓ |
+| Gate 04 Draft | DraftAgent | Claude Code — Sprint 2B | ✓ |
+| Remediación (ciclo 1) | DraftAgent | Claude Code — sesión fresca 2026-05-05 | ✓ |
+| Remediación (ciclo 2) | DraftAgent | Claude Code — sesión fresca 2026-05-06 | ✓ |
+| Gate 05 Math Audit | MathAuditAgent | ChatGPT — sesión fresca 2026-05-05 | ✓ |
 | Gate 06 Compliance | ComplianceAgent | Claude Code — sesión fresca 2026-05-06 (esta sesión) | ✓ SoD cumplido |
 | Gate 07 Publish Packet | Solo humano | — | ⬜ Pendiente |
-
-SoD: CONFORME. INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES cumplido.
 
 ---
 
 ## Veredicto final
 
-**FAIL**
+**CONDITIONAL**
 
-La remediación del 2026-05-05 resolvió los tres ERROREs del math audit (topes UF correctos, AFP separado, APV en UF no UTM) y completó el ejemplo ISC con $9.882. Sin embargo, la remediación introdujo o dejó sin detectar un error normativo bloqueante en el frontmatter `articleLead.covers`:
+Justificación: Todos los defectos del ciclo anterior están resueltos — incluyendo el DEFECT #1 BLOQUEANTE (covers APV Modalidad A), las tres citas legales faltantes (Ley 18.469/18.933, Ley 19.728, BCN art. 42 bis), y el ejemplo numérico completo con sueldo líquido orientativo. No hay placeholders TODO:SOURCE activos. No hay afirmaciones incorrectas. La aritmética es íntegra.
 
-**DEFECT #1 BLOQUEANTE**: El bullet "Cómo el APV Modalidad A puede reducir la base del ISC" es factualmente incorrecto — Modalidad A es un crédito tributario, no una reducción de base. Modalidad B es la que reduce la base. Este error aparece en contenido user-facing (covers) y contradice directamente el cuerpo del artículo, que sí lo tiene correcto. El report anterior (2026-05-05) no identificó este defecto como bloqueante.
+Defectos pendientes antes de Gate 07:
+1. **DEFECT #1** (WARNING, debe resolverse): Alinear "crédito tributario directo" en el cuerpo APV Modalidad A con el covers — una línea de edición.
+2. **DEFECT #2** (WARNING, debe resolverse): Agregar referencia al tramo ISC aplicado en el ejemplo para que el lector pueda verificar el $9.882 sin salir al SII.
 
-**Artículo no autorizado para Gate 07 hasta que DraftAgent corrija DEFECT #1.**
-
-Los DEFECTS #2–#4 son menores y también deben resolverse antes de Gate 07 (nueva ronda DraftAgent requerida de todos modos por DEFECT #1).
-
-Ruta a re-auditoría:
-1. DraftAgent corrige covers bullet APV (DEFECT #1) — obligatorio.
-2. DraftAgent agrega citas Ley 18.469/18.933 para salud 7% (DEFECT #2).
-3. DraftAgent agrega Ley 19.728 para AFC (DEFECT #3).
-4. DraftAgent agrega URL art. 42 bis LIR (DEFECT #4).
-5. Nueva ronda Gate 06 en sesión fresca antes de Gate 07.
+Tras resolver DEFECT #1 y #2, el artículo puede avanzar a Gate 07 sin nueva ronda de ComplianceAgent — los cambios requeridos son puntuales y verificables directamente por el revisor humano. DEFECT #3 (INFO) queda a criterio del equipo editorial.
