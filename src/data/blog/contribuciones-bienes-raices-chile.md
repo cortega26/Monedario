@@ -30,7 +30,7 @@ articleLead:
     - label: "TGR — Portal de pago"
       href: "https://www.tgr.cl/"
   covers:
-    - "Cómo se calcula el monto según el avalúo fiscal y la tasa legal."
+    - "Qué es el avalúo fiscal y cómo consultar el monto de tus contribuciones en el SII."
     - "El calendario de 4 cuotas anuales y los canales de pago."
     - "Exenciones para primera vivienda, DFL-2 y adultos mayores."
     - "Cuándo son deducibles en el F22 (solo para arrendadores)."
@@ -79,7 +79,7 @@ Propietarios de 65 años o más con propiedad de avalúo bajo cierto umbral pued
 
 ### DFL-2 — Vivienda económica
 
-Las propiedades acogidas al régimen de vivienda económica (Decreto 1101) acceden a beneficios tributarios, incluyendo tasas diferenciadas. El beneficio tiene restricciones: **superficie edificada máxima de 140 m²**, uso habitacional, restringido a **personas naturales** y a un máximo de **dos propiedades** por beneficiario. Verifica si tu propiedad está acogida a este régimen en el [SII](https://www.sii.cl/).
+Las propiedades acogidas al régimen conocido popularmente como DFL-2 o vivienda económica, actualmente regido por el [Decreto 1101](https://www.bcn.cl/leychile/navegar?i=16842), acceden a beneficios tributarios, incluyendo tasas diferenciadas. El beneficio tiene restricciones: **superficie edificada máxima de 140 m²**, uso habitacional, restringido a **personas naturales** y a un máximo de **dos propiedades** por beneficiario. Verifica si tu propiedad está acogida a este régimen en el [SII](https://www.sii.cl/).
 
 ## ¿Qué pasa si no pagas?
 
@@ -93,7 +93,7 @@ Si crees que el SII sobrevaluó tu propiedad, tienes derecho a reclamar el aval�
 
 Para propietarios que arriendan el bien raíz, las contribuciones pueden ser consideradas gasto tributario al declarar la renta de arrendamiento en el F22. Las condiciones exactas dependen de las instrucciones SII vigentes para el año tributario correspondiente — verifica en el [SII](https://www.sii.cl/) o con un contador la aplicación específica a tu caso.
 
-Si habitas tu propiedad como vivienda principal, en general no corresponde deducir las contribuciones como gasto en el F22. Consulta las instrucciones del SII para tu situación.
+Si habitas tu propiedad como vivienda principal, las contribuciones habitualmente no son gasto deducible en el F22 — consulta las instrucciones SII del año tributario correspondiente o a un contador para tu situación específica.
 
 Para el proceso de Operación Renta, revisa la [guía del F22](/posts/operacion-renta-f22-checklist/).
 

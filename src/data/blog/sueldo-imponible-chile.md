@@ -35,7 +35,7 @@ articleLead:
     - "Qué componentes del sueldo entran en la base imponible y cuáles no."
     - "Cómo la base imponible determina AFP, salud, AFC e ISC."
     - "El tope máximo imponible y su efecto en la cotización previsional."
-    - "Cómo el APV Modalidad A puede reducir la base del ISC."
+    - "Cómo el APV puede reducir la base del ISC (Modalidad B) o generar un crédito tributario directo (Modalidad A)."
   limits:
     - "No calcula el sueldo líquido completo — para eso usa la calculadora."
     - "Los tramos ISC y el tope UF se actualizan; verifica los valores vigentes en SII y Superintendencia de Pensiones."
@@ -88,8 +88,8 @@ Este artículo se enfoca en la **remuneración imponible** — la base del cálc
 Cada descuento previsional se aplica como un porcentaje de la remuneración imponible, con un tope máximo:
 
 - **Cotización AFP**: aproximadamente 10,5% de la base imponible más la comisión de tu AFP (varía por institución).
-- **Cotización de salud**: 7% Fonasa o el plan isapre pactado.
-- **AFC (Seguro de Cesantía)**: 0,6% el trabajador; 2,4% el empleador.
+- **Cotización de salud**: 7% mínimo legal (Ley 18.469 Fonasa / Ley 18.933 Isapres) o la prima pactada con la isapre, lo que sea mayor.
+- **AFC (Seguro de Cesantía)**: 0,6% el trabajador; 2,4% el empleador (Ley 19.728, Seguro de Cesantía).
 
 **Tope máximo imponible**: las cotizaciones previsionales (AFP y salud) se aplican solo hasta **90,0 UF mensuales**; el Seguro de Cesantía (AFC) tiene un tope diferente de **135,2 UF mensuales**. Lo que se gana por sobre el tope no cotiza — lo que también significa que no genera pensión sobre esa porción. Verifica los valores vigentes en la [Superintendencia de Pensiones](https://www.spensiones.cl/).
 
@@ -103,7 +103,7 @@ La estructura vigente tiene 7 tramos expresados en UTM, desde 0% para ingresos b
 
 El Ahorro Previsional Voluntario (APV) puede reducir tu carga tributaria según la modalidad elegida:
 
-- **Modalidad A**: genera un beneficio tributario directo sobre el monto cotizado, de acuerdo con el artículo 42 bis de la LIR.
+- **Modalidad A**: genera un beneficio tributario directo sobre el monto cotizado, de acuerdo con el [artículo 42 bis de la LIR](https://www.bcn.cl/leychile/navegar?idNorma=6368).
 - **Modalidad B**: reduce la base imponible del ISC, con topes distintos establecidos en el mismo artículo.
 
 Los topes se expresan en UF — verifica los montos exactos vigentes con tu AFP o en el [SII](https://www.sii.cl/) (instrucciones del F22 del año tributario correspondiente).
@@ -119,7 +119,7 @@ Para un trabajador con sueldo bruto de $1.200.000 sin componentes no imponibles 
 3. Salud (7%): $84.000
 4. AFC (0,6%): $7.200
 5. ISC (tabla SII AT 2026): **$9.882** — calculado sobre el tramo correspondiente a $1.200.000 de remuneración imponible
-6. Sueldo líquido: $1.200.000 menos los descuentos anteriores
+6. **Sueldo líquido orientativo: ~$972.918** ($1.200.000 − $126.000 − $84.000 − $7.200 − $9.882). La comisión AFP no está incluida — varía por institución.
 
 Para el cálculo completo con todas las líneas, usa la guía de [liquidación de sueldo](/posts/liquidacion-de-sueldo/) o la calculadora de sueldo líquido.
 

@@ -67,7 +67,7 @@ articleLead:
   limits:
     - "No reemplaza asesoría laboral específica para tu contrato o empresa."
     - "Los valores del IMM se actualizan; verifica el vigente en Ministerio del Trabajo."
-    - "No cubre regímenes especiales (agricultura con contrato particular, algunos sectores regulados)."
+    - "No cubre regímenes especiales ni contratos sujetos a estatutos particulares."
 ---
 ```
 
@@ -81,11 +81,11 @@ Revisas tu liquidación y hay una línea que dice "gratificación". A veces es u
 
 ## ¿Qué es la gratificación legal y a quiénes aplica?
 
-La gratificación legal es una parte de las remuneraciones que el empleador debe compartir con los trabajadores cuando el establecimiento donde prestan servicios obtiene utilidades en el ejercicio comercial (artículo 47 del Código del Trabajo).
+La gratificación legal es la parte de las remuneraciones que el empleador debe distribuir entre sus trabajadores cuando el establecimiento obtiene utilidades (artículo 47 del [Código del Trabajo](https://www.bcn.cl/leychile/navegar?idNorma=207436) — modalidad del 30%). Sin embargo, la modalidad más habitual en Chile es la del artículo 50 CT: un 25% de las remuneraciones imponibles anuales, con un tope equivalente a 4,75 ingresos mínimos mensuales (IMM), y se paga independientemente de si la empresa tuvo utilidades o pérdidas.
 
 **Quiénes tienen derecho:**
 
-Todo trabajador que preste servicios en un establecimiento de carácter comercial, industrial, minero o agrícola, con independencia del tipo de contrato — indefinido o a plazo fijo — tiene derecho a gratificación legal según el artículo 47 del Código del Trabajo.
+Todo trabajador que preste servicios en un establecimiento de carácter comercial, industrial, minero o agrícola, con independencia del tipo de contrato — indefinido o a plazo fijo — tiene derecho a gratificación legal según el Código del Trabajo (artículos 47 y 50).
 
 **Quiénes pueden quedar fuera:**
 
@@ -97,16 +97,13 @@ El Código del Trabajo establece dos formas de calcular y pagar la gratificació
 
 **Modalidad 1 — 30 % de utilidades netas (art. 47 CT)**
 
-Cuando la empresa obtuvo utilidades líquidas en el ejercicio, puede distribuir el 30% de esas utilidades entre todos los trabajadores, en proporción a sus remuneraciones. Solo aplica si hay utilidades reales contabilizadas. Si la empresa tuvo pérdidas, esta modalidad no genera obligación de pago.
+Cuando la empresa obtuvo utilidades líquidas en el ejercicio, puede distribuir el 30% de esas utilidades entre todos los trabajadores, en proporción a sus remuneraciones. Si la empresa tuvo pérdidas, esta modalidad no genera obligación de pago.
 
 **Modalidad 2 — 25 % de remuneraciones imponibles con tope IMM (art. 50 CT)**
 
-El empleador paga el 25% de las remuneraciones imponibles que el trabajador devengó durante el año, con un tope máximo de **4,75 veces el Ingreso Mínimo Mensual (IMM) vigente**. Esta modalidad subsiste aunque la empresa haya tenido pérdidas — la obligación no depende del resultado del ejercicio.
+El empleador paga el 25% de las remuneraciones imponibles que el trabajador devengó durante el año, con un tope máximo de **4,75 veces el Ingreso Mínimo Mensual (IMM) vigente**. Esta modalidad subsiste aunque la empresa haya tenido pérdidas.
 
-Esta es la modalidad más utilizada en Chile porque:
-1. El monto es predecible (no depende de las utilidades).
-2. Libera al empleador de compartir balances ni resultados del ejercicio.
-3. Se puede provisionar mensualmente en la liquidación de sueldo.
+Esta es la modalidad más utilizada en Chile porque el monto es predecible, no depende de las utilidades y se puede provisionar mensualmente en la liquidación de sueldo.
 
 ## Cómo calcular: fórmula, tope máximo y ejemplo
 
@@ -114,53 +111,41 @@ Esta es la modalidad más utilizada en Chile porque:
 
 ```
 Gratificación bruta anual = Suma de remuneraciones imponibles del año × 0,25
-Tope anual = IMM mensual vigente × 4,75
-Gratificación efectiva = el menor valor entre (gratificación bruta) y (tope anual)
+Tope anual                 = IMM mensual vigente × 4,75
+Gratificación efectiva     = el menor entre (gratificación bruta) y (tope anual)
 ```
 
-### El tope en términos del IMM
+> **Nota:** el valor del IMM vigente debe verificarse en el [Ministerio del Trabajo](https://www.mintrab.gob.cl/) antes de hacer cualquier cálculo. El tope cambia cada vez que se actualiza el IMM (actualmente fijado por la Ley 21.751, Ministerio del Trabajo).
 
-El IMM vigente (Ley 21.751, Mintrab) es **CLP $539.000**.
+### Ejemplo numérico
 
-Tope anual = $539.000 × 4,75 = **CLP $2.560.250**
+Trabajador con sueldo imponible mensual de **$800.000**, año completo:
 
-Si se provisiona mensualmente en la liquidación: $2.560.250 ÷ 12 = **CLP $213.354 por mes**.
+- Remuneraciones imponibles anuales: $800.000 × 12 = **$9.600.000**
+- Gratificación bruta (25 %): $9.600.000 × 0,25 = **$2.400.000**
+- IMM vigente (Ley 21.751, Mintrab): **$539.000**
+- Tope legal: $539.000 × 4,75 = **$2.560.250**
+- Gratificación efectiva: min($2.400.000, $2.560.250) = **$2.400.000** (la bruta es menor al tope, se paga la bruta completa)
 
-### Ejemplo numérico completo
-
-Supongamos un trabajador con:
-- Sueldo imponible mensual: **CLP $800.000** (fijo durante todo el año)
-- Año trabajado completo (12 meses)
-
-Remuneraciones imponibles anuales = $800.000 × 12 = **$9.600.000**
-
-Gratificación bruta = $9.600.000 × 0,25 = **$2.400.000**
-
-Tope legal = $539.000 × 4,75 = **$2.560.250**
-
-Gratificación efectiva = min($2.400.000, $2.560.250) = **$2.400.000** (la bruta es menor al tope, se paga la bruta completa)
-
-Si se provisiona mensualmente: $2.400.000 ÷ 12 = **$200.000 por mes**. El tope mensual de referencia (cuando el sueldo es alto) es $2.560.250 ÷ 12 = **$213.354 por mes**.
-
-La gratificación efectiva, si se paga mensualmente, aparece en la liquidación dividida en 12 cuotas iguales.
+En este ejemplo la gratificación bruta anual no supera el tope, por lo que se paga la gratificación bruta completa. Si se provisiona mensualmente: $2.400.000 ÷ 12 = **$200.000 por mes**. El tope mensual de referencia (útil cuando el sueldo es alto) es $2.560.250 ÷ 12 = **$213.354 por mes**.
 
 Para entender cómo se integra la gratificación al total de tu sueldo, consulta [cómo calcular tu sueldo líquido](/posts/como-calcular-sueldo-liquido/).
 
 ## ¿Cuándo y cómo se paga? Mensual, anual y proporcional
 
-**Provisión mensual:** aunque la obligación es anual, la práctica más extendida es que las empresas provisionen la gratificación en cada liquidación mensual. En la liquidación aparece como "Gratificación" o "Prov. Gratificación", por un monto equivalente a 1/12 del tope o del 25% proyectado.
+**Provisión mensual:** la práctica más extendida es que las empresas provisionen la gratificación en cada liquidación mensual — aparece como "Gratificación" o "Prov. Gratificación" en los haberes.
 
-**Pago anual:** la ley permite pagar la gratificación en una sola cuota. Si el empleador opta por esto, el pago debe hacerse dentro del ejercicio correspondiente o en el siguiente, según lo acuerde.
+**Pago anual:** la ley permite pagar la gratificación en una sola cuota, dentro del ejercicio correspondiente o el siguiente (artículo 48 CT).
 
-**Proporcional al tiempo trabajado:** si el trabajador no completó el año (contrato a plazo fijo terminado, renuncia, despido), tiene derecho a la gratificación proporcional al tiempo efectivamente trabajado (artículo 52 CT). Por ejemplo, quien trabajó 6 meses recibe el 50% del monto que hubiera correspondido al año completo, con el mismo tope.
+**Proporcional al tiempo trabajado:** si el trabajador no completó el año (contrato a plazo terminado, renuncia, despido), tiene derecho a la gratificación proporcional al tiempo trabajado (artículo 52 CT).
 
-Para entender cómo leer la [línea de gratificación en tu comprobante de sueldo](/posts/liquidacion-de-sueldo/), revisa la guía de liquidación de sueldo.
+Para aprender a leer la [línea de gratificación en tu comprobante de sueldo](/posts/liquidacion-de-sueldo/), revisa la guía de liquidación.
 
 ## ¿Qué pasa si la empresa no tuvo utilidades?
 
-Si el empleador usa la **modalidad 25 %** (la más común), la obligación de pagar gratificación **subsiste aunque la empresa haya tenido pérdidas**. La ley no condiciona esta modalidad al resultado del ejercicio — el empleador eligió esta fórmula precisamente para separar la gratificación del resultado contable.
+Si el empleador usa la **modalidad 25 %**, la obligación **subsiste aunque la empresa haya tenido pérdidas**. Esta modalidad no depende del resultado del ejercicio.
 
-Si el empleador usa la **modalidad 30 % de utilidades** y la empresa no tuvo utilidades, no hay obligación de pago por esa vía.
+Si el empleador usa la **modalidad 30 % de utilidades** y no hay utilidades, no hay obligación de pago por esa vía.
 
 Si tienes dudas sobre qué modalidad aplica a tu contrato o crees que la gratificación que recibes es incorrecta, consulta directamente con la [Dirección del Trabajo](https://www.dt.gob.cl/).
 
@@ -168,11 +153,11 @@ Si tienes dudas sobre qué modalidad aplica a tu contrato o crees que la gratifi
 
 **¿La gratificación es parte del sueldo imponible?**
 
-La gratificación legal recibida como parte del sueldo mensual provisionado es remuneración y puede ser base imponible para descuentos previsionales y tributarios. Sin embargo, hay reglas específicas sobre en qué casos cotiza y en cuáles no, que dependen de la forma de pago. Para revisar cómo afecta tus [descuentos de sueldo](/posts/descuentos-de-sueldo/), consulta esa guía.
+La gratificación mensual provisionada es remuneración y puede ser base imponible para descuentos previsionales y tributarios. La provisión mensual es imponible mes a mes; el pago en cuota anual puede tener un tratamiento distinto — consulta a un contador o las instrucciones SII del año tributario correspondiente para tu situación. Para revisar cómo afecta tus [descuentos de sueldo](/posts/descuentos-de-sueldo/), consulta esa guía.
 
 **¿Puede el empleador descontar la gratificación si el trabajador comete un error?**
 
-No. La gratificación legal no es un bono discrecional: es una obligación del empleador establecida por ley. No puede ser usada como mecanismo de castigo ni descontada por desempeño. El empleador puede tener bonos voluntarios adicionales que sí dependan del desempeño — eso es distinto de la gratificación legal.
+No. La gratificación legal es una obligación del empleador establecida por ley, no un bono discrecional. No puede ser usada como mecanismo de castigo ni descontada por desempeño. Los bonos voluntarios son distintos de la gratificación legal.
 
 **¿Cómo aparece en la liquidación de sueldo?**
 
@@ -180,4 +165,4 @@ Habitualmente como "Gratificación" o "Provisión Gratificación" en el bloque d
 
 ---
 
-> **Fecha de corte: 2026-05-03.** El Ingreso Mínimo Mensual (IMM) se actualiza por la Ley 21.751 (Ministerio del Trabajo); ante cambios, el tope de 4,75 IMM también cambia. Verifica el IMM vigente en el [Ministerio del Trabajo](https://www.mintrab.gob.cl/) antes de hacer cualquier cálculo. Los artículos 47–52 del Código del Trabajo están disponibles en la [Biblioteca del Congreso Nacional](https://www.bcn.cl/leychile/navegar?idNorma=207436).
+> **Fecha de corte: 2026-05-03.** El Ingreso Mínimo Mensual (IMM) se actualiza por ley (actualmente Ley 21.751, Ministerio del Trabajo). IMM vigente a la fecha de corte: **$539.000**; tope anual de gratificación: **$2.560.250**. Verifica el IMM vigente en el [Ministerio del Trabajo](https://www.mintrab.gob.cl/) antes de hacer cualquier cálculo. Los artículos 47–52 del Código del Trabajo están disponibles en la [Biblioteca del Congreso Nacional](https://www.bcn.cl/leychile/navegar?idNorma=207436).

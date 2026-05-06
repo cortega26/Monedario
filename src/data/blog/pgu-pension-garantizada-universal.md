@@ -20,7 +20,7 @@ topicRole: owner
 canonicalTopic: pgu-pension-garantizada
 articleAdvisory: "Contenido educativo. El monto de la PGU se reajusta periódicamente por ley. Verifica el monto vigente en el IPS antes de tomar decisiones basadas en esta guía."
 articleLead:
-  answer: "La PGU (Pensión Garantizada Universal) es una pensión estatal mensual para personas de 65 años o más que cumplan requisitos de residencia y pertenezcan al 90% de menores ingresos. El monto se reajusta periódicamente — verifica el valor actualizado en el IPS."
+  answer: "$231.732 mensuales (65–81 años), $250.275 mensuales (82 años o más, desde febrero 2026), según ChileAtiende. Montos sujetos a reajuste periódico — verifica el valor vigente en el IPS antes de solicitar."
   nextStepHref: "https://www.ips.gob.cl/"
   nextStepLabel: "Tramitar en el IPS"
   validAsOf: 2026-05-03
@@ -46,7 +46,7 @@ Llegaste a los 65 años y no sabes si te corresponde la PGU, cuánto recibirías
 
 ## ¿Qué es la PGU?
 
-La Pensión Garantizada Universal (PGU) es una pensión estatal mensual que el Estado de Chile paga a adultos mayores que cumplan los requisitos legales. Su objetivo es garantizar un ingreso mínimo en la vejez, independientemente de si la persona cotizó en el sistema AFP o no.
+La Pensión Garantizada Universal (PGU) es una pensión estatal mensual que el Estado de Chile paga a adultos mayores que cumplan los requisitos legales. La PGU fue establecida por ley y está administrada por el IPS — consulta el texto legal vigente en [BCN](https://www.bcn.cl/). Su objetivo es garantizar un ingreso mínimo en la vejez, independientemente de si la persona cotizó en el sistema AFP o no.
 
 El monto vigente al 2026-05-03 debe verificarse directamente en el [IPS](https://www.ips.gob.cl/) — se reajusta por decreto y puede haber cambiado desde la fecha de corte de este artículo.
 
@@ -59,7 +59,7 @@ Para acceder a la PGU debes cumplir tres requisitos simultáneamente:
 **1. Edad: 65 años cumplidos.**
 El derecho se activa el mes en que se cumplen los 65 años.
 
-**2. Residencia: mínimo 20 años en Chile a partir de los 20 años de edad, más 4 años de residencia en los últimos 5 años anteriores a la solicitud (Ley 21.419).**
+**2. Residencia: mínimo 20 años en Chile a partir de los 20 años de edad, más 4 años de residencia en los últimos 5 años anteriores a la solicitud ([Ley 21.419](https://www.bcn.cl/leychile/navegar?idNorma=1171923)).**
 Los años de residencia deben ser acreditables. Este requisito aplica tanto a chilenos como a extranjeros con residencia legal — verifica el texto exacto vigente en el [IPS](https://www.ips.gob.cl/) o [BCN](https://www.bcn.cl/).
 
 **3. Pertenecer al 90% de menores ingresos.**
@@ -118,7 +118,7 @@ Tener APV no bloquea automáticamente el acceso a la PGU. Lo que importa es el p
 Sí. Se deposita mensualmente en la cuenta que registres al tramitar.
 
 **¿Puede coexistir con pensión de invalidez?**
-Depende del tipo de pensión de invalidez y sus condiciones. Consulta directamente en el IPS — cada caso tiene reglas específicas de compatibilidad.
+La compatibilidad entre la PGU y una pensión de invalidez depende del tipo de pensión. Consulta directamente en el IPS con tu número de caso — las reglas de compatibilidad varían según el régimen y la fecha de inicio de la pensión.
 
 **¿Qué pasa si la pensión AFP supera el monto PGU?**
 Puede ocurrir que el mecanismo de complemento resulte en que el aporte de la PGU sea muy bajo o nulo, dependiendo del umbral vigente. El IPS calcula el monto aplicable a tu caso en el proceso de tramitación.

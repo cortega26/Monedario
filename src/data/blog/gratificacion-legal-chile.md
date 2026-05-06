@@ -46,11 +46,11 @@ Revisas tu liquidación y hay una línea que dice "gratificación". A veces es u
 
 ## ¿Qué es la gratificación legal y a quiénes aplica?
 
-La gratificación legal es una parte de las remuneraciones que el empleador debe compartir con los trabajadores cuando el establecimiento donde prestan servicios obtiene utilidades en el ejercicio comercial (artículo 47 del [Código del Trabajo](https://www.bcn.cl/leychile/navegar?idNorma=207436)).
+La gratificación legal es la parte de las remuneraciones que el empleador debe distribuir entre sus trabajadores cuando el establecimiento obtiene utilidades (artículo 47 del [Código del Trabajo](https://www.bcn.cl/leychile/navegar?idNorma=207436) — modalidad del 30%). Sin embargo, la modalidad más habitual en Chile es la del artículo 50 CT: un 25% de las remuneraciones imponibles anuales, con un tope equivalente a 4,75 ingresos mínimos mensuales (IMM), y se paga independientemente de si la empresa tuvo utilidades o pérdidas.
 
 **Quiénes tienen derecho:**
 
-Todo trabajador que preste servicios en un establecimiento de carácter comercial, industrial, minero o agrícola, con independencia del tipo de contrato — indefinido o a plazo fijo — tiene derecho a gratificación legal según el artículo 47 del Código del Trabajo.
+Todo trabajador que preste servicios en un establecimiento de carácter comercial, industrial, minero o agrícola, con independencia del tipo de contrato — indefinido o a plazo fijo — tiene derecho a gratificación legal según el Código del Trabajo (artículos 47 y 50).
 
 **Quiénes pueden quedar fuera:**
 
@@ -100,7 +100,7 @@ Para entender cómo se integra la gratificación al total de tu sueldo, consulta
 
 **Provisión mensual:** la práctica más extendida es que las empresas provisionen la gratificación en cada liquidación mensual — aparece como "Gratificación" o "Prov. Gratificación" en los haberes.
 
-**Pago anual:** la ley permite pagar la gratificación en una sola cuota, dentro del ejercicio correspondiente o el siguiente.
+**Pago anual:** la ley permite pagar la gratificación en una sola cuota, dentro del ejercicio correspondiente o el siguiente (artículo 48 CT).
 
 **Proporcional al tiempo trabajado:** si el trabajador no completó el año (contrato a plazo terminado, renuncia, despido), tiene derecho a la gratificación proporcional al tiempo trabajado (artículo 52 CT).
 
@@ -118,7 +118,7 @@ Si tienes dudas sobre qué modalidad aplica a tu contrato o crees que la gratifi
 
 **¿La gratificación es parte del sueldo imponible?**
 
-La gratificación mensual provisionada es remuneración y puede ser base imponible para descuentos previsionales y tributarios, según la forma de pago. Para revisar cómo afecta tus [descuentos de sueldo](/posts/descuentos-de-sueldo/), consulta esa guía.
+La gratificación mensual provisionada es remuneración y puede ser base imponible para descuentos previsionales y tributarios. La provisión mensual es imponible mes a mes; el pago en cuota anual puede tener un tratamiento distinto — consulta a un contador o las instrucciones SII del año tributario correspondiente para tu situación. Para revisar cómo afecta tus [descuentos de sueldo](/posts/descuentos-de-sueldo/), consulta esa guía.
 
 **¿Puede el empleador descontar la gratificación si el trabajador comete un error?**
 

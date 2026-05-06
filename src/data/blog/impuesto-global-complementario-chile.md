@@ -95,18 +95,18 @@ Varios pagos realizados durante el año se convierten en créditos que reducen e
 Lo que tu empleador descontó mes a mes como Impuesto de Segunda Categoría se imputa directamente contra el IGC. Es el crédito más importante para los trabajadores dependientes.
 
 **Retenciones de boletas de honorarios**
-La retención aplicada a tus boletas de honorarios es un crédito contra el IGC. Para el año tributario 2026, la tasa de retención es **15,25%** (verifica en el [SII](https://www.sii.cl/) ante posibles actualizaciones). Si cotizaste independiente, también aplica la cotización previsional.
+La retención aplicada a tus boletas de honorarios es un crédito contra el IGC. Para el año tributario 2026, la tasa de retención es **15,25%** (verifica en el [SII](https://www.sii.cl/) ante posibles actualizaciones). Si cotizaste como trabajador independiente, también están sujetas cotizaciones previsionales obligatorias sobre tus honorarios según la Ley 21.242 (entrada en vigor progresiva desde 2019) — revisa el F22 del SII o consulta a un contador para el monto aplicable a tu año tributario.
 
 **APV Modalidad A vs Modalidad B**
 
-El APV puede reducir el IGC según la modalidad elegida, de acuerdo con el artículo 42 bis de la LIR:
-- **Modalidad A**: genera un beneficio tributario sobre el monto cotizado, con topes expresados en UF.
+El APV puede reducir el IGC según la modalidad elegida, de acuerdo con el [artículo 42 bis de la LIR](https://www.bcn.cl/leychile/navegar?idNorma=6368):
+- **Modalidad A**: genera un beneficio tributario sobre el monto cotizado, con topes establecidos en el [art. 42 bis de la LIR](https://www.bcn.cl/leychile/navegar?idNorma=6368) — verifica los topes vigentes en el [SII](https://www.sii.cl/) para el año tributario correspondiente.
 - **Modalidad B**: reduce la base imponible del IGC, con topes distintos establecidos en el mismo artículo.
 
 Las condiciones exactas y los topes vigentes deben verificarse en el [SII](https://www.sii.cl/) — las instrucciones del F22 del año tributario correspondiente detallan la mecánica aplicable.
 
 **Contribuciones de bienes raíces** (solo para arrendadores)
-Si arriendas una propiedad y pagas contribuciones, esas contribuciones pueden ser consideradas como gasto de la renta de arrendamiento según las instrucciones SII del año tributario correspondiente, reduciendo la base del IGC indirectamente. Verifica las condiciones en el [SII](https://www.sii.cl/) o con un contador. Para el contexto del impuesto territorial, revisa la guía de [contribuciones de bienes raíces](/posts/contribuciones-bienes-raices-chile/).
+Las contribuciones pagadas pueden ser deducibles como gasto en rentas de arrendamiento — las condiciones exactas dependen del régimen tributario y del año tributario. Consulta las instrucciones del F22 del SII o a un contador para confirmar si aplica a tu situación. Para el contexto del impuesto territorial, revisa la guía de [contribuciones de bienes raíces](/posts/contribuciones-bienes-raices-chile/).
 
 ## Cómo se declara: el F22
 
