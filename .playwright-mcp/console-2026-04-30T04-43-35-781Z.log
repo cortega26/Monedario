@@ -1,1 +1,0 @@
-[     532ms] [WARNING] A preload for 'https://monedario.cl/_astro/ClientRouter.astro_astro_type_script_index_0_lang.j56hQv-j.js' is found, but is not used because the request credentials mode does not match. Consider taking a look at crossorigin attribute. @ https://monedario.cl/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js:0
