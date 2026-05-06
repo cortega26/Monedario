@@ -1,0 +1,6 @@
+[     106ms] TypeError: $(...).mmenu is not a function
+    at HTMLDocument.<anonymous> (https://www.sii.cl/responsive/js/functions.js:52:21)
+    at c.ready (https://www.sii.cl/js/jquery-1.4.2.js:26:289)
+    at HTMLDocument.L (https://www.sii.cl/js/jquery-1.4.2.js:33:151)
+[     177ms] [ERROR] Access to XMLHttpRequest at 'https://zeusr.sii.cl/cgi_AUT2000/AutTknData.cgi?rnd=0.8671000969647179' from origin 'https://www.sii.cl' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://www.sii.cl/valores_y_fechas/otros_valores/otros_valores.html:0
+[     177ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://zeusr.sii.cl/cgi_AUT2000/AutTknData.cgi?rnd=0.8671000969647179:0

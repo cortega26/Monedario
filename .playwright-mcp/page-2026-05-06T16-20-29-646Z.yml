@@ -1,0 +1,563 @@
+- generic [ref=e2]:
+  - generic:
+    - generic:
+      - button "Ingresar" [ref=e3] [cursor=pointer]:
+        - generic [ref=e4]: 
+      - text:          
+  - generic [ref=e5]:
+    - banner [ref=e7]:
+      - navigation "Navegación principal" [ref=e8]:
+        - generic [ref=e9]:
+          - link "Ir a la página de inicio de la Biblioteca del Congreso Nacional de Chile" [ref=e10] [cursor=pointer]:
+            - /url: https://www.bcn.cl
+            - img "Logo BCN" [ref=e11]
+          - link "︱Ley Chile" [ref=e12] [cursor=pointer]:
+            - /url: /leychile
+        - menubar "Menú principal" [ref=e13]:
+          - button "BCN" [ref=e14] [cursor=pointer]:
+            - generic [ref=e15]: BCN
+            - img [ref=e16]
+          - button "Ley Chile" [ref=e17] [cursor=pointer]:
+            - generic [ref=e18]: Ley Chile
+            - img [ref=e19]
+          - button "Colecciones" [ref=e20] [cursor=pointer]:
+            - generic [ref=e21]: Colecciones
+            - img [ref=e22]
+          - button "Información Territorial" [ref=e23] [cursor=pointer]:
+            - generic [ref=e24]: Información Territorial
+            - img [ref=e25]
+          - button "Historia Política" [ref=e26] [cursor=pointer]:
+            - generic [ref=e27]: Historia Política
+            - img [ref=e28]
+          - button "Formación Cívica" [ref=e29] [cursor=pointer]:
+            - generic [ref=e30]: Formación Cívica
+            - img [ref=e31]
+          - link "Transparencia" [ref=e32] [cursor=pointer]:
+            - /url: https://www.bcn.cl/transparencia
+            - generic [ref=e33]: Transparencia
+          - menuitem "Formulario de contacto" [ref=e34] [cursor=pointer]:
+            - img [ref=e35]
+      - text:   
+    - main [ref=e36]:
+      - generic [ref=e39]:
+        - generic [ref=e41]:
+          - textbox "Buscar en Ley Chile" [ref=e42]
+          - button "Clic para buscar" [ref=e43] [cursor=pointer]:
+            - generic [ref=e44]: 
+          - generic [ref=e45] [cursor=pointer]: Búsqueda avanzada
+        - generic [ref=e49]:
+          - generic [ref=e52] [cursor=pointer]:
+            - generic [ref=e53]: 
+            - text: Modo oscuro
+          - generic [ref=e56] [cursor=pointer]:
+            - generic [ref=e57]: 
+            - text: Alto contraste
+          - link "Ir a mi selección de normas" [ref=e59] [cursor=pointer]:
+            - /url: /leychile/consulta/maletin
+            - generic [ref=e60]: 
+            - text: Selección
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - generic [ref=e71]:
+            - generic [ref=e72] [cursor=pointer]:
+              - generic [ref=e73]: 
+              - text: Cerrar Navegar Norma
+            - text: 
+          - generic [ref=e74]:
+            - generic [ref=e75]:
+              - link "Portada" [ref=e77] [cursor=pointer]:
+                - /url: /leychile/
+              - generic [ref=e78]:
+                - text: /
+                - strong [ref=e79]: Ley 17235
+            - button "Volver" [ref=e80] [cursor=pointer]:
+              - generic [ref=e81]: 
+              - text: Volver
+        - generic [ref=e82]:
+          - generic [ref=e84]:
+            - text: 
+            - generic [ref=e85]:
+              - heading "Ley 17235" [level=4] [ref=e87]:
+                - strong [ref=e88]: Ley 17235
+              - generic "EXPANDIR el árbol de navegación" [ref=e91] [cursor=pointer]:
+                - generic [ref=e92]: 
+                - text: EXPANDIR
+            - list [ref=e94]:
+              - listitem [ref=e95]:
+                - link "Encabezado" [ref=e96] [cursor=pointer]:
+                  - /url: "#p8242534"
+              - listitem [ref=e97]:
+                - link "TITULO I Del objeto del impuesto" [ref=e98] [cursor=pointer]:
+                  - /url: "#p8242536"
+                - list
+              - listitem [ref=e99]:
+                - link "TITULO II De las exenciones" [ref=e100] [cursor=pointer]:
+                  - /url: "#p8242538"
+                - list
+              - listitem [ref=e101]:
+                - link "TITULO III De la tasación de los bienes raíces" [ref=e102] [cursor=pointer]:
+                  - /url: "#p8242540"
+                - list
+              - listitem [ref=e103]:
+                - link "TITULO IV De la tasa del impuesto" [ref=e104] [cursor=pointer]:
+                  - /url: "#p8242553"
+                - list
+              - listitem [ref=e105]:
+                - link "TITULO V DE LOS ROLES DE AVALUOS Y DE CONTRIBUCIONES" [ref=e106] [cursor=pointer]:
+                  - /url: "#p8242564"
+                - list
+              - listitem [ref=e107]:
+                - link "TITULO VI De los obligados al pago del impuesto" [ref=e108] [cursor=pointer]:
+                  - /url: "#p8242589"
+                - list
+              - listitem [ref=e109]:
+                - link "TITULO VII Disposiciones varias" [ref=e110] [cursor=pointer]:
+                  - /url: "#p8242593"
+                - list
+              - listitem [ref=e111]:
+                - link "Promulgación" [ref=e112] [cursor=pointer]:
+                  - /url: "#p8242601"
+              - listitem [ref=e113]:
+                - link "Anexo" [ref=e114] [cursor=pointer]:
+                  - /url: "#p8242602"
+              - listitem [ref=e115]:
+                - link "Anexo 2" [ref=e116] [cursor=pointer]:
+                  - /url: "#p8242603"
+          - generic [ref=e117]:
+            - separator [ref=e118]
+            - generic [ref=e120]:
+              - generic [ref=e122]:
+                - text: 
+                - generic [ref=e123]:
+                  - generic [ref=e125]: 
+                  - generic [ref=e126]: Esta norma ha sido refundida por DFL-1, HACIENDA
+                  - link "ver DFL -1 16-DIC-1998" [ref=e128] [cursor=pointer]:
+                    - /url: /leychile/navegar?idNorma=128563
+                - text: 
+              - heading "Ley 17235 FIJA EL TEXTO REFUNDIDO, SISTEMATIZADO Y COORDINADO DE LA LEY SOBRE IMPUESTO TERRITORIAL." [level=1] [ref=e129]:
+                - generic [ref=e130]: Ley 17235
+                - text: FIJA EL TEXTO REFUNDIDO, SISTEMATIZADO Y COORDINADO DE LA LEY SOBRE IMPUESTO TERRITORIAL.
+              - paragraph [ref=e131]:
+                - generic [ref=e132]: MINISTERIO DE HACIENDA
+              - generic [ref=e133]:
+                - generic [ref=e134]:
+                  - button "Enviar esta norma al maletín" [ref=e135] [cursor=pointer]:
+                    - generic [ref=e136]: 
+                  - link "Descargar PDF de esta norma" [ref=e137] [cursor=pointer]:
+                    - /url: https://nuevo.leychile.cl/servicios/Consulta/Exportar?radioExportar=Normas&exportar_formato=pdf&nombrearchivo=LEY-17235_24-DIC-1969&exportar_con_notas_bcn=True&exportar_con_notas_originales=True&exportar_con_notas_al_pie=True&hddResultadoExportar=28849.1998-07-29.0.0%23
+                    - generic [ref=e138]: 
+                  - link "Abrir vista de impresión" [ref=e139] [cursor=pointer]:
+                    - /url: /leychile/Navegar/imprimir?idNorma=28849&idVersion=1998-07-29
+                    - generic [ref=e140]: 
+                  - button "Notificaciones" [ref=e142] [cursor=pointer]:
+                    - generic [ref=e143]: 
+                  - generic [ref=e144]:
+                    - button "Citar esta norma" [ref=e145] [cursor=pointer]:
+                      - generic [ref=e146]: 
+                    - text:  
+                - generic [ref=e148]:
+                  - searchbox "Generar url corta" [ref=e149]
+                  - button "generar url corta" [ref=e151] [cursor=pointer]:
+                    - generic [ref=e152]: 
+                - generic [ref=e155]:
+                  - generic "Compartir esta dirección en Facebook" [ref=e156] [cursor=pointer]:
+                    - generic [ref=e157]: 
+                  - generic "Compartir esta dirección en Twitter" [ref=e158] [cursor=pointer]:
+                    - generic [ref=e159]: 
+                  - link "" [ref=e160] [cursor=pointer]:
+                    - /url: https://api.whatsapp.com/send?text=https%3A%2F%2Fwww.bcn.cl%2Fleychile%2Fnavegar%3FidNorma%3D28849
+                    - generic [ref=e161]: 
+              - generic [ref=e162]:
+                - generic [ref=e163]:
+                  - link " Refunde a" [ref=e165] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                    - generic [ref=e166]: 
+                    - generic [ref=e167]: Refunde a
+                  - link " Refundido por" [ref=e169] [cursor=pointer]:
+                    - /url: javascript:void(0)
+                    - generic [ref=e170]: 
+                    - generic [ref=e171]: Refundido por
+                - paragraph [ref=e172]:
+                  - strong [ref=e173]: "Promulgación:"
+                  - text: 10-DIC-1969
+                - paragraph [ref=e174]:
+                  - strong [ref=e175]: "Publicación:"
+                  - text: 24-DIC-1969
+                - paragraph [ref=e176]:
+                  - strong [ref=e177]: "Versión:"
+                  - text: Última Versión - 29-JUL-1998
+                - paragraph [ref=e178]:
+                  - strong [ref=e179]: "Última modificación:"
+                  - link "01-DIC-2017 - 114 EXENTA" [ref=e180] [cursor=pointer]:
+                    - /url: /leychile/Navegar?idNorma=1111577&idParte=0
+                - generic [ref=e181]:
+                  - link "MODIFICACION" [ref=e182] [cursor=pointer]:
+                    - /url: /leychile/Consulta/nav_vinc_modificacion?idNorma=28849&fechaVigencia=1998-07-29&clase_vinculacion=MODIFICACION
+                  - link "CONCORDANCIA" [ref=e183] [cursor=pointer]:
+                    - /url: /leychile/Consulta/nav_vinc_concordancia?idNorma=28849&fechaVigencia=1998-07-29&clase_vinculacion=CONCORDANCIA
+                  - link "REGLAMENTO" [ref=e184] [cursor=pointer]:
+                    - /url: /leychile/Consulta/nav_vinc_reglamento?idNorma=28849&fechaVigencia=1998-07-29&clase_vinculacion=REGLAMENTO
+                  - link "TEXTO REFUNDIDO" [ref=e185] [cursor=pointer]:
+                    - /url: /leychile/Consulta/nav_vinc_texto_refundido?idNorma=28849&fechaVigencia=1998-07-29&clase_vinculacion=TEXTO%20REFUNDIDO
+              - generic [ref=e186]:
+                - generic [ref=e189]:
+                  - generic [ref=e190]:
+                    - text: 
+                    - textbox "Buscar en el texto de la norma" [ref=e193]:
+                      - /placeholder: Buscar en Norma
+                    - generic "Clic para buscar" [ref=e195] [cursor=pointer]:
+                      - generic [ref=e196]: 
+                    - generic "Limpiar la búsqueda" [ref=e198] [cursor=pointer]:
+                      - generic [ref=e199]: 
+                    - generic "Aumentar tamaño de letra" [ref=e201] [cursor=pointer]:
+                      - generic [ref=e202]: 
+                    - generic "Disminuir tamaño de letra" [ref=e204] [cursor=pointer]:
+                      - generic [ref=e205]: 
+                  - generic [ref=e207] [cursor=pointer]:
+                    - generic [ref=e208]: 
+                    - text: Ocultar notas
+                - generic [ref=e211]:
+                  - list [ref=e213]:
+                    - listitem [ref=e214]:
+                      - link "Texto" [ref=e215] [cursor=pointer]:
+                        - /url: javascript:void(0);
+                        - generic [ref=e216]: Texto
+                    - listitem [ref=e217]:
+                      - link "Versiones" [ref=e218] [cursor=pointer]:
+                        - /url: javascript:void(0);
+                        - generic [ref=e219]: Versiones
+                    - listitem [ref=e220]:
+                      - link "Ley Fácil" [ref=e221] [cursor=pointer]:
+                        - /url: javascript:void(0);
+                        - generic [ref=e222]: Ley Fácil
+                    - listitem [ref=e223]:
+                      - link "Chile Atiende" [ref=e224] [cursor=pointer]:
+                        - /url: javascript:void(0);
+                        - generic [ref=e225]: Chile Atiende
+                    - listitem [ref=e226]:
+                      - link "Jurisprudencia" [ref=e227] [cursor=pointer]:
+                        - /url: javascript:void(0);
+                        - generic [ref=e228]: Jurisprudencia
+                    - listitem [ref=e229]:
+                      - link "Historia de la Ley" [ref=e230] [cursor=pointer]:
+                        - /url: javascript:void(0);
+                        - generic [ref=e231]: Historia de la Ley
+                    - listitem [ref=e232]:
+                      - link "Proyectos de Ley" [ref=e233] [cursor=pointer]:
+                        - /url: javascript:void(0);
+                        - generic [ref=e234]: Proyectos de Ley
+                  - generic [ref=e236]:
+                    - generic [ref=e239]:
+                      - generic [ref=e240]:
+                        - button "Menú de webReader" [ref=e241]:
+                          - generic [ref=e242]: 
+                        - button "Escuchar" [ref=e243] [cursor=pointer]:
+                          - generic [ref=e245]:
+                            - text: 
+                            - generic [ref=e246]: Escuchar
+                            - text: 
+                          - generic [ref=e247]: 
+                      - generic [ref=e248]:
+                        - generic [ref=e249]:
+                          - text:  
+                          - generic [ref=e251]:
+                            - generic [ref=e252]: FIJA EL TEXTO REFUNDIDO, SISTEMATIZADO Y COORDINADO DE LA LEY SOBRE IMPUESTO TERRITORIAL
+                            - generic [ref=e253]: "Santiago, 10 de Noviembre de 1969.- Hoy se decretó lo que sigue:"
+                            - generic [ref=e254]: "Núm. 2.356.- Vistos: Que el artículo 9° de la ley N° 16.623, de 25 de Abril de 1967, me facultó para fijar el texto de la ley sobre contribuciones de Bienes Raíces, refundiendo en un solo cuerpo legal la ley N° 4.174, sus modificaciones posteriores y las demás disposiciones complementarias o relacionadas con esta materia contenidas en otros textos legales, decretos o reglamentos;"
+                            - generic [ref=e255]: Que para el efecto, el citado artículo 9° de la ley N° 16.623 me faculta para sistematizar y coordinar la titulación y el articulado de la nueva ley, sustituir y modificar palabras, frases o referencias que no concuerden con la legislación vigente; eliminar las disposiciones que hayan perdido actualidad y agregar las necesarias para la acertada inteligencia y coordinación de la ley,
+                            - generic [ref=e256]: "Decreto:"
+                            - generic [ref=e257]: "El siguiente es el texto refundido, sistematizado y coordinado de la Ley sobre Impuesto Territorial:"
+                            - generic [ref=e258]: LEY N° 17.235
+                        - generic [ref=e259]:
+                          - text:  
+                          - generic [ref=e261]:
+                            - generic [ref=e262]: TITULO I
+                            - generic [ref=e263]: Del objeto del impuesto
+                        - generic [ref=e264]:
+                          - text:  
+                          - generic [ref=e266]:
+                            - generic [ref=e267]:
+                              - text: Artículo 1°.- Establécese
+                              - 'link "NOTA: 1" [ref=e269] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: u
+                              - 'link "NOTA: 1" [ref=e271] [cursor=pointer]':
+                                - /url: "#np2"
+                              - 'link "NOTA: 1" [ref=e273] [cursor=pointer]':
+                                - /url: "#np2"
+                              - 'link "NOTA: 1" [ref=e275] [cursor=pointer]':
+                                - /url: "#np2"
+                              - 'link "NOTA: 1" [ref=e277] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: "n"
+                              - 'link "NOTA: 1" [ref=e279] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: impuesto a los bienes raíces, que se aplicará sobre el avalúo de
+                              - 'link "NOTA: 1" [ref=e281] [cursor=pointer]':
+                                - /url: "#np2"
+                              - 'link "NOTA: 1" [ref=e283] [cursor=pointer]':
+                                - /url: "#np2"
+                              - 'link "NOTA: 1" [ref=e285] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: ell
+                              - 'link "NOTA: 1" [ref=e287] [cursor=pointer]':
+                                - /url: "#np2"
+                              - 'link "NOTA: 1" [ref=e289] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: os,
+                              - 'link "NOTA: 1" [ref=e291] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: de
+                              - 'link "NOTA: 1" [ref=e293] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: term
+                              - 'link "NOTA: 1" [ref=e295] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: inado de conformidad con las disposic
+                              - 'link "NOTA: 1" [ref=e297] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: iones de
+                              - 'link "NOTA: 1" [ref=e299] [cursor=pointer]':
+                                - /url: "#np2"
+                              - 'link "NOTA: 1" [ref=e301] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: la presente ley
+                              - 'link "NOTA: 1" [ref=e303] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: .
+                            - generic [ref=e304]:
+                              - text: Para este efecto, los
+                              - 'link "NOTA: 1" [ref=e306] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: "inmuebles se agruparán en dos series:"
+                            - generic [ref=e307]:
+                              - text: A)
+                              - 'link "NOTA: 1" [ref=e309] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: "Primera Serie: Bienes Raíces Agrícolas."
+                              - 'link "NOTA: 1.1" [ref=e311] [cursor=pointer]':
+                                - /url: "#np3"
+                            - generic [ref=e312]:
+                              - text: Co
+                              - 'link "NOTA: 1" [ref=e314] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: mprenderá todo predio, cualquiera
+                              - 'link "NOTA: 1" [ref=e316] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: que sea su ubicación, cuyo te
+                              - 'link "NOTA: 1" [ref=e318] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: rreno esté destinado preferentemente a la producció
+                              - 'link "NOTA: 1.1" [ref=e320] [cursor=pointer]':
+                                - /url: "#np3"
+                              - text: n agropecuaria o forestal, o que
+                              - 'link "NOTA: 1" [ref=e322] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: económicamente sea susceptible de dichas producciones en forma predominante.
+                            - generic [ref=e323]:
+                              - text: La destinació
+                              - 'link "NOTA: 1" [ref=e325] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: "n"
+                              - 'link "NOTA: 1" [ref=e327] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: preferente s
+                              - 'link "NOTA: 1" [ref=e329] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: e evaluará en función de las rentas que produzcan o puedan producir la actividad agropecuaria y lo
+                              - 'link "NOTA: 1" [ref=e331] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: s demás fines a que se pueda destinar el
+                              - 'link "NOTA: 1" [ref=e333] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: predio.
+                            - generic [ref=e334]:
+                              - text: También se incluirán en esta serie aquel
+                              - 'link "NOTA: 1" [ref=e336] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: los inmuebles o parte
+                              - 'link "NOTA: 1" [ref=e338] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: de ellos cualquiera que sea su ubicación
+                              - 'link "NOTA: 1" [ref=e340] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: ", que no tengan terrenos agrícolas o en que la explotación del terreno sea un rubro secundario, siempre que en dichos inmuebles existan establecimientos cuyo fin sea la obtención de productos agropecuarios primarios, vegetales o animales. La actividad ejercida en estos establecimientos será con"
+                              - 'link "NOTA: 1" [ref=e342] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: siderada agrícola para todos los efectos legales.
+                            - generic [ref=e343]:
+                              - text: En el caso de los bienes comprendidos en esta serie el impuesto recaerá sobre el avalúo de los terrenos y sobre el valor de las casas patronales que exceda de doc
+                              - 'link "NOTA: 1" [ref=e345] [cursor=pointer]':
+                                - /url: "#np2"
+                              - text: e y medio sueldos vitales anuales de la industria y el comercio del departamento de Santiago. No obstante, en el caso de los inmuebles a que se refiere el inciso anterior el impuesto se aplicará, además, sobre el avalúo de todos los bienes.
+                            - generic [ref=e346]: "Las tasaciones que pudieren ordenarse no incluirán el mayor valor que adquieran los terrenos como consecuencia de las siguientes mejoras costeadas por los particulares:"
+                            - generic [ref=e347]: a) Represas, tranques, canales y otras obras artificiales permanentes de regadío para terrenos de secano;
+                            - generic [ref=e348]: b) Obras de drenaje hechas en terrenos húmedos o turbosos, y que los habiliten para su cultivo agrícola;
+                            - generic [ref=e349]: c) Limpias y destronques en terrenos planos y lomajes suaves, técnicamente aptos para cultivos;
+                            - generic [ref=e350]: d) Empastadas artificiales permanentes en terrenos de secano;
+                            - generic [ref=e351]: e) Mejoras permanentes en terrenos inclinados, para defenderlos contra la erosión, para la contención de dunas y cortinas contra el viento, y
+                            - generic [ref=e352]: f) Puentes y caminos.
+                            - generic [ref=e353]: Para hacer efectivo el beneficio establecido en el inciso anterior, el Servicio de Impuestos Internos al efectuar una nueva tasación del respectivo inmueble, clasificará y tasará el valor de los terrenos agrícolas. Determinará al mismo tiempo la parte que en el avalúo total corresponda al mayor valor adquirido por los terrenos con ocasión de las mejoras introducidas, para los efectos de excluirlos del referido avalúo total, previa declaración del interesado, quien deberá acreditar que cumple con los requisitos exigidos por este inciso y el anterior. La declaración precedente deberá hacerse conjuntamente y en el mismo plazo en que deba presentarse la declaración señalada en el artículo 3° de esta ley, y en la forma que determine el Servicio de Impuestos Internos.
+                            - generic [ref=e354]: Vencido ese plazo, caducará el derecho del contribuyente a impetrar este beneficio.
+                            - generic [ref=e355]: El beneficio establecido en los dos incisos anteriores se mantendrá por el plazo de 10 años, contados desde la vigencia de la tasación en que se otorgue, pero se extinguirá a contar desde el año siguiente a aquél en que se enajene el predio respectivo.
+                            - generic [ref=e356]: "B) Segunda Serie: Bienes Raíces no Agrícolas."
+                            - generic [ref=e357]:
+                              - text: Comprenderá todos los bienes raíces no incluidos
+                              - generic [ref=e358]:
+                                - text: DL 1225 1975
+                                - text: Art 6 a)
+                              - text: en la Serie anterior, con excepción de las minas, de las maquinarias e instalaciones, aun cuando ellas estén adheridas, a menos que se trate de instalaciones propias de un edificio, tales como ascensores, calefacción, etc.
+                            - generic [ref=e359]:
+                              - text: INCISO SEGUNDO.- DEROGADO.-
+                              - generic [ref=e360]:
+                                - text: LEY 19388,
+                                - text: Art.3°,1.
+                            - 'link "NOTA: 1" [ref=e363] [cursor=pointer]':
+                              - /url: "#np2"
+                            - generic [ref=e364]: Los bienes nacionales de uso público no serán avaluados, excepto en los casos que proceda la aplicación del artículo 48° de esta ley.
+                            - generic [ref=e365]:
+                              - 'link "NOTA: 1" [ref=e366] [cursor=pointer]':
+                                - /url: "#rnp2"
+                              - text: El Artículo 1° Transitorio de la Ley N° 19.388, publicada en el "Diario Oficial" de 30 de Mayo de 1995, dispuso su entrada en vigencia un mes después de su publicación. No obstante, hasta la entrada en vigencia de la primera tasación de los bienes raíces, agrícolas y no agrícolas, que se efectúe con posterioridad a la promulgación de esta ley, no se aplicará lo dispuesto en el número 3 del artículo 3°.
+                            - generic [ref=e367]:
+                              - 'link "NOTA: 1.1" [ref=e368] [cursor=pointer]':
+                                - /url: "#rnp3"
+                              - text: El Artículo único de la Ley N° 19.468, publicada en el "Diario Oficial" de 29 de Agosto de 1996, ordenó prorrogar hasta el 30 de Junio de 1998, con sujeción a las normas de la presente ley, la vigencia de los avalúos de los bienes raíces agrícolas que regían al 30 de Junio de 1996, y fijó, a contar del 1° de Junio de 1998, la vigencia de los nuevos avalúos que se determinen. En su inciso segundo dispone que "Para la fijación de los nuevos avalúos, el Servicio de Impuestos Internos podrá eximir de la obligación de presentar la delcaración a que se refiere el artículo 3° de la Ley N° 17.235, a todos los contribuyentes o a una parte de ellos.".
+                        - generic [ref=e369]:
+                          - text:  
+                          - generic [ref=e371]:
+                            - generic [ref=e372]: TITULO II
+                            - generic [ref=e373]: De las exenciones
+                        - generic [ref=e374]:
+                          - text:  
+                          - generic [ref=e376]:
+                            - generic [ref=e377]: Artículo 2°.- Estarán exentos de todo o parte de los impuestos establecidos en la presente ley, los inmuebles señalados en el Cuadro Anexo N° 1 en la forma y condiciones que en él se indican. Además estarán exentos de todo o parte del referido impuesto, aquellos predios que no se mencionan en dicho cuadro y que gozan de este beneficio en virtud de leyes especiales.
+                            - generic [ref=e378]:
+                              - text: Si por cualquier circunstancia un determinado predio
+                              - generic [ref=e379]:
+                                - text: LEY 19388
+                                - text: Art.3°,2.
+                              - text: tuviera derecho a gozar de dos o más exenciones del impuesto territorial, éstas no se podrán acordar en forma copulativa. Igual norma se aplicará en los casos de exenciones temporales, en las cuales no podrán acumularse plazos de exención. En estas circunstancias, el Servicio otorgará para efectos del impuesto territorial la exención más beneficiosa para el contribuyente.
+                            - generic [ref=e380]:
+                              - text: Todo bien raíz no agrícola cuyo destino original
+                              - generic [ref=e381]:
+                                - text: LEY 19578
+                                - text: Art. 19
+                                - text: D.O. 29.07.1998
+                              - text: sea la habitación, que haya sido destinado posteriormente en forma parcial a un uso distinto a éste, cuyo avalúo sea igual o inferior al monto de la exención general habitacional y que esté habitado por su propietario, persona natural, gozará de una exención del 100% del Impuesto Territorial.
+                        - generic [ref=e382]:
+                          - text:  
+                          - generic [ref=e384]:
+                            - generic [ref=e385]: TITULO III
+                            - generic [ref=e386]: De la tasación de los bienes raíces
+                        - generic [ref=e387]:
+                          - text:  
+                          - generic [ref=e389]:
+                            - generic [ref=e390]: Artículo 3°.- El Servicio de Impuestos Internos deberá tasar los bienes sujetos a las disposiciones de esta ley, por comunas, provincias o agrupaciones comunales o provinciales, en el orden y fecha que señale el Presidente de la República.
+                            - generic [ref=e391]:
+                              - text: El Servicio coordinará con los municipios la
+                              - generic [ref=e392]:
+                                - text: LEY 19388
+                                - text: Art.3°,3.b)
+                              - text: tasación de los bienes raíces de sus respectivos territorios.
+                            - generic [ref=e393]:
+                              - text: Entre dos tasaciones consecutivas de una misma comuna, no podrá mediar un lapso superior a 5 años ni
+                              - generic [ref=e394]:
+                                - text: LEY 19388
+                                - text: Art.3°,3.a)
+                              - text: inferior a 3 años.
+                            - generic [ref=e395]:
+                              - text: Para los efectos de la tasación, los contribuyentes deberán presentar al Servicio de Impuestos Internos una
+                              - generic [ref=e396]:
+                                - text: LEY 19388
+                                - text: Art.3°,3.c)
+                              - text: declaración descriptiva del inmueble, en la forma y dentro del plazo que señale el Reglamento.
+                            - generic [ref=e397]:
+                              - text: INCISO FINAL.- DEROGADO.-
+                              - generic [ref=e398]:
+                                - text: LEY 19388
+                                - text: Art.3°,3.d)
+                        - generic [ref=e399]:
+                          - text:  
+                          - generic [ref=e401]:
+                            - generic [ref=e402]: "Artículo 4°.- El Servicio de Impuestos Internos impartirá las instrucciones técnicas y administrativas necesarias para efectuar la tasación, ajustándose a las normas siguientes:"
+                            - generic [ref=e403]: "1°.- Para la tasación de los predios agrícolas el Servicio de Impuestos Internos confeccionará:"
+                            - generic [ref=e404]: a) Tablas de clasificación de los terrenos, según su capacidad potencial de uso actual;
+                            - generic [ref=e405]: b) Mapas y tablas de ubicación, relativas a la clase de vías de comunicaciones y distancia de los centros de abastecimientos, servicios y mercados, y
+                            - generic [ref=e406]: c) Tabla de valores para los distintos tipos de terrenos de conformidad a las tablas y mapas señalados.
+                            - generic [ref=e407]:
+                              - text: 2°.- Para la tasación de los bienes raíces de la segunda serie, se confeccionarán tablas de clasificación de las construcciones y de los terrenos y se fijarán los valores unitarios que correspondan a cada tipo de bien. La clasificación de las
+                              - generic [ref=e408]:
+                                - text: LEY 18591
+                                - text: Art. 3°
+                                - text: a), b) y c)
+                              - text: construcciones se basará en su clase y calidad y los valores unitarios se fijarán, tomando en cuenta, además, sus especificaciones técnicas, costos de edificación, edad, destino e importancia de la comuna y de la ubicación del sector comercial. Las tablas de valores unitarios de terrenos, se anotarán en planos de precios y considerando los sectores de ubicación y las obras de urbanización y equipamiento de que disponen.
+                        - generic [ref=e409]:
+                          - text:  
+                          - generic [ref=e411]:
+                            - generic [ref=e412]: Artículo 5°.- Derogado.
+                            - generic [ref=e414]:
+                              - text: ARTICULOS
+                              - text: DEROGADOS
+                              - text: POR LA LETRA
+                              - text: b) DEL
+                              - text: ART 6°
+                              - text: DL 1225 1975
+                        - generic [ref=e415]:
+                          - text:  
+                          - generic [ref=e417]:
+                            - generic [ref=e418]: Artículo 6°.- Derogado.
+                            - generic [ref=e420]:
+                              - text: ARTICULOS
+                              - text: DEROGADOS
+                              - text: POR LA LETRA
+                              - text: b) DEL
+                              - text: ART 6°
+                              - text: DL 1225 1975
+                      - generic [ref=e421]:
+                        - generic [ref=e422]: 
+                        - generic [ref=e423]: Loading...
+                        - generic "Clic para cargar más texto" [ref=e425] [cursor=pointer]:
+                          - generic [ref=e426]: 
+                    - text:       
+      - text:              
+  - contentinfo [ref=e428]:
+    - generic [ref=e430]:
+      - generic [ref=e431]: "Síguenos en:"
+      - generic [ref=e432]:
+        - link "Cuenta de X de la Biblioteca del Congreso Nacional" [ref=e433] [cursor=pointer]:
+          - /url: https://x.com/bcnchile
+          - img "Cuenta de X de la Biblioteca del Congreso Nacional" [ref=e434]
+        - link "Facebook Biblioteca del Congreso Nacional" [ref=e435] [cursor=pointer]:
+          - /url: https://www.facebook.com/BCNChile
+          - img "Facebook Biblioteca del Congreso Nacional" [ref=e436]
+        - link "Cuenta de Instagram de la Biblioteca del Congreso Nacional" [ref=e437] [cursor=pointer]:
+          - /url: https://www.instagram.com/bcnchile/
+          - img "Cuenta de Instagram de la Biblioteca del Congreso Nacional" [ref=e438]
+        - link "Cuenta de Flickr de la Biblioteca del Congreso Nacional" [ref=e439] [cursor=pointer]:
+          - /url: https://www.flickr.com/photos/bcnchile/
+          - img "Cuenta de Flickr de la Biblioteca del Congreso Nacional" [ref=e440]
+        - link "Cuenta de Tiktok de la Biblioteca del Congreso Nacional" [ref=e441] [cursor=pointer]:
+          - /url: https://www.tiktok.com/@bcnchile
+          - img "Cuenta de Tiktok de la Biblioteca del Congreso Nacional" [ref=e442]
+        - link "Canal de Youtube de Biblioteca del Congreso Nacional" [ref=e443] [cursor=pointer]:
+          - /url: https://www.youtube.com/channel/UCIH51ss4JpKtGT1a41aqJvA
+          - img "Canal de Youtube de Biblioteca del Congreso Nacional" [ref=e444]
+      - generic [ref=e445]:
+        - link "Políticas de privacidad|" [ref=e446] [cursor=pointer]:
+          - /url: https://www.bcn.cl/portal/pagina/privacidad
+        - link "Mapa del sitio|" [ref=e447] [cursor=pointer]:
+          - /url: https://www.bcn.cl/portal/mapa-sitio
+        - link "Ubicación, horarios y teléfonos" [ref=e448] [cursor=pointer]:
+          - /url: https://www.bcn.cl/portal/pagina/ubicacion
+      - generic [ref=e449]:
+        - link "logo ISO-9001" [ref=e450] [cursor=pointer]:
+          - /url: https://www.bcn.cl/obtienearchivo?id=documentos/10221.1/44246/19/Certificado_ICONTEC.pdf
+          - img "logo ISO-9001" [ref=e451]
+        - link "logo IQNET" [ref=e452] [cursor=pointer]:
+          - /url: https://www.bcn.cl/obtienearchivo?id=documentos/10221.1/44246/18/Certificado-IQNET.pdf
+          - img "logo IQNET" [ref=e453]
+      - link "Creative Commons" [ref=e455] [cursor=pointer]:
+        - /url: https://creativecommons.org/licenses/by-nc-nd/4.0/deed.es
+        - img "Creative Commons" [ref=e456]
+  - generic:  

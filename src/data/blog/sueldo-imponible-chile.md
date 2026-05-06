@@ -97,7 +97,9 @@ Cada descuento previsional se aplica como un porcentaje de la remuneración impo
 
 El ISC es progresivo: se aplica por tramos sobre la remuneración imponible mensual. Solo el tramo que supera cada umbral paga la tasa correspondiente — no todo el ingreso paga la tasa más alta.
 
-La estructura vigente tiene 7 tramos expresados en UTM, desde 0% para ingresos bajos hasta 40% para el tramo más alto. La tabla completa y actualizada se encuentra en el [SII](https://www.sii.cl/). La retención se aplica mensualmente en la liquidación de sueldo.
+La estructura vigente tiene 7 tramos expresados en UTM, desde 0% para ingresos bajos hasta 40% para el tramo más alto. La tabla completa y actualizada se encuentra en el [SII](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm). La retención se aplica mensualmente en la liquidación de sueldo.
+
+Para el rango mensual de $952.938 a $2.117.640 (mayo 2026), la fórmula es: remuneración imponible × 0,04 − $38.117,52 ([tabla SII AT 2026](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm)).
 
 ## APV y reducción de la base imponible
 
@@ -118,7 +120,7 @@ Para un trabajador con sueldo bruto de $1.200.000 sin componentes no imponibles 
 2. Cotización obligatoria AFP (~10,5%): ~$126.000. La comisión AFP es adicional y varía por institución.
 3. Salud (7%): $84.000
 4. AFC (0,6%): $7.200
-5. ISC (tabla SII AT 2026): **$9.882** — calculado sobre el tramo correspondiente a $1.200.000 de remuneración imponible
+5. ISC (tramo mayo 2026: $952.938–$2.117.640, factor 0,04 − rebaja $38.117,52): **$9.882** → $1.200.000 × 0,04 − $38.117,52 ([fuente: SII](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm))
 6. **Sueldo líquido orientativo: ~$972.918** ($1.200.000 − $126.000 − $84.000 − $7.200 − $9.882). La comisión AFP no está incluida — varía por institución.
 
 Para el cálculo completo con todas las líneas, usa la guía de [liquidación de sueldo](/posts/liquidacion-de-sueldo/) o la calculadora de sueldo líquido.

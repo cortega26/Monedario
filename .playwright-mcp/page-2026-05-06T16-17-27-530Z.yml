@@ -1,0 +1,280 @@
+- generic [ref=e3]:
+  - text: 
+  - generic [ref=e5]:
+    - navigation [ref=e6]:
+      - navigation [ref=e8]:
+        - list [ref=e9]:
+          - listitem [ref=e10]:
+            - link "Ingresar a Mi Sii" [ref=e11] [cursor=pointer]:
+              - /url: https://misiir.sii.cl/cgi_misii/siihome.cgi
+    - generic [ref=e12]:
+      - heading "Sii - Servicio de impuestos internos" [level=1] [ref=e13]:
+        - link "Sii - Servicio de impuestos internos" [ref=e14] [cursor=pointer]:
+          - /url: https://homer.sii.cl/
+          - img "Sii - Servicio de impuestos internos" [ref=e15]
+      - list [ref=e16]:
+        - listitem [ref=e17]:
+          - button "Mi Sii" [ref=e18] [cursor=pointer]
+        - listitem [ref=e19]:
+          - link "Servicios online" [ref=e20] [cursor=pointer]:
+            - /url: https://www.sii.cl/servicios_online/
+            - text: Servicios online
+            - generic [ref=e21]: 
+        - listitem [ref=e22]:
+          - button "Ayudas" [ref=e23] [cursor=pointer]
+        - listitem [ref=e24]:
+          - link "" [ref=e25] [cursor=pointer]:
+            - /url: https://www.sii.cl/buscador/buscador.html
+            - generic [ref=e26]: 
+  - generic [ref=e30]:
+    - listbox [ref=e31]:
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - paragraph [ref=e34]: Ya puedes presentar tu Declaración de Renta 2026
+          - paragraph [ref=e35]: Revisa primero la propuesta que preparamos para ti
+          - paragraph [ref=e36]:
+            - button "Ingresa aquí" [ref=e37] [cursor=pointer]
+        - img "Operación Renta 2026" [ref=e38]
+    - list [ref=e39]:
+      - listitem [ref=e40] [cursor=pointer]
+      - listitem [ref=e41] [cursor=pointer]
+      - listitem [ref=e42] [cursor=pointer]
+      - listitem [ref=e43] [cursor=pointer]
+  - generic [ref=e45]:
+    - generic [ref=e46]:
+      - generic [ref=e48]:
+        - heading "Accesos rápidos" [level=2] [ref=e49]
+        - text: 
+        - list [ref=e50]:
+          - listitem [ref=e51]:
+            - link "Inicio de actividades" [ref=e52] [cursor=pointer]:
+              - /url: https://www.sii.cl/servicios_online/1031-1034.html
+          - listitem [ref=e53]:
+            - link "Cesión de documentos electrónicos" [ref=e54] [cursor=pointer]:
+              - /url: https://palena.sii.cl/rtc/RTC/RTCMenu.html
+          - listitem [ref=e55]:
+            - link "Declarar formulario 29" [ref=e56] [cursor=pointer]:
+              - /url: https://www.sii.cl/servicios_online/1042-3264.html
+          - listitem [ref=e57]:
+            - link "Emitir boleta de honorarios electrónica" [ref=e58] [cursor=pointer]:
+              - /url: https://www.sii.cl/servicios_online/1040-1287.html#-collapseOne
+          - listitem [ref=e59]:
+            - link "Emitir factura electrónica" [ref=e60] [cursor=pointer]:
+              - /url: https://www.sii.cl/servicios_online/1039-1183.html#-collapseOne
+          - listitem [ref=e61]:
+            - link "Pagar contribuciones" [ref=e62] [cursor=pointer]:
+              - /url: https://www4.sii.cl/cuotaanualbienesraicespubinternetui/#!/buscaRolPagos
+          - listitem [ref=e63]:
+            - link "Registro de compras y ventas" [ref=e64] [cursor=pointer]:
+              - /url: https://www.sii.cl/servicios_online/1039-3256.html
+          - listitem [ref=e65]:
+            - link "Solicitar certificado de avalúo" [ref=e66] [cursor=pointer]:
+              - /url: https://www2.sii.cl/vica/Menu/CertificadosAvaluoCC
+          - listitem [ref=e67]:
+            - link "Digital VAT Portal" [ref=e68] [cursor=pointer]:
+              - /url: https://www.sii.cl/vat/index.html
+          - listitem [ref=e69]:
+            - link "Más opciones" [ref=e70] [cursor=pointer]:
+              - /url: https://www.sii.cl/servicios_online/
+      - link "Mi Negocio Cumple" [ref=e73] [cursor=pointer]:
+        - /url: https://www2.sii.cl/siimple/home-diferenciado
+        - img "Mi Negocio Cumple" [ref=e74]
+      - link "Plan de Gestión de Cumplimiento Tributario" [ref=e77] [cursor=pointer]:
+        - /url: https://www.sii.cl/destacados/SII_PGCT_2026.pdf
+        - img "Plan de Gestión de Cumplimiento Tributario" [ref=e78]
+    - generic [ref=e79]:
+      - generic [ref=e81]:
+        - heading "Destacados Ver más portales" [level=2] [ref=e82]:
+          - strong [ref=e83]: Destacados
+          - link "Ver más portales" [ref=e84] [cursor=pointer]:
+            - /url: https://www.sii.cl/destacados/
+        - generic [ref=e85]:
+          - link "Portal del Emprendedor Portal del Emprendedor" [ref=e87] [cursor=pointer]:
+            - /url: https://www.sii.cl/portales/emprendedor/
+            - img "Portal del Emprendedor" [ref=e88]
+            - text: Portal del Emprendedor
+          - link "Regístrate aquí Regístrate aquí" [ref=e90] [cursor=pointer]:
+            - /url: https://www.sii.cl/destacados/ferias_libres/index_ferias.html
+            - img "Regístrate aquí" [ref=e91]
+            - text: Regístrate aquí
+          - link "Inscríbete aquí Inscríbete aquí" [ref=e93] [cursor=pointer]:
+            - /url: https://www.sii.cl/destacados/subsistencia/
+            - img "Inscríbete aquí" [ref=e94]
+            - text: Inscríbete aquí
+        - complementary [ref=e95]:
+          - link "Renta Rectificatorias 2025 Renta Rectificatorias 2025" [ref=e97] [cursor=pointer]:
+            - /url: https://www.sii.cl/destacados/renta/2025/rectificatorias.html
+            - img "Renta Rectificatorias 2025" [ref=e98]
+            - text: Renta Rectificatorias 2025
+          - link "Aprende en Charlas y más Aprende en Charlas y más" [ref=e100] [cursor=pointer]:
+            - /url: https://www.sii.cl/siieduca/
+            - img "Aprende en Charlas y más" [ref=e101]
+            - text: Aprende en Charlas y más
+          - link "Subsidio Sueldo Mínimo Subsidio Sueldo Mínimo" [ref=e103] [cursor=pointer]:
+            - /url: https://www.sii.cl/destacados/subsidio_sueldo_minimo/
+            - img "Subsidio Sueldo Mínimo" [ref=e104]
+            - text: Subsidio Sueldo Mínimo
+        - text: 
+      - generic [ref=e105]:
+        - heading "Noticias Ver más noticias" [level=2] [ref=e106]:
+          - text: Noticias
+          - link "Ver más noticias" [ref=e107] [cursor=pointer]:
+            - /url: https://www.sii.cl/noticias/2026/index.html
+        - list [ref=e108]:
+          - listitem [ref=e109]:
+            - generic [ref=e110]: 4 de mayo de 2026
+            - link "El IVA a bienes comprados en el extranjero por hasta 500 dólares registra una recaudación de más de 48 mil millones de pesos en su segundo periodo de declaración y pago El IVA a bienes comprados en el extranjero por hasta 500 dólares registra una recaudación de más de 48 mil millones de pesos en su segundo periodo de declaración y pago" [ref=e111] [cursor=pointer]:
+              - /url: https://www.sii.cl/noticias/2026/040526noti02pcr.htm
+              - img "El IVA a bienes comprados en el extranjero por hasta 500 dólares registra una recaudación de más de 48 mil millones de pesos en su segundo periodo de declaración y pago" [ref=e112]
+              - text: El IVA a bienes comprados en el extranjero por hasta 500 dólares registra una recaudación de más de 48 mil millones de pesos en su segundo periodo de declaración y pago
+          - listitem [ref=e113]:
+            - generic [ref=e114]: 4 de mayo de 2026
+            - link "Director del SII y alcalde de Estación Central ratifican trabajo colaborativo en contra del comercio ilícito y la informalidad" [ref=e115] [cursor=pointer]:
+              - /url: https://www.sii.cl/noticias/2026/040526noti01smn.htm
+          - listitem [ref=e116]:
+            - generic [ref=e117]: 30 de abril de 2026
+            - link "SII inicia mesa de trabajo con la CNC para facilitar implementación de nuevas exigencias en el traslado de bienes" [ref=e118] [cursor=pointer]:
+              - /url: https://www.sii.cl/noticias/2026/300426noti02smn.htm
+    - separator [ref=e119]
+    - generic [ref=e120]:
+      - generic:
+        - generic:
+          - link "Anticorrupción UNCAC" [ref=e122] [cursor=pointer]:
+            - /url: https://www.alianzaanticorrupcion.cl/AnticorrupcionUNCAC/
+            - img "Anticorrupción UNCAC" [ref=e123]
+          - link "Regularización de inversiones en el exterior" [ref=e125] [cursor=pointer]:
+            - /url: https://www.bcentral.cl/web/banco-central/areas/estadisticas/reportes-al-bcch
+            - img "Regularización de inversiones en el exterior" [ref=e126]
+          - link "Gobierno Transparente" [ref=e128] [cursor=pointer]:
+            - /url: https://www.sii.cl/transparencia/
+            - img "Gobierno Transparente" [ref=e129]
+      - link "‹" [ref=e130] [cursor=pointer]:
+        - /url: "#carrusel_links"
+      - link "›" [ref=e131] [cursor=pointer]:
+        - /url: "#carrusel_links"
+  - contentinfo [ref=e133]:
+    - generic [ref=e134]:
+      - generic [ref=e135]:
+        - generic [ref=e136]:
+          - heading "Valores y fechas" [level=3] [ref=e137]
+          - text: 
+          - list [ref=e138]:
+            - listitem [ref=e139]:
+              - link "UF" [ref=e140] [cursor=pointer]:
+                - /url: https://www.sii.cl/valores_y_fechas/uf/uf2026.htm
+            - listitem [ref=e141]:
+              - link "Dólar" [ref=e142] [cursor=pointer]:
+                - /url: https://www.sii.cl/valores_y_fechas/dolar/dolar2026.htm
+            - listitem [ref=e143]:
+              - link "UTM-UTA-IPC" [ref=e144] [cursor=pointer]:
+                - /url: https://www.sii.cl/valores_y_fechas/utm/utm2026.htm
+            - listitem [ref=e145]:
+              - link "Datos y valores de Renta" [ref=e146] [cursor=pointer]:
+                - /url: https://www.sii.cl/valores_y_fechas/renta/datos_valores_renta.html
+            - listitem [ref=e147]:
+              - link "Datos y valores de IVA" [ref=e148] [cursor=pointer]:
+                - /url: https://www.sii.cl/valores_y_fechas/iva/datos_valores_iva.html
+            - listitem [ref=e149]:
+              - link "Otros valores" [ref=e150] [cursor=pointer]:
+                - /url: https://www.sii.cl/valores_y_fechas/otros_valores/otros_valores.html
+        - generic [ref=e151]:
+          - heading "Normativa y legislación" [level=3] [ref=e152]
+          - text: 
+          - list [ref=e153]:
+            - listitem [ref=e154]:
+              - link "Circulares" [ref=e155] [cursor=pointer]:
+                - /url: https://www.sii.cl/normativa_legislacion/circulares/2026/indcir2026.htm
+            - listitem [ref=e156]:
+              - link "Resoluciones" [ref=e157] [cursor=pointer]:
+                - /url: https://www.sii.cl/normativa_legislacion/resoluciones/2026/res_ind2026.htm
+            - listitem [ref=e158]:
+              - link "Consulta pública de normas" [ref=e159] [cursor=pointer]:
+                - /url: https://www4.sii.cl/consultaProyectosNormativosInternet/#Inicio
+            - listitem [ref=e160]:
+              - link "Administrador de contenido normativo" [ref=e161] [cursor=pointer]:
+                - /url: https://www3.sii.cl/normaInternet/
+            - listitem [ref=e162]:
+              - link "Administrador de contenido de Jurisprudencia" [ref=e163] [cursor=pointer]:
+                - /url: https://www4.sii.cl/acjui/internet/#/instancia/1
+            - listitem [ref=e164]:
+              - link "Legislación tributaria y convenios internacionales" [ref=e165] [cursor=pointer]:
+                - /url: https://www.sii.cl/normativa_legislacion/legislacion_tributaria.html
+            - listitem [ref=e166]:
+              - link "Jurisprudencia y tribunales" [ref=e167] [cursor=pointer]:
+                - /url: https://www.sii.cl/normativa_legislacion/jurisprudencia_y_tribunales.html
+        - generic [ref=e168]:
+          - heading "Redes Sociales y APPs" [level=3] [ref=e169]
+          - text: 
+          - list [ref=e170]:
+            - listitem [ref=e171]:
+              - link "Instagram" [ref=e172] [cursor=pointer]:
+                - /url: https://www.instagram.com/sii_chile/?hl=es
+            - listitem [ref=e173]:
+              - link "LinkedIn" [ref=e174] [cursor=pointer]:
+                - /url: https://cl.linkedin.com/company/servicio-de-impuestos-internos
+            - listitem [ref=e175]:
+              - link "X" [ref=e176] [cursor=pointer]:
+                - /url: https://x.com/SII_Chile/
+            - listitem [ref=e177]:
+              - link "Facebook" [ref=e178] [cursor=pointer]:
+                - /url: https://www.facebook.com/impuestosinternoschile/
+            - listitem [ref=e179]:
+              - link "Youtube" [ref=e180] [cursor=pointer]:
+                - /url: https://www.youtube.com/user/sii/
+            - listitem [ref=e181]:
+              - link "APPs" [ref=e182] [cursor=pointer]:
+                - /url: https://www.sii.cl/ayudas/apps/
+            - listitem [ref=e183]:
+              - link "RSS" [ref=e184] [cursor=pointer]:
+                - /url: https://www.sii.cl/redes_sociales/rss.html
+        - generic [ref=e185]:
+          - heading "Sitios de interés" [level=3] [ref=e186]
+          - text: 
+          - list [ref=e187]:
+            - listitem [ref=e188]:
+              - link "Aplicaciones y documentos" [ref=e189] [cursor=pointer]:
+                - /url: https://www.sii.cl/sitios_de_interes/sinteres_appdoc.html
+            - listitem [ref=e190]:
+              - link "Licitaciones del SII" [ref=e191] [cursor=pointer]:
+                - /url: https://www.mercadopublico.cl/Portal/FeedOrg.aspx?qs=uA+9eO9RsExrBBji2XDfuw==
+            - listitem [ref=e192]:
+              - link "Sitios de gobierno relacionados" [ref=e193] [cursor=pointer]:
+                - /url: https://www.sii.cl/sitios_de_interes/sinteres_sgob.html
+            - listitem [ref=e194]:
+              - link "Organismos relacionados" [ref=e195] [cursor=pointer]:
+                - /url: https://www.sii.cl/sitios_de_interes/sinteres_orgrelacionados.html
+            - listitem [ref=e196]:
+              - link "Estándar de Intercambio Automático de información Financiera" [ref=e197] [cursor=pointer]:
+                - /url: https://www.sii.cl/asuntos_internacionales/
+            - listitem [ref=e198]:
+              - link "Asuntos internacionales" [ref=e199] [cursor=pointer]:
+                - /url: https://www.sii.cl/sitios_de_interes/sinteres_asuntos_internacionales.html
+        - generic [ref=e200]:
+          - heading "Sobre el SII" [level=3] [ref=e201]
+          - text: 
+          - list [ref=e202]:
+            - listitem [ref=e203]:
+              - link "Nuestro Servicio" [ref=e204] [cursor=pointer]:
+                - /url: https://www.sii.cl/sobre_el_sii/nuestro_servicio.htm
+            - listitem [ref=e205]:
+              - link "Trabaja con nosotros" [ref=e206] [cursor=pointer]:
+                - /url: https://www.sii.cl/sobre_el_sii/trabaja_con_nosotros.html
+            - listitem [ref=e207]:
+              - link "Gestión y estadísticas" [ref=e208] [cursor=pointer]:
+                - /url: https://www.sii.cl/sobre_el_sii/gestion_y_estadisticas.html
+            - listitem [ref=e209]:
+              - link "Capacitación y formación en el SII" [ref=e210] [cursor=pointer]:
+                - /url: https://capacita.sii.cl:433/
+            - listitem [ref=e211]:
+              - link "Derechos de los contribuyentes" [ref=e212] [cursor=pointer]:
+                - /url: https://www.sii.cl/sobre_el_sii/derechos_contribuyentes.htm
+            - listitem [ref=e213]:
+              - link "Términos de uso del sitio web" [ref=e214] [cursor=pointer]:
+                - /url: https://www.sii.cl/sobre_el_sii/terminos_sitio_web.html
+            - listitem [ref=e215]:
+              - link "Declaración de Privacidad" [ref=e216] [cursor=pointer]:
+                - /url: https://www.sii.cl/sobre_el_sii/declaracion_de_privacidad.html
+            - listitem [ref=e217]:
+              - link "Recomendaciones de seguridad" [ref=e218] [cursor=pointer]:
+                - /url: https://www.sii.cl/sobre_el_sii/recomendaciones_seguridad.htm
+      - text:  > > > > > >  > > > > > > >  > > > > > > >  > > > > > >  > > > > > > > >

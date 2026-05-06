@@ -1,0 +1,12 @@
+[     418ms] [LOG] eliminarNormasVeryOld @ https://www.bcn.cl/leychile/main.624f09e276197ff12055.bundle.js:0
+[     439ms] [LOG] LcSidebarNavComponent.ngAfterViewInit @ https://www.bcn.cl/leychile/main.624f09e276197ff12055.bundle.js:0
+[     458ms] [LOG] Se carga archivo para carga de header y footer unificado @ https://www.bcn.cl/static/unificado/js/unificado.js:1
+[     459ms] [LOG] DOMContentLoaded  @ https://www.bcn.cl/static/unificado/js/unificado.js:89
+[     469ms] [LOG] Se carga archivo sociales @ https://www.bcn.cl/static/unificado/js/sociales.js:0
+[     540ms] [LOG] LcSidebarNavComponent.ngAfterViewInit @ https://www.bcn.cl/leychile/main.624f09e276197ff12055.bundle.js:0
+[     551ms] [LOG] Inicializando accesibilidad del menú @ https://www.bcn.cl/static/unificado/js/unificado.js:497
+[     651ms] [LOG] Configurando navegación por teclado @ https://www.bcn.cl/static/unificado/js/unificado.js:584
+[     652ms] [LOG] Accesibilidad inicializada correctamente @ https://www.bcn.cl/static/unificado/js/unificado.js:513
+[     702ms] [LOG] Labels y botones configurados @ https://www.bcn.cl/static/unificado/js/unificado.js:977
+[    1058ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://nuevo.leychile.cl/servicios/Registra/404/leychile/buscar?tipo_norma=ley&numero=17235:0
+[    1060ms] [ERROR] ERROR n @ https://www.bcn.cl/leychile/main.624f09e276197ff12055.bundle.js:0
