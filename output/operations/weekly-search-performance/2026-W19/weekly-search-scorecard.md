@@ -1,6 +1,6 @@
 # Weekly Search Performance Scorecard
 
-Generated: `2026-05-06T22:38:14.514Z`
+Generated: `2026-05-07T00:35:44.247Z`
 
 ## Headline
 
