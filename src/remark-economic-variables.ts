@@ -137,14 +137,18 @@ function walk(node: Node, vars: Vars, warn: (message: string) => void): void {
 
 export function remarkEconomicVariables() {
   const vars = loadVars();
+  let didWarnMissingSnapshot = false;
 
-  return function transformer(tree: unknown, file: RemarkFile): void {
-    const warn = (message: string) => file.message(message);
+  return function transformer(tree: unknown, file?: RemarkFile): void {
+    const warn = (message: string) => file?.message(message);
 
     if (!vars) {
-      warn(
-        "[remarkEconomicVariables] Economic snapshot not found; template variables will not be resolved."
-      );
+      if (!didWarnMissingSnapshot) {
+        warn(
+          "[remarkEconomicVariables] Economic snapshot not found; template variables will not be resolved."
+        );
+        didWarnMissingSnapshot = true;
+      }
       return;
     }
 
