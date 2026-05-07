@@ -55,7 +55,7 @@ reviewPolicy:
   derivationFactors:
     - validAsOf
     - officialSources
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 En Chile, estar "en el Boletín Comercial" es la causa concreta de lo que coloquialmente se llama "estar en DICOM". No son lo mismo, pero están relacionados: el Boletín Comercial es el registro oficial de protestos y documentos impagos; DICOM es un producto privado que recoge ese y otros datos.

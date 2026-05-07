@@ -24,7 +24,7 @@ reviewPolicy:
   dataTriggers: []
   derivationFactors:
     - category:ahorro-inversion
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 Invertir en ETFs desde Chile es perfectamente posible, pero el costo real rara vez aparece en el primer número que ves. La comisión, los derechos de bolsa, el IVA, la custodia y el spread se acumulan en silencio. Esta guía te lleva paso a paso para que sepas exactamente qué estás pagando y qué debes declarar al SII.

@@ -47,7 +47,7 @@ reviewPolicy:
     - category:empleo-ingresos
     - validAsOf
     - officialSources
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 El finiquito llegó con un número. El número parece razonable, pero razonable no es lo mismo que correcto. La indemnización por años de servicio es la partida donde más errores silenciosos aparecen — y la mayoría no son por mala fe sino porque la causal está mal aplicada, la base de cálculo usa el sueldo equivocado, o la antigüedad está mal contada.

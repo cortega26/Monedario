@@ -58,7 +58,7 @@ reviewPolicy:
     - category:impuestos
     - validAsOf
     - officialSources
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 Si en 2025 tuviste sueldo _y_ emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas más— para que llegues al F22 sin sorpresas.

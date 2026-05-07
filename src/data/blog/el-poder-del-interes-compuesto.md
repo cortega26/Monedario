@@ -49,7 +49,7 @@ reviewPolicy:
     - category:ahorro-inversion
     - validAsOf
     - officialSources
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 Imagina a alguien que nunca ganó más que el sueldo mínimo. Sin bonos, sin ascensos, sin herencias. Solo el sueldo de cada mes y la disciplina de apartar el 10% del líquido para invertirlo. Durante 36 años tuvo 24 meses sin trabajo — lagunas reales, como las que le pasan a cualquier trabajador chileno. El resto del tiempo, ese 10% fue al NASDAQ-100. Lo que ocurrió después es lo que este ejercicio trata de mostrar.

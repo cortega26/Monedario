@@ -23,7 +23,7 @@ reviewPolicy:
   dataTriggers: []
   derivationFactors:
     - category:seguridad-financiera
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 La mayoría de las estafas financieras no empieza con un hackeo sofisticado. Empieza con una llamada que suena completamente normal, de alguien que sabe tu nombre, menciona tu banco y habla en un tono que mezcla urgencia con profesionalismo. Para cuando te das cuenta de lo que ocurrió, ya autorizaste una transferencia.

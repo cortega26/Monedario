@@ -30,7 +30,7 @@ reviewPolicy:
   maxDays: 180
   dataTriggers: []
   derivationFactors: []
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 Cuando sale el dato del IPC cada mes, los medios hablan de "inflación" y tú ves que las cosas cuestan más. Pero ¿cómo se mide exactamente? ¿Por qué a veces el IPC baja pero igual sientes que todo cuesta más? Y lo más importante: ¿qué decisiones afecta directamente en tu vida?

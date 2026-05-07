@@ -25,7 +25,7 @@ reviewPolicy:
   dataTriggers: []
   derivationFactors:
     - category:impuestos
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 Abres la propuesta del SII, ves los números y no sabes si aceptar o si algo está mal. Esta guía te ayuda a revisar cada punto antes de enviar el F22 y a reaccionar rápido si aparecen observaciones — para que no pierdas tiempo ni atrases tu devolución.
@@ -161,9 +161,9 @@ Revisa [devolución de impuestos: fechas, estado y compensaciones](/posts/devolu
 
 - SII, comunicado 31 de marzo de 2026 — calendario AT 2026 y novedades: <https://www.sii.cl/noticias/2026/310326noti01pcr.htm>
 - SII, Operación Renta Personas AT 2026: https://www.sii.cl/destacados/renta/2026/personas/
-- SII FAQ, reemplazo de declaración enviada por Internet: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8508.htm
-- SII FAQ, consulta de estado y observaciones, rectificatoria: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8567.htm
-- SII FAQ, rectificatoria que origina devolución (autorización y pago vía TGR): https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8567.htm
+- SII FAQ, reemplazo de declaración enviada por Internet: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8950.htm
+- SII FAQ, consulta de estado y observaciones, rectificatoria: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8954.htm
+- SII FAQ, rectificatoria que origina devolución (autorización y pago vía TGR): https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0516.htm
 - ChileAtiende, Declaración de Renta 2026: https://www.chileatiende.gob.cl/fichas/3178-declaracion-de-renta
 - ChileAtiende, Operación Renta 2026: https://www.chileatiende.gob.cl/fichas/10199-operacion-renta-2026
 

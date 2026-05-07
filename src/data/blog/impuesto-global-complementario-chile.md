@@ -52,7 +52,7 @@ reviewPolicy:
     - template:uta
     - validAsOf
     - officialSources
-  computedAt: '2026-05-06'
+  computedAt: "2026-05-06"
 ---
 
 > **Información vigente al 2026-05-03.** Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el [SII](https://www.sii.cl/) antes de tu Operación Renta. Este artículo no cubre ganancias de capital.
@@ -115,6 +115,7 @@ La retención aplicada a tus boletas de honorarios es un crédito contra el IGC.
 **APV Modalidad A vs Modalidad B**
 
 El APV puede reducir el IGC según la modalidad elegida, de acuerdo con el [artículo 42 bis de la LIR](https://www.bcn.cl/leychile/navegar?idNorma=6368):
+
 - **Modalidad A**: genera un crédito tributario directo sobre el monto cotizado, hasta **50 UF mensuales o 600 UF anuales** ([art. 42 bis LIR](https://www.bcn.cl/leychile/navegar?idNorma=6368)).
 - **Modalidad B**: reduce la base imponible del IGC, con el mismo tope de 600 UF anuales establecido en el mismo artículo.
 

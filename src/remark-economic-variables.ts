@@ -16,7 +16,7 @@ const EXPR_RE = /\[\[([^\]|]+?)\|([^\]]+?)\]\]/g;
 
 type Vars = { utm: number; uf: number; uta: number };
 type Node = { type: string; value?: string; children?: Node[] };
-type MessageFile = { message: (message: string) => void };
+type RemarkFile = { message: (reason: string) => void };
 
 function loadVars(): Vars | null {
   if (!existsSync(SNAPSHOT_PATH)) return null;
@@ -139,7 +139,7 @@ export function remarkEconomicVariables() {
   const vars = loadVars();
   let didWarnMissingSnapshot = false;
 
-  return function transformer(tree: unknown, file?: MessageFile): void {
+  return function transformer(tree: unknown, file?: RemarkFile): void {
     const warn = (message: string) => file?.message(message);
 
     if (!vars) {
