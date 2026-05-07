@@ -29,7 +29,7 @@ describe("remarkEconomicVariables", () => {
     const { remarkEconomicVariables } = await loadPlugin({ snapshotExists: false });
     const transformer = remarkEconomicVariables();
     const messages: string[] = [];
-    const file: MessageFile = { message: message => void messages.push(message) };
+    const file: MessageFile = { message: msg => void messages.push(msg) };
 
     transformer({ type: "root", children: [{ type: "text", value: "[[utm|clp]]" }] }, file);
     transformer({ type: "root", children: [{ type: "text", value: "[[uf|clp]]" }] }, file);
@@ -51,7 +51,7 @@ describe("remarkEconomicVariables", () => {
       children: [{ type: "text", value: "Monto [[utm|bogus]]" }],
     };
 
-    transformer(tree, { message: message => void messages.push(message) });
+    transformer(tree, { message: msg => void messages.push(msg) });
 
     expect(tree.children[0]?.value).toBe("Monto [[utm|bogus]]");
     expect(messages).toEqual([
