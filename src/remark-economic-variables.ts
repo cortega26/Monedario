@@ -100,11 +100,7 @@ function formatClp(value: number): string {
   return (rounded < 0 ? "-$" : "$") + parts.join(".");
 }
 
-function substituteText(
-  text: string,
-  vars: Vars,
-  warn: (message: string) => void
-): string {
+function substituteText(text: string, vars: Vars): string {
   return text.replace(EXPR_RE, (_match, exprRaw: string, fmtRaw: string) => {
     try {
       const value = evalExpr(exprRaw.trim(), vars);
@@ -113,7 +109,7 @@ function substituteText(
       if (fmt === "raw") return String(value);
       throw new Error(`Unknown format: ${fmtRaw.trim()}`);
     } catch (err) {
-      warn(
+      console.warn(
         `[remarkEconomicVariables] Could not resolve [[${exprRaw.trim()}|${fmtRaw.trim()}]]: ${(err as Error).message}`
       );
       return _match;
@@ -121,15 +117,15 @@ function substituteText(
   });
 }
 
-function walk(node: Node, vars: Vars, warn: (message: string) => void): void {
+function walk(node: Node, vars: Vars): void {
   if (SKIP_TYPES.has(node.type)) return;
   if (node.type === "text" && typeof node.value === "string") {
-    node.value = substituteText(node.value, vars, warn);
+    node.value = substituteText(node.value, vars);
     return;
   }
   if (node.children) {
     for (const child of node.children) {
-      walk(child, vars, warn);
+      walk(child, vars);
     }
   }
 }
@@ -137,16 +133,14 @@ function walk(node: Node, vars: Vars, warn: (message: string) => void): void {
 export function remarkEconomicVariables() {
   const vars = loadVars();
 
-  return function transformer(tree: unknown, file: RemarkFile): void {
-    const warn = (message: string) => file.message(message);
+  if (!vars) {
+    console.warn(
+      "[remarkEconomicVariables] Economic snapshot not found; template variables will not be resolved."
+    );
+    return function () {};
+  }
 
-    if (!vars) {
-      warn(
-        "[remarkEconomicVariables] Economic snapshot not found; template variables will not be resolved."
-      );
-      return;
-    }
-
-    walk(tree as Node, vars, warn);
+  return function transformer(tree: unknown): void {
+    walk(tree as Node, vars);
   };
 }
