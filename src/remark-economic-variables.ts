@@ -16,6 +16,7 @@ const EXPR_RE = /\[\[([^\]|]+?)\|([^\]]+?)\]\]/g;
 
 type Vars = { utm: number; uf: number; uta: number };
 type Node = { type: string; value?: string; children?: Node[] };
+type MessageFile = { message: (message: string) => void };
 
 function loadVars(): Vars | null {
   if (!existsSync(SNAPSHOT_PATH)) return null;
@@ -100,7 +101,11 @@ function formatClp(value: number): string {
   return (rounded < 0 ? "-$" : "$") + parts.join(".");
 }
 
-function substituteText(text: string, vars: Vars): string {
+function substituteText(
+  text: string,
+  vars: Vars,
+  warn: (message: string) => void
+): string {
   return text.replace(EXPR_RE, (_match, exprRaw: string, fmtRaw: string) => {
     try {
       const value = evalExpr(exprRaw.trim(), vars);
@@ -109,7 +114,7 @@ function substituteText(text: string, vars: Vars): string {
       if (fmt === "raw") return String(value);
       throw new Error(`Unknown format: ${fmtRaw.trim()}`);
     } catch (err) {
-      console.warn(
+      warn(
         `[remarkEconomicVariables] Could not resolve [[${exprRaw.trim()}|${fmtRaw.trim()}]]: ${(err as Error).message}`
       );
       return _match;
@@ -117,30 +122,36 @@ function substituteText(text: string, vars: Vars): string {
   });
 }
 
-function walk(node: Node, vars: Vars): void {
+function walk(node: Node, vars: Vars, warn: (message: string) => void): void {
   if (SKIP_TYPES.has(node.type)) return;
   if (node.type === "text" && typeof node.value === "string") {
-    node.value = substituteText(node.value, vars);
+    node.value = substituteText(node.value, vars, warn);
     return;
   }
   if (node.children) {
     for (const child of node.children) {
-      walk(child, vars);
+      walk(child, vars, warn);
     }
   }
 }
 
 export function remarkEconomicVariables() {
   const vars = loadVars();
+  let didWarnMissingSnapshot = false;
 
-  if (!vars) {
-    console.warn(
-      "[remarkEconomicVariables] Economic snapshot not found; template variables will not be resolved."
-    );
-    return function () {};
-  }
+  return function transformer(tree: unknown, file?: MessageFile): void {
+    const warn = (message: string) => file?.message(message);
 
-  return function transformer(tree: unknown): void {
-    walk(tree as Node, vars);
+    if (!vars) {
+      if (!didWarnMissingSnapshot) {
+        warn(
+          "[remarkEconomicVariables] Economic snapshot not found; template variables will not be resolved."
+        );
+        didWarnMissingSnapshot = true;
+      }
+      return;
+    }
+
+    walk(tree as Node, vars, warn);
   };
 }
