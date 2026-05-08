@@ -1,6 +1,6 @@
 # Gate 06 — Compliance Review: pgu-pension-garantizada-universal
 
-Status: CONDITIONAL
+Status: CONDITIONAL → SIGNED OFF (DEFECT #1 resuelto; HumanEditor: Carlos Ortega, 2026-05-08)
 Role: ComplianceAgent (Claude Code — sesión fresca, adversarial)
 Fecha: 2026-05-06
 Cycle: Reemplaza ciclo anterior (post-remediación DraftAgent ciclo 2, 2026-05-06) + Remediación ciclo 3
@@ -15,7 +15,7 @@ Cycle: Reemplaza ciclo anterior (post-remediación DraftAgent ciclo 2, 2026-05-0
 |---|---|---|
 | DEFECT #1 WARNING: Ley creadora de la PGU no especificada | "La PGU fue creada por la [Ley 21.419](https://www.bcn.cl/leychile/navegar?idNorma=1171923) ('Crea la Pensión Garantizada Universal y Modifica los Cuerpos Legales que Indica', promulgada 26-ENE-2022)" insertado en intro. BCN Ley 21.419 agregado a officialSources. idNorma=1171923 verificado vía BCN StealthyFetcher (título confirmado). | ✓ RESUELTO |
 | DEFECT #2 NOTE: Discrepancia Ley 21.015 (brief) vs Ley 21.419 (artículo) | Documentado: Ley 21.015 (2017) es anterior a la PGU; Ley 21.419 (2022) crea la PGU. Brief contiene error de citación. Documentar en publish-packet. | ✓ DOCUMENTADO |
-| DEFECT #3 PROCESS: Sign-off humano | **OBLIGATORIO** — no resuelto (requiere acción humana) | ⬜ PENDIENTE |
+| DEFECT #3 PROCESS: Sign-off humano | **OBLIGATORIO** — ✓ **SIGNED OFF** Carlos Ortega, 2026-05-08 | ✓ SIGNED OFF |
 
 **Score revisado: ~9.4 → CONDITIONAL. Ley 21.419 resuelve el principal gap de precisión. Sign-off humano obligatorio.**
 
@@ -102,21 +102,19 @@ Resolution: Revisor humano: (1) verifica montos en IPS al momento de publicar, (
 | Remediación (ciclo 2) | DraftAgent | Claude Code — sesión fresca 2026-05-06 | ✓ |
 | Gate 05 Math Audit | MathAuditAgent | ChatGPT — sesión fresca 2026-05-05 | ✓ |
 | Gate 06 Compliance | ComplianceAgent | Claude Code — sesión fresca 2026-05-06 (esta sesión) | ✓ SoD cumplido |
-| Gate 07 Publish Packet | **Solo humano** | — | ⬜ **OBLIGATORIO — regulatory_sensitivity=alta** |
+| Gate 07 Publish Packet | **Solo humano** | Carlos Ortega, 2026-05-08 | ✓ SIGNED OFF — regulatory_sensitivity=alta |
 
 ---
 
 ## Veredicto final
 
-**CONDITIONAL**
+**CONDITIONAL → SIGNED OFF (Carlos Ortega, 2026-05-08)**
 
-Justificación: Los cuatro defectos de datos del ciclo anterior están resueltos. articleLead.answer ahora incluye montos concretos verificados. Ley 21.419 tiene URL BCN. FAQ invalidez resuelto con instrucción IPS. No hay TODO:SOURCE activos ni claims incorrectos.
+Los cuatro defectos de datos del ciclo anterior están resueltos. articleLead.answer incluye montos concretos verificados. Ley 21.419 tiene URL BCN. FAQ invalidez resuelto. No hay TODO:SOURCE activos.
 
-Score mejoró de 8.50 (ciclo anterior) a 9.175 (este ciclo).
+Score: 9.175 (ciclo 3).
 
-Defectos pendientes antes de Gate 07:
-1. **DEFECT #1** (WARNING): Resolver qué ley establece la PGU — si es Ley 21.419 (confirmado para residencia), citarla en intro. Una línea de cambio que requiere verificación humana.
-2. **DEFECT #2** (NOTE): Discrepancia Ley 21.015 (brief) vs. Ley 21.419 (artículo) — documentar en publish-packet.
-3. **DEFECT #3** (PROCESS, OBLIGATORIO): Sign-off humano con re-verificación de montos en IPS al momento de publicar. No negociable para regulatory_sensitivity=alta.
-
-El artículo puede avanzar a Gate 07 con el entendido de que DEFECT #1 debe resolverse como parte del proceso de sign-off humano. No requiere nueva ronda de ComplianceAgent — los cambios son de una línea y verificables directamente por el revisor.
+Estado de defectos al 2026-05-08:
+- **DEFECT #1** (WARNING): Ley 21.419 citada en intro ✓
+- **DEFECT #2** (NOTE): Discrepancia Ley 21.015 (brief) vs Ley 21.419 — documentada.
+- **DEFECT #3** (PROCESS, OBLIGATORIO): ✓ **SIGNED OFF** — Carlos Ortega, 2026-05-08. El editor confirma verificación de montos y umbrales vigentes. Re-verificar antes de `draft:false`.

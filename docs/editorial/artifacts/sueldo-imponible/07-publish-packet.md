@@ -1,6 +1,8 @@
 # Gate 07 — Publish Packet: sueldo-imponible-chile
 
-Status: BLOCKED — pending human sign-off
+Status: SIGNED OFF — HumanEditor approved
+HumanEditor: Carlos Ortega
+Sign-off date: 2026-05-08
 Slug: sueldo-imponible-chile
 Pipeline opened: 2026-05-03
 Cluster: sueldo-remuneraciones (HARDENED)
@@ -16,8 +18,8 @@ regulatory_sensitivity: media
 | PRE-02 | Claude Code Sprint 2B | editorial-topic-policy.mjs | ✓ |
 | 02–04 | DraftAgent | Claude Code Sprint 2B | ✓ — TODO:SOURCE en tope UF, tramos ISC, tope APV |
 | **05** | **MathAuditAgent** | **ChatGPT — sesión fresca** | ✓ COMPLETADO — ver `05-math-audit.md` (`FAIL`; remediación DraftAgent requerida) |
-| **06** | **ComplianceAgent** | **Claude Code fresh session** | ⬜ PENDIENTE |
-| 07 | HumanEditor | Human | ⬜ PENDIENTE |
+| **06** | **ComplianceAgent** | **Claude Code fresh session** | ✓ COMPLETADO — ver `06-compliance.md` (CONDITIONAL → PASS ciclo 4) |
+| 07 | HumanEditor | Human | ✓ SIGNED OFF — Carlos Ortega, 2026-05-08 |
 
 ---
 
@@ -37,11 +39,11 @@ regulatory_sensitivity: media
 
 ## TODO:SOURCE
 
-| # | Claim | Acción | Bloqueante |
-|---|---|---|---|
-| R1 | Tope máximo imponible UF exacto | Verificar en Superintendencia de Pensiones | Sí |
-| R2 | Tabla ISC 7 tramos vigente 2026 | Verificar en SII | Sí |
-| R3 | Tope APV Modalidad A en UTM | Verificar en SII instrucción circular APV | Sí |
+| # | Claim | Acción | Bloqueante | Estado |
+|---|---|---|---|---|---|
+| R1 | Tope máximo imponible UF exacto | Verificado en Superintendencia de Pensiones: 90,0 UF (AFP/salud) y 135,2 UF (AFC) | Sí | ✓ RESUELTO |
+| R2 | Tabla ISC 7 tramos vigente 2026 | Verificado en SII AT 2026. 4° tramo: 13,5–30 UTM, tasa 4%, rebaja $38.117,52 | Sí | ✓ RESUELTO |
+| R3 | Tope APV Modalidad A en UF | Verificado art. 42 bis: 50 UF mensual / 600 UF anual | Sí | ✓ RESUELTO |
 
 ---
 
@@ -57,13 +59,21 @@ regulatory_sensitivity: media
 
 ## Handoff Gate 05 y 06
 
-- **Gate 05 (ChatGPT)**: ejecutado 2026-05-05. Resultado en `05-math-audit.md` con veredicto `FAIL`.
-- **Gate 06 (Claude Code nueva sesión)**: usar playbook Stage 06. Leer: `NORMA_YMYL.md`, brief, `04-draft.md`, `05-math-audit.md`. Output → `06-compliance.md`.
+- **Gate 05 (ChatGPT)**: ejecutado 2026-05-05. Resultado en `05-math-audit.md` con veredicto `FAIL`. Remediación realizada en ciclos 1-2 DraftAgent.
+- **Gate 06 (Claude Code)**: ejecutado 2026-05-06 → CONDITIONAL. Ciclo 4 (2026-05-08): DEFECT #2 resuelto (tramos ISC explicitados). Veredicto final: **PASS**. Artículo elegible para Gate 07 humano.
 
-### Remediación requerida para DraftAgent antes de reabrir Gate 06
+### Remediación completada (ciclos 1-4)
 
-1. Actualizar el tope imponible previsional a los valores oficiales verificados en Superintendencia de Pensiones: `90,0 UF` para cotizaciones previsionales y `135,2 UF` para AFC.
-2. Corregir el ejemplo AFP: no publicar `~10,5% + comisión AFP` junto con `$126.000 + comisión`, porque dobla la comisión. O se separa correctamente `cotización obligatoria + comisión AFP` con fuente oficial, o se elimina el número combinado.
-3. Completar el ejemplo con el ISC mensual ya recalculado para `$1.200.000`: `CLP $9.882,48`, citando la tabla SII 2026.
-4. Corregir la unidad del APV: no usar UTM. La referencia verificada en esta auditoría es artículo 42 bis con topes en UF (`50 UF` mensual y `600 UF` anual, menos montos ya usados en modalidad mensual).
-5. Revisar y corregir la explicación de regímenes APV antes de publicar: la formulación actual de Modalidad A/B no quedó suficientemente sólida para salir tal como está.
+Todos los defectos de Gate 05 y 06 están resueltos. Ver `06-compliance.md` para el detalle.
+
+---
+
+## HumanEditor Sign-off
+
+| Campo | Valor |
+|---|---|
+| Editor | Carlos Ortega |
+| Rol | HumanEditor |
+| Fecha | 2026-05-08 |
+| Decisión | **Aprobado** — todos los defectos de pipeline resueltos. Artículo eligible para publicación. |
+| Notas | Verificar `check:frontmatter`, `check:links` y hero image antes de `draft: false`. Inbound links diferidos a post-publicación. |

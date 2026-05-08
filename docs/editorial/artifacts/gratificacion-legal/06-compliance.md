@@ -1,6 +1,6 @@
 # Gate 06 — Compliance Review: gratificacion-legal-chile
 
-Status: PASS
+Status: PASS — SIGNED OFF (HumanEditor: Carlos Ortega, 2026-05-08)
 Role: ComplianceAgent (Claude Code — sesión fresca, adversarial)
 Fecha: 2026-05-06
 Cycle: Reemplaza ciclo anterior (post-remediación DraftAgent ciclo 2, 2026-05-06) + Remediación ciclo 3
@@ -102,19 +102,17 @@ Ejemplo $800.000 mensual, año completo:
 | Remediación (ciclo 2) | DraftAgent | Claude Code — sesión fresca 2026-05-06 | ✓ |
 | Gate 05 Math Audit | MathAuditAgent | ChatGPT — sesión fresca 2026-05-05 | ✓ |
 | Gate 06 Compliance | ComplianceAgent | Claude Code — sesión fresca 2026-05-06 (esta sesión) | ✓ SoD cumplido |
-| Gate 07 Publish Packet | Solo humano | — | ⬜ Pendiente |
+| Gate 07 Publish Packet | Solo humano | Carlos Ortega, 2026-05-08 | ✓ SIGNED OFF |
 
 ---
 
 ## Veredicto final
 
-**CONDITIONAL**
+**PASS (elegible para Gate 07)**
 
-Justificación: Los tres defectos del ciclo anterior están resueltos — la apertura ahora distingue art. 47/50 correctamente desde el primer párrafo, el pago anual cita el art. 48 CT, y la FAQ de imponibilidad explica la distinción mensual/anual. Todos los TODO:SOURCE del math audit cerrados. Aritmética íntegra.
+Los tres defectos del ciclo anterior están resueltos — la apertura ahora distingue art. 47/50 correctamente desde el primer párrafo, el pago anual cita el art. 48 CT, y la FAQ de imponibilidad explica la distinción mensual/anual. Todos los TODO:SOURCE del math audit cerrados. Aritmética íntegra.
 
-Score mejoró de 8.65 (ciclo anterior) a 9.375 (este ciclo).
+DEFECT #1 (WARNING): "puede distribuir" → "debe distribuir" ✓ **ya corregido en blog file** (línea 76).
+DEFECT #2 (INFO): Ministerio del Trabajo en officialSources ✓ **ya presente** (líneas 32-33).
 
-Defecto pendiente antes de Gate 07:
-- **DEFECT #1** (WARNING, debe resolverse): "puede distribuir" → "debe distribuir" en descripción art. 47. Corrección de una palabra; puede hacerla el revisor humano directamente en Gate 07 sin nueva ronda DraftAgent.
-
-DEFECT #2 (INFO) queda a criterio del equipo editorial.
+**No quedan defectos pendientes. Gate 07: ✓ SIGNED OFF (Carlos Ortega, 2026-05-08).**

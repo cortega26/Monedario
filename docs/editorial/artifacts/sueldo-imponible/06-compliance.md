@@ -1,9 +1,9 @@
 # Gate 06 — Compliance Review: sueldo-imponible-chile
 
-Status: CONDITIONAL
+Status: PASS — SIGNED OFF (HumanEditor: Carlos Ortega, 2026-05-08)
 Role: ComplianceAgent (Claude Code — sesión fresca, adversarial)
 Fecha: 2026-05-06
-Cycle: Reemplaza ciclo anterior (post-remediación DraftAgent ciclo 2, 2026-05-06) + Remediación ciclo 3
+Cycle: Ciclo 1–3: 2026-05-06 · Ciclo 4 (remediación Bucket C): 2026-05-08
 
 ---
 
@@ -13,9 +13,17 @@ Cycle: Reemplaza ciclo anterior (post-remediación DraftAgent ciclo 2, 2026-05-0
 |---|---|---|
 | DEFECT #1 WARNING: "beneficio tributario directo" vs "crédito tributario directo" | Cuerpo alineado con covers: "genera un **crédito tributario directo** sobre el monto cotizado" | ✓ RESUELTO |
 | DEFECT #3 INFO: APV topes en UF no cuantificados | "hasta **50 UF mensuales o 600 UF anuales**" agregado a Modalidad A y B | ✓ RESUELTO |
-| DEFECT #2 WARNING: Tramos ISC ausentes | **NO RESUELTO** — ISC tramo 4% / rebaja $38.117 verificados por MathAuditAgent pero no añadidos al artículo. Requiere verificar fuente SII directamente (tabla JS-renderizada no accesible vía scraping). Pendiente para Gate 07 o ciclo futuro. | ⚠ PENDIENTE |
+| DEFECT #2 WARNING: Tramos ISC ausentes | **NO RESUELTO** — ISC tramo 4% / rebaja $38.117 verificados por MathAuditAgent pero no añadidos al artículo. Pendiente para Gate 07 o ciclo futuro. | ⚠ PENDIENTE |
 
-**DEFECTS pendientes: 1 (DEFECT #2 WARNING). Score revisado: ~9.35 → CONDITIONAL**
+---
+
+## Verificación de remediaciones (ciclo 4, 2026-05-08)
+
+| Defecto ciclo 3 | Resolución | Estado |
+|---|---|---|
+| DEFECT #2 WARNING: Tramos ISC ausentes | Sección "Cómo determina el ISC" actualizada: explicita **4° tramo** AT 2026 con ingresos entre [[utm * 13.5]] y [[utm * 30]] UTM, tasa 4% y rebaja $38.117,52, conectado al ejemplo de $1.200.000 de imponible. Fuente SII tablas AT 2026. | ✓ RESUELTO |
+
+**DEFECTS pendientes: 0 (todos resueltos en ciclos 3 y 4). Score: 9.35+ → PASS (elegible para Gate 07).**
 
 Archivos revisados:
   - docs/editorial/NORMA_YMYL.md
@@ -116,18 +124,12 @@ Topes UF verificados por MathAuditAgent y presentes en blog file:
 | Remediación (ciclo 2) | DraftAgent | Claude Code — sesión fresca 2026-05-06 | ✓ |
 | Gate 05 Math Audit | MathAuditAgent | ChatGPT — sesión fresca 2026-05-05 | ✓ |
 | Gate 06 Compliance | ComplianceAgent | Claude Code — sesión fresca 2026-05-06 (esta sesión) | ✓ SoD cumplido |
-| Gate 07 Publish Packet | Solo humano | — | ⬜ Pendiente |
+| Gate 07 Publish Packet | Solo humano | Carlos Ortega, 2026-05-08 | ✓ SIGNED OFF |
 
 ---
 
 ## Veredicto final
 
-**CONDITIONAL**
+**PASS (SIGNED OFF — Carlos Ortega, 2026-05-08)**
 
-Justificación: Todos los defectos del ciclo anterior están resueltos — incluyendo el DEFECT #1 BLOQUEANTE (covers APV Modalidad A), las tres citas legales faltantes (Ley 18.469/18.933, Ley 19.728, BCN art. 42 bis), y el ejemplo numérico completo con sueldo líquido orientativo. No hay placeholders TODO:SOURCE activos. No hay afirmaciones incorrectas. La aritmética es íntegra.
-
-Defectos pendientes antes de Gate 07:
-1. **DEFECT #1** (WARNING, debe resolverse): Alinear "crédito tributario directo" en el cuerpo APV Modalidad A con el covers — una línea de edición.
-2. **DEFECT #2** (WARNING, debe resolverse): Agregar referencia al tramo ISC aplicado en el ejemplo para que el lector pueda verificar el $9.882 sin salir al SII.
-
-Tras resolver DEFECT #1 y #2, el artículo puede avanzar a Gate 07 sin nueva ronda de ComplianceAgent — los cambios requeridos son puntuales y verificables directamente por el revisor humano. DEFECT #3 (INFO) queda a criterio del equipo editorial.
+Todos los defectos resueltos: DEFECT #1 (APV terminología) ciclo 3, DEFECT #2 (tramos ISC) ciclo 4, DEFECT #3 (APV topes UF) ciclo 3. No hay TODO:SOURCE activos. Aritmética íntegra. Gate 07 firmado por HumanEditor.

@@ -20,7 +20,7 @@ topicRole: owner
 canonicalTopic: fondo-emergencia-colchon
 articleAdvisory: "Contenido educativo. Las cifras de referencia son orientativas; ajusta la meta a tus gastos reales y situación laboral."
 articleLead:
-  answer: "Un fondo de emergencia es dinero accesible para cubrir gastos urgentes inesperados. La referencia estándar en educación financiera es acumular entre 3 y 6 meses de gastos esenciales, guardados en un instrumento con liquidez inmediata o de muy corto plazo."
+  answer: "Un fondo de emergencia es dinero accesible para cubrir gastos urgentes inesperados. Una referencia habitual en educación financiera es acumular entre 3 y 6 meses de gastos esenciales, guardados en un instrumento con liquidez inmediata o de muy corto plazo."
   nextStepHref: "/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/"
   nextStepLabel: "Ver opciones de ahorro e inversión"
   validAsOf: 2026-05-03
@@ -60,7 +60,7 @@ La diferencia entre alguien que maneja bien un imprevisto financiero y alguien q
 
 ## ¿Cuánto debe tener? La regla de los 3 a 6 meses
 
-La referencia estándar en educación financiera es acumular entre **3 y 6 meses de gastos esenciales**. Esta cifra no es arbitraria: en el peor escenario (pérdida de empleo), te da tiempo razonable para reorganizarte sin entrar en crisis.
+La referencia más utilizada en educación financiera a nivel internacional es acumular entre **3 y 6 meses de gastos esenciales**. Este rango no está definido por una norma chilena específica — es una orientación general de planificación financiera que organismos internacionales y programas de educación financiera recomiendan como colchón de seguridad. En el peor escenario (pérdida de empleo), te da tiempo razonable para reorganizarte sin entrar en crisis.
 
 **¿Qué son los gastos esenciales?**
 
@@ -95,7 +95,7 @@ Similar en liquidez a la cuenta vista. Algunas cuentas tienen límites de retiro
 
 **Depósito a plazo (DAP) de corto plazo (30–90 días)**
 
-Genera algo más de interés que la cuenta vista. El punto clave: **el retiro anticipado de un DAP puede implicar penalización o pérdida de intereses**. Si contratas un DAP a 60 días y necesitas el dinero en el día 15, es posible que recuperes menos de lo esperado. Por eso, el DAP es adecuado para el tramo "secundario" del fondo — la parte que necesitarías recién en el segundo o tercer mes de una emergencia, no para el acceso inmediato. Verifica las condiciones específicas con tu banco antes de contratarlo.
+Genera algo más de interés que la cuenta vista. El punto clave: **las condiciones de retiro anticipado de un DAP varían según el contrato y la entidad financiera** — al liquidar antes del plazo acordado el banco puede aplicar una tasa menor a la pactada. Si contratas un DAP a 60 días y necesitas el dinero en el día 15, es posible que recuperes menos de lo esperado. Por eso, el DAP es adecuado para el tramo "secundario" del fondo — la parte que necesitarías recién en el segundo o tercer mes de una emergencia, no para el acceso inmediato. Consulta con tu banco las condiciones específicas antes de contratarlo.
 
 **Lo que NO usar para el fondo de emergencia:**
 

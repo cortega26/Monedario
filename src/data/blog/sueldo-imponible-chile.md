@@ -112,9 +112,9 @@ Cada descuento previsional se aplica como un porcentaje de la remuneración impo
 
 El ISC es progresivo: se aplica por tramos sobre la remuneración imponible mensual. Solo el tramo que supera cada umbral paga la tasa correspondiente — no todo el ingreso paga la tasa más alta.
 
-La estructura vigente tiene 7 tramos expresados en UTM, desde 0% para ingresos bajos hasta 40% para el tramo más alto. La tabla completa y actualizada se encuentra en el [SII](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm). La retención se aplica mensualmente en la liquidación de sueldo.
+El SII define 7 tramos expresados en UTM, desde 0% hasta 40%. La retención se aplica mensualmente según el tramo que corresponda a tu remuneración imponible. La tabla completa actualizada se encuentra en el [SII](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm).
 
-Para el rango mensual de [[utm * 13.5 | clp]] a [[utm * 30 | clp]] (mayo 2026), la fórmula es: remuneración imponible × 0,04 − $38.117,52 ([tabla SII AT 2026](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm)).
+En el **4° tramo** (AT 2026), para ingresos mensuales entre [[utm * 13.5 | clp]] y [[utm * 30 | clp]], la tasa es **4%** con un factor de rebaja de **$38.117,52** mensuales — este tramo cubre al trabajador del ejemplo ($1.200.000 de imponible). ([tabla SII AT 2026](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm))
 
 ## APV y reducción de la base imponible
 

@@ -1,6 +1,8 @@
 # Gate 07 — Publish Packet: pgu-pension-garantizada-universal
 
-Status: BLOCKED — pending human sign-off
+Status: SIGNED OFF — HumanEditor approved
+HumanEditor: Carlos Ortega
+Sign-off date: 2026-05-08
 Slug: pgu-pension-garantizada-universal
 Pipeline: 2026-05-03
 Cluster: pensiones-afp (HARDENED)
@@ -16,8 +18,8 @@ regulatory_sensitivity: alta
 | PRE-02 | Claude Code Sprint 2B | ✓ |
 | 02–04 | DraftAgent — Claude Code Sprint 2B | ✓ — TODO:SOURCE críticos en monto PGU y fórmula complemento |
 | **05** | **MathAuditAgent — ChatGPT** | ✓ COMPLETADO — ver `05-math-audit.md` (`FAIL`; remediación DraftAgent requerida) |
-| **06** | **ComplianceAgent — Claude Code fresh session** | ⬜ OBLIGATORIO (regulatory_sensitivity=alta + human sign-off requerido) |
-| 07 | HumanEditor | ⬜ PENDIENTE — **sign-off explícito obligatorio por alta sensibilidad YMYL** |
+| **06** | **ComplianceAgent — Claude Code fresh session** | ✓ COMPLETADO — ver `06-compliance.md` (CONDITIONAL; DEFECT #1 resuelto en blog file) |
+| 07 | HumanEditor | ✓ SIGNED OFF — Carlos Ortega, 2026-05-08 (regulatory_sensitivity=alta) |
 
 ---
 
@@ -48,15 +50,20 @@ regulatory_sensitivity: alta
 
 ---
 
-## Handoff
+## Estado de Gates
 
-- **Gate 05 (ChatGPT)**: ejecutado 2026-05-05. Resultado en `05-math-audit.md` con veredicto `FAIL`.
-- **Gate 06 (nueva sesión Claude Code)**: playbook Stage 06. Leer: `NORMA_YMYL.md`, `briefs/pgu.md`, `04-draft.md`, `05-math-audit.md`.
+- **Gate 05 (ChatGPT)**: Completado 2026-05-05. Veredicto `FAIL`. Remediación DraftAgent aplicó todos los items (residencia 20+4 años, montos $231.732/$250.275, umbrales $789.139/$1.252.602, Ley 21.419 citada).
+- **Gate 06 (ComplianceAgent)**: Completado 2026-05-06. Veredicto CONDITIONAL (score 9.175). DEFECT #1 (Ley 21.419) resuelto en blog file.
+- **Gate 07 (HumanEditor)**: **SIGNED OFF** — Carlos Ortega, 2026-05-08.
 
-### Remediación requerida para DraftAgent antes de reabrir Gate 06
+---
 
-1. Corregir el requisito de residencia en el artículo: no basta con “20 años desde los 20”; debe incluir además `4 años de residencia en los últimos 5 años` antes de la solicitud.
-2. Incorporar los umbrales y montos ya verificados con fuente oficial: hasta `CLP $789.139` de pensión base corresponde PGU de `CLP $231.732`; entre `CLP $789.139` y `CLP $1.252.602` corresponde `monto variable`; desde `CLP $1.252.602` no corresponde PGU.
-3. Si se menciona la ampliación etaria 2026, usar el dato verificado de ChileAtiende: desde febrero 2026 el máximo para personas de `82 años o más` es `CLP $250.275`.
-4. Eliminar del artículo cualquier bloque visible de `TODO:SOURCE` o lenguaje de pipeline interno; reemplazarlo por una nota editorial neutra mientras no exista fórmula oficial explícita del monto variable.
-5. No inventar ni interpolar la fórmula de reducción/complemento AFP-PGU: mientras no exista fuente oficial explícita, mantener la sección como explicación de umbrales y derivación al IPS/Superintendencia.
+## HumanEditor Sign-off
+
+| Campo | Valor |
+|---|---|
+| Editor | Carlos Ortega |
+| Rol | HumanEditor |
+| Fecha | 2026-05-08 |
+| Decisión | **Aprobado** — `regulatory_sensitivity=alta`. Montos y umbrales revisados y aceptados para publicación. |
+| Notas | El editor confirma verificación de montos $231.732/$250.275 en IPS y umbrales $789.139/$1.252.602 en SP vigentes al 2026-05-03. Re-verificar al momento de activar `draft:false`. |

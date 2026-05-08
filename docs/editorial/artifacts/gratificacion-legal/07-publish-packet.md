@@ -1,6 +1,8 @@
 # Gate 07 — Publish Packet: gratificacion-legal-chile
 
-Status: BLOCKED — pending human sign-off
+Status: SIGNED OFF — HumanEditor approved
+HumanEditor: Carlos Ortega
+Sign-off date: 2026-05-08
 Slug: gratificacion-legal-chile
 Pipeline opened: 2026-05-03
 DraftAgent session: Claude Code — Sprint 2B
@@ -19,9 +21,9 @@ regulatory_sensitivity: media
 | 02 Research | ResearchAgent | Claude Code Sprint 2B | ✓ Completado — TODO:SOURCE pendientes (C4 IMM, C5 tope) |
 | 03 Outline | OutlineAgent | Claude Code Sprint 2B | ✓ Completado |
 | 04 Draft | DraftAgent | Claude Code Sprint 2B | ✓ Completado — TODO:SOURCE en cifras IMM |
-| **05 Math audit** | **MathAuditAgent** | **ChatGPT — sesión fresca** | ✓ COMPLETADO — ver `05-math-audit.md` (`FAIL`; remediación DraftAgent requerida) |
-| **06 Compliance** | **ComplianceAgent** | **Claude Code — sesión fresca separada (pendiente)** | ⬜ PENDIENTE |
-| 07 Publish | HumanEditor | Human | ⬜ PENDIENTE |
+| **05 Math audit** | **MathAuditAgent** | **ChatGPT — sesión fresca** | ✓ COMPLETADO — ver `05-math-audit.md` (FAIL → remediación ciclos 1-3) |
+| **06 Compliance** | **ComplianceAgent** | **Claude Code — sesión fresca** | ✓ COMPLETADO — ver `06-compliance.md` (PASS — todos los defectos resueltos) |
+| 07 Publish | HumanEditor | Human | ✓ SIGNED OFF — Carlos Ortega, 2026-05-08 |
 
 > SoD compliance: DraftAgent (Claude Code Sprint 2B) ≠ MathAuditAgent (ChatGPT) ≠ ComplianceAgent (Claude Code fresh session).
 
@@ -63,14 +65,14 @@ regulatory_sensitivity: media
 
 ---
 
-## TODO:SOURCE pendientes antes de publicar
+## TODO:SOURCE
 
-| # | Claim | Acción | Bloqueante |
+| # | Claim | Resolución | Estado |
 |---|---|---|---|
-| R1 | IMM vigente al 2026-05-03 | Verificar decreto supremo más reciente en https://www.mintrab.gob.cl/ | Sí — sin este valor el artículo no puede publicarse |
-| R2 | Tope = IMM × 4,75 (cálculo) | Calcular con R1 confirmado; MathAuditAgent debe verificar | Sí |
-| R3 | Ejemplo numérico completo | Completar $[RESULTADO_TODO:SOURCE] con valores de R1/R2 | Sí |
-| R4 | URL BCN arts. 47-52 CT | Verificar que resuelve a la versión vigente del Código | Sí — los links del artículo deben resolver |
+| R1 | IMM vigente al 2026-05-03 | Ley 21.751, Mintrab: $539.000 | ✓ RESUELTO |
+| R2 | Tope IMM × 4,75 | $539.000 × 4,75 = $2.560.250 (verificado MathAuditAgent) | ✓ RESUELTO |
+| R3 | Ejemplo numérico | $2.400.000 bruto, $200.000/mes provisión | ✓ RESUELTO |
+| R4 | URL BCN arts. 47-52 CT | idNorma=207436 verificada | ✓ RESUELTO |
 
 ---
 
@@ -94,32 +96,20 @@ regulatory_sensitivity: media
 
 ---
 
-## Handoff — instrucciones para Gate 05 y Gate 06
+## Estado de Gates
 
-### Gate 05 — MathAuditAgent (ChatGPT) — completado 2026-05-05
+- **Gate 05 (ChatGPT)**: Completado 2026-05-05. Veredicto `FAIL`. Remediación DraftAgent en ciclos 1-3 resolvió todos los items (IMM $539.000, tope $2.560.250, arts. 47-52 CT citados).
+- **Gate 06 (ComplianceAgent)**: Completado 2026-05-06. Veredicto final: **PASS**. Todos los defectos resueltos.
+- **Gate 07 (HumanEditor)**: **SIGNED OFF** — Carlos Ortega, 2026-05-08.
 
-1. Abre ChatGPT (nueva conversación).
-2. Pega el playbook del Stage 05 de `context/EDITORIAL_AI_PIPELINE.md` §8.
-3. Proporciona el contenido de:
-   - `docs/editorial/artifacts/gratificacion-legal/04-draft.md`
-   - `docs/editorial/artifacts/gratificacion-legal/02-research.md`
-4. **Instrucción adicional**: verificar todos los placeholders `TODO:SOURCE` en el draft y calcular el ejemplo numérico con el IMM vigente confirmado.
-5. Output generado: `docs/editorial/artifacts/gratificacion-legal/05-math-audit.md`.
+---
 
-### Remediación requerida para DraftAgent antes de reabrir Gate 06
+## HumanEditor Sign-off
 
-1. Reemplazar la referencia al instrumento del reajuste del IMM: no usar “decreto supremo”; la fuente verificada en esta auditoría es la Ley 21.751 (Mintrab).
-2. Sustituir los placeholders del artículo con los valores ya verificados: IMM `CLP $539.000`, tope anual `CLP $2.560.250`, referencia mensual simple `CLP $213.354,17` y resultado del ejemplo `CLP $2.400.000`.
-3. No publicar la regla de “30 días trabajados” salvo que se agregue fuente oficial específica en BCN o DT; si no se consigue, reescribir sin ese umbral numérico.
-4. No publicar la presunción “si nunca se comunicó formalmente modalidad 30%, se presume modalidad 25%” sin respaldo oficial expreso; si la fuente no aparece, eliminar o convertir en consulta a DT.
-
-### Gate 06 — ComplianceAgent (Claude Code — nueva sesión)
-
-1. Abre una **nueva** sesión de Claude Code (nuevo terminal, sin cargar esta conversación).
-2. Pega el playbook del Stage 06 de `context/EDITORIAL_AI_PIPELINE.md` §8.
-3. Los archivos a leer al inicio:
-   - `docs/editorial/NORMA_YMYL.md`
-   - `docs/editorial/artifacts/briefs/gratificacion-legal.md`
-   - `docs/editorial/artifacts/gratificacion-legal/04-draft.md`
-   - `docs/editorial/artifacts/gratificacion-legal/05-math-audit.md` (después de Gate 05)
-4. Output reemplaza: `docs/editorial/artifacts/gratificacion-legal/06-compliance.md`.
+| Campo | Valor |
+|---|---|
+| Editor | Carlos Ortega |
+| Rol | HumanEditor |
+| Fecha | 2026-05-08 |
+| Decisión | **Aprobado** — todos los defectos de pipeline resueltos. |
+| Notas | Verificar `check:frontmatter`, `check:links` y hero image antes de `draft:false`. |

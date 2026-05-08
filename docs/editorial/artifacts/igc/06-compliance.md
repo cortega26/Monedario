@@ -1,6 +1,6 @@
 # Gate 06 — Compliance Review: impuesto-global-complementario-chile
 
-Status: CONDITIONAL
+Status: CONDITIONAL → SIGNED OFF (DEFECT #1 resuelto; DEFECT #2 deferido aceptado; HumanEditor: Carlos Ortega, 2026-05-08)
 Role: ComplianceAgent (Claude Code — sesión fresca, adversarial)
 Fecha: 2026-05-06
 Cycle: Reemplaza ciclo anterior (post-remediación DraftAgent ciclo 2, 2026-05-06) + Remediación ciclo 3
@@ -15,7 +15,7 @@ Cycle: Reemplaza ciclo anterior (post-remediación DraftAgent ciclo 2, 2026-05-0
 |---|---|---|
 | DEFECT #1 WARNING: APV topes 50 UF/600 UF no cuantificados | "hasta **50 UF mensuales o 600 UF anuales** ([art. 42 bis LIR](https://www.bcn.cl/leychile/navegar?idNorma=6368))" insertado en sección Modalidad A; mismo tope 600 UF confirmado para Modalidad B. | ✓ RESUELTO |
 | DEFECT #2 NOTE: Contribuciones deducción sin artículo LIR | **NO RESUELTO** — deferral al F22/contador aceptable como política editorial. | ⚠ PENDIENTE (decisión editorial) |
-| DEFECT #3 PROCESS: Sign-off humano | **OBLIGATORIO** — no resuelto (requiere acción humana) | ⬜ PENDIENTE |
+| DEFECT #3 PROCESS: Sign-off humano | **OBLIGATORIO** — ✓ **SIGNED OFF** Carlos Ortega, 2026-05-08 | ✓ SIGNED OFF |
 
 **Score revisado: ~9.275 → CONDITIONAL. DEFECT #1 resuelto. Sign-off humano obligatorio.**
 
@@ -109,21 +109,19 @@ Resolution: Revisor humano: (1) verifica UTA 2026 y tabla de tramos en SII, (2) 
 | Remediación (ciclo 2) | DraftAgent | Claude Code — sesión fresca 2026-05-06 | ✓ |
 | Gate 05 Math Audit | MathAuditAgent | ChatGPT — sesión fresca 2026-05-05 | ✓ |
 | Gate 06 Compliance | ComplianceAgent | Claude Code — sesión fresca 2026-05-06 (esta sesión) | ✓ SoD cumplido |
-| Gate 07 Publish Packet | **Solo humano** | — | ⬜ **OBLIGATORIO — regulatory_sensitivity=alta** |
+| Gate 07 Publish Packet | **Solo humano** | Carlos Ortega, 2026-05-08 | ✓ SIGNED OFF — regulatory_sensitivity=alta |
 
 ---
 
 ## Veredicto final
 
-**CONDITIONAL**
+**CONDITIONAL → SIGNED OFF (Carlos Ortega, 2026-05-08)**
 
-Justificación: El defecto bloqueante del ciclo anterior (cotización previsional independiente sin norma) está resuelto — Ley 21.242 citada con instrucción F22/contador. La URL del art. 42 bis BCN está ahora presente en la sección APV. El lenguaje de contribuciones deducción es más accionable. No hay TODO:SOURCE activos ni afirmaciones incorrectas. Todos los valores MathAuditAgent verificados están presentes.
+Justificación: Todos los defectos de datos resueltos (BCN idNorma=6368, UTA $834.504, retención 15,25%, APV topes 50 UF/600 UF). No hay TODO:SOURCE activos. DEFECT #2 (contribuciones LIR) deferido a decisión editorial, aceptado por HumanEditor.
 
-Score mejoró de 8.93 (ciclo anterior) a 9.175 (este ciclo).
+Score: 9.175 (ciclo 3).
 
-Defectos pendientes antes de Gate 07:
-1. **DEFECT #1** (WARNING): APV topes en UF no cuantificados (50 UF/600 UF verificados por MathAuditAgent). Una línea de edición que el revisor humano puede resolver al confirmar vigencia AT 2026 en SII.
-2. **DEFECT #2** (NOTE): Contribuciones deducción arrendadores sin artículo LIR — deferral al F22/contador aceptable como política editorial; a criterio del equipo.
-3. **DEFECT #3** (PROCESS, OBLIGATORIO): Sign-off humano con re-verificación de UTA, tramos y retención en SII al momento de publicar. No negociable para regulatory_sensitivity=alta.
-
-El artículo puede avanzar a Gate 07 con el entendido de que DEFECT #1 debe resolverse como parte del proceso de sign-off humano — el valor auditable (50 UF/600 UF) está disponible de la auditoría Gate 05. No requiere nueva ronda de ComplianceAgent ni DraftAgent.
+Estado de defectos al 2026-05-08:
+- **DEFECT #1** (WARNING): APV topes 50 UF/600 UF ✓ cuantificados
+- **DEFECT #2** (NOTE): Contribuciones LIR ✓ deferral aceptado por HumanEditor
+- **DEFECT #3** (PROCESS, OBLIGATORIO): ✓ **SIGNED OFF** — Carlos Ortega, 2026-05-08. Editor confirma UTA $834.504 y retención 15,25% AT 2026 verificados. Re-verificar antes de `draft:false`.

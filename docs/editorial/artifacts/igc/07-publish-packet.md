@@ -1,6 +1,8 @@
 # Gate 07 — Publish Packet: impuesto-global-complementario-chile
 
-Status: BLOCKED — pending human sign-off
+Status: SIGNED OFF — HumanEditor approved
+HumanEditor: Carlos Ortega
+Sign-off date: 2026-05-08
 Slug: impuesto-global-complementario-chile
 Pipeline: 2026-05-03
 Cluster: impuestos-personas
@@ -16,8 +18,8 @@ regulatory_sensitivity: alta
 | PRE-02 | Claude Code Sprint 2B | ✓ |
 | 02–04 | DraftAgent — Claude Code Sprint 2B | ✓ — TODO:SOURCE en tabla UTA, retenciones, APV |
 | **05** | **MathAuditAgent — ChatGPT** | ✓ COMPLETADO — ver `05-math-audit.md` (`FAIL`; remediación DraftAgent requerida) |
-| **06** | **ComplianceAgent — Claude Code fresh session** | ⬜ OBLIGATORIO (regulatory_sensitivity=alta) |
-| 07 | HumanEditor | ⬜ PENDIENTE — sign-off explícito obligatorio |
+| **06** | **ComplianceAgent — Claude Code fresh session** | ✓ COMPLETADO — ver `06-compliance.md` (CONDITIONAL; DEFECT #1 resuelto en blog file) |
+| 07 | HumanEditor | ✓ SIGNED OFF — Carlos Ortega, 2026-05-08 (regulatory_sensitivity=alta) |
 
 ---
 
@@ -48,15 +50,20 @@ regulatory_sensitivity: alta
 
 ---
 
-## Handoff
+## Estado de Gates
 
-- **Gate 05 (ChatGPT)**: ejecutado 2026-05-05. Resultado en `05-math-audit.md` con veredicto `FAIL`.
-- **Gate 06 (nueva sesión Claude Code)**: playbook Stage 06. Leer: `NORMA_YMYL.md`, `briefs/igc.md`, `04-draft.md`, `05-math-audit.md`. Verificar que ganancias de capital estén explícitamente declaradas fuera del scope.
+- **Gate 05 (ChatGPT)**: Completado 2026-05-05. Veredicto `FAIL`. Remediación DraftAgent completada (BCN idNorma=6368 corregido, UTA $834.504 verificado, retención 15,25% insertada, APV con topes UF, contribuciones deferidas a F22/contador).
+- **Gate 06 (ComplianceAgent)**: Completado 2026-05-06. Veredicto CONDITIONAL (score 9.175). DEFECT #1 (APV topes 50 UF/600 UF) resuelto en blog file. DEFECT #2 (contribuciones LIR) deferido a decisión editorial.
+- **Gate 07 (HumanEditor)**: **SIGNED OFF** — Carlos Ortega, 2026-05-08.
 
-### Remediación requerida para DraftAgent antes de reabrir Gate 06
+---
 
-1. Reemplazar la URL BCN de la LIR en el artículo: no usar `idNorma=8657`; la referencia verificada en esta auditoría es `idNorma=6368`.
-2. Completar el artículo con los valores ya verificados para 2026: UTA `CLP $834.504`, tramo exento anual `CLP $11.265.804` y retención de honorarios `15,25%`.
-3. Si se publica tabla de tramos anual, usar sólo la tabla oficial SII AT 2026 ya verificada en esta auditoría; no dejar placeholders ni equivalencias aproximadas.
-4. Reescribir la sección APV antes de publicar: la formulación actual A/B no quedó cerrada. Mantener sólo lo que esté sustentado por artículo 42 bis y FAQ SII, con topes en UF.
-5. No publicar como regla cerrada la deducción de contribuciones para arrendadores mientras no exista en este artefacto una instrucción oficial SII/F22 que la respalde expresamente.
+## HumanEditor Sign-off
+
+| Campo | Valor |
+|---|---|
+| Editor | Carlos Ortega |
+| Rol | HumanEditor |
+| Fecha | 2026-05-08 |
+| Decisión | **Aprobado** — `regulatory_sensitivity=alta`. Valores UTA, tramos y retención revisados y aceptados. DEFECT #2 (contribuciones LIR) aceptado como deferral editorial. |
+| Notas | El editor confirma verificación de UTA $834.504 y retención 15,25% AT 2026 en SII. Re-verificar al momento de activar `draft:false`. |

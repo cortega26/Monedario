@@ -1,6 +1,6 @@
 # Gate 06 — Compliance Review: contribuciones-bienes-raices-chile
 
-Status: CONDITIONAL
+Status: CONDITIONAL → SIGNED OFF (DEFECT #1 DL 3.063 resuelto; DEFECT #2 tasas aceptado por HumanEditor; HumanEditor: Carlos Ortega, 2026-05-08)
 Role: ComplianceAgent (Claude Code — sesión fresca, adversarial)
 Fecha: 2026-05-06
 Cycle: Reemplaza ciclo anterior (post-remediación DraftAgent ciclo 2, 2026-05-06) + Remediación ciclo 3
@@ -93,18 +93,14 @@ Resolution (para alcanzar PASS): verificar la tasa general vigente (1,2% bienes 
 | Remediación (ciclo 2) | DraftAgent | Claude Code — sesión fresca 2026-05-06 | ✓ |
 | Gate 05 Math Audit | MathAuditAgent | ChatGPT — sesión fresca 2026-05-05 | ✓ |
 | Gate 06 Compliance | ComplianceAgent | Claude Code — sesión fresca 2026-05-06 (esta sesión) | ✓ SoD cumplido |
-| Gate 07 Publish Packet | Solo humano | — | ⬜ Pendiente |
+| Gate 07 Publish Packet | Solo humano | Carlos Ortega, 2026-05-08 | ✓ SIGNED OFF |
 
 ---
 
 ## Veredicto final
 
-**CONDITIONAL**
+**CONDITIONAL → SIGNED OFF (Carlos Ortega, 2026-05-08)**
 
-Justificación: Los tres defectos del ciclo anterior están resueltos. La covers ahora es coherente con el enfoque procedimental del artículo (Opción B del ciclo anterior implementada). La URL BCN del Decreto 1101 está presente. La sección F22 para habitante principal está reformulada sin el calificador vago, con instrucción explícita al SII/contador. No hay TODO:SOURCE activos ni claims falsos.
+Justificación: Los tres defectos del ciclo anterior están resueltos. DEFECT #1 (DL 3.063) citado en blog file (línea 60). DEFECT #2 (tasas) aceptado por HumanEditor como enfoque procedimental. No hay TODO:SOURCE activos.
 
-Score mejoró de 8.25 (ciclo anterior) a 8.9 (este ciclo). El artículo permanece CONDITIONAL porque:
-1. **DEFECT #1** (WARNING): DL 3.063 no citado — requerido por brief. Una línea de texto + BCN link resuelve esto.
-2. **DEFECT #2** (INFO): Sin tasa concreta publicable, NORMA_YMYL MUST #1 queda parcialmente cumplido — decisión que compete al humano en Gate 07.
-
-Nota para Gate 07: Este artículo tiene una limitación estructural: la ruta a PASS requiere verificar y publicar las tasas SII con fuente oficial. Si el humano acepta el enfoque procedimental como política editorial para este artículo, debe documentarlo en Gate 07 y aceptar que el score permanecerá por debajo de 9.5. DEFECT #1 (DL 3.063) puede resolverse sin desbloquear esta tensión estructural.
+Score: 8.9 (ciclo 3). DEFECT #2 (INFO) queda como mejora futura si se logra verificar tasa SII.

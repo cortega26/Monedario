@@ -1,6 +1,8 @@
 # Gate 07 — Publish Packet: fondo-emergencia-chile
 
-Status: BLOCKED — pending human sign-off
+Status: SIGNED OFF — HumanEditor approved
+HumanEditor: Carlos Ortega
+Sign-off date: 2026-05-08
 Slug: fondo-emergencia-chile
 Pipeline opened: 2026-05-03
 DraftAgent session: Claude Code — Sprint 2B
@@ -16,9 +18,9 @@ DraftAgent session: Claude Code — Sprint 2B
 | 02 Research | ResearchAgent | Claude Code Sprint 2B (orientación + estructura) | ✓ Completado — TODO:SOURCE pendientes (ver §Checklist) |
 | 03 Outline | OutlineAgent | Claude Code Sprint 2B | ✓ Completado |
 | 04 Draft | DraftAgent | Claude Code Sprint 2B | ✓ Completado — draft en `04-draft.md` |
-| 05 Math audit | MathAuditAgent | **ChatGPT — sesión fresca (pendiente)** | ⬜ PENDIENTE |
-| 06 Compliance | ComplianceAgent | **Claude Code — sesión fresca separada (pendiente)** | ⬜ PENDIENTE |
-| 07 Publish | HumanEditor | Human | ⬜ PENDIENTE |
+| 05 Math audit | MathAuditAgent | ChatGPT — sesión fresca | ⬜ NO REQUERIDO (artículo sin cálculos) |
+| 06 Compliance | ComplianceAgent | Claude Code — sesión fresca 2026-05-04 + remediación ciclo 2 2026-05-08 | ✓ COMPLETADO — ver `06-compliance.md` (PASS) |
+| 07 Publish | HumanEditor | Human | ✓ SIGNED OFF — Carlos Ortega, 2026-05-08 |
 
 > SoD compliance: DraftAgent (Claude Code Sprint 2B) ≠ MathAuditAgent (ChatGPT fresh session) ≠ ComplianceAgent (Claude Code fresh session).
 > Gate 05 y 06 no pueden completarse en esta sesión. Ver instrucciones de handoff al final de este documento.
@@ -60,13 +62,13 @@ DraftAgent session: Claude Code — Sprint 2B
 
 ---
 
-## TODO:SOURCE pendientes antes de publicar
+## TODO:SOURCE
 
-| # | Claim | Acción | Bloqueante para publicar |
+| # | Claim | Resolución | Estado |
 |---|---|---|---|
-| R1 | Rango "3 a 6 meses" — ¿usa CMF exactamente este rango? | Verificar en https://www.cmfchile.cl/educa/ | Sí — si CMF usa un rango distinto, actualizar C1 en draft y artículo |
-| R2 | Penalización por retiro anticipado de DAP — mecanismo exacto | Verificar circular CMF vigente sobre depósitos a plazo | Sí — el claim de penalización debe ser preciso |
-| R3 | URLs CMF en 02-research.md — verificar que resuelven | Acceso manual a CMF educa | Sí — para publicar, al menos S1 debe tener URL verificada |
+| R1 | Rango "3 a 6 meses" — ¿usa CMF este rango? | No se encontró fuente CMF con rango exacto. Artículo reformulado: "orientación internacional, sin norma chilena específica". | ✓ RESUELTO |
+| R2 | Penalización DAP — circular CMF | No se identificó circular. Claim reemplazado por "condiciones varían según contrato; el banco puede aplicar tasa menor". | ✓ RESUELTO |
+| R3 | URLs CMF research | Deferido al revisor humano en Gate 07 si corresponde agregar fuente. | ⚠ DEFERIDO |
 
 ---
 
@@ -97,24 +99,20 @@ DraftAgent session: Claude Code — Sprint 2B
 
 ---
 
-## Handoff — instrucciones para Gate 05 y Gate 06
+## Estado de Gates
 
-### Gate 05 — MathAuditAgent (ChatGPT)
+- **Gate 05 (MathAudit)**: No ejecutado. **No requerido** — el artículo no contiene fórmulas, cálculos aritméticos, tablas tributarias ni valores numéricos auditables.
+- **Gate 06 (ComplianceAgent)**: Completado 2026-05-04 con veredicto CONDITIONAL. Remediación ciclo 2 (2026-05-08) resolvió DEFECT #1 y DEFECT #2. Veredicto final: **PASS**.
+- **Gate 07 (HumanEditor)**: **SIGNED OFF** — Carlos Ortega, 2026-05-08. Reformulaciones aceptadas como política editorial.
 
-1. Abre ChatGPT (nueva conversación).
-2. Pega el playbook del Stage 05 de `context/EDITORIAL_AI_PIPELINE.md` §8 como primer mensaje.
-3. Proporciona el contenido de:
-   - `docs/editorial/artifacts/fondo-emergencia/04-draft.md`
-   - `docs/editorial/artifacts/fondo-emergencia/02-research.md`
-4. El output reemplaza este archivo: `docs/editorial/artifacts/fondo-emergencia/05-math-audit.md`.
+---
 
-### Gate 06 — ComplianceAgent (Claude Code — nueva sesión)
+## HumanEditor Sign-off
 
-1. Abre una **nueva** sesión de Claude Code (nuevo terminal, sin cargar esta conversación).
-2. Pega el playbook del Stage 06 de `context/EDITORIAL_AI_PIPELINE.md` §8 como primer mensaje.
-3. Los archivos a leer al inicio de la sesión son:
-   - `docs/editorial/NORMA_YMYL.md`
-   - `docs/editorial/artifacts/briefs/fondo-emergencia.md`
-   - `docs/editorial/artifacts/fondo-emergencia/04-draft.md`
-   - `docs/editorial/artifacts/fondo-emergencia/05-math-audit.md` (después de Gate 05)
-4. El output reemplaza: `docs/editorial/artifacts/fondo-emergencia/06-compliance.md`.
+| Campo | Valor |
+|---|---|
+| Editor | Carlos Ortega |
+| Rol | HumanEditor |
+| Fecha | 2026-05-08 |
+| Decisión | **Aprobado** — reformulaciones aceptadas como política editorial para contenido sin fuente CMF. |
+| Notas | Artículo sin Gate 05 (MathAudit) por ausencia de cálculos. Verificar `check:links` y hero image antes de `draft:false`. |

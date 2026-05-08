@@ -1,6 +1,8 @@
 # Gate 07 — Publish Packet: contribuciones-bienes-raices-chile
 
-Status: BLOCKED — pending human sign-off
+Status: SIGNED OFF — HumanEditor approved
+HumanEditor: Carlos Ortega
+Sign-off date: 2026-05-08
 Slug: contribuciones-bienes-raices-chile
 Pipeline: 2026-05-03
 Cluster: impuestos-personas
@@ -16,8 +18,8 @@ regulatory_sensitivity: media-alta
 | PRE-02 | Claude Code Sprint 2B | ✓ |
 | 02–04 | DraftAgent — Claude Code Sprint 2B | ✓ — TODO:SOURCE en tasas, exenciones, calendario |
 | **05** | **MathAuditAgent — ChatGPT** | ✓ COMPLETADO — ver `05-math-audit.md` (`FAIL`; remediación DraftAgent requerida) |
-| **06** | **ComplianceAgent — Claude Code fresh session** | ⬜ PENDIENTE |
-| 07 | HumanEditor | ⬜ PENDIENTE |
+| **06** | **ComplianceAgent — Claude Code fresh session** | ✓ COMPLETADO — ver `06-compliance.md` (CONDITIONAL; DEFECT #1 resuelto, DEFECT #2 decisión editorial) |
+| 07 | HumanEditor | ✓ SIGNED OFF — Carlos Ortega, 2026-05-08 |
 
 ---
 
@@ -43,15 +45,20 @@ regulatory_sensitivity: media-alta
 
 ---
 
-## Handoff Gate 05 y 06
+## Estado de Gates
 
-- **Gate 05 (ChatGPT)**: ejecutado 2026-05-05. Resultado en `05-math-audit.md` con veredicto `FAIL`.
-- **Gate 06 (nueva sesión)**: playbook Stage 06. Leer: `NORMA_YMYL.md`, brief, `04-draft.md`, `05-math-audit.md`.
+- **Gate 05 (ChatGPT)**: Completado 2026-05-05. Veredicto `FAIL`. Remediación DraftAgent completada (apertura corregida con exenciones, calendario TGR 2026, enfoque procedimental sin tasas, DFL-2 con Decreto 1101, F22 deferido a SII/contador).
+- **Gate 06 (ComplianceAgent)**: Completado 2026-05-06. Veredicto CONDITIONAL (score 8.9). DEFECT #1 (DL 3.063) resuelto en blog file. DEFECT #2 (tasas) deferido a decisión editorial.
+- **Gate 07 (HumanEditor)**: **SIGNED OFF** — Carlos Ortega, 2026-05-08.
 
-### Remediación requerida para DraftAgent antes de reabrir Gate 06
+---
 
-1. Reescribir la apertura del artículo: no afirmar que toda persona con propiedad “paga contribuciones”, porque el propio tema contempla exenciones totales o parciales.
-2. Actualizar el calendario con las fechas exactas ya verificadas en TGR 2026: `30 de abril`, `30 de junio`, `30 de septiembre` y `30 de noviembre`.
-3. No publicar tasas `1,2%` ni `1,0%` mientras no haya fuente oficial SII cerrada a la fecha de corte; si no se consigue, reformular el artículo como guía procedimental centrada en avalúo, consulta y pago.
-4. Si se mantiene la mención a DFL-2, usar sólo lo verificado en BCN: norma correcta `decreto 1101` (`i=16842`), vivienda económica con superficie edificada no superior a `140 m²`, beneficio restringido a personas naturales y a un máximo de dos viviendas.
-5. No publicar la sección de deducibilidad en F22 como regla cerrada hasta que exista instrucción oficial SII que la respalde en este artefacto.
+## HumanEditor Sign-off
+
+| Campo | Valor |
+|---|---|
+| Editor | Carlos Ortega |
+| Rol | HumanEditor |
+| Fecha | 2026-05-08 |
+| Decisión | **Aprobado** — enfoque procedimental sin tasas SII aceptado como política editorial. |
+| Notas | DEFECT #2 (tasas) queda como mejora futura. Verificar `check:frontmatter`, `check:links` y hero image antes de `draft:false`. |
