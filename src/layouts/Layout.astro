@@ -128,6 +128,7 @@ const structuredData = !pubDatetime
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={pubDatetime ? "article" : "website"} />
+    <meta property="og:locale" content="es_CL" />
     <meta property="og:site_name" content={SITE.title} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -181,7 +182,7 @@ const structuredData = !pubDatetime
       href={new URL("rss.xml", siteContext).href}
     />
 
-    <meta name="theme-color" content="" />
+    <meta name="theme-color" content="#ffffff" />
 
     {
       PUBLIC_GA_MEASUREMENT_ID && (

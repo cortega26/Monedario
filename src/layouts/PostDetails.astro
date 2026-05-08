@@ -267,6 +267,11 @@ const articleAdvisoryText = resolveBlogArticleAdvisory(post);
       <meta name="robots" content="noindex,follow" slot="head" />
     )
   }
+  {
+    tags.map(tag => (
+      <meta property="article:tag" content={tag} slot="head" />
+    ))
+  }
   <ArticleJsonLd
     {post}
     canonicalUrl={layoutProps.canonicalURL ?? ""}
