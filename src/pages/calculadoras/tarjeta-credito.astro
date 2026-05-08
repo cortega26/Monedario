@@ -66,7 +66,7 @@ const calculatorNextStepItems = [
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
       <div class="rounded-xl border border-border p-6">
-        <h2 class="mb-5 text-lg font-semibold">📝 Datos de tu deuda</h2>
+        <h2 class="mb-5 text-lg font-semibold">Datos de tu deuda</h2>
 
         <div class="mb-4">
           <label
@@ -201,7 +201,7 @@ const calculatorNextStepItems = [
         </li>
       </ul>
       <p class="text-sm text-muted">
-        ⚠️ Valores referenciales. La simulación asume cuotas constantes. Las TMC
+        Valores referenciales. La simulación asume cuotas constantes. Las TMC
         reales varían por banco y tipo de operación — verifica en la <a
           href="https://www.cmfchile.cl/portal/principal/613/w3-channel.html"
           target="_blank">CMF</a
@@ -272,7 +272,21 @@ const calculatorNextStepItems = [
     return "$" + Math.round(n).toLocaleString("es-CL");
   }
 
+  function showError(message: string) {
+    const el = document.getElementById("calc-error");
+    if (!el) return;
+    el.textContent = message;
+    el.classList.remove("hidden");
+  }
+  function hideError() {
+    const el = document.getElementById("calc-error");
+    if (!el) return;
+    el.classList.add("hidden");
+    el.textContent = "";
+  }
+
   document.getElementById("calcBtn")?.addEventListener("click", () => {
+    hideError();
     const deuda =
       parseFloat(
         (document.getElementById("deuda") as HTMLInputElement).value
@@ -290,7 +304,7 @@ const calculatorNextStepItems = [
       ) || 0;
 
     if (deuda <= 0) {
-      alert("Por favor ingresa una deuda válida.");
+      showError("Por favor ingresa una deuda válida.");
       return;
     }
 
@@ -303,7 +317,7 @@ const calculatorNextStepItems = [
         fixedMonthlyPayment: pagoFijo > 0 ? pagoFijo : undefined,
       });
     } catch (error) {
-      alert(
+      showError(
         error instanceof Error
           ? error.message
           : "No se pudo simular la tarjeta de crédito."

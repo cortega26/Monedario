@@ -128,16 +128,10 @@ const calculatorNextStepItems = [
     data-profile-prefill-host="#calculator-form-card"
   >
     <section class="border-b border-border pt-8 pb-6">
-      <h1
-        class="my-4 text-3xl font-bold sm:text-4xl"
-        style="font-family: var(--font-body);"
-      >
-        💰 Calculadora de Sueldo Líquido y Bruto
+      <h1 class="my-4 text-3xl font-bold sm:text-4xl">
+        Calculadora de Sueldo Líquido y Bruto
       </h1>
-      <p
-        class="max-w-lg text-sm leading-relaxed text-foreground"
-        style="font-family: system-ui, sans-serif;"
-      >
+      <p class="max-w-lg text-sm leading-relaxed text-foreground">
         Calcula cuánto recibirás desde tu bruto, o estima el bruto necesario
         para recibir el líquido que quieres. Desglose de AFP, salud, cesantía e
         impuesto de segunda categoría.
@@ -150,7 +144,7 @@ const calculatorNextStepItems = [
         id="calculator-form-card"
         class="rounded-xl border border-border p-6"
       >
-        <h2 class="mb-5 text-lg font-semibold">📝 Ingresa tus datos</h2>
+        <h2 class="mb-5 text-lg font-semibold">Ingresa tus datos</h2>
 
         <!-- MODO TOGGLE -->
         <div class="mb-5">
@@ -166,7 +160,7 @@ const calculatorNextStepItems = [
                 class="peer sr-only"
               />
               <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
+                class="block rounded-lg border border-border px-3 py-3.5 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
               >
                 Bruto → Líquido
               </span>
@@ -180,7 +174,7 @@ const calculatorNextStepItems = [
                 class="peer sr-only"
               />
               <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
+                class="block rounded-lg border border-border px-3 py-3.5 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
               >
                 Líquido → Bruto
               </span>
@@ -246,7 +240,7 @@ const calculatorNextStepItems = [
                 class="peer sr-only"
               />
               <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
+                class="block rounded-lg border border-border px-3 py-3.5 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
               >
                 Indefinido
               </span>
@@ -260,7 +254,7 @@ const calculatorNextStepItems = [
                 class="peer sr-only"
               />
               <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
+                class="block rounded-lg border border-border px-3 py-3.5 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
               >
                 Plazo fijo / obra
               </span>
@@ -286,7 +280,7 @@ const calculatorNextStepItems = [
                 class="peer sr-only"
               />
               <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
+                class="block rounded-lg border border-border px-3 py-3.5 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
               >
                 Fonasa (7%)
               </span>
@@ -300,7 +294,7 @@ const calculatorNextStepItems = [
                 class="peer sr-only"
               />
               <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
+                class="block rounded-lg border border-border px-3 py-3.5 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
               >
                 Isapre (7%+)
               </span>
@@ -475,9 +469,15 @@ const calculatorNextStepItems = [
           </div>
         </div>
 
+        <div
+          id="calc-error"
+          class="mb-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-500"
+          role="alert"
+          aria-live="assertive"
+        ></div>
         <button
           id="calcBtn"
-          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90"
+          class="mt-2 w-full rounded-lg bg-accent px-4 py-4 text-base font-bold text-background transition-opacity hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           <span id="calcBtn-label">Calcular sueldo líquido →</span>
         </button>
@@ -488,7 +488,7 @@ const calculatorNextStepItems = [
         id="resultado"
         class="rounded-xl border border-border bg-background p-6"
       >
-        <h2 class="mb-5 text-lg font-semibold">💵 Resultado</h2>
+        <h2 id="resultado-heading" class="mb-5 text-lg font-semibold" tabindex="-1">Resultado</h2>
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
           <div
             class="mb-6 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
@@ -595,7 +595,7 @@ const calculatorNextStepItems = [
         </li>
       </ul>
       <p class="text-sm text-muted">
-        ⚠️ Esta calculadora entrega valores referenciales. Para información
+        Esta calculadora entrega valores referenciales. Para información
         oficial consulta la <a href="https://www.spensiones.cl" target="_blank"
           >Superintendencia de Pensiones</a
         > y el <a href="https://www.sii.cl" target="_blank">SII</a>. El cálculo
@@ -840,6 +840,34 @@ const calculatorNextStepItems = [
   }
 
   const economicParameters = readEconomicParameters();
+
+  function showError(message: string) {
+    const el = document.getElementById("calc-error");
+    if (!el) return;
+    el.textContent = message;
+    el.classList.remove("hidden");
+  }
+
+  function hideError() {
+    const el = document.getElementById("calc-error");
+    if (!el) return;
+    el.classList.add("hidden");
+    el.textContent = "";
+  }
+
+  function focusResultado() {
+    const heading = document.getElementById("resultado-heading");
+    if (heading) {
+      heading.focus();
+      // Scroll result into view on mobile where the form and result stack
+      heading.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }
+    const el = document.getElementById("calc-error");
+    if (!el) return;
+    el.classList.add("hidden");
+    el.textContent = "";
+  }
 
   function getModo(): "bruto-a-liquido" | "liquido-a-bruto" {
     return (
@@ -1168,13 +1196,17 @@ const calculatorNextStepItems = [
   }
 
   document.getElementById("calcBtn")?.addEventListener("click", () => {
+    hideError();
+    setLoading(true);
     const modo = getModo();
     const rawInput =
       parseFloat(
         (document.getElementById("sueldo") as HTMLInputElement).value
       ) || 0;
+    hideError();
     if (rawInput <= 0) {
-      alert("Por favor ingresa un monto válido.");
+      showError("Por favor ingresa un monto válido.");
+      setLoading(false);
       return;
     }
 
@@ -1193,18 +1225,21 @@ const calculatorNextStepItems = [
           economicParameters,
         });
       } catch (error) {
-        alert(
+        showError(
           error instanceof Error
             ? error.message
             : "No se pudo estimar el sueldo bruto."
         );
+        setLoading(false);
         return;
       }
+      setLoading(false);
       renderResultado(
         resultado,
         "Sueldo Bruto Estimado",
         "Estimación inversa: supuesto bruto = imponible. AFP, salud y contrato según tu selección."
       );
+      focusResultado();
       saveCalculatorResult(
         window.location.pathname,
         "Calculadora de Sueldo Líquido y Bruto"
@@ -1279,14 +1314,17 @@ const calculatorNextStepItems = [
           economicParameters,
         });
       } catch (error) {
-        alert(
+        showError(
           error instanceof Error
             ? error.message
             : "No se pudo calcular el sueldo líquido."
         );
+        setLoading(false);
         return;
       }
+      setLoading(false);
       renderResultado(resultado, "Sueldo Líquido", undefined, otrosDescuentos);
+      focusResultado();
       saveCalculatorResult(
         window.location.pathname,
         "Calculadora de Sueldo Líquido y Bruto"
@@ -1308,6 +1346,18 @@ const calculatorNextStepItems = [
       });
     }
   });
+
+  function setLoading(isLoading: boolean) {
+    const btn = document.getElementById("calcBtn") as HTMLButtonElement;
+    const label = document.getElementById("calcBtn-label");
+    if (!btn || !label) return;
+    btn.disabled = isLoading;
+    label.textContent = isLoading
+      ? "Calculando…"
+      : getModo() === "liquido-a-bruto"
+        ? "Estimar sueldo bruto necesario →"
+        : "Calcular sueldo líquido →";
+  }
 
   document.getElementById("copy-btn")?.addEventListener("click", async () => {
     if (!lastResultado) return;

@@ -83,7 +83,7 @@ const calculatorNextStepItems = [
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
       <div class="rounded-xl border border-border p-6">
-        <h2 class="mb-5 text-lg font-semibold">📝 Datos del crédito</h2>
+        <h2 class="mb-5 text-lg font-semibold">Datos del crédito</h2>
 
         <!-- Valor de la propiedad -->
         <div class="mb-4">
@@ -349,7 +349,7 @@ const calculatorNextStepItems = [
         </li>
       </ul>
       <p class="text-sm text-muted">
-        ⚠️ Las tasas son orientativas. Solicita siempre la{" "}
+        Las tasas son orientativas. Solicita siempre la{" "}
         <strong>Hoja de Condiciones (CAE)</strong> a tu banco para conocer el costo
         real del crédito. Los costos de notaría, Conservador y tasación son adicionales
         al dividendo (1%–1,5% del valor de la propiedad).
@@ -479,8 +479,22 @@ const calculatorNextStepItems = [
     .querySelectorAll("input[name='downPayment']")
     .forEach(r => r.addEventListener("change", updateLoanDisplay));
 
+  function showError(message: string) {
+    const el = document.getElementById("calc-error");
+    if (!el) return;
+    el.textContent = message;
+    el.classList.remove("hidden");
+  }
+  function hideError() {
+    const el = document.getElementById("calc-error");
+    if (!el) return;
+    el.classList.add("hidden");
+    el.textContent = "";
+  }
+
   // Calculate button
   document.getElementById("calcBtn")?.addEventListener("click", () => {
+    hideError();
     const propertyValue =
       parseFloat(
         (document.getElementById("propertyValue") as HTMLInputElement).value
@@ -506,7 +520,7 @@ const calculatorNextStepItems = [
     const monthlyFireInsuranceUF = fireRaw ? parseFloat(fireRaw) : undefined;
 
     if (propertyValue <= 0 || annualRatePercent <= 0) {
-      alert(
+      showError(
         "Por favor ingresa el valor de la propiedad y la tasa de interés anual."
       );
       return;
@@ -525,7 +539,7 @@ const calculatorNextStepItems = [
         monthlyFireInsuranceUF,
       });
     } catch (error) {
-      alert(
+      showError(
         error instanceof Error
           ? error.message
           : "No se pudo calcular el dividendo."

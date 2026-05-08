@@ -77,7 +77,7 @@ const calculatorNextStepItems = [
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
       <div class="rounded-xl border border-border p-6">
-        <h2 class="mb-5 text-lg font-semibold">📝 Tus deudas e ingresos</h2>
+        <h2 class="mb-5 text-lg font-semibold">Tus deudas e ingresos</h2>
 
         <div class="mb-5">
           <p class="mb-3 text-sm font-medium text-secondary">
@@ -261,7 +261,7 @@ const calculatorNextStepItems = [
 
       <!-- RESULTADO -->
       <div class="rounded-xl border border-border bg-background p-6">
-        <h2 class="mb-5 text-lg font-semibold">📊 Diagnóstico y simulación</h2>
+        <h2 class="mb-5 text-lg font-semibold">Diagnóstico y simulación</h2>
         <div
           id="resultado-contenido"
           data-guide-url={renegociacionGuidePath}
@@ -320,7 +320,7 @@ const calculatorNextStepItems = [
         </li>
       </ul>
       <p class="text-sm text-muted">
-        ⚠️ Esta simulación es educativa. El bloque superior revisa un filtro
+        Esta simulación es educativa. El bloque superior revisa un filtro
         legal básico y el bloque de cuota es solo una referencia financiera. La
         admisibilidad final la decide la Superir al revisar tus antecedentes.
         Para iniciar el trámite visita <a
@@ -490,7 +490,21 @@ const calculatorNextStepItems = [
     container.appendChild(createDebtRow());
   });
 
+  function showError(message: string) {
+    const el = document.getElementById("calc-error");
+    if (!el) return;
+    el.textContent = message;
+    el.classList.remove("hidden");
+  }
+  function hideError() {
+    const el = document.getElementById("calc-error");
+    if (!el) return;
+    el.classList.add("hidden");
+    el.textContent = "";
+  }
+
   document.getElementById("calcBtn")?.addEventListener("click", () => {
+    hideError();
     const resultContainer = document.getElementById("resultado-contenido");
     const guideUrl = resultContainer?.dataset?.guideUrl;
     const ufValue = Number(resultContainer?.dataset?.uf);
@@ -540,7 +554,7 @@ const calculatorNextStepItems = [
       !juicioEjecutivo ||
       !documentosCompletos
     ) {
-      alert(
+      showError(
         "Completa al menos una deuda, tu ingreso y las preguntas legales antes de simular."
       );
       return;
@@ -562,7 +576,7 @@ const calculatorNextStepItems = [
         hasRequiredDocuments: documentosCompletos === "si",
       });
     } catch (error) {
-      alert(
+      showError(
         error instanceof Error
           ? error.message
           : "No se pudo simular la renegociación."
@@ -592,7 +606,7 @@ const calculatorNextStepItems = [
     statusTitle.textContent = simulacion.canSubmitApplication
       ? "✓ Cumples el filtro básico y podrías preparar la solicitud"
       : simulacion.meetsBasicEligibility
-        ? "⚠️ Cumples el filtro básico, pero aún no estás listo para calificar formalmente"
+        ? "Cumples el filtro básico, pero aún no estás listo para calificar formalmente"
         : "✗ No cumples el filtro básico de elegibilidad";
 
     const checklist = document.createElement("div");
@@ -665,10 +679,10 @@ const calculatorNextStepItems = [
       "mt-3 rounded-lg bg-foreground/5 p-3 text-xs text-secondary";
     advisory.textContent =
       simulacion.incomeBurdenPercent <= 30
-        ? "✅ La cuota simulada es manejable (≤30% de tu ingreso). Úsala como punto de partida para armar tu propuesta, no como aprobación legal."
+        ? "La cuota simulada es manejable (≤30% de tu ingreso). Úsala como punto de partida para armar tu propuesta, no como aprobación legal."
         : simulacion.incomeBurdenPercent <= 50
-          ? "⚠️ La cuota es alta (30–50% del ingreso). Considera extender el plazo o negociar intereses antes de presentar una propuesta."
-          : "🔴 La cuota supera el 50% de tu ingreso. Antes de pensar en admisibilidad, revisa si tu propuesta es realmente pagable o si necesitas otra salida.";
+          ? "La cuota es alta (30–50% del ingreso). Considera extender el plazo o negociar intereses antes de presentar una propuesta."
+          : "La cuota supera el 50% de tu ingreso. Antes de pensar en admisibilidad, revisa si tu propuesta es realmente pagable o si necesitas otra salida.";
 
     const guideLink = document.createElement("a");
     guideLink.href = guideUrl;

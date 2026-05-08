@@ -10,13 +10,7 @@ export interface Props {
 
 const { actions, calculatorSlug } = Astro.props;
 
-const iconFor = (type: string) => {
-  if (type === "article") return "📄";
-  if (type === "calculator") return "🧮";
-  if (type === "print") return "🖨️";
-  if (type === "share") return "📲";
-  return "→";
-};
+const iconFor = (_type: string) => "→";
 ---
 
 <div

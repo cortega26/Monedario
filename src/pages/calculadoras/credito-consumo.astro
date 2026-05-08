@@ -67,7 +67,7 @@ const calculatorNextStepItems = [
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
       <div class="rounded-xl border border-border p-6">
-        <h2 class="mb-5 text-lg font-semibold">📝 Datos del crédito</h2>
+        <h2 class="mb-5 text-lg font-semibold">Datos del crédito</h2>
 
         <div class="mb-4">
           <label
@@ -325,7 +325,21 @@ const calculatorNextStepItems = [
     return "$" + Math.round(n).toLocaleString("es-CL");
   }
 
+  function showError(message: string) {
+    const el = document.getElementById("calc-error");
+    if (!el) return;
+    el.textContent = message;
+    el.classList.remove("hidden");
+  }
+  function hideError() {
+    const el = document.getElementById("calc-error");
+    if (!el) return;
+    el.classList.add("hidden");
+    el.textContent = "";
+  }
+
   document.getElementById("calcBtn")?.addEventListener("click", () => {
+    hideError();
     const monto =
       parseFloat(
         (document.getElementById("monto") as HTMLInputElement).value
@@ -351,7 +365,7 @@ const calculatorNextStepItems = [
       ) || 0;
 
     if (monto <= 0 || plazo <= 0 || tasaRaw <= 0) {
-      alert("Por favor ingresa monto, plazo y tasa.");
+      showError("Por favor ingresa monto, plazo y tasa.");
       return;
     }
 
@@ -366,7 +380,7 @@ const calculatorNextStepItems = [
         operatingCosts: gastos,
       });
     } catch (error) {
-      alert(
+      showError(
         error instanceof Error
           ? error.message
           : "No se pudo calcular el crédito de consumo."
