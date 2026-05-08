@@ -24,7 +24,7 @@ const { label, items, id = "dropdown", isActive = false } = Astro.props;
     aria-expanded="false"
     aria-controls={`${id}-menu`}
     class:list={[
-      "header-nav-item flex w-full items-center justify-between gap-1 px-4 py-3 sm:w-auto sm:justify-start sm:px-2 sm:py-1",
+      "header-nav-item flex w-full items-center justify-between gap-1 px-4 py-[14px] sm:w-auto sm:justify-start sm:px-2 sm:py-1",
       { "active-nav text-foreground": isActive },
     ]}
   >
@@ -60,7 +60,7 @@ const { label, items, id = "dropdown", isActive = false } = Astro.props;
           data-analytics-label={item.label}
           data-analytics-location={item.analyticsLocation}
           class:list={[
-            "block rounded-lg px-4 py-2.5 sm:px-3 sm:py-2",
+            "block rounded-lg px-4 py-[14px] sm:px-3 sm:py-2",
             "text-sm font-medium transition-colors hover:bg-accent/10 hover:text-accent focus:bg-accent/10 focus:text-accent focus:outline-none",
             "pl-8 sm:pl-3",
             { "bg-accent/5 text-accent": item.isActive },

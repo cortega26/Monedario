@@ -492,9 +492,17 @@ const calculatorNextStepItems = [
     el.textContent = "";
   }
 
+  function setLoading(isLoading: boolean) {
+    const btn = document.getElementById("calcBtn") as HTMLButtonElement;
+    if (!btn) return;
+    btn.disabled = isLoading;
+    btn.textContent = isLoading ? "Calculando…" : "Calcular dividendo →";
+  }
+
   // Calculate button
   document.getElementById("calcBtn")?.addEventListener("click", () => {
     hideError();
+    setLoading(true);
     const propertyValue =
       parseFloat(
         (document.getElementById("propertyValue") as HTMLInputElement).value
@@ -523,6 +531,7 @@ const calculatorNextStepItems = [
       showError(
         "Por favor ingresa el valor de la propiedad y la tasa de interés anual."
       );
+      setLoading(false);
       return;
     }
 
@@ -544,9 +553,11 @@ const calculatorNextStepItems = [
           ? error.message
           : "No se pudo calcular el dividendo."
       );
+      setLoading(false);
       return;
     }
 
+    setLoading(false);
     // --- RESULT RENDERING ---
     const buildRow = (label: string, value: string, colorClass = "") => {
       const line = document.createElement("div");

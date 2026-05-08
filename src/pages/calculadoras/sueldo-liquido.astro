@@ -596,9 +596,9 @@ const calculatorNextStepItems = [
       </ul>
       <p class="text-sm text-muted">
         Esta calculadora entrega valores referenciales. Para información
-        oficial consulta la <a href="https://www.spensiones.cl" target="_blank"
+        oficial consulta la <a href="https://www.spensiones.cl" target="_blank" rel="noopener noreferrer"
           >Superintendencia de Pensiones</a
-        > y el <a href="https://www.sii.cl" target="_blank">SII</a>. El cálculo
+        > y el <a href="https://www.sii.cl" target="_blank" rel="noopener noreferrer">SII</a>. El cálculo
         aplica topes previsionales mensuales de referencia para AFP/salud y AFC
         vigentes al momento del build.
       </p>
@@ -613,114 +613,111 @@ const calculatorNextStepItems = [
       </p>
     </section>
 
-    <section
-      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
-    >
-      <h2>Preguntas frecuentes</h2>
+    <section class="max-w-none border-t border-border pt-8 pb-12">
+      <h2 class="mb-4 text-xl font-semibold">Preguntas frecuentes</h2>
 
-      <h3>¿Cómo se calcula el sueldo líquido en Chile?</h3>
-      <p>
-        Se parte del sueldo bruto y se descuentan las cotizaciones previsionales
-        obligatorias (AFP, salud, seguro de cesantía) y, si corresponde, el
-        impuesto de segunda categoría. La base de cálculo es el sueldo
-        imponible, que puede ser menor al bruto si tu liquidación incluye
-        asignaciones no imponibles como colación o movilización.
-      </p>
+      <div class="space-y-2">
+        <details class="group rounded-lg border border-border">
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium [&amp;::-webkit-details-marker]:hidden hover:bg-accent/5">
+            ¿Cómo se calcula el sueldo líquido en Chile?
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="border-t border-border px-4 py-3 text-sm text-secondary">
+            Se parte del sueldo bruto y se descuentan las cotizaciones previsionales obligatorias (AFP, salud, seguro de cesantía) y, si corresponde, el impuesto de segunda categoría. La base de cálculo es el sueldo imponible, que puede ser menor al bruto si tu liquidación incluye asignaciones no imponibles como colación o movilización.
+          </div>
+        </details>
 
-      <h3>¿Cuánto descuenta la AFP de mi sueldo?</h3>
-      <p>
-        Entre 10,46% y 11,45% del sueldo imponible según tu AFP. Ese porcentaje
-        incluye el 10% de cotización obligatoria —que va a tu cuenta personal y
-        es tuyo— más la comisión de la AFP, que es el costo del servicio.
-      </p>
+        <details class="group rounded-lg border border-border">
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium [&amp;::-webkit-details-marker]:hidden hover:bg-accent/5">
+            ¿Cuánto descuenta la AFP de mi sueldo?
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="border-t border-border px-4 py-3 text-sm text-secondary">
+            Entre 10,46% y 11,45% del sueldo imponible según tu AFP. Ese porcentaje incluye el 10% de cotización obligatoria —que va a tu cuenta personal y es tuyo— más la comisión de la AFP, que es el costo del servicio.
+          </div>
+        </details>
 
-      <h3>¿Qué es el sueldo imponible?</h3>
-      <p>
-        Es la base sobre la que se calculan AFP, salud y seguro de cesantía.
-        Equivale al sueldo bruto menos las asignaciones no imponibles (como
-        colación y movilización dentro de los límites legales). Si tu
-        liquidación no separa esos conceptos, tu imponible suele ser igual a tu
-        bruto.
-      </p>
+        <details class="group rounded-lg border border-border">
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium [&amp;::-webkit-details-marker]:hidden hover:bg-accent/5">
+            ¿Qué es el sueldo imponible?
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="border-t border-border px-4 py-3 text-sm text-secondary">
+            Es la base sobre la que se calculan AFP, salud y seguro de cesantía. Equivale al sueldo bruto menos las asignaciones no imponibles (como colación y movilización dentro de los límites legales). Si tu liquidación no separa esos conceptos, tu imponible suele ser igual a tu bruto.
+          </div>
+        </details>
 
-      <h3>¿Cuánto me descuentan de salud?</h3>
-      <p>
-        El 7% del sueldo imponible si estás en Fonasa. Si estás en Isapre y tu
-        plan cuesta más que el 7%, la diferencia adicional también se descuenta
-        directamente de tu sueldo.
-      </p>
+        <details class="group rounded-lg border border-border">
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium [&amp;::-webkit-details-marker]:hidden hover:bg-accent/5">
+            ¿Cuánto me descuentan de salud?
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="border-t border-border px-4 py-3 text-sm text-secondary">
+            El 7% del sueldo imponible si estás en Fonasa. Si estás en Isapre y tu plan cuesta más que el 7%, la diferencia adicional también se descuenta directamente de tu sueldo.
+          </div>
+        </details>
 
-      <h3>¿El seguro de cesantía se descuenta en todos los contratos?</h3>
-      <p>
-        Solo si tienes contrato indefinido (0,6% a tu cargo). Con contrato a
-        plazo fijo u obra, el trabajador no aporta nada — el empleador paga el
-        3% completo. En ambos casos acumulas saldo en tu Cuenta Individual de
-        Cesantía.
-      </p>
+        <details class="group rounded-lg border border-border">
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium [&amp;::-webkit-details-marker]:hidden hover:bg-accent/5">
+            ¿El seguro de cesantía se descuenta en todos los contratos?
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="border-t border-border px-4 py-3 text-sm text-secondary">
+            Solo si tienes contrato indefinido (0,6% a tu cargo). Con contrato a plazo fijo u obra, el trabajador no aporta nada — el empleador paga el 3% completo. En ambos casos acumulas saldo en tu Cuenta Individual de Cesantía.
+          </div>
+        </details>
 
-      <h3>¿Desde qué sueldo pago impuesto de segunda categoría?</h3>
-      <p>
-        Solo si tu renta tributable mensual supera el primer tramo exento de la
-        tabla del SII. En 2026 ese umbral es aproximadamente{" "}
-        <strong>
-          {"$" + Math.round(firstTaxExemptBracket).toLocaleString("es-CL")}
-        </strong>
-        . El impuesto es progresivo: solo paga la parte del sueldo que supera cada
-        tramo.
-      </p>
+        <details class="group rounded-lg border border-border">
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium [&amp;::-webkit-details-marker]:hidden hover:bg-accent/5">
+            ¿Desde qué sueldo pago impuesto de segunda categoría?
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="border-t border-border px-4 py-3 text-sm text-secondary">
+            Solo si tu renta tributable mensual supera el primer tramo exento de la tabla del SII. En 2026 ese umbral es aproximadamente <strong>{"$" + Math.round(firstTaxExemptBracket).toLocaleString("es-CL")}</strong>. El impuesto es progresivo: solo paga la parte del sueldo que supera cada tramo.
+          </div>
+        </details>
 
-      <h3>¿Cómo calculo el bruto si sé cuánto quiero recibir?</h3>
-      <p>
-        Usa el modo "Líquido → Bruto" de esta calculadora: ingresa el monto que
-        quieres recibir en tu cuenta y el sistema estima el bruto necesario bajo
-        los supuestos de AFP, salud y contrato que indiques. Es útil al negociar
-        sueldo o evaluar una oferta laboral.
-      </p>
+        <details class="group rounded-lg border border-border">
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium [&amp;::-webkit-details-marker]:hidden hover:bg-accent/5">
+            ¿Cómo calculo el bruto si sé cuánto quiero recibir?
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="border-t border-border px-4 py-3 text-sm text-secondary">
+            Usa el modo "Líquido → Bruto" de esta calculadora: ingresa el monto que quieres recibir en tu cuenta y el sistema estima el bruto necesario bajo los supuestos de AFP, salud y contrato que indiques. Es útil al negociar sueldo o evaluar una oferta laboral.
+          </div>
+        </details>
 
-      <h3>¿Qué incluye la gratificación en el sueldo?</h3>
-      <p>
-        La gratificación legal en Chile puede pagarse mensualizada (25% de lo
-        devengado con tope de 4,75 IMM) o como porcentaje de utilidades. Si la
-        recibes mes a mes como parte de tu liquidación, es imponible: afecta tu
-        AFP, salud, cesantía e impuesto. Ingrésala en el Modo avanzado de esta
-        calculadora para un resultado más preciso.
-      </p>
+        <details class="group rounded-lg border border-border">
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium [&amp;::-webkit-details-marker]:hidden hover:bg-accent/5">
+            ¿Qué incluye la gratificación en el sueldo?
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="border-t border-border px-4 py-3 text-sm text-secondary">
+            La gratificación legal en Chile puede pagarse mensualizada (25% de lo devengado con tope de 4,75 IMM) o como porcentaje de utilidades. Si la recibes mes a mes como parte de tu liquidación, es imponible: afecta tu AFP, salud, cesantía e impuesto. Ingrésala en el Modo avanzado de esta calculadora para un resultado más preciso.
+          </div>
+        </details>
 
-      <h3>¿Las horas extra se descuentan de AFP y salud?</h3>
-      <p>
-        Sí. Las horas extra son remuneración imponible: se suman a la base de
-        cálculo de AFP, salud y seguro de cesantía, y también entran a la base
-        de impuesto de segunda categoría. Puedes incluirlas en el Modo avanzado.
-        Desde abril de 2026 (Ley 40h), las horas extra comienzan en la hora 43
-        de la semana —no en la 46— y cada una debe pagarse con un recargo mínimo
-        del 50%.
-      </p>
+        <details class="group rounded-lg border border-border">
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium [&amp;::-webkit-details-marker]:hidden hover:bg-accent/5">
+            ¿Las horas extra se descuentan de AFP y salud?
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="border-t border-border px-4 py-3 text-sm text-secondary">
+            Sí. Las horas extra son remuneración imponible: se suman a la base de cálculo de AFP, salud y seguro de cesantía, y también entran a la base de impuesto de segunda categoría. Puedes incluirlas en el Modo avanzado. Desde abril de 2026 (Ley 40h), las horas extra comienzan en la hora 43 de la semana —no en la 46— y cada una debe pagarse con un recargo mínimo del 50%.
+          </div>
+        </details>
 
-      <h3>¿La Ley 40h cambia mi sueldo líquido?</h3>
-      <p>
-        No directamente. La Ley 40h (Ley 21.561) reduce la jornada legal
-        ordinaria de 45 a 42 horas semanales en abril de 2026 (con una bajada
-        final a 40 h en 2028), pero no modifica tu sueldo bruto mensual pactado.
-        Lo que cambia es que si trabajas más de 42 horas a la semana, cada hora
-        adicional es hora extra y debe pagarse con un recargo mínimo del 50%.
-        Esta calculadora ya contempla las horas extra en el Modo avanzado: si
-        las ingresas, se suman correctamente a la base imponible.
-      </p>
-      <p>
-        Lo que sí sube es el <strong>valor unitario de cada hora</strong>. Por
-        doctrina de la Dirección del Trabajo, el precio de la hora ordinaria se
-        obtiene dividiendo el sueldo mensual entre las horas semanales pactadas
-        × 4,333 (semanas promedio por mes). Al bajar la jornada de 45 a 42 horas
-        manteniendo el mismo sueldo —protección que garantiza la propia Ley
-        21.561—, el denominador disminuye y el valor por hora aumenta cerca de
-        un 7%. En la práctica: con un bruto de $1.200.000, el valor de la hora
-        ordinaria pasa de ≈ $6.154 (con 45 h/semana) a ≈ $6.593 (con 42
-        h/semana), y la hora extra —con el recargo mínimo del 50% que fija el
-        Art. 32 del Código del Trabajo— sube de ≈ $9.231 a ≈ $9.890. Esto no lo
-        calcula la calculadora (que trabaja con montos mensuales totales), pero
-        es el efecto que percibes si negocias horas extra o evalúas un contrato
-        que las contempla.
-      </p>
+        <details class="group rounded-lg border border-border">
+          <summary class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium [&amp;::-webkit-details-marker]:hidden hover:bg-accent/5">
+            ¿La Ley 40h cambia mi sueldo líquido?
+            <span class="text-xs text-muted transition-transform group-open:rotate-180">▼</span>
+          </summary>
+          <div class="border-t border-border px-4 py-3 text-sm text-secondary space-y-2">
+            <p>No directamente. La Ley 40h (Ley 21.561) reduce la jornada legal ordinaria de 45 a 42 horas semanales en abril de 2026 (con una bajada final a 40 h en 2028), pero no modifica tu sueldo bruto mensual pactado. Lo que cambia es que si trabajas más de 42 horas a la semana, cada hora adicional es hora extra y debe pagarse con un recargo mínimo del 50%. Esta calculadora ya contempla las horas extra en el Modo avanzado: si las ingresas, se suman correctamente a la base imponible.</p>
+            <p>Lo que sí sube es el <strong>valor unitario de cada hora</strong>. Por doctrina de la Dirección del Trabajo, el precio de la hora ordinaria se obtiene dividiendo el sueldo mensual entre las horas semanales pactadas × 4,333 (semanas promedio por mes). Al bajar la jornada de 45 a 42 horas manteniendo el mismo sueldo —protección que garantiza la propia Ley 21.561—, el denominador disminuye y el valor por hora aumenta cerca de un 7%. En la práctica: con un bruto de $1.200.000, el valor de la hora ordinaria pasa de ≈ $6.154 (con 45 h/semana) a ≈ $6.593 (con 42 h/semana), y la hora extra —con el recargo mínimo del 50% que fija el Art. 32 del Código del Trabajo— sube de ≈ $9.231 a ≈ $9.890. Esto no lo calcula la calculadora (que trabaja con montos mensuales totales), pero es el efecto que percibes si negocias horas extra o evalúas un contrato que las contempla.</p>
+          </div>
+        </details>
+      </div>
     </section>
 
     <PrimaryCTA
@@ -859,14 +856,8 @@ const calculatorNextStepItems = [
     const heading = document.getElementById("resultado-heading");
     if (heading) {
       heading.focus();
-      // Scroll result into view on mobile where the form and result stack
       heading.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
-  }
-    const el = document.getElementById("calc-error");
-    if (!el) return;
-    el.classList.add("hidden");
-    el.textContent = "";
   }
 
   function getModo(): "bruto-a-liquido" | "liquido-a-bruto" {

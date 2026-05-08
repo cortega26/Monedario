@@ -325,7 +325,7 @@ const calculatorNextStepItems = [
         admisibilidad final la decide la Superir al revisar tus antecedentes.
         Para iniciar el trámite visita <a
           href="https://www.superir.gob.cl"
-          target="_blank">superir.gob.cl</a
+          target="_blank" rel="noopener noreferrer">superir.gob.cl</a
         >.
       </p>
       <p>
@@ -503,8 +503,16 @@ const calculatorNextStepItems = [
     el.textContent = "";
   }
 
+  function setLoading(isLoading: boolean) {
+    const btn = document.getElementById("calcBtn") as HTMLButtonElement;
+    if (!btn) return;
+    btn.disabled = isLoading;
+    btn.textContent = isLoading ? "Calculando…" : "Simular renegociación →";
+  }
+
   document.getElementById("calcBtn")?.addEventListener("click", () => {
     hideError();
+    setLoading(true);
     const resultContainer = document.getElementById("resultado-contenido");
     const guideUrl = resultContainer?.dataset?.guideUrl;
     const ufValue = Number(resultContainer?.dataset?.uf);
@@ -557,6 +565,7 @@ const calculatorNextStepItems = [
       showError(
         "Completa al menos una deuda, tu ingreso y las preguntas legales antes de simular."
       );
+      setLoading(false);
       return;
     }
 
@@ -581,9 +590,11 @@ const calculatorNextStepItems = [
           ? error.message
           : "No se pudo simular la renegociación."
       );
+      setLoading(false);
       return;
     }
 
+    setLoading(false);
     const container = document.getElementById("resultado-contenido")!;
 
     const statusBox = document.createElement("div");

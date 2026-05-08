@@ -249,7 +249,7 @@ const calculatorNextStepItems = [
         calcula la institución financiera según metodología CMF. Para comparar
         ofertas reales usa <a
           href="https://www.comparaonline.cl"
-          target="_blank">ComparaOnline</a
+          target="_blank" rel="noopener noreferrer">ComparaOnline</a
         > o solicita la hoja TCEA a tu banco.
       </p>
       <p class="text-sm text-muted">
@@ -338,8 +338,16 @@ const calculatorNextStepItems = [
     el.textContent = "";
   }
 
+  function setLoading(isLoading: boolean) {
+    const btn = document.getElementById("calcBtn") as HTMLButtonElement;
+    if (!btn) return;
+    btn.disabled = isLoading;
+    btn.textContent = isLoading ? "Calculando…" : "Calcular crédito →";
+  }
+
   document.getElementById("calcBtn")?.addEventListener("click", () => {
     hideError();
+    setLoading(true);
     const monto =
       parseFloat(
         (document.getElementById("monto") as HTMLInputElement).value
@@ -366,6 +374,7 @@ const calculatorNextStepItems = [
 
     if (monto <= 0 || plazo <= 0 || tasaRaw <= 0) {
       showError("Por favor ingresa monto, plazo y tasa.");
+      setLoading(false);
       return;
     }
 
@@ -385,9 +394,11 @@ const calculatorNextStepItems = [
           ? error.message
           : "No se pudo calcular el crédito de consumo."
       );
+      setLoading(false);
       return;
     }
 
+    setLoading(false);
     const buildRow = (label: string, value: string, colorClass = "") => {
       const line = document.createElement("div");
       line.className =

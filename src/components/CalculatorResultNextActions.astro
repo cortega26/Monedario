@@ -9,8 +9,6 @@ export interface Props {
 }
 
 const { actions, calculatorSlug } = Astro.props;
-
-const iconFor = (_type: string) => "→";
 ---
 
 <div
@@ -31,7 +29,7 @@ const iconFor = (_type: string) => "→";
             data-analytics-location="calculator_result_next_actions"
             data-action-type="print"
           >
-            {iconFor(action.type)} {action.label}
+            → {action.label}
           </button>
         ) : action.type === "share" ? (
           <button
@@ -41,7 +39,7 @@ const iconFor = (_type: string) => "→";
             data-analytics-location="calculator_result_next_actions"
             data-action-type="share"
           >
-            {iconFor(action.type)} {action.label}
+            → {action.label}
           </button>
         ) : (
           <a
@@ -53,7 +51,7 @@ const iconFor = (_type: string) => "→";
             data-action-type={action.type}
             data-action-href={action.href}
           >
-            {iconFor(action.type)} {action.label}
+            → {action.label}
           </a>
         )
       )

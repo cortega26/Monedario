@@ -128,7 +128,7 @@ const isActive = (path: string) => {
     >
       <button
         id="menu-btn"
-        class="focus-outline self-end p-2 sm:hidden"
+        class="focus-outline self-end p-3 sm:hidden"
         aria-label="Abrir menú"
         aria-expanded="false"
         aria-controls="menu-items"
@@ -162,7 +162,7 @@ const isActive = (path: string) => {
           <a
             href={getPath("/calculadoras/")}
             class:list={[
-              "header-nav-item block px-4 py-3 text-center sm:px-2 sm:py-1",
+              "header-nav-item block px-4 py-[14px] text-center sm:px-2 sm:py-1",
               { "active-nav text-foreground": isActive("/calculadoras") },
             ]}
             data-analytics-cta="hub-route"
@@ -176,7 +176,7 @@ const isActive = (path: string) => {
           <a
             href={getPath("/glosario/")}
             class:list={[
-              "header-nav-item block px-4 py-3 text-center sm:px-2 sm:py-1",
+              "header-nav-item block px-4 py-[14px] text-center sm:px-2 sm:py-1",
               { "active-nav text-foreground": isActive("/glosario") },
             ]}
             data-analytics-cta="hub-route"
@@ -190,7 +190,7 @@ const isActive = (path: string) => {
           <a
             href={getPath("/about/")}
             class:list={[
-              "header-nav-item block px-4 py-3 text-center sm:px-2 sm:py-1",
+              "header-nav-item block px-4 py-[14px] text-center sm:px-2 sm:py-1",
               { "active-nav text-foreground": isActive("/about") },
             ]}
             data-analytics-cta="hub-route"
@@ -289,32 +289,107 @@ const isActive = (path: string) => {
   }
 </style>
 
-<script>
-  function toggleNav() {
-    const menuBtn = document.querySelector("#menu-btn");
-    const menuItems = document.querySelector("#menu-items");
-    const menuIcon = document.querySelector("#menu-icon");
-    const closeIcon = document.querySelector("#close-icon");
+	<script>
+	  const OVERFLOW_HIDDEN_CLASS = "overflow-hidden";
+	  const SELECTORS = {
+	    menuBtn: "#menu-btn",
+	    menuItems: "#menu-items",
+	    menuIcon: "#menu-icon",
+	    closeIcon: "#close-icon",
+	    navLink: "#menu-items a",
+	  };
 
-    if (!menuBtn || !menuItems || !menuIcon || !closeIcon) return;
+	  function toggleNav() {
+	    const menuBtn = document.querySelector<HTMLButtonElement>(
+	      SELECTORS.menuBtn
+	    );
+	    const menuItems = document.querySelector<HTMLElement>(SELECTORS.menuItems);
+	    const menuIcon = document.querySelector(SELECTORS.menuIcon);
+	    const closeIcon = document.querySelector(SELECTORS.closeIcon);
 
-    menuBtn.addEventListener("click", () => {
-      const openMenu = menuBtn.getAttribute("aria-expanded") === "true";
+	    if (!menuBtn || !menuItems || !menuIcon || !closeIcon) return;
 
-      menuBtn.setAttribute("aria-expanded", openMenu ? "false" : "true");
-      menuBtn.setAttribute(
-        "aria-label",
-        openMenu ? "Cerrar menú" : "Abrir menú"
-      );
+	    const isOpen = () => menuBtn.getAttribute("aria-expanded") === "true";
 
-      menuItems.classList.toggle("hidden");
-      menuIcon.classList.toggle("hidden");
-      closeIcon.classList.toggle("hidden");
-    });
-  }
+	    const open = () => {
+	      menuBtn.setAttribute("aria-expanded", "true");
+	      menuBtn.setAttribute("aria-label", "Cerrar menú");
+	      menuItems.classList.remove("hidden");
+	      menuIcon.classList.add("hidden");
+	      closeIcon.classList.remove("hidden");
+	      document.body.classList.add(OVERFLOW_HIDDEN_CLASS);
+	      // Focus first nav item
+	      const firstLink = menuItems.querySelector<HTMLAnchorElement>("a");
+	      firstLink?.focus();
+	    };
 
-  toggleNav();
+	    const close = () => {
+	      menuBtn.setAttribute("aria-expanded", "false");
+	      menuBtn.setAttribute("aria-label", "Abrir menú");
+	      menuItems.classList.add("hidden");
+	      menuIcon.classList.remove("hidden");
+	      closeIcon.classList.add("hidden");
+	      document.body.classList.remove(OVERFLOW_HIDDEN_CLASS);
+	      menuBtn.focus();
+	    };
 
-  // Runs on view transitions navigation
-  document.addEventListener("astro:after-swap", toggleNav);
-</script>
+	    menuBtn.addEventListener("click", () => {
+	      if (isOpen()) {
+	        close();
+	      } else {
+	        open();
+	      }
+	    });
+
+	    // Escape to close
+	    document.addEventListener("keydown", (e: KeyboardEvent) => {
+	      if (e.key === "Escape" && isOpen()) {
+	        close();
+	      }
+	    });
+
+	    // Close when clicking a nav link
+	    menuItems.querySelectorAll(SELECTORS.navLink).forEach(link => {
+	      link.addEventListener("click", () => {
+	        if (isOpen()) close();
+	      });
+	    });
+
+	    // Close when clicking outside
+	    document.addEventListener("click", e => {
+	      const target = e.target as Node;
+	      if (
+	        isOpen() &&
+	        !menuBtn.contains(target) &&
+	        !menuItems.contains(target)
+	      ) {
+	        close();
+	      }
+	    });
+
+	    // Focus trap: keep Tab cycling within the menu
+	    menuItems.addEventListener("keydown", (e: KeyboardEvent) => {
+	      if (e.key !== "Tab") return;
+	      const focusable = [
+	        ...menuItems.querySelectorAll<HTMLElement>(
+	          "a, button, [tabindex]:not([tabindex='-1'])"
+	        ),
+	      ];
+	      if (focusable.length === 0) return;
+	      const first = focusable[0];
+	      const last = focusable[focusable.length - 1];
+	      if (e.shiftKey && document.activeElement === first) {
+	        e.preventDefault();
+	        last.focus();
+	      } else if (!e.shiftKey && document.activeElement === last) {
+	        e.preventDefault();
+	        first.focus();
+	      }
+	    });
+	  }
+
+	  toggleNav();
+
+	  // Runs on view transitions navigation
+	  document.addEventListener("astro:after-swap", toggleNav);
+	</script>
