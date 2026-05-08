@@ -21,7 +21,8 @@ export interface Props {
 }
 
 const { post, canonicalUrl, ogImageUrl } = Astro.props;
-const { title, description, pubDate, updatedDate, author } = post.data;
+const { title, description, pubDate, updatedDate, author, reviewPolicy } =
+  post.data;
 
 const AUTHOR_URL = new URL("/autor/", Astro.site ?? Astro.url.origin).href;
 const AUTHOR_IMAGE_URL = new URL(
@@ -44,6 +45,16 @@ const articleSchema = {
   ...(ogImageUrl ? { image: ogImageUrl } : {}),
   datePublished: pubDate?.toISOString(),
   ...(updatedDate ? { dateModified: updatedDate.toISOString() } : {}),
+  ...(reviewPolicy?.computedAt
+    ? {
+        lastReviewed: new Date(reviewPolicy.computedAt).toISOString(),
+        reviewedBy: {
+          "@type": "Person",
+          name: author ?? SITE.authorFullName,
+          url: AUTHOR_URL,
+        },
+      }
+    : {}),
   inLanguage: "es-CL",
   author: {
     "@type": "Person",
