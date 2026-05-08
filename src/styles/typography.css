@@ -44,7 +44,7 @@
     }
 
     figcaption {
-      @apply opacity-75;
+      @apply text-muted;
     }
 
     table {
@@ -71,7 +71,7 @@
     }
 
     blockquote {
-      @apply border-s-accent/80 wrap-break-word opacity-80;
+      @apply border-s-accent/80 wrap-break-word text-secondary;
     }
 
     details {

@@ -81,7 +81,7 @@ Datos mínimos para no perderte:
 - Retenciones acumuladas.
 - Tu situación previsional (pensionado, exención u otras causales).
 
-Si además quieres revisar tu declaración anual completa, complementa con el [checklist para revisar y enviar tu F22 en Operación Renta](/posts/operacion-renta-f22-checklist/).
+Si además quieres revisar tu declaración anual completa, parte por el [simulador de Operación Renta](/calculadoras/operacion-renta/) para estimar tu resultado y luego revisa el [checklist para enviar tu F22](/posts/operacion-renta-f22-checklist/).
 
 ## Escenarios por perfil
 
