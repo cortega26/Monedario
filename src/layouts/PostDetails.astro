@@ -391,8 +391,8 @@ const articleAdvisoryText = resolveBlogArticleAdvisory(post);
         <img
           src={SITE.authorImage}
           alt={`Foto de ${SITE.authorFullName}`}
-          width="452"
-          height="461"
+          width="96"
+          height="96"
           class="h-12 w-12 rounded-full border border-accent/30 object-cover object-center"
           loading="lazy"
           decoding="async"
@@ -519,6 +519,9 @@ const articleAdvisoryText = resolveBlogArticleAdvisory(post);
   /** Create a progress indicator
    *  at the top */
   function createProgressBar() {
+    // Guard: avoid duplication on view transitions
+    if (document.querySelector(".progress-container")) return;
+
     // Create the main container div
     const progressContainer = document.createElement("div");
     progressContainer.className =

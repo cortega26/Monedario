@@ -82,7 +82,7 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     title: "Calculadora de Sueldo Líquido",
     description:
       "Calcula tu líquido mensual con AFP, salud e impuesto único, y revisa el desglose de descuentos.",
-    icon: "💰",
+    icon: "moneybag",
     tag: "Más usada",
     family: "ingresos",
     primaryJtbd: "Saber cuánto llega a tu cuenta este mes.",
@@ -104,7 +104,7 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     title: "Boleta de Honorarios 2026",
     description:
       "Calcula líquido por boleta, retención vigente y base anual de cobertura orientativa sin mezclarlo con la declaración completa.",
-    icon: "🧾",
+    icon: "receipt",
     tag: "Más usada",
     family: "ingresos",
     primaryJtbd:
@@ -127,7 +127,7 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     title: "Simulador Operación Renta 2026",
     description:
       "Estima si el SII te devuelve o debes pagar más: consolida sueldos, honorarios y arriendos, descuenta retenciones y APV, y ve el resultado antes de enviar el F22.",
-    icon: "🧾",
+    icon: "receipt",
     tag: "Contingencia",
     family: "ingresos",
     primaryJtbd:
@@ -155,7 +155,7 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     title: "Finiquito e Indemnización",
     description:
       "Estima años de servicio, aviso previo y feriado proporcional para revisar una salida laboral antes de firmar.",
-    icon: "📄",
+    icon: "file-text",
     tag: "Contingencia",
     family: "ingresos",
     primaryJtbd:
@@ -178,7 +178,7 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     title: "Calculadora Impuesto Segunda Categoría",
     description:
       "Calcula cuánto pagas de impuesto único al trabajo según tu sueldo imponible mensual y en qué tramo de la tabla SII quedas.",
-    icon: "📊",
+    icon: "chart-bar",
     tag: "Más usada",
     family: "ingresos",
     primaryJtbd: "Saber si pagas impuesto de segunda categoría y cuánto.",
@@ -200,7 +200,7 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     title: "Seguro de Cesantía",
     description:
       "Estima saldo CIC, acceso al fondo solidario y cobertura mensual según contrato, causal y cotizaciones.",
-    icon: "🛡️",
+    icon: "shield-check",
     tag: "Contingencia",
     family: "ingresos",
     primaryJtbd:
@@ -223,7 +223,7 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     title: "Simulador APV",
     description:
       "Compara Régimen A y B con foco en ahorro tributario, renta imponible y beneficio mensual estimado.",
-    icon: "📈",
+    icon: "trending-up",
     tag: "Decisión APV",
     family: "ahorro-prevision",
     primaryJtbd:
@@ -246,7 +246,7 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     title: "Comparador de Comisiones AFP",
     description:
       "Compara la comisión de cada AFP con tu sueldo imponible y ve cuánto ahorrarías al año eligiendo la más barata.",
-    icon: "🏛️",
+    icon: "building-bank",
     tag: "Referencia",
     family: "ahorro-prevision",
     primaryJtbd:
@@ -274,7 +274,7 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     title: "Simulador de Jubilación",
     description:
       "Proyecta saldo AFP y pensión estimada considerando edad, ahorro actual, rentabilidad y cronograma previsional.",
-    icon: "🏖️",
+    icon: "sun",
     tag: "Largo plazo",
     family: "ahorro-prevision",
     primaryJtbd:
@@ -297,7 +297,7 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     title: "Calculadora de Crédito de Consumo",
     description:
       "Evalúa una oferta nueva con cuota, interés total, CAE y costos adicionales antes de firmar.",
-    icon: "🏦",
+    icon: "building-bank",
     tag: "Oferta nueva",
     family: "deuda-credito",
     primaryJtbd: "Comparar ofertas antes de tomar una deuda nueva.",
@@ -324,7 +324,7 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     title: "Costo Real Tarjeta de Crédito",
     description:
       "Mide cuánto cuesta pagar el mínimo o una cuota fija sobre una deuda ya usada en tu tarjeta.",
-    icon: "💳",
+    icon: "credit-card",
     tag: "Deuda usada",
     family: "deuda-credito",
     primaryJtbd:
@@ -351,7 +351,7 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     title: "¿Conviene prepagar el crédito?",
     description:
       "Calcula cuánto ahorras en intereses al hacer un abono extraordinario a tu crédito hipotecario o de consumo.",
-    icon: "💡",
+    icon: "bulb",
     tag: "Abono extra",
     family: "deuda-credito",
     primaryJtbd:
@@ -379,7 +379,7 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     title: "Simulador Renegociación Superir",
     description:
       "Revisa si calificas para la renegociación gratuita y estima una cuota bajo ese camino formal.",
-    icon: "⚖️",
+    icon: "scale",
     tag: "Salida formal",
     family: "deuda-credito",
     primaryJtbd:
@@ -407,7 +407,7 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     title: "Conversor UF ↔ Pesos",
     description:
       "Convierte entre UF y pesos al valor oficial del día con una referencia simple para cotizaciones y contratos.",
-    icon: "🔄",
+    icon: "refresh",
     tag: "Referencia",
     family: "vivienda-uf",
     primaryJtbd:
@@ -428,7 +428,7 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     title: "Reajuste de Arriendo",
     description:
       "Calcula cuánto sube un arriendo según UF, IPC o pesos fijos y revisa la lógica de la cláusula.",
-    icon: "🏠",
+    icon: "home",
     tag: "Contrato",
     family: "vivienda-uf",
     primaryJtbd:
@@ -451,7 +451,7 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     title: "Calculadora de Dividendo Hipotecario",
     description:
       "Estima tu dividendo mensual en UF y pesos según el valor de la propiedad, el pie, la tasa y el plazo. Incluye seguros opcionales y tabla de amortización.",
-    icon: "🏠",
+    icon: "home",
     tag: "Crédito hipotecario",
     family: "vivienda-uf",
     primaryJtbd:

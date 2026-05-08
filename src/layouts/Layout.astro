@@ -182,7 +182,7 @@ const structuredData = !pubDatetime
       href={new URL("rss.xml", siteContext).href}
     />
 
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#f8f9fb" id="theme-color-meta" />
 
     {
       PUBLIC_GA_MEASUREMENT_ID && (
@@ -233,6 +233,15 @@ const structuredData = !pubDatetime
 
         // Set theme immediately to prevent flash
         document.firstElementChild?.setAttribute("data-theme", themeValue);
+
+        // Set theme-color meta to match background (prevents white flash on dark mode)
+        const themeColor = document.querySelector('meta[name="theme-color"]');
+        if (themeColor) {
+          themeColor.setAttribute(
+            "content",
+            themeValue === "dark" ? "#0f1923" : "#f8f9fb"
+          );
+        }
 
         // Export minimal API for external script
         window.theme = {

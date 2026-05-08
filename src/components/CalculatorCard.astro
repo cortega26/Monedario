@@ -1,6 +1,35 @@
 ---
 import { getPath } from "@/utils/getPath";
 import type { CalculatorPortfolioEntry } from "@/config/calculatorPortfolio";
+import IconMoneybag from "@/assets/icons/IconMoneybag.svg";
+import IconReceipt from "@/assets/icons/IconReceipt.svg";
+import IconFileText from "@/assets/icons/IconFileText.svg";
+import IconChartBar from "@/assets/icons/IconChartBar.svg";
+import IconShieldCheck from "@/assets/icons/IconShieldCheck.svg";
+import IconTrendingUp from "@/assets/icons/IconTrendingUp.svg";
+import IconBuildingBank from "@/assets/icons/IconBuildingBank.svg";
+import IconSun from "@/assets/icons/IconSun.svg";
+import IconCreditCard from "@/assets/icons/IconCreditCard.svg";
+import IconBulb from "@/assets/icons/IconBulb.svg";
+import IconScale from "@/assets/icons/IconScale.svg";
+import IconRefresh from "@/assets/icons/IconRefresh.svg";
+import IconHome from "@/assets/icons/IconHome.svg";
+
+const iconMap: Record<string, any> = {
+  "moneybag": IconMoneybag,
+  "receipt": IconReceipt,
+  "file-text": IconFileText,
+  "chart-bar": IconChartBar,
+  "shield-check": IconShieldCheck,
+  "trending-up": IconTrendingUp,
+  "building-bank": IconBuildingBank,
+  "sun": IconSun,
+  "credit-card": IconCreditCard,
+  "bulb": IconBulb,
+  "scale": IconScale,
+  "refresh": IconRefresh,
+  "home": IconHome,
+};
 
 type Props = {
   calc: CalculatorPortfolioEntry;
@@ -10,13 +39,18 @@ type Props = {
 };
 
 const { calc, familyId, tagClass, showAlternative = true } = Astro.props;
+const CalcIcon = iconMap[calc.icon];
 ---
 
 <article
   class="rounded-xl border border-border bg-background p-5 transition-colors duration-150 hover:border-accent hover:bg-accent/5"
 >
   <div class="flex items-start justify-between gap-3">
-    <span class="text-2xl">{calc.icon}</span>
+    {CalcIcon ? (
+      <CalcIcon class="size-7 shrink-0 text-foreground" aria-hidden="true" />
+    ) : (
+      <span class="text-2xl" aria-hidden="true">{calc.icon}</span>
+    )}
     <span
       class:list={[
         "rounded-md border px-2 py-1 text-[11px] font-semibold",

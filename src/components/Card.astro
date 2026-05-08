@@ -55,10 +55,9 @@ const readingTime = getReadingTime(body ?? "");
       }
     </div>
     <Heading
-      class="mb-1 text-lg leading-snug font-semibold text-foreground transition-colors group-hover:text-accent"
+      class="card-heading mb-1 text-lg leading-snug font-semibold text-foreground transition-colors group-hover:text-accent"
       style={{
         viewTransitionName: slugifyStr(title.replaceAll(".", "-")),
-        fontFamily: "var(--font-display)",
       }}
     >
       {title}
@@ -75,6 +74,10 @@ const readingTime = getReadingTime(body ?? "");
 </li>
 
 <style>
+  .card-heading {
+    font-family: var(--font-display);
+  }
+
   .card {
     transition:
       transform 0.2s ease,

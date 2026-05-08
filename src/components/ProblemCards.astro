@@ -1,44 +1,50 @@
 ---
 import { getPath } from "@/utils/getPath";
+import IconHandshake from "@/assets/icons/IconHandshake.svg";
+import IconFileText from "@/assets/icons/IconFileText.svg";
+import IconCreditCard from "@/assets/icons/IconCreditCard.svg";
+import IconChartBar from "@/assets/icons/IconChartBar.svg";
+import IconMoneybag from "@/assets/icons/IconMoneybag.svg";
+import IconAlertCircle from "@/assets/icons/IconAlertCircle.svg";
 
 const cards = [
   {
-    emoji: "🤝",
+    icon: IconHandshake,
     title: "Me contrataron",
     description:
       "Entiende tu liquidación, cotizaciones y qué derechos tienes desde el primer día.",
     href: "/posts/liquidacion-de-sueldo/",
   },
   {
-    emoji: "📋",
+    icon: IconFileText,
     title: "Me van a despedir / me despidieron",
     description:
       "Calcula tu finiquito, aviso previo e indemnización según la causal de término.",
     href: "/calculadoras/finiquito-indemnizacion/",
   },
   {
-    emoji: "💳",
+    icon: IconCreditCard,
     title: "Tengo deudas",
     description:
       "Entiende tus opciones: renegociación, DICOM, Ley del consumidor y derechos frente al cobrador.",
     href: "/guias/deuda-credito/",
   },
   {
-    emoji: "📊",
+    icon: IconChartBar,
     title: "Debo declarar renta",
     description:
       "Calcula cuánto pagar o cuánto te devuelven, y navega el proceso del F-22 sin errores.",
     href: "/calculadoras/operacion-renta/",
   },
   {
-    emoji: "🐷",
+    icon: IconMoneybag,
     title: "Quiero ahorrar",
     description:
       "APV, fondos mutuos, UF y estrategias de ahorro con herramientas concretas.",
     href: "/guias/ahorro-e-inversion/",
   },
   {
-    emoji: "🚨",
+    icon: IconAlertCircle,
     title: "Me cobraron algo que no reconozco",
     description:
       "Qué hacer si apareces en DICOM sin saber por qué, o si detectas fraude en tu tarjeta.",
@@ -63,9 +69,7 @@ const cards = [
             data-analytics-label={card.title}
             data-analytics-location="home_problem_cards"
           >
-            <span class="text-2xl" aria-hidden="true">
-              {card.emoji}
-            </span>
+            <card.icon class="size-7 text-foreground" aria-hidden="true" />
             <span class="font-semibold text-foreground transition-colors group-hover:text-accent">
               {card.title}
             </span>
