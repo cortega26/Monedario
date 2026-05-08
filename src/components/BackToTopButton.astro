@@ -16,7 +16,7 @@ import IconArrowNarrowUp from "@/assets/icons/IconArrowNarrowUp.svg";
     class:list={[
       "group relative bg-background px-2 py-1",
       "size-14 rounded-full shadow-xl",
-      "md:h-8 md:w-fit md:rounded-md md:shadow-none md:focus-visible:rounded-none",
+      "md:h-11 md:w-fit md:rounded-md md:shadow-none md:focus-visible:rounded-none",
       "md:bg-background/35 md:bg-clip-padding md:backdrop-blur-lg",
     ]}
   >
@@ -24,9 +24,9 @@ import IconArrowNarrowUp from "@/assets/icons/IconArrowNarrowUp.svg";
       id="progress-indicator"
       class="absolute inset-0 -z-10 block size-14 scale-110 rounded-full bg-transparent md:hidden md:h-8 md:rounded-md"
     ></span>
-    <IconChevronLeft class="inline-block rotate-90 md:hidden" />
+    <IconChevronLeft class="inline-block rotate-90 md:hidden" aria-hidden="true" />
     <span class="sr-only text-sm group-hover:text-accent md:not-sr-only">
-      <IconArrowNarrowUp class="inline-block size-4" />
+      <IconArrowNarrowUp class="inline-block size-4" aria-hidden="true" />
       Volver arriba
     </span>
   </button>

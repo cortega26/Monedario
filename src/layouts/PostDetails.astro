@@ -540,18 +540,21 @@ const articleAdvisoryText = resolveBlogArticleAdvisory(post);
   /** Update the progress bar
    *  when user scrolls */
   function updateScrollProgress() {
+    const myBar = document.getElementById("myBar");
+    if (!myBar) return;
+    let ticking = false;
     document.addEventListener("scroll", () => {
-      const winScroll =
-        document.body.scrollTop || document.documentElement.scrollTop;
-      const height =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      if (document) {
-        const myBar = document.getElementById("myBar");
-        if (myBar) {
-          myBar.style.width = scrolled + "%";
-        }
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const winScroll =
+            document.body.scrollTop || document.documentElement.scrollTop;
+          const height =
+            document.documentElement.scrollHeight -
+            document.documentElement.clientHeight;
+          myBar.style.width = (winScroll / height) * 100 + "%";
+          ticking = false;
+        });
+        ticking = true;
       }
     });
   }
@@ -586,7 +589,7 @@ const articleAdvisoryText = resolveBlogArticleAdvisory(post);
       ].join(" ");
       copyButton.className = copyBtnClasses;
       copyButton.innerHTML = copyButtonLabel;
-      codeBlock.setAttribute("tabindex", "0");
+      copyButton.setAttribute("aria-label", "Copiar código");
       codeBlock.appendChild(copyButton);
 
       // wrap codebock with relative parent element

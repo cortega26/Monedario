@@ -120,16 +120,17 @@ const breadcrumbItems = [
   )
 }
 <nav class="app-layout mt-8 mb-1" aria-label="Migas de pan">
-  <ul
-    class="font-light [&>li]:inline [&>li:not(:last-child)>a]:hover:opacity-100"
-  >
+  <ul class="font-light [&>li]:inline">
     <li>
-      <a href={getPath("/")} class="opacity-80">Inicio</a>
+      <a
+        href={getPath("/")}
+        class="text-secondary transition-colors hover:text-foreground"
+      >
+        Inicio
+      </a>
       {
         crumbs.length > 0 ? (
-          <span aria-hidden="true" class="opacity-80">
-            &raquo;
-          </span>
+          <span aria-hidden="true" class="text-muted">&raquo;</span>
         ) : null
       }
     </li>
@@ -138,7 +139,7 @@ const breadcrumbItems = [
       crumbs.map((crumb, index) =>
         index + 1 === crumbs.length ? (
           <li>
-            <span class="opacity-75" aria-current="page">
+            <span class="text-muted" aria-current="page">
               {labels[index]}
             </span>
           </li>
@@ -146,11 +147,11 @@ const breadcrumbItems = [
           <li>
             <a
               href={getPath(index === 0 && hub ? hub.href : crumb.href)}
-              class="opacity-70"
+              class="text-secondary transition-colors hover:text-foreground"
             >
               {labels[index]}
             </a>
-            <span aria-hidden="true">&raquo;</span>
+            <span aria-hidden="true" class="text-muted">&raquo;</span>
           </li>
         )
       )
