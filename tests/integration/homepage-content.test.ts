@@ -519,7 +519,11 @@ describe("Wave 5 structural guards", () => {
       expect(existsSync(artifactPath)).toBe(true);
 
       const content = readFileSync(artifactPath, "utf8");
-      expect(content).toContain("Status: UNPUBLISHED");
+      if (slug === "operacion-renta-centro") {
+        expect(content).toContain("Status: PUBLISHED");
+      } else {
+        expect(content).toContain("Status: UNPUBLISHED");
+      }
     }
   });
 
@@ -529,7 +533,11 @@ describe("Wave 5 structural guards", () => {
       expect(existsSync(packetPath)).toBe(true);
 
       const content = readFileSync(packetPath, "utf8");
-      expect(content).toContain("Status: BLOCKED — pending human sign-off");
+      if (slug === "operacion-renta-centro") {
+        expect(content).toContain("Status: APPROVED");
+      } else {
+        expect(content).toContain("Status: BLOCKED — pending human sign-off");
+      }
       expect(content).toContain("human sign-off");
     }
   });
@@ -585,28 +593,28 @@ describe("Phase 3 structural guards", () => {
     expect(content).toContain("Status: DRAFT");
   });
 
-  it("artifact folder contains 05-math-audit.md with Status: DRAFT", () => {
+  it("artifact folder contains 05-math-audit.md with Status: REMEDIATED", () => {
     const path = `${artifactDir}/05-math-audit.md`;
     expect(existsSync(path)).toBe(true);
 
     const content = readFileSync(path, "utf8");
-    expect(content).toContain("Status: DRAFT");
+    expect(content).toContain("Status: REMEDIATED");
   });
 
-  it("artifact folder contains 06-compliance.md with Status: BLOCKED", () => {
+  it("artifact folder contains 06-compliance.md with Status: CONDITIONAL PASS", () => {
     const path = `${artifactDir}/06-compliance.md`;
     expect(existsSync(path)).toBe(true);
 
     const content = readFileSync(path, "utf8");
-    expect(content).toContain("Status: BLOCKED");
+    expect(content).toContain("Status: CONDITIONAL PASS");
   });
 
-  it("07-publish-packet.md status remains BLOCKED — pending human sign-off", () => {
+  it("07-publish-packet.md status remains APPROVED — listo para publicar", () => {
     const path = `${artifactDir}/07-publish-packet.md`;
     expect(existsSync(path)).toBe(true);
 
     const content = readFileSync(path, "utf8");
-    expect(content).toContain("Status: BLOCKED — pending human sign-off");
+    expect(content).toContain("Status: APPROVED");
     expect(content).toContain("human sign-off");
   });
 

@@ -531,6 +531,11 @@ const articleAdvisoryText = resolveBlogArticleAdvisory(post);
     const progressBar = document.createElement("div");
     progressBar.className = "progress-bar h-1 w-0 bg-accent";
     progressBar.id = "myBar";
+    progressBar.setAttribute("role", "progressbar");
+    progressBar.setAttribute("aria-valuenow", "0");
+    progressBar.setAttribute("aria-valuemin", "0");
+    progressBar.setAttribute("aria-valuemax", "100");
+    progressBar.setAttribute("aria-label", "Progreso de lectura del artículo");
 
     // Append the progress bar to the progress container
     progressContainer.appendChild(progressBar);
@@ -555,6 +560,8 @@ const articleAdvisoryText = resolveBlogArticleAdvisory(post);
             document.documentElement.scrollHeight -
             document.documentElement.clientHeight;
           myBar.style.width = (winScroll / height) * 100 + "%";
+          const scrollPercent = Math.round((winScroll / height) * 100);
+          myBar.setAttribute("aria-valuenow", String(scrollPercent));
           ticking = false;
         });
         ticking = true;
@@ -595,6 +602,13 @@ const articleAdvisoryText = resolveBlogArticleAdvisory(post);
       copyButton.setAttribute("aria-label", "Copiar código");
       codeBlock.appendChild(copyButton);
 
+      // Create aria-live region for copy feedback
+      const copyLiveRegion = document.createElement("span");
+      copyLiveRegion.className = "sr-only";
+      copyLiveRegion.setAttribute("aria-live", "polite");
+      copyLiveRegion.setAttribute("aria-atomic", "true");
+      codeBlock.appendChild(copyLiveRegion);
+
       // wrap codebock with relative parent element
       codeBlock?.parentNode?.insertBefore(wrapper, codeBlock);
       wrapper.appendChild(codeBlock);
@@ -612,6 +626,15 @@ const articleAdvisoryText = resolveBlogArticleAdvisory(post);
 
       // visual feedback that task is completed
       button.innerText = "Copiado";
+
+      // Announce copy success to screen readers via the live region
+      const liveRegion = block.parentNode?.querySelector("[aria-live='polite']");
+      if (liveRegion) {
+        liveRegion.textContent = "Código copiado";
+        setTimeout(() => {
+          liveRegion.textContent = "";
+        }, 1000);
+      }
 
       setTimeout(() => {
         button.innerText = copyButtonLabel;

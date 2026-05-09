@@ -254,3 +254,45 @@ jobs:
             output/validation/urlcheck/external-host-mismatch.json
             output/validation/urlcheck/external-non-blocking.json
             output/validation/urlcheck/external-full.csv
+
+  a11y-audit:
+    name: Accessibility audit (non-blocking)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+    continue-on-error: true
+
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: "📦 Install pnpm"
+        run: npm install -g pnpm@10.30.2
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: "pnpm"
+
+      - name: "📦 Install dependencies"
+        run: pnpm install --frozen-lockfile
+
+      - name: "🌐 Install Playwright browsers"
+        run: pnpm exec playwright install chromium
+
+      - name: "🏗️ Build static output"
+        run: pnpm run astro build
+
+      - name: "🎯 Run accessibility tests"
+        run: pnpm exec playwright test tests/accessibility/
+
+      - name: "📤 Upload accessibility report"
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: a11y-report
+          retention-days: 14
+          if-no-files-found: warn
+          path: |
+            playwright-report/

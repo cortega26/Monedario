@@ -13,9 +13,9 @@ Fecha de corte: 2026-04-30
 
 ### Estado de avance (2026-04-23)
 
-- **Completados:** 56 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `TD-0037`, `TD-0038`, `TD-0040`, `TD-0041`, `TD-0043`, `TD-0044`, `TD-0045`, `TD-0046`, `TD-0047`, `TD-0048`, `TD-0049`, `TD-0050`, `TD-0051`, `TD-0052`, `TD-0055`, `FIX-MDX`, `FIX-LINKS-CALC`)
+- **Completados:** 59 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `TD-0037`, `TD-0038`, `TD-0040`, `TD-0041`, `TD-0043`, `TD-0044`, `TD-0045`, `TD-0046`, `TD-0047`, `TD-0048`, `TD-0049`, `TD-0050`, `TD-0051`, `TD-0052`, `TD-0053`, `TD-0054`, `TD-0055`, `TD-0056`, `FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 1 (`TD-0039`)
-- **Backlog sin iniciar:** 4 (`TD-0042`, `TD-0053`, `TD-0054`, `TD-0056`)
+- **Backlog sin iniciar:** 1 (`TD-0042`)
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -30,6 +30,8 @@ Fecha de corte: 2026-04-30
 > Auditoría F22 (2026-04-12): los 9 hallazgos documentados en `docs/operations/reports/f22-calculator-audit-2026-04-12.md` ya estaban resueltos en el árbol al momento del registro. `TD-0044` a `TD-0052` se marcan directamente como Completados.
 > `TD-0055`: regenerado `scripts/hero-images/prompts.json` desde el planner vigente y reforzada la capa anti-drift con `POLICY_REGISTRY` + `check:policy-registry`; `pnpm run check:hero-prompts` vuelve a `OK` el 2026-04-23.
 > `TD-0056`: baseline pre-change del 2026-04-30 detecta 5 fallas preexistentes en `tests/integration/homepage-content.test.ts` por drift entre el contrato del test y el estado actual de artifacts editoriales publicados.
+> `TD-0053`: resuelto por commits `5644792c` (length-sort en `matchPhraseSet`) y `35231cc4` (reorden de array) — el test ya pasa.
+> `TD-0054`: resuelto por `TD-0055` (commit `a3937548`) — `check:hero-prompts` retorna OK.
 
 ### Top riesgos restantes
 
@@ -81,13 +83,14 @@ Fecha de corte: 2026-04-30
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** decidir si la fuente de verdad son los artifacts ya publicados o el contrato histórico del test. Luego actualizar assertions/fixtures o restaurar el estado editorial anterior con trazabilidad.
 - **Criterios de cierre (checklist verificable):**
-- [ ] `pnpm run test` deja de fallar por los 5 asserts de `homepage-content.test.ts`.
-- [ ] Queda documentado si el estado editorial correcto es `PUBLISHED/APPROVED` o `UNPUBLISHED/BLOCKED`.
-- [ ] La corrección se acompaña con backlog/CCR o con ajuste explícito del pipeline editorial.
+- [x] `pnpm run test` deja de fallar por los 5 asserts de `homepage-content.test.ts`.
+- [x] Queda documentado si el estado editorial correcto es `PUBLISHED/APPROVED` o `UNPUBLISHED/BLOCKED`.
+- [x] La corrección se acompaña con backlog/CCR o con ajuste explícito del pipeline editorial.
 - **Owner:** TBD
-- **Estado:** Backlog
+- **Estado:** Completado
 - **Fecha de creación:** 2026-04-30
-- **Última actualización:** 2026-04-30
+- **Última actualización:** 2026-05-09
+- **Nota de cierre:** Actualizadas 5 assertions en `tests/integration/homepage-content.test.ts` para reflejar que `operacion-renta-centro` completó el pipeline editorial (PUBLISHED/APPROVED). Los 5 artifacts restantes siguen en UNPUBLISHED/BLOCKED. La fuente de verdad son los artifacts publicados.
 
 ## TD-0001 — Estrategia de package manager y lockfiles inconsistente
 - **ID:** TD-0001
@@ -1207,12 +1210,13 @@ Fecha de corte: 2026-04-30
 - **Esfuerzo estimado:** XS
 - **Propuesta de solución:** Ordenar la detección para priorizar frases más específicas o relajar la aserción del test para reflejar el contrato real del detector.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] `pnpm run test` vuelve a pasar sin tocar el comportamiento esperado del detector.
-  - [ ] La suite deja explícita la precedencia entre `"not found"` y `"page not found"`.
+  - [x] `pnpm run test` vuelve a pasar sin tocar el comportamiento esperado del detector.
+  - [x] La suite deja explícita la precedencia entre `"not found"` y `"page not found"`.
 - **Owner:** TBD
-- **Estado:** Backlog
+- **Estado:** Completado
 - **Fecha de creación:** 2026-04-12
-- **Última actualización:** 2026-04-12
+- **Última actualización:** 2026-05-09
+- **Nota de cierre:** Ya resuelto en el árbol al auditar (commits `5644792c` y `35231cc4`). El length-sort en `matchPhraseSet` garantiza que la frase más específica `"page not found"` (14 chars) se verifique antes que `"not found"` (9 chars). El test existente ya valida esta precedencia.
 
 ## TD-0054 — `check:hero-prompts` falla por desalineación masiva entre `sceneId` y `approvedModelId`
 - **ID:** TD-0054
@@ -1226,10 +1230,11 @@ Fecha de corte: 2026-04-30
 - **Esfuerzo estimado:** M
 - **Propuesta de solución:** auditar `scripts/hero-images/manifest.json`, `scripts/hero-images/prompts.json` y el plan de escenas/modelos para realinear cada `sceneId` con su `approvedModelId` o ajustar el checker si la regla contractual cambió y quedó desactualizada.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] `pnpm run check:hero-prompts` pasa sin errores.
-  - [ ] `pnpm run check` vuelve a completar todos sus subgates.
-  - [ ] La relación válida entre `sceneId` y `approvedModelId` queda documentada o automatizada en la generación de prompts.
+  - [x] `pnpm run check:hero-prompts` pasa sin errores.
+  - [x] `pnpm run check` vuelve a completar todos sus subgates.
+  - [x] La relación válida entre `sceneId` y `approvedModelId` queda documentada o automatizada en la generación de prompts.
 - **Owner:** TBD
-- **Estado:** Backlog
+- **Estado:** Completado
 - **Fecha de creación:** 2026-04-14
-- **Última actualización:** 2026-04-14
+- **Última actualización:** 2026-05-09
+- **Nota de cierre:** Resuelto por `TD-0055` (commit `a3937548`). `pnpm run check:hero-prompts` retorna OK con 0 errores. La generación determinista de `sceneId` vía `buildArticleSceneId()` en `prompt-plan.mjs` + `build-prompts.mjs` automatiza la consistencia.

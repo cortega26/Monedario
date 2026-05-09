@@ -1,0 +1,202 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import { SITE } from "@/config";
+---
+
+<Layout
+  title={`Accesibilidad | ${SITE.title}`}
+  description="Declaración de accesibilidad de Monedario: cumplimiento parcial con WCAG 2.2 Nivel AA, características accesibles y canal de contacto para reportar problemas."
+>
+  <Header />
+  <Breadcrumb />
+  <main id="main-content" class="app-layout">
+    <section class="border-b border-border py-10">
+      <p class="mb-3 text-xs font-semibold tracking-widest text-accent uppercase">
+        Accesibilidad
+      </p>
+      <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
+        Declaración de accesibilidad
+      </h1>
+      <p class="max-w-2xl text-base leading-relaxed text-secondary">
+        Monedario busca que su contenido sea utilizable por la mayor cantidad
+        de personas posible, independientemente de sus capacidades o del
+        dispositivo que utilicen.
+      </p>
+    </section>
+
+    <!-- ESTADO DE CONFORMIDAD -->
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Estado de conformidad</h2>
+      <p class="max-w-2xl text-base leading-relaxed text-secondary">
+        Este sitio se encuentra <strong class="text-foreground">parcialmente conforme</strong> con
+        las <strong class="text-foreground">Pautas de Accesibilidad para el Contenido Web (WCAG) 2.2</strong>
+        en su <strong class="text-foreground">Nivel AA</strong>.
+      </p>
+      <p class="mt-3 max-w-2xl text-base leading-relaxed text-secondary">
+        Esto significa que la mayor parte del contenido cumple con los criterios de
+        accesibilidad, pero existen secciones que aún no alcanzan la conformidad
+        completa y están siendo revisadas activamente.
+      </p>
+    </section>
+
+    <!-- EVALUACIÓN -->
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Método de evaluación</h2>
+      <p class="max-w-2xl text-base leading-relaxed text-secondary">
+        La accesibilidad se evalúa mediante:
+      </p>
+      <ul class="mt-3 max-w-2xl list-disc space-y-2 pl-6 text-sm leading-relaxed text-secondary">
+        <li>
+          Pruebas automatizadas con <strong class="text-foreground">axe-core</strong> (motor de análisis
+          de accesibilidad) sobre las plantillas principales del sitio: portada,
+          artículo, calculadora, buscador y página de error.
+        </li>
+        <li>
+          Auditoría manual de navegación por teclado y lectores de pantalla
+          (VoiceOver, NVDA).
+        </li>
+        <li>
+          Verificación de contraste de color con herramientas de medición
+          cromática.
+        </li>
+      </ul>
+      <p class="mt-3 max-w-2xl text-sm leading-relaxed text-secondary">
+        Fecha de la última evaluación: <strong class="text-foreground">mayo de 2026</strong>.
+      </p>
+    </section>
+
+    <!-- CARACTERÍSTICAS ACCESIBLES -->
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Características accesibles</h2>
+      <div class="max-w-2xl space-y-4 text-sm leading-relaxed text-secondary">
+        <div class="rounded-xl border border-border p-4">
+          <p class="font-semibold text-foreground">
+            Navegación por teclado
+          </p>
+          <p class="mt-1">
+            Enlace de salto al contenido al inicio de cada página. Todos los
+            menús, formularios y componentes interactivos son accesibles
+            mediante la tecla Tab. Los menús desplegables y la navegación
+            móvil atrapan el foco para evitar que desaparezca de la interfaz.
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-4">
+          <p class="font-semibold text-foreground">
+            Lectores de pantalla
+          </p>
+          <p class="mt-1">
+            Los componentes interactivos tienen etiquetas descriptivas
+            (<code class="text-accent">aria-label</code>). Los íconos
+            decorativos están ocultos para lectores de pantalla
+            (<code class="text-accent">aria-hidden="true"</code>). Las
+            secciones de la página están identificadas como puntos de
+            referencia (landmarks) ARIA.
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-4">
+          <p class="font-semibold text-foreground">
+            Contraste y color
+          </p>
+          <p class="mt-1">
+            El texto principal supera el umbral de contraste WCAG AA
+            (4.5:1). El sitio usa colores semánticos en lugar de opacidades
+            para el texto secundario. El tema oscuro mantiene relaciones de
+            contraste equivalentes.
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-4">
+          <p class="font-semibold text-foreground">
+            Movimiento reducido
+          </p>
+          <p class="mt-1">
+            El sitio respeta la preferencia del sistema operativo
+            (<code class="text-accent">prefers-reduced-motion: reduce</code>)
+            desactivando animaciones, transiciones y desplazamiento suave.
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-4">
+          <p class="font-semibold text-foreground">
+            Impresión
+          </p>
+          <p class="mt-1">
+            El sitio incluye una hoja de estilos para impresión que elimina
+            elementos no esenciales (navegación, botones) y optimiza la
+            legibilidad en papel.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIMITACIONES CONOCIDAS -->
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Limitaciones conocidas</h2>
+      <p class="max-w-2xl text-base leading-relaxed text-secondary">
+        Estamos trabajando para resolver las siguientes limitaciones:
+      </p>
+      <div class="mt-4 max-w-2xl space-y-4 text-sm leading-relaxed text-secondary">
+        <div class="rounded-xl border border-border p-4">
+          <p class="font-semibold text-foreground">
+            Resultados de calculadoras
+          </p>
+          <p class="mt-1">
+            Aunque los resultados se anuncian mediante regiones en vivo
+            (<code class="text-accent">aria-live</code>), algunos
+            calculadores pueden no anunciar correctamente los cambios en
+            todos los lectores de pantalla. Estamos revisando la cobertura
+            de las 18 calculadoras del sitio.
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-4">
+          <p class="font-semibold text-foreground">
+            Indicadores de progreso
+          </p>
+          <p class="mt-1">
+            La barra de progreso de lectura y el indicador circular del
+            botón "Volver arriba" tienen soporte ARIA limitado. La
+            actualización del valor porcentual puede no anunciarse
+            correctamente en todos los lectores de pantalla.
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-4">
+          <p class="font-semibold text-foreground">
+            Contenido incrustado de terceros
+          </p>
+          <p class="mt-1">
+            Algunos componentes cargados dinámicamente (Pagefind, ciertos
+            gráficos) pueden tener limitaciones de accesibilidad que están
+            fuera de nuestro control directo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEEDBACK -->
+    <section class="py-10">
+      <div class="max-w-2xl rounded-xl border border-border bg-surface-muted p-6">
+        <h2 class="mb-3 text-lg font-bold text-foreground">
+          Reportar un problema de accesibilidad
+        </h2>
+        <p class="text-sm leading-relaxed text-secondary">
+          Si encuentras alguna barrera que te impida usar el sitio — un
+          botón sin etiqueta, un contraste insuficiente, un formulario que
+          no funciona con tu lector de pantalla o cualquier otra dificultad
+          — escríbenos a
+          <a
+            href="mailto:contacto@monedario.cl"
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+            >contacto@monedario.cl</a
+          >.
+        </p>
+        <p class="mt-3 text-sm leading-relaxed text-secondary">
+          Nos comprometemos a responder dentro de los <strong class="text-foreground">10 días hábiles</strong>
+          e implementar la corrección correspondiente en el plazo más breve
+          posible.
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
