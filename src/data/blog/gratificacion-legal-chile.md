@@ -28,7 +28,7 @@ articleLead:
     - label: "BCN — Código del Trabajo, arts. 47–52"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=207436"
     - label: "Dirección del Trabajo"
-      href: "https://www.dt.gob.cl/"
+      href: "https://www.dt.gob.cl/portal/1626/w3-channel.html"
     - label: "Ministerio del Trabajo — IMM vigente"
       href: "https://www.mintrab.gob.cl/"
   covers:

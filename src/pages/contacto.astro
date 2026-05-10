@@ -4,18 +4,6 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getPath } from "@/utils/getPath";
-
-/* TODO: configurar contacto@monedario.cl via Cloudflare Email Routing o ImprovMX antes del deploy
- *
- * Opción A — DNS en Cloudflare (recomendada, gratuita):
- *   Dashboard → Email → Email Routing → Add custom address
- *   → address: "contacto" → destination: tu cuenta Gmail
- *   Cloudflare agrega los MX automáticamente.
- *
- * Opción B — DNS en otro proveedor:
- *   Usar ImprovMX (improvmx.com, free tier).
- *   Agregar sus registros MX al DNS del dominio y crear el alias en su panel.
- */
 ---
 
 <Layout

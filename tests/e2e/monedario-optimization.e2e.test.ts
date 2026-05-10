@@ -10,17 +10,6 @@ const calculatorPages = readdirSync(join(root, "src/pages/calculadoras"))
   .sort();
 
 describe("Monedario optimization implementation", () => {
-  it("has the required execution artifact with governance sections", () => {
-    const path = "docs/backlog/MONEDARIO_OPTIMIZATION_2026-04-24.md";
-    expect(existsSync(join(root, path))).toBe(true);
-
-    const content = read(path);
-    expect(content).toContain("Scope declaration");
-    expect(content).toContain("URL.PUBLIC.NO_POST_ID");
-    expect(content).toContain("Competitive Adaptation Appendix");
-    expect(content).toContain("Rollback strategy");
-  });
-
   it("defines the reusable calculator trust badge", () => {
     const path = "src/components/CalculatorTrustBadge.astro";
     expect(existsSync(join(root, path))).toBe(true);

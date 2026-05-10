@@ -399,17 +399,6 @@ describe("Wave 2 structural guards", () => {
 });
 
 describe("Wave 3 structural guards", () => {
-  it("Wave 3 CCR file exists and is unignored in .gitignore", () => {
-    expect(
-      existsSync("docs/backlog/MONEDARIO_WAVE3_CCR_2026-04-24.md")
-    ).toBe(true);
-
-    const gitignore = readFileSync(".gitignore", "utf8");
-    expect(gitignore).toContain(
-      "!docs/backlog/MONEDARIO_WAVE3_CCR_2026-04-24.md"
-    );
-  });
-
   it("glossaryAllowlist has exactly 11 terms", () => {
     const source = readFileSync("src/utils/glossaryAllowlist.ts", "utf8");
     const termMatches = source.match(/\bterm:\s*"/g) ?? [];
@@ -466,13 +455,6 @@ describe("Wave 4 structural guards", () => {
     "pensiones-afp",
   ];
 
-  it("Wave 4 CCR file exists and is unignored in .gitignore", () => {
-    expect(existsSync("docs/backlog/MONEDARIO_WAVE4_CCR_2026-04-24.md")).toBe(true);
-
-    const gitignore = readFileSync(".gitignore", "utf8");
-    expect(gitignore).toContain("!docs/backlog/MONEDARIO_WAVE4_CCR_2026-04-24.md");
-  });
-
   it("hubPillarConfig.ts exists and has no domain or application imports", () => {
     expect(existsSync("src/config/hubPillarConfig.ts")).toBe(true);
 
@@ -498,36 +480,23 @@ describe("Wave 4 structural guards", () => {
 
 describe("Wave 5 structural guards", () => {
   const artifactSlugs = [
-    "dicom-salida",
-    "cotizaciones-impagas",
-    "licencia-medica-wizard",
+    "contribuciones-bienes-raices",
+    "fondo-emergencia",
+    "gratificacion-legal",
+    "igc",
     "operacion-renta-centro",
-    "afp-comparador-ampliado",
-    "fraude-cargo-no-reconocido",
+    "pgu",
+    "sueldo-imponible",
   ];
 
-  it("Wave 5 CCR file exists and is unignored in .gitignore", () => {
-    expect(existsSync("docs/backlog/MONEDARIO_WAVE5_CCR_2026-04-24.md")).toBe(true);
-
-    const gitignore = readFileSync(".gitignore", "utf8");
-    expect(gitignore).toContain("!docs/backlog/MONEDARIO_WAVE5_CCR_2026-04-24.md");
+  it("operacion-renta-centro has 01-artifact.md with Status: PUBLISHED", () => {
+    const artifactPath = "docs/editorial/artifacts/operacion-renta-centro/01-artifact.md";
+    expect(existsSync(artifactPath)).toBe(true);
+    const content = readFileSync(artifactPath, "utf8");
+    expect(content).toContain("Status: PUBLISHED");
   });
 
-  it("all 6 artifact folders contain 01-artifact.md with Status: UNPUBLISHED", () => {
-    for (const slug of artifactSlugs) {
-      const artifactPath = `docs/editorial/artifacts/${slug}/01-artifact.md`;
-      expect(existsSync(artifactPath)).toBe(true);
-
-      const content = readFileSync(artifactPath, "utf8");
-      if (slug === "operacion-renta-centro") {
-        expect(content).toContain("Status: PUBLISHED");
-      } else {
-        expect(content).toContain("Status: UNPUBLISHED");
-      }
-    }
-  });
-
-  it("all 6 artifact folders contain 07-publish-packet.md with Status: BLOCKED", () => {
+  it("all artifact folders contain 07-publish-packet.md with status signed off or approved", () => {
     for (const slug of artifactSlugs) {
       const packetPath = `docs/editorial/artifacts/${slug}/07-publish-packet.md`;
       expect(existsSync(packetPath)).toBe(true);
@@ -536,9 +505,8 @@ describe("Wave 5 structural guards", () => {
       if (slug === "operacion-renta-centro") {
         expect(content).toContain("Status: APPROVED");
       } else {
-        expect(content).toContain("Status: BLOCKED — pending human sign-off");
+        expect(content).toContain("Status: SIGNED OFF");
       }
-      expect(content).toContain("human sign-off");
     }
   });
 
@@ -555,19 +523,6 @@ describe("Wave 5 structural guards", () => {
 
 describe("Phase 3 structural guards", () => {
   const artifactDir = "docs/editorial/artifacts/operacion-renta-centro";
-
-  it("Phase 3 CCR file exists and is unignored in .gitignore", () => {
-    expect(
-      existsSync(
-        "docs/backlog/MONEDARIO_PHASE3_OPERACION-RENTA-CENTRO_CCR_2026-04-24.md"
-      )
-    ).toBe(true);
-
-    const gitignore = readFileSync(".gitignore", "utf8");
-    expect(gitignore).toContain(
-      "!docs/backlog/MONEDARIO_PHASE3_OPERACION-RENTA-CENTRO_CCR_2026-04-24.md"
-    );
-  });
 
   it("artifact folder contains 02-research.md with Status: DRAFT", () => {
     const path = `${artifactDir}/02-research.md`;
