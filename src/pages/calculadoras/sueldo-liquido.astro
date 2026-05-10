@@ -118,7 +118,7 @@ const calculatorNextStepItems = [
   <Header />
   <Breadcrumb />
   <CalculatorTrustBadge location="calculator_header" />
-  <main
+  <main data-layout="calculator"
     id="main-content"
     class="app-layout"
     data-analytics-page-type="calculator"
@@ -560,6 +560,7 @@ const calculatorNextStepItems = [
     <!-- EXPLICACIÓN -->
     <section
       class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
+      style="content-visibility: auto; contain-intrinsic-size: 600px;"
     >
       <h2>¿Cómo se calcula el sueldo líquido en Chile?</h2>
       <p>
@@ -613,7 +614,7 @@ const calculatorNextStepItems = [
       </p>
     </section>
 
-    <section class="max-w-none border-t border-border pt-8 pb-12">
+    <section class="max-w-none border-t border-border pt-8 pb-12" style="content-visibility: auto; contain-intrinsic-size: 500px;">
       <h2 class="mb-4 text-xl font-semibold">Preguntas frecuentes</h2>
 
       <div class="space-y-2">
@@ -836,7 +837,11 @@ const calculatorNextStepItems = [
     return { uf, utm };
   }
 
-  const economicParameters = readEconomicParameters();
+  let _economicParams: ReturnType<typeof readEconomicParameters> | null = null;
+  function getParams() {
+    if (!_economicParams) _economicParams = readEconomicParameters();
+    return _economicParams;
+  }
 
   function showError(message: string) {
     const el = document.getElementById("calc-error");
@@ -1213,7 +1218,7 @@ const calculatorNextStepItems = [
           healthSystem,
           contractType,
           isapreAdditionalPercent: isapreAdicional,
-          economicParameters,
+          economicParameters: getParams(),
         });
       } catch (error) {
         showError(
@@ -1302,7 +1307,7 @@ const calculatorNextStepItems = [
           healthSystem,
           contractType,
           isapreAdditionalPercent: isapreAdicional,
-          economicParameters,
+          economicParameters: getParams(),
         });
       } catch (error) {
         showError(

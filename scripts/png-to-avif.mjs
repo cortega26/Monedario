@@ -99,34 +99,61 @@ async function collectPngs(dirPath) {
   return results;
 }
 
+// ─── Variantes de resolución ──────────────────────────────────────────────────
+
+const VARIANTS = [
+  { suffix: "@desktop", width: 1200, height: 630 },
+  { suffix: "@tablet",  width: 800,  height: 420 },
+  { suffix: "@mobile",  width: 600,  height: 315 },
+];
+
 // ─── Conversión ───────────────────────────────────────────────────────────────
 
 async function convertFile(pngPath, sharp) {
-  const avifPath = join(dirname(pngPath), `${basename(pngPath, ".png")}.avif`);
+  const basePath = join(dirname(pngPath), basename(pngPath, ".png"));
   const relPath = relative(PROJECT_ROOT, pngPath);
 
   const originalSize = (await stat(pngPath)).size;
 
   if (CONFIG.dryRun) {
-    console.log(`  [dry-run] ${relPath} → ${basename(avifPath)}`);
+    for (const v of VARIANTS) {
+      const out = `${basePath}${v.suffix}.avif`;
+      console.log(`  [dry-run] ${relPath} → ${basename(out)}`);
+    }
     return { skipped: false, dryRun: true, originalSize };
   }
 
-  await sharp(pngPath)
-    .avif({
-      quality: CONFIG.quality,
-      effort: CONFIG.effort,
-      chromaSubsampling: CONFIG.chromaSubsampling,
-    })
-    .toFile(avifPath);
+  const pipeline = sharp(pngPath);
+  const metadata = await pipeline.metadata();
 
-  const convertedSize = (await stat(avifPath)).size;
+  let totalConverted = 0;
+  const paths = [];
+
+  for (const v of VARIANTS) {
+    const outPath = `${basePath}${v.suffix}.avif`;
+    const w = Math.min(v.width, metadata.width ?? Infinity);
+    const h = Math.min(v.height, metadata.height ?? Infinity);
+
+    await pipeline
+      .clone()
+      .resize({ width: w, height: h, fit: "cover", position: "centre" })
+      .avif({
+        quality: CONFIG.quality,
+        effort: CONFIG.effort,
+        chromaSubsampling: CONFIG.chromaSubsampling,
+      })
+      .toFile(outPath);
+
+    const size = (await stat(outPath)).size;
+    totalConverted += size;
+    paths.push(outPath);
+  }
 
   if (!CONFIG.keepOriginal) {
     await unlink(pngPath);
   }
 
-  return { skipped: false, dryRun: false, originalSize, convertedSize, avifPath };
+  return { skipped: false, dryRun: false, originalSize, convertedSize: totalConverted, avifPath: paths[0] };
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
@@ -172,6 +199,7 @@ async function main() {
   const mode = CONFIG.dryRun ? " [DRY RUN]" : "";
   console.log(`\n  PNG → AVIF${mode}`);
   console.log(`  Calidad: ${CONFIG.quality} | Effort: ${CONFIG.effort} | Chroma: ${CONFIG.chromaSubsampling}`);
+  console.log(`  Variantes: ${VARIANTS.length} (${VARIANTS.map(v => `${v.width}×${v.height}`).join(", ")})`);
   console.log(`  Mantener originales: ${CONFIG.keepOriginal ? "sí" : "no"}`);
   console.log(`  Archivos encontrados: ${files.length}\n`);
 
@@ -194,9 +222,9 @@ async function main() {
       } else {
         totalOriginal += result.originalSize;
         totalConverted += result.convertedSize;
-        const reduction = pct(result.originalSize, result.convertedSize);
+        const avgPerVariant = result.convertedSize / VARIANTS.length;
         process.stdout.write(
-          `${formatBytes(result.originalSize)} → ${formatBytes(result.convertedSize)} (${reduction})\n`
+          `${formatBytes(result.originalSize)} → 3 AVIFs, ~${formatBytes(Math.round(avgPerVariant))} c/u\n`
         );
       }
     } catch (err) {

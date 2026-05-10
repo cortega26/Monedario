@@ -44,6 +44,7 @@
     "rss:snapshot": "node scripts/rss-to-json.mjs --in dist/rss.xml --out docs/reports/rss_snapshot.json",
     "rss:compare": "node scripts/compare-rss.mjs docs/reports/rss_snapshot.json output/validation/rss_snapshot_after.json",
     "check:rss": "node scripts/rss-to-json.mjs --in dist/rss.xml --out output/validation/rss_snapshot_after.json && pnpm run rss:compare",
+    "perf:ci": "lhci collect --config=lighthouserc.cjs && lhci assert --config=lighthouserc.cjs",
     "check:boundaries": "node scripts/check-domain-boundaries.mjs",
     "check:toc-i18n": "node scripts/check-toc-i18n.mjs",
     "check:editorial-guard": "node scripts/check-editorial-guard.mjs",
@@ -97,6 +98,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "@axe-core/playwright": "^4.11.3",
+    "@lhci/cli": "^0.15.1",
     "@pagefind/default-ui": "^1.5.2",
     "@playwright/test": "^1.59.1",
     "@shikijs/transformers": "^4.0.2",

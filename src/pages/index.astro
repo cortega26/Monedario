@@ -86,7 +86,7 @@ const heroDescription =
 
     {
       recentRichPosts.length > 0 && (
-        <section class="py-5 lg:py-6">
+        <section class="py-5 lg:py-6" style="content-visibility: auto; contain-intrinsic-size: 600px;">
           <div class="rounded-xl bg-surface-muted/22 px-4 py-5 sm:px-6 sm:py-6">
             <div class="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
               <div>
@@ -120,8 +120,7 @@ const heroDescription =
 </Layout>
 
 <style is:global>
-  [data-layout="index"] .homepage-body-heading,
-  [data-layout="index"] .card-heading {
+  [data-layout="index"] .homepage-body-heading {
     font-family: var(--font-body);
   }
 </style>

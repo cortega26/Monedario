@@ -37,6 +37,7 @@ const { noMarginTop = false, class: className, ...attrs } = Astro.props;
 
 <footer
   class:list={["app-layout", { "mt-auto": !noMarginTop }, className]}
+  style="content-visibility: auto; contain-intrinsic-size: 450px;"
   {...attrs}
 >
   <div class="border-t border-border py-8">
