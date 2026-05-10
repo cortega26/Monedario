@@ -53,7 +53,6 @@ async function fetchDecemberUtm(referenceYear) {
 function getUtaReferenceYear() {
   const now = new Date();
   const year = now.getFullYear();
-  const month = now.getMonth() + 1;
   // UTA for the current calendar year uses December of the previous year.
   // If it's still early in the year (before March), the previous year's December
   // UTM should be available, so the reference year is current - 1.
