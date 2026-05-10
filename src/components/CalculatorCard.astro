@@ -15,20 +15,22 @@ import IconScale from "@/assets/icons/IconScale.svg";
 import IconRefresh from "@/assets/icons/IconRefresh.svg";
 import IconHome from "@/assets/icons/IconHome.svg";
 
-const iconMap: Record<string, any> = {
-  "moneybag": IconMoneybag,
-  "receipt": IconReceipt,
+type IconComponent = typeof IconMoneybag;
+
+const iconMap: Record<string, IconComponent> = {
+  moneybag: IconMoneybag,
+  receipt: IconReceipt,
   "file-text": IconFileText,
   "chart-bar": IconChartBar,
   "shield-check": IconShieldCheck,
   "trending-up": IconTrendingUp,
   "building-bank": IconBuildingBank,
-  "sun": IconSun,
+  sun: IconSun,
   "credit-card": IconCreditCard,
-  "bulb": IconBulb,
-  "scale": IconScale,
-  "refresh": IconRefresh,
-  "home": IconHome,
+  bulb: IconBulb,
+  scale: IconScale,
+  refresh: IconRefresh,
+  home: IconHome,
 };
 
 type Props = {
@@ -46,11 +48,15 @@ const CalcIcon = iconMap[calc.icon];
   class="rounded-xl border border-border bg-background p-5 transition-colors duration-150 hover:border-accent hover:bg-accent/5"
 >
   <div class="flex items-start justify-between gap-3">
-    {CalcIcon ? (
-      <CalcIcon class="size-7 shrink-0 text-foreground" aria-hidden="true" />
-    ) : (
-      <span class="text-2xl" aria-hidden="true">{calc.icon}</span>
-    )}
+    {
+      CalcIcon ? (
+        <CalcIcon class="size-7 shrink-0 text-foreground" aria-hidden="true" />
+      ) : (
+        <span class="text-2xl" aria-hidden="true">
+          {calc.icon}
+        </span>
+      )
+    }
     <span
       class:list={[
         "rounded-md border px-2 py-0.5 text-xs font-semibold",

@@ -24,12 +24,16 @@ test.describe("WCAG 2.2 AA — automated scan", () => {
       );
 
       if (criticalAndSerious.length > 0) {
+        // eslint-disable-next-line no-console
         console.log(
           `\n=== ${pageDef.name} — ${criticalAndSerious.length} critical/serious violations ===`
         );
         for (const v of criticalAndSerious) {
+          // eslint-disable-next-line no-console
           console.log(`  [${v.impact}] ${v.id}: ${v.help}`);
+          // eslint-disable-next-line no-console
           console.log(`  Help: ${v.helpUrl}`);
+          // eslint-disable-next-line no-console
           console.log(
             `  Elements: ${v.nodes.map(n => n.target.join(", ")).join(" | ")}`
           );

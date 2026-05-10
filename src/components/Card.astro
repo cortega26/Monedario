@@ -44,9 +44,9 @@ const readingTime = getReadingTime(body ?? "");
             width="1200"
             height="675"
             srcset={`
-              ${imageSrc.replace('.avif', '@mobile.avif')} 600w,
-              ${imageSrc.replace('.avif', '@tablet.avif')} 800w,
-              ${imageSrc.replace('.avif', '@desktop.avif')} 1200w
+              ${imageSrc.replace(".avif", "@mobile.avif")} 600w,
+              ${imageSrc.replace(".avif", "@tablet.avif")} 800w,
+              ${imageSrc.replace(".avif", "@desktop.avif")} 1200w
             `}
             sizes="(min-width: 1280px) 560px, (min-width: 768px) 45vw, 100vw"
             class="aspect-video w-full object-cover"

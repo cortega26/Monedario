@@ -33,6 +33,34 @@ function assertFinitePositive(value, label) {
   }
 }
 
+async function fetchDecemberUtm(referenceYear) {
+  const url = `https://mindicador.cl/api/utm/${referenceYear}`;
+  try {
+    const response = await fetch(url, {
+      signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
+    });
+    if (!response.ok) return null;
+    const payload = await response.json();
+    const decEntry = payload?.serie?.find(e =>
+      e.fecha?.startsWith(`${referenceYear}-12`)
+    );
+    return decEntry ? Number(decEntry.valor) : null;
+  } catch {
+    return null;
+  }
+}
+
+function getUtaReferenceYear() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth() + 1;
+  // UTA for the current calendar year uses December of the previous year.
+  // If it's still early in the year (before March), the previous year's December
+  // UTM should be available, so the reference year is current - 1.
+  // UTA is defined once per year, so for the entire calendar year we use year-1.
+  return year - 1;
+}
+
 async function fetchLiveParameters() {
   const response = await fetch(ECONOMIC_API_URL, {
     signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
@@ -46,7 +74,18 @@ async function fetchLiveParameters() {
   const payload = await response.json();
   const uf = Number(payload?.uf?.valor);
   const utm = Number(payload?.utm?.valor);
-  const uta = payload?.uta?.valor !== undefined ? Number(payload.uta.valor) : undefined;
+
+  // UTA = December UTM of the previous year × 12
+  const utaRefYear = getUtaReferenceYear();
+  const decUtm = await fetchDecemberUtm(utaRefYear);
+  const uta = decUtm !== null
+    ? decUtm * 12
+    : utm * 12;
+  if (decUtm === null) {
+    console.warn(
+      `[economic-snapshot] WARN: Could not fetch December ${utaRefYear} UTM from mindicador.cl. Calculated UTA from current UTM as approximation.`
+    );
+  }
   const ipc = Number(payload?.ipc?.valor ?? 0);
   const tmc =
     payload?.tmc?.valor !== undefined ? Number(payload.tmc.valor) : 3.49;
@@ -55,7 +94,11 @@ async function fetchLiveParameters() {
   const indicatorUpdatedAt = {
     uf: payload?.uf?.fecha ? toIsoDate(payload.uf.fecha) : undefined,
     utm: payload?.utm?.fecha ? toIsoDate(payload.utm.fecha) : undefined,
-    uta: payload?.uta?.fecha ? toIsoDate(payload.uta.fecha) : undefined,
+    uta: decUtm !== null
+      ? `${utaRefYear}-12-01`
+      : payload?.utm?.fecha
+        ? toIsoDate(payload.utm.fecha)
+        : undefined,
     ipc: payload?.ipc?.fecha ? toIsoDate(payload.ipc.fecha) : undefined,
     tmc: payload?.tmc?.fecha ? toIsoDate(payload.tmc.fecha) : undefined,
     dolar: payload?.dolar?.fecha ? toIsoDate(payload.dolar.fecha) : undefined,
@@ -82,14 +125,12 @@ async function fetchLiveParameters() {
   if (dolar !== undefined) {
     assertFinitePositive(dolar, "Dolar");
   }
-  if (uta !== undefined) {
-    assertFinitePositive(uta, "UTA");
-  }
+  assertFinitePositive(uta, "UTA");
 
   return {
     uf,
     utm,
-    ...(uta !== undefined && { uta }),
+    uta,
     ipc,
     tmc,
     ...(dolar !== undefined && { dolar }),
@@ -108,9 +149,7 @@ async function fetchLiveParameters() {
       ...(dolar !== undefined
         ? { dolar: indicatorUpdatedAt.dolar ?? lastUpdated }
         : {}),
-      ...(uta !== undefined
-        ? { uta: indicatorUpdatedAt.uta ?? lastUpdated }
-        : {}),
+      uta: indicatorUpdatedAt.uta ?? lastUpdated,
     },
     lastUpdated,
     capturedAt: new Date().toISOString(),

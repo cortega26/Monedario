@@ -116,9 +116,18 @@ function buildEconomicDatasets(registry, previousSnapshot) {
 
   for (const [datasetId, value] of economicMappings) {
     if (!Number.isFinite(value)) {
-      throw new Error(`Missing numeric value for ${datasetId} in economic snapshot.`);
+      console.warn(
+        `[editorial-volatile-data] Skipping ${datasetId}: value not available in economic snapshot.`
+      );
+      continue;
     }
     const datasetMeta = registry.datasets[datasetId];
+    if (!datasetMeta) {
+      console.warn(
+        `[editorial-volatile-data] Skipping ${datasetId}: no registry metadata found.`
+      );
+      continue;
+    }
     const previous = previousSnapshot?.datasets?.[datasetId];
     datasets[datasetId] = {
       label: datasetMeta.label,

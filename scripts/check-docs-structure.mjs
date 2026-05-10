@@ -9,6 +9,7 @@ const REPO_ROOT = path.resolve(__dirname, "..");
 
 const ROOT_ALLOWED_MARKDOWN = new Set([
   "README.md",
+  "CLAUDE.md",
   "AGENTS.md",
   "START_HERE.md",
   "LICENSE",
@@ -25,6 +26,8 @@ const ALLOWED_PREFIXES = [
   "artifacts/editorial/",
   "src/data/",
   ".github/",
+  "output/",
+  "memory/",
 ];
 
 const CONTEXT_LEGACY_DOC_PATTERNS = [

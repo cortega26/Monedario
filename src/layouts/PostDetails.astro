@@ -267,11 +267,7 @@ const articleAdvisoryText = resolveBlogArticleAdvisory(post);
       <meta name="robots" content="noindex,follow" slot="head" />
     )
   }
-  {
-    tags.map(tag => (
-      <meta property="article:tag" content={tag} slot="head" />
-    ))
-  }
+  {tags.map(tag => <meta property="article:tag" content={tag} slot="head" />)}
   <ArticleJsonLd
     {post}
     canonicalUrl={layoutProps.canonicalURL ?? ""}
@@ -628,7 +624,9 @@ const articleAdvisoryText = resolveBlogArticleAdvisory(post);
       button.innerText = "Copiado";
 
       // Announce copy success to screen readers via the live region
-      const liveRegion = block.parentNode?.querySelector("[aria-live='polite']");
+      const liveRegion = block.parentNode?.querySelector(
+        "[aria-live='polite']"
+      );
       if (liveRegion) {
         liveRegion.textContent = "Código copiado";
         setTimeout(() => {
