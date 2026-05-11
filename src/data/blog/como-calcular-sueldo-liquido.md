@@ -2,7 +2,7 @@
 title: "Cómo calcular tu sueldo líquido en Chile: del imponible al depósito final"
 author: "Equipo Monedario"
 pubDate: 2026-02-24T10:00:00Z
-updatedDate: 2026-04-10T00:00:00Z
+updatedDate: 2026-05-11T00:00:00Z
 slug: como-calcular-sueldo-liquido
 featured: true
 homepagePriority: 100
@@ -26,7 +26,7 @@ articleLead:
   calculatorLabel: "Usar calculadora de sueldo líquido"
   nextStepHref: "/posts/liquidacion-de-sueldo/"
   nextStepLabel: "Auditar la liquidación"
-  validAsOf: 2026-04-10
+  validAsOf: 2026-05-11
   officialSources:
     - label: "SII — Impuesto Único 2026"
       href: "https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm"
@@ -105,7 +105,7 @@ El sueldo imponible es la parte de tu remuneración sobre la que se aplican las 
 
 Si tu liquidación dice "sueldo bruto $1.200.000" pero el imponible es $1.050.000, los porcentajes de AFP, salud y cesantía se calculan sobre los $1.050.000, no sobre $1.200.000.
 
-Esto también tiene un límite superior: existe un **[tope imponible](/glosario/tope-imponible/)** para las cotizaciones previsionales. En 2026, la Superintendencia de Pensiones informa **87,8 [UF](/guias/uf-costo-de-vida/)** para AFP y salud, mientras la AFC informa **135,2 UF** para seguro de cesantía. Si ganas más que esos topes, esas cotizaciones se calculan solo hasta el límite respectivo. El impuesto único, en cambio, usa su propia tabla mensual del SII.
+Esto también tiene un límite superior: existe un **[tope imponible](/glosario/tope-imponible/)** para las cotizaciones previsionales. En 2026, la Superintendencia de Pensiones informa **90 [UF](/guias/uf-costo-de-vida/)** para AFP y salud, mientras la AFC informa **135,2 UF** para seguro de cesantía. Si ganas más que esos topes, esas cotizaciones se calculan solo hasta el límite respectivo. El impuesto único, en cambio, usa su propia tabla mensual del SII.
 
 ---
 
@@ -228,7 +228,7 @@ El **total haberes menos total descuentos** es tu líquido. Si los números no c
 Cada empleador descuenta AFP y salud por separado, como si fuera tu único trabajo. Al momento de la Operación Renta anual, el SII consolida ambos ingresos y puede resultar en impuesto adicional a pagar — o en devolución, si hubo sobrepago.
 
 **¿El tope imponible aplica a todos los descuentos?**
-No a todos. Como referencia 2026, AFP y salud usan 87,8 UF y el seguro de cesantía usa 135,2 UF. El impuesto único opera con su propia tabla mensual y no con esos topes previsionales.
+No a todos. Como referencia 2026, AFP y salud usan 90 UF y el seguro de cesantía usa 135,2 UF. El impuesto único opera con su propia tabla mensual y no con esos topes previsionales.
 
 **¿Tengo que pagar impuesto si gano el mínimo?**
 No, en el escenario habitual. Como referencia, en marzo de 2026 el primer tramo exento llega hasta $943.501,50 de renta tributable mensual. Si quedas bajo ese nivel, no pagas impuesto único ese mes.

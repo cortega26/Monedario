@@ -2,7 +2,7 @@
 title: "Cómo leer la cartola AFP: qué significa cada campo y cómo detectar errores"
 author: "Equipo Monedario"
 pubDate: 2026-04-09T12:00:00Z
-updatedDate: 2026-04-09T12:00:00Z
+updatedDate: 2026-05-11T00:00:00Z
 slug: como-leer-cartola-afp-chile
 featured: false
 lang: es-CL
@@ -24,7 +24,7 @@ articleLead:
   calculatorLabel: "Comparar comisiones AFP"
   nextStepHref: "/posts/fondos-afp-a-b-c-d-e/"
   nextStepLabel: "Entiende los fondos que aparecen en tu cartola"
-  validAsOf: 2026-04-09
+  validAsOf: 2026-05-11
   officialSources:
     - label: "Superintendencia de Pensiones — Información al afiliado"
       href: "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-6200.html"

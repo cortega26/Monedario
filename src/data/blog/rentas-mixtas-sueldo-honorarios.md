@@ -4,7 +4,7 @@ description: "Con sueldo y boletas de honorarios debes declarar siempre. Aprende
 slug: rentas-mixtas-sueldo-honorarios
 author: "Equipo Monedario"
 pubDate: 2026-04-09T12:00:00Z
-updatedDate: 2026-04-09T12:00:00Z
+updatedDate: 2026-05-11T00:00:00Z
 tags:
   - impuestos
   - rentas-mixtas
@@ -25,7 +25,7 @@ articleLead:
   calculatorLabel: "Simular resultado Operación Renta"
   nextStepHref: "/posts/operacion-renta-f22-checklist/"
   nextStepLabel: "Ir al checklist F22"
-  validAsOf: 2026-04-09
+  validAsOf: 2026-05-11
   officialSources:
     - label: "SII — Boletas de honorarios"
       href: "https://www.sii.cl/destacados/boletas_honorarios/"

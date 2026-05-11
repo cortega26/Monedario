@@ -4,7 +4,7 @@ description: "Guía para saber cuándo depositan la devolución, cómo revisar e
 slug: devolucion-impuestos-fechas-compensaciones
 author: "Equipo Monedario"
 pubDate: 2026-02-28T15:10:00Z
-updatedDate: 2026-04-04T00:00:00Z
+updatedDate: 2026-05-11T00:00:00Z
 tags:
   - impuestos
   - devolucion
@@ -122,5 +122,5 @@ Solo si hay error u observación en la declaración. Si la causa es compensació
 
 ## Información de vigencia
 
-- Revisado el: 2026-04-04. Calendario AT 2026 verificado contra comunicado SII del 31 de marzo de 2026.
+- Revisado el: 2026-05-11. Calendario AT 2026 verificado contra comunicado SII del 31 de marzo de 2026.
 - Puede quedar desactualizado cuando: publicación de calendario oficial del año tributario vigente, cambios en causales de compensación o ajustes de canales de pago TGR.

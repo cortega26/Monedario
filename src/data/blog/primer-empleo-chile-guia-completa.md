@@ -22,7 +22,7 @@ articleLead:
   answer: "Tu primer empleo formal tiene cuatro pasos críticos en el primer mes: firmar el contrato revisado, verificar la primera liquidación, afiliar o confirmar AFP, y armar un presupuesto con el sueldo líquido real."
   nextStepHref: "/posts/liquidacion-de-sueldo/"
   nextStepLabel: "Cómo auditar tu liquidación"
-  validAsOf: 2026-04-09
+  validAsOf: 2026-05-11
   officialSources:
     - label: "Dirección del Trabajo — contratos de trabajo"
       href: "https://www.dt.gob.cl/portal/1626/w3-propertyvalue-22777.html"
@@ -126,11 +126,11 @@ Antes de dar por buena la primera liquidación, cruza los números en la [calcul
 
 ### Qué es la AFP y para qué sirve
 
-La **Administradora de Fondos de Pensiones (AFP)** es la institución que administra tu fondo previsional obligatorio. Cada mes, el empleador descuenta de tu sueldo bruto el **10,5 % de la remuneración imponible** y lo deposita en tu cuenta individual en la AFP.
+La **Administradora de Fondos de Pensiones (AFP)** es la institución que administra tu fondo previsional obligatorio. Cada mes, el empleador descuenta de tu sueldo bruto el **10 % de la remuneración imponible** y lo deposita en tu cuenta individual en la AFP.
 
 Ese dinero es tuyo. No es un impuesto — es ahorro obligatorio que acumulas para la pensión. Puedes ver tu saldo en cualquier momento en el sitio de la AFP o en el portal de la [Superintendencia de Pensiones](https://www.spensiones.cl).
 
-Además del 10,5 % para tu cuenta, la AFP cobra una **comisión** que varía entre el 0,47 % y el 1,44 % de tu remuneración imponible (datos vigentes a 2026). Esta comisión sí es un costo tuyo, por eso conviene comparar.
+Además del 10 % para tu cuenta, la AFP cobra una **comisión** que varía entre el 0,46 % y el 1,45 % de tu remuneración imponible (datos vigentes a 2026). Esta comisión sí es un costo tuyo, por eso conviene comparar.
 
 El empleador también paga un **SIS (Seguro de Invalidez y Sobrevivencia)** de aproximadamente 1,87 % de la remuneración, pero ese costo lo asume él, no tú.
 

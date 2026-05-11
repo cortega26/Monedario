@@ -4,7 +4,7 @@ description: "Checklist práctico para revisar la propuesta del SII, enviar tu F
 slug: operacion-renta-f22-checklist
 author: "Equipo Monedario"
 pubDate: 2026-02-28T15:00:00Z
-updatedDate: 2026-04-04T00:00:00Z
+updatedDate: 2026-05-11T00:00:00Z
 tags:
   - impuestos
   - operacion-renta
@@ -169,5 +169,5 @@ Revisa [devolución de impuestos: fechas, estado y compensaciones](/posts/devolu
 
 ## Información de vigencia
 
-- Revisado el: 2026-04-04. Datos verificados contra comunicado SII del 31 de marzo de 2026.
+- Revisado el: 2026-05-11. Datos verificados contra comunicado SII del 31 de marzo de 2026.
 - Puede quedar desactualizado cuando: cambios en reglas de reemplazo/rectificatoria, modificaciones al calendario de devoluciones, o actualizaciones en navegación SII/TGR.
