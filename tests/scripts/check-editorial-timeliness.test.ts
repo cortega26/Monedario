@@ -228,6 +228,37 @@ volatileData:
     expect(result.stderr).toContain("review SLA expired");
   });
 
+  it("ignores frontmatter reviewPolicy maxDays when computing the SLA cadence", () => {
+    const root = createTempProject();
+    writeArticle(
+      root,
+      "demo-review-policy-override.md",
+      `title: "Demo review policy override"
+description: "Demo article"
+slug: demo-review-policy-override
+pubDate: "2026-03-01T00:00:00Z"
+updatedDate: "2026-03-20T00:00:00Z"
+author: "Equipo Monedario"
+category: general
+cluster: demo
+lang: es-CL
+reviewPolicy:
+  cadenceLabel: daily
+  maxDays: 1
+  dataTriggers: []
+  derivationFactors: []
+  computedAt: "2026-03-21"`,
+      "Contenido"
+    );
+
+    // TODAY = 2026-03-22; updatedDate = 2026-03-20
+    // If reviewPolicy.maxDays were used, this would be stale (due 2026-03-21).
+    const result = runTimelinessCheck(root);
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("[check-editorial-timeliness] OK.");
+  });
+
   it("fails when a source-assisted mode that requires official sources has none", () => {
     const root = createTempProject();
     writeArticle(

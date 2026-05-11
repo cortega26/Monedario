@@ -185,22 +185,18 @@ function loadEconomicSnapshotDate() {
 function resolveEffectivePolicy(frontmatter, slug, policy) {
   const categoryPolicy = policy.categoryPolicies?.[frontmatter.category] ?? {};
   const slugOverride = policy.slugOverrides?.[slug] ?? {};
-  const articleReviewPolicy = frontmatter.reviewPolicy ?? null;
 
   const cadenceDays =
     slugOverride.cadenceDays ??
-    articleReviewPolicy?.maxDays ??
     categoryPolicy.cadenceDays ??
     policy.defaultCadenceDays;
 
   const policySource =
     slugOverride.cadenceDays !== undefined || slugOverride.sourceMode !== undefined
       ? `slugOverrides.${slug}`
-      : articleReviewPolicy?.maxDays !== undefined
-        ? "articleReviewPolicy"
-        : categoryPolicy.cadenceDays !== undefined || categoryPolicy.sourceMode !== undefined
-          ? `categoryPolicies.${frontmatter.category}`
-          : "defaultPolicy";
+      : categoryPolicy.cadenceDays !== undefined || categoryPolicy.sourceMode !== undefined
+        ? `categoryPolicies.${frontmatter.category}`
+        : "defaultPolicy";
 
   return {
     cadenceDays,
