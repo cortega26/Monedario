@@ -24,6 +24,7 @@ const ALLOWED_PREFIXES = [
   "context/",
   "archive/",
   "artifacts/editorial/",
+  "artifacts/lighthouse/",
   "src/data/",
   ".github/",
   "output/",

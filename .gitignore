@@ -20,7 +20,9 @@ output/validation/
 .qodo/
 .playwright-cli/
 .playwright-mcp/
-artifacts/
+artifacts/*
+!artifacts/lighthouse/
+!artifacts/lighthouse/**
 skills/
 
 

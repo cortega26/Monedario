@@ -9,9 +9,16 @@ import ArticlePlaceholder from "./ArticlePlaceholder.astro";
 type Props = {
   variant?: "h2" | "h3";
   earlyLoad?: boolean;
+  showImage?: boolean;
 } & CollectionEntry<"blog">;
 
-const { variant: Heading = "h2", earlyLoad = false, data, body } = Astro.props;
+const {
+  variant: Heading = "h2",
+  earlyLoad = false,
+  showImage = true,
+  data,
+  body,
+} = Astro.props;
 const { title, description, tags, ogImage, ...props } = data;
 const href = getCanonicalPathFromSlug(data.slug);
 const firstTag = tags?.[0] ?? "";
@@ -37,7 +44,7 @@ const readingTime = getReadingTime(body ?? "");
   <a href={href} class="transition-colors group-hover:text-accent">
     <div class="mb-3 overflow-hidden rounded-lg">
       {
-        imageSrc ? (
+        imageSrc && showImage ? (
           <img
             src={imageSrc}
             alt={title}

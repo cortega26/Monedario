@@ -7,12 +7,12 @@ import Card from "@/components/Card.astro";
 import LinkButton from "@/components/LinkButton.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
-import { getPath } from "@/utils/getPath";
 import { getBalancedHomepagePosts } from "@/utils/homepage";
 import ResumeWidget from "@/components/ResumeWidget.astro";
 import HeroHomepage from "@/components/HeroHomepage.astro";
 import ProblemCards from "@/components/ProblemCards.astro";
 import IndicadoresHoy from "@/components/IndicadoresHoy.astro";
+import { getPath } from "@/utils/getPath";
 
 const posts = await getCollection("blog");
 const sortedPosts = getSortedPosts(posts);
@@ -20,14 +20,13 @@ const { richPosts: recentRichPosts } = getBalancedHomepagePosts(sortedPosts, {
   richCount: 3,
   totalCount: 3,
 });
-const homePath = getPath("/");
 const homeTitle =
   "Monedario | Calculadoras y guías para decisiones financieras en Chile";
 const homeDescription =
   "Calculadoras y guías para entender sueldo líquido, AFP, impuestos, crédito, UF y presupuesto con información clara y práctica para Chile.";
 const heroTitle = "Calculadoras y guías sobre tu plata en Chile";
 const heroDescription =
-  "Sueldo líquido, AFP, impuestos, crédito, UF y presupuesto en lenguaje claro. Elige el tema que quieres resolver y entra directo a la guía o calculadora.";
+  "Calculadoras claras para sueldo líquido, AFP, impuestos, crédito, UF y presupuesto en Chile.";
 ---
 
 <Layout
@@ -110,8 +109,8 @@ const heroDescription =
             </div>
 
             <ul class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {recentRichPosts.map((post, i) => (
-                <Card variant="h3" {...post} earlyLoad={i === 0} />
+              {recentRichPosts.map(post => (
+                <Card variant="h3" {...post} showImage={false} />
               ))}
             </ul>
           </div>
@@ -127,7 +126,3 @@ const heroDescription =
     font-family: var(--font-body);
   }
 </style>
-
-<script is:inline define:vars={{ homePath }}>
-  sessionStorage.setItem("backUrl", homePath);
-</script>

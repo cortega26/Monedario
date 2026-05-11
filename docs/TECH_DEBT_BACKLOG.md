@@ -13,8 +13,8 @@ Fecha de corte: 2026-05-11
 
 ### Estado de avance (2026-05-11)
 
-- **Completados:** 56 TD únicos (`TD-0001`..`TD-0038`, `TD-0040`..`TD-0058`, excepto `TD-0039` y `TD-0057`) + 2 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`)
-- **En progreso:** 1 (`TD-0039`)
+- **Completados:** 57 TD únicos (`TD-0001`..`TD-0058`, excepto `TD-0057`) + 2 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`)
+- **En progreso:** 0
 - **Backlog sin iniciar:** 1 (`TD-0057`)
 - **Backlog en validación/diseño:** 0
 
@@ -33,16 +33,15 @@ Fecha de corte: 2026-05-11
 > `TD-0053`: resuelto por commits `5644792c` (length-sort en `matchPhraseSet`) y `35231cc4` (reorden de array) — el test ya pasa.
 > `TD-0054`: resuelto por `TD-0055` (commit `a3937548`) — `check:hero-prompts` retorna OK.
 > Modernización estratégica 2026-05-11: se cerró `TD-0058`, se decidió la política canónica de artefactos editoriales por `docs/adr/ADR-20260511-editorial-artifact-location-policy.md`, y `TD-0057` quedó reclasificado como backfill editorial real, no como drift de rutas.
+> `TD-0039`: cerrado el 2026-05-11 con `artifacts/lighthouse/td-0039-2026-05-11.md`; las 5 rutas medidas por `lighthouserc.mobile.cjs` quedaron en Performance 100, LCP mediana <= 1.656s, SI <= 1.206s, TBT 0ms y CLS 0.
 
 ### Top riesgos restantes
 
 - `TD-0057`: el gate estricto repo-wide de artefactos editoriales (`EDITORIAL_ENFORCE=1 pnpm run check:editorial-artifacts`) falla porque el corpus publicado no tiene artefactos en la ruta canónica `artifacts/editorial/<slug>/<run-id>/`.
-- `TD-0039`: performance mobile sigue por debajo del umbral estricto de LCP (`<= 1.7s`) en local, aunque los reruns del 2026-04-09 ya dejaron `TBT=0`, `CLS=0`, `SI<3.0s` y levantaron calculadora/hub a `Performance 100`.
 
 ### Siguiente orden recomendado (2026-05-11)
 
-1. `TD-0039` — terminar la optimización mobile CWV/LCP con nuevo reporte Lighthouse.
-2. `TD-0057` — ejecutar backfill canónico de artefactos editoriales por lotes priorizados; no generar placeholders ni marcar gates humanos automáticamente.
+1. `TD-0057` — ejecutar backfill canónico de artefactos editoriales por lotes priorizados; no generar placeholders ni marcar gates humanos automáticamente.
 
 ### Quick wins (alto impacto / bajo esfuerzo)
 
@@ -960,18 +959,18 @@ Fecha de corte: 2026-05-11
 - **Urgencia:** P2
 - **Esfuerzo estimado:** M
 - **Propuesta de solución:** (1) Auditar LCP element por plantilla y optimizar imagen/fuente que lo cause; (2) preload de la imagen hero LCP; (3) revisar si hay render-blocking resources; (4) considerar lazy-loading de componentes React pesados; (5) volver a medir post-fix y comparar contra este baseline.
-- **Avance actual (2026-04-09):** el trabajo cliente no crítico quedó diferido (`analytics` y `ResumeWidget`), el runtime de `ClientRouter` dejó de cargarse por defecto en `/posts/`, `/guias/` y `/calculadoras/`, y el bundle de `analytics.ts` ya no se inyecta cuando `PUBLIC_GA_MEASUREMENT_ID` está vacío. Además, `ResumeWidget` pasó a resolver storage/tracking inline para no abrir chunks JS extra en homepage/hubs. Reruns locales guardados en `artifacts/lighthouse/td-0039-2026-04-09.md` muestran el baseline final `before -> after3`: homepage `requests 11 -> 7`, `LCP 1.807s -> 1.738s`; artículo `8 -> 5`, `Perf 99 -> 100`, `LCP 1.810s -> 1.807s`; calculadora `12 -> 9`, `Perf 99 -> 100`, `LCP 1.954s -> 1.807s`; hub `10 -> 5`, `Perf 99 -> 100`, `LCP 1.804s -> 1.658s`. `TBT=0`, `CLS=0` y `SI<3.0s` se mantienen en las cuatro URLs. Se probaron además quitar el preload de Fraunces, forzar tipografía body en el shell superior y cambiar `Fraunces` a `font-display: optional`, pero se descartaron por regresión/ruido sin cierre suficiente del gap restante.
+- **Avance actual (2026-05-11):** cierre completo validado con `lighthouserc.mobile.cjs` local y reportado en `artifacts/lighthouse/td-0039-2026-05-11.md`. Las optimizaciones finales fueron: `h1/h2` de calculadoras en body font para no cargar Fraunces en la ruta crítica, preload global de Source Sans para texto LCP body-font, homepage sin thumbnails remotos en cards recientes below-fold, copy hero más breve y eliminación del `sessionStorage` inline no crítico de homepage. Resultado mediano: `/` LCP 1.654s, post LCP 1.652s, calculadora LCP 1.505s, hub ahorro LCP 1.656s, hub guías LCP 1.653s; todos con Performance 100, TBT 0ms, CLS 0 y SI < 1.3s.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] Mobile Perf Score ≥ 99 en las 4 URLs
-  - [ ] LCP ≤ 1.7s en mobile en las 4 URLs
-  - [ ] TBT = 0ms en mobile en las 4 URLs
-  - [ ] SI ≤ 3.0s en mobile en las 4 URLs
-  - [ ] CLS = 0 (ya cumple — no regresar)
-  - [ ] Nuevo reporte Lighthouse guardado en `artifacts/lighthouse/` con fecha post-fix
-- **Owner:** TBD
-- **Estado:** En progreso
+  - [x] Mobile Perf Score ≥ 99 en las 4 URLs
+  - [x] LCP ≤ 1.7s en mobile en las 4 URLs
+  - [x] TBT = 0ms en mobile en las 4 URLs
+  - [x] SI ≤ 3.0s en mobile en las 4 URLs
+  - [x] CLS = 0 (ya cumple — no regresar)
+  - [x] Nuevo reporte Lighthouse guardado en `artifacts/lighthouse/` con fecha post-fix
+- **Owner:** Codex
+- **Estado:** Completado
 - **Fecha de creación:** 2026-04-08
-- **Última actualización:** 2026-04-09
+- **Última actualización:** 2026-05-11
 
 ## TD-0040 — Baseline de `pnpm run test` volvió a quedar en rojo por `EstimateFiniquito`
 - **ID:** TD-0040

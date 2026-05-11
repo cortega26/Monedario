@@ -23,7 +23,7 @@ type Props = {
 const performanceSensitivePath = /^\/(?:posts|guias|calculadoras)(?:\/|$)/.test(
   Astro.url.pathname
 );
-const shouldPreloadPrimaryFonts = !/^\/calculadoras(?:\/|$)/.test(
+const shouldPreloadDisplayFont = !/^\/calculadoras(?:\/|$)/.test(
   Astro.url.pathname
 );
 
@@ -93,19 +93,15 @@ const structuredData = !pubDatetime
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="preload"
+      href={getPath("/fonts/source-sans-3-latin-400-600.7a19a702.woff2")}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     {
-      shouldPreloadPrimaryFonts && (
-        <link
-          rel="preload"
-          href={getPath("/fonts/source-sans-3-latin-400-600.7a19a702.woff2")}
-          as="font"
-          type="font/woff2"
-          crossorigin
-        />
-      )
-    }
-    {
-      shouldPreloadPrimaryFonts && (
+      shouldPreloadDisplayFont && (
         <link
           rel="preload"
           href={getPath("/fonts/fraunces-latin-400-700.7234ed86.woff2")}
