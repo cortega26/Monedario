@@ -7,25 +7,26 @@
 
 ## Estado actual — 2026-05-11
 
-Completado: Fases 0–3 salvo decisiones pendientes explícitas (`MON-301`, `MON-304`), auditorías de calculadoras, UX backlog (15/16), Phase 1 Profile Persistence, Phase 2 High-Value Roadmap (Waves 1–5), Optimization, Editorial Timeliness, Blog Advisory Standardization, Date Display Consistency, Guardrail Automation, GitHub Actions remediation, Next Best Step, Data Signals (parcial), modernización estratégica 2026-05-11 y cierre mobile CWV/LCP (`TD-0039`).
+Completado: Fases 0–3 salvo decisiones pendientes explícitas (`MON-301`, `MON-304`), auditorías de calculadoras, UX backlog (15/16), Phase 1 Profile Persistence, Phase 2 High-Value Roadmap (Waves 1–5), Optimization, Editorial Timeliness, Blog Advisory Standardization, Date Display Consistency, Guardrail Automation, GitHub Actions remediation, Next Best Step, Data Signals (parcial), modernización estratégica 2026-05-11, cierre mobile CWV/LCP (`TD-0039`), `TD-0057` backfill canónico YMYL (46 artículos), SEO roadmap Sprints 0 y 2.
 
-La deuda técnica activa queda resumida en `docs/TECH_DEBT_BACKLOG.md`: solo `TD-0057` queda en backlog. `TD-0039`, `TD-0042` y `TD-0058` quedaron cerrados durante la modernización 2026-05-11.
+Deuda técnica: 0 items abiertos en `docs/TECH_DEBT_BACKLOG.md`.
 
 ### Siguiente orden recomendado
 
 | Orden | Item | Por qué ahora |
 |-------|------|---------------|
-| 1 | `TD-0057` | Importante para gobernanza YMYL, pero grande y editorialmente sensible; requiere backfill real por lotes. |
+| 1 | `MON-306` — Extender `sueldo-liquido`: output gratificación legal | Sprint 3 SEO; P1, calc ya referencia gratificación en FAQ avanzado — surfacear cálculo como output |
+| 2 | `MON-307` — Extender `finiquito-indemnizacion`: modo vacaciones proporcionales | Sprint 3 SEO; P1, calc ya computa feriado proporcional internamente — exponer como flujo pre-finiquito |
+| 3 | `MON-308` — Calculadora interés compuesto (nueva, standalone) | Sprint 3 SEO; P1, simulador-jubilacion demasiado AFP-específico para absorber herramienta genérica |
+| 4 | `MON-309` — Calculadora depósito a plazo (nueva, standalone) | Sprint 3 SEO; P2, ninguna calc existente tiene lógica de tasas de interés |
 
 ### Pendiente — implementación por código
 
 | Plan | Archivo | Bloqueador |
 |------|---------|------------|
-| Technical debt — `TD-0057` | `../TECH_DEBT_BACKLOG.md` | Requiere backfill editorial real; no admite placeholders |
+| SEO Sprint 3 — calculadoras (MON-306..309) | `PLAN-seo-cross-document-roadmap-2026-05-01.md` | Listo para ejecutar |
 | Phase 2 — Data Signals (MON-ENV-DATA3b..3c) | `PHASE_2_DATA_SIGNALS.md` | Requiere suscripción Ahrefs Advanced+ |
 | Hero image system — remediación manual por lotes | `HERO_IMAGE_SYSTEM_REMEDIATION_2026-04-30.md` | Manual: assets finales pendientes |
-| Hero image prompt repair | `PLAN-heroimage-prompt-repair-2026-05-01.md` | En ejecución |
-| SEO cross-document roadmap | `PLAN-seo-cross-document-roadmap-2026-05-01.md` | En ejecución |
 | TypeScript 7 compatibility | `TS7_COMPATIBILITY_AUDIT_2026-04-30.md` | Blocked — esperando TS7 stable |
 | Newsletter (MON-301) | `ux-backlog.md` | Decisión de plataforma pendiente |
 | LinkedIn strategy (MON-304) | `ux-backlog.md` | Fase 3, sin urgencia |
@@ -76,6 +77,10 @@ La deuda técnica activa queda resumida en `docs/TECH_DEBT_BACKLOG.md`: solo `TD
 | MON-303 | Página /cambios/ — changelog editorial | 3 | P2 | content | ✅ done |
 | MON-304 | Estrategia de distribución en LinkedIn | 3 | P3 | analytics | 🔲 pendiente |
 | MON-305 | Extender ShareCalculatorResult a 13 calculadoras | 3 | P2 | frontend | ✅ done |
+| MON-306 | Extender `sueldo-liquido` — output gratificación legal | 4 | P1 | calculator-ext | 🔲 pendiente |
+| MON-307 | Extender `finiquito-indemnizacion` — modo vacaciones proporcionales | 4 | P1 | calculator-ext | 🔲 pendiente |
+| MON-308 | Calculadora interés compuesto (nueva) | 4 | P1 | calculator | 🔲 pendiente |
+| MON-309 | Calculadora depósito a plazo (nueva) | 4 | P2 | calculator | 🔲 pendiente |
 
 ---
 
@@ -85,8 +90,8 @@ La deuda técnica activa queda resumida en `docs/TECH_DEBT_BACKLOG.md`: solo `TD
 |------|--------|
 | `PHASE_2_DATA_SIGNALS.md` | Parcialmente completado; DATA3a..3c bloqueado |
 | `HERO_IMAGE_SYSTEM_REMEDIATION_2026-04-30.md` | Pendiente remediación manual |
-| `PLAN-heroimage-prompt-repair-2026-05-01.md` | En ejecución |
-| `PLAN-seo-cross-document-roadmap-2026-05-01.md` | En ejecución |
+| `PLAN-heroimage-prompt-repair-2026-05-01.md` | Código completo; assets manuales pendientes |
+| `PLAN-seo-cross-document-roadmap-2026-05-01.md` | Sprints 0 y 2 completados; Sprint 3 calculadoras pendiente |
 | `TS7_COMPATIBILITY_AUDIT_2026-04-30.md` | Bloqueado |
 | `ux-backlog.md` | 15/16 completado; MON-405 diferido |
 | `BLOG_ADVISORY_ARCHITECTURE_PLAN_2026-04-22.md` | Propuesta |

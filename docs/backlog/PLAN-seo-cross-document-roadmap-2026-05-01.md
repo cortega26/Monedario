@@ -1,7 +1,7 @@
 # PLAN - SEO cross-document roadmap 2026
 
 Fecha: 2026-05-01
-Estado: En ejecucion
+Estado: Parcialmente completado — ver resumen 2026-05-11
 
 ## Alcance
 
@@ -41,4 +41,29 @@ Out-of-scope:
 
 ## Progress log
 
-- 2026-05-01: Contexto constitucional, editorial, rutas, frontmatter, hubs, calculadoras y auditoria de overlap revisados.
+- 2026-05-01: Contexto constitucional, editorial, rutas, frontmatter, hubs, calculadoras y auditoria de overlap revisados. Artefactos operativos creados: matriz, owner map, roadmap, hallazgos, calendario estacional, registro YMYL, oportunidades de calculadoras.
+- 2026-05-11: Revisión de estado. Sprint 0 completado. Sprint 2 P1 completado (6 artículos publicados en Sprint 2B: PGU, gratificación, sueldo-imponible, IGC, contribuciones, fondo-emergencia). Sprint 1 consolidaciones: parcialmente resuelto por mejoras orgánicas (enlaces cruzados sueldo-remuneraciones, operación-renta, APV). Sprint 3 calculadoras: no iniciado — registrado como MON-306..309 en backlog.
+
+## Resumen de cierre por sprint (2026-05-11)
+
+| Sprint | Objetivo | Estado |
+|--------|----------|--------|
+| Sprint 0 | Verificación y limpieza de owners/overlap | ✅ Completado |
+| Sprint 1 | Consolidaciones de alto impacto (enlaces, estructura) | 🔶 Parcial — mejoras orgánicas aplicadas; revisión sistemática pendiente |
+| Sprint 2 | Gaps editoriales P1 (6 artículos) | ✅ Completado — Sprint 2B 2026-05-08 |
+| Sprint 3 | Calculadoras (2 extensiones + 2 nuevas) | 🔲 No iniciado — ver MON-306..309 |
+
+## Sprint 3 — Detalle de calculadoras (2026-05-11)
+
+Análisis de merge realizado inspeccionando el código de las calculadoras existentes. Resultado: dos tickets son extensiones de calculadoras existentes (preserva URL canónica, evita contenido duplicado); dos son páginas nuevas standalone.
+
+| Ticket | Estrategia | Calculadora objetivo | Razón |
+|--------|-----------|---------------------|-------|
+| MON-306 — Gratificación legal | **Extensión** de `sueldo-liquido` | `/calculadoras/sueldo-liquido/` | La calc ya referencia gratificación en su FAQ de modo avanzado. Surfacear el cálculo como output visible evita crear una URL duplicada y aprovecha el tráfico existente. |
+| MON-307 — Vacaciones proporcionales | **Extensión** de `finiquito-indemnizacion` | `/calculadoras/finiquito-indemnizacion/` | La calc ya computa feriado proporcional internamente para el finiquito. Exponer un modo pre-finiquito (o sección standalone) reutiliza la lógica sin fragmentar el flujo. |
+| MON-308 — Interés compuesto | **Standalone** nueva | `/calculadoras/interes-compuesto/` | `simulador-jubilacion` usa interés compuesto pero está enmarcado en AFP/fondos. Una herramienta genérica de ahorro/inversión requiere su propia URL para capturar la intención de búsqueda distinta. |
+| MON-309 — Depósito a plazo | **Standalone** nueva | `/calculadoras/deposito-a-plazo/` | Ninguna calc existente tiene lógica de tasas de interés bancarias. Requiere integración de tasas externas (BCCh / CMF) y URL propia. |
+
+**Notas de implementación:**
+- MON-306/307 como extensiones: NO cambiar la URL pública existente; agregar tab o sección dentro de la calc actual.
+- MON-308/309 como standalone: seguir pipeline de nueva calculadora (ADR de ruta, snapshot, schema FAQ, artículo owner vinculado).

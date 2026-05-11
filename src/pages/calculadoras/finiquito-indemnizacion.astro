@@ -18,6 +18,28 @@ const finiquitoGuidePath = getPath(
   "/posts/finiquito-e-indemnizaciones-en-chile/"
 );
 const cesantiaGuidePath = getPath("/posts/seguro-de-cesantia/");
+const finiquitoFaqs = [
+  {
+    question: "¿Cuántos días de vacaciones proporcionales me corresponden?",
+    answer:
+      "Según el art. 71 del Código del Trabajo, te corresponden 1,25 días hábiles por cada mes trabajado desde tu último ciclo de vacaciones. Por ejemplo, con 8 meses transcurridos: 8 × 1,25 = 10 días proporcionales. Esta calculadora incluye un modo 'Vacaciones proporcionales' para estimarlo directamente.",
+  },
+  {
+    question: "¿Cómo se calcula el monto por feriado proporcional?",
+    answer:
+      "El valor diario equivale a la última remuneración mensual dividida por 30. Ese valor se multiplica por los días proporcionales. Ejemplo: sueldo $900.000, 10 días proporcionales → $900.000 ÷ 30 × 10 = $300.000.",
+  },
+  {
+    question: "¿Corresponde feriado proporcional si renuncio?",
+    answer:
+      "Sí. El derecho al pago proporcional de vacaciones no tomadas existe en todas las causales de término: renuncia voluntaria, despido, mutuo acuerdo o vencimiento de plazo. Es exigible siempre que hayas trabajado al menos un período proporcional desde el último ciclo de vacaciones.",
+  },
+  {
+    question: "¿Qué incluye el finiquito en Chile?",
+    answer:
+      "El finiquito puede incluir: sueldo pendiente del mes, feriado proporcional (vacaciones no tomadas), indemnización por años de servicio (art. 163 CT), aviso previo sustitutivo si aplica (art. 161) y gratificación proporcional si tu empresa la paga anualmente. El monto final depende de la causal de término.",
+  },
+];
 const currentCalculator = CALCULATOR_PORTFOLIO.find(
   calc => calc.slug === "finiquito-indemnizacion"
 );
@@ -49,6 +71,7 @@ const calculatorNextStepItems = [
   <CalculatorJsonLd
     name="Calculadora de Finiquito e Indemnización | Chile"
     description="Estima finiquito, aviso previo, años de servicio y feriado proporcional con supuestos visibles para revisar tu salida laboral."
+    faqs={finiquitoFaqs}
   />
   <Header />
   <Breadcrumb />
@@ -80,7 +103,43 @@ const calculatorNextStepItems = [
         id="calculator-form-card"
         class="rounded-xl border border-border p-6"
       >
-        <h2 class="mb-5 text-lg font-semibold">Datos del caso</h2>
+        <!-- Tab: modo finiquito vs vacaciones proporcionales -->
+        <div class="mb-5">
+          <p class="mb-2 text-sm font-medium text-secondary">Modo de cálculo</p>
+          <div class="flex gap-2">
+            <label class="flex-1 cursor-pointer">
+              <input
+                type="radio"
+                name="finiquito-modo"
+                id="modo-finiquito"
+                value="finiquito"
+                checked
+                class="peer sr-only"
+              />
+              <span
+                class="block rounded-lg border border-border px-3 py-3 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
+              >
+                Finiquito completo
+              </span>
+            </label>
+            <label class="flex-1 cursor-pointer">
+              <input
+                type="radio"
+                name="finiquito-modo"
+                id="modo-vacaciones"
+                value="vacaciones"
+                class="peer sr-only"
+              />
+              <span
+                class="block rounded-lg border border-border px-3 py-3 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
+              >
+                Vacaciones proporcionales
+              </span>
+            </label>
+          </div>
+        </div>
+
+        <h2 class="mb-4 text-base font-semibold" id="modo-label-heading">Datos del caso</h2>
 
         <div class="mb-4">
           <label
@@ -99,7 +158,7 @@ const calculatorNextStepItems = [
           />
         </div>
 
-        <div class="grid gap-4 sm:grid-cols-2">
+        <div class="grid gap-4 sm:grid-cols-2" data-finiquito-only>
           <div class="mb-4">
             <label
               for="years-worked"
@@ -134,7 +193,7 @@ const calculatorNextStepItems = [
           </div>
         </div>
 
-        <div class="mb-4">
+        <div class="mb-4" data-finiquito-only>
           <label
             for="termination-cause"
             class="mb-1 block text-sm font-medium text-secondary"
@@ -162,7 +221,7 @@ const calculatorNextStepItems = [
           </select>
         </div>
 
-        <div class="mb-4">
+        <div class="mb-4" data-finiquito-only>
           <label class="mb-2 block text-sm font-medium text-secondary">
             ¿Te avisaron con 30 días de anticipación?
           </label>
@@ -198,7 +257,7 @@ const calculatorNextStepItems = [
         </div>
 
         <div class="grid gap-4 sm:grid-cols-2">
-          <div class="mb-4">
+          <div class="mb-4" data-finiquito-only>
             <label
               for="pending-salary-days"
               class="mb-1 block text-sm font-medium text-secondary"
@@ -238,7 +297,7 @@ const calculatorNextStepItems = [
             for="vacation-extra-days"
             class="mb-1 block text-sm font-medium text-secondary"
           >
-            Días extra del ciclo de vacaciones
+            Días adicionales trabajados en el ciclo
           </label>
           <input
             id="vacation-extra-days"
@@ -249,12 +308,12 @@ const calculatorNextStepItems = [
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
           />
           <p class="mt-1 text-xs text-muted">
-            Si no sabes este dato exacto, usa `0` y revisa luego con tus fechas
+            Si no sabes este dato exacto, usa 0 y revisa luego con tus fechas
             reales.
           </p>
         </div>
 
-        <div class="mb-4">
+        <div class="mb-4" data-finiquito-only>
           <label class="mb-2 block text-sm font-medium text-secondary">
             ¿Tu empresa paga gratificación anual (art. 47)?
           </label>
@@ -297,7 +356,7 @@ const calculatorNextStepItems = [
           id="calcBtn"
           class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90"
         >
-          Estimar finiquito →
+          <span id="calcBtn-label">Estimar finiquito →</span>
         </button>
 
         <div
@@ -404,6 +463,20 @@ const calculatorNextStepItems = [
           >seguro de cesantía</a
         >.
       </p>
+
+      <h2>Vacaciones proporcionales (art. 71 CT)</h2>
+      <p>
+        Al término de la relación laboral, el trabajador tiene derecho al pago
+        del feriado proporcional por los días trabajados desde el último ciclo
+        completo de vacaciones. La fórmula es: <strong>1,25 días hábiles × meses
+        trabajados</strong> desde el último ciclo. El valor diario se calcula
+        dividiendo la última remuneración mensual por 30.
+      </p>
+      <p>
+        Usa el modo <strong>Vacaciones proporcionales</strong> de esta
+        calculadora para estimar solo ese componente sin ingresar todos los datos
+        del finiquito.
+      </p>
     </section>
 
     <PrimaryCTA
@@ -429,10 +502,15 @@ const calculatorNextStepItems = [
       ]}
     />
     <MethodologyBlock
-      notes="Esta calculadora estima el finiquito según las reglas del Código del Trabajo de Chile: indemnización por años de servicio (art. 163), aviso previo (art. 161), vacaciones proporcionales (art. 73) y sueldo pendiente del mes. Los montos son orientativos; remuneraciones variables o cláusulas especiales requieren revisión profesional."
+      notes="Esta calculadora estima el finiquito según las reglas del Código del Trabajo de Chile: indemnización por años de servicio (art. 163), aviso previo (art. 161), vacaciones proporcionales (art. 71 — 1,25 días/mes) y sueldo pendiente del mes. El modo Vacaciones proporcionales aplica solo la lógica del art. 71 CT. Los montos son orientativos; remuneraciones variables o cláusulas especiales requieren revisión profesional."
       sources={[
         {
           name: "Código del Trabajo — Artículos 159, 160, 161, 163",
+          url: "https://www.bcn.cl/leychile/navegar?idNorma=207436",
+          date: "2025-12",
+        },
+        {
+          name: "Código del Trabajo — Art. 71 (feriado proporcional al término)",
           url: "https://www.bcn.cl/leychile/navegar?idNorma=207436",
           date: "2025-12",
         },
@@ -484,15 +562,12 @@ const calculatorNextStepItems = [
     const line = document.createElement("div");
     line.className =
       "flex items-center justify-between border-b border-border py-2 text-sm last:border-0";
-
     const labelElement = document.createElement("span");
     labelElement.className = "text-secondary";
     labelElement.textContent = label;
-
     const valueElement = document.createElement("span");
     valueElement.className = `font-mono font-semibold ${colorClass}`.trim();
     valueElement.textContent = value;
-
     line.append(labelElement, valueElement);
     return line;
   }
@@ -511,6 +586,44 @@ const calculatorNextStepItems = [
     errorBox.classList.add("hidden");
   }
 
+  function getModo(): "finiquito" | "vacaciones" {
+    return (
+      document.querySelector(
+        "input[name='finiquito-modo']:checked"
+      ) as HTMLInputElement
+    )?.value === "vacaciones"
+      ? "vacaciones"
+      : "finiquito";
+  }
+
+  function updateModoUI() {
+    const modo = getModo();
+    const esVacaciones = modo === "vacaciones";
+    const label = document.getElementById("calcBtn-label");
+    const heading = document.getElementById("modo-label-heading");
+    if (label)
+      label.textContent = esVacaciones
+        ? "Calcular vacaciones proporcionales →"
+        : "Estimar finiquito →";
+    if (heading)
+      heading.textContent = esVacaciones
+        ? "Datos para vacaciones"
+        : "Datos del caso";
+    document
+      .querySelectorAll("[data-finiquito-only]")
+      .forEach(el => (el as HTMLElement).classList.toggle("hidden", esVacaciones));
+  }
+
+  document.querySelectorAll("input[name='finiquito-modo']").forEach(radio => {
+    radio.addEventListener("change", () => {
+      updateModoUI();
+      trackAnalyticsEvent("calculator_mode_toggle", {
+        calculator_slug: "finiquito-indemnizacion",
+        mode: getModo(),
+      });
+    });
+  });
+
   document.getElementById("calcBtn")?.addEventListener("click", () => {
     clearInlineError();
 
@@ -518,6 +631,120 @@ const calculatorNextStepItems = [
       parseFloat(
         (document.getElementById("monthly-salary") as HTMLInputElement).value
       ) || 0;
+    const vacationMonths =
+      parseInt(
+        (document.getElementById("vacation-months") as HTMLInputElement).value
+      ) || 0;
+    const vacationExtraDays =
+      parseInt(
+        (document.getElementById("vacation-extra-days") as HTMLInputElement)
+          .value
+      ) || 0;
+
+    if (monthlySalary <= 0) {
+      showInlineError(
+        "Ingresa una remuneración mensual válida antes de calcular."
+      );
+      return;
+    }
+
+    const modo = getModo();
+
+    // --- Modo vacaciones proporcionales (art. 71 CT) ---
+    if (modo === "vacaciones") {
+      let result;
+      try {
+        result = estimateFiniquito({
+          monthlySalary,
+          yearsWorked: 0,
+          additionalMonthsWorked: 0,
+          pendingSalaryDays: 0,
+          monthsSinceLastVacationCycle: vacationMonths,
+          additionalVacationDaysWorked: vacationExtraDays,
+          terminationCause: "renuncia",
+          noticeGiven: true,
+          gratificacionAnual: false,
+        });
+      } catch (error) {
+        showInlineError(
+          error instanceof Error
+            ? error.message
+            : "No se pudo calcular las vacaciones proporcionales."
+        );
+        return;
+      }
+
+      const headline = document.createElement("div");
+      headline.className =
+        "mb-4 rounded-lg border border-accent/20 bg-accent/10 p-4 text-center";
+      const headlineLabel = document.createElement("p");
+      headlineLabel.className =
+        "mb-1 text-xs font-bold tracking-widest text-accent uppercase";
+      headlineLabel.textContent = "Feriado proporcional estimado";
+      const headlineDays = document.createElement("p");
+      headlineDays.className = "text-2xl font-semibold mt-1";
+      headlineDays.textContent = `${result.proportionalVacationDays.toFixed(2)} días`;
+      const headlineValue = document.createElement("p");
+      headlineValue.className = "text-4xl font-bold mt-1";
+      headlineValue.textContent = fmtCurrency(result.proportionalVacationAmount);
+      headline.append(headlineLabel, headlineDays, headlineValue);
+
+      const note = document.createElement("p");
+      note.className = "mt-4 text-xs text-muted";
+      note.textContent =
+        "Base: 1,25 días hábiles por mes trabajado (art. 71 CT). Valor diario = remuneración mensual ÷ 30.";
+
+      document
+        .getElementById("resultado-contenido")
+        ?.replaceChildren(
+          headline,
+          buildRow(
+            "Meses transcurridos",
+            `${vacationMonths}`,
+            "text-secondary"
+          ),
+          buildRow(
+            "Días adicionales",
+            `${vacationExtraDays}`,
+            "text-secondary"
+          ),
+          buildRow(
+            "Días proporcionales",
+            `${result.proportionalVacationDays.toFixed(2)}`,
+            "text-accent"
+          ),
+          buildRow(
+            "Valor diario",
+            fmtCurrency(monthlySalary / 30),
+            "text-secondary"
+          ),
+          buildRow(
+            "Monto feriado proporcional",
+            fmtCurrency(result.proportionalVacationAmount),
+            "text-accent"
+          ),
+          note
+        );
+
+      if (typeof window.showShareResult === "function") {
+        window.showShareResult(
+          `Feriado proporcional: ${result.proportionalVacationDays.toFixed(2)} días — ${fmtCurrency(result.proportionalVacationAmount)}`
+        );
+      }
+      window.showCalculatorNextActions?.();
+      trackAnalyticsEvent("calculator_complete", {
+        calculator_slug: "finiquito-indemnizacion",
+        calculator_name: "Calculadora Finiquito e Indemnizacion",
+        outcome: "success",
+        mode: "vacaciones-proporcionales",
+      });
+      trackAnalyticsEvent("calculator_completed", {
+        calculator_slug: "finiquito-indemnizacion",
+      });
+      return;
+    }
+
+    // --- Modo finiquito completo ---
     const yearsWorked =
       parseInt(
         (document.getElementById("years-worked") as HTMLInputElement).value
@@ -531,15 +758,6 @@ const calculatorNextStepItems = [
         (document.getElementById("pending-salary-days") as HTMLInputElement)
           .value
       ) || 0;
-    const vacationMonths =
-      parseInt(
-        (document.getElementById("vacation-months") as HTMLInputElement).value
-      ) || 0;
-    const vacationExtraDays =
-      parseInt(
-        (document.getElementById("vacation-extra-days") as HTMLInputElement)
-          .value
-      ) || 0;
     const terminationCause = (
       document.getElementById("termination-cause") as HTMLSelectElement
     ).value;
@@ -549,18 +767,10 @@ const calculatorNextStepItems = [
           "input[name='notice-given']:checked"
         ) as HTMLInputElement
       )?.value === "si";
-
     const gratificacionAnualEl = document.querySelector(
       'input[name="gratificacion-anual"]:checked'
     ) as HTMLInputElement | null;
     const gratificacionAnual = gratificacionAnualEl?.value === "si";
-
-    if (monthlySalary <= 0) {
-      showInlineError(
-        "Ingresa una remuneración mensual válida antes de calcular."
-      );
-      return;
-    }
 
     let result;
     try {
@@ -593,12 +803,10 @@ const calculatorNextStepItems = [
     const headline = document.createElement("div");
     headline.className =
       "mb-6 rounded-lg border border-accent/20 bg-accent/10 p-4 text-center";
-
     const headlineLabel = document.createElement("p");
     headlineLabel.className =
       "mb-1 text-xs font-bold tracking-widest text-accent uppercase";
     headlineLabel.textContent = "Total estimado";
-
     const headlineValue = document.createElement("p");
     headlineValue.className = "text-4xl font-bold";
     headlineValue.textContent = fmtCurrency(result.totalEstimate);
@@ -614,7 +822,6 @@ const calculatorNextStepItems = [
 
     const flags = document.createElement("div");
     flags.className = "mt-4 flex flex-wrap gap-2";
-
     const buildFlag = (text: string, className: string) => {
       const badge = document.createElement("span");
       badge.className = className;
@@ -630,7 +837,6 @@ const calculatorNextStepItems = [
         )
       );
     }
-
     if (!result.compensationProfile.appliesYearsOfService) {
       flags.appendChild(
         buildFlag(
@@ -639,7 +845,6 @@ const calculatorNextStepItems = [
         )
       );
     }
-
     if (result.compensationProfile.requiresProfessionalReview) {
       flags.appendChild(
         buildFlag(
@@ -653,31 +858,11 @@ const calculatorNextStepItems = [
       .getElementById("resultado-contenido")
       ?.replaceChildren(
         headline,
-        buildRow(
-          "Años contados",
-          `${result.serviceYearsCounted}`,
-          "text-secondary"
-        ),
-        buildRow(
-          "Años con tope legal",
-          `${result.cappedServiceYears}`,
-          "text-secondary"
-        ),
-        buildRow(
-          "Sueldo pendiente del mes",
-          fmtCurrency(result.pendingSalaryAmount),
-          "text-secondary"
-        ),
-        buildRow(
-          "Feriado proporcional",
-          `${result.proportionalVacationDays.toFixed(2)} días`,
-          "text-secondary"
-        ),
-        buildRow(
-          "Monto por feriado proporcional",
-          fmtCurrency(result.proportionalVacationAmount),
-          "text-secondary"
-        ),
+        buildRow("Años contados", `${result.serviceYearsCounted}`, "text-secondary"),
+        buildRow("Años con tope legal", `${result.cappedServiceYears}`, "text-secondary"),
+        buildRow("Sueldo pendiente del mes", fmtCurrency(result.pendingSalaryAmount), "text-secondary"),
+        buildRow("Feriado proporcional", `${result.proportionalVacationDays.toFixed(2)} días`, "text-secondary"),
+        buildRow("Monto por feriado proporcional", fmtCurrency(result.proportionalVacationAmount), "text-secondary"),
         buildRow(
           "Indemnización años de servicio",
           fmtCurrency(result.yearsOfServiceIndemnity),
@@ -686,16 +871,12 @@ const calculatorNextStepItems = [
         buildRow(
           "Aviso previo sustitutivo",
           fmtCurrency(result.substituteNoticeIndemnity),
-          result.substituteNoticeIndemnity > 0
-            ? "text-accent"
-            : "text-secondary"
+          result.substituteNoticeIndemnity > 0 ? "text-accent" : "text-secondary"
         ),
         buildRow(
           "Gratificación proporcional (art. 47)",
           fmtCurrency(result.gratificacionProporcionalAmount),
-          result.gratificacionProporcionalAmount > 0
-            ? "text-accent"
-            : "text-secondary"
+          result.gratificacionProporcionalAmount > 0 ? "text-accent" : "text-secondary"
         ),
         buildRow(
           `Recargo despido injustificado (art. 168 — ${(result.art168SurchargePercent * 100).toFixed(0)}%)`,
@@ -716,6 +897,7 @@ const calculatorNextStepItems = [
       calculator_slug: "finiquito-indemnizacion",
       calculator_name: "Calculadora Finiquito e Indemnizacion",
       outcome: "success",
+      mode: "finiquito-completo",
     });
     trackAnalyticsEvent("calculator_completed", {
       calculator_slug: "finiquito-indemnizacion",

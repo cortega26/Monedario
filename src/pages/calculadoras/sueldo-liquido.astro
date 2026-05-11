@@ -81,6 +81,11 @@ const sueldoLiquidoFaqs = [
     answer:
       "No directamente. La Ley 40h (Ley 21.561) reduce la jornada legal ordinaria de 45 a 42 horas semanales en abril de 2026 (con una bajada final a 40 h en 2028), pero no modifica tu sueldo bruto mensual pactado. Lo que cambia es que si trabajas más de 42 horas a la semana, cada hora adicional es hora extra y debe pagarse con un recargo mínimo del 50%. Lo que sí sube es el valor unitario de cada hora ordinaria, porque el denominador (horas semanales × 4,333) se reduce manteniendo el mismo sueldo.",
   },
+  {
+    question: "¿Cuánto me corresponde de gratificación legal mensual?",
+    answer:
+      "Si tu empleador paga gratificación mensualizada bajo art. 50 CT, el tope legal es el menor valor entre el 25% de tu remuneración mensual y $197.916 (equivalente a 4,75 IMM ÷ 12, con IMM = $500.000 vigente en 2026). Ejemplo: con bruto de $900.000 el máximo legal es $197.916; con bruto de $600.000 sería $150.000. Esta calculadora muestra el estimado en el resultado cuando calculas en modo Bruto → Líquido.",
+  },
 ];
 const currentCalculator = CALCULATOR_PORTFOLIO.find(
   calc => calc.slug === "sueldo-liquido"
@@ -623,7 +628,13 @@ const calculatorNextStepItems = [
           data-analytics-label="Guia de sueldo liquido en Chile"
           data-analytics-location="calculator_explainer"
           >guía de sueldo líquido en Chile</a
-        >.
+        >. Si tu liquidación incluye gratificación mensualizada, consulta la <a
+          href="/posts/gratificacion-legal-chile/"
+          data-analytics-cta="calculator-guide"
+          data-analytics-label="Guia de gratificacion legal"
+          data-analytics-location="calculator_explainer"
+          >guía de gratificación legal</a
+        > para entender el tope de 4,75 IMM.
       </p>
     </section>
 
@@ -844,6 +855,32 @@ const calculatorNextStepItems = [
             </p>
           </div>
         </details>
+
+        <details class="group rounded-lg border border-border">
+          <summary
+            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
+          >
+            ¿Cuánto me corresponde de gratificación legal mensual?
+            <span
+              class="text-xs text-muted transition-transform group-open:rotate-180"
+              >▼</span
+            >
+          </summary>
+          <div class="border-t border-border px-4 py-3 text-sm text-secondary">
+            Si tu empleador paga gratificación mensualizada bajo art. 50 CT, el
+            tope legal es el menor valor entre el <strong>25% de tu
+            remuneración mensual</strong> y <strong>$197.916</strong>
+            (equivalente a 4,75 IMM ÷ 12 meses, con IMM = $500.000 vigente en
+            2026). Ejemplo: con bruto de $900.000 el máximo legal es $197.916;
+            con bruto de $600.000 sería $150.000. Esta calculadora muestra el
+            estimado en el resultado cuando calculas en modo Bruto → Líquido.
+            Para el detalle completo de modalidades y obligaciones, revisa la <a
+              href="/posts/gratificacion-legal-chile/"
+              class="underline underline-offset-2 hover:text-foreground"
+              >guía de gratificación legal</a
+            >.
+          </div>
+        </details>
       </div>
     </section>
 
@@ -902,6 +939,11 @@ const calculatorNextStepItems = [
           url: "https://www.mintrab.gob.cl/reduccion-jornada-laboral/",
           date: "2023-04",
         },
+        {
+          name: "BCN — Código del Trabajo art. 47-50 (gratificación legal; tope 4,75 IMM)",
+          url: "https://www.bcn.cl/leychile/navegar?idNorma=207436",
+          date: "2026-01",
+        },
       ]}
     />
     {
@@ -952,6 +994,11 @@ const calculatorNextStepItems = [
   let lastResultado: ReturnType<typeof calculateNetSalary> | null = null;
   let lastOtrosDescuentos = 0;
   let lastModoLabel = "";
+  let lastBaseBruto: number | undefined = undefined;
+
+  // IMM vigente (art. 50 CT) — actualizar con ajuste de julio de cada año
+  const IMM_MENSUAL = 500_000;
+  const GRATI_CAP_MENSUAL = Math.round((4.75 / 12) * IMM_MENSUAL); // $197.916
 
   function readEconomicParameters(): { uf: number; utm: number } {
     const element = document.getElementById("economic-parameters");
@@ -1130,11 +1177,13 @@ const calculatorNextStepItems = [
     resultado: ReturnType<typeof calculateNetSalary>,
     modoLabel: string,
     extraNote?: string,
-    otrosDescuentos?: number
+    otrosDescuentos?: number,
+    baseBruto?: number
   ) {
     lastResultado = resultado;
     lastOtrosDescuentos = otrosDescuentos ?? 0;
     lastModoLabel = modoLabel;
+    lastBaseBruto = baseBruto;
 
     const netFinal = resultado.netSalary - (otrosDescuentos ?? 0);
     const totalDed = resultado.deductions.total + (otrosDescuentos ?? 0);
@@ -1298,6 +1347,19 @@ const calculatorNextStepItems = [
       )
     );
 
+    // Gratificación legal estimada (art. 50 CT) — solo modo bruto→líquido
+    if (baseBruto !== undefined) {
+      const grati25 = Math.round(baseBruto * 0.25);
+      const gratiLegal = Math.min(grati25, GRATI_CAP_MENSUAL);
+      extraRows.append(
+        mkInfoRow(
+          "Gratificación legal máx. (art. 50 CT) ②",
+          fmt(gratiLegal),
+          `25% de ${fmt(baseBruto)} = ${fmt(grati25)} — tope ${fmt(GRATI_CAP_MENSUAL)} (4,75 IMM/12)`
+        )
+      );
+    }
+
     // — SUPUESTO Y NOTAS —
     const assumption = document.createElement("p");
     assumption.className = "mt-3 text-xs text-muted";
@@ -1306,7 +1368,11 @@ const calculatorNextStepItems = [
       (resultado.taxableSalary === resultado.grossSalary
         ? "Supuesto aplicado: bruto total = imponible mensual."
         : "Usando imponible explícito distinto del bruto total.");
-    assumption.textContent = `${baseNote} ① Solo AFC empleador; no incluye mutual de seguridad ni beneficios pactados.`;
+    const gratiNote =
+      baseBruto !== undefined
+        ? ` ② Tope gratificación = 25% bruto o ${fmt(GRATI_CAP_MENSUAL)}/mes (4,75 × IMM $500.000 ÷ 12). Actualizar en julio 2026.`
+        : "";
+    assumption.textContent = `${baseNote} ① Solo AFC empleador; no incluye mutual de seguridad ni beneficios pactados.${gratiNote}`;
 
     document
       .getElementById("resultado-contenido")!
@@ -1445,7 +1511,7 @@ const calculatorNextStepItems = [
         return;
       }
       setLoading(false);
-      renderResultado(resultado, "Sueldo Líquido", undefined, otrosDescuentos);
+      renderResultado(resultado, "Sueldo Líquido", undefined, otrosDescuentos, rawInput);
       focusResultado();
       saveCalculatorResult(
         window.location.pathname,
@@ -1511,6 +1577,12 @@ const calculatorNextStepItems = [
       isInverso
         ? `${pad("BRUTO ESTIMADO:")}${fmt(r.grossSalary)}`
         : `${pad("SUELDO LÍQUIDO:")}${fmt(netFinal)}`,
+      ...(lastBaseBruto !== undefined
+        ? [
+            "─".repeat(44),
+            `${pad("Gratif. legal máx.:")}${fmt(Math.min(Math.round(lastBaseBruto * 0.25), GRATI_CAP_MENSUAL))} (art. 50 CT)`,
+          ]
+        : []),
     ];
 
     const text = lines.join("\n");

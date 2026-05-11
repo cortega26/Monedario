@@ -473,6 +473,57 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
       },
     ],
   },
+  {
+    href: "/calculadoras/interes-compuesto/",
+    slug: "interes-compuesto",
+    title: "Calculadora de Interés Compuesto",
+    description:
+      "Simula cuánto crece tu capital con interés compuesto: monto final, interés generado y evolución año a año según tasa y frecuencia de capitalización.",
+    icon: "trending-up",
+    tag: "Simulador",
+    family: "ahorro-prevision",
+    primaryJtbd:
+      "Ver cuánto crece un capital en el tiempo con una tasa y frecuencia de capitalización dadas.",
+    whenToUse:
+      "Cuando quieres proyectar un ahorro o inversión genérica y entender el efecto del tiempo y la capitalización.",
+    notFor:
+      "No modela AFP ni APV específico — usa el simulador de jubilación para proyección previsional.",
+    related: [
+      {
+        href: "/calculadoras/deposito-a-plazo/",
+        label: "Depósito a plazo",
+        when: "si tu inversión concreta es un DAP y necesitas calcular interés bruto, impuesto y monto neto.",
+      },
+      {
+        href: "/calculadoras/simulador-jubilacion/",
+        label: "Simulador de jubilación",
+        when: "si la proyección es previsional (AFP) y no una inversión genérica.",
+      },
+    ],
+  },
+  {
+    href: "/calculadoras/deposito-a-plazo/",
+    slug: "deposito-a-plazo",
+    title: "Calculadora Depósito a Plazo",
+    description:
+      "Calcula interés bruto, retención de impuesto (4%) e interés neto de tu DAP. Ingresa monto, plazo en días y tasa TIR.",
+    icon: "building-bank",
+    tag: "Ahorro",
+    family: "ahorro-prevision",
+    primaryJtbd:
+      "Saber cuánto ganas neto en un DAP, después de impuesto, con tu monto y plazo.",
+    whenToUse:
+      "Cuando tienes o evalúas un depósito a plazo y quieres el rendimiento real después de retención.",
+    notFor:
+      "No compara DAPs entre bancos ni cubre instrumentos en UF o dólares — solo pesos y tasa TIR.",
+    related: [
+      {
+        href: "/calculadoras/interes-compuesto/",
+        label: "Interés compuesto",
+        when: "si quieres proyectar un ahorro en el largo plazo con reinversión, no un DAP de plazo fijo.",
+      },
+    ],
+  },
 ];
 
 export const CALCULATOR_DECISION_GUIDES: CalculatorDecisionGuide[] = [
