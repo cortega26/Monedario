@@ -3,6 +3,8 @@
 Status: Accepted  
 Date: 2026-03-03
 
+Superseding note: `ADR-20260511-editorial-artifact-location-policy.md` removes the temporary `context/editorial/artifacts/<post_id>/` read fallback and keeps `artifacts/editorial/<slug>/<run-id>/` as the only canonical full-pipeline location.
+
 ## Context
 
 Editorial YMYL pipeline requirements exist in `context/EDITORIAL_AI_PIPELINE.md`, `context/INVARIANTS.md`, and `context/CONTRACTS.md`, but there was no deterministic automated gate to report artifact debt per post.

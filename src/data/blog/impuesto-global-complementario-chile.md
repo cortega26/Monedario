@@ -100,16 +100,16 @@ El IGC tiene 8 tramos progresivos, expresados en UTA (Unidad Tributaria Anual). 
 
 **Tabla IGC** (tramos fijos por ley; rebaja en CLP = factor × UTA del año tributario). Fuente: [SII — Datos informativos AT 2026](https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html).
 
-| Tramo (UTA) | Tasa | Factor de rebaja |
-| --- | --- | --- |
-| 0–13,5 UTA | Exento | — |
-| 13,5–30 UTA | 4% | 0,54 × UTA |
-| 30–50 UTA | 8% | 1,74 × UTA |
-| 50–70 UTA | 13,5% | 4,49 × UTA |
-| 70–90 UTA | 23% | 11,14 × UTA |
-| 90–120 UTA | 30,4% | 17,80 × UTA |
-| 120–310 UTA | 35% | 23,32 × UTA |
-| Sobre 310 UTA | 40% | 38,82 × UTA |
+| Tramo (UTA)   | Tasa   | Factor de rebaja |
+| ------------- | ------ | ---------------- |
+| 0–13,5 UTA    | Exento | —                |
+| 13,5–30 UTA   | 4%     | 0,54 × UTA       |
+| 30–50 UTA     | 8%     | 1,74 × UTA       |
+| 50–70 UTA     | 13,5%  | 4,49 × UTA       |
+| 70–90 UTA     | 23%    | 11,14 × UTA      |
+| 90–120 UTA    | 30,4%  | 17,80 × UTA      |
+| 120–310 UTA   | 35%    | 23,32 × UTA      |
+| Sobre 310 UTA | 40%    | 38,82 × UTA      |
 
 Con UTA = [[uta | clp]] (AT 2026): el tramo exento cubre hasta [[uta * 13.5 | clp]], el del 4% hasta [[uta * 30 | clp]] (rebaja: [[uta * 0.54 | clp]]), el del 8% hasta [[uta * 50 | clp]] (rebaja: [[uta * 1.74 | clp]]), el del 13,5% hasta [[uta * 70 | clp]] (rebaja: [[uta * 4.49 | clp]]). Los tramos en UTA son fijos por ley ([art. 52 LIR](https://www.bcn.cl/leychile/navegar?idNorma=6368), modificado por Ley 21.210 desde 2020).
 

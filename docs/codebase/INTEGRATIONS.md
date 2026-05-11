@@ -57,7 +57,7 @@ No hay llamadas a APIs externas en runtime de navegador ni servicios de backend 
 | `tmc` | `tmc.valor` | % mensual |
 | `dolar` | `dolar.valor` | CLP |
 
-Los toipes AFC y previsionales (`afcTopes`, `previsionalTopes`) se leen del snapshot, no de Mindicador.
+Los topes AFC y previsionales (`afcTopes`, `previsionalTopes`) se leen del snapshot, no de Mindicador.
 
 ---
 
@@ -111,7 +111,7 @@ Definición de tipos de entorno: `src/env.d.ts` (schema Astro `envField`).
 
 ## CI y servicios de despliegue
 
-El pipeline CI (`ci.yml`) y el despliegue (`deploy.yml`) corren en GitHub Actions. El deploy usa GitHub Pages. No hay servicios cloud propietarios de infraestructura.
+El pipeline CI principal vive en `.github/workflows/ci.yml` y los jobs operativos programados viven en `.github/workflows/*.yml`. No hay un `deploy.yml` activo en este árbol; la publicación debe consumir el build estático `dist/` sin introducir servicios backend propios.
 
 El script `scripts/check-urls-external.mjs` audita URLs externas en el contenido editorial; su baseline se protege con `check-urls-baseline-guard.test.ts`.
 

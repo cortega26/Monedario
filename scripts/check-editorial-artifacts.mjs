@@ -9,12 +9,6 @@ const REPO_ROOT = path.resolve(__dirname, "..");
 
 const BLOG_DIR = path.join(REPO_ROOT, "src", "data", "blog");
 const CANONICAL_ARTIFACTS_BASE = path.join(REPO_ROOT, "artifacts", "editorial");
-const FALLBACK_ARTIFACTS_BASE = path.join(
-  REPO_ROOT,
-  "context",
-  "editorial",
-  "artifacts"
-);
 const YMYL_ALLOWLIST_PATH = path.join(
   REPO_ROOT,
   "context",
@@ -141,7 +135,6 @@ function collectChangedEditorialTargets() {
       "--",
       "src/data/blog",
       "artifacts/editorial",
-      "context/editorial/artifacts",
     ]);
     if (output === null) continue;
 
@@ -165,10 +158,6 @@ function collectChangedEditorialTargets() {
         continue;
       }
 
-      const fallbackMatch = changedPath.match(/^context\/editorial\/artifacts\/([^/]+)\//);
-      if (fallbackMatch?.[1]) {
-        changedPostIds.add(fallbackMatch[1]);
-      }
     }
 
     return {
@@ -334,15 +323,8 @@ function toRepoRelative(absolutePath) {
 
 function resolveArtifactDirectories(postId) {
   const canonicalRoot = path.join(CANONICAL_ARTIFACTS_BASE, postId);
-  const fallbackRoot = path.join(FALLBACK_ARTIFACTS_BASE, postId);
   const canonicalExists = existsSync(canonicalRoot);
-  const fallbackExists = existsSync(fallbackRoot);
-
-  const resolvedRoot = canonicalExists
-    ? canonicalRoot
-    : fallbackExists
-      ? fallbackRoot
-      : canonicalRoot;
+  const resolvedRoot = canonicalRoot;
 
   let resolvedRunDir = resolvedRoot;
   if (existsSync(resolvedRoot)) {
@@ -359,7 +341,7 @@ function resolveArtifactDirectories(postId) {
     canonicalRoot,
     resolvedRoot,
     resolvedRunDir,
-    rootSource: canonicalExists ? "canonical" : fallbackExists ? "fallback" : "missing",
+    rootSource: canonicalExists ? "canonical" : "missing",
   };
 }
 
@@ -634,6 +616,7 @@ function printPostReport(result) {
   console.log(`- ymy_detection: ${result.ymyReason}`);
   console.log(`- expected_artifact_root: ${result.artifactRootExpected}`);
   console.log(`- resolved_artifact_root: ${result.artifactRootResolved} (${result.artifactSource})`);
+  console.log("- artifact_policy: canonical full pipeline artifacts live under artifacts/editorial/<slug>/<run-id>; docs/editorial/artifacts is legacy evidence only");
   console.log(`- resolved_run_dir: ${result.artifactRunDir}`);
   console.log(`- missing_artifacts: ${result.missingArtifacts.join(", ") || "none"}`);
   console.log(`- missing_fields: ${result.missingFields.join(", ") || "none"}`);

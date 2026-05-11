@@ -70,13 +70,13 @@ La base de cálculo es el **avalúo fiscal** de tu propiedad — un valor oficia
 
 Las tasas varían según el tipo de bien raíz. Tasas vigentes para el período del reavalúo 2022, fijadas por [Decreto Supremo N°437 de Hacienda (25.03.2022)](https://www.sii.cl/destacados/reavaluo/2022/4326-4341.html) y [Resolución Ex. SII N°11/2022](https://www.sii.cl/normativa_legislacion/resoluciones/2022/reso11.pdf):
 
-| Tipo de bien raíz | Tasa anual vigente |
-| --- | --- |
-| No agrícola habitacional — tramo inferior (avalúo ≤ $169.144.585) | **0,893%** |
-| No agrícola habitacional — tramo superior (avalúo > $169.144.585) | **1,042%** |
-| No agrícola no habitacional (comercial, industrial, oficinas) | **1,042%** |
-| Sitios no edificados, propiedades abandonadas y pozos lastreros | **1,23%** |
-| Agrícola | **0,4%** |
+| Tipo de bien raíz                                                 | Tasa anual vigente |
+| ----------------------------------------------------------------- | ------------------ |
+| No agrícola habitacional — tramo inferior (avalúo ≤ $169.144.585) | **0,893%**         |
+| No agrícola habitacional — tramo superior (avalúo > $169.144.585) | **1,042%**         |
+| No agrícola no habitacional (comercial, industrial, oficinas)     | **1,042%**         |
+| Sitios no edificados, propiedades abandonadas y pozos lastreros   | **1,23%**          |
+| Agrícola                                                          | **0,4%**           |
 
 La tasa habitacional se divide en dos tramos: el umbral de $169.144.585 (vigente desde enero de 2022) separa el tramo inferior del superior. Consulta el monto exacto para tu propiedad ingresando tu RUT o rol en el portal del [SII](https://www.sii.cl/).
 

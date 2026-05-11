@@ -116,16 +116,16 @@ El ISC tiene 8 tramos expresados en UTM (1 exento + 7 afectos), con tasas desde 
 
 **Tabla ISC** (tramos fijos por ley; rebaja en CLP = factor × UTM del mes). Fuente: [SII — Impuesto de Segunda Categoría 2026](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm).
 
-| Tramo (UTM) | Tasa | Factor de rebaja |
-| --- | --- | --- |
-| 0–13,5 UTM | Exento | — |
-| 13,5–30 UTM | 4% | 0,54 × UTM |
-| 30–50 UTM | 8% | 1,74 × UTM |
-| 50–70 UTM | 13,5% | 4,49 × UTM |
-| 70–90 UTM | 23% | 11,14 × UTM |
-| 90–120 UTM | 30,4% | 17,80 × UTM |
-| 120–310 UTM | 35% | 23,32 × UTM |
-| Sobre 310 UTM | 40% | 38,82 × UTM |
+| Tramo (UTM)   | Tasa   | Factor de rebaja |
+| ------------- | ------ | ---------------- |
+| 0–13,5 UTM    | Exento | —                |
+| 13,5–30 UTM   | 4%     | 0,54 × UTM       |
+| 30–50 UTM     | 8%     | 1,74 × UTM       |
+| 50–70 UTM     | 13,5%  | 4,49 × UTM       |
+| 70–90 UTM     | 23%    | 11,14 × UTM      |
+| 90–120 UTM    | 30,4%  | 17,80 × UTM      |
+| 120–310 UTM   | 35%    | 23,32 × UTM      |
+| Sobre 310 UTM | 40%    | 38,82 × UTM      |
 
 Con UTM = [[utm | clp]]: el tramo del 4% va de [[utm * 13.5 | clp]] a [[utm * 30 | clp]] (rebaja: [[utm * 0.54 | clp]]); el del 8% hasta [[utm * 50 | clp]] (rebaja: [[utm * 1.74 | clp]]); el del 13,5% hasta [[utm * 70 | clp]] (rebaja: [[utm * 4.49 | clp]]). Los tramos en UTM son fijos por ley.
 

@@ -10,7 +10,7 @@ Este sitio es 100% educativo: no solicita datos personales, no ofrece asesoría 
 
 ## Tecnologías principales
 
-- Astro 5 + TypeScript
+- Astro 6 + TypeScript 6
 - TailwindCSS (Vite plugin)
 - Pagefind (búsqueda estática)
 - Shiki (resaltado de código)
@@ -22,12 +22,17 @@ Este sitio es 100% educativo: no solicita datos personales, no ofrece asesoría 
     - index.astro (inicio)
     - posts/ (listado y detalles de artículos)
     - tags/ (índice y paginación de etiquetas)
-    - calculadoras/ (índice y calculadoras)
+    - calculadoras/ (índice y calculadoras financieras)
+    - guias/ (hubs editoriales por cluster)
+    - glosario/ (términos financieros)
+    - leyes/ (referencias legales)
     - archives/ (archivo de artículos)
     - search.astro (búsqueda)
     - 404.astro (página de error)
   - data/
-    - blog/ (contenido de artículos en Markdown)
+    - blog/ (contenido de artículos en Markdown/MDX)
+    - glossary/ (entradas de glosario)
+    - laws/ (referencias legales)
   - components/ (componentes UI como Header, Card, Pagination, etc.)
   - layouts/ (plantillas de páginas)
   - utils/ (utilidades para rutas, ordenamiento, etc.)
@@ -35,7 +40,7 @@ Este sitio es 100% educativo: no solicita datos personales, no ofrece asesoría 
 ## Documentación de gobernanza
 
 - Backlog técnico versionado: `docs/TECH_DEBT_BACKLOG.md`
-- Reporte de cierre Fase 1: `docs/operations/reports/closures/PHASE1_CLOSURE_REPORT.md`
+- Baseline de medición Fase 1: `docs/operations/reports/phase1_measurement_baseline.md`
 - Fronteras de dominio: `docs/architecture/DOMAIN_CONTRACT_BOUNDARIES.md`
 - Constitución de ingeniería para agentes IA/humanos: `docs/AI_ENGINEERING_CONSTITUTION.md`
 
@@ -54,6 +59,12 @@ Inicio rapido:
   - pnpm run dev
 - Compilar para producción y generar búsqueda:
   - pnpm run build
+- Validar antes de proponer un cambio:
+  - pnpm run lint
+  - pnpm run check:boundaries
+  - pnpm run format:check
+  - pnpm run test
+  - pnpm run check
 
 Notas:
 
@@ -67,14 +78,17 @@ Notas:
 - Integración: se ejecuta dentro de `pnpm run check:editorial`.
 - Modo por defecto: `warn-only` (reporta deuda sin romper el pipeline).
 - Modo estricto: `EDITORIAL_ENFORCE=1 pnpm run check:editorial-artifacts` (falla por artefactos/campos obligatorios faltantes).
-- Ubicación canónica de artefactos: `artifacts/editorial/<post_id>/<run-id>/` (según `context/EDITORIAL_AI_PIPELINE.md` y `context/CONTRACTS.md`).
+- Ubicación canónica de artefactos: `artifacts/editorial/<slug>/<run-id>/` (según `context/EDITORIAL_AI_PIPELINE.md` y `context/CONTRACTS.md`).
 
-## Despliegue (GitHub Pages)
+## CI y despliegue
 
-El repositorio incluye un workflow (.github/workflows/deploy.yml) que:
+El repositorio incluye workflows de GitHub Actions bajo `.github/workflows/` para CI, auditorías programadas y operaciones auxiliares. El workflow principal (`ci.yml`):
 
-- Ejecuta pnpm install --frozen-lockfile y pnpm run build
-- Sube el contenido de dist/ como artifact y lo publica vía GitHub Pages
+- Ejecuta `pnpm install --frozen-lockfile`.
+- Corre lint, formato, tests, contratos de contenido, rutas/RSS/URLs y build.
+- Sube artefactos de validación cuando corresponde.
+
+No hay un `deploy.yml` activo en este árbol. La publicación del sitio debe mantenerse alineada con el build estático generado en `dist/` y con la configuración de GitHub Pages/hosting usada fuera del workflow principal.
 
 Asegúrate de que:
 

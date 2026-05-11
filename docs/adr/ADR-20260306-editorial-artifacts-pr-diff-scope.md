@@ -14,7 +14,7 @@ This behavior conflicts with the canonical pipeline scope in `context/EDITORIAL_
 For `pull_request` CI runs:
 - keep `EDITORIAL_ENFORCE=1`
 - scope blocking evaluation to YMYL blog entries changed in the PR diff
-- also include artifact-only edits under `artifacts/editorial/<slug>/` and `context/editorial/artifacts/<slug>/`
+- also include artifact-only edits under `artifacts/editorial/<slug>/`
 
 For non-PR runs:
 - preserve existing repository-wide behavior (`scope=all`)

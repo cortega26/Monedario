@@ -21,6 +21,7 @@ Crea un ADR cuando cambie alguno de estos ejes:
 | `ADR-20260304-documentation-restructure.md` | Accepted | Reestructura de documentacion | docs, context |
 | `ADR-20260411-competitive-adaptation-policy.md` | Accepted | Gobernanza para benchmarking externo | editorial, governance |
 | `ADR-20260412-external-link-ci-gate.md` | Accepted | Gate de links externos en CI | validation, CI |
+| `ADR-20260511-editorial-artifact-location-policy.md` | Accepted | Politica de ubicacion de artefactos editoriales | editorial, governance |
 
 ## Convencion minima
 

@@ -7,15 +7,15 @@ Fecha de corte: 2026-04-30
 ### Total de items por urgencia
 
 - **P0:** 3
-- **P1:** 13
+- **P1:** 14
 - **P2:** 15
 - **P3:** 1
 
 ### Estado de avance (2026-04-23)
 
-- **Completados:** 59 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `TD-0037`, `TD-0038`, `TD-0040`, `TD-0041`, `TD-0043`, `TD-0044`, `TD-0045`, `TD-0046`, `TD-0047`, `TD-0048`, `TD-0049`, `TD-0050`, `TD-0051`, `TD-0052`, `TD-0053`, `TD-0054`, `TD-0055`, `TD-0056`, `FIX-MDX`, `FIX-LINKS-CALC`)
+- **Completados:** 60 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `TD-0037`, `TD-0038`, `TD-0040`, `TD-0041`, `TD-0043`, `TD-0044`, `TD-0045`, `TD-0046`, `TD-0047`, `TD-0048`, `TD-0049`, `TD-0050`, `TD-0051`, `TD-0052`, `TD-0053`, `TD-0054`, `TD-0055`, `TD-0056`, `TD-0058`, `FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 1 (`TD-0039`)
-- **Backlog sin iniciar:** 1 (`TD-0042`)
+- **Backlog sin iniciar:** 2 (`TD-0042`, `TD-0057`)
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -36,6 +36,7 @@ Fecha de corte: 2026-04-30
 ### Top riesgos restantes
 
 - `TD-0039`: performance mobile sigue por debajo del umbral estricto de LCP (`<= 1.7s`) en local, aunque los reruns del 2026-04-09 ya dejaron `TBT=0`, `CLS=0`, `SI<3.0s` y levantaron calculadora/hub a `Performance 100`.
+- `TD-0057`: el gate estricto repo-wide de artefactos editoriales (`EDITORIAL_ENFORCE=1 pnpm run check:editorial-artifacts`) falla porque el corpus publicado no tiene artefactos en la ruta canónica `artifacts/editorial/<slug>/<run-id>/`.
 
 ### Quick wins (alto impacto / bajo esfuerzo)
 
@@ -49,6 +50,48 @@ Fecha de corte: 2026-04-30
 - [x] `TD-0049` Actualizar constante UTM en test de `SimulateOperacionRenta` a 69889.
 - [x] `TD-0051` Remover atributo `data-is-example` tras cálculo real (1 línea JS).
 ---
+
+## TD-0057 — Backfill canónico de artefactos editoriales publicados
+- **ID:** TD-0057
+- **Título corto:** Backfill real de `artifacts/editorial/<slug>/<run-id>/`
+- **Descripción:** La política de ubicación quedó decidida en `docs/adr/ADR-20260511-editorial-artifact-location-policy.md`: `artifacts/editorial/<slug>/<run-id>/` es la única ubicación canónica para pipeline editorial completo; `docs/editorial/artifacts/**` es evidencia legacy/SEO sprint y no sustituye el pipeline. La deuda restante es editorial real: los posts YMYL publicados todavía requieren backfill canónico con brief, dossier, fuentes, auditoría y publish packet válidos cuando corresponda.
+- **Evidencia:** `EDITORIAL_ENFORCE=1 pnpm run check:editorial-artifacts` ejecutado el 2026-05-11: `SUMMARY total_posts=50 ymyl_posts=46 compliant=0 non_compliant=46`. La salida del script ahora declara la política canónica y no ofrece `docs/editorial/artifacts/**` como fallback.
+- **Impacto:** Mantiene visible una deuda editorial importante sin crear falsa evidencia de cumplimiento. El modo estricto repo-wide seguirá fallando hasta que el backfill sea editorialmente real.
+- **Riesgo:** medio
+- **Severidad (1-5):** 4
+- **Urgencia:** P1
+- **Esfuerzo estimado:** L
+- **Propuesta de solución:** ejecutar backfill por lotes priorizados, empezando por artículos de mayor tráfico/riesgo. Cada lote debe crear artefactos canónicos reales bajo `artifacts/editorial/<slug>/<run-id>/`, sin marcar gates humanos automáticamente y respetando separación de deberes.
+- **Criterios de cierre (checklist verificable):**
+- [x] Existe una única ruta canónica documentada y aplicada por scripts/tests.
+- [ ] `EDITORIAL_ENFORCE=1 pnpm run check:editorial-artifacts` no falla por ausencia estructural repo-wide no documentada.
+- [ ] `context/EDITORIAL_AI_PIPELINE.md`, `context/CONTRACTS.md`, runbooks y tests coinciden.
+- [ ] La migración o reclasificación preserva separación de deberes y no marca gates humanos como aprobados automáticamente.
+- **Owner:** TBD
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-05-11
+- **Última actualización:** 2026-05-11
+- **Nota 2026-05-11:** decisión de ubicación cerrada por ADR-20260511; queda pendiente el backfill canónico real.
+
+## TD-0058 — Bare CMF URLs rompían el gate de redirects
+- **ID:** TD-0058
+- **Título corto:** Reemplazar enlaces CMF bare por URL canónica
+- **Descripción:** `pnpm run test` fallaba en `tests/e2e/redirect-links.e2e.test.ts` porque `src/` todavía contenía enlaces `https://www.cmfchile.cl` / `https://www.cmfchile.cl/`, patrones definidos como URLs redirecting/deprecated.
+- **Evidencia:** Falla reproducida el 2026-05-11 en `Bare CMF domain with trailing slash only`; ocurrencias en `fondo-emergencia-chile.md`, `suplantacion-identidad-creditos-no-reconocidos.md`, `ley-18010-credito-dinero.md` y `ley-21521-fintech.md`.
+- **Impacto:** Ensuciaba el gate principal de regresión y ocultaba cambios futuros relacionados con URLs oficiales.
+- **Riesgo:** bajo
+- **Severidad (1-5):** 3
+- **Urgencia:** P0
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** usar la URL canónica esperada por el test: `https://www.cmfchile.cl/portal/principal/613/w3-channel.html`.
+- **Criterios de cierre (checklist verificable):**
+- [x] No quedan patrones bare CMF en `src/`.
+- [x] `pnpm run test -- --run tests/e2e/redirect-links.e2e.test.ts` pasa.
+- [x] `pnpm run test` pasa completo.
+- **Owner:** Codex
+- **Estado:** Completado
+- **Fecha de creación:** 2026-05-11
+- **Última actualización:** 2026-05-11
 
 ## TD-0055 — Desalineación masiva scene/model en hero prompts
 - **ID:** TD-0055

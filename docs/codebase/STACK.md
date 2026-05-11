@@ -22,7 +22,7 @@ Descripcion factual del stack del repositorio para contributors y agentes.
 
 ## Tooling de calidad
 
-- TypeScript 5
+- TypeScript 6
 - Vitest 4
 - ESLint 10
 - Prettier 3
@@ -32,7 +32,7 @@ Descripcion factual del stack del repositorio para contributors y agentes.
 ## Integraciones de build
 
 - Mindicador como fuente externa opcional de datos economicos
-- GitHub Actions para CI, deploy y jobs programados
+- GitHub Actions para CI y jobs programados
 - GitHub Pages como destino de despliegue
 
 ## Convenciones tecnicas visibles

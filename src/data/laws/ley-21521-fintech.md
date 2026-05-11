@@ -45,7 +45,7 @@ Bajo el régimen de **finanzas abiertas** que introduce la ley:
 
 ### ¿Cómo verificar si una empresa Fintech está regulada?
 
-El **Registro de Prestadores de Servicios Financieros** de la CMF es público. Si una plataforma dice estar regulada, puedes verificarlo en [cmfchile.cl](https://www.cmfchile.cl). Operar sin inscripción es una infracción grave sancionada por la CMF.
+El **Registro de Prestadores de Servicios Financieros** de la CMF es público. Si una plataforma dice estar regulada, puedes verificarlo en [cmfchile.cl](https://www.cmfchile.cl/portal/principal/613/w3-channel.html). Operar sin inscripción es una infracción grave sancionada por la CMF.
 
 ### Artículos de referencia clave
 
@@ -61,7 +61,7 @@ El **Registro de Prestadores de Servicios Financieros** de la CMF es público. S
 
 Texto completo: [BCN — Ley 21.521](https://www.bcn.cl/leychile/navegar?idNorma=1187323)
 
-Registro Fintech CMF: [CMF — Registro de Prestadores Financieros](https://www.cmfchile.cl)
+Registro Fintech CMF: [CMF — Registro de Prestadores Financieros](https://www.cmfchile.cl/portal/principal/613/w3-channel.html)
 
 ---
 

@@ -25,7 +25,7 @@ Regla de dependencias:
 - **Presentation** → Application, Domain
 - **Application** → Domain
 - **Domain** → nada (cero imports de otras capas)
-- **Infrastructure** → Domain (implementa interfaces del dominio)
+- **Infrastructure** → Domain
 
 Esta regla se verifica en CI mediante `pnpm run check:boundaries` (ver `scripts/check-domain-boundaries.mjs`).
 
@@ -97,7 +97,7 @@ Astro SSG con generación estática completa. No hay SSR en producción (modo `o
 |---|---|
 | `index.astro` | Homepage con indicadores y accesos directos |
 | `posts/[slug].astro` | Artículos editoriales (blog/finanzas personales) |
-| `calculadoras/` | 17 calculadoras financieras |
+| `calculadoras/` | 16 calculadoras financieras |
 | `guias/` | Guías de contenido largo |
 | `glosario/` | Glosario de términos financieros |
 | `leyes/` | Compendio de normas relevantes |
@@ -138,15 +138,18 @@ Helper de ruta: `src/domain/content/path.ts` → `getCanonicalPathFromSlug(slug)
 
 ```
 pnpm run build
-  └─ astro build
-       ├─ EconomicParameterProvider.fetchOrFallback()
-       │    ├─ → mindicador.cl (live)
-       │    └─ → economic-parameters.snapshot.json (fallback)
-       ├─ Colecciones Astro (src/data/blog/, src/data/pages/)
-       │    └─ Frontmatter validado por check:frontmatter
-       └─ Páginas estáticas + assets
-            ├─ OG images generadas (og.png.ts)
-            └─ RSS feed (rss.xml.ts)
+  ├─ check:images + check:hero-images + check:frontmatter
+  ├─ check:legal-citations
+  ├─ astro check
+  ├─ astro build
+  │    ├─ EconomicParameterProvider
+  │    │    ├─ → economic-parameters.snapshot.json (modo deterministico)
+  │    │    └─ → mindicador.cl (solo modo live opcional)
+  │    ├─ Colecciones Astro (blog, glossary, laws)
+  │    └─ Páginas estáticas + assets
+  ├─ check:toc-i18n + check:editorial-guard
+  ├─ Pagefind para busqueda estatica
+  └─ check:urls sobre dist/
 ```
 
 ---

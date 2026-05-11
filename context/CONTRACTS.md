@@ -514,10 +514,13 @@ Change log:
   - `.github/workflows/ci.yml`
   - `docs/adr/ADR-20260303-editorial-artifacts-gate-phase1.md`
   - `docs/adr/ADR-20260306-editorial-artifacts-pr-diff-scope.md`
+  - `docs/adr/ADR-20260511-editorial-artifact-location-policy.md`
 - Baseline expectations:
   - Default repository-wide mode stays warn-only unless `EDITORIAL_ENFORCE=1`.
   - Strict mode is allowed for CI, but in `pull_request` context it scopes blocking evaluation to changed YMYL blog entries or their artifact roots.
   - Unchanged legacy YMYL debt remains visible through warn-only/full-corpus runs and must be tracked in `docs/TECH_DEBT_BACKLOG.md`.
+  - Full pipeline artifacts are canonical only under `artifacts/editorial/<slug>/<run-id>/`.
+  - `docs/editorial/artifacts/**` is legacy/SEO sprint evidence and is not a substitute for canonical full-pipeline artifacts.
 - Backward-compat expectations:
   - Artifact contracts remain unchanged for any YMYL post that is added or substantively refreshed.
   - Unrelated PRs must not fail on pre-existing artifact debt outside the diff.
@@ -527,6 +530,7 @@ Change log:
 - Detection:
   - Passing output includes `scope=changed` or `scope=all`.
   - Strict PR failures report only changed YMYL targets with missing artifact requirements.
+  - Repo-wide strict `scope=all` may fail until canonical backfill is completed; this is debt visibility, not permission to create placeholder artifacts.
 
 ### `CONTRACT.EDITORIAL.TIMELINESS_POLICY`
 

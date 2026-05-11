@@ -1,6 +1,6 @@
 # Module Index (Agent Quick Map)
 
-Last updated: 2026-04-15
+Last updated: 2026-05-11
 
 ## 1. Repository map
 
@@ -8,6 +8,8 @@ Last updated: 2026-04-15
 |---|---|---|
 | `src/` | Runtime app (Astro pages/components/layouts/utils/content config) | Do not modify for context-only tasks. |
 | `src/data/blog/` | Editorial content (`.md/.mdx`) | Out of scope unless explicit content task. |
+| `src/data/glossary/` | Glossary entries for financial terms | Preserve reader-facing Spanish and collection schema. |
+| `src/data/laws/` | Legal reference pages | Treat as YMYL-adjacent; prefer official sources. |
 | `scripts/` | Quality gates and snapshots (`check:*`, `compare-*`, `snapshot-*`) | Primary enforcement source for context invariants/contracts. |
 | `docs/` | Constitution, domain docs, reports, issue docs | Constitutional/domain source of truth. |
 | `docs/governance/` | Stable governance policies and ADR-adjacent execution rules | Read for strategy/process changes before inventing new visible patterns. |
@@ -16,6 +18,8 @@ Last updated: 2026-04-15
 | `context/` | Agent context layer and project state docs | Keep concise and cross-referenced. |
 | `context/AGENT_PREFLIGHT.md` | Single-file session warm-up: hard stops, gate map, invariant IDs, env vars | Load first when starting any agent session to cut cold-start token cost. |
 | `tests/` | Vitest suites by layer | Required when runtime layers change per AGENTS rules. |
+| `artifacts/editorial/` | Canonical editorial pipeline artifacts | Required for new YMYL content and substantive refreshes. |
+| `docs/editorial/artifacts/` | Legacy/SEO sprint editorial artifacts | Noncanonical evidence; do not use as full pipeline substitute. See ADR-20260511. |
 
 ## 2. Where key behaviors are defined
 
@@ -47,6 +51,9 @@ Last updated: 2026-04-15
   - `src/infrastructure/editorial/editorial-volatile-data.snapshot.json`
   - `output/validation/editorial-timeliness/report.json`
   - `.github/workflows/editorial-timeliness-audit.yml`
+- Deprecated redirect URL guard:
+  - `tests/e2e/redirect-links.e2e.test.ts`
+  - protects `src/` from reintroducing known redirecting official-source URLs
 
 ## 3. Context first-read sequence for agents
 

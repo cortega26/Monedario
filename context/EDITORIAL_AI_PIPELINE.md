@@ -142,13 +142,13 @@ These playbooks are the guardrails for each tool. When you invoke a tool for a p
 
 ### Stage 02 — `ResearchAgent` (ChatGPT)
 
-**Input files to provide:** `docs/editorial/artifacts/<slug>/01-artifact.md`
+**Input files to provide:** `artifacts/editorial/<slug>/<run-id>/01-brief.yaml`
 
 **Prompt:**
 
 > You are ResearchAgent in a YMYL editorial pipeline. Your only task is to gather and structure factual claims from official sources. Do not write article prose.
 >
-> Input: [paste contents of 01-artifact.md]
+> Input: [paste contents of 01-brief.yaml]
 >
 > Rules:
 > - Cite every claim to an official URL (SII, TGR, CMF, Superintendencia de Pensiones, etc.). No unnamed sources.
@@ -170,7 +170,7 @@ These playbooks are the guardrails for each tool. When you invoke a tool for a p
 
 ### Stage 04 — `DraftAgent` (Claude)
 
-**Input files to provide:** `01-artifact.md`, `02-dossier.md` (or `02-research.md`), `03-outline.md`
+**Input files to provide:** `01-brief.yaml`, `02-dossier.md`, `03-outline.md`
 For remediation runs, also provide: `05-math-audit.md`
 
 **Prompt:**
@@ -233,9 +233,9 @@ For remediation runs, also provide: `05-math-audit.md`
 
 **Files to read at session start:**
 - `docs/editorial/NORMA_YMYL.md`
-- `docs/editorial/artifacts/<slug>/01-artifact.md`
-- `docs/editorial/artifacts/<slug>/04-draft.md`
-- `docs/editorial/artifacts/<slug>/05-math-audit.md`
+- `artifacts/editorial/<slug>/<run-id>/01-brief.yaml`
+- `artifacts/editorial/<slug>/<run-id>/04-draft.md`
+- `artifacts/editorial/<slug>/<run-id>/05-math-audit.md`
 
 **Prompt (paste as first message):**
 
@@ -243,9 +243,9 @@ For remediation runs, also provide: `05-math-audit.md`
 >
 > Read these files in order before writing anything:
 > 1. `docs/editorial/NORMA_YMYL.md` — this is the quality standard you will apply
-> 2. `docs/editorial/artifacts/<slug>/01-artifact.md` — brief, declared sources, risk classification
-> 3. `docs/editorial/artifacts/<slug>/04-draft.md` — the draft under review
-> 4. `docs/editorial/artifacts/<slug>/05-math-audit.md` — the math audit result
+> 2. `artifacts/editorial/<slug>/<run-id>/01-brief.yaml` — brief, declared sources, risk classification
+> 3. `artifacts/editorial/<slug>/<run-id>/04-draft.md` — the draft under review
+> 4. `artifacts/editorial/<slug>/<run-id>/05-math-audit.md` — the math audit result
 >
 > Rules:
 > - Apply the NORMA_YMYL.md scorecard. Score each dimension honestly. Do not inflate scores.
@@ -305,7 +305,7 @@ When you encounter a blocked artifact, classify each defect or open item into ex
 
 When instructed to work on a blocked pipeline, execute these steps in order:
 
-1. **Read** the artifact folder: `01-artifact.md`, `06-compliance.md`, `07-publish-packet.md`.
+1. **Read** the artifact folder: `01-brief.yaml`, `06-compliance.md`, `07-publish-packet.md`.
 2. **Classify** every open item into Bucket A, B, or C (§9.2 table above).
 3. **Emit a Triage Report** (§9.4 format) before taking any action.
 4. **Resolve only Bucket C items** in this session. Do not touch Bucket A or B items.
@@ -319,7 +319,7 @@ Emit this report as plain text before starting any work. Fill in every row.
 ```
 TRIAGE REPORT — <slug> — <date>
 
-Artifact folder: docs/editorial/artifacts/<slug>/
+Artifact folder: artifacts/editorial/<slug>/<run-id>/
 Compliance status (06-compliance.md): <status line verbatim>
 Publish packet status (07-publish-packet.md): <status line verbatim>
 

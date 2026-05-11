@@ -1,5 +1,5 @@
 # Project Structure: Monedario
-> *Nota: Se han omitido dependencias, builds y archivos de reporte para optimizar el contexto.*
+> *Mapa descriptivo y selectivo. Para el índice operativo más actualizado usa `docs/codebase/STRUCTURE.md` y `context/MODULE_INDEX.md`. Se omiten dependencias, builds y reportes archivados para optimizar el contexto.*
 
 ```text
 Monedario/
@@ -12,9 +12,7 @@ Monedario/
 │   ├── INTER_CLUSTER_LINKING.md
 │   ├── INVARIANTS.md
 │   ├── MODULE_INDEX.md
-│   ├── PHASE1_CLOSURE_REPORT.md
-│   ├── PROJECT_CONTEXT_MASTER.md
-│   └── TECH_DEBT_BACKLOG.md
+│   └── PROJECT_CONTEXT_MASTER.md
 ├── docs/
 │   ├── adr/
 │   │   ├── ADR-20260303-editorial-ai-pipeline-enforcement.md
@@ -54,10 +52,9 @@ Monedario/
 │   │   │   ├── ISSUE-007_etf-desde-chile-comisiones-custodia-impuestos.md
 │   │   │   └── ISSUE-008_estafas-chile-vishing-portabilidad-falsas-inversiones.md
 │   │   └── reports/
-│   │       ├── FEATURED_IMAGE_MIGRATION_REPORT.md
-│   │       ├── PERFORMANCE_HARDENING_MOBILE_REPORT.md
-│   │       ├── PERFORMANCE_REMOTE_CLOSURE_REPORT.md
-│   │       └── PHASE1_CLOSURE_REPORT.md
+│   │       ├── calculator-portfolio-audit-2026-04.md
+│   │       ├── f22-calculator-audit-2026-04-12.md
+│   │       └── phase1_measurement_baseline.md
 │   ├── reports/
 │   │   ├── routes_snapshot_before.json
 │   │   ├── rss_snapshot.json
@@ -72,8 +69,8 @@ Monedario/
 │   └── validation/
 │       ├── routes_snapshot_after.json
 │       └── rss_snapshot_after.json
-├── internal-docs/
-│   └── tuplatainforma-contexto.md
+├── artifacts/
+│   └── editorial/ (canonical pipeline artifacts when present)
 ├── public/
 │   ├── fonts/
 │   │   ├── fraunces-latin-400-700.7234ed86.woff2
@@ -83,7 +80,7 @@ Monedario/
 │   │   ├── inter-latin-900.woff2
 │   │   └── source-sans-3-latin-400-600.7a19a702.woff2
 │   ├── favicon.svg
-│   └── images/og/[article].jpg
+│   └── images/
 ├── scripts/
 │   ├── check-context.mjs
 │   ├── check-dialect.mjs
@@ -100,9 +97,7 @@ Monedario/
 │   ├── compare-rss.mjs
 │   ├── download-og-fonts.mjs
 │   ├── fix-paths.mjs
-│   ├── migrate-images-v2.mjs
-│   ├── migrate-images-v3.mjs
-│   ├── migrate-images.mjs
+│   ├── hero-images/
 │   ├── normalize-frontmatter.mjs
 │   ├── refresh-economic-snapshot.mjs
 │   ├── refresh-editorial-volatile-data.mjs
