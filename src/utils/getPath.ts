@@ -3,8 +3,11 @@
  * Examples:
  * - getPath("posts/mi-articulo") => "/posts/mi-articulo"
  * - getPath("/posts/mi-articulo") => "/posts/mi-articulo"
+ * - getPath("https://example.com/") => "https://example.com/"
  */
 export function getPath(path: string): string {
+  if (isAbsoluteUrl(path)) return path;
+
   const rawBase = import.meta.env.BASE_URL || "/";
   const normalizedBase =
     rawBase === "/" ? "" : `/${rawBase.replace(/^\/+|\/+$/g, "")}`;
@@ -23,4 +26,8 @@ export function getPath(path: string): string {
   }
 
   return `${normalizedBase}${normalizedPath}`;
+}
+
+function isAbsoluteUrl(path: string): boolean {
+  return /^[a-z][a-z\d+\-.]*:/i.test(path) || path.startsWith("//");
 }
