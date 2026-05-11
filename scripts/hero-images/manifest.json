@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "source": "src/data/blog/**",
   "publishableRule": "draft !== true",
-  "articleCount": 43,
+  "articleCount": 50,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -20,8 +20,8 @@
       "summary": "Elegir en qué instrumento poner tu plata es una de las decisiones financieras más frecuentes —y más mal tomadas— por personas que ya tienen claro que quieren ahorrar, pero no saben bien cómo organizarlo. Esta guía te ayuda a comparar depósitos a plazo, fondos mutuos y ETFs según...",
       "leadParagraphs": [
         "Elegir en qué instrumento poner tu plata es una de las decisiones financieras más frecuentes —y más mal tomadas— por personas que ya tienen claro que quieren ahorrar, pero no saben bien cómo organizarlo. Esta guía te ayuda a comparar depósitos a plazo, fondos mutuos y ETFs según plazo, riesgo, costo real y tributación, sin rodeos y con foco en Chile 2026.",
-        "Para que la comparación sea útil, partimos de cuatro supuestos básicos:",
-        "Si alguno de estos puntos no aplica a tu situación, conviene dar un paso atrás antes de elegir instrumento."
+        "> **Revisión editorial 2026-04-22:** se revalidaron los criterios generales de costos, rescate/custodia y tributación base contra CMF y SII. Antes de invertir, confirma además las comisiones y reglamentos del producto específico.",
+        "Para que la comparación sea útil, partimos de cuatro supuestos básicos:"
       ],
       "headings": [
         "Antes de comparar: lo que esta guía asume",
@@ -33,8 +33,8 @@
         "Perfil balanceado",
         "Perfil agresivo"
       ],
-      "bodyExcerpt": "Elegir en qué instrumento poner tu plata es una de las decisiones financieras más frecuentes —y más mal tomadas— por personas que ya tienen claro que quieren ahorrar, pero no saben bien cómo organizarlo. Esta guía te ayuda a comparar depósitos a plazo, fondos mutuos y ETFs según plazo, riesgo, costo real y tributación, sin rodeos y con foco en Chile 2026. ## Antes de comparar: lo que esta guía asume Para que la comparación sea útil, partimos de cuatro supuestos básicos: - Ya tienes un fondo de emergencia separado del dinero que vas a invertir. - Tu horizonte de inversión es de al menos 3 meses. - Entiendes que mayor retorno esperado implica mayor riesgo. - Vas a comparar costos reales —no solo rentabilidad histórica. - Revisarás el tratamiento tributario antes de ejecutar rescates o ventas, no después. Si alguno de estos puntos no aplica a tu situación, conviene dar un paso atrás antes de elegir instrumento. ## Tres instrumentos, tres lógicas distintas No todos los instrumentos sirven para lo mismo. Esta tabla te da una primera orientación: | Instrumento | Para qué sirve mejor | Riesgo relativo | Liquidez típica | | ---------------- | -------------------------------------------- | ",
-      "wordCount": 1294,
+      "bodyExcerpt": "Elegir en qué instrumento poner tu plata es una de las decisiones financieras más frecuentes —y más mal tomadas— por personas que ya tienen claro que quieren ahorrar, pero no saben bien cómo organizarlo. Esta guía te ayuda a comparar depósitos a plazo, fondos mutuos y ETFs según plazo, riesgo, costo real y tributación, sin rodeos y con foco en Chile 2026. > **Revisión editorial 2026-04-22:** se revalidaron los criterios generales de costos, rescate/custodia y tributación base contra CMF y SII. Antes de invertir, confirma además las comisiones y reglamentos del producto específico. ## Antes de comparar: lo que esta guía asume Para que la comparación sea útil, partimos de cuatro supuestos básicos: - Ya tienes un fondo de emergencia separado del dinero que vas a invertir. - Tu horizonte de inversión es de al menos 3 meses. - Entiendes que mayor retorno esperado implica mayor riesgo. - Vas a comparar costos reales —no solo rentabilidad histórica. - Revisarás el tratamiento tributario antes de ejecutar rescates o ventas, no después. Si alguno de estos puntos no aplica a tu situación, conviene dar un paso atrás antes de elegir instrumento. ## Tres instrumentos, tres lógicas distintas No ",
+      "wordCount": 1312,
       "sourceFile": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.md"
     },
     {
@@ -66,7 +66,7 @@
         "Información de vigencia"
       ],
       "bodyExcerpt": "Emites boletas y cada mes te preguntas lo mismo: ¿cuánto me llega realmente? En 2026 la respuesta cambia porque subió la retención. Esta guía separa tres cosas que suelen confundirse: la retención mensual que se aplica al emitir cada boleta, el cálculo de cotizaciones que ocurre en Operación Renta y la cobertura anual que resulta de ese proceso. ## Qué hacer ahora (5 minutos) Desde el 1 de enero de 2026, la retención de boletas sube a **15,25%**. Este aumento forma parte del escalamiento gradual establecido por la ** **, cuyo cronograma hasta 2028 es: | Año | Retención sobre bruto boleteado | | -------- | ------------------------------- | | 2025 | 14,5% | | **2026** | **15,25%** ← vigente | | 2027 | 16,0% | | 2028 | 17,0% | El porcentaje de 2028 es el nivel de régimen permanente. Fuente: . Ejemplo simple oficial (SII) con la tasa 2026: - Boleta por $100.000. - Retención 15,25% = $15.250. - Líquido recibido = **$84.750**. 1. Calcula tu líquido por boleta con retención 2026: 15,25%. 2. Separa esa retención mensual de la cotización anual de Operación Renta. 3. Revisa tu total anual boleteado para estimar si cotizas o quedas eximido por umbral. 4. Confirma tu afiliación previsional/sal",
-      "wordCount": 788,
+      "wordCount": 781,
       "sourceFile": "boleta-honorarios-2026-retencion-cobertura.md"
     },
     {
@@ -83,24 +83,24 @@
       "cluster": "deuda-credito",
       "sourcePath": "src/data/blog/cae-costo-real-credito-chile.md",
       "heroImage": "/images/hero/cae-costo-real-credito-chile.avif",
-      "summary": "Cuando comparas créditos, el número que más te empujan es la cuota o la tasa mensual. El problema es que ninguna de esas dos cifras, por sí sola, te dice cuánto terminarás pagando en total. El CAE existe precisamente para cerrar esa trampa. Usa esta guía si todavía estás evaluand...",
+      "summary": "Cuando comparas créditos, el número que más te empujan es la cuota o la tasa mensual. El problema es que ninguna de esas dos cifras, por sí sola, te dice cuánto terminarás pagando en total. La CAE existe precisamente para cerrar esa trampa. Usa esta guía si todavía estás evaluand...",
       "leadParagraphs": [
-        "Cuando comparas créditos, el número que más te empujan es la cuota o la tasa mensual. El problema es que ninguna de esas dos cifras, por sí sola, te dice cuánto terminarás pagando en total. El **CAE** existe precisamente para cerrar esa trampa.",
+        "Cuando comparas créditos, el número que más te empujan es la cuota o la tasa mensual. El problema es que ninguna de esas dos cifras, por sí sola, te dice cuánto terminarás pagando en total. La **CAE** existe precisamente para cerrar esa trampa.",
         "Usa esta guía si todavía estás evaluando una oferta, una repactación o un prepago. Si tu problema ya no es comparar sino ordenar deudas vencidas o revisar qué aparece a tu nombre, cambia de ruta: primero diagnóstico; después, si corresponde, salida formal.",
         "Antes de entrar al tema, hay que despejar una confusión frecuente de vocabulario chileno:"
       ],
       "headings": [
         "Dos CAE que no tienen nada que ver entre sí",
         "Esta guía sí te sirve cuando... y cuándo no",
-        "Qué es el CAE y por qué existe",
-        "Qué incluye el CAE y qué no incluye",
+        "Qué es la CAE y por qué existe",
+        "Qué incluye la CAE y qué no incluye",
         "Por qué \"la tasa mensual\" te puede engañar",
         "TMC y CAE no cumplen la misma función",
-        "Cómo se calcula el CAE paso a paso",
+        "Cómo se calcula la CAE paso a paso",
         "Cómo funciona la cuota: lo que pagas y a qué va"
       ],
-      "bodyExcerpt": "Cuando comparas créditos, el número que más te empujan es la cuota o la tasa mensual. El problema es que ninguna de esas dos cifras, por sí sola, te dice cuánto terminarás pagando en total. El **CAE** existe precisamente para cerrar esa trampa. Usa esta guía si todavía estás evaluando una oferta, una repactación o un prepago. Si tu problema ya no es comparar sino ordenar deudas vencidas o revisar qué aparece a tu nombre, cambia de ruta: primero diagnóstico; después, si corresponde, salida formal. ## Dos CAE que no tienen nada que ver entre sí Antes de entrar al tema, hay que despejar una confusión frecuente de vocabulario chileno: - **CAE (Carga Anual Equivalente):** Indicador del costo total anual de un crédito. Incluye tasas, comisiones y seguros. Es el número que te permite comparar dos créditos de forma justa. - **CAE (Crédito con Aval del Estado):** Préstamo estudiantil gestionado por la Comisión Ingresa. No tiene relación directa con el indicador financiero anterior. En esta guía, \"CAE\" siempre se refiere al primer significado: el indicador de costo del crédito. ## Esta guía sí te sirve cuando... y cuándo no - **Sí te sirve** si estás comparando un crédito nuevo, una repactac",
-      "wordCount": 2320,
+      "bodyExcerpt": "Cuando comparas créditos, el número que más te empujan es la cuota o la tasa mensual. El problema es que ninguna de esas dos cifras, por sí sola, te dice cuánto terminarás pagando en total. La **CAE** existe precisamente para cerrar esa trampa. Usa esta guía si todavía estás evaluando una oferta, una repactación o un prepago. Si tu problema ya no es comparar sino ordenar deudas vencidas o revisar qué aparece a tu nombre, cambia de ruta: primero diagnóstico; después, si corresponde, salida formal. ## Dos CAE que no tienen nada que ver entre sí Antes de entrar al tema, hay que despejar una confusión frecuente de vocabulario chileno: - **CAE (Carga Anual Equivalente):** Indicador del costo total anual de un crédito. Incluye tasas, comisiones y seguros. Es el número que te permite comparar dos créditos de forma justa. - **CAE (Crédito con Aval del Estado):** Préstamo estudiantil gestionado por la Comisión Ingresa. No tiene relación directa con el indicador financiero anterior. En esta guía, \"CAE\" siempre se refiere al primer significado: el indicador de costo del crédito. ## Esta guía sí te sirve cuando... y cuándo no - **Sí te sirve** si estás comparando un crédito nuevo, una repactac",
+      "wordCount": 2326,
       "sourceFile": "cae-costo-real-credito-chile.md"
     },
     {
@@ -134,7 +134,7 @@
         "Por qué te subieron el sueldo y te bajó el líquido"
       ],
       "bodyExcerpt": "Te ofrecieron $1.200.000 brutos. Llegó el día de pago y te cayeron $950.000. Esta guía existe para rehacer ese cálculo de principio a fin: partir desde el bruto, separar el imponible y llegar al depósito final con AFP, salud, cesantía e impuesto. Si tu duda principal no es rehacer el número completo, conviene separar primero si necesitas clasificar descuentos o auditar el comprobante. Si solo necesitas el número, puedes saltar directo a la calculadora más abajo. ## La diferencia entre sueldo bruto y sueldo líquido Aquí el foco es el cálculo completo del líquido. No es la guía principal para discutir si un descuento es legal ni para revisar el formato del comprobante. **Sueldo bruto** es lo que acordaste con tu empleador. **Sueldo líquido** es lo que realmente llega a tu cuenta. Entre uno y otro hay una serie de descuentos obligatorios que establece la ley — no los decide tu empresa ni tu AFP. Para un trabajador dependiente con contrato indefinido, los descuentos típicos son estos: | Descuento | Porcentaje | Va a... | | --------------------------- | ------------- | ---------------------- | | AFP (cotización) | 10% | Tu cuenta de pensión | | AFP (comisión) | 0.46% – 1.45% | La AFP po",
-      "wordCount": 1766,
+      "wordCount": 1770,
       "sourceFile": "como-calcular-sueldo-liquido.md"
     },
     {
@@ -153,8 +153,8 @@
       "summary": "Cambiarse de AFP es uno de los trámites más simples que puedes hacer para mejorar tu situación previsional, y sin embargo la mayoría de las personas nunca lo hace. En esta guía te explicamos cómo funciona el proceso, qué debes evaluar y qué cambia con la Reforma de Pensiones apro...",
       "leadParagraphs": [
         "Cambiarse de AFP es uno de los trámites más simples que puedes hacer para mejorar tu situación previsional, y sin embargo la mayoría de las personas nunca lo hace. En esta guía te explicamos cómo funciona el proceso, qué debes evaluar y qué cambia con la Reforma de Pensiones aprobada en 2025.",
-        "Sí, cualquier afiliado puede cambiarse de AFP de forma gratuita y sin necesidad de dar explicaciones. El trámite está regulado por ley y las AFP no pueden cobrarte ni ofrecerte incentivos económicos por cambiarte — está expresamente prohibido.",
-        "Hay una excepción importante: si eres trabajador nuevo y te incorporaste al sistema previsional después del 1 de octubre de 2025, debes permanecer obligatoriamente 24 meses en AFP Uno, que es la AFP adjudicataria de la licitación de nuevos afiliados para el período 2025–2027. Sin embargo, si durante ese período AFP Uno sube su comisión o aparece otra AFP con una comisión más baja, puedes cambiarte libremente."
+        "> **Revisión editorial 2026-04-22:** se revalidaron las comisiones vigentes, la regla de permanencia de nuevos afiliados en AFP Uno y el calendario base de la Ley 21.735 contra la Superintendencia de Pensiones y BCN.",
+        "Sí, cualquier afiliado puede cambiarse de AFP de forma gratuita y sin necesidad de dar explicaciones. El trámite está regulado por ley y las AFP no pueden cobrarte ni ofrecerte incentivos económicos por cambiarte — está expresamente prohibido."
       ],
       "headings": [
         "Tabla de contenidos",
@@ -166,8 +166,8 @@
         "Rentabilidad",
         "Calidad de servicio y herramientas digitales"
       ],
-      "bodyExcerpt": "Cambiarse de AFP es uno de los trámites más simples que puedes hacer para mejorar tu situación previsional, y sin embargo la mayoría de las personas nunca lo hace. En esta guía te explicamos cómo funciona el proceso, qué debes evaluar y qué cambia con la Reforma de Pensiones aprobada en 2025. ## Tabla de contenidos ## ¿Puedo cambiarme de AFP? Sí, cualquier afiliado puede cambiarse de AFP de forma gratuita y sin necesidad de dar explicaciones. El trámite está regulado por ley y las AFP no pueden cobrarte ni ofrecerte incentivos económicos por cambiarte — está expresamente prohibido. Hay una excepción importante: si eres trabajador nuevo y te incorporaste al sistema previsional después del 1 de octubre de 2025, debes permanecer obligatoriamente 24 meses en AFP Uno, que es la AFP adjudicataria de la licitación de nuevos afiliados para el período 2025–2027. Sin embargo, si durante ese período AFP Uno sube su comisión o aparece otra AFP con una comisión más baja, puedes cambiarte libremente. ## ¿Cuántas veces puedo cambiarme? Puedes cambiarte las veces que quieras, con la única condición de que el traspaso anterior haya concluido antes de iniciar uno nuevo. No existe un límite anual de ",
-      "wordCount": 1211,
+      "bodyExcerpt": "Cambiarse de AFP es uno de los trámites más simples que puedes hacer para mejorar tu situación previsional, y sin embargo la mayoría de las personas nunca lo hace. En esta guía te explicamos cómo funciona el proceso, qué debes evaluar y qué cambia con la Reforma de Pensiones aprobada en 2025. > **Revisión editorial 2026-04-22:** se revalidaron las comisiones vigentes, la regla de permanencia de nuevos afiliados en AFP Uno y el calendario base de la Ley 21.735 contra la Superintendencia de Pensiones y BCN. ## Tabla de contenidos ## ¿Puedo cambiarme de AFP? Sí, cualquier afiliado puede cambiarse de AFP de forma gratuita y sin necesidad de dar explicaciones. El trámite está regulado por ley y las AFP no pueden cobrarte ni ofrecerte incentivos económicos por cambiarte — está expresamente prohibido. Hay una excepción importante: si eres trabajador nuevo y te incorporaste al sistema previsional después del 1 de octubre de 2025, debes permanecer obligatoriamente 24 meses en AFP Uno, que es la AFP adjudicataria de la licitación de nuevos afiliados para el período 2025–2027. Sin embargo, si durante ese período AFP Uno sube su comisión o aparece otra AFP con una comisión más baja, puedes cam",
+      "wordCount": 1209,
       "sourceFile": "como-cambiarse-de-afp.md"
     },
     {
@@ -201,7 +201,7 @@
         "Paso 5: El método 50/30/20 y por qué no siempre aplica en Chile"
       ],
       "bodyExcerpt": "> **Respuesta rápida:** Una guía de base ampliamente utilizada en educación financiera es la regla 50/30/20: destinar hasta un 50% del ingreso neto a gastos fijos (arriendo, deudas, servicios), hasta un 30% a gastos variables (alimentación, ocio) y al menos un 20% a ahorro o reducción de deudas. Es un punto de partida, no una obligación, y debe ajustarse a tu situación real. > > **Resumen orientativo:** Esta distribución es una referencia orientativa de educación financiera, no una norma legal. Adáptala según tu ingreso, carga familiar y metas. Antes de invertir en algo, antes de ahorrar para algo, antes de salir de una deuda, necesitas saber a dónde va tu plata. La mayoría de los problemas financieros personales no son de ingreso — son de control. Este artículo te da un método concreto para hacer un presupuesto que funcione en la realidad chilena, no en una hoja teórica. Si ya tienes claro cuánto recibes de sueldo líquido, complementa con la . Si es tu primer empleo, la te explica además contrato, AFP y Fonasa antes de llegar al presupuesto. > **Resumen orientativo:** Los patrones de gasto descritos a continuación son referencias de educación financiera basadas en comportamiento g",
-      "wordCount": 1331,
+      "wordCount": 1328,
       "sourceFile": "como-hacer-presupuesto-mensual-chile.md"
     },
     {
@@ -220,7 +220,7 @@
       "summary": "Invertir en ETFs desde Chile es perfectamente posible, pero el costo real rara vez aparece en el primer número que ves. La comisión, los derechos de bolsa, el IVA, la custodia y el spread se acumulan en silencio. Esta guía te lleva paso a paso para que sepas exactamente qué estás...",
       "leadParagraphs": [
         "Invertir en ETFs desde Chile es perfectamente posible, pero el costo real rara vez aparece en el primer número que ves. La comisión, los derechos de bolsa, el IVA, la custodia y el spread se acumulan en silencio. Esta guía te lleva paso a paso para que sepas exactamente qué estás pagando y qué debes declarar al SII.",
-        "> **Información vigente al 2026-02-28.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.",
+        "> **Información vigente al 2026-04-22.** Se revalidaron costos transaccionales base, custodia y filtros de supervisión CMF. Ante cambios normativos o de política pública, verifica siempre en las fuentes oficiales referenciadas al final de este artículo.",
         "Para contexto más amplio sobre instrumentos, revisa [ahorro e inversión en Chile](/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/)."
       ],
       "headings": [
@@ -233,8 +233,8 @@
         "Los 6 errores más frecuentes",
         "Preguntas frecuentes"
       ],
-      "bodyExcerpt": "Invertir en ETFs desde Chile es perfectamente posible, pero el costo real rara vez aparece en el primer número que ves. La comisión, los derechos de bolsa, el IVA, la custodia y el spread se acumulan en silencio. Esta guía te lleva paso a paso para que sepas exactamente qué estás pagando y qué debes declarar al SII. > **Información vigente al 2026-02-28.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Para contexto más amplio sobre instrumentos, revisa . ## Qué necesitas tener claro antes de empezar Antes de elegir ETF o plataforma, hay cinco cosas que deben estar definidas. Sin ellas, la comparación no sirve de mucho: - Objetivo y horizonte de inversión concretos —no \"largo plazo\" en abstracto. - Tolerancia a volatilidad explícita y honesta. - Cuenta activa con un intermediario habilitado. - Claridad sobre los costos totales: entrada, mantención y salida de una posición. - Plan de cómo vas a registrar y declarar los resultados anualmente. ## Paso a paso: qué revisar antes de comprar tu primer ETF 1. **Verifica si el intermediario está inscrito** en los registros CMF (si opera en Chile). Es el primer filtr",
-      "wordCount": 1165,
+      "bodyExcerpt": "Invertir en ETFs desde Chile es perfectamente posible, pero el costo real rara vez aparece en el primer número que ves. La comisión, los derechos de bolsa, el IVA, la custodia y el spread se acumulan en silencio. Esta guía te lleva paso a paso para que sepas exactamente qué estás pagando y qué debes declarar al SII. > **Información vigente al 2026-04-22.** Se revalidaron costos transaccionales base, custodia y filtros de supervisión CMF. Ante cambios normativos o de política pública, verifica siempre en las fuentes oficiales referenciadas al final de este artículo. Para contexto más amplio sobre instrumentos, revisa . ## Qué necesitas tener claro antes de empezar Antes de elegir ETF o plataforma, hay cinco cosas que deben estar definidas. Sin ellas, la comparación no sirve de mucho: - Objetivo y horizonte de inversión concretos —no \"largo plazo\" en abstracto. - Tolerancia a volatilidad explícita y honesta. - Cuenta activa con un intermediario habilitado. - Claridad sobre los costos totales: entrada, mantención y salida de una posición. - Plan de cómo vas a registrar y declarar los resultados anualmente. ## Paso a paso: qué revisar antes de comprar tu primer ETF 1. **Verifica si el ",
+      "wordCount": 1169,
       "sourceFile": "como-invertir-en-etfs-desde-chile.md"
     },
     {
@@ -300,8 +300,42 @@
         "Paso 3 — Si el acreedor no cumple en el plazo, reclama ante la CMF"
       ],
       "bodyExcerpt": "En Chile, estar \"en el Boletín Comercial\" es la causa concreta de lo que coloquialmente se llama \"estar en DICOM\". No son lo mismo, pero están relacionados: el Boletín Comercial es el registro oficial de protestos y documentos impagos; DICOM es un producto privado que recoge ese y otros datos. La regla de fondo es esta: si pagaste la deuda, la ley te da derecho a que te eliminen en **5 días hábiles**. Si la deuda sigue impaga, la anotación persiste indefinidamente — no hay un plazo automático de borrado mientras no haya pago. Así lo establece la **Ley 20.575**, vigente a 2026-04-09. ## Tabla de contenidos ## ¿Qué es el Boletín Comercial y qué registra? El **Boletín Comercial** es el registro nacional de documentos comerciales protestados e impagos. Lo administra la **Cámara de Comercio de Santiago (CCS)** bajo supervisión de la **Comisión para el Mercado Financiero (CMF)**. No es un sistema privado ni discrecional: su funcionamiento está regulado por la Ley 20.575 y normas de la CMF. Qué registra principalmente: - Cheques rechazados por falta de fondos o por orden de no pago. - Letras de cambio y pagarés protestados ante notario. - Otros documentos mercantiles que el sistema financ",
-      "wordCount": 1320,
+      "wordCount": 1289,
       "sourceFile": "como-salir-boletin-comercial-chile.md"
+    },
+    {
+      "slug": "contribuciones-bienes-raices-chile",
+      "title": "Contribuciones de bienes raíces en Chile: cálculo, cuotas y exenciones",
+      "tags": [
+        "contribuciones",
+        "bienes-raices",
+        "impuesto-territorial",
+        "sii",
+        "primera-vivienda"
+      ],
+      "category": "impuestos",
+      "cluster": "impuestos-personas",
+      "sourcePath": "src/data/blog/contribuciones-bienes-raices-chile.md",
+      "heroImage": "/images/hero/contribuciones-bienes-raices-chile.avif",
+      "summary": "Información vigente al 2026 05 03. Las tasas de contribuciones, los montos de exención y las fechas exactas de pago se actualizan periódicamente. Verifica los valores vigentes en el y la antes de realizar cualquier pago o trámite. Si tienes una propiedad en Chile, puede correspon...",
+      "leadParagraphs": [
+        "> **Información vigente al 2026-05-03.** Las tasas de contribuciones, los montos de exención y las fechas exactas de pago se actualizan periódicamente. Verifica los valores vigentes en el [SII](https://www.sii.cl/) y la [TGR](https://www.tgr.cl/) antes de realizar cualquier pago o trámite.",
+        "Si tienes una propiedad en Chile, puede corresponder el pago de contribuciones de bienes raíces. Es un impuesto territorial anual que se cobra hasta en cuatro cuotas, aunque muchos propietarios de primera vivienda tienen exención total o parcial sin saberlo — conviene verificar en el SII antes de asumir que el cobro aplica.",
+        "Las contribuciones de bienes raíces son el impuesto territorial que grava la propiedad inmueble en Chile. El impuesto se rige principalmente por el [DFL-1/1998, Ley sobre Impuesto Territorial](https://www.bcn.cl/leychile/navegar?idNorma=128563) (Ministerio de Hacienda), que refunde la Ley N°17.235. Lo administra el SII (determina el avalúo y las tasas) y lo recauda la TGR (Tesorería General de la República). No se cobra sobre el valor de mercado de la propiedad, sino sobre el **avalúo fiscal** — un valor oficial fijado por el SII, generalmente inferior al precio de mercado."
+      ],
+      "headings": [
+        "¿Qué son las contribuciones de bienes raíces?",
+        "¿Cómo se calcula el monto?",
+        "Cuotas y calendario de pago",
+        "Exenciones: quiénes pagan menos o nada",
+        "Primera vivienda",
+        "Adultos mayores (65 años o más)",
+        "DFL-2 — Vivienda económica",
+        "¿Qué pasa si no pagas?"
+      ],
+      "bodyExcerpt": "> **Información vigente al 2026-05-03.** Las tasas de contribuciones, los montos de exención y las fechas exactas de pago se actualizan periódicamente. Verifica los valores vigentes en el y la antes de realizar cualquier pago o trámite. Si tienes una propiedad en Chile, puede corresponder el pago de contribuciones de bienes raíces. Es un impuesto territorial anual que se cobra hasta en cuatro cuotas, aunque muchos propietarios de primera vivienda tienen exención total o parcial sin saberlo — conviene verificar en el SII antes de asumir que el cobro aplica. ## ¿Qué son las contribuciones de bienes raíces? Las contribuciones de bienes raíces son el impuesto territorial que grava la propiedad inmueble en Chile. El impuesto se rige principalmente por el (Ministerio de Hacienda), que refunde la Ley N°17.235. Lo administra el SII (determina el avalúo y las tasas) y lo recauda la TGR (Tesorería General de la República). No se cobra sobre el valor de mercado de la propiedad, sino sobre el **avalúo fiscal** — un valor oficial fijado por el SII, generalmente inferior al precio de mercado. ## ¿Cómo se calcula el monto? La base de cálculo es el **avalúo fiscal** de tu propiedad — un valor ofic",
+      "wordCount": 934,
+      "sourceFile": "contribuciones-bienes-raices-chile.md"
     },
     {
       "slug": "credito-hipotecario-chile-guia-completa",
@@ -334,7 +368,7 @@
         "LTV y flujo de documentos"
       ],
       "bodyExcerpt": "Un **crédito hipotecario** es, en términos simples, un préstamo a largo plazo donde la propiedad que compras queda como garantía. En Chile casi todos se expresan en ** ** (Unidad de Fomento), lo que significa que tu dividendo se reajusta con la inflación cada mes. Esta guía cubre el proceso completo — desde que decides que quieres comprar hasta que firmas en notaría y el Conservador inscribe la propiedad a tu nombre — con los costos reales que los bancos no siempre adelantan. > **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifica en las fuentes oficiales referenciadas al final. Para estimar cuánto pagarías de dividendo mensual antes de hablar con un banco, usa la ## Tabla de contenidos ## ¿Qué es un crédito hipotecario y quién lo otorga? El **crédito hipotecario** es el financiamiento que entrega una institución financiera para comprar un bien raíz. La propiedad queda como garantía (eso es la \"hipoteca\"): si dejas de pagar, el acreedor puede ejecutarla y recuperar el capital prestado. En Chile lo otorgan: - **Bancos comerciales** (BancoEstado, Santander, BCI, Scotiabank, Itaú, entre otros) - **Cajas de compensación** (Los Andes, Los Héroes,",
-      "wordCount": 1627,
+      "wordCount": 1615,
       "sourceFile": "credito-hipotecario-chile-guia-completa.md"
     },
     {
@@ -400,7 +434,7 @@
         "Preguntas frecuentes"
       ],
       "bodyExcerpt": "La tasa en pesos parece más alta. La tasa en UF es más baja pero viene con reajuste. ¿Cuál conviene? La respuesta no está en el número de arriba sino en lo que pasa con la inflación durante el plazo que tú necesitas. Esta guía te ayuda a decidir con números concretos. > **Información vigente al 2026-03-30.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Para una mirada más amplia de instrumentos, revisa primero la . Si quieres entender cómo funciona la UF antes de comparar tasas, parte por la . ## Antes de comparar: lo que esta guía asume Que tienes claridad del plazo exacto en que necesitas usar ese dinero. Que puedes dejarlo inmovilizado hasta el vencimiento. Y que quieres comparar retorno real, no solo tasa nominal. Si todavía no tienes claro eso, la comparación UF/pesos no va a resolver nada. ## Qué cambia entre UF y pesos La diferencia estructural es simple: - **DAP en pesos:** el retorno nominal queda definido al pactar. Lo que ves es lo que recibes, sin sorpresas ni cálculos intermedios. - **DAP en UF:** el retorno se compone de dos partes: el reajuste por inflación (que varía) más la tasa real pact",
-      "wordCount": 1099,
+      "wordCount": 1085,
       "sourceFile": "deposito-a-plazo-uf-vs-pesos.md"
     },
     {
@@ -432,8 +466,8 @@
         "Cómo leer tu liquidación con este mapa",
         "Preguntas frecuentes"
       ],
-      "bodyExcerpt": "Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal. Algunos los exige la ley, algunos los autorizaste tú, y algunos directamente no deberían estar ahí. ## Tres categorías, tres orígenes distintos ### Descuentos legales — los que el empleador debe practicar Estos descuentos no dependen de tu autorización. La ley obliga al empleador a aplicarlos y tú no puedes renunciar a ellos. Si es tu primer empleo formal y estás viendo estos descuentos por primera vez, la explica contrato, AFP y Fonasa desde cero. **AFP:** la cotización obligatoria del 10% más la comisión de tu administradora. El 10% va íntegro a tu cuenta individual. La comisión varía según AFP, entre 0,46% y 1,45% sobre el imponible a marzo de 2026. **Salud:** el 7% mínimo destinado a Fonasa o Isapre. Si estás en Fonasa, el descuento es exactamente 7%. Si estás en Isapre y tu plan cuesta más que el 7% legal, la diferencia también se descuenta — pero esa parte adicional ya es un descuento autorizado, no est",
-      "wordCount": 1098,
+      "bodyExcerpt": "Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal. Algunos los exige la ley, algunos los autorizaste tú, y algunos directamente no deberían estar ahí. ## Tres categorías, tres orígenes distintos ### Descuentos legales — los que el empleador debe practicar Estos descuentos no dependen de tu autorización. La ley obliga al empleador a aplicarlos y tú no puedes renunciar a ellos. Si es tu primer empleo formal y estás viendo estos descuentos por primera vez, la explica contrato, AFP y Fonasa desde cero. **AFP:** la cotización obligatoria del 10% más la comisión de tu administradora. El 10% va íntegro a tu cuenta individual. La comisión varía según AFP, entre 0,46% y 1,45% sobre el imponible con cifras verificadas al 2026-04-22. **Salud:** el 7% mínimo destinado a Fonasa o Isapre. Si estás en Fonasa, el descuento es exactamente 7%. Si estás en Isapre y tu plan cuesta más que el 7% legal, la diferencia también se descuenta — pero esa parte adicional ya es un descuen",
+      "wordCount": 1066,
       "sourceFile": "descuentos-de-sueldo.md"
     },
     {
@@ -465,7 +499,7 @@
         "Información de vigencia"
       ],
       "bodyExcerpt": "Ya enviaste tu declaración, tu propuesta dijo devolución y la fecha pasó. Esta guía responde la pregunta que más se repite: ¿_cuándo depositan?_ Y si no depositaron, te explica cómo revisar el estado y qué hacer. ## Qué hacer ahora (3 pasos) 1. Revisa en SII si la declaración está aceptada o con observaciones. 2. Si está aceptada y no hay depósito, revisa en TGR si hubo compensación o retención. 3. Valida cuenta bancaria y ciclo de pago del año tributario vigente. Datos mínimos: - RUT y clave SII. - Folio/comprobante de declaración. - Cuenta bancaria informada al declarar. La fecha de pago no depende solo del día en que declaras: también influyen autorización SII, compensaciones/retenciones en TGR y estado de la cuenta bancaria. Si todavía estás revisando tu F22, parte por . Para estimar si te devolverán o deberás pagar antes de abrir el SII: . ## Fechas de referencia y ventanas de pago Para Año Tributario 2026, el SII publicó el calendario oficial el 31 de marzo de 2026: | Fecha de presentación | Depósito bancario | Cheque | | ------------------------ | ------------------- | ------------------ | | 1 al 8 de abril | 29 de abril de 2026 | 29 de mayo de 2026 | | 9 al 23 de abril | 15",
-      "wordCount": 690,
+      "wordCount": 677,
       "sourceFile": "devolucion-impuestos-fechas-compensaciones.md"
     },
     {
@@ -499,7 +533,7 @@
         "Preguntas frecuentes"
       ],
       "bodyExcerpt": "Te llamaron por una deuda que no reconoces. O el arrendador te pidió \"DICOM\". O simplemente quieres saber qué aparece a tu nombre antes de pedir un crédito. En los tres casos la pregunta parece la misma, pero el reporte que necesitas no lo es — y empezar por el equivocado puede costarte tiempo, plata o sacar conclusiones falsas. ## El problema con buscar \"DICOM gratis\" \"DICOM\" no es un sistema oficial del Estado. Es el nombre comercial de un producto de Equifax, empresa privada que vende reportes comerciales. Con el tiempo ese nombre se volvió sinónimo genérico de \"antecedentes financieros\", igual que \"Kleenex\" se usa para hablar de cualquier pañuelo. Cuando alguien dice \"estoy en DICOM\" puede estar describiendo tres situaciones distintas: tiene deudas morosas reportadas al sistema financiero regulado, tiene cheques o documentos protestados, o figura en algún reporte comercial privado. Cada una de esas situaciones se revisa en un lugar distinto. Antes de pagar por un informe privado, conviene agotar las opciones gratuitas oficiales. La mayoría de las veces responden la pregunta real. ## Los tres sistemas y cómo acceder a cada uno ### Informe de Deudas CMF — gratis, ilimitado La Com",
-      "wordCount": 1227,
+      "wordCount": 1202,
       "sourceFile": "donde-ver-si-estoy-en-dicom-gratis.md"
     },
     {
@@ -534,7 +568,7 @@
         "Lo que esto no es"
       ],
       "bodyExcerpt": "Imagina a alguien que nunca ganó más que el sueldo mínimo. Sin bonos, sin ascensos, sin herencias. Solo el sueldo de cada mes y la disciplina de apartar el 10% del líquido para invertirlo. Durante 36 años tuvo 24 meses sin trabajo — lagunas reales, como las que le pasan a cualquier trabajador chileno. El resto del tiempo, ese 10% fue al NASDAQ-100. Lo que ocurrió después es lo que este ejercicio trata de mostrar. ## Respuesta rápida > **En resumen:** Invertir el 10% del sueldo mínimo en el NASDAQ-100 durante 36 años (1990–2025) habría producido ~$125,6 millones CLP (~USD 129.495), partiendo de aportes totales de ~$6,2 millones. El capital final equivale a 13,7 veces lo aportado. **Resultado del ejercicio:** si alguien hubiera invertido el 10% de su sueldo líquido entre enero de 1990 y diciembre de 2025, la cartera cerraría cerca de **USD 129.495**, equivalentes a **$125,6 millones CLP** al tipo de cambio de cierre usado en la simulación. **Aporte total estimado:** alrededor de **$6.183.108 CLP** de bolsillo, equivalentes a unos **USD 9.453** al tipo de cambio histórico de cada aporte. **Qué significa en simple:** el capital final sería aproximadamente **13,7 veces** lo efectivament",
-      "wordCount": 1995,
+      "wordCount": 1969,
       "sourceFile": "el-poder-del-interes-compuesto.md"
     },
     {
@@ -555,7 +589,7 @@
       "leadParagraphs": [
         "La mayoría de las estafas financieras no empieza con un hackeo sofisticado. Empieza con una llamada que suena completamente normal, de alguien que sabe tu nombre, menciona tu banco y habla en un tono que mezcla urgencia con profesionalismo. Para cuando te das cuenta de lo que ocurrió, ya autorizaste una transferencia.",
         "Esta guía te ayuda a prevenir estafas financieras. Explica cómo operan los métodos más frecuentes, qué señales distinguen cada uno y qué hacer si ya caíste.",
-        "Todos los métodos comparten una estructura común: urgencia, autoridad percibida y poco tiempo para pensar. El estafador crea una situación que te empuja a actuar rápido y sin verificar. Cuando la urgencia se instala, el juicio crítico cede."
+        "> **Revisión editorial 2026-04-22:** se revalidaron las recomendaciones de contención, denuncia y escalamiento contra SERNAC, CMF y los canales vigentes de reclamo."
       ],
       "headings": [
         "Cómo operan estas estafas",
@@ -567,8 +601,8 @@
         "Marketplace y portabilidad fraudulenta",
         "Señales rojas por canal"
       ],
-      "bodyExcerpt": "La mayoría de las estafas financieras no empieza con un hackeo sofisticado. Empieza con una llamada que suena completamente normal, de alguien que sabe tu nombre, menciona tu banco y habla en un tono que mezcla urgencia con profesionalismo. Para cuando te das cuenta de lo que ocurrió, ya autorizaste una transferencia. Esta guía te ayuda a prevenir estafas financieras. Explica cómo operan los métodos más frecuentes, qué señales distinguen cada uno y qué hacer si ya caíste. ## Cómo operan estas estafas Todos los métodos comparten una estructura común: urgencia, autoridad percibida y poco tiempo para pensar. El estafador crea una situación que te empuja a actuar rápido y sin verificar. Cuando la urgencia se instala, el juicio crítico cede. Entender ese patrón es la primera defensa. Una institución financiera real nunca te pedirá claves, CVV ni códigos de un solo uso por ningún canal proactivo. Si alguien que dice ser de tu banco te los pide, ya puedes cerrar la llamada. ## Canales de estafa más comunes en Chile ### Vishing (llamada falsa del banco) Te llaman con un número que puede aparecer como el del banco (algunos métodos avanzados \"falsifican\" el número de origen). El ejecutivo \"d",
-      "wordCount": 1365,
+      "bodyExcerpt": "La mayoría de las estafas financieras no empieza con un hackeo sofisticado. Empieza con una llamada que suena completamente normal, de alguien que sabe tu nombre, menciona tu banco y habla en un tono que mezcla urgencia con profesionalismo. Para cuando te das cuenta de lo que ocurrió, ya autorizaste una transferencia. Esta guía te ayuda a prevenir estafas financieras. Explica cómo operan los métodos más frecuentes, qué señales distinguen cada uno y qué hacer si ya caíste. > **Revisión editorial 2026-04-22:** se revalidaron las recomendaciones de contención, denuncia y escalamiento contra SERNAC, CMF y los canales vigentes de reclamo. ## Cómo operan estas estafas Todos los métodos comparten una estructura común: urgencia, autoridad percibida y poco tiempo para pensar. El estafador crea una situación que te empuja a actuar rápido y sin verificar. Cuando la urgencia se instala, el juicio crítico cede. Entender ese patrón es la primera defensa. Una institución financiera real nunca te pedirá claves, CVV ni códigos de un solo uso por ningún canal proactivo. Si alguien que dice ser de tu banco te los pide, ya puedes cerrar la llamada. ## Canales de estafa más comunes en Chile ### Vishing",
+      "wordCount": 1406,
       "sourceFile": "estafas-financieras-chile-vishing-smishing-marketplace.md"
     },
     {
@@ -636,8 +670,40 @@
         "Cuándo puede convenir una Isapre"
       ],
       "bodyExcerpt": "Fonasa sirve a más del 80% de los chilenos. Isapre, al resto. Pero la única pregunta que importa es: ¿cuál te conviene a ti? Esta guía da una respuesta concreta según tu situación: si tienes enfermedades previas, si tienes familia a cargo, si tu ingreso es variable o si estás buscando red privada. ## Tabla de contenidos ## Fonasa o Isapre: la respuesta según tu caso **Respuesta rápida (regla general):** Fonasa conviene a la mayoría de los trabajadores chilenos porque garantiza cobertura universal sin discriminar por enfermedades previas, incluye cargas familiares sin costo adicional y cubre las patologías del GES igual que cualquier Isapre. Isapre puede convenir si tienes ingresos altos, no tienes preexistencias relevantes y priorizas atención en clínicas privadas. **Excepción(es) comunes:** - Si tienes una enfermedad crónica diagnosticada, una Isapre puede excluirla del contrato o incrementar el precio del plan por esa condición. - Si tu sueldo es alto y encuentras un plan Isapre cuyo precio total (incluyendo el extra sobre el 7%) es competitivo con lo que pagarías en copagos por uso frecuente de red privada, la Isapre puede ser conveniente. - Si tienes muchas cargas familiares (h",
-      "wordCount": 2017,
+      "wordCount": 1992,
       "sourceFile": "fonasa-vs-isapre-comparativa.md"
+    },
+    {
+      "slug": "fondo-emergencia-chile",
+      "title": "Fondo de emergencia en Chile: cuánto necesitas y dónde guardarlo",
+      "tags": [
+        "fondo-emergencia",
+        "ahorro",
+        "presupuesto",
+        "finanzas-personales",
+        "liquidez"
+      ],
+      "category": "general",
+      "cluster": "presupuesto-control-financiero",
+      "sourcePath": "src/data/blog/fondo-emergencia-chile.md",
+      "heroImage": "/images/hero/fondo-emergencia-chile.avif",
+      "summary": "Información vigente al 2026 05 03. Ante cambios normativos o en los productos de ahorro disponibles, verifica directamente con tu entidad financiera o en las fuentes oficiales referenciadas en este artículo. Antes de pensar en invertir, antes de revisar fondos mutuos o APV, hay u...",
+      "leadParagraphs": [
+        "> **Información vigente al 2026-05-03.** Ante cambios normativos o en los productos de ahorro disponibles, verifica directamente con tu entidad financiera o en las fuentes oficiales referenciadas en este artículo.",
+        "Antes de pensar en invertir, antes de revisar fondos mutuos o APV, hay un paso que la mayoría salta: tener un colchón que te permita absorber un golpe inesperado sin destruir el plan financiero que estás construyendo.",
+        "Un despido repentino. Un gasto de salud no cubierto. Una falla del auto. Una reparación urgente en el arriendo. Todas estas situaciones tienen algo en común: llegan sin aviso y exigen plata disponible hoy, no en 90 días."
+      ],
+      "headings": [
+        "¿Qué es un fondo de emergencia y para qué sirve?",
+        "¿Cuánto debe tener? La regla de los 3 a 6 meses",
+        "¿Dónde guardarlo en Chile? Instrumentos con liquidez real",
+        "Errores comunes al armar el fondo",
+        "Cómo construirlo desde cero: pasos concretos",
+        "Preguntas frecuentes"
+      ],
+      "bodyExcerpt": "> **Información vigente al 2026-05-03.** Ante cambios normativos o en los productos de ahorro disponibles, verifica directamente con tu entidad financiera o en las fuentes oficiales referenciadas en este artículo. Antes de pensar en invertir, antes de revisar fondos mutuos o APV, hay un paso que la mayoría salta: tener un colchón que te permita absorber un golpe inesperado sin destruir el plan financiero que estás construyendo. Un despido repentino. Un gasto de salud no cubierto. Una falla del auto. Una reparación urgente en el arriendo. Todas estas situaciones tienen algo en común: llegan sin aviso y exigen plata disponible hoy, no en 90 días. Si ya tienes un , el fondo de emergencia es el siguiente paso natural. Es el puente entre el control de gastos del día a día y la decisión de empezar a invertir. ## ¿Qué es un fondo de emergencia y para qué sirve? Un fondo de emergencia es una reserva de dinero destinada exclusivamente a cubrir gastos urgentes e imprevistos. No es ahorro para vacaciones. No es el enganche de una cuenta de ahorro a largo plazo. No es capital de inversión. Su propósito es uno: darte tiempo para tomar decisiones con calma cuando algo sale mal, sin tener que end",
+      "wordCount": 1335,
+      "sourceFile": "fondo-emergencia-chile.md"
     },
     {
       "slug": "fondos-afp-a-b-c-d-e",
@@ -669,7 +735,7 @@
         "Fondo C — El equilibrado"
       ],
       "bodyExcerpt": "Cuando te afilias a una AFP, tu dinero no queda guardado en una caja fuerte —se invierte en uno de cinco fondos disponibles. Elegir bien puede significar una pensión significativamente mayor. Elegir mal, lo contrario. Lo que pocos saben es que si no eliges nada, la AFP elige por ti. Aquí te explicamos qué es cada fondo, sin tecnicismos. ## Si tu duda real es otra, cambia de tema ahora - **Quieres entender la transición 2027+ y no solo elegir fondo hoy:** cambia a una guía de reforma previsional. - **Tu decisión es tributaria y no de riesgo:** cambia a una guía o simulador de APV. - **Tu pregunta ya es cuánto podrías acumular al jubilar:** cambia a una proyección previsional. ## Qué cambia entre 2025 y 2027 Este artículo mantiene la explicación histórica de A-E, pero debes separar contexto actual vs transición aprobada: - **Qué cambia hoy (2026):** - Los multifondos **A, B, C, D y E siguen vigentes** y puedes elegir/cambiar fondo como hasta ahora. - La cotización adicional del empleador ya comenzó en **1%** (agosto 2025), sin descuento adicional a tu sueldo líquido. - **Qué cambia después (2027 en adelante):** - Desde **abril de 2027** empieza el paso a **fondos generacionales**. Co",
-      "wordCount": 1552,
+      "wordCount": 1558,
       "sourceFile": "fondos-afp-a-b-c-d-e.md"
     },
     {
@@ -688,8 +754,8 @@
       "summary": "Los fondos mutuos tienen costos reales que no siempre aparecen en el primer número que ves. La remuneración de administración, la comisión de rescate y el tratamiento tributario del mayor valor son los tres puntos donde más se pierde por no haber leído bien antes de invertir. Est...",
       "leadParagraphs": [
         "Los fondos mutuos tienen costos reales que no siempre aparecen en el primer número que ves. La remuneración de administración, la comisión de rescate y el tratamiento tributario del mayor valor son los tres puntos donde más se pierde por no haber leído bien antes de invertir. Esta guía los desglosa sin rodeos.",
-        "Para una mirada más amplia de instrumentos, parte por [ahorro e inversión en Chile](/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/).",
-        "Que ya definiste tu horizonte: corto, mediano o largo plazo. Que entiendes que un fondo mutuo no garantiza rentabilidad futura. Y que vas a revisar el reglamento interno y el folleto informativo antes de aportar, no después. Si aún no tienes eso claro, ese es el primer paso."
+        "> **Revisión editorial 2026-04-22:** se revalidaron la regla de rescate en hasta 10 días hábiles, la exigencia de reglamento interno y la orientación tributaria base del SII para rescates y mayor valor.",
+        "Para una mirada más amplia de instrumentos, parte por [ahorro e inversión en Chile](/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/)."
       ],
       "headings": [
         "Lo que esta guía asume",
@@ -701,8 +767,8 @@
         "Cómo encaja esto según tu perfil",
         "Los 6 errores más frecuentes"
       ],
-      "bodyExcerpt": "Los fondos mutuos tienen costos reales que no siempre aparecen en el primer número que ves. La remuneración de administración, la comisión de rescate y el tratamiento tributario del mayor valor son los tres puntos donde más se pierde por no haber leído bien antes de invertir. Esta guía los desglosa sin rodeos. Para una mirada más amplia de instrumentos, parte por . ## Lo que esta guía asume Que ya definiste tu horizonte: corto, mediano o largo plazo. Que entiendes que un fondo mutuo no garantiza rentabilidad futura. Y que vas a revisar el reglamento interno y el folleto informativo antes de aportar, no después. Si aún no tienes eso claro, ese es el primer paso. ## Los cuatro tipos de costo que debes conocer | Costo | Qué significa | Dónde se valida | | ------------------------------ | --------------------------------------------- | ------------------------------- | | Remuneración de administración | Cobro periódico por gestionar el fondo | Reglamento interno (CMF) | | Comisión de rescate | Cobro al salir, según serie/plazo/condiciones | Reglamento interno + contrato | | Comisión de colocación | Cobro al entrar (si aplica) | Folleto + contrato | | Otros gastos atribuibles | Costos d",
-      "wordCount": 1143,
+      "bodyExcerpt": "Los fondos mutuos tienen costos reales que no siempre aparecen en el primer número que ves. La remuneración de administración, la comisión de rescate y el tratamiento tributario del mayor valor son los tres puntos donde más se pierde por no haber leído bien antes de invertir. Esta guía los desglosa sin rodeos. > **Revisión editorial 2026-04-22:** se revalidaron la regla de rescate en hasta 10 días hábiles, la exigencia de reglamento interno y la orientación tributaria base del SII para rescates y mayor valor. Para una mirada más amplia de instrumentos, parte por . ## Lo que esta guía asume Que ya definiste tu horizonte: corto, mediano o largo plazo. Que entiendes que un fondo mutuo no garantiza rentabilidad futura. Y que vas a revisar el reglamento interno y el folleto informativo antes de aportar, no después. Si aún no tienes eso claro, ese es el primer paso. ## Los cuatro tipos de costo que debes conocer | Costo | Qué significa | Dónde se valida | | ------------------------------ | --------------------------------------------- | ------------------------------- | | Remuneración de administración | Cobro periódico por gestionar el fondo | Reglamento interno (CMF) | | Comisión de re",
+      "wordCount": 1163,
       "sourceFile": "fondos-mutuos-comisiones-rescate-impuestos.md"
     },
     {
@@ -723,7 +789,7 @@
       "leadParagraphs": [
         "Revisas tu cuenta y ves un cargo que no hiciste. O peor: te llega un aviso de una transferencia que nunca autorizaste. Lo primero que sientes es pánico. Lo segundo debería ser este artículo.",
         "En Chile existe una ley que protege a las víctimas de fraude financiero. Se llama **[Ley N° 20.009](/leyes/ley-20009-tarjetas-fraude/)** y obliga a los bancos e instituciones financieras a devolverte el dinero — siempre que sigas los pasos correctos y dentro de los plazos.",
-        "Si acabas de darte cuenta del fraude, no leas el artículo completo todavía. Haz esto primero:"
+        "> **Revisión editorial 2026-04-22:** se revalidaron plazos de reclamo, denuncia y restitución contra SERNAC y CMF Educa."
       ],
       "headings": [
         "Tabla de contenidos",
@@ -735,9 +801,76 @@
         "Paso 3 — Haz la denuncia y entrega el comprobante (tienes 30 días corridos)",
         "Los plazos para que te devuelvan el dinero"
       ],
-      "bodyExcerpt": "Revisas tu cuenta y ves un cargo que no hiciste. O peor: te llega un aviso de una transferencia que nunca autorizaste. Lo primero que sientes es pánico. Lo segundo debería ser este artículo. En Chile existe una ley que protege a las víctimas de fraude financiero. Se llama ** ** y obliga a los bancos e instituciones financieras a devolverte el dinero — siempre que sigas los pasos correctos y dentro de los plazos. ## Tabla de contenidos ## Lo que tienes que hacer ahora mismo Si acabas de darte cuenta del fraude, no leas el artículo completo todavía. Haz esto primero: **1. Llama a tu banco o entra a la app y bloquea todo.** Pide el bloqueo inmediato de tu tarjeta y cualquier producto asociado. Hazlo ahora. Cada minuto que pasa sin bloquear es un minuto en que pueden seguir usando tus medios de pago. **2. Anota el número de atención y la hora exacta de tu llamado.** El banco tiene obligación de entregarte un número de recepción con fecha y hora. Si no lo hacen, guarda el registro de tu llamada desde el teléfono — sirve igual. **3. Respira. Tienes plazo.** La ley te da 30 días hábiles desde el aviso para presentar el reclamo formal. No es urgente en las próximas horas — lo urgente es el",
-      "wordCount": 1565,
+      "bodyExcerpt": "Revisas tu cuenta y ves un cargo que no hiciste. O peor: te llega un aviso de una transferencia que nunca autorizaste. Lo primero que sientes es pánico. Lo segundo debería ser este artículo. En Chile existe una ley que protege a las víctimas de fraude financiero. Se llama ** ** y obliga a los bancos e instituciones financieras a devolverte el dinero — siempre que sigas los pasos correctos y dentro de los plazos. > **Revisión editorial 2026-04-22:** se revalidaron plazos de reclamo, denuncia y restitución contra SERNAC y CMF Educa. ## Tabla de contenidos ## Lo que tienes que hacer ahora mismo Si acabas de darte cuenta del fraude, no leas el artículo completo todavía. Haz esto primero: **1. Llama a tu banco o entra a la app y bloquea todo.** Pide el bloqueo inmediato de tu tarjeta y cualquier producto asociado. Hazlo ahora. Cada minuto que pasa sin bloquear es un minuto en que pueden seguir usando tus medios de pago. **2. Anota el número de atención y la hora exacta de tu llamado.** El banco tiene obligación de entregarte un número de recepción con fecha y hora. Si no lo hacen, guarda el registro de tu llamada desde el teléfono — sirve igual. **3. Respira. Tienes plazo.** La ley te d",
+      "wordCount": 1582,
       "sourceFile": "fraude-tarjeta-que-hacer.md"
+    },
+    {
+      "slug": "gratificacion-legal-chile",
+      "title": "Gratificación legal en Chile: cómo calcularla y cuál es el tope",
+      "tags": [
+        "gratificacion",
+        "sueldo",
+        "remuneraciones",
+        "codigo-del-trabajo",
+        "empleo"
+      ],
+      "category": "empleo-ingresos",
+      "cluster": "sueldo-remuneraciones",
+      "sourcePath": "src/data/blog/gratificacion-legal-chile.md",
+      "heroImage": "/images/hero/gratificacion-legal-chile.avif",
+      "summary": "Información vigente al 2026 05 03 según el Código del Trabajo y el IMM vigente a esa fecha. El Ingreso Mínimo Mensual se actualiza periódicamente por ley; ante cambios, verifica el valor actual en el Ministerio del Trabajo antes de hacer cualquier cálculo. Revisas tu liquidación...",
+      "leadParagraphs": [
+        "> **Información vigente al 2026-05-03 según el Código del Trabajo y el IMM vigente a esa fecha.** El Ingreso Mínimo Mensual se actualiza periódicamente por ley; ante cambios, verifica el valor actual en el Ministerio del Trabajo antes de hacer cualquier cálculo.",
+        "Revisas tu liquidación y hay una línea que dice \"gratificación\". A veces es un monto fijo mensual. A veces no aparece. Y cuando preguntas por qué, la respuesta habitual es \"eso lo decide la empresa\". Pero la empresa no decide todo: hay reglas claras en el Código del Trabajo que establecen cuándo corresponde, cuánto es y qué tope tiene.",
+        "La gratificación legal es la parte de las remuneraciones que el empleador debe distribuir entre sus trabajadores cuando el establecimiento obtiene utilidades (artículo 47 del [Código del Trabajo](https://www.bcn.cl/leychile/navegar?idNorma=207436) — modalidad del 30%). Sin embargo, la modalidad más habitual en Chile es la del artículo 50 CT: un 25% de las remuneraciones imponibles anuales, con un tope equivalente a 4,75 ingresos mínimos mensuales (IMM), y se paga independientemente de si la empresa tuvo utilidades o pérdidas."
+      ],
+      "headings": [
+        "¿Qué es la gratificación legal y a quiénes aplica?",
+        "Las dos modalidades: 25 % de remuneraciones vs 30 % de utilidades",
+        "Cómo calcular: fórmula, tope máximo y ejemplo",
+        "La fórmula base (modalidad 25 %)",
+        "Ejemplo numérico",
+        "¿Cuándo y cómo se paga? Mensual, anual y proporcional",
+        "¿Qué pasa si la empresa no tuvo utilidades?",
+        "Preguntas frecuentes"
+      ],
+      "bodyExcerpt": "> **Información vigente al 2026-05-03 según el Código del Trabajo y el IMM vigente a esa fecha.** El Ingreso Mínimo Mensual se actualiza periódicamente por ley; ante cambios, verifica el valor actual en el Ministerio del Trabajo antes de hacer cualquier cálculo. Revisas tu liquidación y hay una línea que dice \"gratificación\". A veces es un monto fijo mensual. A veces no aparece. Y cuando preguntas por qué, la respuesta habitual es \"eso lo decide la empresa\". Pero la empresa no decide todo: hay reglas claras en el Código del Trabajo que establecen cuándo corresponde, cuánto es y qué tope tiene. ## ¿Qué es la gratificación legal y a quiénes aplica? La gratificación legal es la parte de las remuneraciones que el empleador debe distribuir entre sus trabajadores cuando el establecimiento obtiene utilidades (artículo 47 del — modalidad del 30%). Sin embargo, la modalidad más habitual en Chile es la del artículo 50 CT: un 25% de las remuneraciones imponibles anuales, con un tope equivalente a 4,75 ingresos mínimos mensuales (IMM), y se paga independientemente de si la empresa tuvo utilidades o pérdidas. **Quiénes tienen derecho:** Todo trabajador que preste servicios en un establecimiento",
+      "wordCount": 1009,
+      "sourceFile": "gratificacion-legal-chile.md"
+    },
+    {
+      "slug": "impuesto-global-complementario-chile",
+      "title": "Impuesto Global Complementario en Chile: qué es, tramos y quién lo paga",
+      "tags": [
+        "igc",
+        "impuesto-global-complementario",
+        "renta",
+        "operacion-renta",
+        "impuestos"
+      ],
+      "category": "impuestos",
+      "cluster": "impuestos-personas",
+      "sourcePath": "src/data/blog/impuesto-global-complementario-chile.md",
+      "heroImage": "/images/hero/impuesto-global-complementario-chile.avif",
+      "summary": "Información vigente al 2026 05 03. Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el antes de tu Operación Renta. Este artículo no cubre ganancias de capital. Tienes sueldo y además emites boletas de honorarios. O...",
+      "leadParagraphs": [
+        "> **Información vigente al 2026-05-03.** Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el [SII](https://www.sii.cl/) antes de tu Operación Renta. Este artículo no cubre ganancias de capital.",
+        "Tienes sueldo y además emites boletas de honorarios. O eres socio de una empresa y también recibes sueldo. O arriendas una propiedad. En todos esos casos, el Impuesto de Segunda Categoría que te retienen mensualmente no cierra el ciclo: al final del año, el SII suma todas tus rentas y liquida el Impuesto Global Complementario (IGC) en el F22.",
+        "El IGC es el impuesto anual que grava la totalidad de las rentas obtenidas durante el año por personas naturales domiciliadas en Chile, regulado en los artículos 52 a 57 de la [Ley de Impuesto a la Renta](https://www.bcn.cl/leychile/navegar?idNorma=6368)."
+      ],
+      "headings": [
+        "¿Qué es el Impuesto Global Complementario?",
+        "¿Quiénes deben pagarlo?",
+        "Qué rentas suma el IGC",
+        "Tramos y tasas vigentes",
+        "Créditos y deducciones disponibles",
+        "Cómo se declara: el F22",
+        "¿Resultado: pago adicional o devolución?"
+      ],
+      "bodyExcerpt": "> **Información vigente al 2026-05-03.** Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el antes de tu Operación Renta. Este artículo no cubre ganancias de capital. Tienes sueldo y además emites boletas de honorarios. O eres socio de una empresa y también recibes sueldo. O arriendas una propiedad. En todos esos casos, el Impuesto de Segunda Categoría que te retienen mensualmente no cierra el ciclo: al final del año, el SII suma todas tus rentas y liquida el Impuesto Global Complementario (IGC) en el F22. ## ¿Qué es el Impuesto Global Complementario? El IGC es el impuesto anual que grava la totalidad de las rentas obtenidas durante el año por personas naturales domiciliadas en Chile, regulado en los artículos 52 a 57 de la . El nombre lo explica: \"global\" porque suma todas las fuentes de renta; \"complementario\" porque complementa el ISC que se retuvo mensualmente durante el año. Si tus retenciones durante el año fueron suficientes para cubrir el IGC calculado, no pagas nada adicional — o recibes devolución. Si fueron insuficientes, pagas la diferencia. ## ¿Quiénes deben pagarlo? No todos los contribuyentes liquidan I",
+      "wordCount": 1176,
+      "sourceFile": "impuesto-global-complementario-chile.md"
     },
     {
       "slug": "indemnizacion-anos-de-servicio-chile",
@@ -768,7 +901,7 @@
         "Preguntas frecuentes"
       ],
       "bodyExcerpt": "El finiquito llegó con un número. El número parece razonable, pero razonable no es lo mismo que correcto. La indemnización por años de servicio es la partida donde más errores silenciosos aparecen — y la mayoría no son por mala fe sino porque la causal está mal aplicada, la base de cálculo usa el sueldo equivocado, o la antigüedad está mal contada. Esta guía aísla esa sola partida. Si necesitas revisar el finiquito completo — haberes pendientes, feriado proporcional, aviso previo — la guía de tiene el cuadro completo. ## La regla base y sus tres componentes La indemnización por años de servicio funciona sobre tres variables. Si cualquiera de las tres está mal, el monto total es incorrecto. **Primero: la causal tiene que habilitarla.** La indemnización por años de servicio no aplica a todos los tipos de término de contrato. Solo corresponde cuando la causal de despido abre el régimen indemnizatorio legal. No es automática por el solo hecho de haber trabajado varios años en una empresa. **Segundo: la base es la última remuneración mensual.** No el promedio de los últimos meses. No el sueldo que tenías hace un año. La última remuneración mensual al momento del término, incluyendo los ",
-      "wordCount": 1275,
+      "wordCount": 1242,
       "sourceFile": "indemnizacion-anos-de-servicio-chile.md"
     },
     {
@@ -833,8 +966,8 @@
         "7. Resultados de la fase de acumulación",
         "8. Cálculo de la mensualidad de retiro"
       ],
-      "bodyExcerpt": "Este documento detalla los supuestos, fuentes de datos y fórmulas del artículo . Está aquí para que cualquier lector pueda replicar los cálculos, cuestionar los supuestos o detectar errores. Si encuentras una discrepancia, el canal correcto es el mismo artículo. **Fecha de corte del ejercicio:** **2025-12-31**. **Actualización 2026-03-07:** la serie 2025 del NASDAQ-100 dejó de usar un dato parcial conservador y pasó a usar el cierre anual reportado para 2025. Ese ajuste cambia el resultado final del ejercicio de **USD 104.018 / CLP 100,9 millones** a **USD 129.495 / CLP 125,6 millones**. ## 1. Período y estructura de la simulación - **Período:** enero de 1990 a diciembre de 2025 (**432 meses = 36 años**). - **Meses con aporte:** **408**. - **Meses sin aporte (lagunas):** **24**, distribuidos aleatoriamente con semilla fija (`numpy.random.seed(42)`). - **Edad de inicio laboral asumida:** **18 años**. - **Edad de retiro al final de la fase de acumulación:** **54 años**. ## 2. Sueldo mínimo histórico (CLP) Se usaron valores del sueldo mínimo bruto chileno como puntos de control. Entre reajustes, el sueldo mínimo permanece constante; no se interpola linealmente, sino que se trata como ",
-      "wordCount": 1542,
+      "bodyExcerpt": "Este documento detalla los supuestos, fuentes de datos y fórmulas del artículo . Está aquí para que cualquier lector pueda replicar los cálculos, cuestionar los supuestos o detectar errores. Si encuentras una discrepancia, el canal correcto es el mismo artículo. **Fecha de corte del ejercicio:** **2025-12-31**. **Actualización 2026-03-07:** la serie 2025 del NASDAQ-100 dejó de usar un dato parcial conservador y pasó a usar el cierre anual reportado para 2025. Ese ajuste cambia el resultado final del ejercicio de **USD 104.018 / CLP 100,9 millones** a **USD 129.495 / CLP 125,6 millones**. **Revisión editorial 2026-04-22:** se revalidaron las referencias históricas y la fecha de corte; el ejercicio sigue cerrado al 2025-12-31 y no incorpora datos posteriores. ## 1. Período y estructura de la simulación - **Período:** enero de 1990 a diciembre de 2025 (**432 meses = 36 años**). - **Meses con aporte:** **408**. - **Meses sin aporte (lagunas):** **24**, distribuidos aleatoriamente con semilla fija (`numpy.random.seed(42)`). - **Edad de inicio laboral asumida:** **18 años**. - **Edad de retiro al final de la fase de acumulación:** **54 años**. ## 2. Sueldo mínimo histórico (CLP) Se usaro",
+      "wordCount": 1559,
       "sourceFile": "interes-compuesto-nota-metodologica.md"
     },
     {
@@ -901,8 +1034,42 @@
         "Cuándo pedir respaldo y cómo pedirlo"
       ],
       "bodyExcerpt": "El depósito cayó y el número no cuadra con lo que esperabas. Abres la liquidación y ves líneas que no entiendes o cifras que no puedes verificar. Aquí empieza el problema real: la mayoría de los trabajadores no sabe qué debe mostrar el comprobante ni qué preguntar cuando algo no cierra. Si estás ante tu primera liquidación y todavía tienes dudas sobre el contrato o la afiliación AFP, empieza por la . > **Información vigente al 2026-03-12.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. ## Qué es y para qué sirve la liquidación La liquidación de sueldo es el comprobante que el empleador debe entregarte junto con el pago de remuneraciones. No es un favor administrativo — es una obligación legal establecida en el artículo 54 del Código del Trabajo. Su función es específica: permitirte reconstruir cómo se llegó al monto depositado. Un comprobante que no te permite hacer eso no está cumpliendo su propósito, independientemente de lo bonito que luzca el formato. ## Lo que debe mostrar No existe un formato único obligatorio, pero sí contenido mínimo. Una liquidación que cumple su función tiene al menos estos cuatr",
-      "wordCount": 1152,
+      "wordCount": 1118,
       "sourceFile": "liquidacion-de-sueldo.md"
+    },
+    {
+      "slug": "operacion-renta-centro",
+      "title": "Centro Operación Renta 2026: guía completa para declarar en Chile",
+      "tags": [
+        "impuestos",
+        "operacion-renta",
+        "f22",
+        "sii",
+        "declaracion-renta"
+      ],
+      "category": "impuestos",
+      "cluster": "impuestos-personas",
+      "sourcePath": "src/data/blog/operacion-renta-centro.md",
+      "heroImage": "/images/hero/operacion-renta-centro.avif",
+      "summary": "Esta guía responde preguntas frecuentes sobre la campaña. Para la información estructurada completa y acceso a la calculadora, visita el . Respuesta rápida: ¿debo declarar la renta en 2026? Regla general: Debes declarar el Formulario 22 si en 2025 tuviste dos o más empleadores, e...",
+      "leadParagraphs": [
+        "Esta guía responde preguntas frecuentes sobre la campaña. Para la información estructurada completa y acceso a la calculadora, visita el [Centro Operación Renta 2026](/guias/impuestos-personas/operacion-renta/).",
+        "> **Regla general:** Debes declarar el Formulario 22 si en 2025 tuviste dos o más empleadores, emitiste boletas de honorarios, recibiste rentas del exterior, o tuviste ingresos por arriendo u otras rentas distintas al sueldo único. Los trabajadores con un solo empleador, sin otros ingresos, generalmente están exentos porque su empleador ya realizó las retenciones. > > **Excepciones:** Si trabajaste todo 2025 con un solo empleador y no tuviste ingresos adicionales, tu empleador ya declaró y pagó el impuesto por ti. Consulta el SII directamente para confirmar si tienes propuesta automática. > > **Vigencia:** Esta guía cubre la campaña 2026 para el año tributario 2025. El plazo de declaración por internet es el **8 de mayo de 2026**. Los plazos exactos se publican en sii.cl cada año. > > **Fuentes:** Servicio de Impuestos Internos (sii.cl) — Ley de Impuesto a la Renta (Artículo 65 y siguientes); Tesorería General de la República (tgr.cl).",
+        "---"
+      ],
+      "headings": [
+        "Respuesta rápida: ¿debo declarar la renta en 2026?",
+        "¿Quién DEBE declarar el Formulario 22?",
+        "Trabajadores con dos o más empleadores",
+        "Trabajadores con ingresos por honorarios",
+        "Personas con rentas del exterior",
+        "Personas con ingresos por arriendo",
+        "Ganancias de capital",
+        "¿Quién NO necesita declarar?"
+      ],
+      "bodyExcerpt": "Esta guía responde preguntas frecuentes sobre la campaña. Para la información estructurada completa y acceso a la calculadora, visita el . ## Respuesta rápida: ¿debo declarar la renta en 2026? > **Regla general:** Debes declarar el Formulario 22 si en 2025 tuviste dos o más empleadores, emitiste boletas de honorarios, recibiste rentas del exterior, o tuviste ingresos por arriendo u otras rentas distintas al sueldo único. Los trabajadores con un solo empleador, sin otros ingresos, generalmente están exentos porque su empleador ya realizó las retenciones. > > **Excepciones:** Si trabajaste todo 2025 con un solo empleador y no tuviste ingresos adicionales, tu empleador ya declaró y pagó el impuesto por ti. Consulta el SII directamente para confirmar si tienes propuesta automática. > > **Vigencia:** Esta guía cubre la campaña 2026 para el año tributario 2025. El plazo de declaración por internet es el **8 de mayo de 2026**. Los plazos exactos se publican en sii.cl cada año. > > **Fuentes:** Servicio de Impuestos Internos (sii.cl) — Ley de Impuesto a la Renta (Artículo 65 y siguientes); Tesorería General de la República (tgr.cl). --- ## ¿Quién DEBE declarar el Formulario 22? La obligaci",
+      "wordCount": 2397,
+      "sourceFile": "operacion-renta-centro.md"
     },
     {
       "slug": "operacion-renta-f22-checklist",
@@ -934,8 +1101,41 @@
         "Fuentes y referencias primarias"
       ],
       "bodyExcerpt": "Abres la propuesta del SII, ves los números y no sabes si aceptar o si algo está mal. Esta guía te ayuda a revisar cada punto antes de enviar el F22 y a reaccionar rápido si aparecen observaciones — para que no pierdas tiempo ni atrases tu devolución. La plataforma del SII está abierta desde el 1 de abril. El plazo depende de si debes pagar: declaraciones **con pago**, del 8 al **30 de abril**; declaraciones **sin pago** (con devolución), hasta el **8 de mayo de 2026**. Cuándo declares dentro de ese período determina cuándo recibes tu devolución. ## ¿Tienes que declarar o solo aceptar la propuesta? | Situación | Qué hacer | | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | | Un solo empleador, sin otras rentas | Acepta la propuesta si los datos son correctos. No necesitas hacer nada más. | | Dos o más empleadores simultáneos | Debes declarar. Cada empleador retuvo de forma independiente; casi siempre hay ",
-      "wordCount": 1444,
+      "wordCount": 1430,
       "sourceFile": "operacion-renta-f22-checklist.md"
+    },
+    {
+      "slug": "pgu-pension-garantizada-universal",
+      "title": "PGU en Chile: requisitos, monto vigente y cómo tramitarla",
+      "tags": [
+        "pgu",
+        "pension",
+        "ips",
+        "adultos-mayores",
+        "prevision"
+      ],
+      "category": "prevision",
+      "cluster": "pensiones-afp",
+      "sourcePath": "src/data/blog/pgu-pension-garantizada-universal.md",
+      "heroImage": "/images/hero/pgu-pension-garantizada-universal.avif",
+      "summary": "Información vigente al 2026 05 03. El monto de la PGU se reajusta periódicamente por ley. Verifica el valor actualizado directamente en el o antes de tomar cualquier decisión. Llegaste a los 65 años y no sabes si te corresponde la PGU, cuánto recibirías o si tu pensión AFP la red...",
+      "leadParagraphs": [
+        "> **Información vigente al 2026-05-03.** El monto de la PGU se reajusta periódicamente por ley. Verifica el valor actualizado directamente en el [IPS](https://www.ips.gob.cl/) o [ChileAtiende](https://www.chileatiende.gob.cl/) antes de tomar cualquier decisión.",
+        "Llegaste a los 65 años y no sabes si te corresponde la PGU, cuánto recibirías o si tu pensión AFP la reduce. Este artículo responde esas preguntas con fuentes oficiales — sin prometer un monto exacto individual, porque eso lo determina el IPS según tu caso.",
+        "La Pensión Garantizada Universal (PGU) es una pensión estatal mensual que el Estado de Chile paga a adultos mayores que cumplan los requisitos legales. La PGU fue creada por la [Ley 21.419](https://www.bcn.cl/leychile/navegar?idNorma=1171923) (\"Crea la Pensión Garantizada Universal y Modifica los Cuerpos Legales que Indica\", promulgada 26-ENE-2022) y está administrada por el IPS. Su objetivo es garantizar un ingreso mínimo en la vejez, independientemente de si la persona cotizó en el sistema AFP o no."
+      ],
+      "headings": [
+        "¿Qué es la PGU?",
+        "¿Quiénes pueden recibirla?",
+        "¿Cuánto se paga? Monto y calendario de ajuste",
+        "¿Cómo tramitarla ante el IPS?",
+        "PGU y pensión AFP: ¿se complementan o se restan?",
+        "Casos frecuentes",
+        "Preguntas frecuentes"
+      ],
+      "bodyExcerpt": "> **Información vigente al 2026-05-03.** El monto de la PGU se reajusta periódicamente por ley. Verifica el valor actualizado directamente en el o antes de tomar cualquier decisión. Llegaste a los 65 años y no sabes si te corresponde la PGU, cuánto recibirías o si tu pensión AFP la reduce. Este artículo responde esas preguntas con fuentes oficiales — sin prometer un monto exacto individual, porque eso lo determina el IPS según tu caso. ## ¿Qué es la PGU? La Pensión Garantizada Universal (PGU) es una pensión estatal mensual que el Estado de Chile paga a adultos mayores que cumplan los requisitos legales. La PGU fue creada por la (\"Crea la Pensión Garantizada Universal y Modifica los Cuerpos Legales que Indica\", promulgada 26-ENE-2022) y está administrada por el IPS. Su objetivo es garantizar un ingreso mínimo en la vejez, independientemente de si la persona cotizó en el sistema AFP o no. El monto vigente al 2026-05-03 debe verificarse directamente en el — se reajusta por decreto y puede haber cambiado desde la fecha de corte de este artículo. Para entender el contexto de cambios al sistema previsional que afectan a la PGU, revisa la guía de . ## ¿Quiénes pueden recibirla? Para acced",
+      "wordCount": 919,
+      "sourceFile": "pgu-pension-garantizada-universal.md"
     },
     {
       "slug": "prepago-credito-cuando-conviene-chile",
@@ -999,7 +1199,7 @@
         "Qué es la AFP y para qué sirve"
       ],
       "bodyExcerpt": "Empezar a trabajar por primera vez trae más preguntas legales y financieras que lo que anticipas. Esta guía te acompaña en los cuatro frentes que hay que resolver en el primer mes: el contrato, la primera liquidación, la afiliación previsional y el presupuesto real con tu sueldo neto. > **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Si llegas aquí recién iniciando la búsqueda de empleo, complementa con la guía completa sobre para entender de entrada qué parte del bruto no llega a tu cuenta. ## Antes de firmar: qué revisar en el contrato El contrato de trabajo es el documento que define las reglas de la relación laboral. Firmarlo sin leerlo es el error más frecuente en el primer empleo — y también el que más cuesta corregir después. ### Plazo legal para escriturar El empleador tiene **15 días corridos** desde el inicio de la relación laboral para entregarte el contrato escrito (5 días si el contrato es por obra o faena). Si no lo cumple, te expone a multas de la Dirección del Trabajo y tú adquieres el derecho de declarar tus propias condiciones en caso de disputa. Acció",
-      "wordCount": 2000,
+      "wordCount": 2074,
       "sourceFile": "primer-empleo-chile-guia-completa.md"
     },
     {
@@ -1066,7 +1266,7 @@
         "Deudas y obligaciones en UF"
       ],
       "bodyExcerpt": "Cuando sale el dato del IPC cada mes, los medios hablan de \"inflación\" y tú ves que las cosas cuestan más. Pero ¿cómo se mide exactamente? ¿Por qué a veces el IPC baja pero igual sientes que todo cuesta más? Y lo más importante: ¿qué decisiones afecta directamente en tu vida? > **Información vigente al 2026-03-11.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Esta guía lo explica desde cero, con ejemplos concretos y sin economía de facultad. Si quieres ver este frente completo junto con UF, reajustes y herramientas, entra a la . Si lo que te interesa es el efecto específico sobre la UF, complementa con . ## Qué es el IPC El **Índice de Precios al Consumidor (IPC)** es el indicador que mide cuánto cambia, en promedio, el precio de una canasta representativa de bienes y servicios que compran los hogares chilenos. No mide el precio de todo lo que existe — mide la variación de lo que compra una familia \"tipo\" chilena: alimentos, transporte, vivienda, salud, educación, vestuario, comunicaciones y ocio. Lo calcula y publica el **INE (Instituto Nacional de Estadísticas)** todos los meses, generalmente la primer",
-      "wordCount": 1063,
+      "wordCount": 1039,
       "sourceFile": "que-es-el-ipc-chile-como-se-calcula.md"
     },
     {
@@ -1099,7 +1299,7 @@
         "Cuenta 2 vs APV: ¿cuál es la diferencia?"
       ],
       "bodyExcerpt": "Cuando la gente habla de su AFP, casi siempre se refiere a la cuenta obligatoria donde va el 10% del sueldo. Pero existe una segunda cuenta —voluntaria, flexible y mucho menos conocida— que puede servir como instrumento de ahorro de mediano plazo con rentabilidades similares a las de tu cotización obligatoria: la **Cuenta 2**, también llamada Cuenta de Ahorro Voluntario (CAV). En esta guía te explicamos cuándo sirve para ahorro flexible dentro del ecosistema AFP. Si tu foco principal es bajar impuesto mientras ahorras, cambia hacia una decisión tributaria. Si quieres ver más temas del sistema previsional, vuelve al hub del sistema. ## Tabla de contenidos ## ¿Qué es la Cuenta 2? La Cuenta 2 es una cuenta de ahorro individual y voluntaria que puedes abrir en cualquier AFP — no necesariamente en la que tienes tu cotización obligatoria. Es completamente independiente de tu cuenta de pensión y puedes depositar en ella la cantidad de dinero que quieras, cuando quieras. A diferencia de la cotización obligatoria, que solo puedes retirar al jubilarte, el dinero de la Cuenta 2 es accesible: puedes hacer hasta **24 retiros por año calendario**, sin necesidad de justificar para qué lo usas. ##",
-      "wordCount": 1186,
+      "wordCount": 1225,
       "sourceFile": "que-es-la-cuenta-2-afp.md"
     },
     {
@@ -1166,7 +1366,7 @@
         "Preguntas frecuentes"
       ],
       "bodyExcerpt": "Llegó el aviso de pago y el arriendo subió. O el arrendador avisa que el próximo mes cambia el monto. La primera reacción suele ser preguntarse si corresponde — y la respuesta depende de una sola cosa: lo que dice el contrato. > **Información vigente al 2026-03-12.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. En Chile no existe un reajuste automático de arriendo que aplique por ley a todos los contratos. Lo que existe son distintas formas de pactar el reajuste — y cada una funciona distinto. Entender esa diferencia evita conflictos y permite verificar si el monto que te cobran es correcto. Si ya tienes la cláusula en la mano y solo necesitas el número, usa la . Si quieres entender primero por qué la UF cambia todos los meses, complementa con . ## Qué determina el reajuste El contrato de arriendo es el documento que define todo. No existe una norma que obligue a usar UF ni IPC — las partes acuerdan libremente la referencia y la periodicidad. La Ley 18.101 sobre arrendamiento de predios urbanos regula aspectos generales del contrato, pero no impone una fórmula de reajuste específica. Esto tiene una consec",
-      "wordCount": 1256,
+      "wordCount": 1236,
       "sourceFile": "reajuste-arriendo-uf-ipc-chile.md"
     },
     {
@@ -1200,7 +1400,7 @@
         "¿Y los independientes?"
       ],
       "bodyExcerpt": "En julio de 2025 se promulgó la reforma previsional más importante en décadas. Cambia cómo se financia tu jubilación, introduce nuevos componentes del Seguro Social y reemplaza los multifondos con un esquema distinto. Como su implementación se despliega por etapas entre 2025 y 2033, conviene entenderla separando con cuidado qué ya opera hoy y qué todavía viene después. Si quieres entender primero cómo funciona el sistema actual, conviene separar la elección de fondo vigente del descuento previsional del trabajador antes de volver a esta pieza. ## Lo esencial en 3 minutos La reforma tiene **tres grandes cambios**, pero no todos operan igual hoy: 1. **El empleador paga una nueva cotización adicional.** Parte en **1%** desde agosto de 2025 y sube gradualmente hasta **7%** en agosto de 2033. No te lo descuentan a ti. 2. **No todo ese nuevo aporte entra directo a tu cuenta individual.** Hoy solo una fracción de ese nuevo 1% va a tu AFP; el resto alimenta componentes colectivos del nuevo Seguro Social. 3. **Los multifondos A-E se reemplazan por fondos generacionales.** La transición operativa parte en **abril de 2027**, no antes. ## Si tu pregunta real es una de estas, cambia de tema - *",
-      "wordCount": 1356,
+      "wordCount": 1332,
       "sourceFile": "reforma-previsional-2025-que-cambia-y-como-te-afecta.md"
     },
     {
@@ -1300,7 +1500,7 @@
         "Preguntas frecuentes"
       ],
       "bodyExcerpt": "Quedaste cesante, entraste a afc.cl y ves un saldo. La pregunta que sigue es natural: ¿eso es lo que cobro? Depende de qué parte estás mirando. El Seguro de Cesantía no es un solo fondo — son dos fondos con lógicas distintas, y confundirlos lleva a expectativas que la AFC no va a cumplir. ## Las dos capas del seguro **La Cuenta Individual de Cesantía (CIC)** es una cuenta personal a tu nombre. Funciona parecido a tu cuenta AFP: se financia mes a mes con un porcentaje de tu remuneración imponible, acumula saldo y ese saldo es tuyo cuando lo necesitas. Es lo primero que se usa cuando quedas sin trabajo, y para cobrarla no hay que demostrar causal especial — solo cumplir el mínimo de cotizaciones. **El Fondo de Cesantía Solidario (FCS)** es un fondo común. No es una cuenta a tu nombre. Lo financian los empleadores del país y el Estado. Puedes acceder a él únicamente si tu saldo en la CIC es insuficiente para los pagos del seguro y, además, cumples todos los filtros que exige la ley. No es automático. No es universal. Y no entra si tu CIC alcanza. ## Por qué el orden importa en la práctica La CIC siempre va primero. Esto tiene una consecuencia directa: si tu saldo individual alcanza pa",
-      "wordCount": 1080,
+      "wordCount": 1052,
       "sourceFile": "seguro-cesantia-cuenta-individual-vs-fondo-solidario.md"
     },
     {
@@ -1334,8 +1534,41 @@
         "Si cobras por la CIC"
       ],
       "bodyExcerpt": "Quedaste sin trabajo — sea porque te despidieron, se venció tu contrato o renunciaste. Lo primero que muchos no saben es que tienen plata acumulada en la AFC esperando ser cobrada. Esta guía te explica exactamente qué es, cuánto tienes y cómo cobrarlo. ## Tabla de contenidos ## Qué es el Seguro de Cesantía El **Seguro de Cesantía** es un seguro obligatorio administrado por la **AFC Chile (Administradora de Fondos de Cesantía)** que protege a los trabajadores cuando quedan sin empleo. Está compuesto por dos fondos distintos con reglas diferentes: **Cuenta Individual de Cesantía (CIC):** Es tuya. Se financia con el 3% de tu remuneración imponible mensual — una parte la pones tú y otra tu empleador, según el tipo de contrato. El dinero acumulado aquí es exclusivamente tuyo y puedes usarlo cuando quedes cesante, independientemente de la causa del término del contrato. **Fondo de Cesantía Solidario (FCS):** Es un fondo común financiado principalmente por los empleadores y el Estado. No es tuyo en particular, pero puedes acceder a él si cumples ciertos requisitos y tu cuenta individual no tiene saldo suficiente. Tiene montos mínimos y máximos definidos por ley. Si tu confusión principal ",
-      "wordCount": 1606,
+      "wordCount": 1610,
       "sourceFile": "seguro-de-cesantia.md"
+    },
+    {
+      "slug": "sueldo-imponible-chile",
+      "title": "Sueldo imponible en Chile: qué es, qué incluye y cómo afecta tus descuentos",
+      "tags": [
+        "sueldo-imponible",
+        "remuneraciones",
+        "cotizaciones",
+        "impuesto-segunda-categoria",
+        "descuentos"
+      ],
+      "category": "empleo-ingresos",
+      "cluster": "sueldo-remuneraciones",
+      "sourcePath": "src/data/blog/sueldo-imponible-chile.md",
+      "heroImage": "/images/hero/sueldo-imponible-chile.avif",
+      "summary": "Información vigente al 2026 05 03. El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves...",
+      "leadParagraphs": [
+        "> **Información vigente al 2026-05-03.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo.",
+        "Revisas tu liquidación y ves dos cifras distintas: \"sueldo bruto\" y \"remuneración imponible\". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque los descuentos de AFP, salud e impuesto no se calculan sobre el bruto — se calculan sobre el imponible.",
+        "El sueldo imponible (o remuneración imponible) es la base de cálculo que la ley define para las cotizaciones previsionales y el Impuesto de Segunda Categoría. Está regulado en el artículo 41 del [Código del Trabajo](https://www.bcn.cl/leychile/navegar?idNorma=207436) como el conjunto de remuneraciones que constituyen la base afecta a descuentos."
+      ],
+      "headings": [
+        "¿Qué es el sueldo imponible? Definición legal",
+        "Qué incluye la base imponible y qué no",
+        "Sueldo bruto, imponible y líquido: las tres cifras que importan",
+        "Cómo afecta el imponible a AFP, salud y AFC",
+        "Cómo determina el Impuesto de Segunda Categoría",
+        "APV y reducción de la base imponible",
+        "Ejemplo numérico orientativo"
+      ],
+      "bodyExcerpt": "> **Información vigente al 2026-05-03.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves dos cifras distintas: \"sueldo bruto\" y \"remuneración imponible\". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque los descuentos de AFP, salud e impuesto no se calculan sobre el bruto — se calculan sobre el imponible. ## ¿Qué es el sueldo imponible? Definición legal El sueldo imponible (o remuneración imponible) es la base de cálculo que la ley define para las cotizaciones previsionales y el Impuesto de Segunda Categoría. Está regulado en el artículo 41 del como el conjunto de remuneraciones que constituyen la base afecta a descuentos. No todo lo que recibe un trabajador es remuneración imponible. La ley excluye algunos componentes expresamente. ## Qué incluye la base imponible y qué no | Componente | ¿Imponible? | Fundamento | | -------------------------------- | ----------- | --------------------------------------------------------------------------------",
+      "wordCount": 1056,
+      "sourceFile": "sueldo-imponible-chile.md"
     },
     {
       "slug": "suplantacion-identidad-creditos-no-reconocidos",
@@ -1355,7 +1588,7 @@
       "leadParagraphs": [
         "Recibes un correo que dice \"tu crédito ha sido aprobado\". El problema es que tú nunca pediste ningún crédito. Eso no es un error administrativo: es una señal de que alguien usó tus datos para contratar deuda a tu nombre.",
         "Esta guía te explica qué hacer para actuar rápido y evitar los errores que más atrasan la solución.",
-        "Las señales más comunes aparecen antes de que te llegue una carta de cobranza:"
+        "> **Revisión editorial 2026-04-22:** se revalidaron los canales de escalamiento y la lógica de reclamo ante instituciones supervisadas por la CMF. Si el caso involucra movimientos de medios de pago, complementa esta guía con la ruta de la Ley 20.009."
       ],
       "headings": [
         "Cómo detectar la suplantación antes de que escale",
@@ -1367,8 +1600,8 @@
         "Paso 4 — Escala a CMF si la institución no responde",
         "Paso 5 — Limpia tu historial crediticio"
       ],
-      "bodyExcerpt": "Recibes un correo que dice \"tu crédito ha sido aprobado\". El problema es que tú nunca pediste ningún crédito. Eso no es un error administrativo: es una señal de que alguien usó tus datos para contratar deuda a tu nombre. Esta guía te explica qué hacer para actuar rápido y evitar los errores que más atrasan la solución. ## Cómo detectar la suplantación antes de que escale Las señales más comunes aparecen antes de que te llegue una carta de cobranza: - **Correos o SMS de aprobaciones que no solicitaste.** Un crédito aprobado que nadie pidió es la señal más directa. - **Cuentas nuevas asociadas a tu RUT.** Si revisas tu y aparecen productos que no reconoces, actúa de inmediato. - **Llamados de cobranza por deudas desconocidas.** Cuando te llaman exigiendo pago de cuotas de algo que nunca contrataste. - **Cambios de datos de contacto sin tu autorización.** Si una institución tiene un correo o teléfono distinto al tuyo en su sistema, alguien los modificó. - **Alertas de consultas de crédito en tu historial.** Cada vez que alguien pide un crédito usando tu RUT, queda registrado como consulta. Puede aparecer en tu informe CMF. Tener claro el problema es siempre el primer paso. Antes de di",
-      "wordCount": 1395,
+      "bodyExcerpt": "Recibes un correo que dice \"tu crédito ha sido aprobado\". El problema es que tú nunca pediste ningún crédito. Eso no es un error administrativo: es una señal de que alguien usó tus datos para contratar deuda a tu nombre. Esta guía te explica qué hacer para actuar rápido y evitar los errores que más atrasan la solución. > **Revisión editorial 2026-04-22:** se revalidaron los canales de escalamiento y la lógica de reclamo ante instituciones supervisadas por la CMF. Si el caso involucra movimientos de medios de pago, complementa esta guía con la ruta de la Ley 20.009. ## Cómo detectar la suplantación antes de que escale Las señales más comunes aparecen antes de que te llegue una carta de cobranza: - **Correos o SMS de aprobaciones que no solicitaste.** Un crédito aprobado que nadie pidió es la señal más directa. - **Cuentas nuevas asociadas a tu RUT.** Si revisas tu y aparecen productos que no reconoces, actúa de inmediato. - **Llamados de cobranza por deudas desconocidas.** Cuando te llaman exigiendo pago de cuotas de algo que nunca contrataste. - **Cambios de datos de contacto sin tu autorización.** Si una institución tiene un correo o teléfono distinto al tuyo en su sistema, alguie",
+      "wordCount": 1444,
       "sourceFile": "suplantacion-identidad-creditos-no-reconocidos.md"
     },
     {
@@ -1388,7 +1621,7 @@
       "summary": "Una tarjeta de crédito te da liquidez inmediata, pero tiene un precio. Ese precio no siempre es obvio porque los estados de cuenta muestran el pago mínimo — una cifra baja que parece manejable — sin mostrar cuánto terminarás pagando si te quedas en ese nivel. Antes de usar la cal...",
       "leadParagraphs": [
         "Una tarjeta de crédito te da liquidez inmediata, pero tiene un precio. Ese precio no siempre es obvio porque los estados de cuenta muestran el pago mínimo — una cifra baja que parece manejable — sin mostrar cuánto terminarás pagando si te quedas en ese nivel. Antes de usar la calculadora, conviene entender por qué ese número importa.",
-        "Si estás evaluando pedir un crédito nuevo o comparar ofertas, complementa esto con la [guía del CAE](/posts/cae-costo-real-credito-chile/), que explica cómo comparar el costo total de un crédito antes de firmar.",
+        "Si estás evaluando pedir un crédito nuevo o comparar ofertas, complementa esto con la [guía de la CAE](/posts/cae-costo-real-credito-chile/), que explica cómo comparar el costo total de un crédito antes de firmar.",
         "Las tarjetas de crédito cobran interés sobre el **saldo vigente** cada período de facturación. La tasa puede expresarse mensual o anual, y varía según el emisor y el segmento de la tarjeta. La CMF publica la **tasa máxima convencional (TMC)** para tarjetas, que es el techo legal que ningún emisor puede superar."
       ],
       "headings": [
@@ -1434,7 +1667,7 @@
         "Usos prácticos de la UTM"
       ],
       "bodyExcerpt": "La **UTM (Unidad Tributaria Mensual)** es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Cambia el primer día hábil de cada mes. > **Respuesta rápida** > > **Qué es:** Unidad de medida del valor monetario que el Estado usa para expresar multas, impuestos y aranceles — no es una moneda, sino un indicador de referencia reajustable. > > **Cómo cambia:** Se reajusta cada mes según la variación del IPC del mes anterior. > > **Valor vigente (abril 2026):** $69.889 > > **Fuente oficial:** > > **Vigencia:** Válido durante todo abril 2026. El valor cambia el primer día hábil de cada mes — verifica siempre en SII.cl. Si pagas una multa de tránsito mañana, el monto en pesos que te cobran depende de cuántas UTM tiene la multa multiplicado por el valor vigente **en ese momento**. El mismo número de UTM puede significar más o menos pesos según el mes. > **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Si quieres ver este frente completo junto con UF, reajustes y herramientas, entra a la . ## Tabla de contenidos ## ¿Qué es l",
-      "wordCount": 1720,
+      "wordCount": 1689,
       "sourceFile": "utm-chile-que-es-como-funciona.md"
     }
   ]

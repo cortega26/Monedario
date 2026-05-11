@@ -42,14 +42,14 @@ const readingTime = getReadingTime(body ?? "");
             src={imageSrc}
             alt={title}
             width="1200"
-            height="675"
+            height="630"
             srcset={`
               ${imageSrc.replace(".avif", "@mobile.avif")} 600w,
               ${imageSrc.replace(".avif", "@tablet.avif")} 800w,
               ${imageSrc} 1200w
             `}
-            sizes="(min-width: 1280px) 560px, (min-width: 768px) 45vw, 100vw"
-            class="aspect-video w-full object-cover"
+            sizes="(min-width: 1152px) 1120px, calc(100vw - 2rem)"
+            class="aspect-[40/21] w-full object-cover"
             loading={earlyLoad ? "eager" : "lazy"}
             fetchpriority={earlyLoad ? "high" : undefined}
             decoding={earlyLoad ? "sync" : "async"}

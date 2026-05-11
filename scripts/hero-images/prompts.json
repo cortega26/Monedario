@@ -10,19 +10,19 @@
       "template": "A",
       "promptTrack": "A",
       "promptTrackLabel": "Human Editorial Scene",
-      "approvedModelId": "ahorro",
-      "sceneId": "A:ahorro--ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
-      "readerSituation": "Persona organizando ahorro o controlando gastos cotidianos.",
+      "approvedModelId": "declaracion-renta",
+      "sceneId": "A:declaracion-renta--ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
+      "readerSituation": "Persona completando o revisando formularios y fechas tributarias.",
       "primaryIntent": "comparar",
-      "toneClass": "progreso",
+      "toneClass": "serio",
       "visualEvidence": [
-        "text contains 'fondo de emergencia' in article body/title context",
+        "text contains 'sii' in article body/title context",
         "primary intent classified as 'comparar' from article text",
-        "reader situation anchored to scene rule 'ahorro'"
+        "reader situation anchored to scene rule 'renta'"
       ],
       "palette": {
-        "category": "Ahorro activo / Metas / Logros",
-        "hex": "#059669"
+        "category": "Credito / Deuda / Impuestos / Riesgo",
+        "hex": "#d97706"
       },
       "modelPlan": {
         "provider": "openai",
@@ -30,14 +30,14 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #059669. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: a simplified person or visible hands are engaged in an everyday money moment built around three flat investment containers arranged side by side with clearly different profiles: one stable block, one medium stepped stack, and one taller volatile stack.\nKeep the supporting mechanism limited to geometric containers, divider blocks, and one small comparison arrow between the middle and right options, while the human presence stays secondary and the main moment stays readable.\nThe gesture should make the image feel like an everyday financial moment, not a sterile diagram.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: the three containers occupy the central 70% of the canvas with generous horizontal margins.\nSemantic focus: choosing between DAP, mutual funds, and ETFs according to risk and cost.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the three containers and the comparison arrow.",
-      "promptHash": "7f66e9e737157b6e1c40b393ff461e220194195d8adbb27218e3d4ea9c6dc674",
+      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #d97706. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: a simplified person or visible hands are engaged in an everyday money moment built around three flat investment containers arranged side by side with clearly different profiles: one stable block, one medium stepped stack, and one taller volatile stack.\nKeep the supporting mechanism limited to geometric containers, divider blocks, and one small comparison arrow between the middle and right options, while the human presence stays secondary and the main moment stays readable.\nThe gesture should make the image feel like an everyday financial moment, not a sterile diagram.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: the three containers occupy the central 70% of the canvas with generous horizontal margins.\nSemantic focus: choosing between DAP, mutual funds, and ETFs according to risk and cost.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the three containers and the comparison arrow.",
+      "promptHash": "10d075ebdc015d411f4452ed31b68e44eed50c3a5b7f366a50e6ac00ae73a6df",
       "selectors": {
-        "ruleId": "ahorro",
+        "ruleId": "renta",
         "category": "ahorro-inversion",
         "cluster": "ahorro-e-inversion",
         "matchedKeywords": [
-          "fondo de emergencia"
+          "sii"
         ]
       }
     },
@@ -353,6 +353,46 @@
         "matchedKeywords": [
           "deuda",
           "dicom"
+        ]
+      }
+    },
+    {
+      "slug": "contribuciones-bienes-raices-chile",
+      "sourcePath": "src/data/blog/contribuciones-bienes-raices-chile.md",
+      "targetImagePath": "/images/hero/contribuciones-bienes-raices-chile.avif",
+      "template": "A",
+      "promptTrack": "B",
+      "promptTrackLabel": "Hybrid Scene + Mechanism",
+      "approvedModelId": "declaracion-renta",
+      "sceneId": "A:declaracion-renta--contribuciones-bienes-raices-chile",
+      "readerSituation": "Persona propietaria de un inmueble revisando el calendario y monto de sus contribuciones anuales.",
+      "primaryIntent": "comparar",
+      "toneClass": "serio",
+      "visualEvidence": [
+        "slug override: property tax (contribuciones) calendar-and-amount article — renta rule false-positive on impuesto body keywords",
+        "primary intent classified as 'comparar' from article text",
+        "reader situation anchored to scene rule 'renta'"
+      ],
+      "palette": {
+        "category": "Credito / Deuda / Impuestos / Riesgo",
+        "hex": "#d97706"
+      },
+      "modelPlan": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "auto",
+        "size": "1536x1024"
+      },
+      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #d97706. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: one simplified human figure seated at a desk reviewing a form, in a recognizable everyday money situation.\nPlace one dominant financial object near the figure: tax form, calendar marker. Add at most one supporting contextual cue if it strengthens the moment.\nInclude one simplified person, partial figure, or visible hands actively interacting with the main object so the mechanism feels lived, consequential, and relevant to persona propietaria de un inmueble revisando el calendario y monto de sus contribuciones anuales.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: build the main action in the left or center-left area, with asymmetry, clear focal hierarchy, and breathing room on the right. Keep key elements inside the safe area.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nAvoid photorealism, 3D rendering, CGI, neon, fake UI, clutter, golden-coin finance clichés, and malformed interfaces.",
+      "promptHash": "d8b7d0f2965a806ce4866f4275cdac9d0f8fbd0abb49e6c7417c935744c83ab0",
+      "selectors": {
+        "ruleId": "renta",
+        "category": "impuestos",
+        "cluster": "impuestos-personas",
+        "matchedKeywords": [
+          "contribuciones",
+          "impuesto",
+          "bienes raices"
         ]
       }
     },
@@ -758,6 +798,46 @@
       }
     },
     {
+      "slug": "fondo-emergencia-chile",
+      "sourcePath": "src/data/blog/fondo-emergencia-chile.md",
+      "targetImagePath": "/images/hero/fondo-emergencia-chile.avif",
+      "template": "A",
+      "promptTrack": "A",
+      "promptTrackLabel": "Human Editorial Scene",
+      "approvedModelId": "ahorro",
+      "sceneId": "A:ahorro--fondo-emergencia-chile",
+      "readerSituation": "Persona organizando ahorro o controlando gastos cotidianos.",
+      "primaryIntent": "calcular",
+      "toneClass": "progreso",
+      "visualEvidence": [
+        "text contains 'ahorro' in article body/title context",
+        "text contains 'fondo de emergencia' in article body/title context",
+        "primary intent classified as 'calcular' from article text",
+        "reader situation anchored to scene rule 'ahorro'"
+      ],
+      "palette": {
+        "category": "Ahorro activo / Metas / Logros",
+        "hex": "#059669"
+      },
+      "modelPlan": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "auto",
+        "size": "1536x1024"
+      },
+      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #059669. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: one simplified human figure standing, reaching forward, in a recognizable everyday money situation.\nPlace one dominant financial object near the figure: glass jar with coins. Add at most one supporting contextual cue if it strengthens the moment.\nInclude one simplified human figure or visible hands performing a readable gesture so the image feels like an everyday financial moment, not a sterile diagram.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: build the main action in the left or center-left area, with asymmetry, clear focal hierarchy, and breathing room on the right. Keep key elements inside the safe area.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nAvoid photorealism, 3D rendering, CGI, neon, fake UI, clutter, golden-coin finance clichés, and malformed interfaces.",
+      "promptHash": "55849610337cfa7de9c7c871b8762417cbfbf1c684a209396c12457cca3c11d3",
+      "selectors": {
+        "ruleId": "ahorro",
+        "category": "general",
+        "cluster": "presupuesto-control-financiero",
+        "matchedKeywords": [
+          "ahorro",
+          "fondo de emergencia"
+        ]
+      }
+    },
+    {
       "slug": "fondos-afp-a-b-c-d-e",
       "sourcePath": "src/data/blog/fondos-afp-a-b-c-d-e.md",
       "targetImagePath": "/images/hero/fondos-afp-a-b-c-d-e.avif",
@@ -803,19 +883,19 @@
       "template": "A",
       "promptTrack": "A",
       "promptTrackLabel": "Human Editorial Scene",
-      "approvedModelId": "ahorro",
-      "sceneId": "A:ahorro--fondos-mutuos-comisiones-rescate-impuestos",
-      "readerSituation": "Persona organizando ahorro o controlando gastos cotidianos.",
+      "approvedModelId": "declaracion-renta",
+      "sceneId": "A:declaracion-renta--fondos-mutuos-comisiones-rescate-impuestos",
+      "readerSituation": "Persona completando o revisando formularios y fechas tributarias.",
       "primaryIntent": "guiar",
-      "toneClass": "progreso",
+      "toneClass": "serio",
       "visualEvidence": [
-        "text contains 'ahorro' in article body/title context",
+        "text contains 'sii' in article body/title context",
         "primary intent classified as 'guiar' from article text",
-        "reader situation anchored to scene rule 'ahorro'"
+        "reader situation anchored to scene rule 'renta'"
       ],
       "palette": {
-        "category": "Ahorro activo / Metas / Logros",
-        "hex": "#059669"
+        "category": "Credito / Deuda / Impuestos / Riesgo",
+        "hex": "#d97706"
       },
       "modelPlan": {
         "provider": "openai",
@@ -823,14 +903,14 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #059669. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: a simplified person or visible hands are engaged in an everyday money moment built around a flat fund statement page with a fee funnel on the left and an exit tray on the right.\nKeep the supporting mechanism limited to the document, one funnel shape, one payout tray, and two small cost blocks between them, while the human presence stays secondary and the main moment stays readable.\nThe gesture should make the image feel like an everyday financial moment, not a sterile diagram.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: build the main action in the left or center-left area, with asymmetry, clear focal hierarchy, and breathing room on the right. Keep key elements inside the safe area.\nSemantic focus: fees, redemption, and taxes inside mutual funds.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the statement, funnel, payout tray, and cost blocks.",
-      "promptHash": "efbfb4b7021cedf85545d1b7aaac0a70d403490328341f3aa7c8477e147cd772",
+      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #d97706. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: a simplified person or visible hands are engaged in an everyday money moment built around a flat fund statement page with a fee funnel on the left and an exit tray on the right.\nKeep the supporting mechanism limited to the document, one funnel shape, one payout tray, and two small cost blocks between them, while the human presence stays secondary and the main moment stays readable.\nThe gesture should make the image feel like an everyday financial moment, not a sterile diagram.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: build the main action in the left or center-left area, with asymmetry, clear focal hierarchy, and breathing room on the right. Keep key elements inside the safe area.\nSemantic focus: fees, redemption, and taxes inside mutual funds.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the statement, funnel, payout tray, and cost blocks.",
+      "promptHash": "8991903d1a89fccaeff6624e5c9b8e1a245ffa5be776113bf497a83dafea424b",
       "selectors": {
-        "ruleId": "ahorro",
+        "ruleId": "renta",
         "category": "ahorro-inversion",
         "cluster": "ahorro-e-inversion",
         "matchedKeywords": [
-          "ahorro"
+          "sii"
         ]
       }
     },
@@ -869,6 +949,85 @@
         "cluster": "seguridad-financiera",
         "matchedKeywords": [
           "fraude"
+        ]
+      }
+    },
+    {
+      "slug": "gratificacion-legal-chile",
+      "sourcePath": "src/data/blog/gratificacion-legal-chile.md",
+      "targetImagePath": "/images/hero/gratificacion-legal-chile.avif",
+      "template": "A",
+      "promptTrack": "B",
+      "promptTrackLabel": "Hybrid Scene + Mechanism",
+      "approvedModelId": "liquidacion-documento",
+      "sceneId": "A:liquidacion-documento--gratificacion-legal-chile",
+      "readerSituation": "Persona revisando el calculo de su gratificacion legal anual en la liquidacion de sueldo.",
+      "primaryIntent": "comparar",
+      "toneClass": "neutral",
+      "visualEvidence": [
+        "slug override: gratificacion-legal annual bonus calculation article",
+        "primary intent classified as 'comparar' from article text",
+        "reader situation anchored to scene rule 'empleo'"
+      ],
+      "palette": {
+        "category": "Finanzas general / AFP / Empleo / Ahorro",
+        "hex": "#0d9488"
+      },
+      "modelPlan": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "auto",
+        "size": "1536x1024"
+      },
+      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #0d9488. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: one simplified human figure standing, holding a document, in a recognizable everyday money situation.\nPlace one dominant financial object near the figure: document sheet, magnifier. Add at most one supporting contextual cue if it strengthens the moment.\nInclude one simplified person, partial figure, or visible hands actively interacting with the main object so the mechanism feels lived, consequential, and relevant to persona revisando el calculo de su gratificacion legal anual en la liquidacion de sueldo.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: build the main action in the left or center-left area, with asymmetry, clear focal hierarchy, and breathing room on the right. Keep key elements inside the safe area.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nAvoid photorealism, 3D rendering, CGI, neon, fake UI, clutter, golden-coin finance clichés, and malformed interfaces.",
+      "promptHash": "c485ce30d7237dcf28f9f7deb9d72b3656b077812c34582c5dd06aec55929473",
+      "selectors": {
+        "ruleId": "empleo",
+        "category": "empleo-ingresos",
+        "cluster": "sueldo-remuneraciones",
+        "matchedKeywords": [
+          "gratificacion",
+          "sueldo"
+        ]
+      }
+    },
+    {
+      "slug": "impuesto-global-complementario-chile",
+      "sourcePath": "src/data/blog/impuesto-global-complementario-chile.md",
+      "targetImagePath": "/images/hero/impuesto-global-complementario-chile.avif",
+      "template": "A",
+      "promptTrack": "B",
+      "promptTrackLabel": "Hybrid Scene + Mechanism",
+      "approvedModelId": "declaracion-renta",
+      "sceneId": "A:declaracion-renta--impuesto-global-complementario-chile",
+      "readerSituation": "Persona entendiendo los tramos del Impuesto Global Complementario y como afecta su declaracion anual.",
+      "primaryIntent": "guiar",
+      "toneClass": "serio",
+      "visualEvidence": [
+        "slug override: IGC progressive tax brackets educational article",
+        "primary intent classified as 'guiar' from article text",
+        "reader situation anchored to scene rule 'renta'"
+      ],
+      "palette": {
+        "category": "Credito / Deuda / Impuestos / Riesgo",
+        "hex": "#d97706"
+      },
+      "modelPlan": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "auto",
+        "size": "1536x1024"
+      },
+      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #d97706. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: one simplified human figure seated at a desk reviewing a form, in a recognizable everyday money situation.\nPlace one dominant financial object near the figure: tax form, calendar marker. Add at most one supporting contextual cue if it strengthens the moment.\nInclude one simplified person, partial figure, or visible hands actively interacting with the main object so the mechanism feels lived, consequential, and relevant to persona entendiendo los tramos del impuesto global complementario y como afecta su declaracion anual.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: build the main action in the left or center-left area, with asymmetry, clear focal hierarchy, and breathing room on the right. Keep key elements inside the safe area.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nAvoid photorealism, 3D rendering, CGI, neon, fake UI, clutter, golden-coin finance clichés, and malformed interfaces.",
+      "promptHash": "fb5fe07016c04308116bb925e07e8cd2f2e32c2944c9a25c34fbcdc305c5dedf",
+      "selectors": {
+        "ruleId": "renta",
+        "category": "impuestos",
+        "cluster": "impuestos-personas",
+        "matchedKeywords": [
+          "impuesto",
+          "global complementario",
+          "declaracion"
         ]
       }
     },
@@ -1071,6 +1230,46 @@
       }
     },
     {
+      "slug": "operacion-renta-centro",
+      "sourcePath": "src/data/blog/operacion-renta-centro.md",
+      "targetImagePath": "/images/hero/operacion-renta-centro.avif",
+      "template": "A",
+      "promptTrack": "A",
+      "promptTrackLabel": "Human Editorial Scene",
+      "approvedModelId": "declaracion-renta",
+      "sceneId": "A:declaracion-renta--operacion-renta-centro",
+      "readerSituation": "Persona buscando informacion y recursos para completar su Operacion Renta anual.",
+      "primaryIntent": "explicar",
+      "toneClass": "serio",
+      "visualEvidence": [
+        "slug override: operacion-renta hub/support article — declaracion-renta scene appropriate for tax-hub context",
+        "primary intent classified as 'explicar' from article text",
+        "reader situation anchored to scene rule 'renta'"
+      ],
+      "palette": {
+        "category": "Credito / Deuda / Impuestos / Riesgo",
+        "hex": "#d97706"
+      },
+      "modelPlan": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "auto",
+        "size": "1536x1024"
+      },
+      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #d97706. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: one simplified human figure seated at a desk reviewing a form, in a recognizable everyday money situation.\nPlace one dominant financial object near the figure: tax form, calendar marker. Add at most one supporting contextual cue if it strengthens the moment.\nInclude one simplified human figure or visible hands performing a readable gesture so the image feels like an everyday financial moment, not a sterile diagram.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: build the main action in the left or center-left area, with asymmetry, clear focal hierarchy, and breathing room on the right. Keep key elements inside the safe area.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nAvoid photorealism, 3D rendering, CGI, neon, fake UI, clutter, golden-coin finance clichés, and malformed interfaces.",
+      "promptHash": "5e625062a658e419f436eb9b04c0dcf2c445d28351f9ad3a1798543046dbdb48",
+      "selectors": {
+        "ruleId": "renta",
+        "category": "impuestos",
+        "cluster": "impuestos-personas",
+        "matchedKeywords": [
+          "impuesto",
+          "renta",
+          "operacion renta"
+        ]
+      }
+    },
+    {
       "slug": "operacion-renta-f22-checklist",
       "sourcePath": "src/data/blog/operacion-renta-f22-checklist.md",
       "targetImagePath": "/images/hero/operacion-renta-f22-checklist.avif",
@@ -1109,6 +1308,46 @@
           "renta",
           "f22",
           "sii"
+        ]
+      }
+    },
+    {
+      "slug": "pgu-pension-garantizada-universal",
+      "sourcePath": "src/data/blog/pgu-pension-garantizada-universal.md",
+      "targetImagePath": "/images/hero/pgu-pension-garantizada-universal.avif",
+      "template": "A",
+      "promptTrack": "A",
+      "promptTrackLabel": "Human Editorial Scene",
+      "approvedModelId": "afp-pension",
+      "sceneId": "A:afp-pension--pgu-pension-garantizada-universal",
+      "readerSituation": "Persona mayor o proximo a jubilarse evaluando si califica para la pension basica garantizada por el Estado.",
+      "primaryIntent": "explicar",
+      "toneClass": "educativo",
+      "visualEvidence": [
+        "slug override: PGU state pension eligibility guide",
+        "primary intent classified as 'explicar' from article text",
+        "reader situation anchored to scene rule 'prevision'"
+      ],
+      "palette": {
+        "category": "Finanzas general / AFP / Empleo / Ahorro",
+        "hex": "#0d9488"
+      },
+      "modelPlan": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "auto",
+        "size": "1536x1024"
+      },
+      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #0d9488. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: one simplified human figure standing upright, in a recognizable everyday money situation.\nPlace one dominant financial object near the figure: shield, upward arrow. Add at most one supporting contextual cue if it strengthens the moment.\nInclude one simplified human figure or visible hands performing a readable gesture so the image feels like an everyday financial moment, not a sterile diagram.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: build the main action in the left or center-left area, with asymmetry, clear focal hierarchy, and breathing room on the right. Keep key elements inside the safe area.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nAvoid photorealism, 3D rendering, CGI, neon, fake UI, clutter, golden-coin finance clichés, and malformed interfaces.",
+      "promptHash": "1c92901b36671fe40d720f063fdf218c3b48728a38653bca9c7b2839f5f46b47",
+      "selectors": {
+        "ruleId": "prevision",
+        "category": "prevision",
+        "cluster": "pensiones-afp",
+        "matchedKeywords": [
+          "pension",
+          "pgu",
+          "garantizada universal"
         ]
       }
     },
@@ -1588,6 +1827,45 @@
       }
     },
     {
+      "slug": "sueldo-imponible-chile",
+      "sourcePath": "src/data/blog/sueldo-imponible-chile.md",
+      "targetImagePath": "/images/hero/sueldo-imponible-chile.avif",
+      "template": "A",
+      "promptTrack": "B",
+      "promptTrackLabel": "Hybrid Scene + Mechanism",
+      "approvedModelId": "liquidacion-documento",
+      "sceneId": "A:liquidacion-documento--sueldo-imponible-chile",
+      "readerSituation": "Persona entendiendo que parte de su sueldo es imponible y como eso determina sus cotizaciones.",
+      "primaryIntent": "comparar",
+      "toneClass": "neutral",
+      "visualEvidence": [
+        "slug override: sueldo-imponible base concept article — document-review framing",
+        "primary intent classified as 'comparar' from article text",
+        "reader situation anchored to scene rule 'empleo'"
+      ],
+      "palette": {
+        "category": "Finanzas general / AFP / Empleo / Ahorro",
+        "hex": "#0d9488"
+      },
+      "modelPlan": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "auto",
+        "size": "1536x1024"
+      },
+      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #0d9488. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: one simplified human figure standing, holding a document, in a recognizable everyday money situation.\nPlace one dominant financial object near the figure: document sheet, magnifier. Add at most one supporting contextual cue if it strengthens the moment.\nInclude one simplified person, partial figure, or visible hands actively interacting with the main object so the mechanism feels lived, consequential, and relevant to persona entendiendo que parte de su sueldo es imponible y como eso determina sus cotizaciones.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: build the main action in the left or center-left area, with asymmetry, clear focal hierarchy, and breathing room on the right. Keep key elements inside the safe area.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nAvoid photorealism, 3D rendering, CGI, neon, fake UI, clutter, golden-coin finance clichés, and malformed interfaces.",
+      "promptHash": "57fefb802011fb5a355a74c95510bda4ffa6becf4df09e21495026645a6a88b9",
+      "selectors": {
+        "ruleId": "empleo",
+        "category": "empleo-ingresos",
+        "cluster": "sueldo-remuneraciones",
+        "matchedKeywords": [
+          "sueldo imponible",
+          "sueldo"
+        ]
+      }
+    },
+    {
       "slug": "suplantacion-identidad-creditos-no-reconocidos",
       "sourcePath": "src/data/blog/suplantacion-identidad-creditos-no-reconocidos.md",
       "targetImagePath": "/images/hero/suplantacion-identidad-creditos-no-reconocidos.avif",
@@ -1704,284 +1982,6 @@
           "tributaria",
           "indicador",
           "mensual"
-        ]
-      }
-    },
-    {
-      "slug": "gratificacion-legal-chile",
-      "sourcePath": "src/data/blog/gratificacion-legal-chile.md",
-      "targetImagePath": "/images/hero/gratificacion-legal-chile.avif",
-      "template": "A",
-      "promptTrack": "B",
-      "promptTrackLabel": "Hybrid Scene + Mechanism",
-      "approvedModelId": "liquidacion-documento",
-      "sceneId": "A:liquidacion-documento--gratificacion-legal-chile",
-      "readerSituation": "Persona revisando el calculo de su gratificacion legal anual en la liquidacion de sueldo.",
-      "primaryIntent": "calcular",
-      "toneClass": "neutral",
-      "visualEvidence": [
-        "slug override: gratificacion-legal annual bonus calculation article",
-        "primary intent classified as 'calcular' from article text",
-        "reader situation anchored to scene rule 'empleo'"
-      ],
-      "palette": {
-        "category": "Finanzas general / AFP / Empleo / Ahorro",
-        "hex": "#0d9488"
-      },
-      "modelPlan": {
-        "provider": "openai",
-        "model": "gpt-image-1",
-        "quality": "auto",
-        "size": "1536x1024"
-      },
-      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #0d9488. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: a simplified worker or visible hands are reviewing a payslip where a distinct annual bonus line sits below the regular monthly salary block, with a small calendar arc connecting the two to signal the annual cycle.\nKeep the payslip dominant; the bonus line and calendar arc are the only supporting cues, while the human presence stays secondary and the main moment stays readable.\nThe human interaction should make the mechanism feel lived, consequential, and relevant to persona revisando el calculo de su gratificacion legal anual en la liquidacion de sueldo.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: build the main action in the left or center-left area, with asymmetry, clear focal hierarchy, and breathing room on the right. Keep key elements inside the safe area.\nSemantic focus: annual legal bonus calculation appearing in the monthly payslip.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the payslip, bonus line, and calendar arc.",
-      "promptHash": "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2",
-      "selectors": {
-        "ruleId": "empleo",
-        "category": "empleo-ingresos",
-        "cluster": "sueldo-remuneraciones",
-        "matchedKeywords": [
-          "gratificacion",
-          "sueldo"
-        ]
-      }
-    },
-    {
-      "slug": "impuesto-global-complementario-chile",
-      "sourcePath": "src/data/blog/impuesto-global-complementario-chile.md",
-      "targetImagePath": "/images/hero/impuesto-global-complementario-chile.avif",
-      "template": "A",
-      "promptTrack": "B",
-      "promptTrackLabel": "Hybrid Scene + Mechanism",
-      "approvedModelId": "declaracion-renta",
-      "sceneId": "A:declaracion-renta--impuesto-global-complementario-chile",
-      "readerSituation": "Persona entendiendo los tramos del Impuesto Global Complementario y como afecta su declaracion anual.",
-      "primaryIntent": "explicar",
-      "toneClass": "serio",
-      "visualEvidence": [
-        "slug override: IGC progressive tax brackets educational article",
-        "primary intent classified as 'explicar' from article text",
-        "reader situation anchored to scene rule 'renta'"
-      ],
-      "palette": {
-        "category": "Credito / Deuda / Impuestos / Riesgo",
-        "hex": "#d97706"
-      },
-      "modelPlan": {
-        "provider": "openai",
-        "model": "gpt-image-1",
-        "quality": "auto",
-        "size": "1536x1024"
-      },
-      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #d97706. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: a simplified person, partial figure, or visible hands are actively interacting with a tax-bracket staircase where each ascending step is progressively wider to signal higher rate application on higher income bands.\nKeep the supporting mechanism limited to the staircase steps and one small tax-form block at the base, while the human presence stays secondary and the main moment stays readable.\nThe human interaction should make the mechanism feel lived, consequential, and relevant to persona entendiendo los tramos del Impuesto Global Complementario y como afecta su declaracion anual.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: build the main action in the left or center-left area, with asymmetry, clear focal hierarchy, and breathing room on the right. Keep key elements inside the safe area.\nSemantic focus: progressive income tax brackets applied to global annual income.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the bracket staircase and tax-form block.",
-      "promptHash": "b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3",
-      "selectors": {
-        "ruleId": "renta",
-        "category": "impuestos",
-        "cluster": "impuestos-personas",
-        "matchedKeywords": [
-          "impuesto",
-          "global complementario",
-          "declaracion"
-        ]
-      }
-    },
-    {
-      "slug": "fondo-emergencia-chile",
-      "sourcePath": "src/data/blog/fondo-emergencia-chile.md",
-      "targetImagePath": "/images/hero/fondo-emergencia-chile.avif",
-      "template": "A",
-      "promptTrack": "A",
-      "promptTrackLabel": "Human Editorial Scene",
-      "approvedModelId": "ahorro",
-      "sceneId": "A:ahorro--fondo-emergencia-chile",
-      "readerSituation": "Persona construyendo un fondo de emergencia mes a mes para protegerse ante imprevistos.",
-      "primaryIntent": "guiar",
-      "toneClass": "progreso",
-      "visualEvidence": [
-        "text contains 'ahorro' in article body/title context",
-        "text contains 'fondo de emergencia' in article body/title context",
-        "primary intent classified as 'guiar' from article text",
-        "reader situation anchored to scene rule 'ahorro'"
-      ],
-      "palette": {
-        "category": "Ahorro activo / Metas / Logros",
-        "hex": "#059669"
-      },
-      "modelPlan": {
-        "provider": "openai",
-        "model": "gpt-image-1",
-        "quality": "auto",
-        "size": "1536x1024"
-      },
-      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #059669. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: a simplified person or visible hands are engaged in an everyday money moment built around a stepped savings jar being filled monthly, with a small protective shield beside it signaling financial resilience rather than fear.\nKeep the jar dominant; the monthly deposit steps and the shield are the only supporting cues.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: build the main action in the left or center-left area, with asymmetry, clear focal hierarchy, and breathing room on the right. Keep key elements inside the safe area.\nSemantic focus: building a monthly emergency fund for financial protection.\nThe scene should feel hopeful and proactive, not fearful or alarming.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the savings jar, deposit steps, and shield.",
-      "promptHash": "c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4",
-      "selectors": {
-        "ruleId": "ahorro",
-        "category": "general",
-        "cluster": "presupuesto-control-financiero",
-        "matchedKeywords": [
-          "ahorro",
-          "fondo de emergencia"
-        ]
-      }
-    },
-    {
-      "slug": "sueldo-imponible-chile",
-      "sourcePath": "src/data/blog/sueldo-imponible-chile.md",
-      "targetImagePath": "/images/hero/sueldo-imponible-chile.avif",
-      "template": "A",
-      "promptTrack": "B",
-      "promptTrackLabel": "Hybrid Scene + Mechanism",
-      "approvedModelId": "liquidacion-documento",
-      "sceneId": "A:liquidacion-documento--sueldo-imponible-chile",
-      "readerSituation": "Persona entendiendo que parte de su sueldo es imponible y como eso determina sus cotizaciones.",
-      "primaryIntent": "explicar",
-      "toneClass": "neutral",
-      "visualEvidence": [
-        "slug override: sueldo-imponible base concept article — document-review framing",
-        "primary intent classified as 'explicar' from article text",
-        "reader situation anchored to scene rule 'empleo'"
-      ],
-      "palette": {
-        "category": "Finanzas general / AFP / Empleo / Ahorro",
-        "hex": "#0d9488"
-      },
-      "modelPlan": {
-        "provider": "openai",
-        "model": "gpt-image-1",
-        "quality": "auto",
-        "size": "1536x1024"
-      },
-      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #0d9488. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: a simplified worker or visible hands are reviewing a payslip where one highlighted salary band is distinctly marked as the taxable base, with a small bracket or band indicator separating it from the total gross figure at the top.\nKeep the payslip dominant; the taxable band indicator is the only supporting cue, while the human presence stays secondary and the main moment stays readable.\nThe human interaction should make the mechanism feel lived, consequential, and relevant to persona entendiendo que parte de su sueldo es imponible y como eso determina sus cotizaciones.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: build the main action in the left or center-left area, with asymmetry, clear focal hierarchy, and breathing room on the right. Keep key elements inside the safe area.\nSemantic focus: identifying the taxable wage base that determines pension and health contributions.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the payslip and the taxable band indicator.",
-      "promptHash": "d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5",
-      "selectors": {
-        "ruleId": "empleo",
-        "category": "empleo-ingresos",
-        "cluster": "sueldo-remuneraciones",
-        "matchedKeywords": [
-          "sueldo imponible",
-          "sueldo"
-        ]
-      }
-    },
-    {
-      "slug": "pgu-pension-garantizada-universal",
-      "sourcePath": "src/data/blog/pgu-pension-garantizada-universal.md",
-      "targetImagePath": "/images/hero/pgu-pension-garantizada-universal.avif",
-      "template": "A",
-      "promptTrack": "A",
-      "promptTrackLabel": "Human Editorial Scene",
-      "approvedModelId": "afp-pension",
-      "sceneId": "A:afp-pension--pgu-pension-garantizada-universal",
-      "readerSituation": "Persona mayor o proximo a jubilarse evaluando si califica para la pension basica garantizada por el Estado.",
-      "primaryIntent": "guiar",
-      "toneClass": "educativo",
-      "visualEvidence": [
-        "slug override: PGU state pension eligibility guide",
-        "primary intent classified as 'guiar' from article text",
-        "reader situation anchored to scene rule 'prevision'"
-      ],
-      "palette": {
-        "category": "Finanzas general / AFP / Empleo / Ahorro",
-        "hex": "#0d9488"
-      },
-      "modelPlan": {
-        "provider": "openai",
-        "model": "gpt-image-1",
-        "quality": "auto",
-        "size": "1536x1024"
-      },
-      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #0d9488. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: a simplified older person or pair of hands is engaging with a state institution document beside a small shield with a star, representing the universal guarantee. The shield should feel institutional and calm, not promotional.\nKeep the document and shield as the dominant objects; the human presence stays secondary and the main moment stays readable.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: build the main action in the left or center-left area, with asymmetry, clear focal hierarchy, and breathing room on the right. Keep key elements inside the safe area.\nSemantic focus: state universal pension guarantee eligibility and amount.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the institution document and the shield.",
-      "promptHash": "e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6",
-      "selectors": {
-        "ruleId": "prevision",
-        "category": "prevision",
-        "cluster": "pensiones-afp",
-        "matchedKeywords": [
-          "pension",
-          "pgu",
-          "garantizada universal"
-        ]
-      }
-    },
-    {
-      "slug": "contribuciones-bienes-raices-chile",
-      "sourcePath": "src/data/blog/contribuciones-bienes-raices-chile.md",
-      "targetImagePath": "/images/hero/contribuciones-bienes-raices-chile.avif",
-      "template": "A",
-      "promptTrack": "B",
-      "promptTrackLabel": "Hybrid Scene + Mechanism",
-      "approvedModelId": "declaracion-renta",
-      "sceneId": "A:declaracion-renta--contribuciones-bienes-raices-chile",
-      "readerSituation": "Persona propietaria de un inmueble revisando el calendario y monto de sus contribuciones anuales.",
-      "primaryIntent": "guiar",
-      "toneClass": "serio",
-      "visualEvidence": [
-        "slug override: property tax (contribuciones) calendar-and-amount article — renta rule false-positive on impuesto body keywords",
-        "primary intent classified as 'guiar' from article text",
-        "reader situation anchored to scene rule 'renta'"
-      ],
-      "palette": {
-        "category": "Credito / Deuda / Impuestos / Riesgo",
-        "hex": "#d97706"
-      },
-      "modelPlan": {
-        "provider": "openai",
-        "model": "gpt-image-1",
-        "quality": "auto",
-        "size": "1536x1024"
-      },
-      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #d97706. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: a simplified person, partial figure, or visible hands are actively interacting with a small house outline connected to a payment calendar divided into four quarterly due-date blocks.\nKeep the supporting mechanism limited to the house silhouette, the four calendar blocks, and one small tax document, while the human presence stays secondary and the main moment stays readable.\nThe human interaction should make the mechanism feel lived, consequential, and relevant to persona propietaria de un inmueble revisando el calendario y monto de sus contribuciones anuales.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: build the main action in the left or center-left area, with asymmetry, clear focal hierarchy, and breathing room on the right. Keep key elements inside the safe area.\nSemantic focus: property tax payment calendar and amount calculation.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the house, calendar blocks, and tax document.",
-      "promptHash": "f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1",
-      "selectors": {
-        "ruleId": "renta",
-        "category": "impuestos",
-        "cluster": "impuestos-personas",
-        "matchedKeywords": [
-          "contribuciones",
-          "impuesto",
-          "bienes raices"
-        ]
-      }
-    },
-    {
-      "slug": "operacion-renta-centro",
-      "sourcePath": "src/data/blog/operacion-renta-centro.md",
-      "targetImagePath": "/images/hero/operacion-renta-centro.avif",
-      "template": "A",
-      "promptTrack": "A",
-      "promptTrackLabel": "Human Editorial Scene",
-      "approvedModelId": "declaracion-renta",
-      "sceneId": "A:declaracion-renta--operacion-renta-centro",
-      "readerSituation": "Persona buscando informacion y recursos para completar su Operacion Renta anual.",
-      "primaryIntent": "guiar",
-      "toneClass": "serio",
-      "visualEvidence": [
-        "slug override: operacion-renta hub/support article — declaracion-renta scene appropriate for tax-hub context",
-        "primary intent classified as 'guiar' from article text",
-        "reader situation anchored to scene rule 'renta'"
-      ],
-      "palette": {
-        "category": "Credito / Deuda / Impuestos / Riesgo",
-        "hex": "#d97706"
-      },
-      "modelPlan": {
-        "provider": "openai",
-        "model": "gpt-image-1",
-        "quality": "auto",
-        "size": "1536x1024"
-      },
-      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #d97706. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: a simplified person or visible hands are engaged in an everyday money moment built around a hub document page with three linked resource cards fanning out from it, representing navigating a tax information center.\nKeep the hub document dominant; the three linked cards are the only supporting cues, while the human presence stays secondary and the main moment stays readable.\nThe gesture should make the image feel like an everyday financial moment, not a sterile diagram.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: build the main action in the left or center-left area, with asymmetry, clear focal hierarchy, and breathing room on the right. Keep key elements inside the safe area.\nSemantic focus: navigating a central tax information hub for the annual income declaration process.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the hub document and the three linked resource cards.",
-      "promptHash": "a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b2c3d4e5f6a1b3",
-      "selectors": {
-        "ruleId": "renta",
-        "category": "impuestos",
-        "cluster": "impuestos-personas",
-        "matchedKeywords": [
-          "impuesto",
-          "renta",
-          "operacion renta"
         ]
       }
     }

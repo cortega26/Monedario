@@ -14,14 +14,39 @@ import {
   splitFrontmatter,
   toRepoRelative,
 } from "./hero-images/lib.mjs";
+import sharp from "sharp";
 
 const ALLOWED_EXTENSIONS = new Set([".avif", ".webp"]);
+const HERO_DIMENSIONS = {
+  base: { width: 1200, height: 630 },
+  variants: [
+    { suffix: "@mobile", width: 600, height: 315 },
+    { suffix: "@tablet", width: 800, height: 420 },
+  ],
+};
 
 async function fileStat(filePath) {
   try {
     return await fs.stat(filePath);
   } catch {
     return null;
+  }
+}
+
+async function checkImageDimensions(filePath, expected, errors) {
+  let metadata;
+  try {
+    metadata = await sharp(filePath).metadata();
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    errors.push(`${toRepoRelative(filePath)}: cannot read image metadata (${message}).`);
+    return;
+  }
+
+  if (metadata.width !== expected.width || metadata.height !== expected.height) {
+    errors.push(
+      `${toRepoRelative(filePath)}: invalid dimensions ${metadata.width}x${metadata.height}; expected ${expected.width}x${expected.height}.`
+    );
   }
 }
 
@@ -91,6 +116,8 @@ async function main() {
       continue;
     }
 
+    await checkImageDimensions(resolved, HERO_DIMENSIONS.base, errors);
+
     if (heroImage.startsWith("/images/hero/")) {
       const expectedBase = `${slug}${ext}`;
       const actualBase = path.basename(heroImage);
@@ -106,11 +133,13 @@ async function main() {
       path.join(process.cwd(), "public", "images", "hero", `${slug}.webp`),
     ];
     let publicAssetFound = false;
+    let publicAssetPath = "";
 
     for (const candidate of publicCandidates) {
       const publicStat = await fileStat(candidate);
       if (!publicStat || !publicStat.isFile()) continue;
       publicAssetFound = true;
+      publicAssetPath = candidate;
 
       const publicExt = path.extname(candidate).toLowerCase();
       if (!ALLOWED_EXTENSIONS.has(publicExt)) {
@@ -131,6 +160,31 @@ async function main() {
       errors.push(
         `${relPath}: missing canonical public asset (expected public/images/hero/${slug}.avif|.webp).`
       );
+    } else {
+      await checkImageDimensions(publicAssetPath, HERO_DIMENSIONS.base, errors);
+
+      if (path.extname(publicAssetPath).toLowerCase() === ".avif") {
+        const baseWithoutExt = publicAssetPath.replace(/\.avif$/i, "");
+        for (const variant of HERO_DIMENSIONS.variants) {
+          const variantPath = `${baseWithoutExt}${variant.suffix}.avif`;
+          const variantStat = await fileStat(variantPath);
+          if (!variantStat || !variantStat.isFile()) {
+            errors.push(
+              `${relPath}: missing responsive hero variant ${toRepoRelative(variantPath)}.`
+            );
+            continue;
+          }
+
+          if (variantStat.size > maxBytes) {
+            errors.push(
+              `${relPath}: responsive hero variant exceeds max size (${variantStat.size} bytes > ${maxBytes} bytes): ${toRepoRelative(variantPath)}.`
+            );
+            continue;
+          }
+
+          await checkImageDimensions(variantPath, variant, errors);
+        }
+      }
     }
   }
 

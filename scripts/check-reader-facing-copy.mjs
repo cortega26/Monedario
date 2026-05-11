@@ -9,6 +9,7 @@ const REPO_ROOT = path.resolve(__dirname, "..");
 const BLOG_DIR = path.join(REPO_ROOT, "src", "data", "blog");
 const PAGES_DIR = path.join(REPO_ROOT, "src", "pages");
 const CALCULATORS_DIR = path.join(PAGES_DIR, "calculadoras");
+const DEV_PAGES_DIR = path.join(PAGES_DIR, "dev");
 
 const EDITORIAL_SCOPE = normalizeToken(process.env.EDITORIAL_SCOPE || "all");
 const EDITORIAL_DIFF_BASE_REF = String(process.env.EDITORIAL_DIFF_BASE_REF ?? "").trim();
@@ -92,7 +93,9 @@ function listFilesRecursively(baseDir, allowedExtensions) {
 function collectTargetFiles() {
   const blogFiles = listFilesRecursively(BLOG_DIR, new Set([".md", ".mdx"]));
   const pageFiles = listFilesRecursively(PAGES_DIR, new Set([".astro"])).filter(
-    filePath => !filePath.startsWith(CALCULATORS_DIR + path.sep)
+    filePath =>
+      !filePath.startsWith(CALCULATORS_DIR + path.sep) &&
+      !filePath.startsWith(DEV_PAGES_DIR + path.sep)
   );
   const allTargets = [...blogFiles, ...pageFiles];
 
