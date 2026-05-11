@@ -157,6 +157,8 @@ Revisa [devolución de impuestos: fechas, estado y compensaciones](/posts/devolu
 
 </details>
 
+Para el contexto completo de la Operación Renta 2026 — umbrales de obligación, plazos y devolución — revisa el [centro Operación Renta 2026](/posts/operacion-renta-centro/).
+
 ## Fuentes y referencias primarias
 
 - SII, comunicado 31 de marzo de 2026 — calendario AT 2026 y novedades: <https://www.sii.cl/noticias/2026/310326noti01pcr.htm>

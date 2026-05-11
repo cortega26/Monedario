@@ -263,6 +263,6 @@ Si no hay acuerdo en la audiencia de renegociación, el proceso pasa a la audien
 **¿Me limpian el historial de deudas automáticamente?**
 No automáticamente. Después de lograr el acuerdo, tú debes solicitarlo ante la CMF y el Boletín Comercial, presentando la resolución de acuerdo.
 
-Antes de presentar la solicitud, estima tu escenario con un simulador de renegociación y llega con tus acreedores ya ordenados.
+Antes de presentar la solicitud, estima tu escenario con un simulador de renegociación y llega con tus acreedores ya ordenados. Si quieres entender mejor el costo real de cada deuda antes de negociar, revisa la guía sobre el [CAE y el costo total de un crédito](/posts/cae-costo-real-credito-chile/).
 
 ---

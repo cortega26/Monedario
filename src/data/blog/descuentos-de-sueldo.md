@@ -137,3 +137,6 @@ No. Ese aporte es cargo exclusivo del empleador sobre el costo total de tu contr
 
 **¿Dónde reclamo si hay un descuento incorrecto?**
 Primero ante el empleador o el área de remuneraciones, por escrito con acuse de recibo. Si no hay corrección ni justificación, puedes presentar una denuncia en la [Dirección del Trabajo](https://www.dt.gob.cl/portal/1626/w3-channel.html).
+
+**¿La gratificación también se descuenta del sueldo?**
+No se descuenta — es un beneficio adicional al que tienes derecho si la empresa cumple las condiciones legales. Revisa cómo calcular y cuándo aplica la [gratificación legal en Chile](/posts/gratificacion-legal-chile/).

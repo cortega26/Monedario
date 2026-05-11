@@ -126,7 +126,7 @@ El saldo acumulado pasa a formar parte de tu herencia y se distribuye entre tus 
 **¿El saldo de la Cuenta 2 cuenta para acceder a pensión mínima garantizada?**
 No. Los fondos de la Cuenta 2 no se consideran para determinar el derecho a la Garantía Estatal de Pensión Mínima.
 
-Si tu foco es bajar impuestos al ahorrar, cambia a una guía de APV. Y para decidir en qué fondo invertir la Cuenta 2, cambia después a una guía de fondos AFP.
+Si tu foco es bajar impuestos al ahorrar, cambia a una guía de APV. Y para decidir en qué fondo invertir la Cuenta 2, revisa la guía completa sobre los [fondos AFP A, B, C, D y E](/posts/fondos-afp-a-b-c-d-e/) — el riesgo de cada multifondo determina cómo conviene invertir tu ahorro voluntario.
 
 ### Fuentes oficiales verificadas
 

@@ -184,6 +184,8 @@ Ahora, nada urgente. Para el cambio de fondos generacionales (abril 2027) la SPe
 
 ---
 
+Si tienes más de 65 años o estás próximo a jubilar, revisa los requisitos y monto vigente de la [PGU (Pensión Garantizada Universal)](/posts/pgu-pension-garantizada-universal/), que también se ve afectada por la reforma.
+
 ## Fuentes oficiales
 
 - BCN, Ley 21.735: https://www.bcn.cl/leychile/navegar?idNorma=1212060

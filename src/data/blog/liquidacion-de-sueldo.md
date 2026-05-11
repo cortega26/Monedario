@@ -140,3 +140,5 @@ Pide el respaldo documental por escrito. Si no lo entrega, ese descuento no tien
 
 **¿La liquidación sirve como comprobante de ingresos para solicitar un crédito?**
 Sí, es el documento más utilizado para acreditar renta en Chile. Algunos bancos piden las últimas tres liquidaciones para evaluar la regularidad del ingreso.
+
+Si en la revisión encuentras un descuento que no reconoces o que parece incorrecto, la guía sobre [descuentos de sueldo legales y prohibidos](/posts/descuentos-de-sueldo/) te ayuda a clasificar cada línea.

@@ -234,3 +234,5 @@ Esta guía fue elaborada con fecha de corte 2026-04-24 y actualizada el 2026-04-
 - Ley de Impuesto a la Renta (DL 824), Código Tributario (DL 830) y Ley 21.133 — BCN
 
 **Última revisión editorial:** Carlos Ortega — 2026-04-29
+
+Si tienes dudas sobre el [Impuesto Global Complementario](/posts/impuesto-global-complementario-chile/) o cómo afecta tu declaración, esa guía complementa el proceso de Operación Renta. Para el paso a paso del Formulario 22, revisa el [checklist F22](/posts/operacion-renta-f22-checklist/).

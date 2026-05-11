@@ -250,6 +250,6 @@ El SII publica la tabla mensual del Impuesto Único de Segunda Categoría en su 
 - Si te subieron el sueldo y te bajó el líquido, probablemente cruzaste un tramo de impuesto.
 - Puedes reducir legalmente tu impuesto mensual ahorrando en **APV Régimen B**.
 
-Si quieres probar tus números exactos, usa una calculadora de sueldo líquido. Y si después necesitas desglosar mejor descuentos, comprobante o contingencias de empleo, cambia de ruta según esa necesidad específica.
+Si quieres probar tus números exactos, usa una calculadora de sueldo líquido. Y si después necesitas desglosar mejor descuentos, comprobante o contingencias de empleo, cambia de ruta según esa necesidad específica. Para entender exactamente qué conceptos forman el [sueldo imponible](/posts/sueldo-imponible-chile/) — que es la base sobre la que se calculan todos estos descuentos — conviene revisarlo en detalle.
 
 ---
