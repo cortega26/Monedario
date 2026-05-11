@@ -23,7 +23,7 @@ El ritual ahora es **híbrido e issue-driven**:
 - scorecard por script: `scripts/build-weekly-search-report.mjs`
 - soporte apps/MCP: `docs/operations/runbooks/apps-mcp-operations.md`
 
-Si no existen exports para la semana, el workflow igual deja issue + checklist + bundle inicializado. Si los exports existen, genera scorecard automáticamente.
+Si no existen exports para la semana, el workflow igual deja issue + checklist + bundle inicializado. El workflow usa la **última semana ISO completa** (la misma referencia que `data-signals.yml`) y, si ya existen JSON repo-locales de GSC para esa semana, genera un scorecard inicial automáticamente aunque después igual haya que completar indexación/Bing o analytics.
 
 ## Fuentes de verdad
 
@@ -214,8 +214,8 @@ Si la scorecard no produce decisiones, el ritual se está volviendo ceremonial y
 
 Alternativa programada:
 
-1. Dejar que `weekly-search-ops.yml` abra o actualice el issue de la semana.
-2. Completar el bundle estándar con exports reales.
+1. Dejar que `weekly-search-ops.yml` abra o actualice el issue de la **última semana completa**.
+2. Revisar el scorecard inicial si el workflow ya encontró JSON repo-locales; completar el bundle estándar con exports reales cuando falten señales manuales.
 3. Re-ejecutar el workflow o correr localmente `build-weekly-search-report.mjs`.
 
 ### Mismo bloque de trabajo

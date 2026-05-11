@@ -1,6 +1,6 @@
 import { spawnSync } from "node:child_process";
 import path from "node:path";
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   buildSchemaHeader,
   dateToISOWeek,
@@ -74,6 +74,10 @@ describe("dateToISOWeek", () => {
 });
 
 describe("previousCompleteISOWeek", () => {
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
   it("returns a valid YYYY-Www string", () => {
     expect(previousCompleteISOWeek()).toMatch(/^\d{4}-W\d{2}$/);
   });
@@ -82,6 +86,18 @@ describe("previousCompleteISOWeek", () => {
     const week = previousCompleteISOWeek();
     const { to } = isoWeekToDateRange(week);
     expect(new Date(to).getTime()).toBeLessThan(Date.now());
+  });
+
+  it("returns the previous complete week on Monday rollover", () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-05-11T12:00:00Z"));
+    expect(previousCompleteISOWeek()).toBe("2026-W19");
+  });
+
+  it("stays on the last fully completed week during Sunday", () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-01-04T12:00:00Z"));
+    expect(previousCompleteISOWeek()).toBe("2025-W52");
   });
 });
 

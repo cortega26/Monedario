@@ -36,7 +36,8 @@ jobs:
 
       - name: "🗓️ Compute week label"
         id: week
-        run: echo "label=$(date -u '+%G-W%V')" >> "$GITHUB_OUTPUT"
+        run: |
+          echo "label=$(node --input-type=module -e "import { previousCompleteISOWeek } from './scripts/data-signals/gsc-utils.mjs'; process.stdout.write(previousCompleteISOWeek());")" >> "$GITHUB_OUTPUT"
 
       - name: "📁 Initialize weekly bundle"
         run: node scripts/build-weekly-search-report.mjs --input "output/operations/weekly-search-performance/${{ steps.week.outputs.label }}" --init
@@ -45,14 +46,37 @@ jobs:
         id: exports
         run: |
           INPUT_DIR="output/operations/weekly-search-performance/${{ steps.week.outputs.label }}"
-          if [ -f "$INPUT_DIR/gsc-pages.csv" ] && [ -f "$INPUT_DIR/gsc-queries.csv" ] && [ -f "$INPUT_DIR/indexation-summary.json" ]; then
-            echo "ready=true" >> "$GITHUB_OUTPUT"
+          GSC_JSON_DIR="output/operations/data-signals/gsc"
+
+          HAS_INDEXATION=false
+          HAS_CSV=false
+          HAS_JSON=false
+
+          if [ -f "$INPUT_DIR/indexation-summary.json" ]; then
+            HAS_INDEXATION=true
+          fi
+
+          if [ -f "$INPUT_DIR/gsc-pages.csv" ] && [ -f "$INPUT_DIR/gsc-queries.csv" ]; then
+            HAS_CSV=true
+          fi
+
+          if [ -f "$GSC_JSON_DIR/${{ steps.week.outputs.label }}-pages.json" ] && [ -f "$GSC_JSON_DIR/${{ steps.week.outputs.label }}-queries.json" ]; then
+            HAS_JSON=true
+          fi
+
+          if [ "$HAS_INDEXATION" = true ] && [ "$HAS_CSV" = true ]; then
+            echo "scorecard_ready=true" >> "$GITHUB_OUTPUT"
+            echo "gsc_source=csv" >> "$GITHUB_OUTPUT"
+          elif [ "$HAS_INDEXATION" = true ] && [ "$HAS_JSON" = true ]; then
+            echo "scorecard_ready=true" >> "$GITHUB_OUTPUT"
+            echo "gsc_source=json" >> "$GITHUB_OUTPUT"
           else
-            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "scorecard_ready=false" >> "$GITHUB_OUTPUT"
+            echo "gsc_source=missing" >> "$GITHUB_OUTPUT"
           fi
 
       - name: "📊 Build weekly scorecard"
-        if: steps.exports.outputs.ready == 'true'
+        if: steps.exports.outputs.scorecard_ready == 'true'
         run: node scripts/build-weekly-search-report.mjs --input "output/operations/weekly-search-performance/${{ steps.week.outputs.label }}"
 
       - name: "📤 Upload weekly bundle"
@@ -70,7 +94,8 @@ jobs:
         with:
           script: |
             const weekLabel = "${{ steps.week.outputs.label }}";
-            const ready = "${{ steps.exports.outputs.ready }}" === "true";
+            const ready = "${{ steps.exports.outputs.scorecard_ready }}" === "true";
+            const gscSource = "${{ steps.exports.outputs.gsc_source }}";
             const title = `Weekly search ops: ${weekLabel}`;
             const { data: issues } = await github.rest.issues.listForRepo({
               owner: context.repo.owner,
@@ -99,7 +124,9 @@ jobs:
               ...checklist,
               "",
               ready
-                ? "The required exports were available, so the workflow generated the scorecard automatically."
+                ? gscSource === "json"
+                  ? "Repo data signals were available for the previous complete week, so the workflow generated a first-pass scorecard automatically. Review indexation + analytics before closing the checklist."
+                  : "The required exports were available, so the workflow generated the scorecard automatically."
                 : "The required exports were not available in the workflow workspace. Complete the bundle and rerun the script or workflow.",
             ].join("\n");
 
