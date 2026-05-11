@@ -24,6 +24,11 @@ articleLead:
   nextStepHref: "/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/"
   nextStepLabel: "Ver opciones de ahorro e inversión"
   validAsOf: 2026-05-03
+  officialSources:
+    - label: "CMF — Comisión para el Mercado Financiero"
+      href: "https://www.cmfchile.cl/"
+    - label: "BancoEstado — Cuenta RUT"
+      href: "https://www.bancoestado.cl/"
   covers:
     - "Por qué necesitas un fondo de emergencia antes de invertir."
     - "Cuánto debes acumular según tu situación laboral."
@@ -95,7 +100,7 @@ Similar en liquidez a la cuenta vista. Algunas cuentas tienen límites de retiro
 
 **Depósito a plazo (DAP) de corto plazo (30–90 días)**
 
-Genera algo más de interés que la cuenta vista. El punto clave: **las condiciones de retiro anticipado de un DAP varían según el contrato y la entidad financiera** — al liquidar antes del plazo acordado el banco puede aplicar una tasa menor a la pactada. Si contratas un DAP a 60 días y necesitas el dinero en el día 15, es posible que recuperes menos de lo esperado. Por eso, el DAP es adecuado para el tramo "secundario" del fondo — la parte que necesitarías recién en el segundo o tercer mes de una emergencia, no para el acceso inmediato. Consulta con tu banco las condiciones específicas antes de contratarlo.
+Genera algo más de interés que la cuenta vista. El punto clave: **las condiciones de retiro anticipado de un DAP varían según el contrato y la entidad financiera** — al liquidar antes del plazo acordado el banco puede aplicar una tasa menor a la pactada, conforme a las normas de la [CMF (Comisión para el Mercado Financiero)](https://www.cmfchile.cl/). Si contratas un DAP a 60 días y necesitas el dinero en el día 15, es posible que recuperes menos de lo esperado. Por eso, el DAP es adecuado para el tramo "secundario" del fondo — la parte que necesitarías recién en el segundo o tercer mes de una emergencia, no para el acceso inmediato. Consulta con tu banco las condiciones específicas antes de contratarlo.
 
 **Lo que NO usar para el fondo de emergencia:**
 

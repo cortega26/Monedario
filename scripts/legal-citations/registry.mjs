@@ -114,6 +114,7 @@ export const KNOWN_IDS_WITHOUT_LAW_PAGES = [
   { idNorma: "30208",  label: "Ley 18.933 — Isapres" },
   { idNorma: "7054", label: "DL 3.063 — Ley de Rentas Municipales" },
   { idNorma: "1171923", label: "Ley 21.419 — Crea la Pensión Garantizada Universal" },
+  { idNorma: "128563", label: "DFL-1/1998 — Ley sobre Impuesto Territorial (refunde Ley 17.235)" },
 ];
 
 export function getHistoryUrl(historyPageId) {

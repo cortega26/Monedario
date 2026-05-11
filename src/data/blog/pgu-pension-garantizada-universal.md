@@ -133,7 +133,3 @@ La compatibilidad entre la PGU y una pensión de invalidez depende del tipo de p
 
 **¿Qué pasa si la pensión AFP supera el monto PGU?**
 Puede ocurrir que el mecanismo de complemento resulte en que el aporte de la PGU sea muy bajo o nulo, dependiendo del umbral vigente. El IPS calcula el monto aplicable a tu caso en el proceso de tramitación.
-
----
-
-> **Fecha de corte: 2026-05-03.** El monto de la PGU, los requisitos de residencia y los umbrales de complemento con pensión AFP se actualizan periódicamente por ley o decreto. Verifica siempre los valores vigentes en el [IPS](https://www.ips.gob.cl/) o [ChileAtiende](https://www.chileatiende.gob.cl/) antes de tomar cualquier decisión.

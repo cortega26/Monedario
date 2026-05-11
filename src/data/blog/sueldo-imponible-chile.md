@@ -29,8 +29,8 @@ articleLead:
       href: "https://www.bcn.cl/leychile/navegar?idNorma=207436"
     - label: "Superintendencia de Pensiones"
       href: "https://www.spensiones.cl/"
-    - label: "SII — Impuesto de Segunda Categoría"
-      href: "https://www.sii.cl/"
+    - label: "SII — Impuesto de Segunda Categoría 2026"
+      href: "https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm"
   covers:
     - "Qué componentes del sueldo entran en la base imponible y cuáles no."
     - "Cómo la base imponible determina AFP, salud, AFC e ISC."
@@ -112,9 +112,24 @@ Cada descuento previsional se aplica como un porcentaje de la remuneración impo
 
 El ISC es progresivo: se aplica por tramos sobre la remuneración imponible mensual. Solo el tramo que supera cada umbral paga la tasa correspondiente — no todo el ingreso paga la tasa más alta.
 
-El SII define 7 tramos expresados en UTM, desde 0% hasta 40%. La retención se aplica mensualmente según el tramo que corresponda a tu remuneración imponible. La tabla completa actualizada se encuentra en el [SII](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm).
+El ISC tiene 8 tramos expresados en UTM (1 exento + 7 afectos), con tasas desde 4% hasta 40%. UTM vigente: **[[utm | clp]]** — tramo exento hasta **[[utm * 13.5 | clp]]** (13,5 UTM).
 
-En el **4° tramo** (AT 2026), para ingresos mensuales entre [[utm * 13.5 | clp]] y [[utm * 30 | clp]], la tasa es **4%** con un factor de rebaja de **$38.117,52** mensuales — este tramo cubre al trabajador del ejemplo ($1.200.000 de imponible). ([tabla SII AT 2026](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm))
+**Tabla ISC** (tramos fijos por ley; rebaja en CLP = factor × UTM del mes). Fuente: [SII — Impuesto de Segunda Categoría 2026](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm).
+
+| Tramo (UTM) | Tasa | Factor de rebaja |
+| --- | --- | --- |
+| 0–13,5 UTM | Exento | — |
+| 13,5–30 UTM | 4% | 0,54 × UTM |
+| 30–50 UTM | 8% | 1,74 × UTM |
+| 50–70 UTM | 13,5% | 4,49 × UTM |
+| 70–90 UTM | 23% | 11,14 × UTM |
+| 90–120 UTM | 30,4% | 17,80 × UTM |
+| 120–310 UTM | 35% | 23,32 × UTM |
+| Sobre 310 UTM | 40% | 38,82 × UTM |
+
+Con UTM = [[utm | clp]]: el tramo del 4% va de [[utm * 13.5 | clp]] a [[utm * 30 | clp]] (rebaja: [[utm * 0.54 | clp]]); el del 8% hasta [[utm * 50 | clp]] (rebaja: [[utm * 1.74 | clp]]); el del 13,5% hasta [[utm * 70 | clp]] (rebaja: [[utm * 4.49 | clp]]). Los tramos en UTM son fijos por ley.
+
+El **tramo del 4%** (entre [[utm * 13.5 | clp]] y [[utm * 30 | clp]]) cubre al trabajador del ejemplo ($1.200.000 de imponible): tasa 4%, rebaja [[utm * 0.54 | clp]].
 
 ## APV y reducción de la base imponible
 
@@ -135,11 +150,7 @@ Para un trabajador con sueldo bruto de $1.200.000 sin componentes no imponibles 
 2. Cotización obligatoria AFP (~10,5%): ~$126.000. La comisión AFP es adicional y varía por institución.
 3. Salud (7%): $84.000
 4. AFC (0,6%): $7.200
-5. ISC (tramo mayo 2026: [[utm * 13.5 | clp]]–[[utm * 30 | clp]], factor 0,04 − rebaja $38.117,52): **$9.882** → $1.200.000 × 0,04 − $38.117,52 ([fuente: SII](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm))
-6. **Sueldo líquido orientativo: ~$972.918** ($1.200.000 − $126.000 − $84.000 − $7.200 − $9.882). La comisión AFP no está incluida — varía por institución.
+5. ISC (tramo del 4%: [[utm * 13.5 | clp]]–[[utm * 30 | clp]], rebaja [[utm * 0.54 | clp]]): **[[1200000 * 0.04 - utm * 0.54 | clp]]** → $1.200.000 × 0,04 − [[utm * 0.54 | clp]] ([fuente: SII](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm))
+6. **Sueldo líquido orientativo: ~[[934800 + utm * 0.54 | clp]]** ($1.200.000 − $126.000 − $84.000 − $7.200 − [[1200000 * 0.04 - utm * 0.54 | clp]]). La comisión AFP no está incluida — varía por institución.
 
 Para el cálculo completo con todas las líneas, usa la guía de [liquidación de sueldo](/posts/liquidacion-de-sueldo/) o la calculadora de sueldo líquido.
-
----
-
-> **Fecha de corte: 2026-05-03.** El tope máximo imponible en UF y los tramos del ISC se actualizan periódicamente. Verifica los valores vigentes en la [Superintendencia de Pensiones](https://www.spensiones.cl/) y el [SII](https://www.sii.cl/) antes de hacer cualquier cálculo. El Código del Trabajo está disponible en la [Biblioteca del Congreso Nacional](https://www.bcn.cl/leychile/navegar?idNorma=207436).

@@ -25,8 +25,8 @@ articleLead:
   nextStepLabel: "Completar el F22"
   validAsOf: 2026-05-03
   officialSources:
-    - label: "SII — Impuesto Global Complementario"
-      href: "https://www.sii.cl/"
+    - label: "SII — Datos informativos AT 2026 (IGC)"
+      href: "https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html"
     - label: "BCN — Ley de Impuesto a la Renta, arts. 52–57"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=6368"
   covers:
@@ -96,9 +96,22 @@ El IGC consolida en una sola base todas las rentas del año:
 
 ## Tramos y tasas vigentes
 
-El IGC tiene 7 tramos progresivos, expresados en UTA (Unidad Tributaria Anual). La UTA se calcula como 12 × UTM del mes de diciembre del año tributario.
+El IGC tiene 8 tramos progresivos, expresados en UTA (Unidad Tributaria Anual). La UTA se calcula como 12 × UTM del mes de diciembre del año tributario. La UTA vigente es **[[uta | clp]]**; el primer tramo exento cubre rentas anuales hasta **[[uta * 13.5 | clp]]** (13,5 UTA).
 
-La UTA 2026 es **[[uta | clp]]**. El primer tramo exento (0%) aplica a rentas globales anuales hasta **[[uta * 13.5 | clp]]** (equivalente a 13,5 UTA). Para la tabla completa de los 7 tramos vigentes con tasas y montos a rebajar, consulta la [página oficial del SII](https://www.sii.cl/).
+**Tabla IGC** (tramos fijos por ley; rebaja en CLP = factor × UTA del año tributario). Fuente: [SII — Datos informativos AT 2026](https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html).
+
+| Tramo (UTA) | Tasa | Factor de rebaja |
+| --- | --- | --- |
+| 0–13,5 UTA | Exento | — |
+| 13,5–30 UTA | 4% | 0,54 × UTA |
+| 30–50 UTA | 8% | 1,74 × UTA |
+| 50–70 UTA | 13,5% | 4,49 × UTA |
+| 70–90 UTA | 23% | 11,14 × UTA |
+| 90–120 UTA | 30,4% | 17,80 × UTA |
+| 120–310 UTA | 35% | 23,32 × UTA |
+| Sobre 310 UTA | 40% | 38,82 × UTA |
+
+Con UTA = [[uta | clp]] (AT 2026): el tramo exento cubre hasta [[uta * 13.5 | clp]], el del 4% hasta [[uta * 30 | clp]] (rebaja: [[uta * 0.54 | clp]]), el del 8% hasta [[uta * 50 | clp]] (rebaja: [[uta * 1.74 | clp]]), el del 13,5% hasta [[uta * 70 | clp]] (rebaja: [[uta * 4.49 | clp]]). Los tramos en UTA son fijos por ley ([art. 52 LIR](https://www.bcn.cl/leychile/navegar?idNorma=6368), modificado por Ley 21.210 desde 2020).
 
 La progresividad funciona así: solo el tramo que supera cada umbral paga la tasa correspondiente. Si tu renta global queda en el cuarto tramo, solo esa porción marginal paga la tasa del cuarto tramo — los tramos inferiores pagan sus tasas más bajas.
 
@@ -137,7 +150,3 @@ Si tus créditos (ISC retenido + retenciones de honorarios + APV + otros) supera
 El resultado exacto depende de tus rentas totales del año y los créditos específicos de tu situación. Para una estimación orientativa, usa la [calculadora de Operación Renta](/calculadoras/operacion-renta/). Si tu situación es compleja (sociedades, múltiples fuentes de renta, ganancias de capital), consulta con un contador.
 
 Si el resultado es devolución, la guía de [devolución de impuestos](/posts/devolucion-impuestos-fechas-compensaciones/) explica los plazos y mecanismos.
-
----
-
-> **Fecha de corte: 2026-05-03.** Los tramos del IGC (expresados en UTA) y el valor de la UTA se actualizan cada año tributario. Verifica la tabla vigente en el [SII](https://www.sii.cl/) antes de tu Operación Renta. Los artículos 52–57 de la Ley de Impuesto a la Renta están disponibles en la [BCN](https://www.bcn.cl/leychile/navegar?idNorma=6368).
