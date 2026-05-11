@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { calculateNetSalary } from "@/application/use-cases/CalculateNetSalary";
+import {
+  calculateNetSalary,
+  estimateGrossFromNet,
+} from "@/application/use-cases/CalculateNetSalary";
 
 const UF = 40000;
 const UTM = 67294;
@@ -48,5 +51,73 @@ describe("calculateNetSalary", () => {
     expect(result.deductions.health).toBeCloseTo(252000, 6);
     expect(result.deductions.unemploymentInsurance).toBeCloseTo(32448, 6);
     expect(result.taxableBase).toBeCloseTo(5527832, 6);
+  });
+});
+
+describe("estimateGrossFromNet", () => {
+  const BASE_PARAMS = { uf: UF, utm: UTM };
+
+  it("round-trips: net salary of the estimated gross equals the target (fonasa, indefinido)", () => {
+    const targetNet = 900_000;
+    const result = estimateGrossFromNet({
+      targetNetSalary: targetNet,
+      afpRatePercent: 11.27,
+      healthSystem: "fonasa",
+      contractType: "indefinido",
+      economicParameters: BASE_PARAMS,
+    });
+    expect(Math.abs(result.netSalary - targetNet)).toBeLessThanOrEqual(1);
+    expect(result.grossSalary).toBeGreaterThan(targetNet);
+  });
+
+  it("round-trips with plazo-fijo (no unemployment deduction)", () => {
+    const targetNet = 600_000;
+    const result = estimateGrossFromNet({
+      targetNetSalary: targetNet,
+      afpRatePercent: 10.58,
+      healthSystem: "fonasa",
+      contractType: "plazo-fijo",
+      economicParameters: BASE_PARAMS,
+    });
+    expect(Math.abs(result.netSalary - targetNet)).toBeLessThanOrEqual(1);
+    expect(result.contractType).toBe("plazo-fijo");
+    expect(result.deductions.unemploymentInsurance).toBe(0);
+  });
+
+  it("round-trips with isapre and additional health premium", () => {
+    const targetNet = 1_200_000;
+    const result = estimateGrossFromNet({
+      targetNetSalary: targetNet,
+      afpRatePercent: 11.27,
+      healthSystem: "isapre",
+      isapreAdditionalPercent: 2,
+      contractType: "indefinido",
+      economicParameters: BASE_PARAMS,
+    });
+    expect(Math.abs(result.netSalary - targetNet)).toBeLessThanOrEqual(1);
+    expect(result.effectiveRates.healthPercent).toBeCloseTo(9, 4);
+  });
+
+  it("gross salary is strictly greater than the target net salary", () => {
+    const targetNet = 500_000;
+    const result = estimateGrossFromNet({
+      targetNetSalary: targetNet,
+      afpRatePercent: 11.27,
+      healthSystem: "fonasa",
+      contractType: "indefinido",
+      economicParameters: BASE_PARAMS,
+    });
+    expect(result.grossSalary).toBeGreaterThan(targetNet);
+  });
+
+  it("throws on non-positive target net salary", () => {
+    expect(() =>
+      estimateGrossFromNet({
+        targetNetSalary: 0,
+        afpRatePercent: 11.27,
+        healthSystem: "fonasa",
+        economicParameters: BASE_PARAMS,
+      })
+    ).toThrow("targetNetSalary must be a finite number greater than 0.");
   });
 });

@@ -86,6 +86,11 @@ const sueldoLiquidoFaqs = [
     answer:
       "Si tu empleador paga gratificación mensualizada bajo art. 50 CT, el tope legal es el menor valor entre el 25% de tu remuneración mensual y $197.916 (equivalente a 4,75 IMM ÷ 12, con IMM = $500.000 vigente en 2026). Ejemplo: con bruto de $900.000 el máximo legal es $197.916; con bruto de $600.000 sería $150.000. Esta calculadora muestra el estimado en el resultado cuando calculas en modo Bruto → Líquido.",
   },
+  {
+    question: "¿Qué AFP cobra menos comisión en Chile?",
+    answer:
+      "AFP Uno tiene la comisión más baja (0,46%), con un descuento total del 10,46% del sueldo imponible. AFP ProVida cobra la más alta (1,45%), con un descuento del 11,45%. Para un sueldo imponible de $1.000.000, la diferencia mensual entre ambas es $9.900 ($118.800 al año). Esta calculadora incluye una comparación automática con todas las AFP al calcular en modo Bruto → Líquido.",
+  },
 ];
 const currentCalculator = CALCULATOR_PORTFOLIO.find(
   calc => calc.slug === "sueldo-liquido"
@@ -207,6 +212,13 @@ const calculatorNextStepItems = [
             El total antes de descuentos, incluyendo bonos o asignaciones no
             imponibles si vienen en tu liquidación.
           </p>
+          <div
+            id="min-wage-warning"
+            class="mt-2 hidden rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-700 dark:text-amber-400"
+            role="status"
+          >
+            El sueldo mínimo mensual en Chile (2026) es $500.000. El monto ingresado está por debajo del mínimo legal para jornada completa.
+          </div>
         </div>
 
         <!-- Imponible (solo visible en modo bruto→líquido) -->
@@ -568,6 +580,22 @@ const calculatorNextStepItems = [
       </div>
     </section>
 
+    <!-- COMPARACIÓN AFP -->
+    <section
+      id="afp-comparison"
+      class="hidden border-t border-border pt-6 pb-4"
+      aria-live="polite"
+    >
+      <h2 class="mb-1 text-base font-semibold">
+        ¿Cuánto ahorrarías cambiando de AFP?
+      </h2>
+      <p class="mb-3 text-xs text-muted">
+        Con tu sueldo y configuración actuales, comparando las 7 AFPs. La AFP
+        actual aparece resaltada.
+      </p>
+      <div id="afp-comparison-body" class="space-y-1.5"></div>
+    </section>
+
     <NextBestStep slug="sueldo-liquido" />
 
     <!-- EXPLICACIÓN -->
@@ -860,6 +888,27 @@ const calculatorNextStepItems = [
           <summary
             class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
           >
+            ¿Qué AFP cobra menos comisión en Chile?
+            <span
+              class="text-xs text-muted transition-transform group-open:rotate-180"
+              >▼</span
+            >
+          </summary>
+          <div class="border-t border-border px-4 py-3 text-sm text-secondary">
+            AFP Uno tiene la comisión más baja (0,46%), con un descuento total
+            del 10,46% del sueldo imponible. AFP ProVida cobra la más alta
+            (1,45%), con un descuento del 11,45%. Para un sueldo imponible de
+            $1.000.000, la diferencia mensual entre ambas es $9.900 ($118.800 al
+            año). Esta calculadora incluye una comparación automática con todas
+            las AFPs cuando calculas en modo Bruto → Líquido: verás cuánto
+            líquido recibirías con cada AFP sin tener que recalcular.
+          </div>
+        </details>
+
+        <details class="group rounded-lg border border-border">
+          <summary
+            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
+          >
             ¿Cuánto me corresponde de gratificación legal mensual?
             <span
               class="text-xs text-muted transition-transform group-open:rotate-180"
@@ -1000,6 +1049,122 @@ const calculatorNextStepItems = [
   const IMM_MENSUAL = 500_000;
   const GRATI_CAP_MENSUAL = Math.round((4.75 / 12) * IMM_MENSUAL); // $197.916
 
+  // Sueldo mínimo mensual Chile 2026 (= IMM). Actualizar en julio 2026 con nuevo decreto.
+  const SUELDO_MINIMO_2026 = IMM_MENSUAL;
+
+  function checkMinWage(value: number) {
+    const warning = document.getElementById("min-wage-warning");
+    if (!warning) return;
+    if (value > 0 && value < SUELDO_MINIMO_2026) {
+      warning.classList.remove("hidden");
+    } else {
+      warning.classList.add("hidden");
+    }
+  }
+
+  function renderAfpComparison(
+    grossSalary: number,
+    taxableSalary: number | undefined,
+    healthSystem: "fonasa" | "isapre",
+    contractType: "indefinido" | "plazo-fijo",
+    isapreAdicional: number,
+    currentAfpRate: number
+  ) {
+    const section = document.getElementById("afp-comparison");
+    const container = document.getElementById("afp-comparison-body");
+    if (!section || !container) return;
+
+    const params = getParams();
+    const afpSelect = document.getElementById("afp-tasa") as HTMLSelectElement;
+    if (!afpSelect) return;
+
+    const afpOptions = Array.from(afpSelect.options).map(opt => ({
+      name: opt.text.split(" – ")[0].trim(),
+      rate: parseFloat(opt.dataset.commission ?? "0"),
+    }));
+
+    const comparisons = afpOptions.map(({ name, rate }) => {
+      const r = calculateNetSalary({
+        grossSalary,
+        taxableSalary,
+        afpRatePercent: rate,
+        healthSystem,
+        contractType,
+        isapreAdditionalPercent: isapreAdicional,
+        economicParameters: params,
+      });
+      return { name, rate, net: r.netSalary };
+    });
+
+    comparisons.sort((a, b) => b.net - a.net);
+
+    const currentNet =
+      comparisons.find(c => Math.abs(c.rate - currentAfpRate) < 0.01)?.net ??
+      comparisons[0].net;
+    const bestNet = comparisons[0].net;
+    const worstNet = comparisons[comparisons.length - 1].net;
+    const maxSaving = bestNet - worstNet;
+
+    container.innerHTML = "";
+
+    for (const { name, rate, net } of comparisons) {
+      const isCurrent = Math.abs(rate - currentAfpRate) < 0.01;
+      const diff = net - currentNet;
+
+      const row = document.createElement("div");
+      row.className = [
+        "flex items-center gap-2 rounded-lg border px-3 py-2 text-sm",
+        isCurrent
+          ? "border-accent/30 bg-accent/5"
+          : "border-border/50 bg-background",
+      ].join(" ");
+
+      const nameSpan = document.createElement("span");
+      nameSpan.className = `min-w-0 flex-1 font-medium ${isCurrent ? "text-accent" : "text-foreground"}`;
+      nameSpan.textContent = name + (isCurrent ? " ← actual" : "");
+
+      const rateSpan = document.createElement("span");
+      rateSpan.className = "shrink-0 text-xs text-muted tabular-nums";
+      rateSpan.textContent = rate.toFixed(2) + "%";
+
+      const netSpan = document.createElement("span");
+      netSpan.className =
+        "shrink-0 font-mono font-semibold tabular-nums text-foreground";
+      netSpan.textContent = fmt(net);
+
+      const diffSpan = document.createElement("span");
+      diffSpan.className = "w-20 shrink-0 text-right text-xs tabular-nums";
+      if (isCurrent) {
+        diffSpan.textContent = "";
+      } else if (diff > 0) {
+        diffSpan.className += " text-green-500";
+        diffSpan.textContent = "+" + fmt(diff);
+      } else if (diff < 0) {
+        diffSpan.className += " text-red-400";
+        diffSpan.textContent = fmt(diff);
+      } else {
+        diffSpan.className += " text-muted";
+        diffSpan.textContent = "—";
+      }
+
+      row.append(nameSpan, rateSpan, netSpan, diffSpan);
+      container.appendChild(row);
+    }
+
+    if (maxSaving > 500) {
+      const note = document.createElement("p");
+      note.className = "mt-3 text-xs text-muted";
+      note.textContent = `La diferencia máxima entre AFPs para tu sueldo es ${fmt(maxSaving)}/mes (${fmt(maxSaving * 12)}/año). Los montos son orientativos y no incluyen beneficios adicionales de cada AFP.`;
+      container.appendChild(note);
+    }
+
+    section.classList.remove("hidden");
+  }
+
+  function hideAfpComparison() {
+    document.getElementById("afp-comparison")?.classList.add("hidden");
+  }
+
   function readEconomicParameters(): { uf: number; utm: number } {
     const element = document.getElementById("economic-parameters");
     const utm = Number(element?.dataset?.utm);
@@ -1076,6 +1241,8 @@ const calculatorNextStepItems = [
         : "Calcular sueldo líquido →";
     if (imponibleField)
       imponibleField.classList.toggle("hidden", esLiquidoABruto);
+    if (esLiquidoABruto) hideAfpComparison();
+
     // Advanced mode only works in bruto→líquido
     if (esLiquidoABruto && advancedFields && advancedToggle) {
       advancedFields.classList.add("hidden");
@@ -1287,7 +1454,9 @@ const calculatorNextStepItems = [
         "text-red-400"
       ),
       buildRow(
-        "Imp. 2ª categoría",
+        resultado.effectiveRates.marginalTaxPercent > 0
+          ? `Imp. 2ª cat. (tramo ${resultado.effectiveRates.marginalTaxPercent.toFixed(0)}%)`
+          : "Imp. 2ª cat. (exento)",
         `− ${fmt(resultado.deductions.tax)}`,
         "text-red-400"
       ),
@@ -1422,6 +1591,7 @@ const calculatorNextStepItems = [
         return;
       }
       setLoading(false);
+      hideAfpComparison();
       renderResultado(
         resultado,
         "Sueldo Bruto Estimado",
@@ -1512,6 +1682,15 @@ const calculatorNextStepItems = [
       }
       setLoading(false);
       renderResultado(resultado, "Sueldo Líquido", undefined, otrosDescuentos, rawInput);
+      renderAfpComparison(
+        grossBase,
+        taxableAdjusted,
+        healthSystem,
+        contractType,
+        isapreAdicional,
+        afpTasaPercent
+      );
+      checkMinWage(rawInput);
       focusResultado();
       saveCalculatorResult(
         window.location.pathname,
@@ -1613,11 +1792,12 @@ const calculatorNextStepItems = [
   // Auto-cálculo en tiempo real (debounced 600 ms)
   let autoCalcTimer: ReturnType<typeof setTimeout> | undefined;
   document.getElementById("sueldo")?.addEventListener("input", () => {
+    const val = parseFloat(
+      (document.getElementById("sueldo") as HTMLInputElement).value
+    );
+    if (getModo() === "bruto-a-liquido") checkMinWage(val);
     clearTimeout(autoCalcTimer);
     autoCalcTimer = setTimeout(() => {
-      const val = parseFloat(
-        (document.getElementById("sueldo") as HTMLInputElement).value
-      );
       if (val > 0) {
         (document.getElementById("calcBtn") as HTMLButtonElement)?.click();
       }

@@ -7,15 +7,15 @@ Fecha de corte: 2026-05-11
 ### Total de items por urgencia
 
 - **P0:** 7
-- **P1:** 18
-- **P2:** 28
+- **P1:** 19
+- **P2:** 30
 - **P3:** 5
 
 ### Estado de avance (2026-05-11)
 
 - **Completados:** 58 TD únicos (`TD-0001`..`TD-0058`) + 2 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 0
-- **Backlog sin iniciar:** 0
+- **Backlog sin iniciar:** 4 (`TD-0059`..`TD-0062`)
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -38,11 +38,13 @@ Fecha de corte: 2026-05-11
 
 ### Top riesgos restantes
 
-- Ninguno conocido al 2026-05-11. El backlog técnico quedó a cero items sin iniciar.
+- `TD-0059`: `IMM_MENSUAL` hardcodeado en cliente vence en julio 2026. Si no se actualiza, el warning de sueldo mínimo y el tope de gratificación legal quedarán desfasados.
 
 ### Siguiente orden recomendado (2026-05-11)
 
-- Backlog completado. Próximas acciones editoriales: revisión humana de los publish-packets de los 46 artículos YMYL backfilled y cierre de gates pendientes por el editor humano.
+- Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
+- `TD-0059` en julio 2026 — actualizar `IMM_MENSUAL` con el nuevo decreto.
+- `TD-0061` (APV modo avanzado) — alto impacto en usuarios que usan APV voluntario.
 
 ### Quick wins (alto impacto / bajo esfuerzo)
 
