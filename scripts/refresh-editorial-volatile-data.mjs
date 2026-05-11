@@ -89,7 +89,7 @@ async function fetchHtml(url) {
 
 function resolveReviewTriggerDate({ datasetId, nextValue, observedAt, previous, effectiveDate }) {
   if (previous && previous.value === nextValue && previous.reviewTriggerDate) {
-    return previous.reviewTriggerDate;
+    return previous.reviewTriggerDate <= observedAt ? previous.reviewTriggerDate : observedAt;
   }
   if (datasetId === "pensions.afp.uno_commission" && effectiveDate) {
     return effectiveDate;
@@ -103,18 +103,27 @@ function buildEconomicDatasets(registry, previousSnapshot) {
   const datasets = {};
 
   const economicMappings = [
-    ["economic.uf.value", economicSnapshot.uf],
-    ["economic.utm.value", economicSnapshot.utm],
-    ["economic.uta.value", economicSnapshot.uta],
-    ["economic.ipc.monthly_variation", economicSnapshot.ipc],
-    ["economic.afc.monthly_taxable_cap_uf", economicSnapshot.afcTopes?.monthlyTaxableCapUf],
+    ["economic.uf.value", economicSnapshot.uf, economicSnapshot.indicatorUpdatedAt?.uf],
+    ["economic.utm.value", economicSnapshot.utm, economicSnapshot.indicatorUpdatedAt?.utm],
+    ["economic.uta.value", economicSnapshot.uta, economicSnapshot.indicatorUpdatedAt?.uta],
+    [
+      "economic.ipc.monthly_variation",
+      economicSnapshot.ipc,
+      economicSnapshot.indicatorUpdatedAt?.ipc,
+    ],
+    [
+      "economic.afc.monthly_taxable_cap_uf",
+      economicSnapshot.afcTopes?.monthlyTaxableCapUf,
+      economicSnapshot.indicatorUpdatedAt?.afcTopes,
+    ],
     [
       "pensions.previsional.monthly_taxable_cap_uf",
       economicSnapshot.previsionalTopes?.pensionAndHealthMonthlyTaxableCapUf,
+      economicSnapshot.indicatorUpdatedAt?.previsionalTopes,
     ],
   ];
 
-  for (const [datasetId, value] of economicMappings) {
+  for (const [datasetId, value, indicatorUpdatedAt] of economicMappings) {
     if (!Number.isFinite(value)) {
       console.warn(
         `[editorial-volatile-data] Skipping ${datasetId}: value not available in economic snapshot.`
@@ -129,6 +138,9 @@ function buildEconomicDatasets(registry, previousSnapshot) {
       continue;
     }
     const previous = previousSnapshot?.datasets?.[datasetId];
+    const datasetObservedAt = indicatorUpdatedAt
+      ? normalizeIsoDate(indicatorUpdatedAt)
+      : observedAt;
     datasets[datasetId] = {
       label: datasetMeta.label,
       value,
@@ -137,7 +149,7 @@ function buildEconomicDatasets(registry, previousSnapshot) {
       reviewTriggerDate: resolveReviewTriggerDate({
         datasetId,
         nextValue: value,
-        observedAt,
+        observedAt: datasetObservedAt,
         previous,
       }),
       sourceUrl: datasetMeta.sourceUrls[0],
