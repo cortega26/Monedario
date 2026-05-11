@@ -1,21 +1,21 @@
 # TECH_DEBT_BACKLOG
 
-Fecha de corte: 2026-04-30
+Fecha de corte: 2026-05-11
 
 ## Métricas
 
 ### Total de items por urgencia
 
-- **P0:** 3
-- **P1:** 14
-- **P2:** 15
-- **P3:** 1
+- **P0:** 7
+- **P1:** 18
+- **P2:** 28
+- **P3:** 5
 
-### Estado de avance (2026-04-23)
+### Estado de avance (2026-05-11)
 
-- **Completados:** 60 (`TD-0001`, `TD-0002`, `TD-0003`, `TD-0004`, `TD-0005`, `TD-0006`, `TD-0007`, `TD-0008`, `TD-0009`, `TD-0010`, `TD-0011`, `TD-0012`, `TD-0013`, `TD-0014`, `TD-0015`, `TD-0016`, `TD-0017`, `TD-0018`, `TD-0019`, `TD-0020`, `TD-0021`, `TD-0022`, `TD-0023`, `TD-0024`, `TD-0025`, `TD-0026`, `TD-0027`, `TD-0028`, `TD-0029`, `TD-0030`, `TD-0031`, `TD-0032`, `TD-0033`, `TD-0034`, `TD-0035`, `TD-0036`, `TD-0037`, `TD-0038`, `TD-0040`, `TD-0041`, `TD-0043`, `TD-0044`, `TD-0045`, `TD-0046`, `TD-0047`, `TD-0048`, `TD-0049`, `TD-0050`, `TD-0051`, `TD-0052`, `TD-0053`, `TD-0054`, `TD-0055`, `TD-0056`, `TD-0058`, `FIX-MDX`, `FIX-LINKS-CALC`)
+- **Completados:** 56 TD únicos (`TD-0001`..`TD-0038`, `TD-0040`..`TD-0058`, excepto `TD-0039` y `TD-0057`) + 2 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 1 (`TD-0039`)
-- **Backlog sin iniciar:** 2 (`TD-0042`, `TD-0057`)
+- **Backlog sin iniciar:** 1 (`TD-0057`)
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -32,11 +32,17 @@ Fecha de corte: 2026-04-30
 > `TD-0056`: baseline pre-change del 2026-04-30 detecta 5 fallas preexistentes en `tests/integration/homepage-content.test.ts` por drift entre el contrato del test y el estado actual de artifacts editoriales publicados.
 > `TD-0053`: resuelto por commits `5644792c` (length-sort en `matchPhraseSet`) y `35231cc4` (reorden de array) — el test ya pasa.
 > `TD-0054`: resuelto por `TD-0055` (commit `a3937548`) — `check:hero-prompts` retorna OK.
+> Modernización estratégica 2026-05-11: se cerró `TD-0058`, se decidió la política canónica de artefactos editoriales por `docs/adr/ADR-20260511-editorial-artifact-location-policy.md`, y `TD-0057` quedó reclasificado como backfill editorial real, no como drift de rutas.
 
 ### Top riesgos restantes
 
-- `TD-0039`: performance mobile sigue por debajo del umbral estricto de LCP (`<= 1.7s`) en local, aunque los reruns del 2026-04-09 ya dejaron `TBT=0`, `CLS=0`, `SI<3.0s` y levantaron calculadora/hub a `Performance 100`.
 - `TD-0057`: el gate estricto repo-wide de artefactos editoriales (`EDITORIAL_ENFORCE=1 pnpm run check:editorial-artifacts`) falla porque el corpus publicado no tiene artefactos en la ruta canónica `artifacts/editorial/<slug>/<run-id>/`.
+- `TD-0039`: performance mobile sigue por debajo del umbral estricto de LCP (`<= 1.7s`) en local, aunque los reruns del 2026-04-09 ya dejaron `TBT=0`, `CLS=0`, `SI<3.0s` y levantaron calculadora/hub a `Performance 100`.
+
+### Siguiente orden recomendado (2026-05-11)
+
+1. `TD-0039` — terminar la optimización mobile CWV/LCP con nuevo reporte Lighthouse.
+2. `TD-0057` — ejecutar backfill canónico de artefactos editoriales por lotes priorizados; no generar placeholders ni marcar gates humanos automáticamente.
 
 ### Quick wins (alto impacto / bajo esfuerzo)
 
@@ -199,8 +205,8 @@ Fecha de corte: 2026-04-30
 ## TD-0020 — Ownership temático y taxonomía editorial inconsistentes
 - **ID:** TD-0020
 - **Título corto:** Alinear ownership editorial entre cluster, category y hubs
-- **Descripción:** El corpus todavía conserva deuda editorial donde `cluster`, `category` y tratamiento en hubs no cuentan exactamente la misma historia. El caso vivo más claro ya no es UF/IPC, sino `como-hacer-presupuesto-mensual-chile`, que sigue en `cluster: empleo-ingresos` con `category: general` mientras su casa semántica definitiva `presupuesto-control-financiero` sigue sin hub productivo.
-- **Evidencia (actualizada):** el frente `uf-costo-de-vida` ya quedó endurecido en metadata/frontmatter; el repo mantiene separación entre `canonical owner` y `transitional placement` en `docs/editorial/TOPIC_OWNERSHIP_POLICY.md` y `src/config/editorial-topic-policy.mjs`; `pnpm run audit:topic-overlap` sigue resumiendo transiciones válidas y clasificaciones de hub sin reinterpretar `category: general` como owner definitivo.
+- **Descripción:** El corpus traía deuda editorial donde `cluster`, `category` y tratamiento en hubs no contaban exactamente la misma historia. UF/IPC quedó endurecido antes; el caso vivo posterior era `como-hacer-presupuesto-mensual-chile`, que seguía en `cluster: empleo-ingresos` con `category: general` aunque su casa semántica definitiva era `presupuesto-control-financiero`.
+- **Evidencia (actualizada):** el frente `uf-costo-de-vida` ya quedó endurecido en metadata/frontmatter. El 2026-05-11 `como-hacer-presupuesto-mensual-chile` migró a `cluster: presupuesto-control-financiero` con `topicRole: owner` y `canonicalTopic: presupuesto-mensual-control-financiero`; el registro transitorio quedó vacío.
 - **Impacto:** Riesgo de crecimiento editorial inconsistente, interlinking ambiguo y mayor probabilidad de canibalización a medida que se agreguen nuevas URLs.
 - **Riesgo:** medio
 - **Severidad (1-5):** 3
@@ -209,7 +215,7 @@ Fecha de corte: 2026-04-30
 - **Propuesta de solución:** mantener APV con ownership canónico en `ahorro-e-inversion`; conservar presupuesto como única transición explícita pendiente; y seguir endureciendo auditoría/metadata solo cuando exista un cluster productivo real para absorber el cambio.
 - **Criterios de cierre (checklist verificable):**
 - [x] APV tiene ownership explícito y consistente entre hub, cluster y category.
-- [x] `como-hacer-presupuesto-mensual-chile` queda documentado como transición hacia `presupuesto-control-financiero` con condición concreta de migración.
+- [x] `como-hacer-presupuesto-mensual-chile` dejó de ser transición y quedó en su owner canónico `presupuesto-control-financiero`.
 - [x] El frente `uf-costo-de-vida` queda endurecido y sale del registro de transiciones activas.
 - [x] `pnpm run audit:topic-overlap` distingue transición válida, core vs related y uso indebido de `category: general`.
 - **Owner:** TBD
@@ -1035,22 +1041,23 @@ Fecha de corte: 2026-04-30
 ## TD-0042 — Transition editorial de presupuesto sigue incoherente tras registrar el hub
 - **ID:** TD-0042
 - **Título corto:** Resolver migración pendiente de `como-hacer-presupuesto-mensual-chile`
-- **Descripción:** Al registrar `presupuesto-control-financiero` en `src/config/clusters.ts`, el hub ya quedó formalizado como fuente de verdad operativa. Sin embargo, la pieza `como-hacer-presupuesto-mensual-chile` sigue en `cluster: empleo-ingresos` con `category: general`, y algunos documentos/policies siguen describiendo la migración como futura o condicionada a un hub que ya existe.
-- **Evidencia:** `src/pages/guias/presupuesto-control-financiero/index.astro` ya está publicado y `src/config/clusters.ts` ahora lo registra; `docs/editorial/TOPIC_OWNERSHIP_POLICY.md` y `docs/TECH_DEBT_BACKLOG.md` todavía describen la ubicación de la pieza como transición pendiente ligada a la inexistencia del hub productivo.
-- **Impacto:** Mantiene ambigüedad entre owner canónico, cluster operativo y narrativa de transición; aumenta el riesgo de decisiones editoriales inconsistentes y de warnings engañosos en revisiones futuras.
+- **Descripción:** Al registrar `presupuesto-control-financiero` en `src/config/clusters.ts`, el hub quedó formalizado como fuente de verdad operativa. La pieza `como-hacer-presupuesto-mensual-chile` todavía estaba en `cluster: empleo-ingresos` con `category: general`, y algunos documentos/policies seguían describiendo la migración como futura o condicionada a un hub que ya existía.
+- **Evidencia:** `src/pages/guias/presupuesto-control-financiero/index.astro` ya estaba publicado y `src/config/clusters.ts` lo registraba; `docs/editorial/TOPIC_OWNERSHIP_POLICY.md` y `docs/TECH_DEBT_BACKLOG.md` todavía describían la ubicación de la pieza como transición pendiente ligada a la inexistencia del hub productivo.
+- **Impacto:** Mantenía ambigüedad entre owner canónico, cluster operativo y narrativa de transición; aumentaba el riesgo de decisiones editoriales inconsistentes y de warnings engañosos en revisiones futuras.
 - **Riesgo:** medio
 - **Severidad (1-5):** 3
 - **Urgencia:** P2
 - **Esfuerzo estimado:** S
-- **Propuesta de solución:** En un cambio separado, decidir una de dos rutas: (A) migrar `como-hacer-presupuesto-mensual-chile` a `cluster: presupuesto-control-financiero` y alinear category/interlinks; o (B) mantener la transición pero actualizar policy/runbooks/checks para que ya no dependan de que el hub “no exista”.
+- **Propuesta de solución:** Migrar `como-hacer-presupuesto-mensual-chile` a `cluster: presupuesto-control-financiero`, registrar `canonicalTopic`, retirar el registro transitorio y alinear policy/runbooks/checks para que ya no dependan de que el hub “no exista”.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] `docs/editorial/TOPIC_OWNERSHIP_POLICY.md` refleja el estado real del hub y la decisión de transición.
-  - [ ] `docs/TECH_DEBT_BACKLOG.md` deja de describir el hub como inexistente.
-  - [ ] La metadata/frontmatter de `como-hacer-presupuesto-mensual-chile` o la policy de transición cuentan la misma historia.
-- **Owner:** TBD
-- **Estado:** Backlog
+  - [x] `docs/editorial/TOPIC_OWNERSHIP_POLICY.md` refleja el estado real del hub y la decisión de transición.
+  - [x] `docs/TECH_DEBT_BACKLOG.md` deja de describir el hub como inexistente.
+  - [x] La metadata/frontmatter de `como-hacer-presupuesto-mensual-chile` o la policy de transición cuentan la misma historia.
+- **Owner:** Codex
+- **Estado:** Completado
 - **Fecha de creación:** 2026-04-11
-- **Última actualización:** 2026-04-11
+- **Última actualización:** 2026-05-11
+- **Nota de cierre:** `como-hacer-presupuesto-mensual-chile` migró a `cluster: presupuesto-control-financiero` con `topicRole: owner` y `canonicalTopic: presupuesto-mensual-control-financiero`. Se retiró del registro transitorio y se alinearon policy, matriz SEO, tests y contexto.
 
 ## TD-0044 — Copy en `operacion-renta.astro` muestra tasa PPM incorrecta (12.25% en vez de 15.25%)
 - **ID:** TD-0044

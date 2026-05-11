@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 const SCRIPT_PATH = path.resolve("scripts/audit-topic-overlap.mjs");
 
 describe("audit-topic-overlap script", () => {
-  it("prints transitional placement and hub ownership summaries", () => {
+  it("prints ownership summaries without the retired presupuesto transition", () => {
     const result = spawnSync("node", [SCRIPT_PATH], {
       encoding: "utf8",
     });
@@ -14,7 +14,10 @@ describe("audit-topic-overlap script", () => {
     expect(result.stdout).toContain(
       "[audit-topic-overlap] Transitional placement summary"
     );
-    expect(result.stdout).toContain("como-hacer-presupuesto-mensual-chile");
+    expect(result.stdout).toContain("- none");
+    expect(result.stdout).not.toContain(
+      "como-hacer-presupuesto-mensual-chile | current=empleo-ingresos/general"
+    );
     expect(result.stdout).toContain("que-es-el-ipc-chile-como-se-calcula");
     expect(result.stdout).toContain("[audit-topic-overlap] Hub ownership summary");
     expect(result.stdout).toContain("pensiones-afp | core=");

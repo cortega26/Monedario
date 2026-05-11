@@ -1,26 +1,32 @@
 import { describe, expect, it } from "vitest";
 import {
+  getCanonicalTopicEntry,
   getTransitionalOwnershipEntry,
   isDocumentedTransitionalPlacement,
 } from "../../src/config/editorial-topic-policy.mjs";
 import { getHubArticleAssignments } from "../../src/config/editorial-hub-model.mjs";
 
 describe("editorial topic ownership policy", () => {
-  it("documents the presupuesto article as a transitional placement", () => {
+  it("keeps the presupuesto article in its canonical owner cluster", () => {
     const entry = getTransitionalOwnershipEntry(
       "como-hacer-presupuesto-mensual-chile"
     );
+    const canonicalEntry = getCanonicalTopicEntry(
+      "presupuesto-control-financiero",
+      "presupuesto-mensual-control-financiero"
+    );
 
-    expect(entry).not.toBeNull();
-    expect(entry?.canonicalOwnerCluster).toBe("presupuesto-control-financiero");
-    expect(entry?.targetHubPath).toBe("/guias/presupuesto-control-financiero/");
+    expect(entry).toBeNull();
+    expect(canonicalEntry?.ownerSlug).toBe(
+      "como-hacer-presupuesto-mensual-chile"
+    );
     expect(
       isDocumentedTransitionalPlacement({
         slug: "como-hacer-presupuesto-mensual-chile",
         cluster: "empleo-ingresos",
         category: "general",
       })
-    ).toBe(true);
+    ).toBe(false);
   });
 
   it("keeps the IPC article out of the transitional registry after UF hardening", () => {

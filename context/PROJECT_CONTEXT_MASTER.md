@@ -101,13 +101,13 @@ Los riesgos principales están en deuda de mantenibilidad y consistencia operati
 
 - `MB-026` quedó cerrado mediante un artefacto canónico de arquitectura de enlaces internos en `docs/operations/reports/sprints/sprint-2f/internal_linking_architecture_map.md`.
 - El mapa consolida los activos vivos y futuros de Phase 2 sin cambiar URLs públicas ni introducir rollout runtime adicional.
-- Quedan explicitadas dos separaciones futuras ya decididas semánticamente: `uf-costo-de-vida` y `presupuesto-control-financiero`, ambas aún sin hub productivo.
+- Las separaciones semánticas `uf-costo-de-vida` y `presupuesto-control-financiero` ya tienen hub productivo y ownership operativo registrado.
 - Se documenta que `empleo-ingresos` sigue siendo el contenedor operativo para cesantía/protección social mientras no exista evidencia suficiente para abrir un hub separado.
 
 ### Checkpoint 2026-03-11 (TD-0020 Topic Ownership Alignment)
 
 - Se formaliza la diferencia entre `canonical owner` y `transitional placement` en `docs/editorial/TOPIC_OWNERSHIP_POLICY.md` y `src/config/editorial-topic-policy.mjs`.
-- `como-hacer-presupuesto-mensual-chile` y `que-es-el-ipc-chile-como-se-calcula` quedan registrados como transiciones válidas desde `empleo-ingresos` hacia `presupuesto-control-financiero` y `uf-costo-de-vida`, respectivamente.
+- `como-hacer-presupuesto-mensual-chile` dejó de ser transición el 2026-05-11: ahora vive en `cluster: presupuesto-control-financiero` con `topicRole: owner` y `canonicalTopic: presupuesto-mensual-control-financiero`.
 - `src/pages/guias/pensiones-afp/index.astro` consume un modelo explícito `core` vs `related`, dejando a APV fuera del núcleo AFP.
 - `pnpm run audit:topic-overlap` ahora resume placements transitorios y clasificaciones de hub, en vez de tratar `category: general` como silencio taxonómico aceptable.
 
@@ -116,7 +116,7 @@ Los riesgos principales están en deuda de mantenibilidad y consistencia operati
 - `que-es-la-uf` queda registrado como `transitional placement` desde `deuda-credito` hacia `uf-costo-de-vida`, sin alterar todavía su frontmatter operativo ni abrir el hub futuro.
 - `src/config/editorial-hub-model.mjs` y `src/pages/guias/deuda-credito/index.astro` adoptan la separación explícita `core` vs `related`, dejando UF solo como bridge relacionado dentro del hub de deuda.
 - La matriz de ownership, la policy editorial y el mapa de linking interno ya no tratan a `que-es-la-uf` como owner canónico de `deuda-credito`.
-- `presupuesto-control-financiero` sigue documentado como transición cerrada, sin apertura de hub hasta cumplir la condición mínima de hub + segundo activo alineado.
+- `presupuesto-control-financiero` tiene hub publicado y dos owners operativos: `como-hacer-presupuesto-mensual-chile` y `fondo-emergencia-chile`.
 
 ### Checkpoint 2026-03-12 (MB-013 uf-costo-de-vida Productive Hub Open)
 

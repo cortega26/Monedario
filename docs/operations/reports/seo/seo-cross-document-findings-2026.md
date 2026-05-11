@@ -69,7 +69,7 @@ Este artefacto no autoriza publicar contenido YMYL. Cualquier nueva pieza o refr
 | `dividendo hipotecario` | Tool intent fuerte. | Repo ya tiene calculadora y articulo hipotecario. | Crear/mejorar owner satelite editorial para la calculadora, no otra tool. |
 | `credito de consumo` | Demanda y comparacion CAE. | Repo ya tiene calculadora; falta owner editorial fuerte. | Crear owner editorial P1 y enlazar calculadora. |
 | `interes compuesto` | Tool evergreen. | Repo tiene articulo owner + nota metodologica; no calculadora dedicada. | Convertir en calculadora P1/P2 con disclaimers. |
-| `presupuesto mensual` | Buen TOFU de control financiero. | Hub existe; articulo sigue como transitional placement. | Migrar ownership cuando haya satelite/tool; no duplicar guia. |
+| `presupuesto mensual` | Buen TOFU de control financiero. | Hub existe; `como-hacer-presupuesto-mensual-chile` migró a `cluster: presupuesto-control-financiero` el 2026-05-11 y `fondo-emergencia-chile` actúa como satélite publicado. | No duplicar guía; siguiente mejora natural sería herramienta/checklist de presupuesto si hay señal suficiente. |
 
 ### 1.3 Senales conflictivas
 

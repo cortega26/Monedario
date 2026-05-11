@@ -1,18 +1,29 @@
 # Backlog Monedario.cl — Estado actual
 
-> Generado el 2026-04-08. Última actualización: 2026-05-09.
+> Generado el 2026-04-08. Última actualización: 2026-05-11.
 > Lectura obligatoria antes de ejecutar cualquier ticket: `AGENTS.md` y `context/INVARIANTS.md`.
 
 ---
 
-## Estado actual — 2026-05-09
+## Estado actual — 2026-05-11
 
-Completado: Fases 0–3 (MON-001..305), auditorías de calculadoras, UX backlog (15/16), Phase 1 Profile Persistence, Phase 2 High-Value Roadmap (Waves 1–5), Optimization, Editorial Timeliness, Blog Advisory Standardization, Date Display Consistency, Guardrail Automation, GitHub Actions remediation, Next Best Step, Data Signals (parcial).
+Completado: Fases 0–3 salvo decisiones pendientes explícitas (`MON-301`, `MON-304`), auditorías de calculadoras, UX backlog (15/16), Phase 1 Profile Persistence, Phase 2 High-Value Roadmap (Waves 1–5), Optimization, Editorial Timeliness, Blog Advisory Standardization, Date Display Consistency, Guardrail Automation, GitHub Actions remediation, Next Best Step, Data Signals (parcial), y modernización estratégica 2026-05-11.
+
+La deuda técnica activa queda resumida en `docs/TECH_DEBT_BACKLOG.md`: `TD-0039` en progreso y `TD-0057` en backlog. `TD-0042` y `TD-0058` quedaron cerrados durante la modernización 2026-05-11.
+
+### Siguiente orden recomendado
+
+| Orden | Item | Por qué ahora |
+|-------|------|---------------|
+| 1 | `TD-0039` | Termina el frente mobile CWV/LCP ya iniciado; requiere medición Lighthouse dedicada. |
+| 2 | `TD-0057` | Importante para gobernanza YMYL, pero grande y editorialmente sensible; requiere backfill real por lotes. |
 
 ### Pendiente — implementación por código
 
 | Plan | Archivo | Bloqueador |
 |------|---------|------------|
+| Technical debt — `TD-0039` | `../TECH_DEBT_BACKLOG.md` | Requiere medición Lighthouse y optimización performance |
+| Technical debt — `TD-0057` | `../TECH_DEBT_BACKLOG.md` | Requiere backfill editorial real; no admite placeholders |
 | Phase 2 — Data Signals (MON-ENV-DATA3b..3c) | `PHASE_2_DATA_SIGNALS.md` | Requiere suscripción Ahrefs Advanced+ |
 | Hero image system — remediación manual por lotes | `HERO_IMAGE_SYSTEM_REMEDIATION_2026-04-30.md` | Manual: assets finales pendientes |
 | Hero image prompt repair | `PLAN-heroimage-prompt-repair-2026-05-01.md` | En ejecución |

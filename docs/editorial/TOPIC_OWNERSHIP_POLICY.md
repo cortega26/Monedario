@@ -1,6 +1,6 @@
 # Topic Ownership Policy
 
-Fecha de corte: 2026-03-12
+Fecha de corte: 2026-05-11
 
 Autoridad aplicable:
 1. `docs/AI_ENGINEERING_CONSTITUTION.md`
@@ -21,7 +21,7 @@ Invariantes y contratos preservados:
 1. Cada URL indexable tiene un solo `canonical owner`.
 2. `cluster` actual y `category` actual describen placement operativo, no redefinen por sí solos el owner canónico.
 3. Un hub solo puede tratar como `core` lo que pertenece a su owner cluster. Los temas vecinos solo entran como `related`.
-4. `category: general` no puede funcionar como clasificación final cuando el owner ya está decidido. La única excepción operativa actual es `uf-costo-de-vida`, donde `general` queda documentada como categoría propia del frente mientras la taxonomía no requiera un valor dedicado.
+4. `category: general` no puede funcionar como clasificación final cuando el owner ya está decidido, salvo excepciones operativas documentadas por cluster mientras la taxonomía no requiera un valor dedicado. Las excepciones vigentes son `uf-costo-de-vida` y `presupuesto-control-financiero`.
 5. Si una URL está alojada transitoriamente en una casa equivocada por limitaciones productivas, ese estado debe quedar explicitado en policy + auditoría + backlog.
 
 ## 2. Modelo de decisión
@@ -55,7 +55,7 @@ Una URL puede permanecer publicada fuera de su owner canónico solo si se cumple
 
 ### 2.4 Condición de migración
 
-- `como-hacer-presupuesto-mensual-chile` migra cuando exista `/guias/presupuesto-control-financiero/` y al menos un satélite o herramienta adicional del mismo cluster.
+- `como-hacer-presupuesto-mensual-chile` migró el 2026-05-11 a `cluster: presupuesto-control-financiero` después de existir el hub productivo `/guias/presupuesto-control-financiero/` y el satélite `fondo-emergencia-chile`.
 - El frente `uf-costo-de-vida` quedó endurecido el 2026-03-12: UF, IPC y reajuste de arriendo ya operan con `cluster` canónico y ownership explícito.
 
 ## 3. Boundary matrix
@@ -74,7 +74,7 @@ Una URL puede permanecer publicada fuera de su owner canónico solo si se cumple
 | URL | Estado actual | Owner canónico | Ubicación actual | Estado de ubicación | Tratamiento correcto en hubs | Acción inmediata | Acción futura | Justificación editorial |
 |---|---|---|---|---|---|---|---|---|
 | `que-es-el-apv` | `cluster: ahorro-e-inversion`, `category: ahorro-inversion`, `topicRole: owner`, `canonicalTopic: apv-beneficio-tributario` | `ahorro-e-inversion` | correcta | válida | `core` en ahorro e inversión; `related` en pensiones-afp | mantener metadata y hub AFP como `related` explícito | ninguna migración pendiente | La decisión dominante es instrumento de ahorro con beneficio tributario, no operación AFP obligatoria |
-| `como-hacer-presupuesto-mensual-chile` | `cluster: empleo-ingresos`, `category: general` | `presupuesto-control-financiero` | `empleo-ingresos` | transitoria | no tratarlo como core de `empleo-ingresos`; enlazarlo solo como salida lateral desde ahorro/inversión o hubs futuros | documentar transición en policy + registry + auditoría; no falsear category/cluster actuales | migrar cuando exista `/guias/presupuesto-control-financiero/` y un segundo activo satélite o herramienta | La necesidad dominante es control financiero del hogar, no contingencia laboral |
+| `como-hacer-presupuesto-mensual-chile` | `cluster: presupuesto-control-financiero`, `category: general`, `topicRole: owner`, `canonicalTopic: presupuesto-mensual-control-financiero` | `presupuesto-control-financiero` | correcta | migrada | `core` en presupuesto y control financiero; related desde empleo/ahorro/deuda solo cuando el usuario necesita ordenar caja antes de decidir | mantener metadata owner y enlaces desde el hub | ninguna migración pendiente | La necesidad dominante es control financiero del hogar, no contingencia laboral |
 | `que-es-la-uf` | `cluster: uf-costo-de-vida`, `category: general`, `topicRole: owner`, `canonicalTopic: uf-reajustes-costo-de-vida` | `uf-costo-de-vida` | correcta | endurecida | core del hub `uf-costo-de-vida`; `deuda-credito` solo puede enlazarla como `related / bridge` | mantener metadata endurecida y bridges acotados desde obligaciones reajustables | ninguna migración pendiente | La necesidad dominante es entender UF, inflación y reajustes de bolsillo/contratos; crédito solo aporta un caso de uso relacionado |
 | `reajuste-arriendo-uf-ipc-chile` | `cluster: uf-costo-de-vida`, `category: general`, `topicRole: owner`, `canonicalTopic: reajuste-arriendo-contrato-uf-ipc` | `uf-costo-de-vida` | correcta | endurecida | core del hub y satélite explicativo de la calculadora | mantener metadata endurecida y linking causal con la calculadora, UF e IPC | ninguna migración pendiente | La necesidad dominante es entender cómo se aplica una cláusula de reajuste de arriendo en UF o IPC y cuánto impacta el pago, no resolver un problema de crédito |
 | `que-es-el-ipc-chile-como-se-calcula` | `cluster: uf-costo-de-vida`, `category: general`, `topicRole: owner`, `canonicalTopic: ipc-inflacion-costo-de-vida` | `uf-costo-de-vida` | correcta | endurecida | core del hub `uf-costo-de-vida`; fuera de ahí solo entra como related contextual | mantener metadata endurecida y evitar que vuelva a usarse como core laboral | ninguna migración pendiente | La intención dominante es inflación, reajuste y bolsillo; no continuidad de ingreso laboral |

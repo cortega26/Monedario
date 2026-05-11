@@ -139,6 +139,10 @@ export const CANONICAL_TOPIC_REGISTRY = {
     },
   },
   "presupuesto-control-financiero": {
+    "presupuesto-mensual-control-financiero": {
+      ownerSlug: "como-hacer-presupuesto-mensual-chile",
+      intentLabel: "hacer presupuesto mensual y controlar gastos",
+    },
     "fondo-emergencia-colchon": {
       ownerSlug: "fondo-emergencia-chile",
       intentLabel: "construir fondo de emergencia en Chile",
@@ -196,19 +200,7 @@ export const CANONICAL_TOPIC_REGISTRY = {
   },
 };
 
-export const TRANSITIONAL_OWNERSHIP_REGISTRY = {
-  "como-hacer-presupuesto-mensual-chile": {
-    currentCluster: "empleo-ingresos",
-    currentCategory: "general",
-    canonicalOwnerCluster: "presupuesto-control-financiero",
-    canonicalTopic: "presupuesto-mensual-control-financiero",
-    targetHubPath: "/guias/presupuesto-control-financiero/",
-    migrationCondition:
-      "Migrar solo cuando exista el hub productivo /guias/presupuesto-control-financiero/ y al menos un activo satelite o herramienta adicional que convierta la URL actual en core real del cluster.",
-    rationale:
-      "La intencion dominante es habito y control financiero del hogar, no continuidad de ingreso laboral ni contingencia de empleo.",
-  },
-};
+export const TRANSITIONAL_OWNERSHIP_REGISTRY = {};
 
 export function getTransitionalOwnershipEntry(slug) {
   return TRANSITIONAL_OWNERSHIP_REGISTRY[slug] ?? null;

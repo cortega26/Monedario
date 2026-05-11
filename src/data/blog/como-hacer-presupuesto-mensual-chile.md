@@ -12,11 +12,13 @@ tags:
   - gasto-hormiga
   - control-financiero
 category: general
-cluster: empleo-ingresos
+cluster: presupuesto-control-financiero
 lang: es-CL
 featured: false
 draft: false
 heroImage: /images/hero/como-hacer-presupuesto-mensual-chile.avif
+topicRole: owner
+canonicalTopic: presupuesto-mensual-control-financiero
 articleAdvisory: "Contenido educativo; las proporciones y ejemplos deben ajustarse a tus ingresos y gastos reales."
 reviewPolicy:
   cadenceLabel: semiannual
@@ -171,7 +173,7 @@ Con cualquier ingreso. El presupuesto no es una herramienta para ricos — es la
 Ese es exactamente el dato que necesitas. Significa que gastas más de lo que ingresa, o que tienes compromisos que superan tu capacidad. El primer paso es registrar dónde se fue el dinero, no solo saber que se fue.
 
 **¿El fondo de emergencia entra al presupuesto?**
-Sí, pero como una categoría separada. Trátalo como un gasto fijo mensual: "ahorro de emergencia = $X". Una vez construido (3–6 meses de gastos esenciales), puedes redirigir esa línea a otros objetivos.
+Sí, pero como una categoría separada. Trátalo como un gasto fijo mensual: "ahorro de emergencia = $X". Una vez construido (3–6 meses de gastos esenciales), puedes redirigir esa línea a otros objetivos. Para definir ese colchón con más detalle, revisa la [guía de fondo de emergencia en Chile](/posts/fondo-emergencia-chile/).
 
 **¿Cuánto debería crecer mi fondo de emergencia mes a mes?**
 Lo mínimo que te permita tu presupuesto, pero de forma constante. Consistencia importa más que monto. Si puedes reservar $30.000/mes, en un año tienes $360.000 — que puede ser 1–2 meses de gastos esenciales básicos.

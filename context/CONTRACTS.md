@@ -280,7 +280,7 @@ Change log:
   - In hardened clusters, `canonicalTopic` must come from the central registry in `src/config/editorial-topic-policy.mjs`.
   - Only one publishable `owner` may exist per `cluster + canonicalTopic`.
   - In hardened clusters, `support` and `reference` metadata cannot point to an ownerless topic.
-  - `category: general` is not valid for hardened-cluster owner/support content, except in `uf-costo-de-vida` where `general` is the explicit operational category of the cluster.
+  - `category: general` is not valid for hardened-cluster owner/support content, except in `uf-costo-de-vida` where `general` is the explicit operational category of the cluster. `presupuesto-control-financiero` also currently uses `general` as an operational category while the taxonomy has no dedicated budget/control category.
 - Backward-compat expectations:
   - Rollout remains progressive outside hardened clusters.
   - Hardened clusters are no longer rollout territory for ownership metadata.

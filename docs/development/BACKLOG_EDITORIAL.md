@@ -27,7 +27,7 @@ Fuente base: [Gap Audit v1](../operations/audits/closed/2026/2026-02-27_gap-audi
 - `Estado` permitido: `TODO`, `IN_PROGRESS`, `REVIEW`, `DONE`, `REFRESH`.
 - Si falta evidencia en fuentes primarias durante ejecución, marcar `TODO` explícito en el issue antes de redactar.
 - `que-es-la-uf` ya quedó endurecido en `uf-costo-de-vida`; el hub de deuda solo puede exponerlo como `related / bridge`, no como pieza core.
-- `como-hacer-presupuesto-mensual-chile` sigue en transición y no debe abrir por sí solo `/guias/presupuesto-control-financiero/` hasta cumplir la condición mínima de hub + segundo activo satélite o herramienta.
+- `como-hacer-presupuesto-mensual-chile` dejó de ser transición el 2026-05-11: el hub `/guias/presupuesto-control-financiero/` ya existe, `fondo-emergencia-chile` actúa como segundo activo del cluster, y la pieza quedó en `cluster: presupuesto-control-financiero` con ownership explícito.
 
 ## Deuda técnica editorial (control 2026-03-04)
 
@@ -47,7 +47,7 @@ Estos artículos están publicados (`draft: false`) pero no aparecían en ningú
 |---|---|---|---|---|
 | `ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026` | ahorro-e-inversion | 2026-02-28 | 2026-02-28 | Artículo pilar del cluster ahorro e inversión |
 | `como-cambiarse-de-afp` | pensiones-afp | 2026-02-23 | 2026-02-23 | OK |
-| `como-hacer-presupuesto-mensual-chile` | empleo-ingresos | 2026-03-03 | 2026-03-11 | Sigue fuera del backlog formal; futuro hub `presupuesto-control-financiero` pendiente |
+| `como-hacer-presupuesto-mensual-chile` | presupuesto-control-financiero | 2026-03-03 | 2026-05-11 | Migrado a su owner canónico; ya no es transitional placement desde empleo-ingresos |
 | `cuanto-descuenta-la-afp-de-tu-sueldo` | sueldo-remuneraciones | 2026-02-23 | 2026-03-09 | Reubicado al cluster canónico de remuneraciones |
 | `finiquito-e-indemnizaciones-en-chile` | empleo-ingresos | 2026-03-02 | 2026-03-03 | YMYL — OK |
 | `fondos-afp-a-b-c-d-e` | pensiones-afp | 2026-02-23 | 2026-03-02 | Actualizado |
