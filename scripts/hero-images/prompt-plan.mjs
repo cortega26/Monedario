@@ -614,6 +614,87 @@ const SLUG_OVERRIDES = {
     toneClass: "serio",
     overrideEvidence: ["slug override: prepago/early-repayment article — uf keyword false-positive from hipotecario context"],
     overrideKeywords: ["prepago", "credito", "deuda", "cuota"],
+  },
+  // Gratificacion legal: body mentions 'sueldo' triggering the empleo/sueldo rule,
+  // but this article is about the annual legal bonus concept — use liquidacion-documento
+  // (document review with payslip) because it's a payroll-document-type article.
+  "gratificacion-legal-chile": {
+    id: "empleo",
+    template: "A",
+    promptTrack: "B",
+    recipeId: "liquidacion-documento",
+    colorKey: "Finanzas general / AFP / Empleo / Ahorro",
+    readerSituation: "Persona revisando el calculo de su gratificacion legal anual en la liquidacion de sueldo.",
+    toneClass: "neutral",
+    overrideEvidence: ["slug override: gratificacion-legal annual bonus calculation article"],
+    overrideKeywords: ["gratificacion", "sueldo"],
+  },
+  // Impuesto Global Complementario: body/tags contain 'impuesto' and 'renta' triggering
+  // declaracion-renta scene correctly; override ensures IGC bracket framing is explicit.
+  "impuesto-global-complementario-chile": {
+    id: "renta",
+    template: "A",
+    promptTrack: "B",
+    recipeId: "declaracion-renta",
+    colorKey: "Credito / Deuda / Impuestos / Riesgo",
+    readerSituation: "Persona entendiendo los tramos del Impuesto Global Complementario y como afecta su declaracion anual.",
+    toneClass: "serio",
+    overrideEvidence: ["slug override: IGC progressive tax brackets educational article"],
+    overrideKeywords: ["impuesto", "global complementario", "declaracion"],
+  },
+  // Sueldo imponible: body mentions 'sueldo' triggering empleo rule (sueldo-liquido scene),
+  // but this article is about the taxable wage base concept — use liquidacion-documento
+  // to frame as document/concept review rather than net-pay calculation.
+  "sueldo-imponible-chile": {
+    id: "empleo",
+    template: "A",
+    promptTrack: "B",
+    recipeId: "liquidacion-documento",
+    colorKey: "Finanzas general / AFP / Empleo / Ahorro",
+    readerSituation: "Persona entendiendo que parte de su sueldo es imponible y como eso determina sus cotizaciones.",
+    toneClass: "neutral",
+    overrideEvidence: ["slug override: sueldo-imponible base concept article — document-review framing"],
+    overrideKeywords: ["sueldo imponible", "sueldo"],
+  },
+  // PGU article: body mentions 'afp' triggering prevision/afp-pension rule correctly;
+  // override clarifies this is an IPS/state pension article, not an AFP article.
+  "pgu-pension-garantizada-universal": {
+    id: "prevision",
+    template: "A",
+    promptTrack: "A",
+    recipeId: "afp-pension",
+    colorKey: "Finanzas general / AFP / Empleo / Ahorro",
+    readerSituation: "Persona mayor o proximo a jubilarse evaluando si califica para la pension basica garantizada por el Estado.",
+    toneClass: "educativo",
+    overrideEvidence: ["slug override: PGU state pension eligibility guide"],
+    overrideKeywords: ["pension", "pgu", "garantizada universal"],
+  },
+  // Contribuciones bienes raices: body mentions 'impuesto' triggering the renta rule;
+  // override to declaracion-renta with a property-tax calendar framing because this is
+  // about property tax payment schedule, not income tax filing.
+  "contribuciones-bienes-raices-chile": {
+    id: "renta",
+    template: "A",
+    promptTrack: "B",
+    recipeId: "declaracion-renta",
+    colorKey: "Credito / Deuda / Impuestos / Riesgo",
+    readerSituation: "Persona propietaria de un inmueble revisando el calendario y monto de sus contribuciones anuales.",
+    toneClass: "serio",
+    overrideEvidence: ["slug override: property tax (contribuciones) calendar-and-amount article — renta rule false-positive on impuesto body keywords"],
+    overrideKeywords: ["contribuciones", "impuesto", "bienes raices"],
+  },
+  // Operacion renta centro: hub article — body mentions 'renta' and 'sii' triggering the
+  // renta rule (declaracion-renta) correctly; override clarifies hub/navigation framing.
+  "operacion-renta-centro": {
+    id: "renta",
+    template: "A",
+    promptTrack: "A",
+    recipeId: "declaracion-renta",
+    colorKey: "Credito / Deuda / Impuestos / Riesgo",
+    readerSituation: "Persona buscando informacion y recursos para completar su Operacion Renta anual.",
+    toneClass: "serio",
+    overrideEvidence: ["slug override: operacion-renta hub/support article — declaracion-renta scene appropriate for tax-hub context"],
+    overrideKeywords: ["impuesto", "renta", "operacion renta"],
   },  // Primo empleo integral: body mentions 'afp' and 'previsional' triggering the prevision
   // rule (afp-pension shield+arrow) before the empleo rule; override to cesantia template
   // (empleo category) with a custom promptOverride — figure walking through an open doorway
