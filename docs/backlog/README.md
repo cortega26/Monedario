@@ -27,7 +27,7 @@ Completado: Fases 0–3 (MON-001..305), auditorías de calculadoras, UX backlog 
 
 | Artefacto | Estado | Qué se necesita |
 |-----------|--------|-----------------|
-| Artículos Sprint 2B en `docs/editorial/artifacts/` (contribuciones, gratificación, sueldo-imponible, IGC, PGU, fondo-emergencia) | BLOCKED | Human sign-off en `07-publish-packet.md` de cada uno → set `draft: false` |
+| Artículos Sprint 2B en `docs/editorial/artifacts/` (contribuciones, gratificación, sueldo-imponible, IGC, PGU, fondo-emergencia) | DONE (2026-05-11) | Sign-off humano ya presente en `07-publish-packet.md`; artículos publicados con `draft: false` |
 | Operación Renta Centro | BLOCKED | Verificación SII/TGR + sign-off |
 
 ---

@@ -14,7 +14,7 @@ category: prevision
 cluster: pensiones-afp
 lang: es-CL
 featured: false
-draft: true
+draft: false
 heroImage: /images/hero/pgu-pension-garantizada-universal.avif
 topicRole: owner
 canonicalTopic: pgu-pension-garantizada

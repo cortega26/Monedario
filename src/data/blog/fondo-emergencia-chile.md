@@ -14,7 +14,7 @@ category: general
 cluster: presupuesto-control-financiero
 lang: es-CL
 featured: false
-draft: true
+draft: false
 heroImage: /images/hero/fondo-emergencia-chile.avif
 topicRole: owner
 canonicalTopic: fondo-emergencia-colchon

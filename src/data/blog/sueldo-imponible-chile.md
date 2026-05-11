@@ -14,7 +14,7 @@ category: empleo-ingresos
 cluster: sueldo-remuneraciones
 lang: es-CL
 featured: false
-draft: true
+draft: false
 heroImage: /images/hero/sueldo-imponible-chile.avif
 topicRole: owner
 canonicalTopic: sueldo-imponible-base-descuentos

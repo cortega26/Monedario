@@ -14,7 +14,7 @@ category: impuestos
 cluster: impuestos-personas
 lang: es-CL
 featured: false
-draft: true
+draft: false
 heroImage: /images/hero/contribuciones-bienes-raices-chile.avif
 topicRole: owner
 canonicalTopic: contribuciones-bienes-raices-tramite

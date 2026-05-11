@@ -14,7 +14,7 @@ category: impuestos
 cluster: impuestos-personas
 lang: es-CL
 featured: false
-draft: true
+draft: false
 heroImage: /images/hero/impuesto-global-complementario-chile.avif
 topicRole: owner
 canonicalTopic: igc-impuesto-global-complementario

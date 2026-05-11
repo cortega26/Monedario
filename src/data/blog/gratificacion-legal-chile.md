@@ -14,7 +14,7 @@ category: empleo-ingresos
 cluster: sueldo-remuneraciones
 lang: es-CL
 featured: false
-draft: true
+draft: false
 heroImage: /images/hero/gratificacion-legal-chile.avif
 topicRole: owner
 canonicalTopic: gratificacion-legal-calculo-tope
