@@ -106,10 +106,25 @@ function stripReviewPolicy(yamlStr) {
   return yamlStr.replace(/\nreviewPolicy:\n(?:[ \t][^\n]*\n?)+/, "\n");
 }
 
-function injectReviewPolicy(content, yamlStr, end, reviewPolicy) {
-  const stripped = stripReviewPolicy(yamlStr).trimEnd();
+function stripField(yamlStr, fieldName) {
+  const re = new RegExp(`\n${fieldName}:.*`, "");
+  return yamlStr.replace(re, "");
+}
+
+function injectReviewPolicy(content, yamlStr, end, reviewPolicy, newUpdatedDate) {
+  let modified = stripReviewPolicy(yamlStr).trimEnd();
+
+  if (newUpdatedDate) {
+    modified = stripField(modified, "updatedDate");
+  }
+
   const block = yaml.dump({ reviewPolicy }, { indent: 2, lineWidth: -1 }).trimEnd();
-  const newYaml = `${stripped}\n${block}`;
+  let newYaml = `${modified}\n${block}`;
+
+  if (newUpdatedDate) {
+    newYaml += `\nupdatedDate: ${newUpdatedDate}`;
+  }
+
   const body = content.slice(end);
   return `---\n${newYaml}\n---\n${body}`;
 }
@@ -148,15 +163,33 @@ async function main() {
 
     const body = content.slice(end);
     const computed = deriveReviewPolicy(data ?? {}, body);
+    const hasDataTriggers = computed.dataTriggers.length > 0;
 
-    if (!reviewPolicyChanged(data?.reviewPolicy, computed)) {
+    // Bump updatedDate for articles with economic data triggers (UF, UTM, IPC, etc.)
+    // so Google receives a freshness signal when volatile data refreshes.
+    const todayStr = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+    const currentDateStr =
+      data?.updatedDate && typeof data.updatedDate === "string"
+        ? data.updatedDate.slice(0, 10)
+        : null;
+    const bumpUpdatedDate = hasDataTriggers && currentDateStr !== todayStr;
+
+    if (!reviewPolicyChanged(data?.reviewPolicy, computed) && !bumpUpdatedDate) {
       continue;
     }
 
-    const updatedContent = injectReviewPolicy(content, yamlStr, end, computed);
+    const updatedDateValue = bumpUpdatedDate ? `${todayStr}T00:00:00Z` : null;
+    const updatedContent = injectReviewPolicy(
+      content,
+      yamlStr,
+      end,
+      computed,
+      updatedDateValue
+    );
     writeFileSync(filePath, updatedContent, "utf-8");
+    const dateNote = bumpUpdatedDate ? ` + updatedDate→${todayStr}` : "";
     console.log(
-      `[compute-review-policies] ${path.relative(process.cwd(), filePath)}: ${computed.cadenceLabel} (${computed.maxDays}d, triggers: [${computed.dataTriggers.join(", ")}])`
+      `[compute-review-policies] ${path.relative(process.cwd(), filePath)}: ${computed.cadenceLabel} (${computed.maxDays}d, triggers: [${computed.dataTriggers.join(", ")}])${dateNote}`
     );
     updated++;
   }

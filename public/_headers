@@ -1,0 +1,38 @@
+# Hashed assets (Astro build output) — cache forever
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML pages — cache 1h at edge, 5min in browser
+/calculadoras/*
+  Cache-Control: public, max-age=300, s-maxage=3600
+
+/posts/*
+  Cache-Control: public, max-age=300, s-maxage=3600
+
+/guias/*
+  Cache-Control: public, max-age=300, s-maxage=3600
+
+/leyes/*
+  Cache-Control: public, max-age=300, s-maxage=3600
+
+/glosario/*
+  Cache-Control: public, max-age=300, s-maxage=3600
+
+/tags/*
+  Cache-Control: public, max-age=300, s-maxage=3600
+
+/about
+  Cache-Control: public, max-age=300, s-maxage=3600
+
+/autor
+  Cache-Control: public, max-age=300, s-maxage=3600
+
+# Homepage
+/
+  Cache-Control: public, max-age=300, s-maxage=3600
