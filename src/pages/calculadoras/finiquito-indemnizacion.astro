@@ -139,7 +139,9 @@ const calculatorNextStepItems = [
           </div>
         </div>
 
-        <h2 class="mb-4 text-base font-semibold" id="modo-label-heading">Datos del caso</h2>
+        <h2 class="mb-4 text-base font-semibold" id="modo-label-heading">
+          Datos del caso
+        </h2>
 
         <div class="mb-4">
           <label
@@ -468,14 +470,14 @@ const calculatorNextStepItems = [
       <p>
         Al término de la relación laboral, el trabajador tiene derecho al pago
         del feriado proporcional por los días trabajados desde el último ciclo
-        completo de vacaciones. La fórmula es: <strong>1,25 días hábiles × meses
-        trabajados</strong> desde el último ciclo. El valor diario se calcula
-        dividiendo la última remuneración mensual por 30.
+        completo de vacaciones. La fórmula es: <strong
+          >1,25 días hábiles × meses trabajados</strong
+        > desde el último ciclo. El valor diario se calcula dividiendo la última remuneración
+        mensual por 30.
       </p>
       <p>
-        Usa el modo <strong>Vacaciones proporcionales</strong> de esta
-        calculadora para estimar solo ese componente sin ingresar todos los datos
-        del finiquito.
+        Usa el modo <strong>Vacaciones proporcionales</strong> de esta calculadora
+        para estimar solo ese componente sin ingresar todos los datos del finiquito.
       </p>
     </section>
 
@@ -611,7 +613,9 @@ const calculatorNextStepItems = [
         : "Datos del caso";
     document
       .querySelectorAll("[data-finiquito-only]")
-      .forEach(el => (el as HTMLElement).classList.toggle("hidden", esVacaciones));
+      .forEach(el =>
+        (el as HTMLElement).classList.toggle("hidden", esVacaciones)
+      );
   }
 
   document.querySelectorAll("input[name='finiquito-modo']").forEach(radio => {
@@ -686,7 +690,9 @@ const calculatorNextStepItems = [
       headlineDays.textContent = `${result.proportionalVacationDays.toFixed(2)} días`;
       const headlineValue = document.createElement("p");
       headlineValue.className = "text-4xl font-bold mt-1";
-      headlineValue.textContent = fmtCurrency(result.proportionalVacationAmount);
+      headlineValue.textContent = fmtCurrency(
+        result.proportionalVacationAmount
+      );
       headline.append(headlineLabel, headlineDays, headlineValue);
 
       const note = document.createElement("p");
@@ -858,11 +864,31 @@ const calculatorNextStepItems = [
       .getElementById("resultado-contenido")
       ?.replaceChildren(
         headline,
-        buildRow("Años contados", `${result.serviceYearsCounted}`, "text-secondary"),
-        buildRow("Años con tope legal", `${result.cappedServiceYears}`, "text-secondary"),
-        buildRow("Sueldo pendiente del mes", fmtCurrency(result.pendingSalaryAmount), "text-secondary"),
-        buildRow("Feriado proporcional", `${result.proportionalVacationDays.toFixed(2)} días`, "text-secondary"),
-        buildRow("Monto por feriado proporcional", fmtCurrency(result.proportionalVacationAmount), "text-secondary"),
+        buildRow(
+          "Años contados",
+          `${result.serviceYearsCounted}`,
+          "text-secondary"
+        ),
+        buildRow(
+          "Años con tope legal",
+          `${result.cappedServiceYears}`,
+          "text-secondary"
+        ),
+        buildRow(
+          "Sueldo pendiente del mes",
+          fmtCurrency(result.pendingSalaryAmount),
+          "text-secondary"
+        ),
+        buildRow(
+          "Feriado proporcional",
+          `${result.proportionalVacationDays.toFixed(2)} días`,
+          "text-secondary"
+        ),
+        buildRow(
+          "Monto por feriado proporcional",
+          fmtCurrency(result.proportionalVacationAmount),
+          "text-secondary"
+        ),
         buildRow(
           "Indemnización años de servicio",
           fmtCurrency(result.yearsOfServiceIndemnity),
@@ -871,12 +897,16 @@ const calculatorNextStepItems = [
         buildRow(
           "Aviso previo sustitutivo",
           fmtCurrency(result.substituteNoticeIndemnity),
-          result.substituteNoticeIndemnity > 0 ? "text-accent" : "text-secondary"
+          result.substituteNoticeIndemnity > 0
+            ? "text-accent"
+            : "text-secondary"
         ),
         buildRow(
           "Gratificación proporcional (art. 47)",
           fmtCurrency(result.gratificacionProporcionalAmount),
-          result.gratificacionProporcionalAmount > 0 ? "text-accent" : "text-secondary"
+          result.gratificacionProporcionalAmount > 0
+            ? "text-accent"
+            : "text-secondary"
         ),
         buildRow(
           `Recargo despido injustificado (art. 168 — ${(result.art168SurchargePercent * 100).toFixed(0)}%)`,

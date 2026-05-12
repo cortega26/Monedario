@@ -241,10 +241,7 @@ const interesCompuestoFaqs = [
     >
       <h2 class="mb-4 text-lg font-semibold">Evolución año a año</h2>
       <div class="overflow-x-auto">
-        <table
-          id="tabla-evolucion"
-          class="w-full text-sm border-collapse"
-        >
+        <table id="tabla-evolucion" class="w-full border-collapse text-sm">
           <thead>
             <tr class="border-b border-border text-left">
               <th class="py-2 pr-4 font-medium text-secondary">Año</th>
@@ -268,15 +265,15 @@ const interesCompuestoFaqs = [
     >
       <h2>¿Cómo funciona el interés compuesto?</h2>
       <p>
-        El interés compuesto es el mecanismo por el cual los intereses ganados se
-        reinvierten automáticamente al capital, generando intereses sobre
+        El interés compuesto es el mecanismo por el cual los intereses ganados
+        se reinvierten automáticamente al capital, generando intereses sobre
         intereses. Esto produce un crecimiento exponencial: cuanto más tiempo
         pasa, mayor es el efecto del reinvertir.
       </p>
       <p>
         La fórmula base es: <strong>Monto = Capital × (1 + r/n)^(n×t)</strong>,
-        donde <em>r</em> es la tasa anual, <em>n</em> la frecuencia de
-        capitalización y <em>t</em> el período en años.
+        donde <em>r</em> es la tasa anual, <em>n</em> la frecuencia de capitalización
+        y <em>t</em> el período en años.
       </p>
       <p>
         La frecuencia de capitalización importa: capitalizar mensualmente (n=12)
@@ -285,7 +282,8 @@ const interesCompuestoFaqs = [
       </p>
       <p>
         Para ver el poder del interés compuesto en un caso concreto para Chile,
-        revisa el artículo <a href="/posts/el-poder-del-interes-compuesto/"
+        revisa el artículo <a
+          href="/posts/el-poder-del-interes-compuesto/"
           data-analytics-cta="calculator-guide"
           data-analytics-label="Articulo interes compuesto"
           data-analytics-location="calculator_explainer"
@@ -310,13 +308,16 @@ const interesCompuestoFaqs = [
             class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
           >
             ¿Qué es el interés compuesto?
-            <span class="text-xs text-muted transition-transform group-open:rotate-180">▼</span>
+            <span
+              class="text-xs text-muted transition-transform group-open:rotate-180"
+              >▼</span
+            >
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             El interés compuesto es el interés que se calcula sobre el capital
             inicial más los intereses ya acumulados. Cada período, los intereses
-            se reinvierten y generan nuevos intereses, produciendo un crecimiento
-            exponencial del capital.
+            se reinvierten y generan nuevos intereses, produciendo un
+            crecimiento exponencial del capital.
           </div>
         </details>
 
@@ -325,7 +326,10 @@ const interesCompuestoFaqs = [
             class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
           >
             ¿Cómo se calcula el monto final?
-            <span class="text-xs text-muted transition-transform group-open:rotate-180">▼</span>
+            <span
+              class="text-xs text-muted transition-transform group-open:rotate-180"
+              >▼</span
+            >
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             Monto final = Capital × (1 + tasa/n)^(n × años), donde "tasa" es la
@@ -339,7 +343,10 @@ const interesCompuestoFaqs = [
             class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
           >
             ¿Qué frecuencia de capitalización conviene elegir?
-            <span class="text-xs text-muted transition-transform group-open:rotate-180">▼</span>
+            <span
+              class="text-xs text-muted transition-transform group-open:rotate-180"
+              >▼</span
+            >
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             A mayor frecuencia, mayor monto final. La capitalización mensual
@@ -355,7 +362,10 @@ const interesCompuestoFaqs = [
             class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
           >
             ¿Esta calculadora incluye inflación o impuestos?
-            <span class="text-xs text-muted transition-transform group-open:rotate-180">▼</span>
+            <span
+              class="text-xs text-muted transition-transform group-open:rotate-180"
+              >▼</span
+            >
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             No. La calculadora muestra el crecimiento nominal del capital, sin
@@ -468,7 +478,12 @@ const interesCompuestoFaqs = [
     montoFinal: number;
     interesGenerado: number;
     rentabilidadPct: number;
-    evolucion: { ano: number; saldo: number; interesAno: number; interesAcum: number }[];
+    evolucion: {
+      ano: number;
+      saldo: number;
+      interesAno: number;
+      interesAcum: number;
+    }[];
   }
 
   function calcularInteresCompuesto(
@@ -492,7 +507,16 @@ const interesCompuestoFaqs = [
       evolucion.push({ ano: a, saldo, interesAno, interesAcum });
     }
 
-    return { capital, tasa: tasaPct, anos, n, montoFinal, interesGenerado, rentabilidadPct, evolucion };
+    return {
+      capital,
+      tasa: tasaPct,
+      anos,
+      n,
+      montoFinal,
+      interesGenerado,
+      rentabilidadPct,
+      evolucion,
+    };
   }
 
   function renderTabla(evolucion: CompoundResult["evolucion"]) {
@@ -575,15 +599,25 @@ const interesCompuestoFaqs = [
     rows.append(
       mkRow("Capital inicial", fmt(result.capital), "text-secondary"),
       mkRow("Tasa anual", fmtPct(result.tasa), "text-secondary"),
-      mkRow("Interés total generado", fmt(result.interesGenerado), "text-green-500"),
+      mkRow(
+        "Interés total generado",
+        fmt(result.interesGenerado),
+        "text-green-500"
+      ),
       mkRow("Rentabilidad total", fmtPct(result.rentabilidadPct), "text-accent")
     );
 
     const extras = document.createElement("div");
     extras.className = "mt-2 space-y-1";
     extras.append(
-      mkInfoRow("Relación final/inicial", `×${(result.montoFinal / result.capital).toFixed(2)}`),
-      mkInfoRow("Interés promedio anual", fmt(result.interesGenerado / result.anos))
+      mkInfoRow(
+        "Relación final/inicial",
+        `×${(result.montoFinal / result.capital).toFixed(2)}`
+      ),
+      mkInfoRow(
+        "Interés promedio anual",
+        fmt(result.interesGenerado / result.anos)
+      )
     );
 
     contenido.replaceChildren(headline, rows, extras);
