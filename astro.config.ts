@@ -112,7 +112,7 @@ export default defineConfig({
   base: SITE_BASE,
   trailingSlash: "always",
   build: {
-    inlineStylesheets: "always",
+    inlineStylesheets: "never",
   },
   integrations: [
     react(),

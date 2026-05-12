@@ -65,10 +65,14 @@
     summary.className =
       "cursor-pointer select-none text-sm font-semibold text-secondary";
     summary.textContent = "En este artículo";
+    const mobileHeading = document.createElement("h2");
+    mobileHeading.className = "sr-only";
+    mobileHeading.textContent = "En este artículo";
     const mobileList = document.createElement("ul");
     mobileList.className = "mt-3 space-y-1.5 text-sm";
     buildLinks(mobileList);
     mobileDetails.appendChild(summary);
+    mobileDetails.appendChild(mobileHeading);
     mobileDetails.appendChild(mobileList);
     article.prepend(mobileDetails);
 

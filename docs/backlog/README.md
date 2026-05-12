@@ -29,6 +29,7 @@ Deuda técnica: 0 items abiertos en `docs/TECH_DEBT_BACKLOG.md`.
 | Hero image system — remediación manual por lotes | `HERO_IMAGE_SYSTEM_REMEDIATION_2026-04-30.md` | Manual: assets finales pendientes |
 | TypeScript 7 compatibility | `TS7_COMPATIBILITY_AUDIT_2026-04-30.md` | Blocked — esperando TS7 stable |
 | Newsletter (MON-301) | `ux-backlog.md` | Decisión de plataforma pendiente |
+| OWASP Security backlog | `OWASP_SECURITY_AUDIT_2026-05-11.md` | SEC-003 pendiente (verificar `.env` histórico) |
 | LinkedIn strategy (MON-304) | `ux-backlog.md` | Fase 3, sin urgencia |
 | Illustrations (MON-405) | `ux-backlog.md` | Diferido |
 | Blog Advisory Architecture | `BLOG_ADVISORY_ARCHITECTURE_PLAN_2026-04-22.md` | Propuesta futuro mediano |
@@ -96,5 +97,6 @@ Deuda técnica: 0 items abiertos en `docs/TECH_DEBT_BACKLOG.md`.
 | `ux-backlog.md` | 15/16 completado; MON-405 diferido |
 | `BLOG_ADVISORY_ARCHITECTURE_PLAN_2026-04-22.md` | Propuesta |
 | `prompt-*.md` | Plantillas reutilizables |
+| `OWASP_SECURITY_AUDIT_2026-05-11.md` | 9 hallazgos (3🔴3🟠3🟡); SEC-003 verificar primero |
 
 Archived completed plans → `docs/archive/backlog/`.

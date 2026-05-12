@@ -112,6 +112,10 @@ const { noMarginTop = false, class: className, ...attrs } = Astro.props;
         <span>Contenido &#169; {currentYear} Monedario</span>
         <span aria-hidden="true" class="hidden sm:inline">&nbsp;·&nbsp;</span>
         <span>
+          {/*
+            Sin noreferrer: es el portafolio del autor, nos interesa el
+            referrer para tracking de visitas desde Monedario.
+          */}
           Desarrollado por <a
             href="https://tooltician.com/"
             target="_blank"

@@ -101,6 +101,10 @@ const structuredData = !pubDatetime
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' https://www.googletagmanager.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'"
+    />
     <link
       rel="preload"
       href={getPath("/fonts/source-sans-3-latin-es-400-600.woff2")}
@@ -191,11 +195,14 @@ const structuredData = !pubDatetime
 
     {
       PUBLIC_GA_MEASUREMENT_ID && (
-        <script
-          is:inline
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${PUBLIC_GA_MEASUREMENT_ID}`}
-        />
+        <>
+          <link rel="preconnect" href="https://www.googletagmanager.com" />
+          <script
+            is:inline
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${PUBLIC_GA_MEASUREMENT_ID}`}
+          />
+        </>
       )
     }
     {
