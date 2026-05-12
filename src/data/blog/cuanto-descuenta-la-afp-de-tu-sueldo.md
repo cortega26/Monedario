@@ -2,7 +2,6 @@
 title: "Descuento AFP en tu sueldo: cotización obligatoria, comisión y cómo revisarlo"
 author: "Equipo Monedario"
 pubDate: 2026-02-23T10:00:00Z
-updatedDate: 2026-03-22T23:01:40Z
 slug: cuanto-descuenta-la-afp-de-tu-sueldo
 featured: true
 lang: es-CL
@@ -55,7 +54,8 @@ reviewPolicy:
     - category:empleo-ingresos
     - validAsOf
     - officialSources
-  computedAt: "2026-05-06"
+  computedAt: '2026-05-12'
+updatedDate: 2026-05-12T00:00:00Z
 ---
 
 Cada mes aparece en tu liquidación una línea que dice "AFP" y un número que te descuentan. Para la mayoría es un cálculo opaco que simplemente aceptan. Esta guía lo abre: cuánto corresponde a cotización obligatoria, cuánto es comisión y cómo verificar que ese cargo calza con tu AFP y tu imponible.

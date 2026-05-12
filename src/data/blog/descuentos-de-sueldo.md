@@ -2,7 +2,6 @@
 title: "Descuentos de sueldo en Chile: cuáles son legales, voluntarios y prohibidos"
 author: "Equipo Monedario"
 pubDate: 2026-03-08T18:10:00Z
-updatedDate: 2026-04-12T18:30:00Z
 slug: descuentos-de-sueldo
 featured: false
 lang: es-CL
@@ -59,7 +58,8 @@ reviewPolicy:
     - category:empleo-ingresos
     - validAsOf
     - officialSources
-  computedAt: "2026-05-06"
+  computedAt: '2026-05-12'
+updatedDate: 2026-05-12T00:00:00Z
 ---
 
 Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal.

@@ -2,7 +2,6 @@
 title: "Cómo calcular tu sueldo líquido en Chile: del imponible al depósito final"
 author: "Equipo Monedario"
 pubDate: 2026-02-24T10:00:00Z
-updatedDate: 2026-05-11T00:00:00Z
 slug: como-calcular-sueldo-liquido
 featured: true
 homepagePriority: 100
@@ -65,7 +64,8 @@ reviewPolicy:
     - category:empleo-ingresos
     - validAsOf
     - officialSources
-  computedAt: "2026-05-06"
+  computedAt: '2026-05-12'
+updatedDate: 2026-05-12T00:00:00Z
 ---
 
 Te ofrecieron $1.200.000 brutos. Llegó el día de pago y te cayeron $950.000. Esta guía existe para rehacer ese cálculo de principio a fin: partir desde el bruto, separar el imponible y llegar al depósito final con AFP, salud, cesantía e impuesto.
