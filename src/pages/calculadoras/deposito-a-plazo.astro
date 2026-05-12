@@ -267,18 +267,20 @@ const dapFaqs = [
     >
       <h2>¿Cómo funciona el depósito a plazo en Chile?</h2>
       <p>
-        Un depósito a plazo (DAP) es un instrumento de ahorro en el que depositas
-        dinero por un período fijo y el banco te paga un interés al vencimiento.
-        El rendimiento se expresa como TIR anual y el interés se calcula
-        proporcionalmente al plazo en días.
+        Un depósito a plazo (DAP) es un instrumento de ahorro en el que
+        depositas dinero por un período fijo y el banco te paga un interés al
+        vencimiento. El rendimiento se expresa como TIR anual y el interés se
+        calcula proporcionalmente al plazo en días.
       </p>
       <p>
         <strong>Fórmula:</strong> Interés bruto = Monto × (TIR% / 100) × (días / 365).
       </p>
       <p>
-        Los intereses de DAP están sujetos a una retención del <strong>4%</strong>
-        (art. 59 N°4 Ley de Impuesto a la Renta) para personas naturales sin
-        actividad de primera categoría. Este impuesto lo retiene directamente el banco.
+        Los intereses de DAP están sujetos a una retención del <strong
+          >4%</strong
+        >
+        (art. 59 N°4 Ley de Impuesto a la Renta) para personas naturales sin actividad
+        de primera categoría. Este impuesto lo retiene directamente el banco.
       </p>
       <p>
         Para comparar si conviene un DAP en UF versus pesos, revisa el artículo
@@ -307,12 +309,15 @@ const dapFaqs = [
             class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
           >
             ¿Cómo se calcula el interés de un DAP?
-            <span class="text-xs text-muted transition-transform group-open:rotate-180">▼</span>
+            <span
+              class="text-xs text-muted transition-transform group-open:rotate-180"
+              >▼</span
+            >
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             Interés bruto = Monto × (TIR% ÷ 100) × (días ÷ 365). Ejemplo:
-            $5.000.000 al 5% TIR por 180 días → $5.000.000 × 0,05 × (180/365)
-            = $123.288 de interés bruto.
+            $5.000.000 al 5% TIR por 180 días → $5.000.000 × 0,05 × (180/365) =
+            $123.288 de interés bruto.
           </div>
         </details>
 
@@ -321,11 +326,14 @@ const dapFaqs = [
             class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
           >
             ¿Los DAP pagan impuesto en Chile?
-            <span class="text-xs text-muted transition-transform group-open:rotate-180">▼</span>
+            <span
+              class="text-xs text-muted transition-transform group-open:rotate-180"
+              >▼</span
+            >
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
-            Sí, para personas naturales sin actividad de primera categoría.
-            El banco retiene el 4% del interés bruto directamente (art. 59 N°4
+            Sí, para personas naturales sin actividad de primera categoría. El
+            banco retiene el 4% del interés bruto directamente (art. 59 N°4
             LIR). Este impuesto es una retención, no necesariamente el impuesto
             final — en la declaración de renta anual puede ajustarse según tu
             situación.
@@ -337,7 +345,10 @@ const dapFaqs = [
             class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
           >
             ¿Qué es la TIR en un DAP?
-            <span class="text-xs text-muted transition-transform group-open:rotate-180">▼</span>
+            <span
+              class="text-xs text-muted transition-transform group-open:rotate-180"
+              >▼</span
+            >
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             La TIR (Tasa Interna de Retorno) anual es la tasa de rendimiento
@@ -352,13 +363,16 @@ const dapFaqs = [
             class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
           >
             ¿Conviene un DAP en UF o en pesos?
-            <span class="text-xs text-muted transition-transform group-open:rotate-180">▼</span>
+            <span
+              class="text-xs text-muted transition-transform group-open:rotate-180"
+              >▼</span
+            >
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
-            Depende de la inflación esperada. Un DAP en UF protege el capital
-            de la inflación pero su tasa suele ser menor. En períodos de alta
-            inflación el DAP UF suele convenir más en términos reales. Revisa
-            el artículo comparativo para el análisis detallado.
+            Depende de la inflación esperada. Un DAP en UF protege el capital de
+            la inflación pero su tasa suele ser menor. En períodos de alta
+            inflación el DAP UF suele convenir más en términos reales. Revisa el
+            artículo comparativo para el análisis detallado.
           </div>
         </details>
       </div>
@@ -482,7 +496,17 @@ const dapFaqs = [
     const interesNeto = interesBruto - impuesto;
     const montoFinal = monto + interesNeto;
     const tasaEfectivaAnual = (interesNeto / monto) * (365 / plazo) * 100;
-    return { monto, plazo, tir: tirPct, aplicaImpuesto, interesBruto, impuesto, interesNeto, montoFinal, tasaEfectivaAnual };
+    return {
+      monto,
+      plazo,
+      tir: tirPct,
+      aplicaImpuesto,
+      interesBruto,
+      impuesto,
+      interesNeto,
+      montoFinal,
+      tasaEfectivaAnual,
+    };
   }
 
   function renderResultado(result: DapResult) {
@@ -548,8 +572,14 @@ const dapFaqs = [
     const extras = document.createElement("div");
     extras.className = "mt-2 space-y-1";
     extras.append(
-      mkInfoRow("Rentabilidad neta del período", `${((result.interesNeto / result.monto) * 100).toFixed(3)}%`),
-      mkInfoRow("Tasa efectiva anual neta", `${result.tasaEfectivaAnual.toFixed(2)}%`)
+      mkInfoRow(
+        "Rentabilidad neta del período",
+        `${((result.interesNeto / result.monto) * 100).toFixed(3)}%`
+      ),
+      mkInfoRow(
+        "Tasa efectiva anual neta",
+        `${result.tasaEfectivaAnual.toFixed(2)}%`
+      )
     );
 
     const note = document.createElement("p");
@@ -573,9 +603,11 @@ const dapFaqs = [
       (document.getElementById("tasa-tir") as HTMLInputElement).value
     );
     const aplicaImpuesto =
-      (document.querySelector(
-        "input[name='aplica-impuesto']:checked"
-      ) as HTMLInputElement)?.value === "si";
+      (
+        document.querySelector(
+          "input[name='aplica-impuesto']:checked"
+        ) as HTMLInputElement
+      )?.value === "si";
 
     if (!Number.isFinite(monto) || monto <= 0) {
       showError("Ingresa un monto válido mayor que 0.");
