@@ -10,7 +10,7 @@ describe("calculator portfolio registry", () => {
   it("keeps every calculator in a declared family", () => {
     const familyIds = new Set(CALCULATOR_FAMILY_ORDER);
 
-    expect(CALCULATOR_PORTFOLIO).toHaveLength(18);
+    expect(CALCULATOR_PORTFOLIO).toHaveLength(19);
     expect(CALCULATOR_FAMILY_ORDER).toHaveLength(4);
 
     for (const calculator of CALCULATOR_PORTFOLIO) {

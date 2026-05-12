@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { calculateNetSalary } from "@/application/use-cases/CalculateNetSalary";
 import { calculateApvComparison } from "@/application/use-cases/CalculateApvComparison";
 import { convertUf } from "@/application/use-cases/ConvertUf";
+import { convertUtm } from "@/application/use-cases/ConvertUtm";
 import { estimateUnemploymentCoverage } from "@/application/use-cases/EstimateUnemploymentCoverage";
 import { calculateConsumerCredit } from "@/application/use-cases/CalculateConsumerCredit";
 import { simulateCreditCardCost } from "@/application/use-cases/SimulateCreditCardCost";
@@ -133,6 +134,40 @@ describe("Regression - Conversor UF", () => {
     });
     expect(round2(result.ufAmount)).toBe(2500.5);
     expect(round2(result.clpAmount)).toBe(100328686.73);
+  });
+});
+
+describe("Regression - Conversor UTM", () => {
+  it("case 1 — UTM a CLP", () => {
+    const result = convertUtm({ amount: 5, utmValue: UTM, direction: "utm_to_clp" });
+    expect(round2(result.utmAmount)).toBe(5);
+    expect(round2(result.clpAmount)).toBe(336470);
+  });
+
+  it("case 2 — CLP a UTM", () => {
+    const result = convertUtm({
+      amount: 1000000,
+      utmValue: UTM,
+      direction: "clp_to_utm",
+    });
+    expect(round2(result.utmAmount)).toBe(14.86);
+    expect(round2(result.clpAmount)).toBe(1000000);
+  });
+
+  it("case 3 — monto no redondo", () => {
+    const result = convertUtm({
+      amount: 13.5,
+      utmValue: 68250.75,
+      direction: "utm_to_clp",
+    });
+    expect(round2(result.utmAmount)).toBe(13.5);
+    expect(round2(result.clpAmount)).toBe(921385.13);
+  });
+
+  it("case 4 — entrada inválida lanza error", () => {
+    expect(() =>
+      convertUtm({ amount: 0, utmValue: UTM, direction: "utm_to_clp" })
+    ).toThrow("amount must be a finite number greater than 0.");
   });
 });
 

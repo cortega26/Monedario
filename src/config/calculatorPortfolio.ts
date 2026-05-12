@@ -423,6 +423,34 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     ],
   },
   {
+    href: "/calculadoras/conversor-utm/",
+    slug: "conversor-utm",
+    title: "Conversor UTM ↔ Pesos",
+    description:
+      "Convierte entre UTM y pesos al valor vigente del mes con una referencia rápida de multas, impuestos y trámites.",
+    icon: "refresh",
+    tag: "Referencia",
+    family: "ingresos",
+    primaryJtbd:
+      "Traducir un monto expresado en UTM a pesos o viceversa sin añadir reglas tributarias.",
+    whenToUse:
+      "Cuando solo necesitas equivalencia actual entre UTM y CLP para revisar una multa, impuesto o trámite.",
+    notFor:
+      "No calcula impuestos por tramos progresivos ni modela la tabla del SII.",
+    related: [
+      {
+        href: "/calculadoras/impuesto-segunda-categoria/",
+        label: "Impuesto de segunda categoría",
+        when: "si tu cálculo es el impuesto mensual sobre tu sueldo usando la tabla de tramos del SII.",
+      },
+      {
+        href: "/calculadoras/conversor-uf/",
+        label: "Conversor UF",
+        when: "si tu monto está expresado en UF (vivienda, hipotecas, arriendos) y no en UTM.",
+      },
+    ],
+  },
+  {
     href: "/calculadoras/reajuste-arriendo/",
     slug: "reajuste-arriendo",
     title: "Reajuste de Arriendo",

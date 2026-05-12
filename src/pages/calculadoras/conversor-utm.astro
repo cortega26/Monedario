@@ -1,0 +1,452 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
+import Footer from "@/components/Footer.astro";
+import MethodologyBlock from "@/components/MethodologyBlock.astro";
+import PrimaryCTA from "@/components/PrimaryCTA.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
+import NextSteps from "@/components/NextSteps.astro";
+import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
+import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
+import { getPath } from "@/utils/getPath";
+
+const { parameters: economicParameters } = await getEconomicParameters();
+const utmArticlePath = getPath("/posts/utm-chile-que-es-como-funciona/");
+const impuestoSegundaCategoriaPath = getPath(
+  "/calculadoras/impuesto-segunda-categoria/"
+);
+const utmLastUpdated = resolveEconomicIndicatorDate(economicParameters, "utm");
+const economicSourceLabel =
+  economicParameters.source === "live"
+    ? "dato en línea"
+    : economicParameters.source === "snapshot"
+      ? "dato de referencia"
+      : "fallback de emergencia";
+const economicSourceMeta =
+  economicParameters.source === "live"
+    ? {
+        bannerText: "Consulta en línea a mindicador.cl",
+        methodologyNote:
+          "El valor UTM se consulta en línea desde la API de mindicador.cl, que replica el valor publicado por el SII.",
+      }
+    : economicParameters.source === "snapshot"
+      ? {
+          bannerText: "Snapshot económico del sitio",
+          methodologyNote:
+            "El valor UTM mostrado proviene del snapshot económico del sitio, actualizado con referencia en mindicador.cl.",
+        }
+      : {
+          bannerText: "Valor de respaldo interno del sitio",
+          methodologyNote:
+            "El valor UTM mostrado corresponde al valor de respaldo interno del sitio usado cuando la fuente económica no está disponible.",
+        };
+const utmDisplay = economicParameters.utm.toLocaleString("es-CL", {
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+});
+const utmDateDisplay = new Intl.DateTimeFormat("es-CL", {
+  dateStyle: "long",
+  timeZone: "UTC",
+}).format(new Date(`${utmLastUpdated}T00:00:00.000Z`));
+
+const utaDisplay = economicParameters.uta
+  ? "$" + Math.round(economicParameters.uta).toLocaleString("es-CL")
+  : null;
+
+const currentCalculator = CALCULATOR_PORTFOLIO.find(
+  calc => calc.slug === "conversor-utm"
+);
+const calculatorRelatedItems = (currentCalculator?.related ?? []).map(item => ({
+  href: item.href,
+  title: item.label,
+  description: item.when,
+  label: "Relacionado",
+}));
+const calculatorNextStepItems = [
+  ...calculatorRelatedItems,
+  ...(calculatorRelatedItems.length < 2
+    ? [
+        {
+          href: "/calculadoras/",
+          title: "Ver todas las calculadoras",
+          description: "Compara otra herramienta si tu pregunta cambió.",
+          label: "Herramientas",
+        },
+      ]
+    : []),
+];
+---
+
+<Layout
+  title="Conversor UTM a Pesos — Calculadora Chile | Monedario"
+  description="Calculadora y conversor UTM a CLP: convierte al valor mensual vigente con tabla rápida de montos típicos en multas e impuestos."
+>
+  <CalculatorJsonLd
+    name="Conversor UTM a Pesos Chile"
+    description="Calculadora y conversor UTM a CLP: convierte al valor mensual vigente con tabla rápida de montos típicos en multas e impuestos."
+  />
+  <Header />
+  <Breadcrumb />
+  <CalculatorTrustBadge location="calculator_header" />
+  <main
+    data-layout="calculator"
+    id="main-content"
+    class="app-layout"
+    data-analytics-page-type="calculator"
+    data-analytics-calculator="conversor-utm"
+    data-analytics-calculator-name="Conversor UTM a Pesos"
+  >
+    <section class="border-b border-border pt-8 pb-6">
+      <h1 class="my-4 text-3xl font-bold sm:text-4xl">Conversor UTM ↔ Pesos</h1>
+      <p class="max-w-xl text-secondary">
+        Convierte entre Unidades Tributarias Mensuales y pesos chilenos al valor
+        vigente del mes. Sin registro, sin publicidad.
+      </p>
+    </section>
+
+    <section class="max-w-xl py-8">
+      <!-- VALOR DEL MES -->
+      <div
+        id="valor-utm-banner"
+        class="mb-6 flex items-center justify-between gap-4 rounded-xl border border-accent/30 bg-accent/5 p-4"
+      >
+        <div>
+          <p
+            class="mb-0.5 text-xs font-bold tracking-widest text-accent uppercase"
+          >
+            Valor UTM vigente
+          </p>
+          <p id="utm-display" class="text-3xl font-bold">{"$" + utmDisplay}</p>
+          <p id="utm-fecha" class="mt-0.5 text-xs text-muted">
+            {utmDateDisplay} · {economicSourceMeta.bannerText} ({economicSourceLabel})
+          </p>
+        </div>
+        <span class="text-4xl">🇨🇱</span>
+      </div>
+
+      <!-- CONVERSOR -->
+      <div class="mb-6 rounded-xl border border-border p-6">
+        <!-- UTM → Pesos -->
+        <div class="mb-6">
+          <label
+            for="utm-input"
+            class="mb-1 block text-sm font-medium text-secondary"
+          >
+            Unidades Tributarias Mensuales (UTM)
+          </label>
+          <input
+            type="number"
+            id="utm-input"
+            placeholder="Ej: 10"
+            min="0"
+            step="0.01"
+            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-lg text-foreground focus:border-accent focus:outline-none"
+          />
+        </div>
+
+        <div class="mb-6 flex items-center gap-3">
+          <div class="h-px flex-1 bg-border"></div>
+          <button
+            id="swap-btn"
+            class="rounded-full border border-border px-3 py-1 text-sm text-secondary transition-all hover:border-accent hover:text-accent"
+          >
+            ⇅ invertir
+          </button>
+          <div class="h-px flex-1 bg-border"></div>
+        </div>
+
+        <div class="mb-6">
+          <label
+            for="pesos-input"
+            class="mb-1 block text-sm font-medium text-secondary"
+          >
+            Pesos chilenos ($)
+          </label>
+          <input
+            type="text"
+            id="pesos-input"
+            placeholder="Ej: 700000"
+            inputmode="numeric"
+            autocomplete="off"
+            spellcheck="false"
+            aria-describedby="pesos-input-hint"
+            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-lg text-foreground focus:border-accent focus:outline-none"
+          />
+          <p id="pesos-input-hint" class="mt-1 text-xs text-muted">
+            Escribe solo números; aplicamos el formato chileno automáticamente.
+          </p>
+        </div>
+
+        <!-- RESULTADO VISUAL -->
+        <div
+          id="resultado"
+          class="hidden rounded-lg bg-foreground/5 p-4 text-center"
+          aria-live="polite"
+        >
+          <p id="resultado-texto" class="text-2xl font-bold"></p>
+          <p id="resultado-sub" class="mt-1 text-sm text-muted"></p>
+        </div>
+        <div
+          id="economic-parameters"
+          data-utm={String(economicParameters.utm)}
+          data-last-updated={utmLastUpdated}
+          class="hidden"
+          aria-hidden="true"
+        >
+        </div>
+      </div>
+
+      <!-- TABLA DE REFERENCIA RÁPIDA -->
+      <div class="rounded-xl border border-border p-6">
+        <h2 class="mb-4 text-base font-semibold">
+          Valores de referencia rápidos
+        </h2>
+        <div id="tabla-ref" class="space-y-2 text-sm"></div>
+        <p class="mt-3 text-xs text-muted">
+          Fuente económica: {economicSourceMeta.bannerText} ({economicSourceLabel}, UTM al {utmLastUpdated}).
+        </p>
+        {
+          utaDisplay ? (
+            <p class="mt-1 text-xs text-muted">
+              UTA de referencia anual: {utaDisplay} (12 × UTM de diciembre).
+            </p>
+          ) : null
+        }
+      </div>
+    </section>
+
+    <section
+      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
+    >
+      <h2>¿Qué es la UTM y para qué sirve?</h2>
+      <p>
+        La <strong>Unidad Tributaria Mensual (UTM)</strong> es la unidad que usa el
+        Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites.
+        Cambia el primer día hábil de cada mes según el IPC del mes anterior, publicado
+        por el INE.
+      </p>
+      <ul>
+        <li>
+          <strong>Multas de tránsito:</strong> la Ley de Tránsito N°18.290 expresa
+          las sanciones en UTM. El monto en pesos depende de la UTM vigente al momento
+          del pago.
+        </li>
+        <li>
+          <strong>Impuesto a la renta:</strong> el tramo exento del Impuesto de Segunda
+          Categoría equivale a 13,5 UTM mensuales. La tabla completa se reajusta cada
+          mes con la UTM.
+        </li>
+        <li>
+          <strong>Trámites y aranceles:</strong> costos notariales, consulares y del
+          Conservador de Bienes Raíces se expresan en UTM.
+        </li>
+      </ul>
+      <p class="text-sm text-muted">
+        ⚠️ El valor de la UTM cambia el primer día hábil de cada mes. Este
+        conversor usa la última actualización disponible. Para el dato oficial
+        vigente consulta el{" "}
+        <a
+          href="https://www.sii.cl/valores_y_fechas/utm/utm2026.htm"
+          target="_blank"
+          rel="noopener noreferrer">SII</a
+        >.
+      </p>
+      <p>
+        Para entender en detalle cómo se reajusta la UTM, en qué se diferencia
+        de la UF y cómo afecta tus impuestos, revisa la{" "}
+        <a
+          href={utmArticlePath}
+          data-analytics-cta="calculator-guide"
+          data-analytics-label="Guia UTM completa"
+          data-analytics-location="calculator_explainer"
+        >
+          guía completa de la UTM en Chile</a
+        >.
+      </p>
+      <p>
+        Si tu cálculo es el impuesto mensual sobre tu sueldo, usa la{" "}
+        <a
+          href={impuestoSegundaCategoriaPath}
+          data-analytics-cta="calculator-related"
+          data-analytics-label="Calculadora impuesto segunda categoria"
+          data-analytics-location="calculator_explainer"
+        >
+          calculadora de Impuesto de Segunda Categoría</a
+        >, que aplica los tramos progresivos del SII con la UTM vigente.
+      </p>
+    </section>
+
+    <PrimaryCTA
+      text="Guía completa de la UTM →"
+      href="/posts/utm-chile-que-es-como-funciona/"
+      context="Entiende cómo funciona la UTM, cómo se reajusta cada mes y en qué casos la usa el Estado chileno."
+    />
+    <MethodologyBlock
+      notes={`${economicSourceMeta.methodologyNote} La UTM se reajusta el primer día hábil de cada mes según la variación del IPC del mes anterior publicado por el INE. La UTA de referencia mostrada usa el valor anual informado por la misma fuente cuando está disponible; si no, se aproxima desde la serie económica cargada por el sitio. Verifica siempre el dato vigente en el SII antes de usarlo en trámites, multas o impuestos.`}
+      sources={[
+        {
+          name: "mindicador.cl — API valor UTM",
+          url: "https://mindicador.cl/api/utm",
+          date: "2026-04",
+        },
+        {
+          name: "SII — Valores UTM vigentes",
+          url: "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm",
+          date: "2026-04",
+        },
+      ]}
+    />
+    <NextSteps
+      currentHref="/calculadoras/conversor-utm/"
+      items={calculatorNextStepItems}
+      title="Qué hacer con este resultado"
+      description="Sigue con una herramienta relacionada o vuelve al índice si necesitas resolver otra pregunta."
+      location="calculator_next_steps"
+    />
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  import { convertUtm } from "@/application/use-cases/ConvertUtm";
+  import { trackAnalyticsEvent } from "@/utils/analytics";
+
+  function readEconomicContext(): { utm: number; lastUpdated: string } {
+    const element = document.getElementById("economic-parameters");
+    const utm = Number(element?.dataset?.utm);
+    const lastUpdated = element?.dataset?.lastUpdated;
+    if (!Number.isFinite(utm) || utm <= 0 || !lastUpdated) {
+      throw new Error("No se pudo cargar el valor UTM para el conversor.");
+    }
+    return { utm, lastUpdated };
+  }
+
+  const economicContext = readEconomicContext();
+
+  const fmt = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+  const fmtUtm = (n: number) =>
+    n.toLocaleString("es-CL", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 4,
+    }) + " UTM";
+  const formatClpInput = (n: number) =>
+    Math.round(n).toLocaleString("es-CL");
+  const parseClpInput = (raw: string) => {
+    const digitsOnly = raw.replace(/\D/g, "");
+    return digitsOnly ? Number(digitsOnly) : NaN;
+  };
+
+  const utmInput = document.getElementById("utm-input") as HTMLInputElement;
+  const pesosInput = document.getElementById("pesos-input") as HTMLInputElement;
+  const resultado = document.getElementById("resultado")!;
+  const resultadoTexto = document.getElementById("resultado-texto")!;
+  const resultadoSub = document.getElementById("resultado-sub")!;
+  let hasTrackedCompletion = false;
+
+  function mostrarResultado(principal: string, sub: string) {
+    resultado.classList.remove("hidden");
+    resultadoTexto.textContent = principal;
+    resultadoSub.textContent = sub;
+    if (!hasTrackedCompletion) {
+      hasTrackedCompletion = true;
+      trackAnalyticsEvent("calculator_complete", {
+        calculator_slug: "conversor-utm",
+        calculator_name: "Conversor UTM a Pesos",
+        outcome: "success",
+      });
+    }
+  }
+
+  utmInput.addEventListener("input", () => {
+    const utm = parseFloat(utmInput.value);
+    if (!isNaN(utm) && utm > 0) {
+      const conversion = convertUtm({
+        amount: utm,
+        utmValue: economicContext.utm,
+        direction: "utm_to_clp",
+      });
+      pesosInput.value = formatClpInput(conversion.clpAmount);
+      mostrarResultado(
+        fmt(conversion.clpAmount),
+        `${fmtUtm(conversion.utmAmount)} = ${fmt(conversion.clpAmount)} al ${economicContext.lastUpdated}`
+      );
+    } else {
+      pesosInput.value = "";
+      resultado.classList.add("hidden");
+    }
+  });
+
+  pesosInput.addEventListener("input", () => {
+    const pesos = parseClpInput(pesosInput.value);
+    if (!isNaN(pesos) && pesos > 0) {
+      pesosInput.value = formatClpInput(pesos);
+      const conversion = convertUtm({
+        amount: pesos,
+        utmValue: economicContext.utm,
+        direction: "clp_to_utm",
+      });
+      utmInput.value = conversion.utmAmount.toFixed(4);
+      mostrarResultado(
+        fmtUtm(conversion.utmAmount),
+        `${fmt(conversion.clpAmount)} = ${fmtUtm(conversion.utmAmount)} al ${economicContext.lastUpdated}`
+      );
+    } else {
+      utmInput.value = "";
+      resultado.classList.add("hidden");
+    }
+  });
+
+  document.getElementById("swap-btn")?.addEventListener("click", () => {
+    const utmValue = parseFloat(utmInput.value);
+    const pesosValue = parseClpInput(pesosInput.value);
+
+    if (!isNaN(pesosValue) && pesosValue > 0) {
+      utmInput.value = (pesosValue / economicContext.utm).toFixed(4);
+      utmInput.dispatchEvent(new Event("input"));
+      return;
+    }
+
+    if (!isNaN(utmValue) && utmValue > 0) {
+      pesosInput.value = formatClpInput(utmValue * economicContext.utm);
+      pesosInput.dispatchEvent(new Event("input"));
+      return;
+    }
+
+    resultado.classList.add("hidden");
+  });
+
+  // Tabla de referencia
+  const refs = [
+    { label: "1 UTM", utm: 1 },
+    { label: "2 UTM (multa de tránsito común)", utm: 2 },
+    { label: "5 UTM", utm: 5 },
+    { label: "10 UTM", utm: 10 },
+    { label: "13,5 UTM (tope exención 2ª categoría)", utm: 13.5 },
+    { label: "20 UTM", utm: 20 },
+    { label: "30 UTM (tope 2º tramo 4%)", utm: 30 },
+    { label: "50 UTM (tope 3er tramo 8%)", utm: 50 },
+    { label: "100 UTM", utm: 100 },
+  ];
+
+  const tablaEl = document.getElementById("tabla-ref")!;
+  const tableRows = refs.map(reference => {
+    const row = document.createElement("div");
+    row.className =
+      "flex justify-between border-b border-border py-1.5 last:border-0";
+
+    const label = document.createElement("span");
+    label.className = "text-secondary";
+    label.textContent = reference.label;
+
+    const value = document.createElement("span");
+    value.className = "font-mono font-semibold";
+    value.textContent = fmt(reference.utm * economicContext.utm);
+
+    row.append(label, value);
+    return row;
+  });
+  tablaEl.replaceChildren(...tableRows);
+</script>
