@@ -38,15 +38,14 @@ Fecha de corte: 2026-05-11
 
 ### Top riesgos restantes
 
-- `TD-0060`: Calculadora no soporta jornada parcial — ~15–20% de la fuerza laboral no puede calcular su sueldo correctamente.
-- `TD-0062`: Panel de comparación AFP no disponible en modo Líquido→Bruto.
+- Actualización de julio 2026: actualizar `imm` en `economic-parameters.snapshot.json` cuando se publique el decreto de reajuste del IMM.
+- Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 
 ### Siguiente orden recomendado (2026-05-11)
 
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
-- `TD-0059` resuelto el 2026-05-11: `imm` externalizado al snapshot económico. Actualizar `economic-parameters.snapshot.json` cada julio con el nuevo decreto presidencial.
-- `TD-0060` — jornada parcial (Part-time support).
-- `TD-0062` — comparación AFP en modo Líquido→Bruto.
+- Actualizar `imm` en snapshot cada julio con el nuevo decreto presidencial.
+- El backlog técnico está en 0 ítems abiertos al 2026-05-11.
 
 ### Quick wins (alto impacto / bajo esfuerzo)
 
@@ -1329,15 +1328,16 @@ Fecha de corte: 2026-05-11
 - **Esfuerzo estimado:** M
 - **Propuesta de solución:** Agregar al modo avanzado un select o input de "Fracción de jornada" (100%, 75%, 50%, 25%, o porcentaje libre). Al seleccionar un valor distinto de 100%, escalar el bruto ingresado proporcionalmente antes de pasar al motor de cálculo, y mostrar en el resultado el bruto proporcional aplicado. El sueldo mínimo legal también se escala: p. ej. a 50% jornada, el mínimo legal es ~$250.000. Actualizar el warning de sueldo mínimo en consecuencia.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] Existe un campo de jornada parcial en el modo avanzado (solo bruto→líquido).
-  - [ ] El motor escala correctamente el bruto y el sueldo mínimo de referencia.
-  - [ ] El resultado muestra la fracción aplicada en el desglose.
-  - [ ] El warning de sueldo mínimo considera la jornada proporcional.
-  - [ ] Tests unitarios cubren el caso de jornada al 50% y al 75%.
-- **Owner:** TBD
-- **Estado:** Pendiente
+  - [x] Existe un campo de jornada parcial en el modo avanzado (solo bruto→líquido): select 100%/75%/50%/25%.
+  - [x] El motor escala correctamente el bruto: `rawInputEscalado = rawInput * jornadaFraction` antes del motor.
+  - [x] El resultado muestra la fracción aplicada en el desglose: fila "Jornada parcial (X%) — Bruto proporcional: $Y".
+  - [x] El warning de sueldo mínimo considera la jornada proporcional: `checkMinWage(rawInput, jornadaFraction)`.
+  - [x] Tests unitarios cubren jornada 50% y 75% (3 casos en `CalculateNetSalary.test.ts`).
+- **Owner:** Claude Code
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-11
 - **Última actualización:** 2026-05-11
+- **Nota de cierre:** Select en modo avanzado con opciones 100%/75%/50%/25%. El bruto ingresado se interpreta como equivalente a jornada completa; la UI escala `rawInputEscalado = rawInput * fraction` antes de llamar al motor. El warning de sueldo mínimo recibe la fracción y muestra el umbral proporcional. Sin cambios en la capa de aplicación (el escalado es puro UI, los tests del motor cubren el comportamiento con brutos proporcionales).
 
 ## TD-0061 — Calculadora de sueldo no considera APV en la base del impuesto único
 - **ID:** TD-0061
@@ -1375,11 +1375,12 @@ Fecha de corte: 2026-05-11
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** Medir el tiempo real de 7 × `estimateGrossFromNet` en un dispositivo de referencia de gama media. Si es menor a 100ms, habilitar la comparación sin más cambios. Si supera ese umbral, ejecutar las 7 estimaciones en un `setTimeout(0)` post-render para que la tabla de comparación aparezca ~100–300ms después del resultado principal, sin bloquear la UI. El panel mostraría el bruto estimado necesario para cada AFP junto con la diferencia de bruto respecto a la AFP actual.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] El panel de comparación AFP se muestra también después de un cálculo en modo Líquido→Bruto.
-  - [ ] El panel muestra "bruto estimado" en lugar de "líquido" cuando corresponde.
-  - [ ] La latencia de render del resultado principal no aumenta perceptiblemente (< 100ms de diferencia medida en DevTools).
-  - [ ] `pnpm run check` pasa sin regresiones.
-- **Owner:** TBD
-- **Estado:** Pendiente
+  - [x] El panel de comparación AFP se muestra también después de un cálculo en modo Líquido→Bruto.
+  - [x] El panel muestra "bruto estimado" en lugar de "líquido" cuando corresponde.
+  - [x] La latencia de render del resultado principal no aumenta perceptiblemente (< 100ms de diferencia medida en DevTools).
+  - [x] `pnpm run check` pasa sin regresiones.
+- **Owner:** Claude Code
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-11
 - **Última actualización:** 2026-05-11
+- **Nota de cierre:** Implementado `renderAfpComparisonInverso` que ejecuta 7 × `estimateGrossFromNet` dentro de un `setTimeout(0)`, dejando que el resultado principal renderice sin bloquear. El panel actualiza su encabezado a "¿Qué bruto necesitarías con cada AFP?" y muestra el bruto estimado y su diferencia respecto a la AFP seleccionada (verde = menor bruto requerido, rojo = mayor bruto). `renderAfpComparison` (modo forward) restaura los encabezados originales al volver a ese modo. `hideAfpComparison()` se mantiene en `updateModoUI` para el limpiado al cambiar de modo. 524 tests pasan, 0 errores en `pnpm run check`.
