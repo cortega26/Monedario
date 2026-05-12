@@ -85,8 +85,7 @@ const sueldoLiquidoFaqs = [
   },
   {
     question: "¿Cuánto me corresponde de gratificación legal mensual?",
-    answer:
-      `Si tu empleador paga gratificación mensualizada bajo art. 50 CT, el tope legal es el menor valor entre el 25% de tu remuneración mensual y $${GRATI_CAP_SERVER.toLocaleString("es-CL")} (equivalente a 4,75 IMM ÷ 12, con IMM = $${IMM_MENSUAL_SERVER.toLocaleString("es-CL")}). Ejemplo: con bruto de $900.000 el máximo legal es $${GRATI_CAP_SERVER.toLocaleString("es-CL")}; con bruto de $600.000 sería $${Math.round(600_000 * 0.25).toLocaleString("es-CL")}. Esta calculadora muestra el estimado en el resultado cuando calculas en modo Bruto → Líquido.`,
+    answer: `Si tu empleador paga gratificación mensualizada bajo art. 50 CT, el tope legal es el menor valor entre el 25% de tu remuneración mensual y $${GRATI_CAP_SERVER.toLocaleString("es-CL")} (equivalente a 4,75 IMM ÷ 12, con IMM = $${IMM_MENSUAL_SERVER.toLocaleString("es-CL")}). Ejemplo: con bruto de $900.000 el máximo legal es $${GRATI_CAP_SERVER.toLocaleString("es-CL")}; con bruto de $600.000 sería $${Math.round(600_000 * 0.25).toLocaleString("es-CL")}. Esta calculadora muestra el estimado en el resultado cuando calculas en modo Bruto → Líquido.`,
   },
   {
     question: "¿Qué AFP cobra menos comisión en Chile?",
@@ -219,7 +218,10 @@ const calculatorNextStepItems = [
             class="mt-2 hidden rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-700 dark:text-amber-400"
             role="status"
           >
-            El sueldo mínimo mensual en Chile es ${IMM_MENSUAL_SERVER.toLocaleString("es-CL")}. El monto ingresado está por debajo del mínimo legal para jornada completa.
+            El sueldo mínimo mensual en Chile es ${
+              IMM_MENSUAL_SERVER.toLocaleString("es-CL")
+            }. El monto ingresado está por debajo del mínimo legal para jornada
+            completa.
           </div>
         </div>
 
@@ -406,8 +408,8 @@ const calculatorNextStepItems = [
               </select>
               <p class="mt-1 text-xs text-muted">
                 Para jornada parcial: ingresa el sueldo bruto de jornada
-                completa equivalente; la calculadora aplica la fracción al
-                bruto y al mínimo legal de referencia.
+                completa equivalente; la calculadora aplica la fracción al bruto
+                y al mínimo legal de referencia.
               </p>
             </div>
             <div>
@@ -530,12 +532,11 @@ const calculatorNextStepItems = [
               <div
                 class="mt-2 rounded-lg border border-blue-500/30 bg-blue-500/10 px-3 py-2 text-xs text-blue-700 dark:text-blue-400"
               >
-                <strong>Régimen A vs. Régimen B:</strong> El Régimen B reduce
-                directamente tu impuesto mensual al descontar el APV de la renta
-                tributable. El Régimen A en cambio genera un crédito fiscal del
-                15% que se aplica en tu declaración anual de impuestos (Operación
-                Renta), no en tu liquidación mensual; ingrésalo aquí solo si
-                cotizas bajo Régimen B.
+                <strong>Régimen A vs. Régimen B:</strong> El Régimen B reduce directamente
+                tu impuesto mensual al descontar el APV de la renta tributable. El
+                Régimen A en cambio genera un crédito fiscal del 15% que se aplica
+                en tu declaración anual de impuestos (Operación Renta), no en tu liquidación
+                mensual; ingrésalo aquí solo si cotizas bajo Régimen B.
               </div>
             </div>
           </div>
@@ -972,11 +973,14 @@ const calculatorNextStepItems = [
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             Si tu empleador paga gratificación mensualizada bajo art. 50 CT, el
-            tope legal es el menor valor entre el <strong>25% de tu
-            remuneración mensual</strong> y <strong>${GRATI_CAP_SERVER.toLocaleString("es-CL")}</strong>
-            (equivalente a 4,75 IMM ÷ 12 meses, con IMM = ${IMM_MENSUAL_SERVER.toLocaleString("es-CL")}).
-            Ejemplo: con bruto de $900.000 el máximo legal es ${GRATI_CAP_SERVER.toLocaleString("es-CL")};
-            con bruto de $600.000 sería $150.000. Esta calculadora muestra el
+            tope legal es el menor valor entre el <strong
+              >25% de tu remuneración mensual</strong
+            > y <strong>${GRATI_CAP_SERVER.toLocaleString("es-CL")}</strong>
+            (equivalente a 4,75 IMM ÷ 12 meses, con IMM = ${
+              IMM_MENSUAL_SERVER.toLocaleString("es-CL")
+            }). Ejemplo: con bruto de $900.000 el máximo legal es ${
+              GRATI_CAP_SERVER.toLocaleString("es-CL")
+            }; con bruto de $600.000 sería $150.000. Esta calculadora muestra el
             estimado en el resultado cuando calculas en modo Bruto → Líquido.
             Para el detalle completo de modalidades y obligaciones, revisa la <a
               href="/posts/gratificacion-legal-chile/"
@@ -1258,7 +1262,9 @@ const calculatorNextStepItems = [
 
     // Defer heavy computation (7 × 60-iter binary search) to not block result render
     setTimeout(() => {
-      const afpSelect = document.getElementById("afp-tasa") as HTMLSelectElement;
+      const afpSelect = document.getElementById(
+        "afp-tasa"
+      ) as HTMLSelectElement;
       if (!afpSelect) return;
       const params = getParams();
       const afpOptions = Array.from(afpSelect.options).map(opt => ({
@@ -1282,8 +1288,8 @@ const calculatorNextStepItems = [
       comparisons.sort((a, b) => a.gross - b.gross);
 
       const currentGross =
-        comparisons.find(c => Math.abs(c.rate - currentAfpRate) < 0.01)?.gross ??
-        comparisons[0].gross;
+        comparisons.find(c => Math.abs(c.rate - currentAfpRate) < 0.01)
+          ?.gross ?? comparisons[0].gross;
       const bestGross = comparisons[0].gross;
       const worstGross = comparisons[comparisons.length - 1].gross;
       const maxDiff = worstGross - bestGross;
@@ -1803,7 +1809,13 @@ const calculatorNextStepItems = [
         "Sueldo Bruto Estimado",
         "Estimación inversa: supuesto bruto = imponible. AFP, salud y contrato según tu selección."
       );
-      renderAfpComparisonInverso(rawInput, healthSystem, contractType, isapreAdicional, afpTasaPercent);
+      renderAfpComparisonInverso(
+        rawInput,
+        healthSystem,
+        contractType,
+        isapreAdicional,
+        afpTasaPercent
+      );
       focusResultado();
       saveCalculatorResult(
         window.location.pathname,
@@ -1895,7 +1907,14 @@ const calculatorNextStepItems = [
         return;
       }
       setLoading(false);
-      renderResultado(resultado, "Sueldo Líquido", undefined, otrosDescuentos, rawInputEscalado, jornadaFraction);
+      renderResultado(
+        resultado,
+        "Sueldo Líquido",
+        undefined,
+        otrosDescuentos,
+        rawInputEscalado,
+        jornadaFraction
+      );
       renderAfpComparison(
         grossBase,
         taxableAdjusted,
@@ -2012,7 +2031,8 @@ const calculatorNextStepItems = [
     const val = parseFloat(
       (document.getElementById("sueldo") as HTMLInputElement).value
     );
-    if (getModo() === "bruto-a-liquido") checkMinWage(val, getJornadaFraction());
+    if (getModo() === "bruto-a-liquido")
+      checkMinWage(val, getJornadaFraction());
     clearTimeout(autoCalcTimer);
     autoCalcTimer = setTimeout(() => {
       if (val > 0) {
