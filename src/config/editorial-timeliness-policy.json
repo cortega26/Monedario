@@ -1,33 +1,33 @@
 {
-  "defaultCadenceDays": 60,
+  "defaultCadenceDays": 180,
   "defaultSourceMode": "manual_review",
   "categoryPolicies": {
     "ahorro-inversion": {
-      "cadenceDays": 45,
+      "cadenceDays": 180,
       "sourceMode": "manual_review"
     },
     "deuda-credito": {
-      "cadenceDays": 30,
+      "cadenceDays": 365,
       "sourceMode": "manual_review"
     },
     "empleo-ingresos": {
-      "cadenceDays": 30,
+      "cadenceDays": 180,
       "sourceMode": "manual_review"
     },
     "general": {
-      "cadenceDays": 60,
+      "cadenceDays": 180,
       "sourceMode": "manual_review"
     },
     "impuestos": {
-      "cadenceDays": 30,
+      "cadenceDays": 90,
       "sourceMode": "manual_review"
     },
     "prevision": {
-      "cadenceDays": 30,
+      "cadenceDays": 180,
       "sourceMode": "manual_review"
     },
     "seguridad-financiera": {
-      "cadenceDays": 45,
+      "cadenceDays": 365,
       "sourceMode": "manual_review"
     }
   },
