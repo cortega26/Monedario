@@ -1,13 +1,13 @@
 {
-  "lastUpdated": "2026-05-11",
-  "capturedAt": "2026-05-11T17:40:31.620Z",
+  "lastUpdated": "2026-05-12",
+  "capturedAt": "2026-05-12T12:19:08.774Z",
   "datasets": {
     "economic.uf.value": {
       "label": "Valor UF",
-      "value": 40273.69,
+      "value": 40290.47,
       "unit": "clp",
-      "lastObservedAt": "2026-05-11",
-      "reviewTriggerDate": "2026-05-11",
+      "lastObservedAt": "2026-05-12",
+      "reviewTriggerDate": "2026-05-12",
       "sourceUrl": "https://mindicador.cl/api",
       "sourceLabel": "mindicador.cl/api"
     },
@@ -15,7 +15,7 @@
       "label": "Valor UTM",
       "value": 70588,
       "unit": "clp",
-      "lastObservedAt": "2026-05-11",
+      "lastObservedAt": "2026-05-12",
       "reviewTriggerDate": "2026-05-01",
       "sourceUrl": "https://mindicador.cl/api",
       "sourceLabel": "mindicador.cl/api"
@@ -24,7 +24,7 @@
       "label": "Valor UTA (Unidad Tributaria Anual)",
       "value": 834504,
       "unit": "clp",
-      "lastObservedAt": "2026-05-11",
+      "lastObservedAt": "2026-05-12",
       "reviewTriggerDate": "2025-12-01",
       "sourceUrl": "https://mindicador.cl/api",
       "sourceLabel": "mindicador.cl/api"
@@ -33,7 +33,7 @@
       "label": "IPC mensual",
       "value": -0.2,
       "unit": "percent",
-      "lastObservedAt": "2026-05-11",
+      "lastObservedAt": "2026-05-12",
       "reviewTriggerDate": "2025-12-01",
       "sourceUrl": "https://mindicador.cl/api",
       "sourceLabel": "mindicador.cl/api"
@@ -42,7 +42,7 @@
       "label": "Tope imponible AFC",
       "value": 135.2,
       "unit": "uf",
-      "lastObservedAt": "2026-05-11",
+      "lastObservedAt": "2026-05-12",
       "reviewTriggerDate": "2026-03-22",
       "sourceUrl": "https://mindicador.cl/api",
       "sourceLabel": "mindicador.cl/api"
@@ -51,7 +51,7 @@
       "label": "Tope imponible AFP y salud",
       "value": 90,
       "unit": "uf",
-      "lastObservedAt": "2026-05-11",
+      "lastObservedAt": "2026-05-12",
       "reviewTriggerDate": "2026-03-22",
       "sourceUrl": "https://mindicador.cl/api",
       "sourceLabel": "mindicador.cl/api"

@@ -44,7 +44,8 @@ reviewPolicy:
   dataTriggers: []
   derivationFactors:
     - validAsOf
-  computedAt: "2026-05-06"
+    - officialSources
+  computedAt: '2026-05-12'
 ---
 
 > **Información vigente al 2026-05-03.** Ante cambios normativos o en los productos de ahorro disponibles, verifica directamente con tu entidad financiera o en las fuentes oficiales referenciadas en este artículo.

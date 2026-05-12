@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-05-11T09:46:53Z",
+  "fetchedAt": "2026-05-12T08:45:09Z",
   "schemaVersion": 1,
   "source": "gsc",
   "week": "2026-W19",
@@ -103,6 +103,13 @@
       "clicks": 0,
       "ctr": 0,
       "impressions": 1,
+      "position": 11,
+      "query": "120 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
       "position": 12,
       "query": "135 uf"
     },
@@ -158,6 +165,13 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 1,
+      "position": 38,
+      "query": "2.5 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 2,
       "position": 71.5,
       "query": "20 uf a pesos chilenos"
@@ -166,6 +180,13 @@
       "clicks": 0,
       "ctr": 0,
       "impressions": 1,
+      "position": 31,
+      "query": "2000 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
       "position": 12,
       "query": "240 uf a pesos chilenos"
     },
@@ -231,6 +252,13 @@
       "impressions": 2,
       "position": 28.5,
       "query": "4000 uf a pesos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 38,
+      "query": "41 uf a pesos chilenos"
     },
     {
       "clicks": 0,
@@ -305,6 +333,13 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 2,
+      "position": 10.5,
+      "query": "afp modelo comisión 2026 porcentaje"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 1,
       "position": 85,
       "query": "afp seguro cesantia"
@@ -361,8 +396,8 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 3,
-      "position": 7.67,
+      "impressions": 5,
+      "position": 7,
       "query": "calculadora comision afp"
     },
     {
@@ -424,8 +459,8 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
-      "position": 48,
+      "impressions": 3,
+      "position": 59.67,
       "query": "calculadora uf a pesos"
     },
     {
@@ -497,6 +532,13 @@
       "impressions": 1,
       "position": 85,
       "query": "calcular sueldo liquido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 69,
+      "query": "calcular uf a pesos"
     },
     {
       "clicks": 0,
@@ -614,14 +656,21 @@
       "clicks": 0,
       "ctr": 0,
       "impressions": 1,
+      "position": 71,
+      "query": "clp a uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
       "position": 79,
       "query": "com saber si estoy en dicom"
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
-      "position": 13,
+      "impressions": 2,
+      "position": 11.5,
       "query": "comision afp modelo 2026"
     },
     {
@@ -635,8 +684,22 @@
       "clicks": 0,
       "ctr": 0,
       "impressions": 1,
+      "position": 11,
+      "query": "comision provida 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
       "position": 54,
       "query": "comisiones afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 9,
+      "query": "comisiones afp 2026"
     },
     {
       "clicks": 0,
@@ -648,23 +711,58 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
-      "position": 20,
+      "impressions": 3,
+      "position": 19,
       "query": "comisiones afp chile 2026 actuales"
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 2,
-      "position": 26,
-      "query": "comisiones vigentes afp"
+      "impressions": 1,
+      "position": 9,
+      "query": "comisiones afp chile 2026 superintendencia de pensiones"
     },
     {
       "clicks": 0,
       "ctr": 0,
       "impressions": 2,
-      "position": 8.5,
+      "position": 15,
+      "query": "comisiones afp chile actuales 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 28,
+      "query": "comisiones de afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 25.5,
+      "query": "comisiones vigentes afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 9,
+      "query": "comisión afp modelo 2026 porcentaje"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 5,
+      "position": 8.4,
       "query": "comisión afp promedio chile 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 7.5,
+      "query": "comisión promedio afp chile 2026"
     },
     {
       "clicks": 0,
@@ -679,6 +777,13 @@
       "impressions": 1,
       "position": 83,
       "query": "como cobrar el seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 59,
+      "query": "como cobrar el seguro de cesantía"
     },
     {
       "clicks": 0,
@@ -844,8 +949,8 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 4,
-      "position": 22.5,
+      "impressions": 5,
+      "position": 22.8,
       "query": "conviene prepagar un credito de consumo"
     },
     {
@@ -915,6 +1020,13 @@
       "clicks": 0,
       "ctr": 0,
       "impressions": 1,
+      "position": 66,
+      "query": "cuanto es 1 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
       "position": 69,
       "query": "cuanto es 1 uf chile"
     },
@@ -928,9 +1040,16 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "position": 43,
       "query": "cuanto es 10 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 12,
+      "query": "cuanto es 240 uf en pesos chilenos"
     },
     {
       "clicks": 0,
@@ -1008,6 +1127,13 @@
       "impressions": 1,
       "position": 50,
       "query": "deuda dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 33,
+      "query": "deudas dicom"
     },
     {
       "clicks": 0,
@@ -1117,9 +1243,16 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 11,
-      "position": 15.91,
+      "impressions": 14,
+      "position": 15.36,
       "query": "es bueno cambiarse de afp ahora"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 92,
+      "query": "estado dicom"
     },
     {
       "clicks": 0,
@@ -1222,8 +1355,8 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
-      "position": 78,
+      "impressions": 2,
+      "position": 82,
       "query": "ley 20009"
     },
     {
@@ -1285,8 +1418,15 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 11,
-      "position": 9.55,
+      "impressions": 1,
+      "position": 29,
+      "query": "nueva ley dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 17,
+      "position": 6.53,
       "query": "operación renta 2026 simulador"
     },
     {
@@ -1295,6 +1435,13 @@
       "impressions": 2,
       "position": 85.5,
       "query": "pagar deuda dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 60,
+      "query": "pago seguro de cesantia"
     },
     {
       "clicks": 0,
@@ -1320,8 +1467,8 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
-      "position": 25,
+      "impressions": 2,
+      "position": 27,
       "query": "porcentaje afp chile"
     },
     {
@@ -1330,6 +1477,13 @@
       "impressions": 1,
       "position": 50,
       "query": "porcentaje seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 34,
+      "query": "porcentajes de afp"
     },
     {
       "clicks": 0,
@@ -1475,6 +1629,13 @@
       "clicks": 0,
       "ctr": 0,
       "impressions": 1,
+      "position": 73,
+      "query": "seguro de cesantía en chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
       "position": 86,
       "query": "seguro de cesantía solidario"
     },
@@ -1544,7 +1705,7 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "position": 10,
       "query": "simulador devolución de impuestos 2026"
     },
@@ -1608,8 +1769,36 @@
       "clicks": 0,
       "ctr": 0,
       "impressions": 1,
+      "position": 9,
+      "query": "superintendencia de pensiones comisiones afp 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
       "position": 8,
       "query": "superintendencia de pensiones comisiones afp 2026 chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 8,
+      "query": "superintendencia de pensiones comisión afp modelo 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 36,
+      "query": "tabla afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 12,
+      "query": "tabla comisiones afp 2026"
     },
     {
       "clicks": 0,
@@ -1663,8 +1852,8 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
-      "position": 84,
+      "impressions": 2,
+      "position": 91.5,
       "query": "uf a pesos chilenos"
     },
     {
@@ -1706,8 +1895,22 @@
       "clicks": 0,
       "ctr": 0,
       "impressions": 1,
+      "position": 93,
+      "query": "uf transformar"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
       "position": 84,
       "query": "uf valor a peso"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 70,
+      "query": "una uf cuanto es"
     },
     {
       "clicks": 0,
@@ -1750,6 +1953,13 @@
       "impressions": 1,
       "position": 43,
       "query": "valor uf a peso chileno"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 53,
+      "query": "valor uf a peso chileno hoy"
     },
     {
       "clicks": 0,
@@ -1806,6 +2016,13 @@
       "impressions": 1,
       "position": 55,
       "query": "verificar dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 56,
+      "query": "índice de precio al consumidor"
     }
   ]
 }

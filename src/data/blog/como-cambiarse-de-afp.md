@@ -2,7 +2,6 @@
 title: "¿Puedo cambiarme de AFP? Cómo hacerlo y qué considerar en 2026"
 author: "Equipo Monedario"
 pubDate: 2026-02-23T13:00:00Z
-updatedDate: 2026-04-22T00:00:00Z
 slug: como-cambiarse-de-afp
 featured: false
 lang: es-CL
@@ -30,7 +29,8 @@ reviewPolicy:
     - pensions.afp.uno_commission
   derivationFactors:
     - category:prevision
-  computedAt: "2026-05-06"
+  computedAt: '2026-05-12'
+updatedDate: 2026-05-12T00:00:00Z
 ---
 
 Cambiarse de AFP es uno de los trámites más simples que puedes hacer para mejorar tu situación previsional, y sin embargo la mayoría de las personas nunca lo hace. En esta guía te explicamos cómo funciona el proceso, qué debes evaluar y qué cambia con la Reforma de Pensiones aprobada en 2025.

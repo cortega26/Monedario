@@ -80,8 +80,8 @@
     "dayjs": "^1.11.20",
     "lodash.kebabcase": "^4.1.1",
     "openai": "^6.36.0",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
     "remark-collapse": "^0.1.2",
     "remark-toc": "^9.0.0",
     "satori": "^0.26.0",
@@ -109,7 +109,7 @@
     "@tailwindcss/typography": "^0.5.19",
     "@types/js-yaml": "^4.0.9",
     "@types/lodash.kebabcase": "^4.1.9",
-    "@typescript-eslint/parser": "^8.59.2",
+    "@typescript-eslint/parser": "^8.59.3",
     "eslint": "^10.3.0",
     "eslint-plugin-astro": "^1.7.0",
     "globals": "^17.6.0",
@@ -121,7 +121,7 @@
     "prettier-plugin-tailwindcss": "^0.8.0",
     "sitemap": "^9.0.1",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.59.2",
-    "vitest": "^4.1.5"
+    "typescript-eslint": "^8.59.3",
+    "vitest": "^4.1.6"
   }
 }
