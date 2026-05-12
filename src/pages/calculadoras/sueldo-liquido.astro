@@ -22,6 +22,7 @@ import { SITE } from "@/config";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 const IMM_MENSUAL_SERVER = economicParameters.imm ?? 500_000;
+const GRATI_CAP_SERVER = Math.round((4.75 / 12) * IMM_MENSUAL_SERVER);
 const salaryGuidePath = getPath("/posts/como-calcular-sueldo-liquido/");
 const firstTaxExemptBracket = 13.5 * economicParameters.utm;
 const economicSourceLabel =
@@ -85,7 +86,7 @@ const sueldoLiquidoFaqs = [
   {
     question: "¿Cuánto me corresponde de gratificación legal mensual?",
     answer:
-      "Si tu empleador paga gratificación mensualizada bajo art. 50 CT, el tope legal es el menor valor entre el 25% de tu remuneración mensual y $197.916 (equivalente a 4,75 IMM ÷ 12, con IMM = $500.000 vigente en 2026). Ejemplo: con bruto de $900.000 el máximo legal es $197.916; con bruto de $600.000 sería $150.000. Esta calculadora muestra el estimado en el resultado cuando calculas en modo Bruto → Líquido.",
+      `Si tu empleador paga gratificación mensualizada bajo art. 50 CT, el tope legal es el menor valor entre el 25% de tu remuneración mensual y $${GRATI_CAP_SERVER.toLocaleString("es-CL")} (equivalente a 4,75 IMM ÷ 12, con IMM = $${IMM_MENSUAL_SERVER.toLocaleString("es-CL")}). Ejemplo: con bruto de $900.000 el máximo legal es $${GRATI_CAP_SERVER.toLocaleString("es-CL")}; con bruto de $600.000 sería $${Math.round(600_000 * 0.25).toLocaleString("es-CL")}. Esta calculadora muestra el estimado en el resultado cuando calculas en modo Bruto → Líquido.`,
   },
   {
     question: "¿Qué AFP cobra menos comisión en Chile?",
@@ -389,6 +390,28 @@ const calculatorNextStepItems = [
             </p>
             <div>
               <label
+                for="jornada-fraccion"
+                class="mb-1 block text-sm font-medium text-secondary"
+              >
+                Fracción de jornada
+              </label>
+              <select
+                id="jornada-fraccion"
+                class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+              >
+                <option value="100" selected>Jornada completa (100%)</option>
+                <option value="75">3/4 jornada (75%)</option>
+                <option value="50">Media jornada (50%)</option>
+                <option value="25">1/4 jornada (25%)</option>
+              </select>
+              <p class="mt-1 text-xs text-muted">
+                Para jornada parcial: ingresa el sueldo bruto de jornada
+                completa equivalente; la calculadora aplica la fracción al
+                bruto y al mínimo legal de referencia.
+              </p>
+            </div>
+            <div>
+              <label
                 for="gratificacion"
                 class="mb-1 block text-sm font-medium text-secondary"
               >
@@ -618,10 +641,10 @@ const calculatorNextStepItems = [
       class="hidden border-t border-border pt-6 pb-4"
       aria-live="polite"
     >
-      <h2 class="mb-1 text-base font-semibold">
+      <h2 id="afp-comparison-heading" class="mb-1 text-base font-semibold">
         ¿Cuánto ahorrarías cambiando de AFP?
       </h2>
-      <p class="mb-3 text-xs text-muted">
+      <p id="afp-comparison-subheading" class="mb-3 text-xs text-muted">
         Con tu sueldo y configuración actuales, comparando las 7 AFPs. La AFP
         actual aparece resaltada.
       </p>
@@ -950,9 +973,9 @@ const calculatorNextStepItems = [
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
             Si tu empleador paga gratificación mensualizada bajo art. 50 CT, el
             tope legal es el menor valor entre el <strong>25% de tu
-            remuneración mensual</strong> y <strong>$197.916</strong>
-            (equivalente a 4,75 IMM ÷ 12 meses, con IMM = $500.000 vigente en
-            2026). Ejemplo: con bruto de $900.000 el máximo legal es $197.916;
+            remuneración mensual</strong> y <strong>${GRATI_CAP_SERVER.toLocaleString("es-CL")}</strong>
+            (equivalente a 4,75 IMM ÷ 12 meses, con IMM = ${IMM_MENSUAL_SERVER.toLocaleString("es-CL")}).
+            Ejemplo: con bruto de $900.000 el máximo legal es ${GRATI_CAP_SERVER.toLocaleString("es-CL")};
             con bruto de $600.000 sería $150.000. Esta calculadora muestra el
             estimado en el resultado cuando calculas en modo Bruto → Líquido.
             Para el detalle completo de modalidades y obligaciones, revisa la <a
@@ -1077,10 +1100,24 @@ const calculatorNextStepItems = [
   let lastModoLabel = "";
   let lastBaseBruto: number | undefined = undefined;
 
-  function checkMinWage(value: number) {
+  function getJornadaFraction(): number {
+    const val = parseFloat(
+      (document.getElementById("jornada-fraccion") as HTMLSelectElement)?.value
+    );
+    return Number.isFinite(val) && val > 0 && val <= 100 ? val / 100 : 1;
+  }
+
+  function checkMinWage(rawInput: number, jornadaFraction = 1) {
     const warning = document.getElementById("min-wage-warning");
     if (!warning) return;
-    if (value > 0 && value < getParams().imm) {
+    const effectiveGross = rawInput * jornadaFraction;
+    const minWage = getParams().imm * jornadaFraction;
+    if (effectiveGross > 0 && effectiveGross < minWage) {
+      const pctLabel =
+        jornadaFraction < 1
+          ? ` para ${Math.round(jornadaFraction * 100)}% de jornada`
+          : "";
+      warning.textContent = `El mínimo legal${pctLabel} es ${fmt(minWage)}. El monto ingresado está por debajo del mínimo legal para esa jornada.`;
       warning.classList.remove("hidden");
     } else {
       warning.classList.add("hidden");
@@ -1098,6 +1135,14 @@ const calculatorNextStepItems = [
     const section = document.getElementById("afp-comparison");
     const container = document.getElementById("afp-comparison-body");
     if (!section || !container) return;
+
+    // Restore headings in case the inverse mode had updated them
+    const heading = document.getElementById("afp-comparison-heading");
+    const subheading = document.getElementById("afp-comparison-subheading");
+    if (heading) heading.textContent = "¿Cuánto ahorrarías cambiando de AFP?";
+    if (subheading)
+      subheading.textContent =
+        "Con tu sueldo y configuración actuales, comparando las 7 AFPs. La AFP actual aparece resaltada.";
 
     const params = getParams();
     const afpSelect = document.getElementById("afp-tasa") as HTMLSelectElement;
@@ -1188,6 +1233,115 @@ const calculatorNextStepItems = [
 
   function hideAfpComparison() {
     document.getElementById("afp-comparison")?.classList.add("hidden");
+  }
+
+  function renderAfpComparisonInverso(
+    targetNetSalary: number,
+    healthSystem: "fonasa" | "isapre",
+    contractType: "indefinido" | "plazo-fijo",
+    isapreAdicional: number,
+    currentAfpRate: number
+  ) {
+    const section = document.getElementById("afp-comparison");
+    const container = document.getElementById("afp-comparison-body");
+    const heading = document.getElementById("afp-comparison-heading");
+    const subheading = document.getElementById("afp-comparison-subheading");
+    if (!section || !container) return;
+
+    if (heading) heading.textContent = "¿Qué bruto necesitarías con cada AFP?";
+    if (subheading)
+      subheading.textContent = `Para recibir ${fmt(targetNetSalary)} líquidos. Menor bruto = mejor. La AFP actual aparece resaltada.`;
+
+    container.innerHTML =
+      '<p class="text-xs text-muted animate-pulse">Calculando comparación AFP…</p>';
+    section.classList.remove("hidden");
+
+    // Defer heavy computation (7 × 60-iter binary search) to not block result render
+    setTimeout(() => {
+      const afpSelect = document.getElementById("afp-tasa") as HTMLSelectElement;
+      if (!afpSelect) return;
+      const params = getParams();
+      const afpOptions = Array.from(afpSelect.options).map(opt => ({
+        name: opt.text.split(" – ")[0].trim(),
+        rate: parseFloat(opt.dataset.commission ?? "0"),
+      }));
+
+      const comparisons = afpOptions.map(({ name, rate }) => {
+        const r = estimateGrossFromNet({
+          targetNetSalary,
+          afpRatePercent: rate,
+          healthSystem,
+          contractType,
+          isapreAdditionalPercent: isapreAdicional,
+          economicParameters: params,
+        });
+        return { name, rate, gross: r.grossSalary };
+      });
+
+      // Lower gross needed = better: sort ascending
+      comparisons.sort((a, b) => a.gross - b.gross);
+
+      const currentGross =
+        comparisons.find(c => Math.abs(c.rate - currentAfpRate) < 0.01)?.gross ??
+        comparisons[0].gross;
+      const bestGross = comparisons[0].gross;
+      const worstGross = comparisons[comparisons.length - 1].gross;
+      const maxDiff = worstGross - bestGross;
+
+      container.innerHTML = "";
+
+      for (const { name, rate, gross } of comparisons) {
+        const isCurrent = Math.abs(rate - currentAfpRate) < 0.01;
+        const diff = gross - currentGross;
+
+        const row = document.createElement("div");
+        row.className = [
+          "flex items-center gap-2 rounded-lg border px-3 py-2 text-sm",
+          isCurrent
+            ? "border-accent/30 bg-accent/5"
+            : "border-border/50 bg-background",
+        ].join(" ");
+
+        const nameSpan = document.createElement("span");
+        nameSpan.className = `min-w-0 flex-1 font-medium ${isCurrent ? "text-accent" : "text-foreground"}`;
+        nameSpan.textContent = name + (isCurrent ? " ← actual" : "");
+
+        const rateSpan = document.createElement("span");
+        rateSpan.className = "shrink-0 text-xs text-muted tabular-nums";
+        rateSpan.textContent = rate.toFixed(2) + "%";
+
+        const grossSpan = document.createElement("span");
+        grossSpan.className =
+          "shrink-0 font-mono font-semibold tabular-nums text-foreground";
+        grossSpan.textContent = fmt(gross);
+
+        const diffSpan = document.createElement("span");
+        diffSpan.className = "w-20 shrink-0 text-right text-xs tabular-nums";
+        if (isCurrent) {
+          diffSpan.textContent = "";
+        } else if (diff < 0) {
+          // Less bruto needed → better
+          diffSpan.className += " text-green-500";
+          diffSpan.textContent = fmt(diff);
+        } else if (diff > 0) {
+          diffSpan.className += " text-red-400";
+          diffSpan.textContent = "+" + fmt(diff);
+        } else {
+          diffSpan.className += " text-muted";
+          diffSpan.textContent = "—";
+        }
+
+        row.append(nameSpan, rateSpan, grossSpan, diffSpan);
+        container.appendChild(row);
+      }
+
+      if (maxDiff > 500) {
+        const note = document.createElement("p");
+        note.className = "mt-3 text-xs text-muted";
+        note.textContent = `Con AFP Uno necesitarías ${fmt(maxDiff)} menos de bruto que con la AFP más cara para recibir el mismo líquido.`;
+        container.appendChild(note);
+      }
+    }, 0);
   }
 
   function readEconomicParameters(): { uf: number; utm: number; imm: number } {
@@ -1371,7 +1525,8 @@ const calculatorNextStepItems = [
     modoLabel: string,
     extraNote?: string,
     otrosDescuentos?: number,
-    baseBruto?: number
+    baseBruto?: number,
+    jornadaFraction?: number
   ) {
     lastResultado = resultado;
     lastOtrosDescuentos = otrosDescuentos ?? 0;
@@ -1546,6 +1701,14 @@ const calculatorNextStepItems = [
     };
     const extraRows = document.createElement("div");
     extraRows.className = "mt-2 space-y-1";
+    if (jornadaFraction !== undefined && jornadaFraction < 1) {
+      extraRows.append(
+        mkInfoRow(
+          `Jornada parcial (${Math.round(jornadaFraction * 100)}%)`,
+          `Bruto proporcional aplicado: ${fmt(resultado.grossSalary)}`
+        )
+      );
+    }
     extraRows.append(mkInfoRow("Al año (× 12)", fmt(displayAmount * 12)));
     const afcEmployerRate =
       resultado.contractType === "plazo-fijo" ? 0.03 : 0.024;
@@ -1635,12 +1798,12 @@ const calculatorNextStepItems = [
         return;
       }
       setLoading(false);
-      hideAfpComparison();
       renderResultado(
         resultado,
         "Sueldo Bruto Estimado",
         "Estimación inversa: supuesto bruto = imponible. AFP, salud y contrato según tu selección."
       );
+      renderAfpComparisonInverso(rawInput, healthSystem, contractType, isapreAdicional, afpTasaPercent);
       focusResultado();
       saveCalculatorResult(
         window.location.pathname,
@@ -1671,6 +1834,8 @@ const calculatorNextStepItems = [
           : undefined;
 
       // Advanced mode extras
+      const jornadaFraction = getJornadaFraction();
+      const rawInputEscalado = Math.round(rawInput * jornadaFraction);
       const gratificacion =
         parseFloat(
           (document.getElementById("gratificacion") as HTMLInputElement)?.value
@@ -1697,13 +1862,13 @@ const calculatorNextStepItems = [
           (document.getElementById("apv-regimen-b") as HTMLInputElement)?.value
         ) || 0;
 
-      const grossBase = rawInput + gratificacion + horasExtra;
+      const grossBase = rawInputEscalado + gratificacion + horasExtra;
       const noImponiblesExtra = colacion + movilizacion;
       const taxableAdjusted =
         imponible !== undefined
           ? imponible + gratificacion + horasExtra
           : noImponiblesExtra > 0
-            ? Math.max(0, rawInput - noImponiblesExtra) +
+            ? Math.max(0, rawInputEscalado - noImponiblesExtra) +
               gratificacion +
               horasExtra
             : undefined;
@@ -1730,7 +1895,7 @@ const calculatorNextStepItems = [
         return;
       }
       setLoading(false);
-      renderResultado(resultado, "Sueldo Líquido", undefined, otrosDescuentos, rawInput);
+      renderResultado(resultado, "Sueldo Líquido", undefined, otrosDescuentos, rawInputEscalado, jornadaFraction);
       renderAfpComparison(
         grossBase,
         taxableAdjusted,
@@ -1739,7 +1904,7 @@ const calculatorNextStepItems = [
         isapreAdicional,
         afpTasaPercent
       );
-      checkMinWage(rawInput);
+      checkMinWage(rawInput, jornadaFraction);
       focusResultado();
       saveCalculatorResult(
         window.location.pathname,
@@ -1847,7 +2012,7 @@ const calculatorNextStepItems = [
     const val = parseFloat(
       (document.getElementById("sueldo") as HTMLInputElement).value
     );
-    if (getModo() === "bruto-a-liquido") checkMinWage(val);
+    if (getModo() === "bruto-a-liquido") checkMinWage(val, getJornadaFraction());
     clearTimeout(autoCalcTimer);
     autoCalcTimer = setTimeout(() => {
       if (val > 0) {

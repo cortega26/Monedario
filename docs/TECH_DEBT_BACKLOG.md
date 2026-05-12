@@ -13,9 +13,9 @@ Fecha de corte: 2026-05-11
 
 ### Estado de avance (2026-05-11)
 
-- **Completados:** 60 TD únicos (`TD-0001`..`TD-0061`, excl. `TD-0060`, `TD-0062`) + 2 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`)
+- **Completados:** 62 TD únicos (`TD-0001`..`TD-0062`) + 2 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 0
-- **Backlog sin iniciar:** 2 (`TD-0060`, `TD-0062`)
+- **Backlog sin iniciar:** 0
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.

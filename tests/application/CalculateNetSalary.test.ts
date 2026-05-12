@@ -198,3 +198,82 @@ describe("estimateGrossFromNet", () => {
     ).toThrow("targetNetSalary must be a finite number greater than 0.");
   });
 });
+
+describe("Jornada parcial — escalado proporcional del bruto", () => {
+  const BASE_PARAMS = {
+    uf: UF,
+    utm: UTM,
+    afcTopes: { monthlyTaxableCapUf: 135.2 },
+    previsionalTopes: { pensionAndHealthMonthlyTaxableCapUf: 90 },
+  };
+  const AFP_RATE = 10.77;
+
+  it("jornada 50%: las deducciones previsionales son la mitad que a jornada completa", () => {
+    const gross100 = 1_000_000;
+    const gross50 = Math.round(gross100 * 0.5); // escala UI: rawInput * 0.5
+
+    const result100 = calculateNetSalary({
+      grossSalary: gross100,
+      afpRatePercent: AFP_RATE,
+      healthSystem: "fonasa",
+      contractType: "indefinido",
+      economicParameters: BASE_PARAMS,
+    });
+    const result50 = calculateNetSalary({
+      grossSalary: gross50,
+      afpRatePercent: AFP_RATE,
+      healthSystem: "fonasa",
+      contractType: "indefinido",
+      economicParameters: BASE_PARAMS,
+    });
+
+    expect(result50.deductions.afp).toBeCloseTo(result100.deductions.afp * 0.5, 0);
+    expect(result50.deductions.health).toBeCloseTo(result100.deductions.health * 0.5, 0);
+    expect(result50.deductions.unemploymentInsurance).toBeCloseTo(
+      result100.deductions.unemploymentInsurance * 0.5,
+      0
+    );
+    expect(result50.netSalary).toBeGreaterThan(0);
+    expect(result50.netSalary).toBeLessThan(result100.netSalary);
+  });
+
+  it("jornada 75%: las deducciones previsionales son el 75% de jornada completa", () => {
+    const gross100 = 2_000_000;
+    const gross75 = Math.round(gross100 * 0.75);
+
+    const result100 = calculateNetSalary({
+      grossSalary: gross100,
+      afpRatePercent: AFP_RATE,
+      healthSystem: "fonasa",
+      contractType: "indefinido",
+      economicParameters: BASE_PARAMS,
+    });
+    const result75 = calculateNetSalary({
+      grossSalary: gross75,
+      afpRatePercent: AFP_RATE,
+      healthSystem: "fonasa",
+      contractType: "indefinido",
+      economicParameters: BASE_PARAMS,
+    });
+
+    expect(result75.deductions.afp).toBeCloseTo(result100.deductions.afp * 0.75, 0);
+    expect(result75.deductions.health).toBeCloseTo(result100.deductions.health * 0.75, 0);
+    expect(result75.grossSalary).toBe(gross75);
+    expect(result75.netSalary).toBeLessThan(result100.netSalary);
+  });
+
+  it("jornada 50% con sueldo en tramo exento: impuesto = 0 aunque jornada completa tributaría", () => {
+    // $1.400.000 a jornada completa tributaría; al 50% ($700.000) debería estar exento
+    const gross50 = Math.round(1_400_000 * 0.5); // 700_000
+    const result = calculateNetSalary({
+      grossSalary: gross50,
+      afpRatePercent: AFP_RATE,
+      healthSystem: "fonasa",
+      contractType: "indefinido",
+      economicParameters: BASE_PARAMS,
+    });
+    // taxableBase after deductions on $700k should be below first bracket (~UTM * 13.5 ≈ 908k)
+    expect(result.deductions.tax).toBe(0);
+    expect(result.netSalary).toBeGreaterThan(0);
+  });
+});
