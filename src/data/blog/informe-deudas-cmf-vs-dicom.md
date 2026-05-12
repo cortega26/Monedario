@@ -1,5 +1,5 @@
 ---
-title: "Informe de deudas CMF: cómo sacarlo, qué dice y por qué no es lo mismo que DICOM"
+title: "Informe de deudas CMF: cómo sacarlo y por qué no es DICOM"
 author: "Equipo Monedario"
 pubDate: 2026-02-24T11:00:00Z
 updatedDate: 2026-04-12T18:30:00Z

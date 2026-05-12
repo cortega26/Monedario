@@ -1,5 +1,5 @@
 ---
-title: "Seguro de cesantía: cómo saber tu saldo, cuándo puedes cobrar y cuánto te pagan"
+title: "Seguro de cesantía: saldo, cuándo cobrar y montos"
 author: "Equipo Monedario"
 pubDate: 2026-02-25T10:00:00Z
 updatedDate: 2026-05-11T00:00:00Z

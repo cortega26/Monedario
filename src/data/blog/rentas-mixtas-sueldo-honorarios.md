@@ -1,5 +1,5 @@
 ---
-title: "Rentas mixtas en Chile: cómo declarar cuando tienes sueldo y boletas de honorarios"
+title: "Rentas mixtas: cómo declarar sueldo y boletas de honorarios"
 description: "Con sueldo y boletas de honorarios debes declarar siempre. Aprende cómo se calcula el Global Complementario y si pagarás más o recuperarás impuesto."
 slug: rentas-mixtas-sueldo-honorarios
 author: "Equipo Monedario"

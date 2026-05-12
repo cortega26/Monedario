@@ -18,9 +18,12 @@ export interface Props {
   post: CollectionEntry<"blog">;
   canonicalUrl: string;
   ogImageUrl?: string;
+  readingTime?: string;
 }
 
-const { post, canonicalUrl, ogImageUrl } = Astro.props;
+const { post, canonicalUrl, ogImageUrl, readingTime } = Astro.props;
+
+const readingMinutes = readingTime ? parseInt(readingTime, 10) : NaN;
 const { title, description, pubDate, updatedDate, author, reviewPolicy } =
   post.data;
 
@@ -43,6 +46,9 @@ const articleSchema = {
   description: description ?? "",
   url: canonicalUrl,
   ...(ogImageUrl ? { image: ogImageUrl } : {}),
+  ...(readingMinutes && !Number.isNaN(readingMinutes)
+    ? { timeRequired: `PT${readingMinutes}M` }
+    : {}),
   datePublished: pubDate?.toISOString(),
   ...(updatedDate ? { dateModified: updatedDate.toISOString() } : {}),
   ...(reviewPolicy?.computedAt

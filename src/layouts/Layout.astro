@@ -80,6 +80,14 @@ const structuredData = !pubDatetime
         name: SITE.title,
         url: SITE_ORIGIN,
       },
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${SITE_ORIGIN}/buscar/?q={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
+      },
     }
   : null;
 ---
@@ -132,6 +140,7 @@ const structuredData = !pubDatetime
     <meta property="og:image" content={socialImageURL} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={description} />
 
     <!-- Article Published/Modified time -->
     {
