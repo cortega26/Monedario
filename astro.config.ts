@@ -2,6 +2,7 @@ import { defineConfig, envField } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import { EnumChangefreq } from "sitemap";
+import { readFileSync } from "node:fs";
 
 import {
   transformerNotationDiff,
@@ -79,10 +80,31 @@ const SITEMAP_EXCLUDED_PATHS = new Set([
 ]);
 const TAGS_ROOT_PATH = withBasePath("/tags/");
 const SEARCH_PATH = withBasePath("/search/");
+const BUSCAR_PATH = withBasePath("/buscar/");
 const PAGINATED_POSTS_PATTERN = safeRegExp(
   `^${escapeRegExp(withBasePath("/posts/"))}\\d+/$`
 );
 const DEV_TOOLS_PATH = withBasePath("/dev/");
+
+// ── Sitemap lastmod: load article dates ───────────────────────────────────
+type ArticleIndex = { slug: string; updatedDate?: string };
+const articleDateMap = new Map<string, string>();
+try {
+  const indexData = JSON.parse(
+    readFileSync("./context/published-articles-index.json", "utf-8")
+  ) as { articles?: ArticleIndex[] };
+  if (indexData.articles) {
+    for (const article of indexData.articles) {
+      const dateStr = article.updatedDate?.split("T")[0];
+      if (dateStr) {
+        articleDateMap.set(`/posts/${article.slug}/`, dateStr);
+      }
+    }
+  }
+} catch {
+  // Non-blocking — sitemap works without lastmod
+}
+// ───────────────────────────────────────────────────────────────────────────
 
 // https://astro.build/config
 export default defineConfig({
@@ -99,6 +121,7 @@ export default defineConfig({
         const pathname = new URL(page).pathname;
         if (SITEMAP_EXCLUDED_PATHS.has(pathname)) return false;
         if (pathname === SEARCH_PATH) return false;
+        if (pathname === BUSCAR_PATH) return false;
         if (pathname.startsWith(DEV_TOOLS_PATH)) return false;
         if (
           pathname === TAGS_ROOT_PATH ||
@@ -123,8 +146,10 @@ export default defineConfig({
 
         if (pathParts.length === 2) {
           if (section === "posts") {
+            const lastmod = articleDateMap.get(pathname);
             return {
               ...item,
+              ...(lastmod ? { lastmod } : {}),
               changefreq: EnumChangefreq.MONTHLY,
               priority: 0.8,
             };

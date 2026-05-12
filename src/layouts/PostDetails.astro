@@ -259,6 +259,11 @@ const relatedPostsExcludedSlugs = [
   nextPost?.slug,
 ].filter(Boolean) as string[];
 const articleAdvisoryText = resolveBlogArticleAdvisory(post);
+
+// ── Hero image ─────────────────────────────────────────────────────────────
+const heroImage = post.data.heroImage;
+const heroImageSrc = typeof heroImage === "string" ? heroImage : heroImage?.src;
+const hasHeroImage = !!heroImageSrc;
 ---
 
 <Layout {...layoutProps}>
@@ -340,6 +345,29 @@ const articleAdvisoryText = resolveBlogArticleAdvisory(post);
           </aside>
         )
     }
+
+    {
+      hasHeroImage && (
+        <figure class="my-6 overflow-hidden rounded-xl">
+          <img
+            src={getPath(heroImageSrc!)}
+            alt={`Ilustración del artículo: ${title}`}
+            width="1200"
+            height="630"
+            srcset={`
+              ${getPath(heroImageSrc!.replace(".avif", "@mobile.avif"))} 600w,
+              ${getPath(heroImageSrc!.replace(".avif", "@tablet.avif"))} 800w,
+              ${getPath(heroImageSrc!)} 1200w
+            `}
+            sizes="(min-width: 1152px) 1120px, calc(100vw - 2rem)"
+            class="aspect-[40/21] w-full object-cover"
+            loading="eager"
+            decoding="async"
+          />
+        </figure>
+      )
+    }
+
     <div class="lg:flex lg:items-start lg:gap-10">
       <article
         id="article"
