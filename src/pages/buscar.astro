@@ -240,12 +240,7 @@ const searchGroups = [
             "No se encontraron resultados para [SEARCH_TERM]. Prueba una de estas búsquedas:",
           searching: "Buscando [SEARCH_TERM]...",
         },
-        processTerm: (term: string) => {
-          const normalizedTerm = term.trim();
-          searchField.value = normalizedTerm;
-          updateSearchUrl(normalizedTerm);
-          return normalizedTerm;
-        },
+        processTerm: (term: string) => term.trim(),
       });
 
       const clearInternalSearch = () => {
@@ -276,6 +271,7 @@ const searchGroups = [
           return;
         }
 
+        updateSearchUrl(normalizedTerm);
         search.triggerSearch(normalizedTerm);
       };
 
