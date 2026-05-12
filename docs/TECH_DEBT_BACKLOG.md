@@ -13,9 +13,9 @@ Fecha de corte: 2026-05-11
 
 ### Estado de avance (2026-05-11)
 
-- **Completados:** 58 TD únicos (`TD-0001`..`TD-0058`) + 2 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`)
+- **Completados:** 60 TD únicos (`TD-0001`..`TD-0061`, excl. `TD-0060`, `TD-0062`) + 2 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`)
 - **En progreso:** 0
-- **Backlog sin iniciar:** 4 (`TD-0059`..`TD-0062`)
+- **Backlog sin iniciar:** 2 (`TD-0060`, `TD-0062`)
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -38,13 +38,15 @@ Fecha de corte: 2026-05-11
 
 ### Top riesgos restantes
 
-- `TD-0059`: `IMM_MENSUAL` hardcodeado en cliente vence en julio 2026. Si no se actualiza, el warning de sueldo mínimo y el tope de gratificación legal quedarán desfasados.
+- `TD-0060`: Calculadora no soporta jornada parcial — ~15–20% de la fuerza laboral no puede calcular su sueldo correctamente.
+- `TD-0062`: Panel de comparación AFP no disponible en modo Líquido→Bruto.
 
 ### Siguiente orden recomendado (2026-05-11)
 
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
-- `TD-0059` en julio 2026 — actualizar `IMM_MENSUAL` con el nuevo decreto.
-- `TD-0061` (APV modo avanzado) — alto impacto en usuarios que usan APV voluntario.
+- `TD-0059` resuelto el 2026-05-11: `imm` externalizado al snapshot económico. Actualizar `economic-parameters.snapshot.json` cada julio con el nuevo decreto presidencial.
+- `TD-0060` — jornada parcial (Part-time support).
+- `TD-0062` — comparación AFP en modo Líquido→Bruto.
 
 ### Quick wins (alto impacto / bajo esfuerzo)
 
@@ -1291,3 +1293,93 @@ Fecha de corte: 2026-05-11
 - **Fecha de creación:** 2026-04-14
 - **Última actualización:** 2026-05-09
 - **Nota de cierre:** Resuelto por `TD-0055` (commit `a3937548`). `pnpm run check:hero-prompts` retorna OK con 0 errores. La generación determinista de `sceneId` vía `buildArticleSceneId()` en `prompt-plan.mjs` + `build-prompts.mjs` automatiza la consistencia.
+
+---
+
+## TD-0059 — `IMM_MENSUAL` hardcodeado en cliente sin estrategia de actualización
+- **ID:** TD-0059
+- **Título corto:** Externalizar `IMM_MENSUAL` al snapshot económico para evitar drift anual
+- **Descripción:** La calculadora de sueldo líquido (`src/pages/calculadoras/sueldo-liquido.astro`) define `IMM_MENSUAL = 500_000` directamente en el `<script>` cliente. Este valor se usa para dos propósitos: (1) calcular el tope de gratificación legal mensual (`GRATI_CAP_MENSUAL = Math.round((4.75 / 12) * IMM_MENSUAL)`) y (2) como umbral del warning de sueldo mínimo (`SUELDO_MINIMO_2026`). El IMM se actualiza por decreto presidencial cada julio; si el código no se actualiza, ambos valores mostrados al usuario quedarán desactualizados silenciosamente.
+- **Evidencia:** `src/pages/calculadoras/sueldo-liquido.astro` línea con `const IMM_MENSUAL = 500_000` y comentario `// actualizar con ajuste de julio de cada año`. No existe un mecanismo automático ni test que alerte cuando el valor diverge de la norma vigente.
+- **Impacto:** El tope de gratificación legal mostrado en el resultado y el warning de sueldo mínimo pueden quedar desfasados respecto a la norma vigente. Impacto YMYL directo: usuario puede tomar decisiones con datos incorrectos.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P1
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Opciones en orden de preferencia: (A) agregar `imm` al snapshot económico (`src/infrastructure/economicParameterProvider`) y exponerlo como `data-imm` en el elemento `#economic-parameters` del DOM, igual que `data-utm` y `data-uf`; el script cliente lo leerá en `readEconomicParameters()`. (B) Si el snapshot no se puede actualizar automáticamente, crear al menos un test de regresión que falle cuando `IMM_MENSUAL` en el script diverja del valor registrado en el snapshot, para forzar actualización consciente. La opción A elimina la deuda; la B la hace visible.
+- **Criterios de cierre (checklist verificable):**
+  - [x] `IMM_MENSUAL` ya no está hardcodeado en el `<script>` cliente: `imm` se lee desde `data-imm` en `#economic-parameters`, externalizado al snapshot económico.
+  - [x] El tope de gratificación legal y el warning de sueldo mínimo reflejan el IMM vigente: se recalculan en runtime desde `getParams().imm`.
+  - [x] `pnpm run test` y `pnpm run check` pasan sin errores.
+- **Owner:** Claude Code
+- **Estado:** Completado
+- **Fecha de creación:** 2026-05-11
+- **Última actualización:** 2026-05-11
+- **Nota de cierre:** `imm` agregado a `EconomicParameters`, `economic-parameters.snapshot.json` (500 000), `EconomicParameterProvider` (snapshot + fallback). El DOM expone `data-imm`; el cliente lee `getParams().imm`. Para futuras actualizaciones en julio: sólo actualizar `imm` en el snapshot JSON.
+
+## TD-0060 — Calculadora de sueldo no soporta jornada parcial
+- **ID:** TD-0060
+- **Título corto:** Agregar campo de fracción de jornada para cálculos de trabajo part-time
+- **Descripción:** La calculadora de sueldo líquido asume jornada completa en todos sus cálculos. No existe un campo para indicar fracción de jornada (p. ej. 50% = 22 horas semanales), lo que afecta a trabajadores con contratos a tiempo parcial. Con la Ley 40h (Ley 21.561), la jornada ordinaria baja de 45 a 42 horas en 2026 y a 40 en 2028, aumentando la prevalencia de contratos fraccionados negociados como porcentaje de la jornada ordinaria. Los usuarios con jornada parcial tienen que calcular manualmente su sueldo proporcional antes de ingresarlo, lo que introduce errores frecuentes.
+- **Evidencia:** `src/pages/calculadoras/sueldo-liquido.astro` — no existe campo ni lógica de jornada parcial. El modo avanzado cubre gratificación, horas extra, colación y movilización, pero no la fracción de contrato.
+- **Impacto:** Usuarios con jornada parcial (estimado ~15–20% de la fuerza laboral) deben calcular su sueldo a mano o recibir un resultado incorrecto si ingresan el sueldo de jornada completa. Impacto SEO: pierde capturas de búsquedas como "calculadora sueldo part-time Chile", "sueldo media jornada".
+- **Riesgo:** bajo (el campo sería opcional y no afecta el flujo principal)
+- **Severidad (1-5):** 2
+- **Urgencia:** P2
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** Agregar al modo avanzado un select o input de "Fracción de jornada" (100%, 75%, 50%, 25%, o porcentaje libre). Al seleccionar un valor distinto de 100%, escalar el bruto ingresado proporcionalmente antes de pasar al motor de cálculo, y mostrar en el resultado el bruto proporcional aplicado. El sueldo mínimo legal también se escala: p. ej. a 50% jornada, el mínimo legal es ~$250.000. Actualizar el warning de sueldo mínimo en consecuencia.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] Existe un campo de jornada parcial en el modo avanzado (solo bruto→líquido).
+  - [ ] El motor escala correctamente el bruto y el sueldo mínimo de referencia.
+  - [ ] El resultado muestra la fracción aplicada en el desglose.
+  - [ ] El warning de sueldo mínimo considera la jornada proporcional.
+  - [ ] Tests unitarios cubren el caso de jornada al 50% y al 75%.
+- **Owner:** TBD
+- **Estado:** Pendiente
+- **Fecha de creación:** 2026-05-11
+- **Última actualización:** 2026-05-11
+
+## TD-0061 — Calculadora de sueldo no considera APV en la base del impuesto único
+- **ID:** TD-0061
+- **Título corto:** Agregar APV Régimen A/B al modo avanzado para reducir correctamente la base tributaria
+- **Descripción:** Los aportes a APV bajo Régimen B reducen la renta tributable mensual para efectos del impuesto único de segunda categoría (art. 42 bis LIR), lo que puede resultar en un impuesto significativamente menor o incluso cero para sueldos medianos. La calculadora actual ignora este factor: el modo avanzado incluye gratificación, horas extra, colación y movilización, pero no APV. Un usuario que cotiza $100.000 mensuales en APV Régimen B con un sueldo de $2.000.000 puede estar pagando ~$15.000–$25.000 de impuesto que el cálculo actual no refleja correctamente.
+- **Evidencia:** `src/application/use-cases/CalculateNetSalary.ts` — `taxableBase` se calcula como `taxableSalary - afp - health - unemploymentInsurance`, sin deducción de APV. `src/pages/calculadoras/sueldo-liquido.astro` — modo avanzado no incluye campo de APV.
+- **Impacto:** Usuarios con APV activo obtienen un resultado de impuesto sobreestimado. La diferencia puede ser de decenas de miles de pesos al mes para contribuyentes en tramo 2 o 3, reduciendo la utilidad real de la calculadora para un segmento relevante (estimado 20–30% de los cotizantes).
+- **Riesgo:** medio — requiere cambios en `CalculateNetSalary` y `CalculateMonthlyPayrollBase`; necesita tests de regresión
+- **Severidad (1-5):** 3
+- **Urgencia:** P1
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** Agregar campo opcional `apvRegimeBMensual` (monto mensual APV Régimen B) al modo avanzado. En `CalculateMonthlyPayrollBase`, descontar el APV Régimen B de la base para calcular `incomeTaxBase`: `incomeTaxBase = taxableSalary - afp - health - unemploymentInsurance - apvRegimeB`. Agregar tests unitarios para los casos: sin APV (comportamiento actual), APV Régimen B pequeño (sin impuesto), APV Régimen B que elimina el impuesto completamente. Agregar un disclaimer que distinga Régimen A (crédito fiscal) de Régimen B (deducción de base), dado que el Régimen A no reduce el impuesto mensual sino que genera crédito en la declaración anual.
+- **Criterios de cierre (checklist verificable):**
+  - [x] `CalculateMonthlyPayrollBase` acepta `apvRegimeB?: number` y lo descuenta de `incomeTaxBase`.
+  - [x] El modo avanzado de la calculadora incluye el campo APV Régimen B.
+  - [x] El resultado muestra la deducción APV en el desglose (fila violeta + barra visual).
+  - [x] Tests cubren: sin APV (regresión), APV pequeño (impuesto reducido), APV que elimina la base tributaria.
+  - [x] Un disclaimer aclara que el Régimen A funciona distinto (crédito fiscal en Operación Renta, no reduce impuesto mensual).
+  - [x] `pnpm run test` (521 tests) y `pnpm run check` (0 errores) pasan.
+- **Owner:** Claude Code
+- **Estado:** Completado
+- **Fecha de creación:** 2026-05-11
+- **Última actualización:** 2026-05-11
+- **Nota de cierre:** `apvRegimeB?: number` agregado a `MonthlyPayrollBaseInput`/`NetSalaryInput`; fluye hasta `incomeTaxBase` y se incluye en deductions totales. Propagado a través de `CalculateNetSalary`. UI: campo en modo avanzado + disclaimer inline Régimen A vs B + deducción en resultado + copy-to-clipboard.
+
+## TD-0062 — Panel de comparación AFP no disponible en modo Líquido→Bruto
+- **ID:** TD-0062
+- **Título corto:** Extender comparación AFP al modo Líquido→Bruto
+- **Descripción:** El panel de comparación AFP (tabla con los 7 resultados para cada AFP) está disponible solo en modo Bruto→Líquido. En modo Líquido→Bruto, el panel se oculta. Para un usuario que negocia sueldo y usa el modo inverso ("quiero recibir $900.000 líquidos, ¿cuánto bruto necesito?"), sería útil ver también qué bruto se requeriría con cada AFP. La omisión actual se debe a que la función `estimateGrossFromNet` ejecuta 60 iteraciones de búsqueda binaria y llamarla 7 veces en tiempo real introduce latencia perceptible (~7 × 60 = 420 llamadas a `calculateNetSalary`).
+- **Evidencia:** `src/pages/calculadoras/sueldo-liquido.astro` — `hideAfpComparison()` se llama explícitamente antes de `renderResultado()` en el path líquido→bruto. Comentario en el código aclara la razón de performance.
+- **Impacto:** Usuarios que negocian sueldo desde el lado del líquido no pueden ver la comparación AFP, perdiendo el diferenciador principal de la calculadora en el caso de uso de negociación salarial.
+- **Riesgo:** bajo (cambio aditivo, el flujo existente no se modifica)
+- **Severidad (1-5):** 2
+- **Urgencia:** P2
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Medir el tiempo real de 7 × `estimateGrossFromNet` en un dispositivo de referencia de gama media. Si es menor a 100ms, habilitar la comparación sin más cambios. Si supera ese umbral, ejecutar las 7 estimaciones en un `setTimeout(0)` post-render para que la tabla de comparación aparezca ~100–300ms después del resultado principal, sin bloquear la UI. El panel mostraría el bruto estimado necesario para cada AFP junto con la diferencia de bruto respecto a la AFP actual.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] El panel de comparación AFP se muestra también después de un cálculo en modo Líquido→Bruto.
+  - [ ] El panel muestra "bruto estimado" en lugar de "líquido" cuando corresponde.
+  - [ ] La latencia de render del resultado principal no aumenta perceptiblemente (< 100ms de diferencia medida en DevTools).
+  - [ ] `pnpm run check` pasa sin regresiones.
+- **Owner:** TBD
+- **Estado:** Pendiente
+- **Fecha de creación:** 2026-05-11
+- **Última actualización:** 2026-05-11

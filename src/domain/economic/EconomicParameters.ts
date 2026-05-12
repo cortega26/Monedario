@@ -22,6 +22,7 @@ export interface EconomicParameters {
   ipc: number;
   tmc?: number;
   dolar?: number;
+  imm?: number;
   afcTopes?: Record<string, number>;
   previsionalTopes?: Record<string, number>;
   indicatorUpdatedAt?: EconomicIndicatorUpdatedAt;
@@ -88,6 +89,14 @@ export function assertEconomicParameters(
     if (!isFiniteNumber(parameters.dolar) || parameters.dolar <= 0) {
       throw new EconomicParameterInvariantError(
         "Dolar must be a finite number greater than 0 when provided."
+      );
+    }
+  }
+
+  if (parameters.imm !== undefined) {
+    if (!isFiniteNumber(parameters.imm) || parameters.imm <= 0) {
+      throw new EconomicParameterInvariantError(
+        "IMM must be a finite number greater than 0 when provided."
       );
     }
   }

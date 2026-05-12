@@ -54,6 +54,83 @@ describe("calculateNetSalary", () => {
   });
 });
 
+describe("calculateNetSalary — APV Régimen B", () => {
+  const BASE_PARAMS = {
+    uf: UF,
+    utm: UTM,
+    afcTopes: { monthlyTaxableCapUf: 135.2 },
+    previsionalTopes: { pensionAndHealthMonthlyTaxableCapUf: 90 },
+  };
+
+  it("without APV: result is identical to current behavior (regression)", () => {
+    const withoutApv = calculateNetSalary({
+      grossSalary: 2_000_000,
+      afpRatePercent: 10.77,
+      healthSystem: "fonasa",
+      contractType: "indefinido",
+      economicParameters: BASE_PARAMS,
+    });
+    const withApvZero = calculateNetSalary({
+      grossSalary: 2_000_000,
+      afpRatePercent: 10.77,
+      healthSystem: "fonasa",
+      contractType: "indefinido",
+      apvRegimeB: 0,
+      economicParameters: BASE_PARAMS,
+    });
+
+    expect(withApvZero.netSalary).toBeCloseTo(withoutApv.netSalary, 0);
+    expect(withApvZero.deductions.tax).toBeCloseTo(withoutApv.deductions.tax, 0);
+    expect(withApvZero.deductions.apvRegimenB).toBe(0);
+  });
+
+  it("APV Régimen B small: tax is reduced but positive", () => {
+    const apvAmount = 100_000;
+    const withoutApv = calculateNetSalary({
+      grossSalary: 2_000_000,
+      afpRatePercent: 10.77,
+      healthSystem: "fonasa",
+      contractType: "indefinido",
+      economicParameters: BASE_PARAMS,
+    });
+    const withApv = calculateNetSalary({
+      grossSalary: 2_000_000,
+      afpRatePercent: 10.77,
+      healthSystem: "fonasa",
+      contractType: "indefinido",
+      apvRegimeB: apvAmount,
+      economicParameters: BASE_PARAMS,
+    });
+
+    expect(withApv.deductions.apvRegimenB).toBe(apvAmount);
+    // Tax is reduced because incomeTaxBase is lower
+    expect(withApv.deductions.tax).toBeLessThan(withoutApv.deductions.tax);
+    // Tax is still positive for this salary level
+    expect(withApv.deductions.tax).toBeGreaterThan(0);
+    // APV reduces net salary (it's withheld from paycheck)
+    expect(withApv.netSalary).toBeLessThan(withoutApv.netSalary);
+    // But less than a full APV reduction because tax savings offset part of it
+    expect(withoutApv.netSalary - withApv.netSalary).toBeLessThan(apvAmount);
+  });
+
+  it("APV Régimen B that eliminates the taxable base: income tax is 0", () => {
+    // With gross=700k: AFP(10.77%)+health(7%)+unemployment(0.6%) ≈ 128,590
+    // incomeTaxBase before APV ≈ 571,410 — so APV=600k fully eliminates it
+    const withApv = calculateNetSalary({
+      grossSalary: 700_000,
+      afpRatePercent: 10.77,
+      healthSystem: "fonasa",
+      contractType: "indefinido",
+      apvRegimeB: 600_000,
+      economicParameters: BASE_PARAMS,
+    });
+
+    expect(withApv.deductions.tax).toBe(0);
+    expect(withApv.taxableBase).toBe(0);
+    expect(withApv.deductions.apvRegimenB).toBe(600_000);
+  });
+});
+
 describe("estimateGrossFromNet", () => {
   const BASE_PARAMS = { uf: UF, utm: UTM };
 

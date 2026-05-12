@@ -9,6 +9,7 @@ export interface MonthlyPayrollBaseInput {
   healthSystem: "fonasa" | "isapre";
   isapreAdditionalPercent?: number;
   contractType?: PayrollContractType;
+  apvRegimeB?: number;
   economicParameters: Pick<
     EconomicParameters,
     "uf" | "afcTopes" | "previsionalTopes"
@@ -29,6 +30,7 @@ export interface MonthlyPayrollBaseOutput {
     afp: number;
     health: number;
     unemploymentInsurance: number;
+    apvRegimenB: number;
   };
   effectiveRates: {
     afpPercent: number;
@@ -79,6 +81,12 @@ function assertInput(input: MonthlyPayrollBaseInput): void {
   ) {
     throw new Error("isapreAdditionalPercent must be >= 0 when provided.");
   }
+  if (
+    input.apvRegimeB !== undefined &&
+    (!Number.isFinite(input.apvRegimeB) || input.apvRegimeB < 0)
+  ) {
+    throw new Error("apvRegimeB must be >= 0 when provided.");
+  }
 }
 
 function resolveWorkerUnemploymentInsuranceRatePercent(
@@ -120,9 +128,10 @@ export function calculateMonthlyPayrollBase(
   const afp = pensionAndHealthBase * afpPercent;
   const health = pensionAndHealthBase * healthPercent;
   const unemploymentInsurance = unemploymentBase * unemploymentInsurancePercent;
+  const apvRegimenB = input.apvRegimeB ?? 0;
   const incomeTaxBase = Math.max(
     0,
-    taxableSalary - afp - health - unemploymentInsurance
+    taxableSalary - afp - health - unemploymentInsurance - apvRegimenB
   );
 
   return {
@@ -139,6 +148,7 @@ export function calculateMonthlyPayrollBase(
       afp,
       health,
       unemploymentInsurance,
+      apvRegimenB,
     },
     effectiveRates: {
       afpPercent: afpPercent * 100,

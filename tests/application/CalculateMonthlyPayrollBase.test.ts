@@ -154,4 +154,70 @@ describe("calculateMonthlyPayrollBase", () => {
       })
     ).toThrow("taxableSalary");
   });
+
+  it("apvRegimeB reduces incomeTaxBase by the APV amount", () => {
+    const withoutApv = calculateMonthlyPayrollBase({
+      grossSalary: 2_000_000,
+      afpRatePercent: 10.77,
+      healthSystem: "fonasa",
+      contractType: "indefinido",
+      economicParameters: BASE_PARAMS,
+    });
+
+    const apvAmount = 100_000;
+    const withApv = calculateMonthlyPayrollBase({
+      grossSalary: 2_000_000,
+      afpRatePercent: 10.77,
+      healthSystem: "fonasa",
+      contractType: "indefinido",
+      apvRegimeB: apvAmount,
+      economicParameters: BASE_PARAMS,
+    });
+
+    expect(withApv.deductions.apvRegimenB).toBe(apvAmount);
+    expect(withApv.incomeTaxBase).toBeCloseTo(
+      withoutApv.incomeTaxBase - apvAmount,
+      0
+    );
+    // Previsional deductions are unchanged
+    expect(withApv.deductions.afp).toBeCloseTo(withoutApv.deductions.afp, 0);
+    expect(withApv.deductions.health).toBeCloseTo(withoutApv.deductions.health, 0);
+  });
+
+  it("apvRegimeB that exceeds the remaining taxable base clamps incomeTaxBase to 0", () => {
+    const result = calculateMonthlyPayrollBase({
+      grossSalary: 600_000,
+      afpRatePercent: 10.77,
+      healthSystem: "fonasa",
+      contractType: "indefinido",
+      apvRegimeB: 600_000,
+      economicParameters: BASE_PARAMS,
+    });
+
+    expect(result.incomeTaxBase).toBe(0);
+    expect(result.deductions.apvRegimenB).toBe(600_000);
+  });
+
+  it("apvRegimenB is 0 in output when apvRegimeB is not provided", () => {
+    const result = calculateMonthlyPayrollBase({
+      grossSalary: 1_000_000,
+      afpRatePercent: 10.77,
+      healthSystem: "fonasa",
+      economicParameters: BASE_PARAMS,
+    });
+
+    expect(result.deductions.apvRegimenB).toBe(0);
+  });
+
+  it("throws when apvRegimeB is negative", () => {
+    expect(() =>
+      calculateMonthlyPayrollBase({
+        grossSalary: 1_000_000,
+        afpRatePercent: 10.77,
+        healthSystem: "fonasa",
+        apvRegimeB: -1,
+        economicParameters: BASE_PARAMS,
+      })
+    ).toThrow("apvRegimeB");
+  });
 });

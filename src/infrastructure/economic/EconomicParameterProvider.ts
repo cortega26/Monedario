@@ -24,6 +24,7 @@ interface EconomicSnapshotPayload {
   ipc?: number;
   tmc?: number;
   dolar?: number;
+  imm?: number;
   afcTopes?: {
     monthlyTaxableCapUf?: number;
   };
@@ -69,6 +70,7 @@ const FALLBACK_PARAMETERS: EconomicParameters = {
   uta: 834504,
   ipc: 0,
   tmc: 3.49,
+  imm: 500_000,
   afcTopes: {
     monthlyTaxableCapUf: DEFAULT_AFC_MONTHLY_TAXABLE_CAP_UF,
   },
@@ -185,6 +187,7 @@ function loadSnapshotEconomicParameters(): EconomicParameters {
     tmc: payload.tmc !== undefined ? Number(payload.tmc) : 3.49,
     dolar: payload.dolar !== undefined ? Number(payload.dolar) : undefined,
     uta: payload.uta !== undefined ? Number(payload.uta) : undefined,
+    imm: payload.imm !== undefined ? Number(payload.imm) : undefined,
     afcTopes: {
       monthlyTaxableCapUf: Number(
         payload.afcTopes?.monthlyTaxableCapUf ??

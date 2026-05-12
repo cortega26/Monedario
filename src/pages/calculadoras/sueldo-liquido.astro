@@ -21,6 +21,7 @@ import { AFP_COMMISSIONS_PERCENT } from "@/config/afpCommissions";
 import { SITE } from "@/config";
 
 const { parameters: economicParameters } = await getEconomicParameters();
+const IMM_MENSUAL_SERVER = economicParameters.imm ?? 500_000;
 const salaryGuidePath = getPath("/posts/como-calcular-sueldo-liquido/");
 const firstTaxExemptBracket = 13.5 * economicParameters.utm;
 const economicSourceLabel =
@@ -217,7 +218,7 @@ const calculatorNextStepItems = [
             class="mt-2 hidden rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-xs text-amber-700 dark:text-amber-400"
             role="status"
           >
-            El sueldo mínimo mensual en Chile (2026) es $500.000. El monto ingresado está por debajo del mínimo legal para jornada completa.
+            El sueldo mínimo mensual en Chile es ${IMM_MENSUAL_SERVER.toLocaleString("es-CL")}. El monto ingresado está por debajo del mínimo legal para jornada completa.
           </div>
         </div>
 
@@ -484,6 +485,36 @@ const calculatorNextStepItems = [
                 etc.). Se restan del líquido final.
               </p>
             </div>
+            <div>
+              <label
+                for="apv-regimen-b"
+                class="mb-1 block text-sm font-medium text-secondary"
+              >
+                APV Régimen B ($) - opcional
+              </label>
+              <input
+                type="number"
+                id="apv-regimen-b"
+                placeholder="Ej: 100.000"
+                min="0"
+                class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+              />
+              <p class="mt-1 text-xs text-muted">
+                Aporte mensual a APV bajo <strong>Régimen B</strong>: reduce tu
+                base imponible mensual y por lo tanto el impuesto de 2ª
+                categoría (art. 42 bis LIR).
+              </p>
+              <div
+                class="mt-2 rounded-lg border border-blue-500/30 bg-blue-500/10 px-3 py-2 text-xs text-blue-700 dark:text-blue-400"
+              >
+                <strong>Régimen A vs. Régimen B:</strong> El Régimen B reduce
+                directamente tu impuesto mensual al descontar el APV de la renta
+                tributable. El Régimen A en cambio genera un crédito fiscal del
+                15% que se aplica en tu declaración anual de impuestos (Operación
+                Renta), no en tu liquidación mensual; ingrésalo aquí solo si
+                cotizas bajo Régimen B.
+              </div>
+            </div>
           </div>
         </div>
 
@@ -561,6 +592,7 @@ const calculatorNextStepItems = [
           id="economic-parameters"
           data-utm={String(economicParameters.utm)}
           data-uf={String(economicParameters.uf)}
+          data-imm={String(economicParameters.imm ?? 500000)}
           class="hidden"
           aria-hidden="true"
         >
@@ -1045,17 +1077,10 @@ const calculatorNextStepItems = [
   let lastModoLabel = "";
   let lastBaseBruto: number | undefined = undefined;
 
-  // IMM vigente (art. 50 CT) — actualizar con ajuste de julio de cada año
-  const IMM_MENSUAL = 500_000;
-  const GRATI_CAP_MENSUAL = Math.round((4.75 / 12) * IMM_MENSUAL); // $197.916
-
-  // Sueldo mínimo mensual Chile 2026 (= IMM). Actualizar en julio 2026 con nuevo decreto.
-  const SUELDO_MINIMO_2026 = IMM_MENSUAL;
-
   function checkMinWage(value: number) {
     const warning = document.getElementById("min-wage-warning");
     if (!warning) return;
-    if (value > 0 && value < SUELDO_MINIMO_2026) {
+    if (value > 0 && value < getParams().imm) {
       warning.classList.remove("hidden");
     } else {
       warning.classList.add("hidden");
@@ -1165,14 +1190,15 @@ const calculatorNextStepItems = [
     document.getElementById("afp-comparison")?.classList.add("hidden");
   }
 
-  function readEconomicParameters(): { uf: number; utm: number } {
+  function readEconomicParameters(): { uf: number; utm: number; imm: number } {
     const element = document.getElementById("economic-parameters");
     const utm = Number(element?.dataset?.utm);
     const uf = Number(element?.dataset?.uf);
+    const imm = Number(element?.dataset?.imm);
     if (!Number.isFinite(utm) || utm <= 0 || !Number.isFinite(uf) || uf <= 0) {
       throw new Error("No se pudieron cargar los parámetros económicos.");
     }
-    return { uf, utm };
+    return { uf, utm, imm: Number.isFinite(imm) && imm > 0 ? imm : 500_000 };
   }
 
   let _economicParams: ReturnType<typeof readEconomicParameters> | null = null;
@@ -1399,6 +1425,13 @@ const calculatorNextStepItems = [
         color: "bg-amber-400",
       },
     ];
+    if (resultado.deductions.apvRegimenB > 0) {
+      barsData.push({
+        label: "APV Reg. B",
+        value: resultado.deductions.apvRegimenB,
+        color: "bg-violet-400",
+      });
+    }
     if (otrosDescuentos && otrosDescuentos > 0) {
       barsData.push({
         label: "Otros desc.",
@@ -1462,6 +1495,16 @@ const calculatorNextStepItems = [
       ),
     ];
 
+    if (resultado.deductions.apvRegimenB > 0) {
+      rows.push(
+        buildRow(
+          "APV Régimen B",
+          `− ${fmt(resultado.deductions.apvRegimenB)}`,
+          "text-violet-400"
+        )
+      );
+    }
+
     if (otrosDescuentos && otrosDescuentos > 0) {
       rows.push(
         buildRow(
@@ -1517,14 +1560,15 @@ const calculatorNextStepItems = [
     );
 
     // Gratificación legal estimada (art. 50 CT) — solo modo bruto→líquido
+    const graticap = Math.round((4.75 / 12) * getParams().imm);
     if (baseBruto !== undefined) {
       const grati25 = Math.round(baseBruto * 0.25);
-      const gratiLegal = Math.min(grati25, GRATI_CAP_MENSUAL);
+      const gratiLegal = Math.min(grati25, graticap);
       extraRows.append(
         mkInfoRow(
           "Gratificación legal máx. (art. 50 CT) ②",
           fmt(gratiLegal),
-          `25% de ${fmt(baseBruto)} = ${fmt(grati25)} — tope ${fmt(GRATI_CAP_MENSUAL)} (4,75 IMM/12)`
+          `25% de ${fmt(baseBruto)} = ${fmt(grati25)} — tope ${fmt(graticap)} (4,75 IMM/12)`
         )
       );
     }
@@ -1539,7 +1583,7 @@ const calculatorNextStepItems = [
         : "Usando imponible explícito distinto del bruto total.");
     const gratiNote =
       baseBruto !== undefined
-        ? ` ② Tope gratificación = 25% bruto o ${fmt(GRATI_CAP_MENSUAL)}/mes (4,75 × IMM $500.000 ÷ 12). Actualizar en julio 2026.`
+        ? ` ② Tope gratificación = 25% bruto o ${fmt(graticap)}/mes (4,75 × IMM ${fmt(getParams().imm)} ÷ 12).`
         : "";
     assumption.textContent = `${baseNote} ① Solo AFC empleador; no incluye mutual de seguridad ni beneficios pactados.${gratiNote}`;
 
@@ -1648,6 +1692,10 @@ const calculatorNextStepItems = [
           (document.getElementById("otros-descuentos") as HTMLInputElement)
             ?.value
         ) || 0;
+      const apvRegimenB =
+        parseFloat(
+          (document.getElementById("apv-regimen-b") as HTMLInputElement)?.value
+        ) || 0;
 
       const grossBase = rawInput + gratificacion + horasExtra;
       const noImponiblesExtra = colacion + movilizacion;
@@ -1669,6 +1717,7 @@ const calculatorNextStepItems = [
           healthSystem,
           contractType,
           isapreAdditionalPercent: isapreAdicional,
+          apvRegimeB: apvRegimenB > 0 ? apvRegimenB : undefined,
           economicParameters: getParams(),
         });
       } catch (error) {
@@ -1748,6 +1797,9 @@ const calculatorNextStepItems = [
       `${pad(`Salud (${fmtPct(r.effectiveRates.healthPercent)}):`)}−${fmt(r.deductions.health)}`,
       `${pad(`Seg. cesantía (${fmtPct(r.effectiveRates.unemploymentInsurancePercent)}):`)}−${fmt(r.deductions.unemploymentInsurance)}`,
       `${pad("Imp. 2ª categoría:")}−${fmt(r.deductions.tax)}`,
+      ...(r.deductions.apvRegimenB > 0
+        ? [`${pad("APV Régimen B:")}−${fmt(r.deductions.apvRegimenB)}`]
+        : []),
       ...(lastOtrosDescuentos > 0
         ? [`${pad("Otros descuentos:")}−${fmt(lastOtrosDescuentos)}`]
         : []),
@@ -1759,7 +1811,7 @@ const calculatorNextStepItems = [
       ...(lastBaseBruto !== undefined
         ? [
             "─".repeat(44),
-            `${pad("Gratif. legal máx.:")}${fmt(Math.min(Math.round(lastBaseBruto * 0.25), GRATI_CAP_MENSUAL))} (art. 50 CT)`,
+            `${pad("Gratif. legal máx.:")}${fmt(Math.min(Math.round(lastBaseBruto * 0.25), Math.round((4.75 / 12) * getParams().imm)))} (art. 50 CT)`,
           ]
         : []),
     ];

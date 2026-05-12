@@ -12,6 +12,7 @@ export interface NetSalaryInput {
   healthSystem: "fonasa" | "isapre";
   isapreAdditionalPercent?: number;
   contractType?: PayrollContractType;
+  apvRegimeB?: number;
   economicParameters: Pick<
     EconomicParameters,
     "uf" | "utm" | "afcTopes" | "previsionalTopes"
@@ -33,6 +34,7 @@ export interface NetSalaryOutput {
     afp: number;
     health: number;
     unemploymentInsurance: number;
+    apvRegimenB: number;
     tax: number;
     total: number;
   };
@@ -66,6 +68,12 @@ function assertInput(input: NetSalaryInput): void {
       input.isapreAdditionalPercent < 0)
   ) {
     throw new Error("isapreAdditionalPercent must be >= 0 when provided.");
+  }
+  if (
+    input.apvRegimeB !== undefined &&
+    (!Number.isFinite(input.apvRegimeB) || input.apvRegimeB < 0)
+  ) {
+    throw new Error("apvRegimeB must be >= 0 when provided.");
   }
   if (
     !Number.isFinite(input.economicParameters.uf) ||
@@ -142,6 +150,7 @@ export function calculateNetSalary(input: NetSalaryInput): NetSalaryOutput {
     healthSystem: input.healthSystem,
     isapreAdditionalPercent: input.isapreAdditionalPercent,
     contractType: input.contractType,
+    apvRegimeB: input.apvRegimeB,
     economicParameters: input.economicParameters,
   });
   const taxableBase = payroll.incomeTaxBase;
@@ -153,6 +162,7 @@ export function calculateNetSalary(input: NetSalaryInput): NetSalaryOutput {
     payroll.deductions.afp +
     payroll.deductions.health +
     payroll.deductions.unemploymentInsurance +
+    payroll.deductions.apvRegimenB +
     taxResult.taxAmount;
   const netSalary = input.grossSalary - totalDeductions;
 
@@ -168,6 +178,7 @@ export function calculateNetSalary(input: NetSalaryInput): NetSalaryOutput {
       afp: payroll.deductions.afp,
       health: payroll.deductions.health,
       unemploymentInsurance: payroll.deductions.unemploymentInsurance,
+      apvRegimenB: payroll.deductions.apvRegimenB,
       tax: taxResult.taxAmount,
       total: totalDeductions,
     },
