@@ -20,8 +20,6 @@
  *
  * Required env:
  *   CLOUDFLARE_ANALYTICS_TOKEN   Token with Account+Zone Analytics:Read
- *
- * Optional env (defaults hardcoded below):
  *   CLOUDFLARE_ZONE_ID           Zone ID for monedario.cl
  *   CLOUDFLARE_ACCOUNT_ID        Account ID
  */
@@ -34,8 +32,6 @@ import {
   previousCompleteISOWeek,
 } from "./gsc-utils.mjs";
 
-const DEFAULT_ZONE_ID    = "9d53871bed75e9ad5d4cc5da84a18fcf";
-const DEFAULT_ACCOUNT_ID = "7e153214690ac7430fde021f1f2b2916";
 const OUTPUT_BASE        = "output/operations/data-signals/cloudflare";
 const CF_GRAPHQL         = "https://api.cloudflare.com/client/v4/graphql";
 
@@ -55,12 +51,22 @@ Options:
 
 Required env:
   CLOUDFLARE_ANALYTICS_TOKEN   Token with Account+Zone Analytics:Read
+  CLOUDFLARE_ZONE_ID           Zone ID for monedario.cl
+  CLOUDFLARE_ACCOUNT_ID        Account ID
 
 Output (without --dry-run):
   ${OUTPUT_BASE}/<week>-traffic.json   Daily zone traffic + cache ratio
   ${OUTPUT_BASE}/<week>-rum.json       RUM Web Vitals per route (LCP/CLS/INP p75)
 `);
   process.exit(code);
+}
+
+function getRequiredEnv(name) {
+  const value = process.env[name];
+  if (!value) {
+    throw new Error(`Missing env var ${name}`);
+  }
+  return value;
 }
 
 function parseArgs(argv) {
@@ -216,14 +222,9 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   if (args.help) printUsage(0);
 
-  const token = process.env.CLOUDFLARE_ANALYTICS_TOKEN;
-  if (!token) {
-    console.error("[cloudflare-fetch] Missing env var CLOUDFLARE_ANALYTICS_TOKEN");
-    process.exit(1);
-  }
-
-  const zoneId    = process.env.CLOUDFLARE_ZONE_ID    ?? DEFAULT_ZONE_ID;
-  const accountId = process.env.CLOUDFLARE_ACCOUNT_ID ?? DEFAULT_ACCOUNT_ID;
+  const token = getRequiredEnv("CLOUDFLARE_ANALYTICS_TOKEN");
+  const zoneId = getRequiredEnv("CLOUDFLARE_ZONE_ID");
+  const accountId = getRequiredEnv("CLOUDFLARE_ACCOUNT_ID");
   const week      = args.week ?? previousCompleteISOWeek();
   const { from, to } = isoWeekToDateRange(week);
 

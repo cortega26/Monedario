@@ -1,4 +1,4 @@
-import type { LinkCard, LinkSection } from "@/config/sueldoClusterLinks";
+import type { LinkCard, LinkSection } from "@/config/contextualLinkTypes";
 
 const pensionHubCard: LinkCard = {
   kind: "Sección",

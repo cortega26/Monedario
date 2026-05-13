@@ -63,10 +63,17 @@
 - El snapshot económico existente sigue siendo la fuente automática para indicadores runtime, pero ahora convive con una disciplina explícita de revisión editorial para claims temporales.
 
 ## 0. Resumen ejecutivo
-El repositorio es un sitio estático en **Astro 5** (fork/customización sobre base AstroPaper) enfocado en educación financiera para Chile, con contenido editorial y una suite de calculadoras financieras.
+El repositorio es un sitio estático en **Astro 6** enfocado en educación financiera para Chile, con contenido editorial, glosario/leyes y una suite de calculadoras financieras.
 El proyecto está funcional en producción bajo dominio propio raíz (`https://monedario.cl/`) y combina contenido Markdown/MDX con páginas `.astro` de lógica cliente.
 Las personalizaciones más relevantes son: homepage editorial, calculadoras, helpers de rutas compatibles con dominio raíz o subpath, mejoras de UX (breadcrumbs/back button/reveal), y componentes de indicadores económicos.
-Los riesgos principales están en deuda de mantenibilidad y consistencia operativa: valores financieros hardcodeados con fecha, lógica duplicada, falta de tests, y mezcla de gestores de paquetes/workflows.
+Los riesgos principales están en drift documental/contextual, deuda operativa en scripts/workflows, y mantenimiento de reglas YMYL y datos económicos versionados.
+
+### Checkpoint 2026-05-13 (Docs/Context Truth Refresh)
+
+- Stack activo confirmado: Astro 6, TypeScript 6, Node 22 y `pnpm@10.30.2`.
+- El árbol no contiene un `deploy.yml` activo; GitHub Actions cubre CI y jobs operativos. La publicación productiva la gestiona Cloudflare Pages a partir de este repositorio.
+- `TPI_ECONOMIC_PROVIDER_MODE` queda en modo `snapshot` por defecto; `live` solo se usa explícitamente por env.
+- `README.md`, `docs/codebase/STACK.md` y `package.json` son las referencias activas para stack/tooling; esta entrada reemplaza los supuestos históricos de Astro 5, Node 20 y GitHub Pages workflow-managed deploy.
 
 ### Checkpoint 2026-03-04 (Documentation Taxonomy Restructure)
 
@@ -169,38 +176,16 @@ Los riesgos principales están en deuda de mantenibilidad y consistencia operati
 ## 1. Stack técnico
 
 ### Runtime y package management
-- **Node objetivo:** 20 (`README.md`, `.github/workflows/ci.yml`, `.github/workflows/deploy.yml`).
-- **Gestor en uso:** `pnpm`.
+- **Node objetivo:** 22 (`README.md`, `.nvmrc`, `.github/workflows/ci.yml`).
+- **Gestor en uso:** `pnpm` (`packageManager: pnpm@10.30.2`).
 - **Lockfiles presentes:** `pnpm-lock.yaml`.
 
 ### Dependencias principales (relevantes)
 
-| Paquete | Spec (`package.json`) | Resuelto (`pnpm-lock.yaml`) | Uso principal |
-|---|---|---|---|
-| `astro` | `^5.16.6` | `5.17.3` | Framework SSG |
-| `@astrojs/mdx` | `^4.3.13` | `4.3.13` | Soporte MDX |
-| `@astrojs/sitemap` | `^3.6.0` | `3.7.0` | Sitemap |
-| `@astrojs/rss` | `^4.0.14` | `4.0.15` | Feed RSS |
-| `tailwindcss` | `^4.1.18` | `4.2.1` | Estilos |
-| `@tailwindcss/vite` | `^4.1.18` | `4.2.1` | Integración Tailwind-Vite |
-| `@tailwindcss/typography` | `^0.5.19` | `0.5.19` | Prose styles |
-| `pagefind` | `^1.4.0` | `1.4.0` | Índice de búsqueda estática |
-| `@pagefind/default-ui` | `^1.4.0` | `1.4.0` | UI buscador |
-| `dayjs` | `^1.11.19` | `1.11.19` | Fechas y timezone |
-| `remark-toc` | `^9.0.0` | `9.0.0` | TOC Markdown |
-| `remark-collapse` | `^0.1.2` | `0.1.2` | Colapso de TOC |
-| `@shikijs/transformers` | `^3.20.0` | `3.23.0` | Transformadores de código |
-| `satori` | `^0.18.3` | `0.18.4` | Plantillas OG SVG |
-| `@resvg/resvg-js` | `^2.6.2` | `2.6.2` | Render SVG->PNG |
-| `sharp` | `^0.34.5` | `0.34.5` | Pipeline de imágenes |
-| `slugify` | `^1.6.6` | `1.6.6` | Slugs |
-| `lodash.kebabcase` | `^4.1.1` | `4.1.1` | Slug fallback |
-| `typescript` | `^6.0.3` | `6.0.3` | Tipado |
-| `eslint` | `^9.39.2` | `9.39.3` | Lint |
-| `eslint-plugin-astro` | `^1.5.0` | `1.6.0` | Lint Astro |
-| `@astrojs/check` | `^0.9.2` | `0.9.6` | Typecheck Astro |
-| `prettier` | `^3.7.4` | `3.8.1` | Formato |
-| `prettier-plugin-astro` | `^0.14.1` | `0.14.1` | Formato Astro |
+- **Framework/app:** Astro 6, React 19, MDX, RSS, Sitemap.
+- **Build/UI:** TailwindCSS 4, Pagefind, Shiki, Sharp, Satori, Resvg.
+- **Calidad:** TypeScript 6, Vitest 4, ESLint 10, Prettier 3, `@astrojs/check`.
+- **Datos económicos:** provider snapshot-first con modo `live` opcional vía `TPI_ECONOMIC_PROVIDER_MODE=live`.
 
 ### Configuración Astro relevante
 Archivo: `astro.config.ts`
@@ -208,19 +193,18 @@ Archivo: `astro.config.ts`
 ```ts
 site: SITE.website
 base: new URL(SITE.website).pathname.replace(/\/$/, "") || "/"
-integrations: [sitemap(...), mdx()]
-markdown.remarkPlugins: [remarkToc, remarkCollapse]
-markdown.shikiConfig.transformers: [transformerFileName, ...]
+trailingSlash: "always"
+integrations: [react(), sitemap(...), mdx()]
+markdown.remarkPlugins: [remarkEconomicVariables, remarkPrefixInternalLinks, ...]
 vite.plugins: [tailwindcss()]
 image: { responsiveStyles: true, layout: "constrained" }
-env.schema: PUBLIC_GOOGLE_SITE_VERIFICATION
-experimental: { preserveScriptOrder: true, fonts: [...] }
+env.schema: PUBLIC_GA_MEASUREMENT_ID + PUBLIC_GOOGLE_SITE_VERIFICATION
 ```
 
 Puntos clave:
 - `site` y `base` dependen de `src/config.ts` (`SITE.website` es la source of truth del dominio y del base path).
-- Sitemap filtra `/archives` según `SITE.showArchives`.
-- No hay adapter explícito: comportamiento estático por defecto.
+- El sitemap filtra `/archives`, `/tags/`, `/search/`, `/buscar/` y utilidades internas según la política actual.
+- No hay adapter explícito: el sitio sigue siendo estático por defecto.
 
 ## 2. Arquitectura de proyecto (visión macro)
 
@@ -229,36 +213,35 @@ Puntos clave:
 ```text
 .
 ├─ src/
-│  ├─ pages/                   # rutas Astro + endpoints
-│  │  ├─ calculadoras/         # 10 calculadoras cliente-side
-│  │  ├─ posts/                # listing paginado + detalle + OG dinámico
-│  │  ├─ tags/                 # index + listing paginado por tag
-│  │  ├─ archives/             # archivo anual/mensual
-│  │  ├─ search.astro          # Pagefind UI
-│  │  ├─ rss.xml.ts / robots.txt.ts / og.png.ts
-│  ├─ data/blog/               # contenido Markdown/MDX (colección blog)
-│  ├─ components/              # componentes UI y utilitarios visuales
-│  ├─ layouts/                 # Layout, Main, PostDetails
-│  ├─ utils/                   # paths, tags, OG, indicadores, etc.
-│  ├─ styles/                  # Tailwind v4 + typography custom
-│  ├─ config.ts                # SITE config
-│  └─ content.config.ts        # colección blog
-├─ public/                     # favicon, OG estático, pagefind generado
-├─ .github/workflows/          # CI y deploy
+│  ├─ pages/                   # rutas Astro y endpoints públicos
+│  ├─ components/              # componentes UI y bloques reutilizables
+│  ├─ layouts/                 # shells principales
+│  ├─ application/             # casos de uso
+│  ├─ domain/                  # lógica pura e invariantes
+│  ├─ infrastructure/          # providers, snapshots y efectos secundarios
+│  ├─ config/                  # modelos editoriales y helpers de navegación
+│  ├─ data/                    # blog, glossary y laws
+│  ├─ tools/                   # utilidades internas de authoring
+│  └─ content.config.ts        # colecciones Astro
+├─ public/                     # assets estáticos, `CNAME`, `_headers`, pagefind
+├─ .github/workflows/          # CI y jobs operativos programados
 ├─ package.json
 ├─ pnpm-lock.yaml
-└─ package-lock.json
+└─ docs/ + context/            # gobernanza, backlog, contexto canónico
 ```
 
-### Flujo de build/deploy (inferido del repo)
+### Flujo de build/publicación (inferido del repo)
 - `pnpm run build` (script `build`):
-  1. `astro check`
-  2. `astro build`
-  3. `pagefind --site dist`
-  4. `cp -r dist/pagefind public/`
-- CI (`.github/workflows/ci.yml`): usa `pnpm install`, lint, format check, build.
-- Deploy (`.github/workflows/deploy.yml`): usa `npm ci` + `npm run build` + GitHub Pages.
-- Dockerfile: build con `pnpm`, runtime con `nginx`.
+  1. checks de imágenes/frontmatter/citas legales
+  2. `astro check`
+  3. `astro build`
+  4. checks post-build editoriales/TOC
+  5. `pagefind --site dist`
+  6. validación de URLs
+- `pnpm run check`: umbrella gate de contexto, policy registry, docs, imágenes, frontmatter, editorial, timeliness, `no-postid-urls` y `astro check`.
+- CI (`.github/workflows/ci.yml`): usa Node 22 + `pnpm install --frozen-lockfile`, luego corre lint, formato, tests, checks, build, URL check y RSS/routes.
+- Publicación productiva: Cloudflare Pages consume el repositorio y sirve la salida estática; este árbol no versiona el workflow final de publish.
+- Dockerfile: build con `pnpm`, runtime con `nginx` como superficie operativa separada del publish principal.
 
 ### Convenciones observadas
 - Alias `@/*` en `tsconfig.json`.

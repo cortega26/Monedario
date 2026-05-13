@@ -1,4 +1,4 @@
-import type { LinkCard, LinkSection } from "./sueldoClusterLinks";
+import type { LinkCard, LinkSection } from "@/config/contextualLinkTypes";
 
 const informeCmfCard: LinkCard = {
   kind: "Guía",

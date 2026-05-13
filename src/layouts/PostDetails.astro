@@ -25,8 +25,7 @@ import ArticleDecisionIntro from "@/components/ArticleDecisionIntro.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getPath } from "@/utils/getPath";
 import { SITE } from "@/config";
-import { getSueldoArticleSections } from "@/config/sueldoClusterLinks";
-import { getDeudaArticleSections } from "@/config/deudaClusterLinks";
+import { getArticleContextualSections } from "@/config/contextualArticleSections";
 import TOCSidebar from "@/components/TOCSidebar.astro";
 import CalculatorCTA from "@/components/CalculatorCTA.astro";
 import NextSteps from "@/components/NextSteps.astro";
@@ -117,10 +116,7 @@ const allPosts = posts.map(entry => {
 });
 
 const currentPostIndex = allPosts.findIndex(a => a.slug === article.slug);
-const contextualSections = [
-  ...getSueldoArticleSections(article.slug),
-  ...getDeudaArticleSections(article.slug),
-];
+const contextualSections = getArticleContextualSections(article.slug);
 const articleLead = post.data.articleLead;
 const primaryDestinationHrefs = new Set<string>();
 

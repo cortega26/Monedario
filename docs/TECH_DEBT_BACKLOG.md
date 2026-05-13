@@ -1,6 +1,6 @@
 # TECH_DEBT_BACKLOG
 
-Fecha de corte: 2026-05-11
+Fecha de corte: 2026-05-13
 
 ## Métricas
 
@@ -11,15 +11,16 @@ Fecha de corte: 2026-05-11
 - **P2:** 30
 - **P3:** 5
 
-### Estado de avance (2026-05-11)
+### Estado de avance (2026-05-13)
 
-- **Completados:** 62 TD únicos (`TD-0001`..`TD-0062`) + 2 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`)
+- **Completados:** 62 TD únicos (`TD-0001`..`TD-0062`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
 - **En progreso:** 0
 - **Backlog sin iniciar:** 0
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
 > `FIX-LINKS-CALC`: ampliado `check-internal-links.mjs` para cubrir validación de rutas `/calculadoras/`.
+> `FIX-LINKS-GUIAS`: ampliado `check-internal-links.mjs` para aceptar rutas `/guias/<cluster>/<slug>/` respaldadas por archivos `.astro` y añadido regression test en `tests/scripts/check-internal-links.test.ts`.
 > `TD-0030`: corregidas assertions `doubledPayment.totalPaid` en regression test tarjeta de crédito (casos 1 y 3).
 > `TD-0032`: normalizado formato Prettier en 13 archivos con drift mecánico; `format:check` pasa limpio.
 > `TD-0033`: `pnpm run format:check` vuelve a pasar limpio el 2026-04-03; el drift mecánico ya no reproduce.
@@ -41,11 +42,12 @@ Fecha de corte: 2026-05-11
 - Actualización de julio 2026: actualizar `imm` en `economic-parameters.snapshot.json` cuando se publique el decreto de reajuste del IMM.
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 
-### Siguiente orden recomendado (2026-05-11)
+### Siguiente orden recomendado (2026-05-13)
 
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 - Actualizar `imm` en snapshot cada julio con el nuevo decreto presidencial.
-- El backlog técnico está en 0 ítems abiertos al 2026-05-11.
+- Resolver warnings no bloqueantes vigentes (`topicRole` faltante y descripciones sobre 155 caracteres) o promoverlos a TD si dejan de ser mera higiene editorial.
+- No quedan TD técnicos abiertos con ID activo al 2026-05-13, pero siguen existiendo follow-ups operativos/editoriales fuera de este ledger; si alguno sube de warning/higiene a riesgo rastreable, debe abrirse como nuevo TD.
 
 ### Quick wins (alto impacto / bajo esfuerzo)
 
@@ -149,7 +151,7 @@ Fecha de corte: 2026-05-11
 - **ID:** TD-0001
 - **Título corto:** Unificar gestor de paquetes y lockfile
 - **Descripción:** El repo usa `pnpm` y `npm` en paralelo, con dos lockfiles. Esto abre drift de dependencias y builds no deterministas entre entornos locales, CI y deploy.
-- **Evidencia (actualizada):** `package.json` (`packageManager: pnpm@10.30.2`); `package-lock.json` eliminado; `.github/workflows/ci.yml` (`pnpm install --frozen-lockfile`); `.github/workflows/deploy.yml` (`pnpm install --frozen-lockfile` + `pnpm run build`); `Dockerfile` (`corepack prepare pnpm@10.30.2`); `docker-compose.yml` (`pnpm run dev`); `README.md` (flujo `pnpm`).
+- **Evidencia (actualizada):** `package.json` (`packageManager: pnpm@10.30.2`); `package-lock.json` eliminado; `.github/workflows/ci.yml` y `.github/actions/bootstrap-pnpm/action.yml` (bootstrap compartido con `pnpm install --frozen-lockfile`); no existe `.github/workflows/deploy.yml` activo en el árbol actual y la publicación productiva la gestiona Cloudflare Pages a partir de este repositorio; `Dockerfile` (`corepack prepare pnpm@10.30.2`); `docker-compose.yml` (`pnpm run dev`); `README.md` (flujo `pnpm`).
 - **Impacto:** Aumenta riesgo de diferencias entre entornos, fallos intermitentes y fricción de contribución.
 - **Riesgo:** alto
 - **Severidad (1-5):** 3

@@ -72,7 +72,7 @@ export const CANONICAL_TOPIC_REGISTRY = {
       ownerSlug: "impuesto-global-complementario-chile",
       intentLabel: "entender y calcular el impuesto global complementario",
     },
-    "operacion-renta-f22": {
+    "f22-revisar-enviar": {
       ownerSlug: "operacion-renta-f22-checklist",
       intentLabel: "operacion renta F22 checklist",
     },

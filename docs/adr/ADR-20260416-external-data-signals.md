@@ -50,7 +50,7 @@ scripts/data-signals/<source>.mjs
 
 ### Fuente 2: Cloudflare Analytics (GraphQL Analytics API)
 
-- **Auth:** Zone API token con scope `Analytics:Read`. Env var `CLOUDFLARE_ANALYTICS_TOKEN`.
+- **Auth:** Zone API token con scope `Analytics:Read`. Env vars obligatorias: `CLOUDFLARE_ANALYTICS_TOKEN`, `CLOUDFLARE_ZONE_ID`, `CLOUDFLARE_ACCOUNT_ID`.
 - **Script:** `scripts/data-signals/cloudflare-fetch.mjs`.
 - **Output:** `output/operations/data-signals/cloudflare/{week}-rum.json` (Web Analytics: pageviews, LCP p75, CLS p75 por ruta), `{week}-cache.json` (ratio hit/miss para invalidación de headers).
 - **Frecuencia:** diaria.
