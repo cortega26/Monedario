@@ -87,7 +87,7 @@ Los riesgos principales están en drift documental/contextual, deuda operativa e
 - La marca pública del sitio pasa de `Tu Plata Informa` a `Monedario`.
 - `SITE.website` cambia a `https://monedario.cl/`.
 - `astro.config.ts` deja de hardcodear `base` y la deriva desde `SITE.website`, permitiendo despliegue en raíz sin romper CSS ni assets.
-- Se agrega `public/CNAME` para hacer persistente el dominio custom en GitHub Pages.
+- Se agrega `public/CNAME` como artefacto versionado del root-domain migration; hoy el archivo sigue presente aunque la publicación productiva la gestiona Cloudflare Pages.
 - ADR de respaldo: `docs/adr/ADR-20260305-monedario-root-domain.md`.
 
 ### Checkpoint 2026-03-06 (Editorial Artifact Gate PR Diff Scope)

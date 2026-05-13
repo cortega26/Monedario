@@ -63,7 +63,7 @@ Markdown files discovered (excluding build/dependency artifacts): **114**.
 | ISSUE-007_etf-desde-chile-comisiones-custodia-impuestos.md | `docs/operations/issues/ISSUE-007_etf-desde-chile-comisiones-custodia-impuestos.md` | ISSUE-007 — ETFs desde Chile: comisiones, custodia e impuestos | Editorial issue execution record | Operational |
 | ISSUE-008_estafas-chile-vishing-portabilidad-falsas-inversiones.md | `docs/operations/issues/ISSUE-008_estafas-chile-vishing-portabilidad-falsas-inversiones.md` | ISSUE-008 — Estafas en Chile: checklist preventivo multicanal | Editorial issue execution record | Operational |
 | FEATURED_IMAGE_MIGRATION_REPORT.md | `docs/operations/reports/migrations/FEATURED_IMAGE_MIGRATION_REPORT.md` | Featured Image Migration Report (v3) | Closure/performance report | Operational |
-| PERFORMANCE_HARDENING_MOBILE_REPORT.md | `docs/operations/reports/performance/PERFORMANCE_HARDENING_MOBILE_REPORT.md` | Mobile Performance Hardening Report (Astro / GitHub Pages) | Closure/performance report | Operational |
+| PERFORMANCE_HARDENING_MOBILE_REPORT.md | `docs/archive/operations/reports/performance/PERFORMANCE_HARDENING_MOBILE_REPORT.md` | Mobile Performance Hardening Report (Astro / GitHub Pages era) | Archived closure/performance report | Operational |
 | PERFORMANCE_REMOTE_CLOSURE_REPORT.md | `docs/operations/reports/performance/PERFORMANCE_REMOTE_CLOSURE_REPORT.md` | Remote Performance Closure Report | Closure/performance report | Operational |
 | PHASE1_CLOSURE_REPORT.md | `docs/operations/reports/closures/PHASE1_CLOSURE_REPORT.md` | PHASE 1 CLOSURE REPORT | Closure/performance report | Operational |
 | README.md | `docs/research/README.md` | Research Docs | Documentation index | Governance |
