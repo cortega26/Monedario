@@ -38,40 +38,24 @@ jobs:
 
       - name: "📤 Upload editorial timeliness report"
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: ./.github/actions/upload-workflow-artifact
         with:
-          name: editorial-timeliness-report
+          artifact-name: editorial-timeliness-report
           retention-days: 14
-          if-no-files-found: error
           path: output/validation/editorial-timeliness/report.json
 
-      - name: "📝 Create, update, or close freshness issue"
+      - name: "📝 Build editorial timeliness issue payload"
         if: always()
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        id: issue_payload
         with:
           script: |
             const fs = require("fs");
             const title = "Editorial timeliness audit: stale review window";
 
-            const { data: issues } = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: "open"
-            });
-            const existing = issues.find(issue => issue.title === title);
-
             if ("${{ steps.editorial_timeliness.outcome }}" !== "failure") {
-              if (existing) {
-                await github.rest.issues.update({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  issue_number: existing.number,
-                  state: "closed"
-                });
-                core.info(`Closed issue #${existing.number}`);
-              } else {
-                core.info("No open editorial timeliness issue to close.");
-              }
+              core.setOutput("title", title);
+              core.setOutput("desired_state", "closed");
               return;
             }
 
@@ -104,23 +88,18 @@ jobs:
               "",
               "Artifact: `editorial-timeliness-report` from workflow run."
             ].join("\n");
-            if (existing) {
-              await github.rest.issues.update({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: existing.number,
-                body
-              });
-              core.info(`Updated issue #${existing.number}`);
-            } else {
-              const created = await github.rest.issues.create({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                title,
-                body
-              });
-              core.info(`Created issue #${created.data.number}`);
-            }
+            core.setOutput("title", title);
+            core.setOutput("body", body);
+            core.setOutput("desired_state", "open");
+
+      - name: "📝 Sync editorial timeliness issue"
+        if: always()
+        uses: ./.github/actions/upsert-issue-by-title
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: ${{ steps.issue_payload.outputs.title }}
+          body: ${{ steps.issue_payload.outputs.body }}
+          desired-state: ${{ steps.issue_payload.outputs.desired_state }}
 
       - name: "✅ Fail workflow on stale entries"
         if: steps.editorial_timeliness.outcome == 'failure'

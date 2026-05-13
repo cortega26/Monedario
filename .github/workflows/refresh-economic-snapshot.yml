@@ -61,13 +61,9 @@ jobs:
             src/infrastructure/editorial/editorial-volatile-data.snapshot.json
             src/data/blog
 
-      - name: "🔀 Enable auto-merge"
+      - name: "🔀 Attempt safe auto-merge"
         if: steps.create-pr.outputs.pull-request-number != ''
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          # Try auto-merge first (works when branch-protection required checks exist).
-          # Fall back to direct squash-merge when the PR is already in "clean" status
-          # (no pending required checks), which causes enablePullRequestAutoMerge to fail.
-          gh pr merge --auto --squash ${{ steps.create-pr.outputs.pull-request-number }} || \
-            gh pr merge --squash ${{ steps.create-pr.outputs.pull-request-number }}
+        uses: ./.github/actions/enable-safe-automerge
+        with:
+          pull-request: ${{ steps.create-pr.outputs.pull-request-number }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}

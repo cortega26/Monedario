@@ -39,43 +39,27 @@ jobs:
 
       - name: "📤 Upload AFP commission check report"
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: ./.github/actions/upload-workflow-artifact
         with:
-          name: afp-commissions-report
+          artifact-name: afp-commissions-report
           retention-days: 90
           if-no-files-found: warn
           path: output/validation/afp-commissions/report.json
 
-      - name: "📝 Create, update, or close GitHub issue"
+      - name: "📝 Build AFP drift issue payload"
         if: always()
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        id: issue_payload
         with:
           script: |
             const fs = require("fs");
             const reportPath = "output/validation/afp-commissions/report.json";
             const title = "⚠️ AFP commission rates require manual verification";
 
-            const { data: issues } = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: "open",
-              labels: ["data-freshness"],
-            });
-
-            const existing = issues.find(i => i.title === title);
-
             if ("${{ steps.afp_check.outcome }}" !== "failure") {
-              if (existing) {
-                await github.rest.issues.update({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  issue_number: existing.number,
-                  state: "closed",
-                });
-                core.info(`Closed issue #${existing.number}`);
-              } else {
-                core.info("No open AFP commission drift issue to close.");
-              }
+              core.setOutput("title", title);
+              core.setOutput("desired_state", "closed");
+              core.setOutput("labels_json", JSON.stringify(["data-freshness", "financial-data"]));
               return;
             }
 
@@ -126,24 +110,20 @@ jobs:
               "",
               `**Triggered by:** Monthly cron — run \`${context.runId}\``,
             ].filter(l => l !== undefined).join("\n");
-            if (existing) {
-              await github.rest.issues.update({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: existing.number,
-                body,
-              });
-              core.info(`Updated existing issue #${existing.number}`);
-            } else {
-              const created = await github.rest.issues.create({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                title,
-                body,
-                labels: ["data-freshness", "financial-data"],
-              });
-              core.info(`Created issue #${created.data.number}`);
-            }
+            core.setOutput("title", title);
+            core.setOutput("body", body);
+            core.setOutput("desired_state", "open");
+            core.setOutput("labels_json", JSON.stringify(["data-freshness", "financial-data"]));
+
+      - name: "📝 Sync AFP drift issue"
+        if: always()
+        uses: ./.github/actions/upsert-issue-by-title
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: ${{ steps.issue_payload.outputs.title }}
+          body: ${{ steps.issue_payload.outputs.body }}
+          desired-state: ${{ steps.issue_payload.outputs.desired_state }}
+          labels-json: ${{ steps.issue_payload.outputs.labels_json }}
 
       - name: "✅ Fail workflow on mismatch"
         if: steps.afp_check.outcome == 'failure'

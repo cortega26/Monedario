@@ -1,0 +1,40 @@
+name: Enable safe auto-merge
+description: >-
+  Attempt to enable squash auto-merge for a pull request and leave it open for
+  manual review when safe automation cannot be enabled.
+
+inputs:
+  github-token:
+    description: Token used by the GitHub CLI.
+    required: true
+  pull-request:
+    description: Pull request URL or number accepted by `gh pr merge`.
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Attempt safe auto-merge
+      shell: bash
+      env:
+        GH_TOKEN: ${{ inputs.github-token }}
+        PR_TARGET: ${{ inputs.pull-request }}
+      run: |
+        set -euo pipefail
+
+        auto_log="$(mktemp)"
+
+        if gh pr merge --auto --squash "$PR_TARGET" >"$auto_log" 2>&1; then
+          cat "$auto_log"
+          exit 0
+        fi
+
+        cat "$auto_log"
+
+        if grep -Eq "Merge already in progress|Pull request is already merged" "$auto_log"; then
+          echo "Auto-merge was already enabled or the PR is already merged."
+          exit 0
+        fi
+
+        echo "Auto-merge could not be enabled safely. Leaving the PR open for manual review."
+        exit 0

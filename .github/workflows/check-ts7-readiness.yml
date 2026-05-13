@@ -35,9 +35,10 @@ jobs:
         id: check
         run: node scripts/check-ts7-readiness.mjs
 
-      - name: "📝 Create or update readiness issue when TS7 ships"
+      - name: "📝 Build readiness issue payload when TS7 ships"
         if: steps.check.outputs.ts7_released == 'true'
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        id: issue_payload
         with:
           script: |
             const title = "TS7 shipped — execute compatibility audit";
@@ -60,26 +61,15 @@ jobs:
               "4. Disable this workflow (`.github/workflows/check-ts7-readiness.yml`) once the audit is complete.",
             ].join("\n");
 
-            const { data: issues } = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: "open",
-            });
-            const existing = issues.find((i) => i.title === title);
-            if (existing) {
-              await github.rest.issues.update({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: existing.number,
-                body,
-              });
-              core.info(`Updated issue #${existing.number}`);
-            } else {
-              const created = await github.rest.issues.create({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                title,
-                body,
-              });
-              core.info(`Created issue #${created.data.number}`);
-            }
+            core.setOutput("title", title);
+            core.setOutput("body", body);
+            core.setOutput("desired_state", "open");
+
+      - name: "📝 Sync readiness issue"
+        if: steps.check.outputs.ts7_released == 'true'
+        uses: ./.github/actions/upsert-issue-by-title
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: ${{ steps.issue_payload.outputs.title }}
+          body: ${{ steps.issue_payload.outputs.body }}
+          desired-state: ${{ steps.issue_payload.outputs.desired_state }}

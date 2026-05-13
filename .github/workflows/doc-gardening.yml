@@ -56,16 +56,16 @@ jobs:
 
       - name: "📤 Upload doc-gardening logs"
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: ./.github/actions/upload-workflow-artifact
         with:
-          name: doc-gardening-logs
+          artifact-name: doc-gardening-logs
           retention-days: 14
-          if-no-files-found: error
           path: output/validation/doc-gardening/
 
-      - name: "📝 Create or update doc-gardening issue"
+      - name: "📝 Build doc-gardening issue payload"
         if: always()
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        id: issue_payload
         with:
           script: |
             const title = "Doc gardening audit: repo drift detected";
@@ -77,25 +77,10 @@ jobs:
             ];
             const failed = checks.filter(item => item.outcome === "failure");
 
-            const { data: issues } = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: "open",
-            });
-            const existing = issues.find(issue => issue.title === title);
-
             if (failed.length === 0) {
-              if (existing) {
-                await github.rest.issues.update({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  issue_number: existing.number,
-                  state: "closed",
-                });
-                core.info(`Closed issue #${existing.number}`);
-              } else {
-                core.info("No open doc-gardening issue to close.");
-              }
+              core.setOutput("title", title);
+              core.setOutput("desired_state", "closed");
+              core.setOutput("labels_json", JSON.stringify(["docs", "automation", "maintenance"]));
               return;
             }
 
@@ -110,25 +95,20 @@ jobs:
               "Open the `doc-gardening-logs` artifact, fix one small cluster of drift, and keep the cleanup PR reviewable in under a minute.",
             ].join("\n");
 
-            if (existing) {
-              await github.rest.issues.update({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: existing.number,
-                body,
-                labels: ["docs", "automation", "maintenance"],
-              });
-              core.info(`Updated existing issue #${existing.number}`);
-            } else {
-              const created = await github.rest.issues.create({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                title,
-                body,
-                labels: ["docs", "automation", "maintenance"],
-              });
-              core.info(`Created issue #${created.data.number}`);
-            }
+            core.setOutput("title", title);
+            core.setOutput("body", body);
+            core.setOutput("desired_state", "open");
+            core.setOutput("labels_json", JSON.stringify(["docs", "automation", "maintenance"]));
+
+      - name: "📝 Sync doc-gardening issue"
+        if: always()
+        uses: ./.github/actions/upsert-issue-by-title
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: ${{ steps.issue_payload.outputs.title }}
+          body: ${{ steps.issue_payload.outputs.body }}
+          desired-state: ${{ steps.issue_payload.outputs.desired_state }}
+          labels-json: ${{ steps.issue_payload.outputs.labels_json }}
 
       - name: "✅ Fail workflow on detected drift"
         if: steps.check_context.outcome == 'failure' || steps.check_docs.outcome == 'failure' || steps.lint.outcome == 'failure' || steps.format_check.outcome == 'failure'

@@ -1,0 +1,64 @@
+name: Upload urlcheck artifacts
+description: >-
+  Upload the stable set of urlcheck output files for a given scope so workflow
+  jobs do not have to duplicate the artifact path list inline.
+
+inputs:
+  artifact-name:
+    description: Name of the workflow artifact to publish.
+    required: true
+  retention-days:
+    description: Number of days to retain the uploaded artifact.
+    required: true
+  scope:
+    description: "Artifact scope to upload. Supported values: internal, external."
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Resolve urlcheck artifact paths
+      id: artifact_paths
+      shell: bash
+      env:
+        URLCHECK_SCOPE: ${{ inputs.scope }}
+      run: |
+        set -euo pipefail
+
+        case "$URLCHECK_SCOPE" in
+          internal)
+            {
+              echo 'paths<<__URLCHECK_PATHS__'
+              printf '%s\n' \
+                output/validation/urlcheck/internal-broken.json \
+                output/validation/urlcheck/internal-broken.csv \
+                output/validation/urlcheck/urlcheck-report.json
+              echo '__URLCHECK_PATHS__'
+            } >> "$GITHUB_OUTPUT"
+            ;;
+          external)
+            {
+              echo 'paths<<__URLCHECK_PATHS__'
+              printf '%s\n' \
+                output/validation/urlcheck/external-summary.json \
+                output/validation/urlcheck/external-hard-fail.json \
+                output/validation/urlcheck/external-soft-404.json \
+                output/validation/urlcheck/external-host-mismatch.json \
+                output/validation/urlcheck/external-non-blocking.json \
+                output/validation/urlcheck/external-full.csv
+              echo '__URLCHECK_PATHS__'
+            } >> "$GITHUB_OUTPUT"
+            ;;
+          *)
+            echo "Unsupported urlcheck scope: $URLCHECK_SCOPE" >&2
+            exit 1
+            ;;
+        esac
+
+    - name: Upload urlcheck artifacts
+      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+      with:
+        name: ${{ inputs.artifact-name }}
+        retention-days: ${{ inputs.retention-days }}
+        if-no-files-found: error
+        path: ${{ steps.artifact_paths.outputs.paths }}
