@@ -9,6 +9,10 @@ on:
     # First day of each month at 09:15 UTC (06:15 Chile time)
     - cron: "15 9 1 * *"
 
+concurrency:
+  group: afp-commissions-${{ github.ref }}
+  cancel-in-progress: false
+
 permissions:
   contents: read
   issues: write
@@ -42,13 +46,38 @@ jobs:
           if-no-files-found: warn
           path: output/validation/afp-commissions/report.json
 
-      - name: "📝 Open or update GitHub issue on mismatch"
-        if: steps.afp_check.outcome == 'failure'
+      - name: "📝 Create, update, or close GitHub issue"
+        if: always()
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             const fs = require("fs");
             const reportPath = "output/validation/afp-commissions/report.json";
+            const title = "⚠️ AFP commission rates require manual verification";
+
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+              labels: ["data-freshness"],
+            });
+
+            const existing = issues.find(i => i.title === title);
+
+            if ("${{ steps.afp_check.outcome }}" !== "failure") {
+              if (existing) {
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: existing.number,
+                  state: "closed",
+                });
+                core.info(`Closed issue #${existing.number}`);
+              } else {
+                core.info("No open AFP commission drift issue to close.");
+              }
+              return;
+            }
 
             let report = { date: "unknown", mismatches: [], status: "unknown" };
             try {
@@ -61,8 +90,6 @@ jobs:
               m =>
                 `| ${m.afp} | ${m.previredTotal?.toFixed(2) ?? "?"} | ${m.configTotal?.toFixed(2) ?? "?"} | ${m.diff > 0 ? "+" : ""}${m.diff?.toFixed(2) ?? "?"} |`
             );
-
-            const title = "⚠️ AFP commission rates require manual verification";
             const body = [
               "## AFP Commission Rate Drift Detected",
               "",
@@ -99,15 +126,6 @@ jobs:
               "",
               `**Triggered by:** Monthly cron — run \`${context.runId}\``,
             ].filter(l => l !== undefined).join("\n");
-
-            const { data: issues } = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: "open",
-              labels: ["data-freshness"],
-            });
-
-            const existing = issues.find(i => i.title === title);
             if (existing) {
               await github.rest.issues.update({
                 owner: context.repo.owner,

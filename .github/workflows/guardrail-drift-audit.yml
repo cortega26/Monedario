@@ -8,6 +8,10 @@ on:
   schedule:
     - cron: "30 8 * * 2"
 
+concurrency:
+  group: guardrail-drift-audit-${{ github.ref }}
+  cancel-in-progress: false
+
 permissions:
   contents: read
   issues: write

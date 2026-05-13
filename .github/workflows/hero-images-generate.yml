@@ -11,6 +11,10 @@ on:
   schedule:
     - cron: "0 7 * * 1"
 
+concurrency:
+  group: hero-images-manual-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   refresh-hero-image-prompts:
     runs-on: ubuntu-latest

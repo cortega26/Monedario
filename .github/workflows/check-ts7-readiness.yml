@@ -8,6 +8,10 @@ on:
   schedule:
     - cron: "30 9 * * 1" # Every Monday at 09:30 UTC
 
+concurrency:
+  group: ts7-readiness-${{ github.ref }}
+  cancel-in-progress: false
+
 permissions:
   contents: read
   issues: write

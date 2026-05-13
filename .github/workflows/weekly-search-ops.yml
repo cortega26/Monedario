@@ -8,6 +8,10 @@ on:
   schedule:
     - cron: "15 8 * * 1"
 
+concurrency:
+  group: weekly-search-ops-${{ github.ref }}
+  cancel-in-progress: false
+
 permissions:
   contents: read
   issues: write

@@ -4,8 +4,7 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 on:
   pull_request:
@@ -17,7 +16,10 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 5 * * *"
-  workflow_call:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -25,10 +27,6 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     if: github.event_name != 'schedule'
-
-    strategy:
-      matrix:
-        node-version: [22]
 
     steps:
       - name: "☁️ Checkout repository"
@@ -39,7 +37,7 @@ jobs:
       - name: "📦 Bootstrap pnpm workspace"
         uses: ./.github/actions/bootstrap-pnpm
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 22
 
       - name: "🔍 Tooling versions"
         run: |

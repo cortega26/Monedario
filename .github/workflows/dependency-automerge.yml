@@ -11,6 +11,10 @@ on:
       - reopened
       - labeled
 
+concurrency:
+  group: dependency-automerge-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
   pull-requests: write

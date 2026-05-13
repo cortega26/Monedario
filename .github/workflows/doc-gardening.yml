@@ -8,6 +8,10 @@ on:
   schedule:
     - cron: "0 8 * * 4"
 
+concurrency:
+  group: doc-gardening-${{ github.ref }}
+  cancel-in-progress: false
+
 permissions:
   contents: read
   issues: write

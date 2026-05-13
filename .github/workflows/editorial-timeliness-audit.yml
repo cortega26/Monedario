@@ -8,6 +8,10 @@ on:
   schedule:
     - cron: "0 9 * * 1"
 
+concurrency:
+  group: editorial-timeliness-${{ github.ref }}
+  cancel-in-progress: false
+
 permissions:
   contents: read
   issues: write
@@ -41,16 +45,52 @@ jobs:
           if-no-files-found: error
           path: output/validation/editorial-timeliness/report.json
 
-      - name: "📝 Create or update freshness issue when stale"
-        if: steps.editorial_timeliness.outcome == 'failure'
+      - name: "📝 Create, update, or close freshness issue"
+        if: always()
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
         with:
           script: |
             const fs = require("fs");
-            const report = JSON.parse(
-              fs.readFileSync("output/validation/editorial-timeliness/report.json", "utf8")
-            );
             const title = "Editorial timeliness audit: stale review window";
+
+            const { data: issues } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open"
+            });
+            const existing = issues.find(issue => issue.title === title);
+
+            if ("${{ steps.editorial_timeliness.outcome }}" !== "failure") {
+              if (existing) {
+                await github.rest.issues.update({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: existing.number,
+                  state: "closed"
+                });
+                core.info(`Closed issue #${existing.number}`);
+              } else {
+                core.info("No open editorial timeliness issue to close.");
+              }
+              return;
+            }
+
+            let report = {
+              today: "unknown",
+              totalPublished: 0,
+              staleCount: 0,
+              staleSlugs: [],
+              economicSnapshotLastUpdated: null,
+            };
+
+            try {
+              report = JSON.parse(
+                fs.readFileSync("output/validation/editorial-timeliness/report.json", "utf8")
+              );
+            } catch (_) {
+              // Report file may be missing if the script failed before writing it.
+            }
+
             const body = [
               "Automated editorial timeliness audit detected stale review windows.",
               "",
@@ -64,12 +104,6 @@ jobs:
               "",
               "Artifact: `editorial-timeliness-report` from workflow run."
             ].join("\n");
-            const { data: issues } = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: "open"
-            });
-            const existing = issues.find(issue => issue.title === title);
             if (existing) {
               await github.rest.issues.update({
                 owner: context.repo.owner,
