@@ -19,7 +19,7 @@ const itemListSchema = {
   description:
     "Guías y herramientas sobre UF, IPC, reajuste de arriendo y costo de vida en Chile.",
   url: `${SITE_BASE}/guias/uf-costo-de-vida/`,
-  numberOfItems: 5,
+  numberOfItems: 6,
   itemListElement: [
     {
       "@type": "ListItem",
@@ -51,6 +51,12 @@ const itemListSchema = {
       name: "Calculadora de reajuste de arriendo",
       url: `${SITE_BASE}/calculadoras/reajuste-arriendo/`,
     },
+    {
+      "@type": "ListItem",
+      position: 6,
+      name: "Conversor UTM a pesos",
+      url: `${SITE_BASE}/calculadoras/conversor-utm/`,
+    },
   ],
 };
 
@@ -70,6 +76,13 @@ const tools = [
       "Sirve para aterrizar una cláusula en UF, IPC o pesos fijos y estimar cuánto cambia realmente tu pago mensual.",
     href: getPath("/calculadoras/reajuste-arriendo/"),
     cta: "Abrir calculadora",
+  },
+  {
+    title: "Conversor UTM a pesos",
+    description:
+      "Úsalo para traducir multas, trámites e impuestos expresados en UTM al valor en pesos del mes vigente.",
+    href: getPath("/calculadoras/conversor-utm/"),
+    cta: "Abrir conversor",
   },
 ];
 
@@ -189,6 +202,13 @@ const relatedBridges = [
           description:
             "Convierte entre UF y pesos en tiempo real con el valor oficial del día.",
           href: "/calculadoras/conversor-uf/",
+        },
+        {
+          step: 5,
+          title: "Conversor UTM",
+          description:
+            "Pasa de UTM a pesos para multas, aranceles y referencias tributarias.",
+          href: "/calculadoras/conversor-utm/",
         },
       ]}
     />

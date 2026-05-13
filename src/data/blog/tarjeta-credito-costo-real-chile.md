@@ -97,7 +97,7 @@ No usarla si lo que necesitas es comparar ofertas de nuevas tarjetas — para es
 - El pago mínimo representa más del 10% de tu ingreso mensual neto.
 - No recuerdas el monto exacto de la deuda ni la tasa que te cobran.
 
-Si reconoces dos o más de estas señales, el problema ya no es la herramienta de cálculo: es el nivel de deuda. En ese punto conviene revisar opciones de consolidación o, si la situación es más grave, la [guía de renegociación Superir](/posts/renegociacion-superir/).
+Si reconoces dos o más de estas señales, el problema ya no es la herramienta de cálculo: es el nivel de deuda. En ese punto conviene revisar opciones de consolidación o, si la situación es más grave, la [guía de renegociación Superir](/posts/renegociacion-superir/) y filtrar tu caso con el [simulador de renegociación](/calculadoras/simulador-renegociacion/).
 
 ---
 

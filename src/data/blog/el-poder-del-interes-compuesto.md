@@ -23,8 +23,8 @@ heroImage: /images/hero/el-poder-del-interes-compuesto.avif
 articleAdvisory: "Simulación educativa; no garantiza retornos futuros ni reemplaza una evaluación de riesgo o de impuestos."
 articleLead:
   answer: "Invertir el 10% del sueldo mínimo durante 36 años en un índice bursátil habría producido más de $125 millones en este ejercicio. El resultado no es magia: es el interés compuesto funcionando sobre períodos largos, sin interrumpir el plan durante las crisis."
-  calculatorHref: "/calculadoras/simulador-jubilacion/"
-  calculatorLabel: "Proyectar tu jubilación"
+  calculatorHref: "/calculadoras/interes-compuesto/"
+  calculatorLabel: "Simular interés compuesto"
   nextStepHref: "/posts/como-invertir-en-etfs-desde-chile/"
   nextStepLabel: "Ver cómo acceder a ETFs desde Chile"
   validAsOf: 2026-04-22
@@ -53,6 +53,8 @@ reviewPolicy:
 ---
 
 Imagina a alguien que nunca ganó más que el sueldo mínimo. Sin bonos, sin ascensos, sin herencias. Solo el sueldo de cada mes y la disciplina de apartar el 10% del líquido para invertirlo. Durante 36 años tuvo 24 meses sin trabajo — lagunas reales, como las que le pasan a cualquier trabajador chileno. El resto del tiempo, ese 10% fue al NASDAQ-100. Lo que ocurrió después es lo que este ejercicio trata de mostrar.
+
+Si quieres llevar esta lógica a tu caso con tasa, aporte y plazo propios, usa la [calculadora de interés compuesto](/calculadoras/interes-compuesto/).
 
 ## Respuesta rápida
 

@@ -52,7 +52,7 @@ reviewPolicy:
 
 Cuando comparas créditos, el número que más te empujan es la cuota o la tasa mensual. El problema es que ninguna de esas dos cifras, por sí sola, te dice cuánto terminarás pagando en total. La **CAE** existe precisamente para cerrar esa trampa.
 
-Usa esta guía si todavía estás evaluando una oferta, una repactación o un prepago. Si tu problema ya no es comparar sino ordenar deudas vencidas o revisar qué aparece a tu nombre, cambia de ruta: primero diagnóstico; después, si corresponde, salida formal.
+Usa esta guía si todavía estás evaluando una oferta, una repactación o un prepago. Si tu problema ya no es comparar sino ordenar deudas vencidas o revisar qué aparece a tu nombre, cambia de ruta: primero diagnóstico; después, si corresponde, salida formal. Para llevar la comparación a números, abre la [calculadora de crédito de consumo](/calculadoras/credito-consumo/). Si el crédito ya existe y estás decidiendo un abono, prueba también la [calculadora de prepago](/calculadoras/prepago-credito/).
 
 ## Dos CAE que no tienen nada que ver entre sí
 
@@ -190,7 +190,7 @@ El nuevo CAE debe calcularse sobre el monto total refinanciado (saldo anterior +
 
 La CAE en tarjetas se calcula sobre una operación de referencia (monto y plazo estándar según la CMF). No refleja tu uso real, que cambia cada mes. Sirve para comparar tarjetas entre sí en igualdad de condiciones, no para proyectar tu costo exacto.
 
-Para entender el costo real de la deuda rotativa y cómo calcular el total que terminas pagando, revisa [tarjeta de crédito: el costo real de la deuda rotativa en Chile](/posts/tarjeta-credito-costo-real-chile/).
+Para entender el costo real de la deuda rotativa y cómo calcular el total que terminas pagando, revisa [tarjeta de crédito: el costo real de la deuda rotativa en Chile](/posts/tarjeta-credito-costo-real-chile/) y aterrízalo en tu caso con la [calculadora de costo real de tarjeta](/calculadoras/tarjeta-credito/).
 
 **Caso 4: Crédito hipotecario**
 

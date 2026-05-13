@@ -63,6 +63,15 @@ const prepagoCalculatorCard: LinkCard = {
   cta: "Evaluar prepago",
 };
 
+const dividendoCalculatorCard: LinkCard = {
+  kind: "Calculadora",
+  title: "Dividendo hipotecario",
+  description:
+    "Estima cuota mensual en UF y pesos para una compra de vivienda antes de pedir oferta formal.",
+  href: "/calculadoras/dividendo-hipotecario/",
+  cta: "Estimar dividendo",
+};
+
 const renegociacionCalculatorCard: LinkCard = {
   kind: "Calculadora",
   title: "Simulador Renegociación Superir",
@@ -83,6 +92,7 @@ export const deudaClusterHubToolCards: LinkCard[] = [
   creditCalculatorCard,
   tarjetaCalculatorCard,
   prepagoCalculatorCard,
+  dividendoCalculatorCard,
   renegociacionCalculatorCard,
 ];
 

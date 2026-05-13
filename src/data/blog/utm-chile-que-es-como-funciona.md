@@ -28,10 +28,10 @@ volatileData:
     sync: reference
 articleLead:
   answer: "La UTM es la unidad de medida que el Estado chileno usa para expresar multas, impuestos y aranceles de trámites. Se reajusta el primer día hábil de cada mes según la variación del IPC del mes anterior."
-  calculatorHref: "/calculadoras/impuesto-segunda-categoria/"
-  calculatorLabel: "Calcular impuesto de segunda categoría"
-  nextStepHref: "/posts/que-es-la-uf/"
-  nextStepLabel: "Ver cómo funciona la UF"
+  calculatorHref: "/calculadoras/conversor-utm/"
+  calculatorLabel: "Convertir UTM a pesos"
+  nextStepHref: "/calculadoras/impuesto-segunda-categoria/"
+  nextStepLabel: "Calcular impuesto de segunda categoría"
   validAsOf: 2026-04-09
   officialSources:
     - label: "SII — UTM, UTA e IPC 2026"
@@ -82,7 +82,7 @@ La **UTM (Unidad Tributaria Mensual)** es la unidad de valor que usa el Estado c
 >
 > **Vigencia:** Válido durante todo abril 2026. El valor cambia el primer día hábil de cada mes — verifica siempre en SII.cl.
 
-Si pagas una multa de tránsito mañana, el monto en pesos que te cobran depende de cuántas UTM tiene la multa multiplicado por el valor vigente **en ese momento**. El mismo número de UTM puede significar más o menos pesos según el mes.
+Si pagas una multa de tránsito mañana, el monto en pesos que te cobran depende de cuántas UTM tiene la multa multiplicado por el valor vigente **en ese momento**. El mismo número de UTM puede significar más o menos pesos según el mes. Si necesitas la equivalencia exacta ahora, usa el [conversor UTM a pesos](/calculadoras/conversor-utm/).
 
 > **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.
 

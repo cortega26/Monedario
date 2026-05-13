@@ -59,9 +59,9 @@ Si todavía estás tratando de entender qué acreedores tienes o cuánto cuesta 
 
 Antes de seguir, conviene separar tres escenarios:
 
-- **Tienes una o dos cuotas atrasadas, pero todavía puedes ordenar el pago.** Aquí primero conviene medir el costo real, el prepago o la repactación, no entrar a un proceso concursal.
+- **Tienes una o dos cuotas atrasadas, pero todavía puedes ordenar el pago.** Aquí primero conviene medir el costo real, el prepago o la repactación, no entrar a un proceso concursal. Parte por la [calculadora de crédito de consumo](/calculadoras/credito-consumo/) o la [calculadora de prepago](/calculadoras/prepago-credito/).
 - **Tienes varias deudas activas y no sabes bien qué aparece a tu nombre.** Primero ordena acreedores y montos antes de intentar una salida formal.
-- **Ya tienes varias deudas vencidas, pasan los meses y no ves cómo cumplir sin un acuerdo estructural.** Ahí sí esta guía empieza a ser relevante.
+- **Ya tienes varias deudas vencidas, pasan los meses y no ves cómo cumplir sin un acuerdo estructural.** Ahí sí esta guía empieza a ser relevante. Si quieres un filtro inicial antes del trámite, usa el [simulador de renegociación](/calculadoras/simulador-renegociacion/).
 
 ## Qué es la Superir y qué hace
 

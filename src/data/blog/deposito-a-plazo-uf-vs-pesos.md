@@ -23,6 +23,26 @@ volatileData:
     sync: reference
   - id: "economic.ipc.monthly_variation"
     sync: reference
+articleLead:
+  answer: "En depósito a plazo no conviene mirar solo la tasa publicada. La decisión entre UF y pesos depende de inflación esperada, plazo real y resultado neto después de impuestos."
+  calculatorHref: "/calculadoras/deposito-a-plazo/"
+  calculatorLabel: "Calcular interés neto de un DAP"
+  nextStepHref: "/calculadoras/interes-compuesto/"
+  nextStepLabel: "Comparar con interés compuesto"
+  validAsOf: 2026-03-30
+  officialSources:
+    - label: "CMF Educa — Depósitos a plazo"
+      href: "https://www.cmfchile.cl/educa/621/w3-article-27170.html"
+    - label: "SII — Preguntas frecuentes renta"
+      href: "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0597.htm"
+  covers:
+    - "Cómo comparar DAP UF vs pesos según inflación esperada."
+    - "Cómo cambia el resultado cuando ajustas plazo y tasa."
+    - "Qué revisar para estimar retorno neto en tu caso."
+  limits:
+    - "No compara ofertas específicas entre bancos."
+    - "No proyecta portafolios con reinversión de largo plazo."
+    - "No reemplaza asesoría tributaria individual."
 reviewPolicy:
   cadenceLabel: quarterly
   maxDays: 45
@@ -36,7 +56,7 @@ La tasa en pesos parece más alta. La tasa en UF es más baja pero viene con rea
 
 > **Información vigente al 2026-03-30.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.
 
-Para una mirada más amplia de instrumentos, revisa primero la [guía de ahorro e inversión en Chile](/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/). Si quieres entender cómo funciona la UF antes de comparar tasas, parte por la [guía UF, inflación y costo de vida](/guias/uf-costo-de-vida/).
+Para una mirada más amplia de instrumentos, revisa primero la [guía de ahorro e inversión en Chile](/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/). Si quieres entender cómo funciona la UF antes de comparar tasas, parte por la [guía UF, inflación y costo de vida](/guias/uf-costo-de-vida/). Y si ya tienes tasa, plazo y monto definidos, aterriza el cálculo con la [calculadora de depósito a plazo](/calculadoras/deposito-a-plazo/).
 
 ## Antes de comparar: lo que esta guía asume
 
