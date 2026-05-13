@@ -1,4 +1,9 @@
-# TECH_DEBT_BACKLOG
+# TECH_DEBT_BACKLOG (Archived Snapshot — 2026-02-27)
+
+> Historical snapshot only.
+> Do not use this file as the current source of truth for repo debt, hosting, workflows, or dependency state.
+> Current canonical ledger: `docs/TECH_DEBT_BACKLOG.md`.
+> References below to `deploy.yml`, GitHub Pages-era publication, or older operational baselines are intentionally preserved as historical evidence.
 
 Fecha de corte: 2026-02-27
 

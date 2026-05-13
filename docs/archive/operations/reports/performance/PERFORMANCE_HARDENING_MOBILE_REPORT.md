@@ -1,6 +1,10 @@
-# Mobile Performance Hardening Report (Astro / GitHub Pages)
+# Mobile Performance Hardening Report (Historical — Astro / GitHub Pages Era)
 
 Date: February 27, 2026
+
+> Archived performance report.
+> Hosting, cache-behavior, Lighthouse baselines, test counts, and deploy assumptions in this document describe the GitHub Pages-era environment at the time of capture.
+> Current operational truth for the active repo is documented in the live docs/context layer and reflects Cloudflare Pages publication.
 
 ## Summary (what changed)
 
