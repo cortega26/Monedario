@@ -106,7 +106,7 @@
     "@axe-core/playwright": "^4.11.3",
     "@lhci/cli": "^0.15.1",
     "@pagefind/default-ui": "^1.5.2",
-    "@playwright/test": "^1.59.1",
+    "@playwright/test": "^1.60.0",
     "@shikijs/transformers": "^4.0.2",
     "@tailwindcss/typography": "^0.5.19",
     "@types/js-yaml": "^4.0.9",
