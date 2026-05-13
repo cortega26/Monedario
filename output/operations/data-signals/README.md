@@ -33,6 +33,7 @@ find output/operations/data-signals/gsc -name "*.json" \
 find output/operations/data-signals/cloudflare -name "*.json" \
   -mtime +90 \
   -exec bash -c 'mkdir -p output/archive/data-signals/cloudflare && mv "$1" output/archive/data-signals/cloudflare/' _ {} \;
+
 ```
 
 Ejecutar una vez por trimestre (enero, abril, julio, octubre).

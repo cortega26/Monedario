@@ -21,6 +21,7 @@ Constitutional precedence is absolute: when AGENTS.md conflicts with Constitutio
   - `context/CURRENT_STATE.md`
 - Canonical editorial policy for YMYL execution: `docs/editorial/NORMA_YMYL.md`
 - Canonical strategy policy for benchmark-driven work: `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md`
+- **Criterio obligatorio de viabilidad para decisiones estratégicas y de producto:** ver [`docs/development/CRITERIO_VIABILIDAD.md`](docs/development/CRITERIO_VIABILIDAD.md)
 - Before changes touching routes/RSS/canonical/guard gates → read `context/INVARIANTS.md` + `context/CONTRACTS.md`.
 - Before new YMYL content or refresh → read `docs/editorial/NORMA_YMYL.md` + `context/EDITORIAL_AI_PIPELINE.md`.
 - Before new URL/calculator/hub/surface → read `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md`, `docs/editorial/NON_CANNIBALIZATION_PROCESS.md`, `docs/editorial/TOPIC_OWNERSHIP_POLICY.md`.

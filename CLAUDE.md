@@ -12,6 +12,10 @@ This file is read automatically by Claude Code at session start. For the full au
 | Draft and audit/comply the same YMYL piece in one session | `INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES` |
 | Change a public slug without route/RSS snapshot + ADR | `ROUTES.NO_SILENT_CHANGES`, `RSS.NO_REMOVALS` |
 
+## Criterio obligatorio de viabilidad
+
+Antes de recomendar o ejecutar cualquier desarrollo, automatización o producto que dependa de fuentes externas, revisar y cumplir el criterio de viabilidad en [`docs/development/CRITERIO_VIABILIDAD.md`](docs/development/CRITERIO_VIABILIDAD.md). La viabilidad debe analizarse de forma realista y fundamentada, no solo técnica.
+
 Full hard-stop list: `context/AGENT_PREFLIGHT.md`
 
 ## Blocked pipeline — what to do

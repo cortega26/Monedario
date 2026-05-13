@@ -121,7 +121,9 @@ const calculatorNextStepItems = [
           </p>
           <p id="utm-display" class="text-3xl font-bold">{"$" + utmDisplay}</p>
           <p id="utm-fecha" class="mt-0.5 text-xs text-muted">
-            {utmDateDisplay} · {economicSourceMeta.bannerText} ({economicSourceLabel})
+            {utmDateDisplay} · {economicSourceMeta.bannerText} ({
+              economicSourceLabel
+            })
           </p>
         </div>
         <span class="text-4xl">🇨🇱</span>
@@ -206,7 +208,9 @@ const calculatorNextStepItems = [
         </h2>
         <div id="tabla-ref" class="space-y-2 text-sm"></div>
         <p class="mt-3 text-xs text-muted">
-          Fuente económica: {economicSourceMeta.bannerText} ({economicSourceLabel}, UTM al {utmLastUpdated}).
+          Fuente económica: {economicSourceMeta.bannerText} ({
+            economicSourceLabel
+          }, UTM al {utmLastUpdated}).
         </p>
         {
           utaDisplay ? (
@@ -332,8 +336,7 @@ const calculatorNextStepItems = [
       minimumFractionDigits: 2,
       maximumFractionDigits: 4,
     }) + " UTM";
-  const formatClpInput = (n: number) =>
-    Math.round(n).toLocaleString("es-CL");
+  const formatClpInput = (n: number) => Math.round(n).toLocaleString("es-CL");
   const parseClpInput = (raw: string) => {
     const digitsOnly = raw.replace(/\D/g, "");
     return digitsOnly ? Number(digitsOnly) : NaN;

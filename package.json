@@ -67,7 +67,8 @@
     "images:generate:force": "node scripts/hero-images/manual-only.mjs images:generate:force",
     "images:generate:one": "node scripts/hero-images/manual-only.mjs images:generate:one",
     "images:generate:cluster": "node scripts/hero-images/manual-only.mjs images:generate:cluster",
-    "images:generate:retry": "node scripts/hero-images/manual-only.mjs images:generate:retry"
+    "images:generate:retry": "node scripts/hero-images/manual-only.mjs images:generate:retry",
+    "codacy:lint:clean": "bash scripts/codacy-eslint-clean.sh"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",
@@ -79,6 +80,7 @@
     "astro": "^6.2.2",
     "dayjs": "^1.11.20",
     "lodash.kebabcase": "^4.1.1",
+    "node-fetch": "^3.3.2",
     "openai": "^6.36.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",

@@ -40,6 +40,15 @@ En Chile no existe un reajuste automático de arriendo que aplique por ley a tod
 
 Si ya tienes la cláusula en la mano y solo necesitas el número, usa la [calculadora de reajuste de arriendo](/calculadoras/reajuste-arriendo/). Si quieres entender primero por qué la UF cambia todos los meses, complementa con [qué es la UF](/posts/que-es-la-uf/).
 
+## Dato clave hoy antes de recalcular
+
+Antes de discutir un reajuste, valida primero la referencia vigente:
+
+- Si tu contrato está en **UF**, confirma el valor del día en el [panel de indicadores económicos](/guias/uf-costo-de-vida/indicadores-economicos/).
+- Si tu contrato reajusta por **IPC**, revisa la variación del período y compárala con la fecha exacta que exige la cláusula.
+
+Si necesitas pasar de inmediato a números, usa la [calculadora de reajuste de arriendo](/calculadoras/reajuste-arriendo/) con la misma referencia que indique tu contrato.
+
 ## Qué determina el reajuste
 
 El contrato de arriendo es el documento que define todo. No existe una norma que obligue a usar UF ni IPC — las partes acuerdan libremente la referencia y la periodicidad. La Ley 18.101 sobre arrendamiento de predios urbanos regula aspectos generales del contrato, pero no impone una fórmula de reajuste específica.

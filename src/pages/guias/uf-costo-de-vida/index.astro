@@ -6,6 +6,9 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import ResumeWidget from "@/components/ResumeWidget.astro";
 import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
+import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
+import { fmt, fmtFecha } from "@/utils/indicadores";
 import { getHubArticleAssignments } from "@/config/editorial-hub-model.mjs";
 
 const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
@@ -19,7 +22,7 @@ const itemListSchema = {
   description:
     "Guías y herramientas sobre UF, IPC, reajuste de arriendo y costo de vida en Chile.",
   url: `${SITE_BASE}/guias/uf-costo-de-vida/`,
-  numberOfItems: 6,
+  numberOfItems: 7,
   itemListElement: [
     {
       "@type": "ListItem",
@@ -57,12 +60,46 @@ const itemListSchema = {
       name: "Conversor UTM a pesos",
       url: `${SITE_BASE}/calculadoras/conversor-utm/`,
     },
+    {
+      "@type": "ListItem",
+      position: 7,
+      name: "Indicadores economicos de Chile",
+      url: `${SITE_BASE}/guias/uf-costo-de-vida/indicadores-economicos/`,
+    },
   ],
 };
 
 const hubAssignments = getHubArticleAssignments("uf-costo-de-vida");
+const { parameters } = await getEconomicParameters();
+
+const contextualIndicators = [
+  {
+    code: "UF",
+    title: "Unidad de Fomento",
+    value: fmt(parameters.uf),
+    date: fmtFecha(resolveEconomicIndicatorDate(parameters, "uf")),
+    why: "Es la referencia principal en arriendos, dividendos y contratos reajustables.",
+  },
+  {
+    code: "IPC",
+    title: "Indice de Precios al Consumidor",
+    value: `${parameters.ipc.toLocaleString("es-CL", {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    })}%`,
+    date: fmtFecha(resolveEconomicIndicatorDate(parameters, "ipc")),
+    why: "Explica la inflacion del periodo y el contexto de los reajustes de bolsillo.",
+  },
+];
 
 const tools = [
+  {
+    title: "Indicadores economicos de Chile",
+    description:
+      "Consulta en un solo lugar UF, UTM, dolar, IPC y TMC con fecha de referencia y contexto de uso.",
+    href: getPath("/guias/uf-costo-de-vida/indicadores-economicos/"),
+    cta: "Ver indicadores",
+  },
   {
     title: "Conversor UF a pesos",
     description:
@@ -125,6 +162,46 @@ const relatedBridges = [
     </section>
 
     <section class="border-b border-border py-8">
+      <div
+        class="mb-4 flex flex-col gap-2 md:flex-row md:items-end md:justify-between"
+      >
+        <div>
+          <h2 class="text-2xl font-bold">Dato clave hoy para costo de vida</h2>
+          <p class="mt-1 max-w-3xl text-sm text-secondary">
+            Aqui solo ves los indicadores que realmente mueven reajustes y costo
+            de vida. Para la vista completa, revisa la pagina pilar.
+          </p>
+        </div>
+        <a
+          href={getPath("/guias/uf-costo-de-vida/indicadores-economicos/")}
+          class="inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+        >
+          Ver todos los indicadores
+        </a>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-2">
+        {
+          contextualIndicators.map(item => (
+            <article class="rounded-2xl border border-border bg-surface-muted p-5">
+              <p class="mb-2 text-xs font-semibold tracking-[0.14em] text-accent uppercase">
+                {item.code}
+              </p>
+              <h3 class="text-lg font-semibold">{item.title}</h3>
+              <p class="mt-2 text-2xl font-bold text-foreground tabular-nums">
+                {item.value}
+              </p>
+              <p class="mt-1 text-xs text-secondary">Referencia: {item.date}</p>
+              <p class="mt-3 text-sm leading-relaxed text-secondary">
+                {item.why}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="border-b border-border py-8">
       <h2 class="mb-4 text-2xl font-bold">Ruta principal</h2>
       <ul class="grid gap-4">
         {
@@ -178,33 +255,40 @@ const relatedBridges = [
       steps={[
         {
           step: 1,
+          title: "Indicadores economicos de Chile",
+          description:
+            "Empieza por una referencia rapida con fechas y contexto practico.",
+          href: "/guias/uf-costo-de-vida/indicadores-economicos/",
+        },
+        {
+          step: 2,
           title: "¿Qué es la UF y cómo se calcula?",
           description:
             "Por qué cambia cada día y cómo afecta deudas y contratos.",
           href: "/posts/que-es-la-uf/",
         },
         {
-          step: 2,
+          step: 3,
           title: "¿Qué es el IPC y cómo se calcula?",
           description: "Cómo mide la inflación el INE y qué canasta incluye.",
           href: "/posts/que-es-el-ipc-chile-como-se-calcula/",
         },
         {
-          step: 3,
+          step: 4,
           title: "Reajuste de arriendo: UF, IPC y cómo calcular",
           description:
             "Interpreta la cláusula de tu contrato y estima el nuevo canon.",
           href: "/posts/reajuste-arriendo-uf-ipc-chile/",
         },
         {
-          step: 4,
+          step: 5,
           title: "Conversor UF",
           description:
             "Convierte entre UF y pesos en tiempo real con el valor oficial del día.",
           href: "/calculadoras/conversor-uf/",
         },
         {
-          step: 5,
+          step: 6,
           title: "Conversor UTM",
           description:
             "Pasa de UTM a pesos para multas, aranceles y referencias tributarias.",

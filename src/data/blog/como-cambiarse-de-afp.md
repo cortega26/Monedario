@@ -29,7 +29,7 @@ reviewPolicy:
     - pensions.afp.uno_commission
   derivationFactors:
     - category:prevision
-  computedAt: '2026-05-13'
+  computedAt: "2026-05-13"
 updatedDate: 2026-05-13T00:00:00Z
 ---
 

@@ -6,6 +6,9 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import ResumeWidget from "@/components/ResumeWidget.astro";
 import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
+import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
+import { fmt, fmtFecha } from "@/utils/indicadores";
 import { getHubArticleAssignments } from "@/config/editorial-hub-model.mjs";
 import {
   deudaClusterHubDecisionCards,
@@ -66,6 +69,7 @@ const itemListSchema = {
 };
 
 const hubAssignments = getHubArticleAssignments("deuda-credito");
+const { parameters } = await getEconomicParameters();
 
 const coreLabels = {
   "informe-deudas-cmf-vs-dicom": "Diagnóstico",
@@ -107,6 +111,30 @@ const visibleHubHrefs = new Set(
 const relatedCards = hubAssignments.related.filter(
   item => !visibleHubHrefs.has(getPath(item.href))
 );
+
+const contextualIndicators = [
+  {
+    code: "UF",
+    title: "Unidad de Fomento",
+    value: fmt(parameters.uf),
+    date: fmtFecha(resolveEconomicIndicatorDate(parameters, "uf")),
+    why: "Importa en dividendos y deudas reajustables. Si sube, tu cuota en pesos puede subir.",
+  },
+  ...(parameters.tmc !== undefined
+    ? [
+        {
+          code: "TMC",
+          title: "Tasa Maxima Convencional",
+          value: `${parameters.tmc.toLocaleString("es-CL", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
+          })}%`,
+          date: fmtFecha(resolveEconomicIndicatorDate(parameters, "tmc")),
+          why: "Es un tope legal de interes para ciertos creditos y sirve para detectar costos fuera de rango.",
+        },
+      ]
+    : []),
+];
 ---
 
 <Layout
@@ -130,6 +158,48 @@ const relatedCards = hubAssignments.related.filter(
 
     <section class="py-4">
       <ResumeWidget />
+    </section>
+
+    <section class="border-b border-border py-8">
+      <div
+        class="mb-4 flex flex-col gap-2 md:flex-row md:items-end md:justify-between"
+      >
+        <div>
+          <h2 class="text-2xl font-bold">
+            Dato clave hoy para deuda y credito
+          </h2>
+          <p class="mt-1 max-w-3xl text-sm text-secondary">
+            Aqui solo ves los indicadores que cambian decisiones de deuda. Para
+            la vista completa, usa la pagina de indicadores economicos.
+          </p>
+        </div>
+        <a
+          href={getPath("/guias/uf-costo-de-vida/indicadores-economicos/")}
+          class="inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+        >
+          Ver todos los indicadores
+        </a>
+      </div>
+
+      <div class="grid gap-4 md:grid-cols-2">
+        {
+          contextualIndicators.map(item => (
+            <article class="rounded-2xl border border-border bg-surface-muted p-5">
+              <p class="mb-2 text-xs font-semibold tracking-[0.14em] text-accent uppercase">
+                {item.code}
+              </p>
+              <h3 class="text-lg font-semibold">{item.title}</h3>
+              <p class="mt-2 text-2xl font-bold text-foreground tabular-nums">
+                {item.value}
+              </p>
+              <p class="mt-1 text-xs text-secondary">Referencia: {item.date}</p>
+              <p class="mt-3 text-sm leading-relaxed text-secondary">
+                {item.why}
+              </p>
+            </article>
+          ))
+        }
+      </div>
     </section>
 
     <section class="border-b border-border py-8">

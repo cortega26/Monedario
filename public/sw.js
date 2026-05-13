@@ -5,19 +5,17 @@ const MAX_PAGES = 50;
 
 self.addEventListener("install", () => self.skipWaiting());
 
-self.addEventListener("activate", (event) => {
+self.addEventListener("activate", event => {
   const activeCaches = [CACHE, ASSETS_CACHE];
   event.waitUntil(
     caches
       .keys()
-      .then((keys) =>
+      .then(keys =>
         Promise.all(
-          keys
-            .filter((k) => !activeCaches.includes(k))
-            .map((k) => caches.delete(k)),
-        ),
+          keys.filter(k => !activeCaches.includes(k)).map(k => caches.delete(k))
+        )
       )
-      .then(() => self.clients.claim()),
+      .then(() => self.clients.claim())
   );
 });
 
@@ -48,14 +46,14 @@ function shouldSkip(url) {
 }
 
 function prune(cache, max) {
-  cache.keys().then((keys) => {
+  cache.keys().then(keys => {
     if (keys.length <= max) return;
     const oldest = keys.slice(0, keys.length - max);
-    Promise.all(oldest.map((r) => cache.delete(r)));
+    Promise.all(oldest.map(r => cache.delete(r)));
   });
 }
 
-self.addEventListener("fetch", (event) => {
+self.addEventListener("fetch", event => {
   const { request } = event;
   const url = new URL(request.url);
 
@@ -64,15 +62,15 @@ self.addEventListener("fetch", (event) => {
   // Static assets: Cache First (they have hashes in filenames)
   if (isStaticAsset(url)) {
     event.respondWith(
-      caches.open(ASSETS_CACHE).then((cache) =>
-        cache.match(request).then((hit) => {
+      caches.open(ASSETS_CACHE).then(cache =>
+        cache.match(request).then(hit => {
           if (hit) return hit;
-          return fetch(request).then((response) => {
+          return fetch(request).then(response => {
             if (response.ok) cache.put(request, response.clone());
             return response;
           });
-        }),
-      ),
+        })
+      )
     );
     return;
   }
@@ -80,10 +78,10 @@ self.addEventListener("fetch", (event) => {
   // HTML pages: Stale-While-Revalidate
   if (isNavigation(request)) {
     event.respondWith(
-      caches.open(CACHE).then((cache) =>
-        cache.match(request).then((hit) => {
+      caches.open(CACHE).then(cache =>
+        cache.match(request).then(hit => {
           const revalidate = fetch(request)
-            .then((response) => {
+            .then(response => {
               if (response.ok) {
                 cache.put(request, response.clone());
                 prune(cache, MAX_PAGES);
@@ -93,8 +91,8 @@ self.addEventListener("fetch", (event) => {
             .catch(() => {}); // offline — the cached response was already returned
 
           return hit ?? revalidate;
-        }),
-      ),
+        })
+      )
     );
     return;
   }
