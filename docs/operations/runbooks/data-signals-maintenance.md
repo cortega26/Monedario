@@ -8,6 +8,7 @@ Fecha: 2026-04-25
 
 El workflow `.github/workflows/data-signals.yml` corre diariamente y puede fallar por:
 - Token expirado o revocado.
+- Secret o variable de GitHub Actions faltante (`GOOGLE_APPLICATION_CREDENTIALS_JSON`, `CLOUDFLARE_ANALYTICS_TOKEN`, `CLOUDFLARE_ZONE_ID`, `CLOUDFLARE_ACCOUNT_ID`).
 - Cambio de formato en la API de GSC o Cloudflare.
 - Quota agotada en GSC.
 
@@ -35,7 +36,7 @@ Los tokens tienen vida útil de **6 meses**. Fechas de rotación aproximadas:
 | `GOOGLE_APPLICATION_CREDENTIALS_JSON` | 6 meses desde aprovisionamiento |
 | `CLOUDFLARE_ANALYTICS_TOKEN` | 6 meses desde aprovisionamiento |
 
-### Cómo actualizar un token en GHA
+### Cómo actualizar secretos y variables en GHA
 
 ```bash
 # Service account de GSC: regenerar clave en Google Cloud Console, luego:
@@ -45,6 +46,13 @@ gh secret set GOOGLE_APPLICATION_CREDENTIALS_JSON \
 # Token de Cloudflare: crear nuevo en dash.cloudflare.com, luego:
 gh secret set CLOUDFLARE_ANALYTICS_TOKEN \
   --body "cftoken_xxxxxxxxxxxxx"
+
+# IDs de Cloudflare: configurar como variables de Actions
+gh variable set CLOUDFLARE_ZONE_ID \
+  --body "<cloudflare-zone-id>"
+
+gh variable set CLOUDFLARE_ACCOUNT_ID \
+  --body "<cloudflare-account-id>"
 ```
 
 ### Verificar que el token nuevo funciona (dry-run)
@@ -53,7 +61,7 @@ gh secret set CLOUDFLARE_ANALYTICS_TOKEN \
 # GSC — requiere GOOGLE_APPLICATION_CREDENTIALS_JSON en entorno local
 pnpm run data-signals:gsc -- --week=2026-W16 --dry-run
 
-# Cloudflare — requiere CLOUDFLARE_ANALYTICS_TOKEN en entorno local
+# Cloudflare — requiere CLOUDFLARE_ANALYTICS_TOKEN, CLOUDFLARE_ZONE_ID y CLOUDFLARE_ACCOUNT_ID en entorno local
 pnpm run data-signals:cloudflare -- --week=2026-W16 --dry-run
 ```
 

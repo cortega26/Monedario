@@ -81,3 +81,5 @@ Started: 2026-05-13
 - 2026-05-13: Added focused Vitest coverage for the shared urlcheck upload helper delegation in `tests/e2e/upload-urlcheck-artifacts-action.e2e.test.ts`.
 - 2026-05-13: Extracted the remaining direct workflow artifact uploads into `.github/actions/upload-workflow-artifact/action.yml`, so workflows now declare only artifact metadata and keep the pinned upload action in one place.
 - 2026-05-13: Added fleet-level Vitest coverage for the shared generic artifact upload helper delegation in `tests/e2e/upload-workflow-artifact-action.e2e.test.ts`.
+- 2026-05-13: Hardened `.github/workflows/data-signals.yml` with a fail-fast provider configuration preflight and centralized external data-source env wiring so missing secrets or repository variables fail before any API fetch step runs.
+- 2026-05-13: Added focused Vitest coverage for the data-signals configuration preflight in `tests/e2e/data-signals-workflow.e2e.test.ts` and documented the required GitHub Actions variables in the data-signals maintenance runbook.
