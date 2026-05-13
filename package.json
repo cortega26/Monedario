@@ -81,7 +81,7 @@
     "dayjs": "^1.11.20",
     "lodash.kebabcase": "^4.1.1",
     "node-fetch": "^3.3.2",
-    "openai": "^6.36.0",
+    "openai": "^6.37.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "remark-collapse": "^0.1.2",
