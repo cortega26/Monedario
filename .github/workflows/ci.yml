@@ -2,6 +2,7 @@ name: CI
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+  ASTRO_TELEMETRY_DISABLED: true
 
 permissions:
   contents: write
