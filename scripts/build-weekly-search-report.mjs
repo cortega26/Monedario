@@ -1185,9 +1185,16 @@ function main() {
 
   const week = extractWeekFromDir(options.inputDir);
   const gscJson = week ? readGscJson(options.gscJsonDir, week) : null;
+  const pagesCsvPath = path.join(options.inputDir, "gsc-pages.csv");
+  const queriesCsvPath = path.join(options.inputDir, "gsc-queries.csv");
+  const hasCsv = existsSync(pagesCsvPath) && existsSync(queriesCsvPath);
 
   let pageRows, queryRows, gscSource;
-  if (gscJson) {
+  if (hasCsv) {
+    pageRows = readSearchCsv(pagesCsvPath, "pages");
+    queryRows = readSearchCsv(queriesCsvPath, "queries");
+    gscSource = "csv";
+  } else if (gscJson) {
     pageRows = gscJson.pageRows;
     queryRows = gscJson.queryRows;
     gscSource = "json";
@@ -1195,14 +1202,8 @@ function main() {
       `[weekly-search-report] GSC source: JSON (${path.resolve(options.gscJsonDir)}/${week}-*.json)`
     );
   } else {
-    pageRows = readSearchCsv(
-      path.join(options.inputDir, "gsc-pages.csv"),
-      "pages"
-    );
-    queryRows = readSearchCsv(
-      path.join(options.inputDir, "gsc-queries.csv"),
-      "queries"
-    );
+    pageRows = readSearchCsv(pagesCsvPath, "pages");
+    queryRows = readSearchCsv(queriesCsvPath, "queries");
     gscSource = "csv";
   }
 
