@@ -17,7 +17,7 @@
 - `tests/application/`: tests de casos de uso.
 - `tests/infrastructure/`: tests de providers y adapters.
 - `tests/e2e/`: validacion browser-level y de workflows.
-- `.github/workflows/`: CI, deploy y jobs operativos programados.
+- `.github/workflows/`: CI y jobs operativos programados (sin deploy repo-managed activo en este árbol).
 
 ## Documentation and Governance
 

@@ -1,0 +1,41 @@
+name: Ensure urlcheck artifacts
+description: >-
+  Create placeholder urlcheck output files when a urlcheck step is skipped so
+  downstream artifact uploads always have a stable file set.
+
+inputs:
+  scope:
+    description: "Artifact scope to create. Supported values: internal, external."
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Ensure urlcheck artifact files exist
+      shell: bash
+      env:
+        URLCHECK_SCOPE: ${{ inputs.scope }}
+      run: |
+        set -euo pipefail
+
+        mkdir -p output/validation/urlcheck
+
+        case "$URLCHECK_SCOPE" in
+          internal)
+            [ -f output/validation/urlcheck/internal-broken.json ] || printf '[]\n' > output/validation/urlcheck/internal-broken.json
+            [ -f output/validation/urlcheck/internal-broken.csv ] || printf 'broken_url,status,referrer_url,context,category\n' > output/validation/urlcheck/internal-broken.csv
+            [ -f output/validation/urlcheck/urlcheck-report.json ] || printf '{"generatedAt":"%s","note":"placeholder"}\n' "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" > output/validation/urlcheck/urlcheck-report.json
+            ;;
+          external)
+            [ -f output/validation/urlcheck/external-summary.json ] || printf '{"generatedAt":"%s","note":"placeholder"}\n' "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" > output/validation/urlcheck/external-summary.json
+            [ -f output/validation/urlcheck/external-hard-fail.json ] || printf '[]\n' > output/validation/urlcheck/external-hard-fail.json
+            [ -f output/validation/urlcheck/external-soft-404.json ] || printf '[]\n' > output/validation/urlcheck/external-soft-404.json
+            [ -f output/validation/urlcheck/external-host-mismatch.json ] || printf '[]\n' > output/validation/urlcheck/external-host-mismatch.json
+            [ -f output/validation/urlcheck/external-non-blocking.json ] || printf '[]\n' > output/validation/urlcheck/external-non-blocking.json
+            [ -f output/validation/urlcheck/external-full.csv ] || printf 'source_url,final_url,referrer_url,link_type,host_category,classification,blocking,matched_signal,status,error\n' > output/validation/urlcheck/external-full.csv
+            ;;
+          *)
+            echo "Unsupported urlcheck scope: $URLCHECK_SCOPE" >&2
+            exit 1
+            ;;
+        esac

@@ -88,7 +88,7 @@ El repositorio incluye workflows de GitHub Actions bajo `.github/workflows/` par
 - Corre lint, formato, tests, contratos de contenido, rutas/RSS/URLs y build.
 - Sube artefactos de validación cuando corresponde.
 
-No hay un `deploy.yml` activo en este árbol. La publicación del sitio debe mantenerse alineada con el build estático generado en `dist/` y con la configuración de GitHub Pages/hosting usada fuera del workflow principal.
+No hay un workflow de deploy repo-managed activo en este árbol. La publicación productiva usa Cloudflare Pages para consumir este repositorio y servir el build estático; los workflows versionados aquí cubren CI y jobs operativos, no el paso final de publish.
 
 Asegúrate de que:
 
@@ -103,8 +103,8 @@ Fuente única:
 
 Estrategia de datos y cache:
 
-- Fuente principal en build/CI: `src/infrastructure/economic/economic-parameters.snapshot.json` (determinística, sin red).
-- Modo live opcional solo por env: `TPI_ECONOMIC_PROVIDER_MODE=live`.
+- Fuente principal por defecto en build/CI y desarrollo reproducible: `src/infrastructure/economic/economic-parameters.snapshot.json` (determinística, sin red).
+- El modo live solo se activa con `TPI_ECONOMIC_PROVIDER_MODE=live`.
 - En modo live, el provider intenta `https://mindicador.cl/api` y, si falla, vuelve al snapshot local.
 - Se memoiza en módulo (`cachedBundlePromise`) para evitar múltiples lecturas/fetch en un mismo ciclo de ejecución.
 - Telemetría mínima disponible vía `getEconomicProviderTelemetry()`:

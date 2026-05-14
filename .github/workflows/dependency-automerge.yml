@@ -11,6 +11,10 @@ on:
       - reopened
       - labeled
 
+concurrency:
+  group: dependency-automerge-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
   pull-requests: write
@@ -72,42 +76,12 @@ jobs:
           echo "eligible=${eligible}" >> "$GITHUB_OUTPUT"
           echo "reason=${reason}" >> "$GITHUB_OUTPUT"
 
-      - name: "🔀 Enable auto-merge for eligible patch updates"
+      - name: "🔀 Attempt safe auto-merge for eligible patch updates"
         if: steps.decision.outputs.eligible == 'true'
-        run: |
-          set -euo pipefail
-
-          auto_log="$(mktemp)"
-          direct_log="$(mktemp)"
-
-          if gh pr merge --auto --squash "$PR_URL" >"$auto_log" 2>&1; then
-            cat "$auto_log"
-            exit 0
-          fi
-
-          cat "$auto_log"
-
-          if grep -Eq "Merge already in progress|Pull request is already merged" "$auto_log"; then
-            echo "Auto-merge was already enabled or the PR is already merged."
-            exit 0
-          fi
-
-          if gh pr merge --squash "$PR_URL" >"$direct_log" 2>&1; then
-            cat "$direct_log"
-            exit 0
-          fi
-
-          cat "$direct_log"
-
-          if grep -Eq "Merge already in progress|Pull request is already merged" "$direct_log"; then
-            echo "Merge was already in progress or the PR is already merged."
-            exit 0
-          fi
-
-          exit 1
-        env:
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: ./.github/actions/enable-safe-automerge
+        with:
+          pull-request: ${{ github.event.pull_request.html_url }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: "ℹ️ Skip with manual review"
         if: steps.decision.outputs.eligible != 'true'

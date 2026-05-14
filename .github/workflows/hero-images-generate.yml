@@ -11,6 +11,10 @@ on:
   schedule:
     - cron: "0 7 * * 1"
 
+concurrency:
+  group: hero-images-manual-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   refresh-hero-image-prompts:
     runs-on: ubuntu-latest
@@ -20,17 +24,10 @@ jobs:
       - name: "☁️ Checkout repository"
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - name: "📦 Install pnpm"
-        run: npm install -g pnpm@10.30.2
-
-      - name: Use Node.js 22
-        uses: actions/setup-node@v6
+      - name: "📦 Bootstrap pnpm workspace"
+        uses: ./.github/actions/bootstrap-pnpm
         with:
           node-version: 22
-          cache: "pnpm"
-
-      - name: "📦 Install dependencies"
-        run: pnpm install --frozen-lockfile
 
       - name: "🗂️ Scan publishable articles"
         run: node scripts/hero-images/scan-articles.mjs
@@ -45,9 +42,9 @@ jobs:
 
       - name: "📤 Upload hero-image artifacts"
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: ./.github/actions/upload-workflow-artifact
         with:
-          name: hero-images-artifacts
+          artifact-name: hero-images-artifacts
           retention-days: 14
           if-no-files-found: warn
           path: |

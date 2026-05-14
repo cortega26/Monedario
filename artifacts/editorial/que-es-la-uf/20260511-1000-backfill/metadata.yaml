@@ -1,0 +1,8 @@
+slug: que-es-la-uf
+source_path: src/data/blog/que-es-la-uf.md
+run_id: 20260511-1000-backfill
+scaffolded_at: 2026-05-11T10:00:00.000Z
+cut_off_date: 2026-02-24
+backfill: true
+backfill_evidence: docs/editorial/artifacts/que-es-la-uf/
+backfill_reason: TD-0057 canonical artifact backfill for published YMYL corpus

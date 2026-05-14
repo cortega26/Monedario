@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-07T00:35:44.247Z",
+  "generatedAt": "2026-05-13T20:47:52.533Z",
   "site": "monedario.cl",
   "weekLabel": "2026-W19",
   "source": "csv",
@@ -1425,9 +1425,9 @@
     {
       "platform": "Google Search Console",
       "status": "ok",
-      "coverage": "Repo-local GSC sitemap snapshot for the latest completed window (2026-04-27 to 2026-05-03) shows https://monedario.cl/sitemap-index.xml downloaded on 2026-04-30 with 135 submitted URLs and 0 indexed URLs in sitemap contents.",
+      "coverage": "Repo-local GSC sitemap snapshot for 2026-W19 (2026-05-04 to 2026-05-10) shows https://monedario.cl/sitemap-index.xml downloaded on 2026-05-10 with 138 submitted URLs and 0 indexed URLs in sitemap contents.",
       "alerts": [
-        "Sitemap contents still report 0 indexed URLs; verify next week whether Search Console coverage catches up."
+        "Sitemap contents for 2026-W19 still report 0 indexed URLs; verify next week whether Search Console coverage catches up."
       ]
     },
     {
@@ -1440,12 +1440,295 @@
     }
   ],
   "notes": [
-    "Weekly ops bundle completed from repo-local GSC JSON snapshots because the scheduled workflow artifact only contained the initialized placeholder bundle.",
+    "Confirmed the W19 bundle includes both Google Search Console exports (`gsc-pages.csv` and `gsc-queries.csv`), and regenerated the scorecard from those bundle exports.",
     "No analytics-events.csv was available in the repository for this week, so CTA/tool conversion signals remain blank in the scorecard.",
     "Next action 1: refresh /calculadoras/sueldo-liquido/ title, snippet, and first scroll because it is the clearest tracked loser this week (clicks -1, impressions +41).",
     "Next action 2: reinforce internal links into /calculadoras/sueldo-liquido/ from /guias/sueldo-remuneraciones/ and /posts/como-calcular-sueldo-liquido/ because the hub disappeared from the current pages export.",
     "Next action 3: re-open Bing Webmaster with the authenticated search-platform state and confirm sitemap/discovered-URL status, because this environment can only record UNVERIFIED_FROM_AVAILABLE_ENVIRONMENT."
   ],
   "analyticsAvailable": false,
-  "cloudflarePerf": null
+  "cloudflarePerf": {
+    "rum": {
+      "fetchedAt": "2026-05-13T08:49:10Z",
+      "schemaVersion": 1,
+      "source": "cloudflare-rum",
+      "week": "2026-W19",
+      "window": {
+        "from": "2026-05-04",
+        "to": "2026-05-10"
+      },
+      "data": [
+        {
+          "clsP75": 0,
+          "count": 70,
+          "inpP75Ms": 40,
+          "lcpP75Ms": 1828,
+          "path": "/calculadoras/apv/"
+        },
+        {
+          "clsP75": 0,
+          "count": 60,
+          "inpP75Ms": null,
+          "lcpP75Ms": 14764,
+          "path": "/"
+        },
+        {
+          "clsP75": 0.314,
+          "count": 30,
+          "inpP75Ms": null,
+          "lcpP75Ms": 1108,
+          "path": "/posts/devolucion-impuestos-fechas-compensaciones/"
+        },
+        {
+          "clsP75": 0.013,
+          "count": 20,
+          "inpP75Ms": null,
+          "lcpP75Ms": 1020,
+          "path": "/posts/descuentos-de-sueldo/"
+        },
+        {
+          "clsP75": 0,
+          "count": 20,
+          "inpP75Ms": 0,
+          "lcpP75Ms": 784,
+          "path": "/posts/fondos-mutuos-comisiones-rescate-impuestos/"
+        },
+        {
+          "clsP75": 0.001,
+          "count": 20,
+          "inpP75Ms": 8,
+          "lcpP75Ms": 2216,
+          "path": "/posts/boleta-honorarios-2026-retencion-cobertura/"
+        },
+        {
+          "clsP75": 0,
+          "count": 20,
+          "inpP75Ms": 0,
+          "lcpP75Ms": 564,
+          "path": "/calculadoras/operacion-renta/"
+        },
+        {
+          "clsP75": 0.001,
+          "count": 20,
+          "inpP75Ms": 8,
+          "lcpP75Ms": 952,
+          "path": "/posts/indemnizacion-anos-de-servicio-chile/"
+        },
+        {
+          "clsP75": 0.001,
+          "count": 20,
+          "inpP75Ms": 8,
+          "lcpP75Ms": 1708,
+          "path": "/posts/cuanto-descuenta-la-afp-de-tu-sueldo/"
+        },
+        {
+          "clsP75": null,
+          "count": 10,
+          "inpP75Ms": null,
+          "lcpP75Ms": 842,
+          "path": "/guias/pensiones-afp/"
+        },
+        {
+          "clsP75": null,
+          "count": 10,
+          "inpP75Ms": null,
+          "lcpP75Ms": null,
+          "path": "/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/"
+        },
+        {
+          "clsP75": 0,
+          "count": 10,
+          "inpP75Ms": 56,
+          "lcpP75Ms": 556,
+          "path": "/calculadoras/credito-consumo/"
+        },
+        {
+          "clsP75": 0.197,
+          "count": 10,
+          "inpP75Ms": null,
+          "lcpP75Ms": 1024,
+          "path": "/posts/operacion-renta-f22-checklist/"
+        },
+        {
+          "clsP75": 0,
+          "count": 10,
+          "inpP75Ms": null,
+          "lcpP75Ms": 576,
+          "path": "/calculadoras/finiquito-indemnizacion/"
+        },
+        {
+          "clsP75": null,
+          "count": 10,
+          "inpP75Ms": null,
+          "lcpP75Ms": 699,
+          "path": "/posts/prepago-credito-cuando-conviene-chile/"
+        },
+        {
+          "clsP75": 0,
+          "count": 10,
+          "inpP75Ms": null,
+          "lcpP75Ms": 1568,
+          "path": "/posts/que-es-la-uf/"
+        },
+        {
+          "clsP75": 0,
+          "count": 10,
+          "inpP75Ms": 8,
+          "lcpP75Ms": 216,
+          "path": "/posts/fraude-tarjeta-que-hacer/"
+        },
+        {
+          "clsP75": null,
+          "count": 10,
+          "inpP75Ms": 40,
+          "lcpP75Ms": 978,
+          "path": "/calculadoras/comisiones-afp/"
+        },
+        {
+          "clsP75": 0,
+          "count": 10,
+          "inpP75Ms": null,
+          "lcpP75Ms": 696,
+          "path": "/posts/credito-hipotecario-chile-guia-completa/"
+        },
+        {
+          "clsP75": 0.004,
+          "count": 10,
+          "inpP75Ms": 48,
+          "lcpP75Ms": 688,
+          "path": "/guias/impuestos-personas/operacion-renta/"
+        },
+        {
+          "clsP75": null,
+          "count": 10,
+          "inpP75Ms": null,
+          "lcpP75Ms": null,
+          "path": "/calculadoras/seguro-cesantia/"
+        },
+        {
+          "clsP75": 0.033,
+          "count": 10,
+          "inpP75Ms": null,
+          "lcpP75Ms": 352,
+          "path": "/posts/informe-deudas-cmf-vs-dicom/"
+        },
+        {
+          "clsP75": 0,
+          "count": 10,
+          "inpP75Ms": 352,
+          "lcpP75Ms": 1472,
+          "path": "/categorias/astronomia/"
+        },
+        {
+          "clsP75": 0,
+          "count": 10,
+          "inpP75Ms": null,
+          "lcpP75Ms": 1116,
+          "path": "/posts/estafas-financieras-chile-vishing-smishing-marketplace/"
+        },
+        {
+          "clsP75": 0.031,
+          "count": 10,
+          "inpP75Ms": 16,
+          "lcpP75Ms": 1220,
+          "path": "/calculadoras/reajuste-arriendo/"
+        },
+        {
+          "clsP75": null,
+          "count": 10,
+          "inpP75Ms": null,
+          "lcpP75Ms": null,
+          "path": "/posts/que-es-el-apv/"
+        },
+        {
+          "clsP75": null,
+          "count": 10,
+          "inpP75Ms": null,
+          "lcpP75Ms": 806,
+          "path": "/LastWar/pages/season4.html"
+        },
+        {
+          "clsP75": 0,
+          "count": 10,
+          "inpP75Ms": 24,
+          "lcpP75Ms": null,
+          "path": "/LastWar/pages/events.html"
+        }
+      ]
+    },
+    "traffic": {
+      "fetchedAt": "2026-05-13T08:49:10Z",
+      "schemaVersion": 1,
+      "source": "cloudflare-traffic",
+      "week": "2026-W19",
+      "window": {
+        "from": "2026-05-04",
+        "to": "2026-05-10"
+      },
+      "summary": {
+        "bandwidthMB": 349.21,
+        "cacheRatioPct": 1,
+        "pageViews": 4204,
+        "requests": 20728
+      },
+      "data": [
+        {
+          "bandwidthMB": 26.47,
+          "cacheRatioPct": 4.4,
+          "cachedRequests": 66,
+          "date": "2026-05-04",
+          "pageViews": 546,
+          "requests": 1493
+        },
+        {
+          "bandwidthMB": 37.57,
+          "cacheRatioPct": 6,
+          "cachedRequests": 97,
+          "date": "2026-05-05",
+          "pageViews": 636,
+          "requests": 1629
+        },
+        {
+          "bandwidthMB": 88.49,
+          "cacheRatioPct": 1.2,
+          "cachedRequests": 53,
+          "date": "2026-05-06",
+          "pageViews": 637,
+          "requests": 4368
+        },
+        {
+          "bandwidthMB": 72.67,
+          "cacheRatioPct": 0,
+          "cachedRequests": 0,
+          "date": "2026-05-07",
+          "pageViews": 874,
+          "requests": 4911
+        },
+        {
+          "bandwidthMB": 41.92,
+          "cacheRatioPct": 0,
+          "cachedRequests": 0,
+          "date": "2026-05-08",
+          "pageViews": 729,
+          "requests": 2210
+        },
+        {
+          "bandwidthMB": 39.67,
+          "cacheRatioPct": 0,
+          "cachedRequests": 0,
+          "date": "2026-05-09",
+          "pageViews": 428,
+          "requests": 3359
+        },
+        {
+          "bandwidthMB": 42.42,
+          "cacheRatioPct": 0,
+          "cachedRequests": 0,
+          "date": "2026-05-10",
+          "pageViews": 354,
+          "requests": 2758
+        }
+      ]
+    }
+  }
 }

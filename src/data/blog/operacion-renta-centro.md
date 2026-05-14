@@ -14,7 +14,7 @@ tags:
 category: impuestos
 cluster: impuestos-personas
 topicRole: support
-canonicalTopic: operacion-renta-centro-legacy
+canonicalTopic: f22-revisar-enviar
 lang: es-CL
 featured: false
 homepagePriority: 0

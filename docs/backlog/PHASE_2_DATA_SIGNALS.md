@@ -71,12 +71,14 @@ Schema header obligatorio (validado en cada script):
 
 Rechazar reads con `schemaVersion` distinta es intencional — fuerza ADR al cambiar formato.
 
-## Secretos (matriz)
+## Configuración operativa (secrets + env)
 
 | Secret name                           | Scope               | Dónde vive                         | Rotación  |
 | ------------------------------------- | ------------------- | ---------------------------------- | --------- |
 | `GOOGLE_APPLICATION_CREDENTIALS_JSON` | GSC read-only       | GHA secret + `.env.local` (dev)    | 6 meses   |
 | `CLOUDFLARE_ANALYTICS_TOKEN`          | Zone Analytics:Read | GHA secret                         | 6 meses   |
+| `CLOUDFLARE_ZONE_ID`                  | Cloudflare zone id    | GHA variable/env local explícita   | al cambiar infra |
+| `CLOUDFLARE_ACCOUNT_ID`               | Cloudflare account id | GHA variable/env local explícita   | al cambiar infra |
 | `AHREFS_API_TOKEN`                    | Site Explorer read  | GHA secret (si DATA3a ✅)          | 6 meses   |
 
 Ninguno se commitea, loguea ni se expone al cliente. Runbook MON-ENV-DATA5 documenta rotación.

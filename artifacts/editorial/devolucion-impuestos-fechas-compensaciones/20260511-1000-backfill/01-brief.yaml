@@ -1,0 +1,8 @@
+slug: devolucion-impuestos-fechas-compensaciones
+title: "Devolución de impuestos en Chile: fechas de pago, estado y compensaciones"
+category: impuestos
+ymyl_topic: "devolución de impuestos anual en Chile: calendario de pagos, compensaciones y cómo consultar el estado"
+fecha_corte: 2026-02-28
+ymyl_risk: high
+backfill_run: 20260511-1000-backfill
+backfill_note: "Backfill canónico TD-0057. Evidencia editorial detallada en docs/editorial/artifacts/devolucion-impuestos-fechas-compensaciones/"

@@ -2,13 +2,13 @@
 
 ## Status
 
-Accepted
+Accepted (historical deployment context)
 
 ## Context
 
 The site was previously configured for GitHub Pages subpath deployment with a hardcoded Astro `base` of `/tuplatainforma`.
 
-The public production domain is now `https://monedario.cl/`, fronted by Cloudflare and served from GitHub Pages. With the old hardcoded subpath, the generated HTML referenced CSS and JS assets under `/tuplatainforma/_astro/...`, which broke styling and client assets when the site was served from the custom-domain root.
+At the time of this ADR, the public production domain had moved to `https://monedario.cl/` and the publishing path was still in a GitHub Pages-era configuration. With the old hardcoded subpath, the generated HTML referenced CSS and JS assets under `/tuplatainforma/_astro/...`, which broke styling and client assets when the site was served from the custom-domain root. The current production publication model is Cloudflare Pages consuming this repository.
 
 This change also includes a public rebrand from `Tu Plata Informa` to `Monedario`.
 
@@ -22,7 +22,7 @@ Relevant constraints:
 1. Set the public site URL source of truth to `https://monedario.cl/` in `src/config.ts`.
 2. Derive Astro `base` from `new URL(SITE.website).pathname.replace(/\\/$/, "") || "/"` instead of hardcoding a repository subpath.
 3. Keep internal path generation and markdown-link prefixing base-aware, so the code remains compatible with either root-domain or future subpath deployment.
-4. Add `public/CNAME` with `monedario.cl` to make GitHub Pages custom-domain deployment reproducible from the repo.
+4. Add `public/CNAME` with `monedario.cl` as a repo-carried domain artifact of the root-domain migration. The file remains versioned even though current publication is managed by Cloudflare Pages.
 5. Preserve public route identity by slug; do not alter route shape beyond removing the obsolete deploy-time subpath assumption.
 
 ## Consequences
@@ -46,9 +46,9 @@ Relevant constraints:
 
 Rejected. It keeps production correctness dependent on edge rewrite behavior and leaves generated asset URLs semantically wrong for the actual public origin.
 
-### Replace GitHub Pages with another hosting provider
+### Replace the then-current GitHub Pages publish path with another hosting provider
 
-Rejected for this change. The immediate defect is asset path generation, not hosting capability.
+Rejected for this change. The immediate defect was asset path generation, not hosting capability. Production publication now happens through Cloudflare Pages, outside the scope of this ADR.
 
 ## Validation
 

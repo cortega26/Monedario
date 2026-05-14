@@ -398,6 +398,80 @@ describe("build-weekly-search-report script", () => {
     expect(json.source).toBe("csv");
   });
 
+  it("prefers CSV exports over JSON when both are available", () => {
+    const root = createTempRoot();
+    const week = "2026-W16";
+    const inputDir = path.join(root, week);
+    mkdirSync(inputDir, { recursive: true });
+
+    const watchlistPath = path.join(root, "watchlist.json");
+    writeFileSync(
+      watchlistPath,
+      JSON.stringify({ site: "monedario.cl", pages: [] }),
+      "utf8"
+    );
+
+    writeFileSync(
+      path.join(inputDir, "gsc-pages.csv"),
+      [
+        "Top pages,Clicks,Clicks Difference,Impressions,Impressions Difference,CTR,CTR Difference,Position,Position Difference",
+        "https://monedario.cl/posts/csv-winner/,40,12,500,120,8.0%,1.0%,3.2,-0.8",
+      ].join("\n"),
+      "utf8"
+    );
+    writeFileSync(
+      path.join(inputDir, "gsc-queries.csv"),
+      [
+        "Top queries,Clicks,Clicks Difference,Impressions,Impressions Difference,CTR,CTR Difference,Position,Position Difference",
+        "csv winner query,35,10,300,90,11.0%,1.3%,3.5,-0.5",
+      ].join("\n"),
+      "utf8"
+    );
+    writeFileSync(
+      path.join(inputDir, "indexation-summary.json"),
+      JSON.stringify({
+        weekLabel: week,
+        google: {
+          sitemapStatus: "ok",
+          coverageNotes: "ok",
+          alerts: [],
+          manualActions: "none",
+          enhancementIssues: [],
+        },
+        bing: { sitemapStatus: "ok", coverageNotes: "ok", alerts: [] },
+        notes: [],
+      }),
+      "utf8"
+    );
+
+    const gscDir = makeGscJsonDir(root, week);
+    const markdownOut = path.join(inputDir, "scorecard.md");
+    const jsonOut = path.join(inputDir, "scorecard.json");
+
+    const result = runScript([
+      "--input",
+      inputDir,
+      "--watchlist",
+      watchlistPath,
+      "--out",
+      markdownOut,
+      "--json-out",
+      jsonOut,
+      "--gsc-json-dir",
+      gscDir,
+    ]);
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).not.toContain("GSC source: JSON");
+
+    const markdown = readFileSync(markdownOut, "utf8");
+    expect(markdown).toContain("/posts/csv-winner/");
+
+    const json = JSON.parse(readFileSync(jsonOut, "utf8"));
+    expect(json.source).toBe("csv");
+    expect(json.totals.clicks).toBe(40);
+  });
+
   it("includes cloudflare performance section in markdown when RUM/traffic JSON exist", () => {
     const root = createTempRoot();
     const week = "2026-W16";

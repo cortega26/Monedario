@@ -4,8 +4,7 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 on:
   pull_request:
@@ -17,18 +16,17 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "0 5 * * *"
-  workflow_call:
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
     name: Code standards & build
     runs-on: ubuntu-latest
-    timeout-minutes: 6
+    timeout-minutes: 10
     if: github.event_name != 'schedule'
-
-    strategy:
-      matrix:
-        node-version: [22]
 
     steps:
       - name: "☁️ Checkout repository"
@@ -36,17 +34,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: "📦 Install pnpm"
-        run: npm install -g pnpm@10.30.2
-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v6
+      - name: "📦 Bootstrap pnpm workspace"
+        uses: ./.github/actions/bootstrap-pnpm
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
-
-      - name: "📦 Install dependencies"
-        run: pnpm install --frozen-lockfile
+          node-version: 22
 
       - name: "🔍 Tooling versions"
         run: |
@@ -111,7 +102,7 @@ jobs:
         run: pnpm run astro check
 
       - name: "🚀 Build the project"
-        run: pnpm run build
+        run: pnpm run build:ci
 
       - name: "🔗 URL check (CI mode)"
         id: urlcheck_ci
@@ -122,23 +113,24 @@ jobs:
 
       - name: "🧩 Ensure URL check artifacts exist"
         if: always() && steps.urlcheck_ci.outcome == 'skipped'
-        run: |
-          mkdir -p output/validation/urlcheck
-          [ -f output/validation/urlcheck/internal-broken.json ] || printf '[]\n' > output/validation/urlcheck/internal-broken.json
-          [ -f output/validation/urlcheck/internal-broken.csv ] || printf 'broken_url,status,referrer_url,context,category\n' > output/validation/urlcheck/internal-broken.csv
-          [ -f output/validation/urlcheck/urlcheck-report.json ] || printf '{"generatedAt":"%s","note":"placeholder"}\n' "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" > output/validation/urlcheck/urlcheck-report.json
+        uses: ./.github/actions/ensure-urlcheck-artifacts
+        with:
+          scope: internal
 
       - name: "📤 Upload URL check artifacts"
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: ./.github/actions/upload-urlcheck-artifacts
         with:
-          name: urlcheck-artifacts-ci
+          artifact-name: urlcheck-artifacts-ci
           retention-days: 14
-          if-no-files-found: error
-          path: |
-            output/validation/urlcheck/internal-broken.json
-            output/validation/urlcheck/internal-broken.csv
-            output/validation/urlcheck/urlcheck-report.json
+          scope: internal
+
+      - name: "📤 Upload built site artifact"
+        uses: ./.github/actions/upload-workflow-artifact
+        with:
+          artifact-name: site-dist
+          retention-days: 3
+          path: dist/
 
   external-url-audit:
     name: External URL audit (non-blocking)
@@ -151,17 +143,10 @@ jobs:
       - name: "☁️ Checkout repository"
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - name: "📦 Install pnpm"
-        run: npm install -g pnpm@10.30.2
-
-      - name: Use Node.js 22
-        uses: actions/setup-node@v6
+      - name: "📦 Bootstrap pnpm workspace"
+        uses: ./.github/actions/bootstrap-pnpm
         with:
           node-version: 22
-          cache: "pnpm"
-
-      - name: "📦 Install dependencies"
-        run: pnpm install --frozen-lockfile
 
       - name: "🏗️ Build static output"
         run: pnpm run astro build
@@ -172,33 +157,22 @@ jobs:
 
       - name: "🧩 Ensure external URL audit artifacts exist"
         if: always() && steps.urlcheck_external_audit.outcome == 'skipped'
-        run: |
-          mkdir -p output/validation/urlcheck
-          [ -f output/validation/urlcheck/external-summary.json ] || printf '{"generatedAt":"%s","note":"placeholder"}\n' "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" > output/validation/urlcheck/external-summary.json
-          [ -f output/validation/urlcheck/external-hard-fail.json ] || printf '[]\n' > output/validation/urlcheck/external-hard-fail.json
-          [ -f output/validation/urlcheck/external-soft-404.json ] || printf '[]\n' > output/validation/urlcheck/external-soft-404.json
-          [ -f output/validation/urlcheck/external-host-mismatch.json ] || printf '[]\n' > output/validation/urlcheck/external-host-mismatch.json
-          [ -f output/validation/urlcheck/external-non-blocking.json ] || printf '[]\n' > output/validation/urlcheck/external-non-blocking.json
-          [ -f output/validation/urlcheck/external-full.csv ] || printf 'source_url,final_url,referrer_url,link_type,host_category,classification,blocking,matched_signal,status,error\n' > output/validation/urlcheck/external-full.csv
+        uses: ./.github/actions/ensure-urlcheck-artifacts
+        with:
+          scope: external
 
       - name: "📤 Upload external audit artifacts"
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: ./.github/actions/upload-urlcheck-artifacts
         with:
-          name: urlcheck-artifacts-external-audit
+          artifact-name: urlcheck-artifacts-external-audit
           retention-days: 30
-          if-no-files-found: error
-          path: |
-            output/validation/urlcheck/external-summary.json
-            output/validation/urlcheck/external-hard-fail.json
-            output/validation/urlcheck/external-soft-404.json
-            output/validation/urlcheck/external-host-mismatch.json
-            output/validation/urlcheck/external-non-blocking.json
-            output/validation/urlcheck/external-full.csv
+          scope: external
 
   external-url-check-pr:
     name: External URL check – PR (non-blocking rollout)
     runs-on: ubuntu-latest
+    needs: build
     timeout-minutes: 15
     # Runs on every PR. continue-on-error:true keeps the workflow green during
     # initial rollout. Remove continue-on-error once the corpus is clean and
@@ -210,20 +184,16 @@ jobs:
       - name: "☁️ Checkout repository"
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - name: "📦 Install pnpm"
-        run: npm install -g pnpm@10.30.2
-
-      - name: Use Node.js 22
-        uses: actions/setup-node@v6
+      - name: "📦 Bootstrap pnpm workspace"
+        uses: ./.github/actions/bootstrap-pnpm
         with:
           node-version: 22
-          cache: "pnpm"
 
-      - name: "📦 Install dependencies"
-        run: pnpm install --frozen-lockfile
-
-      - name: "🏗️ Build static output"
-        run: pnpm run astro build
+      - name: "📥 Download built site artifact"
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
+        with:
+          name: site-dist
+          path: dist/
 
       - name: "🔗 External URL check (blocking gate – CI mode)"
         id: urlcheck_external_ci
@@ -231,33 +201,22 @@ jobs:
 
       - name: "🧩 Ensure external URL CI artifacts exist"
         if: always() && steps.urlcheck_external_ci.outcome == 'skipped'
-        run: |
-          mkdir -p output/validation/urlcheck
-          [ -f output/validation/urlcheck/external-summary.json ] || printf '{"generatedAt":"%s","note":"placeholder"}\n' "$(date -u +"%Y-%m-%dT%H:%M:%SZ")" > output/validation/urlcheck/external-summary.json
-          [ -f output/validation/urlcheck/external-hard-fail.json ] || printf '[]\n' > output/validation/urlcheck/external-hard-fail.json
-          [ -f output/validation/urlcheck/external-soft-404.json ] || printf '[]\n' > output/validation/urlcheck/external-soft-404.json
-          [ -f output/validation/urlcheck/external-host-mismatch.json ] || printf '[]\n' > output/validation/urlcheck/external-host-mismatch.json
-          [ -f output/validation/urlcheck/external-non-blocking.json ] || printf '[]\n' > output/validation/urlcheck/external-non-blocking.json
-          [ -f output/validation/urlcheck/external-full.csv ] || printf 'source_url,final_url,referrer_url,link_type,host_category,classification,blocking,matched_signal,status,error\n' > output/validation/urlcheck/external-full.csv
+        uses: ./.github/actions/ensure-urlcheck-artifacts
+        with:
+          scope: external
 
       - name: "📤 Upload external URL CI artifacts"
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: ./.github/actions/upload-urlcheck-artifacts
         with:
-          name: urlcheck-artifacts-external-ci
+          artifact-name: urlcheck-artifacts-external-ci
           retention-days: 14
-          if-no-files-found: error
-          path: |
-            output/validation/urlcheck/external-summary.json
-            output/validation/urlcheck/external-hard-fail.json
-            output/validation/urlcheck/external-soft-404.json
-            output/validation/urlcheck/external-host-mismatch.json
-            output/validation/urlcheck/external-non-blocking.json
-            output/validation/urlcheck/external-full.csv
+          scope: external
 
   a11y-audit:
     name: Accessibility audit (non-blocking)
     runs-on: ubuntu-latest
+    needs: build
     timeout-minutes: 10
     if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
     continue-on-error: true
@@ -266,32 +225,28 @@ jobs:
       - name: "☁️ Checkout repository"
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - name: "📦 Install pnpm"
-        run: npm install -g pnpm@10.30.2
-
-      - name: Use Node.js 22
-        uses: actions/setup-node@v6
+      - name: "📦 Bootstrap pnpm workspace"
+        uses: ./.github/actions/bootstrap-pnpm
         with:
           node-version: 22
-          cache: "pnpm"
-
-      - name: "📦 Install dependencies"
-        run: pnpm install --frozen-lockfile
 
       - name: "🌐 Install Playwright browsers"
         run: pnpm exec playwright install chromium
 
-      - name: "🏗️ Build static output"
-        run: pnpm run astro build
+      - name: "📥 Download built site artifact"
+        uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6.0.0
+        with:
+          name: site-dist
+          path: dist/
 
       - name: "🎯 Run accessibility tests"
         run: pnpm exec playwright test tests/accessibility/
 
       - name: "📤 Upload accessibility report"
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: ./.github/actions/upload-workflow-artifact
         with:
-          name: a11y-report
+          artifact-name: a11y-report
           retention-days: 14
           if-no-files-found: warn
           path: |

@@ -33,7 +33,7 @@ Descripcion factual del stack del repositorio para contributors y agentes.
 
 - Mindicador como fuente externa opcional de datos economicos
 - GitHub Actions para CI y jobs programados
-- GitHub Pages como destino de despliegue
+- Cloudflare Pages como superficie de publicacion productiva del build estatico generado desde este repositorio
 
 ## Convenciones tecnicas visibles
 

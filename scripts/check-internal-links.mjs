@@ -27,7 +27,9 @@ import { fileURLToPath } from "node:url";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const REPO_ROOT = path.resolve(__dirname, "..");
+const REPO_ROOT = process.env.INTERNAL_LINKS_CHECK_ROOT
+  ? path.resolve(process.env.INTERNAL_LINKS_CHECK_ROOT)
+  : path.resolve(__dirname, "..");
 const BLOG_DIR = path.join(REPO_ROOT, "src", "data", "blog");
 const GUIAS_DIR = path.join(REPO_ROOT, "src", "pages", "guias");
 const CALCULADORAS_DIR = path.join(REPO_ROOT, "src", "pages", "calculadoras");
@@ -89,6 +91,16 @@ function extractInternalLinks(source) {
     }
   }
   return links;
+}
+
+function guiaRouteExists(guiaPath) {
+  const absolutePath = path.join(GUIAS_DIR, guiaPath);
+
+  return (
+    existsSync(absolutePath) ||
+    existsSync(`${absolutePath}.astro`) ||
+    existsSync(path.join(absolutePath, "index.astro"))
+  );
 }
 
 // ─── Build corpus index ──────────────────────────────────────────────────────
@@ -178,7 +190,7 @@ for (const [slug, { filePath, source }] of publishedSlugs.entries()) {
       const guiaPath = link.target.replace(/\/+$/, "");
       const guiaTopSlug = guiaPath.split("/")[0];
       const isValidTop = validGuias.has(guiaTopSlug);
-      const isValidFull = !guiaPath.includes("/") || existsSync(path.join(GUIAS_DIR, guiaPath));
+      const isValidFull = guiaRouteExists(guiaPath);
       if (!isValidTop || !isValidFull) {
         errors.push({
           filePath: relPath,

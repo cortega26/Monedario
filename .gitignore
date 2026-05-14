@@ -21,6 +21,8 @@ output/validation/
 .playwright-cli/
 .playwright-mcp/
 artifacts/*
+!artifacts/editorial/
+!artifacts/editorial/**
 !artifacts/lighthouse/
 !artifacts/lighthouse/**
 skills/
@@ -77,6 +79,7 @@ docs/backlog/*
 !docs/backlog/PLAN-heroimage-prompt-repair-2026-05-01.md
 !docs/backlog/PLAN-seo-cross-document-roadmap-2026-05-01.md
 !docs/backlog/PLAN-strategic-repository-modernization-2026-05-11.md
+!docs/backlog/PLAN-github-workflow-hardening-2026-05-13.md
 !docs/backlog/prompt-*.md
 !docs/editorial/artifacts/
 !docs/editorial/artifacts/**

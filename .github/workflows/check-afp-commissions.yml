@@ -9,6 +9,10 @@ on:
     # First day of each month at 09:15 UTC (06:15 Chile time)
     - cron: "15 9 1 * *"
 
+concurrency:
+  group: afp-commissions-${{ github.ref }}
+  cancel-in-progress: false
+
 permissions:
   contents: read
   issues: write
@@ -23,39 +27,38 @@ jobs:
       - name: "☁️ Checkout repository"
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - name: "📦 Install pnpm"
-        run: npm install -g pnpm@10.30.2
-
-      - name: "🟢 Setup Node.js"
-        uses: actions/setup-node@v6
+      - name: "🔍 Run AFP commission rate check"
+        id: audit
+        uses: ./.github/actions/run-single-report-audit
         with:
           node-version: 22
-          cache: pnpm
-
-      - name: "📦 Install dependencies"
-        run: pnpm install --frozen-lockfile
-
-      - name: "🔍 Run AFP commission rate check"
-        id: afp_check
-        continue-on-error: true
-        run: node scripts/check-afp-commissions.mjs
+          command: node scripts/check-afp-commissions.mjs
 
       - name: "📤 Upload AFP commission check report"
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: ./.github/actions/upload-workflow-artifact
         with:
-          name: afp-commissions-report
+          artifact-name: afp-commissions-report
           retention-days: 90
           if-no-files-found: warn
           path: output/validation/afp-commissions/report.json
 
-      - name: "📝 Open or update GitHub issue on mismatch"
-        if: steps.afp_check.outcome == 'failure'
+      - name: "📝 Build AFP drift issue payload"
+        if: always()
         uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        id: issue_payload
         with:
           script: |
             const fs = require("fs");
             const reportPath = "output/validation/afp-commissions/report.json";
+            const title = "⚠️ AFP commission rates require manual verification";
+
+            if ("${{ steps.audit.outputs.outcome }}" !== "failure") {
+              core.setOutput("title", title);
+              core.setOutput("desired_state", "closed");
+              core.setOutput("labels_json", JSON.stringify(["data-freshness", "financial-data"]));
+              return;
+            }
 
             let report = { date: "unknown", mismatches: [], status: "unknown" };
             try {
@@ -68,8 +71,6 @@ jobs:
               m =>
                 `| ${m.afp} | ${m.previredTotal?.toFixed(2) ?? "?"} | ${m.configTotal?.toFixed(2) ?? "?"} | ${m.diff > 0 ? "+" : ""}${m.diff?.toFixed(2) ?? "?"} |`
             );
-
-            const title = "⚠️ AFP commission rates require manual verification";
             const body = [
               "## AFP Commission Rate Drift Detected",
               "",
@@ -106,34 +107,21 @@ jobs:
               "",
               `**Triggered by:** Monthly cron — run \`${context.runId}\``,
             ].filter(l => l !== undefined).join("\n");
+            core.setOutput("title", title);
+            core.setOutput("body", body);
+            core.setOutput("desired_state", "open");
+            core.setOutput("labels_json", JSON.stringify(["data-freshness", "financial-data"]));
 
-            const { data: issues } = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: "open",
-              labels: ["data-freshness"],
-            });
-
-            const existing = issues.find(i => i.title === title);
-            if (existing) {
-              await github.rest.issues.update({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: existing.number,
-                body,
-              });
-              core.info(`Updated existing issue #${existing.number}`);
-            } else {
-              const created = await github.rest.issues.create({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                title,
-                body,
-                labels: ["data-freshness", "financial-data"],
-              });
-              core.info(`Created issue #${created.data.number}`);
-            }
+      - name: "📝 Sync AFP drift issue"
+        if: always()
+        uses: ./.github/actions/upsert-issue-by-title
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: ${{ steps.issue_payload.outputs.title }}
+          body: ${{ steps.issue_payload.outputs.body }}
+          desired-state: ${{ steps.issue_payload.outputs.desired_state }}
+          labels-json: ${{ steps.issue_payload.outputs.labels_json }}
 
       - name: "✅ Fail workflow on mismatch"
-        if: steps.afp_check.outcome == 'failure'
+        if: steps.audit.outputs.outcome == 'failure'
         run: exit 1

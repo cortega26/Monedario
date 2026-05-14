@@ -31,10 +31,15 @@ No hay llamadas a APIs externas en runtime de navegador ni servicios de backend 
 - La variable de entorno `TPI_ECONOMIC_PROVIDER_MODE` controla el modo:
   - `live` → fetch a Mindicador durante la build
   - `snapshot` → usa directamente el snapshot JSON (modo CI/test por defecto)
-- Si la variable no está definida, el provider intenta `live` y cae a `snapshot` si la API falla.
+- Si la variable no está definida, el provider permanece en `snapshot`.
 
 **Fallback en cascada:**
 ```
+Modo por defecto (`snapshot`)
+1. leer snapshot JSON  →  source: "snapshot"
+2. Si snapshot falla → valores hardcoded de emergencia  →  source: "fallback"
+
+Modo explícito (`live`)
 1. fetch mindicador.cl/api  →  OK → source: "live"
 2. Si falla → leer snapshot JSON  →  source: "snapshot"
 3. Si snapshot falla → valores hardcoded de emergencia  →  source: "fallback"
@@ -102,7 +107,7 @@ Configuradas en `astro.config.ts`:
 
 | Variable | Valores válidos | Default | Descripción |
 |---|---|---|---|
-| `TPI_ECONOMIC_PROVIDER_MODE` | `live`, `snapshot` | `live` con fallback | Controla si la build hace fetch a Mindicador |
+| `TPI_ECONOMIC_PROVIDER_MODE` | `live`, `snapshot` | `snapshot` | Controla si la build hace fetch a Mindicador |
 | `SITE` (config interna) | — | — | Dominio y metadata del sitio en `src/config.ts` |
 
 Definición de tipos de entorno: `src/env.d.ts` (schema Astro `envField`).
@@ -111,7 +116,7 @@ Definición de tipos de entorno: `src/env.d.ts` (schema Astro `envField`).
 
 ## CI y servicios de despliegue
 
-El pipeline CI principal vive en `.github/workflows/ci.yml` y los jobs operativos programados viven en `.github/workflows/*.yml`. No hay un `deploy.yml` activo en este árbol; la publicación debe consumir el build estático `dist/` sin introducir servicios backend propios.
+El pipeline CI principal vive en `.github/workflows/ci.yml` y los jobs operativos programados viven en `.github/workflows/*.yml`. No hay un workflow de deploy repo-managed activo en este árbol: la publicación productiva la gestiona Cloudflare Pages a partir de este repositorio y del build estático generado. La configuración pública ligada al hosting sigue versionada en el repo, por ejemplo mediante `public/CNAME` y `public/_headers`.
 
 El script `scripts/check-urls-external.mjs` audita URLs externas en el contenido editorial; su baseline se protege con `check-urls-baseline-guard.test.ts`.
 

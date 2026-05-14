@@ -1,6 +1,6 @@
 # Weekly Search Performance Scorecard
 
-Generated: `2026-05-07T00:35:44.247Z`
+Generated: `2026-05-13T20:47:52.533Z`
 
 ## Headline
 
@@ -16,9 +16,9 @@ Generated: `2026-05-07T00:35:44.247Z`
 ### Google Search Console
 
 - Sitemap status: `ok`
-- Coverage note: Repo-local GSC sitemap snapshot for the latest completed window (2026-04-27 to 2026-05-03) shows https://monedario.cl/sitemap-index.xml downloaded on 2026-04-30 with 135 submitted URLs and 0 indexed URLs in sitemap contents.
+- Coverage note: Repo-local GSC sitemap snapshot for 2026-W19 (2026-05-04 to 2026-05-10) shows https://monedario.cl/sitemap-index.xml downloaded on 2026-05-10 with 138 submitted URLs and 0 indexed URLs in sitemap contents.
 - Alerts:
-  - Sitemap contents still report 0 indexed URLs; verify next week whether Search Console coverage catches up.
+  - Sitemap contents for 2026-W19 still report 0 indexed URLs; verify next week whether Search Console coverage catches up.
 
 ### Bing Webmaster
 
@@ -107,8 +107,43 @@ _No rows matched this criterion in the current export._
 
 ## Notes
 
-- Weekly ops bundle completed from repo-local GSC JSON snapshots because the scheduled workflow artifact only contained the initialized placeholder bundle.
+- Confirmed the W19 bundle includes both Google Search Console exports (`gsc-pages.csv` and `gsc-queries.csv`), and regenerated the scorecard from those bundle exports.
 - No analytics-events.csv was available in the repository for this week, so CTA/tool conversion signals remain blank in the scorecard.
 - Next action 1: refresh /calculadoras/sueldo-liquido/ title, snippet, and first scroll because it is the clearest tracked loser this week (clicks -1, impressions +41).
 - Next action 2: reinforce internal links into /calculadoras/sueldo-liquido/ from /guias/sueldo-remuneraciones/ and /posts/como-calcular-sueldo-liquido/ because the hub disappeared from the current pages export.
 - Next action 3: re-open Bing Webmaster with the authenticated search-platform state and confirm sitemap/discovered-URL status, because this environment can only record UNVERIFIED_FROM_AVAILABLE_ENVIRONMENT.
+
+## Performance real (Cloudflare RUM — 2026-W19)
+
+| Ruta | Visitas RUM | LCP p75 | CLS p75 | INP p75 |
+| --- | --- | --- | --- | --- |
+| `/calculadoras/apv/` | 70 | 1828ms ✅ | 0 ✅ | 40ms ✅ |
+| `/` | 60 | 14764ms ❌ | 0 ✅ | — |
+| `/posts/devolucion-impuestos-fechas-compensaciones/` | 30 | 1108ms ✅ | 0.314 ❌ | — |
+| `/posts/descuentos-de-sueldo/` | 20 | 1020ms ✅ | 0.013 ✅ | — |
+| `/posts/fondos-mutuos-comisiones-rescate-impuestos/` | 20 | 784ms ✅ | 0 ✅ | 0ms ✅ |
+| `/posts/boleta-honorarios-2026-retencion-cobertura/` | 20 | 2216ms ✅ | 0.001 ✅ | 8ms ✅ |
+| `/calculadoras/operacion-renta/` | 20 | 564ms ✅ | 0 ✅ | 0ms ✅ |
+| `/posts/indemnizacion-anos-de-servicio-chile/` | 20 | 952ms ✅ | 0.001 ✅ | 8ms ✅ |
+| `/posts/cuanto-descuenta-la-afp-de-tu-sueldo/` | 20 | 1708ms ✅ | 0.001 ✅ | 8ms ✅ |
+| `/guias/pensiones-afp/` | 10 | 842ms ✅ | — | — |
+| `/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/` | 10 | — | — | — |
+| `/calculadoras/credito-consumo/` | 10 | 556ms ✅ | 0 ✅ | 56ms ✅ |
+| `/posts/operacion-renta-f22-checklist/` | 10 | 1024ms ✅ | 0.197 ⚠️ | — |
+| `/calculadoras/finiquito-indemnizacion/` | 10 | 576ms ✅ | 0 ✅ | — |
+| `/posts/prepago-credito-cuando-conviene-chile/` | 10 | 699ms ✅ | — | — |
+| `/posts/que-es-la-uf/` | 10 | 1568ms ✅ | 0 ✅ | — |
+| `/posts/fraude-tarjeta-que-hacer/` | 10 | 216ms ✅ | 0 ✅ | 8ms ✅ |
+| `/calculadoras/comisiones-afp/` | 10 | 978ms ✅ | — | 40ms ✅ |
+| `/posts/credito-hipotecario-chile-guia-completa/` | 10 | 696ms ✅ | 0 ✅ | — |
+| `/guias/impuestos-personas/operacion-renta/` | 10 | 688ms ✅ | 0.004 ✅ | 48ms ✅ |
+| `/calculadoras/seguro-cesantia/` | 10 | — | — | — |
+| `/posts/informe-deudas-cmf-vs-dicom/` | 10 | 352ms ✅ | 0.033 ✅ | — |
+| `/categorias/astronomia/` | 10 | 1472ms ✅ | 0 ✅ | 352ms ⚠️ |
+| `/posts/estafas-financieras-chile-vishing-smishing-marketplace/` | 10 | 1116ms ✅ | 0 ✅ | — |
+| `/calculadoras/reajuste-arriendo/` | 10 | 1220ms ✅ | 0.031 ✅ | 16ms ✅ |
+| `/posts/que-es-el-apv/` | 10 | — | — | — |
+| `/LastWar/pages/season4.html` | 10 | 806ms ✅ | — | — |
+| `/LastWar/pages/events.html` | 10 | — | 0 ✅ | 24ms ✅ |
+
+**Tráfico semanal:** 4204 pageviews · 20728 requests · cache 1% · 349.21 MB

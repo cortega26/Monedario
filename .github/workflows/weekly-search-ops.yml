@@ -8,6 +8,10 @@ on:
   schedule:
     - cron: "15 8 * * 1"
 
+concurrency:
+  group: weekly-search-ops-${{ github.ref }}
+  cancel-in-progress: false
+
 permissions:
   contents: read
   issues: write
@@ -22,17 +26,10 @@ jobs:
       - name: "☁️ Checkout repository"
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - name: "📦 Install pnpm"
-        run: npm install -g pnpm@10.30.2
-
-      - name: "🟢 Setup Node.js"
-        uses: actions/setup-node@v6
+      - name: "📦 Bootstrap pnpm workspace"
+        uses: ./.github/actions/bootstrap-pnpm
         with:
           node-version: 22
-          cache: pnpm
-
-      - name: "📦 Install dependencies"
-        run: pnpm install --frozen-lockfile
 
       - name: "🗓️ Compute week label"
         id: week
@@ -81,71 +78,69 @@ jobs:
 
       - name: "📤 Upload weekly bundle"
         if: always()
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: ./.github/actions/upload-workflow-artifact
         with:
-          name: weekly-search-ops-${{ steps.week.outputs.label }}
+          artifact-name: weekly-search-ops-${{ steps.week.outputs.label }}
           retention-days: 14
-          if-no-files-found: error
           path: output/operations/weekly-search-performance/${{ steps.week.outputs.label }}/
 
-      - name: "📝 Create or update weekly ops issue"
+      - name: "📝 Build weekly ops issue payload"
         if: always()
-        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        id: issue_payload
+        shell: bash
+        env:
+          WEEK_LABEL: ${{ steps.week.outputs.label }}
+          SCORECARD_READY: ${{ steps.exports.outputs.scorecard_ready }}
+          GSC_SOURCE: ${{ steps.exports.outputs.gsc_source }}
+        run: |
+          set -euo pipefail
+
+          title="Weekly search ops: $WEEK_LABEL"
+          scorecard_generated="no"
+          status_line="The required exports were not available in the workflow workspace. Complete the bundle and rerun the script or workflow."
+
+          if [[ "$SCORECARD_READY" == "true" ]]; then
+            scorecard_generated="yes"
+
+            if [[ "$GSC_SOURCE" == "json" ]]; then
+              status_line="Repo data signals were available for the previous complete week, so the workflow generated a first-pass scorecard automatically. Review indexation + analytics before closing the checklist."
+            else
+              status_line="The required exports were available, so the workflow generated the scorecard automatically."
+            fi
+          fi
+
+          {
+            echo 'title<<__ISSUE_TITLE__'
+            echo "$title"
+            echo '__ISSUE_TITLE__'
+            echo 'body<<__ISSUE_BODY__'
+            printf '%s\n' \
+              "Weekly search ops bundle prepared for \`$WEEK_LABEL\`." \
+              "" \
+              "- Bundle path: \`output/operations/weekly-search-performance/$WEEK_LABEL/\`" \
+              "- Scorecard generated: \`$scorecard_generated\`" \
+              "- Workflow artifact: \`weekly-search-ops-$WEEK_LABEL\`" \
+              "" \
+              "### Checklist" \
+              "- [ ] Confirm Google Search Console pages export" \
+              "- [ ] Confirm Google Search Console queries export" \
+              "- [ ] Update indexation-summary.json with Google + Bing status" \
+              "- [ ] Add analytics-events.csv if available" \
+              "- [ ] Generate or review weekly scorecard" \
+              "- [ ] Decide 1-3 next actions" \
+              "" \
+              "$status_line"
+            echo '__ISSUE_BODY__'
+            echo 'desired_state=open'
+            echo 'labels_json=["ops","search","weekly"]'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: "📝 Sync weekly ops issue"
+        if: always()
+        uses: ./.github/actions/upsert-issue-by-title
         with:
-          script: |
-            const weekLabel = "${{ steps.week.outputs.label }}";
-            const ready = "${{ steps.exports.outputs.scorecard_ready }}" === "true";
-            const gscSource = "${{ steps.exports.outputs.gsc_source }}";
-            const title = `Weekly search ops: ${weekLabel}`;
-            const { data: issues } = await github.rest.issues.listForRepo({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: "open",
-            });
-            const existing = issues.find(issue => issue.title === title);
-
-            const checklist = [
-              "- [ ] Confirm Google Search Console pages export",
-              "- [ ] Confirm Google Search Console queries export",
-              "- [ ] Update indexation-summary.json with Google + Bing status",
-              "- [ ] Add analytics-events.csv if available",
-              "- [ ] Generate or review weekly scorecard",
-              "- [ ] Decide 1-3 next actions",
-            ];
-
-            const body = [
-              `Weekly search ops bundle prepared for \`${weekLabel}\`.`,
-              "",
-              `- Bundle path: \`output/operations/weekly-search-performance/${weekLabel}/\``,
-              `- Scorecard generated: \`${ready ? "yes" : "no"}\``,
-              `- Workflow artifact: \`weekly-search-ops-${weekLabel}\``,
-              "",
-              "### Checklist",
-              ...checklist,
-              "",
-              ready
-                ? gscSource === "json"
-                  ? "Repo data signals were available for the previous complete week, so the workflow generated a first-pass scorecard automatically. Review indexation + analytics before closing the checklist."
-                  : "The required exports were available, so the workflow generated the scorecard automatically."
-                : "The required exports were not available in the workflow workspace. Complete the bundle and rerun the script or workflow.",
-            ].join("\n");
-
-            if (existing) {
-              await github.rest.issues.update({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: existing.number,
-                body,
-                labels: ["ops", "search", "weekly"],
-              });
-              core.info(`Updated existing issue #${existing.number}`);
-            } else {
-              const created = await github.rest.issues.create({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                title,
-                body,
-                labels: ["ops", "search", "weekly"],
-              });
-              core.info(`Created issue #${created.data.number}`);
-            }
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: ${{ steps.issue_payload.outputs.title }}
+          body: ${{ steps.issue_payload.outputs.body }}
+          desired-state: ${{ steps.issue_payload.outputs.desired_state }}
+          labels-json: ${{ steps.issue_payload.outputs.labels_json }}

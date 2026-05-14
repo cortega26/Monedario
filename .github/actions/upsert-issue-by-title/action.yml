@@ -1,0 +1,94 @@
+name: Upsert issue by title
+description: >-
+  Create, update, or close an open GitHub issue matched by exact title.
+
+inputs:
+  github-token:
+    description: Token used for GitHub API access.
+    required: true
+  title:
+    description: Exact issue title used to find an existing open issue.
+    required: true
+  body:
+    description: Markdown body used when creating or updating an issue.
+    required: false
+    default: ""
+  labels-json:
+    description: JSON array of labels to apply when creating or updating.
+    required: false
+    default: "[]"
+  desired-state:
+    description: "Desired issue state. Supported values: open, closed."
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Sync issue by title
+      uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+      with:
+        github-token: ${{ inputs.github-token }}
+        script: |
+          const title = `${{ inputs.title }}`;
+          const body = `${{ inputs.body }}`;
+          const desiredState = `${{ inputs.desired-state }}`;
+
+          let labels = [];
+          try {
+            labels = JSON.parse(`${{ inputs.labels-json }}` || "[]");
+          } catch (error) {
+            core.setFailed(`Invalid labels-json input: ${error.message}`);
+            return;
+          }
+
+          const { data: issues } = await github.rest.issues.listForRepo({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            state: "open",
+          });
+
+          const existing = issues.find((issue) => issue.title === title);
+
+          if (desiredState === "closed") {
+            if (existing) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existing.number,
+                state: "closed",
+              });
+              core.info(`Closed issue #${existing.number}`);
+            } else {
+              core.info(`No open issue found for title: ${title}`);
+            }
+            return;
+          }
+
+          if (desiredState !== "open") {
+            core.setFailed(`Unsupported desired-state: ${desiredState}`);
+            return;
+          }
+
+          const payload = {
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body,
+          };
+
+          if (labels.length > 0) {
+            payload.labels = labels;
+          }
+
+          if (existing) {
+            await github.rest.issues.update({
+              ...payload,
+              issue_number: existing.number,
+            });
+            core.info(`Updated issue #${existing.number}`);
+            return;
+          }
+
+          await github.rest.issues.create({
+            ...payload,
+            title,
+          });

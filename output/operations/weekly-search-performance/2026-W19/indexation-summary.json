@@ -11,9 +11,9 @@
     "sitemapStatus": "ok",
     "indexedPages": 0,
     "excludedPages": null,
-    "coverageNotes": "Repo-local GSC sitemap snapshot for the latest completed window (2026-04-27 to 2026-05-03) shows https://monedario.cl/sitemap-index.xml downloaded on 2026-04-30 with 135 submitted URLs and 0 indexed URLs in sitemap contents.",
+    "coverageNotes": "Repo-local GSC sitemap snapshot for 2026-W19 (2026-05-04 to 2026-05-10) shows https://monedario.cl/sitemap-index.xml downloaded on 2026-05-10 with 138 submitted URLs and 0 indexed URLs in sitemap contents.",
     "alerts": [
-      "Sitemap contents still report 0 indexed URLs; verify next week whether Search Console coverage catches up."
+      "Sitemap contents for 2026-W19 still report 0 indexed URLs; verify next week whether Search Console coverage catches up."
     ],
     "manualActions": "none",
     "enhancementIssues": []
@@ -28,7 +28,7 @@
     ]
   },
   "notes": [
-    "Weekly ops bundle completed from repo-local GSC JSON snapshots because the scheduled workflow artifact only contained the initialized placeholder bundle.",
+    "Confirmed the W19 bundle includes both Google Search Console exports (`gsc-pages.csv` and `gsc-queries.csv`), and regenerated the scorecard from those bundle exports.",
     "No analytics-events.csv was available in the repository for this week, so CTA/tool conversion signals remain blank in the scorecard.",
     "Next action 1: refresh /calculadoras/sueldo-liquido/ title, snippet, and first scroll because it is the clearest tracked loser this week (clicks -1, impressions +41).",
     "Next action 2: reinforce internal links into /calculadoras/sueldo-liquido/ from /guias/sueldo-remuneraciones/ and /posts/como-calcular-sueldo-liquido/ because the hub disappeared from the current pages export.",

@@ -1,4 +1,4 @@
-import type { LinkCard } from "@/config/sueldoClusterLinks";
+import type { LinkCard } from "@/config/contextualLinkTypes";
 
 export const sueldoRemuneracionesCalcCards: LinkCard[] = [
   {
