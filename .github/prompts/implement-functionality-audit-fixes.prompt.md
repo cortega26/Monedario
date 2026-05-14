@@ -231,10 +231,10 @@ pnpm run check:boundaries
 pnpm astro check
 ```
 
-Additionally, verify no new high/critical CVEs were introduced:
+Additionally, verify no new blocking security findings were introduced:
 
 ```bash
-# Run Codacy CLI trivy scan if available, or:
+# Review the Security Scans workflow (Gitleaks, Opengrep, Trivy), or:
 docker build -t monedario-test . --no-cache
 # Confirm build succeeds with node:22-alpine base
 ```

@@ -29,13 +29,13 @@ runs:
       with:
         github-token: ${{ inputs.github-token }}
         script: |
-          const title = `${{ inputs.title }}`;
-          const body = `${{ inputs.body }}`;
-          const desiredState = `${{ inputs.desired-state }}`;
+          const title = process.env.ISSUE_TITLE;
+          const body = process.env.ISSUE_BODY;
+          const desiredState = process.env.DESIRED_STATE;
 
           let labels = [];
           try {
-            labels = JSON.parse(`${{ inputs.labels-json }}` || "[]");
+            labels = JSON.parse(process.env.LABELS_JSON || "[]");
           } catch (error) {
             core.setFailed(`Invalid labels-json input: ${error.message}`);
             return;
@@ -92,3 +92,8 @@ runs:
             ...payload,
             title,
           });
+      env:
+        ISSUE_TITLE: ${{ inputs.title }}
+        ISSUE_BODY: ${{ inputs.body }}
+        DESIRED_STATE: ${{ inputs.desired-state }}
+        LABELS_JSON: ${{ inputs.labels-json }}

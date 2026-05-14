@@ -1,0 +1,15 @@
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Ignore local/generated files that are already outside versioned source control."
+paths = [
+  '''(^|/)\.claude/''',
+  '''(^|/)\.codacy/tools-configs/''',
+  '''(^|/)\.env$''',
+  '''(^|/)\.env\.local$''',
+  '''(^|/)\.venv/''',
+  '''(^|/)node_modules/''',
+  '''(^|/)output/playwright/''',
+  '''(^|/)output/security/''',
+]

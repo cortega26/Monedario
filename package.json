@@ -70,8 +70,7 @@
     "images:generate:force": "node scripts/hero-images/manual-only.mjs images:generate:force",
     "images:generate:one": "node scripts/hero-images/manual-only.mjs images:generate:one",
     "images:generate:cluster": "node scripts/hero-images/manual-only.mjs images:generate:cluster",
-    "images:generate:retry": "node scripts/hero-images/manual-only.mjs images:generate:retry",
-    "codacy:lint:clean": "bash scripts/codacy-eslint-clean.sh"
+    "images:generate:retry": "node scripts/hero-images/manual-only.mjs images:generate:retry"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",

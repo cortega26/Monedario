@@ -58,6 +58,62 @@ jobs:
           if-no-files-found: warn
           path: output/security/gitleaks.sarif
 
+  opengrep:
+    name: Static analysis (Opengrep)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    # Start as informational because the p/ci ruleset is remote and can evolve
+    # independently of repository changes.
+    continue-on-error: true
+
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: "📁 Prepare security report directory"
+        run: mkdir -p output/security
+
+      - name: "🔎 Install Opengrep"
+        run: |
+          curl -fsSL -o /tmp/opengrep \
+            https://github.com/opengrep/opengrep/releases/download/v1.21.0/opengrep_manylinux_x86
+          sudo install -m 0755 /tmp/opengrep /usr/local/bin/opengrep
+
+      - name: "🧠 Run Opengrep"
+        run: |
+          opengrep scan . \
+            --config p/ci \
+            --exclude .git \
+            --exclude .astro \
+            --exclude dist \
+            --exclude node_modules \
+            --exclude public/pagefind \
+            --exclude .venv \
+            --exclude output \
+            --sarif-output output/security/opengrep.sarif \
+            --error
+
+      - name: "📝 Publish Opengrep summary"
+        if: always()
+        run: |
+          if [[ -s output/security/opengrep.sarif ]]; then
+            findings=$(jq '[.runs[].results[]?] | length' output/security/opengrep.sarif)
+            {
+              echo "### Opengrep Findings"
+              echo ""
+              echo "- Findings: ${findings}"
+            } >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: "📤 Upload Opengrep artifact"
+        if: always()
+        uses: ./.github/actions/upload-workflow-artifact
+        with:
+          artifact-name: opengrep-report
+          retention-days: 14
+          if-no-files-found: warn
+          path: output/security/opengrep.sarif
+
   trivy:
     name: Vulnerability scan (Trivy)
     runs-on: ubuntu-latest
