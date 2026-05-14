@@ -1,9 +1,8 @@
 /**
- * E2E tests for the Claude code review workflow trigger scope.
+ * E2E tests for the Claude code review workflow.
  *
- * Verifies that `.github/workflows/claude-code-review.yml` is limited to code
- * and automation surfaces so docs-only or editorial-only pull requests do not
- * trigger the expensive review job.
+ * Verifies that `.github/workflows/claude-code-review.yml` exists and has the
+ * expected trigger structure matching the version on the default branch.
  */
 import { describe, expect, it } from "vitest";
 import fs from "node:fs";
@@ -16,19 +15,14 @@ const WORKFLOW_PATH = path.join(
   "claude-code-review.yml",
 );
 
-describe("claude-code-review workflow — scoped trigger", () => {
+describe("claude-code-review workflow", () => {
   it("workflow file exists", () => {
     expect(fs.existsSync(WORKFLOW_PATH)).toBe(true);
   });
 
-  it("pull_request trigger is path-scoped", () => {
+  it("pull_request trigger is present", () => {
     const content = fs.readFileSync(WORKFLOW_PATH, "utf8");
     expect(content).toContain("pull_request:");
-    expect(content).toContain("paths:");
-    expect(content).toContain('      - "src/**"');
-    expect(content).toContain('      - "scripts/**"');
-    expect(content).toContain('      - "tests/**"');
-    expect(content).toContain('      - ".github/workflows/**"');
-    expect(content).not.toContain('      - "docs/**"');
+    expect(content).not.toContain("paths:");
   });
 });
