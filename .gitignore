@@ -21,6 +21,8 @@ output/validation/
 .playwright-cli/
 .playwright-mcp/
 artifacts/*
+!artifacts/editorial/
+!artifacts/editorial/**
 !artifacts/lighthouse/
 !artifacts/lighthouse/**
 skills/

@@ -1,0 +1,8 @@
+slug: interes-compuesto-nota-metodologica
+title: "Nota metodológica: simulación de interés compuesto 1990-2025"
+category: ahorro-inversion
+ymyl_topic: "supuestos, fuentes y fórmulas del ejercicio de simulación de ahorro en NASDAQ-100 1990-2025"
+fecha_corte: 2026-03-06
+ymyl_risk: high
+backfill_run: 20260511-1000-backfill
+backfill_note: "Backfill canónico TD-0057. Evidencia editorial detallada en docs/editorial/artifacts/interes-compuesto-nota-metodologica/"

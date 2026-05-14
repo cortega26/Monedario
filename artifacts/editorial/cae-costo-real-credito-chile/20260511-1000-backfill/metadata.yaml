@@ -1,0 +1,8 @@
+slug: cae-costo-real-credito-chile
+source_path: src/data/blog/cae-costo-real-credito-chile.md
+run_id: 20260511-1000-backfill
+scaffolded_at: 2026-05-11T10:00:00.000Z
+cut_off_date: 2026-03-02
+backfill: true
+backfill_evidence: docs/editorial/artifacts/cae-costo-real-credito-chile/
+backfill_reason: TD-0057 canonical artifact backfill for published YMYL corpus
