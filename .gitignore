@@ -65,7 +65,6 @@ context/**/*.generated.*
 docs/reports/rss_snapshot_after.json
 
 #Ignore vscode AI rules
-.github/instructions/codacy.instructions.md
 
 dr2.md
 dr3.md

@@ -62,7 +62,7 @@ export async function probeUrl(url, { timeoutMs = 12_000, allowPrivateHosts = fa
     // Only http/https schemes are accepted (validated above). The hostname is checked
     // against private ranges both before the request (ssrf_guard_private_host) and
     // again after following redirects (ssrf_guard_private_redirect).
-    const response = await fetch(url, { // nosemgrep: javascript.lang.security.audit.ssrf.node-fetch-ssrf, codacy.tools-configs.rules_lgpl_javascript_ssrf_rule-node-ssrf
+    const response = await fetch(url, { // nosemgrep: javascript.lang.security.audit.ssrf.node-fetch-ssrf
       method: "GET",
       redirect: "follow",
       signal: controller.signal,
