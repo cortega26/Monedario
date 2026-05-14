@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-05-13T08:49:10Z",
+  "fetchedAt": "2026-05-14T18:36:57Z",
   "schemaVersion": 1,
   "source": "cloudflare-rum",
   "week": "2026-W19",
@@ -142,18 +142,18 @@
       "path": "/posts/credito-hipotecario-chile-guia-completa/"
     },
     {
-      "clsP75": 0.004,
-      "count": 10,
-      "inpP75Ms": 48,
-      "lcpP75Ms": 688,
-      "path": "/guias/impuestos-personas/operacion-renta/"
-    },
-    {
       "clsP75": null,
       "count": 10,
       "inpP75Ms": null,
       "lcpP75Ms": null,
       "path": "/calculadoras/seguro-cesantia/"
+    },
+    {
+      "clsP75": 0.004,
+      "count": 10,
+      "inpP75Ms": 48,
+      "lcpP75Ms": 688,
+      "path": "/guias/impuestos-personas/operacion-renta/"
     },
     {
       "clsP75": 0.033,
