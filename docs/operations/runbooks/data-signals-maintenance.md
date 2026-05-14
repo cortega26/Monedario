@@ -58,12 +58,14 @@ gh variable set CLOUDFLARE_ACCOUNT_ID \
 ### Verificar que el token nuevo funciona (dry-run)
 
 ```bash
-# GSC — requiere GOOGLE_APPLICATION_CREDENTIALS_JSON en entorno local
-pnpm run data-signals:gsc -- --week=2026-W16 --dry-run
+# GSC — el helper local carga .env.local/.env sin export manual
+pnpm run data-signals:gsc:local -- --week=2026-W16 --dry-run
 
-# Cloudflare — requiere CLOUDFLARE_ANALYTICS_TOKEN, CLOUDFLARE_ZONE_ID y CLOUDFLARE_ACCOUNT_ID en entorno local
-pnpm run data-signals:cloudflare -- --week=2026-W16 --dry-run
+# Cloudflare — el helper local carga .env.local/.env sin export manual
+pnpm run data-signals:cloudflare:local -- --week=2026-W16 --dry-run
 ```
+
+Los comandos sin sufijo `:local` siguen siendo la opción correcta para CI o para shells donde prefieras exportar las variables explícitamente.
 
 ---
 

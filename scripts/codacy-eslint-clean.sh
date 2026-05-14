@@ -10,6 +10,11 @@ if ! command -v rsync >/dev/null 2>&1; then
   exit 1
 fi
 
+if [[ ! -d "$REPO_ROOT/node_modules" ]]; then
+  echo "Error: node_modules no existe en el repo. Ejecuta 'pnpm install' antes de correr Codacy ESLint." >&2
+  exit 1
+fi
+
 TMP_DIR=$(mktemp -d /tmp/monedario-codacy-XXXXXX)
 
 cleanup() {
@@ -30,6 +35,8 @@ rsync -a --delete \
   --exclude 'public/pagefind' \
   --exclude 'output' \
   "$REPO_ROOT/" "$TMP_DIR/"
+
+ln -s "$REPO_ROOT/node_modules" "$TMP_DIR/node_modules"
 
 cd "$TMP_DIR"
 bash .codacy/cli.sh analyze --tool eslint "$@"

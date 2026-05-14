@@ -9,8 +9,6 @@ This policy applies to:
 
 ## Reporting a Vulnerability
 
-Please do not open public GitHub issues for security reports.
-
 Send vulnerability reports to `security@monedario.cl`.
 
 When possible, include:
