@@ -92,15 +92,13 @@ const readingTime = getReadingTime(body ?? "");
 
   .card {
     transition:
-      transform 0.2s ease,
       box-shadow 0.2s ease,
       border-top-color 0.2s ease;
   }
 
   @media (hover: hover) and (pointer: fine) {
     .card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
       border-top-color: var(--color-accent-2);
     }
   }
