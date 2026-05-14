@@ -26,15 +26,12 @@ jobs:
       - name: "☁️ Checkout repository"
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - name: "📦 Bootstrap pnpm workspace"
-        uses: ./.github/actions/bootstrap-pnpm
+      - name: "🧭 Run policy registry audit"
+        id: audit
+        uses: ./.github/actions/run-single-report-audit
         with:
           node-version: 22
-
-      - name: "🧭 Run policy registry audit"
-        id: policy_registry
-        continue-on-error: true
-        run: pnpm run check:policy-registry
+          command: pnpm run check:policy-registry
 
       - name: "📤 Upload policy registry report"
         if: always()
@@ -93,5 +90,5 @@ jobs:
           labels-json: ${{ steps.issue_payload.outputs.labels_json }}
 
       - name: "✅ Fail workflow on drift"
-        if: steps.policy_registry.outcome == 'failure'
+        if: steps.audit.outputs.outcome == 'failure'
         run: exit 1

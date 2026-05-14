@@ -26,15 +26,12 @@ jobs:
       - name: "☁️ Checkout repository"
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - name: "📦 Bootstrap pnpm workspace"
-        uses: ./.github/actions/bootstrap-pnpm
+      - name: "🕒 Run editorial timeliness audit"
+        id: audit
+        uses: ./.github/actions/run-single-report-audit
         with:
           node-version: 22
-
-      - name: "🕒 Run editorial timeliness audit"
-        id: editorial_timeliness
-        continue-on-error: true
-        run: pnpm run check:editorial-timeliness
+          command: pnpm run check:editorial-timeliness
 
       - name: "📤 Upload editorial timeliness report"
         if: always()
@@ -53,7 +50,7 @@ jobs:
             const fs = require("fs");
             const title = "Editorial timeliness audit: stale review window";
 
-            if ("${{ steps.editorial_timeliness.outcome }}" !== "failure") {
+            if ("${{ steps.audit.outputs.outcome }}" !== "failure") {
               core.setOutput("title", title);
               core.setOutput("desired_state", "closed");
               return;
@@ -102,5 +99,5 @@ jobs:
           desired-state: ${{ steps.issue_payload.outputs.desired_state }}
 
       - name: "✅ Fail workflow on stale entries"
-        if: steps.editorial_timeliness.outcome == 'failure'
+        if: steps.audit.outputs.outcome == 'failure'
         run: exit 1

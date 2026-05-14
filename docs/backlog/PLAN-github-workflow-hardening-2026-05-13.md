@@ -1,6 +1,6 @@
 # GitHub Workflow Hardening Plan
 
-Status: phase-3-advanced
+Status: phase-3-diminishing-returns
 Owner: GitHub Copilot
 Started: 2026-05-13
 
@@ -83,3 +83,11 @@ Started: 2026-05-13
 - 2026-05-13: Added fleet-level Vitest coverage for the shared generic artifact upload helper delegation in `tests/e2e/upload-workflow-artifact-action.e2e.test.ts`.
 - 2026-05-13: Hardened `.github/workflows/data-signals.yml` with a fail-fast provider configuration preflight and centralized external data-source env wiring so missing secrets or repository variables fail before any API fetch step runs.
 - 2026-05-13: Added focused Vitest coverage for the data-signals configuration preflight in `tests/e2e/data-signals-workflow.e2e.test.ts` and documented the required GitHub Actions variables in the data-signals maintenance runbook.
+- 2026-05-13: Extracted the repeated logged-check execution pattern from `.github/workflows/doc-gardening.yml` into `.github/actions/run-command-with-log/action.yml`, keeping per-check outcome handling explicit while removing inline shell redirection boilerplate.
+- 2026-05-13: Added focused Vitest coverage for the shared logged command runner delegation in `tests/e2e/run-command-with-log-action.e2e.test.ts`.
+- 2026-05-13: Extracted the shared bootstrap-plus-single-command execution pattern for `.github/workflows/guardrail-drift-audit.yml`, `.github/workflows/editorial-timeliness-audit.yml`, and `.github/workflows/check-afp-commissions.yml` into `.github/actions/run-single-report-audit/action.yml`.
+- 2026-05-13: Added focused Vitest coverage for the shared single-report audit runner delegation in `tests/e2e/run-single-report-audit-action.e2e.test.ts`.
+- 2026-05-13: Replaced `actions/github-script` in `.github/workflows/weekly-search-ops.yml` and `.github/workflows/check-ts7-readiness.yml` with shell-based issue payload steps that write directly to `GITHUB_OUTPUT`, removing an unnecessary action dependency for simple output wiring.
+- 2026-05-13: Added focused Vitest coverage for the shell-based issue payload contract in `tests/e2e/issue-payload-shell-workflows.e2e.test.ts`.
+- 2026-05-13: Final sweep result: the remaining `actions/github-script` usages are the complex report-parsing payload builders in `.github/workflows/doc-gardening.yml`, `.github/workflows/guardrail-drift-audit.yml`, `.github/workflows/check-afp-commissions.yml`, and `.github/workflows/editorial-timeliness-audit.yml`; further extraction would add more indirection than value.
+- 2026-05-13: Final sweep result: the remaining direct `actions/setup-node@v6` usage in `.github/workflows/data-signals.yml` and `.github/workflows/check-ts7-readiness.yml` serves distinct no-pnpm paths, so another shared helper would not materially improve correctness, maintainability, or runtime efficiency.

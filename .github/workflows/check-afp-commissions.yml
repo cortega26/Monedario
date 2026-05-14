@@ -27,15 +27,12 @@ jobs:
       - name: "☁️ Checkout repository"
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
-      - name: "📦 Bootstrap pnpm workspace"
-        uses: ./.github/actions/bootstrap-pnpm
+      - name: "🔍 Run AFP commission rate check"
+        id: audit
+        uses: ./.github/actions/run-single-report-audit
         with:
           node-version: 22
-
-      - name: "🔍 Run AFP commission rate check"
-        id: afp_check
-        continue-on-error: true
-        run: node scripts/check-afp-commissions.mjs
+          command: node scripts/check-afp-commissions.mjs
 
       - name: "📤 Upload AFP commission check report"
         if: always()
@@ -56,7 +53,7 @@ jobs:
             const reportPath = "output/validation/afp-commissions/report.json";
             const title = "⚠️ AFP commission rates require manual verification";
 
-            if ("${{ steps.afp_check.outcome }}" !== "failure") {
+            if ("${{ steps.audit.outputs.outcome }}" !== "failure") {
               core.setOutput("title", title);
               core.setOutput("desired_state", "closed");
               core.setOutput("labels_json", JSON.stringify(["data-freshness", "financial-data"]));
@@ -126,5 +123,5 @@ jobs:
           labels-json: ${{ steps.issue_payload.outputs.labels_json }}
 
       - name: "✅ Fail workflow on mismatch"
-        if: steps.afp_check.outcome == 'failure'
+        if: steps.audit.outputs.outcome == 'failure'
         run: exit 1
