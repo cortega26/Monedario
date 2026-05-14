@@ -11,18 +11,15 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: Install pnpm
+      shell: bash
+      run: npm install -g pnpm@10.30.2
+
     - name: Setup Node.js
       uses: actions/setup-node@v6
       with:
         node-version: ${{ inputs.node-version }}
         cache: pnpm
-
-    - name: Enable Corepack pnpm
-      shell: bash
-      run: |
-        corepack enable
-        corepack prepare pnpm@10.30.2 --activate
-        pnpm --version
 
     - name: Install dependencies
       shell: bash

@@ -3,25 +3,12 @@ name: Claude Code Review
 on:
   pull_request:
     types: [opened, synchronize, ready_for_review, reopened]
-    paths:
-      - ".github/actions/**"
-      - ".github/workflows/**"
-      - "astro.config.ts"
-      - "Dockerfile"
-      - "docker-compose.yml"
-      - "eslint.config.js"
-      - "package.json"
-      - "playwright.config.ts"
-      - "pnpm-lock.yaml"
-      - "scripts/**"
-      - "src/**"
-      - "tests/**"
-      - "tsconfig.json"
-      - "vitest.config.ts"
-
-concurrency:
-  group: claude-code-review-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+    # Optional: Only run on specific file changes
+    # paths:
+    #   - "src/**/*.ts"
+    #   - "src/**/*.tsx"
+    #   - "src/**/*.js"
+    #   - "src/**/*.jsx"
 
 jobs:
   claude-review:
@@ -30,7 +17,7 @@ jobs:
       !endsWith(github.actor, '[bot]')
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
       pull-requests: write
       issues: write
       id-token: write
