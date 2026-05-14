@@ -42,7 +42,12 @@ jobs:
 
       - name: "🕵️ Run Gitleaks"
         run: |
-          gitleaks dir . \
+          scan_root="${RUNNER_TEMP}/gitleaks-tree"
+          rm -rf "${scan_root}"
+          mkdir -p "${scan_root}"
+          git archive --format=tar HEAD | tar -x -C "${scan_root}"
+
+          gitleaks dir "${scan_root}" \
             --config .gitleaks.toml \
             --no-banner \
             --redact \
