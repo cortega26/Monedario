@@ -20,9 +20,11 @@ describe("claude-code-review workflow", () => {
     expect(fs.existsSync(WORKFLOW_PATH)).toBe(true);
   });
 
-  it("pull_request trigger is present", () => {
+  it("pull_request trigger has no active path scoping", () => {
     const content = fs.readFileSync(WORKFLOW_PATH, "utf8");
     expect(content).toContain("pull_request:");
-    expect(content).not.toContain("paths:");
+    // The file may contain commented-out path hints but must not have an
+    // active (uncommented) `paths:` key.
+    expect(content).not.toMatch(/^\s+paths:/m);
   });
 });
