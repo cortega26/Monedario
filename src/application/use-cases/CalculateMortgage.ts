@@ -49,6 +49,19 @@ export interface MortgageOutput {
   amortizationSchedule: AmortizationRow[];
 }
 
+const PERCENT_DENOMINATOR = 100;
+const MONTHS_PER_YEAR = 12;
+const FIRST_AMORTIZATION_MONTH = 1;
+
+// Input guardrails for the public simulator. CMF Educa describes mortgage loans
+// as medium/long-term products whose rate and conditions must be compared by offer.
+const MIN_DOWN_PAYMENT_PERCENT = 5;
+const MAX_DOWN_PAYMENT_PERCENT = 99;
+const MIN_ANNUAL_RATE_PERCENT = 0.001;
+const MAX_ANNUAL_RATE_PERCENT = 29.999;
+const MIN_TERM_YEARS = 5;
+const MAX_TERM_YEARS = 30;
+
 function assertFinitePositive(value: number, message: string): void {
   if (!Number.isFinite(value) || value <= 0) {
     throw new Error(message);
@@ -73,20 +86,20 @@ function assertInput(input: MortgageInput): void {
   );
   assertFiniteRange(
     input.downPaymentPercent,
-    5,
-    99,
+    MIN_DOWN_PAYMENT_PERCENT,
+    MAX_DOWN_PAYMENT_PERCENT,
     "El pie debe ser entre 5% y 99% del valor de la propiedad."
   );
   assertFiniteRange(
     input.annualRatePercent,
-    0.001,
-    29.999,
+    MIN_ANNUAL_RATE_PERCENT,
+    MAX_ANNUAL_RATE_PERCENT,
     "La tasa de interés anual debe ser mayor que 0% y menor que 30%."
   );
   assertFiniteRange(
     input.termYears,
-    5,
-    30,
+    MIN_TERM_YEARS,
+    MAX_TERM_YEARS,
     "El plazo debe ser entre 5 y 30 años."
   );
   assertFinitePositive(
@@ -104,13 +117,15 @@ function deriveLoanInUF(
   if (currency === "uf") {
     return {
       propertyValueUF: propertyValue,
-      loanAmountUF: propertyValue * (1 - downPaymentPercent / 100),
+      loanAmountUF:
+        propertyValue * (1 - downPaymentPercent / PERCENT_DENOMINATOR),
     };
   }
   return {
     propertyValueUF: propertyValue / ufValuePesos,
     loanAmountUF:
-      (propertyValue * (1 - downPaymentPercent / 100)) / ufValuePesos,
+      (propertyValue * (1 - downPaymentPercent / PERCENT_DENOMINATOR)) /
+      ufValuePesos,
   };
 }
 
@@ -125,10 +140,11 @@ function buildAmortizationSchedule(
   const schedule: AmortizationRow[] = [];
   let balance = loanAmountUF;
 
-  for (let month = 1; month <= termMonths; month++) {
+  for (let month = FIRST_AMORTIZATION_MONTH; month <= termMonths; month++) {
     const interestUF = balance * monthlyRateDecimal;
     const capitalUF = basePaymentUF - interestUF;
-    const desgravamenUF = balance * (monthlyDesgravamenRatePercent / 100);
+    const desgravamenUF =
+      balance * (monthlyDesgravamenRatePercent / PERCENT_DENOMINATOR);
     const totalMonthlyUF =
       basePaymentUF + desgravamenUF + monthlyFireInsuranceUF;
     const newBalance = Math.max(0, balance - capitalUF);
@@ -162,13 +178,16 @@ export function calculateMortgage(input: MortgageInput): MortgageOutput {
     input.ufValuePesos
   );
   const downPaymentAmountUF =
-    propertyValueUF * (input.downPaymentPercent / 100);
+    propertyValueUF * (input.downPaymentPercent / PERCENT_DENOMINATOR);
   const downPaymentAmountPesos = downPaymentAmountUF * input.ufValuePesos;
   const loanAmountPesos = loanAmountUF * input.ufValuePesos;
 
   const monthlyRateDecimal =
-    Math.pow(1 + input.annualRatePercent / 100, 1 / 12) - 1;
-  const termMonths = input.termYears * 12;
+    Math.pow(
+      1 + input.annualRatePercent / PERCENT_DENOMINATOR,
+      1 / MONTHS_PER_YEAR
+    ) - 1;
+  const termMonths = input.termYears * MONTHS_PER_YEAR;
   const basePaymentUF = calculateAnnuityPayment(
     loanAmountUF,
     monthlyRateDecimal,

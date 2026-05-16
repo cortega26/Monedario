@@ -68,6 +68,20 @@ export interface ApvComparisonOutput {
   recommendedStrategy: "A" | "B" | "MIXED";
 }
 
+const MONTHS_PER_YEAR = 12;
+
+// DL 3500 art. 20 O: bonificacion fiscal Regimen A, 15% del ahorro con tope anual de 6 UTM.
+const REGIME_A_STATE_BONUS_RATE = 0.15;
+const REGIME_A_ANNUAL_BONUS_CAP_UTM = 6;
+const REGIME_A_ANNUAL_CONTRIBUTION_FOR_MAX_BONUS_UTM = 40;
+
+// LIR art. 42 bis: rebaja APV Regimen B con tope 50 UF mensual / 600 UF anual.
+const REGIME_B_MONTHLY_PAYROLL_CAP_UF = 50;
+const REGIME_B_ANNUAL_CONTRIBUTION_CAP_UF = 600;
+
+// LIR art. 43: tramo superior del IUSC empieza sobre 70 UTM mensuales.
+const TOP_MARGINAL_TAX_BRACKET_THRESHOLD_UTM = 70;
+
 function assertInput(input: ApvComparisonInput): void {
   if (!Number.isFinite(input.grossSalary) || input.grossSalary <= 0) {
     throw new Error("grossSalary must be a finite number greater than 0.");
@@ -139,24 +153,31 @@ export function calculateApvComparison(
   });
 
   const monthlyContributionForMaxBonus =
-    (40 * input.economicParameters.utm) / 12;
-  const annualContributionForMaxBonus = 40 * input.economicParameters.utm;
+    (REGIME_A_ANNUAL_CONTRIBUTION_FOR_MAX_BONUS_UTM *
+      input.economicParameters.utm) /
+    MONTHS_PER_YEAR;
+  const annualContributionForMaxBonus =
+    REGIME_A_ANNUAL_CONTRIBUTION_FOR_MAX_BONUS_UTM *
+    input.economicParameters.utm;
   const annualApvContribution =
-    input.monthlyApvContribution * 12 + annualDirectApvContribution;
+    input.monthlyApvContribution * MONTHS_PER_YEAR +
+    annualDirectApvContribution;
   const annualBonus = Math.min(
-    annualApvContribution * 0.15,
-    6 * input.economicParameters.utm
+    annualApvContribution * REGIME_A_STATE_BONUS_RATE,
+    REGIME_A_ANNUAL_BONUS_CAP_UTM * input.economicParameters.utm
   );
-  const monthlyBenefitA = annualBonus / 12;
+  const monthlyBenefitA = annualBonus / MONTHS_PER_YEAR;
 
-  const monthlyContributionCap = 50 * input.economicParameters.uf;
-  const annualContributionCap = 600 * input.economicParameters.uf;
+  const monthlyContributionCap =
+    REGIME_B_MONTHLY_PAYROLL_CAP_UF * input.economicParameters.uf;
+  const annualContributionCap =
+    REGIME_B_ANNUAL_CONTRIBUTION_CAP_UF * input.economicParameters.uf;
   const effectiveMonthlyPayrollContribution = Math.min(
     input.monthlyApvContribution,
     monthlyContributionCap
   );
   const effectiveAnnualPayrollContribution = Math.min(
-    effectiveMonthlyPayrollContribution * 12,
+    effectiveMonthlyPayrollContribution * MONTHS_PER_YEAR,
     annualContributionCap
   );
   const effectiveAnnualDirectContribution = Math.min(
@@ -165,7 +186,8 @@ export function calculateApvComparison(
   );
   const effectiveAnnualContribution =
     effectiveAnnualPayrollContribution + effectiveAnnualDirectContribution;
-  const effectiveMonthlyContribution = effectiveAnnualContribution / 12;
+  const effectiveMonthlyContribution =
+    effectiveAnnualContribution / MONTHS_PER_YEAR;
   const reducedTaxBase = Math.max(
     0,
     taxableBase - effectiveMonthlyContribution
@@ -175,10 +197,11 @@ export function calculateApvComparison(
     utm: input.economicParameters.utm,
   });
   const monthlyBenefitB = taxWithoutApv.taxAmount - taxWithRegimeB.taxAmount;
-  const highRateThresholdTaxableBase = 70 * input.economicParameters.utm;
+  const highRateThresholdTaxableBase =
+    TOP_MARGINAL_TAX_BRACKET_THRESHOLD_UTM * input.economicParameters.utm;
   const annualContributionToRegimeBHighRate = Math.min(
     effectiveAnnualContribution,
-    Math.max(0, taxableBase - highRateThresholdTaxableBase) * 12
+    Math.max(0, taxableBase - highRateThresholdTaxableBase) * MONTHS_PER_YEAR
   );
   const remainingAnnualContribution = Math.max(
     0,
@@ -194,8 +217,8 @@ export function calculateApvComparison(
   );
   const annualContributionToRegimeB =
     annualContributionToRegimeBHighRate + annualContributionToRegimeBRemaining;
-  const contributionToRegimeA = annualContributionToRegimeA / 12;
-  const contributionToRegimeB = annualContributionToRegimeB / 12;
+  const contributionToRegimeA = annualContributionToRegimeA / MONTHS_PER_YEAR;
+  const contributionToRegimeB = annualContributionToRegimeB / MONTHS_PER_YEAR;
   const mixedReducedTaxBase = Math.max(0, taxableBase - contributionToRegimeB);
   const taxWithMixedStrategy = calculateSecondCategoryTax({
     taxableIncome: mixedReducedTaxBase,
@@ -205,13 +228,14 @@ export function calculateApvComparison(
     taxWithoutApv.taxAmount - taxWithMixedStrategy.taxAmount;
   const mixedRegimeAMonthlyBenefit =
     Math.min(
-      annualContributionToRegimeA * 0.15,
-      6 * input.economicParameters.utm
-    ) / 12;
+      annualContributionToRegimeA * REGIME_A_STATE_BONUS_RATE,
+      REGIME_A_ANNUAL_BONUS_CAP_UTM * input.economicParameters.utm
+    ) / MONTHS_PER_YEAR;
   const mixedMonthlyBenefit =
     mixedRegimeAMonthlyBenefit + mixedRegimeBMonthlyBenefit;
   const mixedAnnualBenefit =
-    mixedRegimeAMonthlyBenefit * 12 + mixedRegimeBMonthlyBenefit * 12;
+    mixedRegimeAMonthlyBenefit * MONTHS_PER_YEAR +
+    mixedRegimeBMonthlyBenefit * MONTHS_PER_YEAR;
 
   const recommendedStrategy =
     mixedMonthlyBenefit > monthlyBenefitA &&
@@ -245,7 +269,7 @@ export function calculateApvComparison(
       reducedTaxBase,
       monthlyTax: taxWithRegimeB.taxAmount,
       monthlyBenefit: monthlyBenefitB,
-      annualBenefit: monthlyBenefitB * 12,
+      annualBenefit: monthlyBenefitB * MONTHS_PER_YEAR,
       effectiveMonthlyContribution,
       effectiveMonthlyPayrollContribution,
       effectiveAnnualPayrollContribution,

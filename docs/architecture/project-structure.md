@@ -63,8 +63,10 @@ Monedario/
 │   ├── AI_ENGINEERING_CONSTITUTION.md
 │   └── TECH_DEBT_BACKLOG.md
 ├── archive/
-│   └── reports/
-│       └── rss_before_phase5.xml
+│   ├── reports/
+│   │   └── rss_before_phase5.xml
+│   └── scripts/
+│       └── one-off scripts archivados
 ├── output/
 │   └── validation/
 │       ├── routes_snapshot_after.json
@@ -98,7 +100,6 @@ Monedario/
 │   ├── download-og-fonts.mjs
 │   ├── fix-paths.mjs
 │   ├── hero-images/
-│   ├── normalize-frontmatter.mjs
 │   ├── refresh-economic-snapshot.mjs
 │   ├── refresh-editorial-volatile-data.mjs
 │   ├── rss-to-json.mjs
@@ -195,6 +196,8 @@ Monedario/
 │   │   ├── ShareLinks.astro
 │   │   ├── Socials.astro
 │   │   └── Tag.astro
+│   ├── dev-pages/
+│   │   └── hero-images.astro
 │   ├── data/
 │   │   ├── blog/
 │   │   │   ├── ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.md

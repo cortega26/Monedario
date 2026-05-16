@@ -29,6 +29,7 @@ Este sitio es 100% educativo: no solicita datos personales, no ofrece asesoría 
     - archives/ (archivo de artículos)
     - search.astro (búsqueda)
     - 404.astro (página de error)
+  - dev-pages/ (herramientas internas inyectadas solo en dev)
   - data/
     - blog/ (contenido de artículos en Markdown/MDX)
     - glossary/ (entradas de glosario)
@@ -57,6 +58,9 @@ Inicio rapido:
   - pnpm install --frozen-lockfile
 - Ejecutar en modo desarrollo:
   - pnpm run dev
+- Abrir herramientas internas de desarrollo:
+  - `/dev/hero-images/` está disponible en `pnpm run dev`.
+  - Para incluir páginas dev en un build diagnóstico: `BUILD_DEV_PAGES=1 pnpm run build`.
 - Compilar para producción y generar búsqueda:
   - pnpm run build
 - Validar antes de proponer un cambio:

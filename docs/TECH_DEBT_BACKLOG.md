@@ -13,10 +13,10 @@ Fecha de corte: 2026-05-15
 
 ### Estado de avance (2026-05-15)
 
-- **Completados:** 62 TD únicos (`TD-0001`..`TD-0062`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
+- **Completados:** 70 TD únicos (`TD-0001`..`TD-0062`, `TD-0064`, `TD-0066`, `TD-0070`, `TD-0071`, `TD-0073`, `TD-0074`, `TD-0080`, `TD-0082`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
 - **En progreso:** 0
-- **Backlog sin iniciar:** 20 (`TD-0063`..`TD-0082`, abiertos por auditoría profunda 2026-05-15 — ver `docs/reports/AUDIT-DEEP-2026-05-15.md`)
-- **Backlog en validación/diseño:** 0
+- **Backlog sin iniciar:** 10 (`TD-0063`, `TD-0065`, `TD-0067`..`TD-0069`, `TD-0075`..`TD-0078`, `TD-0081`)
+- **Backlog en validación/diseño:** 2 (`TD-0072` parcial por referencias activas; `TD-0079` bloqueado por incompatibilidad WOFF2/Satori)
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
 > `FIX-LINKS-CALC`: ampliado `check-internal-links.mjs` para cubrir validación de rutas `/calculadoras/`.
@@ -42,11 +42,12 @@ Fecha de corte: 2026-05-15
 - Actualización de julio 2026: actualizar `imm` en `economic-parameters.snapshot.json` cuando se publique el decreto de reajuste del IMM.
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 
-### Siguiente orden recomendado (2026-05-15)
+### Siguiente orden recomendado (2026-05-16)
 
-- **Quick wins (XS, ejecutables en una sesión corta):** `TD-0064` (eliminar deps unused), `TD-0070` (deduplicar HeroPromptWorkspace), `TD-0071` (sincronizar MODULE_INDEX), `TD-0072` (archivar scripts one-off), `TD-0073` (timeout en claude-code-review), `TD-0079` (eliminar `.ttf` redundantes), `TD-0080` (etiquetar magic numbers).
-- **P1 estructurales:** `TD-0066` (excluir `/dev/` de prod build) — impacto directo en bundle.
+- **Quick wins restantes:** ninguno.
+- **Quick win parcial:** `TD-0072` requiere decidir si se refactoriza `editorial-copy-rules.mjs` y si `download-og-fonts.mjs` debe seguir como regenerador activo de fuentes OG.
 - **P2 con decisión arquitectural:** `TD-0075` (`inlineStylesheets`), `TD-0077` (Astro features: prefetch/viewTransitions) — requieren medición y ADR.
+- **Bloqueado/reevaluar:** `TD-0079` no debe ejecutarse tal como está: `src/utils/loadGoogleFont.ts` rechaza WOFF2 para Satori, por lo que los `.ttf` de Inter son necesarios para OG mientras no cambie el flujo.
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 - Actualizar `imm` en snapshot cada julio con el nuevo decreto presidencial.
 - Resolver warnings no bloqueantes vigentes (`topicRole` faltante y descripciones sobre 155 caracteres) o promoverlos a TD si dejan de ser mera higiene editorial.
@@ -1428,14 +1429,15 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Esfuerzo estimado:** XS
 - **Propuesta de solución:** `pnpm remove dayjs node-fetch remark-toc`. Ejecutar `pnpm run check && pnpm run test && pnpm run build` para validar. Commit único.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] `package.json` ya no lista `dayjs`, `node-fetch`, `remark-toc`.
-  - [ ] `pnpm-lock.yaml` actualizado.
-  - [ ] `pnpm run check`, `pnpm run test`, `pnpm run build` pasan limpios.
-  - [ ] `npx depcheck` no reporta nuevos falsos positivos.
-- **Owner:** —
-- **Estado:** Abierto
+  - [x] `package.json` ya no lista `dayjs`, `node-fetch`, `remark-toc`.
+  - [x] `pnpm-lock.yaml` actualizado.
+  - [x] `pnpm run check`, `pnpm run test`, `pnpm run build` pasan limpios.
+  - [x] `npx depcheck` ya no reporta `dayjs`, `node-fetch` ni `remark-toc`; conserva falsos positivos conocidos de tooling.
+- **Owner:** Codex
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-15
-- **Última actualización:** 2026-05-15
+- **Última actualización:** 2026-05-16
+- **Nota 2026-05-16:** `pnpm remove dayjs node-fetch remark-toc` actualizó `package.json` y `pnpm-lock.yaml`. Verificación: `pnpm run check`, `pnpm run test`, `pnpm run lint`, `pnpm run build`, `pnpm run check:boundaries`, `npx --yes depcheck --skip-missing` (solo falsos positivos conocidos: `remark-collapse`, `tailwindcss` y tooling).
 
 ## TD-0065 — 8 dependencias minor outdated
 - **ID:** TD-0065
@@ -1469,14 +1471,15 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** Una de dos vías: (a) mover `src/pages/dev/**` a un directorio gated y excluirlo del build con env flag `BUILD_DEV_PAGES`; en CI prod no setear el flag. (b) Mantener la página en dev y excluirla del build con un hook de Astro (`hooks: ['astro:config:setup']` filtrando pages). Preferir (a) por simplicidad.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] `find dist/dev -name "*.html"` retorna vacío en build CI.
-  - [ ] `client.DTojXMD-.js` (o equivalente) ya no se genera en build prod.
-  - [ ] `dev` sigue accesible en `pnpm run dev` para iteración local.
-  - [ ] Documentado en `README.md` o `AGENTS.md` cómo activar/desactivar páginas dev.
-- **Owner:** —
-- **Estado:** Abierto
+  - [x] `find dist/dev -name "*.html"` retorna vacío en build CI.
+  - [x] `client.DTojXMD-.js` (o equivalente) ya no se genera en build prod.
+  - [x] `dev` sigue accesible en `pnpm run dev` para iteración local.
+  - [x] Documentado en `README.md` cómo activar/desactivar páginas dev.
+- **Owner:** Codex
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-15
-- **Última actualización:** 2026-05-15
+- **Última actualización:** 2026-05-16
+- **Nota 2026-05-16:** `src/pages/dev/hero-images.astro` se movió a `src/dev-pages/hero-images.astro` y se inyecta desde `astro.config.ts` solo en dev o con `BUILD_DEV_PAGES=1`. El renderer React se habilita bajo el mismo gate. Verificación: `rm -rf dist && pnpm run build` generó 279 páginas, `find dist/dev -name "*.html"` sin salida y `find dist/_astro -name "client.*.js"` sin salida. `pnpm run dev -- --host 127.0.0.1` + `curl -I /dev/hero-images/` respondió `200 OK`.
 
 ## TD-0067 — Use-cases >200 LOC mezclan dominio + formateo/presentación
 - **ID:** TD-0067
@@ -1549,12 +1552,13 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Esfuerzo estimado:** XS
 - **Propuesta de solución:** Extraer el bloque duplicado a una función o sub-componente. Si TD-0066 (excluir `/dev/` de prod) se ejecuta primero, este TD se mantiene como higiene de mantenibilidad del workspace.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] `jscpd` ya no reporta el clon de 50 líneas.
-  - [ ] La página `dev/hero-images` sigue funcionando en `pnpm run dev`.
-- **Owner:** —
-- **Estado:** Abierto
+  - [x] `jscpd` ya no reporta el clon de 50 líneas.
+  - [x] La página `dev/hero-images` sigue compilando en `pnpm run build`.
+- **Owner:** Codex
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-15
-- **Última actualización:** 2026-05-15
+- **Última actualización:** 2026-05-16
+- **Nota 2026-05-16:** extraído `InfoCard` en `src/tools/hero-images/HeroPromptWorkspace.jsx`. `npx --yes jscpd src/tools/hero-images/HeroPromptWorkspace.jsx --min-lines 15 --min-tokens 100 --reporters console` reportó 0 clones.
 
 ## TD-0071 — `MODULE_INDEX.md` desactualizado tras archivado pendiente de scripts one-off
 - **ID:** TD-0071
@@ -1568,19 +1572,20 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Esfuerzo estimado:** XS
 - **Propuesta de solución:** Tras ejecutar TD-0072, actualizar `MODULE_INDEX.md` con sub-bullets bajo `scripts/`: `scripts/data-signals/`, `scripts/hero-images/`, `scripts/urlcheck/`, `archive/scripts/` (one-off completados). Sincronizar con la realidad del repo.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] `MODULE_INDEX.md` lista todos los grupos de `scripts/` vigentes.
-  - [ ] Menciona `archive/scripts/` como destino de one-off completados.
-  - [ ] `pnpm run check:context` pasa (si existe verificación de drift).
-- **Owner:** —
-- **Estado:** Abierto
+  - [x] `MODULE_INDEX.md` lista todos los grupos de `scripts/` vigentes.
+  - [x] Menciona `archive/scripts/` como destino de one-off completados.
+  - [x] `pnpm run check:context` pasa.
+- **Owner:** Codex
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-15
-- **Última actualización:** 2026-05-15
+- **Última actualización:** 2026-05-16
+- **Nota 2026-05-16:** `context/MODULE_INDEX.md` ahora distingue `scripts/data-signals/`, `scripts/hero-images/`, `scripts/urlcheck/` y `archive/scripts/`.
 
-## TD-0072 — 6 scripts one-off completados siguen vivos en `scripts/`
+## TD-0072 — Scripts one-off completados siguen vivos en `scripts/`
 - **ID:** TD-0072
 - **Título corto:** Archivar scripts one-off ya ejecutados
-- **Descripción:** 6 scripts no son referenciados desde `package.json` ni desde `.github/workflows/*.yml`, y representan tareas one-off ya completadas o reemplazadas: `backfill-td-0057.mjs` (1106 LOC, backfill editorial ejecutado 2026-05-11), `download-og-fonts.mjs` (descarga inicial de fonts OG), `editorial-copy-rules.mjs` (no referenciado), `lighthouse-audit.mjs` (wrapper antiguo, ahora se usa `lhci`), `migrate-responsive-heroes.mjs` (migración ejecutada), `normalize-frontmatter.mjs` (one-off).
-- **Evidencia:** `for f in scripts/*.mjs; do refs=$(grep -l "$(basename $f)" package.json .github/workflows/*.yml 2>/dev/null | wc -l); if [ "$refs" -eq 0 ]; then echo "HUÉRFANO: $f"; fi; done`.
+- **Descripción:** La auditoría propuso archivar 6 scripts, pero el estado real del repo muestra que 2 no son huérfanos operativamente: `editorial-copy-rules.mjs` está importado por gates activos y `download-og-fonts.mjs` sigue documentado como mecanismo de regeneración de fuentes OG. Se archivaron los 4 one-off sin referencias activas: `backfill-td-0057.mjs`, `lighthouse-audit.mjs`, `migrate-responsive-heroes.mjs`, `normalize-frontmatter.mjs`.
+- **Evidencia:** `rg` no encontró referencias activas a los 4 scripts movidos. `scripts/editorial-copy-rules.mjs` sigue importado por `scripts/check-editorial-guard.mjs` y `scripts/audit-reader-facing-copy.mjs`; `src/utils/loadGoogleFont.ts` referencia `scripts/download-og-fonts.mjs`.
 - **Impacto:** Ruido en `scripts/`, riesgo de re-ejecutar accidentalmente un backfill ya hecho, dificulta el onboarding (¿este script está vigente?).
 - **Riesgo:** bajo (mover a archive es reversible; cualquier referencia rota la detecta CI o el operador)
 - **Severidad (1-5):** 4
@@ -1589,13 +1594,15 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Propuesta de solución:** `mkdir -p archive/scripts && mv` los 6 scripts. Añadir `archive/scripts/README.md` que explique que son one-off completados, con fecha de archivado y nota de la tarea original. Validar con `pnpm run check && pnpm run build` que no haya referencia oculta.
 - **Criterios de cierre (checklist verificable):**
   - [ ] Los 6 scripts viven en `archive/scripts/`.
-  - [ ] `archive/scripts/README.md` documenta cada uno.
-  - [ ] `pnpm run check && pnpm run build && pnpm run test` pasan sin tocar nada de la lógica.
-  - [ ] `MODULE_INDEX.md` actualizado (depende de TD-0071).
-- **Owner:** —
-- **Estado:** Abierto
+  - [x] Los 4 scripts sin referencias activas viven en `archive/scripts/`.
+  - [x] `archive/scripts/README.md` documenta cada uno y explica los 2 no archivados.
+  - [x] `pnpm run check && pnpm run build && pnpm run test` pasan sin tocar lógica activa.
+  - [x] `MODULE_INDEX.md` actualizado (depende de TD-0071).
+- **Owner:** Codex
+- **Estado:** Parcial / requiere decisión
 - **Fecha de creación:** 2026-05-15
-- **Última actualización:** 2026-05-15
+- **Última actualización:** 2026-05-16
+- **Nota 2026-05-16:** archivado parcial deliberado. `eslint.config.js` ignora `archive/scripts/**` para no aplicar gates activos a scripts históricos.
 
 ## TD-0073 — `claude-code-review.yml` sin `timeout-minutes`
 - **ID:** TD-0073
@@ -1609,12 +1616,13 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Esfuerzo estimado:** XS
 - **Propuesta de solución:** Añadir `timeout-minutes: 15` bajo `runs-on: ubuntu-latest` en `claude-code-review.yml`.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] `claude-code-review.yml` tiene `timeout-minutes: 15`.
-  - [ ] `grep -L "timeout-minutes" .github/workflows/*.yml` retorna vacío.
-- **Owner:** —
-- **Estado:** Abierto
+  - [x] `claude-code-review.yml` tiene `timeout-minutes: 15`.
+  - [x] `grep -L "timeout-minutes" .github/workflows/*.yml` retorna vacío.
+- **Owner:** Codex
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-15
-- **Última actualización:** 2026-05-15
+- **Última actualización:** 2026-05-16
+- **Nota 2026-05-16:** agregado `timeout-minutes: 15` al job `claude-review`; verificado que todos los workflows `.yml` tienen timeout.
 
 ## TD-0074 — 4 subdirs de `docs/` sin README
 - **ID:** TD-0074
@@ -1628,14 +1636,15 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** Crear 4 README.md con: (a) propósito del directorio, (b) política de qué entra ahí, (c) tabla de contenidos del directorio. Tomar como modelo `docs/governance/README.md` o `docs/operations/README.md`.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] `docs/archive/README.md` existe y explica criterio de archivado.
-  - [ ] `docs/domain/README.md` existe y describe documentos de dominio.
-  - [ ] `docs/editorial/README.md` existe y referencia ADR-20260511 + norma YMYL.
-  - [ ] `docs/reports/README.md` existe y describe qué reportes viven aquí (auditorías, snapshots).
-- **Owner:** —
-- **Estado:** Abierto
+  - [x] `docs/archive/README.md` existe y explica criterio de archivado.
+  - [x] `docs/domain/README.md` existe y describe documentos de dominio.
+  - [x] `docs/editorial/README.md` existe y referencia ADR-20260511 + norma YMYL.
+  - [x] `docs/reports/README.md` existe y describe qué reportes viven aquí (auditorías, snapshots).
+- **Owner:** Codex
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-15
-- **Última actualización:** 2026-05-15
+- **Última actualización:** 2026-05-16
+- **Nota 2026-05-16:** creados los 4 READMEs; `pnpm run check:docs` pasa.
 
 ## TD-0075 — Evaluar `inlineStylesheets: "auto"` vs `"never"` con medición LCP real
 - **ID:** TD-0075
@@ -1720,22 +1729,23 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 ## TD-0079 — Inter font dual `.ttf` + `.woff2` redundante
 - **ID:** TD-0079
 - **Título corto:** Eliminar `.ttf` de Inter (woff2 es suficiente)
-- **Descripción:** `public/fonts/` tiene `inter-latin-400.ttf` (23 KB) + `inter-latin-400.woff2` (11 KB) e `inter-latin-900.ttf` (23 KB) + `inter-latin-900.woff2` (11 KB). Los `.ttf` no aportan compatibilidad adicional (woff2 cubre todos los navegadores soportados por el proyecto). Total: 46 KB de bytes innecesarios en CDN.
-- **Evidencia:** `ls -la public/fonts/`. `caniuse-lite woff2` confirma cobertura >97% global.
-- **Impacto:** Bajo (los `.ttf` no se cargan a menos que el CSS los referencie). Si no se referencian, son bytes muertos en deploy. Revisar `@font-face` en `src/styles/global.css` para confirmar.
-- **Riesgo:** muy bajo
+- **Descripción:** `public/fonts/` tiene `inter-latin-400.ttf` (23 KB) + `inter-latin-400.woff2` (11 KB) e `inter-latin-900.ttf` (23 KB) + `inter-latin-900.woff2` (11 KB). La hipótesis inicial de redundancia no se sostiene para el flujo OG actual: `src/utils/loadGoogleFont.ts` usa los `.ttf` y rechaza WOFF2 porque Satori no lo acepta en ese camino.
+- **Evidencia:** `src/utils/loadGoogleFont.ts` configura `inter-latin-400.ttf` y `inter-latin-900.ttf`; el mismo helper lanza error si la firma del archivo es WOFF2.
+- **Impacto:** Remover los `.ttf` rompería generación OG (`pnpm run og:jpegs` / `pnpm run build`).
+- **Riesgo:** medio si se ejecuta tal como estaba propuesto.
 - **Severidad (1-5):** 2
 - **Urgencia:** P3
 - **Esfuerzo estimado:** XS
-- **Propuesta de solución:** (1) `grep -rn "inter-latin.*\.ttf" src/` para confirmar que ningún `@font-face` los referencia. (2) Si no se usan, `rm public/fonts/inter-latin-{400,900}.ttf`. (3) Si se usan, eliminar el `src: url(...ttf)` del `@font-face` (dejar solo woff2) y luego eliminar los archivos.
+- **Propuesta de solución:** reevaluar como cambio de flujo OG, no como limpieza XS. Opciones: mantener `.ttf` como fuentes de build necesarias, o migrar generación OG a un formato aceptado por Satori sin TTF y validar `pnpm run og:jpegs`.
 - **Criterios de cierre (checklist verificable):**
   - [ ] `public/fonts/` ya no contiene los 2 `.ttf` de Inter.
   - [ ] `pnpm run check:images` y `pnpm run build` pasan.
   - [ ] Validación visual: la fuente Inter sigue renderizando correctamente en home y posts.
-- **Owner:** —
-- **Estado:** Abierto
+- **Owner:** Codex
+- **Estado:** Bloqueado / hipótesis invalidada
 - **Fecha de creación:** 2026-05-15
-- **Última actualización:** 2026-05-15
+- **Última actualización:** 2026-05-16
+- **Nota 2026-05-16:** no ejecutar la eliminación directa de `.ttf` mientras `src/utils/loadGoogleFont.ts` dependa de TTF/OTF/WOFF y rechace WOFF2.
 
 ## TD-0080 — Magic numbers en use-cases sin etiqueta semántica
 - **ID:** TD-0080
@@ -1749,13 +1759,14 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Esfuerzo estimado:** XS
 - **Propuesta de solución:** Para cada use-case, identificar literales numéricos que representen un parámetro normativo y extraerlos a constantes con nombre + comentario que cite la fuente legal (ley, decreto, circular). Ejemplo: `const FERIADO_PROPORCIONAL_BANDS = { upTo3Years: 0.3, upTo6Years: 0.5, beyond: 0.8 } as const;` con link a CT del DT.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] Top 3 use-cases (`EstimateFiniquito`, `CalculateApvComparison`, `CalculateMortgage`) sin literales numéricos no-trivialmente-explicables.
-  - [ ] Cada constante nueva tiene comentario citando la fuente normativa.
-  - [ ] Tests pasan sin cambios.
+  - [x] Top 3 use-cases (`EstimateFiniquito`, `CalculateApvComparison`, `CalculateMortgage`) sin literales numéricos no-trivialmente-explicables.
+  - [x] Cada constante nueva tiene comentario citando la fuente normativa.
+  - [x] Tests pasan sin cambios.
 - **Owner:** —
-- **Estado:** Abierto
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-15
-- **Última actualización:** 2026-05-15
+- **Última actualización:** 2026-05-16
+- **Nota 2026-05-16:** extraídas constantes semánticas para bandas art. 168 CT en `EstimateFiniquito`, topes APV Regímenes A/B en `CalculateApvComparison` y guardrails del simulador hipotecario en `CalculateMortgage`. Verificación: `pnpm run test -- --run src/application/use-cases` pass.
 
 ## TD-0081 — Build secuencial: posible paralelización de checks pre-build
 - **ID:** TD-0081
@@ -1789,10 +1800,11 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** Agregar al final de `docs/backlog/README.md` una tabla con columnas: `Archivo · Estado (vigente / parcialmente cerrado / candidato a archivo) · Última actualización · Bloqueador · Próximo paso`. Mover planes con estado `archivable` a `docs/archive/backlog/` (que ya existe).
 - **Criterios de cierre (checklist verificable):**
-  - [ ] `docs/backlog/README.md` contiene tabla de estado de los 7 planes.
-  - [ ] Planes con estado `archivable` movidos a `docs/archive/backlog/`.
-  - [ ] `MODULE_INDEX.md` actualizado si cambia algún puntero (depende de TD-0071).
+  - [x] `docs/backlog/README.md` contiene tabla de estado de los 7 planes.
+  - [x] Planes con estado `archivable` movidos a `docs/archive/backlog/`.
+  - [x] `MODULE_INDEX.md` actualizado si cambia algún puntero (depende de TD-0071).
 - **Owner:** —
-- **Estado:** Abierto
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-15
-- **Última actualización:** 2026-05-15
+- **Última actualización:** 2026-05-16
+- **Nota 2026-05-16:** `docs/backlog/README.md` ahora incluye tabla `Status — planes vigentes` para los 7 planes activos tras archivar `PLAN-publish-signed-off-sprint-2b-articles-2026-05-11.md` y `PLAN-strategic-repository-modernization-2026-05-11.md` en `docs/archive/backlog/`. No se actualizó `MODULE_INDEX.md`: no contenía punteros específicos a esos planes.

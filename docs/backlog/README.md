@@ -1,15 +1,15 @@
 # Backlog Monedario.cl — Estado actual
 
-> Generado el 2026-04-08. Última actualización: 2026-05-11.
+> Generado el 2026-04-08. Última actualización: 2026-05-16.
 > Lectura obligatoria antes de ejecutar cualquier ticket: `AGENTS.md` y `context/INVARIANTS.md`.
 
 ---
 
-## Estado actual — 2026-05-11
+## Estado actual — 2026-05-16
 
-Completado: Fases 0–3 salvo decisiones pendientes explícitas (`MON-301`, `MON-304`), auditorías de calculadoras, UX backlog (15/16), Phase 1 Profile Persistence, Phase 2 High-Value Roadmap (Waves 1–5), Optimization, Editorial Timeliness, Blog Advisory Standardization, Date Display Consistency, Guardrail Automation, GitHub Actions remediation, Next Best Step, Data Signals (parcial), modernización estratégica 2026-05-11, cierre mobile CWV/LCP (`TD-0039`), `TD-0057` backfill canónico YMYL (46 artículos), SEO roadmap Sprints 0 y 2.
+Completado: Fases 0–3 salvo decisiones pendientes explícitas (`MON-301`, `MON-304`), auditorías de calculadoras, UX backlog (15/16), Phase 1 Profile Persistence, Phase 2 High-Value Roadmap (Waves 1–5), Optimization, Editorial Timeliness, Blog Advisory Standardization, Date Display Consistency, Guardrail Automation, GitHub Actions remediation, Next Best Step, Data Signals (parcial), modernización estratégica 2026-05-11, cierre mobile CWV/LCP (`TD-0039`), `TD-0057` backfill canónico YMYL (46 artículos), SEO roadmap Sprints 0 y 2, publicación Sprint 2B firmada y quick wins de auditoría profunda 2026-05-15.
 
-Deuda técnica: 0 items abiertos en `docs/TECH_DEBT_BACKLOG.md`.
+Deuda técnica: 10 items sin iniciar y 2 en validación/diseño en `docs/TECH_DEBT_BACKLOG.md`.
 
 ### Siguiente orden recomendado
 
@@ -19,6 +19,7 @@ Deuda técnica: 0 items abiertos en `docs/TECH_DEBT_BACKLOG.md`.
 | 2 | `MON-307` — Extender `finiquito-indemnizacion`: modo vacaciones proporcionales | Sprint 3 SEO; P1, calc ya computa feriado proporcional internamente — exponer como flujo pre-finiquito |
 | 3 | `MON-308` — Calculadora interés compuesto (nueva, standalone) | Sprint 3 SEO; P1, simulador-jubilacion demasiado AFP-específico para absorber herramienta genérica |
 | 4 | `MON-309` — Calculadora depósito a plazo (nueva, standalone) | Sprint 3 SEO; P2, ninguna calc existente tiene lógica de tasas de interés |
+| 5 | `TD-0068` — Medir cobertura de calculadoras | Próximo bloque técnico recomendado tras cerrar quick wins documentales |
 
 ### Pendiente — implementación por código
 
@@ -38,7 +39,6 @@ Deuda técnica: 0 items abiertos en `docs/TECH_DEBT_BACKLOG.md`.
 
 | Artefacto | Estado | Qué se necesita |
 |-----------|--------|-----------------|
-| Artículos Sprint 2B en `docs/editorial/artifacts/` (contribuciones, gratificación, sueldo-imponible, IGC, PGU, fondo-emergencia) | DONE (2026-05-11) | Sign-off humano ya presente en `07-publish-packet.md`; artículos publicados con `draft: false` |
 | Operación Renta Centro | BLOCKED | Verificación SII/TGR + sign-off |
 
 ---
@@ -93,10 +93,31 @@ Deuda técnica: 0 items abiertos en `docs/TECH_DEBT_BACKLOG.md`.
 | `HERO_IMAGE_SYSTEM_REMEDIATION_2026-04-30.md` | Pendiente remediación manual |
 | `PLAN-heroimage-prompt-repair-2026-05-01.md` | Código completo; assets manuales pendientes |
 | `PLAN-seo-cross-document-roadmap-2026-05-01.md` | Sprints 0 y 2 completados; Sprint 3 calculadoras pendiente |
+| `PLAN-audit-deep-remediation-2026-05-16.md` | Quick wins completados; quedan TD estructurales/ADR/medición |
+| `PLAN-github-workflow-hardening-2026-05-13.md` | Parcialmente cerrado; fase 3 en diminishing returns |
 | `TS7_COMPATIBILITY_AUDIT_2026-04-30.md` | Bloqueado |
 | `ux-backlog.md` | 15/16 completado; MON-405 diferido |
 | `BLOG_ADVISORY_ARCHITECTURE_PLAN_2026-04-22.md` | Propuesta |
 | `prompt-*.md` | Plantillas reutilizables |
 | `OWASP_SECURITY_AUDIT_2026-05-11.md` | 9 hallazgos (3🔴3🟠3🟡); SEC-003 verificar primero |
+
+## Status — planes vigentes
+
+| Archivo | Estado | Última actualización | Bloqueador | Próximo paso |
+|---|---|---:|---|---|
+| `PLAN-audit-deep-remediation-2026-05-16.md` | Parcialmente cerrado | 2026-05-16 | `TD-0075`/`TD-0077` requieren medición/ADR; `TD-0079` bloqueado por flujo OG con TTF | Ejecutar `TD-0068` o preparar bloque estructural `TD-0063`/`TD-0069` |
+| `PLAN-github-workflow-hardening-2026-05-13.md` | Parcialmente cerrado | 2026-05-13 | La fase 3 ya registra diminishing returns | Reabrir solo con hallazgo concreto de CI o archivar cuando se acepte el cierre operativo |
+| `PLAN-heroimage-prompt-repair-2026-05-01.md` | Parcialmente cerrado | 2026-05-01 | Assets finales pendientes fuera del código | Coordinar lote manual de hero images y validar `pnpm run check:hero-images` |
+| `PLAN-seo-cross-document-roadmap-2026-05-01.md` | Vigente | 2026-05-11 | Sprint 3 requiere extensiones/nuevas calculadoras | Ejecutar `MON-306` como primer ticket |
+| `OWASP_SECURITY_AUDIT_2026-05-11.md` | Vigente | 2026-05-11 | `SEC-003` requiere verificar `.env` histórico antes de cambios | Verificar `SEC-003`; luego ejecutar orden recomendado del audit |
+| `TS7_COMPATIBILITY_AUDIT_2026-04-30.md` | Bloqueado | 2026-04-30 | TypeScript 7 stable y soporte `@astrojs/check` TS7 | Esperar señal del workflow `check-ts7-readiness.yml` |
+| `HERO_IMAGE_SYSTEM_REMEDIATION_2026-04-30.md` | Vigente | 2026-04-30 | Remediación manual de assets por lotes | Empezar batch Payroll / salary / deductions |
+
+## Planes archivados en este pase
+
+| Archivo | Motivo |
+|---|---|
+| `docs/archive/backlog/PLAN-publish-signed-off-sprint-2b-articles-2026-05-11.md` | Declaraba `Status: done` y outcome publicado |
+| `docs/archive/backlog/PLAN-strategic-repository-modernization-2026-05-11.md` | Declaraba `Status: Completed` con closure notes y evidencia |
 
 Archived completed plans → `docs/archive/backlog/`.

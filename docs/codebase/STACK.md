@@ -18,7 +18,7 @@ Descripcion factual del stack del repositorio para contributors y agentes.
 - TailwindCSS 4 (`tailwindcss`, `@tailwindcss/vite`)
 - Sharp (`sharp`) para procesamiento de imagenes
 - Satori y Resvg (`satori`, `@resvg/resvg-js`) para imagenes OG
-- Day.js (`dayjs`) para fechas
+- `Date` nativo e `Intl` para fechas
 
 ## Tooling de calidad
 

@@ -20,5 +20,13 @@ export default [
       "no-console": "off",
     },
   },
-  { ignores: ["dist/**", ".astro", "public/pagefind/**", ".venv/**"] },
+  {
+    ignores: [
+      "dist/**",
+      ".astro",
+      "public/pagefind/**",
+      ".venv/**",
+      "archive/scripts/**",
+    ],
+  },
 ];

@@ -122,6 +122,30 @@ PASS CUE: ${entry.batchPassCue}${
   }`;
 }
 
+function InfoCard({ label, children }) {
+  return (
+    <section
+      style={{
+        border: "1px solid #1f2937",
+        borderRadius: "14px",
+        padding: "0.9rem",
+      }}
+    >
+      <div style={S.headerMeta}>{label}</div>
+      <p
+        style={{
+          margin: "0.45rem 0 0",
+          lineHeight: 1.6,
+          fontSize: "0.82rem",
+          color: "#e5e7eb",
+        }}
+      >
+        {children}
+      </p>
+    </section>
+  );
+}
+
 export default function HeroPromptWorkspace({ entries }) {
   const [query, setQuery] = useState("");
   const [mode, setMode] = useState("p0");
@@ -445,107 +469,27 @@ export default function HeroPromptWorkspace({ entries }) {
                   marginBottom: "1rem",
                 }}
               >
-                <section
-                  style={{
-                    border: "1px solid #1f2937",
-                    borderRadius: "14px",
-                    padding: "0.9rem",
-                  }}
-                >
-                  <div style={S.headerMeta}>Por qué va primero</div>
-                  <p
-                    style={{
-                      margin: "0.45rem 0 0",
-                      lineHeight: 1.6,
-                      fontSize: "0.82rem",
-                      color: "#e5e7eb",
-                    }}
-                  >
-                    {selectedEntry.batchWhyFirst}
-                  </p>
-                </section>
+                <InfoCard label="Por qué va primero">
+                  {selectedEntry.batchWhyFirst}
+                </InfoCard>
 
-                <section
-                  style={{
-                    border: "1px solid #1f2937",
-                    borderRadius: "14px",
-                    padding: "0.9rem",
-                  }}
-                >
-                  <div style={S.headerMeta}>Concepto visual</div>
-                  <p
-                    style={{
-                      margin: "0.45rem 0 0",
-                      lineHeight: 1.6,
-                      fontSize: "0.82rem",
-                      color: "#e5e7eb",
-                    }}
-                  >
-                    {selectedEntry.batchConcept}
-                  </p>
-                </section>
+                <InfoCard label="Concepto visual">
+                  {selectedEntry.batchConcept}
+                </InfoCard>
 
-                <section
-                  style={{
-                    border: "1px solid #1f2937",
-                    borderRadius: "14px",
-                    padding: "0.9rem",
-                  }}
-                >
-                  <div style={S.headerMeta}>Pass cue</div>
-                  <p
-                    style={{
-                      margin: "0.45rem 0 0",
-                      lineHeight: 1.6,
-                      fontSize: "0.82rem",
-                      color: "#e5e7eb",
-                    }}
-                  >
-                    {selectedEntry.batchPassCue}
-                  </p>
-                </section>
+                <InfoCard label="Pass cue">
+                  {selectedEntry.batchPassCue}
+                </InfoCard>
 
                 {selectedEntry.batchRevisionGoal ? (
-                  <section
-                    style={{
-                      border: "1px solid #1f2937",
-                      borderRadius: "14px",
-                      padding: "0.9rem",
-                    }}
-                  >
-                    <div style={S.headerMeta}>Next revision goal</div>
-                    <p
-                      style={{
-                        margin: "0.45rem 0 0",
-                        lineHeight: 1.6,
-                        fontSize: "0.82rem",
-                        color: "#e5e7eb",
-                      }}
-                    >
-                      {selectedEntry.batchRevisionGoal}
-                    </p>
-                  </section>
+                  <InfoCard label="Next revision goal">
+                    {selectedEntry.batchRevisionGoal}
+                  </InfoCard>
                 ) : null}
 
-                <section
-                  style={{
-                    border: "1px solid #1f2937",
-                    borderRadius: "14px",
-                    padding: "0.9rem",
-                  }}
-                >
-                  <div style={S.headerMeta}>Target file</div>
-                  <p
-                    style={{
-                      margin: "0.45rem 0 0",
-                      lineHeight: 1.6,
-                      fontSize: "0.82rem",
-                      color: "#e5e7eb",
-                    }}
-                  >
-                    <code>{selectedEntry.targetImagePath}</code>
-                  </p>
-                </section>
+                <InfoCard label="Target file">
+                  <code>{selectedEntry.targetImagePath}</code>
+                </InfoCard>
               </div>
 
               {selectedEntry.batchObservedFailures?.length ? (

@@ -7,10 +7,11 @@ Last updated: 2026-05-11
 | Path | What lives here | Agent note |
 |---|---|---|
 | `src/` | Runtime app (Astro pages/components/layouts/utils/content config) | Do not modify for context-only tasks. |
+| `src/dev-pages/` | Internal dev-only Astro pages injected by config | Not part of production build unless `BUILD_DEV_PAGES=1`. |
 | `src/data/blog/` | Editorial content (`.md/.mdx`) | Out of scope unless explicit content task. |
 | `src/data/glossary/` | Glossary entries for financial terms | Preserve reader-facing Spanish and collection schema. |
 | `src/data/laws/` | Legal reference pages | Treat as YMYL-adjacent; prefer official sources. |
-| `scripts/` | Quality gates and snapshots (`check:*`, `compare-*`, `snapshot-*`) | Primary enforcement source for context invariants/contracts. |
+| `scripts/` | Quality gates, snapshots, data signals, URL checks, hero-image tooling, and operational helpers | Primary enforcement source for context invariants/contracts; completed one-off scripts belong in `archive/scripts/`. |
 | `docs/` | Constitution, domain docs, reports, issue docs | Constitutional/domain source of truth. |
 | `docs/governance/` | Stable governance policies and ADR-adjacent execution rules | Read for strategy/process changes before inventing new visible patterns. |
 | `docs/reports/` | Canonical route and RSS baselines only | Inputs tracked for `check:routes` and `check:rss`. |
@@ -20,6 +21,7 @@ Last updated: 2026-05-11
 | `tests/` | Vitest suites by layer | Required when runtime layers change per AGENTS rules. |
 | `artifacts/editorial/` | Canonical editorial pipeline artifacts | Required for new YMYL content and substantive refreshes. |
 | `docs/editorial/artifacts/` | Legacy/SEO sprint editorial artifacts | Noncanonical evidence; do not use as full pipeline substitute. See ADR-20260511. |
+| `archive/scripts/` | Completed one-off scripts retained for auditability | Do not call from active workflows without restoring and revalidating. |
 
 ## 2. Where key behaviors are defined
 
@@ -54,6 +56,11 @@ Last updated: 2026-05-11
 - Deprecated redirect URL guard:
   - `tests/e2e/redirect-links.e2e.test.ts`
   - protects `src/` from reintroducing known redirecting official-source URLs
+- Script groups:
+  - `scripts/data-signals/` for Search Console and Cloudflare signal ingestion
+  - `scripts/hero-images/` for manual hero-image prompt/assets workflow
+  - `scripts/urlcheck/` for external URL probing helpers
+  - `archive/scripts/` for completed one-off utilities
 
 ## 3. Context first-read sequence for agents
 

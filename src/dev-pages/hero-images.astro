@@ -1,7 +1,7 @@
 ---
 import HeroPromptWorkspace from "@/tools/hero-images/HeroPromptWorkspace.jsx";
-import promptsData from "../../../scripts/hero-images/prompts.json";
-import manifestData from "../../../scripts/hero-images/manifest.json";
+import promptsData from "../../scripts/hero-images/prompts.json";
+import manifestData from "../../scripts/hero-images/manifest.json";
 import {
   HERO_P0_METADATA,
   HERO_P0_ORDER,
@@ -10,11 +10,11 @@ import {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type LooseRecord = Record<string, any>;
 
-const promptEntries = Array.isArray(promptsData.entries)
-  ? promptsData.entries
+const promptEntries: LooseRecord[] = Array.isArray(promptsData.entries)
+  ? (promptsData.entries as LooseRecord[])
   : [];
-const manifestEntries = Array.isArray(manifestData.articles)
-  ? manifestData.articles
+const manifestEntries: LooseRecord[] = Array.isArray(manifestData.articles)
+  ? (manifestData.articles as LooseRecord[])
   : [];
 const manifestBySlug = new Map(
   manifestEntries.map(entry => [entry.slug, entry])

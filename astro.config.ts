@@ -1,4 +1,5 @@
 import { defineConfig, envField } from "astro/config";
+import type { AstroIntegration } from "astro";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import { EnumChangefreq } from "sitemap";
@@ -85,6 +86,34 @@ const PAGINATED_POSTS_PATTERN = safeRegExp(
   `^${escapeRegExp(withBasePath("/posts/"))}\\d+/$`
 );
 const DEV_TOOLS_PATH = withBasePath("/dev/");
+const BUILD_DEV_PAGES = process.env.BUILD_DEV_PAGES === "1";
+type AstroConfigSetupOptions = Parameters<
+  NonNullable<AstroIntegration["hooks"]["astro:config:setup"]>
+>[0];
+
+function shouldEnableDevPages(command: AstroConfigSetupOptions["command"]) {
+  return command !== "build" || BUILD_DEV_PAGES;
+}
+
+function devPagesIntegration(): AstroIntegration {
+  const reactIntegration = react();
+
+  return {
+    name: "monedario-dev-pages",
+    hooks: {
+      "astro:config:setup": async options => {
+        if (!shouldEnableDevPages(options.command)) return;
+
+        await reactIntegration.hooks["astro:config:setup"]?.(options);
+
+        options.injectRoute({
+          pattern: "/dev/hero-images",
+          entrypoint: "./src/dev-pages/hero-images.astro",
+        });
+      },
+    },
+  };
+}
 
 // ── Sitemap lastmod: load article dates ───────────────────────────────────
 type ArticleIndex = { slug: string; updatedDate?: string };
@@ -115,7 +144,7 @@ export default defineConfig({
     inlineStylesheets: "never",
   },
   integrations: [
-    react(),
+    devPagesIntegration(),
     sitemap({
       filter: page => {
         const pathname = new URL(page).pathname;

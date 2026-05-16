@@ -53,6 +53,25 @@ const VACATION_DAYS_PER_YEAR = 15;
 const MONTHS_PER_YEAR = 12;
 const DAYS_PER_MONTH_FOR_SALARY = 30;
 const DAYS_PER_YEAR_FOR_VACATION = 360;
+const MIN_ADDITIONAL_MONTHS_WORKED = 0;
+const MAX_ADDITIONAL_MONTHS_WORKED_EXCLUSIVE = MONTHS_PER_YEAR;
+const MIN_PENDING_SALARY_DAYS = 0;
+const MAX_PENDING_SALARY_DAYS = DAYS_PER_MONTH_FOR_SALARY;
+const MIN_VACATION_CYCLE_MONTHS = 0;
+const MAX_VACATION_CYCLE_MONTHS = MONTHS_PER_YEAR;
+const MIN_ADDITIONAL_VACATION_DAYS = 0;
+const MAX_ADDITIONAL_VACATION_DAYS = DAYS_PER_MONTH_FOR_SALARY;
+
+// Codigo del Trabajo art. 163: regla de fraccion superior a seis meses;
+// conserva el umbral operativo previo de la estimacion.
+const SERVICE_YEAR_ROUNDING_MONTH_THRESHOLD = 6;
+
+// Codigo del Trabajo art. 168: recargos judiciales sobre indemnizacion por anos de servicio.
+const ART_168_SURCHARGE_BANDS = [
+  { maxServiceYears: 3, surchargePercent: 0.3 },
+  { maxServiceYears: 6, surchargePercent: 0.5 },
+  { maxServiceYears: Number.POSITIVE_INFINITY, surchargePercent: 0.8 },
+] as const;
 
 function assertPositiveNumber(value: number, field: string): void {
   if (!Number.isFinite(value) || value <= 0) {
@@ -84,25 +103,30 @@ function assertInput(input: EstimateFiniquitoInput): void {
   if (
     input.additionalMonthsWorked !== undefined &&
     (!Number.isFinite(input.additionalMonthsWorked) ||
-      input.additionalMonthsWorked < 0 ||
-      input.additionalMonthsWorked >= 12)
+      input.additionalMonthsWorked < MIN_ADDITIONAL_MONTHS_WORKED ||
+      input.additionalMonthsWorked >= MAX_ADDITIONAL_MONTHS_WORKED_EXCLUSIVE)
   ) {
     throw new Error(
       "additionalMonthsWorked must be a finite number between 0 and 11."
     );
   }
-  assertRange(input.pendingSalaryDays, "pendingSalaryDays", 0, 30);
+  assertRange(
+    input.pendingSalaryDays,
+    "pendingSalaryDays",
+    MIN_PENDING_SALARY_DAYS,
+    MAX_PENDING_SALARY_DAYS
+  );
   assertRange(
     input.monthsSinceLastVacationCycle,
     "monthsSinceLastVacationCycle",
-    0,
-    12
+    MIN_VACATION_CYCLE_MONTHS,
+    MAX_VACATION_CYCLE_MONTHS
   );
   assertRange(
     input.additionalVacationDaysWorked,
     "additionalVacationDaysWorked",
-    0,
-    30
+    MIN_ADDITIONAL_VACATION_DAYS,
+    MAX_ADDITIONAL_VACATION_DAYS
   );
 }
 
@@ -111,7 +135,8 @@ function resolveServiceYears(
   additionalMonthsWorked: number
 ) {
   const serviceYearsCounted =
-    yearsWorked + (additionalMonthsWorked >= 6 ? 1 : 0);
+    yearsWorked +
+    (additionalMonthsWorked >= SERVICE_YEAR_ROUNDING_MONTH_THRESHOLD ? 1 : 0);
 
   return {
     serviceYearsCounted,
@@ -142,9 +167,9 @@ function getArt168SurchargePercent(
     return 0;
   }
 
-  if (serviceYearsCounted <= 3) return 0.3;
-  if (serviceYearsCounted <= 6) return 0.5;
-  return 0.8;
+  return ART_168_SURCHARGE_BANDS.find(
+    ({ maxServiceYears }) => serviceYearsCounted <= maxServiceYears
+  )!.surchargePercent;
 }
 
 export function estimateFiniquito(
@@ -192,7 +217,7 @@ export function estimateFiniquito(
   // como proxy del período fraccionado del año en curso.
   const gratificacionProporcionalAmount =
     input.gratificacionAnual === true
-      ? (input.monthlySalary * additionalMonthsWorked) / 12
+      ? (input.monthlySalary * additionalMonthsWorked) / MONTHS_PER_YEAR
       : 0;
 
   const substituteNoticeIndemnity = compensationProfile.appliesSubstituteNotice
