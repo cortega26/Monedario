@@ -436,6 +436,10 @@ const dapFaqs = [
 </Layout>
 
 <script>
+  import {
+    calculateTermDeposit,
+    type TermDepositOutput,
+  } from "@/application/use-cases/CalculateTermDeposit";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { saveCalculatorResult } from "@/utils/resumeState";
 
@@ -472,42 +476,7 @@ const dapFaqs = [
     }
   }
 
-  interface DapResult {
-    monto: number;
-    plazo: number;
-    tir: number;
-    aplicaImpuesto: boolean;
-    interesBruto: number;
-    impuesto: number;
-    interesNeto: number;
-    montoFinal: number;
-    tasaEfectivaAnual: number;
-  }
-
-  function calcularDap(
-    monto: number,
-    plazo: number,
-    tirPct: number,
-    aplicaImpuesto: boolean
-  ): DapResult {
-    const tir = tirPct / 100;
-    const interesBruto = monto * tir * (plazo / 365);
-    const impuesto = aplicaImpuesto ? interesBruto * 0.04 : 0;
-    const interesNeto = interesBruto - impuesto;
-    const montoFinal = monto + interesNeto;
-    const tasaEfectivaAnual = (interesNeto / monto) * (365 / plazo) * 100;
-    return {
-      monto,
-      plazo,
-      tir: tirPct,
-      aplicaImpuesto,
-      interesBruto,
-      impuesto,
-      interesNeto,
-      montoFinal,
-      tasaEfectivaAnual,
-    };
-  }
+  type DapResult = TermDepositOutput;
 
   function renderResultado(result: DapResult) {
     const contenido = document.getElementById("resultado-contenido");
@@ -522,10 +491,10 @@ const dapFaqs = [
     headlineLabel.textContent = "Monto al vencimiento";
     const headlineValue = document.createElement("p");
     headlineValue.className = "text-4xl font-bold";
-    headlineValue.textContent = fmt(result.montoFinal);
+    headlineValue.textContent = fmt(result.finalAmount);
     const headlineSub = document.createElement("p");
     headlineSub.className = "mt-1.5 text-xs text-foreground/60";
-    headlineSub.textContent = `${result.plazo} días · TIR ${result.tir.toFixed(2)}%`;
+    headlineSub.textContent = `${result.termDays} días · TIR ${result.annualRatePercent.toFixed(2)}%`;
     headline.append(headlineLabel, headlineValue, headlineSub);
 
     const mkRow = (label: string, value: string, colorClass = "") => {
@@ -559,14 +528,14 @@ const dapFaqs = [
     const rows = document.createElement("div");
     rows.className = "space-y-0";
     rows.append(
-      mkRow("Monto depositado", fmt(result.monto), "text-secondary"),
-      mkRow("Interés bruto", fmt(result.interesBruto), "text-green-500"),
+      mkRow("Monto depositado", fmt(result.amount), "text-secondary"),
+      mkRow("Interés bruto", fmt(result.grossInterest), "text-green-500"),
       mkRow(
-        `Retención impuesto 4%${result.aplicaImpuesto ? "" : " (no aplica)"}`,
-        result.aplicaImpuesto ? `− ${fmt(result.impuesto)}` : "$0",
-        result.aplicaImpuesto ? "text-red-400" : "text-muted"
+        `Retención impuesto 4%${result.applyWithholding ? "" : " (no aplica)"}`,
+        result.applyWithholding ? `− ${fmt(result.withholdingTax)}` : "$0",
+        result.applyWithholding ? "text-red-400" : "text-muted"
       ),
-      mkRow("Interés neto", fmt(result.interesNeto), "text-accent")
+      mkRow("Interés neto", fmt(result.netInterest), "text-accent")
     );
 
     const extras = document.createElement("div");
@@ -574,17 +543,17 @@ const dapFaqs = [
     extras.append(
       mkInfoRow(
         "Rentabilidad neta del período",
-        `${((result.interesNeto / result.monto) * 100).toFixed(3)}%`
+        `${((result.netInterest / result.amount) * 100).toFixed(3)}%`
       ),
       mkInfoRow(
         "Tasa efectiva anual neta",
-        `${result.tasaEfectivaAnual.toFixed(2)}%`
+        `${result.netEffectiveAnnualRatePercent.toFixed(2)}%`
       )
     );
 
     const note = document.createElement("p");
     note.className = "mt-3 text-xs text-muted";
-    note.textContent = result.aplicaImpuesto
+    note.textContent = result.applyWithholding
       ? "Retención art. 59 N°4 LIR (4% sobre interés bruto). Impuesto final depende de declaración de renta."
       : "Sin retención de impuesto. Verifica tu situación tributaria con un asesor.";
 
@@ -622,7 +591,12 @@ const dapFaqs = [
       return;
     }
 
-    const result = calcularDap(monto, plazo, tirPct, aplicaImpuesto);
+    const result = calculateTermDeposit({
+      amount: monto,
+      termDays: plazo,
+      annualRatePercent: tirPct,
+      applyWithholding: aplicaImpuesto,
+    });
     renderResultado(result);
     focusResultado();
     saveCalculatorResult(
@@ -632,7 +606,7 @@ const dapFaqs = [
 
     if (typeof window.showShareResult === "function") {
       window.showShareResult(
-        `DAP: ${fmt(result.monto)} al ${tirPct}% TIR por ${plazo} días → ${fmt(result.montoFinal)} (neto)`
+        `DAP: ${fmt(result.amount)} al ${tirPct}% TIR por ${plazo} días → ${fmt(result.finalAmount)} (neto)`
       );
     }
     window.showCalculatorNextActions?.();

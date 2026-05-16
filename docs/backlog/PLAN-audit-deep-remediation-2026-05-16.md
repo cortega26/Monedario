@@ -4,13 +4,13 @@ Fuente: `docs/reports/AUDIT-DEEP-2026-05-15.md`.
 
 ## Alcance de esta sesion
 
-- Implementar quick wins de bajo riesgo: `TD-0064`, `TD-0070`, `TD-0071`, `TD-0072` parcial, `TD-0073`, `TD-0074`, `TD-0080`, `TD-0082`.
+- Implementar quick wins y el primer bloque de testabilidad: `TD-0064`, `TD-0068`, `TD-0070`, `TD-0071`, `TD-0072` parcial, `TD-0073`, `TD-0074`, `TD-0080`, `TD-0082`.
 - Registrar decisiones o bloqueos cuando la auditoria ya no coincide con el estado real del repo.
 - Preservar contratos publicos: no tocar rutas, RSS, canonicals, frontmatter ni contenido YMYL.
 
 ## Fuera de alcance
 
-- `TD-0063`, `TD-0067`, `TD-0068`, `TD-0069`, `TD-0075`, `TD-0076`, `TD-0077`, `TD-0078`, `TD-0081`.
+- `TD-0063`, `TD-0067`, `TD-0069`, `TD-0075`, `TD-0076`, `TD-0077`, `TD-0078`, `TD-0081`.
 - Bumps de dependencias minor (`TD-0065`) salvo que sean consecuencia directa de `pnpm remove`.
 - Cambios arquitecturales que requieran ADR o medicion LCP real.
 
@@ -25,6 +25,7 @@ Fuente: `docs/reports/AUDIT-DEEP-2026-05-15.md`.
 
 - [x] Crear plan canónico en `docs/backlog/`.
 - [x] `TD-0064`: eliminar `dayjs`, `node-fetch`, `remark-toc`.
+- [x] `TD-0068`: configurar coverage y cubrir calculadoras huérfanas.
 - [x] `TD-0070`: deduplicar `HeroPromptWorkspace.jsx`.
 - [x] `TD-0071`: actualizar `context/MODULE_INDEX.md`.
 - [x] `TD-0072`: archivar scripts one-off realmente no referenciados.
@@ -57,6 +58,9 @@ Fuente: `docs/reports/AUDIT-DEEP-2026-05-15.md`.
 - `src/tools/hero-images/HeroPromptWorkspace.jsx`: deduplicacion local en herramienta dev.
 - `eslint.config.js`, `.gitignore`: excluir scripts archivados del lint activo y permitir versionar este plan.
 - `astro.config.ts`, `src/dev-pages/hero-images.astro`, `README.md`: `TD-0066`, gate dev-only para `/dev/hero-images/`.
+- `vitest.config.ts`, `package.json`, `.github/workflows/ci.yml`: `TD-0068`, coverage V8 y gate CI.
+- `src/application/use-cases/CompareAfpCommissions.ts`, `CalculateTermDeposit.ts`, `CalculateCompoundInterest.ts`: `TD-0068`, fórmulas extraídas desde calculadoras Astro.
+- `tests/application/*`, `tests/domain/*`: `TD-0068`, tests directos para calculadoras huérfanas y soporte de coverage de dominio.
 - `src/application/use-cases/EstimateFiniquito.ts`, `src/application/use-cases/CalculateApvComparison.ts`, `src/application/use-cases/CalculateMortgage.ts`: `TD-0080`, constantes semanticas para bandas legales/topes/guardrails.
 - `docs/backlog/README.md`, `docs/archive/backlog/`: `TD-0082`, tabla de estado de planes vigentes y archivado de planes cerrados.
 
@@ -101,6 +105,8 @@ Fuente: `docs/reports/AUDIT-DEEP-2026-05-15.md`.
 - `pnpm run check:rss`: pass; no removals, existing baseline reports 35 additions.
 - `TD-0066`: `rm -rf dist && pnpm run build` pass; `find dist/dev -name '*.html'` sin salida; `find dist/_astro -name 'client.*.js'` sin salida.
 - `TD-0066`: `pnpm run dev -- --host 127.0.0.1` + `curl -I http://localhost:4321/dev/hero-images/` respondio `200 OK`.
+- `TD-0068`: `pnpm run test:coverage` pass; 82 test files, 586 tests, coverage lines 90.16% sobre `src/application/**` + `src/domain/**`.
+- `TD-0068`: `pnpm run astro -- check`, `pnpm run lint`, `pnpm run check:boundaries` pass.
 - `TD-0080`: `pnpm run test -- --run src/application/use-cases` pass.
 - `TD-0082`: `pnpm run check:docs` pass.
 - `npx --yes jscpd src/tools/hero-images/HeroPromptWorkspace.jsx --min-lines 15 --min-tokens 100 --reporters console`: 0 clones.

@@ -62,7 +62,7 @@ jobs:
         run: pnpm run format:check
 
       - name: "🧪 Run tests"
-        run: pnpm run test
+        run: pnpm run test:coverage
 
       - name: "🧾 Check frontmatter contract"
         run: pnpm run check:frontmatter

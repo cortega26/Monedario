@@ -9,7 +9,7 @@
 
 Completado: Fases 0–3 salvo decisiones pendientes explícitas (`MON-301`, `MON-304`), auditorías de calculadoras, UX backlog (15/16), Phase 1 Profile Persistence, Phase 2 High-Value Roadmap (Waves 1–5), Optimization, Editorial Timeliness, Blog Advisory Standardization, Date Display Consistency, Guardrail Automation, GitHub Actions remediation, Next Best Step, Data Signals (parcial), modernización estratégica 2026-05-11, cierre mobile CWV/LCP (`TD-0039`), `TD-0057` backfill canónico YMYL (46 artículos), SEO roadmap Sprints 0 y 2, publicación Sprint 2B firmada y quick wins de auditoría profunda 2026-05-15.
 
-Deuda técnica: 10 items sin iniciar y 2 en validación/diseño en `docs/TECH_DEBT_BACKLOG.md`.
+Deuda técnica: 9 items sin iniciar y 2 en validación/diseño en `docs/TECH_DEBT_BACKLOG.md`.
 
 ### Siguiente orden recomendado
 
@@ -19,7 +19,7 @@ Deuda técnica: 10 items sin iniciar y 2 en validación/diseño en `docs/TECH_DE
 | 2 | `MON-307` — Extender `finiquito-indemnizacion`: modo vacaciones proporcionales | Sprint 3 SEO; P1, calc ya computa feriado proporcional internamente — exponer como flujo pre-finiquito |
 | 3 | `MON-308` — Calculadora interés compuesto (nueva, standalone) | Sprint 3 SEO; P1, simulador-jubilacion demasiado AFP-específico para absorber herramienta genérica |
 | 4 | `MON-309` — Calculadora depósito a plazo (nueva, standalone) | Sprint 3 SEO; P2, ninguna calc existente tiene lógica de tasas de interés |
-| 5 | `TD-0068` — Medir cobertura de calculadoras | Próximo bloque técnico recomendado tras cerrar quick wins documentales |
+| 5 | `TD-0063` + `TD-0069` — Componentizar calculadoras grandes y bajar duplicación | Siguiente bloque estructural recomendado tras cerrar quick wins y coverage |
 
 ### Pendiente — implementación por código
 
@@ -105,7 +105,7 @@ Deuda técnica: 10 items sin iniciar y 2 en validación/diseño en `docs/TECH_DE
 
 | Archivo | Estado | Última actualización | Bloqueador | Próximo paso |
 |---|---|---:|---|---|
-| `PLAN-audit-deep-remediation-2026-05-16.md` | Parcialmente cerrado | 2026-05-16 | `TD-0075`/`TD-0077` requieren medición/ADR; `TD-0079` bloqueado por flujo OG con TTF | Ejecutar `TD-0068` o preparar bloque estructural `TD-0063`/`TD-0069` |
+| `PLAN-audit-deep-remediation-2026-05-16.md` | Parcialmente cerrado | 2026-05-16 | `TD-0075`/`TD-0077` requieren medición/ADR; `TD-0079` bloqueado por flujo OG con TTF | Preparar bloque estructural `TD-0063`/`TD-0069` |
 | `PLAN-github-workflow-hardening-2026-05-13.md` | Parcialmente cerrado | 2026-05-13 | La fase 3 ya registra diminishing returns | Reabrir solo con hallazgo concreto de CI o archivar cuando se acepte el cierre operativo |
 | `PLAN-heroimage-prompt-repair-2026-05-01.md` | Parcialmente cerrado | 2026-05-01 | Assets finales pendientes fuera del código | Coordinar lote manual de hero images y validar `pnpm run check:hero-images` |
 | `PLAN-seo-cross-document-roadmap-2026-05-01.md` | Vigente | 2026-05-11 | Sprint 3 requiere extensiones/nuevas calculadoras | Ejecutar `MON-306` como primer ticket |

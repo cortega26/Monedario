@@ -271,6 +271,8 @@ const calculatorNextStepItems = [
 
 <script>
   import "@/scripts/calculator-prefill";
+  import { compareAfpCommissions } from "@/application/use-cases/CompareAfpCommissions";
+  import { AFP_COMMISSIONS_PERCENT } from "@/config/afpCommissions";
   import { trackAnalyticsEvent } from "@/utils/analytics";
 
   declare global {
@@ -290,11 +292,11 @@ const calculatorNextStepItems = [
     const rows =
       document.querySelectorAll<HTMLTableRowElement>("#afp-table-body tr");
 
-    let cheapestCommission = Infinity;
-    rows.forEach(row => {
-      const commission = parseFloat(row.dataset.commission ?? "0");
-      if (commission < cheapestCommission) cheapestCommission = commission;
-    });
+    const comparison = compareAfpCommissions(
+      imponible,
+      AFP_COMMISSIONS_PERCENT
+    );
+    const cheapestCommission = comparison.cheapestCommissionPercent;
 
     rows.forEach(row => {
       const commission = parseFloat(row.dataset.commission ?? "0");
@@ -328,15 +330,8 @@ const calculatorNextStepItems = [
     const summaryEl = document.getElementById("savings-summary");
     const summaryText = document.getElementById("savings-text");
     if (summaryEl && summaryText && imponible > 0) {
-      const rows2 = Array.from(
-        document.querySelectorAll<HTMLTableRowElement>("#afp-table-body tr")
-      );
-      const maxCommission = Math.max(
-        ...rows2.map(r => parseFloat(r.dataset.commission ?? "0"))
-      );
-      const maxExtraMonthly =
-        ((maxCommission - cheapestCommission) / 100) * imponible;
-      const maxExtraAnnual = maxExtraMonthly * 12;
+      const maxExtraMonthly = comparison.maxExtraMonthlyCost;
+      const maxExtraAnnual = comparison.maxExtraAnnualCost;
 
       summaryText.textContent = `Con un imponible de ${fmt(imponible)}, elegir la AFP más barata frente a la más cara te ahorraría ${fmt(maxExtraMonthly)}/mes — ${fmt(maxExtraAnnual)} al año solo en comisiones.`;
       summaryEl.classList.remove("hidden");

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   assertEconomicParameters,
   EconomicParameterInvariantError,
+  resolveEconomicIndicatorDate,
   type EconomicParameters,
 } from "@/domain/economic/EconomicParameters";
 
@@ -28,6 +29,36 @@ const validParameters: EconomicParameters = {
 describe("EconomicParameters.assertEconomicParameters", () => {
   it("accepts a valid economic payload", () => {
     expect(assertEconomicParameters(validParameters)).toEqual(validParameters);
+  });
+
+  it("resolves indicator-specific dates and falls back to lastUpdated", () => {
+    expect(resolveEconomicIndicatorDate(validParameters, "uf")).toBe(
+      "2026-02-27"
+    );
+    expect(resolveEconomicIndicatorDate(validParameters, "ipc")).toBe(
+      "2026-02-27"
+    );
+    expect(
+      resolveEconomicIndicatorDate(
+        {
+          ...validParameters,
+          indicatorUpdatedAt: { uf: "invalid" },
+        },
+        "uf"
+      )
+    ).toBe("2026-02-27");
+  });
+
+  it("rejects invalid optional indicator values", () => {
+    expect(() =>
+      assertEconomicParameters({ ...validParameters, tmc: 0 })
+    ).toThrow("TMC");
+    expect(() =>
+      assertEconomicParameters({ ...validParameters, dolar: 0 })
+    ).toThrow("Dolar");
+    expect(() =>
+      assertEconomicParameters({ ...validParameters, imm: 0 })
+    ).toThrow("IMM");
   });
 
   it("rejects invalid ISO dates", () => {

@@ -430,6 +430,10 @@ const interesCompuestoFaqs = [
 </Layout>
 
 <script>
+  import {
+    calculateCompoundInterest,
+    type CompoundInterestOutput,
+  } from "@/application/use-cases/CalculateCompoundInterest";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { saveCalculatorResult } from "@/utils/resumeState";
 
@@ -470,72 +474,27 @@ const interesCompuestoFaqs = [
     }
   }
 
-  interface CompoundResult {
-    capital: number;
-    tasa: number;
-    anos: number;
-    n: number;
-    montoFinal: number;
-    interesGenerado: number;
-    rentabilidadPct: number;
-    evolucion: {
-      ano: number;
-      saldo: number;
-      interesAno: number;
-      interesAcum: number;
-    }[];
-  }
+  type CompoundResult = CompoundInterestOutput;
 
-  function calcularInteresCompuesto(
-    capital: number,
-    tasaPct: number,
-    anos: number,
-    n: number
-  ): CompoundResult {
-    const r = tasaPct / 100;
-    const montoFinal = capital * Math.pow(1 + r / n, n * anos);
-    const interesGenerado = montoFinal - capital;
-    const rentabilidadPct = (interesGenerado / capital) * 100;
-
-    const evolucion = [];
-    let interesAcum = 0;
-    for (let a = 1; a <= anos; a++) {
-      const saldoAnterior = capital * Math.pow(1 + r / n, n * (a - 1));
-      const saldo = capital * Math.pow(1 + r / n, n * a);
-      const interesAno = saldo - saldoAnterior;
-      interesAcum += interesAno;
-      evolucion.push({ ano: a, saldo, interesAno, interesAcum });
-    }
-
-    return {
-      capital,
-      tasa: tasaPct,
-      anos,
-      n,
-      montoFinal,
-      interesGenerado,
-      rentabilidadPct,
-      evolucion,
-    };
-  }
-
-  function renderTabla(evolucion: CompoundResult["evolucion"]) {
+  function renderTabla(evolucion: CompoundResult["yearlyEvolution"]) {
     const tbody = document.getElementById("tabla-evolucion-body");
     const section = document.getElementById("tabla-evolucion-section");
     if (!tbody || !section) return;
 
     tbody.innerHTML = "";
-    evolucion.forEach(({ ano, saldo, interesAno, interesAcum }) => {
-      const tr = document.createElement("tr");
-      tr.className = "text-sm";
-      tr.innerHTML = `
-        <td class="py-2 pr-4 text-secondary">${ano}</td>
-        <td class="py-2 pr-4 font-mono font-medium">${fmt(saldo)}</td>
-        <td class="py-2 pr-4 font-mono text-accent">+${fmt(interesAno)}</td>
-        <td class="py-2 font-mono text-muted">${fmt(interesAcum)}</td>
+    evolucion.forEach(
+      ({ year, balance, yearInterest, accumulatedInterest }) => {
+        const tr = document.createElement("tr");
+        tr.className = "text-sm";
+        tr.innerHTML = `
+        <td class="py-2 pr-4 text-secondary">${year}</td>
+        <td class="py-2 pr-4 font-mono font-medium">${fmt(balance)}</td>
+        <td class="py-2 pr-4 font-mono text-accent">+${fmt(yearInterest)}</td>
+        <td class="py-2 font-mono text-muted">${fmt(accumulatedInterest)}</td>
       `;
-      tbody.append(tr);
-    });
+        tbody.append(tr);
+      }
+    );
 
     section.classList.remove("hidden");
   }
@@ -560,10 +519,10 @@ const interesCompuestoFaqs = [
     headlineLabel.textContent = "Monto final";
     const headlineValue = document.createElement("p");
     headlineValue.className = "text-4xl font-bold";
-    headlineValue.textContent = fmt(result.montoFinal);
+    headlineValue.textContent = fmt(result.finalAmount);
     const headlineSub = document.createElement("p");
     headlineSub.className = "mt-1.5 text-xs text-foreground/60";
-    headlineSub.textContent = `${result.anos} años · capitalización ${frecuenciaLabel[result.n] ?? result.n + "x/año"}`;
+    headlineSub.textContent = `${result.years} años · capitalización ${frecuenciaLabel[result.compoundsPerYear] ?? result.compoundsPerYear + "x/año"}`;
     headline.append(headlineLabel, headlineValue, headlineSub);
 
     const mkRow = (label: string, value: string, colorClass = "") => {
@@ -597,14 +556,18 @@ const interesCompuestoFaqs = [
     const rows = document.createElement("div");
     rows.className = "space-y-0";
     rows.append(
-      mkRow("Capital inicial", fmt(result.capital), "text-secondary"),
-      mkRow("Tasa anual", fmtPct(result.tasa), "text-secondary"),
+      mkRow("Capital inicial", fmt(result.principal), "text-secondary"),
+      mkRow("Tasa anual", fmtPct(result.annualRatePercent), "text-secondary"),
       mkRow(
         "Interés total generado",
-        fmt(result.interesGenerado),
+        fmt(result.generatedInterest),
         "text-green-500"
       ),
-      mkRow("Rentabilidad total", fmtPct(result.rentabilidadPct), "text-accent")
+      mkRow(
+        "Rentabilidad total",
+        fmtPct(result.totalReturnPercent),
+        "text-accent"
+      )
     );
 
     const extras = document.createElement("div");
@@ -612,11 +575,11 @@ const interesCompuestoFaqs = [
     extras.append(
       mkInfoRow(
         "Relación final/inicial",
-        `×${(result.montoFinal / result.capital).toFixed(2)}`
+        `×${(result.finalAmount / result.principal).toFixed(2)}`
       ),
       mkInfoRow(
         "Interés promedio anual",
-        fmt(result.interesGenerado / result.anos)
+        fmt(result.generatedInterest / result.years)
       )
     );
 
@@ -651,9 +614,14 @@ const interesCompuestoFaqs = [
       return;
     }
 
-    const result = calcularInteresCompuesto(capital, tasaPct, anos, n);
+    const result = calculateCompoundInterest({
+      principal: capital,
+      annualRatePercent: tasaPct,
+      years: anos,
+      compoundsPerYear: n,
+    });
     renderResultado(result);
-    renderTabla(result.evolucion);
+    renderTabla(result.yearlyEvolution);
     focusResultado();
     saveCalculatorResult(
       window.location.pathname,
@@ -662,7 +630,7 @@ const interesCompuestoFaqs = [
 
     if (typeof window.showShareResult === "function") {
       window.showShareResult(
-        `Interés compuesto: $${Math.round(capital).toLocaleString("es-CL")} al ${tasaPct}% por ${anos} años → ${fmt(result.montoFinal)}`
+        `Interés compuesto: $${Math.round(capital).toLocaleString("es-CL")} al ${tasaPct}% por ${anos} años → ${fmt(result.finalAmount)}`
       );
     }
     window.showCalculatorNextActions?.();

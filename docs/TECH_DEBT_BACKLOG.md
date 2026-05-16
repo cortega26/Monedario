@@ -13,9 +13,9 @@ Fecha de corte: 2026-05-15
 
 ### Estado de avance (2026-05-15)
 
-- **Completados:** 70 TD únicos (`TD-0001`..`TD-0062`, `TD-0064`, `TD-0066`, `TD-0070`, `TD-0071`, `TD-0073`, `TD-0074`, `TD-0080`, `TD-0082`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
+- **Completados:** 71 TD únicos (`TD-0001`..`TD-0062`, `TD-0064`, `TD-0066`, `TD-0068`, `TD-0070`, `TD-0071`, `TD-0073`, `TD-0074`, `TD-0080`, `TD-0082`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
 - **En progreso:** 0
-- **Backlog sin iniciar:** 10 (`TD-0063`, `TD-0065`, `TD-0067`..`TD-0069`, `TD-0075`..`TD-0078`, `TD-0081`)
+- **Backlog sin iniciar:** 9 (`TD-0063`, `TD-0065`, `TD-0067`, `TD-0069`, `TD-0075`..`TD-0078`, `TD-0081`)
 - **Backlog en validación/diseño:** 2 (`TD-0072` parcial por referencias activas; `TD-0079` bloqueado por incompatibilidad WOFF2/Satori)
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -1513,13 +1513,14 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** Añadir `@vitest/coverage-v8` como devDep y configurar `vitest.config` con `coverage: { provider: 'v8', reporter: ['text', 'json-summary'], thresholds: { lines: 80 } }`. Ejecutar `pnpm vitest run --coverage` y crear los tests faltantes para las 5 calculadoras, priorizando las 3 con lógica (depósito, interés compuesto, comisiones AFP). UF/UTM son conversores puros y pueden cubrirse con golden tests.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] `pnpm vitest run --coverage` reporta cobertura ≥80% en `src/application/` y `src/domain/`.
-  - [ ] Existen tests para `comisiones-afp`, `conversor-uf`, `conversor-utm`, `deposito-a-plazo`, `interes-compuesto`.
-  - [ ] CI ejecuta coverage check y falla si baja del threshold.
+  - [x] `pnpm vitest run --coverage` reporta cobertura ≥80% en `src/application/` y `src/domain/`.
+  - [x] Existen tests para `comisiones-afp`, `conversor-uf`, `conversor-utm`, `deposito-a-plazo`, `interes-compuesto`.
+  - [x] CI ejecuta coverage check y falla si baja del threshold.
 - **Owner:** —
-- **Estado:** Abierto
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-15
-- **Última actualización:** 2026-05-15
+- **Última actualización:** 2026-05-16
+- **Nota 2026-05-16:** agregado `@vitest/coverage-v8`, `test:coverage` y gate CI con coverage. Coverage configurado para `src/application/**/*.ts` y `src/domain/**/*.ts` con threshold líneas 80%; ejecución local `pnpm run test:coverage` pasó con 90.16% líneas, 82 archivos de test y 586 tests. Se agregaron tests directos para `CompareAfpCommissions`, `ConvertUf`, `ConvertUtm`, `CalculateTermDeposit` e `CalculateCompoundInterest`; las fórmulas inline de `comisiones-afp`, `deposito-a-plazo` e `interes-compuesto` se extrajeron a use-cases puros.
 
 ## TD-0069 — Duplicación local entre calculadoras pares (jscpd)
 - **ID:** TD-0069
