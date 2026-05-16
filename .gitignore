@@ -83,3 +83,7 @@ docs/backlog/*
 !docs/backlog/prompt-*.md
 !docs/editorial/artifacts/
 !docs/editorial/artifacts/**
+
+
+#Ignore vscode AI rules
+.github/instructions/codacy.instructions.md

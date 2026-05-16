@@ -1,21 +1,21 @@
 # TECH_DEBT_BACKLOG
 
-Fecha de corte: 2026-05-13
+Fecha de corte: 2026-05-15
 
 ## Métricas
 
 ### Total de items por urgencia
 
 - **P0:** 7
-- **P1:** 19
-- **P2:** 30
-- **P3:** 5
+- **P1:** 23 (+4 desde auditoría 2026-05-15)
+- **P2:** 39 (+9 desde auditoría 2026-05-15)
+- **P3:** 12 (+7 desde auditoría 2026-05-15)
 
-### Estado de avance (2026-05-13)
+### Estado de avance (2026-05-15)
 
 - **Completados:** 62 TD únicos (`TD-0001`..`TD-0062`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
 - **En progreso:** 0
-- **Backlog sin iniciar:** 0
+- **Backlog sin iniciar:** 20 (`TD-0063`..`TD-0082`, abiertos por auditoría profunda 2026-05-15 — ver `docs/reports/AUDIT-DEEP-2026-05-15.md`)
 - **Backlog en validación/diseño:** 0
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -42,12 +42,14 @@ Fecha de corte: 2026-05-13
 - Actualización de julio 2026: actualizar `imm` en `economic-parameters.snapshot.json` cuando se publique el decreto de reajuste del IMM.
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 
-### Siguiente orden recomendado (2026-05-13)
+### Siguiente orden recomendado (2026-05-15)
 
+- **Quick wins (XS, ejecutables en una sesión corta):** `TD-0064` (eliminar deps unused), `TD-0070` (deduplicar HeroPromptWorkspace), `TD-0071` (sincronizar MODULE_INDEX), `TD-0072` (archivar scripts one-off), `TD-0073` (timeout en claude-code-review), `TD-0079` (eliminar `.ttf` redundantes), `TD-0080` (etiquetar magic numbers).
+- **P1 estructurales:** `TD-0066` (excluir `/dev/` de prod build) — impacto directo en bundle.
+- **P2 con decisión arquitectural:** `TD-0075` (`inlineStylesheets`), `TD-0077` (Astro features: prefetch/viewTransitions) — requieren medición y ADR.
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 - Actualizar `imm` en snapshot cada julio con el nuevo decreto presidencial.
 - Resolver warnings no bloqueantes vigentes (`topicRole` faltante y descripciones sobre 155 caracteres) o promoverlos a TD si dejan de ser mera higiene editorial.
-- No quedan TD técnicos abiertos con ID activo al 2026-05-13, pero siguen existiendo follow-ups operativos/editoriales fuera de este ledger; si alguno sube de warning/higiene a riesgo rastreable, debe abrirse como nuevo TD.
 
 ### Quick wins (alto impacto / bajo esfuerzo)
 
@@ -1386,3 +1388,411 @@ Fecha de corte: 2026-05-13
 - **Fecha de creación:** 2026-05-11
 - **Última actualización:** 2026-05-11
 - **Nota de cierre:** Implementado `renderAfpComparisonInverso` que ejecuta 7 × `estimateGrossFromNet` dentro de un `setTimeout(0)`, dejando que el resultado principal renderice sin bloquear. El panel actualiza su encabezado a "¿Qué bruto necesitarías con cada AFP?" y muestra el bruto estimado y su diferencia respecto a la AFP seleccionada (verde = menor bruto requerido, rojo = mayor bruto). `renderAfpComparison` (modo forward) restaura los encabezados originales al volver a ese modo. `hideAfpComparison()` se mantiene en `updateModoUI` para el limpiado al cambiar de modo. 524 tests pasan, 0 errores en `pnpm run check`.
+
+---
+
+# Auditoría profunda 2026-05-15 — TD-0063..TD-0082
+
+Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `docs/reports/AUDIT-DEEP-2026-05-15.md`. Alcance: técnico-código + performance/dependencias + DevOps/editorial/docs. Fuera de alcance: seguridad y SEO/A11y drift (auditados en mayo 2026).
+
+## TD-0063 — Páginas `.astro` >500 LOC sin descomposición en componentes
+- **ID:** TD-0063
+- **Título corto:** Componentizar páginas calculadoras hinchadas
+- **Descripción:** 14 páginas `.astro` superan las 500 líneas. El caso más extremo es `src/pages/calculadoras/sueldo-liquido.astro` con 2134 líneas que combinan HTML, scripts inline de cálculo, y bloques de FAQ/disclaimer/methodology. La hinchazón dificulta la revisión, la reutilización entre calculadoras pares y aumenta la superficie de bugs cuando un cambio mecánico (ej. actualizar copy del disclaimer) requiere editar 14 archivos.
+- **Evidencia:** `find src -type f -name "*.astro" -exec wc -l {} \;` muestra: `sueldo-liquido.astro` 2134, `apv.astro` 1026, `finiquito-indemnizacion.astro` 936, `simulador-renegociacion.astro` 855, `operacion-renta.astro` 799, `prepago-credito.astro` 797, `seguro-cesantia.astro` 791, más 7 archivos entre 500-735 LOC.
+- **Impacto:** Mantenimiento costoso, riesgo de inconsistencia entre calculadoras, dificultad de onboarding. Sin impacto runtime directo (el bundle ya está optimizado).
+- **Riesgo:** medio (refactor cross-cutting; preserva semántica con tests existentes)
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** Extraer componentes reutilizables (`CalculatorMethodology`, `CalculatorDisclaimerYMYL`, `CalculatorFAQBlock`, `CalculatorShareResult`) desde las páginas más grandes. Empezar por las top 3 (`sueldo-liquido`, `apv`, `finiquito-indemnizacion`). Mantener scripts inline solo cuando estén acoplados a la lógica específica de la calculadora.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] Top 3 páginas reducidas a <800 LOC cada una.
+  - [ ] Al menos 3 componentes extraídos a `src/components/calculator/`.
+  - [ ] `pnpm run check` + `pnpm run test` pasan sin regresiones.
+  - [ ] Lighthouse mobile sigue en Performance >=95 en las rutas refactorizadas.
+- **Owner:** —
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-15
+- **Última actualización:** 2026-05-15
+
+## TD-0064 — Dependencias declaradas sin uso (`dayjs`, `node-fetch`, `remark-toc`)
+- **ID:** TD-0064
+- **Título corto:** Eliminar 3 deps unused de `package.json`
+- **Descripción:** Tres dependencias en `package.json` no se usan: `dayjs` (0 imports en `src/`, reemplazado en algún momento por `Date` nativo + `Intl.DateTimeFormat`), `node-fetch` (el único candidato `scripts/urlcheck/probe-external.mjs` usa `fetch` nativo de Node 18+), `remark-toc` (solo aparece como mención en un comentario explicativo en `astro.config.ts:50`). Mantenerlas infla el árbol de dependencias y la superficie de supply chain.
+- **Evidencia:** `npx depcheck --skip-missing` reporta los 5 deps unused (los otros 2 son falsos positivos: `remark-collapse` usado en `astro.config.ts`, `tailwindcss` usado vía `@tailwindcss/vite`). Verificación manual: `grep -rln "dayjs\|node-fetch\|remark-toc" src/ scripts/` confirma 0 imports reales.
+- **Impacto:** Reduce el árbol de deps (`pnpm install` más rápido y menos superficie de supply chain), elimina `dayjs` (5KB unused), `node-fetch` (15KB con sus deps transitivas), `remark-toc` (con árbol unified/remark).
+- **Riesgo:** bajo (verificado vía depcheck + grep manual; CI detecta regresiones)
+- **Severidad (1-5):** 4
+- **Urgencia:** P1
+- **Esfuerzo estimado:** XS
+- **Propuesta de solución:** `pnpm remove dayjs node-fetch remark-toc`. Ejecutar `pnpm run check && pnpm run test && pnpm run build` para validar. Commit único.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `package.json` ya no lista `dayjs`, `node-fetch`, `remark-toc`.
+  - [ ] `pnpm-lock.yaml` actualizado.
+  - [ ] `pnpm run check`, `pnpm run test`, `pnpm run build` pasan limpios.
+  - [ ] `npx depcheck` no reporta nuevos falsos positivos.
+- **Owner:** —
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-15
+- **Última actualización:** 2026-05-15
+
+## TD-0065 — 8 dependencias minor outdated
+- **ID:** TD-0065
+- **Título corto:** Bump batch de 8 deps minor
+- **Descripción:** `pnpm outdated` reporta 8 paquetes con versiones minor/patch atrasadas: `astro` 6.2.2→6.3.3, `@astrojs/mdx` 5.0.4→5.0.6, `@astrojs/react` 5.0.4→5.0.5, `tailwindcss` 4.2.4→4.3.0, `@tailwindcss/vite` 4.2.4→4.3.0, `@playwright/test` 1.59.1→1.60.0, `eslint` 10.3.0→10.4.0, `openai` 6.36.0→6.38.0. Ninguno es major. Dependabot ya las trackea (`#149`, `#150`, `#151`, `#152` mergeados); el remanente son las que aún no llegaron por PR o que Dependabot bumpeó parcialmente.
+- **Evidencia:** Output de `pnpm outdated --long` ejecutado 2026-05-15.
+- **Impacto:** Bug fixes y mejoras menores acumuladas; ningún breaking change esperado. Sincroniza con upstream antes del próximo major.
+- **Riesgo:** bajo (todos son minor/patch; CI tiene smoke test completo)
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Bump en batch usando `pnpm update --latest` filtrando por package, o esperar PRs de Dependabot individuales. Validar con `pnpm run check && pnpm run test && pnpm run build`. Revisar changelog de Astro 6.2→6.3 (más probable que tenga notas relevantes).
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `pnpm outdated` retorna lista vacía o solo paquetes que esperamos no actualizar.
+  - [ ] `pnpm run check && pnpm run test && pnpm run build` pasan.
+  - [ ] Lighthouse CI mantiene Performance >=95.
+- **Owner:** —
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-15
+- **Última actualización:** 2026-05-15
+
+## TD-0066 — `/dev/hero-images/` se publica en build de producción (400 KB de assets dev)
+- **ID:** TD-0066
+- **Título corto:** Excluir páginas `src/pages/dev/**` del build prod
+- **Descripción:** La página `src/pages/dev/hero-images.astro` está pensada como herramienta interna para iterar prompts de hero images. Tiene `<meta name="robots" content="noindex, nofollow">` ✓ y no aparece en `sitemap.xml` ✓, pero sí se genera en `dist/dev/hero-images/index.html` (214 KB) y arrastra el único `client:only="react"` del proyecto, lo que produce el bundle `client.DTojXMD-.js` de 186 KB (React runtime completo). Total: ~400 KB de assets dev publicados en prod.
+- **Evidencia:** `find dist/dev -name "*.html"` → `dist/dev/hero-images/index.html`. `du -b dist/_astro/client.DTojXMD-.js` → 185936 bytes. `grep -rEn "client:" src/ --include="*.astro"` → única ocurrencia: `src/pages/dev/hero-images.astro`. `grep -c "/dev/" dist/sitemap*.xml` → 0.
+- **Impacto:** Bytes muertos en CDN, posible indexación accidental si alguien comparte URL directa, riesgo de exposición de UI interna. El React runtime carga 186 KB solo para esta página.
+- **Riesgo:** bajo (página es solo herramienta dev; eliminarla del build no afecta usuarios)
+- **Severidad (1-5):** 4
+- **Urgencia:** P1
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Una de dos vías: (a) mover `src/pages/dev/**` a un directorio gated y excluirlo del build con env flag `BUILD_DEV_PAGES`; en CI prod no setear el flag. (b) Mantener la página en dev y excluirla del build con un hook de Astro (`hooks: ['astro:config:setup']` filtrando pages). Preferir (a) por simplicidad.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `find dist/dev -name "*.html"` retorna vacío en build CI.
+  - [ ] `client.DTojXMD-.js` (o equivalente) ya no se genera en build prod.
+  - [ ] `dev` sigue accesible en `pnpm run dev` para iteración local.
+  - [ ] Documentado en `README.md` o `AGENTS.md` cómo activar/desactivar páginas dev.
+- **Owner:** —
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-15
+- **Última actualización:** 2026-05-15
+
+## TD-0067 — Use-cases >200 LOC mezclan dominio + formateo/presentación
+- **ID:** TD-0067
+- **Título corto:** Refactor use-cases gigantes
+- **Descripción:** Tres use-cases superan 200 LOC y mezclan lógica de dominio (cálculos) con formateo y composición de respuesta: `SimulateRetirementProjection.ts` (301 LOC), `CalculateApvComparison.ts` (271 LOC), `EstimateFiniquito.ts` (234 LOC). El patrón ideal en DDD es delegar formateo a `infrastructure/presenters/` o `application/formatters/`, dejando los use-cases puramente sobre orquestación de domain primitives.
+- **Evidencia:** `wc -l src/application/use-cases/*.ts | sort -rn | head -5`. La regla de oro local: si un use-case devuelve strings ya formateados (CLP, UF, fechas), probablemente está haciendo demasiado.
+- **Impacto:** Tests unitarios más difíciles, acoplamiento entre lógica financiera y presentación, dificulta reutilizar el mismo cálculo para otro frontend (ej. API JSON).
+- **Riesgo:** medio (refactor con cobertura: tests existentes deben mantenerse verde)
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** Para cada use-case top-3, extraer un `<UseCase>Presenter.ts` que tome el resultado puro y devuelva el shape formateado. El use-case se queda con números/booleanos; el presenter aplica `fmt()` de `utils/indicadores.ts`. Tests del use-case se vuelven más simples (asertos numéricos en vez de strings).
+- **Criterios de cierre (checklist verificable):**
+  - [ ] Top 3 use-cases por debajo de 200 LOC.
+  - [ ] Existe `application/formatters/` o `infrastructure/presenters/` con los presenters extraídos.
+  - [ ] Tests existentes pasan sin cambio mayor (solo ajuste para usar presenter cuando el aserto era sobre string formateado).
+- **Owner:** —
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-15
+- **Última actualización:** 2026-05-15
+
+## TD-0068 — Cobertura de tests no medida; 5 calculadoras sin test directo
+- **ID:** TD-0068
+- **Título corto:** Configurar `vitest --coverage` y cubrir calcs huérfanas
+- **Descripción:** Vitest no tiene `coverage` configurado (`vitest.config` sin `coverage.provider`). 5 calculadoras carecen de test directo en `tests/application/`: `comisiones-afp`, `conversor-uf`, `conversor-utm`, `deposito-a-plazo`, `interes-compuesto`. Las 3 últimas son recientes (Sprint 3 SEO). Sin coverage, no podemos detectar branches no cubiertos por los tests existentes (16 application tests para 17 use-cases).
+- **Evidencia:** `cat vitest.config*` no muestra bloque `coverage`. `diff <(ls tests/application/*.test.ts) <(ls src/pages/calculadoras/*.astro)` muestra el gap.
+- **Impacto:** Riesgo de regresión en calculadoras sin test, especialmente las nuevas. Sin métrica de cobertura, no podemos defender objetivos cuantitativos en PRs.
+- **Riesgo:** bajo (agregar coverage es no-invasivo; tests adicionales son aditivos)
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Añadir `@vitest/coverage-v8` como devDep y configurar `vitest.config` con `coverage: { provider: 'v8', reporter: ['text', 'json-summary'], thresholds: { lines: 80 } }`. Ejecutar `pnpm vitest run --coverage` y crear los tests faltantes para las 5 calculadoras, priorizando las 3 con lógica (depósito, interés compuesto, comisiones AFP). UF/UTM son conversores puros y pueden cubrirse con golden tests.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `pnpm vitest run --coverage` reporta cobertura ≥80% en `src/application/` y `src/domain/`.
+  - [ ] Existen tests para `comisiones-afp`, `conversor-uf`, `conversor-utm`, `deposito-a-plazo`, `interes-compuesto`.
+  - [ ] CI ejecuta coverage check y falla si baja del threshold.
+- **Owner:** —
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-15
+- **Última actualización:** 2026-05-15
+
+## TD-0069 — Duplicación local entre calculadoras pares (jscpd)
+- **ID:** TD-0069
+- **Título corto:** Extraer layout/componente compartido entre calcs duplicadas
+- **Descripción:** `jscpd` detecta clones de 27-37 líneas entre pares de calculadoras: `deposito-a-plazo ↔ interes-compuesto` (35 líneas), `credito-consumo ↔ tarjeta-credito` (32), `boleta-honorarios-liquido ↔ finiquito-indemnizacion` (37), `conversor-uf ↔ conversor-utm` (27). Total: 18 clones, 0.84% del codebase (baja pero específica). Los clones son típicamente bloques de FAQ, disclaimer YMYL, o estructura de form inputs.
+- **Evidencia:** `npx jscpd src/ --min-lines 15 --min-tokens 100 --reporters json --output /tmp/jscpd-out`.
+- **Impacto:** Mantenimiento costoso (cambiar el disclaimer requiere editar pares), riesgo de drift entre versiones del mismo bloque.
+- **Riesgo:** bajo (refactor cosmético; tests no se afectan)
+- **Severidad (1-5):** 2
+- **Urgencia:** P3
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Acoplado a TD-0063 (componentización). Una vez extraídos `CalculatorDisclaimerYMYL`, `CalculatorFAQBlock`, etc., los pares con duplicación deberían colapsar naturalmente. Re-medir `jscpd` post-refactor para confirmar caída a <0.5%.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `jscpd` reporta <0.5% duplicación tras refactor.
+  - [ ] Ningún par calc-calc identificado tiene >10 líneas duplicadas.
+- **Owner:** —
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-15
+- **Última actualización:** 2026-05-15
+
+## TD-0070 — Duplicación interna en `HeroPromptWorkspace.jsx` (50 líneas)
+- **ID:** TD-0070
+- **Título corto:** Deduplicar bloque en HeroPromptWorkspace
+- **Descripción:** `src/tools/hero-images/HeroPromptWorkspace.jsx` tiene un bloque de ~50 líneas casi idéntico entre líneas 446-490 y 462-511 (jscpd lo marca como el clon más grande del proyecto). Probable copy-paste durante iteración rápida; ahora ambos divergen ligeramente y requieren mantenimiento sincronizado.
+- **Evidencia:** `jscpd` reporta: `src/tools/hero-images/HeroPromptWorkspace.jsx:462-511 <=> :446-490 (50 lines)`.
+- **Impacto:** Bajo (archivo es solo de página dev), pero deuda de calidad real. Si la página dev se mantiene en el repo, conviene limpiarla.
+- **Riesgo:** muy bajo
+- **Severidad (1-5):** 2
+- **Urgencia:** P3
+- **Esfuerzo estimado:** XS
+- **Propuesta de solución:** Extraer el bloque duplicado a una función o sub-componente. Si TD-0066 (excluir `/dev/` de prod) se ejecuta primero, este TD se mantiene como higiene de mantenibilidad del workspace.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `jscpd` ya no reporta el clon de 50 líneas.
+  - [ ] La página `dev/hero-images` sigue funcionando en `pnpm run dev`.
+- **Owner:** —
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-15
+- **Última actualización:** 2026-05-15
+
+## TD-0071 — `MODULE_INDEX.md` desactualizado tras archivado pendiente de scripts one-off
+- **ID:** TD-0071
+- **Título corto:** Sincronizar `context/MODULE_INDEX.md` con estructura real
+- **Descripción:** `MODULE_INDEX.md` describe `scripts/` como "Quality gates and snapshots (`check:*`, `compare-*`, `snapshot-*`)". Esa descripción no menciona los grupos reales (data-signals, hero-images, urlcheck) ni distingue scripts vigentes de scripts one-off completados (ver TD-0072). Tras ejecutar TD-0072 (archivar 6 scripts), el índice debe reflejar la estructura nueva.
+- **Evidencia:** `cat context/MODULE_INDEX.md | grep scripts`. `find scripts -maxdepth 1 -name "*.mjs" | wc -l` → 78 archivos vs descripción que sugiere solo "check:*/compare-*/snapshot-*".
+- **Impacto:** Agentes que arrancan en cold start (loading MODULE_INDEX como context warm-up) reciben mapa inexacto del repo. Drift de gobernanza.
+- **Riesgo:** muy bajo
+- **Severidad (1-5):** 4
+- **Urgencia:** P1
+- **Esfuerzo estimado:** XS
+- **Propuesta de solución:** Tras ejecutar TD-0072, actualizar `MODULE_INDEX.md` con sub-bullets bajo `scripts/`: `scripts/data-signals/`, `scripts/hero-images/`, `scripts/urlcheck/`, `archive/scripts/` (one-off completados). Sincronizar con la realidad del repo.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `MODULE_INDEX.md` lista todos los grupos de `scripts/` vigentes.
+  - [ ] Menciona `archive/scripts/` como destino de one-off completados.
+  - [ ] `pnpm run check:context` pasa (si existe verificación de drift).
+- **Owner:** —
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-15
+- **Última actualización:** 2026-05-15
+
+## TD-0072 — 6 scripts one-off completados siguen vivos en `scripts/`
+- **ID:** TD-0072
+- **Título corto:** Archivar scripts one-off ya ejecutados
+- **Descripción:** 6 scripts no son referenciados desde `package.json` ni desde `.github/workflows/*.yml`, y representan tareas one-off ya completadas o reemplazadas: `backfill-td-0057.mjs` (1106 LOC, backfill editorial ejecutado 2026-05-11), `download-og-fonts.mjs` (descarga inicial de fonts OG), `editorial-copy-rules.mjs` (no referenciado), `lighthouse-audit.mjs` (wrapper antiguo, ahora se usa `lhci`), `migrate-responsive-heroes.mjs` (migración ejecutada), `normalize-frontmatter.mjs` (one-off).
+- **Evidencia:** `for f in scripts/*.mjs; do refs=$(grep -l "$(basename $f)" package.json .github/workflows/*.yml 2>/dev/null | wc -l); if [ "$refs" -eq 0 ]; then echo "HUÉRFANO: $f"; fi; done`.
+- **Impacto:** Ruido en `scripts/`, riesgo de re-ejecutar accidentalmente un backfill ya hecho, dificulta el onboarding (¿este script está vigente?).
+- **Riesgo:** bajo (mover a archive es reversible; cualquier referencia rota la detecta CI o el operador)
+- **Severidad (1-5):** 4
+- **Urgencia:** P1
+- **Esfuerzo estimado:** XS
+- **Propuesta de solución:** `mkdir -p archive/scripts && mv` los 6 scripts. Añadir `archive/scripts/README.md` que explique que son one-off completados, con fecha de archivado y nota de la tarea original. Validar con `pnpm run check && pnpm run build` que no haya referencia oculta.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] Los 6 scripts viven en `archive/scripts/`.
+  - [ ] `archive/scripts/README.md` documenta cada uno.
+  - [ ] `pnpm run check && pnpm run build && pnpm run test` pasan sin tocar nada de la lógica.
+  - [ ] `MODULE_INDEX.md` actualizado (depende de TD-0071).
+- **Owner:** —
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-15
+- **Última actualización:** 2026-05-15
+
+## TD-0073 — `claude-code-review.yml` sin `timeout-minutes`
+- **ID:** TD-0073
+- **Título corto:** Añadir `timeout-minutes` a claude-code-review
+- **Descripción:** El workflow `claude-code-review.yml` usa `anthropics/claude-code-action@v1` (integración oficial vigente y deseable). Es el único de los 14 workflows sin `timeout-minutes` declarado. Nota: el workflow `claude.yml` (distinto) fue removido en PR #155 — eso está OK; el de code review siempre fue independiente y debe seguir activo.
+- **Evidencia:** `for f in .github/workflows/*.yml; do if ! grep -q "timeout-minutes" "$f"; then echo "MISSING: $(basename $f)"; fi; done` → solo `claude-code-review.yml`.
+- **Impacto:** Sin timeout, un PR que dispare claude-review en loop puede consumir minutos de runner GH ilimitadamente.
+- **Riesgo:** bajo
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** XS
+- **Propuesta de solución:** Añadir `timeout-minutes: 15` bajo `runs-on: ubuntu-latest` en `claude-code-review.yml`.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `claude-code-review.yml` tiene `timeout-minutes: 15`.
+  - [ ] `grep -L "timeout-minutes" .github/workflows/*.yml` retorna vacío.
+- **Owner:** —
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-15
+- **Última actualización:** 2026-05-15
+
+## TD-0074 — 4 subdirs de `docs/` sin README
+- **ID:** TD-0074
+- **Título corto:** Crear README en `docs/{archive,domain,editorial,reports}/`
+- **Descripción:** 4 de los 12 subdirs de `docs/` carecen de README.md, lo que crea inconsistencia de gobernanza documentaria: `docs/archive/`, `docs/domain/`, `docs/editorial/`, `docs/reports/`. Los otros 8 subdirs sí tienen README. La falta hace que agentes (y humanos) tengan que adivinar el propósito y la política de cada directorio.
+- **Evidencia:** `for d in docs/*/; do test -f "${d}README.md" || echo "missing $d"; done`.
+- **Impacto:** Bajo en operación día a día, pero acumula deuda de claridad. En `docs/editorial/` particularmente: ya hay políticas (ej. la ADR sobre artifact location) que requieren puntero de entrada.
+- **Riesgo:** muy bajo
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Crear 4 README.md con: (a) propósito del directorio, (b) política de qué entra ahí, (c) tabla de contenidos del directorio. Tomar como modelo `docs/governance/README.md` o `docs/operations/README.md`.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `docs/archive/README.md` existe y explica criterio de archivado.
+  - [ ] `docs/domain/README.md` existe y describe documentos de dominio.
+  - [ ] `docs/editorial/README.md` existe y referencia ADR-20260511 + norma YMYL.
+  - [ ] `docs/reports/README.md` existe y describe qué reportes viven aquí (auditorías, snapshots).
+- **Owner:** —
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-15
+- **Última actualización:** 2026-05-15
+
+## TD-0075 — Evaluar `inlineStylesheets: "auto"` vs `"never"` con medición LCP real
+- **ID:** TD-0075
+- **Título corto:** Decisión sobre inlining de CSS crítico
+- **Descripción:** `astro.config.ts:115` setea `inlineStylesheets: "never"`. Esto produce un CSS externo cacheable (`Footer.CSkDFKvF.css` ~103 KB con todo el CSS de Tailwind 4 + theme + utilities), bueno para repeat-visits pero potencialmente subóptimo para first-visit LCP (el browser debe hacer round-trip para descargarlo). Astro soporta `"auto"` que inlinea bajo cierto umbral de tamaño.
+- **Evidencia:** `astro.config.ts:115`. `du -h dist/_astro/Footer.CSkDFKvF.css` → 103 KB. Lighthouse mobile reciente (TD-0039) midió LCP mediana <=1.656s, no crítico pero con margen.
+- **Impacto:** Potencial mejora de LCP en first-visit, o degradación si el inlining hincha el HTML. Decisión requiere medición A/B real (no estática).
+- **Riesgo:** medio (un cambio mal medido puede empeorar LCP en lugar de mejorarlo)
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** (1) Medir LCP actual en `monedario.cl` con WebPageTest mobile slow-3G en 3 rutas (home, post largo, calculadora). (2) Hacer build local con `inlineStylesheets: "auto"`, medir LCP en preview. (3) Si la mejora es >100ms y el HTML no se infla >30%, adoptar. Si no, registrar ADR justificando mantener `"never"`.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] Existe medición de LCP en 3 rutas con ambas configuraciones.
+  - [ ] Decisión documentada en `docs/adr/`.
+  - [ ] Si se adopta `"auto"`, `astro.config.ts` actualizado y Lighthouse CI verde.
+- **Owner:** —
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-15
+- **Última actualización:** 2026-05-15
+
+## TD-0076 — HTML hotspots: `tags/` (379 KB) y `archives/` (176 KB)
+- **ID:** TD-0076
+- **Título corto:** Comprimir páginas de listado grandes
+- **Descripción:** Dos páginas generan HTML notoriamente grandes: `dist/tags/index.html` 379 KB (lista todos los tags con icon SVG inline por tag) y `dist/archives/index.html` 176 KB (lista todos los posts por año/mes). Tags ya tiene `<meta robots noindex,follow>` ✓ por lo que no impacta SEO, pero descarga es costosa para usuarios que navegan ahí. Archives es página de navegación legítima sin truncado.
+- **Evidencia:** `find dist -name "*.html" -exec du -b {} \; | sort -n | tail -5` → tags y archives en el top. Inspección de `tags/index.html` muestra SVG icons inline duplicados por tag.
+- **Impacto:** Páginas pesadas para usuarios con conexión limitada. Tags se beneficia de truncar SVGs a sprite externo; archives podría paginarse o usar accordion.
+- **Riesgo:** bajo
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** (a) Tags: extraer SVG de `Tag.astro` a un sprite SVG `public/icons/tags.svg` referenciado por `<use href>`. (b) Archives: paginar por año (mostrar año actual expandido, anteriores como accordion colapsado por defecto). Confirmar que la paginación no rompa enlaces.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `dist/tags/index.html` < 100 KB.
+  - [ ] `dist/archives/index.html` < 80 KB o paginado.
+  - [ ] `pnpm run check:routes` no detecta cambios silenciosos.
+- **Owner:** —
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-15
+- **Última actualización:** 2026-05-15
+
+## TD-0077 — Astro features no adoptadas: `prefetch`, `viewTransitions`, `inlineStylesheets:"auto"`
+- **ID:** TD-0077
+- **Título corto:** Decisión documentada sobre features Astro no adoptadas
+- **Descripción:** `astro.config.ts` no usa `prefetch`, `experimental.viewTransitions` ni `inlineStylesheets: "auto"`. Cada una puede mejorar UX o performance pero también tiene tradeoffs. No hay ADR documentando la decisión actual. Esto crea ambigüedad: ¿se evaluó y descartó? ¿no se ha considerado?
+- **Evidencia:** `cat astro.config.ts | grep -E "prefetch|viewTransitions|inlineStylesheets"`. Solo aparece `inlineStylesheets: "never"`.
+- **Impacto:** Riesgo de adoptar features sin evaluación, o de descartar features útiles por inercia. La decisión documentada acelera futuras conversaciones.
+- **Riesgo:** muy bajo (es decisión, no implementación)
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** Crear `docs/adr/ADR-YYYYMMDD-astro-features-adoption.md` con tabla: feature, estado (no evaluada / evaluada-descartada / activa), razón, fecha de revisión próxima. Para `prefetch`: bajo costo, alto beneficio en navegación entre calcs y blog — probablemente adoptar. Para `viewTransitions`: requiere medición de impacto en LCP/CLS. Para `inlineStylesheets`: cubierto por TD-0075.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] ADR creado con decisión justificada por feature.
+  - [ ] Si se adopta alguna, `astro.config.ts` actualizado.
+  - [ ] Lighthouse CI valida que ninguna degrade Performance >5 puntos.
+- **Owner:** —
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-15
+- **Última actualización:** 2026-05-15
+
+## TD-0078 — Service Worker cache version sin auto-bump por build
+- **ID:** TD-0078
+- **Título corto:** Auto-bumpear `CACHE` version en `public/sw.js`
+- **Descripción:** `public/sw.js` tiene `CACHE = "monedario-v1"` y `ASSETS_CACHE = "monedario-assets-v1"`. Si se hace deploy con cambio de HTML (ej. nueva calculadora, nuevo CTA en Layout) sin bumpear `v1` a `v2`, los usuarios con SW instalado servirán HTML viejo de cache hasta que el SW se actualice asíncronamente (stale-while-revalidate). El bump actual es manual.
+- **Evidencia:** `grep "CACHE\s*=" public/sw.js` → constante hardcoded. `git log -- public/sw.js` muestra bumps esporádicos.
+- **Impacto:** Cache stale en usuarios recurrentes; el efecto se manifiesta como "no veo el cambio que acabo de deployar" temporalmente. SWR mitiga pero no elimina.
+- **Riesgo:** bajo (impacto temporal, máximo 1 visita stale por usuario)
+- **Severidad (1-5):** 2
+- **Urgencia:** P3
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Convertir `sw.js` en template procesado en build. Opción simple: script en `astro.config.ts` que reemplace `__CACHE_VERSION__` por `process.env.GITHUB_SHA?.slice(0,7) || Date.now().toString(36)` durante build. Alternativa: usar `injectManifest` de workbox si la complejidad crece.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] Cada build produce `sw.js` con `CACHE` distinto del build anterior.
+  - [ ] Validar en `dist/sw.js` tras `pnpm build` que el placeholder se reemplazó.
+  - [ ] Confirmar en DevTools (Application > SW) que un deploy produce nueva cache version y limpia la vieja.
+- **Owner:** —
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-15
+- **Última actualización:** 2026-05-15
+
+## TD-0079 — Inter font dual `.ttf` + `.woff2` redundante
+- **ID:** TD-0079
+- **Título corto:** Eliminar `.ttf` de Inter (woff2 es suficiente)
+- **Descripción:** `public/fonts/` tiene `inter-latin-400.ttf` (23 KB) + `inter-latin-400.woff2` (11 KB) e `inter-latin-900.ttf` (23 KB) + `inter-latin-900.woff2` (11 KB). Los `.ttf` no aportan compatibilidad adicional (woff2 cubre todos los navegadores soportados por el proyecto). Total: 46 KB de bytes innecesarios en CDN.
+- **Evidencia:** `ls -la public/fonts/`. `caniuse-lite woff2` confirma cobertura >97% global.
+- **Impacto:** Bajo (los `.ttf` no se cargan a menos que el CSS los referencie). Si no se referencian, son bytes muertos en deploy. Revisar `@font-face` en `src/styles/global.css` para confirmar.
+- **Riesgo:** muy bajo
+- **Severidad (1-5):** 2
+- **Urgencia:** P3
+- **Esfuerzo estimado:** XS
+- **Propuesta de solución:** (1) `grep -rn "inter-latin.*\.ttf" src/` para confirmar que ningún `@font-face` los referencia. (2) Si no se usan, `rm public/fonts/inter-latin-{400,900}.ttf`. (3) Si se usan, eliminar el `src: url(...ttf)` del `@font-face` (dejar solo woff2) y luego eliminar los archivos.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `public/fonts/` ya no contiene los 2 `.ttf` de Inter.
+  - [ ] `pnpm run check:images` y `pnpm run build` pasan.
+  - [ ] Validación visual: la fuente Inter sigue renderizando correctamente en home y posts.
+- **Owner:** —
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-15
+- **Última actualización:** 2026-05-15
+
+## TD-0080 — Magic numbers en use-cases sin etiqueta semántica
+- **ID:** TD-0080
+- **Título corto:** Etiquetar magic numbers en use-cases
+- **Descripción:** Varios use-cases tienen ratios y bandas hardcoded sin constante nombrada que explique el origen normativo. Ejemplos: `EstimateFiniquito.ts:145-147` (`0.3 / 0.5 / 0.8` para bandas de feriado proporcional), `CalculateMortgage.ts:82-83` (`0.001, 29.999` límites de tasa), `CalculateApvComparison.ts:147` (`* 0.15` cap APV). Algunos use-cases sí declaran constantes (`DEFAULT_WITHHOLDING_RATE_PERCENT`, `DEFAULT_UNEMPLOYMENT_MONTHLY_TAXABLE_CAP_UF`), patrón a homologar.
+- **Evidencia:** `grep -rEn "[^a-zA-Z._/]([0-9]+\.[0-9]+|[0-9]{4,})" src/application/use-cases/*.ts | grep -v "//\|import"`.
+- **Impacto:** Bajo runtime, alto en mantenibilidad. Si la ley cambia un ratio (ej. tope APV se baja), buscar `0.15` vs `MAX_APV_TAX_BENEFIT_RATIO` hace diferencia. Es también un check de YMYL: cada cifra normativa debería tener referencia legal.
+- **Riesgo:** muy bajo (cambio cosmético)
+- **Severidad (1-5):** 2
+- **Urgencia:** P3
+- **Esfuerzo estimado:** XS
+- **Propuesta de solución:** Para cada use-case, identificar literales numéricos que representen un parámetro normativo y extraerlos a constantes con nombre + comentario que cite la fuente legal (ley, decreto, circular). Ejemplo: `const FERIADO_PROPORCIONAL_BANDS = { upTo3Years: 0.3, upTo6Years: 0.5, beyond: 0.8 } as const;` con link a CT del DT.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] Top 3 use-cases (`EstimateFiniquito`, `CalculateApvComparison`, `CalculateMortgage`) sin literales numéricos no-trivialmente-explicables.
+  - [ ] Cada constante nueva tiene comentario citando la fuente normativa.
+  - [ ] Tests pasan sin cambios.
+- **Owner:** —
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-15
+- **Última actualización:** 2026-05-15
+
+## TD-0081 — Build secuencial: posible paralelización de checks pre-build
+- **ID:** TD-0081
+- **Título corto:** Paralelizar checks de `pnpm run build`
+- **Descripción:** El script `build` en `package.json` ejecuta secuencialmente: `check:images && check:hero-images && check:frontmatter && check:legal-citations && astro check && astro build && check:toc-i18n && check:editorial-guard && pagefind && cp && check:urls`. Algunos checks son independientes y podrían correr en paralelo (`check:images`, `check:hero-images`, `check:frontmatter`, `check:legal-citations` son lecturas independientes). Build CI completo tarda 8.7 s warm; cold-build podría bajar 2-3 s.
+- **Evidencia:** `cat package.json | jq -r '.scripts.build'`. `time pnpm build:ci` → 8.7s warm.
+- **Impacto:** Bajo (~30% reducción de tiempo de build, pero el build absoluto ya es rápido). Mayor beneficio en CI donde se ejecuta repetidamente.
+- **Riesgo:** medio (paralelizar puede ocultar bugs de carrera, ej. dos checks que escriben al mismo archivo temporal)
+- **Severidad (1-5):** 2
+- **Urgencia:** P3
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Añadir `concurrently` como devDep (o usar `npm-run-all` que ya cubre `--parallel`). Crear script `prebuild:checks:parallel` que ejecute los 4 checks lectores en paralelo. Mantener `astro check` y `astro build` secuenciales (dependencia). Medir tiempo antes/después en CI.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `pnpm run build:ci` ejecuta los 4 pre-build checks en paralelo.
+  - [ ] Tiempo de build en CI baja al menos 1.5 s.
+  - [ ] Sin race conditions detectadas en 3 corridas consecutivas.
+- **Owner:** —
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-15
+- **Última actualización:** 2026-05-15
+
+## TD-0082 — Tabla `STATUS` en `docs/backlog/README.md` para los 7 planes vigentes
+- **ID:** TD-0082
+- **Título corto:** Clasificar planes vigentes en backlog
+- **Descripción:** `docs/backlog/` contiene 7 archivos `PLAN-*` / `*AUDIT*` / `*REMEDIATION*` vigentes. Algunos están parcialmente cerrados (ej. `PLAN-publish-signed-off-sprint-2b-articles-2026-05-11.md` ya se ejecutó según el `README` del backlog). Sin una tabla de estado, agentes que entren al directorio deben leer cada plan para inferir si sigue activo.
+- **Evidencia:** `ls docs/backlog/PLAN-*.md docs/backlog/*AUDIT*.md docs/backlog/*REMEDIATION*.md`. `docs/backlog/README.md` ya tiene tabla de tickets MON-XXX pero no de planes archivados/cerrados.
+- **Impacto:** Bajo, fricción de gobernanza.
+- **Riesgo:** muy bajo
+- **Severidad (1-5):** 2
+- **Urgencia:** P3
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Agregar al final de `docs/backlog/README.md` una tabla con columnas: `Archivo · Estado (vigente / parcialmente cerrado / candidato a archivo) · Última actualización · Bloqueador · Próximo paso`. Mover planes con estado `archivable` a `docs/archive/backlog/` (que ya existe).
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `docs/backlog/README.md` contiene tabla de estado de los 7 planes.
+  - [ ] Planes con estado `archivable` movidos a `docs/archive/backlog/`.
+  - [ ] `MODULE_INDEX.md` actualizado si cambia algún puntero (depende de TD-0071).
+- **Owner:** —
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-15
+- **Última actualización:** 2026-05-15
