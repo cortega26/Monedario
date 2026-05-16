@@ -1,0 +1,23 @@
+name = "monedario-economic-snapshot-refresh"
+main = "src/index.ts"
+compatibility_date = "2026-01-15"
+workers_dev = true
+
+[triggers]
+crons = ["15 10 * * *"]
+
+[vars]
+REPO_OWNER = "cortega26"
+REPO_NAME = "Monedario"
+TARGET_BRANCH = "main"
+TARGET_PATH = "src/infrastructure/economic/economic-parameters.snapshot.json"
+COMMIT_AUTHOR_NAME = "monedario-snapshot-bot"
+COMMIT_AUTHOR_EMAIL = "noreply+snapshot-bot@monedario.cl"
+COMMIT_MESSAGE = "chore(editorial): refresh economic snapshot (worker)"
+MINDICADOR_TIMEOUT_MS = "12000"
+
+[observability]
+enabled = true
+
+# Secrets (set via `wrangler secret put`):
+#   GITHUB_TOKEN  — fine-grained PAT, repo cortega26/Monedario, Contents: Read & Write

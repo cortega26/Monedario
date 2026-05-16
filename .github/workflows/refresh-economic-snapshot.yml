@@ -1,12 +1,21 @@
 name: Refresh Volatile Data Snapshots
 
+# Primary scheduled refresh of the economic snapshot was migrated to a
+# Cloudflare Worker on 2026-05-16 (see ADR-20260516-economic-snapshot-cloudflare-worker.md)
+# to decouple from GitHub Actions billing/quota incidents. This workflow is
+# retained as a manual fallback only — it still refreshes editorial-volatile-data
+# (HTML scraping of spensiones.cl) which was not ported to the Worker in V1.
+#
+# To re-enable the daily schedule, restore the `schedule:` block below.
+#
+#  schedule:
+#    - cron: "15 10 * * *"
+
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "15 10 * * *"
 
 concurrency:
   group: refresh-volatile-data-${{ github.ref }}

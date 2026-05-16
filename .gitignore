@@ -1,5 +1,6 @@
 # build output
 dist/
+.wrangler/
 output/audit/
 output/hero-downloads/
 output/hero-images/
