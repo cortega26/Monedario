@@ -4,7 +4,11 @@ compatibility_date = "2026-01-15"
 workers_dev = true
 
 [triggers]
-crons = ["15 10 * * *"]
+# Three daily triggers for self-healing. All runs are idempotent (payload-diff
+# check ignores capturedAt), so a successful early run makes the later ones
+# no-ops. If 10:15 fails, 14:15 retries; if both fail, 18:15 is the last chance
+# before tomorrow's window. See ADR-20260516 §"auto-trigger on missed updates".
+crons = ["15 10 * * *", "15 14 * * *", "15 18 * * *"]
 
 [vars]
 REPO_OWNER = "cortega26"
@@ -20,4 +24,6 @@ MINDICADOR_TIMEOUT_MS = "12000"
 enabled = true
 
 # Secrets (set via `wrangler secret put`):
-#   GITHUB_TOKEN  — fine-grained PAT, repo cortega26/Monedario, Contents: Read & Write
+#   GITHUB_TOKEN   — fine-grained PAT, repo cortega26/Monedario, Contents: Read & Write
+#   BCCH_USER      — Banco Central SiETE account email (optional; without it UF/USD use mindicador.cl)
+#   BCCH_PASSWORD  — Banco Central SiETE password

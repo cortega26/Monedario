@@ -1,3 +1,18 @@
+// ⚠️ SECONDARY PATH (as of 2026-05-16, ADR-20260516).
+// The canonical economic snapshot refresher is the Cloudflare Worker at
+// `workers/economic-snapshot-refresh/`. This script does NOT fetch IPC from
+// INE — it relies only on mindicador.cl, which currently lags on IPC (Dec 2025
+// stuck) and may overwrite a fresh IPC value committed by the Worker.
+//
+// Use this script ONLY for:
+//   - Local dev / debugging the mindicador.cl pipeline.
+//   - Emergency manual refresh when the Worker is unreachable AND the IPC
+//     staleness is acceptable.
+//
+// Prefer triggering the Worker manually from Cloudflare dashboard (Workers →
+// monedario-economic-snapshot-refresh → Triggers → Run now) or via:
+//   curl "https://monedario-economic-snapshot-refresh.<sub>.workers.dev/__refresh?secret=<PAT>"
+
 import { writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";

@@ -71,3 +71,124 @@ Autenticación a GitHub: PAT fine-grained scoped a `cortega26/Monedario`, permis
 1. Cloudflare dashboard → eliminar el Cron Trigger del Worker (o `wrangler delete`).
 2. En `.github/workflows/refresh-economic-snapshot.yml`, restaurar el bloque `schedule: - cron: "15 10 * * *"` (sigue presente como comentario tras esta ADR).
 3. Revocar el PAT en GitHub si la migración se cancela definitivamente.
+
+## Appendix: Banco Central as primary for UF + USD; Scrapling/Python rechazado (2026-05-16)
+
+### Mapeo final de fuentes (revisado)
+
+| Indicador | Fuente primaria | Fallback |
+|---|---|---|
+| UF | **BCCh SiETE** (`F073.UFF.PRE.Z.D`) | mindicador.cl/api |
+| USD observado | **BCCh SiETE** (`F073.TCO.PRE.Z.D`) | mindicador.cl/api |
+| IPC | **INE** (scrape HTML) | mindicador.cl/api |
+| UTM | mindicador.cl/api | — |
+| UTA | mindicador.cl `/utm/<año>` (dic × 12) | UTM corriente × 12 |
+| TMC | mindicador.cl/api | constante 3,49 |
+
+**Sumando:** mindicador.cl deja de ser primaria para 3 de 6 indicadores. Para el resto (UTM y TMC) sigue siendo primaria hasta Fase 2B (SII + CMF). El snapshot tolera fallo de cualquier override sin abortar — degrada gracefully a mindicador.cl indicador por indicador.
+
+### Scrapling / Python rechazado
+
+Se evaluó adoptar `scrapling` (Python) como dependencia de scraping por su resistencia a 403s en sitios `.gob.cl` (caso de uso real reportado: SII, Chile Atiende, BCN). **Rechazado** por incompatibilidad de runtime: Cloudflare Workers ejecuta V8 isolates, sin soporte para extensiones C/lxml/Playwright que Scrapling necesita. Python Workers (Pyodide) está en beta y no corre Scrapling.
+
+En su lugar, se adoptó una "escalera de defensa" de tres niveles, todos dentro del ecosistema Workers:
+
+- **L1 — Browser-like headers** (`src/govFetch.ts`): UA Chrome, `Accept-Language: es-CL`, `Accept-Encoding: gzip,deflate,br`, Referer opcional. Cubre el ~80% de bot detection básico. Aplicado uniformemente a INE y BCCh.
+- **L2 — Rotación de UA + retries con backoff** (no implementado V1; se activa si vemos 403s sistemáticos en logs).
+- **L3 — Cloudflare Browser Rendering** (no implementado V1; binding nativo, headless Chromium real, $0.09/sesión). Para sitios con Turnstile o challenges JS.
+- **L4 (último recurso) — Servicio Python separado en Cloud Run.** Documentado como fuga si L1+L2+L3 no alcanzan, pero solo si hay evidencia concreta de bloqueo. YAGNI hasta que aparezca.
+
+### Validación empírica del 2026-05-16
+
+- BCCh SiETE responde HTTP 200 a query sin User-Agent custom (curl/8.5 default). **No nos bloqueó.**
+- INE responde HTTP 200 con HTML completo a `curl` simple. **No nos bloqueó.**
+- Datos cruzados: BCCh UF 16-05-2026 = 40357,67 (== snapshot actual); USD 15-05-2026 = 891 (== snapshot). Fuentes coherentes en el momento de adopción.
+
+## Appendix: Multi-cron self-healing (2026-05-16)
+
+**Decisión:** tres cron triggers diarios en lugar de uno.
+
+```toml
+crons = ["15 10 * * *", "15 14 * * *", "15 18 * * *"]
+```
+
+**Por qué:** una sola ventana de ejecución crea SPOF. Si por cualquier razón (Cloudflare incident, upstream slow, transient network) la corrida de las 10:15 falla, el snapshot queda stale hasta el día siguiente. Con tres triggers:
+
+- **10:15 UTC** — corrida primaria. La mayoría de los días termina acá.
+- **14:15 UTC** — primera recuperación. Si el primer run falló, este reintenta. Idempotente (payload-diff ignora `capturedAt`), así que si el primero sí funcionó, este es no-op silencioso.
+- **18:15 UTC** — última red de seguridad antes de que cierre el día hábil chileno.
+
+**Costo:** 3 invocaciones × 30 días = 90/mes vs cuota gratis de 100 000/día. Esencialmente cero.
+
+**No se introduce lógica de "es día hábil"** porque sería sobre-ingeniería: en fines de semana o feriados las APIs upstream devuelven el último valor publicado (no cambian), el snapshot diff resulta vacío, y los runs son no-op gratuitos. La idempotencia hace el trabajo solita.
+
+**Lo que NO se hace:** un workflow de GitHub Actions adicional con health-check externo. Sumar Actions vuelve a meternos en el quota problem que originó esta migración. Si vemos que los tres crons no son suficientes, escalamos a un monitor externo gratuito (Healthchecks.io) antes que reintroducir Actions.
+
+## Appendix: IPC sourced directly from INE (2026-05-16)
+
+Durante el deploy se detectó que el IPC en `mindicador.cl` está congelado en diciembre 2025 (su pipeline no publicó nada en enero–abril 2026), mientras INE sí publicó IPC de abril 2026 (1,3%) el 2026-05-08.
+
+**Decisión:** el Worker fetchea IPC directamente de `https://www.ine.gob.cl/.../indice-de-precios-al-consumidor` y sobrescribe el valor de `mindicador.cl` cuando el scrape es exitoso. Si el scrape falla (timeout, HTML cambia, INE caído), se loggea un warning y se conserva el IPC de mindicador.cl como fallback — el snapshot no se rompe, solo queda con IPC stale visible.
+
+**Por qué INE y no Banco Central:** el BCCh tiene API JSON pero requiere registro/credenciales y agrega un secret más a rotar. INE es la fuente canónica (el BCCh redistribuye INE) y su página es estable. El scrape se ancla al `<h1>` "Índice de Precios al Consumidor" y luego al par `.cifraV3` / `.periodoCifraV3` adyacente, evitando confundirse con otros índices que INE publica en la misma página (ICT, IPP, …).
+
+**Trade-offs:** HTML scraping es más frágil que una API; mitigado con (a) anchoring al heading IPC, (b) tolerancia a variaciones de atributos/clases, (c) fallback silencioso a mindicador.cl, (d) tests con fixture real. Cuando INE cambie su template — eventualmente ocurrirá — los logs `ipc.override.empty` lo señalarán y hay que actualizar la regex.
+
+## Appendix: cache headers analysis
+
+**Versión revisada 2026-05-16 tras incidente de propagación.** Una versión anterior de este apéndice afirmaba que Cloudflare Pages purga automáticamente el edge cache en cada deploy — eso es **parcialmente cierto y nos llevó a un bug observable**. Se corrige a continuación.
+
+### Comportamiento real del cache en producción
+
+1. **URLs `*.pages.dev`:** Pages purga el edge automáticamente en cada deploy.
+2. **Custom domains (caso `monedario.cl`):** el edge respeta los `Cache-Control` que defina `public/_headers`. **Pages no purga la zona del dominio custom** en cada deploy. Si el HTML lleva `s-maxage=N`, el objeto cacheado vive hasta `N` segundos independientemente del deploy.
+
+### Incidente observado (2026-05-16)
+
+- Commit `56d773b1` con snapshot actualizado y typo corregido se mergeó a las 21:23 UTC.
+- Cloudflare Pages buildeó y desplegó correctamente. El origen servía contenido fresco (`?cb=…` confirmaba `Úsalo` + `15/05` + `16/05`).
+- El edge servía `cf-cache-status: HIT` con `age: 1749 s`, objeto poblado a las 21:10 UTC — **antes del deploy** — con `s-maxage=3600` reteniéndolo ~30 min adicionales.
+- Resultado: usuarios veían `Usalo` + `14/05` durante ~30 min post-deploy.
+
+### Decisión
+
+Eliminar `s-maxage` de las reglas de HTML en `public/_headers`. Queda solo `Cache-Control: public, max-age=300`:
+
+- Browser cachea 5 min (revalidación automática después).
+- Edge **no** cachea más allá de `max-age=300` (sin `s-maxage`, el edge respeta el mismo valor).
+- Deploys propagan al edge en ≤ 5 min sin necesidad de purga programática.
+
+### Trade-offs aceptados
+
+- Más revalidaciones contra el origen (Pages). En un sitio static servido por Pages, costo operativo ~$0 y latencia desdeñable (HTML cacheado en R2 distribuido).
+- Se pierde el "edge cache de 1h" como optimización de carga, pero ese beneficio nunca fue real porque Pages auto-purga en deploys para sus URLs internas y nadie golpea esas URLs en producción.
+
+### Reglas que NO cambian
+
+- `/_astro/*`, `/fonts/*`, `/images/*` → `max-age=31536000, immutable`. Astro hashea estos paths en cada build; URLs nuevas no chocan con cache viejo.
+- `/.well-known/security.txt`, `/security.txt` → `max-age=300`. Ya estaba sin `s-maxage`.
+
+### Alternativa considerada y descartada
+
+**Cache purge automático post-deploy** (CF API + token + hook). Mantiene `s-maxage=3600` para reducir carga, pero suma:
+- Token Cloudflare API a rotar.
+- Lógica de "qué paths purgar" (todas las HTML, o selectivo por changed files).
+- Punto de falla adicional (si el purge falla silenciosamente, el bug reaparece).
+
+Para un sitio static sin presión de carga, la opción simple (`max-age=300` sin `s-maxage`) tiene mejor relación complejidad/beneficio.
+
+### Latencia worst-case end-to-end (revisada)
+
+| Etapa | Duración |
+|---|---|
+| Cron Worker fires + commit GitHub | ~5–30 s |
+| Cloudflare Pages build + publish | 2–5 min |
+| Edge cache (max-age=300, sin s-maxage) | ≤ 5 min |
+| Browser cache residual | ≤ 5 min (overlapping con edge) |
+| **Total worst case** | **~10 min** desde el cron |
+
+### Cuándo sí habría que volver a evaluarlo
+
+- Migración a SSR/ISR donde el HTML se genere por request.
+- Snapshot expuesto como endpoint público (API móvil, terceros) — ahí sí necesitarías `s-maxage` + purge automático.
+- Datos sub-minuto.

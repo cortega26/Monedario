@@ -47,10 +47,27 @@ export interface EconomicSnapshot {
   source: "mindicador.cl/api";
 }
 
+/** Generic shape for a single-indicator authoritative override. */
+export interface IndicatorOverride {
+  value: number;
+  /** ISO date for the observation. For IPC, this is the first day of the
+   *  reference month (e.g. "2026-04-01"). For UF/USD, the calendar day. */
+  dateIso: string;
+}
+
+/** @deprecated Use IndicatorOverride. Retained for backwards-compatible callers. */
+export type IpcOverride = IndicatorOverride;
+
 export interface BuildSnapshotDeps {
   fetchApi: () => Promise<MindicadorApiResponse>;
   fetchDecemberUtm: (year: number) => Promise<number | null>;
   now: () => Date;
+  /** Optional authoritative IPC source (INE). Overrides mindicador.cl when present. */
+  fetchIpcOverride?: () => Promise<IndicatorOverride | null>;
+  /** Optional authoritative UF source (BCCh). Overrides mindicador.cl when present. */
+  fetchUfOverride?: () => Promise<IndicatorOverride | null>;
+  /** Optional authoritative USD observado source (BCCh). Overrides mindicador.cl when present. */
+  fetchUsdOverride?: () => Promise<IndicatorOverride | null>;
 }
 
 function toIsoDate(value: string | undefined, fallback: string): string {
@@ -86,26 +103,65 @@ export async function buildSnapshot(deps: BuildSnapshotDeps): Promise<EconomicSn
 
   const payload = await deps.fetchApi();
 
-  const uf = Number(payload?.uf?.valor);
+  let uf = Number(payload?.uf?.valor);
+  let ufOverrideDate: string | undefined;
+  if (deps.fetchUfOverride) {
+    try {
+      const override = await deps.fetchUfOverride();
+      if (override) {
+        uf = override.value;
+        ufOverrideDate = override.dateIso;
+      }
+    } catch {
+      // Override failed; keep mindicador.cl UF. Caller is responsible for logging.
+    }
+  }
+
   const utm = Number(payload?.utm?.valor);
 
   const utaRefYear = getUtaReferenceYear(now);
   const decUtm = await deps.fetchDecemberUtm(utaRefYear);
   const uta = decUtm !== null ? decUtm * 12 : utm * 12;
 
-  const ipc = Number(payload?.ipc?.valor ?? 0);
+  let ipc = Number(payload?.ipc?.valor ?? 0);
+  let ipcOverrideDate: string | undefined;
+  if (deps.fetchIpcOverride) {
+    try {
+      const override = await deps.fetchIpcOverride();
+      if (override) {
+        ipc = override.value;
+        ipcOverrideDate = override.dateIso;
+      }
+    } catch {
+      // Override failed; keep mindicador.cl IPC. Caller is responsible for logging.
+    }
+  }
+
   const tmcRaw = payload?.tmc?.valor;
   const tmc = tmcRaw !== undefined ? Number(tmcRaw) : DEFAULT_TMC_FALLBACK;
   const dolarRaw = payload?.dolar?.valor;
-  const dolar = dolarRaw !== undefined ? Number(dolarRaw) : undefined;
+  let dolar: number | undefined =
+    dolarRaw !== undefined ? Number(dolarRaw) : undefined;
+  let usdOverrideDate: string | undefined;
+  if (deps.fetchUsdOverride) {
+    try {
+      const override = await deps.fetchUsdOverride();
+      if (override) {
+        dolar = override.value;
+        usdOverrideDate = override.dateIso;
+      }
+    } catch {
+      // Override failed; keep mindicador.cl USD. Caller is responsible for logging.
+    }
+  }
 
   const rawDates = {
-    uf: payload?.uf?.fecha,
+    uf: ufOverrideDate ?? payload?.uf?.fecha,
     utm: payload?.utm?.fecha,
     uta: decUtm !== null ? `${utaRefYear}-12-01` : payload?.utm?.fecha,
-    ipc: payload?.ipc?.fecha,
+    ipc: ipcOverrideDate ?? payload?.ipc?.fecha,
     tmc: payload?.tmc?.fecha,
-    dolar: payload?.dolar?.fecha,
+    dolar: usdOverrideDate ?? payload?.dolar?.fecha,
   };
 
   const lastUpdated = getLatestIsoDate(

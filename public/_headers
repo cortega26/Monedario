@@ -25,31 +25,34 @@
 /images/*
   Cache-Control: public, max-age=31536000, immutable
 
-# HTML pages — cache 1h at edge, 5min in browser
+# HTML pages — browser caches 5 min; edge revalidates (no s-maxage) so deploys
+# propagate within ~5 min without needing programmatic cache purge.
+# Rationale: ADR-20260516 appendix. Pages auto-purge only applies to *.pages.dev,
+# not to custom domains with explicit s-maxage.
 /calculadoras/*
-  Cache-Control: public, max-age=300, s-maxage=3600
+  Cache-Control: public, max-age=300
 
 /posts/*
-  Cache-Control: public, max-age=300, s-maxage=3600
+  Cache-Control: public, max-age=300
 
 /guias/*
-  Cache-Control: public, max-age=300, s-maxage=3600
+  Cache-Control: public, max-age=300
 
 /leyes/*
-  Cache-Control: public, max-age=300, s-maxage=3600
+  Cache-Control: public, max-age=300
 
 /glosario/*
-  Cache-Control: public, max-age=300, s-maxage=3600
+  Cache-Control: public, max-age=300
 
 /tags/*
-  Cache-Control: public, max-age=300, s-maxage=3600
+  Cache-Control: public, max-age=300
 
 /about
-  Cache-Control: public, max-age=300, s-maxage=3600
+  Cache-Control: public, max-age=300
 
 /autor
-  Cache-Control: public, max-age=300, s-maxage=3600
+  Cache-Control: public, max-age=300
 
 # Homepage
 /
-  Cache-Control: public, max-age=300, s-maxage=3600
+  Cache-Control: public, max-age=300

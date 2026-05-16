@@ -98,4 +98,87 @@ describe("buildSnapshot", () => {
     expect(text.endsWith("\n")).toBe(true);
     expect(text.split("\n")[1]).toMatch(/^  "uf":/);
   });
+
+  it("uses INE override when provided and replaces both IPC value and date", async () => {
+    const snapshot = await buildSnapshot({
+      ...makeDeps(),
+      fetchIpcOverride: async () => ({
+        value: 1.3,
+        dateIso: "2026-04-01",
+      }),
+    });
+    expect(snapshot.ipc).toBe(1.3);
+    expect(snapshot.indicatorUpdatedAt.ipc).toBe("2026-04-01");
+  });
+
+  it("falls back to mindicador IPC when the override returns null", async () => {
+    const snapshot = await buildSnapshot({
+      ...makeDeps(),
+      fetchIpcOverride: async () => null,
+    });
+    expect(snapshot.ipc).toBe(-0.2);
+    expect(snapshot.indicatorUpdatedAt.ipc).toBe("2025-12-01");
+  });
+
+  it("falls back to mindicador IPC when the override throws", async () => {
+    const snapshot = await buildSnapshot({
+      ...makeDeps(),
+      fetchIpcOverride: async () => {
+        throw new Error("network glitch");
+      },
+    });
+    expect(snapshot.ipc).toBe(-0.2);
+    expect(snapshot.indicatorUpdatedAt.ipc).toBe("2025-12-01");
+  });
+
+  it("uses BCCh UF override and updates UF date", async () => {
+    // Use values that differ from sampleApi to verify override actually applies.
+    const snapshot = await buildSnapshot({
+      ...makeDeps(),
+      fetchUfOverride: async () => ({ value: 41000.99, dateIso: "2026-06-01" }),
+    });
+    expect(snapshot.uf).toBe(41000.99);
+    expect(snapshot.indicatorUpdatedAt.uf).toBe("2026-06-01");
+  });
+
+  it("falls back to mindicador UF when override fails", async () => {
+    const snapshot = await buildSnapshot({
+      ...makeDeps(),
+      fetchUfOverride: async () => {
+        throw new Error("BCCh down");
+      },
+    });
+    // sampleApi has uf=40357.67 with fecha 2026-05-16
+    expect(snapshot.uf).toBe(40357.67);
+    expect(snapshot.indicatorUpdatedAt.uf).toBe("2026-05-16");
+  });
+
+  it("uses BCCh USD override and updates dolar date", async () => {
+    const snapshot = await buildSnapshot({
+      ...makeDeps(),
+      fetchUsdOverride: async () => ({ value: 891, dateIso: "2026-05-15" }),
+    });
+    expect(snapshot.dolar).toBe(891);
+    expect(snapshot.indicatorUpdatedAt.dolar).toBe("2026-05-15");
+  });
+
+  it("USD override does not materialize dolar when mindicador had no dolar AND override returns null", async () => {
+    const { dolar: _omit, ...apiWithoutDolar } = sampleApi;
+    const snapshot = await buildSnapshot({
+      ...makeDeps({ api: apiWithoutDolar }),
+      fetchUsdOverride: async () => null,
+    });
+    expect(snapshot.dolar).toBeUndefined();
+    expect(snapshot.indicatorUpdatedAt).not.toHaveProperty("dolar");
+  });
+
+  it("USD override materializes dolar even when mindicador omitted it", async () => {
+    const { dolar: _omit, ...apiWithoutDolar } = sampleApi;
+    const snapshot = await buildSnapshot({
+      ...makeDeps({ api: apiWithoutDolar }),
+      fetchUsdOverride: async () => ({ value: 891, dateIso: "2026-05-15" }),
+    });
+    expect(snapshot.dolar).toBe(891);
+    expect(snapshot.indicatorUpdatedAt.dolar).toBe("2026-05-15");
+  });
 });

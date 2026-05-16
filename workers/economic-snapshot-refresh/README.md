@@ -4,11 +4,29 @@ Refreshes `src/infrastructure/economic/economic-parameters.snapshot.json` on a d
 
 ## What it does
 
-1. Daily at `15 10 * * *` UTC, fetches indicators from `https://mindicador.cl/api` and `https://mindicador.cl/api/utm/<año>`.
-2. Builds a snapshot with the same shape produced by `scripts/refresh-economic-snapshot.mjs`.
-3. Compares with the current file on `main` (excluding `capturedAt`, which is non-deterministic).
-4. If different, commits the new content to `main` via the GitHub Contents API as `monedario-snapshot-bot`. Cloudflare Pages auto-deploys on push.
-5. If identical, exits silently (no empty commits).
+1. **Three daily cron triggers** at `10:15`, `14:15`, and `18:15` UTC — self-healing. Each run is idempotent (payload-diff ignoring `capturedAt`), so a successful early run makes the later ones no-ops. If 10:15 fails, 14:15 retries; if both fail, 18:15 is the last chance before tomorrow. No manual intervention needed for transient failures.
+2. **Fetches the latest IPC from INE directly** (`www.ine.gob.cl`) and overrides mindicador.cl's IPC. INE is canonical; mindicador.cl is a redistributor and has been observed lagging (e.g. its IPC pipeline stopped after Dec 2025). If the INE scrape fails for any reason (network, HTML structure change), it logs a warning and falls back to mindicador.cl's IPC, so the rest of the snapshot still refreshes.
+3. Builds a snapshot with the same shape produced by `scripts/refresh-economic-snapshot.mjs`.
+4. Compares with the current file on `main` (excluding `capturedAt`, which is non-deterministic).
+5. If different, commits the new content to `main` via the GitHub Contents API as `monedario-snapshot-bot`. Cloudflare Pages auto-deploys on push.
+6. If identical, exits silently (no empty commits).
+
+## Data sources
+
+| Indicator | Primary source | Fallback |
+|---|---|---|
+| UF | **Banco Central (SiETE REST)** — series `F073.UFF.PRE.Z.D` | `mindicador.cl/api` |
+| USD observado | **Banco Central (SiETE REST)** — series `F073.TCO.PRE.Z.D` | `mindicador.cl/api` |
+| IPC | **INE** (canonical, `www.ine.gob.cl`) | `mindicador.cl/api` (may be stale) |
+| UTM | `mindicador.cl/api` | — |
+| UTA | `mindicador.cl/api/utm/<año>` (December × 12) | current UTM × 12 |
+| TMC | `mindicador.cl/api` | hardcoded 3.49 |
+
+**Fallback contract:** each override is best-effort. If any source fails (timeout, parse error, auth error), the Worker logs a `<indicator>.override.failed` event and falls back to mindicador.cl for that indicator. The snapshot refresh **does not abort** on per-source failures — partial freshness is better than no refresh.
+
+**Why per-source:** mindicador.cl is a redistributor. Its IPC pipeline stalled in Dec 2025 (real incident, see ADR). To insulate ourselves, each indicator now has an authoritative primary source (BCCh for monetary indicators, INE for inflation) with mindicador.cl as a fallback. Future work: SII for UTM, CMF for TMC.
+
+If INE changes its HTML structure, the parser in `src/sources/ineIpc.ts` will start returning `null` and you'll see `ipc.override.empty` log entries. Update the regex anchored on the IPC `<h1>` and the `.cifraV3` / `.periodoCifraV3` classes — see the fixture in `tests/workers/economic-snapshot-refresh/ineIpc.test.ts` for the expected shape.
 
 ## First-time setup
 
@@ -41,6 +59,22 @@ Use the same Cloudflare account that hosts the Pages project.
 pnpm exec wrangler secret put GITHUB_TOKEN --config workers/economic-snapshot-refresh/wrangler.toml
 # paste the PAT when prompted
 ```
+
+### 4b. (Recommended) Set Banco Central credentials
+
+Register a free account at https://si3.bcentral.cl/Siete/ES/Siete/Usuario/Crear, then:
+
+```bash
+pnpm exec wrangler secret put BCCH_USER --config workers/economic-snapshot-refresh/wrangler.toml
+# paste the BCCh account email when prompted
+
+pnpm exec wrangler secret put BCCH_PASSWORD --config workers/economic-snapshot-refresh/wrangler.toml
+# paste the BCCh password when prompted
+```
+
+If these are absent the Worker still runs; it logs `bcch.disabled` and uses mindicador.cl for UF/USD (which may lag).
+
+**Rotation:** rotate this password every 12 months. Same procedure — re-run `wrangler secret put BCCH_PASSWORD` with the new value.
 
 ### 5. Deploy
 
@@ -130,12 +164,15 @@ git push
 
 | File | Purpose |
 |---|---|
-| `src/buildSnapshot.ts` | Pure builder. Takes injected fetchers, returns the typed snapshot. No CF-specific imports. |
+| `src/buildSnapshot.ts` | Pure builder. Takes injected fetchers, returns the typed snapshot. Supports per-indicator overrides for UF/USD/IPC. No CF-specific imports. |
+| `src/govFetch.ts` | Shared HTTP helper with browser-like headers + Latin-1 decoder. Used by all government source fetchers (L1 anti-403 defense). |
 | `src/githubClient.ts` | Minimal GitHub Contents API client (GET sha + PUT new content). |
-| `src/index.ts` | Worker entry — `scheduled` handler + `fetch` handler for manual trigger. |
-| `wrangler.toml` | Worker config, cron trigger, non-secret env vars. |
+| `src/sources/bcchSiete.ts` | Banco Central SiETE REST client — UF and USD observado, auth via Worker secrets. |
+| `src/sources/ineIpc.ts` | INE IPC page scraper (regex-based, anchored on IPC `<h1>`). |
+| `src/index.ts` | Worker entry — `scheduled` handler + `fetch` handler for manual trigger. Wires all sources with per-indicator fallback logging. |
+| `wrangler.toml` | Worker config, 3 cron triggers, non-secret env vars. |
 | `tsconfig.json` | Worker-scoped TS config with `@cloudflare/workers-types`. |
-| `../../tests/workers/economic-snapshot-refresh/buildSnapshot.test.ts` | Unit tests over the pure builder. Run via `pnpm exec vitest`. |
+| `../../tests/workers/economic-snapshot-refresh/*.test.ts` | Unit tests (33 cases as of 2026-05-16). Run via `pnpm exec vitest run tests/workers/`. |
 
 ## Why not also port `editorial:volatile-data:refresh`?
 
