@@ -95,10 +95,13 @@ import { SITE } from "@/config";
     <section id="metodologia" class="border-b border-border py-10">
       <h2 class="mb-2 text-2xl font-bold">Proceso editorial</h2>
       <p class="mb-8 max-w-2xl text-sm leading-relaxed text-secondary">
-        El contenido de Monedario describe normas tributarias, tasas de
-        cotización, plazos legales e instrumentos financieros — información con
-        consecuencias reales para quien la lee. Por eso cada artículo sobre
-        estas materias sigue siete etapas de elaboración antes de publicarse.
+        El contenido de Monedario sobre impuestos, pensiones, deuda y cálculos
+        financieros se elabora siguiendo un proceso de siete etapas y lo firma
+        un editor humano identificado antes de publicarse. La auditoría de los
+        números y la revisión regulatoria las realiza un rol independiente del
+        que redactó el borrador. En algunas etapas usamos asistencia de
+        inteligencia artificial; abajo está el detalle de dónde, con qué
+        restricciones y qué decisiones son siempre humanas.
       </p>
 
       <ol class="max-w-2xl space-y-5">
@@ -193,11 +196,13 @@ import { SITE } from "@/config";
             >7</span
           >
           <div>
-            <p class="font-semibold text-foreground">Lista de chequeo final</p>
+            <p class="font-semibold text-foreground">Cierre con firma</p>
             <p class="mt-0.5 text-sm leading-relaxed text-secondary">
               Se verifica que todos los enlaces funcionen, que la fecha de
-              vigencia esté declarada, que no haya contradicciones internas y
-              que el artículo esté listo para publicar.
+              vigencia esté declarada y que no haya contradicciones internas.
+              En artículos sobre impuestos, pensiones, deuda o cálculos, esta
+              etapa termina con la firma del editor humano responsable. Sin
+              esa firma, el artículo no se publica.
             </p>
           </div>
         </li>
@@ -205,13 +210,67 @@ import { SITE } from "@/config";
 
       <div class="mt-10 max-w-2xl space-y-8">
         <div>
-          <h3 class="mb-2 text-lg font-semibold">Verificación independiente</h3>
+          <h3 class="mb-2 text-lg font-semibold">
+            Editor responsable y firma humana
+          </h3>
           <p class="text-sm leading-relaxed text-secondary">
-            En artículos sobre impuestos, pensiones, inversiones, deuda y
-            cualquier contenido que incluya cálculos, la auditoría de números
-            (etapa 5) y la revisión regulatoria (etapa 6) las realiza un rol
-            diferente al que redactó el borrador. El objetivo es evitar que
-            quien escribe valide su propio trabajo.
+            Cada artículo sobre temas con consecuencias económicas reales —
+            impuestos, pensiones, deuda, cálculos previsionales o tributarios —
+            lleva la firma de
+            <a
+              href={getPath("/autor/")}
+              class="text-accent underline-offset-4 hover:underline"
+              >{SITE.authorFullName}</a
+            >, editor responsable. Esa firma no es decorativa: es un gate
+            explícito del proceso de publicación. Si el artículo no está
+            firmado, no se publica. Si durante la auditoría aparece un
+            problema, el artículo vuelve a etapa de borrador hasta que se
+            resuelva.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="mb-2 text-lg font-semibold">
+            Asistencia de inteligencia artificial
+          </h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            En algunas etapas del proceso — investigación inicial, redacción
+            de borrador, generación de variantes, revisión cruzada — usamos
+            herramientas de inteligencia artificial como apoyo. La IA no
+            decide qué se publica ni firma los artículos. Las restricciones
+            son explícitas:
+          </p>
+          <ul
+            class="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-secondary"
+          >
+            <li>
+              Toda cifra se traza a una fuente oficial verificable antes de
+              entrar al borrador.
+            </li>
+            <li>
+              La auditoría de cálculos (etapa 5) y la revisión regulatoria
+              (etapa 6) las realiza un rol independiente del que redactó.
+            </li>
+            <li>
+              Ningún artículo sobre impuestos, pensiones, deuda o cálculos se
+              publica sin la firma del editor humano (etapa 7).
+            </li>
+          </ul>
+          <p class="mt-3 text-sm leading-relaxed text-secondary">
+            La IA es una herramienta del proceso, no su autora. Las decisiones
+            editoriales son humanas.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="mb-2 text-lg font-semibold">Separación de roles</h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            El rol que redacta no es el mismo que audita los números ni el que
+            revisa la base regulatoria. El objetivo es evitar que quien escribe
+            valide su propio trabajo. Esta separación se aplica también cuando
+            partes del proceso usan asistencia de IA: el rol auditor opera en
+            una sesión independiente, sin acceso al contexto en que se generó
+            el borrador.
           </p>
         </div>
 
@@ -225,6 +284,62 @@ import { SITE } from "@/config";
             tasas publicadas o fechas límite superadas, y los marca para
             revisión.
           </p>
+        </div>
+
+        <div>
+          <h3 class="mb-2 text-lg font-semibold">
+            Pruebas de las calculadoras
+          </h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            Las fórmulas detrás de cada calculadora — tramos de impuesto,
+            descuentos previsionales, intereses compuestos, reajustes en UF —
+            están cubiertas por pruebas automáticas que las verifican contra
+            resultados esperados. Cada vez que tocamos una calculadora, las
+            pruebas detectan divergencias antes de que el cambio llegue al
+            sitio. Si un porcentaje legal o una regla tributaria se modifica y
+            la fórmula no se ajusta, la calculadora no pasa la verificación.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="mb-2 text-lg font-semibold">
+            Datos económicos en vivo
+          </h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            Los indicadores económicos que usamos en calculadoras y
+            conversores — UF, UTM, IPC y dólar — se actualizan directamente
+            desde el Banco Central de Chile y el Instituto Nacional de
+            Estadísticas mediante un proceso automático. No los ingresamos a
+            mano: cada valor mostrado lleva la fecha de su origen oficial. Si
+            una fuente externa no responde, mostramos el último valor
+            verificado en lugar de inventarlo.
+          </p>
+        </div>
+
+        <div>
+          <h3 class="mb-2 text-lg font-semibold">Lo que no hacemos</h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            Cuatro reglas que aplicamos sin excepción:
+          </p>
+          <ul
+            class="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-secondary"
+          >
+            <li>
+              No publicamos cifras que no estén trazadas a una fuente oficial.
+              Si no encontramos la fuente, no entra al borrador.
+            </li>
+            <li>
+              No permitimos que el mismo rol redacte y audite la misma pieza.
+            </li>
+            <li>
+              No publicamos contenido sobre impuestos, pensiones, deuda o
+              cálculos sin la firma del editor humano responsable.
+            </li>
+            <li>
+              No cambiamos una URL pública ni removemos contenido del feed sin
+              dejar registro de la decisión.
+            </li>
+          </ul>
         </div>
 
         <div>
@@ -393,7 +508,12 @@ import { SITE } from "@/config";
         <a
           href={getPath("/contacto/")}
           class="text-accent underline-offset-4 hover:underline">escríbenos</a
-        >.
+        >. Las correcciones factuales reportadas se registran en
+        <a
+          href={getPath("/cambios/")}
+          class="text-accent underline-offset-4 hover:underline"
+          >novedades y cambios</a
+        >, con fecha y descripción del ajuste.
       </p>
     </section>
 

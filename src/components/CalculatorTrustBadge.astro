@@ -6,7 +6,7 @@ type Props = {
   aboutHref?: string;
 };
 
-const { location = "calculator_header", aboutHref = "/about/" } =
+const { location = "calculator_header", aboutHref = "/about/#metodologia" } =
   Astro.props as Props;
 ---
 
@@ -18,8 +18,9 @@ const { location = "calculator_header", aboutHref = "/about/" } =
     class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between"
   >
     <p class="text-sm leading-relaxed text-secondary">
-      Esta calculadora corre en tu navegador. No guardamos los datos que ingresas
-      ni los enviamos a un servidor.
+      Las fórmulas de esta calculadora están cubiertas por pruebas automáticas.
+      El cálculo corre en tu navegador. No guardamos los datos que ingresas ni
+      los enviamos a un servidor.
     </p>
     <a
       href={getPath(aboutHref)}
