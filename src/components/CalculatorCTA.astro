@@ -5,9 +5,10 @@ type Props = {
   href: string;
   label: string;
   description?: string;
+  cta?: string;
 };
 
-const { href, label, description } = Astro.props;
+const { href, label, description, cta = "Usar calculadora →" } = Astro.props;
 ---
 
 <aside
@@ -26,7 +27,7 @@ const { href, label, description } = Astro.props;
       data-analytics-location="article_body"
       onclick="window.monedarioAnalytics?.track('article_calculator_cta_click', { calculator_href: this.href, label: this.dataset.analyticsLabel })"
     >
-      Abrir calculadora →
+      {cta}
     </a>
   </div>
 </aside>
