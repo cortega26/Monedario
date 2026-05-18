@@ -18,6 +18,8 @@ import { remarkEconomicVariables } from "./src/remark-economic-variables";
 import react from "@astrojs/react";
 
 import mdx from "@astrojs/mdx";
+import { shield } from "@kindspells/astro-shield";
+import { cspHashesIntegration } from "./src/integrations/csp-hashes";
 
 const tocUi = getUiCopyForLocale(SITE.lang);
 
@@ -214,6 +216,14 @@ export default defineConfig({
       },
     }),
     mdx(),
+    shield({
+      sri: {
+        enableStatic: true,
+        allowInlineScripts: "all",
+        allowInlineStyles: "all",
+      },
+    }),
+    cspHashesIntegration(),
   ],
   markdown: {
     remarkPlugins: [

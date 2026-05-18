@@ -13,12 +13,6 @@ type AnalyticsConfig = {
 type Cleanup = () => void;
 type IdleHandle = number | ReturnType<typeof globalThis.setTimeout>;
 
-declare global {
-  interface Window {
-    __monedarioAnalyticsConfig__?: AnalyticsConfig;
-  }
-}
-
 const CLICK_HANDLER_FLAG = "data-analytics-click-handler-attached";
 let pageCleanup: Cleanup | null = null;
 let pendingAnalyticsInit: IdleHandle | null = null;
@@ -31,8 +25,27 @@ function scheduleIdle(callback: () => void): IdleHandle {
   return globalThis.setTimeout(callback, 120);
 }
 
+function getMeasurementId(): string | undefined {
+  return (
+    document
+      .querySelector<HTMLMetaElement>('meta[name="ga-measurement-id"]')
+      ?.content || undefined
+  );
+}
+
+function bootstrapGtag(measurementId: string) {
+  const dl: unknown[] = (window.dataLayer = window.dataLayer || []);
+  window.gtag =
+    window.gtag ||
+    function (...args: unknown[]) {
+      dl.push(args);
+    };
+  window.gtag("js", new Date());
+  window.gtag("config", measurementId, { anonymize_ip: true });
+}
+
 function getConfig(): AnalyticsConfig {
-  return window.__monedarioAnalyticsConfig__ ?? {};
+  return { measurementId: getMeasurementId() };
 }
 
 function track(eventName: string, params: AnalyticsEventParams = {}) {
@@ -210,6 +223,11 @@ function scheduleAnalyticsInit() {
 window.monedarioAnalytics = {
   track,
 };
+
+const measurementId = getMeasurementId();
+if (measurementId) {
+  bootstrapGtag(measurementId);
+}
 
 scheduleAnalyticsInit();
 document.addEventListener("astro:page-load", scheduleAnalyticsInit);

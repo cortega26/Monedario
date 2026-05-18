@@ -24,7 +24,7 @@ function reportViolations(
     id: string;
     help: string;
     helpUrl: string;
-    nodes: Array<{ target: Array<string>; html: string }>;
+    nodes: Array<{ target: unknown; html: string }>;
   }>
 ) {
   if (violations.length === 0) return;

@@ -48,24 +48,6 @@ const SITE_ORIGIN = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
   ""
 );
 
-const analyticsBootstrapScript = PUBLIC_GA_MEASUREMENT_ID
-  ? `(function () {
-  const analyticsMeasurementId = ${JSON.stringify(PUBLIC_GA_MEASUREMENT_ID)};
-  window.__monedarioAnalyticsConfig__ =
-    window.__monedarioAnalyticsConfig__ || {};
-  window.__monedarioAnalyticsConfig__.measurementId = analyticsMeasurementId;
-  window.dataLayer = window.dataLayer || [];
-  window.gtag =
-    window.gtag ||
-    function (...args) {
-      window.dataLayer.push(args);
-    };
-  window.gtag("js", new Date());
-  window.gtag("config", analyticsMeasurementId, {
-    anonymize_ip: true,
-  });
-})();`
-  : null;
 
 const structuredData = !pubDatetime
   ? {
@@ -101,10 +83,6 @@ const structuredData = !pubDatetime
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://static.cloudflareinsights.com 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'"
-    />
     <link
       rel="preload"
       href={getPath("/fonts/source-sans-3-latin-es-400-600.woff2")}
@@ -196,6 +174,7 @@ const structuredData = !pubDatetime
     {
       PUBLIC_GA_MEASUREMENT_ID && (
         <>
+          <meta name="ga-measurement-id" content={PUBLIC_GA_MEASUREMENT_ID} />
           <link rel="preconnect" href="https://www.googletagmanager.com" />
           <script
             is:inline
@@ -203,11 +182,6 @@ const structuredData = !pubDatetime
             src={`https://www.googletagmanager.com/gtag/js?id=${PUBLIC_GA_MEASUREMENT_ID}`}
           />
         </>
-      )
-    }
-    {
-      analyticsBootstrapScript && (
-        <script is:inline set:html={analyticsBootstrapScript} />
       )
     }
 
@@ -284,13 +258,6 @@ const structuredData = !pubDatetime
     {PUBLIC_GA_MEASUREMENT_ID && <script src="../scripts/analytics.ts" />}
     <script src="../scripts/theme.ts"></script>
 
-    <!-- Deferred service worker registration -->
-    <script is:inline>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", () => {
-          navigator.serviceWorker.register("/sw.js");
-        });
-      }
-    </script>
+    <script is:inline src="/sw-register.js" defer></script>
   </body>
 </html>

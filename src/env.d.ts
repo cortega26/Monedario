@@ -1,9 +1,6 @@
 interface Window {
   dataLayer?: unknown[];
   gtag?: (...args: unknown[]) => void;
-  __monedarioAnalyticsConfig__?: {
-    measurementId?: string;
-  };
   monedarioAnalytics?: {
     track: (
       eventName: string,
