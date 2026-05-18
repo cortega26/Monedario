@@ -17,10 +17,8 @@ describe("Monedario optimization implementation", () => {
     const content = read(path);
     expect(content).toContain("location?: string");
     expect(content).toContain("aboutHref?: string");
-    expect(content).toContain("Sin registro");
-    expect(content).toContain("Sin publicidad");
-    expect(content).toContain("Calculo local");
-    expect(content).toContain("No almacenamos tus datos");
+    expect(content).toContain("corre en tu navegador");
+    expect(content).toContain("No guardamos los datos");
     expect(content).toContain('data-analytics-cta="calculator-trust-link"');
   });
 

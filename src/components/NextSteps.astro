@@ -6,7 +6,15 @@ export type NextStepItem = {
   title: string;
   description?: string;
   label?: string;
+  cta?: string;
 };
+
+function defaultCta(href: string): string {
+  if (href.startsWith("/calculadoras/")) return "Calcular →";
+  if (href.startsWith("/posts/")) return "Leer guía →";
+  if (href.startsWith("/guias/")) return "Explorar sección →";
+  return "Continuar →";
+}
 
 type Props = {
   currentHref: string;
@@ -88,9 +96,9 @@ const visibleItems = items
               data-analytics-cta="next-step"
               data-analytics-label={item.title}
               data-analytics-location={location}
-              aria-label={`Abrir ${item.title}`}
+              aria-label={`${item.cta ?? defaultCta(item.href)} ${item.title}`}
             >
-              Abrir
+              {item.cta ?? defaultCta(item.href)}
             </a>
           </li>
         ))}

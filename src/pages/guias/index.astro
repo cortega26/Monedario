@@ -93,11 +93,6 @@ const capasConHubs = capas
 
   <main id="main-content" class="app-layout">
     <section class="border-b border-border py-8">
-      <p
-        class="mb-2 text-xs font-semibold tracking-widest text-accent uppercase"
-      >
-        Explora por tema
-      </p>
       <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
         Guías de Finanzas Personales en Chile
       </h1>
@@ -114,19 +109,19 @@ const capasConHubs = capas
           <h2 class="mb-2 text-2xl font-bold">{capa.titulo}</h2>
           <p class="mb-5 max-w-3xl text-secondary">{capa.resumen}</p>
 
-          <ul class="grid gap-4 sm:grid-cols-2">
+          <ul class="grid gap-3 sm:grid-cols-2">
             {capa.hubs.map(hub => (
-              <li class="rounded-xl border border-border p-5">
-                <p class="mb-2 inline-flex rounded-full border border-accent/30 bg-accent/5 px-2 py-1 text-xs font-semibold tracking-wide text-accent uppercase">
-                  Sección
-                </p>
-                <h3 class="mb-2 text-lg font-semibold">{hub.nombre}</h3>
-                <p class="mb-3 text-sm text-secondary">{hub.descripcion}</p>
+              <li>
                 <a
                   href={getPath(`/guias/${hub.slug}/`)}
-                  class="text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+                  class="group block rounded-lg border border-border p-4 transition-colors hover:border-accent/40 hover:bg-accent/5"
                 >
-                  Ir a la sección
+                  <h3 class="text-base font-semibold text-foreground transition-colors group-hover:text-accent">
+                    {hub.nombre}
+                  </h3>
+                  <p class="mt-1 text-sm leading-relaxed text-secondary">
+                    {hub.descripcion}
+                  </p>
                 </a>
               </li>
             ))}

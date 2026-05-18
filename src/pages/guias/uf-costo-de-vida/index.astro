@@ -105,21 +105,21 @@ const tools = [
     description:
       "Úsalo cuando ya entendiste la lógica de la UF y necesitas pasar un monto a CLP o volver de pesos a UF con valor de referencia.",
     href: getPath("/calculadoras/conversor-uf/"),
-    cta: "Abrir conversor",
+    cta: "Convertir UF a pesos",
   },
   {
     title: "Calculadora de reajuste de arriendo",
     description:
       "Sirve para aterrizar una cláusula en UF, IPC o pesos fijos y estimar cuánto cambia realmente tu pago mensual.",
     href: getPath("/calculadoras/reajuste-arriendo/"),
-    cta: "Abrir calculadora",
+    cta: "Calcular reajuste",
   },
   {
     title: "Conversor UTM a pesos",
     description:
       "Úsalo para traducir multas, trámites e impuestos expresados en UTM al valor en pesos del mes vigente.",
     href: getPath("/calculadoras/conversor-utm/"),
-    cta: "Abrir conversor",
+    cta: "Convertir UTM a pesos",
   },
 ];
 
@@ -321,16 +321,13 @@ const relatedBridges = [
         {
           relatedBridges.map(item => (
             <article class="rounded-xl border border-border p-5">
-              <p class="mb-2 text-xs font-semibold tracking-wide text-accent uppercase">
-                Relacionado
-              </p>
               <h3 class="text-lg font-semibold">{item.title}</h3>
               <p class="mt-2 text-sm text-secondary">{item.description}</p>
               <a
                 href={item.href}
                 class="mt-4 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
               >
-                Ir a esa sección
+                Ver {item.title}
               </a>
             </article>
           ))

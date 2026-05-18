@@ -8,13 +8,6 @@ type Props = {
 
 const { location = "calculator_header", aboutHref = "/about/" } =
   Astro.props as Props;
-
-const trustItems = [
-  "Sin registro",
-  "Sin publicidad",
-  "Calculo local",
-  "No almacenamos tus datos",
-];
 ---
 
 <aside
@@ -22,11 +15,12 @@ const trustItems = [
   aria-label="Privacidad y confianza de la calculadora"
 >
   <div
-    class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between"
+    class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between"
   >
-    <ul class="flex flex-wrap gap-x-4 gap-y-1 text-sm text-secondary">
-      {trustItems.map(item => <li>{item}</li>)}
-    </ul>
+    <p class="text-sm leading-relaxed text-secondary">
+      Esta calculadora corre en tu navegador. No guardamos los datos que ingresas
+      ni los enviamos a un servidor.
+    </p>
     <a
       href={getPath(aboutHref)}
       class="shrink-0 text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
