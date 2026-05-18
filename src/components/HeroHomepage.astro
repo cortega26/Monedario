@@ -9,35 +9,29 @@ interface Props {
 
 const {
   headline = "Entiende tu plata en Chile — guías, calculadoras y herramientas",
-  description = "Sueldo líquido, AFP, impuestos, crédito, UF y presupuesto en lenguaje claro. Sin publicidad. Sin registro.",
+  description = "Sueldo líquido, AFP, impuestos, crédito, UF y presupuesto en lenguaje claro.",
 } = Astro.props;
 
 const ctaLinks = [
   {
-    label: "Sueldo líquido",
+    label: "Calcular sueldo líquido",
     href: "/calculadoras/sueldo-liquido/",
-    secondary: false,
   },
   {
-    label: "Finiquito",
+    label: "Simular finiquito",
     href: "/calculadoras/finiquito-indemnizacion/",
-    secondary: false,
   },
   {
-    label: "Conversor UF",
+    label: "Convertir UF",
     href: "/calculadoras/conversor-uf/",
-    secondary: true,
   },
   {
     label: "¿Estoy en DICOM?",
     href: "/posts/donde-ver-si-estoy-en-dicom-gratis/",
-    secondary: true,
   },
 ];
 
 // Fecha automática: máximo de updatedDate / pubDate entre todos los posts publicados.
-// Se usa la parte de fecha en UTC (YYYY-MM-DD del ISO string) para evitar que el offset
-// de Santiago (UTC-4 en otoño) retroceda la fecha en medianoche UTC.
 const publishedPosts = await getCollection(
   "blog",
   ({ data }) => !data.draft && !data.unlisted
@@ -57,81 +51,58 @@ const latestDateLabel = new Date(ly, lm - 1, ld).toLocaleDateString("es-CL", {
   day: "numeric",
 });
 
-const trustSignals: Array<string | { label: string; href: string }> = [
-  "Sin publicidad",
-  "Fuentes oficiales",
-  "Sin registro requerido",
-  "Legislación chilena vigente",
-  {
-    label: `Actualizado al ${latestDateLabel}`,
-    href: "/cambios/",
-  },
-];
+// Partir el headline en partes para subrayar "plata"
+const headlineParts = headline.split("plata");
 ---
 
 <div class="max-w-3xl">
+  <!-- H1 en Fraunces — fuente display editorial -->
   <h1
-    class="homepage-body-heading mb-3 max-w-3xl text-2xl leading-tight font-bold sm:text-4xl"
-    style="font-family: var(--font-body);"
+    class="homepage-body-heading mb-3 max-w-3xl text-3xl leading-tight font-bold sm:text-5xl"
+    style="font-family: var(--font-display); line-height: 1.05;"
   >
-    {headline}
+    {headlineParts[0]}<span class="italic">plata</span>{headlineParts[1]}
   </h1>
-  <p
-    class="mb-5 max-w-3xl text-sm leading-relaxed text-foreground sm:text-base"
-    style="font-family: var(--font-body);"
-  >
+
+  <p class="mb-6 max-w-2xl text-sm leading-relaxed text-secondary sm:text-base">
     {description}
   </p>
 
-  <!-- 4 CTAs directos -->
-  <div class="mb-5 flex flex-wrap gap-2 sm:gap-3">
-    {
-      ctaLinks.map(link => (
-        <a
-          href={getPath(link.href)}
-          class:list={[
-            "rounded-lg px-4 py-2 text-sm font-semibold transition-opacity hover:opacity-85",
-            link.secondary
-              ? "border border-border bg-surface-muted/40 text-foreground"
-              : "bg-accent text-background",
-          ]}
-          data-analytics-cta="home-hero-cta"
-          data-analytics-label={link.label}
-          data-analytics-location="home_hero"
-        >
-          {link.label}
-        </a>
-      ))
-    }
-  </div>
-
-  <!-- Señales de confianza -->
-  <ul
-    class="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted"
-    aria-label="Características del sitio"
-  >
-    {
-      trustSignals.map((signal, i) => (
-        <>
+  <!-- CTAs como links editoriales con dashed underline -->
+  <nav aria-label="Calculadoras principales" class="mb-6">
+    <ul class="divide-y divide-border border-y border-border">
+      {
+        ctaLinks.map(link => (
           <li>
-            {typeof signal === "string" ? (
-              signal
-            ) : (
-              <a
-                href={getPath(signal.href)}
-                class="underline underline-offset-2 transition-colors hover:text-foreground"
-              >
-                {signal.label}
-              </a>
-            )}
+            <a
+              href={getPath(link.href)}
+              class="group flex items-center justify-between py-2.5 text-sm transition-colors hover:bg-accent/5 -mx-2 px-2 rounded"
+              data-analytics-cta="home-hero-cta"
+              data-analytics-label={link.label}
+              data-analytics-location="home_hero"
+            >
+              <span class="text-foreground group-hover:text-accent transition-colors underline decoration-dashed underline-offset-2 decoration-border group-hover:decoration-accent">
+                {link.label}
+              </span>
+              <span class="text-muted group-hover:text-accent transition-colors" aria-hidden="true">
+                →
+              </span>
+            </a>
           </li>
-          {i < trustSignals.length - 1 && (
-            <li aria-hidden="true" class="hidden sm:inline">
-              ·
-            </li>
-          )}
-        </>
-      ))
-    }
-  </ul>
+        ))
+      }
+    </ul>
+  </nav>
+
+  <!-- Nota editorial en cursiva — una sola línea, no chips -->
+  <p class="text-xs text-muted italic" style="font-family: var(--font-display);">
+    Sin publicidad, sin registro, sin recolección de datos. Fuentes oficiales,
+    legislación chilena vigente.{" "}
+    <a
+      href={getPath("/cambios/")}
+      class="underline underline-offset-2 decoration-dashed hover:text-secondary transition-colors"
+    >
+      Última actualización: {latestDateLabel}.
+    </a>
+  </p>
 </div>

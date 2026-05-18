@@ -242,16 +242,27 @@ const structuredData = !pubDatetime
         }
 
         const themeValue = getPreferTheme();
+        const isDark = themeValue === "dark";
+        const html = document.documentElement;
 
         // Set theme immediately to prevent flash
-        document.firstElementChild?.setAttribute("data-theme", themeValue);
+        html.setAttribute("data-theme", themeValue);
+
+        // Set inline style on <html> so the background is correct before the
+        // stylesheet is downloaded and parsed. Without this, the browser canvas
+        // defaults to white and the dark background only kicks in once CSS
+        // variables cascade — causing the visible white flash.
+        html.style.backgroundColor = isDark ? "#0f1923" : "#f8f9fb";
+        // color-scheme tells the browser which native UI palette (scrollbars,
+        // form controls, canvas between-page color) to use immediately.
+        html.style.colorScheme = themeValue;
 
         // Set theme-color meta to match background (prevents white flash on dark mode)
         const themeColor = document.querySelector('meta[name="theme-color"]');
         if (themeColor) {
           themeColor.setAttribute(
             "content",
-            themeValue === "dark" ? "#0f1923" : "#f8f9fb"
+            isDark ? "#0f1923" : "#f8f9fb"
           );
         }
 
