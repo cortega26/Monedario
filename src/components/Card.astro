@@ -27,19 +27,6 @@ const readingTime = getReadingTime(body ?? "");
 ---
 
 <li class="card group my-4 rounded-xl border border-border p-5">
-  <!-- Tags -->
-  {
-    tags && tags.length > 0 && (
-      <div class="mb-2 flex flex-wrap gap-1">
-        {tags.slice(0, 3).map(tag => (
-          <span class="rounded-full bg-accent/10 px-2 py-0.5 text-xs font-medium text-accent">
-            {tag}
-          </span>
-        ))}
-      </div>
-    )
-  }
-
   <!-- Miniatura + Título -->
   <a href={href} class="transition-colors group-hover:text-accent">
     <div class="mb-3 overflow-hidden rounded-lg">
