@@ -3,13 +3,15 @@
 // Rendered only client-side (reads localStorage); server renders nothing visible.
 ---
 
-<div
+<section
   id="resume-widget"
   class="hidden rounded-xl border border-border p-5"
-  aria-label="Continúa donde lo dejaste"
+  aria-labelledby="resume-widget-heading"
 >
   <div class="mb-3 flex items-center justify-between">
-    <p class="text-sm font-semibold">Continúa donde lo dejaste</p>
+    <h2 id="resume-widget-heading" class="text-sm font-semibold">
+      Continúa donde lo dejaste
+    </h2>
     <button
       id="resume-clear"
       type="button"
@@ -36,7 +38,7 @@
     </p>
     <ul id="resume-pages-list" class="space-y-1"></ul>
   </div>
-</div>
+</section>
 
 <script is:inline>
   function scheduleIdle(callback) {
