@@ -1,0 +1,202 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import { getPath } from "@/utils/getPath";
+import { SITE } from "@/config";
+---
+
+<Layout
+  title={`Privacidad | ${SITE.title}`}
+  description="Política de privacidad de Monedario: qué datos se tratan, para qué se usan, qué queda en tu navegador y cómo contactarnos."
+>
+  <Header />
+  <Breadcrumb />
+  <main id="main-content" class="app-layout">
+    <section class="border-b border-border py-10">
+      <p
+        class="mb-3 text-xs font-semibold tracking-widest text-accent uppercase"
+      >
+        Privacidad
+      </p>
+      <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
+        Política de privacidad
+      </h1>
+      <p class="max-w-2xl text-base leading-relaxed text-secondary">
+        Monedario es un sitio de educación financiera para personas en Chile.
+        Esta política explica, en lenguaje claro, qué información puede tratar
+        el sitio y para qué se usa.
+      </p>
+      <p class="mt-3 text-sm text-secondary">
+        Última actualización:
+        <strong class="text-foreground">18 de mayo de 2026</strong>.
+      </p>
+    </section>
+
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Responsable del sitio</h2>
+      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
+        <p>
+          Monedario es mantenido por
+          <strong class="text-foreground">Carlos Ortega González</strong>. Para
+          preguntas, solicitudes o reportes relacionados con privacidad, puedes
+          escribir a
+          <a
+            href="mailto:contacto@monedario.cl"
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+            >contacto@monedario.cl</a
+          >.
+        </p>
+        <p>
+          Monedario no crea cuentas de usuario, no solicita registro y no vende
+          datos personales.
+        </p>
+      </div>
+    </section>
+
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Qué datos puede tratar Monedario</h2>
+      <ul
+        class="max-w-2xl list-disc space-y-2 pl-6 text-sm leading-relaxed text-secondary"
+      >
+        <li>
+          Datos técnicos y de uso, como páginas visitadas, clics en enlaces,
+          profundidad de lectura, tipo de página y eventos básicos de
+          interacción.
+        </li>
+        <li>
+          Datos que quedan guardados en tu propio navegador, como tema visual,
+          páginas recientes, calculadora retomable o perfil local para
+          reutilizar inputs entre calculadoras.
+        </li>
+        <li>
+          Datos que nos entregas si escribes por email, como tu dirección de
+          correo, el contenido del mensaje y cualquier información que decidas
+          incluir.
+        </li>
+        <li>
+          Datos tratados por terceros si decides apoyar el proyecto mediante
+          Ko-fi u otro proveedor externo de pago.
+        </li>
+      </ul>
+    </section>
+
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Para qué se usa la información</h2>
+      <div class="max-w-2xl space-y-4 text-sm leading-relaxed text-secondary">
+        <div class="rounded-xl border border-border p-4">
+          <p class="font-semibold text-foreground">Mejorar el sitio</p>
+          <p class="mt-1">
+            Usamos métricas agregadas para entender qué contenidos se leen, qué
+            calculadoras se usan y dónde conviene mejorar claridad, navegación o
+            rendimiento.
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-4">
+          <p class="font-semibold text-foreground">Recordar preferencias</p>
+          <p class="mt-1">
+            Algunas funciones guardan información en tu navegador para recordar
+            el tema visual, mostrar páginas recientes o permitir retomar una
+            calculadora sin empezar desde cero.
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-4">
+          <p class="font-semibold text-foreground">Responder mensajes</p>
+          <p class="mt-1">
+            Si contactas a Monedario, usamos tu mensaje para responder, corregir
+            errores reportados o evaluar mejoras sugeridas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Analytics, navegador y terceros</h2>
+      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
+        <p>
+          Monedario puede usar Google Analytics para medir uso del sitio. La
+          configuración actual solicita anonimización de IP y registra eventos
+          como clics en enlaces, uso inicial de calculadoras y profundidad de
+          lectura.
+        </p>
+        <p>
+          Algunas preferencias se guardan con tecnologías del navegador, como
+          <code class="text-accent">localStorage</code> y
+          <code class="text-accent">sessionStorage</code>. Esa información se
+          queda en tu dispositivo y puedes eliminarla desde la configuración de
+          tu navegador.
+        </p>
+        <p>
+          Si decides apoyar el proyecto, puedes interactuar con Ko-fi. Ese
+          proveedor procesa la donación bajo sus propias políticas y Monedario
+          no recibe los datos completos de tu medio de pago.
+        </p>
+        <p>
+          Puedes leer más detalles en la
+          <a
+            href={getPath("/cookies/")}
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+            >Política de cookies</a
+          >.
+        </p>
+      </div>
+    </section>
+
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Tus derechos</h2>
+      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
+        <p>
+          Puedes escribirnos para solicitar información sobre datos personales
+          asociados a tus interacciones directas con Monedario, pedir
+          corrección, eliminación u oposición cuando corresponda.
+        </p>
+        <p>
+          Si la solicitud depende de un proveedor externo, como Google o Ko-fi,
+          puede ser necesario ejercer el derecho directamente ante ese
+          proveedor.
+        </p>
+      </div>
+    </section>
+
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Seguridad y conservación</h2>
+      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
+        <p>
+          Monedario aplica medidas razonables para reducir riesgos de acceso no
+          autorizado, pérdida o mal uso de información. Ningún sitio web puede
+          garantizar seguridad absoluta.
+        </p>
+        <p>
+          Los mensajes recibidos por email se conservan durante el tiempo
+          necesario para responder, documentar correcciones o mantener una
+          conversación razonable sobre el sitio.
+        </p>
+      </div>
+    </section>
+
+    <section class="py-10">
+      <div
+        class="max-w-2xl rounded-xl border border-border bg-surface-muted p-6"
+      >
+        <h2 class="mb-3 text-lg font-bold text-foreground">
+          Cambios y contacto
+        </h2>
+        <p class="text-sm leading-relaxed text-secondary">
+          Esta política puede actualizarse si cambian las herramientas del
+          sitio, los proveedores usados o las obligaciones aplicables. La fecha
+          de actualización visible en esta página indica la versión vigente.
+        </p>
+        <p class="mt-3 text-sm leading-relaxed text-secondary">
+          Para consultas sobre privacidad, escribe a
+          <a
+            href="mailto:contacto@monedario.cl"
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+            >contacto@monedario.cl</a
+          >.
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,171 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import { getPath } from "@/utils/getPath";
+import { SITE } from "@/config";
+---
+
+<Layout
+  title={`Términos de uso | ${SITE.title}`}
+  description="Términos de uso de Monedario: alcance educativo del contenido, uso de calculadoras, propiedad intelectual, enlaces externos y contacto."
+>
+  <Header />
+  <Breadcrumb />
+  <main id="main-content" class="app-layout">
+    <section class="border-b border-border py-10">
+      <p
+        class="mb-3 text-xs font-semibold tracking-widest text-accent uppercase"
+      >
+        Términos
+      </p>
+      <h1 class="mb-4 text-3xl font-bold sm:text-4xl">Términos de uso</h1>
+      <p class="max-w-2xl text-base leading-relaxed text-secondary">
+        Estos términos explican bajo qué condiciones puedes usar Monedario, sus
+        guías, calculadoras y materiales publicados.
+      </p>
+      <p class="mt-3 text-sm text-secondary">
+        Última actualización:
+        <strong class="text-foreground">18 de mayo de 2026</strong>.
+      </p>
+    </section>
+
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Uso educativo del sitio</h2>
+      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
+        <p>
+          Monedario publica contenido de educación financiera para personas en
+          Chile. Su objetivo es explicar temas como impuestos, sueldos,
+          pensiones, crédito, ahorro e inversión de forma clara y verificable.
+        </p>
+        <p>
+          El contenido es informativo y pedagógico. No constituye asesoría
+          legal, tributaria, financiera, previsional, laboral ni contable
+          personalizada.
+        </p>
+      </div>
+    </section>
+
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Calculadoras y resultados</h2>
+      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
+        <p>
+          Las calculadoras de Monedario entregan estimaciones basadas en
+          parámetros, supuestos y reglas generales. Aunque se revisan con
+          cuidado, pueden no reflejar situaciones individuales, casos
+          excepcionales, cambios recientes o criterios aplicables a tu caso
+          particular.
+        </p>
+        <p>
+          Antes de tomar decisiones relevantes, contrasta la información con
+          fuentes oficiales o con un profesional habilitado cuando corresponda.
+        </p>
+      </div>
+    </section>
+
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Uso aceptable</h2>
+      <ul
+        class="max-w-2xl list-disc space-y-2 pl-6 text-sm leading-relaxed text-secondary"
+      >
+        <li>
+          Puedes leer, compartir y enlazar contenidos de Monedario respetando su
+          contexto y autoría.
+        </li>
+        <li>
+          No debes usar el sitio para intentar interferir con su funcionamiento,
+          automatizar abuso, extraer contenido masivamente o presentar el
+          contenido como si fuera propio.
+        </li>
+        <li>
+          No debes usar las calculadoras como sustituto de una evaluación
+          profesional cuando la decisión tenga consecuencias legales,
+          tributarias o financieras relevantes.
+        </li>
+      </ul>
+    </section>
+
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Propiedad intelectual</h2>
+      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
+        <p>
+          Salvo que se indique otra cosa, los textos, diseño, estructura,
+          calculadoras y materiales publicados en Monedario pertenecen a sus
+          respectivos titulares.
+        </p>
+        <p>
+          Puedes citar o enlazar el contenido con atribución razonable. La
+          reproducción sustancial, redistribución sistemática o uso comercial de
+          materiales del sitio requiere autorización previa, salvo excepciones
+          permitidas por la ley.
+        </p>
+      </div>
+    </section>
+
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Enlaces y servicios externos</h2>
+      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
+        <p>
+          Monedario puede enlazar a fuentes oficiales, organismos públicos,
+          sitios de terceros y plataformas de apoyo como Ko-fi. Esos sitios
+          tienen sus propias condiciones, políticas de privacidad y prácticas de
+          seguridad.
+        </p>
+        <p>
+          Incluir un enlace no implica que Monedario controle, garantice o
+          responda por el contenido, disponibilidad o decisiones de esos
+          terceros.
+        </p>
+      </div>
+    </section>
+
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Disponibilidad y cambios</h2>
+      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
+        <p>
+          Intentamos mantener el sitio disponible, actualizado y correcto, pero
+          puede haber errores, interrupciones, cambios de contenido o
+          diferencias frente a fuentes oficiales actualizadas.
+        </p>
+        <p>
+          Monedario puede modificar estos términos o el contenido del sitio. La
+          fecha de actualización indica la versión vigente.
+        </p>
+      </div>
+    </section>
+
+    <section class="py-10">
+      <div
+        class="max-w-2xl rounded-xl border border-border bg-surface-muted p-6"
+      >
+        <h2 class="mb-3 text-lg font-bold text-foreground">
+          Privacidad y contacto
+        </h2>
+        <p class="text-sm leading-relaxed text-secondary">
+          El uso del sitio también se relaciona con nuestra
+          <a
+            href={getPath("/privacidad/")}
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+            >Política de privacidad</a
+          >
+          y la
+          <a
+            href={getPath("/cookies/")}
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+            >Política de cookies</a
+          >.
+        </p>
+        <p class="mt-3 text-sm leading-relaxed text-secondary">
+          Para consultas, correcciones o reportes, escribe a
+          <a
+            href="mailto:contacto@monedario.cl"
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+            >contacto@monedario.cl</a
+          >.
+        </p>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
