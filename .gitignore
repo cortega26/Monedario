@@ -79,10 +79,7 @@ docs/backlog/*
 !docs/backlog/TS7_COMPATIBILITY_AUDIT_2026-04-30.md
 !docs/backlog/PHASE_2_DATA_SIGNALS.md
 !docs/backlog/ux-backlog.md
-!docs/backlog/PLAN-audit-deep-remediation-2026-05-16.md
-!docs/backlog/PLAN-heroimage-prompt-repair-2026-05-01.md
-!docs/backlog/PLAN-seo-cross-document-roadmap-2026-05-01.md
-!docs/backlog/PLAN-github-workflow-hardening-2026-05-13.md
+!docs/backlog/PLAN-*.md
 !docs/backlog/prompt-*.md
 !docs/editorial/artifacts/
 !docs/editorial/artifacts/**
