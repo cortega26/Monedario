@@ -1,82 +1,195 @@
 ---
+import { getCollection } from "astro:content";
 import { getPath } from "@/utils/getPath";
-import IconHandshake from "@/assets/icons/IconHandshake.svg";
-import IconFileText from "@/assets/icons/IconFileText.svg";
-import IconCreditCard from "@/assets/icons/IconCreditCard.svg";
-import IconChartBar from "@/assets/icons/IconChartBar.svg";
-import IconMoneybag from "@/assets/icons/IconMoneybag.svg";
-import IconAlertCircle from "@/assets/icons/IconAlertCircle.svg";
 
-const cards = [
+// ---------------------------------------------------------------
+// "¿Qué necesitas resolver?" — variante A+
+//
+// Reemplaza el grid de 6 cards con íconos por una lista numerada
+// editorial, agrupada bajo 3 temas con numerales romanos, y una
+// línea de meta por fila ("Actualizado may 2026 · calculadora").
+//
+// Fechas: los 2 posts de blog usan updatedDate ?? pubDate del
+// frontmatter (se actualizan solos). Las 4 páginas estáticas
+// (.astro) tienen fecha manual — actualízalas cuando edites esas
+// páginas.
+// ---------------------------------------------------------------
+
+type ContentType = "calculadora" | "guía" | "artículo";
+
+type CardSource =
+  | { kind: "blog"; slug: string }
+  | { kind: "static"; updatedDate: Date };
+
+interface Card {
+  number: string;
+  title: string;
+  description: string;
+  href: string;
+  ctaLabel: string;
+  contentTypes: ContentType[];
+  source: CardSource;
+}
+
+interface Group {
+  eyebrow: string;
+  cards: Card[];
+}
+
+const groups: Group[] = [
   {
-    icon: IconHandshake,
-    title: "Me contrataron",
-    description:
-      "Entiende tu liquidación, cotizaciones y qué derechos tienes desde el primer día.",
-    href: "/posts/liquidacion-de-sueldo/",
+    eyebrow: "I · Trabajo",
+    cards: [
+      {
+        number: "01",
+        title: "Me contrataron",
+        description:
+          "Entiende tu liquidación, cotizaciones y qué derechos tienes desde el primer día.",
+        href: "/posts/liquidacion-de-sueldo/",
+        ctaLabel: "Ver artículo",
+        contentTypes: ["artículo"],
+        source: { kind: "blog", slug: "liquidacion-de-sueldo" },
+      },
+      {
+        number: "02",
+        title: "Me van a despedir / me despidieron",
+        description:
+          "Calcula tu finiquito, aviso previo e indemnización según la causal de término.",
+        href: "/calculadoras/finiquito-indemnizacion/",
+        ctaLabel: "Usar calculadora",
+        contentTypes: ["calculadora"],
+        source: { kind: "static", updatedDate: new Date("2026-01-15") },
+      },
+    ],
   },
   {
-    icon: IconFileText,
-    title: "Me van a despedir / me despidieron",
-    description:
-      "Calcula tu finiquito, aviso previo e indemnización según la causal de término.",
-    href: "/calculadoras/finiquito-indemnizacion/",
+    eyebrow: "II · Deuda y crédito",
+    cards: [
+      {
+        number: "03",
+        title: "Tengo deudas",
+        description:
+          "Entiende tus opciones: renegociación, DICOM, Ley del consumidor y derechos frente al cobrador.",
+        href: "/guias/deuda-credito/",
+        ctaLabel: "Ver guía",
+        contentTypes: ["guía"],
+        source: { kind: "static", updatedDate: new Date("2026-01-15") },
+      },
+      {
+        number: "04",
+        title: "Me cobraron algo que no reconozco",
+        description:
+          "Qué hacer si apareces en DICOM sin saber por qué, o si detectas fraude en tu tarjeta.",
+        href: "/posts/fraude-tarjeta-que-hacer/",
+        ctaLabel: "Leer artículo",
+        contentTypes: ["artículo"],
+        source: { kind: "blog", slug: "fraude-tarjeta-que-hacer" },
+      },
+    ],
   },
   {
-    icon: IconCreditCard,
-    title: "Tengo deudas",
-    description:
-      "Entiende tus opciones: renegociación, DICOM, Ley del consumidor y derechos frente al cobrador.",
-    href: "/guias/deuda-credito/",
-  },
-  {
-    icon: IconChartBar,
-    title: "Debo declarar renta",
-    description:
-      "Calcula cuánto pagar o cuánto te devuelven, y navega el proceso del F-22 sin errores.",
-    href: "/calculadoras/operacion-renta/",
-  },
-  {
-    icon: IconMoneybag,
-    title: "Quiero ahorrar",
-    description:
-      "APV, fondos mutuos, UF y estrategias de ahorro con herramientas concretas.",
-    href: "/guias/ahorro-e-inversion/",
-  },
-  {
-    icon: IconAlertCircle,
-    title: "Me cobraron algo que no reconozco",
-    description:
-      "Qué hacer si apareces en DICOM sin saber por qué, o si detectas fraude en tu tarjeta.",
-    href: "/posts/fraude-tarjeta-que-hacer/",
+    eyebrow: "III · Ahorro e impuestos",
+    cards: [
+      {
+        number: "05",
+        title: "Quiero ahorrar",
+        description:
+          "APV, fondos mutuos, UF y estrategias de ahorro con herramientas concretas.",
+        href: "/guias/ahorro-e-inversion/",
+        ctaLabel: "Ver guía",
+        contentTypes: ["guía"],
+        source: { kind: "static", updatedDate: new Date("2026-01-15") },
+      },
+      {
+        number: "06",
+        title: "Debo declarar renta",
+        description:
+          "Calcula cuánto pagar o cuánto te devuelven, y navega el proceso del F-22 sin errores.",
+        href: "/calculadoras/operacion-renta/",
+        ctaLabel: "Usar calculadora",
+        contentTypes: ["calculadora"],
+        source: { kind: "static", updatedDate: new Date("2026-01-15") },
+      },
+    ],
   },
 ];
+
+// Resolver fechas reales para posts de blog
+const blogEntries = await getCollection("blog");
+const blogDateMap = new Map<string, Date>(
+  blogEntries.map(e => [
+    e.data.slug,
+    (e.data.updatedDate ?? e.data.pubDate) as Date,
+  ])
+);
+
+function resolveDate(source: CardSource): Date | null {
+  if (source.kind === "blog") {
+    return blogDateMap.get(source.slug) ?? null;
+  }
+  return source.updatedDate;
+}
+
+function formatDate(date: Date | null): string {
+  if (!date) return "";
+  return date.toLocaleDateString("es-CL", { month: "short", year: "numeric" });
+}
+
+function metaLine(card: Card): string {
+  const date = resolveDate(card.source);
+  const dateStr = date ? `Actualizado ${formatDate(date)}` : "Actualizado";
+  const types = card.contentTypes.join(" + ");
+  return `${dateStr} · ${types}`;
+}
 ---
 
 <section class="border-b border-border py-8">
   <h2 class="mb-1 text-xl font-bold sm:text-2xl">¿Qué necesitas resolver?</h2>
   <p class="mb-6 text-sm text-secondary">Elige tu situación y entra directo.</p>
-  <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+
+  <div class="space-y-6">
     {
-      cards.map(card => (
-        <li>
-          <a
-            href={getPath(card.href)}
-            class="group flex h-full flex-col gap-2 rounded-xl border border-border bg-background p-4 transition-colors hover:border-accent/40 hover:bg-accent/5"
-            data-analytics-cta="home-problem-card"
-            data-analytics-label={card.title}
-            data-analytics-location="home_problem_cards"
-          >
-            <card.icon class="size-7 text-foreground" aria-hidden="true" />
-            <span class="font-semibold text-foreground transition-colors group-hover:text-accent">
-              {card.title}
-            </span>
-            <span class="text-sm leading-relaxed text-secondary">
-              {card.description}
-            </span>
-          </a>
-        </li>
+      groups.map(group => (
+        <div>
+          <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-secondary">
+            {group.eyebrow}
+          </p>
+          <ul class="divide-y divide-border">
+            {group.cards.map(card => (
+              <li>
+                <a
+                  href={getPath(card.href)}
+                  class="group -mx-2 flex items-start gap-4 rounded px-2 py-3 transition-colors hover:bg-accent/5"
+                  data-analytics-cta="home-problem-card"
+                  data-analytics-label={card.title}
+                  data-analytics-location="home_problem_cards"
+                >
+                  <span
+                    class="w-7 shrink-0 text-lg font-bold tabular-nums text-secondary transition-colors group-hover:text-accent"
+                    style="font-family: var(--font-display)"
+                  >
+                    {card.number}
+                  </span>
+                  <div class="min-w-0 flex-1">
+                    <p class="font-semibold text-foreground transition-colors group-hover:text-accent">
+                      {card.title}
+                    </p>
+                    <p class="mt-0.5 text-sm leading-relaxed text-secondary">
+                      {card.description}
+                    </p>
+                    <p class="mt-1 font-mono text-xs text-muted">
+                      {metaLine(card)}
+                    </p>
+                  </div>
+                  <span class="shrink-0 whitespace-nowrap text-sm text-accent underline decoration-dashed underline-offset-2">
+                    {card.ctaLabel} →
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
       ))
     }
-  </ul>
+  </div>
 </section>
