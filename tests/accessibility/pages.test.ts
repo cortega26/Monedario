@@ -4,9 +4,17 @@ import { runAxe } from "./axe-helper";
 const TEST_PAGES = [
   { name: "Homepage", url: "/" },
   { name: "Article", url: "/posts/como-calcular-sueldo-liquido/" },
-  { name: "Calculator", url: "/calculadoras/sueldo-liquido/" },
+  { name: "Calculator (sueldo)", url: "/calculadoras/sueldo-liquido/" },
+  { name: "Calculator (UTM)", url: "/calculadoras/conversor-utm/" },
+  { name: "Calculator index", url: "/calculadoras/" },
   { name: "Search", url: "/buscar/" },
   { name: "404", url: "/nonexistent/" },
+  { name: "Glossary entry", url: "/glosario/cae/" },
+  { name: "Law page", url: "/leyes/ley-18010-credito-dinero/" },
+  { name: "About", url: "/about/" },
+  { name: "Accessibility statement", url: "/accessibilidad/" },
+  { name: "Tag page", url: "/tags/afp/" },
+  { name: "Guides hub", url: "/guias/" },
 ] as const;
 
 test.describe("WCAG 2.2 AA — automated scan", () => {

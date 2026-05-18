@@ -124,7 +124,7 @@ const breadcrumbItems = [
     <li>
       <a
         href={getPath("/")}
-        class="text-secondary transition-colors hover:text-foreground"
+        class="text-secondary underline decoration-border underline-offset-4 transition-colors hover:text-foreground hover:decoration-foreground"
       >
         Inicio
       </a>
@@ -165,7 +165,7 @@ const breadcrumbItems = [
           <li>
             <a
               href={getPath(index === 0 && hub ? hub.href : crumb.href)}
-              class="text-secondary transition-colors hover:text-foreground"
+              class="text-secondary underline decoration-border underline-offset-4 transition-colors hover:text-foreground hover:decoration-foreground"
             >
               {labels[index]}
             </a>

@@ -135,7 +135,7 @@ const lastVerifiedStr = d.lastVerified.toLocaleDateString("es-CL", {
           href={d.bcnUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="font-medium text-accent underline-offset-4 hover:underline"
+          class="font-medium text-accent underline underline-offset-4 hover:opacity-80"
         >
           Texto oficial en BCN ↗
         </a>
@@ -169,7 +169,7 @@ const lastVerifiedStr = d.lastVerified.toLocaleDateString("es-CL", {
               <li>
                 <a
                   href={getPath(`/posts/${slug}/`)}
-                  class="text-accent underline-offset-4 hover:underline"
+                  class="text-accent underline underline-offset-4 hover:opacity-80"
                 >
                   → {slug.replace(/-/g, " ")}
                 </a>
@@ -201,7 +201,7 @@ const lastVerifiedStr = d.lastVerified.toLocaleDateString("es-CL", {
           href={d.bcnUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="text-accent underline-offset-4 hover:underline"
+          class="text-accent underline underline-offset-4 hover:opacity-80"
         >
           Verificar texto oficial actualizado en BCN →
         </a>
@@ -212,7 +212,7 @@ const lastVerifiedStr = d.lastVerified.toLocaleDateString("es-CL", {
     <div class="mt-8 text-sm">
       <a
         href={getPath("/leyes/")}
-        class="text-accent underline-offset-4 hover:underline"
+        class="text-accent underline underline-offset-4 hover:opacity-80"
       >
         ← Volver al Marco Legal
       </a>
