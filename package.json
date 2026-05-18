@@ -3,7 +3,7 @@
   "type": "module",
   "version": "5.5.1",
   "license": "AGPL-3.0-only",
-  "packageManager": "pnpm@10.30.2",
+  "packageManager": "pnpm@11.1.2+sha512.415a1cc25974731e75455c1468371be74c5aa5fb7621b50d4056d222451609f11412f23fd602e6169f1e060466641f798597e1be961a10688836a67b16569499",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "dev": "astro dev",
@@ -107,6 +107,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "@axe-core/playwright": "^4.11.3",
+    "@cloudflare/workers-types": "^4.20260517.1",
     "@lhci/cli": "^0.15.1",
     "@pagefind/default-ui": "^1.5.2",
     "@playwright/test": "^1.60.0",
@@ -128,6 +129,7 @@
     "sitemap": "^9.0.1",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.3",
-    "vitest": "^4.1.6"
+    "vitest": "^4.1.6",
+    "wrangler": "^4.92.0"
   }
 }

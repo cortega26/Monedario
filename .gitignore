@@ -1,6 +1,8 @@
 # build output
 dist/
 .wrangler/
+.dev.vars
+**/.dev.vars
 output/audit/
 output/hero-downloads/
 output/hero-images/
