@@ -53,7 +53,7 @@ const { noMarginTop = false, class: className, ...attrs } = Astro.props;
               <li>
                 <a
                   href={getPath(link.href)}
-                  class="hover:text-accent hover:underline"
+                  class="inline-flex min-h-[24px] items-center py-0.5 hover:text-accent hover:underline"
                   data-analytics-cta="hub-route"
                   data-analytics-label={link.label}
                   data-analytics-location="footer_topics"
@@ -73,7 +73,7 @@ const { noMarginTop = false, class: className, ...attrs } = Astro.props;
               <li>
                 <a
                   href={getPath(link.href)}
-                  class="hover:text-accent hover:underline"
+                  class="inline-flex min-h-[24px] items-center py-0.5 hover:text-accent hover:underline"
                   data-analytics-cta="hub-route"
                   data-analytics-label={link.label}
                   data-analytics-location="footer_tools"
@@ -93,7 +93,7 @@ const { noMarginTop = false, class: className, ...attrs } = Astro.props;
               <li>
                 <a
                   href={getPath(link.href)}
-                  class="hover:text-accent hover:underline"
+                  class="inline-flex min-h-[24px] items-center py-0.5 hover:text-accent hover:underline"
                   data-analytics-cta="hub-route"
                   data-analytics-label={link.label}
                   data-analytics-location="footer_trust"
@@ -125,7 +125,8 @@ const { noMarginTop = false, class: className, ...attrs } = Astro.props;
             href="https://tooltician.com/"
             target="_blank"
             rel="noopener"
-            class="hover:text-accent hover:underline">Tooltician</a
+            class="inline-flex min-h-[24px] items-center py-0.5 hover:text-accent hover:underline"
+            >Tooltician</a
           >
         </span>
       </div>

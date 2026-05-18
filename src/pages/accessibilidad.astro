@@ -8,7 +8,7 @@ import { SITE } from "@/config";
 
 <Layout
   title={`Accesibilidad | ${SITE.title}`}
-  description="Declaración de accesibilidad de Monedario: cumplimiento parcial con WCAG 2.2 Nivel AA, características accesibles y canal de contacto para reportar problemas."
+  description="Declaración de accesibilidad de Monedario: conformidad sustancial con WCAG 2.2 Nivel AA, metodología de evaluación, alcance y canal de contacto para reportar problemas."
 >
   <Header />
   <Breadcrumb />
@@ -34,16 +34,30 @@ import { SITE } from "@/config";
       <h2 class="mb-4 text-2xl font-bold">Estado de conformidad</h2>
       <p class="max-w-2xl text-base leading-relaxed text-secondary">
         Este sitio se encuentra <strong class="text-foreground"
-          >parcialmente conforme</strong
+          >sustancialmente conforme</strong
         > con las <strong class="text-foreground"
           >Pautas de Accesibilidad para el Contenido Web (WCAG) 2.2</strong
         >
-        en su <strong class="text-foreground">Nivel AA</strong>.
+        en su <strong class="text-foreground">Nivel AA</strong>, incluidos los
+        criterios nuevos de la versión 2.2 (objetivo, focus visible, ayuda
+        accesible y autenticación).
       </p>
       <p class="mt-3 max-w-2xl text-base leading-relaxed text-secondary">
-        Esto significa que la mayor parte del contenido cumple con los criterios
-        de accesibilidad, pero existen secciones que aún no alcanzan la
-        conformidad completa y están siendo revisadas activamente.
+        En la última auditoría, las trece plantillas representativas del sitio —
+        portada, artículo, dos tipos de calculadora, índice de calculadoras,
+        buscador, error 404, glosario, ficha de ley, página "Sobre nosotros",
+        esta declaración, listado de etiquetas y hub de guías — no presentaron
+        violaciones detectables en escaneo automatizado bajo WCAG 2.2 AA, ni en
+        escritorio claro, ni en escritorio oscuro, ni en viewport móvil.
+      </p>
+      <p class="mt-3 max-w-2xl text-base leading-relaxed text-secondary">
+        Usamos el término <em>sustancialmente conforme</em> porque la evaluación automatizada
+        cubre la mayoría de los criterios de WCAG 2.2 AA pero no todos: criterios
+        que dependen del orden de lectura, de la coherencia semántica anunciada por
+        un lector de pantalla o del juicio editorial (1.3.1 parcial, 2.4.6, 3.3.2)
+        requieren evaluación humana complementaria. Esa pasada manual con lectores
+        de pantalla se realiza de forma periódica y no se incluyó en la última auditoría
+        automática.
       </p>
     </section>
 
@@ -58,22 +72,33 @@ import { SITE } from "@/config";
       >
         <li>
           Pruebas automatizadas con <strong class="text-foreground"
-            >axe-core</strong
-          > (motor de análisis de accesibilidad) sobre las plantillas principales
-          del sitio: portada, artículo, calculadora, buscador y página de error.
+            >axe-core 4.11</strong
+          > vía Playwright, aplicando los tags <code class="text-accent"
+            >wcag2a, wcag2aa, wcag21a, wcag21aa, wcag22aa</code
+          > sobre trece plantillas representativas del sitio, evaluadas en tres condiciones
+          (escritorio claro, escritorio oscuro y viewport móvil 390×844 px) — 39 escaneos
+          en total.
         </li>
         <li>
           Auditoría manual de navegación por teclado y lectores de pantalla
-          (VoiceOver, NVDA).
+          (VoiceOver, NVDA), realizada periódicamente fuera del ciclo
+          automatizado.
         </li>
         <li>
-          Verificación de contraste de color con herramientas de medición
-          cromática.
+          Verificación de contraste sobre los tokens cromáticos semánticos (<code
+            class="text-accent">--accent</code
+          >, <code class="text-accent">--text-secondary</code>, etc.), no sólo
+          sobre instancias renderizadas.
         </li>
       </ul>
       <p class="mt-3 max-w-2xl text-sm leading-relaxed text-secondary">
-        Fecha de la última evaluación: <strong class="text-foreground"
-          >mayo de 2026</strong
+        Fecha de la última auditoría automatizada: <strong
+          class="text-foreground">18 de mayo de 2026</strong
+        >. El informe técnico completo está disponible en
+        <a
+          href="https://github.com/csortega/monedario/blob/main/docs/reports/ACCESSIBILITY-2026-05-18.md"
+          class="text-accent underline underline-offset-4 hover:opacity-80"
+          rel="noopener">docs/reports/ACCESSIBILITY-2026-05-18.md</a
         >.
       </p>
     </section>
@@ -132,42 +157,57 @@ import { SITE } from "@/config";
 
     <!-- LIMITACIONES CONOCIDAS -->
     <section class="border-b border-border py-10">
-      <h2 class="mb-4 text-2xl font-bold">Limitaciones conocidas</h2>
+      <h2 class="mb-4 text-2xl font-bold">
+        Alcance, supuestos y limitaciones de la evaluación
+      </h2>
       <p class="max-w-2xl text-base leading-relaxed text-secondary">
-        Estamos trabajando para resolver las siguientes limitaciones:
+        Por transparencia, declaramos los límites de lo evaluado para que la
+        afirmación de conformidad sea verificable y defendible:
       </p>
       <div
         class="mt-4 max-w-2xl space-y-4 text-sm leading-relaxed text-secondary"
       >
         <div class="rounded-xl border border-border p-4">
           <p class="font-semibold text-foreground">
-            Resultados de calculadoras
+            Auditoría por muestreo de plantillas
           </p>
           <p class="mt-1">
-            Aunque los resultados se anuncian mediante regiones en vivo (<code
-              class="text-accent">aria-live</code
-            >), algunos calculadores pueden no anunciar correctamente los
-            cambios en todos los lectores de pantalla. Estamos revisando la
-            cobertura de las 18 calculadoras del sitio.
-          </p>
-        </div>
-        <div class="rounded-xl border border-border p-4">
-          <p class="font-semibold text-foreground">Indicadores de progreso</p>
-          <p class="mt-1">
-            La barra de progreso de lectura y el indicador circular del botón
-            "Volver arriba" tienen soporte ARIA limitado. La actualización del
-            valor porcentual puede no anunciarse correctamente en todos los
-            lectores de pantalla.
+            Se evaluó una página representativa por tipo de plantilla. El resto
+            del contenido del mismo tipo hereda la plantilla y, por lo tanto, su
+            nivel de cumplimiento, salvo errores específicos de redacción que no
+            son detectables sin revisión humana.
           </p>
         </div>
         <div class="rounded-xl border border-border p-4">
           <p class="font-semibold text-foreground">
-            Contenido incrustado de terceros
+            Cobertura de lectores de pantalla
           </p>
           <p class="mt-1">
-            Algunos componentes cargados dinámicamente (Pagefind, ciertos
-            gráficos) pueden tener limitaciones de accesibilidad que están fuera
-            de nuestro control directo.
+            La auditoría automatizada no reemplaza el testing manual con
+            VoiceOver, NVDA o TalkBack. Algunos criterios WCAG dependen del
+            orden de lectura y de la semántica anunciada, que sólo se valida con
+            una pasada humana. Esa pasada se hace de forma periódica.
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-4">
+          <p class="font-semibold text-foreground">
+            Resultados dinámicos del buscador
+          </p>
+          <p class="mt-1">
+            El buscador interno se entrega mediante Pagefind. La interfaz propia
+            (formulario y región) cumple AA, pero la lista de resultados se
+            genera dinámicamente con el bundle de Pagefind y su accesibilidad
+            depende de la versión publicada por ese proyecto de terceros.
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-4">
+          <p class="font-semibold text-foreground">Contenido editorial nuevo</p>
+          <p class="mt-1">
+            Los artículos publicados después de la última auditoría heredan la
+            plantilla evaluada, pero pueden contener fragmentos específicos
+            (tablas, imágenes con alt insuficiente) que no se detectan hasta la
+            siguiente pasada. Si encuentras uno, escríbenos y lo corregimos en
+            el próximo ciclo editorial.
           </p>
         </div>
       </div>

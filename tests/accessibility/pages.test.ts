@@ -17,7 +17,32 @@ const TEST_PAGES = [
   { name: "Guides hub", url: "/guias/" },
 ] as const;
 
-test.describe("WCAG 2.2 AA — automated scan", () => {
+function reportViolations(
+  context: string,
+  violations: Array<{
+    impact?: string | null;
+    id: string;
+    help: string;
+    helpUrl: string;
+    nodes: Array<{ target: Array<string>; html: string }>;
+  }>
+) {
+  if (violations.length === 0) return;
+  // eslint-disable-next-line no-console
+  console.log(`\n=== ${context} — ${violations.length} violations ===`);
+  for (const v of violations) {
+    // eslint-disable-next-line no-console
+    console.log(`  [${v.impact}] ${v.id}: ${v.help}`);
+    // eslint-disable-next-line no-console
+    console.log(`  Help: ${v.helpUrl}`);
+    // eslint-disable-next-line no-console
+    console.log(
+      `  Elements: ${v.nodes.map(n => n.html.slice(0, 200)).join(" || ")}`
+    );
+  }
+}
+
+test.describe("WCAG 2.2 AA — automated scan (light desktop)", () => {
   for (const pageDef of TEST_PAGES) {
     test(`${pageDef.name} should have no critical or serious violations`, async ({
       page,
@@ -26,28 +51,50 @@ test.describe("WCAG 2.2 AA — automated scan", () => {
       await page.waitForLoadState("networkidle");
 
       const { violations } = await runAxe(page);
-
       const criticalAndSerious = violations.filter(
         v => v.impact === "critical" || v.impact === "serious"
       );
+      reportViolations(pageDef.name, criticalAndSerious);
+      expect(criticalAndSerious).toEqual([]);
+    });
+  }
+});
 
-      if (criticalAndSerious.length > 0) {
-        // eslint-disable-next-line no-console
-        console.log(
-          `\n=== ${pageDef.name} — ${criticalAndSerious.length} critical/serious violations ===`
-        );
-        for (const v of criticalAndSerious) {
-          // eslint-disable-next-line no-console
-          console.log(`  [${v.impact}] ${v.id}: ${v.help}`);
-          // eslint-disable-next-line no-console
-          console.log(`  Help: ${v.helpUrl}`);
-          // eslint-disable-next-line no-console
-          console.log(
-            `  Elements: ${v.nodes.map(n => n.target.join(", ")).join(" | ")}`
-          );
-        }
-      }
+test.describe("WCAG 2.2 AA — dark mode coverage", () => {
+  for (const pageDef of TEST_PAGES) {
+    test(`${pageDef.name} (dark) should have no critical or serious violations`, async ({
+      page,
+    }) => {
+      await page.goto(pageDef.url);
+      await page.evaluate(() => {
+        document.documentElement.setAttribute("data-theme", "dark");
+      });
+      await page.waitForLoadState("networkidle");
 
+      const { violations } = await runAxe(page);
+      const criticalAndSerious = violations.filter(
+        v => v.impact === "critical" || v.impact === "serious"
+      );
+      reportViolations(`${pageDef.name} (dark)`, criticalAndSerious);
+      expect(criticalAndSerious).toEqual([]);
+    });
+  }
+});
+
+test.describe("WCAG 2.2 AA — mobile viewport coverage", () => {
+  test.use({ viewport: { width: 390, height: 844 } });
+  for (const pageDef of TEST_PAGES) {
+    test(`${pageDef.name} (mobile) should have no critical or serious violations`, async ({
+      page,
+    }) => {
+      await page.goto(pageDef.url);
+      await page.waitForLoadState("networkidle");
+
+      const { violations } = await runAxe(page);
+      const criticalAndSerious = violations.filter(
+        v => v.impact === "critical" || v.impact === "serious"
+      );
+      reportViolations(`${pageDef.name} (mobile)`, criticalAndSerious);
       expect(criticalAndSerious).toEqual([]);
     });
   }

@@ -199,10 +199,10 @@ import { SITE } from "@/config";
             <p class="font-semibold text-foreground">Cierre con firma</p>
             <p class="mt-0.5 text-sm leading-relaxed text-secondary">
               Se verifica que todos los enlaces funcionen, que la fecha de
-              vigencia esté declarada y que no haya contradicciones internas.
-              En artículos sobre impuestos, pensiones, deuda o cálculos, esta
-              etapa termina con la firma del editor humano responsable. Sin
-              esa firma, el artículo no se publica.
+              vigencia esté declarada y que no haya contradicciones internas. En
+              artículos sobre impuestos, pensiones, deuda o cálculos, esta etapa
+              termina con la firma del editor humano responsable. Sin esa firma,
+              el artículo no se publica.
             </p>
           </div>
         </li>
@@ -223,9 +223,8 @@ import { SITE } from "@/config";
               >{SITE.authorFullName}</a
             >, editor responsable. Esa firma no es decorativa: es un gate
             explícito del proceso de publicación. Si el artículo no está
-            firmado, no se publica. Si durante la auditoría aparece un
-            problema, el artículo vuelve a etapa de borrador hasta que se
-            resuelva.
+            firmado, no se publica. Si durante la auditoría aparece un problema,
+            el artículo vuelve a etapa de borrador hasta que se resuelva.
           </p>
         </div>
 
@@ -234,11 +233,11 @@ import { SITE } from "@/config";
             Asistencia de inteligencia artificial
           </h3>
           <p class="text-sm leading-relaxed text-secondary">
-            En algunas etapas del proceso — investigación inicial, redacción
-            de borrador, generación de variantes, revisión cruzada — usamos
-            herramientas de inteligencia artificial como apoyo. La IA no
-            decide qué se publica ni firma los artículos. Las restricciones
-            son explícitas:
+            En algunas etapas del proceso — investigación inicial, redacción de
+            borrador, generación de variantes, revisión cruzada — usamos
+            herramientas de inteligencia artificial como apoyo. La IA no decide
+            qué se publica ni firma los artículos. Las restricciones son
+            explícitas:
           </p>
           <ul
             class="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-secondary"
@@ -269,8 +268,8 @@ import { SITE } from "@/config";
             revisa la base regulatoria. El objetivo es evitar que quien escribe
             valide su propio trabajo. Esta separación se aplica también cuando
             partes del proceso usan asistencia de IA: el rol auditor opera en
-            una sesión independiente, sin acceso al contexto en que se generó
-            el borrador.
+            una sesión independiente, sin acceso al contexto en que se generó el
+            borrador.
           </p>
         </div>
 
@@ -302,17 +301,15 @@ import { SITE } from "@/config";
         </div>
 
         <div>
-          <h3 class="mb-2 text-lg font-semibold">
-            Datos económicos en vivo
-          </h3>
+          <h3 class="mb-2 text-lg font-semibold">Datos económicos en vivo</h3>
           <p class="text-sm leading-relaxed text-secondary">
-            Los indicadores económicos que usamos en calculadoras y
-            conversores — UF, UTM, IPC y dólar — se actualizan directamente
-            desde el Banco Central de Chile y el Instituto Nacional de
-            Estadísticas mediante un proceso automático. No los ingresamos a
-            mano: cada valor mostrado lleva la fecha de su origen oficial. Si
-            una fuente externa no responde, mostramos el último valor
-            verificado en lugar de inventarlo.
+            Los indicadores económicos que usamos en calculadoras y conversores
+            — UF, UTM, IPC y dólar — se actualizan directamente desde el Banco
+            Central de Chile y el Instituto Nacional de Estadísticas mediante un
+            proceso automático. No los ingresamos a mano: cada valor mostrado
+            lleva la fecha de su origen oficial. Si una fuente externa no
+            responde, mostramos el último valor verificado en lugar de
+            inventarlo.
           </p>
         </div>
 
@@ -507,7 +504,8 @@ import { SITE } from "@/config";
         reducir al mínimo errores evitables. Si encuentras un error factual,
         <a
           href={getPath("/contacto/")}
-          class="text-accent underline underline-offset-4 hover:opacity-80">escríbenos</a
+          class="text-accent underline underline-offset-4 hover:opacity-80"
+          >escríbenos</a
         >. Las correcciones factuales reportadas se registran en
         <a
           href={getPath("/cambios/")}
