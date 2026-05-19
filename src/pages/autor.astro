@@ -34,7 +34,7 @@ const personSchema = {
     "Seguro de cesantía",
     "Análisis de datos",
   ],
-  sameAs: [SITE.authorLinkedIn, SITE.profile],
+  sameAs: [SITE.authorLinkedIn, SITE.profile, SITE.authorPortfolio],
   worksFor: {
     "@type": "Organization",
     name: SITE.title,
@@ -123,6 +123,33 @@ const personSchema = {
               </svg>
               GitHub
             </a>
+            <a
+              href={SITE.authorPortfolio}
+              target="_blank"
+              rel="noopener"
+              class="flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-secondary transition-colors hover:border-accent hover:text-accent"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+                ></path>
+                <path
+                  d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+                ></path>
+              </svg>
+              Portafolio
+            </a>
           </div>
         </div>
       </div>
@@ -164,6 +191,15 @@ const personSchema = {
             class="text-accent underline underline-offset-4 hover:opacity-80"
             >bankrecon</a
           >, una dependencia Python autoinstalable para conciliación bancaria.
+          Mantiene un
+          <a
+            href={SITE.authorPortfolio}
+            target="_blank"
+            rel="noopener"
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+            >portafolio profesional</a
+          >
+          con proyectos de automatización, datos y herramientas web en producción.
           También es curador de contenidos para
           {
             /* Sin noreferrer: dominio propio del autor, conserva referrer

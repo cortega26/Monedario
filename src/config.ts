@@ -6,6 +6,7 @@ export const SITE = {
   authorFullName: "Carlos Ortega González",
   authorImage: "/images/author/carlos-ortega.jpg",
   authorLinkedIn: "https://www.linkedin.com/in/cortega26/",
+  authorPortfolio: "https://tooltician.com/",
   profile: "https://github.com/cortega26",
   desc: "Finanzas personales para chilenos. Guías sobre AFP, APV, impuestos, inversiones y calculadoras prácticas.",
   title: "Monedario",

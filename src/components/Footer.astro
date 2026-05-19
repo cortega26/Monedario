@@ -1,16 +1,15 @@
 ---
 import type { HTMLAttributes } from "astro/types";
 import Socials from "./Socials.astro";
+import { SITE } from "@/config";
+import { GUIDE_HUB_ORDER, GUIDE_HUBS } from "@/config/clusters";
 import { getPath } from "@/utils/getPath";
 
 const currentYear = new Date().getFullYear();
-const topicLinks = [
-  { href: "/guias/sueldo-remuneraciones/", label: "Sueldo" },
-  { href: "/guias/deuda-credito/", label: "Deuda" },
-  { href: "/guias/pensiones-afp/", label: "AFP" },
-  { href: "/guias/impuestos-personas/", label: "Impuestos" },
-  { href: "/guias/uf-costo-de-vida/", label: "UF" },
-];
+const topicLinks = GUIDE_HUB_ORDER.map(slug => ({
+  href: `/guias/${slug}/`,
+  label: GUIDE_HUBS[slug].nombre,
+}));
 const toolLinks = [
   { href: "/calculadoras/sueldo-liquido/", label: "Sueldo líquido" },
   { href: "/calculadoras/finiquito-indemnizacion/", label: "Finiquito" },
@@ -125,7 +124,7 @@ const { noMarginTop = false, class: className, ...attrs } = Astro.props;
           */
           }
           Desarrollado por <a
-            href="https://tooltician.com/"
+            href={SITE.authorPortfolio}
             target="_blank"
             rel="noopener"
             class="inline-flex min-h-[32px] items-center py-0.5 hover:text-accent hover:underline sm:min-h-[24px]"
