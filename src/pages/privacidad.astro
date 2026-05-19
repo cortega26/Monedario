@@ -9,7 +9,7 @@ import { SITE } from "@/config";
 
 <Layout
   title={`Privacidad | ${SITE.title}`}
-  description="Política de privacidad de Monedario: marco legal aplicable (Ley 21.719 y 19.628), categorías de datos, bases de licitud, plazos de conservación, transferencias internacionales, derechos de los titulares y cómo ejercerlos."
+  description="Política de privacidad de Monedario: sitio sin cuentas ni registro, datos técnicos agregados, almacenamiento local, contacto voluntario, proveedores y derechos."
 >
   <Header />
   <Breadcrumb />
@@ -24,12 +24,12 @@ import { SITE } from "@/config";
         Política de privacidad
       </h1>
       <p class="max-w-2xl text-base leading-relaxed text-secondary">
-        Esta política describe, en lenguaje claro, qué datos puede tratar
-        Monedario, con qué finalidad, en qué base legal, durante cuánto tiempo y
-        qué derechos tienes como titular. Está redactada para cumplir con la
-        normativa chilena de protección de datos personales y, en lo pertinente,
-        con buenas prácticas internacionales sobre tratamiento de información en
-        sitios web.
+        Esta política describe, en lenguaje claro, cómo opera Monedario desde la
+        privacidad: sin cuentas, sin registro, sin formularios de captura y sin
+        venta de datos personales. El tratamiento asociado al sitio es limitado:
+        analítica técnica agregada, datos guardados solo en tu navegador,
+        comunicaciones que tú decidas enviar por correo y eventuales datos
+        tratados por proveedores externos cuando interactúas con ellos.
       </p>
       <p class="mt-3 text-sm text-secondary">
         Última actualización:
@@ -42,8 +42,7 @@ import { SITE } from "@/config";
       <h2 class="mb-4 text-2xl font-bold">Responsable del tratamiento</h2>
       <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
         <p>
-          El responsable del tratamiento de los datos personales asociados a
-          este sitio es
+          El responsable de los tratamientos mínimos asociados a este sitio es
           <strong class="text-foreground">Carlos Ortega González</strong>,
           persona natural domiciliada en Santiago, Chile, en su calidad de
           editor y operador de Monedario.
@@ -59,8 +58,8 @@ import { SITE } from "@/config";
           >.
         </p>
         <p>
-          Monedario no crea cuentas de usuario, no exige registro y no
-          comercializa datos personales.
+          Monedario no crea cuentas de usuario, no exige registro, no opera
+          formularios de captura de datos personales y no comercializa datos.
         </p>
       </div>
     </section>
@@ -111,9 +110,11 @@ import { SITE } from "@/config";
         Principios que rigen el tratamiento
       </h2>
       <p class="mb-4 max-w-2xl text-base leading-relaxed text-secondary">
-        El tratamiento de datos personales asociado a Monedario se realiza con
-        sujeción a los principios reconocidos por la legislación chilena de
-        protección de datos:
+        Cuando existe tratamiento de datos personales asociado a Monedario, este
+        se limita a lo necesario para operar el sitio, responder comunicaciones
+        iniciadas por visitantes o permitir aportes voluntarios mediante
+        terceros. En ese marco, se aplican los principios reconocidos por la
+        legislación chilena de protección de datos:
       </p>
       <ul
         class="max-w-2xl list-disc space-y-2 pl-5 text-sm leading-relaxed text-secondary"
@@ -130,13 +131,14 @@ import { SITE } from "@/config";
         </li>
         <li>
           <strong class="text-foreground">Proporcionalidad</strong>: los datos
-          tratados son los necesarios para la finalidad respectiva, sin
-          recolección excesiva.
+          tratados son los necesarios para la finalidad respectiva. Monedario no
+          pide datos personales para leer contenidos ni para usar sus
+          calculadoras.
         </li>
         <li>
           <strong class="text-foreground">Calidad</strong>: los datos se
-          mantienen exactos en lo posible y se corrigen o actualizan cuando
-          corresponde.
+          mantienen exactos en lo posible cuando el visitante los entrega
+          voluntariamente por correo o al interactuar con un proveedor externo.
         </li>
         <li>
           <strong class="text-foreground">Transparencia e información</strong>:
@@ -150,8 +152,9 @@ import { SITE } from "@/config";
         </li>
         <li>
           <strong class="text-foreground">Responsabilidad demostrada</strong>:
-          el responsable mantiene registro y trazabilidad de las decisiones
-          adoptadas sobre el tratamiento.
+          el responsable mantiene criterios documentados sobre qué datos no se
+          solicitan, qué datos quedan solo en el navegador y qué proveedores
+          pueden intervenir.
         </li>
       </ul>
     </section>
@@ -159,12 +162,14 @@ import { SITE } from "@/config";
     <!-- DATOS Y BASES DE LICITUD -->
     <section class="border-b border-border py-10">
       <h2 class="mb-4 text-2xl font-bold">
-        Categorías de datos, finalidad, base de licitud y conservación
+        Situaciones en que puede existir tratamiento
       </h2>
       <p class="mb-6 max-w-2xl text-base leading-relaxed text-secondary">
-        La siguiente tabla detalla los tratamientos asociados al uso ordinario
-        del sitio. Si una funcionalidad nueva introduce un tratamiento distinto,
-        esta sección se actualizará antes o al momento de habilitarla.
+        Monedario no solicita datos personales para acceder al contenido ni para
+        usar sus calculadoras. Las situaciones siguientes describen los únicos
+        tratamientos o tecnologías de datos asociados al uso ordinario del
+        sitio. Si una funcionalidad nueva introduce un tratamiento distinto,
+        esta sección se actualizará antes de habilitarla.
       </p>
 
       <div class="max-w-2xl space-y-5">
@@ -178,12 +183,14 @@ import { SITE } from "@/config";
             <dt class="font-semibold text-foreground">Qué incluye</dt>
             <dd>
               País aproximado, navegador, sistema operativo, tipo de dispositivo
-              y página vista, agregados por el proveedor de analítica.
+              y página vista, procesados de forma agregada por el proveedor de
+              analítica. Monedario no recibe un registro individual
+              identificable de navegación.
             </dd>
             <dt class="font-semibold text-foreground">Quién lo trata</dt>
             <dd>
               Cloudflare Web Analytics (proveedor de medición sin cookies y sin
-              recolección de IP individual identificable).
+              entrega de IP individual identificable a Monedario).
             </dd>
             <dt class="font-semibold text-foreground">Finalidad</dt>
             <dd>
@@ -211,8 +218,8 @@ import { SITE } from "@/config";
             <dt class="font-semibold text-foreground">Qué incluye</dt>
             <dd>
               Tema visual (claro/oscuro), páginas recientes, estado de
-              calculadoras retomables y perfil local para reutilizar inputs
-              entre calculadoras.
+              calculadoras retomables y valores locales para reutilizar algunos
+              inputs entre calculadoras.
             </dd>
             <dt class="font-semibold text-foreground">Quién lo trata</dt>
             <dd>
@@ -228,8 +235,10 @@ import { SITE } from "@/config";
             </dd>
             <dt class="font-semibold text-foreground">Base de licitud</dt>
             <dd>
-              Funcionalidad solicitada por el titular al usar el sitio. Puedes
-              eliminar estos datos en cualquier momento desde tu navegador.
+              Funcionalidad solicitada por el visitante al usar el sitio. Puedes
+              eliminar estos datos en cualquier momento desde tu navegador; no
+              hace falta pedírselo a Monedario porque no salen de tu
+              dispositivo.
             </dd>
             <dt class="font-semibold text-foreground">Conservación</dt>
             <dd>Hasta que los elimines tú o tu navegador.</dd>
@@ -238,7 +247,7 @@ import { SITE } from "@/config";
 
         <div class="rounded-xl border border-border p-5">
           <p class="text-sm font-semibold text-foreground">
-            Comunicaciones por correo electrónico
+            Comunicaciones iniciadas por correo electrónico
           </p>
           <dl
             class="mt-2 grid gap-1 text-sm text-secondary sm:grid-cols-[140px_1fr]"
@@ -246,7 +255,8 @@ import { SITE } from "@/config";
             <dt class="font-semibold text-foreground">Qué incluye</dt>
             <dd>
               Dirección de correo, contenido del mensaje y cualquier información
-              que decidas adjuntar.
+              que decidas incluir. Monedario no solicita que envíes datos
+              sensibles ni documentos personales por esta vía.
             </dd>
             <dt class="font-semibold text-foreground">Quién lo trata</dt>
             <dd>
@@ -255,25 +265,25 @@ import { SITE } from "@/config";
             </dd>
             <dt class="font-semibold text-foreground">Finalidad</dt>
             <dd>
-              Responder consultas, registrar correcciones reportadas y mantener
+              Responder consultas, recibir correcciones reportadas y mantener
               conversaciones razonables sobre el sitio.
             </dd>
             <dt class="font-semibold text-foreground">Base de licitud</dt>
             <dd>
-              Tu propia iniciativa al contactar al responsable, lo que se
-              entiende como consentimiento expreso al tratamiento mínimo
-              necesario para responderte.
+              Tu propia iniciativa al contactar al responsable, limitada al
+              tratamiento mínimo necesario para responderte o evaluar la
+              corrección reportada.
             </dd>
             <dt class="font-semibold text-foreground">Conservación</dt>
             <dd>
-              Por el tiempo necesario para atender la consulta y para acreditar
+              Por el tiempo necesario para atender la consulta o documentar
               correcciones reportadas en
               <a
                 href={getPath("/cambios/")}
                 class="text-accent underline underline-offset-4 hover:opacity-80"
                 >novedades y cambios</a
-              >. Plazo razonable de hasta 24 meses, salvo que la conservación
-              prolongada sea necesaria para defender derechos.
+              >. Los mensajes no se incorporan a una base de usuarios ni a una
+              lista de marketing.
             </dd>
           </dl>
         </div>
@@ -289,8 +299,9 @@ import { SITE } from "@/config";
             <dd>
               Datos asociados al aporte (medio de pago, nombre de contacto,
               monto) tratados directamente por Ko-fi y procesadores asociados.
-              Monedario recibe únicamente el resultado de la transacción y, si
-              decides identificarte, el nombre o mensaje público.
+              Monedario no procesa medios de pago. Según la configuración de
+              Ko-fi, Monedario puede ver información básica del aporte, como el
+              monto y el nombre o mensaje que decidas mostrar.
             </dd>
             <dt class="font-semibold text-foreground">Quién lo trata</dt>
             <dd>
@@ -301,8 +312,8 @@ import { SITE } from "@/config";
             <dd>Permitir aportes voluntarios al proyecto.</dd>
             <dt class="font-semibold text-foreground">Base de licitud</dt>
             <dd>
-              Tu propia decisión de iniciar el aporte y aceptación de las
-              condiciones del proveedor.
+              Tu propia decisión de iniciar el aporte y aceptar las condiciones
+              del proveedor externo.
             </dd>
             <dt class="font-semibold text-foreground">Conservación</dt>
             <dd>Según las políticas del proveedor.</dd>
@@ -318,7 +329,8 @@ import { SITE } from "@/config";
       </h2>
       <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
         <p>
-          Monedario utiliza
+          En la configuración actualmente descrita en esta política, Monedario
+          utiliza
           <strong class="text-foreground">Cloudflare Web Analytics</strong>
           para medir el uso agregado del sitio. Esta herramienta:
         </p>
@@ -343,11 +355,10 @@ import { SITE } from "@/config";
           respetuosas de la privacidad.
         </p>
         <p>
-          Si en el futuro Monedario incorpora una herramienta analítica
-          adicional que requiera cookies o construya identificadores
-          persistentes (por ejemplo, Google Analytics), esta política se
-          actualizará y se solicitará el consentimiento previo correspondiente
-          antes de activarla.
+          Si en el futuro Monedario habilita una herramienta analítica adicional
+          que requiera cookies o construya identificadores persistentes, esta
+          política se actualizará y se solicitará el consentimiento previo
+          correspondiente antes de activarla.
         </p>
       </div>
     </section>
@@ -359,16 +370,17 @@ import { SITE } from "@/config";
       </h2>
       <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
         <p>
-          Algunos servicios necesarios para operar el sitio implican el
-          tratamiento de datos por proveedores externos, que actúan como
-          encargados o como responsables independientes según el caso:
+          Algunos servicios necesarios para operar el sitio pueden implicar
+          tratamiento técnico o incidental de datos por proveedores externos,
+          que actúan como encargados o responsables independientes según el
+          caso:
         </p>
         <ul class="list-disc space-y-2 pl-5 text-sm">
           <li>
             <strong class="text-foreground">Cloudflare, Inc.</strong> — infraestructura
             de entrega del sitio (CDN, certificado TLS, protección frente a abuso)
-            y Cloudflare Web Analytics. Cloudflare opera bajo sus propias políticas
-            globales de privacidad.
+            y Cloudflare Web Analytics en la configuración actualmente activa. Cloudflare
+            opera bajo sus propias políticas globales de privacidad.
           </li>
           <li>
             <strong class="text-foreground">Ko-fi</strong> — plataforma utilizada
@@ -389,7 +401,7 @@ import { SITE } from "@/config";
         </ul>
         <p>
           Monedario no comparte datos personales con anunciantes, redes de
-          publicidad ni instituciones financieras.
+          publicidad, brokers de datos ni instituciones financieras.
         </p>
       </div>
     </section>
@@ -402,7 +414,7 @@ import { SITE } from "@/config";
       <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
         <p>
           Los proveedores mencionados (Cloudflare y Ko-fi) son empresas con
-          operaciones globales. En consecuencia, algunos datos técnicos o
+          operaciones globales. En consecuencia, datos técnicos mínimos o datos
           asociados a un aporte voluntario pueden ser tratados en jurisdicciones
           distintas de Chile, principalmente Estados Unidos y la Unión Europea.
         </p>
@@ -421,16 +433,16 @@ import { SITE } from "@/config";
     <section class="border-b border-border py-10">
       <h2 class="mb-4 text-2xl font-bold">Tus derechos como titular</h2>
       <p class="mb-4 max-w-2xl text-base leading-relaxed text-secondary">
-        En relación con los datos personales tratados por Monedario, puedes
-        ejercer los siguientes derechos reconocidos por la legislación chilena
-        de protección de datos:
+        En relación con datos personales que Monedario efectivamente pueda
+        vincular a tu identidad, puedes ejercer los siguientes derechos
+        reconocidos por la legislación chilena de protección de datos:
       </p>
       <ul
         class="max-w-2xl list-disc space-y-2 pl-5 text-sm leading-relaxed text-secondary"
       >
         <li>
           <strong class="text-foreground">Acceso</strong>: solicitar información
-          sobre qué datos personales asociados a tu identidad ha tratado el
+          sobre datos personales asociados a tu identidad que obren en poder del
           responsable.
         </li>
         <li>
@@ -505,14 +517,16 @@ import { SITE } from "@/config";
           <strong class="text-foreground"
             >Alcance práctico de estos derechos:</strong
           >
-          dado que Monedario no crea cuentas, no exige registro y la analítica del
-          sitio es agregada y sin identificadores individuales, los datos que efectivamente
-          pueden vincularse a una persona identificable son, principalmente, los que
-          tú mismo hayas enviado por correo electrónico o asociado a un aporte voluntario.
-          La información agregada y anónima no constituye "dato personal" en los términos
-          de la legislación y, por su naturaleza, no es individualizable a posteriori.
-          Esta limitación no afecta el ejercicio de tus derechos sobre los datos que
-          sí sean vinculables a tu identidad.
+          dado que Monedario no crea cuentas, no exige registro, no usa formularios
+          de captura y la analítica del sitio es agregada y sin identificadores individuales,
+          normalmente no existe una ficha de usuario ni un historial individual sobre
+          el cual responder. Los datos que sí podrían vincularse a una persona identificable
+          son, principalmente, los que tú mismo hayas enviado por correo electrónico
+          o asociado a un aporte voluntario mediante Ko-fi. La información agregada
+          y anónima no constituye "dato personal" en los términos de la legislación
+          y, por su naturaleza, no es individualizable a posteriori. Esta limitación
+          no afecta el ejercicio de tus derechos sobre los datos que sí sean vinculables
+          a tu identidad.
         </p>
         <p>
           Si Monedario no procesa directamente el dato solicitado y la
@@ -546,7 +560,7 @@ import { SITE } from "@/config";
       <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
         <p>
           Monedario aplica medidas técnicas y organizativas razonables para
-          proteger los datos personales asociados al sitio:
+          proteger la información asociada al sitio:
         </p>
         <ul class="list-disc space-y-1.5 pl-5 text-sm">
           <li>
@@ -555,15 +569,15 @@ import { SITE } from "@/config";
             Policy).
           </li>
           <li>
-            Limitación del tratamiento a las personas que actúan en nombre del
-            responsable.
+            Acceso limitado a comunicaciones recibidas y configuraciones de
+            proveedores.
           </li>
           <li>
             Almacenamiento mínimo de datos: el sitio no opera servidores propios
             con bases de datos de usuarios.
           </li>
           <li>
-            Auditoría periódica de los servicios de terceros utilizados para
+            Revisión periódica de los servicios de terceros utilizados para
             confirmar que mantienen estándares razonables de seguridad.
           </li>
         </ul>
@@ -620,18 +634,22 @@ import { SITE } from "@/config";
       <h2 class="mb-4 text-2xl font-bold">Menores de edad</h2>
       <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
         <p>
-          El sitio está dirigido al público general y, en particular, a personas
-          adultas que toman decisiones financieras. Monedario no solicita ni
-          recolecta deliberadamente datos personales de menores de edad.
+          El contenido de Monedario está pensado para educación financiera
+          general, especialmente para personas que toman decisiones económicas
+          por cuenta propia o familiar. El sitio no solicita datos personales a
+          visitantes, sean adultos o menores, para leer contenidos o usar
+          calculadoras.
         </p>
         <p>
-          Si un padre, madre o tutor considera que un menor ha enviado datos
-          personales al sitio, puede solicitar su eliminación escribiendo a
+          Si un padre, madre o tutor considera que un menor envió información
+          personal por correo electrónico o a través de un proveedor externo
+          vinculado al sitio, puede escribir a
           <a
             href="mailto:contacto@monedario.cl"
             class="text-accent underline underline-offset-4 hover:opacity-80"
             >contacto@monedario.cl</a
-          >.
+          >
+          para pedir orientación o eliminación cuando corresponda.
         </p>
       </div>
     </section>
@@ -642,8 +660,8 @@ import { SITE } from "@/config";
       <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
         <p>
           Esta política puede actualizarse cuando cambien las herramientas del
-          sitio, los proveedores utilizados, las finalidades del tratamiento o
-          las obligaciones legales aplicables.
+          sitio, los proveedores utilizados, las situaciones de tratamiento
+          descritas o las obligaciones legales aplicables.
         </p>
         <p>
           La versión vigente es siempre la publicada en esta página, con la
@@ -656,9 +674,9 @@ import { SITE } from "@/config";
           >.
         </p>
         <p>
-          Cuando una modificación afecte materialmente las finalidades del
-          tratamiento, las categorías de datos tratados o los derechos del
-          titular, Monedario procurará anunciar el cambio con un
+          Cuando una modificación cambie materialmente el modelo de privacidad
+          del sitio, las tecnologías usadas o los derechos del titular,
+          Monedario procurará anunciar el cambio con un
           <strong class="text-foreground">preaviso razonable</strong>
           mediante la actualización de la fecha visible en esta página y, en la medida
           en que ello sea operacionalmente posible, mediante aviso destacado en otras
