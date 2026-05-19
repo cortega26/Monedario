@@ -86,7 +86,7 @@
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^6.3.2",
     "lodash.kebabcase": "^4.1.1",
-    "openai": "^6.37.0",
+    "openai": "^6.38.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
     "remark-collapse": "^0.1.2",
