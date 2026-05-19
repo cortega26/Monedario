@@ -1,92 +1,202 @@
 ---
-import { getIndicadores, fmt, fmtFecha } from "@/utils/indicadores";
+import { getIndicadores, fmtFecha } from "@/utils/indicadores";
 import { getPath } from "@/utils/getPath";
 
 const indicadores = await getIndicadores();
 
-const items = [
-  {
-    label: "UF",
-    value: indicadores.uf.toLocaleString("es-CL", {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }),
-    prefix: "$",
-    fecha: indicadores.fechas.uf,
-    href: getPath("/calculadoras/conversor-uf/"),
-  },
-  {
-    label: "UTM",
-    value: fmt(indicadores.utm).slice(1),
-    prefix: "$",
-    fecha: indicadores.fechas.utm,
-  },
-  ...(indicadores.dolar
-    ? [
-        {
-          label: "Dólar",
-          value: indicadores.dolar.toLocaleString("es-CL", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2,
-          }),
-          prefix: "$",
-          fecha: indicadores.fechas.dolar ?? indicadores.fecha,
-        },
-      ]
-    : []),
+const MESES_CORTO = [
+  "ENE","FEB","MAR","ABR","MAY","JUN",
+  "JUL","AGO","SEP","OCT","NOV","DIC",
 ];
+const MESES_LARGO = [
+  "ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO",
+  "JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE",
+];
+
+function fmtDiaMesCorto(fecha: string): string {
+  const parts = fecha.split("-");
+  const m = parseInt(parts[1]!, 10) - 1;
+  const d = parseInt(parts[2]!, 10);
+  return `${d} ${MESES_CORTO[m] ?? ""}`;
+}
+
+function fmtMesLargo(fecha: string): string {
+  const m = parseInt(fecha.split("-")[1]!, 10) - 1;
+  return MESES_LARGO[m] ?? "";
+}
+
+const ufFecha = indicadores.fechas.uf;
+const utmFecha = indicadores.fechas.utm;
+const dolarFecha = indicadores.fechas.dolar ?? indicadores.fecha;
+
+const ufValue = indicadores.uf.toLocaleString("es-CL", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+const utmValue = Math.round(indicadores.utm).toLocaleString("es-CL");
+const dolarValue = indicadores.dolar?.toLocaleString("es-CL", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
+const hasDolar = indicadores.dolar !== undefined && dolarValue !== undefined;
+const cols = hasDolar ? "3" : "2";
 ---
 
 <section aria-labelledby="indicadores-hoy-heading">
   <h2 id="indicadores-hoy-heading" class="sr-only">
     Indicadores económicos vigentes
   </h2>
-  <div
-    class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-secondary"
-  >
-    {
-      items.map(item => {
-        const inner = (
-          <span class="inline-flex items-baseline gap-1">
-            <span class="text-xs font-semibold tracking-wide text-muted uppercase">
-              {item.label}
-            </span>
-            <span class="font-semibold text-foreground tabular-nums">
-              {item.prefix}
-              {item.value}
-            </span>
-          </span>
-        );
+  <div class="indicadores-grid" style={`--cols:${cols}`}>
+    <div class="indicador">
+      <span class="indicador-label">
+        UF · {fmtDiaMesCorto(ufFecha)}
+      </span>
+      <a
+        href={getPath("/calculadoras/conversor-uf/")}
+        class="indicador-value indicador-value--link"
+        title={`Fuente: mindicador.cl — UF al ${fmtFecha(ufFecha)}`}
+        data-analytics-cta="home-indicador"
+        data-analytics-label="UF"
+        data-analytics-location="home_indicadores_hoy"
+      >
+        ${ufValue}
+      </a>
+    </div>
 
-        return item.href ? (
-          <a
-            href={item.href}
-            class="rounded-md transition-colors hover:text-accent"
-            data-analytics-cta="home-indicador"
-            data-analytics-label={item.label}
-            data-analytics-location="home_indicadores_hoy"
-            title={`Fuente: mindicador.cl — ${item.label} al ${fmtFecha(item.fecha)}`}
-          >
-            {inner}
-          </a>
-        ) : (
-          <span
-            title={`Fuente: mindicador.cl — ${item.label} al ${fmtFecha(item.fecha)}`}
-          >
-            {inner}
-          </span>
-        );
-      })
-    }
+    <div class="indicador">
+      <span class="indicador-label">
+        UTM · {fmtMesLargo(utmFecha)}
+      </span>
+      <span
+        class="indicador-value"
+        title={`Fuente: mindicador.cl — UTM al ${fmtFecha(utmFecha)}`}
+      >
+        ${utmValue}
+      </span>
+    </div>
 
-    <a
-      href={getPath("/guias/uf-costo-de-vida/indicadores-economicos/")}
-      class="inline-flex items-center rounded-md border border-border px-2 py-1 text-xs font-semibold tracking-wide text-accent transition-colors hover:bg-accent/5"
-      data-analytics-cta="home-indicadores-hub"
-      data-analytics-label="Ver todos los indicadores"
-      data-analytics-location="home_indicadores_hoy"
-    >
-      Ver todos los indicadores
-    </a>
+    {hasDolar && (
+      <div class="indicador indicador--last">
+        <span class="indicador-label">
+          DÓLAR OBS. · {fmtDiaMesCorto(dolarFecha)}
+        </span>
+        <span
+          class="indicador-value"
+          title={`Fuente: mindicador.cl — Dólar al ${fmtFecha(dolarFecha)}`}
+        >
+          ${dolarValue}
+        </span>
+      </div>
+    )}
+
+    <div class="indicador-cta">
+      <a
+        href={getPath("/guias/uf-costo-de-vida/indicadores-economicos/")}
+        class="indicador-cta-link"
+        data-analytics-cta="home-indicadores-hub"
+        data-analytics-label="Ver todos"
+        data-analytics-location="home_indicadores_hoy"
+        aria-label="Ver todos los indicadores económicos"
+      >
+        Ver<br />todos<br />→
+      </a>
+    </div>
   </div>
 </section>
+
+<style>
+  .indicadores-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    padding: 14px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    row-gap: 14px;
+  }
+
+  @media (min-width: 640px) {
+    .indicadores-grid {
+      grid-template-columns: repeat(var(--cols, 3), 1fr) auto;
+      row-gap: 0;
+    }
+
+    .indicador {
+      border-right: 1px solid var(--border);
+    }
+
+    .indicador:first-child {
+      padding-left: 0;
+    }
+
+    .indicador--last {
+      border-right: none;
+    }
+
+    .indicador-cta {
+      padding-left: 16px;
+      padding-bottom: 2px;
+    }
+  }
+
+  .indicador {
+    padding: 0 16px;
+  }
+
+  .indicador:first-child {
+    padding-left: 0;
+  }
+
+  .indicador-label {
+    display: block;
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 3px;
+  }
+
+  .indicador-value {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 3.5vw, 1.5rem);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    line-height: 1.15;
+    text-decoration: none;
+  }
+
+  .indicador-value--link {
+    transition: color 0.15s ease;
+  }
+
+  .indicador-value--link:hover {
+    color: var(--accent);
+  }
+
+  .indicador-cta {
+    display: flex;
+    align-items: flex-end;
+    padding-left: 16px;
+    padding-bottom: 2px;
+  }
+
+  .indicador-cta-link {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--accent);
+    text-decoration: none;
+    line-height: 1.4;
+    text-align: center;
+    transition: opacity 0.15s ease;
+  }
+
+  .indicador-cta-link:hover {
+    opacity: 0.7;
+  }
+</style>
