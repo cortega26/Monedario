@@ -11,7 +11,7 @@ const TEST_PAGES = [
   { name: "404", url: "/nonexistent/" },
   { name: "Glossary entry", url: "/glosario/cae/" },
   { name: "Law page", url: "/leyes/ley-18010-credito-dinero/" },
-  { name: "About", url: "/about/" },
+  { name: "Metodología", url: "/metodologia/" },
   { name: "Accessibility statement", url: "/accessibilidad/" },
   { name: "Tag page", url: "/tags/afp/" },
   { name: "Guides hub", url: "/guias/" },

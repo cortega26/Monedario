@@ -1,5 +1,5 @@
 export const READER_FACING_ALLOWLIST_PATHS = new Set([
-  "src/pages/about.astro",
+  "src/pages/metodologia.astro",
   "src/pages/autor.astro",
 ]);
 

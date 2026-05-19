@@ -8,8 +8,8 @@ interface Props {
 }
 
 const {
-  headline = "Entiende tu plata en Chile — guías, calculadoras y herramientas",
-  description = "Sueldo líquido, AFP, impuestos, crédito, UF y presupuesto en lenguaje claro.",
+  headline = "Decisiones de plata en Chile, basadas en matemáticas y la ley vigente",
+  description = "Sueldo, AFP, impuestos, crédito, UF y presupuesto. Sin opinión, sin gurú, sin conflicto de interés: fórmulas verificables y fuentes oficiales.",
 } = Astro.props;
 
 const ctaLinks = [
@@ -96,8 +96,7 @@ const headlineParts = headline.split("plata");
 
   <!-- Nota editorial en cursiva — una sola línea, no chips -->
   <p class="text-xs text-muted italic" style="font-family: var(--font-display);">
-    Sin publicidad, sin registro, sin recolección de datos. Fuentes oficiales,
-    legislación chilena vigente.{" "}
+    Sin publicidad, sin registro, sin recolección de datos.{" "}
     <a
       href={getPath("/cambios/")}
       class="underline underline-offset-2 decoration-dashed hover:text-secondary transition-colors"

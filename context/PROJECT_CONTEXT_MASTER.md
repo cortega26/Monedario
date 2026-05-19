@@ -291,7 +291,7 @@ No hay snapshot del upstream dentro del repo para diff directo; por lo tanto est
 | Nombre/Slug | Tipo | Ubicación (ruta) | Descripción breve | Estado |
 |---|---|---|---|---|
 | `/` | Página | `src/pages/index.astro` | Home editorial | Publicado |
-| `/about/` | Página | `src/pages/about.astro` | Nosotros + aviso legal | Publicado |
+| `/metodologia/` | Página | `src/pages/metodologia.astro` | Metodología editorial + nosotros + aviso legal (anterior `/about/`, con redirect 301 en `public/_redirects`) | Publicado |
 | `/posts/` | Página dinámica | `src/pages/posts/[...page].astro` | Listado paginado de artículos | Publicado |
 | `/posts/:slug/` | Página dinámica | `src/pages/posts/[...slug]/index.astro` | Detalle de artículo | Publicado |
 | `/tags/` | Página | `src/pages/tags/index.astro` | Índice de etiquetas | Publicado |
@@ -335,7 +335,7 @@ No hay snapshot del upstream dentro del repo para diff directo; por lo tanto est
 
 ### Mapa de rutas públicas (site-local)
 - `/`
-- `/about/`
+- `/metodologia/`
 - `/search/`
 - `/archives/` (si `SITE.showArchives`)
 - `/calculadoras/`

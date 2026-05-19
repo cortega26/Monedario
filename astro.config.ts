@@ -203,7 +203,7 @@ export default defineConfig({
 
         // Hubs and generic top-level sections
         const hubs = ["guias", "leyes", "calculadoras", "tags"];
-        const pages = ["about", "autor", "search", "archives"];
+        const pages = ["metodologia", "autor", "search", "archives"];
 
         if (
           (hubs.includes(section) && pathParts.length <= 2) ||

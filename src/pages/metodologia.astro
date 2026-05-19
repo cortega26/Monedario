@@ -9,8 +9,8 @@ import { SITE } from "@/config";
 ---
 
 <Layout
-  title={`¿Quiénes somos? | ${SITE.title}`}
-  description="Qué es Monedario, quién lo escribe y cómo funciona su proceso editorial de siete etapas: fuentes oficiales, auditoría de cálculos, verificación regulatoria y política de vigencia."
+  title={`Metodología | ${SITE.title}`}
+  description="Cómo trabaja Monedario: cada cifra trazada a una fuente oficial, cada fórmula a la vista, cada artículo legal citado. Proceso editorial de siete etapas, auditoría independiente de cálculos y firma humana antes de publicar."
 >
   <Header />
   <Breadcrumb />
@@ -19,17 +19,20 @@ import { SITE } from "@/config";
       <p
         class="mb-3 text-xs font-semibold tracking-widest text-accent uppercase"
       >
-        Sobre nosotros
+        Metodología
       </p>
       <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
         Cuando entiendes tu plata,<br />tomas mejores decisiones.
       </h1>
       <p class="max-w-2xl text-base leading-relaxed text-secondary">
         <strong class="text-foreground">Monedario</strong> es un proyecto de educación
-        financiera dedicado a explicar el sistema financiero chileno de forma clara,
-        rigurosa y basada en fuentes oficiales. Su misión es ayudar a las personas
-        a entender decisiones financieras complejas —ahorro, inversión, impuestos,
-        crédito o pensiones— sin conflictos de interés.
+        financiera dedicado a explicar el sistema financiero chileno con
+        <strong class="text-foreground"
+          >matemáticas verificables y la ley vigente citada</strong
+        >. Su misión es ayudar a las personas a entender decisiones financieras
+        complejas —ahorro, inversión, impuestos, crédito o pensiones— sin
+        conflictos de interés y sin pedir que nos creas: puedes auditar cada
+        cifra.
       </p>
       <p class="mt-4 max-w-2xl text-base leading-relaxed text-secondary">
         El nombre no es arbitrario. <em class="text-foreground">Monedario</em> es,
@@ -39,6 +42,80 @@ import { SITE } from "@/config";
         de un crédito. Las cosas que ya están en tu bolsillo pero que nadie se tomó
         el tiempo de organizar para ti. Ese es exactamente el trabajo de este sitio:
         ordenarlas, nombrarlas, explicarlas.
+      </p>
+    </section>
+
+    <!-- CÓMO VERIFICARNOS -->
+    <section id="como-verificarnos" class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Cómo verificarnos</h2>
+      <p class="max-w-2xl text-base leading-relaxed text-secondary">
+        La pregunta razonable cuando alguien escribe sobre tu plata es:
+        <em class="text-foreground">¿por qué debería creerte?</em> La respuesta
+        de Monedario es que no te pedimos que confíes en quien escribe — te
+        damos cómo auditarlo.
+      </p>
+
+      <div class="mt-6 grid max-w-2xl gap-4 sm:grid-cols-2">
+        <div class="rounded-xl border border-border p-5">
+          <p class="mb-1 text-sm font-semibold text-foreground">
+            Cada cifra trae su fuente
+          </p>
+          <p class="text-sm leading-relaxed text-secondary">
+            Tramos del impuesto: SII. Tasas previsionales: SPensiones. UF, UTM e
+            IPC: Banco Central e INE. Si una afirmación no se traza a una fuente
+            oficial, no entra al artículo.
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-5">
+          <p class="mb-1 text-sm font-semibold text-foreground">
+            Cada cálculo trae su fórmula
+          </p>
+          <p class="text-sm leading-relaxed text-secondary">
+            Las calculadoras muestran cómo se obtiene el número: tramos
+            aplicados, descuentos, supuestos. Si dudas del resultado, puedes
+            reproducirlo a mano con la misma fórmula.
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-5">
+          <p class="mb-1 text-sm font-semibold text-foreground">
+            Cada artículo legal está citado
+          </p>
+          <p class="text-sm leading-relaxed text-secondary">
+            Cuando un texto se apoya en una ley o circular, está enlazada a la
+            versión vigente en Ley Chile (BCN) u otro organismo oficial. Lo que
+            cita Monedario, puedes leerlo en la fuente.
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-5">
+          <p class="mb-1 text-sm font-semibold text-foreground">
+            Si encuentras un error, repórtalo
+          </p>
+          <p class="text-sm leading-relaxed text-secondary">
+            Las correcciones factuales reportadas quedan registradas en
+            <a
+              href={getPath("/cambios/")}
+              class="text-accent underline underline-offset-4 hover:opacity-80"
+              >novedades y cambios</a
+            >, con fecha y descripción. Reportar es la prueba más concreta de
+            que el método funciona.
+          </p>
+        </div>
+      </div>
+
+      <p
+        class="mt-6 max-w-2xl text-sm leading-relaxed text-muted italic"
+        style="font-family: var(--font-display);"
+      >
+        Una nota sobre credenciales: el editor responsable de Monedario es
+        abogado de formación y analista de datos, no asesor financiero
+        certificado. El sitio no apela a títulos — apela a que el método de
+        arriba está expuesto y es auditable por cualquier persona con acceso a
+        las fuentes citadas. Si prefieres conocer a quien firma,
+        <a
+          href={getPath("/autor/")}
+          class="text-accent underline underline-offset-4 not-italic hover:opacity-80"
+          >ver perfil del autor</a
+        >.
       </p>
     </section>
 

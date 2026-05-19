@@ -1,0 +1,5 @@
+# 301 redirects — preserve link equity from renamed URLs
+
+# /about → /metodologia (renombrada 2026-05-19)
+/about/  /metodologia/  301
+/about   /metodologia/  301
