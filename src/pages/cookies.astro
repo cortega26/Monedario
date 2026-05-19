@@ -9,7 +9,7 @@ import { SITE } from "@/config";
 
 <Layout
   title={`Cookies | ${SITE.title}`}
-  description="Política de cookies de Monedario: uso de Analytics, almacenamiento local del navegador y herramientas de terceros."
+  description="Política de cookies de Monedario: clasificación, tecnologías efectivamente utilizadas, ausencia de cookies analíticas o publicitarias, y cómo gestionarlas desde tu navegador."
 >
   <Header />
   <Breadcrumb />
@@ -22,116 +22,336 @@ import { SITE } from "@/config";
       </p>
       <h1 class="mb-4 text-3xl font-bold sm:text-4xl">Política de cookies</h1>
       <p class="max-w-2xl text-base leading-relaxed text-secondary">
-        Esta página explica qué tecnologías usa Monedario para medir uso,
-        recordar preferencias y mantener algunas funciones del sitio.
+        Esta política describe qué cookies y tecnologías similares puede
+        utilizar Monedario, con qué finalidad, quién las gestiona y cómo puedes
+        controlarlas desde tu navegador. Forma parte de la
+        <a
+          href={getPath("/privacidad/")}
+          class="text-accent underline underline-offset-4 hover:opacity-80"
+          >Política de privacidad</a
+        > y debe leerse en conjunto con ella.
       </p>
       <p class="mt-3 text-sm text-secondary">
         Última actualización:
-        <strong class="text-foreground">18 de mayo de 2026</strong>.
+        <strong class="text-foreground">19 de mayo de 2026</strong>.
       </p>
     </section>
 
-    <section class="border-b border-border py-10">
-      <h2 class="mb-4 text-2xl font-bold">Qué entendemos por cookies</h2>
-      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
-        <p>
-          Una cookie es un pequeño archivo que un sitio o proveedor puede
-          guardar en tu navegador. También existen tecnologías parecidas, como
-          <code class="text-accent">localStorage</code> y
-          <code class="text-accent">sessionStorage</code>, que permiten guardar
-          preferencias o datos locales sin crear una cuenta.
-        </p>
-        <p>
-          En Monedario usamos estas tecnologías con fines limitados: entender el
-          uso del sitio, recordar preferencias y hacer más cómoda la experiencia
-          con calculadoras.
-        </p>
-      </div>
-    </section>
-
+    <!-- CONCEPTOS -->
     <section class="border-b border-border py-10">
       <h2 class="mb-4 text-2xl font-bold">
-        Tecnologías que puede usar el sitio
+        Qué entendemos por cookies y tecnologías similares
       </h2>
+      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
+        <p>
+          Una <strong class="text-foreground">cookie</strong> es un pequeño
+          archivo que un sitio web o un servicio que aparece en él puede guardar
+          en tu navegador. Las cookies permiten recordar información entre
+          visitas (preferencias, sesión, idioma) o medir el uso del sitio.
+        </p>
+        <p>
+          Existen, además, tecnologías parecidas que cumplen finalidades
+          similares sin ser técnicamente cookies, como
+          <code class="text-accent">localStorage</code> y
+          <code class="text-accent">sessionStorage</code>: permiten al sitio
+          guardar información en tu propio navegador, sin enviarla
+          automáticamente al servidor en cada visita.
+        </p>
+        <p>
+          Esta política utiliza el término "cookies" en sentido amplio para
+          referirse a todas estas tecnologías cuando ello facilita la lectura, y
+          distingue cuando es relevante.
+        </p>
+      </div>
+    </section>
+
+    <!-- CLASIFICACIÓN -->
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">
+        Clasificación general utilizada en esta política
+      </h2>
+      <p class="mb-4 max-w-2xl text-base leading-relaxed text-secondary">
+        Las cookies y tecnologías similares se agrupan habitualmente en estas
+        categorías:
+      </p>
+      <ul
+        class="max-w-2xl list-disc space-y-2 pl-5 text-sm leading-relaxed text-secondary"
+      >
+        <li>
+          <strong class="text-foreground">Estrictamente necesarias</strong>:
+          imprescindibles para que el sitio funcione (entrega de páginas,
+          seguridad, protección frente a abuso). No requieren consentimiento
+          previo.
+        </li>
+        <li>
+          <strong class="text-foreground">De preferencias y funcionalidad</strong>:
+          recuerdan elecciones que mejoran la experiencia (tema visual, página
+          recientemente visitada). Su uso responde a una funcionalidad
+          solicitada por el visitante al utilizar el sitio.
+        </li>
+        <li>
+          <strong class="text-foreground">Analíticas</strong>: permiten medir el
+          uso del sitio. Cuando recolectan identificadores persistentes
+          asociados a una persona, requieren consentimiento previo.
+        </li>
+        <li>
+          <strong class="text-foreground">Publicitarias o de seguimiento</strong>:
+          se usan para construir perfiles y mostrar publicidad personalizada.
+          Requieren consentimiento previo. Monedario no las utiliza.
+        </li>
+      </ul>
+    </section>
+
+    <!-- LO QUE REALMENTE USA -->
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Lo que efectivamente usa Monedario</h2>
+      <p class="mb-6 max-w-2xl text-base leading-relaxed text-secondary">
+        La siguiente tabla describe las tecnologías que pueden activarse al
+        navegar por monedario.cl. No utilizamos cookies publicitarias ni
+        cookies analíticas con identificador persistente.
+      </p>
+
       <div class="max-w-2xl space-y-4 text-sm leading-relaxed text-secondary">
-        <div class="rounded-xl border border-border p-4">
-          <p class="font-semibold text-foreground">Google Analytics</p>
-          <p class="mt-1">
-            Puede usar cookies o identificadores similares para medir visitas,
-            eventos de navegación y uso de contenidos. Monedario configura
-            Analytics con anonimización de IP.
+        <div class="rounded-xl border border-border p-5">
+          <p class="mb-1 text-sm font-semibold text-foreground">
+            Cookies técnicas de la infraestructura (Cloudflare)
           </p>
+          <dl class="mt-2 grid gap-1 sm:grid-cols-[140px_1fr]">
+            <dt class="font-semibold text-foreground">Tipo</dt>
+            <dd>Estrictamente necesarias.</dd>
+            <dt class="font-semibold text-foreground">Quién las pone</dt>
+            <dd>
+              Cloudflare, Inc. (proveedor de CDN, certificado TLS y protección
+              frente a abuso).
+            </dd>
+            <dt class="font-semibold text-foreground">Finalidad</dt>
+            <dd>
+              Distinguir tráfico legítimo de tráfico automatizado abusivo,
+              mantener disponibilidad y seguridad del sitio.
+            </dd>
+            <dt class="font-semibold text-foreground">Consentimiento</dt>
+            <dd>
+              No requerido: son esenciales para entregar el sitio que
+              solicitas.
+            </dd>
+            <dt class="font-semibold text-foreground">Duración</dt>
+            <dd>Según la política técnica del proveedor (en general, sesión).</dd>
+          </dl>
         </div>
-        <div class="rounded-xl border border-border p-4">
-          <p class="font-semibold text-foreground">Preferencias locales</p>
-          <p class="mt-1">
-            El tema visual se puede guardar en tu navegador para que el sitio
-            recuerde si prefieres modo claro u oscuro.
+
+        <div class="rounded-xl border border-border p-5">
+          <p class="mb-1 text-sm font-semibold text-foreground">
+            Preferencias y estado local (localStorage / sessionStorage)
           </p>
+          <dl class="mt-2 grid gap-1 sm:grid-cols-[140px_1fr]">
+            <dt class="font-semibold text-foreground">Tipo</dt>
+            <dd>De preferencias y funcionalidad.</dd>
+            <dt class="font-semibold text-foreground">Quién las pone</dt>
+            <dd>Tu propio navegador, a solicitud del sitio.</dd>
+            <dt class="font-semibold text-foreground">Finalidad</dt>
+            <dd>
+              Recordar el tema visual (claro/oscuro), páginas recientes,
+              calculadoras retomables y un perfil local para reutilizar inputs
+              entre calculadoras. Estos datos
+              <strong class="text-foreground">no se envían</strong> a Monedario
+              ni a sus servidores.
+            </dd>
+            <dt class="font-semibold text-foreground">Consentimiento</dt>
+            <dd>
+              Implícito al utilizar la funcionalidad correspondiente. Puedes
+              eliminar estos datos cuando quieras.
+            </dd>
+            <dt class="font-semibold text-foreground">Duración</dt>
+            <dd>
+              Hasta que tú o tu navegador los elimines (depende de la
+              configuración local).
+            </dd>
+          </dl>
         </div>
-        <div class="rounded-xl border border-border p-4">
-          <p class="font-semibold text-foreground">Funciones de continuidad</p>
-          <p class="mt-1">
-            El sitio puede guardar páginas recientes, una calculadora retomable
-            o datos de perfil local para reutilizar inputs entre calculadoras.
-            Estos datos quedan en tu dispositivo.
+
+        <div class="rounded-xl border border-border p-5">
+          <p class="mb-1 text-sm font-semibold text-foreground">
+            Analítica del sitio (Cloudflare Web Analytics)
           </p>
+          <dl class="mt-2 grid gap-1 sm:grid-cols-[140px_1fr]">
+            <dt class="font-semibold text-foreground">Tipo</dt>
+            <dd>
+              Analítica sin cookies y sin identificador persistente.
+            </dd>
+            <dt class="font-semibold text-foreground">Quién la realiza</dt>
+            <dd>Cloudflare, Inc.</dd>
+            <dt class="font-semibold text-foreground">Finalidad</dt>
+            <dd>
+              Medir el uso agregado del sitio (visitas, páginas, referrers)
+              para decisiones editoriales y de mantenimiento.
+            </dd>
+            <dt class="font-semibold text-foreground">Consentimiento</dt>
+            <dd>
+              No requerido: la herramienta no utiliza cookies ni construye
+              perfiles individuales.
+            </dd>
+            <dt class="font-semibold text-foreground">Duración</dt>
+            <dd>No aplica (sin cookies asociadas).</dd>
+          </dl>
         </div>
-        <div class="rounded-xl border border-border p-4">
-          <p class="font-semibold text-foreground">Terceros de apoyo</p>
-          <p class="mt-1">
-            Si interactúas con el aporte voluntario, Ko-fi puede usar sus
-            propias cookies o tecnologías similares para operar el pago y
-            prevenir abuso.
+
+        <div class="rounded-xl border border-border p-5">
+          <p class="mb-1 text-sm font-semibold text-foreground">
+            Aportes voluntarios (Ko-fi)
           </p>
+          <dl class="mt-2 grid gap-1 sm:grid-cols-[140px_1fr]">
+            <dt class="font-semibold text-foreground">Tipo</dt>
+            <dd>
+              Cookies y tecnologías de terceros gestionadas por Ko-fi.
+            </dd>
+            <dt class="font-semibold text-foreground">Cuándo se activan</dt>
+            <dd>
+              Únicamente en la página
+              <a
+                href={getPath("/apoyar/")}
+                class="text-accent underline underline-offset-4 hover:opacity-80"
+                >Apoyar el proyecto</a
+              >, y solo si decides interactuar con el widget. En el resto del
+              sitio no se carga código de Ko-fi.
+            </dd>
+            <dt class="font-semibold text-foreground">Finalidad</dt>
+            <dd>
+              Operar el aporte, recordar elecciones del visitante y prevenir
+              abuso en la plataforma del proveedor.
+            </dd>
+            <dt class="font-semibold text-foreground">Consentimiento</dt>
+            <dd>
+              Se entiende por la acción voluntaria de iniciar el aporte y
+              aceptar las condiciones del proveedor.
+            </dd>
+          </dl>
         </div>
       </div>
     </section>
 
+    <!-- DIFERENCIA CON LOCALSTORAGE -->
     <section class="border-b border-border py-10">
       <h2 class="mb-4 text-2xl font-bold">
         Cookies y almacenamiento local no son lo mismo
       </h2>
       <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
         <p>
-          Las cookies suelen enviarse al proveedor que las creó cuando visitas
-          una página. El almacenamiento local, en cambio, normalmente permanece
-          en tu navegador hasta que lo borras o hasta que el sitio lo actualiza.
+          Las cookies se envían al servidor que las creó cada vez que visitas
+          una página de ese dominio. El almacenamiento local
+          (<code class="text-accent">localStorage</code>,
+          <code class="text-accent">sessionStorage</code>) permanece en tu
+          navegador y normalmente
+          <strong class="text-foreground"
+            >no se transmite al servidor</strong
+          >; el sitio puede leerlo desde tu propio dispositivo cuando vuelvas a
+          visitarlo.
         </p>
         <p>
-          Monedario usa almacenamiento local para mejorar continuidad, no para
-          crear una cuenta ni identificarte por nombre.
+          En Monedario el almacenamiento local se usa exclusivamente para
+          continuidad de uso (preferencias, calculadoras retomables, perfil
+          compartido entre calculadoras). No identifica al visitante por nombre
+          ni crea una cuenta.
         </p>
       </div>
     </section>
 
+    <!-- POR QUÉ NO BANNER -->
     <section class="border-b border-border py-10">
-      <h2 class="mb-4 text-2xl font-bold">Cómo puedes gestionarlas</h2>
-      <ul
-        class="max-w-2xl list-disc space-y-2 pl-6 text-sm leading-relaxed text-secondary"
-      >
-        <li>
-          Puedes bloquear o borrar cookies desde la configuración de tu
-          navegador.
-        </li>
-        <li>
-          Puedes borrar datos de sitio para eliminar almacenamiento local,
-          preferencias y estados guardados.
-        </li>
-        <li>
-          Si bloqueas cookies o almacenamiento local, el contenido principal del
-          sitio debería seguir disponible, pero algunas funciones de continuidad
-          pueden dejar de recordar información.
-        </li>
-      </ul>
+      <h2 class="mb-4 text-2xl font-bold">
+        ¿Por qué Monedario no exhibe un banner de cookies?
+      </h2>
+      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
+        <p>
+          Bajo la normativa chilena de protección de datos y las buenas
+          prácticas internacionales, el consentimiento previo se exige
+          principalmente para cookies analíticas con identificador persistente y
+          para cookies publicitarias o de seguimiento.
+        </p>
+        <p>
+          Monedario, en la configuración descrita en esta página,
+          <strong class="text-foreground">no utiliza</strong> ninguna de esas
+          categorías:
+        </p>
+        <ul class="list-disc space-y-1.5 pl-5 text-sm">
+          <li>
+            La analítica del sitio se realiza con Cloudflare Web Analytics, sin
+            cookies y sin identificadores persistentes.
+          </li>
+          <li>
+            Las cookies técnicas son estrictamente necesarias para la entrega
+            del sitio y no requieren consentimiento previo.
+          </li>
+          <li>
+            El almacenamiento local responde a funcionalidades solicitadas por
+            el visitante al usar las calculadoras y preferencias del sitio.
+          </li>
+          <li>
+            Las cookies de Ko-fi solo se cargan en la página de aportes y por
+            interacción del visitante.
+          </li>
+        </ul>
+        <p>
+          Si en el futuro Monedario incorpora cookies analíticas con
+          identificador persistente, publicitarias o de seguimiento, esta
+          política se actualizará y se implementará un mecanismo de
+          consentimiento previo antes de activarlas.
+        </p>
+      </div>
     </section>
 
+    <!-- GESTIÓN -->
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Cómo gestionar cookies y almacenamiento local</h2>
+      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
+        <p>
+          Puedes controlar en todo momento las cookies y el almacenamiento local
+          de tu navegador:
+        </p>
+        <ul class="list-disc space-y-1.5 pl-5 text-sm">
+          <li>
+            Configurar tu navegador para bloquear, limitar o eliminar cookies de
+            sitios específicos.
+          </li>
+          <li>
+            Eliminar los datos de sitio almacenados localmente, lo que también
+            borra <code class="text-accent">localStorage</code> y
+            <code class="text-accent">sessionStorage</code>.
+          </li>
+          <li>
+            Utilizar el modo de navegación privada o equivalente para evitar que
+            se persistan estos datos entre sesiones.
+          </li>
+        </ul>
+        <p>
+          Si bloqueas cookies estrictamente necesarias o el almacenamiento
+          local, el contenido del sitio debería continuar disponible, pero
+          algunas funciones de continuidad (tema visual, calculadora retomable,
+          perfil compartido) pueden dejar de recordar información entre
+          visitas.
+        </p>
+      </div>
+    </section>
+
+    <!-- CAMBIOS -->
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Cambios a esta política</h2>
+      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
+        <p>
+          Esta política puede actualizarse cuando cambien las herramientas
+          utilizadas por el sitio o las obligaciones aplicables. La versión
+          vigente es la publicada en esta página, con la fecha de actualización
+          indicada arriba.
+        </p>
+      </div>
+    </section>
+
+    <!-- RELACIÓN -->
     <section class="py-10">
       <div
         class="max-w-2xl rounded-xl border border-border bg-surface-muted p-6"
       >
         <h2 class="mb-3 text-lg font-bold text-foreground">
-          Relación con privacidad
+          Documentos relacionados
         </h2>
         <p class="text-sm leading-relaxed text-secondary">
           Esta política complementa la
@@ -139,8 +359,25 @@ import { SITE } from "@/config";
             href={getPath("/privacidad/")}
             class="text-accent underline underline-offset-4 hover:opacity-80"
             >Política de privacidad</a
-          >, donde explicamos qué datos puede tratar Monedario, para qué se usan
-          y cómo contactarnos.
+          > y los
+          <a
+            href={getPath("/terminos/")}
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+            >Términos de uso</a
+          >. Para conocer cómo se elabora el contenido editorial, consulta la
+          <a
+            href={getPath("/metodologia/")}
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+            >metodología</a
+          >.
+        </p>
+        <p class="mt-3 text-sm leading-relaxed text-secondary">
+          Para consultas, escribe a
+          <a
+            href="mailto:contacto@monedario.cl"
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+            >contacto@monedario.cl</a
+          >.
         </p>
       </div>
     </section>

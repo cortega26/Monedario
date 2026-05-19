@@ -9,7 +9,7 @@ import { SITE } from "@/config";
 
 <Layout
   title={`Términos de uso | ${SITE.title}`}
-  description="Términos de uso de Monedario: alcance educativo del contenido, uso de calculadoras, propiedad intelectual, enlaces externos y contacto."
+  description="Términos de uso de Monedario: alcance educativo del contenido, deslinde de asesoría financiera regulada, limitación de responsabilidad, propiedad intelectual, ley aplicable y jurisdicción."
 >
   <Header />
   <Breadcrumb />
@@ -22,142 +22,529 @@ import { SITE } from "@/config";
       </p>
       <h1 class="mb-4 text-3xl font-bold sm:text-4xl">Términos de uso</h1>
       <p class="max-w-2xl text-base leading-relaxed text-secondary">
-        Estos términos explican bajo qué condiciones puedes usar Monedario, sus
-        guías, calculadoras y materiales publicados.
+        Estos Términos de uso ("Términos") regulan el acceso y la utilización
+        del sitio web Monedario, accesible en
+        <strong class="text-foreground">monedario.cl</strong> ("el sitio"),
+        incluyendo todos sus contenidos, calculadoras, guías, glosarios y demás
+        materiales puestos a disposición del público.
+      </p>
+      <p class="mt-3 max-w-2xl text-base leading-relaxed text-secondary">
+        El uso del sitio implica el conocimiento y la aceptación íntegra de
+        estos Términos y de los documentos que los complementan: la
+        <a
+          href={getPath("/privacidad/")}
+          class="text-accent underline underline-offset-4 hover:opacity-80"
+          >Política de privacidad</a
+        > y la
+        <a
+          href={getPath("/cookies/")}
+          class="text-accent underline underline-offset-4 hover:opacity-80"
+          >Política de cookies</a
+        >. Si no estás de acuerdo con cualquiera de sus disposiciones, debes
+        abstenerte de utilizar el sitio.
       </p>
       <p class="mt-3 text-sm text-secondary">
         Última actualización:
-        <strong class="text-foreground">18 de mayo de 2026</strong>.
+        <strong class="text-foreground">19 de mayo de 2026</strong>.
       </p>
     </section>
 
+    <!-- TITULAR -->
     <section class="border-b border-border py-10">
-      <h2 class="mb-4 text-2xl font-bold">Uso educativo del sitio</h2>
+      <h2 class="mb-4 text-2xl font-bold">Titular del sitio</h2>
       <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
         <p>
-          Monedario publica contenido de educación financiera para personas en
-          Chile. Su objetivo es explicar temas como impuestos, sueldos,
-          pensiones, crédito, ahorro e inversión de forma clara y verificable.
+          El sitio Monedario es operado y editado por
+          <strong class="text-foreground">Carlos Ortega González</strong>,
+          persona natural domiciliada en Santiago de Chile, en calidad de
+          editor responsable y titular de los derechos de explotación del sitio.
         </p>
         <p>
-          El contenido es informativo y pedagógico. No constituye asesoría
-          legal, tributaria, financiera, previsional, laboral ni contable
-          personalizada.
+          Toda comunicación, requerimiento o notificación relacionada con estos
+          Términos debe dirigirse a
+          <a
+            href="mailto:contacto@monedario.cl"
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+            >contacto@monedario.cl</a
+          >. Esa dirección se reconoce como domicilio electrónico para los
+          efectos de estos Términos.
         </p>
       </div>
     </section>
 
+    <!-- ALCANCE EDUCATIVO -->
     <section class="border-b border-border py-10">
-      <h2 class="mb-4 text-2xl font-bold">Calculadoras y resultados</h2>
+      <h2 class="mb-4 text-2xl font-bold">Naturaleza educativa del contenido</h2>
       <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
         <p>
-          Las calculadoras de Monedario entregan estimaciones basadas en
-          parámetros, supuestos y reglas generales. Aunque se revisan con
-          cuidado, pueden no reflejar situaciones individuales, casos
-          excepcionales, cambios recientes o criterios aplicables a tu caso
-          particular.
+          Monedario es un sitio de
+          <strong class="text-foreground">educación financiera</strong> dirigido
+          a personas en Chile. Su contenido tiene por finalidad explicar, en
+          términos generales y verificables, conceptos sobre sueldos,
+          impuestos, pensiones, crédito, ahorro, inversión, presupuesto y
+          regulación financiera chilena.
         </p>
         <p>
-          Antes de tomar decisiones relevantes, contrasta la información con
-          fuentes oficiales o con un profesional habilitado cuando corresponda.
+          El contenido del sitio, incluyendo las calculadoras y los artículos,
+          tiene carácter
+          <strong class="text-foreground">exclusivamente informativo y
+            pedagógico</strong
+          >. En ningún caso constituye:
+        </p>
+        <ul class="list-disc space-y-1.5 pl-5 text-sm">
+          <li>Asesoría legal, tributaria o contable personalizada.</li>
+          <li>
+            Asesoría previsional o recomendación sobre fondos de pensiones,
+            APV, retiros o cualquier decisión de seguridad social.
+          </li>
+          <li>
+            Recomendación de inversión, asesoría financiera u oferta pública
+            de valores.
+          </li>
+          <li>
+            Asesoría laboral, ni cálculo oficial de remuneraciones,
+            indemnizaciones u otras obligaciones contractuales.
+          </li>
+          <li>
+            Asesoría crediticia individualizada ni evaluación de capacidad de
+            pago a efectos de la Ley N° 18.010 o de la regulación de la CMF.
+          </li>
+        </ul>
+        <p>
+          Para decisiones con efectos jurídicos, tributarios, previsionales,
+          contractuales o financieros relevantes, debes consultar a un
+          profesional habilitado o a la autoridad competente.
         </p>
       </div>
     </section>
 
+    <!-- DESLINDE FINTECH/CMF -->
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">
+        Deslinde de actividades reguladas
+      </h2>
+      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
+        <p>
+          Monedario es un proyecto editorial y no participa en ninguna de las
+          actividades sujetas a registro o autorización de la Comisión para el
+          Mercado Financiero (CMF) bajo la
+          <strong class="text-foreground"
+            >Ley N° 21.521 sobre Servicios Financieros Basados en Tecnología
+            (Ley Fintech)</strong
+          >. En particular, el sitio:
+        </p>
+        <ul class="list-disc space-y-1.5 pl-5 text-sm">
+          <li>
+            No presta servicios de asesoría de inversión, asesoría crediticia
+            ni asesoría financiera personalizada.
+          </li>
+          <li>
+            No realiza intermediación de valores, custodia de instrumentos
+            financieros ni administración de carteras.
+          </li>
+          <li>
+            No opera plataformas de financiamiento colectivo, sistemas de
+            transacción de instrumentos financieros, enrutadores de órdenes ni
+            sistemas de prepago.
+          </li>
+          <li>
+            No emite recomendaciones específicas de compra o venta de
+            instrumentos financieros, ni asesora a personas determinadas en la
+            toma de decisiones individuales.
+          </li>
+          <li>
+            No es entidad bancaria, compañía de seguros, administradora de
+            fondos de pensiones, caja de compensación, cooperativa de ahorro y
+            crédito, ni emisor de tarjetas de pago.
+          </li>
+        </ul>
+        <p>
+          Las menciones a instituciones reguladoras, productos financieros y
+          normativa vigente cumplen una finalidad informativa y de educación
+          general.
+        </p>
+      </div>
+    </section>
+
+    <!-- CALCULADORAS -->
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Calculadoras y herramientas</h2>
+      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
+        <p>
+          Las calculadoras y simuladores publicados en el sitio entregan
+          <strong class="text-foreground">estimaciones aproximadas</strong>
+          construidas a partir de fórmulas, parámetros y reglas generales
+          informadas en cada herramienta y en los artículos asociados.
+        </p>
+        <p>Esas estimaciones:</p>
+        <ul class="list-disc space-y-1.5 pl-5 text-sm">
+          <li>
+            Pueden no reflejar tu situación individual, casos excepcionales o
+            criterios particulares aplicables a tu caso.
+          </li>
+          <li>
+            No constituyen liquidación oficial, certificado ni dictamen de
+            ninguna autoridad u organismo regulador.
+          </li>
+          <li>
+            Pueden requerir actualización si cambia la normativa o los
+            parámetros oficiales utilizados.
+          </li>
+          <li>
+            No reemplazan los cálculos efectuados por el Servicio de Impuestos
+            Internos, la Dirección del Trabajo, la Superintendencia de
+            Pensiones, la AFC, la CMF, las administradoras de fondos
+            previsionales, las instituciones financieras o el empleador del
+            usuario, según corresponda.
+          </li>
+        </ul>
+        <p>
+          Antes de adoptar cualquier decisión con efectos legales o económicos
+          relevantes, debes verificar el resultado con fuentes oficiales o con
+          un profesional habilitado.
+        </p>
+      </div>
+    </section>
+
+    <!-- ATRIBUCIÓN DE DATOS -->
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Atribución de datos públicos</h2>
+      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
+        <p>
+          Algunas calculadoras y artículos utilizan indicadores oficiales
+          publicados por organismos del Estado chileno: Unidad de Fomento (UF) y
+          tipo de cambio del Banco Central de Chile, Índice de Precios al
+          Consumidor (IPC) y Unidad Tributaria Mensual (UTM) del Instituto
+          Nacional de Estadísticas y del Servicio de Impuestos Internos
+          respectivamente, tramos y parámetros publicados por el Servicio de
+          Impuestos Internos, normativa de la Superintendencia de Pensiones, la
+          Comisión para el Mercado Financiero, la Dirección del Trabajo y la
+          Biblioteca del Congreso Nacional, entre otras fuentes.
+        </p>
+        <p>
+          La utilización de estos datos se realiza con fines educativos y
+          conforme a las condiciones de uso publicadas por cada organismo. Los
+          créditos y referencias específicas se indican en los artículos y
+          calculadoras correspondientes. La existencia de un retraso en la
+          actualización, una interrupción de las fuentes oficiales o un error
+          de captura, en su caso, se rige por los términos de limitación de
+          responsabilidad descritos más abajo.
+        </p>
+      </div>
+    </section>
+
+    <!-- USO ACEPTABLE -->
     <section class="border-b border-border py-10">
       <h2 class="mb-4 text-2xl font-bold">Uso aceptable</h2>
+      <p class="mb-3 max-w-2xl text-base leading-relaxed text-secondary">
+        El usuario se obliga a utilizar el sitio de buena fe, respetando la
+        legislación vigente y estos Términos. En particular, puede:
+      </p>
       <ul
-        class="max-w-2xl list-disc space-y-2 pl-6 text-sm leading-relaxed text-secondary"
+        class="max-w-2xl list-disc space-y-2 pl-5 text-sm leading-relaxed text-secondary"
       >
         <li>
-          Puedes leer, compartir y enlazar contenidos de Monedario respetando su
-          contexto y autoría.
+          Leer, compartir y enlazar los contenidos del sitio respetando su
+          autoría y contexto.
         </li>
         <li>
-          No debes usar el sitio para intentar interferir con su funcionamiento,
-          automatizar abuso, extraer contenido masivamente o presentar el
-          contenido como si fuera propio.
+          Citar textos breves del sitio con la atribución correspondiente,
+          conforme al derecho de cita reconocido por la legislación de
+          propiedad intelectual.
         </li>
         <li>
-          No debes usar las calculadoras como sustituto de una evaluación
-          profesional cuando la decisión tenga consecuencias legales,
-          tributarias o financieras relevantes.
+          Reproducir capturas o fragmentos para uso personal, educativo o
+          informativo no comercial, manteniendo la mención a Monedario.
+        </li>
+      </ul>
+      <p class="mt-4 mb-3 max-w-2xl text-base leading-relaxed text-secondary">
+        No está permitido:
+      </p>
+      <ul
+        class="max-w-2xl list-disc space-y-2 pl-5 text-sm leading-relaxed text-secondary"
+      >
+        <li>
+          Interferir con el funcionamiento del sitio, intentar acceder a
+          recursos no públicos, sobrecargar la infraestructura o eludir medidas
+          de seguridad.
+        </li>
+        <li>
+          Extraer contenido de forma masiva o sistemática mediante técnicas de
+          web scraping no autorizadas, automatización de consultas u otras
+          prácticas que excedan un uso razonable.
+        </li>
+        <li>
+          Reproducir el contenido del sitio presentándolo como propio o sin la
+          atribución debida, ni redistribuirlo de manera sustancial sin
+          autorización previa.
+        </li>
+        <li>
+          Utilizar las calculadoras o el contenido para crear, comercializar u
+          ofrecer servicios financieros, de asesoría o regulados sin la
+          habilitación legal correspondiente.
+        </li>
+        <li>
+          Suplantar la identidad de Monedario o de su autor, ni utilizar la
+          marca, el nombre, el logo o la apariencia visual del sitio de manera
+          que pueda inducir a confusión.
+        </li>
+        <li>
+          Enviar a través de los canales de contacto del sitio contenido
+          ilícito, amenazante, difamatorio, infractor de derechos de terceros o
+          malicioso desde el punto de vista de seguridad informática.
         </li>
       </ul>
     </section>
 
+    <!-- PROPIEDAD INTELECTUAL -->
     <section class="border-b border-border py-10">
       <h2 class="mb-4 text-2xl font-bold">Propiedad intelectual</h2>
       <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
         <p>
-          Salvo que se indique otra cosa, los textos, diseño, estructura,
-          calculadoras y materiales publicados en Monedario pertenecen a sus
-          respectivos titulares.
+          Los textos, diseños, calculadoras, ilustraciones, estructura,
+          organización editorial y demás materiales originales del sitio se
+          encuentran protegidos por la
+          <strong class="text-foreground"
+            >Ley N° 17.336 sobre Propiedad Intelectual</strong
+          > y los tratados internacionales sobre la materia, y corresponden al titular
+          del sitio, sin perjuicio de los derechos de los autores citados, de las
+          marcas o signos distintivos de terceros eventualmente mencionados y de
+          los datos de organismos públicos referenciados conforme a sus condiciones
+          de uso.
         </p>
         <p>
-          Puedes citar o enlazar el contenido con atribución razonable. La
-          reproducción sustancial, redistribución sistemática o uso comercial de
-          materiales del sitio requiere autorización previa, salvo excepciones
-          permitidas por la ley.
+          Cualquier reproducción sustancial, redistribución sistemática,
+          adaptación derivada con fines comerciales o utilización del contenido
+          que exceda el uso aceptable descrito en estos Términos, requiere
+          autorización previa y escrita del titular, sin perjuicio de las
+          excepciones legalmente reconocidas.
+        </p>
+        <p>
+          Si consideras que un contenido publicado en el sitio infringe
+          derechos de propiedad intelectual o derechos conexos, escribe a
+          <a
+            href="mailto:contacto@monedario.cl"
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+            >contacto@monedario.cl</a
+          > identificando con precisión el contenido cuestionado, la obra o derecho
+          presuntamente afectado y los antecedentes que justifiquen tu solicitud,
+          para evaluar las medidas que correspondan conforme a la legislación
+          aplicable.
         </p>
       </div>
     </section>
 
+    <!-- ENLACES -->
     <section class="border-b border-border py-10">
-      <h2 class="mb-4 text-2xl font-bold">Enlaces y servicios externos</h2>
+      <h2 class="mb-4 text-2xl font-bold">Enlaces a sitios y servicios de terceros</h2>
       <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
         <p>
-          Monedario puede enlazar a fuentes oficiales, organismos públicos,
-          sitios de terceros y plataformas de apoyo como Ko-fi. Esos sitios
-          tienen sus propias condiciones, políticas de privacidad y prácticas de
-          seguridad.
+          El sitio enlaza a fuentes oficiales (SII, BCN, CMF, Superintendencia
+          de Pensiones, Banco Central de Chile, INE, Dirección del Trabajo,
+          SUSESO, AFC, ChileAtiende, entre otras), a normativa, a estudios de
+          terceros y, en algunas páginas, a plataformas de apoyo voluntario
+          como Ko-fi.
         </p>
         <p>
-          Incluir un enlace no implica que Monedario controle, garantice o
-          responda por el contenido, disponibilidad o decisiones de esos
-          terceros.
+          Los sitios y servicios de terceros se rigen por sus propias
+          condiciones, políticas de privacidad y prácticas. La inclusión de un
+          enlace no implica que Monedario controle, garantice ni avale el
+          contenido, las decisiones o la disponibilidad de esos terceros.
+        </p>
+        <p>
+          Monedario no es responsable de los daños, perjuicios o consecuencias
+          derivados del acceso o uso de sitios o servicios de terceros, los que
+          el usuario asume por su propia cuenta.
         </p>
       </div>
     </section>
 
+    <!-- LIMITACIÓN DE RESPONSABILIDAD -->
     <section class="border-b border-border py-10">
-      <h2 class="mb-4 text-2xl font-bold">Disponibilidad y cambios</h2>
+      <h2 class="mb-4 text-2xl font-bold">Limitación de responsabilidad</h2>
       <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
         <p>
-          Intentamos mantener el sitio disponible, actualizado y correcto, pero
-          puede haber errores, interrupciones, cambios de contenido o
-          diferencias frente a fuentes oficiales actualizadas.
+          El sitio se proporciona en su estado actual, según disponibilidad y
+          como un servicio gratuito al público. Si bien Monedario aplica un
+          proceso editorial descrito en su
+          <a
+            href={getPath("/metodologia/")}
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+            >metodología</a
+          > —que incluye trazabilidad de fuentes, auditoría de cálculos, revisión
+          regulatoria y firma humana antes de publicar— el titular del sitio
+          <strong class="text-foreground"
+            >no garantiza la exactitud, la completitud, la actualidad ni la
+            aplicabilidad</strong
+          > absoluta de la información publicada a casos particulares.
         </p>
         <p>
-          Monedario puede modificar estos términos o el contenido del sitio. La
-          fecha de actualización indica la versión vigente.
+          En la máxima medida permitida por la legislación chilena, el titular
+          del sitio no responde por:
+        </p>
+        <ul class="list-disc space-y-1.5 pl-5 text-sm">
+          <li>
+            Decisiones financieras, tributarias, previsionales, laborales,
+            crediticias, contractuales o de inversión adoptadas por el usuario
+            sobre la base, total o parcial, del contenido publicado.
+          </li>
+          <li>
+            Errores, omisiones o desactualizaciones en cifras, fórmulas,
+            ejemplos o citas legales, sin perjuicio del compromiso de corregir
+            errores reportados conforme a su política editorial.
+          </li>
+          <li>
+            Interpretaciones del contenido que excedan la finalidad educativa
+            declarada en estos Términos.
+          </li>
+          <li>
+            Indisponibilidad, interrupciones, fallos técnicos, errores de
+            entrega del sitio o de los servicios de los proveedores
+            tecnológicos utilizados.
+          </li>
+          <li>
+            Lucro cesante, daños indirectos, incidentales o consecuenciales
+            relacionados con el uso o la imposibilidad de uso del sitio.
+          </li>
+          <li>
+            Conductas de terceros usuarios del sitio o de sitios enlazados.
+          </li>
+        </ul>
+        <p>
+          Esta limitación se aplica sin perjuicio de las responsabilidades que,
+          por imperativo legal, no puedan excluirse en favor del titular.
         </p>
       </div>
     </section>
 
+    <!-- INDEMNIDAD -->
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Indemnidad</h2>
+      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
+        <p>
+          El usuario se obliga a mantener indemne al titular del sitio, así
+          como a sus colaboradores y proveedores, frente a cualquier
+          reclamación, demanda, costo, daño, sanción o gasto razonable
+          (incluyendo honorarios profesionales de defensa) que tenga su origen
+          en:
+        </p>
+        <ul class="list-disc space-y-1.5 pl-5 text-sm">
+          <li>
+            El uso del sitio de manera contraria a estos Términos o a la
+            legislación aplicable.
+          </li>
+          <li>
+            Decisiones tomadas por el usuario sobre la base del contenido
+            educativo del sitio, sin verificación con fuentes oficiales o
+            asesoría profesional cuando ello correspondía.
+          </li>
+          <li>
+            La infracción por parte del usuario de derechos de terceros,
+            incluidos derechos de propiedad intelectual, imagen, honor o
+            privacidad.
+          </li>
+        </ul>
+        <p>
+          Esta obligación de indemnidad subsiste tras el cese de uso del sitio
+          en lo que sea aplicable.
+        </p>
+      </div>
+    </section>
+
+    <!-- DISPONIBILIDAD Y MODIFICACIONES -->
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Disponibilidad y modificaciones</h2>
+      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
+        <p>
+          El titular procura mantener el sitio disponible, actualizado y libre
+          de errores, pero puede haber interrupciones, suspensiones temporales,
+          cambios de contenido, retiros de páginas o diferencias respecto a
+          fuentes oficiales actualizadas.
+        </p>
+        <p>
+          El titular puede modificar el contenido del sitio, los Términos, las
+          políticas relacionadas, las calculadoras o cualquier aspecto del
+          servicio, en cualquier momento. Las modificaciones rigen desde su
+          publicación, y la fecha de actualización visible en cada documento
+          indica la versión vigente. El uso continuado del sitio tras una
+          modificación implica la aceptación de la versión actualizada.
+        </p>
+      </div>
+    </section>
+
+    <!-- LEY APLICABLE Y JURISDICCIÓN -->
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Ley aplicable y jurisdicción</h2>
+      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
+        <p>
+          Estos Términos, así como las controversias derivadas del uso del
+          sitio, se rigen por las
+          <strong class="text-foreground">leyes de la República de Chile</strong
+          >.
+        </p>
+        <p>
+          Para todos los efectos legales, las partes fijan domicilio en la
+          ciudad de Santiago y se someten a la competencia de los tribunales
+          ordinarios de justicia con jurisdicción en esa ciudad, sin perjuicio
+          de la competencia que la ley reconozca al consumidor o al titular de
+          datos personales para reclamar ante las autoridades competentes.
+        </p>
+      </div>
+    </section>
+
+    <!-- DIVISIBILIDAD Y RENUNCIA -->
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">
+        Divisibilidad, sobrevivencia y renuncia
+      </h2>
+      <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
+        <p>
+          Si alguna disposición de estos Términos fuere declarada nula,
+          ineficaz o inaplicable por autoridad competente, las demás
+          disposiciones conservarán plena vigencia, y la cláusula afectada se
+          reemplazará por aquella que mejor refleje la intención original
+          dentro del marco legal aplicable.
+        </p>
+        <p>
+          Las disposiciones sobre limitación de responsabilidad, indemnidad,
+          propiedad intelectual, ley aplicable y jurisdicción sobreviven al
+          cese del uso del sitio.
+        </p>
+        <p>
+          La tolerancia del titular ante una infracción no implica renuncia a
+          su derecho a exigir cumplimiento ante infracciones posteriores.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
     <section class="py-10">
       <div
         class="max-w-2xl rounded-xl border border-border bg-surface-muted p-6"
       >
         <h2 class="mb-3 text-lg font-bold text-foreground">
-          Privacidad y contacto
+          Documentos relacionados y contacto
         </h2>
         <p class="text-sm leading-relaxed text-secondary">
-          El uso del sitio también se relaciona con nuestra
+          Estos Términos se complementan con la
           <a
             href={getPath("/privacidad/")}
             class="text-accent underline underline-offset-4 hover:opacity-80"
             >Política de privacidad</a
-          >
-          y la
+          >, la
           <a
             href={getPath("/cookies/")}
             class="text-accent underline underline-offset-4 hover:opacity-80"
             >Política de cookies</a
+          > y la
+          <a
+            href={getPath("/metodologia/")}
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+            >metodología editorial</a
           >.
         </p>
         <p class="mt-3 text-sm leading-relaxed text-secondary">
-          Para consultas, correcciones o reportes, escribe a
+          Para consultas relacionadas con estos Términos, escribe a
           <a
             href="mailto:contacto@monedario.cl"
             class="text-accent underline underline-offset-4 hover:opacity-80"
