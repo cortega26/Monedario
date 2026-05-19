@@ -51,6 +51,22 @@ function assertInput(input: CreditPrepaymentInput): void {
   if (!Number.isFinite(input.remainingMonths) || input.remainingMonths <= 0) {
     throw new Error("remainingMonths must be a finite number greater than 0.");
   }
+  if (
+    !Number.isFinite(input.monthlyRatePercent) ||
+    input.monthlyRatePercent <= 0
+  ) {
+    throw new Error(
+      "monthlyRatePercent must be a finite number greater than 0."
+    );
+  }
+  if (
+    !Number.isFinite(input.alternativeAnnualReturnPercent) ||
+    input.alternativeAnnualReturnPercent < 0
+  ) {
+    throw new Error(
+      "alternativeAnnualReturnPercent must be a finite number greater than or equal to 0."
+    );
+  }
 }
 
 export function simulateCreditPrepayment(

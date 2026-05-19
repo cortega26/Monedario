@@ -35,4 +35,34 @@ describe("simulateCreditPrepayment", () => {
       })
     ).toThrow(/no alcanza a amortizar/i);
   });
+
+  it("rejects invalid alternative investment returns instead of producing NaN outputs", () => {
+    expect(() =>
+      simulateCreditPrepayment({
+        currentBalance: 10000000,
+        monthlyPayment: 240000,
+        monthlyRatePercent: 0.9,
+        remainingMonths: 72,
+        prepaymentAmount: 1000000,
+        prepaymentCost: 0,
+        effect: "reducir-plazo",
+        alternativeAnnualReturnPercent: Number.NaN,
+      })
+    ).toThrow(/alternativeAnnualReturnPercent/i);
+  });
+
+  it("rejects invalid monthly credit rates instead of producing unstable comparisons", () => {
+    expect(() =>
+      simulateCreditPrepayment({
+        currentBalance: 10000000,
+        monthlyPayment: 240000,
+        monthlyRatePercent: Number.NaN,
+        remainingMonths: 72,
+        prepaymentAmount: 1000000,
+        prepaymentCost: 0,
+        effect: "reducir-plazo",
+        alternativeAnnualReturnPercent: 5,
+      })
+    ).toThrow(/monthlyRatePercent/i);
+  });
 });

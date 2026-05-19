@@ -562,6 +562,13 @@ const calculatorNextStepItems = [
       return;
     }
 
+    if (!Number.isFinite(rentAlternativa) || rentAlternativa < 0) {
+      showInlineError(
+        "Selecciona una rentabilidad alternativa válida para comparar el prepago con una inversión."
+      );
+      return;
+    }
+
     let simulacion;
     try {
       simulacion = simulateCreditPrepayment({
