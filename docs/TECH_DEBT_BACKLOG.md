@@ -7,7 +7,7 @@ Fecha de corte: 2026-05-15
 ### Total de items por urgencia
 
 - **P0:** 7
-- **P1:** 23 (+4 desde auditoría 2026-05-15)
+- **P1:** 24 (+5 desde auditoría 2026-05-15)
 - **P2:** 39 (+9 desde auditoría 2026-05-15)
 - **P3:** 12 (+7 desde auditoría 2026-05-15)
 
@@ -15,7 +15,7 @@ Fecha de corte: 2026-05-15
 
 - **Completados:** 71 TD únicos (`TD-0001`..`TD-0062`, `TD-0064`, `TD-0066`, `TD-0068`, `TD-0070`, `TD-0071`, `TD-0073`, `TD-0074`, `TD-0080`, `TD-0082`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
 - **En progreso:** 0
-- **Backlog sin iniciar:** 9 (`TD-0063`, `TD-0065`, `TD-0067`, `TD-0069`, `TD-0075`..`TD-0078`, `TD-0081`)
+- **Backlog sin iniciar:** 10 (`TD-0063`, `TD-0065`, `TD-0067`, `TD-0069`, `TD-0075`..`TD-0078`, `TD-0081`, `TD-0083`)
 - **Backlog en validación/diseño:** 2 (`TD-0072` parcial por referencias activas; `TD-0079` bloqueado por incompatibilidad WOFF2/Satori)
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -51,6 +51,27 @@ Fecha de corte: 2026-05-15
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 - Actualizar `imm` en snapshot cada julio con el nuevo decreto presidencial.
 - Resolver warnings no bloqueantes vigentes (`topicRole` faltante y descripciones sobre 155 caracteres) o promoverlos a TD si dejan de ser mera higiene editorial.
+
+## TD-0083 — Baseline local de gates no está limpia para cambios UI acotados
+- **ID:** TD-0083
+- **Título corto:** Limpiar drift preexistente en `test`, `lint` y `format:check`
+- **Descripción:** Durante la corrección UX/UI de navbar/footer del 2026-05-19, los gates locales no estaban limpios antes ni después de editar archivos del scope. `pnpm run test` falla por assertions obsoletas en `HeroHomepage.astro`; `pnpm run lint` falla por deuda en worker/tests; `pnpm run format:check` falla por drift Prettier en 13 archivos fuera del scope. Los archivos tocados por la tarea UI sí pasan Prettier y `astro check`.
+- **Evidencia:** `pnpm run test` falla en `tests/e2e/redirect-links.e2e.test.ts` (`href: "/cambios/"`) y `tests/integration/homepage-content.test.ts` (`Sin registro requerido`); `pnpm run lint` falla en `tests/workers/economic-snapshot-refresh/buildSnapshot.test.ts`, `workers/economic-snapshot-refresh/src/index.ts` y `workers/economic-snapshot-refresh/src/sources/bcchSiete.ts`; `pnpm run format:check` lista 13 archivos fuera del scope de navbar/footer.
+- **Impacto:** Cambios pequeños y no relacionados no pueden cerrar con suite completa verde, lo que reduce la señal de regresión y fuerza a separar fallas preexistentes manualmente.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P1
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Actualizar las assertions de homepage o restaurar el contrato esperado, limpiar reglas lint del worker/tests, y ejecutar Prettier sobre los 13 archivos con drift en un PR mecánico separado.
+- **Criterios de cierre (checklist verificable):**
+- [ ] `pnpm run test` pasa completo.
+- [ ] `pnpm run lint` pasa completo.
+- [ ] `pnpm run format:check` pasa completo.
+- [ ] El fix queda separado de cambios visuales/productivos no relacionados.
+- **Owner:** TBD
+- **Estado:** Sin iniciar
+- **Fecha de creación:** 2026-05-19
+- **Última actualización:** 2026-05-19
 
 ### Quick wins (alto impacto / bajo esfuerzo)
 
