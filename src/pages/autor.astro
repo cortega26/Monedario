@@ -19,17 +19,20 @@ const personSchema = {
   name: SITE.authorFullName,
   url: CANONICAL_URL,
   image: new URL(SITE.authorImage, Astro.site ?? Astro.url.origin).href,
-  jobTitle: "Investigador financiero y desarrollador",
+  jobTitle: "Editor de educación financiera y analista de datos",
   description:
-    "Especializado en educación financiera práctica. Analiza normativa financiera chilena, compara instrumentos de ahorro e inversión y desarrolla herramientas para explicar decisiones financieras de forma clara y basada en evidencia.",
+    "Vive en Santiago desde 2014. Titulado en Derecho en Venezuela (Abogado, 2004-2009) y analista de datos. Edita Monedario, sitio de educación financiera para Chile, donde explica el sistema financiero chileno combinando análisis cuantitativo con revisión del ordenamiento jurídico vigente.",
   knowsAbout: [
+    "Educación financiera",
     "Finanzas personales",
     "Normativa financiera chilena",
+    "Regulación del consumidor financiero",
     "AFP y sistema previsional",
     "Impuestos personas naturales Chile",
     "Ahorro e inversión",
     "Crédito de consumo",
     "Seguro de cesantía",
+    "Análisis de datos",
   ],
   sameAs: [SITE.authorLinkedIn, SITE.profile],
   worksFor: {
@@ -76,7 +79,8 @@ const personSchema = {
             {SITE.authorFullName}
           </h1>
           <p class="text-sm font-medium text-accent">
-            Investigador financiero · Desarrollador · Analista de datos
+            Investigador financiero · Titulado en Derecho (Venezuela) ·
+            Analista de datos
           </p>
           <div class="mt-3 flex flex-wrap gap-3 text-sm">
             <a
@@ -129,21 +133,31 @@ const personSchema = {
       <h2 class="mb-4 text-xl font-bold">Sobre el autor</h2>
       <div class="max-w-2xl space-y-4 text-base leading-relaxed text-secondary">
         <p>
-          Investigador financiero y desarrollador de herramientas de educación
-          financiera para Chile. Abogado de formación y analista de datos.
+          Vive en Santiago desde 2014. Titulado en Derecho en Venezuela
+          (Abogado, 2004-2009) y analista de datos. Investigador financiero y
+          desarrollador de herramientas de educación financiera para Chile.
         </p>
         <p>
-          En <strong class="text-foreground">Monedario</strong> investiga normativa
-          financiera chilena, analiza instrumentos de ahorro e inversión y desarrolla
-          herramientas que ayudan a entender decisiones financieras complejas. Su
-          enfoque combina análisis de datos, revisión de fuentes oficiales y explicaciones
-          claras para mejorar la toma de decisiones financieras de las personas.
+          En <strong class="text-foreground">Monedario</strong> combina ambas
+          formaciones para explicar el sistema financiero chileno con dos
+          lentes complementarias: la <strong class="text-foreground"
+            >matemática</strong
+          > detrás de cada cifra y el <strong class="text-foreground"
+            >ordenamiento jurídico vigente</strong
+          > que la regula. Investiga normativa, analiza instrumentos de ahorro,
+          deuda, impuestos y pensiones, y construye calculadoras y guías cuyo
+          objetivo es que el lector pueda verificar, no creer.
         </p>
         <p>
-          Los artículos publicados en Monedario se elaboran a partir de
-          normativa oficial, documentos regulatorios y fuentes públicas, y se
-          actualizan periódicamente para reflejar cambios legales o
-          regulatorios.
+          Carlos no es abogado habilitado para ejercer en Chile ni asesor
+          financiero certificado. El sitio no apela a esos títulos: apela a un
+          método auditable —fuentes citadas, fórmulas a la vista, separación
+          entre quien redacta y quien revisa— descrito en la
+          <a
+            href={getPath("/metodologia/")}
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+            >metodología</a
+          > del sitio.
         </p>
       </div>
     </section>
