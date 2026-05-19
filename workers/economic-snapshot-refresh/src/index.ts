@@ -1,6 +1,7 @@
 import {
   buildSnapshot,
   createMindicadorFetchers,
+  mergePrev,
   serializeSnapshot,
   type IndicatorOverride,
 } from "./buildSnapshot";
@@ -148,7 +149,7 @@ async function runRefresh(env: Env): Promise<void> {
     };
   };
 
-  const snapshot = await buildSnapshot({
+  const rawSnapshot = await buildSnapshot({
     fetchApi: fetchers.fetchApi,
     fetchDecemberUtm: fetchers.fetchDecemberUtm,
     fetchIpcOverride,
@@ -156,9 +157,10 @@ async function runRefresh(env: Env): Promise<void> {
     fetchUsdOverride: makeBcchOverride("usd", BCCH_SERIES.USD_OBSERVED),
     now: () => new Date(),
   });
-  const serialized = serializeSnapshot(snapshot);
 
   const current = await getCurrentFile(config);
+  const snapshot = mergePrev(current.content, rawSnapshot);
+  const serialized = serializeSnapshot(snapshot);
 
   // capturedAt always differs run-to-run; ignore it for the idempotency check.
   const stableContent = (raw: string): string =>

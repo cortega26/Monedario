@@ -1,6 +1,7 @@
 import {
   resolveEconomicIndicatorDate,
   type EconomicParameters,
+  type EconomicPrevEntry,
 } from "@/domain/economic/EconomicParameters";
 import type { EconomicTelemetryFlag } from "@/infrastructure/economic/EconomicParameterProvider";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
@@ -17,6 +18,11 @@ export interface Indicadores {
   fecha: EconomicParameters["lastUpdated"];
   source: EconomicParameters["source"];
   telemetryFlag: EconomicTelemetryFlag;
+  prev?: {
+    uf?: EconomicPrevEntry;
+    utm?: EconomicPrevEntry;
+    dolar?: EconomicPrevEntry;
+  };
 }
 
 export async function getIndicadores(): Promise<Indicadores> {
@@ -37,6 +43,7 @@ export async function getIndicadores(): Promise<Indicadores> {
     fecha: parameters.lastUpdated,
     source: parameters.source,
     telemetryFlag,
+    ...(parameters.prev ? { prev: parameters.prev } : {}),
   };
 }
 

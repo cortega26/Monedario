@@ -32,6 +32,11 @@ interface EconomicSnapshotPayload {
     pensionAndHealthMonthlyTaxableCapUf?: number;
   };
   indicatorUpdatedAt?: EconomicIndicatorUpdatedAt;
+  prev?: {
+    uf?: { valor: number; fecha: string };
+    utm?: { valor: number; fecha: string };
+    dolar?: { valor: number; fecha: string };
+  };
   lastUpdated: string;
 }
 
@@ -206,6 +211,7 @@ function loadSnapshotEconomicParameters(): EconomicParameters {
       payload.dolar !== undefined,
       payload.uta !== undefined
     ),
+    ...(payload.prev ? { prev: payload.prev } : {}),
     lastUpdated: String(payload.lastUpdated),
     source: "snapshot",
   };

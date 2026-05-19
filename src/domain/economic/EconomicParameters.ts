@@ -1,3 +1,8 @@
+export interface EconomicPrevEntry {
+  valor: number;
+  fecha: string;
+}
+
 export type EconomicIndicatorKey =
   | "uf"
   | "utm"
@@ -26,6 +31,12 @@ export interface EconomicParameters {
   afcTopes?: Record<string, number>;
   previsionalTopes?: Record<string, number>;
   indicatorUpdatedAt?: EconomicIndicatorUpdatedAt;
+  /** Previous-period values for delta display. Present only when the snapshot has been refreshed at least once. */
+  prev?: {
+    uf?: EconomicPrevEntry;
+    utm?: EconomicPrevEntry;
+    dolar?: EconomicPrevEntry;
+  };
   lastUpdated: string;
   source: "live" | "snapshot" | "fallback";
 }

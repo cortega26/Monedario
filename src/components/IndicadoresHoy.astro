@@ -25,6 +25,11 @@ function fmtMesLargo(fecha: string): string {
   return MESES_LARGO[m] ?? "";
 }
 
+function fmtDelta(current: number, prev: number): string {
+  const pct = ((current - prev) / prev) * 100;
+  return pct.toLocaleString("es-CL", { maximumFractionDigits: 2 });
+}
+
 const ufFecha = indicadores.fechas.uf;
 const utmFecha = indicadores.fechas.utm;
 const dolarFecha = indicadores.fechas.dolar ?? indicadores.fecha;
@@ -41,6 +46,18 @@ const dolarValue = indicadores.dolar?.toLocaleString("es-CL", {
 
 const hasDolar = indicadores.dolar !== undefined && dolarValue !== undefined;
 const cols = hasDolar ? "3" : "2";
+
+const prev = indicadores.prev;
+
+const ufDelta = prev?.uf
+  ? { pct: fmtDelta(indicadores.uf, prev.uf.valor), up: indicadores.uf >= prev.uf.valor, vs: fmtDiaMesCorto(prev.uf.fecha) }
+  : null;
+const utmDelta = prev?.utm
+  ? { pct: fmtDelta(indicadores.utm, prev.utm.valor), up: indicadores.utm >= prev.utm.valor, vs: fmtMesLargo(prev.utm.fecha) }
+  : null;
+const dolarDelta = prev?.dolar && indicadores.dolar !== undefined
+  ? { pct: fmtDelta(indicadores.dolar, prev.dolar.valor), up: indicadores.dolar >= prev.dolar.valor, vs: fmtDiaMesCorto(prev.dolar.fecha) }
+  : null;
 ---
 
 <section aria-labelledby="indicadores-hoy-heading">
@@ -62,6 +79,11 @@ const cols = hasDolar ? "3" : "2";
       >
         ${ufValue}
       </a>
+      {ufDelta && (
+        <span class={`indicador-delta ${ufDelta.up ? "indicador-delta--up" : "indicador-delta--down"}`}>
+          {ufDelta.up ? "▲" : "▼"} {ufDelta.pct}% vs. {ufDelta.vs}
+        </span>
+      )}
     </div>
 
     <div class="indicador">
@@ -74,6 +96,11 @@ const cols = hasDolar ? "3" : "2";
       >
         ${utmValue}
       </span>
+      {utmDelta && (
+        <span class={`indicador-delta ${utmDelta.up ? "indicador-delta--up" : "indicador-delta--down"}`}>
+          {utmDelta.up ? "▲" : "▼"} {utmDelta.pct}% vs. {utmDelta.vs}
+        </span>
+      )}
     </div>
 
     {hasDolar && (
@@ -87,6 +114,11 @@ const cols = hasDolar ? "3" : "2";
         >
           ${dolarValue}
         </span>
+        {dolarDelta && (
+          <span class={`indicador-delta ${dolarDelta.up ? "indicador-delta--up" : "indicador-delta--down"}`}>
+            {dolarDelta.up ? "▲" : "▼"} {dolarDelta.pct}% vs. {dolarDelta.vs}
+          </span>
+        )}
       </div>
     )}
 
@@ -119,6 +151,7 @@ const cols = hasDolar ? "3" : "2";
   @media (min-width: 640px) {
     .indicadores-grid {
       grid-template-columns: repeat(var(--cols, 3), 1fr) auto;
+      align-items: end;
       row-gap: 0;
     }
 
@@ -175,6 +208,22 @@ const cols = hasDolar ? "3" : "2";
 
   .indicador-value--link:hover {
     color: var(--accent);
+  }
+
+  .indicador-delta {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    margin-top: 3px;
+    letter-spacing: 0.01em;
+  }
+
+  .indicador-delta--up {
+    color: var(--color-accent-2-text);
+  }
+
+  .indicador-delta--down {
+    color: var(--color-highlight-text);
   }
 
   .indicador-cta {

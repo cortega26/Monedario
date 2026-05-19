@@ -25,6 +25,11 @@ export interface UtmSerieResponse {
   serie?: UtmSerieEntry[];
 }
 
+export interface PrevIndicatorEntry {
+  valor: number;
+  fecha: string;
+}
+
 export interface EconomicSnapshot {
   uf: number;
   utm: number;
@@ -41,6 +46,12 @@ export interface EconomicSnapshot {
     tmc?: string;
     dolar?: string;
     uta: string;
+  };
+  /** Previous-period values for delta display. Populated by mergePrev; absent on first run. */
+  prev?: {
+    uf?: PrevIndicatorEntry;
+    utm?: PrevIndicatorEntry;
+    dolar?: PrevIndicatorEntry;
   };
   lastUpdated: string;
   capturedAt: string;
@@ -258,6 +269,65 @@ export function createMindicadorFetchers(options: FetcherOptions = {}): {
   };
 
   return { fetchApi, fetchDecemberUtm };
+}
+
+/**
+ * Reads the previously committed snapshot JSON and carries forward prev values.
+ *
+ * Rules:
+ * - UF / Dólar (daily): when indicatorUpdatedAt date rolls over, the old value
+ *   becomes the new prev. If the date is unchanged, the existing prev is preserved.
+ * - UTM (monthly): same logic but keyed on YYYY-MM, not the full date.
+ *
+ * This is a pure function — it never fetches anything and never throws.
+ */
+export function mergePrev(
+  currentJson: string,
+  newSnapshot: EconomicSnapshot
+): EconomicSnapshot {
+  let current: Partial<EconomicSnapshot>;
+  try {
+    current = JSON.parse(currentJson) as Partial<EconomicSnapshot>;
+  } catch {
+    return newSnapshot;
+  }
+
+  const carry: NonNullable<EconomicSnapshot["prev"]> = {};
+
+  if (typeof current.uf === "number" && current.indicatorUpdatedAt?.uf) {
+    if (current.indicatorUpdatedAt.uf !== newSnapshot.indicatorUpdatedAt.uf) {
+      carry.uf = { valor: current.uf, fecha: current.indicatorUpdatedAt.uf };
+    } else if (current.prev?.uf) {
+      carry.uf = current.prev.uf;
+    }
+  }
+
+  if (typeof current.utm === "number" && current.indicatorUpdatedAt?.utm) {
+    const curMonth = current.indicatorUpdatedAt.utm.slice(0, 7);
+    const newMonth = newSnapshot.indicatorUpdatedAt.utm.slice(0, 7);
+    if (curMonth !== newMonth) {
+      carry.utm = { valor: current.utm, fecha: current.indicatorUpdatedAt.utm };
+    } else if (current.prev?.utm) {
+      carry.utm = current.prev.utm;
+    }
+  }
+
+  if (
+    newSnapshot.dolar !== undefined &&
+    newSnapshot.indicatorUpdatedAt.dolar &&
+    typeof current.dolar === "number" &&
+    current.indicatorUpdatedAt?.dolar
+  ) {
+    if (current.indicatorUpdatedAt.dolar !== newSnapshot.indicatorUpdatedAt.dolar) {
+      carry.dolar = { valor: current.dolar, fecha: current.indicatorUpdatedAt.dolar };
+    } else if (current.prev?.dolar) {
+      carry.dolar = current.prev.dolar;
+    }
+  }
+
+  const hasPrev =
+    carry.uf !== undefined || carry.utm !== undefined || carry.dolar !== undefined;
+  return hasPrev ? { ...newSnapshot, prev: carry } : newSnapshot;
 }
 
 export function serializeSnapshot(snapshot: EconomicSnapshot): string {

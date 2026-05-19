@@ -2,7 +2,9 @@ import { describe, expect, it } from "vitest";
 import {
   buildSnapshot,
   getUtaReferenceYear,
+  mergePrev,
   serializeSnapshot,
+  type EconomicSnapshot,
   type MindicadorApiResponse,
 } from "../../../workers/economic-snapshot-refresh/src/buildSnapshot";
 
@@ -97,6 +99,11 @@ describe("buildSnapshot", () => {
     await expect(buildSnapshot(makeDeps({ api: broken }))).rejects.toThrow(/UTM/);
   });
 
+  it("prev field is absent on a fresh snapshot (no previous JSON)", async () => {
+    const snapshot = await buildSnapshot(makeDeps());
+    expect(snapshot.prev).toBeUndefined();
+  });
+
   it("serializes with trailing newline and 2-space indent", async () => {
     const snapshot = await buildSnapshot(makeDeps());
     const text = serializeSnapshot(snapshot);
@@ -187,5 +194,93 @@ describe("buildSnapshot", () => {
     });
     expect(snapshot.dolar).toBe(891);
     expect(snapshot.indicatorUpdatedAt.dolar).toBe("2026-05-15");
+  });
+});
+
+// Minimal valid snapshot for mergePrev tests
+function makeSnapshot(overrides: Partial<EconomicSnapshot> = {}): EconomicSnapshot {
+  return {
+    uf: 40400,
+    utm: 70588,
+    uta: 834504,
+    ipc: 1.3,
+    tmc: 3.49,
+    dolar: 910,
+    afcTopes: { monthlyTaxableCapUf: 135.2 },
+    previsionalTopes: { pensionAndHealthMonthlyTaxableCapUf: 90 },
+    indicatorUpdatedAt: {
+      uf: "2026-05-19",
+      utm: "2026-05-01",
+      dolar: "2026-05-19",
+      uta: "2025-12-01",
+    },
+    lastUpdated: "2026-05-19",
+    capturedAt: "2026-05-19T12:00:00.000Z",
+    source: "mindicador.cl/api",
+    ...overrides,
+  };
+}
+
+describe("mergePrev", () => {
+  it("returns snapshot unchanged when currentJson is not valid JSON", () => {
+    const snap = makeSnapshot();
+    const result = mergePrev("not-json", snap);
+    expect(result).toEqual(snap);
+    expect(result.prev).toBeUndefined();
+  });
+
+  it("carries UF prev when uf date rolls over", () => {
+    const current = makeSnapshot({ uf: 40391.32, indicatorUpdatedAt: { uf: "2026-05-18", utm: "2026-05-01", dolar: "2026-05-18", uta: "2025-12-01" } });
+    const newSnap = makeSnapshot({ uf: 40400 }); // date is 2026-05-19
+    const result = mergePrev(JSON.stringify(current), newSnap);
+    expect(result.prev?.uf).toEqual({ valor: 40391.32, fecha: "2026-05-18" });
+  });
+
+  it("preserves existing UF prev when uf date is unchanged", () => {
+    const existingPrev = { valor: 40380, fecha: "2026-05-17" };
+    const current = makeSnapshot({ uf: 40400, prev: { uf: existingPrev } });
+    // Same uf date as new snapshot
+    const newSnap = makeSnapshot({ uf: 40405 });
+    const result = mergePrev(JSON.stringify(current), newSnap);
+    expect(result.prev?.uf).toEqual(existingPrev);
+  });
+
+  it("carries UTM prev only when month changes", () => {
+    const current = makeSnapshot({
+      utm: 69737,
+      indicatorUpdatedAt: { uf: "2026-05-19", utm: "2026-04-01", dolar: "2026-05-19", uta: "2025-12-01" },
+    });
+    const newSnap = makeSnapshot({ utm: 70588 }); // utm date is 2026-05-01
+    const result = mergePrev(JSON.stringify(current), newSnap);
+    expect(result.prev?.utm).toEqual({ valor: 69737, fecha: "2026-04-01" });
+  });
+
+  it("does not carry UTM prev when month is unchanged", () => {
+    const current = makeSnapshot({ utm: 70000 }); // same month 2026-05
+    const newSnap = makeSnapshot({ utm: 70588 });
+    const result = mergePrev(JSON.stringify(current), newSnap);
+    expect(result.prev?.utm).toBeUndefined();
+  });
+
+  it("carries dolar prev when dolar date rolls over", () => {
+    const current = makeSnapshot({ dolar: 906.68, indicatorUpdatedAt: { uf: "2026-05-18", utm: "2026-05-01", dolar: "2026-05-18", uta: "2025-12-01" } });
+    const newSnap = makeSnapshot({ dolar: 910 }); // dolar date is 2026-05-19
+    const result = mergePrev(JSON.stringify(current), newSnap);
+    expect(result.prev?.dolar).toEqual({ valor: 906.68, fecha: "2026-05-18" });
+  });
+
+  it("does not carry dolar prev when new snapshot has no dolar", () => {
+    const current = makeSnapshot({ dolar: 906.68 });
+    const { dolar: _d, ...rest } = makeSnapshot();
+    const newSnap: EconomicSnapshot = { ...rest, indicatorUpdatedAt: { uf: "2026-05-19", utm: "2026-05-01", uta: "2025-12-01" } };
+    const result = mergePrev(JSON.stringify(current), newSnap);
+    expect(result.prev?.dolar).toBeUndefined();
+  });
+
+  it("returns snapshot with no prev when nothing has changed", () => {
+    const current = makeSnapshot();
+    const newSnap = makeSnapshot({ uf: 40401 }); // same dates as current
+    const result = mergePrev(JSON.stringify(current), newSnap);
+    expect(result.prev).toBeUndefined();
   });
 });
