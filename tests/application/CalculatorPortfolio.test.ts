@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   CALCULATOR_DECISION_GUIDES,
   CALCULATOR_FAMILIES,
+  CALCULATOR_FOOTER_SHORTCUTS,
   CALCULATOR_FAMILY_ORDER,
   CALCULATOR_PORTFOLIO,
 } from "@/config/calculatorPortfolio";
@@ -53,6 +54,23 @@ describe("calculator portfolio registry", () => {
       expect(guide.situation.trim().length).toBeGreaterThan(10);
       expect(guide.why.trim().length).toBeGreaterThan(10);
       expect(hrefs.has(guide.recommendedHref)).toBe(true);
+    }
+  });
+
+  it("derives footer shortcuts from selected calculator entries", () => {
+    const hrefs = new Set(CALCULATOR_PORTFOLIO.map(calculator => calculator.href));
+    const shortcutHrefs = CALCULATOR_FOOTER_SHORTCUTS.map(shortcut => shortcut.href);
+
+    expect(shortcutHrefs).toEqual([
+      "/calculadoras/sueldo-liquido/",
+      "/calculadoras/apv/",
+      "/calculadoras/credito-consumo/",
+      "/calculadoras/conversor-uf/",
+    ]);
+
+    for (const shortcut of CALCULATOR_FOOTER_SHORTCUTS) {
+      expect(hrefs.has(shortcut.href)).toBe(true);
+      expect(shortcut.label.trim().length).toBeGreaterThan(3);
     }
   });
 });

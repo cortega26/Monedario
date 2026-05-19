@@ -2,6 +2,7 @@
 import type { HTMLAttributes } from "astro/types";
 import Socials from "./Socials.astro";
 import { SITE } from "@/config";
+import { CALCULATOR_FOOTER_SHORTCUTS } from "@/config/calculatorPortfolio";
 import { GUIDE_HUB_ORDER, GUIDE_HUBS } from "@/config/clusters";
 import { getPath } from "@/utils/getPath";
 
@@ -11,10 +12,7 @@ const topicLinks = GUIDE_HUB_ORDER.map(slug => ({
   label: GUIDE_HUBS[slug].nombre,
 }));
 const toolLinks = [
-  { href: "/calculadoras/sueldo-liquido/", label: "Sueldo líquido" },
-  { href: "/calculadoras/finiquito-indemnizacion/", label: "Finiquito" },
-  { href: "/calculadoras/credito-consumo/", label: "Crédito" },
-  { href: "/calculadoras/apv/", label: "APV" },
+  ...CALCULATOR_FOOTER_SHORTCUTS,
   { href: "/calculadoras/", label: "Todas" },
 ];
 const trustLinks = [

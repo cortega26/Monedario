@@ -25,6 +25,8 @@ export type CalculatorPortfolioEntry = {
   whenToUse: string;
   notFor: string;
   related: CalculatorAlternative[];
+  footerShortcutRank?: number;
+  footerShortcutLabel?: string;
 };
 
 export type CalculatorFamilyMeta = {
@@ -85,6 +87,8 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     icon: "moneybag",
     tag: "Más usada",
     family: "ingresos",
+    footerShortcutRank: 1,
+    footerShortcutLabel: "Calcular sueldo",
     primaryJtbd: "Saber cuánto llega a tu cuenta este mes.",
     whenToUse:
       "Cuando estás comparando bruto vs líquido, revisando una oferta o chequeando tu liquidación.",
@@ -226,6 +230,8 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     icon: "trending-up",
     tag: "Decisión APV",
     family: "ahorro-prevision",
+    footerShortcutRank: 2,
+    footerShortcutLabel: "Simular APV",
     primaryJtbd:
       "Elegir cómo aportar al APV según el beneficio tributario que realmente puedes capturar hoy.",
     whenToUse:
@@ -300,6 +306,8 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     icon: "building-bank",
     tag: "Oferta nueva",
     family: "deuda-credito",
+    footerShortcutRank: 3,
+    footerShortcutLabel: "Evaluar crédito",
     primaryJtbd: "Comparar ofertas antes de tomar una deuda nueva.",
     whenToUse:
       "Cuando el crédito todavía no existe y necesitas decidir si firmar o no.",
@@ -410,6 +418,8 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     icon: "refresh",
     tag: "Referencia",
     family: "vivienda-uf",
+    footerShortcutRank: 4,
+    footerShortcutLabel: "Convertir UF",
     primaryJtbd:
       "Traducir un monto indexado a UF o pesos sin agregar reglas contractuales extra.",
     whenToUse: "Cuando solo necesitas equivalencia actual entre UF y CLP.",
@@ -553,6 +563,15 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     ],
   },
 ];
+
+export const CALCULATOR_FOOTER_SHORTCUTS = CALCULATOR_PORTFOLIO.filter(
+  calculator => typeof calculator.footerShortcutRank === "number"
+)
+  .sort((a, b) => a.footerShortcutRank! - b.footerShortcutRank!)
+  .map(calculator => ({
+    href: calculator.href,
+    label: calculator.footerShortcutLabel ?? calculator.title,
+  }));
 
 export const CALCULATOR_DECISION_GUIDES: CalculatorDecisionGuide[] = [
   {
