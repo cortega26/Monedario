@@ -45,7 +45,7 @@ const { noMarginTop = false, class: className, ...attrs } = Astro.props;
   {...attrs}
 >
   <div class="border-t border-border py-8">
-    <div class="grid gap-7 md:grid-cols-3">
+    <div class="grid gap-7 sm:grid-cols-2 md:grid-cols-3">
       <nav aria-label="Explora por tema">
         <h2 class="text-sm font-semibold text-foreground">Explora por tema</h2>
         <ul class="mt-3 space-y-2 text-sm text-secondary">
@@ -109,13 +109,14 @@ const { noMarginTop = false, class: className, ...attrs } = Astro.props;
     </div>
 
     <div
-      class="mt-8 flex flex-col items-center justify-between gap-4 border-t border-border pt-5 text-sm text-secondary sm:flex-row-reverse"
+      class="mt-8 flex flex-col items-center justify-between gap-4 border-t border-border pt-5 text-sm text-secondary sm:flex-row"
     >
-      <Socials />
       <div class="text-center sm:text-left">
         <span>Contenido &#169; {currentYear} Monedario</span>
-        <span aria-hidden="true" class="hidden sm:inline">&nbsp;·&nbsp;</span>
-        <span>
+        <br class="sm:hidden" /><span
+          aria-hidden="true"
+          class="hidden sm:inline">&nbsp;·&nbsp;</span
+        ><span>
           {
             /*
             Sin noreferrer: es el portafolio del autor, nos interesa el
@@ -131,6 +132,7 @@ const { noMarginTop = false, class: className, ...attrs } = Astro.props;
           >
         </span>
       </div>
+      <Socials />
     </div>
   </div>
 </footer>

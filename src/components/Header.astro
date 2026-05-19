@@ -102,12 +102,12 @@ const isActive = (path: string) => {
       "py-4 sm:py-6",
       "border-b border-border",
       "relative w-full bg-background",
-      "flex items-baseline justify-between sm:items-center",
+      "flex items-center justify-between",
     ]}
   >
     <a
       href={getPath("/")}
-      class="brand-mark absolute py-1 whitespace-nowrap sm:static sm:my-auto sm:me-8"
+      class="brand-mark absolute top-1/2 -translate-y-1/2 sm:static sm:translate-y-0 py-1 whitespace-nowrap sm:my-auto sm:me-8"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -124,11 +124,11 @@ const isActive = (path: string) => {
     </a>
     <nav
       id="nav-menu"
-      class="flex w-full flex-col items-center sm:flex-row sm:justify-end sm:space-x-4 sm:py-0"
+      class="flex w-full flex-col items-center sm:flex-row sm:justify-end sm:py-0"
     >
       <button
         id="menu-btn"
-        class="focus-outline self-end p-3 sm:hidden"
+        class="focus-outline self-center p-3 sm:hidden"
         aria-label="Abrir menú"
         aria-expanded="false"
         aria-controls="menu-items"
