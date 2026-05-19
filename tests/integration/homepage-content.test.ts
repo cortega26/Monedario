@@ -248,9 +248,9 @@ describe("Wave 1 structural guards", () => {
 
   it("trust signals are present in HeroHomepage", () => {
     const source = readFileSync("src/components/HeroHomepage.astro", "utf8");
-    expect(source).toContain("Sin publicidad");
-    expect(source).toContain("Sin registro requerido");
-    expect(source).toContain("Fuentes oficiales");
+    expect(source).toMatch(/sin publicidad/i);
+    expect(source).toMatch(/sin registro requerido/i);
+    expect(source).toMatch(/fuentes oficiales/i);
   });
 
   it("buscar.astro uses grouped chip structure with intent groups", () => {

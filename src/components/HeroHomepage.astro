@@ -76,15 +76,18 @@ const headlineParts = headline.split("plata");
           <li>
             <a
               href={getPath(link.href)}
-              class="group flex items-center justify-between py-2.5 text-sm transition-colors hover:bg-accent/5 -mx-2 px-2 rounded"
+              class="group -mx-2 flex items-center justify-between rounded px-2 py-2.5 text-sm transition-colors hover:bg-accent/5"
               data-analytics-cta="home-hero-cta"
               data-analytics-label={link.label}
               data-analytics-location="home_hero"
             >
-              <span class="text-foreground group-hover:text-accent transition-colors underline decoration-dashed underline-offset-2 decoration-border group-hover:decoration-accent">
+              <span class="text-foreground underline decoration-border decoration-dashed underline-offset-2 transition-colors group-hover:text-accent group-hover:decoration-accent">
                 {link.label}
               </span>
-              <span class="text-muted group-hover:text-accent transition-colors" aria-hidden="true">
+              <span
+                class="text-muted transition-colors group-hover:text-accent"
+                aria-hidden="true"
+              >
                 →
               </span>
             </a>
@@ -95,11 +98,15 @@ const headlineParts = headline.split("plata");
   </nav>
 
   <!-- Nota editorial en cursiva — una sola línea, no chips -->
-  <p class="text-xs text-muted italic" style="font-family: var(--font-display);">
-    Sin publicidad, sin registro, sin recolección de datos.{" "}
+  <p
+    class="text-xs text-muted italic"
+    style="font-family: var(--font-display);"
+  >
+    Sin publicidad, sin registro requerido, sin recolección de datos. Fuentes
+    oficiales.{" "}
     <a
       href={getPath("/cambios/")}
-      class="underline underline-offset-2 decoration-dashed hover:text-secondary transition-colors"
+      class="underline decoration-dashed underline-offset-2 transition-colors hover:text-secondary"
     >
       Última actualización: {latestDateLabel}.
     </a>

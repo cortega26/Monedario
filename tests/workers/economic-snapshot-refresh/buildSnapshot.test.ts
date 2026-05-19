@@ -18,15 +18,19 @@ const sampleApi: MindicadorApiResponse = {
 };
 
 function makeDeps(overrides: Partial<{
-  api: MindicadorApiResponse;
-  decemberUtm: number | null;
-  now: Date;
-}> = {}) {
+    api: MindicadorApiResponse;
+    decemberUtm: number | null;
+    now: Date;
+  }> = {}) {
   const api = overrides.api ?? sampleApi;
   return {
     fetchApi: async () => api,
-    fetchDecemberUtm: async (_year: number) =>
-      overrides.decemberUtm !== undefined ? overrides.decemberUtm : 69542,
+    fetchDecemberUtm: async (year: number) => {
+      void year;
+      return overrides.decemberUtm !== undefined
+        ? overrides.decemberUtm
+        : 69542;
+    },
     now: () => overrides.now ?? fixedNow,
   };
 }
@@ -69,7 +73,8 @@ describe("buildSnapshot", () => {
   });
 
   it("omits dolar entirely when API does not return it", async () => {
-    const { dolar: _omit, ...rest } = sampleApi;
+    const rest = { ...sampleApi };
+    delete rest.dolar;
     const snapshot = await buildSnapshot(makeDeps({ api: rest }));
     expect(snapshot.dolar).toBeUndefined();
     expect(snapshot.indicatorUpdatedAt).not.toHaveProperty("dolar");
@@ -163,7 +168,8 @@ describe("buildSnapshot", () => {
   });
 
   it("USD override does not materialize dolar when mindicador had no dolar AND override returns null", async () => {
-    const { dolar: _omit, ...apiWithoutDolar } = sampleApi;
+    const apiWithoutDolar = { ...sampleApi };
+    delete apiWithoutDolar.dolar;
     const snapshot = await buildSnapshot({
       ...makeDeps({ api: apiWithoutDolar }),
       fetchUsdOverride: async () => null,
@@ -173,7 +179,8 @@ describe("buildSnapshot", () => {
   });
 
   it("USD override materializes dolar even when mindicador omitted it", async () => {
-    const { dolar: _omit, ...apiWithoutDolar } = sampleApi;
+    const apiWithoutDolar = { ...sampleApi };
+    delete apiWithoutDolar.dolar;
     const snapshot = await buildSnapshot({
       ...makeDeps({ api: apiWithoutDolar }),
       fetchUsdOverride: async () => ({ value: 891, dateIso: "2026-05-15" }),

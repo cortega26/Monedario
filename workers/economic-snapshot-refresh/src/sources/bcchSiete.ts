@@ -54,10 +54,6 @@ export interface BcchFetchArgs {
   lastDateIso: string; // YYYY-MM-DD inclusive
 }
 
-function urlEncode(value: string): string {
-  return encodeURIComponent(value);
-}
-
 export function buildSiteUrl(
   credentials: BcchCredentials,
   args: BcchFetchArgs

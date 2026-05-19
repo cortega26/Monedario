@@ -21,6 +21,12 @@ export default [
     },
   },
   {
+    files: ["workers/**/*.ts"],
+    rules: {
+      "no-console": "off",
+    },
+  },
+  {
     ignores: [
       "dist/**",
       ".astro",

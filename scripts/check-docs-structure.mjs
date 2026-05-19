@@ -97,6 +97,10 @@ function isAllowedLocation(filePath) {
     return true;
   }
 
+  if (filePath === "workers/economic-snapshot-refresh/README.md") {
+    return true;
+  }
+
   return ALLOWED_PREFIXES.some((prefix) => filePath.startsWith(prefix));
 }
 

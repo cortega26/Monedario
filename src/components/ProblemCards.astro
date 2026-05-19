@@ -151,7 +151,7 @@ function metaLine(card: Card): string {
     {
       groups.map(group => (
         <div>
-          <p class="mb-2 text-xs font-semibold uppercase tracking-widest text-secondary">
+          <p class="mb-2 text-xs font-semibold tracking-widest text-secondary uppercase">
             {group.eyebrow}
           </p>
           <ul class="divide-y divide-border">
@@ -165,7 +165,7 @@ function metaLine(card: Card): string {
                   data-analytics-location="home_problem_cards"
                 >
                   <span
-                    class="w-7 shrink-0 text-lg font-bold tabular-nums text-secondary transition-colors group-hover:text-accent"
+                    class="w-7 shrink-0 text-lg font-bold text-secondary tabular-nums transition-colors group-hover:text-accent"
                     style="font-family: var(--font-display)"
                   >
                     {card.number}
@@ -181,7 +181,7 @@ function metaLine(card: Card): string {
                       {metaLine(card)}
                     </p>
                   </div>
-                  <span class="shrink-0 whitespace-nowrap text-sm text-accent underline decoration-dashed underline-offset-2">
+                  <span class="shrink-0 text-sm whitespace-nowrap text-accent underline decoration-dashed underline-offset-2">
                     {card.ctaLabel} →
                   </span>
                 </a>

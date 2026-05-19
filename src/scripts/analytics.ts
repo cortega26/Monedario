@@ -27,8 +27,7 @@ function scheduleIdle(callback: () => void): IdleHandle {
 
 function getMeasurementId(): string | undefined {
   return (
-    document
-      .querySelector<HTMLMetaElement>('meta[name="ga-measurement-id"]')
+    document.querySelector<HTMLMetaElement>('meta[name="ga-measurement-id"]')
       ?.content || undefined
   );
 }

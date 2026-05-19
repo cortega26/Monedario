@@ -106,10 +106,10 @@ describe("V1 — no deprecated redirecting URLs remain in src/", () => {
 // ---------------------------------------------------------------------------
 
 describe("V2 — internal /cambios link has trailing slash", () => {
-  it('HeroHomepage.astro uses href: "/cambios/"', () => {
+  it('HeroHomepage.astro uses the canonical trailing-slash "/cambios/" path', () => {
     const content = readFile("src/components/HeroHomepage.astro");
-    expect(content).toContain('href: "/cambios/"');
-    expect(content).not.toContain('href: "/cambios"');
+    expect(content).toContain('"/cambios/"');
+    expect(content).not.toContain('"/cambios"');
   });
 });
 

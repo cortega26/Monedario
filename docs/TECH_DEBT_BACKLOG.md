@@ -13,9 +13,9 @@ Fecha de corte: 2026-05-15
 
 ### Estado de avance (2026-05-15)
 
-- **Completados:** 71 TD únicos (`TD-0001`..`TD-0062`, `TD-0064`, `TD-0066`, `TD-0068`, `TD-0070`, `TD-0071`, `TD-0073`, `TD-0074`, `TD-0080`, `TD-0082`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
+- **Completados:** 72 TD únicos (`TD-0001`..`TD-0062`, `TD-0064`, `TD-0066`, `TD-0068`, `TD-0070`, `TD-0071`, `TD-0073`, `TD-0074`, `TD-0080`, `TD-0082`, `TD-0083`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
 - **En progreso:** 0
-- **Backlog sin iniciar:** 10 (`TD-0063`, `TD-0065`, `TD-0067`, `TD-0069`, `TD-0075`..`TD-0078`, `TD-0081`, `TD-0083`)
+- **Backlog sin iniciar:** 9 (`TD-0063`, `TD-0065`, `TD-0067`, `TD-0069`, `TD-0075`..`TD-0078`, `TD-0081`)
 - **Backlog en validación/diseño:** 2 (`TD-0072` parcial por referencias activas; `TD-0079` bloqueado por incompatibilidad WOFF2/Satori)
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -64,14 +64,15 @@ Fecha de corte: 2026-05-15
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** Actualizar las assertions de homepage o restaurar el contrato esperado, limpiar reglas lint del worker/tests, y ejecutar Prettier sobre los 13 archivos con drift en un PR mecánico separado.
 - **Criterios de cierre (checklist verificable):**
-- [ ] `pnpm run test` pasa completo.
-- [ ] `pnpm run lint` pasa completo.
-- [ ] `pnpm run format:check` pasa completo.
-- [ ] El fix queda separado de cambios visuales/productivos no relacionados.
+- [x] `pnpm run test` pasa completo.
+- [x] `pnpm run lint` pasa completo.
+- [x] `pnpm run format:check` pasa completo.
+- [x] El fix queda separado de cambios visuales/productivos no relacionados.
 - **Owner:** TBD
-- **Estado:** Sin iniciar
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-19
 - **Última actualización:** 2026-05-19
+- **Nota de cierre:** Resuelto el 2026-05-19 con ajustes de contrato en tests de homepage, copy de señales de confianza, override explícito de logging para Workers en ESLint, limpieza de unused vars, excepción documental específica para el README operativo del Worker y normalización Prettier de la baseline.
 
 ### Quick wins (alto impacto / bajo esfuerzo)
 

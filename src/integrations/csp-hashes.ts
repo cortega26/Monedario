@@ -10,7 +10,8 @@ import { join } from "node:path";
 const SCRIPT_RE = /<script([^>]*)>([\s\S]*?)<\/script>/gi;
 
 // Types excluded from script-src enforcement.
-const NON_EXEC_TYPES = /^(?:application\/(?!ecmascript|javascript)|text\/(?!javascript))/i;
+const NON_EXEC_TYPES =
+  /^(?:application\/(?!ecmascript|javascript)|text\/(?!javascript))/i;
 
 function isExecutable(attrs: string): boolean {
   const m = attrs.match(/\btype\s*=\s*["']([^"']+)["']/i);
@@ -63,7 +64,9 @@ export function cspHashesIntegration(): AstroIntegration {
 
         const hashes = await collectHashes(distDir);
         if (hashes.size === 0) {
-          logger.warn("csp-hashes: no inline scripts found — _headers unchanged");
+          logger.warn(
+            "csp-hashes: no inline scripts found — _headers unchanged"
+          );
           return;
         }
 

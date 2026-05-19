@@ -41,50 +41,52 @@ const items = [
   <h2 id="indicadores-hoy-heading" class="sr-only">
     Indicadores económicos vigentes
   </h2>
-  <div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-secondary">
-  {
-    items.map(item => {
-      const inner = (
-        <span class="inline-flex items-baseline gap-1">
-          <span class="text-xs font-semibold tracking-wide text-muted uppercase">
-            {item.label}
-          </span>
-          <span class="font-semibold text-foreground tabular-nums">
-            {item.prefix}
-            {item.value}
-          </span>
-        </span>
-      );
-
-      return item.href ? (
-        <a
-          href={item.href}
-          class="rounded-md transition-colors hover:text-accent"
-          data-analytics-cta="home-indicador"
-          data-analytics-label={item.label}
-          data-analytics-location="home_indicadores_hoy"
-          title={`Fuente: mindicador.cl — ${item.label} al ${fmtFecha(item.fecha)}`}
-        >
-          {inner}
-        </a>
-      ) : (
-        <span
-          title={`Fuente: mindicador.cl — ${item.label} al ${fmtFecha(item.fecha)}`}
-        >
-          {inner}
-        </span>
-      );
-    })
-  }
-
-  <a
-    href={getPath("/guias/uf-costo-de-vida/indicadores-economicos/")}
-    class="inline-flex items-center rounded-md border border-border px-2 py-1 text-xs font-semibold tracking-wide text-accent transition-colors hover:bg-accent/5"
-    data-analytics-cta="home-indicadores-hub"
-    data-analytics-label="Ver todos los indicadores"
-    data-analytics-location="home_indicadores_hoy"
+  <div
+    class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-secondary"
   >
-    Ver todos los indicadores
-  </a>
+    {
+      items.map(item => {
+        const inner = (
+          <span class="inline-flex items-baseline gap-1">
+            <span class="text-xs font-semibold tracking-wide text-muted uppercase">
+              {item.label}
+            </span>
+            <span class="font-semibold text-foreground tabular-nums">
+              {item.prefix}
+              {item.value}
+            </span>
+          </span>
+        );
+
+        return item.href ? (
+          <a
+            href={item.href}
+            class="rounded-md transition-colors hover:text-accent"
+            data-analytics-cta="home-indicador"
+            data-analytics-label={item.label}
+            data-analytics-location="home_indicadores_hoy"
+            title={`Fuente: mindicador.cl — ${item.label} al ${fmtFecha(item.fecha)}`}
+          >
+            {inner}
+          </a>
+        ) : (
+          <span
+            title={`Fuente: mindicador.cl — ${item.label} al ${fmtFecha(item.fecha)}`}
+          >
+            {inner}
+          </span>
+        );
+      })
+    }
+
+    <a
+      href={getPath("/guias/uf-costo-de-vida/indicadores-economicos/")}
+      class="inline-flex items-center rounded-md border border-border px-2 py-1 text-xs font-semibold tracking-wide text-accent transition-colors hover:bg-accent/5"
+      data-analytics-cta="home-indicadores-hub"
+      data-analytics-label="Ver todos los indicadores"
+      data-analytics-location="home_indicadores_hoy"
+    >
+      Ver todos los indicadores
+    </a>
   </div>
 </section>
