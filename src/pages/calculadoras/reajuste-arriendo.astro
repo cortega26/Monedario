@@ -12,6 +12,8 @@ import NextSteps from "@/components/NextSteps.astro";
 import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { getPath } from "@/utils/getPath";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import CalculatorField from "@/components/calculator/CalculatorField.astro";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 const economicSourceLabel =
@@ -65,14 +67,11 @@ const calculatorNextStepItems = [
     data-analytics-calculator="reajuste-arriendo"
     data-analytics-calculator-name="Calculadora de Reajuste de Arriendo"
   >
-    <section class="border-b border-border pt-8 pb-6">
-      <h1 class="my-4 text-3xl font-bold sm:text-4xl">
-        🏠 Calculadora de Reajuste de Arriendo
-      </h1>
-      <p class="max-w-xl text-secondary">
-        Calcula cuánto sube tu arriendo según la variación de la UF o el IPC.
-        Útil tanto para arrendatarios como para propietarios.
-      </p>
+    <CalculatorHero
+      title="🏠 Calculadora de Reajuste de Arriendo"
+      description="Calcula cuánto sube tu arriendo según la variación de la UF o el IPC. Útil tanto para arrendatarios como para propietarios."
+      descriptionClass="max-w-xl text-secondary"
+    >
       <p class="mt-3 max-w-2xl text-sm text-secondary">
         Si antes de calcular necesitas interpretar la cláusula, revisa la guía
         <a href={rentGuidePath} class="underline underline-offset-4">
@@ -83,7 +82,7 @@ const calculatorNextStepItems = [
           guía UF, inflación y costo de vida
         </a>.
       </p>
-    </section>
+    </CalculatorHero>
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
@@ -140,75 +139,14 @@ const calculatorNextStepItems = [
 
         <!-- CAMPOS UF -->
         <div id="campos-uf">
-          <div class="mb-4">
-            <label
-              for="arriendo-uf"
-              class="mb-1 block text-sm font-medium text-secondary"
-            >
-              Monto del arriendo en UF
-            </label>
-            <input
-              type="number"
-              id="arriendo-uf"
-              placeholder="Ej: 15.5"
-              min="0"
-              step="0.01"
-              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-            />
-          </div>
-          <div class="mb-4">
-            <label
-              for="uf-antes"
-              class="mb-1 block text-sm font-medium text-secondary"
-            >
-              Valor UF al pagar el último arriendo ($)
-            </label>
-            <input
-              type="number"
-              id="uf-antes"
-              placeholder="Ej: 38.500"
-              min="0"
-              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-            />
-          </div>
-          <div class="mb-4">
-            <label
-              for="uf-hoy"
-              class="mb-1 block text-sm font-medium text-secondary"
-            >
-              Valor UF hoy ($)
-            </label>
-            <input
-              type="number"
-              id="uf-hoy"
-              value={String(economicParameters.uf)}
-              min="0"
-              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-            />
-            <p class="mt-1 text-xs text-muted">
-              Valor cargado desde parámetros económicos vigentes. Ajusta si es
-              necesario.
-            </p>
-          </div>
+          <CalculatorField id="arriendo-uf" label="Monto del arriendo en UF" placeholder="Ej: 15.5" min="0" step="0.01" />
+          <CalculatorField id="uf-antes" label="Valor UF al pagar el último arriendo ($)" placeholder="Ej: 38.500" min="0" />
+          <CalculatorField id="uf-hoy" label="Valor UF hoy ($)" min="0" value={String(economicParameters.uf)} hint="Valor cargado desde parámetros económicos vigentes. Ajusta si es necesario." />
         </div>
 
         <!-- CAMPOS IPC -->
         <div id="campos-ipc" class="hidden">
-          <div class="mb-4">
-            <label
-              for="arriendo-pesos-ipc"
-              class="mb-1 block text-sm font-medium text-secondary"
-            >
-              Arriendo actual en pesos ($)
-            </label>
-            <input
-              type="number"
-              id="arriendo-pesos-ipc"
-              placeholder="Ej: 450.000"
-              min="0"
-              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-            />
-          </div>
+          <CalculatorField id="arriendo-pesos-ipc" label="Arriendo actual en pesos ($)" placeholder="Ej: 450.000" min="0" />
           <div class="mb-4">
             <label
               for="ipc-variacion"
@@ -236,21 +174,7 @@ const calculatorNextStepItems = [
 
         <!-- CAMPOS PESOS FIJOS -->
         <div id="campos-pesos" class="hidden">
-          <div class="mb-4">
-            <label
-              for="arriendo-pesos"
-              class="mb-1 block text-sm font-medium text-secondary"
-            >
-              Arriendo actual en pesos ($)
-            </label>
-            <input
-              type="number"
-              id="arriendo-pesos"
-              placeholder="Ej: 450.000"
-              min="0"
-              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-            />
-          </div>
+          <CalculatorField id="arriendo-pesos" label="Arriendo actual en pesos ($)" placeholder="Ej: 450.000" min="0" />
           <div
             class="mb-4 rounded-lg border border-yellow-500/20 bg-yellow-500/10 p-3 text-sm text-secondary"
           >

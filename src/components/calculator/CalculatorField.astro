@@ -1,0 +1,64 @@
+---
+interface Props {
+  id: string;
+  label: string;
+  type?: string;
+  placeholder?: string;
+  min?: string | number;
+  max?: string | number;
+  step?: string | number;
+  value?: string | number;
+  hint?: string;
+  required?: boolean;
+  class?: string;
+  /** id for the outer wrapper div (e.g. for JS-toggled visibility). */
+  wrapperId?: string;
+  /** Passed through to the <input> element (e.g. data-profile-bind). */
+  inputAttrs?: Record<string, string>;
+  [key: string]: unknown;
+}
+
+const {
+  id,
+  label,
+  type = "number",
+  placeholder,
+  min,
+  max,
+  step,
+  value,
+  hint,
+  required,
+  class: extraClass,
+  wrapperId,
+  inputAttrs,
+  ...rest
+} = Astro.props;
+
+const hasSlot = Astro.slots.has("default");
+---
+
+<div id={wrapperId} class:list={["mb-4", extraClass]} {...rest}>
+  <label for={id} class="mb-1 block text-sm font-medium text-secondary">
+    {label}
+  </label>
+  {
+    hasSlot ? (
+      <slot />
+    ) : (
+      <input
+        type={type as "text" | "number" | "email" | "tel" | "url" | "password" | "search" | "date" | "time"}
+        id={id}
+        placeholder={placeholder}
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        required={required}
+        class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+        {...(inputAttrs ?? {})}
+      />
+    )
+  }
+  {hint && <p class="mt-1 text-xs text-muted">{hint}</p>}
+</div>

@@ -14,6 +14,11 @@ import CalculatorResultNextActions from "@/components/CalculatorResultNextAction
 import NextBestStep from "@/components/NextBestStep.astro";
 import SupportCallout from "@/components/SupportCallout.astro";
 import { SITE } from "@/config";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import CalculatorField from "@/components/calculator/CalculatorField.astro";
+import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
+import CalculatorExplainerSection from "@/components/calculator/CalculatorExplainerSection.astro";
+import CalculatorRadioGroup from "@/components/calculator/CalculatorRadioGroup.astro";
 
 const currentCalculator = CALCULATOR_PORTFOLIO.find(
   calc => calc.slug === "deposito-a-plazo"
@@ -83,15 +88,11 @@ const dapFaqs = [
     data-analytics-calculator-name="Calculadora Deposito a Plazo"
     data-site-title={SITE.title}
   >
-    <section class="border-b border-border pt-8 pb-6">
-      <h1 class="my-4 text-3xl font-bold sm:text-4xl">
-        Calculadora de Depósito a Plazo
-      </h1>
-      <p class="max-w-lg text-sm leading-relaxed text-foreground">
-        Estima el rendimiento de tu DAP: interés bruto, retención de impuesto
-        (4%) e interés neto final. Ingresa monto, plazo y tasa TIR.
-      </p>
-    </section>
+    <CalculatorHero
+      title="Calculadora de Depósito a Plazo"
+      description="Estima el rendimiento de tu DAP: interés bruto, retención de impuesto (4%) e interés neto final. Ingresa monto, plazo y tasa TIR."
+      descriptionClass="max-w-lg text-sm leading-relaxed text-foreground"
+    />
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
@@ -101,103 +102,42 @@ const dapFaqs = [
       >
         <h2 class="mb-5 text-lg font-semibold">Datos del depósito</h2>
 
-        <div class="mb-4">
-          <label
-            for="monto-dap"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Monto del depósito ($)
-          </label>
-          <input
-            type="number"
-            id="monto-dap"
-            placeholder="Ej: 5.000.000"
-            min="1"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-        </div>
+        <CalculatorField
+          id="monto-dap"
+          label="Monto del depósito ($)"
+          placeholder="Ej: 5.000.000"
+          min="1"
+        />
 
-        <div class="mb-4">
-          <label
-            for="plazo-dias"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Plazo (días)
-          </label>
-          <input
-            type="number"
-            id="plazo-dias"
-            placeholder="Ej: 180"
-            min="1"
-            max="1095"
-            step="1"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            Plazos comunes: 30, 60, 90, 180, 365 días.
-          </p>
-        </div>
+        <CalculatorField
+          id="plazo-dias"
+          label="Plazo (días)"
+          placeholder="Ej: 180"
+          min="1"
+          max="1095"
+          step="1"
+          hint="Plazos comunes: 30, 60, 90, 180, 365 días."
+        />
 
-        <div class="mb-4">
-          <label
-            for="tasa-tir"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Tasa TIR anual (%)
-          </label>
-          <input
-            type="number"
-            id="tasa-tir"
-            placeholder="Ej: 4.5"
-            min="0.01"
-            max="50"
-            step="0.01"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            La TIR anual la informa el banco. Puedes usar la tasa de referencia
-            BCCh como punto de comparación.
-          </p>
-        </div>
+        <CalculatorField
+          id="tasa-tir"
+          label="Tasa TIR anual (%)"
+          placeholder="Ej: 4.5"
+          min="0.01"
+          max="50"
+          step="0.01"
+          hint="La TIR anual la informa el banco. Puedes usar la tasa de referencia BCCh como punto de comparación."
+        />
 
-        <div class="mb-4">
-          <label class="mb-2 block text-sm font-medium text-secondary">
-            ¿Aplica retención de impuesto (4%)?
-          </label>
-          <div class="flex gap-2">
-            <label class="flex-1 cursor-pointer">
-              <input
-                type="radio"
-                name="aplica-impuesto"
-                value="si"
-                checked
-                class="peer sr-only"
-              />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
-                Sí (persona natural)
-              </span>
-            </label>
-            <label class="flex-1 cursor-pointer">
-              <input
-                type="radio"
-                name="aplica-impuesto"
-                value="no"
-                class="peer sr-only"
-              />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
-                No / Empresa
-              </span>
-            </label>
-          </div>
-          <p class="mt-1 text-xs text-muted">
-            Art. 59 N°4 LIR: retención de 4% sobre intereses para personas
-            naturales sin actividad de primera categoría.
-          </p>
-        </div>
+        <CalculatorRadioGroup
+          legend="¿Aplica retención de impuesto (4%)?"
+          name="aplica-impuesto"
+          hint="Art. 59 N°4 LIR: retención de 4% sobre intereses para personas naturales sin actividad de primera categoría."
+          options={[
+            { id: "aplica-si", value: "si", label: "Sí (persona natural)", checked: true },
+            { id: "aplica-no", value: "no", label: "No / Empresa" },
+          ]}
+        />
 
         <div
           id="calc-error"
@@ -215,17 +155,7 @@ const dapFaqs = [
       </div>
 
       <!-- RESULTADO -->
-      <div
-        id="resultado"
-        class="rounded-xl border border-border bg-background p-6"
-      >
-        <h2
-          id="resultado-heading"
-          class="mb-5 text-lg font-semibold"
-          tabindex="-1"
-        >
-          Resultado
-        </h2>
+      <CalculatorResultPanel headingId="resultado-heading" title="Resultado">
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
           <div
             class="mb-6 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
@@ -255,16 +185,13 @@ const dapFaqs = [
             Ejemplo: $5.000.000 al 5% TIR por 180 días, con retención 4%.
           </p>
         </div>
-      </div>
+      </CalculatorResultPanel>
     </section>
 
     <NextBestStep slug="deposito-a-plazo" />
 
     <!-- EXPLICACIÓN -->
-    <section
-      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
-      style="content-visibility: auto; contain-intrinsic-size: 400px;"
-    >
+    <CalculatorExplainerSection>
       <h2>¿Cómo funciona el depósito a plazo en Chile?</h2>
       <p>
         Un depósito a plazo (DAP) es un instrumento de ahorro en el que
@@ -296,7 +223,7 @@ const dapFaqs = [
         Esta calculadora es de referencia. El impuesto real depende de tu
         situación tributaria. Consulta a un asesor tributario si tienes dudas.
       </p>
-    </section>
+    </CalculatorExplainerSection>
 
     <section
       class="max-w-none border-t border-border pt-8 pb-12"

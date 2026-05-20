@@ -1,0 +1,24 @@
+---
+interface Props {
+  intrinsicSize?: string;
+  borderTop?: boolean;
+  class?: string;
+}
+
+const {
+  intrinsicSize = "400px",
+  borderTop = true,
+  class: extraClass,
+} = Astro.props;
+---
+
+<section
+  class:list={[
+    "prose prose-sm max-w-none pb-12 dark:prose-invert",
+    borderTop && "border-t border-border pt-8",
+    extraClass,
+  ]}
+  style={`content-visibility: auto; contain-intrinsic-size: ${intrinsicSize};`}
+>
+  <slot />
+</section>

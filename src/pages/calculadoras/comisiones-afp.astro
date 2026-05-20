@@ -13,6 +13,7 @@ import NextSteps from "@/components/NextSteps.astro";
 import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getPath } from "@/utils/getPath";
 import { AFP_COMMISSIONS_PERCENT } from "@/config/afpCommissions";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 
 const simuladorJubilacionPath = getPath("/calculadoras/simulador-jubilacion/");
 const pensionesHubPath = getPath("/guias/pensiones-afp/");
@@ -67,16 +68,11 @@ const calculatorNextStepItems = [
     data-analytics-calculator-name="Comparador Comisiones AFP"
     data-profile-prefill-host="#calculator-form-card"
   >
-    <section class="border-b border-border pt-8 pb-6">
-      <h1 class="my-4 text-3xl font-bold sm:text-4xl">
-        🏛️ Comparador de Comisiones AFP
-      </h1>
-      <p class="max-w-xl text-secondary">
-        Ingresa tu sueldo imponible y compara cuánto te descuenta cada AFP solo
-        en comisión. El 10% siempre va a tu fondo personal — lo que cambia según
-        la AFP es la comisión adicional.
-      </p>
-    </section>
+    <CalculatorHero
+      title="🏛️ Comparador de Comisiones AFP"
+      description="Ingresa tu sueldo imponible y compara cuánto te descuenta cada AFP solo en comisión. El 10% siempre va a tu fondo personal — lo que cambia según la AFP es la comisión adicional."
+      descriptionClass="max-w-xl text-secondary"
+    />
 
     <!-- CALCULADORA -->
     <section class="py-8">

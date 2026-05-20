@@ -18,6 +18,11 @@ import { getEconomicParameters } from "@/application/use-cases/GetEconomicParame
 import { getPath } from "@/utils/getPath";
 import { sueldoCalculatorSections } from "@/config/sueldoClusterLinks";
 import { AFP_COMMISSIONS_PERCENT } from "@/config/afpCommissions";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import CalculatorField from "@/components/calculator/CalculatorField.astro";
+import CalculatorRadioGroup from "@/components/calculator/CalculatorRadioGroup.astro";
+import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
+import CalculatorExplainerSection from "@/components/calculator/CalculatorExplainerSection.astro";
 import { SITE } from "@/config";
 
 const { parameters: economicParameters } = await getEconomicParameters();
@@ -139,16 +144,11 @@ const calculatorNextStepItems = [
     data-site-title={SITE.title}
     data-profile-prefill-host="#calculator-form-card"
   >
-    <section class="border-b border-border pt-8 pb-6">
-      <h1 class="my-4 text-3xl font-bold sm:text-4xl">
-        Calculadora de Sueldo Líquido y Bruto
-      </h1>
-      <p class="max-w-lg text-sm leading-relaxed text-foreground">
-        Calcula cuánto recibirás desde tu bruto, o estima el bruto necesario
-        para recibir el líquido que quieres. Desglose de AFP, salud, cesantía e
-        impuesto de segunda categoría.
-      </p>
-    </section>
+    <CalculatorHero
+      title="Calculadora de Sueldo Líquido y Bruto"
+      description="Calcula cuánto recibirás desde tu bruto, o estima el bruto necesario para recibir el líquido que quieres. Desglose de AFP, salud, cesantía e impuesto de segunda categoría."
+      descriptionClass="max-w-lg text-sm leading-relaxed text-foreground"
+    />
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
@@ -158,41 +158,14 @@ const calculatorNextStepItems = [
       >
         <h2 class="mb-5 text-lg font-semibold">Ingresa tus datos</h2>
 
-        <!-- MODO TOGGLE -->
-        <div class="mb-5">
-          <p class="mb-2 text-sm font-medium text-secondary">Modo de cálculo</p>
-          <div class="flex gap-2">
-            <label class="flex-1 cursor-pointer">
-              <input
-                type="radio"
-                name="modo-calculo"
-                id="modo-bruto"
-                value="bruto-a-liquido"
-                checked
-                class="peer sr-only"
-              />
-              <span
-                class="block rounded-lg border border-border px-3 py-3.5 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
-                Bruto → Líquido
-              </span>
-            </label>
-            <label class="flex-1 cursor-pointer">
-              <input
-                type="radio"
-                name="modo-calculo"
-                id="modo-liquido"
-                value="liquido-a-bruto"
-                class="peer sr-only"
-              />
-              <span
-                class="block rounded-lg border border-border px-3 py-3.5 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
-                Líquido → Bruto
-              </span>
-            </label>
-          </div>
-        </div>
+        <CalculatorRadioGroup
+          legend="Modo de cálculo"
+          name="modo-calculo"
+          options={[
+            { id: "modo-bruto", value: "bruto-a-liquido", label: "Bruto → Líquido", checked: true },
+            { id: "modo-liquido", value: "liquido-a-bruto", label: "Líquido → Bruto" },
+          ]}
+        />
 
         <div class="mb-4">
           <label
@@ -226,26 +199,15 @@ const calculatorNextStepItems = [
         </div>
 
         <!-- Imponible (solo visible en modo bruto→líquido) -->
-        <div id="imponible-field" class="mb-4">
-          <label
-            for="sueldo-imponible"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Sueldo imponible mensual ($) - opcional
-          </label>
-          <input
-            type="number"
-            id="sueldo-imponible"
-            data-profile-bind="sueldoImponible"
-            placeholder="Ej: 1.050.000"
-            min="0"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            Si lo dejas vacío, la calculadora asume que tu imponible es igual a
-            tu bruto total.
-          </p>
-        </div>
+        <CalculatorField
+          id="sueldo-imponible"
+          label="Sueldo imponible mensual ($) - opcional"
+          placeholder="Ej: 1.050.000"
+          min="0"
+          wrapperId="imponible-field"
+          inputAttrs={{ "data-profile-bind": "sueldoImponible" }}
+          hint="Si lo dejas vacío, la calculadora asume que tu imponible es igual a tu bruto total."
+        />
 
         <div class="mb-4">
           <label class="mb-2 block text-sm font-medium text-secondary"
@@ -324,36 +286,22 @@ const calculatorNextStepItems = [
           </div>
         </div>
 
-        <div id="isapre-field" class="mb-4 hidden">
-          <label
-            for="isapre-adicional"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Cotización adicional Isapre (%)
-          </label>
-          <input
-            type="number"
-            id="isapre-adicional"
-            data-profile-bind="isapreAdicionalPct"
-            placeholder="Ej: 2.5"
-            min="0"
-            max="20"
-            step="0.1"
-            value="2"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            Porcentaje adicional al 7% base según tu plan
-          </p>
-        </div>
+        <CalculatorField
+          id="isapre-adicional"
+          label="Cotización adicional Isapre (%)"
+          type="number"
+          placeholder="Ej: 2.5"
+          min="0"
+          max="20"
+          step="0.1"
+          value="2"
+          wrapperId="isapre-field"
+          class="hidden"
+          inputAttrs={{ "data-profile-bind": "isapreAdicionalPct" }}
+          hint="Porcentaje adicional al 7% base según tu plan"
+        />
 
-        <div class="mb-4">
-          <label
-            for="afp-tasa"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            AFP
-          </label>
+        <CalculatorField id="afp-tasa" label="AFP">
           <select
             id="afp-tasa"
             data-profile-bind="afpId"
@@ -371,7 +319,7 @@ const calculatorNextStepItems = [
               ))
             }
           </select>
-        </div>
+        </CalculatorField>
 
         <!-- MODO AVANZADO -->
         <div class="mb-4 border-t border-border pt-4">
@@ -557,18 +505,7 @@ const calculatorNextStepItems = [
         </button>
       </div>
 
-      <!-- RESULTADO -->
-      <div
-        id="resultado"
-        class="rounded-xl border border-border bg-background p-6"
-      >
-        <h2
-          id="resultado-heading"
-          class="mb-5 text-lg font-semibold"
-          tabindex="-1"
-        >
-          Resultado
-        </h2>
+      <CalculatorResultPanel>
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
           <div
             class="mb-6 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
@@ -633,7 +570,7 @@ const calculatorNextStepItems = [
         >
           Copiar resumen
         </button>
-      </div>
+      </CalculatorResultPanel>
     </section>
 
     <!-- COMPARACIÓN AFP -->
@@ -654,11 +591,7 @@ const calculatorNextStepItems = [
 
     <NextBestStep slug="sueldo-liquido" />
 
-    <!-- EXPLICACIÓN -->
-    <section
-      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
-      style="content-visibility: auto; contain-intrinsic-size: 600px;"
-    >
+    <CalculatorExplainerSection intrinsicSize="600px">
       <h2>¿Cómo se calcula el sueldo líquido en Chile?</h2>
       <p>
         El sueldo líquido es lo que efectivamente depositan en tu cuenta cada
@@ -720,7 +653,7 @@ const calculatorNextStepItems = [
           >guía de gratificación legal</a
         > para entender el tope de 4,75 IMM.
       </p>
-    </section>
+    </CalculatorExplainerSection>
 
     <section
       class="max-w-none border-t border-border pt-8 pb-12"

@@ -11,6 +11,9 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
 import NextSteps from "@/components/NextSteps.astro";
 import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import CalculatorField from "@/components/calculator/CalculatorField.astro";
+import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 const currentCalculator = CALCULATOR_PORTFOLIO.find(
   calc => calc.slug === "tarjeta-credito"
 );
@@ -54,101 +57,53 @@ const calculatorNextStepItems = [
     data-analytics-calculator="tarjeta-credito"
     data-analytics-calculator-name="Costo Real Tarjeta de Credito"
   >
-    <section class="border-b border-border pt-8 pb-6">
-      <h1 class="my-4 text-3xl font-bold sm:text-4xl">
-        Costo Real de la Tarjeta de Crédito
-      </h1>
-      <p class="max-w-xl text-secondary">
-        Descubre cuánto pagas realmente si solo abonas el mínimo de tu tarjeta.
-        Ve el costo total en tiempo e intereses.
-      </p>
-    </section>
+    <CalculatorHero
+      title="Costo Real de la Tarjeta de Crédito"
+      description="Descubre cuánto pagas realmente si solo abonas el mínimo de tu tarjeta. Ve el costo total en tiempo e intereses."
+      descriptionClass="max-w-xl text-secondary"
+    />
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
       <div class="rounded-xl border border-border p-6">
         <h2 class="mb-5 text-lg font-semibold">Datos de tu deuda</h2>
 
-        <div class="mb-4">
-          <label
-            for="deuda"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Deuda actual ($)
-          </label>
-          <input
-            type="number"
-            id="deuda"
-            placeholder="Ej: 500.000"
-            min="0"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-        </div>
+        <CalculatorField
+          id="deuda"
+          label="Deuda actual ($)"
+          placeholder="Ej: 500.000"
+          min="0"
+        />
 
-        <div class="mb-4">
-          <label
-            for="tasa"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Tasa de interés mensual (%)
-          </label>
-          <input
-            type="number"
-            id="tasa"
-            placeholder="Ej: 3.5"
-            min="0"
-            max="10"
-            step="0.01"
-            value="3.49"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            La TMC (tasa máxima convencional) vigente para tarjetas suele estar
-            ~3.49% mensual. Revisa tu contrato para el valor exacto.
-          </p>
-        </div>
+        <CalculatorField
+          id="tasa"
+          label="Tasa de interés mensual (%)"
+          placeholder="Ej: 3.5"
+          min="0"
+          max="10"
+          step="0.01"
+          value="3.49"
+          hint="La TMC (tasa máxima convencional) vigente para tarjetas suele estar ~3.49% mensual. Revisa tu contrato para el valor exacto."
+        />
 
-        <div class="mb-4">
-          <label
-            for="pago-minimo-pct"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Porcentaje de pago mínimo (%)
-          </label>
-          <input
-            type="number"
-            id="pago-minimo-pct"
-            placeholder="Ej: 5"
-            min="1"
-            max="50"
-            step="0.5"
-            value="5"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            El pago mínimo varía por banco, generalmente entre 3% y 10% del
-            saldo.
-          </p>
-        </div>
+        <CalculatorField
+          id="pago-minimo-pct"
+          label="Porcentaje de pago mínimo (%)"
+          placeholder="Ej: 5"
+          min="1"
+          max="50"
+          step="0.5"
+          value="5"
+          hint="El pago mínimo varía por banco, generalmente entre 3% y 10% del saldo."
+        />
 
-        <div class="mb-4">
-          <label
-            for="pago-fijo"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            O bien, pago mensual fijo ($) — opcional
-          </label>
-          <input
-            type="number"
-            id="pago-fijo"
-            placeholder="Ej: 80.000"
-            min="0"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            Si ingresas un monto fijo, se usa en lugar del porcentaje mínimo.
-          </p>
-        </div>
+        <CalculatorField
+          id="pago-fijo"
+          label="O bien, pago mensual fijo ($) — opcional"
+          placeholder="Ej: 80.000"
+          min="0"
+          hint="Si ingresas un monto fijo, se usa en lugar del porcentaje mínimo."
+        />
 
         <button
           id="calcBtn"
@@ -159,11 +114,7 @@ const calculatorNextStepItems = [
       </div>
 
       <!-- RESULTADO -->
-      <div
-        id="resultado"
-        class="rounded-xl border border-border bg-background p-6"
-      >
-        <h2 class="mb-5 text-lg font-semibold">Resultado</h2>
+      <CalculatorResultPanel title="Resultado">
         <div
           id="resultado-contenido"
           class="py-8 text-center text-muted"
@@ -172,7 +123,7 @@ const calculatorNextStepItems = [
           <p class="mb-3 text-4xl">💸</p>
           <p class="text-sm">Ingresa tu deuda y presiona calcular.</p>
         </div>
-      </div>
+      </CalculatorResultPanel>
     </section>
 
     <!-- EXPLICACIÓN -->

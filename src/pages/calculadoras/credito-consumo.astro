@@ -12,6 +12,9 @@ import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
 import NextSteps from "@/components/NextSteps.astro";
 import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getPath } from "@/utils/getPath";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import CalculatorField from "@/components/calculator/CalculatorField.astro";
+import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 const currentCalculator = CALCULATOR_PORTFOLIO.find(
   calc => calc.slug === "credito-consumo"
 );
@@ -55,54 +58,32 @@ const calculatorNextStepItems = [
     data-analytics-calculator="credito-consumo"
     data-analytics-calculator-name="Calculadora de Credito de Consumo"
   >
-    <section class="border-b border-border pt-8 pb-6">
-      <h1 class="my-4 text-3xl font-bold sm:text-4xl">
-        Calculadora de Crédito de Consumo
-      </h1>
-      <p class="max-w-xl text-secondary">
-        Calcula la cuota mensual, el costo total, los intereses y el CAE de una
-        oferta de crédito de consumo con tus datos reales.
-      </p>
-    </section>
+    <CalculatorHero
+      title="Calculadora de Crédito de Consumo"
+      description="Calcula la cuota mensual, el costo total, los intereses y el CAE de una oferta de crédito de consumo con tus datos reales."
+      descriptionClass="max-w-xl text-secondary"
+    />
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
       <div class="rounded-xl border border-border p-6">
         <h2 class="mb-5 text-lg font-semibold">Datos del crédito</h2>
 
-        <div class="mb-4">
-          <label
-            for="monto"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Monto del crédito ($)
-          </label>
-          <input
-            type="number"
-            id="monto"
-            placeholder="Ej: 2.000.000"
-            min="0"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-        </div>
+        <CalculatorField
+          id="monto"
+          label="Monto del crédito ($)"
+          placeholder="Ej: 2.000.000"
+          min="0"
+        />
 
-        <div class="mb-4">
-          <label
-            for="plazo"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Plazo (meses)
-          </label>
-          <input
-            type="number"
-            id="plazo"
-            placeholder="Ej: 24"
-            min="1"
-            max="120"
-            value="24"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-        </div>
+        <CalculatorField
+          id="plazo"
+          label="Plazo (meses)"
+          placeholder="Ej: 24"
+          min="1"
+          max="120"
+          value="24"
+        />
 
         <div class="mb-4">
           <label
@@ -155,43 +136,22 @@ const calculatorNextStepItems = [
           </p>
         </div>
 
-        <div class="mb-4">
-          <label
-            for="seguro"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Seguro mensual ($) — opcional
-          </label>
-          <input
-            type="number"
-            id="seguro"
-            placeholder="Ej: 5.000"
-            min="0"
-            value="0"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            Algunos créditos incluyen seguro de desgravamen. Si te lo ofrecen,
-            ingresa el monto mensual.
-          </p>
-        </div>
+        <CalculatorField
+          id="seguro"
+          label="Seguro mensual ($) — opcional"
+          placeholder="Ej: 5.000"
+          min="0"
+          value="0"
+          hint="Algunos créditos incluyen seguro de desgravamen. Si te lo ofrecen, ingresa el monto mensual."
+        />
 
-        <div class="mb-4">
-          <label
-            for="gastos"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Gastos notariales / operacionales ($) — opcional
-          </label>
-          <input
-            type="number"
-            id="gastos"
-            placeholder="Ej: 50.000"
-            min="0"
-            value="0"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-        </div>
+        <CalculatorField
+          id="gastos"
+          label="Gastos notariales / operacionales ($) — opcional"
+          placeholder="Ej: 50.000"
+          min="0"
+          value="0"
+        />
 
         <button
           id="calcBtn"
@@ -202,11 +162,7 @@ const calculatorNextStepItems = [
       </div>
 
       <!-- RESULTADO -->
-      <div
-        id="resultado"
-        class="rounded-xl border border-border bg-background p-6"
-      >
-        <h2 class="mb-5 text-lg font-semibold">Desglose del crédito</h2>
+      <CalculatorResultPanel title="Desglose del crédito">
         <div
           id="resultado-contenido"
           class="py-8 text-center text-muted"
@@ -215,7 +171,7 @@ const calculatorNextStepItems = [
           <p class="mb-3 text-4xl">📋</p>
           <p class="text-sm">Ingresa los datos y presiona calcular.</p>
         </div>
-      </div>
+      </CalculatorResultPanel>
     </section>
 
     <!-- EXPLICACIÓN -->

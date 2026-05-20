@@ -13,6 +13,11 @@ import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
 import NextSteps from "@/components/NextSteps.astro";
 import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getPath } from "@/utils/getPath";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import CalculatorField from "@/components/calculator/CalculatorField.astro";
+import CalculatorRadioGroup from "@/components/calculator/CalculatorRadioGroup.astro";
+import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
+import CalculatorExplainerSection from "@/components/calculator/CalculatorExplainerSection.astro";
 
 const finiquitoGuidePath = getPath(
   "/posts/finiquito-e-indemnizaciones-en-chile/"
@@ -85,16 +90,10 @@ const calculatorNextStepItems = [
     data-analytics-calculator-name="Calculadora Finiquito e Indemnizacion"
     data-profile-prefill-host="#calculator-form-card"
   >
-    <section class="border-b border-border pt-8 pb-6">
-      <h1 class="my-4 text-3xl font-bold sm:text-4xl">
-        Calculadora de Finiquito e Indemnización
-      </h1>
-      <p class="max-w-2xl text-secondary">
-        Estima un caso base de salida laboral: sueldo pendiente, feriado
-        proporcional, aviso previo e indemnización por años de servicio. No
-        reemplaza la revisión del documento real ni un caso judicial.
-      </p>
-    </section>
+    <CalculatorHero
+      title="Calculadora de Finiquito e Indemnización"
+      description="Estima un caso base de salida laboral: sueldo pendiente, feriado proporcional, aviso previo e indemnización por años de servicio. No reemplaza la revisión del documento real ni un caso judicial."
+    />
 
     <section
       class="grid items-start gap-6 py-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)]"
@@ -103,260 +102,100 @@ const calculatorNextStepItems = [
         id="calculator-form-card"
         class="rounded-xl border border-border p-6"
       >
-        <!-- Tab: modo finiquito vs vacaciones proporcionales -->
-        <div class="mb-5">
-          <p class="mb-2 text-sm font-medium text-secondary">Modo de cálculo</p>
-          <div class="flex gap-2">
-            <label class="flex-1 cursor-pointer">
-              <input
-                type="radio"
-                name="finiquito-modo"
-                id="modo-finiquito"
-                value="finiquito"
-                checked
-                class="peer sr-only"
-              />
-              <span
-                class="block rounded-lg border border-border px-3 py-3 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
-                Finiquito completo
-              </span>
-            </label>
-            <label class="flex-1 cursor-pointer">
-              <input
-                type="radio"
-                name="finiquito-modo"
-                id="modo-vacaciones"
-                value="vacaciones"
-                class="peer sr-only"
-              />
-              <span
-                class="block rounded-lg border border-border px-3 py-3 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
-                Vacaciones proporcionales
-              </span>
-            </label>
-          </div>
-        </div>
+        <CalculatorRadioGroup
+          legend="Modo de cálculo"
+          name="finiquito-modo"
+          options={[
+            { id: "modo-finiquito", value: "finiquito", label: "Finiquito completo", checked: true },
+            { id: "modo-vacaciones", value: "vacaciones", label: "Vacaciones proporcionales" },
+          ]}
+        />
 
         <h2 class="mb-4 text-base font-semibold" id="modo-label-heading">
           Datos del caso
         </h2>
 
-        <div class="mb-4">
-          <label
-            for="monthly-salary"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Última remuneración mensual ($)
-          </label>
-          <input
-            id="monthly-salary"
-            type="number"
-            min="0"
-            placeholder="Ej: 900.000"
-            data-profile-bind="sueldoImponible"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-        </div>
+        <CalculatorField
+          id="monthly-salary"
+          label="Última remuneración mensual ($)"
+          min="0"
+          placeholder="Ej: 900.000"
+          inputAttrs={{ "data-profile-bind": "sueldoImponible" }}
+        />
 
         <div class="grid gap-4 sm:grid-cols-2" data-finiquito-only>
-          <div class="mb-4">
-            <label
-              for="years-worked"
-              class="mb-1 block text-sm font-medium text-secondary"
-            >
-              Años completos trabajados
-            </label>
-            <input
-              id="years-worked"
-              type="number"
-              min="0"
-              value="0"
-              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-            />
-          </div>
-
-          <div class="mb-4">
-            <label
-              for="months-worked"
-              class="mb-1 block text-sm font-medium text-secondary"
-            >
-              Meses adicionales
-            </label>
-            <input
-              id="months-worked"
-              type="number"
-              min="0"
-              max="11"
-              value="0"
-              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-            />
-          </div>
+          <CalculatorField id="years-worked" label="Años completos trabajados" min="0" value="0" />
+          <CalculatorField id="months-worked" label="Meses adicionales" min="0" max="11" value="0" />
         </div>
 
-        <div class="mb-4" data-finiquito-only>
-          <label
-            for="termination-cause"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Causal de término
-          </label>
+        <CalculatorField
+          id="termination-cause"
+          label="Causal de término"
+          data-finiquito-only
+        >
           <select
             id="termination-cause"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
           >
-            <option value="necesidad"
-              >Necesidades de la empresa (art. 161)</option
-            >
+            <option value="necesidad">Necesidades de la empresa (art. 161)</option>
             <option value="mutuo-acuerdo">Mutuo acuerdo</option>
             <option value="renuncia">Renuncia voluntaria</option>
-            <option value="disciplinaria"
-              >Despido por causal disciplinaria</option
-            >
-            <option value="vencimiento-obra"
-              >Vencimiento de plazo / fin de obra</option
-            >
-            <option value="judicial"
-              >Despido injustificado declarado judicialmente</option
-            >
+            <option value="disciplinaria">Despido por causal disciplinaria</option>
+            <option value="vencimiento-obra">Vencimiento de plazo / fin de obra</option>
+            <option value="judicial">Despido injustificado declarado judicialmente</option>
           </select>
-        </div>
+        </CalculatorField>
 
-        <div class="mb-4" data-finiquito-only>
-          <label class="mb-2 block text-sm font-medium text-secondary">
-            ¿Te avisaron con 30 días de anticipación?
-          </label>
-          <div class="flex gap-2">
-            <label class="flex-1 cursor-pointer">
-              <input
-                type="radio"
-                name="notice-given"
-                value="si"
-                checked
-                class="peer sr-only"
-              />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
-                Sí
-              </span>
-            </label>
-            <label class="flex-1 cursor-pointer">
-              <input
-                type="radio"
-                name="notice-given"
-                value="no"
-                class="peer sr-only"
-              />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
-                No
-              </span>
-            </label>
-          </div>
-        </div>
+        <CalculatorRadioGroup
+          legend="¿Te avisaron con 30 días de anticipación?"
+          name="notice-given"
+          class="mb-4"
+          data-finiquito-only
+          options={[
+            { id: "notice-si", value: "si", label: "Sí", checked: true },
+            { id: "notice-no", value: "no", label: "No" },
+          ]}
+        />
 
         <div class="grid gap-4 sm:grid-cols-2">
-          <div class="mb-4" data-finiquito-only>
-            <label
-              for="pending-salary-days"
-              class="mb-1 block text-sm font-medium text-secondary"
-            >
-              Días trabajados del mes sin pagar
-            </label>
-            <input
-              id="pending-salary-days"
-              type="number"
-              min="0"
-              max="30"
-              value="0"
-              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-            />
-            <p class="mt-1 text-xs text-muted">
-              Días del mes en curso que ya trabajaste y aún no te han pagado.
-              Ej: si te van el día 20 y el sueldo se paga el 30, son 20 días.
-            </p>
-          </div>
-
-          <div class="mb-4">
-            <label
-              for="vacation-months"
-              class="mb-1 block text-sm font-medium text-secondary"
-            >
-              Meses desde el último ciclo de vacaciones
-            </label>
-            <input
-              id="vacation-months"
-              type="number"
-              min="0"
-              max="12"
-              value="0"
-              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-            />
-          </div>
-        </div>
-
-        <div class="mb-4">
-          <label
-            for="vacation-extra-days"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Días adicionales trabajados en el ciclo
-          </label>
-          <input
-            id="vacation-extra-days"
-            type="number"
+          <CalculatorField
+            id="pending-salary-days"
+            label="Días trabajados del mes sin pagar"
             min="0"
             max="30"
             value="0"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+            hint="Días del mes en curso que ya trabajaste y aún no te han pagado. Ej: si te van el día 20 y el sueldo se paga el 30, son 20 días."
+            data-finiquito-only={true}
           />
-          <p class="mt-1 text-xs text-muted">
-            Si no sabes este dato exacto, usa 0 y revisa luego con tus fechas
-            reales.
-          </p>
+          <CalculatorField
+            id="vacation-months"
+            label="Meses desde el último ciclo de vacaciones"
+            min="0"
+            max="12"
+            value="0"
+          />
         </div>
 
-        <div class="mb-4" data-finiquito-only>
-          <label class="mb-2 block text-sm font-medium text-secondary">
-            ¿Tu empresa paga gratificación anual (art. 47)?
-          </label>
-          <div class="flex gap-2">
-            <label class="flex-1 cursor-pointer">
-              <input
-                type="radio"
-                name="gratificacion-anual"
-                value="no"
-                checked
-                class="peer sr-only"
-              />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
-                No / No sé
-              </span>
-            </label>
-            <label class="flex-1 cursor-pointer">
-              <input
-                type="radio"
-                name="gratificacion-anual"
-                value="si"
-                class="peer sr-only"
-              />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
-                Sí, pago anual
-              </span>
-            </label>
-          </div>
-          <p class="mt-1 text-xs text-muted">
-            Solo si la gratificación se paga en una suma anual en balance, no
-            integrada en el sueldo mensual.
-          </p>
-        </div>
+        <CalculatorField
+          id="vacation-extra-days"
+          label="Días adicionales trabajados en el ciclo"
+          min="0"
+          max="30"
+          value="0"
+          hint="Si no sabes este dato exacto, usa 0 y revisa luego con tus fechas reales."
+        />
+
+        <CalculatorRadioGroup
+          legend="¿Tu empresa paga gratificación anual (art. 47)?"
+          name="gratificacion-anual"
+          class="mb-4"
+          data-finiquito-only
+          hint="Solo si la gratificación se paga en una suma anual en balance, no integrada en el sueldo mensual."
+          options={[
+            { id: "grat-no", value: "no", label: "No / No sé", checked: true },
+            { id: "grat-si", value: "si", label: "Sí, pago anual" },
+          ]}
+        />
 
         <button
           id="calcBtn"
@@ -373,53 +212,42 @@ const calculatorNextStepItems = [
         </div>
       </div>
 
-      <div class="rounded-xl border border-border bg-background p-6">
-        <h2 class="mb-5 text-lg font-semibold">Estimación orientativa</h2>
+      <CalculatorResultPanel title="Estimación orientativa">
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
-          <div
-            class="mb-6 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
-          >
-            <p
-              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
-            >
+          <div class="mb-6 rounded-lg border border-border bg-surface-muted/40 p-4 text-center">
+            <p class="mb-1 text-xs font-bold tracking-widest text-muted uppercase">
               Total estimado (Ejemplo)
             </p>
             <p class="text-4xl font-bold text-foreground/60">$3.600.000</p>
           </div>
           <div class="space-y-2 text-sm">
             <div class="flex justify-between">
-              <span class="text-secondary">Sueldo pendiente (15 días)</span
-              ><span class="font-medium text-foreground/60">$450.000</span>
+              <span class="text-secondary">Sueldo pendiente (15 días)</span>
+              <span class="font-medium text-foreground/60">$450.000</span>
             </div>
             <div class="flex justify-between">
-              <span class="text-secondary">Feriado proporcional</span><span
-                class="font-medium text-foreground/60">$450.000</span
-              >
+              <span class="text-secondary">Feriado proporcional</span>
+              <span class="font-medium text-foreground/60">$450.000</span>
             </div>
             <div class="flex justify-between">
-              <span class="text-secondary">Aviso previo</span><span
-                class="font-medium text-foreground/60">$900.000</span
-              >
+              <span class="text-secondary">Aviso previo</span>
+              <span class="font-medium text-foreground/60">$900.000</span>
             </div>
             <div class="flex justify-between">
-              <span class="text-secondary">Indemnización (3 años)</span><span
-                class="font-medium text-foreground/60">$2.700.000</span
-              >
+              <span class="text-secondary">Indemnización (3 años)</span>
+              <span class="font-medium text-foreground/60">$2.700.000</span>
             </div>
           </div>
           <p class="mt-4 text-xs text-muted">
-            Ejemplo: sueldo $900.000, 3 años, necesidades de la empresa, sin
-            aviso previo. Ingresa tu caso real para estimar tu finiquito.
+            Ejemplo: sueldo $900.000, 3 años, necesidades de la empresa, sin aviso previo. Ingresa tu caso real para estimar tu finiquito.
           </p>
         </div>
-      </div>
+      </CalculatorResultPanel>
     </section>
 
     <NextBestStep slug="finiquito-indemnizacion" />
 
-    <section
-      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
-    >
+    <CalculatorExplainerSection>
       <h2>Cuándo esta calculadora sí sirve</h2>
       <ul>
         <li>
@@ -483,7 +311,7 @@ const calculatorNextStepItems = [
         Usa el modo <strong>Vacaciones proporcionales</strong> de esta calculadora
         para estimar solo ese componente sin ingresar todos los datos del finiquito.
       </p>
-    </section>
+    </CalculatorExplainerSection>
 
     <PrimaryCTA
       text="Conoce todos tus derechos en el finiquito →"

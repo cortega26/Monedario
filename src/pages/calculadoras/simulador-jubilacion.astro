@@ -1,5 +1,8 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import CalculatorField from "@/components/calculator/CalculatorField.astro";
+import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
@@ -62,103 +65,56 @@ const calculatorNextStepItems = [
     data-analytics-calculator="simulador-jubilacion"
     data-analytics-calculator-name="Simulador de Jubilacion"
   >
-    <section class="border-b border-border pt-8 pb-6">
-      <h1 class="my-4 text-3xl font-bold sm:text-4xl">
-        🏖️ Simulador de Jubilación
-      </h1>
-      <p class="max-w-xl text-secondary">
-        Proyecta tu saldo AFP con escenarios comparativos, tope imponible y
-        lagunas previsionales visibles, sin mezclar beneficios que no van
-        directo a tu cuenta individual.
-      </p>
-    </section>
+    <CalculatorHero
+      title="🏖️ Simulador de Jubilación"
+      description="Proyecta tu saldo AFP con escenarios comparativos, tope imponible y lagunas previsionales visibles, sin mezclar beneficios que no van directo a tu cuenta individual."
+      descriptionClass="max-w-xl text-secondary"
+    />
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
       <div class="rounded-xl border border-border p-6">
         <h2 class="mb-5 text-lg font-semibold">Tus datos</h2>
 
-        <div class="mb-4">
-          <label
-            for="edad"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Edad actual (años)
-          </label>
-          <input
-            type="number"
-            id="edad"
-            placeholder="Ej: 35"
-            min="18"
-            max="64"
-            value="35"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-        </div>
+        <CalculatorField
+          id="edad"
+          label="Edad actual (años)"
+          placeholder="Ej: 35"
+          min="18"
+          max="64"
+          value="35"
+        />
 
-        <div class="mb-4">
-          <label
-            for="edad-jubilacion"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Edad de jubilación (años)
-          </label>
-          <input
-            type="number"
-            id="edad-jubilacion"
-            placeholder="Ej: 65"
-            min="60"
-            max="75"
-            value="65"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            Edad legal: 65 hombres, 60 mujeres (puede anticiparse).
-          </p>
-        </div>
+        <CalculatorField
+          id="edad-jubilacion"
+          label="Edad de jubilación (años)"
+          placeholder="Ej: 65"
+          min="60"
+          max="75"
+          value="65"
+          hint="Edad legal: 65 hombres, 60 mujeres (puede anticiparse)."
+        />
 
-        <div class="mb-4">
-          <label
-            for="sueldo"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Sueldo bruto mensual actual ($)
-          </label>
-          <input
-            type="number"
-            id="sueldo"
-            placeholder="Ej: 1.200.000"
-            min="0"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-        </div>
+        <CalculatorField
+          id="sueldo"
+          label="Sueldo bruto mensual actual ($)"
+          placeholder="Ej: 1.200.000"
+          min="0"
+        />
 
-        <div class="mb-4">
-          <label
-            for="saldo-actual"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Saldo actual en AFP ($) — opcional
-          </label>
-          <input
-            type="number"
-            id="saldo-actual"
-            placeholder="Ej: 8.000.000"
-            min="0"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            Consulta tu saldo en el sitio web de tu AFP.
-          </p>
-        </div>
+        <CalculatorField
+          id="saldo-actual"
+          label="Saldo actual en AFP ($) — opcional"
+          placeholder="Ej: 8.000.000"
+          min="0"
+          hint="Consulta tu saldo en el sitio web de tu AFP."
+        />
 
-        <div class="mb-4">
-          <label
-            for="rentabilidad"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Rentabilidad anual esperada (%)
-          </label>
+        <CalculatorField
+          id="rentabilidad"
+          label="Rentabilidad anual esperada (%)"
+          hint="Este será tu escenario destacado. Más abajo verás también los otros escenarios comparativos."
+        >
           <select
             id="rentabilidad"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
@@ -167,19 +123,13 @@ const calculatorNextStepItems = [
             <option value="5" selected>5% — Moderada (Fondo C)</option>
             <option value="7">7% — Agresiva (Fondos A/B)</option>
           </select>
-          <p class="mt-1 text-xs text-muted">
-            Este será tu escenario destacado. Más abajo verás también los otros
-            escenarios comparativos.
-          </p>
-        </div>
+        </CalculatorField>
 
-        <div class="mb-4">
-          <label
-            for="lagunas"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Lagunas previsionales esperadas (% del tiempo restante)
-          </label>
+        <CalculatorField
+          id="lagunas"
+          label="Lagunas previsionales esperadas (% del tiempo restante)"
+          hint="Las lagunas reducen los meses en que proyectamos cotizaciones."
+        >
           <select
             id="lagunas"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
@@ -190,31 +140,17 @@ const calculatorNextStepItems = [
             <option value="30">30% — Alta inestabilidad laboral</option>
             <option value="40">40% — Trayectoria muy irregular</option>
           </select>
-          <p class="mt-1 text-xs text-muted">
-            Las lagunas reducen los meses en que proyectamos cotizaciones.
-          </p>
-        </div>
+        </CalculatorField>
 
-        <div class="mb-4">
-          <label
-            for="expectativa-vida"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Expectativa de vida estimada (años)
-          </label>
-          <input
-            type="number"
-            id="expectativa-vida"
-            placeholder="Ej: 85"
-            min="65"
-            max="100"
-            value="85"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            Se usa para calcular cuántos años durará tu pensión.
-          </p>
-        </div>
+        <CalculatorField
+          id="expectativa-vida"
+          label="Expectativa de vida estimada (años)"
+          placeholder="Ej: 85"
+          min="65"
+          max="100"
+          value="85"
+          hint="Se usa para calcular cuántos años durará tu pensión."
+        />
 
         <button
           id="calcBtn"
@@ -231,11 +167,7 @@ const calculatorNextStepItems = [
       </div>
 
       <!-- RESULTADO -->
-      <div
-        id="resultado"
-        class="rounded-xl border border-border bg-background p-6"
-      >
-        <h2 class="mb-5 text-lg font-semibold">Proyección</h2>
+      <CalculatorResultPanel title="Proyección">
         <div
           id="resultado-contenido"
           class="py-8 text-center text-muted"
@@ -260,7 +192,7 @@ const calculatorNextStepItems = [
             economicParameters.lastUpdated
           }).
         </p>
-      </div>
+      </CalculatorResultPanel>
     </section>
 
     <!-- EXPLICACIÓN -->

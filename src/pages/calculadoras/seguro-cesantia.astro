@@ -1,5 +1,8 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import CalculatorField from "@/components/calculator/CalculatorField.astro";
+import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
@@ -64,36 +67,23 @@ const calculatorNextStepItems = [
     data-analytics-calculator="seguro-cesantia"
     data-analytics-calculator-name="Calculadora de Seguro de Cesantia"
   >
-    <section class="border-b border-border pt-8 pb-6">
-      <h1 class="my-4 text-3xl font-bold sm:text-4xl">
-        Calculadora de Seguro de Cesantía
-      </h1>
-      <p class="max-w-xl text-secondary">
-        Separa el filtro base de elegibilidad del cobro estimado de tu CIC, sin
-        presentar como exactos los montos que dependen de AFC.
-      </p>
-    </section>
+    <CalculatorHero
+      title="Calculadora de Seguro de Cesantía"
+      description="Separa el filtro base de elegibilidad del cobro estimado de tu CIC, sin presentar como exactos los montos que dependen de AFC."
+      descriptionClass="max-w-xl text-secondary"
+    />
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
       <div class="rounded-xl border border-border p-6">
         <h2 class="mb-5 text-lg font-semibold">Tus datos</h2>
 
-        <div class="mb-4">
-          <label
-            for="sueldo"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Sueldo bruto mensual ($)
-          </label>
-          <input
-            type="number"
-            id="sueldo"
-            placeholder="Ej: 1.200.000"
-            min="0"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-        </div>
+        <CalculatorField
+          id="sueldo"
+          label="Sueldo bruto mensual ($)"
+          placeholder="Ej: 1.200.000"
+          min="0"
+        />
 
         <div class="mb-4">
           <label class="mb-2 block text-sm font-medium text-secondary"
@@ -130,26 +120,15 @@ const calculatorNextStepItems = [
           </div>
         </div>
 
-        <div class="mb-4">
-          <label
-            for="meses-cotizados"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Meses cotizados en este trabajo
-          </label>
-          <input
-            type="number"
-            id="meses-cotizados"
-            placeholder="Ej: 24"
-            min="1"
-            max="600"
-            value="24"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            Meses desde que ingresaste o desde el último cobro del seguro.
-          </p>
-        </div>
+        <CalculatorField
+          id="meses-cotizados"
+          label="Meses cotizados en este trabajo"
+          placeholder="Ej: 24"
+          min="1"
+          max="600"
+          value="24"
+          hint="Meses desde que ingresaste o desde el último cobro del seguro."
+        />
 
         <div class="mb-4">
           <label class="mb-2 block text-sm font-medium text-secondary"
@@ -193,59 +172,32 @@ const calculatorNextStepItems = [
           </div>
         </div>
 
-        <div class="mb-4">
-          <label
-            for="saldo-actual"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Saldo actual en CIC ($)
-          </label>
-          <input
-            type="number"
-            id="saldo-actual"
-            placeholder="Ej: 450.000"
-            min="0"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            Si eliges saldo real, este dato es obligatorio. Puedes verlo en tu
-            cartola o sesión de AFC.
-          </p>
-        </div>
+        <CalculatorField
+          id="saldo-actual"
+          label="Saldo actual en CIC ($)"
+          placeholder="Ej: 450.000"
+          min="0"
+          hint="Si eliges saldo real, este dato es obligatorio. Puedes verlo en tu cartola o sesión de AFC."
+        />
 
-        <div class="mb-4">
-          <label
-            for="causal"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Causal de término
-          </label>
+        <CalculatorField id="causal" label="Causal de término">
           <select
             id="causal"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
           >
-            <option value="necesidad">Necesidad de la empresa (art. 161)</option
-            >
-            <option value="vencimiento"
-              >Vencimiento de plazo / conclusión de obra</option
-            >
-            <option value="liquidacion"
-              >Procedimiento concursal / liquidación del empleador</option
-            >
+            <option value="necesidad">Necesidad de la empresa (art. 161)</option>
+            <option value="vencimiento">Vencimiento de plazo / conclusión de obra</option>
+            <option value="liquidacion">Procedimiento concursal / liquidación del empleador</option>
             <option value="renuncia">Renuncia voluntaria</option>
-            <option value="despido-culpa"
-              >Despido por conducta (art. 160)</option
-            >
+            <option value="despido-culpa">Despido por conducta (art. 160)</option>
           </select>
-        </div>
+        </CalculatorField>
 
-        <div class="mb-4">
-          <label
-            for="continuidad"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            ¿Tus 3 últimas cotizaciones fueron continuas con el mismo empleador?
-          </label>
+        <CalculatorField
+          id="continuidad"
+          label="¿Tus 3 últimas cotizaciones fueron continuas con el mismo empleador?"
+          hint="Este dato ayuda a revisar el filtro base del Fondo Solidario."
+        >
           <select
             id="continuidad"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
@@ -254,10 +206,7 @@ const calculatorNextStepItems = [
             <option value="no-se" selected>No lo sé</option>
             <option value="no">No</option>
           </select>
-          <p class="mt-1 text-xs text-muted">
-            Este dato ayuda a revisar el filtro base del Fondo Solidario.
-          </p>
-        </div>
+        </CalculatorField>
 
         <button
           id="calcBtn"
@@ -274,11 +223,7 @@ const calculatorNextStepItems = [
       </div>
 
       <!-- RESULTADO -->
-      <div
-        id="resultado"
-        class="rounded-xl border border-border bg-background p-6"
-      >
-        <h2 class="mb-5 text-lg font-semibold">Tu cobertura estimada</h2>
+      <CalculatorResultPanel title="Tu cobertura estimada">
         <div
           id="resultado-contenido"
           class="py-8 text-center text-muted"
@@ -302,7 +247,7 @@ const calculatorNextStepItems = [
             economicParameters.lastUpdated
           }).
         </p>
-      </div>
+      </CalculatorResultPanel>
     </section>
 
     <section

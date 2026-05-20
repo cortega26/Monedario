@@ -12,6 +12,8 @@ import NextSteps from "@/components/NextSteps.astro";
 import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { getPath } from "@/utils/getPath";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import CalculatorField from "@/components/calculator/CalculatorField.astro";
 
 const renegociacionGuidePath = getPath("/posts/renegociacion-superir/");
 const dicomGuidePath = getPath("/posts/donde-ver-si-estoy-en-dicom-gratis/");
@@ -65,15 +67,11 @@ const calculatorNextStepItems = [
     data-analytics-calculator="simulador-renegociacion"
     data-analytics-calculator-name="Simulador de Renegociacion Superir"
   >
-    <section class="border-b border-border pt-8 pb-6">
-      <h1 class="my-4 text-3xl font-bold sm:text-4xl">
-        Simulador de Renegociación Superir
-      </h1>
-      <p class="max-w-xl text-secondary">
-        Revisa primero si cumples el filtro básico de la Superir y, por
-        separado, estima una cuota orientativa según tus deudas e ingresos.
-      </p>
-    </section>
+    <CalculatorHero
+      title="Simulador de Renegociación Superir"
+      description="Revisa primero si cumples el filtro básico de la Superir y, por separado, estima una cuota orientativa según tus deudas e ingresos."
+      descriptionClass="max-w-xl text-secondary"
+    />
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
@@ -129,14 +127,7 @@ const calculatorNextStepItems = [
           </p>
         </div>
 
-        <div class="mb-4">
-          <label
-            for="primera-categoria"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            ¿Tuviste inicio de actividades o rentas de primera categoría en los
-            últimos 24 meses?
-          </label>
+        <CalculatorField id="primera-categoria" label="¿Tuviste inicio de actividades o rentas de primera categoría en los últimos 24 meses?" hint="Si emitiste boletas de honorarios, eso no equivale por sí solo a primera categoría.">
           <select
             id="primera-categoria"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
@@ -145,20 +136,9 @@ const calculatorNextStepItems = [
             <option value="no">No</option>
             <option value="si">Sí</option>
           </select>
-          <p class="mt-1 text-xs text-muted">
-            Si emitiste boletas de honorarios, eso no equivale por sí solo a
-            primera categoría.
-          </p>
-        </div>
+        </CalculatorField>
 
-        <div class="mb-4">
-          <label
-            for="juicio-ejecutivo"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            ¿Te notificaron formalmente una demanda ejecutiva o una liquidación
-            forzosa?
-          </label>
+        <CalculatorField id="juicio-ejecutivo" label="¿Te notificaron formalmente una demanda ejecutiva o una liquidación forzosa?">
           <select
             id="juicio-ejecutivo"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
@@ -167,16 +147,9 @@ const calculatorNextStepItems = [
             <option value="no">No</option>
             <option value="si">Sí</option>
           </select>
-        </div>
+        </CalculatorField>
 
-        <div class="mb-4">
-          <label
-            for="documentos-completos"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            ¿Ya tienes reunidos los documentos y declaraciones que pide la
-            Superir?
-          </label>
+        <CalculatorField id="documentos-completos" label="¿Ya tienes reunidos los documentos y declaraciones que pide la Superir?" hint="Esto no reemplaza la revisión de admisibilidad, pero sí cambia si tu caso está listo para solicitud formal o solo para evaluación.">
           <select
             id="documentos-completos"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
@@ -185,72 +158,13 @@ const calculatorNextStepItems = [
             <option value="si">Sí</option>
             <option value="no">No</option>
           </select>
-          <p class="mt-1 text-xs text-muted">
-            Esto no reemplaza la revisión de admisibilidad, pero sí cambia si tu
-            caso está listo para solicitud formal o solo para evaluación.
-          </p>
-        </div>
+        </CalculatorField>
 
-        <div class="mb-4">
-          <label
-            for="ingreso"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Ingreso mensual neto ($)
-          </label>
-          <input
-            type="number"
-            id="ingreso"
-            placeholder="Ej: 900.000"
-            min="0"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            Lo que recibes en tu cuenta (líquido).
-          </p>
-        </div>
+        <CalculatorField id="ingreso" label="Ingreso mensual neto ($)" placeholder="Ej: 900.000" min="0" hint="Lo que recibes en tu cuenta (líquido)." />
 
-        <div class="mb-4">
-          <label
-            for="plazo-renego"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Plazo de renegociación deseado (meses)
-          </label>
-          <input
-            type="number"
-            id="plazo-renego"
-            placeholder="Ej: 36"
-            min="6"
-            max="120"
-            value="36"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-        </div>
+        <CalculatorField id="plazo-renego" label="Plazo de renegociación deseado (meses)" placeholder="Ej: 36" min="6" max="120" value="36" />
 
-        <div class="mb-4">
-          <label
-            for="tasa-renego"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Tasa de interés del acuerdo (% mensual)
-          </label>
-          <input
-            type="number"
-            id="tasa-renego"
-            placeholder="Ej: 1.5"
-            min="0"
-            max="5"
-            step="0.1"
-            value="1.5"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            La tasa varía según el acuerdo. Los acuerdos Superir suelen bajar la
-            tasa respecto al contrato original. Usa 0% para simular cuota sin
-            interés.
-          </p>
-        </div>
+        <CalculatorField id="tasa-renego" label="Tasa de interés del acuerdo (% mensual)" placeholder="Ej: 1.5" min="0" max="5" step="0.1" value="1.5" hint="La tasa varía según el acuerdo. Los acuerdos Superir suelen bajar la tasa respecto al contrato original. Usa 0% para simular cuota sin interés." />
 
         <button
           id="calcBtn"

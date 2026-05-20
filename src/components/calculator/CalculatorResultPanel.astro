@@ -1,0 +1,25 @@
+---
+interface Props {
+  id?: string;
+  headingId?: string;
+  title?: string;
+  class?: string;
+}
+
+const {
+  id,
+  headingId,
+  title = "Resultado",
+  class: extraClass,
+} = Astro.props;
+---
+
+<div
+  id={id ?? "resultado"}
+  class:list={["rounded-xl border border-border bg-background p-6", extraClass]}
+>
+  <h2 id={headingId} class="mb-5 text-lg font-semibold" tabindex="-1">
+    {title}
+  </h2>
+  <slot />
+</div>

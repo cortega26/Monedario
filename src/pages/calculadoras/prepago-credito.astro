@@ -11,6 +11,8 @@ import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
 import NextSteps from "@/components/NextSteps.astro";
 import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import CalculatorField from "@/components/calculator/CalculatorField.astro";
 const { parameters: economicParameters } = await getEconomicParameters();
 const economicSourceLabel =
   economicParameters.source === "live"
@@ -61,15 +63,11 @@ const calculatorNextStepItems = [
     data-analytics-calculator="prepago-credito"
     data-analytics-calculator-name="Calculadora de Prepago de Credito"
   >
-    <section class="border-b border-border pt-8 pb-6">
-      <h1 class="my-4 text-3xl font-bold sm:text-4xl">
-        💡 ¿Me conviene prepagar el crédito?
-      </h1>
-      <p class="max-w-xl text-secondary">
-        Calcula cuánto ahorras en intereses si haces un abono extraordinario a
-        tu crédito y si conviene más prepagar o invertir ese dinero.
-      </p>
-    </section>
+    <CalculatorHero
+      title="💡 ¿Me conviene prepagar el crédito?"
+      description="Calcula cuánto ahorras en intereses si haces un abono extraordinario a tu crédito y si conviene más prepagar o invertir ese dinero."
+      descriptionClass="max-w-xl text-secondary"
+    />
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
@@ -119,37 +117,9 @@ const calculatorNextStepItems = [
           </p>
         </div>
 
-        <div class="mb-4">
-          <label
-            for="saldo"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Saldo pendiente ($)
-          </label>
-          <input
-            type="number"
-            id="saldo"
-            placeholder="Ej: 15.000.000"
-            min="0"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-        </div>
+        <CalculatorField id="saldo" label="Saldo pendiente ($)" placeholder="Ej: 15.000.000" min="0" />
 
-        <div class="mb-4">
-          <label
-            for="cuota"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Cuota mensual actual ($)
-          </label>
-          <input
-            type="number"
-            id="cuota"
-            placeholder="Ej: 350.000"
-            min="0"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-        </div>
+        <CalculatorField id="cuota" label="Cuota mensual actual ($)" placeholder="Ej: 350.000" min="0" />
 
         <div class="mb-4">
           <label
@@ -193,60 +163,11 @@ const calculatorNextStepItems = [
           </div>
         </div>
 
-        <div class="mb-4">
-          <label
-            for="meses-restantes"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Meses restantes
-          </label>
-          <input
-            type="number"
-            id="meses-restantes"
-            placeholder="Ej: 180"
-            min="1"
-            max="480"
-            value="180"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-        </div>
+        <CalculatorField id="meses-restantes" label="Meses restantes" placeholder="Ej: 180" min="1" max="480" value="180" />
 
-        <div class="mb-4">
-          <label
-            for="monto-prepago"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Monto del abono extraordinario ($)
-          </label>
-          <input
-            type="number"
-            id="monto-prepago"
-            placeholder="Ej: 2.000.000"
-            min="0"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-        </div>
+        <CalculatorField id="monto-prepago" label="Monto del abono extraordinario ($)" placeholder="Ej: 2.000.000" min="0" />
 
-        <div class="mb-4">
-          <label
-            for="costo-prepago"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Comisión o costo de prepago ($)
-          </label>
-          <input
-            type="number"
-            id="costo-prepago"
-            placeholder="Ej: 120.000"
-            min="0"
-            value="0"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            Si no conoces el dato exacto, déjalo en `0` como supuesto
-            provisional y revísalo después en tu contrato o con el banco.
-          </p>
-        </div>
+        <CalculatorField id="costo-prepago" label="Comisión o costo de prepago ($)" placeholder="Ej: 120.000" min="0" value="0" hint="Si no conoces el dato exacto, déjalo en `0` como supuesto provisional y revísalo después en tu contrato o con el banco." />
 
         <div class="mb-4">
           <label class="mb-2 block text-sm font-medium text-secondary"
@@ -283,13 +204,7 @@ const calculatorNextStepItems = [
           </div>
         </div>
 
-        <div class="mb-4 border-t border-border pt-4">
-          <label
-            for="rentabilidad-alternativa"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Rentabilidad alternativa (% anual)
-          </label>
+        <CalculatorField id="rentabilidad-alternativa" label="Rentabilidad alternativa (% anual)" hint="Para comparar: ¿qué pasaría si en vez de prepagar, invirtieras ese dinero?" class="border-t border-border pt-4">
           <select
             id="rentabilidad-alternativa"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
@@ -297,14 +212,9 @@ const calculatorNextStepItems = [
             <option value="3">3% — DAP / Fondo E AFP</option>
             <option value="5" selected>5% — Fondo mutuo conservador</option>
             <option value="7">7% — Fondo mixto / APV</option>
-            <option value="10">10% — Renta variable (estimado histórico)</option
-            >
+            <option value="10">10% — Renta variable (estimado histórico)</option>
           </select>
-          <p class="mt-1 text-xs text-muted">
-            Para comparar: ¿qué pasaría si en vez de prepagar, invirtieras ese
-            dinero?
-          </p>
-        </div>
+        </CalculatorField>
 
         <button
           id="calcBtn"

@@ -14,6 +14,10 @@ import CalculatorResultNextActions from "@/components/CalculatorResultNextAction
 import NextBestStep from "@/components/NextBestStep.astro";
 import SupportCallout from "@/components/SupportCallout.astro";
 import { SITE } from "@/config";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import CalculatorField from "@/components/calculator/CalculatorField.astro";
+import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
+import CalculatorExplainerSection from "@/components/calculator/CalculatorExplainerSection.astro";
 
 const currentCalculator = CALCULATOR_PORTFOLIO.find(
   calc => calc.slug === "interes-compuesto"
@@ -83,15 +87,11 @@ const interesCompuestoFaqs = [
     data-analytics-calculator-name="Calculadora de Interes Compuesto"
     data-site-title={SITE.title}
   >
-    <section class="border-b border-border pt-8 pb-6">
-      <h1 class="my-4 text-3xl font-bold sm:text-4xl">
-        Calculadora de Interés Compuesto
-      </h1>
-      <p class="max-w-lg text-sm leading-relaxed text-foreground">
-        Simula cómo crece un capital inicial en el tiempo con interés compuesto.
-        Ve el monto final, el interés total generado y la evolución año a año.
-      </p>
-    </section>
+    <CalculatorHero
+      title="Calculadora de Interés Compuesto"
+      description="Simula cómo crece un capital inicial en el tiempo con interés compuesto. Ve el monto final, el interés total generado y la evolución año a año."
+      descriptionClass="max-w-lg text-sm leading-relaxed text-foreground"
+    />
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
@@ -101,69 +101,34 @@ const interesCompuestoFaqs = [
       >
         <h2 class="mb-5 text-lg font-semibold">Parámetros de la inversión</h2>
 
-        <div class="mb-4">
-          <label
-            for="capital-inicial"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Capital inicial ($)
-          </label>
-          <input
-            type="number"
-            id="capital-inicial"
-            placeholder="Ej: 1.000.000"
-            min="1"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-        </div>
+        <CalculatorField
+          id="capital-inicial"
+          label="Capital inicial ($)"
+          placeholder="Ej: 1.000.000"
+          min="1"
+        />
 
-        <div class="mb-4">
-          <label
-            for="tasa-anual"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Tasa anual (%)
-          </label>
-          <input
-            type="number"
-            id="tasa-anual"
-            placeholder="Ej: 8"
-            min="0.01"
-            max="100"
-            step="0.01"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            Tasa nominal anual, antes de inflación e impuestos.
-          </p>
-        </div>
+        <CalculatorField
+          id="tasa-anual"
+          label="Tasa anual (%)"
+          placeholder="Ej: 8"
+          min="0.01"
+          max="100"
+          step="0.01"
+          hint="Tasa nominal anual, antes de inflación e impuestos."
+        />
 
-        <div class="mb-4">
-          <label
-            for="periodo-anos"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Período (años)
-          </label>
-          <input
-            type="number"
-            id="periodo-anos"
-            placeholder="Ej: 10"
-            min="1"
-            max="50"
-            step="1"
-            value="10"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-        </div>
+        <CalculatorField
+          id="periodo-anos"
+          label="Período (años)"
+          placeholder="Ej: 10"
+          min="1"
+          max="50"
+          step="1"
+          value="10"
+        />
 
-        <div class="mb-4">
-          <label
-            for="frecuencia"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Frecuencia de capitalización
-          </label>
+        <CalculatorField id="frecuencia" label="Frecuencia de capitalización">
           <select
             id="frecuencia"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
@@ -173,7 +138,7 @@ const interesCompuestoFaqs = [
             <option value="2">Semestral (2 veces/año)</option>
             <option value="1">Anual (1 vez/año)</option>
           </select>
-        </div>
+        </CalculatorField>
 
         <div
           id="calc-error"
@@ -191,17 +156,7 @@ const interesCompuestoFaqs = [
       </div>
 
       <!-- RESULTADO -->
-      <div
-        id="resultado"
-        class="rounded-xl border border-border bg-background p-6"
-      >
-        <h2
-          id="resultado-heading"
-          class="mb-5 text-lg font-semibold"
-          tabindex="-1"
-        >
-          Resultado
-        </h2>
+      <CalculatorResultPanel headingId="resultado-heading" title="Resultado">
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
           <div
             class="mb-6 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
@@ -231,7 +186,7 @@ const interesCompuestoFaqs = [
             Ejemplo: $1.000.000 al 10% anual capitalización mensual por 10 años.
           </p>
         </div>
-      </div>
+      </CalculatorResultPanel>
     </section>
 
     <!-- TABLA DE EVOLUCIÓN -->
@@ -259,10 +214,7 @@ const interesCompuestoFaqs = [
     <NextBestStep slug="interes-compuesto" />
 
     <!-- EXPLICACIÓN -->
-    <section
-      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
-      style="content-visibility: auto; contain-intrinsic-size: 400px;"
-    >
+    <CalculatorExplainerSection>
       <h2>¿Cómo funciona el interés compuesto?</h2>
       <p>
         El interés compuesto es el mecanismo por el cual los intereses ganados
@@ -295,7 +247,7 @@ const interesCompuestoFaqs = [
         impuestos. Los resultados son educativos y no constituyen asesoría
         financiera.
       </p>
-    </section>
+    </CalculatorExplainerSection>
 
     <section
       class="max-w-none border-t border-border pt-8 pb-12"

@@ -15,6 +15,9 @@ import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { simulateOperacionRenta } from "@/application/use-cases/SimulateOperacionRenta";
 import { getPath } from "@/utils/getPath";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import CalculatorField from "@/components/calculator/CalculatorField.astro";
+import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 const f22GuidePath = getPath("/posts/operacion-renta-f22-checklist/");
@@ -87,16 +90,11 @@ const calculatorNextStepItems = [
     data-analytics-calculator-name="Simulador Operación Renta"
     data-profile-prefill-host="#calculator-form-card"
   >
-    <section class="border-b border-border pt-8 pb-6">
-      <h1 class="my-4 text-3xl font-bold sm:text-4xl">
-        🧾 Simulador Operación Renta 2026
-      </h1>
-      <p class="max-w-xl text-secondary">
-        Estima si el SII te devolverá dinero o deberás pagar más impuesto este
-        abril. Ingresa tus ingresos del año, las retenciones ya pagadas y las
-        deducciones disponibles.
-      </p>
-    </section>
+    <CalculatorHero
+      title="🧾 Simulador Operación Renta 2026"
+      description="Estima si el SII te devolverá dinero o deberás pagar más impuesto este abril. Ingresa tus ingresos del año, las retenciones ya pagadas y las deducciones disponibles."
+      descriptionClass="max-w-xl text-secondary"
+    />
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
@@ -105,45 +103,9 @@ const calculatorNextStepItems = [
         <div class="rounded-xl border border-border p-6">
           <h2 class="mb-5 text-lg font-semibold">📥 Ingresos del año</h2>
 
-          <div class="mb-4">
-            <label
-              for="sueldos-brutos"
-              class="mb-1 block text-sm font-medium text-secondary"
-            >
-              Sueldos brutos anuales ($)
-            </label>
-            <input
-              type="number"
-              id="sueldos-brutos"
-              placeholder="Ej: 18000000"
-              min="0"
-              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-            />
-            <p class="mt-1 text-xs text-muted">
-              Suma todos los sueldos brutos del año. Encuéntralo en el
-              certificado de remuneraciones (F1887) que emite tu empleador.
-            </p>
-          </div>
+          <CalculatorField id="sueldos-brutos" label="Sueldos brutos anuales ($)" placeholder="Ej: 18000000" min="0" hint="Suma todos los sueldos brutos del año. Encuéntralo en el certificado de remuneraciones (F1887) que emite tu empleador." />
 
-          <div class="mb-4">
-            <label
-              for="honorarios-brutos"
-              class="mb-1 block text-sm font-medium text-secondary"
-            >
-              Honorarios brutos anuales ($)
-            </label>
-            <input
-              type="number"
-              id="honorarios-brutos"
-              placeholder="Ej: 4000000"
-              min="0"
-              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-            />
-            <p class="mt-1 text-xs text-muted">
-              Total de boletas emitidas en 2025. El simulador aplica
-              automáticamente los gastos presuntos legales (30%, tope 15 UTA).
-            </p>
-          </div>
+          <CalculatorField id="honorarios-brutos" label="Honorarios brutos anuales ($)" placeholder="Ej: 4000000" min="0" hint="Total de boletas emitidas en 2025. El simulador aplica automáticamente los gastos presuntos legales (30%, tope 15 UTA)." />
 
           <div class="mb-0">
             <label
@@ -170,25 +132,7 @@ const calculatorNextStepItems = [
         <div class="rounded-xl border border-border p-6">
           <h2 class="mb-5 text-lg font-semibold">Retenciones ya pagadas</h2>
 
-          <div class="mb-4">
-            <label
-              for="impuesto-unico"
-              class="mb-1 block text-sm font-medium text-secondary"
-            >
-              Impuesto único retenido ($)
-            </label>
-            <input
-              type="number"
-              id="impuesto-unico"
-              placeholder="Ej: 800000"
-              min="0"
-              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-            />
-            <p class="mt-1 text-xs text-muted">
-              Lo retiene tu empleador mensualmente. Está en el certificado de
-              remuneraciones (F1887).
-            </p>
-          </div>
+          <CalculatorField id="impuesto-unico" label="Impuesto único retenido ($)" placeholder="Ej: 800000" min="0" hint="Lo retiene tu empleador mensualmente. Está en el certificado de remuneraciones (F1887)." />
 
           <div class="mb-0">
             <label
@@ -278,11 +222,7 @@ const calculatorNextStepItems = [
       </div>
 
       <!-- RESULTADO -->
-      <div
-        id="resultado"
-        class="rounded-xl border border-border bg-background p-6"
-      >
-        <h2 class="mb-5 text-lg font-semibold">💡 Estimación de resultado</h2>
+      <CalculatorResultPanel title="💡 Estimación de resultado">
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
           <div
             class="mb-4 rounded-lg border border-green-500/40 bg-green-500/10 p-4"
@@ -348,7 +288,7 @@ const calculatorNextStepItems = [
             economicParameters.lastUpdated
           }).
         </p>
-      </div>
+      </CalculatorResultPanel>
     </section>
 
     <NextBestStep slug="operacion-renta" />

@@ -11,6 +11,9 @@ import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
 import NextSteps from "@/components/NextSteps.astro";
 import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import CalculatorField from "@/components/calculator/CalculatorField.astro";
+import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 const ufValuePesos = economicParameters.uf;
@@ -62,16 +65,11 @@ const calculatorNextStepItems = [
     data-analytics-calculator-name="Calculadora de Dividendo Hipotecario"
     data-uf={String(ufValuePesos)}
   >
-    <section class="border-b border-border pt-8 pb-6">
-      <h1 class="my-4 text-3xl font-bold sm:text-4xl">
-        🏠 Calculadora de Dividendo Hipotecario
-      </h1>
-      <p class="max-w-xl text-secondary">
-        Estima tu dividendo mensual en UF y pesos según el valor de la
-        propiedad, el pie, la tasa y el plazo. Incluye seguros opcionales y
-        tabla de amortización.
-      </p>
-      <!-- UF Banner -->
+    <CalculatorHero
+      title="🏠 Calculadora de Dividendo Hipotecario"
+      description="Estima tu dividendo mensual en UF y pesos según el valor de la propiedad, el pie, la tasa y el plazo. Incluye seguros opcionales y tabla de amortización."
+      descriptionClass="max-w-xl text-secondary"
+    >
       <div
         class="mt-4 inline-flex items-center gap-2 rounded-lg border border-accent/30 bg-accent/5 px-3 py-2 text-sm"
       >
@@ -79,7 +77,7 @@ const calculatorNextStepItems = [
         <span class="font-mono">${ufDisplay}</span>
         <span class="text-muted">— Fuente: mindicador.cl</span>
       </div>
-    </section>
+    </CalculatorHero>
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
@@ -172,26 +170,7 @@ const calculatorNextStepItems = [
         </div>
 
         <!-- Tasa anual -->
-        <div class="mb-4">
-          <label
-            for="annualRate"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Tasa de interés anual (%)
-          </label>
-          <input
-            type="number"
-            id="annualRate"
-            placeholder="Ej: 4.80"
-            min="0"
-            max="30"
-            step="0.01"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            Solicita la Hoja de Condiciones a tu banco para ver la tasa real.
-          </p>
-        </div>
+        <CalculatorField id="annualRate" label="Tasa de interés anual (%)" placeholder="Ej: 4.80" min="0" max="30" step="0.01" hint="Solicita la Hoja de Condiciones a tu banco para ver la tasa real." />
 
         <!-- Plazo -->
         <div class="mb-4">
@@ -224,47 +203,10 @@ const calculatorNextStepItems = [
         </div>
 
         <!-- Seguro desgravamen -->
-        <div class="mb-4">
-          <label
-            for="desgravamen"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Seguro desgravamen (% mensual sobre saldo) — opcional
-          </label>
-          <input
-            type="number"
-            id="desgravamen"
-            placeholder="Ej: 0.025"
-            min="0"
-            step="0.001"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            Varía por banco y edad. Consulta tu cotización. (~0.020%–0.030%
-            típico)
-          </p>
-        </div>
+        <CalculatorField id="desgravamen" label="Seguro desgravamen (% mensual sobre saldo) — opcional" placeholder="Ej: 0.025" min="0" step="0.001" hint="Varía por banco y edad. Consulta tu cotización. (~0.020%–0.030% típico)" />
 
         <!-- Seguro incendio/sismo -->
-        <div class="mb-4">
-          <label
-            for="fireInsurance"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Seguro incendio/sismo (UF/mes) — opcional
-          </label>
-          <input
-            type="number"
-            id="fireInsurance"
-            placeholder="Ej: 0.50"
-            min="0"
-            step="0.01"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            Aprox. 0.010–0.020 UF por cada 100 UF de propiedad/mes.
-          </p>
-        </div>
+        <CalculatorField id="fireInsurance" label="Seguro incendio/sismo (UF/mes) — opcional" placeholder="Ej: 0.50" min="0" step="0.01" hint="Aprox. 0.010–0.020 UF por cada 100 UF de propiedad/mes." />
 
         <button
           id="calcBtn"
@@ -275,11 +217,7 @@ const calculatorNextStepItems = [
       </div>
 
       <!-- RESULTADO -->
-      <div
-        id="resultado"
-        class="rounded-xl border border-border bg-background p-6"
-      >
-        <h2 class="mb-5 text-lg font-semibold">Resumen del crédito</h2>
+      <CalculatorResultPanel title="Resumen del crédito">
         <div
           id="resultado-contenido"
           class="py-8 text-center text-muted"
@@ -288,7 +226,7 @@ const calculatorNextStepItems = [
           <p class="mb-3 text-4xl">🏠</p>
           <p class="text-sm">Ingresa los datos y presiona calcular.</p>
         </div>
-      </div>
+      </CalculatorResultPanel>
     </section>
 
     <!-- TABLA DE AMORTIZACIÓN -->

@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  descriptionClass?: string;
+}
+
+const {
+  title,
+  description,
+  descriptionClass = "max-w-2xl text-secondary",
+} = Astro.props;
+---
+
+<section class="border-b border-border pt-8 pb-6">
+  <h1 class="my-4 text-3xl font-bold sm:text-4xl">{title}</h1>
+  {description && <p class={descriptionClass}>{description}</p>}
+  <slot />
+</section>

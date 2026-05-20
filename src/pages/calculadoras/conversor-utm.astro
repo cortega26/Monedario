@@ -12,6 +12,7 @@ import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
 import { getPath } from "@/utils/getPath";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 const utmArticlePath = getPath("/posts/utm-chile-que-es-como-funciona/");
@@ -99,13 +100,11 @@ const calculatorNextStepItems = [
     data-analytics-calculator="conversor-utm"
     data-analytics-calculator-name="Conversor UTM a Pesos"
   >
-    <section class="border-b border-border pt-8 pb-6">
-      <h1 class="my-4 text-3xl font-bold sm:text-4xl">Conversor UTM ↔ Pesos</h1>
-      <p class="max-w-xl text-secondary">
-        Convierte entre Unidades Tributarias Mensuales y pesos chilenos al valor
-        vigente del mes. Sin registro, sin publicidad.
-      </p>
-    </section>
+    <CalculatorHero
+      title="Conversor UTM ↔ Pesos"
+      description="Convierte entre Unidades Tributarias Mensuales y pesos chilenos al valor vigente del mes. Sin registro, sin publicidad."
+      descriptionClass="max-w-xl text-secondary"
+    />
 
     <section class="max-w-xl py-8">
       <!-- VALOR DEL MES -->
