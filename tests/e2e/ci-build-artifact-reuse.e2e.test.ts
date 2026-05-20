@@ -10,6 +10,8 @@ import fs from "node:fs";
 import path from "node:path";
 
 const workflowPath = path.join(process.cwd(), ".github", "workflows", "ci.yml");
+const downloadArtifactAction =
+  "uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c";
 
 function extractJobSection(content: string, jobName: string, nextJobName?: string) {
   const start = content.indexOf(`${jobName}:`);
@@ -38,15 +40,11 @@ describe("ci workflow — build artifact reuse", () => {
     const a11ySection = extractJobSection(content, "a11y-audit");
 
     expect(externalUrlPrSection).toContain("needs: build");
-    expect(externalUrlPrSection).toContain(
-      "uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53",
-    );
+    expect(externalUrlPrSection).toContain(downloadArtifactAction);
     expect(externalUrlPrSection).not.toContain('run: pnpm run astro build');
 
     expect(a11ySection).toContain("needs: build");
-    expect(a11ySection).toContain(
-      "uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53",
-    );
+    expect(a11ySection).toContain(downloadArtifactAction);
     expect(a11ySection).not.toContain('run: pnpm run astro build');
   });
 });

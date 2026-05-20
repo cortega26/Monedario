@@ -5,8 +5,18 @@ import { getPath } from "@/utils/getPath";
 const indicadores = await getIndicadores();
 
 const MESES_CORTO = [
-  "ENE","FEB","MAR","ABR","MAY","JUN",
-  "JUL","AGO","SEP","OCT","NOV","DIC",
+  "ENE",
+  "FEB",
+  "MAR",
+  "ABR",
+  "MAY",
+  "JUN",
+  "JUL",
+  "AGO",
+  "SEP",
+  "OCT",
+  "NOV",
+  "DIC",
 ];
 
 function fmtDiaMesCorto(fecha: string): string {
@@ -46,14 +56,27 @@ const cols = hasDolar ? "3" : "2";
 const prev = indicadores.prev;
 
 const ufDelta = prev?.uf
-  ? { pct: fmtDelta(indicadores.uf, prev.uf.valor), up: indicadores.uf >= prev.uf.valor, vs: fmtDiaMesCorto(prev.uf.fecha) }
+  ? {
+      pct: fmtDelta(indicadores.uf, prev.uf.valor),
+      up: indicadores.uf >= prev.uf.valor,
+      vs: fmtDiaMesCorto(prev.uf.fecha),
+    }
   : null;
 const utmDelta = prev?.utm
-  ? { pct: fmtDelta(indicadores.utm, prev.utm.valor), up: indicadores.utm >= prev.utm.valor, vs: fmtMesCorto(prev.utm.fecha) }
+  ? {
+      pct: fmtDelta(indicadores.utm, prev.utm.valor),
+      up: indicadores.utm >= prev.utm.valor,
+      vs: fmtMesCorto(prev.utm.fecha),
+    }
   : null;
-const dolarDelta = prev?.dolar && indicadores.dolar !== undefined
-  ? { pct: fmtDelta(indicadores.dolar, prev.dolar.valor), up: indicadores.dolar >= prev.dolar.valor, vs: fmtDiaMesCorto(prev.dolar.fecha) }
-  : null;
+const dolarDelta =
+  prev?.dolar && indicadores.dolar !== undefined
+    ? {
+        pct: fmtDelta(indicadores.dolar, prev.dolar.valor),
+        up: indicadores.dolar >= prev.dolar.valor,
+        vs: fmtDiaMesCorto(prev.dolar.fecha),
+      }
+    : null;
 ---
 
 <section aria-labelledby="indicadores-hoy-heading">
@@ -75,11 +98,15 @@ const dolarDelta = prev?.dolar && indicadores.dolar !== undefined
       >
         ${ufValue}
       </a>
-      {ufDelta && (
-        <span class={`indicador-delta ${ufDelta.up ? "indicador-delta--up" : "indicador-delta--down"}`}>
-          {ufDelta.up ? "▲" : "▼"} {ufDelta.pct}% vs. {ufDelta.vs}
-        </span>
-      )}
+      {
+        ufDelta && (
+          <span
+            class={`indicador-delta ${ufDelta.up ? "indicador-delta--up" : "indicador-delta--down"}`}
+          >
+            {ufDelta.up ? "▲" : "▼"} {ufDelta.pct}% vs. {ufDelta.vs}
+          </span>
+        )
+      }
     </div>
 
     <div class="indicador">
@@ -92,33 +119,43 @@ const dolarDelta = prev?.dolar && indicadores.dolar !== undefined
       >
         ${utmValue}
       </span>
-      {utmDelta ? (
-        <span class={`indicador-delta ${utmDelta.up ? "indicador-delta--up" : "indicador-delta--down"}`}>
-          {utmDelta.up ? "▲" : "▼"} {utmDelta.pct}% vs. {utmDelta.vs}
-        </span>
-      ) : (
-        <span class="indicador-delta" aria-hidden="true">&nbsp;</span>
-      )}
+      {
+        utmDelta ? (
+          <span
+            class={`indicador-delta ${utmDelta.up ? "indicador-delta--up" : "indicador-delta--down"}`}
+          >
+            {utmDelta.up ? "▲" : "▼"} {utmDelta.pct}% vs. {utmDelta.vs}
+          </span>
+        ) : (
+          <span class="indicador-delta" aria-hidden="true">
+            &nbsp;
+          </span>
+        )
+      }
     </div>
 
-    {hasDolar && (
-      <div class="indicador indicador--last">
-        <span class="indicador-label">
-          DÓLAR OBS. · {fmtDiaMesCorto(dolarFecha)}
-        </span>
-        <span
-          class="indicador-value"
-          title={`Fuente: mindicador.cl — Dólar al ${fmtFecha(dolarFecha)}`}
-        >
-          ${dolarValue}
-        </span>
-        {dolarDelta && (
-          <span class={`indicador-delta ${dolarDelta.up ? "indicador-delta--up" : "indicador-delta--down"}`}>
-            {dolarDelta.up ? "▲" : "▼"} {dolarDelta.pct}% vs. {dolarDelta.vs}
+    {
+      hasDolar && (
+        <div class="indicador indicador--last">
+          <span class="indicador-label">
+            DÓLAR OBS. · {fmtDiaMesCorto(dolarFecha)}
           </span>
-        )}
-      </div>
-    )}
+          <span
+            class="indicador-value"
+            title={`Fuente: mindicador.cl — Dólar al ${fmtFecha(dolarFecha)}`}
+          >
+            ${dolarValue}
+          </span>
+          {dolarDelta && (
+            <span
+              class={`indicador-delta ${dolarDelta.up ? "indicador-delta--up" : "indicador-delta--down"}`}
+            >
+              {dolarDelta.up ? "▲" : "▼"} {dolarDelta.pct}% vs. {dolarDelta.vs}
+            </span>
+          )}
+        </div>
+      )
+    }
 
     <div class="indicador-cta">
       <a

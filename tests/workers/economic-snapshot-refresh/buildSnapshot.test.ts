@@ -271,7 +271,8 @@ describe("mergePrev", () => {
 
   it("does not carry dolar prev when new snapshot has no dolar", () => {
     const current = makeSnapshot({ dolar: 906.68 });
-    const { dolar: _d, ...rest } = makeSnapshot();
+    const rest = makeSnapshot();
+    delete (rest as Partial<EconomicSnapshot>).dolar;
     const newSnap: EconomicSnapshot = { ...rest, indicatorUpdatedAt: { uf: "2026-05-19", utm: "2026-05-01", uta: "2025-12-01" } };
     const result = mergePrev(JSON.stringify(current), newSnap);
     expect(result.prev?.dolar).toBeUndefined();
