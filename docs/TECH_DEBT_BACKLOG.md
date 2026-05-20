@@ -1665,7 +1665,8 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Owner:** —
 - **Estado:** Abierto
 - **Fecha de creación:** 2026-05-15
-- **Última actualización:** 2026-05-15
+- **Última actualización:** 2026-05-20
+- **Nota 2026-05-20:** Plan de ejecucion creado en `docs/backlog/PLAN-calculator-componentization-td-0063-0069-2026-05-20.md`; ejecutar junto con `TD-0069` para evitar refactors duplicados.
 
 ## TD-0064 — Dependencias declaradas sin uso (`dayjs`, `node-fetch`, `remark-toc`)
 - **ID:** TD-0064
@@ -1707,7 +1708,8 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Owner:** —
 - **Estado:** Abierto
 - **Fecha de creación:** 2026-05-15
-- **Última actualización:** 2026-05-15
+- **Última actualización:** 2026-05-20
+- **Nota 2026-05-20:** Plan de ejecucion creado en `docs/backlog/PLAN-calculator-componentization-td-0063-0069-2026-05-20.md`; el cierre se medira con `jscpd` post-refactor y quedara acoplado a la componentizacion de `TD-0063`.
 
 ## TD-0066 — `/dev/hero-images/` se publica en build de producción (400 KB de assets dev)
 - **ID:** TD-0066

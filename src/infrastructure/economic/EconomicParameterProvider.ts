@@ -62,7 +62,7 @@ export interface EconomicProviderTelemetry {
 
 const DEFAULT_AFC_MONTHLY_TAXABLE_CAP_UF = 135.2;
 const DEFAULT_PENSION_AND_HEALTH_MONTHLY_TAXABLE_CAP_UF = 90;
-const FALLBACK_LAST_UPDATED = new Date().toISOString().slice(0, 10);
+const FALLBACK_LAST_UPDATED = "2025-06-01";
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 const SNAPSHOT_FILE_NAME = "economic-parameters.snapshot.json";
 const ECONOMIC_PROVIDER_MODE_ENV = "TPI_ECONOMIC_PROVIDER_MODE";
