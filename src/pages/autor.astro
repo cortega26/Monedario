@@ -493,7 +493,7 @@ const personSchema = {
           url_afectada: urlAfectada || "(no especificada)",
           descripcion: descripcion.trim(),
           email_respuesta: emailRespuesta || "(no proporcionado)",
-          botcheck: "",
+          botcheck: (data.get("botcheck") as string) ?? "",
         }),
       });
 
