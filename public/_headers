@@ -31,12 +31,16 @@
 # Rationale: ADR-20260516 appendix. Pages auto-purge only applies to *.pages.dev,
 # not to custom domains with explicit s-maxage.
 # Volatile indicators page: always revalidate HTML so daily economic snapshots
-# are not hidden behind browser/CDN freshness windows.
+# are not hidden behind long-lived browser/CDN freshness windows.
 /guias/uf-costo-de-vida/indicadores-economicos/
-  Cache-Control: no-cache, must-revalidate
+  Cache-Control: public, max-age=300, must-revalidate
 
 /guias/uf-costo-de-vida/indicadores-economicos/*
-  Cache-Control: no-cache, must-revalidate
+  Cache-Control: public, max-age=300, must-revalidate
+
+/api/indicadores-hoy.json
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=300, must-revalidate
 
 /calculadoras/*
   Cache-Control: public, max-age=300

@@ -77,21 +77,28 @@ const dolarDelta =
         vs: fmtDiaMesCorto(prev.dolar.fecha),
       }
     : null;
+
+const indicadoresEndpoint = getPath("/api/indicadores-hoy.json");
 ---
 
-<section aria-labelledby="indicadores-hoy-heading">
+<section
+  aria-labelledby="indicadores-hoy-heading"
+  data-indicadores-hoy
+  data-endpoint={indicadoresEndpoint}
+>
   <h2 id="indicadores-hoy-heading" class="sr-only">
     Indicadores económicos vigentes
   </h2>
   <div class="indicadores-grid" style={`--cols:${cols}`}>
-    <div class="indicador">
-      <span class="indicador-label">
+    <div class="indicador" data-indicator="uf">
+      <span class="indicador-label" data-field="label">
         UF · {fmtDiaMesCorto(ufFecha)}
       </span>
       <a
         href={getPath("/calculadoras/conversor-uf/")}
         class="indicador-value indicador-value--link"
         title={`Fuente: mindicador.cl — UF al ${fmtFecha(ufFecha)}`}
+        data-field="value"
         data-analytics-cta="home-indicador"
         data-analytics-label="UF"
         data-analytics-location="home_indicadores_hoy"
@@ -102,6 +109,7 @@ const dolarDelta =
         ufDelta && (
           <span
             class={`indicador-delta ${ufDelta.up ? "indicador-delta--up" : "indicador-delta--down"}`}
+            data-field="delta"
           >
             {ufDelta.up ? "▲" : "▼"} {ufDelta.pct}% vs. {ufDelta.vs}
           </span>
@@ -109,13 +117,14 @@ const dolarDelta =
       }
     </div>
 
-    <div class="indicador">
-      <span class="indicador-label">
+    <div class="indicador" data-indicator="utm">
+      <span class="indicador-label" data-field="label">
         UTM · {fmtMesCorto(utmFecha)}
       </span>
       <span
         class="indicador-value"
         title={`Fuente: mindicador.cl — UTM al ${fmtFecha(utmFecha)}`}
+        data-field="value"
       >
         ${utmValue}
       </span>
@@ -123,11 +132,12 @@ const dolarDelta =
         utmDelta ? (
           <span
             class={`indicador-delta ${utmDelta.up ? "indicador-delta--up" : "indicador-delta--down"}`}
+            data-field="delta"
           >
             {utmDelta.up ? "▲" : "▼"} {utmDelta.pct}% vs. {utmDelta.vs}
           </span>
         ) : (
-          <span class="indicador-delta" aria-hidden="true">
+          <span class="indicador-delta" data-field="delta" aria-hidden="true">
             &nbsp;
           </span>
         )
@@ -136,19 +146,21 @@ const dolarDelta =
 
     {
       hasDolar && (
-        <div class="indicador indicador--last">
-          <span class="indicador-label">
+        <div class="indicador indicador--last" data-indicator="dolar">
+          <span class="indicador-label" data-field="label">
             DÓLAR OBS. · {fmtDiaMesCorto(dolarFecha)}
           </span>
           <span
             class="indicador-value"
             title={`Fuente: mindicador.cl — Dólar al ${fmtFecha(dolarFecha)}`}
+            data-field="value"
           >
             ${dolarValue}
           </span>
           {dolarDelta && (
             <span
               class={`indicador-delta ${dolarDelta.up ? "indicador-delta--up" : "indicador-delta--down"}`}
+              data-field="delta"
             >
               {dolarDelta.up ? "▲" : "▼"} {dolarDelta.pct}% vs. {dolarDelta.vs}
             </span>
@@ -171,6 +183,101 @@ const dolarDelta =
     </div>
   </div>
 </section>
+
+<script>
+  type IndicatorDelta = {
+    text: string;
+    direction: "up" | "down";
+  } | null;
+
+  type IndicatorPayload = {
+    label: string;
+    value: string;
+    title: string;
+    delta: IndicatorDelta;
+  };
+
+  type IndicadoresPayload = {
+    indicators: {
+      uf?: IndicatorPayload;
+      utm?: IndicatorPayload;
+      dolar?: IndicatorPayload;
+    };
+  };
+
+  const DELTA_CLASSES = [
+    "indicador-delta--up",
+    "indicador-delta--down",
+  ] as const;
+
+  function setText(root: Element, selector: string, value: string): void {
+    const element = root.querySelector(selector);
+    if (!element) return;
+    element.textContent = value;
+  }
+
+  function updateIndicator(
+    root: Element,
+    code: keyof IndicadoresPayload["indicators"],
+    indicator: IndicatorPayload | undefined
+  ): void {
+    if (!indicator) return;
+    const item = root.querySelector(`[data-indicator="${code}"]`);
+    if (!item) return;
+
+    setText(item, '[data-field="label"]', indicator.label);
+
+    const value = item.querySelector('[data-field="value"]');
+    if (value) {
+      value.textContent = indicator.value;
+      value.setAttribute("title", indicator.title);
+    }
+
+    const delta = item.querySelector('[data-field="delta"]');
+    if (!delta) return;
+    delta.classList.remove(...DELTA_CLASSES);
+
+    if (!indicator.delta) {
+      delta.textContent = "\u00A0";
+      delta.setAttribute("aria-hidden", "true");
+      return;
+    }
+
+    delta.textContent = indicator.delta.text;
+    delta.removeAttribute("aria-hidden");
+    delta.classList.add(
+      indicator.delta.direction === "up"
+        ? "indicador-delta--up"
+        : "indicador-delta--down"
+    );
+  }
+
+  async function refreshIndicadoresHoy(root: HTMLElement): Promise<void> {
+    const endpoint = root.dataset.endpoint;
+    if (!endpoint) return;
+
+    const response = await fetch(endpoint, {
+      headers: { Accept: "application/json" },
+    });
+    if (!response.ok) return;
+
+    const payload = (await response.json()) as IndicadoresPayload;
+    updateIndicator(root, "uf", payload.indicators.uf);
+    updateIndicator(root, "utm", payload.indicators.utm);
+    updateIndicator(root, "dolar", payload.indicators.dolar);
+  }
+
+  function initIndicadoresHoy(): void {
+    document
+      .querySelectorAll<HTMLElement>("[data-indicadores-hoy]")
+      .forEach(root => {
+        refreshIndicadoresHoy(root).catch(() => {});
+      });
+  }
+
+  initIndicadoresHoy();
+  document.addEventListener("astro:after-swap", initIndicadoresHoy);
+</script>
 
 <style>
   .indicadores-grid {
