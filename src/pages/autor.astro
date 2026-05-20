@@ -478,7 +478,6 @@ const personSchema = {
 
     const urlAfectada = (data.get("url_afectada") as string) ?? "";
     const emailRespuesta = (data.get("email_respuesta") as string) ?? "";
-    const botcheck = data.get("botcheck");
     const accessKey = form.dataset.key ?? "";
 
     try {
@@ -489,11 +488,12 @@ const personSchema = {
           access_key: accessKey,
           subject: `[Monedario] [${tipo}]${urlAfectada ? " — " + urlAfectada : ""}`,
           from_name: "Monedario — Formulario de reporte",
+          replyto: emailRespuesta || undefined,
           tipo,
           url_afectada: urlAfectada || "(no especificada)",
           descripcion: descripcion.trim(),
           email_respuesta: emailRespuesta || "(no proporcionado)",
-          botcheck,
+          botcheck: "",
         }),
       });
 
@@ -505,16 +505,15 @@ const personSchema = {
         form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>(
           "input, textarea, select"
         ).forEach(el => el.setAttribute("disabled", ""));
-        if (btn) {
-          btn.textContent = "Enviado";
-        }
+        if (btn) btn.textContent = "Enviado";
       } else {
-        throw new Error(json.message ?? "Error desconocido");
+        const msg = json.message ?? "Error desconocido";
+        throw new Error(msg);
       }
     } catch (err) {
+      const msg = err instanceof Error ? err.message : "Error de red";
       if (errorEl) {
-        errorEl.textContent =
-          "No se pudo enviar el reporte. Intenta de nuevo o escríbenos directamente.";
+        errorEl.textContent = msg;
         errorEl.classList.remove("hidden");
       }
       if (btn) {
