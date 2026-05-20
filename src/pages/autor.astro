@@ -6,6 +6,8 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getPath } from "@/utils/getPath";
 import { SITE } from "@/config";
 
+const WEB3FORMS_KEY = "4ec75a20-71b7-4f2a-8f6b-ab10b9c2fe61";
+
 const CANONICAL_URL = new URL("/autor/", Astro.site ?? Astro.url.origin).href;
 const SITE_URL = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
   /\/$/,
@@ -343,8 +345,11 @@ const personSchema = {
       <form
         id="error-report-form"
         novalidate
+        data-key={WEB3FORMS_KEY}
         class="max-w-xl space-y-5"
       >
+        {/* Honeypot — bots fill this, humans don't */}
+        <input type="checkbox" name="botcheck" class="hidden" aria-hidden="true" />
         <div>
           <label
             for="er-tipo"
@@ -422,8 +427,8 @@ const personSchema = {
           Enviar reporte
         </button>
 
-        <p class="text-xs text-muted">
-          Al enviar se abrirá tu cliente de email con el reporte pre-llenado.
+        <p id="er-success" role="status" class="hidden rounded-lg border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-600 dark:text-green-400">
+          Reporte enviado. Gracias — revisaremos y responderemos si dejaste email.
         </p>
       </form>
     </section>
@@ -435,63 +440,87 @@ const personSchema = {
   const form = document.getElementById(
     "error-report-form"
   ) as HTMLFormElement | null;
-  if (form) {
-    // Auto-fill URL from ?url= query param (e.g. from a "Reportar error" link on any page)
-    const urlParam = new URLSearchParams(window.location.search).get("url");
-    if (urlParam) {
-      const urlInput = form.querySelector<HTMLInputElement>(
-        '[name="url_afectada"]'
-      );
-      if (urlInput) urlInput.value = decodeURIComponent(urlParam);
+  if (!form) throw new Error("error-report-form not found");
+
+  // Auto-fill URL from ?url= query param
+  const urlParam = new URLSearchParams(window.location.search).get("url");
+  if (urlParam) {
+    const urlInput = form.querySelector<HTMLInputElement>('[name="url_afectada"]');
+    if (urlInput) urlInput.value = decodeURIComponent(urlParam);
+  }
+
+  form.addEventListener("submit", async e => {
+    e.preventDefault();
+    const errorEl = document.getElementById("er-error");
+    const successEl = document.getElementById("er-success");
+    const btn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+
+    if (errorEl) errorEl.classList.add("hidden");
+    if (successEl) successEl.classList.add("hidden");
+
+    const data = new FormData(form);
+    const tipo = (data.get("tipo") as string) ?? "";
+    const descripcion = (data.get("descripcion") as string) ?? "";
+
+    if (!tipo || !descripcion.trim()) {
+      if (errorEl) {
+        errorEl.textContent =
+          "Por favor, selecciona el tipo de reporte y añade una descripción.";
+        errorEl.classList.remove("hidden");
+      }
+      return;
     }
 
-    form.addEventListener("submit", e => {
-      e.preventDefault();
-      const errorEl = document.getElementById("er-error");
-      if (errorEl) errorEl.classList.add("hidden");
+    if (btn) {
+      btn.textContent = "Enviando…";
+      btn.disabled = true;
+    }
 
-      const data = new FormData(form);
-      const tipo = (data.get("tipo") as string) ?? "";
-      const urlAfectada = (data.get("url_afectada") as string) ?? "";
-      const descripcion = (data.get("descripcion") as string) ?? "";
-      const emailRespuesta = (data.get("email_respuesta") as string) ?? "";
+    const urlAfectada = (data.get("url_afectada") as string) ?? "";
+    const emailRespuesta = (data.get("email_respuesta") as string) ?? "";
+    const botcheck = data.get("botcheck");
+    const accessKey = form.dataset.key ?? "";
 
-      if (!tipo || !descripcion.trim()) {
-        if (errorEl) {
-          errorEl.textContent =
-            "Por favor, selecciona el tipo de reporte y añade una descripción.";
-          errorEl.classList.remove("hidden");
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: accessKey,
+          subject: `[Monedario] [${tipo}]${urlAfectada ? " — " + urlAfectada : ""}`,
+          from_name: "Monedario — Formulario de reporte",
+          tipo,
+          url_afectada: urlAfectada || "(no especificada)",
+          descripcion: descripcion.trim(),
+          email_respuesta: emailRespuesta || "(no proporcionado)",
+          botcheck,
+        }),
+      });
+
+      const json = await res.json();
+
+      if (json.success) {
+        form.reset();
+        if (successEl) successEl.classList.remove("hidden");
+        form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>(
+          "input, textarea, select"
+        ).forEach(el => el.setAttribute("disabled", ""));
+        if (btn) {
+          btn.textContent = "Enviado";
         }
-        return;
+      } else {
+        throw new Error(json.message ?? "Error desconocido");
       }
-
-      const subject = `[${tipo}]${urlAfectada ? " — " + urlAfectada : ""}`;
-      const bodyLines = [
-        `Tipo: ${tipo}`,
-        urlAfectada ? `URL: ${urlAfectada}` : null,
-        "",
-        "Descripción:",
-        descripcion.trim(),
-        emailRespuesta ? `\nEmail para respuesta: ${emailRespuesta}` : null,
-      ].filter((l): l is string => l !== null);
-
-      const mailto = `mailto:contacto@monedario.cl?subject=${encodeURIComponent(
-        subject
-      )}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
-
-      window.location.href = mailto;
-
-      const btn = form.querySelector<HTMLButtonElement>(
-        'button[type="submit"]'
-      );
+    } catch (err) {
+      if (errorEl) {
+        errorEl.textContent =
+          "No se pudo enviar el reporte. Intenta de nuevo o escríbenos directamente.";
+        errorEl.classList.remove("hidden");
+      }
       if (btn) {
-        btn.textContent = "Abriendo cliente de email…";
-        btn.disabled = true;
-        setTimeout(() => {
-          btn.textContent = "Enviar reporte";
-          btn.disabled = false;
-        }, 4000);
+        btn.textContent = "Enviar reporte";
+        btn.disabled = false;
       }
-    });
-  }
+    }
+  });
 </script>
