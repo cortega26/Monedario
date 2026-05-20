@@ -91,13 +91,12 @@ import { SITE } from "@/config";
             Si encuentras un error, repórtalo
           </p>
           <p class="text-sm leading-relaxed text-secondary">
-            Las correcciones factuales reportadas quedan registradas en
+            Usa el formulario de reporte en la{" "}
             <a
-              href={getPath("/cambios/")}
+              href={getPath("/autor/#reportar-error")}
               class="text-accent underline underline-offset-4 hover:opacity-80"
-              >novedades y cambios</a
-            >, con fecha y descripción. Reportar es la prueba más concreta de
-            que el método funciona.
+              >página del autor</a
+            >. Reportar es la prueba más concreta de que el método funciona.
           </p>
         </div>
       </div>
@@ -581,15 +580,10 @@ import { SITE } from "@/config";
         No prometemos infalibilidad. Sí prometemos un proceso diseñado para
         reducir al mínimo errores evitables. Si encuentras un error factual,
         <a
-          href={getPath("/contacto/")}
+          href={getPath("/autor/#reportar-error")}
           class="text-accent underline underline-offset-4 hover:opacity-80"
-          >escríbenos</a
-        >. Las correcciones factuales reportadas se registran en
-        <a
-          href={getPath("/cambios/")}
-          class="text-accent underline underline-offset-4 hover:opacity-80"
-          >novedades y cambios</a
-        >, con fecha y descripción del ajuste.
+          >repórtalo</a
+        > usando el formulario de la página del autor.
       </p>
     </section>
 

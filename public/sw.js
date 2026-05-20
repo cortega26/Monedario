@@ -1,7 +1,11 @@
 // Monedario service worker — Stale-While-Revalidate for pages, Cache First for assets.
-const CACHE = "monedario-v1";
+const CACHE = "monedario-v2";
 const ASSETS_CACHE = "monedario-assets-v1";
 const MAX_PAGES = 50;
+const VOLATILE_HTML_PATHS = new Set([
+  "/guias/uf-costo-de-vida/indicadores-economicos/",
+  "/guias/uf-costo-de-vida/indicadores-economicos/index.html",
+]);
 
 self.addEventListener("install", () => self.skipWaiting());
 
@@ -45,6 +49,10 @@ function shouldSkip(url) {
   );
 }
 
+function isVolatileHtmlPage(url) {
+  return VOLATILE_HTML_PATHS.has(url.pathname);
+}
+
 function prune(cache, max) {
   cache.keys().then(keys => {
     if (keys.length <= max) return;
@@ -70,6 +78,32 @@ self.addEventListener("fetch", event => {
             return response;
           });
         })
+      )
+    );
+    return;
+  }
+
+  // Volatile data pages: Network First. If the visitor is offline, fall back to
+  // the last cached copy instead of showing a browser error.
+  if (isNavigation(request) && isVolatileHtmlPage(url)) {
+    event.respondWith(
+      caches.open(CACHE).then(cache =>
+        fetch(request)
+          .then(response => {
+            if (response.ok) {
+              cache.put(request, response.clone());
+              prune(cache, MAX_PAGES);
+            }
+            return response;
+          })
+          .catch(
+            () =>
+              cache.match(request) ??
+              new Response("Offline", {
+                status: 503,
+                statusText: "Service Unavailable",
+              })
+          )
       )
     );
     return;

@@ -3,3 +3,11 @@
 # /about → /metodologia (renombrada 2026-05-19)
 /about/  /metodologia/  301
 /about   /metodologia/  301
+
+# /cambios → /metodologia (retirada 2026-05-20, changelog como página eliminado)
+/cambios/  /metodologia/  301
+/cambios   /metodologia/  301
+
+# /contacto → /autor (fusionada 2026-05-20, incluye sección #contacto)
+/contacto/  /autor/  301
+/contacto   /autor/  301

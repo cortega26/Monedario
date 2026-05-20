@@ -243,7 +243,7 @@ const personSchema = {
     </section>
 
     <!-- INDEPENDENCIA EDITORIAL -->
-    <section class="mb-10 py-10">
+    <section class="border-b border-border py-10">
       <div class="max-w-2xl rounded-xl border border-accent/20 bg-accent/5 p-6">
         <h2 class="mb-3 text-lg font-bold">🔒 Independencia editorial</h2>
         <p class="text-sm leading-relaxed text-secondary">
@@ -262,6 +262,236 @@ const personSchema = {
         </p>
       </div>
     </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="border-b border-border py-10">
+      <h2 class="mb-4 text-xl font-bold">Contacto</h2>
+      <div class="max-w-2xl space-y-6">
+        <p class="text-base leading-relaxed text-secondary">
+          Puedes escribir directamente a{" "}
+          <span
+            class="inline-block rounded-md border border-border bg-surface-muted/40 px-3 py-1 font-mono text-sm text-foreground select-none"
+            aria-label="Dirección de correo electrónico: contacto arroba monedario punto cl"
+          >
+            <span
+              style="unicode-bidi: bidi-override; direction: ltr;"
+              aria-hidden="true">contacto</span
+            ><span aria-hidden="true">[at]</span><span
+              style="unicode-bidi: bidi-override; direction: ltr;"
+              aria-hidden="true">monedario.cl</span
+            >
+          </span>
+          {" "}o usar el formulario de reporte más abajo.
+        </p>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="rounded-xl border border-border p-5">
+            <p class="mb-2 text-sm font-semibold text-foreground">¿Para qué sirve?</p>
+            <ul class="space-y-1.5 text-sm text-secondary">
+              <li class="flex gap-2">
+                <span class="shrink-0 text-accent">✔</span>
+                <span>Reportar un dato desactualizado o error factual.</span>
+              </li>
+              <li class="flex gap-2">
+                <span class="shrink-0 text-accent">✔</span>
+                <span>Sugerir un tema, calculadora o entrada de glosario.</span>
+              </li>
+              <li class="flex gap-2">
+                <span class="shrink-0 text-accent">✔</span>
+                <span>Preguntas sobre el contenido publicado.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="rounded-xl border border-border p-5">
+            <p class="mb-2 text-sm font-semibold text-foreground">¿Para qué NO sirve?</p>
+            <ul class="space-y-1.5 text-sm text-secondary">
+              <li class="flex gap-2">
+                <span class="shrink-0 text-red-400">✕</span>
+                <span>Asesoría legal, tributaria o financiera personalizada.</span>
+              </li>
+              <li class="flex gap-2">
+                <span class="shrink-0 text-red-400">✕</span>
+                <span>Revisión de documentos privados o casos individuales.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div
+          class="rounded-xl border border-border bg-surface-muted/30 p-5 text-sm text-secondary"
+        >
+          <p class="font-semibold text-foreground">Aviso importante</p>
+          <p class="mt-1.5 leading-relaxed">
+            El contenido publicado tiene fines informativos y pedagógicos
+            únicamente. No constituye asesoría legal, tributaria ni financiera,
+            y no debe utilizarse como sustituto de la consulta con un
+            profesional habilitado.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- REPORTAR ERROR -->
+    <section id="reportar-error" class="mb-10 py-10">
+      <h2 class="mb-2 text-xl font-bold">Reportar un error</h2>
+      <p class="mb-6 max-w-xl text-sm text-secondary">
+        Si encontraste un error factual, un cálculo incorrecto, un problema de
+        visualización u otro tipo de incidencia, usa este formulario. Al enviar
+        se abrirá tu cliente de email con todos los campos pre-llenados.
+      </p>
+
+      <form
+        id="error-report-form"
+        novalidate
+        class="max-w-xl space-y-5"
+      >
+        <div>
+          <label
+            for="er-tipo"
+            class="mb-1.5 block text-sm font-medium text-foreground"
+            >Tipo de reporte <span class="text-red-400" aria-hidden="true">*</span></label
+          >
+          <select
+            id="er-tipo"
+            name="tipo"
+            required
+            class="w-full rounded-lg border border-border bg-surface-muted/30 px-3 py-2.5 text-sm text-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+          >
+            <option value="">— Selecciona el tipo —</option>
+            <option value="Error factual">Error factual (dato incorrecto o desactualizado)</option>
+            <option value="Error de cálculo">Error de cálculo (resultado incorrecto en calculadora)</option>
+            <option value="Problema de visualización">Problema de visualización (rendering, móvil, etc.)</option>
+            <option value="Enlace roto">Enlace roto</option>
+            <option value="Sugerencia de mejora">Sugerencia de mejora</option>
+            <option value="Otro">Otro</option>
+          </select>
+        </div>
+
+        <div>
+          <label
+            for="er-url"
+            class="mb-1.5 block text-sm font-medium text-foreground"
+            >URL afectada <span class="text-muted text-xs font-normal">(opcional)</span></label
+          >
+          <input
+            id="er-url"
+            name="url_afectada"
+            type="url"
+            placeholder="https://monedario.cl/..."
+            class="w-full rounded-lg border border-border bg-surface-muted/30 px-3 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+          />
+        </div>
+
+        <div>
+          <label
+            for="er-desc"
+            class="mb-1.5 block text-sm font-medium text-foreground"
+            >Descripción <span class="text-red-400" aria-hidden="true">*</span></label
+          >
+          <textarea
+            id="er-desc"
+            name="descripcion"
+            required
+            rows="4"
+            placeholder="Describe el problema con el mayor detalle posible…"
+            class="w-full resize-y rounded-lg border border-border bg-surface-muted/30 px-3 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+          ></textarea>
+        </div>
+
+        <div>
+          <label
+            for="er-email"
+            class="mb-1.5 block text-sm font-medium text-foreground"
+            >Tu email <span class="text-muted text-xs font-normal">(opcional, para seguimiento)</span></label
+          >
+          <input
+            id="er-email"
+            name="email_respuesta"
+            type="email"
+            placeholder="tu@email.com"
+            class="w-full rounded-lg border border-border bg-surface-muted/30 px-3 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+          />
+        </div>
+
+        <div id="er-error" role="alert" class="hidden rounded-lg border border-red-400/30 bg-red-400/10 px-4 py-2.5 text-sm text-red-400"></div>
+
+        <button
+          type="submit"
+          class="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-90 disabled:opacity-50"
+        >
+          Enviar reporte
+        </button>
+
+        <p class="text-xs text-muted">
+          Al enviar se abrirá tu cliente de email con el reporte pre-llenado.
+        </p>
+      </form>
+    </section>
   </main>
   <Footer />
 </Layout>
+
+<script>
+  const form = document.getElementById(
+    "error-report-form"
+  ) as HTMLFormElement | null;
+  if (form) {
+    // Auto-fill URL from ?url= query param (e.g. from a "Reportar error" link on any page)
+    const urlParam = new URLSearchParams(window.location.search).get("url");
+    if (urlParam) {
+      const urlInput = form.querySelector<HTMLInputElement>(
+        '[name="url_afectada"]'
+      );
+      if (urlInput) urlInput.value = decodeURIComponent(urlParam);
+    }
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const errorEl = document.getElementById("er-error");
+      if (errorEl) errorEl.classList.add("hidden");
+
+      const data = new FormData(form);
+      const tipo = (data.get("tipo") as string) ?? "";
+      const urlAfectada = (data.get("url_afectada") as string) ?? "";
+      const descripcion = (data.get("descripcion") as string) ?? "";
+      const emailRespuesta = (data.get("email_respuesta") as string) ?? "";
+
+      if (!tipo || !descripcion.trim()) {
+        if (errorEl) {
+          errorEl.textContent =
+            "Por favor, selecciona el tipo de reporte y añade una descripción.";
+          errorEl.classList.remove("hidden");
+        }
+        return;
+      }
+
+      const subject = `[${tipo}]${urlAfectada ? " — " + urlAfectada : ""}`;
+      const bodyLines = [
+        `Tipo: ${tipo}`,
+        urlAfectada ? `URL: ${urlAfectada}` : null,
+        "",
+        "Descripción:",
+        descripcion.trim(),
+        emailRespuesta ? `\nEmail para respuesta: ${emailRespuesta}` : null,
+      ].filter((l): l is string => l !== null);
+
+      const mailto = `mailto:contacto@monedario.cl?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+
+      window.location.href = mailto;
+
+      const btn = form.querySelector<HTMLButtonElement>(
+        'button[type="submit"]'
+      );
+      if (btn) {
+        btn.textContent = "Abriendo cliente de email…";
+        btn.disabled = true;
+        setTimeout(() => {
+          btn.textContent = "Enviar reporte";
+          btn.disabled = false;
+        }, 4000);
+      }
+    });
+  }
+</script>
