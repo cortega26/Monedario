@@ -5,9 +5,9 @@
 
 ---
 
-## Estado actual — 2026-05-16
+## Estado actual — 2026-05-20
 
-Completado: Fases 0–3 salvo decisiones pendientes explícitas (`MON-301`, `MON-304`), auditorías de calculadoras, UX backlog (15/16), Phase 1 Profile Persistence, Phase 2 High-Value Roadmap (Waves 1–5), Optimization, Editorial Timeliness, Blog Advisory Standardization, Date Display Consistency, Guardrail Automation, GitHub Actions remediation, Next Best Step, Data Signals (parcial), modernización estratégica 2026-05-11, cierre mobile CWV/LCP (`TD-0039`), `TD-0057` backfill canónico YMYL (46 artículos), SEO roadmap Sprints 0 y 2, publicación Sprint 2B firmada y quick wins de auditoría profunda 2026-05-15.
+Completado: Fases 0–3 salvo decisiones pendientes explícitas (`MON-301`, `MON-304`), auditorías de calculadoras, UX backlog (15/16), Phase 1 Profile Persistence, Phase 2 High-Value Roadmap (Waves 1–5), Optimization, Editorial Timeliness, Blog Advisory Standardization, Date Display Consistency, Guardrail Automation, GitHub Actions remediation, Next Best Step, Data Signals (parcial), modernización estratégica 2026-05-11, cierre mobile CWV/LCP (`TD-0039`), `TD-0057` backfill canónico YMYL (46 artículos), SEO roadmap Sprints 0, 2 y 3, publicación Sprint 2B firmada y quick wins de auditoría profunda 2026-05-15.
 
 Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados el 2026-05-20 en `docs/TECH_DEBT_BACKLOG.md`.
 
@@ -15,18 +15,13 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 
 | Orden | Item | Por qué ahora |
 |-------|------|---------------|
-| 1 | `MON-306` — Extender `sueldo-liquido`: output gratificación legal | Sprint 3 SEO; P1, calc ya referencia gratificación en FAQ avanzado — surfacear cálculo como output |
-| 2 | `MON-307` — Extender `finiquito-indemnizacion`: modo vacaciones proporcionales | Sprint 3 SEO; P1, calc ya computa feriado proporcional internamente — exponer como flujo pre-finiquito |
-| 3 | `MON-308` — Calculadora interés compuesto (nueva, standalone) | Sprint 3 SEO; P1, simulador-jubilacion demasiado AFP-específico para absorber herramienta genérica |
-| 4 | `MON-309` — Calculadora depósito a plazo (nueva, standalone) | Sprint 3 SEO; P2, ninguna calc existente tiene lógica de tasas de interés |
-| 5 | `TD-0063` + `TD-0069` — Componentizar calculadoras grandes y bajar duplicación | Siguiente bloque estructural recomendado tras cerrar quick wins y coverage |
-| 6 | `TD-0084`..`TD-0086` — Drift legal/YMYL alto | Requiere decisión humana/legal/editorial antes de tocar analytics o contenido sensible |
+| 1 | `TD-0063` + `TD-0069` — Componentizar calculadoras grandes y bajar duplicación | Siguiente bloque estructural recomendado tras cerrar Sprint 3 SEO y coverage |
+| 2 | `TD-0084`..`TD-0086` — Drift legal/YMYL alto | Requiere decisión humana/legal/editorial antes de tocar analytics o contenido sensible |
 
 ### Pendiente — implementación por código
 
 | Plan | Archivo | Bloqueador |
 |------|---------|------------|
-| SEO Sprint 3 — calculadoras (MON-306..309) | `PLAN-seo-cross-document-roadmap-2026-05-01.md` | Listo para ejecutar |
 | Phase 2 — Data Signals (MON-ENV-DATA3b..3c) | `PHASE_2_DATA_SIGNALS.md` | Requiere suscripción Ahrefs Advanced+ |
 | Hero image system — remediación manual por lotes | `HERO_IMAGE_SYSTEM_REMEDIATION_2026-04-30.md` | Manual: assets finales pendientes |
 | TypeScript 7 compatibility | `TS7_COMPATIBILITY_AUDIT_2026-04-30.md` | Blocked — esperando TS7 stable |
@@ -80,10 +75,10 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | MON-303 | Página /cambios/ — changelog editorial | 3 | P2 | content | ✅ done |
 | MON-304 | Estrategia de distribución en LinkedIn | 3 | P3 | analytics | 🔲 pendiente |
 | MON-305 | Extender ShareCalculatorResult a 13 calculadoras | 3 | P2 | frontend | ✅ done |
-| MON-306 | Extender `sueldo-liquido` — output gratificación legal | 4 | P1 | calculator-ext | 🔲 pendiente |
-| MON-307 | Extender `finiquito-indemnizacion` — modo vacaciones proporcionales | 4 | P1 | calculator-ext | 🔲 pendiente |
-| MON-308 | Calculadora interés compuesto (nueva) | 4 | P1 | calculator | 🔲 pendiente |
-| MON-309 | Calculadora depósito a plazo (nueva) | 4 | P2 | calculator | 🔲 pendiente |
+| MON-306 | Extender `sueldo-liquido` — output gratificación legal | 4 | P1 | calculator-ext | ✅ done |
+| MON-307 | Extender `finiquito-indemnizacion` — modo vacaciones proporcionales | 4 | P1 | calculator-ext | ✅ done |
+| MON-308 | Calculadora interés compuesto (nueva) | 4 | P1 | calculator | ✅ done |
+| MON-309 | Calculadora depósito a plazo (nueva) | 4 | P2 | calculator | ✅ done |
 
 ---
 
@@ -94,7 +89,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | `PHASE_2_DATA_SIGNALS.md` | Parcialmente completado; DATA3a..3c bloqueado |
 | `HERO_IMAGE_SYSTEM_REMEDIATION_2026-04-30.md` | Pendiente remediación manual |
 | `PLAN-heroimage-prompt-repair-2026-05-01.md` | Código completo; assets manuales pendientes |
-| `PLAN-seo-cross-document-roadmap-2026-05-01.md` | Sprints 0 y 2 completados; Sprint 3 calculadoras pendiente |
+| `PLAN-seo-cross-document-roadmap-2026-05-01.md` | Sprints 0, 2 y 3 completados; Sprint 1 consolidaciones sigue parcial |
 | `PLAN-audit-deep-remediation-2026-05-16.md` | Quick wins completados; quedan TD estructurales/ADR/medición |
 | `PLAN-github-workflow-hardening-2026-05-13.md` | Parcialmente cerrado; fase 3 en diminishing returns |
 | `TS7_COMPATIBILITY_AUDIT_2026-04-30.md` | Bloqueado |
@@ -111,7 +106,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | `PLAN-audit-deep-remediation-2026-05-16.md` | Parcialmente cerrado | 2026-05-16 | `TD-0075`/`TD-0077` requieren medición/ADR; `TD-0079` bloqueado por flujo OG con TTF | Preparar bloque estructural `TD-0063`/`TD-0069` |
 | `PLAN-github-workflow-hardening-2026-05-13.md` | Parcialmente cerrado | 2026-05-13 | La fase 3 ya registra diminishing returns | Reabrir solo con hallazgo concreto de CI o archivar cuando se acepte el cierre operativo |
 | `PLAN-heroimage-prompt-repair-2026-05-01.md` | Parcialmente cerrado | 2026-05-01 | Assets finales pendientes fuera del código | Coordinar lote manual de hero images y validar `pnpm run check:hero-images` |
-| `PLAN-seo-cross-document-roadmap-2026-05-01.md` | Vigente | 2026-05-11 | Sprint 3 requiere extensiones/nuevas calculadoras | Ejecutar `MON-306` como primer ticket |
+| `PLAN-seo-cross-document-roadmap-2026-05-01.md` | Parcialmente cerrado | 2026-05-20 | Sprint 1 consolidaciones sigue parcial; Sprint 3 cerrado | Reabrir solo para cierre sistemático de Sprint 1 o archivar cuando se acepte el cierre parcial |
 | `OWASP_SECURITY_AUDIT_2026-05-11.md` | Vigente | 2026-05-11 | `SEC-003` requiere verificar `.env` histórico antes de cambios | Verificar `SEC-003`; luego ejecutar orden recomendado del audit |
 | `PLAN-drift-audit-2026-05-20.md` | Vigente | 2026-05-20 | `TD-0084`..`TD-0086` requieren revisión humana/legal/editorial | Ejecutar primero decisiones de analytics/legal y refresh YMYL controlado |
 | `TS7_COMPATIBILITY_AUDIT_2026-04-30.md` | Bloqueado | 2026-04-30 | TypeScript 7 stable y soporte `@astrojs/check` TS7 | Esperar señal del workflow `check-ts7-readiness.yml` |
