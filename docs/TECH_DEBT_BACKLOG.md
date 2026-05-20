@@ -1,15 +1,15 @@
 # TECH_DEBT_BACKLOG
 
-Fecha de corte: 2026-05-15
+Fecha de corte: 2026-05-20
 
 ## Métricas
 
 ### Total de items por urgencia
 
 - **P0:** 7
-- **P1:** 24 (+5 desde auditoría 2026-05-15)
-- **P2:** 39 (+9 desde auditoría 2026-05-15)
-- **P3:** 12 (+7 desde auditoría 2026-05-15)
+- **P1:** 27 (+3 desde auditoría de drift 2026-05-20)
+- **P2:** 45 (+6 desde auditoría de drift 2026-05-20)
+- **P3:** 14 (+2 desde auditoría de drift 2026-05-20)
 
 ### Estado de avance (2026-05-15)
 
@@ -39,6 +39,8 @@ Fecha de corte: 2026-05-15
 
 ### Top riesgos restantes
 
+- Drift legal/YMYL de auditoría 2026-05-20: `TD-0084`, `TD-0085`, `TD-0086`.
+- Drift de fuentes canónicas, navegación y enlaces oficiales: `TD-0087`..`TD-0094`.
 - Actualización de julio 2026: actualizar `imm` en `economic-parameters.snapshot.json` cuando se publique el decreto de reajuste del IMM.
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 
@@ -51,6 +53,232 @@ Fecha de corte: 2026-05-15
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 - Actualizar `imm` en snapshot cada julio con el nuevo decreto presidencial.
 - Resolver warnings no bloqueantes vigentes (`topicRole` faltante y descripciones sobre 155 caracteres) o promoverlos a TD si dejan de ser mera higiene editorial.
+
+## TD-0094 — Taxonomía de fuentes oficiales dispersa e incompleta
+- **ID:** TD-0094
+- **Título corto:** Unificar registro de hosts oficiales
+- **Descripción:** La definición operativa de fuente oficial esta distribuida entre `scripts/legal-citations/registry.mjs`, `scripts/urlcheck/host-registry.mjs` y `src/utils/analytics.ts`. La lista usada para eventos de clicks oficiales no cubre todos los hosts usados o requeridos por contenido reciente, por ejemplo hosts de beneficios, salud, pension y fuentes semi-oficiales.
+- **Evidencia:** Auditoría de drift 2026-05-20; `src/utils/analytics.ts` contiene una lista manual de hostnames oficiales separada de los registros de legal citations y urlcheck.
+- **Impacto:** Analytics, checks legales y validacion de enlaces pueden discrepar sobre que cuenta como fuente oficial, ocultando drift semantico de fuentes.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** Crear o designar un registry canonico de hosts oficiales y derivar desde ahi analytics, legal citations y urlcheck. Donde el juicio sea editorial, documentar tipo de fuente: oficial, regulador, proveedor tecnico, referencia legal o semi-oficial.
+- **Criterios de cierre (checklist verificable):**
+- [ ] Existe una fuente canonica para host oficial y tipo de fuente.
+- [ ] `src/utils/analytics.ts` no mantiene una lista divergente.
+- [ ] `check:urls:external:audit` o un nuevo check reporta hosts oficiales no clasificados.
+- [ ] Cambios revisados contra `INVARIANT.URLCHECK.EXTERNAL_LINK_POLICY`.
+- **Owner:** TBD
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-20
+- **Última actualización:** 2026-05-20
+
+## TD-0093 — Meta descriptions largas no bloqueantes
+- **ID:** TD-0093
+- **Título corto:** Resolver presupuesto de meta descriptions largas
+- **Descripción:** `check-editorial-structure` reporta 13 meta descriptions sobre 155 caracteres. No rompe build, pero indica drift editorial en snippets.
+- **Evidencia:** Auditoría 2026-05-20: warnings en `como-hacer-presupuesto-mensual-chile`, `como-salir-boletin-comercial-chile`, `contribuciones-bienes-raices-chile`, `descuentos-de-sueldo`, `el-poder-del-interes-compuesto`, `fraude-tarjeta-que-hacer`, `gratificacion-legal-chile`, `licencia-medica-desde-que-dia-pagan`, `primer-empleo-chile-guia-completa`, `que-es-la-uf`, `seguro-de-cesantia`, `sueldo-imponible-chile`, `utm-chile-que-es-como-funciona`.
+- **Impacto:** Riesgo bajo de snippets truncados y menor consistencia editorial.
+- **Riesgo:** bajo
+- **Severidad (1-5):** 2
+- **Urgencia:** P3
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Hacer batch editorial acotado o definir presupuesto de warnings tolerados. No bloquear cambios no relacionados hasta que la politica se endurezca.
+- **Criterios de cierre (checklist verificable):**
+- [ ] Las 13 meta descriptions quedan bajo el presupuesto definido o el warning queda aceptado por politica.
+- [ ] `pnpm run check` no aumenta el conteo de warnings.
+- [ ] Si se endurece el check, queda documentado el criterio editorial.
+- **Owner:** TBD
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-20
+- **Última actualización:** 2026-05-20
+
+## TD-0092 — Overlap editorial con riesgo de canibalización
+- **ID:** TD-0092
+- **Título corto:** Declarar ownership de pares con overlap SEO
+- **Descripción:** La auditoría de topic overlap encontro un par alto y varios pares medios donde la intención de busqueda puede solaparse sin jerarquia clara.
+- **Evidencia:** `pnpm run audit:topic-overlap` marco `ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026` ↔ `como-invertir-en-etfs-desde-chile` como `candidate_strong_overlap`; pares medios en interes compuesto, operacion renta, seguro de cesantia, sueldo/descuentos, UF/IPC.
+- **Impacto:** Canibalizacion SEO, enlaces internos ambiguos y mantenimiento editorial mas costoso.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** Aplicar `docs/editorial/NON_CANNIBALIZATION_PROCESS.md` y `docs/editorial/TOPIC_OWNERSHIP_POLICY.md`: declarar owner, soporte, diferenciador y enlaces jerarquicos. No fusionar automaticamente.
+- **Criterios de cierre (checklist verificable):**
+- [ ] Cada par alto tiene owner documentado o remediacion editorial.
+- [ ] Pares medios quedan aceptados, enlazados jerarquicamente o separados por intención.
+- [ ] `audit:topic-overlap` queda con umbral/registro que impida repetir el mismo hallazgo sin decision.
+- **Owner:** TBD
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-20
+- **Última actualización:** 2026-05-20
+
+## TD-0091 — Enlaces externos con fallas o redirects semánticos
+- **ID:** TD-0091
+- **Título corto:** Corregir 404 y redirects oficiales detectados
+- **Descripción:** La auditoría externa no bloqueante detecto un enlace 404 a un reporte de accesibilidad en GitHub y un redirect mismatch desde `www.supersalud.gob.cl` hacia `www.superdesalud.gob.cl`.
+- **Evidencia:** `pnpm run check:urls:external:audit`: `hard_fail` para `https://github.com/csortega/monedario/blob/main/docs/reports/ACCESSIBILITY-2026-05-18.md` enlazado desde `src/pages/accessibilidad.astro`; `redirect_mismatch` para `https://www.supersalud.gob.cl/` usado por `src/data/blog/fonasa-vs-isapre-comparativa.md`.
+- **Impacto:** Fuente o evidencia institucional rota, menor confianza y riesgo de apuntar a host oficial migrado sin actualizacion semantica.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Verificar destinos oficiales/permanentes, corregir URLs y agregar un check que distinga 200 tecnico de destino semanticamente correcto.
+- **Criterios de cierre (checklist verificable):**
+- [ ] El enlace de accesibilidad ya no retorna 404.
+- [ ] Supersalud/Superdesalud apunta al host oficial vigente y pagina adecuada.
+- [ ] `pnpm run check:urls:external:audit` no reporta estos dos casos.
+- [ ] Se documenta criterio de redirect oficial aceptable.
+- **Owner:** TBD
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-20
+- **Última actualización:** 2026-05-20
+
+## TD-0090 — Header duplica manualmente el catálogo de hubs
+- **ID:** TD-0090
+- **Título corto:** Derivar o validar dropdown de guías
+- **Descripción:** `src/components/Header.astro` hardcodea el arreglo `guiasDropdown`, aunque `src/config/clusters.ts` ya define `GUIDE_HUB_ORDER` y `GUIDE_HUBS`. En la auditoría 2026-05-20 ambos coincidian 9/9, pero no existe guardrail que lo preserve.
+- **Evidencia:** `Header.astro` define manualmente los 9 hubs; `Footer.astro` ya deriva hubs desde `GUIDE_HUB_ORDER`, mostrando que existe fuente canonica reutilizable.
+- **Impacto:** Proximos hubs pueden quedar fuera de navegacion primaria o cambiar labels/rutas en una superficie pero no en otra.
+- **Riesgo:** bajo
+- **Severidad (1-5):** 2
+- **Urgencia:** P3
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Generar `guiasDropdown` desde `GUIDE_HUB_ORDER`/`GUIDE_HUBS` o agregar test `check:catalog-drift` que compare header contra registry.
+- **Criterios de cierre (checklist verificable):**
+- [ ] Header ya no duplica manualmente hubs o existe test que falla ante divergencia.
+- [ ] Footer, header y paginas hub comparten la misma fuente de verdad.
+- [ ] `pnpm run check` o gate focalizado valida el catalogo.
+- **Owner:** TBD
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-20
+- **Última actualización:** 2026-05-20
+
+## TD-0089 — Home contiene tarjetas y fechas manuales con riesgo de frescura falsa
+- **ID:** TD-0089
+- **Título corto:** Validar frescura de ProblemCards
+- **Descripción:** `src/components/ProblemCards.astro` contiene tarjetas estaticas y fechas fijas para superficies de descubrimiento. El propio archivo advierte que esas fechas deben actualizarse manualmente cuando cambien las paginas enlazadas.
+- **Evidencia:** Auditoría 2026-05-20: comentarios de fechas manuales en `ProblemCards.astro` y valores fijos como `new Date("2026-01-15")`.
+- **Impacto:** La home puede comunicar frescura o relevancia que no corresponde al contenido enlazado.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** Derivar fechas desde contenido/catalagos cuando sea posible o crear `check:homepage-surface-freshness` para bloquear fechas manuales obsoletas.
+- **Criterios de cierre (checklist verificable):**
+- [ ] Tarjetas que enlazan posts usan fechas del frontmatter.
+- [ ] Tarjetas que enlazan calculadoras/hubs tienen fecha derivada, politica explicita o test de vigencia.
+- [ ] Home no requiere recordar actualizaciones manuales sin guardrail.
+- **Owner:** TBD
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-20
+- **Última actualización:** 2026-05-20
+
+## TD-0088 — Breadcrumbs dependen de `tagHubMap` manual incompleto
+- **ID:** TD-0088
+- **Título corto:** Alinear breadcrumbs con cluster canonico
+- **Descripción:** `src/components/Breadcrumb.astro` decide el hub de articulo con `tagHubMap`, una tabla manual dependiente de tags y orden. La guia PGU tiene cluster de pensiones pero, al no tener tag mapeado, cae en breadcrumb generico `Articulos`.
+- **Evidencia:** Auditoría 2026-05-20: `pgu-pension-garantizada-universal` usa tags `pgu,pension,ips,adultos-mayores,prevision`; ninguno coincide con `tagHubMap`; el HTML generado muestra `Inicio > Articulos > ...` mientras bloques relacionados apuntan a `pensiones-afp`.
+- **Impacto:** Drift entre taxonomia editorial, breadcrumbs schema.org y navegacion interna.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** Derivar breadcrumb desde `cluster`/`canonicalTopic` cuando exista y dejar `tagHubMap` solo como fallback, o agregar check que exija mapping para todo articulo clusterizado.
+- **Criterios de cierre (checklist verificable):**
+- [ ] PGU y cualquier articulo con cluster canonico reciben breadcrumb de hub correcto.
+- [ ] `BreadcrumbList` y enlaces internos no divergen de `GUIDE_HUBS`.
+- [ ] Existe test o script `check:catalog-drift` para cluster -> breadcrumb.
+- **Owner:** TBD
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-20
+- **Última actualización:** 2026-05-20
+
+## TD-0087 — Registro de datos económicos no alinea fuente primaria con ADR/Worker
+- **ID:** TD-0087
+- **Título corto:** Alinear source labels economicos con Worker
+- **Descripción:** La arquitectura vigente define un Worker de snapshot economico con fuentes primarias oficiales para indicadores clave, pero derivados editoriales y UI todavia pueden rotular `mindicador.cl/api` como fuente principal para datos cuya fuente canonica paso a BCCh o INE.
+- **Evidencia:** `docs/adr/ADR-20260516-economic-snapshot-cloudflare-worker.md` define UF/USD desde BCCh e IPC desde INE; `src/config/editorial-volatile-data-registry.json` y `scripts/refresh-editorial-volatile-data.mjs` siguen usando `mindicador.cl/api` como primer `sourceUrl/sourceLabel` en varios derivados.
+- **Impacto:** Riesgo de E-E-A-T/YMYL: el dato puede ser correcto pero atribuido a una fuente menos oficial o desalineada con ADR.
+- **Riesgo:** medio-alto
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** Hacer que snapshot, registry editorial, UI y MethodologyBlock consuman una fuente canonica por indicador, con fallback documentado cuando aplique.
+- **Criterios de cierre (checklist verificable):**
+- [ ] UF/USD/IPC muestran fuente primaria compatible con ADR/Worker.
+- [ ] `refresh-editorial-volatile-data.mjs` no elige `sourceUrls[0]` si contradice fuente canonica vigente.
+- [ ] Existe `check:economic-source-consistency`.
+- [ ] Cambios validados contra `docs/governance/FINANCIAL_DATA_VERIFICATION_POLICY.md`.
+- **Owner:** TBD
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-20
+- **Última actualización:** 2026-05-20
+
+## TD-0086 — PGU delega monto vigente sin registrar dato central
+- **ID:** TD-0086
+- **Título corto:** Refrescar monto vigente PGU con fuente oficial
+- **Descripción:** La guia PGU instruye al lector a verificar el monto vigente en IPS en vez de registrar el monto, fecha y fuente dentro del articulo. PGU es un beneficio estatal y el monto vigente es informacion central.
+- **Evidencia:** `src/data/blog/pgu-pension-garantizada-universal.md` contiene texto del tipo "El monto vigente al 2026-05-03 debe verificarse directamente en IPS".
+- **Impacto:** YMYL alto: el articulo puede no responder el dato principal que el lector necesita y traspasa validacion al usuario.
+- **Riesgo:** alto
+- **Severidad (1-5):** 4
+- **Urgencia:** P1
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** Ejecutar refresh editorial con fuente oficial IPS/ChileAtiende/SPensiones, `validAsOf`, monto vigente, nota de reajuste y alcance.
+- **Criterios de cierre (checklist verificable):**
+- [ ] El articulo declara monto vigente, fecha y fuente oficial.
+- [ ] La respuesta preserva `CONTRACT.YMYL_RESPONSE_STRUCTURE`.
+- [ ] Existe evidencia editorial de verificacion humana o fuente oficial capturada.
+- [ ] `pnpm run check` y checks editoriales pasan.
+- **Owner:** Carlos Ortega / editorial
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-20
+- **Última actualización:** 2026-05-20
+
+## TD-0085 — Placeholder YMYL visible en Fonasa vs Isapre
+- **ID:** TD-0085
+- **Título corto:** Eliminar placeholder `[umbral vigente]`
+- **Descripción:** La guia comparativa Fonasa vs Isapre contiene un placeholder visible en una tabla YMYL. El problema no es cosmetico: el campo representa un umbral vigente que afecta interpretacion de costos/cobertura.
+- **Evidencia:** `src/data/blog/fonasa-vs-isapre-comparativa.md` contiene `[umbral vigente]` en la tabla comparativa.
+- **Impacto:** Alta perdida de confianza y potencial incumplimiento editorial YMYL por publicar un dato pendiente.
+- **Riesgo:** alto
+- **Severidad (1-5):** 4
+- **Urgencia:** P1
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** Ejecutar refresh editorial con fuente oficial vigente. Agregar guardrail que bloquee placeholders publicados tipo `[vigente]`, `[verificar]`, `[pendiente]` en contenido YMYL.
+- **Criterios de cierre (checklist verificable):**
+- [ ] No queda placeholder visible en el articulo.
+- [ ] El dato reemplazante tiene fuente oficial, fecha y alcance.
+- [ ] `check:ymyl-freshness-claims` o check equivalente bloquea regresion.
+- [ ] No se completo el dato por inferencia sin revision humana.
+- **Owner:** Carlos Ortega / editorial
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-20
+- **Última actualización:** 2026-05-20
+
+## TD-0084 — Claims legales de analytics no cubren capacidad GA/GTM
+- **ID:** TD-0084
+- **Título corto:** Resolver drift legal de analytics
+- **Descripción:** Las paginas de privacidad/cookies describen Cloudflare Web Analytics sin cookies ni identificadores persistentes, pero el codigo puede activar Google Analytics/Tag Manager con `PUBLIC_GA_MEASUREMENT_ID` y el CSP permite dominios de Google Analytics/Tag Manager.
+- **Evidencia:** `src/layouts/Layout.astro` inyecta `https://www.googletagmanager.com/gtag/js` si existe `PUBLIC_GA_MEASUREMENT_ID`; `src/scripts/analytics.ts` configura `window.gtag`; `public/_headers` permite `www.googletagmanager.com` y `www.google-analytics.com`; `src/pages/privacidad.astro` y `src/pages/cookies.astro` declaran Cloudflare-only. En el entorno local auditado `PUBLIC_GA_MEASUREMENT_ID` no estaba seteada.
+- **Impacto:** Brecha legal/politica: una configuracion de deploy podria activar transferencia a Google sin que el texto legal y consentimiento lo cubran.
+- **Riesgo:** alto
+- **Severidad (1-5):** 4
+- **Urgencia:** P1
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** Decidir explicitamente entre: (a) Cloudflare-only, removiendo o deshabilitando capacidad GA/GTM y CSP sobrante; o (b) GA permitido, actualizando privacidad/cookies/consentimiento antes de activarlo.
+- **Criterios de cierre (checklist verificable):**
+- [ ] Existe decision documentada Cloudflare-only o GA permitido.
+- [ ] Codigo, CSP, env vars documentadas y paginas legales dicen lo mismo.
+- [ ] Existe `check:legal-privacy-claims` o equivalente para scripts externos, storage, cookies, CSP y terceros.
+- [ ] No se activa GA/GTM sin revision humana/legal.
+- **Owner:** Carlos Ortega / legal-product
+- **Estado:** Abierto
+- **Fecha de creación:** 2026-05-20
+- **Última actualización:** 2026-05-20
 
 ## TD-0083 — Baseline local de gates no está limpia para cambios UI acotados
 - **ID:** TD-0083

@@ -1,6 +1,6 @@
 # Backlog Monedario.cl — Estado actual
 
-> Generado el 2026-04-08. Última actualización: 2026-05-16.
+> Generado el 2026-04-08. Última actualización: 2026-05-20.
 > Lectura obligatoria antes de ejecutar cualquier ticket: `AGENTS.md` y `context/INVARIANTS.md`.
 
 ---
@@ -9,7 +9,7 @@
 
 Completado: Fases 0–3 salvo decisiones pendientes explícitas (`MON-301`, `MON-304`), auditorías de calculadoras, UX backlog (15/16), Phase 1 Profile Persistence, Phase 2 High-Value Roadmap (Waves 1–5), Optimization, Editorial Timeliness, Blog Advisory Standardization, Date Display Consistency, Guardrail Automation, GitHub Actions remediation, Next Best Step, Data Signals (parcial), modernización estratégica 2026-05-11, cierre mobile CWV/LCP (`TD-0039`), `TD-0057` backfill canónico YMYL (46 artículos), SEO roadmap Sprints 0 y 2, publicación Sprint 2B firmada y quick wins de auditoría profunda 2026-05-15.
 
-Deuda técnica: 9 items sin iniciar y 2 en validación/diseño en `docs/TECH_DEBT_BACKLOG.md`.
+Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados el 2026-05-20 en `docs/TECH_DEBT_BACKLOG.md`.
 
 ### Siguiente orden recomendado
 
@@ -20,6 +20,7 @@ Deuda técnica: 9 items sin iniciar y 2 en validación/diseño en `docs/TECH_DEB
 | 3 | `MON-308` — Calculadora interés compuesto (nueva, standalone) | Sprint 3 SEO; P1, simulador-jubilacion demasiado AFP-específico para absorber herramienta genérica |
 | 4 | `MON-309` — Calculadora depósito a plazo (nueva, standalone) | Sprint 3 SEO; P2, ninguna calc existente tiene lógica de tasas de interés |
 | 5 | `TD-0063` + `TD-0069` — Componentizar calculadoras grandes y bajar duplicación | Siguiente bloque estructural recomendado tras cerrar quick wins y coverage |
+| 6 | `TD-0084`..`TD-0086` — Drift legal/YMYL alto | Requiere decisión humana/legal/editorial antes de tocar analytics o contenido sensible |
 
 ### Pendiente — implementación por código
 
@@ -31,6 +32,7 @@ Deuda técnica: 9 items sin iniciar y 2 en validación/diseño en `docs/TECH_DEB
 | TypeScript 7 compatibility | `TS7_COMPATIBILITY_AUDIT_2026-04-30.md` | Blocked — esperando TS7 stable |
 | Newsletter (MON-301) | `ux-backlog.md` | Decisión de plataforma pendiente |
 | OWASP Security backlog | `OWASP_SECURITY_AUDIT_2026-05-11.md` | SEC-003 pendiente (verificar `.env` histórico) |
+| Auditoría drift 2026-05-20 | `PLAN-drift-audit-2026-05-20.md` | Ejecutar `TD-0084`..`TD-0094` sin cambios automáticos YMYL/legal |
 | LinkedIn strategy (MON-304) | `ux-backlog.md` | Fase 3, sin urgencia |
 | Illustrations (MON-405) | `ux-backlog.md` | Diferido |
 | Blog Advisory Architecture | `BLOG_ADVISORY_ARCHITECTURE_PLAN_2026-04-22.md` | Propuesta futuro mediano |
@@ -100,6 +102,7 @@ Deuda técnica: 9 items sin iniciar y 2 en validación/diseño en `docs/TECH_DEB
 | `BLOG_ADVISORY_ARCHITECTURE_PLAN_2026-04-22.md` | Propuesta |
 | `prompt-*.md` | Plantillas reutilizables |
 | `OWASP_SECURITY_AUDIT_2026-05-11.md` | 9 hallazgos (3🔴3🟠3🟡); SEC-003 verificar primero |
+| `PLAN-drift-audit-2026-05-20.md` | Vigente; findings `TD-0084`..`TD-0094` |
 
 ## Status — planes vigentes
 
@@ -110,6 +113,7 @@ Deuda técnica: 9 items sin iniciar y 2 en validación/diseño en `docs/TECH_DEB
 | `PLAN-heroimage-prompt-repair-2026-05-01.md` | Parcialmente cerrado | 2026-05-01 | Assets finales pendientes fuera del código | Coordinar lote manual de hero images y validar `pnpm run check:hero-images` |
 | `PLAN-seo-cross-document-roadmap-2026-05-01.md` | Vigente | 2026-05-11 | Sprint 3 requiere extensiones/nuevas calculadoras | Ejecutar `MON-306` como primer ticket |
 | `OWASP_SECURITY_AUDIT_2026-05-11.md` | Vigente | 2026-05-11 | `SEC-003` requiere verificar `.env` histórico antes de cambios | Verificar `SEC-003`; luego ejecutar orden recomendado del audit |
+| `PLAN-drift-audit-2026-05-20.md` | Vigente | 2026-05-20 | `TD-0084`..`TD-0086` requieren revisión humana/legal/editorial | Ejecutar primero decisiones de analytics/legal y refresh YMYL controlado |
 | `TS7_COMPATIBILITY_AUDIT_2026-04-30.md` | Bloqueado | 2026-04-30 | TypeScript 7 stable y soporte `@astrojs/check` TS7 | Esperar señal del workflow `check-ts7-readiness.yml` |
 | `HERO_IMAGE_SYSTEM_REMEDIATION_2026-04-30.md` | Vigente | 2026-04-30 | Remediación manual de assets por lotes | Empezar batch Payroll / salary / deductions |
 
