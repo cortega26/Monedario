@@ -17,7 +17,7 @@ category: empleo-ingresos
 cluster: empleo-ingresos
 topicRole: owner
 canonicalTopic: seguro-cesantia-cobertura
-description: "Guía completa del Seguro de Cesantía en Chile: qué es la CIC y el FCS, cómo consultar tu saldo, cuándo y cómo cobrar, y cuánto te pagan según tu tipo de contrato."
+description: "Seguro de Cesantía en Chile: qué son la CIC y el FCS, cómo consultar tu saldo, cuándo cobrar y cuánto recibes según tu tipo de contrato."
 heroImage: /images/hero/seguro-de-cesantia.avif
 articleLead:
   answer: "El Seguro de Cesantía no es un solo fondo: primero manda tu Cuenta Individual de Cesantía y solo después, si cumples requisitos, puede entrar el Fondo Solidario. Si mezclas ambas capas, es fácil creer que tienes más cobertura de la que realmente puedes cobrar."

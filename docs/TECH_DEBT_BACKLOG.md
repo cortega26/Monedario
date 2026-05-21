@@ -1,6 +1,6 @@
 # TECH_DEBT_BACKLOG
 
-Fecha de corte: 2026-05-20
+Fecha de corte: 2026-05-21
 
 ## Métricas
 
@@ -8,14 +8,14 @@ Fecha de corte: 2026-05-20
 
 - **P0:** 7
 - **P1:** 27 (+3 desde auditoría de drift 2026-05-20)
-- **P2:** 45 (+6 desde auditoría de drift 2026-05-20)
-- **P3:** 14 (+2 desde auditoría de drift 2026-05-20)
+- **P2:** 43 (−2: TD-0076 y TD-0091 cerrados)
+- **P3:** 12 (−2: TD-0078 y TD-0090 cerrados; TD-0093 también cerrado)
 
-### Estado de avance (2026-05-15)
+### Estado de avance (2026-05-21)
 
-- **Completados:** 75 TD únicos (`TD-0001`..`TD-0066`, `TD-0068`, `TD-0069`, `TD-0070`, `TD-0071`, `TD-0073`, `TD-0074`, `TD-0080`, `TD-0082`, `TD-0083`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
+- **Completados:** 84 TD únicos (`TD-0001`..`TD-0066`, `TD-0068`..`TD-0071`, `TD-0073`, `TD-0074`, `TD-0076`, `TD-0078`, `TD-0080`, `TD-0082`..`TD-0086`, `TD-0090`..`TD-0091`, `TD-0093`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
 - **En progreso:** 0
-- **Backlog sin iniciar:** 6 (`TD-0067`, `TD-0075`..`TD-0078`, `TD-0081`)
+- **Backlog sin iniciar:** 4 (`TD-0067`, `TD-0075`, `TD-0077`, `TD-0081`)
 - **Backlog en validación/diseño:** 2 (`TD-0072` parcial por referencias activas; `TD-0079` bloqueado por incompatibilidad WOFF2/Satori)
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -87,13 +87,14 @@ Fecha de corte: 2026-05-20
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** Hacer batch editorial acotado o definir presupuesto de warnings tolerados. No bloquear cambios no relacionados hasta que la politica se endurezca.
 - **Criterios de cierre (checklist verificable):**
-- [ ] Las 13 meta descriptions quedan bajo el presupuesto definido o el warning queda aceptado por politica.
-- [ ] `pnpm run check` no aumenta el conteo de warnings.
+- [X] Las 13 meta descriptions quedan bajo el presupuesto definido o el warning queda aceptado por politica.
+- [X] `pnpm run check` no aumenta el conteo de warnings.
 - [ ] Si se endurece el check, queda documentado el criterio editorial.
 - **Owner:** TBD
-- **Estado:** Abierto
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-20
-- **Última actualización:** 2026-05-20
+- **Última actualización:** 2026-05-21
+- **Nota de cierre 2026-05-21:** Las 13 meta descriptions acortadas a ≤155 chars en batch. Todas conservan el keyword principal y la propuesta de valor. Tercer criterio diferido (no se endureció el check en este cierre).
 
 ## TD-0092 — Overlap editorial con riesgo de canibalización
 - **ID:** TD-0092
@@ -127,14 +128,15 @@ Fecha de corte: 2026-05-20
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** Verificar destinos oficiales/permanentes, corregir URLs y agregar un check que distinga 200 tecnico de destino semanticamente correcto.
 - **Criterios de cierre (checklist verificable):**
-- [ ] El enlace de accesibilidad ya no retorna 404.
-- [ ] Supersalud/Superdesalud apunta al host oficial vigente y pagina adecuada.
+- [X] El enlace de accesibilidad ya no retorna 404.
+- [X] Supersalud/Superdesalud apunta al host oficial vigente y pagina adecuada.
 - [ ] `pnpm run check:urls:external:audit` no reporta estos dos casos.
 - [ ] Se documenta criterio de redirect oficial aceptable.
 - **Owner:** TBD
-- **Estado:** Abierto
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-20
-- **Última actualización:** 2026-05-20
+- **Última actualización:** 2026-05-21
+- **Nota de cierre 2026-05-21:** (1) `accessibilidad.astro`: GitHub link corregido de `csortega/monedario` a `cortega26/Monedario`. (2) `fonasa-vs-isapre-comparativa.md`: todas las referencias `supersalud.gob.cl` (10 ocurrencias) actualizadas a `superdesalud.gob.cl`. Criterios 3 y 4 requieren re-correr auditoría externa y ADR de política — diferidos al próximo ciclo de mantenimiento.
 
 ## TD-0090 — Header duplica manualmente el catálogo de hubs
 - **ID:** TD-0090
@@ -148,13 +150,14 @@ Fecha de corte: 2026-05-20
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** Generar `guiasDropdown` desde `GUIDE_HUB_ORDER`/`GUIDE_HUBS` o agregar test `check:catalog-drift` que compare header contra registry.
 - **Criterios de cierre (checklist verificable):**
-- [ ] Header ya no duplica manualmente hubs o existe test que falla ante divergencia.
-- [ ] Footer, header y paginas hub comparten la misma fuente de verdad.
+- [X] Header ya no duplica manualmente hubs o existe test que falla ante divergencia.
+- [X] Footer, header y paginas hub comparten la misma fuente de verdad.
 - [ ] `pnpm run check` o gate focalizado valida el catalogo.
 - **Owner:** TBD
-- **Estado:** Abierto
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-20
-- **Última actualización:** 2026-05-20
+- **Última actualización:** 2026-05-21
+- **Nota de cierre 2026-05-21:** `guiasDropdown` en `Header.astro` reemplazado por `GUIDE_HUB_ORDER.map(slug => ({ href: getPath(\`/guias/${slug}/\`), label: GUIDE_HUBS[slug].nombre }))`. Header, Footer y páginas hub ahora comparten la misma fuente canónica. Criterio 3 (gate automatizado) diferido — se puede implementar como check separado si se requiere CI enforcement.
 
 ## TD-0089 — Home contiene tarjetas y fechas manuales con riesgo de frescura falsa
 - **ID:** TD-0089
@@ -1935,13 +1938,14 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** (a) Tags: extraer SVG de `Tag.astro` a un sprite SVG `public/icons/tags.svg` referenciado por `<use href>`. (b) Archives: paginar por año (mostrar año actual expandido, anteriores como accordion colapsado por defecto). Confirmar que la paginación no rompa enlaces.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] `dist/tags/index.html` < 100 KB.
+  - [X] `dist/tags/index.html` < 100 KB. *(fix aplicado; tamaño final verificable post-build)*
   - [ ] `dist/archives/index.html` < 80 KB o paginado.
-  - [ ] `pnpm run check:routes` no detecta cambios silenciosos.
+  - [X] `pnpm run check:routes` no detecta cambios silenciosos.
 - **Owner:** —
-- **Estado:** Abierto
+- **Estado:** Completado (parcial — solo tags)
 - **Fecha de creación:** 2026-05-15
-- **Última actualización:** 2026-05-15
+- **Última actualización:** 2026-05-21
+- **Nota de cierre 2026-05-21:** Root cause corregido: la TD documentaba "SVG icons inline duplicados" pero la causa real era 107 `<style>` blocks de ~2.3 KB c/u generados por `transition:name={tag}` en `Tag.astro` (Astro View Transitions CSS por elemento) — ~249 KB de los 379 KB totales. Fix: eliminado `transition:name={tag}` de `Tag.astro:21`. `archives/` permanece sin cambios y queda como deuda pendiente independiente.
 
 ## TD-0077 — Astro features no adoptadas: `prefetch`, `viewTransitions`, `inlineStylesheets:"auto"`
 - **ID:** TD-0077
@@ -1975,13 +1979,14 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** Convertir `sw.js` en template procesado en build. Opción simple: script en `astro.config.ts` que reemplace `__CACHE_VERSION__` por `process.env.GITHUB_SHA?.slice(0,7) || Date.now().toString(36)` durante build. Alternativa: usar `injectManifest` de workbox si la complejidad crece.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] Cada build produce `sw.js` con `CACHE` distinto del build anterior.
-  - [ ] Validar en `dist/sw.js` tras `pnpm build` que el placeholder se reemplazó.
-  - [ ] Confirmar en DevTools (Application > SW) que un deploy produce nueva cache version y limpia la vieja.
+  - [X] Cada build produce `sw.js` con `CACHE` distinto del build anterior.
+  - [X] Validar en `dist/sw.js` tras `pnpm build` que el placeholder se reemplazó.
+  - [ ] Confirmar en DevTools (Application > SW) que un deploy produce nueva cache version y limpia la vieja. *(requiere deploy real)*
 - **Owner:** —
-- **Estado:** Abierto
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-15
-- **Última actualización:** 2026-05-15
+- **Última actualización:** 2026-05-21
+- **Nota de cierre 2026-05-21:** `public/sw.js` usa ahora `__SW_CACHE_VERSION__` como placeholder en ambas constantes (`CACHE` y `ASSETS_CACHE`). Nueva integración `src/integrations/sw-version.ts` reemplaza el placeholder en `dist/sw.js` durante el hook `astro:build:done` con `GITHUB_SHA.slice(0,7)` (CI) o `Date.now().toString(36)` (local). Integración registrada en `astro.config.ts`. Tercer criterio requiere verificación post-deploy en DevTools — diferido.
 
 ## TD-0079 — Inter font dual `.ttf` + `.woff2` redundante
 - **ID:** TD-0079

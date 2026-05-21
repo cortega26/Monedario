@@ -1,7 +1,7 @@
 ---
 title: "Gratificación legal en Chile: cómo calcularla y cuál es el tope"
 author: "Equipo Monedario"
-description: "Qué es la gratificación legal, cuáles son las dos modalidades del Código del Trabajo, cómo calcular el 25% con el tope de 4,75 IMM y cuándo corresponde recibirla."
+description: "Qué es la gratificación legal, sus dos modalidades del Código del Trabajo, cómo calcular el 25% con tope de 4,75 IMM y cuándo recibirla."
 slug: gratificacion-legal-chile
 pubDate: 2026-05-03T12:00:00-04:00
 tags:

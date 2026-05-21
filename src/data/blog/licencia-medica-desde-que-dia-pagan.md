@@ -1,7 +1,7 @@
 ---
 title: "Licencia médica en Chile: desde qué día te pagan y cómo reclamar"
 author: "Equipo Monedario"
-description: "Guía práctica para entender desde qué día se paga una licencia médica en Chile, cuánto es el subsidio, quién paga según el caso y cómo apelar si rechazan o reducen el subsidio."
+description: "Desde qué día se paga una licencia médica en Chile, cuánto es el subsidio, quién paga según el caso y cómo apelar si te lo rechazan."
 slug: licencia-medica-desde-que-dia-pagan
 pubDate: 2026-03-02T18:30:00Z
 updatedDate: 2026-05-11T00:00:00Z

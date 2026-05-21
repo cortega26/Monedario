@@ -16,7 +16,7 @@ category: empleo-ingresos
 cluster: empleo-ingresos
 topicRole: owner
 canonicalTopic: primer-empleo-integral
-description: "Guía práctica para el primer empleo formal en Chile: qué revisar en el contrato, cómo leer la primera liquidación, AFP, Fonasa, seguro de cesantía y presupuesto del primer sueldo."
+description: "Primer empleo formal en Chile: qué revisar en el contrato, cómo leer la liquidación, AFP, Fonasa, seguro de cesantía y primer sueldo."
 heroImage: /images/hero/primer-empleo-chile-guia-completa.avif
 articleLead:
   answer: "Tu primer empleo formal tiene cuatro pasos críticos en el primer mes: firmar el contrato revisado, verificar la primera liquidación, afiliar o confirmar AFP, y armar un presupuesto con el sueldo líquido real."

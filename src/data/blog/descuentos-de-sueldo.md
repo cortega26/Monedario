@@ -16,7 +16,7 @@ category: empleo-ingresos
 cluster: sueldo-remuneraciones
 topicRole: owner
 canonicalTopic: clasificacion-descuentos-sueldo
-description: "Guía para separar descuentos legales, autorizados y prohibidos en tu sueldo en Chile, sin confundir la clasificación jurídica con el cálculo completo del líquido."
+description: "Cómo separar descuentos legales, autorizados y prohibidos en tu sueldo chileno, sin confundir la clasificación jurídica con el líquido."
 heroImage: /images/hero/descuentos-de-sueldo.avif
 articleAdvisory: "Contenido educativo; verifica porcentajes y tablas vigentes antes de reclamar o firmar conforme."
 articleLead:

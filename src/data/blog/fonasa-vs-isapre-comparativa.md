@@ -25,7 +25,7 @@ articleLead:
   validAsOf: 2026-04-08
   officialSources:
     - label: "Superintendencia de Salud"
-      href: "https://www.supersalud.gob.cl"
+      href: "https://www.superdesalud.gob.cl"
     - label: "Fonasa — Tramos y coberturas"
       href: "https://www.fonasa.cl"
   covers:
@@ -62,9 +62,9 @@ Esta guía da una respuesta concreta según tu situación: si tienes enfermedade
 - Si tu sueldo es alto y encuentras un plan Isapre cuyo precio total (incluyendo el extra sobre el 7%) es competitivo con lo que pagarías en copagos por uso frecuente de red privada, la Isapre puede ser conveniente.
 - Si tienes muchas cargas familiares (hijos, cónyuge), Fonasa es casi siempre más económica porque las cargas no aumentan el precio base.
 
-**Vigencia:** Esta guía usa información vigente al **2026-04-08**. Los tramos de Fonasa y los valores exactos de copago se actualizan periódicamente. Verifica siempre en [fonasa.cl](https://www.fonasa.cl) y [supersalud.gob.cl](https://www.supersalud.gob.cl).
+**Vigencia:** Esta guía usa información vigente al **2026-04-08**. Los tramos de Fonasa y los valores exactos de copago se actualizan periódicamente. Verifica siempre en [fonasa.cl](https://www.fonasa.cl) y [superdesalud.gob.cl](https://www.superdesalud.gob.cl).
 
-**Fuentes:** [Fonasa](https://www.fonasa.cl) · [Superintendencia de Salud](https://www.supersalud.gob.cl) · [Ley 18.469 (Fonasa)](https://www.bcn.cl/leychile/navegar?idNorma=29581) · [Ley 18.933 (Isapres)](https://www.bcn.cl/leychile/navegar?idNorma=30208)
+**Fuentes:** [Fonasa](https://www.fonasa.cl) · [Superintendencia de Salud](https://www.superdesalud.gob.cl) · [Ley 18.469 (Fonasa)](https://www.bcn.cl/leychile/navegar?idNorma=29581) · [Ley 18.933 (Isapres)](https://www.bcn.cl/leychile/navegar?idNorma=30208)
 
 ---
 
@@ -109,7 +109,7 @@ El precio del plan Isapre **sube con la edad, el sexo (tabla de factores regulad
 
 ## Comparación directa: Fonasa vs Isapre
 
-> **Nota (resumen orientativo):** Esta tabla simplifica la normativa para fines informativos. El resultado puede variar según plan específico, edad, cargas y condiciones del contrato. Verifica en [supersalud.gob.cl](https://www.supersalud.gob.cl) antes de tomar una decisión.
+> **Nota (resumen orientativo):** Esta tabla simplifica la normativa para fines informativos. El resultado puede variar según plan específico, edad, cargas y condiciones del contrato. Verifica en [superdesalud.gob.cl](https://www.superdesalud.gob.cl) antes de tomar una decisión.
 
 | Criterio                                | Fonasa                                       | Isapre                                    |
 | --------------------------------------- | -------------------------------------------- | ----------------------------------------- |
@@ -145,7 +145,7 @@ El precio del plan Isapre **sube con la edad, el sexo (tabla de factores regulad
 - Necesitas **hospitalización en clínicas específicas** (clínica privada de preferencia) con cobertura garantizada.
 - Valoras **habitación individual, menores tiempos de espera para especialistas** y red privada para controles.
 
-> **Advertencia:** La industria Isapre atravesó una crisis financiera en 2023-2025. Antes de contratar un plan, verifica en [supersalud.gob.cl](https://www.supersalud.gob.cl) que la Isapre tiene solvencia y no está en proceso de liquidación.
+> **Advertencia:** La industria Isapre atravesó una crisis financiera en 2023-2025. Antes de contratar un plan, verifica en [superdesalud.gob.cl](https://www.superdesalud.gob.cl) que la Isapre tiene solvencia y no está en proceso de liquidación.
 
 ---
 
@@ -172,12 +172,12 @@ El precio del plan Isapre **sube con la edad, el sexo (tabla de factores regulad
 
 ## GES y CAEC: cobertura catastrófica en los dos sistemas
 
-El **GES** (Garantías Explícitas en Salud, antes AUGE) cubre un conjunto de patologías con garantías de acceso, oportunidad, protección financiera y calidad. Aplica tanto en Fonasa como en Isapres: ninguno puede negarte ese nivel de cobertura para las patologías listadas. Consulta el listado vigente en [supersalud.gob.cl](https://www.supersalud.gob.cl).
+El **GES** (Garantías Explícitas en Salud, antes AUGE) cubre un conjunto de patologías con garantías de acceso, oportunidad, protección financiera y calidad. Aplica tanto en Fonasa como en Isapres: ninguno puede negarte ese nivel de cobertura para las patologías listadas. Consulta el listado vigente en [superdesalud.gob.cl](https://www.superdesalud.gob.cl).
 
 Más allá del GES:
 
 - **En Fonasa:** la red hospitalaria pública cubre hospitalizaciones por condiciones catastróficas (cáncer, cirugías mayores, trasplantes) sin tope de gasto, pagando el copago según tu tramo.
-- **En Isapre:** el **CAEC** (Cobertura Adicional para Enfermedades Catastróficas) cubre el 100% de los gastos hospitalarios una vez que el cotizante supera un deducible anual máximo definido en el plan. Verifica el valor del deducible de tu plan específico en el contrato o en [supersalud.gob.cl](https://www.supersalud.gob.cl).
+- **En Isapre:** el **CAEC** (Cobertura Adicional para Enfermedades Catastróficas) cubre el 100% de los gastos hospitalarios una vez que el cotizante supera un deducible anual máximo definido en el plan. Verifica el valor del deducible de tu plan específico en el contrato o en [superdesalud.gob.cl](https://www.superdesalud.gob.cl).
 
 La diferencia práctica más importante: en Fonasa, la atención catastrófica ocurre en la **red hospitalaria pública**. En Isapre, dentro de la **red privada del plan**.
 
@@ -191,7 +191,7 @@ Sí. El empleador descuenta el **7% de la remuneración imponible** en ambos cas
 
 ### ¿El GES es igual en Fonasa y en Isapre?
 
-Sí. El GES es una garantía legal que aplica por igual a ambos sistemas. Las patologías cubiertas, los plazos de atención y los copagos máximos son los mismos. La diferencia está en qué red de salud (pública o privada) se usa para la atención. Consulta el listado actualizado de patologías GES en [supersalud.gob.cl](https://www.supersalud.gob.cl).
+Sí. El GES es una garantía legal que aplica por igual a ambos sistemas. Las patologías cubiertas, los plazos de atención y los copagos máximos son los mismos. La diferencia está en qué red de salud (pública o privada) se usa para la atención. Consulta el listado actualizado de patologías GES en [superdesalud.gob.cl](https://www.superdesalud.gob.cl).
 
 ### ¿Puedo mantener a mi familia en Fonasa sin pagar más?
 
@@ -199,7 +199,7 @@ Sí. Las cargas familiares (cónyuge, hijos menores de 18 años, mayores de 18 c
 
 ### ¿Qué es el CAEC y cuándo se activa?
 
-El CAEC es un seguro catastrófico dentro de los planes Isapre. Se activa cuando el gasto hospitalario total del cotizante supera un **deducible anual máximo** fijado en el contrato: a partir de ese punto, la Isapre cubre el 100% del gasto en su red. El deducible varía por plan; verifícalo en tu contrato o en [supersalud.gob.cl](https://www.supersalud.gob.cl).
+El CAEC es un seguro catastrófico dentro de los planes Isapre. Se activa cuando el gasto hospitalario total del cotizante supera un **deducible anual máximo** fijado en el contrato: a partir de ese punto, la Isapre cubre el 100% del gasto en su red. El deducible varía por plan; verifícalo en tu contrato o en [superdesalud.gob.cl](https://www.superdesalud.gob.cl).
 
 ### ¿Puede la Isapre subirme el precio o excluir una enfermedad que ya tengo?
 
@@ -221,6 +221,6 @@ Esta guía cubre los criterios generales para elegir sistema. No reemplaza:
 
 - **La revisión del contrato de tu plan Isapre** (consulta las exclusiones específicas de tu situación).
 - **La opinión de un especialista médico** si tienes condiciones de salud complejas.
-- **El comparador oficial** de la Superintendencia de Salud ([supersalud.gob.cl](https://www.supersalud.gob.cl)) para comparar planes Isapre específicos con precios reales.
+- **El comparador oficial** de la Superintendencia de Salud ([superdesalud.gob.cl](https://www.superdesalud.gob.cl)) para comparar planes Isapre específicos con precios reales.
 
 Para otros problemas de protección financiera en Chile, puedes consultar nuestra [guía de seguridad financiera](/guias/seguridad-financiera/). Si ya enfrentaste un cobro no autorizado o un cargo que no reconoces, consulta [qué hacer ante fraude con tarjeta](/posts/fraude-tarjeta-que-hacer/). Si te preocupa el robo de identidad o líneas de crédito abiertas sin tu autorización, revisa [cómo actuar ante suplantación de identidad](/posts/suplantacion-identidad-creditos-no-reconocidos/).

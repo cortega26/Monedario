@@ -1,6 +1,6 @@
 ---
 title: "Cómo salir del Boletín Comercial: plazos, pasos y qué hacer si hay un error"
-description: "Guía legal para eliminar anotaciones del Boletín Comercial en Chile: cuándo se eliminan solas, cómo solicitarlo al pagar una deuda y cómo reclamar ante la CMF por datos erróneos."
+description: "Cómo eliminar anotaciones del Boletín Comercial en Chile: cuándo caducan, cómo solicitarlo al pagar la deuda y cómo reclamar ante la CMF."
 slug: como-salir-boletin-comercial-chile
 author: "Equipo Monedario"
 pubDate: 2026-04-09T12:00:00Z

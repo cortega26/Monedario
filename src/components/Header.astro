@@ -8,48 +8,15 @@ import generalSans600 from "@/assets/fonts/general-sans-600.woff2";
 import Dropdown from "./Dropdown.astro";
 import type { DropdownItem } from "./Dropdown.astro";
 import { SITE } from "@/config";
+import { GUIDE_HUB_ORDER, GUIDE_HUBS } from "@/config/clusters";
 import { getPath } from "@/utils/getPath";
 
 const generalSans600Src = `url("${generalSans600}") format("woff2")`;
 
-const guiasDropdown: DropdownItem[] = [
-  {
-    href: getPath("/guias/ahorro-e-inversion/"),
-    label: "Ahorro e Inversión",
-  },
-  {
-    href: getPath("/guias/deuda-credito/"),
-    label: "Deuda y Crédito",
-  },
-  {
-    href: getPath("/guias/empleo-ingresos/"),
-    label: "Empleo e Ingresos",
-  },
-  {
-    href: getPath("/guias/presupuesto-control-financiero/"),
-    label: "Presupuesto y Control Financiero",
-  },
-  {
-    href: getPath("/guias/sueldo-remuneraciones/"),
-    label: "Sueldo y Remuneraciones",
-  },
-  {
-    href: getPath("/guias/uf-costo-de-vida/"),
-    label: "UF y Costo de Vida",
-  },
-  {
-    href: getPath("/guias/impuestos-personas/"),
-    label: "Impuestos",
-  },
-  {
-    href: getPath("/guias/pensiones-afp/"),
-    label: "Pensiones y AFP",
-  },
-  {
-    href: getPath("/guias/seguridad-financiera/"),
-    label: "Seguridad Financiera",
-  },
-];
+const guiasDropdown: DropdownItem[] = GUIDE_HUB_ORDER.map(slug => ({
+  href: getPath(`/guias/${slug}/`),
+  label: GUIDE_HUBS[slug].nombre,
+}));
 
 const { pathname } = Astro.url;
 const basePath = getPath("/").replace(/\/$/, "");

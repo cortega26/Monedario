@@ -1,7 +1,7 @@
 ---
 title: "Sueldo imponible en Chile: qué es, qué incluye y cómo afecta tus descuentos"
 author: "Equipo Monedario"
-description: "Qué es la remuneración imponible, qué componentes del sueldo entran en la base y cuáles no, y cómo determina tus cotizaciones previsionales e impuesto de segunda categoría."
+description: "Qué es la remuneración imponible en Chile, qué componentes entran en la base y cómo determina tus cotizaciones previsionales e impuesto."
 slug: sueldo-imponible-chile
 pubDate: 2026-05-03T12:00:00-04:00
 tags:

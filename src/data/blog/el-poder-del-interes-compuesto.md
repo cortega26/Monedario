@@ -1,6 +1,6 @@
 ---
 title: "El poder del interés compuesto: 10% del sueldo mínimo a $125 millones"
-description: "Ejercicio educativo corregido: invertir el 10% del sueldo mínimo en el NASDAQ-100 entre 1990 y 2025 habría cerrado cerca de $125,6 millones bajo este escenario."
+description: "Ejercicio educativo: invertir el 10% del sueldo mínimo en el NASDAQ-100 entre 1990 y 2025 habría cerrado cerca de $125,6 millones."
 slug: el-poder-del-interes-compuesto
 author: "Equipo Monedario"
 pubDate: 2026-03-06T15:00:00Z

@@ -17,7 +17,7 @@ category: general
 cluster: uf-costo-de-vida
 topicRole: owner
 canonicalTopic: uf-reajustes-costo-de-vida
-description: "Explicación práctica de la Unidad de Fomento (UF): qué es, cómo se calcula, por qué cambia cada día y cómo impacta tu arriendo, dividendo y deudas en Chile."
+description: "Qué es la Unidad de Fomento (UF), cómo se calcula, por qué cambia cada día y cómo impacta tu arriendo, dividendo y deudas en Chile."
 heroImage: /images/hero/que-es-la-uf.avif
 volatileData:
   - id: "economic.uf.value"

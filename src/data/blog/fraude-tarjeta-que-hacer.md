@@ -15,7 +15,7 @@ tags:
   - derechos
 category: seguridad-financiera
 cluster: seguridad-financiera
-description: "Guía paso a paso para actuar ante un fraude con tarjeta o transferencia en Chile: qué hacer primero, los plazos que debes conocer y qué dice la Ley 20.009 sobre devolución del dinero."
+description: "Qué hacer ante un fraude con tarjeta en Chile: pasos inmediatos, plazos clave y qué establece la Ley 20.009 sobre devolución del dinero."
 heroImage: /images/hero/fraude-tarjeta-que-hacer.avif
 reviewPolicy:
   cadenceLabel: quarterly

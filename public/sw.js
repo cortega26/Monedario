@@ -1,6 +1,6 @@
 // Monedario service worker — Stale-While-Revalidate for pages, Cache First for assets.
-const CACHE = "monedario-v2";
-const ASSETS_CACHE = "monedario-assets-v1";
+const CACHE = "monedario-__SW_CACHE_VERSION__";
+const ASSETS_CACHE = "monedario-assets-__SW_CACHE_VERSION__";
 const MAX_PAGES = 50;
 const VOLATILE_HTML_PATHS = new Set([
   "/guias/uf-costo-de-vida/indicadores-economicos/",

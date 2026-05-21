@@ -1,6 +1,6 @@
 ---
 title: "UTM en Chile: qué es, cómo funciona y para qué sirve"
-description: "Qué es la UTM en Chile, cómo se reajusta cada mes según el IPC y para qué sirve: multas de tránsito, tramos de impuesto, trámites del Estado y diferencia con la UF."
+description: "Qué es la UTM en Chile, cómo se reajusta mensualmente según el IPC y para qué sirve: multas, tramos de impuesto, trámites y diferencia con la UF."
 slug: utm-chile-que-es-como-funciona
 author: "Equipo Monedario"
 pubDate: 2026-04-09T12:00:00Z

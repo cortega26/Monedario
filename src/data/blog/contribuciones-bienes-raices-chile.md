@@ -1,7 +1,7 @@
 ---
 title: "Contribuciones de bienes raíces en Chile: cálculo, cuotas y exenciones"
 author: "Equipo Monedario"
-description: "Cómo calcular tus contribuciones de bienes raíces, cuándo pagar las cuotas, qué exenciones aplican para primera vivienda o adultos mayores, y cuándo son deducibles en el F22."
+description: "Cómo calcular contribuciones de bienes raíces, cuándo pagar las cuotas, exenciones para primera vivienda o adultos mayores y deducción en el F22."
 slug: contribuciones-bienes-raices-chile
 pubDate: 2026-05-03T12:00:00-04:00
 tags:
