@@ -38,17 +38,18 @@ async function collectHashes(distDir: string): Promise<Set<string>> {
   return hashes;
 }
 
-function updateHeadersFile(headersPath: string, hashes: Set<string>): void {
+export function updateHeadersFile(headersPath: string, hashes: Set<string>): void {
   const hashTokens = [...hashes].join(" ");
   let src = readFileSync(headersPath, "utf8");
 
-  // Replace the script-src value: inject hashes + strict-dynamic, drop unsafe-inline.
+  // Replace the script-src value: inject hashes and drop unsafe-inline.
   src = src.replace(/\bscript-src\s+([^;"\n]+)/g, (_, rest: string) => {
     const cleaned = rest
       .replace(/'unsafe-inline'\s*/g, "")
+      .replace(/'strict-dynamic'\s*/g, "")
       .replace(/\s+/g, " ")
       .trim();
-    return `script-src ${hashTokens} 'strict-dynamic' ${cleaned}`;
+    return `script-src ${hashTokens} ${cleaned}`;
   });
 
   writeFileSync(headersPath, src, "utf8");

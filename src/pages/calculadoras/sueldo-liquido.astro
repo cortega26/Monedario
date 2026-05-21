@@ -1369,11 +1369,10 @@ const calculatorNextStepItems = [
       const arrow = document.getElementById("advanced-arrow");
       if (arrow) arrow.style.transform = "";
     }
-    if (advancedToggle)
-      advancedToggle.classList.toggle(
-        "opacity-40 pointer-events-none",
-        esLiquidoABruto
-      );
+    if (advancedToggle) {
+      advancedToggle.classList.toggle("opacity-40", esLiquidoABruto);
+      advancedToggle.classList.toggle("pointer-events-none", esLiquidoABruto);
+    }
   }
 
   // Toggle Modo
