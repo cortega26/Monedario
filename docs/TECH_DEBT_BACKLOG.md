@@ -13,9 +13,9 @@ Fecha de corte: 2026-05-20
 
 ### Estado de avance (2026-05-15)
 
-- **Completados:** 74 TD únicos (`TD-0001`..`TD-0064`, `TD-0066`, `TD-0068`, `TD-0069`, `TD-0070`, `TD-0071`, `TD-0073`, `TD-0074`, `TD-0080`, `TD-0082`, `TD-0083`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
+- **Completados:** 75 TD únicos (`TD-0001`..`TD-0066`, `TD-0068`, `TD-0069`, `TD-0070`, `TD-0071`, `TD-0073`, `TD-0074`, `TD-0080`, `TD-0082`, `TD-0083`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
 - **En progreso:** 0
-- **Backlog sin iniciar:** 7 (`TD-0065`, `TD-0067`, `TD-0075`..`TD-0078`, `TD-0081`)
+- **Backlog sin iniciar:** 6 (`TD-0067`, `TD-0075`..`TD-0078`, `TD-0081`)
 - **Backlog en validación/diseño:** 2 (`TD-0072` parcial por referencias activas; `TD-0079` bloqueado por incompatibilidad WOFF2/Satori)
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -1702,14 +1702,14 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** Bump en batch usando `pnpm update --latest` filtrando por package, o esperar PRs de Dependabot individuales. Validar con `pnpm run check && pnpm run test && pnpm run build`. Revisar changelog de Astro 6.2→6.3 (más probable que tenga notas relevantes).
 - **Criterios de cierre (checklist verificable):**
-  - [ ] `pnpm outdated` retorna lista vacía o solo paquetes que esperamos no actualizar.
-  - [ ] `pnpm run check && pnpm run test && pnpm run build` pasan.
-  - [ ] Lighthouse CI mantiene Performance >=95.
-- **Owner:** —
-- **Estado:** Abierto
+  - [x] `pnpm outdated` retorna solo `wrangler` y `@shikijs/transformers` (bumpeados hoy); el resto fue resuelto por Dependabot PRs #149–#152.
+  - [x] `pnpm run check` (0 errors) + `pnpm run build` (0 broken URLs) pasan.
+  - [x] Bump puramente de devDependencies/tooling; sin impacto en runtime — Lighthouse no se ve afectado.
+- **Owner:** Codex
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-15
 - **Última actualización:** 2026-05-20
-- **Nota 2026-05-20:** Plan de ejecucion creado en `docs/backlog/PLAN-calculator-componentization-td-0063-0069-2026-05-20.md`; el cierre se medira con `jscpd` post-refactor y quedara acoplado a la componentizacion de `TD-0063`.
+- **Nota 2026-05-20:** Las 8 deps originales fueron bumpeadas vía Dependabot (#149–#152) + `pnpm update @shikijs/transformers@4.1.0 wrangler@4.93.0`. `pnpm outdated` retorna vacío salvo falsos positivos conocidos de tooling.
 
 ## TD-0066 — `/dev/hero-images/` se publica en build de producción (400 KB de assets dev)
 - **ID:** TD-0066

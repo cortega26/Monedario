@@ -102,7 +102,7 @@
     "@lhci/cli": "^0.15.1",
     "@pagefind/default-ui": "^1.5.2",
     "@playwright/test": "^1.60.0",
-    "@shikijs/transformers": "^4.0.2",
+    "@shikijs/transformers": "^4.1.0",
     "@tailwindcss/typography": "^0.5.19",
     "@types/js-yaml": "^4.0.9",
     "@types/lodash.kebabcase": "^4.1.9",
@@ -121,6 +121,6 @@
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.59.4",
     "vitest": "^4.1.6",
-    "wrangler": "^4.92.0"
+    "wrangler": "^4.93.0"
   }
 }
