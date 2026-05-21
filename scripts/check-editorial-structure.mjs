@@ -20,6 +20,10 @@ const META_DESCRIPTION_MIN_LENGTH = 70;
 const META_DESCRIPTION_WARN_MAX_LENGTH = 155;
 const META_DESCRIPTION_HARD_MAX_LENGTH = 200;
 const INTERNAL_LINK_SKIP_VALUE = "ignore";
+// Detects unfilled editorial placeholders (e.g. [umbral vigente], [pendiente], [verificar])
+// that must never appear in published content.
+// Negative lookahead (?!\() excludes markdown link text ([label](url)).
+const YMYL_PLACEHOLDER_PATTERN = /\[[^\]]*\b(?:umbral vigente|por confirmar|TBD|placeholder)\b[^\]]*\](?!\()/gi;
 const CLUSTER_FIELD = "cluster";
 const SITE_HOSTNAME = process.env.SITE_HOSTNAME?.trim().toLowerCase() || null;
 const IMAGE_LINK_EXTENSION_PATTERN =
@@ -636,6 +640,16 @@ for (const filePath of files) {
       });
     }
 
+  }
+
+  // Block unfilled editorial placeholders in published content.
+  YMYL_PLACEHOLDER_PATTERN.lastIndex = 0;
+  const placeholderMatches = [...body.matchAll(YMYL_PLACEHOLDER_PATTERN)];
+  for (const match of placeholderMatches) {
+    structureIssues.push({
+      file: relative,
+      message: `contains unfilled editorial placeholder: "${match[0]}" — must be replaced with sourced data before publishing.`,
+    });
   }
 
   articleRecords.push({

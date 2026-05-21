@@ -41,9 +41,10 @@ articleLead:
     - "No recomienda AFP ni estrategia de inversión."
     - "El monto se actualiza; verifica siempre en el IPS el valor vigente."
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
-  dataTriggers: []
+  cadenceLabel: quarterly
+  maxDays: 120
+  dataTriggers:
+    - decreto.reajuste.pensiones
   derivationFactors:
     - category:prevision
     - validAsOf
@@ -59,7 +60,7 @@ Llegaste a los 65 años y no sabes si te corresponde la PGU, cuánto recibirías
 
 La Pensión Garantizada Universal (PGU) es una pensión estatal mensual que el Estado de Chile paga a adultos mayores que cumplan los requisitos legales. La PGU fue creada por la [Ley 21.419](https://www.bcn.cl/leychile/navegar?idNorma=1171923) ("Crea la Pensión Garantizada Universal y Modifica los Cuerpos Legales que Indica", promulgada 26-ENE-2022) y está administrada por el IPS. Su objetivo es garantizar un ingreso mínimo en la vejez, independientemente de si la persona cotizó en el sistema AFP o no.
 
-El monto vigente al 2026-05-03 debe verificarse directamente en el [IPS](https://www.ips.gob.cl/) — se reajusta por decreto y puede haber cambiado desde la fecha de corte de este artículo.
+El monto vigente al 2026-05-03 es **$231.732 mensuales** (65–81 años) y **$250.275 mensuales** (82 años o más, desde febrero 2026), según ChileAtiende — ver la sección [¿Cuánto se paga?](#cuánto-se-paga-monto-y-calendario-de-ajuste) más abajo. El monto se reajusta por decreto; verifica el valor actualizado en el [IPS](https://www.ips.gob.cl/).
 
 Para entender el contexto de cambios al sistema previsional que afectan a la PGU, revisa la guía de [reforma previsional vigente](/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/).
 

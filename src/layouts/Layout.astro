@@ -1,9 +1,6 @@
 ---
 import { ClientRouter } from "astro:transitions";
-import {
-  PUBLIC_GA_MEASUREMENT_ID,
-  PUBLIC_GOOGLE_SITE_VERIFICATION,
-} from "astro:env/client";
+import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 import { SITE } from "@/config";
 import { getPath } from "@/utils/getPath";
 import "@/styles/global.css";
@@ -180,20 +177,6 @@ const structuredData = !pubDatetime
     <meta name="theme-color" content="#f8f9fb" id="theme-color-meta" />
 
     {
-      PUBLIC_GA_MEASUREMENT_ID && (
-        <>
-          <meta name="ga-measurement-id" content={PUBLIC_GA_MEASUREMENT_ID} />
-          <link rel="preconnect" href="https://www.googletagmanager.com" />
-          <script
-            is:inline
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${PUBLIC_GA_MEASUREMENT_ID}`}
-          />
-        </>
-      )
-    }
-
-    {
       // If PUBLIC_GOOGLE_SITE_VERIFICATION is set in the environment variable,
       // include google-site-verification tag in the heading
       // Learn more: https://support.google.com/webmasters/answer/9008080#meta_tag_verification&zippy=%2Chtml-tag
@@ -260,7 +243,7 @@ const structuredData = !pubDatetime
     <slot />
 
     <!-- Load full theme logic -->
-    {PUBLIC_GA_MEASUREMENT_ID && <script src="../scripts/analytics.ts" />}
+    <script src="../scripts/analytics.ts"></script>
     <script src="../scripts/theme.ts"></script>
 
     <script is:inline src="/sw-register.js" defer></script>

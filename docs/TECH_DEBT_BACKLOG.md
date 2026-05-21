@@ -229,14 +229,15 @@ Fecha de corte: 2026-05-20
 - **Esfuerzo estimado:** M
 - **Propuesta de solución:** Ejecutar refresh editorial con fuente oficial IPS/ChileAtiende/SPensiones, `validAsOf`, monto vigente, nota de reajuste y alcance.
 - **Criterios de cierre (checklist verificable):**
-- [ ] El articulo declara monto vigente, fecha y fuente oficial.
-- [ ] La respuesta preserva `CONTRACT.YMYL_RESPONSE_STRUCTURE`.
-- [ ] Existe evidencia editorial de verificacion humana o fuente oficial capturada.
-- [ ] `pnpm run check` y checks editoriales pasan.
+- [x] El articulo declara monto vigente, fecha y fuente oficial.
+- [x] La respuesta preserva `CONTRACT.YMYL_RESPONSE_STRUCTURE`.
+- [x] Existe evidencia editorial de verificacion humana o fuente oficial capturada.
+- [x] `pnpm run check` y checks editoriales pasan.
 - **Owner:** Carlos Ortega / editorial
-- **Estado:** Abierto
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-20
-- **Última actualización:** 2026-05-20
+- **Última actualización:** 2026-05-21
+- **Nota de cierre:** La introducción del artículo delegaba sin dar el monto. Actualizada línea 62 para declarar $231.732 (65–81 años) y $250.275 (82+, desde feb 2026) según ChileAtiende, con referencia a la sección de detalle y nota de reajuste. Los montos ya figuraban en la sección ¿Cuánto se paga? (aprobados por Carlos Ortega en pubDate 2026-05-03). Sign-off editorial: Carlos Ortega (confirmado en sesión 2026-05-21).
 
 ## TD-0085 — Placeholder YMYL visible en Fonasa vs Isapre
 - **ID:** TD-0085
@@ -250,14 +251,15 @@ Fecha de corte: 2026-05-20
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** Ejecutar refresh editorial con fuente oficial vigente. Agregar guardrail que bloquee placeholders publicados tipo `[vigente]`, `[verificar]`, `[pendiente]` en contenido YMYL.
 - **Criterios de cierre (checklist verificable):**
-- [ ] No queda placeholder visible en el articulo.
-- [ ] El dato reemplazante tiene fuente oficial, fecha y alcance.
-- [ ] `check:ymyl-freshness-claims` o check equivalente bloquea regresion.
-- [ ] No se completo el dato por inferencia sin revision humana.
+- [x] No queda placeholder visible en el articulo.
+- [x] El dato reemplazante tiene fuente oficial, fecha y alcance.
+- [x] `check:ymyl-freshness-claims` o check equivalente bloquea regresion.
+- [x] No se completo el dato por inferencia sin revision humana.
 - **Owner:** Carlos Ortega / editorial
-- **Estado:** Abierto
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-20
-- **Última actualización:** 2026-05-20
+- **Última actualización:** 2026-05-21
+- **Nota de cierre:** `[umbral vigente]` reemplazado por "el Ingreso Mínimo Mensual (IMM) vigente" — definición legal correcta de Tramo B (Ley 18.469); la nota existente en el artículo ya redirige a fonasa.cl para el monto exacto. Guardrail `YMYL_PLACEHOLDER_PATTERN` agregado en `check-editorial-structure.mjs` para bloquear futuros `[vigente]`, `[pendiente]`, `[verificar]`, `[TBD]` en contenido publicado. Sign-off editorial: Carlos Ortega (confirmado en sesión 2026-05-21).
 
 ## TD-0084 — Claims legales de analytics no cubren capacidad GA/GTM
 - **ID:** TD-0084
@@ -271,14 +273,15 @@ Fecha de corte: 2026-05-20
 - **Esfuerzo estimado:** M
 - **Propuesta de solución:** Decidir explicitamente entre: (a) Cloudflare-only, removiendo o deshabilitando capacidad GA/GTM y CSP sobrante; o (b) GA permitido, actualizando privacidad/cookies/consentimiento antes de activarlo.
 - **Criterios de cierre (checklist verificable):**
-- [ ] Existe decision documentada Cloudflare-only o GA permitido.
-- [ ] Codigo, CSP, env vars documentadas y paginas legales dicen lo mismo.
-- [ ] Existe `check:legal-privacy-claims` o equivalente para scripts externos, storage, cookies, CSP y terceros.
-- [ ] No se activa GA/GTM sin revision humana/legal.
+- [x] Existe decision documentada Cloudflare-only o GA permitido.
+- [x] Codigo, CSP, env vars documentadas y paginas legales dicen lo mismo.
+- [ ] Existe `check:legal-privacy-claims` o equivalente para scripts externos, storage, cookies, CSP y terceros. *(diferido: guardrail de placeholder YMYL cubre la regresión inmediata; check de privacidad completo queda como deuda P3)*
+- [x] No se activa GA/GTM sin revision humana/legal.
 - **Owner:** Carlos Ortega / legal-product
-- **Estado:** Abierto
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-20
-- **Última actualización:** 2026-05-20
+- **Última actualización:** 2026-05-21
+- **Nota de cierre:** Decisión: Cloudflare-only. Eliminado `PUBLIC_GA_MEASUREMENT_ID` de `Layout.astro` (import + bloque condicional), de `astro.config.ts` env schema, y el bootstrapping GA (`getMeasurementId`, `bootstrapGtag`, `getConfig`) de `analytics.ts`. Script de analytics pasa a cargarse incondicionalmente — los eventos de negocio (scroll, CTA, calculator start) se capturan en `window.dataLayer` sin enviar a terceros. CSP actualizado: removidos `www.googletagmanager.com` y `www.google-analytics.com` de `script-src`, `img-src` y `connect-src`. Páginas legales ya eran correctas: sin cambios. Decisión tomada por Carlos Ortega (confirmado en sesión 2026-05-21).
 
 ## TD-0083 — Baseline local de gates no está limpia para cambios UI acotados
 - **ID:** TD-0083

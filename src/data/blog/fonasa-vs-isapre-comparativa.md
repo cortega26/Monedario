@@ -84,7 +84,7 @@ Fonasa clasifica a sus beneficiarios en cuatro tramos según ingreso imponible m
 | Tramo | Quiénes son                                                                                                                          | Copago en red Fonasa (MAI) |
 | ----- | ------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- |
 | **A** | Personas sin capacidad de pago: indigentes, pensionados con monto inferior al umbral mínimo, personas con Ficha de Protección Social | **0%** (atención gratuita) |
-| **B** | Cotizantes con ingreso imponible hasta \[umbral vigente\]                                                                            | Verificar en fonasa.cl     |
+| **B** | Cotizantes con ingreso imponible hasta el Ingreso Mínimo Mensual (IMM) vigente                                                      | Verificar en fonasa.cl     |
 | **C** | Ingreso en tramo medio                                                                                                               | Verificar en fonasa.cl     |
 | **D** | Ingreso superior                                                                                                                     | Verificar en fonasa.cl     |
 
