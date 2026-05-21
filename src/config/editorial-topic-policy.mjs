@@ -137,6 +137,12 @@ export const CANONICAL_TOPIC_REGISTRY = {
       ownerSlug: "el-poder-del-interes-compuesto",
       intentLabel: "interes compuesto caso",
     },
+    "criterios-decision-inversion": {
+      ownerSlug:
+        "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
+      supportSlug: "como-elegir-inversion-segun-plazo-riesgo-objetivos",
+      intentLabel: "criterios y preparacion previa a la decision de inversion",
+    },
   },
   "presupuesto-control-financiero": {
     "presupuesto-mensual-control-financiero": {

@@ -1,7 +1,7 @@
 # Backlog Editorial Priorizado
 
 Fuente base: [Gap Audit v1](../operations/audits/closed/2026/2026-02-27_gap-audit_v1.md) y [Deep Research Report](../research/deep-research-report.md).
-Última auditoría de estado: **2026-03-04**.
+Última auditoría de estado: **2026-03-04**. Última actualización manual: **2026-05-21**.
 
 | ID | Cluster | Tema | Query primaria | SPF | Prioridad | Estado | Owner | Link a audit | Link a research | URL futura sugerida | DoD |
 |---|---|---|---|---:|---|---|---|---|---|---|---|
@@ -20,6 +20,7 @@ Fuente base: [Gap Audit v1](../operations/audits/closed/2026/2026-02-27_gap-audi
 | ED-013 | Deudas y Crédito | Informe CMF vs DICOM (optimización) | cómo sacar informe de deudas cmf con clave única | 1.90 | Baja | DONE |  | [Audit](../operations/audits/closed/2026/2026-02-27_gap-audit_v1.md) | [Research](../research/deep-research-report.md#L306) | `/posts/informe-deudas-cmf-vs-dicom/` | [DoD](../editorial/DEFINITION_OF_DONE.md) |
 | ED-014 | Pensiones y Protección Social | Seguro de cesantía (optimización) | como saber mi saldo seguro de cesantia afc | 1.90 | Baja | DONE |  | [Audit](../operations/audits/closed/2026/2026-02-27_gap-audit_v1.md) | [Research](../research/deep-research-report.md#L310) | `/posts/seguro-de-cesantia/` | [DoD](../editorial/DEFINITION_OF_DONE.md) |
 | ED-015 | Deudas y Crédito | Renegociación Superir (optimización) | renegociación superir requisitos 80 uf | 1.81 | Baja | DONE |  | [Audit](../operations/audits/closed/2026/2026-02-27_gap-audit_v1.md) | [Research](../research/deep-research-report.md#L309) | `/posts/renegociacion-superir/` | [DoD](../editorial/DEFINITION_OF_DONE.md) |
+| ED-016 | Ahorro e Inversión | Decidir inversión según edad, riesgo y objetivos | donde invertir mi dinero segun edad tolerancia al riesgo y objetivos | TBD | Media | TODO |  | TBD | TBD | `/posts/como-elegir-inversion-segun-plazo-riesgo-objetivos/` | [DoD](../editorial/DEFINITION_OF_DONE.md) · ver [detalle ED-016](#detalle-ed-016--inversion-segun-edad-riesgo-y-objetivos) |
 
 ## Notas operativas
 
@@ -28,6 +29,30 @@ Fuente base: [Gap Audit v1](../operations/audits/closed/2026/2026-02-27_gap-audi
 - Si falta evidencia en fuentes primarias durante ejecución, marcar `TODO` explícito en el issue antes de redactar.
 - `que-es-la-uf` ya quedó endurecido en `uf-costo-de-vida`; el hub de deuda solo puede exponerlo como `related / bridge`, no como pieza core.
 - `como-hacer-presupuesto-mensual-chile` dejó de ser transición el 2026-05-11: el hub `/guias/presupuesto-control-financiero/` ya existe, `fondo-emergencia-chile` actúa como segundo activo del cluster, y la pieza quedó en `cluster: presupuesto-control-financiero` con ownership explícito.
+
+## Detalle ED-016 — Inversión según edad, riesgo y objetivos
+
+**Idea:** artículo educativo para responder "dónde invertir mi dinero según edad, tolerancia al riesgo y objetivos" como marco de decisión, no como recomendación de productos específicos.
+
+**Encaje editorial sin canibalización:**
+
+- Cluster: `ahorro-e-inversion`.
+- Rol previsto: `support`, no `owner`.
+- Owner que debe preservar: `/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/`, que sigue siendo la guía pilar de instrumentos, costos e impuestos.
+- Canonical topic tentativo: reutilizar o registrar como soporte del owner general de instrumentos; antes de publicar, actualizar `docs/research/seo/strategy/topic_ownership_matrix.md` y `src/config/editorial-topic-policy.mjs` si se confirma la URL.
+- Diferenciación obligatoria: esta pieza no debe hacer una nueva lista general de instrumentos. Debe ordenar preguntas previas: horizonte, liquidez, tolerancia a caídas, objetivo, concentración, costos, impuestos y necesidad de fondo de emergencia.
+- Interlinking esperado: desde presupuesto/fondo de emergencia como paso posterior; hacia el pilar de ahorro e inversión para ver instrumentos; hacia DAP, fondos mutuos, ETFs y APV solo como rutas de profundización, no como "mejores opciones".
+- Revisión previa obligatoria: ejecutar `pnpm run audit:topic-overlap` y revisar manualmente títulos, H1, description, snippet y primer párrafo para que no compitan con el pilar ni con guías de instrumentos específicos.
+
+**Enfoque responsable / no asesoría financiera:**
+
+- Título recomendado: "Cómo elegir una inversión según plazo, riesgo y objetivos" o similar; evitar un H1 literal tipo "Dónde invertir mi dinero" si empuja a recomendación personalizada.
+- Respuesta ancla: entregar un marco general de decisión por escenario, con lenguaje condicional y educativo; no recomendar comprar, vender, mantener ni elegir una institución/producto concreto.
+- Prohibido: ranking de productos, "mejor inversión", promesas de retorno, carteras modelo por edad, porcentajes normativos por perfil o conclusiones del tipo "si tienes X años, invierte en Y".
+- Permitido: matriz orientativa de criterios por objetivo (emergencia, corto plazo, pie de vivienda, largo plazo, jubilación complementaria), explicando riesgos y límites.
+- Advisory visible requerido: "Contenido educativo; no constituye asesoría financiera, tributaria ni previsional personalizada. Las decisiones de inversión dependen de tu situación, horizonte, tolerancia a pérdidas, liquidez, costos e impuestos."
+- Fuentes mínimas esperadas: CMF Educa o CMF para conceptos de riesgo/instrumentos y verificación de entidades; SII para tratamiento tributario cuando corresponda; Superintendencia de Pensiones solo si se menciona APV o instrumentos previsionales.
+- Pipeline: tratar como YMYL de sensibilidad media; seguir `docs/editorial/NORMA_YMYL.md` y `context/EDITORIAL_AI_PIPELINE.md`. Si incluye cálculos, simulaciones o retornos históricos, requiere `MathAuditAgent`; si incluye APV/pensiones/impuestos en profundidad, escalar compliance.
 
 ## Deuda técnica editorial (control 2026-03-04)
 
