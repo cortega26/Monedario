@@ -13,7 +13,7 @@ Audit governance details that cause recurring small regressions: hardcoded regis
 - `pnpm run check:context`: pass inside `pnpm run check`.
 - `pnpm run check:policy-registry`: pass inside `pnpm run check`.
 - `pnpm run check:docs`: pass before adding this plan.
-- `pnpm run check:urls:external:audit`: pass non-blocking, 6 non-OK findings.
+- `pnpm run check:urls:external:audit`: pass non-blocking, 4 non-OK network findings after accessibility link cleanup.
 - `pnpm run audit:topic-overlap`: pass non-blocking, 35 candidates.
 - `pnpm run check:small-details`: warning-first guardrail added; enforce with `SMALL_DETAILS_ENFORCE=1` after baseline remediation.
 
@@ -42,14 +42,15 @@ Carry forward from the drift plan, with ASD ownership:
 
 ## External URL Non-OK Summary
 
-From `output/validation/urlcheck/external-summary.json`:
+From `output/validation/urlcheck/external-summary.json` after the 2026-05-22 cleanup:
 
-- `github.com`: 1 hard fail, non-blocking in audit mode.
-- `www.linkedin.com`: 1 non-blocking host issue.
-- `www.superir.gob.cl`: 3 network errors.
 - `www.tta.cl`: 1 network error.
+- `www.superir.gob.cl`: 3 network errors.
 
-The GitHub hard fail points to `docs/reports/ACCESSIBILITY-2026-05-18.md` from `/accessibilidad/`. It is not corrected in this audit-only pass.
+Resolved in this pass:
+
+- Removed the public `/accessibilidad/` link to the private or non-public GitHub report URL.
+- Rebuilt `dist` and regenerated the external URL audit; the GitHub hard fail and LinkedIn host issue no longer appear.
 
 ## Warning Budget Recommendation
 

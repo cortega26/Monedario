@@ -62,7 +62,7 @@ Status values:
 | ID | Priority | Severity | Status | Work item | Evidence | Required gates |
 |---|---:|---:|---|---|---|---|
 | ASD-001 | P0 | 4 | needs-editorial-pipeline | Audit top YMYL articles for concrete first answer, explicit vigencia, official source traceability, and no unjustified deferral. | `TD-0085`, `TD-0086`; `check:editorial` passes structurally but does not prove substantive source freshness. | Full editorial pipeline, `pnpm run check:editorial`, `pnpm run check:editorial-timeliness`. |
-| ASD-002 | P0 | 4 | needs-human-review | Cross-check law/reference pages against source labels and freshness claims. | External audit reports `github.com` hard fail and official-host/network issues; existing `TD-0084`..`TD-0094`. | `pnpm run check:legal-citations`, `pnpm run check:urls:external:audit`, human/legal sign-off for policy text. |
+| ASD-002 | P0 | 4 | needs-human-review | Cross-check law/reference pages against source labels and freshness claims. | External audit now reports only official-host/network issues; existing `TD-0084`..`TD-0094`. | `pnpm run check:legal-citations`, `pnpm run check:urls:external:audit`, human/legal sign-off for policy text. |
 | ASD-003 | P1 | 3 | batch-later | Audit FAQ sections for contradictions with article body and calculator methodology. | No blocking check exists for body/FAQ contradiction; structural checks pass. | Targeted manual review, `pnpm run check:editorial`, related calculator tests if methodology changes. |
 | ASD-004 | P1 | 2 | batch-later | Audit glossary entries for stale definitions, internal link usefulness, and reader-facing clarity. | Glossary has 40 entries; current checks do not score definition freshness or link usefulness. | `pnpm run check`, focused reader-copy review. |
 
@@ -99,7 +99,7 @@ Status values:
 |---|---:|---:|---|---|---|---|
 | ASD-401 | P0 | 3 | fix-now | Reconcile existing audit findings with `docs/TECH_DEBT_BACKLOG.md` to avoid duplicate tickets. | Existing `TD-0084`..`TD-0094` overlap this program and should remain authoritative. | Backlog review, no duplicate TD creation. |
 | ASD-402 | P1 | 3 | batch-later | Identify repeated findings that deserve checks instead of manual memory. | Existing drift plan proposes checks for legal claims, YMYL freshness, source consistency, catalog drift, homepage freshness, official hosts, topic ownership, and meta budgets. | Proposed check spec before implementation; tests for any new script. |
-| ASD-403 | P1 | 3 | batch-later | Audit warning budgets from current gates: editorial structure, URL checks, topic overlap, external URLs, timeliness. | External audit has 6 non-OK non-blocking findings; topic overlap has 35 candidates. | `pnpm run check:urls:external:audit`, `pnpm run audit:topic-overlap`, policy decision on warning budgets. |
+| ASD-403 | P1 | 3 | batch-later | Audit warning budgets from current gates: editorial structure, URL checks, topic overlap, external URLs, timeliness. | External audit has 4 non-OK non-blocking network findings; topic overlap has 35 candidates. | `pnpm run check:urls:external:audit`, `pnpm run audit:topic-overlap`, policy decision on warning budgets. |
 | ASD-404 | P2 | 2 | fix-now | Keep active/closed backlog plan status current. | This plan was added to `docs/backlog/README.md`; deeper cleanup remains future remediation. | `pnpm run check:docs`. |
 
 ## Execution Plan
@@ -124,6 +124,7 @@ Status values:
 - 2026-05-22: First ASD check run recorded 8 calculator detail errors and 17 warnings in warn-only mode.
 - 2026-05-22: Remediated ASD-101 missing calculator error targets in `credito-consumo`, `dividendo-hipotecario`, `simulador-renegociacion`, and `tarjeta-credito`; enforce mode now passes with 0 errors.
 - 2026-05-22: Remediated ASD-004 reader-facing `widget` copy in `cookies` and `privacidad`; refined reader-copy scanning to ignore comments, scripts, styles, and technical attributes. Reader-copy audit now reports 0 warnings.
+- 2026-05-22: Removed broken public GitHub accessibility-report link from `/accessibilidad/`; rebuilt site and regenerated external URL audit. Remaining external warning budget is 4 non-blocking network errors (`www.superir.gob.cl` x3, `www.tta.cl` x1).
 
 ## Verification Evidence
 
@@ -133,7 +134,7 @@ Status values:
 - `pnpm run check:editorial`: pass; 50 articles validated, 46 YMYL artifacts compliant in warn-only mode.
 - `pnpm run check:routes`: pass; 11 known additions, 0 removals, before=39 after=50.
 - `pnpm run check:rss`: pass; 35 known additions, 0 removals, baseline=14 current=49.
-- `pnpm run check:urls:external:audit`: pass non-blocking; scanned=412, blocking=0, totalNonOk=6.
+- `pnpm run check:urls:external:audit`: pass non-blocking; scanned=411, blocking=0, totalNonOk=4.
 - `pnpm run audit:topic-overlap`: pass non-blocking; articles=50, candidates=35, 1 high overlap.
 - `pnpm run audit:reader-copy`: pass; scanned=84, warnings=0.
 - `pnpm run check:reader-facing-copy`: pass; scanned=84, issues=0.

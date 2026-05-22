@@ -23,6 +23,11 @@ Audit article and reference trust details without editing content. This lane che
 | ASD-003 | P1 | 3 | FAQ/body/methodology contradiction detection is not automated. | `batch-later`; manual review required before any remediation. |
 | ASD-004 | P1 | 2 | Glossary freshness and usefulness are not covered by current gates beyond general content validity. | `batch-later`. |
 
+Accessibility evidence link cleanup:
+
+- The public `/accessibilidad/` page no longer links to a non-public GitHub report URL.
+- The page now states that it summarizes the public criteria and audit scope.
+
 ## Reader-Copy Detail
 
 Initial `pnpm run audit:reader-copy` reported 16 non-blocking warnings for `widget`.
