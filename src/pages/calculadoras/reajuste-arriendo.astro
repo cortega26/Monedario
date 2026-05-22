@@ -22,6 +22,12 @@ const economicSourceLabel =
     : economicParameters.source === "snapshot"
       ? "dato de referencia"
       : "fallback de emergencia";
+const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+const exampleRentBase = 400_000;
+const exampleIpcPercent = 3.5;
+const exampleRentNew = Math.round(
+  exampleRentBase * (1 + exampleIpcPercent / 100)
+);
 const rentGuidePath = getPath("/posts/reajuste-arriendo-uf-ipc-chile/");
 const ufHubPath = getPath("/guias/uf-costo-de-vida/");
 const currentCalculator = CALCULATOR_PORTFOLIO.find(
@@ -68,7 +74,7 @@ const calculatorNextStepItems = [
     data-analytics-calculator-name="Calculadora de Reajuste de Arriendo"
   >
     <CalculatorHero
-      title="🏠 Calculadora de Reajuste de Arriendo"
+      title="Calculadora de Reajuste de Arriendo"
       description="Calcula cuánto sube tu arriendo según la variación de la UF o el IPC. Útil tanto para arrendatarios como para propietarios."
       descriptionClass="max-w-xl text-secondary"
     >
@@ -188,13 +194,13 @@ const calculatorNextStepItems = [
 
         <button
           id="calcBtn"
-          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90"
+          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Calcular reajuste →
         </button>
         <div
           id="reajuste-error"
-          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-200"
+          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
         >
         </div>
       </div>
@@ -202,13 +208,41 @@ const calculatorNextStepItems = [
       <!-- RESULTADO -->
       <div class="rounded-xl border border-border bg-background p-6">
         <h2 class="mb-5 text-lg font-semibold">Resultado</h2>
-        <div
-          id="resultado-contenido"
-          class="py-8 text-center text-muted"
-          aria-live="polite"
-        >
-          <p class="mb-3 text-4xl">🏠</p>
-          <p class="text-sm">Ingresa los datos para calcular el reajuste.</p>
+        <div id="resultado-contenido" data-is-example="true" aria-live="polite">
+          <div
+            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
+          >
+            <p
+              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
+            >
+              Nuevo arriendo (Ejemplo)
+            </p>
+            <p class="text-4xl font-bold text-foreground/80">
+              {fmtClp(exampleRentNew)}
+            </p>
+          </div>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between">
+              <span class="text-secondary">Arriendo actual</span>
+              <span class="font-medium text-foreground/80">
+                {fmtClp(exampleRentBase)}
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Alza mensual</span>
+              <span class="font-medium text-foreground/80">
+                {fmtClp(exampleRentNew - exampleRentBase)}
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Reajuste aplicado</span>
+              <span class="font-medium text-foreground/80">3,5%</span>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-muted">
+            Ejemplo: arriendo de $400.000 reajustado por un IPC acumulado de
+            3,5%.
+          </p>
         </div>
         <div
           id="economic-parameters"

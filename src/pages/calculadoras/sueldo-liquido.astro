@@ -493,14 +493,14 @@ const calculatorNextStepItems = [
 
         <div
           id="calc-error"
-          class="mb-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-500"
+          class="mb-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
           role="alert"
           aria-live="assertive"
         >
         </div>
         <button
           id="calcBtn"
-          class="mt-2 w-full rounded-lg bg-accent px-4 py-4 text-base font-bold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
         >
           <span id="calcBtn-label">Calcular sueldo líquido →</span>
         </button>
@@ -509,7 +509,7 @@ const calculatorNextStepItems = [
       <CalculatorResultPanel>
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
           <div
-            class="mb-6 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
+            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
           >
             <p
               class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
@@ -1490,7 +1490,7 @@ const calculatorNextStepItems = [
     // — HEADLINE —
     const headline = document.createElement("div");
     headline.className =
-      "mb-4 rounded-lg border border-accent/20 bg-accent/10 p-4 text-center";
+      "mb-5 rounded-lg border border-accent/20 bg-accent/10 p-4 text-center";
     const headlineLabel = document.createElement("p");
     headlineLabel.className =
       "mb-1 text-xs font-bold tracking-widest text-accent uppercase";

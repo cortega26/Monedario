@@ -14,6 +14,13 @@ import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
+import { simulateCreditCardCost } from "@/application/use-cases/SimulateCreditCardCost";
+const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+const exampleResult = simulateCreditCardCost({
+  debt: 500_000,
+  monthlyRatePercent: 3.49,
+  minimumPaymentPercent: 5,
+});
 const currentCalculator = CALCULATOR_PORTFOLIO.find(
   calc => calc.slug === "tarjeta-credito"
 );
@@ -107,7 +114,7 @@ const calculatorNextStepItems = [
 
         <button
           id="calcBtn"
-          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90"
+          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Calcular costo real →
         </button>
@@ -115,13 +122,40 @@ const calculatorNextStepItems = [
 
       <!-- RESULTADO -->
       <CalculatorResultPanel title="Resultado">
-        <div
-          id="resultado-contenido"
-          class="py-8 text-center text-muted"
-          aria-live="polite"
-        >
-          <p class="mb-3 text-4xl">💸</p>
-          <p class="text-sm">Ingresa tu deuda y presiona calcular.</p>
+        <div id="resultado-contenido" data-is-example="true" aria-live="polite">
+          <div
+            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
+          >
+            <p
+              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
+            >
+              Total a pagar (Ejemplo)
+            </p>
+            <p class="text-4xl font-bold text-foreground/80">
+              {fmtClp(exampleResult.baseline.totalPaid)}
+            </p>
+          </div>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between">
+              <span class="text-secondary">Deuda original</span>
+              <span class="font-medium text-foreground/80">$500.000</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Intereses totales</span>
+              <span class="font-medium text-foreground/80">
+                {fmtClp(exampleResult.baseline.totalInterest)}
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Tiempo para saldar</span>
+              <span class="font-medium text-foreground/80">
+                {exampleResult.baseline.months} meses
+              </span>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-muted">
+            Ejemplo: deuda de $500.000 al 3,49% mensual pagando el mínimo (5%).
+          </p>
         </div>
       </CalculatorResultPanel>
     </section>

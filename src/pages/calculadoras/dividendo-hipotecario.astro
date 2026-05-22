@@ -15,8 +15,19 @@ import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 
+import { calculateMortgage } from "@/application/use-cases/CalculateMortgage";
+
 const { parameters: economicParameters } = await getEconomicParameters();
 const ufValuePesos = economicParameters.uf;
+const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+const exampleResult = calculateMortgage({
+  propertyValue: 3000,
+  currency: "uf",
+  downPaymentPercent: 20,
+  annualRatePercent: 4.5,
+  termYears: 25,
+  ufValuePesos,
+});
 const ufDisplay = ufValuePesos.toLocaleString("es-CL", {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
@@ -66,7 +77,7 @@ const calculatorNextStepItems = [
     data-uf={String(ufValuePesos)}
   >
     <CalculatorHero
-      title="🏠 Calculadora de Dividendo Hipotecario"
+      title="Calculadora de Dividendo Hipotecario"
       description="Estima tu dividendo mensual en UF y pesos según el valor de la propiedad, el pie, la tasa y el plazo. Incluye seguros opcionales y tabla de amortización."
       descriptionClass="max-w-xl text-secondary"
     >
@@ -210,7 +221,7 @@ const calculatorNextStepItems = [
 
         <button
           id="calcBtn"
-          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90"
+          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Calcular dividendo →
         </button>
@@ -218,13 +229,42 @@ const calculatorNextStepItems = [
 
       <!-- RESULTADO -->
       <CalculatorResultPanel title="Resumen del crédito">
-        <div
-          id="resultado-contenido"
-          class="py-8 text-center text-muted"
-          aria-live="polite"
-        >
-          <p class="mb-3 text-4xl">🏠</p>
-          <p class="text-sm">Ingresa los datos y presiona calcular.</p>
+        <div id="resultado-contenido" data-is-example="true" aria-live="polite">
+          <div
+            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
+          >
+            <p
+              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
+            >
+              Dividendo mensual (Ejemplo)
+            </p>
+            <p class="text-4xl font-bold text-foreground/80">
+              {fmtClp(exampleResult.totalPaymentMonth1Pesos)}
+            </p>
+          </div>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between">
+              <span class="text-secondary">Monto del crédito</span>
+              <span class="font-medium text-foreground/80">
+                {fmtClp(exampleResult.loanAmountPesos)}
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Cuota base</span>
+              <span class="font-medium text-foreground/80">
+                {fmtClp(exampleResult.basePaymentPesos)}
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Total intereses</span>
+              <span class="font-medium text-foreground/80">
+                {fmtClp(exampleResult.totalInterestPesos)}
+              </span>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-muted">
+            Ejemplo: propiedad de 3.000 UF, pie 20%, 25 años al 4,5% anual.
+          </p>
         </div>
       </CalculatorResultPanel>
     </section>

@@ -13,6 +13,7 @@ import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
+import { simulateCreditPrepayment } from "@/application/use-cases/SimulateCreditPrepayment";
 const { parameters: economicParameters } = await getEconomicParameters();
 const economicSourceLabel =
   economicParameters.source === "live"
@@ -20,6 +21,17 @@ const economicSourceLabel =
     : economicParameters.source === "snapshot"
       ? "dato de referencia"
       : "fallback de emergencia";
+const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+const exampleResult = simulateCreditPrepayment({
+  currentBalance: 5_000_000,
+  monthlyPayment: 150_000,
+  monthlyRatePercent: 1.8,
+  remainingMonths: 48,
+  prepaymentAmount: 1_000_000,
+  prepaymentCost: 0,
+  effect: "reducir-plazo",
+  alternativeAnnualReturnPercent: 5,
+});
 const currentCalculator = CALCULATOR_PORTFOLIO.find(
   calc => calc.slug === "prepago-credito"
 );
@@ -64,7 +76,7 @@ const calculatorNextStepItems = [
     data-analytics-calculator-name="Calculadora de Prepago de Credito"
   >
     <CalculatorHero
-      title="💡 ¿Me conviene prepagar el crédito?"
+      title="¿Me conviene prepagar el crédito?"
       description="Calcula cuánto ahorras en intereses si haces un abono extraordinario a tu crédito y si conviene más prepagar o invertir ese dinero."
       descriptionClass="max-w-xl text-secondary"
     />
@@ -218,13 +230,13 @@ const calculatorNextStepItems = [
 
         <button
           id="calcBtn"
-          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90"
+          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Calcular ahorro →
         </button>
         <div
           id="prepago-error"
-          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-200"
+          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
         >
         </div>
       </div>
@@ -235,12 +247,38 @@ const calculatorNextStepItems = [
         <div
           id="resultado-contenido"
           data-uf={String(economicParameters.uf)}
-          class="py-8 text-center text-muted"
+          data-is-example="true"
           aria-live="polite"
         >
-          <p class="mb-3 text-4xl">💡</p>
-          <p class="text-sm">
-            Ingresa los datos del crédito y el monto a prepagar.
+          <div
+            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
+          >
+            <p
+              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
+            >
+              Ahorro en intereses (Ejemplo)
+            </p>
+            <p class="text-4xl font-bold text-foreground/80">
+              {fmtClp(exampleResult.interestSavings)}
+            </p>
+          </div>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between">
+              <span class="text-secondary">Meses ahorrados</span>
+              <span class="font-medium text-foreground/80">
+                {exampleResult.monthsSaved} meses
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Ahorro neto</span>
+              <span class="font-medium text-foreground/80">
+                {fmtClp(exampleResult.netSavingsAfterPrepaymentCost)}
+              </span>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-muted">
+            Ejemplo: prepago de $1.000.000 sobre un saldo de $5.000.000
+            (reducir plazo).
           </p>
         </div>
       </div>

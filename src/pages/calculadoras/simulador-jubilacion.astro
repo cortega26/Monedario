@@ -15,8 +15,19 @@ import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
 import NextSteps from "@/components/NextSteps.astro";
 import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+import { simulateRetirementProjection } from "@/application/use-cases/SimulateRetirementProjection";
 
 const { parameters: economicParameters } = await getEconomicParameters();
+const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+const exampleResult = simulateRetirementProjection({
+  currentAge: 40,
+  retirementAge: 65,
+  grossSalary: 1_000_000,
+  currentBalance: 20_000_000,
+  annualReturnPercent: 5,
+  lifeExpectancyAge: 85,
+  economicParameters,
+});
 const economicSourceLabel =
   economicParameters.source === "live"
     ? "dato en línea"
@@ -67,7 +78,7 @@ const calculatorNextStepItems = [
     data-analytics-calculator-name="Simulador de Jubilacion"
   >
     <CalculatorHero
-      title="🏖️ Simulador de Jubilación"
+      title="Simulador de Jubilación"
       description="Proyecta tu saldo AFP con escenarios comparativos, tope imponible y lagunas previsionales visibles, sin mezclar beneficios que no van directo a tu cuenta individual."
       descriptionClass="max-w-xl text-secondary"
     />
@@ -155,13 +166,13 @@ const calculatorNextStepItems = [
 
         <button
           id="calcBtn"
-          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90"
+          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Simular jubilación →
         </button>
         <div
           id="jubilacion-error"
-          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-200"
+          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
           role="alert"
         >
         </div>
@@ -169,13 +180,39 @@ const calculatorNextStepItems = [
 
       <!-- RESULTADO -->
       <CalculatorResultPanel title="Proyección">
-        <div
-          id="resultado-contenido"
-          class="py-8 text-center text-muted"
-          aria-live="polite"
-        >
-          <p class="mb-3 text-4xl">🏖️</p>
-          <p class="text-sm">Ingresa tus datos y presiona simular.</p>
+        <div id="resultado-contenido" data-is-example="true" aria-live="polite">
+          <div
+            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
+          >
+            <p
+              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
+            >
+              Pensión mensual estimada (Ejemplo)
+            </p>
+            <p class="text-4xl font-bold text-foreground/80">
+              {fmtClp(exampleResult.selectedScenario.estimatedMonthlyPension)}
+            </p>
+          </div>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between">
+              <span class="text-secondary">Saldo proyectado</span>
+              <span class="font-medium text-foreground/80">
+                {fmtClp(exampleResult.selectedScenario.projectedBalance)}
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Tasa de reemplazo</span>
+              <span class="font-medium text-foreground/80">
+                {exampleResult.selectedScenario.salaryReplacementPercent.toFixed(
+                  0
+                )}%
+              </span>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-muted">
+            Ejemplo: 40 años, sueldo $1.000.000, saldo actual $20.000.000,
+            jubilación a los 65.
+          </p>
         </div>
         <div
           id="economic-parameters"

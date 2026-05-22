@@ -14,7 +14,13 @@ import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
 import NextSteps from "@/components/NextSteps.astro";
 import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getPath } from "@/utils/getPath";
+import { calculateHonorariosNet } from "@/application/use-cases/CalculateHonorariosNet";
 
+const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+const exampleResult = calculateHonorariosNet({
+  grossFee: 500_000,
+  withholdingRatePercent: 15.25,
+});
 const guidePath = getPath("/posts/boleta-honorarios-2026-retencion-cobertura/");
 const rentaGuidePath = getPath("/posts/operacion-renta-f22-checklist/");
 const currentCalculator = CALCULATOR_PORTFOLIO.find(
@@ -61,7 +67,7 @@ const calculatorNextStepItems = [
     data-analytics-calculator-name="Calculadora Boleta Honorarios Liquido"
   >
     <CalculatorHero
-      title="🧾 Calculadora de Boleta de Honorarios 2026"
+      title="Calculadora de Boleta de Honorarios 2026"
       description="Separa tres cosas que suelen mezclarse: cuánto te retienen al emitir la boleta, cuánto recibes líquido hoy y qué base anual usaría tu cobertura previsional orientativa."
       descriptionClass="max-w-2xl text-secondary"
     />
@@ -108,27 +114,48 @@ const calculatorNextStepItems = [
 
         <button
           id="calcBtn"
-          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90"
+          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Calcular líquido →
         </button>
 
         <div
           id="honorarios-error"
-          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-200"
+          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
           role="alert"
         >
         </div>
       </div>
 
       <CalculatorResultPanel title="Resultado orientativo">
-        <div
-          id="resultado-contenido"
-          class="py-8 text-center text-muted"
-          aria-live="polite"
-        >
-          <p class="mb-3 text-4xl">🧮</p>
-          <p class="text-sm">Ingresa tus datos y presiona calcular.</p>
+        <div id="resultado-contenido" data-is-example="true" aria-live="polite">
+          <div
+            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
+          >
+            <p
+              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
+            >
+              Recibes líquido (Ejemplo)
+            </p>
+            <p class="text-4xl font-bold text-foreground/80">
+              {fmtClp(exampleResult.netFeeReceived)}
+            </p>
+          </div>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between">
+              <span class="text-secondary">Boleta bruta</span>
+              <span class="font-medium text-foreground/80">$500.000</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Retención (15,25%)</span>
+              <span class="font-medium text-foreground/80">
+                − {fmtClp(exampleResult.withholdingAmount)}
+              </span>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-muted">
+            Ejemplo: boleta de $500.000 con retención de 15,25%.
+          </p>
         </div>
       </CalculatorResultPanel>
     </section>
@@ -320,7 +347,7 @@ const calculatorNextStepItems = [
 
     const headline = document.createElement("div");
     headline.className =
-      "mb-6 rounded-lg border border-accent/20 bg-accent/10 p-4 text-center";
+      "mb-5 rounded-lg border border-accent/20 bg-accent/10 p-4 text-center";
 
     const headlineLabel = document.createElement("p");
     headlineLabel.className =

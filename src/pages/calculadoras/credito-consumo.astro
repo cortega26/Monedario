@@ -16,6 +16,16 @@ import { getPath } from "@/utils/getPath";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
+import { calculateConsumerCredit } from "@/application/use-cases/CalculateConsumerCredit";
+const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+const exampleResult = calculateConsumerCredit({
+  principal: 2_000_000,
+  termMonths: 24,
+  rateValue: 3.49,
+  rateType: "mensual",
+  monthlyInsurance: 0,
+  operatingCosts: 0,
+});
 const currentCalculator = CALCULATOR_PORTFOLIO.find(
   calc => calc.slug === "credito-consumo"
 );
@@ -156,7 +166,7 @@ const calculatorNextStepItems = [
 
         <button
           id="calcBtn"
-          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90"
+          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Calcular crédito →
         </button>
@@ -164,13 +174,42 @@ const calculatorNextStepItems = [
 
       <!-- RESULTADO -->
       <CalculatorResultPanel title="Desglose del crédito">
-        <div
-          id="resultado-contenido"
-          class="py-8 text-center text-muted"
-          aria-live="polite"
-        >
-          <p class="mb-3 text-4xl">📋</p>
-          <p class="text-sm">Ingresa los datos y presiona calcular.</p>
+        <div id="resultado-contenido" data-is-example="true" aria-live="polite">
+          <div
+            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
+          >
+            <p
+              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
+            >
+              Cuota mensual (Ejemplo)
+            </p>
+            <p class="text-4xl font-bold text-foreground/80">
+              {fmtClp(exampleResult.monthlyPaymentTotal)}
+            </p>
+          </div>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between">
+              <span class="text-secondary">CAE</span>
+              <span class="font-medium text-foreground/80">
+                {exampleResult.caePercent.toFixed(2)}%
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Total intereses</span>
+              <span class="font-medium text-foreground/80">
+                {fmtClp(exampleResult.totalInterest)}
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Total a pagar</span>
+              <span class="font-medium text-foreground/80">
+                {fmtClp(exampleResult.totalPaid)}
+              </span>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-muted">
+            Ejemplo: crédito de $2.000.000 a 24 meses con tasa 3,49% mensual.
+          </p>
         </div>
       </CalculatorResultPanel>
     </section>

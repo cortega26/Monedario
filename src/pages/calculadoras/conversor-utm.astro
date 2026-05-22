@@ -5,6 +5,7 @@ import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
+import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
 import NextSteps from "@/components/NextSteps.astro";
@@ -287,6 +288,7 @@ const calculatorNextStepItems = [
       href="/posts/utm-chile-que-es-como-funciona/"
       context="Entiende cómo funciona la UTM, cómo se reajusta cada mes y en qué casos la usa el Estado chileno."
     />
+    <ShareCalculatorResult />
     <MethodologyBlock
       notes={`${economicSourceMeta.methodologyNote} La UTM se reajusta el primer día hábil de cada mes según la variación del IPC del mes anterior publicado por el INE. La UTA de referencia mostrada usa el valor anual informado por la misma fuente cuando está disponible; si no, se aproxima desde la serie económica cargada por el sitio. Verifica siempre el dato vigente en el SII antes de usarlo en trámites, multas o impuestos.`}
       sources={[
@@ -316,6 +318,12 @@ const calculatorNextStepItems = [
 <script>
   import { convertUtm } from "@/application/use-cases/ConvertUtm";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+
+  declare global {
+    interface Window {
+      showShareResult?: (text: string) => void;
+    }
+  }
 
   function readEconomicContext(): { utm: number; lastUpdated: string } {
     const element = document.getElementById("economic-parameters");
@@ -352,6 +360,7 @@ const calculatorNextStepItems = [
     resultado.classList.remove("hidden");
     resultadoTexto.textContent = principal;
     resultadoSub.textContent = sub;
+    window.showShareResult?.(`Conversor UTM: ${sub}`);
     if (!hasTrackedCompletion) {
       hasTrackedCompletion = true;
       trackAnalyticsEvent("calculator_complete", {

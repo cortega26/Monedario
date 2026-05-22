@@ -91,7 +91,7 @@ const calculatorNextStepItems = [
     data-profile-prefill-host="#calculator-form-card"
   >
     <CalculatorHero
-      title="🧾 Simulador Operación Renta 2026"
+      title="Simulador Operación Renta 2026"
       description="Estima si el SII te devolverá dinero o deberás pagar más impuesto este abril. Ingresa tus ingresos del año, las retenciones ya pagadas y las deducciones disponibles."
       descriptionClass="max-w-xl text-secondary"
     />
@@ -101,7 +101,7 @@ const calculatorNextStepItems = [
       <div id="calculator-form-card" class="space-y-6">
         <!-- Ingresos -->
         <div class="rounded-xl border border-border p-6">
-          <h2 class="mb-5 text-lg font-semibold">📥 Ingresos del año</h2>
+          <h2 class="mb-5 text-lg font-semibold">Ingresos del año</h2>
 
           <CalculatorField id="sueldos-brutos" label="Sueldos brutos anuales ($)" placeholder="Ej: 18000000" min="0" hint="Suma todos los sueldos brutos del año. Encuéntralo en el certificado de remuneraciones (F1887) que emite tu empleador." />
 
@@ -157,7 +157,7 @@ const calculatorNextStepItems = [
 
         <!-- Deducciones -->
         <div class="rounded-xl border border-border p-6">
-          <h2 class="mb-1 text-lg font-semibold">🔽 Deducciones (opcional)</h2>
+          <h2 class="mb-1 text-lg font-semibold">Deducciones (opcional)</h2>
           <p class="mb-5 text-xs text-muted">
             Cada peso aquí reduce tu base imponible antes de calcular el
             impuesto.
@@ -209,20 +209,20 @@ const calculatorNextStepItems = [
 
         <button
           id="calcBtn"
-          class="w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90"
+          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Calcular Operación Renta →
         </button>
         <div
           id="form-error"
-          class="hidden rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-200"
+          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
           role="alert"
         >
         </div>
       </div>
 
       <!-- RESULTADO -->
-      <CalculatorResultPanel title="💡 Estimación de resultado">
+      <CalculatorResultPanel title="Estimación de resultado">
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
           <div
             class="mb-4 rounded-lg border border-green-500/40 bg-green-500/10 p-4"

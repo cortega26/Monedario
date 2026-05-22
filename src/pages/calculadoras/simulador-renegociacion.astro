@@ -14,10 +14,25 @@ import { getEconomicParameters } from "@/application/use-cases/GetEconomicParame
 import { getPath } from "@/utils/getPath";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
+import { simulateDebtRenegotiation } from "@/application/use-cases/SimulateDebtRenegotiation";
 
 const renegociacionGuidePath = getPath("/posts/renegociacion-superir/");
 const dicomGuidePath = getPath("/posts/donde-ver-si-estoy-en-dicom-gratis/");
 const { parameters: economicParameters } = await getEconomicParameters();
+const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+const exampleResult = simulateDebtRenegotiation({
+  debts: [
+    { amount: 2_000_000, overdueDays: 120 },
+    { amount: 1_500_000, overdueDays: 100 },
+  ],
+  monthlyIncome: 700_000,
+  termMonths: 36,
+  monthlyRatePercent: 1.5,
+  ufValue: economicParameters.uf,
+  hasFirstCategoryActivityLast24Months: false,
+  hasNotifiedExecutiveProceeding: false,
+  hasRequiredDocuments: true,
+});
 const economicSourceLabel =
   economicParameters.source === "live"
     ? "dato en línea"
@@ -168,7 +183,7 @@ const calculatorNextStepItems = [
 
         <button
           id="calcBtn"
-          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90"
+          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Simular renegociación →
         </button>
@@ -181,12 +196,44 @@ const calculatorNextStepItems = [
           id="resultado-contenido"
           data-guide-url={renegociacionGuidePath}
           data-uf={String(economicParameters.uf)}
-          class="py-8 text-center text-muted"
+          data-is-example="true"
           aria-live="polite"
         >
-          <p class="mb-3 text-4xl">📋</p>
-          <p class="text-sm">
-            Ingresa tus deudas e ingresos para ver si calificas.
+          <div
+            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
+          >
+            <p
+              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
+            >
+              Cuota renegociada (Ejemplo)
+            </p>
+            <p class="text-4xl font-bold text-foreground/80">
+              {fmtClp(exampleResult.monthlyPayment)}
+            </p>
+          </div>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between">
+              <span class="text-secondary">Deuda total</span>
+              <span class="font-medium text-foreground/80">
+                {fmtClp(exampleResult.totalDebtClp)}
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Total a pagar</span>
+              <span class="font-medium text-foreground/80">
+                {fmtClp(exampleResult.totalPaid)}
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Carga sobre el ingreso</span>
+              <span class="font-medium text-foreground/80">
+                {exampleResult.incomeBurdenPercent.toFixed(0)}%
+              </span>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-muted">
+            Ejemplo: dos deudas ($2.000.000 + $1.500.000), ingreso $700.000,
+            plazo 36 meses.
           </p>
         </div>
         <p class="mt-3 text-xs text-muted">

@@ -19,6 +19,7 @@ import { AFP_COMMISSIONS_PERCENT } from "@/config/afpCommissions";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
+import { calculateApvComparison } from "@/application/use-cases/CalculateApvComparison";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 const apvGuidePath = getPath("/posts/que-es-el-apv/");
@@ -33,6 +34,13 @@ const economicSourceLabel =
     : economicParameters.source === "snapshot"
       ? "dato de referencia"
       : "fallback de emergencia";
+const exampleResult = calculateApvComparison({
+  grossSalary: 1_500_000,
+  monthlyApvContribution: 100_000,
+  afpRatePercent: 11.44,
+  healthSystem: "fonasa",
+  economicParameters,
+});
 const apvFaqs = [
   {
     question: "¿Qué es el APV y en qué se diferencia del ahorro en la AFP?",
@@ -284,22 +292,56 @@ const calculatorNextStepItems = [
 
         <button
           id="calcBtn"
-          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90"
+          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
         >
           Comparar APV →
         </button>
         <div
           id="form-error"
-          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-200"
+          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
           role="alert"
         >
         </div>
       </div>
 
-      <CalculatorResultPanel title="💡 Comparación de regímenes">
-        <div id="resultado-contenido" class="py-8 text-center text-muted" aria-live="polite">
-          <p class="mb-3 text-4xl">📈</p>
-          <p class="text-sm">Ingresa tus datos y presiona comparar.</p>
+      <CalculatorResultPanel title="Comparación de regímenes">
+        <div id="resultado-contenido" data-is-example="true" aria-live="polite">
+          <div
+            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
+          >
+            <p
+              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
+            >
+              Beneficio anual Régimen B (Ejemplo)
+            </p>
+            <p class="text-4xl font-bold text-foreground/80">
+              {formatCurrency(exampleResult.regimeB.annualBenefit)}
+            </p>
+          </div>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between">
+              <span class="text-secondary">Régimen A — bono anual</span>
+              <span class="font-medium text-foreground/80">
+                {formatCurrency(exampleResult.regimeA.annualBonus)}
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Régimen B — beneficio anual</span>
+              <span class="font-medium text-foreground/80">
+                {formatCurrency(exampleResult.regimeB.annualBenefit)}
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Régimen recomendado</span>
+              <span class="font-medium text-foreground/80">
+                Régimen {exampleResult.recommendedStrategy}
+              </span>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-muted">
+            Ejemplo: sueldo $1.500.000, aporte APV $100.000/mes, AFP 11,44%,
+            Fonasa.
+          </p>
         </div>
         <div
           id="economic-parameters"
