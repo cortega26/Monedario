@@ -36,9 +36,35 @@ const personSchema = {
     "Seguro de cesantía",
     "Análisis de datos",
   ],
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Universidad de Carabobo",
+  },
+  hasCredential: [
+    {
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: "degree",
+      educationalLevel: "Licenciatura",
+      name: "Título de Abogado",
+      recognizedBy: {
+        "@type": "CollegeOrUniversity",
+        name: "Universidad de Carabobo",
+      },
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: "certificate",
+      name: "Google Data Analytics Professional Certificate",
+      recognizedBy: {
+        "@type": "Organization",
+        name: "Coursera",
+      },
+    },
+  ],
   sameAs: [SITE.authorLinkedIn, SITE.profile, SITE.authorPortfolio],
   worksFor: {
     "@type": "Organization",
+    "@id": `${SITE_URL}/#organization`,
     name: SITE.title,
     url: SITE_URL,
   },

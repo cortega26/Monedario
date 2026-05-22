@@ -52,27 +52,48 @@ const SITE_ORIGIN = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
   ""
 );
 
+const ORGANIZATION_ID = `${SITE_ORIGIN}/#organization`;
+
 const structuredData = !pubDatetime
   ? {
       "@context": "https://schema.org",
-      "@type": "WebSite",
-      name: SITE.title,
-      url: SITE_ORIGIN,
-      description: description,
-      inLanguage: "es-CL",
-      publisher: {
-        "@type": "Organization",
-        name: SITE.title,
-        url: SITE_ORIGIN,
-      },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: {
-          "@type": "EntryPoint",
-          urlTemplate: `${SITE_ORIGIN}/buscar/?q={search_term_string}`,
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": `${SITE_ORIGIN}/#website`,
+          name: SITE.title,
+          url: SITE_ORIGIN,
+          description: description,
+          inLanguage: "es-CL",
+          publisher: { "@id": ORGANIZATION_ID },
+          potentialAction: {
+            "@type": "SearchAction",
+            target: {
+              "@type": "EntryPoint",
+              urlTemplate: `${SITE_ORIGIN}/buscar/?q={search_term_string}`,
+            },
+            "query-input": "required name=search_term_string",
+          },
         },
-        "query-input": "required name=search_term_string",
-      },
+        {
+          "@type": "Organization",
+          "@id": ORGANIZATION_ID,
+          name: SITE.title,
+          url: SITE_ORIGIN,
+          description: SITE.desc,
+          foundingDate: "2026-01",
+          sameAs: [SITE.companyLinkedIn],
+          logo: {
+            "@type": "ImageObject",
+            url: `${SITE_ORIGIN}/favicon.svg`,
+          },
+          founder: {
+            "@type": "Person",
+            "@id": `${SITE_ORIGIN}/autor/`,
+            name: SITE.authorFullName,
+          },
+        },
+      ],
     }
   : null;
 ---
