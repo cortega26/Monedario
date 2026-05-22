@@ -26,6 +26,10 @@ function writeCalculator(root: string, name: string, source: string) {
   );
 }
 
+function writePage(root: string, name: string, source: string) {
+  writeFileSync(path.join(root, "src", "pages", `${name}.astro`), source, "utf8");
+}
+
 function runCheck(root: string, enforce = false) {
   return spawnSync("node", [SCRIPT_PATH], {
     encoding: "utf8",
@@ -120,5 +124,47 @@ describe("check-small-details script", () => {
 
     expect(result.status).toBe(1);
     expect(result.stdout).toContain("ASD-102/calculator-methodology");
+  });
+
+  it("warns only for reader-facing implementation vocabulary", () => {
+    const root = createTempProject();
+    writeCalculator(root, "demo", compliantCalculator);
+    writePage(
+      root,
+      "apoyar",
+      `---
+const widgetId = "internal";
+---
+<!-- widget comment is not reader-facing -->
+<script>const widget = "internal";</script>
+<div id="kofi-widget-container">Este widget se ve.</div>
+`
+    );
+
+    const result = runCheck(root);
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("ASD-004/meta-widget");
+  });
+
+  it("ignores implementation-only vocabulary in comments, scripts and attributes", () => {
+    const root = createTempProject();
+    writeCalculator(root, "demo", compliantCalculator);
+    writePage(
+      root,
+      "apoyar",
+      `---
+const widgetId = "internal";
+---
+<!-- widget comment is not reader-facing -->
+<script>const widget = "internal";</script>
+<div id="kofi-widget-container">Panel de aporte</div>
+`
+    );
+
+    const result = runCheck(root);
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).not.toContain("ASD-004/meta-widget");
   });
 });

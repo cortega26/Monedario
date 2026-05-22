@@ -239,7 +239,7 @@ function checkReaderFacingCopyWarnings() {
 
   for (const filePath of files) {
     const relative = toRelative(filePath);
-    const source = readFileSync(filePath, "utf8");
+    const source = extractReaderFacingText(readFileSync(filePath, "utf8"));
 
     for (const rule of INTERNAL_EDITORIAL_VISIBLE_RULES) {
       if (rule.severity !== "warn") continue;
@@ -265,6 +265,15 @@ function checkReaderFacingCopyWarnings() {
   }
 
   return findings;
+}
+
+function extractReaderFacingText(source) {
+  return source
+    .replace(/^---\n[\s\S]*?\n---\n?/m, "\n")
+    .replace(/<!--[\s\S]*?-->/g, "\n")
+    .replace(/<script\b[\s\S]*?<\/script>/gi, "\n")
+    .replace(/<style\b[\s\S]*?<\/style>/gi, "\n")
+    .replace(/<[^>]+>/g, " ");
 }
 
 function readExternalUrlSummary() {

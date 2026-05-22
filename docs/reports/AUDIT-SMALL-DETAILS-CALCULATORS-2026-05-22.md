@@ -14,8 +14,8 @@ Audit calculator trust details without changing formulas or UI. This lane covers
 - `pnpm run check`: pass.
 - `pnpm run format:check`: fail on pre-existing formatting drift in several calculator files and utilities; not remediated in this audit-only pass.
 - Existing `TD-0087` and `TD-0094` may affect methodology/source labels.
-- `pnpm run check:small-details`: pass in warn-only mode, `calculator_pages=19 errors=0 warnings=17 blocking=0`.
-- `pnpm run check:small-details:enforce`: pass, `calculator_pages=19 errors=0 warnings=17 blocking=0`.
+- `pnpm run check:small-details`: pass in warn-only mode, `calculator_pages=19 errors=0 warnings=1 blocking=0`.
+- `pnpm run check:small-details:enforce`: pass, `calculator_pages=19 errors=0 warnings=1 blocking=0`.
 
 ## Findings
 

@@ -123,6 +123,7 @@ Status values:
 - 2026-05-22: Added warning-first `pnpm run check:small-details` and enforce-mode `pnpm run check:small-details:enforce`.
 - 2026-05-22: First ASD check run recorded 8 calculator detail errors and 17 warnings in warn-only mode.
 - 2026-05-22: Remediated ASD-101 missing calculator error targets in `credito-consumo`, `dividendo-hipotecario`, `simulador-renegociacion`, and `tarjeta-credito`; enforce mode now passes with 0 errors.
+- 2026-05-22: Remediated ASD-004 reader-facing `widget` copy in `cookies` and `privacidad`; refined reader-copy scanning to ignore comments, scripts, styles, and technical attributes. Reader-copy audit now reports 0 warnings.
 
 ## Verification Evidence
 
@@ -134,9 +135,10 @@ Status values:
 - `pnpm run check:rss`: pass; 35 known additions, 0 removals, baseline=14 current=49.
 - `pnpm run check:urls:external:audit`: pass non-blocking; scanned=412, blocking=0, totalNonOk=6.
 - `pnpm run audit:topic-overlap`: pass non-blocking; articles=50, candidates=35, 1 high overlap.
-- `pnpm run audit:reader-copy`: pass non-blocking; scanned=84, warnings=16.
-- `pnpm run check:small-details`: pass in warn-only mode; calculator_pages=19, errors=0, warnings=17, blocking=0. Report: `output/validation/small-details/report.json`.
-- `pnpm run check:small-details:enforce`: pass; calculator_pages=19, errors=0, warnings=17, blocking=0.
+- `pnpm run audit:reader-copy`: pass; scanned=84, warnings=0.
+- `pnpm run check:reader-facing-copy`: pass; scanned=84, issues=0.
+- `pnpm run check:small-details`: pass in warn-only mode; calculator_pages=19, errors=0, warnings=1, blocking=0. Report: `output/validation/small-details/report.json`.
+- `pnpm run check:small-details:enforce`: pass; calculator_pages=19, errors=0, warnings=1, blocking=0.
 - `pnpm run test -- --run tests/scripts/check-small-details.test.ts`: pass; 88 files, 643 tests.
 - `pnpm run format:check`: fail on 21 pre-existing files before this audit artifact edit. Not remediated in this audit-only scope.
 
@@ -152,6 +154,7 @@ Status values:
 - `package.json`: added `check:small-details` and `check:small-details:enforce`.
 - `tests/scripts/check-small-details.test.ts`: regression tests for warn-only and enforce behavior.
 - `src/pages/calculadoras/credito-consumo.astro`, `src/pages/calculadoras/dividendo-hipotecario.astro`, `src/pages/calculadoras/simulador-renegociacion.astro`, `src/pages/calculadoras/tarjeta-credito.astro`: render the existing `calc-error` targets used by validation JS.
+- `src/pages/cookies.astro`, `src/pages/privacidad.astro`, `scripts/audit-reader-facing-copy.mjs`: reader-facing copy cleanup and reduced false positives from implementation-only text.
 
 3. Invariant preservation
 - Referenced invariants: `URL.PUBLIC.NO_POST_ID`, `ROUTES.NO_SILENT_CHANGES`, `RSS.NO_REMOVALS`, `FRONTMATTER.VALID`, `INVARIANT.EDITORIAL.*`, `INVARIANT.URLCHECK.EXTERNAL_LINK_POLICY`.

@@ -11,7 +11,7 @@ Audit article and reference trust details without editing content. This lane che
 - `pnpm run check:editorial`: pass.
 - `pnpm run check:editorial-timeliness`: pass, `published=50 stale=0 drift=0`.
 - `pnpm run check:legal-citations`: pass, `laws=15 blog=50 pages=54 registry=14`.
-- `pnpm run audit:reader-copy`: pass non-blocking, `warnings=16`.
+- `pnpm run audit:reader-copy`: pass, `warnings=0`.
 - Existing drift plan keeps `TD-0085` and `TD-0086` open for substantive YMYL issues.
 
 ## Findings
@@ -25,13 +25,13 @@ Audit article and reference trust details without editing content. This lane che
 
 ## Reader-Copy Detail
 
-`pnpm run audit:reader-copy` reported 16 non-blocking warnings for reader-visible use of `widget`:
+Initial `pnpm run audit:reader-copy` reported 16 non-blocking warnings for `widget`.
 
-- `src/pages/apoyar.astro`: 14 occurrences.
-- `src/pages/cookies.astro`: 1 occurrence.
-- `src/pages/privacidad.astro`: 1 occurrence.
+Resolution:
 
-These are not corrected in this audit-only pass. They are suitable for a low-risk copy batch if the product voice decision is to avoid implementation terms in reader-facing legal/support copy.
+- `src/pages/cookies.astro` and `src/pages/privacidad.astro`: visible legal copy now says `panel de aporte`.
+- `src/pages/apoyar.astro`: the remaining `widget` tokens were implementation-only comments, identifiers, and Ko-fi script URL text, not reader-facing copy.
+- `scripts/audit-reader-facing-copy.mjs` and `check:small-details`: scanner now ignores comments, scripts, styles, and technical attributes for reader-facing warning rules.
 
 ## Required Remediation Rules
 

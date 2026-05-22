@@ -41,7 +41,7 @@ function scanFilesForRule(filePaths, rule) {
       continue;
     }
 
-    const source = readFileSync(filePath, "utf8");
+    const source = extractReaderFacingText(readFileSync(filePath, "utf8"));
     const re = new RegExp(rule.regex.source, rule.regex.flags);
     let match;
 
@@ -59,6 +59,15 @@ function scanFilesForRule(filePaths, rule) {
   }
 
   return findings;
+}
+
+function extractReaderFacingText(source) {
+  return source
+    .replace(/^---\n[\s\S]*?\n---\n?/m, "\n")
+    .replace(/<!--[\s\S]*?-->/g, "\n")
+    .replace(/<script\b[\s\S]*?<\/script>/gi, "\n")
+    .replace(/<style\b[\s\S]*?<\/style>/gi, "\n")
+    .replace(/<[^>]+>/g, " ");
 }
 
 const blogFiles = listFilesRecursively(BLOG_SOURCE_DIR, BLOG_EXTENSIONS);
