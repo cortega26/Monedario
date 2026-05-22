@@ -225,52 +225,40 @@ const calculatorNextStepItems = [
       <CalculatorResultPanel title="Estimación de resultado">
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
           <div
-            class="mb-4 rounded-lg border border-green-500/40 bg-green-500/10 p-4"
+            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
           >
             <p
-              class="mb-1 text-xs font-bold tracking-widest text-green-400/80 uppercase"
+              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
             >
               Devolución estimada (Ejemplo)
             </p>
-            <p class="font-mono text-3xl font-bold text-green-400">
+            <p class="text-4xl font-bold text-foreground/80">
               {formatPeso(exampleResult.montoDevolución)}
             </p>
-            <p class="mt-1 text-xs text-muted">
-              Ingresa tus datos reales para calcular.
-            </p>
           </div>
-          <div class="mb-4 rounded-lg border border-border p-4">
-            <h3
-              class="mb-3 text-xs font-semibold tracking-wide text-secondary uppercase"
-            >
-              Resumen del ejemplo
-            </h3>
-            <div
-              class="flex justify-between border-b border-border py-1.5 text-sm"
-            >
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between">
               <span class="text-secondary">Sueldos brutos anuales</span>
-              <span class="font-mono font-semibold text-foreground/70"
-                >{formatPeso(exampleResult.sueldosBrutos)}</span
-              >
+              <span class="font-medium text-foreground/80">
+                {formatPeso(exampleResult.sueldosBrutos)}
+              </span>
             </div>
-            <div
-              class="flex justify-between border-b border-border py-1.5 text-sm"
-            >
+            <div class="flex justify-between">
               <span class="text-secondary">IGC calculado</span>
-              <span class="font-mono font-semibold text-foreground/70"
-                >{formatPeso(exampleResult.igcCalculado)}</span
-              >
+              <span class="font-medium text-foreground/80">
+                {formatPeso(exampleResult.igcCalculado)}
+              </span>
             </div>
-            <div class="flex justify-between py-1.5 text-sm">
+            <div class="flex justify-between">
               <span class="text-secondary">Imp. único retenido</span>
-              <span class="font-mono font-semibold text-green-400"
-                >− {formatPeso(exampleResult.impuestoUnicoRetenido)}</span
-              >
+              <span class="font-medium text-foreground/80">
+                − {formatPeso(exampleResult.impuestoUnicoRetenido)}
+              </span>
             </div>
           </div>
-          <p class="text-xs text-muted">
-            Ejemplo: sueldos brutos {formatPeso(exampleResult.sueldosBrutos)} anuales,
-            imp. único retenido {
+          <p class="mt-4 text-xs text-muted">
+            Ejemplo: sueldos brutos {formatPeso(exampleResult.sueldosBrutos)}
+            anuales, imp. único retenido {
               formatPeso(exampleResult.impuestoUnicoRetenido)
             }, sin honorarios ni deducciones adicionales.
           </p>
