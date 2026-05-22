@@ -46,7 +46,7 @@ Ordered by priority within each horizon.
 
 | Idea | Effort | Why |
 |---|---|---|
-| Save & compare scenarios in calculators | M | Biggest engagement lever; builds on `monedario_profile` persistence |
+| Save & compare scenarios in calculators — **PILOT DONE 2026-05-22** | M | Full save + side-by-side compare shipped on sueldo-liquido, credito-consumo, simulador-jubilacion. Shared `calculatorScenarios.ts` store + `CalculatorScenarios.astro` panel + `calculatorScenariosUI.ts`. Rollout to remaining 16 calculators pending (mechanical: add form-card id, place panel, supply `buildSummary`). |
 | Calculator router quiz ("¿qué calculadora necesito?") | M | Improves landing-page intent match; reduces bounce |
 | Shareable result cards (image/URL) | M | Engagement + organic backlink bait |
 | Interactive historical charts (UF/UTM/UTA) | M | Data already exists; charts pull long-dwell traffic |

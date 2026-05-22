@@ -6,6 +6,7 @@ import Footer from "@/components/Footer.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
+import CalculatorScenarios from "@/components/calculator/CalculatorScenarios.astro";
 import CalculatorResultNextActions from "@/components/CalculatorResultNextActions.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
@@ -66,7 +67,7 @@ const calculatorNextStepItems = [
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
-      <div class="rounded-xl border border-border p-6">
+      <div id="calculator-form-card" class="rounded-xl border border-border p-6">
         <h2 class="mb-5 text-lg font-semibold">Datos del crédito</h2>
 
         <CalculatorField
@@ -226,6 +227,7 @@ const calculatorNextStepItems = [
       context="Antes de firmar, compara tasas usando el CAE como referencia única."
     />
     <ShareCalculatorResult />
+    <CalculatorScenarios />
     <CalculatorResultNextActions
       calculatorSlug="credito-consumo"
       actions={[
@@ -272,6 +274,11 @@ const calculatorNextStepItems = [
   import { calculateConsumerCredit } from "@/application/use-cases/CalculateConsumerCredit";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
+  import {
+    initScenarioPanel,
+    restoreInputs,
+    snapshotInputs,
+  } from "@/utils/calculatorScenariosUI";
 
   declare global {
     interface Window {
@@ -279,6 +286,10 @@ const calculatorNextStepItems = [
       showCalculatorNextActions?: () => void;
     }
   }
+
+  let scenarioLastResult:
+    | ReturnType<typeof calculateConsumerCredit>
+    | null = null;
 
   function fmt(n: number): string {
     return "$" + Math.round(n).toLocaleString("es-CL");
@@ -358,6 +369,7 @@ const calculatorNextStepItems = [
     }
 
     setLoading(false);
+    scenarioLastResult = resultado;
     const buildRow = (label: string, value: string, colorClass = "") => {
       const line = document.createElement("div");
       line.className =
@@ -475,4 +487,26 @@ const calculatorNextStepItems = [
       }
     });
   });
+
+  const scenarioFormCard = document.getElementById("calculator-form-card");
+  if (scenarioFormCard) {
+    initScenarioPanel({
+      calculatorId: window.location.pathname,
+      readInputs: () => snapshotInputs(scenarioFormCard),
+      applyInputs: inputs => {
+        restoreInputs(scenarioFormCard, inputs);
+        (document.getElementById("calcBtn") as HTMLButtonElement | null)?.click();
+      },
+      buildSummary: () => {
+        if (!scenarioLastResult) return null;
+        const r = scenarioLastResult;
+        return [
+          { label: "Cuota mensual", value: fmt(r.monthlyPaymentTotal) },
+          { label: "CAE", value: `${r.caePercent.toFixed(2)}%` },
+          { label: "Total intereses", value: fmt(r.totalInterest) },
+          { label: "Total a pagar", value: fmt(r.totalPaid) },
+        ];
+      },
+    });
+  }
 </script>

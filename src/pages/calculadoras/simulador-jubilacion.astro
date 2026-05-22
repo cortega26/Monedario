@@ -9,6 +9,7 @@ import Footer from "@/components/Footer.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
+import CalculatorScenarios from "@/components/calculator/CalculatorScenarios.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
 import NextSteps from "@/components/NextSteps.astro";
@@ -73,7 +74,7 @@ const calculatorNextStepItems = [
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
-      <div class="rounded-xl border border-border p-6">
+      <div id="calculator-form-card" class="rounded-xl border border-border p-6">
         <h2 class="mb-5 text-lg font-semibold">Tus datos</h2>
 
         <CalculatorField
@@ -252,6 +253,7 @@ const calculatorNextStepItems = [
       context="Calcula cuánto extra puedes ahorrar en APV Régimen A o B y el ahorro tributario real."
     />
     <ShareCalculatorResult />
+    <CalculatorScenarios />
     <MethodologyBlock
       notes="La proyección de pensiones se realiza con interés compuesto, cotización obligatoria del 10% del sueldo imponible y tope imponible vigente. Las tasas de rentabilidad son escenarios ilustrativos. Para una proyección oficial, usa el simulador de la Superintendencia de Pensiones en spensiones.cl."
       sources={[
@@ -282,12 +284,21 @@ const calculatorNextStepItems = [
   import { simulateRetirementProjection } from "@/application/use-cases/SimulateRetirementProjection";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
+  import {
+    initScenarioPanel,
+    restoreInputs,
+    snapshotInputs,
+  } from "@/utils/calculatorScenariosUI";
 
   declare global {
     interface Window {
       showShareResult?: (text: string) => void;
     }
   }
+
+  let scenarioLastResult:
+    | ReturnType<typeof simulateRetirementProjection>
+    | null = null;
 
   function fmt(n: number): string {
     return "$" + Math.round(n).toLocaleString("es-CL");
@@ -405,6 +416,8 @@ const calculatorNextStepItems = [
       );
       return;
     }
+
+    scenarioLastResult = proyeccion;
 
     const buildRow = (label: string, value: string, colorClass = "") => {
       const line = document.createElement("div");
@@ -589,4 +602,28 @@ const calculatorNextStepItems = [
       outcome: "success",
     });
   });
+
+  const scenarioFormCard = document.getElementById("calculator-form-card");
+  if (scenarioFormCard) {
+    initScenarioPanel({
+      calculatorId: window.location.pathname,
+      readInputs: () => snapshotInputs(scenarioFormCard),
+      applyInputs: inputs => {
+        restoreInputs(scenarioFormCard, inputs);
+        (document.getElementById("calcBtn") as HTMLButtonElement | null)?.click();
+      },
+      buildSummary: () => {
+        if (!scenarioLastResult) return null;
+        const s = scenarioLastResult.selectedScenario;
+        return [
+          { label: "Saldo al jubilar", value: fmtM(s.projectedBalance) },
+          { label: "Pensión estimada", value: fmt(s.estimatedMonthlyPension) },
+          {
+            label: "Tasa de reemplazo",
+            value: `${s.salaryReplacementPercent.toFixed(0)}%`,
+          },
+        ];
+      },
+    });
+  }
 </script>

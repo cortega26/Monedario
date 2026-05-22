@@ -11,6 +11,7 @@ import ContextLinkSection from "@/components/ContextLinkSection.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
+import CalculatorScenarios from "@/components/calculator/CalculatorScenarios.astro";
 import CalculatorResultNextActions from "@/components/CalculatorResultNextActions.astro";
 import NextBestStep from "@/components/NextBestStep.astro";
 import SupportCallout from "@/components/SupportCallout.astro";
@@ -931,6 +932,7 @@ const calculatorNextStepItems = [
       context="Entiende cada línea de tu liquidación y detecta errores comunes."
     />
     <ShareCalculatorResult />
+    <CalculatorScenarios />
     <CalculatorResultNextActions
       calculatorSlug="sueldo-liquido"
       actions={[
@@ -1015,6 +1017,11 @@ const calculatorNextStepItems = [
   } from "@/application/use-cases/CalculateNetSalary";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
+  import {
+    initScenarioPanel,
+    restoreInputs,
+    snapshotInputs,
+  } from "@/utils/calculatorScenariosUI";
   import { saveCalculatorResult } from "@/utils/resumeState";
 
   declare global {
@@ -2071,4 +2078,31 @@ const calculatorNextStepItems = [
       }, 100);
     }
   });
+
+  const scenarioFormCard = document.getElementById("calculator-form-card");
+  if (scenarioFormCard) {
+    initScenarioPanel({
+      calculatorId: window.location.pathname,
+      readInputs: () => snapshotInputs(scenarioFormCard),
+      applyInputs: inputs => {
+        restoreInputs(scenarioFormCard, inputs);
+        (document.getElementById("calcBtn") as HTMLButtonElement | null)?.click();
+      },
+      buildSummary: () => {
+        if (!lastResultado) return null;
+        const r = lastResultado;
+        return [
+          { label: "Sueldo líquido", value: fmt(r.netSalary - lastOtrosDescuentos) },
+          { label: "Sueldo bruto", value: fmt(r.grossSalary) },
+          { label: "AFP", value: fmt(r.deductions.afp) },
+          { label: "Salud", value: fmt(r.deductions.health) },
+          {
+            label: "Seguro cesantía",
+            value: fmt(r.deductions.unemploymentInsurance),
+          },
+          { label: "Impuesto 2ª cat.", value: fmt(r.deductions.tax) },
+        ];
+      },
+    });
+  }
 </script>
