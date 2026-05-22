@@ -48,23 +48,23 @@ const items = [
     : []),
   {
     codigo: "IPC",
-    nombre: "Indice de Precios al Consumidor",
+    nombre: "Índice de Precios al Consumidor",
     valor: parameters.ipc,
     unidad: "%",
     fecha: resolveEconomicIndicatorDate(parameters, "ipc"),
     impacto:
-      "Mide la inflacion mensual y explica por que cambian precios, reajustes y valor de la UF.",
+      "Mide la inflación mensual y explica por qué cambian precios, reajustes y valor de la UF.",
   },
   ...(parameters.tmc !== undefined
     ? [
         {
           codigo: "TMC",
-          nombre: "Tasa Maxima Convencional",
+          nombre: "Tasa Máxima Convencional",
           valor: parameters.tmc,
           unidad: "%",
           fecha: resolveEconomicIndicatorDate(parameters, "tmc"),
           impacto:
-            "Marca topes legales de interes para ciertos creditos y sirve de referencia en deuda.",
+            "Marca topes legales de interés para ciertos créditos y sirve de referencia en deuda.",
         },
       ]
     : []),
@@ -80,9 +80,9 @@ const sourceLabel =
 const itemListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "Indicadores economicos de Chile",
+  name: "Indicadores económicos de Chile",
   description:
-    "Panel de indicadores clave para Chile con fecha de actualizacion, explicacion practica y enlaces a herramientas.",
+    "Panel de indicadores clave para Chile con fecha de actualización, explicación práctica y enlaces a herramientas.",
   url: `${SITE_BASE}/guias/uf-costo-de-vida/indicadores-economicos/`,
   numberOfItems: items.length,
   itemListElement: items.map((item, index) => ({
@@ -94,8 +94,8 @@ const itemListSchema = {
 ---
 
 <Layout
-  title="Indicadores economicos de Chile: UF, UTM, dolar, IPC y TMC | Monedario"
-  description="Consulta indicadores economicos clave para Chile con fecha de actualizacion y contexto practico para tomar decisiones financieras."
+  title="Indicadores económicos de Chile: UF, UTM, dólar, IPC y TMC | Monedario"
+  description="Consulta indicadores económicos clave para Chile con fecha de actualización y contexto práctico para tomar decisiones financieras."
 >
   <script
     is:inline
@@ -110,14 +110,14 @@ const itemListSchema = {
       <p
         class="mb-2 text-xs font-semibold tracking-widest text-accent uppercase"
       >
-        Referencia rapida
+        Referencia rápida
       </p>
       <h1 class="mb-3 text-3xl font-bold sm:text-4xl">
-        Indicadores economicos de Chile
+        Indicadores económicos de Chile
       </h1>
       <p class="max-w-3xl text-sm leading-relaxed text-secondary">
-        Esta pagina junta los indicadores mas utiles para decisiones del dia a
-        dia. Incluye fecha por indicador, valor referencial y por que importa en
+        Esta página junta los indicadores más útiles para decisiones del día a
+        día. Incluye fecha por indicador, valor referencial y por qué importa en
         tu bolsillo.
       </p>
     </section>
@@ -138,7 +138,7 @@ const itemListSchema = {
               <th class="px-4 py-3">Indicador</th>
               <th class="px-4 py-3">Valor</th>
               <th class="px-4 py-3">Fecha</th>
-              <th class="px-4 py-3">Por que te importa</th>
+              <th class="px-4 py-3">Por qué te importa</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-border">
@@ -216,15 +216,15 @@ const itemListSchema = {
           >
             Siguiente lectura
           </p>
-          <h3 class="text-lg font-semibold">UF, inflacion y costo de vida</h3>
+          <h3 class="text-lg font-semibold">UF, inflación y costo de vida</h3>
           <p class="mt-2 text-sm text-secondary">
-            Si necesitas contexto completo, sigue la ruta tematica del cluster.
+            Si necesitas contexto completo, sigue la ruta temática del cluster.
           </p>
           <a
             href={getPath("/guias/uf-costo-de-vida/")}
             class="mt-4 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
           >
-            Ver seccion completa
+            Ver sección completa
           </a>
         </article>
       </div>
