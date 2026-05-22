@@ -136,6 +136,21 @@ try {
 } catch {
   // Non-blocking — sitemap works without lastmod
 }
+
+// Static-page lastmod (calculators, guide hubs, standalone pages). Generated
+// by scripts/build-page-lastmod.mjs from git history; see that script for why
+// it is a committed index rather than read live at build time.
+const pageLastmodMap = new Map<string, string>();
+try {
+  const pageIndex = JSON.parse(
+    readFileSync("./context/page-lastmod-index.json", "utf-8")
+  ) as { pages?: Record<string, string> };
+  for (const [pathname, date] of Object.entries(pageIndex.pages ?? {})) {
+    pageLastmodMap.set(pathname, date);
+  }
+} catch {
+  // Non-blocking — sitemap works without page lastmod
+}
 // ───────────────────────────────────────────────────────────────────────────
 
 // https://astro.build/config
@@ -167,9 +182,16 @@ export default defineConfig({
       serialize(item) {
         const url = item.url;
         const pathname = new URL(url).pathname;
+        const pageLastmod = pageLastmodMap.get(pathname);
+        const lastmodEntry = pageLastmod ? { lastmod: pageLastmod } : {};
 
         if (pathname === HOME_PATH) {
-          return { ...item, changefreq: EnumChangefreq.DAILY, priority: 1.0 };
+          return {
+            ...item,
+            ...lastmodEntry,
+            changefreq: EnumChangefreq.DAILY,
+            priority: 1.0,
+          };
         }
 
         // Extract the last two parts of the path for section identification
@@ -189,6 +211,7 @@ export default defineConfig({
           if (section === "leyes") {
             return {
               ...item,
+              ...lastmodEntry,
               changefreq: EnumChangefreq.MONTHLY,
               priority: 0.8,
             };
@@ -196,6 +219,7 @@ export default defineConfig({
           if (section === "calculadoras") {
             return {
               ...item,
+              ...lastmodEntry,
               changefreq: EnumChangefreq.WEEKLY,
               priority: 0.7,
             };
@@ -210,10 +234,20 @@ export default defineConfig({
           (hubs.includes(section) && pathParts.length <= 2) ||
           (pages.includes(section) && pathParts.length === 1)
         ) {
-          return { ...item, changefreq: EnumChangefreq.MONTHLY, priority: 0.6 };
+          return {
+            ...item,
+            ...lastmodEntry,
+            changefreq: EnumChangefreq.MONTHLY,
+            priority: 0.6,
+          };
         }
 
-        return { ...item, changefreq: EnumChangefreq.YEARLY, priority: 0.5 };
+        return {
+          ...item,
+          ...lastmodEntry,
+          changefreq: EnumChangefreq.YEARLY,
+          priority: 0.5,
+        };
       },
     }),
     mdx(),

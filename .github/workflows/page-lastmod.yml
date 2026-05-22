@@ -1,0 +1,53 @@
+name: Page lastmod index
+
+# Regenerates context/page-lastmod-index.json after page files change on main,
+# so the sitemap carries accurate <lastmod> for calculators, guide hubs and
+# static pages. The index must be committed because the production build runs
+# on a shallow clone where git history is unavailable.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/pages/**"
+
+concurrency:
+  group: page-lastmod-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    name: Refresh page-lastmod index
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+
+      - name: Regenerate index
+        run: node scripts/build-page-lastmod.mjs
+
+      - name: Commit if changed
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add context/page-lastmod-index.json
+          if git diff --cached --quiet; then
+            echo "page-lastmod: index already up to date."
+          else
+            git commit -m "chore: refresh page-lastmod index"
+            git push
+          fi
