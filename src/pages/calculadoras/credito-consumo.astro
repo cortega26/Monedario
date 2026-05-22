@@ -77,7 +77,10 @@ const calculatorNextStepItems = [
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
-      <div id="calculator-form-card" class="rounded-xl border border-border p-6">
+      <div
+        id="calculator-form-card"
+        class="rounded-xl border border-border p-6"
+      >
         <h2 class="mb-5 text-lg font-semibold">Datos del crédito</h2>
 
         <CalculatorField
@@ -170,6 +173,12 @@ const calculatorNextStepItems = [
         >
           Calcular crédito →
         </button>
+        <div
+          id="calc-error"
+          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
+          role="alert"
+        >
+        </div>
       </div>
 
       <!-- RESULTADO -->
@@ -326,9 +335,8 @@ const calculatorNextStepItems = [
     }
   }
 
-  let scenarioLastResult:
-    | ReturnType<typeof calculateConsumerCredit>
-    | null = null;
+  let scenarioLastResult: ReturnType<typeof calculateConsumerCredit> | null =
+    null;
 
   function fmt(n: number): string {
     return "$" + Math.round(n).toLocaleString("es-CL");
@@ -534,7 +542,9 @@ const calculatorNextStepItems = [
       readInputs: () => snapshotInputs(scenarioFormCard),
       applyInputs: inputs => {
         restoreInputs(scenarioFormCard, inputs);
-        (document.getElementById("calcBtn") as HTMLButtonElement | null)?.click();
+        (
+          document.getElementById("calcBtn") as HTMLButtonElement | null
+        )?.click();
       },
       buildSummary: () => {
         if (!scenarioLastResult) return null;

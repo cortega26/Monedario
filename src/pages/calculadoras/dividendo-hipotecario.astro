@@ -181,7 +181,15 @@ const calculatorNextStepItems = [
         </div>
 
         <!-- Tasa anual -->
-        <CalculatorField id="annualRate" label="Tasa de interés anual (%)" placeholder="Ej: 4.80" min="0" max="30" step="0.01" hint="Solicita la Hoja de Condiciones a tu banco para ver la tasa real." />
+        <CalculatorField
+          id="annualRate"
+          label="Tasa de interés anual (%)"
+          placeholder="Ej: 4.80"
+          min="0"
+          max="30"
+          step="0.01"
+          hint="Solicita la Hoja de Condiciones a tu banco para ver la tasa real."
+        />
 
         <!-- Plazo -->
         <div class="mb-4">
@@ -214,10 +222,24 @@ const calculatorNextStepItems = [
         </div>
 
         <!-- Seguro desgravamen -->
-        <CalculatorField id="desgravamen" label="Seguro desgravamen (% mensual sobre saldo) — opcional" placeholder="Ej: 0.025" min="0" step="0.001" hint="Varía por banco y edad. Consulta tu cotización. (~0.020%–0.030% típico)" />
+        <CalculatorField
+          id="desgravamen"
+          label="Seguro desgravamen (% mensual sobre saldo) — opcional"
+          placeholder="Ej: 0.025"
+          min="0"
+          step="0.001"
+          hint="Varía por banco y edad. Consulta tu cotización. (~0.020%–0.030% típico)"
+        />
 
         <!-- Seguro incendio/sismo -->
-        <CalculatorField id="fireInsurance" label="Seguro incendio/sismo (UF/mes) — opcional" placeholder="Ej: 0.50" min="0" step="0.01" hint="Aprox. 0.010–0.020 UF por cada 100 UF de propiedad/mes." />
+        <CalculatorField
+          id="fireInsurance"
+          label="Seguro incendio/sismo (UF/mes) — opcional"
+          placeholder="Ej: 0.50"
+          min="0"
+          step="0.01"
+          hint="Aprox. 0.010–0.020 UF por cada 100 UF de propiedad/mes."
+        />
 
         <button
           id="calcBtn"
@@ -225,6 +247,12 @@ const calculatorNextStepItems = [
         >
           Calcular dividendo →
         </button>
+        <div
+          id="calc-error"
+          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
+          role="alert"
+        >
+        </div>
       </div>
 
       <!-- RESULTADO -->

@@ -15,6 +15,7 @@ Audit governance details that cause recurring small regressions: hardcoded regis
 - `pnpm run check:docs`: pass before adding this plan.
 - `pnpm run check:urls:external:audit`: pass non-blocking, 6 non-OK findings.
 - `pnpm run audit:topic-overlap`: pass non-blocking, 35 candidates.
+- `pnpm run check:small-details`: warning-first guardrail added; enforce with `SMALL_DETAILS_ENFORCE=1` after baseline remediation.
 
 ## Findings
 
@@ -29,6 +30,7 @@ Audit governance details that cause recurring small regressions: hardcoded regis
 
 Carry forward from the drift plan, with ASD ownership:
 
+- `check:small-details` for calculator trust surfaces, validation/error wiring, reader-copy warning carry-forward, and external URL audit artifact presence.
 - `check:legal-privacy-claims` for analytics/legal page consistency.
 - `check:ymyl-freshness-claims` for placeholders and untraced volatile YMYL values.
 - `check:economic-source-consistency` for source labels across ADR, Worker, registry, and UI.

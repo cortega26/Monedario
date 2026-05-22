@@ -35,6 +35,8 @@
     "check:editorial-artifacts": "node scripts/check-editorial-artifacts.mjs",
     "check:editorial-timeliness": "node scripts/check-editorial-timeliness.mjs",
     "check:reader-facing-copy": "node scripts/check-reader-facing-copy.mjs",
+    "check:small-details": "node scripts/check-small-details.mjs",
+    "check:small-details:enforce": "SMALL_DETAILS_ENFORCE=1 node scripts/check-small-details.mjs",
     "check:editorial": "node scripts/check-editorial-structure.mjs && node scripts/check-dialect.mjs && node scripts/check-reader-facing-copy.mjs && node scripts/check-editorial-artifacts.mjs",
     "scaffold:editorial-artifacts": "node scripts/scaffold-editorial-artifacts.mjs",
     "audit:reader-copy": "node scripts/audit-reader-facing-copy.mjs",

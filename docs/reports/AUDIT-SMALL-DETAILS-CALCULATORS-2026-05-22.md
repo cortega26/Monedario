@@ -14,6 +14,8 @@ Audit calculator trust details without changing formulas or UI. This lane covers
 - `pnpm run check`: pass.
 - `pnpm run format:check`: fail on pre-existing formatting drift in several calculator files and utilities; not remediated in this audit-only pass.
 - Existing `TD-0087` and `TD-0094` may affect methodology/source labels.
+- `pnpm run check:small-details`: pass in warn-only mode, `calculator_pages=19 errors=0 warnings=17 blocking=0`.
+- `pnpm run check:small-details:enforce`: pass, `calculator_pages=19 errors=0 warnings=17 blocking=0`.
 
 ## Findings
 
@@ -29,6 +31,18 @@ Audit calculator trust details without changing formulas or UI. This lane covers
 - No formula changes in an ASD copy batch.
 - No legal/tax/pension/labor interpretation changes without YMYL review.
 - If a label or explanation changes the reader's understanding of a calculation, treat it as substantive and add tests plus editorial/source review.
+
+## Automated ASD Check Detail
+
+`check:small-details` now records the first calculator detail backlog in `output/validation/small-details/report.json`.
+
+Current warn-only errors: none.
+
+Resolved ASD-101 errors:
+
+- Added visible `calc-error` alert targets for the existing validation JS in `credito-consumo`, `dividendo-hipotecario`, `simulador-renegociacion`, and `tarjeta-credito`.
+
+These were not formula changes. They were validation/detail wiring issues remediated as a bounded calculator UI batch.
 
 ## Suggested Representative Pass
 

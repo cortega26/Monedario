@@ -142,7 +142,11 @@ const calculatorNextStepItems = [
           </p>
         </div>
 
-        <CalculatorField id="primera-categoria" label="¿Tuviste inicio de actividades o rentas de primera categoría en los últimos 24 meses?" hint="Si emitiste boletas de honorarios, eso no equivale por sí solo a primera categoría.">
+        <CalculatorField
+          id="primera-categoria"
+          label="¿Tuviste inicio de actividades o rentas de primera categoría en los últimos 24 meses?"
+          hint="Si emitiste boletas de honorarios, eso no equivale por sí solo a primera categoría."
+        >
           <select
             id="primera-categoria"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
@@ -153,7 +157,10 @@ const calculatorNextStepItems = [
           </select>
         </CalculatorField>
 
-        <CalculatorField id="juicio-ejecutivo" label="¿Te notificaron formalmente una demanda ejecutiva o una liquidación forzosa?">
+        <CalculatorField
+          id="juicio-ejecutivo"
+          label="¿Te notificaron formalmente una demanda ejecutiva o una liquidación forzosa?"
+        >
           <select
             id="juicio-ejecutivo"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
@@ -164,7 +171,11 @@ const calculatorNextStepItems = [
           </select>
         </CalculatorField>
 
-        <CalculatorField id="documentos-completos" label="¿Ya tienes reunidos los documentos y declaraciones que pide la Superir?" hint="Esto no reemplaza la revisión de admisibilidad, pero sí cambia si tu caso está listo para solicitud formal o solo para evaluación.">
+        <CalculatorField
+          id="documentos-completos"
+          label="¿Ya tienes reunidos los documentos y declaraciones que pide la Superir?"
+          hint="Esto no reemplaza la revisión de admisibilidad, pero sí cambia si tu caso está listo para solicitud formal o solo para evaluación."
+        >
           <select
             id="documentos-completos"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
@@ -175,11 +186,33 @@ const calculatorNextStepItems = [
           </select>
         </CalculatorField>
 
-        <CalculatorField id="ingreso" label="Ingreso mensual neto ($)" placeholder="Ej: 900.000" min="0" hint="Lo que recibes en tu cuenta (líquido)." />
+        <CalculatorField
+          id="ingreso"
+          label="Ingreso mensual neto ($)"
+          placeholder="Ej: 900.000"
+          min="0"
+          hint="Lo que recibes en tu cuenta (líquido)."
+        />
 
-        <CalculatorField id="plazo-renego" label="Plazo de renegociación deseado (meses)" placeholder="Ej: 36" min="6" max="120" value="36" />
+        <CalculatorField
+          id="plazo-renego"
+          label="Plazo de renegociación deseado (meses)"
+          placeholder="Ej: 36"
+          min="6"
+          max="120"
+          value="36"
+        />
 
-        <CalculatorField id="tasa-renego" label="Tasa de interés del acuerdo (% mensual)" placeholder="Ej: 1.5" min="0" max="5" step="0.1" value="1.5" hint="La tasa varía según el acuerdo. Los acuerdos Superir suelen bajar la tasa respecto al contrato original. Usa 0% para simular cuota sin interés." />
+        <CalculatorField
+          id="tasa-renego"
+          label="Tasa de interés del acuerdo (% mensual)"
+          placeholder="Ej: 1.5"
+          min="0"
+          max="5"
+          step="0.1"
+          value="1.5"
+          hint="La tasa varía según el acuerdo. Los acuerdos Superir suelen bajar la tasa respecto al contrato original. Usa 0% para simular cuota sin interés."
+        />
 
         <button
           id="calcBtn"
@@ -187,6 +220,12 @@ const calculatorNextStepItems = [
         >
           Simular renegociación →
         </button>
+        <div
+          id="calc-error"
+          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
+          role="alert"
+        >
+        </div>
       </div>
 
       <!-- RESULTADO -->
