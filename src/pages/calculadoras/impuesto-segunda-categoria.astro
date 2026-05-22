@@ -348,6 +348,7 @@ const calculatorNextStepItems = [
   import "@/scripts/calculator-prefill";
   import { calculateSecondCategoryTax } from "@/domain/taxation/TaxEngine";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { renderHeadlineDelta } from "@/utils/calculatorDelta";
 
   declare global {
     interface Window {
@@ -442,6 +443,13 @@ const calculatorNextStepItems = [
     headlineValue.textContent = fmt(result.taxAmount);
 
     headline.append(headlineLabel, headlineValue);
+
+    const delta = renderHeadlineDelta(
+      window.location.pathname,
+      result.taxAmount,
+      fmt
+    );
+    if (delta) headline.append(delta);
 
     const buildRow = (label: string, value: string, color = "") => {
       const row = document.createElement("div");

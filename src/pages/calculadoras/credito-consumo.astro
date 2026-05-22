@@ -271,6 +271,7 @@ const calculatorNextStepItems = [
 <script>
   import { calculateConsumerCredit } from "@/application/use-cases/CalculateConsumerCredit";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { renderHeadlineDelta } from "@/utils/calculatorDelta";
 
   declare global {
     interface Window {
@@ -391,6 +392,13 @@ const calculatorNextStepItems = [
       insuranceNote.textContent = `Incluye ${fmt(seguro)} de seguro`;
       headline.appendChild(insuranceNote);
     }
+
+    const delta = renderHeadlineDelta(
+      window.location.pathname,
+      resultado.monthlyPaymentTotal,
+      fmt
+    );
+    if (delta) headline.append(delta);
 
     const insight = document.createElement("div");
     insight.className =

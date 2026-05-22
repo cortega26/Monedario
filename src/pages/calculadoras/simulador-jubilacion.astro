@@ -281,6 +281,7 @@ const calculatorNextStepItems = [
 <script>
   import { simulateRetirementProjection } from "@/application/use-cases/SimulateRetirementProjection";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { renderHeadlineDelta } from "@/utils/calculatorDelta";
 
   declare global {
     interface Window {
@@ -470,6 +471,13 @@ const calculatorNextStepItems = [
     headlineSub.className = "mt-1 text-sm text-muted";
     headlineSub.textContent = `En ${añosRestantes} años (a los ${edadJubilacion}) · escenario ${proyeccion.selectedScenario.label.toLowerCase()}`;
     headline.append(headlineLabel, headlineValue, headlineSub);
+
+    const delta = renderHeadlineDelta(
+      window.location.pathname,
+      proyeccion.selectedScenario.projectedBalance,
+      fmtM
+    );
+    if (delta) headline.append(delta);
 
     const comparisonLabel = document.createElement("p");
     comparisonLabel.className =

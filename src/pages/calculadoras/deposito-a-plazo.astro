@@ -368,6 +368,7 @@ const dapFaqs = [
     type TermDepositOutput,
   } from "@/application/use-cases/CalculateTermDeposit";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { renderHeadlineDelta } from "@/utils/calculatorDelta";
   import { saveCalculatorResult } from "@/utils/resumeState";
 
   declare global {
@@ -423,6 +424,13 @@ const dapFaqs = [
     headlineSub.className = "mt-1.5 text-xs text-foreground/60";
     headlineSub.textContent = `${result.termDays} días · TIR ${result.annualRatePercent.toFixed(2)}%`;
     headline.append(headlineLabel, headlineValue, headlineSub);
+
+    const delta = renderHeadlineDelta(
+      window.location.pathname,
+      result.finalAmount,
+      fmt
+    );
+    if (delta) headline.append(delta);
 
     const mkRow = (label: string, value: string, colorClass = "") => {
       const row = document.createElement("div");

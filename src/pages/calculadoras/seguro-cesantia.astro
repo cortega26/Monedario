@@ -335,6 +335,7 @@ const calculatorNextStepItems = [
   import { estimateUnemploymentCoverage } from "@/application/use-cases/EstimateUnemploymentCoverage";
   import { animateCount } from "@/utils/animateCount";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { renderHeadlineDelta } from "@/utils/calculatorDelta";
 
   declare global {
     interface Window {
@@ -586,6 +587,13 @@ const calculatorNextStepItems = [
           ? "Cobertura calculada con tu saldo CIC real"
           : "Estimación por cotizaciones a CIC; no incluye rentabilidad ni retiros previos";
       header.append(headerTitle, headerValue, headerSubtitle);
+
+      const delta = renderHeadlineDelta(
+        window.location.pathname,
+        estimacion.estimatedCicBalance,
+        fmtCurrency
+      );
+      if (delta) header.append(delta);
 
       const contributionBox = document.createElement("div");
       contributionBox.className = "mb-4 rounded-lg bg-foreground/5 p-3";

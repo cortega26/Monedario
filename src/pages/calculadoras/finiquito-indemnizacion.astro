@@ -370,6 +370,7 @@ const calculatorNextStepItems = [
   import "@/scripts/calculator-prefill";
   import { estimateFiniquito } from "@/application/use-cases/EstimateFiniquito";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { renderHeadlineDelta } from "@/utils/calculatorDelta";
 
   declare global {
     interface Window {
@@ -529,6 +530,13 @@ const calculatorNextStepItems = [
         result.proportionalVacationAmount
       );
       headline.append(headlineLabel, headlineDays, headlineValue);
+
+      const delta = renderHeadlineDelta(
+        window.location.pathname,
+        result.proportionalVacationAmount,
+        fmtCurrency
+      );
+      if (delta) headline.append(delta);
 
       const note = document.createElement("p");
       note.className = "mt-4 text-xs text-muted";

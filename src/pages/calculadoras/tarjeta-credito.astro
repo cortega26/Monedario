@@ -213,6 +213,7 @@ const calculatorNextStepItems = [
 <script>
   import { simulateCreditCardCost } from "@/application/use-cases/SimulateCreditCardCost";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { renderHeadlineDelta } from "@/utils/calculatorDelta";
 
   declare global {
     interface Window {
@@ -340,6 +341,13 @@ const calculatorNextStepItems = [
     originalDebt.className = "mt-1 text-sm text-muted";
     originalDebt.textContent = `Deuda original: ${fmt(deuda)}`;
     headline.append(headlineLabel, headlineValue, originalDebt);
+
+    const delta = renderHeadlineDelta(
+      window.location.pathname,
+      resultado.totalPaid,
+      fmt
+    );
+    if (delta) headline.append(delta);
 
     const firstPaymentsBox = document.createElement("div");
     firstPaymentsBox.className = "mt-4 rounded-lg bg-foreground/5 p-3";

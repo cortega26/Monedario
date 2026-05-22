@@ -1014,6 +1014,7 @@ const calculatorNextStepItems = [
     estimateGrossFromNet,
   } from "@/application/use-cases/CalculateNetSalary";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { renderHeadlineDelta } from "@/utils/calculatorDelta";
   import { saveCalculatorResult } from "@/utils/resumeState";
 
   declare global {
@@ -1498,6 +1499,13 @@ const calculatorNextStepItems = [
       headlineSub.innerHTML = `De cada $100 brutos, recibes <strong class="text-foreground/80">$${retainedPct}</strong>`;
     }
     headline.append(headlineLabel, headlineValue, headlineSub);
+
+    const delta = renderHeadlineDelta(
+      window.location.pathname + (isInverso ? "#bruto" : "#liquido"),
+      displayAmount,
+      fmt
+    );
+    if (delta) headline.append(delta);
 
     // — BARRAS VISUALES DE DESCUENTOS —
     const barsData: { label: string; value: number; color: string }[] = [

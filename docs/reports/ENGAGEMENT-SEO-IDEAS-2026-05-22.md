@@ -37,8 +37,8 @@ Ordered by priority within each horizon.
 | Idea | Effort | Why first |
 |---|---|---|
 | ~~HowTo/FAQ schema expansion to leyes/glosario~~ **DONE 2026-05-22** | S | Glosario index `DefinedTermSet` + leyes `FAQPage` infra. Note: Google FAQ rich results are restricted to gov/health sites and HowTo is deprecated — value is AI-citation/semantic, not Google snippets. Leyes FAQ content fill is editorial. |
-| Inline "what changed" deltas in calculators | S | High engagement-per-effort; no new state to persist |
-| "Related calculators" cross-links | S | Internal-link depth + session length; mechanical to add |
+| ~~Inline "what changed" deltas in calculators~~ **DONE 2026-05-22** | M | Shared `calculatorDelta.ts` helper wired into 15 calculators. Not applicable to apv (recommendation, no single headline), comisiones-afp (comparison table) and the UF/UTM converters (delta meaningless for unit conversion). |
+| ~~"Related calculators" cross-links~~ **ALREADY DONE** | — | Verified 2026-05-22: all 19 calculators already render a "Qué sigue" `NextSteps` section from each portfolio entry's curated `related` field. No work needed. |
 | Freshness signals on calculators (`dateModified` + visible "actualizado el…") | S | Closes the gap above; YMYL/SEO value, low risk |
 | Inline glossary tooltips in articles | S–M | Hover definitions linking to /glosario — engagement + internal links. Touches article rendering → editorial review |
 

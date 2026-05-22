@@ -335,6 +335,7 @@ const calculatorNextStepItems = [
 <script>
   import { calculateMortgage } from "@/application/use-cases/CalculateMortgage";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { renderHeadlineDelta } from "@/utils/calculatorDelta";
 
   declare global {
     interface Window {
@@ -526,6 +527,13 @@ const calculatorNextStepItems = [
     hl3.className = "text-sm text-muted";
     hl3.textContent = `≈ ${fmtPesos(resultado.basePaymentPesos)}/mes`;
     headline.append(hl1, hl2, hl3);
+
+    const delta = renderHeadlineDelta(
+      window.location.pathname,
+      resultado.basePaymentPesos,
+      fmtPesos
+    );
+    if (delta) headline.append(delta);
 
     const hasInsurance =
       (monthlyDesgravamenRatePercent ?? 0) > 0 ||

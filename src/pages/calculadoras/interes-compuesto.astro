@@ -388,6 +388,7 @@ const interesCompuestoFaqs = [
   } from "@/application/use-cases/CalculateCompoundInterest";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { saveCalculatorResult } from "@/utils/resumeState";
+  import { renderHeadlineDelta } from "@/utils/calculatorDelta";
 
   declare global {
     interface Window {
@@ -476,6 +477,13 @@ const interesCompuestoFaqs = [
     headlineSub.className = "mt-1.5 text-xs text-foreground/60";
     headlineSub.textContent = `${result.years} años · capitalización ${frecuenciaLabel[result.compoundsPerYear] ?? result.compoundsPerYear + "x/año"}`;
     headline.append(headlineLabel, headlineValue, headlineSub);
+
+    const delta = renderHeadlineDelta(
+      window.location.pathname,
+      result.finalAmount,
+      fmt
+    );
+    if (delta) headline.append(delta);
 
     const mkRow = (label: string, value: string, colorClass = "") => {
       const row = document.createElement("div");

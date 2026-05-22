@@ -221,6 +221,7 @@ const calculatorNextStepItems = [
 <script>
   import { calculateHonorariosNet } from "@/application/use-cases/CalculateHonorariosNet";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { renderHeadlineDelta } from "@/utils/calculatorDelta";
 
   declare global {
     interface Window {
@@ -331,6 +332,13 @@ const calculatorNextStepItems = [
     headlineValue.textContent = fmtCurrency(result.netFeeReceived);
 
     headline.append(headlineLabel, headlineValue);
+
+    const delta = renderHeadlineDelta(
+      window.location.pathname,
+      result.netFeeReceived,
+      fmtCurrency
+    );
+    if (delta) headline.append(delta);
 
     const assumptions = document.createElement("ul");
     assumptions.className = "mt-4 space-y-2 text-xs leading-relaxed text-muted";

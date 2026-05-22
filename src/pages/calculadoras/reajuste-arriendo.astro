@@ -297,6 +297,7 @@ const calculatorNextStepItems = [
     calculateUfRentAdjustment,
   } from "@/application/use-cases/CalculateRentAdjustment";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { renderHeadlineDelta } from "@/utils/calculatorDelta";
 
   declare global {
     interface Window {
@@ -467,6 +468,13 @@ const calculatorNextStepItems = [
       })} UF × ${fmt(ufHoy)}`;
       header.append(headerTitle, headerValue, headerSub);
 
+      const delta = renderHeadlineDelta(
+        window.location.pathname + "#uf",
+        reajusteUf.currentRentClp,
+        fmt
+      );
+      if (delta) header.append(delta);
+
       const note = document.createElement("p");
       note.className = "mt-3 text-xs text-muted";
       note.textContent = `El arriendo en UF no "sube" - siempre son ${arriendoUF} UF. Lo que varía es el equivalente en pesos según el valor diario de la UF.`;
@@ -546,6 +554,13 @@ const calculatorNextStepItems = [
       headerSub.className = "mt-1 text-sm text-muted";
       headerSub.textContent = `Con IPC ${ipcVariacion > 0 ? "+" : ""}${ipcVariacion}%`;
       header.append(headerTitle, headerValue, headerSub);
+
+      const delta = renderHeadlineDelta(
+        window.location.pathname + "#ipc",
+        reajusteIpc.adjustedRentClp,
+        fmt
+      );
+      if (delta) header.append(delta);
 
       const note = document.createElement("p");
       note.className = "mt-3 text-xs text-muted";

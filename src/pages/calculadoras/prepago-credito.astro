@@ -318,6 +318,7 @@ const calculatorNextStepItems = [
 <script>
   import { simulateCreditPrepayment } from "@/application/use-cases/SimulateCreditPrepayment";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { renderHeadlineDelta } from "@/utils/calculatorDelta";
 
   declare global {
     interface Window {
@@ -527,6 +528,13 @@ const calculatorNextStepItems = [
     verdictSub.className = "text-sm text-muted";
     verdictSub.textContent = "beneficio neto después del costo de prepago";
     verdict.append(verdictLabel, verdictValue, verdictSub);
+
+    const delta = renderHeadlineDelta(
+      window.location.pathname + (isUF ? "#uf" : "#clp"),
+      simulacion.netSavingsAfterPrepaymentCost,
+      fmtMR
+    );
+    if (delta) verdict.append(delta);
 
     const withoutLabel = document.createElement("p");
     withoutLabel.className = "mb-2 text-xs font-bold text-muted uppercase";
