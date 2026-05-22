@@ -65,7 +65,7 @@ A diferencia de un crédito de consumo con cuota fija, la tarjeta no tiene fecha
 
 El pago mínimo está calculado para que el banco siempre reciba algo — no para que tú salgas de la deuda rápido. Suele ser un porcentaje del saldo (en general entre un 5% y un 10%, según el emisor) o un monto fijo, lo que sea mayor.
 
-La consecuencia práctica: con una mayoría de los pagos cubriendo intereses y solo una fracción reduciendo capital, una deuda mediana puede tardar años en liquidarse si nunca subes el monto que abonasás. La calculadora convierte eso en meses concretos y en pesos totales pagados.
+La consecuencia práctica: con una mayoría de los pagos cubriendo intereses y solo una fracción reduciendo capital, una deuda mediana puede tardar años en liquidarse si nunca subes el monto que abonas. La calculadora convierte eso en meses concretos y en pesos totales pagados.
 
 **Ejemplo orientativo** (los valores son ilustrativos; las condiciones reales varían por emisor):
 

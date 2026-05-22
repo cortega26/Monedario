@@ -81,7 +81,7 @@ Cuando en las noticias dicen "la inflación anual fue 4,5%", se refieren al acum
 
 ## Por qué el IPC puede bajar pero igual sentirlo más caro
 
-El IPC mide el promedio. Si los alimentos suben 5% pero la gasolina baja 10%, el IPC puede mostrar una variación pequeña o negativa. Pero si eres una familia que gasta mucho en alimentos y poco en gasolina, **tu inflación personal es más alta** que la del indice.
+El IPC mide el promedio. Si los alimentos suben 5% pero la gasolina baja 10%, el IPC puede mostrar una variación pequeña o negativa. Pero si eres una familia que gasta mucho en alimentos y poco en gasolina, **tu inflación personal es más alta** que la del índice.
 
 Esto es normal: el IPC es un promedio estadístico, no tu experiencia individual. Si tienes hijos en colegio privado, arriendas en zona cara o gastas más en salud que el promedio, tu inflación real puede estar por encima del número oficial — y esa distancia es la que sientes en la billetera.
 

@@ -124,13 +124,13 @@ const contextualIndicators = [
     ? [
         {
           code: "TMC",
-          title: "Tasa Maxima Convencional",
+          title: "Tasa Máxima Convencional",
           value: `${parameters.tmc.toLocaleString("es-CL", {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
           })}%`,
           date: fmtFecha(resolveEconomicIndicatorDate(parameters, "tmc")),
-          why: "Es un tope legal de interes para ciertos creditos y sirve para detectar costos fuera de rango.",
+          why: "Es un tope legal de interés para ciertos créditos y sirve para detectar costos fuera de rango.",
         },
       ]
     : []),
@@ -166,11 +166,11 @@ const contextualIndicators = [
       >
         <div>
           <h2 class="text-2xl font-bold">
-            Dato clave hoy para deuda y credito
+            Dato clave hoy para deuda y crédito
           </h2>
           <p class="mt-1 max-w-3xl text-sm text-secondary">
-            Aqui solo ves los indicadores que cambian decisiones de deuda. Para
-            la vista completa, usa la pagina de indicadores economicos.
+            Aquí solo ves los indicadores que cambian decisiones de deuda. Para
+            la vista completa, usa la página de indicadores económicos.
           </p>
         </div>
         <a

@@ -19,7 +19,7 @@ draft: false
 featured: false
 heroImage: /images/hero/prepago-credito-cuando-conviene-chile.avif
 articleLead:
-  answer: "Hacer un prepago conviene cuando el ahorro en intereses es mayor que el costo de oportunidad de ese dinero y cuando el crédito aún tiene vida suficiente para que el abono impacte el capital pendiente. La calculadora muestra ese ahorro exact en pesos antes de que tomes la decisión."
+  answer: "Hacer un prepago conviene cuando el ahorro en intereses es mayor que el costo de oportunidad de ese dinero y cuando el crédito aún tiene vida suficiente para que el abono impacte el capital pendiente. La calculadora muestra ese ahorro exacto en pesos antes de que tomes la decisión."
   calculatorHref: "/calculadoras/prepago-credito/"
   calculatorLabel: "Simular ahorro por prepago"
   nextStepHref: "/posts/credito-hipotecario-chile-guia-completa/"

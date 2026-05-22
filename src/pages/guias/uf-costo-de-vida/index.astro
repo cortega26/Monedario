@@ -63,7 +63,7 @@ const itemListSchema = {
     {
       "@type": "ListItem",
       position: 7,
-      name: "Indicadores economicos de Chile",
+      name: "Indicadores económicos de Chile",
       url: `${SITE_BASE}/guias/uf-costo-de-vida/indicadores-economicos/`,
     },
   ],
@@ -82,21 +82,21 @@ const contextualIndicators = [
   },
   {
     code: "IPC",
-    title: "Indice de Precios al Consumidor",
+    title: "Índice de Precios al Consumidor",
     value: `${parameters.ipc.toLocaleString("es-CL", {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     })}%`,
     date: fmtFecha(resolveEconomicIndicatorDate(parameters, "ipc")),
-    why: "Explica la inflacion del periodo y el contexto de los reajustes de bolsillo.",
+    why: "Explica la inflación del período y el contexto de los reajustes de bolsillo.",
   },
 ];
 
 const tools = [
   {
-    title: "Indicadores economicos de Chile",
+    title: "Indicadores económicos de Chile",
     description:
-      "Consulta en un solo lugar UF, UTM, dolar, IPC y TMC con fecha de referencia y contexto de uso.",
+      "Consulta en un solo lugar UF, UTM, dólar, IPC y TMC con fecha de referencia y contexto de uso.",
     href: getPath("/guias/uf-costo-de-vida/indicadores-economicos/"),
     cta: "Ver indicadores",
   },
@@ -168,8 +168,8 @@ const relatedBridges = [
         <div>
           <h2 class="text-2xl font-bold">Dato clave hoy para costo de vida</h2>
           <p class="mt-1 max-w-3xl text-sm text-secondary">
-            Aqui solo ves los indicadores que realmente mueven reajustes y costo
-            de vida. Para la vista completa, revisa la pagina pilar.
+            Aquí solo ves los indicadores que realmente mueven reajustes y costo
+            de vida. Para la vista completa, revisa la página pilar.
           </p>
         </div>
         <a
@@ -255,9 +255,9 @@ const relatedBridges = [
       steps={[
         {
           step: 1,
-          title: "Indicadores economicos de Chile",
+          title: "Indicadores económicos de Chile",
           description:
-            "Empieza por una referencia rapida con fechas y contexto practico.",
+            "Empieza por una referencia rápida con fechas y contexto práctico.",
           href: "/guias/uf-costo-de-vida/indicadores-economicos/",
         },
         {

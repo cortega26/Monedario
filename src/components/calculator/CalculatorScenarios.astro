@@ -1,0 +1,83 @@
+---
+// Static shell for the "save & compare scenarios" panel.
+// Behaviour is wired per calculator via initScenarioPanel() in
+// src/utils/calculatorScenariosUI.ts.
+---
+
+<section
+  id="scenario-panel"
+  class="mt-8 rounded-xl border border-border bg-surface-muted/30 p-5"
+  aria-labelledby="scenario-panel-heading"
+  hidden
+>
+  <div class="flex flex-wrap items-center justify-between gap-3">
+    <div>
+      <h2 id="scenario-panel-heading" class="text-base font-semibold">
+        Escenarios guardados
+      </h2>
+      <p class="mt-1 text-xs text-muted">
+        Guarda este cálculo para compararlo después. Se queda solo en este
+        navegador.
+      </p>
+    </div>
+    <button
+      id="scenario-save"
+      type="button"
+      class="rounded-lg border border-accent/40 bg-accent/10 px-3 py-2 text-sm font-semibold text-accent transition-colors hover:bg-accent/20"
+    >
+      Guardar escenario actual
+    </button>
+  </div>
+
+  <form id="scenario-name-form" class="mt-3 hidden">
+    <label for="scenario-name-input" class="text-xs font-medium text-secondary">
+      Nombre del escenario
+    </label>
+    <div class="mt-1 flex flex-wrap gap-2">
+      <input
+        id="scenario-name-input"
+        type="text"
+        maxlength="48"
+        class="min-w-0 flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm"
+        placeholder="Ej. Sueldo actual"
+      />
+      <button
+        type="submit"
+        class="rounded-lg bg-accent px-3 py-2 text-sm font-semibold text-background transition-opacity hover:opacity-90"
+      >
+        Guardar
+      </button>
+      <button
+        type="button"
+        id="scenario-name-cancel"
+        class="rounded-lg border border-border px-3 py-2 text-sm text-secondary transition-colors hover:text-foreground"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+
+  <p
+    id="scenario-feedback"
+    class="mt-2 hidden text-xs text-muted"
+    role="status"
+    aria-live="polite"
+  >
+  </p>
+
+  <p id="scenario-empty" class="mt-3 text-sm text-muted">
+    Aún no has guardado escenarios.
+  </p>
+
+  <ul id="scenario-list" class="mt-3 hidden space-y-2"></ul>
+
+  <button
+    id="scenario-compare-toggle"
+    type="button"
+    class="mt-3 hidden text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+  >
+    Comparar escenarios
+  </button>
+
+  <div id="scenario-compare" class="mt-4 hidden overflow-x-auto"></div>
+</section>
