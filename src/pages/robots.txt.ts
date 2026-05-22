@@ -15,6 +15,22 @@ Disallow: ${BASE}/pagefind/
 # /buscar/, /search/ y /tags/ quedan crawlables para que los bots vean el noindex
 # pero se excluyen del sitemap y de los objetivos de indexación.
 
+# ── Crawlers de IA ──────────────────────────────────────────────────────────
+# Los bots de recuperación y cita (OAI-SearchBot, PerplexityBot,
+# Claude-SearchBot, ChatGPT-User, Perplexity-User, Claude-User) quedan
+# permitidos vía "User-agent: *": generan tráfico de citación hacia Monedario.
+# Los bots siguientes se usan para entrenar modelos de IA y se bloquean.
+# Nota: Google-Extended solo afecta a Gemini; no afecta a Googlebot ni al
+# ranking en Google Search.
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: CCBot
+User-agent: meta-externalagent
+User-agent: Bytespider
+Disallow: /
+
 # La URL canónica del sitio está en el sitemap
 Sitemap: ${sitemapURL.href}
 `;
