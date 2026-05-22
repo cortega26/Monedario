@@ -1,0 +1,68 @@
+name: IndexNow
+
+# Notifies IndexNow-participating search engines (Bing, Yandex, Naver,
+# Seznam, Yep) when content/page URLs change on main. Google does not
+# consume IndexNow — this is a Bing/Copilot discovery-speed play.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/data/blog/**"
+      - "src/data/laws/**"
+      - "src/data/glossary/**"
+      - "src/pages/**"
+
+concurrency:
+  group: indexnow-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    name: Submit changed URLs to IndexNow
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+
+      - name: Resolve changed files
+        id: changes
+        shell: bash
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          ZERO="0000000000000000000000000000000000000000"
+          if [ -z "$BEFORE" ] || [ "$BEFORE" = "$ZERO" ] \
+             || ! git cat-file -e "${BEFORE}^{commit}" 2>/dev/null; then
+            RANGE="HEAD~1 HEAD"
+          else
+            RANGE="$BEFORE $AFTER"
+          fi
+          # shellcheck disable=SC2086
+          git diff --name-only --diff-filter=ACMR $RANGE \
+            | grep -E '^src/(data/(blog|laws|glossary)|pages)/' > changed.txt || true
+          echo "count=$(wc -l < changed.txt)" >> "$GITHUB_OUTPUT"
+          echo "Changed content/page files:"
+          cat changed.txt
+
+      - name: Submit to IndexNow
+        if: ${{ steps.changes.outputs.count != '0' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -t FILES < changed.txt
+          node scripts/submit-indexnow.mjs "${FILES[@]}"
