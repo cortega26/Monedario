@@ -35,12 +35,42 @@ const groupedEntries = glossaryEntries.reduce(
 );
 
 const letters = Object.keys(groupedEntries).sort();
+
+const glossaryIndexUrl = new URL(
+  getPath("/glosario/"),
+  Astro.site ?? Astro.url.origin
+).href;
+
+const definedTermSetSchema = {
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "@id": glossaryIndexUrl,
+  name: "Glosario Monedario",
+  description:
+    "Diccionario de términos financieros, económicos y previsionales de Chile.",
+  url: glossaryIndexUrl,
+  inLanguage: "es-CL",
+  hasDefinedTerm: glossaryEntries.map(entry => ({
+    "@type": "DefinedTerm",
+    name: entry.data.term,
+    description: entry.data.shortDefinition,
+    url: new URL(
+      getPath(`/glosario/${entry.id}/`),
+      Astro.site ?? Astro.url.origin
+    ).href,
+  })),
+};
 ---
 
 <Layout
   title="Glosario Financiero | Monedario"
   description="Diccionario de términos financieros, económicos y previsionales de Chile. Encuentra definiciones claras de UF, UTM, CAE, TMC y más."
 >
+  <script
+    type="application/ld+json"
+    is:inline
+    set:html={JSON.stringify(definedTermSetSchema)}
+  />
   <Header />
 
   <main id="main-content" class="app-layout">

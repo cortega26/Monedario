@@ -286,6 +286,15 @@ const laws = defineCollection({
     lastVerified: z.date(), // cuándo verificamos el contenido
     updateTrigger: z.string().trim().min(1), // qué gatilla actualización
     relatedArticles: z.array(z.string()).default([]), // slugs de blog relacionados
+    faqs: z
+      .array(
+        z.object({
+          q: z.string().trim().min(1),
+          a: z.string().trim().min(1),
+        })
+      )
+      .optional()
+      .default([]),
     draft: z.boolean().default(false),
   }),
 });

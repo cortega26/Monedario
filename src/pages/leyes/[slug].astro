@@ -69,6 +69,23 @@ const legislationSchema = {
   },
 };
 
+const faqSchema =
+  d.faqs.length > 0
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "@id": `${CANONICAL}#faq`,
+        mainEntity: d.faqs.map(({ q, a }) => ({
+          "@type": "Question",
+          name: q,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: a,
+          },
+        })),
+      }
+    : null;
+
 const lastVerifiedStr = d.lastVerified.toLocaleDateString("es-CL", {
   year: "numeric",
   month: "long",
@@ -86,6 +103,15 @@ const lastVerifiedStr = d.lastVerified.toLocaleDateString("es-CL", {
     is:inline
     set:html={JSON.stringify(legislationSchema)}
   />
+  {
+    faqSchema && (
+      <script
+        type="application/ld+json"
+        is:inline
+        set:html={JSON.stringify(faqSchema)}
+      />
+    )
+  }
   <Header />
   <Breadcrumb />
   <main id="main-content" class="app-layout pb-16">
@@ -176,6 +202,27 @@ const lastVerifiedStr = d.lastVerified.toLocaleDateString("es-CL", {
               </li>
             ))}
           </ul>
+        </section>
+      )
+    }
+
+    <!-- PREGUNTAS FRECUENTES -->
+    {
+      d.faqs.length > 0 && (
+        <section class="mt-10 border-t border-dashed border-border pt-8">
+          <h2 class="mb-4 text-lg font-bold">Preguntas frecuentes</h2>
+          <div class="space-y-3">
+            {d.faqs.map(faq => (
+              <details class="rounded-xl border border-border bg-surface-muted px-5 py-3">
+                <summary class="cursor-pointer text-sm font-semibold text-foreground">
+                  {faq.q}
+                </summary>
+                <p class="mt-2 text-sm leading-relaxed text-secondary">
+                  {faq.a}
+                </p>
+              </details>
+            ))}
+          </div>
         </section>
       )
     }
