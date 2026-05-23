@@ -15,6 +15,24 @@ const REPO_ROOT = path.resolve(
 const ENFORCE = process.env.SMALL_DETAILS_ENFORCE === "1";
 const OUTPUT_DIR = path.join(REPO_ROOT, "output", "validation", "small-details");
 const REPORT_PATH = path.join(OUTPUT_DIR, "report.json");
+const ACCEPTED_EXTERNAL_NETWORK_ERRORS = new Map([
+  [
+    "www.superir.gob.cl",
+    {
+      max: 3,
+      reason:
+        "Known SSL-chain verification friction in automated checks; secondary curl -k probe returned 200 for homepage, requisito-renegociacion and oficinas-regionales on 2026-05-22.",
+    },
+  ],
+  [
+    "www.tta.cl",
+    {
+      max: 1,
+      reason:
+        "Known transient automated-check network finding; direct curl -I -L returned 200 on 2026-05-22.",
+    },
+  ],
+]);
 
 const CALCULATOR_REQUIRED_SURFACES = [
   {
@@ -324,7 +342,11 @@ function checkExternalUrlSummary() {
     ];
   }
 
-  if (Number(summary.totalNonOk || 0) > 0) {
+  const nonOkFindings = Number(summary.totalNonOk || 0);
+  const acceptedNetworkErrors = countAcceptedExternalNetworkErrors(summary);
+  const actionableNonOk = Math.max(0, nonOkFindings - acceptedNetworkErrors);
+
+  if (actionableNonOk > 0) {
     return [
       createFinding({
         severity: "warn",
@@ -332,7 +354,7 @@ function checkExternalUrlSummary() {
         file: "output/validation/urlcheck/external-summary.json",
         line: 1,
         rule: "external-url-non-ok-budget",
-        message: `External URL audit has ${summary.totalNonOk} non-OK non-blocking finding(s).`,
+        message: `External URL audit has ${nonOkFindings} non-OK non-blocking finding(s), ${actionableNonOk} outside the accepted network-error budget.`,
         remediation:
           "Triage the warning budget before promoting external URL findings to blocking checks.",
       }),
@@ -340,6 +362,22 @@ function checkExternalUrlSummary() {
   }
 
   return [];
+}
+
+function countAcceptedExternalNetworkErrors(summary) {
+  const byClassification = summary?.byClassification || {};
+  const networkErrors = Number(byClassification.network_error || 0);
+  if (networkErrors <= 0) return 0;
+
+  const byHost = summary?.byHost || {};
+  let accepted = 0;
+
+  for (const [host, policy] of ACCEPTED_EXTERNAL_NETWORK_ERRORS.entries()) {
+    const hostNetworkErrors = Number(byHost[host]?.network_error || 0);
+    accepted += Math.min(hostNetworkErrors, policy.max);
+  }
+
+  return Math.min(accepted, networkErrors);
 }
 
 function runSmallDetailsCheck() {

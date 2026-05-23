@@ -15,7 +15,7 @@ Audit governance details that cause recurring small regressions: hardcoded regis
 - `pnpm run check:docs`: pass before adding this plan.
 - `pnpm run check:urls:external:audit`: pass non-blocking, 4 non-OK network findings after accessibility link cleanup.
 - `pnpm run audit:topic-overlap`: pass non-blocking, 35 candidates.
-- `pnpm run check:small-details`: warning-first guardrail added; enforce with `SMALL_DETAILS_ENFORCE=1` after baseline remediation.
+- `pnpm run check:small-details`: warning-first guardrail added; accepted external network-error budget documented for known official/public hosts.
 
 ## Findings
 
@@ -46,6 +46,13 @@ From `output/validation/urlcheck/external-summary.json` after the 2026-05-22 cle
 
 - `www.tta.cl`: 1 network error.
 - `www.superir.gob.cl`: 3 network errors.
+
+Classification:
+
+- These are not confirmed 404/403 failures. The audit artifact reports `status: null`, `error: "network"`.
+- `www.superir.gob.cl` fails normal `curl` with SSL issuer-chain verification, but `curl -k` returns 200 for all three URLs.
+- `www.tta.cl` returns 200 with direct `curl -I -L`.
+- `check:small-details` accepts this exact network-error budget and will warn again if the count, classification, host, or blocking status changes.
 
 Resolved in this pass:
 

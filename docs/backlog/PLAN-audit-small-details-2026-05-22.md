@@ -125,6 +125,7 @@ Status values:
 - 2026-05-22: Remediated ASD-101 missing calculator error targets in `credito-consumo`, `dividendo-hipotecario`, `simulador-renegociacion`, and `tarjeta-credito`; enforce mode now passes with 0 errors.
 - 2026-05-22: Remediated ASD-004 reader-facing `widget` copy in `cookies` and `privacidad`; refined reader-copy scanning to ignore comments, scripts, styles, and technical attributes. Reader-copy audit now reports 0 warnings.
 - 2026-05-22: Removed broken public GitHub accessibility-report link from `/accessibilidad/`; rebuilt site and regenerated external URL audit. Remaining external warning budget is 4 non-blocking network errors (`www.superir.gob.cl` x3, `www.tta.cl` x1).
+- 2026-05-22: Documented and encoded accepted ASD-403 network-error budget for the reachable Superir/TTA official-public hosts; `check:small-details:enforce` now returns 0 warnings for the accepted baseline.
 
 ## Verification Evidence
 
@@ -138,8 +139,8 @@ Status values:
 - `pnpm run audit:topic-overlap`: pass non-blocking; articles=50, candidates=35, 1 high overlap.
 - `pnpm run audit:reader-copy`: pass; scanned=84, warnings=0.
 - `pnpm run check:reader-facing-copy`: pass; scanned=84, issues=0.
-- `pnpm run check:small-details`: pass in warn-only mode; calculator_pages=19, errors=0, warnings=1, blocking=0. Report: `output/validation/small-details/report.json`.
-- `pnpm run check:small-details:enforce`: pass; calculator_pages=19, errors=0, warnings=1, blocking=0.
+- `pnpm run check:small-details`: pass in warn-only mode; calculator_pages=19, errors=0, warnings=0, blocking=0. Report: `output/validation/small-details/report.json`.
+- `pnpm run check:small-details:enforce`: pass; calculator_pages=19, errors=0, warnings=0, blocking=0.
 - `pnpm run test -- --run tests/scripts/check-small-details.test.ts`: pass; 88 files, 643 tests.
 - `pnpm run format:check`: fail on 21 pre-existing files before this audit artifact edit. Not remediated in this audit-only scope.
 

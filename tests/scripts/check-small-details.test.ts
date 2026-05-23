@@ -30,6 +30,16 @@ function writePage(root: string, name: string, source: string) {
   writeFileSync(path.join(root, "src", "pages", `${name}.astro`), source, "utf8");
 }
 
+function writeExternalSummary(root: string, summary: unknown) {
+  const summaryDir = path.join(root, "output", "validation", "urlcheck");
+  mkdirSync(summaryDir, { recursive: true });
+  writeFileSync(
+    path.join(summaryDir, "external-summary.json"),
+    JSON.stringify(summary, null, 2),
+    "utf8"
+  );
+}
+
 function runCheck(root: string, enforce = false) {
   return spawnSync("node", [SCRIPT_PATH], {
     encoding: "utf8",
@@ -166,5 +176,45 @@ const widgetId = "internal";
 
     expect(result.status).toBe(0);
     expect(result.stdout).not.toContain("ASD-004/meta-widget");
+  });
+
+  it("accepts documented official-host network-error budget", () => {
+    const root = createTempProject();
+    writeCalculator(root, "demo", compliantCalculator);
+    writeExternalSummary(root, {
+      blockingFailures: 0,
+      totalNonOk: 4,
+      byClassification: { network_error: 4 },
+      byHost: {
+        "www.superir.gob.cl": { total: 3, network_error: 3 },
+        "www.tta.cl": { total: 1, network_error: 1 },
+      },
+    });
+
+    const result = runCheck(root, true);
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("warnings=0");
+    expect(result.stdout).not.toContain("ASD-403/external-url-non-ok-budget");
+  });
+
+  it("warns when external URL non-OK findings exceed accepted network-error budget", () => {
+    const root = createTempProject();
+    writeCalculator(root, "demo", compliantCalculator);
+    writeExternalSummary(root, {
+      blockingFailures: 0,
+      totalNonOk: 5,
+      byClassification: { network_error: 5 },
+      byHost: {
+        "www.superir.gob.cl": { total: 4, network_error: 4 },
+        "www.tta.cl": { total: 1, network_error: 1 },
+      },
+    });
+
+    const result = runCheck(root, true);
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("warnings=1");
+    expect(result.stdout).toContain("ASD-403/external-url-non-ok-budget");
   });
 });
