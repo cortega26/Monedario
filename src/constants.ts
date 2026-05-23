@@ -1,6 +1,7 @@
 import type { Props } from "astro";
 import IconBrandX from "@/assets/icons/IconBrandX.svg";
 import IconLinkedin from "@/assets/icons/IconLinkedin.svg";
+import IconMail from "@/assets/icons/IconMail.svg";
 import IconWhatsapp from "@/assets/icons/IconWhatsapp.svg";
 import IconFacebook from "@/assets/icons/IconFacebook.svg";
 import IconTelegram from "@/assets/icons/IconTelegram.svg";
@@ -58,5 +59,11 @@ export const SHARE_LINKS: Social[] = [
     href: "https://www.linkedin.com/sharing/share-offsite/?url=",
     linkTitle: `Compartir este artículo en LinkedIn`,
     icon: IconLinkedin,
+  },
+  {
+    name: "Email",
+    href: "mailto:?body=",
+    linkTitle: `Compartir este artículo por correo`,
+    icon: IconMail,
   },
 ] as const;

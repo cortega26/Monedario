@@ -9,38 +9,20 @@ const URL = Astro.url;
   SHARE_LINKS.length > 0 && (
     <div class="flex flex-none flex-col items-center justify-center gap-2 md:items-start">
       <span class="italic">Comparte este art&iacute;culo en:</span>
-      <div class="text-center">
-        {/* WhatsApp — primary */}
-        {SHARE_LINKS[0] &&
-          (() => {
-            const WhatsAppIcon = SHARE_LINKS[0].icon;
-            return (
-              <LinkButton
-                href={`${SHARE_LINKS[0].href + URL}`}
-                class="mr-3 inline-block p-3 transition-opacity hover:opacity-70 sm:p-2"
-                title={SHARE_LINKS[0].linkTitle}
-              >
-                <WhatsAppIcon class="inline-block size-6 fill-transparent stroke-current stroke-2 sm:size-5" />
-                <span class="sr-only">{SHARE_LINKS[0].linkTitle}</span>
-              </LinkButton>
-            );
-          })()}
-        {/* Secondary buttons */}
-        <div class="inline-flex gap-1">
-          {SHARE_LINKS.slice(1).map(social => {
-            const SocialIcon = social.icon;
-            return (
-              <LinkButton
-                href={`${social.href + URL}`}
-                class="p-1.5 transition-opacity hover:opacity-70"
-                title={social.linkTitle}
-              >
-                <SocialIcon class="inline-block size-5 fill-transparent stroke-current stroke-2 opacity-75" />
-                <span class="sr-only">{social.linkTitle}</span>
-              </LinkButton>
-            );
-          })}
-        </div>
+      <div class="flex gap-1">
+        {SHARE_LINKS.map(social => {
+          const SocialIcon = social.icon;
+          return (
+            <LinkButton
+              href={`${social.href + URL}`}
+              class="p-1.5 transition-opacity hover:opacity-70"
+              title={social.linkTitle}
+            >
+              <SocialIcon class="inline-block size-5 fill-transparent stroke-current stroke-2" />
+              <span class="sr-only">{social.linkTitle}</span>
+            </LinkButton>
+          );
+        })}
       </div>
     </div>
   )
