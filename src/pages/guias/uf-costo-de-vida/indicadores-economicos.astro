@@ -8,6 +8,18 @@ import { getEconomicParameters } from "@/application/use-cases/GetEconomicParame
 import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
 import { fmt, fmtFecha } from "@/utils/indicadores";
 
+const MESES_CORTO = [
+  "Ene", "Feb", "Mar", "Abr", "May", "Jun",
+  "Jul", "Ago", "Sep", "Oct", "Nov", "Dic",
+];
+
+function fmtMesAnio(fecha: string): string {
+  const parts = fecha.split("-");
+  const m = parseInt(parts[1]!, 10) - 1;
+  const y = parts[0]!;
+  return `${MESES_CORTO[m] ?? ""} ${y}`;
+}
+
 const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
   /\/$/,
   ""
@@ -21,6 +33,7 @@ const items = [
     valor: parameters.uf,
     unidad: "CLP",
     fecha: resolveEconomicIndicatorDate(parameters, "uf"),
+    periodoMensual: false,
     impacto:
       "Afecta arriendos, dividendos y contratos reajustables. Si sube, suben esos pagos en pesos.",
   },
@@ -30,6 +43,7 @@ const items = [
     valor: parameters.utm,
     unidad: "CLP",
     fecha: resolveEconomicIndicatorDate(parameters, "utm"),
+    periodoMensual: true,
     impacto:
       "Se usa en multas, trámites e impuestos. Te ayuda a convertir referencias legales a pesos.",
   },
@@ -41,6 +55,7 @@ const items = [
           valor: parameters.dolar,
           unidad: "CLP",
           fecha: resolveEconomicIndicatorDate(parameters, "dolar"),
+          periodoMensual: false,
           impacto:
             "Influye en productos importados, viajes y decisiones de compra en moneda extranjera.",
         },
@@ -52,6 +67,7 @@ const items = [
     valor: parameters.ipc,
     unidad: "%",
     fecha: resolveEconomicIndicatorDate(parameters, "ipc"),
+    periodoMensual: true,
     impacto:
       "Mide la inflación mensual y explica por qué cambian precios, reajustes y valor de la UF.",
   },
@@ -63,6 +79,7 @@ const items = [
           valor: parameters.tmc,
           unidad: "%",
           fecha: resolveEconomicIndicatorDate(parameters, "tmc"),
+          periodoMensual: true,
           impacto:
             "Marca topes legales de interés para ciertos créditos y sirve de referencia en deuda.",
         },
@@ -158,7 +175,7 @@ const itemListSchema = {
                         })}${item.unidad}`}
                   </td>
                   <td class="px-4 py-3 text-secondary">
-                    {fmtFecha(item.fecha)}
+                    {item.periodoMensual ? fmtMesAnio(item.fecha) : fmtFecha(item.fecha)}
                   </td>
                   <td class="px-4 py-3 text-secondary">{item.impacto}</td>
                 </tr>
