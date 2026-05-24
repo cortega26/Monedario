@@ -498,12 +498,19 @@ const calculatorNextStepItems = [
           aria-live="assertive"
         >
         </div>
-        <button
-          id="calcBtn"
-          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          <span id="calcBtn-label">Calcular sueldo líquido →</span>
-        </button>
+        <div class="mt-2 flex items-center justify-between gap-3 text-xs">
+          <span class="inline-flex items-center gap-1.5 font-semibold text-accent">
+            <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-accent"></span>
+            Actualizamos a medida que escribes
+          </span>
+          <button
+            id="calcBtn"
+            type="button"
+            class="text-secondary underline decoration-dashed decoration-border underline-offset-4 transition-colors hover:text-foreground hover:decoration-accent disabled:cursor-not-allowed disabled:opacity-50"
+          >
+            <span id="calcBtn-label">Calcular ahora</span>
+          </button>
+        </div>
       </div>
 
       <CalculatorResultPanel>
@@ -1920,11 +1927,7 @@ const calculatorNextStepItems = [
     const label = document.getElementById("calcBtn-label");
     if (!btn || !label) return;
     btn.disabled = isLoading;
-    label.textContent = isLoading
-      ? "Calculando…"
-      : getModo() === "liquido-a-bruto"
-        ? "Estimar sueldo bruto necesario →"
-        : "Calcular sueldo líquido →";
+    label.textContent = isLoading ? "Calculando…" : "Calcular ahora";
   }
 
   document.getElementById("copy-link-btn")?.addEventListener("click", async () => {
