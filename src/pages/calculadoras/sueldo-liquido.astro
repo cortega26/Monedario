@@ -511,37 +511,35 @@ const calculatorNextStepItems = [
           <div
             class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
           >
-            <p
-              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
-            >
-              Sueldo Líquido (Ejemplo)
+            <p class="mb-1 text-xs text-muted">
+              Sueldo líquido · ejemplo
             </p>
             <p class="font-display text-5xl font-semibold tabular-nums text-secondary" style="letter-spacing:-0.02em;line-height:1">$973.560</p>
           </div>
           <div class="space-y-2 text-sm">
             <div class="flex justify-between">
               <span class="text-secondary">Sueldo bruto</span><span
-                class="font-medium text-foreground/80">$1.200.000</span
+                class="font-medium tabular-nums">$1.200.000</span
               >
             </div>
             <div class="flex justify-between">
               <span class="text-secondary">AFP (11.27%)</span><span
-                class="text-red-600 dark:text-red-400">− $135.240</span
+                class="tabular-nums">− $135.240</span
               >
             </div>
             <div class="flex justify-between">
               <span class="text-secondary">Salud (7%)</span><span
-                class="text-red-600 dark:text-red-400">− $84.000</span
+                class="tabular-nums">− $84.000</span
               >
             </div>
             <div class="flex justify-between">
               <span class="text-secondary">Seg. cesantía (0.6%)</span><span
-                class="text-red-600 dark:text-red-400">− $7.200</span
+                class="tabular-nums">− $7.200</span
               >
             </div>
             <div class="flex justify-between">
               <span class="text-secondary">Imp. 2ª categoría</span><span
-                class="text-red-600 dark:text-red-400">− $0</span
+                class="tabular-nums">− $0</span
               >
             </div>
           </div>
@@ -1518,7 +1516,7 @@ const calculatorNextStepItems = [
     if (isInverso) {
       headlineSub.textContent = `Bruto estimado para recibir ${fmt(netFinal)} al mes`;
     } else {
-      headlineSub.innerHTML = `De cada $100 brutos, recibes <strong class="text-foreground/80">$${retainedPct}</strong>`;
+      headlineSub.innerHTML = `De cada $100 brutos, recibes <strong>$${retainedPct}</strong>`;
     }
     headline.append(headlineLabel, headlineValue, headlineSub);
 
@@ -1531,35 +1529,35 @@ const calculatorNextStepItems = [
 
     // — BARRAS VISUALES DE DESCUENTOS —
     const barsData: { label: string; value: number; color: string }[] = [
-      { label: "AFP", value: resultado.deductions.afp, color: "bg-blue-400" },
+      { label: "AFP", value: resultado.deductions.afp, color: "bg-accent" },
       {
         label: "Salud",
         value: resultado.deductions.health,
-        color: "bg-cyan-400",
+        color: "bg-accent/70",
       },
       {
         label: "Seg. cesantía",
         value: resultado.deductions.unemploymentInsurance,
-        color: "bg-emerald-400",
+        color: "bg-accent/45",
       },
       {
         label: "Imp. 2ª cat.",
         value: resultado.deductions.tax,
-        color: "bg-amber-400",
+        color: "bg-accent/25",
       },
     ];
     if (resultado.deductions.apvRegimenB > 0) {
       barsData.push({
         label: "APV Reg. B",
         value: resultado.deductions.apvRegimenB,
-        color: "bg-violet-400",
+        color: "bg-accent/15",
       });
     }
     if (otrosDescuentos && otrosDescuentos > 0) {
       barsData.push({
         label: "Otros desc.",
         value: otrosDescuentos,
-        color: "bg-rose-400",
+        color: "bg-accent/10",
       });
     }
     const bars = document.createElement("div");
@@ -1597,24 +1595,24 @@ const calculatorNextStepItems = [
       buildRow(
         `AFP (${fmtPct(resultado.effectiveRates.afpPercent)})`,
         `− ${fmt(resultado.deductions.afp)}`,
-        "text-red-400"
+        "tabular-nums"
       ),
       buildRow(
         `Salud (${fmtPct(resultado.effectiveRates.healthPercent)})`,
         `− ${fmt(resultado.deductions.health)}`,
-        "text-red-400"
+        "tabular-nums"
       ),
       buildRow(
         `Seg. cesantía (${fmtPct(resultado.effectiveRates.unemploymentInsurancePercent)})`,
         `− ${fmt(resultado.deductions.unemploymentInsurance)}`,
-        "text-red-400"
+        "tabular-nums"
       ),
       buildRow(
         resultado.effectiveRates.marginalTaxPercent > 0
           ? `Imp. 2ª cat. (tramo ${resultado.effectiveRates.marginalTaxPercent.toFixed(0)}%)`
           : "Imp. 2ª cat. (exento)",
         `− ${fmt(resultado.deductions.tax)}`,
-        "text-red-400"
+        "tabular-nums"
       ),
     ];
 
@@ -1623,7 +1621,7 @@ const calculatorNextStepItems = [
         buildRow(
           "APV Régimen B",
           `− ${fmt(resultado.deductions.apvRegimenB)}`,
-          "text-violet-400"
+          "tabular-nums"
         )
       );
     }
@@ -1633,7 +1631,7 @@ const calculatorNextStepItems = [
         buildRow(
           "Otros descuentos",
           `− ${fmt(otrosDescuentos)}`,
-          "text-red-400"
+          "tabular-nums"
         )
       );
     }
@@ -1644,7 +1642,7 @@ const calculatorNextStepItems = [
     const totalsLabel = document.createElement("span");
     totalsLabel.textContent = "Total descuentos";
     const totalsValue = document.createElement("span");
-    totalsValue.className = "text-red-400";
+    totalsValue.className = "tabular-nums";
     totalsValue.textContent = `${fmt(totalDed)} (${fmtPct((totalDed / resultado.grossSalary) * 100)})`;
     totals.append(totalsLabel, totalsValue);
 
@@ -1662,7 +1660,7 @@ const calculatorNextStepItems = [
       if (tooltip) lbl.title = tooltip;
       lbl.textContent = label;
       const val = document.createElement("span");
-      val.className = "font-semibold text-foreground/80";
+      val.className = "font-semibold tabular-nums";
       val.textContent = value;
       row.append(lbl, val);
       return row;
