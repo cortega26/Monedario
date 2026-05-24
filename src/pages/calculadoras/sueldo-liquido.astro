@@ -516,6 +516,21 @@ const calculatorNextStepItems = [
             </p>
             <p class="font-display text-5xl font-semibold tabular-nums text-secondary" style="letter-spacing:-0.02em;line-height:1">$973.560</p>
           </div>
+          <!-- barra apilada estática: AFP 11.3% | Salud 7% | Ces. 0.6% | Líquido 81.1% -->
+          <div class="mb-3">
+            <div class="flex h-3 w-full gap-px overflow-hidden rounded-full bg-border">
+              <div class="h-full bg-accent/55" style="width:11.27%" title="AFP: $135.240 (11.3%)"></div>
+              <div class="h-full bg-accent/40" style="width:7%"     title="Salud: $84.000 (7.0%)"></div>
+              <div class="h-full bg-accent/25" style="width:0.6%"   title="Seg. cesantía: $7.200 (0.6%)"></div>
+              <div class="h-full bg-accent"    style="width:81.13%" title="Líquido: $973.560 (81.1%)"></div>
+            </div>
+            <div class="mt-2 flex flex-wrap gap-x-3 gap-y-1">
+              <span class="flex items-center gap-1 text-xs text-muted"><span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-accent/55"></span>AFP 11.3%</span>
+              <span class="flex items-center gap-1 text-xs text-muted"><span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-accent/40"></span>Salud 7.0%</span>
+              <span class="flex items-center gap-1 text-xs text-muted"><span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-accent/25"></span>Seg. cesantía 0.6%</span>
+              <span class="flex items-center gap-1 text-xs"><span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-accent"></span><span class="font-semibold text-foreground">Líquido 81.1%</span></span>
+            </div>
+          </div>
           <div class="space-y-2 text-sm">
             <div class="flex justify-between">
               <span class="text-secondary">Sueldo bruto</span><span
@@ -1527,57 +1542,50 @@ const calculatorNextStepItems = [
     );
     if (delta) headline.append(delta);
 
-    // — BARRAS VISUALES DE DESCUENTOS —
-    const barsData: { label: string; value: number; color: string }[] = [
-      { label: "AFP", value: resultado.deductions.afp, color: "bg-accent" },
-      {
-        label: "Salud",
-        value: resultado.deductions.health,
-        color: "bg-accent/70",
-      },
-      {
-        label: "Seg. cesantía",
-        value: resultado.deductions.unemploymentInsurance,
-        color: "bg-accent/45",
-      },
-      {
-        label: "Imp. 2ª cat.",
-        value: resultado.deductions.tax,
-        color: "bg-accent/25",
-      },
+    // — BARRA APILADA: bruto = descuentos + líquido —
+    const gross = resultado.grossSalary;
+    const stackSegments: { label: string; value: number; color: string }[] = [
+      { label: "AFP",          value: resultado.deductions.afp,                    color: "bg-accent/55" },
+      { label: "Salud",        value: resultado.deductions.health,                 color: "bg-accent/40" },
+      { label: "Imp. 2ª cat.", value: resultado.deductions.tax,                    color: "bg-accent/35" },
+      { label: "Seg. cesantía",value: resultado.deductions.unemploymentInsurance,  color: "bg-accent/25" },
     ];
-    if (resultado.deductions.apvRegimenB > 0) {
-      barsData.push({
-        label: "APV Reg. B",
-        value: resultado.deductions.apvRegimenB,
-        color: "bg-accent/15",
-      });
-    }
-    if (otrosDescuentos && otrosDescuentos > 0) {
-      barsData.push({
-        label: "Otros desc.",
-        value: otrosDescuentos,
-        color: "bg-accent/10",
-      });
-    }
+    if (resultado.deductions.apvRegimenB > 0)
+      stackSegments.push({ label: "APV", value: resultado.deductions.apvRegimenB, color: "bg-accent/20" });
+    if (otrosDescuentos && otrosDescuentos > 0)
+      stackSegments.push({ label: "Otros", value: otrosDescuentos,                color: "bg-accent/15" });
+    stackSegments.push({ label: "Líquido", value: netFinal,                       color: "bg-accent" });
+
     const bars = document.createElement("div");
-    bars.className = "mb-4 space-y-1.5";
-    for (const { label, value, color } of barsData) {
-      const pct = (value / resultado.grossSalary) * 100;
-      const barWrap = document.createElement("div");
-      const barMeta = document.createElement("div");
-      barMeta.className = "mb-0.5 flex justify-between text-xs text-muted";
-      barMeta.innerHTML = `<span>${label}</span><span>${fmt(value)} (${pct.toFixed(1)}%)</span>`;
-      const barTrack = document.createElement("div");
-      barTrack.className =
-        "h-1.5 w-full overflow-hidden rounded-full bg-border";
-      const barFill = document.createElement("div");
-      barFill.className = `h-full rounded-full ${color}`;
-      barFill.style.width = `${Math.min(pct, 100)}%`;
-      barTrack.append(barFill);
-      barWrap.append(barMeta, barTrack);
-      bars.append(barWrap);
+    bars.className = "mb-4";
+
+    const stackBar = document.createElement("div");
+    stackBar.className = "flex h-3 w-full gap-px overflow-hidden rounded-full bg-border";
+    for (const { label, value, color } of stackSegments) {
+      const pct = (value / gross) * 100;
+      const seg = document.createElement("div");
+      seg.className = `h-full ${color}`;
+      seg.style.width = `${pct}%`;
+      seg.title = `${label}: ${fmt(value)} (${pct.toFixed(1)}%)`;
+      stackBar.append(seg);
     }
+
+    const legend = document.createElement("div");
+    legend.className = "mt-2 flex flex-wrap gap-x-3 gap-y-1";
+    for (const { label, value, color } of stackSegments) {
+      const pct = (value / gross) * 100;
+      const item = document.createElement("span");
+      item.className = "flex items-center gap-1 text-xs";
+      const dot = document.createElement("span");
+      dot.className = `inline-block h-2 w-2 flex-shrink-0 rounded-full ${color}`;
+      const txt = document.createElement("span");
+      txt.textContent = `${label} ${pct.toFixed(1)}%`;
+      txt.className = label === "Líquido" ? "font-semibold text-foreground" : "text-muted";
+      item.append(dot, txt);
+      legend.append(item);
+    }
+
+    bars.append(stackBar, legend);
 
     // — FILAS DE DETALLE —
     const rows = [
