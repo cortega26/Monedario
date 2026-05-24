@@ -526,16 +526,16 @@ const calculatorNextStepItems = [
           <!-- barra apilada estática: AFP 11.3% | Salud 7% | Ces. 0.6% | Líquido 81.1% -->
           <div class="mb-3">
             <div class="flex h-3 w-full gap-px overflow-hidden rounded-full bg-border">
-              <div class="h-full bg-accent/55" style="width:11.27%" title="AFP: $135.240 (11.3%)"></div>
-              <div class="h-full bg-accent/40" style="width:7%"     title="Salud: $84.000 (7.0%)"></div>
-              <div class="h-full bg-accent/25" style="width:0.6%"   title="Seg. cesantía: $7.200 (0.6%)"></div>
-              <div class="h-full bg-accent"    style="width:81.13%" title="Líquido: $973.560 (81.1%)"></div>
+              <div class="h-full bg-accent"    style="width:11.27%" title="AFP: $135.240 (11.3%)"></div>
+              <div class="h-full bg-accent/60" style="width:7%"     title="Salud: $84.000 (7.0%)"></div>
+              <div class="h-full bg-accent/15" style="width:0.6%"   title="Seg. cesantía: $7.200 (0.6%)"></div>
+              <div class="h-full" style="width:81.13%;background-color:var(--color-accent-2)" title="Líquido: $973.560 (81.1%)"></div>
             </div>
             <div class="mt-2 flex flex-wrap gap-x-3 gap-y-1">
-              <span class="flex items-center gap-1 text-xs text-muted"><span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-accent/55"></span>AFP 11.3%</span>
-              <span class="flex items-center gap-1 text-xs text-muted"><span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-accent/40"></span>Salud 7.0%</span>
-              <span class="flex items-center gap-1 text-xs text-muted"><span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-accent/25"></span>Seg. cesantía 0.6%</span>
-              <span class="flex items-center gap-1 text-xs"><span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-accent"></span><span class="font-semibold text-foreground">Líquido 81.1%</span></span>
+              <span class="flex items-center gap-1 text-xs text-muted"><span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-accent"></span>AFP 11.3%</span>
+              <span class="flex items-center gap-1 text-xs text-muted"><span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-accent/60"></span>Salud 7.0%</span>
+              <span class="flex items-center gap-1 text-xs text-muted"><span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-accent/15"></span>Seg. cesantía 0.6%</span>
+              <span class="flex items-center gap-1 text-xs"><span class="inline-block h-2 w-2 flex-shrink-0 rounded-full" style="background-color:var(--color-accent-2)"></span><span class="font-semibold text-foreground">Líquido 81.1%</span></span>
             </div>
           </div>
           <div class="space-y-2 text-sm">
@@ -1047,7 +1047,6 @@ const calculatorNextStepItems = [
     estimateGrossFromNet,
   } from "@/application/use-cases/CalculateNetSalary";
   import { trackAnalyticsEvent } from "@/utils/analytics";
-  import { renderHeadlineDelta } from "@/utils/calculatorDelta";
   import {
     initScenarioPanel,
     restoreInputs,
@@ -1514,9 +1513,7 @@ const calculatorNextStepItems = [
     const totalDed = resultado.deductions.total + (otrosDescuentos ?? 0);
     const isInverso = modoLabel === "Sueldo Bruto Estimado";
     const displayAmount = isInverso ? resultado.grossSalary : netFinal;
-    const retainedPct = Math.round(
-      100 - (totalDed / resultado.grossSalary) * 100
-    );
+
 
     // — HEADLINE —
     const headline = document.createElement("div");
@@ -1532,46 +1529,43 @@ const calculatorNextStepItems = [
     headlineValue.style.letterSpacing = "-0.02em";
     headlineValue.style.lineHeight = "1";
     headlineValue.textContent = fmt(displayAmount);
-    const headlineSub = document.createElement("p");
-    headlineSub.className =
-      "mt-2 inline-block rounded-full border border-border bg-surface-muted/60 px-3 py-1 text-xs text-foreground/70";
     if (isInverso) {
+      const headlineSub = document.createElement("p");
+      headlineSub.className =
+        "mt-2 inline-block rounded-full border border-border bg-surface-muted/60 px-3 py-1 text-xs text-foreground/70";
       headlineSub.textContent = `Bruto estimado para recibir ${fmt(netFinal)} al mes`;
+      headline.append(headlineLabel, headlineValue, headlineSub);
     } else {
-      headlineSub.innerHTML = `De cada $100 brutos, recibes <strong>$${retainedPct}</strong>`;
+      headline.append(headlineLabel, headlineValue);
     }
-    headline.append(headlineLabel, headlineValue, headlineSub);
 
-    const delta = renderHeadlineDelta(
-      window.location.pathname + (isInverso ? "#bruto" : "#liquido"),
-      displayAmount,
-      fmt
-    );
-    if (delta) headline.append(delta);
 
     // — BARRA APILADA: bruto = descuentos + líquido —
     const gross = resultado.grossSalary;
-    const stackSegments: { label: string; value: number; color: string }[] = [
-      { label: "AFP",          value: resultado.deductions.afp,                    color: "bg-accent/55" },
-      { label: "Salud",        value: resultado.deductions.health,                 color: "bg-accent/40" },
-      { label: "Imp. 2ª cat.", value: resultado.deductions.tax,                    color: "bg-accent/35" },
-      { label: "Seg. cesantía",value: resultado.deductions.unemploymentInsurance,  color: "bg-accent/25" },
+    // color: Tailwind class OR null to use cssColor inline style
+    const stackSegments: { label: string; value: number; twColor: string | null; cssColor: string | null }[] = [
+      { label: "AFP",           value: resultado.deductions.afp,                   twColor: "bg-accent",    cssColor: null },
+      { label: "Salud",         value: resultado.deductions.health,                twColor: "bg-accent/60", cssColor: null },
+      { label: "Imp. 2ª cat.",  value: resultado.deductions.tax,                   twColor: "bg-accent/35", cssColor: null },
+      { label: "Seg. cesantía", value: resultado.deductions.unemploymentInsurance, twColor: "bg-accent/15", cssColor: null },
     ];
     if (resultado.deductions.apvRegimenB > 0)
-      stackSegments.push({ label: "APV", value: resultado.deductions.apvRegimenB, color: "bg-accent/20" });
+      stackSegments.push({ label: "APV",   value: resultado.deductions.apvRegimenB, twColor: "bg-accent/10", cssColor: null });
     if (otrosDescuentos && otrosDescuentos > 0)
-      stackSegments.push({ label: "Otros", value: otrosDescuentos,                color: "bg-accent/15" });
-    stackSegments.push({ label: "Líquido", value: netFinal,                       color: "bg-accent" });
+      stackSegments.push({ label: "Otros", value: otrosDescuentos,                  twColor: "bg-accent/8",  cssColor: null });
+    // Líquido uses teal (accent-2) so it's clearly distinct from all deduction segments
+    stackSegments.push({ label: "Líquido", value: netFinal, twColor: null, cssColor: "var(--color-accent-2)" });
 
     const bars = document.createElement("div");
     bars.className = "mb-4";
 
     const stackBar = document.createElement("div");
     stackBar.className = "flex h-3 w-full gap-px overflow-hidden rounded-full bg-border";
-    for (const { label, value, color } of stackSegments) {
+    for (const { label, value, twColor, cssColor } of stackSegments) {
       const pct = (value / gross) * 100;
       const seg = document.createElement("div");
-      seg.className = `h-full ${color}`;
+      seg.className = `h-full${twColor ? ` ${twColor}` : ""}`;
+      if (cssColor) seg.style.backgroundColor = cssColor;
       seg.style.width = `${pct}%`;
       seg.title = `${label}: ${fmt(value)} (${pct.toFixed(1)}%)`;
       stackBar.append(seg);
@@ -1579,12 +1573,13 @@ const calculatorNextStepItems = [
 
     const legend = document.createElement("div");
     legend.className = "mt-2 flex flex-wrap gap-x-3 gap-y-1";
-    for (const { label, value, color } of stackSegments) {
+    for (const { label, value, twColor, cssColor } of stackSegments) {
       const pct = (value / gross) * 100;
       const item = document.createElement("span");
       item.className = "flex items-center gap-1 text-xs";
       const dot = document.createElement("span");
-      dot.className = `inline-block h-2 w-2 flex-shrink-0 rounded-full ${color}`;
+      dot.className = `inline-block h-2 w-2 flex-shrink-0 rounded-full${twColor ? ` ${twColor}` : ""}`;
+      if (cssColor) dot.style.backgroundColor = cssColor;
       const txt = document.createElement("span");
       txt.textContent = `${label} ${pct.toFixed(1)}%`;
       txt.className = label === "Líquido" ? "font-semibold text-foreground" : "text-muted";
@@ -2050,6 +2045,19 @@ const calculatorNextStepItems = [
     clearTimeout(autoCalcTimer);
     autoCalcTimer = setTimeout(() => {
       if (val > 0) {
+        (document.getElementById("calcBtn") as HTMLButtonElement)?.click();
+      }
+    }, 600);
+  });
+
+  // Re-calcular cuando cambia el imponible (incluso al borrarlo)
+  document.getElementById("sueldo-imponible")?.addEventListener("input", () => {
+    clearTimeout(autoCalcTimer);
+    autoCalcTimer = setTimeout(() => {
+      const sueldoVal = parseFloat(
+        (document.getElementById("sueldo") as HTMLInputElement).value
+      );
+      if (sueldoVal > 0) {
         (document.getElementById("calcBtn") as HTMLButtonElement)?.click();
       }
     }, 600);
