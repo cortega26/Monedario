@@ -16,6 +16,8 @@ const ctaLinks = [
   {
     label: "Calcular sueldo líquido",
     href: "/calculadoras/sueldo-liquido/",
+    primary: true,
+    badge: "Más usada",
   },
   {
     label: "Simular finiquito",
@@ -73,7 +75,7 @@ const headlineParts = headline.split("plata");
     <ul class="divide-y divide-border border-y border-border">
       {
         ctaLinks.map(link => (
-          <li>
+          <li class={link.primary ? "bg-accent/5" : ""}>
             <a
               href={getPath(link.href)}
               class="group -mx-2 flex items-center justify-between rounded px-2 py-2.5 text-sm transition-colors hover:bg-accent/5"
@@ -81,8 +83,13 @@ const headlineParts = headline.split("plata");
               data-analytics-label={link.label}
               data-analytics-location="home_hero"
             >
-              <span class="text-foreground underline decoration-border decoration-dashed underline-offset-2 transition-colors group-hover:text-accent group-hover:decoration-accent">
+              <span class={`underline underline-offset-2 transition-colors group-hover:text-accent group-hover:decoration-accent ${link.primary ? "font-semibold decoration-accent decoration-dashed text-foreground" : "text-foreground decoration-border decoration-dashed"}`}>
                 {link.label}
+                {link.badge && (
+                  <span class="ml-2 inline-block rounded border border-accent/30 px-1.5 py-0.5 text-[10px] font-semibold tracking-wide text-accent uppercase leading-none">
+                    {link.badge}
+                  </span>
+                )}
               </span>
               <span
                 class="text-muted transition-colors group-hover:text-accent"
