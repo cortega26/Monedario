@@ -516,7 +516,7 @@ const calculatorNextStepItems = [
             >
               Sueldo Líquido (Ejemplo)
             </p>
-            <p class="text-4xl font-bold text-foreground/80">$973.560</p>
+            <p class="font-display text-5xl font-semibold tabular-nums text-secondary" style="letter-spacing:-0.02em;line-height:1">$973.560</p>
           </div>
           <div class="space-y-2 text-sm">
             <div class="flex justify-between">
@@ -1496,10 +1496,14 @@ const calculatorNextStepItems = [
       "mb-1 text-xs font-bold tracking-widest text-accent uppercase";
     headlineLabel.textContent = modoLabel;
     const headlineValue = document.createElement("p");
-    headlineValue.className = "text-4xl font-bold";
+    headlineValue.className =
+      "font-display text-5xl sm:text-6xl font-semibold tabular-nums";
+    headlineValue.style.letterSpacing = "-0.02em";
+    headlineValue.style.lineHeight = "1";
     headlineValue.textContent = fmt(displayAmount);
     const headlineSub = document.createElement("p");
-    headlineSub.className = "mt-1.5 text-xs text-foreground/60";
+    headlineSub.className =
+      "mt-2 inline-block rounded-full border border-border bg-surface-muted/60 px-3 py-1 text-xs text-foreground/70";
     if (isInverso) {
       headlineSub.textContent = `Bruto estimado para recibir ${fmt(netFinal)} al mes`;
     } else {
