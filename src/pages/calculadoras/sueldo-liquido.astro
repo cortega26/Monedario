@@ -564,13 +564,24 @@ const calculatorNextStepItems = [
             economicParameters.lastUpdated
           }).
         </p>
-        <button
-          id="copy-btn"
-          type="button"
-          class="mt-4 hidden w-full rounded-lg border border-border px-4 py-2 text-sm font-medium text-secondary transition-colors hover:border-accent/60 hover:text-foreground"
-        >
-          Copiar resumen
-        </button>
+        <div id="result-actions" class="mt-4 hidden grid grid-cols-1 gap-2 sm:grid-cols-2">
+          <button
+            id="copy-link-btn"
+            type="button"
+            class="flex items-center justify-center gap-1.5 rounded-full bg-accent px-4 py-2.5 text-sm font-semibold text-background transition-opacity hover:opacity-90"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            Copiar enlace con mis datos
+          </button>
+          <button
+            id="copy-btn"
+            type="button"
+            class="flex items-center justify-center gap-1.5 rounded-full border border-border px-4 py-2.5 text-sm font-medium text-secondary transition-colors hover:border-accent/60 hover:text-foreground"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+            Copiar resumen
+          </button>
+        </div>
       </CalculatorResultPanel>
     </section>
 
@@ -1711,9 +1722,9 @@ const calculatorNextStepItems = [
       .getElementById("resultado-contenido")!
       .replaceChildren(headline, bars, ...rows, totals, extraRows, assumption);
 
-    // Show copy button after result renders
-    const copyBtn = document.getElementById("copy-btn");
-    if (copyBtn) copyBtn.classList.remove("hidden");
+    // Show action buttons after result renders
+    const resultActions = document.getElementById("result-actions");
+    if (resultActions) resultActions.classList.remove("hidden");
   }
 
   document.getElementById("calcBtn")?.addEventListener("click", () => {
@@ -1910,6 +1921,48 @@ const calculatorNextStepItems = [
         : "Calcular sueldo líquido →";
   }
 
+  document.getElementById("copy-link-btn")?.addEventListener("click", async () => {
+    const p = new URLSearchParams();
+    const modo = getModo();
+    const sueldoVal =
+      (document.getElementById("sueldo") as HTMLInputElement)?.value ?? "";
+    p.set(modo === "liquido-a-bruto" ? "liquido" : "bruto", sueldoVal);
+
+    const afpSelect = document.getElementById(
+      "afp-tasa"
+    ) as HTMLSelectElement | null;
+    const afpName =
+      afpSelect?.options[afpSelect.selectedIndex]?.text.split(" ")[0];
+    if (afpName) p.set("afp", afpName);
+
+    const saludChecked = document.querySelector(
+      "input[name='salud']:checked"
+    ) as HTMLInputElement | null;
+    if (saludChecked) p.set("salud", saludChecked.value);
+
+    const contratoChecked = document.querySelector(
+      "input[name='tipo-contrato']:checked"
+    ) as HTMLInputElement | null;
+    if (contratoChecked) p.set("contrato", contratoChecked.value);
+
+    const btn = document.getElementById("copy-link-btn") as HTMLButtonElement;
+    const btnDefault = btn?.innerHTML ?? "";
+    try {
+      await navigator.clipboard.writeText(
+        `${location.origin}${location.pathname}?${p}`
+      );
+      btn.textContent = "¡Enlace copiado!";
+      trackAnalyticsEvent("calculator_copy_link", {
+        calculator_slug: "sueldo-liquido",
+      });
+    } catch {
+      btn.textContent = "No se pudo copiar";
+    }
+    setTimeout(() => {
+      btn.innerHTML = btnDefault;
+    }, 2000);
+  });
+
   document.getElementById("copy-btn")?.addEventListener("click", async () => {
     if (!lastResultado) return;
 
@@ -1953,6 +2006,7 @@ const calculatorNextStepItems = [
 
     const text = lines.join("\n");
     const btn = document.getElementById("copy-btn") as HTMLButtonElement;
+    const btnDefault = btn?.innerHTML ?? "";
 
     try {
       await navigator.clipboard.writeText(text);
@@ -1965,7 +2019,7 @@ const calculatorNextStepItems = [
     }
 
     setTimeout(() => {
-      btn.textContent = "Copiar resumen";
+      btn.innerHTML = btnDefault;
     }, 2000);
   });
 
