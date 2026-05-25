@@ -107,4 +107,19 @@ describe("injectGlossaryLinks", () => {
     );
     expect(result).toContain('href="/glosario/etf/"');
   });
+
+  it("injects a glossary link for Cuenta 2", () => {
+    const result = injectGlossaryLinks(
+      "<p>La Cuenta 2 sirve como ahorro voluntario en la AFP.</p>"
+    );
+    expect(result).toContain('href="/glosario/cuenta-2/"');
+  });
+
+  it("injects a glossary link for Seguro de cesantía", () => {
+    const result = injectGlossaryLinks(
+      "<p>El seguro de cesantía tiene reglas distintas a la CIC.</p>"
+    );
+    expect(result).toContain('href="/glosario/seguro-cesantia/"');
+    expect(result).toContain('href="/glosario/cic/"');
+  });
 });
