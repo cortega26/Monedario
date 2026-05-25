@@ -53,10 +53,17 @@ describe("userProfile", () => {
   });
 
   it("round-trips a patch through update + get", () => {
-    updateProfile({ sueldoImponible: 1_200_000, afpId: "habitat" });
+    updateProfile({
+      sueldoImponible: 1_200_000,
+      afpId: "habitat",
+      time_horizon: "long-term",
+      primary_goal: "growth",
+    });
     const profile = getProfile();
     expect(profile.sueldoImponible).toBe(1_200_000);
     expect(profile.afpId).toBe("habitat");
+    expect(profile.time_horizon).toBe("long-term");
+    expect(profile.primary_goal).toBe("growth");
     expect(profile.ts).toBeGreaterThan(0);
   });
 
@@ -98,6 +105,8 @@ describe("userProfile", () => {
   it("recognizes catalog field names and rejects unknown ones", () => {
     expect(isKnownProfileField("sueldoImponible")).toBe(true);
     expect(isKnownProfileField("apvRegimenBAnual")).toBe(true);
+    expect(isKnownProfileField("time_horizon")).toBe(true);
+    expect(isKnownProfileField("intent_mode")).toBe(true);
     expect(isKnownProfileField("totallyMadeUpField")).toBe(false);
   });
 });

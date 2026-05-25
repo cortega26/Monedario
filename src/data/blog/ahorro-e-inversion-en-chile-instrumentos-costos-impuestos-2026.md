@@ -18,6 +18,7 @@ lang: es-CL
 featured: false
 draft: false
 heroImage: /images/hero/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.avif
+entryGuideId: ahorro-inversion-entry-guide
 reviewPolicy:
   cadenceLabel: quarterly
   maxDays: 45

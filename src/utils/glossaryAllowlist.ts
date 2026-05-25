@@ -7,9 +7,15 @@ export const GLOSSARY_ALLOWLIST = [
   { term: "DICOM", slug: "dicom" },
   { term: "Finiquito", slug: "finiquito" },
   { term: "APV", slug: "apv" },
+  { term: "ETF", slug: "etf" },
+  { term: "ETFs", slug: "etf" },
   { term: "IPC", slug: "ipc" },
   { term: "SII", slug: "sii" },
   { term: "CMF", slug: "cmf" },
+  { term: "Fondo de emergencia", slug: "fondo-emergencia" },
+  { term: "Liquidez", slug: "liquidez" },
+  { term: "Volatilidad", slug: "volatilidad" },
+  { term: "Custodia", slug: "custodia" },
 ] as const satisfies ReadonlyArray<{ term: string; slug: string }>;
 
 export function resolveGlossarySlug(term: string): string | undefined {

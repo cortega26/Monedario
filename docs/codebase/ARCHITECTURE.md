@@ -40,7 +40,7 @@ Contiene entidades, tipos, reglas y funciones puras sin efectos secundarios ni d
 | `content` | `path.ts` | Helpers de ruta canónica basados en `slug` (invariante `URL.PUBLIC.NO_POST_ID`) |
 | `economic` | `EconomicParameters.ts` | Tipo `EconomicParameters`, indicadores económicos (UF, UTM, IPC, TMC, dólar), validación con `assertEconomicParameters` |
 | `taxation` | `TaxEngine.ts` | Motor de Impuesto de Segunda Categoría: tramos, cálculo de impuesto mensual y anual |
-| `wizard` | `WizardConfig.ts` | Configuración de pasos del wizard de decisión financiera |
+| `wizard` | `WizardConfig.ts`, `analyzeWizardConfig.ts` | Configuración y validación de pasos del wizard de decisión financiera |
 
 **Regla clave:** `src/domain/**` **nunca** importa de `src/application/**`, `src/infrastructure/**`, ni de `@/config`.
 

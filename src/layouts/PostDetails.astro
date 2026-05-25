@@ -33,6 +33,7 @@ import { formatMetadataDate } from "@/utils/metadataDate";
 import ArticleAdvisory from "@/components/ArticleAdvisory.astro";
 import { resolveBlogArticleAdvisory } from "@/config/blogAdvisory";
 import GlossaryContentWrapper from "@/components/GlossaryContentWrapper.astro";
+import ArticleEntryGuide from "@/components/ArticleEntryGuide.astro";
 
 type Props = {
   post: CollectionEntry<"blog">;
@@ -118,6 +119,7 @@ const allPosts = posts.map(entry => {
 const currentPostIndex = allPosts.findIndex(a => a.slug === article.slug);
 const contextualSections = getArticleContextualSections(article.slug);
 const articleLead = post.data.articleLead;
+const entryGuideId = post.data.entryGuideId;
 const primaryDestinationHrefs = new Set<string>();
 
 if (articleLead?.calculatorHref) {
@@ -372,6 +374,7 @@ const hasHeroImage = !!heroImageSrc;
         data-analytics-article={article.slug}
         data-analytics-article-title={title}
       >
+        <ArticleEntryGuide guideId={entryGuideId} />
         <GlossaryContentWrapper><Content /></GlossaryContentWrapper>
         {
           articleLead?.calculatorHref && articleLead.calculatorLabel && (

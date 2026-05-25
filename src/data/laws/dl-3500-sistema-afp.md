@@ -71,8 +71,8 @@ La pensión de vejez se puede pedir a los **65 años** (hombres) o **60 años** 
 |---|---|
 | Art. 3° | Pensión de vejez: edad legal (65 años H / 60 años M) |
 | Art. 17 | Cotización obligatoria del 10% + comisión |
-| Art. 18 | Tope imponible para cotizaciones |
-| Art. 20 O | Bonificación fiscal APV régimen A (15%, tope 6 UTM) |
+| Art. 16 | Tope imponible para cotizaciones |
+| Art. 20 O | Bonificación fiscal APV régimen A (15%, tope 6 UTM anuales) |
 | Art. 23 | Tipos de fondos y clasificación por riesgo |
 | Art. 68 | Pensión de vejez anticipada: condiciones de acceso |
 

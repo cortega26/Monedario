@@ -93,4 +93,18 @@ describe("injectGlossaryLinks", () => {
     expect(result).toContain('data-analytics-location="article_body"');
     expect(result).toContain('data-analytics-label="sii"');
   });
+
+  it("injects a glossary link for a multi-word term", () => {
+    const result = injectGlossaryLinks(
+      "<p>Primero arma tu fondo de emergencia antes de invertir.</p>"
+    );
+    expect(result).toContain('href="/glosario/fondo-emergencia/"');
+  });
+
+  it("injects a glossary link for ETF in plural form", () => {
+    const result = injectGlossaryLinks(
+      "<p>Los ETFs pueden servir para diversificar a largo plazo.</p>"
+    );
+    expect(result).toContain('href="/glosario/etf/"');
+  });
 });

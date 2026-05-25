@@ -19,6 +19,10 @@ export interface UserProfileV1 {
   gratificacion?: number;
   horasExtra?: number;
   apvRegimenBAnual?: number;
+  time_horizon?: "short-term" | "medium-term" | "long-term";
+  has_emergency_fund?: "yes" | "no";
+  primary_goal?: "liquidity" | "inflation" | "growth" | "tax-benefit";
+  intent_mode?: "learn" | "calculate";
 }
 
 export type UserProfileField = Exclude<keyof UserProfileV1, "v" | "ts">;
@@ -32,6 +36,10 @@ const KNOWN_FIELDS: ReadonlySet<UserProfileField> = new Set([
   "gratificacion",
   "horasExtra",
   "apvRegimenBAnual",
+  "time_horizon",
+  "has_emergency_fund",
+  "primary_goal",
+  "intent_mode",
 ]);
 
 export function isKnownProfileField(name: string): name is UserProfileField {
@@ -97,3 +105,4 @@ export function clearProfile(): void {
 
 export const PROFILE_STORAGE_KEY = STORAGE_KEY;
 export const PROFILE_SCHEMA_VERSION = SCHEMA_VERSION;
+export const PROFILE_FIELDS = [...KNOWN_FIELDS];

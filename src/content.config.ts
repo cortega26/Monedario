@@ -73,6 +73,7 @@ const blog = defineCollection({
           .min(ARTICLE_ADVISORY_MIN_LENGTH)
           .max(ARTICLE_ADVISORY_MAX_LENGTH)
           .optional(),
+        entryGuideId: z.string().trim().min(3).optional(),
         inlineImageExceptions: z
           .array(
             z
