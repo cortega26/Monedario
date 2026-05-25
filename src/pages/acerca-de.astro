@@ -1,0 +1,206 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import { getPath } from "@/utils/getPath";
+import { SITE } from "@/config";
+
+const CANONICAL_URL = new URL("/acerca-de/", Astro.site ?? Astro.url.origin).href;
+const SITE_URL = (Astro.site ?? new URL(Astro.url.origin)).href.replace(/\/$/, "");
+
+const aboutPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "@id": CANONICAL_URL,
+  url: CANONICAL_URL,
+  name: `Acerca de ${SITE.title}`,
+  description:
+    "Qué es Monedario, qué temas cubre, cómo trabaja y quién está detrás del proyecto de educación financiera para Chile.",
+  inLanguage: "es-CL",
+  isPartOf: { "@id": `${SITE_URL}/#website` },
+  about: { "@id": `${SITE_URL}/#organization` },
+  publisher: { "@id": `${SITE_URL}/#organization` },
+};
+---
+
+<Layout
+  title={`Acerca de ${SITE.title} — Educación financiera para Chile`}
+  description="Qué es Monedario, qué temas cubre, cómo trabaja y quién está detrás del proyecto de educación financiera para Chile."
+  canonicalURL={CANONICAL_URL}
+>
+  <script
+    type="application/ld+json"
+    is:inline
+    slot="head"
+    set:html={JSON.stringify(aboutPageSchema)}
+  />
+  <Header />
+  <Breadcrumb />
+  <main id="main-content" class="app-layout pb-16">
+
+    <!-- HERO -->
+    <section class="border-b border-border py-10">
+      <p class="mb-3 text-xs font-semibold tracking-widest text-accent uppercase">
+        El proyecto
+      </p>
+      <h1 class="mb-3 text-3xl font-bold sm:text-4xl">Acerca de Monedario</h1>
+      <p class="max-w-2xl text-base leading-relaxed text-secondary">
+        Monedario es un sitio de educación financiera dedicado a explicar el
+        sistema financiero chileno de forma clara, rigurosa y basada en fuentes
+        oficiales. Su objetivo es que cualquier persona pueda entender las
+        decisiones financieras que le afectan —sin letra chica, sin conflictos
+        de interés.
+      </p>
+    </section>
+
+    <!-- QUÉ CUBRE -->
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-xl font-bold">Qué encontrarás aquí</h2>
+      <div class="grid gap-4 sm:grid-cols-2 max-w-2xl">
+        {[
+          { tema: "Previsión y AFP", desc: "Cómo funciona el sistema de pensiones, APV y retiros." },
+          { tema: "Impuestos", desc: "Renta, segunda categoría, bienes raíces y declaraciones anuales." },
+          { tema: "Inversiones", desc: "Fondos mutuos, acciones, depósitos y alternativas de ahorro." },
+          { tema: "Crédito y deuda", desc: "Crédito de consumo, hipotecario, DICOM y tasas reales." },
+          { tema: "Seguro de cesantía", desc: "Cálculo de beneficios, requisitos y modos de cobro." },
+          { tema: "Indicadores económicos", desc: "UF, UTM, IPC, dólar y su impacto práctico en tu bolsillo." },
+        ].map(({ tema, desc }) => (
+          <div class="rounded-xl border border-border p-4">
+            <p class="text-sm font-semibold text-foreground">{tema}</p>
+            <p class="mt-1 text-sm text-secondary">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CÓMO TRABAJAMOS -->
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-xl font-bold">Cómo trabajamos</h2>
+      <div class="max-w-2xl space-y-4 text-base leading-relaxed text-secondary">
+        <p>
+          Cada contenido sigue un
+          <a
+            href={getPath("/metodologia/")}
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+          >proceso editorial de siete etapas</a>: investigación de fuentes
+          oficiales, cálculo verificable, auditoría independiente y firma humana
+          antes de publicar. Sin esa cadena, el artículo no se publica.
+        </p>
+        <p>
+          Las calculadoras corren completamente en tu navegador. No guardamos ni
+          enviamos los datos que ingresas. Las fórmulas están cubiertas por
+          pruebas automáticas que se ejecutan en cada actualización.
+        </p>
+        <p>
+          Cuando un dato cambia —una tasa, un valor de UF, una norma— el
+          artículo se actualiza y la fecha visible en la página lo refleja.
+        </p>
+      </div>
+      <a
+        href={getPath("/metodologia/")}
+        class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+      >
+        Ver proceso editorial completo →
+      </a>
+    </section>
+
+    <!-- QUIÉN ESTÁ DETRÁS -->
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-xl font-bold">Quién está detrás</h2>
+      <div class="flex flex-col gap-5 sm:flex-row sm:items-start max-w-2xl">
+        <a href={getPath("/autor/")} class="shrink-0">
+          <img
+            src={SITE.authorImage}
+            alt={`Foto de ${SITE.authorFullName}`}
+            width="452"
+            height="461"
+            class="h-16 w-16 rounded-full border-2 border-accent/30 object-cover object-center"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+        <div>
+          <p class="font-semibold text-foreground">
+            <a
+              href={getPath("/autor/")}
+              class="underline-offset-4 transition-colors hover:text-accent hover:underline"
+            >
+              {SITE.authorFullName}
+            </a>
+          </p>
+          <p class="mt-1 text-sm text-secondary">
+            Investigador financiero · Titulado en Derecho · Analista de datos
+          </p>
+          <p class="mt-2 text-sm leading-relaxed text-secondary">
+            Vive en Santiago desde 2014. Combina formación jurídica y análisis
+            de datos para explicar el sistema financiero chileno con dos lentes:
+            la matemática detrás de cada cifra y el ordenamiento jurídico que la
+            regula.
+          </p>
+          <a
+            href={getPath("/autor/")}
+            class="mt-3 inline-flex items-center text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+          >
+            Perfil completo del autor →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDEPENDENCIA EDITORIAL -->
+    <section class="border-b border-border py-10">
+      <div class="max-w-2xl rounded-xl border border-accent/20 bg-accent/5 p-6">
+        <h2 class="mb-3 text-lg font-bold">Independencia editorial</h2>
+        <p class="text-sm leading-relaxed text-secondary">
+          El contenido de Monedario no está condicionado por comisiones,
+          publicidad financiera ni acuerdos con instituciones financieras. El
+          sitio se financia exclusivamente por las personas que eligen apoyarlo
+          directamente.
+        </p>
+        <p class="mt-3 text-sm leading-relaxed text-secondary">
+          Cuando un artículo menciona un producto o institución financiera, es
+          porque es relevante para el tema, no porque exista un acuerdo
+          comercial.
+        </p>
+        <a
+          href={getPath("/apoyar/")}
+          class="mt-4 inline-flex items-center text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+        >
+          Apoyar el proyecto →
+        </a>
+      </div>
+    </section>
+
+    <!-- INFORMACIÓN LEGAL -->
+    <section class="py-10">
+      <h2 class="mb-4 text-xl font-bold">Información legal y políticas</h2>
+      <ul class="flex flex-wrap gap-3 text-sm">
+        {[
+          { href: "/privacidad/", label: "Política de privacidad" },
+          { href: "/terminos/", label: "Términos de uso" },
+          { href: "/cookies/", label: "Política de cookies" },
+          { href: "/accessibilidad/", label: "Declaración de accesibilidad" },
+          { href: "/metodologia/", label: "Proceso editorial" },
+        ].map(({ href, label }) => (
+          <li>
+            <a
+              href={getPath(href)}
+              class="rounded-md border border-border px-3 py-1.5 text-secondary transition-colors hover:border-accent hover:text-accent"
+            >
+              {label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <p class="mt-6 max-w-xl text-xs leading-relaxed text-muted">
+        El contenido publicado tiene fines informativos y pedagógicos
+        únicamente. No constituye asesoría legal, tributaria ni financiera, y
+        no debe utilizarse como sustituto de la consulta con un profesional
+        habilitado.
+      </p>
+    </section>
+
+  </main>
+  <Footer />
+</Layout>

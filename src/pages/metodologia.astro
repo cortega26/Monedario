@@ -9,8 +9,8 @@ import { SITE } from "@/config";
 ---
 
 <Layout
-  title={`Metodología | ${SITE.title}`}
-  description="Cómo trabaja Monedario: cada cifra trazada a una fuente oficial, cada fórmula a la vista, cada artículo legal citado. Proceso editorial de siete etapas, auditoría independiente de cálculos y firma humana antes de publicar."
+  title={`Proceso editorial | ${SITE.title}`}
+  description="Las siete etapas que sigue cada contenido de Monedario: fuentes oficiales trazables, auditoría independiente de cálculos, revisión regulatoria y firma humana antes de publicar."
 >
   <Header />
   <Breadcrumb />
@@ -19,29 +19,21 @@ import { SITE } from "@/config";
       <p
         class="mb-3 text-xs font-semibold tracking-widest text-accent uppercase"
       >
-        Metodología
+        Proceso editorial
       </p>
       <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
-        Cuando entiendes tu plata,<br />tomas mejores decisiones.
+        Cómo se elabora el contenido de Monedario
       </h1>
       <p class="max-w-2xl text-base leading-relaxed text-secondary">
-        <strong class="text-foreground">Monedario</strong> es un proyecto de educación
-        financiera dedicado a explicar el sistema financiero chileno con
-        <strong class="text-foreground"
-          >matemáticas verificables y la ley vigente citada</strong
-        >. Su misión es ayudar a las personas a entender decisiones financieras
-        complejas —ahorro, inversión, impuestos, crédito o pensiones— sin
-        conflictos de interés y sin pedir que nos creas: puedes auditar cada
-        cifra.
-      </p>
-      <p class="mt-4 max-w-2xl text-base leading-relaxed text-secondary">
-        El nombre no es arbitrario. <em class="text-foreground">Monedario</em> es,
-        en su acepción más concreta, el estuche donde se guardan y ordenan las monedas.
-        No una fortuna ni un portafolio de inversión: monedas — los descuentos del
-        sueldo, las retenciones de honorarios, los fondos de la AFP, el costo real
-        de un crédito. Las cosas que ya están en tu bolsillo pero que nadie se tomó
-        el tiempo de organizar para ti. Ese es exactamente el trabajo de este sitio:
-        ordenarlas, nombrarlas, explicarlas.
+        Este documento describe el proceso que sigue cada artículo, guía y
+        calculadora publicados en el sitio: desde la definición del tema hasta
+        la firma del editor humano responsable. Si buscas información sobre qué
+        es Monedario y qué cubre, visita la página
+        <a
+          href={getPath("/acerca-de/")}
+          class="text-accent underline underline-offset-4 hover:opacity-80"
+          >Acerca de</a
+        >.
       </p>
     </section>
 
@@ -117,55 +109,6 @@ import { SITE } from "@/config";
           >ver perfil del autor</a
         >.
       </p>
-    </section>
-
-    <!-- POR QUÉ EXISTE -->
-    <section class="border-b border-border py-10">
-      <h2 class="mb-4 text-2xl font-bold">¿Por qué existe este sitio?</h2>
-      <p class="max-w-2xl text-base leading-relaxed text-secondary">
-        Porque la mayoría de la información financiera disponible en internet
-        está escrita para economistas, no para personas normales. Los trámites
-        de la AFP, el beneficio tributario del APV, los tramos del impuesto de
-        segunda categoría — todo eso afecta directamente tu bolsillo, pero nadie
-        te lo explica en términos simples.
-      </p>
-      <p class="mt-3 max-w-2xl text-base leading-relaxed text-secondary">
-        Monedario nació para cambiar eso.
-      </p>
-    </section>
-
-    <!-- QUÉ ENCONTRARÁS -->
-    <section class="border-b border-border py-10">
-      <h2 class="mb-6 text-2xl font-bold">¿Qué encontrarás aquí?</h2>
-      <div class="grid gap-4 sm:grid-cols-2">
-        <div class="rounded-xl border border-border p-5">
-          <p class="mb-1 text-lg font-semibold">📋 Guías claras</p>
-          <p class="text-sm text-secondary">
-            AFP, APV, impuestos, inversiones y créditos explicados para la
-            realidad chilena.
-          </p>
-        </div>
-        <div class="rounded-xl border border-border p-5">
-          <p class="mb-1 text-lg font-semibold">🧮 Calculadoras prácticas</p>
-          <p class="text-sm text-secondary">
-            Herramientas para que puedas hacer tus propios números sin depender
-            de nadie.
-          </p>
-        </div>
-        <div class="rounded-xl border border-border p-5">
-          <p class="mb-1 text-lg font-semibold">🔄 Contenido actualizado</p>
-          <p class="text-sm text-secondary">
-            Pensado para la realidad chilena y actualizado cuando cambian las
-            leyes y tasas.
-          </p>
-        </div>
-        <div class="rounded-xl border border-border p-5">
-          <p class="mb-1 text-lg font-semibold">🔓 Sin letra chica</p>
-          <p class="text-sm text-secondary">
-            Todo gratis, sin registro, sin spam. Sin conflictos de interés.
-          </p>
-        </div>
-      </div>
     </section>
 
     <!-- PROCESO EDITORIAL -->
@@ -585,101 +528,6 @@ import { SITE } from "@/config";
           >repórtalo</a
         > usando el formulario de la página del autor.
       </p>
-    </section>
-
-    <!-- QUIÉN LO ESCRIBE -->
-    <section class="border-b border-border py-10">
-      <h2 class="mb-6 text-2xl font-bold">¿Quién lo escribe?</h2>
-      <div
-        class="flex flex-col gap-4 rounded-xl border border-border p-5 sm:flex-row sm:items-start"
-      >
-        <a href={getPath("/autor/")} class="shrink-0">
-          <img
-            src={SITE.authorImage}
-            alt={`Foto de ${SITE.authorFullName}`}
-            width="452"
-            height="461"
-            class="h-12 w-12 rounded-full border border-accent/30 object-cover object-center"
-            loading="lazy"
-            decoding="async"
-          />
-        </a>
-        <div>
-          <p class="font-semibold text-foreground">
-            <a
-              href={getPath("/autor/")}
-              class="underline-offset-4 transition-colors hover:text-accent hover:underline"
-            >
-              {SITE.authorFullName}
-            </a>
-          </p>
-          <p class="mt-1 text-sm text-secondary">
-            Investigador financiero y desarrollador de herramientas de educación
-            financiera para Chile. Abogado de formación y analista de datos.
-          </p>
-          <div class="mt-2 flex flex-wrap gap-3 text-xs">
-            <a
-              href={getPath("/autor/")}
-              class="text-accent underline underline-offset-4 hover:opacity-80"
-            >
-              Ver perfil completo →
-            </a>
-            <a
-              href={SITE.authorLinkedIn}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-secondary transition-colors hover:text-accent"
-            >
-              LinkedIn ↗
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- UN PROYECTO INDEPENDIENTE -->
-    <section class="border-b border-border py-10">
-      <h2 class="mb-4 text-2xl font-bold">Un proyecto independiente</h2>
-      <p class="max-w-2xl text-base leading-relaxed text-secondary">
-        Monedario es un proyecto personal creado para ayudar a personas en Chile
-        a entender mejor su dinero: ahorro, deuda, impuestos, sueldos, pensiones
-        e inversión.
-      </p>
-      <p class="mt-3 max-w-2xl text-base leading-relaxed text-secondary">
-        Mantenerlo toma muchas horas cada semana — investigar fuentes oficiales,
-        revisar cambios normativos, actualizar guías y afinar calculadoras para
-        que la información sea precisa y responsable.
-      </p>
-      <p class="mt-3 max-w-2xl text-base leading-relaxed text-secondary">
-        El acceso es completamente gratuito. Sin registro, sin publicidad, sin
-        conflictos de interés.
-      </p>
-      <div class="mt-8 max-w-2xl space-y-3">
-        <div class="rounded-xl border border-border p-5">
-          <p class="text-sm font-semibold text-foreground">
-            Si te sirvió, pásalo
-          </p>
-          <p class="mt-1.5 text-sm leading-relaxed text-secondary">
-            La forma más directa de apoyar este proyecto es pasarle el link a
-            alguien que lo necesite — una guía, una calculadora o el sitio
-            completo. Es gratis, tarda segundos y es lo que más ayuda a que
-            llegue a más personas.
-          </p>
-        </div>
-        <div class="rounded-xl border border-border p-5">
-          <p class="text-sm font-semibold text-foreground">
-            ¿Quieres contribuir un poco más?
-          </p>
-          <p class="mt-1.5 text-sm leading-relaxed text-secondary">
-            Puedes{" "}
-            <a
-              href="/apoyar/?src=about"
-              class="font-medium text-accent underline underline-offset-4 hover:opacity-80"
-              >apoyar el proyecto</a
-            >{" "}— cualquier aporte ayuda a sostener el trabajo.
-          </p>
-        </div>
-      </div>
     </section>
 
     <!-- AVISO LEGAL -->

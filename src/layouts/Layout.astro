@@ -53,6 +53,8 @@ const SITE_ORIGIN = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
 );
 
 const ORGANIZATION_ID = `${SITE_ORIGIN}/#organization`;
+const isHomepage =
+  Astro.url.pathname === "/" || Astro.url.pathname === "";
 
 const structuredData = !pubDatetime
   ? {
@@ -82,7 +84,14 @@ const structuredData = !pubDatetime
           url: SITE_ORIGIN,
           description: SITE.desc,
           foundingDate: "2026-01",
+          areaServed: "CL",
           sameAs: [SITE.companyLinkedIn],
+          contactPoint: {
+            "@type": "ContactPoint",
+            contactType: "editorial",
+            email: "contacto@monedario.cl",
+            availableLanguage: "es",
+          },
           logo: {
             "@type": "ImageObject",
             url: `${SITE_ORIGIN}/favicon.svg`,
@@ -93,6 +102,22 @@ const structuredData = !pubDatetime
             name: SITE.authorFullName,
           },
         },
+        ...(isHomepage
+          ? [
+              {
+                "@type": "WebPage",
+                "@id": `${SITE_ORIGIN}/#webpage`,
+                url: `${SITE_ORIGIN}/`,
+                name: SITE.title,
+                isPartOf: { "@id": `${SITE_ORIGIN}/#website` },
+                about: { "@id": ORGANIZATION_ID },
+                speakable: {
+                  "@type": "SpeakableSpecification",
+                  cssSelector: ["h1", "[data-speakable]"],
+                },
+              },
+            ]
+          : []),
       ],
     }
   : null;
