@@ -64,9 +64,9 @@ La ley obliga a los empleadores a implementar un **sistema de registro de asiste
 | Artículo (CT) | Contenido |
 |---|---|
 | Art. 22 | Jornada ordinaria máxima semanal |
-| Art. 22 bis | Jornadas adaptables a petición del trabajador |
+| Art. 22 bis | Jornadas adaptables por acuerdo entre las partes |
 | Art. 32 | Horas extraordinarias y recargo del 50% |
-| Art. 33 bis | Registro digital de asistencia |
+| Art. 33 | Registro digital de asistencia |
 
 ## Texto oficial
 

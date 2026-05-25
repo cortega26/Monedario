@@ -34,7 +34,7 @@ La Ley 18.469 regula el sistema público de salud para trabajadores dependientes
 
 ## Puntos clave para personas
 
-### Cotización de salud (art. 5°)
+### Cotización de salud (art. 7°)
 
 La cotización obligatoria de salud es el **7% de la remuneración imponible** mensual. El empleador la descuenta directamente del sueldo y la entera a FONASA (o a la Isapre elegida). El trabajador no transfiere nada directamente: el empleador actúa como agente retenedor.
 
@@ -70,10 +70,11 @@ Las patologías del **GES (Garantías Explícitas en Salud)** tienen cobertura g
 
 | Artículo | Contenido |
 |---|---|
-| Art. 5° | Cotización obligatoria de salud (7%) |
+| Art. 5° | Categorías de afiliados al régimen (dependientes, independientes, pensionados) |
 | Art. 6° | Beneficiarios y cargas familiares cubiertas |
-| Art. 13° | Modalidad de Libre Elección |
-| Art. 18° | Modalidad de Atención Institucional |
+| Art. 7° | Cotización obligatoria de salud (7%) |
+| Art. 13° | Modalidad de Libre Elección (MLE) |
+| Art. 18° | Subsidio de enfermedad por incapacidad laboral de origen común |
 
 ## Texto oficial
 

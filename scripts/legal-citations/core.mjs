@@ -125,6 +125,14 @@ export async function runLegalCitationAudit({
     }
 
     for (const entry of LEGAL_CITATION_REGISTRY) {
+      if (!entry.historyPageId) {
+        issues.push({
+          type: "history_page_id_missing",
+          file: entry.slug,
+          message: `Registry entry for ${entry.slug} is missing historyPageId; verify it manually before running live BCN checks.`,
+        });
+        continue;
+      }
       const historyUrl = getHistoryUrl(entry.historyPageId);
       if (!isTrustedBcnUrl(historyUrl)) {
         issues.push({

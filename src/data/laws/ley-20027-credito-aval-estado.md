@@ -55,10 +55,11 @@ Solo pueden acceder al CAE los estudiantes de instituciones elegibles acreditada
 
 | Artículo | Contenido |
 |---|---|
-| Art. 1° | Objeto del crédito y garantía estatal |
-| Art. 3° | Tasa de interés máxima (2% real anual) |
-| Art. 7° | Condiciones de pago: tope del 10% del ingreso |
-| Art. 12° | Administración del crédito moroso por INGRESA |
+| Art. 1° | Creación de la Comisión Administradora del Sistema de Créditos (origen de INGRESA) |
+| Art. 7° | Requisitos de las instituciones elegibles para el CAE |
+| Art. 11 bis | Tasa del 2% real anual y tope de cuota del 10% del ingreso del deudor |
+| Art. 12° | Período de gracia: crédito no exigible antes de 18 meses del egreso |
+| Art. 13 | Administración y cobranza del crédito moroso por la Comisión |
 
 ## Texto oficial
 

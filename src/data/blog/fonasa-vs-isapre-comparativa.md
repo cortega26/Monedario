@@ -64,7 +64,7 @@ Esta guía da una respuesta concreta según tu situación: si tienes enfermedade
 
 **Vigencia:** Esta guía usa información vigente al **2026-04-08**. Los tramos de Fonasa y los valores exactos de copago se actualizan periódicamente. Verifica siempre en [fonasa.cl](https://www.fonasa.cl) y [superdesalud.gob.cl](https://www.superdesalud.gob.cl).
 
-**Fuentes:** [Fonasa](https://www.fonasa.cl) · [Superintendencia de Salud](https://www.superdesalud.gob.cl) · [Ley 18.469 (Fonasa)](https://www.bcn.cl/leychile/navegar?idNorma=29581) · [Ley 18.933 (Isapres)](https://www.bcn.cl/leychile/navegar?idNorma=30208)
+**Fuentes:** [Fonasa](https://www.fonasa.cl) · [Superintendencia de Salud](https://www.superdesalud.gob.cl) · [Ley 18.469 (Fonasa)](/leyes/ley-18469-fonasa/) · [Ley 18.933 (Isapres)](/leyes/ley-18933-isapres/)
 
 ---
 

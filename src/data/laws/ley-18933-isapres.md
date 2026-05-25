@@ -66,7 +66,7 @@ Si quedas cesante, puedes mantener la Isapre cotizando directamente o pasarte a 
 |---|---|
 | Art. 2° | Definiciones de la ley |
 | Art. 33 | Contrato de salud previsional y cobertura GES |
-| Art. 38 | Precio base del plan: revisión y reajuste anual |
+| Art. 38 | Revisión anual del precio base del plan y derecho del cotizante a desahuciar el contrato y volver a FONASA |
 | Art. 38 ter | Tabla de factores de riesgo (objeto de litigios TC) |
 
 ## Texto oficial

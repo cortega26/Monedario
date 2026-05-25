@@ -99,6 +99,55 @@ export const LEGAL_CITATION_REGISTRY = [
     canonicalIdNorma: "269892",
     aliases: [],
   },
+  {
+    slug: "codigo-del-trabajo",
+    numero: "CÓDIGO DEL TRABAJO",
+    historyPageId: null,
+    canonicalIdNorma: "207436",
+    aliases: [],
+  },
+  {
+    slug: "dfl-1-1998-impuesto-territorial",
+    numero: "DFL-1/1998",
+    historyPageId: null,
+    canonicalIdNorma: "128563",
+    aliases: [],
+  },
+  {
+    slug: "ley-18469-fonasa",
+    numero: "18.469",
+    historyPageId: null,
+    canonicalIdNorma: "29872",
+    aliases: ["29581"],
+  },
+  {
+    slug: "ley-18933-isapres",
+    numero: "18.933",
+    historyPageId: "7333",
+    canonicalIdNorma: "30304",
+    aliases: ["30208"],
+  },
+  {
+    slug: "ley-20027-credito-aval-estado",
+    numero: "20.027",
+    historyPageId: "5827",
+    canonicalIdNorma: "238989",
+    aliases: [],
+  },
+  {
+    slug: "ley-21130-modernizacion-bancaria",
+    numero: "21.130",
+    historyPageId: "7613",
+    canonicalIdNorma: "1129754",
+    aliases: [],
+  },
+  {
+    slug: "ley-21561-reduccion-jornada",
+    numero: "21.561",
+    historyPageId: "8153",
+    canonicalIdNorma: "1195526",
+    aliases: [],
+  },
 ];
 
 /**
@@ -109,12 +158,8 @@ export const LEGAL_CITATION_REGISTRY = [
  * Format: { idNorma, label } — label is for human reference only.
  */
 export const KNOWN_IDS_WITHOUT_LAW_PAGES = [
-  { idNorma: "207436", label: "DFL 1 — Código del Trabajo (texto refundido)" },
-  { idNorma: "29581",  label: "Ley 18.469 — Fonasa" },
-  { idNorma: "30208",  label: "Ley 18.933 — Isapres" },
   { idNorma: "7054", label: "DL 3.063 — Ley de Rentas Municipales" },
   { idNorma: "1171923", label: "Ley 21.419 — Crea la Pensión Garantizada Universal" },
-  { idNorma: "128563", label: "DFL-1/1998 — Ley sobre Impuesto Territorial (refunde Ley 17.235)" },
 ];
 
 export function getHistoryUrl(historyPageId) {
