@@ -1,6 +1,6 @@
 ---
-title: "Inversión en Chile 2026: ETF, DAP y costos reales"
-description: "¿Qué conviene más en Chile: ETF, DAP o fondos mutuos? Guía 2026 con costos reales, impuestos y criterios para elegir según tu objetivo y plazo."
+title: "¿ETF, DAP o fondo mutuo en Chile? Cómo elegir (2026)"
+description: "Cómo elegir entre ETF, DAP y fondos mutuos en Chile: criterios de plazo, riesgo y costo total para tomar la decisión correcta según tu objetivo."
 slug: ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026
 author: "Equipo Monedario"
 pubDate: 2026-02-28T16:00:00Z
@@ -54,11 +54,13 @@ No todos los instrumentos sirven para lo mismo. Esta tabla te da una primera ori
 | Fondo mutuo      | Diversificar sin comprar activo por activo   | Bajo a alto (según fondo) | Rescate según reglamento (fondos mutuos: <= 10 días) |
 | ETF              | Exposición diversificada con lógica bursátil | Medio a alto              | Depende de mercado y ejecución vía intermediario     |
 
-Si ya tienes claro cuál te interesa, salta directo a la guía específica:
+¿Tu duda ya apunta a un instrumento concreto? Salta directo a la guía operacional:
 
-- [Depósito a plazo en UF vs pesos: qué conviene y cuándo](/posts/deposito-a-plazo-uf-vs-pesos/)
-- [Fondos mutuos: comisiones, rescate e impuestos (sin letra chica)](/posts/fondos-mutuos-comisiones-rescate-impuestos/)
-- [Cómo invertir en ETFs desde Chile: comisiones, custodia e impuestos](/posts/como-invertir-en-etfs-desde-chile/)
+- **¿Cuánto cobran las corredoras por ETFs y cómo funciona la custodia?** → [Cómo invertir en ETFs desde Chile: comisiones, custodia e impuestos](/posts/como-invertir-en-etfs-desde-chile/)
+- **¿Qué comisiones cobran los fondos mutuos y cuándo se paga el rescate?** → [Fondos mutuos: comisiones, rescate e impuestos](/posts/fondos-mutuos-comisiones-rescate-impuestos/)
+- **¿Conviene el DAP en UF o pesos para mi plazo y monto?** → [Depósito a plazo en UF vs pesos: qué conviene y cuándo](/posts/deposito-a-plazo-uf-vs-pesos/)
+
+Si todavía no sabes cuál elegir, sigue leyendo.
 
 ## Cómo elegir sin mezclar objetivos
 
@@ -102,11 +104,11 @@ Las reglas básicas que la regulación establece:
 - **Intermediación bursátil:** según CMF, el costo puede incluir comisión del corredor, derechos de bolsa, IVA, custodia y otros cargos. El número que te muestran en la pantalla puede no ser el costo total.
 - **Tributación:** el SII establece que las personas naturales deben declarar rentas por inversiones, con las excepciones que define la ley para cada instrumento. Conocer esas excepciones antes de invertir puede marcar una diferencia real en el resultado neto.
 
-Si ya sabes qué instrumento vas a usar, estas guías resuelven el siguiente paso:
+Si ya sabes qué instrumento usarás, estas guías resuelven los costos y la operación específica:
 
-- [Guía DAP UF vs pesos](/posts/deposito-a-plazo-uf-vs-pesos/)
-- [Guía de fondos mutuos](/posts/fondos-mutuos-comisiones-rescate-impuestos/)
-- [Guía de ETFs desde Chile](/posts/como-invertir-en-etfs-desde-chile/)
+- [Costos y tributación de DAP en UF vs pesos](/posts/deposito-a-plazo-uf-vs-pesos/)
+- [Comisiones, rescate e impuestos de fondos mutuos](/posts/fondos-mutuos-comisiones-rescate-impuestos/)
+- [Corredoras, custodia e impuestos para ETFs desde Chile](/posts/como-invertir-en-etfs-desde-chile/)
 
 ## Los 6 errores más frecuentes
 

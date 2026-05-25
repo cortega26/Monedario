@@ -37,6 +37,8 @@ Cambiarse de AFP es uno de los trámites más simples que puedes hacer para mejo
 
 > **Revisión editorial 2026-04-22:** se revalidaron las comisiones vigentes, la regla de permanencia de nuevos afiliados en AFP Uno y el calendario base de la Ley 21.735 contra la Superintendencia de Pensiones y BCN.
 
+Si tu duda real es sobre el sistema AFP pero no sobre el trámite de cambio: [¿qué fondo A–E conviene según tu perfil?](/posts/fondos-afp-a-b-c-d-e/) — [¿qué es la Cuenta 2?](/posts/que-es-la-cuenta-2-afp/) — [¿cómo leer tu cartola AFP?](/posts/como-leer-cartola-afp-chile/)
+
 ## Tabla de contenidos
 
 ## ¿Puedo cambiarme de AFP?

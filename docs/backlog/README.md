@@ -28,6 +28,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | Newsletter (MON-301) | `ux-backlog.md` | Decisión de plataforma pendiente |
 | OWASP Security backlog | `OWASP_SECURITY_AUDIT_2026-05-11.md` | SEC-003 pendiente (verificar `.env` histórico) |
 | Auditoría drift 2026-05-20 | `PLAN-drift-audit-2026-05-20.md` | Ejecutar `TD-0084`..`TD-0094` sin cambios automáticos YMYL/legal |
+| Auditoría alignment 2026-05-25 | `PLAN-alignment-audit-remediation-2026-05-25.md` | Ejecutar remediación por batches de canibalización, boundaries, backlinks y guardrails warning-first |
 | LinkedIn strategy (MON-304) | `ux-backlog.md` | Fase 3, sin urgencia |
 | Illustrations (MON-405) | `ux-backlog.md` | Diferido |
 | Blog Advisory Architecture | `BLOG_ADVISORY_ARCHITECTURE_PLAN_2026-04-22.md` | Propuesta futuro mediano |
@@ -101,6 +102,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | `OWASP_SECURITY_AUDIT_2026-05-11.md` | 9 hallazgos (3🔴3🟠3🟡); SEC-003 verificar primero |
 | `PLAN-drift-audit-2026-05-20.md` | Vigente; findings `TD-0084`..`TD-0094` |
 | `PLAN-audit-small-details-2026-05-22.md` | Vigente; programa audit-only con cinco reportes en `docs/reports/` y backlog `ASD-###` |
+| `PLAN-alignment-audit-remediation-2026-05-25.md` | Vigente; remediacion por batches de auditoria de alineamiento editorial/guardrails |
 
 ## Status — planes vigentes
 
@@ -114,6 +116,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | `OWASP_SECURITY_AUDIT_2026-05-11.md` | Vigente | 2026-05-11 | `SEC-003` requiere verificar `.env` histórico antes de cambios | Verificar `SEC-003`; luego ejecutar orden recomendado del audit |
 | `PLAN-drift-audit-2026-05-20.md` | Vigente | 2026-05-20 | `TD-0084`..`TD-0086` requieren revisión humana/legal/editorial | Ejecutar primero decisiones de analytics/legal y refresh YMYL controlado |
 | `PLAN-audit-small-details-2026-05-22.md` | Vigente | 2026-05-22 | Remediaciones deben ejecutarse por batch y respetar pipelines YMYL/URL/RSS | Empezar Batch 1: P0 no sustantivo + auditoria detallada de calculadoras |
+| `PLAN-alignment-audit-remediation-2026-05-25.md` | Vigente | 2026-05-25 | Remediaciones deben mantener `URL.PUBLIC.NO_POST_ID`, no canibalización y pipelines YMYL | Empezar Batch A: `ahorro-e-inversion` P1 |
 | `TS7_COMPATIBILITY_AUDIT_2026-04-30.md` | Bloqueado | 2026-04-30 | TypeScript 7 stable y soporte `@astrojs/check` TS7 | Esperar señal del workflow `check-ts7-readiness.yml` |
 | `HERO_IMAGE_SYSTEM_REMEDIATION_2026-04-30.md` | Vigente | 2026-04-30 | Remediación manual de assets por lotes | Empezar batch Payroll / salary / deductions |
 

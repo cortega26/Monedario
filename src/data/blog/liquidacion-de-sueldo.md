@@ -56,6 +56,8 @@ Si estás ante tu primera liquidación y todavía tienes dudas sobre el contrato
 
 > **Información vigente al 2026-03-12.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.
 
+Si tu duda es si un descuento específico es legal, voluntario o prohibido, cambia a la [guía de descuentos de sueldo](/posts/descuentos-de-sueldo/). Para entender por qué la base imponible es la que es, lee sobre el [sueldo imponible en Chile](/posts/sueldo-imponible-chile/).
+
 ## Qué es y para qué sirve la liquidación
 
 La liquidación de sueldo es el comprobante que el empleador debe entregarte junto con el pago de remuneraciones. No es un favor administrativo — es una obligación legal establecida en el artículo 54 del Código del Trabajo.

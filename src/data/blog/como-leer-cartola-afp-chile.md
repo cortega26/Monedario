@@ -67,6 +67,8 @@ La **cartola AFP** es tu estado de cuenta previsional trimestral. Llega cuatro v
 
 Puedes recibirla por correo físico si tienes domicilio registrado en la AFP, y también está disponible en el portal web o app de tu [AFP](/glosario/afp/). Revisarla sistemáticamente —no solo guardarla— te permite detectar errores antes de que se conviertan en problemas mayores.
 
+Si tu duda es sobre otra decisión dentro del sistema AFP: [¿qué fondo A–E conviene?](/posts/fondos-afp-a-b-c-d-e/) — [¿cómo cambiarse de AFP?](/posts/como-cambiarse-de-afp/) — [¿qué es la Cuenta 2?](/posts/que-es-la-cuenta-2-afp/)
+
 ---
 
 ## Las secciones de tu cartola AFP

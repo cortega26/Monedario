@@ -1,7 +1,7 @@
 ---
-title: "Seguro de cesantía: Cuenta Individual vs Fondo Solidario, sin confundir ambos"
+title: "CIC vs Fondo Solidario: cómo funciona cada capa del Seguro de Cesantía"
 author: "Equipo Monedario"
-description: "Explicación corta y práctica para separar CIC y Fondo de Cesantía Solidario: quién financia cada uno, cuál se cobra primero y qué filtro exige el FCS."
+description: "CIC y Fondo de Cesantía Solidario no son lo mismo: quién financia cada capa, cuál aplica primero y qué condiciones mínimas exige el Fondo Solidario."
 slug: seguro-cesantia-cuenta-individual-vs-fondo-solidario
 pubDate: 2026-03-12T14:30:00Z
 updatedDate: 2026-04-12T19:05:00Z

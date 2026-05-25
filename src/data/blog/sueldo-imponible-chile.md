@@ -62,6 +62,8 @@ updatedDate: 2026-05-14T00:00:00Z
 
 Revisas tu liquidación y ves dos cifras distintas: "sueldo bruto" y "remuneración imponible". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque los descuentos de AFP, salud e impuesto no se calculan sobre el bruto — se calculan sobre el imponible.
 
+Si ya sabes qué es el imponible y quieres calcular el líquido completo, salta a la [calculadora de sueldo líquido](/posts/como-calcular-sueldo-liquido/). Si tienes el número y quieres auditar las líneas del comprobante, ve a [cómo auditar tu liquidación](/posts/liquidacion-de-sueldo/).
+
 ## ¿Qué es el sueldo imponible? Definición legal
 
 El sueldo imponible (o remuneración imponible) es la base de cálculo que la ley define para las cotizaciones previsionales y el Impuesto de Segunda Categoría. Está regulado en el artículo 41 del [Código del Trabajo](https://www.bcn.cl/leychile/navegar?idNorma=207436) como el conjunto de remuneraciones que constituyen la base afecta a descuentos.

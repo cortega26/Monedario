@@ -66,6 +66,8 @@ Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumi
 
 Algunos los exige la ley, algunos los autorizaste tú, y algunos directamente no deberían estar ahí.
 
+Si lo que necesitas es saber qué debe mostrar el comprobante y cómo auditar sus líneas, cambia a la [guía de liquidación de sueldo](/posts/liquidacion-de-sueldo/). Si necesitas reconstruir el número completo de principio a fin, usa la [calculadora de sueldo líquido](/posts/como-calcular-sueldo-liquido/).
+
 ## Tres categorías, tres orígenes distintos
 
 ### Descuentos legales — los que el empleador debe practicar
