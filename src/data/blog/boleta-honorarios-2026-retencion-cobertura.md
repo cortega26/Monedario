@@ -99,6 +99,8 @@ Si además quieres revisar tu declaración anual completa, parte por el [simulad
 - Si **emitiste poco y dudas si cotizas**: contrasta tu bruto anual con el umbral de 5 IMM del año base.
 - Si **eres pensionado o estás en régimen distinto a AFP**: valida si estás eximido antes de proyectar cobertura.
 - Si **tu duda es cuándo depositan tu devolución**: revisa la guía de [fechas y compensaciones de devolución de impuestos](/posts/devolucion-impuestos-fechas-compensaciones/).
+- Si **también tienes sueldo de empleador**: revisa la guía de [rentas mixtas (sueldo + honorarios)](/posts/rentas-mixtas-sueldo-honorarios/) para entender cómo se declaran juntos.
+- Si **quieres entender el impuesto que aplica a tu renta total anual**: lee sobre el [Impuesto Global Complementario](/posts/impuesto-global-complementario-chile/).
 
 ## Errores que más se repiten
 

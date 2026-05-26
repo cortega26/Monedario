@@ -13,6 +13,16 @@
  * @property {HubArticleAssignment[]} related
  */
 
+/**
+ * Hub model decision (2026-05-25, ALIGN-009):
+ * Strategy: maintain manual control.
+ * Rationale: corpus is small enough (≤60 articles) that manual curation
+ * provides better quality than automated cluster scanning. Automation would
+ * risk over-including articles that should stay cluster-internal, duplicate
+ * the editorial judgment already encoded in topicRole/canonicalTopic, and
+ * add maintenance overhead without clear benefit. Revisit when corpus exceeds
+ * 100 articles or when hub templates are generated at build time.
+ */
 export const HUB_ARTICLE_ASSIGNMENTS = {
   "deuda-credito": {
     core: [

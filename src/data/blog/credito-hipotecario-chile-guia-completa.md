@@ -220,6 +220,8 @@ Los bancos exigen dos seguros que van incluidos en tu dividendo mensual:
 
 Las propiedades con **Decreto con Fuerza de Ley N°2 (DFL2)** (superficie construida ≤ 140 m²) tienen un beneficio tributario relevante al vender: la ganancia de capital queda **exenta del Impuesto Global Complementario** si has vendido menos de dos propiedades en los últimos 10 años. Verifica con el [SII](https://www.sii.cl/preguntas_frecuentes/aval_contrib_bbrr/001_165_2439.htm) si tu propiedad califica.
 
+Al hacerte dueño también deberás pagar las [contribuciones de bienes raíces](/posts/contribuciones-bienes-raices-chile/) anualmente — el impuesto territorial que aplica a la mayoría de las propiedades en Chile y que no aparece en el dividendo mensual.
+
 ## Errores más comunes
 
 1. **No incluir los costos de cierre en el presupuesto.** El pie no es el único desembolso inicial. Prever 1%–1,5% adicional evita sorpresas desagradables al momento de firmar.

@@ -68,7 +68,7 @@ Su función es específica: permitirte reconstruir cómo se llegó al monto depo
 
 No existe un formato único obligatorio, pero sí contenido mínimo. Una liquidación que cumple su función tiene al menos estos cuatro bloques:
 
-**Haberes imponibles:** sueldo base, horas extras, bonos que cotizan. Son la base sobre la que se calculan AFP, salud, cesantía e impuesto.
+**Haberes imponibles:** sueldo base, horas extras, [gratificación legal](/posts/gratificacion-legal-chile/), bonos que cotizan. Son la base sobre la que se calculan AFP, salud, cesantía e impuesto.
 
 **Haberes no imponibles:** asignaciones que no cotizan, como colación y movilización dentro de los límites legales. Deben aparecer separadas porque inflan el bruto visible sin entrar al cálculo previsional.
 

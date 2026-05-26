@@ -12,6 +12,10 @@ import {
 } from "../src/config/editorial-topic-policy.mjs";
 import { HUB_ARTICLE_ASSIGNMENTS } from "../src/config/editorial-hub-model.mjs";
 
+const _args = new Set(process.argv.slice(2));
+const SHOW_ALL_CANDIDATES = _args.has("--all");
+const JSON_OUTPUT = _args.has("--json");
+
 const REPO_ROOT = process.cwd();
 const BLOG_DIR = path.join(REPO_ROOT, "src", "data", "blog");
 
@@ -477,6 +481,37 @@ for (let index = 0; index < articles.length; index += 1) {
 
 candidates.sort((a, b) => b.score - a.score);
 
+if (JSON_OUTPUT) {
+  const output = {
+    summary: {
+      articles: articles.length,
+      metadataWarnings: metadataWarnings.length,
+      candidates: candidates.length,
+    },
+    metadataWarnings,
+    hubWarnings,
+    transitionalPlacements,
+    ownershipSummary,
+    candidates: candidates.map(c => ({
+      type: c.type,
+      severity: c.severity,
+      score: +c.score.toFixed(4),
+      leftSlug: c.left.slug,
+      leftTitle: c.left.title,
+      rightSlug: c.right.slug,
+      rightTitle: c.right.title,
+      titleSimilarity: +c.titleSimilarity.toFixed(4),
+      slugSimilarity: +c.slugSimilarity.toFixed(4),
+      descriptionSimilarity: +c.descriptionSimilarity.toFixed(4),
+      headingSimilarity: +c.headingSimilarity.toFixed(4),
+      keywordOverlap: +c.keywordOverlap.toFixed(4),
+      sameCluster: c.sameCluster,
+    })),
+  };
+  process.stdout.write(JSON.stringify(output, null, 2) + "\n");
+  process.exit(0);
+}
+
 console.log("[audit-topic-overlap] Corpus summary");
 console.log(
   `- articles=${articles.length} metadata_warnings=${metadataWarnings.length} candidates=${candidates.length}`
@@ -521,7 +556,8 @@ if (hubWarnings.length > 0) {
   console.log("");
 }
 
+const displayCandidates = SHOW_ALL_CANDIDATES ? candidates : candidates.slice(0, 20);
 console.log("[audit-topic-overlap] Top candidate pairs");
-for (const candidate of candidates.slice(0, 20)) {
+for (const candidate of displayCandidates) {
   console.log(formatPair(candidate));
 }

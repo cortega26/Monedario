@@ -76,7 +76,7 @@ Qué registra principalmente:
 
 Qué no registra directamente:
 
-- Deudas de tarjetas de crédito o créditos bancarios que aún no llegaron a protesto.
+- Deudas de [tarjetas de crédito](/posts/tarjeta-credito-costo-real-chile/) o créditos bancarios que aún no llegaron a protesto.
 - Deudas de servicios básicos, tag, o casas comerciales que no emitieron documentos protestables.
 
 ### Boletín Comercial vs DICOM

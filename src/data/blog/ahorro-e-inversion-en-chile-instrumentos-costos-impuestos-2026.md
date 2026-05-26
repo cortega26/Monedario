@@ -36,7 +36,7 @@ Elegir en qué instrumento poner tu plata es una de las decisiones financieras m
 
 Para que la comparación sea útil, partimos de cuatro supuestos básicos:
 
-- Ya tienes un fondo de emergencia separado del dinero que vas a invertir.
+- Ya tienes un [fondo de emergencia](/posts/fondo-emergencia-chile/) separado del dinero que vas a invertir.
 - Tu horizonte de inversión es de al menos 3 meses.
 - Entiendes que mayor retorno esperado implica mayor riesgo.
 - Vas a comparar costos reales —no solo rentabilidad histórica.
@@ -159,6 +159,7 @@ No. Es contenido educativo y no reemplaza asesoría profesional para tu situaci�
 - [Cómo hacer un presupuesto mensual en Chile](/posts/como-hacer-presupuesto-mensual-chile/) — antes de elegir instrumento, necesitas saber cuánto puedes destinar al ahorro.
 - [CAE y costo real del crédito en Chile](/posts/cae-costo-real-credito-chile/) — si tienes deudas de consumo, entiende su costo real antes de invertir.
 - [Qué es el IPC y cómo impacta tu bolsillo](/posts/que-es-el-ipc-chile-como-se-calcula/) — la inflación afecta directamente qué instrumentos en UF o pesos convienen.
+- [El poder del interés compuesto](/posts/el-poder-del-interes-compuesto/) — la matemática que explica por qué el horizonte de inversión es la variable más determinante al elegir instrumento.
 
 ## Información de vigencia
 

@@ -88,7 +88,7 @@ Para un trabajador dependiente con contrato indefinido, los descuentos típicos 
 | Seguro de cesantía          | 0.6%          | Tu fondo de cesantía   |
 | Impuesto único 2ª categoría | Variable      | El Fisco               |
 
-El porcentaje exacto depende de tu AFP, si estás en Fonasa o Isapre, y cuánto ganas.
+El porcentaje exacto depende de tu AFP, si estás en [Fonasa o Isapre](/posts/fonasa-vs-isapre-comparativa/), y cuánto ganas.
 
 ---
 

@@ -99,6 +99,8 @@ No usarla si lo que necesitas es comparar ofertas de nuevas tarjetas — para es
 
 Si reconoces dos o más de estas señales, el problema ya no es la herramienta de cálculo: es el nivel de deuda. En ese punto conviene revisar opciones de consolidación o, si la situación es más grave, la [guía de renegociación Superir](/posts/renegociacion-superir/) y filtrar tu caso con el [simulador de renegociación](/calculadoras/simulador-renegociacion/).
 
+Si la deuda es manejable pero quieres liquidarla más rápido, evalúa si conviene el [prepago de un crédito en Chile](/posts/prepago-credito-cuando-conviene-chile/).
+
 ---
 
 > **Nota:** Esta calculadora entrega resultados educativos y referenciales. Las condiciones reales de tu tarjeta dependen del contrato con tu emisor. Consulta tu cartola oficial y la hoja de condiciones para los valores exactos.
