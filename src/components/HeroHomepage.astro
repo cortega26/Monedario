@@ -1,5 +1,4 @@
 ---
-import { getCollection } from "astro:content";
 import { getPath } from "@/utils/getPath";
 
 interface Props {
@@ -33,26 +32,6 @@ const ctaLinks = [
   },
 ];
 
-// Fecha automática: máximo de updatedDate / pubDate entre todos los posts publicados.
-const publishedPosts = await getCollection(
-  "blog",
-  ({ data }) => !data.draft && !data.unlisted
-);
-const latestDate = publishedPosts.reduce<Date>((max, post) => {
-  const d = post.data.updatedDate ?? post.data.pubDate;
-  return d > max ? d : max;
-}, new Date(0));
-const [ly, lm, ld] = latestDate
-  .toISOString()
-  .slice(0, 10)
-  .split("-")
-  .map(Number);
-const latestDateLabel = new Date(ly, lm - 1, ld).toLocaleDateString("es-CL", {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-});
-
 // Partir el headline en partes para subrayar "plata"
 const headlineParts = headline.split("plata");
 ---
@@ -78,7 +57,7 @@ const headlineParts = headline.split("plata");
           <li class={link.primary ? "bg-accent/5" : ""}>
             <a
               href={getPath(link.href)}
-              class="group -mx-2 flex items-center justify-between rounded px-2 py-2.5 text-sm transition-colors hover:bg-accent/5"
+              class="group flex items-center justify-between rounded px-4 py-2.5 text-sm transition-colors hover:bg-accent/5"
               data-analytics-cta="home-hero-cta"
               data-analytics-label={link.label}
               data-analytics-location="home_hero"
@@ -110,12 +89,6 @@ const headlineParts = headline.split("plata");
     style="font-family: var(--font-display);"
   >
     Sin publicidad, sin registro requerido, sin recolección de datos. Fuentes
-    oficiales.{" "}
-    <a
-      href={getPath("/metodologia/")}
-      class="underline decoration-dashed underline-offset-2 transition-colors hover:text-secondary"
-    >
-      Última actualización: {latestDateLabel}.
-    </a>
+    oficiales.
   </p>
 </div>
