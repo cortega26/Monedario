@@ -110,7 +110,7 @@
     "@types/js-yaml": "^4.0.9",
     "@types/lodash.kebabcase": "^4.1.9",
     "@typescript-eslint/parser": "^8.60.0",
-    "@vitest/coverage-v8": "^4.1.6",
+    "@vitest/coverage-v8": "^4.1.7",
     "eslint": "^10.4.0",
     "eslint-plugin-astro": "^1.7.0",
     "globals": "^17.6.0",
@@ -123,7 +123,7 @@
     "sitemap": "^9.0.1",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.60.0",
-    "vitest": "^4.1.6",
+    "vitest": "^4.1.7",
     "wrangler": "^4.94.0"
   }
 }
