@@ -1,0 +1,125 @@
+name: Self-Heal Mechanical Drift
+
+# Daily self-healing for deterministic, mechanical drift (formatting, generated
+# indexes, astro sync). Fixes are proposed as a reviewable auto-PR that runs
+# through the normal CI gate and squash auto-merges when green — never pushed
+# directly to main. Dead-code detection runs warning-first and only opens an
+# issue. See docs/adr/ADR-20260529-repo-self-healing-maintenance.md.
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 4 * * *"
+
+concurrency:
+  group: self-heal-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  self-heal:
+    name: Regenerate mechanical artifacts and open PR
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: "📦 Bootstrap pnpm workspace"
+        uses: ./.github/actions/bootstrap-pnpm
+        with:
+          node-version: 22
+
+      # --- Warning-first dead-code / orphan detection (non-blocking) ---------
+      - name: "🧹 Detect dead code / orphans"
+        id: dead_code
+        uses: ./.github/actions/run-command-with-log
+        with:
+          command: pnpm run check:dead-code
+          log-path: output/validation/self-heal/knip.log
+
+      - name: "📤 Upload dead-code report"
+        if: always()
+        uses: ./.github/actions/upload-workflow-artifact
+        with:
+          artifact-name: self-heal-deadcode-log
+          retention-days: 14
+          if-no-files-found: warn
+          path: output/validation/self-heal/
+
+      - name: "📝 Open issue on dead-code findings"
+        if: steps.dead_code.outputs.outcome == 'failure'
+        uses: ./.github/actions/upsert-issue-by-title
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: "Self-heal: dead code / orphan files detected"
+          body: |
+            `knip` reported unused files, exports, or dependencies.
+
+            This is warning-first: review the `self-heal-deadcode-log` artifact,
+            delete genuinely orphaned code (like the retired `indicadoresDiarios`
+            subsystem), or add justified entries to `knip.json` for false
+            positives. Promote to a blocking gate once the report is clean.
+
+            Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          desired-state: open
+          labels-json: '["dead-code", "automation", "maintenance"]'
+
+      - name: "✅ Close dead-code issue when clean"
+        if: steps.dead_code.outputs.outcome == 'success'
+        uses: ./.github/actions/upsert-issue-by-title
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: "Self-heal: dead code / orphan files detected"
+          desired-state: closed
+          labels-json: '["dead-code", "automation", "maintenance"]'
+
+      # --- Deterministic mechanical fixers -----------------------------------
+      - name: "🧭 Sync Astro generated types"
+        run: pnpm run astro sync
+
+      - name: "🎨 Apply Prettier formatting"
+        run: pnpm exec prettier --write .
+
+      - name: "🗂️ Regenerate published-articles index"
+        run: node scripts/hero-images/scan-articles.mjs
+
+      - name: "🕒 Regenerate page-lastmod index"
+        run: node scripts/build-page-lastmod.mjs
+
+      # --- Propose fixes as a reviewable, auto-merging PR --------------------
+      - name: "📬 Create pull request"
+        id: create-pr
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: self-heal mechanical drift"
+          title: "chore: self-heal mechanical drift"
+          body: |
+            Automated self-heal of deterministic, mechanical drift.
+
+            - Trigger: scheduled workflow (`self-heal.yml`) or manual dispatch.
+            - `pnpm run astro sync`
+            - `pnpm exec prettier --write .`
+            - `node scripts/hero-images/scan-articles.mjs`
+            - `node scripts/build-page-lastmod.mjs`
+
+            No content, route, RSS, or contract changes. Runs through the CI gate
+            and squash auto-merges when green. A clean tree produces no PR.
+          branch: chore/self-heal-mechanical-drift
+          delete-branch: true
+
+      - name: "🔀 Attempt safe auto-merge"
+        if: steps.create-pr.outputs.pull-request-number != ''
+        uses: ./.github/actions/enable-safe-automerge
+        with:
+          pull-request: ${{ steps.create-pr.outputs.pull-request-number }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}

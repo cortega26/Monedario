@@ -5,6 +5,7 @@ env:
 
 permissions:
   contents: read
+  issues: write
 
 on:
   pull_request:
@@ -26,7 +27,10 @@ jobs:
     name: Code standards & build
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    if: github.event_name != 'schedule'
+    # Runs on PRs (blocking gate) AND on the daily schedule against the default
+    # branch, so drift that lands on main (e.g. a stale test guard) is caught
+    # within ~24h instead of going undetected. See
+    # docs/adr/ADR-20260529-repo-self-healing-maintenance.md.
 
     steps:
       - name: "☁️ Checkout repository"
@@ -131,6 +135,35 @@ jobs:
           artifact-name: site-dist
           retention-days: 3
           path: dist/
+
+      # On scheduled runs the gate gives no PR to surface a red result, so a
+      # failure is escalated to a single tracking issue (and closed when green).
+      - name: "🚨 Open issue on scheduled main failure"
+        if: failure() && github.event_name == 'schedule'
+        uses: ./.github/actions/upsert-issue-by-title
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: "CI: scheduled gate failing on main"
+          body: |
+            The daily scheduled CI gate failed against the default branch.
+
+            This means drift has landed on `main` that the PR gate would have
+            blocked (e.g. a failing test, format drift, or a broken contract
+            check). Open the failed run, reproduce locally with `pnpm run check`
+            and `pnpm run test`, and fix in a small PR.
+
+            Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          desired-state: open
+          labels-json: '["ci", "automation", "maintenance"]'
+
+      - name: "✅ Close scheduled-failure issue when green"
+        if: success() && github.event_name == 'schedule'
+        uses: ./.github/actions/upsert-issue-by-title
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: "CI: scheduled gate failing on main"
+          desired-state: closed
+          labels-json: '["ci", "automation", "maintenance"]'
 
   external-url-audit:
     name: External URL audit (non-blocking)

@@ -22,6 +22,7 @@ Crea un ADR cuando cambie alguno de estos ejes:
 | `ADR-20260411-competitive-adaptation-policy.md` | Accepted | Gobernanza para benchmarking externo | editorial, governance |
 | `ADR-20260412-external-link-ci-gate.md` | Accepted | Gate de links externos en CI | validation, CI |
 | `ADR-20260511-editorial-artifact-location-policy.md` | Accepted | Politica de ubicacion de artefactos editoriales | editorial, governance |
+| `ADR-20260529-repo-self-healing-maintenance.md` | Accepted | Mantenimiento auto-reparable: gate diario en main, auto-PR de drift mecanico, deteccion de codigo muerto | CI, governance |
 
 ## Convencion minima
 

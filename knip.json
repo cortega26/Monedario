@@ -1,0 +1,35 @@
+{
+  "$schema": "https://unpkg.com/knip@6/schema.json",
+  "entry": [
+    "scripts/**/*.mjs",
+    "workers/**/*.{ts,mjs}",
+    "src/data/**/*.{md,mdx}"
+  ],
+  "project": ["src/**/*.{astro,ts,tsx,js,mjs}", "scripts/**/*.mjs"],
+  "ignore": [
+    "src/dev-pages/**",
+    "src/scripts/**",
+    "src/tools/**",
+    "src/components/IndicadorEconomico.astro"
+  ],
+  "rules": {
+    "files": "error",
+    "dependencies": "error",
+    "unlisted": "off",
+    "unresolved": "off",
+    "binaries": "off",
+    "exports": "off",
+    "types": "off",
+    "nsExports": "off",
+    "nsTypes": "off",
+    "enumMembers": "off",
+    "duplicates": "off"
+  },
+  "ignoreDependencies": [
+    "tailwindcss",
+    "@tailwindcss/typography",
+    "remark-collapse",
+    "@axe-core/playwright",
+    "@typescript-eslint/parser"
+  ]
+}

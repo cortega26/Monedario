@@ -9,7 +9,7 @@
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
-      "title": "Inversión en Chile 2026: ETF, DAP y costos reales",
+      "title": "¿ETF, DAP o fondo mutuo en Chile? Cómo elegir (2026)",
       "category": "ahorro-inversion",
       "cluster": "ahorro-e-inversion",
       "tags": [
@@ -71,7 +71,7 @@
       "sourcePath": "src/data/blog/como-calcular-sueldo-liquido.md",
       "heroImage": "/images/hero/como-calcular-sueldo-liquido.avif",
       "summary": "Te ofrecieron $1.200.000 brutos. Llegó el día de pago y te cayeron $950.000. Esta guía existe para rehacer ese cálculo de principio a fin: partir desde el bruto, separar el imponible y llegar al depósito final con AFP, salud, cesantía e impuesto. Si tu duda principal no es rehace...",
-      "updatedDate": "2026-05-11T00:00:00Z"
+      "updatedDate": "2026-05-14T00:00:00Z"
     },
     {
       "slug": "como-cambiarse-de-afp",
@@ -87,11 +87,11 @@
       "sourcePath": "src/data/blog/como-cambiarse-de-afp.md",
       "heroImage": "/images/hero/como-cambiarse-de-afp.avif",
       "summary": "Cambiarse de AFP es uno de los trámites más simples que puedes hacer para mejorar tu situación previsional, y sin embargo la mayoría de las personas nunca lo hace. En esta guía te explicamos cómo funciona el proceso, qué debes evaluar y qué cambia con la Reforma de Pensiones apro...",
-      "updatedDate": "2026-04-22T00:00:00Z"
+      "updatedDate": "2026-05-14T00:00:00Z"
     },
     {
       "slug": "como-hacer-presupuesto-mensual-chile",
-      "title": "Cómo hacer un presupuesto mensual en Chile: método práctico sin plantilla mágica",
+      "title": "Presupuesto mensual en Chile: método práctico sin plantilla mágica",
       "category": "general",
       "cluster": "presupuesto-control-financiero",
       "tags": [
@@ -201,7 +201,7 @@
       "sourcePath": "src/data/blog/cuanto-descuenta-la-afp-de-tu-sueldo.md",
       "heroImage": "/images/hero/cuanto-descuenta-la-afp-de-tu-sueldo.avif",
       "summary": "Cada mes aparece en tu liquidación una línea que dice \"AFP\" y un número que te descuentan. Para la mayoría es un cálculo opaco que simplemente aceptan. Esta guía lo abre: cuánto corresponde a cotización obligatoria, cuánto es comisión y cómo verificar que ese cargo calza con tu A...",
-      "updatedDate": "2026-03-22T23:01:40Z"
+      "updatedDate": "2026-05-14T00:00:00Z"
     },
     {
       "slug": "deposito-a-plazo-uf-vs-pesos",
@@ -234,7 +234,7 @@
       "sourcePath": "src/data/blog/descuentos-de-sueldo.md",
       "heroImage": "/images/hero/descuentos-de-sueldo.avif",
       "summary": "Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal. Al...",
-      "updatedDate": "2026-04-12T18:30:00Z"
+      "updatedDate": "2026-05-14T00:00:00Z"
     },
     {
       "slug": "devolucion-impuestos-fechas-compensaciones",
@@ -271,7 +271,7 @@
     },
     {
       "slug": "el-poder-del-interes-compuesto",
-      "title": "El poder del interés compuesto: cómo el 10% del sueldo mínimo se convierte en más de $125 millones",
+      "title": "El poder del interés compuesto: 10% del sueldo mínimo a $125 millones",
       "category": "ahorro-inversion",
       "cluster": "ahorro-e-inversion",
       "tags": [
@@ -388,7 +388,7 @@
     },
     {
       "slug": "fraude-tarjeta-que-hacer",
-      "title": "Te hicieron un cargo que no reconoces: qué hacer en las primeras 24 horas (Ley 20.009)",
+      "title": "Cargo no reconocido: qué hacer en 24 horas (Ley 20.009)",
       "category": "seguridad-financiera",
       "cluster": "seguridad-financiera",
       "tags": [
@@ -433,7 +433,8 @@
       ],
       "sourcePath": "src/data/blog/impuesto-global-complementario-chile.md",
       "heroImage": "/images/hero/impuesto-global-complementario-chile.avif",
-      "summary": "Información vigente al 2026 05 03. Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el antes de tu Operación Renta. Este artículo no cubre ganancias de capital. Tienes sueldo y además emites boletas de honorarios. O..."
+      "summary": "Información vigente al 2026 05 14. Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el antes de tu Operación Renta. Este artículo no cubre ganancias de capital. Tienes sueldo y además emites boletas de honorarios. O...",
+      "updatedDate": "2026-05-14T00:00:00Z"
     },
     {
       "slug": "indemnizacion-anos-de-servicio-chile",
@@ -453,7 +454,7 @@
     },
     {
       "slug": "informe-deudas-cmf-vs-dicom",
-      "title": "Informe de deudas CMF: cómo sacarlo, qué dice y por qué no es lo mismo que DICOM",
+      "title": "Informe de deudas CMF: cómo sacarlo y por qué no es DICOM",
       "category": "deuda-credito",
       "cluster": "deuda-credito",
       "tags": [
@@ -518,7 +519,7 @@
     },
     {
       "slug": "operacion-renta-centro",
-      "title": "Centro Operación Renta 2026: guía completa para declarar en Chile",
+      "title": "Operación Renta 2026: orientación inicial y preguntas frecuentes",
       "category": "impuestos",
       "cluster": "impuestos-personas",
       "tags": [
@@ -535,7 +536,7 @@
     },
     {
       "slug": "operacion-renta-f22-checklist",
-      "title": "Operación Renta F22 en Chile: checklist para revisar, enviar y rectificar sin errores",
+      "title": "Operación Renta F22: checklist para revisar, enviar y rectificar sin errores",
       "category": "impuestos",
       "cluster": "impuestos-personas",
       "tags": [
@@ -583,7 +584,7 @@
     },
     {
       "slug": "primer-empleo-chile-guia-completa",
-      "title": "Primer empleo en Chile: guía completa para saber qué firmar, qué te descuentan y cómo empezar",
+      "title": "Primer empleo en Chile: qué firmar, descuentos y cómo empezar",
       "category": "empleo-ingresos",
       "cluster": "empleo-ingresos",
       "tags": [
@@ -681,7 +682,7 @@
     },
     {
       "slug": "reforma-previsional-2025-que-cambia-y-como-te-afecta",
-      "title": "Reforma previsional 2025: qué cambia, cuándo y cómo te afecta (guía actualizada)",
+      "title": "Reforma previsional 2025: qué cambia y cómo te afecta",
       "category": "prevision",
       "cluster": "pensiones-afp",
       "tags": [
@@ -715,7 +716,7 @@
     },
     {
       "slug": "rentas-mixtas-sueldo-honorarios",
-      "title": "Rentas mixtas en Chile: cómo declarar cuando tienes sueldo y boletas de honorarios",
+      "title": "Rentas mixtas: cómo declarar sueldo y boletas de honorarios",
       "category": "impuestos",
       "cluster": "impuestos-personas",
       "tags": [
@@ -732,7 +733,7 @@
     },
     {
       "slug": "seguro-cesantia-cuenta-individual-vs-fondo-solidario",
-      "title": "Seguro de cesantía: Cuenta Individual vs Fondo Solidario, sin confundir ambos",
+      "title": "CIC vs Fondo Solidario: cómo funciona cada capa del Seguro de Cesantía",
       "category": "empleo-ingresos",
       "cluster": "empleo-ingresos",
       "tags": [
@@ -748,7 +749,7 @@
     },
     {
       "slug": "seguro-de-cesantia",
-      "title": "Seguro de cesantía: cómo saber tu saldo, cuándo puedes cobrar y cuánto te pagan",
+      "title": "Seguro de cesantía: saldo, cuándo cobrar y montos",
       "category": "empleo-ingresos",
       "cluster": "empleo-ingresos",
       "tags": [
@@ -777,7 +778,8 @@
       ],
       "sourcePath": "src/data/blog/sueldo-imponible-chile.md",
       "heroImage": "/images/hero/sueldo-imponible-chile.avif",
-      "summary": "Información vigente al 2026 05 03. El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves..."
+      "summary": "Información vigente al 2026 05 03. El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves...",
+      "updatedDate": "2026-05-14T00:00:00Z"
     },
     {
       "slug": "suplantacion-identidad-creditos-no-reconocidos",
