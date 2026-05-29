@@ -41,9 +41,13 @@ what needs judgment** — reusing existing repo patterns
    CI and squash auto-merges when green. A clean tree produces no PR. Fixes are
    never pushed directly to `main` (respects branch protection, squash-merge-only,
    and change control).
-3. **Re-enable the scheduled economic snapshot refresh** — interim self-heal of
-   the YMYL economic data via the existing auto-PR workflow until the Cloudflare
-   Worker is confirmed deployed.
+3. **Economic snapshot refresh** — the interim GHA schedule re-enabled on
+   2026-05-29 was **reverted the same day**: the Cloudflare Worker (ADR-20260516)
+   was confirmed deployed and committing the snapshot daily as
+   `monedario-snapshot-bot` (crons 15 10/14/18 UTC), so the GHA schedule was a
+   redundant double refresh. `refresh-economic-snapshot.yml` is manual-only again
+   and remains the manual path for editorial-volatile-data + review policies
+   (not ported to the Worker).
 4. **Dead-code detection (warning-first)** — add `knip` + `knip.json` +
    `check:dead-code`, wired into `self-heal.yml` as a non-blocking step that
    opens/closes an issue. Config focuses on unused **files** and **dependencies**

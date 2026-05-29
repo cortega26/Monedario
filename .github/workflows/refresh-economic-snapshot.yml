@@ -1,23 +1,20 @@
 name: Refresh Volatile Data Snapshots
 
-# Primary scheduled refresh of the economic snapshot was migrated to a
-# Cloudflare Worker on 2026-05-16 (see ADR-20260516-economic-snapshot-cloudflare-worker.md)
-# to decouple from GitHub Actions billing/quota incidents.
+# The scheduled refresh of the economic snapshot runs on the Cloudflare Worker
+# (see ADR-20260516-economic-snapshot-cloudflare-worker.md), confirmed deployed
+# and committing daily as `monedario-snapshot-bot` (crons 15 10/14/18 UTC). The
+# 2026-05-29 interim GHA schedule (ADR-20260529) was therefore removed to avoid a
+# double refresh — this workflow is manual-only again (`workflow_dispatch`).
 #
-# INTERIM (2026-05-29, ADR-20260529): the daily schedule below is re-enabled as
-# the self-healing owner of the YMYL economic snapshot until the Cloudflare
-# Worker is confirmed deployed. This workflow also refreshes
-# editorial-volatile-data (HTML scraping of spensiones.cl), which was never
-# ported to the Worker. Once the Worker is live, re-disable the schedule here to
-# avoid a double refresh (leave workflow_dispatch as a manual fallback).
+# It still also refreshes editorial-volatile-data (spensiones.cl scraping) and
+# review policies, which were never ported to the Worker; run it manually when
+# that data needs a refresh.
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "15 10 * * *"
 
 concurrency:
   group: refresh-volatile-data-${{ github.ref }}
