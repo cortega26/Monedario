@@ -47,7 +47,18 @@ const hasSlot = Astro.slots.has("default");
       <slot />
     ) : (
       <input
-        type={type as "text" | "number" | "email" | "tel" | "url" | "password" | "search" | "date" | "time"}
+        type={
+          type as
+            | "text"
+            | "number"
+            | "email"
+            | "tel"
+            | "url"
+            | "password"
+            | "search"
+            | "date"
+            | "time"
+        }
         id={id}
         placeholder={placeholder}
         min={min}

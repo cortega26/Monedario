@@ -16,7 +16,6 @@ Protocols, standards, and governance for software development.
 | `REGRESSION_PREVENTION.md` | Measures to prevent regressions |
 | `TECH_DEBT_GOVERNANCE.md` | Policy for tracking and resolving tech debt |
 | `CRITERIO_VIABILIDAD.md` | Criterio obligatorio para evaluar viabilidad de hubs y automatizaciones |
-| `indicadoresDiarios.ts` / `indicadoresDiarios.data.json` | Configuración y dataset de indicadores económicos diarios |
 
 ## Archived
 

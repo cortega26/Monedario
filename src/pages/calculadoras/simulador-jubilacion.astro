@@ -85,7 +85,10 @@ const calculatorNextStepItems = [
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
-      <div id="calculator-form-card" class="rounded-xl border border-border p-6">
+      <div
+        id="calculator-form-card"
+        class="rounded-xl border border-border p-6"
+      >
         <h2 class="mb-5 text-lg font-semibold">Tus datos</h2>
 
         <CalculatorField
@@ -203,9 +206,11 @@ const calculatorNextStepItems = [
             <div class="flex justify-between">
               <span class="text-secondary">Tasa de reemplazo</span>
               <span class="font-medium text-foreground/80">
-                {exampleResult.selectedScenario.salaryReplacementPercent.toFixed(
-                  0
-                )}%
+                {
+                  exampleResult.selectedScenario.salaryReplacementPercent.toFixed(
+                    0
+                  )
+                }%
               </span>
             </div>
           </div>
@@ -333,9 +338,9 @@ const calculatorNextStepItems = [
     }
   }
 
-  let scenarioLastResult:
-    | ReturnType<typeof simulateRetirementProjection>
-    | null = null;
+  let scenarioLastResult: ReturnType<
+    typeof simulateRetirementProjection
+  > | null = null;
 
   function fmt(n: number): string {
     return "$" + Math.round(n).toLocaleString("es-CL");
@@ -647,7 +652,9 @@ const calculatorNextStepItems = [
       readInputs: () => snapshotInputs(scenarioFormCard),
       applyInputs: inputs => {
         restoreInputs(scenarioFormCard, inputs);
-        (document.getElementById("calcBtn") as HTMLButtonElement | null)?.click();
+        (
+          document.getElementById("calcBtn") as HTMLButtonElement | null
+        )?.click();
       },
       buildSummary: () => {
         if (!scenarioLastResult) return null;

@@ -132,7 +132,12 @@ const RESULTS = {
       label: "Usar calculadora de depósito a plazo →",
       href: "/calculadoras/deposito-a-plazo/",
     },
-    [{ label: "Leer DAP en UF vs pesos", href: "/posts/deposito-a-plazo-uf-vs-pesos/" }],
+    [
+      {
+        label: "Leer DAP en UF vs pesos",
+        href: "/posts/deposito-a-plazo-uf-vs-pesos/",
+      },
+    ],
     "Orientación educativa: una simulación no reemplaza revisar tasa, vencimiento y condiciones reales del producto."
   ),
   extendedLiquidityRead: makeResult(
@@ -143,7 +148,12 @@ const RESULTS = {
       label: "Ver guía general de ahorro e inversión →",
       href: "/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/",
     },
-    [{ label: "Luego revisar DAP en UF vs pesos", href: "/posts/deposito-a-plazo-uf-vs-pesos/" }]
+    [
+      {
+        label: "Luego revisar DAP en UF vs pesos",
+        href: "/posts/deposito-a-plazo-uf-vs-pesos/",
+      },
+    ]
   ),
   extendedLiquidityCalc: makeResult(
     "extended-liquidity-calc",
@@ -169,7 +179,12 @@ const RESULTS = {
       label: "Ver guía general de ahorro e inversión →",
       href: "/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/",
     },
-    [{ label: "Revisar fondo de emergencia", href: "/posts/fondo-emergencia-chile/" }],
+    [
+      {
+        label: "Revisar fondo de emergencia",
+        href: "/posts/fondo-emergencia-chile/",
+      },
+    ],
     "Orientación educativa: esta salida evita forzar una respuesta de crecimiento donde el plazo todavía no la sostiene bien."
   ),
   growthLongRead: makeResult(
@@ -232,7 +247,8 @@ function buildIntentStep(
 const AHORRO_INVERSION_GUIDE: ArticleEntryGuide = {
   id: "ahorro-inversion-entry-guide",
   eyebrow: "Orientador interactivo",
-  title: "Antes de elegir instrumento, responde solo las preguntas que cambian la ruta",
+  title:
+    "Antes de elegir instrumento, responde solo las preguntas que cambian la ruta",
   description:
     "Este orientador reduce ruido: si una respuesta no cambia la salida, la pregunta no aparece. La ruta se ajusta según liquidez, plazo, beneficio tributario y nivel de claridad que necesitas.",
   config: {
@@ -287,7 +303,11 @@ const AHORRO_INVERSION_GUIDE: ArticleEntryGuide = {
           },
         ],
       },
-      "intent-apv": buildIntentStep("intent-apv", RESULTS.apvRead, RESULTS.apvCalc),
+      "intent-apv": buildIntentStep(
+        "intent-apv",
+        RESULTS.apvRead,
+        RESULTS.apvCalc
+      ),
       "intent-inflation": buildIntentStep(
         "intent-inflation",
         RESULTS.inflationRead,

@@ -106,8 +106,17 @@ const calculatorNextStepItems = [
           legend="Modo de cálculo"
           name="finiquito-modo"
           options={[
-            { id: "modo-finiquito", value: "finiquito", label: "Finiquito completo", checked: true },
-            { id: "modo-vacaciones", value: "vacaciones", label: "Vacaciones proporcionales" },
+            {
+              id: "modo-finiquito",
+              value: "finiquito",
+              label: "Finiquito completo",
+              checked: true,
+            },
+            {
+              id: "modo-vacaciones",
+              value: "vacaciones",
+              label: "Vacaciones proporcionales",
+            },
           ]}
         />
 
@@ -124,8 +133,19 @@ const calculatorNextStepItems = [
         />
 
         <div class="grid gap-4 sm:grid-cols-2" data-finiquito-only>
-          <CalculatorField id="years-worked" label="Años completos trabajados" min="0" value="0" />
-          <CalculatorField id="months-worked" label="Meses adicionales" min="0" max="11" value="0" />
+          <CalculatorField
+            id="years-worked"
+            label="Años completos trabajados"
+            min="0"
+            value="0"
+          />
+          <CalculatorField
+            id="months-worked"
+            label="Meses adicionales"
+            min="0"
+            max="11"
+            value="0"
+          />
         </div>
 
         <CalculatorField
@@ -137,12 +157,20 @@ const calculatorNextStepItems = [
             id="termination-cause"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
           >
-            <option value="necesidad">Necesidades de la empresa (art. 161)</option>
+            <option value="necesidad"
+              >Necesidades de la empresa (art. 161)</option
+            >
             <option value="mutuo-acuerdo">Mutuo acuerdo</option>
             <option value="renuncia">Renuncia voluntaria</option>
-            <option value="disciplinaria">Despido por causal disciplinaria</option>
-            <option value="vencimiento-obra">Vencimiento de plazo / fin de obra</option>
-            <option value="judicial">Despido injustificado declarado judicialmente</option>
+            <option value="disciplinaria"
+              >Despido por causal disciplinaria</option
+            >
+            <option value="vencimiento-obra"
+              >Vencimiento de plazo / fin de obra</option
+            >
+            <option value="judicial"
+              >Despido injustificado declarado judicialmente</option
+            >
           </select>
         </CalculatorField>
 
@@ -214,8 +242,12 @@ const calculatorNextStepItems = [
 
       <CalculatorResultPanel title="Estimación orientativa">
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
-          <div class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center">
-            <p class="mb-1 text-xs font-bold tracking-widest text-muted uppercase">
+          <div
+            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
+          >
+            <p
+              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
+            >
               Total estimado (Ejemplo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">$3.600.000</p>
@@ -239,7 +271,8 @@ const calculatorNextStepItems = [
             </div>
           </div>
           <p class="mt-4 text-xs text-muted">
-            Ejemplo: sueldo $900.000, 3 años, necesidades de la empresa, sin aviso previo. Ingresa tu caso real para estimar tu finiquito.
+            Ejemplo: sueldo $900.000, 3 años, necesidades de la empresa, sin
+            aviso previo. Ingresa tu caso real para estimar tu finiquito.
           </p>
         </div>
       </CalculatorResultPanel>

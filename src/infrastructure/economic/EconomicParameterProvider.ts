@@ -62,7 +62,7 @@ export interface EconomicProviderTelemetry {
 
 const DEFAULT_AFC_MONTHLY_TAXABLE_CAP_UF = 135.2;
 const DEFAULT_PENSION_AND_HEALTH_MONTHLY_TAXABLE_CAP_UF = 90;
-const FALLBACK_LAST_UPDATED = "2025-06-01";
+const FALLBACK_LAST_UPDATED = "2026-05-28";
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 const SNAPSHOT_FILE_NAME = "economic-parameters.snapshot.json";
 const ECONOMIC_PROVIDER_MODE_ENV = "TPI_ECONOMIC_PROVIDER_MODE";
@@ -70,8 +70,8 @@ const ECONOMIC_API_URL = "https://mindicador.cl/api";
 const FETCH_TIMEOUT_MS = 5000;
 
 const FALLBACK_PARAMETERS: EconomicParameters = {
-  uf: 39300,
-  utm: 67294,
+  uf: 40559.96,
+  utm: 70588,
   uta: 834504,
   ipc: 0,
   tmc: 3.49,

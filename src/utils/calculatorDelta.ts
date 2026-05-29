@@ -32,7 +32,11 @@ export function renderHeadlineDelta(
   format: (abs: number) => string
 ): HTMLElement | null {
   const previous = recordHeadlineValue(key, current);
-  if (previous === null || !Number.isFinite(previous) || !Number.isFinite(current)) {
+  if (
+    previous === null ||
+    !Number.isFinite(previous) ||
+    !Number.isFinite(current)
+  ) {
     return null;
   }
 

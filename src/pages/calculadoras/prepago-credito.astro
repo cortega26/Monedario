@@ -129,9 +129,19 @@ const calculatorNextStepItems = [
           </p>
         </div>
 
-        <CalculatorField id="saldo" label="Saldo pendiente ($)" placeholder="Ej: 15.000.000" min="0" />
+        <CalculatorField
+          id="saldo"
+          label="Saldo pendiente ($)"
+          placeholder="Ej: 15.000.000"
+          min="0"
+        />
 
-        <CalculatorField id="cuota" label="Cuota mensual actual ($)" placeholder="Ej: 350.000" min="0" />
+        <CalculatorField
+          id="cuota"
+          label="Cuota mensual actual ($)"
+          placeholder="Ej: 350.000"
+          min="0"
+        />
 
         <div class="mb-4">
           <label
@@ -175,11 +185,30 @@ const calculatorNextStepItems = [
           </div>
         </div>
 
-        <CalculatorField id="meses-restantes" label="Meses restantes" placeholder="Ej: 180" min="1" max="480" value="180" />
+        <CalculatorField
+          id="meses-restantes"
+          label="Meses restantes"
+          placeholder="Ej: 180"
+          min="1"
+          max="480"
+          value="180"
+        />
 
-        <CalculatorField id="monto-prepago" label="Monto del abono extraordinario ($)" placeholder="Ej: 2.000.000" min="0" />
+        <CalculatorField
+          id="monto-prepago"
+          label="Monto del abono extraordinario ($)"
+          placeholder="Ej: 2.000.000"
+          min="0"
+        />
 
-        <CalculatorField id="costo-prepago" label="Comisión o costo de prepago ($)" placeholder="Ej: 120.000" min="0" value="0" hint="Si no conoces el dato exacto, déjalo en `0` como supuesto provisional y revísalo después en tu contrato o con el banco." />
+        <CalculatorField
+          id="costo-prepago"
+          label="Comisión o costo de prepago ($)"
+          placeholder="Ej: 120.000"
+          min="0"
+          value="0"
+          hint="Si no conoces el dato exacto, déjalo en `0` como supuesto provisional y revísalo después en tu contrato o con el banco."
+        />
 
         <div class="mb-4">
           <label class="mb-2 block text-sm font-medium text-secondary"
@@ -216,7 +245,12 @@ const calculatorNextStepItems = [
           </div>
         </div>
 
-        <CalculatorField id="rentabilidad-alternativa" label="Rentabilidad alternativa (% anual)" hint="Para comparar: ¿qué pasaría si en vez de prepagar, invirtieras ese dinero?" class="border-t border-border pt-4">
+        <CalculatorField
+          id="rentabilidad-alternativa"
+          label="Rentabilidad alternativa (% anual)"
+          hint="Para comparar: ¿qué pasaría si en vez de prepagar, invirtieras ese dinero?"
+          class="border-t border-border pt-4"
+        >
           <select
             id="rentabilidad-alternativa"
             class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
@@ -224,7 +258,8 @@ const calculatorNextStepItems = [
             <option value="3">3% — DAP / Fondo E AFP</option>
             <option value="5" selected>5% — Fondo mutuo conservador</option>
             <option value="7">7% — Fondo mixto / APV</option>
-            <option value="10">10% — Renta variable (estimado histórico)</option>
+            <option value="10">10% — Renta variable (estimado histórico)</option
+            >
           </select>
         </CalculatorField>
 
@@ -277,8 +312,8 @@ const calculatorNextStepItems = [
             </div>
           </div>
           <p class="mt-4 text-xs text-muted">
-            Ejemplo: prepago de $1.000.000 sobre un saldo de $5.000.000
-            (reducir plazo).
+            Ejemplo: prepago de $1.000.000 sobre un saldo de $5.000.000 (reducir
+            plazo).
           </p>
         </div>
       </div>

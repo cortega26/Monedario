@@ -306,7 +306,9 @@ const personSchema = {
 
         <div class="grid gap-4 sm:grid-cols-2">
           <div class="rounded-xl border border-border p-5">
-            <p class="mb-2 text-sm font-semibold text-foreground">¿Para qué sirve?</p>
+            <p class="mb-2 text-sm font-semibold text-foreground">
+              ¿Para qué sirve?
+            </p>
             <ul class="space-y-1.5 text-sm text-secondary">
               <li class="flex gap-2">
                 <span class="shrink-0 text-accent">✔</span>
@@ -323,15 +325,21 @@ const personSchema = {
             </ul>
           </div>
           <div class="rounded-xl border border-border p-5">
-            <p class="mb-2 text-sm font-semibold text-foreground">¿Para qué NO sirve?</p>
+            <p class="mb-2 text-sm font-semibold text-foreground">
+              ¿Para qué NO sirve?
+            </p>
             <ul class="space-y-1.5 text-sm text-secondary">
               <li class="flex gap-2">
                 <span class="shrink-0 text-red-400">✕</span>
-                <span>Asesoría legal, tributaria o financiera personalizada.</span>
+                <span
+                  >Asesoría legal, tributaria o financiera personalizada.</span
+                >
               </li>
               <li class="flex gap-2">
                 <span class="shrink-0 text-red-400">✕</span>
-                <span>Revisión de documentos privados o casos individuales.</span>
+                <span
+                  >Revisión de documentos privados o casos individuales.</span
+                >
               </li>
             </ul>
           </div>
@@ -366,23 +374,36 @@ const personSchema = {
         class="max-w-xl space-y-5"
       >
         {/* Honeypot — bots fill this, humans don't */}
-        <input type="checkbox" name="botcheck" class="hidden" aria-hidden="true" />
+        <input
+          type="checkbox"
+          name="botcheck"
+          class="hidden"
+          aria-hidden="true"
+        />
         <div>
           <label
             for="er-tipo"
             class="mb-1.5 block text-sm font-medium text-foreground"
-            >Tipo de reporte <span class="text-red-400" aria-hidden="true">*</span></label
+            >Tipo de reporte <span class="text-red-400" aria-hidden="true"
+              >*</span
+            ></label
           >
           <select
             id="er-tipo"
             name="tipo"
             required
-            class="w-full rounded-lg border border-border bg-surface-muted/30 px-3 py-2.5 text-sm text-foreground focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+            class="w-full rounded-lg border border-border bg-surface-muted/30 px-3 py-2.5 text-sm text-foreground focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none"
           >
             <option value="">— Selecciona el tipo —</option>
-            <option value="Error factual">Error factual (dato incorrecto o desactualizado)</option>
-            <option value="Error de cálculo">Error de cálculo (resultado incorrecto en calculadora)</option>
-            <option value="Problema de visualización">Problema de visualización (rendering, móvil, etc.)</option>
+            <option value="Error factual"
+              >Error factual (dato incorrecto o desactualizado)</option
+            >
+            <option value="Error de cálculo"
+              >Error de cálculo (resultado incorrecto en calculadora)</option
+            >
+            <option value="Problema de visualización"
+              >Problema de visualización (rendering, móvil, etc.)</option
+            >
             <option value="Enlace roto">Enlace roto</option>
             <option value="Sugerencia de mejora">Sugerencia de mejora</option>
             <option value="Otro">Otro</option>
@@ -393,14 +414,16 @@ const personSchema = {
           <label
             for="er-url"
             class="mb-1.5 block text-sm font-medium text-foreground"
-            >URL afectada <span class="text-muted text-xs font-normal">(opcional)</span></label
+            >URL afectada <span class="text-xs font-normal text-muted"
+              >(opcional)</span
+            ></label
           >
           <input
             id="er-url"
             name="url_afectada"
             type="url"
             placeholder="https://monedario.cl/..."
-            class="w-full rounded-lg border border-border bg-surface-muted/30 px-3 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+            class="w-full rounded-lg border border-border bg-surface-muted/30 px-3 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none"
           />
         </div>
 
@@ -408,7 +431,8 @@ const personSchema = {
           <label
             for="er-desc"
             class="mb-1.5 block text-sm font-medium text-foreground"
-            >Descripción <span class="text-red-400" aria-hidden="true">*</span></label
+            >Descripción <span class="text-red-400" aria-hidden="true">*</span
+            ></label
           >
           <textarea
             id="er-desc"
@@ -416,7 +440,7 @@ const personSchema = {
             required
             rows="4"
             placeholder="Describe el problema con el mayor detalle posible…"
-            class="w-full resize-y rounded-lg border border-border bg-surface-muted/30 px-3 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+            class="w-full resize-y rounded-lg border border-border bg-surface-muted/30 px-3 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none"
           ></textarea>
         </div>
 
@@ -424,18 +448,25 @@ const personSchema = {
           <label
             for="er-email"
             class="mb-1.5 block text-sm font-medium text-foreground"
-            >Tu email <span class="text-muted text-xs font-normal">(opcional, para seguimiento)</span></label
+            >Tu email <span class="text-xs font-normal text-muted"
+              >(opcional, para seguimiento)</span
+            ></label
           >
           <input
             id="er-email"
             name="email_respuesta"
             type="email"
             placeholder="tu@email.com"
-            class="w-full rounded-lg border border-border bg-surface-muted/30 px-3 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+            class="w-full rounded-lg border border-border bg-surface-muted/30 px-3 py-2.5 text-sm text-foreground placeholder:text-muted focus:border-accent focus:ring-1 focus:ring-accent focus:outline-none"
           />
         </div>
 
-        <div id="er-error" role="alert" class="hidden rounded-lg border border-red-400/30 bg-red-400/10 px-4 py-2.5 text-sm text-red-400"></div>
+        <div
+          id="er-error"
+          role="alert"
+          class="hidden rounded-lg border border-red-400/30 bg-red-400/10 px-4 py-2.5 text-sm text-red-400"
+        >
+        </div>
 
         <button
           type="submit"
@@ -444,8 +475,13 @@ const personSchema = {
           Enviar reporte
         </button>
 
-        <p id="er-success" role="status" class="hidden rounded-lg border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-600 dark:text-green-400">
-          Reporte enviado. Gracias — revisaremos y responderemos si dejaste email.
+        <p
+          id="er-success"
+          role="status"
+          class="hidden rounded-lg border border-green-500/30 bg-green-500/10 px-4 py-3 text-sm text-green-600 dark:text-green-400"
+        >
+          Reporte enviado. Gracias — revisaremos y responderemos si dejaste
+          email.
         </p>
       </form>
     </section>
@@ -462,7 +498,9 @@ const personSchema = {
   // Auto-fill URL from ?url= query param
   const urlParam = new URLSearchParams(window.location.search).get("url");
   if (urlParam) {
-    const urlInput = form.querySelector<HTMLInputElement>('[name="url_afectada"]');
+    const urlInput = form.querySelector<HTMLInputElement>(
+      '[name="url_afectada"]'
+    );
     if (urlInput) urlInput.value = decodeURIComponent(urlParam);
   }
 
@@ -500,7 +538,10 @@ const personSchema = {
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
         body: JSON.stringify({
           access_key: accessKey,
           subject: `[Monedario] [${tipo}]${urlAfectada ? " — " + urlAfectada : ""}`,
@@ -519,9 +560,11 @@ const personSchema = {
       if (json.success) {
         form.reset();
         if (successEl) successEl.classList.remove("hidden");
-        form.querySelectorAll<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>(
-          "input, textarea, select"
-        ).forEach(el => el.setAttribute("disabled", ""));
+        form
+          .querySelectorAll<
+            HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+          >("input, textarea, select")
+          .forEach(el => el.setAttribute("disabled", ""));
         if (btn) btn.textContent = "Enviado";
       } else {
         const msg = json.message ?? "Error desconocido";

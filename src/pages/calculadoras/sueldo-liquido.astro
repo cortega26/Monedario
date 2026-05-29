@@ -163,8 +163,17 @@ const calculatorNextStepItems = [
           legend="Modo de cálculo"
           name="modo-calculo"
           options={[
-            { id: "modo-bruto", value: "bruto-a-liquido", label: "Bruto → Líquido", checked: true },
-            { id: "modo-liquido", value: "liquido-a-bruto", label: "Líquido → Bruto" },
+            {
+              id: "modo-bruto",
+              value: "bruto-a-liquido",
+              label: "Bruto → Líquido",
+              checked: true,
+            },
+            {
+              id: "modo-liquido",
+              value: "liquido-a-bruto",
+              label: "Líquido → Bruto",
+            },
           ]}
         />
 
@@ -499,14 +508,17 @@ const calculatorNextStepItems = [
         >
         </div>
         <div class="mt-2 flex items-center justify-between gap-3 text-xs">
-          <span class="inline-flex items-center gap-1.5 font-semibold text-accent">
-            <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-accent"></span>
+          <span
+            class="inline-flex items-center gap-1.5 font-semibold text-accent"
+          >
+            <span class="h-1.5 w-1.5 animate-pulse rounded-full bg-accent"
+            ></span>
             Actualizamos a medida que escribes
           </span>
           <button
             id="calcBtn"
             type="button"
-            class="text-secondary underline decoration-dashed decoration-border underline-offset-4 transition-colors hover:text-foreground hover:decoration-accent disabled:cursor-not-allowed disabled:opacity-50"
+            class="text-secondary underline decoration-border decoration-dashed underline-offset-4 transition-colors hover:text-foreground hover:decoration-accent disabled:cursor-not-allowed disabled:opacity-50"
           >
             <span id="calcBtn-label">Calcular ahora</span>
           </button>
@@ -518,24 +530,67 @@ const calculatorNextStepItems = [
           <div
             class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
           >
-            <p class="mb-1 text-xs text-muted">
-              Sueldo líquido · ejemplo
+            <p class="mb-1 text-xs text-muted">Sueldo líquido · ejemplo</p>
+            <p
+              class="font-display text-5xl font-semibold text-secondary tabular-nums"
+              style="letter-spacing:-0.02em;line-height:1"
+            >
+              $973.560
             </p>
-            <p class="font-display text-5xl font-semibold tabular-nums text-secondary" style="letter-spacing:-0.02em;line-height:1">$973.560</p>
           </div>
           <!-- barra apilada estática: AFP 11.3% | Salud 7% | Ces. 0.6% | Líquido 81.1% -->
           <div class="mb-3">
-            <div class="flex h-3 w-full gap-px overflow-hidden rounded-full bg-border">
-              <div class="h-full bg-accent"    style="width:11.27%" title="AFP: $135.240 (11.3%)"></div>
-              <div class="h-full bg-accent/60" style="width:7%"     title="Salud: $84.000 (7.0%)"></div>
-              <div class="h-full bg-accent/15" style="width:0.6%"   title="Seg. cesantía: $7.200 (0.6%)"></div>
-              <div class="h-full" style="width:81.13%;background-color:var(--color-accent-2)" title="Líquido: $973.560 (81.1%)"></div>
+            <div
+              class="flex h-3 w-full gap-px overflow-hidden rounded-full bg-border"
+            >
+              <div
+                class="h-full bg-accent"
+                style="width:11.27%"
+                title="AFP: $135.240 (11.3%)"
+              >
+              </div>
+              <div
+                class="h-full bg-accent/60"
+                style="width:7%"
+                title="Salud: $84.000 (7.0%)"
+              >
+              </div>
+              <div
+                class="h-full bg-accent/15"
+                style="width:0.6%"
+                title="Seg. cesantía: $7.200 (0.6%)"
+              >
+              </div>
+              <div
+                class="h-full"
+                style="width:81.13%;background-color:var(--color-accent-2)"
+                title="Líquido: $973.560 (81.1%)"
+              >
+              </div>
             </div>
             <div class="mt-2 flex flex-wrap gap-x-3 gap-y-1">
-              <span class="flex items-center gap-1 text-xs text-muted"><span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-accent"></span>AFP 11.3%</span>
-              <span class="flex items-center gap-1 text-xs text-muted"><span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-accent/60"></span>Salud 7.0%</span>
-              <span class="flex items-center gap-1 text-xs text-muted"><span class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-accent/15"></span>Seg. cesantía 0.6%</span>
-              <span class="flex items-center gap-1 text-xs"><span class="inline-block h-2 w-2 flex-shrink-0 rounded-full" style="background-color:var(--color-accent-2)"></span><span class="font-semibold text-foreground">Líquido 81.1%</span></span>
+              <span class="flex items-center gap-1 text-xs text-muted"
+                ><span
+                  class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-accent"
+                ></span>AFP 11.3%</span
+              >
+              <span class="flex items-center gap-1 text-xs text-muted"
+                ><span
+                  class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-accent/60"
+                ></span>Salud 7.0%</span
+              >
+              <span class="flex items-center gap-1 text-xs text-muted"
+                ><span
+                  class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-accent/15"
+                ></span>Seg. cesantía 0.6%</span
+              >
+              <span class="flex items-center gap-1 text-xs"
+                ><span
+                  class="inline-block h-2 w-2 flex-shrink-0 rounded-full"
+                  style="background-color:var(--color-accent-2)"></span><span
+                  class="font-semibold text-foreground">Líquido 81.1%</span
+                ></span
+              >
             </div>
           </div>
           <div class="space-y-2 text-sm">
@@ -584,13 +639,32 @@ const calculatorNextStepItems = [
             economicParameters.lastUpdated
           }).
         </p>
-        <div id="result-actions" class="mt-4 hidden grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <div
+          id="result-actions"
+          class="mt-4 grid hidden grid-cols-1 gap-2 sm:grid-cols-2"
+        >
           <button
             id="copy-link-btn"
             type="button"
             class="flex items-center justify-center gap-1.5 rounded-full bg-accent px-4 py-2.5 text-sm font-semibold text-background transition-opacity hover:opacity-90"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              ><path
+                d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"
+              ></path><path
+                d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"
+              ></path></svg
+            >
             Copiar enlace con mis datos
           </button>
           <button
@@ -598,7 +672,21 @@ const calculatorNextStepItems = [
             type="button"
             class="flex items-center justify-center gap-1.5 rounded-full border border-border px-4 py-2.5 text-sm font-medium text-secondary transition-colors hover:border-accent/60 hover:text-foreground"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+              ><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path
+                d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+              ></path></svg
+            >
             Copiar resumen
           </button>
         </div>
@@ -1514,7 +1602,6 @@ const calculatorNextStepItems = [
     const isInverso = modoLabel === "Sueldo Bruto Estimado";
     const displayAmount = isInverso ? resultado.grossSalary : netFinal;
 
-
     // — HEADLINE —
     const headline = document.createElement("div");
     headline.className =
@@ -1539,28 +1626,68 @@ const calculatorNextStepItems = [
       headline.append(headlineLabel, headlineValue);
     }
 
-
     // — BARRA APILADA: bruto = descuentos + líquido —
     const gross = resultado.grossSalary;
     // color: Tailwind class OR null to use cssColor inline style
-    const stackSegments: { label: string; value: number; twColor: string | null; cssColor: string | null }[] = [
-      { label: "AFP",           value: resultado.deductions.afp,                   twColor: "bg-accent",    cssColor: null },
-      { label: "Salud",         value: resultado.deductions.health,                twColor: "bg-accent/60", cssColor: null },
-      { label: "Imp. 2ª cat.",  value: resultado.deductions.tax,                   twColor: "bg-accent/35", cssColor: null },
-      { label: "Seg. cesantía", value: resultado.deductions.unemploymentInsurance, twColor: "bg-accent/15", cssColor: null },
+    const stackSegments: {
+      label: string;
+      value: number;
+      twColor: string | null;
+      cssColor: string | null;
+    }[] = [
+      {
+        label: "AFP",
+        value: resultado.deductions.afp,
+        twColor: "bg-accent",
+        cssColor: null,
+      },
+      {
+        label: "Salud",
+        value: resultado.deductions.health,
+        twColor: "bg-accent/60",
+        cssColor: null,
+      },
+      {
+        label: "Imp. 2ª cat.",
+        value: resultado.deductions.tax,
+        twColor: "bg-accent/35",
+        cssColor: null,
+      },
+      {
+        label: "Seg. cesantía",
+        value: resultado.deductions.unemploymentInsurance,
+        twColor: "bg-accent/15",
+        cssColor: null,
+      },
     ];
     if (resultado.deductions.apvRegimenB > 0)
-      stackSegments.push({ label: "APV",   value: resultado.deductions.apvRegimenB, twColor: "bg-accent/10", cssColor: null });
+      stackSegments.push({
+        label: "APV",
+        value: resultado.deductions.apvRegimenB,
+        twColor: "bg-accent/10",
+        cssColor: null,
+      });
     if (otrosDescuentos && otrosDescuentos > 0)
-      stackSegments.push({ label: "Otros", value: otrosDescuentos,                  twColor: "bg-accent/8",  cssColor: null });
+      stackSegments.push({
+        label: "Otros",
+        value: otrosDescuentos,
+        twColor: "bg-accent/8",
+        cssColor: null,
+      });
     // Líquido uses teal (accent-2) so it's clearly distinct from all deduction segments
-    stackSegments.push({ label: "Líquido", value: netFinal, twColor: null, cssColor: "var(--color-accent-2)" });
+    stackSegments.push({
+      label: "Líquido",
+      value: netFinal,
+      twColor: null,
+      cssColor: "var(--color-accent-2)",
+    });
 
     const bars = document.createElement("div");
     bars.className = "mb-4";
 
     const stackBar = document.createElement("div");
-    stackBar.className = "flex h-3 w-full gap-px overflow-hidden rounded-full bg-border";
+    stackBar.className =
+      "flex h-3 w-full gap-px overflow-hidden rounded-full bg-border";
     for (const { label, value, twColor, cssColor } of stackSegments) {
       const pct = (value / gross) * 100;
       const seg = document.createElement("div");
@@ -1582,7 +1709,8 @@ const calculatorNextStepItems = [
       if (cssColor) dot.style.backgroundColor = cssColor;
       const txt = document.createElement("span");
       txt.textContent = `${label} ${pct.toFixed(1)}%`;
-      txt.className = label === "Líquido" ? "font-semibold text-foreground" : "text-muted";
+      txt.className =
+        label === "Líquido" ? "font-semibold text-foreground" : "text-muted";
       item.append(dot, txt);
       legend.append(item);
     }
@@ -1925,47 +2053,49 @@ const calculatorNextStepItems = [
     label.textContent = isLoading ? "Calculando…" : "Calcular ahora";
   }
 
-  document.getElementById("copy-link-btn")?.addEventListener("click", async () => {
-    const p = new URLSearchParams();
-    const modo = getModo();
-    const sueldoVal =
-      (document.getElementById("sueldo") as HTMLInputElement)?.value ?? "";
-    p.set(modo === "liquido-a-bruto" ? "liquido" : "bruto", sueldoVal);
+  document
+    .getElementById("copy-link-btn")
+    ?.addEventListener("click", async () => {
+      const p = new URLSearchParams();
+      const modo = getModo();
+      const sueldoVal =
+        (document.getElementById("sueldo") as HTMLInputElement)?.value ?? "";
+      p.set(modo === "liquido-a-bruto" ? "liquido" : "bruto", sueldoVal);
 
-    const afpSelect = document.getElementById(
-      "afp-tasa"
-    ) as HTMLSelectElement | null;
-    const afpName =
-      afpSelect?.options[afpSelect.selectedIndex]?.text.split(" ")[0];
-    if (afpName) p.set("afp", afpName);
+      const afpSelect = document.getElementById(
+        "afp-tasa"
+      ) as HTMLSelectElement | null;
+      const afpName =
+        afpSelect?.options[afpSelect.selectedIndex]?.text.split(" ")[0];
+      if (afpName) p.set("afp", afpName);
 
-    const saludChecked = document.querySelector(
-      "input[name='salud']:checked"
-    ) as HTMLInputElement | null;
-    if (saludChecked) p.set("salud", saludChecked.value);
+      const saludChecked = document.querySelector(
+        "input[name='salud']:checked"
+      ) as HTMLInputElement | null;
+      if (saludChecked) p.set("salud", saludChecked.value);
 
-    const contratoChecked = document.querySelector(
-      "input[name='tipo-contrato']:checked"
-    ) as HTMLInputElement | null;
-    if (contratoChecked) p.set("contrato", contratoChecked.value);
+      const contratoChecked = document.querySelector(
+        "input[name='tipo-contrato']:checked"
+      ) as HTMLInputElement | null;
+      if (contratoChecked) p.set("contrato", contratoChecked.value);
 
-    const btn = document.getElementById("copy-link-btn") as HTMLButtonElement;
-    const btnDefault = btn?.innerHTML ?? "";
-    try {
-      await navigator.clipboard.writeText(
-        `${location.origin}${location.pathname}?${p}`
-      );
-      btn.textContent = "¡Enlace copiado!";
-      trackAnalyticsEvent("calculator_copy_link", {
-        calculator_slug: "sueldo-liquido",
-      });
-    } catch {
-      btn.textContent = "No se pudo copiar";
-    }
-    setTimeout(() => {
-      btn.innerHTML = btnDefault;
-    }, 2000);
-  });
+      const btn = document.getElementById("copy-link-btn") as HTMLButtonElement;
+      const btnDefault = btn?.innerHTML ?? "";
+      try {
+        await navigator.clipboard.writeText(
+          `${location.origin}${location.pathname}?${p}`
+        );
+        btn.textContent = "¡Enlace copiado!";
+        trackAnalyticsEvent("calculator_copy_link", {
+          calculator_slug: "sueldo-liquido",
+        });
+      } catch {
+        btn.textContent = "No se pudo copiar";
+      }
+      setTimeout(() => {
+        btn.innerHTML = btnDefault;
+      }, 2000);
+    });
 
   document.getElementById("copy-btn")?.addEventListener("click", async () => {
     if (!lastResultado) return;
@@ -2161,13 +2291,18 @@ const calculatorNextStepItems = [
       readInputs: () => snapshotInputs(scenarioFormCard),
       applyInputs: inputs => {
         restoreInputs(scenarioFormCard, inputs);
-        (document.getElementById("calcBtn") as HTMLButtonElement | null)?.click();
+        (
+          document.getElementById("calcBtn") as HTMLButtonElement | null
+        )?.click();
       },
       buildSummary: () => {
         if (!lastResultado) return null;
         const r = lastResultado;
         return [
-          { label: "Sueldo líquido", value: fmt(r.netSalary - lastOtrosDescuentos) },
+          {
+            label: "Sueldo líquido",
+            value: fmt(r.netSalary - lastOtrosDescuentos),
+          },
           { label: "Sueldo bruto", value: fmt(r.grossSalary) },
           { label: "AFP", value: fmt(r.deductions.afp) },
           { label: "Salud", value: fmt(r.deductions.health) },

@@ -103,9 +103,21 @@ const calculatorNextStepItems = [
         <div class="rounded-xl border border-border p-6">
           <h2 class="mb-5 text-lg font-semibold">Ingresos del año</h2>
 
-          <CalculatorField id="sueldos-brutos" label="Sueldos brutos anuales ($)" placeholder="Ej: 18000000" min="0" hint="Suma todos los sueldos brutos del año. Encuéntralo en el certificado de remuneraciones (F1887) que emite tu empleador." />
+          <CalculatorField
+            id="sueldos-brutos"
+            label="Sueldos brutos anuales ($)"
+            placeholder="Ej: 18000000"
+            min="0"
+            hint="Suma todos los sueldos brutos del año. Encuéntralo en el certificado de remuneraciones (F1887) que emite tu empleador."
+          />
 
-          <CalculatorField id="honorarios-brutos" label="Honorarios brutos anuales ($)" placeholder="Ej: 4000000" min="0" hint="Total de boletas emitidas en 2025. El simulador aplica automáticamente los gastos presuntos legales (30%, tope 15 UTA)." />
+          <CalculatorField
+            id="honorarios-brutos"
+            label="Honorarios brutos anuales ($)"
+            placeholder="Ej: 4000000"
+            min="0"
+            hint="Total de boletas emitidas en 2025. El simulador aplica automáticamente los gastos presuntos legales (30%, tope 15 UTA)."
+          />
 
           <div class="mb-0">
             <label
@@ -132,7 +144,13 @@ const calculatorNextStepItems = [
         <div class="rounded-xl border border-border p-6">
           <h2 class="mb-5 text-lg font-semibold">Retenciones ya pagadas</h2>
 
-          <CalculatorField id="impuesto-unico" label="Impuesto único retenido ($)" placeholder="Ej: 800000" min="0" hint="Lo retiene tu empleador mensualmente. Está en el certificado de remuneraciones (F1887)." />
+          <CalculatorField
+            id="impuesto-unico"
+            label="Impuesto único retenido ($)"
+            placeholder="Ej: 800000"
+            min="0"
+            hint="Lo retiene tu empleador mensualmente. Está en el certificado de remuneraciones (F1887)."
+          />
 
           <div class="mb-0">
             <label

@@ -65,15 +65,15 @@ El empleador solo puede descontar del sueldo lo que la ley autoriza expresamente
 
 Las causales más relevantes para el trabajador:
 
-| Artículo | Causal | ¿Genera indemnización? |
-|---|---|---|
-| Art. 159 N°1 | Mutuo acuerdo | Depende de lo pactado |
-| Art. 159 N°2 | Renuncia | No |
-| Art. 159 N°4 | Vencimiento del plazo | No (salvo que sea reiterado) |
-| Art. 160 | Causales disciplinarias (falta grave) | No |
-| Art. 161 | Necesidades de la empresa | **Sí** — 30 días por año, tope 11 años |
-| Art. 163 | Desahucio (trabajadores de confianza) | **Sí** |
-| Art. 168 | Despido injustificado (declarado por tribunal) | **Sí** + recargo de 20–80% |
+| Artículo     | Causal                                         | ¿Genera indemnización?                 |
+| ------------ | ---------------------------------------------- | -------------------------------------- |
+| Art. 159 N°1 | Mutuo acuerdo                                  | Depende de lo pactado                  |
+| Art. 159 N°2 | Renuncia                                       | No                                     |
+| Art. 159 N°4 | Vencimiento del plazo                          | No (salvo que sea reiterado)           |
+| Art. 160     | Causales disciplinarias (falta grave)          | No                                     |
+| Art. 161     | Necesidades de la empresa                      | **Sí** — 30 días por año, tope 11 años |
+| Art. 163     | Desahucio (trabajadores de confianza)          | **Sí**                                 |
+| Art. 168     | Despido injustificado (declarado por tribunal) | **Sí** + recargo de 20–80%             |
 
 La indemnización del art. 161 equivale a la **última remuneración mensual** multiplicada por los años trabajados, con tope de 11 meses.
 
@@ -83,20 +83,20 @@ La jornada ordinaria máxima es de **42 horas semanales** desde el 26 de abril d
 
 ### Artículos de referencia clave
 
-| Artículo | Contenido |
-|---|---|
-| Art. 22 | Jornada ordinaria máxima |
-| Art. 32 | Horas extraordinarias y recargo |
-| Art. 41 | Definición de remuneración |
-| Art. 42 | Componentes de la remuneración |
-| Art. 47–50 | Gratificación legal |
-| Art. 54 | Liquidación de sueldo |
-| Art. 58 | Descuentos permitidos |
-| Art. 159 | Causales de terminación por mutuo acuerdo o expiración del plazo |
-| Art. 160 | Causales disciplinarias |
-| Art. 161 | Necesidades de la empresa |
-| Art. 163 | Indemnización por años de servicio |
-| Art. 168 | Despido injustificado |
+| Artículo   | Contenido                                                        |
+| ---------- | ---------------------------------------------------------------- |
+| Art. 22    | Jornada ordinaria máxima                                         |
+| Art. 32    | Horas extraordinarias y recargo                                  |
+| Art. 41    | Definición de remuneración                                       |
+| Art. 42    | Componentes de la remuneración                                   |
+| Art. 47–50 | Gratificación legal                                              |
+| Art. 54    | Liquidación de sueldo                                            |
+| Art. 58    | Descuentos permitidos                                            |
+| Art. 159   | Causales de terminación por mutuo acuerdo o expiración del plazo |
+| Art. 160   | Causales disciplinarias                                          |
+| Art. 161   | Necesidades de la empresa                                        |
+| Art. 163   | Indemnización por años de servicio                               |
+| Art. 168   | Despido injustificado                                            |
 
 ## Texto oficial
 

@@ -1,7 +1,8 @@
 ---
 term: "Liquidez"
 shortDefinition: "Facilidad y rapidez con que puedes convertir un activo en plata disponible sin perder mucho valor en el proceso."
-relatedTerms: ["fondo-emergencia", "custodia", "fondo-mutuo", "credito-hipotecario"]
+relatedTerms:
+  ["fondo-emergencia", "custodia", "fondo-mutuo", "credito-hipotecario"]
 ---
 
 La **liquidez** responde una pregunta simple: _si necesito esta plata, ¿qué tan fácil es usarla pronto?_.

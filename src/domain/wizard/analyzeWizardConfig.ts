@@ -52,7 +52,11 @@ export function findNonDiscriminativeSteps(
     const optionSignatures = step.opciones.map(option => {
       if (option.resultado) return [resultSignature(option.resultado)];
       if (!option.next) return [];
-      return collectReachableSignatures(config, option.next, new Set([step.id]));
+      return collectReachableSignatures(
+        config,
+        option.next,
+        new Set([step.id])
+      );
     });
 
     const normalized = optionSignatures.map(signatures => signatures.join("|"));

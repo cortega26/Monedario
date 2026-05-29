@@ -44,12 +44,12 @@ El tope imponible para salud sigue el mismo límite que las cotizaciones de pens
 
 FONASA clasifica a sus beneficiarios en cuatro tramos según el ingreso imponible mensual y la situación previsional:
 
-| Tramo | Quiénes son | Copago en red FONASA (MAI) |
-|---|---|---|
-| A | Carentes de recursos, sin ingresos formales | 0% |
-| B | Cotizantes con ingresos bajos (umbral variable) | 0% |
-| C | Ingresos medios (umbral variable) | 10% |
-| D | Ingresos altos (umbral variable) | 20% |
+| Tramo | Quiénes son                                     | Copago en red FONASA (MAI) |
+| ----- | ----------------------------------------------- | -------------------------- |
+| A     | Carentes de recursos, sin ingresos formales     | 0%                         |
+| B     | Cotizantes con ingresos bajos (umbral variable) | 0%                         |
+| C     | Ingresos medios (umbral variable)               | 10%                        |
+| D     | Ingresos altos (umbral variable)                | 20%                        |
 
 > **Nota:** los umbrales exactos de ingreso para cada tramo los fija FONASA periódicamente mediante resolución interna. Consulta los valores vigentes en [fonasa.cl](https://www.fonasa.cl/sites/fonasa/beneficiarios/informacion-general/tramos) antes de asumir en qué tramo estás.
 
@@ -68,13 +68,13 @@ Las patologías del **GES (Garantías Explícitas en Salud)** tienen cobertura g
 
 ### Artículos de referencia clave
 
-| Artículo | Contenido |
-|---|---|
-| Art. 5° | Categorías de afiliados al régimen (dependientes, independientes, pensionados) |
-| Art. 6° | Beneficiarios y cargas familiares cubiertas |
-| Art. 7° | Cotización obligatoria de salud (7%) |
-| Art. 13° | Modalidad de Libre Elección (MLE) |
-| Art. 18° | Subsidio de enfermedad por incapacidad laboral de origen común |
+| Artículo | Contenido                                                                      |
+| -------- | ------------------------------------------------------------------------------ |
+| Art. 5°  | Categorías de afiliados al régimen (dependientes, independientes, pensionados) |
+| Art. 6°  | Beneficiarios y cargas familiares cubiertas                                    |
+| Art. 7°  | Cotización obligatoria de salud (7%)                                           |
+| Art. 13° | Modalidad de Libre Elección (MLE)                                              |
+| Art. 18° | Subsidio de enfermedad por incapacidad laboral de origen común                 |
 
 ## Texto oficial
 

@@ -36,12 +36,12 @@ La Ley 21.561 modifica el artículo 22 del Código del Trabajo, reduciendo la jo
 
 ### Cronograma de reducción
 
-| Fecha | Jornada máxima |
-|---|---|
-| Antes de abril de 2024 | 45 h semanales |
-| 26 de abril de 2024 | 44 h semanales |
-| 26 de abril de 2026 | **42 h semanales** (vigente) |
-| 26 de abril de 2028 | 40 h semanales |
+| Fecha                  | Jornada máxima               |
+| ---------------------- | ---------------------------- |
+| Antes de abril de 2024 | 45 h semanales               |
+| 26 de abril de 2024    | 44 h semanales               |
+| 26 de abril de 2026    | **42 h semanales** (vigente) |
+| 26 de abril de 2028    | 40 h semanales               |
 
 ### El sueldo no puede bajar
 
@@ -61,12 +61,12 @@ La ley obliga a los empleadores a implementar un **sistema de registro de asiste
 
 ### Artículos del Código del Trabajo modificados
 
-| Artículo (CT) | Contenido |
-|---|---|
-| Art. 22 | Jornada ordinaria máxima semanal |
-| Art. 22 bis | Jornadas adaptables por acuerdo entre las partes |
-| Art. 32 | Horas extraordinarias y recargo del 50% |
-| Art. 33 | Registro digital de asistencia |
+| Artículo (CT) | Contenido                                        |
+| ------------- | ------------------------------------------------ |
+| Art. 22       | Jornada ordinaria máxima semanal                 |
+| Art. 22 bis   | Jornadas adaptables por acuerdo entre las partes |
+| Art. 32       | Horas extraordinarias y recargo del 50%          |
+| Art. 33       | Registro digital de asistencia                   |
 
 ## Texto oficial
 

@@ -6,8 +6,12 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getPath } from "@/utils/getPath";
 import { SITE } from "@/config";
 
-const CANONICAL_URL = new URL("/acerca-de/", Astro.site ?? Astro.url.origin).href;
-const SITE_URL = (Astro.site ?? new URL(Astro.url.origin)).href.replace(/\/$/, "");
+const CANONICAL_URL = new URL("/acerca-de/", Astro.site ?? Astro.url.origin)
+  .href;
+const SITE_URL = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
+  /\/$/,
+  ""
+);
 
 const aboutPageSchema = {
   "@context": "https://schema.org",
@@ -38,10 +42,11 @@ const aboutPageSchema = {
   <Header />
   <Breadcrumb />
   <main id="main-content" class="app-layout pb-16">
-
     <!-- HERO -->
     <section class="border-b border-border py-10">
-      <p class="mb-3 text-xs font-semibold tracking-widest text-accent uppercase">
+      <p
+        class="mb-3 text-xs font-semibold tracking-widest text-accent uppercase"
+      >
         El proyecto
       </p>
       <h1 class="mb-3 text-3xl font-bold sm:text-4xl">Acerca de Monedario</h1>
@@ -57,20 +62,40 @@ const aboutPageSchema = {
     <!-- QUÉ CUBRE -->
     <section class="border-b border-border py-10">
       <h2 class="mb-4 text-xl font-bold">Qué encontrarás aquí</h2>
-      <div class="grid gap-4 sm:grid-cols-2 max-w-2xl">
-        {[
-          { tema: "Previsión y AFP", desc: "Cómo funciona el sistema de pensiones, APV y retiros." },
-          { tema: "Impuestos", desc: "Renta, segunda categoría, bienes raíces y declaraciones anuales." },
-          { tema: "Inversiones", desc: "Fondos mutuos, acciones, depósitos y alternativas de ahorro." },
-          { tema: "Crédito y deuda", desc: "Crédito de consumo, hipotecario, DICOM y tasas reales." },
-          { tema: "Seguro de cesantía", desc: "Cálculo de beneficios, requisitos y modos de cobro." },
-          { tema: "Indicadores económicos", desc: "UF, UTM, IPC, dólar y su impacto práctico en tu bolsillo." },
-        ].map(({ tema, desc }) => (
-          <div class="rounded-xl border border-border p-4">
-            <p class="text-sm font-semibold text-foreground">{tema}</p>
-            <p class="mt-1 text-sm text-secondary">{desc}</p>
-          </div>
-        ))}
+      <div class="grid max-w-2xl gap-4 sm:grid-cols-2">
+        {
+          [
+            {
+              tema: "Previsión y AFP",
+              desc: "Cómo funciona el sistema de pensiones, APV y retiros.",
+            },
+            {
+              tema: "Impuestos",
+              desc: "Renta, segunda categoría, bienes raíces y declaraciones anuales.",
+            },
+            {
+              tema: "Inversiones",
+              desc: "Fondos mutuos, acciones, depósitos y alternativas de ahorro.",
+            },
+            {
+              tema: "Crédito y deuda",
+              desc: "Crédito de consumo, hipotecario, DICOM y tasas reales.",
+            },
+            {
+              tema: "Seguro de cesantía",
+              desc: "Cálculo de beneficios, requisitos y modos de cobro.",
+            },
+            {
+              tema: "Indicadores económicos",
+              desc: "UF, UTM, IPC, dólar y su impacto práctico en tu bolsillo.",
+            },
+          ].map(({ tema, desc }) => (
+            <div class="rounded-xl border border-border p-4">
+              <p class="text-sm font-semibold text-foreground">{tema}</p>
+              <p class="mt-1 text-sm text-secondary">{desc}</p>
+            </div>
+          ))
+        }
       </div>
     </section>
 
@@ -83,9 +108,10 @@ const aboutPageSchema = {
           <a
             href={getPath("/metodologia/")}
             class="text-accent underline underline-offset-4 hover:opacity-80"
-          >proceso editorial de siete etapas</a>: investigación de fuentes
-          oficiales, cálculo verificable, auditoría independiente y firma humana
-          antes de publicar. Sin esa cadena, el artículo no se publica.
+            >proceso editorial de siete etapas</a
+          >: investigación de fuentes oficiales, cálculo verificable, auditoría
+          independiente y firma humana antes de publicar. Sin esa cadena, el
+          artículo no se publica.
         </p>
         <p>
           Las calculadoras corren completamente en tu navegador. No guardamos ni
@@ -108,7 +134,7 @@ const aboutPageSchema = {
     <!-- QUIÉN ESTÁ DETRÁS -->
     <section class="border-b border-border py-10">
       <h2 class="mb-4 text-xl font-bold">Quién está detrás</h2>
-      <div class="flex flex-col gap-5 sm:flex-row sm:items-start max-w-2xl">
+      <div class="flex max-w-2xl flex-col gap-5 sm:flex-row sm:items-start">
         <a href={getPath("/autor/")} class="shrink-0">
           <img
             src={SITE.authorImage}
@@ -176,31 +202,32 @@ const aboutPageSchema = {
     <section class="py-10">
       <h2 class="mb-4 text-xl font-bold">Información legal y políticas</h2>
       <ul class="flex flex-wrap gap-3 text-sm">
-        {[
-          { href: "/privacidad/", label: "Política de privacidad" },
-          { href: "/terminos/", label: "Términos de uso" },
-          { href: "/cookies/", label: "Política de cookies" },
-          { href: "/accessibilidad/", label: "Declaración de accesibilidad" },
-          { href: "/metodologia/", label: "Proceso editorial" },
-        ].map(({ href, label }) => (
-          <li>
-            <a
-              href={getPath(href)}
-              class="rounded-md border border-border px-3 py-1.5 text-secondary transition-colors hover:border-accent hover:text-accent"
-            >
-              {label}
-            </a>
-          </li>
-        ))}
+        {
+          [
+            { href: "/privacidad/", label: "Política de privacidad" },
+            { href: "/terminos/", label: "Términos de uso" },
+            { href: "/cookies/", label: "Política de cookies" },
+            { href: "/accessibilidad/", label: "Declaración de accesibilidad" },
+            { href: "/metodologia/", label: "Proceso editorial" },
+          ].map(({ href, label }) => (
+            <li>
+              <a
+                href={getPath(href)}
+                class="rounded-md border border-border px-3 py-1.5 text-secondary transition-colors hover:border-accent hover:text-accent"
+              >
+                {label}
+              </a>
+            </li>
+          ))
+        }
       </ul>
       <p class="mt-6 max-w-xl text-xs leading-relaxed text-muted">
         El contenido publicado tiene fines informativos y pedagógicos
-        únicamente. No constituye asesoría legal, tributaria ni financiera, y
-        no debe utilizarse como sustituto de la consulta con un profesional
+        únicamente. No constituye asesoría legal, tributaria ni financiera, y no
+        debe utilizarse como sustituto de la consulta con un profesional
         habilitado.
       </p>
     </section>
-
   </main>
   <Footer />
 </Layout>

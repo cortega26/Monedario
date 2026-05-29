@@ -40,6 +40,7 @@ La Superintendencia de Bancos e Instituciones Financieras (SBIF) dejó de existi
 ### Qué hace la CMF con los bancos
 
 Bajo la Ley 21.130, la CMF fiscaliza:
+
 - El cumplimiento de los requisitos de solvencia y capital de los bancos.
 - Las condiciones de los productos financieros que ofrecen (créditos, cuentas, seguros asociados).
 - Las denuncias y reclamos de los consumidores bancarios.
@@ -48,6 +49,7 @@ Bajo la Ley 21.130, la CMF fiscaliza:
 ### Dónde reclamar contra un banco
 
 Si tienes un problema con tu banco que no se resuelve internamente, el canal oficial es:
+
 1. **Reclamo interno:** primero al banco (tienen plazo para responder).
 2. **CMF:** si el banco no responde o rechaza tu reclamo sin fundamento, puedes acudir al [portal de reclamos de la CMF](https://www.cmfchile.cl/portal/principal/613/w3-channel.html).
 3. **SERNAC:** también puede recibir reclamos por incumplimientos de la Ley del Consumidor (19.496) en servicios financieros.

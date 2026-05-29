@@ -145,14 +145,36 @@ const calculatorNextStepItems = [
 
         <!-- CAMPOS UF -->
         <div id="campos-uf">
-          <CalculatorField id="arriendo-uf" label="Monto del arriendo en UF" placeholder="Ej: 15.5" min="0" step="0.01" />
-          <CalculatorField id="uf-antes" label="Valor UF al pagar el último arriendo ($)" placeholder="Ej: 38.500" min="0" />
-          <CalculatorField id="uf-hoy" label="Valor UF hoy ($)" min="0" value={String(economicParameters.uf)} hint="Valor cargado desde parámetros económicos vigentes. Ajusta si es necesario." />
+          <CalculatorField
+            id="arriendo-uf"
+            label="Monto del arriendo en UF"
+            placeholder="Ej: 15.5"
+            min="0"
+            step="0.01"
+          />
+          <CalculatorField
+            id="uf-antes"
+            label="Valor UF al pagar el último arriendo ($)"
+            placeholder="Ej: 38.500"
+            min="0"
+          />
+          <CalculatorField
+            id="uf-hoy"
+            label="Valor UF hoy ($)"
+            min="0"
+            value={String(economicParameters.uf)}
+            hint="Valor cargado desde parámetros económicos vigentes. Ajusta si es necesario."
+          />
         </div>
 
         <!-- CAMPOS IPC -->
         <div id="campos-ipc" class="hidden">
-          <CalculatorField id="arriendo-pesos-ipc" label="Arriendo actual en pesos ($)" placeholder="Ej: 450.000" min="0" />
+          <CalculatorField
+            id="arriendo-pesos-ipc"
+            label="Arriendo actual en pesos ($)"
+            placeholder="Ej: 450.000"
+            min="0"
+          />
           <div class="mb-4">
             <label
               for="ipc-variacion"
@@ -180,7 +202,12 @@ const calculatorNextStepItems = [
 
         <!-- CAMPOS PESOS FIJOS -->
         <div id="campos-pesos" class="hidden">
-          <CalculatorField id="arriendo-pesos" label="Arriendo actual en pesos ($)" placeholder="Ej: 450.000" min="0" />
+          <CalculatorField
+            id="arriendo-pesos"
+            label="Arriendo actual en pesos ($)"
+            placeholder="Ej: 450.000"
+            min="0"
+          />
           <div
             class="mb-4 rounded-lg border border-yellow-500/20 bg-yellow-500/10 p-3 text-sm text-secondary"
           >

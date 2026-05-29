@@ -9,8 +9,18 @@ import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParamete
 import { fmt, fmtFecha } from "@/utils/indicadores";
 
 const MESES_CORTO = [
-  "Ene", "Feb", "Mar", "Abr", "May", "Jun",
-  "Jul", "Ago", "Sep", "Oct", "Nov", "Dic",
+  "Ene",
+  "Feb",
+  "Mar",
+  "Abr",
+  "May",
+  "Jun",
+  "Jul",
+  "Ago",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dic",
 ];
 
 function fmtMesAnio(fecha: string): string {
@@ -143,7 +153,10 @@ const itemListSchema = {
       <div
         class="mb-3 rounded-lg border border-border bg-surface-muted px-4 py-3 text-xs text-secondary"
       >
-        {sourceLabel}{parameters.source !== "fallback" && ` · Actualizado el ${fmtFecha(parameters.lastUpdated)}`}.
+        {sourceLabel}{
+          parameters.source !== "fallback" &&
+            ` · Actualizado el ${fmtFecha(parameters.lastUpdated)}`
+        }.
       </div>
 
       <div class="overflow-x-auto rounded-2xl border border-border">
@@ -175,7 +188,9 @@ const itemListSchema = {
                         })}${item.unidad}`}
                   </td>
                   <td class="px-4 py-3 text-secondary">
-                    {item.periodoMensual ? fmtMesAnio(item.fecha) : fmtFecha(item.fecha)}
+                    {item.periodoMensual
+                      ? fmtMesAnio(item.fecha)
+                      : fmtFecha(item.fecha)}
                   </td>
                   <td class="px-4 py-3 text-secondary">{item.impacto}</td>
                 </tr>

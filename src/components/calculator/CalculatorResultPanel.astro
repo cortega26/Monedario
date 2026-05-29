@@ -6,12 +6,7 @@ interface Props {
   class?: string;
 }
 
-const {
-  id,
-  headingId,
-  title = "Resultado",
-  class: extraClass,
-} = Astro.props;
+const { id, headingId, title = "Resultado", class: extraClass } = Astro.props;
 ---
 
 <div

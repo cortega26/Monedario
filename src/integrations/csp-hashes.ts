@@ -38,7 +38,10 @@ async function collectHashes(distDir: string): Promise<Set<string>> {
   return hashes;
 }
 
-export function updateHeadersFile(headersPath: string, hashes: Set<string>): void {
+export function updateHeadersFile(
+  headersPath: string,
+  hashes: Set<string>
+): void {
   const hashTokens = [...hashes].join(" ");
   let src = readFileSync(headersPath, "utf8");
 

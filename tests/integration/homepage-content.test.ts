@@ -399,10 +399,10 @@ describe("Wave 2 structural guards", () => {
 });
 
 describe("Wave 3 structural guards", () => {
-  it("glossaryAllowlist has exactly 11 terms", () => {
+  it("glossaryAllowlist has exactly 26 terms", () => {
     const source = readFileSync("src/utils/glossaryAllowlist.ts", "utf8");
     const termMatches = source.match(/\bterm:\s*"/g) ?? [];
-    expect(termMatches.length).toBe(11);
+    expect(termMatches.length).toBe(26);
   });
 
   it("GlossaryInlineLink component exists with required analytics attributes", () => {

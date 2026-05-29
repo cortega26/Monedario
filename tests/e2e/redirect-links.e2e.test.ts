@@ -105,10 +105,12 @@ describe("V1 — no deprecated redirecting URLs remain in src/", () => {
 // V2 — Internal /cambios link has trailing slash
 // ---------------------------------------------------------------------------
 
-describe("V2 — HeroHomepage 'última actualización' link target", () => {
-  it('HeroHomepage.astro links "última actualización" to /metodologia/ (not deprecated /cambios)', () => {
+describe("V2 — HeroHomepage does not reference deprecated /cambios route", () => {
+  // The "última actualización" link was removed from HeroHomepage during the
+  // /cambios → /metodologia migration cleanup (commits 53b2c92e, c9d6677d).
+  // The durable regression guard is that the deprecated route never reappears.
+  it('HeroHomepage.astro does not link to deprecated "/cambios"', () => {
     const content = readFile("src/components/HeroHomepage.astro");
-    expect(content).toContain('"/metodologia/"');
     expect(content).not.toContain('"/cambios"');
   });
 });

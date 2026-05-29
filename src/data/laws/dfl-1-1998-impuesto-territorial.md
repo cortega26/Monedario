@@ -42,12 +42,12 @@ Puedes consultar el avalúo fiscal de cualquier propiedad en el portal del SII c
 
 Las tasas vigentes se ajustan semestralmente por reajuste SII y cambian tras cada reavalúo. Tras el reavalúo de enero 2025 (el próximo está postergado a 2027), las tasas de referencia para 2026 son:
 
-| Tipo de predio | Tramo de avalúo | Tasa anual |
-|---|---|---|
-| Habitacional (no agrícola) | Hasta ~$118.571.329 | ~0,933% |
-| Habitacional (no agrícola) | Exceso sobre ese monto | ~1,088% |
-| No habitacional (comercial, industrial, etc.) | Cualquier avalúo | ~1,088% |
-| Agrícola | Cualquier avalúo | ~0,35% |
+| Tipo de predio                                | Tramo de avalúo        | Tasa anual |
+| --------------------------------------------- | ---------------------- | ---------- |
+| Habitacional (no agrícola)                    | Hasta ~$118.571.329    | ~0,933%    |
+| Habitacional (no agrícola)                    | Exceso sobre ese monto | ~1,088%    |
+| No habitacional (comercial, industrial, etc.) | Cualquier avalúo       | ~1,088%    |
+| Agrícola                                      | Cualquier avalúo       | ~0,35%     |
 
 > **Nota:** estas tasas son de referencia post-reavalúo 2025. El SII las ajusta cada semestre con un factor de reajuste (primer semestre 2026: factor 1,015). Consulta tu rol específico en [sii.cl](https://www.sii.cl) para el monto exacto.
 
@@ -74,12 +74,12 @@ Las contribuciones se pagan en **cuatro cuotas anuales** (abril, junio, septiemb
 
 ### Artículos de referencia clave
 
-| Artículo | Contenido |
-|---|---|
-| Art. 1° | Objeto del impuesto y predios afectos |
-| Art. 2° | Exención para viviendas habitacionales (tramo exento) |
-| Art. 7° | Tasas del impuesto por tipo de predio |
-| Art. 3° | Reavalúo fiscal |
+| Artículo | Contenido                                             |
+| -------- | ----------------------------------------------------- |
+| Art. 1°  | Objeto del impuesto y predios afectos                 |
+| Art. 2°  | Exención para viviendas habitacionales (tramo exento) |
+| Art. 7°  | Tasas del impuesto por tipo de predio                 |
+| Art. 3°  | Reavalúo fiscal                                       |
 
 ## Texto oficial
 

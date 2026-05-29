@@ -254,8 +254,7 @@ export function initScenarioPanel(options: ScenarioPanelOptions): void {
       tr.appendChild(labelCell);
       for (const scenario of scenarios) {
         const td = document.createElement("td");
-        td.className =
-          "border-b border-border/60 p-2 font-mono font-semibold";
+        td.className = "border-b border-border/60 p-2 font-mono font-semibold";
         const row = scenario.summary.find(r => r.label === label);
         td.textContent = row ? row.value : "—";
         tr.appendChild(td);

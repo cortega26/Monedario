@@ -1,6 +1,6 @@
 # Current State
 
-Date: 2026-04-23
+Date: 2026-05-29
 
 - Context layer added: `context/INVARIANTS.md`, `context/CONTRACTS.md`, `context/MODULE_INDEX.md`.
 - Canonical URL identity invariant active: `URL.PUBLIC.NO_POST_ID`.
@@ -13,3 +13,5 @@ Date: 2026-04-23
 - Policy registry active through `docs/operations/POLICY_REGISTRY.json` and `pnpm run check:policy-registry`.
 - Agent entrypoint map active through `context/AGENT_ENTRYPOINTS.{md,json}` to reduce cold-start overhead.
 - Scheduled ops automation expanded with guardrail drift, doc-gardening, dependency automerge, and weekly search ops workflows.
+- Editorial alignment remediation closed (`docs/backlog/PLAN-alignment-audit-remediation-2026-05-25.md`): owner/support boundaries, inter-cluster backlinks, and warning-first guardrails.
+- Hygiene/staleness audit (2026-05-29): removed stray root artifacts and the orphaned `indicadoresDiarios` dataset (duplicate of the live `EconomicParameters` snapshot); refreshed economic fallback constants.

@@ -62,10 +62,12 @@ const headlineParts = headline.split("plata");
               data-analytics-label={link.label}
               data-analytics-location="home_hero"
             >
-              <span class={`underline underline-offset-2 transition-colors group-hover:text-accent group-hover:decoration-accent ${link.primary ? "font-semibold decoration-accent decoration-dashed text-foreground" : "text-foreground decoration-border decoration-dashed"}`}>
+              <span
+                class={`underline underline-offset-2 transition-colors group-hover:text-accent group-hover:decoration-accent ${link.primary ? "font-semibold text-foreground decoration-accent decoration-dashed" : "text-foreground decoration-border decoration-dashed"}`}
+              >
                 {link.label}
                 {link.badge && (
-                  <span class="ml-2 inline-block rounded border border-accent/30 px-1.5 py-0.5 text-[10px] font-semibold tracking-wide text-accent uppercase leading-none">
+                  <span class="ml-2 inline-block rounded border border-accent/30 px-1.5 py-0.5 text-[10px] leading-none font-semibold tracking-wide text-accent uppercase">
                     {link.badge}
                   </span>
                 )}
