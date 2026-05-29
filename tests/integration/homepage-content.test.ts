@@ -405,21 +405,12 @@ describe("Wave 3 structural guards", () => {
     expect(termMatches.length).toBe(26);
   });
 
-  it("GlossaryInlineLink component exists with required analytics attributes", () => {
-    const source = readFileSync(
-      "src/components/GlossaryInlineLink.astro",
-      "utf8"
-    );
-    expect(source).toContain('data-analytics-cta="glossary-inline-link"');
-    expect(source).toContain('data-analytics-location="article_body"');
-    expect(source).toContain("data-analytics-label");
-  });
-
-  it("GlossaryInlineLink component contains no PII field references", () => {
-    const source = readFileSync(
-      "src/components/GlossaryInlineLink.astro",
-      "utf8"
-    );
+  // Glossary inline links are emitted by injectGlossaryLinks.ts (the
+  // GlossaryInlineLink.astro component was superseded and removed). Analytics
+  // attributes are covered by tests/unit/injectGlossaryLinks.test.ts; here we
+  // keep the guardrail that the emitter never embeds PII in analytics payloads.
+  it("injectGlossaryLinks contains no PII field references", () => {
+    const source = readFileSync("src/utils/injectGlossaryLinks.ts", "utf8");
     expect(source).not.toContain("salary");
     expect(source).not.toContain("sueldo");
     expect(source).not.toContain("user_id");
