@@ -32,9 +32,10 @@ const GSC_DIR = path.join(REPO_ROOT, "output/operations/data-signals/gsc");
 const REPORT_DIR = path.join(REPO_ROOT, "output/validation/cannibalization");
 
 function parseArgs(argv) {
-  const opts = { week: null, minImpressions: 5, minUrls: 2, top: 25, json: false };
+  const opts = { week: null, file: null, minImpressions: 5, minUrls: 2, top: 25, json: false };
   for (const arg of argv) {
     if (arg === "--json") opts.json = true;
+    else if (arg.startsWith("--file=")) opts.file = arg.slice(7);
     else if (arg.startsWith("--week=")) opts.week = arg.slice(7);
     else if (arg.startsWith("--min-impressions=")) opts.minImpressions = Number(arg.slice(18));
     else if (arg.startsWith("--min-urls=")) opts.minUrls = Number(arg.slice(11));
@@ -71,7 +72,7 @@ function toPath(pageUrl) {
 
 function main() {
   const opts = parseArgs(process.argv.slice(2));
-  const dataFile = resolveDataFile(opts.week);
+  const dataFile = opts.file ? path.resolve(REPO_ROOT, opts.file) : resolveDataFile(opts.week);
 
   if (!dataFile) {
     console.error(

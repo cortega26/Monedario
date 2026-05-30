@@ -65,6 +65,7 @@
     "worker:economic-snapshot:deploy": "wrangler deploy --config workers/economic-snapshot-refresh/wrangler.toml",
     "worker:economic-snapshot:tail": "wrangler tail --config workers/economic-snapshot-refresh/wrangler.toml",
     "data-signals:gsc": "node scripts/data-signals/gsc-fetch.mjs",
+    "data-signals:gsc:aggregate": "node scripts/data-signals/aggregate-gsc-query-page.mjs",
     "data-signals:gsc:local": "node scripts/data-signals/run-with-local-env.mjs scripts/data-signals/gsc-fetch.mjs",
     "data-signals:cloudflare": "node scripts/data-signals/cloudflare-fetch.mjs",
     "data-signals:cloudflare:local": "node scripts/data-signals/run-with-local-env.mjs scripts/data-signals/cloudflare-fetch.mjs",

@@ -32,6 +32,7 @@ const REPORT_DIR = path.join(REPO_ROOT, "output/validation/striking-distance");
 function parseArgs(argv) {
   const opts = {
     week: null,
+    file: null,
     minPosition: 8,
     maxPosition: 20,
     minImpressions: 10,
@@ -41,6 +42,7 @@ function parseArgs(argv) {
   };
   for (const arg of argv) {
     if (arg === "--json") opts.json = true;
+    else if (arg.startsWith("--file=")) opts.file = arg.slice(7);
     else if (arg.startsWith("--week=")) opts.week = arg.slice(7);
     else if (arg.startsWith("--min-position=")) opts.minPosition = Number(arg.slice(15));
     else if (arg.startsWith("--max-position=")) opts.maxPosition = Number(arg.slice(15));
@@ -77,7 +79,7 @@ function toPath(pageUrl) {
 
 function main() {
   const opts = parseArgs(process.argv.slice(2));
-  const dataFile = resolveDataFile(opts.week);
+  const dataFile = opts.file ? path.resolve(REPO_ROOT, opts.file) : resolveDataFile(opts.week);
 
   if (!dataFile) {
     console.error(

@@ -201,6 +201,54 @@ export function findCannibalizationGroups(rows, opts = {}) {
 }
 
 /**
+ * Aggregates multiple weekly query×page documents into a single, more stable row
+ * set. Impressions and clicks are summed; position is the impression-weighted mean
+ * across weeks; ctr is recomputed as clicks/impressions. The output rows share the
+ * normalized query-page shape, so they feed directly into findCannibalizationGroups
+ * and findStrikingDistance. Pure function (no I/O).
+ *
+ * @param {Array<{data?: Array<{query:string,page:string,impressions:number,clicks:number,position:number,ctr:number}>}>} docs
+ * @returns {Array<{query:string,page:string,impressions:number,clicks:number,position:(number|null),ctr:number}>}
+ *   sorted by impressions desc, then query asc, then page asc.
+ */
+export function aggregateQueryPageRows(docs) {
+  const acc = new Map();
+  for (const doc of docs ?? []) {
+    for (const row of doc?.data ?? []) {
+      if (!row || typeof row.query !== "string" || typeof row.page !== "string") continue;
+      const impressions = row.impressions ?? 0;
+      const key = `${row.query}\n${row.page}`;
+      const cur =
+        acc.get(key) ??
+        { query: row.query, page: row.page, impressions: 0, clicks: 0, posWeighted: 0 };
+      cur.impressions += impressions;
+      cur.clicks += row.clicks ?? 0;
+      cur.posWeighted += (typeof row.position === "number" ? row.position : 0) * impressions;
+      acc.set(key, cur);
+    }
+  }
+
+  const out = [];
+  for (const v of acc.values()) {
+    out.push({
+      query: v.query,
+      page: v.page,
+      impressions: v.impressions,
+      clicks: v.clicks,
+      position: v.impressions > 0 ? roundTo(v.posWeighted / v.impressions, 2) : null,
+      ctr: v.impressions > 0 ? roundTo(v.clicks / v.impressions, 4) : 0,
+    });
+  }
+
+  return out.sort(
+    (a, b) =>
+      b.impressions - a.impressions ||
+      a.query.localeCompare(b.query) ||
+      a.page.localeCompare(b.page)
+  );
+}
+
+/**
  * Detects "striking distance" opportunities: (query, page) pairs that already
  * earn impressions but rank just off the top — typically positions 8–20. A small
  * on-page improvement can lift these into the top results where clicks happen,
