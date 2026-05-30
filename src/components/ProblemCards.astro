@@ -1,25 +1,27 @@
 ---
 import { getCollection } from "astro:content";
 import { getPath } from "@/utils/getPath";
+import type { HubCluster } from "@/config/clusters";
 
 // ---------------------------------------------------------------
 // "¿Qué necesitas resolver?" — variante A+
 //
-// Reemplaza el grid de 6 cards con íconos por una lista numerada
-// editorial, agrupada bajo 3 temas con numerales romanos, y una
-// línea de meta por fila ("Actualizado may 2026 · calculadora").
+// Lista numerada editorial agrupada en 3 temas, con una línea de
+// meta por fila ("Actualizado may 2026 · calculadora").
 //
-// Fechas: los 2 posts de blog usan updatedDate ?? pubDate del
-// frontmatter (se actualizan solos). Las 4 páginas estáticas
-// (.astro) tienen fecha manual — actualízalas cuando edites esas
-// páginas.
+// Fechas (TD-0089): TODAS las fechas se derivan del contenido, sin
+// valores manuales. Las cards de blog usan `updatedDate ?? pubDate`
+// del propio artículo; las cards que enlazan calculadoras/hubs usan
+// el post más reciente del cluster del tema (señal real de frescura
+// del área). El guardrail check:homepage-surface-freshness impide
+// reintroducir fechas hardcodeadas.
 // ---------------------------------------------------------------
 
 type ContentType = "calculadora" | "guía" | "artículo";
 
 type CardSource =
   | { kind: "blog"; slug: string }
-  | { kind: "static"; updatedDate: Date };
+  | { kind: "cluster"; cluster: HubCluster };
 
 interface Card {
   number: string;
@@ -58,7 +60,7 @@ const groups: Group[] = [
         href: "/calculadoras/finiquito-indemnizacion/",
         ctaLabel: "Usar calculadora",
         contentTypes: ["calculadora"],
-        source: { kind: "static", updatedDate: new Date("2026-01-15") },
+        source: { kind: "cluster", cluster: "empleo-ingresos" },
       },
     ],
   },
@@ -73,7 +75,7 @@ const groups: Group[] = [
         href: "/guias/deuda-credito/",
         ctaLabel: "Ver guía",
         contentTypes: ["guía"],
-        source: { kind: "static", updatedDate: new Date("2026-01-15") },
+        source: { kind: "cluster", cluster: "deuda-credito" },
       },
       {
         number: "04",
@@ -98,7 +100,7 @@ const groups: Group[] = [
         href: "/guias/ahorro-e-inversion/",
         ctaLabel: "Ver guía",
         contentTypes: ["guía"],
-        source: { kind: "static", updatedDate: new Date("2026-01-15") },
+        source: { kind: "cluster", cluster: "ahorro-e-inversion" },
       },
       {
         number: "06",
@@ -108,26 +110,38 @@ const groups: Group[] = [
         href: "/calculadoras/operacion-renta/",
         ctaLabel: "Usar calculadora",
         contentTypes: ["calculadora"],
-        source: { kind: "static", updatedDate: new Date("2026-01-15") },
+        source: { kind: "cluster", cluster: "impuestos-personas" },
       },
     ],
   },
 ];
 
-// Resolver fechas reales para posts de blog
+// Resolver fechas reales desde el contenido (sin valores manuales).
 const blogEntries = await getCollection("blog");
+const publishedEntries = blogEntries.filter(e => e.data.draft !== true);
+
 const blogDateMap = new Map<string, Date>(
-  blogEntries.map(e => [
+  publishedEntries.map(e => [
     e.data.slug,
     (e.data.updatedDate ?? e.data.pubDate) as Date,
   ])
 );
 
+// Cluster → fecha del post más reciente (updatedDate ?? pubDate) del tema.
+const clusterDateMap = new Map<string, Date>();
+for (const e of publishedEntries) {
+  const cluster = e.data.cluster as string | undefined;
+  if (!cluster) continue;
+  const date = (e.data.updatedDate ?? e.data.pubDate) as Date;
+  const current = clusterDateMap.get(cluster);
+  if (!current || date > current) clusterDateMap.set(cluster, date);
+}
+
 function resolveDate(source: CardSource): Date | null {
   if (source.kind === "blog") {
     return blogDateMap.get(source.slug) ?? null;
   }
-  return source.updatedDate;
+  return clusterDateMap.get(source.cluster) ?? null;
 }
 
 function formatDate(date: Date | null): string {

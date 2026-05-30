@@ -8,12 +8,12 @@ Fecha de corte: 2026-05-30
 
 - **P0:** 7
 - **P1:** 27 (+3 desde auditoría de drift 2026-05-20)
-- **P2:** 40 (−5: TD-0076, TD-0091, TD-0087, TD-0088 y TD-0094 cerrados)
+- **P2:** 39 (−6: TD-0076, TD-0091, TD-0087, TD-0088, TD-0094 y TD-0089 cerrados)
 - **P3:** 12 (−2: TD-0078 y TD-0090 cerrados; TD-0093 también cerrado)
 
 ### Estado de avance (2026-05-30)
 
-- **Completados:** 87 TD únicos (`TD-0001`..`TD-0066`, `TD-0068`..`TD-0071`, `TD-0073`, `TD-0074`, `TD-0076`, `TD-0078`, `TD-0080`, `TD-0082`..`TD-0088`, `TD-0090`..`TD-0091`, `TD-0093`..`TD-0094`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
+- **Completados:** 88 TD únicos (`TD-0001`..`TD-0066`, `TD-0068`..`TD-0071`, `TD-0073`, `TD-0074`, `TD-0076`, `TD-0078`, `TD-0080`, `TD-0082`..`TD-0091`, `TD-0093`..`TD-0094`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
 - **En progreso:** 0
 - **Backlog sin iniciar:** 4 (`TD-0067`, `TD-0075`, `TD-0077`, `TD-0081`)
 - **Backlog en validación/diseño:** 2 (`TD-0072` parcial por referencias activas; `TD-0079` bloqueado por incompatibilidad WOFF2/Satori)
@@ -40,7 +40,7 @@ Fecha de corte: 2026-05-30
 ### Top riesgos restantes
 
 - Drift legal/YMYL de auditoría 2026-05-20: `TD-0084`, `TD-0085`, `TD-0086`.
-- Drift de fuentes canónicas, navegación y enlaces oficiales: `TD-0089`, `TD-0092` (`TD-0087`, `TD-0088` y `TD-0094` cerrados 2026-05-30).
+- Drift de fuentes canónicas, navegación y enlaces oficiales: `TD-0092` (requiere decisión editorial humana de ownership; `TD-0087`, `TD-0088`, `TD-0089` y `TD-0094` cerrados 2026-05-30).
 - Actualización de julio 2026: actualizar `imm` en `economic-parameters.snapshot.json` cuando se publique el decreto de reajuste del IMM.
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 
@@ -172,13 +172,14 @@ Fecha de corte: 2026-05-30
 - **Esfuerzo estimado:** M
 - **Propuesta de solución:** Derivar fechas desde contenido/catalagos cuando sea posible o crear `check:homepage-surface-freshness` para bloquear fechas manuales obsoletas.
 - **Criterios de cierre (checklist verificable):**
-- [ ] Tarjetas que enlazan posts usan fechas del frontmatter.
-- [ ] Tarjetas que enlazan calculadoras/hubs tienen fecha derivada, politica explicita o test de vigencia.
-- [ ] Home no requiere recordar actualizaciones manuales sin guardrail.
-- **Owner:** TBD
-- **Estado:** Abierto
+- [x] Tarjetas que enlazan posts usan fechas del frontmatter.
+- [x] Tarjetas que enlazan calculadoras/hubs tienen fecha derivada, politica explicita o test de vigencia.
+- [x] Home no requiere recordar actualizaciones manuales sin guardrail.
+- **Owner:** Codex
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-20
-- **Última actualización:** 2026-05-20
+- **Última actualización:** 2026-05-30
+- **Nota de cierre 2026-05-30:** `ProblemCards.astro` ya no usa fechas hardcodeadas. Las 4 cards que enlazan calculadoras/hubs pasaron de `new Date("2026-01-15")` fijo a `{ kind: "cluster", cluster }`: la fecha se deriva del post más reciente (`updatedDate ?? pubDate`) del cluster del tema — señal real y auto-actualizable de frescura del área. Las 2 cards de blog siguen usando el frontmatter del propio artículo. Nuevo guardrail `check:homepage-surface-freshness` (en `pnpm run check`): falla si reaparece un literal `new Date("…")` en la superficie y verifica que cada cluster referenciado tenga posts publicados (para que la fecha no quede en blanco). `pnpm run check`, `pnpm run test` y `pnpm run build` pasan limpios.
 
 ## TD-0088 — Breadcrumbs dependen de `tagHubMap` manual incompleto
 - **ID:** TD-0088

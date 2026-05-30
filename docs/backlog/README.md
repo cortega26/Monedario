@@ -15,8 +15,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 
 | Orden | Item | Por qué ahora |
 |-------|------|---------------|
-| 1 | `TD-0089` — Frescura de ProblemCards en home | Drift abierto restante (P2); puede crear `check:homepage-surface-freshness` |
-| 2 | `TD-0092` — Ownership de canibalización editorial | Requiere decisión editorial humana de owner/soporte |
+| 1 | `TD-0092` — Ownership de canibalización editorial | Único drift abierto de la auditoría 2026-05-20; requiere decisión editorial humana de owner/soporte |
 
 ### Pendiente — implementación por código
 
@@ -27,7 +26,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | TypeScript 7 compatibility | `TS7_COMPATIBILITY_AUDIT_2026-04-30.md` | Blocked — esperando TS7 stable |
 | Newsletter (MON-301) | `ux-backlog.md` | Decisión de plataforma pendiente |
 | OWASP Security backlog | `OWASP_SECURITY_AUDIT_2026-05-11.md` | SEC-003 pendiente (verificar `.env` histórico) |
-| Auditoría drift 2026-05-20 | `PLAN-drift-audit-2026-05-20.md` | `TD-0084`..`TD-0088`, `TD-0090`..`TD-0091`, `TD-0093`..`TD-0094` cerrados; quedan `TD-0089`, `TD-0092` sin cambios automáticos YMYL/legal |
+| Auditoría drift 2026-05-20 | `PLAN-drift-audit-2026-05-20.md` | `TD-0084`..`TD-0091`, `TD-0093`..`TD-0094` cerrados; queda solo `TD-0092` (decisión editorial humana de ownership) |
 | Auditoría alignment 2026-05-25 | `PLAN-alignment-audit-remediation-2026-05-25.md` | Ejecutar remediación por batches de canibalización, boundaries, backlinks y guardrails warning-first |
 | LinkedIn strategy (MON-304) | `ux-backlog.md` | Fase 3, sin urgencia |
 | Illustrations (MON-405) | `ux-backlog.md` | Diferido |

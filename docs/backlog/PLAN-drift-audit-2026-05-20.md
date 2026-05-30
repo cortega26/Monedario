@@ -99,6 +99,7 @@ Observaciones positivas:
 
 ### TD-0089 — Home contiene tarjetas y fechas manuales con riesgo de frescura falsa
 
+- **Cerrado 2026-05-30.** `ProblemCards.astro` deriva todas las fechas del contenido (blog frontmatter o post más reciente del cluster); se eliminaron los `new Date("2026-01-15")` fijos. Nuevo `check:homepage-surface-freshness` impide reintroducir fechas manuales. Ver nota de cierre en `docs/TECH_DEBT_BACKLOG.md`.
 - Severidad: 3. Urgencia: P2.
 - Evidencia: `src/components/ProblemCards.astro` declara fechas manuales y valores fijos como `2026-01-15` para superficies no derivadas.
 - Riesgo: la home puede comunicar frescura que no coincide con calculadoras, hubs o contenido enlazado.
