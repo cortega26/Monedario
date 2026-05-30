@@ -91,6 +91,7 @@ Observaciones positivas:
 
 ### TD-0088 — Breadcrumbs dependen de `tagHubMap` manual incompleto
 
+- **Cerrado 2026-05-30.** Helper canónico `getHubFromCluster` (clusters.ts) derivado de `GUIDE_HUBS`; `Breadcrumb.astro` prefiere hub por cluster (tagHubMap = fallback); se eliminó el mapa divergente `clusterHubNames` de `PostDetails.astro`; nuevo `check:catalog-drift` valida 49/49 posts → hub real. PGU ahora muestra `Inicio > Pensiones y AFP > …`. Ver nota de cierre en `docs/TECH_DEBT_BACKLOG.md`.
 - Severidad: 3. Urgencia: P2.
 - Evidencia: `src/components/Breadcrumb.astro` usa `tagHubMap`; `pgu-pension-garantizada-universal` tiene cluster pensiones pero no tag mapeado, por lo que el breadcrumb generado cae en `Articulos`.
 - Riesgo: jerarquia SEO y descubrimiento interno divergen de `cluster`/hub canonico.

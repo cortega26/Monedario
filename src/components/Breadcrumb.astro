@@ -11,12 +11,14 @@
  */
 import { getPath } from "@/utils/getPath";
 import { getHubFromTags } from "@/config/tagHubMap";
+import { getHubFromCluster } from "@/config/clusters";
 
 type Props = {
   tags?: string[];
+  cluster?: string;
 };
 
-const { tags } = Astro.props;
+const { tags, cluster } = Astro.props;
 
 const SITE_URL = Astro.site ?? new URL("http://localhost");
 
@@ -77,11 +79,13 @@ if (segments[0] === "tags" && !isNaN(Number(segments[2]))) {
   );
 }
 
-// Contextual hub: for article pages, replace "Artículos" crumb with the matched hub
-const hub =
-  tags && segments[0] === "posts" && segments.length === 2
-    ? getHubFromTags(tags)
-    : null;
+// Contextual hub: for article pages, replace "Artículos" crumb with the matched hub.
+// Canonical cluster → hub (GUIDE_HUBS) is preferred; tagHubMap is the fallback for
+// posts without a hub cluster, keeping breadcrumbs aligned with the guide hubs.
+const isArticlePage = segments[0] === "posts" && segments.length === 2;
+const hub = isArticlePage
+  ? (getHubFromCluster(cluster) ?? (tags ? getHubFromTags(tags) : null))
+  : null;
 
 if (hub) {
   labels[0] = hub.label;

@@ -8,12 +8,12 @@ Fecha de corte: 2026-05-30
 
 - **P0:** 7
 - **P1:** 27 (+3 desde auditoría de drift 2026-05-20)
-- **P2:** 42 (−3: TD-0076, TD-0091 y TD-0087 cerrados)
+- **P2:** 41 (−4: TD-0076, TD-0091, TD-0087 y TD-0088 cerrados)
 - **P3:** 12 (−2: TD-0078 y TD-0090 cerrados; TD-0093 también cerrado)
 
 ### Estado de avance (2026-05-30)
 
-- **Completados:** 85 TD únicos (`TD-0001`..`TD-0066`, `TD-0068`..`TD-0071`, `TD-0073`, `TD-0074`, `TD-0076`, `TD-0078`, `TD-0080`, `TD-0082`..`TD-0087`, `TD-0090`..`TD-0091`, `TD-0093`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
+- **Completados:** 86 TD únicos (`TD-0001`..`TD-0066`, `TD-0068`..`TD-0071`, `TD-0073`, `TD-0074`, `TD-0076`, `TD-0078`, `TD-0080`, `TD-0082`..`TD-0088`, `TD-0090`..`TD-0091`, `TD-0093`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
 - **En progreso:** 0
 - **Backlog sin iniciar:** 4 (`TD-0067`, `TD-0075`, `TD-0077`, `TD-0081`)
 - **Backlog en validación/diseño:** 2 (`TD-0072` parcial por referencias activas; `TD-0079` bloqueado por incompatibilidad WOFF2/Satori)
@@ -40,7 +40,7 @@ Fecha de corte: 2026-05-30
 ### Top riesgos restantes
 
 - Drift legal/YMYL de auditoría 2026-05-20: `TD-0084`, `TD-0085`, `TD-0086`.
-- Drift de fuentes canónicas, navegación y enlaces oficiales: `TD-0088`, `TD-0089`, `TD-0092`, `TD-0094` (`TD-0087` cerrado 2026-05-30).
+- Drift de fuentes canónicas, navegación y enlaces oficiales: `TD-0089`, `TD-0092`, `TD-0094` (`TD-0087` y `TD-0088` cerrados 2026-05-30).
 - Actualización de julio 2026: actualizar `imm` en `economic-parameters.snapshot.json` cuando se publique el decreto de reajuste del IMM.
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 
@@ -191,13 +191,14 @@ Fecha de corte: 2026-05-30
 - **Esfuerzo estimado:** M
 - **Propuesta de solución:** Derivar breadcrumb desde `cluster`/`canonicalTopic` cuando exista y dejar `tagHubMap` solo como fallback, o agregar check que exija mapping para todo articulo clusterizado.
 - **Criterios de cierre (checklist verificable):**
-- [ ] PGU y cualquier articulo con cluster canonico reciben breadcrumb de hub correcto.
-- [ ] `BreadcrumbList` y enlaces internos no divergen de `GUIDE_HUBS`.
-- [ ] Existe test o script `check:catalog-drift` para cluster -> breadcrumb.
-- **Owner:** TBD
-- **Estado:** Abierto
+- [x] PGU y cualquier articulo con cluster canonico reciben breadcrumb de hub correcto.
+- [x] `BreadcrumbList` y enlaces internos no divergen de `GUIDE_HUBS`.
+- [x] Existe test o script `check:catalog-drift` para cluster -> breadcrumb.
+- **Owner:** Codex
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-20
-- **Última actualización:** 2026-05-20
+- **Última actualización:** 2026-05-30
+- **Nota de cierre 2026-05-30:** (1) Nuevo helper canónico `getHubFromCluster()` + `isHubCluster()` en `src/config/clusters.ts`, derivado de `GUIDE_HUBS` (única fuente de verdad). (2) `Breadcrumb.astro` recibe prop `cluster` y prefiere el hub derivado del cluster, dejando `tagHubMap` solo como fallback para posts sin hub cluster. `PostDetails.astro` pasa `cluster={currentCluster}`. (3) Se eliminó el mapa local divergente `clusterHubNames` de `PostDetails.astro` (tenía "Impuestos" en vez de "Impuestos para personas" y le faltaba `presupuesto-control-financiero`, que caía al slug crudo); la nav relacionada/Hub ahora usa `getHubFromCluster`. (4) Nuevo guardrail `check:catalog-drift` (encadenado en `pnpm run check`): verifica que todo artículo publicado resuelva a un hub real (49/49 vía cluster, 0 genéricos) y que los hrefs de `tagHubMap` apunten a hubs válidos. PGU (`cluster: pensiones-afp`) ahora muestra `Inicio > Pensiones y AFP > …`. `pnpm run check`, `pnpm run test` y `pnpm run build` pasan limpios.
 
 ## TD-0087 — Registro de datos económicos no alinea fuente primaria con ADR/Worker
 - **ID:** TD-0087

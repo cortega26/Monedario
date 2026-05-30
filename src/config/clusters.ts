@@ -114,3 +114,21 @@ export const GUIDE_HUBS: Record<HubCluster, GuideHubMeta> = {
       "¿Qué hacer si detectas un cargo no reconocido o suplantación?",
   },
 };
+
+/** Type guard: is `cluster` one of the canonical guide hubs (i.e. not "general")? */
+export function isHubCluster(cluster: string | undefined | null): cluster is HubCluster {
+  return typeof cluster === "string" && cluster !== "general" && cluster in GUIDE_HUBS;
+}
+
+/**
+ * Canonical cluster → hub resolver. Returns the hub label and href derived from
+ * `GUIDE_HUBS`, the single source of truth for guide hubs. Returns `null` for
+ * missing or non-hub ("general") clusters so callers can fall back (e.g. to
+ * `tagHubMap`) without diverging from the canonical names.
+ */
+export function getHubFromCluster(
+  cluster: string | undefined | null
+): { label: string; href: string } | null {
+  if (!isHubCluster(cluster)) return null;
+  return { label: GUIDE_HUBS[cluster].nombre, href: `/guias/${cluster}/` };
+}

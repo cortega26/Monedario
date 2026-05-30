@@ -26,6 +26,7 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getPath } from "@/utils/getPath";
 import { SITE } from "@/config";
 import { getArticleContextualSections } from "@/config/contextualArticleSections";
+import { getHubFromCluster } from "@/config/clusters";
 import TOCSidebar from "@/components/TOCSidebar.astro";
 import CalculatorCTA from "@/components/CalculatorCTA.astro";
 import NextSteps from "@/components/NextSteps.astro";
@@ -153,18 +154,9 @@ const excludedRelatedSlugs = [...excludedContextHrefs]
   )
   .filter(Boolean);
 
-const clusterHubNames: Record<string, string> = {
-  "sueldo-remuneraciones": "Sueldo y Remuneraciones",
-  "empleo-ingresos": "Empleo e Ingresos",
-  "deuda-credito": "Deuda y Crédito",
-  "impuestos-personas": "Impuestos",
-  "pensiones-afp": "Pensiones y AFP",
-  "ahorro-e-inversion": "Ahorro e Inversión",
-  "uf-costo-de-vida": "UF y Costo de Vida",
-  "seguridad-financiera": "Seguridad Financiera",
-};
-
-const getHubHrefFromCluster = (cluster: string) => `/guias/${cluster}/`;
+// Hub label/href derive from the canonical GUIDE_HUBS via getHubFromCluster,
+// so breadcrumbs and internal hub links never diverge from the guide hubs.
+const currentHub = getHubFromCluster(article.cluster);
 
 let prevPost: (typeof allPosts)[number] | null = null;
 let nextPost: (typeof allPosts)[number] | null = null;
@@ -182,7 +174,7 @@ if (currentCluster) {
         ? clusterPosts[clusterIndex + 1]
         : null;
     useTopicalNav = true;
-    hubLabel = clusterHubNames[currentCluster] ?? currentCluster;
+    hubLabel = currentHub?.label ?? currentCluster;
   }
 }
 
@@ -230,8 +222,8 @@ const nextStepItems = [
   ...(currentCluster
     ? [
         {
-          href: getHubHrefFromCluster(currentCluster),
-          title: hubLabel ?? clusterHubNames[currentCluster] ?? currentCluster,
+          href: currentHub?.href ?? `/guias/${currentCluster}/`,
+          title: hubLabel ?? currentHub?.label ?? currentCluster,
           description: "Vuelve al hub para ver el mapa completo del tema.",
           label: "Hub",
         },
@@ -278,7 +270,7 @@ const hasHeroImage = !!heroImageSrc;
     readingTime={readingTime}
   />
   <Header />
-  <Breadcrumb tags={tags} />
+  <Breadcrumb tags={tags} cluster={currentCluster} />
   <BackButton />
   <main
     id="main-content"
