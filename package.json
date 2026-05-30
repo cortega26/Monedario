@@ -47,6 +47,8 @@
     "scaffold:editorial-artifacts": "node scripts/scaffold-editorial-artifacts.mjs",
     "audit:reader-copy": "node scripts/audit-reader-facing-copy.mjs",
     "audit:topic-overlap": "node scripts/audit-topic-overlap.mjs",
+    "audit:cannibalization": "node scripts/audit-cannibalization.mjs",
+    "audit:striking-distance": "node scripts/audit-striking-distance.mjs",
     "check:no-postid-urls": "node scripts/check-no-postid-urls.mjs",
     "routes:snapshot": "node scripts/snapshot-routes.mjs",
     "routes:compare": "node scripts/compare-routes.mjs docs/reports/routes_snapshot_before.json output/validation/routes_snapshot_after.json",

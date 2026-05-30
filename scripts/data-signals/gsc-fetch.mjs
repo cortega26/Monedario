@@ -2,9 +2,10 @@
 /**
  * MON-ENV-DATA1b — GSC data-signals fetcher
  *
- * Fetches Search Analytics (queries + pages) and Sitemaps from the
+ * Fetches Search Analytics (queries, pages, query×page) and Sitemaps from the
  * Google Search Console API and writes normalized JSON to
- * output/operations/data-signals/gsc/.
+ * output/operations/data-signals/gsc/. The query×page export powers the
+ * cannibalization audit (scripts/audit-cannibalization.mjs).
  *
  * Usage:
  *   node scripts/data-signals/gsc-fetch.mjs [--week=YYYY-Www] [--dry-run] [--site=sc-domain:monedario.cl]
@@ -23,6 +24,7 @@ import {
   buildSchemaHeader,
   isoWeekToDateRange,
   normalizePageRow,
+  normalizeQueryPageRow,
   normalizeQueryRow,
   normalizeSitemapEntry,
   previousCompleteISOWeek,
@@ -54,6 +56,7 @@ Required env:
 Output (without --dry-run):
   ${OUTPUT_BASE}/<week>-queries.json
   ${OUTPUT_BASE}/<week>-pages.json
+  ${OUTPUT_BASE}/<week>-query-page.json
   ${OUTPUT_BASE}/<week>-sitemaps.json
 `);
   process.exit(code);
@@ -140,7 +143,8 @@ async function fetchAccessToken(creds) {
 // GSC API calls
 // ---------------------------------------------------------------------------
 
-async function fetchSearchAnalytics(siteUrl, from, to, dimension, token) {
+async function fetchSearchAnalytics(siteUrl, from, to, dimensions, token) {
+  const dims = Array.isArray(dimensions) ? dimensions : [dimensions];
   const url = `https://searchconsole.googleapis.com/webmasters/v3/sites/${encodeURIComponent(siteUrl)}/searchAnalytics/query`;
   const rows = [];
   let startRow = 0;
@@ -153,7 +157,7 @@ async function fetchSearchAnalytics(siteUrl, from, to, dimension, token) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        dimensions: [dimension],
+        dimensions: dims,
         endDate: to,
         rowLimit: ROW_LIMIT,
         startDate: from,
@@ -162,7 +166,7 @@ async function fetchSearchAnalytics(siteUrl, from, to, dimension, token) {
     });
     if (!res.ok) {
       throw new Error(
-        `[gsc-fetch] searchAnalytics/${dimension} failed (${res.status}): ${await res.text()}`
+        `[gsc-fetch] searchAnalytics/${dims.join("+")} failed (${res.status}): ${await res.text()}`
       );
     }
     const data = await res.json();
@@ -224,9 +228,10 @@ async function main() {
 
   const token = await fetchAccessToken(creds);
 
-  const [queryRows, pageRows, sitemapEntries] = await Promise.all([
-    fetchSearchAnalytics(site, from, to, "query", token),
-    fetchSearchAnalytics(site, from, to, "page", token),
+  const [queryRows, pageRows, queryPageRows, sitemapEntries] = await Promise.all([
+    fetchSearchAnalytics(site, from, to, ["query"], token),
+    fetchSearchAnalytics(site, from, to, ["page"], token),
+    fetchSearchAnalytics(site, from, to, ["query", "page"], token),
     fetchSitemaps(site, token),
   ]);
 
@@ -240,6 +245,10 @@ async function main() {
     ...header,
     data: pageRows.map(normalizePageRow),
   };
+  const queryPageDoc = {
+    ...header,
+    data: queryPageRows.map(normalizeQueryPageRow),
+  };
   const sitemapsDoc = {
     ...header,
     data: sitemapEntries.map(normalizeSitemapEntry),
@@ -251,6 +260,8 @@ async function main() {
     process.stdout.write(JSON.stringify(queriesDoc, null, 2) + "\n");
     process.stdout.write(sep(`pages (${pagesDoc.data.length} rows)`));
     process.stdout.write(JSON.stringify(pagesDoc, null, 2) + "\n");
+    process.stdout.write(sep(`query-page (${queryPageDoc.data.length} rows)`));
+    process.stdout.write(JSON.stringify(queryPageDoc, null, 2) + "\n");
     process.stdout.write(sep(`sitemaps (${sitemapsDoc.data.length} entries)`));
     process.stdout.write(JSON.stringify(sitemapsDoc, null, 2) + "\n");
     console.error("[gsc-fetch] dry-run — no files written");
@@ -263,6 +274,7 @@ async function main() {
   for (const [filename, doc] of [
     [`${week}-queries.json`, queriesDoc],
     [`${week}-pages.json`, pagesDoc],
+    [`${week}-query-page.json`, queryPageDoc],
     [`${week}-sitemaps.json`, sitemapsDoc],
   ]) {
     const filePath = path.join(dir, filename);

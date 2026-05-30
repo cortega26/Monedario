@@ -127,6 +127,132 @@ export function normalizePageRow(row) {
 }
 
 /**
+ * Normalizes a GSC search-analytics row keyed by ["query","page"] dimensions.
+ * Output keys are sorted alphabetically.
+ * @param {{ keys: string[], clicks: number, impressions: number, ctr: number, position: number }} row
+ */
+export function normalizeQueryPageRow(row) {
+  return {
+    clicks: row.clicks,
+    ctr: roundTo(row.ctr, 4),
+    impressions: row.impressions,
+    page: row.keys[1],
+    position: roundTo(row.position, 2),
+    query: row.keys[0],
+  };
+}
+
+/**
+ * Detects search-query cannibalization: queries for which two or more of the
+ * site's own pages accumulate impressions in the same window. This is the only
+ * signal that reveals real cannibalization — internal canonicalTopic labels do
+ * not tell us what actually competes in the SERP.
+ *
+ * Pure function (no I/O). Rows must already be normalized query-page rows.
+ *
+ * @param {Array<{query:string,page:string,impressions:number,clicks:number,position:number,ctr:number}>} rows
+ * @param {{ minImpressions?: number, minUrls?: number }} [opts]
+ *   minImpressions — per-URL impression floor to count as "competing" (default 5)
+ *   minUrls        — minimum distinct competing URLs to flag a query (default 2)
+ * @returns {Array<{query:string,urls:Array<object>,totalImpressions:number,totalClicks:number,urlCount:number}>}
+ *   sorted by totalImpressions desc, then query asc.
+ */
+export function findCannibalizationGroups(rows, opts = {}) {
+  const minImpressions = opts.minImpressions ?? 5;
+  const minUrls = opts.minUrls ?? 2;
+
+  const byQuery = new Map();
+  for (const row of rows) {
+    if (!row || typeof row.query !== "string" || typeof row.page !== "string") continue;
+    if ((row.impressions ?? 0) < minImpressions) continue;
+    if (!byQuery.has(row.query)) byQuery.set(row.query, new Map());
+    // Collapse duplicate (query,page) rows by keeping the max-impression sample.
+    const pages = byQuery.get(row.query);
+    const existing = pages.get(row.page);
+    if (!existing || row.impressions > existing.impressions) {
+      pages.set(row.page, {
+        page: row.page,
+        impressions: row.impressions,
+        clicks: row.clicks ?? 0,
+        position: row.position ?? null,
+        ctr: row.ctr ?? null,
+      });
+    }
+  }
+
+  const groups = [];
+  for (const [query, pagesMap] of byQuery) {
+    if (pagesMap.size < minUrls) continue;
+    const urls = [...pagesMap.values()].sort(
+      (a, b) => b.impressions - a.impressions || a.page.localeCompare(b.page)
+    );
+    groups.push({
+      query,
+      urls,
+      urlCount: urls.length,
+      totalImpressions: urls.reduce((s, u) => s + u.impressions, 0),
+      totalClicks: urls.reduce((s, u) => s + u.clicks, 0),
+    });
+  }
+
+  return groups.sort(
+    (a, b) => b.totalImpressions - a.totalImpressions || a.query.localeCompare(b.query)
+  );
+}
+
+/**
+ * Detects "striking distance" opportunities: (query, page) pairs that already
+ * earn impressions but rank just off the top — typically positions 8–20. A small
+ * on-page improvement can lift these into the top results where clicks happen,
+ * making them the highest-ROI growth lever once cannibalization is ruled out.
+ *
+ * Pure function (no I/O). Rows must already be normalized query-page rows.
+ *
+ * @param {Array<{query:string,page:string,impressions:number,clicks:number,position:number,ctr:number}>} rows
+ * @param {{ minPosition?: number, maxPosition?: number, minImpressions?: number, maxClicks?: number }} [opts]
+ *   minPosition   — inclusive lower bound of the striking band (default 8)
+ *   maxPosition   — inclusive upper bound (default 20)
+ *   minImpressions— demand floor to count as an opportunity (default 10)
+ *   maxClicks     — only surface under-converting pairs at/below this click count
+ *                   (default Infinity = no filter)
+ * @returns {Array<{query:string,page:string,impressions:number,clicks:number,position:number,ctr:number,score:number}>}
+ *   sorted by score desc (impressions weighted by closeness to page 1), then query asc.
+ */
+export function findStrikingDistance(rows, opts = {}) {
+  const minPosition = opts.minPosition ?? 8;
+  const maxPosition = opts.maxPosition ?? 20;
+  const minImpressions = opts.minImpressions ?? 10;
+  const maxClicks = opts.maxClicks ?? Infinity;
+
+  const out = [];
+  for (const row of rows) {
+    if (!row || typeof row.query !== "string" || typeof row.page !== "string") continue;
+    const position = row.position;
+    if (typeof position !== "number") continue;
+    if (position < minPosition || position > maxPosition) continue;
+    if ((row.impressions ?? 0) < minImpressions) continue;
+    if ((row.clicks ?? 0) > maxClicks) continue;
+
+    // Opportunity score: more impressions and closer to page 1 rank higher.
+    const proximity = (maxPosition - position + 1) / (maxPosition - minPosition + 1);
+    const score = roundTo(row.impressions * proximity, 2);
+    out.push({
+      query: row.query,
+      page: row.page,
+      impressions: row.impressions,
+      clicks: row.clicks ?? 0,
+      position,
+      ctr: row.ctr ?? null,
+      score,
+    });
+  }
+
+  return out.sort(
+    (a, b) => b.score - a.score || a.query.localeCompare(b.query)
+  );
+}
+
+/**
  * Normalizes a GSC sitemap entry.
  * Timestamps are truncated to date (no time component).
  * Output keys are sorted alphabetically.
