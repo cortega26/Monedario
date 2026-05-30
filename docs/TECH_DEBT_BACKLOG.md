@@ -8,12 +8,12 @@ Fecha de corte: 2026-05-30
 
 - **P0:** 7
 - **P1:** 27 (+3 desde auditoría de drift 2026-05-20)
-- **P2:** 39 (−6: TD-0076, TD-0091, TD-0087, TD-0088, TD-0094 y TD-0089 cerrados)
+- **P2:** 38 (−7: TD-0076, TD-0091, TD-0087, TD-0088, TD-0094, TD-0089 y TD-0092 cerrados)
 - **P3:** 12 (−2: TD-0078 y TD-0090 cerrados; TD-0093 también cerrado)
 
 ### Estado de avance (2026-05-30)
 
-- **Completados:** 88 TD únicos (`TD-0001`..`TD-0066`, `TD-0068`..`TD-0071`, `TD-0073`, `TD-0074`, `TD-0076`, `TD-0078`, `TD-0080`, `TD-0082`..`TD-0091`, `TD-0093`..`TD-0094`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
+- **Completados:** 89 TD únicos (`TD-0001`..`TD-0066`, `TD-0068`..`TD-0071`, `TD-0073`, `TD-0074`, `TD-0076`, `TD-0078`, `TD-0080`, `TD-0082`..`TD-0094`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
 - **En progreso:** 0
 - **Backlog sin iniciar:** 4 (`TD-0067`, `TD-0075`, `TD-0077`, `TD-0081`)
 - **Backlog en validación/diseño:** 2 (`TD-0072` parcial por referencias activas; `TD-0079` bloqueado por incompatibilidad WOFF2/Satori)
@@ -40,7 +40,7 @@ Fecha de corte: 2026-05-30
 ### Top riesgos restantes
 
 - Drift legal/YMYL de auditoría 2026-05-20: `TD-0084`, `TD-0085`, `TD-0086`.
-- Drift de fuentes canónicas, navegación y enlaces oficiales: `TD-0092` (requiere decisión editorial humana de ownership; `TD-0087`, `TD-0088`, `TD-0089` y `TD-0094` cerrados 2026-05-30).
+- Auditoría de drift 2026-05-20 **cerrada al 100%** (`TD-0084`..`TD-0094`) el 2026-05-30. Riesgos restantes: deuda estructural/medición (`TD-0067`, `TD-0075`, `TD-0077`, `TD-0081`) y `TD-0079` bloqueado.
 - Actualización de julio 2026: actualizar `imm` en `economic-parameters.snapshot.json` cuando se publique el decreto de reajuste del IMM.
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 
@@ -109,13 +109,14 @@ Fecha de corte: 2026-05-30
 - **Esfuerzo estimado:** M
 - **Propuesta de solución:** Aplicar `docs/editorial/NON_CANNIBALIZATION_PROCESS.md` y `docs/editorial/TOPIC_OWNERSHIP_POLICY.md`: declarar owner, soporte, diferenciador y enlaces jerarquicos. No fusionar automaticamente.
 - **Criterios de cierre (checklist verificable):**
-- [ ] Cada par alto tiene owner documentado o remediacion editorial.
-- [ ] Pares medios quedan aceptados, enlazados jerarquicamente o separados por intención.
-- [ ] `audit:topic-overlap` queda con umbral/registro que impida repetir el mismo hallazgo sin decision.
-- **Owner:** TBD
-- **Estado:** Abierto
+- [x] Cada par alto tiene owner documentado o remediacion editorial.
+- [x] Pares medios quedan aceptados, enlazados jerarquicamente o separados por intención.
+- [x] `audit:topic-overlap` queda con umbral/registro que impida repetir el mismo hallazgo sin decision.
+- **Owner:** Codex
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-20
-- **Última actualización:** 2026-05-20
+- **Última actualización:** 2026-05-30
+- **Nota de cierre 2026-05-30:** Resuelto como **keep-all validado por dato GSC**, no por etiquetas internas. (1) El par "fuerte" original (`ahorro-…-2026` ↔ `como-invertir-en-etfs`) ya no aparece como `candidate_strong_overlap`: ambos declaran `canonicalTopic` distinto y `topicRole: owner` (pillar amplio vs spoke de instrumento), enlazados bidireccionalmente. (2) Los 13 artículos de los pares marcados ya declaran `topicRole`+`canonicalTopic` y ninguna pareja viola `cluster+canonicalTopic+owner` (contrato §5 de `NON_CANNIBALIZATION_PROCESS`). Decisión por par documentada (todas `keep` — falsos positivos §3 o coexistencia válida §2.4); el único hueco real era `descuentos-de-sueldo` ↔ `sueldo-imponible-chile` sin interlink, ahora **corregido bidireccionalmente**. (3) En vez de un allowlist que silencie pares, se construyó `pnpm run audit:cannibalization` (GSC query×page): mide canibalización **real en la SERP** (≥2 URLs propias por query), que a W21 = **0**. Ese audit reemplaza el "umbral/registro" del criterio 3 con señal de dato, no heurística de títulos. `audit:topic-overlap` sin pares `alto`; `pnpm run check` y build verdes.
 
 ## TD-0091 — Enlaces externos con fallas o redirects semánticos
 - **ID:** TD-0091

@@ -11,6 +11,8 @@ output/performance/
 output/playwright/
 output/security/
 output/validation/
+# Derived GSC rollup (regenerable via data-signals:gsc:aggregate); weekly exports stay tracked
+output/operations/data-signals/gsc/aggregate-query-page.json
 
 
 # generated types
