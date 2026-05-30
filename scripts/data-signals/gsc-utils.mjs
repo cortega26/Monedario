@@ -207,7 +207,7 @@ export function findCannibalizationGroups(rows, opts = {}) {
  * normalized query-page shape, so they feed directly into findCannibalizationGroups
  * and findStrikingDistance. Pure function (no I/O).
  *
- * @param {Array<{data?: Array<{query:string,page:string,impressions:number,clicks:number,position:number,ctr:number}>}>} docs
+ * @param {(Array<{data?: Array<{query:string,page:string,impressions:number,clicks:number,position:number,ctr:number}>}>|null|undefined)} docs
  * @returns {Array<{query:string,page:string,impressions:number,clicks:number,position:(number|null),ctr:number}>}
  *   sorted by impressions desc, then query asc, then page asc.
  */
