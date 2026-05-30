@@ -30,7 +30,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | OWASP Security backlog | `OWASP_SECURITY_AUDIT_2026-05-11.md` | SEC-003 pendiente (verificar `.env` histórico) |
 | ~~Auditoría drift 2026-05-20~~ | `PLAN-drift-audit-2026-05-20.md` | **Cerrada 100%** 2026-05-30 (`TD-0084`..`TD-0094`) |
 | Auditoría alignment 2026-05-25 | `PLAN-alignment-audit-remediation-2026-05-25.md` | Ejecutar remediación por batches de canibalización, boundaries, backlinks y guardrails warning-first |
-| LinkedIn strategy (MON-304) | `ux-backlog.md` | Fase 3, sin urgencia |
+| ~~LinkedIn strategy (MON-304)~~ | `ux-backlog.md` | **Diferido 2026-05-30** — canal de baja afinidad para audiencia de finanzas de consumo; links `nofollow` (sin SEO). Página de empresa se mantiene pasiva por E-E-A-T. Distribución prioriza newsletter (MON-301) y canales visuales (IG/TikTok). |
 | Illustrations (MON-405) | `ux-backlog.md` | Diferido |
 | Blog Advisory Architecture | `BLOG_ADVISORY_ARCHITECTURE_PLAN_2026-04-22.md` | Propuesta futuro mediano |
 | Audit of the Small Details | `PLAN-audit-small-details-2026-05-22.md` | Programa activo de auditoria y backlog `ASD-###`; primera pasada audit-only completa |
@@ -76,7 +76,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | MON-301 | Newsletter — setup plataforma + formulario | 3 | P1 | ux | 🔲 pendiente |
 | MON-302 | Módulo "Compartir resultado" en calculadoras | 3 | P2 | frontend | ✅ done |
 | MON-303 | Página /cambios/ — changelog editorial | 3 | P2 | content | ✅ done |
-| MON-304 | Estrategia de distribución en LinkedIn | 3 | P3 | analytics | 🔲 pendiente |
+| MON-304 | Estrategia de distribución en LinkedIn | 3 | P3 | analytics | ⏸️ diferido (canal de baja afinidad; ver nota 2026-05-30) |
 | MON-305 | Extender ShareCalculatorResult a 13 calculadoras | 3 | P2 | frontend | ✅ done |
 | MON-306 | Extender `sueldo-liquido` — output gratificación legal | 4 | P1 | calculator-ext | ✅ done |
 | MON-307 | Extender `finiquito-indemnizacion` — modo vacaciones proporcionales | 4 | P1 | calculator-ext | ✅ done |
