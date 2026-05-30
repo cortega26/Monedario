@@ -154,7 +154,7 @@ export function normalizeQueryPageRow(row) {
  * @param {{ minImpressions?: number, minUrls?: number }} [opts]
  *   minImpressions — per-URL impression floor to count as "competing" (default 5)
  *   minUrls        — minimum distinct competing URLs to flag a query (default 2)
- * @returns {Array<{query:string,urls:Array<object>,totalImpressions:number,totalClicks:number,urlCount:number}>}
+ * @returns {Array<{query:string,urls:Array<{page:string,impressions:number,clicks:number,position:(number|null),ctr:(number|null)}>,totalImpressions:number,totalClicks:number,urlCount:number}>}
  *   sorted by totalImpressions desc, then query asc.
  */
 export function findCannibalizationGroups(rows, opts = {}) {
