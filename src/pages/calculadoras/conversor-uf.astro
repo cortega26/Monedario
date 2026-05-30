@@ -96,7 +96,7 @@ const calculatorNextStepItems = [
           </p>
           <p id="uf-display" class="text-3xl font-bold">{"$" + ufDisplay}</p>
           <p id="uf-fecha" class="mt-0.5 text-xs text-muted">
-            {ufDateDisplay} · Fuente: mindicador.cl
+            {ufDateDisplay} · Fuente: Banco Central de Chile
           </p>
         </div>
         <span class="text-4xl">🇨🇱</span>
@@ -234,17 +234,22 @@ const calculatorNextStepItems = [
     />
     <ShareCalculatorResult />
     <MethodologyBlock
-      notes="El valor UF se obtiene en tiempo real desde la API de mindicador.cl, que replica la publicación oficial del Banco Central. La UF se actualiza diariamente entre el día 10 de cada mes y el día 9 del siguiente, en base al IPC del mes anterior publicado por el INE."
+      notes="La UF es publicada oficialmente por el Banco Central de Chile (fuente primaria). El valor diario se obtiene desde el Banco Central, con mindicador.cl como respaldo (espejo de la misma publicación). La UF se actualiza diariamente entre el día 10 de cada mes y el día 9 del siguiente, en base al IPC del mes anterior publicado por el INE."
       sources={[
         {
-          name: "mindicador.cl — API valor UF diario",
-          url: "https://mindicador.cl/api/uf",
-          date: "2026-04",
+          name: "Banco Central de Chile — Indicadores diarios (UF)",
+          url: "https://si3.bcentral.cl/Indicadoressiete/secure/Indicadoresdiarios.aspx",
+          date: "2026-05",
         },
         {
           name: "Banco Central de Chile — Metodología UF",
           url: "https://si3.bcentral.cl/estadisticas/Principal1/Metodologias/EMF/UF.pdf",
           date: "2025-12",
+        },
+        {
+          name: "mindicador.cl — API valor UF diario (respaldo)",
+          url: "https://mindicador.cl/api/uf",
+          date: "2026-04",
         },
       ]}
     />

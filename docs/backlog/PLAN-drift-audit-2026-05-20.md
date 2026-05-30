@@ -83,6 +83,7 @@ Observaciones positivas:
 
 ### TD-0087 — Registro de datos economicos no alinea fuente primaria con ADR/Worker
 
+- **Cerrado 2026-05-30.** Modelo de emisor canónico: registry migrado a `canonicalSource`/`fallbackSources` (UF/USD→BCCh, IPC→INE, UTM/UTA→SII, topes→SP), `refresh-editorial-volatile-data.mjs` emite la fuente canónica, nuevo `check:economic-source-consistency` en `pnpm run check`, y citas UI UF/dólar corregidas. mindicador.cl queda como fallback. Ver nota de cierre en `docs/TECH_DEBT_BACKLOG.md`.
 - Severidad: 3. Urgencia: P2.
 - Evidencia: `docs/adr/ADR-20260516-economic-snapshot-cloudflare-worker.md` define BCCh/INE como fuentes primarias para UF/USD/IPC; `src/config/editorial-volatile-data-registry.json` y `scripts/refresh-editorial-volatile-data.mjs` siguen emitiendo `mindicador.cl/api` como fuente principal en varios derivados.
 - Riesgo: el sitio puede mostrar una fuente tecnica heredada en vez de la fuente oficial/canonica.

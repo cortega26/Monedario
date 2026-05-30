@@ -1,66 +1,66 @@
 {
-  "lastUpdated": "2026-05-14",
-  "capturedAt": "2026-05-14T12:05:54.745Z",
+  "lastUpdated": "2026-05-29",
+  "capturedAt": "2026-05-30T15:54:31.454Z",
   "datasets": {
     "economic.uf.value": {
       "label": "Valor UF",
-      "value": 40324.06,
+      "value": 40576.86,
       "unit": "clp",
-      "lastObservedAt": "2026-05-14",
-      "reviewTriggerDate": "2026-05-14",
-      "sourceUrl": "https://mindicador.cl/api",
-      "sourceLabel": "mindicador.cl/api"
+      "lastObservedAt": "2026-05-29",
+      "reviewTriggerDate": "2026-05-29",
+      "sourceUrl": "https://si3.bcentral.cl/Indicadoressiete/secure/Indicadoresdiarios.aspx",
+      "sourceLabel": "Banco Central de Chile"
     },
     "economic.utm.value": {
       "label": "Valor UTM",
       "value": 70588,
       "unit": "clp",
-      "lastObservedAt": "2026-05-14",
+      "lastObservedAt": "2026-05-29",
       "reviewTriggerDate": "2026-05-01",
-      "sourceUrl": "https://mindicador.cl/api",
-      "sourceLabel": "mindicador.cl/api"
+      "sourceUrl": "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm",
+      "sourceLabel": "Servicio de Impuestos Internos (SII)"
     },
     "economic.uta.value": {
       "label": "Valor UTA (Unidad Tributaria Anual)",
-      "value": 847056,
+      "value": 834504,
       "unit": "clp",
-      "lastObservedAt": "2026-05-14",
-      "reviewTriggerDate": "2026-05-01",
-      "sourceUrl": "https://mindicador.cl/api",
-      "sourceLabel": "mindicador.cl/api"
+      "lastObservedAt": "2026-05-29",
+      "reviewTriggerDate": "2025-12-01",
+      "sourceUrl": "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm",
+      "sourceLabel": "Servicio de Impuestos Internos (SII)"
     },
     "economic.ipc.monthly_variation": {
       "label": "IPC mensual",
-      "value": -0.2,
+      "value": 1.3,
       "unit": "percent",
-      "lastObservedAt": "2026-05-14",
-      "reviewTriggerDate": "2025-12-01",
-      "sourceUrl": "https://mindicador.cl/api",
-      "sourceLabel": "mindicador.cl/api"
+      "lastObservedAt": "2026-05-29",
+      "reviewTriggerDate": "2026-04-01",
+      "sourceUrl": "https://www.ine.gob.cl/estadisticas-por-tema/precios-e-inflacion/indice-de-precios-al-consumidor",
+      "sourceLabel": "Instituto Nacional de Estadísticas (INE)"
     },
     "economic.afc.monthly_taxable_cap_uf": {
       "label": "Tope imponible AFC",
       "value": 135.2,
       "unit": "uf",
-      "lastObservedAt": "2026-05-14",
+      "lastObservedAt": "2026-05-29",
       "reviewTriggerDate": "2026-03-22",
-      "sourceUrl": "https://mindicador.cl/api",
-      "sourceLabel": "mindicador.cl/api"
+      "sourceUrl": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html",
+      "sourceLabel": "Superintendencia de Pensiones"
     },
     "pensions.previsional.monthly_taxable_cap_uf": {
       "label": "Tope imponible AFP y salud",
       "value": 90,
       "unit": "uf",
-      "lastObservedAt": "2026-05-14",
+      "lastObservedAt": "2026-05-29",
       "reviewTriggerDate": "2026-03-22",
-      "sourceUrl": "https://mindicador.cl/api",
-      "sourceLabel": "mindicador.cl/api"
+      "sourceUrl": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html",
+      "sourceLabel": "Superintendencia de Pensiones"
     },
     "pensions.afp.worker_mandatory_contribution": {
       "label": "Cotización obligatoria trabajador AFP",
       "value": 10,
       "unit": "percent",
-      "lastObservedAt": "2026-05-14",
+      "lastObservedAt": "2026-05-29",
       "reviewTriggerDate": "2026-03-22",
       "sourceUrl": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html",
       "sourceLabel": "Superintendencia de Pensiones"
@@ -69,7 +69,7 @@
       "label": "Comisión AFP Uno",
       "value": 0.46,
       "unit": "percent",
-      "lastObservedAt": "2026-05-14",
+      "lastObservedAt": "2026-05-29",
       "reviewTriggerDate": "2025-10-01",
       "effectiveDate": "2025-10-01",
       "previousValue": 0.49,

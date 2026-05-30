@@ -4,56 +4,93 @@
       "label": "Valor UF",
       "refreshStrategy": "economic_snapshot",
       "unit": "clp",
-      "sourceUrls": [
-        "https://mindicador.cl/api",
-        "https://si3.bcentral.cl/Indicadoressiete/secure/Indicadoresdiarios.aspx"
+      "canonicalSource": {
+        "label": "Banco Central de Chile",
+        "url": "https://si3.bcentral.cl/Indicadoressiete/secure/Indicadoresdiarios.aspx"
+      },
+      "fallbackSources": [
+        { "label": "mindicador.cl", "url": "https://mindicador.cl/api" }
       ]
     },
     "economic.utm.value": {
       "label": "Valor UTM",
       "refreshStrategy": "economic_snapshot",
       "unit": "clp",
-      "sourceUrls": ["https://mindicador.cl/api"]
+      "canonicalSource": {
+        "label": "Servicio de Impuestos Internos (SII)",
+        "url": "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm"
+      },
+      "fallbackSources": [
+        { "label": "mindicador.cl", "url": "https://mindicador.cl/api" }
+      ]
     },
     "economic.uta.value": {
       "label": "Valor UTA (Unidad Tributaria Anual)",
       "refreshStrategy": "economic_snapshot",
       "unit": "clp",
-      "sourceUrls": ["https://mindicador.cl/api"]
+      "canonicalSource": {
+        "label": "Servicio de Impuestos Internos (SII)",
+        "url": "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm"
+      },
+      "fallbackSources": [
+        { "label": "mindicador.cl", "url": "https://mindicador.cl/api" }
+      ]
     },
     "economic.ipc.monthly_variation": {
       "label": "IPC mensual",
       "refreshStrategy": "economic_snapshot",
       "unit": "percent",
-      "sourceUrls": ["https://mindicador.cl/api", "https://www.ine.gob.cl"]
+      "canonicalSource": {
+        "label": "Instituto Nacional de Estadísticas (INE)",
+        "url": "https://www.ine.gob.cl/estadisticas-por-tema/precios-e-inflacion/indice-de-precios-al-consumidor"
+      },
+      "fallbackSources": [
+        { "label": "mindicador.cl", "url": "https://mindicador.cl/api" }
+      ]
     },
     "economic.afc.monthly_taxable_cap_uf": {
       "label": "Tope imponible AFC",
       "refreshStrategy": "economic_snapshot",
       "unit": "uf",
-      "sourceUrls": ["https://mindicador.cl/api"]
+      "canonicalSource": {
+        "label": "Superintendencia de Pensiones",
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html"
+      },
+      "fallbackSources": []
     },
     "pensions.previsional.monthly_taxable_cap_uf": {
       "label": "Tope imponible AFP y salud",
       "refreshStrategy": "economic_snapshot",
       "unit": "uf",
-      "sourceUrls": ["https://mindicador.cl/api"]
+      "canonicalSource": {
+        "label": "Superintendencia de Pensiones",
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html"
+      },
+      "fallbackSources": []
     },
     "pensions.afp.worker_mandatory_contribution": {
       "label": "Cotización obligatoria trabajador AFP",
       "refreshStrategy": "official_page_extract",
       "unit": "percent",
-      "sourceUrls": [
-        "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html"
-      ]
+      "canonicalSource": {
+        "label": "Superintendencia de Pensiones",
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html"
+      },
+      "fallbackSources": []
     },
     "pensions.afp.uno_commission": {
       "label": "Comisión AFP Uno",
       "refreshStrategy": "official_page_extract",
       "unit": "percent",
-      "sourceUrls": [
-        "https://www.spensiones.cl/portal/institucional/594/w3-article-16714.html",
-        "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html"
+      "canonicalSource": {
+        "label": "Superintendencia de Pensiones",
+        "url": "https://www.spensiones.cl/portal/institucional/594/w3-article-16714.html"
+      },
+      "fallbackSources": [
+        {
+          "label": "Superintendencia de Pensiones",
+          "url": "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html"
+        }
       ]
     }
   }

@@ -15,8 +15,8 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 
 | Orden | Item | Por qué ahora |
 |-------|------|---------------|
-| 1 | `TD-0084`..`TD-0086` — Drift legal/YMYL alto | Requiere decisión humana/legal/editorial antes de tocar analytics o contenido sensible |
-| 2 | `TD-0065` — Bump 8 deps minor outdated | Quick win: `pnpm update --latest` + CI smoke |
+| 1 | `TD-0088` — Breadcrumbs por cluster/canonicalTopic | Siguiente en la secuencia de drift tras `TD-0087` (cerrado 2026-05-30) |
+| 2 | `TD-0094` — Registro canónico único de hosts oficiales | Consumidor natural del check de fuentes creado en `TD-0087` |
 
 ### Pendiente — implementación por código
 
@@ -27,7 +27,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | TypeScript 7 compatibility | `TS7_COMPATIBILITY_AUDIT_2026-04-30.md` | Blocked — esperando TS7 stable |
 | Newsletter (MON-301) | `ux-backlog.md` | Decisión de plataforma pendiente |
 | OWASP Security backlog | `OWASP_SECURITY_AUDIT_2026-05-11.md` | SEC-003 pendiente (verificar `.env` histórico) |
-| Auditoría drift 2026-05-20 | `PLAN-drift-audit-2026-05-20.md` | Ejecutar `TD-0084`..`TD-0094` sin cambios automáticos YMYL/legal |
+| Auditoría drift 2026-05-20 | `PLAN-drift-audit-2026-05-20.md` | `TD-0084`..`TD-0087`, `TD-0090`..`TD-0091`, `TD-0093` cerrados; quedan `TD-0088`, `TD-0089`, `TD-0092`, `TD-0094` sin cambios automáticos YMYL/legal |
 | Auditoría alignment 2026-05-25 | `PLAN-alignment-audit-remediation-2026-05-25.md` | Ejecutar remediación por batches de canibalización, boundaries, backlinks y guardrails warning-first |
 | LinkedIn strategy (MON-304) | `ux-backlog.md` | Fase 3, sin urgencia |
 | Illustrations (MON-405) | `ux-backlog.md` | Diferido |

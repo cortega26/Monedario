@@ -1,6 +1,6 @@
 # TECH_DEBT_BACKLOG
 
-Fecha de corte: 2026-05-21
+Fecha de corte: 2026-05-30
 
 ## Métricas
 
@@ -8,12 +8,12 @@ Fecha de corte: 2026-05-21
 
 - **P0:** 7
 - **P1:** 27 (+3 desde auditoría de drift 2026-05-20)
-- **P2:** 43 (−2: TD-0076 y TD-0091 cerrados)
+- **P2:** 42 (−3: TD-0076, TD-0091 y TD-0087 cerrados)
 - **P3:** 12 (−2: TD-0078 y TD-0090 cerrados; TD-0093 también cerrado)
 
-### Estado de avance (2026-05-21)
+### Estado de avance (2026-05-30)
 
-- **Completados:** 84 TD únicos (`TD-0001`..`TD-0066`, `TD-0068`..`TD-0071`, `TD-0073`, `TD-0074`, `TD-0076`, `TD-0078`, `TD-0080`, `TD-0082`..`TD-0086`, `TD-0090`..`TD-0091`, `TD-0093`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
+- **Completados:** 85 TD únicos (`TD-0001`..`TD-0066`, `TD-0068`..`TD-0071`, `TD-0073`, `TD-0074`, `TD-0076`, `TD-0078`, `TD-0080`, `TD-0082`..`TD-0087`, `TD-0090`..`TD-0091`, `TD-0093`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
 - **En progreso:** 0
 - **Backlog sin iniciar:** 4 (`TD-0067`, `TD-0075`, `TD-0077`, `TD-0081`)
 - **Backlog en validación/diseño:** 2 (`TD-0072` parcial por referencias activas; `TD-0079` bloqueado por incompatibilidad WOFF2/Satori)
@@ -40,7 +40,7 @@ Fecha de corte: 2026-05-21
 ### Top riesgos restantes
 
 - Drift legal/YMYL de auditoría 2026-05-20: `TD-0084`, `TD-0085`, `TD-0086`.
-- Drift de fuentes canónicas, navegación y enlaces oficiales: `TD-0087`..`TD-0094`.
+- Drift de fuentes canónicas, navegación y enlaces oficiales: `TD-0088`, `TD-0089`, `TD-0092`, `TD-0094` (`TD-0087` cerrado 2026-05-30).
 - Actualización de julio 2026: actualizar `imm` en `economic-parameters.snapshot.json` cuando se publique el decreto de reajuste del IMM.
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 
@@ -211,14 +211,15 @@ Fecha de corte: 2026-05-21
 - **Esfuerzo estimado:** M
 - **Propuesta de solución:** Hacer que snapshot, registry editorial, UI y MethodologyBlock consuman una fuente canonica por indicador, con fallback documentado cuando aplique.
 - **Criterios de cierre (checklist verificable):**
-- [ ] UF/USD/IPC muestran fuente primaria compatible con ADR/Worker.
-- [ ] `refresh-editorial-volatile-data.mjs` no elige `sourceUrls[0]` si contradice fuente canonica vigente.
-- [ ] Existe `check:economic-source-consistency`.
-- [ ] Cambios validados contra `docs/governance/FINANCIAL_DATA_VERIFICATION_POLICY.md`.
-- **Owner:** TBD
-- **Estado:** Abierto
+- [x] UF/USD/IPC muestran fuente primaria compatible con ADR/Worker.
+- [x] `refresh-editorial-volatile-data.mjs` no elige `sourceUrls[0]` si contradice fuente canonica vigente.
+- [x] Existe `check:economic-source-consistency`.
+- [x] Cambios validados contra `docs/governance/FINANCIAL_DATA_VERIFICATION_POLICY.md`.
+- **Owner:** Codex
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-20
-- **Última actualización:** 2026-05-20
+- **Última actualización:** 2026-05-30
+- **Nota de cierre 2026-05-30:** Modelo adoptado: **emisor canónico** (organismo oficial = fuente primaria; mindicador.cl = fallback/espejo), sin tocar el Worker ni el esquema del snapshot económico. (1) `editorial-volatile-data-registry.json` migrado de `sourceUrls[]` ambiguo a `canonicalSource` + `fallbackSources` por dataset: UF/USD→Banco Central, IPC→INE, UTM/UTA→SII, topes AFC/AFP-salud→Superintendencia de Pensiones. (2) `refresh-editorial-volatile-data.mjs` ahora emite `canonicalSource.{label,url}` en vez de hardcodear `mindicador.cl/api`; snapshot editorial regenerado. (3) Nuevo guardrail `check:economic-source-consistency` (registry↔ADR↔snapshot↔wiring del Worker), encadenado en `pnpm run check`. (4) Citas UI corregidas en `conversor-uf.astro` (display + MethodologyBlock), `IndicadoresHoy.astro` (UF/dólar) y `dividendo-hipotecario.astro`; UTM se mantiene. (5) FDV: **ningún valor numérico CVFD cambió por atribución**; al regenerar el snapshot editorial se sincronizó UTA al valor oficial vigente desde commit `56d773b1` (847056→834504, dic-UTM×12) y se realineó el guard `expectedValue` del artículo IGC (drift preexistente destapado, no inferencia). `pnpm run check`, `pnpm run test` (664) y `pnpm run build` pasan limpios.
 
 ## TD-0086 — PGU delega monto vigente sin registrar dato central
 - **ID:** TD-0086

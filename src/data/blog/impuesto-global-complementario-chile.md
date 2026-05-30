@@ -41,7 +41,7 @@ articleLead:
 volatileData:
   - id: economic.uta.value
     sync: strict
-    expectedValue: 847056
+    expectedValue: 834504
 reviewPolicy:
   cadenceLabel: monthly
   maxDays: 30

@@ -152,8 +152,8 @@ function buildEconomicDatasets(registry, previousSnapshot) {
         observedAt: datasetObservedAt,
         previous,
       }),
-      sourceUrl: datasetMeta.sourceUrls[0],
-      sourceLabel: "mindicador.cl/api",
+      sourceUrl: datasetMeta.canonicalSource.url,
+      sourceLabel: datasetMeta.canonicalSource.label,
     };
   }
 
