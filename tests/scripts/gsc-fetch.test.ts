@@ -2,6 +2,7 @@ import { spawnSync } from "node:child_process";
 import path from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import {
+  aggregateQueryPageRows,
   buildSchemaHeader,
   dateToISOWeek,
   findCannibalizationGroups,
@@ -230,6 +231,44 @@ describe("findCannibalizationGroups", () => {
     expect(groups).toHaveLength(1);
     expect(groups[0].urlCount).toBe(2);
     expect(groups[0].totalImpressions).toBe(60); // 40 (max for /a/) + 20
+  });
+});
+
+describe("aggregateQueryPageRows", () => {
+  const docs = [
+    {
+      data: [
+        { query: "uf hoy", page: "https://monedario.cl/calculadoras/conversor-uf/", impressions: 100, clicks: 5, position: 10, ctr: 0.05 },
+        { query: "apv", page: "https://monedario.cl/calculadoras/apv/", impressions: 40, clicks: 0, position: 20, ctr: 0 },
+      ],
+    },
+    {
+      data: [
+        { query: "uf hoy", page: "https://monedario.cl/calculadoras/conversor-uf/", impressions: 300, clicks: 15, position: 6, ctr: 0.05 },
+      ],
+    },
+  ];
+
+  it("sums impressions/clicks and impression-weights position across weeks", () => {
+    const rows = aggregateQueryPageRows(docs);
+    const uf = rows.find(r => r.query === "uf hoy");
+    expect(uf?.impressions).toBe(400);
+    expect(uf?.clicks).toBe(20);
+    // weighted position = (100*10 + 300*6) / 400 = 2800/400 = 7
+    expect(uf?.position).toBe(7);
+    // ctr recomputed = 20/400 = 0.05
+    expect(uf?.ctr).toBe(0.05);
+  });
+
+  it("keeps single-week rows intact and sorts by impressions desc", () => {
+    const rows = aggregateQueryPageRows(docs);
+    expect(rows[0].query).toBe("uf hoy"); // 400 > 40
+    expect(rows.find(r => r.query === "apv")?.impressions).toBe(40);
+  });
+
+  it("returns empty for empty input", () => {
+    expect(aggregateQueryPageRows([])).toEqual([]);
+    expect(aggregateQueryPageRows(undefined)).toEqual([]);
   });
 });
 

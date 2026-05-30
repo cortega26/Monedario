@@ -55,6 +55,31 @@ const calculatorNextStepItems = [
       ]
     : []),
 ];
+
+// FAQ de conversión para captar la familia "N uf a pesos chilenos" / "valor uf hoy".
+// Las cifras se derivan del valor UF vigente (Banco Central, vía snapshot) y van
+// fechadas; la página se regenera cuando el snapshot se actualiza.
+const ufToClp = (ufAmount: number) =>
+  "$" + Math.round(ufAmount * economicParameters.uf).toLocaleString("es-CL");
+const ufFaqs = [
+  {
+    question: "¿Cuánto es 1.000 UF en pesos chilenos?",
+    answer: `Al ${ufDateDisplay}, 1.000 UF equivalen a ${ufToClp(1000)} (UF = $${ufDisplay}). El valor de la UF cambia a diario, así que multiplica el monto en UF por el valor vigente del día para la cifra exacta.`,
+  },
+  {
+    question: "¿Cómo convierto UF a pesos?",
+    answer: `Multiplica la cantidad de UF por el valor de la UF del día. Por ejemplo, con la UF en $${ufDisplay} (${ufDateDisplay}), 500 UF equivalen a ${ufToClp(500)}. Usa el conversor de arriba para cualquier monto en UF o en pesos.`,
+  },
+  {
+    question: "¿Cuál es el valor de la UF hoy?",
+    answer: `La UF está en $${ufDisplay} al ${ufDateDisplay}, según la publicación oficial del Banco Central de Chile. Se reajusta todos los días entre el 10 de cada mes y el 9 del siguiente, en base al IPC del mes anterior.`,
+  },
+  {
+    question: "¿Por qué la UF cambia casi todos los días?",
+    answer:
+      "La UF se reajusta a diario repartiendo la inflación (IPC) del mes anterior en incrementos diarios. Por eso sube de forma gradual cuando hay inflación positiva y se mantiene o baja levemente cuando el IPC es negativo.",
+  },
+];
 ---
 
 <Layout
@@ -64,6 +89,7 @@ const calculatorNextStepItems = [
   <CalculatorJsonLd
     name="Conversor UF a Pesos Chile"
     description="Convierte UF a CLP y CLP a UF con valor diario de referencia y una tabla rápida de montos."
+    faqs={ufFaqs}
   />
   <Header />
   <Breadcrumb />
@@ -225,6 +251,24 @@ const calculatorNextStepItems = [
         Si quieres conectar esa explicación con IPC, reajustes y arriendo, sigue
         por la <a href={ufHubPath}>guía UF, inflación y costo de vida</a>.
       </p>
+    </section>
+
+    <section class="border-t border-border py-8">
+      <h2 class="mb-6 text-xl font-semibold">
+        Preguntas frecuentes sobre la conversión UF a pesos
+      </h2>
+      <dl class="space-y-6">
+        {
+          ufFaqs.map(faq => (
+            <div>
+              <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
+              <dd class="text-sm leading-relaxed text-secondary">
+                {faq.answer}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
     </section>
 
     <PrimaryCTA
