@@ -23,7 +23,37 @@ const AFP_LIST = [...AFP_COMMISSIONS_PERCENT].sort(
   (a, b) => a.commission - b.commission
 );
 
-const cheapest = AFP_LIST[0]; // PlanVital after sort
+const cheapest = AFP_LIST[0]; // lowest commission after ascending sort (AFP Uno)
+const mostExpensive = AFP_LIST[AFP_LIST.length - 1]; // highest commission (AFP ProVida)
+const afpByName = Object.fromEntries(AFP_LIST.map(afp => [afp.name, afp]));
+
+// es-CL percentage formatting (comma decimal) derived from the verified config.
+const fmtPct = (n: number) => `${n.toFixed(2).replace(".", ",")}%`;
+
+// FAQ answers are derived from the verified AFP_COMMISSIONS_PERCENT config
+// (validated monthly against Previred by check:afp-commissions) — never hardcoded.
+const comisionFaqs = [
+  {
+    question: "¿Cuál es la AFP con la comisión más baja en 2026?",
+    answer: `En 2026, ${cheapest.name} tiene la comisión más baja: ${fmtPct(cheapest.commission)} del sueldo imponible. La más alta es ${mostExpensive.name} con ${fmtPct(mostExpensive.commission)}. El 10% de cotización obligatoria es igual en todas las AFP; lo único que cambia entre administradoras es la comisión.`,
+  },
+  {
+    question: "¿Cuánto descuenta la AFP de mi sueldo en total?",
+    answer: `El descuento total es 10% de cotización —que va íntegro a tu cuenta individual— más la comisión de administración de la AFP. En 2026 el total va desde ${fmtPct(cheapest.total)} (${cheapest.name}) hasta ${fmtPct(mostExpensive.total)} (${mostExpensive.name}) del sueldo imponible.`,
+  },
+  {
+    question: "¿Cuánto cobra de comisión AFP Uno y AFP Modelo?",
+    answer: `En 2026, AFP Uno cobra ${fmtPct(afpByName["Uno"].commission)} de comisión y AFP Modelo ${fmtPct(afpByName["Modelo"].commission)}. Recuerda que sobre eso se suma el 10% de cotización que va a tu propio fondo, igual en todas las AFP.`,
+  },
+  {
+    question: "¿Las comisiones AFP cambian? ¿Dónde verifico la vigente?",
+    answer: `Sí: cada AFP fija su comisión y la Superintendencia de Pensiones publica las tasas vigentes. Esta calculadora usa las comisiones vigentes 2026, pero antes de cambiarte conviene confirmar la tasa actual directamente en la Superintendencia de Pensiones.`,
+  },
+  {
+    question: "¿Conviene cambiarse a la AFP más barata?",
+    answer: `Cambiarte a una AFP con menor comisión reduce el descuento mensual sin afectar el 10% que acumulas en tu fondo (es el mismo en todas). En sueldos altos o plazos largos, la diferencia de comisión acumula un costo real significativo. Revisa el proceso y los plazos en la guía de cómo cambiarse de AFP.`,
+  },
+];
 const currentCalculator = CALCULATOR_PORTFOLIO.find(
   calc => calc.slug === "comisiones-afp"
 );
@@ -55,6 +85,7 @@ const calculatorNextStepItems = [
   <CalculatorJsonLd
     name="Calculadora de Comisión AFP Chile 2026"
     description="Calcula cuánto descuenta cada AFP de tu sueldo y compara las comisiones vigentes en Chile 2026."
+    faqs={comisionFaqs}
   />
   <Header />
   <Breadcrumb />
@@ -210,7 +241,9 @@ const calculatorNextStepItems = [
         </li>
         <li>
           La comisión varía entre AFP: en 2026 va desde{" "}
-          {cheapest.commission.toFixed(2)}% hasta 0,77% según la administradora.
+          {fmtPct(cheapest.commission)} ({cheapest.name}) hasta{" "}
+          {fmtPct(mostExpensive.commission)} ({mostExpensive.name}) según la
+          administradora.
         </li>
         <li>
           Cambiarte a la AFP más barata reduce el descuento mensual sin afectar
@@ -236,6 +269,24 @@ const calculatorNextStepItems = [
           rel="noopener noreferrer">Superintendencia de Pensiones</a
         > antes de tomar una decisión.
       </p>
+    </section>
+
+    <section class="border-t border-border py-8">
+      <h2 class="mb-6 text-xl font-semibold">
+        Preguntas frecuentes sobre comisiones AFP
+      </h2>
+      <dl class="space-y-6">
+        {
+          comisionFaqs.map(faq => (
+            <div>
+              <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
+              <dd class="text-sm leading-relaxed text-secondary">
+                {faq.answer}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
     </section>
 
     <PrimaryCTA
