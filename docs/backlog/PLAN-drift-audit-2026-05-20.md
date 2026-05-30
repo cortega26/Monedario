@@ -121,6 +121,7 @@ Observaciones positivas:
 
 ### TD-0092 — Overlap editorial con riesgo de canibalizacion
 
+- **Cerrado 2026-05-30.** Keep-all validado por dato GSC (no por etiquetas): ningún par viola `cluster+canonicalTopic+owner`; interlink `descuentos ↔ imponible` agregado; `audit:cannibalization` (GSC query×page) mide canibalización real (W21 = 0) y reemplaza el umbral del criterio 3. Ver nota de cierre en `docs/TECH_DEBT_BACKLOG.md`.
 - Severidad: 3. Urgencia: P2.
 - Evidencia: `audit:topic-overlap` marco overlap alto entre inversion general 2026 y ETFs desde Chile; pares medios en operacion renta, seguro de cesantia, sueldo/descuentos, UF/IPC.
 - Riesgo: multiples paginas compiten por misma intencion sin ownership claro.

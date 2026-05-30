@@ -62,7 +62,7 @@ updatedDate: 2026-05-14T00:00:00Z
 
 Revisas tu liquidación y ves dos cifras distintas: "sueldo bruto" y "remuneración imponible". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque los descuentos de AFP, salud e impuesto no se calculan sobre el bruto — se calculan sobre el imponible.
 
-Si ya sabes qué es el imponible y quieres calcular el líquido completo, salta a la [calculadora de sueldo líquido](/posts/como-calcular-sueldo-liquido/). Si tienes el número y quieres auditar las líneas del comprobante, ve a [cómo auditar tu liquidación](/posts/liquidacion-de-sueldo/).
+Si ya sabes qué es el imponible y quieres calcular el líquido completo, salta a la [calculadora de sueldo líquido](/posts/como-calcular-sueldo-liquido/). Si tienes el número y quieres auditar las líneas del comprobante, ve a [cómo auditar tu liquidación](/posts/liquidacion-de-sueldo/). Y si quieres distinguir cuáles de esos descuentos son legales, cuáles autorizaste y cuáles no deberían estar, revisa la guía de [descuentos de sueldo](/posts/descuentos-de-sueldo/).
 
 ## ¿Qué es el sueldo imponible? Definición legal
 

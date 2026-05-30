@@ -72,7 +72,7 @@ Si lo que necesitas es saber qué debe mostrar el comprobante y cómo auditar su
 
 ### Descuentos legales — los que el empleador debe practicar
 
-Estos descuentos no dependen de tu autorización. La ley obliga al empleador a aplicarlos y tú no puedes renunciar a ellos.
+Estos descuentos no dependen de tu autorización. La ley obliga al empleador a aplicarlos y tú no puedes renunciar a ellos. Todos se calculan sobre tu [remuneración imponible](/posts/sueldo-imponible-chile/), no sobre el sueldo bruto total — por eso conviene saber primero qué entra en esa base.
 
 Si es tu primer empleo formal y estás viendo estos descuentos por primera vez, la [guía integral del primer empleo en Chile](/posts/primer-empleo-chile-guia-completa/) explica contrato, AFP y Fonasa desde cero.
 
