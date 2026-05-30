@@ -134,6 +134,7 @@ Observaciones positivas:
 
 ### TD-0094 — Taxonomia de fuentes oficiales dispersa e incompleta
 
+- **Cerrado 2026-05-30.** Nueva fuente canónica `src/config/official-hosts.json` (37 hosts + `type`); `analytics.ts` y `urlcheck/host-registry.mjs` derivan de ahí; nuevo `check:official-host-registry` valida consistencia y reporta hosts oficiales no clasificados. Se incorporaron 5 hosts `.gob.cl` que estaban en contenido sin clasificar. Ver nota de cierre en `docs/TECH_DEBT_BACKLOG.md`.
 - Severidad: 3. Urgencia: P2.
 - Evidencia: hosts oficiales viven en `scripts/legal-citations/registry.mjs`, `scripts/urlcheck/host-registry.mjs` y `src/utils/analytics.ts`. La lista de analytics no cubre todos los hosts usados como oficiales o semi-oficiales en contenido reciente.
 - Riesgo: medicion, validacion legal-citation y urlcheck pueden discrepar sobre que cuenta como fuente oficial.

@@ -1,21 +1,13 @@
+import officialHosts from "@/config/official-hosts.json";
+
 export const SCROLL_DEPTH_MILESTONES = [25, 50, 75, 100] as const;
 
-const OFFICIAL_HOST_SUFFIXES = [".gob.cl"] as const;
-const OFFICIAL_HOSTNAMES = new Set([
-  "afc.cl",
-  "bcn.cl",
-  "chileatiende.gob.cl",
-  "cmfchile.cl",
-  "dt.gob.cl",
-  "ine.cl",
-  "previsionsocial.gob.cl",
-  "sii.cl",
-  "spensiones.cl",
-  "suseso.gob.cl",
-  "superir.gob.cl",
-  "tesoreria.cl",
-  "si3.bcentral.cl",
-]);
+// Official source hosts derive from the canonical registry (TD-0094) so analytics,
+// urlcheck and editorial citations never diverge on what counts as official.
+const OFFICIAL_HOST_SUFFIXES = officialHosts.officialSuffixes;
+const OFFICIAL_HOSTNAMES = new Set(
+  officialHosts.hosts.map(entry => entry.host)
+);
 
 export type AnalyticsEventParams = Record<
   string,

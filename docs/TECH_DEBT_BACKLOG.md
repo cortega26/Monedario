@@ -8,12 +8,12 @@ Fecha de corte: 2026-05-30
 
 - **P0:** 7
 - **P1:** 27 (+3 desde auditoría de drift 2026-05-20)
-- **P2:** 41 (−4: TD-0076, TD-0091, TD-0087 y TD-0088 cerrados)
+- **P2:** 40 (−5: TD-0076, TD-0091, TD-0087, TD-0088 y TD-0094 cerrados)
 - **P3:** 12 (−2: TD-0078 y TD-0090 cerrados; TD-0093 también cerrado)
 
 ### Estado de avance (2026-05-30)
 
-- **Completados:** 86 TD únicos (`TD-0001`..`TD-0066`, `TD-0068`..`TD-0071`, `TD-0073`, `TD-0074`, `TD-0076`, `TD-0078`, `TD-0080`, `TD-0082`..`TD-0088`, `TD-0090`..`TD-0091`, `TD-0093`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
+- **Completados:** 87 TD únicos (`TD-0001`..`TD-0066`, `TD-0068`..`TD-0071`, `TD-0073`, `TD-0074`, `TD-0076`, `TD-0078`, `TD-0080`, `TD-0082`..`TD-0088`, `TD-0090`..`TD-0091`, `TD-0093`..`TD-0094`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
 - **En progreso:** 0
 - **Backlog sin iniciar:** 4 (`TD-0067`, `TD-0075`, `TD-0077`, `TD-0081`)
 - **Backlog en validación/diseño:** 2 (`TD-0072` parcial por referencias activas; `TD-0079` bloqueado por incompatibilidad WOFF2/Satori)
@@ -40,7 +40,7 @@ Fecha de corte: 2026-05-30
 ### Top riesgos restantes
 
 - Drift legal/YMYL de auditoría 2026-05-20: `TD-0084`, `TD-0085`, `TD-0086`.
-- Drift de fuentes canónicas, navegación y enlaces oficiales: `TD-0089`, `TD-0092`, `TD-0094` (`TD-0087` y `TD-0088` cerrados 2026-05-30).
+- Drift de fuentes canónicas, navegación y enlaces oficiales: `TD-0089`, `TD-0092` (`TD-0087`, `TD-0088` y `TD-0094` cerrados 2026-05-30).
 - Actualización de julio 2026: actualizar `imm` en `economic-parameters.snapshot.json` cuando se publique el decreto de reajuste del IMM.
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 
@@ -66,14 +66,15 @@ Fecha de corte: 2026-05-30
 - **Esfuerzo estimado:** M
 - **Propuesta de solución:** Crear o designar un registry canonico de hosts oficiales y derivar desde ahi analytics, legal citations y urlcheck. Donde el juicio sea editorial, documentar tipo de fuente: oficial, regulador, proveedor tecnico, referencia legal o semi-oficial.
 - **Criterios de cierre (checklist verificable):**
-- [ ] Existe una fuente canonica para host oficial y tipo de fuente.
-- [ ] `src/utils/analytics.ts` no mantiene una lista divergente.
-- [ ] `check:urls:external:audit` o un nuevo check reporta hosts oficiales no clasificados.
-- [ ] Cambios revisados contra `INVARIANT.URLCHECK.EXTERNAL_LINK_POLICY`.
-- **Owner:** TBD
-- **Estado:** Abierto
+- [x] Existe una fuente canonica para host oficial y tipo de fuente.
+- [x] `src/utils/analytics.ts` no mantiene una lista divergente.
+- [x] `check:urls:external:audit` o un nuevo check reporta hosts oficiales no clasificados.
+- [x] Cambios revisados contra `INVARIANT.URLCHECK.EXTERNAL_LINK_POLICY`.
+- **Owner:** Codex
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-20
-- **Última actualización:** 2026-05-20
+- **Última actualización:** 2026-05-30
+- **Nota de cierre 2026-05-30:** (1) Nueva fuente canónica `src/config/official-hosts.json` (37 hosts) con `type` por host (oficial/regulador/referencia-legal/proveedor-tecnico/semi-oficial) y `officialSuffixes` (.gob.cl/.gov.cl). (2) `src/utils/analytics.ts` ya no mantiene lista propia: `isOfficialSourceUrl` deriva del registro. (3) `scripts/urlcheck/host-registry.mjs` deriva `official_source` del mismo registro (familias de redirect y markers soft-404 sin cambios). (4) Nuevo guardrail `check:official-host-registry` (en `pnpm run check`): valida shape/tipos, que analytics no rehardcodee, que `classifyHost` devuelva `official_source` para cada host canónico, y reporta hosts `.gob.cl/.gov.cl` usados en contenido pero no clasificados. El cierre incorporó 5 hosts oficiales que estaban en contenido pero sin clasificar (ips.gob.cl, superdesalud.gob.cl, mintrab.gob.cl, claveunica.gob.cl, csirt.gob.cl) y unificó divergencias previas (analytics ahora reconoce bcentral.cl, tgr.cl, prevision.cl, AFPs, ine.gob.cl; urlcheck ahora clasifica si3.bcentral.cl, suseso.gob.cl, superir.gob.cl). Revisado contra `INVARIANT.URLCHECK.EXTERNAL_LINK_POLICY`: `official_source` sigue siendo categoría bloqueante; el registro canónico es ahora su origen de verdad. Nota: `scripts/legal-citations/registry.mjs` es un registro de leyes BCN (idNorma), no de hosts; su único host (bcn.cl) queda en el registro canónico. `pnpm run check`, `pnpm run test` y `pnpm run build` pasan limpios.
 
 ## TD-0093 — Meta descriptions largas no bloqueantes
 - **ID:** TD-0093

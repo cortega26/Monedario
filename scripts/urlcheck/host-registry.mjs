@@ -10,8 +10,21 @@
  *   unknown                – Unclassified hosts; non-blocking.
  */
 
+import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
+
 /** Self-origin hostnames treated as internal-equivalent and excluded from external checks. */
 export const SELF_ORIGINS = new Set(["monedario.cl", "www.monedario.cl"]);
+
+// ---- Canonical official-host registry (TD-0094) ----
+// Single source of truth shared with src/utils/analytics.ts. Each canonical host
+// is registered as official_source for both its bare and www. forms.
+const OFFICIAL_HOSTS_PATH = fileURLToPath(
+  new URL("../../src/config/official-hosts.json", import.meta.url)
+);
+export const OFFICIAL_HOSTS_REGISTRY = JSON.parse(
+  readFileSync(OFFICIAL_HOSTS_PATH, "utf8")
+);
 
 // ---- Host classification map (hostname → category) ----
 
@@ -23,78 +36,12 @@ function registerHosts(category, hosts) {
   }
 }
 
-registerHosts("official_source", [
-  // Banco Central de Chile
-  "www.bcentral.cl",
-  "bcentral.cl",
-  // CMF – Comisión para el Mercado Financiero
-  "www.cmfchile.cl",
-  "cmfchile.cl",
-  "conocetudeuda.cmfchile.cl",
-  // SII – Servicio de Impuestos Internos
-  "www.sii.cl",
-  "sii.cl",
-  // Superintendencia de Pensiones
-  "www.spensiones.cl",
-  "spensiones.cl",
-  // Ministerio de Previsión Social
-  "www.prevision.cl",
-  "prevision.cl",
-  // ChileAtiende
-  "www.chileatiende.gob.cl",
-  "chileatiende.gob.cl",
-  // Dirección del Trabajo
-  "www.dt.gob.cl",
-  "dt.gob.cl",
-  // Gobierno de Chile portal
-  "www.gob.cl",
-  "gob.cl",
-  // Ministerio de Economía
-  "www.economia.gob.cl",
-  "economia.gob.cl",
-  // Biblioteca del Congreso Nacional
-  "www.bcn.cl",
-  "bcn.cl",
-  // DICREP
-  "www.dicrep.cl",
-  "dicrep.cl",
-  // INE – Instituto Nacional de Estadísticas
-  "www.ine.cl",
-  "ine.cl",
-  // Ministry of Health
-  "www.minsal.cl",
-  "minsal.cl",
-  "www.redsalud.gov.cl",
-  "redsalud.gov.cl",
-  // SERVEL
-  "www.servel.cl",
-  "servel.cl",
-  // AFP institutions
-  "www.afpmodelo.cl",
-  "afpmodelo.cl",
-  "www.afphabitat.cl",
-  "afphabitat.cl",
-  "www.afpprovidencia.cl",
-  "afpprovidencia.cl",
-  "www.afpplanvital.cl",
-  "afpplanvital.cl",
-  "www.afpcapital.cl",
-  "afpcapital.cl",
-  "www.primamerica.cl",
-  "primamerica.cl",
-  "www.cuprum.cl",
-  "cuprum.cl",
-  // AFC Chile – Seguro de Cesantía
-  "www.afc.cl",
-  "afc.cl",
-  "www.afcchile.cl",
-  "afcchile.cl",
-  // Tesorería General de la República
-  "www.tesoreria.cl",
-  "tesoreria.cl",
-  "www.tgr.cl",
-  "tgr.cl",
-]);
+registerHosts(
+  "official_source",
+  OFFICIAL_HOSTS_REGISTRY.hosts.flatMap(({ host }) =>
+    host.startsWith("www.") ? [host] : [host, `www.${host}`]
+  )
+);
 
 registerHosts("trusted_reference", [
   "es.wikipedia.org",

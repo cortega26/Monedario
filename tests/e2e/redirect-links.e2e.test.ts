@@ -120,8 +120,9 @@ describe("V2 — HeroHomepage does not reference deprecated /cambios route", () 
 // ---------------------------------------------------------------------------
 
 describe("V3 — analytics trusted-domain set", () => {
-  it('analytics.ts contains "suseso.gob.cl" not "suseso.cl"', () => {
-    const content = readFile("src/utils/analytics.ts");
+  it('official-hosts registry uses suseso.gob.cl not suseso.cl', () => {
+    // Official hosts moved to the canonical registry (TD-0094); analytics derives from it.
+    const content = readFile("src/config/official-hosts.json");
     expect(content).toContain('"suseso.gob.cl"');
     expect(content).not.toContain('"suseso.cl"');
   });
