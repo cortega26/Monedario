@@ -2,46 +2,182 @@
   "_comment": "Canonical registry of official / quasi-official source hosts (TD-0094). Single source of truth consumed by src/utils/analytics.ts (isOfficialSourceUrl) and scripts/urlcheck/host-registry.mjs (official_source classification). Hosts are stored bare (without 'www.'); consumers normalize www. and may add suffix matching. 'type' documents the source nature: oficial | regulador | referencia-legal | proveedor-tecnico | semi-oficial.",
   "officialSuffixes": [".gob.cl", ".gov.cl"],
   "hosts": [
-    { "host": "bcentral.cl", "label": "Banco Central de Chile", "type": "oficial" },
-    { "host": "si3.bcentral.cl", "label": "Banco Central de Chile (SiETE)", "type": "oficial" },
-    { "host": "ine.cl", "label": "Instituto Nacional de Estadísticas (INE)", "type": "oficial" },
-    { "host": "ine.gob.cl", "label": "Instituto Nacional de Estadísticas (INE)", "type": "oficial" },
+    {
+      "host": "bcentral.cl",
+      "label": "Banco Central de Chile",
+      "type": "oficial"
+    },
+    {
+      "host": "si3.bcentral.cl",
+      "label": "Banco Central de Chile (SiETE)",
+      "type": "oficial"
+    },
+    {
+      "host": "ine.cl",
+      "label": "Instituto Nacional de Estadísticas (INE)",
+      "type": "oficial"
+    },
+    {
+      "host": "ine.gob.cl",
+      "label": "Instituto Nacional de Estadísticas (INE)",
+      "type": "oficial"
+    },
     { "host": "gob.cl", "label": "Gobierno de Chile", "type": "oficial" },
-    { "host": "economia.gob.cl", "label": "Ministerio de Economía", "type": "oficial" },
-    { "host": "chileatiende.gob.cl", "label": "ChileAtiende", "type": "oficial" },
-    { "host": "previsionsocial.gob.cl", "label": "Subsecretaría de Previsión Social", "type": "oficial" },
-    { "host": "prevision.cl", "label": "Ministerio del Trabajo y Previsión Social", "type": "oficial" },
-    { "host": "tesoreria.cl", "label": "Tesorería General de la República", "type": "oficial" },
-    { "host": "tgr.cl", "label": "Tesorería General de la República", "type": "oficial" },
-    { "host": "servel.cl", "label": "Servicio Electoral de Chile", "type": "oficial" },
+    {
+      "host": "economia.gob.cl",
+      "label": "Ministerio de Economía",
+      "type": "oficial"
+    },
+    {
+      "host": "chileatiende.gob.cl",
+      "label": "ChileAtiende",
+      "type": "oficial"
+    },
+    {
+      "host": "previsionsocial.gob.cl",
+      "label": "Subsecretaría de Previsión Social",
+      "type": "oficial"
+    },
+    {
+      "host": "prevision.cl",
+      "label": "Ministerio del Trabajo y Previsión Social",
+      "type": "oficial"
+    },
+    {
+      "host": "tesoreria.cl",
+      "label": "Tesorería General de la República",
+      "type": "oficial"
+    },
+    {
+      "host": "tgr.cl",
+      "label": "Tesorería General de la República",
+      "type": "oficial"
+    },
+    {
+      "host": "servel.cl",
+      "label": "Servicio Electoral de Chile",
+      "type": "oficial"
+    },
     { "host": "minsal.cl", "label": "Ministerio de Salud", "type": "oficial" },
-    { "host": "redsalud.gov.cl", "label": "Ministerio de Salud — RedSalud", "type": "oficial" },
-    { "host": "ips.gob.cl", "label": "Instituto de Previsión Social (IPS)", "type": "oficial" },
-    { "host": "mintrab.gob.cl", "label": "Ministerio del Trabajo y Previsión Social", "type": "oficial" },
-    { "host": "claveunica.gob.cl", "label": "ClaveÚnica — Gobierno de Chile", "type": "oficial" },
-    { "host": "csirt.gob.cl", "label": "CSIRT — Gobierno de Chile", "type": "oficial" },
+    {
+      "host": "redsalud.gov.cl",
+      "label": "Ministerio de Salud — RedSalud",
+      "type": "oficial"
+    },
+    {
+      "host": "ips.gob.cl",
+      "label": "Instituto de Previsión Social (IPS)",
+      "type": "oficial"
+    },
+    {
+      "host": "mintrab.gob.cl",
+      "label": "Ministerio del Trabajo y Previsión Social",
+      "type": "oficial"
+    },
+    {
+      "host": "claveunica.gob.cl",
+      "label": "ClaveÚnica — Gobierno de Chile",
+      "type": "oficial"
+    },
+    {
+      "host": "csirt.gob.cl",
+      "label": "CSIRT — Gobierno de Chile",
+      "type": "oficial"
+    },
 
-    { "host": "sii.cl", "label": "Servicio de Impuestos Internos (SII)", "type": "regulador" },
-    { "host": "cmfchile.cl", "label": "Comisión para el Mercado Financiero (CMF)", "type": "regulador" },
-    { "host": "conocetudeuda.cmfchile.cl", "label": "CMF — Conoce tu Deuda", "type": "regulador" },
-    { "host": "spensiones.cl", "label": "Superintendencia de Pensiones", "type": "regulador" },
-    { "host": "dt.gob.cl", "label": "Dirección del Trabajo", "type": "regulador" },
-    { "host": "suseso.gob.cl", "label": "Superintendencia de Seguridad Social (SUSESO)", "type": "regulador" },
-    { "host": "superir.gob.cl", "label": "Superintendencia de Insolvencia y Reemprendimiento", "type": "regulador" },
-    { "host": "superdesalud.gob.cl", "label": "Superintendencia de Salud", "type": "regulador" },
-    { "host": "dicrep.cl", "label": "Dirección General de Crédito Prendario", "type": "regulador" },
+    {
+      "host": "sii.cl",
+      "label": "Servicio de Impuestos Internos (SII)",
+      "type": "regulador"
+    },
+    {
+      "host": "cmfchile.cl",
+      "label": "Comisión para el Mercado Financiero (CMF)",
+      "type": "regulador"
+    },
+    {
+      "host": "conocetudeuda.cmfchile.cl",
+      "label": "CMF — Conoce tu Deuda",
+      "type": "regulador"
+    },
+    {
+      "host": "spensiones.cl",
+      "label": "Superintendencia de Pensiones",
+      "type": "regulador"
+    },
+    {
+      "host": "dt.gob.cl",
+      "label": "Dirección del Trabajo",
+      "type": "regulador"
+    },
+    {
+      "host": "suseso.gob.cl",
+      "label": "Superintendencia de Seguridad Social (SUSESO)",
+      "type": "regulador"
+    },
+    {
+      "host": "superir.gob.cl",
+      "label": "Superintendencia de Insolvencia y Reemprendimiento",
+      "type": "regulador"
+    },
+    {
+      "host": "superdesalud.gob.cl",
+      "label": "Superintendencia de Salud",
+      "type": "regulador"
+    },
+    {
+      "host": "dicrep.cl",
+      "label": "Dirección General de Crédito Prendario",
+      "type": "regulador"
+    },
 
-    { "host": "bcn.cl", "label": "Biblioteca del Congreso Nacional (LeyChile)", "type": "referencia-legal" },
+    {
+      "host": "bcn.cl",
+      "label": "Biblioteca del Congreso Nacional (LeyChile)",
+      "type": "referencia-legal"
+    },
 
-    { "host": "afc.cl", "label": "AFC Chile — Seguro de Cesantía", "type": "semi-oficial" },
-    { "host": "afcchile.cl", "label": "AFC Chile — Seguro de Cesantía", "type": "semi-oficial" },
+    {
+      "host": "afc.cl",
+      "label": "AFC Chile — Seguro de Cesantía",
+      "type": "semi-oficial"
+    },
+    {
+      "host": "afcchile.cl",
+      "label": "AFC Chile — Seguro de Cesantía",
+      "type": "semi-oficial"
+    },
 
-    { "host": "afpmodelo.cl", "label": "AFP Modelo", "type": "proveedor-tecnico" },
-    { "host": "afphabitat.cl", "label": "AFP Habitat", "type": "proveedor-tecnico" },
-    { "host": "afpprovidencia.cl", "label": "AFP ProVida", "type": "proveedor-tecnico" },
-    { "host": "afpplanvital.cl", "label": "AFP PlanVital", "type": "proveedor-tecnico" },
-    { "host": "afpcapital.cl", "label": "AFP Capital", "type": "proveedor-tecnico" },
-    { "host": "primamerica.cl", "label": "PrimAmérica Consultores (AFP)", "type": "proveedor-tecnico" },
+    {
+      "host": "afpmodelo.cl",
+      "label": "AFP Modelo",
+      "type": "proveedor-tecnico"
+    },
+    {
+      "host": "afphabitat.cl",
+      "label": "AFP Habitat",
+      "type": "proveedor-tecnico"
+    },
+    {
+      "host": "afpprovidencia.cl",
+      "label": "AFP ProVida",
+      "type": "proveedor-tecnico"
+    },
+    {
+      "host": "afpplanvital.cl",
+      "label": "AFP PlanVital",
+      "type": "proveedor-tecnico"
+    },
+    {
+      "host": "afpcapital.cl",
+      "label": "AFP Capital",
+      "type": "proveedor-tecnico"
+    },
+    {
+      "host": "primamerica.cl",
+      "label": "PrimAmérica Consultores (AFP)",
+      "type": "proveedor-tecnico"
+    },
     { "host": "cuprum.cl", "label": "AFP Cuprum", "type": "proveedor-tecnico" }
   ]
 }
