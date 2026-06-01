@@ -1,0 +1,4800 @@
+{
+  "fetchedAt": "2026-06-01T11:41:45Z",
+  "schemaVersion": 1,
+  "source": "gsc",
+  "week": "2026-W22",
+  "window": {
+    "from": "2026-05-25",
+    "to": "2026-05-31"
+  },
+  "data": [
+    {
+      "clicks": 1,
+      "ctr": 0.1429,
+      "impressions": 7,
+      "position": 7.57,
+      "query": "calculadora prepago credito"
+    },
+    {
+      "clicks": 1,
+      "ctr": 1,
+      "impressions": 1,
+      "position": 13,
+      "query": "calcular prepago credito consumo"
+    },
+    {
+      "clicks": 1,
+      "ctr": 0.0476,
+      "impressions": 21,
+      "position": 9.05,
+      "query": "devolución de impuestos 2026 simulador"
+    },
+    {
+      "clicks": 1,
+      "ctr": 0.5,
+      "impressions": 2,
+      "position": 23.5,
+      "query": "ley 20.575"
+    },
+    {
+      "clicks": 1,
+      "ctr": 1,
+      "impressions": 1,
+      "position": 3,
+      "query": "simulador de prepago de un crédito hipotecario"
+    },
+    {
+      "clicks": 1,
+      "ctr": 0.25,
+      "impressions": 4,
+      "position": 6.75,
+      "query": "simular declaracion de renta 2026"
+    },
+    {
+      "clicks": 1,
+      "ctr": 0.5,
+      "impressions": 2,
+      "position": 7,
+      "query": "tabla de afp 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 11,
+      "query": "0 10 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 14,
+      "query": "0 12 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 13,
+      "query": "0 2 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 31,
+      "query": "0 21 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 31,
+      "query": "0 22 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 16,
+      "query": "0 25 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 17,
+      "query": "0 25 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 26,
+      "query": "0 38 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 13,
+      "query": "0 5 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 12,
+      "query": "0,5 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 38,
+      "query": "0.1 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 29,
+      "query": "0.12 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 32,
+      "query": "0.21 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 34,
+      "query": "0.22 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 33,
+      "query": "0.23 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 29,
+      "query": "0.28 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 27,
+      "query": "0.32 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 36,
+      "query": "1 5 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 36,
+      "query": "1 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 18,
+      "query": "1 uf a peso chileno"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 24,
+      "query": "1 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 12,
+      "query": "1.48 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 27,
+      "query": "1.5 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 11,
+      "query": "10 5 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 25,
+      "query": "10 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 14,
+      "query": "10 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 12,
+      "query": "10,5 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 43,
+      "query": "100 uf cuanto es"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 6,
+      "position": 28.33,
+      "query": "1000 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 27,
+      "query": "1000 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 4,
+      "query": "10400 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 32.5,
+      "query": "10uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 36,
+      "query": "11 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 16,
+      "position": 20.25,
+      "query": "1100 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 11,
+      "query": "12 5 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 9,
+      "position": 27.89,
+      "query": "1200 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 18.5,
+      "query": "120000000 a uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 9,
+      "query": "1270 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 7.5,
+      "query": "12700 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 41,
+      "query": "1300 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 24,
+      "query": "1300 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 19,
+      "query": "135 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 10,
+      "query": "1399 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 36,
+      "query": "14 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 27,
+      "query": "15 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 10,
+      "query": "157 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 27,
+      "query": "160 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 19,
+      "query": "1600 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 11,
+      "query": "162 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 6,
+      "query": "1630 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 10.5,
+      "query": "1639 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 6.5,
+      "query": "16900 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 27,
+      "query": "170 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 27,
+      "query": "1700 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 7,
+      "position": 7.57,
+      "query": "1780 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 10,
+      "query": "184 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 32,
+      "query": "19 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 6,
+      "query": "19500 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 15,
+      "query": "2 5 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 30,
+      "query": "2 uf a clp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 17,
+      "query": "2 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 7,
+      "query": "21.130"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 8,
+      "query": "2180 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 7,
+      "query": "22500 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 8,
+      "query": "2295 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 8,
+      "query": "232 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 11,
+      "query": "2390 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 37,
+      "query": "24 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 12,
+      "query": "240 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 16,
+      "query": "2400 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 7,
+      "query": "246 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 6,
+      "query": "2499 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 7,
+      "query": "2540 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 8,
+      "query": "2580 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 9,
+      "query": "2730 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 5,
+      "query": "2790 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 6.5,
+      "query": "299 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 8,
+      "query": "2995 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 25,
+      "query": "3.700 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 37,
+      "query": "30 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 30,
+      "query": "3000 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 10,
+      "query": "3390 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 9,
+      "query": "3480 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 32,
+      "query": "35 uf a peso chileno"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 25,
+      "query": "35 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 27,
+      "query": "3500 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 9,
+      "query": "35000 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 7,
+      "query": "3570 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 20.5,
+      "query": "360 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 29,
+      "query": "3600 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 12,
+      "query": "3840 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 25,
+      "query": "39 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 7,
+      "query": "399 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 6,
+      "query": "3995 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 29,
+      "query": "4 5 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 29,
+      "query": "4 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 24,
+      "query": "4.000 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 24,
+      "query": "4.9 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 28,
+      "query": "40 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 30,
+      "query": "400 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 8,
+      "query": "4190 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 7,
+      "query": "4330 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 5,
+      "query": "4350 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 6,
+      "query": "4350 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 27,
+      "query": "45 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 27,
+      "query": "4500 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 6,
+      "query": "4590 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 13,
+      "query": "47 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 25,
+      "query": "4700 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 21,
+      "query": "49 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 6,
+      "query": "4950 uf a pesos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 8,
+      "query": "4950 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 6,
+      "query": "4990 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 11,
+      "query": "5 mil bruto da quanto liquido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 18,
+      "query": "50 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 10,
+      "query": "50 uf en pesos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 10,
+      "query": "500 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 7,
+      "position": 25.43,
+      "query": "500 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 6,
+      "query": "5040 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 30,
+      "query": "550 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 4,
+      "query": "580 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 8.5,
+      "query": "580 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 35,
+      "query": "6 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 15,
+      "query": "6.3 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 21,
+      "query": "60 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 13,
+      "position": 8.85,
+      "query": "600 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 9,
+      "position": 16.33,
+      "query": "600 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 29,
+      "query": "65 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 8.5,
+      "query": "6990 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 26,
+      "query": "6uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 29,
+      "query": "70 millones en uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 11,
+      "query": "740 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 27,
+      "query": "75 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 8,
+      "query": "770 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 32,
+      "query": "8 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 15,
+      "query": "80 millones en uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 11,
+      "query": "80 uf a pesos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 5,
+      "position": 14.4,
+      "query": "80 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 22,
+      "query": "80000 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 9.5,
+      "query": "8350 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 34,
+      "query": "85 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 5.5,
+      "query": "8990 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 11.5,
+      "query": "9 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 12,
+      "query": "9,5 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 30,
+      "query": "90 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 14,
+      "query": "950 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 23,
+      "query": "9800 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 9,
+      "query": "99000 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 6.33,
+      "query": "99000 unidades de fomento"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 29.67,
+      "query": "a que fondo de afp cambiarse hoy"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 50,
+      "query": "afp comision mas baja"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 6.5,
+      "query": "afp comisiones 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 19,
+      "query": "afp comparaciones"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 45.5,
+      "query": "afp con menos comision"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 1,
+      "query": "afp con menos comision 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 9,
+      "query": "afp cuanto te descuentan"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 11,
+      "query": "afp modelo comisión porcentaje 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 11,
+      "position": 9,
+      "query": "afp más barata 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 11,
+      "query": "afp porcentaje de descuento 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 28.5,
+      "query": "alta liquidez"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 47,
+      "query": "aporte del seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 13.75,
+      "query": "apv provida simulador"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 14,
+      "query": "apv simulador"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 47,
+      "query": "boletín comercial gratis con clave única"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 46,
+      "query": "cada cuanto se puede cobrar el seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 46.5,
+      "query": "cada cuanto tiempo se puede cobrar el seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 63,
+      "query": "caec"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 75,
+      "query": "calcula tu sueldo liquido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 26,
+      "query": "calculador de afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 91,
+      "query": "calculador de finiquito"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 17,
+      "position": 7,
+      "query": "calculadora comision afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 94,
+      "query": "calculadora de finiquito"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 97,
+      "query": "calculadora de finiquito chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 46,
+      "query": "calculadora de interes compuesto"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 38,
+      "query": "calculadora de interes compuesto chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 5,
+      "query": "calculadora de prepago"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 70,
+      "query": "calculadora de remuneraciones chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 74.5,
+      "query": "calculadora de sueldo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 70.33,
+      "query": "calculadora de tasa de interes anual"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 40,
+      "query": "calculadora de uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 97.5,
+      "query": "calculadora finiquito"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 62,
+      "query": "calculadora imposiciones chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 63,
+      "query": "calculadora impuesto a la renta chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 48,
+      "query": "calculadora interes compuesto"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 65,
+      "query": "calculadora sueldo imponible"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 75,
+      "query": "calculadora sueldo liquido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 52,
+      "query": "calculadora uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 5,
+      "query": "calcular declaracion de la renta"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 5,
+      "position": 33.6,
+      "query": "calcular deposito a plazo​"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 11,
+      "query": "calcular devolución de impuestos 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 96,
+      "query": "calcular finiquito"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 96,
+      "query": "calcular finiquito gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 74.5,
+      "query": "calcular sueldo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 74,
+      "query": "calcular sueldo base"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 7,
+      "position": 71.14,
+      "query": "calcular sueldo bruto a líquido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 83,
+      "query": "calcular sueldo imponible"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 75.25,
+      "query": "calcular sueldo liquido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 75,
+      "query": "calcular sueldo liquido chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 73,
+      "query": "calcular sueldo liquido con el bruto"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 69,
+      "query": "calcular sueldos liquidos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 39,
+      "query": "calculo afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 59,
+      "query": "calculo cotizaciones previsionales"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 98,
+      "query": "calculo de finiquito"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 7,
+      "position": 78.71,
+      "query": "calculo de indemnizacion"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 68.67,
+      "query": "calculo de remuneraciones"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 81,
+      "query": "calculo de sueldo liquido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 21,
+      "query": "calculo descuento afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 74,
+      "query": "calculo liquidacion de sueldo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 79,
+      "query": "calculo liquido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 78,
+      "query": "calculo remuneracion liquida"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 80.5,
+      "query": "calculo remuneraciones"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 79.5,
+      "query": "calculo sueldo liquido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 33,
+      "query": "cambiar cuenta 2 de afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 37,
+      "query": "cambiar uf a pesos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 35.5,
+      "query": "cambio de afp tiempo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 19,
+      "query": "cambio de comision afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 35,
+      "query": "cambio de plan de afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 39.5,
+      "query": "cambio de uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 28,
+      "query": "cambio uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 47,
+      "query": "cambio uf a pesos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 9,
+      "query": "carlos ortega gonzalez"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 55.5,
+      "query": "certificado de dicom gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 52.5,
+      "query": "certificado dicom gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 8,
+      "query": "chile impuesto global complementario tramo exento 2026 monto anual"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 10,
+      "query": "chile impuesto global complementario tramos 2026 uta"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 52,
+      "query": "chile uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 38,
+      "query": "cmf dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 50,
+      "query": "cobro seguro de cesantía por mutuo acuerdo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 55,
+      "query": "codigo tributario"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 27,
+      "query": "codigo tributario bcn"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 15,
+      "position": 25.93,
+      "query": "comision afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 8,
+      "position": 7.25,
+      "query": "comision afp 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 29,
+      "query": "comision afp modelo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 22,
+      "position": 9.77,
+      "query": "comision afp modelo 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 11.5,
+      "query": "comision afp uno 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 34,
+      "position": 21.71,
+      "query": "comisiones afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 45,
+      "position": 7.22,
+      "query": "comisiones afp 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 19.33,
+      "query": "comisiones afp 2026 chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 8,
+      "query": "comisiones afp chile 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 7.67,
+      "query": "comisiones afp chile 2026 superintendencia de pensiones"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 12,
+      "query": "comisiones afp chile actuales 2026 superintendencia de pensiones"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 32,
+      "query": "comisiones afp modelo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 20,
+      "position": 22.9,
+      "query": "comisiones de afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 1,
+      "query": "comisiones de las afp 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 25,
+      "query": "comisiones de todas las afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 15,
+      "position": 18.4,
+      "query": "comisiones vigentes afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 11,
+      "query": "comisión afp modelo 2026 porcentaje"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 12,
+      "position": 25.58,
+      "query": "comisión afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 9,
+      "query": "comisión afp 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 10,
+      "query": "comisión afp modelo 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 10,
+      "query": "comisión afp provida 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 62,
+      "query": "como calcular el impuesto a la renta en chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 31,
+      "query": "como calcular el interes de un deposito a plazo fijo​"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 50,
+      "query": "como calcular el seguro de cesantia en liquidacion de sueldo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 68,
+      "query": "como calcular la uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 74,
+      "query": "como calcular mi sueldo liquido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 72,
+      "query": "como funciona la cuenta 2"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 77,
+      "query": "como funciona la cuenta 2 de la afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 30,
+      "query": "como invertir en etf en chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 39,
+      "query": "como obtener mi dicom gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 56,
+      "query": "como puedo saber si estoy en dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 25,
+      "query": "como puedo saber si tengo dicom gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 48,
+      "query": "como saber deuda dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 6,
+      "position": 54,
+      "query": "como saber si estoy en dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 49.33,
+      "query": "como saber si estoy en dicom chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 48.5,
+      "query": "como saber si estoy en dicom con mi rut"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 41,
+      "query": "como saber si estoy en dicom con mi rut gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 41.75,
+      "query": "como saber si estoy en dicom gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 39,
+      "query": "como saber si tengo dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 34,
+      "query": "como saber si tengo dicom gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 48,
+      "query": "como saber si uno esta en dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 51.67,
+      "query": "como sacar dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 47.5,
+      "query": "como sacar dicom gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 49,
+      "query": "como sacar el dicom gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 54.5,
+      "query": "como se si estoy en dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 36,
+      "query": "como ver deuda en dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 39,
+      "query": "como ver dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 5,
+      "position": 18,
+      "query": "compara afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 8.5,
+      "query": "compara y decide"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 11,
+      "query": "comparador afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 49,
+      "query": "con cuantos meses puedo cobrar seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 41,
+      "query": "consultar dicom gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 41,
+      "query": "conversión de uf a pesos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 38,
+      "query": "conversión uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 35,
+      "query": "conversor de uf a peso chileno"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 47,
+      "query": "conversor peso a uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 31.5,
+      "query": "conversor uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 22,
+      "query": "convertidor de pesos a uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 19,
+      "query": "convertidor de uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 39,
+      "query": "convertidor de uf a pesos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 37,
+      "query": "convertidor de uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 19.33,
+      "query": "convertidor uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 19,
+      "query": "convertidor uf a peso chileno"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 12,
+      "query": "convertidor uf a pesos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 42,
+      "query": "convertir de uf a peso"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 35,
+      "query": "convertir de uf a pesos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 33,
+      "query": "convertir uf a peso chileno"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 48,
+      "query": "conviene pagar un credito hipotecario por adelantado​"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 6,
+      "position": 20.83,
+      "query": "conviene prepagar un credito de consumo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 50,
+      "query": "copago"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 43,
+      "query": "corredor de bolsa"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 38,
+      "query": "corredores de bolsa"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 12,
+      "position": 9.17,
+      "query": "costos afp 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 6.5,
+      "query": "costos y comisiones fondos mutuos etfs chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 23,
+      "query": "cotizacion afp modelo porcentaje"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 53,
+      "query": "crear cuenta 2 afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 79,
+      "query": "cual es el numero de cuenta en cuenta rut"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 48,
+      "query": "cual es el porcentaje de seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 81,
+      "query": "cual es el sueldo bruto en chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 91,
+      "query": "cual es el sueldo imponible"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 40,
+      "query": "cual es la afp con menor comision"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 40,
+      "query": "cual es la afp que menos descuenta"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 26.5,
+      "query": "cual es la cuenta rut"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 50,
+      "query": "cuando puedo cobrar el seguro de cesantía"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 46.5,
+      "query": "cuando puedo cobrar mi seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 63,
+      "query": "cuando se pierde el seguro de cesantía solidario"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 12.5,
+      "query": "cuanto descuenta afp uno del sueldo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 12,
+      "query": "cuanto descuenta cada afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 29,
+      "query": "cuanto descuenta la afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 70,
+      "query": "cuanto dura el seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 47,
+      "query": "cuanto dura el seguro de cesantia solidario"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 34,
+      "query": "cuanto es 0 2 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 23,
+      "query": "cuanto es 0 5 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 12,
+      "query": "cuanto es 0,135 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 47,
+      "query": "cuanto es 1 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 38,
+      "query": "cuanto es 1000 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 28,
+      "query": "cuanto es 1000 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 31,
+      "query": "cuanto es 12 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 13,
+      "query": "cuanto es 170 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 36,
+      "query": "cuanto es 2000 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 7,
+      "query": "cuanto es 3090 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 6,
+      "query": "cuanto es 4590 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 34,
+      "query": "cuanto es 60 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 24,
+      "query": "cuanto es 60 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 27,
+      "query": "cuanto es 800 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 11,
+      "position": 15.82,
+      "query": "cuanto es 950 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 50,
+      "query": "cuanto es el descuento de afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 87,
+      "query": "cuanto interes genera un deposito a plazo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 40,
+      "query": "cuanto paga seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 59.5,
+      "query": "cuanto se descuenta de afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 37,
+      "query": "cuanto se descuenta por afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 41,
+      "query": "cuanto son 100 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 8,
+      "query": "cuanto son 100.000 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 38,
+      "query": "cuanto son 1000 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 28,
+      "query": "cuanto son 1000 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 27,
+      "query": "cuanto son 80 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 16,
+      "query": "cuanto te descuenta la afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 80,
+      "query": "cuanto te pagan si te despiden"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 47,
+      "query": "cuanto tiempo puedo cobrar el seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 46,
+      "query": "cuanto tiempo se puede cobrar el seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 68,
+      "query": "cuanto vale 1 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 51,
+      "query": "cuantos dias se pagan de licencia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 50,
+      "query": "cuantos meses para cobrar seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 49,
+      "query": "cuantos meses se cobra el seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 49,
+      "query": "cuantos meses se puede cobrar el seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 77,
+      "query": "cuenta 2"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 9,
+      "query": "cuenta rut"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 27,
+      "query": "cuenta rut es cuenta corriente"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 40,
+      "query": "cuenta rut es lo mismo que cuenta vista"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 96,
+      "query": "cómo funciona el seguro complementario cuando estoy cesante"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 42,
+      "query": "de cuantos dias te pagan la licencia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 36,
+      "query": "de uf a peso chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 38,
+      "query": "de uf a pesos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 36,
+      "query": "de uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 5,
+      "query": "declaración de la renta 2026 simulador"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 37,
+      "query": "declaración de renta 2026 personas naturales"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 41,
+      "query": "decreto 3500"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 46.5,
+      "query": "del seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 29,
+      "query": "deposito a plazo en uf​ (ver si aplica)"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 75,
+      "query": "deposito a plazo fijo simulador"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 70.5,
+      "query": "deposito a plazo rescate"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 74.33,
+      "query": "deposito a plazo simulador"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 55,
+      "query": "deposito a plazo tasa"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 74.33,
+      "query": "depósito a plazo simulador"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 75,
+      "query": "depósitos a plazo simulador"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 30,
+      "query": "descuento afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 12,
+      "query": "descuento afp modelo 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 27.25,
+      "query": "descuento empleador afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 12,
+      "query": "descuentos afp 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 32,
+      "query": "descuentos de afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 53,
+      "query": "deudas de dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 48,
+      "query": "deudas dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 8,
+      "query": "devolución de impuestos 2025 simulador"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 9,
+      "position": 64.22,
+      "query": "dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 83,
+      "query": "dicom certificado"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 6,
+      "position": 48.5,
+      "query": "dicom chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 38,
+      "query": "dicom cl"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 56,
+      "query": "dicom como saber si estoy"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 35,
+      "query": "dicom consulta gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 55,
+      "query": "dicom empresas gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 41,
+      "query": "dicom financiero"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 5,
+      "position": 47.8,
+      "query": "dicom gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 37,
+      "query": "dicom gratis cmf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 5,
+      "position": 52.8,
+      "query": "dicom gratis con rut"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 92,
+      "query": "diferencia entre sueldo bruto y liquido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 17,
+      "query": "dl 3500 actualizado 2025"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 36,
+      "query": "donde puedo ver si estoy en dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 19,
+      "query": "donde ver mi dicom gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 58,
+      "query": "en cuántas cuotas se paga el seguro de cesantía"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 23.25,
+      "query": "es bueno cambiarse de afp ahora"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 49,
+      "query": "es obligatorio el seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 8,
+      "position": 69.13,
+      "query": "etf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 45,
+      "query": "etf bolsa"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 24,
+      "query": "etf broker"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 34,
+      "query": "etf chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 40,
+      "query": "etf en chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 15,
+      "query": "etf en uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 56,
+      "query": "etf inversiones"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 68,
+      "query": "etf invertir"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 73.33,
+      "query": "etf que es"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 92,
+      "query": "etf significado"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 62.67,
+      "query": "etfs"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 55,
+      "query": "etfs chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 87.5,
+      "query": "etfs sudamerica"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 46,
+      "query": "exchange traded fund"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 5,
+      "position": 75.4,
+      "query": "finiquito"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 99,
+      "query": "finiquito calcular"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 85,
+      "query": "finiquito laboral"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 79,
+      "query": "finiquito laboral chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 62,
+      "query": "finiquito por despido justificado"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 91,
+      "query": "finiquitos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 50.75,
+      "query": "fondo de emergencia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 80,
+      "query": "fondo de emergencias"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 54,
+      "query": "fondo seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 80.33,
+      "query": "fondos de emergencia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 97,
+      "query": "gratificacion legal"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 71,
+      "query": "gratificación legal chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 1,
+      "query": "hacer simulador renta"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 10,
+      "query": "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 49,
+      "query": "informe de dicom gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 54,
+      "query": "informe dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 48.33,
+      "query": "informe dicom gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 85,
+      "query": "interes compuesto"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 57,
+      "query": "inversión etf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 66,
+      "query": "invertir en etf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 31.5,
+      "query": "invertir en etf chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 60,
+      "query": "ipc actual"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 23,
+      "query": "la cuenta rut es cuenta corriente"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 11.33,
+      "query": "ley 18469"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 13,
+      "query": "ley 18469 salud"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 46,
+      "query": "ley 20009"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 14,
+      "query": "ley 20027"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 10,
+      "query": "ley 20027 chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 27.5,
+      "query": "ley 20555"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 9,
+      "query": "ley 20555 sernac"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 14.75,
+      "query": "ley 20575"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 7,
+      "query": "ley 21.130"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 12,
+      "position": 8.33,
+      "query": "ley 21130"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 7.5,
+      "query": "ley 21130 chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 40,
+      "query": "ley 21234"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 36,
+      "query": "ley 21561"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 10.5,
+      "query": "ley cae chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 68,
+      "query": "ley chao dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 63,
+      "query": "ley de factoring en chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 54.5,
+      "query": "ley dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 80,
+      "query": "ley portabilidad financiera"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 9,
+      "position": 80.89,
+      "query": "liquidacion de sueldo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 79,
+      "query": "liquidacion de sueldo online"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 77,
+      "query": "liquidacion por despido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 10,
+      "position": 49.9,
+      "query": "liquidaciones de sueldo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 11,
+      "position": 46.09,
+      "query": "liquidaciones de sueldo trabajador"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 85,
+      "query": "liquidación de sueldo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 85,
+      "query": "liquidación de sueldo chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 38,
+      "query": "me puedo cambiar de fondo afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 16,
+      "query": "mejor afp chile 2026 comparación rentabilidad comisiones"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 48,
+      "query": "monto del seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 74,
+      "query": "monto líquido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 30,
+      "query": "operacion de renta"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 6,
+      "position": 33.17,
+      "query": "operacion renta"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 6,
+      "position": 31.17,
+      "query": "operación renta"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 33.5,
+      "query": "operación renta 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 37,
+      "position": 7.54,
+      "query": "operación renta 2026 simulador"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 51.5,
+      "query": "pagina para ver dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 31,
+      "query": "pago de renta"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 19,
+      "query": "pagos devolucion de renta 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 22,
+      "query": "peso a uf chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 25,
+      "query": "pesos a uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 50,
+      "query": "plazo para cobrar seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 26,
+      "query": "plazo para pagar f22"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 9,
+      "query": "porcentaje afp 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 37,
+      "query": "porcentaje cotizacion afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 29,
+      "query": "porcentaje de afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 43,
+      "query": "porcentaje de descuento afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 50,
+      "query": "porcentaje del seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 30,
+      "query": "porcentaje descuento afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 56,
+      "query": "porcentaje seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 10.5,
+      "query": "porcentajes afp 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 71,
+      "query": "precio en uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 50,
+      "query": "precio utm chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 38.5,
+      "query": "prepago credito hipotecario"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 7,
+      "query": "provida"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 48,
+      "query": "puedo cobrar seguro de cesantía por mutuo acuerdo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 33,
+      "query": "que afp descuenta menos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 52,
+      "query": "que es copago"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 44,
+      "query": "que es corredor de bolsa"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 53,
+      "query": "que es cuenta 2 afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 28,
+      "query": "que es cuenta rut"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 58,
+      "query": "que es dicom chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 79,
+      "query": "que es el finiquito en chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 27,
+      "query": "que es el seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 50,
+      "query": "que es el sueldo imponible"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 70,
+      "query": "que es etf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 92,
+      "query": "que es la gratificacion en el sueldo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 67,
+      "query": "que es liquidez"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 63,
+      "query": "que es un etf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 60,
+      "query": "que es un fondo de emergencia y para que sirve"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 8,
+      "query": "que es una cuenta rut"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 66,
+      "query": "que es una liquidación de sueldo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 67,
+      "query": "que son etfs"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 57.5,
+      "query": "que son las cesantias"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 46,
+      "query": "que tipo de cuenta es la cuenta rut"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 66,
+      "query": "quien paga el seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 71,
+      "query": "qué son los aportes directos de apv"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 60,
+      "query": "registro dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 5,
+      "query": "renta 2026 simulador"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 63,
+      "query": "renta bruta mensual"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 74,
+      "query": "renta bruta y liquida"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 66,
+      "query": "renta imponible es bruto o líquido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 63,
+      "query": "renta imponible mensual"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 86,
+      "query": "renta liquida"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 64,
+      "query": "renta variable"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 8,
+      "query": "retencion en la fuente procedimiento 1 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 10,
+      "query": "retención tasa ley 21133 sobre rentas"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 36,
+      "query": "revisar dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 41.5,
+      "query": "saber si estoy en dicom gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 53,
+      "query": "sacar certificado de dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 48,
+      "query": "sacar certificado dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 46,
+      "query": "sacar dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 48,
+      "query": "sacar dicom gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 81.5,
+      "query": "sacar liquidacion de sueldo online"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 27.5,
+      "query": "salir boletin comercial"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 67,
+      "query": "se puede cobrar seguro de cesantia con mutuo acuerdo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 13,
+      "query": "seguridad financiera"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 33.5,
+      "query": "seguro cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 53,
+      "query": "seguro de cesantia despues de 11 años"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 56,
+      "query": "seguro de cesantia fondo solidario"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 58,
+      "query": "seguro de cesantia monto"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 52,
+      "query": "seguro de cesantia porcentaje"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 38,
+      "query": "seguro de cesantía"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 69,
+      "query": "seguro de cesantía por la municipalidad"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 36,
+      "query": "seguros de cesantía"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 11,
+      "query": "servicio de impuestos internos utm abril 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 12,
+      "query": "servicio de impuestos internos utm mayo 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 8.67,
+      "query": "sii declaración de renta simulador"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 11,
+      "query": "sii impuesto unico segunda categoria mayo 2026 tabla"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 11,
+      "query": "sii impuesto unico segunda categoria mayo 2026 tabla mensual"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 12,
+      "query": "sii impuesto unico segunda categoria tabla mayo 2026 utm chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 12,
+      "query": "sii impuesto único segunda categoría mayo 2026 tabla utm"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 11,
+      "query": "sii impuesto único segunda categoría tabla mayo 2026 chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 12,
+      "query": "sii tabla impuesto único segunda categoría mayo 2026 utm"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 12,
+      "query": "sii tabla impuesto único segunda categoría mayo 2026 utm chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 12,
+      "query": "sii valor utm abril 2026 chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 73,
+      "query": "simula tu deposito a plazo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 77,
+      "query": "simulacion depositos a plazo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 1,
+      "query": "simulación de la renta"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 45,
+      "query": "simulador afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 33.75,
+      "query": "simulador apv"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 6,
+      "position": 22,
+      "query": "simulador apv habitat"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 29,
+      "query": "simulador apv régimen b"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 93,
+      "query": "simulador calculo de finiquito"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 95,
+      "query": "simulador cálculo de finiquito"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 76,
+      "query": "simulador de deposito a plazo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 75.5,
+      "query": "simulador de depósito a plazo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 74.5,
+      "query": "simulador de depósitos a plazo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 97.25,
+      "query": "simulador de finiquito"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 95,
+      "query": "simulador de finiquito chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 80,
+      "query": "simulador de liquidacion de sueldo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 9,
+      "query": "simulador de prepago de credito"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 12,
+      "query": "simulador de prepago de un crédito"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 20,
+      "query": "simulador de prepago de un crédito de consumo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 1,
+      "query": "simulador de renta"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 3,
+      "query": "simulador de renta 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 2,
+      "query": "simulador declaracion de renta 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 4,
+      "query": "simulador declaración anual 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 4,
+      "query": "simulador declaración de la renta 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 71.33,
+      "query": "simulador deposito a plazo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 73,
+      "query": "simulador depositos a plazo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 91,
+      "query": "simulador depósito a plazo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 71,
+      "query": "simulador depósitos a plazo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 96,
+      "query": "simulador finiquito"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 94.5,
+      "query": "simulador finiquito chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 11,
+      "query": "simulador impuesto a la renta"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 9,
+      "query": "simulador impuesto a la renta 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 8,
+      "query": "simulador operacion renta"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 11.5,
+      "query": "simulador prepago crédito hipotecario"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 12,
+      "query": "simulador renta 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 35,
+      "query": "simulador retiro apv"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 76,
+      "query": "simulador sueldo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 69,
+      "query": "simuladores depositos a plazo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 76,
+      "query": "simuladores plazo fijo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 9,
+      "query": "simular declaracion renta"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 56,
+      "query": "simular deposito a plazo banco de chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 92,
+      "query": "simular finiquito"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 19,
+      "query": "simular prepago de credito"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 57.5,
+      "query": "sistema de afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 49,
+      "query": "spread"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 11,
+      "query": "spread traduccion financiera"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 82,
+      "query": "sueldo base y sueldo liquido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 80,
+      "query": "sueldo bruto"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 80.5,
+      "query": "sueldo bruto a liquido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 89,
+      "query": "sueldo bruto y liquido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 91,
+      "query": "sueldo imponible"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 82.5,
+      "query": "sueldo liquido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 88,
+      "query": "sueldo liquido minimo en chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 99,
+      "query": "sueldo liquido y bruto"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 93,
+      "query": "sueldo líquido mínimo en chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 8,
+      "position": 9.63,
+      "query": "superintendencia de pensiones comisiones afp 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 9.33,
+      "query": "superintendencia de pensiones comisiones afp 2026 chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 9,
+      "query": "superintendencia de pensiones comisiones afp 2026 oficial"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 9,
+      "query": "superintendencia de pensiones comisiones afp 2026 tabla"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 6,
+      "position": 7.83,
+      "query": "superintendencia de pensiones comisiones afp uno 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 5,
+      "position": 8.8,
+      "query": "superintendencia de pensiones comisiones afp vigentes 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 6,
+      "position": 9.33,
+      "query": "superintendencia de pensiones comisión afp 2026 chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 9,
+      "query": "superintendencia de pensiones comisión afp modelo 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 9,
+      "query": "superintendencia pensiones comisiones afp 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 5,
+      "position": 9.6,
+      "query": "tabla comisiones afp 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 10,
+      "query": "tabla de comisiones afp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 10.5,
+      "query": "tabla de comisiones afp 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 11,
+      "query": "tabla impuesto unico segunda categoria mayo 2026 sii"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 12,
+      "query": "tabla impuesto único segunda categoría mayo 2026 sii"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 24,
+      "query": "tabla impuesto único 2022"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 68,
+      "query": "tabla interes compuesto"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 61,
+      "query": "tasa deposito a plazo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 66,
+      "query": "tasa interés depósito a plazo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "position": 4.75,
+      "query": "tasas afp 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 6,
+      "position": 9.5,
+      "query": "tasas de afp 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 49,
+      "query": "tiene tope el seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 54,
+      "query": "tipo de cuenta cuenta rut"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 40,
+      "query": "tope gratificación"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "position": 44,
+      "query": "tope inponible"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 44,
+      "query": "tope legal gratificacion"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 74,
+      "query": "total haberes"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 7,
+      "query": "tramo exento impuesto global complementario chile 2026 monto anual"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 10,
+      "query": "tramos impuesto unico segunda categoria chile 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 46,
+      "query": "transformador uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 18,
+      "query": "transformador uf a pesos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 10,
+      "position": 14.1,
+      "query": "transformar uf a pesos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 44,
+      "query": "uf a clp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 43,
+      "query": "uf a oeso"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 43,
+      "query": "uf a peso"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 39,
+      "query": "uf a peso hoy"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 18,
+      "query": "uf a pesos calculadora"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 38,
+      "query": "uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 37,
+      "query": "uf a pesos chilenos hoy"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 21,
+      "query": "uf apeso"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 54,
+      "query": "uf calculadora"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 31,
+      "query": "uf calcular"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 66.5,
+      "query": "uf chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 42,
+      "query": "uf conversor"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 55,
+      "query": "uf converter"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 44,
+      "query": "uf en pesos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 45,
+      "query": "uf en pesos chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 40,
+      "query": "uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 34,
+      "query": "uf hoy calculadora"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 45,
+      "query": "uf hoy calcular"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 29,
+      "query": "uf pesos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 50.5,
+      "query": "uf to clp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 58,
+      "query": "unidad de fomento a peso chileno"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 9.5,
+      "query": "uta 2026 chile valor exacto"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 77,
+      "query": "utm"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 8,
+      "query": "utm abril 2026 chile valor oficial"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 12,
+      "query": "utm abril 2026 chile valor oficial sii"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 64,
+      "query": "utm hoy chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 59,
+      "query": "utm hoy valor"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 43,
+      "query": "valor de la uf chilena"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 54,
+      "query": "valor de la utm hoy"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 40,
+      "query": "valor uf a pesos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 50,
+      "query": "valor uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 53,
+      "query": "valor uf hoy calcular"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 35,
+      "query": "ver dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 33,
+      "query": "ver dicom con rut"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 6,
+      "position": 36.67,
+      "query": "ver dicom gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 37,
+      "query": "ver dicom gratis con rut"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 41,
+      "query": "ver si estoy en dicom gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 44,
+      "query": "verificar dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "position": 82,
+      "query": "volatilidad que es"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "position": 42,
+      "query": "www dicom cl certificado de deuda gratis"
+    }
+  ]
+}
