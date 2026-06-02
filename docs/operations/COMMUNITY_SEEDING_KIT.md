@@ -107,6 +107,13 @@ autopromoción de **cada** subreddit antes de postear (varios exigen el 9:1 y ba
 - Postear en hilos donde el tema no calza exacto.
 - Afirmar montos volátiles (UF, montos AFP futuros) como fijos.
 
+## Escuchar dónde sembrar (automático)
+
+El monitor de menciones de Reddit (`workers/reddit-mention-monitor/`, ver
+`docs/adr/ADR-20260601-reddit-mention-monitor.md`) avisa por Discord cada ~15 min cuando alguien
+postea sobre estos temas, con la calculadora sugerida. Flujo: **llega la alerta → abres este kit →
+respondes con valor**. El monitor solo escucha; nunca postea por ti.
+
 ## Medir si funciona
 Tras 2-3 semanas de siembra, re-corre `pnpm run data-signals:gsc:local` y mira si suben **clicks** e
 **impresiones de marca** ("monedario") en `output/operations/data-signals/gsc/`. La siembra debería
