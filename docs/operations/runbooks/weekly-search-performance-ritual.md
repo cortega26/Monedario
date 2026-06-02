@@ -25,6 +25,14 @@ El ritual ahora es **híbrido e issue-driven**:
 
 Si no existen exports para la semana, el workflow igual deja issue + checklist + bundle inicializado. El workflow usa la **última semana ISO completa** (la misma referencia que `data-signals.yml`) y, si ya existen JSON repo-locales de GSC para esa semana, genera un scorecard inicial automáticamente aunque después igual haya que completar indexación/Bing o analytics.
 
+### Cadencia: quincenal (2026-06-01)
+
+Aunque el nombre y el cron son "weekly", el workflow corre de forma **quincenal**: el `schedule` dispara todos los lunes pero el job se autodescarta en semanas ISO impares (step "Gate cadence"). `workflow_dispatch` manual siempre corre. Motivo: con el volumen actual (~1.4k impresiones, clics de un dígito por semana) un ritual semanal generaba más ruido que señal; quincenal preserva la señal con la mitad de issues. Cuando el tráfico crezca, volver a semanal es revertir el guard.
+
+### `analytics-events.csv` diferido
+
+El análisis de comportamiento on-site (`analytics-events.csv`: scroll, CTA, tool completion) queda **diferido hasta que el tráfico lo amerite (>~100 clics/semana)**. Hoy las decisiones las maneja la señal de GSC (`pnpm run data-signals:gsc:local` + `audit:striking-distance` / `audit:cannibalization`); con clics de un dígito el CSV no produce decisiones que GSC no dé. El scorecard funciona sin él. No es un pendiente: es una espera deliberada por tamaño de muestra.
+
 ## Fuentes de verdad
 
 - Watchlist estratégica: `docs/operations/runbooks/weekly-search-performance-watchlist.json`
