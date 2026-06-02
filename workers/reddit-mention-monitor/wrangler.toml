@@ -1,0 +1,36 @@
+name = "monedario-reddit-mention-monitor"
+main = "src/index.ts"
+compatibility_date = "2026-01-15"
+workers_dev = true
+
+[triggers]
+# Every 15 minutes. App-only Reddit search is ~1 request per keyword group, so a
+# run uses well under the 60 req/min free-tier budget. Dedup via KV makes repeated
+# runs safe (already-seen posts are not re-alerted).
+crons = ["*/15 * * * *"]
+
+# Cross-run dedup store. Key = Reddit post id (t3_...); value = ISO timestamp.
+# Entries expire after 7 days (expirationTtl in code) so the namespace stays small.
+[[kv_namespaces]]
+binding = "REDDIT_SEEN"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[vars]
+# Reddit requires a unique, descriptive User-Agent. Update the /u/ handle to the
+# account that owns the registered app.
+REDDIT_USER_AGENT = "web:cl.monedario.reddit-monitor:v1 (by /u/monedario_cl)"
+# Comma-separated time window for search recency (Reddit `t` param): hour|day|week.
+SEARCH_TIME_WINDOW = "day"
+# Max posts requested per keyword group (Reddit `limit`, 1-100).
+SEARCH_LIMIT = "25"
+# Minimum post score to alert (filters very low-signal noise). 0 = alert all.
+MIN_SCORE = "0"
+
+[observability]
+enabled = true
+
+# Secrets — set with `wrangler secret put <NAME> --config workers/reddit-mention-monitor/wrangler.toml`:
+#   REDDIT_CLIENT_ID       — from reddit.com/prefs/apps (app type: script/web)
+#   REDDIT_CLIENT_SECRET   — same app
+#   DISCORD_WEBHOOK_URL    — Discord channel webhook that receives the alerts
+#   CHECK_SECRET           — arbitrary string gating the manual /__check endpoint
