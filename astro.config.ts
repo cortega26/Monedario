@@ -1,5 +1,6 @@
 import { defineConfig, envField } from "astro/config";
 import type { AstroIntegration } from "astro";
+import { unified } from "@astrojs/markdown-remark";
 import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import { EnumChangefreq } from "sitemap";
@@ -262,11 +263,13 @@ export default defineConfig({
     swVersionIntegration(),
   ],
   markdown: {
-    remarkPlugins: [
-      remarkEconomicVariables,
-      [remarkPrefixInternalLinks, SITE_BASE],
-      remarkStripTocSection,
-    ],
+    processor: unified({
+      remarkPlugins: [
+        remarkEconomicVariables,
+        [remarkPrefixInternalLinks, SITE_BASE],
+        remarkStripTocSection,
+      ],
+    }),
     shikiConfig: {
       // For more themes, visit https://shiki.style/themes
       themes: { light: "min-light", dark: "night-owl" },
