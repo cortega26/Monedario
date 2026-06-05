@@ -116,7 +116,7 @@
     "@lhci/cli": "^0.15.1",
     "@pagefind/default-ui": "^1.5.2",
     "@playwright/test": "^1.60.0",
-    "@shikijs/transformers": "^4.1.0",
+    "@shikijs/transformers": "^4.2.0",
     "@tailwindcss/typography": "^0.5.19",
     "@types/js-yaml": "^4.0.9",
     "@types/lodash.kebabcase": "^4.1.9",
