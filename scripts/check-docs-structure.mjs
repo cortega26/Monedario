@@ -101,6 +101,10 @@ function isAllowedLocation(filePath) {
     return true;
   }
 
+  if (filePath === "workers/reddit-mention-monitor/README.md") {
+    return true;
+  }
+
   return ALLOWED_PREFIXES.some((prefix) => filePath.startsWith(prefix));
 }
 
