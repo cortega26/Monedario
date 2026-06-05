@@ -98,7 +98,7 @@
     "@kindspells/astro-shield": "^1.7.1",
     "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/vite": "^4.3.0",
-    "astro": "^6.3.7",
+    "astro": "^6.4.4",
     "lodash.kebabcase": "^4.1.1",
     "openai": "^6.39.0",
     "react": "^19.2.6",
