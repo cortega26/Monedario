@@ -2,7 +2,7 @@
 useDefault = true
 
 [allowlist]
-description = "Ignore local/generated files that are already outside versioned source control."
+description = "Ignore local/generated files and known false positives."
 paths = [
   '''(^|/)\.claude/''',
   '''(^|/)\.env$''',
@@ -11,4 +11,9 @@ paths = [
   '''(^|/)node_modules/''',
   '''(^|/)output/playwright/''',
   '''(^|/)output/security/''',
+  # Known false positives:
+  # - decisionWizards.ts: resultKey strings detected as generic-api-key
+  # - autor.astro: Web3Forms public UUID for contact form
+  '''(^|/)src/config/decisionWizards\.ts$''',
+  '''(^|/)src/pages/autor\.astro$''',
 ]
