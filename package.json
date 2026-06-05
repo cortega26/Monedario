@@ -117,7 +117,7 @@
     "@lhci/cli": "^0.15.1",
     "@pagefind/default-ui": "^1.5.2",
     "@playwright/test": "^1.60.0",
-    "@shikijs/transformers": "^4.1.0",
+    "@shikijs/transformers": "^4.2.0",
     "@tailwindcss/typography": "^0.5.19",
     "@types/js-yaml": "^4.0.9",
     "@types/lodash.kebabcase": "^4.1.9",
@@ -127,7 +127,7 @@
     "eslint-plugin-astro": "^1.7.0",
     "globals": "^17.6.0",
     "js-yaml": "^4.2.0",
-    "knip": "^6.14.2",
+    "knip": "^6.15.0",
     "linkinator": "^7.6.1",
     "pagefind": "^1.5.2",
     "prettier": "^3.8.3",
@@ -137,6 +137,6 @@
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.60.0",
     "vitest": "^4.1.7",
-    "wrangler": "^4.94.0"
+    "wrangler": "^4.98.0"
   }
 }
