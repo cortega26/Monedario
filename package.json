@@ -118,12 +118,12 @@
     "@pagefind/default-ui": "^1.5.2",
     "@playwright/test": "^1.60.0",
     "@shikijs/transformers": "^4.2.0",
-    "@tailwindcss/typography": "^0.5.19",
+    "@tailwindcss/typography": "^0.5.20",
     "@types/js-yaml": "^4.0.9",
     "@types/lodash.kebabcase": "^4.1.9",
     "@typescript-eslint/parser": "^8.60.0",
-    "@vitest/coverage-v8": "^4.1.7",
-    "eslint": "^10.4.0",
+    "@vitest/coverage-v8": "^4.1.8",
+    "eslint": "^10.4.1",
     "eslint-plugin-astro": "^1.7.0",
     "globals": "^17.6.0",
     "js-yaml": "^4.2.0",
@@ -136,7 +136,7 @@
     "sitemap": "^9.0.1",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.60.0",
-    "vitest": "^4.1.7",
+    "vitest": "^4.1.8",
     "wrangler": "^4.98.0"
   }
 }
