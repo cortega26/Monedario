@@ -127,7 +127,7 @@
     "eslint-plugin-astro": "^1.7.0",
     "globals": "^17.6.0",
     "js-yaml": "^4.2.0",
-    "knip": "^6.15.0",
+    "knip": "^6.16.1",
     "linkinator": "^7.6.1",
     "pagefind": "^1.5.2",
     "prettier": "^3.8.3",
