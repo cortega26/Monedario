@@ -113,7 +113,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
     "@axe-core/playwright": "^4.11.3",
-    "@cloudflare/workers-types": "^4.20260605.1",
+    "@cloudflare/workers-types": "^4.20260608.1",
     "@lhci/cli": "^0.15.1",
     "@pagefind/default-ui": "^1.5.2",
     "@playwright/test": "^1.60.0",
@@ -121,13 +121,13 @@
     "@tailwindcss/typography": "^0.5.19",
     "@types/js-yaml": "^4.0.9",
     "@types/lodash.kebabcase": "^4.1.9",
-    "@typescript-eslint/parser": "^8.60.0",
+    "@typescript-eslint/parser": "^8.61.0",
     "@vitest/coverage-v8": "^4.1.7",
     "eslint": "^10.4.0",
     "eslint-plugin-astro": "^1.7.0",
     "globals": "^17.6.0",
     "js-yaml": "^4.2.0",
-    "knip": "^6.15.0",
+    "knip": "^6.16.1",
     "linkinator": "^7.6.1",
     "pagefind": "^1.5.2",
     "prettier": "^3.8.3",
@@ -135,7 +135,7 @@
     "prettier-plugin-tailwindcss": "^0.8.0",
     "sitemap": "^9.0.1",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.60.0",
+    "typescript-eslint": "^8.61.0",
     "vitest": "^4.1.7",
     "wrangler": "^4.98.0"
   }
