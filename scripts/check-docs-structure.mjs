@@ -29,6 +29,7 @@ const ALLOWED_PREFIXES = [
   ".github/",
   "output/",
   "memory/",
+  "plans/",
 ];
 
 const CONTEXT_LEGACY_DOC_PATTERNS = [

@@ -92,9 +92,6 @@ jobs:
       - name: "🗂️ Regenerate published-articles index"
         run: node scripts/hero-images/scan-articles.mjs
 
-      - name: "🕒 Regenerate page-lastmod index"
-        run: node scripts/build-page-lastmod.mjs
-
       # --- Propose fixes as a reviewable, auto-merging PR --------------------
       - name: "📬 Create pull request"
         id: create-pr
@@ -110,7 +107,6 @@ jobs:
             - `pnpm run astro sync`
             - `pnpm exec prettier --write .`
             - `node scripts/hero-images/scan-articles.mjs`
-            - `node scripts/build-page-lastmod.mjs`
 
             No content, route, RSS, or contract changes. Runs through the CI gate
             and squash auto-merges when green. A clean tree produces no PR.
