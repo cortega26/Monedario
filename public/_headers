@@ -1,5 +1,5 @@
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com https://storage.ko-fi.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.ko-fi.com; connect-src 'self' https://static.cloudflareinsights.com https://api.web3forms.com; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://static.cloudflareinsights.com https://storage.ko-fi.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://storage.ko-fi.com https://cdn.ko-fi.com; connect-src 'self' https://static.cloudflareinsights.com https://api.web3forms.com; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'
   Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), microphone=(), payment=(), usb=()
   Referrer-Policy: strict-origin-when-cross-origin
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
