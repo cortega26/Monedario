@@ -1,5 +1,5 @@
 {
-  "uf": 40774.12,
+  "uf": 40776.84,
   "utm": 71506,
   "uta": 834504,
   "ipc": 0.2,
@@ -12,19 +12,19 @@
     "pensionAndHealthMonthlyTaxableCapUf": 90
   },
   "indicatorUpdatedAt": {
-    "uf": "2026-06-13",
+    "uf": "2026-06-14",
     "utm": "2026-06-01",
     "uta": "2025-12-01",
     "ipc": "2026-05-01",
     "dolar": "2026-06-12"
   },
-  "lastUpdated": "2026-06-13",
-  "capturedAt": "2026-06-13T10:15:42.616Z",
+  "lastUpdated": "2026-06-14",
+  "capturedAt": "2026-06-14T10:15:07.106Z",
   "source": "mindicador.cl/api",
   "prev": {
     "uf": {
-      "valor": 40771.41,
-      "fecha": "2026-06-12"
+      "valor": 40774.12,
+      "fecha": "2026-06-13"
     },
     "utm": {
       "valor": 70588,
