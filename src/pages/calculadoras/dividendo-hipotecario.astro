@@ -664,7 +664,7 @@ const calculatorNextStepItems = [
     );
 
     const tbody = document.getElementById("amort-body") as HTMLElement;
-    tbody.innerHTML = "";
+    tbody.replaceChildren();
     const schedule = resultado.amortizationSchedule;
 
     const buildAmortRow = (row: (typeof schedule)[0], hidden: boolean) => {
@@ -708,13 +708,11 @@ const calculatorNextStepItems = [
         : "Ver tabla completa";
     };
 
-    document.dispatchEvent(
-      new CustomEvent("calculator:result", {
-        detail: {
-          summaryText: `Dividendo hipotecario: ${fmtPesos(resultado.basePaymentPesos)}/mes (${resultado.basePaymentUF.toFixed(2)} UF)`,
-        },
-      })
-    );
+    if (typeof window.showShareResult === "function") {
+      window.showShareResult(
+        `Dividendo hipotecario: ${fmtPesos(resultado.basePaymentPesos)}/mes (${resultado.basePaymentUF.toFixed(2)} UF)`
+      );
+    }
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "dividendo-hipotecario",
       calculator_name: "Calculadora de Dividendo Hipotecario",

@@ -343,18 +343,7 @@ describe("Wave 2 structural guards", () => {
         `src/pages/calculadoras/${slug}.astro`,
         "utf8"
       );
-      // sueldo-liquido was refactored: logic is in formController.ts
-      if (slug === "sueldo-liquido") {
-        const moduleSource = readFileSync(
-          "src/utils/sueldo-liquido/formController.ts",
-          "utf8"
-        );
-        expect(source + moduleSource).toContain(
-          "showCalculatorNextActions?.()"
-        );
-      } else {
-        expect(source).toContain("showCalculatorNextActions?.()");
-      }
+      expect(source).toContain("showCalculatorNextActions?.()");
     }
   });
 
@@ -364,19 +353,8 @@ describe("Wave 2 structural guards", () => {
         `src/pages/calculadoras/${slug}.astro`,
         "utf8"
       );
-      if (slug === "sueldo-liquido") {
-        const moduleSource = readFileSync(
-          "src/utils/sueldo-liquido/formController.ts",
-          "utf8"
-        );
-        expect(source + moduleSource).toContain('"calculator_completed"');
-        expect(source + moduleSource).toContain(
-          `calculator_slug: "${slug}"`
-        );
-      } else {
-        expect(source).toContain('"calculator_completed"');
-        expect(source).toContain(`calculator_slug: "${slug}"`);
-      }
+      expect(source).toContain('"calculator_completed"');
+      expect(source).toContain(`calculator_slug: "${slug}"`);
     }
   });
 
@@ -386,15 +364,7 @@ describe("Wave 2 structural guards", () => {
         `src/pages/calculadoras/${slug}.astro`,
         "utf8"
       );
-      if (slug === "sueldo-liquido") {
-        const moduleSource = readFileSync(
-          "src/utils/sueldo-liquido/formController.ts",
-          "utf8"
-        );
-        expect(source + moduleSource).toContain('"calculator_complete"');
-      } else {
-        expect(source).toContain('"calculator_complete"');
-      }
+      expect(source).toContain('"calculator_complete"');
     }
   });
 

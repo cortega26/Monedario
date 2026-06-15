@@ -434,17 +434,26 @@ const interesCompuestoFaqs = [
     const section = document.getElementById("tabla-evolucion-section");
     if (!tbody || !section) return;
 
-    tbody.innerHTML = "";
+    tbody.replaceChildren();
     evolucion.forEach(
       ({ year, balance, yearInterest, accumulatedInterest }) => {
         const tr = document.createElement("tr");
         tr.className = "text-sm";
-        tr.innerHTML = `
-        <td class="py-2 pr-4 text-secondary">${year}</td>
-        <td class="py-2 pr-4 font-mono font-medium">${fmt(balance)}</td>
-        <td class="py-2 pr-4 font-mono text-accent">+${fmt(yearInterest)}</td>
-        <td class="py-2 font-mono text-muted">${fmt(accumulatedInterest)}</td>
-      `;
+        const cells = [
+          { text: String(year), cls: "py-2 pr-4 text-secondary" },
+          { text: fmt(balance), cls: "py-2 pr-4 font-mono font-medium" },
+          {
+            text: "+" + fmt(yearInterest),
+            cls: "py-2 pr-4 font-mono text-accent",
+          },
+          { text: fmt(accumulatedInterest), cls: "py-2 font-mono text-muted" },
+        ];
+        for (const { text, cls } of cells) {
+          const td = document.createElement("td");
+          td.className = cls;
+          td.textContent = text;
+          tr.appendChild(td);
+        }
         tbody.append(tr);
       }
     );
@@ -588,13 +597,11 @@ const interesCompuestoFaqs = [
       "Calculadora de Interés Compuesto"
     );
 
-    document.dispatchEvent(
-      new CustomEvent("calculator:result", {
-        detail: {
-          summaryText: `Interés compuesto: $${Math.round(capital).toLocaleString("es-CL")} al ${tasaPct}% por ${anos} años → ${fmt(result.finalAmount)}`,
-        },
-      })
-    );
+    if (typeof window.showShareResult === "function") {
+      window.showShareResult(
+        `Interés compuesto: $${Math.round(capital).toLocaleString("es-CL")} al ${tasaPct}% por ${anos} años → ${fmt(result.finalAmount)}`
+      );
+    }
     window.showCalculatorNextActions?.();
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "interes-compuesto",
