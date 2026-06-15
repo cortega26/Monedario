@@ -17,6 +17,7 @@ import { SITE } from "@/config";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
+import CalculatorScenarios from "@/components/calculator/CalculatorScenarios.astro";
 import CalculatorExplainerSection from "@/components/calculator/CalculatorExplainerSection.astro";
 import CalculatorRadioGroup from "@/components/calculator/CalculatorRadioGroup.astro";
 
@@ -316,6 +317,7 @@ const dapFaqs = [
       context="Análisis práctico para elegir la modalidad según inflación, plazo y liquidez."
     />
     <ShareCalculatorResult />
+    <CalculatorScenarios />
     <CalculatorResultNextActions
       calculatorSlug="deposito-a-plazo"
       actions={[
@@ -375,6 +377,11 @@ const dapFaqs = [
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
   import { saveCalculatorResult } from "@/utils/resumeState";
+  import {
+    initScenarioPanel,
+    restoreInputs,
+    snapshotInputs,
+  } from "@/utils/calculatorScenariosUI";
 
   declare global {
     interface Window {
@@ -382,6 +389,8 @@ const dapFaqs = [
       showCalculatorNextActions?: () => void;
     }
   }
+
+  let scenarioLastResult: ReturnType<typeof calculateTermDeposit> | null = null;
 
   function fmt(n: number): string {
     return "$" + Math.round(n).toLocaleString("es-CL");
@@ -537,6 +546,7 @@ const dapFaqs = [
       annualRatePercent: tirPct,
       applyWithholding: aplicaImpuesto,
     });
+    scenarioLastResult = result;
     renderResultado(result);
     focusResultado();
     saveCalculatorResult(
@@ -544,13 +554,11 @@ const dapFaqs = [
       "Calculadora de Depósito a Plazo"
     );
 
-    document.dispatchEvent(
-      new CustomEvent("calculator:result", {
-        detail: {
-          summaryText: `DAP: ${fmt(result.amount)} al ${tirPct}% TIR por ${plazo} días → ${fmt(result.finalAmount)} (neto)`,
-        },
-      })
-    );
+    if (typeof window.showShareResult === "function") {
+      window.showShareResult(
+        `DAP: ${fmt(result.amount)} al ${tirPct}% TIR por ${plazo} días → ${fmt(result.finalAmount)} (neto)`
+      );
+    }
     window.showCalculatorNextActions?.();
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "deposito-a-plazo",
@@ -568,4 +576,27 @@ const dapFaqs = [
       if (e.key === "Enter")
         (document.getElementById("calcBtn") as HTMLButtonElement)?.click();
     });
+
+  const scenarioFormCard = document.getElementById("calculator-form-card");
+  if (scenarioFormCard) {
+    initScenarioPanel({
+      calculatorId: window.location.pathname,
+      readInputs: () => snapshotInputs(scenarioFormCard),
+      applyInputs: inputs => {
+        restoreInputs(scenarioFormCard, inputs);
+        (
+          document.getElementById("calcBtn") as HTMLButtonElement | null
+        )?.click();
+      },
+      buildSummary: () => {
+        if (!scenarioLastResult) return null;
+        const r = scenarioLastResult;
+        return [
+          { label: "Monto al vencimiento", value: fmt(r.finalAmount) },
+          { label: "Interés bruto", value: fmt(r.grossInterest) },
+          { label: "Interés neto", value: fmt(r.netInterest) },
+        ];
+      },
+    });
+  }
 </script>
