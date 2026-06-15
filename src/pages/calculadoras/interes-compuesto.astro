@@ -17,6 +17,7 @@ import { SITE } from "@/config";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
+import CalculatorScenarios from "@/components/calculator/CalculatorScenarios.astro";
 import CalculatorExplainerSection from "@/components/calculator/CalculatorExplainerSection.astro";
 
 const currentCalculator = CALCULATOR_PORTFOLIO.find(
@@ -335,6 +336,7 @@ const interesCompuestoFaqs = [
       context="Ejemplo real: cuánto crece una inversión en el tiempo con distintas tasas."
     />
     <ShareCalculatorResult />
+    <CalculatorScenarios />
     <CalculatorResultNextActions
       calculatorSlug="interes-compuesto"
       actions={[
@@ -389,6 +391,11 @@ const interesCompuestoFaqs = [
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { saveCalculatorResult } from "@/utils/resumeState";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
+  import {
+    initScenarioPanel,
+    restoreInputs,
+    snapshotInputs,
+  } from "@/utils/calculatorScenariosUI";
 
   declare global {
     interface Window {
@@ -396,6 +403,8 @@ const interesCompuestoFaqs = [
       showCalculatorNextActions?: () => void;
     }
   }
+
+  let scenarioLastResult: ReturnType<typeof calculateCompoundInterest> | null = null;
 
   function fmt(n: number): string {
     return "$" + Math.round(n).toLocaleString("es-CL");
@@ -589,6 +598,7 @@ const interesCompuestoFaqs = [
       years: anos,
       compoundsPerYear: n,
     });
+    scenarioLastResult = result;
     renderResultado(result);
     renderTabla(result.yearlyEvolution);
     focusResultado();
@@ -621,4 +631,27 @@ const interesCompuestoFaqs = [
       if (e.key === "Enter")
         (document.getElementById("calcBtn") as HTMLButtonElement)?.click();
     });
+
+  const scenarioFormCard = document.getElementById("calculator-form-card");
+  if (scenarioFormCard) {
+    initScenarioPanel({
+      calculatorId: window.location.pathname,
+      readInputs: () => snapshotInputs(scenarioFormCard),
+      applyInputs: inputs => {
+        restoreInputs(scenarioFormCard, inputs);
+        (
+          document.getElementById("calcBtn") as HTMLButtonElement | null
+        )?.click();
+      },
+      buildSummary: () => {
+        if (!scenarioLastResult) return null;
+        const r = scenarioLastResult;
+        return [
+          { label: "Monto final", value: fmt(r.finalAmount) },
+          { label: "Interés generado", value: fmt(r.generatedInterest) },
+          { label: "Rentabilidad", value: `${r.totalReturnPercent.toFixed(2)}%` },
+        ];
+      },
+    });
+  }
 </script>
