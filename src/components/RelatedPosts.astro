@@ -1,7 +1,10 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { getCanonicalPathFromSlug } from "@/domain/content/path";
-import { toArticleView } from "@/utils/articleView";
+import {
+  toArticleView,
+  type ArticleView,
+} from "@/utils/articleView";
 import { scoreRelatedPostCandidate } from "@/utils/relatedPosts";
 import Datetime from "./Datetime.astro";
 import ArticlePlaceholder from "./ArticlePlaceholder.astro";
@@ -10,6 +13,7 @@ interface Props {
   currentSlug: string;
   currentTags: string[];
   allPosts: CollectionEntry<"blog">[];
+  allArticleViews?: ArticleView[];
   excludedSlugs?: string[];
   currentCluster?: string;
   currentCanonicalTopic?: string;
@@ -19,16 +23,16 @@ const {
   currentSlug,
   currentTags,
   allPosts,
+  allArticleViews,
   excludedSlugs = [],
   currentCluster,
   currentCanonicalTopic,
 } = Astro.props as Props;
 const excludedSlugSet = new Set(excludedSlugs);
 
-const normalizedPosts = allPosts.map(post => ({
-  post,
-  article: toArticleView(post),
-}));
+const normalizedPosts = allArticleViews
+  ? allPosts.map((post, i) => ({ post, article: allArticleViews[i] }))
+  : allPosts.map(post => ({ post, article: toArticleView(post) }));
 
 const candidatePosts = normalizedPosts.filter(
   ({ article }) =>

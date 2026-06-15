@@ -15,7 +15,7 @@ import {
 } from "@/domain/content/path";
 import { slugifyStr } from "@/utils/slugify";
 import { getReadingTime } from "@/utils/readingTime";
-import { toArticleView } from "@/utils/articleView";
+import { toArticleView, type ArticleView } from "@/utils/articleView";
 import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
 import IconChevronRight from "@/assets/icons/IconChevronRight.svg";
 import RelatedPosts from "@/components/RelatedPosts.astro";
@@ -39,9 +39,10 @@ import ArticleEntryGuide from "@/components/ArticleEntryGuide.astro";
 type Props = {
   post: CollectionEntry<"blog">;
   posts: CollectionEntry<"blog">[];
+  allArticleViews: ArticleView[];
 };
 
-const { post, posts } = Astro.props;
+const { post, posts, allArticleViews } = Astro.props;
 const article = toArticleView(post);
 const readingTime = getReadingTime(post.body ?? "");
 
@@ -108,14 +109,11 @@ const layoutProps = {
 
 /* ========== Prev/Next Posts ========== */
 
-const allPosts = posts.map(entry => {
-  const relatedArticle = toArticleView(entry);
-  return {
-    slug: relatedArticle.slug,
-    title: relatedArticle.title,
-    cluster: relatedArticle.cluster,
-  };
-});
+const allPosts = allArticleViews.map(article => ({
+  slug: article.slug,
+  title: article.title,
+  cluster: article.cluster,
+}));
 
 const currentPostIndex = allPosts.findIndex(a => a.slug === article.slug);
 const contextualSections = getArticleContextualSections(article.slug);
@@ -522,6 +520,7 @@ const hasHeroImage = !!heroImageSrc;
       currentSlug={article.slug}
       currentTags={tags}
       allPosts={posts}
+      allArticleViews={allArticleViews}
       excludedSlugs={relatedPostsExcludedSlugs}
       currentCluster={currentCluster}
       currentCanonicalTopic={post.data.canonicalTopic}

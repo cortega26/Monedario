@@ -18,10 +18,6 @@ function getPostSortTime(post: BlogEntry): number {
   return (article.updatedDate ?? article.pubDate).getTime();
 }
 
-function getNormalizedSlug(post: BlogEntry): string {
-  return toArticleView(post).slug;
-}
-
 function getCluster(post: BlogEntry): string {
   return toArticleView(post).cluster ?? "general";
 }
@@ -53,6 +49,15 @@ export function getBalancedHomepagePosts(
     totalCount: number;
   }
 ): { richPosts: BlogEntry[]; compactPosts: BlogEntry[] } {
+  // Cache ArticleView once to avoid repeated toArticleView calls
+  const viewCache = new Map<BlogEntry, import("./articleView").ArticleView>(
+    posts.map(post => [post, toArticleView(post)])
+  );
+
+  const getSlug = (post: BlogEntry) => viewCache.get(post)!.slug;
+  const getClust = (post: BlogEntry) =>
+    viewCache.get(post)!.cluster ?? "general";
+
   const {
     heroSlug = null,
     heroCluster = null,
@@ -60,7 +65,7 @@ export function getBalancedHomepagePosts(
     totalCount,
   } = options;
   const remainingPosts = heroSlug
-    ? posts.filter(post => getNormalizedSlug(post) !== heroSlug)
+    ? posts.filter(post => getSlug(post) !== heroSlug)
     : posts;
 
   const selectedPosts: BlogEntry[] = [];
@@ -68,22 +73,22 @@ export function getBalancedHomepagePosts(
   const selectedClusters = new Set<string>();
 
   const addPost = (post: BlogEntry) => {
-    const slug = getNormalizedSlug(post);
+    const slug = getSlug(post);
     if (selectedSlugs.has(slug) || selectedPosts.length >= richCount) return;
 
     selectedPosts.push(post);
     selectedSlugs.add(slug);
-    selectedClusters.add(getCluster(post));
+    selectedClusters.add(getClust(post));
   };
 
   for (const post of remainingPosts) {
-    const cluster = getCluster(post);
+    const cluster = getClust(post);
     if (cluster === heroCluster || selectedClusters.has(cluster)) continue;
     addPost(post);
   }
 
   for (const post of remainingPosts) {
-    const cluster = getCluster(post);
+    const cluster = getClust(post);
     if (selectedClusters.has(cluster)) continue;
     addPost(post);
   }
@@ -93,7 +98,7 @@ export function getBalancedHomepagePosts(
   }
 
   const compactPosts = remainingPosts
-    .filter(post => !selectedSlugs.has(getNormalizedSlug(post)))
+    .filter(post => !selectedSlugs.has(getSlug(post)))
     .slice(0, Math.max(totalCount - selectedPosts.length, 0));
 
   return {
