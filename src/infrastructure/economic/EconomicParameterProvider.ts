@@ -356,7 +356,10 @@ export async function getEconomicParameterBundle(): Promise<EconomicParameterBun
     return cachedBundlePromise;
   }
 
-  cachedBundlePromise = loadEconomicParameterBundle();
+  cachedBundlePromise = loadEconomicParameterBundle().catch(err => {
+    cachedBundlePromise = undefined;
+    throw err;
+  });
   return cachedBundlePromise;
 }
 

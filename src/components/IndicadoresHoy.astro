@@ -276,7 +276,7 @@ const indicadoresEndpoint = getPath("/api/indicadores-hoy.json");
   }
 
   initIndicadoresHoy();
-  document.addEventListener("astro:after-swap", initIndicadoresHoy);
+  document.addEventListener("astro:after-swap", initIndicadoresHoy, { once: true });
 </script>
 
 <style>
