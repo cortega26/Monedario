@@ -152,7 +152,7 @@ warranted, STOP and report rather than scaffolding a new test infrastructure.
 
 ALL must hold:
 
-- [ ] `grep -rn "AFP Uno" src/` returns no matches (exit 1)
+- [ ] `grep -n "AFP Uno" src/utils/sueldo-liquido/afpComparison.ts` returns no matches (exit 1). NOTE: a repo-wide `grep -rn "AFP Uno" src/` WILL still find legitimate matches (editorial blog prose, `comisiones-afp.astro` FAQ/comment, `sueldo-liquido.astro` prose, config JSON labels) — those are factual references where AFP Uno is the currently-cheapest AFP, NOT this dynamic-comparison bug. Do not touch them. Only the in-scope file must be free of the literal.
 - [ ] The note uses `comparisons[0].name` (captured as `cheapestAfpName`)
 - [ ] `pnpm exec astro check` exits 0
 - [ ] `pnpm run lint` exits 0 and `pnpm run format:check` exits 0
@@ -168,8 +168,12 @@ Stop and report back (do not improvise) if:
 - The `comparisons` array does not actually carry a `name` field, or it is not
   sorted ascending by `gross` before the note is built (the assumption "the
   cheapest AFP is `comparisons[0]`" is false).
-- `grep -rn "AFP Uno" src/` finds the literal in MORE than one place — there may
-  be a second hardcode that needs the same treatment; report all locations.
+- `grep -n "AFP Uno" src/utils/sueldo-liquido/afpComparison.ts` finds the literal
+  in MORE than one place inside THIS file — there may be a second dynamic-comparison
+  hardcode that needs the same treatment; report all locations. (Matches in OTHER
+  src/ files — blog prose, `comisiones-afp.astro`, `sueldo-liquido.astro`, config
+  JSON — are intentional editorial/config references and are out of scope; ignore
+  them.)
 - Any verification command fails twice after a reasonable fix attempt.
 
 ## Maintenance notes

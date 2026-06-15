@@ -13,7 +13,7 @@ STOP, y actualizar la columna de estado al terminar.
 
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|--------|-----------|----------|------------|--------|
-| [020](020-afp-comparison-cheapest-name.md) | Corregir nombre de AFP cableado ("AFP Uno") en la nota de comparación | P2 | S | — | TODO |
+| [020](020-afp-comparison-cheapest-name.md) | Corregir nombre de AFP cableado ("AFP Uno") en la nota de comparación | P2 | S | — | DONE (rama `advisor/020-afp-comparison-cheapest-name`, commit 946eb30c; pendiente merge por el operador) |
 | [021](021-economic-snapshot-hardening.md) | Endurecer worker de snapshot económico (IPC ausente, deriva, timeouts) | P2 | M | — | TODO |
 | [022](022-consolidate-clp-formatter.md) | Consolidar formateador CLP en módulo leaf único | P3 | S | — | TODO |
 | [023](023-gate-floor-and-reddit-alert-atomicity.md) | Guardas anti-paso-vacío en gates rutas/RSS + alerta Reddit atómica | P3 | S | — | TODO |
