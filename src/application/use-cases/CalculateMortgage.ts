@@ -49,8 +49,8 @@ export interface MortgageOutput {
   amortizationSchedule: AmortizationRow[];
 }
 
-const PERCENT_DENOMINATOR = 100;
-const MONTHS_PER_YEAR = 12;
+import { PERCENT_DENOMINATOR, MONTHS_PER_YEAR } from "./shared/financialConstants";
+
 const FIRST_AMORTIZATION_MONTH = 1;
 
 // Input guardrails for the public simulator. CMF Educa describes mortgage loans

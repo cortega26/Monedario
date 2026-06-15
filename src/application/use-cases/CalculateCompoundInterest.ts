@@ -1,4 +1,5 @@
-const PERCENT_DENOMINATOR = 100;
+import { PERCENT_DENOMINATOR } from "./shared/financialConstants";
+
 const FIRST_YEAR = 1;
 
 export interface CompoundInterestInput {

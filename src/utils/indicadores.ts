@@ -47,9 +47,13 @@ export async function getIndicadores(): Promise<Indicadores> {
   };
 }
 
-export function fmt(n: number): string {
+/** Formatea un número como pesos chilenos: "$" + valor redondeado + separadores de miles. */
+export function formatCLP(n: number): string {
   return "$" + Math.round(n).toLocaleString("es-CL");
 }
+
+/** @deprecated Usa `formatCLP` en su lugar. */
+export const fmt = formatCLP;
 
 export function fmtFecha(fecha: string): string {
   const [y, m, d] = fecha.split("-");

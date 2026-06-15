@@ -48,9 +48,10 @@ export interface EstimateFiniquitoOutput {
   assumptions: string[];
 }
 
+import { MONTHS_PER_YEAR } from "./shared/financialConstants";
+
 const MAX_SERVICE_YEARS = 11;
 const VACATION_DAYS_PER_YEAR = 15;
-const MONTHS_PER_YEAR = 12;
 const DAYS_PER_MONTH_FOR_SALARY = 30;
 const DAYS_PER_YEAR_FOR_VACATION = 360;
 const MIN_ADDITIONAL_MONTHS_WORKED = 0;

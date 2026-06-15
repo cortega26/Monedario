@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { formatCLP } from "@/utils/indicadores";
 import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
@@ -21,7 +22,6 @@ const economicSourceLabel =
     : economicParameters.source === "snapshot"
       ? "dato de referencia"
       : "fallback de emergencia";
-const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
 const exampleResult = simulateCreditPrepayment({
   currentBalance: 5_000_000,
   monthlyPayment: 150_000,
@@ -294,7 +294,7 @@ const calculatorNextStepItems = [
               Ahorro en intereses (Ejemplo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
-              {fmtClp(exampleResult.interestSavings)}
+              {formatCLP(exampleResult.interestSavings)}
             </p>
           </div>
           <div class="space-y-2 text-sm">
@@ -307,7 +307,7 @@ const calculatorNextStepItems = [
             <div class="flex justify-between">
               <span class="text-secondary">Ahorro neto</span>
               <span class="font-medium text-foreground/80">
-                {fmtClp(exampleResult.netSavingsAfterPrepaymentCost)}
+                {formatCLP(exampleResult.netSavingsAfterPrepaymentCost)}
               </span>
             </div>
           </div>
