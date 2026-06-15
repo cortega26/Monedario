@@ -39,7 +39,7 @@ describe("ci workflow — build artifact reuse", () => {
     );
     const a11ySection = extractJobSection(content, "a11y-audit");
 
-    expect(externalUrlPrSection).toContain("needs: build");
+    expect(externalUrlPrSection).toContain("needs: [lint-and-test, build]");
     expect(externalUrlPrSection).toContain(downloadArtifactAction);
     expect(externalUrlPrSection).not.toContain('run: pnpm run astro build');
 
