@@ -1,5 +1,11 @@
-import kebabcase from "lodash.kebabcase";
 import slugify from "slugify";
+
+function kebabcase(str: string): string {
+  return str
+    .replace(/([a-z])([A-Z])/g, "$1-$2")
+    .replace(/[\s_]+/g, "-")
+    .toLowerCase();
+}
 
 /**
  * Check if string contains non-Latin characters
@@ -9,7 +15,7 @@ const hasNonLatin = (str: string): boolean => /[^\x00-\x7F]/.test(str);
 /**
  * Slugify a string using a hybrid approach:
  * - For Latin-only strings: use slugify (eg: "E2E Testing" -> "e2e-testing", "TypeScript 5.0" -> "typescript-5.0")
- * - For strings with non-Latin characters: use lodash.kebabcase (preserves non-Latin chars)
+ * - For strings with non-Latin characters: use local kebabcase (preserves non-Latin chars)
  */
 export const slugifyStr = (str: string): string => {
   if (hasNonLatin(str)) {

@@ -28,7 +28,6 @@
   "ignoreDependencies": [
     "tailwindcss",
     "@tailwindcss/typography",
-    "remark-collapse",
     "@axe-core/playwright",
     "@typescript-eslint/parser"
   ]
