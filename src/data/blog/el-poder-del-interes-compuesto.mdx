@@ -52,9 +52,25 @@ reviewPolicy:
   computedAt: "2026-05-06"
 ---
 
+import InlineCalculator from "@/components/mdx/InlineCalculator.astro";
+
 Imagina a alguien que nunca ganó más que el sueldo mínimo. Sin bonos, sin ascensos, sin herencias. Solo el sueldo de cada mes y la disciplina de apartar el 10% del líquido para invertirlo. Durante 36 años tuvo 24 meses sin trabajo — lagunas reales, como las que le pasan a cualquier trabajador chileno. El resto del tiempo, ese 10% fue al NASDAQ-100. Lo que ocurrió después es lo que este ejercicio trata de mostrar.
 
-Si quieres llevar esta lógica a tu caso con tasa, aporte y plazo propios, usa la [calculadora de interés compuesto](/calculadoras/interes-compuesto/).
+Si quieres llevar esta lógica a tu caso con tasa, aporte y plazo propios, prueba los valores abajo:
+
+<InlineCalculator
+  title="Simula tu propio escenario"
+  initialLabel="Capital inicial ($)"
+  monthlyLabel="Aporte mensual ($)"
+  rateLabel="Rentabilidad anual (%)"
+  yearsLabel="Años"
+  defaultInitial={1000000}
+  defaultMonthly={50000}
+  defaultRate={12}
+  defaultYears={10}
+/>
+
+También puedes usar la [calculadora de interés compuesto](/calculadoras/interes-compuesto/) para un análisis más completo.
 
 ## Respuesta rápida
 
