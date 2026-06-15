@@ -74,7 +74,7 @@ describe("homepage content helpers", () => {
 
   it("does not contain internal editorial-facing release notes in reader-facing content", () => {
     const articleSource = readFileSync(
-      "src/data/blog/el-poder-del-interes-compuesto.md",
+      "src/data/blog/el-poder-del-interes-compuesto.mdx",
       "utf8"
     );
     const methodologySource = readFileSync(
