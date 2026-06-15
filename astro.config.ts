@@ -255,8 +255,8 @@ export default defineConfig({
     shield({
       sri: {
         enableStatic: true,
-        allowInlineScripts: "all",
-        allowInlineStyles: "all",
+        allowInlineScripts: "static",
+        allowInlineStyles: "static",
       },
     }),
     cspHashesIntegration(),
