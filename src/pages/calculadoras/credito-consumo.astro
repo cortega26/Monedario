@@ -1,6 +1,5 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { formatCLP } from "@/utils/indicadores";
 import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
@@ -18,6 +17,7 @@ import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 import { calculateConsumerCredit } from "@/application/use-cases/CalculateConsumerCredit";
+const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
 const exampleResult = calculateConsumerCredit({
   principal: 2_000_000,
   termMonths: 24,
@@ -193,7 +193,7 @@ const calculatorNextStepItems = [
               Cuota mensual (Ejemplo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
-              {formatCLP(exampleResult.monthlyPaymentTotal)}
+              {fmtClp(exampleResult.monthlyPaymentTotal)}
             </p>
           </div>
           <div class="space-y-2 text-sm">
@@ -206,13 +206,13 @@ const calculatorNextStepItems = [
             <div class="flex justify-between">
               <span class="text-secondary">Total intereses</span>
               <span class="font-medium text-foreground/80">
-                {formatCLP(exampleResult.totalInterest)}
+                {fmtClp(exampleResult.totalInterest)}
               </span>
             </div>
             <div class="flex justify-between">
               <span class="text-secondary">Total a pagar</span>
               <span class="font-medium text-foreground/80">
-                {formatCLP(exampleResult.totalPaid)}
+                {fmtClp(exampleResult.totalPaid)}
               </span>
             </div>
           </div>
@@ -500,11 +500,13 @@ const calculatorNextStepItems = [
       .getElementById("resultado-contenido")!
       .replaceChildren(headline, ...rows, insight);
 
-    if (typeof window.showShareResult === "function") {
-      window.showShareResult(
-        `Crédito consumo: cuota ${fmt(resultado.monthlyPaymentTotal)}/mes, total ${fmt(resultado.totalPaid)}`
-      );
-    }
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", {
+        detail: {
+          summaryText: `Crédito consumo: cuota ${fmt(resultado.monthlyPaymentTotal)}/mes, total ${fmt(resultado.totalPaid)}`,
+        },
+      })
+    );
     window.showCalculatorNextActions?.();
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "credito-consumo",

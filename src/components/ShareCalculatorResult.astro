@@ -50,7 +50,12 @@
     });
   }
 
-  window.showShareResult = function (summaryText: string): void {
+  document.addEventListener("calculator:result", (event: Event) => {
+    const { summaryText } = (event as CustomEvent).detail;
+    showShareResultFn(summaryText);
+  });
+
+  function showShareResultFn(summaryText: string): void {
     const container = document.getElementById("share-calculator-result");
     if (container) {
       container.classList.remove("hidden");
@@ -62,5 +67,7 @@
     if (waLink) {
       waLink.href = `https://wa.me/?text=${encodeURIComponent(summaryText + "\n" + window.location.href)}`;
     }
-  };
+  }
+
+  window.showShareResult = showShareResultFn;
 </script>

@@ -74,7 +74,7 @@ describe("homepage content helpers", () => {
 
   it("does not contain internal editorial-facing release notes in reader-facing content", () => {
     const articleSource = readFileSync(
-      "src/data/blog/el-poder-del-interes-compuesto.mdx",
+      "src/data/blog/el-poder-del-interes-compuesto.md",
       "utf8"
     );
     const methodologySource = readFileSync(
@@ -343,7 +343,18 @@ describe("Wave 2 structural guards", () => {
         `src/pages/calculadoras/${slug}.astro`,
         "utf8"
       );
-      expect(source).toContain("showCalculatorNextActions?.()");
+      // sueldo-liquido was refactored: logic is in formController.ts
+      if (slug === "sueldo-liquido") {
+        const moduleSource = readFileSync(
+          "src/utils/sueldo-liquido/formController.ts",
+          "utf8"
+        );
+        expect(source + moduleSource).toContain(
+          "showCalculatorNextActions?.()"
+        );
+      } else {
+        expect(source).toContain("showCalculatorNextActions?.()");
+      }
     }
   });
 
@@ -353,8 +364,19 @@ describe("Wave 2 structural guards", () => {
         `src/pages/calculadoras/${slug}.astro`,
         "utf8"
       );
-      expect(source).toContain('"calculator_completed"');
-      expect(source).toContain(`calculator_slug: "${slug}"`);
+      if (slug === "sueldo-liquido") {
+        const moduleSource = readFileSync(
+          "src/utils/sueldo-liquido/formController.ts",
+          "utf8"
+        );
+        expect(source + moduleSource).toContain('"calculator_completed"');
+        expect(source + moduleSource).toContain(
+          `calculator_slug: "${slug}"`
+        );
+      } else {
+        expect(source).toContain('"calculator_completed"');
+        expect(source).toContain(`calculator_slug: "${slug}"`);
+      }
     }
   });
 
@@ -364,7 +386,15 @@ describe("Wave 2 structural guards", () => {
         `src/pages/calculadoras/${slug}.astro`,
         "utf8"
       );
-      expect(source).toContain('"calculator_complete"');
+      if (slug === "sueldo-liquido") {
+        const moduleSource = readFileSync(
+          "src/utils/sueldo-liquido/formController.ts",
+          "utf8"
+        );
+        expect(source + moduleSource).toContain('"calculator_complete"');
+      } else {
+        expect(source).toContain('"calculator_complete"');
+      }
     }
   });
 

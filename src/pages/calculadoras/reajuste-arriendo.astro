@@ -1,6 +1,5 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { formatCLP } from "@/utils/indicadores";
 import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
@@ -23,6 +22,7 @@ const economicSourceLabel =
     : economicParameters.source === "snapshot"
       ? "dato de referencia"
       : "fallback de emergencia";
+const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
 const exampleRentBase = 400_000;
 const exampleIpcPercent = 3.5;
 const exampleRentNew = Math.round(
@@ -245,20 +245,20 @@ const calculatorNextStepItems = [
               Nuevo arriendo (Ejemplo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
-              {formatCLP(exampleRentNew)}
+              {fmtClp(exampleRentNew)}
             </p>
           </div>
           <div class="space-y-2 text-sm">
             <div class="flex justify-between">
               <span class="text-secondary">Arriendo actual</span>
               <span class="font-medium text-foreground/80">
-                {formatCLP(exampleRentBase)}
+                {fmtClp(exampleRentBase)}
               </span>
             </div>
             <div class="flex justify-between">
               <span class="text-secondary">Alza mensual</span>
               <span class="font-medium text-foreground/80">
-                {formatCLP(exampleRentNew - exampleRentBase)}
+                {fmtClp(exampleRentNew - exampleRentBase)}
               </span>
             </div>
             <div class="flex justify-between">
@@ -464,11 +464,13 @@ const calculatorNextStepItems = [
 
       box.append(title, paragraph1, paragraph2);
       document.getElementById("resultado-contenido")!.replaceChildren(box);
-      if (typeof window.showShareResult === "function") {
-        window.showShareResult(
-          `Arriendo: ${fmt(arriendo)} fijos sin reajuste automático`
-        );
-      }
+      document.dispatchEvent(
+        new CustomEvent("calculator:result", {
+          detail: {
+            summaryText: `Arriendo: ${fmt(arriendo)} fijos sin reajuste automático`,
+          },
+        })
+      );
       trackAnalyticsEvent("calculator_complete", {
         calculator_slug: "reajuste-arriendo",
         calculator_name: "Calculadora de Reajuste de Arriendo",
@@ -556,11 +558,13 @@ const calculatorNextStepItems = [
           ),
           note
         );
-      if (typeof window.showShareResult === "function") {
-        window.showShareResult(
-          `Arriendo UF: ${fmt(reajusteUf.currentRentClp)}/mes (${arriendoUF.toFixed(2)} UF)`
-        );
-      }
+      document.dispatchEvent(
+        new CustomEvent("calculator:result", {
+          detail: {
+            summaryText: `Arriendo UF: ${fmt(reajusteUf.currentRentClp)}/mes (${arriendoUF.toFixed(2)} UF)`,
+          },
+        })
+      );
       trackAnalyticsEvent("calculator_complete", {
         calculator_slug: "reajuste-arriendo",
         calculator_name: "Calculadora de Reajuste de Arriendo",
@@ -649,11 +653,13 @@ const calculatorNextStepItems = [
           ),
           note
         );
-      if (typeof window.showShareResult === "function") {
-        window.showShareResult(
-          `Arriendo IPC: nuevo arriendo ${fmt(reajusteIpc.adjustedRentClp)}/mes`
-        );
-      }
+      document.dispatchEvent(
+        new CustomEvent("calculator:result", {
+          detail: {
+            summaryText: `Arriendo IPC: nuevo arriendo ${fmt(reajusteIpc.adjustedRentClp)}/mes`,
+          },
+        })
+      );
       trackAnalyticsEvent("calculator_complete", {
         calculator_slug: "reajuste-arriendo",
         calculator_name: "Calculadora de Reajuste de Arriendo",

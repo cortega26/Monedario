@@ -1,5 +1,8 @@
 import type { AfpCommission } from "@/config/afpCommissions";
-import { PERCENT_DENOMINATOR, MONTHS_PER_YEAR } from "./shared/financialConstants";
+import {
+  PERCENT_DENOMINATOR,
+  MONTHS_PER_YEAR,
+} from "./shared/financialConstants";
 
 export interface AfpCommissionComparisonRow extends AfpCommission {
   monthlyCommissionCost: number;

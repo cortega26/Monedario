@@ -1,6 +1,5 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { formatCLP } from "@/utils/indicadores";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
@@ -19,6 +18,7 @@ import { getEconomicParameters } from "@/application/use-cases/GetEconomicParame
 import { simulateRetirementProjection } from "@/application/use-cases/SimulateRetirementProjection";
 
 const { parameters: economicParameters } = await getEconomicParameters();
+const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
 const exampleResult = simulateRetirementProjection({
   currentAge: 40,
   retirementAge: 65,
@@ -193,14 +193,14 @@ const calculatorNextStepItems = [
               Pensión mensual estimada (Ejemplo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
-              {formatCLP(exampleResult.selectedScenario.estimatedMonthlyPension)}
+              {fmtClp(exampleResult.selectedScenario.estimatedMonthlyPension)}
             </p>
           </div>
           <div class="space-y-2 text-sm">
             <div class="flex justify-between">
               <span class="text-secondary">Saldo proyectado</span>
               <span class="font-medium text-foreground/80">
-                {formatCLP(exampleResult.selectedScenario.projectedBalance)}
+                {fmtClp(exampleResult.selectedScenario.projectedBalance)}
               </span>
             </div>
             <div class="flex justify-between">
@@ -633,11 +633,13 @@ const calculatorNextStepItems = [
         scopeBox
       );
 
-    if (typeof window.showShareResult === "function") {
-      window.showShareResult(
-        `Jubilación estimada: ${fmt(proyeccion.selectedScenario.estimatedMonthlyPension)}/mes`
-      );
-    }
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", {
+        detail: {
+          summaryText: `Jubilación estimada: ${fmt(proyeccion.selectedScenario.estimatedMonthlyPension)}/mes`,
+        },
+      })
+    );
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "simulador-jubilacion",
       calculator_name: "Simulador de Jubilacion",

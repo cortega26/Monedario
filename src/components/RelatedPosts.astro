@@ -1,10 +1,7 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import { getCanonicalPathFromSlug } from "@/domain/content/path";
-import {
-  toArticleView,
-  type ArticleView,
-} from "@/utils/articleView";
+import { toArticleView, type ArticleView } from "@/utils/articleView";
 import { scoreRelatedPostCandidate } from "@/utils/relatedPosts";
 import Datetime from "./Datetime.astro";
 import ArticlePlaceholder from "./ArticlePlaceholder.astro";

@@ -69,7 +69,6 @@ export interface ApvComparisonOutput {
   recommendedStrategy: "A" | "B" | "MIXED";
 }
 
-
 // DL 3500 art. 20 O: bonificacion fiscal Regimen A, 15% del ahorro con tope anual de 6 UTM.
 const REGIME_A_STATE_BONUS_RATE = 0.15;
 const REGIME_A_ANNUAL_BONUS_CAP_UTM = 6;

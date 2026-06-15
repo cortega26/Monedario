@@ -49,7 +49,10 @@ export interface MortgageOutput {
   amortizationSchedule: AmortizationRow[];
 }
 
-import { PERCENT_DENOMINATOR, MONTHS_PER_YEAR } from "./shared/financialConstants";
+import {
+  PERCENT_DENOMINATOR,
+  MONTHS_PER_YEAR,
+} from "./shared/financialConstants";
 
 const FIRST_AMORTIZATION_MONTH = 1;
 

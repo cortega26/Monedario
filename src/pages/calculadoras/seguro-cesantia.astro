@@ -1,6 +1,5 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { formatCLP } from "@/utils/indicadores";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
@@ -19,6 +18,7 @@ import { getPath } from "@/utils/getPath";
 import { estimateUnemploymentCoverage } from "@/application/use-cases/EstimateUnemploymentCoverage";
 
 const { parameters: economicParameters } = await getEconomicParameters();
+const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
 const exampleResult = estimateUnemploymentCoverage({
   grossSalary: 800_000,
   contractType: "indefinido",
@@ -250,14 +250,14 @@ const calculatorNextStepItems = [
               Cobertura total estimada (Ejemplo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
-              {formatCLP(exampleResult.totalCoverage)}
+              {fmtClp(exampleResult.totalCoverage)}
             </p>
           </div>
           <div class="space-y-2 text-sm">
             <div class="flex justify-between">
               <span class="text-secondary">Primer pago</span>
               <span class="font-medium text-foreground/80">
-                {formatCLP(exampleResult.payouts[0] ?? 0)}
+                {fmtClp(exampleResult.payouts[0] ?? 0)}
               </span>
             </div>
             <div class="flex justify-between">
@@ -768,11 +768,13 @@ const calculatorNextStepItems = [
           assumptionsList,
           finalNote
         );
-      if (typeof window.showShareResult === "function") {
-        window.showShareResult(
-          `Seguro cesantía: cobertura ${fmtCurrency(estimacion.totalCoverage)} · ${estimacion.monthsCovered} meses`
-        );
-      }
+      document.dispatchEvent(
+        new CustomEvent("calculator:result", {
+          detail: {
+            summaryText: `Seguro cesantía: cobertura ${fmtCurrency(estimacion.totalCoverage)} · ${estimacion.monthsCovered} meses`,
+          },
+        })
+      );
       trackAnalyticsEvent("calculator_complete", {
         calculator_slug: "seguro-cesantia",
         calculator_name: "Calculadora de Seguro de Cesantia",

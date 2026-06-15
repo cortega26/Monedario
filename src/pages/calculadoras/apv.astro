@@ -979,11 +979,13 @@ const calculatorNextStepItems = [
           ? resultado.regimeB.annualBenefit
           : resultado.mixedStrategy.monthlyBenefit * 12;
 
-    if (typeof window.showShareResult === "function") {
-      window.showShareResult(
-        `Simulador APV: régimen recomendado ${resultado.recommendedStrategy} — beneficio anual estimado ${fmt(_annualBenefit)}`
-      );
-    }
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", {
+        detail: {
+          summaryText: `Simulador APV: régimen recomendado ${resultado.recommendedStrategy} — beneficio anual estimado ${fmt(_annualBenefit)}`,
+        },
+      })
+    );
     window.showCalculatorNextActions?.();
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "apv",

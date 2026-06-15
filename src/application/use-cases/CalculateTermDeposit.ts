@@ -1,4 +1,7 @@
-import { PERCENT_DENOMINATOR, DAYS_PER_YEAR } from "./shared/financialConstants";
+import {
+  PERCENT_DENOMINATOR,
+  DAYS_PER_YEAR,
+} from "./shared/financialConstants";
 
 // LIR art. 59 N 4: retencion de 4% sobre intereses en el caso cubierto por la UI.
 const INTEREST_WITHHOLDING_RATE = 0.04;

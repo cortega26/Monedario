@@ -780,11 +780,13 @@ const operacionRentaFaqs = [
     );
     contenido.removeAttribute("data-is-example");
 
-    if (typeof window.showShareResult === "function") {
-      window.showShareResult(
-        `Operación Renta: ${resultado.esDevolución ? "devolución" : "pago adicional"} ${fmt(Math.abs(resultado.saldoFinal))}`
-      );
-    }
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", {
+        detail: {
+          summaryText: `Operación Renta: ${resultado.esDevolución ? "devolución" : "pago adicional"} ${fmt(Math.abs(resultado.saldoFinal))}`,
+        },
+      })
+    );
     window.showCalculatorNextActions?.();
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "operacion-renta",

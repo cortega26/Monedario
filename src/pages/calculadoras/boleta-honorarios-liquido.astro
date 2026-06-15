@@ -1,6 +1,5 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { formatCLP } from "@/utils/indicadores";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
@@ -17,6 +16,7 @@ import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getPath } from "@/utils/getPath";
 import { calculateHonorariosNet } from "@/application/use-cases/CalculateHonorariosNet";
 
+const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
 const exampleResult = calculateHonorariosNet({
   grossFee: 500_000,
   withholdingRatePercent: 15.25,
@@ -138,7 +138,7 @@ const calculatorNextStepItems = [
               Recibes líquido (Ejemplo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
-              {formatCLP(exampleResult.netFeeReceived)}
+              {fmtClp(exampleResult.netFeeReceived)}
             </p>
           </div>
           <div class="space-y-2 text-sm">
@@ -149,7 +149,7 @@ const calculatorNextStepItems = [
             <div class="flex justify-between">
               <span class="text-secondary">Retención (15,25%)</span>
               <span class="font-medium text-foreground/80">
-                − {formatCLP(exampleResult.withholdingAmount)}
+                − {fmtClp(exampleResult.withholdingAmount)}
               </span>
             </div>
           </div>
@@ -422,11 +422,13 @@ const calculatorNextStepItems = [
         assumptions
       );
 
-    if (typeof window.showShareResult === "function") {
-      window.showShareResult(
-        `Boleta honorarios: líquido ${fmtCurrency(result.netFeeReceived)} (bruto ${fmtCurrency(result.grossFee)})`
-      );
-    }
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", {
+        detail: {
+          summaryText: `Boleta honorarios: líquido ${fmtCurrency(result.netFeeReceived)} (bruto ${fmtCurrency(result.grossFee)})`,
+        },
+      })
+    );
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "boleta-honorarios-liquido",
       calculator_name: "Calculadora Boleta Honorarios Liquido",
