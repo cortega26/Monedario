@@ -1238,7 +1238,7 @@ const calculatorNextStepItems = [
     const worstNet = comparisons[comparisons.length - 1].net;
     const maxSaving = bestNet - worstNet;
 
-    container.innerHTML = "";
+    container.replaceChildren();
 
     for (const { name, rate, net } of comparisons) {
       const isCurrent = Math.abs(rate - currentAfpRate) < 0.01;
@@ -1315,17 +1315,20 @@ const calculatorNextStepItems = [
     if (subheading)
       subheading.textContent = `Para recibir ${fmt(targetNetSalary)} líquidos. Menor bruto = mejor. La AFP actual aparece resaltada.`;
 
-    container.innerHTML =
-      '<p class="text-xs text-muted animate-pulse">Calculando comparación AFP…</p>';
+    const loadingP = document.createElement("p");
+    loadingP.className = "text-xs text-muted animate-pulse";
+    loadingP.textContent = "Calculando comparación AFP…";
+    container.replaceChildren(loadingP);
     section.classList.remove("hidden");
 
     // Defer heavy computation (7 × 60-iter binary search) to not block result render
     setTimeout(() => {
-      const afpSelect = document.getElementById(
-        "afp-tasa"
-      ) as HTMLSelectElement;
-      if (!afpSelect) return;
-      const params = getParams();
+      try {
+        const afpSelect = document.getElementById(
+          "afp-tasa"
+        ) as HTMLSelectElement;
+        if (!afpSelect) return;
+        const params = getParams();
       const afpOptions = Array.from(afpSelect.options).map(opt => ({
         name: opt.text.split(" – ")[0].trim(),
         rate: parseFloat(opt.dataset.commission ?? "0"),
@@ -1353,7 +1356,7 @@ const calculatorNextStepItems = [
       const worstGross = comparisons[comparisons.length - 1].gross;
       const maxDiff = worstGross - bestGross;
 
-      container.innerHTML = "";
+      container.replaceChildren();
 
       for (const { name, rate, gross } of comparisons) {
         const isCurrent = Math.abs(rate - currentAfpRate) < 0.01;
@@ -1405,6 +1408,13 @@ const calculatorNextStepItems = [
         note.className = "mt-3 text-xs text-muted";
         note.textContent = `Con AFP Uno necesitarías ${fmt(maxDiff)} menos de bruto que con la AFP más cara para recibir el mismo líquido.`;
         container.appendChild(note);
+      }
+      } catch (err) {
+        // eslint-disable-next-line no-console
+        console.error("AFP comparison (inverso) failed:", err);
+        const container = document.getElementById("afp-comparison-body");
+        if (container)
+          container.textContent = "Error al calcular comparacion AFP.";
       }
     }, 0);
   }
@@ -2080,20 +2090,33 @@ const calculatorNextStepItems = [
       if (contratoChecked) p.set("contrato", contratoChecked.value);
 
       const btn = document.getElementById("copy-link-btn") as HTMLButtonElement;
-      const btnDefault = btn?.innerHTML ?? "";
+      const btnSvg = btn?.querySelector("svg");
+      const btnDefaultText = btn?.textContent?.trim() ?? "";
       try {
         await navigator.clipboard.writeText(
           `${location.origin}${location.pathname}?${p}`
         );
-        btn.textContent = "¡Enlace copiado!";
+        if (btn && btnSvg) {
+          btn.replaceChildren(btnSvg, document.createTextNode("¡Enlace copiado!"));
+        } else if (btn) {
+          btn.textContent = "¡Enlace copiado!";
+        }
         trackAnalyticsEvent("calculator_copy_link", {
           calculator_slug: "sueldo-liquido",
         });
       } catch {
-        btn.textContent = "No se pudo copiar";
+        if (btn && btnSvg) {
+          btn.replaceChildren(btnSvg, document.createTextNode("No se pudo copiar"));
+        } else if (btn) {
+          btn.textContent = "No se pudo copiar";
+        }
       }
       setTimeout(() => {
-        btn.innerHTML = btnDefault;
+        if (btn && btnSvg) {
+          btn.replaceChildren(btnSvg, document.createTextNode(btnDefaultText));
+        } else if (btn) {
+          btn.textContent = btnDefaultText;
+        }
       }, 2000);
     });
 
@@ -2140,20 +2163,33 @@ const calculatorNextStepItems = [
 
     const text = lines.join("\n");
     const btn = document.getElementById("copy-btn") as HTMLButtonElement;
-    const btnDefault = btn?.innerHTML ?? "";
+    const btnSvg = btn?.querySelector("svg");
+    const btnDefaultText = btn?.textContent?.trim() ?? "";
 
     try {
       await navigator.clipboard.writeText(text);
-      btn.textContent = "¡Copiado!";
+      if (btn && btnSvg) {
+        btn.replaceChildren(btnSvg, document.createTextNode("¡Copiado!"));
+      } else if (btn) {
+        btn.textContent = "¡Copiado!";
+      }
       trackAnalyticsEvent("calculator_copy_result", {
         calculator_slug: "sueldo-liquido",
       });
     } catch {
-      btn.textContent = "No se pudo copiar";
+      if (btn && btnSvg) {
+        btn.replaceChildren(btnSvg, document.createTextNode("No se pudo copiar"));
+      } else if (btn) {
+        btn.textContent = "No se pudo copiar";
+      }
     }
 
     setTimeout(() => {
-      btn.innerHTML = btnDefault;
+      if (btn && btnSvg) {
+        btn.replaceChildren(btnSvg, document.createTextNode(btnDefaultText));
+      } else if (btn) {
+        btn.textContent = btnDefaultText;
+      }
     }, 2000);
   });
 

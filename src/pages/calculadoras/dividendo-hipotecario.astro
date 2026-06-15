@@ -664,7 +664,7 @@ const calculatorNextStepItems = [
     );
 
     const tbody = document.getElementById("amort-body") as HTMLElement;
-    tbody.innerHTML = "";
+    tbody.replaceChildren();
     const schedule = resultado.amortizationSchedule;
 
     const buildAmortRow = (row: (typeof schedule)[0], hidden: boolean) => {
