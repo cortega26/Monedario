@@ -1,19 +1,12 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import Header from "@/components/Header.astro";
-import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
-import Footer from "@/components/Footer.astro";
-import MethodologyBlock from "@/components/MethodologyBlock.astro";
-import PrimaryCTA from "@/components/PrimaryCTA.astro";
-import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
-import Breadcrumb from "@/components/Breadcrumb.astro";
-import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
-import NextSteps from "@/components/NextSteps.astro";
-import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
+// conversor-uf.astro — refactored to use shared CalculatorShell.
+// The shell provides: Layout, Header, Breadcrumb, TrustBadge, Hero,
+// CTA, Share, Methodology, NextSteps, Footer, and FAQ section.
+// This page provides: form markup, explainer prose, and client JS.
+import CalculatorShell from "@/components/calculator/CalculatorShell.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
 import { getPath } from "@/utils/getPath";
-import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 const ufGuidePath = getPath("/posts/que-es-la-uf/");
@@ -33,32 +26,8 @@ const ufDateDisplay = new Intl.DateTimeFormat("es-CL", {
   dateStyle: "long",
   timeZone: "UTC",
 }).format(new Date(`${ufLastUpdated}T00:00:00.000Z`));
-const currentCalculator = CALCULATOR_PORTFOLIO.find(
-  calc => calc.slug === "conversor-uf"
-);
-const calculatorRelatedItems = (currentCalculator?.related ?? []).map(item => ({
-  href: item.href,
-  title: item.label,
-  description: item.when,
-  label: "Relacionado",
-}));
-const calculatorNextStepItems = [
-  ...calculatorRelatedItems,
-  ...(calculatorRelatedItems.length < 2
-    ? [
-        {
-          href: "/calculadoras/",
-          title: "Ver todas las calculadoras",
-          description: "Compara otra herramienta si tu pregunta cambió.",
-          label: "Herramientas",
-        },
-      ]
-    : []),
-];
 
 // FAQ de conversión para captar la familia "N uf a pesos chilenos" / "valor uf hoy".
-// Las cifras se derivan del valor UF vigente (Banco Central, vía snapshot) y van
-// fechadas; la página se regenera cuando el snapshot se actualiza.
 const ufToClp = (ufAmount: number) =>
   "$" + Math.round(ufAmount * economicParameters.uf).toLocaleString("es-CL");
 const ufFaqs = [
@@ -82,231 +51,181 @@ const ufFaqs = [
 ];
 ---
 
-<Layout
+<CalculatorShell
   title="Conversor UF a Pesos Chile | Monedario"
   description="Convierte UF a CLP y CLP a UF con valor diario de referencia y una tabla rápida de montos."
+  slug="conversor-uf"
+  calculatorName="Conversor UF a Pesos"
+  heroTitle="Conversor UF ↔ Pesos"
+  heroDescription="Convierte entre Unidad de Fomento y pesos chilenos al valor oficial del día. Sin registro, sin publicidad."
+  heroDescriptionClass="max-w-xl text-secondary"
+  faqs={ufFaqs}
+  ctaText="¿Qué es la UF y cómo se calcula? →"
+  ctaHref="/posts/que-es-la-uf/"
+  ctaContext="Entiende por qué la UF cambia cada día y cómo afecta tus contratos y deudas en Chile."
+  methodologyNotes="La UF es publicada oficialmente por el Banco Central de Chile (fuente primaria). El valor diario se obtiene desde el Banco Central, con mindicador.cl como respaldo (espejo de la misma publicación). La UF se actualiza diariamente entre el día 10 de cada mes y el día 9 del siguiente, en base al IPC del mes anterior publicado por el INE."
+  methodologySources={[
+    {
+      name: "Banco Central de Chile — Indicadores diarios (UF)",
+      url: "https://si3.bcentral.cl/Indicadoressiete/secure/Indicadoresdiarios.aspx",
+      date: "2026-05",
+    },
+    {
+      name: "Banco Central de Chile — Metodología UF",
+      url: "https://si3.bcentral.cl/estadisticas/Principal1/Metodologias/EMF/UF.pdf",
+      date: "2025-12",
+    },
+    {
+      name: "mindicador.cl — API valor UF diario (respaldo)",
+      url: "https://mindicador.cl/api/uf",
+      date: "2026-04",
+    },
+  ]}
+  layout="single"
 >
-  <CalculatorJsonLd
-    name="Conversor UF a Pesos Chile"
-    description="Convierte UF a CLP y CLP a UF con valor diario de referencia y una tabla rápida de montos."
-    faqs={ufFaqs}
-  />
-  <Header />
-  <Breadcrumb />
-  <CalculatorTrustBadge location="calculator_header" />
-  <main
-    data-layout="calculator"
-    id="main-content"
-    class="app-layout"
-    data-analytics-page-type="calculator"
-    data-analytics-calculator="conversor-uf"
-    data-analytics-calculator-name="Conversor UF a Pesos"
-  >
-    <CalculatorHero
-      title="Conversor UF ↔ Pesos"
-      description="Convierte entre Unidad de Fomento y pesos chilenos al valor oficial del día. Sin registro, sin publicidad."
-      descriptionClass="max-w-xl text-secondary"
-    />
-
-    <section class="max-w-xl py-8">
-      <!-- VALOR DEL DÍA -->
-      <div
-        id="valor-uf-banner"
-        class="mb-6 flex items-center justify-between gap-4 rounded-xl border border-accent/30 bg-accent/5 p-4"
-      >
-        <div>
-          <p
-            class="mb-0.5 text-xs font-bold tracking-widest text-accent uppercase"
-          >
-            Valor UF hoy
-          </p>
-          <p id="uf-display" class="text-3xl font-bold">{"$" + ufDisplay}</p>
-          <p id="uf-fecha" class="mt-0.5 text-xs text-muted">
-            {ufDateDisplay} · Fuente: Banco Central de Chile
-          </p>
-        </div>
-        <span class="text-4xl">🇨🇱</span>
-      </div>
-
-      <!-- CONVERSOR -->
-      <div class="mb-6 rounded-xl border border-border p-6">
-        <!-- UF → Pesos -->
-        <div class="mb-6">
-          <label
-            for="uf-input"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Unidades de Fomento (UF)
-          </label>
-          <input
-            type="number"
-            id="uf-input"
-            placeholder="Ej: 1000"
-            min="0"
-            step="0.01"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-lg text-foreground focus:border-accent focus:outline-none"
-          />
-        </div>
-
-        <div class="mb-6 flex items-center gap-3">
-          <div class="h-px flex-1 bg-border"></div>
-          <button
-            id="swap-btn"
-            class="rounded-full border border-border px-3 py-1 text-sm text-secondary transition-all hover:border-accent hover:text-accent"
-          >
-            ⇅ invertir
-          </button>
-          <div class="h-px flex-1 bg-border"></div>
-        </div>
-
-        <div class="mb-6">
-          <label
-            for="pesos-input"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Pesos chilenos ($)
-          </label>
-          <input
-            type="number"
-            id="pesos-input"
-            placeholder="Ej: 39.773.620"
-            min="0"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-lg text-foreground focus:border-accent focus:outline-none"
-          />
-        </div>
-
-        <!-- RESULTADO VISUAL -->
-        <div
-          id="resultado"
-          class="hidden rounded-lg bg-foreground/5 p-4 text-center"
-          aria-live="polite"
+  <section slot="form">
+    <!-- VALOR DEL DÍA -->
+    <div
+      id="valor-uf-banner"
+      class="mb-6 flex items-center justify-between gap-4 rounded-xl border border-accent/30 bg-accent/5 p-4"
+    >
+      <div>
+        <p
+          class="mb-0.5 text-xs font-bold tracking-widest text-accent uppercase"
         >
-          <p id="resultado-texto" class="text-2xl font-bold"></p>
-          <p id="resultado-sub" class="mt-1 text-sm text-muted"></p>
-        </div>
-        <div
-          id="economic-parameters"
-          data-uf={String(economicParameters.uf)}
-          data-last-updated={ufLastUpdated}
-          class="hidden"
-          aria-hidden="true"
-        >
-        </div>
-      </div>
-
-      <!-- TABLA DE REFERENCIA RÁPIDA -->
-      <div class="rounded-xl border border-border p-6">
-        <h2 class="mb-4 text-base font-semibold">
-          Valores de referencia rápidos
-        </h2>
-        <div id="tabla-ref" class="space-y-2 text-sm"></div>
-        <p class="mt-3 text-xs text-muted">
-          Fuente económica: {economicSourceLabel} (UF al {ufLastUpdated}).
+          Valor UF hoy
+        </p>
+        <p id="uf-display" class="text-3xl font-bold">{"$" + ufDisplay}</p>
+        <p id="uf-fecha" class="mt-0.5 text-xs text-muted">
+          {ufDateDisplay} · Fuente: Banco Central de Chile
         </p>
       </div>
-    </section>
+      <span class="text-4xl">🇨🇱</span>
+    </div>
 
-    <section
-      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
-    >
-      <h2>¿Qué es la UF y por qué cambia cada día?</h2>
-      <p>
-        La <strong>Unidad de Fomento (UF)</strong> es un índice de reajustabilidad
-        que sigue la inflación. Se actualiza diariamente desde el día 10 de cada mes
-        hasta el día 9 del siguiente, en base al IPC del mes anterior publicado por
-        el INE.
-      </p>
-      <ul>
-        <li>
-          Si el IPC de enero fue 0,5%, la UF sube ese 0,5% distribuido entre el
-          10 de febrero y el 9 de marzo.
-        </li>
-        <li>
-          El valor oficial lo publica el Banco Central en el Diario Oficial a
-          más tardar el día 9 de cada mes.
-        </li>
-        <li>
-          Se usa en arriendos, créditos hipotecarios, multas y contratos de
-          largo plazo.
-        </li>
-      </ul>
-      <p class="text-sm text-muted">
-        ⚠️ El valor de la UF en este conversor usa la última actualización
-        disponible en la fuente. Para revisar el dato oficial consulta el <a
-          href="https://si3.bcentral.cl/Indicadoressiete/secure/Indicadoresdiarios.aspx"
-          target="_blank"
-          rel="noopener noreferrer">Banco Central</a
-        >.
-      </p>
-      <p>
-        Para entender por qué la UF cambia todos los días, revisa la <a
-          href={ufGuidePath}
-          data-analytics-cta="calculator-guide"
-          data-analytics-label="Guia explicativa de la UF"
-          data-analytics-location="calculator_explainer"
-          >guía explicativa de la UF</a
-        >.
-      </p>
-      <p>
-        Si quieres conectar esa explicación con IPC, reajustes y arriendo, sigue
-        por la <a href={ufHubPath}>guía UF, inflación y costo de vida</a>.
-      </p>
-    </section>
+    <!-- CONVERSOR -->
+    <div class="mb-6 rounded-xl border border-border p-6">
+      <!-- UF → Pesos -->
+      <div class="mb-6">
+        <label
+          for="uf-input"
+          class="mb-1 block text-sm font-medium text-secondary"
+        >
+          Unidades de Fomento (UF)
+        </label>
+        <input
+          type="number"
+          id="uf-input"
+          placeholder="Ej: 1000"
+          min="0"
+          step="0.01"
+          class="w-full rounded-lg border border-border bg-background px-3 py-2 text-lg text-foreground focus:border-accent focus:outline-none"
+        />
+      </div>
 
-    <section class="border-t border-border py-8">
-      <h2 class="mb-6 text-xl font-semibold">
-        Preguntas frecuentes sobre la conversión UF a pesos
+      <div class="mb-6 flex items-center gap-3">
+        <div class="h-px flex-1 bg-border"></div>
+        <button
+          id="swap-btn"
+          class="rounded-full border border-border px-3 py-1 text-sm text-secondary transition-all hover:border-accent hover:text-accent"
+        >
+          ⇅ invertir
+        </button>
+        <div class="h-px flex-1 bg-border"></div>
+      </div>
+
+      <div class="mb-6">
+        <label
+          for="pesos-input"
+          class="mb-1 block text-sm font-medium text-secondary"
+        >
+          Pesos chilenos ($)
+        </label>
+        <input
+          type="number"
+          id="pesos-input"
+          placeholder="Ej: 39.773.620"
+          min="0"
+          class="w-full rounded-lg border border-border bg-background px-3 py-2 text-lg text-foreground focus:border-accent focus:outline-none"
+        />
+      </div>
+
+      <!-- RESULTADO VISUAL -->
+      <div
+        id="resultado"
+        class="hidden rounded-lg bg-foreground/5 p-4 text-center"
+        aria-live="polite"
+      >
+        <p id="resultado-texto" class="text-2xl font-bold"></p>
+        <p id="resultado-sub" class="mt-1 text-sm text-muted"></p>
+      </div>
+      <div
+        id="economic-parameters"
+        data-uf={String(economicParameters.uf)}
+        data-last-updated={ufLastUpdated}
+        class="hidden"
+        aria-hidden="true"
+      >
+      </div>
+    </div>
+
+    <!-- TABLA DE REFERENCIA RÁPIDA -->
+    <div class="rounded-xl border border-border p-6">
+      <h2 class="mb-4 text-base font-semibold">
+        Valores de referencia rápidos
       </h2>
-      <dl class="space-y-6">
-        {
-          ufFaqs.map(faq => (
-            <div>
-              <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
-              <dd class="text-sm leading-relaxed text-secondary">
-                {faq.answer}
-              </dd>
-            </div>
-          ))
-        }
-      </dl>
-    </section>
+      <div id="tabla-ref" class="space-y-2 text-sm"></div>
+      <p class="mt-3 text-xs text-muted">
+        Fuente económica: {economicSourceLabel} (UF al {ufLastUpdated}).
+      </p>
+    </div>
+  </section>
 
-    <PrimaryCTA
-      text="¿Qué es la UF y cómo se calcula? →"
-      href="/posts/que-es-la-uf/"
-      context="Entiende por qué la UF cambia cada día y cómo afecta tus contratos y deudas en Chile."
-    />
-    <ShareCalculatorResult />
-    <MethodologyBlock
-      notes="La UF es publicada oficialmente por el Banco Central de Chile (fuente primaria). El valor diario se obtiene desde el Banco Central, con mindicador.cl como respaldo (espejo de la misma publicación). La UF se actualiza diariamente entre el día 10 de cada mes y el día 9 del siguiente, en base al IPC del mes anterior publicado por el INE."
-      sources={[
-        {
-          name: "Banco Central de Chile — Indicadores diarios (UF)",
-          url: "https://si3.bcentral.cl/Indicadoressiete/secure/Indicadoresdiarios.aspx",
-          date: "2026-05",
-        },
-        {
-          name: "Banco Central de Chile — Metodología UF",
-          url: "https://si3.bcentral.cl/estadisticas/Principal1/Metodologias/EMF/UF.pdf",
-          date: "2025-12",
-        },
-        {
-          name: "mindicador.cl — API valor UF diario (respaldo)",
-          url: "https://mindicador.cl/api/uf",
-          date: "2026-04",
-        },
-      ]}
-    />
-    <NextSteps
-      currentHref="/calculadoras/conversor-uf/"
-      items={calculatorNextStepItems}
-      title="Qué hacer con este resultado"
-      description="Sigue con una herramienta relacionada o vuelve al índice si necesitas resolver otra pregunta."
-      location="calculator_next_steps"
-    />
-  </main>
-  <Footer />
-</Layout>
+  <section slot="explainer">
+    <h2>¿Qué es la UF y por qué cambia cada día?</h2>
+    <p>
+      La <strong>Unidad de Fomento (UF)</strong> es un índice de reajustabilidad
+      que sigue la inflación. Se actualiza diariamente desde el día 10 de cada mes
+      hasta el día 9 del siguiente, en base al IPC del mes anterior publicado por
+      el INE.
+    </p>
+    <ul>
+      <li>
+        Si el IPC de enero fue 0,5%, la UF sube ese 0,5% distribuido entre el
+        10 de febrero y el 9 de marzo.
+      </li>
+      <li>
+        El valor oficial lo publica el Banco Central en el Diario Oficial a
+        más tardar el día 9 de cada mes.
+      </li>
+      <li>
+        Se usa en arriendos, créditos hipotecarios, multas y contratos de
+        largo plazo.
+      </li>
+    </ul>
+    <p class="text-sm text-muted">
+      ⚠️ El valor de la UF en este conversor usa la última actualización
+      disponible en la fuente. Para revisar el dato oficial consulta el <a
+        href="https://si3.bcentral.cl/Indicadoressiete/secure/Indicadoresdiarios.aspx"
+        target="_blank"
+        rel="noopener noreferrer">Banco Central</a
+      >.
+    </p>
+    <p>
+      Para entender por qué la UF cambia todos los días, revisa la <a
+        href={ufGuidePath}
+        data-analytics-cta="calculator-guide"
+        data-analytics-label="Guia explicativa de la UF"
+        data-analytics-location="calculator_explainer"
+        >guía explicativa de la UF</a
+      >.
+    </p>
+    <p>
+      Si quieres conectar esa explicación con IPC, reajustes y arriendo, sigue
+      por la <a href={ufHubPath}>guía UF, inflación y costo de vida</a>.
+    </p>
+  </section>
+</CalculatorShell>
 
 <script>
   import { convertUf } from "@/application/use-cases/ConvertUf";

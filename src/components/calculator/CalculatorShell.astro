@@ -1,0 +1,226 @@
+---
+// CalculatorShell — shared layout shell for all calculator pages.
+//
+// Provides the full page wrapper (Layout, Header, Breadcrumb, Footer),
+// common sections (Hero, CTA, Share, Methodology, NextSteps), and
+// an optional FAQ section. The calculator supplies form, result, and
+// explainer content via named slots.
+//
+// Usage:
+//   <CalculatorShell
+//     title="Conversor UF a Pesos"
+//     description="..."
+//     slug="conversor-uf"
+//     calculatorName="Conversor UF a Pesos"
+//     heroTitle="Conversor UF ↔ Pesos"
+//     heroDescription="..."
+//     layout="single"
+//     faqs={faqArray}
+//     ctaText="Leer guía →"
+//     ctaHref="/posts/que-es-la-uf/"
+//     methodologyNotes="..."
+//     methodologySources={[...]}
+//   >
+//     <section slot="form">...form fields and inputs...</section>
+//     <section slot="result">...result panel...</section>
+//     <section slot="explainer">...prose explainer...</section>
+//   </CalculatorShell>
+//   <script>...</script>
+
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
+import PrimaryCTA from "@/components/PrimaryCTA.astro";
+import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
+import MethodologyBlock from "@/components/MethodologyBlock.astro";
+import NextSteps from "@/components/NextSteps.astro";
+import NextBestStep from "@/components/NextBestStep.astro";
+import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
+
+export interface Props {
+  /** <title> and og:title */
+  title: string;
+  /** <meta name="description"> and JSON-LD description */
+  description: string;
+  /** URL slug for the calculator (e.g. "conversor-uf") */
+  slug: string;
+  /** Display name used for analytics events */
+  calculatorName: string;
+
+  // Hero
+  heroTitle: string;
+  heroDescription: string;
+  heroDescriptionClass?: string;
+
+  // JSON-LD (WebApplication + optional FAQPage)
+  jsonLdName?: string;
+  faqs?: Array<{ question: string; answer: string }>;
+
+  // CTA
+  ctaText?: string;
+  ctaHref?: string;
+  ctaContext?: string;
+
+  // Methodology
+  methodologyNotes?: string;
+  methodologySources?: Array<{ name: string; url: string; date: string }>;
+
+  // NextSteps
+  nextBestStepSlug?: string;
+  currentHref?: string;
+
+  // Layout mode
+  /** "single" = max-w-xl single column (UF/UTM converters);
+   *  "split" = 2-column grid (form + result side by side).
+   *  Default: "split". */
+  layout?: "single" | "split";
+
+  /** data-site-title attribute (for specific calculators that need it) */
+  siteTitle?: string;
+}
+
+const props = Astro.props;
+const layout = props.layout ?? "split";
+
+const calculatorSlug = props.slug;
+const currentCalculator = CALCULATOR_PORTFOLIO.find(
+  (c) => c.slug === calculatorSlug,
+);
+const calculatorRelatedItems = (currentCalculator?.related ?? []).map(
+  (item) => ({
+    href: item.href,
+    title: item.label,
+    description: item.when,
+    label: "Relacionado",
+  }),
+);
+const calculatorNextStepItems = [
+  ...calculatorRelatedItems,
+  ...(calculatorRelatedItems.length < 2
+    ? [
+        {
+          href: "/calculadoras/",
+          title: "Ver todas las calculadoras",
+          description: "Compara otra herramienta si tu pregunta cambió.",
+          label: "Herramientas",
+        },
+      ]
+    : []),
+];
+
+const hasExplainer = Astro.slots.has("explainer");
+const hasResult = Astro.slots.has("result");
+const hasNextBestStep = Boolean(props.nextBestStepSlug);
+---
+
+<Layout title={props.title} description={props.description}>
+  <CalculatorJsonLd
+    name={props.jsonLdName ?? props.title}
+    description={props.description}
+    faqs={props.faqs}
+  />
+  <Header />
+  <Breadcrumb />
+  <CalculatorTrustBadge location="calculator_header" />
+  <main
+    data-layout="calculator"
+    id="main-content"
+    class="app-layout"
+    data-analytics-page-type="calculator"
+    data-analytics-calculator={props.slug}
+    data-analytics-calculator-name={props.calculatorName}
+    {...(props.siteTitle ? { "data-site-title": props.siteTitle } : {})}
+  >
+    <CalculatorHero
+      title={props.heroTitle}
+      description={props.heroDescription}
+      descriptionClass={props.heroDescriptionClass}
+    />
+
+    {
+      layout === "single" ? (
+        <section class="max-w-xl py-8">
+          <slot name="form" />
+        </section>
+      ) : (
+        <section
+          class:list={[
+            "grid items-start gap-6 py-8",
+            "sm:grid-cols-2",
+          ]}
+        >
+          <slot name="form" />
+          {
+            hasResult ? (
+              <slot name="result" />
+            ) : null
+          }
+        </section>
+      )
+    }
+
+    {
+      hasExplainer && (
+        <section
+          class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
+        >
+          <slot name="explainer" />
+        </section>
+      )
+    }
+
+    {props.faqs && props.faqs.length > 0 ? (
+      <section class="border-t border-border py-8">
+        <h2 class="mb-6 text-xl font-semibold">
+          Preguntas frecuentes
+        </h2>
+        <dl class="space-y-6">
+          {props.faqs.map((faq) => (
+            <div>
+              <dt class="mb-1 font-medium text-foreground">
+                {faq.question}
+              </dt>
+              <dd class="text-sm leading-relaxed text-secondary">
+                {faq.answer}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    ) : null}
+
+    {props.ctaText && props.ctaHref ? (
+      <PrimaryCTA
+        text={props.ctaText}
+        href={props.ctaHref}
+        context={props.ctaContext}
+      />
+    ) : null}
+
+    <ShareCalculatorResult />
+
+    {props.methodologyNotes ? (
+      <MethodologyBlock
+        notes={props.methodologyNotes}
+        sources={props.methodologySources ?? []}
+      />
+    ) : null}
+
+    {hasNextBestStep ? <NextBestStep slug={props.nextBestStepSlug!} /> : null}
+
+    <NextSteps
+      currentHref={
+        props.currentHref ?? `/calculadoras/${calculatorSlug}/`
+      }
+      items={calculatorNextStepItems}
+      title="Qué hacer con este resultado"
+      description="Sigue con una herramienta relacionada o vuelve al índice si necesitas resolver otra pregunta."
+      location="calculator_next_steps"
+    />
+  </main>
+  <Footer />
+</Layout>
