@@ -544,11 +544,9 @@ const dapFaqs = [
       "Calculadora de Depósito a Plazo"
     );
 
-    if (typeof window.showShareResult === "function") {
-      window.showShareResult(
-        `DAP: ${fmt(result.amount)} al ${tirPct}% TIR por ${plazo} días → ${fmt(result.finalAmount)} (neto)`
-      );
-    }
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", { detail: { summaryText: `DAP: ${fmt(result.amount)} al ${tirPct}% TIR por ${plazo} días → ${fmt(result.finalAmount)} (neto)` } })
+    );
     window.showCalculatorNextActions?.();
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "deposito-a-plazo",

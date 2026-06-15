@@ -633,11 +633,9 @@ const calculatorNextStepItems = [
         scopeBox
       );
 
-    if (typeof window.showShareResult === "function") {
-      window.showShareResult(
-        `Jubilación estimada: ${fmt(proyeccion.selectedScenario.estimatedMonthlyPension)}/mes`
-      );
-    }
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", { detail: { summaryText: `Jubilación estimada: ${fmt(proyeccion.selectedScenario.estimatedMonthlyPension)}/mes` } })
+    );
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "simulador-jubilacion",
       calculator_name: "Simulador de Jubilacion",

@@ -383,11 +383,9 @@ const calculatorNextStepItems = [
       summaryText.textContent = `Con un imponible de ${fmt(imponible)}, elegir la AFP más barata frente a la más cara te ahorraría ${fmt(maxExtraMonthly)}/mes — ${fmt(maxExtraAnnual)} al año solo en comisiones.`;
       summaryEl.classList.remove("hidden");
 
-      if (typeof window.showShareResult === "function") {
-        window.showShareResult(
-          `Comisiones AFP: imponible ${fmt(imponible)}, ahorro máx. ${fmt(maxExtraAnnual)}/año`
-        );
-      }
+      document.dispatchEvent(
+        new CustomEvent("calculator:result", { detail: { summaryText: `Comisiones AFP: imponible ${fmt(imponible)}, ahorro máx. ${fmt(maxExtraAnnual)}/año` } })
+      );
       trackAnalyticsEvent("calculator_complete", {
         calculator_slug: "comisiones-afp",
         calculator_name: "Comparador Comisiones AFP",

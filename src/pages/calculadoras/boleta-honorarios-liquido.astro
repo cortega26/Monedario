@@ -422,11 +422,9 @@ const calculatorNextStepItems = [
         assumptions
       );
 
-    if (typeof window.showShareResult === "function") {
-      window.showShareResult(
-        `Boleta honorarios: líquido ${fmtCurrency(result.netFeeReceived)} (bruto ${fmtCurrency(result.grossFee)})`
-      );
-    }
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", { detail: { summaryText: `Boleta honorarios: líquido ${fmtCurrency(result.netFeeReceived)} (bruto ${fmtCurrency(result.grossFee)})` } })
+    );
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "boleta-honorarios-liquido",
       calculator_name: "Calculadora Boleta Honorarios Liquido",

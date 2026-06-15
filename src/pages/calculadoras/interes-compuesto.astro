@@ -588,11 +588,9 @@ const interesCompuestoFaqs = [
       "Calculadora de Interés Compuesto"
     );
 
-    if (typeof window.showShareResult === "function") {
-      window.showShareResult(
-        `Interés compuesto: $${Math.round(capital).toLocaleString("es-CL")} al ${tasaPct}% por ${anos} años → ${fmt(result.finalAmount)}`
-      );
-    }
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", { detail: { summaryText: `Interés compuesto: $${Math.round(capital).toLocaleString("es-CL")} al ${tasaPct}% por ${anos} años → ${fmt(result.finalAmount)}` } })
+    );
     window.showCalculatorNextActions?.();
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "interes-compuesto",

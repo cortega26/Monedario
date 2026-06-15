@@ -1919,11 +1919,9 @@ const calculatorNextStepItems = [
         window.location.pathname,
         "Calculadora de Sueldo Líquido y Bruto"
       );
-      if (typeof window.showShareResult === "function") {
-        window.showShareResult(
-          `Sueldo Líquido y Bruto: bruto estimado ${fmt(resultado.grossSalary)}`
-        );
-      }
+      document.dispatchEvent(
+        new CustomEvent("calculator:result", { detail: { summaryText: `Sueldo Líquido y Bruto: bruto estimado ${fmt(resultado.grossSalary)}` } })
+      );
       window.showCalculatorNextActions?.();
       trackAnalyticsEvent("calculator_complete", {
         calculator_slug: "sueldo-liquido",
@@ -2027,11 +2025,9 @@ const calculatorNextStepItems = [
         window.location.pathname,
         "Calculadora de Sueldo Líquido y Bruto"
       );
-      if (typeof window.showShareResult === "function") {
-        window.showShareResult(
-          `Sueldo Líquido y Bruto: líquido ${fmt(resultado.netSalary - (otrosDescuentos ?? 0))}`
-        );
-      }
+      document.dispatchEvent(
+        new CustomEvent("calculator:result", { detail: { summaryText: `Sueldo Líquido y Bruto: líquido ${fmt(resultado.netSalary - (otrosDescuentos ?? 0))}` } })
+      );
       window.showCalculatorNextActions?.();
       trackAnalyticsEvent("calculator_complete", {
         calculator_slug: "sueldo-liquido",

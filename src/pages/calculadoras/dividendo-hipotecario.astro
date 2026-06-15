@@ -708,11 +708,9 @@ const calculatorNextStepItems = [
         : "Ver tabla completa";
     };
 
-    if (typeof window.showShareResult === "function") {
-      window.showShareResult(
-        `Dividendo hipotecario: ${fmtPesos(resultado.basePaymentPesos)}/mes (${resultado.basePaymentUF.toFixed(2)} UF)`
-      );
-    }
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", { detail: { summaryText: `Dividendo hipotecario: ${fmtPesos(resultado.basePaymentPesos)}/mes (${resultado.basePaymentUF.toFixed(2)} UF)` } })
+    );
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "dividendo-hipotecario",
       calculator_name: "Calculadora de Dividendo Hipotecario",

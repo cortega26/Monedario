@@ -713,11 +713,9 @@ const calculatorNextStepItems = [
       finalNote
     );
 
-    if (typeof window.showShareResult === "function") {
-      window.showShareResult(
-        `Prepago crédito: ahorro neto ${fmtMR(simulacion.netSavingsAfterPrepaymentCost)}`
-      );
-    }
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", { detail: { summaryText: `Prepago crédito: ahorro neto ${fmtMR(simulacion.netSavingsAfterPrepaymentCost)}` } })
+    );
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "prepago-credito",
       calculator_name: "Calculadora de Prepago de Credito",

@@ -837,11 +837,9 @@ const calculatorNextStepItems = [
       compSection.removeAttribute("hidden");
     }
 
-    if (typeof window.showShareResult === "function") {
-      window.showShareResult(
-        `Renegociación Superir: cuota ${fmt(simulacion.monthlyPayment)}/mes, deuda ${fmt(simulacion.totalDebtClp)}`
-      );
-    }
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", { detail: { summaryText: `Renegociación Superir: cuota ${fmt(simulacion.monthlyPayment)}/mes, deuda ${fmt(simulacion.totalDebtClp)}` } })
+    );
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "simulador-renegociacion",
       calculator_name: "Simulador de Renegociacion Superir",

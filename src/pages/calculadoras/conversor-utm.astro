@@ -360,7 +360,7 @@ const calculatorNextStepItems = [
     resultado.classList.remove("hidden");
     resultadoTexto.textContent = principal;
     resultadoSub.textContent = sub;
-    window.showShareResult?.(`Conversor UTM: ${sub}`);
+    document.dispatchEvent(new CustomEvent("calculator:result", { detail: { summaryText: `Conversor UTM: ${sub}` } }));
     if (!hasTrackedCompletion) {
       hasTrackedCompletion = true;
       trackAnalyticsEvent("calculator_complete", {

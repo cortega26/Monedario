@@ -608,11 +608,9 @@ const calculatorNextStepItems = [
           note
         );
 
-      if (typeof window.showShareResult === "function") {
-        window.showShareResult(
-          `Feriado proporcional: ${result.proportionalVacationDays.toFixed(2)} días — ${fmtCurrency(result.proportionalVacationAmount)}`
-        );
-      }
+      document.dispatchEvent(
+        new CustomEvent("calculator:result", { detail: { summaryText: `Feriado proporcional: ${result.proportionalVacationDays.toFixed(2)} días — ${fmtCurrency(result.proportionalVacationAmount)}` } })
+      );
       window.showCalculatorNextActions?.();
       trackAnalyticsEvent("calculator_complete", {
         calculator_slug: "finiquito-indemnizacion",
@@ -793,11 +791,9 @@ const calculatorNextStepItems = [
         notes
       );
 
-    if (typeof window.showShareResult === "function") {
-      window.showShareResult(
-        `Finiquito estimado: ${fmtCurrency(result.totalEstimate)} (causal: ${terminationCause})`
-      );
-    }
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", { detail: { summaryText: `Finiquito estimado: ${fmtCurrency(result.totalEstimate)} (causal: ${terminationCause})` } })
+    );
     window.showCalculatorNextActions?.();
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "finiquito-indemnizacion",

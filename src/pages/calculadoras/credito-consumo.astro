@@ -500,11 +500,9 @@ const calculatorNextStepItems = [
       .getElementById("resultado-contenido")!
       .replaceChildren(headline, ...rows, insight);
 
-    if (typeof window.showShareResult === "function") {
-      window.showShareResult(
-        `Crédito consumo: cuota ${fmt(resultado.monthlyPaymentTotal)}/mes, total ${fmt(resultado.totalPaid)}`
-      );
-    }
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", { detail: { summaryText: `Crédito consumo: cuota ${fmt(resultado.monthlyPaymentTotal)}/mes, total ${fmt(resultado.totalPaid)}` } })
+    );
     window.showCalculatorNextActions?.();
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "credito-consumo",

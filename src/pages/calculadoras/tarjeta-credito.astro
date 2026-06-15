@@ -437,11 +437,9 @@ const calculatorNextStepItems = [
         doublePaymentBox
       );
 
-    if (typeof window.showShareResult === "function") {
-      window.showShareResult(
-        `Tarjeta de crédito: intereses totales ${fmt(resultado.totalInterest)} (deuda ${fmt(deuda)})`
-      );
-    }
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", { detail: { summaryText: `Tarjeta de crédito: intereses totales ${fmt(resultado.totalInterest)} (deuda ${fmt(deuda)})` } })
+    );
     window.showCalculatorNextActions?.();
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "tarjeta-credito",
