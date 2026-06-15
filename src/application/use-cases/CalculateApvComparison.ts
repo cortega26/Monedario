@@ -4,6 +4,7 @@ import {
   calculateMonthlyPayrollBase,
   type PayrollContractType,
 } from "@/application/use-cases/CalculateMonthlyPayrollBase";
+import { MONTHS_PER_YEAR } from "./shared/financialConstants";
 
 export interface ApvComparisonInput {
   grossSalary: number;
@@ -68,7 +69,6 @@ export interface ApvComparisonOutput {
   recommendedStrategy: "A" | "B" | "MIXED";
 }
 
-const MONTHS_PER_YEAR = 12;
 
 // DL 3500 art. 20 O: bonificacion fiscal Regimen A, 15% del ahorro con tope anual de 6 UTM.
 const REGIME_A_STATE_BONUS_RATE = 0.15;

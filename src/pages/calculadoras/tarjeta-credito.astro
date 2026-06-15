@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { formatCLP } from "@/utils/indicadores";
 import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
@@ -15,7 +16,6 @@ import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 import { simulateCreditCardCost } from "@/application/use-cases/SimulateCreditCardCost";
-const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
 const exampleResult = simulateCreditCardCost({
   debt: 500_000,
   monthlyRatePercent: 3.49,
@@ -138,7 +138,7 @@ const calculatorNextStepItems = [
               Total a pagar (Ejemplo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
-              {fmtClp(exampleResult.baseline.totalPaid)}
+              {formatCLP(exampleResult.baseline.totalPaid)}
             </p>
           </div>
           <div class="space-y-2 text-sm">
@@ -149,7 +149,7 @@ const calculatorNextStepItems = [
             <div class="flex justify-between">
               <span class="text-secondary">Intereses totales</span>
               <span class="font-medium text-foreground/80">
-                {fmtClp(exampleResult.baseline.totalInterest)}
+                {formatCLP(exampleResult.baseline.totalInterest)}
               </span>
             </div>
             <div class="flex justify-between">

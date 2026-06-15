@@ -1,3 +1,5 @@
+import { PERCENT_DENOMINATOR, MONTHS_PER_YEAR } from "./shared/financialConstants";
+
 const DEFAULT_WITHHOLDING_RATE_PERCENT = 15.25;
 const DEFAULT_COVERAGE_BASE_PERCENT = 80;
 
@@ -82,15 +84,15 @@ export function calculateHonorariosNet(
   const withholdingRatePercent =
     input.withholdingRatePercent ?? DEFAULT_WITHHOLDING_RATE_PERCENT;
   const issuedMonthsPerYear = input.issuedMonthsPerYear ?? 12;
-  const withholdingAmount = input.grossFee * (withholdingRatePercent / 100);
+  const withholdingAmount = input.grossFee * (withholdingRatePercent / PERCENT_DENOMINATOR);
   const netFeeReceived = input.grossFee - withholdingAmount;
   const annualGrossFees =
     input.annualGrossFees ?? input.grossFee * issuedMonthsPerYear;
   const annualWithholdingAmount =
-    annualGrossFees * (withholdingRatePercent / 100);
+    annualGrossFees * (withholdingRatePercent / PERCENT_DENOMINATOR);
   const annualCoverageBase =
-    annualGrossFees * (DEFAULT_COVERAGE_BASE_PERCENT / 100);
-  const monthlyCoverageBaseEquivalent = annualCoverageBase / 12;
+    annualGrossFees * (DEFAULT_COVERAGE_BASE_PERCENT / PERCENT_DENOMINATOR);
+  const monthlyCoverageBaseEquivalent = annualCoverageBase / MONTHS_PER_YEAR;
 
   return {
     grossFee: input.grossFee,

@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { formatCLP } from "@/utils/indicadores";
 import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
@@ -22,7 +23,6 @@ const economicSourceLabel =
     : economicParameters.source === "snapshot"
       ? "dato de referencia"
       : "fallback de emergencia";
-const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
 const exampleRentBase = 400_000;
 const exampleIpcPercent = 3.5;
 const exampleRentNew = Math.round(
@@ -245,20 +245,20 @@ const calculatorNextStepItems = [
               Nuevo arriendo (Ejemplo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
-              {fmtClp(exampleRentNew)}
+              {formatCLP(exampleRentNew)}
             </p>
           </div>
           <div class="space-y-2 text-sm">
             <div class="flex justify-between">
               <span class="text-secondary">Arriendo actual</span>
               <span class="font-medium text-foreground/80">
-                {fmtClp(exampleRentBase)}
+                {formatCLP(exampleRentBase)}
               </span>
             </div>
             <div class="flex justify-between">
               <span class="text-secondary">Alza mensual</span>
               <span class="font-medium text-foreground/80">
-                {fmtClp(exampleRentNew - exampleRentBase)}
+                {formatCLP(exampleRentNew - exampleRentBase)}
               </span>
             </div>
             <div class="flex justify-between">

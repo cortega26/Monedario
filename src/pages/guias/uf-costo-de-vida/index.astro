@@ -8,7 +8,7 @@ import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
-import { fmt, fmtFecha } from "@/utils/indicadores";
+import { formatCLP, fmtFecha } from "@/utils/indicadores";
 import { getHubArticleAssignments } from "@/config/editorial-hub-model.mjs";
 
 const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
@@ -76,7 +76,7 @@ const contextualIndicators = [
   {
     code: "UF",
     title: "Unidad de Fomento",
-    value: fmt(parameters.uf),
+    value: formatCLP(parameters.uf),
     date: fmtFecha(resolveEconomicIndicatorDate(parameters, "uf")),
     why: "Es la referencia principal en arriendos, dividendos y contratos reajustables.",
   },

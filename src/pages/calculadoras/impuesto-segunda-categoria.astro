@@ -1,5 +1,6 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import { formatCLP } from "@/utils/indicadores";
 import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
@@ -34,7 +35,6 @@ const economicSourceLabel =
       ? "dato de referencia"
       : "fallback de emergencia";
 
-const fmt = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
 
 const taxBrackets = buildSecondCategoryTaxBrackets(utm);
 const exampleResult = calculateSecondCategoryTax({
@@ -46,58 +46,58 @@ const bracketRows = [
   {
     desde: "0",
     hasta: "13,5",
-    hastaPesos: fmt(13.5 * utm),
+    hastaPesos: formatCLP(13.5 * utm),
     tasa: "Exento (0%)",
     rebaja: "—",
   },
   {
     desde: "13,5",
     hasta: "30",
-    hastaPesos: fmt(30 * utm),
+    hastaPesos: formatCLP(30 * utm),
     tasa: "4%",
-    rebaja: fmt(taxBrackets[1].deduction),
+    rebaja: formatCLP(taxBrackets[1].deduction),
   },
   {
     desde: "30",
     hasta: "50",
-    hastaPesos: fmt(50 * utm),
+    hastaPesos: formatCLP(50 * utm),
     tasa: "8%",
-    rebaja: fmt(taxBrackets[2].deduction),
+    rebaja: formatCLP(taxBrackets[2].deduction),
   },
   {
     desde: "50",
     hasta: "70",
-    hastaPesos: fmt(70 * utm),
+    hastaPesos: formatCLP(70 * utm),
     tasa: "13,5%",
-    rebaja: fmt(taxBrackets[3].deduction),
+    rebaja: formatCLP(taxBrackets[3].deduction),
   },
   {
     desde: "70",
     hasta: "90",
-    hastaPesos: fmt(90 * utm),
+    hastaPesos: formatCLP(90 * utm),
     tasa: "23%",
-    rebaja: fmt(taxBrackets[4].deduction),
+    rebaja: formatCLP(taxBrackets[4].deduction),
   },
   {
     desde: "90",
     hasta: "120",
-    hastaPesos: fmt(120 * utm),
+    hastaPesos: formatCLP(120 * utm),
     tasa: "30,4%",
-    rebaja: fmt(taxBrackets[5].deduction),
+    rebaja: formatCLP(taxBrackets[5].deduction),
   },
   {
     desde: "120",
     hasta: "150",
-    hastaPesos: fmt(150 * utm),
+    hastaPesos: formatCLP(150 * utm),
     tasa: "35%",
-    rebaja: fmt(taxBrackets[6].deduction),
+    rebaja: formatCLP(taxBrackets[6].deduction),
   },
   {
     desde: "150",
     hasta: "∞",
     hastaPesos: "Sin límite",
     tasa: "40%",
-    rebaja: fmt(taxBrackets[7].deduction),
+    rebaja: formatCLP(taxBrackets[7].deduction),
   },
 ];
 
@@ -215,7 +215,7 @@ const calculatorNextStepItems = [
               Impuesto mensual (Ejemplo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
-              {fmt(exampleResult.taxAmount)}
+              {formatCLP(exampleResult.taxAmount)}
             </p>
           </div>
           <div class="space-y-2 text-sm">
@@ -232,7 +232,7 @@ const calculatorNextStepItems = [
             <div class="flex justify-between">
               <span class="text-secondary">Impuesto anual estimado</span>
               <span class="font-medium text-foreground/80">
-                {fmt(exampleResult.taxAmount * 12)}
+                {formatCLP(exampleResult.taxAmount * 12)}
               </span>
             </div>
           </div>
@@ -249,7 +249,7 @@ const calculatorNextStepItems = [
         </div>
         <p class="mt-3 text-xs text-muted">
           Fuente económica: {economicSourceLabel}. UTM vigente: {utmMonthLabel}.
-          Valor usado: {fmt(utm)}.
+          Valor usado: {formatCLP(utm)}.
         </p>
       </div>
     </section>
@@ -260,7 +260,7 @@ const calculatorNextStepItems = [
     <section class="border-t border-border py-8">
       <h2 class="mb-2 text-xl font-bold">Tabla de tramos vigente 2026</h2>
       <p class="mb-4 max-w-3xl text-sm text-secondary">
-        Calculada con UTM {fmt(utm)}. Fórmula: <strong
+        Calculada con UTM {formatCLP(utm)}. Fórmula: <strong
           >impuesto = imponible × tasa − cuantía a rebajar</strong
         >. El impuesto es progresivo: solo tributa la parte del sueldo que
         supera cada umbral.
@@ -312,7 +312,7 @@ const calculatorNextStepItems = [
       <ul>
         <li>
           <strong>Tramo exento:</strong> Si tu imponible no supera las 13,5 UTM mensuales
-          (~{fmt(13.5 * utm)}), no pagas impuesto.
+          (~{formatCLP(13.5 * utm)}), no pagas impuesto.
         </li>
         <li>
           <strong>Progresividad:</strong> Solo paga impuesto la parte de tu sueldo
@@ -390,7 +390,7 @@ const calculatorNextStepItems = [
     }
   }
 
-  function fmt(n: number): string {
+  function formatCLP(n: number): string {
     return "$" + Math.round(n).toLocaleString("es-CL");
   }
 
@@ -474,14 +474,14 @@ const calculatorNextStepItems = [
 
     const headlineValue = document.createElement("p");
     headlineValue.className = "text-4xl font-bold";
-    headlineValue.textContent = fmt(result.taxAmount);
+    headlineValue.textContent = formatCLP(result.taxAmount);
 
     headline.append(headlineLabel, headlineValue);
 
     const delta = renderHeadlineDelta(
       window.location.pathname,
       result.taxAmount,
-      fmt
+      formatCLP
     );
     if (delta) headline.append(delta);
 
@@ -500,17 +500,17 @@ const calculatorNextStepItems = [
     };
 
     const rows = [
-      buildRow("Sueldo imponible", fmt(imponible)),
+      buildRow("Sueldo imponible", formatCLP(imponible)),
       buildRow(
         "Tasa marginal",
         result.taxAmount === 0 ? "Exento" : fmtPct(result.marginalRate)
       ),
       buildRow(
         "Impuesto mensual",
-        fmt(result.taxAmount),
+        formatCLP(result.taxAmount),
         result.taxAmount > 0 ? "text-red-400" : "text-green-500"
       ),
-      buildRow("Impuesto anual estimado", fmt(result.taxAmount * 12)),
+      buildRow("Impuesto anual estimado", formatCLP(result.taxAmount * 12)),
       buildRow(
         "% sobre imponible",
         imponible > 0
@@ -530,7 +530,7 @@ const calculatorNextStepItems = [
 
     if (typeof window.showShareResult === "function") {
       window.showShareResult(
-        `Impuesto 2ª categoría: ${fmt(result.taxAmount)}/mes sobre imponible ${fmt(imponible)}`
+        `Impuesto 2ª categoría: ${formatCLP(result.taxAmount)}/mes sobre imponible ${formatCLP(imponible)}`
       );
     }
     trackAnalyticsEvent("calculator_complete", {

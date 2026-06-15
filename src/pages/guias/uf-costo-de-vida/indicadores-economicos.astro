@@ -6,7 +6,7 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getPath } from "@/utils/getPath";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
-import { fmt, fmtFecha } from "@/utils/indicadores";
+import { formatCLP, fmtFecha } from "@/utils/indicadores";
 
 const MESES_CORTO = [
   "Ene",
@@ -181,7 +181,7 @@ const itemListSchema = {
                   </td>
                   <td class="px-4 py-3 font-semibold text-foreground tabular-nums">
                     {item.unidad === "CLP"
-                      ? fmt(item.valor)
+                      ? formatCLP(item.valor)
                       : `${item.valor.toLocaleString("es-CL", {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
