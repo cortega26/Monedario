@@ -1,0 +1,600 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
+import NextSteps from "@/components/NextSteps.astro";
+import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
+import MethodologyBlock from "@/components/MethodologyBlock.astro";
+import PrimaryCTA from "@/components/PrimaryCTA.astro";
+import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
+import CalculatorResultNextActions from "@/components/CalculatorResultNextActions.astro";
+import NextBestStep from "@/components/NextBestStep.astro";
+import SupportCallout from "@/components/SupportCallout.astro";
+import { SITE } from "@/config";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import CalculatorField from "@/components/calculator/CalculatorField.astro";
+import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
+import CalculatorScenarios from "@/components/calculator/CalculatorScenarios.astro";
+import CalculatorExplainerSection from "@/components/calculator/CalculatorExplainerSection.astro";
+import CalculatorRadioGroup from "@/components/calculator/CalculatorRadioGroup.astro";
+
+const currentCalculator = CALCULATOR_PORTFOLIO.find(
+  calc => calc.slug === "deposito-a-plazo"
+);
+const calculatorRelatedItems = (currentCalculator?.related ?? []).map(item => ({
+  href: item.href,
+  title: item.label,
+  description: item.when,
+  label: "Relacionado",
+}));
+const calculatorNextStepItems = [
+  ...calculatorRelatedItems,
+  ...(calculatorRelatedItems.length < 2
+    ? [
+        {
+          href: "/calculadoras/",
+          title: "Ver todas las calculadoras",
+          description: "Compara otra herramienta si tu pregunta cambió.",
+          label: "Herramientas",
+        },
+      ]
+    : []),
+];
+
+const dapFaqs = [
+  {
+    question: "¿Cómo se calcula el interés de un depósito a plazo?",
+    answer:
+      "El interés bruto se calcula como: Monto × (TIR% / 100) × (días / 365). Por ejemplo, $5.000.000 al 5% TIR por 180 días genera un interés bruto de $123.288.",
+  },
+  {
+    question: "¿Los depósitos a plazo pagan impuesto en Chile?",
+    answer:
+      "Sí. Los intereses de depósitos a plazo para personas naturales sin actividad de primera categoría están sujetos a retención del 4% (art. 59 N°4 LIR). El banco retiene ese porcentaje directamente sobre el interés bruto. Esta calculadora muestra el estimado con y sin impuesto.",
+  },
+  {
+    question: "¿Qué es la TIR en un depósito a plazo?",
+    answer:
+      "La TIR (Tasa Interna de Retorno) expresada como porcentaje anual es la tasa de rendimiento efectiva que ofrece el banco. Es la tasa que debes usar para comparar DAPs entre distintas instituciones, ya que descuenta el efecto del plazo. Los bancos la informan en sus simuladores y en los documentos del contrato.",
+  },
+  {
+    question: "¿Conviene un DAP en UF o en pesos?",
+    answer:
+      "Depende de la inflación esperada. Un DAP en UF protege el capital de la inflación pero su tasa suele ser menor. En períodos de alta inflación, el DAP UF suele convenir más en términos de poder adquisitivo. Revisa el artículo comparativo para el análisis detallado.",
+  },
+];
+---
+
+<Layout
+  title="Calculadora Depósito a Plazo Chile 2026 | Interés bruto, impuesto y neto"
+  description="Calcula el interés bruto, impuesto 4% y monto neto de tu depósito a plazo. Ingresa monto, plazo en días y tasa TIR. Gratis y actualizado 2026."
+>
+  <CalculatorJsonLd
+    name="Calculadora de Depósito a Plazo Chile"
+    description="Calcula el interés bruto, impuesto 4% y monto neto de tu depósito a plazo en Chile. Ingresa monto, plazo en días y tasa TIR."
+    faqs={dapFaqs}
+  />
+  <Header />
+  <Breadcrumb />
+  <CalculatorTrustBadge location="calculator_header" />
+  <main
+    data-layout="calculator"
+    id="main-content"
+    class="app-layout"
+    data-analytics-page-type="calculator"
+    data-analytics-calculator="deposito-a-plazo"
+    data-analytics-calculator-name="Calculadora Deposito a Plazo"
+    data-site-title={SITE.title}
+  >
+    <CalculatorHero
+      title="Calculadora de Depósito a Plazo"
+      description="Estima el rendimiento de tu DAP: interés bruto, retención de impuesto (4%) e interés neto final. Ingresa monto, plazo y tasa TIR."
+      descriptionClass="max-w-lg text-sm leading-relaxed text-foreground"
+    />
+
+    <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
+      <!-- FORMULARIO -->
+      <div
+        id="calculator-form-card"
+        class="rounded-xl border border-border p-6"
+      >
+        <h2 class="mb-5 text-lg font-semibold">Datos del depósito</h2>
+
+        <CalculatorField
+          id="monto-dap"
+          label="Monto del depósito ($)"
+          placeholder="Ej: 5.000.000"
+          min="1"
+        />
+
+        <CalculatorField
+          id="plazo-dias"
+          label="Plazo (días)"
+          placeholder="Ej: 180"
+          min="1"
+          max="1095"
+          step="1"
+          hint="Plazos comunes: 30, 60, 90, 180, 365 días."
+        />
+
+        <CalculatorField
+          id="tasa-tir"
+          label="Tasa TIR anual (%)"
+          placeholder="Ej: 4.5"
+          min="0.01"
+          max="50"
+          step="0.01"
+          hint="La TIR anual la informa el banco. Puedes usar la tasa de referencia BCCh como punto de comparación."
+        />
+
+        <CalculatorRadioGroup
+          legend="¿Aplica retención de impuesto (4%)?"
+          name="aplica-impuesto"
+          hint="Art. 59 N°4 LIR: retención de 4% sobre intereses para personas naturales sin actividad de primera categoría."
+          options={[
+            {
+              id: "aplica-si",
+              value: "si",
+              label: "Sí (persona natural)",
+              checked: true,
+            },
+            { id: "aplica-no", value: "no", label: "No / Empresa" },
+          ]}
+        />
+
+        <div
+          id="calc-error"
+          class="mb-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
+          role="alert"
+          aria-live="assertive"
+        >
+        </div>
+        <button
+          id="calcBtn"
+          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          <span id="calcBtn-label">Calcular DAP →</span>
+        </button>
+      </div>
+
+      <!-- RESULTADO -->
+      <CalculatorResultPanel headingId="resultado-heading" title="Resultado">
+        <div id="resultado-contenido" data-is-example="true" aria-live="polite">
+          <div
+            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
+          >
+            <p
+              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
+            >
+              Monto al vencimiento (Ejemplo)
+            </p>
+            <p class="text-4xl font-bold text-foreground/80">$5.118.356</p>
+          </div>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between">
+              <span class="text-secondary">Interés bruto</span>
+              <span class="font-medium text-foreground/80">$123.288</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Retención 4%</span>
+              <span class="text-red-500">− $4.932</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Interés neto</span>
+              <span class="font-medium text-foreground/80">$118.356</span>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-muted">
+            Ejemplo: $5.000.000 al 5% TIR por 180 días, con retención 4%.
+          </p>
+        </div>
+      </CalculatorResultPanel>
+    </section>
+
+    <NextBestStep slug="deposito-a-plazo" />
+
+    <!-- EXPLICACIÓN -->
+    <CalculatorExplainerSection>
+      <h2>¿Cómo funciona el depósito a plazo en Chile?</h2>
+      <p>
+        Un depósito a plazo (DAP) es un instrumento de ahorro en el que
+        depositas dinero por un período fijo y el banco te paga un interés al
+        vencimiento. El rendimiento se expresa como TIR anual y el interés se
+        calcula proporcionalmente al plazo en días.
+      </p>
+      <p>
+        <strong>Fórmula:</strong> Interés bruto = Monto × (TIR% / 100) × (días / 365).
+      </p>
+      <p>
+        Los intereses de DAP están sujetos a una retención del <strong
+          >4%</strong
+        >
+        (art. 59 N°4 Ley de Impuesto a la Renta) para personas naturales sin actividad
+        de primera categoría. Este impuesto lo retiene directamente el banco.
+      </p>
+      <p>
+        Para comparar si conviene un DAP en UF versus pesos, revisa el artículo
+        <a
+          href="/posts/deposito-a-plazo-uf-vs-pesos/"
+          data-analytics-cta="calculator-guide"
+          data-analytics-label="Articulo DAP UF vs pesos"
+          data-analytics-location="calculator_explainer"
+          >Depósito a plazo: UF vs pesos</a
+        >.
+      </p>
+      <p class="text-sm text-muted">
+        Esta calculadora es de referencia. El impuesto real depende de tu
+        situación tributaria. Consulta a un asesor tributario si tienes dudas.
+      </p>
+    </CalculatorExplainerSection>
+
+    <section
+      class="max-w-none border-t border-border pt-8 pb-12"
+      style="content-visibility: auto; contain-intrinsic-size: 400px;"
+    >
+      <h2 class="mb-4 text-xl font-semibold">Preguntas frecuentes</h2>
+      <div class="space-y-2">
+        <details class="group rounded-lg border border-border">
+          <summary
+            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
+          >
+            ¿Cómo se calcula el interés de un DAP?
+            <span
+              class="text-xs text-muted transition-transform group-open:rotate-180"
+              >▼</span
+            >
+          </summary>
+          <div class="border-t border-border px-4 py-3 text-sm text-secondary">
+            Interés bruto = Monto × (TIR% ÷ 100) × (días ÷ 365). Ejemplo:
+            $5.000.000 al 5% TIR por 180 días → $5.000.000 × 0,05 × (180/365) =
+            $123.288 de interés bruto.
+          </div>
+        </details>
+
+        <details class="group rounded-lg border border-border">
+          <summary
+            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
+          >
+            ¿Los DAP pagan impuesto en Chile?
+            <span
+              class="text-xs text-muted transition-transform group-open:rotate-180"
+              >▼</span
+            >
+          </summary>
+          <div class="border-t border-border px-4 py-3 text-sm text-secondary">
+            Sí, para personas naturales sin actividad de primera categoría. El
+            banco retiene el 4% del interés bruto directamente (art. 59 N°4
+            LIR). Este impuesto es una retención, no necesariamente el impuesto
+            final — en la declaración de renta anual puede ajustarse según tu
+            situación.
+          </div>
+        </details>
+
+        <details class="group rounded-lg border border-border">
+          <summary
+            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
+          >
+            ¿Qué es la TIR en un DAP?
+            <span
+              class="text-xs text-muted transition-transform group-open:rotate-180"
+              >▼</span
+            >
+          </summary>
+          <div class="border-t border-border px-4 py-3 text-sm text-secondary">
+            La TIR (Tasa Interna de Retorno) anual es la tasa de rendimiento
+            efectiva que ofrece el banco, expresada en base anual. Es la tasa
+            estándar para comparar DAPs entre instituciones. El banco la informa
+            en el simulador y en el contrato del depósito.
+          </div>
+        </details>
+
+        <details class="group rounded-lg border border-border">
+          <summary
+            class="flex cursor-pointer items-center justify-between px-4 py-3 text-sm font-medium hover:bg-accent/5 [&::-webkit-details-marker]:hidden"
+          >
+            ¿Conviene un DAP en UF o en pesos?
+            <span
+              class="text-xs text-muted transition-transform group-open:rotate-180"
+              >▼</span
+            >
+          </summary>
+          <div class="border-t border-border px-4 py-3 text-sm text-secondary">
+            Depende de la inflación esperada. Un DAP en UF protege el capital de
+            la inflación pero su tasa suele ser menor. En períodos de alta
+            inflación el DAP UF suele convenir más en términos reales. Revisa el
+            artículo comparativo para el análisis detallado.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <PrimaryCTA
+      text="¿DAP en UF o en pesos? Lee la comparativa →"
+      href="/posts/deposito-a-plazo-uf-vs-pesos/"
+      context="Análisis práctico para elegir la modalidad según inflación, plazo y liquidez."
+    />
+    <ShareCalculatorResult />
+    <CalculatorScenarios />
+    <CalculatorResultNextActions
+      calculatorSlug="deposito-a-plazo"
+      actions={[
+        { label: "Imprimir resultado", href: "#", type: "print" },
+        {
+          label: "Artículo: DAP UF vs pesos",
+          href: "/posts/deposito-a-plazo-uf-vs-pesos/",
+          type: "article",
+        },
+        {
+          label: "Interés compuesto",
+          href: "/calculadoras/interes-compuesto/",
+          type: "calculator",
+        },
+      ]}
+    />
+    <MethodologyBlock
+      notes="Esta calculadora aplica la fórmula lineal de interés simple proporcional al plazo: Interés bruto = Monto × (TIR/100) × (días/365). La retención del 4% sobre intereses se aplica bajo art. 59 N°4 LIR para personas naturales sin actividad de primera categoría. El monto final = monto inicial + interés neto. Los resultados son de referencia; el impuesto final depende de la situación tributaria de cada contribuyente."
+      sources={[
+        {
+          name: "SII — Art. 59 N°4 LIR: retención de impuesto sobre intereses",
+          url: "https://www.sii.cl/normativa_legislacion/leyimpuestoalarenta.pdf",
+          date: "2026-05",
+        },
+        {
+          name: "CMF Educa — Depósitos a plazo",
+          url: "https://www.cmfchile.cl/educa/621/w3-article-27170.html",
+          date: "2026-05",
+        },
+        {
+          name: "Banco Central de Chile — Tasas de interés de referencia",
+          url: "https://www.bcentral.cl/web/banco-central/areas/estadisticas/tasas-de-interes",
+          date: "2026-05",
+        },
+      ]}
+    />
+    <NextSteps
+      currentHref="/calculadoras/deposito-a-plazo/"
+      items={calculatorNextStepItems}
+      title="Qué hacer con este resultado"
+      description="Sigue con una herramienta relacionada o vuelve al índice si necesitas resolver otra pregunta."
+      location="calculator_next_steps"
+    />
+    <SupportCallout
+      context="calculadora-deposito-a-plazo"
+      pageTitle="la calculadora de depósito a plazo"
+    />
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  import {
+    calculateTermDeposit,
+    type TermDepositOutput,
+  } from "@/application/use-cases/CalculateTermDeposit";
+  import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { renderHeadlineDelta } from "@/utils/calculatorDelta";
+  import { saveCalculatorResult } from "@/utils/resumeState";
+  import {
+    initScenarioPanel,
+    restoreInputs,
+    snapshotInputs,
+  } from "@/utils/calculatorScenariosUI";
+
+  declare global {
+    interface Window {
+      showShareResult?: (text: string) => void;
+      showCalculatorNextActions?: () => void;
+    }
+  }
+
+  let scenarioLastResult: ReturnType<typeof calculateTermDeposit> | null = null;
+
+  function fmt(n: number): string {
+    return "$" + Math.round(n).toLocaleString("es-CL");
+  }
+
+  function showError(message: string) {
+    const el = document.getElementById("calc-error");
+    if (!el) return;
+    el.textContent = message;
+    el.classList.remove("hidden");
+  }
+
+  function hideError() {
+    const el = document.getElementById("calc-error");
+    if (!el) return;
+    el.classList.add("hidden");
+    el.textContent = "";
+  }
+
+  function focusResultado() {
+    const heading = document.getElementById("resultado-heading");
+    if (heading) {
+      heading.focus();
+      heading.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }
+
+  type DapResult = TermDepositOutput;
+
+  function renderResultado(result: DapResult) {
+    const contenido = document.getElementById("resultado-contenido");
+    if (!contenido) return;
+
+    const headline = document.createElement("div");
+    headline.className =
+      "mb-5 rounded-lg border border-accent/20 bg-accent/10 p-4 text-center";
+    const headlineLabel = document.createElement("p");
+    headlineLabel.className =
+      "mb-1 text-xs font-bold tracking-widest text-accent uppercase";
+    headlineLabel.textContent = "Monto al vencimiento";
+    const headlineValue = document.createElement("p");
+    headlineValue.className = "text-4xl font-bold";
+    headlineValue.textContent = fmt(result.finalAmount);
+    const headlineSub = document.createElement("p");
+    headlineSub.className = "mt-1.5 text-xs text-foreground/60";
+    headlineSub.textContent = `${result.termDays} días · TIR ${result.annualRatePercent.toFixed(2)}%`;
+    headline.append(headlineLabel, headlineValue, headlineSub);
+
+    const delta = renderHeadlineDelta(
+      window.location.pathname,
+      result.finalAmount,
+      fmt
+    );
+    if (delta) headline.append(delta);
+
+    const mkRow = (label: string, value: string, colorClass = "") => {
+      const row = document.createElement("div");
+      row.className =
+        "flex items-center justify-between border-b border-border py-2 text-sm last:border-0";
+      const lbl = document.createElement("span");
+      lbl.className = "text-secondary";
+      lbl.textContent = label;
+      const val = document.createElement("span");
+      val.className = `font-mono font-semibold ${colorClass}`.trim();
+      val.textContent = value;
+      row.append(lbl, val);
+      return row;
+    };
+
+    const mkInfoRow = (label: string, value: string) => {
+      const row = document.createElement("div");
+      row.className =
+        "flex items-center justify-between rounded border border-border/50 bg-surface-muted/30 px-3 py-2 text-xs";
+      const lbl = document.createElement("span");
+      lbl.className = "text-muted";
+      lbl.textContent = label;
+      const val = document.createElement("span");
+      val.className = "font-semibold text-foreground/80";
+      val.textContent = value;
+      row.append(lbl, val);
+      return row;
+    };
+
+    const rows = document.createElement("div");
+    rows.className = "space-y-0";
+    rows.append(
+      mkRow("Monto depositado", fmt(result.amount), "text-secondary"),
+      mkRow("Interés bruto", fmt(result.grossInterest), "text-green-500"),
+      mkRow(
+        `Retención impuesto 4%${result.applyWithholding ? "" : " (no aplica)"}`,
+        result.applyWithholding ? `− ${fmt(result.withholdingTax)}` : "$0",
+        result.applyWithholding ? "text-red-400" : "text-muted"
+      ),
+      mkRow("Interés neto", fmt(result.netInterest), "text-accent")
+    );
+
+    const extras = document.createElement("div");
+    extras.className = "mt-2 space-y-1";
+    extras.append(
+      mkInfoRow(
+        "Rentabilidad neta del período",
+        `${((result.netInterest / result.amount) * 100).toFixed(3)}%`
+      ),
+      mkInfoRow(
+        "Tasa efectiva anual neta",
+        `${result.netEffectiveAnnualRatePercent.toFixed(2)}%`
+      )
+    );
+
+    const note = document.createElement("p");
+    note.className = "mt-3 text-xs text-muted";
+    note.textContent = result.applyWithholding
+      ? "Retención art. 59 N°4 LIR (4% sobre interés bruto). Impuesto final depende de declaración de renta."
+      : "Sin retención de impuesto. Verifica tu situación tributaria con un asesor.";
+
+    contenido.replaceChildren(headline, rows, extras, note);
+  }
+
+  document.getElementById("calcBtn")?.addEventListener("click", () => {
+    hideError();
+    const monto = parseFloat(
+      (document.getElementById("monto-dap") as HTMLInputElement).value
+    );
+    const plazo = parseInt(
+      (document.getElementById("plazo-dias") as HTMLInputElement).value
+    );
+    const tirPct = parseFloat(
+      (document.getElementById("tasa-tir") as HTMLInputElement).value
+    );
+    const aplicaImpuesto =
+      (
+        document.querySelector(
+          "input[name='aplica-impuesto']:checked"
+        ) as HTMLInputElement
+      )?.value === "si";
+
+    if (!Number.isFinite(monto) || monto <= 0) {
+      showError("Ingresa un monto válido mayor que 0.");
+      return;
+    }
+    if (!Number.isFinite(plazo) || plazo < 1 || plazo > 1095) {
+      showError("El plazo debe estar entre 1 y 1.095 días.");
+      return;
+    }
+    if (!Number.isFinite(tirPct) || tirPct <= 0 || tirPct > 50) {
+      showError("Ingresa una TIR anual entre 0.01% y 50%.");
+      return;
+    }
+
+    const result = calculateTermDeposit({
+      amount: monto,
+      termDays: plazo,
+      annualRatePercent: tirPct,
+      applyWithholding: aplicaImpuesto,
+    });
+    scenarioLastResult = result;
+    renderResultado(result);
+    focusResultado();
+    saveCalculatorResult(
+      window.location.pathname,
+      "Calculadora de Depósito a Plazo"
+    );
+
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", { detail: { summaryText: `DAP: ${fmt(result.amount)} al ${tirPct}% TIR por ${plazo} días → ${fmt(result.finalAmount)} (neto)` } })
+    );
+    window.showCalculatorNextActions?.();
+    trackAnalyticsEvent("calculator_complete", {
+      calculator_slug: "deposito-a-plazo",
+      calculator_name: "Calculadora Deposito a Plazo",
+      outcome: "success",
+    });
+    trackAnalyticsEvent("calculator_completed", {
+      calculator_slug: "deposito-a-plazo",
+    });
+  });
+
+  document
+    .getElementById("monto-dap")
+    ?.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Enter")
+        (document.getElementById("calcBtn") as HTMLButtonElement)?.click();
+    });
+
+  const scenarioFormCard = document.getElementById("calculator-form-card");
+  if (scenarioFormCard) {
+    initScenarioPanel({
+      calculatorId: window.location.pathname,
+      readInputs: () => snapshotInputs(scenarioFormCard),
+      applyInputs: inputs => {
+        restoreInputs(scenarioFormCard, inputs);
+        (
+          document.getElementById("calcBtn") as HTMLButtonElement | null
+        )?.click();
+      },
+      buildSummary: () => {
+        if (!scenarioLastResult) return null;
+        const r = scenarioLastResult;
+        return [
+          { label: "Monto al vencimiento", value: fmt(r.finalAmount) },
+          { label: "Interés bruto", value: fmt(r.grossInterest) },
+          { label: "Interés neto", value: fmt(r.netInterest) },
+        ];
+      },
+    });
+  }
+</script>

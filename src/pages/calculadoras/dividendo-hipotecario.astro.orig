@@ -1,0 +1,753 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
+import Footer from "@/components/Footer.astro";
+import MethodologyBlock from "@/components/MethodologyBlock.astro";
+import PrimaryCTA from "@/components/PrimaryCTA.astro";
+import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
+import NextSteps from "@/components/NextSteps.astro";
+import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
+import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import CalculatorField from "@/components/calculator/CalculatorField.astro";
+import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
+import CalculatorScenarios from "@/components/calculator/CalculatorScenarios.astro";
+
+import { calculateMortgage } from "@/application/use-cases/CalculateMortgage";
+
+const { parameters: economicParameters } = await getEconomicParameters();
+const ufValuePesos = economicParameters.uf;
+const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+const exampleResult = calculateMortgage({
+  propertyValue: 3000,
+  currency: "uf",
+  downPaymentPercent: 20,
+  annualRatePercent: 4.5,
+  termYears: 25,
+  ufValuePesos,
+});
+const ufDisplay = ufValuePesos.toLocaleString("es-CL", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+const currentCalculator = CALCULATOR_PORTFOLIO.find(
+  calc => calc.slug === "dividendo-hipotecario"
+);
+const calculatorRelatedItems = (currentCalculator?.related ?? []).map(item => ({
+  href: item.href,
+  title: item.label,
+  description: item.when,
+  label: "Relacionado",
+}));
+const calculatorNextStepItems = [
+  ...calculatorRelatedItems,
+  ...(calculatorRelatedItems.length < 2
+    ? [
+        {
+          href: "/calculadoras/",
+          title: "Ver todas las calculadoras",
+          description: "Compara otra herramienta si tu pregunta cambió.",
+          label: "Herramientas",
+        },
+      ]
+    : []),
+];
+---
+
+<Layout
+  title="Calculadora de Dividendo Hipotecario Chile 2026 | Cuota en UF y Pesos"
+  description="Calcula tu dividendo mensual en UF y pesos según el valor de la propiedad, pie, tasa y plazo. Incluye seguros y tabla de amortización."
+>
+  <CalculatorJsonLd
+    name="Calculadora de Dividendo Hipotecario Chile 2026 | Cuota en UF y Pesos"
+    description="Calcula tu dividendo mensual en UF y pesos según el valor de la propiedad, pie, tasa y plazo. Incluye seguros y tabla de amortización."
+  />
+  <Header />
+  <Breadcrumb />
+  <CalculatorTrustBadge location="calculator_header" />
+  <main
+    data-layout="calculator"
+    id="main-content"
+    class="app-layout"
+    data-analytics-page-type="calculator"
+    data-analytics-calculator="dividendo-hipotecario"
+    data-analytics-calculator-name="Calculadora de Dividendo Hipotecario"
+    data-uf={String(ufValuePesos)}
+  >
+    <CalculatorHero
+      title="Calculadora de Dividendo Hipotecario"
+      description="Estima tu dividendo mensual en UF y pesos según el valor de la propiedad, el pie, la tasa y el plazo. Incluye seguros opcionales y tabla de amortización."
+      descriptionClass="max-w-xl text-secondary"
+    >
+      <div
+        class="mt-4 inline-flex items-center gap-2 rounded-lg border border-accent/30 bg-accent/5 px-3 py-2 text-sm"
+      >
+        <span class="font-semibold text-accent">UF hoy:</span>
+        <span class="font-mono">${ufDisplay}</span>
+        <span class="text-muted">— Fuente: Banco Central de Chile</span>
+      </div>
+    </CalculatorHero>
+
+    <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
+      <!-- FORMULARIO -->
+      <div id="calculator-form-card" class="rounded-xl border border-border p-6">
+        <h2 class="mb-5 text-lg font-semibold">Datos del crédito</h2>
+
+        <!-- Valor de la propiedad -->
+        <div class="mb-4">
+          <label class="mb-1 block text-sm font-medium text-secondary">
+            Valor de la propiedad
+          </label>
+          <!-- Moneda toggle -->
+          <div class="mb-2 flex gap-2">
+            <label class="flex-1 cursor-pointer">
+              <input
+                type="radio"
+                name="currency"
+                value="uf"
+                checked
+                class="peer sr-only"
+              />
+              <span
+                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
+              >
+                UF
+              </span>
+            </label>
+            <label class="flex-1 cursor-pointer">
+              <input
+                type="radio"
+                name="currency"
+                value="pesos"
+                class="peer sr-only"
+              />
+              <span
+                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
+              >
+                Pesos
+              </span>
+            </label>
+          </div>
+          <input
+            type="number"
+            id="propertyValue"
+            placeholder="Ej: 5000"
+            min="0"
+            step="0.01"
+            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+          />
+          <p id="property-equiv" class="mt-1 text-xs text-muted"></p>
+        </div>
+
+        <!-- Pie % -->
+        <div class="mb-4">
+          <label class="mb-1 block text-sm font-medium text-secondary">
+            Pie (% del valor)
+          </label>
+          <div class="flex flex-wrap gap-2">
+            {
+              ["10", "15", "20", "25"].map(v => (
+                <label class="cursor-pointer">
+                  <input
+                    type="radio"
+                    name="downPayment"
+                    value={v}
+                    checked={v === "20"}
+                    class="peer sr-only"
+                  />
+                  <span class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
+                    {v}%
+                  </span>
+                </label>
+              ))
+            }
+          </div>
+          <p id="downpayment-amount" class="mt-1 text-xs text-muted"></p>
+        </div>
+
+        <!-- Monto a financiar (readonly display) -->
+        <div class="mb-4">
+          <label class="mb-1 block text-sm font-medium text-secondary">
+            Monto a solicitar
+          </label>
+          <div
+            id="loan-amount-display"
+            class="rounded-lg border border-border bg-foreground/5 px-3 py-2 text-sm text-muted"
+          >
+            —
+          </div>
+        </div>
+
+        <!-- Tasa anual -->
+        <CalculatorField
+          id="annualRate"
+          label="Tasa de interés anual (%)"
+          placeholder="Ej: 4.80"
+          min="0"
+          max="30"
+          step="0.01"
+          hint="Solicita la Hoja de Condiciones a tu banco para ver la tasa real."
+        />
+
+        <!-- Plazo -->
+        <div class="mb-4">
+          <label class="mb-1 block text-sm font-medium text-secondary">
+            Plazo
+          </label>
+          <div class="flex flex-wrap gap-2">
+            {
+              [
+                { label: "15 años", value: "15" },
+                { label: "20 años", value: "20" },
+                { label: "25 años", value: "25" },
+                { label: "30 años", value: "30" },
+              ].map(({ label, value }) => (
+                <label class="cursor-pointer">
+                  <input
+                    type="radio"
+                    name="termYears"
+                    value={value}
+                    checked={value === "20"}
+                    class="peer sr-only"
+                  />
+                  <span class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
+                    {label}
+                  </span>
+                </label>
+              ))
+            }
+          </div>
+        </div>
+
+        <!-- Seguro desgravamen -->
+        <CalculatorField
+          id="desgravamen"
+          label="Seguro desgravamen (% mensual sobre saldo) — opcional"
+          placeholder="Ej: 0.025"
+          min="0"
+          step="0.001"
+          hint="Varía por banco y edad. Consulta tu cotización. (~0.020%–0.030% típico)"
+        />
+
+        <!-- Seguro incendio/sismo -->
+        <CalculatorField
+          id="fireInsurance"
+          label="Seguro incendio/sismo (UF/mes) — opcional"
+          placeholder="Ej: 0.50"
+          min="0"
+          step="0.01"
+          hint="Aprox. 0.010–0.020 UF por cada 100 UF de propiedad/mes."
+        />
+
+        <button
+          id="calcBtn"
+          class="mt-2 w-full rounded-lg bg-accent px-4 py-3 text-base font-bold text-background transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          Calcular dividendo →
+        </button>
+        <div
+          id="calc-error"
+          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
+          role="alert"
+        >
+        </div>
+      </div>
+
+      <!-- RESULTADO -->
+      <CalculatorResultPanel title="Resumen del crédito">
+        <div id="resultado-contenido" data-is-example="true" aria-live="polite">
+          <div
+            class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
+          >
+            <p
+              class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
+            >
+              Dividendo mensual (Ejemplo)
+            </p>
+            <p class="text-4xl font-bold text-foreground/80">
+              {fmtClp(exampleResult.totalPaymentMonth1Pesos)}
+            </p>
+          </div>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between">
+              <span class="text-secondary">Monto del crédito</span>
+              <span class="font-medium text-foreground/80">
+                {fmtClp(exampleResult.loanAmountPesos)}
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Cuota base</span>
+              <span class="font-medium text-foreground/80">
+                {fmtClp(exampleResult.basePaymentPesos)}
+              </span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Total intereses</span>
+              <span class="font-medium text-foreground/80">
+                {fmtClp(exampleResult.totalInterestPesos)}
+              </span>
+            </div>
+          </div>
+          <p class="mt-4 text-xs text-muted">
+            Ejemplo: propiedad de 3.000 UF, pie 20%, 25 años al 4,5% anual.
+          </p>
+        </div>
+      </CalculatorResultPanel>
+    </section>
+
+    <!-- TABLA DE AMORTIZACIÓN -->
+    <section id="amort-section" class="hidden border-t border-border pt-8 pb-4">
+      <h2 class="mb-4 text-lg font-semibold">Tabla de amortización</h2>
+      <div class="overflow-x-auto">
+        <table id="amort-table" class="w-full border-collapse text-sm">
+          <thead>
+            <tr class="border-b border-border text-left text-xs text-muted">
+              <th class="py-2 pr-4">Mes</th>
+              <th class="py-2 pr-4">Cuota (UF)</th>
+              <th class="py-2 pr-4">Capital</th>
+              <th class="py-2 pr-4">Interés</th>
+              <th id="col-desg-head" class="hidden py-2 pr-4">Desgravamen</th>
+              <th id="col-fire-head" class="hidden py-2 pr-4">Incendio/Sismo</th
+              >
+              <th class="py-2">Saldo pendiente</th>
+            </tr>
+          </thead>
+          <tbody id="amort-body" class="divide-y divide-border"> </tbody>
+        </table>
+      </div>
+      <div class="mt-4 text-center">
+        <button
+          id="toggleTableBtn"
+          class="rounded-lg border border-border px-4 py-2 text-sm text-secondary transition-all hover:border-accent hover:text-accent"
+        >
+          Ver tabla completa
+        </button>
+      </div>
+    </section>
+
+    <!-- EXPLICACIÓN -->
+    <section
+      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
+    >
+      <h2>¿Cómo se calcula el dividendo hipotecario?</h2>
+      <p>
+        El <strong>dividendo hipotecario</strong> es la cuota mensual que pagas por
+        tu crédito para comprar una vivienda. En Chile se fija en{" "}
+        <strong>UF (Unidad de Fomento)</strong>, lo que significa que el número
+        de UF que pagas es constante, pero su equivalente en pesos cambia cada
+        mes con la inflación.
+      </p>
+      <ul>
+        <li>
+          <strong>Amortización francesa:</strong> el dividendo base (capital + interés)
+          es constante en UF. Al inicio pagas más intereses y menos capital; al final,
+          al revés.
+        </li>
+        <li>
+          <strong>Tasa mensual compuesta:</strong> la calculadora convierte la tasa
+          anual a mensual mediante la fórmula compuesta:{" "}
+          <code>(1 + r_anual)^(1/12) - 1</code>.
+        </li>
+        <li>
+          <strong>Seguros opcionales:</strong> el desgravamen varía mes a mes (decrece
+          conforme baja el saldo); el seguro de incendio/sismo es fijo.
+        </li>
+      </ul>
+      <p class="text-sm text-muted">
+        Las tasas son orientativas. Solicita siempre la{" "}
+        <strong>Hoja de Condiciones (CAE)</strong> a tu banco para conocer el costo
+        real del crédito. Los costos de notaría, Conservador y tasación son adicionales
+        al dividendo (1%–1,5% del valor de la propiedad).
+      </p>
+    </section>
+
+    <PrimaryCTA
+      text="Lee la guía completa del crédito hipotecario →"
+      href="/posts/credito-hipotecario-chile-guia-completa/"
+      context="Entiende el proceso completo: requisitos, tasación, escritura y errores a evitar."
+    />
+    <ShareCalculatorResult />
+    <CalculatorScenarios />
+    <MethodologyBlock
+      notes="El dividendo base se calcula con amortización francesa (cuota de capital+interés constante en UF). Los seguros son opcionales: el desgravamen varía según el saldo pendiente (decrece con el tiempo); el seguro de incendio/sismo es fijo. Las tasas son aproximadas — solicita la Hoja de Condiciones (CAE) a tu institución financiera."
+      sources={[
+        {
+          name: "CMF Educa — Créditos hipotecarios",
+          url: "https://www.cmfchile.cl/educa/621/w3-propertyvalue-45015.html",
+          date: "2026-04",
+        },
+        {
+          name: "BCCh — Tasas de interés",
+          url: "https://www.bcentral.cl/areas/estadisticas/tasas-de-interes",
+          date: "2026-04",
+        },
+        {
+          name: "Ley 21.236 — Portabilidad Financiera (prepago sin costo)",
+          url: "https://www.bcn.cl/leychile/navegar?idNorma=1146340",
+          date: "2020-07",
+        },
+      ]}
+    />
+    <NextSteps
+      currentHref="/calculadoras/dividendo-hipotecario/"
+      items={calculatorNextStepItems}
+      title="Qué hacer con este resultado"
+      description="Sigue con una herramienta relacionada o vuelve al índice si necesitas resolver otra pregunta."
+      location="calculator_next_steps"
+    />
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  import { calculateMortgage } from "@/application/use-cases/CalculateMortgage";
+  import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { renderHeadlineDelta } from "@/utils/calculatorDelta";
+  import {
+    initScenarioPanel,
+    restoreInputs,
+    snapshotInputs,
+  } from "@/utils/calculatorScenariosUI";
+
+  declare global {
+    interface Window {
+      showShareResult?: (text: string) => void;
+    }
+  }
+
+  let scenarioLastResult: ReturnType<typeof calculateMortgage> | null = null;
+
+  const mainEl = document.getElementById("main-content") as HTMLElement;
+  const ufValuePesos = parseFloat(mainEl.dataset.uf ?? "39841.72");
+
+  function fmtPesos(n: number): string {
+    return "$" + Math.round(n).toLocaleString("es-CL");
+  }
+
+  function getSelectedRadio(name: string): string {
+    return (
+      (
+        document.querySelector(
+          `input[name='${name}']:checked`
+        ) as HTMLInputElement
+      )?.value ?? ""
+    );
+  }
+
+  function updateLoanDisplay(): void {
+    const rawValue = parseFloat(
+      (document.getElementById("propertyValue") as HTMLInputElement).value
+    );
+    const currency = getSelectedRadio("currency") as "uf" | "pesos";
+    const downPercent = parseFloat(getSelectedRadio("downPayment") || "20");
+
+    if (!Number.isFinite(rawValue) || rawValue <= 0) {
+      (
+        document.getElementById("loan-amount-display") as HTMLElement
+      ).textContent = "—";
+      (
+        document.getElementById("downpayment-amount") as HTMLElement
+      ).textContent = "";
+      (document.getElementById("property-equiv") as HTMLElement).textContent =
+        "";
+      return;
+    }
+
+    let propUF: number;
+    if (currency === "uf") {
+      propUF = rawValue;
+      (document.getElementById("property-equiv") as HTMLElement).textContent =
+        `≈ ${fmtPesos(rawValue * ufValuePesos)}`;
+    } else {
+      propUF = rawValue / ufValuePesos;
+      (document.getElementById("property-equiv") as HTMLElement).textContent =
+        `≈ ${propUF.toFixed(2)} UF`;
+    }
+
+    const loanUF = propUF * (1 - downPercent / 100);
+    const downUF = propUF * (downPercent / 100);
+
+    (
+      document.getElementById("loan-amount-display") as HTMLElement
+    ).textContent =
+      `${loanUF.toFixed(2)} UF (≈ ${fmtPesos(loanUF * ufValuePesos)})`;
+    (document.getElementById("downpayment-amount") as HTMLElement).textContent =
+      `Pie: ${downUF.toFixed(2)} UF (≈ ${fmtPesos(downUF * ufValuePesos)})`;
+  }
+
+  // Live update displays
+  document
+    .getElementById("propertyValue")
+    ?.addEventListener("input", updateLoanDisplay);
+  document.querySelectorAll("input[name='currency']").forEach(r =>
+    r.addEventListener("change", () => {
+      const input = document.getElementById(
+        "propertyValue"
+      ) as HTMLInputElement;
+      const currency = getSelectedRadio("currency");
+      input.placeholder = currency === "uf" ? "Ej: 5000" : "Ej: 200000000";
+      updateLoanDisplay();
+    })
+  );
+  document
+    .querySelectorAll("input[name='downPayment']")
+    .forEach(r => r.addEventListener("change", updateLoanDisplay));
+
+  function showError(message: string) {
+    const el = document.getElementById("calc-error");
+    if (!el) return;
+    el.textContent = message;
+    el.classList.remove("hidden");
+  }
+  function hideError() {
+    const el = document.getElementById("calc-error");
+    if (!el) return;
+    el.classList.add("hidden");
+    el.textContent = "";
+  }
+
+  function setLoading(isLoading: boolean) {
+    const btn = document.getElementById("calcBtn") as HTMLButtonElement;
+    if (!btn) return;
+    btn.disabled = isLoading;
+    btn.textContent = isLoading ? "Calculando…" : "Calcular dividendo →";
+  }
+
+  // Calculate button
+  document.getElementById("calcBtn")?.addEventListener("click", () => {
+    hideError();
+    setLoading(true);
+    const propertyValue =
+      parseFloat(
+        (document.getElementById("propertyValue") as HTMLInputElement).value
+      ) || 0;
+    const currency = getSelectedRadio("currency") as "uf" | "pesos";
+    const downPaymentPercent = parseFloat(
+      getSelectedRadio("downPayment") || "20"
+    );
+    const annualRatePercent =
+      parseFloat(
+        (document.getElementById("annualRate") as HTMLInputElement).value
+      ) || 0;
+    const termYears = parseInt(getSelectedRadio("termYears") || "20");
+    const desgravamenRaw = (
+      document.getElementById("desgravamen") as HTMLInputElement
+    ).value;
+    const fireRaw = (
+      document.getElementById("fireInsurance") as HTMLInputElement
+    ).value;
+    const monthlyDesgravamenRatePercent = desgravamenRaw
+      ? parseFloat(desgravamenRaw)
+      : undefined;
+    const monthlyFireInsuranceUF = fireRaw ? parseFloat(fireRaw) : undefined;
+
+    if (propertyValue <= 0 || annualRatePercent <= 0) {
+      showError(
+        "Por favor ingresa el valor de la propiedad y la tasa de interés anual."
+      );
+      setLoading(false);
+      return;
+    }
+
+    let resultado;
+    try {
+      resultado = calculateMortgage({
+        propertyValue,
+        currency,
+        downPaymentPercent,
+        annualRatePercent,
+        termYears,
+        ufValuePesos,
+        monthlyDesgravamenRatePercent,
+        monthlyFireInsuranceUF,
+      });
+    } catch (error) {
+      showError(
+        error instanceof Error
+          ? error.message
+          : "No se pudo calcular el dividendo."
+      );
+      setLoading(false);
+      return;
+    }
+
+    setLoading(false);
+    scenarioLastResult = resultado;
+    // --- RESULT RENDERING ---
+    const buildRow = (label: string, value: string, colorClass = "") => {
+      const line = document.createElement("div");
+      line.className =
+        "flex items-center justify-between border-b border-border py-2 text-sm last:border-0";
+      const labelEl = document.createElement("span");
+      labelEl.className = "text-secondary";
+      labelEl.textContent = label;
+      const valueEl = document.createElement("span");
+      valueEl.className = `font-mono font-semibold ${colorClass}`.trim();
+      valueEl.textContent = value;
+      line.append(labelEl, valueEl);
+      return line;
+    };
+
+    const headline = document.createElement("div");
+    headline.className =
+      "mb-5 rounded-lg border border-accent/20 bg-accent/10 p-4 text-center";
+    const hl1 = document.createElement("p");
+    hl1.className =
+      "mb-1 text-xs font-bold tracking-widest text-accent uppercase";
+    hl1.textContent = "Dividendo base (sin seguros)";
+    const hl2 = document.createElement("p");
+    hl2.className = "text-3xl font-bold";
+    hl2.textContent = `${resultado.basePaymentUF.toFixed(4)} UF`;
+    const hl3 = document.createElement("p");
+    hl3.className = "text-sm text-muted";
+    hl3.textContent = `≈ ${fmtPesos(resultado.basePaymentPesos)}/mes`;
+    headline.append(hl1, hl2, hl3);
+
+    const delta = renderHeadlineDelta(
+      window.location.pathname,
+      resultado.basePaymentPesos,
+      fmtPesos
+    );
+    if (delta) headline.append(delta);
+
+    const hasInsurance =
+      (monthlyDesgravamenRatePercent ?? 0) > 0 ||
+      (monthlyFireInsuranceUF ?? 0) > 0;
+
+    const rows = [
+      ...(hasInsurance
+        ? [
+            buildRow(
+              "Dividendo total mes 1 (con seguros)",
+              `${resultado.totalPaymentMonth1UF.toFixed(4)} UF ≈ ${fmtPesos(resultado.totalPaymentMonth1Pesos)}`
+            ),
+          ]
+        : []),
+      buildRow("Plazo elegido", `${termYears} años`),
+      buildRow(
+        "Monto financiado",
+        `${resultado.loanAmountUF.toFixed(2)} UF ≈ ${fmtPesos(resultado.loanAmountPesos)}`
+      ),
+      buildRow(
+        "Tasa mensual equivalente",
+        `${(resultado.monthlyRateDecimal * 100).toFixed(4)}%`
+      ),
+      buildRow(
+        "Total a pagar (sin seguros)",
+        fmtPesos(resultado.totalPaidPesos),
+        "text-muted"
+      ),
+      buildRow(
+        "Total intereses (sin seguros)",
+        fmtPesos(resultado.totalInterestPesos),
+        "text-red-400"
+      ),
+    ];
+
+    const interestRatio = (
+      (resultado.totalInterestPesos / resultado.loanAmountPesos) *
+      100
+    ).toFixed(0);
+    const insight = document.createElement("div");
+    insight.className =
+      "mt-4 rounded-lg bg-foreground/5 p-3 text-xs text-secondary";
+    insight.textContent = `En ${termYears} años pagas en intereses el ${interestRatio}% adicional de lo que financias. Cada UF adicional de deuda genera ~${interestRatio}% de interés total al mismo plazo y tasa.`;
+
+    document
+      .getElementById("resultado-contenido")!
+      .replaceChildren(headline, ...rows, insight);
+
+    // --- AMORTIZATION TABLE ---
+    const showDesg = (monthlyDesgravamenRatePercent ?? 0) > 0;
+    const showFire = (monthlyFireInsuranceUF ?? 0) > 0;
+
+    (document.getElementById("col-desg-head") as HTMLElement).classList.toggle(
+      "hidden",
+      !showDesg
+    );
+    (document.getElementById("col-fire-head") as HTMLElement).classList.toggle(
+      "hidden",
+      !showFire
+    );
+
+    const tbody = document.getElementById("amort-body") as HTMLElement;
+    tbody.innerHTML = "";
+    const schedule = resultado.amortizationSchedule;
+
+    const buildAmortRow = (row: (typeof schedule)[0], hidden: boolean) => {
+      const tr = document.createElement("tr");
+      tr.className = `text-xs font-mono ${hidden ? "hidden amort-extra" : ""}`;
+      const cells = [
+        row.month.toString(),
+        row.paymentUF.toFixed(4),
+        row.capitalUF.toFixed(4),
+        row.interestUF.toFixed(4),
+        ...(showDesg ? [row.desgravamenUF.toFixed(4)] : []),
+        ...(showFire ? [row.fireInsuranceUF.toFixed(4)] : []),
+        row.balanceUF.toFixed(4),
+      ];
+      cells.forEach((c, i) => {
+        const td = document.createElement("td");
+        td.className = `py-1.5 pr-4 ${i === cells.length - 1 ? "" : ""}`;
+        td.textContent = c;
+        tr.appendChild(td);
+      });
+      return tr;
+    };
+
+    schedule.forEach((row, idx) => {
+      tbody.appendChild(buildAmortRow(row, idx >= 12));
+    });
+
+    document.getElementById("amort-section")!.classList.remove("hidden");
+
+    // Toggle full table
+    let expanded = false;
+    const toggleBtn = document.getElementById("toggleTableBtn") as HTMLElement;
+    toggleBtn.textContent = "Ver tabla completa";
+    toggleBtn.onclick = () => {
+      expanded = !expanded;
+      document
+        .querySelectorAll(".amort-extra")
+        .forEach(r => r.classList.toggle("hidden", !expanded));
+      toggleBtn.textContent = expanded
+        ? "Mostrar solo primeros 12 meses"
+        : "Ver tabla completa";
+    };
+
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", { detail: { summaryText: `Dividendo hipotecario: ${fmtPesos(resultado.basePaymentPesos)}/mes (${resultado.basePaymentUF.toFixed(2)} UF)` } })
+    );
+    trackAnalyticsEvent("calculator_complete", {
+      calculator_slug: "dividendo-hipotecario",
+      calculator_name: "Calculadora de Dividendo Hipotecario",
+      outcome: "success",
+    });
+  });
+
+  const scenarioFormCard = document.getElementById("calculator-form-card");
+  if (scenarioFormCard) {
+    initScenarioPanel({
+      calculatorId: window.location.pathname,
+      readInputs: () => snapshotInputs(scenarioFormCard),
+      applyInputs: inputs => {
+        restoreInputs(scenarioFormCard, inputs);
+        (
+          document.getElementById("calcBtn") as HTMLButtonElement | null
+        )?.click();
+      },
+      buildSummary: () => {
+        if (!scenarioLastResult) return null;
+        const r = scenarioLastResult;
+        return [
+          { label: "Dividendo mensual", value: fmtPesos(r.basePaymentPesos) },
+          { label: "Total intereses", value: fmtPesos(r.totalInterestPesos) },
+          { label: "Total a pagar", value: fmtPesos(r.totalPaidPesos) },
+        ];
+      },
+    });
+  }
+</script>

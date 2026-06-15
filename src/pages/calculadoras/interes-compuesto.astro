@@ -17,7 +17,6 @@ import { SITE } from "@/config";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
-import CalculatorScenarios from "@/components/calculator/CalculatorScenarios.astro";
 import CalculatorExplainerSection from "@/components/calculator/CalculatorExplainerSection.astro";
 
 const currentCalculator = CALCULATOR_PORTFOLIO.find(
@@ -336,7 +335,6 @@ const interesCompuestoFaqs = [
       context="Ejemplo real: cuánto crece una inversión en el tiempo con distintas tasas."
     />
     <ShareCalculatorResult />
-    <CalculatorScenarios />
     <CalculatorResultNextActions
       calculatorSlug="interes-compuesto"
       actions={[
@@ -391,11 +389,6 @@ const interesCompuestoFaqs = [
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { saveCalculatorResult } from "@/utils/resumeState";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
-  import {
-    initScenarioPanel,
-    restoreInputs,
-    snapshotInputs,
-  } from "@/utils/calculatorScenariosUI";
 
   declare global {
     interface Window {
@@ -403,8 +396,6 @@ const interesCompuestoFaqs = [
       showCalculatorNextActions?: () => void;
     }
   }
-
-  let scenarioLastResult: ReturnType<typeof calculateCompoundInterest> | null = null;
 
   function fmt(n: number): string {
     return "$" + Math.round(n).toLocaleString("es-CL");
@@ -443,17 +434,26 @@ const interesCompuestoFaqs = [
     const section = document.getElementById("tabla-evolucion-section");
     if (!tbody || !section) return;
 
-    tbody.innerHTML = "";
+    tbody.replaceChildren();
     evolucion.forEach(
       ({ year, balance, yearInterest, accumulatedInterest }) => {
         const tr = document.createElement("tr");
         tr.className = "text-sm";
-        tr.innerHTML = `
-        <td class="py-2 pr-4 text-secondary">${year}</td>
-        <td class="py-2 pr-4 font-mono font-medium">${fmt(balance)}</td>
-        <td class="py-2 pr-4 font-mono text-accent">+${fmt(yearInterest)}</td>
-        <td class="py-2 font-mono text-muted">${fmt(accumulatedInterest)}</td>
-      `;
+        const cells = [
+          { text: String(year), cls: "py-2 pr-4 text-secondary" },
+          { text: fmt(balance), cls: "py-2 pr-4 font-mono font-medium" },
+          {
+            text: "+" + fmt(yearInterest),
+            cls: "py-2 pr-4 font-mono text-accent",
+          },
+          { text: fmt(accumulatedInterest), cls: "py-2 font-mono text-muted" },
+        ];
+        for (const { text, cls } of cells) {
+          const td = document.createElement("td");
+          td.className = cls;
+          td.textContent = text;
+          tr.appendChild(td);
+        }
         tbody.append(tr);
       }
     );
@@ -589,7 +589,6 @@ const interesCompuestoFaqs = [
       years: anos,
       compoundsPerYear: n,
     });
-    scenarioLastResult = result;
     renderResultado(result);
     renderTabla(result.yearlyEvolution);
     focusResultado();
@@ -598,11 +597,13 @@ const interesCompuestoFaqs = [
       "Calculadora de Interés Compuesto"
     );
 
-    if (typeof window.showShareResult === "function") {
-      window.showShareResult(
-        `Interés compuesto: $${Math.round(capital).toLocaleString("es-CL")} al ${tasaPct}% por ${anos} años → ${fmt(result.finalAmount)}`
-      );
-    }
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", {
+        detail: {
+          summaryText: `Interés compuesto: $${Math.round(capital).toLocaleString("es-CL")} al ${tasaPct}% por ${anos} años → ${fmt(result.finalAmount)}`,
+        },
+      })
+    );
     window.showCalculatorNextActions?.();
     trackAnalyticsEvent("calculator_complete", {
       calculator_slug: "interes-compuesto",
@@ -620,27 +621,4 @@ const interesCompuestoFaqs = [
       if (e.key === "Enter")
         (document.getElementById("calcBtn") as HTMLButtonElement)?.click();
     });
-
-  const scenarioFormCard = document.getElementById("calculator-form-card");
-  if (scenarioFormCard) {
-    initScenarioPanel({
-      calculatorId: window.location.pathname,
-      readInputs: () => snapshotInputs(scenarioFormCard),
-      applyInputs: inputs => {
-        restoreInputs(scenarioFormCard, inputs);
-        (
-          document.getElementById("calcBtn") as HTMLButtonElement | null
-        )?.click();
-      },
-      buildSummary: () => {
-        if (!scenarioLastResult) return null;
-        const r = scenarioLastResult;
-        return [
-          { label: "Monto final", value: fmt(r.finalAmount) },
-          { label: "Interés generado", value: fmt(r.generatedInterest) },
-          { label: "Rentabilidad", value: `${r.totalReturnPercent.toFixed(2)}%` },
-        ];
-      },
-    });
-  }
 </script>
