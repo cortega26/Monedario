@@ -167,9 +167,10 @@ function getArt168SurchargePercent(
     return 0;
   }
 
-  return ART_168_SURCHARGE_BANDS.find(
+  const band = ART_168_SURCHARGE_BANDS.find(
     ({ maxServiceYears }) => serviceYearsCounted <= maxServiceYears
-  )!.surchargePercent;
+  );
+  return band?.surchargePercent ?? 0;
 }
 
 export function estimateFiniquito(
