@@ -14,6 +14,7 @@ import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
+import CalculatorScenarios from "@/components/calculator/CalculatorScenarios.astro";
 import { simulateCreditCardCost } from "@/application/use-cases/SimulateCreditCardCost";
 const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
 const exampleResult = simulateCreditCardCost({
@@ -72,7 +73,7 @@ const calculatorNextStepItems = [
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- FORMULARIO -->
-      <div class="rounded-xl border border-border p-6">
+      <div id="calculator-form-card" class="rounded-xl border border-border p-6">
         <h2 class="mb-5 text-lg font-semibold">Datos de tu deuda</h2>
 
         <CalculatorField
@@ -208,6 +209,7 @@ const calculatorNextStepItems = [
       context="Entiende cómo se acumulan los intereses y qué pasa si solo pagas el mínimo."
     />
     <ShareCalculatorResult />
+    <CalculatorScenarios />
     <CalculatorResultNextActions
       calculatorSlug="tarjeta-credito"
       actions={[
@@ -254,6 +256,11 @@ const calculatorNextStepItems = [
   import { simulateCreditCardCost } from "@/application/use-cases/SimulateCreditCardCost";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
+  import {
+    initScenarioPanel,
+    restoreInputs,
+    snapshotInputs,
+  } from "@/utils/calculatorScenariosUI";
 
   declare global {
     interface Window {
@@ -261,6 +268,8 @@ const calculatorNextStepItems = [
       showCalculatorNextActions?: () => void;
     }
   }
+
+  let scenarioLastResult: ReturnType<typeof simulateCreditCardCost> | null = null;
 
   function fmt(n: number): string {
     return "$" + Math.round(n).toLocaleString("es-CL");
@@ -330,6 +339,7 @@ const calculatorNextStepItems = [
     }
 
     setLoading(false);
+    scenarioLastResult = simulacion;
     const resultado = simulacion.baseline;
     const resultadoDoble = simulacion.doubledPayment;
     const primerasCuotas = resultado.firstMonthlyPayments;
@@ -452,4 +462,27 @@ const calculatorNextStepItems = [
       calculator_slug: "tarjeta-credito",
     });
   });
+
+  const scenarioFormCard = document.getElementById("calculator-form-card");
+  if (scenarioFormCard) {
+    initScenarioPanel({
+      calculatorId: window.location.pathname,
+      readInputs: () => snapshotInputs(scenarioFormCard),
+      applyInputs: inputs => {
+        restoreInputs(scenarioFormCard, inputs);
+        (
+          document.getElementById("calcBtn") as HTMLButtonElement | null
+        )?.click();
+      },
+      buildSummary: () => {
+        if (!scenarioLastResult) return null;
+        const r = scenarioLastResult.baseline;
+        return [
+          { label: "Total a pagar", value: fmt(r.totalPaid) },
+          { label: "Intereses totales", value: fmt(r.totalInterest) },
+          { label: "Tiempo", value: `${r.months} meses` },
+        ];
+      },
+    });
+  }
 </script>
