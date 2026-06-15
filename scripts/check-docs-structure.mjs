@@ -17,6 +17,9 @@ const ROOT_ALLOWED_MARKDOWN = new Set([
   "LICENSE-CONTENT.md",
   "spec.md",
   "todo.md",
+  "CONTRIBUTING.md",
+  "SECURITY.md",
+  "CODE_OF_CONDUCT.md",
 ]);
 
 const ALLOWED_PREFIXES = [
