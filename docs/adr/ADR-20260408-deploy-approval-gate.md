@@ -7,3 +7,7 @@
 - **Consequences:** This ADR no longer changes runtime behavior in the repository as checked in today. If Monedario reintroduces a repo-managed deploy workflow in the future, a human approval gate remains the default YMYL baseline, but it should be captured in a new ADR aligned with the actual delivery path.
 - **Alternatives considered:** External deployment approval services — rejected as overkill for the original static-site workflow.
 - **Setup required:** None while the repo-managed `deploy.yml` workflow remains absent from the tree.
+
+## Verification
+
+None: this ADR is superseded. The `deploy.yml` workflow it referred to no longer exists in the tree.
