@@ -186,7 +186,7 @@ const wizardId = `wizard-${config.id}`;
       resultEl.classList.add("hidden");
 
       preguntaEl.textContent = step.pregunta;
-      opcionesEl.innerHTML = "";
+      opcionesEl.replaceChildren();
 
       step.opciones.forEach((opcion, idx) => {
         const btn = document.createElement("button");
@@ -223,7 +223,7 @@ const wizardId = `wizard-${config.id}`;
 
       if (resultado.pasos && resultado.pasos.length > 0) {
         resPasosSection.classList.remove("hidden");
-        resPasosLista.innerHTML = "";
+        resPasosLista.replaceChildren();
         resultado.pasos.forEach(paso => {
           const li = document.createElement("li");
           li.textContent = paso;
@@ -235,7 +235,7 @@ const wizardId = `wizard-${config.id}`;
 
       if (resultado.links && resultado.links.length > 0) {
         resLinksSection.classList.remove("hidden");
-        resLinksLista.innerHTML = "";
+        resLinksLista.replaceChildren();
         resultado.links.forEach(link => {
           const li = document.createElement("li");
           const a = document.createElement("a");
@@ -254,7 +254,7 @@ const wizardId = `wizard-${config.id}`;
 
       if (resultado.secondaryLinks && resultado.secondaryLinks.length > 0) {
         resSecondarySection.classList.remove("hidden");
-        resSecondaryLista.innerHTML = "";
+        resSecondaryLista.replaceChildren();
         resultado.secondaryLinks.forEach(link => {
           const li = document.createElement("li");
           const a = document.createElement("a");

@@ -244,14 +244,14 @@ import { SITE } from "@/config";
       if (titulo) titulo.textContent = variant.titulo;
 
       if (cuerpo) {
-        cuerpo.innerHTML = variant.cuerpo
-          .split("\n\n")
-          .map(function (p) {
-            const div = document.createElement("div");
-            div.textContent = p;
-            return div.innerHTML;
-          })
-          .join("<br><br>");
+        cuerpo.replaceChildren();
+        const paragraphs = variant.cuerpo.split("\n\n");
+        for (let i = 0; i < paragraphs.length; i++) {
+          if (i > 0) {
+            cuerpo.append(document.createElement("br"), document.createElement("br"));
+          }
+          cuerpo.appendChild(document.createTextNode(paragraphs[i]));
+        }
       }
 
       if (btnDonar) {
@@ -335,6 +335,7 @@ import { SITE } from "@/config";
       const btnColor = isDark ? "#14b8a6" : "#0d9488";
       kofi.init("Apoya Monedario", btnColor, "monedario");
 
+      // safe: kofi.getHTML() comes from the trusted third-party Ko-fi widget loaded via CDN
       target.innerHTML = kofi.getHTML();
 
       const kofiLink = target.querySelector("a");
