@@ -194,6 +194,7 @@ export function renderAfpComparisonInverso(options: AfpInversoOptions): void {
     // Lower gross needed = better: sort ascending
     comparisons.sort((a, b) => a.gross - b.gross);
 
+    const cheapestAfpName = comparisons[0].name;
     const currentGross =
       comparisons.find(c => Math.abs(c.rate - currentAfpRate) < 0.01)?.gross ??
       comparisons[0].gross;
@@ -251,7 +252,7 @@ export function renderAfpComparisonInverso(options: AfpInversoOptions): void {
     if (maxDiff > 500) {
       const note = document.createElement("p");
       note.className = "mt-3 text-xs text-muted";
-      note.textContent = `Con AFP Uno necesitarías ${formatCLP(maxDiff)} menos de bruto que con la AFP más cara para recibir el mismo líquido.`;
+      note.textContent = `Con ${cheapestAfpName} necesitarías ${formatCLP(maxDiff)} menos de bruto que con la AFP más cara para recibir el mismo líquido.`;
       container.appendChild(note);
     }
   }, 0);
