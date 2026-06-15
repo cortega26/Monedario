@@ -56,10 +56,14 @@ Casos de uso orquestados: reciben parámetros tipados, llaman al dominio, devuel
 | `CalculateMonthlyPayrollBase` | Base imponible para contratos dependientes e independientes |
 | `CalculateHonorariosNet` | Liquidación de boleta de honorarios (retención 13.75 %) |
 | `CalculateConsumerCredit` | Cuota y costo total de crédito de consumo |
+| `CalculateCompoundInterest` | Cálculo de interés compuesto con aportes periódicos |
 | `CalculateMortgage` | Dividendo hipotecario con seguro de desgravamen/incendio |
 | `CalculateApvComparison` | Comparativa APV Régimen A vs B |
+| `CompareAfpCommissions` | Comparación de comisiones entre AFP |
 | `CalculateRentAdjustment` | Reajuste de arriendo por IPC acumulado |
+| `CalculateTermDeposit` | Simulación de depósito a plazo fijo |
 | `ConvertUf` | Conversión CLP ↔ UF |
+| `ConvertUtm` | Conversión CLP ↔ UTM |
 | `EstimateFiniquito` | Estimación de finiquito e indemnización laboral |
 | `EstimateUnemploymentCoverage` | Cobertura seguro de cesantía (AFC) |
 | `SimulateCreditCardCost` | Simulación de costo real de tarjeta de crédito |
@@ -148,7 +152,8 @@ pnpm run build
   │    ├─ Colecciones Astro (blog, glossary, laws)
   │    └─ Páginas estáticas + assets
   ├─ check:toc-i18n + check:editorial-guard
-  ├─ Pagefind para busqueda estatica
+  ├─ pagefind --site dist
+  ├─ cp -r dist/pagefind public/
   └─ check:urls sobre dist/
 ```
 
