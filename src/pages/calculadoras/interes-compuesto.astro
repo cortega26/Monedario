@@ -404,7 +404,8 @@ const interesCompuestoFaqs = [
     }
   }
 
-  let scenarioLastResult: ReturnType<typeof calculateCompoundInterest> | null = null;
+  let scenarioLastResult: ReturnType<typeof calculateCompoundInterest> | null =
+    null;
 
   function fmt(n: number): string {
     return "$" + Math.round(n).toLocaleString("es-CL");
@@ -649,7 +650,10 @@ const interesCompuestoFaqs = [
         return [
           { label: "Monto final", value: fmt(r.finalAmount) },
           { label: "Interés generado", value: fmt(r.generatedInterest) },
-          { label: "Rentabilidad", value: `${r.totalReturnPercent.toFixed(2)}%` },
+          {
+            label: "Rentabilidad",
+            value: `${r.totalReturnPercent.toFixed(2)}%`,
+          },
         ];
       },
     });

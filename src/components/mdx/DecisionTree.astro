@@ -56,19 +56,17 @@ const stepsJson = JSON.stringify(steps);
 
 <div
   id={id}
-  class="decision-tree my-6 rounded-xl border border-border bg-surface-muted p-5 not-prose"
+  class="decision-tree not-prose my-6 rounded-xl border border-border bg-surface-muted p-5"
   data-dt-config={stepsJson}
 >
-  {title && (
-    <p class="mb-3 text-sm font-semibold text-accent">{title}</p>
-  )}
+  {title && <p class="mb-3 text-sm font-semibold text-accent">{title}</p>}
 
   <div data-dt-step="0" class="dt-step">
     <p class="mb-3 text-base font-semibold" data-dt-question></p>
     <div class="flex flex-col gap-2" data-dt-options></div>
   </div>
 
-  <div data-dt-result class="hidden dt-result">
+  <div data-dt-result class="dt-result hidden">
     <div class="rounded-lg border border-accent/20 bg-accent/5 p-4">
       <p class="text-lg" data-dt-result-emoji></p>
       <p class="text-base font-bold" data-dt-result-title></p>
@@ -93,24 +91,53 @@ const stepsJson = JSON.stringify(steps);
     const configRaw: string | null = container.getAttribute("data-dt-config");
     if (!configRaw) return;
 
-    let steps: any[];
+    interface DecisionResult {
+      title: string;
+      description: string;
+      emoji?: string;
+    }
+
+    interface DecisionOption {
+      label: string;
+      next: number;
+      result?: DecisionResult;
+    }
+
+    interface DecisionStep {
+      question: string;
+      options: DecisionOption[];
+    }
+
+    let steps: DecisionStep[];
     try {
-      steps = JSON.parse(configRaw) as any[];
+      steps = JSON.parse(configRaw) as DecisionStep[];
     } catch {
       return;
     }
     if (!steps || steps.length === 0) return;
 
-    const stepView: HTMLElement | null = container.querySelector("[data-dt-step]");
-    const questionEl: HTMLElement | null = container.querySelector("[data-dt-question]");
-    const optionsEl: HTMLElement | null = container.querySelector("[data-dt-options]");
-    const resultView: HTMLElement | null = container.querySelector("[data-dt-result]");
-    const resultEmoji: HTMLElement | null = container.querySelector("[data-dt-result-emoji]");
-    const resultTitle: HTMLElement | null = container.querySelector("[data-dt-result-title]");
-    const resultDesc: HTMLElement | null = container.querySelector("[data-dt-result-desc]");
-    const restartBtn: HTMLElement | null = container.querySelector(".dt-restart");
+    const stepView: HTMLElement | null =
+      container.querySelector("[data-dt-step]");
+    const questionEl: HTMLElement | null =
+      container.querySelector("[data-dt-question]");
+    const optionsEl: HTMLElement | null =
+      container.querySelector("[data-dt-options]");
+    const resultView: HTMLElement | null =
+      container.querySelector("[data-dt-result]");
+    const resultEmoji: HTMLElement | null = container.querySelector(
+      "[data-dt-result-emoji]"
+    );
+    const resultTitle: HTMLElement | null = container.querySelector(
+      "[data-dt-result-title]"
+    );
+    const resultDesc: HTMLElement | null = container.querySelector(
+      "[data-dt-result-desc]"
+    );
+    const restartBtn: HTMLElement | null =
+      container.querySelector(".dt-restart");
 
-    if (!stepView || !questionEl || !optionsEl || !resultView || !restartBtn) return;
+    if (!stepView || !questionEl || !optionsEl || !resultView || !restartBtn)
+      return;
     if (!resultEmoji || !resultTitle || !resultDesc) return;
 
     // Non-null-asserted aliases for use in closure functions
@@ -124,7 +151,7 @@ const stepsJson = JSON.stringify(steps);
     const safeRestartBtn = restartBtn!;
 
     function renderStep(index: number): void {
-      const step: any = steps[index];
+      const step: DecisionStep | undefined = steps[index];
       if (!step) return;
 
       safeQuestion.textContent = step.question;
@@ -145,7 +172,7 @@ const stepsJson = JSON.stringify(steps);
       safeResultView.classList.add("hidden");
     }
 
-    function showResult(result: any): void {
+    function showResult(result: DecisionResult): void {
       safeStepView.classList.add("hidden");
       safeResultView.classList.remove("hidden");
 
@@ -154,7 +181,7 @@ const stepsJson = JSON.stringify(steps);
       safeResultDesc.textContent = result.description;
     }
 
-    function goToStep(next: number, result?: any): void {
+    function goToStep(next: number, result?: DecisionResult): void {
       if (next === -1 && result) {
         showResult(result);
       } else if (next >= 0 && next < steps.length) {

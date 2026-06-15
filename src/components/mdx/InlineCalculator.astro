@@ -64,7 +64,8 @@ function calculateCompoundInterest(
   rate: number,
   years: number
 ): { finalAmount: number; totalContributions: number; totalInterest: number } {
-  if (years <= 0) return { finalAmount: initial, totalContributions: 0, totalInterest: 0 };
+  if (years <= 0)
+    return { finalAmount: initial, totalContributions: 0, totalInterest: 0 };
 
   const monthlyRate = rate / 100 / 12;
   const totalMonths = years * 12;
@@ -95,11 +96,9 @@ const initialResult = calculateCompoundInterest(
 
 <div
   id={id}
-  class="inline-calculator my-6 rounded-xl border border-border bg-surface-muted p-5 not-prose"
+  class="inline-calculator not-prose my-6 rounded-xl border border-border bg-surface-muted p-5"
 >
-  {title && (
-    <p class="mb-4 text-sm font-semibold text-accent">{title}</p>
-  )}
+  {title && <p class="mb-4 text-sm font-semibold text-accent">{title}</p>}
 
   <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
     <label class="flex flex-col gap-1 text-xs text-muted">
@@ -186,16 +185,30 @@ const initialResult = calculateCompoundInterest(
       : null;
     if (!container) return;
 
-    const initialInput = container.querySelector("[data-calc-field='initial']") as HTMLInputElement | null;
-    const monthlyInput = container.querySelector("[data-calc-field='monthly']") as HTMLInputElement | null;
-    const rateInput = container.querySelector("[data-calc-field='rate']") as HTMLInputElement | null;
-    const yearsInput = container.querySelector("[data-calc-field='years']") as HTMLInputElement | null;
+    const initialInput = container.querySelector(
+      "[data-calc-field='initial']"
+    ) as HTMLInputElement | null;
+    const monthlyInput = container.querySelector(
+      "[data-calc-field='monthly']"
+    ) as HTMLInputElement | null;
+    const rateInput = container.querySelector(
+      "[data-calc-field='rate']"
+    ) as HTMLInputElement | null;
+    const yearsInput = container.querySelector(
+      "[data-calc-field='years']"
+    ) as HTMLInputElement | null;
 
     if (!initialInput || !monthlyInput || !rateInput || !yearsInput) return;
 
-    const finalEl = container.querySelector("[data-calc-final]") as HTMLElement | null;
-    const contribEl = container.querySelector("[data-calc-contributions]") as HTMLElement | null;
-    const interestEl = container.querySelector("[data-calc-interest]") as HTMLElement | null;
+    const finalEl = container.querySelector(
+      "[data-calc-final]"
+    ) as HTMLElement | null;
+    const contribEl = container.querySelector(
+      "[data-calc-contributions]"
+    ) as HTMLElement | null;
+    const interestEl = container.querySelector(
+      "[data-calc-interest]"
+    ) as HTMLElement | null;
 
     if (!finalEl || !contribEl || !interestEl) return;
 
