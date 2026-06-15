@@ -60,7 +60,10 @@ export async function getCurrentFile(
     config.path
   ).replace(/%2F/g, "/")}?ref=${encodeURIComponent(config.branch)}`;
 
-  const response = await fetch(url, { headers: authHeaders(config.token) });
+  const response = await fetch(url, {
+    headers: authHeaders(config.token),
+    signal: AbortSignal.timeout(15_000),
+  });
   if (!response.ok) {
     const body = await response.text();
     throw new Error(
@@ -98,6 +101,7 @@ export async function putFile(
     method: "PUT",
     headers: { ...authHeaders(config.token), "Content-Type": "application/json" },
     body: JSON.stringify(body),
+    signal: AbortSignal.timeout(15_000),
   });
   if (!response.ok) {
     const text = await response.text();

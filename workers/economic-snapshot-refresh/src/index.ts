@@ -1,4 +1,5 @@
 import {
+  assertPlausibleDelta,
   buildSnapshot,
   createMindicadorFetchers,
   mergePrev,
@@ -159,6 +160,7 @@ async function runRefresh(env: Env): Promise<void> {
   });
 
   const current = await getCurrentFile(config);
+  assertPlausibleDelta(current.content, rawSnapshot);
   const snapshot = mergePrev(current.content, rawSnapshot);
   const serialized = serializeSnapshot(snapshot);
 

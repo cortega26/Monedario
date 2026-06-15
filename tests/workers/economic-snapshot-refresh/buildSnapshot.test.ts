@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  assertPlausibleDelta,
   buildSnapshot,
   getUtaReferenceYear,
   mergePrev,
@@ -97,6 +98,19 @@ describe("buildSnapshot", () => {
   it("throws if UTM is not a positive finite number", async () => {
     const broken: MindicadorApiResponse = { ...sampleApi, utm: { valor: NaN } };
     await expect(buildSnapshot(makeDeps({ api: broken }))).rejects.toThrow(/UTM/);
+  });
+
+  it("throws if IPC is absent (no mindicador value, no override)", async () => {
+    const { ipc, ...rest } = sampleApi;
+    void ipc;
+    await expect(buildSnapshot(makeDeps({ api: rest }))).rejects.toThrow(/IPC/);
+  });
+
+  it("accepts a legitimate IPC of 0 (no inflation)", async () => {
+    const snapshot = await buildSnapshot(
+      makeDeps({ api: { ...sampleApi, ipc: { valor: 0, fecha: sampleApi.ipc?.fecha } } })
+    );
+    expect(snapshot.ipc).toBe(0);
   });
 
   it("prev field is absent on a fresh snapshot (no previous JSON)", async () => {
@@ -283,5 +297,25 @@ describe("mergePrev", () => {
     const newSnap = makeSnapshot({ uf: 40401 }); // same dates as current
     const result = mergePrev(JSON.stringify(current), newSnap);
     expect(result.prev).toBeUndefined();
+  });
+});
+
+describe("assertPlausibleDelta", () => {
+  it("rejects a 10× UF drop (parse glitch)", () => {
+    const previousJson = JSON.stringify(makeSnapshot({ uf: 40350 }));
+    const snapshot = makeSnapshot({ uf: 4035 });
+    expect(() => assertPlausibleDelta(previousJson, snapshot)).toThrow(/UF/);
+  });
+
+  it("accepts normal day-over-day UF movement", () => {
+    const previousJson = JSON.stringify(makeSnapshot({ uf: 40350 }));
+    const snapshot = makeSnapshot({ uf: 40360 });
+    expect(() => assertPlausibleDelta(previousJson, snapshot)).not.toThrow();
+  });
+
+  it("no-ops when there is no parseable previous snapshot", () => {
+    const snapshot = makeSnapshot({ uf: 4035 });
+    expect(() => assertPlausibleDelta("{}", snapshot)).not.toThrow();
+    expect(() => assertPlausibleDelta("not json", snapshot)).not.toThrow();
   });
 });

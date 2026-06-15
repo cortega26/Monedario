@@ -134,7 +134,8 @@ export async function buildSnapshot(deps: BuildSnapshotDeps): Promise<EconomicSn
   const decUtm = await deps.fetchDecemberUtm(utaRefYear);
   const uta = decUtm !== null ? decUtm * 12 : utm * 12;
 
-  let ipc = Number(payload?.ipc?.valor ?? 0);
+  const ipcRaw = payload?.ipc?.valor;
+  let ipc = typeof ipcRaw === "number" ? ipcRaw : NaN;
   let ipcOverrideDate: string | undefined;
   if (deps.fetchIpcOverride) {
     try {
@@ -332,4 +333,46 @@ export function mergePrev(
 
 export function serializeSnapshot(snapshot: EconomicSnapshot): string {
   return `${JSON.stringify(snapshot, null, 2)}\n`;
+}
+
+/**
+ * Rechaza saltos implausibles respecto al snapshot anterior. Una UF/UTM/dólar
+ * que cambia 10× (típico de un glitch de parseo upstream) supera estos umbrales
+ * generosos; el movimiento real diario/mensual nunca lo hace. Si no hay valor
+ * previo parseable (primera ejecución), no valida ese indicador.
+ */
+export function assertPlausibleDelta(
+  previousJson: string,
+  snapshot: EconomicSnapshot
+): void {
+  let prev: Partial<EconomicSnapshot>;
+  try {
+    prev = JSON.parse(previousJson) as Partial<EconomicSnapshot>;
+  } catch {
+    return; // no previous snapshot to compare against
+  }
+
+  const checks: Array<[string, number | undefined, number | undefined, number]> = [
+    ["UF", prev.uf, snapshot.uf, 0.05],
+    ["UTM", prev.utm, snapshot.utm, 0.2],
+    ["Dolar", prev.dolar, snapshot.dolar, 0.15],
+  ];
+
+  for (const [label, before, after, maxRelChange] of checks) {
+    if (
+      typeof before !== "number" ||
+      typeof after !== "number" ||
+      before <= 0
+    ) {
+      continue;
+    }
+    const relChange = Math.abs(after - before) / before;
+    if (relChange > maxRelChange) {
+      throw new Error(
+        `${label} deviation ${(relChange * 100).toFixed(1)}% exceeds ${(
+          maxRelChange * 100
+        ).toFixed(0)}% (prev=${before}, new=${after}); refusing to publish.`
+      );
+    }
+  }
 }
