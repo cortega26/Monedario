@@ -14,19 +14,26 @@ function readUtf8(relativePath: string): string {
 }
 
 describe("workflow artifact setup", () => {
-  it("creates tests/e2e directory and this test suite", () => {
-    expect(fs.existsSync(path.join(repoRoot, "tests", "e2e"))).toBe(true);
+  it("creates tests/static-analysis directory and this test suite", () => {
+    expect(fs.existsSync(path.join(repoRoot, "tests", "static-analysis"))).toBe(
+      true,
+    );
     expect(
       fs.existsSync(
-        path.join(repoRoot, "tests", "e2e", "workflow-artifacts.e2e.test.ts"),
+        path.join(
+          repoRoot,
+          "tests",
+          "static-analysis",
+          "workflow-artifacts.e2e.test.ts",
+        ),
       ),
     ).toBe(true);
   });
 
-  // V6: All tests pass — vitest config must include e2e glob and disallow empty suites
-  it("provides executable test runner configuration that includes e2e tests (V6)", () => {
+  // V6: All tests pass — vitest config must include static-analysis glob and disallow empty suites
+  it("provides executable test runner configuration that includes static-analysis tests (V6)", () => {
     const vitest = readUtf8("vitest.config.ts");
-    // The glob pattern must cover tests/e2e/**
+    // The glob pattern must cover tests/**/*.test.ts
     expect(vitest).toContain('"tests/**/*.test.ts"');
     // passWithNoTests:false ensures missing tests surface as failures
     expect(vitest).toContain("passWithNoTests: false");

@@ -55,6 +55,62 @@ describe("creditAmortization shared engine", () => {
     );
   });
 
+  it("calculateAnnuityPayment returns principal/termMonths when rate is 0", () => {
+    const result = calculateAnnuityPayment(120000, 0, 12);
+    expect(result).toBe(10000);
+  });
+
+  it("calculateAnnuityPayment with termMonths=0 returns Infinity due to division by zero", () => {
+    // termMonths=0 is an invalid input; the function divides by (1+rate)^0 - 1 = 0.
+    // This test documents the current behavior for this edge case.
+    const result = calculateAnnuityPayment(120000, 0.1, 0);
+    expect(result).toBe(Infinity);
+  });
+
+  it("simulateCreditRepayment with maxMonths=0 returns no payments", () => {
+    const result = simulateCreditRepayment({
+      principal: 5000000,
+      monthlyRateDecimal: 0.0349,
+      paymentStrategy: () => 180000,
+      maxMonths: 0,
+    });
+    expect(result.months).toBe(0);
+    expect(result.totalPaid).toBe(0);
+    expect(result.totalInterest).toBe(-5000000);
+    expect(result.firstMonthlyPayments).toEqual([]);
+  });
+
+  it("simulateCreditRepayment with payment that does not cover interest grows balance", () => {
+    const result = simulateCreditRepayment({
+      principal: 100000,
+      monthlyRateDecimal: 0.1, // 10% monthly = 10000 interest first month
+      paymentStrategy: () => 5000, // Payment < interest
+      maxMonths: 12,
+    });
+    // Payment never covers interest, so balance keeps growing
+    expect(result.months).toBe(12); // runs to maxMonths
+    expect(result.totalPaid).toBe(12 * 5000); // 60000
+  });
+
+  it("simulateCreditRepayment with payment exactly matching annuity closes at term", () => {
+    const principal = 5000000;
+    const monthlyRate = 0.015;
+    const termMonths = 24;
+    const annuity = calculateAnnuityPayment(principal, monthlyRate, termMonths);
+
+    const result = simulateCreditRepayment({
+      principal,
+      monthlyRateDecimal: monthlyRate,
+      paymentStrategy: () => annuity,
+      maxMonths: termMonths + 1,
+      payoffThreshold: 0.01,
+    });
+
+    // Should complete in exactly termMonths months
+    expect(result.months).toBe(termMonths);
+    expect(result.totalPaid).toBeGreaterThan(principal);
+  });
+
   it("matches the credit card repayment simulation when using the same floor rule", () => {
     const creditCard = simulateCreditCardCost({
       debt: 650000,
