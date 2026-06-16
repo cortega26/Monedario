@@ -156,7 +156,7 @@ La **UF** es una unidad de valor que acumula todos los IPC anteriores desde su c
 
 Cuando alguien dice "la UF subió 4% este año", está diciendo que la inflación acumulada del período anterior fue aproximadamente 4%. Son dos formas de medir lo mismo, pero en escalas de tiempo distintas.
 
-Si también quieres entender la UTM — la otra unidad que se reajusta por IPC pero para obligaciones con el Estado (multas, trámites, tramos de impuesto) — revisa [UTM en Chile: qué es y para qué sirve](/posts/utm-chile-que-es-como-funciona/).
+Si también quieres entender la UTM — la otra unidad que se reajusta por IPC pero para obligaciones con el Estado (multas, trámites, tramos de impuesto) — revisa [UTM en Chile: qué es y para qué sirve](/posts/utm-chile-que-es-como-funciona/). Si necesitas convertir montos en UTM, usa el [conversor UTM a pesos chilenos](/calculadoras/conversor-utm/).
 
 ---
 
