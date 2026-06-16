@@ -12,7 +12,7 @@ export type DeltaDirection = "up" | "down" | "same";
 const previousValues = new Map<string, number>();
 
 /** Records the latest headline value and returns the prior one, if any. */
-export function recordHeadlineValue(key: string, value: number): number | null {
+function recordHeadlineValue(key: string, value: number): number | null {
   const prev = previousValues.has(key) ? previousValues.get(key)! : null;
   previousValues.set(key, value);
   return prev;

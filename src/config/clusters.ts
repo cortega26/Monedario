@@ -116,7 +116,7 @@ export const GUIDE_HUBS: Record<HubCluster, GuideHubMeta> = {
 };
 
 /** Type guard: is `cluster` one of the canonical guide hubs (i.e. not "general")? */
-export function isHubCluster(
+function isHubCluster(
   cluster: string | undefined | null
 ): cluster is HubCluster {
   return (

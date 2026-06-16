@@ -218,7 +218,7 @@ export function isDocumentedTransitionalPlacement({ slug, cluster, category }) {
   return entry.currentCluster === cluster && entry.currentCategory === category;
 }
 
-export function isHardenedOwnershipCluster(cluster) {
+function isHardenedOwnershipCluster(cluster) {
   return HARDENED_OWNERSHIP_CLUSTERS.includes(cluster);
 }
 
@@ -228,10 +228,6 @@ export function getAllowedCategoriesForCluster(cluster) {
 
 export function getCanonicalTopicEntry(cluster, canonicalTopic) {
   return CANONICAL_TOPIC_REGISTRY[cluster]?.[canonicalTopic] ?? null;
-}
-
-export function isRegisteredCanonicalTopic(cluster, canonicalTopic) {
-  return Boolean(getCanonicalTopicEntry(cluster, canonicalTopic));
 }
 
 export function allowsGeneralCategoryInCluster({

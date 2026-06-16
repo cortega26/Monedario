@@ -14,11 +14,7 @@ export function fmtPct(n: number): string {
 // Fila de detalle reutilizable
 // ---------------------------------------------------------------------------
 
-export function buildRow(
-  label: string,
-  value: string,
-  colorClass = ""
-): HTMLElement {
+function buildRow(label: string, value: string, colorClass = ""): HTMLElement {
   const line = document.createElement("div");
   line.className =
     "flex items-center justify-between border-b border-border py-2 text-sm last:border-0";

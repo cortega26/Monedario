@@ -214,7 +214,7 @@ function checkMinWage(rawInput: number, jornadaFraction = 1) {
 // Main calculate handler
 // ---------------------------------------------------------------------------
 
-export function handleCalculate(): void {
+function handleCalculate(): void {
   hideError();
   setLoading(true);
   const modo = getModo();

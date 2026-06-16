@@ -26,9 +26,3 @@ export const GLOSSARY_ALLOWLIST = [
   { term: "Seguro de cesantía", slug: "seguro-cesantia" },
   { term: "Copago", slug: "copago" },
 ] as const satisfies ReadonlyArray<{ term: string; slug: string }>;
-
-export function resolveGlossarySlug(term: string): string | undefined {
-  const normalized = term.trim().toLowerCase();
-  return GLOSSARY_ALLOWLIST.find(e => e.term.toLowerCase() === normalized)
-    ?.slug;
-}

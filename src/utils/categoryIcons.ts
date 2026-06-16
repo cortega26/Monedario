@@ -1,6 +1,6 @@
 import { slugifyStr } from "./slugify";
 
-export const CATEGORY_MAP: Record<string, { icon: string; color: string }> = {
+const CATEGORY_MAP: Record<string, { icon: string; color: string }> = {
   cesantia: { icon: "🛡️", color: "#0d9488" },
   desempleo: { icon: "🛡️", color: "#0d9488" },
   afp: { icon: "📈", color: "#0d9488" },

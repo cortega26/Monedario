@@ -1,6 +1,6 @@
 import officialHosts from "@/config/official-hosts.json";
 
-export const SCROLL_DEPTH_MILESTONES = [25, 50, 75, 100] as const;
+const SCROLL_DEPTH_MILESTONES = [25, 50, 75, 100] as const;
 
 // Official source hosts derive from the canonical registry (TD-0094) so analytics,
 // urlcheck and editorial citations never diverge on what counts as official.

@@ -1,6 +1,6 @@
 export const DEFAULT_LOCALE = "es" as const;
 
-export const UI_COPY = {
+const UI_COPY = {
   es: {
     toc: {
       title: "Tabla de contenidos",

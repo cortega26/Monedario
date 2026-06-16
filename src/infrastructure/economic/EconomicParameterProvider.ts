@@ -103,7 +103,7 @@ function syncDevTelemetry(): void {
     globalThis as typeof globalThis & {
       __TPI_ECONOMIC_PROVIDER_TELEMETRY__?: EconomicProviderTelemetry;
     }
-  ).__TPI_ECONOMIC_PROVIDER_TELEMETRY__ = getEconomicProviderTelemetry();
+  ).__TPI_ECONOMIC_PROVIDER_TELEMETRY__ = { ...telemetryState };
 }
 
 function toIsoDate(value: string | undefined): string {
@@ -364,9 +364,7 @@ export async function getEconomicParameterBundle(): Promise<EconomicParameterBun
 }
 
 export function getEconomicProviderTelemetry(): EconomicProviderTelemetry {
-  return {
-    ...telemetryState,
-  };
+  return { ...telemetryState };
 }
 
 export function __resetEconomicParameterProviderForTests(): void {

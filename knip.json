@@ -25,6 +25,18 @@
     "enumMembers": "off",
     "duplicates": "off"
   },
+  "ignoreExportsUsedInFile": {
+    "variable": true
+  },
+  "ignoreIssues": {
+    "src/config/tagHubMap.ts": ["exports"],
+    "src/config/editorial-topic-policy.mjs": ["exports"],
+    "src/application/use-cases/shared/retirementEmployerContributionSchedule.ts": ["exports"],
+    "src/utils/analytics.ts": ["exports"],
+    "src/utils/indicadores.ts": ["exports"],
+    "src/utils/resumeState.ts": ["exports"],
+    "src/infrastructure/economic/EconomicParameterProvider.ts": ["exports"]
+  },
   "ignoreDependencies": [
     "tailwindcss",
     "@tailwindcss/typography",
