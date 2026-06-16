@@ -16,3 +16,4 @@ overrides:
   ws: 8.20.1
   yaml-language-server>yaml: 2.9.0
   yaml: 2.9.0
+minimumReleaseAge: 60
