@@ -549,7 +549,7 @@
       ],
       "category": "ahorro-inversion",
       "cluster": "ahorro-e-inversion",
-      "sourcePath": "src/data/blog/el-poder-del-interes-compuesto.md",
+      "sourcePath": "src/data/blog/el-poder-del-interes-compuesto.mdx",
       "heroImage": "/images/hero/el-poder-del-interes-compuesto.avif",
       "summary": "Imagina a alguien que nunca ganó más que el sueldo mínimo. Sin bonos, sin ascensos, sin herencias. Solo el sueldo de cada mes y la disciplina de apartar el 10% del líquido para invertirlo. Durante 36 años tuvo 24 meses sin trabajo — lagunas reales, como las que le pasan a cualqui...",
       "leadParagraphs": [
@@ -569,7 +569,7 @@
       ],
       "bodyExcerpt": "Imagina a alguien que nunca ganó más que el sueldo mínimo. Sin bonos, sin ascensos, sin herencias. Solo el sueldo de cada mes y la disciplina de apartar el 10% del líquido para invertirlo. Durante 36 años tuvo 24 meses sin trabajo — lagunas reales, como las que le pasan a cualquier trabajador chileno. El resto del tiempo, ese 10% fue al NASDAQ-100. Lo que ocurrió después es lo que este ejercicio trata de mostrar. Si quieres llevar esta lógica a tu caso con tasa, aporte y plazo propios, usa la . ## Respuesta rápida > **En resumen:** Invertir el 10% del sueldo mínimo en el NASDAQ-100 durante 36 años (1990–2025) habría producido ~$125,6 millones CLP (~USD 129.495), partiendo de aportes totales de ~$6,2 millones. El capital final equivale a 13,7 veces lo aportado. **Resultado del ejercicio:** si alguien hubiera invertido el 10% de su sueldo líquido entre enero de 1990 y diciembre de 2025, la cartera cerraría cerca de **USD 129.495**, equivalentes a **$125,6 millones CLP** al tipo de cambio de cierre usado en la simulación. **Aporte total estimado:** alrededor de **$6.183.108 CLP** de bolsillo, equivalentes a unos **USD 9.453** al tipo de cambio histórico de cada aporte. **Qué significa",
       "wordCount": 1986,
-      "sourceFile": "el-poder-del-interes-compuesto.md"
+      "sourceFile": "el-poder-del-interes-compuesto.mdx"
     },
     {
       "slug": "estafas-financieras-chile-vishing-smishing-marketplace",
