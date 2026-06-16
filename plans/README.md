@@ -7,24 +7,39 @@ Ejecutar en el orden de la tabla salvo que las dependencias indiquen lo contrari
 Cada ejecutor: leer el plan completo antes de empezar, honrar sus condiciones de
 STOP, y actualizar la columna de estado al terminar.
 
-## Orden de ejecución y estado
+Los planes **completados, verificados y mergeados** se mueven a
+[`plans/archive/`](archive/README.md). En este README solo quedan en detalle los
+planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 
-### Re-auditoría 2026-06-15 (planes nuevos — pendientes)
+## Pendientes (trabajo abierto)
 
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|--------|-----------|----------|------------|--------|
-| [020](020-afp-comparison-cheapest-name.md) | Corregir nombre de AFP cableado ("AFP Uno") en la nota de comparación | P2 | S | — | DONE (rama `advisor/020-afp-comparison-cheapest-name`, commit 946eb30c; pendiente merge por el operador) |
-| [021](021-economic-snapshot-hardening.md) | Endurecer worker de snapshot económico (IPC ausente, deriva, timeouts) | P2 | M | — | DONE (rama `worktree-agent-a67b14ab4bfcf40a7`, también ref `advisor/021-economic-snapshot-hardening`, commit 95f028ef; pendiente merge por el operador) |
 | [022](022-consolidate-clp-formatter.md) | Consolidar formateador CLP en módulo leaf único | P3 | S | — | TODO |
 | [023](023-gate-floor-and-reddit-alert-atomicity.md) | Guardas anti-paso-vacío en gates rutas/RSS + alerta Reddit atómica | P3 | S | — | TODO |
 
-### Auditoría 2026-06-11 (ejecutados)
+> Verificado el 2026-06-15: 022 y 023 siguen sin implementar en el código
+> (no existe `src/utils/formatCLP.ts`; los gates `compare-*.mjs` no tienen
+> floor-guard de baseline vacío; el worker reddit no devuelve `PostAlertResult`).
+
+## Completados — archivados
+
+Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main`.
+
+### Re-auditoría 2026-06-15
 
 | Plan | Título | Prioridad | Esfuerzo | Estado |
 |------|--------|-----------|----------|--------|
-| [001](001-csp-kofi-domain.md) | Agregar `storage.ko-fi.com` al CSP | P1 | S | DONE |
-| [002](002-pin-setup-node-sha.md) | Pinear `actions/setup-node` por SHA | P2 | S | DONE |
-| [003](003-page-lastmod-pr-gate.md) | Convertir `page-lastmod.yml` a PR-gate | P2 | M | DONE |
+| [020](archive/020-afp-comparison-cheapest-name.md) | Corregir nombre de AFP cableado ("AFP Uno") en la nota de comparación | P2 | S | DONE (commits `e7e3aa72`, `439583e5`) |
+| [021](archive/021-economic-snapshot-hardening.md) | Endurecer worker de snapshot económico (IPC ausente, deriva, timeouts) | P2 | M | DONE (commit `95f028ef`) |
+
+### Auditoría 2026-06-11
+
+| Plan | Título | Prioridad | Esfuerzo | Estado |
+|------|--------|-----------|----------|--------|
+| [001](archive/001-csp-kofi-domain.md) | Agregar `storage.ko-fi.com` al CSP | P1 | S | DONE |
+| [002](archive/002-pin-setup-node-sha.md) | Pinear `actions/setup-node` por SHA | P2 | S | DONE |
+| [003](archive/003-page-lastmod-pr-gate.md) | Convertir `page-lastmod.yml` a PR-gate | P2 | M | DONE |
 | 004 | Higiene de dependencias (5 correcciones) | P1 | S | DONE |
 | 005 | Limpieza de duplicación de código (6 correcciones) | P1 | S | DONE |
 | 006 | Correcciones de rendimiento (O(n²), re-sorting, ArticleView) | P1 | S | DONE |
@@ -45,21 +60,21 @@ STOP, y actualizar la columna de estado al terminar.
 > **Nota de reconciliación (2026-06-15):** los planes 004–019 se generaron el
 > 2026-06-11 y se ejecutaron vía ramas `advisor/0NN-*` integradas en
 > `advisor/integration-2026-06-15` (ver git log: "apply Plan 015", "Plan 011,
-> 014, 016", etc.). El árbol de trabajo sólo conserva los archivos 001–003; los
-> archivos 004–019 viven en el historial git de sus ramas. Numeración monotónica
-> continúa en 020.
+> 014, 016", etc.). Los archivos 001–003 (más 020–021) están en
+> [`plans/archive/`](archive/README.md); los archivos 004–019 nunca se
+> conservaron en el árbol y viven solo en el historial git de sus ramas.
+> Numeración monotónica continúa en 022.
 
 Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED (razón)` · `REJECTED (razón)`
 
 ## Notas de dependencia
 
-- **020–023 son independientes entre sí** y de los planes previos; pueden
-  ejecutarse en paralelo o en cualquier orden.
-- Recomendación de prioridad: **020 y 021 primero** (ambos tocan rutas YMYL —
-  texto de calculadora y datos económicos que alimentan todas las calculadoras).
-  **022 y 023** son defensa-en-profundidad de bajo riesgo.
-- 021 toca tres archivos del worker `economic-snapshot-refresh`; 023 toca el
-  worker `reddit-mention-monitor` y dos scripts `compare-*`. No se solapan.
+- **022 y 023 son independientes entre sí** y de los planes previos; pueden
+  ejecutarse en paralelo o en cualquier orden. Ambos son defensa-en-profundidad
+  de bajo riesgo (P3).
+- 023 toca el worker `reddit-mention-monitor` y dos scripts `compare-*`; 022
+  toca `src/utils/indicadores.ts`, `resultRenderer.ts` y un módulo leaf nuevo.
+  No se solapan.
 
 ## Hallazgos considerados y rechazados
 
