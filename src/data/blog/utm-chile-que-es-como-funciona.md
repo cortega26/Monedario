@@ -156,7 +156,7 @@ La duda más frecuente es confundir la UTM con la UF. Aunque ambas siguen la inf
 
 **Regla para recordar:** Si la obligación es **con el Estado** → UTM. Si es **con un banco o arrendador privado** → UF.
 
-Para entender en detalle cómo funciona la UF y cómo afecta tu arriendo o dividendo hipotecario, revisa [UF en simple: qué es y cómo te afecta](/posts/que-es-la-uf/).
+Para entender en detalle cómo funciona la UF y cómo afecta tu arriendo o dividendo hipotecario, revisa [UF en simple: qué es y cómo te afecta](/posts/que-es-la-uf/). Si necesitas convertir montos en UF, usa el [conversor UF a pesos chilenos](/calculadoras/conversor-uf/).
 
 ---
 

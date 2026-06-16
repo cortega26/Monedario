@@ -18,6 +18,7 @@ import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 const { parameters: economicParameters } = await getEconomicParameters();
 const ufGuidePath = getPath("/posts/que-es-la-uf/");
 const ufHubPath = getPath("/guias/uf-costo-de-vida/");
+const utmConverterPath = getPath("/calculadoras/conversor-utm/");
 const ufLastUpdated = resolveEconomicIndicatorDate(economicParameters, "uf");
 const economicSourceLabel =
   economicParameters.source === "live"
@@ -83,12 +84,12 @@ const ufFaqs = [
 ---
 
 <Layout
-  title="Conversor UF a Pesos Chile | Monedario"
-  description="Convierte UF a CLP y CLP a UF con valor diario de referencia y una tabla rápida de montos."
+  title="Conversor UF a Pesos Chilenos — Valor Diario Oficial | Monedario"
+  description="Convierte UF a pesos chilenos al valor oficial del Banco Central actualizado cada día. Con tabla de referencia para arriendos, créditos hipotecarios y contratos."
 >
   <CalculatorJsonLd
-    name="Conversor UF a Pesos Chile"
-    description="Convierte UF a CLP y CLP a UF con valor diario de referencia y una tabla rápida de montos."
+    name="Conversor UF a Pesos Chilenos"
+    description="Convierte UF a pesos chilenos al valor oficial del Banco Central actualizado cada día. Con tabla de referencia para arriendos, créditos hipotecarios y contratos."
     faqs={ufFaqs}
   />
   <Header />
@@ -103,8 +104,8 @@ const ufFaqs = [
     data-analytics-calculator-name="Conversor UF a Pesos"
   >
     <CalculatorHero
-      title="Conversor UF ↔ Pesos"
-      description="Convierte entre Unidad de Fomento y pesos chilenos al valor oficial del día. Sin registro, sin publicidad."
+      title="Conversor UF a Pesos Chilenos"
+      description="Convierte Unidades de Fomento al valor oficial del Banco Central actualizado a diario. Sin registro, sin publicidad."
       descriptionClass="max-w-xl text-secondary"
     />
 
@@ -246,6 +247,18 @@ const ufFaqs = [
           data-analytics-location="calculator_explainer"
           >guía explicativa de la UF</a
         >.
+      </p>
+      <p>
+        Si necesitas convertir UTM (Unidad Tributaria Mensual) en lugar de UF,
+        usa el{" "}
+        <a
+          href={utmConverterPath}
+          data-analytics-cta="calculator-related"
+          data-analytics-label="Conversor UTM a pesos"
+          data-analytics-location="calculator_explainer"
+        >
+          conversor UTM a pesos chilenos</a
+        >, actualizado cada mes con el valor del SII.
       </p>
       <p>
         Si quieres conectar esa explicación con IPC, reajustes y arriendo, sigue
