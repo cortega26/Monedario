@@ -2,6 +2,12 @@
 
 Auditoría inicial: `/improve deep` el 2026-06-11 (commit `8256c9d2`) → planes 001–019.
 Re-auditoría: `/improve deep` el 2026-06-15 (commit `57ad5261`) → planes 020–023.
+Follow-through de auditorías externas: `/improve` el 2026-06-17 (commit `fd2b5dff`) → planes 024–026.
+Fuente: las dos auditorías en `docs/latest_audits/` (`deep-research-report (8).md`,
+la precisa con muestreo de 50 URLs; y `Auditoría SEO Monedario Chile.md`, la
+heurística sin acceso al sitio). Ya implementado fuera de plan: el bug del IMM
+obsoleto (sueldo mínimo corregido a $553.553 como constante legal gestionada con
+guard de regresión, commit `fd2b5dff`).
 
 Ejecutar en el orden de la tabla salvo que las dependencias indiquen lo contrario.
 Cada ejecutor: leer el plan completo antes de empezar, honrar sus condiciones de
@@ -17,10 +23,20 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 |------|--------|-----------|----------|------------|--------|
 | [022](022-consolidate-clp-formatter.md) | Consolidar formateador CLP en módulo leaf único | P3 | S | — | TODO |
 | [023](023-gate-floor-and-reddit-alert-atomicity.md) | Guardas anti-paso-vacío en gates rutas/RSS + alerta Reddit atómica | P3 | S | — | TODO |
+| [024](024-calculator-data-freshness-component.md) | Estandarizar la vigencia de datos de calculadoras en un componente compartido | P1 | M | — | TODO |
+| [025](025-iva-calculator-engine.md) | Motor + página de calculadora de IVA (sin publicar, pendiente visto bueno) | P2 | M | — | TODO |
+| [026](026-glossary-thematic-index.md) | Índice temático del glosario junto al alfabético | P3 | M | — | TODO |
 
 > Verificado el 2026-06-15: 022 y 023 siguen sin implementar en el código
 > (no existe `src/utils/formatCLP.ts`; los gates `compare-*.mjs` no tienen
 > floor-guard de baseline vacío; el worker reddit no devuelve `PostAlertResult`).
+>
+> 024–026 (2026-06-17): los tres son técnica/infra ejecutable sin nuevo visto
+> bueno YMYL. 025 entrega motor + página pero **se detiene en la compuerta
+> editorial** (no registra la calculadora en el portafolio; eso lo hace un humano
+> tras aprobar el copy). El contenido financiero nuevo (clústeres, comparadores,
+> definiciones de glosario nuevas) NO se planificó: requiere el pipeline editorial
+> + firma humana — ver "Dirección" abajo.
 
 ## Completados — archivados
 
@@ -75,6 +91,11 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED (razón)` · `REJECTED (ra
 - 023 toca el worker `reddit-mention-monitor` y dos scripts `compare-*`; 022
   toca `src/utils/indicadores.ts`, `resultRenderer.ts` y un módulo leaf nuevo.
   No se solapan.
+- **024, 025 y 026 son independientes** entre sí y de 022/023; ejecútalos en
+  cualquier orden. Orden recomendado por prioridad (024 → 025 → 026): 024 es el de
+  mayor leverage, menor riesgo y totalmente técnico, y extiende el fix del IMM ya
+  mergeado. 025 y 026 terminan en compuerta humana (025: registro en portafolio
+  tras firma de copy; 026: revisión de categorías).
 
 ## Hallazgos considerados y rechazados
 
@@ -103,7 +124,49 @@ Re-auditoría 2026-06-15:
   muerto — son prototipos de los planes de diseño 017/018/019, pendientes de un
   plan de activación. Ver "Dirección" abajo. No abierto como bug.
 
+Follow-through auditorías externas 2026-06-17:
+- **Casi todo el "construyan estas calculadoras" de `Auditoría SEO Monedario
+  Chile.md`**: ya están en producción (sueldo líquido, APV, IUSC, honorarios,
+  prepago, conversor UF/UTM, DAP, …). El doc no tuvo acceso al sitio. Verificar
+  contra `src/pages/calculadoras/` (19 entradas) antes de actuar sobre cualquier
+  ítem de ese documento. No reauditar ítem por ítem.
+- **"Agregar panel de metodología/fórmulas a la calculadora de sueldo"** (Doc 1):
+  ya presente — las calculadoras importan `MethodologyBlock` y
+  `CalculatorTrustBadge`. No abierto.
+- **"Agregar página de autor/E-E-A-T"** (Doc 1): metodología editorial y
+  superficies de confianza ya existen (confirmado por la auditoría precisa). No es
+  brecha de código.
+
 ## Dirección (decisión del mantenedor — no planificado aún)
+
+### Follow-through auditorías externas 2026-06-17 (gestionar vía pipeline editorial)
+
+Oportunidades reales de `deep-research-report (8).md`, pero son superficies YMYL
+nuevas o con costo de mantención continuo. Necesitan que un humano las comisione
+por `context/EDITORIAL_AI_PIPELINE.md`, no un ejecutor.
+
+- **Calculadoras nuevas con dependencia de datos**: inflación acumulada y
+  rentabilidad real necesitan una serie histórica de IPC (fuente + job de
+  refresh); CAE hipotecario necesita supuestos de seguros/gastos con riesgo de
+  interpretación normativa. Alto valor, pero cada una es un proyecto de
+  data-pipeline + metodología, no un one-off de tasa fija como el IVA (plan 025).
+- **`fondo de emergencia` y `meta de ahorro`**: matemática simple, pero
+  `fondo-emergencia` **ya está en el pipeline editorial** (ver
+  `docs/editorial/artifacts/fondo-emergencia/` y su brief). No duplicar; cerrarlo
+  por el pipeline. `meta de ahorro` es un plan de motor futuro cuando se priorice.
+- **Clústeres de contenido nuevos**: bancos/fintechs (la ausencia más costosa hoy),
+  impuestos para independientes, finanzas para jóvenes/migrantes. Alto valor
+  temático, pero cada uno es redacción YMYL + interlinking sustancial. Editorial.
+- **Comparadores** (cuentas remuneradas, instrumentos conservadores): demanda
+  alta, pero la propia auditoría marca el riesgo de mantención/neutralidad de
+  comparar productos en vivo; necesita política de monetización/transparencia y un
+  modelo de datos antes de construir. La mayor cautela de tradeoff del set.
+- **Términos de glosario nuevos** (cuenta remunerada, TIR, money market, carga
+  financiera, portabilidad financiera, PGU, SIS…): definiciones nuevas = contenido
+  YMYL. El plan 026 construye la *estructura* temática que las alojará; las
+  definiciones van por el pipeline.
+
+### Prototipos de diseño previos
 
 - **Activar los prototipos de diseño (017/018/019).** `CalculatorShell.astro`,
   `DecisionTree.astro` e `InlineCalculator.astro` fueron entregados por planes de
