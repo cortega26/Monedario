@@ -1333,7 +1333,7 @@
         "Arriendo en UF"
       ],
       "bodyExcerpt": "Tu arriendo sube todos los años \"por la UF\" y tu dividendo también. Pero casi nadie sabe exactamente qué es la UF ni por qué cambia todos los días. Acá te explicamos de verdad — con números y sin fórmulas intimidantes. Si quieres ver esta historia ordenada junto con IPC, reajustes y herramientas prácticas, parte por la . Si quieres ver cómo se conecta con créditos y deudas, también puedes complementar con la . ## Tabla de contenidos ## Qué es la UF La **Unidad de Fomento (UF)** es una unidad de medida del valor del dinero que se ajusta automáticamente con la inflación. No es un tipo de cambio, no es una moneda y no la emite ningún banco privado — la calcula y publica el **Banco Central de Chile** todos los meses. La idea detrás de la UF es simple: si precias algo en pesos y hay inflación, ese precio pierde valor real con el tiempo. Pero si lo precias en UF, el valor se mantiene constante en términos de poder adquisitivo, porque la UF sube exactamente lo mismo que sube el costo de vida. Por eso se usa en contratos de arriendo, créditos hipotecarios, deudas de largo plazo, multas y cualquier obligación donde ambas partes quieren protegerse de la inflación. --- ## Cuánto vale la UF ho",
-      "wordCount": 1549,
+      "wordCount": 1558,
       "sourceFile": "que-es-la-uf.md"
     },
     {
@@ -1668,7 +1668,7 @@
         "Usos prácticos de la UTM"
       ],
       "bodyExcerpt": "La **UTM (Unidad Tributaria Mensual)** es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Cambia el primer día hábil de cada mes. > **Respuesta rápida** > > **Qué es:** Unidad de medida del valor monetario que el Estado usa para expresar multas, impuestos y aranceles — no es una moneda, sino un indicador de referencia reajustable. > > **Cómo cambia:** Se reajusta cada mes según la variación del IPC del mes anterior. > > **Valor vigente (abril 2026):** $69.889 > > **Fuente oficial:** > > **Vigencia:** Válido durante todo abril 2026. El valor cambia el primer día hábil de cada mes — verifica siempre en SII.cl. Si pagas una multa de tránsito mañana, el monto en pesos que te cobran depende de cuántas UTM tiene la multa multiplicado por el valor vigente **en ese momento**. El mismo número de UTM puede significar más o menos pesos según el mes. Si necesitas la equivalencia exacta ahora, usa el . > **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Si quieres ver este frente completo junto con UF, reajustes y herramient",
-      "wordCount": 1698,
+      "wordCount": 1707,
       "sourceFile": "utm-chile-que-es-como-funciona.md"
     }
   ]
