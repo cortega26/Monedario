@@ -28,6 +28,13 @@ export interface EconomicParameters {
   tmc?: number;
   dolar?: number;
   imm?: number;
+  /**
+   * Legal effective date of the IMM value (Ley vigente), in ISO format.
+   * IMM is a managed legal constant, NOT a daily-refreshed indicator, so its
+   * provenance date is the law's effective date — never the snapshot capture
+   * date. Kept separate from `indicatorUpdatedAt` for that reason.
+   */
+  immEffectiveDate?: string;
   afcTopes?: Record<string, number>;
   previsionalTopes?: Record<string, number>;
   indicatorUpdatedAt?: EconomicIndicatorUpdatedAt;

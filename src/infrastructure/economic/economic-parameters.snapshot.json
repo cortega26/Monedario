@@ -5,6 +5,8 @@
   "ipc": 0.2,
   "tmc": 3.49,
   "dolar": 886.53,
+  "imm": 553553,
+  "immEffectiveDate": "2026-05-01",
   "afcTopes": {
     "monthlyTaxableCapUf": 135.2
   },

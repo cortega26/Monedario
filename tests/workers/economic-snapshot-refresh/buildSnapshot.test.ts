@@ -220,6 +220,8 @@ function makeSnapshot(overrides: Partial<EconomicSnapshot> = {}): EconomicSnapsh
     ipc: 1.3,
     tmc: 3.49,
     dolar: 910,
+    imm: 553553,
+    immEffectiveDate: "2026-05-01",
     afcTopes: { monthlyTaxableCapUf: 135.2 },
     previsionalTopes: { pensionAndHealthMonthlyTaxableCapUf: 90 },
     indicatorUpdatedAt: {

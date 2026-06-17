@@ -25,6 +25,7 @@ interface EconomicSnapshotPayload {
   tmc?: number;
   dolar?: number;
   imm?: number;
+  immEffectiveDate?: string;
   afcTopes?: {
     monthlyTaxableCapUf?: number;
   };
@@ -62,6 +63,14 @@ export interface EconomicProviderTelemetry {
 
 const DEFAULT_AFC_MONTHLY_TAXABLE_CAP_UF = 135.2;
 const DEFAULT_PENSION_AND_HEALTH_MONTHLY_TAXABLE_CAP_UF = 90;
+// Managed legal constant — Ingreso Mínimo Mensual. Reajuste despachado a ley por
+// el Congreso el 2026-06-16, vigente retroactivo desde 2026-05-01 ($553.553, alza
+// de 2,7% sobre los $539.000 de la Ley 21.751). mindicador.cl does NOT provide
+// IMM, so it is maintained here and in the snapshot generators. Update both the
+// value and its effective date when a new ley reajusta el IMM; the provider test
+// enforces a floor + a date tripwire that forces re-verification against mintrab.
+const DEFAULT_IMM = 553_553;
+const DEFAULT_IMM_EFFECTIVE_DATE = "2026-05-01";
 const FALLBACK_LAST_UPDATED = "2026-05-28";
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 const SNAPSHOT_FILE_NAME = "economic-parameters.snapshot.json";
@@ -75,7 +84,8 @@ const FALLBACK_PARAMETERS: EconomicParameters = {
   uta: 834504,
   ipc: 0,
   tmc: 3.49,
-  imm: 500_000,
+  imm: DEFAULT_IMM,
+  immEffectiveDate: DEFAULT_IMM_EFFECTIVE_DATE,
   afcTopes: {
     monthlyTaxableCapUf: DEFAULT_AFC_MONTHLY_TAXABLE_CAP_UF,
   },
@@ -192,7 +202,8 @@ function loadSnapshotEconomicParameters(): EconomicParameters {
     tmc: payload.tmc !== undefined ? Number(payload.tmc) : 3.49,
     dolar: payload.dolar !== undefined ? Number(payload.dolar) : undefined,
     uta: payload.uta !== undefined ? Number(payload.uta) : undefined,
-    imm: payload.imm !== undefined ? Number(payload.imm) : undefined,
+    imm: payload.imm !== undefined ? Number(payload.imm) : DEFAULT_IMM,
+    immEffectiveDate: payload.immEffectiveDate ?? DEFAULT_IMM_EFFECTIVE_DATE,
     afcTopes: {
       monthlyTaxableCapUf: Number(
         payload.afcTopes?.monthlyTaxableCapUf ??
@@ -261,6 +272,8 @@ async function fetchLiveEconomicParameters(): Promise<EconomicParameters> {
         : undefined,
     uta:
       payload.uta?.valor !== undefined ? Number(payload.uta.valor) : undefined,
+    imm: DEFAULT_IMM,
+    immEffectiveDate: DEFAULT_IMM_EFFECTIVE_DATE,
     afcTopes: {
       monthlyTaxableCapUf: DEFAULT_AFC_MONTHLY_TAXABLE_CAP_UF,
     },

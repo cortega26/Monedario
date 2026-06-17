@@ -9,6 +9,8 @@ const SNAPSHOT = JSON.parse(
 ) as {
   uf: number;
   utm: number;
+  imm?: number;
+  immEffectiveDate?: string;
   indicatorUpdatedAt?: {
     uf?: string;
     utm?: string;
@@ -95,6 +97,60 @@ describe("EconomicParameterProvider", () => {
     const telemetry = getEconomicProviderTelemetry();
     expect(telemetry.externalFetchCount).toBe(0);
     expect(telemetry.lastSource).toBe("snapshot");
+  });
+
+  // Regression guard for the stale-IMM bug: the salary calculator silently
+  // fell back to a $500.000 minimum wage because mindicador.cl never supplies
+  // the IMM and no managed constant carried it. IMM is a legal value (reajuste
+  // despachado a ley el 2026-06-16: $553.553 vigente retroactivo desde
+  // 2026-05-01, sobre los $539.000 de la Ley 21.751).
+  //
+  // Two complementary guarantees:
+  //  1. FLOOR — `imm` must never drop below the last-known-good legal value.
+  //     This catches a reversion to an older fallback or any accidental
+  //     downward edit. (It does NOT catch a forgotten *upward* reajuste —
+  //     that is what the date tripwire below is for.)
+  //  2. DATE TRIPWIRE — after IMM_REVIEW_BY the test fails on purpose, forcing
+  //     a human to re-verify the current IMM against the Ministerio del Trabajo
+  //     and, if it changed, bump DEFAULT_IMM, the floor, the effective date and
+  //     this date. Same forcing-function pattern as check-editorial-timeliness.mjs.
+  const IMM_LEGAL_FLOOR = 553_553;
+  const IMM_REVIEW_BY = "2026-12-01";
+
+  it("always exposes the managed IMM (>= legal floor) with its effective date in snapshot mode", async () => {
+    const { getEconomicParameterBundle } = await loadProviderModule();
+    const { parameters } = await getEconomicParameterBundle();
+
+    expect(parameters.imm).toBeDefined();
+    expect(parameters.imm).toBeGreaterThanOrEqual(IMM_LEGAL_FLOOR);
+    expect(parameters.immEffectiveDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    // The committed snapshot must carry the field so a refresh round-trips it.
+    expect(SNAPSHOT.imm).toBeGreaterThanOrEqual(IMM_LEGAL_FLOOR);
+  });
+
+  it(`forces re-verification of the IMM against current law by ${IMM_REVIEW_BY}`, () => {
+    const today = new Date().toISOString().slice(0, 10);
+    expect(
+      today < IMM_REVIEW_BY,
+      `Revisa el IMM vigente en https://www.mintrab.gob.cl/ (valor actual $553.553 vigente desde 2026-05-01). ` +
+        `Si cambió, actualiza DEFAULT_IMM, IMM_LEGAL_FLOOR, immEffectiveDate y IMM_REVIEW_BY en provider + ambos generadores + snapshot.`
+    ).toBe(true);
+  });
+
+  it("supplies the managed IMM even in live mode (mindicador never returns it)", async () => {
+    setMode("live");
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => LIVE_RESPONSE,
+    });
+    vi.stubGlobal("fetch", fetchMock);
+
+    const { getEconomicParameterBundle } = await loadProviderModule();
+    const { parameters } = await getEconomicParameterBundle();
+
+    expect(parameters.source).toBe("live");
+    expect(parameters.imm).toBeGreaterThanOrEqual(IMM_LEGAL_FLOOR);
+    expect(parameters.immEffectiveDate).toMatch(/^\d{4}-\d{2}-\d{2}$/);
   });
 
   it("resolves the snapshot from a real filesystem path", async () => {

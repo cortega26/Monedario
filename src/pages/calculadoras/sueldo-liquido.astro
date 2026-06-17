@@ -27,7 +27,7 @@ import CalculatorExplainerSection from "@/components/calculator/CalculatorExplai
 import { SITE } from "@/config";
 
 const { parameters: economicParameters } = await getEconomicParameters();
-const IMM_MENSUAL_SERVER = economicParameters.imm ?? 500_000;
+const IMM_MENSUAL_SERVER = economicParameters.imm ?? 553_553;
 const GRATI_CAP_SERVER = Math.round((4.75 / 12) * IMM_MENSUAL_SERVER);
 const salaryGuidePath = getPath("/posts/como-calcular-sueldo-liquido/");
 const firstTaxExemptBracket = 13.5 * economicParameters.utm;
@@ -629,7 +629,7 @@ const calculatorNextStepItems = [
           id="economic-parameters"
           data-utm={String(economicParameters.utm)}
           data-uf={String(economicParameters.uf)}
-          data-imm={String(economicParameters.imm ?? 500000)}
+          data-imm={String(economicParameters.imm ?? 553553)}
           class="hidden"
           aria-hidden="true"
         >

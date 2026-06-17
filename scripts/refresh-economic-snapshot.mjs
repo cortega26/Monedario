@@ -26,6 +26,13 @@ const ECONOMIC_API_URL = "https://mindicador.cl/api";
 const FETCH_TIMEOUT_MS = Number(process.env.ECONOMIC_SNAPSHOT_TIMEOUT_MS ?? 12000);
 const DEFAULT_AFC_MONTHLY_TAXABLE_CAP_UF = 135.2;
 const DEFAULT_PENSION_AND_HEALTH_MONTHLY_TAXABLE_CAP_UF = 90;
+// Ingreso Mínimo Mensual — managed legal constant. Reajuste despachado a ley el
+// 2026-06-16, vigente retroactivo desde 2026-05-01 ($553.553). mindicador.cl no
+// entrega el IMM, por lo que se mantiene aquí. Al reajustarse el IMM, actualiza
+// valor y fecha de vigencia; el test del provider valida un piso + fecha de
+// revisión que obliga a re-verificar contra el Ministerio del Trabajo.
+const DEFAULT_IMM = 553_553;
+const DEFAULT_IMM_EFFECTIVE_DATE = "2026-05-01";
 
 function toIsoDate(value) {
   if (typeof value === "string" && value.length >= 10) {
@@ -148,6 +155,8 @@ async function fetchLiveParameters() {
     ipc,
     tmc,
     ...(dolar !== undefined && { dolar }),
+    imm: DEFAULT_IMM,
+    immEffectiveDate: DEFAULT_IMM_EFFECTIVE_DATE,
     afcTopes: {
       monthlyTaxableCapUf: DEFAULT_AFC_MONTHLY_TAXABLE_CAP_UF,
     },

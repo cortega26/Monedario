@@ -48,7 +48,7 @@ function readEconomicParameters(): {
   return {
     uf,
     utm,
-    imm: Number.isFinite(imm) && imm > 0 ? imm : 500_000,
+    imm: Number.isFinite(imm) && imm > 0 ? imm : 553_553,
   };
 }
 
