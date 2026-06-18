@@ -51,6 +51,8 @@ Canonical run folder:
 - `artifacts/editorial/<slug>/<run-id>/`
 - `run-id` format: `YYYYMMDD-HHMM-<shortid>`
 
+Stage 00 — Topic Intake & Scoring precedes and feeds `01-brief.yaml` (pre-brief, pre-slug, pre-registry). See `docs/editorial/TOPIC_INTAKE_POLICY.md`; intake records live under `artifacts/editorial/_intake/<candidate>/00-topic-intake.md`.
+
 Required artifacts (minimum):
 1. `01-brief.yaml`
 2. `02-dossier.md`

@@ -8,11 +8,17 @@ export const CLUSTERS = [
   "seguridad-financiera",
   "sueldo-remuneraciones",
   "empleo-ingresos",
+  "bancos-fintech",
   "general",
 ] as const;
 
 export type Cluster = (typeof CLUSTERS)[number];
-export type HubCluster = Exclude<Cluster, "general">;
+// `bancos-fintech` es un cluster válido (valida frontmatter y el hub shell en
+// src/pages/guias/bancos-fintech/), pero todavía NO es un hub navegable: queda
+// fuera de GUIDE_HUBS/GUIDE_HUB_ORDER (nav global) y con noindex hasta que el
+// pilar pase auditoría + sign-off. Al lanzar, quitar de este Exclude y agregar a
+// GUIDE_HUBS + GUIDE_HUB_ORDER. Ver docs/adr/ADR-20260617-bancos-fintech-hub.md.
+export type HubCluster = Exclude<Cluster, "general" | "bancos-fintech">;
 export type HubLayer =
   | "ingresos"
   | "prevision"

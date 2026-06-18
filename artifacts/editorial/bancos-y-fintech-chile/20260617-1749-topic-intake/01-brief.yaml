@@ -1,0 +1,60 @@
+# 01-brief.yaml — pilar educativo bancos y fintech
+# Origen: Gate 00 (PROCEDER A BRIEF, prom. 4.33, prioridad alta).
+#   artifacts/editorial/_intake/bancos-y-fintech-chile/00-topic-intake.md
+# Slug provisional: confirmar antes de crear ruta (ROUTES.NO_SILENT_CHANGES + ADR).
+# canonicalTopic se registra al decidir owner, DESPUÉS de este brief (no en Gate 00).
+
+slug: bancos-y-fintech-chile
+title_working: "Bancos y fintech en Chile: cómo elegir dónde tener tu cuenta"
+query_anchor: "qué banco o fintech me conviene en Chile y cómo abrir una cuenta básica"
+cluster: bancos-fintech            # greenfield — este pilar es el owner canónico propuesto
+category: general                  # placement operativo provisional; revisar en outline
+
+ymyl: true
+ymyl_risk: high
+requires_calculation: false        # pilar educativo; sin motor de cálculo (sin tabla de tarifas en vivo)
+regulatory_sensitivity: media      # describe productos regulados (CMF, Ley 21.521) sin interpretar obligaciones
+cut_off_date: 2026-06-17
+
+target_audience: >
+  Personas en Chile que eligen dónde recibir su sueldo o tener su dinero del día a día,
+  incluyendo no bancarizados y quienes comparan banco tradicional vs. fintech/cuenta vista.
+
+# Alcance (heredado del veredicto de Gate 00)
+scope_approved: >
+  Pilar educativo + spokes de cuenta básica: qué es una cuenta vista/CuentaRUT,
+  cómo abrir una, banco tradicional vs. fintech, y cómo leer las comisiones.
+scope_deferred: >
+  Comparador de tarifas/productos EN VIVO (volatilidad de datos + neutralidad/monetización
+  sin resolver). HOLD junto con la comparativa Fintual/Racional.
+
+# Competitive adaptation (CONTRACT.EDITORIAL.BRIEF)
+benchmarkSet:
+  - "Centros de ayuda de bancos y fintech chilenos (estructura 'tipos de cuenta + cómo abrir')"
+  - "Agregadores/educativos locales (p. ej. Rankia Chile, ComparaOnline) — solo estructura observada"
+patternHypothesis: >
+  Las páginas que rankean combinan (1) explicación de tipos de cuenta, (2) requisitos de
+  apertura, (3) tabla comparativa de comisiones y (4) banco vs. fintech, con un CTA de apertura.
+localDelta: >
+  Marco educativo neutral, sin comparador de tarifas en vivo ni ranking con afiliados; anclado
+  en Ley 21.521 (Fintech) y en la realidad de CuentaRUT, con fecha de corte visible y fuerte
+  interlinking hacia sueldo-remuneraciones, ahorro-e-inversion, deuda-credito y presupuesto.
+nonCopyBoundaries:
+  - "No copiar tablas de tarifas ni rates scrapeados de competidores."
+  - "No ranking patrocinado ni recomendación de un producto específico."
+  - "Cifras de comisiones solo como ejemplos ilustrativos con fuente y fecha, no como dato vivo."
+ownerTarget: "cluster greenfield 'bancos-fintech'; este pilar = owner canónico propuesto"
+successSignal: >
+  Cierra el mayor gap de cluster del sitio; cobertura de interlinking con los hubs vecinos;
+  striking-distance medible una vez superado el umbral de impresiones (GSC confirmatorio-solo).
+
+# Activos internos para enlazar (ya existentes en el repo)
+internal_anchors:
+  - "src/data/glossary/cuenta-rut.md"
+  - "src/data/laws/ley-21521-fintech.md"
+  - "hub sueldo-remuneraciones (dónde recibir el sueldo)"
+  - "hub ahorro-e-inversion / deuda-credito / presupuesto-control-financiero"
+
+next_step: >
+  02-dossier.md — investigación con trazabilidad de fuentes (CMF, Ley 21.521, bancos),
+  separando fuentes oficiales de observaciones de benchmark y notas de prompt-injection.
