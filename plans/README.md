@@ -23,7 +23,7 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 |------|--------|-----------|----------|------------|--------|
 | [022](022-consolidate-clp-formatter.md) | Consolidar formateador CLP en módulo leaf único | P3 | S | — | TODO |
 | [023](023-gate-floor-and-reddit-alert-atomicity.md) | Guardas anti-paso-vacío en gates rutas/RSS + alerta Reddit atómica | P3 | S | — | TODO |
-| [024](024-calculator-data-freshness-component.md) | Estandarizar la vigencia de datos de calculadoras en un componente compartido | P1 | M | — | TODO |
+| [024](024-calculator-data-freshness-component.md) | Estandarizar la vigencia de datos de calculadoras en un componente compartido | P1 | M | — | DONE en rama `advisor/024-calculator-data-freshness` (pendiente merge) — RE-ESCALADO, ver nota |
 | [025](025-iva-calculator-engine.md) | Motor + página de calculadora de IVA (sin publicar, pendiente visto bueno) | P2 | M | — | TODO |
 | [026](026-glossary-thematic-index.md) | Índice temático del glosario junto al alfabético | P3 | M | — | TODO |
 
@@ -37,6 +37,45 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 > tras aprobar el copy). El contenido financiero nuevo (clústeres, comparadores,
 > definiciones de glosario nuevas) NO se planificó: requiere el pipeline editorial
 > + firma humana — ver "Dirección" abajo.
+>
+> **024 RE-ESCALADO (2026-06-18):** al ejecutar se halló que la premisa del plan
+> no calzaba con el código. El componente original presuponía un banner uniforme
+> con `bannerText`, que solo existía en 1 de 11 páginas (`conversor-utm`); las
+> otras 10 incrustaban solo `economicSourceLabel` en prosa propia y 8 mostraban la
+> fecha en ISO cruda. Migrar literalmente habría violado las condiciones de STOP
+> #2/#4 del plan (cambio de salida visible en superficie YMYL). El mantenedor
+> (Carlos Ortega, autoridad de sign-off) optó por **estandarizar deliberadamente
+> el banner** y firmó el copy: formato sobrio `Datos al {fecha larga} · {etiqueta}`
+> (mapeo de fuente verbatim del helper), aplicado a las 11. Implementado:
+> `resolveEconomicSourceLabel` + `formatEconomicDate`
+> (`src/domain/economic/economicSourcePresentation.ts`, +5 tests),
+> `CalculatorDataFreshness.astro`, y migración de las 11 páginas. Excepción
+> deliberada: `conversor-utm` conserva `economicSourceMeta` (alimenta el hero y el
+> `MethodologyBlock`), pero su etiqueta ahora deriva del helper. Extra firmado:
+> `sueldo-liquido` muestra la vigencia del IMM (`immEffectiveDate`, sin cita de ley
+> hardcodeada para evitar obsolescencia) en una línea persistente junto al footer
+> — NO en el box `min-wage-warning`, cuyo texto reescribe `formController.ts` en
+> runtime.
+>
+> **Follow-ups de balance positivo (2026-06-18):** (1) banner añadido a
+> `dividendo-hipotecario` — única de las 8 calculadoras sin banner que consume un
+> valor volátil (UF); las otras 7 no leen `economicParameters`, así que un banner
+> ahí sería ruido. (2) Verificación en vivo (`astro dev`) de las superficies
+> sensibles: las líneas de vigencia, el IMM y el slot "Valor usado" renderizan
+> legibles y persistentes. (3) Cita de ley del IMM vía modelo de datos: **NO
+> ejecutado** — el comentario en `EconomicParameterProvider.ts:66-73` revela que
+> "Ley 21.751" fijó el valor ANTERIOR ($539.000); el IMM vigente ($553.553) viene
+> de un reajuste despachado el 2026-06-16 cuyo número de ley el repo no registra.
+> Insertar la cita habría puesto un error factual en superficie YMYL. La línea
+> queda solo con fecha (data-driven, correcta). Investigado el 2026-06-18 (BCN/
+> Diario Oficial): Ley 21.751 (DO 28.06.2025) fijó el valor ANTERIOR ($539.000);
+> el reajuste a $553.553 fue despachado a ley el 2026-06-16 pero **aún no está
+> promulgado/publicado**, así que su número de ley no existe públicamente todavía.
+> DIFERIDO: cuando la ley se publique en el Diario Oficial, agregar campo `immLaw`
+> en `EconomicParameterProvider.ts` + snapshot y mostrarlo en la línea del IMM de
+> `sueldo-liquido`.
+> `astro check` 0 errores; 733 tests pasando (la única falla, `cluster-source-of-truth`,
+> es preexistente en `main` y ajena a este cambio).
 
 ## Completados — archivados
 

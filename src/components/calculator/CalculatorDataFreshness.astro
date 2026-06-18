@@ -1,0 +1,18 @@
+---
+import { resolveEconomicSourceLabel } from "@/domain/economic/economicSourcePresentation";
+
+interface Props {
+  source: "live" | "snapshot" | "fallback";
+  /** Fecha larga ya formateada, p. ej. "1 de mayo de 2026". */
+  updatedDate: string;
+  /** Clase de margen/contenedor; por defecto el espaciado de pie de calculadora. */
+  class?: string;
+}
+
+const { source, updatedDate, class: className = "mt-3" } = Astro.props;
+const label = resolveEconomicSourceLabel(source);
+---
+
+<p class:list={[className, "text-xs text-muted"]}>
+  Datos al {updatedDate} · {label}<slot />
+</p>

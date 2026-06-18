@@ -20,6 +20,8 @@ import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 import { calculateApvComparison } from "@/application/use-cases/CalculateApvComparison";
+import CalculatorDataFreshness from "@/components/calculator/CalculatorDataFreshness.astro";
+import { formatEconomicDate } from "@/domain/economic/economicSourcePresentation";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 const apvGuidePath = getPath("/posts/que-es-el-apv/");
@@ -28,12 +30,6 @@ const formatCurrency = (value: number) =>
 const monthlyRegimeATarget = (40 * economicParameters.utm) / 12;
 const annualRegimeABonusCap = 6 * economicParameters.utm;
 const annualRegimeBContributionCap = 600 * economicParameters.uf;
-const economicSourceLabel =
-  economicParameters.source === "live"
-    ? "dato en línea"
-    : economicParameters.source === "snapshot"
-      ? "dato de referencia"
-      : "fallback de emergencia";
 const exampleResult = calculateApvComparison({
   grossSalary: 1_500_000,
   monthlyApvContribution: 100_000,
@@ -351,11 +347,10 @@ const calculatorNextStepItems = [
           aria-hidden="true"
         >
         </div>
-        <p class="mt-3 text-xs text-muted">
-          Fuente económica: {economicSourceLabel} ({
-            economicParameters.lastUpdated
-          }).
-        </p>
+        <CalculatorDataFreshness
+          source={economicParameters.source}
+          updatedDate={formatEconomicDate(economicParameters.lastUpdated)}
+        />
       </CalculatorResultPanel>
     </section>
 
