@@ -766,7 +766,7 @@ Change log:
   - Redirect hijacking (link silently redirects to a different institution) erodes trust.
   - Soft-404 pages appear as 200 OK to automated Tools but deliver no content to readers.
 - Enforcement:
-  - `pnpm run check:urls:external:ci` (whole-site; now a PR gate, non-blocking in phase 1).
+  - `pnpm run check:urls:external:ci` (whole-site blocking PR gate).
   - `pnpm run check:urls:external:audit` (nightly trend audit).
   - Both enforced via `scripts/check-urls-external.mjs`.
 - Detection:
@@ -774,7 +774,7 @@ Change log:
   - Blocking exit: `[check-urls-external] FAIL: external_blocking_failures_detected:count=N`.
   - Non-blocking classes (`brand_profile`, `share_endpoint`, `known_soft_nonblocking`, `unknown`) are written to artifacts but never exit non-zero.
 - Self-origin rule: `monedario.cl` and `www.monedario.cl` absolute URLs are excluded from external checks (treated as internal-equivalent).
-- Rollout state: Phase 1 – `external-url-check-pr` CI job uses `continue-on-error: true`. Remove after corpus remediation and engine validation.
+- Rollout state: Phase 2 – `external-url-check-pr` blocks merge when the engine emits any `blocking=true` result; transient network failures remain non-blocking.
 - Examples:
   - Compliant: `https://www.bcentral.cl/estadisticas/` returns 200 with normal Banco Central content.
   - Violation: `https://www.bcentral.cl/publicacion-antigua/` returns 200 with "Página no encontrada" title.

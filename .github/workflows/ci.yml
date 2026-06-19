@@ -243,15 +243,13 @@ jobs:
           scope: external
 
   external-url-check-pr:
-    name: External URL check – PR (non-blocking rollout)
+    name: External URL check – PR
     runs-on: ubuntu-latest
     needs: [lint-and-test, build]
     timeout-minutes: 15
-    # Runs on every PR. continue-on-error:true keeps the workflow green during
-    # initial rollout. Remove continue-on-error once the corpus is clean and
-    # the engine has been validated against the full site.
+    # Official/trusted hard failures block merge. Transient network errors and
+    # explicitly non-blocking host categories remain telemetry-only.
     if: github.event_name == 'pull_request'
-    continue-on-error: true
 
     steps:
       - name: "☁️ Checkout repository"

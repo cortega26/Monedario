@@ -1,7 +1,7 @@
 # ADR-20260412-external-link-ci-gate.md
 
 **Date:** 2026-04-12  
-**Status:** Accepted (phase 1 – non-blocking rollout)  
+**Status:** Accepted (phase 2 – blocking PR gate)
 **Supersedes:** —  
 **Trigger condition:** CI gate semantics change (new whole-site external-link job, new blocking category for `official_source` / `trusted_reference` links).
 
@@ -67,9 +67,9 @@ Key design choices:
 |-----|---------|------|-------|
 | `build` (existing) | PR, dispatch | Internal links hard-blocking | In production |
 | `external-url-audit` (updated) | schedule, dispatch | Non-blocking; uses new engine | Phase 1 |
-| `external-url-check-pr` (new) | PR | `continue-on-error: true` during rollout | Phase 1 → phase 2 flip |
+| `external-url-check-pr` | PR | Blocks on results classified with `blocking=true` | Phase 2 |
 
-**Phase 2 flip:** Remove `continue-on-error: true` from `external-url-check-pr` when the engine has been validated and all current `blocking=true` failures have been remediated.
+**Phase 2 activation (2026-06-19):** `continue-on-error: true` was removed after the engine had run against the full corpus and the remaining official-source hard failure was remediated. Network/DNS/timeout failures remain non-blocking by classifier policy.
 
 ### Artifact contract
 
@@ -111,7 +111,7 @@ All external check artifacts are written to `output/validation/urlcheck/`. Stabl
 
 **Negative / trade-offs:**
 
-- Phase 1 non-blocking setup means the gate needs a manual flip to become actionable.
+- Live external checks can block a PR when an official/trusted destination returns a deterministic hard failure.
 - External HTTP requests introduce nondeterminism in nightly runs (transient DNS, anti-bot 429).
 - Nightly job timeout set to 15 minutes; sites with very large link counts may need concurrency tuning.
 
@@ -134,6 +134,11 @@ Files added / modified:
 - `.github/workflows/ci.yml` — Updated `external-url-audit` job; new `external-url-check-pr` job.
 - `context/INVARIANTS.md` — Added `INVARIANT.URLCHECK.EXTERNAL_LINK_POLICY`.
 - `context/CONTRACTS.md` — Added `CONTRACT.EXTERNAL_URLCHECK`.
+
+Phase 2 amendment (2026-06-19):
+
+- `.github/workflows/ci.yml` — Promoted `external-url-check-pr` to a blocking PR gate.
+- `docs/development/CALCULATOR_CREATION_CHECKLIST.md` — Requires built-output external-source validation before calculator publication.
 
 ---
 

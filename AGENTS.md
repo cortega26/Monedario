@@ -25,6 +25,7 @@ Constitutional precedence is absolute: when AGENTS.md conflicts with Constitutio
 - Before changes touching routes/RSS/canonical/guard gates → read `context/INVARIANTS.md` + `context/CONTRACTS.md`.
 - Before new YMYL content or refresh → read `docs/editorial/NORMA_YMYL.md` + `context/EDITORIAL_AI_PIPELINE.md`.
 - Before new URL/calculator/hub/surface → read `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md`, `docs/editorial/NON_CANNIBALIZATION_PROCESS.md`, `docs/editorial/TOPIC_OWNERSHIP_POLICY.md`.
+- Before creating or publishing a calculator → follow `docs/development/CALCULATOR_CREATION_CHECKLIST.md`.
 
 ## 1. Authority Hierarchy
 

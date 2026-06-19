@@ -41,6 +41,7 @@ Change log:
 - 2026-03-22: added editorial timeliness policy contract and scheduled audit workflow.
 - 2026-04-11: added competitive adaptation contract and benchmark-aware editorial artifact expectations.
 - 2026-04-12: added CONTRACT.EXTERNAL_URLCHECK for external link validation engine; see ADR-20260412-external-link-ci-gate.
+- 2026-06-19: promoted CONTRACT.EXTERNAL_URLCHECK to a blocking PR gate (phase 2).
 - 2026-04-15: hero image contract updated to manual-only creation; automated API generation removed from policy/workflow.
 
 ## 2. Contracts
@@ -647,5 +648,6 @@ Violación de este contrato se considera severidad ALTA en contexto YMYL y bloqu
   - `pnpm run check:urls:canary` — Smoke-test; includes internal + external canary assertions.
 - Backward-compat expectations:
   - Artifact schema fields listed above are stable; consumers must not depend on fields outside this list.
-  - The `blocking` flag on each result is authoritative; CI job `continue-on-error` is a deployment parameter, not a contract change.
+  - The `blocking` flag on each result is authoritative and any such result fails the PR job.
+  - Network/DNS/timeout errors remain non-blocking to avoid transient infrastructure failures blocking merge.
 - Linked invariant: `INVARIANT.URLCHECK.EXTERNAL_LINK_POLICY`.
