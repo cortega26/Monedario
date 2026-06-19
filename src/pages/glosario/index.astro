@@ -5,6 +5,12 @@ import Footer from "@/components/Footer.astro";
 import SectionDivider from "@/components/SectionDivider.astro";
 import { getCollection } from "astro:content";
 import { getPath } from "@/utils/getPath";
+import {
+  GLOSSARY_CATEGORY_BY_SLUG,
+  GLOSSARY_CATEGORY_LABELS,
+  GLOSSARY_CATEGORY_ORDER,
+  type GlossaryCategoryId,
+} from "@/config/glossaryCategories";
 
 const glossaryEntries = await getCollection("glossary", ({ data }) => {
   return !data.draft;
@@ -35,6 +41,29 @@ const groupedEntries = glossaryEntries.reduce(
 );
 
 const letters = Object.keys(groupedEntries).sort();
+
+const thematicEntries = GLOSSARY_CATEGORY_ORDER.map(categoryId => ({
+  id: categoryId,
+  label: GLOSSARY_CATEGORY_LABELS[categoryId],
+  entries: glossaryEntries.filter(
+    entry => GLOSSARY_CATEGORY_BY_SLUG[entry.id] === categoryId
+  ),
+}));
+
+const uncategorizedEntries = glossaryEntries.filter(
+  entry => !GLOSSARY_CATEGORY_BY_SLUG[entry.id]
+);
+
+const thematicGroups: Array<{
+  id: GlossaryCategoryId | "otros";
+  label: string;
+  entries: typeof glossaryEntries;
+}> = [
+  ...thematicEntries,
+  ...(uncategorizedEntries.length > 0
+    ? [{ id: "otros" as const, label: "Otros", entries: uncategorizedEntries }]
+    : []),
+];
 
 const glossaryIndexUrl = new URL(
   getPath("/glosario/"),
@@ -134,6 +163,42 @@ const definedTermSetSchema = {
           </p>
         )
       }
+    </section>
+
+    <SectionDivider />
+
+    <section class="py-8">
+      <h2 class="mb-8 text-2xl font-bold tracking-tight sm:text-3xl">
+        Explora por tema
+      </h2>
+      <div class="grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          thematicGroups.map(group => (
+            <div>
+              <h3 class="mb-4 inline-block border-b-2 border-accent pb-1 text-xl font-bold text-accent">
+                {group.label}
+              </h3>
+              <ul class="flex flex-col gap-3">
+                {group.entries.map(entry => (
+                  <li class="group">
+                    <a
+                      href={getPath(`/glosario/${entry.id}/`)}
+                      class="block rounded-lg border border-transparent p-3 transition-colors hover:border-border hover:bg-accent/5 focus:border-border focus:bg-accent/5 focus:outline-none"
+                    >
+                      <h4 class="font-semibold transition-colors group-hover:text-accent">
+                        {entry.data.term}
+                      </h4>
+                      <p class="mt-1 line-clamp-2 text-sm text-secondary">
+                        {entry.data.shortDefinition}
+                      </p>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
     </section>
   </main>
 
