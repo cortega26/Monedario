@@ -30,13 +30,14 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 |------|--------|-----------|----------|------------|--------|
 | [022](022-consolidate-clp-formatter.md) | Consolidar formateador CLP en módulo leaf único | P3 | S | — | TODO |
 | [023](023-gate-floor-and-reddit-alert-atomicity.md) | Guardas anti-paso-vacío en gates rutas/RSS + alerta Reddit atómica | P3 | S | — | TODO |
-| [024](024-calculator-data-freshness-component.md) | Estandarizar la vigencia de datos de calculadoras en un componente compartido | P1 | M | — | DONE en rama `advisor/024-calculator-data-freshness` (pendiente merge) — RE-ESCALADO, ver nota |
-| [025](025-iva-calculator-engine.md) | Motor + página de calculadora de IVA (sin publicar, pendiente visto bueno) | P2 | M | — | TODO |
+| [024](archive/024-calculator-data-freshness-component.md) | Estandarizar la vigencia de datos de calculadoras en un componente compartido | P1 | M | — | DONE y MERGEADO en `main` (PR #239, commit `b924b5dc`) |
+| [025](025-iva-calculator-engine.md) | Motor + página de calculadora de IVA (sin publicar, pendiente visto bueno) | P2 | M | — | DONE y MERGEADO en `main` (commits `c4f6945a` + `64644fa6`) |
+| [031](031-iva-calculator-backlinks.md) | Backlinks internos a la calculadora de IVA (glosario + 2 posts) | P3 | S | 025 | TODO |
 | [026](026-glossary-thematic-index.md) | Índice temático del glosario junto al alfabético | P3 | M | — | TODO |
 | [027](027-afp-refresh-effective-date-parser.md) | Reemplazar fecha de vigencia AFP hardcodeada por extractor genérico | P1 | M | — | DONE y MERGEADO en `main` (PR #240, squash `369ff01b`) — ver nota |
-| [028](028-imm-shared-constant.md) | Consolidar el IMM en un módulo leaf único para la app | P2 | S | — | TODO |
-| [029](029-calculator-controller-tests.md) | Tests de caracterización para controladores cliente de calculadoras | P2 | M | — | TODO |
-| [030](030-economic-snapshot-freshness-gate.md) | Gate de frescura del snapshot económico (scheduled CI) | P2 | S | — | TODO |
+| [028](028-imm-shared-constant.md) | Consolidar el IMM en un módulo leaf único para la app | P2 | S | — | DONE y MERGEADO en `main` (commit `13a3d390`) |
+| [029](029-calculator-controller-tests.md) | Tests de caracterización para controladores cliente de calculadoras | P2 | M | — | DONE |
+| [030](030-economic-snapshot-freshness-gate.md) | Gate de frescura del snapshot económico (scheduled CI) | P2 | S | — | DONE y MERGEADO en `main` (commit `c9d72ed4`) |
 
 > Verificado el 2026-06-15: 022 y 023 siguen sin implementar en el código
 > (no existe `src/utils/formatCLP.ts`; los gates `compare-*.mjs` no tienen

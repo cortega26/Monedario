@@ -15,6 +15,7 @@ un estado del código, verifica contra el código actual antes de actuar.
 | [003](003-page-lastmod-pr-gate.md) | Convertir `page-lastmod.yml` a PR-gate | 2026-06-11 | sí |
 | [020](020-afp-comparison-cheapest-name.md) | Corregir nombre de AFP cableado en la nota de comparación | 2026-06-15 | sí (commits `e7e3aa72`, `439583e5`) |
 | [021](021-economic-snapshot-hardening.md) | Endurecer worker de snapshot económico | 2026-06-15 | sí (commit `95f028ef`) |
+| [024](024-calculator-data-freshness-component.md) | Estandarizar vigencia de datos de calculadoras en componente compartido | 2026-06-17 | sí (PR #239, commit `b924b5dc`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
