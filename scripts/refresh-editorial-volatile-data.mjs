@@ -2,6 +2,8 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { extractEffectiveDateFromHtml } from "./lib/spanish-date.mjs";
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..");
@@ -168,9 +170,7 @@ function extractAfpUnoDataset(html, overviewHtml, registry, previousSnapshot, ob
   const previousCommissionMatch = html.match(
     /hasta ayer.*?comisión de\s*(\d+(?:,\d+)?)%/i
   );
-  const effectiveDateMatch = html.match(
-    /A partir de hoy,\s*miércoles\s*1\s*de\s*octubre\s*de\s*2025/i
-  );
+  const effectiveDate = extractEffectiveDateFromHtml(html);
   const overviewContributionMatch = overviewHtml.match(
     /Cotización obligatoria<\/strong>\s*del\s*10%/i
   );
@@ -178,7 +178,7 @@ function extractAfpUnoDataset(html, overviewHtml, registry, previousSnapshot, ob
   if (!commissionMatch) {
     throw new Error("Unable to extract AFP Uno commission from official source.");
   }
-  if (!effectiveDateMatch) {
+  if (!effectiveDate) {
     throw new Error("Unable to extract AFP Uno effective date from official source.");
   }
   if (!overviewContributionMatch) {
@@ -189,7 +189,6 @@ function extractAfpUnoDataset(html, overviewHtml, registry, previousSnapshot, ob
   const previousCommission = previousCommissionMatch
     ? Number(normalizeNumericString(previousCommissionMatch[1]))
     : null;
-  const effectiveDate = "2025-10-01";
   const previousAfpUno = previousSnapshot?.datasets?.["pensions.afp.uno_commission"];
   const previousMandatory =
     previousSnapshot?.datasets?.["pensions.afp.worker_mandatory_contribution"];
