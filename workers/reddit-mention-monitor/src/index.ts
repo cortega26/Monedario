@@ -98,9 +98,15 @@ async function runMonitor(env: Env): Promise<{ found: number; alerted: number }>
   }
 
   if (matches.length > 0) {
-    await postAlert(env.DISCORD_WEBHOOK_URL, matches);
-    // Mark seen only after a successful alert, so a Discord failure retries next run.
-    await Promise.all(matches.map(m => markSeen(env.REDDIT_SEEN, m.post.id)));
+    const { delivered, error } = await postAlert(env.DISCORD_WEBHOOK_URL, matches);
+    await Promise.all(delivered.map(m => markSeen(env.REDDIT_SEEN, m.post.id)));
+    if (error) {
+      log("warn", "alert.partial_failure", {
+        delivered: delivered.length,
+        total: matches.length,
+        message: error.message,
+      });
+    }
   }
 
   log("info", "run.complete", {

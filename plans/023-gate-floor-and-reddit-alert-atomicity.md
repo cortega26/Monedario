@@ -16,12 +16,28 @@
 
 ## Status
 
+- **Execution status**: DONE — implementación y verificaciones completas.
 - **Priority**: P3
 - **Effort**: S
 - **Risk**: LOW
 - **Depends on**: none
 - **Category**: bug (defense-in-depth)
 - **Planned at**: commit `57ad5261`, 2026-06-15
+
+## Execution evidence (2026-06-19)
+
+- Empty route baseline smoke: guard emitió error y terminó con `exit=1`.
+- Empty RSS baseline smoke: guard emitió error y terminó con `exit=1`.
+- `pnpm exec astro check`: 428 archivos, 0 errores/warnings/hints.
+- `pnpm test -- tests/workers/reddit-mention-monitor`: 106 archivos y 773 tests pass
+  (la configuración actual ejecuta la suite completa pese al filtro).
+- `pnpm test`: 106 archivos y 773 tests pass.
+- `pnpm run format:check`: pass.
+- ESLint dirigido a los cinco archivos modificados: pass.
+- `pnpm run lint`: pass en un worktree limpio. En el workspace principal,
+  worktrees preexistentes bajo `.claude/worktrees/**` son descubiertos por ESLint
+  y generan múltiples candidatos `tsconfigRootDir`; no se modificó configuración
+  global para ocultar ese estado local.
 
 ## Why this matters
 

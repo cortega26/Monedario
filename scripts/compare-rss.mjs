@@ -41,6 +41,14 @@ function loadSnapshot(filePath) {
 const baselineItems = loadSnapshot(baselinePath);
 const currentItems = loadSnapshot(currentPath);
 
+if (baselineItems.length === 0) {
+  console.error(
+    "[compare-rss] Baseline is empty — refusing to pass vacuously. " +
+      "Regenerate the RSS snapshot before comparing."
+  );
+  process.exit(1);
+}
+
 const baselineByLink = new Map(baselineItems.map(item => [item.link, item]));
 const currentByLink = new Map(currentItems.map(item => [item.link, item]));
 

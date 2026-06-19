@@ -29,7 +29,7 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|--------|-----------|----------|------------|--------|
 | [022](022-consolidate-clp-formatter.md) | Consolidar formateador CLP en módulo leaf único | P3 | S | — | DONE |
-| [023](023-gate-floor-and-reddit-alert-atomicity.md) | Guardas anti-paso-vacío en gates rutas/RSS + alerta Reddit atómica | P3 | S | — | TODO |
+| [023](023-gate-floor-and-reddit-alert-atomicity.md) | Guardas anti-paso-vacío en gates rutas/RSS + alerta Reddit atómica | P3 | S | — | DONE |
 | [024](archive/024-calculator-data-freshness-component.md) | Estandarizar la vigencia de datos de calculadoras en un componente compartido | P1 | M | — | DONE y MERGEADO en `main` (PR #239, commit `b924b5dc`) |
 | [025](025-iva-calculator-engine.md) | Motor + página de calculadora de IVA (sin publicar, pendiente visto bueno) | P2 | M | — | DONE y MERGEADO en `main` (commits `c4f6945a` + `64644fa6`) |
 | [031](031-iva-calculator-backlinks.md) | Backlinks internos a la calculadora de IVA (glosario + 2 posts) | P3 | S | 025 | TODO |
