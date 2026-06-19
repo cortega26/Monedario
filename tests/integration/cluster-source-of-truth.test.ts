@@ -22,7 +22,7 @@ describe("Cluster Source of Truth", () => {
     }
   });
 
-  it("exports exactly 10 unique editorial clusters including the general bucket", () => {
-    expect(CLUSTERS.length).toBe(10);
+  it("exports exactly 11 unique editorial clusters including the general bucket and bancos-fintech", () => {
+    expect(CLUSTERS.length).toBe(11);
   });
 });
