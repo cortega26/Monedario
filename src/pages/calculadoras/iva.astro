@@ -1,0 +1,364 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
+import Footer from "@/components/Footer.astro";
+import MethodologyBlock from "@/components/MethodologyBlock.astro";
+import PrimaryCTA from "@/components/PrimaryCTA.astro";
+import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
+import NextSteps from "@/components/NextSteps.astro";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
+
+// La calculadora IVA aún no está registrada en el portafolio (pendiente de
+// visto bueno editorial). Cuando se registre, currentCalculator devolverá su
+// entrada y calculatorRelatedItems se poblará con los ítems relacionados.
+const currentCalculator = CALCULATOR_PORTFOLIO.find(
+  calc => calc.slug === "iva"
+);
+const calculatorRelatedItems = (currentCalculator?.related ?? []).map(item => ({
+  href: item.href,
+  title: item.label,
+  description: item.when,
+  label: "Relacionado",
+}));
+const calculatorNextStepItems = [
+  ...calculatorRelatedItems,
+  {
+    href: "/calculadoras/",
+    title: "Ver todas las calculadoras",
+    description: "Explora otras herramientas financieras del sitio.",
+    label: "Herramientas",
+  },
+];
+---
+
+<Layout
+  title="Calculadora de IVA Chile 19% — Neto y Bruto | Monedario"
+  description="Calcula el IVA del 19% en Chile: obtén el monto neto, el IVA y el bruto en segundos. Sin registro, sin publicidad."
+>
+  <CalculatorJsonLd
+    name="Calculadora de IVA Chile 19%"
+    description="Calcula el IVA del 19% en Chile: obtén el monto neto, el IVA y el bruto en segundos."
+  />
+  <Header />
+  <Breadcrumb />
+  <CalculatorTrustBadge location="calculator_header" />
+  <main
+    data-layout="calculator"
+    id="main-content"
+    class="app-layout"
+    data-analytics-page-type="calculator"
+    data-analytics-calculator="iva"
+    data-analytics-calculator-name="Calculadora IVA"
+  >
+    <CalculatorHero
+      title="Calculadora de IVA Chile 19%"
+      description="Calcula el IVA aplicado o incluido en cualquier monto. Tasa vigente: 19% (Ley 18.768). Sin registro, sin publicidad."
+      descriptionClass="max-w-xl text-secondary"
+    />
+
+    <section class="max-w-xl py-8">
+      <!-- CONVERSOR -->
+      <div class="mb-6 rounded-xl border border-border p-6">
+        <!-- TOGGLE DE DIRECCIÓN -->
+        <fieldset class="mb-6">
+          <legend class="mb-2 block text-sm font-medium text-secondary">
+            ¿Qué monto tienes?
+          </legend>
+          <div class="flex gap-3">
+            <label
+              class="flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-lg border border-border px-3 py-2.5 text-sm transition-all has-[:checked]:border-accent has-[:checked]:bg-accent/10 has-[:checked]:font-semibold"
+            >
+              <input
+                type="radio"
+                name="direction"
+                id="dir-neto"
+                value="neto-a-bruto"
+                class="sr-only"
+                checked
+              />
+              Monto neto (sin IVA)
+            </label>
+            <label
+              class="flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-lg border border-border px-3 py-2.5 text-sm transition-all has-[:checked]:border-accent has-[:checked]:bg-accent/10 has-[:checked]:font-semibold"
+            >
+              <input
+                type="radio"
+                name="direction"
+                id="dir-bruto"
+                value="bruto-a-neto"
+                class="sr-only"
+              />
+              Monto bruto (con IVA)
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- ENTRADA -->
+        <div class="mb-6">
+          <label
+            for="monto-input"
+            id="monto-label"
+            class="mb-1 block text-sm font-medium text-secondary"
+          >
+            Monto neto (sin IVA) en pesos chilenos
+          </label>
+          <div class="relative">
+            <span
+              class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-muted"
+              aria-hidden="true">$</span
+            >
+            <input
+              type="text"
+              id="monto-input"
+              placeholder="Ej: 1000000"
+              inputmode="numeric"
+              autocomplete="off"
+              spellcheck="false"
+              aria-describedby="monto-input-hint"
+              class="w-full rounded-lg border border-border bg-background py-2 pr-3 pl-8 text-lg text-foreground focus:border-accent focus:outline-none"
+            />
+          </div>
+          <p id="monto-input-hint" class="mt-1 text-xs text-muted">
+            Escribe solo números; aplicamos el formato chileno automáticamente.
+          </p>
+        </div>
+
+        <!-- RESULTADO VISUAL -->
+        <div
+          id="resultado"
+          class="hidden rounded-lg border border-border bg-foreground/5 p-4"
+          aria-live="polite"
+        >
+          <div class="grid grid-cols-3 gap-3 text-center">
+            <div>
+              <p
+                class="mb-0.5 text-xs font-semibold tracking-wider text-muted uppercase"
+              >
+                Neto
+              </p>
+              <p id="res-neto" class="text-xl font-bold tabular-nums"></p>
+            </div>
+            <div>
+              <p
+                class="mb-0.5 text-xs font-semibold tracking-wider text-accent uppercase"
+              >
+                IVA 19%
+              </p>
+              <p
+                id="res-iva"
+                class="text-xl font-bold text-accent tabular-nums"
+              >
+              </p>
+            </div>
+            <div>
+              <p
+                class="mb-0.5 text-xs font-semibold tracking-wider text-muted uppercase"
+              >
+                Bruto
+              </p>
+              <p id="res-bruto" class="text-xl font-bold tabular-nums"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INFO TASA -->
+      <div class="rounded-xl border border-border p-6">
+        <h2 class="mb-3 text-base font-semibold">Tasa vigente</h2>
+        <div
+          class="flex items-center justify-between border-b border-border py-2"
+        >
+          <span class="text-sm text-secondary">IVA Chile</span>
+          <span class="font-mono font-semibold">19%</span>
+        </div>
+        <div
+          class="flex items-center justify-between border-b border-border py-2"
+        >
+          <span class="text-sm text-secondary">Factor neto → bruto</span>
+          <span class="font-mono font-semibold">× 1,19</span>
+        </div>
+        <div class="flex items-center justify-between py-2">
+          <span class="text-sm text-secondary">Factor bruto → neto</span>
+          <span class="font-mono font-semibold">÷ 1,19</span>
+        </div>
+        <p class="mt-3 text-xs text-muted">
+          Fuente: Servicio de Impuestos Internos (SII). Tasa fijada por la Ley
+          N°18.768. El cálculo corre íntegramente en tu navegador; ningún dato
+          se envía a ningún servidor.
+        </p>
+      </div>
+    </section>
+
+    <section
+      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
+    >
+      <h2>¿Qué es el IVA en Chile?</h2>
+      <p>
+        El <strong>Impuesto al Valor Agregado (IVA)</strong> es un tributo indirecto
+        que grava la venta de bienes y servicios en Chile. La tasa vigente es del{
+          " "
+        }
+        <strong>19%</strong>, establecida por la Ley N°18.768 y administrada por
+        el Servicio de Impuestos Internos (SII).
+      </p>
+      <h2>¿Cómo funciona el cálculo?</h2>
+      <ul>
+        <li>
+          <strong>Neto a bruto:</strong> multiplica el monto neto por 1,19. El IVA
+          equivale al 19% del monto neto.
+        </li>
+        <li>
+          <strong>Bruto a neto:</strong> divide el monto bruto por 1,19. El IVA es
+          la diferencia entre bruto y neto.
+        </li>
+      </ul>
+      <p>
+        Todos los montos se expresan en pesos chilenos enteros, ya que el peso
+        chileno (CLP) no tiene centavos.
+      </p>
+      <p class="text-sm text-muted">
+        ⚠️ Esta herramienta realiza el cálculo aritmético de la tasa de IVA del
+        19%. Para situaciones específicas (exenciones, casos especiales,
+        declaración de IVA), consulta directamente al{" "}
+        <a href="https://www.sii.cl" target="_blank" rel="noopener noreferrer"
+          >SII</a
+        > o a un profesional tributario.
+      </p>
+    </section>
+
+    <PrimaryCTA
+      text="Ir al SII →"
+      href="https://www.sii.cl"
+      context="Para información oficial sobre IVA, exenciones y declaraciones, el Servicio de Impuestos Internos es la fuente autorizada."
+    />
+    <ShareCalculatorResult />
+    <MethodologyBlock
+      notes="El cálculo aplica la tasa de IVA del 19% fijada por la Ley N°18.768 (Chile). Para neto → bruto: IVA = round(neto × 0,19); bruto = neto + IVA. Para bruto → neto: neto = round(bruto / 1,19); IVA = bruto − neto. Los montos se redondean a pesos enteros porque el peso chileno no tiene decimales. El cálculo corre íntegramente en el navegador; ningún dato se envía a ningún servidor."
+      sources={[
+        {
+          name: "SII — Impuesto al Valor Agregado (IVA)",
+          url: "https://www.sii.cl/contribuyentes/iva/index.html",
+          date: "2026-06",
+        },
+        {
+          name: "Ley N°18.768 — Tasa IVA 19%",
+          url: "https://www.bcn.cl/leychile/navegar?idNorma=30419",
+          date: "2026-06",
+        },
+      ]}
+    />
+    <NextSteps
+      currentHref="/calculadoras/iva/"
+      items={calculatorNextStepItems}
+      title="Qué hacer con este resultado"
+      description="Continúa con otra herramienta si tu pregunta cambió."
+      location="calculator_next_steps"
+    />
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  import { calculateIva } from "@/application/use-cases/CalculateIva";
+  import { trackAnalyticsEvent } from "@/utils/analytics";
+
+  declare global {
+    interface Window {
+      showShareResult?: (text: string) => void;
+    }
+  }
+
+  const fmt = (n: number) => "$" + n.toLocaleString("es-CL");
+  const formatInput = (n: number) => Math.round(n).toLocaleString("es-CL");
+  const parseInput = (raw: string): number => {
+    const digitsOnly = raw.replace(/\D/g, "");
+    return digitsOnly ? Number(digitsOnly) : NaN;
+  };
+
+  const montoInput = document.getElementById("monto-input") as HTMLInputElement;
+  const montoLabel = document.getElementById("monto-label")!;
+  const resultado = document.getElementById("resultado")!;
+  const resNeto = document.getElementById("res-neto")!;
+  const resIva = document.getElementById("res-iva")!;
+  const resBruto = document.getElementById("res-bruto")!;
+  let hasTrackedCompletion = false;
+
+  function getDirection(): "neto-a-bruto" | "bruto-a-neto" {
+    const checked = document.querySelector<HTMLInputElement>(
+      "input[name='direction']:checked"
+    );
+    return (checked?.value ?? "neto-a-bruto") as
+      | "neto-a-bruto"
+      | "bruto-a-neto";
+  }
+
+  function updateLabel(direction: "neto-a-bruto" | "bruto-a-neto") {
+    montoLabel.textContent =
+      direction === "neto-a-bruto"
+        ? "Monto neto (sin IVA) en pesos chilenos"
+        : "Monto bruto (con IVA) en pesos chilenos";
+  }
+
+  function recalculate() {
+    const raw = montoInput.value;
+    const amount = parseInput(raw);
+    const direction = getDirection();
+
+    if (!raw || isNaN(amount) || amount <= 0) {
+      resultado.classList.add("hidden");
+      return;
+    }
+
+    // Format the input while typing
+    montoInput.value = formatInput(amount);
+
+    let calcResult;
+    try {
+      calcResult = calculateIva({ amount, direction });
+    } catch {
+      resultado.classList.add("hidden");
+      return;
+    }
+
+    resNeto.textContent = fmt(calcResult.neto);
+    resIva.textContent = fmt(calcResult.iva);
+    resBruto.textContent = fmt(calcResult.bruto);
+    resultado.classList.remove("hidden");
+
+    const summaryText =
+      direction === "neto-a-bruto"
+        ? `Neto: ${fmt(calcResult.neto)} → IVA: ${fmt(calcResult.iva)} → Bruto: ${fmt(calcResult.bruto)}`
+        : `Bruto: ${fmt(calcResult.bruto)} → Neto: ${fmt(calcResult.neto)} → IVA: ${fmt(calcResult.iva)}`;
+
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", {
+        detail: { summaryText: `Calculadora IVA: ${summaryText}` },
+      })
+    );
+
+    if (!hasTrackedCompletion) {
+      hasTrackedCompletion = true;
+      trackAnalyticsEvent("calculator_complete", {
+        calculator_slug: "iva",
+        calculator_name: "Calculadora IVA",
+        outcome: "success",
+      });
+    }
+  }
+
+  montoInput.addEventListener("input", recalculate);
+
+  document
+    .querySelectorAll<HTMLInputElement>("input[name='direction']")
+    .forEach(radio => {
+      radio.addEventListener("change", () => {
+        updateLabel(getDirection());
+        hasTrackedCompletion = false;
+        recalculate();
+      });
+    });
+</script>
