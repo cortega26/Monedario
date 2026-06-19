@@ -540,6 +540,34 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     ],
   },
   {
+    href: "/calculadoras/iva/",
+    slug: "iva",
+    title: "Calculadora de IVA Chile 19%",
+    description:
+      "Calcula el IVA del 19% en Chile: ingresa un monto neto y obtén el bruto con IVA, o ingresa el bruto y separa el neto del impuesto.",
+    icon: "receipt",
+    tag: "Referencia",
+    family: "ingresos",
+    primaryJtbd:
+      "Saber cuánto IVA corresponde a un monto neto, o extraer el IVA de un precio ya con impuesto incluido.",
+    whenToUse:
+      "Cuando necesitas desglosar o agregar el 19% de IVA a cualquier monto en pesos chilenos.",
+    notFor:
+      "No calcula IVA crédito fiscal vs débito fiscal ni modela declaraciones de IVA mensual.",
+    related: [
+      {
+        href: "/calculadoras/impuesto-segunda-categoria/",
+        label: "Impuesto de segunda categoría",
+        when: "si tu cálculo es el impuesto mensual sobre tu sueldo usando la tabla de tramos del SII.",
+      },
+      {
+        href: "/calculadoras/conversor-utm/",
+        label: "Conversor UTM ↔ Pesos",
+        when: "si tu referencia es una multa o trámite expresado en UTM y no un monto con IVA.",
+      },
+    ],
+  },
+  {
     href: "/calculadoras/deposito-a-plazo/",
     slug: "deposito-a-plazo",
     title: "Calculadora Depósito a Plazo",
