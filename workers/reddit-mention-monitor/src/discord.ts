@@ -49,25 +49,41 @@ export function chunkEmbeds(embeds: DiscordEmbed[], size = 10): DiscordEmbed[][]
   return out;
 }
 
+export interface PostAlertResult {
+  delivered: Match[];
+  error: Error | null;
+}
+
 export async function postAlert(
   webhookUrl: string,
   matches: Match[],
   timeoutMs = 10_000
-): Promise<void> {
-  if (matches.length === 0) return;
-  const embeds = matches.map(buildEmbed);
-  for (const batch of chunkEmbeds(embeds)) {
-    const res = await fetch(webhookUrl, {
-      method: "POST",
-      signal: AbortSignal.timeout(timeoutMs),
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: "Monedario · escucha Reddit",
-        embeds: batch,
-      }),
-    });
-    if (!res.ok && res.status !== 204) {
-      throw new Error(`Discord webhook failed (${res.status}): ${await res.text()}`);
+): Promise<PostAlertResult> {
+  const delivered: Match[] = [];
+  if (matches.length === 0) return { delivered, error: null };
+
+  for (let i = 0; i < matches.length; i += 10) {
+    const batch = matches.slice(i, i + 10);
+    try {
+      const res = await fetch(webhookUrl, {
+        method: "POST",
+        signal: AbortSignal.timeout(timeoutMs),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: "Monedario · escucha Reddit",
+          embeds: batch.map(buildEmbed),
+        }),
+      });
+      if (!res.ok && res.status !== 204) {
+        return {
+          delivered,
+          error: new Error(`Discord webhook failed (${res.status}): ${await res.text()}`),
+        };
+      }
+      delivered.push(...batch);
+    } catch (err) {
+      return { delivered, error: err instanceof Error ? err : new Error(String(err)) };
     }
   }
+  return { delivered, error: null };
 }

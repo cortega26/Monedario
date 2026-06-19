@@ -30,6 +30,14 @@ function loadRoutes(filePath) {
 const beforeRoutes = loadRoutes(beforePath);
 const afterRoutes = loadRoutes(afterPath);
 
+if (beforeRoutes.size === 0) {
+  console.error(
+    "[compare-routes] Baseline is empty — refusing to pass vacuously. " +
+      "Regenerate the baseline snapshot before comparing."
+  );
+  process.exit(1);
+}
+
 const removed = [...beforeRoutes].filter(route => !afterRoutes.has(route)).sort();
 const added = [...afterRoutes].filter(route => !beforeRoutes.has(route)).sort();
 
