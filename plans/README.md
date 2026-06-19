@@ -28,7 +28,7 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|--------|-----------|----------|------------|--------|
-| [022](022-consolidate-clp-formatter.md) | Consolidar formateador CLP en módulo leaf único | P3 | S | — | TODO |
+| [022](022-consolidate-clp-formatter.md) | Consolidar formateador CLP en módulo leaf único | P3 | S | — | DONE |
 | [023](023-gate-floor-and-reddit-alert-atomicity.md) | Guardas anti-paso-vacío en gates rutas/RSS + alerta Reddit atómica | P3 | S | — | TODO |
 | [024](archive/024-calculator-data-freshness-component.md) | Estandarizar la vigencia de datos de calculadoras en un componente compartido | P1 | M | — | DONE y MERGEADO en `main` (PR #239, commit `b924b5dc`) |
 | [025](025-iva-calculator-engine.md) | Motor + página de calculadora de IVA (sin publicar, pendiente visto bueno) | P2 | M | — | DONE y MERGEADO en `main` (commits `c4f6945a` + `64644fa6`) |
@@ -42,6 +42,18 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 > Verificado el 2026-06-15: 022 y 023 siguen sin implementar en el código
 > (no existe `src/utils/formatCLP.ts`; los gates `compare-*.mjs` no tienen
 > floor-guard de baseline vacío; el worker reddit no devuelve `PostAlertResult`).
+>
+> **022 EJECUTADO (2026-06-19, vía `/improve execute 022`):** commit
+> `8f125212` (`refactor: unificar formateador CLP en módulo leaf compartido
+> (Plan 022)`). Diff limitado a los 3 archivos en alcance: nuevo módulo puro
+> `src/utils/formatCLP.ts`, re-export compatible desde `indicadores.ts` y alias
+> cliente `fmt` desde `resultRenderer.ts`. **Revisión APROBADA:** `astro check`
+> 0 errores; 105 archivos/770 tests verdes; ESLint limpio sobre los archivos
+> cambiados y sobre el repositorio excluyendo únicamente los worktrees anidados
+> preexistentes de `.claude/worktrees/**`; `format:check` verde; `knip` exit 0,
+> con las 31 advertencias preexistentes y ninguna para el módulo nuevo. El
+> comando literal `pnpm run lint` queda contaminado por esos worktrees anidados
+> (1.512 errores de parser), no por este diff.
 >
 > 024–026 (2026-06-17): los tres son técnica/infra ejecutable sin nuevo visto
 > bueno YMYL. 025 entrega motor + página pero **se detiene en la compuerta
