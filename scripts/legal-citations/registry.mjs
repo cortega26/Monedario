@@ -158,6 +158,7 @@ export const LEGAL_CITATION_REGISTRY = [
  * Format: { idNorma, label } — label is for human reference only.
  */
 export const KNOWN_IDS_WITHOUT_LAW_PAGES = [
+  { idNorma: "6369", label: "DL 825 — Ley sobre Impuesto a las Ventas y Servicios" },
   { idNorma: "7054", label: "DL 3.063 — Ley de Rentas Municipales" },
   { idNorma: "1171923", label: "Ley 21.419 — Crea la Pensión Garantizada Universal" },
 ];
