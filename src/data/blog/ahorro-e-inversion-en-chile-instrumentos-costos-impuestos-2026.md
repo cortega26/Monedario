@@ -102,6 +102,9 @@ Las reglas básicas que la regulación establece:
 
 - **Fondos mutuos:** la CMF exige que remuneraciones, comisiones y gastos queden explícitos en el reglamento interno del fondo. Si no lo encuentras fácilmente, es una señal de alerta.
 - **Intermediación bursátil:** según CMF, el costo puede incluir comisión del corredor, derechos de bolsa, IVA, custodia y otros cargos. El número que te muestran en la pantalla puede no ser el costo total.
+
+> **¿Necesitas separar el IVA de un precio?** Usa la [Calculadora de IVA Chile 19%](/calculadoras/iva/) para desglosar neto, IVA y bruto en segundos.
+
 - **Tributación:** el SII establece que las personas naturales deben declarar rentas por inversiones, con las excepciones que define la ley para cada instrumento. Conocer esas excepciones antes de invertir puede marcar una diferencia real en el resultado neto.
 
 Si ya sabes qué instrumento usarás, estas guías resuelven los costos y la operación específica:

@@ -51,6 +51,7 @@ export const GLOSSARY_CATEGORY_BY_SLUG: Record<string, GlossaryCategoryId> = {
   "boleta-honorarios": "impuestos",
   "global-complementario": "impuestos",
   "impuesto-unico": "impuestos",
+  iva: "impuestos",
   "operacion-renta": "impuestos",
   sii: "impuestos",
   uta: "impuestos",
