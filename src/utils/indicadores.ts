@@ -5,6 +5,9 @@ import {
 } from "@/domain/economic/EconomicParameters";
 import type { EconomicTelemetryFlag } from "@/infrastructure/economic/EconomicParameterProvider";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+import { formatCLP } from "./formatCLP";
+
+export { formatCLP };
 
 export interface Indicadores {
   uf: EconomicParameters["uf"];
@@ -45,11 +48,6 @@ export async function getIndicadores(): Promise<Indicadores> {
     telemetryFlag,
     ...(parameters.prev ? { prev: parameters.prev } : {}),
   };
-}
-
-/** Formatea un número como pesos chilenos: "$" + valor redondeado + separadores de miles. */
-export function formatCLP(n: number): string {
-  return "$" + Math.round(n).toLocaleString("es-CL");
 }
 
 /** @deprecated Usa `formatCLP` en su lugar. */

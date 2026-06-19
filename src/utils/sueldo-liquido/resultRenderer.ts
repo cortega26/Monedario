@@ -2,9 +2,9 @@
 // Formateo de valores monetarios y porcentajes
 // ---------------------------------------------------------------------------
 
-export function fmt(n: number): string {
-  return "$" + Math.round(n).toLocaleString("es-CL");
-}
+import { formatCLP } from "@/utils/formatCLP";
+
+export const fmt = formatCLP;
 
 export function fmtPct(n: number): string {
   return n.toFixed(2) + "%";
