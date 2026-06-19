@@ -144,6 +144,10 @@ jobs:
       - name: "🚀 Build the project"
         run: pnpm run build:ci
 
+      - name: "🕰️ Economic snapshot freshness (scheduled only)"
+        if: github.event_name == 'schedule'
+        run: pnpm run check:economic-snapshot-freshness
+
       - name: "🔗 URL check (CI mode)"
         id: urlcheck_ci
         run: pnpm run check:urls:ci
