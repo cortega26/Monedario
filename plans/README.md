@@ -17,8 +17,17 @@ obsoleto (sueldo mínimo corregido a $553.553 como constante legal gestionada co
 guard de regresión, commit `fd2b5dff`).
 
 Ejecutar en el orden de la tabla salvo que las dependencias indiquen lo contrario.
-Cada ejecutor: leer el plan completo antes de empezar, honrar sus condiciones de
-STOP, y actualizar la columna de estado al terminar.
+Cada ejecutor debe leer el plan completo y honrar sus condiciones de STOP.
+
+## Política obligatoria de cierre y archivo
+
+El cierre de un plan es atómico. En la misma unidad de cambio que lo marca DONE,
+el ejecutor debe mover su archivo de `plans/` a `plans/archive/`, quitarlo de
+"Pendientes", añadirlo a los índices de completados de este README y de
+`archive/README.md`, y verificar que no queden enlaces al path anterior. Un plan
+no se considera terminado si su archivo sigue en `plans/` o si no está integrado
+en `main`; en ese caso permanece `IN PROGRESS` o `BLOCKED`. Esta regla forma parte
+del DoD y no requiere una solicitud adicional del usuario.
 
 Los planes **completados, verificados y mergeados** se mueven a
 [`plans/archive/`](archive/README.md). En este README solo quedan en detalle los
@@ -28,16 +37,7 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|--------|-----------|----------|------------|--------|
-| [022](022-consolidate-clp-formatter.md) | Consolidar formateador CLP en módulo leaf único | P3 | S | — | DONE |
-| [023](023-gate-floor-and-reddit-alert-atomicity.md) | Guardas anti-paso-vacío en gates rutas/RSS + alerta Reddit atómica | P3 | S | — | DONE |
-| [024](archive/024-calculator-data-freshness-component.md) | Estandarizar la vigencia de datos de calculadoras en un componente compartido | P1 | M | — | DONE y MERGEADO en `main` (PR #239, commit `b924b5dc`) |
-| [025](025-iva-calculator-engine.md) | Motor + página de calculadora de IVA (sin publicar, pendiente visto bueno) | P2 | M | — | DONE y MERGEADO en `main` (commits `c4f6945a` + `64644fa6`) |
 | [031](031-iva-calculator-backlinks.md) | Backlinks internos a la calculadora de IVA (glosario + 2 posts) | P3 | S | 025 | TODO |
-| [026](026-glossary-thematic-index.md) | Índice temático del glosario junto al alfabético | P3 | M | — | TODO |
-| [027](027-afp-refresh-effective-date-parser.md) | Reemplazar fecha de vigencia AFP hardcodeada por extractor genérico | P1 | M | — | DONE y MERGEADO en `main` (PR #240, squash `369ff01b`) — ver nota |
-| [028](028-imm-shared-constant.md) | Consolidar el IMM en un módulo leaf único para la app | P2 | S | — | DONE y MERGEADO en `main` (commit `13a3d390`) |
-| [029](029-calculator-controller-tests.md) | Tests de caracterización para controladores cliente de calculadoras | P2 | M | — | DONE |
-| [030](030-economic-snapshot-freshness-gate.md) | Gate de frescura del snapshot económico (scheduled CI) | P2 | S | — | DONE y MERGEADO en `main` (commit `c9d72ed4`) |
 
 > Verificado el 2026-06-15: 022 y 023 siguen sin implementar en el código
 > (no existe `src/utils/formatCLP.ts`; los gates `compare-*.mjs` no tienen
@@ -126,6 +126,20 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 ## Completados — archivados
 
 Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main`.
+
+### Auditorías 2026-06-15 a 2026-06-19
+
+| Plan | Título | Prioridad | Esfuerzo | Estado |
+|------|--------|-----------|----------|--------|
+| [022](archive/022-consolidate-clp-formatter.md) | Consolidar formateador CLP en módulo leaf único | P3 | S | DONE (PR #243, squash `2e3c1e4a`) |
+| [023](archive/023-gate-floor-and-reddit-alert-atomicity.md) | Guardas anti-paso-vacío en gates rutas/RSS + alerta Reddit atómica | P3 | S | DONE (PR #244, squash `e65c6ebc`) |
+| [024](archive/024-calculator-data-freshness-component.md) | Estandarizar vigencia de datos de calculadoras | P1 | M | DONE (PR #239, commit `b924b5dc`) |
+| [025](archive/025-iva-calculator-engine.md) | Motor + página de calculadora de IVA | P2 | M | DONE (commits `c4f6945a`, `64644fa6`) |
+| [026](archive/026-glossary-thematic-index.md) | Índice temático del glosario junto al alfabético | P3 | M | DONE (`47ce4221`) |
+| [027](archive/027-afp-refresh-effective-date-parser.md) | Extraer fecha de vigencia AFP con parser genérico | P1 | M | DONE (PR #240, squash `369ff01b`) |
+| [028](archive/028-imm-shared-constant.md) | Consolidar IMM en módulo leaf único | P2 | S | DONE (commit `13a3d390`) |
+| [029](archive/029-calculator-controller-tests.md) | Tests de caracterización de controladores | P2 | M | DONE (commit `8d69b79c`) |
+| [030](archive/030-economic-snapshot-freshness-gate.md) | Gate de frescura del snapshot económico | P2 | S | DONE (commit `c9d72ed4`) |
 
 ### Re-auditoría 2026-06-15
 

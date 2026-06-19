@@ -12,6 +12,8 @@
 
 ## Estado
 
+- **Ejecución**: DONE en `47ce4221`; gates revisados: test dirigido 3/3, Astro
+  0 diagnósticos, suite 776/776. Integración y archivo incluidos en la misma PR.
 - **Prioridad**: P3
 - **Esfuerzo**: M
 - **Riesgo**: LOW
