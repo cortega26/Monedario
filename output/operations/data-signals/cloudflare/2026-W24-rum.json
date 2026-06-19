@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-06-18T07:52:06Z",
+  "fetchedAt": "2026-06-19T08:02:36Z",
   "schemaVersion": 1,
   "source": "cloudflare-rum",
   "week": "2026-W24",
@@ -159,15 +159,15 @@
       "clsP75": 0,
       "count": 10,
       "inpP75Ms": null,
-      "lcpP75Ms": 312,
-      "path": "/glosario/sii/"
+      "lcpP75Ms": 3128,
+      "path": "/calculadoras/"
     },
     {
       "clsP75": 0,
       "count": 10,
       "inpP75Ms": null,
-      "lcpP75Ms": 3128,
-      "path": "/calculadoras/"
+      "lcpP75Ms": 312,
+      "path": "/glosario/sii/"
     },
     {
       "clsP75": 0,
