@@ -3,6 +3,13 @@
 Auditoría inicial: `/improve deep` el 2026-06-11 (commit `8256c9d2`) → planes 001–019.
 Re-auditoría: `/improve deep` el 2026-06-15 (commit `57ad5261`) → planes 020–023.
 Follow-through de auditorías externas: `/improve` el 2026-06-17 (commit `fd2b5dff`) → planes 024–026.
+Tercera auditoría profunda: `/improve deep` el 2026-06-19 (commit `9a4eb37d`) → planes 027–030.
+Foco de la tercera pasada: terreno no auditado antes (los 57 scripts de build/CI,
+el runtime cliente de las calculadoras, los 13 use-cases + módulos `shared` no
+cubiertos el 2026-06-15, ambos workers + el provider económico, y tech-debt/deps/
+tests/DX). Resultado clave: los motores de cálculo siguen limpios (0 bugs de
+aritmética); los hallazgos reales están en la **plomería de frescura de datos**
+alrededor de las calculadoras, no en la matemática.
 Fuente: las dos auditorías en `docs/latest_audits/` (`deep-research-report (8).md`,
 la precisa con muestreo de 50 URLs; y `Auditoría SEO Monedario Chile.md`, la
 heurística sin acceso al sitio). Ya implementado fuera de plan: el bug del IMM
@@ -23,9 +30,13 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 |------|--------|-----------|----------|------------|--------|
 | [022](022-consolidate-clp-formatter.md) | Consolidar formateador CLP en módulo leaf único | P3 | S | — | TODO |
 | [023](023-gate-floor-and-reddit-alert-atomicity.md) | Guardas anti-paso-vacío en gates rutas/RSS + alerta Reddit atómica | P3 | S | — | TODO |
-| [024](024-calculator-data-freshness-component.md) | Estandarizar la vigencia de datos de calculadoras en un componente compartido | P1 | M | — | TODO |
+| [024](024-calculator-data-freshness-component.md) | Estandarizar la vigencia de datos de calculadoras en un componente compartido | P1 | M | — | DONE en rama `advisor/024-calculator-data-freshness` (pendiente merge) — RE-ESCALADO, ver nota |
 | [025](025-iva-calculator-engine.md) | Motor + página de calculadora de IVA (sin publicar, pendiente visto bueno) | P2 | M | — | TODO |
 | [026](026-glossary-thematic-index.md) | Índice temático del glosario junto al alfabético | P3 | M | — | TODO |
+| [027](027-afp-refresh-effective-date-parser.md) | Reemplazar fecha de vigencia AFP hardcodeada por extractor genérico | P1 | M | — | DONE y MERGEADO en `main` (PR #240, squash `369ff01b`) — ver nota |
+| [028](028-imm-shared-constant.md) | Consolidar el IMM en un módulo leaf único para la app | P2 | S | — | TODO |
+| [029](029-calculator-controller-tests.md) | Tests de caracterización para controladores cliente de calculadoras | P2 | M | — | TODO |
+| [030](030-economic-snapshot-freshness-gate.md) | Gate de frescura del snapshot económico (scheduled CI) | P2 | S | — | TODO |
 
 > Verificado el 2026-06-15: 022 y 023 siguen sin implementar en el código
 > (no existe `src/utils/formatCLP.ts`; los gates `compare-*.mjs` no tienen
@@ -37,6 +48,67 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 > tras aprobar el copy). El contenido financiero nuevo (clústeres, comparadores,
 > definiciones de glosario nuevas) NO se planificó: requiere el pipeline editorial
 > + firma humana — ver "Dirección" abajo.
+>
+> **024 RE-ESCALADO (2026-06-18):** al ejecutar se halló que la premisa del plan
+> no calzaba con el código. El componente original presuponía un banner uniforme
+> con `bannerText`, que solo existía en 1 de 11 páginas (`conversor-utm`); las
+> otras 10 incrustaban solo `economicSourceLabel` en prosa propia y 8 mostraban la
+> fecha en ISO cruda. Migrar literalmente habría violado las condiciones de STOP
+> #2/#4 del plan (cambio de salida visible en superficie YMYL). El mantenedor
+> (Carlos Ortega, autoridad de sign-off) optó por **estandarizar deliberadamente
+> el banner** y firmó el copy: formato sobrio `Datos al {fecha larga} · {etiqueta}`
+> (mapeo de fuente verbatim del helper), aplicado a las 11. Implementado:
+> `resolveEconomicSourceLabel` + `formatEconomicDate`
+> (`src/domain/economic/economicSourcePresentation.ts`, +5 tests),
+> `CalculatorDataFreshness.astro`, y migración de las 11 páginas. Excepción
+> deliberada: `conversor-utm` conserva `economicSourceMeta` (alimenta el hero y el
+> `MethodologyBlock`), pero su etiqueta ahora deriva del helper. Extra firmado:
+> `sueldo-liquido` muestra la vigencia del IMM (`immEffectiveDate`, sin cita de ley
+> hardcodeada para evitar obsolescencia) en una línea persistente junto al footer
+> — NO en el box `min-wage-warning`, cuyo texto reescribe `formController.ts` en
+> runtime.
+>
+> **Follow-ups de balance positivo (2026-06-18):** (1) banner añadido a
+> `dividendo-hipotecario` — única de las 8 calculadoras sin banner que consume un
+> valor volátil (UF); las otras 7 no leen `economicParameters`, así que un banner
+> ahí sería ruido. (2) Verificación en vivo (`astro dev`) de las superficies
+> sensibles: las líneas de vigencia, el IMM y el slot "Valor usado" renderizan
+> legibles y persistentes. (3) Cita de ley del IMM vía modelo de datos: **NO
+> ejecutado** — el comentario en `EconomicParameterProvider.ts:66-73` revela que
+> "Ley 21.751" fijó el valor ANTERIOR ($539.000); el IMM vigente ($553.553) viene
+> de un reajuste despachado el 2026-06-16 cuyo número de ley el repo no registra.
+> Insertar la cita habría puesto un error factual en superficie YMYL. La línea
+> queda solo con fecha (data-driven, correcta). Investigado el 2026-06-18 (BCN/
+> Diario Oficial): Ley 21.751 (DO 28.06.2025) fijó el valor ANTERIOR ($539.000);
+> el reajuste a $553.553 fue despachado a ley el 2026-06-16 pero **aún no está
+> promulgado/publicado**, así que su número de ley no existe públicamente todavía.
+> DIFERIDO: cuando la ley se publique en el Diario Oficial, agregar campo `immLaw`
+> en `EconomicParameterProvider.ts` + snapshot y mostrarlo en la línea del IMM de
+> `sueldo-liquido`.
+> `astro check` 0 errores; 733 tests pasando (la única falla, `cluster-source-of-truth`,
+> es preexistente en `main` y ajena a este cambio).
+>
+> **027 EJECUTADO (2026-06-19, vía `/improve execute 027`):** ejecutor en worktree
+> aislado (`worktree-agent-ae65a67166468bfd0`, commit `15fdef6b`,
+> `fix(scripts): extraer fecha de vigencia AFP con parser genérico`). Diff limpio,
+> exactamente los 3 archivos en alcance: `scripts/lib/spanish-date.mjs` (nuevo,
+> helper puro `parseSpanishLongDate` + `extractEffectiveDateFromHtml`),
+> `scripts/refresh-editorial-volatile-data.mjs` (solo la lógica de fecha de
+> `extractAfpUnoDataset` + import), `tests/scripts/spanish-date.test.ts` (11 tests).
+> **Revisión (tech-lead) APROBADA:** todos los done-criteria verificados de forma
+> independiente en el worktree — grep sin matches del literal/regex viejos; 11 tests
+> nuevos verdes; test de snapshot AFP out-of-scope sigue verde; `lint`/`format:check`/
+> `astro check` exit 0. Las 2 fallas del suite (`EconomicParameterProvider` IMM en
+> modo snapshot y `cluster-source-of-truth`) son **preexistentes** — confirmado
+> corriéndolas en el commit padre `9a4eb37d` (fallan idénticas); heredadas de la rama
+> `advisor/024`, ajenas a 027. Nota del ejecutor (correcta): el ejemplo de verificación
+> manual del Step 1 del plan (`<b>lunes 3</b> de noviembre`) devuelve `null` porque la
+> etiqueta `</b>` parte el dígito del día de "de mes"; es un fallo del *ejemplo* del
+> plan, no del código — los tests de regresión usan formas realistas (tags alrededor
+> de la frase, no partiendo dígito-de-"de") y pasan. Código enviado verbatim, sin
+> improvisar. El commit `15fdef6b` se basaba directamente en `origin/main`
+> (`2b238da5`), independiente de 024. **MERGEADO a `main` el 2026-06-19** vía PR
+> #240 (squash `369ff01b`), rama remota eliminada.
 
 ## Completados — archivados
 
@@ -96,6 +168,14 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED (razón)` · `REJECTED (ra
   mayor leverage, menor riesgo y totalmente técnico, y extiende el fix del IMM ya
   mergeado. 025 y 026 terminan en compuerta humana (025: registro en portafolio
   tras firma de copy; 026: revisión de categorías).
+- **027, 028, 029 y 030 son independientes** entre sí y de todo lo anterior;
+  ejecútalos en cualquier orden. Los cuatro son técnica pura, sin compuerta
+  editorial. Orden recomendado por leverage: 027 (P1, bug real de dato stale) →
+  028 (S, DRY de constante legal) → 030 (S, gate de monitoreo) → 029 (M, infra de
+  tests). Nota: 028 usa el mismo patrón de módulo leaf que 022; si ambos aterrizan,
+  `src/domain/economic/` queda como hogar natural de constantes/presentación
+  client-safe. 029 desbloquea con red de seguridad la futura migración a
+  CalculatorShell (dirección 017/018/019).
 
 ## Hallazgos considerados y rechazados
 
@@ -136,6 +216,58 @@ Follow-through auditorías externas 2026-06-17:
 - **"Agregar página de autor/E-E-A-T"** (Doc 1): metodología editorial y
   superficies de confianza ya existen (confirmado por la auditoría precisa). No es
   brecha de código.
+
+Tercera auditoría profunda 2026-06-19:
+- **SEC: `scripts/credentials/gsc-service-account.json` "trackeado en git"**: FALSO.
+  Verificado (`git ls-files` vacío, `git check-ignore` confirma que `.gitignore:54`
+  lo ignora). El archivo está correctamente no-trackeado e ignorado; la protección
+  está activa. Era una alucinación del subagente. No reauditar.
+- **Math de los 13 use-cases + módulos `shared` no cubiertos el 2026-06-15**
+  (CalculateTermDeposit, CompareAfpCommissions, ConvertUf/Utm, RentAdjustment,
+  CreditPrepayment, MonthlyPayrollBase, DebtRenegotiation, ConsumerCredit,
+  CompoundInterest, OperacionRenta, HonorariosNet, CreditCardCost, creditAmortization,
+  retirementEmployerContributionSchedule, financialConstants): **0 bugs materiales**.
+  Trazada la aritmética contra los tests (incl. `FinancialUseCases.regression`). Sin
+  topes/tramos errados, sin error de conversión de tasa, sin off-by-one, ningún test
+  fija un valor incorrecto. Hallazgos menores cosméticos descartados (cota 200% del
+  bisección CAE en `CalculateConsumerCredit` — inalcanzable en rango real;
+  `issuedMonthsPerYear` no-entero en `CalculateHonorariosNet` — supuesto defendible;
+  mensaje de validación de `total` en `CompareAfpCommissions` — `total` no se usa en
+  cálculo). No abrir.
+- **Worker `economic-snapshot-refresh`: respuesta de error reflejada al caller /
+  fetches de override secuenciales**: endpoint secret-gated (blast bajo); el worker
+  es cron (latencia irrelevante). Bajo valor. No abierto.
+- **`EconomicParameterProvider` memoiza el bundle fallback permanentemente**: real,
+  pero **impacto bajo** porque producción es build estático (proceso fresco por
+  build); el fallback además solo se gatilla si falla la lectura del snapshot LOCAL.
+  Down-weighted. No planificado.
+- **DEBT: 5.164 LOC de lógica cliente inline duplicada en 19 páginas de calculadora**:
+  real, pero ya es la dirección documentada de CalculatorShell (017/018/019).
+  Evidencia, no hallazgo nuevo. Ver "Dirección" abajo.
+- **DEPS: advisories HIGH de `undici`**: solo vía dev-tooling (`linkinator`,
+  `wrangler`); `pnpm audit --prod` limpio. Informativo, se limpia al bumpear esas
+  dev-deps. No urgente.
+
+## Hallazgos menores registrados (no planificados — defensa en profundidad de bajo valor)
+
+*(De la tercera pasada. Registrados para que no se re-auditen; abrir un plan solo si el costo cambia.)*
+
+- **Parsers `JSON.parse` sin guard en scripts operativos**: `aggregate-gsc-query-page.mjs:54`
+  (+ `--weeks=NaN` → salida vacía silenciosa, `:30,53`), `compare-routes.mjs:25-26`,
+  `compare-rss.mjs:27-28` (gates de invariante — fallan cerrado pero con stack opaco),
+  `audit-cannibalization.mjs:86`, `audit-striking-distance.mjs:93`. S c/u. Mejora de
+  mensajes de error / robustez, no fallo de corrección.
+- **`simulador-renegociacion.astro:541-544`**: `tasaMensual` sin `|| 0` ni guard (única
+  de las calculadoras); rate vacío → `NaN` al motor. S, consistencia.
+- **`check:boundaries` solo escanea `src/domain/`** (`check-domain-boundaries.mjs:70-71,169`):
+  nada impide que `application`/`components`/`pages` importen internals de infra. Latente
+  (código hoy limpio). S, correr en report-only primero.
+- **`operacion-renta.astro:524-530`**: sanitizador de miles solo dispara con 2+ puntos y
+  los inputs son `type="number"` → rama muerta hoy; bug latente si se cambia a
+  `type="text"`. S.
+- **Worker `assertPlausibleDelta` se salta el dólar en transiciones de presencia**
+  (`buildSnapshot.ts:370-377`); credenciales BCCh en query string con `redirect:"follow"`
+  (`bcchSiete.ts:57-70`, considerar `redirect:"manual"`). S c/u, by-design parcial.
 
 ## Dirección (decisión del mantenedor — no planificado aún)
 

@@ -24,6 +24,8 @@ import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorRadioGroup from "@/components/calculator/CalculatorRadioGroup.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 import CalculatorExplainerSection from "@/components/calculator/CalculatorExplainerSection.astro";
+import CalculatorDataFreshness from "@/components/calculator/CalculatorDataFreshness.astro";
+import { formatEconomicDate } from "@/domain/economic/economicSourcePresentation";
 import { SITE } from "@/config";
 
 const { parameters: economicParameters } = await getEconomicParameters();
@@ -31,12 +33,11 @@ const IMM_MENSUAL_SERVER = economicParameters.imm ?? 553_553;
 const GRATI_CAP_SERVER = Math.round((4.75 / 12) * IMM_MENSUAL_SERVER);
 const salaryGuidePath = getPath("/posts/como-calcular-sueldo-liquido/");
 const firstTaxExemptBracket = 13.5 * economicParameters.utm;
-const economicSourceLabel =
-  economicParameters.source === "live"
-    ? "dato en línea"
-    : economicParameters.source === "snapshot"
-      ? "dato de referencia"
-      : "fallback de emergencia";
+// El IMM es una constante legal gestionada: su fecha de procedencia es la
+// vigencia de la ley, nunca la fecha de captura del snapshot económico.
+const immEffectiveDateLabel = economicParameters.immEffectiveDate
+  ? formatEconomicDate(economicParameters.immEffectiveDate)
+  : null;
 const firstTaxExemptBracketLabel =
   "$" + Math.round(firstTaxExemptBracket).toLocaleString("es-CL");
 const sueldoLiquidoFaqs = [
@@ -634,10 +635,16 @@ const calculatorNextStepItems = [
           aria-hidden="true"
         >
         </div>
-        <p class="mt-3 text-xs text-muted">
-          Fuente económica: {economicSourceLabel} ({
-            economicParameters.lastUpdated
-          }).
+        <CalculatorDataFreshness
+          source={economicParameters.source}
+          updatedDate={formatEconomicDate(economicParameters.lastUpdated)}
+        />
+        <p class="mt-1 text-xs text-muted">
+          Sueldo mínimo (IMM): ${IMM_MENSUAL_SERVER.toLocaleString("es-CL")}{
+            immEffectiveDateLabel
+              ? ` vigente desde ${immEffectiveDateLabel}`
+              : ""
+          }.
         </p>
         <div
           id="result-actions"

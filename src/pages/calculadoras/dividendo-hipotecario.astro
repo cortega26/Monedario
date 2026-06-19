@@ -15,11 +15,15 @@ import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 import CalculatorScenarios from "@/components/calculator/CalculatorScenarios.astro";
+import CalculatorDataFreshness from "@/components/calculator/CalculatorDataFreshness.astro";
+import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
+import { formatEconomicDate } from "@/domain/economic/economicSourcePresentation";
 
 import { calculateMortgage } from "@/application/use-cases/CalculateMortgage";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 const ufValuePesos = economicParameters.uf;
+const ufLastUpdated = resolveEconomicIndicatorDate(economicParameters, "uf");
 const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
 const exampleResult = calculateMortgage({
   propertyValue: 3000,
@@ -89,6 +93,11 @@ const calculatorNextStepItems = [
         <span class="font-mono">${ufDisplay}</span>
         <span class="text-muted">— Fuente: Banco Central de Chile</span>
       </div>
+      <CalculatorDataFreshness
+        source={economicParameters.source}
+        updatedDate={formatEconomicDate(ufLastUpdated)}
+        class="mt-2"
+      />
     </CalculatorHero>
 
     <section class="grid items-start gap-6 py-8 sm:grid-cols-2">

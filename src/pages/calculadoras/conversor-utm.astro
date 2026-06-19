@@ -12,8 +12,13 @@ import NextSteps from "@/components/NextSteps.astro";
 import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
+import {
+  formatEconomicDate,
+  resolveEconomicSourceLabel,
+} from "@/domain/economic/economicSourcePresentation";
 import { getPath } from "@/utils/getPath";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import CalculatorDataFreshness from "@/components/calculator/CalculatorDataFreshness.astro";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 const utmArticlePath = getPath("/posts/utm-chile-que-es-como-funciona/");
@@ -21,12 +26,9 @@ const impuestoSegundaCategoriaPath = getPath(
   "/calculadoras/impuesto-segunda-categoria/"
 );
 const utmLastUpdated = resolveEconomicIndicatorDate(economicParameters, "utm");
-const economicSourceLabel =
-  economicParameters.source === "live"
-    ? "dato en línea"
-    : economicParameters.source === "snapshot"
-      ? "dato de referencia"
-      : "fallback de emergencia";
+const economicSourceLabel = resolveEconomicSourceLabel(
+  economicParameters.source
+);
 const economicSourceMeta =
   economicParameters.source === "live"
     ? {
@@ -49,10 +51,7 @@ const utmDisplay = economicParameters.utm.toLocaleString("es-CL", {
   minimumFractionDigits: 0,
   maximumFractionDigits: 0,
 });
-const utmDateDisplay = new Intl.DateTimeFormat("es-CL", {
-  dateStyle: "long",
-  timeZone: "UTC",
-}).format(new Date(`${utmLastUpdated}T00:00:00.000Z`));
+const utmDateDisplay = formatEconomicDate(utmLastUpdated);
 
 const utaDisplay = economicParameters.uta
   ? "$" + Math.round(economicParameters.uta).toLocaleString("es-CL")
@@ -207,11 +206,10 @@ const calculatorNextStepItems = [
           Valores de referencia rápidos
         </h2>
         <div id="tabla-ref" class="space-y-2 text-sm"></div>
-        <p class="mt-3 text-xs text-muted">
-          Fuente económica: {economicSourceMeta.bannerText} ({
-            economicSourceLabel
-          }, UTM al {utmLastUpdated}).
-        </p>
+        <CalculatorDataFreshness
+          source={economicParameters.source}
+          updatedDate={utmDateDisplay}
+        />
         {
           utaDisplay ? (
             <p class="mt-1 text-xs text-muted">

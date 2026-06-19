@@ -14,13 +14,11 @@ import { getEconomicParameters } from "@/application/use-cases/GetEconomicParame
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import { simulateCreditPrepayment } from "@/application/use-cases/SimulateCreditPrepayment";
+import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
+import CalculatorDataFreshness from "@/components/calculator/CalculatorDataFreshness.astro";
+import { formatEconomicDate } from "@/domain/economic/economicSourcePresentation";
 const { parameters: economicParameters } = await getEconomicParameters();
-const economicSourceLabel =
-  economicParameters.source === "live"
-    ? "dato en línea"
-    : economicParameters.source === "snapshot"
-      ? "dato de referencia"
-      : "fallback de emergencia";
+const ufLastUpdated = resolveEconomicIndicatorDate(economicParameters, "uf");
 const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
 const exampleResult = simulateCreditPrepayment({
   currentBalance: 5_000_000,
@@ -125,8 +123,13 @@ const calculatorNextStepItems = [
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
               })
-            } (fuente: {economicSourceLabel})
+            }
           </p>
+          <CalculatorDataFreshness
+            source={economicParameters.source}
+            updatedDate={formatEconomicDate(ufLastUpdated)}
+            class="mt-1"
+          />
         </div>
 
         <CalculatorField
