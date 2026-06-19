@@ -4,6 +4,7 @@ const DEFAULT_TMC_FALLBACK = 3.49;
 // Ingreso Mínimo Mensual — managed legal constant. Reajuste despachado a ley el
 // 2026-06-16, vigente retroactivo desde 2026-05-01 ($553.553). mindicador.cl no
 // entrega el IMM, por lo que se mantiene aquí. Al reajustarse, actualiza valor y fecha.
+// Mirror of src/domain/economic/immConstants.ts DEFAULT_IMM (separate Worker bundle). Keep in sync.
 const DEFAULT_IMM = 553_553;
 const DEFAULT_IMM_EFFECTIVE_DATE = "2026-05-01";
 

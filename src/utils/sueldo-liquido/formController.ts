@@ -2,6 +2,7 @@ import {
   calculateNetSalary,
   estimateGrossFromNet,
 } from "@/application/use-cases/CalculateNetSalary";
+import { DEFAULT_IMM } from "@/domain/economic/immConstants";
 import { trackAnalyticsEvent } from "@/utils/analytics";
 import { saveCalculatorResult } from "@/utils/resumeState";
 import {
@@ -48,7 +49,7 @@ function readEconomicParameters(): {
   return {
     uf,
     utm,
-    imm: Number.isFinite(imm) && imm > 0 ? imm : 553_553,
+    imm: Number.isFinite(imm) && imm > 0 ? imm : DEFAULT_IMM,
   };
 }
 

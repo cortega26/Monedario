@@ -31,6 +31,7 @@ const DEFAULT_PENSION_AND_HEALTH_MONTHLY_TAXABLE_CAP_UF = 90;
 // entrega el IMM, por lo que se mantiene aquí. Al reajustarse el IMM, actualiza
 // valor y fecha de vigencia; el test del provider valida un piso + fecha de
 // revisión que obliga a re-verificar contra el Ministerio del Trabajo.
+// Mirror of src/domain/economic/immConstants.ts DEFAULT_IMM (Node script cannot import the .ts leaf). Keep in sync.
 const DEFAULT_IMM = 553_553;
 const DEFAULT_IMM_EFFECTIVE_DATE = "2026-05-01";
 

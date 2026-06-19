@@ -3,6 +3,10 @@ import {
   type EconomicIndicatorUpdatedAt,
   type EconomicParameters,
 } from "@/domain/economic/EconomicParameters";
+import {
+  DEFAULT_IMM,
+  DEFAULT_IMM_EFFECTIVE_DATE,
+} from "@/domain/economic/immConstants";
 import { existsSync, readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
@@ -63,14 +67,7 @@ export interface EconomicProviderTelemetry {
 
 const DEFAULT_AFC_MONTHLY_TAXABLE_CAP_UF = 135.2;
 const DEFAULT_PENSION_AND_HEALTH_MONTHLY_TAXABLE_CAP_UF = 90;
-// Managed legal constant — Ingreso Mínimo Mensual. Reajuste despachado a ley por
-// el Congreso el 2026-06-16, vigente retroactivo desde 2026-05-01 ($553.553, alza
-// de 2,7% sobre los $539.000 de la Ley 21.751). mindicador.cl does NOT provide
-// IMM, so it is maintained here and in the snapshot generators. Update both the
-// value and its effective date when a new ley reajusta el IMM; the provider test
-// enforces a floor + a date tripwire that forces re-verification against mintrab.
-const DEFAULT_IMM = 553_553;
-const DEFAULT_IMM_EFFECTIVE_DATE = "2026-05-01";
+// IMM (managed legal constant) now lives in @/domain/economic/immConstants.
 const FALLBACK_LAST_UPDATED = "2026-05-28";
 const MODULE_DIR = dirname(fileURLToPath(import.meta.url));
 const SNAPSHOT_FILE_NAME = "economic-parameters.snapshot.json";
