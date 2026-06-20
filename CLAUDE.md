@@ -29,6 +29,29 @@ If `06-compliance.md` shows `BLOCKED` or `07-publish-packet.md` has unchecked ga
 
 Full protocol: `context/EDITORIAL_AI_PIPELINE.md` §9
 
+## Python tooling (scripts/ + tests/)
+
+| What | Command |
+|---|---|
+| Install deps (deterministic) | `uv sync` |
+| Add a dependency | `uv add <pkg>` (prod) / `uv add --dev <pkg>` (dev) |
+| Lint + auto-fix | `uv run ruff check scripts/ tests/ --fix` |
+| Format | `uv run ruff format scripts/ tests/` |
+| Run tests + coverage | `uv run pytest` |
+| Audit CVEs | `uv run pip-audit` |
+| Upgrade all deps (manual) | `uv lock --upgrade` then `uv sync` |
+
+- **Config files:** `pyproject.toml` (deps + ruff + pytest + coverage), `uv.lock` (hash-pinned lockfile).
+- **Coverage report:** `coverage-html/index.html` (gitignored).
+- **CI gates:** `python-ci.yml` (ruff + pytest on PR, paths-filtered), `python-deps-autoupdate.yml` (monthly lockfile bump → PR, manual review), `security-scans.yml` → `python-audit` job (weekly pip-audit).
+
+## Node utilities (src/utils/)
+
+| Utility | What it does |
+|---|---|
+| `src/utils/dates.ts` | UTC-safe date helpers wrapping `date-fns` — use instead of raw `new Date()` in calculators |
+| `zod` (standalone) | Runtime validation at external boundaries — currently guarding `mindicador.cl` responses in `EconomicParameterProvider` |
+
 ## Key file map
 
 | What you need | Where to look |
