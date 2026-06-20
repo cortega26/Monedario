@@ -10,16 +10,23 @@ import {
 import { existsSync, readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
+import { z } from "zod";
 
-type MindicadorResponse = {
-  fecha?: string;
-  uf?: { valor?: number; fecha?: string };
-  utm?: { valor?: number; fecha?: string };
-  uta?: { valor?: number; fecha?: string };
-  ipc?: { valor?: number; fecha?: string };
-  tmc?: { valor?: number; fecha?: string };
-  dolar?: { valor?: number; fecha?: string };
-};
+/** Schema for mindicador.cl API response — runtime-validated at the boundary. */
+const mindicadorIndicator = z.object({
+  valor: z.number().optional(),
+  fecha: z.string().optional(),
+});
+
+const mindicadorSchema = z.object({
+  fecha: z.string().optional(),
+  uf: mindicadorIndicator.optional(),
+  utm: mindicadorIndicator.optional(),
+  uta: mindicadorIndicator.optional(),
+  ipc: mindicadorIndicator.optional(),
+  tmc: mindicadorIndicator.optional(),
+  dolar: mindicadorIndicator.optional(),
+});
 
 interface EconomicSnapshotPayload {
   uf: number;
@@ -237,7 +244,7 @@ async function fetchLiveEconomicParameters(): Promise<EconomicParameters> {
     );
   }
 
-  const payload = (await response.json()) as MindicadorResponse;
+  const payload = mindicadorSchema.parse(await response.json());
   const indicatorUpdatedAt: EconomicIndicatorUpdatedAt = {
     uf: payload.uf?.fecha ? toIsoDate(payload.uf.fecha) : undefined,
     utm: payload.utm?.fecha ? toIsoDate(payload.utm.fecha) : undefined,

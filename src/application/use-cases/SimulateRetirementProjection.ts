@@ -4,6 +4,12 @@ import {
   RETIREMENT_EMPLOYER_CONTRIBUTION_SCHEDULE_SOURCE,
   RETIREMENT_EMPLOYER_CONTRIBUTION_SCHEDULE_VERSION,
 } from "@/application/use-cases/shared/retirementEmployerContributionSchedule";
+import {
+  addMonthsToFirstDay,
+  startOfMonthFromIso,
+  todayIso,
+  toIsoDate,
+} from "@/utils/dates";
 
 export interface RetirementProjectionInput {
   currentAge: number;
@@ -56,21 +62,6 @@ const COMPARISON_SCENARIOS = [
   { id: "base", label: "Base", annualReturnPercent: 5 },
   { id: "aggressive", label: "Agresivo", annualReturnPercent: 7 },
 ] as const;
-
-function getMonthStart(dateLike: string): Date {
-  const date = new Date(`${dateLike}T00:00:00.000Z`);
-  return new Date(Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), 1));
-}
-
-function addUtcMonths(base: Date, months: number): Date {
-  return new Date(
-    Date.UTC(base.getUTCFullYear(), base.getUTCMonth() + months, 1)
-  );
-}
-
-function toIsoDate(date: Date): string {
-  return date.toISOString().slice(0, 10);
-}
 
 function resolveContributionMonthFlags(
   totalMonths: number,
@@ -162,10 +153,10 @@ function buildScenario(
   let projectedBalance = input.currentBalance;
   let totalWorkerContributions = 0;
   let totalEmployerContributionsToIndividualAccount = 0;
-  const currentMonthStart = getMonthStart(options.currentDate);
+  const currentMonthStart = startOfMonthFromIso(options.currentDate);
 
   for (let monthIndex = 0; monthIndex < options.totalMonths; monthIndex += 1) {
-    const monthDate = addUtcMonths(currentMonthStart, monthIndex);
+    const monthDate = addMonthsToFirstDay(currentMonthStart, monthIndex);
     projectedBalance *= 1 + monthlyReturnDecimal;
 
     if (!options.contributionMonthFlags[monthIndex]) {
@@ -230,8 +221,7 @@ export function simulateRetirementProjection(
     );
   }
 
-  const currentDate =
-    input.currentDate ?? new Date().toISOString().slice(0, 10);
+  const currentDate = input.currentDate ?? todayIso();
   const contributionDensityPercent = input.contributionDensityPercent ?? 100;
   const selectedScenarioLabel =
     COMPARISON_SCENARIOS.find(
