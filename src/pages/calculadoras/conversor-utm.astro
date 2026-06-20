@@ -79,15 +79,40 @@ const calculatorNextStepItems = [
       ]
     : []),
 ];
+
+const conversorUtmFaqs = [
+  {
+    question: "¿Cuánto vale 1 UTM en pesos chilenos hoy?",
+    answer: `Hoy 1 UTM equivale a $${utmDisplay} según el valor oficial del SII (${utmDateDisplay}). La UTM se reajusta el primer día de cada mes según la variación del IPC, así que conviene confirmar el valor vigente antes de usarlo en una multa, un impuesto o un trámite.`,
+  },
+  {
+    question:
+      "¿Cómo convierto un monto en UTM (una multa o un trámite) a pesos?",
+    answer:
+      "Ingresa la cantidad de UTM en la calculadora y se multiplica automáticamente por el valor vigente del mes. Por ejemplo, una multa de 10 UTM o un derecho de 5 UTM se convierten al instante a pesos. También puedes hacer la conversión inversa: escribir el monto en pesos y ver a cuántas UTM equivale.",
+  },
+  {
+    question: "¿Por qué el valor de la UTM cambia todos los meses?",
+    answer:
+      "Porque la UTM es una unidad reajustable: el SII la actualiza cada mes según la inflación (IPC) del mes anterior medida por el INE. Por eso un monto expresado en UTM conserva su valor real en el tiempo, aunque su equivalente en pesos suba mes a mes.",
+  },
+  {
+    question: "¿Qué diferencia hay entre UTM, UTA y UF?",
+    answer:
+      "La UTM (Unidad Tributaria Mensual) se usa para multas, impuestos y trámites, y se reajusta cada mes. La UTA (Unidad Tributaria Anual) es la UTM multiplicada por 12 y se usa en el impuesto a la renta anual. La UF (Unidad de Fomento) es otra unidad reajustable distinta, usada en créditos, arriendos y contratos, y cambia a diario.",
+  },
+];
 ---
 
 <Layout
-  title="Conversor UTM a Pesos Chilenos — Valor Actualizado | Monedario"
-  description="Convierte UTM a pesos chilenos y viceversa con el valor oficial del SII actualizado cada mes. Tabla de referencia rápida para multas, impuestos y trámites."
+  title="Conversor UTM a Pesos Chilenos: valor de hoy del SII | Monedario"
+  description="Convierte cualquier monto en UTM a pesos chilenos al valor oficial del SII de hoy: multas, impuestos y trámites. Incluye conversión inversa (pesos a UTM) y tabla de referencia."
 >
   <CalculatorJsonLd
     name="Conversor UTM a Pesos Chilenos"
-    description="Convierte UTM a pesos chilenos y viceversa con el valor oficial del SII actualizado cada mes. Tabla de referencia rápida para multas, impuestos y trámites."
+    description="Convierte cualquier monto en UTM a pesos chilenos al valor oficial del SII de hoy: multas, impuestos y trámites. Incluye conversión inversa (pesos a UTM) y tabla de referencia."
+    faqs={conversorUtmFaqs}
+    dateModified={utmLastUpdated}
   />
   <Header />
   <Breadcrumb />
@@ -315,6 +340,23 @@ const calculatorNextStepItems = [
         },
       ]}
     />
+    <section class="border-t border-border pt-8 pb-4">
+      <h2 class="mb-6 text-xl font-semibold">
+        Preguntas frecuentes sobre el conversor UTM
+      </h2>
+      <dl class="space-y-6">
+        {
+          conversorUtmFaqs.map(faq => (
+            <div>
+              <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
+              <dd class="text-sm leading-relaxed text-secondary">
+                {faq.answer}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
     <NextSteps
       currentHref="/calculadoras/conversor-utm/"
       items={calculatorNextStepItems}
