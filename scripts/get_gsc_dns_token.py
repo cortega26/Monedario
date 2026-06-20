@@ -34,15 +34,19 @@ def main():
 
     service = build("siteVerification", "v1", credentials=credentials)
 
-    response = service.webResource().getToken(
-        body={
-            "site": {
-                "type": "INET_DOMAIN",
-                "identifier": DOMAIN,
-            },
-            "verificationMethod": "DNS_TXT",
-        }
-    ).execute()
+    response = (
+        service.webResource()
+        .getToken(
+            body={
+                "site": {
+                    "type": "INET_DOMAIN",
+                    "identifier": DOMAIN,
+                },
+                "verificationMethod": "DNS_TXT",
+            }
+        )
+        .execute()
+    )
 
     print("Agrega este TXT record en el DNS del dominio:")
     print()

@@ -22,8 +22,6 @@ import re
 import shlex
 import subprocess  # nosec B404
 import sys
-from typing import List, Optional, Tuple
-
 
 DEFAULT_SUSPECT_COMMITS = [
     "144f862",  # config: personalizar SITE para TuPlataInforma
@@ -49,7 +47,7 @@ DEFAULT_PATH_FILTERS = [
 ]
 
 # Patrones que queremos detectar en patches para "banderas rojas"
-RED_FLAG_PATTERNS: List[Tuple[str, re.Pattern]] = [
+RED_FLAG_PATTERNS: list[tuple[str, re.Pattern]] = [
     ("base config", re.compile(r"\bbase\s*:\s*['\"]/[^'\"]+['\"]")),
     ("BASE_URL usage", re.compile(r"import\.meta\.env\.BASE_URL|BASE_URL")),
     ("Astro.site usage", re.compile(r"\bAstro\.site\b")),
@@ -60,18 +58,17 @@ RED_FLAG_PATTERNS: List[Tuple[str, re.Pattern]] = [
 ]
 
 
-def run_git(repo: str, args: List[str]) -> str:
+def run_git(repo: str, args: list[str]) -> str:
     """Run git command in repo, return stdout, raise on error."""
     # Ensure command starts with git literal and shell=False (default) is respected
     # Python's list-based subprocess.run with shell=False is safe against shell injection.
-    cmd = ["git"] + validate_git_args(args)
+    cmd = ["git", *validate_git_args(args)]
     try:
         # nosemgrep -- validated argv, literal git executable, and shell=False make this subprocess call intentional and bounded.
         proc = subprocess.run(
             cmd,  # nosemgrep
             cwd=repo,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
+            capture_output=True,
             text=True,
             check=True,
             shell=False,  # Explicitly disable shell to prevent interpolation
@@ -89,8 +86,8 @@ def run_git(repo: str, args: List[str]) -> str:
         ) from e
 
 
-def validate_git_args(args: List[str]) -> List[str]:
-    validated: List[str] = []
+def validate_git_args(args: list[str]) -> list[str]:
+    validated: list[str] = []
     for arg in args:
         if not isinstance(arg, str):
             raise RuntimeError("git args must be strings")
@@ -115,14 +112,14 @@ def section(title: str, level: int = 2) -> str:
     return f"\n{'#' * level} {title}\n\n"
 
 
-def filter_hint(paths: List[str]) -> str:
+def filter_hint(paths: list[str]) -> str:
     return " ".join(paths)
 
 
 def git_show_commit(
     repo: str,
     sha: str,
-    path_filters: Optional[List[str]],
+    path_filters: list[str] | None,
     include_patch: bool,
 ) -> str:
     out = []
@@ -169,7 +166,7 @@ def git_range_diff(
     repo: str,
     base: str,
     head: str,
-    path_filters: Optional[List[str]],
+    path_filters: list[str] | None,
 ) -> str:
     out = []
     out.append(section(f"Diff acumulado {base}..{head}", 2))
@@ -251,7 +248,11 @@ def main() -> int:
     repo = os.path.abspath(args.repo)
     ensure_repo(repo)
 
-    commits = args.commits if args.commits is not None and len(args.commits) > 0 else DEFAULT_SUSPECT_COMMITS
+    commits = (
+        args.commits
+        if args.commits is not None and len(args.commits) > 0
+        else DEFAULT_SUSPECT_COMMITS
+    )
     include_patch = not args.no_patch
     path_filters = None if args.no_filters else DEFAULT_PATH_FILTERS
 

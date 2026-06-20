@@ -182,3 +182,66 @@ jobs:
           retention-days: 14
           if-no-files-found: warn
           path: output/security/trivy.txt
+
+  python-audit:
+    name: Python dependency audit (pip-audit)
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    # Weekly schedule only: Python deps are auxiliary (MCP server, font tools,
+    # scraping). They don't touch the production build path, so per-PR scanning
+    # is noise. Weekly catches CVEs without burning CI minutes on every push.
+    continue-on-error: true
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: "📁 Prepare security report directory"
+        run: mkdir -p output/security
+
+      - name: "🐍 Bootstrap Python workspace"
+        uses: ./.github/actions/bootstrap-python
+        with:
+          python-version: "3.14"
+
+      - name: "🔐 Audit Python dependencies for known CVEs"
+        id: audit
+        # pip-audit scans the resolved environment against PyPA Advisory Database
+        run: |
+          set -euo pipefail
+          uv run pip-audit --format json --output output/security/python-audit.json --desc on || true
+
+      - name: "📝 Publish Python audit summary"
+        if: always()
+        run: |
+          if [[ -s output/security/python-audit.json ]]; then
+            vuln_count=$(jq 'length' output/security/python-audit.json 2>/dev/null || echo "0")
+            {
+              echo "### Python Dependency Vulnerabilities"
+              echo ""
+              echo "- Vulnerable packages: ${vuln_count}"
+              echo ""
+              if [[ "${vuln_count}" -gt 0 ]]; then
+                echo "<details><summary>Expand CVE details</summary>"
+                echo ""
+                echo '```json'
+                cat output/security/python-audit.json
+                echo '```'
+                echo "</details>"
+              fi
+            } >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "### Python Dependency Vulnerabilities" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "No vulnerabilities found. ✓" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: "📤 Upload Python audit artifact"
+        if: always()
+        uses: ./.github/actions/upload-workflow-artifact
+        with:
+          artifact-name: python-audit-report
+          retention-days: 30
+          if-no-files-found: warn
+          path: output/security/python-audit.json

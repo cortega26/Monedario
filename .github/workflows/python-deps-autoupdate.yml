@@ -1,0 +1,114 @@
+name: Python Deps Auto-Update
+
+# Monthly uv.lock refresh — advisory only.
+#
+# Python dependencies in this project are auxiliary (MCP server, font tooling,
+# scraping utilities). They do NOT affect the production build or serving path.
+# A monthly cadence with manual review is appropriate: it keeps the lockfile
+# from going stale while respecting that these deps carry near-zero production
+# risk.
+#
+# No auto-merge. Unlike the JS Dependabot flow (which auto-merges semver-patch
+# updates), uv upgrades all dependencies at once — we can't distinguish safe
+# patches from breaking changes. Every update gets human review.
+#
+# Trigger: first Tuesday of each month + manual dispatch.
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+on:
+  workflow_dispatch:
+  schedule:
+    # First Tuesday of the month at 3:43 UTC.
+    # TUE=2; 3=UTC hour; 43=minute (off-peak, staggered from JS CI at :00).
+    - cron: "43 3 2-8 * 2"
+
+concurrency:
+  group: python-deps-autoupdate-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  upgrade-and-pr:
+    name: Upgrade Python deps and open PR
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: "🐍 Bootstrap Python workspace"
+        uses: ./.github/actions/bootstrap-python
+        with:
+          python-version: "3.14"
+
+      - name: "⬆️ Upgrade all dependencies to latest compatible"
+        id: upgrade
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          cp uv.lock uv.lock.bak
+
+          uv lock --upgrade
+
+          if diff -q uv.lock uv.lock.bak > /dev/null 2>&1; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No dependency updates available."
+            rm uv.lock.bak
+            exit 0
+          fi
+
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+          uv tree --depth 0 > /tmp/deps-summary.txt 2>&1 || true
+          echo "summary<<EOF" >> "$GITHUB_OUTPUT"
+          cat /tmp/deps-summary.txt >> "$GITHUB_OUTPUT"
+          echo "EOF" >> "$GITHUB_OUTPUT"
+
+          rm uv.lock.bak
+
+      - name: "🧪 Run tests against upgraded deps"
+        if: steps.upgrade.outputs.changed == 'true'
+        run: uv run pytest --no-cov
+
+      - name: "🔎 Ruff check with upgraded deps"
+        if: steps.upgrade.outputs.changed == 'true'
+        run: uv run ruff check scripts/ tests/
+
+      - name: "📬 Create pull request with updated lockfile"
+        if: steps.upgrade.outputs.changed == 'true'
+        id: create-pr
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(deps): bump Python dependencies"
+          title: "chore(deps): bump Python dependencies (monthly)"
+          body: |
+            Automated Python dependency upgrade — **manual review required**.
+
+            - Trigger: monthly scheduled workflow (`python-deps-autoupdate.yml`).
+            - `uv lock --upgrade` — all dependencies bumped to latest compatible versions.
+            - Ruff check + pytest passed against the new versions.
+
+            ⚠️ **Why no auto-merge:** uv upgrades all dependencies at once. Unlike
+            Dependabot (which can distinguish safe semver-patches), this PR may
+            contain a mix of patch, minor, and major bumps. Please review the
+            dependency changes before merging.
+
+            ### Updated top-level dependencies
+            ```
+            ${{ steps.upgrade.outputs.summary }}
+            ```
+          branch: chore/python-deps-autoupdate
+          delete-branch: true
+
+      - name: "ℹ️ Report no-op"
+        if: steps.upgrade.outputs.changed != 'true'
+        run: echo "All Python dependencies are up to date. Nothing to do."

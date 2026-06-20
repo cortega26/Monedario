@@ -93,3 +93,11 @@ docs/backlog/*
 
 #Ignore vscode AI rules
 .github/instructions/codacy.instructions.md
+
+# Python coverage
+coverage-html/
+.coverage
+.pytest_cache/
+
+# Python bytecode
+__pycache__/

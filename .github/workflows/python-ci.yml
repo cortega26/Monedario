@@ -1,0 +1,57 @@
+name: Python CI
+
+# Gate for Python tooling quality. Python is ~4% of the codebase (4 utility
+# scripts + MCP server deps) and does NOT touch the production build path
+# (which is 100% Node/Astro). This workflow guards against regressions in the
+# Python layer when it changes — nothing more. No daily schedule: these
+# scripts don't experience mechanical drift between edits.
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: read
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+    paths:
+      - "scripts/**"
+      - "tests/**"
+      - "pyproject.toml"
+      - "uv.lock"
+      - ".github/actions/bootstrap-python/**"
+      - ".github/workflows/python-ci.yml"
+  workflow_dispatch:
+
+concurrency:
+  group: python-ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint-and-test:
+    name: Python lint & test
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+
+      - name: "🐍 Bootstrap Python workspace"
+        uses: ./.github/actions/bootstrap-python
+        with:
+          python-version: "3.14"
+
+      - name: "🔎 Ruff check (lint)"
+        run: uv run ruff check scripts/ tests/
+
+      - name: "📝 Ruff format check"
+        run: uv run ruff format --check scripts/ tests/
+
+      - name: "🧪 Run Python tests"
+        run: uv run pytest --cov --cov-report=term-missing:skip-covered

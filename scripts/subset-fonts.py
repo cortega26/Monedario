@@ -46,15 +46,13 @@ def extract_chars():
     for pattern in CONTENT_GLOBS:
         for path in glob.glob(os.path.join(PROJECT_ROOT, pattern), recursive=True):
             try:
-                with open(path, "r", errors="ignore") as f:
+                with open(path, errors="ignore") as f:
                     chars.update(f.read())
             except Exception as e:
                 print(f"  Warning: skipping {path}: {e}")
 
     # Filter to printable BMP characters
-    result = "".join(
-        sorted(c for c in chars if 32 <= ord(c) <= 0xFFFF)
-    )
+    result = "".join(sorted(c for c in chars if 32 <= ord(c) <= 0xFFFF))
     return result
 
 

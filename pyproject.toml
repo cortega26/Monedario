@@ -1,0 +1,117 @@
+[project]
+name = "monedario-tooling"
+version = "0.1.0"
+description = "Python tooling scripts for Monedario — GSC, font subsetting, repo auditing, and scraping"
+requires-python = ">=3.13"
+license = { text = "MIT" }
+readme = "README.md"
+
+dependencies = [
+    # Google APIs — GSC DNS token generation
+    "google-api-python-client>=2.194",
+    "google-auth>=2.49",
+
+    # Web scraping — data signals and competitive adaptation
+    "scrapling>=0.4",
+    "beautifulsoup4>=4.14",
+    "lxml>=6.1",
+    "cssselect>=1.4",
+    "browserforge>=1.2",
+    "curl-cffi>=0.15",
+    "tld>=0.13",
+    "Protego>=0.6",
+    "w3lib>=2.4",
+
+    # Browser automation — Playwright + Patchright
+    "playwright>=1.58",
+    "patchright>=1.58",
+
+    # HTTP clients
+    "httpx>=0.28",
+    "requests>=2.33",
+
+    # Data validation and config
+    "pydantic>=2.13",
+    "pydantic-settings>=2.14",
+    "python-dotenv>=1.2",
+
+    # MCP server
+    "mcp>=1.27",
+    "uvicorn>=0.46",
+
+    # Cryptography
+    "cryptography>=47",
+
+    # Terminal output
+    "rich>=15",
+
+    # Fast JSON codecs
+    "orjson>=3.11",
+    "msgspec>=0.21",
+
+    # Font processing — subset-fonts.py
+    "fonttools[woff]>=4.56",
+    "brotli>=1.1",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15",
+    "ipython>=9.13",
+    "pytest>=8.3",
+    "pytest-cov>=6.0",
+    "pytest-mock>=3.14",
+    "pip-audit>=2.10.1",
+]
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+testpaths = ["tests"]
+pythonpath = ["scripts"]
+addopts = [
+    "--strict-markers",
+    "--tb=short",
+    "--cov=scripts",
+    "--cov-report=term-missing:skip-covered",
+    "--cov-report=html:coverage-html",
+    "--no-cov-on-fail",
+]
+
+[tool.coverage.run]
+source = ["scripts"]
+omit = ["scripts/credentials/*"]
+
+[tool.coverage.report]
+exclude_also = [
+    "if __name__ == .__main__.:",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if TYPE_CHECKING:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+
+[tool.ruff.lint]
+select = [
+    "F",     # Pyflakes
+    "E",     # Pycodestyle errors
+    "W",     # Pycodestyle warnings
+    "I",     # isort
+    "UP",    # pyupgrade
+    "SIM",   # flake8-simplify
+    "B",     # flake8-bugbear
+    "C4",    # flake8-comprehensions
+    "RUF",   # Ruff-specific
+]
+ignore = ["E501"]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/repo/git_audit_export.py" = ["S603", "S607", "S404"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
