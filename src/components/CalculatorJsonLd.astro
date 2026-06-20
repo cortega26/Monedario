@@ -10,9 +10,16 @@ interface Props {
   name: string;
   description: string;
   faqs?: CalculatorFaq[];
+  /**
+   * Fecha ISO (YYYY-MM-DD) del dato subyacente de la calculadora. Cuando se
+   * provee, emite `dateModified` en el schema WebApplication como señal de
+   * frescura. Útil en conversores cuyo valor (UF, UTM) cambia a diario o
+   * mensualmente.
+   */
+  dateModified?: string;
 }
 
-const { name, description, faqs } = Astro.props;
+const { name, description, faqs, dateModified } = Astro.props;
 
 const SITE_URL = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
   /\/$/,
@@ -39,6 +46,7 @@ const applicationSchema = {
     name: SITE.title,
     url: SITE_URL,
   },
+  ...(dateModified ? { dateModified } : {}),
 };
 
 const faqSchema =
