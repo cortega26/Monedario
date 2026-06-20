@@ -51,6 +51,30 @@ const calculatorNextStepItems = [
       ]
     : []),
 ];
+
+const seguroCesantiaFaqs = [
+  {
+    question: "¿Cómo calculo cuánto me va a pagar el seguro de cesantía?",
+    answer:
+      "Esta calculadora estima tu cobertura en dos partes. Primero revisa tu Cuenta Individual de Cesantía (CIC): según tu sueldo, tipo de contrato y meses cotizados, calcula cuánto tienes acumulado y cuántos meses te cubriría. Luego revisa si cumples el filtro base para acceder al Fondo de Cesantía Solidario (FCS), pero los montos exactos del FCS los entrega la AFC según su tabla vigente.",
+  },
+  {
+    question: "¿El simulador de seguro de cesantía incluye el Fondo Solidario?",
+    answer:
+      "Verifica si cumples los requisitos mínimos legales para acceder al Fondo de Cesantía Solidario (causal válida, mínimo 10 cotizaciones en 24 meses y las 3 últimas continuas con el mismo empleador), pero no te da un monto exacto del FCS. Los montos del Fondo Solidario los fija y publica la AFC — debes consultar la tabla oficial vigente en afc.cl.",
+  },
+  {
+    question:
+      "¿Qué pasa si no tengo saldo suficiente en mi Cuenta Individual de Cesantía?",
+    answer:
+      "Si tu saldo CIC no alcanza para cubrir los meses que te corresponden, la calculadora revisa si cumples el filtro base del Fondo Solidario. Si lo cumples, el FCS puede complementar tus pagos. Si no lo cumples, recibirás solo los pagos que alcance tu CIC y se agotará cuando el saldo llegue a cero.",
+  },
+  {
+    question: "¿Necesito mi saldo real de CIC para usar esta calculadora?",
+    answer:
+      "No es obligatorio, pero sí recomendado. La calculadora te da dos opciones: usar tu saldo real de CIC (que puedes consultar en afc.cl con tu ClaveÚnica) o estimarlo a partir de tus cotizaciones mensuales. La estimación no incluye rentabilidad del fondo ni retiros previos, así que si ya tienes varios años cotizando, el saldo real puede ser distinto al estimado.",
+  },
+];
 ---
 
 <Layout
@@ -60,6 +84,7 @@ const calculatorNextStepItems = [
   <CalculatorJsonLd
     name="Calculadora de Seguro de Cesantía | CIC y Fondo Solidario"
     description="Estima tu cobertura del seguro de cesantía en Chile según sueldo, cotizaciones, causal y saldo CIC."
+    faqs={seguroCesantiaFaqs}
   />
   <Header />
   <Breadcrumb />
@@ -340,6 +365,23 @@ const calculatorNextStepItems = [
       context="Cómo cotizar, cobrar y qué pasa si el Fondo Solidario no alcanza."
     />
     <ShareCalculatorResult />
+    <section class="border-t border-border pt-8 pb-4">
+      <h2 class="mb-6 text-xl font-semibold">
+        Preguntas frecuentes sobre el seguro de cesantía
+      </h2>
+      <dl class="space-y-6">
+        {
+          seguroCesantiaFaqs.map(faq => (
+            <div>
+              <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
+              <dd class="text-sm leading-relaxed text-secondary">
+                {faq.answer}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
     <MethodologyBlock
       notes="Las tasas de cotización y los porcentajes de cobertura CIC se calculan según la normativa vigente de la AFC Chile. Los porcentajes de la Cuenta Individual de Cesantía (CIC) son referenciales; el monto real depende del saldo acumulado. El Fondo Solidario aplica criterios adicionales de elegibilidad."
       sources={[

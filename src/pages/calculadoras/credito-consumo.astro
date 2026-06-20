@@ -48,15 +48,46 @@ const calculatorNextStepItems = [
       ]
     : []),
 ];
+
+const creditoConsumoFaqs = [
+  {
+    question:
+      "¿Esta calculadora es para el CAE de los créditos o para el Crédito con Aval del Estado?",
+    answer:
+      'En Chile la sigla "CAE" significa dos cosas distintas. Esta calculadora es para la <strong>Carga Anual Equivalente</strong>: el indicador porcentual que mide el costo total de un crédito de consumo o hipotecario. <strong>No</strong> es para el Crédito con Aval del Estado, el préstamo estudiantil que gestiona la Comisión Ingresa. Si buscabas información sobre el préstamo universitario, revisa la <a href="/glosario/credito-aval-estado/">guía del Crédito con Aval del Estado</a> o la <a href="/leyes/ley-20027-credito-aval-estado/">Ley 20.027</a>.',
+  },
+  {
+    question: "¿Cómo se calcula el CAE de un crédito de consumo?",
+    answer:
+      "La Carga Anual Equivalente (CAE) expresa el costo total del crédito como porcentaje anual. Esta calculadora estima el CAE sumando la cuota mensual (calculada con amortización francesa), los intereses, los seguros y los gastos operacionales, y convierte ese costo a una tasa anual equivalente. Así puedes comparar ofertas de crédito con distinta tasa, plazo o seguros usando un solo número.",
+  },
+  {
+    question: "¿Qué datos necesito para usar la calculadora de CAE?",
+    answer:
+      "Necesitas cuatro datos de la oferta de crédito: el monto que te prestan, el plazo en meses, la tasa de interés (mensual o anual) y, si aplica, el costo mensual del seguro y los gastos notariales u operacionales. La tasa y el seguro vienen en la hoja TCEA que el ejecutivo debe entregarte por ley.",
+  },
+  {
+    question: "¿La calculadora de CAE reemplaza la hoja TCEA del banco?",
+    answer:
+      "No. Esta calculadora te da una estimación del CAE para comparar ofertas antes de firmar, pero el CAE oficial lo calcula la institución financiera según la metodología de la CMF. Para la decisión final, revisa la hoja TCEA de cada oferta real y compara los CAE oficiales.",
+  },
+  {
+    question:
+      "¿Por qué el CAE es más alto que la tasa de interés que me ofrecen?",
+    answer:
+      "Porque la tasa de interés solo refleja el costo de pedir prestado, mientras que el CAE incluye además los seguros, los gastos notariales y el efecto del plazo. Una tasa mensual del 3,49% equivale a una tasa anual cercana al 51,5%, y al sumar seguros y gastos el CAE sube todavía más. Por eso el CAE es el número que realmente importa para comparar.",
+  },
+];
 ---
 
 <Layout
-  title="Calculadora de Crédito de Consumo | Cuota y CAE"
-  description="Calcula cuota mensual, intereses totales y CAE de una oferta de crédito de consumo."
+  title="Calculadora de Crédito de Consumo | Cuota y CAE (Carga Anual Equivalente)"
+  description="Calcula cuota mensual, intereses totales y la Carga Anual Equivalente (CAE) de una oferta de crédito de consumo. No es el Crédito con Aval del Estado."
 >
   <CalculatorJsonLd
-    name="Calculadora de Crédito de Consumo | Cuota y CAE"
-    description="Calcula cuota mensual, intereses totales y CAE de una oferta de crédito de consumo."
+    name="Calculadora de Crédito de Consumo | Cuota y CAE (Carga Anual Equivalente)"
+    description="Calcula cuota mensual, intereses totales y la Carga Anual Equivalente (CAE) de una oferta de crédito de consumo. No es el Crédito con Aval del Estado."
+    faqs={creditoConsumoFaqs}
   />
   <Header />
   <Breadcrumb />
@@ -307,6 +338,23 @@ const calculatorNextStepItems = [
         },
       ]}
     />
+    <section class="border-t border-border pt-8 pb-4">
+      <h2 class="mb-6 text-xl font-semibold">
+        Preguntas frecuentes sobre la calculadora de crédito de consumo
+      </h2>
+      <dl class="space-y-6">
+        {
+          creditoConsumoFaqs.map(faq => (
+            <div>
+              <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
+              <dd class="text-sm leading-relaxed text-secondary">
+                {faq.answer}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
     <NextSteps
       currentHref="/calculadoras/credito-consumo/"
       items={calculatorNextStepItems}
