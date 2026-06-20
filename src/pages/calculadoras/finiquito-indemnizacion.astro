@@ -4,6 +4,7 @@ import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
+import { finiquitoWorkedExample } from "@/application/use-cases/EstimateFiniquito.methodology";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import CalculatorResultNextActions from "@/components/CalculatorResultNextActions.astro";
@@ -369,6 +370,7 @@ const calculatorNextStepItems = [
       ]}
     />
     <MethodologyBlock
+      example={finiquitoWorkedExample.example}
       notes="Esta calculadora estima el finiquito según las reglas del Código del Trabajo de Chile: indemnización por años de servicio (art. 163), aviso previo (art. 161), vacaciones proporcionales (art. 71 — 1,25 días/mes) y sueldo pendiente del mes. El modo Vacaciones proporcionales aplica solo la lógica del art. 71 CT. Los montos son orientativos; remuneraciones variables o cláusulas especiales requieren revisión profesional."
       sources={[
         {

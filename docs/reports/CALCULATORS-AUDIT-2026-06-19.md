@@ -75,21 +75,46 @@ error presentes. Deltas detectados:
 
 ## 4. Backlog priorizado
 
-### P1 — Ejemplo paso a paso + test anti-drift en las 15 restantes
+### P1 — Ejemplo paso a paso + test anti-drift en las 15 restantes ✅ COMPLETADO (2026-06-20)
 Replica el patrón de los pilotos: crear `*.methodology.ts` junto al use-case,
 añadir el bloque de test anti-drift y pasar `example` al `MethodologyBlock`.
 Orden sugerido por tráfico/valor: `sueldo-liquido`, `impuesto-segunda-categoria`,
 `dividendo-hipotecario`, `credito-consumo`, `operacion-renta`, resto.
 
+**Cierre:** las 15 calculadoras ya tienen su `WorkedExampleFixture` atado a la
+función real, su bloque de test anti-drift y el `example` cableado al
+`MethodologyBlock`. Las 21 calculadoras del sitio muestran ahora el paso a paso.
+Detalles por lote:
+
+- `impuesto-segunda-categoria` se ata a la función de dominio
+  `calculateSecondCategoryTax`; su fixture vive en
+  `src/domain/taxation/calculateSecondCategoryTax.methodology.ts` y el test en
+  `tests/domain/TaxEngine.test.ts`.
+- Las que dependen de datos vivos (UF/UTM/UTA o cronograma de aporte del
+  empleador) usan un valor de referencia explícito etiquetado como ilustrativo
+  (`apv`, `operacion-renta`, `simulador-jubilacion`, etc.).
+  `simulador-jubilacion` fija además `currentDate` para que el aporte del
+  empleador según cronograma legal sea determinista en el test.
+- Suite completa: 796 tests verdes; `pnpm run build` (con astro check) exit 0;
+  paso a paso verificado en el HTML compilado.
+
 > Nota YMYL: el ejemplo es aritmética derivada de fórmulas existentes ya
 > cubiertas por tests. No introduce afirmaciones nuevas, pero el texto del
 > `scenario`/`conclusion` debe respetar el tono del estándar editorial.
 
-### P2 — Fecha de verificación visible donde el dato es "vivo"
+### P2 — Fecha de verificación visible donde el dato es "vivo" — N/A tras revisión (2026-06-20)
 Añadir `CalculatorDataFreshness` (o línea estática) en las que dependen de un
 dato datado y aún no la muestran: revisar `deposito-a-plazo` y
 `finiquito-indemnizacion`. Las de solo input del usuario (`interes-compuesto`,
 `credito-consumo`, `tarjeta-credito`) **no** la necesitan.
+
+**Resolución:** ni `deposito-a-plazo` ni `finiquito-indemnizacion` cablean un
+indicador económico vivo: el depósito usa la tasa que ingresa la persona usuaria
+(la retención del 4% es constante legal, no datada por mes) y el finiquito es
+aritmética de sueldo × años con topes legales fijos (no usa UF/UTM/IMM en el
+cálculo). Mostrar una fecha de verificación de UF/UTM sería engañoso porque esos
+valores no intervienen en el resultado. Se descarta agregar `DataFreshness` en
+ambas.
 
 ### P3 — Estandarización de componentes
 - `impuesto-segunda-categoria`: migrar inputs/resultado a

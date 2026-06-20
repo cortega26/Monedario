@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { estimateUnemploymentCoverage } from "@/application/use-cases/EstimateUnemploymentCoverage";
+import { unemploymentCoverageWorkedExample } from "@/application/use-cases/EstimateUnemploymentCoverage.methodology";
 
 const UF = 39300;
 
@@ -54,5 +55,20 @@ describe("estimateUnemploymentCoverage", () => {
     expect(fixedTerm.minimumContributionsRequired).toBe(5);
     expect(fixedTerm.meetsMinimumContributions).toBe(false);
     expect(fixedTerm.monthlySolidarityContribution).toBe(1400);
+  });
+
+  describe("ejemplo de metodología — anti-drift", () => {
+    it("la cotización y el saldo reales coinciden con el ejemplo publicado", () => {
+      // Si la fórmula cambia y el ejemplo mostrado al usuario queda
+      // desactualizado, este test falla.
+      const result = estimateUnemploymentCoverage(
+        unemploymentCoverageWorkedExample.input
+      );
+      const expected = unemploymentCoverageWorkedExample.expected;
+      expect(result.monthlyCicContribution).toBe(expected.monthlyCicContribution);
+      expect(result.estimatedCicBalance).toBe(expected.estimatedCicBalance);
+      expect(result.totalCoverage).toBe(expected.totalCoverage);
+      expect(result.monthsCovered).toBe(expected.monthsCovered);
+    });
   });
 });

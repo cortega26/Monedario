@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { simulateRetirementProjection } from "@/application/use-cases/SimulateRetirementProjection";
+import { retirementWorkedExample } from "@/application/use-cases/SimulateRetirementProjection.methodology";
 
 const UF = 39300;
 
@@ -52,6 +53,29 @@ describe("simulateRetirementProjection", () => {
     ]);
     expect(result.selectedScenario.totalEmployerContributionsToIndividualAccount).toBeGreaterThan(
       0
+    );
+  });
+});
+
+describe("simulateRetirementProjection — ejemplo de metodología (anti-drift)", () => {
+  it("la pensión estimada real coincide con el ejemplo publicado", () => {
+    // El ejemplo fija currentDate para que el aporte del empleador según
+    // cronograma legal sea determinista. Si la fórmula o el cronograma cambian
+    // y el ejemplo mostrado al usuario queda desactualizado, este test falla.
+    const result = simulateRetirementProjection(retirementWorkedExample.input);
+    const expected = retirementWorkedExample.expected;
+    expect(result.pensionMonths).toBe(expected.pensionMonths);
+    expect(result.selectedScenario.projectedBalance).toBeCloseTo(
+      expected.projectedBalance,
+      4
+    );
+    expect(result.selectedScenario.estimatedMonthlyPension).toBeCloseTo(
+      expected.estimatedMonthlyPension,
+      4
+    );
+    // La UI redondea a pesos enteros; comparamos lo que ve el usuario.
+    expect(Math.round(result.selectedScenario.estimatedMonthlyPension)).toBe(
+      expected.estimatedMonthlyPensionRounded
     );
   });
 });

@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { calculateTermDeposit } from "@/application/use-cases/CalculateTermDeposit";
+import { termDepositWorkedExample } from "@/application/use-cases/CalculateTermDeposit.methodology";
 
 describe("calculateTermDeposit", () => {
   it("calculates gross interest, 4% withholding and net final amount", () => {
@@ -57,5 +58,25 @@ describe("calculateTermDeposit", () => {
         applyWithholding: true,
       })
     ).toThrow("annualRatePercent");
+  });
+
+  describe("ejemplo de metodología — anti-drift", () => {
+    it("el interés neto real coincide con el ejemplo publicado", () => {
+      // Si la fórmula cambia y el ejemplo mostrado al usuario queda
+      // desactualizado, este test falla.
+      const result = calculateTermDeposit(termDepositWorkedExample.input);
+      const expected = termDepositWorkedExample.expected;
+      expect(result.grossInterest).toBeCloseTo(expected.grossInterest, 6);
+      expect(result.netInterest).toBeCloseTo(expected.netInterest, 6);
+      // La UI redondea a pesos enteros; comparamos lo que ve el usuario.
+      expect(Math.round(result.grossInterest)).toBe(
+        expected.grossInterestRounded
+      );
+      expect(Math.round(result.withholdingTax)).toBe(
+        expected.withholdingTaxRounded
+      );
+      expect(Math.round(result.netInterest)).toBe(expected.netInterestRounded);
+      expect(Math.round(result.finalAmount)).toBe(expected.finalAmountRounded);
+    });
   });
 });

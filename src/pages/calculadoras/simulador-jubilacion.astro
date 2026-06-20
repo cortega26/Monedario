@@ -7,6 +7,7 @@ import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
+import { retirementWorkedExample } from "@/application/use-cases/SimulateRetirementProjection.methodology";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import CalculatorScenarios from "@/components/calculator/CalculatorScenarios.astro";
@@ -292,6 +293,7 @@ const calculatorNextStepItems = [
     <ShareCalculatorResult />
     <CalculatorScenarios />
     <MethodologyBlock
+      example={retirementWorkedExample.example}
       notes="La proyección de pensiones se realiza con interés compuesto, cotización obligatoria del 10% del sueldo imponible y tope imponible vigente. Las tasas de rentabilidad son escenarios ilustrativos. Para una proyección oficial, usa el simulador de la Superintendencia de Pensiones en spensiones.cl."
       sources={[
         {

@@ -8,6 +8,7 @@ import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
 import NextSteps from "@/components/NextSteps.astro";
 import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
+import { termDepositWorkedExample } from "@/application/use-cases/CalculateTermDeposit.methodology";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import CalculatorResultNextActions from "@/components/CalculatorResultNextActions.astro";
@@ -335,6 +336,7 @@ const dapFaqs = [
       ]}
     />
     <MethodologyBlock
+      example={termDepositWorkedExample.example}
       notes="Esta calculadora aplica la fórmula lineal de interés simple proporcional al plazo: Interés bruto = Monto × (TIR/100) × (días/365). La retención del 4% sobre intereses se aplica bajo art. 59 N°4 LIR para personas naturales sin actividad de primera categoría. El monto final = monto inicial + interés neto. Los resultados son de referencia; el impuesto final depende de la situación tributaria de cada contribuyente."
       sources={[
         {

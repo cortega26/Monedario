@@ -12,6 +12,7 @@ import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
 import NextSteps from "@/components/NextSteps.astro";
 import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+import { secondCategoryTaxWorkedExample } from "@/domain/taxation/calculateSecondCategoryTax.methodology";
 import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
 import {
   buildSecondCategoryTaxBrackets,
@@ -346,6 +347,7 @@ const calculatorNextStepItems = [
     />
     <ShareCalculatorResult />
     <MethodologyBlock
+      example={secondCategoryTaxWorkedExample.example}
       notes="El impuesto de segunda categoría se calcula aplicando la tabla de tramos progresivos publicada por el SII, usando la UTM vigente para convertir los tramos a pesos. La fórmula es: impuesto = base imponible × tasa del tramo — cantidad a rebajar del tramo correspondiente."
       sources={[
         {

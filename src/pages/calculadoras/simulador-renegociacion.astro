@@ -4,6 +4,7 @@ import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
+import { debtRenegotiationWorkedExample } from "@/application/use-cases/SimulateDebtRenegotiation.methodology";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
@@ -376,6 +377,7 @@ const calculatorNextStepItems = [
     />
     <ShareCalculatorResult />
     <MethodologyBlock
+      example={debtRenegotiationWorkedExample.example}
       notes="El filtro de elegibilidad Superir verifica umbrales de deuda y documentación según la normativa CMF vigente. La cuota orientativa usa la tasa máxima convencional como referencia y no considera descuentos ni acuerdos particulares con acreedores."
       sources={[
         {

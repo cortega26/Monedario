@@ -17,6 +17,7 @@ import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 import { calculateConsumerCredit } from "@/application/use-cases/CalculateConsumerCredit";
+import { consumerCreditWorkedExample } from "@/application/use-cases/CalculateConsumerCredit.methodology";
 const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
 const exampleResult = calculateConsumerCredit({
   principal: 2_000_000,
@@ -324,6 +325,7 @@ const creditoConsumoFaqs = [
       ]}
     />
     <MethodologyBlock
+      example={consumerCreditWorkedExample.example}
       notes="La cuota mensual se calcula con la fórmula de amortización francesa (cuota fija). El CAE se estima integrando gastos asociados. Las tasas de referencia corresponden a la tasa máxima convencional vigente publicada por la CMF para operaciones de crédito de consumo."
       sources={[
         {

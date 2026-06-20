@@ -3,6 +3,7 @@ import {
   calculateIpcRentAdjustment,
   calculateUfRentAdjustment,
 } from "@/application/use-cases/CalculateRentAdjustment";
+import { rentAdjustmentWorkedExample } from "@/application/use-cases/CalculateRentAdjustment.methodology";
 
 describe("calculateUfRentAdjustment", () => {
   it("computes UF-indexed rent adjustment with a typical monthly UF increase", () => {
@@ -106,5 +107,23 @@ describe("calculateIpcRentAdjustment", () => {
         ipcVariationPercent: NaN,
       })
     ).toThrow("ipcVariationPercent");
+  });
+});
+
+describe("calculateIpcRentAdjustment — ejemplo de metodología (anti-drift)", () => {
+  it("el reajuste real coincide con el ejemplo publicado", () => {
+    // Si la fórmula cambia y el ejemplo mostrado al usuario queda
+    // desactualizado, este test falla.
+    const result = calculateIpcRentAdjustment(rentAdjustmentWorkedExample.input);
+    const expected = rentAdjustmentWorkedExample.expected;
+    expect(result.adjustedRentClp).toBeCloseTo(expected.adjustedRentClp, 6);
+    expect(result.differenceClp).toBeCloseTo(expected.differenceClp, 6);
+    // La UI redondea a pesos enteros; comparamos lo que ve el usuario.
+    expect(Math.round(result.adjustedRentClp)).toBe(
+      expected.adjustedRentClpRounded
+    );
+    expect(Math.round(result.differenceClp)).toBe(
+      expected.differenceClpRounded
+    );
   });
 });

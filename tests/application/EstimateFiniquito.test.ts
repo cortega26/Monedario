@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { estimateFiniquito } from "@/application/use-cases/EstimateFiniquito";
+import { finiquitoWorkedExample } from "@/application/use-cases/EstimateFiniquito.methodology";
 
 describe("estimateFiniquito", () => {
   it("estimates years of service, substitute notice and proportional vacation", () => {
@@ -204,5 +205,21 @@ describe("estimateFiniquito", () => {
         terminationCause: "renuncia",
       })
     ).toThrow("pendingSalaryDays must be a finite number between 0 and 30.");
+  });
+
+  describe("ejemplo de metodología — anti-drift", () => {
+    it("la indemnización real coincide con el ejemplo publicado", () => {
+      // Si la fórmula cambia y el ejemplo mostrado al usuario queda
+      // desactualizado, este test falla.
+      const result = estimateFiniquito(finiquitoWorkedExample.input);
+      const expected = finiquitoWorkedExample.expected;
+      expect(result.yearsOfServiceIndemnity).toBe(
+        expected.yearsOfServiceIndemnity
+      );
+      expect(result.substituteNoticeIndemnity).toBe(
+        expected.substituteNoticeIndemnity
+      );
+      expect(result.totalEstimate).toBe(expected.totalEstimate);
+    });
   });
 });

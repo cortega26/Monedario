@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { calculateCompoundInterest } from "@/application/use-cases/CalculateCompoundInterest";
+import { compoundInterestWorkedExample } from "@/application/use-cases/CalculateCompoundInterest.methodology";
 
 describe("calculateCompoundInterest", () => {
   it("calculates monthly compounding and yearly evolution", () => {
@@ -64,5 +65,26 @@ describe("calculateCompoundInterest", () => {
         compoundsPerYear: 12,
       })
     ).toThrow("years");
+  });
+
+  describe("ejemplo de metodología — anti-drift", () => {
+    it("el monto final real coincide con el ejemplo publicado", () => {
+      // Si la fórmula cambia y el ejemplo mostrado al usuario queda
+      // desactualizado, este test falla.
+      const result = calculateCompoundInterest(
+        compoundInterestWorkedExample.input
+      );
+      const expected = compoundInterestWorkedExample.expected;
+      expect(result.finalAmount).toBeCloseTo(expected.finalAmount, 6);
+      expect(result.generatedInterest).toBeCloseTo(
+        expected.generatedInterest,
+        6
+      );
+      // La UI redondea a pesos enteros; comparamos lo que ve el usuario.
+      expect(Math.round(result.finalAmount)).toBe(expected.finalAmountRounded);
+      expect(Math.round(result.generatedInterest)).toBe(
+        expected.generatedInterestRounded
+      );
+    });
   });
 });

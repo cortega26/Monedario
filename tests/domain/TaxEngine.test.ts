@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { calculateSecondCategoryTax } from "@/domain/taxation/TaxEngine";
+import { secondCategoryTaxWorkedExample } from "@/domain/taxation/calculateSecondCategoryTax.methodology";
 
 const UTM = 67294;
 
@@ -125,5 +126,21 @@ describe("TaxEngine.calculateSecondCategoryTax", () => {
     expect(() =>
       calculateSecondCategoryTax({ taxableIncome: 1000000, utm: 0 })
     ).toThrow("utm must be a finite number > 0.");
+  });
+
+  describe("ejemplo de metodología — anti-drift", () => {
+    it("el impuesto real coincide con el ejemplo publicado", () => {
+      // Si la fórmula o los tramos cambian y el ejemplo mostrado al usuario
+      // queda desactualizado, este test falla.
+      const result = calculateSecondCategoryTax(
+        secondCategoryTaxWorkedExample.input
+      );
+      expect(roundToPeso(result.taxAmount)).toBe(
+        secondCategoryTaxWorkedExample.expectedTaxAmountRounded
+      );
+      expect(result.marginalRate).toBe(
+        secondCategoryTaxWorkedExample.expectedMarginalRate
+      );
+    });
   });
 });

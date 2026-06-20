@@ -4,6 +4,7 @@ import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
+import { creditCardCostWorkedExample } from "@/application/use-cases/SimulateCreditCardCost.methodology";
 import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import CalculatorResultNextActions from "@/components/CalculatorResultNextActions.astro";
@@ -230,6 +231,7 @@ const calculatorNextStepItems = [
       ]}
     />
     <MethodologyBlock
+      example={creditCardCostWorkedExample.example}
       notes="El costo total de la deuda con pago mínimo se calcula con la fórmula de amortización iterativa mes a mes. El pago mínimo usa el porcentaje informado por el emisor. La tasa de referencia máxima corresponde a la tasa máxima convencional CMF vigente para tarjetas de crédito."
       sources={[
         {

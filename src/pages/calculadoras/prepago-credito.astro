@@ -14,6 +14,7 @@ import { getEconomicParameters } from "@/application/use-cases/GetEconomicParame
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import { simulateCreditPrepayment } from "@/application/use-cases/SimulateCreditPrepayment";
+import { creditPrepaymentWorkedExample } from "@/application/use-cases/SimulateCreditPrepayment.methodology";
 import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
 import CalculatorDataFreshness from "@/components/calculator/CalculatorDataFreshness.astro";
 import { formatEconomicDate } from "@/domain/economic/economicSourcePresentation";
@@ -366,6 +367,7 @@ const calculatorNextStepItems = [
     />
     <ShareCalculatorResult />
     <MethodologyBlock
+      example={creditPrepaymentWorkedExample.example}
       notes="El ahorro por prepago se calcula como la diferencia de intereses totales entre el plan original y el plan modificado tras el abono. La Ley 18.010 (art. 10) reconoce el derecho a prepago sin multa en créditos de consumo; para créditos hipotecarios pueden aplicar condiciones distintas según contrato."
       sources={[
         {

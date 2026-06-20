@@ -3,6 +3,7 @@ import {
   calculateNetSalary,
   estimateGrossFromNet,
 } from "@/application/use-cases/CalculateNetSalary";
+import { netSalaryWorkedExample } from "@/application/use-cases/CalculateNetSalary.methodology";
 
 const UF = 40000;
 const UTM = 67294;
@@ -275,5 +276,23 @@ describe("Jornada parcial — escalado proporcional del bruto", () => {
     // taxableBase after deductions on $700k should be below first bracket (~UTM * 13.5 ≈ 908k)
     expect(result.deductions.tax).toBe(0);
     expect(result.netSalary).toBeGreaterThan(0);
+  });
+});
+
+describe("calculateNetSalary — ejemplo de metodología (anti-drift)", () => {
+  it("el líquido y los descuentos reales coinciden con el ejemplo publicado", () => {
+    // Si la fórmula cambia y el ejemplo mostrado al usuario queda
+    // desactualizado, este test falla.
+    const result = calculateNetSalary(netSalaryWorkedExample.input);
+    const expected = netSalaryWorkedExample.expected;
+    expect(Math.round(result.netSalary)).toBe(expected.netSalary);
+    expect(Math.round(result.deductions.afp)).toBe(expected.deductions.afp);
+    expect(Math.round(result.deductions.health)).toBe(
+      expected.deductions.health
+    );
+    expect(Math.round(result.deductions.unemploymentInsurance)).toBe(
+      expected.deductions.unemploymentInsurance
+    );
+    expect(Math.round(result.deductions.tax)).toBe(expected.deductions.tax);
   });
 });

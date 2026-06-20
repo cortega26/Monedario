@@ -16,6 +16,7 @@ import CalculatorResultNextActions from "@/components/CalculatorResultNextAction
 import NextBestStep from "@/components/NextBestStep.astro";
 import SupportCallout from "@/components/SupportCallout.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+import { netSalaryWorkedExample } from "@/application/use-cases/CalculateNetSalary.methodology";
 import { getPath } from "@/utils/getPath";
 import { sueldoCalculatorSections } from "@/config/sueldoClusterLinks";
 import { AFP_COMMISSIONS_PERCENT } from "@/config/afpCommissions";
@@ -1077,6 +1078,7 @@ const calculatorNextStepItems = [
       ]}
     />
     <MethodologyBlock
+      example={netSalaryWorkedExample.example}
       notes="Esta calculadora aplica las tasas de cotización previsional vigentes en Chile: AFP (tasa total según administradora, que incluye 10% fondo personal + comisión), salud (7% Fonasa o cotización diferenciada Isapre), seguro de cesantía (0.6% contrato indefinido, 3% plazo fijo) e impuesto de segunda categoría por tramos UTM según tabla del SII. El sueldo mínimo legal se usa solo como referencia de validación."
       sources={[
         {

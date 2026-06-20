@@ -20,6 +20,7 @@ import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParamete
 import { formatEconomicDate } from "@/domain/economic/economicSourcePresentation";
 
 import { calculateMortgage } from "@/application/use-cases/CalculateMortgage";
+import { mortgageWorkedExample } from "@/application/use-cases/CalculateMortgage.methodology";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 const ufValuePesos = economicParameters.uf;
@@ -384,6 +385,7 @@ const calculatorNextStepItems = [
     <ShareCalculatorResult />
     <CalculatorScenarios />
     <MethodologyBlock
+      example={mortgageWorkedExample.example}
       notes="El dividendo base se calcula con amortización francesa (cuota de capital+interés constante en UF). Los seguros son opcionales: el desgravamen varía según el saldo pendiente (decrece con el tiempo); el seguro de incendio/sismo es fijo. Las tasas son aproximadas — solicita la Hoja de Condiciones (CAE) a tu institución financiera."
       sources={[
         {

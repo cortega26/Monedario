@@ -14,6 +14,7 @@ import NextSteps from "@/components/NextSteps.astro";
 import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { simulateOperacionRenta } from "@/application/use-cases/SimulateOperacionRenta";
+import { operacionRentaWorkedExample } from "@/application/use-cases/SimulateOperacionRenta.methodology";
 import { getPath } from "@/utils/getPath";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
@@ -438,6 +439,7 @@ const operacionRentaFaqs = [
       ]}
     />
     <MethodologyBlock
+      example={operacionRentaWorkedExample.example}
       notes="El Impuesto Global Complementario (IGC) se calcula aplicando la tabla de tramos progresivos del SII usando la UTA (12 UTM). La estimación no incluye: crédito de primera categoría, dividendos ni situaciones de dos empleadores simultáneos. Para el cálculo oficial, usa la propuesta del SII en www.sii.cl."
       sources={[
         {

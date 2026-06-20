@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { simulateCreditPrepayment } from "@/application/use-cases/SimulateCreditPrepayment";
+import { creditPrepaymentWorkedExample } from "@/application/use-cases/SimulateCreditPrepayment.methodology";
 
 describe("simulateCreditPrepayment", () => {
   it("discounts the prepayment cost from the net benefit comparison", () => {
@@ -64,5 +65,26 @@ describe("simulateCreditPrepayment", () => {
         alternativeAnnualReturnPercent: 5,
       })
     ).toThrow(/monthlyRatePercent/i);
+  });
+
+  describe("ejemplo de metodología — anti-drift", () => {
+    it("el ahorro y los meses reales coinciden con el ejemplo publicado", () => {
+      // Si la fórmula cambia y el ejemplo mostrado al usuario queda
+      // desactualizado, este test falla.
+      const result = simulateCreditPrepayment(
+        creditPrepaymentWorkedExample.input
+      );
+      const expected = creditPrepaymentWorkedExample.expected;
+      expect(result.interestSavings).toBeCloseTo(expected.interestSavings, 6);
+      expect(result.netSavingsAfterPrepaymentCost).toBeCloseTo(
+        expected.netSavingsAfterPrepaymentCost,
+        6
+      );
+      expect(result.monthsSaved).toBe(expected.monthsSaved);
+      // La UI redondea a pesos enteros; comparamos lo que ve el usuario.
+      expect(Math.round(result.interestSavings)).toBe(
+        expected.interestSavingsRounded
+      );
+    });
   });
 });

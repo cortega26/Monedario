@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { simulateOperacionRenta } from "@/application/use-cases/SimulateOperacionRenta";
+import { operacionRentaWorkedExample } from "@/application/use-cases/SimulateOperacionRenta.methodology";
 
 // UTM from economic-parameters.snapshot.json (2026-04-11). Keep in sync
 // with the snapshot; if the snapshot is updated, update this constant too.
@@ -185,5 +186,18 @@ describe("simulateOperacionRenta", () => {
         economicParameters: BASE_INCOME_PARAMS,
       })
     ).toThrow("al menos una fuente de ingreso");
+  });
+
+  describe("ejemplo de metodología — anti-drift", () => {
+    it("el resultado real coincide con el ejemplo publicado", () => {
+      // Si la fórmula cambia y el ejemplo mostrado al usuario queda
+      // desactualizado, este test falla.
+      const result = simulateOperacionRenta(operacionRentaWorkedExample.input);
+      const expected = operacionRentaWorkedExample.expected;
+      expect(result.rentaNetaHonorarios).toBe(expected.rentaNetaHonorarios);
+      expect(result.baseImponibleIGC).toBe(expected.baseImponibleIGC);
+      expect(result.igcCalculado).toBe(expected.igcCalculado);
+      expect(result.montoDevolución).toBe(expected.montoDevolución);
+    });
   });
 });

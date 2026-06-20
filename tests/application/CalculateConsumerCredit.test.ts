@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { calculateConsumerCredit } from "@/application/use-cases/CalculateConsumerCredit";
+import { consumerCreditWorkedExample } from "@/application/use-cases/CalculateConsumerCredit.methodology";
 
 describe("calculateConsumerCredit", () => {
   it("computes low-risk consumer credit (12 months, monthly rate 1.5%)", () => {
@@ -116,5 +117,24 @@ describe("calculateConsumerCredit", () => {
         operatingCosts: 200_000,
       })
     ).toThrow("operatingCosts");
+  });
+
+  describe("ejemplo de metodología — anti-drift", () => {
+    it("la cuota y el total reales coinciden con el ejemplo publicado", () => {
+      // Si la fórmula cambia y el ejemplo mostrado al usuario queda
+      // desactualizado, este test falla.
+      const result = calculateConsumerCredit(consumerCreditWorkedExample.input);
+      const expected = consumerCreditWorkedExample.expected;
+      expect(result.monthlyPaymentTotal).toBeCloseTo(
+        expected.monthlyPaymentTotal,
+        6
+      );
+      expect(result.totalPaid).toBeCloseTo(expected.totalPaid, 6);
+      // La UI redondea a pesos enteros; comparamos lo que ve el usuario.
+      expect(Math.round(result.monthlyPaymentTotal)).toBe(
+        expected.monthlyPaymentTotalRounded
+      );
+      expect(Math.round(result.totalPaid)).toBe(expected.totalPaidRounded);
+    });
   });
 });

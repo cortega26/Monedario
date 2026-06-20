@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { calculateMortgage } from "@/application/use-cases/CalculateMortgage";
 import { calculateAnnuityPayment } from "@/application/use-cases/shared/creditAmortization";
+import { mortgageWorkedExample } from "@/application/use-cases/CalculateMortgage.methodology";
 
 const UF_VALUE = 39841.72;
 
@@ -153,5 +154,19 @@ describe("calculateMortgage", () => {
         ufValuePesos: UF_VALUE,
       })
     ).toThrow();
+  });
+
+  describe("ejemplo de metodología — anti-drift", () => {
+    it("el crédito y el dividendo reales coinciden con el ejemplo publicado", () => {
+      // Si la fórmula cambia y el ejemplo mostrado al usuario queda
+      // desactualizado, este test falla.
+      const result = calculateMortgage(mortgageWorkedExample.input);
+      const expected = mortgageWorkedExample.expected;
+      expect(result.loanAmountUF).toBeCloseTo(expected.loanAmountUF, 6);
+      // La UI muestra el dividendo en pesos redondeado a peso entero.
+      expect(Math.round(result.basePaymentPesos)).toBe(
+        expected.basePaymentPesosRounded
+      );
+    });
   });
 });

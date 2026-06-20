@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { simulateCreditCardCost } from "@/application/use-cases/SimulateCreditCardCost";
+import { creditCardCostWorkedExample } from "@/application/use-cases/SimulateCreditCardCost.methodology";
 
 describe("simulateCreditCardCost", () => {
   it("minimum payment scenario: debt grows slowly and takes many months to clear", () => {
@@ -82,5 +83,24 @@ describe("simulateCreditCardCost", () => {
         minimumPaymentPercent: 0,
       })
     ).toThrow("minimumPaymentPercent");
+  });
+
+  describe("ejemplo de metodología — anti-drift", () => {
+    it("los meses y el interés reales coinciden con el ejemplo publicado", () => {
+      // Si la fórmula cambia y el ejemplo mostrado al usuario queda
+      // desactualizado, este test falla.
+      const result = simulateCreditCardCost(creditCardCostWorkedExample.input);
+      const expected = creditCardCostWorkedExample.expected;
+      expect(result.baseline.months).toBe(expected.baselineMonths);
+      expect(result.baseline.totalInterest).toBeCloseTo(
+        expected.baselineTotalInterest,
+        4
+      );
+      // La UI redondea a pesos enteros; comparamos lo que ve el usuario.
+      expect(Math.round(result.baseline.totalInterest)).toBe(
+        expected.baselineTotalInterestRounded
+      );
+      expect(result.doubledPayment.months).toBe(expected.doubledMonths);
+    });
   });
 });

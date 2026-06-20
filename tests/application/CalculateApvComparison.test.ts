@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { calculateApvComparison } from "@/application/use-cases/CalculateApvComparison";
+import { apvWorkedExample } from "@/application/use-cases/CalculateApvComparison.methodology";
 import { calculateNetSalary } from "@/application/use-cases/CalculateNetSalary";
 
 const UTM = 67294;
@@ -210,5 +211,20 @@ describe("calculateApvComparison", () => {
     expect(result.cappedBases.unemploymentInsurance).toBe(5408000);
     expect(result.taxableBase).toBeCloseTo(5527832, 6);
     expect(result.regimeB.reducedTaxBase).toBeCloseTo(5277832, 6);
+  });
+});
+
+describe("calculateApvComparison — ejemplo de metodología (anti-drift)", () => {
+  it("el bono estatal real coincide con el ejemplo publicado", () => {
+    // Si la fórmula cambia y el ejemplo mostrado al usuario queda
+    // desactualizado, este test falla.
+    const result = calculateApvComparison(apvWorkedExample.input);
+    const expected = apvWorkedExample.expected;
+    expect(Math.round(result.regimeA.annualBonus)).toBe(
+      expected.regimeA.annualBonus
+    );
+    expect(Math.round(result.regimeA.monthlyBenefit)).toBe(
+      expected.regimeA.monthlyBenefit
+    );
   });
 });
