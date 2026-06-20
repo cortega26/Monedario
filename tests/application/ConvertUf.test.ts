@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { convertUf } from "@/application/use-cases/ConvertUf";
+import { ufWorkedExample } from "@/application/use-cases/ConvertUf.methodology";
 
 describe("convertUf", () => {
   it("converts UF to pesos using the injected UF value", () => {
@@ -31,5 +32,11 @@ describe("convertUf", () => {
     expect(() =>
       convertUf({ amount: 1, ufValue: 0, direction: "uf_to_clp" })
     ).toThrow("ufValue");
+  });
+});
+
+describe("convertUf — ejemplo de metodología (anti-drift)", () => {
+  it("la salida real coincide con el ejemplo publicado", () => {
+    expect(convertUf(ufWorkedExample.input)).toEqual(ufWorkedExample.expected);
   });
 });

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { compareAfpCommissions } from "@/application/use-cases/CompareAfpCommissions";
 import { AFP_COMMISSIONS_PERCENT } from "@/config/afpCommissions";
+import { afpWorkedExample } from "@/application/use-cases/CompareAfpCommissions.methodology";
 
 describe("compareAfpCommissions", () => {
   it("sorts AFPs by commission and computes max savings from taxable salary", () => {
@@ -34,5 +35,22 @@ describe("compareAfpCommissions", () => {
       compareAfpCommissions(Number.NaN, AFP_COMMISSIONS_PERCENT)
     ).toThrow("taxableSalary");
     expect(() => compareAfpCommissions(1_000_000, [])).toThrow("commissions");
+  });
+});
+
+describe("compareAfpCommissions — ejemplo de metodología (anti-drift)", () => {
+  it("el ahorro real coincide con el ejemplo publicado", () => {
+    const result = compareAfpCommissions(
+      afpWorkedExample.input.taxableSalary,
+      afpWorkedExample.input.commissions
+    );
+    // La UI redondea a pesos enteros con Math.round; comparamos el valor que
+    // ve el usuario, no el flotante crudo.
+    expect(Math.round(result.maxExtraMonthlyCost)).toBe(
+      afpWorkedExample.expected.maxExtraMonthlyCost
+    );
+    expect(Math.round(result.maxExtraAnnualCost)).toBe(
+      afpWorkedExample.expected.maxExtraAnnualCost
+    );
   });
 });

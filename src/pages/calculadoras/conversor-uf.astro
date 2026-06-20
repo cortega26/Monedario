@@ -16,6 +16,7 @@ import { getPath } from "@/utils/getPath";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorDataFreshness from "@/components/calculator/CalculatorDataFreshness.astro";
 import { formatEconomicDate } from "@/domain/economic/economicSourcePresentation";
+import { ufWorkedExample } from "@/application/use-cases/ConvertUf.methodology";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 const ufGuidePath = getPath("/posts/que-es-la-uf/");
@@ -103,28 +104,9 @@ const ufFaqs = [
       descriptionClass="max-w-xl text-secondary"
     />
 
-    <section class="max-w-xl py-8">
-      <!-- VALOR DEL DÍA -->
-      <div
-        id="valor-uf-banner"
-        class="mb-6 flex items-center justify-between gap-4 rounded-xl border border-accent/30 bg-accent/5 p-4"
-      >
-        <div>
-          <p
-            class="mb-0.5 text-xs font-bold tracking-widest text-accent uppercase"
-          >
-            Valor UF hoy
-          </p>
-          <p id="uf-display" class="text-3xl font-bold">{"$" + ufDisplay}</p>
-          <p id="uf-fecha" class="mt-0.5 text-xs text-muted">
-            {ufDateDisplay} · Fuente: Banco Central de Chile
-          </p>
-        </div>
-        <span class="text-4xl">🇨🇱</span>
-      </div>
-
+    <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- CONVERSOR -->
-      <div class="mb-6 rounded-xl border border-border p-6">
+      <div class="rounded-xl border border-border p-6">
         <!-- UF → Pesos -->
         <div class="mb-6">
           <label
@@ -189,16 +171,38 @@ const ufFaqs = [
         </div>
       </div>
 
-      <!-- TABLA DE REFERENCIA RÁPIDA -->
-      <div class="rounded-xl border border-border p-6">
-        <h2 class="mb-4 text-base font-semibold">
-          Valores de referencia rápidos
-        </h2>
-        <div id="tabla-ref" class="space-y-2 text-sm"></div>
-        <CalculatorDataFreshness
-          source={economicParameters.source}
-          updatedDate={ufDateDisplay}
-        />
+      <!-- COLUMNA DERECHA: valor del día + referencia -->
+      <div class="space-y-6">
+        <!-- VALOR DEL DÍA -->
+        <div
+          id="valor-uf-banner"
+          class="flex items-center justify-between gap-4 rounded-xl border border-accent/30 bg-accent/5 p-4"
+        >
+          <div>
+            <p
+              class="mb-0.5 text-xs font-bold tracking-widest text-accent uppercase"
+            >
+              Valor UF hoy
+            </p>
+            <p id="uf-display" class="text-3xl font-bold">{"$" + ufDisplay}</p>
+            <p id="uf-fecha" class="mt-0.5 text-xs text-muted">
+              {ufDateDisplay} · Fuente: Banco Central de Chile
+            </p>
+          </div>
+          <span class="text-4xl">🇨🇱</span>
+        </div>
+
+        <!-- TABLA DE REFERENCIA RÁPIDA -->
+        <div class="rounded-xl border border-border p-6">
+          <h2 class="mb-4 text-base font-semibold">
+            Valores de referencia rápidos
+          </h2>
+          <div id="tabla-ref" class="space-y-2 text-sm"></div>
+          <CalculatorDataFreshness
+            source={economicParameters.source}
+            updatedDate={ufDateDisplay}
+          />
+        </div>
       </div>
     </section>
 
@@ -286,6 +290,7 @@ const ufFaqs = [
     />
     <ShareCalculatorResult />
     <MethodologyBlock
+      example={ufWorkedExample.example}
       notes="La UF es publicada oficialmente por el Banco Central de Chile (fuente primaria). El valor diario se obtiene desde el Banco Central, con mindicador.cl como respaldo (espejo de la misma publicación). La UF se actualiza diariamente entre el día 10 de cada mes y el día 9 del siguiente, en base al IPC del mes anterior publicado por el INE."
       sources={[
         {

@@ -10,7 +10,11 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
 import NextSteps from "@/components/NextSteps.astro";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import CalculatorField from "@/components/calculator/CalculatorField.astro";
+import CalculatorRadioGroup from "@/components/calculator/CalculatorRadioGroup.astro";
+import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
+import { ivaWorkedExample } from "@/application/use-cases/CalculateIva.methodology";
 
 // La calculadora IVA aún no está registrada en el portafolio (pendiente de
 // visto bueno editorial). Cuando se registre, currentCalculator devolverá su
@@ -33,6 +37,11 @@ const calculatorNextStepItems = [
     label: "Herramientas",
   },
 ];
+
+// Ejemplo mostrado por defecto en el panel de resultado, derivado del mismo
+// fixture que verifica el test anti-drift para que nunca quede desactualizado.
+const ex = ivaWorkedExample.expected;
+const fmtClp = (n: number) => "$" + n.toLocaleString("es-CL");
 ---
 
 <Layout
@@ -42,6 +51,7 @@ const calculatorNextStepItems = [
   <CalculatorJsonLd
     name="Calculadora de IVA Chile 19%"
     description="Calcula el IVA del 19% en Chile: obtén el monto neto, el IVA y el bruto en segundos."
+    dateModified="2026-06-01"
   />
   <Header />
   <Breadcrumb />
@@ -60,52 +70,31 @@ const calculatorNextStepItems = [
       descriptionClass="max-w-xl text-secondary"
     />
 
-    <section class="max-w-xl py-8">
-      <!-- CONVERSOR -->
-      <div class="mb-6 rounded-xl border border-border p-6">
-        <!-- TOGGLE DE DIRECCIÓN -->
-        <fieldset class="mb-6">
-          <legend class="mb-2 block text-sm font-medium text-secondary">
-            ¿Qué monto tienes?
-          </legend>
-          <div class="flex gap-3">
-            <label
-              class="flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-lg border border-border px-3 py-2.5 text-sm transition-all has-[:checked]:border-accent has-[:checked]:bg-accent/10 has-[:checked]:font-semibold"
-            >
-              <input
-                type="radio"
-                name="direction"
-                id="dir-neto"
-                value="neto-a-bruto"
-                class="sr-only"
-                checked
-              />
-              Monto neto (sin IVA)
-            </label>
-            <label
-              class="flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-lg border border-border px-3 py-2.5 text-sm transition-all has-[:checked]:border-accent has-[:checked]:bg-accent/10 has-[:checked]:font-semibold"
-            >
-              <input
-                type="radio"
-                name="direction"
-                id="dir-bruto"
-                value="bruto-a-neto"
-                class="sr-only"
-              />
-              Monto bruto (con IVA)
-            </label>
-          </div>
-        </fieldset>
+    <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
+      <!-- FORMULARIO -->
+      <div class="rounded-xl border border-border p-6">
+        <CalculatorRadioGroup
+          legend="¿Qué monto tienes?"
+          name="direction"
+          options={[
+            {
+              id: "dir-neto",
+              value: "neto-a-bruto",
+              label: "Monto neto (sin IVA)",
+              checked: true,
+            },
+            {
+              id: "dir-bruto",
+              value: "bruto-a-neto",
+              label: "Monto bruto (con IVA)",
+            },
+          ]}
+        />
 
-        <!-- ENTRADA -->
-        <div class="mb-6">
-          <label
-            for="monto-input"
-            id="monto-label"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Monto neto (sin IVA) en pesos chilenos
-          </label>
+        <CalculatorField
+          id="monto-input"
+          label="Monto neto (sin IVA) en pesos chilenos"
+        >
           <div class="relative">
             <span
               class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-muted"
@@ -118,19 +107,31 @@ const calculatorNextStepItems = [
               inputmode="numeric"
               autocomplete="off"
               spellcheck="false"
-              aria-describedby="monto-input-hint"
+              aria-describedby="monto-input-hint monto-error"
               class="w-full rounded-lg border border-border bg-background py-2 pr-3 pl-8 text-lg text-foreground focus:border-accent focus:outline-none"
             />
           </div>
           <p id="monto-input-hint" class="mt-1 text-xs text-muted">
             Escribe solo números; aplicamos el formato chileno automáticamente.
           </p>
-        </div>
+          <p
+            id="monto-error"
+            role="alert"
+            class="mt-1 hidden text-xs text-red-500"
+          >
+          </p>
+        </CalculatorField>
+      </div>
 
-        <!-- RESULTADO VISUAL -->
+      <!-- RESULTADO -->
+      <CalculatorResultPanel title="Resultado">
         <div
           id="resultado"
-          class="hidden rounded-lg border border-border bg-foreground/5 p-4"
+          data-is-example="true"
+          data-ex-neto={fmtClp(ex.neto)}
+          data-ex-iva={fmtClp(ex.iva)}
+          data-ex-bruto={fmtClp(ex.bruto)}
+          class="opacity-70 transition-opacity"
           aria-live="polite"
         >
           <div class="grid grid-cols-3 gap-3 text-center">
@@ -140,7 +141,9 @@ const calculatorNextStepItems = [
               >
                 Neto
               </p>
-              <p id="res-neto" class="text-xl font-bold tabular-nums"></p>
+              <p id="res-neto" class="text-xl font-bold tabular-nums">
+                {fmtClp(ex.neto)}
+              </p>
             </div>
             <div>
               <p
@@ -152,6 +155,7 @@ const calculatorNextStepItems = [
                 id="res-iva"
                 class="text-xl font-bold text-accent tabular-nums"
               >
+                {fmtClp(ex.iva)}
               </p>
             </div>
             <div>
@@ -160,37 +164,43 @@ const calculatorNextStepItems = [
               >
                 Bruto
               </p>
-              <p id="res-bruto" class="text-xl font-bold tabular-nums"></p>
+              <p id="res-bruto" class="text-xl font-bold tabular-nums">
+                {fmtClp(ex.bruto)}
+              </p>
             </div>
           </div>
+          <p id="resultado-nota" class="mt-3 text-center text-xs text-muted">
+            Ejemplo: monto neto de {fmtClp(ex.neto)}. Escribe un monto para
+            calcular el tuyo.
+          </p>
         </div>
-      </div>
 
-      <!-- INFO TASA -->
-      <div class="rounded-xl border border-border p-6">
-        <h2 class="mb-3 text-base font-semibold">Tasa vigente</h2>
-        <div
-          class="flex items-center justify-between border-b border-border py-2"
-        >
-          <span class="text-sm text-secondary">IVA Chile</span>
-          <span class="font-mono font-semibold">19%</span>
+        <!-- INFO TASA -->
+        <div class="mt-5 border-t border-border pt-4">
+          <h3 class="mb-3 text-sm font-semibold">Tasa vigente</h3>
+          <div
+            class="flex items-center justify-between border-b border-border py-2"
+          >
+            <span class="text-sm text-secondary">IVA Chile</span>
+            <span class="font-mono font-semibold">19%</span>
+          </div>
+          <div
+            class="flex items-center justify-between border-b border-border py-2"
+          >
+            <span class="text-sm text-secondary">Factor neto → bruto</span>
+            <span class="font-mono font-semibold">× 1,19</span>
+          </div>
+          <div class="flex items-center justify-between py-2">
+            <span class="text-sm text-secondary">Factor bruto → neto</span>
+            <span class="font-mono font-semibold">÷ 1,19</span>
+          </div>
+          <p class="mt-3 text-xs text-muted">
+            Datos verificados: junio 2026 · Tasa fijada por la Ley N°18.768
+            (SII). El cálculo corre íntegramente en tu navegador; ningún dato se
+            envía a ningún servidor.
+          </p>
         </div>
-        <div
-          class="flex items-center justify-between border-b border-border py-2"
-        >
-          <span class="text-sm text-secondary">Factor neto → bruto</span>
-          <span class="font-mono font-semibold">× 1,19</span>
-        </div>
-        <div class="flex items-center justify-between py-2">
-          <span class="text-sm text-secondary">Factor bruto → neto</span>
-          <span class="font-mono font-semibold">÷ 1,19</span>
-        </div>
-        <p class="mt-3 text-xs text-muted">
-          Fuente: Servicio de Impuestos Internos (SII). Tasa fijada por la Ley
-          N°18.768. El cálculo corre íntegramente en tu navegador; ningún dato
-          se envía a ningún servidor.
-        </p>
-      </div>
+      </CalculatorResultPanel>
     </section>
 
     <section
@@ -237,6 +247,7 @@ const calculatorNextStepItems = [
     />
     <ShareCalculatorResult />
     <MethodologyBlock
+      example={ivaWorkedExample.example}
       notes="El cálculo aplica la tasa general de IVA del 19% establecida en el artículo 14 del Decreto Ley N°825 (Chile). Para neto → bruto: IVA = round(neto × 0,19); bruto = neto + IVA. Para bruto → neto: neto = round(bruto / 1,19); IVA = bruto − neto. Los montos se redondean a pesos enteros porque el peso chileno no tiene decimales. El cálculo corre íntegramente en el navegador; ningún dato se envía a ningún servidor."
       sources={[
         {
@@ -280,8 +291,12 @@ const calculatorNextStepItems = [
   };
 
   const montoInput = document.getElementById("monto-input") as HTMLInputElement;
-  const montoLabel = document.getElementById("monto-label")!;
+  const montoLabel = document.querySelector<HTMLLabelElement>(
+    "label[for='monto-input']"
+  )!;
+  const montoError = document.getElementById("monto-error")!;
   const resultado = document.getElementById("resultado")!;
+  const resultadoNota = document.getElementById("resultado-nota")!;
   const resNeto = document.getElementById("res-neto")!;
   const resIva = document.getElementById("res-iva")!;
   const resBruto = document.getElementById("res-bruto")!;
@@ -303,13 +318,37 @@ const calculatorNextStepItems = [
         : "Monto bruto (con IVA) en pesos chilenos";
   }
 
+  function showError(message: string) {
+    montoError.textContent = message;
+    montoError.classList.remove("hidden");
+  }
+
+  function clearError() {
+    montoError.textContent = "";
+    montoError.classList.add("hidden");
+  }
+
+  function restoreExample() {
+    clearError();
+    resNeto.textContent = resultado.dataset.exNeto ?? "";
+    resIva.textContent = resultado.dataset.exIva ?? "";
+    resBruto.textContent = resultado.dataset.exBruto ?? "";
+    resultado.classList.add("opacity-70");
+    resultadoNota.textContent = `Ejemplo: monto neto de ${resultado.dataset.exNeto}. Escribe un monto para calcular el tuyo.`;
+  }
+
   function recalculate() {
     const raw = montoInput.value;
-    const amount = parseInput(raw);
     const direction = getDirection();
 
-    if (!raw || isNaN(amount) || amount <= 0) {
-      resultado.classList.add("hidden");
+    if (!raw.trim()) {
+      restoreExample();
+      return;
+    }
+
+    const amount = parseInput(raw);
+    if (isNaN(amount) || amount <= 0) {
+      showError("Ingresa un monto válido mayor que cero.");
       return;
     }
 
@@ -320,14 +359,21 @@ const calculatorNextStepItems = [
     try {
       calcResult = calculateIva({ amount, direction });
     } catch {
-      resultado.classList.add("hidden");
+      showError(
+        "No pudimos calcular con ese monto. Revisa el valor ingresado."
+      );
       return;
     }
 
+    clearError();
     resNeto.textContent = fmt(calcResult.neto);
     resIva.textContent = fmt(calcResult.iva);
     resBruto.textContent = fmt(calcResult.bruto);
-    resultado.classList.remove("hidden");
+    resultado.classList.remove("opacity-70");
+    resultadoNota.textContent =
+      direction === "neto-a-bruto"
+        ? "Resultado con IVA del 19% sobre tu monto neto."
+        : "Desglose del IVA del 19% incluido en tu monto bruto.";
 
     const summaryText =
       direction === "neto-a-bruto"

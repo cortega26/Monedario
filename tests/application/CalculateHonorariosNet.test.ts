@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { calculateHonorariosNet } from "@/application/use-cases/CalculateHonorariosNet";
+import { honorariosWorkedExample } from "@/application/use-cases/CalculateHonorariosNet.methodology";
 
 describe("calculateHonorariosNet", () => {
   it("calculates monthly net and annual coverage base using the 2026 retention", () => {
@@ -42,5 +43,17 @@ describe("calculateHonorariosNet", () => {
     expect(result.annualGrossFees).toBe(3600000);
     expect(result.annualWithholdingAmount).toBe(576000);
     expect(result.annualCoverageBase).toBe(2880000);
+  });
+});
+
+describe("calculateHonorariosNet — ejemplo de metodología (anti-drift)", () => {
+  it("la retención y el líquido reales coinciden con el ejemplo publicado", () => {
+    const result = calculateHonorariosNet(honorariosWorkedExample.input);
+    expect(result.withholdingAmount).toBe(
+      honorariosWorkedExample.expected.withholdingAmount
+    );
+    expect(result.netFeeReceived).toBe(
+      honorariosWorkedExample.expected.netFeeReceived
+    );
   });
 });

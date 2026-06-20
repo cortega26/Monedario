@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { calculateIva } from "@/application/use-cases/CalculateIva";
+import { ivaWorkedExample } from "@/application/use-cases/CalculateIva.methodology";
 
 describe("calculateIva", () => {
   describe("neto-a-bruto", () => {
@@ -61,6 +62,16 @@ describe("calculateIva", () => {
     it("lanza para amount = NaN", () => {
       expect(() => calculateIva({ amount: NaN, direction: "neto-a-bruto" })).toThrow(
         "amount"
+      );
+    });
+  });
+
+  describe("ejemplo de metodología — anti-drift", () => {
+    it("la salida real coincide con el ejemplo publicado", () => {
+      // Si la fórmula cambia y el ejemplo mostrado al usuario queda
+      // desactualizado, este test falla.
+      expect(calculateIva(ivaWorkedExample.input)).toEqual(
+        ivaWorkedExample.expected
       );
     });
   });

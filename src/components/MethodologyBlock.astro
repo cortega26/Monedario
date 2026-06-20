@@ -1,4 +1,6 @@
 ---
+import type { WorkedExample } from "@/domain/methodology/workedExample";
+
 interface Source {
   name: string;
   url: string;
@@ -8,14 +10,62 @@ interface Source {
 interface Props {
   sources: Source[];
   notes: string;
+  /** Ejemplo numérico resuelto que se muestra visible sobre las fuentes. */
+  example?: WorkedExample;
+  /** Destino del enlace a la metodología general del sitio. */
+  methodologyHref?: string;
 }
 
-const { sources, notes } = Astro.props;
+const {
+  sources,
+  notes,
+  example,
+  methodologyHref = "/metodologia",
+} = Astro.props;
 ---
 
 <section
   class="mt-10 mb-6 rounded-2xl border border-border bg-surface-muted p-6"
 >
+  {
+    example && (
+      <div class="mb-6 border-b border-border pb-6">
+        <h2 class="mb-1 text-sm font-semibold tracking-wide text-secondary uppercase">
+          Cómo se calcula, paso a paso
+        </h2>
+        <p class="mb-4 text-sm leading-relaxed text-secondary">
+          {example.scenario}
+        </p>
+        <ol class="space-y-3">
+          {example.steps.map((step, index) => (
+            <li class="flex gap-3">
+              <span
+                class="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-accent/10 text-xs font-bold text-accent tabular-nums"
+                aria-hidden="true"
+              >
+                {index + 1}
+              </span>
+              <div class="min-w-0">
+                <p class="text-sm text-foreground">{step.label}</p>
+                {step.expression ? (
+                  <p class="mt-0.5 font-mono text-sm text-secondary tabular-nums">
+                    {step.expression} = <strong>{step.result}</strong>
+                  </p>
+                ) : (
+                  <p class="mt-0.5 font-mono text-sm font-semibold text-secondary tabular-nums">
+                    {step.result}
+                  </p>
+                )}
+              </div>
+            </li>
+          ))}
+        </ol>
+        <p class="mt-4 rounded-lg bg-accent/5 px-4 py-3 text-sm font-medium text-foreground">
+          {example.conclusion}
+        </p>
+      </div>
+    )
+  }
   <details>
     <summary
       class="flex cursor-pointer list-none items-center justify-between gap-2 select-none"
@@ -52,4 +102,17 @@ const { sources, notes } = Astro.props;
       </ul>
     </div>
   </details>
+  <p class="mt-4 border-t border-border pt-4 text-xs text-muted">
+    ¿Cómo verificamos cada cálculo y mantenemos los datos al día? Lee nuestra{
+      " "
+    }
+    <a
+      href={methodologyHref}
+      class="font-medium text-accent underline underline-offset-4 hover:opacity-80"
+      data-analytics-cta="calculator-methodology"
+      data-analytics-location="calculator_methodology"
+    >
+      metodología y proceso editorial</a
+    >.
+  </p>
 </section>

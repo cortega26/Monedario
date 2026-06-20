@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { convertUtm } from "@/application/use-cases/ConvertUtm";
+import { utmWorkedExample } from "@/application/use-cases/ConvertUtm.methodology";
 
 describe("convertUtm", () => {
   it("converts UTM to pesos using the injected UTM value", () => {
@@ -31,5 +32,13 @@ describe("convertUtm", () => {
     expect(() =>
       convertUtm({ amount: 1, utmValue: 0, direction: "utm_to_clp" })
     ).toThrow("utmValue");
+  });
+});
+
+describe("convertUtm — ejemplo de metodología (anti-drift)", () => {
+  it("la salida real coincide con el ejemplo publicado", () => {
+    expect(convertUtm(utmWorkedExample.input)).toEqual(
+      utmWorkedExample.expected
+    );
   });
 });

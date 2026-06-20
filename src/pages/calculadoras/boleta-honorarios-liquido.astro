@@ -15,6 +15,7 @@ import NextSteps from "@/components/NextSteps.astro";
 import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getPath } from "@/utils/getPath";
 import { calculateHonorariosNet } from "@/application/use-cases/CalculateHonorariosNet";
+import { honorariosWorkedExample } from "@/application/use-cases/CalculateHonorariosNet.methodology";
 
 const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
 const exampleResult = calculateHonorariosNet({
@@ -154,7 +155,8 @@ const calculatorNextStepItems = [
             </div>
           </div>
           <p class="mt-4 text-xs text-muted">
-            Ejemplo: boleta de $500.000 con retención de 15,25%.
+            Ejemplo: boleta de $500.000 con retención de 15,25%. Retención
+            verificada: marzo 2026 (SII).
           </p>
         </div>
       </CalculatorResultPanel>
@@ -220,6 +222,7 @@ const calculatorNextStepItems = [
     />
     <ShareCalculatorResult />
     <MethodologyBlock
+      example={honorariosWorkedExample.example}
       notes="La retención del 15,25% sobre el bruto es la tasa transitoria vigente para el año tributario 2026 (cambia gradualmente hasta llegar al 17%). El líquido a recibir = bruto − retención. Para emisión oficial usa el Portal del SII con tu RUT y Clave Tributaria."
       sources={[
         {

@@ -19,6 +19,7 @@ import {
 import { getPath } from "@/utils/getPath";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorDataFreshness from "@/components/calculator/CalculatorDataFreshness.astro";
+import { utmWorkedExample } from "@/application/use-cases/ConvertUtm.methodology";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 const utmArticlePath = getPath("/posts/utm-chile-que-es-como-funciona/");
@@ -131,30 +132,9 @@ const conversorUtmFaqs = [
       descriptionClass="max-w-xl text-secondary"
     />
 
-    <section class="max-w-xl py-8">
-      <!-- VALOR DEL MES -->
-      <div
-        id="valor-utm-banner"
-        class="mb-6 flex items-center justify-between gap-4 rounded-xl border border-accent/30 bg-accent/5 p-4"
-      >
-        <div>
-          <p
-            class="mb-0.5 text-xs font-bold tracking-widest text-accent uppercase"
-          >
-            Valor UTM vigente
-          </p>
-          <p id="utm-display" class="text-3xl font-bold">{"$" + utmDisplay}</p>
-          <p id="utm-fecha" class="mt-0.5 text-xs text-muted">
-            {utmDateDisplay} · {economicSourceMeta.bannerText} ({
-              economicSourceLabel
-            })
-          </p>
-        </div>
-        <span class="text-4xl">🇨🇱</span>
-      </div>
-
+    <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
       <!-- CONVERSOR -->
-      <div class="mb-6 rounded-xl border border-border p-6">
+      <div class="rounded-xl border border-border p-6">
         <!-- UTM → Pesos -->
         <div class="mb-6">
           <label
@@ -225,23 +205,49 @@ const conversorUtmFaqs = [
         </div>
       </div>
 
-      <!-- TABLA DE REFERENCIA RÁPIDA -->
-      <div class="rounded-xl border border-border p-6">
-        <h2 class="mb-4 text-base font-semibold">
-          Valores de referencia rápidos
-        </h2>
-        <div id="tabla-ref" class="space-y-2 text-sm"></div>
-        <CalculatorDataFreshness
-          source={economicParameters.source}
-          updatedDate={utmDateDisplay}
-        />
-        {
-          utaDisplay ? (
-            <p class="mt-1 text-xs text-muted">
-              UTA de referencia anual: {utaDisplay} (12 × UTM de diciembre).
+      <!-- COLUMNA DERECHA: valor del mes + referencia -->
+      <div class="space-y-6">
+        <!-- VALOR DEL MES -->
+        <div
+          id="valor-utm-banner"
+          class="flex items-center justify-between gap-4 rounded-xl border border-accent/30 bg-accent/5 p-4"
+        >
+          <div>
+            <p
+              class="mb-0.5 text-xs font-bold tracking-widest text-accent uppercase"
+            >
+              Valor UTM vigente
             </p>
-          ) : null
-        }
+            <p id="utm-display" class="text-3xl font-bold">
+              {"$" + utmDisplay}
+            </p>
+            <p id="utm-fecha" class="mt-0.5 text-xs text-muted">
+              {utmDateDisplay} · {economicSourceMeta.bannerText} ({
+                economicSourceLabel
+              })
+            </p>
+          </div>
+          <span class="text-4xl">🇨🇱</span>
+        </div>
+
+        <!-- TABLA DE REFERENCIA RÁPIDA -->
+        <div class="rounded-xl border border-border p-6">
+          <h2 class="mb-4 text-base font-semibold">
+            Valores de referencia rápidos
+          </h2>
+          <div id="tabla-ref" class="space-y-2 text-sm"></div>
+          <CalculatorDataFreshness
+            source={economicParameters.source}
+            updatedDate={utmDateDisplay}
+          />
+          {
+            utaDisplay ? (
+              <p class="mt-1 text-xs text-muted">
+                UTA de referencia anual: {utaDisplay} (12 × UTM de diciembre).
+              </p>
+            ) : null
+          }
+        </div>
       </div>
     </section>
 
@@ -326,6 +332,7 @@ const conversorUtmFaqs = [
     />
     <ShareCalculatorResult />
     <MethodologyBlock
+      example={utmWorkedExample.example}
       notes={`${economicSourceMeta.methodologyNote} La UTM se reajusta el primer día hábil de cada mes según la variación del IPC del mes anterior publicado por el INE. La UTA de referencia mostrada usa el valor anual informado por la misma fuente cuando está disponible; si no, se aproxima desde la serie económica cargada por el sitio. Verifica siempre el dato vigente en el SII antes de usarlo en trámites, multas o impuestos.`}
       sources={[
         {
