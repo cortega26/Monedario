@@ -2,6 +2,9 @@
 term: "Institución de Salud Previsional (Isapre)"
 shortDefinition: "Aseguradoras privadas de salud en Chile que reciben el 7% obligatorio de cotización más un adicional según el plan elegido."
 relatedTerms: ["fonasa", "afp", "tmc"]
+relatedLaws:
+  - href: /leyes/ley-18933-isapres/
+    label: Ley 18.933 — Instituciones de Salud Previsional
 ---
 
 Las **Isapres (Instituciones de Salud Previsional)** son las aseguradoras privadas de salud en Chile. Si eliges una Isapre en lugar de Fonasa, el 7% obligatorio de tu sueldo imponible va a ellas — y si tu plan cuesta más, la diferencia también se descuenta de tu sueldo.

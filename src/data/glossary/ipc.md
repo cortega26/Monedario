@@ -2,6 +2,12 @@
 term: "Índice de Precios al Consumidor (IPC)"
 shortDefinition: "Indicador mensual del Instituto Nacional de Estadísticas (INE) que mide la inflación y cómo cambia el costo de la vida en Chile."
 relatedTerms: ["uf", "utm", "inflacion"]
+relatedGuides:
+  - href: /posts/que-es-el-ipc-chile-como-se-calcula/
+    label: Qué es el IPC y cómo se calcula en Chile
+relatedCalculators:
+  - href: /calculadoras/conversor-uf/
+    label: Convierte UF a pesos (valor indexado al IPC)
 ---
 
 El **Índice de Precios al Consumidor (IPC)** es el indicador económico que mide oficialmente la **inflación** (o deflación) en Chile. Es publicado mensualmente por el Instituto Nacional de Estadísticas (INE).

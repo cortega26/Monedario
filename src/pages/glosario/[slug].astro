@@ -21,7 +21,14 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { term, shortDefinition, relatedTerms } = entry.data;
+const {
+  term,
+  shortDefinition,
+  relatedTerms,
+  relatedCalculators,
+  relatedGuides,
+  relatedLaws,
+} = entry.data;
 const canonicalUrl = new URL(
   getPath(`/glosario/${entry.id}/`),
   Astro.site ?? Astro.url.origin
@@ -76,8 +83,94 @@ if (relatedTerms.length > 0) {
       </div>
 
       {
-        relatedTermsData.length > 0 && (
+        (relatedCalculators.length > 0 ||
+          relatedGuides.length > 0 ||
+          relatedLaws.length > 0) && (
           <div class="bg-surface mt-12 rounded-xl border border-border p-6">
+            <h2 class="mb-4 text-xl font-bold">Dónde se usa esto</h2>
+            <div class="flex flex-col gap-6">
+              {relatedCalculators.length > 0 && (
+                <div>
+                  <h3 class="mb-2 text-sm font-semibold tracking-wider text-muted uppercase">
+                    Calculadoras
+                  </h3>
+                  <ul class="flex flex-wrap gap-2">
+                    {relatedCalculators.map(item => (
+                      <li>
+                        <a
+                          href={getPath(item.href)}
+                          class="inline-block rounded-full bg-accent/10 px-4 py-1.5 text-sm font-medium transition-colors hover:bg-accent hover:text-background"
+                        >
+                          {item.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {relatedGuides.length > 0 && (
+                <div>
+                  <h3 class="mb-2 text-sm font-semibold tracking-wider text-muted uppercase">
+                    Guías y artículos
+                  </h3>
+                  <ul class="flex flex-wrap gap-2">
+                    {relatedGuides.map(item => (
+                      <li>
+                        <a
+                          href={getPath(item.href)}
+                          class="inline-block rounded-full bg-accent/10 px-4 py-1.5 text-sm font-medium transition-colors hover:bg-accent hover:text-background"
+                        >
+                          {item.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {relatedLaws.length > 0 && (
+                <div>
+                  <h3 class="mb-2 text-sm font-semibold tracking-wider text-muted uppercase">
+                    Marco legal
+                  </h3>
+                  <ul class="flex flex-wrap gap-2">
+                    {relatedLaws.map(item => (
+                      <li>
+                        <a
+                          href={getPath(item.href)}
+                          class="inline-block rounded-full bg-accent/10 px-4 py-1.5 text-sm font-medium transition-colors hover:bg-accent hover:text-background"
+                        >
+                          {item.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+            <p class="mt-4 text-sm text-muted">
+              Explora todas las{" "}
+              <a
+                href={getPath("/calculadoras/")}
+                class="text-accent underline underline-offset-4 hover:opacity-80"
+              >
+                calculadoras
+              </a>{" "}
+              o las{" "}
+              <a
+                href={getPath("/leyes/")}
+                class="text-accent underline underline-offset-4 hover:opacity-80"
+              >
+                leyes vigentes
+              </a>{" "}
+              de Monedario.
+            </p>
+          </div>
+        )
+      }
+
+      {
+        relatedTermsData.length > 0 && (
+          <div class="bg-surface mt-6 rounded-xl border border-border p-6">
             <h2 class="mb-4 text-xl font-bold">Términos relacionados</h2>
             <ul class="flex flex-wrap gap-2">
               {relatedTermsData.map(relatedEntry => (

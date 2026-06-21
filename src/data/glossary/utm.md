@@ -2,6 +2,11 @@
 term: "Unidad Tributaria Mensual (UTM)"
 shortDefinition: "Unidad económica reajustable mensualmente por inflación, usada para fijar multas, impuestos y beneficios fiscales."
 relatedTerms: ["ipc", "uf", "sii", "inflacion"]
+relatedCalculators:
+  - href: /calculadoras/conversor-utm/
+    label: Convierte UTM a pesos
+  - href: /calculadoras/operacion-renta/
+    label: Calcula tu Operación Renta
 ---
 
 La **Unidad Tributaria Mensual (UTM)** es una medida económica chilena. Al igual que la UF, no es una moneda física, sino un indicador de valor que se reajusta. Sin embargo, a diferencia de la UF (que cambia a diario), la UTM **tiene un valor fijo que rige durante todo un mes calendario**.

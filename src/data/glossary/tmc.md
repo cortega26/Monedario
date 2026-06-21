@@ -2,6 +2,12 @@
 term: "Tasa Máxima Convencional (TMC)"
 shortDefinition: "Tasa de interés máxima legal que las instituciones pueden cobrar por un crédito en Chile. Protege contra la usura."
 relatedTerms: ["cae", "ctc"]
+relatedCalculators:
+  - href: /calculadoras/credito-consumo/
+    label: Simula un crédito de consumo
+relatedLaws:
+  - href: /leyes/ley-18010-credito-dinero/
+    label: Ley 18.010 — Operaciones de crédito
 ---
 
 La **Tasa Máxima Convencional (TMC)** es el límite máximo de interés que, por ley, cualquier entidad financiera, casa comercial o prestamista puede cobrar en Chile por un crédito o préstamo de dinero.

@@ -2,6 +2,12 @@
 term: "Seguro de Cesantía"
 shortDefinition: "Sistema de protección para trabajadores formales en Chile que entrega pagos al quedar sin empleo, con cargo a tu cuenta individual y al fondo solidario."
 relatedTerms: ["afc", "fondo-solidario", "cic", "renta-imponible"]
+relatedCalculators:
+  - href: /calculadoras/seguro-cesantia/
+    label: Simula tus beneficios de cesantía
+relatedLaws:
+  - href: /leyes/ley-19728-seguro-cesantia/
+    label: Ley 19.728 — Seguro de Cesantía
 ---
 
 El **seguro de cesantía** es un mecanismo que protege a trabajadores formales cuando quedan sin empleo. Funciona con aportes mensuales sobre la remuneración imponible y se administra a través de la AFC.

@@ -3,6 +3,9 @@ term: "Impuesto Global Complementario"
 shortDefinition: "Impuesto anual a la renta para personas con múltiples fuentes de ingreso en Chile. Se declara en la Operación Renta y ajusta lo ya pagado durante el año."
 relatedTerms:
   ["impuesto-unico", "operacion-renta", "sii", "apv", "boleta-honorarios"]
+relatedCalculators:
+  - href: /calculadoras/operacion-renta/
+    label: Calcula tu Operación Renta
 ---
 
 El **Impuesto Global Complementario (IGC)** es el impuesto anual a la renta que pagan en Chile las personas naturales con más de una fuente de ingresos, o con ingresos distintos a los de un solo empleador.

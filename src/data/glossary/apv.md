@@ -2,6 +2,12 @@
 term: "Ahorro Previsional Voluntario (APV)"
 shortDefinition: "Herramienta de ahorro con beneficios tributarios diseñada para que los chilenos aumenten sus pensiones por sobre la cotización obligatoria."
 relatedTerms: ["afp", "global-complementario", "operacion-renta"]
+relatedCalculators:
+  - href: /calculadoras/apv/
+    label: Calcula tu beneficio APV
+relatedGuides:
+  - href: /posts/que-es-el-apv/
+    label: Qué es el APV y cómo funciona
 ---
 
 El **Ahorro Previsional Voluntario (APV)** es un mecanismo financiero creado por el Estado chileno para incentivar a las personas a mejorar sus futuras pensiones mediante ahorros extras a su cotización obligatoria en la AFP.

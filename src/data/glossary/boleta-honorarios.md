@@ -2,6 +2,15 @@
 term: "Boleta de Honorarios"
 shortDefinition: "Documento tributario que emiten los trabajadores independientes en Chile al cobrar por sus servicios. El SII retiene un porcentaje para cotizaciones y renta."
 relatedTerms: ["sii", "afp", "fonasa", "utm"]
+relatedCalculators:
+  - href: /calculadoras/boleta-honorarios-liquido/
+    label: Calcula el líquido de tu boleta de honorarios
+relatedGuides:
+  - href: /posts/boleta-honorarios-2026-retencion-cobertura/
+    label: Retención y cobertura de boleta de honorarios 2026
+relatedLaws:
+  - href: /leyes/ley-21133-honorarios-retencion/
+    label: Ley 21.133 — Retención en boletas de honorarios
 ---
 
 La **boleta de honorarios** es el documento que emite una persona natural en Chile cuando presta un servicio profesional o técnico de forma independiente — sin contrato de trabajo. Es el equivalente a la boleta de una empresa, pero para personas.

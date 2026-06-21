@@ -3,6 +3,16 @@ term: "Unidad de Fomento (UF)"
 shortDefinition: "Unidad de cuenta chilena que se reajusta diariamente según la inflación (IPC) para mantener el poder adquisitivo del dinero."
 relatedTerms:
   ["ipc", "inflacion", "credito-hipotecario", "dividendo-hipotecario"]
+relatedCalculators:
+  - href: /calculadoras/conversor-uf/
+    label: Convierte UF a pesos hoy
+  - href: /calculadoras/reajuste-arriendo/
+    label: Calcula el reajuste de arriendo en UF
+  - href: /calculadoras/dividendo-hipotecario/
+    label: Simula tu dividendo hipotecario
+relatedGuides:
+  - href: /posts/reajuste-arriendo-uf-ipc-chile/
+    label: Cómo se reajusta el arriendo en Chile
 ---
 
 La **Unidad de Fomento (UF)** es una unidad de cuenta creada en Chile en 1967. No es una moneda física que puedas guardar en la billetera; es un valor referencial que se actualiza todos los días según el cálculo de la inflación oficial.

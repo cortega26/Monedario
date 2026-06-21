@@ -2,6 +2,12 @@
 term: "Finiquito"
 shortDefinition: "Documento legal que certifica el término de una relación laboral en Chile, detallando las sumas que el empleador le paga al trabajador al momento de su salida."
 relatedTerms: ["indemnizacion", "sueldo-bruto", "renta-imponible"]
+relatedCalculators:
+  - href: /calculadoras/finiquito-indemnizacion/
+    label: Calcula tu finiquito e indemnización
+relatedLaws:
+  - href: /leyes/codigo-del-trabajo/
+    label: Código del Trabajo
 ---
 
 El **finiquito** es el documento que formaliza el término del contrato de trabajo. Contiene el detalle de todos los pagos que el empleador debe hacer al trabajador al momento del despido, renuncia o cualquier otra causal de término, y sirve como constancia de que ambas partes liquidaron sus obligaciones pendientes.

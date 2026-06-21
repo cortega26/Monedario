@@ -2,6 +2,12 @@
 term: "Gratificación"
 shortDefinition: "Participación del trabajador en las utilidades de la empresa, de pago obligatorio según el Código del Trabajo chileno."
 relatedTerms: ["sueldo-bruto", "renta-imponible", "finiquito"]
+relatedGuides:
+  - href: /posts/gratificacion-legal-chile/
+    label: Gratificación legal en Chile
+relatedLaws:
+  - href: /leyes/codigo-del-trabajo/
+    label: Código del Trabajo (arts. 47–52)
 ---
 
 La **gratificación** es la parte de las utilidades de la empresa que la ley obliga a distribuir entre los trabajadores que han prestado servicios durante el año. Está regulada por los artículos 47 al 52 del Código del Trabajo.

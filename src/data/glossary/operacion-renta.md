@@ -2,6 +2,9 @@
 term: "Operación Renta"
 shortDefinition: "Declaración anual de impuestos ante el SII, realizada en abril. Determina si recibes devolución o debes pagar según tus ingresos del año anterior."
 relatedTerms: ["sii", "global-complementario", "impuesto-unico", "utm", "apv"]
+relatedCalculators:
+  - href: /calculadoras/operacion-renta/
+    label: Calcula tu Operación Renta
 ---
 
 La **Operación Renta** es el proceso anual de declaración y ajuste del impuesto a la renta en Chile. Ocurre en abril de cada año y corresponde a los ingresos del año calendario anterior.

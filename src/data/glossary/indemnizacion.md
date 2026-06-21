@@ -2,6 +2,12 @@
 term: "Indemnización por Años de Servicio"
 shortDefinition: "Pago obligatorio al trabajador despedido por necesidades de la empresa (art. 161), equivalente a un mes de sueldo por cada año trabajado, con tope de 11 meses."
 relatedTerms: ["finiquito", "sueldo-bruto", "afc"]
+relatedCalculators:
+  - href: /calculadoras/finiquito-indemnizacion/
+    label: Calcula tu indemnización por años de servicio
+relatedLaws:
+  - href: /leyes/codigo-del-trabajo/
+    label: Código del Trabajo (art. 161)
 ---
 
 La **indemnización por años de servicio** es una compensación económica que la ley exige a los empleadores que despiden a un trabajador invocando el **artículo 161 del Código del Trabajo** (necesidades de la empresa, desahucio u otras causas similares). También aplica cuando el despido es declarado **injustificado** por un tribunal.

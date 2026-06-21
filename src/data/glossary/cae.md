@@ -2,6 +2,12 @@
 term: "Carga Anual Equivalente (CAE)"
 shortDefinition: "Indicador en porcentaje que refleja el costo total anual de un crédito, incluyendo intereses, comisiones y seguros."
 relatedTerms: ["ctc", "tmc", "credito-hipotecario", "credito-aval-estado"]
+relatedCalculators:
+  - href: /calculadoras/credito-consumo/
+    label: Simula un crédito de consumo
+relatedGuides:
+  - href: /posts/cae-costo-real-credito-chile/
+    label: Qué es el CAE y cómo comparar créditos
 ---
 
 > **No confundir con el Crédito con Aval del Estado.** En Chile la sigla "CAE" se usa para dos cosas distintas: este indicador financiero (Carga Anual Equivalente) y el préstamo estudiantil **CAE** (Crédito con Aval del Estado, gestionado por la Comisión Ingresa). Si buscabas el préstamo universitario, revisa la entrada [Crédito con Aval del Estado](/glosario/credito-aval-estado/).

@@ -2,6 +2,12 @@
 term: "IVA"
 shortDefinition: "Impuesto indirecto del 19% que grava la mayoría de compras y servicios en Chile. Lo fiscaliza el SII y está incluido en el precio final."
 relatedTerms: ["sii", "impuesto-unico", "utm"]
+relatedCalculators:
+  - href: /calculadoras/iva/
+    label: Calculadora de IVA Chile 19%
+relatedLaws:
+  - href: /leyes/dl-824-impuesto-renta/
+    label: DL 824 — Ley de Impuesto a la Renta
 ---
 
 El **Impuesto al Valor Agregado (IVA)** es un impuesto indirecto que se aplica a la venta de bienes y prestación de servicios en Chile. Actualmente la tasa es del **19%** y está establecida en el Decreto Ley 825, fiscalizado por el Servicio de Impuestos Internos (SII).

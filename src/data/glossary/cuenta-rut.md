@@ -2,6 +2,9 @@
 term: "Cuenta RUT"
 shortDefinition: "Cuenta bancaria gratuita de BancoEstado disponible para cualquier chileno o extranjero con RUT. Es la cuenta más masiva del sistema financiero chileno."
 relatedTerms: ["dicom", "cmf", "sii"]
+relatedLaws:
+  - href: /leyes/ley-21130-modernizacion-bancaria/
+    label: Ley 21.130 — Modernización de la Banca
 ---
 
 La **Cuenta RUT** es una cuenta vista gratuita que ofrece BancoEstado. Está disponible para cualquier persona con RUT chileno, incluidos extranjeros en proceso de regularización, sin requisitos de renta ni historial crediticio. Con más de 14 millones de titulares, es la cuenta más masiva del sistema financiero del país.

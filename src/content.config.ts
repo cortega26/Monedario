@@ -303,9 +303,21 @@ const laws = defineCollection({
 const glossary = defineCollection({
   loader: safeGlob({ pattern: "**/*.{md,mdx}", base: "./src/data/glossary" }),
   schema: z.object({
-    term: z.string().trim().min(1), // Término oficial completo
-    shortDefinition: z.string().trim().min(10).max(160), // Definición concisa (SEO/Tooltip)
-    relatedTerms: z.array(z.string()).default([]), // Slugs de glosario relacionados
+    term: z.string().trim().min(1),
+    shortDefinition: z.string().trim().min(10).max(160),
+    relatedTerms: z.array(z.string()).default([]),
+    relatedCalculators: z
+      .array(z.object({ href: z.string(), label: z.string() }))
+      .optional()
+      .default([]),
+    relatedGuides: z
+      .array(z.object({ href: z.string(), label: z.string() }))
+      .optional()
+      .default([]),
+    relatedLaws: z
+      .array(z.object({ href: z.string(), label: z.string() }))
+      .optional()
+      .default([]),
     draft: z.boolean().default(false),
   }),
 });

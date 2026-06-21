@@ -2,6 +2,11 @@
 term: "Directorio de Información Comercial (DICOM)"
 shortDefinition: "Registro histórico privado de morosidad y protesto de deudas, nombre comercial propiedad de Equifax en Chile."
 relatedTerms: ["cmf", "cuenta-rut"]
+relatedGuides:
+  - href: /posts/donde-ver-si-estoy-en-dicom-gratis/
+    label: Cómo consultar tu DICOM gratis
+  - href: /posts/informe-deudas-cmf-vs-dicom/
+    label: Informe de deudas CMF vs DICOM
 ---
 
 **DICOM** (sigla histórica para Directorio de Información Comercial) es el registro nacional de deudas morosas, cheques protestados, pagarés impagos y multas laborales más conocido y utilizado en Chile.

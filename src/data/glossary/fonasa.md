@@ -2,6 +2,9 @@
 term: "Fondo Nacional de Salud (Fonasa)"
 shortDefinition: "Sistema público de salud en Chile que cubre a quienes cotizan el 7% obligatorio y no tienen Isapre. Afilia a más de 16 millones de personas."
 relatedTerms: ["isapre", "sii", "afp"]
+relatedLaws:
+  - href: /leyes/ley-18469-fonasa/
+    label: Ley 18.469 — Sistema de salud público (Fonasa)
 ---
 
 El **Fondo Nacional de Salud (Fonasa)** es el seguro de salud público y solidario de Chile. Si eres trabajador dependiente y no elegiste una Isapre, estás en Fonasa automáticamente. Tu empleador descuenta el 7% de tu sueldo imponible y lo transfiere a Fonasa cada mes.

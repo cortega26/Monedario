@@ -2,6 +2,9 @@
 term: "Renta Imponible"
 shortDefinition: "La parte del sueldo sobre la que se calculan AFP, salud y seguro de cesantía. Puede ser menor al sueldo bruto si hay asignaciones no imponibles."
 relatedTerms: ["sueldo-bruto", "afp", "fonasa", "utm"]
+relatedCalculators:
+  - href: /calculadoras/sueldo-liquido/
+    label: Calcula tu sueldo líquido desde el imponible
 ---
 
 La **renta imponible** (también llamada sueldo imponible) es la base de cálculo para todos los descuentos previsionales: AFP, salud y seguro de cesantía. No siempre es igual al sueldo bruto.
