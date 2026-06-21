@@ -3,7 +3,7 @@
   "generatedBy": "scripts/build-page-lastmod.mjs",
   "note": "Generated file. Do not edit manually; regenerate via node scripts/build-page-lastmod.mjs",
   "source": "src/pages/**/*.astro (static routes only)",
-  "pageCount": 52,
+  "pageCount": 55,
   "pages": {
     "/": "2026-05-19",
     "/404/": "2026-05-08",
@@ -34,6 +34,8 @@
     "/calculadoras/simulador-renegociacion/": "2026-06-21",
     "/calculadoras/sueldo-liquido/": "2026-06-21",
     "/calculadoras/tarjeta-credito/": "2026-06-21",
+    "/calendario/": "2026-06-21",
+    "/como-usamos-los-datos/": "2026-06-21",
     "/cookies/": "2026-05-22",
     "/glosario/": "2026-06-21",
     "/guias/": "2026-05-18",
@@ -56,6 +58,7 @@
     "/privacidad/": "2026-05-22",
     "/search/": "2026-03-25",
     "/tags/": "2026-04-11",
-    "/terminos/": "2026-05-19"
+    "/terminos/": "2026-05-19",
+    "/uf-hoy/": "2026-06-21"
   }
 }
