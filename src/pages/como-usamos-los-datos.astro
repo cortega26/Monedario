@@ -1,0 +1,285 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
+import { formatEconomicDate } from "@/domain/economic/economicSourcePresentation";
+import { formatCLP } from "@/utils/indicadores";
+import { getPath } from "@/utils/getPath";
+
+const { parameters } = await getEconomicParameters();
+
+const ufValor = parameters.uf;
+const ufFecha = resolveEconomicIndicatorDate(parameters, "uf");
+const utmValor = parameters.utm;
+const utmFecha = resolveEconomicIndicatorDate(parameters, "utm");
+
+const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
+  /\/$/,
+  ""
+);
+
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "Cómo usamos los datos — Monedario",
+  description:
+    "Explicación de las fuentes de datos económicos usados en Monedario: origen de UF, UTM, IPC y dólar observado, frecuencia de actualización y comportamiento ante fallos.",
+  url: `${SITE_BASE}/como-usamos-los-datos/`,
+  dateModified: ufFecha,
+  publisher: {
+    "@type": "Organization",
+    name: "Monedario",
+    url: SITE_BASE,
+  },
+};
+---
+
+<Layout
+  title="Cómo usamos los datos — Fuentes y actualización | Monedario"
+  description="Explicación completa de las fuentes de UF, UTM, IPC y dólar observado en Monedario: de dónde vienen, con qué frecuencia se actualizan y qué pasa cuando la fuente falla."
+>
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(webPageSchema)}
+  />
+  <Header />
+  <Breadcrumb />
+
+  <main id="main-content" class="app-layout">
+    <section class="border-b border-border py-8">
+      <p
+        class="mb-2 text-xs font-semibold tracking-widest text-accent uppercase"
+      >
+        Transparencia
+      </p>
+      <h1 class="mb-3 text-3xl font-bold sm:text-4xl">Cómo usamos los datos</h1>
+      <p class="max-w-2xl text-sm leading-relaxed text-secondary">
+        Esta página describe de dónde vienen los indicadores económicos que
+        usamos en calculadoras, conversores y páginas de consulta, y cómo nos
+        comportamos cuando la fuente no está disponible.
+      </p>
+    </section>
+
+    <!-- Dato vivo: qué ven los usuarios hoy -->
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-xl font-bold">Indicadores vigentes ahora</h2>
+      <p class="mb-5 text-sm text-secondary">
+        Esto es lo que ven quienes usan el sitio en este momento:
+      </p>
+      <div class="grid max-w-2xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="rounded-xl border border-border p-4">
+          <p class="mb-1 text-xs font-semibold text-secondary uppercase">UF</p>
+          <p class="text-2xl font-bold tabular-nums">
+            ${
+              ufValor.toLocaleString("es-CL", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2,
+              })
+            }
+          </p>
+          <p class="mt-1 text-xs text-secondary">
+            vigente al {formatEconomicDate(ufFecha)}
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-4">
+          <p class="mb-1 text-xs font-semibold text-secondary uppercase">UTM</p>
+          <p class="text-2xl font-bold tabular-nums">{formatCLP(utmValor)}</p>
+          <p class="mt-1 text-xs text-secondary">
+            vigente al {formatEconomicDate(utmFecha)}
+          </p>
+        </div>
+        <div class="rounded-xl border border-border p-4 text-secondary">
+          <p class="mb-1 text-xs font-semibold text-secondary uppercase">
+            Fuente
+          </p>
+          <p class="text-sm">
+            {
+              parameters.source === "live"
+                ? "En tiempo real (mindicador.cl)"
+                : parameters.source === "snapshot"
+                  ? "Snapshot actualizado automáticamente"
+                  : "Valores de referencia (fallback)"
+            }
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cadena de datos -->
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-xl font-bold">De dónde vienen los datos</h2>
+
+      <div class="max-w-2xl space-y-6">
+        <div class="rounded-xl border border-border p-5">
+          <p class="mb-2 font-semibold">UF (Unidad de Fomento)</p>
+          <p class="text-sm leading-relaxed text-secondary">
+            <strong class="text-foreground">Origen:</strong> Banco Central de Chile.
+            La UF se recalcula diariamente a partir del IPC del mes anterior y la
+            publica el BCCh.<br />
+            <strong class="text-foreground">Cómo la obtenemos:</strong> a través de
+            <a
+              href="https://mindicador.cl"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-accent underline underline-offset-2 hover:opacity-80"
+              >mindicador.cl</a
+            >
+            (agregador público de indicadores del BCCh y el SII), vía un proceso automático
+            que corre diariamente.<br />
+            <strong class="text-foreground">Frecuencia:</strong> diaria (el valor
+            cambia cada día hábil).
+          </p>
+        </div>
+
+        <div class="rounded-xl border border-border p-5">
+          <p class="mb-2 font-semibold">UTM (Unidad Tributaria Mensual)</p>
+          <p class="text-sm leading-relaxed text-secondary">
+            <strong class="text-foreground">Origen:</strong> SII — Servicio de Impuestos
+            Internos. La UTM se reajusta mensualmente por inflación.<br />
+            <strong class="text-foreground">Cómo la obtenemos:</strong> a través de
+            mindicador.cl.<br />
+            <strong class="text-foreground">Frecuencia:</strong> mensual (primer día
+            de cada mes).
+          </p>
+        </div>
+
+        <div class="rounded-xl border border-border p-5">
+          <p class="mb-2 font-semibold">
+            IPC (Índice de Precios al Consumidor)
+          </p>
+          <p class="text-sm leading-relaxed text-secondary">
+            <strong class="text-foreground">Origen:</strong> INE — Instituto Nacional
+            de Estadísticas de Chile.<br />
+            <strong class="text-foreground">Cómo la obtenemos:</strong> a través de
+            mindicador.cl.<br />
+            <strong class="text-foreground">Frecuencia:</strong> mensual. El IPC que
+            mostramos es la
+            <em>variación porcentual del período</em>, no un índice acumulado.
+          </p>
+        </div>
+
+        <div class="rounded-xl border border-border p-5">
+          <p class="mb-2 font-semibold">Dólar observado</p>
+          <p class="text-sm leading-relaxed text-secondary">
+            <strong class="text-foreground">Origen:</strong> Banco Central de Chile
+            (tipo de cambio representativo de las transacciones del día anterior).<br
+            />
+            <strong class="text-foreground">Cómo la obtenemos:</strong> a través de
+            mindicador.cl.<br />
+            <strong class="text-foreground">Frecuencia:</strong> diaria.
+          </p>
+        </div>
+
+        <div class="rounded-xl border border-border p-5">
+          <p class="mb-2 font-semibold">IMM (Ingreso Mínimo Mensual)</p>
+          <p class="text-sm leading-relaxed text-secondary">
+            <strong class="text-foreground">Origen:</strong> Ley de reajuste del sueldo
+            mínimo (publicada en el Diario Oficial).<br />
+            <strong class="text-foreground">Cómo la obtenemos:</strong> el IMM es
+            una
+            <em>constante gestionada</em> —no la consultamos diariamente— porque mindicador.cl
+            no la publica. Cuando cambia la ley, actualizamos el valor manualmente
+            junto con la fecha de vigencia.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pipeline técnico -->
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-xl font-bold">Cómo circulan los datos</h2>
+      <div class="max-w-2xl space-y-4">
+        <p class="text-sm leading-relaxed text-secondary">
+          Usamos un proceso automático (Worker de Cloudflare) que consulta
+          mindicador.cl diariamente y guarda los valores en un archivo de
+          snapshot. Las calculadoras y conversores del sitio leen ese snapshot
+          al generarse, de modo que siempre muestran el valor vigente al momento
+          de la última actualización del snapshot — no hay una llamada externa
+          en cada visita.
+        </p>
+
+        <ol
+          class="list-decimal space-y-2 pl-5 text-sm leading-relaxed text-secondary"
+        >
+          <li>
+            <strong class="text-foreground">Banco Central / INE / SII</strong>
+            publican los valores oficiales.
+          </li>
+          <li>
+            <strong class="text-foreground">mindicador.cl</strong> los agrega y los
+            expone vía API pública.
+          </li>
+          <li>
+            <strong class="text-foreground">Worker de Cloudflare</strong> consulta
+            la API diariamente, valida los valores (rechaza cambios implausibles),
+            y actualiza el snapshot.
+          </li>
+          <li>
+            <strong class="text-foreground">Calculadoras y páginas</strong> de Monedario
+            leen el snapshot y muestran los valores con su fecha de origen.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Fallback -->
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-xl font-bold">Qué pasa cuando la fuente falla</h2>
+      <div class="max-w-2xl space-y-3 text-sm leading-relaxed text-secondary">
+        <p>
+          Si mindicador.cl no responde, el Worker no actualiza el snapshot pero
+          tampoco lo borra. Las páginas siguen mostrando el último valor
+          verificado junto con su fecha: así el usuario sabe exactamente cuán
+          reciente es el dato.
+        </p>
+        <p>
+          Si el snapshot tampoco está disponible, el sitio usa valores de
+          referencia internos (fallback) e indica explícitamente que son
+          aproximados. No inventamos valores actuales.
+        </p>
+        <p>
+          Los cambios implausibles (una UF que sube 5% en un día, por ejemplo)
+          son rechazados automáticamente para protegerse de errores de parseo
+          upstream.
+        </p>
+      </div>
+    </section>
+
+    <!-- Links -->
+    <section class="py-8">
+      <h2 class="mb-4 text-lg font-bold">Recursos relacionados</h2>
+      <ul class="space-y-3 text-sm">
+        <li>
+          <a
+            href={getPath("/uf-hoy/")}
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+          >
+            Consultar UF, UTM y dólar vigentes
+          </a>
+        </li>
+        <li>
+          <a
+            href={getPath("/calculadoras/conversor-uf/")}
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+          >
+            Conversor UF a pesos
+          </a>
+        </li>
+        <li>
+          <a
+            href={getPath("/metodologia/")}
+            class="text-accent underline underline-offset-4 hover:opacity-80"
+          >
+            Proceso editorial completo
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

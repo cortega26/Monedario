@@ -53,6 +53,7 @@
     "audit:cannibalization": "node scripts/audit-cannibalization.mjs",
     "audit:striking-distance": "node scripts/audit-striking-distance.mjs",
     "scorecard:opportunities": "node scripts/scorecard-opportunities.mjs",
+    "fetch:economic-history": "node scripts/fetch-economic-history.mjs",
     "check:no-postid-urls": "node scripts/check-no-postid-urls.mjs",
     "routes:snapshot": "node scripts/snapshot-routes.mjs",
     "routes:compare": "node scripts/compare-routes.mjs docs/reports/routes_snapshot_before.json output/validation/routes_snapshot_after.json",

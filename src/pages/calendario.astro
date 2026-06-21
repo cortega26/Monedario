@@ -1,0 +1,264 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import { getPath } from "@/utils/getPath";
+
+const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
+  /\/$/,
+  ""
+);
+
+interface Hito {
+  mes: string;
+  titulo: string;
+  descripcion: string;
+  links: Array<{ href: string; label: string }>;
+}
+
+const HITOS: Hito[] = [
+  {
+    mes: "Enero",
+    titulo: "Reajuste del sueldo mínimo y retención boletas",
+    descripcion:
+      "La ley de reajuste del IMM suele publicarse a comienzos del año. Además, en enero cambia la tasa de retención de honorarios y cotizaciones voluntarias para trabajadores independientes.",
+    links: [
+      { href: "/calculadoras/sueldo-liquido/", label: "Calculadora de sueldo" },
+      {
+        href: "/calculadoras/sueldo-liquido/",
+        label: "Calculadora de sueldo líquido",
+      },
+      {
+        href: "/posts/boleta-honorarios-2026-retencion-cobertura/",
+        label: "Retención y cobertura 2026",
+      },
+    ],
+  },
+  {
+    mes: "Marzo – Abril",
+    titulo: "Inicio de la Operación Renta",
+    descripcion:
+      "El SII abre el proceso de declaración del impuesto a la renta. Quienes tienen sueldo y honorarios, retenciones de inversiones o bienes raíces, deben revisar si corresponde declarar o si hay devolución.",
+    links: [
+      {
+        href: "/calculadoras/operacion-renta/",
+        label: "Calculadora Operación Renta",
+      },
+      {
+        href: "/posts/operacion-renta-centro/",
+        label: "Centro Operación Renta",
+      },
+      {
+        href: "/posts/operacion-renta-f22-checklist/",
+        label: "Checklist F22",
+      },
+    ],
+  },
+  {
+    mes: "Abril",
+    titulo: "Primera cuota de contribuciones de bienes raíces",
+    descripcion:
+      "El SII emite la primera cuota anual de contribuciones. Propietarios de bienes raíces no exentos deben pagar antes del vencimiento para evitar recargos.",
+    links: [
+      {
+        href: "/posts/contribuciones-bienes-raices-chile/",
+        label: "Guía de contribuciones",
+      },
+    ],
+  },
+  {
+    mes: "Abril – Mayo",
+    titulo: "Devolución de impuestos",
+    descripcion:
+      "El SII procesa las devoluciones del F22. Los plazos y montos dependen de si hay compensaciones pendientes. Puedes revisar el estado en el sitio del SII.",
+    links: [
+      {
+        href: "/posts/devolucion-impuestos-fechas-compensaciones/",
+        label: "Fechas y compensaciones de devolución",
+      },
+    ],
+  },
+  {
+    mes: "Junio",
+    titulo: "Segunda cuota de contribuciones",
+    descripcion:
+      "Segunda cuota del impuesto territorial. Si tienes bien raíz, verifica el monto en el portal SII y recuerda la fecha de vencimiento para no incurrir en recargos.",
+    links: [
+      {
+        href: "/posts/contribuciones-bienes-raices-chile/",
+        label: "Guía de contribuciones",
+      },
+    ],
+  },
+  {
+    mes: "Julio",
+    titulo: "Posible reajuste del sueldo mínimo (si aplica ley)",
+    descripcion:
+      "Algunas leyes de reajuste del sueldo mínimo incluyen un ajuste de julio. Revisa si la ley vigente contempla este hito y actualiza tus cálculos de gratificación.",
+    links: [
+      { href: "/calculadoras/sueldo-liquido/", label: "Calculadora de sueldo" },
+      {
+        href: "/calculadoras/sueldo-liquido/",
+        label: "Calculadora de sueldo líquido",
+      },
+    ],
+  },
+  {
+    mes: "Septiembre",
+    titulo: "Aguinaldo de Fiestas Patrias y tercera cuota contribuciones",
+    descripcion:
+      "Los trabajadores del sector público reciben el aguinaldo de septiembre si la ley lo establece. También se emite la tercera cuota de contribuciones de bienes raíces.",
+    links: [
+      {
+        href: "/posts/contribuciones-bienes-raices-chile/",
+        label: "Guía de contribuciones",
+      },
+    ],
+  },
+  {
+    mes: "Noviembre",
+    titulo: "Cuarta cuota de contribuciones",
+    descripcion:
+      "Última cuota anual del impuesto territorial. Los propietarios con DFL-2 u otras exenciones parciales deben revisar su situación antes del vencimiento.",
+    links: [
+      {
+        href: "/posts/contribuciones-bienes-raices-chile/",
+        label: "Guía de contribuciones",
+      },
+    ],
+  },
+  {
+    mes: "Diciembre",
+    titulo: "Aguinaldo de Navidad y UTM de referencia para el año siguiente",
+    descripcion:
+      "Los funcionarios públicos reciben el aguinaldo de diciembre si la ley lo fija. Además, la UTM de diciembre es la base de la UTA del año siguiente: un dato clave para cálculos tributarios.",
+    links: [
+      { href: "/calculadoras/conversor-utm/", label: "Conversor UTM a pesos" },
+      {
+        href: "/posts/utm-chile-que-es-como-funciona/",
+        label: "Guía UTM y UTA",
+      },
+    ],
+  },
+  {
+    mes: "Todo el año",
+    titulo: "APV y ahorro previsional",
+    descripcion:
+      "Los aportes voluntarios de pensión (APV) pueden realizarse en cualquier mes. Acumular aportes antes de diciembre maximiza el beneficio tributario de la Operación Renta.",
+    links: [
+      { href: "/calculadoras/apv/", label: "Calculadora APV" },
+      { href: "/posts/que-es-el-apv/", label: "Qué es el APV" },
+    ],
+  },
+  {
+    mes: "Todo el año",
+    titulo: "PGU — Pensión Garantizada Universal",
+    descripcion:
+      "Los beneficiarios de la PGU reciben el pago mensual. Ante cambios legislativos o de monto, revisa la guía para entender elegibilidad y montos actualizados.",
+    links: [
+      {
+        href: "/posts/pgu-pension-garantizada-universal/",
+        label: "Guía PGU",
+      },
+      { href: "/calculadoras/comisiones-afp/", label: "Comisiones AFP" },
+    ],
+  },
+];
+
+const eventSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Calendario financiero de Chile 2026",
+  description:
+    "Hitos clave del año fiscal y financiero en Chile: Operación Renta, contribuciones, reajustes del sueldo mínimo, aguinaldos y más.",
+  url: `${SITE_BASE}/calendario/`,
+  numberOfItems: HITOS.length,
+  itemListElement: HITOS.map((hito, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: `${hito.mes}: ${hito.titulo}`,
+  })),
+};
+---
+
+<Layout
+  title="Calendario financiero de Chile 2026 | Monedario"
+  description="Los hitos fiscales y financieros del año que no puedes perder: Operación Renta, contribuciones, reajuste del sueldo mínimo, APV y más. Con links a herramientas."
+>
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(eventSchema)}
+  />
+  <Header />
+  <Breadcrumb />
+
+  <main id="main-content" class="app-layout">
+    <section class="border-b border-border py-8">
+      <p
+        class="mb-2 text-xs font-semibold tracking-widest text-accent uppercase"
+      >
+        Referencia anual
+      </p>
+      <h1 class="mb-3 text-3xl font-bold sm:text-4xl">
+        Calendario financiero de Chile
+      </h1>
+      <p class="max-w-2xl text-sm leading-relaxed text-secondary">
+        Los hitos del año que afectan tu bolsillo: cuándo declarar renta, cuándo
+        pagar contribuciones, cuándo cambia el sueldo mínimo y qué calcular
+        antes de que venza cada plazo.
+      </p>
+    </section>
+
+    <section class="py-8">
+      <div class="space-y-6">
+        {
+          HITOS.map(hito => (
+            <article class="rounded-2xl border border-border p-6">
+              <div class="mb-3 flex flex-wrap items-center gap-3">
+                <span class="rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
+                  {hito.mes}
+                </span>
+                <h2 class="text-lg font-bold">{hito.titulo}</h2>
+              </div>
+              <p class="mb-4 text-sm leading-relaxed text-secondary">
+                {hito.descripcion}
+              </p>
+              {hito.links.length > 0 && (
+                <ul class="flex flex-wrap gap-3">
+                  {hito.links.map(link => (
+                    <li>
+                      <a
+                        href={getPath(link.href)}
+                        class="inline-flex items-center rounded-lg border border-border px-3 py-1.5 text-xs font-semibold text-accent hover:bg-surface-muted hover:underline"
+                      >
+                        {link.label} →
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="border-t border-border py-8">
+      <h2 class="mb-4 text-lg font-bold">Indicadores del mes</h2>
+      <p class="mb-4 max-w-2xl text-sm leading-relaxed text-secondary">
+        El valor de la UF, UTM y dólar se actualiza automáticamente. Consúltalos
+        antes de hacer cualquier cálculo que dependa de estos indicadores.
+      </p>
+      <a
+        href={getPath("/uf-hoy/")}
+        class="inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+      >
+        Ver UF, UTM y dólar vigentes →
+      </a>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

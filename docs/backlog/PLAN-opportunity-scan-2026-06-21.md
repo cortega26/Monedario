@@ -152,7 +152,7 @@ contra el código real (no driftea: verifica la realidad, no checkboxes). La tab
 
 _Última verificación automática: 2026-06-21._
 
-**Avance:** 4/16 (25%) · verificables 4/14 · manuales 0/2
+**Avance:** 9/16 (56%) · verificables 9/14 · manuales 0/2
 
 | Estado | ID | Oportunidad | Ventana | Evidencia |
 |---|---|---|---|---|
@@ -160,16 +160,16 @@ _Última verificación automática: 2026-06-21._
 | ✅ | OPP-02 | Glosario index → "Herramientas relacionadas" | 7d | enlaces a /calculadoras/ en index: 5/3 |
 | ✅ | OPP-03 | iva + impuesto-segunda-categoria: enlace a contenido | 7d | iva: ok; isc: ok |
 | ✅ | OPP-04 | Freshness visible en calculadoras (dateModified) | 7d | calculadoras con dateModified: 20/20 (meta 18) |
-| ⬜ | OPP-05 | Calendario financiero /calendario (shell) | 14d | sin ruta /calendario |
-| ⬜ | OPP-06 | Landing "UF/dólar hoy" reposicionada | 14d | sin landing dedicada |
-| ⬜ | OPP-07 | Dataset histórico UF/UTM/IPC versionado | 14d | sin serie histórica en src/data |
+| ✅ | OPP-05 | Calendario financiero /calendario (shell) | 14d | ruta /calendario presente |
+| ✅ | OPP-06 | Landing "UF/dólar hoy" reposicionada | 14d | ruta nueva: src/pages/uf-hoy.astro |
+| ✅ | OPP-07 | Dataset histórico UF/UTM/IPC versionado | 14d | dataset: src/data/economic-history/ipc-historico.json |
 | ⬜ | OPP-08 | Conversor UF a una fecha pasada | 30d | sin input de fecha histórica |
 | ⬜ | OPP-09 | Actualizador por inflación (IPC) | 30d | sin calculadora de inflación |
 | ⬜ | OPP-10 | Gráfico histórico UF/UTM/dólar | 30d | sin componente de gráfico |
 | ⬜ | OPP-11 | Calculadora de gratificación legal | 30d | sin calculadora de gratificación |
 | 🔒 | OPP-12 | bancos-fintech: quitar noindex + GUIDE_HUB_ORDER _(gated por OPP-13)_ | 14d | noindex retirado: no; en GUIDE_HUB_ORDER: no |
-| ⬜ | OPP-15 | Tooltips en links auto-inyectados de glosario | 14d | auto-inject sin tooltip |
-| ⬜ | OPP-16 | Página "Cómo usamos los datos" (trazabilidad) | 14d | sin página de trazabilidad |
+| ✅ | OPP-15 | Tooltips en links auto-inyectados de glosario | 14d | atributos de tooltip presentes |
+| ✅ | OPP-16 | Página "Cómo usamos los datos" (trazabilidad) | 14d | página/sección de trazabilidad presente |
 
 <!-- SCORECARD:AUTO:END -->
 

@@ -113,9 +113,11 @@ function injectIntoText(
     );
     if (!entry || linkedSlugs.has(entry.slug)) continue;
 
+    const def = entry.shortDefinition.replace(/"/g, "&quot;");
+    const titleAttr = ` title="${def}" data-tooltip="${def}"`;
     parts.push(text.slice(last, m.index));
     parts.push(
-      `<a href="/glosario/${entry.slug}/" data-glossary-term="${entry.slug}" data-analytics-cta="glossary-inline-link" data-analytics-location="article_body" data-analytics-label="${entry.slug}" class="glossary-inline-link">${matched}</a>`
+      `<a href="/glosario/${entry.slug}/" data-glossary-term="${entry.slug}" data-analytics-cta="glossary-inline-link" data-analytics-location="article_body" data-analytics-label="${entry.slug}" class="glossary-inline-link"${titleAttr}>${matched}</a>`
     );
     last = m.index! + matched.length;
     linkedSlugs.add(entry.slug);

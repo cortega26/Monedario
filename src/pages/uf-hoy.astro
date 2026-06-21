@@ -1,0 +1,253 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
+import { formatEconomicDate } from "@/domain/economic/economicSourcePresentation";
+import { formatCLP } from "@/utils/indicadores";
+import { getPath } from "@/utils/getPath";
+
+const { parameters } = await getEconomicParameters();
+
+const ufValor = parameters.uf;
+const ufFecha = resolveEconomicIndicatorDate(parameters, "uf");
+const ufFechaDisplay = formatEconomicDate(ufFecha);
+const ufDisplay = ufValor.toLocaleString("es-CL", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
+
+const utmValor = parameters.utm;
+const utmFecha = resolveEconomicIndicatorDate(parameters, "utm");
+const utmDisplay = formatCLP(utmValor);
+const utmFechaDisplay = formatEconomicDate(utmFecha);
+
+const dolarValor = parameters.dolar;
+const dolarFecha = dolarValor
+  ? resolveEconomicIndicatorDate(parameters, "dolar")
+  : null;
+const dolarDisplay = dolarValor ? formatCLP(dolarValor) : null;
+const dolarFechaDisplay = dolarFecha ? formatEconomicDate(dolarFecha) : null;
+
+const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
+  /\/$/,
+  ""
+);
+
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  name: "UF hoy en Chile — valor actualizado",
+  description:
+    "Consulta el valor de la UF, UTM y dólar observado vigentes en Chile, con fecha de actualización y contexto práctico para tu bolsillo.",
+  url: `${SITE_BASE}/uf-hoy/`,
+  dateModified: ufFecha,
+  publisher: {
+    "@type": "Organization",
+    name: "Monedario",
+    url: SITE_BASE,
+  },
+};
+---
+
+<Layout
+  title={`UF hoy: ${ufDisplay} CLP al ${ufFechaDisplay} | Monedario`}
+  description="Valor actual de la UF en Chile con fecha oficial del Banco Central. Incluye UTM y dólar observado, más herramientas para convertir y calcular."
+>
+  <script
+    is:inline
+    type="application/ld+json"
+    set:html={JSON.stringify(webPageSchema)}
+  />
+  <Header />
+  <Breadcrumb />
+
+  <main id="main-content" class="app-layout">
+    <!-- Valor principal -->
+    <section class="border-b border-border py-8">
+      <p
+        class="mb-2 text-xs font-semibold tracking-widest text-accent uppercase"
+      >
+        Valor vigente
+      </p>
+      <h1 class="mb-3 text-3xl font-bold sm:text-4xl">UF hoy en Chile</h1>
+      <p class="max-w-2xl text-sm leading-relaxed text-secondary">
+        El valor oficial de la Unidad de Fomento, la UTM y el dólar observado,
+        actualizados automáticamente desde el Banco Central y el SII.
+      </p>
+    </section>
+
+    <!-- Indicadores principales -->
+    <section class="border-b border-border py-8">
+      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <!-- UF -->
+        <div class="bg-surface rounded-2xl border border-border p-6">
+          <p
+            class="mb-1 text-xs font-semibold tracking-wide text-accent uppercase"
+          >
+            UF
+          </p>
+          <p class="text-3xl font-bold text-foreground tabular-nums">
+            ${ufDisplay}
+          </p>
+          <p class="mt-1 text-xs text-secondary">
+            Unidad de Fomento · vigente al {ufFechaDisplay}
+          </p>
+          <p class="mt-3 text-sm leading-relaxed text-secondary">
+            Afecta arriendos, dividendos hipotecarios y contratos reajustables.
+            Si sube la UF, suben esos pagos en pesos.
+          </p>
+          <a
+            href={getPath("/calculadoras/conversor-uf/")}
+            class="mt-4 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+          >
+            Convertir UF a pesos →
+          </a>
+        </div>
+
+        <!-- UTM -->
+        <div class="bg-surface rounded-2xl border border-border p-6">
+          <p
+            class="mb-1 text-xs font-semibold tracking-wide text-accent uppercase"
+          >
+            UTM
+          </p>
+          <p class="text-3xl font-bold text-foreground tabular-nums">
+            {utmDisplay}
+          </p>
+          <p class="mt-1 text-xs text-secondary">
+            Unidad Tributaria Mensual · {utmFechaDisplay}
+          </p>
+          <p class="mt-3 text-sm leading-relaxed text-secondary">
+            Base de multas, trámites del SII e impuestos. Permite traducir
+            referencias legales a pesos concretos.
+          </p>
+          <a
+            href={getPath("/calculadoras/conversor-utm/")}
+            class="mt-4 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+          >
+            Convertir UTM a pesos →
+          </a>
+        </div>
+
+        <!-- Dólar observado (condicional) -->
+        {
+          dolarDisplay && dolarFechaDisplay && (
+            <div class="bg-surface rounded-2xl border border-border p-6">
+              <p class="mb-1 text-xs font-semibold tracking-wide text-accent uppercase">
+                USD
+              </p>
+              <p class="text-3xl font-bold text-foreground tabular-nums">
+                {dolarDisplay}
+              </p>
+              <p class="mt-1 text-xs text-secondary">
+                Dólar observado · {dolarFechaDisplay}
+              </p>
+              <p class="mt-3 text-sm leading-relaxed text-secondary">
+                Tipo de cambio oficial del Banco Central. Influye en productos
+                importados, viajes y decisiones en moneda extranjera.
+              </p>
+            </div>
+          )
+        }
+      </div>
+
+      <p class="mt-4 text-xs text-secondary">
+        Fuente: Banco Central de Chile y SII, vía mindicador.cl. Se actualiza
+        automáticamente.{" "}
+        <a
+          href={getPath("/como-usamos-los-datos/")}
+          class="text-accent underline underline-offset-2 hover:opacity-80"
+        >
+          Cómo usamos los datos
+        </a>
+      </p>
+    </section>
+
+    <!-- Qué significa para tu bolsillo -->
+    <section class="border-b border-border py-8">
+      <h2 class="mb-4 text-xl font-bold">Qué significa para tu bolsillo</h2>
+      <div class="grid gap-4 md:grid-cols-2">
+        <div class="rounded-xl border border-border p-5">
+          <h3 class="mb-2 font-semibold">Arriendo y dividendo en UF</h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            Si tu contrato de arriendo o tu dividendo hipotecario está en UF, el
+            monto en pesos sube o baja junto con la UF. Usa el conversor para
+            saber cuánto pagas este mes exactamente.
+          </p>
+          <a
+            href={getPath("/calculadoras/conversor-uf/")}
+            class="mt-3 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+          >
+            Calcular cuánto pago →
+          </a>
+        </div>
+
+        <div class="rounded-xl border border-border p-5">
+          <h3 class="mb-2 font-semibold">Multas y trámites del SII</h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            Las multas tributarias, derechos de trámite y ciertos impuestos se
+            fijan en UTM. Con el conversor puedes saber cuánto es esa sanción en
+            pesos antes de pagar.
+          </p>
+          <a
+            href={getPath("/calculadoras/conversor-utm/")}
+            class="mt-3 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+          >
+            Convertir UTM →
+          </a>
+        </div>
+
+        <div class="rounded-xl border border-border p-5">
+          <h3 class="mb-2 font-semibold">APV e inversiones reajustables</h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            Los saldos de APV suelen expresarse en UF para protegerse de la
+            inflación. Calcula el beneficio tributario de tus aportes y entiende
+            cómo crece tu ahorro.
+          </p>
+          <a
+            href={getPath("/calculadoras/apv/")}
+            class="mt-3 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+          >
+            Calculadora APV →
+          </a>
+        </div>
+
+        <div class="rounded-xl border border-border p-5">
+          <h3 class="mb-2 font-semibold">Todos los indicadores</h3>
+          <p class="text-sm leading-relaxed text-secondary">
+            Consulta IPC, TMC y otros indicadores clave con fecha por indicador
+            y contexto de impacto.
+          </p>
+          <a
+            href={getPath("/guias/uf-costo-de-vida/indicadores-economicos/")}
+            class="mt-3 inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+          >
+            Ver panel completo →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contexto: qué es la UF -->
+    <section class="py-8">
+      <h2 class="mb-3 text-xl font-bold">¿Qué es la UF y por qué cambia?</h2>
+      <p class="mb-4 max-w-3xl text-sm leading-relaxed text-secondary">
+        La Unidad de Fomento es una unidad de cuenta indexada a la inflación. El
+        Banco Central la recalcula diariamente a partir del IPC del mes
+        anterior, publicado por el INE. Así, cada peso nominal que "vale" hoy en
+        UF mantiene su poder adquisitivo en el tiempo.
+      </p>
+      <a
+        href={getPath("/posts/que-es-la-uf/")}
+        class="inline-flex text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
+      >
+        Leer guía completa sobre la UF →
+      </a>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
