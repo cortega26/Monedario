@@ -1,0 +1,74 @@
+{
+  "fetchedAt": "2026-06-22T08:15:06Z",
+  "schemaVersion": 1,
+  "source": "cloudflare-traffic",
+  "week": "2026-W25",
+  "window": {
+    "from": "2026-06-15",
+    "to": "2026-06-21"
+  },
+  "summary": {
+    "bandwidthMB": 289.58,
+    "cacheRatioPct": 21,
+    "pageViews": 9696,
+    "requests": 28315
+  },
+  "data": [
+    {
+      "bandwidthMB": 49.75,
+      "cacheRatioPct": 19.9,
+      "cachedRequests": 902,
+      "date": "2026-06-15",
+      "pageViews": 1667,
+      "requests": 4543
+    },
+    {
+      "bandwidthMB": 41.25,
+      "cacheRatioPct": 27.2,
+      "cachedRequests": 978,
+      "date": "2026-06-16",
+      "pageViews": 1430,
+      "requests": 3598
+    },
+    {
+      "bandwidthMB": 43.4,
+      "cacheRatioPct": 26.7,
+      "cachedRequests": 1038,
+      "date": "2026-06-17",
+      "pageViews": 1546,
+      "requests": 3885
+    },
+    {
+      "bandwidthMB": 42.18,
+      "cacheRatioPct": 29.6,
+      "cachedRequests": 1126,
+      "date": "2026-06-18",
+      "pageViews": 1283,
+      "requests": 3800
+    },
+    {
+      "bandwidthMB": 37.14,
+      "cacheRatioPct": 23.1,
+      "cachedRequests": 761,
+      "date": "2026-06-19",
+      "pageViews": 1248,
+      "requests": 3301
+    },
+    {
+      "bandwidthMB": 40.39,
+      "cacheRatioPct": 19.7,
+      "cachedRequests": 646,
+      "date": "2026-06-20",
+      "pageViews": 1430,
+      "requests": 3287
+    },
+    {
+      "bandwidthMB": 35.47,
+      "cacheRatioPct": 8.5,
+      "cachedRequests": 499,
+      "date": "2026-06-21",
+      "pageViews": 1092,
+      "requests": 5901
+    }
+  ]
+}
