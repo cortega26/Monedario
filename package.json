@@ -136,7 +136,7 @@
     "knip": "^6.16.1",
     "linkinator": "^7.6.1",
     "lint-staged": "^17.0.7",
-    "openai": "^6.42.0",
+    "openai": "^6.44.0",
     "pagefind": "^1.5.2",
     "prettier": "^3.8.4",
     "prettier-plugin-astro": "^0.14.1",
