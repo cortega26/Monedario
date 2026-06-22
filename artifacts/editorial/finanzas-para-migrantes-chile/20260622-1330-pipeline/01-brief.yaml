@@ -1,0 +1,65 @@
+# 01-brief.yaml — pilar educativo finanzas para migrantes en Chile
+# Origen: Gate 00 (PROCEDER A BRIEF, prom. 4.00, prioridad media).
+#   artifacts/editorial/_intake/finanzas-para-migrantes-chile/00-topic-intake.md
+# Cluster provisional: finanzas-migrantes (greenfield; registro + hub = prerrequisito de publicación).
+# canonicalTopic: registrar al decidir slug definitivo, DESPUÉS de este brief.
+
+slug: finanzas-para-migrantes-chile
+title_working: "Finanzas para migrantes en Chile: RUT, cuenta bancaria y arriendo"
+query_anchor: "cómo obtener RUT, abrir una cuenta y arrendar siendo extranjero en Chile"
+cluster: finanzas-migrantes   # greenfield; requiere registrar en clusters.ts + hub + ADR antes de publicar
+category: general
+lang: es-CL
+
+ymyl: true
+ymyl_risk: medium             # trámites concretos con fuentes oficiales; no asesoría de estatus migratorio
+regulatory_sensitivity: media # describe requisitos de trámites regulados sin interpretar derecho migratorio
+cut_off_date: 2026-06-22
+
+target_audience: >
+  Personas extranjeras que llegaron o están llegando a Chile y necesitan ordenar su vida
+  financiera: obtener RUT, abrir una cuenta básica y arrendar una vivienda. Incluye
+  turistas con trabajo, residentes en proceso y quienes ya tienen RUT pero aún no tienen
+  cuenta o vivienda.
+
+scope_approved: >
+  Pilar de trámites estables: (1) obtención de RUT (SII y Registro Civil, según tipo de
+  documento); (2) bancarización — cuenta básica siendo extranjero, especialmente CuentaRUT;
+  (3) arriendo — contrato, garantías, historial alternativo. Foco: mecánica financiera.
+scope_deferred: >
+  (a) Visados y permisos de residencia (fuera del foco financiero; alcance diferido Gate 00).
+  (b) AFP y sistema de salud para extranjeros (complejidad separada; requiere propio pipeline).
+  (c) Remesas (comparación de operadores con tasas en vivo; diferido por volatilidad).
+  (d) Microcrédito y acceso a crédito sin historial (puede ser spoke futuro del cluster).
+
+benchmarkSet:
+  - "ChileAtiende — fichas de trámites (RUT, CuentaRUT, arriendo)"
+  - "Portales de bancos (BancoEstado, Banco de Chile) — requisitos cuenta para extranjeros"
+  - "Registro Civil — cédula de identidad para extranjeros"
+patternHypothesis: >
+  Las páginas que responden bien combinan (1) mapa de documentos requeridos según tipo de
+  permiso, (2) pasos concretos para cada trámite, (3) avisos de vigencia (los requisitos
+  cambian con los visados), (4) tabla resumen y (5) enlace a fuente oficial.
+localDelta: >
+  Marco educativo neutral anclado en SII, Registro Civil y BancoEstado; sin asesoría de
+  estatus migratorio; vigencia explícita y remisión a fuente oficial para variaciones según
+  tipo de permiso.
+nonCopyBoundaries:
+  - "No copiar formularios ni pasos exactos de portales gubernamentales sin citar fuente y fecha."
+  - "No ofrecer interpretación de si un permiso específico califica — remitir al SII/Registro Civil."
+  - "No comparar remesadoras ni recomendar servicios específicos."
+ownerTarget: >
+  Cluster greenfield 'finanzas-migrantes'; este pilar = owner canónico propuesto. Enlaza
+  con bancos-y-fintech-chile (bancarización), sueldo-remuneraciones (empleabilidad),
+  reajuste-arriendo (arrendatarios) y glosario/cuenta-rut.
+
+internal_anchors:
+  - "src/data/glossary/cuenta-rut.md"
+  - "src/pages/calculadoras/conversor-uf.astro"         # arriendo en UF
+  - "src/pages/guias/bancos-fintech/index.astro"        # hub futuro (cuando sea indexado)
+  - "src/data/laws/ley-21521-fintech.md"               # Ley Fintec
+  - "/posts/que-es-la-uf/"                             # arriendo reajustable
+
+next_step: >
+  02-dossier.md — investigación con trazabilidad de fuentes (SII, Registro Civil,
+  BancoEstado, ChileAtiende) sobre RUT para extranjeros, CuentaRUT y arriendo.
