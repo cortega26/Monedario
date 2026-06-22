@@ -1,6 +1,6 @@
 # Gate 07 — Publish Packet: bancos-y-fintech-chile
 
-Status: NOT STARTED — awaiting Gate 06 (ComplianceAgent, fresh session) + HumanEditor sign-off
+Status: GATE 06 CONDITIONAL — awaiting HumanEditor review of defects + sign-off
 HumanEditor: — (Carlos Ortega)
 Sign-off date: —
 Slug: bancos-y-fintech-chile (provisional)
@@ -20,7 +20,7 @@ DraftAgent session: Claude Code — sesión topic-intake 2026-06-17
 | 03 Outline | OutlineAgent | Claude Code 2026-06-17 | ✓ Completado — `03-outline.md` |
 | 04 Draft | DraftAgent | Claude Code 2026-06-17 | ✓ Completado — `04-draft.md` |
 | 05 Math audit | MathAuditAgent | — | ⬜ NO REQUERIDO (`requires_calculation: false`, artículo sin cálculos) |
-| 06 Compliance | ComplianceAgent | — (sesión FRESCA pendiente) | ⬜ PENDIENTE — ver `HANDOFF-06-compliance.md` |
+| 06 Compliance | ComplianceAgent | Claude Sonnet 4.6, sesión 2026-06-22 | ✓ CONDITIONAL — ver `06-compliance.md` (DEFECTO #2/#3 bloquean `draft:false`) |
 | 07 Publish | HumanEditor | Human | ⬜ PENDIENTE |
 
 > **Defecto de SoD declarado:** stages 02, 03 y 04 los produjo la MISMA instancia (Claude
@@ -103,7 +103,7 @@ DraftAgent session: Claude Code — sesión topic-intake 2026-06-17
 ## Estado de Gates
 
 - **Gate 05 (MathAudit)**: No requerido — `requires_calculation: false`, sin fórmulas ni valores auditables.
-- **Gate 06 (ComplianceAgent)**: PENDIENTE — ejecutar en sesión fresca con `HANDOFF-06-compliance.md`.
+- **Gate 06 (ComplianceAgent)**: CONDITIONAL (2026-06-22) — ver `06-compliance.md`. DEFECTO #2/#3 bloquean `draft:false`; DEFECTO #4 trivial. Resolución: agregar cita art. de consentimiento (Título III, arts. 16-27, Ley 21.521) al borrador antes del sign-off.
 - **Gate 07 (HumanEditor)**: PENDIENTE.
 
 ---
