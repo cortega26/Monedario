@@ -17,8 +17,17 @@ import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorDataFreshness from "@/components/calculator/CalculatorDataFreshness.astro";
 import { formatEconomicDate } from "@/domain/economic/economicSourcePresentation";
 import { ufWorkedExample } from "@/application/use-cases/ConvertUf.methodology";
+import ufHistoricoRaw from "@/data/economic-history/uf-historico.json";
 
 const { parameters: economicParameters } = await getEconomicParameters();
+
+// Construye lookup para el conversor histórico
+const ufLookup: Record<string, number> = {};
+for (const entry of ufHistoricoRaw.serie) {
+  ufLookup[entry.fecha] = entry.valor;
+}
+const ufFirstDate = ufHistoricoRaw.serie[0].fecha;
+const ufLastDate = ufHistoricoRaw.serie[ufHistoricoRaw.serie.length - 1].fecha;
 const ufGuidePath = getPath("/posts/que-es-la-uf/");
 const ufHubPath = getPath("/guias/uf-costo-de-vida/");
 const utmConverterPath = getPath("/calculadoras/conversor-utm/");
@@ -283,6 +292,60 @@ const ufFaqs = [
       </dl>
     </section>
 
+    <!-- LOOKUP HISTÓRICO UF -->
+    <section class="border-t border-border py-8">
+      <h2 class="mb-2 text-xl font-semibold">
+        ¿Cuánto valía la UF en una fecha pasada?
+      </h2>
+      <p class="mb-6 text-sm text-secondary">
+        Consulta el valor oficial de la UF en cualquier fecha desde el 1 de
+        enero de 2000. Útil para contratos, finiquitos, reliquidaciones y
+        demandas. Fuente: Banco Central / mindicador.cl.
+      </p>
+      <div class="max-w-sm">
+        <label
+          for="fecha-historica"
+          class="mb-1 block text-sm font-medium text-secondary"
+        >
+          Selecciona una fecha
+        </label>
+        <input
+          type="date"
+          id="fecha-historica"
+          min={ufFirstDate}
+          max={ufLastDate}
+          class="w-full rounded-lg border border-border bg-background px-3 py-2 text-lg text-foreground focus:border-accent focus:outline-none"
+        />
+        <div
+          id="resultado-historico"
+          class="mt-4 hidden rounded-lg bg-foreground/5 p-4"
+          aria-live="polite"
+        >
+          <p id="resultado-historico-valor" class="text-2xl font-bold"></p>
+          <p id="resultado-historico-sub" class="mt-1 text-sm text-muted"></p>
+          <p id="resultado-historico-nota" class="mt-2 text-xs text-secondary">
+          </p>
+        </div>
+        <p
+          id="resultado-historico-error"
+          class="mt-3 hidden text-sm text-red-600 dark:text-red-400"
+        >
+        </p>
+      </div>
+    </section>
+
+    <!-- Datos históricos embebidos (build-time) para el lookup client-side -->
+    <script
+      id="uf-historico-data"
+      type="application/json"
+      is:inline
+      set:html={JSON.stringify({
+        lookup: ufLookup,
+        first: ufFirstDate,
+        last: ufLastDate,
+      })}
+    />
+
     <PrimaryCTA
       text="¿Qué es la UF y cómo se calcula? →"
       href="/posts/que-es-la-uf/"
@@ -457,4 +520,92 @@ const ufFaqs = [
     return row;
   });
   tablaEl.replaceChildren(...tableRows);
+
+  // ── LOOKUP HISTÓRICO ──────────────────────────────────────────
+  const historicoDataEl = document.getElementById("uf-historico-data");
+  const historicData = historicoDataEl
+    ? (JSON.parse(historicoDataEl.textContent ?? "{}") as {
+        lookup: Record<string, number>;
+        first: string;
+        last: string;
+      })
+    : null;
+
+  const fechaInput = document.getElementById(
+    "fecha-historica"
+  ) as HTMLInputElement | null;
+  const resHistorico = document.getElementById("resultado-historico")!;
+  const resHistoricoValor = document.getElementById(
+    "resultado-historico-valor"
+  )!;
+  const resHistoricoSub = document.getElementById("resultado-historico-sub")!;
+  const resHistoricoNota = document.getElementById("resultado-historico-nota")!;
+  const resHistoricoError = document.getElementById(
+    "resultado-historico-error"
+  )!;
+
+  function fmtDate(iso: string): string {
+    const [y, m, d] = iso.split("-");
+    return `${d}/${m}/${y}`;
+  }
+
+  function buscarUfHistorica(date: string): void {
+    if (!historicData) return;
+    const { lookup, first, last } = historicData;
+
+    resHistoricoError.classList.add("hidden");
+    resHistorico.classList.add("hidden");
+
+    if (date < first) {
+      resHistoricoError.textContent = `El dataset histórico comienza el ${fmtDate(first)}. Ingresa una fecha posterior.`;
+      resHistoricoError.classList.remove("hidden");
+      return;
+    }
+    if (date > last) {
+      resHistoricoError.textContent = `El dataset histórico llega hasta el ${fmtDate(last)}. Ingresa una fecha anterior.`;
+      resHistoricoError.classList.remove("hidden");
+      return;
+    }
+
+    // Intento exact + fallback hasta 7 días atrás
+    let resolvedDate = date;
+    let valor: number | undefined = lookup[date];
+    if (valor === undefined) {
+      const d = new Date(date + "T12:00:00Z");
+      for (let i = 1; i <= 7; i++) {
+        d.setUTCDate(d.getUTCDate() - 1);
+        const candidate = d.toISOString().slice(0, 10);
+        if (candidate < first) break;
+        if (lookup[candidate] !== undefined) {
+          resolvedDate = candidate;
+          valor = lookup[candidate];
+          break;
+        }
+      }
+    }
+
+    if (valor === undefined) {
+      resHistoricoError.textContent =
+        "No hay dato disponible para esa fecha. Prueba una fecha cercana.";
+      resHistoricoError.classList.remove("hidden");
+      return;
+    }
+
+    const valorFmt =
+      "$" +
+      valor.toLocaleString("es-CL", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
+    resHistoricoValor.textContent = `UF el ${fmtDate(resolvedDate)}: ${valorFmt}`;
+    resHistoricoSub.textContent = `Hoy (${economicContext.lastUpdated}): $${economicContext.uf.toLocaleString("es-CL", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+    const pctChange = ((economicContext.uf - valor) / valor) * 100;
+    const pctSign = pctChange >= 0 ? "+" : "";
+    resHistoricoNota.textContent = `Variación acumulada desde esa fecha: ${pctSign}${pctChange.toFixed(1)}%${resolvedDate !== date ? ` · Fecha más cercana disponible: ${fmtDate(resolvedDate)}` : ""}`;
+    resHistorico.classList.remove("hidden");
+  }
+
+  fechaInput?.addEventListener("change", () => {
+    if (fechaInput.value) buscarUfHistorica(fechaInput.value);
+  });
 </script>

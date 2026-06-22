@@ -1,0 +1,518 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
+import Footer from "@/components/Footer.astro";
+import MethodologyBlock from "@/components/MethodologyBlock.astro";
+import PrimaryCTA from "@/components/PrimaryCTA.astro";
+import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
+import NextSteps from "@/components/NextSteps.astro";
+import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
+import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+import { getPath } from "@/utils/getPath";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import {
+  DEFAULT_IMM,
+  DEFAULT_IMM_EFFECTIVE_DATE,
+} from "@/domain/economic/immConstants";
+
+const { parameters: economicParameters } = await getEconomicParameters();
+const immMensual = economicParameters.imm ?? DEFAULT_IMM;
+const topeMensual = Math.round((4.75 / 12) * immMensual);
+const topeAnual = Math.round(4.75 * immMensual);
+
+const fmt = (n: number) => "$" + n.toLocaleString("es-CL");
+const gratificacionOwnerPath = getPath("/posts/gratificacion-legal-chile/");
+const sueldoLiquidoPath = getPath("/calculadoras/sueldo-liquido/");
+
+const currentCalculator = CALCULATOR_PORTFOLIO.find(
+  calc => calc.slug === "gratificacion-legal"
+);
+const calculatorRelatedItems = (currentCalculator?.related ?? []).map(item => ({
+  href: item.href,
+  title: item.label,
+  description: item.when,
+  label: "Relacionado",
+}));
+const calculatorNextStepItems = [
+  ...calculatorRelatedItems,
+  ...(calculatorRelatedItems.length < 2
+    ? [
+        {
+          href: "/calculadoras/",
+          title: "Ver todas las calculadoras",
+          description: "Compara otra herramienta si tu pregunta cambió.",
+          label: "Herramientas",
+        },
+      ]
+    : []),
+];
+
+const gratiFaqs = [
+  {
+    question: "¿Cuánto es el tope de gratificación legal en Chile?",
+    answer: `El tope anual es 4,75 IMM. Con el IMM vigente de ${fmt(immMensual)}, el tope anual es ${fmt(topeAnual)} y el tope mensualizado es ${fmt(topeMensual)} al mes.`,
+  },
+  {
+    question: "¿La gratificación mensualizada es imponible?",
+    answer:
+      "Sí. Si la recibes mes a mes como parte de tu liquidación (modalidad mensualizada del art. 50 CT), es imponible: afecta AFP, salud, cesantía e impuesto único al trabajo.",
+  },
+  {
+    question:
+      "¿Cuál es la diferencia entre el 25% y el porcentaje de utilidades?",
+    answer:
+      "El art. 50 CT (25% mensualizado) es la forma más común: el empleador no comparte sus utilidades, sino que paga un 25% extra del sueldo mensual del trabajador, con tope. El art. 47 CT (% de utilidades) obliga a los empleadores que obtuvieron utilidades a distribuir el 30% de estas entre todos sus trabajadores, en proporción a los días y remuneraciones, también con el tope de 4,75 IMM.",
+  },
+  {
+    question: "¿Qué hago si mi empleador no paga la gratificación legal?",
+    answer:
+      "Puedes reclamar ante la Inspección del Trabajo. La gratificación legal es un derecho irrenunciable establecido en el Código del Trabajo. Para casos específicos, consulta la guía de gratificación legal.",
+  },
+];
+---
+
+<Layout
+  title="Calculadora de Gratificación Legal Chile 2026 | Tope 4,75 IMM"
+  description={`Calcula tu gratificación legal según el art. 50 del Código del Trabajo: 25% topado a ${fmt(topeMensual)}/mes (4,75 IMM). Resultado con tope y estimado anual.`}
+>
+  <CalculatorJsonLd
+    name="Calculadora de Gratificación Legal Chile"
+    description={`Calcula tu gratificación legal según el art. 50 del Código del Trabajo: 25% topado a 4,75 IMM.`}
+    dateModified={DEFAULT_IMM_EFFECTIVE_DATE}
+    faqs={gratiFaqs}
+  />
+  <Header />
+  <Breadcrumb />
+  <CalculatorTrustBadge location="calculator_header" />
+  <main
+    data-layout="calculator"
+    id="main-content"
+    class="app-layout"
+    data-analytics-page-type="calculator"
+    data-analytics-calculator="gratificacion-legal"
+    data-analytics-calculator-name="Calculadora de Gratificación Legal"
+  >
+    <CalculatorHero
+      title="Calculadora de Gratificación Legal"
+      description="Estima cuánto te corresponde de gratificación según el Código del Trabajo. Dos modalidades: 25% mensualizado (art. 50) o porcentaje de utilidades del empleador (art. 47)."
+      descriptionClass="max-w-xl text-secondary"
+    />
+
+    <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
+      <!-- FORMULARIO -->
+      <div class="rounded-xl border border-border p-6">
+        <!-- Selector de modalidad -->
+        <div class="mb-5">
+          <p class="mb-2 text-sm font-medium text-secondary">
+            Modalidad de gratificación
+          </p>
+          <div class="flex gap-3">
+            <label class="flex cursor-pointer items-center gap-2">
+              <input
+                type="radio"
+                name="modalidad"
+                id="mod-a"
+                value="A"
+                checked
+                class="accent-accent"
+              />
+              <span class="text-sm">25% mensualizado (art. 50)</span>
+            </label>
+            <label class="flex cursor-pointer items-center gap-2">
+              <input
+                type="radio"
+                name="modalidad"
+                id="mod-b"
+                value="B"
+                class="accent-accent"
+              />
+              <span class="text-sm">% de utilidades (art. 47)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Campos Modalidad A -->
+        <div id="campos-a">
+          <div class="mb-5">
+            <label
+              for="remuneracion-input"
+              class="mb-1 block text-sm font-medium text-secondary"
+            >
+              Remuneración mensual imponible ($)
+            </label>
+            <input
+              type="number"
+              id="remuneracion-input"
+              placeholder="Ej: 800.000"
+              min="1"
+              step="1"
+              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-lg text-foreground focus:border-accent focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <!-- Campos Modalidad B -->
+        <div id="campos-b" class="hidden">
+          <div class="mb-4">
+            <label
+              for="utilidades-input"
+              class="mb-1 block text-sm font-medium text-secondary"
+            >
+              Utilidades líquidas del empleador en el año ($)
+            </label>
+            <input
+              type="number"
+              id="utilidades-input"
+              placeholder="Ej: 50.000.000"
+              min="1"
+              step="1"
+              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-lg text-foreground focus:border-accent focus:outline-none"
+            />
+          </div>
+          <div class="mb-4">
+            <label
+              for="rem-trabajador-input"
+              class="mb-1 block text-sm font-medium text-secondary"
+            >
+              Remuneraciones anuales del trabajador ($)
+            </label>
+            <input
+              type="number"
+              id="rem-trabajador-input"
+              placeholder="Ej: 9.600.000"
+              min="1"
+              step="1"
+              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-lg text-foreground focus:border-accent focus:outline-none"
+            />
+          </div>
+          <div class="mb-5">
+            <label
+              for="rem-empresa-input"
+              class="mb-1 block text-sm font-medium text-secondary"
+            >
+              Remuneraciones anuales totales de la empresa ($)
+            </label>
+            <input
+              type="number"
+              id="rem-empresa-input"
+              placeholder="Ej: 300.000.000"
+              min="1"
+              step="1"
+              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-lg text-foreground focus:border-accent focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <button
+          id="calcular-btn"
+          class="w-full rounded-lg bg-accent px-4 py-2.5 font-semibold text-white transition-opacity hover:opacity-90 focus:ring-2 focus:ring-accent focus:outline-none"
+        >
+          Calcular gratificación
+        </button>
+
+        <!-- RESULTADO -->
+        <div
+          id="resultado"
+          class="mt-5 hidden rounded-lg bg-foreground/5 p-4"
+          aria-live="polite"
+        >
+          <p id="resultado-principal" class="text-2xl font-bold"></p>
+          <p id="resultado-sub" class="mt-1 text-sm text-muted"></p>
+          <p id="resultado-tope" class="mt-2 text-xs text-secondary"></p>
+        </div>
+        <p
+          id="resultado-error"
+          class="mt-3 hidden text-sm text-red-600 dark:text-red-400"
+        >
+        </p>
+
+        <p class="mt-4 text-xs text-muted">
+          IMM vigente: {fmt(immMensual)} (desde {DEFAULT_IMM_EFFECTIVE_DATE}).
+          Tope mensual: {fmt(topeMensual)}.
+        </p>
+      </div>
+
+      <!-- COLUMNA DERECHA: referencia -->
+      <div class="space-y-5">
+        <div class="rounded-xl border border-border p-5">
+          <h2 class="mb-3 text-base font-semibold">Topes legales vigentes</h2>
+          <div class="space-y-2 text-sm">
+            <div class="flex justify-between border-b border-border py-1.5">
+              <span class="text-secondary">IMM mensual vigente</span>
+              <span class="font-mono font-semibold">{fmt(immMensual)}</span>
+            </div>
+            <div class="flex justify-between border-b border-border py-1.5">
+              <span class="text-secondary">Tope mensual (4,75 IMM ÷ 12)</span>
+              <span class="font-mono font-semibold">{fmt(topeMensual)}</span>
+            </div>
+            <div class="flex justify-between py-1.5">
+              <span class="text-secondary">Tope anual (4,75 IMM)</span>
+              <span class="font-mono font-semibold">{fmt(topeAnual)}</span>
+            </div>
+          </div>
+        </div>
+        <div class="rounded-xl border border-accent/20 bg-accent/5 p-5 text-sm">
+          <p class="font-medium text-accent">Disclaimer</p>
+          <p class="mt-1 text-secondary">
+            Esta calculadora es un estimado basado en el Código del Trabajo art.
+            47–50. Para situaciones específicas (múltiples empleadores,
+            contratos parciales, disputas de liquidación), consulta a un abogado
+            laboral o la Inspección del Trabajo.
+          </p>
+          <p class="mt-2">
+            <a
+              href={gratificacionOwnerPath}
+              class="text-accent underline"
+              data-analytics-cta="calculator-guide"
+              data-analytics-label="Guia gratificacion legal"
+              data-analytics-location="calculator_explainer"
+            >
+              Guía completa de gratificación legal →
+            </a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Parámetros para el script cliente -->
+    <div
+      id="gratis-params"
+      data-imm={String(immMensual)}
+      class="hidden"
+      aria-hidden="true"
+    >
+    </div>
+
+    <section
+      class="prose prose-sm max-w-none border-t border-border pt-8 pb-12 dark:prose-invert"
+    >
+      <h2>¿Qué es la gratificación legal?</h2>
+      <p>
+        La <strong>gratificación legal</strong> es un pago adicional al sueldo que
+        todos los empleadores están obligados a otorgar si han obtenido utilidades
+        en el ejercicio. Está regulada en los artículos 47 a 52 del Código del Trabajo.
+      </p>
+      <p>
+        Existen dos modalidades principales: el <strong>art. 50</strong> (la más usada)
+        permite pagar el 25% de la remuneración mensual mes a mes, con el tope de
+        4,75 IMM al año. El <strong>art. 47</strong> obliga a repartir el 30% de las
+        utilidades del ejercicio entre todos los trabajadores, en proporción a sus
+        días y remuneraciones.
+      </p>
+      <p>
+        Para entender todos los detalles, revisa la{" "}
+        <a
+          href={gratificacionOwnerPath}
+          data-analytics-cta="calculator-guide"
+          data-analytics-label="Guia de gratificacion legal"
+          data-analytics-location="calculator_explainer"
+        >
+          guía de gratificación legal
+        </a>
+        {". "}Si recibes la gratificación mensualizada y quieres ver el impacto
+        completo en tu liquidación, usa la{" "}
+        <a
+          href={sueldoLiquidoPath}
+          data-analytics-cta="calculator-related"
+          data-analytics-label="Calculadora de sueldo liquido"
+          data-analytics-location="calculator_explainer"
+        >
+          calculadora de sueldo líquido
+        </a>.
+      </p>
+    </section>
+
+    <section class="border-t border-border py-8">
+      <h2 class="mb-6 text-xl font-semibold">
+        Preguntas frecuentes sobre la gratificación legal
+      </h2>
+      <dl class="space-y-6">
+        {
+          gratiFaqs.map(faq => (
+            <div>
+              <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
+              <dd class="text-sm leading-relaxed text-secondary">
+                {faq.answer}
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <PrimaryCTA
+      text="Guía completa de gratificación legal →"
+      href="/posts/gratificacion-legal-chile/"
+      context="Aprende qué dice el Código del Trabajo, cómo calcular el tope y qué hacer si tu empleador no la paga."
+    />
+    <ShareCalculatorResult />
+    <MethodologyBlock
+      notes={`Modalidad A (art. 50 CT): gratificación mensual = min(remuneración × 0,25; tope_mensual). Tope mensual = round(4,75 × IMM ÷ 12) = ${fmt(topeMensual)}. Tope anual = round(4,75 × IMM) = ${fmt(topeAnual)}. IMM vigente: ${fmt(immMensual)} (ley 2026-06-16, vigente desde 2026-05-01). Modalidad B (art. 47 CT): base de reparto = 30% de utilidades líquidas; proporcional = base × (rem. trabajador / rem. total empresa); tope = 4,75 IMM anual. Los cálculos son estimados y no reemplazan la revisión de la liquidación real ni asesoría laboral.`}
+      sources={[
+        {
+          name: "Código del Trabajo — art. 47 a 52 (gratificación legal)",
+          url: "https://bcn.cl/2u45f",
+          date: "2026-06",
+        },
+        {
+          name: "Dirección del Trabajo — Gratificación legal",
+          url: "https://www.dt.gob.cl/consultas/1/consultas-frecuentes/25/gratificaciones",
+          date: "2026-06",
+        },
+      ]}
+    />
+    <NextSteps
+      currentHref="/calculadoras/gratificacion-legal/"
+      items={calculatorNextStepItems}
+      title="Qué hacer con este resultado"
+      description="Sigue con una herramienta relacionada o vuelve al índice si necesitas resolver otra pregunta."
+      location="calculator_next_steps"
+    />
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  import { calculateGratificacion } from "@/application/use-cases/CalculateGratificacion";
+  import { trackAnalyticsEvent } from "@/utils/analytics";
+
+  const paramsEl = document.getElementById("gratis-params") as HTMLElement;
+  const immMensual = Number(paramsEl?.dataset?.imm ?? 0);
+
+  const modARadio = document.getElementById("mod-a") as HTMLInputElement;
+  const modBRadio = document.getElementById("mod-b") as HTMLInputElement;
+  const camposA = document.getElementById("campos-a")!;
+  const camposB = document.getElementById("campos-b")!;
+
+  const remuneracionInput = document.getElementById(
+    "remuneracion-input"
+  ) as HTMLInputElement;
+  const utilidadesInput = document.getElementById(
+    "utilidades-input"
+  ) as HTMLInputElement;
+  const remTrabajadorInput = document.getElementById(
+    "rem-trabajador-input"
+  ) as HTMLInputElement;
+  const remEmpresaInput = document.getElementById(
+    "rem-empresa-input"
+  ) as HTMLInputElement;
+
+  const calcularBtn = document.getElementById(
+    "calcular-btn"
+  ) as HTMLButtonElement;
+  const resultado = document.getElementById("resultado")!;
+  const resultadoPrincipal = document.getElementById("resultado-principal")!;
+  const resultadoSub = document.getElementById("resultado-sub")!;
+  const resultadoTope = document.getElementById("resultado-tope")!;
+  const resultadoError = document.getElementById("resultado-error")!;
+
+  const fmt = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+  let hasTrackedCompletion = false;
+
+  function toggleModalidad(): void {
+    const isA = modARadio.checked;
+    camposA.classList.toggle("hidden", !isA);
+    camposB.classList.toggle("hidden", isA);
+    resultado.classList.add("hidden");
+    resultadoError.classList.add("hidden");
+  }
+
+  modARadio.addEventListener("change", toggleModalidad);
+  modBRadio.addEventListener("change", toggleModalidad);
+
+  function calcular(): void {
+    resultadoError.classList.add("hidden");
+    resultado.classList.add("hidden");
+
+    if (!immMensual || immMensual <= 0) {
+      resultadoError.textContent =
+        "No se pudo cargar el IMM. Recarga la página.";
+      resultadoError.classList.remove("hidden");
+      return;
+    }
+
+    const modalidad = modARadio.checked ? "A" : "B";
+
+    let result;
+    if (modalidad === "A") {
+      const rem = parseFloat(remuneracionInput.value);
+      if (!Number.isFinite(rem) || rem <= 0) {
+        resultadoError.textContent = "Ingresa una remuneración mensual válida.";
+        resultadoError.classList.remove("hidden");
+        return;
+      }
+      result = calculateGratificacion({
+        modalidad: "A",
+        remuneracionMensual: rem,
+        imm: immMensual,
+      });
+    } else {
+      const util = parseFloat(utilidadesInput.value);
+      const remTrab = parseFloat(remTrabajadorInput.value);
+      const remEmp = parseFloat(remEmpresaInput.value);
+      if (
+        !Number.isFinite(util) ||
+        util <= 0 ||
+        !Number.isFinite(remTrab) ||
+        remTrab <= 0 ||
+        !Number.isFinite(remEmp) ||
+        remEmp <= 0
+      ) {
+        resultadoError.textContent =
+          "Completa todos los campos con valores válidos.";
+        resultadoError.classList.remove("hidden");
+        return;
+      }
+      result = calculateGratificacion({
+        modalidad: "B",
+        utilidadesLiquidasEjercicio: util,
+        remuneracionAnualTrabajador: remTrab,
+        remuneracionAnualEmpresa: remEmp,
+        imm: immMensual,
+      });
+    }
+
+    if (!result.ok) {
+      resultadoError.textContent = "Verifica los valores ingresados.";
+      resultadoError.classList.remove("hidden");
+      return;
+    }
+
+    if (result.modalidad === "A") {
+      resultadoPrincipal.textContent = `${fmt(result.gratificacionMensual)} / mes`;
+      resultadoSub.textContent = `Estimado anual: ${fmt(result.gratificacionAnualEstimada)}`;
+      resultadoTope.textContent = result.topeAplicado
+        ? `Tope aplicado: 4,75 IMM ÷ 12 = ${fmt(result.topeMensual)}/mes (tu 25% era ${fmt(Math.round(result.remuneracionMensual * 0.25))})`
+        : `Sin tope: tu 25% mensual (${fmt(result.gratificacionMensual)}) está bajo el tope de ${fmt(result.topeMensual)}`;
+    } else {
+      resultadoPrincipal.textContent = `${fmt(result.gratificacionAnual)} / año`;
+      resultadoSub.textContent = result.topeAplicado
+        ? `Tope de 4,75 IMM aplicado (bruto: ${fmt(result.gratificacionBruta)})`
+        : `Sin tope. Base de reparto: ${fmt(result.baseCalculo)} (30% de utilidades)`;
+      resultadoTope.textContent = `Tope anual 4,75 IMM = ${fmt(result.topeAnual)}`;
+    }
+
+    resultado.classList.remove("hidden");
+
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", {
+        detail: {
+          summaryText: `Gratificación legal: ${result.modalidad === "A" ? fmt((result as typeof result & { gratificacionMensual: number }).gratificacionMensual) + "/mes" : fmt((result as typeof result & { gratificacionAnual: number }).gratificacionAnual) + "/año"}`,
+        },
+      })
+    );
+    if (!hasTrackedCompletion) {
+      hasTrackedCompletion = true;
+      trackAnalyticsEvent("calculator_complete", {
+        calculator_slug: "gratificacion-legal",
+        calculator_name: "Calculadora de Gratificación Legal",
+        outcome: "success",
+      });
+    }
+  }
+
+  calcularBtn.addEventListener("click", calcular);
+</script>

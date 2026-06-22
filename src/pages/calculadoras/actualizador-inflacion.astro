@@ -1,0 +1,387 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
+import Footer from "@/components/Footer.astro";
+import MethodologyBlock from "@/components/MethodologyBlock.astro";
+import PrimaryCTA from "@/components/PrimaryCTA.astro";
+import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
+import Breadcrumb from "@/components/Breadcrumb.astro";
+import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
+import NextSteps from "@/components/NextSteps.astro";
+import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
+import { getPath } from "@/utils/getPath";
+import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import ipcHistoricoRaw from "@/data/economic-history/ipc-historico.json";
+
+const ipcPath = getPath("/posts/que-es-el-ipc-chile-como-se-calcula/");
+
+// Rango disponible en el dataset
+const ipcSerie = ipcHistoricoRaw.serie;
+const ipcFirstKey = ipcSerie[0].fecha.slice(0, 7); // "2000-01"
+const ipcLastKey = ipcSerie[ipcSerie.length - 1].fecha.slice(0, 7); // "2025-12"
+
+const [lastYear, lastMonthNum] = ipcLastKey.split("-").map(Number);
+const MESES = [
+  "enero",
+  "febrero",
+  "marzo",
+  "abril",
+  "mayo",
+  "junio",
+  "julio",
+  "agosto",
+  "septiembre",
+  "octubre",
+  "noviembre",
+  "diciembre",
+];
+const lastMonthLabel = MESES[lastMonthNum - 1];
+const lastDateLabel = `${lastMonthLabel} ${lastYear}`;
+
+// Años disponibles para el selector de origen (primer año hasta penúltimo mes disponible)
+const firstYear = Number(ipcFirstKey.split("-")[0]);
+// El usuario puede seleccionar hasta el mes anterior al último disponible
+const maxFromYear = lastYear;
+const maxFromMonth = lastMonthNum - 1 > 0 ? lastMonthNum - 1 : 12;
+
+const years: number[] = [];
+for (let y = firstYear; y <= maxFromYear; y++) years.push(y);
+
+const currentCalculator = CALCULATOR_PORTFOLIO.find(
+  calc => calc.slug === "actualizador-inflacion"
+);
+const calculatorRelatedItems = (currentCalculator?.related ?? []).map(item => ({
+  href: item.href,
+  title: item.label,
+  description: item.when,
+  label: "Relacionado",
+}));
+const calculatorNextStepItems = [
+  ...calculatorRelatedItems,
+  ...(calculatorRelatedItems.length < 2
+    ? [
+        {
+          href: "/calculadoras/",
+          title: "Ver todas las calculadoras",
+          description: "Compara otra herramienta si tu pregunta cambió.",
+          label: "Herramientas",
+        },
+      ]
+    : []),
+];
+---
+
+<Layout
+  title="Actualizador por Inflación IPC Chile — ¿Cuánto valen hoy tus pesos de antes?"
+  description="Actualiza cualquier monto en pesos chilenos por inflación IPC: ¿cuánto serían $X de 2010 en pesos de hoy? Usa el índice oficial del INE."
+>
+  <CalculatorJsonLd
+    name="Actualizador por Inflación IPC Chile"
+    description="Actualiza cualquier monto en pesos chilenos por inflación IPC: ¿cuánto serían $X de 2010 en pesos de hoy? Usa el índice oficial del INE."
+    dateModified={ipcLastKey + "-01"}
+    faqs={[
+      {
+        question: "¿Cómo se calcula la actualización por inflación?",
+        answer: `Se encadenan las variaciones porcentuales mensuales del IPC publicadas por el INE. Si el IPC sube 0,5% un mes, el factor de ese mes es 1,005. El factor acumulado es el producto de todos los factores desde el mes de origen hasta ${lastDateLabel}. El resultado no es un pronóstico: usa cifras históricas oficiales.`,
+      },
+      {
+        question: "¿Por qué la cifra solo llega hasta " + lastDateLabel + "?",
+        answer: `El INE publica el IPC mensual con un mes de rezago. La última variación disponible en este cálculo es la de ${lastDateLabel}. Cuando el INE publique el siguiente mes, el dataset se actualiza.`,
+      },
+      {
+        question: "¿Para qué sirve actualizar un monto por inflación?",
+        answer:
+          "Para comparar valores en términos reales: saber si un sueldo de hace 10 años era 'más alto' que hoy, ajustar indemnizaciones, estimar deudas antiguas o analizar el poder adquisitivo a lo largo del tiempo.",
+      },
+    ]}
+  />
+  <Header />
+  <Breadcrumb />
+  <CalculatorTrustBadge location="calculator_header" />
+  <main
+    data-layout="calculator"
+    id="main-content"
+    class="app-layout"
+    data-analytics-page-type="calculator"
+    data-analytics-calculator="actualizador-inflacion"
+    data-analytics-calculator-name="Actualizador por Inflación IPC"
+  >
+    <CalculatorHero
+      title="Actualizador por Inflación IPC"
+      description="¿Cuánto serían hoy los pesos que tenías en otra época? Convierte cualquier monto histórico a pesos actuales usando el IPC oficial del INE."
+      descriptionClass="max-w-xl text-secondary"
+    />
+
+    <section class="grid items-start gap-6 py-8 sm:grid-cols-2">
+      <!-- FORMULARIO -->
+      <div class="rounded-xl border border-border p-6">
+        <div class="mb-5">
+          <label
+            for="monto-input"
+            class="mb-1 block text-sm font-medium text-secondary"
+          >
+            Monto original ($)
+          </label>
+          <input
+            type="number"
+            id="monto-input"
+            placeholder="Ej: 500.000"
+            min="1"
+            step="1"
+            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-lg text-foreground focus:border-accent focus:outline-none"
+          />
+        </div>
+
+        <div class="mb-5 grid grid-cols-2 gap-3">
+          <div>
+            <label
+              for="from-year"
+              class="mb-1 block text-sm font-medium text-secondary"
+            >
+              Año de origen
+            </label>
+            <select
+              id="from-year"
+              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+            >
+              {years.map(y => <option value={y}>{y}</option>)}
+            </select>
+          </div>
+          <div>
+            <label
+              for="from-month"
+              class="mb-1 block text-sm font-medium text-secondary"
+            >
+              Mes de origen
+            </label>
+            <select
+              id="from-month"
+              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+            >
+              {MESES.map((m, i) => <option value={i + 1}>{m}</option>)}
+            </select>
+          </div>
+        </div>
+
+        <button
+          id="calcular-btn"
+          class="w-full rounded-lg bg-accent px-4 py-2.5 font-semibold text-white transition-opacity hover:opacity-90 focus:ring-2 focus:ring-accent focus:outline-none"
+        >
+          Actualizar por inflación
+        </button>
+
+        <!-- RESULTADO -->
+        <div
+          id="resultado"
+          class="mt-5 hidden rounded-lg bg-foreground/5 p-4"
+          aria-live="polite"
+        >
+          <p id="resultado-valor" class="text-2xl font-bold"></p>
+          <p id="resultado-pct" class="mt-1 text-sm text-muted"></p>
+          <p id="resultado-detalle" class="mt-1 text-xs text-secondary"></p>
+        </div>
+        <p
+          id="resultado-error"
+          class="mt-3 hidden text-sm text-red-600 dark:text-red-400"
+        >
+        </p>
+
+        <p class="mt-4 text-xs text-muted">
+          Datos actualizados al {lastDateLabel} (última cifra disponible del INE).
+        </p>
+      </div>
+
+      <!-- COLUMNA DERECHA -->
+      <div class="space-y-5">
+        <div class="rounded-xl border border-border p-5">
+          <h2 class="mb-3 text-base font-semibold">
+            ¿Para qué sirve esta herramienta?
+          </h2>
+          <ul class="space-y-2 text-sm text-secondary">
+            <li>
+              📋 Comparar si un sueldo histórico era "más alto" en términos
+              reales
+            </li>
+            <li>
+              ⚖️ Ajustar indemnizaciones o deudas antiguas a valor presente
+            </li>
+            <li>📉 Medir el poder adquisitivo a lo largo del tiempo</li>
+            <li>
+              🧾 Contextualizar precios de bienes o servicios en épocas
+              distintas
+            </li>
+          </ul>
+        </div>
+        <div class="rounded-xl border border-accent/20 bg-accent/5 p-5 text-sm">
+          <p class="font-medium text-accent">Nota metodológica</p>
+          <p class="mt-1 text-secondary">
+            El IPC publicado por el INE es una variación mensual (%). Esta
+            calculadora encadena las variaciones mes a mes desde el origen hasta {
+              lastDateLabel
+            }
+            (inclusive en ambos extremos). El resultado es un estimado basado en promedios
+            canasta — no considera bienes específicos ni cambios en hábitos de consumo.
+          </p>
+          <p class="mt-2 text-secondary">
+            Más sobre el IPC y cómo se calcula: <a
+              href={ipcPath}
+              class="text-accent underline"
+              data-analytics-cta="calculator-guide"
+              data-analytics-label="Guia IPC Chile"
+              data-analytics-location="calculator_explainer"
+              >¿Qué es el IPC en Chile?</a
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Serie IPC embebida (build-time) -->
+    <script
+      id="ipc-serie-data"
+      type="application/json"
+      is:inline
+      set:html={JSON.stringify({
+        serie: ipcSerie,
+        first: ipcFirstKey,
+        last: ipcLastKey,
+        maxFromYear,
+        maxFromMonth,
+      })}
+    />
+
+    <PrimaryCTA
+      text="¿Qué es el IPC y cómo se calcula? →"
+      href="/posts/que-es-el-ipc-chile-como-se-calcula/"
+      context="Entiende qué mide el Índice de Precios al Consumidor y cómo el INE lo publica cada mes."
+    />
+    <ShareCalculatorResult />
+    <MethodologyBlock
+      notes={`El IPC usado es la variación mensual oficial publicada por el INE a través de mindicador.cl. Las variaciones se encadenan multiplicativamente: factor = Π(1 + rᵢ/100) para cada mes i desde el origen hasta ${lastDateLabel} (inclusive). Esta es la convención estándar para conversiones de poder adquisitivo. El dataset cubre desde enero 2000 hasta ${lastDateLabel} (${ipcSerie.length} entradas). Series históricas anteriores a 2000 no están disponibles en esta fuente.`}
+      sources={[
+        {
+          name: "INE — Índice de Precios al Consumidor (IPC)",
+          url: "https://www.ine.gob.cl/estadisticas/economia/indices-de-precio-e-inflacion/ipc",
+          date: "2026-06",
+        },
+        {
+          name: "mindicador.cl — API IPC mensual (fuente)",
+          url: "https://mindicador.cl/api/ipc",
+          date: "2026-06",
+        },
+      ]}
+    />
+    <NextSteps
+      currentHref="/calculadoras/actualizador-inflacion/"
+      items={calculatorNextStepItems}
+      title="Qué hacer con este resultado"
+      description="Sigue con una herramienta relacionada o vuelve al índice si necesitas resolver otra pregunta."
+      location="calculator_next_steps"
+    />
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  import { calculateInflationAdjustment } from "@/application/use-cases/CalculateInflationAdjustment";
+  import { trackAnalyticsEvent } from "@/utils/analytics";
+
+  const serieDataEl = document.getElementById("ipc-serie-data");
+  const serieData = serieDataEl
+    ? (JSON.parse(serieDataEl.textContent ?? "{}") as {
+        serie: Array<{ fecha: string; valor: number }>;
+        first: string;
+        last: string;
+        maxFromYear: number;
+        maxFromMonth: number;
+      })
+    : null;
+
+  const montoInput = document.getElementById("monto-input") as HTMLInputElement;
+  const fromYearSelect = document.getElementById(
+    "from-year"
+  ) as HTMLSelectElement;
+  const fromMonthSelect = document.getElementById(
+    "from-month"
+  ) as HTMLSelectElement;
+  const calcularBtn = document.getElementById(
+    "calcular-btn"
+  ) as HTMLButtonElement;
+  const resultado = document.getElementById("resultado")!;
+  const resultadoValor = document.getElementById("resultado-valor")!;
+  const resultadoPct = document.getElementById("resultado-pct")!;
+  const resultadoDetalle = document.getElementById("resultado-detalle")!;
+  const resultadoError = document.getElementById("resultado-error")!;
+
+  const fmt = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+  let hasTrackedCompletion = false;
+
+  function calcular(): void {
+    resultadoError.classList.add("hidden");
+    resultado.classList.add("hidden");
+
+    if (!serieData) {
+      resultadoError.textContent =
+        "No se pudieron cargar los datos históricos del IPC.";
+      resultadoError.classList.remove("hidden");
+      return;
+    }
+
+    const monto = parseFloat(montoInput.value);
+    const fromYear = parseInt(fromYearSelect.value, 10);
+    const fromMonth = parseInt(fromMonthSelect.value, 10);
+
+    if (!Number.isFinite(monto) || monto <= 0) {
+      resultadoError.textContent = "Ingresa un monto válido mayor que cero.";
+      resultadoError.classList.remove("hidden");
+      return;
+    }
+
+    const result = calculateInflationAdjustment({
+      monto,
+      fromYear,
+      fromMonth,
+      serie: serieData.serie,
+    });
+
+    if (!result.ok) {
+      const msgs: Record<string, string> = {
+        before_range: `El dataset comienza en ${serieData.first}. Selecciona un período más reciente.`,
+        after_range: `El mes seleccionado es el último disponible. Selecciona un período anterior a ${serieData.last}.`,
+        invalid_input: "Verifica que el monto y las fechas sean válidos.",
+        no_data: "No hay datos disponibles para ese período.",
+      };
+      resultadoError.textContent = msgs[result.reason] ?? "Error al calcular.";
+      resultadoError.classList.remove("hidden");
+      return;
+    }
+
+    const pctSign = result.pctAcumulado >= 0 ? "+" : "";
+    resultadoValor.textContent = `${fmt(result.montoActualizado)}`;
+    resultadoPct.textContent = `Inflación acumulada: ${pctSign}${result.pctAcumulado.toFixed(1)}% (factor ${result.factorAcumulado.toFixed(4)})`;
+    resultadoDetalle.textContent = `${fmt(monto)} de ${result.fromKey.replace("-", "/")} → ${fmt(result.montoActualizado)} al ${result.toKey.replace("-", "/")} · ${result.mesesEncadenados} meses encadenados`;
+    resultado.classList.remove("hidden");
+
+    document.dispatchEvent(
+      new CustomEvent("calculator:result", {
+        detail: {
+          summaryText: `Actualizador inflación: ${fmt(monto)} → ${fmt(result.montoActualizado)} (${pctSign}${result.pctAcumulado.toFixed(1)}%)`,
+        },
+      })
+    );
+    if (!hasTrackedCompletion) {
+      hasTrackedCompletion = true;
+      trackAnalyticsEvent("calculator_complete", {
+        calculator_slug: "actualizador-inflacion",
+        calculator_name: "Actualizador por Inflación IPC",
+        outcome: "success",
+      });
+    }
+  }
+
+  calcularBtn.addEventListener("click", calcular);
+  montoInput.addEventListener("keydown", (e: KeyboardEvent) => {
+    if (e.key === "Enter") calcular();
+  });
+</script>

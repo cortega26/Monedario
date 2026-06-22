@@ -461,6 +461,34 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     ],
   },
   {
+    href: "/calculadoras/actualizador-inflacion/",
+    slug: "actualizador-inflacion",
+    title: "Actualizador por Inflación IPC",
+    description:
+      "Convierte pesos históricos a valor actual encadenando las variaciones mensuales del IPC oficial del INE desde 2000.",
+    icon: "trending-up",
+    tag: "Histórico",
+    family: "vivienda-uf",
+    primaryJtbd:
+      "Saber cuánto valen hoy los pesos de otra época, usando la inflación real acumulada.",
+    whenToUse:
+      "Cuando quieres comparar sueldos, indemnizaciones o deudas de distintos años en términos reales.",
+    notFor:
+      "No proyecta inflación futura ni calcula reajustes contractuales — usa la calculadora de reajuste de arriendo para eso.",
+    related: [
+      {
+        href: "/calculadoras/reajuste-arriendo/",
+        label: "Reajuste de arriendo",
+        when: "si necesitas calcular cuánto sube un arriendo según la cláusula del contrato.",
+      },
+      {
+        href: "/calculadoras/conversor-uf/",
+        label: "Conversor UF",
+        when: "si tu monto está expresado en UF y necesitas el equivalente en pesos de hoy.",
+      },
+    ],
+  },
+  {
     href: "/calculadoras/reajuste-arriendo/",
     slug: "reajuste-arriendo",
     title: "Reajuste de Arriendo",
@@ -564,6 +592,34 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
         href: "/calculadoras/conversor-utm/",
         label: "Conversor UTM ↔ Pesos",
         when: "si tu referencia es una multa o trámite expresado en UTM y no un monto con IVA.",
+      },
+    ],
+  },
+  {
+    href: "/calculadoras/gratificacion-legal/",
+    slug: "gratificacion-legal",
+    title: "Calculadora de Gratificación Legal",
+    description:
+      "Calcula cuánto te corresponde de gratificación según el Código del Trabajo: 25% mensualizado topado a 4,75 IMM o porcentaje de utilidades.",
+    icon: "moneybag",
+    tag: "Laboral",
+    family: "ingresos",
+    primaryJtbd:
+      "Saber cuánto es mi gratificación legal y si mi empleador aplica el tope correctamente.",
+    whenToUse:
+      "Cuando recibes tu liquidación y quieres verificar el monto de gratificación mensualizada, o al término del año para estimar la gratificación sobre utilidades.",
+    notFor:
+      "No reemplaza la revisión de la liquidación real ni asesoría laboral para disputas específicas.",
+    related: [
+      {
+        href: "/calculadoras/sueldo-liquido/",
+        label: "Sueldo líquido",
+        when: "si recibes la gratificación mensualizada y quieres ver el impacto completo en tu liquidación con todos los descuentos.",
+      },
+      {
+        href: "/calculadoras/finiquito-indemnizacion/",
+        label: "Finiquito e indemnización",
+        when: "si además de la gratificación necesitas calcular los demás componentes de un finiquito.",
       },
     ],
   },
