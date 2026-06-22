@@ -19,7 +19,7 @@ Pipeline opened: 2026-06-22
 | 03 Outline | OutlineAgent | Claude Code 2026-06-22 — **misma sesión que 01/02/04** | ⚠ Defecto SoD declarado |
 | 04 Draft | DraftAgent | Claude Code 2026-06-22 — **misma sesión que 01/02/03** | ✓ Completado — `04-draft.md` |
 | 05 Math Audit | — | No requerido (sin cálculos — trámites descriptivos) | ✓ Eximido |
-| 06 Compliance | ComplianceAgent | **SESIÓN FRESCA REQUERIDA** | ⬜ PENDIENTE |
+| 06 Compliance | ComplianceAgent | **SESIÓN FRESCA REQUERIDA** | ✗ FAIL — `06-compliance.md` |
 | 07 Publish | HumanEditor | Carlos Ortega | ⬜ PENDIENTE |
 
 > **Defecto de SoD declarado:** stages 01, 02, 03 y 04 los produjo la MISMA sesión (2026-06-22).
