@@ -1,9 +1,11 @@
 # 04-draft — Finanzas para migrantes en Chile (pilar educativo)
 
-**Status: DRAFT — segunda remediación 2026-06-22; pendiente Gate 06 re-auditoría en sesión fresca**
+**Status: DRAFT — cuarta remediación 2026-06-22; pendiente Gate 05 independiente + Gate 06 sesión fresca**
 **Role:** DraftAgent — Claude Sonnet 4.6 (sesión 2026-06-22)
 **Remediación 1 (commit d5a37821):** DraftAgent remediador — resuelve D#1–D#7 de Gate 06 FAIL (5.49/10)
-**Remediación 2 (esta sesión):** DraftAgent remediador — resuelve D#1, D#2, D#6 de Gate 06 reauditoría (6.88/10)
+**Remediación 2 (commit 2a1644b0):** DraftAgent remediador — resuelve D#1, D#2, D#6 de Gate 06 reauditoría (6.88/10)
+**Remediación 3 (addendum humano, commit 7f94568c):** DraftAgent aplicó addendum HumanEditor 2026-06-22 — claims C1–C6 reformulados; fuentes O9–O22 incorporadas.
+**Remediación 4 (esta sesión):** DraftAgent — resuelve D#1, D#3, D#4, D#5, D#6, D#7 de Gate 06 FAIL (8.25/10). Borrador congelado — pendiente Gate 05 independiente + Gate 06 sesión fresca.
 
 **Role-concentration note:** stages 01 (brief), 02 (dossier), 03 (outline) y 04 (draft)
 los produjo la misma sesión (2026-06-22). `INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES` exige
@@ -164,9 +166,11 @@ también es cliente de BancoEstado. Los adultos pueden solicitarla directamente.
 Otros bancos y fintech también operan en Chile. Los requisitos para extranjeros varían por
 institución:
 
-- **Santander y BCI:** solicitan cédula vigente, RUT y evaluación comercial o acreditación
-  de ingresos. Sus páginas no garantizan que toda persona extranjera califique.
-- **Tenpo:** requiere RUT, cédula chilena vigente y física para el registro — puede ser un
+- **Santander** (Cuenta Más Lucas): requiere cédula vigente y evaluación comercial. Su página
+  no garantiza que toda persona extranjera califique.
+- **BCI** (Cuenta Digital): requiere cédula vigente, acreditación de ingresos y evaluación
+  comercial. Verifica la elegibilidad directamente con el banco.
+- **Tenpo:** requiere RUT y cédula chilena vigente y física para el registro — puede ser un
   requisito bloqueante si aún no tienes cédula de extranjero.
 
 Verifica las condiciones actuales directamente con cada banco o fintech antes de intentar
@@ -180,15 +184,19 @@ Fuentes: [Santander](https://banco.santander.cl/personas/planes/cuenta-mas-lucas
 
 ## Paso 3 — Arrendar: qué te pueden pedir y cómo prepararte
 
-La legislación de arrendamientos urbanos (Ley N° 18.101) no establece un requisito general
-de nacionalidad para el arrendatario. El SII indica que incluso un turista extranjero puede
-figurar en un contrato privado de arriendo usando su pasaporte o documento de identidad
-extranjero, sin necesitar un RUT. La Ley N° 21.461 modificó los procedimientos de
-restitución y cobro del arriendo; no establece requisitos especiales de acceso para personas
-extranjeras.
+El SII indica que incluso un turista extranjero puede figurar en un contrato privado de
+arriendo usando su pasaporte o documento de identidad extranjero, sin necesitar un RUT.
 
-> La Ley N° 20.609 prohíbe la discriminación arbitraria basada en la nacionalidad, incluso
-> cuando la realizan particulares.
+> **Resumen orientativo — marco legal** (BCN 2026-06-22; verifica el texto vigente antes de actuar):
+>
+> - **Ley N° 18.101** (arrendamientos urbanos): no establece un requisito general de
+>   nacionalidad para el arrendatario.
+> - **Ley N° 21.461** (restitución y cobro): modificó los procedimientos de restitución
+>   del inmueble arrendado; no establece requisitos especiales de acceso para personas extranjeras.
+> - **Ley N° 20.609, art. 2** (no discriminación arbitraria): prohíbe la discriminación
+>   arbitraria basada en la nacionalidad, incluso cuando la realizan particulares.
+>
+> Este resumen tiene fines orientativos y no reemplaza asesoría legal profesional.
 
 Fuentes: [BCN — Ley N° 18.101](https://www.bcn.cl/leychile/navegar?idNorma=29526),
 [BCN — Ley N° 21.461](https://www.bcn.cl/leychile/Navegar?idNorma=1178004),
@@ -202,7 +210,7 @@ legales y sin discriminación arbitraria. Lo que cada propietario exige varía �
 directamente con él:
 
 - **Cédula de identidad** (chilena o de extranjero) o pasaporte.
-- **RUT**, si el contrato genera boleta o factura, o para verificar antecedentes comerciales.
+- **RUT**, en los casos en que el propietario lo solicite como parte de sus condiciones.
 - **Comprobante de ingresos**, para acreditar capacidad de pago.
 - **Garantías adicionales:** consulta directamente con el propietario qué condiciones exige.
 
@@ -213,9 +221,10 @@ acordar. Tener documentos de identidad e ingresos en orden facilita el proceso.
 
 ### ¿El arriendo puede ir en UF?
 
-Sí, es habitual en el mercado de arriendo chileno. La UF (Unidad de Fomento) sube con la inflación, lo que significa
-que el arriendo se reajusta automáticamente. Puedes convertir cualquier valor en UF a pesos
-con la [calculadora de UF](/calculadoras/conversor-uf/).
+Sí, es una práctica que existe en el mercado de arriendo chileno. La UF (Unidad de Fomento)
+sube con la inflación; si el contrato está denominado en UF, el valor del arriendo se reajusta
+según lo pactado en él. Puedes convertir cualquier valor en UF a pesos con la
+[calculadora de UF](/calculadoras/conversor-uf/).
 
 ---
 
@@ -243,8 +252,11 @@ Una vez que tienes RUT, cuenta y vivienda, los siguientes pasos comunes son:
 No. Basta con cédula de identidad vigente — esto incluye la cédula de extranjero.
 
 **¿Puedo obtener RUT sin haber vivido en Chile?**
-El RUT del SII se tramita presencialmente en Chile. Si estás planificando tu llegada,
-verifica en sii.cl si existe alguna opción de trámite previo o por poder.
+Depende de tu situación. Si ya tienes residencia y cédula de extranjero, el SII te registra
+automáticamente con tu RUN — no necesitas tramitar un RUT por separado. Si no tienes
+residencia pero debes cumplir obligaciones tributarias en Chile, el SII dispone de inscripción
+por internet en sii.cl; los documentos exigidos dependen de tu caso. Verifica los requisitos
+actuales en sii.cl antes de actuar.
 
 **¿Cuánto tarda el RUT del Registro Civil?**
 El plazo varía según el flujo del Registro Civil y el tipo de permiso. Para saber el plazo
