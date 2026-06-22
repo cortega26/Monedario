@@ -3,11 +3,27 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
+import GraficoHistorico from "@/components/GraficoHistorico.astro";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
 import { formatEconomicDate } from "@/domain/economic/economicSourcePresentation";
 import { formatCLP } from "@/utils/indicadores";
 import { getPath } from "@/utils/getPath";
+import ufHistoricoRaw from "@/data/economic-history/uf-historico.json";
+
+// Muestra mensual — últimos 5 años — para el gráfico histórico
+const hoy = new Date();
+hoy.setFullYear(hoy.getFullYear() - 5);
+const cutoff = hoy.toISOString().slice(0, 10);
+const ufMeses = new Set<string>();
+const ufPuntos = ufHistoricoRaw.serie
+  .filter(p => p.fecha >= cutoff)
+  .filter(p => {
+    const mes = p.fecha.slice(0, 7);
+    if (ufMeses.has(mes)) return false;
+    ufMeses.add(mes);
+    return true;
+  });
 
 const { parameters } = await getEconomicParameters();
 
@@ -164,6 +180,25 @@ const webPageSchema = {
           Cómo usamos los datos
         </a>
       </p>
+    </section>
+
+    <!-- Gráfico histórico UF -->
+    <section class="border-b border-border py-8">
+      <h2 class="mb-1 text-xl font-bold">Evolución histórica de la UF</h2>
+      <p class="mb-4 text-sm text-secondary">
+        Últimos 5 años — serie mensual. Fuente: Banco Central de Chile.
+      </p>
+      <div
+        class="bg-surface rounded-2xl border border-border px-4 pt-4 pb-2"
+        role="region"
+        aria-label="Gráfico de evolución histórica de la UF"
+      >
+        <GraficoHistorico
+          puntos={ufPuntos}
+          titulo="Valor de la UF en Chile (últimos 5 años)"
+          etiquetaValor="Valor UF (CLP)"
+        />
+      </div>
     </section>
 
     <!-- Qué significa para tu bolsillo -->

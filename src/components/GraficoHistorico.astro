@@ -1,0 +1,169 @@
+---
+interface Punto {
+  fecha: string;
+  valor: number;
+}
+
+interface Props {
+  puntos: Punto[];
+  titulo: string;
+  etiquetaValor?: string;
+}
+
+const { puntos, titulo, etiquetaValor = "Valor" } = Astro.props;
+
+const W = 800;
+const H = 220;
+const PAD = { top: 16, right: 16, bottom: 30, left: 64 };
+const CW = W - PAD.left - PAD.right;
+const CH = H - PAD.top - PAD.bottom;
+
+const gradId = `ufg${Math.random().toString(36).slice(2, 9)}`;
+
+interface GrafLine {
+  y: number;
+  label: string;
+}
+interface GrafXLabel {
+  x: number;
+  label: string;
+}
+
+let linePoints = "";
+let fillPath = "";
+let gridLines: GrafLine[] = [];
+let xLabels: GrafXLabel[] = [];
+const hasData = puntos.length >= 2;
+
+if (hasData) {
+  const valores = puntos.map(p => p.valor);
+  const rawMin = valores.reduce((a, b) => Math.min(a, b), Infinity);
+  const rawMax = valores.reduce((a, b) => Math.max(a, b), -Infinity);
+  const rangePad = (rawMax - rawMin) * 0.04;
+  const minVal = rawMin - rangePad;
+  const maxVal = rawMax + rangePad;
+  const valRange = maxVal - minVal;
+
+  const n = puntos.length;
+  const xOf = (i: number) => PAD.left + (i / (n - 1)) * CW;
+  const yOf = (v: number) => PAD.top + CH - ((v - minVal) / valRange) * CH;
+
+  const ptsStr = puntos.map(
+    (p, i) => `${xOf(i).toFixed(1)},${yOf(p.valor).toFixed(1)}`
+  );
+  linePoints = ptsStr.join(" ");
+
+  const bY = PAD.top + CH;
+  fillPath = `M${ptsStr[0]} ${ptsStr
+    .slice(1)
+    .map(s => `L${s}`)
+    .join(" ")} L${xOf(n - 1).toFixed(1)},${bY} L${xOf(0).toFixed(1)},${bY} Z`;
+
+  const steps = 4;
+  for (let i = 0; i <= steps; i++) {
+    const v = rawMax - ((rawMax - rawMin) / steps) * i;
+    gridLines.push({
+      y: yOf(v),
+      label: v.toLocaleString("es-CL", { maximumFractionDigits: 0 }),
+    });
+  }
+
+  const seen = new Set<string>();
+  puntos.forEach((p, i) => {
+    const yr = p.fecha.slice(0, 4);
+    if (!seen.has(yr)) {
+      seen.add(yr);
+      xLabels.push({ x: xOf(i), label: yr });
+    }
+  });
+}
+---
+
+<figure class="my-4">
+  {
+    hasData ? (
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        width="100%"
+        aria-hidden="true"
+        class="block w-full overflow-visible"
+      >
+        <defs>
+          <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="var(--accent)" stop-opacity="0.18" />
+            <stop offset="100%" stop-color="var(--accent)" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        {gridLines.map(gl => (
+          <line
+            x1={PAD.left}
+            y1={gl.y}
+            x2={W - PAD.right}
+            y2={gl.y}
+            stroke="var(--border)"
+            stroke-width="0.5"
+          />
+        ))}
+        {gridLines.map(gl => (
+          <text
+            x={PAD.left - 4}
+            y={gl.y + 3.5}
+            text-anchor="end"
+            font-size="11"
+            fill="var(--foreground)"
+            opacity="0.5"
+            font-family="inherit"
+          >
+            {gl.label}
+          </text>
+        ))}
+        {xLabels.map(xl => (
+          <text
+            x={xl.x}
+            y={H - 4}
+            text-anchor="middle"
+            font-size="11"
+            fill="var(--foreground)"
+            opacity="0.5"
+            font-family="inherit"
+          >
+            {xl.label}
+          </text>
+        ))}
+        <path d={fillPath} fill={`url(#${gradId})`} />
+        <polyline
+          points={linePoints}
+          fill="none"
+          stroke="var(--accent)"
+          stroke-width="1.8"
+          stroke-linejoin="round"
+          stroke-linecap="round"
+        />
+      </svg>
+    ) : (
+      <p class="text-sm text-secondary">
+        No hay datos suficientes para mostrar el gráfico.
+      </p>
+    )
+  }
+
+  <table class="sr-only">
+    <caption>{titulo}</caption>
+    <thead>
+      <tr>
+        <th scope="col">Fecha</th>
+        <th scope="col">{etiquetaValor}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        puntos.map(p => (
+          <tr>
+            <td>{p.fecha}</td>
+            <td>{p.valor.toFixed(2)}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</figure>

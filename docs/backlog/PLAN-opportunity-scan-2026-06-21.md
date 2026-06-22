@@ -152,7 +152,7 @@ contra el código real (no driftea: verifica la realidad, no checkboxes). La tab
 
 _Última verificación automática: 2026-06-22._
 
-**Avance:** 12/16 (75%) · verificables 12/14 · manuales 0/2
+**Avance:** 13/16 (81%) · verificables 13/14 · manuales 0/2
 
 | Estado | ID | Oportunidad | Ventana | Evidencia |
 |---|---|---|---|---|
@@ -165,7 +165,7 @@ _Última verificación automática: 2026-06-22._
 | ✅ | OPP-07 | Dataset histórico UF/UTM/IPC versionado | 14d | dataset: src/data/economic-history/ipc-historico.json |
 | ✅ | OPP-08 | Conversor UF a una fecha pasada | 30d | lookup por fecha presente |
 | ✅ | OPP-09 | Actualizador por inflación (IPC) | 30d | src/pages/calculadoras/actualizador-inflacion.astro |
-| ⬜ | OPP-10 | Gráfico histórico UF/UTM/dólar | 30d | sin componente de gráfico |
+| ✅ | OPP-10 | Gráfico histórico UF/UTM/dólar | 30d | src/components/GraficoHistorico.astro |
 | ✅ | OPP-11 | Calculadora de gratificación legal | 30d | ruta presente |
 | 🔒 | OPP-12 | bancos-fintech: quitar noindex + GUIDE_HUB_ORDER _(gated por OPP-13)_ | 14d | noindex retirado: no; en GUIDE_HUB_ORDER: no |
 | ✅ | OPP-15 | Tooltips en links auto-inyectados de glosario | 14d | atributos de tooltip presentes |
