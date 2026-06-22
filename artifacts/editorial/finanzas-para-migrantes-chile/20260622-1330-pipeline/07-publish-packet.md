@@ -18,7 +18,7 @@ Pipeline opened: 2026-06-22
 | 02 Research | ResearchAgent | Claude Code 2026-06-22 — **misma sesión que 01/03/04** | ⚠ Defecto SoD declarado |
 | 03 Outline | OutlineAgent | Claude Code 2026-06-22 — **misma sesión que 01/02/04** | ⚠ Defecto SoD declarado |
 | 04 Draft | DraftAgent | Claude Code 2026-06-22 — **misma sesión que 01/02/03** | ✓ Completado — `04-draft.md` |
-| 05 Math Audit | MathAuditAgent | Claude Sonnet 4.6, sesión fresca 2026-06-22 (remediación) | ✓ Eximido — `05-math-audit.md` |
+| 05 Math Audit | MathAuditAgent | Claude Sonnet 4.6, misma sesión que segunda remediación — **⚠ SoD no acreditado** | ⚠ Eximido con limitación — ver `05-math-audit.md` |
 | 06 Compliance | ComplianceAgent | **SESIÓN FRESCA REQUERIDA** | ✗ FAIL — reauditoría 6.88/10 (`06-compliance.md`) |
 | 07 Publish | HumanEditor | Carlos Ortega | ⬜ PENDIENTE |
 
@@ -86,11 +86,13 @@ Pipeline opened: 2026-06-22
 
 ## Estado de Gates
 
-- **Gate 05 (MathAudit)**: EXIMIDO — artefacto `05-math-audit.md` creado 2026-06-22; inventario de 5 números con disposición; N3/N4/N5 eliminados en remediación, N1/N2 mantenidos como no-calculables.
-- **Gate 06 (ComplianceAgent)**: FAIL (5.49/10) — `06-compliance.md` producido por Codex sesión fresca. Draft remediado 2026-06-22 (sesión fresca DraftAgent) — re-auditoría requerida en nueva sesión fresca.
+- **Gate 05 (MathAudit)**: EXIMIDO CON LIMITACIÓN — artefacto `05-math-audit.md` actualizado 2026-06-22. N3/N4/N5 eliminados en primera remediación; N2 eliminado en segunda remediación (Ley 21.461 retirada del draft); N1 (12 años) permanece VERIFIED. Limitación SoD: el MathAuditAgent no puede acreditarse como instancia independiente del DraftAgent remediador — D#3 HIGH de Gate 06 reauditoría. **Carlos Ortega debe decidir: aceptar exención con limitación declarada o solicitar Gate 05 en sesión independiente.**
+- **Gate 06 (ComplianceAgent)**: FAIL segunda evaluación (6.88/10) — ver `06-compliance.md`. Draft remediado por segunda vez 2026-06-22 — re-auditoría requerida en nueva sesión fresca.
 - **Gate 07 (HumanEditor)**: PENDIENTE.
 
-> **Nota de remediación (2026-06-22):** Draft `04-draft.md` remediado por DraftAgent (sesión fresca) para resolver D#1–D#7 de Gate 06 FAIL. Cambios: C1/C1b/C4/C5/C6 convertidos a orientativos; C2 limitado a evidencia VERIFIED; C3 incorporado; afirmaciones legales categóricas retiradas; rangos numéricos sin fuente eliminados (N3/N4/N5); lead generalizado corregido. Gate 06 debe re-ejecutarse en sesión completamente fresca.
+> **Nota de remediación 1 (2026-06-22):** Draft `04-draft.md` remediado por DraftAgent para resolver D#1–D#7 de Gate 06 FAIL (5.49/10). Cambios: C1/C1b/C4/C5/C6 convertidos a orientativos; C2 limitado a evidencia VERIFIED; C3 incorporado; afirmaciones legales categóricas retiradas; rangos numéricos sin fuente eliminados (N3/N4/N5); lead generalizado corregido.
+
+> **Nota de remediación 2 (2026-06-22):** Draft remediado por segunda vez para resolver D#1 y D#2 HIGH + D#6 MEDIUM de Gate 06 reauditoría (6.88/10). Cambios: C2 limitado al alcance exacto de C2 VERIFIED (retirados "con cualquier tipo de residencia", "no exige nivel de renta", "la cuenta más accesible", "ampliamente aceptada para sueldo/pagos"); C4 retirada la oración de Ley 21.461 + "discrecionales" + "no obligación legal" + "no discriminatorias" + "es legal" para UF; superlativos ("la más documentada", "menos restricciones") eliminados del FAQ; causalidad bancaria ("puedes acceder a cuentas corrientes") reemplazada por remisión a cada entidad; N2 eliminado del draft y del inventario de Gate 05. Defectos D#3 (SoD Gate 05) y D#5 (URL profunda BancoEstado) escalados a Carlos Ortega — no resolubles en sesión de DraftAgent.
 
 ---
 

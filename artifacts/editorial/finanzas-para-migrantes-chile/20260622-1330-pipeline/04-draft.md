@@ -1,8 +1,9 @@
 # 04-draft — Finanzas para migrantes en Chile (pilar educativo)
 
-**Status: DRAFT REMEDIADO — Gate 06 FAIL resuelto; pendiente re-auditoría ComplianceAgent (sesión fresca) + human sign-off**
+**Status: DRAFT — segunda remediación 2026-06-22; pendiente Gate 06 re-auditoría en sesión fresca**
 **Role:** DraftAgent — Claude Sonnet 4.6 (sesión 2026-06-22)
-**Remediación:** DraftAgent remediador — Claude Sonnet 4.6 (sesión fresca 2026-06-22) — resuelve D#1–D#7 de Gate 06 FAIL (5.49/10)
+**Remediación 1 (commit d5a37821):** DraftAgent remediador — resuelve D#1–D#7 de Gate 06 FAIL (5.49/10)
+**Remediación 2 (esta sesión):** DraftAgent remediador — resuelve D#1, D#2, D#6 de Gate 06 reauditoría (6.88/10)
 
 **Role-concentration note:** stages 01 (brief), 02 (dossier), 03 (outline) y 04 (draft)
 los produjo la misma sesión (2026-06-22). `INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES` exige
@@ -19,6 +20,9 @@ Ortega (HumanEditor).
   [D#1 resuelto]
 - C2 (CuentaRUT): VERIFIED (2026-06-17, BancoEstado FAQ vía Scrapling) — limitado a evidencia
   verificada; eliminados "otros documentos" y "con RUT SII". [D#2 resuelto]
+  Segunda remediación: retirados "con cualquier tipo de residencia", "no exige nivel de renta",
+  "la cuenta más accesible" y "ampliamente aceptada para sueldo/pagos" — expansiones no en C2.
+  URL profunda de BancoEstado pendiente (D#5 MEDIUM escalado a Carlos Ortega). [D#1 re-resuelto]
 - C3 (edad mínima CuentaRUT): VERIFIED (2026-06-17, BancoEstado FAQ vía Scrapling) — incluido
   en sección CuentaRUT con fuente. [D#3 resuelto]
 - C4 (arriendo): TODO:SOURCE parcial — afirmación legal reemplazada por "no hemos encontrado
@@ -127,14 +131,12 @@ Para los documentos, plazos y alcance vigentes, consulta directamente en
 
 ## Paso 2 — Cuenta bancaria: la CuentaRUT es la puerta de entrada
 
-La **CuentaRUT de BancoEstado** es la cuenta más accesible para extranjeros en Chile. No
-exige nivel de renta y es ampliamente aceptada para recibir el sueldo, pagar cuentas y
-transferir dinero.
+La **CuentaRUT de BancoEstado** es una cuenta de depósito a la vista disponible para
+extranjeros en Chile.
 
 ### ¿Qué necesitas para abrirla?
 
-- **Cédula de identidad vigente** (incluye la cédula de extranjero emitida por el Registro
-  Civil con cualquier tipo de residencia).
+- **Cédula de identidad vigente** (incluye la cédula de extranjero emitida por el Registro Civil).
 - **Vía App:** si tienes la App BancoEstado activada en Chile y un número de celular chileno,
   puedes abrirla y habilitarla directamente desde el teléfono.
 - **Vía web:** puedes iniciar la solicitud en línea, pero el contrato debe firmarse
@@ -163,10 +165,8 @@ conocer las condiciones actuales.
 ## Paso 3 — Arrendar: qué te pueden pedir y cómo prepararte
 
 Arrendar en Chile siendo extranjero es posible en la práctica. No hemos encontrado una
-disposición legal que prohíba arrendar a personas extranjeras, pero los requisitos que puede
-pedirte el propietario son discrecionales; si necesitas certeza legal, consulta con un
-profesional. La Ley 21.461 ("Devuélveme mi casa", 2022) regula el proceso de recuperación
-de propiedades en caso de incumplimiento de contrato.
+disposición legal que prohíba arrendar a personas extranjeras; si necesitas certeza legal,
+consulta con un profesional.
 
 ### ¿Qué documentos puede pedirte el propietario?
 
@@ -182,8 +182,8 @@ que te pueden solicitar:
   propietario pida meses de garantía adicional o un codeudor solidario. Consulta directamente
   con el propietario cuánto exige.
 
-> Las garantías adicionales son práctica de mercado, no obligación legal. El propietario
-> puede establecer las condiciones que estime pertinentes siempre que no sean discriminatorias.
+> Las garantías adicionales son práctica habitual de mercado. El propietario puede establecer
+> las condiciones que estime pertinentes; consulta los detalles directamente con él.
 
 ### Consejo práctico
 
@@ -193,7 +193,7 @@ esto puede facilitar el proceso.
 
 ### ¿El arriendo puede ir en UF?
 
-Sí, es legal y habitual. La UF (Unidad de Fomento) sube con la inflación, lo que significa
+Sí, es habitual en el mercado de arriendo chileno. La UF (Unidad de Fomento) sube con la inflación, lo que significa
 que el arriendo se reajusta automáticamente. Puedes convertir cualquier valor en UF a pesos
 con la [calculadora de UF](/calculadoras/conversor-uf/).
 
@@ -206,8 +206,9 @@ Una vez que tienes RUT, cuenta y vivienda, los siguientes pasos comunes son:
 - **Contrato de trabajo y cotizaciones:** con el RUT puedes avanzar en el proceso de
   formalización laboral en Chile. Los detalles sobre contratos, AFP y cotizaciones de salud
   tienen sus propias fuentes — están fuera del alcance de este artículo.
-- **Ampliar tu acceso bancario:** la CuentaRUT es el punto de partida. Con el tiempo y con
-  historial en Chile, puedes acceder a cuentas corrientes y otros productos. La guía sobre
+- **Ampliar tu acceso bancario:** la CuentaRUT es el punto de partida. Qué productos
+  adicionales puedes llegar a acceder depende de cada banco y de tu historial — consulta
+  condiciones directamente con cada entidad. La guía sobre
   [bancos y fintech en Chile](/guias/bancos-fintech/) profundiza en las opciones disponibles.
 - **Remesas:** enviar dinero a tu país de origen tiene sus propias herramientas y costos —
   también escapa al alcance de este artículo.
@@ -217,8 +218,7 @@ Una vez que tienes RUT, cuenta y vivienda, los siguientes pasos comunes son:
 ## Preguntas frecuentes
 
 **¿Necesito residencia definitiva para abrir la CuentaRUT?**
-No. Basta con cédula de identidad vigente — esto incluye la cédula de extranjero emitida
-con residencia temporaria.
+No. Basta con cédula de identidad vigente — esto incluye la cédula de extranjero.
 
 **¿Puedo obtener RUT sin haber vivido en Chile?**
 El RUT del SII se tramita presencialmente en Chile. Si estás planificando tu llegada,
@@ -234,8 +234,8 @@ con el propietario qué condiciones exige y ofrécelas de forma proactiva si no 
 historial en Chile.
 
 **¿Cuáles son las cuentas más fáciles de abrir para un migrante?**
-La CuentaRUT de BancoEstado es la más documentada para extranjeros y la que tiene menos
-restricciones de entrada. Para otras opciones — fintechs como MACH o Tenpo, u otros bancos —
+La CuentaRUT de BancoEstado es la opción que cubrimos en este artículo con respaldo de
+fuente verificada. Para otras opciones — fintechs como MACH o Tenpo, u otros bancos —
 verifica directamente con cada entidad, ya que los requisitos para extranjeros varían y
 cambian con frecuencia.
 
