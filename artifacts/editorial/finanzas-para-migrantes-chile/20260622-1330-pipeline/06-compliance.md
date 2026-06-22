@@ -3,7 +3,7 @@
 **Status:** BLOCKED — DEFECTS FOUND
 **Role:** ComplianceAgent (Codex — sesión fresca, independiente y adversarial)
 **Fecha de auditoría:** 2026-06-22
-**Draft evaluado:** `04-draft.md` — remediación vigente al 2026-06-22
+**Draft evaluado:** `04-draft.md` — cuarta remediación, borrador congelado
 **Veredicto:** FAIL
 
 ## Separación de Funciones (SoD)
@@ -13,139 +13,117 @@
 | 01 Brief | Brief/DraftAgent | Claude Code, sesión 2026-06-22 | Misma sesión que 02–04; concentración declarada |
 | 02 Dossier | ResearchAgent | Claude Sonnet 4.6, sesión 2026-06-22 | Misma sesión que 01/03/04; defecto de proceso declarado |
 | 03 Outline | OutlineAgent | Claude Sonnet 4.6, sesión 2026-06-22 | Misma sesión que 01/02/04; defecto de proceso declarado |
-| 04 Draft y remediaciones | DraftAgent | Claude Sonnet 4.6, sesión 2026-06-22 | Misma sesión que 01–03 |
-| 05 Math Audit | MathAuditAgent | Claude Code (DeepSeek V4 Pro), sesión fresca 2026-06-22 | Independencia declarada, pero el informe quedó desalineado con los artefactos vigentes |
+| 04 Draft | DraftAgent | Claude Sonnet 4.6, sesión 2026-06-22 | Misma sesión que 01–03 |
+| 05 Math Audit | MathAuditAgent | Claude (DeepSeek v4 Pro), sesión fresca independiente 2026-06-22 | Independencia declarada; PASS sobre el borrador congelado |
 | 06 Compliance | ComplianceAgent | Codex, sesión fresca 2026-06-22; no produjo 01–05 | **Independencia respecto del DraftAgent acreditada** |
 
-Los stages 01–04 fueron producidos por una misma sesión. Esa concentración es un defecto de
-proceso y queda declarada. La presente auditoría, ejecutada en una sesión fresca que no produjo
-ninguno de esos artefactos, resuelve estructuralmente la separación exigida entre
-`DraftAgent` y `ComplianceAgent`. No subsana por sí sola defectos sustantivos del contenido ni
-la desalineación temporal de Gate 05.
+Los stages 01–04 fueron producidos por la misma sesión. Esto concentra investigación,
+estructura y redacción y se registra como defecto de proceso. La presente auditoría se ejecutó
+en una sesión fresca, sin participación en esos artefactos, y resuelve estructuralmente la
+separación exigida entre `DraftAgent` y `ComplianceAgent`. No corrige por sí misma los defectos
+sustantivos que se detallan abajo.
 
 ## Scorecard NORMA_YMYL
 
 | Dimensión | Peso | Nota | Aporte ponderado | Justificación adversarial |
 |---|---:|---:|---:|---|
-| Respuesta ancla | 35% | 9.0/10 | 3.15 | El `articleLead` propuesto responde RUT, CuentaRUT y arriendo con fecha de corte. Pierde precisión porque el cuerpo no contiene el bloque canónico visible y la FAQ contradice la vía online del RUT. |
-| Precisión + fuentes | 25% | 6.5/10 | 1.63 | C2 y C3 están bien trasladados y citados. Persisten una contradicción procedimental, síntesis legales sin cláusula operativa ni artículo y extensiones de C4/C5 no trazadas con precisión al dossier. |
-| Vigencia + calendario | 15% | 9.5/10 | 1.43 | La fecha de corte 2026-06-22 es visible y no hay reforma futura que exija calendario aprobado/vigencia/implementación. |
-| Excepciones + cobertura | 15% | 8.0/10 | 1.20 | Distingue residentes/no residentes, declara límites y cubre alternativas. La síntesis jurídica de arriendo no está rotulada como resumen orientativo y mezcla reglas con prácticas no verificadas. |
-| Claridad + estructura | 10% | 8.5/10 | 0.85 | La guía por pasos y FAQ es legible, pero la contradicción sobre presencialidad y la inconsistencia entre artefactos reducen su fiabilidad operativa. |
-| **Total ponderado** | **100%** |  | **8.25/10** | **No alcanza el umbral obligatorio de 9.5/10.** |
+| Respuesta ancla | 35% | 8.8/10 | 3.08 | Responde los tres trámites y declara vigencia, pero la rama para no residentes omite en el `articleLead` la condición de tener obligaciones tributarias en Chile. Las fuentes del ancla son portadas genéricas, no las URLs específicas usadas en el cuerpo. |
+| Precisión + fuentes | 25% | 8.2/10 | 2.05 | C2 y C3 se trasladan con precisión y fuentes directas. C1 pierde una condición esencial en el ancla. La síntesis de la Ley N° 20.609 afirma una obligación sin citar primero la cláusula operativa literal. La afirmación sobre la UF carece de fuente en el dossier. |
+| Vigencia + calendario | 15% | 9.7/10 | 1.46 | La fecha de corte 2026-06-22 aparece de forma visible y consistente. No hay una reforma futura que requiera separar aprobación, vigencia e implementación. |
+| Excepciones + cobertura | 15% | 9.0/10 | 1.35 | Distingue residentes/no residentes, limita el alcance migratorio y cubre alternativas bancarias y arriendo. La excepción tributaria omitida en el ancla puede inducir a una persona sin obligación tributaria a interpretar que puede solicitar el RUT por esa vía. |
+| Claridad + estructura | 10% | 9.2/10 | 0.92 | La guía por pasos, el bloque orientativo y las FAQ son legibles. La diferencia de precisión entre el ancla y el cuerpo reduce la coherencia operativa. |
+| **Total ponderado** | **100%** |  | **8.86/10** | **No alcanza el umbral obligatorio de 9.5/10.** |
 
 ## Auditoría de claims C1–C6
 
-La premisa de que C1, C1b, C4, C5 y C6 siguen en `TODO:SOURCE` no coincide con el dossier
-vigente: `02-dossier.md` fue actualizado mediante addendum humano. Esta auditoría aplica los
-estados canónicos escritos en ese archivo y registra la divergencia con `03-outline.md` y
-`05-math-audit.md`.
+La instrucción de auditoría describe C1, C1b, C4, C5 y C6 como `TODO:SOURCE`. Ese estado no
+coincide con el dossier vigente: `02-dossier.md` incorpora un addendum humano del 2026-06-22 y
+los registra como verificados, parcialmente verificados, limitados o corregidos. Se aplica el
+estado canónico que está escrito en el dossier actual. Un `TODO:SOURCE` tratado como orientación
+y remitido legítimamente a una fuente oficial no habría fallado por ese solo motivo; en el
+catálogo vigente no quedan claims con ese estado.
 
 | Claim | Estado vigente en dossier | Tratamiento en el draft | Resultado |
 |---|---|---|---|
-| C1 | VERIFIED — REFORMULADO | El cuerpo distingue auto-registro para residentes con cédula e inscripción online para no residentes, con URLs SII. La FAQ afirma luego que el trámite es presencial. | **FAIL:** cita adecuada en el cuerpo, pero contradicción crítica en FAQ. |
-| C1b | VERIFIED — REFORMULADO | Limita la relación RUN/RUT al registro tributario automático de residentes y cita SII. | **PASS:** no afirma equivalencia universal. |
-| C2 | VERIFIED (carryover 2026-06-17; URLs profundas 2026-06-22) | Reproduce cédula vigente, vía App, vía web con firma en sucursal y entrega de tarjeta en Chile; cita BancoEstado y ChileAtiende. | **PASS:** traslado preciso y fuente directa. |
-| C3 | VERIFIED (carryover 2026-06-17; URLs profundas 2026-06-22) | Incluye edad mínima de 12 años, representante legal, alternativa App y solicitud directa por adultos; cita BancoEstado y ChileAtiende. | **PASS:** traslado preciso y fuente directa. |
-| C4 | PARTIAL VERIFIED | Cita el marco legal y retira cifras de garantía, pero añade documentos/efectos tributarios y afirma habitualidad y reajuste automático en UF sin fuente específica. | **FAIL PARCIAL:** excede la parte verificada y la síntesis legal incumple el estándar de cita. |
-| C5 | VERIFIED AS LIMITED | Distingue evaluación comercial y falta de garantía de elegibilidad, pero agrupa Santander y BCI bajo requisitos de RUT e ingresos que no están atribuidos individualmente con precisión en el catálogo. | **FAIL PARCIAL:** requiere citas por entidad o formulación limitada al alcance exacto verificado. |
-| C6 | CORRECTED | Explica que contrato laboral y cotizaciones pueden avanzar con pasaporte/identificación provisoria y que CuentaRUT exige cédula; cita DT, SP y ChileAtiende. | **PASS:** refleja la corrección y conserva el límite de alcance. |
-
-No quedan claims `TODO:SOURCE` en el catálogo vigente de `02-dossier.md`. Por tanto, el
-deferral legítimo no es la causa del veredicto. Gate 05 todavía los reporta como abiertos,
-lo que constituye desalineación del pipeline.
+| C1 | VERIFIED — REFORMULADO | El cuerpo distingue residentes con cédula de no residentes con obligaciones tributarias y cita URLs SII. El `articleLead` elimina la condición de obligaciones tributarias para la segunda vía. | **FAIL PARCIAL:** la fuente está presente, pero el ancla amplía indebidamente la elegibilidad. |
+| C1b | VERIFIED — REFORMULADO | Limita el efecto del RUN al registro tributario automático de residentes y cita SII. | **PASS:** no afirma equivalencia universal RUN/RUT. |
+| C2 | VERIFIED (carryover 2026-06-17; URLs profundas 2026-06-22) | Incluye cédula vigente, apertura por App, solicitud web con firma presencial y entrega de tarjeta en Chile. Cita BancoEstado y ChileAtiende. | **PASS:** traslado preciso y trazable. |
+| C3 | VERIFIED (carryover 2026-06-17; URLs profundas 2026-06-22) | Incluye edad mínima, intervención de representante legal y alternativa App; cita BancoEstado y ChileAtiende. | **PASS:** traslado preciso y trazable. |
+| C4 | PARTIAL VERIFIED | Presenta las leyes bajo “Resumen orientativo”, con limitador y enlaces BCN. Identifica el art. 2 de la Ley N° 20.609, pero no cita primero su cláusula operativa literal. | **FAIL PARCIAL:** el contenido está limitado, pero incumple el estándar de cita legal de Stage 04. |
+| C5 | VERIFIED AS LIMITED | Separa Santander, BCI y Tenpo, atribuye requisitos por entidad y no garantiza elegibilidad universal. | **PASS:** conserva los límites del dossier y cita cada entidad. |
+| C6 | CORRECTED | Explica que trabajo y cotizaciones pueden operar con identificación provisoria, mientras CuentaRUT exige cédula vigente; cita DT, SP y ChileAtiende. | **PASS:** refleja la corrección y mantiene el límite de alcance. |
 
 ## Defectos
 
-### DEFECT #1 — HIGH — Contradicción sobre la vía de inscripción en el RUT
+### DEFECT #1 — HIGH — El ancla amplía indebidamente la vía de RUT para no residentes
 
-El cuerpo afirma, de acuerdo con C1 reformulado, que una persona sin residencia y con
-obligaciones tributarias puede solicitar la inscripción por internet. La FAQ afirma después:
-“El RUT del SII se tramita presencialmente en Chile”. Ambas reglas no pueden ser ciertas a la
-vez y la segunda contradice expresamente el dossier vigente.
+El `articleLead` afirma: “Si no tienes residencia, puedes inscribirte en el RUT por internet
+en sii.cl”. C1 solo respalda esa vía para una persona sin residencia que deba cumplir
+obligaciones tributarias en Chile. El cuerpo sí conserva la condición, pero el ancla —la
+respuesta que el lector verá primero— la elimina.
 
-**Resolución:** corregir la FAQ para repetir la distinción exacta de C1 y eliminar la regla
-presencial categórica.
+**Resolución:** incorporar en `articleLead.answer` la condición “y debes cumplir obligaciones
+tributarias en Chile”, manteniendo la misma distinción en cuerpo y FAQ.
 
-### DEFECT #2 — HIGH — Gate 05 no audita la versión vigente de dossier y draft
+### DEFECT #2 — HIGH — La conclusión legal no cita primero la cláusula operativa literal
 
-`05-math-audit.md` mantiene C1/C1b/C4/C5/C6 como `TODO:SOURCE`, analiza pasajes que ya no
-existen en el draft actual y registra cuantificadores retirados. Su veredicto `CONDITIONAL`
-no constituye evidencia válida sobre la versión sometida a este Gate 06.
+El bloque de arriendo afirma que la Ley N° 20.609, art. 2, prohíbe discriminación arbitraria
+por nacionalidad incluso entre particulares. Aunque identifica artículo y fuente, presenta
+solo una paráfrasis. El playbook de Stage 04 exige, para una obligación legal, citar primero
+la cláusula operativa literal y luego explicarla.
 
-**Resolución:** repetir Gate 05 en sesión independiente sobre las versiones vigentes de
-`02-dossier.md` y `04-draft.md`, conservando evidencia de SoD.
+**Resolución:** añadir un extracto breve y literal del art. 2 antes de la síntesis, seguido
+del comentario orientativo y su limitador. Mantener la cita directa a BCN.
 
-### DEFECT #3 — HIGH — Las conclusiones legales no cumplen el estándar de cita operativa
+### DEFECT #3 — MEDIUM — Las fuentes del `articleLead` no son las URLs específicas auditadas
 
-El draft concluye efectos de las leyes N° 18.101, N° 21.461 y N° 20.609 mediante paráfrasis,
-sin citar primero la cláusula operativa literal ni identificar el artículo aplicable. Esto
-incumple el playbook de Stage 04 para obligaciones legales y debilita la trazabilidad de C4.
+El frontmatter propuesto enlaza las portadas de SII, Registro Civil y BancoEstado, mientras
+el cuerpo usa páginas profundas para las reglas críticas. La respuesta ancla debe permitir
+trazar la regla concreta a la fuente concreta, no obligar al lector a volver a buscarla.
 
-**Resolución:** citar el artículo y un extracto operativo breve de cada regla legal antes de
-explicarla; mantener un limitador de alcance.
+**Resolución:** sustituir las tres portadas genéricas por las URLs oficiales profundas que
+respaldan C1/C1b y C2; añadir la fuente legal específica de C4 si el esquema lo permite.
 
-### DEFECT #4 — MEDIUM — C4 incorpora afirmaciones no respaldadas por su alcance verificado
+### DEFECT #4 — LOW — La explicación de la UF es absoluta y no está trazada al dossier
 
-El bloque de arriendo afirma que puede pedirse RUT para emitir boleta/factura o consultar
-antecedentes comerciales, que denominar un arriendo en UF es habitual y que ello produce
-reajuste automático. El dossier no respalda esas extensiones; además, el reajuste depende de
-lo pactado en el contrato.
+La frase “La UF sube con la inflación” simplifica en exceso el mecanismo de reajuste y no
+tiene fuente en el dossier. No es el claim central del artículo, pero aparece como orientación
+financiera afirmativa.
 
-**Resolución:** retirar las afirmaciones o aportar fuente primaria específica; sustituir la
-automaticidad por una formulación condicionada al contrato.
+**Resolución:** enlazar una fuente oficial que explique el reajuste de la UF y describirlo
+con precisión, o retirar la explicación y limitarse a que el pago en pesos depende del valor
+vigente y de lo pactado en el contrato.
 
-### DEFECT #5 — MEDIUM — C5 agrupa requisitos bancarios sin atribución precisa
+### INFO #1 — Concentración de stages 01–04 declarada; Gate 06 independiente
 
-El draft atribuye conjuntamente a Santander y BCI “cédula vigente, RUT y evaluación comercial
-o acreditación de ingresos”. El catálogo vigente solo autoriza una descripción limitada y
-las condiciones no son idénticas ni están atribuidas por entidad en el texto.
+La concentración de stages 01–04 queda registrada. Esta sesión fresca no produjo esos
+artefactos y acredita la independencia de `ComplianceAgent`. No se marcó ninguna gate de
+publicación ni se alteró ningún scorecard automatizado.
 
-**Resolución:** separar cada entidad y trasladar únicamente el requisito que su fuente
-respectiva acredita, o eliminar el detalle y conservar una remisión orientativa.
+### INFO #2 — Divergencia entre la premisa recibida y el dossier vigente
 
-### DEFECT #6 — MEDIUM — Falta etiqueta visible de resumen orientativo en la síntesis jurídica
-
-El bloque de arriendo combina conclusiones de tres leyes, documentos y condiciones
-contractuales sin la etiqueta visible “resumen orientativo” y su limitador, exigidos por
-`NORMA_YMYL` y `CONTRACT.YMYL_RESPONSE_STRUCTURE`.
-
-**Resolución:** añadir la etiqueta y el limitador después de resolver los defectos de fuente;
-la etiqueta no sustituye evidencia.
-
-### DEFECT #7 — LOW — La cadena de artefactos conserva estados incompatibles
-
-`02-dossier.md` registra el addendum y cierra/reformula claims, mientras `03-outline.md` y
-`05-math-audit.md` todavía los describen como `TODO:SOURCE`. El encabezado de `04-draft.md`
-también dice “segunda remediación” mientras sus notas hablan de una tercera.
-
-**Resolución:** sincronizar los estados y versiones de los artefactos sin borrar la historia
-de remediación.
-
-### INFO #1 — Separación DraftAgent–ComplianceAgent resuelta
-
-Esta auditoría fue ejecutada en una sesión fresca que no produjo 01–05. La independencia de
-Gate 06 queda acreditada; no se requiere otra sesión para validar este reporte mientras el
-draft no sea modificado.
+La premisa recibida conserva estados `TODO:SOURCE` anteriores al addendum. El dossier vigente
+los reemplazó por estados canónicos respaldados por investigación humana. Conviene que futuras
+órdenes de auditoría indiquen expresamente si deben evaluar el estado histórico o el archivo
+vigente para evitar dos marcos de verdad simultáneos.
 
 ## Veredicto y condiciones para Gate 07
 
-**FAIL.** El total ponderado es **8.25/10**, inferior al umbral obligatorio de **9.5/10**, y
-existen defectos HIGH de coherencia, trazabilidad legal y validez temporal de Gate 05. Gate 07
-permanece bloqueado.
+**FAIL.** El total ponderado es **8.86/10**, inferior al umbral obligatorio de **9.5/10**.
+Además, existen dos defectos HIGH: una ampliación de elegibilidad en la respuesta ancla y el
+incumplimiento del estándar de cita operativa para una obligación legal. Gate 07 permanece
+bloqueado.
 
-Condiciones mínimas antes de volver a evaluar Gate 06 o habilitar Gate 07:
+Condiciones mínimas antes de repetir Gate 06 o habilitar Gate 07:
 
-1. Corregir la contradicción de C1 en la FAQ.
-2. Citar artículos y cláusulas operativas para las conclusiones legales de C4.
-3. Retirar o respaldar las extensiones no trazadas de C4 y C5.
-4. Rotular la síntesis jurídica como “resumen orientativo” con limitador de alcance.
-5. Repetir Gate 05 en sesión independiente sobre dossier y draft vigentes.
-6. Sincronizar los estados de los artefactos y repetir Gate 06 si cambia `04-draft.md`.
-7. Mantener todas las casillas de publicación sin marcar; solo Carlos Ortega puede aprobarlas.
+1. Restituir en el `articleLead` la condición tributaria exacta de C1.
+2. Citar brevemente la cláusula operativa del art. 2 de la Ley N° 20.609 antes de explicarla.
+3. Reemplazar las fuentes genéricas del ancla por URLs oficiales profundas.
+4. Respaldar o retirar la explicación no trazada sobre la UF.
+5. Repetir Gate 06 en otra sesión fresca si cambia `04-draft.md`.
+6. Mantener sin marcar todas las casillas de publicación; solo Carlos Ortega puede aprobarlas.
 
 ## Escalamiento humano
 
-Carlos Ortega debe revisar la evidencia, resolver cualquier decisión editorial residual y
-efectuar el sign-off de Gate 07. Este reporte no autoriza publicación ni modifica scorecards
-automatizados.
+Carlos Ortega debe revisar la evidencia, decidir la remediación editorial y efectuar el
+sign-off de Gate 07. Este informe no autoriza publicación.
