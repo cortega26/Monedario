@@ -11,26 +11,24 @@ separación entre etapas; este defecto estructural se declara aquí. Gate 06 (Co
 DEBE ejecutarse en una sesión fresca distinta a esta. Gate 07 requiere sign-off de Carlos
 Ortega (HumanEditor).
 
-**Notas para ComplianceAgent (sesión fresca) — estado tras remediación:**
-- C1 (RUT provisorio SII): TODO:SOURCE — reformulado como orientativo puro: "el proceso
-  habitual es acudir al SII con pasaporte y permiso vigente; consulta en sii.cl antes de ir."
-  Sin afirmar requisitos como hechos. [D#1 resuelto]
-- C1b (RUT definitivo = RUN): TODO:SOURCE — eliminado "para todos los efectos"; reemplazado
-  por "funciona habitualmente como identificación tributaria; verifica en registrocivil.cl."
-  [D#1 resuelto]
-- C2 (CuentaRUT): VERIFIED (2026-06-17, BancoEstado FAQ vía Scrapling) — limitado a evidencia
-  verificada; eliminados "otros documentos" y "con RUT SII". [D#2 resuelto]
-  Segunda remediación: retirados "con cualquier tipo de residencia", "no exige nivel de renta",
-  "la cuenta más accesible" y "ampliamente aceptada para sueldo/pagos" — expansiones no en C2.
-  URL profunda de BancoEstado pendiente (D#5 MEDIUM escalado a Carlos Ortega). [D#1 re-resuelto]
-- C3 (edad mínima CuentaRUT): VERIFIED (2026-06-17, BancoEstado FAQ vía Scrapling) — incluido
-  en sección CuentaRUT con fuente. [D#3 resuelto]
-- C4 (arriendo): TODO:SOURCE parcial — afirmación legal reemplazada por "no hemos encontrado
-  una disposición que prohíba"; práctica de garantías sin rangos numéricos. [D#4/D#5 resueltos]
-- C5 (otros bancos/fintech): TODO:SOURCE — sección body reformulada como deferral puro:
-  "consulta directamente con cada entidad". Sin afirmar condiciones específicas. [D#1 resuelto]
-- C6 (impacto sin RUT): TODO:SOURCE — reformulado como lógica orientativa con remisión a
-  verificar con cada entidad. [D#1 resuelto]
+**Notas para ComplianceAgent (sesión fresca) — estado tras tercera remediación (addendum):**
+- C1 (RUT): VERIFIED-REFORMULADO (addendum humano 2026-06-22, O9/O10/O11 SII). Dos vías:
+  (a) con residencia + cédula: SII auto-registra con RUN, no se solicita RUT adicional;
+  (b) sin residencia: inscripción online en sii.cl, documentos según obligación.
+- C1b (RUN): VERIFIED-REFORMULADO (addendum O12/O9). Cédula de extranjero incluye RUN;
+  SII registra automáticamente. No se afirma equivalencia universal.
+- C2 (CuentaRUT): VERIFIED (URLs profundas addendum: O17 start.bancoestado.cl + O18 ChileAtiende).
+  D#5 resuelto con URLs HTTP 200 del addendum.
+- C3 (edad mín. CuentaRUT): VERIFIED (O17/O18 addendum).
+- C4 (arriendo): PARTIAL VERIFIED (addendum O13/O14/O14b/O11). Marco legal: Ley 18.101 sin
+  requisito de nacionalidad; Ley 21.461 modifica restitución; Ley 20.609 prohíbe discriminación
+  arbitraria por nacionalidad. Garantías adicionales: no se afirman como "práctica habitual
+  de mercado" (sin respaldo oficial).
+- C5 (otros bancos): VERIFIED AS LIMITED (addendum O17/O18/O19/O20/O21). Distingue BancoEstado
+  (explícita para extranjeros), Santander/BCI (evaluación comercial, sin garantía), Tenpo
+  (cédula chilena física + RUT — puede ser bloqueante).
+- C6 (sin cédula): CORRECTED (addendum O15/O16/O22). Contratos laborales y AFP son posibles
+  con pasaporte/ID provisoria (DT, SP, Fonasa). CuentaRUT requiere cédula vigente.
 
 **Deviación de contrato declarada:** no se crea el blog file en `src/data/blog/` porque el
 cluster `finanzas-migrantes` no existe aún en `clusters.ts` y no tiene hub en `src/pages/guias/`.
@@ -61,7 +59,7 @@ featured: false
 draft: true
 articleAdvisory: "Contenido educativo. Los requisitos de trámites del Estado pueden cambiar; verifica siempre en las fuentes oficiales (SII, Registro Civil, BancoEstado) antes de actuar."
 articleLead:
-  answer: "Para ordenar tus finanzas en Chile como migrante, el primer paso habitual es el RUT. El proceso varía según tu situación migratoria; el proceso habitual es acudir al SII (sii.cl) o al Registro Civil (registrocivil.cl) según tu caso — verifica los requisitos actuales antes de ir. Con el RUT puedes abrir una CuentaRUT en BancoEstado con cédula de identidad vigente. Para arrendar, no hemos encontrado una prohibición legal, pero los requisitos los fija el propietario; confirma la situación directamente con él o con un profesional."
+  answer: "Si ya tienes residencia y cédula de extranjero, el SII te registra automáticamente con tu RUN — no necesitas solicitar un RUT adicional. Si no tienes residencia, puedes inscribirte en el RUT por internet en sii.cl. Con cédula vigente puedes abrir una CuentaRUT en BancoEstado. Para arrendar, la Ley N° 18.101 no establece requisito de nacionalidad; los antecedentes los fija cada propietario dentro de los límites legales."
   validAsOf: 2026-06-22
   officialSources:
     - label: "SII — RUT personas naturales"
@@ -87,45 +85,50 @@ articleLead:
 > Antes de actuar, verifica siempre en las fuentes oficiales que citamos: SII (sii.cl),
 > Registro Civil (registrocivil.cl) y BancoEstado (bancoestado.cl).
 
-Llegaste a Chile y ahora necesitas tres cosas concretas para funcionar: un número de
-identidad tributaria, una cuenta donde recibir tu plata, y un techo. Esta guía te orienta
-en cada uno de esos pasos — los documentos y requisitos exactos dependen de tu situación
-migratoria, así que te indicamos dónde verificar cada trámite en la fuente oficial antes
-de actuar.
+Llegaste a Chile y necesitas tres cosas concretas para funcionar: un número de identidad
+tributaria, una cuenta donde recibir tus ingresos, y un techo. Esta guía cubre los aspectos
+que hemos podido verificar en fuentes oficiales — los pasos de cada trámite pueden cambiar,
+así que te indicamos dónde confirmar cada uno antes de actuar.
 
 ---
 
-## Paso 1 — El RUT: tu llave para casi todo
+## Paso 1 — El RUT y la cédula de extranjero
 
-El RUT (Rol Único Tributario) es el número con el que el Estado chileno identifica a cualquier
-persona o empresa para efectos tributarios. Es el mismo tipo de documento que cualquier
-chileno tiene desde que nace — y como extranjero puedes obtenerlo también.
+El RUT (Rol Único Tributario) es el número con el que el Estado chileno identifica a personas
+y empresas para efectos tributarios. Como extranjero, tu situación depende de si ya tienes
+residencia en Chile o no.
 
-### ¿Por qué necesitas el RUT primero?
+### ¿Necesitas solicitar un RUT?
 
-En la práctica, el RUT es necesario para muchos trámites cotidianos en Chile: algunos bancos
-y propietarios lo exigen, y en el ámbito laboral se suele requerir para formalizar contratos.
-Verifica con cada entidad qué documentos exige para tu situación específica.
+**Si ya tienes residencia y cédula de identidad para extranjeros:**
+No debes solicitar un RUT por separado. El SII registra automáticamente a las personas
+extranjeras residentes con el RUN (Rol Único Nacional) de su cédula de identidad para
+efectos tributarios. Tu cédula de extranjero ya incluye ese número.
 
-### ¿Cómo lo obtienes?
+Fuente: [SII — Obtención de RUT](https://www.sii.cl/destacados/educacion/ciclo_vida_contribuyente/paso_01.html),
+[SII — RUT para personas extranjeras](https://www.sii.cl/contribuyentes/contribuyentes_individuales/chilenos_extranjero/rol_unico_tributario.htm)
 
-El camino depende de tu situación migratoria:
+**Si no tienes residencia y debes cumplir obligaciones tributarias en Chile:**
+Puedes solicitar tu inscripción en el RUT por internet en [sii.cl](https://www.sii.cl). Los
+documentos exigidos dependen de tu situación y del tipo de trámite tributario. Verifica los
+requisitos actuales en [sii.cl](https://www.sii.cl/preguntas_frecuentes/rut_inicio_actividades/001_105_0135.htm) antes de actuar.
 
-**Si tienes visa de residencia temporaria o permiso de trabajo vigente:**
-Puedes solicitar un RUT de persona natural en el Servicio de Impuestos Internos (SII). El
-proceso habitual es acudir a una oficina del SII con tu pasaporte y permiso vigente; consulta
-en [sii.cl](https://www.sii.cl) los pasos y documentos exactos antes de ir, y si existe
-opción de trámite online para tu caso — los requisitos pueden cambiar.
+> **Verificado con fuente oficial al 2026-06-22.** Fuente: SII (O9, O10, O11). Los requisitos
+> pueden cambiar; consulta sii.cl para la información más reciente.
 
-**Si ya tienes residencia definitiva:**
-Al obtener la cédula de identidad para extranjeros en el Registro Civil, el RUN (Rol Único
-Nacional) que se te asigna funciona habitualmente como identificación tributaria en Chile.
-Para los documentos, plazos y alcance vigentes, consulta directamente en
-[registrocivil.cl](https://www.registrocivil.cl) — los requisitos pueden variar.
+### ¿Para qué se usa el RUT en la práctica?
 
-> Los pasos exactos, documentos requeridos y costos de estos trámites los define el SII y
-> el Registro Civil. Verifica en sus sitios oficiales antes de ir — los requisitos pueden
-> cambiar.
+Algunos bancos, propietarios y empleadores lo solicitan. Sin embargo, no tener cédula o RUN
+definitivo no impide por sí solo trabajar formalmente ni cotizar: la Dirección del Trabajo
+permite registrar trabajadores migrantes con pasaporte o DNI extranjero mientras no tienen
+RUT del Registro Civil; la Superintendencia de Pensiones permite cotizar en AFP con
+identificación provisoria; Fonasa admite trámites con RUT provisorio y pasaporte. Los
+detalles de cada trámite están fuera del alcance de este artículo — verifica con la entidad
+correspondiente.
+
+Fuentes: [DT](https://www.dt.gob.cl/portal/1628/w3-article-119155.html),
+[SP](https://www.spensiones.cl/portal/institucional/594/w3-article-12267.html),
+[ChileAtiende — Fonasa](https://www.chileatiende.gob.cl/fichas/5241)
 
 ---
 
@@ -143,53 +146,70 @@ extranjeros en Chile.
   presencialmente en una sucursal.
 - **Tarjeta física:** el plástico de la CuentaRUT se entrega solo en territorio nacional.
 
-> Fuente: BancoEstado, Centro de Ayuda — FAQ CuentaRUT (recuperado vía Scrapling el
-> 2026-06-17). Sin cambios conocidos a la fecha de este artículo (2026-06-22).
+> Fuente: [BancoEstado — CuentaRUT](https://start.bancoestado.cl/content/bancoestado-public/cl/es/home/home/productos-/cuentas/cuentarut.html)
+> y [ChileAtiende — CuentaRUT BancoEstado](https://www.chileatiende.gob.cl/fichas/70638-cuenta-rut-bancoestad)
+> (addendum humano 2026-06-22, HTTP 200; base Scrapling 2026-06-17). Sin cambios conocidos al 2026-06-22.
 
 **¿Hay edad mínima?**
 Sí: la CuentaRUT se puede abrir desde los 12 años. Entre los 12 y 17 años se requiere
 representante legal, o bien el trámite puede hacerse por la App si el padre o la madre
 también es cliente de BancoEstado. Los adultos pueden solicitarla directamente.
 
-> Fuente: BancoEstado, Centro de Ayuda — FAQ CuentaRUT (recuperado vía Scrapling el
-> 2026-06-17).
+> Fuente: [BancoEstado — CuentaRUT](https://start.bancoestado.cl/content/bancoestado-public/cl/es/home/home/productos-/cuentas/cuentarut.html)
+> y [ChileAtiende — CuentaRUT BancoEstado](https://www.chileatiende.gob.cl/fichas/70638-cuenta-rut-bancoestad)
+> (addendum humano 2026-06-22).
 
 ### ¿Hay otras opciones?
 
-Varios bancos y fintech operan en Chile. Los requisitos para extranjeros varían por institución
-y cambian con frecuencia; consulta directamente con cada banco o fintech que te interese para
-conocer las condiciones actuales.
+Otros bancos y fintech también operan en Chile. Los requisitos para extranjeros varían por
+institución:
+
+- **Santander y BCI:** solicitan cédula vigente, RUT y evaluación comercial o acreditación
+  de ingresos. Sus páginas no garantizan que toda persona extranjera califique.
+- **Tenpo:** requiere RUT, cédula chilena vigente y física para el registro — puede ser un
+  requisito bloqueante si aún no tienes cédula de extranjero.
+
+Verifica las condiciones actuales directamente con cada banco o fintech antes de intentar
+la apertura, ya que los requisitos cambian con frecuencia.
+
+Fuentes: [Santander](https://banco.santander.cl/personas/planes/cuenta-mas-lucas/),
+[BCI](https://www.bci.cl/personas/abrir-cuenta-corriente/cuenta-digital/preguntas-frecuentes),
+[Tenpo](https://www.tenpo.cl/como-abrir-tu-cuenta)
 
 ---
 
 ## Paso 3 — Arrendar: qué te pueden pedir y cómo prepararte
 
-Arrendar en Chile siendo extranjero es posible en la práctica. No hemos encontrado una
-disposición legal que prohíba arrendar a personas extranjeras; si necesitas certeza legal,
-consulta con un profesional.
+La legislación de arrendamientos urbanos (Ley N° 18.101) no establece un requisito general
+de nacionalidad para el arrendatario. El SII indica que incluso un turista extranjero puede
+figurar en un contrato privado de arriendo usando su pasaporte o documento de identidad
+extranjero, sin necesitar un RUT. La Ley N° 21.461 modificó los procedimientos de
+restitución y cobro del arriendo; no establece requisitos especiales de acceso para personas
+extranjeras.
+
+> La Ley N° 20.609 prohíbe la discriminación arbitraria basada en la nacionalidad, incluso
+> cuando la realizan particulares.
+
+Fuentes: [BCN — Ley N° 18.101](https://www.bcn.cl/leychile/navegar?idNorma=29526),
+[BCN — Ley N° 21.461](https://www.bcn.cl/leychile/Navegar?idNorma=1178004),
+[BCN — Ley N° 20.609](https://www.bcn.cl/leychile/navegar?idNorma=1042092),
+[SII — RUT para personas extranjeras](https://www.sii.cl/contribuyentes/contribuyentes_individuales/chilenos_extranjero/rol_unico_tributario.htm)
 
 ### ¿Qué documentos puede pedirte el propietario?
 
-Los requisitos los fija cada propietario o corredor de propiedades, no la ley. Lo más común
-que te pueden solicitar:
+Los antecedentes económicos y garantías se acuerdan en cada contrato, dentro de los límites
+legales y sin discriminación arbitraria. Lo que cada propietario exige varía — consulta
+directamente con él:
 
-- **Cédula de identidad** (chilena o de extranjero).
-- **RUT**, especialmente si el contrato genera boleta o factura, o si el propietario quiere
-  verificar antecedentes comerciales.
-- **Liquidaciones de sueldo o comprobante de ingresos**, para acreditar que puedes pagar el
-  arriendo.
-- **Garantías adicionales:** si no tienes historial crediticio en Chile, es habitual que el
-  propietario pida meses de garantía adicional o un codeudor solidario. Consulta directamente
-  con el propietario cuánto exige.
-
-> Las garantías adicionales son práctica habitual de mercado. El propietario puede establecer
-> las condiciones que estime pertinentes; consulta los detalles directamente con él.
+- **Cédula de identidad** (chilena o de extranjero) o pasaporte.
+- **RUT**, si el contrato genera boleta o factura, o para verificar antecedentes comerciales.
+- **Comprobante de ingresos**, para acreditar capacidad de pago.
+- **Garantías adicionales:** consulta directamente con el propietario qué condiciones exige.
 
 ### Consejo práctico
 
-Si llevas poco tiempo en Chile y no tienes historial crediticio local, ofrece garantías
-adicionales de forma proactiva. Consulta con el propietario qué condiciones acepta, ya que
-esto puede facilitar el proceso.
+Si llevas poco tiempo en Chile, conversa con el propietario sobre las condiciones que pueden
+acordar. Tener documentos de identidad e ingresos en orden facilita el proceso.
 
 ### ¿El arriendo puede ir en UF?
 
@@ -203,9 +223,11 @@ con la [calculadora de UF](/calculadoras/conversor-uf/).
 
 Una vez que tienes RUT, cuenta y vivienda, los siguientes pasos comunes son:
 
-- **Contrato de trabajo y cotizaciones:** con el RUT puedes avanzar en el proceso de
-  formalización laboral en Chile. Los detalles sobre contratos, AFP y cotizaciones de salud
-  tienen sus propias fuentes — están fuera del alcance de este artículo.
+- **Contrato de trabajo y cotizaciones:** la Dirección del Trabajo permite registrar
+  trabajadores migrantes con pasaporte o DNI extranjero mientras no tienen RUT del Registro
+  Civil. No tener aún la cédula de extranjero no impide por sí solo iniciar un proceso
+  laboral formal. Los detalles de AFP, salud y contratos están fuera del alcance de este
+  artículo — verifica con la entidad correspondiente.
 - **Ampliar tu acceso bancario:** la CuentaRUT es el punto de partida. Qué productos
   adicionales puedes llegar a acceder depende de cada banco y de tu historial — consulta
   condiciones directamente con cada entidad. La guía sobre
@@ -229,9 +251,9 @@ El plazo varía según el flujo del Registro Civil y el tipo de permiso. Para sa
 actual, consulta directamente en registrocivil.cl o llama a sus sucursales.
 
 **¿Puedo arrendar si recién llegué y no tengo historial crediticio?**
-Sí. Con garantías adicionales la mayoría de los propietarios accede. Consulta directamente
-con el propietario qué condiciones exige y ofrécelas de forma proactiva si no tienes
-historial en Chile.
+La legislación de arrendamientos urbanos no establece un requisito de historial crediticio
+ni de nacionalidad. Los antecedentes que el propietario puede exigirte se acuerdan en cada
+contrato; consulta directamente con él qué condiciones acepta.
 
 **¿Cuáles son las cuentas más fáciles de abrir para un migrante?**
 La CuentaRUT de BancoEstado es la opción que cubrimos en este artículo con respaldo de

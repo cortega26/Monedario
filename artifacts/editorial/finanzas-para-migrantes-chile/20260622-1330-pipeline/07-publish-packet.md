@@ -66,11 +66,12 @@ Pipeline opened: 2026-06-22
 
 | # | Claim | Estado | Acción requerida |
 |---|---|---|---|
-| C1 | Proceso RUT en SII para extranjeros (documentos, pasos, presencialidad) | ABIERTO | Verificar en sii.cl antes de afirmar pasos específicos en el blog file |
-| C1b | RUT definitivo = RUN del Registro Civil | ABIERTO | Verificar en registrocivil.cl |
-| C4 | Práctica de garantías adicionales en arriendo | PARCIAL | Descrito como costumbre de mercado; verificar si hay normativa CMF o circular SERVIU aplicable |
-| C5 | Condiciones de otros bancos/fintech para extranjeros | ABIERTO | Verificar con cada entidad antes de agregar al artículo |
-| C6 | Impacto de operar sin RUT (AFP, empleo formal, cuenta corriente) | ABIERTO | Verificar en fuentes laborales/tributarias antes de afirmar |
+| C1 | Proceso RUT en SII para extranjeros | **CERRADO** — addendum 2026-06-22 | Residentes con cédula → auto-registro SII con RUN. No residentes → inscripción online en sii.cl. |
+| C1b | RUN = identificación tributaria del Registro Civil | **CERRADO** — addendum 2026-06-22 | Cédula de extranjero incluye RUN; SII registra automáticamente. |
+| C2/C3 | URL profunda BancoEstado CuentaRUT | **CERRADO** — addendum 2026-06-22 | start.bancoestado.cl/…/cuentarut.html + ChileAtiende/70638 (HTTP 200). |
+| C4 | Marco legal de arriendo para extranjeros | **CERRADO PARTIAL** — addendum 2026-06-22 | Ley 18.101 sin requisito de nacionalidad; Ley 20.609 prohíbe discriminación arbitraria; SII turistas con pasaporte. Garantías como "práctica de mercado general": sin fuente oficial → retiradas del draft. |
+| C5 | Condiciones de otros bancos/fintech | **CERRADO PARTIAL** — addendum 2026-06-22 | BancoEstado: explícita. Santander/BCI: cédula + evaluación. Tenpo: cédula chilena física. MACH: sin verificar. |
+| C6 | Impacto de operar sin cédula/RUN definitivo | **CERRADO (ERROR CORREGIDO)** — addendum 2026-06-22 | DT/SP/Fonasa: contratos y cotizaciones posibles con pasaporte/ID provisoria. CuentaRUT sí requiere cédula vigente. |
 
 ---
 
@@ -87,12 +88,14 @@ Pipeline opened: 2026-06-22
 ## Estado de Gates
 
 - **Gate 05 (MathAudit)**: CONDITIONAL — artefacto `05-math-audit.md` reemplazado 2026-06-22 por auditoría independiente en sesión fresca (DeepSeek V4 Pro). N1 (12 años), N2 (rango 12–17), N3 (2026-06-22), N4 (2026-06-17) y 7 condiciones de C2/C3 VERIFIED sin ampliaciones. 4 defectos de cuantificadores sin respaldo (Q1 MEDIUM, Q2–Q4 INFO) — sin errores aritméticos. SoD acreditado: DraftAgent ≠ MathAuditAgent. **Carlos Ortega debe decidir si acepta CONDITIONAL o requiere resolver cuantificadores.**
-- **Gate 06 (ComplianceAgent)**: FAIL segunda evaluación (6.88/10) — ver `06-compliance.md`. Draft remediado por segunda vez 2026-06-22 — re-auditoría requerida en nueva sesión fresca.
+- **Gate 06 (ComplianceAgent)**: FAIL segunda evaluación (6.88/10) — ver `06-compliance.md`. Draft remediado por tercera vez 2026-06-22 (addendum humano) — re-auditoría requerida en nueva sesión fresca.
 - **Gate 07 (HumanEditor)**: PENDIENTE.
 
-> **Nota de remediación 1 (2026-06-22):** Draft `04-draft.md` remediado por DraftAgent para resolver D#1–D#7 de Gate 06 FAIL (5.49/10). Cambios: C1/C1b/C4/C5/C6 convertidos a orientativos; C2 limitado a evidencia VERIFIED; C3 incorporado; afirmaciones legales categóricas retiradas; rangos numéricos sin fuente eliminados (N3/N4/N5); lead generalizado corregido.
+> **Nota de remediación 1 (2026-06-22):** Draft `04-draft.md` remediado por DraftAgent para resolver D#1–D#7 de Gate 06 FAIL (5.49/10). C1/C1b/C4/C5/C6 convertidos a orientativos; C2 limitado a VERIFIED; C3 incorporado; afirmaciones legales retiradas; rangos eliminados.
 
-> **Nota de remediación 2 (2026-06-22):** Draft remediado por segunda vez para resolver D#1 y D#2 HIGH + D#6 MEDIUM de Gate 06 reauditoría (6.88/10). Cambios: C2 limitado al alcance exacto de C2 VERIFIED (retirados "con cualquier tipo de residencia", "no exige nivel de renta", "la cuenta más accesible", "ampliamente aceptada para sueldo/pagos"); C4 retirada la oración de Ley 21.461 + "discrecionales" + "no obligación legal" + "no discriminatorias" + "es legal" para UF; superlativos ("la más documentada", "menos restricciones") eliminados del FAQ; causalidad bancaria ("puedes acceder a cuentas corrientes") reemplazada por remisión a cada entidad; N2 eliminado del draft y del inventario de Gate 05. Defectos D#3 (SoD Gate 05) y D#5 (URL profunda BancoEstado) escalados a Carlos Ortega — no resolubles en sesión de DraftAgent.
+> **Nota de remediación 2 (2026-06-22):** D#1, D#2, D#6 de Gate 06 reauditoría (6.88/10). C2 sin expansiones no respaldadas; C4 sin Ley 21.461/discrecionales/discriminación; superlativos y causalidad bancaria eliminados; N2 retirado del draft. D#3/D#5 escalados a Carlos Ortega.
+
+> **Nota de remediación 3 (2026-06-22) — addendum humano:** Carlos Ortega proporcionó `source-research-addendum-c1-c6-20260622.md`. Aplicado a 02-dossier.md + 04-draft.md: C1 VERIFIED-REFORMULADO (dos vías: residente con cédula → auto-registro SII; no residente → inscripción online); C1b VERIFIED; C2/C3 con URLs profundas (D#5 resuelto); C4 PARTIAL VERIFIED con marco legal (Ley 18.101, 21.461, 20.609); C5 VERIFIED AS LIMITED (BancoEstado explícita, Santander/BCI evaluación, Tenpo cédula física); C6 CORRECTED (contratos laborales/AFP posibles con pasaporte/ID provisoria; CuentaRUT sí requiere cédula). Garantías adicionales como "práctica de mercado general" retiradas del draft. TODO:SOURCE del publish-packet cerrados al publicar. Pendiente: D#3 Gate 05 SoD (acepta CONDITIONAL per Gate 05 independiente).
 
 ---
 
