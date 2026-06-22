@@ -12,7 +12,7 @@ dependencies = [
     "google-auth>=2.49",
 
     # Web scraping — data signals and competitive adaptation
-    "scrapling>=0.4",
+    "scrapling>=0.4.9",
     "beautifulsoup4>=4.14",
     "lxml>=6.1",
     "cssselect>=1.4",
