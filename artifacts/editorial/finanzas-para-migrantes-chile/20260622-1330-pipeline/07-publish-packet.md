@@ -18,7 +18,7 @@ Pipeline opened: 2026-06-22
 | 02 Research | ResearchAgent | Claude Code 2026-06-22 — **misma sesión que 01/03/04** | ⚠ Defecto SoD declarado |
 | 03 Outline | OutlineAgent | Claude Code 2026-06-22 — **misma sesión que 01/02/04** | ⚠ Defecto SoD declarado |
 | 04 Draft | DraftAgent | Claude Code 2026-06-22 — **misma sesión que 01/02/03** | ✓ Completado — `04-draft.md` |
-| 05 Math Audit | MathAuditAgent | Claude Sonnet 4.6, misma sesión que segunda remediación — **⚠ SoD no acreditado** | ⚠ Eximido con limitación — ver `05-math-audit.md` |
+| 05 Math Audit | MathAuditAgent | DeepSeek V4 Pro, sesión fresca independiente 2026-06-22 — **✓ SoD acreditado** | ✓ CONDITIONAL — ver `05-math-audit.md` (reemplazado por auditoría independiente) |
 | 06 Compliance | ComplianceAgent | **SESIÓN FRESCA REQUERIDA** | ✗ FAIL — reauditoría fresca 7.88/10 (`06-compliance.md`) |
 | 07 Publish | HumanEditor | Carlos Ortega | ⬜ PENDIENTE |
 
@@ -86,7 +86,7 @@ Pipeline opened: 2026-06-22
 
 ## Estado de Gates
 
-- **Gate 05 (MathAudit)**: EXIMIDO CON LIMITACIÓN — artefacto `05-math-audit.md` actualizado 2026-06-22. N3/N4/N5 eliminados en primera remediación; N2 eliminado en segunda remediación (Ley 21.461 retirada del draft); N1 (12 años) permanece VERIFIED. Limitación SoD: el MathAuditAgent no puede acreditarse como instancia independiente del DraftAgent remediador — D#3 HIGH de Gate 06 reauditoría. **Carlos Ortega debe decidir: aceptar exención con limitación declarada o solicitar Gate 05 en sesión independiente.**
+- **Gate 05 (MathAudit)**: CONDITIONAL — artefacto `05-math-audit.md` reemplazado 2026-06-22 por auditoría independiente en sesión fresca (DeepSeek V4 Pro). N1 (12 años), N2 (rango 12–17), N3 (2026-06-22), N4 (2026-06-17) y 7 condiciones de C2/C3 VERIFIED sin ampliaciones. 4 defectos de cuantificadores sin respaldo (Q1 MEDIUM, Q2–Q4 INFO) — sin errores aritméticos. SoD acreditado: DraftAgent ≠ MathAuditAgent. **Carlos Ortega debe decidir si acepta CONDITIONAL o requiere resolver cuantificadores.**
 - **Gate 06 (ComplianceAgent)**: FAIL segunda evaluación (6.88/10) — ver `06-compliance.md`. Draft remediado por segunda vez 2026-06-22 — re-auditoría requerida en nueva sesión fresca.
 - **Gate 07 (HumanEditor)**: PENDIENTE.
 
