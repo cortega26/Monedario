@@ -260,5 +260,11 @@
   },
   "operacion-renta-centro": {
     "state": "pending"
+  },
+  "finanzas-para-migrantes-chile": {
+    "state": "done",
+    "score": 7,
+    "attempts": 1,
+    "note": "manual replacement from /home/carlos/Imágenes/migrante-finanzas-chile.png"
   }
 }

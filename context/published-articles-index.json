@@ -5,7 +5,7 @@
   "source": "src/data/blog/**",
   "publishableRule": "draft !== true",
   "ordering": "slug asc",
-  "publishedCount": 50,
+  "publishedCount": 51,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -303,6 +303,22 @@
       "heroImage": "/images/hero/estafas-financieras-chile-vishing-smishing-marketplace.avif",
       "summary": "La mayoría de las estafas financieras no empieza con un hackeo sofisticado. Empieza con una llamada que suena completamente normal, de alguien que sabe tu nombre, menciona tu banco y habla en un tono que mezcla urgencia con profesionalismo. Para cuando te das cuenta de lo que ocu...",
       "updatedDate": "2026-04-22T00:00:00Z"
+    },
+    {
+      "slug": "finanzas-para-migrantes-chile",
+      "title": "Cómo ordenar tus finanzas en Chile siendo migrante",
+      "category": "general",
+      "cluster": "finanzas-migrantes",
+      "tags": [
+        "migrantes",
+        "rut",
+        "cuentarut",
+        "arriendo",
+        "finanzas-personales"
+      ],
+      "sourcePath": "src/data/blog/finanzas-para-migrantes-chile.md",
+      "heroImage": "/images/hero/finanzas-para-migrantes-chile.avif",
+      "summary": "Información vigente al 2026 06 22. Los requisitos de trámites del Estado pueden cambiar. Antes de actuar, verifica siempre en las fuentes oficiales que citamos: SII (sii.cl), Registro Civil (registrocivil.cl) y BancoEstado (bancoestado.cl). Llegaste a Chile y necesitas tres cosas..."
     },
     {
       "slug": "finiquito-e-indemnizaciones-en-chile",

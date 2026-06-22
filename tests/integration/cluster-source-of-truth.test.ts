@@ -22,7 +22,10 @@ describe("Cluster Source of Truth", () => {
     }
   });
 
-  it("exports exactly 11 unique editorial clusters including the general bucket and bancos-fintech", () => {
-    expect(CLUSTERS.length).toBe(11);
+  it("exports exactly 12 unique editorial clusters including the greenfield hubs", () => {
+    expect(CLUSTERS).toContain("bancos-fintech");
+    expect(CLUSTERS).toContain("finanzas-migrantes");
+    expect(CLUSTERS).toContain("general");
+    expect(new Set(CLUSTERS).size).toBe(12);
   });
 });

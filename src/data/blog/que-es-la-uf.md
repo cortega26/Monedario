@@ -95,6 +95,8 @@ Esto significa que si hay inflación, tu arriendo **sube automáticamente** sin 
 
 Por eso es importante saber el valor en UF de tu arriendo, no solo el valor en pesos del mes en que firmaste.
 
+Si recién llegaste al país y estás arrendando por primera vez, revisa [cómo ordenar tus finanzas siendo migrante en Chile](/posts/finanzas-para-migrantes-chile/), que cubre el arriendo, la CuentaRUT y el RUT paso a paso.
+
 **Ejemplo paso a paso:**
 
 Firmaste un contrato de arriendo en enero de 2023 a **12 UF** cuando la UF valía $35.000 → pagabas **$420.000/mes**.

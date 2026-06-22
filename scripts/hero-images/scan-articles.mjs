@@ -71,7 +71,7 @@ async function main() {
     }
 
     const frontmatter = parseFrontmatter(frontmatterRaw, filePath);
-    if (!isPublishable(frontmatter)) continue;
+    const publishable = isPublishable(frontmatter);
 
     const slug = normalizeSlug(frontmatter, filePath);
     const updatedDate =
@@ -104,15 +104,17 @@ async function main() {
         .filter(Boolean).length,
       sourceFile: path.basename(filePath),
       updatedDate,
+      ...(publishable ? {} : { draft: true }),
     });
   }
 
   articles.sort((a, b) => a.slug.localeCompare(b.slug));
+  const publishedArticles = articles.filter(article => !article.draft);
 
   const manifest = {
     schemaVersion: 1,
     source: "src/data/blog/**",
-    publishableRule: "draft !== true",
+    inclusionRule: "valid frontmatter (drafts included for pre-publication image planning)",
     articleCount: files.length,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     articles: articles.map(({ updatedDate, ...article }) => article),
@@ -125,8 +127,8 @@ async function main() {
     source: "src/data/blog/**",
     publishableRule: "draft !== true",
     ordering: "slug asc",
-    publishedCount: articles.length,
-    articles: articles.map(article => ({
+    publishedCount: publishedArticles.length,
+    articles: publishedArticles.map(article => ({
       slug: article.slug,
       title: article.title,
       category: article.category,
@@ -143,7 +145,8 @@ async function main() {
   await writeJson(PUBLISHED_INDEX_PATH, publishedIndex);
 
   console.log(`[scan-articles] Total files: ${files.length}`);
-  console.log(`[scan-articles] Publishable: ${articles.length}`);
+  console.log(`[scan-articles] Prompt candidates: ${articles.length}`);
+  console.log(`[scan-articles] Publishable: ${publishedArticles.length}`);
   console.log(`[scan-articles] Manifest: ${toRepoRelative(MANIFEST_PATH)}`);
   console.log(`[scan-articles] Published index: ${toRepoRelative(PUBLISHED_INDEX_PATH)}`);
 }

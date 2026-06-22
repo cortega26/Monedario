@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "source": "src/data/blog/**",
-  "publishableRule": "draft !== true",
-  "articleCount": 50,
+  "inclusionRule": "valid frontmatter (drafts included for pre-publication image planning)",
+  "articleCount": 51,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -604,6 +604,40 @@
       "bodyExcerpt": "La mayoría de las estafas financieras no empieza con un hackeo sofisticado. Empieza con una llamada que suena completamente normal, de alguien que sabe tu nombre, menciona tu banco y habla en un tono que mezcla urgencia con profesionalismo. Para cuando te das cuenta de lo que ocurrió, ya autorizaste una transferencia. Esta guía te ayuda a prevenir estafas financieras. Explica cómo operan los métodos más frecuentes, qué señales distinguen cada uno y qué hacer si ya caíste. > **Revisión editorial 2026-04-22:** se revalidaron las recomendaciones de contención, denuncia y escalamiento contra SERNAC, CMF y los canales vigentes de reclamo. ## Cómo operan estas estafas Todos los métodos comparten una estructura común: urgencia, autoridad percibida y poco tiempo para pensar. El estafador crea una situación que te empuja a actuar rápido y sin verificar. Cuando la urgencia se instala, el juicio crítico cede. Entender ese patrón es la primera defensa. Una institución financiera real nunca te pedirá claves, CVV ni códigos de un solo uso por ningún canal proactivo. Si alguien que dice ser de tu banco te los pide, ya puedes cerrar la llamada. ## Canales de estafa más comunes en Chile ### Vishing",
       "wordCount": 1406,
       "sourceFile": "estafas-financieras-chile-vishing-smishing-marketplace.md"
+    },
+    {
+      "slug": "finanzas-para-migrantes-chile",
+      "title": "Cómo ordenar tus finanzas en Chile siendo migrante",
+      "tags": [
+        "migrantes",
+        "rut",
+        "cuentarut",
+        "arriendo",
+        "finanzas-personales"
+      ],
+      "category": "general",
+      "cluster": "finanzas-migrantes",
+      "sourcePath": "src/data/blog/finanzas-para-migrantes-chile.md",
+      "heroImage": "/images/hero/finanzas-para-migrantes-chile.avif",
+      "summary": "Información vigente al 2026 06 22. Los requisitos de trámites del Estado pueden cambiar. Antes de actuar, verifica siempre en las fuentes oficiales que citamos: SII (sii.cl), Registro Civil (registrocivil.cl) y BancoEstado (bancoestado.cl). Llegaste a Chile y necesitas tres cosas...",
+      "leadParagraphs": [
+        "> **Información vigente al 2026-06-22.** Los requisitos de trámites del Estado pueden cambiar. > Antes de actuar, verifica siempre en las fuentes oficiales que citamos: SII (sii.cl), > Registro Civil (registrocivil.cl) y BancoEstado (bancoestado.cl).",
+        "Llegaste a Chile y necesitas tres cosas concretas para funcionar: un número de identidad tributaria, una cuenta donde recibir tus ingresos, y un techo. Esta guía cubre los aspectos que hemos podido verificar en fuentes oficiales — los pasos de cada trámite pueden cambiar, así que te indicamos dónde confirmar cada uno antes de actuar.",
+        "---"
+      ],
+      "headings": [
+        "Paso 1 — El RUT y la cédula de extranjero",
+        "¿Necesitas solicitar un RUT?",
+        "¿Para qué se usa el RUT en la práctica?",
+        "Paso 2 — Cuenta bancaria: la CuentaRUT es la puerta de entrada",
+        "¿Qué necesitas para abrirla?",
+        "¿Hay otras opciones?",
+        "Paso 3 — Arrendar: qué te pueden pedir y cómo prepararte",
+        "¿Qué documentos puede pedirte el propietario?"
+      ],
+      "bodyExcerpt": "> **Información vigente al 2026-06-22.** Los requisitos de trámites del Estado pueden cambiar. > Antes de actuar, verifica siempre en las fuentes oficiales que citamos: SII (sii.cl), > Registro Civil (registrocivil.cl) y BancoEstado (bancoestado.cl). Llegaste a Chile y necesitas tres cosas concretas para funcionar: un número de identidad tributaria, una cuenta donde recibir tus ingresos, y un techo. Esta guía cubre los aspectos que hemos podido verificar en fuentes oficiales — los pasos de cada trámite pueden cambiar, así que te indicamos dónde confirmar cada uno antes de actuar. --- ## Paso 1 — El RUT y la cédula de extranjero El RUT (Rol Único Tributario) es el número con el que el Estado chileno identifica a personas y empresas para efectos tributarios. Como extranjero, tu situación depende de si ya tienes residencia en Chile o no. ### ¿Necesitas solicitar un RUT? **Si ya tienes residencia y cédula de identidad para extranjeros:** No debes solicitar un RUT por separado. El SII registra automáticamente a las personas extranjeras residentes con el RUN (Rol Único Nacional) de su cédula de identidad para efectos tributarios. Tu cédula de extranjero ya incluye ese número. Fuente: , *",
+      "wordCount": 1501,
+      "sourceFile": "finanzas-para-migrantes-chile.md"
     },
     {
       "slug": "finiquito-e-indemnizaciones-en-chile",

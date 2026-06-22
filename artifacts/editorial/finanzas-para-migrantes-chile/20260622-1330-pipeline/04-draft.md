@@ -1,11 +1,12 @@
 # 04-draft — Finanzas para migrantes en Chile (pilar educativo)
 
-**Status: DRAFT — cuarta remediación 2026-06-22; pendiente Gate 05 independiente + Gate 06 sesión fresca**
-**Role:** DraftAgent — Claude Sonnet 4.6 (sesión 2026-06-22)
+**Status: DRAFT — quinta remediación 2026-06-22; borrador congelado, pendiente nuevo Gate 05 independiente + Gate 06 sesión fresca**
+**Role:** DraftAgent — Claude Opus 4.8 (sesión 2026-06-22)
 **Remediación 1 (commit d5a37821):** DraftAgent remediador — resuelve D#1–D#7 de Gate 06 FAIL (5.49/10)
 **Remediación 2 (commit 2a1644b0):** DraftAgent remediador — resuelve D#1, D#2, D#6 de Gate 06 reauditoría (6.88/10)
 **Remediación 3 (addendum humano, commit 7f94568c):** DraftAgent aplicó addendum HumanEditor 2026-06-22 — claims C1–C6 reformulados; fuentes O9–O22 incorporadas.
-**Remediación 4 (esta sesión):** DraftAgent — resuelve D#1, D#3, D#4, D#5, D#6, D#7 de Gate 06 FAIL (8.25/10). Borrador congelado — pendiente Gate 05 independiente + Gate 06 sesión fresca.
+**Remediación 4 (commit anterior):** DraftAgent — resuelve D#1, D#3, D#4, D#5, D#6, D#7 de Gate 06 FAIL (8.25/10).
+**Remediación 5 (esta sesión):** DraftAgent — resuelve D#1–D#4 de Gate 06 FAIL (8.86/10) y aplica el suplemento S1–S5 del addendum: condición tributaria exacta de C1 en el ancla (S1), cita operativa literal del art. 2 de la Ley N° 20.609 (S2), URLs profundas en `articleLead.officialSources` (S3), descripción oficial de la UF (S4) y excepción presencial para menores extranjeros en CuentaRUT (S5). Borrador congelado — pendiente un nuevo Gate 05 independiente + Gate 06 en sesión fresca. Esta sesión no declara PASS ni asigna scorecard.
 
 **Role-concentration note:** stages 01 (brief), 02 (dossier), 03 (outline) y 04 (draft)
 los produjo la misma sesión (2026-06-22). `INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES` exige
@@ -61,15 +62,21 @@ featured: false
 draft: true
 articleAdvisory: "Contenido educativo. Los requisitos de trámites del Estado pueden cambiar; verifica siempre en las fuentes oficiales (SII, Registro Civil, BancoEstado) antes de actuar."
 articleLead:
-  answer: "Si ya tienes residencia y cédula de extranjero, el SII te registra automáticamente con tu RUN — no necesitas solicitar un RUT adicional. Si no tienes residencia, puedes inscribirte en el RUT por internet en sii.cl. Con cédula vigente puedes abrir una CuentaRUT en BancoEstado. Para arrendar, la Ley N° 18.101 no establece requisito de nacionalidad; los antecedentes los fija cada propietario dentro de los límites legales."
+  answer: "Si ya tienes residencia y cédula de extranjero, el SII te registra automáticamente con tu RUN — no necesitas solicitar un RUT adicional. Si no tienes residencia y causas o puedes causar impuestos en Chile, puedes inscribirte en el RUT por internet en sii.cl. Con cédula vigente puedes abrir una CuentaRUT en BancoEstado. Para arrendar, la Ley N° 18.101 no establece requisito de nacionalidad; los antecedentes los fija cada propietario dentro de los límites legales."
   validAsOf: 2026-06-22
   officialSources:
-    - label: "SII — RUT personas naturales"
-      href: "https://www.sii.cl"
-    - label: "Registro Civil — Cédula de identidad para extranjeros"
-      href: "https://www.registrocivil.cl"
+    - label: "SII — Obtención de RUT (inscripción)"
+      href: "https://www.sii.cl/destacados/educacion/ciclo_vida_contribuyente/paso_01.html"
+    - label: "SII — Documentos para inscribirse en el RUT"
+      href: "https://www.sii.cl/preguntas_frecuentes/rut_inicio_actividades/001_105_0135.htm"
+    - label: "ChileAtiende — Cédula de identidad para extranjeros (RUN)"
+      href: "https://www.chileatiende.gob.cl/fichas/3337"
     - label: "BancoEstado — CuentaRUT"
-      href: "https://www.bancoestado.cl"
+      href: "https://start.bancoestado.cl/content/bancoestado-public/cl/es/home/home/productos-/cuentas/cuentarut.html"
+    - label: "ChileAtiende — CuentaRUT BancoEstado"
+      href: "https://www.chileatiende.gob.cl/fichas/70638-cuenta-rut-bancoestad"
+    - label: "BCN — Ley N° 20.609 (no discriminación arbitraria)"
+      href: "https://www.bcn.cl/leychile/navegar?idNorma=1042092"
   covers:
     - "Cómo obtener el RUT en Chile siendo extranjero."
     - "Cómo abrir la CuentaRUT con cédula de identidad vigente."
@@ -110,10 +117,12 @@ efectos tributarios. Tu cédula de extranjero ya incluye ese número.
 Fuente: [SII — Obtención de RUT](https://www.sii.cl/destacados/educacion/ciclo_vida_contribuyente/paso_01.html),
 [SII — RUT para personas extranjeras](https://www.sii.cl/contribuyentes/contribuyentes_individuales/chilenos_extranjero/rol_unico_tributario.htm)
 
-**Si no tienes residencia y debes cumplir obligaciones tributarias en Chile:**
-Puedes solicitar tu inscripción en el RUT por internet en [sii.cl](https://www.sii.cl). Los
-documentos exigidos dependen de tu situación y del tipo de trámite tributario. Verifica los
-requisitos actuales en [sii.cl](https://www.sii.cl/preguntas_frecuentes/rut_inicio_actividades/001_105_0135.htm) antes de actuar.
+**Si no tienes residencia y causas o puedes causar impuestos en Chile:**
+Puedes solicitar tu inscripción en el RUT por internet en [sii.cl](https://www.sii.cl). Esta
+vía está pensada para quien tiene una situación tributaria que la justifique, no para toda
+persona extranjera sin residencia. Los documentos exigidos dependen de tu situación y del
+tipo de trámite tributario. Verifica los requisitos actuales en
+[sii.cl](https://www.sii.cl/preguntas_frecuentes/rut_inicio_actividades/001_105_0135.htm) antes de actuar.
 
 > **Verificado con fuente oficial al 2026-06-22.** Fuente: SII (O9, O10, O11). Los requisitos
 > pueden cambiar; consulta sii.cl para la información más reciente.
@@ -153,9 +162,11 @@ extranjeros en Chile.
 > (addendum humano 2026-06-22, HTTP 200; base Scrapling 2026-06-17). Sin cambios conocidos al 2026-06-22.
 
 **¿Hay edad mínima?**
-Sí: la CuentaRUT se puede abrir desde los 12 años. Entre los 12 y 17 años se requiere
-representante legal, o bien el trámite puede hacerse por la App si el padre o la madre
-también es cliente de BancoEstado. Los adultos pueden solicitarla directamente.
+Sí: la CuentaRUT se puede abrir desde los 12 años. Entre los 12 y 17 años interviene un
+representante legal; existe además una alternativa por la App si el padre o la madre también
+es cliente de BancoEstado. Esa vía por App no es universal para todo menor migrante: si el
+menor o su padre o madre son extranjeros, BancoEstado indica que debe acudirse a una sucursal
+con la documentación correspondiente. Los adultos pueden solicitarla directamente.
 
 > Fuente: [BancoEstado — CuentaRUT](https://start.bancoestado.cl/content/bancoestado-public/cl/es/home/home/productos-/cuentas/cuentarut.html)
 > y [ChileAtiende — CuentaRUT BancoEstado](https://www.chileatiende.gob.cl/fichas/70638-cuenta-rut-bancoestad)
@@ -193,10 +204,15 @@ arriendo usando su pasaporte o documento de identidad extranjero, sin necesitar 
 >   nacionalidad para el arrendatario.
 > - **Ley N° 21.461** (restitución y cobro): modificó los procedimientos de restitución
 >   del inmueble arrendado; no establece requisitos especiales de acceso para personas extranjeras.
-> - **Ley N° 20.609, art. 2** (no discriminación arbitraria): prohíbe la discriminación
->   arbitraria basada en la nacionalidad, incluso cuando la realizan particulares.
+> - **Ley N° 20.609, art. 2** (no discriminación arbitraria): define la discriminación
+>   arbitraria, según su texto, como toda “distinción, exclusión o restricción que carezca de
+>   justificación razonable, efectuada por agentes del Estado o particulares”, y enumera la
+>   nacionalidad entre los motivos relevantes. Esto no significa que toda distinción por
+>   nacionalidad sea automáticamente ilícita: para serlo debe carecer de justificación
+>   razonable y afectar el ejercicio legítimo de derechos fundamentales.
 >
-> Este resumen tiene fines orientativos y no reemplaza asesoría legal profesional.
+> Este resumen tiene fines orientativos, su aplicación depende de las circunstancias de cada
+> caso y no reemplaza asesoría legal profesional.
 
 Fuentes: [BCN — Ley N° 18.101](https://www.bcn.cl/leychile/navegar?idNorma=29526),
 [BCN — Ley N° 21.461](https://www.bcn.cl/leychile/Navegar?idNorma=1178004),
@@ -221,10 +237,14 @@ acordar. Tener documentos de identidad e ingresos en orden facilita el proceso.
 
 ### ¿El arriendo puede ir en UF?
 
-Sí, es una práctica que existe en el mercado de arriendo chileno. La UF (Unidad de Fomento)
-sube con la inflación; si el contrato está denominado en UF, el valor del arriendo se reajusta
-según lo pactado en él. Puedes convertir cualquier valor en UF a pesos con la
-[calculadora de UF](/calculadoras/conversor-uf/).
+Sí, es una práctica que existe en el mercado de arriendo chileno. Según el Banco Central, la
+UF (Unidad de Fomento) es un índice de reajustabilidad: su valor se reajusta diariamente entre
+el día 10 de cada mes y el día 9 del siguiente, de acuerdo con la variación del IPC del mes
+calendario anterior. Si el contrato fija el arriendo en UF, su equivalente en pesos dependerá
+del valor vigente y de lo pactado en el contrato. Puedes convertir cualquier valor en UF a
+pesos con la [calculadora de UF](/calculadoras/conversor-uf/).
+
+Fuente: [Banco Central de Chile — metodología de la Unidad de Fomento](https://si3.bcentral.cl/estadisticas/Principal1/Metodologias/EMF/UF.pdf)
 
 ---
 
@@ -254,9 +274,9 @@ No. Basta con cédula de identidad vigente — esto incluye la cédula de extran
 **¿Puedo obtener RUT sin haber vivido en Chile?**
 Depende de tu situación. Si ya tienes residencia y cédula de extranjero, el SII te registra
 automáticamente con tu RUN — no necesitas tramitar un RUT por separado. Si no tienes
-residencia pero debes cumplir obligaciones tributarias en Chile, el SII dispone de inscripción
-por internet en sii.cl; los documentos exigidos dependen de tu caso. Verifica los requisitos
-actuales en sii.cl antes de actuar.
+residencia y causas o puedes causar impuestos en Chile, el SII dispone de inscripción por
+internet en sii.cl; los documentos exigidos dependen de tu caso. No es una vía abierta a toda
+persona extranjera sin residencia. Verifica los requisitos actuales en sii.cl antes de actuar.
 
 **¿Cuánto tarda el RUT del Registro Civil?**
 El plazo varía según el flujo del Registro Civil y el tipo de permiso. Para saber el plazo
