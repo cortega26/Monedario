@@ -21,13 +21,11 @@ import ufHistoricoRaw from "@/data/economic-history/uf-historico.json";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 
-// Construye lookup para el conversor histórico
-const ufLookup: Record<string, number> = {};
-for (const entry of ufHistoricoRaw.serie) {
-  ufLookup[entry.fecha] = entry.valor;
-}
-const ufFirstDate = ufHistoricoRaw.serie[0].fecha;
-const ufLastDate = ufHistoricoRaw.serie[ufHistoricoRaw.serie.length - 1].fecha;
+// Solo los extremos del rango para el atributo min/max del input; el lookup
+// se carga bajo demanda desde /api/uf-historico-lookup.json
+const ufFirstDate = ufHistoricoRaw.serie[0]!.fecha;
+const ufLastDate = ufHistoricoRaw.serie[ufHistoricoRaw.serie.length - 1]!.fecha;
+const ufHistoricoEndpoint = getPath("/api/uf-historico-lookup.json");
 const ufGuidePath = getPath("/posts/que-es-la-uf/");
 const ufHubPath = getPath("/guias/uf-costo-de-vida/");
 const utmConverterPath = getPath("/calculadoras/conversor-utm/");
@@ -314,6 +312,7 @@ const ufFaqs = [
           id="fecha-historica"
           min={ufFirstDate}
           max={ufLastDate}
+          data-historico-endpoint={ufHistoricoEndpoint}
           class="w-full rounded-lg border border-border bg-background px-3 py-2 text-lg text-foreground focus:border-accent focus:outline-none"
         />
         <div
@@ -333,18 +332,6 @@ const ufFaqs = [
         </p>
       </div>
     </section>
-
-    <!-- Datos históricos embebidos (build-time) para el lookup client-side -->
-    <script
-      id="uf-historico-data"
-      type="application/json"
-      is:inline
-      set:html={JSON.stringify({
-        lookup: ufLookup,
-        first: ufFirstDate,
-        last: ufLastDate,
-      })}
-    />
 
     <PrimaryCTA
       text="¿Qué es la UF y cómo se calcula? →"
@@ -521,15 +508,14 @@ const ufFaqs = [
   });
   tablaEl.replaceChildren(...tableRows);
 
-  // ── LOOKUP HISTÓRICO ──────────────────────────────────────────
-  const historicoDataEl = document.getElementById("uf-historico-data");
-  const historicData = historicoDataEl
-    ? (JSON.parse(historicoDataEl.textContent ?? "{}") as {
-        lookup: Record<string, number>;
-        first: string;
-        last: string;
-      })
-    : null;
+  // ── LOOKUP HISTÓRICO (carga bajo demanda) ────────────────────
+  type HistoricoData = {
+    lookup: Record<string, number>;
+    first: string;
+    last: string;
+  };
+  let historicData: HistoricoData | null = null;
+  let historicFetchPromise: Promise<void> | null = null;
 
   const fechaInput = document.getElementById(
     "fecha-historica"
@@ -544,13 +530,38 @@ const ufFaqs = [
     "resultado-historico-error"
   )!;
 
+  async function loadHistoricData(): Promise<void> {
+    if (historicData) return;
+    const endpoint = fechaInput?.dataset.historicoEndpoint;
+    if (!endpoint) return;
+    try {
+      const res = await fetch(endpoint);
+      historicData = (await res.json()) as HistoricoData;
+    } catch {
+      // si falla el fetch, buscarUfHistorica mostrará el error
+    }
+  }
+
+  // Pre-carga cuando el usuario enfoca el input por primera vez
+  fechaInput?.addEventListener(
+    "focus",
+    () => {
+      if (!historicFetchPromise) historicFetchPromise = loadHistoricData();
+    },
+    { once: true }
+  );
+
   function fmtDate(iso: string): string {
     const [y, m, d] = iso.split("-");
     return `${d}/${m}/${y}`;
   }
 
   function buscarUfHistorica(date: string): void {
-    if (!historicData) return;
+    if (!historicData) {
+      resHistoricoError.textContent = "Cargando datos históricos…";
+      resHistoricoError.classList.remove("hidden");
+      return;
+    }
     const { lookup, first, last } = historicData;
 
     resHistoricoError.classList.add("hidden");
@@ -605,7 +616,9 @@ const ufFaqs = [
     resHistorico.classList.remove("hidden");
   }
 
-  fechaInput?.addEventListener("change", () => {
-    if (fechaInput.value) buscarUfHistorica(fechaInput.value);
+  fechaInput?.addEventListener("change", async () => {
+    if (!fechaInput.value) return;
+    await loadHistoricData();
+    buscarUfHistorica(fechaInput.value);
   });
 </script>
