@@ -18,7 +18,7 @@ Pipeline opened: 2026-06-22
 | 02 Research | ResearchAgent | Claude Code 2026-06-22 — **misma sesión que 01/03/04** | ⚠ Defecto SoD declarado |
 | 03 Outline | OutlineAgent | Claude Code 2026-06-22 — **misma sesión que 01/02/04** | ⚠ Defecto SoD declarado |
 | 04 Draft | DraftAgent | Claude Code 2026-06-22 — **misma sesión que 01/02/03** | ✓ Completado — `04-draft.md` |
-| 05 Math Audit | — | No requerido (sin cálculos — trámites descriptivos) | ✓ Eximido |
+| 05 Math Audit | MathAuditAgent | Claude Sonnet 4.6, sesión fresca 2026-06-22 (remediación) | ✓ Eximido — `05-math-audit.md` |
 | 06 Compliance | ComplianceAgent | **SESIÓN FRESCA REQUERIDA** | ✗ FAIL — `06-compliance.md` |
 | 07 Publish | HumanEditor | Carlos Ortega | ⬜ PENDIENTE |
 
@@ -86,9 +86,11 @@ Pipeline opened: 2026-06-22
 
 ## Estado de Gates
 
-- **Gate 05 (MathAudit)**: No requerido — sin cálculos ni fórmulas auditables.
-- **Gate 06 (ComplianceAgent)**: PENDIENTE — ejecutar en sesión Claude Code fresca.
+- **Gate 05 (MathAudit)**: EXIMIDO — artefacto `05-math-audit.md` creado 2026-06-22; inventario de 5 números con disposición; N3/N4/N5 eliminados en remediación, N1/N2 mantenidos como no-calculables.
+- **Gate 06 (ComplianceAgent)**: FAIL (5.49/10) — `06-compliance.md` producido por Codex sesión fresca. Draft remediado 2026-06-22 (sesión fresca DraftAgent) — re-auditoría requerida en nueva sesión fresca.
 - **Gate 07 (HumanEditor)**: PENDIENTE.
+
+> **Nota de remediación (2026-06-22):** Draft `04-draft.md` remediado por DraftAgent (sesión fresca) para resolver D#1–D#7 de Gate 06 FAIL. Cambios: C1/C1b/C4/C5/C6 convertidos a orientativos; C2 limitado a evidencia VERIFIED; C3 incorporado; afirmaciones legales categóricas retiradas; rangos numéricos sin fuente eliminados (N3/N4/N5); lead generalizado corregido. Gate 06 debe re-ejecutarse en sesión completamente fresca.
 
 ---
 
