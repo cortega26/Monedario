@@ -1,10 +1,14 @@
 {
-  "generatedAt": "2026-04-09T19:45:05.422Z",
-  "total": 39,
+  "generatedAt": "2026-06-23T16:41:59.831Z",
+  "total": 52,
   "routes": [
     {
       "file": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.md",
       "route": "/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/"
+    },
+    {
+      "file": "bancos-y-fintech-chile.md",
+      "route": "/posts/bancos-y-fintech-chile/"
     },
     {
       "file": "boleta-honorarios-2026-retencion-cobertura.md",
@@ -35,6 +39,14 @@
       "route": "/posts/como-leer-cartola-afp-chile/"
     },
     {
+      "file": "como-salir-boletin-comercial-chile.md",
+      "route": "/posts/como-salir-boletin-comercial-chile/"
+    },
+    {
+      "file": "contribuciones-bienes-raices-chile.md",
+      "route": "/posts/contribuciones-bienes-raices-chile/"
+    },
+    {
       "file": "credito-hipotecario-chile-guia-completa.md",
       "route": "/posts/credito-hipotecario-chile-guia-completa/"
     },
@@ -59,12 +71,16 @@
       "route": "/posts/donde-ver-si-estoy-en-dicom-gratis/"
     },
     {
-      "file": "el-poder-del-interes-compuesto.md",
+      "file": "el-poder-del-interes-compuesto.mdx",
       "route": "/posts/el-poder-del-interes-compuesto/"
     },
     {
       "file": "estafas-financieras-chile-vishing-smishing-marketplace.md",
       "route": "/posts/estafas-financieras-chile-vishing-smishing-marketplace/"
+    },
+    {
+      "file": "finanzas-para-migrantes-chile.md",
+      "route": "/posts/finanzas-para-migrantes-chile/"
     },
     {
       "file": "finiquito-e-indemnizaciones-en-chile.md",
@@ -73,6 +89,10 @@
     {
       "file": "fonasa-vs-isapre-comparativa.md",
       "route": "/posts/fonasa-vs-isapre-comparativa/"
+    },
+    {
+      "file": "fondo-emergencia-chile.md",
+      "route": "/posts/fondo-emergencia-chile/"
     },
     {
       "file": "fondos-afp-a-b-c-d-e.md",
@@ -85,6 +105,14 @@
     {
       "file": "fraude-tarjeta-que-hacer.md",
       "route": "/posts/fraude-tarjeta-que-hacer/"
+    },
+    {
+      "file": "gratificacion-legal-chile.md",
+      "route": "/posts/gratificacion-legal-chile/"
+    },
+    {
+      "file": "impuesto-global-complementario-chile.md",
+      "route": "/posts/impuesto-global-complementario-chile/"
     },
     {
       "file": "indemnizacion-anos-de-servicio-chile.md",
@@ -107,8 +135,24 @@
       "route": "/posts/liquidacion-de-sueldo/"
     },
     {
+      "file": "operacion-renta-centro.md",
+      "route": "/posts/operacion-renta-centro/"
+    },
+    {
       "file": "operacion-renta-f22-checklist.md",
       "route": "/posts/operacion-renta-f22-checklist/"
+    },
+    {
+      "file": "pgu-pension-garantizada-universal.md",
+      "route": "/posts/pgu-pension-garantizada-universal/"
+    },
+    {
+      "file": "prepago-credito-cuando-conviene-chile.md",
+      "route": "/posts/prepago-credito-cuando-conviene-chile/"
+    },
+    {
+      "file": "primer-empleo-chile-guia-completa.md",
+      "route": "/posts/primer-empleo-chile-guia-completa/"
     },
     {
       "file": "que-es-el-apv.mdx",
@@ -151,8 +195,16 @@
       "route": "/posts/seguro-de-cesantia/"
     },
     {
+      "file": "sueldo-imponible-chile.md",
+      "route": "/posts/sueldo-imponible-chile/"
+    },
+    {
       "file": "suplantacion-identidad-creditos-no-reconocidos.md",
       "route": "/posts/suplantacion-identidad-creditos-no-reconocidos/"
+    },
+    {
+      "file": "tarjeta-credito-costo-real-chile.md",
+      "route": "/posts/tarjeta-credito-costo-real-chile/"
     },
     {
       "file": "utm-chile-que-es-como-funciona.md",

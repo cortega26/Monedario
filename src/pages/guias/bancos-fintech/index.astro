@@ -5,15 +5,19 @@ import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import { getPath } from "@/utils/getPath";
 
-// Hub greenfield del cluster `bancos-fintech`. Mientras el pilar educativo
-// (artifacts/editorial/bancos-y-fintech-chile/) no pase auditoría + compliance +
-// sign-off humano, este hub es un shell de navegación NO-YMYL: solo describe la
-// sección y enlaza recursos ya publicados y vetados. No contiene afirmaciones
-// sobre tipos de cuenta, tarifas ni la Ley Fintec más allá de enlazar la ficha.
-// Está `noindex` y fuera de la navegación global (no en GUIDE_HUB_ORDER) hasta el
-// lanzamiento del pilar. Ver docs/adr/ADR-20260617-bancos-fintech-hub.md.
+// Hub del cluster `bancos-fintech`. El pilar educativo
+// (`/posts/bancos-y-fintech-chile/`) pasó auditoría + compliance + sign-off humano
+// (Carlos Ortega, 2026-06-23), por lo que el hub quedó indexable y dentro de la
+// navegación global (GUIDE_HUB_ORDER). Ver docs/adr/ADR-20260617-bancos-fintech-hub.md.
 
 const recursos = [
+  {
+    title: "Bancos y fintech en Chile: cómo elegir dónde tener tu cuenta",
+    description:
+      "La guía completa de la sección: tipos de cuenta, banco vs. fintech, cómo abrir una cuenta básica y cómo saber si una app está regulada.",
+    href: "/posts/bancos-y-fintech-chile/",
+    cta: "Leer la guía completa",
+  },
   {
     title: "Ley Fintech (21.521): qué regula en Chile",
     description:
@@ -59,7 +63,6 @@ const relacionados = [
   title="Bancos y fintech en Chile | Monedario"
   description="Sección sobre bancos y fintech en Chile: dónde tener tu dinero, tipos de cuenta y cómo abrir una cuenta básica."
 >
-  <meta name="robots" content="noindex,follow" slot="head" />
   <Header />
   <Breadcrumb />
 
@@ -74,8 +77,7 @@ const relacionados = [
         fintech y cómo abrir y usar una cuenta básica.
       </p>
       <p class="mt-3 max-w-3xl text-sm text-secondary">
-        Estamos preparando la guía completa de esta sección. Mientras tanto, acá
-        están los recursos ya disponibles.
+        Empieza por la guía completa y apóyate en los recursos relacionados.
       </p>
     </section>
 

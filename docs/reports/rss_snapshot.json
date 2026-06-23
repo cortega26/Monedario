@@ -1,91 +1,313 @@
 {
-  "generatedAt": "2026-02-28T15:24:41.942Z",
+  "generatedAt": "2026-06-23T16:45:14.081Z",
   "source": "dist/rss.xml",
-  "total": 14,
+  "total": 51,
   "items": [
+    {
+      "link": "https://monedario.cl/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/",
+      "title": "¿ETF, DAP o fondo mutuo en Chile? Cómo elegir (2026)",
+      "pubDate": "Wed, 22 Apr 2026 00:00:00 GMT",
+      "guid": "https://monedario.cl/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/"
+    },
+    {
+      "link": "https://monedario.cl/posts/bancos-y-fintech-chile/",
+      "title": "Bancos y fintech en Chile: cómo elegir dónde tener tu cuenta",
+      "pubDate": "Wed, 17 Jun 2026 16:00:00 GMT",
+      "guid": "https://monedario.cl/posts/bancos-y-fintech-chile/"
+    },
     {
       "link": "https://monedario.cl/posts/boleta-honorarios-2026-retencion-cobertura/",
       "title": "Boleta de honorarios 2026: retención 15,25%, líquido recibido y cobertura anual",
-      "pubDate": "Sat, 28 Feb 2026 15:20:00 GMT",
+      "pubDate": "Mon, 11 May 2026 00:00:00 GMT",
       "guid": "https://monedario.cl/posts/boleta-honorarios-2026-retencion-cobertura/"
     },
     {
+      "link": "https://monedario.cl/posts/cae-costo-real-credito-chile/",
+      "title": "CAE de un crédito: qué es, cómo se calcula y por qué la tasa sola engaña",
+      "pubDate": "Sun, 12 Apr 2026 18:30:00 GMT",
+      "guid": "https://monedario.cl/posts/cae-costo-real-credito-chile/"
+    },
+    {
       "link": "https://monedario.cl/posts/como-calcular-sueldo-liquido/",
-      "title": "Sueldo líquido en Chile: qué te descuentan, por qué y cómo calcularlo tú mismo",
-      "pubDate": "Tue, 24 Feb 2026 10:00:00 GMT",
+      "title": "Cómo calcular tu sueldo líquido en Chile: del imponible al depósito final",
+      "pubDate": "Thu, 14 May 2026 00:00:00 GMT",
       "guid": "https://monedario.cl/posts/como-calcular-sueldo-liquido/"
     },
     {
       "link": "https://monedario.cl/posts/como-cambiarse-de-afp/",
       "title": "¿Puedo cambiarme de AFP? Cómo hacerlo y qué considerar en 2026",
-      "pubDate": "Mon, 23 Feb 2026 13:00:00 GMT",
+      "pubDate": "Thu, 14 May 2026 00:00:00 GMT",
       "guid": "https://monedario.cl/posts/como-cambiarse-de-afp/"
     },
     {
+      "link": "https://monedario.cl/posts/como-hacer-presupuesto-mensual-chile/",
+      "title": "Presupuesto mensual en Chile: método práctico sin plantilla mágica",
+      "pubDate": "Wed, 08 Apr 2026 00:00:00 GMT",
+      "guid": "https://monedario.cl/posts/como-hacer-presupuesto-mensual-chile/"
+    },
+    {
+      "link": "https://monedario.cl/posts/como-invertir-en-etfs-desde-chile/",
+      "title": "¿Cómo comprar ETF en Chile? Corredoras, costos y más",
+      "pubDate": "Wed, 22 Apr 2026 00:00:00 GMT",
+      "guid": "https://monedario.cl/posts/como-invertir-en-etfs-desde-chile/"
+    },
+    {
+      "link": "https://monedario.cl/posts/como-leer-cartola-afp-chile/",
+      "title": "Cómo leer la cartola AFP: qué significa cada campo y cómo detectar errores",
+      "pubDate": "Mon, 11 May 2026 00:00:00 GMT",
+      "guid": "https://monedario.cl/posts/como-leer-cartola-afp-chile/"
+    },
+    {
+      "link": "https://monedario.cl/posts/como-salir-boletin-comercial-chile/",
+      "title": "Cómo salir del Boletín Comercial: plazos, pasos y qué hacer si hay un error",
+      "pubDate": "Sun, 12 Apr 2026 18:30:00 GMT",
+      "guid": "https://monedario.cl/posts/como-salir-boletin-comercial-chile/"
+    },
+    {
+      "link": "https://monedario.cl/posts/contribuciones-bienes-raices-chile/",
+      "title": "Contribuciones de bienes raíces en Chile: cálculo, cuotas y exenciones",
+      "pubDate": "Sun, 03 May 2026 16:00:00 GMT",
+      "guid": "https://monedario.cl/posts/contribuciones-bienes-raices-chile/"
+    },
+    {
+      "link": "https://monedario.cl/posts/credito-hipotecario-chile-guia-completa/",
+      "title": "Crédito hipotecario en Chile: guía paso a paso para compradores 2026",
+      "pubDate": "Sun, 12 Apr 2026 18:30:00 GMT",
+      "guid": "https://monedario.cl/posts/credito-hipotecario-chile-guia-completa/"
+    },
+    {
       "link": "https://monedario.cl/posts/cuanto-descuenta-la-afp-de-tu-sueldo/",
-      "title": "¿Cuánto descuenta la AFP de tu sueldo y para qué sirve ese dinero?",
-      "pubDate": "Mon, 23 Feb 2026 10:00:00 GMT",
+      "title": "Descuento AFP en tu sueldo: cotización obligatoria, comisión y cómo revisarlo",
+      "pubDate": "Thu, 14 May 2026 00:00:00 GMT",
       "guid": "https://monedario.cl/posts/cuanto-descuenta-la-afp-de-tu-sueldo/"
+    },
+    {
+      "link": "https://monedario.cl/posts/deposito-a-plazo-uf-vs-pesos/",
+      "title": "Depósito a plazo: UF vs pesos — qué conviene y cuándo",
+      "pubDate": "Mon, 30 Mar 2026 00:00:00 GMT",
+      "guid": "https://monedario.cl/posts/deposito-a-plazo-uf-vs-pesos/"
+    },
+    {
+      "link": "https://monedario.cl/posts/descuentos-de-sueldo/",
+      "title": "Descuentos de sueldo en Chile: cuáles son legales, voluntarios y prohibidos",
+      "pubDate": "Thu, 14 May 2026 00:00:00 GMT",
+      "guid": "https://monedario.cl/posts/descuentos-de-sueldo/"
     },
     {
       "link": "https://monedario.cl/posts/devolucion-impuestos-fechas-compensaciones/",
       "title": "Devolución de impuestos en Chile: fechas de pago, estado y compensaciones",
-      "pubDate": "Sat, 28 Feb 2026 15:10:00 GMT",
+      "pubDate": "Mon, 11 May 2026 00:00:00 GMT",
       "guid": "https://monedario.cl/posts/devolucion-impuestos-fechas-compensaciones/"
+    },
+    {
+      "link": "https://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
+      "title": "Dónde ver si estás en DICOM gratis en Chile y qué revisar primero",
+      "pubDate": "Sun, 12 Apr 2026 18:30:00 GMT",
+      "guid": "https://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/"
+    },
+    {
+      "link": "https://monedario.cl/posts/el-poder-del-interes-compuesto/",
+      "title": "El poder del interés compuesto: 10% del sueldo mínimo a $125 millones",
+      "pubDate": "Sat, 07 Mar 2026 13:09:35 GMT",
+      "guid": "https://monedario.cl/posts/el-poder-del-interes-compuesto/"
+    },
+    {
+      "link": "https://monedario.cl/posts/estafas-financieras-chile-vishing-smishing-marketplace/",
+      "title": "Estafas financieras en Chile: señales por canal y checklist de 24 horas",
+      "pubDate": "Wed, 22 Apr 2026 00:00:00 GMT",
+      "guid": "https://monedario.cl/posts/estafas-financieras-chile-vishing-smishing-marketplace/"
+    },
+    {
+      "link": "https://monedario.cl/posts/finanzas-para-migrantes-chile/",
+      "title": "Cómo ordenar tus finanzas en Chile siendo migrante",
+      "pubDate": "Mon, 22 Jun 2026 16:00:00 GMT",
+      "guid": "https://monedario.cl/posts/finanzas-para-migrantes-chile/"
+    },
+    {
+      "link": "https://monedario.cl/posts/finiquito-e-indemnizaciones-en-chile/",
+      "title": "Finiquito e indemnizaciones en Chile: qué te corresponde y cómo revisarlo",
+      "pubDate": "Mon, 11 May 2026 00:00:00 GMT",
+      "guid": "https://monedario.cl/posts/finiquito-e-indemnizaciones-en-chile/"
+    },
+    {
+      "link": "https://monedario.cl/posts/fonasa-vs-isapre-comparativa/",
+      "title": "Fonasa o Isapre: cuál conviene según tu caso (2026)",
+      "pubDate": "Wed, 08 Apr 2026 12:00:00 GMT",
+      "guid": "https://monedario.cl/posts/fonasa-vs-isapre-comparativa/"
+    },
+    {
+      "link": "https://monedario.cl/posts/fondo-emergencia-chile/",
+      "title": "Fondo de emergencia en Chile: cuánto necesitas y dónde guardarlo",
+      "pubDate": "Sun, 03 May 2026 16:00:00 GMT",
+      "guid": "https://monedario.cl/posts/fondo-emergencia-chile/"
     },
     {
       "link": "https://monedario.cl/posts/fondos-afp-a-b-c-d-e/",
       "title": "Fondos AFP A, B, C, D y E: diferencias, riesgo y cuál te conviene",
-      "pubDate": "Mon, 23 Feb 2026 11:00:00 GMT",
+      "pubDate": "Thu, 12 Mar 2026 19:08:00 GMT",
       "guid": "https://monedario.cl/posts/fondos-afp-a-b-c-d-e/"
     },
     {
+      "link": "https://monedario.cl/posts/fondos-mutuos-comisiones-rescate-impuestos/",
+      "title": "Fondos mutuos: comisiones, rescate e impuestos (sin letra chica)",
+      "pubDate": "Wed, 22 Apr 2026 00:00:00 GMT",
+      "guid": "https://monedario.cl/posts/fondos-mutuos-comisiones-rescate-impuestos/"
+    },
+    {
       "link": "https://monedario.cl/posts/fraude-tarjeta-que-hacer/",
-      "title": "Te hicieron un cargo que no reconoces: qué hacer en las primeras 24 horas (Ley 20.009)",
-      "pubDate": "Tue, 24 Feb 2026 13:00:00 GMT",
+      "title": "Cargo no reconocido: qué hacer en 24 horas (Ley 20.009)",
+      "pubDate": "Wed, 22 Apr 2026 00:00:00 GMT",
       "guid": "https://monedario.cl/posts/fraude-tarjeta-que-hacer/"
     },
     {
+      "link": "https://monedario.cl/posts/gratificacion-legal-chile/",
+      "title": "Gratificación legal en Chile: cómo calcularla y cuál es el tope",
+      "pubDate": "Sun, 03 May 2026 16:00:00 GMT",
+      "guid": "https://monedario.cl/posts/gratificacion-legal-chile/"
+    },
+    {
+      "link": "https://monedario.cl/posts/impuesto-global-complementario-chile/",
+      "title": "Impuesto Global Complementario en Chile: qué es, tramos y quién lo paga",
+      "pubDate": "Thu, 14 May 2026 00:00:00 GMT",
+      "guid": "https://monedario.cl/posts/impuesto-global-complementario-chile/"
+    },
+    {
+      "link": "https://monedario.cl/posts/indemnizacion-anos-de-servicio-chile/",
+      "title": "Indemnización por años de servicio en Chile: cuándo aplica y cómo calcularla",
+      "pubDate": "Thu, 12 Mar 2026 14:25:00 GMT",
+      "guid": "https://monedario.cl/posts/indemnizacion-anos-de-servicio-chile/"
+    },
+    {
       "link": "https://monedario.cl/posts/informe-deudas-cmf-vs-dicom/",
-      "title": "Informe de deudas CMF: cómo sacarlo, qué dice y por qué no es lo mismo que DICOM",
-      "pubDate": "Tue, 24 Feb 2026 11:00:00 GMT",
+      "title": "Informe de deudas CMF: cómo sacarlo y por qué no es DICOM",
+      "pubDate": "Sun, 12 Apr 2026 18:30:00 GMT",
       "guid": "https://monedario.cl/posts/informe-deudas-cmf-vs-dicom/"
     },
     {
+      "link": "https://monedario.cl/posts/licencia-medica-desde-que-dia-pagan/",
+      "title": "Licencia médica en Chile: desde qué día te pagan y cómo reclamar",
+      "pubDate": "Mon, 11 May 2026 00:00:00 GMT",
+      "guid": "https://monedario.cl/posts/licencia-medica-desde-que-dia-pagan/"
+    },
+    {
+      "link": "https://monedario.cl/posts/liquidacion-de-sueldo/",
+      "title": "Liquidación de sueldo en Chile: cómo auditar el comprobante y sus líneas clave",
+      "pubDate": "Sun, 12 Apr 2026 18:30:00 GMT",
+      "guid": "https://monedario.cl/posts/liquidacion-de-sueldo/"
+    },
+    {
+      "link": "https://monedario.cl/posts/operacion-renta-centro/",
+      "title": "Operación Renta 2026: orientación inicial y preguntas frecuentes",
+      "pubDate": "Wed, 29 Apr 2026 00:00:00 GMT",
+      "guid": "https://monedario.cl/posts/operacion-renta-centro/"
+    },
+    {
       "link": "https://monedario.cl/posts/operacion-renta-f22-checklist/",
-      "title": "Operación Renta F22 en Chile: checklist para revisar, enviar y rectificar sin errores",
-      "pubDate": "Sat, 28 Feb 2026 15:00:00 GMT",
+      "title": "Operación Renta F22: checklist para revisar, enviar y rectificar sin errores",
+      "pubDate": "Mon, 11 May 2026 00:00:00 GMT",
       "guid": "https://monedario.cl/posts/operacion-renta-f22-checklist/"
     },
     {
+      "link": "https://monedario.cl/posts/pgu-pension-garantizada-universal/",
+      "title": "PGU en Chile: requisitos, monto vigente y cómo tramitarla",
+      "pubDate": "Sun, 03 May 2026 16:00:00 GMT",
+      "guid": "https://monedario.cl/posts/pgu-pension-garantizada-universal/"
+    },
+    {
+      "link": "https://monedario.cl/posts/prepago-credito-cuando-conviene-chile/",
+      "title": "¿Cuándo conviene hacer un prepago de crédito en Chile?",
+      "pubDate": "Fri, 10 Apr 2026 12:00:00 GMT",
+      "guid": "https://monedario.cl/posts/prepago-credito-cuando-conviene-chile/"
+    },
+    {
+      "link": "https://monedario.cl/posts/primer-empleo-chile-guia-completa/",
+      "title": "Primer empleo en Chile: qué firmar, descuentos y cómo empezar",
+      "pubDate": "Thu, 09 Apr 2026 12:00:00 GMT",
+      "guid": "https://monedario.cl/posts/primer-empleo-chile-guia-completa/"
+    },
+    {
       "link": "https://monedario.cl/posts/que-es-el-apv/",
-      "title": "¿Qué es el APV y cómo funciona el beneficio tributario en Chile?",
-      "pubDate": "Mon, 23 Feb 2026 14:00:00 GMT",
+      "title": "APV en Chile: beneficio tributario, regímenes A y B, y cuándo conviene",
+      "pubDate": "Thu, 12 Mar 2026 19:09:00 GMT",
       "guid": "https://monedario.cl/posts/que-es-el-apv/"
     },
     {
+      "link": "https://monedario.cl/posts/que-es-el-ipc-chile-como-se-calcula/",
+      "title": "Qué es el IPC en Chile: cómo se calcula y por qué afecta tu bolsillo",
+      "pubDate": "Wed, 11 Mar 2026 00:00:00 GMT",
+      "guid": "https://monedario.cl/posts/que-es-el-ipc-chile-como-se-calcula/"
+    },
+    {
       "link": "https://monedario.cl/posts/que-es-la-cuenta-2-afp/",
-      "title": "¿Qué es la Cuenta 2 de la AFP y cuándo conviene usarla?",
-      "pubDate": "Mon, 23 Feb 2026 12:00:00 GMT",
+      "title": "Cuenta 2 de la AFP: ahorro flexible, retiros e impuestos",
+      "pubDate": "Sun, 12 Apr 2026 18:55:00 GMT",
       "guid": "https://monedario.cl/posts/que-es-la-cuenta-2-afp/"
     },
     {
       "link": "https://monedario.cl/posts/que-es-la-uf/",
       "title": "UF en simple: qué es, por qué sube todos los días y cómo te afecta",
-      "pubDate": "Tue, 24 Feb 2026 12:00:00 GMT",
+      "pubDate": "Sat, 04 Apr 2026 12:00:00 GMT",
       "guid": "https://monedario.cl/posts/que-es-la-uf/"
+    },
+    {
+      "link": "https://monedario.cl/posts/reajuste-arriendo-uf-ipc-chile/",
+      "title": "¿Cuánto puede subir tu arriendo en Chile? UF vs IPC",
+      "pubDate": "Thu, 12 Mar 2026 12:00:00 GMT",
+      "guid": "https://monedario.cl/posts/reajuste-arriendo-uf-ipc-chile/"
+    },
+    {
+      "link": "https://monedario.cl/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/",
+      "title": "Reforma previsional 2025: qué cambia y cómo te afecta",
+      "pubDate": "Thu, 12 Mar 2026 19:05:00 GMT",
+      "guid": "https://monedario.cl/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/"
     },
     {
       "link": "https://monedario.cl/posts/renegociacion-superir/",
       "title": "Renegociación Superir: qué es, quién puede pedir y cómo hacerlo sin abogado",
-      "pubDate": "Tue, 24 Feb 2026 14:00:00 GMT",
+      "pubDate": "Thu, 12 Mar 2026 18:45:00 GMT",
       "guid": "https://monedario.cl/posts/renegociacion-superir/"
     },
     {
+      "link": "https://monedario.cl/posts/rentas-mixtas-sueldo-honorarios/",
+      "title": "Rentas mixtas: cómo declarar sueldo y boletas de honorarios",
+      "pubDate": "Mon, 11 May 2026 00:00:00 GMT",
+      "guid": "https://monedario.cl/posts/rentas-mixtas-sueldo-honorarios/"
+    },
+    {
+      "link": "https://monedario.cl/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/",
+      "title": "CIC vs Fondo Solidario: cómo funciona cada capa del Seguro de Cesantía",
+      "pubDate": "Sun, 12 Apr 2026 19:05:00 GMT",
+      "guid": "https://monedario.cl/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/"
+    },
+    {
       "link": "https://monedario.cl/posts/seguro-de-cesantia/",
-      "title": "Seguro de cesantía: cómo saber tu saldo, cuándo puedes cobrar y cuánto te pagan",
-      "pubDate": "Wed, 25 Feb 2026 10:00:00 GMT",
+      "title": "Seguro de cesantía: saldo, cuándo cobrar y montos",
+      "pubDate": "Mon, 11 May 2026 00:00:00 GMT",
       "guid": "https://monedario.cl/posts/seguro-de-cesantia/"
+    },
+    {
+      "link": "https://monedario.cl/posts/sueldo-imponible-chile/",
+      "title": "Sueldo imponible en Chile: qué es, qué incluye y cómo afecta tus descuentos",
+      "pubDate": "Thu, 14 May 2026 00:00:00 GMT",
+      "guid": "https://monedario.cl/posts/sueldo-imponible-chile/"
+    },
+    {
+      "link": "https://monedario.cl/posts/suplantacion-identidad-creditos-no-reconocidos/",
+      "title": "¿Suplantaron tu identidad? Cómo detectarlo y frenarlo",
+      "pubDate": "Wed, 22 Apr 2026 00:00:00 GMT",
+      "guid": "https://monedario.cl/posts/suplantacion-identidad-creditos-no-reconocidos/"
+    },
+    {
+      "link": "https://monedario.cl/posts/tarjeta-credito-costo-real-chile/",
+      "title": "Cómo calcular el costo real de una tarjeta de crédito en Chile",
+      "pubDate": "Sun, 12 Apr 2026 18:30:00 GMT",
+      "guid": "https://monedario.cl/posts/tarjeta-credito-costo-real-chile/"
+    },
+    {
+      "link": "https://monedario.cl/posts/utm-chile-que-es-como-funciona/",
+      "title": "UTM en Chile: qué es, cómo funciona y para qué sirve",
+      "pubDate": "Thu, 09 Apr 2026 12:00:00 GMT",
+      "guid": "https://monedario.cl/posts/utm-chile-que-es-como-funciona/"
     }
   ]
 }

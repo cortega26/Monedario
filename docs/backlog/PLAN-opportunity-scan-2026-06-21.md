@@ -150,9 +150,9 @@ contra el código real (no driftea: verifica la realidad, no checkboxes). La tab
 <!-- Generado por scripts/scorecard-opportunities.mjs — no editar a mano este bloque.
      Corre: pnpm run scorecard:opportunities -- --write -->
 
-_Última verificación automática: 2026-06-22._
+_Última verificación automática: 2026-06-23._
 
-**Avance:** 13/16 (81%) · verificables 13/14 · manuales 0/2
+**Avance:** 14/16 (88%) · verificables 14/14 · manuales 0/2
 
 | Estado | ID | Oportunidad | Ventana | Evidencia |
 |---|---|---|---|---|
@@ -167,7 +167,7 @@ _Última verificación automática: 2026-06-22._
 | ✅ | OPP-09 | Actualizador por inflación (IPC) | 30d | src/pages/calculadoras/actualizador-inflacion.astro |
 | ✅ | OPP-10 | Gráfico histórico UF/UTM/dólar | 30d | src/components/GraficoHistorico.astro |
 | ✅ | OPP-11 | Calculadora de gratificación legal | 30d | ruta presente |
-| 🔒 | OPP-12 | bancos-fintech: quitar noindex + GUIDE_HUB_ORDER _(gated por OPP-13)_ | 14d | noindex retirado: no; en GUIDE_HUB_ORDER: no |
+| ✅ | OPP-12 | bancos-fintech: quitar noindex + GUIDE_HUB_ORDER _(gated por OPP-13)_ | 14d | noindex retirado: sí; en GUIDE_HUB_ORDER: sí |
 | ✅ | OPP-15 | Tooltips en links auto-inyectados de glosario | 14d | atributos de tooltip presentes |
 | ✅ | OPP-16 | Página "Cómo usamos los datos" (trazabilidad) | 14d | página/sección de trazabilidad presente |
 
@@ -177,8 +177,8 @@ _Última verificación automática: 2026-06-22._
 
 | ID | Oportunidad | Gate | Estado |
 |---|---|---|---|
-| OPP-13 | bancos-fintech: auditoría del pilar + sign-off humano | Pipeline + sign-off | [ ] Pendiente |
-| OPP-14 | Migrantes: brief pilar "abrir cuenta siendo extranjero" | Pipeline + sign-off | [ ] Pendiente |
+| OPP-13 | bancos-fintech: auditoría del pilar + sign-off humano | Pipeline + sign-off | [x] Cerrado 2026-06-23 — pilar `bancos-y-fintech-chile` publicado con sign-off de Carlos Ortega (Gate 06 CONDITIONAL resuelto vía Opción A; G1–G17 firmados) |
+| OPP-14 | Migrantes: brief pilar "abrir cuenta siendo extranjero" | Pipeline + sign-off | [x] Cerrado 2026-06-22 — pilar `finanzas-para-migrantes-chile` publicado con sign-off (commit 637260ca, PR #274) |
 
 ---
 

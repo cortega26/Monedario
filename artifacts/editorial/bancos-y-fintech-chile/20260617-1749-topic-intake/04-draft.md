@@ -14,10 +14,13 @@ en `src/pages/guias/` (crearlo rompería `check:editorial` cluster_coverage y ex
 ruta + ADR). El blog file es paso de publicación posterior (hub + ADR + auditoría + sign-off).
 
 **Notas para Compliance (actualizadas 2026-06-17 tras resolver Q1–Q3 con Scrapling):**
-- Open banking [Q2 — PARCIAL]: ubicación confirmada (Título III "Del Sistema de Finanzas
-  Abiertas", arts. 16–27 de la Ley 21.521). El texto lo describe, no lo cita como obligación
-  literal. BCN sirve solo arts. 1–4 al fetcher; obtener la cláusula exacta de consentimiento
-  por vista por-artículo (idParte) antes de citarla.
+- Open banking [Q2 — RESUELTO vía Opción A, 2026-06-23]: ubicación confirmada (Título III
+  "Del Sistema de Finanzas Abiertas", arts. 16–27 de la Ley 21.521). Por decisión del
+  HumanEditor (Carlos Ortega, 2026-06-23) se aplicó la Opción A del Gate 06: puntero de cita
+  inline "(Título III, art. 16 y ss., Ley 21.521)" en el cuerpo y en el FAQ. El claim queda
+  atribuido con precisión de título y rango de artículos (ubicación verificada por dossier C10).
+  No se cita texto literal (BCN sirve solo arts. 1–4 al fetcher); Opción A pre-bendecida por el
+  auditor, no requiere re-auditoría.
 - C7b (tarifas con cobro) [Q1 — RESUELTO]: cifras oficiales en el dossier (C7b), fechadas al
   2026-06-17. El cuerpo del artículo las mantiene **cualitativas** por la decisión de Gate 00
   (alcance diferido del comparador en vivo). Si el editor decide incluir cifras, usarlas como
@@ -69,9 +72,12 @@ articleLead:
     - "No compara tarifas ni rankea bancos o fintech específicos."
     - "No reemplaza asesoría financiera personalizada."
     - "Las tarifas y condiciones cambian; verifica directamente con cada entidad."
-draft: true
 ---
 ```
+
+> **DEFECTO #4 resuelto (2026-06-23):** se eliminó la ocurrencia duplicada de `draft: true`
+> del frontmatter propuesto (quedaba en dos líneas y causaba error de parse YAML al crear el
+> blog file). Ahora aparece una sola vez, arriba.
 
 ---
 
@@ -126,7 +132,7 @@ La ley chilena define "Fintec" como las "actividades que impliquen el uso y apli
 Desde 2023 existe un marco específico para ellas. La **Ley 21.521 (Ley Fintec)**, promulgada el 4 de enero de 2023 y publicada el 3 de febrero de 2023, ordenó este sector que antes operaba en un terreno gris. Dos cosas que te conviene saber:
 
 - **Las fintech deben inscribirse en la CMF.** La ley creó un registro de prestadores de servicios financieros a cargo de la Comisión para el Mercado Financiero. Eso te da una forma concreta de verificar si una app es seria (lo vemos en la última sección).
-- **Llegaron las finanzas abiertas (open banking).** La Ley Fintec introdujo un sistema que permite, con tu autorización, que un tercero acceda a tu información financiera para ofrecerte servicios como comparadores o agrupadores de cuentas. La idea de fondo: que tus datos sirvan para que tú elijas mejor, no para quedar amarrado a un solo banco.
+- **Llegaron las finanzas abiertas (open banking).** La Ley Fintec introdujo un sistema que permite, con tu autorización (Título III, art. 16 y ss., Ley 21.521), que un tercero acceda a tu información financiera para ofrecerte servicios como comparadores o agrupadores de cuentas. La idea de fondo: que tus datos sirvan para que tú elijas mejor, no para quedar amarrado a un solo banco.
 
 ¿Banco o fintech? No hay un ganador único. Un banco tradicional suele tener más productos y red de sucursales; una fintech suele ganar en rapidez y simpleza. Lo que importa es que la cuenta haga lo que tú necesitas y que la entidad esté regulada.
 
@@ -166,7 +172,7 @@ Sí. En el caso de la CuentaRUT, basta una cédula de identidad vigente; incluso
 Depende de si está inscrita en la CMF. Las fintech reguladas operan bajo la Ley 21.521; antes de usar una, verifica su inscripción en el registro público de la CMF.
 
 **¿Qué pasa con mis datos en open banking?**
-Las finanzas abiertas permiten compartir tu información financiera con terceros **solo si tú lo autorizas**. La idea es que puedas usar comparadores o apps de gestión sin quedar atado a un único banco.
+Las finanzas abiertas permiten compartir tu información financiera con terceros **solo si tú lo autorizas** (Título III, art. 16 y ss., Ley 21.521). La idea es que puedas usar comparadores o apps de gestión sin quedar atado a un único banco.
 
 **¿Cuál es la diferencia entre cuenta vista y cuenta de ahorro?**
 La cuenta vista es para el día a día (dinero disponible al instante). La cuenta de ahorro es para juntar plata: sus giros pueden requerir aviso previo, aunque suele permitirse retirar hasta 30 UF a la vista.
