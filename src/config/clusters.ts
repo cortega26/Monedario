@@ -17,10 +17,7 @@ export type Cluster = (typeof CLUSTERS)[number];
 // Los clusters greenfield son válidos para frontmatter y sus hubs shell, pero no
 // entran a la navegación global hasta completar sus condiciones de lanzamiento.
 // Ver ADR-20260617-bancos-fintech-hub y ADR-20260622-finanzas-migrantes-hub.
-export type HubCluster = Exclude<
-  Cluster,
-  "general" | "finanzas-migrantes"
->;
+export type HubCluster = Exclude<Cluster, "general" | "finanzas-migrantes">;
 export type HubLayer =
   | "ingresos"
   | "prevision"

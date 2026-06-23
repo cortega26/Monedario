@@ -76,11 +76,11 @@ Eso no significa que tu plata quede atrapada: los bancos pueden permitir giros a
 
 > **Resumen orientativo.** Esta comparación describe características generales de cada tipo de cuenta, no condiciones de un producto específico. Cada banco define sus propios requisitos y costos.
 
-| Tipo de cuenta | ¿Para qué sirve? | ¿Cheques? | Acceso a tu plata |
-|---|---|---|---|
-| Cuenta vista | Día a día, recibir sueldo | No | Débito, giro, transferencia |
-| Cuenta corriente | Día a día + cheques | Sí | Cheque, débito, giro, transferencia |
-| Cuenta de ahorro | Juntar para una meta | No | Giro con aviso (hasta 30 UF a la vista) |
+| Tipo de cuenta   | ¿Para qué sirve?          | ¿Cheques? | Acceso a tu plata                       |
+| ---------------- | ------------------------- | --------- | --------------------------------------- |
+| Cuenta vista     | Día a día, recibir sueldo | No        | Débito, giro, transferencia             |
+| Cuenta corriente | Día a día + cheques       | Sí        | Cheque, débito, giro, transferencia     |
+| Cuenta de ahorro | Juntar para una meta      | No        | Giro con aviso (hasta 30 UF a la vista) |
 
 ## Banco tradicional vs. fintech: ¿qué cambia para ti?
 
