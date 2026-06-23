@@ -6,10 +6,11 @@ describe("guide hubs config", () => {
     expect(GUIDE_HUB_ORDER.length).toBeGreaterThanOrEqual(8);
   });
 
-  it("has exactly 10 hub slugs in GUIDE_HUB_ORDER", () => {
+  it("has exactly 11 hub slugs in GUIDE_HUB_ORDER", () => {
     // Canary: if this changes, review the source and update the expectation.
-    // 2026-06-23: 9 → 10 with the bancos-fintech hub flip (ADR-20260617).
-    expect(GUIDE_HUB_ORDER).toHaveLength(10);
+    // 2026-06-23: 9 → 10 (bancos-fintech, ADR-20260617) → 11 (finanzas-migrantes
+    // flip completed, ADR-20260622).
+    expect(GUIDE_HUB_ORDER).toHaveLength(11);
   });
 
   it("does not duplicate slugs in GUIDE_HUB_ORDER", () => {
