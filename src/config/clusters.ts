@@ -19,7 +19,7 @@ export type Cluster = (typeof CLUSTERS)[number];
 // Ver ADR-20260617-bancos-fintech-hub y ADR-20260622-finanzas-migrantes-hub.
 export type HubCluster = Exclude<
   Cluster,
-  "general" | "bancos-fintech" | "finanzas-migrantes"
+  "general" | "finanzas-migrantes"
 >;
 export type HubLayer =
   | "ingresos"
@@ -47,6 +47,7 @@ export const GUIDE_HUB_ORDER: HubCluster[] = [
   "ahorro-e-inversion",
   "impuestos-personas",
   "seguridad-financiera",
+  "bancos-fintech",
 ];
 
 export const GUIDE_HUBS: Record<HubCluster, GuideHubMeta> = {
@@ -120,6 +121,14 @@ export const GUIDE_HUBS: Record<HubCluster, GuideHubMeta> = {
     capa: "otros",
     homepageResumen:
       "¿Qué hacer si detectas un cargo no reconocido o suplantación?",
+  },
+  "bancos-fintech": {
+    nombre: "Bancos y fintech",
+    descripcion:
+      "Sección para elegir dónde tener tu dinero en Chile: tipos de cuenta, diferencia entre banco y fintech y cómo abrir una cuenta básica.",
+    capa: "bolsillo",
+    homepageResumen:
+      "¿Dónde tener tu dinero: qué cuenta te conviene y si una fintech es segura?",
   },
 };
 

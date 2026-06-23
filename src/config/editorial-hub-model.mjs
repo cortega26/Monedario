@@ -147,6 +147,19 @@ export const HUB_ARTICLE_ASSIGNMENTS = {
     ],
     related: [],
   },
+  "bancos-fintech": {
+    core: [
+      {
+        slug: "bancos-y-fintech-chile",
+        href: "/posts/bancos-y-fintech-chile/",
+        title:
+          "Bancos y fintech en Chile: cómo elegir dónde tener tu cuenta",
+        summary:
+          "El pilar de la sección: tipos de cuenta, banco vs. fintech, cómo abrir una cuenta básica y cómo verificar si una app está regulada.",
+      },
+    ],
+    related: [],
+  },
 };
 
 /**

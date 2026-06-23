@@ -17,7 +17,7 @@ canonicalTopic: tipos-de-cuenta-banco-vs-fintech-chile
 lang: es-CL
 heroImage: /images/hero/bancos-y-fintech-chile.avif
 featured: false
-draft: true
+draft: false
 articleAdvisory: "Contenido educativo. Tarifas y productos cambian; verifica directamente con cada banco o fintech antes de contratar."
 articleLead:
   answer: "Para recibir tu sueldo y mover dinero del día a día, la cuenta a la que accede casi cualquier persona es una cuenta vista (como la CuentaRUT): no pide nivel de renta y no usa cheques. Si cumples requisitos de ingreso puedes optar a una cuenta corriente, y las fintech ofrecen cuentas digitales bajo la Ley Fintec."
