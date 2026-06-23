@@ -121,6 +121,30 @@ describe("hero-images deterministic selector", () => {
     expect(prompt).toContain("The scene should feel lived-in and hopeful");
   });
 
+  it("uses a financial onboarding scene for the migrant guide", () => {
+    const plan = selectPromptPlan({
+      slug: "finanzas-para-migrantes-chile",
+      title: "Como ordenar tus finanzas en Chile siendo migrante",
+      tags: ["migrantes", "rut", "cuentarut", "arriendo"],
+      category: "general",
+      cluster: "finanzas-migrantes",
+      summary: "Pasos para obtener RUT, abrir CuentaRUT y arrendar una vivienda.",
+      headings: ["El RUT", "Abrir una cuenta", "Arrendar"],
+      leadParagraphs: ["La guia remite al SII para verificar los requisitos vigentes."],
+      bodyExcerpt: "El SII es una fuente oficial, pero esta no es una guia de Operacion Renta.",
+    });
+
+    expect(plan.ruleId).toBe("finanzas-migrantes");
+    expect(plan.approvedModelId).toBe("ahorro");
+    expect(plan.promptTrack).toBe("A");
+    expect(plan.sceneId).toBe(
+      buildArticleSceneId("A", "ahorro", "finanzas-para-migrantes-chile")
+    );
+    const prompt = buildPromptFromPlan(plan);
+    expect(prompt).toContain("clear three-step path toward a stable home");
+    expect(prompt).toContain("identity document, a bank card, and a house key");
+  });
+
   it("humanizes stale mechanism overrides for hybrid payroll/document topics", () => {
     const plan = selectPromptPlan({
       slug: "como-leer-cartola-afp-chile",

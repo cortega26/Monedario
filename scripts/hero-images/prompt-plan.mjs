@@ -321,6 +321,29 @@ export function buildArticleSceneId(template, approvedModelId, slug) {
 // Slug-level overrides for articles whose content overlaps multiple keyword rules.
 // These are checked before the RULES loop and take absolute precedence.
 const SLUG_OVERRIDES = {
+  "finanzas-para-migrantes-chile": {
+    id: "finanzas-migrantes",
+    template: "A",
+    promptTrack: "A",
+    recipeId: "ahorro",
+    colorKey: "Educativo / Conceptos / Guias",
+    readerSituation:
+      "Persona migrante avanzando por los pasos practicos para obtener identificacion, abrir una cuenta y arrendar una vivienda en Chile.",
+    toneClass: "educativo",
+    overrideEvidence: [
+      "slug override: migrant financial onboarding guide — SII mention is not an annual tax-filing topic",
+    ],
+    overrideKeywords: ["migrante", "rut", "cuentarut", "arriendo"],
+    promptOptions: {
+      sceneLine:
+        "Scene: one simplified human figure moving along a clear three-step path toward a stable home.",
+      propsLine:
+        "Use an identity document, a bank card, and a house key as the three sequential milestones.",
+      extraLines: [
+        "Semantic focus: practical financial onboarding in Chile, from identification to banking and housing.",
+      ],
+    },
+  },
   "boleta-honorarios-2026-retencion-cobertura": {
     id: "honorarios",
     template: "A",

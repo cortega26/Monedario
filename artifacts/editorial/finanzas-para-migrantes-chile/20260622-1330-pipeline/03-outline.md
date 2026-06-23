@@ -3,6 +3,12 @@
 **Status:** DRAFT
 **Role:** OutlineAgent — Claude Sonnet 4.6 (sesión 2026-06-22)
 
+> **Nota de sincronización (addendum 2026-06-22):** Los claims C1, C1b, C4, C5 y C6
+> listados como TODO:SOURCE en la Nota editorial han sido verificados/reformulados mediante
+> addendum humano. Para el catálogo canónico y los estados vigentes, consulta `02-dossier.md`
+> (addendum 2026-06-22, fuentes O9–O22). Este outline no se edita para preservar el
+> historial de proceso.
+
 ---
 
 ## Intención y query ancla

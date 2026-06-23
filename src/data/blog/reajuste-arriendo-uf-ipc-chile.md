@@ -38,7 +38,7 @@ Llegó el aviso de pago y el arriendo subió. O el arrendador avisa que el próx
 
 En Chile no existe un reajuste automático de arriendo que aplique por ley a todos los contratos. Lo que existe son distintas formas de pactar el reajuste — y cada una funciona distinto. Entender esa diferencia evita conflictos y permite verificar si el monto que te cobran es correcto.
 
-Si ya tienes la cláusula en la mano y solo necesitas el número, usa la [calculadora de reajuste de arriendo](/calculadoras/reajuste-arriendo/). Si quieres entender primero por qué la UF cambia todos los meses, complementa con [qué es la UF](/posts/que-es-la-uf/). Para entender qué es el IPC y cómo lo mide el INE, lee [qué es el IPC en Chile](/posts/que-es-el-ipc-chile-como-se-calcula/).
+Si ya tienes la cláusula en la mano y solo necesitas el número, usa la [calculadora de reajuste de arriendo](/calculadoras/reajuste-arriendo/). Si quieres entender primero por qué la UF cambia todos los meses, complementa con [qué es la UF](/posts/que-es-la-uf/). Para entender qué es el IPC y cómo lo mide el INE, lee [qué es el IPC en Chile](/posts/que-es-el-ipc-chile-como-se-calcula/). Y si recién llegaste al país y estás resolviendo arriendo, cuenta y RUT al mismo tiempo, revisa [cómo ordenar tus finanzas siendo migrante en Chile](/posts/finanzas-para-migrantes-chile/).
 
 ## Dato clave hoy antes de recalcular
 
