@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-06-22T08:15:06Z",
+  "fetchedAt": "2026-06-23T07:24:36Z",
   "schemaVersion": 1,
   "source": "cloudflare-rum",
   "week": "2026-W25",
@@ -10,556 +10,199 @@
   "data": [
     {
       "clsP75": 0,
-      "count": 79,
-      "inpP75Ms": 72,
-      "lcpP75Ms": 1180,
-      "path": "/"
-    },
-    {
-      "clsP75": 0,
-      "count": 66,
-      "inpP75Ms": 80,
-      "lcpP75Ms": 1112,
+      "count": 90,
+      "inpP75Ms": 48,
+      "lcpP75Ms": 1404,
       "path": "/calculadoras/seguro-cesantia/"
     },
     {
       "clsP75": 0,
-      "count": 35,
-      "inpP75Ms": 72,
-      "lcpP75Ms": 896,
-      "path": "/calculadoras/prepago-credito/"
+      "count": 70,
+      "inpP75Ms": null,
+      "lcpP75Ms": 872,
+      "path": "/"
     },
     {
       "clsP75": 0,
-      "count": 26,
-      "inpP75Ms": 16,
-      "lcpP75Ms": 1288,
-      "path": "/posts/que-es-el-apv/"
-    },
-    {
-      "clsP75": 0,
-      "count": 21,
-      "inpP75Ms": 64,
-      "lcpP75Ms": 720,
-      "path": "/calculadoras/operacion-renta/"
-    },
-    {
-      "clsP75": 0,
-      "count": 21,
-      "inpP75Ms": 264,
-      "lcpP75Ms": 1448,
-      "path": "/posts/licencia-medica-desde-que-dia-pagan/"
-    },
-    {
-      "clsP75": 0.001,
-      "count": 18,
-      "inpP75Ms": 56,
-      "lcpP75Ms": 1024,
-      "path": "/calculadoras/sueldo-liquido/"
-    },
-    {
-      "clsP75": 0,
-      "count": 15,
-      "inpP75Ms": 8,
-      "lcpP75Ms": 924,
-      "path": "/posts/descuentos-de-sueldo/"
-    },
-    {
-      "clsP75": 0,
-      "count": 15,
-      "inpP75Ms": 32,
-      "lcpP75Ms": 1428,
-      "path": "/calculadoras/apv/"
-    },
-    {
-      "clsP75": 0,
-      "count": 14,
-      "inpP75Ms": 8,
-      "lcpP75Ms": 1159,
+      "count": 40,
+      "inpP75Ms": null,
+      "lcpP75Ms": 780,
       "path": "/posts/devolucion-impuestos-fechas-compensaciones/"
     },
     {
       "clsP75": 0,
-      "count": 13,
-      "inpP75Ms": 56,
-      "lcpP75Ms": 1328,
-      "path": "/calculadoras/conversor-utm/"
-    },
-    {
-      "clsP75": 0,
-      "count": 12,
-      "inpP75Ms": 72,
-      "lcpP75Ms": 908,
-      "path": "/calculadoras/credito-consumo/"
-    },
-    {
-      "clsP75": 0,
-      "count": 12,
+      "count": 30,
       "inpP75Ms": 8,
-      "lcpP75Ms": 841,
+      "lcpP75Ms": 1203,
+      "path": "/posts/descuentos-de-sueldo/"
+    },
+    {
+      "clsP75": 0,
+      "count": 30,
+      "inpP75Ms": null,
+      "lcpP75Ms": 1108,
+      "path": "/calculadoras/prepago-credito/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": null,
+      "lcpP75Ms": 580,
       "path": "/posts/credito-hipotecario-chile-guia-completa/"
     },
     {
-      "clsP75": 0,
-      "count": 11,
-      "inpP75Ms": 16,
-      "lcpP75Ms": 1048,
-      "path": "/posts/seguro-de-cesantia/"
+      "clsP75": 0.003,
+      "count": 20,
+      "inpP75Ms": 64,
+      "lcpP75Ms": 504,
+      "path": "/calculadoras/sueldo-liquido/"
     },
     {
-      "clsP75": 0,
-      "count": 10,
-      "inpP75Ms": 8,
-      "lcpP75Ms": 1068,
-      "path": "/posts/donde-ver-si-estoy-en-dicom-gratis/"
-    },
-    {
-      "clsP75": 0,
-      "count": 9,
-      "inpP75Ms": 0,
-      "lcpP75Ms": 460,
-      "path": "/calculadoras/"
-    },
-    {
-      "clsP75": 0,
-      "count": 9,
-      "inpP75Ms": 16,
-      "lcpP75Ms": 1068,
-      "path": "/posts/fondos-afp-a-b-c-d-e/"
-    },
-    {
-      "clsP75": 0.097,
-      "count": 6,
-      "inpP75Ms": 0,
-      "lcpP75Ms": 3732,
-      "path": "/calculadoras/conversor-uf/"
-    },
-    {
-      "clsP75": 0.011,
-      "count": 6,
-      "inpP75Ms": 56,
-      "lcpP75Ms": 652,
+      "clsP75": 0.001,
+      "count": 20,
+      "inpP75Ms": 536,
+      "lcpP75Ms": 592,
       "path": "/calculadoras/impuesto-segunda-categoria/"
     },
     {
       "clsP75": 0,
-      "count": 6,
-      "inpP75Ms": 56,
-      "lcpP75Ms": 1428,
-      "path": "/posts/pgu-pension-garantizada-universal/"
+      "count": 20,
+      "inpP75Ms": 264,
+      "lcpP75Ms": 1639,
+      "path": "/posts/licencia-medica-desde-que-dia-pagan/"
     },
     {
       "clsP75": 0,
-      "count": 5,
-      "inpP75Ms": 48,
-      "lcpP75Ms": 657,
-      "path": "/calculadoras/deposito-a-plazo/"
+      "count": 20,
+      "inpP75Ms": 40,
+      "lcpP75Ms": 1392,
+      "path": "/calculadoras/conversor-utm/"
     },
     {
       "clsP75": 0,
-      "count": 5,
+      "count": 20,
       "inpP75Ms": 8,
-      "lcpP75Ms": 648,
-      "path": "/posts/como-salir-boletin-comercial-chile/"
-    },
-    {
-      "clsP75": 0,
-      "count": 5,
-      "inpP75Ms": 0,
-      "lcpP75Ms": 1152,
-      "path": "/posts/sueldo-imponible-chile/"
-    },
-    {
-      "clsP75": 0,
-      "count": 5,
-      "inpP75Ms": 8,
-      "lcpP75Ms": 1136,
-      "path": "/posts/cuanto-descuenta-la-afp-de-tu-sueldo/"
-    },
-    {
-      "clsP75": 0,
-      "count": 4,
-      "inpP75Ms": 0,
-      "lcpP75Ms": 592,
-      "path": "/autor/"
-    },
-    {
-      "clsP75": 0,
-      "count": 4,
-      "inpP75Ms": 80,
-      "lcpP75Ms": 621,
-      "path": "/posts/informe-deudas-cmf-vs-dicom/"
-    },
-    {
-      "clsP75": 0,
-      "count": 4,
-      "inpP75Ms": 24,
-      "lcpP75Ms": 1452,
-      "path": "/posts/utm-chile-que-es-como-funciona/"
-    },
-    {
-      "clsP75": 0,
-      "count": 4,
-      "inpP75Ms": null,
-      "lcpP75Ms": 412,
-      "path": "/estacionamiento/"
-    },
-    {
-      "clsP75": 0,
-      "count": 4,
-      "inpP75Ms": 64,
-      "lcpP75Ms": 1032,
-      "path": "/calculadoras/comisiones-afp/"
-    },
-    {
-      "clsP75": 0,
-      "count": 3,
-      "inpP75Ms": 8,
-      "lcpP75Ms": 1632,
-      "path": "/posts/como-invertir-en-etfs-desde-chile/"
+      "lcpP75Ms": 586,
+      "path": "/posts/que-es-el-apv/"
     },
     {
       "clsP75": null,
-      "count": 3,
+      "count": 10,
+      "inpP75Ms": 0,
+      "lcpP75Ms": null,
+      "path": "/calculadoras/apv/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 776,
+      "path": "/posts/pgu-pension-garantizada-universal/"
+    },
+    {
+      "clsP75": null,
+      "count": 10,
       "inpP75Ms": null,
       "lcpP75Ms": null,
       "path": "/llaveros/"
     },
     {
       "clsP75": 0,
-      "count": 3,
-      "inpP75Ms": 112,
-      "lcpP75Ms": 2819,
-      "path": "/posts/que-es-la-cuenta-2-afp/"
-    },
-    {
-      "clsP75": 0,
-      "count": 3,
-      "inpP75Ms": 8,
-      "lcpP75Ms": 512,
-      "path": "/posts/cae-costo-real-credito-chile/"
-    },
-    {
-      "clsP75": 0,
-      "count": 3,
-      "inpP75Ms": 8,
-      "lcpP75Ms": 4244,
-      "path": "/leyes/proyecto-reforma-previsional-2025/"
-    },
-    {
-      "clsP75": 0,
-      "count": 3,
-      "inpP75Ms": 104,
-      "lcpP75Ms": 482,
-      "path": "/calculadoras/finiquito-indemnizacion/"
-    },
-    {
-      "clsP75": 0,
-      "count": 3,
-      "inpP75Ms": 544,
-      "lcpP75Ms": 972,
-      "path": "/calculadoras/simulador-jubilacion/"
-    },
-    {
-      "clsP75": 0,
-      "count": 3,
-      "inpP75Ms": 56,
-      "lcpP75Ms": 436,
-      "path": "/despensa/"
-    },
-    {
-      "clsP75": 0,
-      "count": 3,
-      "inpP75Ms": 8,
-      "lcpP75Ms": 880,
-      "path": "/calculadoras/reajuste-arriendo/"
-    },
-    {
-      "clsP75": 0,
-      "count": 2,
-      "inpP75Ms": 96,
-      "lcpP75Ms": 740,
-      "path": "/calculadoras/simulador-renegociacion/"
-    },
-    {
-      "clsP75": 0,
-      "count": 2,
-      "inpP75Ms": 8,
-      "lcpP75Ms": 872,
-      "path": "/posts/que-es-el-ipc-chile-como-se-calcula/"
-    },
-    {
-      "clsP75": 0,
-      "count": 2,
-      "inpP75Ms": 56,
-      "lcpP75Ms": 900,
-      "path": "/guias/uf-costo-de-vida/indicadores-economicos/"
-    },
-    {
-      "clsP75": 0,
-      "count": 2,
-      "inpP75Ms": 8,
-      "lcpP75Ms": 980,
-      "path": "/posts/liquidacion-de-sueldo/"
-    },
-    {
-      "clsP75": 0,
-      "count": 2,
-      "inpP75Ms": 0,
-      "lcpP75Ms": 492,
-      "path": "/leyes/ley-19628-proteccion-datos/"
-    },
-    {
-      "clsP75": 0,
-      "count": 2,
-      "inpP75Ms": 0,
-      "lcpP75Ms": 1208,
-      "path": "/posts/reajuste-arriendo-uf-ipc-chile/"
-    },
-    {
-      "clsP75": 0,
-      "count": 2,
-      "inpP75Ms": 8,
-      "lcpP75Ms": 720,
-      "path": "/posts/fonasa-vs-isapre-comparativa/"
-    },
-    {
-      "clsP75": 0,
-      "count": 2,
-      "inpP75Ms": null,
-      "lcpP75Ms": 412,
-      "path": "/limpiezayaseo/"
-    },
-    {
-      "clsP75": 0,
-      "count": 2,
-      "inpP75Ms": 0,
-      "lcpP75Ms": 956,
-      "path": "/leyes/ley-21521-fintech/"
-    },
-    {
-      "clsP75": 0,
-      "count": 2,
-      "inpP75Ms": 64,
-      "lcpP75Ms": 544,
-      "path": "/snackssalados/"
-    },
-    {
-      "clsP75": 0,
-      "count": 2,
-      "inpP75Ms": 8,
-      "lcpP75Ms": 1264,
-      "path": "/posts/indemnizacion-anos-de-servicio-chile/"
-    },
-    {
-      "clsP75": 0,
-      "count": 2,
-      "inpP75Ms": null,
-      "lcpP75Ms": 972,
-      "path": "/posts/que-es-la-uf/"
-    },
-    {
-      "clsP75": 0,
-      "count": 2,
-      "inpP75Ms": 48,
-      "lcpP75Ms": 3460,
-      "path": "/posts/fondos-mutuos-comisiones-rescate-impuestos/"
-    },
-    {
-      "clsP75": null,
-      "count": 2,
-      "inpP75Ms": 104,
-      "lcpP75Ms": 532,
-      "path": "/calculadoras/dividendo-hipotecario/"
-    },
-    {
-      "clsP75": 0,
-      "count": 2,
-      "inpP75Ms": 0,
-      "lcpP75Ms": 564,
-      "path": "/posts/operacion-renta-f22-checklist/"
-    },
-    {
-      "clsP75": 0,
-      "count": 1,
-      "inpP75Ms": null,
-      "lcpP75Ms": 840,
-      "path": "/posts/contribuciones-bienes-raices-chile/"
-    },
-    {
-      "clsP75": 0,
-      "count": 1,
-      "inpP75Ms": 8,
-      "lcpP75Ms": 476,
-      "path": "/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/"
-    },
-    {
-      "clsP75": null,
-      "count": 1,
-      "inpP75Ms": 24,
-      "lcpP75Ms": 659,
-      "path": "/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/"
-    },
-    {
-      "clsP75": 0,
-      "count": 1,
-      "inpP75Ms": 0,
-      "lcpP75Ms": 892,
-      "path": "/posts/como-cambiarse-de-afp/"
-    },
-    {
-      "clsP75": null,
-      "count": 1,
-      "inpP75Ms": null,
-      "lcpP75Ms": 434,
-      "path": "/leyes/ley-20027-credito-aval-estado/"
-    },
-    {
-      "clsP75": 0,
-      "count": 1,
-      "inpP75Ms": null,
-      "lcpP75Ms": 944,
-      "path": "/posts/finiquito-e-indemnizaciones-en-chile/"
-    },
-    {
-      "clsP75": 0,
-      "count": 1,
+      "count": 10,
       "inpP75Ms": null,
       "lcpP75Ms": 1660,
       "path": "/leyes/ley-21130-modernizacion-bancaria/"
     },
     {
       "clsP75": 0,
-      "count": 1,
+      "count": 10,
       "inpP75Ms": null,
-      "lcpP75Ms": 2004,
-      "path": "/en/privacy/"
+      "lcpP75Ms": 892,
+      "path": "/posts/cuanto-descuenta-la-afp-de-tu-sueldo/"
     },
     {
       "clsP75": 0,
-      "count": 1,
-      "inpP75Ms": null,
-      "lcpP75Ms": 2012,
-      "path": "/guias/ahorro-e-inversion/"
+      "count": 10,
+      "inpP75Ms": 0,
+      "lcpP75Ms": 592,
+      "path": "/autor/"
     },
     {
       "clsP75": 0,
-      "count": 1,
-      "inpP75Ms": null,
-      "lcpP75Ms": 844,
-      "path": "/glosario/impuesto-unico/"
-    },
-    {
-      "clsP75": 0,
-      "count": 1,
-      "inpP75Ms": null,
-      "lcpP75Ms": 1444,
-      "path": "/guias/seguridad-financiera/"
-    },
-    {
-      "clsP75": 0,
-      "count": 1,
-      "inpP75Ms": 48,
-      "lcpP75Ms": 560,
-      "path": "/guias/uf-costo-de-vida/"
-    },
-    {
-      "clsP75": 0,
-      "count": 1,
-      "inpP75Ms": null,
-      "lcpP75Ms": 456,
-      "path": "/posts/prepago-credito-cuando-conviene-chile/"
-    },
-    {
-      "clsP75": 0,
-      "count": 1,
-      "inpP75Ms": null,
-      "lcpP75Ms": 1856,
-      "path": "/posts/impuesto-global-complementario-chile/"
-    },
-    {
-      "clsP75": 0,
-      "count": 1,
-      "inpP75Ms": 120,
-      "lcpP75Ms": 628,
-      "path": "/metodologia/"
-    },
-    {
-      "clsP75": 0,
-      "count": 1,
+      "count": 10,
       "inpP75Ms": null,
       "lcpP75Ms": 196,
-      "path": "/carnesyembutidos/"
-    },
-    {
-      "clsP75": 0,
-      "count": 1,
-      "inpP75Ms": 48,
-      "lcpP75Ms": 1276,
-      "path": "/calculadoras/boleta-honorarios-liquido/"
-    },
-    {
-      "clsP75": 0,
-      "count": 1,
-      "inpP75Ms": null,
-      "lcpP75Ms": 284,
-      "path": "/guias/pensiones-afp/"
-    },
-    {
-      "clsP75": 0,
-      "count": 1,
-      "inpP75Ms": null,
-      "lcpP75Ms": 952,
-      "path": "/leyes/ley-18010-credito-dinero/"
-    },
-    {
-      "clsP75": 0,
-      "count": 1,
-      "inpP75Ms": 88,
-      "lcpP75Ms": 944,
-      "path": "/calculadoras/iva/"
-    },
-    {
-      "clsP75": 0,
-      "count": 1,
-      "inpP75Ms": null,
-      "lcpP75Ms": 240,
-      "path": "/chile-hub/data/normalized/freshness_badge"
-    },
-    {
-      "clsP75": 0,
-      "count": 1,
-      "inpP75Ms": null,
-      "lcpP75Ms": 368,
-      "path": "/glosario/tmc/"
-    },
-    {
-      "clsP75": 0.003,
-      "count": 1,
-      "inpP75Ms": null,
-      "lcpP75Ms": 1300,
-      "path": "/chile-hub/"
-    },
-    {
-      "clsP75": 0,
-      "count": 1,
-      "inpP75Ms": 0,
-      "lcpP75Ms": 568,
-      "path": "/leyes/ley-21719-proteccion-datos-modernizacion/"
-    },
-    {
-      "clsP75": 0,
-      "count": 1,
-      "inpP75Ms": null,
-      "lcpP75Ms": 1560,
-      "path": "/leyes/ley-21680-registro-deuda-consolidada/"
+      "path": "/posts/seguro-de-cesantia/"
     },
     {
       "clsP75": null,
-      "count": 1,
+      "count": 10,
       "inpP75Ms": null,
       "lcpP75Ms": null,
-      "path": "/posts/como-leer-cartola-afp-chile/"
+      "path": "/limpiezayaseo/"
+    },
+    {
+      "clsP75": null,
+      "count": 10,
+      "inpP75Ms": 104,
+      "lcpP75Ms": null,
+      "path": "/calculadoras/dividendo-hipotecario/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 112,
+      "lcpP75Ms": 668,
+      "path": "/posts/que-es-la-cuenta-2-afp/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 840,
+      "path": "/posts/contribuciones-bienes-raices-chile/"
+    },
+    {
+      "clsP75": 1,
+      "count": 10,
+      "inpP75Ms": 0,
+      "lcpP75Ms": 660,
+      "path": "/calculadoras/conversor-uf/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 8,
+      "lcpP75Ms": 576,
+      "path": "/calculadoras/reajuste-arriendo/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 464,
+      "path": "/posts/fondos-afp-a-b-c-d-e/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 900,
+      "path": "/guias/uf-costo-de-vida/indicadores-economicos/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 1452,
+      "path": "/posts/utm-chile-que-es-como-funciona/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 8,
+      "lcpP75Ms": 720,
+      "path": "/posts/fonasa-vs-isapre-comparativa/"
     }
   ]
 }

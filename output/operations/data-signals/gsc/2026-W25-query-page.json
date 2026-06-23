@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-06-22T08:15:02Z",
+  "fetchedAt": "2026-06-23T07:24:35Z",
   "schemaVersion": 1,
   "source": "gsc",
   "week": "2026-W25",
@@ -9,11 +9,11 @@
   },
   "data": [
     {
-      "clicks": 7,
-      "ctr": 0.1207,
-      "impressions": 58,
+      "clicks": 9,
+      "ctr": 0.1452,
+      "impressions": 62,
       "page": "https://monedario.cl/calculadoras/seguro-cesantia/",
-      "position": 6,
+      "position": 5.94,
       "query": "calcular seguro de cesantia"
     },
     {
@@ -25,12 +25,20 @@
       "query": "simulador seguro cesantia"
     },
     {
-      "clicks": 3,
-      "ctr": 0.6,
-      "impressions": 5,
+      "clicks": 4,
+      "ctr": 0.5714,
+      "impressions": 7,
       "page": "https://monedario.cl/calculadoras/seguro-cesantia/",
-      "position": 12.6,
+      "position": 10.57,
       "query": "calculadora seguro de cesantia"
+    },
+    {
+      "clicks": 4,
+      "ctr": 0.1905,
+      "impressions": 21,
+      "page": "https://monedario.cl/calculadoras/seguro-cesantia/",
+      "position": 8.9,
+      "query": "calculo de seguro de cesantia"
     },
     {
       "clicks": 2,
@@ -47,14 +55,6 @@
       "page": "https://monedario.cl/calculadoras/seguro-cesantia/",
       "position": 5.75,
       "query": "calcular cesantia"
-    },
-    {
-      "clicks": 2,
-      "ctr": 0.125,
-      "impressions": 16,
-      "page": "https://monedario.cl/calculadoras/seguro-cesantia/",
-      "position": 9.5,
-      "query": "calculo de seguro de cesantia"
     },
     {
       "clicks": 2,
@@ -82,10 +82,10 @@
     },
     {
       "clicks": 1,
-      "ctr": 0.0714,
-      "impressions": 14,
+      "ctr": 0.0625,
+      "impressions": 16,
       "page": "https://monedario.cl/calculadoras/seguro-cesantia/",
-      "position": 6.29,
+      "position": 6.25,
       "query": "calcular afc"
     },
     {
@@ -98,10 +98,10 @@
     },
     {
       "clicks": 1,
-      "ctr": 0.2,
-      "impressions": 5,
+      "ctr": 0.1667,
+      "impressions": 6,
       "page": "https://monedario.cl/calculadoras/seguro-cesantia/",
-      "position": 8.6,
+      "position": 8.33,
       "query": "calcular mi seguro de cesantia"
     },
     {
@@ -146,11 +146,19 @@
     },
     {
       "clicks": 1,
-      "ctr": 0.0323,
-      "impressions": 31,
+      "ctr": 0.0286,
+      "impressions": 35,
       "page": "https://monedario.cl/calculadoras/seguro-cesantia/",
-      "position": 7.1,
+      "position": 7.09,
       "query": "seguro de cesantía solidario simulador"
+    },
+    {
+      "clicks": 1,
+      "ctr": 0.3333,
+      "impressions": 3,
+      "page": "https://monedario.cl/calculadoras/seguro-cesantia/",
+      "position": 6.67,
+      "query": "simula tu seguro de cesantia"
     },
     {
       "clicks": 1,
@@ -183,6 +191,14 @@
       "page": "https://monedario.cl/calculadoras/prepago-credito/",
       "position": 6.67,
       "query": "simulador prepago credito"
+    },
+    {
+      "clicks": 1,
+      "ctr": 0.1667,
+      "impressions": 6,
+      "page": "https://monedario.cl/calculadoras/prepago-credito/",
+      "position": 3.67,
+      "query": "simulador prepago crédito hipotecario"
     },
     {
       "clicks": 1,
@@ -227,6 +243,14 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 41.5,
+      "query": "0 2 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 3,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 16.33,
@@ -239,6 +263,14 @@
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 38,
       "query": "0 29 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 41,
+      "query": "0 32 uf a pesos chilenos"
     },
     {
       "clicks": 0,
@@ -331,6 +363,14 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 17.5,
+      "query": "0,61 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 26,
@@ -365,6 +405,14 @@
       "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 12,
+      "query": "0.1 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 40,
       "query": "0.10 uf"
     },
@@ -375,6 +423,14 @@
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 33,
       "query": "0.11 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 37,
+      "query": "0.12 uf"
     },
     {
       "clicks": 0,
@@ -443,9 +499,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 49,
+      "position": 30,
       "query": "0.29 uf"
     },
     {
@@ -487,6 +543,14 @@
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 30,
       "query": "0.45 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 24,
+      "query": "0.51 uf a pesos chilenos"
     },
     {
       "clicks": 0,
@@ -555,10 +619,26 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 12,
+      "query": "1.480 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 2,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 19,
       "query": "1.5 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-utm/",
+      "position": 1,
+      "query": "1.5 utm"
     },
     {
       "clicks": 0,
@@ -627,9 +707,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 37,
+      "position": 24.5,
       "query": "1000 uf a peso chileno"
     },
     {
@@ -763,9 +843,17 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 12,
+      "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 19.67,
+      "position": 12,
+      "query": "110 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 14,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 19.86,
       "query": "1100 uf a pesos chilenos"
     },
     {
@@ -811,6 +899,14 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 10,
+      "query": "12.300 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 2,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 35.5,
@@ -827,9 +923,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 5,
+      "impressions": 7,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 25.2,
+      "position": 25.43,
       "query": "1200 uf a pesos chilenos"
     },
     {
@@ -839,6 +935,14 @@
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 40,
       "query": "121 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 12,
+      "query": "12200 uf"
     },
     {
       "clicks": 0,
@@ -855,6 +959,14 @@
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 8.5,
       "query": "12400 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 24,
+      "query": "127 uf"
     },
     {
       "clicks": 0,
@@ -877,15 +989,23 @@
       "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 22,
+      "query": "13.900 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 43,
       "query": "130 uf a pesos chilenos"
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 2,
+      "impressions": 3,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 23.5,
+      "position": 22.67,
       "query": "13000 uf a pesos chilenos"
     },
     {
@@ -899,9 +1019,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 3,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 10,
+      "position": 8,
       "query": "13500 uf"
     },
     {
@@ -931,9 +1051,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 21,
+      "position": 22,
       "query": "14000 uf"
     },
     {
@@ -947,6 +1067,14 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 10,
+      "query": "145 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 9,
@@ -955,9 +1083,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 7,
+      "position": 9,
       "query": "1480 uf a pesos chilenos"
     },
     {
@@ -991,6 +1119,14 @@
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 41,
       "query": "150 millones a uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 23.5,
+      "query": "150 uf a pesos chilenos"
     },
     {
       "clicks": 0,
@@ -1035,9 +1171,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 5,
+      "impressions": 6,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 12.4,
+      "position": 12.17,
       "query": "1560 uf a pesos chilenos"
     },
     {
@@ -1163,6 +1299,14 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 21,
+      "query": "1800 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 2,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 27.5,
@@ -1187,9 +1331,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 33,
+      "position": 25.5,
       "query": "19 uf"
     },
     {
@@ -1235,9 +1379,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 2,
+      "impressions": 3,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 15,
+      "position": 14,
       "query": "1950 uf a pesos chilenos"
     },
     {
@@ -1307,6 +1451,22 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 15,
+      "query": "2.800 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 12,
+      "query": "2.950 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 2,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 47.5,
@@ -1347,9 +1507,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 2,
+      "impressions": 3,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 23,
+      "position": 25.33,
       "query": "200 uf a pesos chilenos"
     },
     {
@@ -1411,6 +1571,14 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 16.5,
+      "query": "21 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 39,
@@ -1428,6 +1596,14 @@
       "clicks": 0,
       "ctr": 0,
       "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-utm/",
+      "position": 9,
+      "query": "22,32 utm"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 12,
       "query": "220.000 uf a pesos chilenos"
@@ -1435,9 +1611,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 6,
+      "position": 7,
       "query": "220000 uf"
     },
     {
@@ -1478,6 +1654,14 @@
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 12,
+      "query": "23500 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 12,
       "query": "240 uf a pesos chilenos"
     },
     {
@@ -1487,6 +1671,14 @@
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 20,
       "query": "2400 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 9,
+      "query": "2410 uf a pesos chilenos"
     },
     {
       "clicks": 0,
@@ -1523,9 +1715,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 3,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 21,
+      "position": 19.67,
       "query": "2500 uf a pesos chilenos"
     },
     {
@@ -1555,10 +1747,34 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 5,
+      "query": "2695 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 8,
+      "query": "2719 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 4,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 10.75,
       "query": "2780 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 12,
+      "query": "2790 uf a pesos chilenos"
     },
     {
       "clicks": 0,
@@ -1575,6 +1791,30 @@
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 9,
       "query": "2870 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 10,
+      "query": "2880 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 10,
+      "query": "295 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 6.5,
+      "query": "2mil uf"
     },
     {
       "clicks": 0,
@@ -1637,6 +1877,22 @@
       "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 18,
+      "query": "32000 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 11,
+      "query": "33.900 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 27,
       "query": "330 uf a pesos chilenos"
     },
@@ -1677,6 +1933,14 @@
       "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 31,
+      "query": "35 uf a clp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 26,
       "query": "35 uf a pesos chilenos"
     },
@@ -1701,15 +1965,23 @@
       "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 12,
-      "query": "3580 uf a pesos chilenos"
+      "position": 11,
+      "query": "35000 uf"
     },
     {
       "clicks": 0,
       "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 8,
+      "position": 12,
+      "query": "3580 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 8.5,
       "query": "3590 uf"
     },
     {
@@ -1719,6 +1991,14 @@
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 25,
       "query": "3600 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 12,
+      "query": "3630 uf a pesos chilenos"
     },
     {
       "clicks": 0,
@@ -1811,9 +2091,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 28,
+      "position": 30.5,
       "query": "4.5 uf a pesos chilenos"
     },
     {
@@ -1851,10 +2131,34 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 32,
       "query": "4000 uf to clp"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 12,
+      "query": "410 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 11,
+      "query": "4100 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 16,
+      "query": "4200 uf"
     },
     {
       "clicks": 0,
@@ -1887,6 +2191,38 @@
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 12,
       "query": "4430 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 7.67,
+      "query": "4470 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 5,
+      "query": "448 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 10.5,
+      "query": "4480 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 50,
+      "query": "45 uf"
     },
     {
       "clicks": 0,
@@ -1979,7 +2315,7 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 3,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 10,
       "query": "4990 uf a pesos chilenos"
@@ -2019,17 +2355,17 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 8,
+      "impressions": 9,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 10,
+      "position": 10.11,
       "query": "500 uf"
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 3,
+      "impressions": 7,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 20,
+      "position": 20.14,
       "query": "500 uf a pesos chilenos"
     },
     {
@@ -2131,9 +2467,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 16,
+      "impressions": 27,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 8.81,
+      "position": 9.07,
       "query": "600 uf"
     },
     {
@@ -2147,17 +2483,17 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 12,
+      "impressions": 17,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 17.58,
+      "position": 18.65,
       "query": "600 uf a pesos chilenos"
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 29,
+      "position": 29.5,
       "query": "6000 uf a pesos chilenos"
     },
     {
@@ -2227,7 +2563,7 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 11,
       "query": "700 uf"
@@ -2267,6 +2603,14 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 5,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 11.6,
+      "query": "74000 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 10,
@@ -2283,9 +2627,25 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 2,
+      "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 16.5,
+      "position": 27,
+      "query": "8 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 12,
+      "query": "80 if"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 11,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 10.82,
       "query": "80 uf"
     },
     {
@@ -2307,9 +2667,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 8,
+      "impressions": 9,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 17.38,
+      "position": 18.56,
       "query": "80 uf a pesos chilenos"
     },
     {
@@ -2323,9 +2683,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 3,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 4,
+      "position": 4.67,
       "query": "850 uf"
     },
     {
@@ -2395,6 +2755,14 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 16,
+      "query": "91 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 39,
@@ -2459,9 +2827,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 5,
+      "impressions": 9,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 11.4,
+      "position": 11,
       "query": "99000 uf"
     },
     {
@@ -2470,6 +2838,14 @@
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 11,
+      "query": "99000 uf a pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 6.33,
       "query": "99000 unidades de fomento"
     },
     {
@@ -2487,6 +2863,14 @@
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 64,
       "query": "a cuanto esta 1 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 55,
+      "query": "a cuanto esta la unidad de fomento"
     },
     {
       "clicks": 0,
@@ -2531,9 +2915,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 2,
+      "impressions": 3,
       "page": "https://monedario.cl/calculadoras/comisiones-afp/",
-      "position": 9.5,
+      "position": 10.33,
       "query": "afp 1 cuanto descuenta"
     },
     {
@@ -2579,17 +2963,17 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 5,
+      "impressions": 6,
       "page": "https://monedario.cl/calculadoras/comisiones-afp/",
-      "position": 17,
+      "position": 17.83,
       "query": "afp con menos comiin"
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 14,
+      "impressions": 15,
       "page": "https://monedario.cl/calculadoras/comisiones-afp/",
-      "position": 19.71,
+      "position": 20.4,
       "query": "afp con menos comision"
     },
     {
@@ -2651,9 +3035,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 2,
+      "impressions": 3,
       "page": "https://monedario.cl/calculadoras/comisiones-afp/",
-      "position": 3,
+      "position": 3.33,
       "query": "afp modelo"
     },
     {
@@ -2747,9 +3131,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 3,
       "page": "https://monedario.cl/calculadoras/comisiones-afp/",
-      "position": 6,
+      "position": 9.33,
       "query": "afp porcentajes 2026"
     },
     {
@@ -2827,9 +3211,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 2,
+      "impressions": 3,
       "page": "https://monedario.cl/calculadoras/apv/",
-      "position": 14,
+      "position": 14.67,
       "query": "apv provida simulador"
     },
     {
@@ -2923,9 +3307,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/calculadoras/boleta-honorarios-liquido/",
-      "position": 88,
+      "position": 81,
       "query": "boleta honorario calculo"
     },
     {
@@ -3203,9 +3587,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 3,
+      "impressions": 4,
       "page": "https://monedario.cl/calculadoras/apv/",
-      "position": 10.67,
+      "position": 10.75,
       "query": "calculadora apv sii"
     },
     {
@@ -3283,9 +3667,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 11,
+      "impressions": 14,
       "page": "https://monedario.cl/calculadoras/comisiones-afp/",
-      "position": 6.36,
+      "position": 6.5,
       "query": "calculadora comision afp"
     },
     {
@@ -3303,6 +3687,14 @@
       "page": "https://monedario.cl/calculadoras/boleta-honorarios-liquido/",
       "position": 73.5,
       "query": "calculadora de boleta de honorarios"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/calculadoras/boleta-honorarios-liquido/",
+      "position": 72,
+      "query": "calculadora de boletas"
     },
     {
       "clicks": 0,
@@ -3499,9 +3891,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 2,
+      "impressions": 4,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 48,
+      "position": 46.75,
       "query": "calculadora de uf"
     },
     {
@@ -3523,9 +3915,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/calculadoras/operacion-renta/",
-      "position": 5,
+      "position": 6,
       "query": "calculadora devolucion de impuestos"
     },
     {
@@ -3723,9 +4115,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 4,
+      "impressions": 5,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 51,
+      "position": 47.8,
       "query": "calculadora uf"
     },
     {
@@ -4547,6 +4939,14 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/calculadoras/boleta-honorarios-liquido/",
+      "position": 80.5,
+      "query": "calculo de boleta"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/boleta-honorarios-liquido/",
       "position": 80,
@@ -4563,9 +4963,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 2,
+      "impressions": 3,
       "page": "https://monedario.cl/calculadoras/seguro-cesantia/",
-      "position": 5,
+      "position": 5.33,
       "query": "calculo de cesantia"
     },
     {
@@ -4667,9 +5067,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 2,
+      "impressions": 3,
       "page": "https://monedario.cl/calculadoras/seguro-cesantia/",
-      "position": 28.5,
+      "position": 21,
       "query": "calculo de seguro cesantia"
     },
     {
@@ -4731,9 +5131,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/calculadoras/sueldo-liquido/",
-      "position": 85,
+      "position": 81,
       "query": "calculo de sueldos"
     },
     {
@@ -4883,9 +5283,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/calculadoras/boleta-honorarios-liquido/",
-      "position": 84,
+      "position": 83.5,
       "query": "calculo para boleta de honorarios"
     },
     {
@@ -5171,9 +5571,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 5,
+      "impressions": 6,
       "page": "https://monedario.cl/glosario/cic/",
-      "position": 10,
+      "position": 10.5,
       "query": "cic que significa"
     },
     {
@@ -5243,9 +5643,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 9,
+      "impressions": 10,
       "page": "https://monedario.cl/calculadoras/comisiones-afp/",
-      "position": 10.22,
+      "position": 9.3,
       "query": "comision afp uno 2026"
     },
     {
@@ -5255,6 +5655,14 @@
       "page": "https://monedario.cl/calculadoras/comisiones-afp/",
       "position": 9,
       "query": "comision de afp 2026"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/comisiones-afp/",
+      "position": 3,
+      "query": "comision de afp integra"
     },
     {
       "clicks": 0,
@@ -5283,9 +5691,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 39,
+      "impressions": 40,
       "page": "https://monedario.cl/calculadoras/comisiones-afp/",
-      "position": 6.46,
+      "position": 6.53,
       "query": "comisiones afp 2026"
     },
     {
@@ -5363,9 +5771,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 17,
+      "impressions": 18,
       "page": "https://monedario.cl/calculadoras/comisiones-afp/",
-      "position": 19.18,
+      "position": 19.78,
       "query": "comisiones de afp"
     },
     {
@@ -5411,9 +5819,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 16,
+      "impressions": 18,
       "page": "https://monedario.cl/calculadoras/comisiones-afp/",
-      "position": 15.94,
+      "position": 15.67,
       "query": "comisiones vigentes afp"
     },
     {
@@ -5435,9 +5843,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 8,
+      "impressions": 10,
       "page": "https://monedario.cl/calculadoras/comisiones-afp/",
-      "position": 5.13,
+      "position": 5.9,
       "query": "comisión afp modelo 2026"
     },
     {
@@ -5611,10 +6019,18 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/calculadoras/sueldo-liquido/",
-      "position": 58,
+      "position": 54.5,
       "query": "como calcular imposiciones"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/credito-consumo/",
+      "position": 56,
+      "query": "como calcular la cuota de un credito"
     },
     {
       "clicks": 0,
@@ -5659,9 +6075,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/calculadoras/sueldo-liquido/",
-      "position": 79,
+      "position": 75.5,
       "query": "como calcular mi sueldo liquido"
     },
     {
@@ -5843,9 +6259,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 8,
+      "impressions": 9,
       "page": "https://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
-      "position": 36,
+      "position": 35.22,
       "query": "como saber si estoy en dicom"
     },
     {
@@ -6021,6 +6437,14 @@
       "ctr": 0,
       "impressions": 2,
       "page": "https://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
+      "position": 27,
+      "query": "como ver mi dicom gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
       "position": 37,
       "query": "como ver si estoy en dicom"
     },
@@ -6076,6 +6500,14 @@
       "clicks": 0,
       "ctr": 0,
       "impressions": 2,
+      "page": "https://monedario.cl/glosario/credito-hipotecario/",
+      "position": 78,
+      "query": "conoce que es un crédito hipotecario"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
       "page": "https://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
       "position": 35.5,
       "query": "consultar dicom"
@@ -6111,6 +6543,14 @@
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 41,
       "query": "conversion uf a pesos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 46,
+      "query": "conversión uf a pesos"
     },
     {
       "clicks": 0,
@@ -6299,9 +6739,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 11,
+      "impressions": 12,
       "page": "https://monedario.cl/calculadoras/comisiones-afp/",
-      "position": 9.55,
+      "position": 9.5,
       "query": "costos afp 2026"
     },
     {
@@ -6315,9 +6755,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 4,
+      "impressions": 5,
       "page": "https://monedario.cl/calculadoras/apv/",
-      "position": 17.5,
+      "position": 17.4,
       "query": "cotizador apv"
     },
     {
@@ -6339,9 +6779,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 28,
+      "impressions": 30,
       "page": "https://monedario.cl/glosario/ctc/",
-      "position": 8.57,
+      "position": 8.6,
       "query": "ctc que es"
     },
     {
@@ -6415,6 +6855,14 @@
       "page": "https://monedario.cl/calculadoras/comisiones-afp/",
       "position": 18,
       "query": "cual es la afp con menor comision"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/comisiones-afp/",
+      "position": 22,
+      "query": "cual es la afp mas barata"
     },
     {
       "clicks": 0,
@@ -6548,6 +6996,14 @@
       "clicks": 0,
       "ctr": 0,
       "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 12,
+      "query": "cuanto cuesta 1 uf en chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
       "page": "https://monedario.cl/calculadoras/comisiones-afp/",
       "position": 11,
       "query": "cuanto descuenta afp modelo"
@@ -6579,9 +7035,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 7,
+      "impressions": 8,
       "page": "https://monedario.cl/calculadoras/comisiones-afp/",
-      "position": 13.43,
+      "position": 14.25,
       "query": "cuanto descuenta la afp"
     },
     {
@@ -6653,8 +7109,40 @@
       "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 20,
+      "query": "cuanto es 0 5 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 19,
       "query": "cuanto es 0.08 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 42,
+      "query": "cuanto es 0.32 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 39,
+      "query": "cuanto es 0.5 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 22,
+      "query": "cuanto es 0.8 uf"
     },
     {
       "clicks": 0,
@@ -6691,9 +7179,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 2,
+      "impressions": 3,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 38,
+      "position": 29.33,
       "query": "cuanto es 1000 uf"
     },
     {
@@ -6711,6 +7199,14 @@
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 9,
       "query": "cuanto es 1000 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 11,
+      "query": "cuanto es 1000uf"
     },
     {
       "clicks": 0,
@@ -6743,6 +7239,14 @@
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 8,
       "query": "cuanto es 1950 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 53,
+      "query": "cuanto es 1uf"
     },
     {
       "clicks": 0,
@@ -6789,6 +7293,14 @@
       "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 26,
+      "query": "cuanto es 3 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 36,
       "query": "cuanto es 35 uf"
     },
@@ -6799,6 +7311,14 @@
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 14,
       "query": "cuanto es 35 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 30,
+      "query": "cuanto es 3500 uf"
     },
     {
       "clicks": 0,
@@ -6829,6 +7349,14 @@
       "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 10,
+      "query": "cuanto es 600 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 7,
       "query": "cuanto es 700 uf"
     },
@@ -6851,9 +7379,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 13,
+      "impressions": 15,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 17.85,
+      "position": 17.67,
       "query": "cuanto es 950 uf en pesos chilenos"
     },
     {
@@ -6895,6 +7423,14 @@
       "page": "https://monedario.cl/calculadoras/sueldo-liquido/",
       "position": 72,
       "query": "cuanto es mi sueldo liquido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/comisiones-afp/",
+      "position": 12,
+      "query": "cuanto me descuenta la afp de mi sueldo"
     },
     {
       "clicks": 0,
@@ -6947,10 +7483,26 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 36,
+      "query": "cuanto son 20 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 2,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 43,
       "query": "cuanto son 2000 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 38.5,
+      "query": "cuanto son 2000 uf en pesos chilenos"
     },
     {
       "clicks": 0,
@@ -6965,8 +7517,24 @@
       "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 26,
+      "query": "cuanto son 300 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 45,
       "query": "cuanto son 4 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 31.5,
+      "query": "cuanto son 400 uf"
     },
     {
       "clicks": 0,
@@ -6987,9 +7555,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 5,
+      "impressions": 7,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 5.6,
+      "position": 7.14,
       "query": "cuanto son 500 uf"
     },
     {
@@ -7021,15 +7589,23 @@
       "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 12,
-      "query": "cuanto son 80 uf en pesos chilenos"
+      "position": 18,
+      "query": "cuanto son 80 uf"
     },
     {
       "clicks": 0,
       "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 16,
+      "position": 12,
+      "query": "cuanto son 80 uf en pesos chilenos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 24.33,
       "query": "cuanto son 950 uf"
     },
     {
@@ -7055,6 +7631,14 @@
       "page": "https://monedario.cl/calculadoras/comisiones-afp/",
       "position": 13,
       "query": "cuanto te quita la afp de tu sueldo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 12,
+      "query": "cuantos son 4000 uf en pesos chilenos"
     },
     {
       "clicks": 0,
@@ -7091,9 +7675,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 14,
+      "impressions": 15,
       "page": "https://monedario.cl/glosario/cuenta-rut/",
-      "position": 10,
+      "position": 9.93,
       "query": "cuenta rut"
     },
     {
@@ -7243,9 +7827,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 18,
+      "position": 15,
       "query": "cuánto es 1100 uf"
     },
     {
@@ -7276,9 +7860,33 @@
       "clicks": 0,
       "ctr": 0,
       "impressions": 1,
+      "page": "https://monedario.cl/",
+      "position": 62,
+      "query": "cuánto se paga"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 12,
+      "query": "cuánto son 1100 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 49,
       "query": "cuánto son 20 uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 38,
+      "query": "cuánto son 2000 uf"
     },
     {
       "clicks": 0,
@@ -7341,15 +7949,23 @@
       "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/sueldo-liquido/",
+      "position": 74,
+      "query": "de bruto a liquido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/sueldo-liquido/",
       "position": 82,
       "query": "de bruto a liquido chile"
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 3,
+      "impressions": 5,
       "page": "https://monedario.cl/calculadoras/comisiones-afp/",
-      "position": 26.33,
+      "position": 25.2,
       "query": "de donde se calcula el descuento de afp"
     },
     {
@@ -7455,6 +8071,14 @@
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 60,
       "query": "de utm a uf"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 44,
+      "query": "de.uf a pesos"
     },
     {
       "clicks": 0,
@@ -7579,9 +8203,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 7,
+      "impressions": 8,
       "page": "https://monedario.cl/calculadoras/operacion-renta/",
-      "position": 5.43,
+      "position": 5.5,
       "query": "devolución de impuestos 2026 simulador"
     },
     {
@@ -7611,9 +8235,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 3,
+      "impressions": 4,
       "page": "https://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
-      "position": 39.33,
+      "position": 39.5,
       "query": "dicom chile"
     },
     {
@@ -7643,6 +8267,14 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 3,
+      "page": "https://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
+      "position": 42,
+      "query": "dicom empresas gratis"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
       "position": 43,
@@ -7651,9 +8283,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 4,
+      "impressions": 5,
       "page": "https://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
-      "position": 37.25,
+      "position": 37.6,
       "query": "dicom gratis"
     },
     {
@@ -7675,7 +8307,7 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 3,
+      "impressions": 4,
       "page": "https://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
       "position": 39,
       "query": "dicom gratis con rut"
@@ -7707,6 +8339,14 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
+      "position": 47,
+      "query": "dicom registro"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 2,
       "page": "https://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
       "position": 32.5,
@@ -7719,6 +8359,14 @@
       "page": "https://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
       "position": 30,
       "query": "dicom ver deuda"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
+      "position": 35,
+      "query": "dicomchile"
     },
     {
       "clicks": 0,
@@ -7759,6 +8407,14 @@
       "page": "https://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
       "position": 32,
       "query": "donde ver si estoy en dicom"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/glosario/ctc/",
+      "position": 11,
+      "query": "el costo total del crédito (ctc) es:"
     },
     {
       "clicks": 0,
@@ -8059,6 +8715,14 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/",
+      "position": 72,
+      "query": "ingresos recurrentes"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 6,
       "page": "https://monedario.cl/posts/como-invertir-en-etfs-desde-chile/",
       "position": 25,
@@ -8243,6 +8907,14 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/leyes/",
+      "position": 37,
+      "query": "ley 21133 chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 2,
       "page": "https://monedario.cl/leyes/",
       "position": 61.5,
@@ -8387,9 +9059,33 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 2,
+      "impressions": 1,
       "page": "https://monedario.cl/posts/liquidacion-de-sueldo/",
-      "position": 87,
+      "position": 68,
+      "query": "liquidaciones de sueldo chile"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/posts/liquidacion-de-sueldo/",
+      "position": 45,
+      "query": "liquidaciones de sueldo trabajador"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/guias/sueldo-remuneraciones/",
+      "position": 95,
+      "query": "liquidación de sueldo"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "page": "https://monedario.cl/posts/liquidacion-de-sueldo/",
+      "position": 86.33,
       "query": "liquidación de sueldo"
     },
     {
@@ -8435,9 +9131,17 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/calculadoras/boleta-honorarios-liquido/",
-      "position": 80,
+      "position": 85.5,
+      "query": "liquido bruto"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/sueldo-liquido/",
+      "position": 83,
       "query": "liquido bruto"
     },
     {
@@ -8535,6 +9239,14 @@
       "page": "https://monedario.cl/posts/seguro-de-cesantia/",
       "position": 28,
       "query": "monto a pagar por seguro de cesantia"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/calculadoras/boleta-honorarios-liquido/",
+      "position": 91,
+      "query": "monto bruto y liquido"
     },
     {
       "clicks": 0,
@@ -8923,9 +9635,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 3,
+      "impressions": 5,
       "page": "https://monedario.cl/glosario/ctc/",
-      "position": 10.33,
+      "position": 10.8,
       "query": "que es ctc en credito"
     },
     {
@@ -8939,9 +9651,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 2,
+      "impressions": 4,
       "page": "https://monedario.cl/glosario/ctc/",
-      "position": 10,
+      "position": 7.75,
       "query": "que es el costo total del credito"
     },
     {
@@ -9027,9 +9739,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 44,
+      "impressions": 45,
       "page": "https://monedario.cl/glosario/renta-imponible/",
-      "position": 11.5,
+      "position": 11.53,
       "query": "que es la renta imponible"
     },
     {
@@ -9043,9 +9755,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 48,
+      "impressions": 49,
       "page": "https://monedario.cl/glosario/renta-imponible/",
-      "position": 10.71,
+      "position": 10.73,
       "query": "que es renta imponible"
     },
     {
@@ -9115,9 +9827,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 3,
+      "impressions": 4,
       "page": "https://monedario.cl/glosario/renta-imponible/",
-      "position": 12.33,
+      "position": 12.25,
       "query": "que es una renta imponible"
     },
     {
@@ -9195,9 +9907,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 9,
+      "impressions": 10,
       "page": "https://monedario.cl/glosario/renta-imponible/",
-      "position": 13.44,
+      "position": 13.2,
       "query": "que significa renta imponible"
     },
     {
@@ -9283,9 +9995,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 4,
+      "impressions": 5,
       "page": "https://monedario.cl/glosario/custodia/",
-      "position": 66.75,
+      "position": 67.6,
       "query": "qué es un banco custodio"
     },
     {
@@ -9323,9 +10035,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 3,
+      "impressions": 4,
       "page": "https://monedario.cl/glosario/cuenta-rut/",
-      "position": 25,
+      "position": 25.25,
       "query": "qué tipo de cuenta es la cuenta rut"
     },
     {
@@ -9367,6 +10079,14 @@
       "page": "https://monedario.cl/glosario/renta-imponible/",
       "position": 37.5,
       "query": "remuneración imponible"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/operacion-renta/",
+      "position": 7,
+      "query": "renta aproximada"
     },
     {
       "clicks": 0,
@@ -9431,6 +10151,14 @@
       "page": "https://monedario.cl/glosario/renta-imponible/",
       "position": 12,
       "query": "renta imponible es bruto o líquido"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/glosario/renta-imponible/",
+      "position": 20,
+      "query": "renta imponible es lo mismo que renta bruta"
     },
     {
       "clicks": 0,
@@ -9723,18 +10451,18 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 3,
-      "page": "https://monedario.cl/calculadoras/apv/",
-      "position": 19.67,
-      "query": "simula apv"
+      "impressions": 1,
+      "page": "https://monedario.cl/posts/utm-chile-que-es-como-funciona/",
+      "position": 11,
+      "query": "sii utm abril 2026 valor oficial"
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 2,
-      "page": "https://monedario.cl/calculadoras/seguro-cesantia/",
-      "position": 6.5,
-      "query": "simula tu seguro de cesantia"
+      "impressions": 3,
+      "page": "https://monedario.cl/calculadoras/apv/",
+      "position": 19.67,
+      "query": "simula apv"
     },
     {
       "clicks": 0,
@@ -9795,17 +10523,17 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 10,
+      "impressions": 11,
       "page": "https://monedario.cl/calculadoras/apv/",
-      "position": 18.3,
+      "position": 17.91,
       "query": "simulador apv"
     },
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 4,
+      "impressions": 5,
       "page": "https://monedario.cl/calculadoras/apv/",
-      "position": 14,
+      "position": 13.6,
       "query": "simulador apv habitat"
     },
     {
@@ -9815,6 +10543,22 @@
       "page": "https://monedario.cl/calculadoras/apv/",
       "position": 19.33,
       "query": "simulador apv régimen b"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/boleta-honorarios-liquido/",
+      "position": 72,
+      "query": "simulador boleta honorarios"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/credito-consumo/",
+      "position": 38,
+      "query": "simulador cae"
     },
     {
       "clicks": 0,
@@ -9851,6 +10595,14 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/operacion-renta/",
+      "position": 5,
+      "query": "simulador de devolucion de impuestos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 5,
       "page": "https://monedario.cl/calculadoras/finiquito-indemnizacion/",
       "position": 94.8,
@@ -9859,9 +10611,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/calculadoras/finiquito-indemnizacion/",
-      "position": 63,
+      "position": 64,
       "query": "simulador de finiquito chile atiende"
     },
     {
@@ -9957,6 +10709,14 @@
       "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/operacion-renta/",
+      "position": 4,
+      "query": "simulador devolucion de impuestos"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/operacion-renta/",
       "position": 24,
       "query": "simulador devolución de impuestos 2024"
     },
@@ -10031,14 +10791,6 @@
       "page": "https://monedario.cl/calculadoras/prepago-credito/",
       "position": 8.5,
       "query": "simulador prepago credito hipotecario"
-    },
-    {
-      "clicks": 0,
-      "ctr": 0,
-      "impressions": 5,
-      "page": "https://monedario.cl/calculadoras/prepago-credito/",
-      "position": 4.2,
-      "query": "simulador prepago crédito hipotecario"
     },
     {
       "clicks": 0,
@@ -10171,9 +10923,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 48,
+      "impressions": 50,
       "page": "https://monedario.cl/calculadoras/seguro-cesantia/",
-      "position": 8.27,
+      "position": 8.22,
       "query": "simular seguro de cesantía solidario"
     },
     {
@@ -10643,9 +11395,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 19,
+      "impressions": 20,
       "page": "https://monedario.cl/calculadoras/comisiones-afp/",
-      "position": 6.42,
+      "position": 6.55,
       "query": "superintendencia de pensiones comisiones afp 2026"
     },
     {
@@ -10731,9 +11483,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 7,
+      "impressions": 9,
       "page": "https://monedario.cl/glosario/",
-      "position": 9,
+      "position": 9.22,
       "query": "superintendencia financiera glosario afp administradora de fondos de pensiones y cesantías"
     },
     {
@@ -10907,6 +11659,14 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 3,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 9.67,
+      "query": "uf 0,135"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 1,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 27,
@@ -10915,9 +11675,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 3,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 40,
+      "position": 49.67,
       "query": "uf a clp"
     },
     {
@@ -11115,6 +11875,14 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 12,
+      "query": "uf precio"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 2,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 49,
@@ -11143,6 +11911,14 @@
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 49,
       "query": "unidad de fomento chile valor"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/posts/utm-chile-que-es-como-funciona/",
+      "position": 12,
+      "query": "uta 2026 chile valor"
     },
     {
       "clicks": 0,
@@ -11207,6 +11983,14 @@
       "page": "https://monedario.cl/guias/uf-costo-de-vida/indicadores-economicos/",
       "position": 65.5,
       "query": "utm hoy"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-utm/",
+      "position": 11,
+      "query": "utm junio 2026 valor 71506"
     },
     {
       "clicks": 0,
@@ -11283,6 +12067,14 @@
     {
       "clicks": 0,
       "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 53,
+      "query": "valor uf a peso chileno"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
       "impressions": 3,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
       "position": 48.67,
@@ -11299,9 +12091,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/calculadoras/conversor-uf/",
-      "position": 53,
+      "position": 40,
       "query": "valor uf calcular"
     },
     {
@@ -11323,9 +12115,9 @@
     {
       "clicks": 0,
       "ctr": 0,
-      "impressions": 1,
+      "impressions": 2,
       "page": "https://monedario.cl/guias/uf-costo-de-vida/indicadores-economicos/",
-      "position": 39,
+      "position": 41,
       "query": "valor uta"
     },
     {
@@ -11351,6 +12143,14 @@
       "page": "https://monedario.cl/guias/uf-costo-de-vida/indicadores-economicos/",
       "position": 23,
       "query": "valor utm banco central"
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/conversor-utm/",
+      "position": 10,
+      "query": "valor utm junio 2026 chile sii"
     },
     {
       "clicks": 0,
