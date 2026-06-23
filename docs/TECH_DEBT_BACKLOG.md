@@ -16,7 +16,7 @@ Fecha de corte: 2026-05-30
 - **Completados:** 89 TD únicos (`TD-0001`..`TD-0066`, `TD-0068`..`TD-0071`, `TD-0073`, `TD-0074`, `TD-0076`, `TD-0078`, `TD-0080`, `TD-0082`..`TD-0094`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
 - **En progreso:** 0
 - **Backlog sin iniciar:** 4 (`TD-0067`, `TD-0075`, `TD-0077`, `TD-0081`)
-- **Backlog en validación/diseño:** 2 (`TD-0072` parcial por referencias activas; `TD-0079` bloqueado por incompatibilidad WOFF2/Satori)
+- **Backlog en validación/diseño:** 1 (`TD-0079` bloqueado por incompatibilidad WOFF2/Satori). `TD-0072` cerrado el 2026-06-23 (los 2 scripts restantes son código activo, no one-off).
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
 > `FIX-LINKS-CALC`: ampliado `check-internal-links.mjs` para cubrir validación de rutas `/calculadoras/`.
@@ -1858,16 +1858,17 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Esfuerzo estimado:** XS
 - **Propuesta de solución:** `mkdir -p archive/scripts && mv` los 6 scripts. Añadir `archive/scripts/README.md` que explique que son one-off completados, con fecha de archivado y nota de la tarea original. Validar con `pnpm run check && pnpm run build` que no haya referencia oculta.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] Los 6 scripts viven en `archive/scripts/`.
+  - [x] Los 4 scripts one-off reales viven en `archive/scripts/`; los 2 restantes quedan en `scripts/` por ser código activo (decisión, ver nota 2026-06-23).
   - [x] Los 4 scripts sin referencias activas viven en `archive/scripts/`.
   - [x] `archive/scripts/README.md` documenta cada uno y explica los 2 no archivados.
   - [x] `pnpm run check && pnpm run build && pnpm run test` pasan sin tocar lógica activa.
   - [x] `MODULE_INDEX.md` actualizado (depende de TD-0071).
 - **Owner:** Codex
-- **Estado:** Parcial / requiere decisión
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-15
-- **Última actualización:** 2026-05-16
+- **Última actualización:** 2026-06-23
 - **Nota 2026-05-16:** archivado parcial deliberado. `eslint.config.js` ignora `archive/scripts/**` para no aplicar gates activos a scripts históricos.
+- **Nota de cierre 2026-06-23:** decisión resuelta. La premisa original (archivar 6) era incorrecta: solo 4 eran one-off completados (ya archivados). Verificado el 2026-06-23 que los 2 restantes siguen siendo código activo y NO deben archivarse: `editorial-copy-rules.mjs` lo importan `check-small-details.mjs`, `check-editorial-guard.mjs` y `audit-reader-facing-copy.mjs`; `download-og-fonts.mjs` lo referencia `src/utils/loadGoogleFont.ts`. No hay ruido one-off pendiente en `scripts/`; TD cerrado sin refactor.
 
 ## TD-0073 — `claude-code-review.yml` sin `timeout-minutes`
 - **ID:** TD-0073
