@@ -19,7 +19,7 @@ runs:
           | tar -xz -C /usr/local/bin --strip-components=1
 
     - name: Setup Python
-      uses: actions/setup-python@423e9b5a7cf30e1f9dc1ad20fec38749854f34f8 # v6.6.0
+      uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
       with:
         python-version: ${{ inputs.python-version }}
 
