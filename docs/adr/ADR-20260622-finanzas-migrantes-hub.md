@@ -42,6 +42,12 @@ Después de resolver G9 y completar la revisión humana de gates:
 - reemplazar el shell por el hub indexable con el pilar como core;
 - cambiar el artículo a `draft: false` solo tras verificar todos los gates.
 
+> **Ejecutado.** El pilar `finanzas-para-migrantes-chile` se publicó (`draft:false`)
+> con sign-off humano el 2026-06-22 (PR #274) y el hub quedó indexable enlazando el
+> pilar. El wiring de navegación global (quitar de `Exclude`, sumar a
+> `GUIDE_HUBS`/`GUIDE_HUB_ORDER` y registrar el pilar como core en
+> `HUB_ARTICLE_ASSIGNMENTS`) se completó el 2026-06-23, cerrando esta condición.
+
 ## Consequences
 
 - El cluster y el artículo pueden pasar validaciones estructurales sin publicación

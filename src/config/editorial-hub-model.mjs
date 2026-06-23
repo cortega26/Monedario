@@ -159,6 +159,18 @@ export const HUB_ARTICLE_ASSIGNMENTS = {
     ],
     related: [],
   },
+  "finanzas-migrantes": {
+    core: [
+      {
+        slug: "finanzas-para-migrantes-chile",
+        href: "/posts/finanzas-para-migrantes-chile/",
+        title: "Cómo ordenar tus finanzas en Chile siendo migrante",
+        summary:
+          "El pilar de la sección: cómo obtener el RUT, abrir una CuentaRUT y qué considerar al arrendar siendo extranjero, con fuentes oficiales y límites claros.",
+      },
+    ],
+    related: [],
+  },
 };
 
 /**

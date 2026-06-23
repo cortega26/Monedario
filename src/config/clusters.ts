@@ -17,7 +17,7 @@ export type Cluster = (typeof CLUSTERS)[number];
 // Los clusters greenfield son válidos para frontmatter y sus hubs shell, pero no
 // entran a la navegación global hasta completar sus condiciones de lanzamiento.
 // Ver ADR-20260617-bancos-fintech-hub y ADR-20260622-finanzas-migrantes-hub.
-export type HubCluster = Exclude<Cluster, "general" | "finanzas-migrantes">;
+export type HubCluster = Exclude<Cluster, "general">;
 export type HubLayer =
   | "ingresos"
   | "prevision"
@@ -45,6 +45,7 @@ export const GUIDE_HUB_ORDER: HubCluster[] = [
   "impuestos-personas",
   "seguridad-financiera",
   "bancos-fintech",
+  "finanzas-migrantes",
 ];
 
 export const GUIDE_HUBS: Record<HubCluster, GuideHubMeta> = {
@@ -126,6 +127,14 @@ export const GUIDE_HUBS: Record<HubCluster, GuideHubMeta> = {
     capa: "bolsillo",
     homepageResumen:
       "¿Dónde tener tu dinero: qué cuenta te conviene y si una fintech es segura?",
+  },
+  "finanzas-migrantes": {
+    nombre: "Finanzas para migrantes",
+    descripcion:
+      "Sección para ordenar los primeros asuntos financieros al instalarte en Chile: identidad tributaria (RUT), cuenta básica y arriendo, con fuentes oficiales.",
+    capa: "otros",
+    homepageResumen:
+      "¿Recién llegaste a Chile? Cómo obtener RUT, abrir cuenta y arrendar.",
   },
 };
 
