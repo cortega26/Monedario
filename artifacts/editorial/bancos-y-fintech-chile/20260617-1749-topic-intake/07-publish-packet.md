@@ -69,7 +69,7 @@ DraftAgent session: Claude Code — sesión topic-intake 2026-06-17
 
 | # | Claim | Resolución | Estado |
 |---|---|---|---|
-| Q2 | Cláusula exacta de consentimiento (open banking) | Título III, arts. 16–27 Ley 21.521; BCN solo sirve arts. 1–4 al fetcher. Obtener cláusula por vista por-artículo en Gate 06. | ⬜ PARCIAL |
+| Q2 | Cláusula exacta de consentimiento (open banking) | Resuelto vía Opción A (2026-06-23, decisión HumanEditor): puntero de cita inline "(Título III, art. 16 y ss., Ley 21.521)" en cuerpo + FAQ. Ubicación verificada por dossier C10; sin texto literal (BCN sirve solo arts. 1–4). | ✅ RESUELTO (Opción A) |
 | Q3 | Sanción por operar sin inscripción en Registro CMF | Existencia del Registro confirmada; el draft NO afirma la sanción, remite a verificar. Confirmar cláusula en Gate 06 o mantener deferral legítimo. | ⬜ PARCIAL |
 
 ---
@@ -105,6 +105,26 @@ DraftAgent session: Claude Code — sesión topic-intake 2026-06-17
 - **Gate 05 (MathAudit)**: No requerido — `requires_calculation: false`, sin fórmulas ni valores auditables.
 - **Gate 06 (ComplianceAgent)**: CONDITIONAL (2026-06-22) — ver `06-compliance.md`. DEFECTO #2/#3 bloquean `draft:false`; DEFECTO #4 trivial. Resolución: agregar cita art. de consentimiento (Título III, arts. 16-27, Ley 21.521) al borrador antes del sign-off.
 - **Gate 07 (HumanEditor)**: PENDIENTE.
+
+---
+
+## Addendum 2026-06-23 — Resolución de defectos bloqueantes (Opción A)
+
+> Registro de acciones, NO sign-off. Ninguna gate G1–G17 fue marcada por el agente.
+
+- **DEFECTO #2/#3 (HIGH) — RESUELTO vía Opción A.** Por decisión del HumanEditor (Carlos
+  Ortega, 2026-06-23), se aplicó el puntero de cita inline "(Título III, art. 16 y ss.,
+  Ley 21.521)" en `04-draft.md`: cuerpo (sección "Banco tradicional vs. fintech") y FAQ
+  ("¿Qué pasa con mis datos en open banking?"). Ubicación verificada por dossier C10. El
+  auditor de Gate 06 pre-aprobó la Opción A (condición 4); no requiere re-auditoría fresca.
+- **DEFECTO #4 (LOW) — RESUELTO.** Eliminada la ocurrencia duplicada de `draft: true` en el
+  frontmatter propuesto de `04-draft.md`.
+- **DEFECTO #1 (SoD), #5 (INFO):** sin cambios — #1 se cierra con tu sign-off; #5 no requiere acción.
+
+**Pendiente, todo human-only (Carlos Ortega):** revisar el draft corregido + este packet;
+crear el blog file `src/data/blog/bancos-y-fintech-chile.md`; ejecutar G11–G15; crear hero (G9);
+hacer el flip del hub G16 (ADR-20260617); marcar G1–G17; sign-off final G17 + `draft:false`.
+Recién después se cierra OPP-12 y OPP-13 en el scorecard del scan de oportunidades.
 
 ---
 
