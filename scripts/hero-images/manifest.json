@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "source": "src/data/blog/**",
   "inclusionRule": "valid frontmatter (drafts included for pre-publication image planning)",
-  "articleCount": 51,
+  "articleCount": 52,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -36,6 +36,41 @@
       "bodyExcerpt": "Elegir en qué instrumento poner tu plata es una de las decisiones financieras más frecuentes —y más mal tomadas— por personas que ya tienen claro que quieren ahorrar, pero no saben bien cómo organizarlo. Esta guía te ayuda a comparar depósitos a plazo, fondos mutuos y ETFs según plazo, riesgo, costo real y tributación, sin rodeos y con foco en Chile 2026. > **Revisión editorial 2026-04-22:** se revalidaron los criterios generales de costos, rescate/custodia y tributación base contra CMF y SII. Antes de invertir, confirma además las comisiones y reglamentos del producto específico. ## Antes de comparar: lo que esta guía asume Para que la comparación sea útil, partimos de cuatro supuestos básicos: - Ya tienes un separado del dinero que vas a invertir. - Tu horizonte de inversión es de al menos 3 meses. - Entiendes que mayor retorno esperado implica mayor riesgo. - Vas a comparar costos reales —no solo rentabilidad histórica. - Revisarás el tratamiento tributario antes de ejecutar rescates o ventas, no después. Si alguno de estos puntos no aplica a tu situación, conviene dar un paso atrás antes de elegir instrumento. ## Tres instrumentos, tres lógicas distintas No todos los instrument",
       "wordCount": 823,
       "sourceFile": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.md"
+    },
+    {
+      "slug": "bancos-y-fintech-chile",
+      "title": "Bancos y fintech en Chile: cómo elegir dónde tener tu cuenta",
+      "tags": [
+        "bancos",
+        "fintech",
+        "cuenta-vista",
+        "cuentarut",
+        "finanzas-personales"
+      ],
+      "category": "general",
+      "cluster": "bancos-fintech",
+      "sourcePath": "src/data/blog/bancos-y-fintech-chile.md",
+      "heroImage": "",
+      "summary": "Información vigente al 2026 06 17. Las tarifas, productos y condiciones de bancos y fintech cambian con frecuencia. Antes de contratar, verifica directamente con la entidad y en las fuentes oficiales que citamos. Abrir una cuenta debería ser simple, pero cuando te pones a mirar a...",
+      "leadParagraphs": [
+        "> **Información vigente al 2026-06-17.** Las tarifas, productos y condiciones de bancos y fintech cambian con frecuencia. Antes de contratar, verifica directamente con la entidad y en las fuentes oficiales que citamos.",
+        "Abrir una cuenta debería ser simple, pero cuando te pones a mirar aparece un menú que confunde: cuenta vista, cuenta corriente, cuenta de ahorro, CuentaRUT, billeteras digitales, \"cuentas fintech\". Y todas prometen lo mismo: que tu plata esté ahí cuando la necesitas.",
+        "La buena noticia es que no necesitas entenderlas todas. Necesitas entender **cuál calza con lo que vas a hacer**: recibir el sueldo, mover dinero del día a día, juntar para una meta o probar una app nueva. Esta guía te ayuda a decidir con criterios estables, sin recomendarte una marca ni empujarte a un producto."
+      ],
+      "headings": [
+        "¿Qué cuenta me conviene para mi dinero del día a día?",
+        "¿Qué tipos de cuenta existen en Chile?",
+        "Cuenta vista: la puerta de entrada",
+        "Cuenta corriente: cheques y más servicios",
+        "Cuenta de ahorro: para juntar, no para mover",
+        "Banco tradicional vs. fintech: ¿qué cambia para ti?",
+        "Cómo abrir una cuenta básica (el caso de la CuentaRUT)",
+        "¿Cuánto cuesta? Comisiones sin sorpresas"
+      ],
+      "bodyExcerpt": "> **Información vigente al 2026-06-17.** Las tarifas, productos y condiciones de bancos y fintech cambian con frecuencia. Antes de contratar, verifica directamente con la entidad y en las fuentes oficiales que citamos. Abrir una cuenta debería ser simple, pero cuando te pones a mirar aparece un menú que confunde: cuenta vista, cuenta corriente, cuenta de ahorro, CuentaRUT, billeteras digitales, \"cuentas fintech\". Y todas prometen lo mismo: que tu plata esté ahí cuando la necesitas. La buena noticia es que no necesitas entenderlas todas. Necesitas entender **cuál calza con lo que vas a hacer**: recibir el sueldo, mover dinero del día a día, juntar para una meta o probar una app nueva. Esta guía te ayuda a decidir con criterios estables, sin recomendarte una marca ni empujarte a un producto. ## ¿Qué cuenta me conviene para mi dinero del día a día? Si lo que quieres es **recibir tu sueldo y mover plata todos los días**, la cuenta a la que accede prácticamente cualquier persona es una **cuenta vista**. No te pide un nivel de renta y no usa cheques: funciona con tarjeta de débito, transferencias y giros. La CuentaRUT de BancoEstado es el ejemplo más conocido, pero casi todos los bancos ",
+      "wordCount": 1706,
+      "sourceFile": "bancos-y-fintech-chile.md",
+      "draft": true
     },
     {
       "slug": "boleta-honorarios-2026-retencion-cobertura",
@@ -1367,7 +1402,7 @@
         "Arriendo en UF"
       ],
       "bodyExcerpt": "Tu arriendo sube todos los años \"por la UF\" y tu dividendo también. Pero casi nadie sabe exactamente qué es la UF ni por qué cambia todos los días. Acá te explicamos de verdad — con números y sin fórmulas intimidantes. Si quieres ver esta historia ordenada junto con IPC, reajustes y herramientas prácticas, parte por la . Si quieres ver cómo se conecta con créditos y deudas, también puedes complementar con la . ## Tabla de contenidos ## Qué es la UF La **Unidad de Fomento (UF)** es una unidad de medida del valor del dinero que se ajusta automáticamente con la inflación. No es un tipo de cambio, no es una moneda y no la emite ningún banco privado — la calcula y publica el **Banco Central de Chile** todos los meses. La idea detrás de la UF es simple: si precias algo en pesos y hay inflación, ese precio pierde valor real con el tiempo. Pero si lo precias en UF, el valor se mantiene constante en términos de poder adquisitivo, porque la UF sube exactamente lo mismo que sube el costo de vida. Por eso se usa en contratos de arriendo, créditos hipotecarios, deudas de largo plazo, multas y cualquier obligación donde ambas partes quieren protegerse de la inflación. --- ## Cuánto vale la UF ho",
-      "wordCount": 1558,
+      "wordCount": 1583,
       "sourceFile": "que-es-la-uf.md"
     },
     {
@@ -1400,8 +1435,8 @@
         "Cómo estimar el nuevo monto",
         "Preguntas frecuentes"
       ],
-      "bodyExcerpt": "Llegó el aviso de pago y el arriendo subió. O el arrendador avisa que el próximo mes cambia el monto. La primera reacción suele ser preguntarse si corresponde — y la respuesta depende de una sola cosa: lo que dice el contrato. > **Información vigente al 2026-03-12.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. En Chile no existe un reajuste automático de arriendo que aplique por ley a todos los contratos. Lo que existe son distintas formas de pactar el reajuste — y cada una funciona distinto. Entender esa diferencia evita conflictos y permite verificar si el monto que te cobran es correcto. Si ya tienes la cláusula en la mano y solo necesitas el número, usa la . Si quieres entender primero por qué la UF cambia todos los meses, complementa con . Para entender qué es el IPC y cómo lo mide el INE, lee . ## Dato clave hoy antes de recalcular Antes de discutir un reajuste, valida primero la referencia vigente: - Si tu contrato está en **UF**, confirma el valor del día en el . - Si tu contrato reajusta por **IPC**, revisa la variación del período y compárala con la fecha exacta que exige la cláusula. Si necesi",
-      "wordCount": 1321,
+      "bodyExcerpt": "Llegó el aviso de pago y el arriendo subió. O el arrendador avisa que el próximo mes cambia el monto. La primera reacción suele ser preguntarse si corresponde — y la respuesta depende de una sola cosa: lo que dice el contrato. > **Información vigente al 2026-03-12.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. En Chile no existe un reajuste automático de arriendo que aplique por ley a todos los contratos. Lo que existe son distintas formas de pactar el reajuste — y cada una funciona distinto. Entender esa diferencia evita conflictos y permite verificar si el monto que te cobran es correcto. Si ya tienes la cláusula en la mano y solo necesitas el número, usa la . Si quieres entender primero por qué la UF cambia todos los meses, complementa con . Para entender qué es el IPC y cómo lo mide el INE, lee . Y si recién llegaste al país y estás resolviendo arriendo, cuenta y RUT al mismo tiempo, revisa . ## Dato clave hoy antes de recalcular Antes de discutir un reajuste, valida primero la referencia vigente: - Si tu contrato está en **UF**, confirma el valor del día en el . - Si tu contrato reajusta por **IPC**",
+      "wordCount": 1339,
       "sourceFile": "reajuste-arriendo-uf-ipc-chile.md"
     },
     {
