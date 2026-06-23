@@ -12,7 +12,10 @@ tags:
   - finanzas-personales
 category: general
 cluster: bancos-fintech
+topicRole: owner
+canonicalTopic: tipos-de-cuenta-banco-vs-fintech-chile
 lang: es-CL
+heroImage: /images/hero/bancos-y-fintech-chile.avif
 featured: false
 draft: true
 articleAdvisory: "Contenido educativo. Tarifas y productos cambian; verifica directamente con cada banco o fintech antes de contratar."
