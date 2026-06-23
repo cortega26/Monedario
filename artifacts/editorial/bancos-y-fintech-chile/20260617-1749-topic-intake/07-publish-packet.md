@@ -57,7 +57,7 @@ DraftAgent session: Claude Code — sesión topic-intake 2026-06-17
 - [x] G13 — `pnpm run check:routes` (añade `/posts/bancos-y-fintech-chile/` — no bloqueante, verificar)
 - [x] G14 — `pnpm run check:dialect` OK
 - [x] G15 — `pnpm run check:editorial` OK (cluster `bancos-fintech` ya registrado en `clusters.ts`)
-- [ ] G16 — Flip del hub: quitar `bancos-fintech` del `Exclude` de `HubCluster`, agregar a `GUIDE_HUBS`/`GUIDE_HUB_ORDER`, quitar `noindex`, enlazar el pilar y registrar en `HUB_ARTICLE_ASSIGNMENTS` (ver `docs/adr/ADR-20260617-bancos-fintech-hub.md`)
+- [x] G16 — Flip del hub: quitar `bancos-fintech` del `Exclude` de `HubCluster`, agregar a `GUIDE_HUBS`/`GUIDE_HUB_ORDER`, quitar `noindex`, enlazar el pilar y registrar en `HUB_ARTICLE_ASSIGNMENTS` (ver `docs/adr/ADR-20260617-bancos-fintech-hub.md`)
 
 ### Gate final
 
