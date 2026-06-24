@@ -172,6 +172,10 @@ jobs:
           scope: internal
 
       - name: "📤 Upload built site artifact"
+        # Within-run handoff to non-blocking downstream jobs; a transient
+        # storage-quota hit must not fail the build check (the build itself
+        # already succeeded above).
+        continue-on-error: true
         uses: ./.github/actions/upload-workflow-artifact
         with:
           artifact-name: site-dist
