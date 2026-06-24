@@ -65,6 +65,8 @@ jobs:
 
       - name: "📤 Upload Gitleaks artifact"
         if: always()
+        # Diagnostic artifact: a transient storage-quota hit must not fail the scan check.
+        continue-on-error: true
         uses: ./.github/actions/upload-workflow-artifact
         with:
           artifact-name: gitleaks-report
@@ -121,6 +123,8 @@ jobs:
 
       - name: "📤 Upload Opengrep artifact"
         if: always()
+        # Diagnostic artifact: a transient storage-quota hit must not fail the scan check.
+        continue-on-error: true
         uses: ./.github/actions/upload-workflow-artifact
         with:
           artifact-name: opengrep-report
@@ -176,6 +180,8 @@ jobs:
 
       - name: "📤 Upload Trivy artifact"
         if: always()
+        # Diagnostic artifact: a transient storage-quota hit must not fail the scan check.
+        continue-on-error: true
         uses: ./.github/actions/upload-workflow-artifact
         with:
           artifact-name: trivy-report
@@ -239,9 +245,11 @@ jobs:
 
       - name: "📤 Upload Python audit artifact"
         if: always()
+        # Diagnostic artifact: a transient storage-quota hit must not fail the scan check.
+        continue-on-error: true
         uses: ./.github/actions/upload-workflow-artifact
         with:
           artifact-name: python-audit-report
-          retention-days: 30
+          retention-days: 14
           if-no-files-found: warn
           path: output/security/python-audit.json
