@@ -163,6 +163,8 @@ jobs:
 
       - name: "📤 Upload URL check artifacts"
         if: always()
+        # Diagnostic artifact: a transient storage-quota hit must not fail the build check.
+        continue-on-error: true
         uses: ./.github/actions/upload-urlcheck-artifacts
         with:
           artifact-name: urlcheck-artifacts-ci
@@ -170,10 +172,15 @@ jobs:
           scope: internal
 
       - name: "📤 Upload built site artifact"
+        # Within-run handoff to non-blocking downstream jobs; a transient
+        # storage-quota hit must not fail the build check (the build itself
+        # already succeeded above).
+        continue-on-error: true
         uses: ./.github/actions/upload-workflow-artifact
         with:
           artifact-name: site-dist
-          retention-days: 3
+          # Only consumed by downstream jobs within the same run; 1 day is plenty.
+          retention-days: 1
           path: dist/
 
       # On scheduled runs the gate gives no PR to surface a red result, so a
@@ -278,6 +285,8 @@ jobs:
 
       - name: "📤 Upload external URL CI artifacts"
         if: always()
+        # Diagnostic artifact: a transient storage-quota hit must not fail the check.
+        continue-on-error: true
         uses: ./.github/actions/upload-urlcheck-artifacts
         with:
           artifact-name: urlcheck-artifacts-external-ci

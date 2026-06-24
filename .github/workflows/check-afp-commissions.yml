@@ -39,7 +39,7 @@ jobs:
         uses: ./.github/actions/upload-workflow-artifact
         with:
           artifact-name: afp-commissions-report
-          retention-days: 90
+          retention-days: 14
           if-no-files-found: warn
           path: output/validation/afp-commissions/report.json
 
