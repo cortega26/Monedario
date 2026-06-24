@@ -8,8 +8,9 @@ const getRobotsTxt = (sitemapURL: URL) => `
 User-agent: *
 Allow: /
 
-# No indexar el generador de OG images ni el índice de búsqueda interna
+# No indexar los generadores de OG images ni el índice de búsqueda interna
 Disallow: ${BASE}/og.png
+Disallow: ${BASE}/og.jpg
 Disallow: ${BASE}/pagefind/
 
 # /buscar/, /search/ y /tags/ quedan crawlables para que los bots vean el noindex

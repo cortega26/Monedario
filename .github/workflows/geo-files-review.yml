@@ -1,0 +1,63 @@
+name: GEO files monthly review
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 08:00 UTC el día 1 de cada mes
+    - cron: "0 8 1 * *"
+
+concurrency:
+  group: geo-files-review-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  remind:
+    name: Open monthly GEO review reminder
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: "📝 Build reminder payload"
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        id: payload
+        with:
+          script: |
+            const month = new Date().toISOString().slice(0, 7);
+            const title = `Revisión mensual GEO (llms.txt / llms-full.txt / robots.txt) — ${month}`;
+            const body = [
+              "Recordatorio automático para revisar los archivos de optimización GEO/SEO.",
+              "",
+              "El **contenido** de `llms.txt` y `llms-full.txt` se regenera solo en cada build (sale de las content collections y de la configuración), así que no requiere sincronización manual. Esta revisión es para lo que **sí depende de criterio humano** y no se actualiza solo:",
+              "",
+              "### Lista de verificación",
+              "- [ ] **robots.txt** — ¿hay nuevos crawlers de IA que permitir (cita) o bloquear (entrenamiento)? Revisa el grupo de `User-agent` en `src/pages/robots.txt.ts`.",
+              "- [ ] **robots.txt** — ¿se agregaron rutas que deban excluirse (`Disallow`) o nuevos generadores de assets?",
+              "- [ ] **llms.txt** — ¿las descripciones de hubs/calculadoras siguen vigentes y sin enlaces rotos? (el build corre `check-urls`).",
+              "- [ ] **llms.txt** — ¿hay secciones nuevas del sitio que deban indexarse en el resumen?",
+              "- [ ] **llms-full.txt** — ¿el saneado de MDX (`bodyToPlainMarkdown`) sigue cubriendo los componentes usados en los artículos?",
+              "- [ ] **Alcance e instrucciones** — ¿`buildLlmsScope` / `buildLlmsInstructions` (en `src/utils/llmsTxt.ts`) reflejan la cobertura y los límites YMYL actuales?",
+              "- [ ] **Vigencia** — ¿los artículos con cifras datadas siguen marcados con el aviso ⚠️?",
+              "",
+              "Cuando termines la revisión (haya o no cambios), cierra este issue.",
+              "",
+              "_Generado por `.github/workflows/geo-files-review.yml`._",
+            ].join("\n");
+            core.setOutput("title", title);
+            core.setOutput("body", body);
+            core.setOutput("labels_json", JSON.stringify(["automation", "maintenance"]));
+
+      - name: "📨 Open reminder issue"
+        uses: ./.github/actions/upsert-issue-by-title
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title: ${{ steps.payload.outputs.title }}
+          body: ${{ steps.payload.outputs.body }}
+          desired-state: open
+          labels-json: ${{ steps.payload.outputs.labels_json }}
