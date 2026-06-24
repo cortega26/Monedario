@@ -285,6 +285,8 @@ jobs:
 
       - name: "📤 Upload external URL CI artifacts"
         if: always()
+        # Diagnostic artifact: a transient storage-quota hit must not fail the check.
+        continue-on-error: true
         uses: ./.github/actions/upload-urlcheck-artifacts
         with:
           artifact-name: urlcheck-artifacts-external-ci
