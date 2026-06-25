@@ -62,6 +62,11 @@
     "attempts": 3,
     "failedAt": "2026-04-10T23:33:42.626Z"
   },
+  "como-elegir-inversion-segun-plazo-riesgo-objetivos": {
+    "state": "done",
+    "savedAt": "2026-06-25T00:00:00.000Z",
+    "note": "manual source from /home/carlos/Descargas/elegir-inversion.png"
+  },
   "que-es-el-apv": {
     "state": "error",
     "error": "400 Billing hard limit has been reached.",

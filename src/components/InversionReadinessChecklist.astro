@@ -1,0 +1,476 @@
+---
+// InversionReadinessChecklist.astro
+// Checklist de prerequisitos de inversión — 5 preguntas binarias.
+// Devuelve un resultado de preparación, nunca una recomendación de producto.
+// Autocontenido: sin dependencias externas, sin cookies, sin llamadas a API.
+---
+
+<div class="checklist-inversion" id="checklist-inversion">
+  <h3 class="checklist-title">Checklist de prerequisitos</h3>
+  <p class="checklist-subtitle">
+    Responde las siguientes preguntas. El resultado te indica si tienes los
+    prerequisitos básicos — no qué instrumento elegir. Los umbrales numéricos
+    son orientaciones de educación financiera, no normas chilenas.
+  </p>
+
+  <p class="checklist-advisory checklist-advisory--top">
+    <strong>Contenido educativo.</strong> No constituye asesoría financiera, tributaria
+    ni previsional personalizada. Las decisiones de inversión dependen de tu situación,
+    horizonte, tolerancia a pérdidas, liquidez, costos e impuestos.
+  </p>
+
+  <form id="checklist-form" class="checklist-form" novalidate>
+    <fieldset class="checklist-fieldset">
+      <div class="checklist-question" data-question="1">
+        <p class="checklist-question-text">
+          <span class="checklist-q-num">1.</span>
+          ¿Tienes un fondo de emergencia separado, equivalente a al menos 3 meses
+          de gastos esenciales?
+        </p>
+        <div class="checklist-options" role="group" aria-label="Pregunta 1">
+          <label class="checklist-option">
+            <input type="radio" name="q1" value="si" required />
+            <span>Sí</span>
+          </label>
+          <label class="checklist-option">
+            <input type="radio" name="q1" value="no" />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="checklist-question" data-question="2">
+        <p class="checklist-question-text">
+          <span class="checklist-q-num">2.</span>
+          ¿Tu horizonte de inversión es de al menos 12 meses?
+        </p>
+        <div class="checklist-options" role="group" aria-label="Pregunta 2">
+          <label class="checklist-option">
+            <input type="radio" name="q2" value="si" required />
+            <span>Sí</span>
+          </label>
+          <label class="checklist-option">
+            <input type="radio" name="q2" value="no" />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="checklist-question" data-question="3">
+        <p class="checklist-question-text">
+          <span class="checklist-q-num">3.</span>
+          ¿Puedes dejar ese dinero sin tocarlo durante todo el período previsto?
+        </p>
+        <div class="checklist-options" role="group" aria-label="Pregunta 3">
+          <label class="checklist-option">
+            <input type="radio" name="q3" value="si" required />
+            <span>Sí</span>
+          </label>
+          <label class="checklist-option">
+            <input type="radio" name="q3" value="no" />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="checklist-question" data-question="4">
+        <p class="checklist-question-text">
+          <span class="checklist-q-num">4.</span>
+          ¿Entiendes y aceptas que podrías perder parte del capital (no solo dejar
+          de ganar)?
+        </p>
+        <div class="checklist-options" role="group" aria-label="Pregunta 4">
+          <label class="checklist-option">
+            <input type="radio" name="q4" value="si" required />
+            <span>Sí</span>
+          </label>
+          <label class="checklist-option">
+            <input type="radio" name="q4" value="no" />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="checklist-question" data-question="5">
+        <p class="checklist-question-text">
+          <span class="checklist-q-num">5.</span>
+          ¿Sabes cómo tributa el tipo de instrumento que estás evaluando en Chile
+          según el SII?
+        </p>
+        <div class="checklist-options" role="group" aria-label="Pregunta 5">
+          <label class="checklist-option">
+            <input type="radio" name="q5" value="si" required />
+            <span>Sí</span>
+          </label>
+          <label class="checklist-option">
+            <input type="radio" name="q5" value="no" />
+            <span>No</span>
+          </label>
+        </div>
+      </div>
+    </fieldset>
+
+    <button type="button" id="checklist-submit" class="checklist-btn" disabled>
+      Ver resultado
+    </button>
+  </form>
+
+  <div id="checklist-result" class="checklist-result" aria-live="polite" hidden>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById("checklist-form");
+  const submitBtn = document.getElementById(
+    "checklist-submit"
+  ) as HTMLButtonElement | null;
+  const resultEl = document.getElementById("checklist-result");
+
+  type Cta = { label: string; href: string; external?: boolean };
+  type ChecklistResult = {
+    icon: string;
+    label: string;
+    text: string;
+    cta?: Cta;
+    ctas?: Cta[];
+  };
+
+  const RESULTS: Record<string, ChecklistResult> = {
+    bloqueante: {
+      icon: "🔴",
+      label: "Hay un paso previo importante",
+      text: "El fondo de emergencia es el colchón que impide que tengas que rescatar tu inversión en el peor momento. Es el paso anterior a la inversión, no una opción.",
+      cta: {
+        label: "Cómo construir tu fondo de emergencia",
+        href: "/posts/fondo-emergencia-chile/",
+      },
+    },
+    horizonte: {
+      icon: "🟡",
+      label: "Para este plazo, los instrumentos adecuados cambian",
+      text: "Con un horizonte menor a 12 meses, los instrumentos de mayor riesgo también tienen mayor probabilidad de pérdida en el corto plazo. Los de renta fija de corto plazo son el marco que aplica.",
+      cta: {
+        label: "Depósito a plazo: cuándo conviene",
+        href: "/posts/deposito-a-plazo-uf-vs-pesos/",
+      },
+    },
+    liquidez: {
+      icon: "🟡",
+      label: "La liquidez del instrumento es tu criterio principal",
+      text: "Si puedes necesitar ese dinero antes del horizonte previsto, elegir un instrumento con restricciones de rescate o penalización por salida anticipada puede costarte más que no invertir.",
+      cta: {
+        label: "Ver criterios de liquidez por instrumento",
+        href: "/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/",
+      },
+    },
+    riesgo: {
+      icon: "🟠",
+      label: "Tu marco: instrumentos de renta fija o garantizada",
+      text: "Sin tolerancia a pérdida de capital, los instrumentos de renta variable —ETFs, acciones, algunos fondos mutuos— no son adecuados para este capital. Eso no es un defecto: define qué instrumentos analizar.",
+      cta: {
+        label: "Ver opciones de menor riesgo",
+        href: "/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/",
+      },
+    },
+    listoConPendiente: {
+      icon: "🟢",
+      label: "Tienes los prerequisitos de preparación",
+      text: "Antes de ejecutar, revisa el tratamiento tributario del instrumento que elijas. CMF Educa y el SII tienen guías gratuitas sobre cómo tributan los distintos instrumentos.",
+      ctas: [
+        {
+          label: "Comparar DAP, fondos mutuos y ETFs",
+          href: "/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/",
+        },
+        {
+          label: "CMF Educa",
+          href: "https://www.cmfchile.cl/educa/",
+          external: true,
+        },
+      ],
+    },
+    listo: {
+      icon: "🟢",
+      label: "Tienes los prerequisitos básicos",
+      text: "El siguiente paso es comparar instrumentos según tu horizonte, tu tolerancia real al riesgo y los costos de cada opción.",
+      cta: {
+        label: "Comparar DAP, fondos mutuos y ETFs",
+        href: "/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/",
+      },
+    },
+  };
+
+  const ADVISORY =
+    '<p class="checklist-advisory"><strong>Nota educativa:</strong> este resultado no es asesoría financiera ni sustituye la evaluación de tu situación particular.</p>';
+
+  function getAnswers() {
+    if (!form) return {};
+    const q1El = form.querySelector(
+      '[name="q1"]:checked'
+    ) as HTMLInputElement | null;
+    const q2El = form.querySelector(
+      '[name="q2"]:checked'
+    ) as HTMLInputElement | null;
+    const q3El = form.querySelector(
+      '[name="q3"]:checked'
+    ) as HTMLInputElement | null;
+    const q4El = form.querySelector(
+      '[name="q4"]:checked'
+    ) as HTMLInputElement | null;
+    const q5El = form.querySelector(
+      '[name="q5"]:checked'
+    ) as HTMLInputElement | null;
+    return {
+      q1: q1El?.value,
+      q2: q2El?.value,
+      q3: q3El?.value,
+      q4: q4El?.value,
+      q5: q5El?.value,
+    };
+  }
+
+  function allAnswered(answers: Record<string, string | undefined>): boolean {
+    const values = Object.values(answers);
+    return values.length === 5 && values.every(Boolean);
+  }
+
+  function classify(answers: Record<string, string | undefined>): string {
+    if (answers.q1 === "no") return "bloqueante";
+    if (answers.q2 === "no") return "horizonte";
+    if (answers.q3 === "no") return "liquidez";
+    if (answers.q4 === "no") return "riesgo";
+    if (answers.q5 === "no") return "listoConPendiente";
+    return "listo";
+  }
+
+  function escapeHtml(value: string): string {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function renderResult(key: string): string {
+    const r = RESULTS[key];
+    if (!r) return "";
+    const ctas = r.ctas ?? (r.cta ? [r.cta] : []);
+    const ctaHtml = ctas
+      .map(c => {
+        const ext = c.external ? ' target="_blank" rel="noopener"' : "";
+        return `<a href="${escapeHtml(c.href)}" class="checklist-cta"${ext}>${escapeHtml(c.label)}</a>`;
+      })
+      .join("");
+
+    return `
+      <div class="checklist-result-inner checklist-result--${key}">
+        <div class="checklist-result-header">
+          <span class="checklist-result-icon" aria-hidden="true">${r.icon}</span>
+          <strong class="checklist-result-label">${escapeHtml(r.label)}</strong>
+        </div>
+        <p class="checklist-result-text">${escapeHtml(r.text)}</p>
+        <div class="checklist-result-ctas">${ctaHtml}</div>
+        ${ADVISORY}
+      </div>`;
+  }
+
+  if (form && submitBtn && resultEl) {
+    form.addEventListener("change", () => {
+      submitBtn.disabled = !allAnswered(getAnswers());
+    });
+
+    submitBtn.addEventListener("click", () => {
+      const answers = getAnswers();
+      if (!allAnswered(answers)) return;
+      resultEl.innerHTML = renderResult(classify(answers));
+      resultEl.hidden = false;
+      resultEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+  }
+</script>
+
+<style>
+  .checklist-inversion {
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    background: var(--color-surface-alt, #f8fafc);
+  }
+
+  .checklist-title {
+    font-size: 1.125rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem;
+    color: var(--color-text-primary, #1e293b);
+  }
+
+  .checklist-subtitle {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary, #64748b);
+    margin: 0 0 1.5rem;
+  }
+
+  .checklist-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .checklist-question {
+    background: var(--color-surface, #fff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: 0.5rem;
+    padding: 1rem;
+  }
+
+  .checklist-question-text {
+    margin: 0 0 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: var(--color-text-primary, #1e293b);
+  }
+
+  .checklist-q-num {
+    font-weight: 700;
+    color: var(--color-accent, #0ea5e9);
+    margin-right: 0.25rem;
+  }
+
+  .checklist-options {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .checklist-option {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--color-text-primary, #1e293b);
+  }
+
+  .checklist-option input[type="radio"] {
+    accent-color: var(--color-accent, #0ea5e9);
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .checklist-btn {
+    margin-top: 1.5rem;
+    padding: 0.625rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    background: var(--color-accent, #0ea5e9);
+    color: #fff;
+    border: none;
+    transition: opacity 0.15s;
+  }
+
+  .checklist-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  .checklist-result {
+    margin-top: 1.5rem;
+  }
+
+  .checklist-result-inner {
+    padding: 1rem 1.25rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid;
+  }
+
+  .checklist-result--bloqueante {
+    border-color: #ef4444;
+    background: #fef2f2;
+  }
+  .checklist-result--horizonte {
+    border-color: #f59e0b;
+    background: #fffbeb;
+  }
+  .checklist-result--liquidez {
+    border-color: #f59e0b;
+    background: #fffbeb;
+  }
+  .checklist-result--riesgo {
+    border-color: #f97316;
+    background: #fff7ed;
+  }
+  .checklist-result--listoConPendiente {
+    border-color: #22c55e;
+    background: #f0fdf4;
+  }
+  .checklist-result--listo {
+    border-color: #22c55e;
+    background: #f0fdf4;
+  }
+
+  .checklist-result-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .checklist-result-icon {
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+
+  .checklist-result-label {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-primary, #1e293b);
+  }
+
+  .checklist-result-text {
+    margin: 0 0 1rem;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--color-text-primary, #1e293b);
+  }
+
+  .checklist-result-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .checklist-cta {
+    display: inline-block;
+    padding: 0.375rem 0.875rem;
+    border-radius: 0.375rem;
+    background: var(--color-accent, #0ea5e9);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: opacity 0.15s;
+  }
+
+  .checklist-cta:hover {
+    opacity: 0.88;
+  }
+
+  .checklist-advisory {
+    font-size: 0.8rem;
+    color: var(--color-text-secondary, #64748b);
+    margin: 0;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--color-border, #e2e8f0);
+  }
+
+  .checklist-advisory--top {
+    padding-top: 0;
+    border-top: none;
+    margin: 0 0 1.5rem;
+  }
+</style>

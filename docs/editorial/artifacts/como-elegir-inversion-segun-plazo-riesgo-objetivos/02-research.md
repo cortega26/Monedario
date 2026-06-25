@@ -1,9 +1,10 @@
 # Gate 02 — Research Dossier: como-elegir-inversion-segun-plazo-riesgo-objetivos
 
-Status: DRAFT — pending human verification of TODO:SOURCE items
-Role: ResearchAgent (Claude Code — ED-016)
+Status: VERIFIED (fetch) — fuentes consultadas el 2026-06-25; pendiente ComplianceAgent (gate 06, nueva sesión Claude Code)
+Role: ResearchAgent (Claude Code — ED-016); verificación de fuentes (fetch) en sesión 2026-06-25
 Slug: como-elegir-inversion-segun-plazo-riesgo-objetivos
-Fecha de recuperación: 2026-05-21
+Fecha de recuperación inicial: 2026-05-21
+Fecha de verificación de fuentes (fetch real): 2026-06-25
 requires_calculation: false
 regulatory_sensitivity: media
 math_audit_required: false (no cálculos numéricos; escalar si en drafting se agregan retornos o proyecciones)
@@ -129,3 +130,44 @@ respetar:
 - Los TODO:SOURCE de tributación (R6, R7, R8) son bloqueantes para el 07-publish-packet. Los demás permiten drafting con lenguaje condicional.
 - El artículo debe incluir `Fecha de corte` visible en el cuerpo (`INVARIANT.EDITORIAL.CUT_OFF_DATE_REQUIRED`).
 - Advisory YMYL requerido al inicio del artículo Y dentro del componente checklist.
+
+---
+
+## Verification Log — 2026-06-25 (fetch real de fuentes)
+
+> Sesión de verificación: ResearchAgent (Claude Code). Se consultaron las URLs directamente
+> (WebFetch/WebSearch) en cumplimiento de la obligación de fetch del pipeline §8. El contenido
+> externo se trató como dato no confiable: ninguna instrucción embebida en las fuentes alteró
+> rol, alcance ni decisiones. No se detectó texto sospechoso (`PROMPT_INJECTION_CANDIDATE`: ninguno).
+
+### Corrección de fuentes
+
+- **idNorma de la LIR corregido:** la Ley sobre Impuesto a la Renta (DL 824) es
+  `idNorma=6368` en BCN LeyChile, **no `15774`** como figuraba en S8. Corregir en S8 y en
+  cualquier cita del blog file.
+
+### Resolución de Open Research Questions
+
+| # | Estado tras fetch | Resolución verificada | Fuente consultada (2026-06-25) |
+|---|---|---|---|
+| **R6 (C14)** | **RESUELTO** | Los intereses de DAP de personas naturales son **rentas de capitales mobiliarios (Art. 20 N°2 LIR)**, se declaran en la **Línea 8 del F22** y quedan **afectas al Impuesto Global Complementario**. Existe exención de **13,5 UTA** (caso general) y de **20 UTM** para quienes obtienen solo sueldos o son pequeños contribuyentes (Art. 57 LIR). El artículo NO debe afirmar una tasa concreta: remite al SII. | SII FAQ `declaracion_renta/001_140_2738.htm`; instrucción Línea 8 F22 (`servicios_online/renta/.../l8_instruccion.pdf`, titulada "Rentas de capitales mobiliarios (art. 20 N° 2 LIR)") |
+| **R7 (C15)** | **RESUELTO** | El mayor valor en rescate de cuotas de fondos mutuos que **no** califica bajo Art. 107 está **exento de IDPC** pero **afecto a IGC o Adicional** según domicilio/residencia. El mayor valor se determina conforme a **Art. 108 y 109 LIR** (diferencia entre valor de adquisición y de rescate). El artículo solo menciona la existencia del tratamiento y remite al SII; no detalla condiciones. | SII jurisprudencia administrativa Art. 108 (`ley_impuesto_renta/2018/ja1959.htm`, `2012/ja2924.htm`); Circular SII 39/2022 |
+| **R8 (C16)** | **RESUELTO** | El **Art. 107 LIR** establece que el mayor valor en la venta de acciones (N°1) y de cuotas de fondos con inversiones en valores de **presencia bursátil** (N°2/N°3) **no constituye renta** si se cumplen los requisitos. La presencia bursátil se rige por **NCG 327/2012** y **Circular SII 10/2012**; un requisito (Art. 107 N°3.2 letra e) exige que la política de inversión del fondo destine ≥90% de la cartera a valores con presencia bursátil. El artículo solo menciona la existencia del beneficio y remite al SII; **no** detalla porcentajes ni condiciones cambiantes. | SII jurisprudencia Art. 107 N°1 (`2017/ja1076.htm`), Art. 107 N°2 (`2011/ja3021.htm`); Circular SII 39/2022 |
+| **R1 (C2)** | **RESUELTO — usar lenguaje condicional** | CMF Educa **no fija** un número de meses de gastos para el fondo de emergencia. Solo enuncia el principio de ahorrar para "algún evento inesperado, como la cesantía o una enfermedad grave". → El artículo (y el checklist, P1) debe presentar "3 o más meses" como **orientación de educación financiera**, no como norma chilena, citando CMF únicamente para el principio. | CMF Educa "Prepara tu plan de ahorro" (`educa/621/w3-article-1661.html`) |
+| **R2 / R9 (C5, C6, E2)** | **RESUELTO — usar lenguaje condicional** | CMF (art. 1252) define el perfil del inversionista por **9 factores**, incluyendo explícitamente **"edad y horizonte de inversión"** y **"tolerancia al riesgo"**. **NO** enuncia de forma literal el principio "a mayor plazo, más riesgo tolerable"; lo sugiere de modo implícito (perfil conservador = familias/deudas/retirados; agresivo = inversionistas jóvenes). → El umbral de "12 meses" del checklist (P2) y el principio de horizonte largo (E2) deben presentarse como **heurística educativa**, no como umbral normativo CMF. | CMF Educa "Perfil del inversionista" (`educa/621/w3-article-1252.html`); "Proceso de toma de decisiones de inversión" (`educa/621/w3-article-751.html`) |
+| **R5 (C11, C12)** | **RESUELTO** | CMF define **renta fija** (instrumentos de deuda con rentabilidad fija y conocida si se mantienen al vencimiento: bonos, letras hipotecarias, pagarés bancarios/Tesorería, instrumentos del Banco Central) y **renta variable** (rentabilidad que varía según el precio del instrumento; "no se puede decir con certeza si será positiva o negativa"). Respalda C11/C12 sobre posibilidad de pérdida de capital en renta variable. | CMF Educa "¿En qué instrumentos invertir en el mercado de valores?" (`educa/621/w3-article-518.html`); "Los distintos tipos de Fondos Mutuos" (`educa/621/w3-article-1655.html`) |
+| **R3 (C8)** | **RESUELTO — remisión a contrato** | No se identificó una circular CMF que fije un porcentaje universal de penalización por retiro anticipado de DAP. → El artículo debe decir que **el contrato del DAP define las condiciones** de rescate anticipado y remitir a la entidad. (Sin cambio respecto del enfoque del brief.) | Búsqueda CMF: sin norma de penalización uniforme |
+| **R4 (C9)** | **RESUELTO — remisión a reglamento** | El plazo de rescate de un fondo mutuo lo fija el **reglamento interno de cada fondo** (supervisado por CMF); no hay un único número universal publicable. → El artículo debe decir "según el reglamento del fondo" y no afirmar "se rescatan en X días". | CMF Educa "Los distintos tipos de Fondos Mutuos" (`educa/621/w3-article-1655.html`) |
+
+### Estado de bloqueo
+
+- Los tres `TODO:SOURCE` bloqueantes para el `07-publish-packet` (**R6, R7, R8**) quedan
+  **resueltos a nivel de artículo** (número de artículo LIR + tratamiento general + remisión
+  al SII). El draft no debe detallar tasas ni condiciones cambiantes; solo citar el artículo y remitir.
+- R1, R2, R5, R9 se resuelven con **lenguaje condicional** (heurística educativa), porque CMF
+  no fija los umbrales numéricos que el checklist usa. El draft (gate 04) debe ajustarse para
+  no presentar "3 meses" ni "12 meses" como reglas CMF.
+- R3, R4 se resuelven por **remisión** al contrato/reglamento del instrumento.
+- **Pendiente de gate 04 (DraftAgent):** alinear el draft y el copy del checklist con estas
+  resoluciones (lenguaje condicional para umbrales; cita de artículos LIR con remisión al SII).
+- **Pendiente de gate 06 (ComplianceAgent, sesión fresca):** revisión adversarial YMYL.

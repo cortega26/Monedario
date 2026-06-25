@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-06-23T16:45:14.081Z",
+  "generatedAt": "2026-06-25T19:08:27.584Z",
   "source": "dist/rss.xml",
-  "total": 51,
+  "total": 52,
   "items": [
     {
       "link": "https://monedario.cl/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/",
@@ -38,6 +38,12 @@
       "title": "¿Puedo cambiarme de AFP? Cómo hacerlo y qué considerar en 2026",
       "pubDate": "Thu, 14 May 2026 00:00:00 GMT",
       "guid": "https://monedario.cl/posts/como-cambiarse-de-afp/"
+    },
+    {
+      "link": "https://monedario.cl/posts/como-elegir-inversion-segun-plazo-riesgo-objetivos/",
+      "title": "Cómo elegir una inversión en Chile: plazo, riesgo y objetivos",
+      "pubDate": "Thu, 25 Jun 2026 12:00:00 GMT",
+      "guid": "https://monedario.cl/posts/como-elegir-inversion-segun-plazo-riesgo-objetivos/"
     },
     {
       "link": "https://monedario.cl/posts/como-hacer-presupuesto-mensual-chile/",

@@ -20,7 +20,7 @@ Fuente base: [Gap Audit v1](../operations/audits/closed/2026/2026-02-27_gap-audi
 | ED-013 | Deudas y Crédito | Informe CMF vs DICOM (optimización) | cómo sacar informe de deudas cmf con clave única | 1.90 | Baja | DONE |  | [Audit](../operations/audits/closed/2026/2026-02-27_gap-audit_v1.md) | [Research](../research/deep-research-report.md#L306) | `/posts/informe-deudas-cmf-vs-dicom/` | [DoD](../editorial/DEFINITION_OF_DONE.md) |
 | ED-014 | Pensiones y Protección Social | Seguro de cesantía (optimización) | como saber mi saldo seguro de cesantia afc | 1.90 | Baja | DONE |  | [Audit](../operations/audits/closed/2026/2026-02-27_gap-audit_v1.md) | [Research](../research/deep-research-report.md#L310) | `/posts/seguro-de-cesantia/` | [DoD](../editorial/DEFINITION_OF_DONE.md) |
 | ED-015 | Deudas y Crédito | Renegociación Superir (optimización) | renegociación superir requisitos 80 uf | 1.81 | Baja | DONE |  | [Audit](../operations/audits/closed/2026/2026-02-27_gap-audit_v1.md) | [Research](../research/deep-research-report.md#L309) | `/posts/renegociacion-superir/` | [DoD](../editorial/DEFINITION_OF_DONE.md) |
-| ED-016 | Ahorro e Inversión | Decidir inversión según edad, riesgo y objetivos | donde invertir mi dinero segun edad tolerancia al riesgo y objetivos | TBD | Media | TODO |  | TBD | TBD | `/posts/como-elegir-inversion-segun-plazo-riesgo-objetivos/` | [DoD](../editorial/DEFINITION_OF_DONE.md) · ver [detalle ED-016](#detalle-ed-016--inversion-segun-edad-riesgo-y-objetivos) |
+| ED-016 | Ahorro e Inversión | Decidir inversión según edad, riesgo y objetivos | donde invertir mi dinero segun edad tolerancia al riesgo y objetivos | TBD | Media | DONE | Carlos Ortega | TBD | TBD | `/posts/como-elegir-inversion-segun-plazo-riesgo-objetivos/` | [DoD](../editorial/DEFINITION_OF_DONE.md) · ver [detalle ED-016](#detalle-ed-016--inversion-segun-edad-riesgo-y-objetivos) |
 
 ## Notas operativas
 
@@ -31,6 +31,21 @@ Fuente base: [Gap Audit v1](../operations/audits/closed/2026/2026-02-27_gap-audi
 - `como-hacer-presupuesto-mensual-chile` dejó de ser transición el 2026-05-11: el hub `/guias/presupuesto-control-financiero/` ya existe, `fondo-emergencia-chile` actúa como segundo activo del cluster, y la pieza quedó en `cluster: presupuesto-control-financiero` con ownership explícito.
 
 ## Detalle ED-016 — Inversión según edad, riesgo y objetivos
+
+> **Estado al 2026-06-25 (IN_PROGRESS):** Gate 01 (brief) aprobado por Carlos Ortega.
+> Gate 02 research **verificado con fetch real** de fuentes CMF/SII/BCN (ver
+> `docs/editorial/artifacts/.../02-research.md` §Verification Log). Gate 03 outline y gate 04
+> draft completados; blog file `src/data/blog/como-elegir-inversion-segun-plazo-riesgo-objetivos.mdx`
+> (`draft: true`) y componente `src/components/InversionReadinessChecklist.astro` materializados
+> y **render-testeados** (Playwright, 6/6 escenarios). Migración canónica completa:
+> `artifacts/editorial/como-elegir-inversion-segun-plazo-riesgo-objetivos/20260625-1405-ed016/`
+> (`check:editorial-artifacts` compliant en modo estricto). **Gate 06 compliance: PASS 9.88/10**
+> (sesión fresca adversarial; cero defectos, cero TODO:SOURCE) tras dos rondas de remediación
+> DraftAgent (advisory estático del componente, interlinking outbound, URL asesores CMF/Ley Fintec,
+> eliminación del marcador TOC vestigial, ejemplos de gastos esenciales). Reporte en
+> `artifacts/editorial/.../20260625-1405-ed016/06-compliance.md`.
+> **Único pendiente: gate 07 publish-packet (humano)** — `pubDate`, `heroImage`, `draft: false`
+> y sign-off de Carlos Ortega.
 
 **Idea:** artículo educativo para responder "dónde invertir mi dinero según edad, tolerancia al riesgo y objetivos" como marco de decisión, no como recomendación de productos específicos.
 

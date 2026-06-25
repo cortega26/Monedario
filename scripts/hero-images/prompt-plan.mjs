@@ -478,6 +478,29 @@ const SLUG_OVERRIDES = {
     overrideEvidence: ["slug override: ETF investment article"],
     overrideKeywords: ["ahorro", "inversion"],
   },
+  "como-elegir-inversion-segun-plazo-riesgo-objetivos": {
+    id: "decision-inversion",
+    template: "A",
+    promptTrack: "A",
+    recipeId: "ahorro",
+    colorKey: "Educativo / Conceptos / Guias",
+    readerSituation:
+      "Persona ordenando plazo, riesgo, liquidez y objetivos antes de elegir una inversion.",
+    toneClass: "educativo",
+    overrideEvidence: [
+      "slug override: investment decision guide — 'previsional' appears only in the advisory and must not select the pension scene",
+    ],
+    overrideKeywords: ["inversion", "plazo", "riesgo", "objetivos"],
+    promptOptions: {
+      sceneLine:
+        "Scene: one simplified human figure with a checklist pauses before a path that branches into three clear directions.",
+      propsLine:
+        "Use only the checklist and the three-way path as the decision metaphor; do not depict a specific financial product.",
+      extraLines: [
+        "Semantic focus: evaluating horizon, risk, liquidity, and goals before choosing an investment.",
+      ],
+    },
+  },
   "como-hacer-presupuesto-mensual-chile": {
     id: "ahorro",
     template: "A",
