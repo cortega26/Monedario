@@ -13,6 +13,8 @@ tags:
   - portabilidad
 category: seguridad-financiera
 cluster: seguridad-financiera
+topicRole: owner
+canonicalTopic: estafas-financieras-prevencion
 lang: es-CL
 featured: false
 draft: false

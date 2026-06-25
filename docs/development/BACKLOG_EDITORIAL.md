@@ -77,7 +77,26 @@ Fuente base: [Gap Audit v1](../operations/audits/closed/2026/2026-02-27_gap-audi
 | Falta de `updatedDate` en batch original | Medio | Resuelto: `updatedDate` agregado a todos los artículos REFRESH + cluster/category corregidos en `como-calcular-sueldo-liquido`. | Media | DONE (2026-03-04) |
 | Respuestas abstractas (licencia/finiquito) | Alto YMYL | Concretar reglas operativas y efecto legal por causal | Alta | DONE (2026-03-02) |
 | Reforma previsional sin reflejo | Alto YMYL | Añadir bloque "Qué cambia entre 2025 y 2027" en artículos prioritarios AFP | Alta | DONE parcial (2026-03-02) |
-| 11 artículos publicados fuera del backlog | Medio | Registrar en backlog, asignar cluster y prioridad SEO para próximo audit | Media | PENDIENTE |
+| 11 artículos publicados fuera del backlog | Medio | Registrar en backlog, asignar cluster y prioridad SEO para próximo audit | Media | DONE (2026-06-25) — ver nota abajo |
+
+> **Cierre 2026-06-25 — registración completa + guardrail automatizado.** La deuda de marzo
+> quedó **mayormente auto-resuelta** por el "cluster hardening" (los 4 clusters endurecidos
+> —`sueldo-remuneraciones`, `pensiones-afp`, `ahorro-e-inversion`, `uf-costo-de-vida`— ya
+> exigen `topicRole`+`canonicalTopic` vía `check-frontmatter` + `content.config`). Al
+> 2026-06-25, de 53 artículos publicados solo 9 tenían drift de registración (5 sin
+> `canonicalTopic` y 4 con topic no presente en el registro) y el registro tenía 2 entradas
+> stale. **Todos resueltos:** se asignó `topicRole: owner` + `canonicalTopic` a los 5
+> (licencia médica, devolución impuestos, estafas, fraude tarjeta, suplantación) y se agregaron
+> al `CANONICAL_TOPIC_REGISTRY` las entradas faltantes (rentas-mixtas + clusters nuevos
+> `seguridad-financiera`, `bancos-fintech`, `finanzas-migrantes`).
+>
+> **Prevención (anti-drift / anti-stale):** nuevo guardrail `pnpm run check:article-registration`
+> (`scripts/check-article-registration.mjs`, encadenado en `pnpm run check`). Detecta en cada
+> corrida: (a) artículo publicado sin registrar (`topicRole`/`canonicalTopic`), (b) `canonicalTopic`
+> declarado pero ausente del registro, (c) `ownerSlug`/`supportSlug` del registro que no apunta a
+> un artículo publicado, (d) topic registrado que ningún artículo declara. Warning-first;
+> `ARTICLE_REG_ENFORCE=1` bloquea el drift en clusters endurecidos. Esto reemplaza la lista
+> manual de marzo (abajo, conservada como histórico).
 
 ## Artículos publicados sin registro en backlog (auditoría 2026-03-04)
 

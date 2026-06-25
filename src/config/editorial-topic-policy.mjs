@@ -84,6 +84,10 @@ export const CANONICAL_TOPIC_REGISTRY = {
       ownerSlug: "boleta-honorarios-2026-retencion-cobertura",
       intentLabel: "boleta honorarios retencion y cobertura anual",
     },
+    "rentas-mixtas": {
+      ownerSlug: "rentas-mixtas-sueldo-honorarios",
+      intentLabel: "tributacion de rentas mixtas sueldo y honorarios",
+    },
   },
   "pensiones-afp": {
     "pgu-pension-garantizada": {
@@ -196,6 +200,37 @@ export const CANONICAL_TOPIC_REGISTRY = {
       ownerSlug: "utm-chile-que-es-como-funciona",
       intentLabel:
         "entender UTM y UTA como unidades tributarias reajustables en Chile",
+    },
+  },
+  "seguridad-financiera": {
+    "fonasa-vs-isapre": {
+      ownerSlug: "fonasa-vs-isapre-comparativa",
+      intentLabel: "comparar Fonasa e Isapre segun cobertura y costo",
+    },
+    "estafas-financieras-prevencion": {
+      ownerSlug: "estafas-financieras-chile-vishing-smishing-marketplace",
+      intentLabel: "detectar y prevenir estafas financieras por canal",
+    },
+    "fraude-tarjeta-ley-20009": {
+      ownerSlug: "fraude-tarjeta-que-hacer",
+      intentLabel: "actuar ante fraude con tarjeta segun Ley 20.009",
+    },
+    "suplantacion-identidad-creditos": {
+      ownerSlug: "suplantacion-identidad-creditos-no-reconocidos",
+      intentLabel:
+        "detectar y frenar suplantacion de identidad con creditos no reconocidos",
+    },
+  },
+  "bancos-fintech": {
+    "tipos-de-cuenta-banco-vs-fintech-chile": {
+      ownerSlug: "bancos-y-fintech-chile",
+      intentLabel: "comparar tipos de cuenta entre bancos y fintech en Chile",
+    },
+  },
+  "finanzas-migrantes": {
+    "finanzas-iniciales-migrantes-chile": {
+      ownerSlug: "finanzas-para-migrantes-chile",
+      intentLabel: "primeros pasos financieros para migrantes en Chile",
     },
   },
 };
