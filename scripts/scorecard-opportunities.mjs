@@ -4,7 +4,8 @@
  * scorecard-opportunities.mjs
  *
  * Scorecard auto-verificable del plan de oportunidades
- * docs/backlog/PLAN-opportunity-scan-2026-06-21.md.
+ * docs/archive/backlog/PLAN-opportunity-scan-2026-06-21.md (plan CERRADO 2026-06-25;
+ * archivado tras alcanzar 16/16).
  *
  * Recalcula el estado de cada ítem code-verificable (OPP-01..OPP-12, OPP-15,
  * OPP-16) inspeccionando el código real del repo — no checkboxes — así que no
@@ -24,7 +25,7 @@ import { readFileSync, writeFileSync, existsSync, readdirSync, statSync } from "
 import { join } from "node:path";
 
 const ROOT = process.cwd();
-const DOC = "docs/backlog/PLAN-opportunity-scan-2026-06-21.md";
+const DOC = "docs/archive/backlog/PLAN-opportunity-scan-2026-06-21.md";
 const WRITE = process.argv.includes("--write");
 
 const AUTO_START = "<!-- SCORECARD:AUTO:START -->";

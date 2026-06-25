@@ -32,20 +32,16 @@ Fuente base: [Gap Audit v1](../operations/audits/closed/2026/2026-02-27_gap-audi
 
 ## Detalle ED-016 — Inversión según edad, riesgo y objetivos
 
-> **Estado al 2026-06-25 (IN_PROGRESS):** Gate 01 (brief) aprobado por Carlos Ortega.
-> Gate 02 research **verificado con fetch real** de fuentes CMF/SII/BCN (ver
-> `docs/editorial/artifacts/.../02-research.md` §Verification Log). Gate 03 outline y gate 04
-> draft completados; blog file `src/data/blog/como-elegir-inversion-segun-plazo-riesgo-objetivos.mdx`
-> (`draft: true`) y componente `src/components/InversionReadinessChecklist.astro` materializados
-> y **render-testeados** (Playwright, 6/6 escenarios). Migración canónica completa:
+> **Estado al 2026-06-25 (DONE — PUBLICADO):** todos los gates cerrados, incluido gate 07
+> publish-packet con sign-off de Carlos Ortega. Publicado en commit `349d816b` (PR #287):
+> `src/data/blog/como-elegir-inversion-segun-plazo-riesgo-objetivos.mdx` con `draft: false`,
+> `pubDate: 2026-06-25`, `heroImage` y componente `src/components/InversionReadinessChecklist.astro`.
+> Histórico de pipeline: Gate 01 (brief) aprobado; Gate 02 research verificado con fetch real
+> de fuentes CMF/SII/BCN; Gate 03 outline + Gate 04 draft completados y render-testeados
+> (Playwright, 6/6 escenarios); migración canónica en
 > `artifacts/editorial/como-elegir-inversion-segun-plazo-riesgo-objetivos/20260625-1405-ed016/`
-> (`check:editorial-artifacts` compliant en modo estricto). **Gate 06 compliance: PASS 9.88/10**
-> (sesión fresca adversarial; cero defectos, cero TODO:SOURCE) tras dos rondas de remediación
-> DraftAgent (advisory estático del componente, interlinking outbound, URL asesores CMF/Ley Fintec,
-> eliminación del marcador TOC vestigial, ejemplos de gastos esenciales). Reporte en
-> `artifacts/editorial/.../20260625-1405-ed016/06-compliance.md`.
-> **Único pendiente: gate 07 publish-packet (humano)** — `pubDate`, `heroImage`, `draft: false`
-> y sign-off de Carlos Ortega.
+> (`check:editorial-artifacts` compliant en modo estricto); **Gate 06 compliance PASS 9.88/10**
+> (sesión fresca adversarial; cero defectos, cero TODO:SOURCE).
 
 **Idea:** artículo educativo para responder "dónde invertir mi dinero según edad, tolerancia al riesgo y objetivos" como marco de decisión, no como recomendación de productos específicos.
 

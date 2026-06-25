@@ -1,7 +1,7 @@
 # PLAN — Scan estratégico de oportunidades (2026-06-21)
 
 **Tipo:** Plan de implementación accionable + scorecard auto-verificable
-**Estado:** ABIERTO
+**Estado:** CERRADO (2026-06-25 — 16/16 verificado: AUTO 14/14, manuales OPP-13/OPP-14 con sign-off)
 **Autor del scan:** Sesión de agente senior de producto/growth (2026-06-21)
 **Naturaleza:** Búsqueda de oportunidades de alto ROI, **no** auditoría técnica (esa la cubre `/improve`).
 
@@ -150,9 +150,9 @@ contra el código real (no driftea: verifica la realidad, no checkboxes). La tab
 <!-- Generado por scripts/scorecard-opportunities.mjs — no editar a mano este bloque.
      Corre: pnpm run scorecard:opportunities -- --write -->
 
-_Última verificación automática: 2026-06-23._
+_Última verificación automática: 2026-06-25._
 
-**Avance:** 14/16 (88%) · verificables 14/14 · manuales 0/2
+**Avance:** 16/16 (100%) · verificables 14/14 · manuales 2/2
 
 | Estado | ID | Oportunidad | Ventana | Evidencia |
 |---|---|---|---|---|
