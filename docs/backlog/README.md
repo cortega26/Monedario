@@ -16,7 +16,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | Orden | Item | Por qué ahora |
 |-------|------|---------------|
 | 1 | SEO striking-distance (siguientes calculadoras) | Lever de crecimiento validado por GSC; ya aplicado a comisiones-afp/operacion-renta/conversor-uf |
-| 2 | `TD-0075` / `TD-0077` (medición LCP + ADR) | Únicos TDs con ROI claro pendientes de decisión arquitectural |
+| ~~2~~ | ~~`TD-0075` / `TD-0077` (medición LCP + ADR)~~ | **Cerrados 2026-06-25** (`ADR-20260625-astro-features-adoption.md`): `inlineStylesheets:"never"` se mantiene (medido), `prefetch` adoptado, `viewTransitions` diferida |
 | 3 | Programa Audit of Small Details (`ASD-###`) | Programa activo audit-only; ejecutar por batches |
 
 ### Pendiente — implementación por código

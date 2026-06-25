@@ -159,7 +159,21 @@ export default defineConfig({
   site: SITE.website,
   base: SITE_BASE,
   trailingSlash: "always",
+  // ADR-20260625 (TD-0077): adopted. Multi-page content site benefits from
+  // prefetching internal links; "hover" keeps it conservative (no eager viewport
+  // downloads on link-dense blog/glossary pages) while making clicked navigations
+  // feel instant.
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: "hover",
+  },
   build: {
+    // Decision recorded in docs/adr/ADR-20260625-astro-features-adoption.md (TD-0075):
+    // the dominant render-blocking asset is the ~104 KB shared Tailwind stylesheet,
+    // which exceeds Astro's inline threshold and stays external under "auto" too.
+    // Measured LCP delta "never" vs "auto" was within run-to-run noise (±150 ms),
+    // so we keep CSS external (single cacheable file, better repeat-visit + minimal
+    // inline-style surface for the CSP/SRI shield).
     inlineStylesheets: "never",
   },
   integrations: [
