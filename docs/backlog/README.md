@@ -127,5 +127,6 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 |---|---|
 | `docs/archive/backlog/PLAN-publish-signed-off-sprint-2b-articles-2026-05-11.md` | Declaraba `Status: done` y outcome publicado |
 | `docs/archive/backlog/PLAN-strategic-repository-modernization-2026-05-11.md` | Declaraba `Status: Completed` con closure notes y evidencia |
+| `docs/archive/backlog/PLAN-opportunity-scan-2026-06-21.md` | **CERRADO 2026-06-25** — 16/16 verificado (`pnpm run scorecard:opportunities`: AUTO 14/14; manuales OPP-13 bancos-fintech y OPP-14 migrantes con sign-off) |
 
 Archived completed plans → `docs/archive/backlog/`.
