@@ -13,9 +13,9 @@ Fecha de corte: 2026-05-30
 
 ### Estado de avance (2026-05-30)
 
-- **Completados:** 89 TD únicos (`TD-0001`..`TD-0066`, `TD-0068`..`TD-0071`, `TD-0073`, `TD-0074`, `TD-0076`, `TD-0078`, `TD-0080`, `TD-0082`..`TD-0094`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
+- **Completados:** 91 TD únicos (`TD-0001`..`TD-0066`, `TD-0068`..`TD-0071`, `TD-0073`..`TD-0078` (excl. `TD-0079`), `TD-0080`, `TD-0082`..`TD-0094`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
 - **En progreso:** 0
-- **Backlog sin iniciar:** 4 (`TD-0067`, `TD-0075`, `TD-0077`, `TD-0081`)
+- **Backlog sin iniciar:** 2 (`TD-0067`, `TD-0081`)
 - **Backlog en validación/diseño:** 1 (`TD-0079` bloqueado por incompatibilidad WOFF2/Satori). `TD-0072` cerrado el 2026-06-23 (los 2 scripts restantes son código activo, no one-off).
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -40,7 +40,7 @@ Fecha de corte: 2026-05-30
 ### Top riesgos restantes
 
 - Drift legal/YMYL de auditoría 2026-05-20: `TD-0084`, `TD-0085`, `TD-0086`.
-- Auditoría de drift 2026-05-20 **cerrada al 100%** (`TD-0084`..`TD-0094`) el 2026-05-30. Riesgos restantes: deuda estructural/medición (`TD-0067`, `TD-0075`, `TD-0077`, `TD-0081`) y `TD-0079` bloqueado.
+- Auditoría de drift 2026-05-20 **cerrada al 100%** (`TD-0084`..`TD-0094`) el 2026-05-30. Riesgos restantes: deuda estructural (`TD-0067`, `TD-0081`) y `TD-0079` bloqueado. `TD-0075`/`TD-0077` cerrados el 2026-06-25 (`ADR-20260625-astro-features-adoption.md`).
 - Actualización de julio 2026: actualizar `imm` en `economic-parameters.snapshot.json` cuando se publique el decreto de reajuste del IMM.
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 
@@ -48,7 +48,7 @@ Fecha de corte: 2026-05-30
 
 - **Quick wins restantes:** ninguno.
 - **Quick win parcial:** `TD-0072` requiere decidir si se refactoriza `editorial-copy-rules.mjs` y si `download-og-fonts.mjs` debe seguir como regenerador activo de fuentes OG.
-- **P2 con decisión arquitectural:** `TD-0075` (`inlineStylesheets`), `TD-0077` (Astro features: prefetch/viewTransitions) — requieren medición y ADR.
+- **P2 con decisión arquitectural:** ~~`TD-0075` (`inlineStylesheets`), `TD-0077` (Astro features)~~ **cerrados 2026-06-25** — medidos con Lighthouse y decididos en `ADR-20260625-astro-features-adoption.md` (mantener `inlineStylesheets:"never"`, adoptar `prefetch`, diferir `viewTransitions`).
 - **Bloqueado/reevaluar:** `TD-0079` no debe ejecutarse tal como está: `src/utils/loadGoogleFont.ts` rechaza WOFF2 para Satori, por lo que los `.ttf` de Inter son necesarios para OG mientras no cambie el flujo.
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 - Actualizar `imm` en snapshot cada julio con el nuevo decreto presidencial.
@@ -1924,13 +1924,14 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Esfuerzo estimado:** M
 - **Propuesta de solución:** (1) Medir LCP actual en `monedario.cl` con WebPageTest mobile slow-3G en 3 rutas (home, post largo, calculadora). (2) Hacer build local con `inlineStylesheets: "auto"`, medir LCP en preview. (3) Si la mejora es >100ms y el HTML no se infla >30%, adoptar. Si no, registrar ADR justificando mantener `"never"`.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] Existe medición de LCP en 3 rutas con ambas configuraciones.
-  - [ ] Decisión documentada en `docs/adr/`.
-  - [ ] Si se adopta `"auto"`, `astro.config.ts` actualizado y Lighthouse CI verde.
+  - [x] Existe medición de LCP en 3 rutas con ambas configuraciones. *(5 rutas, desktop + mobile, mediana de 3 runs c/u con el harness `lighthouserc*.cjs`)*
+  - [x] Decisión documentada en `docs/adr/`. *(`ADR-20260625-astro-features-adoption.md`)*
+  - [x] Si se adopta `"auto"`, `astro.config.ts` actualizado y Lighthouse CI verde. *(no se adoptó: `"never"` se mantiene con justificación medida)*
 - **Owner:** —
-- **Estado:** Abierto
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-15
-- **Última actualización:** 2026-05-15
+- **Última actualización:** 2026-06-25
+- **Nota de cierre 2026-06-25:** Se midió `never` vs `auto` en 5 rutas (home, post largo, calculadora, hub e índice de guías), desktop y mobile, mediana de 3 runs. Delta de LCP dentro del ruido del harness (±150 ms): la ruta `/guias/` es byte-idéntica entre configs y aun así varió +147 ms. Causa raíz: el CSS render-blocking dominante (`Footer.*.css` ≈ 104 KB de Tailwind) supera el umbral de inline (~4 KB) y queda externo bajo `"auto"` también; `"auto"` solo inlinea CSS pequeño (solo la home cambió, +3.5% HTML). **Decisión: mantener `"never"`** (CSS externo cacheable + menor superficie inline para el CSP/SRI shield). Documentado en `ADR-20260625-astro-features-adoption.md`.
 
 ## TD-0076 — HTML hotspots: `tags/` (379 KB) y `archives/` (176 KB)
 - **ID:** TD-0076
@@ -1965,13 +1966,14 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Esfuerzo estimado:** M
 - **Propuesta de solución:** Crear `docs/adr/ADR-YYYYMMDD-astro-features-adoption.md` con tabla: feature, estado (no evaluada / evaluada-descartada / activa), razón, fecha de revisión próxima. Para `prefetch`: bajo costo, alto beneficio en navegación entre calcs y blog — probablemente adoptar. Para `viewTransitions`: requiere medición de impacto en LCP/CLS. Para `inlineStylesheets`: cubierto por TD-0075.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] ADR creado con decisión justificada por feature.
-  - [ ] Si se adopta alguna, `astro.config.ts` actualizado.
-  - [ ] Lighthouse CI valida que ninguna degrade Performance >5 puntos.
+  - [x] ADR creado con decisión justificada por feature. *(`ADR-20260625-astro-features-adoption.md`, tabla por feature)*
+  - [x] Si se adopta alguna, `astro.config.ts` actualizado. *(`prefetch: { prefetchAll: true, defaultStrategy: "hover" }`)*
+  - [x] Lighthouse CI valida que ninguna degrade Performance >5 puntos. *(mobile con prefetch: Performance idéntica al baseline 100/98/100/100/99, TBT 0)*
 - **Owner:** —
-- **Estado:** Abierto
+- **Estado:** Completado
 - **Fecha de creación:** 2026-05-15
-- **Última actualización:** 2026-05-15
+- **Última actualización:** 2026-06-25
+- **Nota de cierre 2026-06-25:** ADR `ADR-20260625-astro-features-adoption.md` con tabla de decisión por feature: (1) **`inlineStylesheets`** → mantener `"never"` (cruza a TD-0075, medido). (2) **`prefetch`** → **adoptado** con `prefetchAll: true` + `defaultStrategy: "hover"`; build limpia bajo el CSP/SRI shield (script same-origin cubierto por `'self'`), TBT 0, sin regresión de Performance. (3) **`viewTransitions` (`<ClientRouter />`)** → evaluada y **diferida** (requiere router de cliente que interactúa con SW + CSP + analytics + scroll; beneficio cosmético sobre un sitio que ya pinta < 1.7 s mobile), con criterio de revisión registrado.
 
 ## TD-0078 — Service Worker cache version sin auto-bump por build
 - **ID:** TD-0078
