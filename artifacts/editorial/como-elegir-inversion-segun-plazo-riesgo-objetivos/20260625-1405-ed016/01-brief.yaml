@@ -1,0 +1,19 @@
+slug: como-elegir-inversion-segun-plazo-riesgo-objetivos
+title: "Cómo elegir una inversión en Chile: plazo, riesgo y objetivos"
+category: ahorro-inversion
+cluster: ahorro-e-inversion
+topicRole: support
+canonicalTopic: elegir-instrumento-ahorro-inversion
+canonicalTopic_note: "Decisión 2026-06-25 (gate 07): ED-016 es support del pilar y comparte su canonicalTopic 'elegir-instrumento-ahorro-inversion'. El topic propuesto inicialmente 'criterios-decision-inversion' se descartó porque un canonicalTopic propio exigía un owner y ED-016 es support; el registro de topics se limpió en consecuencia."
+ymyl_topic: "marco de decisión previo a elegir un instrumento de inversión: horizonte, liquidez, tolerancia a la pérdida y tributación"
+ymyl_risk: medium
+fecha_corte: 2026-06-25
+requires_calculation: false
+math_audit_required: false
+run_id: 20260625-1405-ed016
+backlog_id: ED-016
+brief_approved_by: "Carlos Ortega — gate 01 aprobado en sesión 2026-06-25"
+detailed_brief: docs/editorial/artifacts/briefs/como-elegir-inversion-segun-plazo-riesgo-objetivos.md
+legacy_evidence: docs/editorial/artifacts/como-elegir-inversion-segun-plazo-riesgo-objetivos/
+differentiator: "Ángulo de preparación previa ('¿estás listo?'), no ranking de instrumentos. Incluye checklist interactivo InversionReadinessChecklist (preparación, nunca recomendación de producto)."
+note: "Brief completo (scope, formato híbrido, lógica del checklist, prohibiciones) en detailed_brief. Research verificado con fetch real de fuentes el 2026-06-25 — ver legacy_evidence/02-research.md §Verification Log. Gate 06 (compliance, sesión fresca) y gate 07 (publish, humano) pendientes."

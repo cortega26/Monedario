@@ -1,7 +1,7 @@
 {
   "extends": "astro/tsconfigs/strict",
   "include": [".astro/types.d.ts", "**/*"],
-  "exclude": ["dist", "public/pagefind", "workers/**"],
+  "exclude": ["dist", "public/pagefind", "workers/**", "coverage-html"],
   "compilerOptions": {
     "ignoreDeprecations": "6.0",
     "baseUrl": ".",

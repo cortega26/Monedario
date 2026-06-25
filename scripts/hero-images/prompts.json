@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceManifest": "scripts/hero-images/manifest.json",
-  "count": 52,
+  "count": 53,
   "entries": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -233,6 +233,47 @@
         "matchedKeywords": [
           "afp",
           "cambio de afp"
+        ]
+      }
+    },
+    {
+      "slug": "como-elegir-inversion-segun-plazo-riesgo-objetivos",
+      "sourcePath": "src/data/blog/como-elegir-inversion-segun-plazo-riesgo-objetivos.mdx",
+      "targetImagePath": "/images/hero/como-elegir-inversion-segun-plazo-riesgo-objetivos.avif",
+      "template": "A",
+      "promptTrack": "A",
+      "promptTrackLabel": "Human Editorial Scene",
+      "approvedModelId": "ahorro",
+      "sceneId": "A:ahorro--como-elegir-inversion-segun-plazo-riesgo-objetivos",
+      "readerSituation": "Persona ordenando plazo, riesgo, liquidez y objetivos antes de elegir una inversion.",
+      "primaryIntent": "guiar",
+      "toneClass": "educativo",
+      "visualEvidence": [
+        "slug override: investment decision guide — 'previsional' appears only in the advisory and must not select the pension scene",
+        "primary intent classified as 'guiar' from article text",
+        "reader situation anchored to scene rule 'decision-inversion'"
+      ],
+      "palette": {
+        "category": "Educativo / Conceptos / Guias",
+        "hex": "#4f46e5"
+      },
+      "modelPlan": {
+        "provider": "openai",
+        "model": "gpt-image-1",
+        "quality": "auto",
+        "size": "1536x1024"
+      },
+      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #4f46e5. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: one simplified human figure with a checklist pauses before a path that branches into three clear directions.\nUse only the checklist and the three-way path as the decision metaphor; do not depict a specific financial product.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: build the main action in the left or center-left area, with asymmetry, clear focal hierarchy, and breathing room on the right. Keep key elements inside the safe area.\nSemantic focus: evaluating horizon, risk, liquidity, and goals before choosing an investment.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nAvoid photorealism, 3D rendering, CGI, neon, fake UI, clutter, golden-coin finance clichés, and malformed interfaces.",
+      "promptHash": "ac6cf336a03cf35d69936a2d5fb51e2863b871eb2e76e324476041ff71ba2afc",
+      "selectors": {
+        "ruleId": "decision-inversion",
+        "category": "ahorro-inversion",
+        "cluster": "ahorro-e-inversion",
+        "matchedKeywords": [
+          "inversion",
+          "plazo",
+          "riesgo",
+          "objetivos"
         ]
       }
     },

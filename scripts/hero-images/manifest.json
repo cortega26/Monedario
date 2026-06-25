@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "source": "src/data/blog/**",
   "inclusionRule": "valid frontmatter (drafts included for pre-publication image planning)",
-  "articleCount": 52,
+  "articleCount": 53,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -68,9 +68,8 @@
         "¿Cuánto cuesta? Comisiones sin sorpresas"
       ],
       "bodyExcerpt": "> **Información vigente al 2026-06-17.** Las tarifas, productos y condiciones de bancos y fintech cambian con frecuencia. Antes de contratar, verifica directamente con la entidad y en las fuentes oficiales que citamos. Abrir una cuenta debería ser simple, pero cuando te pones a mirar aparece un menú que confunde: cuenta vista, cuenta corriente, cuenta de ahorro, CuentaRUT, billeteras digitales, \"cuentas fintech\". Y todas prometen lo mismo: que tu plata esté ahí cuando la necesitas. La buena noticia es que no necesitas entenderlas todas. Necesitas entender **cuál calza con lo que vas a hacer**: recibir el sueldo, mover dinero del día a día, juntar para una meta o probar una app nueva. Esta guía te ayuda a decidir con criterios estables, sin recomendarte una marca ni empujarte a un producto. ## ¿Qué cuenta me conviene para mi dinero del día a día? Si lo que quieres es **recibir tu sueldo y mover plata todos los días**, la cuenta a la que accede prácticamente cualquier persona es una **cuenta vista**. No te pide un nivel de renta y no usa cheques: funciona con tarjeta de débito, transferencias y giros. La CuentaRUT de BancoEstado es el ejemplo más conocido, pero casi todos los bancos ",
-      "wordCount": 1706,
-      "sourceFile": "bancos-y-fintech-chile.md",
-      "draft": true
+      "wordCount": 1714,
+      "sourceFile": "bancos-y-fintech-chile.md"
     },
     {
       "slug": "boleta-honorarios-2026-retencion-cobertura",
@@ -204,6 +203,41 @@
       "bodyExcerpt": "Cambiarse de AFP es uno de los trámites más simples que puedes hacer para mejorar tu situación previsional, y sin embargo la mayoría de las personas nunca lo hace. En esta guía te explicamos cómo funciona el proceso, qué debes evaluar y qué cambia con la Reforma de Pensiones aprobada en 2025. > **Revisión editorial 2026-04-22:** se revalidaron las comisiones vigentes, la regla de permanencia de nuevos afiliados en AFP Uno y el calendario base de la Ley 21.735 contra la Superintendencia de Pensiones y BCN. Si tu duda real es sobre el sistema AFP pero no sobre el trámite de cambio: — — ## Tabla de contenidos ## ¿Puedo cambiarme de AFP? Sí, cualquier afiliado puede cambiarse de AFP de forma gratuita y sin necesidad de dar explicaciones. El trámite está regulado por ley y las AFP no pueden cobrarte ni ofrecerte incentivos económicos por cambiarte — está expresamente prohibido. Hay una excepción importante: si eres trabajador nuevo y te incorporaste al sistema previsional después del 1 de octubre de 2025, debes permanecer obligatoriamente 24 meses en AFP Uno, que es la AFP adjudicataria de la licitación de nuevos afiliados para el período 2025–2027. Sin embargo, si durante ese período A",
       "wordCount": 1227,
       "sourceFile": "como-cambiarse-de-afp.md"
+    },
+    {
+      "slug": "como-elegir-inversion-segun-plazo-riesgo-objetivos",
+      "title": "Cómo elegir una inversión en Chile: plazo, riesgo y objetivos",
+      "tags": [
+        "inversiones",
+        "ahorro",
+        "educacion-financiera",
+        "plazo",
+        "riesgo"
+      ],
+      "category": "ahorro-inversion",
+      "cluster": "ahorro-e-inversion",
+      "sourcePath": "src/data/blog/como-elegir-inversion-segun-plazo-riesgo-objetivos.mdx",
+      "heroImage": "/images/hero/como-elegir-inversion-segun-plazo-riesgo-objetivos.avif",
+      "summary": "import InversionReadinessChecklist from \"@/components/InversionReadinessChecklist.astro\"; Información vigente al 2026 06 25. Ante cambios normativos o en las condiciones de los instrumentos financieros, verifica en las fuentes oficiales referenciadas al final de este artículo. La...",
+      "leadParagraphs": [
+        "import InversionReadinessChecklist from \"@/components/InversionReadinessChecklist.astro\";",
+        "> **Información vigente al 2026-06-25.** Ante cambios normativos o en las condiciones > de los instrumentos financieros, verifica en las fuentes oficiales referenciadas > al final de este artículo.",
+        "La pregunta \"¿dónde invierto mi plata?\" tiene una respuesta difícil de dar y una respuesta fácil de dar. La fácil es nombrar instrumentos. La difícil es hacer las preguntas previas: ¿cuándo necesitas ese dinero?, ¿qué pasa si baja su valor?, ¿tienes lo que necesitas para no tocar esa inversión?"
+      ],
+      "headings": [
+        "Por qué esta guía no te dice en qué invertir",
+        "¿Estás listo para invertir?",
+        "Las cinco preguntas que importan antes de elegir",
+        "1. ¿Tienes el fondo de emergencia separado?",
+        "2. ¿Cuál es tu horizonte real?",
+        "3. ¿Necesitarás liquidez en el camino?",
+        "4. ¿Cuánta caída puedes tolerar sin vender?",
+        "5. ¿Sabes cómo tributa lo que vas a comprar?"
+      ],
+      "bodyExcerpt": "import InversionReadinessChecklist from \"@/components/InversionReadinessChecklist.astro\"; > **Información vigente al 2026-06-25.** Ante cambios normativos o en las condiciones > de los instrumentos financieros, verifica en las fuentes oficiales referenciadas > al final de este artículo. La pregunta \"¿dónde invierto mi plata?\" tiene una respuesta difícil de dar y una respuesta fácil de dar. La fácil es nombrar instrumentos. La difícil es hacer las preguntas previas: ¿cuándo necesitas ese dinero?, ¿qué pasa si baja su valor?, ¿tienes lo que necesitas para no tocar esa inversión? Esta guía no te da la respuesta fácil. Te ayuda con las preguntas que importan antes — para que cuando compares instrumentos, el criterio sea tuyo y no de quien te vende el producto. Si todavía no tienes un , ese es el primer paso. Esta guía asume que ya lo tienes o que lo estás evaluando en paralelo. > **Contenido educativo.** No constituye asesoría financiera, tributaria ni previsional > personalizada. Las decisiones de inversión dependen de tu situación, horizonte, > tolerancia a pérdidas, liquidez, costos e impuestos. Si tu situación es compleja, > considera consultar un asesor de inversión registrado en ",
+      "wordCount": 2055,
+      "sourceFile": "como-elegir-inversion-segun-plazo-riesgo-objetivos.mdx",
+      "draft": true
     },
     {
       "slug": "como-hacer-presupuesto-mensual-chile",

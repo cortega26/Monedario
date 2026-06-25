@@ -5,7 +5,7 @@
   "source": "src/data/blog/**",
   "publishableRule": "draft !== true",
   "ordering": "slug asc",
-  "publishedCount": 51,
+  "publishedCount": 52,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -22,6 +22,22 @@
       "heroImage": "/images/hero/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.avif",
       "summary": "Elegir en qué instrumento poner tu plata es una de las decisiones financieras más frecuentes —y más mal tomadas— por personas que ya tienen claro que quieren ahorrar, pero no saben bien cómo organizarlo. Esta guía te ayuda a comparar depósitos a plazo, fondos mutuos y ETFs según...",
       "updatedDate": "2026-04-22T00:00:00Z"
+    },
+    {
+      "slug": "bancos-y-fintech-chile",
+      "title": "Bancos y fintech en Chile: cómo elegir dónde tener tu cuenta",
+      "category": "general",
+      "cluster": "bancos-fintech",
+      "tags": [
+        "bancos",
+        "fintech",
+        "cuenta-vista",
+        "cuentarut",
+        "finanzas-personales"
+      ],
+      "sourcePath": "src/data/blog/bancos-y-fintech-chile.md",
+      "heroImage": "/images/hero/bancos-y-fintech-chile.avif",
+      "summary": "Información vigente al 2026 06 17. Las tarifas, productos y condiciones de bancos y fintech cambian con frecuencia. Antes de contratar, verifica directamente con la entidad y en las fuentes oficiales que citamos. Abrir una cuenta debería ser simple, pero cuando te pones a mirar a..."
     },
     {
       "slug": "boleta-honorarios-2026-retencion-cobertura",

@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-06-23T16:41:59.831Z",
-  "total": 52,
+  "generatedAt": "2026-06-25T19:08:01.350Z",
+  "total": 53,
   "routes": [
     {
       "file": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.md",
@@ -25,6 +25,10 @@
     {
       "file": "como-cambiarse-de-afp.md",
       "route": "/posts/como-cambiarse-de-afp/"
+    },
+    {
+      "file": "como-elegir-inversion-segun-plazo-riesgo-objetivos.mdx",
+      "route": "/posts/como-elegir-inversion-segun-plazo-riesgo-objetivos/"
     },
     {
       "file": "como-hacer-presupuesto-mensual-chile.md",
