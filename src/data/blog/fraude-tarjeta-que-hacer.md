@@ -15,6 +15,8 @@ tags:
   - derechos
 category: seguridad-financiera
 cluster: seguridad-financiera
+topicRole: owner
+canonicalTopic: fraude-tarjeta-ley-20009
 description: "Qué hacer ante un fraude con tarjeta en Chile: pasos inmediatos, plazos clave y qué establece la Ley 20.009 sobre devolución del dinero."
 heroImage: /images/hero/fraude-tarjeta-que-hacer.avif
 reviewPolicy:

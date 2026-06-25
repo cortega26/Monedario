@@ -13,6 +13,8 @@ tags:
   - cmf
 category: seguridad-financiera
 cluster: seguridad-financiera
+topicRole: owner
+canonicalTopic: suplantacion-identidad-creditos
 lang: es-CL
 featured: false
 draft: false

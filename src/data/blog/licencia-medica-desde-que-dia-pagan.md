@@ -13,6 +13,8 @@ tags:
   - trabajo
 category: empleo-ingresos
 cluster: empleo-ingresos
+topicRole: owner
+canonicalTopic: licencia-medica-pago
 lang: es-CL
 featured: false
 draft: false
