@@ -15,8 +15,9 @@ Fecha de corte: 2026-05-30
 
 - **Completados:** 91 TD únicos (`TD-0001`..`TD-0066`, `TD-0068`..`TD-0071`, `TD-0073`..`TD-0078` (excl. `TD-0079`), `TD-0080`, `TD-0082`..`TD-0094`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
 - **En progreso:** 0
-- **Backlog sin iniciar:** 2 (`TD-0067`, `TD-0081`)
-- **Backlog en validación/diseño:** 1 (`TD-0079` bloqueado por incompatibilidad WOFF2/Satori). `TD-0072` cerrado el 2026-06-23 (los 2 scripts restantes son código activo, no one-off).
+- **Backlog sin iniciar:** 1 (`TD-0081`)
+- **Cerrados por hipótesis invalidada:** `TD-0067` (2026-06-25 — los use-cases ya retornan números puros; el formateo ya vive en las páginas) y `TD-0079` (bloqueado por incompatibilidad WOFF2/Satori).
+- **Nota histórica:** `TD-0072` cerrado el 2026-06-23 (los 2 scripts restantes son código activo, no one-off).
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
 > `FIX-LINKS-CALC`: ampliado `check-internal-links.mjs` para cubrir validación de rutas `/calculadoras/`.
@@ -40,7 +41,7 @@ Fecha de corte: 2026-05-30
 ### Top riesgos restantes
 
 - Drift legal/YMYL de auditoría 2026-05-20: `TD-0084`, `TD-0085`, `TD-0086`.
-- Auditoría de drift 2026-05-20 **cerrada al 100%** (`TD-0084`..`TD-0094`) el 2026-05-30. Riesgos restantes: deuda estructural (`TD-0067`, `TD-0081`) y `TD-0079` bloqueado. `TD-0075`/`TD-0077` cerrados el 2026-06-25 (`ADR-20260625-astro-features-adoption.md`).
+- Auditoría de drift 2026-05-20 **cerrada al 100%** (`TD-0084`..`TD-0094`) el 2026-05-30. Riesgos restantes: deuda estructural (`TD-0081`) y `TD-0079` bloqueado. `TD-0075`/`TD-0077` cerrados el 2026-06-25 (`ADR-20260625-astro-features-adoption.md`); `TD-0067` cerrado el 2026-06-25 (hipótesis invalidada).
 - Actualización de julio 2026: actualizar `imm` en `economic-parameters.snapshot.json` cuando se publique el decreto de reajuste del IMM.
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 
@@ -1756,13 +1757,14 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Esfuerzo estimado:** M
 - **Propuesta de solución:** Para cada use-case top-3, extraer un `<UseCase>Presenter.ts` que tome el resultado puro y devuelva el shape formateado. El use-case se queda con números/booleanos; el presenter aplica `fmt()` de `utils/indicadores.ts`. Tests del use-case se vuelven más simples (asertos numéricos en vez de strings).
 - **Criterios de cierre (checklist verificable):**
-  - [ ] Top 3 use-cases por debajo de 200 LOC.
-  - [ ] Existe `application/formatters/` o `infrastructure/presenters/` con los presenters extraídos.
-  - [ ] Tests existentes pasan sin cambio mayor (solo ajuste para usar presenter cuando el aserto era sobre string formateado).
+  - [—] Top 3 use-cases por debajo de 200 LOC. *(N/A — ver nota de cierre)*
+  - [—] Existe `application/formatters/` o `infrastructure/presenters/` con los presenters extraídos. *(N/A — no hay formateo que extraer)*
+  - [—] Tests existentes pasan sin cambio mayor. *(no se modificó código; baseline 61/61 verde)*
 - **Owner:** —
-- **Estado:** Abierto
+- **Estado:** Cerrado — hipótesis invalidada
 - **Fecha de creación:** 2026-05-15
-- **Última actualización:** 2026-05-15
+- **Última actualización:** 2026-06-25
+- **Nota de cierre 2026-06-25:** La premisa ("los use-cases devuelven strings ya formateados CLP/UF/fechas y hay que delegar formateo a presenters") **no se sostiene contra el código real**. Verificación de los tres archivos completos: `EstimateFiniquito` (261 LOC), `CalculateApvComparison` (294 LOC) y `SimulateRetirementProjection` (291 LOC) retornan **DTOs numéricos puros**; lo único string es narrativa de dominio (`assumptions`, `excludedBenefits`, labels de escenario "Conservador/Base/Agresivo") y mensajes de error, no formateo de moneda. `grep` de `fmt|formatCLP|toLocaleString` en los tres = 0. El formateo **ya vive en la capa de presentación**: `apv.astro` (39 llamadas a `fmt()`), `simulador-jubilacion.astro` (11), `finiquito-indemnizacion.astro` (client-side). Es decir, la separación dominio/presentación que el TD pedía **ya existe** y los use-cases ya son reutilizables para una API JSON sin cambios. La longitud >200 LOC es complejidad legítima de dominio (validación + interfaces de salida + cálculo secuencial con citas legales), no un smell de presentación; forzar el umbral con extracción de "presenters" formatearía la nada o reubicaría interfaces de tipos — churn cosmético sobre código YMYL con riesgo de regresión y beneficio nulo. Se cierra sin tocar código de dominio, en paralelo al criterio de `TD-0079` (hipótesis invalidada).
 
 ## TD-0068 — Cobertura de tests no medida; 5 calculadoras sin test directo
 - **ID:** TD-0068
