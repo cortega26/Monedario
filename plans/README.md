@@ -46,9 +46,9 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 
 ## Pendientes (trabajo abierto)
 
-| Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
-|------|--------|-----------|----------|------------|--------|
-| [034](034-conversor-uf-historic-fetch-error-state.md) | Error real (no «Cargando…» eterno) al fallar la carga del histórico UF | P3 | S | — | TODO |
+_Sin trabajo abierto._ Todos los planes de las auditorías 001–034 están DONE y
+archivados (ver «Completados — archivados»). La próxima auditoría continuará la
+numeración monotónica en 035.
 
 > Verificado el 2026-06-15: 022 y 023 siguen sin implementar en el código
 > (no existe `src/utils/formatCLP.ts`; los gates `compare-*.mjs` no tienen
@@ -111,6 +111,25 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 > `sueldo-liquido`.
 > `astro check` 0 errores; 733 tests pasando (la única falla, `cluster-source-of-truth`,
 > es preexistente en `main` y ajena a este cambio).
+>
+> **034 EJECUTADO, APROBADO Y MERGEADO (2026-06-26, vía `/improve execute 034`):**
+> ejecutor en worktree aislado (`agent-afa53c254ad5c9a0f`, commit `7c290c1c`,
+> `fix(calc): mostrar error real cuando falla la carga del histórico UF`). Diff
+> limpio, un solo archivo en alcance (`src/pages/calculadoras/conversor-uf.astro`,
+> +5/-2): `loadHistoricData` ahora trata respuesta no-OK como fallo (`if (!res.ok)
+> throw`) y resetea `historicData`/`historicFetchPromise` en el catch (permite
+> reintento), y la rama de datos vacíos de `buscarUfHistorica` muestra un error real
+> en vez del falso «Cargando datos históricos…» eterno. **Revisión (tech-lead)
+> APROBADA:** greps 0/1 (literal viejo fuera, mensaje nuevo presente); `astro check`
+> 0 errores; eslint/prettier/`check:reader-facing-copy` exit 0; alcance limpio (1
+> archivo). **Verificación de runtime hecha por el revisor con Playwright** (el
+> ejecutor no podía manejar navegador): contra `astro preview`, abortando el endpoint
+> `/api/uf-historico-lookup.json` la UI muestra el mensaje honesto y NO un spinner;
+> al restaurar el endpoint y reintentar, el box de error se oculta y se renderiza un
+> valor (la ruta de reintento funciona porque `historicFetchPromise` se resetea).
+> **MERGEADO a `main`** por fast-forward (`63c3121f..7c290c1c`, instruido por el
+> operador) y empujado a `origin/main`. Archivado por cierre atómico. **Backlog de
+> planes vacío: 001–034 todos DONE.**
 >
 > **033 EJECUTADO, APROBADO Y MERGEADO (2026-06-26, vía `/improve execute 033`):**
 > ejecutor en worktree aislado (`agent-ad5fdfb2e33f80d29`, commit `2ff547eb`,
@@ -202,6 +221,7 @@ Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main
 | [031](archive/031-iva-calculator-backlinks.md) | Backlinks internos a la calculadora de IVA (glosario + post) | P3 | S | DONE (commit `fcdf551c`) |
 | [032](archive/032-calculator-accessibility-semantics.md) | A11y de calculadoras: foco al resultado, asociación hint/error, foco visible en radios | P2 | M | DONE (commit `702b7cc2`) |
 | [033](archive/033-calculator-datemodified-from-lastmod-index.md) | `dateModified` de calculadoras desde `page-lastmod-index.json` | P3 | S | DONE (commit `2ff547eb`) |
+| [034](archive/034-conversor-uf-historic-fetch-error-state.md) | Error real (no «Cargando…» eterno) al fallar la carga del histórico UF | P3 | S | DONE (commit `7c290c1c`) |
 | [022](archive/022-consolidate-clp-formatter.md) | Consolidar formateador CLP en módulo leaf único | P3 | S | DONE (PR #243, squash `2e3c1e4a`) |
 | [023](archive/023-gate-floor-and-reddit-alert-atomicity.md) | Guardas anti-paso-vacío en gates rutas/RSS + alerta Reddit atómica | P3 | S | DONE (PR #244, squash `e65c6ebc`) |
 | [024](archive/024-calculator-data-freshness-component.md) | Estandarizar vigencia de datos de calculadoras | P1 | M | DONE (PR #239, commit `b924b5dc`) |
