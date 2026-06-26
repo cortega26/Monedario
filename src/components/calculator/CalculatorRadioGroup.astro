@@ -18,8 +18,8 @@ interface Props {
 const { legend, name, options, hint, class: extraClass, ...rest } = Astro.props;
 ---
 
-<div class:list={["mb-5", extraClass]} {...rest}>
-  <p class="mb-2 text-sm font-medium text-secondary">{legend}</p>
+<fieldset class:list={["mb-5 border-0 p-0", extraClass]} {...rest}>
+  <legend class="mb-2 text-sm font-medium text-secondary">{legend}</legend>
   <div class="flex gap-2">
     {
       options.map(opt => (
@@ -32,7 +32,7 @@ const { legend, name, options, hint, class: extraClass, ...rest } = Astro.props;
             checked={opt.checked}
             class="peer sr-only"
           />
-          <span class="block rounded-lg border border-border px-3 py-3 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent">
+          <span class="block rounded-lg border border-border px-3 py-3 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent peer-focus-visible:ring-2 peer-focus-visible:ring-accent peer-focus-visible:ring-offset-2">
             {opt.label}
           </span>
         </label>
@@ -40,4 +40,4 @@ const { legend, name, options, hint, class: extraClass, ...rest } = Astro.props;
     }
   </div>
   {hint && <p class="mt-1 text-xs text-muted">{hint}</p>}
-</div>
+</fieldset>

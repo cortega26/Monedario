@@ -342,7 +342,7 @@ const calculatorNextStepItems = [
             type="button"
             aria-expanded="false"
             aria-controls="advanced-fields"
-            class="flex w-full items-center justify-between text-sm font-medium text-secondary hover:text-foreground"
+            class="flex w-full items-center justify-between text-sm font-medium text-secondary hover:text-foreground focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:outline-none"
           >
             <span>Modo avanzado</span>
             <span id="advanced-arrow" class="transition-transform">▼</span>
@@ -529,7 +529,7 @@ const calculatorNextStepItems = [
         </div>
       </div>
 
-      <CalculatorResultPanel>
+      <CalculatorResultPanel headingId="resultado-heading">
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
           <div
             class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
@@ -708,6 +708,8 @@ const calculatorNextStepItems = [
       id="afp-comparison"
       class="hidden border-t border-border pt-6 pb-4"
       aria-live="polite"
+      role="region"
+      aria-labelledby="afp-comparison-heading"
     >
       <h2 id="afp-comparison-heading" class="mb-1 text-base font-semibold">
         ¿Cuánto ahorrarías cambiando de AFP?

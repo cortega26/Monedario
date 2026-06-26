@@ -67,6 +67,11 @@ function showError(message: string) {
   if (!el) return;
   el.textContent = message;
   el.classList.remove("hidden");
+  const input = document.getElementById("sueldo");
+  if (input) {
+    input.setAttribute("aria-invalid", "true");
+    input.setAttribute("aria-describedby", "calc-error");
+  }
 }
 
 function hideError() {
@@ -74,6 +79,11 @@ function hideError() {
   if (!el) return;
   el.classList.add("hidden");
   el.textContent = "";
+  const input = document.getElementById("sueldo");
+  if (input) {
+    input.removeAttribute("aria-invalid");
+    input.removeAttribute("aria-describedby");
+  }
 }
 
 function focusResultado() {
