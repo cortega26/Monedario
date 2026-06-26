@@ -28,6 +28,8 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [028](028-imm-shared-constant.md) | Consolidar IMM en módulo leaf | 2026-06-19 | sí (commit `13a3d390`) |
 | [029](029-calculator-controller-tests.md) | Caracterizar controladores de calculadoras | 2026-06-19 | sí (commit `8d69b79c`) |
 | [030](030-economic-snapshot-freshness-gate.md) | Gate de frescura del snapshot económico | 2026-06-19 | sí (commit `c9d72ed4`) |
+| [031](031-iva-calculator-backlinks.md) | Backlinks internos a la calculadora de IVA (glosario + post) | 2026-06-19 | sí (commit `fcdf551c`) |
+| [032](032-calculator-accessibility-semantics.md) | A11y de calculadoras: foco al resultado, asociación hint/error, foco visible en radios | 2026-06-26 | sí (commit `702b7cc2`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 

@@ -4,6 +4,17 @@ Auditoría inicial: `/improve deep` el 2026-06-11 (commit `8256c9d2`) → planes
 Re-auditoría: `/improve deep` el 2026-06-15 (commit `57ad5261`) → planes 020–023.
 Follow-through de auditorías externas: `/improve` el 2026-06-17 (commit `fd2b5dff`) → planes 024–026.
 Tercera auditoría profunda: `/improve deep` el 2026-06-19 (commit `9a4eb37d`) → planes 027–030.
+Cuarta auditoría profunda: `/improve deep` el 2026-06-26 (commit `a7bb8b2e`) → planes 032–034.
+Foco de la cuarta pasada: terreno aún sin auditar — **semántica de accesibilidad**
+de las calculadoras (gestión de foco, asociación de hints/errores, foco visible),
+los dos endpoints JSON de runtime, la config de seguridad/CSP de Astro y la
+corrección de datos estructurados (JSON-LD). Resultado clave: el único hallazgo de
+alta palanca es el clúster de a11y en componentes compartidos de calculadora (032);
+la matemática, los engines y la plomería de datos siguen limpios. La auditoría axe/
+Playwright existente no detecta gestión de foco ni asociación de labels — de ahí el
+hueco. Heads-up operativo (no es cambio de código): `.env:1` contiene una clave
+OpenAI viva, correctamente gitignored y fuera del historial git (verificado); rotar
+solo si esa máquina/.env se comparte — no se reproduce el valor.
 Foco de la tercera pasada: terreno no auditado antes (los 57 scripts de build/CI,
 el runtime cliente de las calculadoras, los 13 use-cases + módulos `shared` no
 cubiertos el 2026-06-15, ambos workers + el provider económico, y tech-debt/deps/
@@ -37,7 +48,8 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|--------|-----------|----------|------------|--------|
-| [031](031-iva-calculator-backlinks.md) | Backlinks internos a la calculadora de IVA (glosario + 2 posts) | P3 | S | 025 | TODO |
+| [033](033-calculator-datemodified-from-lastmod-index.md) | `dateModified` de calculadoras desde `page-lastmod-index.json` (quitar literal congelado) | P3 | S | — | TODO |
+| [034](034-conversor-uf-historic-fetch-error-state.md) | Error real (no «Cargando…» eterno) al fallar la carga del histórico UF | P3 | S | — | TODO |
 
 > Verificado el 2026-06-15: 022 y 023 siguen sin implementar en el código
 > (no existe `src/utils/formatCLP.ts`; los gates `compare-*.mjs` no tienen
@@ -101,6 +113,44 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 > `astro check` 0 errores; 733 tests pasando (la única falla, `cluster-source-of-truth`,
 > es preexistente en `main` y ajena a este cambio).
 >
+> **032 EJECUTADO Y APROBADO EN REVISIÓN (2026-06-26, vía `/improve execute 032`):**
+> ejecutor en worktree aislado (`agent-a78822f079be8c7eb`, rama
+> `worktree-agent-a78822f079be8c7eb`, commit `702b7cc2`,
+> `fix(a11y): asociar hints y errores y exponer foco en componentes de calculadora`).
+> Diff limpio, exactamente los 5 archivos en alcance: `CalculatorField.astro`
+> (`aria-describedby`/`hintId`), `CalculatorRadioGroup.astro` (`<fieldset>/<legend>`
+> + `peer-focus-visible:ring`), `sueldo-liquido.astro` (`headingId` al panel +
+> `focus-visible` en el toggle + `role="region"`/`aria-labelledby` en
+> `#afp-comparison`), `formController.ts` (`aria-invalid`/`aria-describedby` en
+> show/hideError) y el test nuevo `tests/accessibility/calculator-semantics.test.ts`.
+> **Revisión (tech-lead) APROBADA:** todos los criterios reverificados de forma
+> independiente en el worktree — los 8 greps con su conteo exacto; `astro check` 0
+> errores; eslint/prettier exit 0 sobre las rutas en alcance; **850/850 unit**;
+> **suite a11y completa 46/46** (43 existentes + 3 nuevos, sin regresión axe en las
+> 19 superficies). Desviación documentada y aceptada por mérito: Prettier separó
+> `role="region"` y `aria-labelledby` en líneas adyacentes, así que el grep de una
+> sola línea del criterio devuelve 0 — ambos atributos están presentes (verificado
+> por greps separados); forzar una línea violaría el gate de formato.
+> **MERGEADO a `main` el 2026-06-26** (fast-forward `a7bb8b2e..702b7cc2`, instruido
+> por el operador) y empujado a `origin/main`. Archivado por política de cierre atómico.
+>
+> **031 RECONCILIADO COMO DONE (2026-06-26, vía `/improve execute 031`):** al
+> correr el chequeo de deriva se halló que el plan **ya estaba ejecutado y
+> mergeado en `main`** — nunca se había reconciliado en el índice. El commit
+> `fcdf551c` (`content(iva): glosario IVA y backlinks internos desde posts`)
+> lleva el mensaje de commit exacto del flujo git del plan: crea
+> `src/data/glossary/iva.md` (cuerpo de 190 palabras, frontmatter válido, CTA a
+> `/calculadoras/iva/`), agrega la CTA blockquote al post `ahorro-e-inversion`
+> (línea 106, verbatim el texto del Paso 2) y registra la categoría del término
+> nuevo en `glossaryCategories.ts`. El post `como-hacer-presupuesto-mensual`
+> quedó **correctamente descartado** (Paso 3 condicional / STOP #2): su prosa
+> trata ingresos, no precios de compra — la única mención de "Supermercado" es
+> una celda de tabla, no un gancho para CTA. Un pase posterior de interlinking
+> (`a04ac131`, OPP-01–04) enriqueció `iva.md` con `relatedCalculators` y
+> `relatedLaws`. **No se despachó ejecutor** (el diff habría sido vacío);
+> criterios de hecho verificados sobre HEAD `a7bb8b2e` (2 referencias a la
+> calculadora en el glosario, 1 en el post; árbol limpio). Archivado.
+>
 > **027 EJECUTADO (2026-06-19, vía `/improve execute 027`):** ejecutor en worktree
 > aislado (`worktree-agent-ae65a67166468bfd0`, commit `15fdef6b`,
 > `fix(scripts): extraer fecha de vigencia AFP con parser genérico`). Diff limpio,
@@ -131,6 +181,8 @@ Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main
 
 | Plan | Título | Prioridad | Esfuerzo | Estado |
 |------|--------|-----------|----------|--------|
+| [031](archive/031-iva-calculator-backlinks.md) | Backlinks internos a la calculadora de IVA (glosario + post) | P3 | S | DONE (commit `fcdf551c`) |
+| [032](archive/032-calculator-accessibility-semantics.md) | A11y de calculadoras: foco al resultado, asociación hint/error, foco visible en radios | P2 | M | DONE (commit `702b7cc2`) |
 | [022](archive/022-consolidate-clp-formatter.md) | Consolidar formateador CLP en módulo leaf único | P3 | S | DONE (PR #243, squash `2e3c1e4a`) |
 | [023](archive/023-gate-floor-and-reddit-alert-atomicity.md) | Guardas anti-paso-vacío en gates rutas/RSS + alerta Reddit atómica | P3 | S | DONE (PR #244, squash `e65c6ebc`) |
 | [024](archive/024-calculator-data-freshness-component.md) | Estandarizar vigencia de datos de calculadoras | P1 | M | DONE (PR #239, commit `b924b5dc`) |
@@ -295,6 +347,31 @@ Tercera auditoría profunda 2026-06-19:
 - **Worker `assertPlausibleDelta` se salta el dólar en transiciones de presencia**
   (`buildSnapshot.ts:370-377`); credenciales BCCh en query string con `redirect:"follow"`
   (`bcchSiete.ts:57-70`, considerar `redirect:"manual"`). S c/u, by-design parcial.
+
+*(De la cuarta pasada 2026-06-26.)*
+
+- **`leyes/[slug].astro` arma el FAQ schema solo desde frontmatter**, no extrae del
+  cuerpo markdown como hace `ArticleJsonLd` con `extractFaqItems()`. Asimetría real,
+  pero impacto bajo: Google restringió los rich results de FAQ a sitios gov/health
+  en 2023, y solo importa si una ley tiene `## Preguntas frecuentes` en el cuerpo sin
+  `faqs` en frontmatter. S. No abierto.
+- **`ArticleJsonLd.astro:124` trunca respuestas FAQ a 1000 chars** (`substring(0,1000)`)
+  → posible desajuste schema/contenido visible. Mismo caveat de deprecación de FAQ
+  rich results; ninguna respuesta publicada supera hoy el límite. S. No abierto.
+
+## Considerados y rechazados — cuarta pasada 2026-06-26 (para no re-auditar)
+
+- **«Las páginas de calculadora no tienen `<h1>`»** (subagente a11y): FALSO.
+  `CalculatorHero.astro:16` renderiza `<h1>` y todas las calculadoras usan el hero.
+- **Endpoints `src/pages/api/*.json.ts` «sin validación de input»**: son JSON
+  prerenderizado estático (`output: static`), sin inputs en runtime. By-design.
+- **CSP `style-src 'unsafe-inline'`** (`public/_headers`): conocido; `script-src` está
+  endurecido con hashes sha256 vía `csp-hashes`. Territorio de ADR, palanca muy baja.
+- **`escapeHtml` sin escape de comilla simple en `InversionReadinessChecklist.astro`**:
+  los `href` son hardcodeados y el atributo usa comillas dobles → no alcanzable. By-design.
+- **Smells «latentes si se refactoriza»** (aserciones non-null, `innerHTML` con strings
+  estáticos en `formController.ts`/`afpComparison.ts`): defensa en profundidad de bajo
+  valor, tratada igual que en las pasadas previas. No abierto.
 
 ## Dirección (decisión del mantenedor — no planificado aún)
 
