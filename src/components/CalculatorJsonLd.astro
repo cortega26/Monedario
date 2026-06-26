@@ -1,5 +1,6 @@
 ---
 import { SITE } from "@/config";
+import { getPageLastmod } from "@/utils/pageLastmod";
 
 export interface CalculatorFaq {
   question: string;
@@ -19,7 +20,8 @@ interface Props {
   dateModified?: string;
 }
 
-const { name, description, faqs, dateModified } = Astro.props;
+const { name, description, faqs, dateModified: dateModifiedProp } = Astro.props;
+const dateModified = dateModifiedProp ?? getPageLastmod(Astro.url.pathname);
 
 const SITE_URL = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
   /\/$/,
