@@ -15,8 +15,8 @@ Fecha de corte: 2026-05-30
 
 - **Completados:** 91 TD únicos (`TD-0001`..`TD-0066`, `TD-0068`..`TD-0071`, `TD-0073`..`TD-0078` (excl. `TD-0079`), `TD-0080`, `TD-0082`..`TD-0094`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
 - **En progreso:** 0
-- **Backlog sin iniciar:** 1 (`TD-0081`)
-- **Cerrados por hipótesis invalidada:** `TD-0067` (2026-06-25 — los use-cases ya retornan números puros; el formateo ya vive en las páginas) y `TD-0079` (bloqueado por incompatibilidad WOFF2/Satori).
+- **Backlog sin iniciar:** 0
+- **Cerrados sin ejecutar (premisa/ROI):** `TD-0067` (2026-06-25 — los use-cases ya retornan números puros; el formateo ya vive en las páginas), `TD-0081` (2026-06-25 — CI no usa esa secuencia y el único check lento es escritor; ahorro seguro ~0.2 s) y `TD-0079` (bloqueado por incompatibilidad WOFF2/Satori).
 - **Nota histórica:** `TD-0072` cerrado el 2026-06-23 (los 2 scripts restantes son código activo, no one-off).
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
@@ -41,7 +41,7 @@ Fecha de corte: 2026-05-30
 ### Top riesgos restantes
 
 - Drift legal/YMYL de auditoría 2026-05-20: `TD-0084`, `TD-0085`, `TD-0086`.
-- Auditoría de drift 2026-05-20 **cerrada al 100%** (`TD-0084`..`TD-0094`) el 2026-05-30. Riesgos restantes: deuda estructural (`TD-0081`) y `TD-0079` bloqueado. `TD-0075`/`TD-0077` cerrados el 2026-06-25 (`ADR-20260625-astro-features-adoption.md`); `TD-0067` cerrado el 2026-06-25 (hipótesis invalidada).
+- Auditoría de drift 2026-05-20 **cerrada al 100%** (`TD-0084`..`TD-0094`) el 2026-05-30. Riesgos restantes: ninguno en deuda técnica de código (`TD-0079` permanece bloqueado por WOFF2/Satori). `TD-0075`/`TD-0077` cerrados el 2026-06-25 (`ADR-20260625-astro-features-adoption.md`); `TD-0067` y `TD-0081` cerrados el 2026-06-25 (premisa/ROI invalidados, sin ejecutar).
 - Actualización de julio 2026: actualizar `imm` en `economic-parameters.snapshot.json` cuando se publique el decreto de reajuste del IMM.
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 
@@ -2052,13 +2052,14 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Esfuerzo estimado:** S
 - **Propuesta de solución:** Añadir `concurrently` como devDep (o usar `npm-run-all` que ya cubre `--parallel`). Crear script `prebuild:checks:parallel` que ejecute los 4 checks lectores en paralelo. Mantener `astro check` y `astro build` secuenciales (dependencia). Medir tiempo antes/después en CI.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] `pnpm run build:ci` ejecuta los 4 pre-build checks en paralelo.
-  - [ ] Tiempo de build en CI baja al menos 1.5 s.
-  - [ ] Sin race conditions detectadas en 3 corridas consecutivas.
+  - [—] `pnpm run build:ci` ejecuta los 4 pre-build checks en paralelo. *(N/A — `build:ci` no corre esa secuencia; ver nota)*
+  - [—] Tiempo de build en CI baja al menos 1.5 s. *(inalcanzable — el ahorro seguro es ~0.2 s)*
+  - [—] Sin race conditions detectadas. *(no se introduce paralelización)*
 - **Owner:** —
-- **Estado:** Abierto
+- **Estado:** Cerrado — ROI insuficiente + riesgo de carrera
 - **Fecha de creación:** 2026-05-15
-- **Última actualización:** 2026-05-15
+- **Última actualización:** 2026-06-25
+- **Nota de cierre 2026-06-25:** Dos premisas del TD no se sostienen. (1) **CI no usa esta secuencia:** `build:ci` corre `og:jpegs` + `check-images.mjs` + `check:legal-citations` + `astro build` — **no** ejecuta `check:hero-images`, `check:frontmatter` ni el `check:images` completo, así que paralelizar el prefijo del `build` local no reduce el tiempo de CI (el "mayor beneficio en CI" es ilusorio). (2) **Los 4 checks no son "lecturas independientes":** `check:images` encadena `images:convert` + `og:jpegs`, que **escriben** a `public/` — es un escritor, no un lector, y paralelizarlo es justo la fuente de race conditions. Medición real: los tres checks puramente lectores (`check:frontmatter` 0.06 s, `check:hero-images` 0.17 s, `check:legal-citations` 0.05 s; ninguno escribe archivos) suman ~0.28 s secuencial → en paralelo ahorran ~0.1-0.2 s, negligible. El único check con tiempo significativo es el escritor, no paralelizable con seguridad. Conclusión: no existe una mejora importante alcanzable sin riesgo de regresión; se cierra sin añadir `concurrently`/`npm-run-all` ni tocar el pipeline de build.
 
 ## TD-0082 — Tabla `STATUS` en `docs/backlog/README.md` para los 7 planes vigentes
 - **ID:** TD-0082
