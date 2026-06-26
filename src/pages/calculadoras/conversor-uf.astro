@@ -536,9 +536,11 @@ const ufFaqs = [
     if (!endpoint) return;
     try {
       const res = await fetch(endpoint);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       historicData = (await res.json()) as HistoricoData;
     } catch {
-      // si falla el fetch, buscarUfHistorica mostrará el error
+      historicData = null;
+      historicFetchPromise = null; // permite reintentar en el próximo change
     }
   }
 
@@ -558,7 +560,8 @@ const ufFaqs = [
 
   function buscarUfHistorica(date: string): void {
     if (!historicData) {
-      resHistoricoError.textContent = "Cargando datos históricos…";
+      resHistoricoError.textContent =
+        "No pudimos cargar los datos históricos. Revisa tu conexión e inténtalo nuevamente.";
       resHistoricoError.classList.remove("hidden");
       return;
     }
