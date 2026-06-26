@@ -48,7 +48,6 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|--------|-----------|----------|------------|--------|
-| [033](033-calculator-datemodified-from-lastmod-index.md) | `dateModified` de calculadoras desde `page-lastmod-index.json` (quitar literal congelado) | P3 | S | — | TODO |
 | [034](034-conversor-uf-historic-fetch-error-state.md) | Error real (no «Cargando…» eterno) al fallar la carga del histórico UF | P3 | S | — | TODO |
 
 > Verificado el 2026-06-15: 022 y 023 siguen sin implementar en el código
@@ -112,6 +111,25 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 > `sueldo-liquido`.
 > `astro check` 0 errores; 733 tests pasando (la única falla, `cluster-source-of-truth`,
 > es preexistente en `main` y ajena a este cambio).
+>
+> **033 EJECUTADO, APROBADO Y MERGEADO (2026-06-26, vía `/improve execute 033`):**
+> ejecutor en worktree aislado (`agent-ad5fdfb2e33f80d29`, commit `2ff547eb`,
+> `fix(seo): derivar dateModified de calculadoras desde page-lastmod-index`). Diff
+> limpio, exactamente los 21 archivos en alcance: nuevo helper `src/utils/pageLastmod.ts`
+> (lee `context/page-lastmod-index.json` con caché, normaliza barra final),
+> `CalculatorJsonLd.astro` (deriva `dateModified` del índice como default; el prop
+> explícito sigue ganando), las 18 páginas con el literal `dateModified="2026-06-01"`
+> eliminado, y `tests/utils/pageLastmod.test.ts` (3 tests). **Revisión (tech-lead)
+> APROBADA:** 0 literales en fuente; las 4 páginas data-driven (uf/utm/inflación/
+> gratificación) intactas; `astro check` 0 errores; eslint/prettier exit 0;
+> **853/853 unit** (3 nuevos, significativos). **Prueba a nivel de build** (que el
+> ejecutor saltó por red): `pnpm run build` exit 0 y el HTML emite la fecha por-página
+> del índice (`"dateModified":"2026-06-21"` en sueldo-liquido/iva/apv/comisiones-afp)
+> mientras las data-driven mantienen su fecha de dato (`conversor-uf` → `2026-06-26`;
+> `conversor-utm` → `2026-06-01` porque `utmLastUpdated` es la fecha de la UTM de junio,
+> NO un literal residual — confirmado: la fuente no tiene literal). **MERGEADO a `main`**
+> por fast-forward (`29450e08..2ff547eb`, instruido por el operador) y empujado a
+> `origin/main`. Archivado por cierre atómico.
 >
 > **032 EJECUTADO Y APROBADO EN REVISIÓN (2026-06-26, vía `/improve execute 032`):**
 > ejecutor en worktree aislado (`agent-a78822f079be8c7eb`, rama
@@ -183,6 +201,7 @@ Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main
 |------|--------|-----------|----------|--------|
 | [031](archive/031-iva-calculator-backlinks.md) | Backlinks internos a la calculadora de IVA (glosario + post) | P3 | S | DONE (commit `fcdf551c`) |
 | [032](archive/032-calculator-accessibility-semantics.md) | A11y de calculadoras: foco al resultado, asociación hint/error, foco visible en radios | P2 | M | DONE (commit `702b7cc2`) |
+| [033](archive/033-calculator-datemodified-from-lastmod-index.md) | `dateModified` de calculadoras desde `page-lastmod-index.json` | P3 | S | DONE (commit `2ff547eb`) |
 | [022](archive/022-consolidate-clp-formatter.md) | Consolidar formateador CLP en módulo leaf único | P3 | S | DONE (PR #243, squash `2e3c1e4a`) |
 | [023](archive/023-gate-floor-and-reddit-alert-atomicity.md) | Guardas anti-paso-vacío en gates rutas/RSS + alerta Reddit atómica | P3 | S | DONE (PR #244, squash `e65c6ebc`) |
 | [024](archive/024-calculator-data-freshness-component.md) | Estandarizar vigencia de datos de calculadoras | P1 | M | DONE (PR #239, commit `b924b5dc`) |

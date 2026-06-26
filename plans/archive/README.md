@@ -30,6 +30,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [030](030-economic-snapshot-freshness-gate.md) | Gate de frescura del snapshot económico | 2026-06-19 | sí (commit `c9d72ed4`) |
 | [031](031-iva-calculator-backlinks.md) | Backlinks internos a la calculadora de IVA (glosario + post) | 2026-06-19 | sí (commit `fcdf551c`) |
 | [032](032-calculator-accessibility-semantics.md) | A11y de calculadoras: foco al resultado, asociación hint/error, foco visible en radios | 2026-06-26 | sí (commit `702b7cc2`) |
+| [033](033-calculator-datemodified-from-lastmod-index.md) | `dateModified` de calculadoras desde `page-lastmod-index.json` | 2026-06-26 | sí (commit `2ff547eb`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
