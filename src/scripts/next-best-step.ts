@@ -57,7 +57,6 @@ function buildCard(
     trackAnalyticsEvent("next_best_step_click", {
       rule_id: suggestion.id,
       calculator_slug: calculatorSlug,
-      target_href: suggestion.href,
       position,
     });
   });
@@ -116,7 +115,6 @@ function init(): void {
         trackAnalyticsEvent("next_best_step_shown", {
           rule_id: suggestion.id,
           calculator_slug: slug,
-          profile_signal: suggestion.rationale,
           position,
         });
       });

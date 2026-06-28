@@ -3,6 +3,8 @@ import {
   getAnalyticsEventNameForCta,
   getReachedScrollMilestones,
   isOfficialSourceUrl,
+  isTransmissibleEvent,
+  sanitizeAnalyticsEvent,
   type AnalyticsEventParams,
 } from "@/utils/analytics";
 
@@ -29,6 +31,9 @@ function track(eventName: string, params: AnalyticsEventParams = {}) {
   });
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ event: eventName, ...payload });
+
+  // First-party transport: only for allowlisted events, only when enabled.
+  sendAnalyticsEvent(eventName, params);
 }
 
 function getCurrentPageType() {
@@ -36,6 +41,79 @@ function getCurrentPageType() {
     "[data-analytics-page-type]"
   );
   return typedElement?.dataset.analyticsPageType ?? "unknown";
+}
+
+// ── First-party transport ───────────────────────────────────────────────────
+// Contract: docs/backlog/PLAN-calculator-led-growth-2026-06-28.md §7
+// ADR: docs/adr/ADR-20260628-first-party-analytics.md
+//
+// Sends sanitized events to the analytics collector Worker via POST.
+// - Feature flag off by default.
+// - Only transmissible events are sent.
+// - Sanitized client-side; the Worker re-validates server-side.
+// - Short timeout (3 s), keepalive, silent failure.
+// - Never blocks navigation, calculation, or UI.
+
+const COLLECTOR_ENDPOINT = "/api/analytics/event";
+const TRANSPORT_TIMEOUT_MS = 3_000;
+
+/**
+ * Feature flag: disabled by default (plan §13 STOP condition 4).
+ *
+ * To enable in a test/dev environment, set:
+ *   document.documentElement.dataset.analyticsTransport = "enabled"
+ * or:
+ *   window.__monedarioAnalyticsTransport = true
+ */
+function isTransportEnabled(): boolean {
+  if (document.documentElement.dataset.analyticsTransport === "enabled") {
+    return true;
+  }
+  return (
+    (window as unknown as Record<string, unknown>)
+      .__monedarioAnalyticsTransport === true
+  );
+}
+
+function sendAnalyticsEvent(
+  eventName: string,
+  params: AnalyticsEventParams
+): void {
+  // Gate 1: feature flag
+  if (!isTransportEnabled()) return;
+
+  // Gate 2: event must be transmissible
+  if (!isTransmissibleEvent(eventName)) return;
+
+  // Gate 3: sanitize — this is the client-side boundary
+  const sanitized = sanitizeAnalyticsEvent(
+    eventName,
+    params as Record<string, unknown>
+  );
+  if (!sanitized) return;
+
+  const body = JSON.stringify(sanitized);
+
+  // Gate 4: size check (server also enforces, but early-exit saves bandwidth)
+  if (body.length > 2048) return;
+
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), TRANSPORT_TIMEOUT_MS);
+
+  fetch(COLLECTOR_ENDPOINT, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body,
+    keepalive: true,
+    signal: controller.signal,
+  })
+    .catch(() => {
+      // Silent failure: never throw, never block UI, never retry.
+      // The event was already pushed to dataLayer for debugging.
+    })
+    .finally(() => {
+      clearTimeout(timeoutId);
+    });
 }
 
 function installGlobalClickTracking() {

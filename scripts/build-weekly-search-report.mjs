@@ -6,6 +6,7 @@ const DEFAULT_WATCHLIST_PATH = path.resolve(
 );
 const DEFAULT_GSC_JSON_DIR = "output/operations/data-signals/gsc";
 const DEFAULT_CF_JSON_DIR = "output/operations/data-signals/cloudflare";
+const DEFAULT_ANALYTICS_JSON_DIR = "output/operations/data-signals/analytics";
 
 function parseArgs(argv) {
   const options = {
@@ -15,6 +16,7 @@ function parseArgs(argv) {
     watchlistFile: DEFAULT_WATCHLIST_PATH,
     gscJsonDir: DEFAULT_GSC_JSON_DIR,
     cloudflareJsonDir: DEFAULT_CF_JSON_DIR,
+    analyticsJsonDir: DEFAULT_ANALYTICS_JSON_DIR,
     init: false,
   };
 
@@ -42,6 +44,10 @@ function parseArgs(argv) {
     }
     if (arg === "--cloudflare-json-dir") {
       options.cloudflareJsonDir = argv[++index] ?? DEFAULT_CF_JSON_DIR;
+      continue;
+    }
+    if (arg === "--analytics-json-dir") {
+      options.analyticsJsonDir = argv[++index] ?? DEFAULT_ANALYTICS_JSON_DIR;
       continue;
     }
     if (arg === "--init") {
@@ -561,6 +567,121 @@ function readGscJson(gscJsonDir, week) {
   return { pageRows, queryRows };
 }
 
+function readAnalyticsJson(analyticsJsonDir, week) {
+  const analyticsPath = path.join(analyticsJsonDir, `${week}.json`);
+  if (!existsSync(analyticsPath)) return null;
+
+  let doc;
+  try {
+    doc = JSON.parse(readFileSync(analyticsPath, "utf8"));
+  } catch {
+    return null;
+  }
+
+  // Validate schema version and source
+  if (doc.schemaVersion !== 1) return null;
+  if (doc.source !== "first-party-events") return null;
+
+  // Aggregate per calculator_slug from the flat data rows.
+  const data = doc.data ?? [];
+  const bySlug = new Map();
+
+  for (const row of data) {
+    const slug = row.calculator_slug ?? "unknown";
+    if (!bySlug.has(slug)) {
+      bySlug.set(slug, {
+        views: 0,
+        starts: 0,
+        completes: 0,
+        errors: 0,
+        nextStepShown: 0,
+        nextStepClicks: 0,
+        shares: 0,
+        supportClicks: 0,
+        resultActionClicks: 0,
+        scenarioActions: 0,
+        resumeClicks: 0,
+        officialSourceClicks: 0,
+      });
+    }
+    const acc = bySlug.get(slug);
+
+    switch (row.event_name) {
+      case "calculator_view":
+        acc.views += row.count;
+        break;
+      case "calculator_start":
+        acc.starts += row.count;
+        break;
+      case "calculator_complete":
+        acc.completes += row.count;
+        break;
+      case "calculator_error":
+        acc.errors += row.count;
+        break;
+      case "next_best_step_shown":
+        acc.nextStepShown += row.count;
+        break;
+      case "next_best_step_click":
+        acc.nextStepClicks += row.count;
+        break;
+      case "share_result_click":
+        acc.shares += row.count;
+        break;
+      case "support_page_click":
+        acc.supportClicks += row.count;
+        break;
+      case "result_action_click":
+        acc.resultActionClicks += row.count;
+        break;
+      case "scenario_action":
+        acc.scenarioActions += row.count;
+        break;
+      case "resume_click":
+        acc.resumeClicks += row.count;
+        break;
+      case "official_source_click":
+        acc.officialSourceClicks += row.count;
+        break;
+      // Other allowlisted events are counted but not surfaced individually
+    }
+  }
+
+  // Totals across all calculators.
+  const totals = {
+    views: 0, starts: 0, completes: 0, errors: 0,
+    nextStepShown: 0, nextStepClicks: 0, shares: 0,
+    supportClicks: 0, resultActionClicks: 0, scenarioActions: 0,
+    resumeClicks: 0, officialSourceClicks: 0,
+  };
+  for (const acc of bySlug.values()) {
+    totals.views += acc.views;
+    totals.starts += acc.starts;
+    totals.completes += acc.completes;
+    totals.errors += acc.errors;
+    totals.nextStepShown += acc.nextStepShown;
+    totals.nextStepClicks += acc.nextStepClicks;
+    totals.shares += acc.shares;
+    totals.supportClicks += acc.supportClicks;
+    totals.resultActionClicks += acc.resultActionClicks;
+    totals.scenarioActions += acc.scenarioActions;
+    totals.resumeClicks += acc.resumeClicks;
+    totals.officialSourceClicks += acc.officialSourceClicks;
+  }
+
+  // Convert Map to plain object for JSON serialization.
+  const bySlugObj = Object.fromEntries(bySlug);
+
+  return {
+    available: true,
+    week: doc.week,
+    window: doc.window,
+    totals,
+    bySlug: bySlugObj,
+    data,
+  };
+}
+
 function readCloudflarePerf(cloudflareJsonDir, week) {
   const rumPath = path.join(cloudflareJsonDir, `${week}-rum.json`);
   const trafficPath = path.join(cloudflareJsonDir, `${week}-traffic.json`);
@@ -596,6 +717,161 @@ function rateInp(ms) {
   if (ms < 200) return `${ms}ms ✅`;
   if (ms < 500) return `${ms}ms ⚠️`;
   return `${ms}ms ❌`;
+}
+
+function nDformat(value) {
+  return value === null || value === undefined ? "n/d" : String(value);
+}
+
+function safeRate(numerator, denominator) {
+  if (!denominator || denominator <= 0) return "n/d";
+  if (numerator === null || numerator === undefined) return "n/d";
+  return `${((numerator / denominator) * 100).toFixed(1)}%`;
+}
+
+function buildSourceSummary(analyticsJson, cloudflarePerf) {
+  const sources = [];
+
+  // Cloudflare CDN pageviews (from traffic summary)
+  if (cloudflarePerf?.traffic?.summary) {
+    sources.push(`CDN pageviews: ${cloudflarePerf.traffic.summary.pageViews}`);
+  } else {
+    sources.push("CDN pageviews: n/d");
+  }
+
+  // Cloudflare RUM samples
+  if (cloudflarePerf?.rum?.data?.length > 0) {
+    sources.push(`RUM samples: ${cloudflarePerf.rum.data.reduce((s, r) => s + (r.count ?? 0), 0)}`);
+  } else {
+    sources.push("RUM samples: n/d");
+  }
+
+  // First-party events
+  if (analyticsJson?.available) {
+    const t = analyticsJson.totals;
+    sources.push(`Eventos first-party: ${t.views} views · ${t.starts} starts · ${t.completes} completes · ${t.errors} errors`);
+  } else {
+    sources.push("Eventos first-party: n/d (export no disponible)");
+  }
+
+  return sources.join("  \n");
+}
+
+function buildCalculatorFunnelSection(analyticsJson, cloudflarePerf) {
+  if (!analyticsJson?.available) {
+    return `
+## Funnel de calculadoras (first-party)
+
+_Export semanal de analytics no disponible para esta semana._
+`;
+  }
+
+  const { bySlug, totals, week } = analyticsJson;
+  const slugs = Object.keys(bySlug).sort();
+  if (slugs.length === 0) {
+    return `
+## Funnel de calculadoras (first-party) — ${week}
+
+_Sin eventos registrados esta semana._
+`;
+  }
+
+  // Build per-calculator rows
+  const rows = slugs.map((slug) => {
+    const a = bySlug[slug];
+    const startRate = safeRate(a.starts, a.views);
+    const completionRate = safeRate(a.completes, a.starts);
+    const errorRate = safeRate(a.errors, a.starts);
+    const nextStepCTR = safeRate(a.nextStepClicks, a.nextStepShown);
+
+    return [
+      `\`${slug}\``,
+      nDformat(a.views),
+      nDformat(a.starts),
+      nDformat(a.completes),
+      nDformat(a.errors),
+      startRate,
+      completionRate,
+      errorRate,
+      nDformat(a.shares),
+      nDformat(a.nextStepClicks),
+      nextStepCTR,
+      nDformat(a.supportClicks),
+    ];
+  });
+
+  const parts = [
+    `\n## Funnel de calculadoras (first-party) — ${week}\n`,
+    `**Fuentes diferenciadas:**  `,
+    buildSourceSummary(analyticsJson, cloudflarePerf),
+    "",
+    table(
+      [
+        "Calculadora",
+        "Views",
+        "Starts",
+        "Completes",
+        "Errors",
+        "Start rate",
+        "Completion rate",
+        "Error rate",
+        "Shares",
+        "NBS clicks",
+        "NBS CTR",
+        "Support",
+      ],
+      rows,
+    ),
+    "",
+    "**Totales first-party:** " +
+      `views=${totals.views} · starts=${totals.starts} · completes=${totals.completes} · errors=${totals.errors} · ` +
+      `shares=${totals.shares} · NBS shown=${totals.nextStepShown} · NBS clicks=${totals.nextStepClicks} · ` +
+      `support clicks=${totals.supportClicks} · result actions=${totals.resultActionClicks} · ` +
+      `scenario actions=${totals.scenarioActions} · resume clicks=${totals.resumeClicks} · ` +
+      `official source clicks=${totals.officialSourceClicks}`,
+    "",
+    `_Start rate = starts / views. Completion rate = completes / starts. Error rate = errors / starts. NBS CTR = next-step clicks / next-step shown. "n/d" indica denominador cero o fuente no disponible._`,
+    "",
+  ];
+
+  // Per-calculator detailed funnel for priority tools
+  const prioritySlugs = [
+    "seguro-cesantia",
+    "operacion-renta",
+    "prepago-credito",
+    "credito-consumo",
+  ];
+  const priorityData = prioritySlugs
+    .filter((s) => bySlug[s])
+    .map((s) => ({ slug: s, ...bySlug[s] }));
+
+  if (priorityData.length > 0) {
+    parts.push("### Journey prioritario\n");
+    parts.push(
+      table(
+        ["Calculadora", "Views", "Starts", "Completes", "Start rate", "Completion rate", "Next-step CTR", "Share rate"],
+        priorityData.map((a) => {
+          const startRate = safeRate(a.starts, a.views);
+          const completionRate = safeRate(a.completes, a.starts);
+          const nextStepCTR = safeRate(a.nextStepClicks, a.nextStepShown);
+          const shareRate = safeRate(a.shares, a.completes);
+          return [
+            `\`${a.slug}\``,
+            nDformat(a.views),
+            nDformat(a.starts),
+            nDformat(a.completes),
+            startRate,
+            completionRate,
+            nextStepCTR,
+            shareRate,
+          ];
+        }),
+      ),
+    );
+    parts.push("");
+  }
+
+  return parts.join("\n");
 }
 
 function buildPerformanceSection(cloudflarePerf, weekLabel) {
@@ -914,7 +1190,7 @@ function buildIndexationStatus(indexation) {
   return sections;
 }
 
-function buildSummary({ watchlist, indexation, pageRows, queryRows, analytics, gscSource, cloudflarePerf }) {
+function buildSummary({ watchlist, indexation, pageRows, queryRows, analytics, analyticsJson, gscSource, cloudflarePerf }) {
   const pageByPath = new Map(pageRows.map(row => [row.path, row]));
 
   const trackedPages = watchlist.pages.map(entry => {
@@ -998,6 +1274,7 @@ function buildSummary({ watchlist, indexation, pageRows, queryRows, analytics, g
     indexationStatus: buildIndexationStatus(indexation),
     notes: indexation.notes ?? [],
     analyticsAvailable: analytics.available,
+    analyticsJson: analyticsJson ?? null,
     cloudflarePerf: cloudflarePerf ?? null,
   };
 }
@@ -1020,8 +1297,11 @@ function buildHeadline(summary) {
     )}\``,
     `- Tracked assets: \`${summary.trackedPages.length}\` (\`${summary.totals.trackedWinnerCount}\` winners, \`${summary.totals.trackedLoserCount}\` losers, \`${summary.totals.trackedActionCount}\` action-needed)`,
     summary.analyticsAvailable
-      ? `- Analytics totals: \`cta_click ${summary.analyticsTotals.cta_click.current}\`, \`calculator_start ${summary.analyticsTotals.calculator_start.current}\`, \`calculator_complete ${summary.analyticsTotals.calculator_complete.current}\`, \`next_best_step_shown ${summary.analyticsTotals.next_best_step_shown?.current ?? 0}\`, \`next_best_step_click ${summary.analyticsTotals.next_best_step_click?.current ?? 0}\``
-      : "- Analytics totals: `analytics-events.csv` not provided",
+      ? `- Analytics totals (CSV): \`cta_click ${summary.analyticsTotals.cta_click.current}\`, \`calculator_start ${summary.analyticsTotals.calculator_start.current}\`, \`calculator_complete ${summary.analyticsTotals.calculator_complete.current}\`, \`next_best_step_shown ${summary.analyticsTotals.next_best_step_shown?.current ?? 0}\`, \`next_best_step_click ${summary.analyticsTotals.next_best_step_click?.current ?? 0}\``
+      : "- Analytics totals (CSV): `analytics-events.csv` not provided",
+    summary.analyticsJson?.available
+      ? `- First-party analytics: \`${summary.analyticsJson.week}\` — ${Object.keys(summary.analyticsJson.bySlug).length} calculators, ${summary.analyticsJson.totals.views} views · ${summary.analyticsJson.totals.starts} starts · ${summary.analyticsJson.totals.completes} completes`
+      : "- First-party analytics: export not available for this week",
   ];
 }
 
@@ -1166,7 +1446,8 @@ ${
     ? summary.notes.map(note => `- ${note}`).join("\n")
     : "- No additional manual notes were logged in `indexation-summary.json`."
 }
-${buildPerformanceSection(summary.cloudflarePerf, summary.weekLabel)}`;
+${buildPerformanceSection(summary.cloudflarePerf, summary.weekLabel)}
+${buildCalculatorFunnelSection(summary.analyticsJson, summary.cloudflarePerf)}`;
 }
 
 function main() {
@@ -1210,6 +1491,9 @@ function main() {
   const analytics = readAnalyticsCsv(
     path.join(options.inputDir, "analytics-events.csv")
   );
+  const analyticsJson = week
+    ? readAnalyticsJson(options.analyticsJsonDir, week)
+    : null;
   const cloudflarePerf = week
     ? readCloudflarePerf(options.cloudflareJsonDir, week)
     : null;
@@ -1220,6 +1504,7 @@ function main() {
     pageRows,
     queryRows,
     analytics,
+    analyticsJson,
     gscSource,
     cloudflarePerf,
   });
@@ -1239,7 +1524,7 @@ function main() {
   console.log(
     `[weekly-search-report] Inputs loaded: pages=${pageRows.length} queries=${queryRows.length} analytics=${
       analytics.available ? "yes" : "no"
-    } gsc-source=${gscSource} cloudflare=${cloudflarePerf ? "yes" : "no"}`
+    } analytics-json=${analyticsJson?.available ? `yes (${Object.keys(analyticsJson.bySlug).length} tools)` : "no"} gsc-source=${gscSource} cloudflare=${cloudflarePerf ? "yes" : "no"}`
   );
 }
 

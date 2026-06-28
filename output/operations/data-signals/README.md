@@ -11,8 +11,10 @@ output/operations/data-signals/
 │   ├── YYYY-Www-pages.json      # métricas por URL GSC
 │   └── YYYY-Www-sitemaps.json   # estado de indexación
 ├── cloudflare/
-│   ├── YYYY-Www-rum.json        # LCP/CLS/INP p75 por ruta
+│   ├── YYYY-Www-rum.json        # LCP/CLS/INP p75 por ruta (saneado)
 │   └── YYYY-Www-traffic.json    # tráfico diario + cache ratio
+├── analytics/
+│   └── YYYY-Www.json            # first-party events agregados (desde R2)
 └── ahrefs/                      # solo si MON-ENV-DATA3 desbloqueado
     └── YYYY-Www-*.json
 ```

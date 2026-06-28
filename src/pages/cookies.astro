@@ -202,6 +202,41 @@ import { SITE } from "@/config";
 
         <div class="rounded-xl border border-border p-5">
           <p class="mb-1 text-sm font-semibold text-foreground">
+            Medición propia de uso de calculadoras (sin cookies)
+          </p>
+          <dl class="mt-2 grid gap-1 sm:grid-cols-[140px_1fr]">
+            <dt class="font-semibold text-foreground">Tipo</dt>
+            <dd>
+              Medición agregada sin cookies, sin identificador persistente y sin
+              almacenamiento local adicional.
+            </dd>
+            <dt class="font-semibold text-foreground">Quién la realiza</dt>
+            <dd>
+              Monedario, mediante infraestructura propia en Cloudflare Workers.
+            </dd>
+            <dt class="font-semibold text-foreground">Finalidad</dt>
+            <dd>
+              Medir el uso de las calculadoras (inicios, finalizaciones, clics
+              en recursos de apoyo) de forma agregada para mejorar las
+              herramientas del sitio.
+            </dd>
+            <dt class="font-semibold text-foreground">Consentimiento</dt>
+            <dd>
+              No requerido: no utiliza cookies ni ningún mecanismo de
+              identificación; solo transmite el tipo de evento y una dimensión
+              categórica predefinida, sin valores de entrada ni resultados
+              financieros.
+            </dd>
+            <dt class="font-semibold text-foreground">Duración</dt>
+            <dd>
+              Los contadores agregados se conservan hasta 35 días. No se
+              almacenan eventos individuales ni direcciones IP.
+            </dd>
+          </dl>
+        </div>
+
+        <div class="rounded-xl border border-border p-5">
+          <p class="mb-1 text-sm font-semibold text-foreground">
             Aportes voluntarios (Ko-fi)
           </p>
           <dl class="mt-2 grid gap-1 sm:grid-cols-[140px_1fr]">
@@ -277,6 +312,12 @@ import { SITE } from "@/config";
           <li>
             La analítica del sitio se realiza con Cloudflare Web Analytics, sin
             cookies y sin identificadores persistentes.
+          </li>
+          <li>
+            La medición propia de uso de calculadoras tampoco utiliza cookies ni
+            identificadores persistentes: solo transmite tipos de evento y
+            categorías predefinidas, sin datos personales ni resultados
+            financieros.
           </li>
           <li>
             Las cookies técnicas son estrictamente necesarias para la entrega

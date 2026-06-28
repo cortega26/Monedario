@@ -326,3 +326,75 @@ export function normalizeSitemapEntry(entry) {
     warnings: entry.warnings ?? 0,
   };
 }
+
+/**
+ * Site route inventory — allowlist of known path prefixes for monedario.cl.
+ * RUM may include routes from other hostnames if the Cloudflare account has
+ * multiple zones. We keep only routes that match the site's known URL space.
+ *
+ * This is a shared constant used by both cloudflare-fetch.mjs (RUM sanitization)
+ * and tests.
+ */
+export const SITE_ROUTE_ALLOWLIST = [
+  "/",                    // home
+  "/calculadoras/",       // calculator tools
+  "/guias/",              // hub/guide pages
+  "/posts/",              // editorial posts
+  "/privacidad/",         // privacy policy
+  "/cookies/",            // cookies policy
+  "/apoyar/",             // support page
+  "/metodologia/",        // methodology
+  "/buscar/",             // search
+  "/sitemap-index.xml",   // sitemap
+  "/api/",                // API endpoints (internal)
+  "/favicon.ico",
+  "/robots.txt",
+  "/rss.xml",
+  "/llms.txt",
+];
+
+/**
+ * Returns true if the requestPath belongs to the site's known route inventory.
+ * @param {string} requestPath
+ * @returns {boolean}
+ */
+export function isKnownSiteRoute(requestPath) {
+  if (!requestPath) return false;
+  for (const prefix of SITE_ROUTE_ALLOWLIST) {
+    // The root "/" must match exactly; other prefixes match by startsWith.
+    if (prefix === "/") {
+      if (requestPath === "/") return true;
+    } else if (requestPath === prefix || requestPath.startsWith(prefix)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * Sanitizes an array of RUM rows by filtering to only known site routes.
+ * Returns { kept, discarded } where discarded includes the reason.
+ *
+ * Pure function — no I/O.
+ *
+ * @param {Array<{path: string, count: number, [key: string]: unknown}>} rumRows
+ * @returns {{ kept: Array<object>, discarded: Array<{path: string, count: number, reason: string}> }}
+ */
+export function sanitizeRumRoutes(rumRows) {
+  const kept = [];
+  const discarded = [];
+
+  for (const row of rumRows) {
+    if (isKnownSiteRoute(row.path)) {
+      kept.push(row);
+    } else {
+      discarded.push({
+        path: row.path,
+        count: row.count,
+        reason: "route_not_in_site_inventory",
+      });
+    }
+  }
+
+  return { kept, discarded };
+}

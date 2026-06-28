@@ -30,6 +30,7 @@ import {
   buildSchemaHeader,
   isoWeekToDateRange,
   previousCompleteISOWeek,
+  sanitizeRumRoutes,
 } from "./gsc-utils.mjs";
 
 const OUTPUT_BASE        = "output/operations/data-signals/cloudflare";
@@ -236,7 +237,18 @@ async function main() {
   ]);
 
   const trafficRows = rawTraffic.map(normalizeDayRow);
-  const rumRows     = rawRum.map(normalizeRumRow);
+  const rumRowsRaw  = rawRum.map(normalizeRumRow);
+
+  // Sanitize RUM routes — keep only known site routes.
+  const { kept: rumRows, discarded: discardedRum } = sanitizeRumRoutes(rumRowsRaw);
+  if (discardedRum.length > 0) {
+    console.error(
+      `[cloudflare-fetch] RUM discarded ${discardedRum.length} routes outside site inventory:`
+    );
+    for (const d of discardedRum) {
+      console.error(`  - ${d.path} (count=${d.count}, reason=${d.reason})`);
+    }
+  }
 
   const trafficDoc = {
     ...buildSchemaHeader("cloudflare-traffic", week, from, to),
@@ -249,6 +261,12 @@ async function main() {
     // LCP/INP stored in ms. CLS is dimensionless score. null = no data for route.
     // Thresholds: LCP good <2500ms, needs-improvement <4000ms; CLS good <0.1; INP good <200ms.
     data: rumRows,
+    _meta: {
+      totalRawRoutes: rumRowsRaw.length,
+      keptRoutes: rumRows.length,
+      discardedRoutes: discardedRum.length,
+      discarded: discardedRum,
+    },
   };
 
   if (args.dryRun) {

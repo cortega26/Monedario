@@ -1,0 +1,80 @@
+name = "monedario-analytics-collector"
+main = "src/index.ts"
+compatibility_date = "2026-06-28"
+workers_dev = true
+
+# ── Route ───────────────────────────────────────────────────────────────────
+# En producción, el worker sirve solo el endpoint de analytics.
+# La ruta se configura en el dashboard de Cloudflare o vía `wrangler deploy`.
+# El endpoint público será: POST https://monedario.cl/api/analytics/event
+#
+# Descomentar tras crear el worker en el dashboard y asignar la ruta:
+# [[routes]]
+# pattern = "monedario.cl/api/analytics/*"
+# zone_id = "9d53871bed75e9ad5d4cc5da84a18fcf"
+
+# ── Triggers ────────────────────────────────────────────────────────────────
+# Cron semanal: exporta agregados de KV → R2 o repo.
+# Lunes 07:57 UTC (madrugada en Chile). Se usa minuto 57 para evitar congestión
+# en :00/:30 con otros cron jobs del ecosistema Cloudflare.
+[triggers]
+crons = ["57 7 * * 1"]
+
+# ── KV Namespace ────────────────────────────────────────────────────────────
+# Contadores agregados. Clave: telemetry:v1:{date}:{event}:{slug}:{dimension}
+# TTL = 35 días (5 semanas). Se crea con:
+#   npx wrangler kv:namespace create ANALYTICS_TELEMETRY
+#   npx wrangler kv:namespace create ANALYTICS_TELEMETRY --preview
+[[kv_namespaces]]
+binding = "ANALYTICS_TELEMETRY"
+id = "f9de0048ca334578805b5bdd55bc71e0"
+
+# ── R2 Bucket (export semanal) ──────────────────────────────────────────────
+# Almacena los JSON de export semanal. Se crea con:
+#   npx wrangler r2 bucket create monedario-analytics-exports
+[[r2_buckets]]
+binding = "ANALYTICS_EXPORTS"
+bucket_name = "monedario-analytics-exports"
+
+# ── Environment variables ───────────────────────────────────────────────────
+[vars]
+# Schema version del artefacto de export. Incrementar solo con breaking change.
+SCHEMA_VERSION = "1"
+
+# Timezone para cálculo de semana ISO en el export semanal.
+EXPORT_TIMEZONE = "America/Santiago"
+
+# TTL en días de los contadores KV (5 semanas = 35 días). Expresado en segundos.
+KV_COUNTER_TTL_SECONDS = "3024000"
+
+# Body máximo aceptado en el endpoint de eventos (bytes).
+MAX_BODY_SIZE = "2048"
+
+# Rate limit: máximo de requests por IP en ventana de 60 segundos.
+RATE_LIMIT_MAX = "30"
+
+# Dominio allowlist para origin check (solo same-origin).
+ALLOWED_ORIGIN = "https://monedario.cl"
+
+# Si está en "1", los eventos se rechazan con 503 (feature flag off).
+# Cambiar a "0" para activar la recolección solo después de:
+#   - Actualizar /privacidad/ y /cookies/
+#   - Obtener sign-off legal
+#   - Verificar el worker en entorno de prueba
+ANALYTICS_DISABLED = "1"
+
+[observability]
+enabled = true
+
+# ── Secrets ─────────────────────────────────────────────────────────────────
+# Configurar con `wrangler secret put <NAME>`:
+#
+#   EXPORT_GITHUB_TOKEN   — Fine-grained PAT con Contents: Write sobre
+#                           cortega26/Monedario. Solo necesario si el export
+#                           semanal se persiste en el repo en vez de R2.
+#                           Alternativa: dejar el export solo en R2 y usar
+#                           un script local (data-signals) para bajarlo.
+#
+#   EXPORT_SECRET         — String arbitrario que protege el endpoint manual
+#                           de export (GET /api/analytics/export?secret=...).
+#                           No requerido para el cron trigger.
