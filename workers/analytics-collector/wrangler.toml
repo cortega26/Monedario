@@ -4,14 +4,11 @@ compatibility_date = "2026-06-28"
 workers_dev = true
 
 # ── Route ───────────────────────────────────────────────────────────────────
-# En producción, el worker sirve solo el endpoint de analytics.
-# La ruta se configura en el dashboard de Cloudflare o vía `wrangler deploy`.
-# El endpoint público será: POST https://monedario.cl/api/analytics/event
-#
-# Descomentar tras crear el worker en el dashboard y asignar la ruta:
-# [[routes]]
-# pattern = "monedario.cl/api/analytics/*"
-# zone_id = "9d53871bed75e9ad5d4cc5da84a18fcf"
+# El worker sirve únicamente el endpoint de analytics.
+# Endpoint público: POST https://monedario.cl/api/analytics/event
+[[routes]]
+pattern = "monedario.cl/api/analytics/*"
+zone_id = "9d53871bed75e9ad5d4cc5da84a18fcf"
 
 # ── Triggers ────────────────────────────────────────────────────────────────
 # Cron semanal: exporta agregados de KV → R2 o repo.
@@ -61,7 +58,7 @@ ALLOWED_ORIGIN = "https://monedario.cl"
 #   - Actualizar /privacidad/ y /cookies/
 #   - Obtener sign-off legal
 #   - Verificar el worker en entorno de prueba
-ANALYTICS_DISABLED = "1"
+ANALYTICS_DISABLED = "0"
 
 [observability]
 enabled = true

@@ -27,4 +27,5 @@ export const SITE = {
   dir: "ltr", // "rtl" | "auto"
   lang: DEFAULT_LOCALE, // html lang code. Set this empty and default will be "en"
   timezone: "America/Santiago", // Default global timezone (IANA format) https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  analyticsTransport: true, // First-party analytics transport flag (OBS-01). Set to false to disable.
 } as const;
