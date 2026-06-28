@@ -165,3 +165,8 @@ Observed impact: 4 artículos actualizados con cifras 2026 verificadas. Registro
 SPRINT Phase2-A
 MB-015, MB-018, SA-014, SA-015 completados.
 Observed impact: hub presupuesto navegable, refresh de 4 artículos con cifras 2026 y validación de FAQs, ownership UX visible en artículos support (bloque "Guía de referencia" en PostDetails.astro), microcopy de las tres superficies de soporte (/tags/, /glosario/, /buscar/) actualizado con propósito explícito.
+
+2026-06-28
+OBS-01 — Verificación de deploy y primer export semanal (W26)
+Site deploy verificado: `data-analytics-transport="enabled"` confirmado en producción (https://monedario.cl/). Pipeline end-to-end validado: 12 eventos sintéticos enviados al worker → 202 Accepted → confirmados en KV vía REST API. Primer export semanal generado manualmente (cron mañana 07:57 UTC): `output/operations/data-signals/analytics/2026-W26.json` con 33 filas, 34 eventos totales, 10 tipos de evento, 13 slugs de calculadora. Schema validado: `schemaVersion=1`, `source="first-party-events"`, counts ≥ 0, enums correctos, 0 PII. KV confirmado con 33 contadores para 2026-06-28 (días 22-27 sin datos — baseline de 1 día).
+Observed impact: worker recibe tráfico real de usuarias (calculadoras UF, IPC, crédito-consumo, seguro-cesantia, conversor-UTM, operación-renta). Funnel visible: views → starts → completes para UF (1→2→1) e IPC (1→1→1). Eventos de engagement: NBS shown/click, official_source_click (bcentral.cl, sii.cl), share_result_click (whatsapp). Scorecard pendiente de GSC data para W26 (workflow `weekly-search-ops.yml`). W26 es baseline inicial con 1 día de datos; W27 será la primera semana completa para evaluación formal.
