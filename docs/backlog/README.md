@@ -1,11 +1,11 @@
 # Backlog Monedario.cl — Estado actual
 
-> Generado el 2026-04-08. Última actualización: 2026-05-22.
+> Generado el 2026-04-08. Última actualización: 2026-06-28.
 > Lectura obligatoria antes de ejecutar cualquier ticket: `AGENTS.md` y `context/INVARIANTS.md`.
 
 ---
 
-## Estado actual — 2026-05-20
+## Estado actual — 2026-06-28
 
 Completado: Fases 0–3 salvo decisiones pendientes explícitas (`MON-301`, `MON-304`), auditorías de calculadoras, UX backlog (15/16), Phase 1 Profile Persistence, Phase 2 High-Value Roadmap (Waves 1–5), Optimization, Editorial Timeliness, Blog Advisory Standardization, Date Display Consistency, Guardrail Automation, GitHub Actions remediation, Next Best Step, Data Signals (parcial), modernización estratégica 2026-05-11, cierre mobile CWV/LCP (`TD-0039`), `TD-0057` backfill canónico YMYL (46 artículos), SEO roadmap Sprints 0, 2 y 3, publicación Sprint 2B firmada y quick wins de auditoría profunda 2026-05-15, **componentización de calculadoras `TD-0063` + `TD-0069`** (5 componentes, 15 calculadoras, markup duplication 0.84%→0.29%).
 
@@ -15,14 +15,15 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 
 | Orden | Item | Por qué ahora |
 |-------|------|---------------|
-| 1 | SEO striking-distance (siguientes calculadoras) | Lever de crecimiento validado por GSC; ya aplicado a comisiones-afp/operacion-renta/conversor-uf |
-| ~~2~~ | ~~`TD-0075` / `TD-0077` (medición LCP + ADR)~~ | **Cerrados 2026-06-25** (`ADR-20260625-astro-features-adoption.md`): `inlineStylesheets:"never"` se mantiene (medido), `prefetch` adoptado, `viewTransitions` diferida |
-| 3 | Programa Audit of Small Details (`ASD-###`) | Programa activo audit-only; ejecutar por batches |
+| 1 | `PLAN-calculator-led-growth-2026-06-28.md` — PR-00 medición first-party | W25 cruzó 100 clics y 92,6% provino de calculadoras; falta completion/next-step |
+| 2 | SEO striking-distance dentro del plan maestro | Capturar demanda existente después de baseline y clasificación zero-click |
+| 3 | Programa Audit of Small Details (`ASD-###`) | Programa audit-only; ejecutar sin competir con PR-00/PR-02 |
 
 ### Pendiente — implementación por código
 
 | Plan | Archivo | Bloqueador |
 |------|---------|------------|
+| Crecimiento liderado por calculadoras | `PLAN-calculator-led-growth-2026-06-28.md` | PR-00: viabilidad + ADR + aprobación privacidad/legal |
 | Phase 2 — Data Signals (MON-ENV-DATA3b..3c) | `PHASE_2_DATA_SIGNALS.md` | Requiere suscripción Ahrefs Advanced+ |
 | Hero image system — remediación manual por lotes | `HERO_IMAGE_SYSTEM_REMEDIATION_2026-04-30.md` | Manual: assets finales pendientes |
 | TypeScript 7 compatibility | `TS7_COMPATIBILITY_AUDIT_2026-04-30.md` | Blocked — esperando TS7 stable |
@@ -89,6 +90,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 
 | File | Status |
 |------|--------|
+| `PLAN-calculator-led-growth-2026-06-28.md` | **TODO P0/P1**; iniciar PR-00, no saltar baseline |
 | `PHASE_2_DATA_SIGNALS.md` | Parcialmente completado; DATA3a..3c bloqueado |
 | `HERO_IMAGE_SYSTEM_REMEDIATION_2026-04-30.md` | Pendiente remediación manual |
 | `PLAN-heroimage-prompt-repair-2026-05-01.md` | Código completo; assets manuales pendientes |
@@ -109,6 +111,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 
 | Archivo | Estado | Última actualización | Bloqueador | Próximo paso |
 |---|---|---:|---|---|
+| `PLAN-calculator-led-growth-2026-06-28.md` | **TODO** | 2026-06-28 | Requiere ADR y sign-off privacidad/legal antes de transportar eventos | Ejecutar PR-00 y registrar baseline pre-implementación |
 | `PLAN-audit-deep-remediation-2026-05-16.md` | Parcialmente cerrado | 2026-05-16 | `TD-0075`/`TD-0077` requieren medición/ADR; `TD-0079` bloqueado por flujo OG con TTF | Ejecutar `TD-0065` (deps bump) o preparar ADR para TD-0075/TD-0077 |
 | `PLAN-calculator-componentization-td-0063-0069-2026-05-20.md` | **Completado** | 2026-05-20 | — | `TD-0063` + `TD-0069` cerrados; 5 componentes, 15 calculadoras refactorizadas |
 | `PLAN-github-workflow-hardening-2026-05-13.md` | Parcialmente cerrado | 2026-05-13 | La fase 3 ya registra diminishing returns | Reabrir solo con hallazgo concreto de CI o archivar cuando se acepte el cierre operativo |

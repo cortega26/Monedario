@@ -2,6 +2,8 @@
 
 Canonical audit reports and validation baselines.
 
+- Growth direction audit (2026-06-28):
+  `docs/reports/GROWTH-DIRECTION-AUDIT-2026-06-28.md`
 - Deep audit: `docs/reports/AUDIT-DEEP-2026-05-15.md`
 - Alignment audit: `docs/reports/AUDIT-ALIGNMENT-2026-05-25.md`
 - UX audit: `docs/reports/ux-audit-2026-04-09.md`
