@@ -67,6 +67,40 @@ describe("csp-hashes integration", () => {
   });
 });
 
+function resolvePublicHeadersPath(): string {
+  const rootDir = fileURLToPath(new URL("../../", import.meta.url));
+  return join(rootDir, "public", "_headers");
+}
+
+function readPublicHeaders(): string {
+  const path = resolvePublicHeadersPath();
+  if (!existsSync(path)) {
+    throw new Error(
+      `public/_headers not found at ${path}. ` +
+      "This file is required for Cloudflare Pages CSP configuration."
+    );
+  }
+  return readFileSync(path, "utf8");
+}
+
+/**
+ * Directives that MUST be present in the CSP for the site to function.
+ *
+ * Each entry is [directive, minimumRequiredSource]. If a directive is
+ * missing or doesn't include its minimum source, the test fails.
+ */
+const MANDATORY_DIRECTIVES = {
+  "default-src": "'self'",
+  "script-src": "'wasm-unsafe-eval'",
+  "style-src": "'self'",
+  "img-src": "'self'",
+  "connect-src": "'self'",
+  "font-src": "'self'",
+  "form-action": "'self'",
+  "frame-ancestors": "'none'",
+  "base-uri": "'self'",
+} as const;
+
 describe("public/_headers — Pagefind CSP invariants", () => {
   it("includes 'wasm-unsafe-eval' in script-src (Pagefind WASM requirement)", () => {
     // Pagefind uses WebAssembly for its search engine. Without
@@ -75,17 +109,7 @@ describe("public/_headers — Pagefind CSP invariants", () => {
     //
     // This test reads the source-of-truth _headers file directly so any
     // accidental removal is caught before deploy.
-    const rootDir = fileURLToPath(new URL("../../", import.meta.url));
-    const headersPath = join(rootDir, "public", "_headers");
-
-    if (!existsSync(headersPath)) {
-      throw new Error(
-        `public/_headers not found at ${headersPath}. ` +
-        "This file is required for Cloudflare Pages CSP configuration."
-      );
-    }
-
-    const content = readFileSync(headersPath, "utf8");
+    const content = readPublicHeaders();
     const scriptSrc = content.match(/\bscript-src\s+([^;\n]+)/)?.[0] ?? "";
 
     expect(
@@ -96,5 +120,74 @@ describe("public/_headers — Pagefind CSP invariants", () => {
     // Safety net: 'self' must still be present (don't accidentally drop it
     // while editing the directive).
     expect(scriptSrc).toContain("'self'");
+  });
+
+  it("CSP header is structurally intact — no merge-conflict corruption", () => {
+    // Merge conflicts on the single-line CSP are common because every
+    // branch touches _headers. A corrupted CSP can break the entire site
+    // silently (browser CSP violations appear only in the console).
+    //
+    // This test catches the most common corruption patterns:
+    // - File truncated or empty
+    // - Merge markers present (<<<<<<<, =======, >>>>>>>)
+    // - CSP line blank or missing
+    // - Critical directives absent or empty
+
+    const content = readPublicHeaders();
+
+    // File must start with the Cloudflare Pages path pattern
+    expect(
+      content,
+      "public/_headers must start with /* (Cloudflare Pages route pattern)"
+    ).toMatch(/^\s*\/\*\s*$/m);
+
+    // No git merge conflict markers anywhere
+    for (const marker of ["<<<<<<<", "=======", ">>>>>>>"]) {
+      expect(
+        content,
+        `public/_headers contains git merge-conflict marker "${marker}"`
+      ).not.toContain(marker);
+    }
+
+    // Extract the full CSP value (everything between "Content-Security-Policy:"
+    // and the next line that starts without leading whitespace)
+    const cspMatch = content.match(
+      /Content-Security-Policy:\s*([\s\S]+?)(?=\n\S|\n*$)/
+    );
+    expect(cspMatch, "Content-Security-Policy header not found").toBeTruthy();
+
+    const cspValue = cspMatch![1].replace(/\n\s+/g, " ").trim();
+
+    // The CSP value must not be empty
+    expect(
+      cspValue.length,
+      "Content-Security-Policy value is empty or truncated"
+    ).toBeGreaterThan(100);
+
+    // Every mandatory directive must be present with its minimum source
+    for (const [directive, minimumSource] of Object.entries(
+      MANDATORY_DIRECTIVES
+    )) {
+      const directiveRx = new RegExp(
+        `\\b${directive}\\s+([^;]+)`,
+        "i"
+      );
+      const match = cspValue.match(directiveRx);
+      expect(
+        match,
+        `CSP must include the ${directive} directive`
+      ).toBeTruthy();
+
+      const value = match![1].trim();
+      expect(
+        value.length,
+        `${directive} directive value is empty`
+      ).toBeGreaterThan(0);
+
+      expect(
+        value,
+        `${directive} must include ${minimumSource}`
+      ).toContain(minimumSource);
+    }
   });
 });
