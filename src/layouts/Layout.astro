@@ -108,6 +108,9 @@ const structuredData = !pubDatetime
                 "@id": `${SITE_ORIGIN}/#webpage`,
                 url: `${SITE_ORIGIN}/`,
                 name: SITE.title,
+                ...(modDatetime
+                  ? { dateModified: modDatetime.toISOString() }
+                  : {}),
                 isPartOf: { "@id": `${SITE_ORIGIN}/#website` },
                 about: { "@id": ORGANIZATION_ID },
                 speakable: {
