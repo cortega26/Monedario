@@ -1,5 +1,9 @@
 # Monedario
 
+_Parte del [ecosistema Tooltician](https://tooltician.com) — educación financiera para Chile, clara y sin letra chica._
+
+[![Part of Tooltician](https://img.shields.io/badge/Part%20of-Tooltician-6C47FF.svg?style=flat-square&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTIgM2g2YTQgNCAwIDAgMSA0IDR2MTRhMiAyIDAgMCAwLTItMkg0YTIgMiAwIDAgMS0yLTJWNVoiLz48cGF0aCBkPSJNMjIgM2gtNmE0IDQgMCAwIDAtNCA0djE0YTIgMiAwIDAgMSAyLTJoNGEyIDIgMCAwIDAgMi0yVjVhMiAyIDAgMCAwLTItMloiLz48L3N2Zz4=)](https://tooltician.com)
+
 Proyecto educativo de finanzas personales para Chile. Su objetivo es explicar, con lenguaje claro y sin letra chica, temas como AFP, APV, impuestos, inversiones y herramientas prácticas (calculadoras) para que cualquier persona pueda comprender y tomar mejores decisiones con su dinero.
 
 Este sitio es 100% educativo: no solicita datos personales, no ofrece asesoría personalizada ni promueve productos financieros. Todo su contenido busca informar y enseñar de forma responsable y accesible.
@@ -164,3 +168,7 @@ Este proyecto usa dos licencias distintas:
   atribución, prohibido uso comercial sin permiso.
 - **Marca, nombre, logo, imágenes y activos de diseño**: no están cubiertos por
   la licencia del código; quedan reservados salvo autorización explícita.
+
+---
+
+_Parte del [ecosistema Tooltician](https://tooltician.com) — educación financiera para Chile, clara y sin letra chica._
