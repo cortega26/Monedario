@@ -2,7 +2,7 @@
 
 _Parte del [ecosistema Tooltician](https://tooltician.com) — educación financiera para Chile, clara y sin letra chica._
 
-[![Tooltician](https://tooltician.com/badge.svg)](https://tooltician.com)
+[![Parte de Tooltician](https://tooltician.com/badge.es.svg)](https://tooltician.com)
 
 Proyecto educativo de finanzas personales para Chile. Su objetivo es explicar, con lenguaje claro y sin letra chica, temas como AFP, APV, impuestos, inversiones y herramientas prácticas (calculadoras) para que cualquier persona pueda comprender y tomar mejores decisiones con su dinero.
 
