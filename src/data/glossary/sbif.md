@@ -6,7 +6,7 @@ relatedTerms: ["cmf"]
 
 La **Superintendencia de Bancos e Instituciones Financieras (SBIF)** fue la institución del Estado chileno (1925 - 2019) encargada de supervisar, fiscalizar y dictar normas contables y de riesgo para los bancos establecidos en Chile, previniendo la quiebra bancaria y salvaguardando los dineros de los depositantes.
 
-### Disolución (Absorción)
+## Disolución (Absorción)
 
 A contar del 1 de junio de 2019, bajo la promulgación de la Ley Nº 21.130 (Ley General de Bancos), la SBIF **cesó sus funciones como órgano independiente y se integró plenamente al alero de la Comisión para el Mercado Financiero (CMF)**.
 

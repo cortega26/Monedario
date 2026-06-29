@@ -1,0 +1,40 @@
+{
+  "author": {
+    "name": "Carlos Ortega González",
+    "jobTitle": "Fundador",
+    "sameAs": "https://monedario.cl/autor/"
+  },
+  "publisher": {
+    "name": "Monedario",
+    "url": "https://monedario.cl",
+    "logo": "https://monedario.cl/favicon.svg"
+  },
+  "siteUrl": "https://monedario.cl",
+  "siteDescription": "Herramientas financieras gratuitas para Chile: calculadoras de sueldo líquido, finiquito, boleta de honorarios, seguro de cesantía, UF, y guías de educación financiera.",
+  "acronyms": {
+    "UF": "Unidad de Fomento",
+    "UTM": "Unidad Tributaria Mensual",
+    "UTA": "Unidad Tributaria Anual",
+    "AFP": "Administradora de Fondos de Pensiones",
+    "APV": "Ahorro Previsional Voluntario",
+    "AFC": "Ahorro Forzoso Colectivo",
+    "CAE": "Crédito con Aval del Estado",
+    "CMF": "Comisión para el Mercado Financiero",
+    "SBIF": "Superintendencia de Bancos e Instituciones Financieras",
+    "FONASA": "Fondo Nacional de Salud",
+    "ISAPRE": "Institución de Salud Previsional",
+    "GES": "Garantías Explícitas en Salud",
+    "DICOM": "Registro de Deudores del Sistema Financiero"
+  },
+  "product": {
+    "offer": {
+      "price": "0",
+      "priceCurrency": "CLP",
+      "availability": "https://schema.org/InStock"
+    }
+  },
+  "limits": {
+    "max_pronoun_density": 0.02
+  },
+  "allowedExtensions": [".md", ".html", ".htm"]
+}

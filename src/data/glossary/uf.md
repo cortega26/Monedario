@@ -13,19 +13,26 @@ relatedCalculators:
 relatedGuides:
   - href: /posts/reajuste-arriendo-uf-ipc-chile/
     label: Cómo se reajusta el arriendo en Chile
+sources:
+  - label: Banco Central de Chile — UF
+    href: https://www.bcentral.cl/
+  - label: INE — Índice de Precios al Consumidor
+    href: https://www.ine.gob.cl/
+publishedDate: 2026-01-15
+reviewedDate: 2026-06-01
 ---
 
 La **Unidad de Fomento (UF)** es una unidad de cuenta creada en Chile en 1967. No es una moneda física que puedas guardar en la billetera; es un valor referencial que se actualiza todos los días según el cálculo de la inflación oficial.
 
-### ¿Cómo funciona?
+## ¿Cómo funciona?
 
 Su valor varía linealmente y de forma diaria en función de la variación que haya experimentado el **Índice de Precios al Consumidor (IPC)** en el mes inmediatamente anterior.
 
-### ¿Cuál es su utilidad?
+## ¿Cuál es su utilidad?
 
 El objetivo de la UF es **mantener el poder adquisitivo del dinero a través del tiempo**. En una economía con inflación, si prestas dinero en pesos hoy y te devuelven la misma cantidad en 10 años, perderás dinero porque las cosas estarán más caras. Al fijar contratos en UF, tanto el dinero prestado como su valor real se blindan frente a la inflación.
 
-### ¿En qué se usa la UF?
+## ¿En qué se usa la UF?
 
 La Unidad de Fomento es omnipresente en la economía chilena a mediano y largo plazo:
 

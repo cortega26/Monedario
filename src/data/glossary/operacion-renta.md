@@ -9,7 +9,7 @@ relatedCalculators:
 
 La **Operación Renta** es el proceso anual de declaración y ajuste del impuesto a la renta en Chile. Ocurre en abril de cada año y corresponde a los ingresos del año calendario anterior.
 
-### ¿Quién debe declararla?
+## ¿Quién debe declararla?
 
 - Trabajadores independientes que emitieron boletas de honorarios
 - Personas con más de una fuente de ingresos
@@ -18,7 +18,7 @@ La **Operación Renta** es el proceso anual de declaración y ajuste del impuest
 
 Los trabajadores dependientes con un solo empleador generalmente no necesitan declarar — el SII propone una declaración que puedes simplemente aceptar si los datos son correctos.
 
-### Devolución vs. pago
+## Devolución vs. pago
 
 El resultado puede ser:
 
@@ -26,14 +26,14 @@ El resultado puede ser:
 - **Pago:** si retuvieron menos, debes enterar la diferencia.
 - **Cero a pagar / cero a devolver:** cuando los pagos provisionales calzan exactamente con la obligación final.
 
-### ¿Qué reduce el impuesto?
+## ¿Qué reduce el impuesto?
 
 - APV en Régimen B (reduce la base imponible)
 - Intereses de crédito hipotecario (hasta cierto límite)
 - Gastos rechazados por el SII
 - Honorarios de ciertos profesionales (con boleta)
 
-### Plazos
+## Plazos
 
 El SII abre la plataforma normalmente a partir del 1 de abril. La fecha límite suele ser el 30 de abril para personas naturales. Las devoluciones se procesan entre mayo y julio.
 

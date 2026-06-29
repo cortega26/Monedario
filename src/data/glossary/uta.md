@@ -6,7 +6,7 @@ relatedTerms: ["utm", "operacion-renta", "global-complementario"]
 
 La **Unidad Tributaria Anual (UTA)** es una unidad de medida tributaria chilena equivalente a **12 veces el valor de la Unidad Tributaria Mensual (UTM) de diciembre** del año calendario. Se utiliza principalmente para expresar los tramos del Impuesto Global Complementario y otras obligaciones tributarias anuales.
 
-### UTA vs. UTM
+## UTA vs. UTM
 
 | Característica | UTM                       | UTA                            |
 | -------------- | ------------------------- | ------------------------------ |
@@ -14,7 +14,7 @@ La **Unidad Tributaria Anual (UTA)** es una unidad de medida tributaria chilena 
 | Equivalencia   | Valor base                | 12 UTM de diciembre            |
 | Uso principal  | Multas, cotizaciones, APV | Tramos del impuesto a la renta |
 
-### ¿Para qué se usa la UTA?
+## ¿Para qué se usa la UTA?
 
 La UTA aparece principalmente en los **tramos del Impuesto Global Complementario** (Operación Renta). El SII publica cada año la tabla con los rangos de renta imponible expresados en UTA y la tasa marginal que corresponde a cada tramo.
 
@@ -25,7 +25,7 @@ La UTA aparece principalmente en los **tramos del Impuesto Global Complementario
 - Entre 30 y 50 UTA → tasa del 8%
 - (Los tramos exactos los publica el SII cada año)
 
-### Relación con el APV
+## Relación con el APV
 
 Al calcular el beneficio del APV Régimen A, el tope del bono estatal es de **6 UTM anuales** (calculado con UTM, no UTA).
 

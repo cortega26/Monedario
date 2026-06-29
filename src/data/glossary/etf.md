@@ -6,14 +6,14 @@ relatedTerms: ["fondo-mutuo", "cmf", "custodia", "renta-variable"]
 
 Un **ETF** es un fondo que agrupa muchos activos y cuyas cuotas se compran y venden en mercado, igual que una acción. Por eso suele usarse como una forma simple de entrar a una cartera diversificada sin tener que comprar cada instrumento por separado.
 
-### Cómo se diferencia de un fondo mutuo
+## Cómo se diferencia de un fondo mutuo
 
 - **ETF:** se transa en bolsa durante la sesión de mercado, con precio que cambia en el día.
 - **Fondo mutuo:** se entra y sale por rescate o suscripción, según las reglas del fondo.
 
 La diferencia no es solo operativa. También cambia el tipo de costos que debes mirar: comisión del intermediario, spread, custodia y tratamiento tributario del vehículo específico.
 
-### Cuándo aparece esta duda
+## Cuándo aparece esta duda
 
 En Monedario, ETF suele aparecer cuando una persona compara alternativas de ahorro e inversión de largo plazo y quiere entender:
 
@@ -21,7 +21,7 @@ En Monedario, ETF suele aparecer cuando una persona compara alternativas de ahor
 - qué costos reales hay además de la rentabilidad;
 - cómo se diferencia esta opción de un fondo mutuo o un depósito a plazo.
 
-### Qué mirar antes de usar uno
+## Qué mirar antes de usar uno
 
 - **Qué índice o activos replica.**
 - **Qué costos tiene operar y mantener la posición.**

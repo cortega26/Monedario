@@ -6,7 +6,7 @@ relatedTerms: ["cmf", "tmc", "cae"]
 
 El **Servicio Nacional del Consumidor (SERNAC)** es la agencia pública chilena, vinculada administrativamente al Ministerio de Economía, Fomento y Turismo, cuyo propósito legal es velar por el cumplimiento estricto de la Ley N° 19.496 sobre **Protección de los Derechos de los Consumidores**.
 
-### Roles e Interacción Funcional
+## Roles e Interacción Funcional
 
 - **Fiscalización Reclamos:** Recibe querellas por fallas de garantía, publicidad engañosa, o problemas masivos de servicios y media entre el cliente y el comercio infractor.
 - **Sernac Financiero:** A través de un mandato especializado ("Ley del Sernac Financiero"), el organismo supervigila a entidades de crédito, multitiendas, bancos y cajas de compensación, exigiendo transparencia y castigando el daño en contratos financieros, sobregiros usureros encubiertos y la falta de información sobre la **Carga Anual Equivalente (CAE)**.

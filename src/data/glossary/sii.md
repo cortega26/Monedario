@@ -6,7 +6,7 @@ relatedTerms: ["utm"]
 
 El **Servicio de Impuestos Internos (SII)** es el organismo del Estado de Chile dependiente del Ministerio de Hacienda que tiene a su cargo aplicar, recolectar y fiscalizar el desarrollo de las leyes tributarias del país para financiar el gasto público y social.
 
-### Sus Principales Funciones
+## Sus Principales Funciones
 
 1. **Recaudación y Fiscalización:** Controla el pago de:
    - Impuesto al Valor Agregado (IVA - 19%) y la Boleta Electrónica.

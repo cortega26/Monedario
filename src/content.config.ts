@@ -324,6 +324,19 @@ const glossary = defineCollection({
       .array(z.object({ href: z.string(), label: z.string() }))
       .optional()
       .default([]),
+    sources: z
+      .array(
+        z
+          .object({
+            label: z.string().trim().min(1),
+            href: z.string().url(),
+          })
+          .strict()
+      )
+      .optional()
+      .default([]),
+    publishedDate: z.date().optional(),
+    reviewedDate: z.date().optional(),
     draft: z.boolean().default(false),
   }),
 });

@@ -6,7 +6,7 @@ relatedTerms: ["ipc", "tmc"]
 
 La **Tasa de Política Monetaria (TPM)** es la principal herramienta que tiene el **Banco Central de Chile** para controlar la **inflación (IPC)** y mantener estable la economía. En términos simples, es la tasa de interés "mayorista" que el Banco Central le cobra a los bancos comerciales por prestarles dinero, o les paga por sus depósitos.
 
-### ¿Cómo afecta a tus finanzas?
+## ¿Cómo afecta a tus finanzas?
 
 #### Subida de la TPM (Política Contraccionista)
 

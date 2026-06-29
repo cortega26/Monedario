@@ -9,14 +9,14 @@ relatedLaws:
 
 El **Fondo Nacional de Salud (Fonasa)** es el seguro de salud público y solidario de Chile. Si eres trabajador dependiente y no elegiste una Isapre, estás en Fonasa automáticamente. Tu empleador descuenta el 7% de tu sueldo imponible y lo transfiere a Fonasa cada mes.
 
-### ¿Qué cubre?
+## ¿Qué cubre?
 
 Fonasa tiene dos modalidades de atención:
 
 - **Modalidad Institucional (MAI):** Atención en la red pública — consultorios, CESFAM y hospitales del Estado. Los copagos son muy bajos o nulos según el tramo.
 - **Modalidad Libre Elección (MLE):** Atención con médicos privados que tengan convenio con Fonasa. Pagas una parte, Fonasa paga el resto según el arancel.
 
-### Los tramos Fonasa
+## Los tramos Fonasa
 
 El copago que pagas depende de tu ingreso:
 
@@ -27,7 +27,7 @@ El copago que pagas depende de tu ingreso:
 | C     | Hasta ~$735.000 brutos aprox.           | 10%        |
 | D     | Sobre eso                               | 20%        |
 
-### Fonasa vs. Isapre: ¿qué conviene?
+## Fonasa vs. Isapre: ¿qué conviene?
 
 Fonasa es mejor si usas principalmente la red pública, tienes condiciones preexistentes o quieres previsibilidad de gasto. Isapre puede dar más opciones de médicos privados, pero el costo real suele ser mayor al 7% base.
 

@@ -12,7 +12,7 @@ relatedLaws:
 
 La **gratificación** es la parte de las utilidades de la empresa que la ley obliga a distribuir entre los trabajadores que han prestado servicios durante el año. Está regulada por los artículos 47 al 52 del Código del Trabajo.
 
-### ¿Cuándo es obligatoria?
+## ¿Cuándo es obligatoria?
 
 La empresa debe pagar gratificación cuando:
 
@@ -21,7 +21,7 @@ La empresa debe pagar gratificación cuando:
 
 Si la empresa tuvo pérdidas, no está obligada a pagar gratificación legal.
 
-### Dos modalidades de pago
+## Dos modalidades de pago
 
 **Artículo 47 — Gratificación legal (variable):**
 Se paga el 25% de las utilidades líquidas del año, distribuido entre los trabajadores a prorrata de los sueldos pagados durante el ejercicio. El tope por trabajador es de **4,75 ingresos mínimos mensuales anuales**.
@@ -29,11 +29,11 @@ Se paga el 25% de las utilidades líquidas del año, distribuido entre los traba
 **Artículo 50 — Gratificación garantizada (fija):**
 La empresa paga mensualmente o en el mes acordado el equivalente al **25% de la remuneración mensual** del trabajador, con un tope de **4,75 IMM / 12** al mes. Este sistema es más frecuente porque simplifica la administración sin necesidad de esperar el balance anual.
 
-### Gratificación y sueldo líquido
+## Gratificación y sueldo líquido
 
 La gratificación garantizada suele aparecer **integrada en la liquidación de sueldo** como un ítem, a veces junto al sueldo base. Incrementa la renta imponible del trabajador, por lo que afecta el cálculo de AFP, salud e impuesto.
 
-### Gratificación en el finiquito
+## Gratificación en el finiquito
 
 Al calcular el finiquito, si queda gratificación proporcional pendiente de pago (trabajaste parte del año), la empresa debe incluirla en el cálculo.
 

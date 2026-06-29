@@ -6,13 +6,13 @@ relatedTerms: ["uf", "dividendo-hipotecario", "cae", "tmc"]
 
 El **crédito hipotecario** es el financiamiento que entrega un banco o institución financiera para comprar una vivienda. A diferencia de un crédito de consumo, la propiedad queda como garantía (hipoteca): si dejas de pagar, el banco puede ejecutarla.
 
-### ¿Cómo funciona en Chile?
+## ¿Cómo funciona en Chile?
 
 En Chile los créditos hipotecarios se expresan en **UF** (Unidad de Fomento), lo que significa que el monto de tu deuda y tu dividendo mensual se reajustan con la inflación. Si la UF sube, el valor en pesos de tu cuota también sube.
 
 Los plazos más comunes van de 15 a 30 años.
 
-### Conceptos clave
+## Conceptos clave
 
 **Pie:** El monto inicial que debes poner de tu bolsillo. En Chile los bancos exigen generalmente entre el 10% y el 25% del valor de la propiedad. A mayor pie, menor deuda y menor dividendo.
 
@@ -22,7 +22,7 @@ Los plazos más comunes van de 15 a 30 años.
 
 **Tasa de interés:** Puede ser fija (igual durante todo el plazo), variable (cambia según la TPM) o mixta.
 
-### Lo que define cuánto puedes pedir
+## Lo que define cuánto puedes pedir
 
 Los bancos usan como regla general que el dividendo no supere el **25%–30% de tus ingresos mensuales netos**. También revisan historial crediticio (DICOM/CMF), antigüedad laboral y nivel de endeudamiento total.
 

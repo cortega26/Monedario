@@ -12,7 +12,7 @@ relatedLaws:
 
 El **finiquito** es el documento que formaliza el término del contrato de trabajo. Contiene el detalle de todos los pagos que el empleador debe hacer al trabajador al momento del despido, renuncia o cualquier otra causal de término, y sirve como constancia de que ambas partes liquidaron sus obligaciones pendientes.
 
-### ¿Qué incluye el finiquito?
+## ¿Qué incluye el finiquito?
 
 Dependiendo de la causal, el finiquito puede incluir:
 
@@ -22,7 +22,7 @@ Dependiendo de la causal, el finiquito puede incluir:
 - **Indemnización por años de servicio:** sólo en causales del artículo 161 (necesidades de la empresa) o despido injustificado declarado judicialmente.
 - **Aviso previo sustitutivo:** si el empleador despidió con causal 161 sin dar 30 días de aviso, debe pagar un mes adicional.
 
-### Las causales de término y el finiquito
+## Las causales de término y el finiquito
 
 El contenido económico del finiquito cambia radicalmente según la causal:
 
@@ -33,7 +33,7 @@ El contenido económico del finiquito cambia radicalmente según la causal:
 | Art. 161 (necesidades de la empresa)              | ✔ Sí corresponde (cap. 11 años) | ✔ Si no se avisó |
 | Despido injustificado (declarado judicialmente)   | ✔ Sí + recargo del 30%–100%     | ✔ Si no se avisó |
 
-### Importante antes de firmar
+## Importante antes de firmar
 
 1. El finiquito sólo tiene validez legal si está **firmado ante un ministro de fe** (notario, inspector del trabajo o funcionario público habilitado).
 2. Puedes firmar "con reserva de derechos" si tienes dudas, lo que conserva tu derecho a reclamar posteriores diferencias.

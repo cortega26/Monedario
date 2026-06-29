@@ -6,7 +6,7 @@ relatedTerms: ["renta-imponible", "afp", "sueldo-bruto"]
 
 El **tope imponible** es el monto máximo de sueldo que se considera como base de cálculo para las cotizaciones obligatorias de pensiones (AFP) y salud (Fonasa o Isapre). Si tu remuneración supera ese tope, las cotizaciones se calculan sólo hasta ese límite: el exceso no genera cotización adicional.
 
-### ¿Cuánto es el tope imponible en Chile?
+## ¿Cuánto es el tope imponible en Chile?
 
 Existen dos topes según el tipo de cotización:
 
@@ -15,7 +15,7 @@ Existen dos topes según el tipo de cotización:
 
 Dado que la UF varía cada día, el monto en pesos del tope cambia mes a mes. Por ejemplo, si la UF está en $38.000, el tope imponible sería cerca de $2.876.600.
 
-### ¿Por qué importa el tope imponible?
+## ¿Por qué importa el tope imponible?
 
 Si tu sueldo supera el tope:
 
@@ -23,7 +23,7 @@ Si tu sueldo supera el tope:
 2. Tu **pensión futura se calculará sobre el tope**, no sobre tu sueldo real. Esto puede resultar en una pensión menor en proporción a lo que ganaste.
 3. Para compensar, pueden convenirte herramientas como el **APV** u otros mecanismos de ahorro voluntario.
 
-### Tope imponible vs. renta imponible
+## Tope imponible vs. renta imponible
 
 El tope imponible es el _límite máximo posible_ de la base de cotización. La **renta imponible** es el monto efectivo que aplica a tu caso (que puede ser igual o menor al tope, pero nunca mayor).
 

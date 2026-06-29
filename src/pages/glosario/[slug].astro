@@ -7,6 +7,7 @@ import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import GlossaryJsonLd from "@/components/GlossaryJsonLd.astro";
 import { getPath } from "@/utils/getPath";
+import { formatMetadataDate } from "@/utils/metadataDate";
 
 export async function getStaticPaths() {
   const glossaryEntries = await getCollection(
@@ -28,6 +29,9 @@ const {
   relatedCalculators,
   relatedGuides,
   relatedLaws,
+  sources,
+  publishedDate,
+  reviewedDate,
 } = entry.data;
 const canonicalUrl = new URL(
   getPath(`/glosario/${entry.id}/`),
@@ -72,6 +76,17 @@ if (relatedTerms.length > 0) {
         {term}
       </h1>
 
+      {
+        publishedDate && (
+          <p class="mt-2 text-sm text-muted">
+            Publicado: {formatMetadataDate(publishedDate, "long")}
+            {reviewedDate && reviewedDate > publishedDate && (
+              <> · Revisado: {formatMetadataDate(reviewedDate, "long")}</>
+            )}
+          </p>
+        )
+      }
+
       <div
         class="mt-8 mb-4 border-l-4 border-accent/30 bg-accent/5 p-4 text-lg font-medium text-secondary"
       >
@@ -81,6 +96,28 @@ if (relatedTerms.length > 0) {
       <div class="app-prose content-layer mt-8 text-base leading-relaxed">
         <Content />
       </div>
+
+      {
+        sources.length > 0 && (
+          <section class="bg-surface mt-12 rounded-xl border border-border p-6">
+            <h2 class="mb-4 text-xl font-bold">Fuentes</h2>
+            <ul class="space-y-2">
+              {sources.map(source => (
+                <li>
+                  <a
+                    href={source.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-accent underline underline-offset-4 hover:opacity-80"
+                  >
+                    {source.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      }
 
       {
         (relatedCalculators.length > 0 ||

@@ -14,13 +14,13 @@ relatedGuides:
 
 La **Carga Anual Equivalente (CAE)** es un porcentaje que representa el costo real de un crédito por cada año de plazo. Fue implementada como herramienta de transparencia introducida por la "Ley del Sernac Financiero" (Ley N° 20.555).
 
-### ¿Para qué sirve?
+## ¿Para qué sirve?
 
 Antes de la CAE, los bancos publicitaban sólo la "tasa de interés", ocultando el impacto de otros cobros obligatorios (gastos notariales, estampillas, seguros, costos de mantención). La CAE unifica todos estos cobros en un solo número porcentual anual.
 
 Sirve expresamente para **comparar alternativas de crédito**. Si pides un crédito por el mismo monto y al mismo plazo en dos instituciones distintas, **la opción más barata será siempre la que tenga la CAE más baja**.
 
-### Componentes de la CAE
+## Componentes de la CAE
 
 La CAE incluye:
 
@@ -30,6 +30,6 @@ La CAE incluye:
 - Seguros obligatorios (ej. desgravamen) y voluntarios si los tomaste con el crédito.
 - Gastos de escrituración y notariales.
 
-### Limitaciones
+## Limitaciones
 
 La CAE sólo es útil para comparar créditos que tienen el **mismo monto** y el **mismo plazo**. Si varías el plazo de pago, la CAE también variará, por lo que no podrías comparar directamente usando sólo este indicador sin revisar el Costo Total del Crédito (CTC).

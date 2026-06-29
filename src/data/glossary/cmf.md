@@ -8,7 +8,7 @@ La **Comisión para el Mercado Financiero (CMF)** es un servicio público de car
 
 Actúa como el ente supervisor unánime de los mercados de valores, seguros y bancario del país.
 
-### Historia e Integración
+## Historia e Integración
 
 La CMF nació de la integración en una sola mega-agencia de las dos superintendencias financieras históricas:
 
@@ -17,7 +17,7 @@ La CMF nació de la integración en una sola mega-agencia de las dos superintend
 
 Hoy, la CMF es el cerebro regulador del dinero bancarizado en el país y opera interactuando permanentemente con el Ministerio de Hacienda y el Banco Central.
 
-### Rol frente al ciudadano común
+## Rol frente al ciudadano común
 
 Además del resguardo técnico de grandes corporaciones, la CMF provee servicios críticos y garantías gratis directas a los ciudadanos:
 

@@ -12,7 +12,7 @@ relatedGuides:
 
 El **Ahorro Previsional Voluntario (APV)** es un mecanismo financiero creado por el Estado chileno para incentivar a las personas a mejorar sus futuras pensiones mediante ahorros extras a su cotización obligatoria en la AFP.
 
-### Principal Atractivo
+## Principal Atractivo
 
 El gran incentivo del APV no es sólo la rentabilidad que pueda generar el fondo donde lo inviertas, sino los significativos **beneficios tributarios** asociados, los cuales se dividen en dos regímenes excluyentes:
 
@@ -30,6 +30,6 @@ El monto ahorrado se rebaja de tu base imponible para el cálculo del Impuesto G
 - Permite "eludir" legalmente el pago de impuestos sobre el dinero o bajar de tramo tributario.
 - Cuando te jubiles, los retiros pagarán impuestos según el tramo de tu pensión (que suele ser mucho menor que el de tu sueldo activo).
 
-### ¿Quién lo administra?
+## ¿Quién lo administra?
 
 A diferencia del ahorro obligatorio que sólo pueden manejar las AFP, el APV puede ser abierto y administrado por bancos, compañías de seguro, administradoras de fondos mutuos, corredores de bolsa, entre otros.

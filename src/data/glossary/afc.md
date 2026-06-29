@@ -2,13 +2,20 @@
 term: "Administradora de Fondos de Cesantía (AFC)"
 shortDefinition: "Institución privada fiscalizada por la Superintendencia de Pensiones en Chile que administra los dineros formales de las cuentas de desempleo."
 relatedTerms: ["afp", "renta-imponible"]
+sources:
+  - label: AFC Chile — Seguro de Cesantía
+    href: https://www.afc.cl/
+  - label: Ley 19.728 — Seguro de Cesantía (BCN)
+    href: https://www.bcn.cl/leychile/navegar?idNorma=190590
+publishedDate: 2026-02-15
+reviewedDate: 2026-06-01
 ---
 
 La **Administradora de Fondos de Cesantía (AFC)** es la sociedad anónima de giro único (actualmente licitada por operadores que agrupan a las Cajas de Compensación y AFP del país) encargada en Chile exclusívamente de gestionar y rentabilizar los dineros del **Seguro de Cesantía**.
 
 Fue creada por el Estado chileno con la Ley Nº 19.728 promulgada en mayo del año 2001 para actuar como una red de mitigación económica en caso de pérdida de trabajo formal y como incentivo económico de reserva vital frente a contingencias o emergencias climáticas para el trabajador dependiente.
 
-### Cuentas Administradas por la AFC
+## Cuentas Administradas por la AFC
 
 1. **Cuenta Individual de Cesantía (CIC):** Cuenta personal del trabajador. Cada mes de su contrato, se deposita dinero (como porción de su imponibilidad) con costo compartido:
    - Para contratos indefinidos, el empleador financia el 2.4% y el trabajador aporta 0.6% de su líquido.

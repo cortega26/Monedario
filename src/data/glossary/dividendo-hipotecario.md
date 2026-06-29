@@ -6,13 +6,13 @@ relatedTerms: ["credito-hipotecario", "uf", "ipc", "tpm"]
 
 El **dividendo hipotecario** es la cuota mensual que pagas por tu crédito para comprar una vivienda. En Chile se llama "dividendo" (no "cuota") por tradición, aunque es lo mismo.
 
-### Por qué cambia cada mes en pesos
+## Por qué cambia cada mes en pesos
 
 El dividendo se fija en **UF**, no en pesos. Eso significa que aunque el número en UF no cambia mes a mes, su equivalente en pesos sí varía porque el valor de la UF se actualiza diariamente según el IPC.
 
 Ejemplo: si tu dividendo es 12 UF y la UF vale $38.000, pagas $456.000. Si la UF sube a $39.000, pagas $468.000. El dividendo en UF es el mismo; el monto en pesos cambió.
 
-### ¿Cómo se compone el dividendo?
+## ¿Cómo se compone el dividendo?
 
 Cada cuota que pagas tiene dos partes:
 
@@ -21,7 +21,7 @@ Cada cuota que pagas tiene dos partes:
 
 Al principio del crédito, la mayor parte del dividendo son intereses. Con los años, la proporción se invierte.
 
-### ¿Cuándo conviene prepagar?
+## ¿Cuándo conviene prepagar?
 
 Prepagar reduce el capital pendiente, lo que baja el total de intereses que pagarás. En Chile la Ley de Portabilidad Financiera (21.236) elimina las comisiones de prepago, lo que hace más conveniente amortizar cuando tienes excedentes.
 

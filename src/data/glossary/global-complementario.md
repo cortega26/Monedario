@@ -10,7 +10,7 @@ relatedCalculators:
 
 El **Impuesto Global Complementario (IGC)** es el impuesto anual a la renta que pagan en Chile las personas naturales con más de una fuente de ingresos, o con ingresos distintos a los de un solo empleador.
 
-### ¿Quién lo paga?
+## ¿Quién lo paga?
 
 - Personas con **más de un empleador** durante el año
 - Trabajadores con **ingresos de honorarios** además de su sueldo
@@ -18,18 +18,18 @@ El **Impuesto Global Complementario (IGC)** es el impuesto anual a la renta que 
 - Personas con **ingresos de inversiones** (dividendos de acciones, intereses, fondos mutuos)
 - Socios o dueños de empresas que retiran utilidades
 
-### ¿Cuál es la diferencia con el impuesto único?
+## ¿Cuál es la diferencia con el impuesto único?
 
 El impuesto único de segunda categoría aplica mes a mes en la liquidación del trabajador dependiente con un solo empleador. El Global Complementario "globaliza" todas las rentas del año y aplica sobre el total consolidado, descontando lo ya pagado durante el año (retenciones y PPM).
 
-### ¿Cómo funciona en la práctica?
+## ¿Cómo funciona en la práctica?
 
 1. Al hacer la Operación Renta en abril, declaras todos tus ingresos del año anterior.
 2. El SII calcula el IGC sobre la suma total, aplicando la tabla progresiva anual.
 3. Contra ese impuesto, se acreditan todos los pagos ya hechos durante el año (impuesto único retenido, PPM de honorarios).
 4. La diferencia puede ser devolución (si pagaste más) o pago adicional (si pagaste menos).
 
-### ¿Qué lo reduce?
+## ¿Qué lo reduce?
 
 - APV en Régimen B (rebaja la base imponible)
 - Intereses de créditos hipotecarios (con tope)

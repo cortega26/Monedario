@@ -14,7 +14,7 @@ El **Impuesto al Valor Agregado (IVA)** es un impuesto indirecto que se aplica a
 
 A diferencia de otros impuestos como el Impuesto Único de Segunda Categoría, el IVA no depende de la renta de la persona: se aplica al consumo. Cada vez que compras un producto en una tienda, el precio que pagas ya incluye el IVA, salvo en servicios o productos específicos que la ley exonera.
 
-### Cálculos más comunes
+## Cálculos más comunes
 
 La mayoría de las operaciones con IVA caen en dos casos:
 
