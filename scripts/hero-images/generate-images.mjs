@@ -214,6 +214,9 @@ async function main() {
   if (!apiKey) {
     throw new Error("OPENAI_API_KEY is required when using --run.");
   }
+  if (!apiKey.startsWith("sk-")) {
+    throw new Error("OPENAI_API_KEY does not appear to be a valid OpenAI key (expected sk-… prefix).");
+  }
 
   console.log(
     `[generate-images] Running generation for ${plan.length} request(s) using ${OPENAI_IMAGES_ENDPOINT}`

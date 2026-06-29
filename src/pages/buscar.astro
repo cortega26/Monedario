@@ -185,6 +185,14 @@ const searchGroups = [
 <script>
   import { trackAnalyticsEvent } from "@/utils/analytics";
 
+  /** Sanitiza posibles patrones de PII en términos de búsqueda antes de enviarlos a analytics. */
+  function sanitizeSearchTerm(term: string): string {
+    return term
+      .replace(/\d{1,2}\.\d{3}\.\d{3}[-][\dkK]/g, "[RUT]")
+      .replace(/[\w.-]+@[\w.-]+\.\w+/g, "[email]")
+      .replace(/\+?56\s?\d{3,4}\s?\d{3,4}\s?\d{3,4}/g, "[tel]");
+  }
+
   function initSearch() {
     const pageFindSearch = document.querySelector("#pagefind-search");
     const searchForm = document.querySelector("#search-form");
@@ -286,7 +294,9 @@ const searchGroups = [
         event.preventDefault();
         const term = searchField.value.trim();
         if (term) {
-          trackAnalyticsEvent("search_submit", { search_term: term });
+          trackAnalyticsEvent("search_submit", {
+            search_term: sanitizeSearchTerm(term),
+          });
         }
         runSearch(searchField.value);
       });
@@ -298,7 +308,7 @@ const searchGroups = [
         if (link instanceof HTMLAnchorElement) {
           trackAnalyticsEvent("search_result_click", {
             result_url: link.href,
-            search_term: searchField.value.trim(),
+            search_term: sanitizeSearchTerm(searchField.value.trim()),
           });
         }
       });
@@ -313,7 +323,7 @@ const searchGroups = [
         }
         debounceTimer = setTimeout(() => {
           trackAnalyticsEvent("search_submit", {
-            search_term: term,
+            search_term: sanitizeSearchTerm(term),
             source: "debounce",
           });
           runSearch(searchField.value);

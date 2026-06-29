@@ -5,7 +5,11 @@ import path from "path";
 import sharp from "sharp";
 import { getAllScenes, buildPromptFromScene } from "../../src/tools/hero-images/config.mjs";
 
-const client     = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+const apiKey = process.env.OPENAI_API_KEY || "";
+if (!apiKey.startsWith("sk-")) {
+  throw new Error("OPENAI_API_KEY does not appear to be a valid OpenAI key (expected sk-… prefix).");
+}
+const client     = new OpenAI({ apiKey });
 const STATUS_FILE = "scripts/hero-images/status.json";
 const PUBLIC_STATUS = "public/hero-images-status.json";
 const OUTPUT_DIR  = "public/images/hero";

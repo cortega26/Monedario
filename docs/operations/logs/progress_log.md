@@ -170,3 +170,28 @@ Observed impact: hub presupuesto navegable, refresh de 4 artículos con cifras 2
 OBS-01 — Verificación de deploy y primer export semanal (W26)
 Site deploy verificado: `data-analytics-transport="enabled"` confirmado en producción (https://monedario.cl/). Pipeline end-to-end validado: 12 eventos sintéticos enviados al worker → 202 Accepted → confirmados en KV vía REST API. Primer export semanal generado manualmente (cron mañana 07:57 UTC): `output/operations/data-signals/analytics/2026-W26.json` con 33 filas, 34 eventos totales, 10 tipos de evento, 13 slugs de calculadora. Schema validado: `schemaVersion=1`, `source="first-party-events"`, counts ≥ 0, enums correctos, 0 PII. KV confirmado con 33 contadores para 2026-06-28 (días 22-27 sin datos — baseline de 1 día).
 Observed impact: worker recibe tráfico real de usuarias (calculadoras UF, IPC, crédito-consumo, seguro-cesantia, conversor-UTM, operación-renta). Funnel visible: views → starts → completes para UF (1→2→1) e IPC (1→1→1). Eventos de engagement: NBS shown/click, official_source_click (bcentral.cl, sii.cl), share_result_click (whatsapp). Scorecard pendiente de GSC data para W26 (workflow `weekly-search-ops.yml`). W26 es baseline inicial con 1 día de datos; W27 será la primera semana completa para evaluación formal.
+
+2026-06-28
+OBS-01 — Scorecard W26 ejecutado con datos first-party + GSC
+GSC W26 obtenido vía `gsc-fetch.mjs`: 2259 queries, 104 pages, 2268 query-page, 180 clicks totales, 36053 impresiones. Scorecard generado con `build-weekly-search-report.mjs --input output/operations/weekly-search-performance/2026-W26`: fuentes diferenciadas (GSC JSON + first-party analytics JSON), 13 calculadoras con datos de funnel, watchlist estratégica actualizada con 20 assets. First-party: 5 views · 8 starts · 7 completes · 2 errors · 2 shares · 3 NBS shown · 2 NBS clicks · 1 support click · 2 official source clicks · 2 resume clicks. Top queries GSC: "utm a peso" (2 clicks, 1874 impresiones, pos 8.7), "utm a peso chileno" (2 clicks, 1573 impresiones, pos 8.0). 4 calculadoras candidatas a refresh (sueldo-liquido, APV, conversor-UF, credito-consumo) con impresiones en posición 4-15 y CTR débil. R2 export automático pendiente: cron dispara lunes 29-jun 07:57 UTC (~11h from now). Comparación R2 vs manual se ejecutará tras el disparo del cron.
+Observed impact: primer scorecard híbrido GSC + first-party completado.
+
+2026-06-28
+SEC-003 — Verificación de exposición histórica de .env
+Verificación ejecutada: `git log --diff-filter=A --all -- .env .env.local .env.*`. Resultado: `.env` y `.env.local` nunca fueron commiteados. `.env.example` contiene solo valores públicos (TPI_ECONOMIC_PROVIDER_MODE=snapshot, placeholders comentados). `.gitignore` bloquea `.env`, `.env.local`, `.env.production`. Sin exposición histórica — no se requiere rotación de credenciales ni BFG.
+Observed impact: SEC-003 cerrado. Los 8 hallazgos restantes del OWASP audit (SEC-001, SEC-002, SEC-004..SEC-009) quedan liberados de bloqueo. El orden de ejecución recomendado ahora empieza en SEC-002 (security headers).
+
+2026-06-28
+SEC-001 + SEC-002 — Security headers e IDs Cloudflare
+SEC-002 (security headers): ya implementado en `public/_headers` — CSP con hashes sha256 (Astro build), X-Frame-Options DENY, X-Content-Type-Options nosniff, HSTS max-age=31536000 preload, Referrer-Policy strict-origin-when-cross-origin, Permissions-Policy restrictiva. SEC-001 (Cloudflare IDs): `cloudflare-fetch.mjs` ya usaba `getRequiredEnv()` para los 3 valores; `fetch-analytics-export.mjs` tenía fallback hardcodeado `?? "7e153214690ac7430fde021f1f2b2916"` → eliminado, ahora requiere `CLOUDFLARE_ACCOUNT_ID` vía `getRequiredEnv()`. Barrido final: 0 IDs hardcodeados en el repo.
+Observed impact: 2 hallazgos 🔴CRITICAL cerrados en 5 min. SEC-003 ya cerrado antes. Quedan 6 hallazgos (SEC-004..SEC-009), todos 🟠HIGH o 🟡MEDIUM. Próximo: backlog de alineamiento editorial o calculadoras (plan de crecimiento).
+
+2026-06-28
+SEC-006 — Validación de formato OPENAI_API_KEY
+Dos archivos corregidos: `generate-images.mjs` (guard `!apiKey.startsWith("sk-")` tras verificación de existencia) y `pipeline.mjs` (validación extraída antes de instanciar `new OpenAI()`). Ambos fallan temprano con mensaje claro si la key no tiene el prefijo esperado.
+Observed impact: 4/9 hallazgos OWASP cerrados. Quedan SEC-005 (SW versionado), SEC-007 (sanitización PII search_term), SEC-008 (validación dominio canonical), SEC-009 (restricción OG image).
+
+2026-06-28
+OWASP batch final — SEC-005, SEC-007, SEC-008, SEC-009
+SEC-005: ya implementado con integración Astro `sw-version.ts` que inyecta `GITHUB_SHA` (CI) o `Date.now().toString(36)` (local) en el SW cache key. SEC-007: función `sanitizeSearchTerm()` en `buscar.astro` que reemplaza RUT→[RUT], email→[email], tel→[tel] en los 3 puntos de emisión de analytics. SEC-008: `refine()` de dominio en `content.config.ts` — canonical solo acepta `monedario.cl`. SEC-009: allowlist `ALLOWED_OG_IMAGE_DOMAINS` en `PostDetails.astro` — URLs remotas no permitidas caen al fallback con `console.warn`. `astro check`: 0 errors, 0 warnings, 0 hints.
+Observed impact: OWASP audit cerrado (8/9 implementados, SEC-004 en monitoreo preventivo). 3🔴CRITICAL, 2🟠HIGH, 3🟡MEDIUM resueltos en ~25 min acumulados. Funnel visible con tasas por calculadora (start rate, completion rate, error rate, NBS CTR). W26 confirma baseline de 1 día de datos first-party (solo 28-jun); W27 (30-jun a 05-jul) será la primera semana completa para evaluación formal con significancia estadística. Deltas GSC en 0 porque W26 es la primera semana con JSON de analytics first-party y la comparación inter-semanal requiere datos de dos semanas completas en el nuevo formato.

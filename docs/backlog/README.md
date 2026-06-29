@@ -102,7 +102,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | `ux-backlog.md` | 15/16 completado; MON-405 diferido |
 | `BLOG_ADVISORY_ARCHITECTURE_PLAN_2026-04-22.md` | Propuesta |
 | `prompt-*.md` | Plantillas reutilizables |
-| `OWASP_SECURITY_AUDIT_2026-05-11.md` | 9 hallazgos (3🔴3🟠3🟡); SEC-003 verificar primero |
+| `OWASP_SECURITY_AUDIT_2026-05-11.md` | ✅ Cerrado 2026-06-28 — 8/9 implementados, SEC-004 en monitoreo preventivo |
 | `PLAN-drift-audit-2026-05-20.md` | Vigente; findings `TD-0084`..`TD-0094` |
 | `PLAN-audit-small-details-2026-05-22.md` | Vigente; programa audit-only con cinco reportes en `docs/reports/` y backlog `ASD-###` |
 | `PLAN-alignment-audit-remediation-2026-05-25.md` | Vigente; remediacion por batches de auditoria de alineamiento editorial/guardrails |
@@ -117,7 +117,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | `PLAN-github-workflow-hardening-2026-05-13.md` | Parcialmente cerrado | 2026-05-13 | La fase 3 ya registra diminishing returns | Reabrir solo con hallazgo concreto de CI o archivar cuando se acepte el cierre operativo |
 | `PLAN-heroimage-prompt-repair-2026-05-01.md` | Parcialmente cerrado | 2026-05-01 | Assets finales pendientes fuera del código | Coordinar lote manual de hero images y validar `pnpm run check:hero-images` |
 | `PLAN-seo-cross-document-roadmap-2026-05-01.md` | Parcialmente cerrado | 2026-05-20 | Sprint 1 consolidaciones sigue parcial; Sprint 3 cerrado | Reabrir solo para cierre sistemático de Sprint 1 o archivar cuando se acepte el cierre parcial |
-| `OWASP_SECURITY_AUDIT_2026-05-11.md` | Vigente | 2026-05-11 | `SEC-003` requiere verificar `.env` histórico antes de cambios | Verificar `SEC-003`; luego ejecutar orden recomendado del audit |
+| `OWASP_SECURITY_AUDIT_2026-05-11.md` | **Cerrado** | 2026-06-28 | 8/9 implementados; SEC-004 monitoreo preventivo | Auditoría completa — ver Progress Log |
 | `PLAN-drift-audit-2026-05-20.md` | Vigente | 2026-05-20 | `TD-0084`..`TD-0086` requieren revisión humana/legal/editorial | Ejecutar primero decisiones de analytics/legal y refresh YMYL controlado |
 | `PLAN-audit-small-details-2026-05-22.md` | Vigente | 2026-05-22 | Remediaciones deben ejecutarse por batch y respetar pipelines YMYL/URL/RSS | Empezar Batch 1: P0 no sustantivo + auditoria detallada de calculadoras |
 | `PLAN-alignment-audit-remediation-2026-05-25.md` | Vigente | 2026-05-25 | Remediaciones deben mantener `URL.PUBLIC.NO_POST_ID`, no canibalización y pipelines YMYL | Empezar Batch A: `ahorro-e-inversion` P1 |

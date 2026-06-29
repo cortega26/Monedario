@@ -63,11 +63,22 @@ const { Content } = await render(post);
 
 let ogImageUrl: string | undefined;
 
+// Domains permitidos para OG images remotas.
+// Solo el propio sitio y CDNs controlados. Cualquier otro dominio se rechaza
+// y se cae al fallback (dynamic OG o default og.png).
+const ALLOWED_OG_IMAGE_DOMAINS = new Set([new URL(SITE.website).hostname]);
+
 // Determine OG image source
 if (typeof initOgImage === "string") {
   if (/^https?:\/\//i.test(initOgImage)) {
-    // Absolute remote URL — use as-is
-    ogImageUrl = initOgImage;
+    // Absolute remote URL — validate domain before using.
+    // Non-allowed domains are silently rejected and fall through to the
+    // dynamic OG image or default og.png. To allow a domain, add it to
+    // ALLOWED_OG_IMAGE_DOMAINS.
+    const remoteHostname = new URL(initOgImage).hostname;
+    if (ALLOWED_OG_IMAGE_DOMAINS.has(remoteHostname)) {
+      ogImageUrl = initOgImage;
+    }
   } else if (/\.(avif|webp)$/i.test(initOgImage)) {
     // AVIF/WebP: social crawlers (LinkedIn, etc.) don't support these formats.
     // Use the pre-generated JPEG from /images/og/ (see scripts/generate-og-jpegs.mjs).

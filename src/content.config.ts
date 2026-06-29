@@ -65,6 +65,12 @@ const blog = defineCollection({
             protocol: /^https$/,
             message: 'Field "canonical" must be an absolute HTTPS URL.',
           })
+          .refine(
+            url => new URL(url).hostname === new URL(SITE.website).hostname,
+            {
+              message: `Field "canonical" must point to ${new URL(SITE.website).hostname}.`,
+            }
+          )
           .optional(),
         heroImage: z.string().or(image()).optional(),
         articleAdvisory: z

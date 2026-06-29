@@ -13,9 +13,7 @@
  *
  * Required env:
  *   CLOUDFLARE_API_TOKEN   Token con permisos Workers R2 Storage:Read
- *
- * Opcional (si no están definidos en el entorno del workflow):
- *   CLOUDFLARE_ACCOUNT_ID   Account ID de Cloudflare
+ *   CLOUDFLARE_ACCOUNT_ID  Account ID de Cloudflare
  *
  * Output:
  *   output/operations/data-signals/analytics/YYYY-Www.json
@@ -30,7 +28,7 @@ import {
 
 const OUTPUT_BASE = "output/operations/data-signals/analytics";
 const CF_API = "https://api.cloudflare.com/client/v4";
-const ACCOUNT_ID = process.env.CLOUDFLARE_ACCOUNT_ID ?? "7e153214690ac7430fde021f1f2b2916";
+const ACCOUNT_ID = getRequiredEnv("CLOUDFLARE_ACCOUNT_ID");
 const BUCKET_NAME = "monedario-analytics-exports";
 
 const ALLOWED_EVENTS = new Set([
@@ -62,6 +60,7 @@ Options:
 
 Required env:
   CLOUDFLARE_API_TOKEN   Token with Workers R2 Storage:Read
+  CLOUDFLARE_ACCOUNT_ID  Cloudflare Account ID
 
 Output (without --dry-run):
   ${OUTPUT_BASE}/YYYY-Www.json
