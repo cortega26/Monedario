@@ -26,6 +26,14 @@
 /images/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Pagefind search bundle — keep TTL short so CSP/_headers changes propagate
+# within 5 min to the worker + WASM without needing a manual cache purge.
+# Rationale: CSP rules live in _headers; when the CSP changes but the
+# pagefind binary doesn't, CDNs serve the old CSP from cache. Short TTL
+# bounds the staleness window.
+/pagefind/*
+  Cache-Control: public, max-age=300
+
 # HTML pages — browser caches 5 min; edge revalidates (no s-maxage) so deploys
 # propagate within ~5 min without needing programmatic cache purge.
 # Rationale: ADR-20260516 appendix. Pages auto-purge only applies to *.pages.dev,
