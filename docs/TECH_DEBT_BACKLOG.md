@@ -1702,10 +1702,15 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Última actualización:** 2026-05-16
 - **Nota 2026-05-16:** `pnpm remove dayjs node-fetch remark-toc` actualizó `package.json` y `pnpm-lock.yaml`. Verificación: `pnpm run check`, `pnpm run test`, `pnpm run lint`, `pnpm run build`, `pnpm run check:boundaries`, `npx --yes depcheck --skip-missing` (solo falsos positivos conocidos: `remark-collapse`, `tailwindcss` y tooling).
 
-## TD-0065 — 8 dependencias minor outdated
+## TD-0065 — 8 dependencias minor outdated ✅ CERRADO 2026-06-28
+
 - **ID:** TD-0065
-- **Título corto:** Bump batch de 8 deps minor
-- **Descripción:** `pnpm outdated` reporta 8 paquetes con versiones minor/patch atrasadas: `astro` 6.2.2→6.3.3, `@astrojs/mdx` 5.0.4→5.0.6, `@astrojs/react` 5.0.4→5.0.5, `tailwindcss` 4.2.4→4.3.0, `@tailwindcss/vite` 4.2.4→4.3.0, `@playwright/test` 1.59.1→1.60.0, `eslint` 10.3.0→10.4.0, `openai` 6.36.0→6.38.0. Ninguno es major. Dependabot ya las trackea (`#149`, `#150`, `#151`, `#152` mergeados); el remanente son las que aún no llegaron por PR o que Dependabot bumpeó parcialmente.
+- **Título corto:** Bump batch de deps minor
+- **Estado:** Cerrado 2026-06-28 (commit `f40602a9`). 11 Node + 12 Python actualizados.
+- **Congelados intencionalmente:**
+  - `astro@7.0.2` — 7.0.3 depende de `js-yaml@5` que rompe `import default` en `compute-review-policies.mjs` (ESM/CJS interop). Requiere migrar a named import antes de actualizar.
+  - `js-yaml@4.2.0` — 5.2.0 es major con cambio en export shape. Misma causa raíz.
+- **Gates:** astro check 0e/0w/0h · pnpm test 117/118 · pytest 38/38
 - **Evidencia:** Output de `pnpm outdated --long` ejecutado 2026-05-15.
 - **Impacto:** Bug fixes y mejoras menores acumuladas; ningún breaking change esperado. Sincroniza con upstream antes del próximo major.
 - **Riesgo:** bajo (todos son minor/patch; CI tiene smoke test completo)
