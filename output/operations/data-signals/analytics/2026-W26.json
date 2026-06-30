@@ -10,6 +10,13 @@
     {
       "date": "2026-06-28",
       "event_name": "calculator_complete",
+      "calculator_slug": "conversor-uf",
+      "dimensions": "",
+      "count": 1
+    },
+    {
+      "date": "2026-06-28",
+      "event_name": "calculator_complete",
       "calculator_slug": "conversor-utm",
       "dimensions": "",
       "count": 1
@@ -31,9 +38,16 @@
     {
       "date": "2026-06-28",
       "event_name": "calculator_complete",
+      "calculator_slug": "operacion-renta",
+      "dimensions": "",
+      "count": 4
+    },
+    {
+      "date": "2026-06-28",
+      "event_name": "calculator_complete",
       "calculator_slug": "seguro-cesantia",
       "dimensions": "",
-      "count": 1
+      "count": 5
     },
     {
       "date": "2026-06-28",
@@ -41,6 +55,13 @@
       "calculator_slug": "seguro-cesantia",
       "dimensions": "success",
       "count": 1
+    },
+    {
+      "date": "2026-06-28",
+      "event_name": "calculator_complete",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "",
+      "count": 6
     },
     {
       "date": "2026-06-28",
@@ -73,6 +94,13 @@
     {
       "date": "2026-06-28",
       "event_name": "calculator_start",
+      "calculator_slug": "conversor-uf",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-06-28",
+      "event_name": "calculator_start",
       "calculator_slug": "conversor-utm",
       "dimensions": "focusin",
       "count": 1
@@ -94,9 +122,30 @@
     {
       "date": "2026-06-28",
       "event_name": "calculator_start",
-      "calculator_slug": "seguro-cesantia",
+      "calculator_slug": "operacion-renta",
+      "dimensions": "focusin",
+      "count": 2
+    },
+    {
+      "date": "2026-06-28",
+      "event_name": "calculator_start",
+      "calculator_slug": "prepago-credito",
       "dimensions": "focusin",
       "count": 1
+    },
+    {
+      "date": "2026-06-28",
+      "event_name": "calculator_start",
+      "calculator_slug": "seguro-cesantia",
+      "dimensions": "focusin",
+      "count": 6
+    },
+    {
+      "date": "2026-06-28",
+      "event_name": "calculator_start",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "focusin",
+      "count": 2
     },
     {
       "date": "2026-06-28",

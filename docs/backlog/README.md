@@ -35,6 +35,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | Illustrations (MON-405) | `ux-backlog.md` | Diferido |
 | Blog Advisory Architecture | `BLOG_ADVISORY_ARCHITECTURE_PLAN_2026-04-22.md` | Propuesta futuro mediano |
 | Audit of the Small Details | `PLAN-audit-small-details-2026-05-22.md` | Programa activo de auditoria y backlog `ASD-###`; primera pasada audit-only completa |
+| Trigger manual del export de analytics | `PLAN-analytics-export-manual-trigger-2026-06-30.md` | Seguimiento OBS-01: el cron del worker no disparó su 1ª ocurrencia (W26). Falta endpoint manual `GET /api/analytics/export?secret=&week=` + parámetro de semana para re-disparar/backfillear sin depender del cron |
 
 ### Bloqueado — requiere acción humana
 
