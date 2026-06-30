@@ -1,6 +1,6 @@
 name: Self-Heal Mechanical Drift
 
-# Daily self-healing for deterministic, mechanical drift (formatting, generated
+# Weekly self-healing for deterministic, mechanical drift (formatting, generated
 # indexes, astro sync). Fixes are proposed as a reviewable auto-PR that runs
 # through the normal CI gate and squash auto-merges when green — never pushed
 # directly to main. Dead-code detection runs warning-first and only opens an
@@ -12,7 +12,9 @@ env:
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 4 * * *"
+    # Semanal (lunes 04:00 UTC). Antes diario; reducido para ahorrar minutos de
+    # Actions — cada drift detectado abría un auto-PR que disparaba CI completo.
+    - cron: "0 4 * * 1"
 
 concurrency:
   group: self-heal-${{ github.ref }}
