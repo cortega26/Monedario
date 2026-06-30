@@ -12,7 +12,10 @@ on:
       - reopened
   workflow_dispatch:
   schedule:
-    - cron: "30 5 * * *"
+    # Semanal (miércoles 05:30 UTC). Antes diario; los scans siguen corriendo en
+    # cada PR. El scan completo semanal cubre CVEs nuevas (Trivy DB) y el
+    # pip-audit (job solo-scheduled). Reducido para ahorrar minutos de Actions.
+    - cron: "30 5 * * 3"
 
 concurrency:
   group: security-scans-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}

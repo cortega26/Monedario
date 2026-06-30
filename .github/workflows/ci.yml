@@ -16,7 +16,11 @@ on:
       - reopened
   workflow_dispatch:
   schedule:
-    - cron: "0 5 * * *"
+    # Semanal (lunes 05:00 UTC). Antes diario; reducido para ahorrar minutos de
+    # GitHub Actions — lint/test/build ya corre en cada PR. El run scheduled
+    # conserva el chequeo de frescura del snapshot económico, la auditoría de
+    # URLs y la apertura de issue ante fallo en main.
+    - cron: "0 5 * * 1"
 
 concurrency:
   group: ci-${{ github.workflow }}-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
