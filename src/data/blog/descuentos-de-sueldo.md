@@ -58,8 +58,8 @@ reviewPolicy:
     - category:empleo-ingresos
     - validAsOf
     - officialSources
-  computedAt: "2026-05-14"
-updatedDate: 2026-05-14T00:00:00Z
+  computedAt: "2026-07-01"
+updatedDate: 2026-07-01T00:00:00Z
 ---
 
 Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal.

@@ -54,8 +54,8 @@ reviewPolicy:
     - category:empleo-ingresos
     - validAsOf
     - officialSources
-  computedAt: "2026-05-14"
-updatedDate: 2026-05-14T00:00:00Z
+  computedAt: "2026-07-01"
+updatedDate: 2026-07-01T00:00:00Z
 ---
 
 Cada mes aparece en tu liquidación una línea que dice "AFP" y un número que te descuentan. Para la mayoría es un cálculo opaco que simplemente aceptan. Esta guía lo abre: cuánto corresponde a cotización obligatoria, cuánto es comisión y cómo verificar que ese cargo calza con tu AFP y tu imponible.

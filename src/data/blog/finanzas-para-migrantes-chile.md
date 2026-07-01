@@ -43,6 +43,14 @@ articleLead:
     - "No cubre visados ni estatus migratorio."
     - "No cubre AFP, cotizaciones de salud ni remesas."
     - "Los procedimientos de trámites cambian; verifica en la fuente oficial antes de actuar."
+reviewPolicy:
+  cadenceLabel: quarterly
+  maxDays: 60
+  dataTriggers: []
+  derivationFactors:
+    - validAsOf
+    - officialSources
+  computedAt: "2026-07-01"
 ---
 
 > **Información vigente al 2026-06-22.** Los requisitos de trámites del Estado pueden cambiar.

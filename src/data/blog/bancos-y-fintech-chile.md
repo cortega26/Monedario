@@ -38,6 +38,14 @@ articleLead:
     - "No compara tarifas ni rankea bancos o fintech específicos."
     - "No reemplaza asesoría financiera personalizada."
     - "Las tarifas y condiciones cambian; verifica directamente con cada entidad."
+reviewPolicy:
+  cadenceLabel: quarterly
+  maxDays: 60
+  dataTriggers: []
+  derivationFactors:
+    - validAsOf
+    - officialSources
+  computedAt: "2026-07-01"
 ---
 
 > **Información vigente al 2026-06-17.** Las tarifas, productos y condiciones de bancos y fintech cambian con frecuencia. Antes de contratar, verifica directamente con la entidad y en las fuentes oficiales que citamos.
