@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 
 const REPO_ROOT = process.cwd();
 const GITHUB_DIR = path.join(REPO_ROOT, ".github");
+const EXPECTED_DEPENDABOT_ECOSYSTEMS = new Set(["npm", "github-actions"]);
 
 function listYamlFiles(directory: string): string[] {
   return fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
@@ -49,6 +50,10 @@ describe("supply-chain configuration", () => {
 
     expect(config.updates).toBeInstanceOf(Array);
     for (const update of config.updates ?? []) {
+      expect(
+        EXPECTED_DEPENDABOT_ECOSYSTEMS.has(update["package-ecosystem"] ?? ""),
+        `${update["package-ecosystem"]} is not a supported ecosystem for this repository`,
+      ).toBe(true);
       expect(
         update.cooldown?.["default-days"],
         `${update["package-ecosystem"]} must wait at least seven days`,

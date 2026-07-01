@@ -36,6 +36,8 @@ weakening the scanner.
 - [x] Added regression coverage.
 - [x] Ran local gates.
 - [x] Reproduced the exact CI Opengrep scan locally: 0 findings.
+- [x] Corrected Dependabot's pnpm-project ecosystem identifier to `npm` and
+      added schema regression coverage.
 
 ## Completion evidence
 
@@ -46,6 +48,8 @@ weakening the scanner.
 - `pnpm run check`: pass.
 - `pnpm run test`: pass; 120 files / 975 tests.
 - `pnpm run build`: pass; URL report has 0 failures.
+- Dependabot ecosystem regression test: pass; configured ecosystems are `npm`
+  and `github-actions`.
 
 The seven-day pnpm policy includes version-pinned migration exceptions for the
 63 packages already trusted in the lockfile. They do not exempt future package
