@@ -50,6 +50,7 @@ const SOURCE_MODES = new Set([
   "manual_review",
   "manual_review_with_official_sources",
   "runtime_snapshot_plus_editorial_review",
+  "evergreen",
 ]);
 const VOLATILE_SYNC_MODES = new Set(["reference", "strict"]);
 
@@ -108,12 +109,22 @@ function loadPolicy() {
   if (!SOURCE_MODES.has(raw.defaultSourceMode)) {
     throw new Error(`Unknown defaultSourceMode "${raw.defaultSourceMode}".`);
   }
+  if (raw.defaultSourceMode === "evergreen") {
+    throw new Error(
+      '"evergreen" sourceMode is not allowed as defaultSourceMode; it must be set per-slug via slugOverrides.'
+    );
+  }
   for (const [category, policy] of Object.entries(raw.categoryPolicies ?? {})) {
     if (!Number.isInteger(policy.cadenceDays) || policy.cadenceDays <= 0) {
       throw new Error(`Category "${category}" requires cadenceDays > 0.`);
     }
     if (!SOURCE_MODES.has(policy.sourceMode)) {
       throw new Error(`Category "${category}" has unknown sourceMode "${policy.sourceMode}".`);
+    }
+    if (policy.sourceMode === "evergreen") {
+      throw new Error(
+        `Category "${category}" cannot use "evergreen" sourceMode; use a slugOverride instead.`
+      );
     }
   }
   for (const [slug, override] of Object.entries(raw.slugOverrides ?? {})) {
@@ -269,10 +280,18 @@ function buildRecord(filePath, frontmatter, policy, volatileRegistry, volatileSn
     }
   }
 
-  const dueDate = effectiveReviewDate ? addDays(effectiveReviewDate, effectivePolicy.cadenceDays) : null;
+  // Evergreen articles carry no volatile figures, laws, or product terms, so
+  // they never accrue a review SLA — they still need a traceable reviewDate,
+  // just no dueDate/staleness computed from it.
+  const isEvergreen = effectivePolicy.sourceMode === "evergreen";
+  const dueDate = isEvergreen
+    ? null
+    : effectiveReviewDate
+      ? addDays(effectiveReviewDate, effectivePolicy.cadenceDays)
+      : null;
   const daysSinceReview = effectiveReviewDate ? diffInDays(effectiveReviewDate, TODAY) : null;
   const daysUntilDue = dueDate ? diffInDays(TODAY, dueDate) : null;
-  const stale = dueDate ? TODAY.getTime() > dueDate.getTime() : true;
+  const stale = isEvergreen ? false : dueDate ? TODAY.getTime() > dueDate.getTime() : true;
   const hasOfficialSources =
     Array.isArray(frontmatter.articleLead?.officialSources) &&
     frontmatter.articleLead.officialSources.length > 0;
@@ -367,6 +386,12 @@ function main() {
     ) {
       failures.push(
         `${record.relativePath}: sourceMode "${record.sourceMode}" requires volatileData dependencies.`
+      );
+    }
+
+    if (record.sourceMode === "evergreen" && record.volatileData.length > 0) {
+      failures.push(
+        `${record.relativePath}: sourceMode "evergreen" is incompatible with declared volatileData dependencies.`
       );
     }
 

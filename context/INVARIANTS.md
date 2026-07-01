@@ -520,12 +520,13 @@ Change log:
 
 ### `INVARIANT.EDITORIAL.TIMELINESS_REVIEW_SLA`
 
-- Statement: Every published article must have a deterministic review date and remain within the review cadence configured by the editorial timeliness policy.
-- Canonical source: `src/config/editorial-timeliness-policy.json`, `scripts/check-editorial-timeliness.mjs`, `docs/adr/ADR-20260322-editorial-timeliness-pipeline.md`.
+- Statement: Every published article must have a deterministic review date and remain within the review cadence configured by the editorial timeliness policy, unless its resolved `sourceMode` is `evergreen` — in which case no cadence SLA applies, but a deterministic review date is still required.
+- Canonical source: `src/config/editorial-timeliness-policy.json`, `scripts/check-editorial-timeliness.mjs`, `docs/adr/ADR-20260322-editorial-timeliness-pipeline.md`, `docs/adr/ADR-20260701-editorial-evergreen-tier.md`.
 - Rationale:
   - Prevents volatile editorial values from drifting silently after publication.
   - Turns periodic review from tribal memory into an auditable pipeline rule.
   - Aligns machine-refreshable snapshots and human-reviewed editorial claims under one freshness discipline.
+  - Exempts genuinely atemporal content from a recurring SLA that would otherwise dilute the signal for articles that do carry real drift risk.
 - Enforcement: `pnpm run check:editorial-timeliness`; scheduled workflow `editorial-timeliness-audit.yml`.
 - Detection:
   - Passing output includes: `[check-editorial-timeliness] OK.`
@@ -533,7 +534,9 @@ Change log:
   - Artifact output: `output/validation/editorial-timeliness/report.json`.
 - Examples:
   - Compliant: published article with `articleLead.validAsOf` or `updatedDate`, official sources when required by source mode, and review window still open.
+  - Compliant: published article with `sourceMode: evergreen` resolved via `slugOverrides`, a deterministic review date, and no `volatileData` entries — never marked stale regardless of age.
   - Violation: published article whose review date is older than the configured cadence, or a source-assisted article with no official sources.
+  - Violation: published article with `sourceMode: evergreen` that also declares `volatileData` — the two are mutually exclusive.
 
 ### `INVARIANT.EDITORIAL.VOLATILE_DATA_ALIGNMENT`
 

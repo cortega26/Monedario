@@ -15,9 +15,10 @@ Fecha de corte: 2026-05-30
 
 - **Completados:** 91 TD únicos (`TD-0001`..`TD-0066`, `TD-0068`..`TD-0071`, `TD-0073`..`TD-0078` (excl. `TD-0079`), `TD-0080`, `TD-0082`..`TD-0094`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
 - **En progreso:** 0
-- **Backlog sin iniciar:** 0
+- **Backlog sin iniciar:** 2 (`TD-0095`, `TD-0096` — abiertos 2026-07-01, posteriores a este snapshot; no reflejados en los totales P0-P3 de arriba)
 - **Cerrados sin ejecutar (premisa/ROI):** `TD-0067` (2026-06-25 — los use-cases ya retornan números puros; el formateo ya vive en las páginas), `TD-0081` (2026-06-25 — CI no usa esa secuencia y el único check lento es escritor; ahorro seguro ~0.2 s) y `TD-0079` (bloqueado por incompatibilidad WOFF2/Satori).
 - **Nota histórica:** `TD-0072` cerrado el 2026-06-23 (los 2 scripts restantes son código activo, no one-off).
+- **Nota histórica:** `TD-0095` y `TD-0096` abiertos el 2026-07-01, tras implementar `ADR-20260701-editorial-evergreen-tier.md` — ver entradas abajo.
 
 > `FIX-MDX`: corregido comentario HTML (`<!-- -->`) en `que-es-el-apv.mdx:25` que rompía el build.
 > `FIX-LINKS-CALC`: ampliado `check-internal-links.mjs` para cubrir validación de rutas `/calculadoras/`.
@@ -54,6 +55,76 @@ Fecha de corte: 2026-05-30
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 - Actualizar `imm` en snapshot cada julio con el nuevo decreto presidencial.
 - Resolver warnings no bloqueantes vigentes (`topicRole` faltante y descripciones sobre 155 caracteres) o promoverlos a TD si dejan de ser mera higiene editorial.
+
+## TD-0096 — Aplicar `sourceMode: evergreen` a la lista verificada de 21 candidatos (pendiente confirmación editorial)
+
+- **ID:** TD-0096
+- **Título corto:** Aplicar tier evergreen a candidatos verificados
+- **Descripción:** El mecanismo `sourceMode: evergreen` (`docs/adr/ADR-20260701-editorial-evergreen-tier.md`) ya está implementado y probado, pero **no se aplicó a ningún artículo todavía** — la clasificación de qué slugs son evergreen debe confirmarla un humano antes de tocar `slugOverrides`, porque un artículo YMYL mal marcado evergreen deja de recibir cualquier señal de vencimiento indefinidamente. Un primer inventario automático (sub-agente Explore) propuso 25 candidatos, pero contenía errores reales de clasificación (contradicciones con `volatileData` y una categoría mal asignada). Se verificó cada candidato directamente contra el frontmatter (`grep` de `category`/`volatileData` en los 53 archivos publicados), lo que dejó una lista corregida de **21 slugs** con `volatileData` ausente confirmado:
+
+  | Slug | Categoría | Cadencia actual |
+  |---|---|---|
+  | como-elegir-inversion-segun-plazo-riesgo-objetivos | ahorro-inversion | 180d |
+  | el-poder-del-interes-compuesto | ahorro-inversion | 180d |
+  | interes-compuesto-nota-metodologica | ahorro-inversion | 180d |
+  | como-salir-boletin-comercial-chile | deuda-credito | 365d |
+  | informe-deudas-cmf-vs-dicom | deuda-credito | 365d |
+  | prepago-credito-cuando-conviene-chile | deuda-credito | 365d |
+  | tarjeta-credito-costo-real-chile | deuda-credito | 365d |
+  | donde-ver-si-estoy-en-dicom-gratis | deuda-credito | 365d |
+  | finiquito-e-indemnizaciones-en-chile | empleo-ingresos | 180d |
+  | indemnizacion-anos-de-servicio-chile | empleo-ingresos | 180d |
+  | licencia-medica-desde-que-dia-pagan | empleo-ingresos | 180d |
+  | liquidacion-de-sueldo | empleo-ingresos | 180d |
+  | primer-empleo-chile-guia-completa | empleo-ingresos | 180d |
+  | seguro-cesantia-cuenta-individual-vs-fondo-solidario | empleo-ingresos | 180d |
+  | seguro-de-cesantia | empleo-ingresos | 180d |
+  | como-leer-cartola-afp-chile | prevision | 180d |
+  | como-hacer-presupuesto-mensual-chile | general | 180d |
+  | fondo-emergencia-chile | general | 180d |
+  | estafas-financieras-chile-vishing-smishing-marketplace | seguridad-financiera | 365d |
+  | fraude-tarjeta-que-hacer | seguridad-financiera | 365d |
+  | suplantacion-identidad-creditos-no-reconocidos | seguridad-financiera | 365d |
+
+  Excluidos del inventario original por contradicción real: `que-es-el-apv` (ya declara `volatileData` UF, usa `runtime_snapshot_plus_editorial_review` — incompatible con evergreen por diseño) y `descuentos-de-sueldo` (declara `volatileData` de comisión AFP). Corregido: `como-leer-cartola-afp-chile` es categoría `prevision`, no `empleo-ingresos` como lo listó el inventario automático.
+
+  Esta tabla es solo el filtro mecánico (ausencia de `volatileData`); el juicio de "¿es realmente atemporal?" sobre cada slug sigue pendiente de un editor humano.
+- **Evidencia:** Verificación directa vía `grep` de `category:`/`volatileData:` sobre los 53 archivos en `src/data/blog/` (2026-07-01), contrastada contra el inventario automático inicial que resultó tener inconsistencias internas (su propia tabla resumen no cuadraba con su tabla detallada).
+- **Impacto:** Mientras no se confirme, estos 21 artículos siguen bajo la cadencia normal de su categoría (180d/365d) — no hay urgencia operativa, es una oportunidad de reducir ruido de revisión, no un riesgo abierto.
+- **Riesgo:** bajo
+- **Severidad (1-5):** 2
+- **Urgencia:** P3
+- **Esfuerzo estimado:** S (una vez confirmada la lista, es solo edición de `slugOverrides` en `editorial-timeliness-policy.json`)
+- **Propuesta de solución:** Un editor humano revisa la tabla de 21 (tachar/agregar según corresponda) y confirma. Al confirmar, agregar `"<slug>": { "sourceMode": "evergreen" }` a `slugOverrides` en `src/config/editorial-timeliness-policy.json` para los slugs confirmados — sin tocar código, tests ni ADR (el mecanismo ya quedó probado en el PR de `ADR-20260701`).
+- **Criterios de cierre (checklist verificable):**
+- [ ] La tabla de 21 candidatos fue revisada y confirmada (o editada) por un editor humano.
+- [ ] `slugOverrides` refleja la lista confirmada con `sourceMode: evergreen`.
+- [ ] `pnpm run check:editorial-timeliness` sigue en verde tras el cambio.
+- **Owner:** Sin asignar
+- **Estado:** Backlog — pendiente confirmación editorial
+- **Fecha de creación:** 2026-07-01
+- **Última actualización:** 2026-07-01
+
+## TD-0095 — Clasificación pendiente: 11 artículos "dudosos" y gap de volatileData en IMM/PGU
+
+- **ID:** TD-0095
+- **Título corto:** Decidir slugs dudosos para tier evergreen + evaluar volatileData IMM/PGU
+- **Descripción:** Al implementar el tier `sourceMode: evergreen` (`docs/adr/ADR-20260701-editorial-evergreen-tier.md`) y recalibrar la cadencia de `gratificacion-legal-chile`/`pgu-pension-garantizada-universal` (180d → 90d), un inventario de los 53 artículos publicados identificó dos ítems que quedaron fuera de ese cambio: (1) 11 slugs "dudosos" que mezclan estructura atemporal con costos/productos vigentes (`como-invertir-en-etfs-desde-chile`, `fondos-afp-a-b-c-d-e`, `bancos-y-fintech-chile`, `finanzas-para-migrantes-chile`, `fonasa-vs-isapre-comparativa`, `que-es-la-cuenta-2-afp`, `renegociacion-superir`, `credito-hipotecario-chile-guia-completa`, `cae-costo-real-credito-chile`, `fondos-mutuos-comisiones-rescate-impuestos`, `credito-hipotecario-chile-guia-completa`), que requieren una decisión editorial caso por caso (¿evergreen, cadencia normal, o recalibrar?); (2) evaluar si el tope IMM (usado en `gratificacion-legal-chile`) y el monto PGU ameritan datasets `volatileData` dedicados en `src/config/editorial-volatile-data-registry.json` (con snapshot propio), en vez de depender solo de la cadencia de 90 días recién aplicada.
+- **Evidencia:** Inventario de 53 artículos publicados (2026-07-01), hecho como insumo del ADR-20260701.
+- **Impacto:** Sin resolver, esos 11 slugs siguen bajo la cadencia genérica de su categoría (puede ser sobre- o sub-revisión según el caso), y el tope IMM/monto PGU dependen de que alguien recuerde revisar el artículo cada 90 días en vez de un chequeo de drift automático como el que ya protege UF/IPC/UTM/AFP.
+- **Riesgo:** bajo
+- **Severidad (1-5):** 2
+- **Urgencia:** P3
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** (a) Revisar los 11 slugs uno por uno con un editor humano y clasificarlos en `slugOverrides` (evergreen, cadencia ajustada, o sin cambios). (b) Si se decide modelar IMM/PGU como `volatileData`, registrar datasets nuevos (ej. `labor.imm.monthly_value`, `pensions.pgu.monthly_amount`) con fuente canónica (Dirección del Trabajo / IPS-ChileAtiende) y extender `scripts/refresh-editorial-volatile-data.mjs` para poblarlos.
+- **Criterios de cierre (checklist verificable):**
+- [ ] Los 11 slugs dudosos tienen una clasificación explícita en `editorial-timeliness-policy.json` (no quedan en el default implícito por omisión).
+- [ ] Se documentó la decisión sobre si IMM/PGU necesitan `volatileData` dedicado o si la cadencia de 90 días es suficiente.
+- [ ] Si se agregan datasets nuevos, `pnpm run check:editorial-timeliness` y `pnpm run editorial:volatile-data:refresh` los cubren sin error.
+- **Owner:** Sin asignar
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-07-01
+- **Última actualización:** 2026-07-01
 
 ## TD-0094 — Taxonomía de fuentes oficiales dispersa e incompleta
 - **ID:** TD-0094

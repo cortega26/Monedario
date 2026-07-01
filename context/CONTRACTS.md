@@ -545,10 +545,13 @@ Change log:
   - `scripts/check-editorial-timeliness.mjs`
   - `.github/workflows/editorial-timeliness-audit.yml`
   - `docs/adr/ADR-20260322-editorial-timeliness-pipeline.md`
+  - `docs/adr/ADR-20260701-editorial-evergreen-tier.md`
 - Baseline expectations:
   - Every published article resolves to a deterministic review date using `articleLead.validAsOf`, `updatedDate`, or `pubDate`.
   - Each article inherits a cadence from category policy plus optional slug override.
   - Source-assisted modes (`manual_review_with_official_sources`, `runtime_snapshot_plus_editorial_review`) require `articleLead.officialSources`.
+  - A fourth source mode, `evergreen`, exempts an article from the review-cadence SLA entirely (no `dueDate`, never `stale`) when the content contains no volatile figures, laws, or product terms. It may only be set via `slugOverrides` — never as `defaultSourceMode` or inside `categoryPolicies` — and is incompatible with declaring `volatileData`.
+  - Evergreen classification is an explicit, per-slug editorial decision; it is never inferred automatically from content shape.
   - The gate writes an auditable report to `output/validation/editorial-timeliness/report.json`.
 - Backward-compat expectations:
   - Policy changes remain centralized and reviewable in the JSON policy file.

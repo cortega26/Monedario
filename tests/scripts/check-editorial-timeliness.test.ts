@@ -39,6 +39,9 @@ function createTempProject() {
             cadenceDays: 30,
             sourceMode: "runtime_snapshot_plus_editorial_review",
           },
+          "demo-evergreen": {
+            sourceMode: "evergreen",
+          },
         },
       },
       null,
@@ -448,5 +451,116 @@ articleLead:
 
     expect(result.status).toBe(1);
     expect(result.stderr).toContain('requires volatileData dependencies');
+  });
+
+  it("passes for an evergreen article even when its review date is far in the past", () => {
+    const root = createTempProject();
+    writeArticle(
+      root,
+      "demo-evergreen.md",
+      `title: "Demo evergreen"
+description: "Demo article"
+slug: demo-evergreen
+pubDate: "2020-01-01T00:00:00Z"
+updatedDate: "2020-01-01T00:00:00Z"
+author: "Equipo Monedario"
+category: general
+cluster: demo
+lang: es-CL`,
+      "Contenido"
+    );
+
+    const result = runTimelinessCheck(root);
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("[check-editorial-timeliness] OK.");
+    const report = JSON.parse(
+      readFileSync(
+        path.join(root, "output", "validation", "editorial-timeliness", "report.json"),
+        "utf8"
+      )
+    ) as { records: Array<{ slug: string; dueDate: string | null; stale: boolean }> };
+    const record = report.records.find(r => r.slug === "demo-evergreen");
+    expect(record?.dueDate).toBeNull();
+    expect(record?.stale).toBe(false);
+  });
+
+  it("fails when an evergreen article declares volatileData", () => {
+    const root = createTempProject();
+    writeArticle(
+      root,
+      "demo-evergreen.md",
+      `title: "Demo evergreen"
+description: "Demo article"
+slug: demo-evergreen
+pubDate: "2026-03-01T00:00:00Z"
+updatedDate: "2026-03-20T00:00:00Z"
+author: "Equipo Monedario"
+category: general
+cluster: demo
+lang: es-CL
+volatileData:
+  - id: "economic.uf.value"
+    sync: reference`,
+      "Contenido"
+    );
+
+    const result = runTimelinessCheck(root);
+
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain(
+      'sourceMode "evergreen" is incompatible with declared volatileData dependencies'
+    );
+  });
+
+  it("fails when policy sets evergreen at the category level", () => {
+    const root = createTempProject();
+    const policyPath = path.join(root, "src", "config", "editorial-timeliness-policy.json");
+    const policy = JSON.parse(readFileSync(policyPath, "utf8"));
+    policy.categoryPolicies.general.sourceMode = "evergreen";
+    writeFileSync(policyPath, JSON.stringify(policy, null, 2), "utf8");
+
+    const result = runTimelinessCheck(root);
+
+    expect(result.status).not.toBe(0);
+    expect(result.stderr).toContain(
+      'Category "general" cannot use "evergreen" sourceMode'
+    );
+  });
+
+  it("fails when policy sets evergreen as defaultSourceMode", () => {
+    const root = createTempProject();
+    const policyPath = path.join(root, "src", "config", "editorial-timeliness-policy.json");
+    const policy = JSON.parse(readFileSync(policyPath, "utf8"));
+    policy.defaultSourceMode = "evergreen";
+    writeFileSync(policyPath, JSON.stringify(policy, null, 2), "utf8");
+
+    const result = runTimelinessCheck(root);
+
+    expect(result.status).not.toBe(0);
+    expect(result.stderr).toContain(
+      '"evergreen" sourceMode is not allowed as defaultSourceMode'
+    );
+  });
+
+  it("fails when an evergreen article has no review date", () => {
+    const root = createTempProject();
+    writeArticle(
+      root,
+      "demo-evergreen.md",
+      `title: "Demo evergreen"
+description: "Demo article"
+slug: demo-evergreen
+author: "Equipo Monedario"
+category: general
+cluster: demo
+lang: es-CL`,
+      "Contenido"
+    );
+
+    const result = runTimelinessCheck(root);
+
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain("missing review date");
   });
 });

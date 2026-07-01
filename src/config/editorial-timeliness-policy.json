@@ -81,6 +81,14 @@
     "que-es-el-apv": {
       "cadenceDays": 30,
       "sourceMode": "runtime_snapshot_plus_editorial_review"
+    },
+    "gratificacion-legal-chile": {
+      "cadenceDays": 90,
+      "sourceMode": "manual_review_with_official_sources"
+    },
+    "pgu-pension-garantizada-universal": {
+      "cadenceDays": 90,
+      "sourceMode": "manual_review_with_official_sources"
     }
   }
 }
