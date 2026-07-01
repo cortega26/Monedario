@@ -1,7 +1,5 @@
 name: Editorial Timeliness Audit
 
-env:
-
 on:
   workflow_dispatch:
   schedule:

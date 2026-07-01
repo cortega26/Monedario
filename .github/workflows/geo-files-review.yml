@@ -1,7 +1,5 @@
 name: GEO files monthly review
 
-env:
-
 on:
   workflow_dispatch:
   schedule:

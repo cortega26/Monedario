@@ -6,8 +6,6 @@
 # GitHub cron has no native fortnightly schedule, hence the deterministic guard.
 name: Weekly Search Ops
 
-env:
-
 on:
   workflow_dispatch:
   schedule:

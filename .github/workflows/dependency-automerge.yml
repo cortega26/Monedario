@@ -1,7 +1,5 @@
 name: Dependabot Patch Auto-merge
 
-env:
-
 on:
   pull_request:
     types:

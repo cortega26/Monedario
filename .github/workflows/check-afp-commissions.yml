@@ -1,7 +1,5 @@
 name: Check AFP Commission Rates
 
-env:
-
 on:
   workflow_dispatch:
   schedule:

@@ -1,7 +1,5 @@
 name: Hero Images Manual Workflow
 
-env:
-
 permissions:
   contents: read
 

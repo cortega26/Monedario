@@ -1,7 +1,5 @@
 name: Guardrail Drift Audit
 
-env:
-
 on:
   workflow_dispatch:
   schedule:

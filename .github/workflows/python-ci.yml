@@ -6,8 +6,6 @@ name: Python CI
 # Python layer when it changes — nothing more. No daily schedule: these
 # scripts don't experience mechanical drift between edits.
 
-env:
-
 permissions:
   contents: read
 

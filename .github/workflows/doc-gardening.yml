@@ -1,7 +1,5 @@
 name: Doc Gardening
 
-env:
-
 on:
   workflow_dispatch:
   schedule:

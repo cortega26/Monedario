@@ -10,8 +10,6 @@ name: Refresh Volatile Data Snapshots
 # review policies, which were never ported to the Worker; run it manually when
 # that data needs a refresh.
 
-env:
-
 on:
   workflow_dispatch:
 

@@ -1,7 +1,5 @@
 name: TS7 Readiness Check
 
-env:
-
 on:
   workflow_dispatch:
   schedule:
