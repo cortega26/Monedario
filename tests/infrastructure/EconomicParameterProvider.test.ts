@@ -1,5 +1,6 @@
 import { readFileSync } from "fs";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { mergePreviousIndicatorValues } from "../../scripts/refresh-economic-snapshot.mjs";
 
 const SNAPSHOT = JSON.parse(
   readFileSync(
@@ -21,6 +22,11 @@ const SNAPSHOT = JSON.parse(
   };
   previsionalTopes?: {
     pensionAndHealthMonthlyTaxableCapUf?: number;
+  };
+  prev?: {
+    uf?: { valor: number; fecha: string };
+    utm?: { valor: number; fecha: string };
+    dolar?: { valor: number; fecha: string };
   };
   lastUpdated: string;
 };
@@ -97,6 +103,34 @@ describe("EconomicParameterProvider", () => {
     const telemetry = getEconomicProviderTelemetry();
     expect(telemetry.externalFetchCount).toBe(0);
     expect(telemetry.lastSource).toBe("snapshot");
+  });
+
+  it("keeps complete previous-period values for homepage deltas", () => {
+    const ufPrev = SNAPSHOT.prev?.uf?.fecha ?? "";
+    const utmPrevMonth = SNAPSHOT.prev?.utm?.fecha.slice(0, 7) ?? "";
+    const dolarPrev = SNAPSHOT.prev?.dolar?.fecha ?? "";
+    const ufCurrent = SNAPSHOT.indicatorUpdatedAt?.uf ?? "";
+    const utmCurrentMonth =
+      SNAPSHOT.indicatorUpdatedAt?.utm?.slice(0, 7) ?? "";
+    const dolarCurrent = SNAPSHOT.indicatorUpdatedAt?.dolar ?? "";
+
+    expect(ufPrev).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(utmPrevMonth).toMatch(/^\d{4}-\d{2}$/);
+    expect(dolarPrev).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(ufPrev < ufCurrent).toBe(true);
+    expect(utmPrevMonth < utmCurrentMonth).toBe(true);
+    expect(dolarPrev < dolarCurrent).toBe(true);
+  });
+
+  it("manual refresh preserves existing deltas when indicator dates are unchanged", () => {
+    const rawSnapshot = { ...SNAPSHOT };
+    delete rawSnapshot.prev;
+    const refreshed = mergePreviousIndicatorValues(
+      JSON.stringify(SNAPSHOT),
+      rawSnapshot
+    );
+
+    expect(refreshed.prev).toEqual(SNAPSHOT.prev);
   });
 
   // Regression guard for the stale-IMM bug: the salary calculator silently

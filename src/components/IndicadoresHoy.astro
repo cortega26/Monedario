@@ -106,12 +106,16 @@ const indicadoresEndpoint = getPath("/api/indicadores-hoy.json");
         ${ufValue}
       </a>
       {
-        ufDelta && (
+        ufDelta ? (
           <span
             class={`indicador-delta ${ufDelta.up ? "indicador-delta--up" : "indicador-delta--down"}`}
             data-field="delta"
           >
             {ufDelta.up ? "▲" : "▼"} {ufDelta.pct}% vs. {ufDelta.vs}
+          </span>
+        ) : (
+          <span class="indicador-delta" data-field="delta" aria-hidden="true">
+            &nbsp;
           </span>
         )
       }
@@ -157,12 +161,16 @@ const indicadoresEndpoint = getPath("/api/indicadores-hoy.json");
           >
             ${dolarValue}
           </span>
-          {dolarDelta && (
+          {dolarDelta ? (
             <span
               class={`indicador-delta ${dolarDelta.up ? "indicador-delta--up" : "indicador-delta--down"}`}
               data-field="delta"
             >
               {dolarDelta.up ? "▲" : "▼"} {dolarDelta.pct}% vs. {dolarDelta.vs}
+            </span>
+          ) : (
+            <span class="indicador-delta" data-field="delta" aria-hidden="true">
+              &nbsp;
             </span>
           )}
         </div>

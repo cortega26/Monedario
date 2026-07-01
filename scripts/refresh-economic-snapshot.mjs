@@ -13,11 +13,12 @@
 // monedario-economic-snapshot-refresh → Triggers → Run now) or via:
 //   curl "https://monedario-economic-snapshot-refresh.<sub>.workers.dev/__refresh?secret=<PAT>"
 
-import { writeFileSync } from "fs";
+import { readFileSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const SCRIPT_PATH = fileURLToPath(import.meta.url);
+const __dirname = dirname(SCRIPT_PATH);
 const SNAPSHOT_PATH = resolve(
   __dirname,
   "../src/infrastructure/economic/economic-parameters.snapshot.json"
@@ -181,15 +182,73 @@ async function fetchLiveParameters() {
   };
 }
 
+/**
+ * Mirrors the Worker's mergePrev contract so the emergency/manual path cannot
+ * erase comparison data used by the homepage indicator deltas.
+ */
+export function mergePreviousIndicatorValues(currentJson, newSnapshot) {
+  let current;
+  try {
+    current = JSON.parse(currentJson);
+  } catch {
+    return newSnapshot;
+  }
+
+  const prev = {};
+
+  if (typeof current.uf === "number" && current.indicatorUpdatedAt?.uf) {
+    prev.uf =
+      current.indicatorUpdatedAt.uf !== newSnapshot.indicatorUpdatedAt.uf
+        ? { valor: current.uf, fecha: current.indicatorUpdatedAt.uf }
+        : current.prev?.uf;
+  }
+
+  if (typeof current.utm === "number" && current.indicatorUpdatedAt?.utm) {
+    prev.utm =
+      current.indicatorUpdatedAt.utm.slice(0, 7) !==
+      newSnapshot.indicatorUpdatedAt.utm.slice(0, 7)
+        ? { valor: current.utm, fecha: current.indicatorUpdatedAt.utm }
+        : current.prev?.utm;
+  }
+
+  if (
+    newSnapshot.dolar !== undefined &&
+    newSnapshot.indicatorUpdatedAt.dolar &&
+    typeof current.dolar === "number" &&
+    current.indicatorUpdatedAt?.dolar
+  ) {
+    prev.dolar =
+      current.indicatorUpdatedAt.dolar !==
+      newSnapshot.indicatorUpdatedAt.dolar
+        ? {
+            valor: current.dolar,
+            fecha: current.indicatorUpdatedAt.dolar,
+          }
+        : current.prev?.dolar;
+  }
+
+  const populatedPrev = Object.fromEntries(
+    Object.entries(prev).filter(([, entry]) => entry !== undefined)
+  );
+
+  return Object.keys(populatedPrev).length > 0
+    ? { ...newSnapshot, prev: populatedPrev }
+    : newSnapshot;
+}
+
 async function main() {
-  const snapshot = await fetchLiveParameters();
+  const currentJson = readFileSync(SNAPSHOT_PATH, "utf-8");
+  const rawSnapshot = await fetchLiveParameters();
+  const snapshot = mergePreviousIndicatorValues(currentJson, rawSnapshot);
   writeFileSync(SNAPSHOT_PATH, `${JSON.stringify(snapshot, null, 2)}\n`);
   console.log(
     `[economic-snapshot] Updated ${SNAPSHOT_PATH} (${snapshot.lastUpdated}).`
   );
 }
 
-main().catch(error => {
-  console.error("[economic-snapshot] Error:", error.message);
-  process.exit(1);
-});
+if (process.argv[1] && resolve(process.argv[1]) === SCRIPT_PATH) {
+  main().catch(error => {
+    console.error("[economic-snapshot] Error:", error.message);
+    process.exit(1);
+  });
+}
