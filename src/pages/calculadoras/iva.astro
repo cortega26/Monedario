@@ -322,8 +322,7 @@ const fmtClp = (n: number) => "$" + n.toLocaleString("es-CL");
       "input[name='direction']:checked"
     );
     return (checked?.value ?? "neto-a-bruto") as
-      | "neto-a-bruto"
-      | "bruto-a-neto";
+      "neto-a-bruto" | "bruto-a-neto";
   }
 
   function updateLabel(direction: "neto-a-bruto" | "bruto-a-neto") {

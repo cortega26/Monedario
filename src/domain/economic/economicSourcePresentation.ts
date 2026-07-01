@@ -8,9 +8,7 @@ import type { EconomicParameters } from "./EconomicParameters";
  */
 
 export type EconomicSourceLabel =
-  | "dato en línea"
-  | "dato de referencia"
-  | "fallback de emergencia";
+  "dato en línea" | "dato de referencia" | "fallback de emergencia";
 
 /**
  * Mapea el origen del dato económico a su etiqueta corta visible. El `switch` es

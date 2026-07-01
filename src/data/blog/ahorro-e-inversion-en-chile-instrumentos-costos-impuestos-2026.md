@@ -153,7 +153,7 @@ No. Es contenido educativo y no reemplaza asesoría profesional para tu situaci�
 - CMF Educa, Depósitos a plazo: https://www.cmfchile.cl/educa/621/w3-article-27170.html
 - CMF Educa, Fondos mutuos: https://www.cmfchile.cl/educa/621/w3-propertyvalue-988.html
 - CMF Educa, Corredores de bolsa y costos/custodia: https://www.cmfchile.cl/educa/621/w3-propertyvalue-994.html
-- CMF, Registro de Corredores y Agentes: https://www.cmfchile.cl/portal/principal/613/w3-article-1264
+- CMF, Registro de Corredores y Agentes: https://www.cmfchile.cl/institucional/mercados/consulta.php?Estado=VI&entidad=COBOL&mercado=V
 - Banco Central, qué es la UF y cómo se reajusta: https://www.bcentral.cl/web/banco-central/preguntas-frecuentes/-/asset_publisher/0u850BwdK7p5/content/que-es-la-uf-y-como-se-reajusta-
 - SII FAQ, obligación de declarar rentas de inversiones: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0597.htm
 

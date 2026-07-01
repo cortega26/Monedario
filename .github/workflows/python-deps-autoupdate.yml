@@ -14,9 +14,6 @@ name: Python Deps Auto-Update
 #
 # Trigger: first Tuesday of each month + manual dispatch.
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 on:
   workflow_dispatch:
   schedule:

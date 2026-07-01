@@ -8,9 +8,6 @@ name: Page lastmod index
 # Opens a reviewable PR (auto-squash-merges when CI is green) instead of
 # pushing directly to main. Follows the same pattern as self-heal.yml.
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 on:
   push:
     branches: [main]

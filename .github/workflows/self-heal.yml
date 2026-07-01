@@ -6,9 +6,6 @@ name: Self-Heal Mechanical Drift
 # directly to main. Dead-code detection runs warning-first and only opens an
 # issue. See docs/adr/ADR-20260529-repo-self-healing-maintenance.md.
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 on:
   workflow_dispatch:
   schedule:

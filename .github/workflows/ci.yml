@@ -1,8 +1,5 @@
 name: CI
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 permissions:
   contents: read
   issues: write
@@ -124,6 +121,10 @@ jobs:
           EDITORIAL_DIFF_BASE_REF: ${{ github.base_ref }}
 
       - name: "🕒 Check editorial timeliness SLA"
+        # No bloquear PRs de Dependabot o cambios no-editoriales con SLA
+        # de revisión editorial vencido. El scheduled semanal sigue siendo
+        # bloqueante para detectar deriva.
+        continue-on-error: ${{ github.event_name == 'pull_request' }}
         run: pnpm run check:editorial-timeliness
 
       - name: "🚫 Guard against post.id URL regressions"

@@ -10,9 +10,6 @@ name: Refresh Volatile Data Snapshots
 # review policies, which were never ported to the Worker; run it manually when
 # that data needs a refresh.
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 on:
   workflow_dispatch:
 
