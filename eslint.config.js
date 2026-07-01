@@ -3,6 +3,25 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 export default [
+  {
+    name: "monedario/global-ignores",
+    ignores: [
+      "dist/**",
+      ".astro/**",
+      "**/.wrangler/**",
+      "public/pagefind/**",
+      ".venv/**",
+      "archive/scripts/**",
+      "**/.claude/worktrees/**",
+      "**/.codex/worktrees/**",
+      "**/.agents/worktrees/**",
+      "coverage/**",
+      "coverage-*/**",
+      ".nyc_output/**",
+      "playwright-report/**",
+      "test-results/**",
+    ],
+  },
   ...tseslint.configs.recommended,
   ...eslintPluginAstro.configs.recommended,
   {
@@ -25,15 +44,5 @@ export default [
     rules: {
       "no-console": "off",
     },
-  },
-  {
-    ignores: [
-      "dist/**",
-      ".astro",
-      "**/.wrangler/**",
-      "public/pagefind/**",
-      ".venv/**",
-      "archive/scripts/**",
-    ],
   },
 ];
