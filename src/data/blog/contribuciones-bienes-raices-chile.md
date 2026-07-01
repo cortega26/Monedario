@@ -28,7 +28,7 @@ articleLead:
     - label: "SII — Contribuciones de bienes raíces"
       href: "https://www.sii.cl/"
     - label: "TGR — Portal de pago"
-      href: "https://www.tgr.cl/"
+      href: "https://pagos.tgr.cl/"
     - label: "BCN — DL 3.063 (Ley de Rentas Municipales)"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=7054"
     - label: "BCN — DFL-1/1998, Ley sobre Impuesto Territorial (Art. 2 y 7)"
@@ -54,7 +54,7 @@ reviewPolicy:
   computedAt: "2026-05-06"
 ---
 
-> **Información vigente al 2026-05-03.** Las tasas de contribuciones, los montos de exención y las fechas exactas de pago se actualizan periódicamente. Verifica los valores vigentes en el [SII](https://www.sii.cl/) y la [TGR](https://www.tgr.cl/) antes de realizar cualquier pago o trámite.
+> **Información vigente al 2026-05-03.** Las tasas de contribuciones, los montos de exención y las fechas exactas de pago se actualizan periódicamente. Verifica los valores vigentes en el [SII](https://www.sii.cl/) y la [TGR](https://pagos.tgr.cl/) antes de realizar cualquier pago o trámite.
 
 Si tienes una propiedad en Chile, puede corresponder el pago de contribuciones de bienes raíces. Es un impuesto territorial anual que se cobra hasta en cuatro cuotas, aunque muchos propietarios de primera vivienda tienen exención total o parcial sin saberlo — conviene verificar en el SII antes de asumir que el cobro aplica.
 
@@ -86,7 +86,7 @@ La tasa habitacional se divide en dos tramos: el umbral de $169.144.585 (vigente
 
 ## Cuotas y calendario de pago
 
-Las contribuciones se pagan en **4 cuotas anuales**, con vencimientos el **30 de abril**, **30 de junio**, **30 de septiembre** y **30 de noviembre**. Las fechas exactas de cada año se publican en el portal de la [TGR](https://www.tgr.cl/) — verifica el calendario vigente para 2026 antes del primer vencimiento.
+Las contribuciones se pagan en **4 cuotas anuales**, con vencimientos el **30 de abril**, **30 de junio**, **30 de septiembre** y **30 de noviembre**. Las fechas exactas de cada año se publican en el portal de la [TGR](https://pagos.tgr.cl/) — verifica el calendario vigente para 2026 antes del primer vencimiento.
 
 **Canales de pago habilitados:**
 

@@ -26,7 +26,7 @@ articleLead:
   validAsOf: 2026-04-09
   officialSources:
     - label: "CMF Chile — Boletín Comercial"
-      href: "https://www.cmfchile.cl/portal/principal/613/w3-article-27659"
+      href: "https://www.cmfchile.cl/educa/621/w3-article-27663.html"
     - label: "Ley 20.575 — Derecho al olvido"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=1037366"
   covers:

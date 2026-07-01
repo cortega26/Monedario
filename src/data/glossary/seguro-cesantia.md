@@ -10,7 +10,7 @@ relatedLaws:
     label: Ley 19.728 — Seguro de Cesantía
 sources:
   - label: AFC Chile — Beneficios
-    href: https://www.afc.cl/beneficios/
+    href: https://www.afc.cl/
   - label: Ley 19.728 — Seguro de Cesantía (BCN)
     href: https://www.bcn.cl/leychile/navegar?idNorma=190590
 publishedDate: 2026-03-01

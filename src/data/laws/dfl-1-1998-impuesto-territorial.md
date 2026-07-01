@@ -28,7 +28,7 @@ El DFL N° 1/1998 (Ministerio de Hacienda) refunde la Ley N° 17.235 sobre Impue
 
 **Vigencia / fecha de corte:** verificado al **2026-05-25**. El SII realiza reavalúos periódicos que pueden cambiar el monto de las contribuciones. Verifica el avalúo fiscal de tu propiedad en sii.cl.
 
-**Fuentes primarias:** [BCN — DFL-1/1998](https://www.bcn.cl/leychile/navegar?idNorma=128563), [SII — Contribuciones](https://www.sii.cl), [TGR](https://www.tgr.cl).
+**Fuentes primarias:** [BCN — DFL-1/1998](https://www.bcn.cl/leychile/navegar?idNorma=128563), [SII — Contribuciones](https://www.sii.cl), [TGR](https://pagos.tgr.cl).
 
 ## Puntos clave para personas
 
@@ -87,7 +87,7 @@ Texto completo y modificaciones: [BCN — DFL N° 1/1998](https://www.bcn.cl/ley
 
 Consulta de avalúo y contribuciones: [SII](https://www.sii.cl/servicios_online/1039-1183.html)
 
-Pago de contribuciones: [TGR](https://www.tgr.cl)
+Pago de contribuciones: [TGR](https://pagos.tgr.cl)
 
 ---
 

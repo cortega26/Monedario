@@ -138,7 +138,7 @@ Para declaraciones ingresadas manualmente o con modificaciones a la propuesta, e
 
 Para recibir la devolución por transferencia electrónica (más rápido que cheque), debes registrar tu cuenta en TGR antes o durante la declaración:
 
-1. Ingresa a [tgr.cl](https://www.tgr.cl) con tu RUT y clave SII
+1. Ingresa a [tgr.cl](https://pagos.tgr.cl) con tu RUT y clave SII
 2. Selecciona "Registro de cuenta bancaria para devolución de impuestos"
 3. Ingresa número de cuenta y banco; confirma con clave dinámica o segundo factor de autenticación
 
@@ -230,7 +230,7 @@ Esta guía fue elaborada con fecha de corte 2026-04-24 y actualizada el 2026-04-
 **Fuentes primarias:**
 
 - Servicio de Impuestos Internos: [sii.cl](https://www.sii.cl)
-- Tesorería General de la República: [tgr.cl](https://www.tgr.cl)
+- Tesorería General de la República: [tgr.cl](https://pagos.tgr.cl)
 - Ley de Impuesto a la Renta (DL 824), Código Tributario (DL 830) y Ley 21.133 — BCN
 
 **Última revisión editorial:** Carlos Ortega — 2026-04-29

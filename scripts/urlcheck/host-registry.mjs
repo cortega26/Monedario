@@ -149,6 +149,10 @@ const SOFT_404_PHRASE_EXEMPT_HOSTS = new Set([
   "tgr.cl",
   "www.tesoreria.cl",
   "tesoreria.cl",
+  "www.ine.gob.cl",
+  "ine.gob.cl",
+  "www.ine.cl",
+  "ine.cl",
 ]);
 
 /**
