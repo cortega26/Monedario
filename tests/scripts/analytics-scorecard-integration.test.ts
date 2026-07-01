@@ -278,6 +278,9 @@ describe("analytics scorecard integration", () => {
     const root = createTempRoot();
     const inputDir = path.join(root, "2026-W26");
     mkdirSync(inputDir, { recursive: true });
+    // Point to an empty directory so the script does NOT find a real
+    // analytics JSON file on disk (e.g. output/operations/data-signals/analytics/).
+    const emptyAnalyticsDir = path.join(root, "no-analytics");
 
     const watchlistPath = makeWatchlist(root);
 
@@ -319,6 +322,7 @@ describe("analytics scorecard integration", () => {
       "--input", inputDir,
       "--watchlist", watchlistPath,
       "--json-out", jsonOut,
+      "--analytics-json-dir", emptyAnalyticsDir,
     ]);
 
     expect(result.status).toBe(0);
