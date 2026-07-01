@@ -20,8 +20,7 @@ import type { HubCluster } from "@/config/clusters";
 type ContentType = "calculadora" | "guía" | "artículo";
 
 type CardSource =
-  | { kind: "blog"; slug: string }
-  | { kind: "cluster"; cluster: HubCluster };
+  { kind: "blog"; slug: string } | { kind: "cluster"; cluster: HubCluster };
 
 interface Card {
   number: string;

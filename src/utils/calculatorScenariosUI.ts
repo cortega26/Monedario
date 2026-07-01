@@ -77,9 +77,7 @@ export function restoreInputs(
       }
     } else {
       const field = document.getElementById(key) as
-        | HTMLInputElement
-        | HTMLSelectElement
-        | null;
+        HTMLInputElement | HTMLSelectElement | null;
       if (field) {
         field.value = value;
         field.dispatchEvent(new Event("input", { bubbles: true }));

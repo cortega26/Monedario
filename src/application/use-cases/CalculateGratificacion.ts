@@ -30,8 +30,7 @@ export interface GratificacionInputModalidadB {
 }
 
 export type GratificacionInput =
-  | GratificacionInputModalidadA
-  | GratificacionInputModalidadB;
+  GratificacionInputModalidadA | GratificacionInputModalidadB;
 
 export interface GratificacionResultModalidadA {
   modalidad: "A";

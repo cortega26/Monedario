@@ -36,11 +36,7 @@ export interface UnemploymentCoverageInput {
   grossSalary: number;
   contractType: "indefinido" | "plazo-fijo";
   terminationCause:
-    | "necesidad"
-    | "vencimiento"
-    | "liquidacion"
-    | "renuncia"
-    | "despido-culpa";
+    "necesidad" | "vencimiento" | "liquidacion" | "renuncia" | "despido-culpa";
   monthsContributed: number;
   currentCicBalance?: number;
   lastThreeContinuousContributions?: boolean;
