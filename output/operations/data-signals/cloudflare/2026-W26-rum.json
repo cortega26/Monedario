@@ -1,0 +1,184 @@
+{
+  "fetchedAt": "2026-07-01T07:40:13Z",
+  "schemaVersion": 1,
+  "source": "cloudflare-rum",
+  "week": "2026-W26",
+  "window": {
+    "from": "2026-06-22",
+    "to": "2026-06-28"
+  },
+  "data": [
+    {
+      "clsP75": 0,
+      "count": 120,
+      "inpP75Ms": 64,
+      "lcpP75Ms": 1476,
+      "path": "/calculadoras/conversor-utm/"
+    },
+    {
+      "clsP75": 0,
+      "count": 60,
+      "inpP75Ms": 40,
+      "lcpP75Ms": 1408,
+      "path": "/calculadoras/seguro-cesantia/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": 0,
+      "lcpP75Ms": 704,
+      "path": "/posts/que-es-el-apv/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": 8,
+      "lcpP75Ms": 1188,
+      "path": "/posts/descuentos-de-sueldo/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": 0,
+      "lcpP75Ms": 728,
+      "path": "/posts/licencia-medica-desde-que-dia-pagan/"
+    },
+    {
+      "clsP75": 0.021,
+      "count": 20,
+      "inpP75Ms": 8,
+      "lcpP75Ms": 1752,
+      "path": "/calculadoras/conversor-uf/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": 0,
+      "lcpP75Ms": 672,
+      "path": "/posts/que-es-la-cuenta-2-afp/"
+    },
+    {
+      "clsP75": 0.001,
+      "count": 20,
+      "inpP75Ms": null,
+      "lcpP75Ms": 3796,
+      "path": "/calculadoras/iva/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": null,
+      "lcpP75Ms": 7688,
+      "path": "/"
+    },
+    {
+      "clsP75": 0.001,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 676,
+      "path": "/posts/fraude-tarjeta-que-hacer/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 1144,
+      "path": "/posts/pgu-pension-garantizada-universal/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 112,
+      "lcpP75Ms": 1148,
+      "path": "/calculadoras/apv/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 460,
+      "path": "/metodologia/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 56,
+      "lcpP75Ms": 728,
+      "path": "/calculadoras/credito-consumo/"
+    },
+    {
+      "clsP75": 0.006,
+      "count": 10,
+      "inpP75Ms": 56,
+      "lcpP75Ms": 308,
+      "path": "/calculadoras/sueldo-liquido/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 460,
+      "path": "/posts/informe-deudas-cmf-vs-dicom/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 608,
+      "path": "/posts/devolucion-impuestos-fechas-compensaciones/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 940,
+      "path": "/posts/credito-hipotecario-chile-guia-completa/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 636,
+      "path": "/posts/fondos-afp-a-b-c-d-e/"
+    },
+    {
+      "clsP75": null,
+      "count": 10,
+      "inpP75Ms": 24,
+      "lcpP75Ms": 1152,
+      "path": "/posts/utm-chile-que-es-como-funciona/"
+    }
+  ],
+  "_meta": {
+    "totalRawRoutes": 25,
+    "keptRoutes": 20,
+    "discardedRoutes": 5,
+    "discarded": [
+      {
+        "path": "/uf-hoy/",
+        "count": 50,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/leyes/ley-18010-credito-dinero/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/glosario/cuenta-rut/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/glosario/tmc/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/glosario/clave-unica/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      }
+    ]
+  }
+}
