@@ -1,8 +1,9 @@
 name: CI
 
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
+  # FORCE_JAVASCRIPT_ACTIONS_TO_NODE24 eliminada — el runner de GH Actions
+  # ya usa Node 24 por defecto en julio 2026 y esta variable obsoleta
+  # causaba que los jobs se rechazaran con 0 steps y 0ms.
 permissions:
   contents: read
   issues: write

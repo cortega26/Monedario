@@ -7,7 +7,6 @@ name: Python CI
 # scripts don't experience mechanical drift between edits.
 
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 permissions:
   contents: read

@@ -9,7 +9,6 @@ name: Page lastmod index
 # pushing directly to main. Follows the same pattern as self-heal.yml.
 
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 on:
   push:
