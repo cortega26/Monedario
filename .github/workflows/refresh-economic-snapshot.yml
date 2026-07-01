@@ -4,13 +4,17 @@ name: Refresh Volatile Data Snapshots
 # (see ADR-20260516-economic-snapshot-cloudflare-worker.md), confirmed deployed
 # and committing daily as `monedario-snapshot-bot` (crons 15 10/14/18 UTC). The
 # 2026-05-29 interim GHA schedule (ADR-20260529) was therefore removed to avoid a
-# double refresh — this workflow is manual-only again (`workflow_dispatch`).
+# double refresh — the economic fetch in this workflow is manual-only and kept
+# as a disaster-recovery fallback.
 #
-# It still also refreshes editorial-volatile-data (spensiones.cl scraping) and
-# review policies, which were never ported to the Worker; run it manually when
-# that data needs a refresh.
+# It still refreshes editorial-volatile-data (spensiones.cl scraping) and
+# review policies, which were never ported to the Worker. A lightweight weekly
+# schedule keeps that editorial projection inside the 30-day review SLA without
+# re-fetching or overwriting the Worker-managed economic snapshot.
 
 on:
+  schedule:
+    - cron: "20 6 * * 0"
   workflow_dispatch:
 
 concurrency:
@@ -37,6 +41,7 @@ jobs:
           node-version: 22
 
       - name: "🔄 Refresh economic snapshot"
+        if: github.event_name == 'workflow_dispatch'
         run: pnpm run economic:snapshot:refresh
 
       - name: "🧭 Refresh editorial volatile data snapshot"
@@ -55,8 +60,9 @@ jobs:
           body: |
             Automated refresh of volatile data snapshots used by runtime and editorial guards.
 
-            - Trigger: scheduled workflow (`refresh-economic-snapshot.yml`) or manual dispatch.
-            - Command: `pnpm run economic:snapshot:refresh`.
+            - Trigger: `${{ github.event_name }}` from `refresh-economic-snapshot.yml`.
+            - Scheduled runs reuse the Worker-managed economic snapshot.
+            - Manual runs also execute `pnpm run economic:snapshot:refresh` as a fallback.
             - Command: `pnpm run editorial:volatile-data:refresh`.
             - Sources: `https://mindicador.cl/api`, `https://www.spensiones.cl`.
           branch: chore/refresh-volatile-data-snapshots
