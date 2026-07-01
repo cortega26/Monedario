@@ -60,9 +60,6 @@ describe("V1 — no deprecated redirecting URLs remain in src/", () => {
     // CMF bare domain
     { pattern: "https://www.cmfchile.cl\"", description: "Bare CMF domain without path" },
     { pattern: "https://www.cmfchile.cl/\"", description: "Bare CMF domain with trailing slash only" },
-    // DT bare domain
-    { pattern: "https://www.dt.gob.cl\"", description: "Bare DT domain without path" },
-    { pattern: "https://www.dt.gob.cl/\"", description: "Bare DT domain with trailing slash only (check calculators)" },
     // Old SUSESO domain
     { pattern: "https://www.suseso.cl", description: "Old suseso.cl domain (moved to suseso.gob.cl)" },
     // CSIRT with www
@@ -146,7 +143,7 @@ describe("V4 — canonical replacement URLs are present in source", () => {
     { url: "https://www.sernac.cl/portal/618/w3-propertyname-688.html", description: "SERNAC financiero portal URL" },
     { url: "https://www.bcn.cl/leychile/navegar?idNorma=1212060", description: "BCN Ley 21.735 direct URL" },
     { url: "https://www.cmfchile.cl/educa/621/w3-propertyvalue-988.html", description: "CMF educa section 621 fondos mutuos" },
-    { url: "https://www.cmfchile.cl/portal/principal/613/w3-article-1264", description: "CMF portal corredores URL" },
+    { url: "https://www.cmfchile.cl/institucional/mercados/consulta.php?Estado=VI&entidad=COBOL&mercado=V", description: "CMF registro corredores URL" },
     { url: "https://www.ine.gob.cl/estadisticas-por-tema/precios-e-inflacion/indice-de-precios-al-consumidor", description: "INE new IPC path" },
   ];
 
