@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { buildEmbed, chunkEmbeds, type Match } from "../../../workers/reddit-mention-monitor/src/discord";
 import { filterUnseen } from "../../../workers/reddit-mention-monitor/src/dedup";
 import { passesFilter } from "../../../workers/reddit-mention-monitor/src/index";
+import { SUBREDDIT_SCOPE, TARGET_SUBREDDITS } from "../../../workers/reddit-mention-monitor/src/keywords";
 import type { RedditPost } from "../../../workers/reddit-mention-monitor/src/redditClient";
 
 function post(overrides: Partial<RedditPost> = {}): RedditPost {
@@ -17,6 +18,14 @@ function post(overrides: Partial<RedditPost> = {}): RedditPost {
     ...overrides,
   };
 }
+
+describe("SUBREDDIT_SCOPE", () => {
+  it("joins every target subreddit with '+' for a single restrict_sr search", () => {
+    expect(SUBREDDIT_SCOPE).toBe(TARGET_SUBREDDITS.join("+"));
+    expect(SUBREDDIT_SCOPE).toContain("chile");
+    expect(SUBREDDIT_SCOPE.split("+")).toHaveLength(TARGET_SUBREDDITS.length);
+  });
+});
 
 describe("passesFilter", () => {
   it("rejects NSFW regardless of score", () => {

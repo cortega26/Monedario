@@ -6,7 +6,7 @@
 // (listen → reply with the kit → measure via GSC). See ADR + README.
 
 import { getAppToken, searchReddit, type RedditPost } from "./redditClient";
-import { KEYWORD_GROUPS } from "./keywords";
+import { KEYWORD_GROUPS, SUBREDDIT_SCOPE } from "./keywords";
 import { filterUnseen, markSeen } from "./dedup";
 import { postAlert, type Match } from "./discord";
 
@@ -76,6 +76,7 @@ async function runMonitor(env: Env): Promise<{ found: number; alerted: number }>
       posts = await searchReddit(token, env.REDDIT_USER_AGENT, group.query, {
         timeWindow,
         limit,
+        restrictSubreddit: SUBREDDIT_SCOPE,
       });
     } catch (err) {
       log("warn", "search.failed", {

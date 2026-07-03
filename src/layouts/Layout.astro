@@ -20,9 +20,19 @@ type Props = {
 const performanceSensitivePath = /^\/(?:posts|guias|calculadoras)(?:\/|$)/.test(
   Astro.url.pathname
 );
-const shouldPreloadDisplayFont = !/^\/calculadoras(?:\/|$)/.test(
-  Astro.url.pathname
-);
+// Fraunces (--font-display) is declared `font-display: optional`, so by design it
+// must never gate rendering: the H1 paints immediately in the Georgia fallback and
+// only swaps to Fraunces if it arrives within the browser's short block window.
+// Preloading it at High priority therefore puts a ~47 KB non-critical asset on the
+// cold-cache critical path, competing with the render-blocking CSS and the body-font
+// preload. Preload it only where the branded H1 pays for itself: content pages, which
+// already have healthy LCP. Skip it on /calculadoras/* (their hero H1 is not Fraunces)
+// and on the homepage — as the domain root it is the most cold-cache-heavy route and
+// carries the site's worst LCP p75, so we let the H1 fall back to Georgia on the first
+// paint (exactly what `optional` sanctions) and Fraunces applies once cached.
+const isHomepage = Astro.url.pathname === "/" || Astro.url.pathname === "";
+const shouldPreloadDisplayFont =
+  !isHomepage && !/^\/calculadoras(?:\/|$)/.test(Astro.url.pathname);
 
 const {
   title = SITE.title,
@@ -53,7 +63,6 @@ const SITE_ORIGIN = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
 );
 
 const ORGANIZATION_ID = `${SITE_ORIGIN}/#organization`;
-const isHomepage = Astro.url.pathname === "/" || Astro.url.pathname === "";
 
 const structuredData = !pubDatetime
   ? {

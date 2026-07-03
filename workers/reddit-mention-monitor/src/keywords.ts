@@ -47,8 +47,10 @@ export const KEYWORD_GROUPS: KeywordGroup[] = [
   },
 ];
 
-// Chilean subreddits worth restricting some searches to. A search without
-// restrict_sr covers all of Reddit; these are for optional targeted passes.
+// Chilean subreddits every keyword group is restricted to (via restrict_sr).
+// Keeps the monitor on-topic for Monedario's audience and cuts false positives
+// from other Spanish-speaking markets that share AFP/finiquito/UF terminology
+// (e.g. Peru, Colombia, Mexico).
 export const TARGET_SUBREDDITS = [
   "chile",
   "RepublicaIndependiente",
@@ -56,3 +58,8 @@ export const TARGET_SUBREDDITS = [
   "Bolsa",
   "EstoyBienChile",
 ];
+
+// Reddit multi-subreddit search accepts a "+"-joined path segment
+// (r/chile+merval+.../search); this keeps the restriction to one request per
+// keyword group instead of one per subreddit.
+export const SUBREDDIT_SCOPE = TARGET_SUBREDDITS.join("+");

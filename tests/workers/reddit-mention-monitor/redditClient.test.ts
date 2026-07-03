@@ -82,6 +82,12 @@ describe("buildSearchUrl", () => {
     expect(url.searchParams.get("limit")).toBe("10");
     expect(url.searchParams.get("t")).toBe("week");
   });
+
+  it("accepts a '+'-joined multi-subreddit scope", () => {
+    const url = new URL(buildSearchUrl("uf", { restrictSubreddit: "chile+merval+Bolsa" }));
+    expect(url.pathname).toBe("/r/chile+merval+Bolsa/search");
+    expect(url.searchParams.get("restrict_sr")).toBe("true");
+  });
 });
 
 // Type sanity: RedditPost shape is exercised above; keep a reference so unused

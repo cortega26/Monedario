@@ -13,7 +13,7 @@ crons = ["*/15 * * * *"]
 # Entries expire after 7 days (expirationTtl in code) so the namespace stays small.
 [[kv_namespaces]]
 binding = "REDDIT_SEEN"
-id = "REPLACE_WITH_KV_NAMESPACE_ID"
+id = "58a032ea6f754c999f0bceabb29fd887"
 
 [vars]
 # Reddit requires a unique, descriptive User-Agent. Update the /u/ handle to the

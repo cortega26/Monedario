@@ -8,9 +8,10 @@ See `docs/adr/ADR-20260601-reddit-mention-monitor.md` for the rationale and viab
 
 ## How it works
 
-`scheduled()` → app-only OAuth token → search each group in `src/keywords.ts` → drop NSFW / below
-`MIN_SCORE` / already-seen (KV) → post new matches to Discord → mark them seen (after a successful
-alert, so a Discord failure retries next run).
+`scheduled()` → app-only OAuth token → search each group in `src/keywords.ts`, restricted to
+`TARGET_SUBREDDITS` (Chilean subs) → drop NSFW / below `MIN_SCORE` / already-seen (KV) → post new
+matches to Discord → mark them seen (after a successful alert, so a Discord failure retries next
+run).
 
 | Piece | File |
 |---|---|
@@ -62,7 +63,7 @@ alert, so a Discord failure retries next run).
 
 ## Tuning
 
-- Keywords / suggested calculators: `src/keywords.ts`.
+- Keywords / suggested calculators / subreddit scope: `src/keywords.ts`.
 - Cadence: `crons` in `wrangler.toml`.
 - Noise floor: `MIN_SCORE`, `SEARCH_TIME_WINDOW`, `SEARCH_LIMIT` in `[vars]`.
 
