@@ -76,6 +76,8 @@
     "data-signals:gsc": "node scripts/data-signals/gsc-fetch.mjs",
     "data-signals:gsc:aggregate": "node scripts/data-signals/aggregate-gsc-query-page.mjs",
     "data-signals:gsc:local": "node scripts/data-signals/run-with-local-env.mjs scripts/data-signals/gsc-fetch.mjs",
+    "data-signals:gsc:inspect": "node scripts/data-signals/gsc-inspect.mjs",
+    "data-signals:gsc:inspect:local": "node scripts/data-signals/run-with-local-env.mjs scripts/data-signals/gsc-inspect.mjs",
     "data-signals:cloudflare": "node scripts/data-signals/cloudflare-fetch.mjs",
     "data-signals:cloudflare:local": "node scripts/data-signals/run-with-local-env.mjs scripts/data-signals/cloudflare-fetch.mjs",
     "editorial:volatile-data:refresh": "node scripts/refresh-editorial-volatile-data.mjs",

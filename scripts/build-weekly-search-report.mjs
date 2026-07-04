@@ -698,6 +698,18 @@ function readCloudflarePerf(cloudflareJsonDir, week) {
   return { rum, traffic };
 }
 
+function readUrlInspection(gscJsonDir, week) {
+  const inspectionPath = path.join(gscJsonDir, `${week}-url-inspection.json`);
+  if (!existsSync(inspectionPath)) return null;
+  try {
+    const doc = JSON.parse(readFileSync(inspectionPath, "utf8"));
+    if (!doc?.summary || !Array.isArray(doc.data)) return null;
+    return doc;
+  } catch {
+    return null;
+  }
+}
+
 function rateLcp(ms) {
   if (ms === null || ms === undefined) return "—";
   if (ms < 2500) return `${ms}ms ✅`;
@@ -896,6 +908,51 @@ function buildPerformanceSection(cloudflarePerf, weekLabel) {
   if (traffic?.summary) {
     const s = traffic.summary;
     parts.push(`**Tráfico semanal:** ${s.pageViews} pageviews · ${s.requests} requests · cache ${s.cacheRatioPct}% · ${s.bandwidthMB} MB\n`);
+  }
+
+  return parts.join("\n");
+}
+
+const INDEXED_COVERAGE_STATE = "Submitted and indexed";
+const NOT_INDEXED_LIMIT = 20;
+
+function buildIndexationCoverageSection(inspection, weekLabel) {
+  if (!inspection) return "";
+  const s = inspection.summary;
+  const parts = [`\n## Indexación real (URL Inspection — ${weekLabel})\n`];
+  parts.push(
+    `- Indexadas: **${s.indexed}/${s.total}** (${s.indexedPct ?? "n/d"}%)`,
+    `- No indexadas ("Crawled - currently not indexed"): **${s.notIndexed}**`,
+    `- Otras (excluidas, errores, sin dato): ${s.other}`,
+    ""
+  );
+
+  // Everything that is NOT "Submitted and indexed" (crawled-not-indexed +
+  // excluded/error/unknown) — i.e. notIndexed + other from the summary.
+  const notConfirmed = inspection.data
+    .filter(row => row.coverageState !== INDEXED_COVERAGE_STATE)
+    // Stalest crawl first — the pages Google saw long ago and still withholds
+    // are the most concerning; nulls (never crawled) sort last.
+    .sort((a, b) => (a.lastCrawl ?? "9999").localeCompare(b.lastCrawl ?? "9999"));
+
+  if (notConfirmed.length > 0) {
+    parts.push(`### Sin confirmar en el índice (${notConfirmed.length}) — más antiguas primero\n`);
+    parts.push(table(
+      ["URL", "Estado", "Último crawl"],
+      notConfirmed.slice(0, NOT_INDEXED_LIMIT).map(row => [
+        `\`${new URL(row.url).pathname}\``,
+        row.coverageState ?? "n/d",
+        row.lastCrawl ?? "n/d",
+      ])
+    ));
+    if (notConfirmed.length > NOT_INDEXED_LIMIT) {
+      parts.push(`\n_… y ${notConfirmed.length - NOT_INDEXED_LIMIT} más. Lista completa en \`${weekLabel}-url-inspection.json\`._`);
+    }
+    parts.push("");
+  }
+
+  if (inspection.errors) {
+    parts.push(`_Nota: ${inspection.errors} URL(s) fallaron la inspección (throttle/quota) y no se contabilizan como indexadas._`);
   }
 
   return parts.join("\n");
@@ -1190,7 +1247,7 @@ function buildIndexationStatus(indexation) {
   return sections;
 }
 
-function buildSummary({ watchlist, indexation, pageRows, queryRows, analytics, analyticsJson, gscSource, cloudflarePerf }) {
+function buildSummary({ watchlist, indexation, pageRows, queryRows, analytics, analyticsJson, gscSource, cloudflarePerf, urlInspection }) {
   const pageByPath = new Map(pageRows.map(row => [row.path, row]));
 
   const trackedPages = watchlist.pages.map(entry => {
@@ -1272,6 +1329,7 @@ function buildSummary({ watchlist, indexation, pageRows, queryRows, analytics, a
     refreshCandidates,
     linkingCandidates,
     indexationStatus: buildIndexationStatus(indexation),
+    indexationCoverage: urlInspection ?? null,
     notes: indexation.notes ?? [],
     analyticsAvailable: analytics.available,
     analyticsJson: analyticsJson ?? null,
@@ -1402,6 +1460,7 @@ ${summary.indexationStatus
 ${alerts}`;
   })
   .join("\n\n")}
+${buildIndexationCoverageSection(summary.indexationCoverage, summary.weekLabel)}
 
 ## Top Winners
 
@@ -1497,6 +1556,9 @@ function main() {
   const cloudflarePerf = week
     ? readCloudflarePerf(options.cloudflareJsonDir, week)
     : null;
+  const urlInspection = week
+    ? readUrlInspection(options.gscJsonDir, week)
+    : null;
 
   const summary = buildSummary({
     watchlist,
@@ -1507,6 +1569,7 @@ function main() {
     analyticsJson,
     gscSource,
     cloudflarePerf,
+    urlInspection,
   });
   const markdown = buildMarkdown(summary);
 

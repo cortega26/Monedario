@@ -68,6 +68,15 @@ describe("data-signals workflow — configuration preflight", () => {
     expect(content).toContain("CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}");
   });
 
+  it("includes GSC URL inspection (indexation coverage) step", () => {
+    const content = fs.readFileSync(workflowPath, "utf8");
+
+    expect(content).toContain("name: Fetch GSC URL inspection (indexation coverage)");
+    expect(content).toContain("scripts/data-signals/gsc-inspect.mjs");
+    // Throttling/quota on URL Inspection must not fail the whole signals job.
+    expect(content).toContain("continue-on-error: true");
+  });
+
   it("validates analytics export has no secrets or raw events", () => {
     const content = fs.readFileSync(workflowPath, "utf8");
 

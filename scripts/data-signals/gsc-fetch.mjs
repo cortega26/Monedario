@@ -17,9 +17,9 @@
  * No external npm dependencies — uses Node built-ins only.
  */
 
-import { createSign } from "node:crypto";
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import { fetchAccessToken } from "./gsc-auth.mjs";
 import {
   buildSchemaHeader,
   isoWeekToDateRange,
@@ -94,49 +94,6 @@ function parseArgs(argv) {
   }
 
   return opts;
-}
-
-// ---------------------------------------------------------------------------
-// Auth — JWT RS256, no external deps
-// ---------------------------------------------------------------------------
-
-function buildJWT(creds, scope) {
-  const now = Math.floor(Date.now() / 1000);
-  const header = Buffer.from(
-    JSON.stringify({ alg: "RS256", typ: "JWT" })
-  ).toString("base64url");
-  const payload = Buffer.from(
-    JSON.stringify({
-      aud: "https://oauth2.googleapis.com/token",
-      exp: now + 3600,
-      iat: now,
-      iss: creds.client_email,
-      scope,
-    })
-  ).toString("base64url");
-  const signingInput = `${header}.${payload}`;
-  const signer = createSign("RSA-SHA256");
-  signer.update(signingInput);
-  const sig = signer.sign(creds.private_key, "base64url");
-  return `${signingInput}.${sig}`;
-}
-
-async function fetchAccessToken(creds) {
-  const jwt = buildJWT(creds, GSC_SCOPE);
-  const res = await fetch("https://oauth2.googleapis.com/token", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({
-      assertion: jwt,
-      grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
-    }),
-  });
-  if (!res.ok) {
-    const body = await res.text();
-    throw new Error(`[gsc-fetch] Token exchange failed (${res.status}): ${body}`);
-  }
-  const { access_token } = await res.json();
-  return access_token;
 }
 
 // ---------------------------------------------------------------------------
@@ -226,7 +183,7 @@ async function main() {
 
   console.error(`[gsc-fetch] week=${week}  window=${from}–${to}  site=${site}`);
 
-  const token = await fetchAccessToken(creds);
+  const token = await fetchAccessToken(creds, GSC_SCOPE);
 
   const [queryRows, pageRows, queryPageRows, sitemapEntries] = await Promise.all([
     fetchSearchAnalytics(site, from, to, ["query"], token),

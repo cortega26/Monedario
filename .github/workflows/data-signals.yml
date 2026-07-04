@@ -121,6 +121,21 @@ jobs:
         run: |
           node scripts/data-signals/gsc-fetch.mjs --week="$WEEK" --dry-run
 
+      - name: Fetch GSC URL inspection (indexation coverage)
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        continue-on-error: true
+        env:
+          WEEK: ${{ steps.week.outputs.value }}
+        run: |
+          node scripts/data-signals/gsc-inspect.mjs --week="$WEEK"
+
+      - name: Fetch GSC URL inspection (dry run)
+        if: ${{ github.event.inputs.dry_run == 'true' }}
+        env:
+          WEEK: ${{ steps.week.outputs.value }}
+        run: |
+          node scripts/data-signals/gsc-inspect.mjs --week="$WEEK" --dry-run
+
       - name: Fetch Cloudflare signals
         if: ${{ github.event.inputs.dry_run != 'true' }}
         env:

@@ -328,6 +328,77 @@ export function normalizeSitemapEntry(entry) {
 }
 
 /**
+ * Extracts the `<loc>` URLs from a sitemap or sitemap-index XML string.
+ * Works for both `<urlset>` (page URLs) and `<sitemapindex>` (child sitemaps).
+ * Pure function (no I/O). Returns URLs in document order, de-duplicated.
+ * @param {string} xml
+ * @returns {string[]}
+ */
+export function extractSitemapLocs(xml) {
+  if (typeof xml !== "string") return [];
+  const seen = new Set();
+  const out = [];
+  for (const m of xml.matchAll(/<loc>\s*([^<\s]+)\s*<\/loc>/gi)) {
+    const url = m[1].trim();
+    if (url && !seen.has(url)) {
+      seen.add(url);
+      out.push(url);
+    }
+  }
+  return out;
+}
+
+/**
+ * Normalizes a GSC URL Inspection `indexStatusResult` into a compact, diff-friendly
+ * row. Timestamps are truncated to date. Output keys are sorted alphabetically.
+ * @param {string} url  the inspected URL
+ * @param {object} [result]  inspectionResult.indexStatusResult (or {} / error marker)
+ */
+export function normalizeUrlInspectionRow(url, result = {}) {
+  return {
+    coverageState: result.coverageState ?? null,
+    indexingState: result.indexingState ?? null,
+    lastCrawl: result.lastCrawlTime?.split("T")[0] ?? null,
+    robotsTxtState: result.robotsTxtState ?? null,
+    url,
+    verdict: result.verdict ?? null,
+  };
+}
+
+/** GSC coverageState string for a URL that is submitted and indexed. */
+export const COVERAGE_INDEXED = "Submitted and indexed";
+/** GSC coverageState string for a URL crawled but withheld from the index. */
+export const COVERAGE_CRAWLED_NOT_INDEXED = "Crawled - currently not indexed";
+
+/**
+ * Summarizes an array of normalized URL-inspection rows into indexation health
+ * counts. Pure function (no I/O). `indexedPct` is a whole-number percentage.
+ * @param {Array<{coverageState: (string|null)}>} rows
+ * @returns {{ total:number, indexed:number, notIndexed:number, other:number, indexedPct:(number|null), byCoverage:Record<string,number> }}
+ */
+export function summarizeIndexation(rows) {
+  const list = Array.isArray(rows) ? rows : [];
+  const byCoverage = {};
+  let indexed = 0;
+  let notIndexed = 0;
+  for (const row of list) {
+    const state = row?.coverageState ?? "unknown";
+    byCoverage[state] = (byCoverage[state] || 0) + 1;
+    if (state === COVERAGE_INDEXED) indexed++;
+    else if (state === COVERAGE_CRAWLED_NOT_INDEXED) notIndexed++;
+  }
+  const total = list.length;
+  return {
+    total,
+    indexed,
+    notIndexed,
+    other: total - indexed - notIndexed,
+    indexedPct: total > 0 ? Math.round((indexed / total) * 100) : null,
+    byCoverage,
+  };
+}
+
+/**
  * Site route inventory — allowlist of known path prefixes for monedario.cl.
  * RUM may include routes from other hostnames if the Cloudflare account has
  * multiple zones. We keep only routes that match the site's known URL space.
