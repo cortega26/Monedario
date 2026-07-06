@@ -5,7 +5,7 @@
   "source": "src/data/blog/**",
   "publishableRule": "draft !== true",
   "ordering": "slug asc",
-  "publishedCount": 52,
+  "publishedCount": 53,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -87,7 +87,7 @@
       "sourcePath": "src/data/blog/como-calcular-sueldo-liquido.md",
       "heroImage": "/images/hero/como-calcular-sueldo-liquido.avif",
       "summary": "Te ofrecieron $1.200.000 brutos. Llegó el día de pago y te cayeron $950.000. Esta guía existe para rehacer ese cálculo de principio a fin: partir desde el bruto, separar el imponible y llegar al depósito final con AFP, salud, cesantía e impuesto. Si tu duda principal no es rehace...",
-      "updatedDate": "2026-05-14T00:00:00Z"
+      "updatedDate": "2026-07-01T00:00:00Z"
     },
     {
       "slug": "como-cambiarse-de-afp",
@@ -103,7 +103,23 @@
       "sourcePath": "src/data/blog/como-cambiarse-de-afp.md",
       "heroImage": "/images/hero/como-cambiarse-de-afp.avif",
       "summary": "Cambiarse de AFP es uno de los trámites más simples que puedes hacer para mejorar tu situación previsional, y sin embargo la mayoría de las personas nunca lo hace. En esta guía te explicamos cómo funciona el proceso, qué debes evaluar y qué cambia con la Reforma de Pensiones apro...",
-      "updatedDate": "2026-05-14T00:00:00Z"
+      "updatedDate": "2026-07-01T00:00:00Z"
+    },
+    {
+      "slug": "como-elegir-inversion-segun-plazo-riesgo-objetivos",
+      "title": "Cómo elegir una inversión en Chile: plazo, riesgo y objetivos",
+      "category": "ahorro-inversion",
+      "cluster": "ahorro-e-inversion",
+      "tags": [
+        "inversiones",
+        "ahorro",
+        "educacion-financiera",
+        "plazo",
+        "riesgo"
+      ],
+      "sourcePath": "src/data/blog/como-elegir-inversion-segun-plazo-riesgo-objetivos.mdx",
+      "heroImage": "/images/hero/como-elegir-inversion-segun-plazo-riesgo-objetivos.avif",
+      "summary": "import InversionReadinessChecklist from \"@/components/InversionReadinessChecklist.astro\"; Información vigente al 2026 06 25. Ante cambios normativos o en las condiciones de los instrumentos financieros, verifica en las fuentes oficiales referenciadas al final de este artículo. La..."
     },
     {
       "slug": "como-hacer-presupuesto-mensual-chile",
@@ -217,7 +233,7 @@
       "sourcePath": "src/data/blog/cuanto-descuenta-la-afp-de-tu-sueldo.md",
       "heroImage": "/images/hero/cuanto-descuenta-la-afp-de-tu-sueldo.avif",
       "summary": "Cada mes aparece en tu liquidación una línea que dice \"AFP\" y un número que te descuentan. Para la mayoría es un cálculo opaco que simplemente aceptan. Esta guía lo abre: cuánto corresponde a cotización obligatoria, cuánto es comisión y cómo verificar que ese cargo calza con tu A...",
-      "updatedDate": "2026-05-14T00:00:00Z"
+      "updatedDate": "2026-07-01T00:00:00Z"
     },
     {
       "slug": "deposito-a-plazo-uf-vs-pesos",
@@ -250,7 +266,7 @@
       "sourcePath": "src/data/blog/descuentos-de-sueldo.md",
       "heroImage": "/images/hero/descuentos-de-sueldo.avif",
       "summary": "Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal. Al...",
-      "updatedDate": "2026-05-14T00:00:00Z"
+      "updatedDate": "2026-07-01T00:00:00Z"
     },
     {
       "slug": "devolucion-impuestos-fechas-compensaciones",
@@ -466,7 +482,7 @@
       "sourcePath": "src/data/blog/impuesto-global-complementario-chile.md",
       "heroImage": "/images/hero/impuesto-global-complementario-chile.avif",
       "summary": "Información vigente al 2026 05 14. Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el antes de tu Operación Renta. Este artículo no cubre ganancias de capital. Tienes sueldo y además emites boletas de honorarios. O...",
-      "updatedDate": "2026-05-14T00:00:00Z"
+      "updatedDate": "2026-07-01T00:00:00Z"
     },
     {
       "slug": "indemnizacion-anos-de-servicio-chile",
@@ -810,8 +826,8 @@
       ],
       "sourcePath": "src/data/blog/sueldo-imponible-chile.md",
       "heroImage": "/images/hero/sueldo-imponible-chile.avif",
-      "summary": "Información vigente al 2026 05 03. El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves...",
-      "updatedDate": "2026-05-14T00:00:00Z"
+      "summary": "Información vigente al 2026 07 01. El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves...",
+      "updatedDate": "2026-07-01T00:00:00Z"
     },
     {
       "slug": "suplantacion-identidad-creditos-no-reconocidos",
