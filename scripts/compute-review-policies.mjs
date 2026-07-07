@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import yaml from "js-yaml";
+import { dump, load } from "js-yaml";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const BLOG_DIR = path.resolve(__dirname, "../src/data/blog");
@@ -85,7 +85,7 @@ function parseFrontmatter(content) {
   const end = match[0].length;
   let data;
   try {
-    data = yaml.load(yamlStr);
+    data = load(yamlStr);
   } catch {
     return null;
   }
@@ -118,7 +118,7 @@ function injectReviewPolicy(content, yamlStr, end, reviewPolicy, newUpdatedDate)
     modified = stripField(modified, "updatedDate");
   }
 
-  const block = yaml.dump({ reviewPolicy }, { indent: 2, lineWidth: -1 }).trimEnd();
+  const block = dump({ reviewPolicy }, { indent: 2, lineWidth: -1 }).trimEnd();
   let newYaml = `${modified}\n${block}`;
 
   if (newUpdatedDate) {

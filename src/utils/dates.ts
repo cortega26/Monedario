@@ -7,17 +7,10 @@
  * Cloudflare Workers.
  */
 
-import {
-  differenceInDays,
-  getMonth,
-  getYear,
-  isAfter,
-  isBefore,
-  parseISO,
-} from "date-fns";
+import { parseISO } from "date-fns";
 
 /** Parse an ISO date string (YYYY-MM-DD) into a UTC Date. */
-export function isoToDate(dateString: string): Date {
+function isoToDate(dateString: string): Date {
   return parseISO(`${dateString}T00:00:00.000Z`);
 }
 
@@ -60,14 +53,3 @@ export function todayIso(): string {
   const now = new Date();
   return `${now.getUTCFullYear()}-${String(now.getUTCMonth() + 1).padStart(2, "0")}-${String(now.getUTCDate()).padStart(2, "0")}`;
 }
-
-/** Fiscal year start in Chile: July 1 of the relevant year (UTC). */
-export function getChileanFiscalYearStart(date: Date): Date {
-  const year = getYear(date);
-  const month = getMonth(date) + 1; // getMonth is 0-based
-  const startYear = month >= 7 ? year : year - 1;
-  return new Date(Date.UTC(startYear, 6, 1)); // July = month 6 in UTC
-}
-
-// Re-export commonly needed date-fns functions
-export { differenceInDays, isAfter, isBefore, parseISO };

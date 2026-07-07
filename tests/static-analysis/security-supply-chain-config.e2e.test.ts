@@ -1,6 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
-import yaml from "js-yaml";
+import { load } from "js-yaml";
 import { describe, expect, it } from "vitest";
 
 const REPO_ROOT = process.cwd();
@@ -39,7 +39,7 @@ describe("supply-chain configuration", () => {
   });
 
   it("applies a seven-day cooldown to every Dependabot ecosystem", () => {
-    const config = yaml.load(
+    const config = load(
       fs.readFileSync(path.join(GITHUB_DIR, "dependabot.yml"), "utf8"),
     ) as {
       updates?: Array<{
@@ -62,7 +62,7 @@ describe("supply-chain configuration", () => {
   });
 
   it("prevents pnpm from resolving packages younger than seven days", () => {
-    const config = yaml.load(
+    const config = load(
       fs.readFileSync(path.join(REPO_ROOT, "pnpm-workspace.yaml"), "utf8"),
     ) as {
       minimumReleaseAge?: number;

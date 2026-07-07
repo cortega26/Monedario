@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import yaml from "js-yaml";
+import { JSON_SCHEMA, load } from "js-yaml";
 
 describe("YAML Parser", () => {
   it("parses multiline block scalars exactly as string blocks", () => {
@@ -9,8 +9,8 @@ description: >
   This is a multiline
   block scalar description.
 `;
-    const parsed = yaml.load(yamlString, {
-      schema: yaml.JSON_SCHEMA,
+    const parsed = load(yamlString, {
+      schema: JSON_SCHEMA,
     }) as Record<string, unknown>;
     expect(parsed.description).toBe("This is a multiline block scalar description.\n");
   });
@@ -21,8 +21,8 @@ tags:
   - first parameter
   - second parameter
 `;
-    const parsed = yaml.load(yamlString, {
-      schema: yaml.JSON_SCHEMA,
+    const parsed = load(yamlString, {
+      schema: JSON_SCHEMA,
     }) as Record<string, unknown>;
     expect(parsed.tags).toEqual(["first parameter", "second parameter"]);
   });
@@ -31,8 +31,8 @@ tags:
     const yamlString = `
 pubDate: "2026-03-04T12:00:00Z"
 `;
-    const parsed = yaml.load(yamlString, {
-      schema: yaml.JSON_SCHEMA,
+    const parsed = load(yamlString, {
+      schema: JSON_SCHEMA,
     }) as Record<string, unknown>;
     expect(parsed.pubDate).toBeTypeOf("string");
     expect(parsed.pubDate).toBe("2026-03-04T12:00:00Z");

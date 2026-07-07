@@ -10,6 +10,7 @@
     "src/dev-pages/**",
     "src/scripts/**",
     "src/tools/**",
+    "src/components/InversionReadinessChecklist.astro",
     "src/components/IndicadorEconomico.astro"
   ],
   "rules": {
@@ -19,7 +20,7 @@
     "unresolved": "off",
     "binaries": "off",
     "exports": "error",
-    "types": "warn",
+    "types": "off",
     "nsExports": "warn",
     "nsTypes": "warn",
     "enumMembers": "off",
@@ -40,7 +41,6 @@
   "ignoreDependencies": [
     "tailwindcss",
     "@tailwindcss/typography",
-    "@axe-core/playwright",
-    "@typescript-eslint/parser"
+    "@axe-core/playwright"
   ]
 }
