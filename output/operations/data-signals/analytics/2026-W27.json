@@ -1,0 +1,1537 @@
+{
+  "source": "first-party-events",
+  "schemaVersion": 1,
+  "week": "2026-W27",
+  "window": {
+    "from": "2026-06-29",
+    "to": "2026-07-05"
+  },
+  "data": [
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_complete",
+      "calculator_slug": "conversor-uf",
+      "dimensions": "",
+      "count": 4
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_complete",
+      "calculator_slug": "conversor-utm",
+      "dimensions": "",
+      "count": 13
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_complete",
+      "calculator_slug": "credito-consumo",
+      "dimensions": "",
+      "count": 14
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_complete",
+      "calculator_slug": "deposito-a-plazo",
+      "dimensions": "",
+      "count": 1
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_complete",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "",
+      "count": 1
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_complete",
+      "calculator_slug": "prepago-credito",
+      "dimensions": "",
+      "count": 34
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_complete",
+      "calculator_slug": "reajuste-arriendo",
+      "dimensions": "",
+      "count": 1
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_complete",
+      "calculator_slug": "seguro-cesantia",
+      "dimensions": "",
+      "count": 16
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_complete",
+      "calculator_slug": "simulador-jubilacion",
+      "dimensions": "",
+      "count": 4
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_complete",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "",
+      "count": 17
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-uf",
+      "dimensions": "focusin",
+      "count": 4
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-utm",
+      "dimensions": "click",
+      "count": 1
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-utm",
+      "dimensions": "focusin",
+      "count": 13
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_start",
+      "calculator_slug": "credito-consumo",
+      "dimensions": "focusin",
+      "count": 3
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_start",
+      "calculator_slug": "deposito-a-plazo",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_start",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_start",
+      "calculator_slug": "prepago-credito",
+      "dimensions": "focusin",
+      "count": 2
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_start",
+      "calculator_slug": "reajuste-arriendo",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_start",
+      "calculator_slug": "seguro-cesantia",
+      "dimensions": "focusin",
+      "count": 6
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_start",
+      "calculator_slug": "simulador-jubilacion",
+      "dimensions": "focusin",
+      "count": 2
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_start",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "focusin",
+      "count": 2
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "calculator_start",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "input",
+      "count": 1
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "apv",
+      "dimensions": "1:apv-to-sl",
+      "count": 2
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "1:isc-to-sl",
+      "count": 4
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "1:sl-to-cesantia",
+      "count": 1
+    },
+    {
+      "date": "2026-06-29",
+      "event_name": "official_source_click",
+      "calculator_slug": "unknown",
+      "dimensions": "",
+      "count": 3
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_complete",
+      "calculator_slug": "apv",
+      "dimensions": "",
+      "count": 1
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_complete",
+      "calculator_slug": "conversor-uf",
+      "dimensions": "",
+      "count": 1
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_complete",
+      "calculator_slug": "conversor-utm",
+      "dimensions": "",
+      "count": 25
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_complete",
+      "calculator_slug": "credito-consumo",
+      "dimensions": "",
+      "count": 2
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_complete",
+      "calculator_slug": "gratificacion-legal",
+      "dimensions": "",
+      "count": 3
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_complete",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "",
+      "count": 10
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_complete",
+      "calculator_slug": "operacion-renta",
+      "dimensions": "",
+      "count": 5
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_complete",
+      "calculator_slug": "prepago-credito",
+      "dimensions": "",
+      "count": 9
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_complete",
+      "calculator_slug": "seguro-cesantia",
+      "dimensions": "",
+      "count": 39
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_complete",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "",
+      "count": 35
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_start",
+      "calculator_slug": "apv",
+      "dimensions": "focusin",
+      "count": 2
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-uf",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-utm",
+      "dimensions": "focusin",
+      "count": 25
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_start",
+      "calculator_slug": "credito-consumo",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_start",
+      "calculator_slug": "deposito-a-plazo",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_start",
+      "calculator_slug": "gratificacion-legal",
+      "dimensions": "focusin",
+      "count": 3
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_start",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "focusin",
+      "count": 6
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_start",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "input",
+      "count": 1
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_start",
+      "calculator_slug": "operacion-renta",
+      "dimensions": "focusin",
+      "count": 2
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_start",
+      "calculator_slug": "prepago-credito",
+      "dimensions": "focusin",
+      "count": 10
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_start",
+      "calculator_slug": "prepago-credito",
+      "dimensions": "input",
+      "count": 1
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_start",
+      "calculator_slug": "reajuste-arriendo",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_start",
+      "calculator_slug": "seguro-cesantia",
+      "dimensions": "focusin",
+      "count": 25
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_start",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "click",
+      "count": 1
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_start",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "focusin",
+      "count": 7
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "calculator_start",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "input",
+      "count": 3
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "next_best_step_click",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "1:isc-to-sl",
+      "count": 2
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "apv",
+      "dimensions": "1:apv-to-sl",
+      "count": 6
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "1:isc-to-apv",
+      "count": 1
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "1:isc-to-sl",
+      "count": 6
+    },
+    {
+      "date": "2026-06-30",
+      "event_name": "official_source_click",
+      "calculator_slug": "unknown",
+      "dimensions": "",
+      "count": 1
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_complete",
+      "calculator_slug": "comisiones-afp",
+      "dimensions": "",
+      "count": 7
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_complete",
+      "calculator_slug": "conversor-uf",
+      "dimensions": "",
+      "count": 8
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_complete",
+      "calculator_slug": "conversor-utm",
+      "dimensions": "",
+      "count": 36
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_complete",
+      "calculator_slug": "deposito-a-plazo",
+      "dimensions": "",
+      "count": 1
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_complete",
+      "calculator_slug": "gratificacion-legal",
+      "dimensions": "",
+      "count": 1
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_complete",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "",
+      "count": 14
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_complete",
+      "calculator_slug": "iva",
+      "dimensions": "",
+      "count": 2
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_complete",
+      "calculator_slug": "operacion-renta",
+      "dimensions": "",
+      "count": 2
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_complete",
+      "calculator_slug": "prepago-credito",
+      "dimensions": "",
+      "count": 45
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_complete",
+      "calculator_slug": "seguro-cesantia",
+      "dimensions": "",
+      "count": 33
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_complete",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "",
+      "count": 23
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_start",
+      "calculator_slug": "apv",
+      "dimensions": "input",
+      "count": 1
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_start",
+      "calculator_slug": "comisiones-afp",
+      "dimensions": "click",
+      "count": 1
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_start",
+      "calculator_slug": "comisiones-afp",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-uf",
+      "dimensions": "focusin",
+      "count": 8
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-utm",
+      "dimensions": "click",
+      "count": 1
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-utm",
+      "dimensions": "focusin",
+      "count": 35
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-utm",
+      "dimensions": "input",
+      "count": 1
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_start",
+      "calculator_slug": "deposito-a-plazo",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_start",
+      "calculator_slug": "gratificacion-legal",
+      "dimensions": "focusin",
+      "count": 2
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_start",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "focusin",
+      "count": 5
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_start",
+      "calculator_slug": "iva",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_start",
+      "calculator_slug": "operacion-renta",
+      "dimensions": "focusin",
+      "count": 2
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_start",
+      "calculator_slug": "prepago-credito",
+      "dimensions": "focusin",
+      "count": 7
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_start",
+      "calculator_slug": "reajuste-arriendo",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_start",
+      "calculator_slug": "seguro-cesantia",
+      "dimensions": "focusin",
+      "count": 20
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_start",
+      "calculator_slug": "simulador-renegociacion",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_start",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "focusin",
+      "count": 3
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "calculator_start",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "input",
+      "count": 3
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "next_best_step_click",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "1:isc-to-sl",
+      "count": 1
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "apv",
+      "dimensions": "1:apv-to-sl",
+      "count": 8
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "1:isc-to-sl",
+      "count": 5
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "1:sl-to-apv-midhigh",
+      "count": 2
+    },
+    {
+      "date": "2026-07-01",
+      "event_name": "official_source_click",
+      "calculator_slug": "unknown",
+      "dimensions": "",
+      "count": 3
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_complete",
+      "calculator_slug": "actualizador-inflacion",
+      "dimensions": "",
+      "count": 1
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_complete",
+      "calculator_slug": "conversor-uf",
+      "dimensions": "",
+      "count": 11
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_complete",
+      "calculator_slug": "conversor-utm",
+      "dimensions": "",
+      "count": 46
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_complete",
+      "calculator_slug": "gratificacion-legal",
+      "dimensions": "",
+      "count": 2
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_complete",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "",
+      "count": 4
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_complete",
+      "calculator_slug": "iva",
+      "dimensions": "",
+      "count": 1
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_complete",
+      "calculator_slug": "operacion-renta",
+      "dimensions": "",
+      "count": 2
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_complete",
+      "calculator_slug": "prepago-credito",
+      "dimensions": "",
+      "count": 1
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_complete",
+      "calculator_slug": "reajuste-arriendo",
+      "dimensions": "",
+      "count": 2
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_complete",
+      "calculator_slug": "seguro-cesantia",
+      "dimensions": "",
+      "count": 29
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_complete",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "",
+      "count": 105
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_start",
+      "calculator_slug": "actualizador-inflacion",
+      "dimensions": "focusin",
+      "count": 2
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_start",
+      "calculator_slug": "apv",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_start",
+      "calculator_slug": "apv",
+      "dimensions": "input",
+      "count": 1
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-uf",
+      "dimensions": "click",
+      "count": 1
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-uf",
+      "dimensions": "focusin",
+      "count": 11
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-utm",
+      "dimensions": "click",
+      "count": 2
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-utm",
+      "dimensions": "focusin",
+      "count": 44
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_start",
+      "calculator_slug": "gratificacion-legal",
+      "dimensions": "focusin",
+      "count": 2
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_start",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "focusin",
+      "count": 4
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_start",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "input",
+      "count": 2
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_start",
+      "calculator_slug": "iva",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_start",
+      "calculator_slug": "operacion-renta",
+      "dimensions": "focusin",
+      "count": 3
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_start",
+      "calculator_slug": "prepago-credito",
+      "dimensions": "focusin",
+      "count": 3
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_start",
+      "calculator_slug": "reajuste-arriendo",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_start",
+      "calculator_slug": "seguro-cesantia",
+      "dimensions": "click",
+      "count": 1
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_start",
+      "calculator_slug": "seguro-cesantia",
+      "dimensions": "focusin",
+      "count": 18
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_start",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "click",
+      "count": 1
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_start",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "focusin",
+      "count": 23
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "calculator_start",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "input",
+      "count": 6
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "next_best_step_click",
+      "calculator_slug": "operacion-renta",
+      "dimensions": "1:opren-to-apv",
+      "count": 1
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "apv",
+      "dimensions": "1:apv-to-sl",
+      "count": 6
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "1:isc-to-apv",
+      "count": 2
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "1:isc-to-sl",
+      "count": 6
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "operacion-renta",
+      "dimensions": "1:opren-to-apv",
+      "count": 1
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "1:sl-to-apv-midhigh",
+      "count": 4
+    },
+    {
+      "date": "2026-07-02",
+      "event_name": "official_source_click",
+      "calculator_slug": "unknown",
+      "dimensions": "",
+      "count": 4
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_complete",
+      "calculator_slug": "apv",
+      "dimensions": "",
+      "count": 1
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_complete",
+      "calculator_slug": "conversor-uf",
+      "dimensions": "",
+      "count": 3
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_complete",
+      "calculator_slug": "conversor-utm",
+      "dimensions": "",
+      "count": 31
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_complete",
+      "calculator_slug": "deposito-a-plazo",
+      "dimensions": "",
+      "count": 1
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_complete",
+      "calculator_slug": "finiquito-indemnizacion",
+      "dimensions": "",
+      "count": 2
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_complete",
+      "calculator_slug": "gratificacion-legal",
+      "dimensions": "",
+      "count": 2
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_complete",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "",
+      "count": 2
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_complete",
+      "calculator_slug": "reajuste-arriendo",
+      "dimensions": "",
+      "count": 7
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_complete",
+      "calculator_slug": "seguro-cesantia",
+      "dimensions": "",
+      "count": 41
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_complete",
+      "calculator_slug": "simulador-jubilacion",
+      "dimensions": "",
+      "count": 3
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_complete",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "",
+      "count": 24
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_complete",
+      "calculator_slug": "tarjeta-credito",
+      "dimensions": "",
+      "count": 1
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_start",
+      "calculator_slug": "apv",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_start",
+      "calculator_slug": "apv",
+      "dimensions": "input",
+      "count": 1
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-uf",
+      "dimensions": "focusin",
+      "count": 3
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-utm",
+      "dimensions": "click",
+      "count": 1
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-utm",
+      "dimensions": "focusin",
+      "count": 31
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_start",
+      "calculator_slug": "deposito-a-plazo",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_start",
+      "calculator_slug": "finiquito-indemnizacion",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_start",
+      "calculator_slug": "gratificacion-legal",
+      "dimensions": "focusin",
+      "count": 3
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_start",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "focusin",
+      "count": 4
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_start",
+      "calculator_slug": "operacion-renta",
+      "dimensions": "focusin",
+      "count": 2
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_start",
+      "calculator_slug": "prepago-credito",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_start",
+      "calculator_slug": "reajuste-arriendo",
+      "dimensions": "focusin",
+      "count": 2
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_start",
+      "calculator_slug": "seguro-cesantia",
+      "dimensions": "focusin",
+      "count": 20
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_start",
+      "calculator_slug": "simulador-jubilacion",
+      "dimensions": "focusin",
+      "count": 2
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_start",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "click",
+      "count": 1
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_start",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "focusin",
+      "count": 6
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_start",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "input",
+      "count": 2
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "calculator_start",
+      "calculator_slug": "tarjeta-credito",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "next_best_step_click",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "1:isc-to-sl",
+      "count": 1
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "apv",
+      "dimensions": "1:apv-to-sl",
+      "count": 3
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "1:isc-to-sl",
+      "count": 4
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "1:sl-to-cesantia",
+      "count": 1
+    },
+    {
+      "date": "2026-07-03",
+      "event_name": "official_source_click",
+      "calculator_slug": "unknown",
+      "dimensions": "",
+      "count": 3
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_complete",
+      "calculator_slug": "conversor-uf",
+      "dimensions": "",
+      "count": 6
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_complete",
+      "calculator_slug": "conversor-utm",
+      "dimensions": "",
+      "count": 37
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_complete",
+      "calculator_slug": "credito-consumo",
+      "dimensions": "",
+      "count": 1
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_complete",
+      "calculator_slug": "dividendo-hipotecario",
+      "dimensions": "",
+      "count": 1
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_complete",
+      "calculator_slug": "gratificacion-legal",
+      "dimensions": "",
+      "count": 1
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_complete",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "",
+      "count": 2
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_complete",
+      "calculator_slug": "prepago-credito",
+      "dimensions": "",
+      "count": 10
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_complete",
+      "calculator_slug": "seguro-cesantia",
+      "dimensions": "",
+      "count": 24
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_complete",
+      "calculator_slug": "simulador-renegociacion",
+      "dimensions": "",
+      "count": 7
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_complete",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "",
+      "count": 15
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-uf",
+      "dimensions": "click",
+      "count": 1
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-uf",
+      "dimensions": "focusin",
+      "count": 5
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-utm",
+      "dimensions": "focusin",
+      "count": 37
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_start",
+      "calculator_slug": "credito-consumo",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_start",
+      "calculator_slug": "dividendo-hipotecario",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_start",
+      "calculator_slug": "gratificacion-legal",
+      "dimensions": "click",
+      "count": 1
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_start",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_start",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "input",
+      "count": 1
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_start",
+      "calculator_slug": "prepago-credito",
+      "dimensions": "focusin",
+      "count": 5
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_start",
+      "calculator_slug": "seguro-cesantia",
+      "dimensions": "focusin",
+      "count": 17
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_start",
+      "calculator_slug": "simulador-renegociacion",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "calculator_start",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "focusin",
+      "count": 4
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "1:isc-to-apv",
+      "count": 1
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "1:isc-to-sl",
+      "count": 1
+    },
+    {
+      "date": "2026-07-04",
+      "event_name": "official_source_click",
+      "calculator_slug": "unknown",
+      "dimensions": "",
+      "count": 2
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_complete",
+      "calculator_slug": "apv",
+      "dimensions": "",
+      "count": 2
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_complete",
+      "calculator_slug": "conversor-uf",
+      "dimensions": "",
+      "count": 1
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_complete",
+      "calculator_slug": "conversor-utm",
+      "dimensions": "",
+      "count": 35
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_complete",
+      "calculator_slug": "credito-consumo",
+      "dimensions": "",
+      "count": 2
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_complete",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "",
+      "count": 7
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_complete",
+      "calculator_slug": "operacion-renta",
+      "dimensions": "",
+      "count": 7
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_complete",
+      "calculator_slug": "prepago-credito",
+      "dimensions": "",
+      "count": 1
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_complete",
+      "calculator_slug": "seguro-cesantia",
+      "dimensions": "",
+      "count": 4
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_complete",
+      "calculator_slug": "simulador-jubilacion",
+      "dimensions": "",
+      "count": 6
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_complete",
+      "calculator_slug": "simulador-renegociacion",
+      "dimensions": "",
+      "count": 2
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_complete",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "",
+      "count": 16
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_start",
+      "calculator_slug": "apv",
+      "dimensions": "focusin",
+      "count": 2
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-uf",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-utm",
+      "dimensions": "click",
+      "count": 1
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_start",
+      "calculator_slug": "conversor-utm",
+      "dimensions": "focusin",
+      "count": 34
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_start",
+      "calculator_slug": "credito-consumo",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_start",
+      "calculator_slug": "finiquito-indemnizacion",
+      "dimensions": "input",
+      "count": 1
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_start",
+      "calculator_slug": "gratificacion-legal",
+      "dimensions": "focusin",
+      "count": 2
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_start",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "focusin",
+      "count": 2
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_start",
+      "calculator_slug": "operacion-renta",
+      "dimensions": "focusin",
+      "count": 3
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_start",
+      "calculator_slug": "prepago-credito",
+      "dimensions": "focusin",
+      "count": 2
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_start",
+      "calculator_slug": "seguro-cesantia",
+      "dimensions": "focusin",
+      "count": 5
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_start",
+      "calculator_slug": "simulador-jubilacion",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_start",
+      "calculator_slug": "simulador-renegociacion",
+      "dimensions": "focusin",
+      "count": 1
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_start",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "focusin",
+      "count": 4
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "calculator_start",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "input",
+      "count": 2
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "next_best_step_click",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "1:isc-to-sl",
+      "count": 1
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "apv",
+      "dimensions": "1:apv-to-sl",
+      "count": 2
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "impuesto-segunda-categoria",
+      "dimensions": "1:isc-to-sl",
+      "count": 3
+    },
+    {
+      "date": "2026-07-05",
+      "event_name": "next_best_step_shown",
+      "calculator_slug": "sueldo-liquido",
+      "dimensions": "1:sl-to-apv-midhigh",
+      "count": 2
+    }
+  ]
+}

@@ -12,6 +12,7 @@ type Cleanup = () => void;
 type IdleHandle = number | ReturnType<typeof globalThis.setTimeout>;
 
 const CLICK_HANDLER_FLAG = "data-analytics-click-handler-attached";
+const CALCULATOR_VIEW_FLAG = "data-analytics-calculator-view-tracked";
 let pageCleanup: Cleanup | null = null;
 let pendingAnalyticsInit: IdleHandle | null = null;
 
@@ -199,6 +200,14 @@ function initCalculatorStartTracking(): Cleanup {
   let hasStarted = false;
   const calculatorSlug = calculatorRoot.dataset.analyticsCalculator;
   const calculatorName = calculatorRoot.dataset.analyticsCalculatorName;
+
+  if (!calculatorRoot.hasAttribute(CALCULATOR_VIEW_FLAG)) {
+    calculatorRoot.setAttribute(CALCULATOR_VIEW_FLAG, "true");
+    track("calculator_view", {
+      page_type: "calculator",
+      calculator_slug: calculatorSlug,
+    });
+  }
 
   const startTracking = (interactionType: string) => {
     if (hasStarted) return;

@@ -1,6 +1,6 @@
 # Plan de remediacion - auditoria de alineamiento 2026-05-25
 
-Status: active
+Status: completed 2026-05-25
 Created: 2026-05-25
 Source audit: [`docs/reports/AUDIT-ALIGNMENT-2026-05-25.md`](../reports/AUDIT-ALIGNMENT-2026-05-25.md)
 
@@ -102,4 +102,4 @@ pnpm run test
 - 2026-05-25: **Batch C cerrado.** ALIGN-008: 9 owners con inbound≤1 → inbound=2; 7 source articles editados con backlinks contextuales; inter-cluster usados con heurísticas de política (prerrequisito, dependencia de decisión). 243 links internos → 0 rotos.
 - 2026-05-25: **Batch D cerrado.** ALIGN-009: decisión `keep-manual` documentada en `editorial-hub-model.mjs` con rationale y condición de revisita. ALIGN-010: `audit:topic-overlap` soporta `--all` (todos los candidatos) y `--json` (salida JSON con summary+candidates+warnings); comportamiento default sin cambios.
 - 2026-05-25: **Batch B cerrado.** ALIGN-003..ALIGN-007 completados. ALIGN-003: centro title quitó "guia completa", description quitó "qué hacer si debes pagar" — F22 sin cambios. ALIGN-004: soporte CIC/FCS title cambiado a "CIC vs Fondo Solidario: cómo funciona cada capa…" para no competir por head term. ALIGN-005: routing añadido en intros de sueldo-imponible, descuentos-de-sueldo y liquidacion-de-sueldo (como-calcular ya tenia routing). ALIGN-006: routing añadido en como-cambiarse-de-afp y como-leer-cartola-afp-chile (fondos-afp y cuenta-2 ya tenian routing). ALIGN-007: links reciprocos IPC↔reajuste-arriendo añadidos en intros. 234 internal links — 0 rotos. Todos los checks OK.
-
+- 2026-07-07: Reconciliacion documental. La tabla de priorizacion ya marca `ALIGN-001`..`ALIGN-010` como `Done` y el progress log contiene cierre de batches A, B, C y D con gates asociados. Se actualiza el estado del plan a `completed 2026-05-25`; no se aplican cambios editoriales ni de rutas.

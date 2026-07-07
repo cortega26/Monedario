@@ -41,7 +41,6 @@ Fecha de corte: 2026-05-30
 
 ### Top riesgos restantes
 
-- Drift legal/YMYL de auditoría 2026-05-20: `TD-0084`, `TD-0085`, `TD-0086`.
 - Auditoría de drift 2026-05-20 **cerrada al 100%** (`TD-0084`..`TD-0094`) el 2026-05-30. Riesgos restantes: ninguno en deuda técnica de código (`TD-0079` permanece bloqueado por WOFF2/Satori). `TD-0075`/`TD-0077` cerrados el 2026-06-25 (`ADR-20260625-astro-features-adoption.md`); `TD-0067` y `TD-0081` cerrados el 2026-06-25 (premisa/ROI invalidados, sin ejecutar).
 - Actualización de julio 2026: actualizar `imm` en `economic-parameters.snapshot.json` cuando se publique el decreto de reajuste del IMM.
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).

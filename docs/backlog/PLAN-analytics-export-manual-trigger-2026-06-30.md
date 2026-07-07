@@ -1,7 +1,7 @@
 # Plan: trigger manual y parametrizable del export de analytics
 
 Fecha: 2026-06-30
-Estado: Pendiente
+Estado: Completado 2026-07-07
 
 ## Origen
 
@@ -61,23 +61,51 @@ las funciones del worker y escribe a R2 vía REST.
 
 ## Pasos
 
-- [ ] Refactor: extraer `runExport(env, week)` reutilizada por `scheduled` y `fetch`.
-- [ ] Implementar la rama `GET /api/analytics/export` con auth por `EXPORT_SECRET`
+- [x] Refactor: extraer `runExport(env, week)` reutilizada por `scheduled` y `fetch`.
+- [x] Implementar la rama `GET /api/analytics/export` con auth por `EXPORT_SECRET`
       (comparación en tiempo constante) y parámetro `?week=`.
-- [ ] Tests en `tests/workers/analytics-collector/`: auth (sin/mal secreto),
+- [x] Tests en `tests/workers/analytics-collector/`: auth (sin/mal secreto),
       week inválida, default week, y que `runExport` produzca artefacto válido.
-- [ ] Configurar el secreto: `wrangler secret put EXPORT_SECRET`.
-- [ ] Actualizar `wrangler.toml` (comentarios) y documentar el endpoint.
-- [ ] Deploy (`wrangler deploy`) y verificación: disparar el endpoint para W26
+- [x] Configurar el secreto: `wrangler secret put EXPORT_SECRET`.
+- [x] Actualizar `wrangler.toml` (comentarios) y documentar el endpoint.
+- [x] Deploy (`wrangler deploy`) y verificación: disparar el endpoint para W26
       (backfill real, idéntico al artefacto reconstruido) y para W27; confirmar
       objetos en R2 y comparar con el export manual.
-- [ ] Registrar evidencia en `docs/operations/logs/progress_log.md`.
+- [x] Registrar evidencia en `docs/operations/logs/progress_log.md`.
+
+## Evidencia de cierre — 2026-07-07
+
+- Código: `workers/analytics-collector/src/index.ts` expone `runExport(env, week)`
+  como ruta única de export; `scheduled()` y `GET /api/analytics/export` la
+  reutilizan.
+- Seguridad: el endpoint manual exige `EXPORT_SECRET`, compara en tiempo
+  constante, valida `?week=YYYY-Www`, aplica rate limit y responde solo metadatos
+  (`week`, `window`, `rows`, `totalEvents`), sin filas crudas ni PII.
+- Escalabilidad: el export lista solo los prefijos KV de la semana solicitada y
+  lee contadores en lotes de 50, evitando recorrer todo el historial de 35 días
+  para cada backfill.
+- Operación: `EXPORT_SECRET` quedó configurado en Cloudflare y guardado localmente
+  en `.env.local` gitignored. Tras agregar `Zone → Workers Routes → Edit` al token,
+  `wrangler deploy` completó limpio y publicó worker, ruta
+  `monedario.cl/api/analytics/*` y cron. Version ID:
+  `ad553162-1c7e-47c4-97b7-256db7ac3ecf`.
+- Verificación HTTP:
+  - `workers.dev` W26 → `200`, 40 filas, 60 eventos.
+  - `monedario.cl/api/analytics/export` W27 → `200`, 218 filas, 1.577 eventos.
+- Verificación R2/consumidor oficial:
+  - `node scripts/data-signals/fetch-analytics-export.mjs --week=2026-W26` valida
+    40 filas, 60 eventos, 10 tipos.
+  - `node scripts/data-signals/fetch-analytics-export.mjs --week=2026-W27` valida
+    218 filas, 1.577 eventos, 5 tipos.
+- Gates focalizados:
+  - `pnpm exec vitest run tests/workers/analytics-collector/schema.test.ts` → 49/49.
+  - `pnpm run test` → 121 archivos, 1.000 tests.
+  - `pnpm exec tsc -p workers/analytics-collector/tsconfig.json --noEmit` → OK.
+  - `pnpm exec prettier --check workers/analytics-collector/src/index.ts tests/workers/analytics-collector/schema.test.ts` → OK.
 
 ## Notas
 
-- Mientras este plan no se ejecute, el backfill/re-disparo se hace con el script
-  local de reconstrucción (importa las funciones del worker + REST a KV/R2). La
-  escritura a R2 de producción requiere una regla de permiso explícita en el
-  harness (la autorización verbal no basta).
-- El token de Cloudflare ya tiene scope `Workers Observability:Read`, por lo que
-  los logs del worker son consultables para verificar disparos del cron.
+- La ruta manual queda disponible para re-disparo/backfill sin depender del cron.
+- El token de Cloudflare necesita conservar `Zone → Workers Routes → Edit` sobre
+  la zona de `monedario.cl` para que futuros `wrangler deploy` actualicen la ruta
+  sin warnings.
