@@ -1,6 +1,6 @@
 # Backlog Monedario.cl — Estado actual
 
-> Generado el 2026-04-08. Última actualización: 2026-06-28.
+> Generado el 2026-04-08. Última actualización: 2026-07-07.
 > Lectura obligatoria antes de ejecutar cualquier ticket: `AGENTS.md` y `context/INVARIANTS.md`.
 
 ---
@@ -23,19 +23,19 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 
 | Plan | Archivo | Bloqueador |
 |------|---------|------------|
-| Crecimiento liderado por calculadoras | `PLAN-calculator-led-growth-2026-06-28.md` | OBS-01 activo: baseline W26 completado, R2 export pendiente cron 29-jun, W27 primera semana completa |
+| Crecimiento liderado por calculadoras | `PLAN-calculator-led-growth-2026-06-28.md` | OBS-01 activo: W27 primera semana completa generada, pero `calculator_view=0` hizo parcial el baseline de funnel; fix de medición aplicado y requiere semana posterior para start rate |
 | Phase 2 — Data Signals (MON-ENV-DATA3b..3c) | `PHASE_2_DATA_SIGNALS.md` | Requiere suscripción Ahrefs Advanced+ |
 | Hero image system — remediación manual por lotes | `HERO_IMAGE_SYSTEM_REMEDIATION_2026-04-30.md` | Manual: assets finales pendientes |
 | TypeScript 7 compatibility | `TS7_COMPATIBILITY_AUDIT_2026-04-30.md` | Blocked — esperando TS7 stable |
 | Newsletter (MON-301) | `ux-backlog.md` | Decisión de plataforma pendiente |
 | ~~OWASP Security backlog~~ | `OWASP_SECURITY_AUDIT_2026-05-11.md` | **Cerrado 2026-06-28** — 8/9 implementados, SEC-004 monitoreo preventivo |
 | ~~Auditoría drift 2026-05-20~~ | `PLAN-drift-audit-2026-05-20.md` | **Cerrada 100%** 2026-05-30 (`TD-0084`..`TD-0094`) |
-| Auditoría alignment 2026-05-25 | `PLAN-alignment-audit-remediation-2026-05-25.md` | Ejecutar remediación por batches de canibalización, boundaries, backlinks y guardrails warning-first |
+| ~~Auditoría alignment 2026-05-25~~ | `PLAN-alignment-audit-remediation-2026-05-25.md` | **Cerrada** 2026-05-25 (`ALIGN-001`..`ALIGN-010`) |
 | ~~LinkedIn strategy (MON-304)~~ | `ux-backlog.md` | **Diferido 2026-05-30** — canal de baja afinidad para audiencia de finanzas de consumo; links `nofollow` (sin SEO). Página de empresa se mantiene pasiva por E-E-A-T. Distribución prioriza newsletter (MON-301) y canales visuales (IG/TikTok). |
 | Illustrations (MON-405) | `ux-backlog.md` | Diferido |
 | Blog Advisory Architecture | `BLOG_ADVISORY_ARCHITECTURE_PLAN_2026-04-22.md` | Propuesta futuro mediano |
 | Audit of the Small Details | `PLAN-audit-small-details-2026-05-22.md` | Programa activo de auditoria y backlog `ASD-###`; primera pasada audit-only completa |
-| Trigger manual del export de analytics | `PLAN-analytics-export-manual-trigger-2026-06-30.md` | Seguimiento OBS-01: el cron del worker no disparó su 1ª ocurrencia (W26). Falta endpoint manual `GET /api/analytics/export?secret=&week=` + parámetro de semana para re-disparar/backfillear sin depender del cron |
+| ~~Trigger manual del export de analytics~~ | `PLAN-analytics-export-manual-trigger-2026-06-30.md` | **Cerrado 2026-07-07** — endpoint manual `GET /api/analytics/export?secret=&week=` implementado, desplegado y verificado contra R2 para W26/W27 |
 
 ### Bloqueado — requiere acción humana
 
@@ -91,7 +91,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 
 | File | Status |
 |------|--------|
-| `PLAN-calculator-led-growth-2026-06-28.md` | **TODO P0/P1**; iniciar PR-00, no saltar baseline |
+| `PLAN-calculator-led-growth-2026-06-28.md` | **IN PROGRESS**; OBS-01 activo, no saltar baseline posterior al fix de `calculator_view` |
 | `PHASE_2_DATA_SIGNALS.md` | Parcialmente completado; DATA3a..3c bloqueado |
 | `HERO_IMAGE_SYSTEM_REMEDIATION_2026-04-30.md` | Pendiente remediación manual |
 | `PLAN-heroimage-prompt-repair-2026-05-01.md` | Código completo; assets manuales pendientes |
@@ -104,24 +104,24 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | `BLOG_ADVISORY_ARCHITECTURE_PLAN_2026-04-22.md` | Propuesta |
 | `prompt-*.md` | Plantillas reutilizables |
 | `OWASP_SECURITY_AUDIT_2026-05-11.md` | ✅ Cerrado 2026-06-28 — 8/9 implementados, SEC-004 en monitoreo preventivo |
-| `PLAN-drift-audit-2026-05-20.md` | Vigente; findings `TD-0084`..`TD-0094` |
+| `PLAN-drift-audit-2026-05-20.md` | **Completado** 2026-05-30; `TD-0084`..`TD-0094` cerrados |
 | `PLAN-audit-small-details-2026-05-22.md` | Vigente; programa audit-only con cinco reportes en `docs/reports/` y backlog `ASD-###` |
-| `PLAN-alignment-audit-remediation-2026-05-25.md` | Vigente; remediacion por batches de auditoria de alineamiento editorial/guardrails |
+| `PLAN-alignment-audit-remediation-2026-05-25.md` | Completado 2026-05-25; batches A-D cerrados |
 
 ## Status — planes vigentes
 
 | Archivo | Estado | Última actualización | Bloqueador | Próximo paso |
 |---|---|---:|---|---|
-| `PLAN-calculator-led-growth-2026-06-28.md` | **TODO** | 2026-06-28 | Requiere ADR y sign-off privacidad/legal antes de transportar eventos | Ejecutar PR-00 y registrar baseline pre-implementación |
+| `PLAN-calculator-led-growth-2026-06-28.md` | **IN PROGRESS** | 2026-07-07 | OBS-01 requiere baseline posterior al fix de `calculator_view`; no pasar a PR-03 todavía | Esperar/generar la siguiente semana completa y re-evaluar start rate, completion, NBS y guardrails |
 | `PLAN-audit-deep-remediation-2026-05-16.md` | Parcialmente cerrado | 2026-05-16 | `TD-0075`/`TD-0077` requieren medición/ADR; `TD-0079` bloqueado por flujo OG con TTF | Ejecutar `TD-0065` (deps bump) o preparar ADR para TD-0075/TD-0077 |
 | `PLAN-calculator-componentization-td-0063-0069-2026-05-20.md` | **Completado** | 2026-05-20 | — | `TD-0063` + `TD-0069` cerrados; 5 componentes, 15 calculadoras refactorizadas |
 | `PLAN-github-workflow-hardening-2026-05-13.md` | Parcialmente cerrado | 2026-05-13 | La fase 3 ya registra diminishing returns | Reabrir solo con hallazgo concreto de CI o archivar cuando se acepte el cierre operativo |
 | `PLAN-heroimage-prompt-repair-2026-05-01.md` | Parcialmente cerrado | 2026-05-01 | Assets finales pendientes fuera del código | Coordinar lote manual de hero images y validar `pnpm run check:hero-images` |
 | `PLAN-seo-cross-document-roadmap-2026-05-01.md` | Parcialmente cerrado | 2026-05-20 | Sprint 1 consolidaciones sigue parcial; Sprint 3 cerrado | Reabrir solo para cierre sistemático de Sprint 1 o archivar cuando se acepte el cierre parcial |
 | `OWASP_SECURITY_AUDIT_2026-05-11.md` | **Cerrado** | 2026-06-28 | 8/9 implementados; SEC-004 monitoreo preventivo | Auditoría completa — ver Progress Log |
-| `PLAN-drift-audit-2026-05-20.md` | Vigente | 2026-05-20 | `TD-0084`..`TD-0086` requieren revisión humana/legal/editorial | Ejecutar primero decisiones de analytics/legal y refresh YMYL controlado |
+| `PLAN-drift-audit-2026-05-20.md` | **Completado** | 2026-05-30 | — | `TD-0084`..`TD-0094` cerrados; ver `docs/TECH_DEBT_BACKLOG.md` |
 | `PLAN-audit-small-details-2026-05-22.md` | Vigente | 2026-05-22 | Remediaciones deben ejecutarse por batch y respetar pipelines YMYL/URL/RSS | Empezar Batch 1: P0 no sustantivo + auditoria detallada de calculadoras |
-| `PLAN-alignment-audit-remediation-2026-05-25.md` | Vigente | 2026-05-25 | Remediaciones deben mantener `URL.PUBLIC.NO_POST_ID`, no canibalización y pipelines YMYL | Empezar Batch A: `ahorro-e-inversion` P1 |
+| `PLAN-alignment-audit-remediation-2026-05-25.md` | **Completado** | 2026-05-25 | — | `ALIGN-001`..`ALIGN-010` cerrados; batches A-D con gates registrados |
 | `TS7_COMPATIBILITY_AUDIT_2026-04-30.md` | Bloqueado | 2026-04-30 | TypeScript 7 stable y soporte `@astrojs/check` TS7 | Esperar señal del workflow `check-ts7-readiness.yml` |
 | `HERO_IMAGE_SYSTEM_REMEDIATION_2026-04-30.md` | Vigente | 2026-04-30 | Remediación manual de assets por lotes | Empezar batch Payroll / salary / deductions |
 

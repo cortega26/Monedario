@@ -1,6 +1,7 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 import {
+  default as analyticsCollector,
   validateEventPayload,
   sanitizeCollectorEvent,
   MAX_BODY_SIZE,
@@ -10,9 +11,69 @@ import {
   aggregateWindow,
   buildExportArtifact,
   validateExportArtifact,
+  runExport,
   type TelemetryCounter,
   type ExportDataRow,
+  type Env,
 } from "../../../workers/analytics-collector/src/index";
+
+class MockKV {
+  store = new Map<string, string>();
+
+  constructor(initial: Record<string, string> = {}) {
+    for (const [key, value] of Object.entries(initial)) {
+      this.store.set(key, value);
+    }
+  }
+
+  async get(key: string): Promise<string | null> {
+    return this.store.get(key) ?? null;
+  }
+
+  async put(key: string, value: string): Promise<void> {
+    this.store.set(key, value);
+  }
+
+  async list(options?: { prefix?: string }): Promise<{
+    keys: Array<{ name: string }>;
+    list_complete: boolean;
+    cursor?: string;
+  }> {
+    const prefix = options?.prefix ?? "";
+    return {
+      keys: [...this.store.keys()]
+        .filter((name) => name.startsWith(prefix))
+        .map((name) => ({ name })),
+      list_complete: true,
+    };
+  }
+}
+
+class MockR2 {
+  objects = new Map<string, string>();
+
+  async put(key: string, value: string): Promise<void> {
+    this.objects.set(key, value);
+  }
+}
+
+function makeEnv(initialCounters: Record<string, string> = {}): Env {
+  return {
+    ANALYTICS_TELEMETRY: new MockKV(initialCounters) as unknown as Env["ANALYTICS_TELEMETRY"],
+    ANALYTICS_EXPORTS: new MockR2() as unknown as Env["ANALYTICS_EXPORTS"],
+    ANALYTICS_DISABLED: "1",
+    SCHEMA_VERSION: "1",
+    EXPORT_SECRET: "manual-secret",
+  };
+}
+
+function getMockR2(env: Env): MockR2 {
+  return env.ANALYTICS_EXPORTS as unknown as MockR2;
+}
+
+afterEach(() => {
+  vi.useRealTimers();
+});
 
 // ── Collector schema validation ──
 
@@ -521,5 +582,143 @@ describe("validateExportArtifact", () => {
     const artifact = buildExportArtifact("2026-W26", validWindow, [], 1);
     const result = validateExportArtifact(artifact);
     expect(result.valid).toBe(true);
+  });
+});
+
+// ── Export runner and manual endpoint ─────────────────────────────────────
+
+describe("runExport", () => {
+  it("writes the validated weekly artifact to R2 and returns only summary metadata", async () => {
+    const env = makeEnv({
+      "telemetry:v1:2026-06-22:calculator_view:sueldo-liquido": "4",
+      "telemetry:v1:2026-06-23:calculator_complete:sueldo-liquido:success": "2",
+      "telemetry:v1:2026-06-29:calculator_view:sueldo-liquido": "99",
+    });
+
+    const summary = await runExport(env, "2026-W26");
+
+    expect(summary).toEqual({
+      week: "2026-W26",
+      window: { from: "2026-06-22", to: "2026-06-28" },
+      rows: 2,
+      totalEvents: 6,
+      r2Key: "analytics-exports/2026-W26.json",
+    });
+
+    const written = getMockR2(env).objects.get("analytics-exports/2026-W26.json");
+    expect(written).toBeDefined();
+    const artifact = JSON.parse(written ?? "") as ReturnType<typeof buildExportArtifact>;
+    expect(validateExportArtifact(artifact).valid).toBe(true);
+    expect(artifact.data).toEqual([
+      {
+        date: "2026-06-22",
+        event_name: "calculator_view",
+        calculator_slug: "sueldo-liquido",
+        dimensions: "",
+        count: 4,
+      },
+      {
+        date: "2026-06-23",
+        event_name: "calculator_complete",
+        calculator_slug: "sueldo-liquido",
+        dimensions: "success",
+        count: 2,
+      },
+    ]);
+  });
+});
+
+describe("manual export endpoint", () => {
+  it("returns 503 when EXPORT_SECRET is not configured", async () => {
+    const env = makeEnv();
+    env.EXPORT_SECRET = undefined;
+
+    const response = await analyticsCollector.fetch(
+      new Request("https://monedario.cl/api/analytics/export?secret=manual-secret"),
+      env,
+    );
+
+    expect(response.status).toBe(503);
+    await expect(response.json()).resolves.toEqual({ error: "export_not_configured" });
+  });
+
+  it("returns 401 without secret and 403 with a wrong secret", async () => {
+    const env = makeEnv();
+
+    const missing = await analyticsCollector.fetch(
+      new Request("https://monedario.cl/api/analytics/export"),
+      env,
+    );
+    const wrong = await analyticsCollector.fetch(
+      new Request("https://monedario.cl/api/analytics/export?secret=wrong"),
+      env,
+    );
+
+    expect(missing.status).toBe(401);
+    await expect(missing.json()).resolves.toEqual({ error: "missing_secret" });
+    expect(wrong.status).toBe(403);
+    await expect(wrong.json()).resolves.toEqual({ error: "invalid_secret" });
+  });
+
+  it("returns 400 for an invalid week parameter", async () => {
+    const env = makeEnv();
+
+    const response = await analyticsCollector.fetch(
+      new Request(
+        "https://monedario.cl/api/analytics/export?secret=manual-secret&week=2026-26",
+      ),
+      env,
+    );
+
+    expect(response.status).toBe(400);
+    await expect(response.json()).resolves.toEqual({ error: "invalid_week" });
+  });
+
+  it("exports the requested week and does not echo raw data rows", async () => {
+    const env = makeEnv({
+      "telemetry:v1:2026-06-22:calculator_start:seguro-cesantia:click": "3",
+    });
+
+    const response = await analyticsCollector.fetch(
+      new Request(
+        "https://monedario.cl/api/analytics/export?secret=manual-secret&week=2026-W26",
+        { headers: { "CF-Connecting-IP": "203.0.113.10" } },
+      ),
+      env,
+    );
+
+    expect(response.status).toBe(200);
+    const body = await response.json();
+    expect(body).toEqual({
+      week: "2026-W26",
+      window: { from: "2026-06-22", to: "2026-06-28" },
+      rows: 1,
+      totalEvents: 3,
+    });
+    expect(body).not.toHaveProperty("data");
+    expect(body).not.toHaveProperty("r2Key");
+    expect(getMockR2(env).objects.has("analytics-exports/2026-W26.json")).toBe(true);
+  });
+
+  it("defaults to the previous complete ISO week", async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-06-30T10:00:00Z"));
+    const env = makeEnv({
+      "telemetry:v1:2026-06-22:calculator_view:sueldo-liquido": "5",
+    });
+
+    const response = await analyticsCollector.fetch(
+      new Request("https://monedario.cl/api/analytics/export?secret=manual-secret"),
+      env,
+    );
+
+    expect(response.status).toBe(200);
+    const body = await response.json();
+    expect(body).toMatchObject({
+      week: "2026-W26",
+      window: { from: "2026-06-22", to: "2026-06-28" },
+      rows: 1,
+      totalEvents: 5,
+    });
   });
 });

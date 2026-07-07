@@ -36,6 +36,9 @@ const ALLOWED_ORIGIN = "https://monedario.cl";
 /** Max string length for dimension values. */
 const MAX_STRING_LENGTH = 200;
 
+/** Concurrent KV reads per batch during export. */
+const KV_EXPORT_READ_BATCH_SIZE = 50;
+
 // ── Allowlist (must match client-side sanitizer — dual enforcement) ──────────
 
 const EVENT_ALLOWLIST: Readonly<Record<string, ReadonlySet<string>>> = {
@@ -331,7 +334,7 @@ async function ingestEvent(
 function corsHeaders(): Record<string, string> {
   return {
     "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Max-Age": "86400",
   };
@@ -349,12 +352,14 @@ function corsHeaders(): Record<string, string> {
  * back to Monday of that week, and compute the ISO week from that Monday.
  */
 function previousCompleteISOWeekInTz(): string {
-  // The cron runs Monday 07:57 UTC; the previous week's Sunday ended
-  // ~8–32 h earlier. Using "yesterday" as the reference guarantees we
-  // land on Sunday or earlier, which is always the previous complete week.
+  // Use the most recent fully completed Sunday as the reference. On Sunday
+  // itself, the current ISO week is still in progress, so step back 7 days.
   const now = new Date();
-  const yesterday = new Date(now.getTime() - 86_400_000);
-  return dateToISOWeekUTC(yesterday);
+  const todayUtc = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  const dayNum = todayUtc.getUTCDay() || 7; // 1=Monday … 7=Sunday
+  const daysBack = dayNum === 7 ? 7 : dayNum;
+  const completedSunday = new Date(todayUtc.getTime() - daysBack * 86_400_000);
+  return dateToISOWeekUTC(completedSunday);
 }
 
 /**
@@ -421,22 +426,49 @@ export interface TelemetryCounter {
  */
 async function listTelemetryCounters(
   kv: KVNamespace,
+  window?: { from: string; to: string },
 ): Promise<TelemetryCounter[]> {
   const counters: TelemetryCounter[] = [];
-  let cursor: string | undefined;
+  const prefixes = window
+    ? datesInWindowUTC(window.from, window.to).map((date) => `${KV_PREFIX}:${date}:`)
+    : [`${KV_PREFIX}:`];
 
-  do {
-    const result = await kv.list({ prefix: `${KV_PREFIX}:`, cursor });
-    for (const key of result.keys) {
-      const count = await kv.get(key.name);
-      if (count === null) continue;
-      const parsed = parseCounterKey(key.name, parseInt(count, 10) || 0);
-      if (parsed) counters.push(parsed);
-    }
-    cursor = result.list_complete ? undefined : result.cursor;
-  } while (cursor);
+  for (const prefix of prefixes) {
+    let cursor: string | undefined;
+
+    do {
+      const result = await kv.list({ prefix, cursor });
+      for (let i = 0; i < result.keys.length; i += KV_EXPORT_READ_BATCH_SIZE) {
+        const batch = result.keys.slice(i, i + KV_EXPORT_READ_BATCH_SIZE);
+        const parsedBatch = await Promise.all(
+          batch.map(async (key) => {
+            const count = await kv.get(key.name);
+            if (count === null) return null;
+            return parseCounterKey(key.name, parseInt(count, 10) || 0);
+          }),
+        );
+
+        for (const parsed of parsedBatch) {
+          if (parsed) counters.push(parsed);
+        }
+      }
+      cursor = result.list_complete ? undefined : result.cursor;
+    } while (cursor);
+  }
 
   return counters;
+}
+
+function datesInWindowUTC(from: string, to: string): string[] {
+  const dates: string[] = [];
+  const start = new Date(`${from}T00:00:00Z`);
+  const end = new Date(`${to}T00:00:00Z`);
+
+  for (let current = start; current <= end; current = new Date(current.getTime() + 86_400_000)) {
+    dates.push(current.toISOString().slice(0, 10));
+  }
+
+  return dates;
 }
 
 /**
@@ -480,9 +512,17 @@ export interface ExportArtifact {
   data: ExportDataRow[];
 }
 
-interface ValidationResult {
+interface ExportValidationResult {
   valid: boolean;
   errors: string[];
+}
+
+export interface ExportRunSummary {
+  week: string;
+  window: { from: string; to: string };
+  rows: number;
+  totalEvents: number;
+  r2Key: string;
 }
 
 // ── Aggregation ──────────────────────────────────────────────────────────────
@@ -555,7 +595,7 @@ export function buildExportArtifact(
  */
 export function validateExportArtifact(
   artifact: ExportArtifact,
-): ValidationResult {
+): ExportValidationResult {
   const errors: string[] = [];
 
   if (artifact.schemaVersion !== 1) {
@@ -601,14 +641,123 @@ export function validateExportArtifact(
   return { valid: errors.length === 0, errors };
 }
 
+function constantTimeEqual(a: string, b: string): boolean {
+  const maxLength = Math.max(a.length, b.length);
+  let diff = a.length ^ b.length;
+
+  for (let i = 0; i < maxLength; i += 1) {
+    diff |= (a.charCodeAt(i) || 0) ^ (b.charCodeAt(i) || 0);
+  }
+
+  return diff === 0;
+}
+
+function jsonResponse(body: unknown, status = 200): Response {
+  return new Response(JSON.stringify(body) + "\n", {
+    status,
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      ...corsHeaders(),
+    },
+  });
+}
+
 // ── Main handler ─────────────────────────────────────────────────────────────
 
-interface Env {
+export interface Env {
   ANALYTICS_TELEMETRY: KVNamespace;
   ANALYTICS_EXPORTS: R2Bucket;
   ANALYTICS_DISABLED?: string;
   SCHEMA_VERSION?: string;
   EXPORT_TIMEZONE?: string;
+  EXPORT_SECRET?: string;
+}
+
+export async function runExport(env: Env, week: string): Promise<ExportRunSummary> {
+  const schemaVersion = parseInt(env.SCHEMA_VERSION ?? "1", 10);
+  const window = isoWeekToDateRangeUTC(week);
+
+  console.log(
+    `[analytics-export] week=${week} window=${window.from}→${window.to}`,
+  );
+
+  const counters = await listTelemetryCounters(env.ANALYTICS_TELEMETRY, window);
+  const aggregated = aggregateWindow(counters, window.from, window.to);
+  console.log(
+    `[analytics-export] listed=${counters.length} aggregated=${aggregated.length} rows`,
+  );
+
+  const artifact = buildExportArtifact(week, window, aggregated, schemaVersion);
+  const validation = validateExportArtifact(artifact);
+  if (!validation.valid) {
+    throw new Error(`Export artifact validation failed: ${validation.errors.join("; ")}`);
+  }
+
+  const key = `analytics-exports/${week}.json`;
+  const body = JSON.stringify(artifact, null, 2) + "\n";
+  await env.ANALYTICS_EXPORTS.put(key, body, {
+    httpMetadata: { contentType: "application/json" },
+  });
+
+  const totalEvents = aggregated.reduce((sum, row) => sum + row.count, 0);
+  console.log(
+    `[analytics-export] written to R2 key=${key} size=${body.length} rows=${aggregated.length}`,
+  );
+
+  return {
+    week,
+    window,
+    rows: aggregated.length,
+    totalEvents,
+    r2Key: key,
+  };
+}
+
+async function handleManualExport(request: Request, env: Env): Promise<Response> {
+  if (!env.EXPORT_SECRET) {
+    return jsonResponse({ error: "export_not_configured" }, 503);
+  }
+
+  const url = new URL(request.url);
+  const providedSecret = url.searchParams.get("secret");
+  if (!providedSecret) {
+    return jsonResponse({ error: "missing_secret" }, 401);
+  }
+  if (!constantTimeEqual(providedSecret, env.EXPORT_SECRET)) {
+    return jsonResponse({ error: "invalid_secret" }, 403);
+  }
+
+  const requestedWeek = url.searchParams.get("week");
+  const week = requestedWeek ?? previousCompleteISOWeekInTz();
+  if (!/^\d{4}-W\d{2}$/.test(week)) {
+    return jsonResponse({ error: "invalid_week" }, 400);
+  }
+
+  const ip =
+    request.headers.get("CF-Connecting-IP") ??
+    request.headers.get("X-Forwarded-For")?.split(",")[0]?.trim() ??
+    "unknown";
+  const allowed = await checkRateLimit(env.ANALYTICS_TELEMETRY, `export:${ip}`);
+  if (!allowed) {
+    return jsonResponse({ error: "rate_limited" }, 429);
+  }
+
+  try {
+    const result = await runExport(env, week);
+    return jsonResponse({
+      week: result.week,
+      window: result.window,
+      rows: result.rows,
+      totalEvents: result.totalEvents,
+    });
+  } catch (error) {
+    console.error(
+      `[analytics-export] manual export failed: ${
+        error instanceof Error ? error.message : String(error)
+      }`,
+    );
+    return jsonResponse({ error: "export_failed" }, 500);
+  }
 }
 
 export default {
@@ -619,6 +768,11 @@ export default {
         status: 204,
         headers: corsHeaders(),
       });
+    }
+
+    const url = new URL(request.url);
+    if (request.method === "GET" && url.pathname === "/api/analytics/export") {
+      return handleManualExport(request, env);
     }
 
     // Feature flag: reject all events when disabled
@@ -703,41 +857,19 @@ export default {
    */
   async scheduled(_event: ScheduledEvent, env: Env): Promise<void> {
     const tz = env.EXPORT_TIMEZONE ?? "America/Santiago";
-    const schemaVersion = parseInt(env.SCHEMA_VERSION ?? "1", 10);
 
     // Compute the previous complete ISO week.
     const week = previousCompleteISOWeekInTz();
-    const window = isoWeekToDateRangeUTC(week);
+    console.log(`[analytics-export] trigger=cron week=${week} tz=${tz}`);
 
-    console.log(
-      `[analytics-export] week=${week} window=${window.from}→${window.to} tz=${tz}`,
-    );
-
-    // List all KV counters and aggregate those in the target window.
-    const counters = await listTelemetryCounters(env.ANALYTICS_TELEMETRY);
-    const aggregated = aggregateWindow(counters, window.from, window.to);
-    console.log(
-      `[analytics-export] listed=${counters.length} aggregated=${aggregated.length} rows`,
-    );
-
-    // Build and validate the export artifact.
-    const artifact = buildExportArtifact(week, window, aggregated, schemaVersion);
-    const validation = validateExportArtifact(artifact);
-    if (!validation.valid) {
+    try {
+      await runExport(env, week);
+    } catch (error) {
       console.error(
-        `[analytics-export] VALIDATION FAILED: ${validation.errors.join("; ")}`,
+        `[analytics-export] VALIDATION FAILED: ${
+          error instanceof Error ? error.message : String(error)
+        }`,
       );
-      return;
     }
-
-    // Persist to R2.
-    const key = `analytics-exports/${week}.json`;
-    const body = JSON.stringify(artifact, null, 2) + "\n";
-    await env.ANALYTICS_EXPORTS.put(key, body, {
-      httpMetadata: { contentType: "application/json" },
-    });
-    console.log(
-      `[analytics-export] written to R2 key=${key} size=${body.length} rows=${aggregated.length}`,
-    );
   },
 };

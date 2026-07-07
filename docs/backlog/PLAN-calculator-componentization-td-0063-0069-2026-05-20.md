@@ -1,7 +1,7 @@
 # Plan: componentizacion de calculadoras TD-0063 + TD-0069
 
 Fecha: 2026-05-20
-Estado: Ready for execution
+Estado: Completed 2026-05-20
 Fuente: `docs/TECH_DEBT_BACKLOG.md` (`TD-0063`, `TD-0069`) + medicion local 2026-05-20.
 
 ## Proposito
@@ -200,15 +200,20 @@ Gate conocido no limpio:
 
 ## Definition of Done
 
-- [ ] Top 3 calculadoras reducidas materialmente, idealmente <800 LOC cada una o con excepcion documentada para scripts inline.
-- [ ] Al menos 3 componentes compartidos existen en `src/components/calculator/`.
-- [ ] `jscpd` baja a <0.5% o quedan clones aceptados con decision documentada.
-- [ ] `pnpm run check` pasa.
-- [ ] `pnpm run build` pasa.
-- [ ] `pnpm run check:routes` pasa sin removals.
-- [ ] `pnpm run check:rss` pasa sin removals.
-- [ ] Tests focalizados pasan.
-- [ ] `docs/TECH_DEBT_BACKLOG.md` y `docs/backlog/README.md` quedan actualizados con cierre, evidencia, riesgo y rollback.
+- [x] Top 3 calculadoras reducidas materialmente, idealmente <800 LOC cada una o con excepcion documentada para scripts inline.
+- [x] Al menos 3 componentes compartidos existen en `src/components/calculator/`.
+- [x] `jscpd` baja a <0.5% o quedan clones aceptados con decision documentada.
+- [x] `pnpm run check` pasa.
+- [x] `pnpm run build` pasa.
+- [x] `pnpm run check:routes` pasa sin removals.
+- [x] `pnpm run check:rss` pasa sin removals.
+- [x] Tests focalizados pasan.
+- [x] `docs/TECH_DEBT_BACKLOG.md` y `docs/backlog/README.md` quedan actualizados con cierre, evidencia, riesgo y rollback.
+
+## Cierre
+
+- 2026-05-20: Plan ejecutado y reconciliado con `docs/TECH_DEBT_BACKLOG.md`. `TD-0063` y `TD-0069` quedaron cerrados: 5 componentes compartidos creados en `src/components/calculator/`, 15 calculadoras refactorizadas, aproximadamente 760 lineas removidas de paginas y duplicacion de markup reducida de 0.84% a 0.29%.
+- 2026-07-07: Reconciliacion documental. El indice `docs/backlog/README.md` y `docs/TECH_DEBT_BACKLOG.md` ya registraban el plan como completado; se actualiza este artifact para eliminar el desfase de estado. No se aplican cambios de calculadoras, formulas, rutas, RSS ni frontmatter.
 
 ## Competitive Adaptation Appendix
 

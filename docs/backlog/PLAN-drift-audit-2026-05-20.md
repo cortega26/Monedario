@@ -1,6 +1,6 @@
 # Plan: auditoria de drift Monedario 2026-05-20
 
-Estado: Vigente
+Estado: Completed 2026-05-30
 Fuente: auditoria repo + build local ejecutada entre 2026-05-19 y 2026-05-20.
 
 ## Proposito
@@ -177,3 +177,8 @@ Observaciones positivas:
 - `pnpm run check`, `pnpm run build`, `pnpm run check:routes`, `pnpm run check:rss` pasan tras remediaciones tecnicas.
 - Para contenido YMYL/legal, existe evidencia de revision humana y fuentes oficiales.
 - No hay cambios silenciosos de URL, RSS, canonical ni frontmatter.
+
+## Cierre
+
+- 2026-05-30: Plan cerrado al 100% segun `docs/TECH_DEBT_BACKLOG.md`: `TD-0084`..`TD-0094` quedaron en estado `Completado` o cerrados con decision documentada. Las notas de cierre por ticket viven en el backlog tecnico para preservar la trazabilidad granular.
+- 2026-07-07: Reconciliacion documental. Se actualiza este artifact desde `Vigente` a `Completed 2026-05-30` porque el indice y el backlog tecnico ya registraban la auditoria de drift como cerrada. No se aplican cambios de codigo, contenido YMYL, rutas, RSS, canonical ni frontmatter.
