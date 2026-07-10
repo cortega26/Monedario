@@ -32,6 +32,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [032](032-calculator-accessibility-semantics.md) | A11y de calculadoras: foco al resultado, asociación hint/error, foco visible en radios | 2026-06-26 | sí (commit `702b7cc2`) |
 | [033](033-calculator-datemodified-from-lastmod-index.md) | `dateModified` de calculadoras desde `page-lastmod-index.json` | 2026-06-26 | sí (commit `2ff547eb`) |
 | [034](034-conversor-uf-historic-fetch-error-state.md) | Error real (no «Cargando…» eterno) al fallar la carga del histórico UF | 2026-06-26 | sí (commit `7c290c1c`) |
+| [035](035-gsc-inspect-abort-on-mass-failure.md) | Abortar `gsc-inspect` antes de escribir cuando la mayoría de inspecciones fallan (no sobrescribir con 0% indexado) | 2026-07-10 | sí (commit `a86f88eb`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 

@@ -60,11 +60,12 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 
 ## Pendientes (trabajo abierto)
 
-Los siete planes abajo vienen de la quinta auditoría profunda (035–038) y de la
+Los planes abajo vienen de la quinta auditoría profunda (035–038) y de la
 revisión de datos de tráfico que le siguió (039–041, mismo commit `520a8685`,
 2026-07-10, a pedido del usuario tras la quinta auditoría; origen: los
-scorecards y exports reales en `output/operations/`). Se listan en **un único
-orden de ejecución recomendado** — no dos lotes separados — con una sola
+scorecards y exports reales en `output/operations/`). Originalmente siete;
+**035 ya está DONE y archivado** (ver arriba), quedan seis. Se listan en **un
+único orden de ejecución recomendado** — no dos lotes separados — con una sola
 excepción dura: 036, 037 y 038 editan el mismo archivo
 (`workers/analytics-collector/src/index.ts`) y deben correr en serie y en ese
 orden; todo lo demás es paralelizable entre sí.
@@ -77,13 +78,14 @@ orden; todo lo demás es paralelizable entre sí.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
 |---|------|--------|-----------|----------|--------|--------------------|--------|
-| 1 | [035](035-gsc-inspect-abort-on-mass-failure.md) | Abortar `gsc-inspect` antes de escribir cuando la mayoría de inspecciones fallan (no sobrescribir con 0% indexado) | P1 | S | LOW | todos (no toca `index.ts`) | IN PROGRESS (mergeado a la rama de trabajo actual, no a `main` todavía) |
-| 2 | [039](039-calculator-funnel-instrumentation.md) | Reparar instrumentación del embudo (views=0, completes sobre-contados, evento typo) | P1 | M | MED | todos (no toca `index.ts`) | TODO |
-| 3 | [037](037-analytics-export-secret-header.md) | Recibir el secreto del export manual por header, no por query string (+ rotar) | P2 | S | LOW | 035, 039, 041, 040 — no 038/036 (mismo archivo) | TODO |
-| 4 | [038](038-analytics-freeform-dimension-shape.md) | Restringir la forma de dimensiones libres de analytics (cardinalidad/poisoning) | P3 | S | LOW | 035, 039, 041, 040 — no 037/036 (mismo archivo) | TODO |
-| 5 | [036](036-analytics-export-failure-detection.md) | Hacer detectable un export de analytics ausente/fallido (clase de fallo OBS-01) | P2 | M | MED | 035, 039, 041, 040 — no 037/038 (mismo archivo) | TODO |
-| 6 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | TODO |
-| 7 | [040](040-seo-title-snippet-refresh-brief.md) | Brief SEO title/snippet (evidencia + candidatos + firma humana) — valor esperado degradado con honestidad | P3 | S | LOW | todos | TODO |
+| 1 | [039](039-calculator-funnel-instrumentation.md) | Reparar instrumentación del embudo (views=0, completes sobre-contados, evento typo) | P1 | M | MED | todos (no toca `index.ts`) | TODO |
+| 2 | [037](037-analytics-export-secret-header.md) | Recibir el secreto del export manual por header, no por query string (+ rotar) | P2 | S | LOW | 039, 041, 040 — no 038/036 (mismo archivo) | TODO |
+| 3 | [038](038-analytics-freeform-dimension-shape.md) | Restringir la forma de dimensiones libres de analytics (cardinalidad/poisoning) | P3 | S | LOW | 039, 041, 040 — no 037/036 (mismo archivo) | TODO |
+| 4 | [036](036-analytics-export-failure-detection.md) | Hacer detectable un export de analytics ausente/fallido (clase de fallo OBS-01) | P2 | M | MED | 039, 041, 040 — no 037/038 (mismo archivo) | TODO |
+| 5 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | TODO |
+| 6 | [040](040-seo-title-snippet-refresh-brief.md) | Brief SEO title/snippet (evidencia + candidatos + firma humana) — valor esperado degradado con honestidad | P3 | S | LOW | todos | TODO |
+
+> **035 archivado** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparece en esta tabla.
 
 **Por qué este orden:**
 - **1–2 (035, 039) primero**: máxima prioridad (P1), máxima confianza,
@@ -180,6 +182,21 @@ orden; todo lo demás es paralelizable entre sí.
 > `a86f88eb`. La rama sigue sin PR abierto ni mergeada a `main` — **archivar 035
 > formalmente sigue pendiente de que el operador abra un PR (o decida un push
 > directo a `main`)**; no se tomó esa decisión unilateralmente.
+>
+> **MERGEADO a `main` (mismo día, "your call" del operador):** sin protección de
+> rama en `main` (repo privado, plan gratuito de GitHub — verificado con
+> `gh api .../branches/main/protection` → 403 "upgrade required", no un bloqueo
+> deliberado) y con la rama en fast-forward limpio confirmado justo antes del push
+> (`git merge-base --is-ancestor origin/main HEAD`), se optó por push directo en
+> vez de abrir PR — mismo patrón que 027/032/033/034. Nota: `ci.yml` (lint/test/
+> build) dispara solo en `pull_request` + cron semanal, **no en push a `main`**;
+> un push directo se salta ese CI. Mitigado corriendo el equivalente en local antes
+> del push: suite completa 1007/1007, `eslint`/`format:check` limpios. El cierre
+> incluye el archivado atómico de este plan en el mismo commit: `plans/035-*.md` →
+> `plans/archive/`, tabla de pendientes renumerada, índice de `archive/README.md`
+> actualizado. Fix principal: commit `a86f88eb`
+> (`fix(data-signals): abortar gsc-inspect antes de escribir en fallo masivo`).
+> **Backlog de la quinta pasada: 036–041 siguen TODO.**
 >
 > Verificado el 2026-06-15: 022 y 023 siguen sin implementar en el código
 > (no existe `src/utils/formatCLP.ts`; los gates `compare-*.mjs` no tienen
@@ -344,6 +361,12 @@ orden; todo lo demás es paralelizable entre sí.
 ## Completados — archivados
 
 Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main`.
+
+### Quinta auditoría profunda 2026-07-10
+
+| Plan | Título | Prioridad | Esfuerzo | Estado |
+|------|--------|-----------|----------|--------|
+| [035](archive/035-gsc-inspect-abort-on-mass-failure.md) | Abortar `gsc-inspect` antes de escribir cuando la mayoría de inspecciones fallan (no sobrescribir con 0% indexado) | P1 | S | DONE (commit `a86f88eb`) |
 
 ### Auditorías 2026-06-15 a 2026-06-19
 
