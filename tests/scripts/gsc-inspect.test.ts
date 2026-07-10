@@ -6,6 +6,7 @@ import {
   COVERAGE_INDEXED,
   extractSitemapLocs,
   normalizeUrlInspectionRow,
+  shouldAbortIndexationRun,
   summarizeIndexation,
 } from "../../scripts/data-signals/gsc-utils.mjs";
 
@@ -135,6 +136,38 @@ describe("summarizeIndexation", () => {
     const s = summarizeIndexation([{ coverageState: null }]);
     expect(s.byCoverage).toEqual({ unknown: 1 });
     expect(s.other).toBe(1);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// shouldAbortIndexationRun
+// ---------------------------------------------------------------------------
+
+describe("shouldAbortIndexationRun", () => {
+  it("aborts when every URL inspection failed", () => {
+    expect(shouldAbortIndexationRun(250, 250).abort).toBe(true);
+  });
+
+  it("aborts when a majority of URL inspections failed", () => {
+    expect(shouldAbortIndexationRun(130, 250).abort).toBe(true);
+  });
+
+  it("aborts exactly at the 50% threshold", () => {
+    expect(shouldAbortIndexationRun(125, 250).abort).toBe(true);
+  });
+
+  it("aborts with a 'no URLs' reason for an empty run", () => {
+    const result = shouldAbortIndexationRun(0, 0);
+    expect(result.abort).toBe(true);
+    expect(result.reason).toContain("no URLs");
+  });
+
+  it("does not abort a healthy run with few errors", () => {
+    expect(shouldAbortIndexationRun(3, 250).abort).toBe(false);
+  });
+
+  it("does not abort a fully-indexed healthy run", () => {
+    expect(shouldAbortIndexationRun(0, 250).abort).toBe(false);
   });
 });
 

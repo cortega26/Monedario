@@ -34,6 +34,7 @@ import {
   isoWeekToDateRange,
   normalizeUrlInspectionRow,
   previousCompleteISOWeek,
+  shouldAbortIndexationRun,
   summarizeIndexation,
 } from "./gsc-utils.mjs";
 
@@ -253,6 +254,12 @@ async function main() {
     `[gsc-inspect] indexed=${summary.indexed}/${summary.total} (${summary.indexedPct}%)  ` +
       `notIndexed=${summary.notIndexed}  other=${summary.other}  errors=${errors}`
   );
+
+  const abort = shouldAbortIndexationRun(errors, urls.length);
+  if (abort.abort) {
+    console.error(`[gsc-inspect] FATAL: ${abort.reason}. Not writing ${week}-url-inspection.json.`);
+    process.exit(1);
+  }
 
   if (args.dryRun) {
     process.stdout.write(JSON.stringify(doc, null, 2) + "\n");

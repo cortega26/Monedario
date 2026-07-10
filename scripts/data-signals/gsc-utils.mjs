@@ -399,6 +399,29 @@ export function summarizeIndexation(rows) {
 }
 
 /**
+ * Decides whether an inspection run failed badly enough that its snapshot must
+ * NOT be written (it would overwrite good data with a misleading 0%-indexed
+ * summary). Pure — the caller performs the exit.
+ *
+ * @param {number} errors  count of per-URL inspection failures
+ * @param {number} total   count of URLs the run attempted (urls.length)
+ * @param {number} [maxErrorRatio=0.5]  abort if errors are at/above this share
+ * @returns {{ abort: boolean, reason: string|null }}
+ */
+export function shouldAbortIndexationRun(errors, total, maxErrorRatio = 0.5) {
+  if (total === 0) {
+    return { abort: true, reason: "no URLs inspected (empty or failed sitemap)" };
+  }
+  if (errors >= total * maxErrorRatio) {
+    return {
+      abort: true,
+      reason: `${errors}/${total} URL inspections failed (>= ${maxErrorRatio * 100}%); refusing to overwrite snapshot`,
+    };
+  }
+  return { abort: false, reason: null };
+}
+
+/**
  * Site route inventory — allowlist of known path prefixes for monedario.cl.
  * RUM may include routes from other hostnames if the Cloudflare account has
  * multiple zones. We keep only routes that match the site's known URL space.
