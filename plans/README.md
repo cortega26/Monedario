@@ -5,6 +5,20 @@ Re-auditoría: `/improve deep` el 2026-06-15 (commit `57ad5261`) → planes 020�
 Follow-through de auditorías externas: `/improve` el 2026-06-17 (commit `fd2b5dff`) → planes 024–026.
 Tercera auditoría profunda: `/improve deep` el 2026-06-19 (commit `9a4eb37d`) → planes 027–030.
 Cuarta auditoría profunda: `/improve deep` el 2026-06-26 (commit `a7bb8b2e`) → planes 032–034.
+Quinta auditoría profunda: `/improve deep` el 2026-07-10 (commit `520a8685`) → planes 035–038.
+Foco de la quinta pasada: el delta desde la cuarta pasada (72 commits) y los módulos
+nunca auditados. El núcleo maduro (matemática de calculadoras, engines, provider
+económico) sigue limpio — reverificado. **Todos los hallazgos reales están en la
+superficie nueva de analytics first-party + data-signals** (construida después del
+2026-06-26), y comparten un olor: **jobs de datos que fallan en silencio escribiendo
+vacío/cero en vez de errorar** (035, 036). Verificado limpio y NO reauditar: la
+lógica de merge del snapshot económico (`383e93f3`, el `.slice()` sin guard es
+inalcanzable porque `fetchLiveParameters` siempre puebla las fechas), los dos remark
+plugins (el evaluador de variables económicas es un parser propio seguro, no `eval`),
+i18n, `loadGoogleFont`, el `mergePrev` del worker (espeja al script correctamente).
+**js-yaml v5**: `js-yaml@5.2.0` es release pública legítima (integrity del lockfile =
+`npm view` de registry.npmjs.org, mismo maintainer); el commit de migración `979924a0`
+está limpio; NO es problema de supply-chain. `pnpm audit --prod` limpio.
 Foco de la cuarta pasada: terreno aún sin auditar — **semántica de accesibilidad**
 de las calculadoras (gestión de foco, asociación de hints/errores, foco visible),
 los dos endpoints JSON de runtime, la config de seguridad/CSP de Astro y la
@@ -46,10 +60,94 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 
 ## Pendientes (trabajo abierto)
 
-_Sin trabajo abierto._ Todos los planes de las auditorías 001–034 están DONE y
-archivados (ver «Completados — archivados»). La próxima auditoría continuará la
-numeración monotónica en 035.
+Los siete planes abajo vienen de la quinta auditoría profunda (035–038) y de la
+revisión de datos de tráfico que le siguió (039–041, mismo commit `520a8685`,
+2026-07-10, a pedido del usuario tras la quinta auditoría; origen: los
+scorecards y exports reales en `output/operations/`). Se listan en **un único
+orden de ejecución recomendado** — no dos lotes separados — con una sola
+excepción dura: 036, 037 y 038 editan el mismo archivo
+(`workers/analytics-collector/src/index.ts`) y deben correr en serie y en ese
+orden; todo lo demás es paralelizable entre sí.
 
+> **Recordatorio de cierre**: en cuanto un plan de esta tabla pase a `DONE`,
+> deja de aparecer aquí — su archivo se mueve a
+> [`plans/archive/`](archive/README.md) de forma automática, en la misma
+> unidad de cambio que lo cierra (ver "Política obligatoria de cierre y
+> archivo" arriba). Esta tabla nunca debe mostrar una fila en estado `DONE`.
+
+| Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
+|---|------|--------|-----------|----------|--------|--------------------|--------|
+| 1 | [035](035-gsc-inspect-abort-on-mass-failure.md) | Abortar `gsc-inspect` antes de escribir cuando la mayoría de inspecciones fallan (no sobrescribir con 0% indexado) | P1 | S | LOW | todos (no toca `index.ts`) | IN PROGRESS (ejecutado y aprobado, esperando merge) |
+| 2 | [039](039-calculator-funnel-instrumentation.md) | Reparar instrumentación del embudo (views=0, completes sobre-contados, evento typo) | P1 | M | MED | todos (no toca `index.ts`) | TODO |
+| 3 | [037](037-analytics-export-secret-header.md) | Recibir el secreto del export manual por header, no por query string (+ rotar) | P2 | S | LOW | 035, 039, 041, 040 — no 038/036 (mismo archivo) | TODO |
+| 4 | [038](038-analytics-freeform-dimension-shape.md) | Restringir la forma de dimensiones libres de analytics (cardinalidad/poisoning) | P3 | S | LOW | 035, 039, 041, 040 — no 037/036 (mismo archivo) | TODO |
+| 5 | [036](036-analytics-export-failure-detection.md) | Hacer detectable un export de analytics ausente/fallido (clase de fallo OBS-01) | P2 | M | MED | 035, 039, 041, 040 — no 037/038 (mismo archivo) | TODO |
+| 6 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | TODO |
+| 7 | [040](040-seo-title-snippet-refresh-brief.md) | Brief SEO title/snippet (evidencia + candidatos + firma humana) — valor esperado degradado con honestidad | P3 | S | LOW | todos | TODO |
+
+**Por qué este orden:**
+- **1–2 (035, 039) primero**: máxima prioridad (P1), máxima confianza,
+  corrección de datos sin compuerta editorial, e independientes de todo lo
+  demás — no hay razón para esperar.
+- **3–5 (037 → 038 → 036) van juntos y en ese orden exacto**: los tres tocan
+  `workers/analytics-collector/src/index.ts`, así que no son paralelizables
+  entre sí. El sub-orden por esfuerzo (S → S → M) despacha primero lo chico
+  (037 además cierra una brecha de seguridad) y deja el de mayor esfuerzo (036)
+  al final del bloque. El drift-check de cada plan importa más aquí porque se
+  apilan sobre el mismo archivo.
+- **6 (041)** es independiente y de riesgo bajo; puede adelantarse en
+  paralelo con cualquiera de los anteriores sin conflicto.
+- **7 (040) va último a propósito**: es un *brief de decisión*, no un fix de
+  código — se detiene en la compuerta de firma humana del copy (Step 4) y no
+  debe bloquear el resto del trabajo técnico.
+- **037 tiene un paso humano post-merge**: rotar `EXPORT_SECRET`
+  (`wrangler secret put`) — un ejecutor-agente no puede rotar un secreto de
+  Worker.
+
+**Hallazgos clave de la revisión de datos (para contexto de quien ejecute):**
+- El embudo first-party NO es confiable hoy: `calculator_view`=0 en 21 calculadoras
+  por 2 semanas y `completes > starts` en todas (tasa de conversión >100%). Plan 039
+  lo arregla. **Hasta entonces, no decidir producto con esas tasas** — solo el ranking
+  relativo de uso por calculadora es fiable (conversor-utm y seguro-cesantia lideran).
+- La indexación real es **85%** (URL-inspection W26, 156/184), sana — no la crisis del
+  ~42% que sugería una memoria vieja. El plan 035 protege justo ese 85%.
+- El techo de tráfico real NO es el CTR de títulos sino el clúster estrella "sueldo
+  líquido" enterrado en posición 73–95 (problema de autoridad/contenido → pipeline
+  editorial, no metadata). El plan 040 lo dice explícitamente y NO intenta resolverlo
+  con títulos.
+
+> **035 EJECUTADO Y APROBADO EN REVISIÓN (2026-07-10, vía `/improve execute 035`):**
+> ejecutor en worktree aislado (`agent-a8d0acadc7efadffe`, commit `7dee7edc`,
+> `fix(data-signals): abortar gsc-inspect antes de escribir en fallo masivo`). Diff
+> limpio, exactamente los 3 archivos en alcance: `gsc-utils.mjs` (nuevo helper puro
+> `shouldAbortIndexationRun(errors, total, maxErrorRatio = 0.5)`), `gsc-inspect.mjs`
+> (import alfabético + guard justo antes del bloque `if (args.dryRun)`) y
+> `tests/scripts/gsc-inspect.test.ts` (6 casos nuevos). **Revisión (tech-lead)
+> APROBADA:** los 6 criterios de "Done" reverificados de forma independiente en el
+> worktree — `vitest run` del archivo objetivo 20/20 (14 previos + 6 nuevos);
+> **suite completa 1007/1007** (122 archivos), exit 0; `eslint` sobre los 2 archivos
+> en alcance exit 0; `format:check` exit 0; grep confirma el helper importado y
+> llamado antes del bloque dry-run; `git status` limpio, solo los 3 archivos del
+> plan. El caso límite exacto (`shouldAbortIndexationRun(125, 250) → abort === true`,
+> el que distingue `>=` de `>` en el umbral) está presente tanto en la implementación
+> como en su test — verificado leyendo el diff, no solo el resultado en verde. Los
+> tests preexistentes de CLI (`spawnSync`) no interactúan con el nuevo guard: todos
+> retornan antes del loop de inspección (credenciales ausentes/malformadas, args
+> inválidos). **Desviación de proceso detectada y verificada inofensiva:** el
+> worktree del ejecutor partió de `origin/main` (`e173de58`) y no de la rama de
+> trabajo actual (`dependabot/npm_and_yarn/js-yaml-5.1.0`, HEAD `0fcda7f6`) — ambas
+> líneas divergen después de `a23a3a65`. Confirmado que los 3 archivos en alcance
+> (más `.github/workflows/data-signals.yml`) son **byte-idénticos** entre ambas
+> bases, así que el diff es correcto independientemente de la base; pero implica que
+> la rama resultante `advisor/035-gsc-inspect-abort-on-mass-failure` no hace
+> fast-forward limpio sobre la rama dependabot actual — el operador deberá decidir
+> el destino del merge (main vía `origin/main`, o la rama dependabot). El ejecutor
+> también renombró la rama generada por el harness
+> (`worktree-agent-a8d0acadc7efadffe` → `advisor/035-gsc-inspect-abort-on-mass-failure`)
+> para seguir la convención del plan; documentado en sus NOTES. **NO mergeado, NO
+> archivado** — pendiente de decisión del operador sobre rama destino; permanece
+> `IN PROGRESS` por política de cierre atómico.
+>
 > Verificado el 2026-06-15: 022 y 023 siguen sin implementar en el código
 > (no existe `src/utils/formatCLP.ts`; los gates `compare-*.mjs` no tienen
 > floor-guard de baseline vacío; el worker reddit no devuelve `PostAlertResult`).
@@ -411,6 +509,37 @@ Tercera auditoría profunda 2026-06-19:
 - **Smells «latentes si se refactoriza»** (aserciones non-null, `innerHTML` con strings
   estáticos en `formController.ts`/`afpComparison.ts`): defensa en profundidad de bajo
   valor, tratada igual que en las pasadas previas. No abierto.
+
+## Considerados y rechazados / verificados limpios — quinta pasada 2026-07-10 (para no re-auditar)
+
+- **Matemática/engines de calculadoras y provider económico**: reverificados
+  limpios por quinta vez. No reauditar.
+- **Merge del snapshot económico (`383e93f3`, `mergePreviousIndicatorValues`)**: la
+  lógica es correcta y el acceso sin optional-chaining a
+  `newSnapshot.indicatorUpdatedAt.uf/.utm` es **inalcanzable** —
+  `fetchLiveParameters` siempre puebla esas fechas vía `?? lastUpdated`
+  (`refresh-economic-snapshot.mjs:170-171`). El `mergePrev` del worker
+  (`buildSnapshot.ts`) espeja al script. No abierto.
+- **remark plugins, i18n, loadGoogleFont**: limpios. El evaluador de
+  `remark-economic-variables.ts` valida charset antes de parsear (parser propio,
+  no `eval`). No abierto.
+- **js-yaml v5**: `js-yaml@5.2.0` es release pública legítima (integrity del
+  lockfile coincide con `npm view` de registry.npmjs.org, mismo maintainer
+  `vitaly@rcopen.com`). Migración `979924a0` limpia. No es supply-chain. No abierto.
+- **KV eventual-consistency / pérdida de escrituras concurrentes en el worker de
+  analytics**: aceptado explícitamente en `ADR-20260628` (líneas 191-193). No abrir.
+- **OWASP SEC-001..009**: adjudicados (8 cerrados 2026-06-28; SEC-004 = accept-risk
+  de `set:html` sobre markdown de editor de confianza). No reauditar.
+
+**Menores registrados (no planificados — defensa en profundidad de bajo valor):**
+- **`EXPORT_TIMEZONE` muerto** en el worker de analytics
+  (`index.ts:859` lee `tz`, solo lo loguea; `previousCompleteISOWeekInTz()` es UTC
+  puro). Cosmético: UTC es de hecho correcto porque la ingesta se llavea en UTC; solo
+  el comentario «timezone-aware» confunde. S, no abierto.
+- **`injectGlossaryLinks` usa `\b...\b` ASCII** (`injectGlossaryLinks.ts:100`): los
+  términos de glosario que empiezan/terminan en carácter acentuado no auto-enlazan.
+  Baja frecuencia (allowlist curada, la mayoría son kebab sin acento inicial/final).
+  S, no abierto.
 
 ## Dirección (decisión del mantenedor — no planificado aún)
 
