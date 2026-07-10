@@ -77,7 +77,7 @@ orden; todo lo demás es paralelizable entre sí.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
 |---|------|--------|-----------|----------|--------|--------------------|--------|
-| 1 | [035](035-gsc-inspect-abort-on-mass-failure.md) | Abortar `gsc-inspect` antes de escribir cuando la mayoría de inspecciones fallan (no sobrescribir con 0% indexado) | P1 | S | LOW | todos (no toca `index.ts`) | IN PROGRESS (ejecutado y aprobado, esperando merge) |
+| 1 | [035](035-gsc-inspect-abort-on-mass-failure.md) | Abortar `gsc-inspect` antes de escribir cuando la mayoría de inspecciones fallan (no sobrescribir con 0% indexado) | P1 | S | LOW | todos (no toca `index.ts`) | IN PROGRESS (mergeado a la rama de trabajo actual, no a `main` todavía) |
 | 2 | [039](039-calculator-funnel-instrumentation.md) | Reparar instrumentación del embudo (views=0, completes sobre-contados, evento typo) | P1 | M | MED | todos (no toca `index.ts`) | TODO |
 | 3 | [037](037-analytics-export-secret-header.md) | Recibir el secreto del export manual por header, no por query string (+ rotar) | P2 | S | LOW | 035, 039, 041, 040 — no 038/036 (mismo archivo) | TODO |
 | 4 | [038](038-analytics-freeform-dimension-shape.md) | Restringir la forma de dimensiones libres de analytics (cardinalidad/poisoning) | P3 | S | LOW | 035, 039, 041, 040 — no 037/036 (mismo archivo) | TODO |
@@ -144,9 +144,42 @@ orden; todo lo demás es paralelizable entre sí.
 > el destino del merge (main vía `origin/main`, o la rama dependabot). El ejecutor
 > también renombró la rama generada por el harness
 > (`worktree-agent-a8d0acadc7efadffe` → `advisor/035-gsc-inspect-abort-on-mass-failure`)
-> para seguir la convención del plan; documentado en sus NOTES. **NO mergeado, NO
-> archivado** — pendiente de decisión del operador sobre rama destino; permanece
-> `IN PROGRESS` por política de cierre atómico.
+> para seguir la convención del plan; documentado en sus NOTES.
+>
+> **Update (mismo día, a pedido del operador — "commit, push, merge and clean
+> branches"):** el commit `7dee7edc` se integró a la rama de trabajo actual
+> (`dependabot/npm_and_yarn/js-yaml-5.1.0`) vía **cherry-pick** (SHA original
+> `fcee34e5`, luego reescrito a `a86f88eb` por el rebase descrito abajo), no
+> `git merge`, a propósito: un primer intento con `git merge --no-ff` trajo de forma
+> incidental un archivo fuera de alcance
+> (`src/infrastructure/economic/economic-parameters.snapshot.json`, un refresh de
+> datos económicos automático heredado de la ascendencia `origin/main` de la rama
+> `advisor/035`) porque esa rama partió de una base distinta a la actual (ver nota
+> de deriva de rama arriba). Se deshizo ese merge (`git reset --hard`, nada se había
+> pusheado todavía) y se reemplazó por un cherry-pick que trae únicamente los 3
+> archivos revisados — mismo estándar de alcance que se le exigió al ejecutor.
+> Reverificado tras el cherry-pick: `vitest run` del archivo objetivo 20/20 en el
+> árbol principal. Push hecho a `origin/dependabot/npm_and_yarn/js-yaml-5.1.0`.
+> Limpieza: rama local `advisor/035-gsc-inspect-abort-on-mass-failure` borrada y
+> worktree `agent-a8d0acadc7efadffe` removido.
+>
+> **Reconciliación con `origin/main` (mismo día, "your call" del operador):** el PR
+> #305 original de esta rama (bump de js-yaml) ya estaba **MERGED** en GitHub desde
+> 2026-07-01, así que el push anterior no se adjuntaba a ningún PR abierto y la rama
+> estaba 6 commits detrás / 6 adelante de `origin/main`. Investigado: de los 6
+> commits propios, `979924a0` ("fix(deps): support js-yaml v5...") resultó ser
+> contenido ya integrado a `main` — mismo árbol exacto que el commit squash-merge
+> `94cc0f5a` (PR #305), confirmado con `git diff 979924a0 94cc0f5a --stat` vacío.
+> Probado primero en una rama descartable: `git rebase origin/main` completa limpio,
+> sin conflictos, y descarta automáticamente `979924a0` por ya-aplicado. Ejecutado
+> en la rama real tras confirmar por `git fetch` que el remoto no había cambiado
+> desde el push anterior: rebase limpio (5 commits, 0 detrás de `origin/main`),
+> `vitest run` del archivo objetivo reverificado 20/20 post-rebase, y
+> force-push (`git push --force-with-lease`) a
+> `origin/dependabot/npm_and_yarn/js-yaml-5.1.0`. SHA final del fix de 035:
+> `a86f88eb`. La rama sigue sin PR abierto ni mergeada a `main` — **archivar 035
+> formalmente sigue pendiente de que el operador abra un PR (o decida un push
+> directo a `main`)**; no se tomó esa decisión unilateralmente.
 >
 > Verificado el 2026-06-15: 022 y 023 siguen sin implementar en el código
 > (no existe `src/utils/formatCLP.ts`; los gates `compare-*.mjs` no tienen
