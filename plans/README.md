@@ -79,7 +79,7 @@ en ese orden; todo lo demás es paralelizable entre sí.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
 |---|------|--------|-----------|----------|--------|--------------------|--------|
-| 1 | [037](037-analytics-export-secret-header.md) | Recibir el secreto del export manual por header, no por query string (+ rotar) | P2 | S | LOW | 041, 040, 042 — no 038/036 (mismo archivo) | TODO |
+| 1 | [037](037-analytics-export-secret-header.md) | Recibir el secreto del export manual por header, no por query string (+ rotar) | P2 | S | LOW | 041, 040, 042 — no 038/036 (mismo archivo) | REVISADO — pendiente merge |
 | 2 | [038](038-analytics-freeform-dimension-shape.md) | Restringir la forma de dimensiones libres de analytics (cardinalidad/poisoning) | P3 | S | LOW | 041, 040, 042 — no 037/036 (mismo archivo) | TODO |
 | 3 | [036](036-analytics-export-failure-detection.md) | Hacer detectable un export de analytics ausente/fallido (clase de fallo OBS-01) | P2 | M | MED | 041, 040, 042 — no 037/038 (mismo archivo) | TODO |
 | 4 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | TODO |
@@ -106,6 +106,70 @@ en ese orden; todo lo demás es paralelizable entre sí.
 - **037 tiene un paso humano post-merge**: rotar `EXPORT_SECRET`
   (`wrangler secret put`) — un ejecutor-agente no puede rotar un secreto de
   Worker.
+
+> **037 EJECUTADO Y REVISADO (2026-07-11, vía `/improve execute 037`):**
+> ejecutor en worktree aislado (`.claude/worktrees/agent-a5e7db02ea0226501`,
+> rama `advisor/037-analytics-export-secret-header`, commit `e050d54b`,
+> `fix(security): leer el secreto del export por Authorization header`).
+> Sin drift (`git diff --stat 520a8685..HEAD -- workers/analytics-collector/src/index.ts
+> workers/analytics-collector/wrangler.toml` vacío antes de despachar). Diff
+> acotado a 3 de los 4 archivos listados en alcance: `index.ts`
+> (`handleManualExport` ahora lee `Authorization: Bearer <secret>`, `?secret=`
+> ya no autentica), `wrangler.toml` (comentario actualizado) y
+> `tests/workers/analytics-collector/schema.test.ts` (casos existentes
+> migrados a header + caso nuevo: `?secret=` sin header → 401). **Revisión
+> (tech-lead) APROBADA** — reverificado de forma independiente en el
+> worktree, no solo confiando en el reporte del ejecutor: `grep` confirma cero
+> ocurrencias de `searchParams.get("secret")` y la lectura por header presente;
+> `pnpm exec vitest run tests/workers/analytics-collector/schema.test.ts` →
+> 50/50; suite completa `pnpm test` → 1011/1011 (122 archivos); `tsc --noEmit`
+> del worker → exit 0; `eslint` del archivo en alcance → exit 0;
+> `format:check` → exit 0; `git status` limpio (ya commiteado); ningún valor
+> real de secreto en el diff (solo fixtures `"manual-secret"`/`"wrong"` y el
+> placeholder `<EXPORT_SECRET>`).
+>
+> **Desviación documentada y aprobada en mérito:** el Step 3 del plan (cambiar
+> un ejemplo `curl` en `docs/backlog/PLAN-analytics-export-manual-trigger-2026-06-30.md`)
+> no aplicaba — verificado independientemente que ese archivo no contiene
+> ningún `curl` copiable; las dos apariciones de `?secret=` son prosa
+> histórica de Diagnóstico/Diseño de un plan ya cerrado (`Completado
+> 2026-07-07`). Editarlas falsificaría el registro histórico en vez de
+> corregir un comando operativo real. El ejecutor lo dejó intacto y lo
+> reportó explícitamente en vez de editarlo sin justificación — juicio
+> correcto, no una desviación de alcance. Por esto el criterio "solo 4
+> archivos modificados" del plan no se cumple literalmente (son 3); se
+> considera satisfecho en espíritu.
+>
+> **Seguimiento identificado, no en alcance de este plan:** la forma vieja
+> `?secret=` sigue documentada como histórica en
+> `docs/operations/logs/progress_log.md` (líneas ~207, 221) y
+> `docs/backlog/README.md` (línea 38) — ambos son bitácoras/índices de hechos
+> pasados, no instrucciones operativas activas; no requieren cambio.
+>
+> **Verificación ampliada del STOP condition ("ningún caller automatizado
+> pasa `?secret=`"):** el plan solo había verificado `docs/`; se amplió el
+> grep a `scripts/`, `workers/`, tests y YAML de todo el repo. Únicos hits de
+> código real fuera de `docs/` y del propio archivo tocado:
+> `scripts/refresh-economic-snapshot.mjs:14`,
+> `workers/economic-snapshot-refresh/src/index.ts:203` y
+> `workers/reddit-mention-monitor/src/index.ts:133` — los tres son triggers
+> manuales de **otros Workers** (`__refresh` con `GITHUB_TOKEN`/PAT, `__check`
+> con `CHECK_SECRET`), sin relación con `EXPORT_SECRET` ni con
+> `/api/analytics/export`. No existe ningún caller automatizado de este
+> endpoint. STOP condition no se activa.
+>
+> **Pendiente humano, no ejecutable por agente — orden de despliegue
+> importa:** (1) mergear y desplegar (`wrangler deploy`) — recién ahí
+> `?secret=` empieza a devolver 401 en producción y el operador debe pasar a
+> usar `Authorization: Bearer`; (2) rotar `EXPORT_SECRET`
+> (`wrangler secret put EXPORT_SECRET --config workers/analytics-collector/wrangler.toml`)
+> porque el valor anterior pudo haber quedado en logs de Cloudflare mientras
+> viajaba por query string. Sin el paso (2) el fix de transporte queda
+> incompleto según el propio plan ("solo se completa una vez rotado").
+> **No mergeado a `main` todavía** — decisión del
+> operador. Rama disponible en `advisor/037-analytics-export-secret-header`
+> (worktree `.claude/worktrees/agent-a5e7db02ea0226501`) para revisión y merge
+> manual.
 
 **Hallazgos clave de la revisión de datos (para contexto de quien ejecute):**
 - El embudo first-party NO es confiable hoy: `calculator_view`=0 en 21 calculadoras
