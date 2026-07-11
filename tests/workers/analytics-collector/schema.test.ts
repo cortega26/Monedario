@@ -634,7 +634,9 @@ describe("manual export endpoint", () => {
     env.EXPORT_SECRET = undefined;
 
     const response = await analyticsCollector.fetch(
-      new Request("https://monedario.cl/api/analytics/export?secret=manual-secret"),
+      new Request("https://monedario.cl/api/analytics/export", {
+        headers: { Authorization: "Bearer manual-secret" },
+      }),
       env,
     );
 
@@ -642,7 +644,7 @@ describe("manual export endpoint", () => {
     await expect(response.json()).resolves.toEqual({ error: "export_not_configured" });
   });
 
-  it("returns 401 without secret and 403 with a wrong secret", async () => {
+  it("returns 401 without an Authorization header and 403 with a wrong secret", async () => {
     const env = makeEnv();
 
     const missing = await analyticsCollector.fetch(
@@ -650,7 +652,9 @@ describe("manual export endpoint", () => {
       env,
     );
     const wrong = await analyticsCollector.fetch(
-      new Request("https://monedario.cl/api/analytics/export?secret=wrong"),
+      new Request("https://monedario.cl/api/analytics/export", {
+        headers: { Authorization: "Bearer wrong" },
+      }),
       env,
     );
 
@@ -660,13 +664,25 @@ describe("manual export endpoint", () => {
     await expect(wrong.json()).resolves.toEqual({ error: "invalid_secret" });
   });
 
+  it("returns 401 when the secret is passed as a query string instead of the header", async () => {
+    const env = makeEnv();
+
+    const response = await analyticsCollector.fetch(
+      new Request("https://monedario.cl/api/analytics/export?secret=manual-secret"),
+      env,
+    );
+
+    expect(response.status).toBe(401);
+    await expect(response.json()).resolves.toEqual({ error: "missing_secret" });
+  });
+
   it("returns 400 for an invalid week parameter", async () => {
     const env = makeEnv();
 
     const response = await analyticsCollector.fetch(
-      new Request(
-        "https://monedario.cl/api/analytics/export?secret=manual-secret&week=2026-26",
-      ),
+      new Request("https://monedario.cl/api/analytics/export?week=2026-26", {
+        headers: { Authorization: "Bearer manual-secret" },
+      }),
       env,
     );
 
@@ -680,10 +696,12 @@ describe("manual export endpoint", () => {
     });
 
     const response = await analyticsCollector.fetch(
-      new Request(
-        "https://monedario.cl/api/analytics/export?secret=manual-secret&week=2026-W26",
-        { headers: { "CF-Connecting-IP": "203.0.113.10" } },
-      ),
+      new Request("https://monedario.cl/api/analytics/export?week=2026-W26", {
+        headers: {
+          Authorization: "Bearer manual-secret",
+          "CF-Connecting-IP": "203.0.113.10",
+        },
+      }),
       env,
     );
 
@@ -708,7 +726,9 @@ describe("manual export endpoint", () => {
     });
 
     const response = await analyticsCollector.fetch(
-      new Request("https://monedario.cl/api/analytics/export?secret=manual-secret"),
+      new Request("https://monedario.cl/api/analytics/export", {
+        headers: { Authorization: "Bearer manual-secret" },
+      }),
       env,
     );
 

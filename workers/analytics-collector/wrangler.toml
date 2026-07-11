@@ -73,5 +73,7 @@ enabled = true
 #                           un script local (data-signals) para bajarlo.
 #
 #   EXPORT_SECRET         — String arbitrario que protege el endpoint manual
-#                           de export (GET /api/analytics/export?secret=...).
+#                           de export. Se envía por header:
+#                           Authorization: Bearer <EXPORT_SECRET>
+#                           (GET /api/analytics/export?week=YYYY-Www).
 #                           No requerido para el cron trigger.
