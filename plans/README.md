@@ -64,7 +64,7 @@ Los planes abajo vienen de la quinta auditoría profunda (035–038) y de la
 revisión de datos de tráfico que le siguió (039–041, mismo commit `520a8685`,
 2026-07-10, a pedido del usuario tras la quinta auditoría; origen: los
 scorecards y exports reales en `output/operations/`). Originalmente siete;
-**035, 037, 038 y 039 ya están DONE y archivados** (ver arriba — 039
+**035, 036, 037, 038 y 039 ya están DONE y archivados** (ver arriba — 039
 parcialmente, con su typo residual desglosado en el plan 042; 038 con alcance
 revisado a 3 de 4 claves, el resto desglosado en el plan 043 — ver nota abajo).
 El plan 043 se sumó el 2026-07-11 como *carve-out* de 038. Se listan en **un
@@ -79,31 +79,71 @@ paralelizable entre sí salvo que se indique lo contrario.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
 |---|------|--------|-----------|----------|--------|--------------------|--------|
-| 1 | [036](036-analytics-export-failure-detection.md) | Hacer detectable un export de analytics ausente/fallido (clase de fallo OBS-01) | P2 | M | MED | todos (038 ya mergeado) | TODO |
-| 2 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | TODO |
-| 3 | [040](040-seo-title-snippet-refresh-brief.md) | Brief SEO title/snippet (evidencia + candidatos + firma humana) — valor esperado degradado con honestidad | P3 | S | LOW | todos | TODO |
-| 4 | [042](042-remove-calculator-completed-typo-event.md) | Quitar el evento typo `calculator_completed` de 8 archivos + 2 tests que lo fijan (código muerto, cero impacto en métricas) | P3 | S | LOW | todos | TODO |
-| 5 | [043](043-analytics-item-id-shape-decision.md) | Decidir y aplicar la forma segura de `item_id` (carve-out de 038; requiere firma humana en Step 1) | P3 | S | LOW–MED | todos (038 ya mergeado) | TODO |
+| 1 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | TODO |
+| 2 | [040](040-seo-title-snippet-refresh-brief.md) | Brief SEO title/snippet (evidencia + candidatos + firma humana) — valor esperado degradado con honestidad | P3 | S | LOW | todos | TODO |
+| 3 | [042](042-remove-calculator-completed-typo-event.md) | Quitar el evento typo `calculator_completed` de 8 archivos + 2 tests que lo fijan (código muerto, cero impacto en métricas) | P3 | S | LOW | todos | TODO |
+| 4 | [043](043-analytics-item-id-shape-decision.md) | Decidir y aplicar la forma segura de `item_id` (carve-out de 038; requiere firma humana en Step 1) | P3 | S | LOW–MED | todos (038 ya mergeado) | TODO |
 
-> **035, 037 y 038 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
+> **035, 036, 037 y 038 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
 
 **Por qué este orden:**
-- **035, 038, 039 y 037 ya ejecutados** (ver notas abajo): máxima
+- **035, 038, 039, 037 y 036 ya ejecutados** (ver notas abajo): máxima
   prioridad/mayor confianza primero, e independientes de todo lo demás — no
   había razón para esperar.
-- **1 (036)** ahora corre libre: antes debía serializarse con 038 por tocar el
-  mismo archivo (`workers/analytics-collector/src/index.ts`); con 038 ya
-  mergeado, su drift-check debe correr contra el `index.ts` actual (post-038),
-  no contra el commit `520a8685` original.
-- **2 (041)** es independiente y de riesgo bajo; puede adelantarse en
+- **1 (041)** es independiente y de riesgo bajo; puede adelantarse en
   paralelo con cualquiera de los anteriores sin conflicto.
-- **3 (040) va después a propósito**: es un *brief de decisión*, no un fix de
+- **2 (040) va después a propósito**: es un *brief de decisión*, no un fix de
   código — se detiene en la compuerta de firma humana del copy (Step 4) y no
   debe bloquear el resto del trabajo técnico.
-- **5 (043) va último**: extiende el mismo scaffolding de constantes que 038
+- **4 (043) va último**: extiende el mismo scaffolding de constantes que 038
   (ya mergeado, así que no hay bloqueo real) y es en sí mismo un *brief de
   decisión* — se detiene en una compuerta de firma humana (Step 1) antes de
   tocar código.
+
+> **036 EJECUTADO, APROBADO Y MERGEADO (2026-07-11, vía `/improve execute
+> 036`):** ejecutor en worktree aislado (`.claude/worktrees/agent-a5081695d39b9c24f`,
+> rama `advisor/036-analytics-export-failure-detection`, commit original `c6a1ac88`,
+> `fix(analytics): surface failed exports and detect overdue weekly export`).
+> Drift check corrido primero: los 2 archivos que mostraban cambios desde
+> `520a8685` (`index.ts`, `gsc-utils.mjs`) solo llevaban adiciones no
+> relacionadas de 037/038 ya mergeadas — el `scheduled` handler, `runExport` e
+> `isoWeekToDateRange` seguían byte-idénticos al excerpt del plan. Diff acotado
+> a los 5 archivos en alcance (`+80/-6`): re-throw en `scheduled` con label
+> corregido, helper puro `isExportOverdue(week, now, graceDays=2)` en
+> `gsc-utils.mjs`, uso en la rama 404 del consumidor
+> (`fetch-analytics-export.mjs`), y los 2 archivos de test nuevos/ampliados.
+> **Revisión (tech-lead) APROBADA** — reverificada de forma independiente en
+> el worktree: greps de los 3 done-criteria (`VALIDATION FAILED` ausente,
+> `throw` presente en `scheduled`, `isExportOverdue` definido y usado);
+> `vitest run` de los 2 archivos objetivo → 55/55; suite completa `pnpm test`
+> → 123 archivos/1016 tests; `tsc --noEmit` del worker → exit 0; `eslint` de
+> los 3 archivos fuente en alcance → exit 0; `format:check` → exit 0; `git
+> status` limpio, solo los 5 archivos del plan (sin `.yml`). Tests nuevos
+> auditados — no vacíos: los 4 casos límite de `isExportOverdue` derivan la
+> fecha del propio helper (no hardcoded) y el test del worker fuerza un fallo
+> real de infraestructura (KV que lanza) para verificar el rechazo de
+> `scheduled()`.
+>
+> **Hallazgo de revisión — rama base desactualizada:** el worktree del
+> ejecutor partió de `0e1a2a7a`, 3 commits detrás de `main` (`7edce163`) porque
+> el plan 038 se ejecutó y mergeó mientras este agente corría en background
+> (`git merge-base --is-ancestor` confirmó que NO era ancestro; `grep
+> FREE_FORM_TOKEN_KEYS` ausente en el worktree original). Un fast-forward
+> directo habría revertido 038. Corregido rebaseando la rama sobre el `main`
+> actual **dentro del propio worktree descartable** (operación de solo
+> verificación, no tocó el árbol principal): aplicó limpio, sin conflictos —
+> 036 toca `scheduled`, 038 toca `validateEventPayload`/`FREE_FORM_TOKEN_KEYS`,
+> zonas distintas del mismo archivo. Reverificado post-rebase: suite completa
+> 1026/1026 (los 10 extra son los tests de 038), `tsc --noEmit` exit 0. Commit
+> final post-rebase: `9049cb76`.
+>
+> **MERGEADO a `main` el 2026-07-11** (fast-forward `7edce163..9049cb76`, a
+> pedido del operador — "merge and clean"). Reverificado en el árbol principal
+> tras el merge: `pnpm test` 1026/1026, `tsc --noEmit` del worker exit 0,
+> `eslint` exit 0, `format:check` exit 0, `git status` limpio. No empujado a
+> `origin/main` (el operador no lo pidió). **Archivado por política de cierre
+> atómico** — el archivo del plan vive ahora en
+> [`archive/036-analytics-export-failure-detection.md`](archive/036-analytics-export-failure-detection.md).
 
 > **038 BLOQUEADO, RE-ALCANCEADO Y RE-EJECUTADO (2026-07-11, vía `/improve
 > execute 038`):** primer despacho bloqueado — el ejecutor corrió el grep de
@@ -542,6 +582,9 @@ Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main
 | Plan | Título | Prioridad | Esfuerzo | Estado |
 |------|--------|-----------|----------|--------|
 | [035](archive/035-gsc-inspect-abort-on-mass-failure.md) | Abortar `gsc-inspect` antes de escribir cuando la mayoría de inspecciones fallan (no sobrescribir con 0% indexado) | P1 | S | DONE (commit `a86f88eb`) |
+| [036](archive/036-analytics-export-failure-detection.md) | Hacer detectable un export de analytics ausente/fallido (clase de fallo OBS-01) | P2 | M | DONE (fast-forward `9049cb76`) |
+| [037](archive/037-analytics-export-secret-header.md) | Recibir el secreto del export manual por `Authorization` header, no por query string | P2 | S | DONE (merge commit `9d722ac6`) — rotación de `EXPORT_SECRET` pendiente, paso humano |
+| [038](archive/038-analytics-freeform-dimension-shape.md) | Restringir la forma de `calculator_slug`/`rule_id`/`action_id` en analytics | P2 | S | DONE (fast-forward `5ebda2e0`) — `item_id` separado al plan 043 |
 | [039](archive/039-calculator-funnel-instrumentation.md) | Reparar instrumentación del embudo (views=0, completes sobre-contados, evento typo) | P1 | M | DONE parcial (commit `a661e61a`) — typo residual desglosado en [042](042-remove-calculator-completed-typo-event.md) |
 
 ### Auditorías 2026-06-15 a 2026-06-19
