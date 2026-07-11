@@ -16,6 +16,15 @@ const CALCULATOR_VIEW_FLAG = "data-analytics-calculator-view-tracked";
 let pageCleanup: Cleanup | null = null;
 let pendingAnalyticsInit: IdleHandle | null = null;
 
+// Events that are transmitted at most once per calculator per page-view.
+// Recalculations (keystroke-driven re-runs) and prefill-driven synthetic
+// input events must not inflate these counts past a single completion.
+const ONCE_PER_VIEW_EVENTS = new Set(["calculator_complete"]);
+let sentOncePerView = new Set<string>();
+function resetOncePerViewDedup() {
+  sentOncePerView = new Set();
+}
+
 function scheduleIdle(callback: () => void): IdleHandle {
   if ("requestIdleCallback" in window) {
     return window.requestIdleCallback(callback, { timeout: 1200 });
@@ -85,6 +94,16 @@ function sendAnalyticsEvent(
 
   // Gate 2: event must be transmissible
   if (!isTransmissibleEvent(eventName)) return;
+
+  // Gate 2b: dedup once-per-view events (e.g. calculator_complete on recalcs)
+  if (ONCE_PER_VIEW_EVENTS.has(eventName)) {
+    const slug = String(
+      (params as Record<string, unknown>).calculator_slug ?? ""
+    );
+    const dedupKey = `${eventName}:${slug}`;
+    if (sentOncePerView.has(dedupKey)) return;
+    sentOncePerView.add(dedupKey);
+  }
 
   // Gate 3: sanitize — this is the client-side boundary
   const sanitized = sanitizeAnalyticsEvent(
@@ -278,5 +297,11 @@ window.monedarioAnalytics = {
 };
 
 scheduleAnalyticsInit();
-document.addEventListener("astro:page-load", scheduleAnalyticsInit);
-document.addEventListener("astro:after-swap", scheduleAnalyticsInit);
+document.addEventListener("astro:page-load", () => {
+  resetOncePerViewDedup();
+  scheduleAnalyticsInit();
+});
+document.addEventListener("astro:after-swap", () => {
+  resetOncePerViewDedup();
+  scheduleAnalyticsInit();
+});

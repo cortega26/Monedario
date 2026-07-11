@@ -64,4 +64,71 @@ describe("analytics browser script", () => {
     const dataLayer = (window.dataLayer ?? []) as Array<{ event?: string }>;
     expect(dataLayer.filter(entry => entry.event === "calculator_view")).toHaveLength(1);
   });
+
+  it("dedupes calculator_complete to one POST per page-view for the same slug", async () => {
+    await import("../../src/scripts/analytics");
+    await vi.runOnlyPendingTimersAsync();
+
+    window.monedarioAnalytics?.track("calculator_complete", {
+      calculator_slug: "sueldo-liquido",
+      outcome_class: "success",
+    });
+    window.monedarioAnalytics?.track("calculator_complete", {
+      calculator_slug: "sueldo-liquido",
+      outcome_class: "success",
+    });
+
+    const fetchMock = vi.mocked(window.fetch);
+    const completePayloads = fetchMock.mock.calls
+      .map(call => JSON.parse(String(call[1]?.body)))
+      .filter(payload => payload.event === "calculator_complete");
+
+    expect(completePayloads).toHaveLength(1);
+  });
+
+  it("re-allows calculator_complete after astro:page-load resets the dedup", async () => {
+    await import("../../src/scripts/analytics");
+    await vi.runOnlyPendingTimersAsync();
+
+    window.monedarioAnalytics?.track("calculator_complete", {
+      calculator_slug: "sueldo-liquido",
+      outcome_class: "success",
+    });
+
+    document.dispatchEvent(new Event("astro:page-load"));
+    await vi.runOnlyPendingTimersAsync();
+
+    window.monedarioAnalytics?.track("calculator_complete", {
+      calculator_slug: "sueldo-liquido",
+      outcome_class: "success",
+    });
+
+    const fetchMock = vi.mocked(window.fetch);
+    const completePayloads = fetchMock.mock.calls
+      .map(call => JSON.parse(String(call[1]?.body)))
+      .filter(payload => payload.event === "calculator_complete");
+
+    expect(completePayloads).toHaveLength(2);
+  });
+
+  it("does not dedupe calculator_start (not in ONCE_PER_VIEW_EVENTS)", async () => {
+    await import("../../src/scripts/analytics");
+    await vi.runOnlyPendingTimersAsync();
+
+    window.monedarioAnalytics?.track("calculator_start", {
+      calculator_slug: "sueldo-liquido",
+      interaction_type: "input",
+    });
+    window.monedarioAnalytics?.track("calculator_start", {
+      calculator_slug: "sueldo-liquido",
+      interaction_type: "input",
+    });
+
+    const fetchMock = vi.mocked(window.fetch);
+    const startPayloads = fetchMock.mock.calls
+      .map(call => JSON.parse(String(call[1]?.body)))
+      .filter(payload => payload.event === "calculator_start");
+
+    expect(startPayloads).toHaveLength(2);
+  });
 });
