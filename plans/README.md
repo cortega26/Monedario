@@ -78,12 +78,13 @@ orden; todo lo demás es paralelizable entre sí.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
 |---|------|--------|-----------|----------|--------|--------------------|--------|
-| 1 | [039](039-calculator-funnel-instrumentation.md) | Reparar instrumentación del embudo (views=0, completes sobre-contados, evento typo) | P1 | M | MED | todos (no toca `index.ts`) | TODO |
+| 1 | [039](039-calculator-funnel-instrumentation.md) | Reparar instrumentación del embudo (views=0, completes sobre-contados, evento typo) | P1 | M | MED | todos (no toca `index.ts`) | IN PROGRESS (parcial, ver nota — merge pendiente de decisión del operador) |
 | 2 | [037](037-analytics-export-secret-header.md) | Recibir el secreto del export manual por header, no por query string (+ rotar) | P2 | S | LOW | 039, 041, 040 — no 038/036 (mismo archivo) | TODO |
 | 3 | [038](038-analytics-freeform-dimension-shape.md) | Restringir la forma de dimensiones libres de analytics (cardinalidad/poisoning) | P3 | S | LOW | 039, 041, 040 — no 037/036 (mismo archivo) | TODO |
 | 4 | [036](036-analytics-export-failure-detection.md) | Hacer detectable un export de analytics ausente/fallido (clase de fallo OBS-01) | P2 | M | MED | 039, 041, 040 — no 037/038 (mismo archivo) | TODO |
 | 5 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | TODO |
 | 6 | [040](040-seo-title-snippet-refresh-brief.md) | Brief SEO title/snippet (evidencia + candidatos + firma humana) — valor esperado degradado con honestidad | P3 | S | LOW | todos | TODO |
+| 7 | [042](042-remove-calculator-completed-typo-event.md) | Quitar el evento typo `calculator_completed` de 8 archivos + 2 tests que lo fijan (código muerto, cero impacto en métricas) | P3 | S | LOW | todos (independiente del dedup ya mergeado de 039) | TODO |
 
 > **035 archivado** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparece en esta tabla.
 
@@ -118,6 +119,58 @@ orden; todo lo demás es paralelizable entre sí.
   editorial, no metadata). El plan 040 lo dice explícitamente y NO intenta resolverlo
   con títulos.
 
+> **039 EJECUTADO PARCIALMENTE, EN REVISIÓN (2026-07-10, vía `/improve execute
+> 039`):** ejecutor en worktree aislado (`.claude/worktrees/agent-039-funnel`,
+> rama `advisor/039-calculator-funnel-instrumentation`, commit `9031429d`,
+> `fix(analytics): dedupe calculator_complete por page-view`). **Steps 1, 2 y 4
+> completos y reverificados de forma independiente** en el worktree: suite
+> completa `pnpm test` 1010/1010 (122 archivos); `astro check` 0 errores (1 hint
+> preexistente no relacionado, deprecación de zod en `content.config.ts`);
+> `eslint` sobre los 2 archivos en alcance exit 0; `format:check` exit 0; sin
+> `console.*` residual. Diff limpio y acotado a `src/scripts/analytics.ts`
+> (dedup `ONCE_PER_VIEW_EVENTS` + reset en `astro:page-load`/`astro:after-swap`,
+> tal como especifica el plan) y `tests/integration/analytics-script.test.ts`
+> (3 casos nuevos que sí verifican el payload real del `fetch` mockeado, no solo
+> que la suite pase).
+>
+> **Step 1 (spike `calculator_view`=0): resuelto sin cambio de código** —
+> diagnóstico verificado con Playwright contra `pnpm run dev` (navegación dura y
+> soft-nav vía ClientRouter): el evento llega hoy correctamente a
+> `POST /api/analytics/event` en ambos casos. `git log -S` + `merge-base`
+> confirman que el commit `9e83a517` ("restore calculator views", 2026-07-07) ya
+> arregló el tracking y es ancestro del commit base del plan (`520a8685`,
+> 2026-07-09); la ventana del export `2026-W27.json` (2026-06-29 a 2026-07-05) es
+> **anterior** a ese fix. El "views=0" que motivó el plan era un dato ya
+> obsoleto al momento de escribir el plan, no un bug vigente.
+>
+> **Step 3 (typo `calculator_completed`): BLOQUEADO por conflicto de alcance
+> real, no evitable.** El plan acota el fix a `formController.ts` y prohíbe
+> tocar los controladores de las 22 páginas. Verificado independientemente: el
+> mismo typo existe en **8 archivos**, no 1 —
+> `formController.ts` + 7 `.astro` (`tarjeta-credito`, `operacion-renta`,
+> `deposito-a-plazo`, `apv`, `finiquito-indemnizacion` [×2 ocurrencias],
+> `credito-consumo`, `interes-compuesto`). Además
+> `tests/integration/homepage-content.test.ts:361` (*"all 6 calculator pages
+> fire calculator_completed with only calculator_slug"*) **fija por contrato**
+> que `sueldo-liquido` debe seguir emitiendo el typo — el ejecutor lo intentó,
+> `pnpm test` falló ahí, revirtió el cambio (confirmado `git diff --stat` vacío
+> sobre `formController.ts`) y reportó en vez de expandir alcance sin
+> autorización. Impacto real en métricas: **cero** — `calculator_completed` no
+> está en `EVENT_ALLOWLIST` (verificado en `src/utils/analytics.ts` y en
+> `workers/analytics-collector/src/index.ts`), así que el transporte lo
+> descarta en la Gate 2 y nunca llega a KV ni al export; es código muerto, no
+> una fuga de métricas.
+>
+> **Decisión del operador sobre el typo (2026-07-10): plan de seguimiento.**
+> Se escribió el **plan 042** (ver tabla arriba), que quita el typo de los 8
+> archivos (no 9 — recuento corregido: 7 `.astro` + `formController.ts`) y
+> elimina la única aserción de `homepage-content.test.ts` que hoy lo exige, sin
+> tocar la aserción hermana que sigue verificando `calculator_complete`. El fix
+> de dedup (Step 2 de 039, el que soluciona `completes > starts`) es
+> independiente y **no depende de 042** — puede mergearse ya. **No se hizo
+> push ni merge** — el operador decide destino de la rama
+> `advisor/039-calculator-funnel-instrumentation`.
+>
 > **035 EJECUTADO Y APROBADO EN REVISIÓN (2026-07-10, vía `/improve execute 035`):**
 > ejecutor en worktree aislado (`agent-a8d0acadc7efadffe`, commit `7dee7edc`,
 > `fix(data-signals): abortar gsc-inspect antes de escribir en fallo masivo`). Diff
