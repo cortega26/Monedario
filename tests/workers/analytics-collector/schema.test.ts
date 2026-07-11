@@ -693,6 +693,27 @@ describe("runExport", () => {
   });
 });
 
+describe("scheduled()", () => {
+  it("re-throws infrastructure failures so the invocation is marked failed", async () => {
+    const env = {
+      ANALYTICS_TELEMETRY: {
+        async list() {
+          throw new Error("KV unreachable");
+        },
+        async get() {
+          return null;
+        },
+        async put() {},
+      },
+      ANALYTICS_EXPORTS: { async put() {} },
+    } as unknown as Env;
+
+    await expect(
+      analyticsCollector.scheduled({} as never, env),
+    ).rejects.toThrow();
+  });
+});
+
 describe("manual export endpoint", () => {
   it("returns 503 when EXPORT_SECRET is not configured", async () => {
     const env = makeEnv();

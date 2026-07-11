@@ -888,11 +888,9 @@ export default {
     try {
       await runExport(env, week);
     } catch (error) {
-      console.error(
-        `[analytics-export] VALIDATION FAILED: ${
-          error instanceof Error ? error.message : String(error)
-        }`,
-      );
+      const message = error instanceof Error ? error.message : String(error);
+      console.error(`[analytics-export] export failed for week=${week}: ${message}`);
+      throw error instanceof Error ? error : new Error(message);
     }
   },
 };

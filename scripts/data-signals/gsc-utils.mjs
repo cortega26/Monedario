@@ -58,6 +58,29 @@ export function isoWeekToDateRange(week) {
 }
 
 /**
+ * True when the export for an ISO week is overdue: past a grace window after the
+ * Monday on which the worker cron produces it. Pure — the caller decides what to
+ * do. With graceDays=2: Monday/Tuesday after the week ends = pending (false);
+ * Wednesday onward = overdue (true).
+ *
+ * @param {string} week   ISO week "YYYY-Www"
+ * @param {Date}   [now]  defaults to new Date()
+ * @param {number} [graceDays=2]
+ * @returns {boolean}
+ */
+export function isExportOverdue(week, now = new Date(), graceDays = 2) {
+  const { to } = isoWeekToDateRange(week); // Sunday (week end), YYYY-MM-DD
+  const weekEndUtc = Date.parse(`${to}T00:00:00Z`);
+  const nowMidnightUtc = Date.UTC(
+    now.getUTCFullYear(),
+    now.getUTCMonth(),
+    now.getUTCDate(),
+  );
+  const overdueThresholdUtc = weekEndUtc + graceDays * 86_400_000;
+  return nowMidnightUtc > overdueThresholdUtc;
+}
+
+/**
  * Returns the YYYY-Www of the last fully elapsed ISO week
  * (the week whose Sunday has already passed).
  * @returns {string}

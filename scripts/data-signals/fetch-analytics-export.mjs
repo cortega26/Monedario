@@ -22,6 +22,7 @@
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import {
+  isExportOverdue,
   isoWeekToDateRange,
   previousCompleteISOWeek,
 } from "./gsc-utils.mjs";
@@ -213,9 +214,16 @@ async function main() {
   const { found, body } = await fetchFromR2(token, objectKey);
 
   if (!found) {
+    if (isExportOverdue(week)) {
+      console.error(
+        `[fetch-analytics-export] OVERDUE: no export in R2 for ${week} past the grace window. ` +
+        `The worker cron (Monday 07:57 UTC) likely did not run or failed. Investigate the worker.`
+      );
+      process.exit(1);
+    }
     console.error(
       `[fetch-analytics-export] Export not yet available in R2 for ${week}. ` +
-      `The worker cron runs Monday 07:57 UTC. If today is Monday, the export may still be pending.`
+      `The worker cron runs Monday 07:57 UTC. If today is Monday/Tuesday, the export may still be pending.`
     );
     process.exit(0);
   }
