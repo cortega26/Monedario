@@ -406,3 +406,34 @@ describe("sanitizeAnalyticsEvent — type handling", () => {
     expect(result!.params.page_type).toBe("calculator");
   });
 });
+
+// ── Free-form token shape (calculator_slug, rule_id, action_id) ──
+
+describe("sanitizeAnalyticsEvent — free-form token shape", () => {
+  it("conserva un calculator_slug válido", () => {
+    const result = sanitizeAnalyticsEvent("calculator_view", {
+      page_type: "calculator",
+      calculator_slug: "sueldo-liquido",
+    });
+    expect(result).not.toBeNull();
+    expect(result!.params.calculator_slug).toBe("sueldo-liquido");
+  });
+
+  it("descarta un calculator_slug inválido pero conserva el evento", () => {
+    const result = sanitizeAnalyticsEvent("calculator_view", {
+      page_type: "calculator",
+      calculator_slug: "sueldo liquido",
+    });
+    expect(result).not.toBeNull();
+    expect(result!.params.calculator_slug).toBeUndefined();
+  });
+
+  it("conserva un item_id con forma de path (item_id queda fuera de este plan)", () => {
+    const result = sanitizeAnalyticsEvent("resume_click", {
+      item_type: "calculator",
+      item_id: "/calculadoras/sueldo-liquido/",
+    });
+    expect(result).not.toBeNull();
+    expect(result!.params.item_id).toBe("/calculadoras/sueldo-liquido/");
+  });
+});

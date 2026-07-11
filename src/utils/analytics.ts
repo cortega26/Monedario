@@ -149,6 +149,16 @@ const ENUM_VALUES: Readonly<Record<string, ReadonlySet<string>>> = {
 /** Events that the transport is allowed to send. */
 const TRANSMISSIBLE_EVENTS = new Set(Object.keys(EVENT_ALLOWLIST));
 
+/** Free-form dimensions (no enum) — constrained to safe lowercase tokens.
+ *  item_id is intentionally excluded — see plan 043. */
+const FREE_FORM_TOKEN_KEYS = new Set([
+  "calculator_slug",
+  "rule_id",
+  "action_id",
+]);
+/** Lowercase alnum start, then kebab/snake. Bounds cardinality; blocks garbage. */
+const SAFE_TOKEN_RE = /^[a-z0-9][a-z0-9_-]*$/;
+
 export type SanitizedAnalyticsEvent = {
   event: string;
   params: Record<string, string | number | boolean>;
@@ -194,6 +204,15 @@ export function sanitizeAnalyticsEvent(
     // 6. Enum validation: if the key has declared allowed values, validate
     if (ENUM_VALUES[key]) {
       if (!ENUM_VALUES[key].has(String(finalValue))) continue;
+    }
+
+    // 7. Free-form token dimensions must match a safe shape (drop, keep event).
+    if (
+      FREE_FORM_TOKEN_KEYS.has(key) &&
+      typeof finalValue === "string" &&
+      !SAFE_TOKEN_RE.test(finalValue)
+    ) {
+      continue; // drop the invalid value; keep the event
     }
 
     clean[key] = finalValue;

@@ -140,6 +140,16 @@ const ENUM_VALUES: Readonly<Record<string, ReadonlySet<string>>> = {
 
 const TRANSMISSIBLE_EVENTS = new Set(Object.keys(EVENT_ALLOWLIST));
 
+/** Free-form dimensions (no enum) — constrained to safe lowercase tokens.
+ *  item_id is intentionally excluded — see plan 043. */
+const FREE_FORM_TOKEN_KEYS = new Set([
+  "calculator_slug",
+  "rule_id",
+  "action_id",
+]);
+/** Lowercase alnum start, then kebab/snake. Bounds cardinality; blocks garbage. */
+const SAFE_TOKEN_RE = /^[a-z0-9][a-z0-9_-]*$/;
+
 // ── Types ────────────────────────────────────────────────────────────────────
 
 interface ValidationResult {
@@ -211,6 +221,15 @@ export function validateEventPayload(body: unknown): ValidationResult {
     if (allowedEnums) {
       const strVal = String(clean[key]);
       if (!allowedEnums.has(strVal)) return { valid: false };
+    }
+
+    // Free-form token dimensions must match a safe shape (reject the payload).
+    if (
+      FREE_FORM_TOKEN_KEYS.has(key) &&
+      typeof clean[key] === "string" &&
+      !SAFE_TOKEN_RE.test(clean[key] as string)
+    ) {
+      return { valid: false };
     }
   }
 

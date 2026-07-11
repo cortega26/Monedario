@@ -243,6 +243,71 @@ describe("validateEventPayload", () => {
       expect(result.valid).toBe(true);
     }
   });
+
+  // ── Free-form token dimensions (calculator_slug, rule_id, action_id) ──
+
+  it("acepta un calculator_slug corto y válido", () => {
+    const result = validateEventPayload({
+      event: "calculator_view",
+      params: { page_type: "calculator", calculator_slug: "sueldo-liquido" },
+    });
+    expect(result.valid).toBe(true);
+  });
+
+  it("acepta un rule_id real", () => {
+    const result = validateEventPayload({
+      event: "next_best_step_click",
+      params: {
+        calculator_slug: "sueldo-liquido",
+        rule_id: "sl-to-apv-midhigh",
+        position: 1,
+      },
+    });
+    expect(result.valid).toBe(true);
+  });
+
+  it("rechaza calculator_slug con espacio", () => {
+    const result = validateEventPayload({
+      event: "calculator_view",
+      params: { page_type: "calculator", calculator_slug: "sueldo liquido" },
+    });
+    expect(result.valid).toBe(false);
+  });
+
+  it("rechaza calculator_slug con path/puntuación", () => {
+    const result = validateEventPayload({
+      event: "calculator_view",
+      params: { page_type: "calculator", calculator_slug: "../etc" },
+    });
+    expect(result.valid).toBe(false);
+  });
+
+  it("rechaza calculator_slug con mayúsculas", () => {
+    const result = validateEventPayload({
+      event: "calculator_view",
+      params: { page_type: "calculator", calculator_slug: "Sueldo" },
+    });
+    expect(result.valid).toBe(false);
+  });
+
+  it("rechaza calculator_slug con unicode", () => {
+    const result = validateEventPayload({
+      event: "calculator_view",
+      params: { page_type: "calculator", calculator_slug: "café☕" },
+    });
+    expect(result.valid).toBe(false);
+  });
+
+  it("acepta item_id con forma de path (item_id queda fuera de este plan)", () => {
+    const result = validateEventPayload({
+      event: "resume_click",
+      params: {
+        item_type: "calculator",
+        item_id: "/calculadoras/sueldo-liquido/",
+      },
+    });
+    expect(result.valid).toBe(true);
+  });
 });
 
 // ── Body size validation ──
