@@ -64,11 +64,12 @@ Los planes abajo vienen de la quinta auditoría profunda (035–038) y de la
 revisión de datos de tráfico que le siguió (039–041, mismo commit `520a8685`,
 2026-07-10, a pedido del usuario tras la quinta auditoría; origen: los
 scorecards y exports reales en `output/operations/`). Originalmente siete;
-**035 ya está DONE y archivado** (ver arriba), quedan seis. Se listan en **un
-único orden de ejecución recomendado** — no dos lotes separados — con una sola
-excepción dura: 036, 037 y 038 editan el mismo archivo
-(`workers/analytics-collector/src/index.ts`) y deben correr en serie y en ese
-orden; todo lo demás es paralelizable entre sí.
+**035 y 039 ya están DONE y archivados** (ver arriba — 039 parcialmente, con
+su typo residual desglosado en el plan 042, añadido a esta tabla). Quedan seis.
+Se listan en **un único orden de ejecución recomendado** — no dos lotes
+separados — con una sola excepción dura: 036, 037 y 038 editan el mismo
+archivo (`workers/analytics-collector/src/index.ts`) y deben correr en serie y
+en ese orden; todo lo demás es paralelizable entre sí.
 
 > **Recordatorio de cierre**: en cuanto un plan de esta tabla pase a `DONE`,
 > deja de aparecer aquí — su archivo se mueve a
@@ -78,13 +79,12 @@ orden; todo lo demás es paralelizable entre sí.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
 |---|------|--------|-----------|----------|--------|--------------------|--------|
-| 1 | [039](039-calculator-funnel-instrumentation.md) | Reparar instrumentación del embudo (views=0, completes sobre-contados, evento typo) | P1 | M | MED | todos (no toca `index.ts`) | IN PROGRESS (parcial, ver nota — merge pendiente de decisión del operador) |
-| 2 | [037](037-analytics-export-secret-header.md) | Recibir el secreto del export manual por header, no por query string (+ rotar) | P2 | S | LOW | 039, 041, 040 — no 038/036 (mismo archivo) | TODO |
-| 3 | [038](038-analytics-freeform-dimension-shape.md) | Restringir la forma de dimensiones libres de analytics (cardinalidad/poisoning) | P3 | S | LOW | 039, 041, 040 — no 037/036 (mismo archivo) | TODO |
-| 4 | [036](036-analytics-export-failure-detection.md) | Hacer detectable un export de analytics ausente/fallido (clase de fallo OBS-01) | P2 | M | MED | 039, 041, 040 — no 037/038 (mismo archivo) | TODO |
-| 5 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | TODO |
-| 6 | [040](040-seo-title-snippet-refresh-brief.md) | Brief SEO title/snippet (evidencia + candidatos + firma humana) — valor esperado degradado con honestidad | P3 | S | LOW | todos | TODO |
-| 7 | [042](042-remove-calculator-completed-typo-event.md) | Quitar el evento typo `calculator_completed` de 8 archivos + 2 tests que lo fijan (código muerto, cero impacto en métricas) | P3 | S | LOW | todos (independiente del dedup ya mergeado de 039) | TODO |
+| 1 | [037](037-analytics-export-secret-header.md) | Recibir el secreto del export manual por header, no por query string (+ rotar) | P2 | S | LOW | 041, 040, 042 — no 038/036 (mismo archivo) | TODO |
+| 2 | [038](038-analytics-freeform-dimension-shape.md) | Restringir la forma de dimensiones libres de analytics (cardinalidad/poisoning) | P3 | S | LOW | 041, 040, 042 — no 037/036 (mismo archivo) | TODO |
+| 3 | [036](036-analytics-export-failure-detection.md) | Hacer detectable un export de analytics ausente/fallido (clase de fallo OBS-01) | P2 | M | MED | 041, 040, 042 — no 037/038 (mismo archivo) | TODO |
+| 4 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | TODO |
+| 5 | [040](040-seo-title-snippet-refresh-brief.md) | Brief SEO title/snippet (evidencia + candidatos + firma humana) — valor esperado degradado con honestidad | P3 | S | LOW | todos | TODO |
+| 6 | [042](042-remove-calculator-completed-typo-event.md) | Quitar el evento typo `calculator_completed` de 8 archivos + 2 tests que lo fijan (código muerto, cero impacto en métricas) | P3 | S | LOW | todos | TODO |
 
 > **035 archivado** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparece en esta tabla.
 
@@ -119,8 +119,8 @@ orden; todo lo demás es paralelizable entre sí.
   editorial, no metadata). El plan 040 lo dice explícitamente y NO intenta resolverlo
   con títulos.
 
-> **039 EJECUTADO PARCIALMENTE, EN REVISIÓN (2026-07-10, vía `/improve execute
-> 039`):** ejecutor en worktree aislado (`.claude/worktrees/agent-039-funnel`,
+> **039 EJECUTADO PARCIALMENTE, APROBADO Y MERGEADO (2026-07-10, vía
+> `/improve execute 039`):** ejecutor en worktree aislado (`.claude/worktrees/agent-039-funnel`,
 > rama `advisor/039-calculator-funnel-instrumentation`, commit `9031429d`,
 > `fix(analytics): dedupe calculator_complete por page-view`). **Steps 1, 2 y 4
 > completos y reverificados de forma independiente** en el worktree: suite
@@ -167,9 +167,16 @@ orden; todo lo demás es paralelizable entre sí.
 > elimina la única aserción de `homepage-content.test.ts` que hoy lo exige, sin
 > tocar la aserción hermana que sigue verificando `calculator_complete`. El fix
 > de dedup (Step 2 de 039, el que soluciona `completes > starts`) es
-> independiente y **no depende de 042** — puede mergearse ya. **No se hizo
-> push ni merge** — el operador decide destino de la rama
-> `advisor/039-calculator-funnel-instrumentation`.
+> independiente y **no depende de 042**.
+>
+> **MERGEADO a `main` el 2026-07-10** (merge commit `a661e61a`, `--no-ff` sobre
+> `advisor/039-calculator-funnel-instrumentation`, a pedido del operador —
+> "commit, push and merge"). Reverificado en el árbol principal tras el merge:
+> `pnpm test` 1010/1010, sin conflictos, solo `src/scripts/analytics.ts` y
+> `tests/integration/analytics-script.test.ts` tocados. Empujado a
+> `origin/main`. **Archivado por política de cierre atómico** — el archivo del
+> plan vive ahora en [`archive/039-calculator-funnel-instrumentation.md`](archive/039-calculator-funnel-instrumentation.md);
+> el ítem restante (typo `calculator_completed`) continúa como plan 042, TODO.
 >
 > **035 EJECUTADO Y APROBADO EN REVISIÓN (2026-07-10, vía `/improve execute 035`):**
 > ejecutor en worktree aislado (`agent-a8d0acadc7efadffe`, commit `7dee7edc`,
@@ -420,6 +427,7 @@ Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main
 | Plan | Título | Prioridad | Esfuerzo | Estado |
 |------|--------|-----------|----------|--------|
 | [035](archive/035-gsc-inspect-abort-on-mass-failure.md) | Abortar `gsc-inspect` antes de escribir cuando la mayoría de inspecciones fallan (no sobrescribir con 0% indexado) | P1 | S | DONE (commit `a86f88eb`) |
+| [039](archive/039-calculator-funnel-instrumentation.md) | Reparar instrumentación del embudo (views=0, completes sobre-contados, evento typo) | P1 | M | DONE parcial (commit `a661e61a`) — typo residual desglosado en [042](042-remove-calculator-completed-typo-event.md) |
 
 ### Auditorías 2026-06-15 a 2026-06-19
 
