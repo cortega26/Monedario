@@ -64,12 +64,12 @@ Los planes abajo vienen de la quinta auditoría profunda (035–038) y de la
 revisión de datos de tráfico que le siguió (039–041, mismo commit `520a8685`,
 2026-07-10, a pedido del usuario tras la quinta auditoría; origen: los
 scorecards y exports reales en `output/operations/`). Originalmente siete;
-**035 y 039 ya están DONE y archivados** (ver arriba — 039 parcialmente, con
-su typo residual desglosado en el plan 042, añadido a esta tabla). Quedan seis.
-Se listan en **un único orden de ejecución recomendado** — no dos lotes
-separados — con una sola excepción dura: 036, 037 y 038 editan el mismo
-archivo (`workers/analytics-collector/src/index.ts`) y deben correr en serie y
-en ese orden; todo lo demás es paralelizable entre sí.
+**035, 037 y 039 ya están DONE y archivados** (ver arriba — 039 parcialmente,
+con su typo residual desglosado en el plan 042, añadido a esta tabla). Quedan
+cinco. Se listan en **un único orden de ejecución recomendado** — no dos lotes
+separados — con una sola excepción dura: 036 y 038 editan el mismo archivo
+(`workers/analytics-collector/src/index.ts`) y deben correr en serie; todo lo
+demás es paralelizable entre sí.
 
 > **Recordatorio de cierre**: en cuanto un plan de esta tabla pase a `DONE`,
 > deja de aparecer aquí — su archivo se mueve a
@@ -79,36 +79,32 @@ en ese orden; todo lo demás es paralelizable entre sí.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
 |---|------|--------|-----------|----------|--------|--------------------|--------|
-| 1 | [037](037-analytics-export-secret-header.md) | Recibir el secreto del export manual por header, no por query string (+ rotar) | P2 | S | LOW | 041, 040, 042 — no 038/036 (mismo archivo) | REVISADO — pendiente merge |
-| 2 | [038](038-analytics-freeform-dimension-shape.md) | Restringir la forma de dimensiones libres de analytics (cardinalidad/poisoning) | P3 | S | LOW | 041, 040, 042 — no 037/036 (mismo archivo) | TODO |
-| 3 | [036](036-analytics-export-failure-detection.md) | Hacer detectable un export de analytics ausente/fallido (clase de fallo OBS-01) | P2 | M | MED | 041, 040, 042 — no 037/038 (mismo archivo) | TODO |
-| 4 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | TODO |
-| 5 | [040](040-seo-title-snippet-refresh-brief.md) | Brief SEO title/snippet (evidencia + candidatos + firma humana) — valor esperado degradado con honestidad | P3 | S | LOW | todos | TODO |
-| 6 | [042](042-remove-calculator-completed-typo-event.md) | Quitar el evento typo `calculator_completed` de 8 archivos + 2 tests que lo fijan (código muerto, cero impacto en métricas) | P3 | S | LOW | todos | TODO |
+| 1 | [038](038-analytics-freeform-dimension-shape.md) | Restringir la forma de dimensiones libres de analytics (cardinalidad/poisoning) | P3 | S | LOW | 041, 040, 042 — no 036 (mismo archivo) | TODO |
+| 2 | [036](036-analytics-export-failure-detection.md) | Hacer detectable un export de analytics ausente/fallido (clase de fallo OBS-01) | P2 | M | MED | 041, 040, 042 — no 038 (mismo archivo) | TODO |
+| 3 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | TODO |
+| 4 | [040](040-seo-title-snippet-refresh-brief.md) | Brief SEO title/snippet (evidencia + candidatos + firma humana) — valor esperado degradado con honestidad | P3 | S | LOW | todos | TODO |
+| 5 | [042](042-remove-calculator-completed-typo-event.md) | Quitar el evento typo `calculator_completed` de 8 archivos + 2 tests que lo fijan (código muerto, cero impacto en métricas) | P3 | S | LOW | todos | TODO |
 
-> **035 archivado** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparece en esta tabla.
+> **035 y 037 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
 
 **Por qué este orden:**
-- **1–2 (035, 039) primero**: máxima prioridad (P1), máxima confianza,
-  corrección de datos sin compuerta editorial, e independientes de todo lo
-  demás — no hay razón para esperar.
-- **3–5 (037 → 038 → 036) van juntos y en ese orden exacto**: los tres tocan
+- **035, 039 y 037 ya ejecutados** (ver notas abajo): máxima prioridad/mayor
+  confianza primero, e independientes de todo lo demás — no había razón para
+  esperar.
+- **1–2 (038 → 036) van juntos y en ese orden**: ambos tocan
   `workers/analytics-collector/src/index.ts`, así que no son paralelizables
-  entre sí. El sub-orden por esfuerzo (S → S → M) despacha primero lo chico
-  (037 además cierra una brecha de seguridad) y deja el de mayor esfuerzo (036)
-  al final del bloque. El drift-check de cada plan importa más aquí porque se
-  apilan sobre el mismo archivo.
-- **6 (041)** es independiente y de riesgo bajo; puede adelantarse en
+  entre sí. El drift-check de cada plan importa más aquí porque se apilan
+  sobre el mismo archivo (recordar: 037 ya mergeado, re-correr el drift-check
+  de 038/036 contra el `index.ts` actual, no contra el commit `520a8685`
+  original).
+- **3 (041)** es independiente y de riesgo bajo; puede adelantarse en
   paralelo con cualquiera de los anteriores sin conflicto.
-- **7 (040) va último a propósito**: es un *brief de decisión*, no un fix de
+- **4 (040) va último a propósito**: es un *brief de decisión*, no un fix de
   código — se detiene en la compuerta de firma humana del copy (Step 4) y no
   debe bloquear el resto del trabajo técnico.
-- **037 tiene un paso humano post-merge**: rotar `EXPORT_SECRET`
-  (`wrangler secret put`) — un ejecutor-agente no puede rotar un secreto de
-  Worker.
 
-> **037 EJECUTADO Y REVISADO (2026-07-11, vía `/improve execute 037`):**
-> ejecutor en worktree aislado (`.claude/worktrees/agent-a5e7db02ea0226501`,
+> **037 EJECUTADO, APROBADO Y MERGEADO (2026-07-11, vía `/improve execute
+> 037`):** ejecutor en worktree aislado (`.claude/worktrees/agent-a5e7db02ea0226501`,
 > rama `advisor/037-analytics-export-secret-header`, commit `e050d54b`,
 > `fix(security): leer el secreto del export por Authorization header`).
 > Sin drift (`git diff --stat 520a8685..HEAD -- workers/analytics-collector/src/index.ts
@@ -158,18 +154,26 @@ en ese orden; todo lo demás es paralelizable entre sí.
 > `/api/analytics/export`. No existe ningún caller automatizado de este
 > endpoint. STOP condition no se activa.
 >
+> **MERGEADO a `main` el 2026-07-11** (merge commit `9d722ac6`, `--no-ff`
+> sobre `advisor/037-analytics-export-secret-header`, a pedido del operador —
+> "commit, push, merge and clean"). Reverificado en el árbol principal tras
+> el merge: `pnpm test` 1011/1011 (122 archivos), `tsc --noEmit` del worker
+> exit 0, `astro check` 0 errores (mismo hint preexistente no relacionado en
+> `content.config.ts`), sin conflictos, solo los 3 archivos del diff. Empujado
+> a `origin/main`. **Archivado por política de cierre atómico** — el archivo
+> del plan vive ahora en
+> [`archive/037-analytics-export-secret-header.md`](archive/037-analytics-export-secret-header.md).
+>
 > **Pendiente humano, no ejecutable por agente — orden de despliegue
-> importa:** (1) mergear y desplegar (`wrangler deploy`) — recién ahí
-> `?secret=` empieza a devolver 401 en producción y el operador debe pasar a
-> usar `Authorization: Bearer`; (2) rotar `EXPORT_SECRET`
+> importa:** (1) desplegar (`wrangler deploy`) — recién ahí `?secret=`
+> empieza a devolver 401 en producción y el operador debe pasar a usar
+> `Authorization: Bearer` en cualquier invocación manual; (2) rotar
+> `EXPORT_SECRET`
 > (`wrangler secret put EXPORT_SECRET --config workers/analytics-collector/wrangler.toml`)
 > porque el valor anterior pudo haber quedado en logs de Cloudflare mientras
 > viajaba por query string. Sin el paso (2) el fix de transporte queda
-> incompleto según el propio plan ("solo se completa una vez rotado").
-> **No mergeado a `main` todavía** — decisión del
-> operador. Rama disponible en `advisor/037-analytics-export-secret-header`
-> (worktree `.claude/worktrees/agent-a5e7db02ea0226501`) para revisión y merge
-> manual.
+> incompleto según el propio plan ("solo se completa una vez rotado"). Ninguno
+> de los dos es ejecutable por un agente.
 
 **Hallazgos clave de la revisión de datos (para contexto de quien ejecute):**
 - El embudo first-party NO es confiable hoy: `calculator_view`=0 en 21 calculadoras
