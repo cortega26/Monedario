@@ -65,11 +65,13 @@ revisión de datos de tráfico que le siguió (039–041, mismo commit `520a8685
 2026-07-10, a pedido del usuario tras la quinta auditoría; origen: los
 scorecards y exports reales en `output/operations/`). Originalmente siete;
 **035, 037 y 039 ya están DONE y archivados** (ver arriba — 039 parcialmente,
-con su typo residual desglosado en el plan 042, añadido a esta tabla). Quedan
-cinco. Se listan en **un único orden de ejecución recomendado** — no dos lotes
-separados — con una sola excepción dura: 036 y 038 editan el mismo archivo
-(`workers/analytics-collector/src/index.ts`) y deben correr en serie; todo lo
-demás es paralelizable entre sí.
+con su typo residual desglosado en el plan 042, añadido a esta tabla). El plan
+043 se sumó el 2026-07-11 como *carve-out* de 038 (ver nota de bloqueo abajo).
+Se listan en **un único orden de ejecución recomendado** — no dos lotes
+separados — con una excepción dura: 036 y 038 editan el mismo archivo
+(`workers/analytics-collector/src/index.ts`) y deben correr en serie; 043
+depende de que 038 esté mergeado primero (extiende su mismo scaffolding); todo
+lo demás es paralelizable entre sí.
 
 > **Recordatorio de cierre**: en cuanto un plan de esta tabla pase a `DONE`,
 > deja de aparecer aquí — su archivo se mueve a
@@ -79,11 +81,12 @@ demás es paralelizable entre sí.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
 |---|------|--------|-----------|----------|--------|--------------------|--------|
-| 1 | [038](038-analytics-freeform-dimension-shape.md) | Restringir la forma de dimensiones libres de analytics (cardinalidad/poisoning) | P3 | S | LOW | 041, 040, 042 — no 036 (mismo archivo) | TODO |
+| 1 | [038](038-analytics-freeform-dimension-shape.md) | Restringir la forma de dimensiones libres de analytics (cardinalidad/poisoning) — **alcance revisado: 3 de 4 claves** | P3 | S | LOW | 041, 040, 042 — no 036 (mismo archivo) | **IN PROGRESS** (aprobado, pendiente de merge) |
 | 2 | [036](036-analytics-export-failure-detection.md) | Hacer detectable un export de analytics ausente/fallido (clase de fallo OBS-01) | P2 | M | MED | 041, 040, 042 — no 038 (mismo archivo) | TODO |
 | 3 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | TODO |
 | 4 | [040](040-seo-title-snippet-refresh-brief.md) | Brief SEO title/snippet (evidencia + candidatos + firma humana) — valor esperado degradado con honestidad | P3 | S | LOW | todos | TODO |
 | 5 | [042](042-remove-calculator-completed-typo-event.md) | Quitar el evento typo `calculator_completed` de 8 archivos + 2 tests que lo fijan (código muerto, cero impacto en métricas) | P3 | S | LOW | todos | TODO |
+| 6 | [043](043-analytics-item-id-shape-decision.md) | Decidir y aplicar la forma segura de `item_id` (carve-out de 038; requiere firma humana en Step 1) | P3 | S | LOW–MED | ninguno — depende de 038 mergeado | TODO |
 
 > **035 y 037 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
 
@@ -102,6 +105,48 @@ demás es paralelizable entre sí.
 - **4 (040) va último a propósito**: es un *brief de decisión*, no un fix de
   código — se detiene en la compuerta de firma humana del copy (Step 4) y no
   debe bloquear el resto del trabajo técnico.
+- **6 (043) va último**: depende de que 038 esté mergeado (extiende su mismo
+  scaffolding de constantes) y es en sí mismo un *brief de decisión* — se
+  detiene en una compuerta de firma humana (Step 1) antes de tocar código.
+
+> **038 BLOQUEADO, RE-ALCANCEADO Y RE-EJECUTADO (2026-07-11, vía `/improve
+> execute 038`):** primer despacho bloqueado — el ejecutor corrió el grep de
+> STOP-condition obligatorio antes de escribir código y se detuvo
+> correctamente, sin tocar ningún archivo (`git status` limpio en el
+> worktree). El reviewer reverificó cada afirmación leyendo el código
+> directamente (no confió en el reporte). Hallazgo: la premisa de `item_id`
+> en la sección "Current state" original del plan era **incorrecta** — el
+> único emisor real (`ResumeWidget.astro:130`, vía `resumeState.ts`) envía
+> `window.location.pathname` (p. ej. `/calculadoras/sueldo-liquido/`), no un
+> slug kebab; aplicar el regex original tal cual habría **roto datos de
+> producción en silencio**. `calculator_slug` y `rule_id` sí quedaron
+> verificados como seguros (literales kebab estáticos en cada call site
+> real); `action_id` no tiene ningún emisor real todavía (seguro de
+> constreñir, sin riesgo). **Decisión del operador: dividir el plan.** 038
+> se reescribió para cubrir solo las 3 claves verificadas seguras
+> (`calculator_slug`, `rule_id`, `action_id`). `item_id` se separó al
+> **plan 043** (nuevo), que no elige la opción de arreglo por sí mismo — trae
+> tres alternativas con evidencia y trade-offs, y se detiene en una compuerta
+> de firma humana antes de implementar cualquiera.
+>
+> **Segundo despacho (038 revisado) — APROBADO, pendiente de merge:**
+> ejecutor en worktree aislado (`.claude/worktrees/agent-a1a3d6125d7804444`,
+> rama `advisor/038-analytics-freeform-dimension-shape`, commit `5ebda2e0`,
+> `fix(security): validar la forma de dimensiones libres de analytics`). Diff
+> acotado a los 4 archivos en alcance (`+134` líneas, sin tocar `item_id`).
+> **Revisión (tech-lead) APROBADA** — reverificada de forma independiente en
+> el worktree, no solo confiando en el reporte del ejecutor: `grep` confirma
+> `FREE_FORM_TOKEN_KEYS` con exactamente `calculator_slug`/`rule_id`/
+> `action_id` (sin `item_id`) en ambos archivos; `pnpm exec vitest run` de
+> los dos archivos de test → 97/97; suite completa `pnpm test` → 1021/1021
+> (122 archivos); `tsc --noEmit` del worker → exit 0; `eslint` de los
+> archivos en alcance → exit 0; `format:check` → exit 0; diff leído completo
+> línea por línea (coincide con el plan, incluida la convención
+> reject-vs-drop). Tests nuevos auditados — no son vacíos, cubren casos
+> positivos y negativos reales. **No mergeado a `main`** — por política de
+> este repo (`plans/README.md`, sección de cierre) un plan no se considera
+> terminado hasta estar integrado en `main`; fusionar es decisión del
+> operador. Rama y worktree quedan disponibles para revisión/merge manual.
 
 > **037 EJECUTADO, APROBADO Y MERGEADO (2026-07-11, vía `/improve execute
 > 037`):** ejecutor en worktree aislado (`.claude/worktrees/agent-a5e7db02ea0226501`,
