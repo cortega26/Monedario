@@ -64,14 +64,12 @@ Los planes abajo vienen de la quinta auditoría profunda (035–038) y de la
 revisión de datos de tráfico que le siguió (039–041, mismo commit `520a8685`,
 2026-07-10, a pedido del usuario tras la quinta auditoría; origen: los
 scorecards y exports reales en `output/operations/`). Originalmente siete;
-**035, 037 y 039 ya están DONE y archivados** (ver arriba — 039 parcialmente,
-con su typo residual desglosado en el plan 042, añadido a esta tabla). El plan
-043 se sumó el 2026-07-11 como *carve-out* de 038 (ver nota de bloqueo abajo).
-Se listan en **un único orden de ejecución recomendado** — no dos lotes
-separados — con una excepción dura: 036 y 038 editan el mismo archivo
-(`workers/analytics-collector/src/index.ts`) y deben correr en serie; 043
-depende de que 038 esté mergeado primero (extiende su mismo scaffolding); todo
-lo demás es paralelizable entre sí.
+**035, 037, 038 y 039 ya están DONE y archivados** (ver arriba — 039
+parcialmente, con su typo residual desglosado en el plan 042; 038 con alcance
+revisado a 3 de 4 claves, el resto desglosado en el plan 043 — ver nota abajo).
+El plan 043 se sumó el 2026-07-11 como *carve-out* de 038. Se listan en **un
+único orden de ejecución recomendado** — no dos lotes separados; todo es
+paralelizable entre sí salvo que se indique lo contrario.
 
 > **Recordatorio de cierre**: en cuanto un plan de esta tabla pase a `DONE`,
 > deja de aparecer aquí — su archivo se mueve a
@@ -81,33 +79,31 @@ lo demás es paralelizable entre sí.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
 |---|------|--------|-----------|----------|--------|--------------------|--------|
-| 1 | [038](038-analytics-freeform-dimension-shape.md) | Restringir la forma de dimensiones libres de analytics (cardinalidad/poisoning) — **alcance revisado: 3 de 4 claves** | P3 | S | LOW | 041, 040, 042 — no 036 (mismo archivo) | **IN PROGRESS** (aprobado, pendiente de merge) |
-| 2 | [036](036-analytics-export-failure-detection.md) | Hacer detectable un export de analytics ausente/fallido (clase de fallo OBS-01) | P2 | M | MED | 041, 040, 042 — no 038 (mismo archivo) | TODO |
-| 3 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | TODO |
-| 4 | [040](040-seo-title-snippet-refresh-brief.md) | Brief SEO title/snippet (evidencia + candidatos + firma humana) — valor esperado degradado con honestidad | P3 | S | LOW | todos | TODO |
-| 5 | [042](042-remove-calculator-completed-typo-event.md) | Quitar el evento typo `calculator_completed` de 8 archivos + 2 tests que lo fijan (código muerto, cero impacto en métricas) | P3 | S | LOW | todos | TODO |
-| 6 | [043](043-analytics-item-id-shape-decision.md) | Decidir y aplicar la forma segura de `item_id` (carve-out de 038; requiere firma humana en Step 1) | P3 | S | LOW–MED | ninguno — depende de 038 mergeado | TODO |
+| 1 | [036](036-analytics-export-failure-detection.md) | Hacer detectable un export de analytics ausente/fallido (clase de fallo OBS-01) | P2 | M | MED | todos (038 ya mergeado) | TODO |
+| 2 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | TODO |
+| 3 | [040](040-seo-title-snippet-refresh-brief.md) | Brief SEO title/snippet (evidencia + candidatos + firma humana) — valor esperado degradado con honestidad | P3 | S | LOW | todos | TODO |
+| 4 | [042](042-remove-calculator-completed-typo-event.md) | Quitar el evento typo `calculator_completed` de 8 archivos + 2 tests que lo fijan (código muerto, cero impacto en métricas) | P3 | S | LOW | todos | TODO |
+| 5 | [043](043-analytics-item-id-shape-decision.md) | Decidir y aplicar la forma segura de `item_id` (carve-out de 038; requiere firma humana en Step 1) | P3 | S | LOW–MED | todos (038 ya mergeado) | TODO |
 
-> **035 y 037 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
+> **035, 037 y 038 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
 
 **Por qué este orden:**
-- **035, 039 y 037 ya ejecutados** (ver notas abajo): máxima prioridad/mayor
-  confianza primero, e independientes de todo lo demás — no había razón para
-  esperar.
-- **1–2 (038 → 036) van juntos y en ese orden**: ambos tocan
-  `workers/analytics-collector/src/index.ts`, así que no son paralelizables
-  entre sí. El drift-check de cada plan importa más aquí porque se apilan
-  sobre el mismo archivo (recordar: 037 ya mergeado, re-correr el drift-check
-  de 038/036 contra el `index.ts` actual, no contra el commit `520a8685`
-  original).
-- **3 (041)** es independiente y de riesgo bajo; puede adelantarse en
+- **035, 038, 039 y 037 ya ejecutados** (ver notas abajo): máxima
+  prioridad/mayor confianza primero, e independientes de todo lo demás — no
+  había razón para esperar.
+- **1 (036)** ahora corre libre: antes debía serializarse con 038 por tocar el
+  mismo archivo (`workers/analytics-collector/src/index.ts`); con 038 ya
+  mergeado, su drift-check debe correr contra el `index.ts` actual (post-038),
+  no contra el commit `520a8685` original.
+- **2 (041)** es independiente y de riesgo bajo; puede adelantarse en
   paralelo con cualquiera de los anteriores sin conflicto.
-- **4 (040) va último a propósito**: es un *brief de decisión*, no un fix de
+- **3 (040) va después a propósito**: es un *brief de decisión*, no un fix de
   código — se detiene en la compuerta de firma humana del copy (Step 4) y no
   debe bloquear el resto del trabajo técnico.
-- **6 (043) va último**: depende de que 038 esté mergeado (extiende su mismo
-  scaffolding de constantes) y es en sí mismo un *brief de decisión* — se
-  detiene en una compuerta de firma humana (Step 1) antes de tocar código.
+- **5 (043) va último**: extiende el mismo scaffolding de constantes que 038
+  (ya mergeado, así que no hay bloqueo real) y es en sí mismo un *brief de
+  decisión* — se detiene en una compuerta de firma humana (Step 1) antes de
+  tocar código.
 
 > **038 BLOQUEADO, RE-ALCANCEADO Y RE-EJECUTADO (2026-07-11, vía `/improve
 > execute 038`):** primer despacho bloqueado — el ejecutor corrió el grep de
@@ -129,7 +125,7 @@ lo demás es paralelizable entre sí.
 > tres alternativas con evidencia y trade-offs, y se detiene en una compuerta
 > de firma humana antes de implementar cualquiera.
 >
-> **Segundo despacho (038 revisado) — APROBADO, pendiente de merge:**
+> **Segundo despacho (038 revisado) — EJECUTADO, APROBADO Y MERGEADO:**
 > ejecutor en worktree aislado (`.claude/worktrees/agent-a1a3d6125d7804444`,
 > rama `advisor/038-analytics-freeform-dimension-shape`, commit `5ebda2e0`,
 > `fix(security): validar la forma de dimensiones libres de analytics`). Diff
@@ -143,10 +139,16 @@ lo demás es paralelizable entre sí.
 > archivos en alcance → exit 0; `format:check` → exit 0; diff leído completo
 > línea por línea (coincide con el plan, incluida la convención
 > reject-vs-drop). Tests nuevos auditados — no son vacíos, cubren casos
-> positivos y negativos reales. **No mergeado a `main`** — por política de
-> este repo (`plans/README.md`, sección de cierre) un plan no se considera
-> terminado hasta estar integrado en `main`; fusionar es decisión del
-> operador. Rama y worktree quedan disponibles para revisión/merge manual.
+> positivos y negativos reales. **MERGEADO a `main` el 2026-07-11** (fast-forward
+> `0e1a2a7a..5ebda2e0`, a pedido explícito del operador — "merge"). Reverificado
+> en el árbol principal tras el merge: `pnpm test` 1021/1021, `tsc --noEmit`
+> del worker exit 0, `eslint` exit 0, `format:check` exit 0, sin conflictos,
+> solo los 4 archivos del diff. No empujado a `origin/main` (el operador no lo
+> pidió). **Archivado por política de cierre atómico** — el archivo del plan
+> vive ahora en
+> [`archive/038-analytics-freeform-dimension-shape.md`](archive/038-analytics-freeform-dimension-shape.md).
+> `item_id` sigue sin protección — ver plan 043, aún `TODO` con compuerta de
+> firma humana pendiente.
 
 > **037 EJECUTADO, APROBADO Y MERGEADO (2026-07-11, vía `/improve execute
 > 037`):** ejecutor en worktree aislado (`.claude/worktrees/agent-a5e7db02ea0226501`,

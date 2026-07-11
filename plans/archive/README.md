@@ -35,6 +35,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [035](035-gsc-inspect-abort-on-mass-failure.md) | Abortar `gsc-inspect` antes de escribir cuando la mayoría de inspecciones fallan (no sobrescribir con 0% indexado) | 2026-07-10 | sí (commit `a86f88eb`) |
 | [039](039-calculator-funnel-instrumentation.md) | Reparar instrumentación del embudo de calculadoras (dedupe `calculator_complete` por page-view) — parcial, típo `calculator_completed` desglosado al plan 042 | 2026-07-10 | sí (merge commit `a661e61a`) |
 | [037](037-analytics-export-secret-header.md) | Recibir el secreto del export manual por `Authorization` header, no por query string (rotación de `EXPORT_SECRET` pendiente, paso humano) | 2026-07-10 | sí (merge commit `9d722ac6`) |
+| [038](038-analytics-freeform-dimension-shape.md) | Restringir la forma de `calculator_slug`/`rule_id`/`action_id` en analytics (cardinalidad/poisoning) — alcance revisado a 3 de 4 claves tras bloqueo inicial; `item_id` separado al plan 043 | 2026-07-10 | sí (fast-forward `5ebda2e0`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
