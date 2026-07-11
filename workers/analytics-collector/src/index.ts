@@ -719,7 +719,11 @@ async function handleManualExport(request: Request, env: Env): Promise<Response>
   }
 
   const url = new URL(request.url);
-  const providedSecret = url.searchParams.get("secret");
+  const authHeader = request.headers.get("Authorization");
+  const providedSecret =
+    authHeader && authHeader.startsWith("Bearer ")
+      ? authHeader.slice("Bearer ".length).trim()
+      : null;
   if (!providedSecret) {
     return jsonResponse({ error: "missing_secret" }, 401);
   }
