@@ -298,7 +298,9 @@ describe("validateEventPayload", () => {
     expect(result.valid).toBe(false);
   });
 
-  it("acepta item_id con forma de path (item_id queda fuera de este plan)", () => {
+  // ── item_id shape (plan 043 — bare token or site-relative path) ──
+
+  it("acepta item_id con forma de path real de producción", () => {
     const result = validateEventPayload({
       event: "resume_click",
       params: {
@@ -307,6 +309,42 @@ describe("validateEventPayload", () => {
       },
     });
     expect(result.valid).toBe(true);
+  });
+
+  it("acepta item_id como token kebab simple", () => {
+    const result = validateEventPayload({
+      event: "resume_click",
+      params: { item_type: "calculator", item_id: "sueldo-liquido" },
+    });
+    expect(result.valid).toBe(true);
+  });
+
+  it("rechaza item_id con mayúsculas o unicode", () => {
+    const upper = validateEventPayload({
+      event: "resume_click",
+      params: { item_type: "calculator", item_id: "Sueldo-Liquido" },
+    });
+    expect(upper.valid).toBe(false);
+
+    const unicode = validateEventPayload({
+      event: "resume_click",
+      params: { item_type: "calculator", item_id: "café☕" },
+    });
+    expect(unicode.valid).toBe(false);
+  });
+
+  it("rechaza item_id con intento de path traversal", () => {
+    const dotdot = validateEventPayload({
+      event: "resume_click",
+      params: { item_type: "calculator", item_id: "../etc/passwd" },
+    });
+    expect(dotdot.valid).toBe(false);
+
+    const doubleSlash = validateEventPayload({
+      event: "resume_click",
+      params: { item_type: "calculator", item_id: "//..//" },
+    });
+    expect(doubleSlash.valid).toBe(false);
   });
 });
 
