@@ -300,9 +300,6 @@ function handleCalculate(): void {
       outcome: "success",
       mode: "liquido-a-bruto",
     });
-    trackAnalyticsEvent("calculator_completed", {
-      calculator_slug: "sueldo-liquido",
-    });
   } else {
     const imponibleRaw = parseFloat(
       (document.getElementById("sueldo-imponible") as HTMLInputElement).value
@@ -412,9 +409,6 @@ function handleCalculate(): void {
       calculator_name: "Calculadora de Sueldo Liquido",
       outcome: "success",
       mode: "bruto-a-liquido",
-    });
-    trackAnalyticsEvent("calculator_completed", {
-      calculator_slug: "sueldo-liquido",
     });
   }
 }

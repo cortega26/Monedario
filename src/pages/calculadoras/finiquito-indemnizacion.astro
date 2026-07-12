@@ -624,9 +624,6 @@ const calculatorNextStepItems = [
         outcome: "success",
         mode: "vacaciones-proporcionales",
       });
-      trackAnalyticsEvent("calculator_completed", {
-        calculator_slug: "finiquito-indemnizacion",
-      });
       return;
     }
 
@@ -810,9 +807,6 @@ const calculatorNextStepItems = [
       calculator_name: "Calculadora Finiquito e Indemnizacion",
       outcome: "success",
       mode: "finiquito-completo",
-    });
-    trackAnalyticsEvent("calculator_completed", {
-      calculator_slug: "finiquito-indemnizacion",
     });
   });
 </script>

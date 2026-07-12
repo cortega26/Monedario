@@ -358,28 +358,6 @@ describe("Wave 2 structural guards", () => {
     }
   });
 
-  it("all 6 calculator pages fire calculator_completed with only calculator_slug", () => {
-    for (const slug of calculatorPages) {
-      const source = readFileSync(
-        `src/pages/calculadoras/${slug}.astro`,
-        "utf8"
-      );
-      if (slug === "sueldo-liquido") {
-        const moduleSource = readFileSync(
-          "src/utils/sueldo-liquido/formController.ts",
-          "utf8"
-        );
-        expect(source + moduleSource).toContain('"calculator_completed"');
-        expect(source + moduleSource).toContain(
-          `calculator_slug: "${slug}"`
-        );
-      } else {
-        expect(source).toContain('"calculator_completed"');
-        expect(source).toContain(`calculator_slug: "${slug}"`);
-      }
-    }
-  });
-
   it("all 6 calculator pages still fire the original calculator_complete event", () => {
     for (const slug of calculatorPages) {
       const source = readFileSync(
