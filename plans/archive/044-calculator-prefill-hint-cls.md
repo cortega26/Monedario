@@ -338,7 +338,7 @@ format:check` → exit 0.
   — but if you find another caller, STOP and report before changing the
   signature).
 
-## Resultado de ejecución (APROBADO en revisión, pendiente de merge, 2026-07-12, vía `/improve execute 044`)
+## Resultado de ejecución (DONE, MERGEADO, 2026-07-12, vía `/improve execute 044`)
 
 Ejecutor despachado en worktree aislado
 (`.claude/worktrees/agent-a14e6c16a1c1a1cc9`, rama
@@ -396,11 +396,16 @@ económico por el bot `monedario-snapshot-bot`), una rama por delante de la
 gap de sincronización local/remoto, no un problema de alcance. El commit
 `08b36350` no toca ningún archivo de este plan.
 
-**No mergeado a `main` todavía** — según la política de cierre atómico de este
-repo, el plan no se considera terminado ni se archiva hasta que su commit esté
-integrado en `main`. Queda `APROBADO, pendiente de merge` a decisión del
-operador (branch `advisor/044-calculator-prefill-hint-cls`, worktree
-`.claude/worktrees/agent-a14e6c16a1c1a1cc9`).
+**MERGEADO a `main` el 2026-07-12** (merge commit `d737d7df`, `--no-ff` sobre
+`advisor/044-calculator-prefill-hint-cls`, a pedido del operador — "commit,
+push and merge to main"). Antes del merge, `main` local se sincronizó por
+fast-forward con `origin/main` (`08b36350`, refresh automático del snapshot
+económico, ajeno a este plan). Reverificado en el árbol principal tras el
+merge: `pnpm test` 1029/1029, `astro check` 0 errores, `eslint`/`format:check`
+de los archivos en alcance limpios, `git status` limpio. Empujado a
+`origin/main`. **Archivado por política de cierre atómico** — el archivo del
+plan vive ahora en
+[`archive/044-calculator-prefill-hint-cls.md`](archive/044-calculator-prefill-hint-cls.md).
 
 ## Maintenance notes
 

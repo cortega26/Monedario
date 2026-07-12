@@ -83,9 +83,7 @@ paralelizable entre sí salvo que se indique lo contrario.
 | 2 | [040](040-seo-title-snippet-refresh-brief.md) | Brief SEO title/snippet (evidencia + candidatos + firma humana) — valor esperado degradado con honestidad | P3 | S | LOW | todos | TODO |
 | 3 | [042](042-remove-calculator-completed-typo-event.md) | Quitar el evento typo `calculator_completed` de 8 archivos + 2 tests que lo fijan (código muerto, cero impacto en métricas) | P3 | S | LOW | todos | TODO |
 | 4 | [043](043-analytics-item-id-shape-decision.md) | Decidir y aplicar la forma segura de `item_id` (carve-out de 038; requiere firma humana en Step 1) | P3 | S | LOW–MED | todos (038 ya mergeado) | TODO |
-| 5 | [044](044-calculator-prefill-hint-cls.md) | Convertir el aviso de prellenado en toast `fixed` para eliminar su CLS (0.0125, carve-out de 041) | P3 | S | LOW | todos | APROBADO — pendiente de merge (branch `advisor/044-calculator-prefill-hint-cls`) |
-
-> **035, 036, 037 y 038 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
+> **035, 036, 037, 038 y 044 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
 
 **Por qué este orden:**
 - **035, 038, 039, 037 y 036 ya ejecutados** (ver notas abajo): máxima
@@ -137,8 +135,8 @@ paralelizable entre sí salvo que se indique lo contrario.
 > RUM es de solo 20 visitas, así que tampoco está descartado que sea una
 > sesión atípica.
 >
-> **044 EJECUTADO Y APROBADO EN REVISIÓN, PENDIENTE DE MERGE (2026-07-12, vía
-> `/improve execute 044`):** ejecutor en worktree aislado
+> **044 EJECUTADO, APROBADO Y MERGEADO (2026-07-12, vía `/improve execute
+> 044`):** ejecutor en worktree aislado
 > (`.claude/worktrees/agent-a14e6c16a1c1a1cc9`, rama
 > `advisor/044-calculator-prefill-hint-cls`, commit `9da2ce6b`,
 > `fix(perf): convertir el aviso de prellenado en toast fixed para eliminar su CLS`).
@@ -157,10 +155,17 @@ paralelizable entre sí salvo que se indique lo contrario.
 > re-medido por el ejecutor con `PerformanceObserver`: cero entradas con y sin
 > perfil prellenado — consistente con la garantía estructural de que un
 > elemento `fixed` anclado a `document.body` no puede desplazar otros
-> elementos. Rama sin upstream (no pusheada, sin PR). **No mergeado a `main`
-> todavía** — por política de cierre atómico de este repo, no se marca DONE ni
-> se archiva hasta integrarse en `main`; queda `APROBADO — pendiente de merge`
-> a decisión del operador.
+> elementos.
+>
+> **MERGEADO a `main` el 2026-07-12** (merge commit `d737d7df`, `--no-ff`
+> sobre `advisor/044-calculator-prefill-hint-cls`, a pedido del operador —
+> "commit, push and merge to main"). `main` local se sincronizó primero por
+> fast-forward con `origin/main` (`08b36350`, refresh automático ajeno del
+> snapshot económico). Reverificado en el árbol principal tras el merge:
+> `pnpm test` 1029/1029, `astro check` 0 errores, `eslint`/`format:check`
+> limpios, `git status` limpio. Empujado a `origin/main`. **Archivado por
+> política de cierre atómico** — el archivo del plan vive ahora en
+> [`archive/044-calculator-prefill-hint-cls.md`](archive/044-calculator-prefill-hint-cls.md).
 >
 > **Plan 044 escrito el mismo día como carve-out de bajo riesgo de este
 > diagnóstico** (a pedido del operador, tras indicarle esperar los próximos
@@ -657,6 +662,7 @@ Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main
 | [037](archive/037-analytics-export-secret-header.md) | Recibir el secreto del export manual por `Authorization` header, no por query string | P2 | S | DONE (merge commit `9d722ac6`) — rotación de `EXPORT_SECRET` pendiente, paso humano |
 | [038](archive/038-analytics-freeform-dimension-shape.md) | Restringir la forma de `calculator_slug`/`rule_id`/`action_id` en analytics | P2 | S | DONE (fast-forward `5ebda2e0`) — `item_id` separado al plan 043 |
 | [039](archive/039-calculator-funnel-instrumentation.md) | Reparar instrumentación del embudo (views=0, completes sobre-contados, evento typo) | P1 | M | DONE parcial (commit `a661e61a`) — typo residual desglosado en [042](042-remove-calculator-completed-typo-event.md) |
+| [044](archive/044-calculator-prefill-hint-cls.md) | Convertir el aviso de prellenado en toast `fixed` para eliminar su CLS (0.0125) | P3 | S | DONE (merge commit `d737d7df`) — carve-out del diagnóstico de 041 (BLOCKED, ver nota arriba); no cierra el CLS de campo (p75 1.008), aún sin causa identificada |
 
 ### Auditorías 2026-06-15 a 2026-06-19
 
