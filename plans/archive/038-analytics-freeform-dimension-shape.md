@@ -373,6 +373,7 @@ Stop and report back (do not improvise) if:
   the catalog-drift maintenance cost first.
 - A reviewer should confirm `position` and `item_id` are untouched, and that
   the worker *rejects* while the client *drops*.
-- `item_id` remains fully unconstrained after this plan — see plan 043 for
-  its resolution. Do not consider the original finding (037/038's "Why this
-  matters") fully closed until 043 lands too.
+- `item_id` remained fully unconstrained after this plan; it is now resolved
+  via plan 043's `SAFE_ITEM_ID_RE` (Option 2 — accepts a bare kebab token or
+  a site-relative path). The original finding (037/038's "Why this matters")
+  will be fully closed once 043 merges.

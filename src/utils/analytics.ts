@@ -150,7 +150,8 @@ const ENUM_VALUES: Readonly<Record<string, ReadonlySet<string>>> = {
 const TRANSMISSIBLE_EVENTS = new Set(Object.keys(EVENT_ALLOWLIST));
 
 /** Free-form dimensions (no enum) — constrained to safe lowercase tokens.
- *  item_id is intentionally excluded — see plan 043. */
+ *  item_id is intentionally excluded from this set — it uses its own,
+ *  more permissive check (SAFE_ITEM_ID_RE) below; see plan 043. */
 const FREE_FORM_TOKEN_KEYS = new Set([
   "calculator_slug",
   "rule_id",
@@ -158,6 +159,11 @@ const FREE_FORM_TOKEN_KEYS = new Set([
 ]);
 /** Lowercase alnum start, then kebab/snake. Bounds cardinality; blocks garbage. */
 const SAFE_TOKEN_RE = /^[a-z0-9][a-z0-9_-]*$/;
+
+/** item_id may be a bare kebab token OR a site-relative path
+ *  (e.g. "/calculadoras/sueldo-liquido/") — the ResumeWidget calculator
+ *  case stores window.location.pathname, not a slug. See plan 043. */
+const SAFE_ITEM_ID_RE = /^\/?[a-z0-9]+(?:[-_/][a-z0-9]+)*\/?$/;
 
 export type SanitizedAnalyticsEvent = {
   event: string;
@@ -211,6 +217,15 @@ export function sanitizeAnalyticsEvent(
       FREE_FORM_TOKEN_KEYS.has(key) &&
       typeof finalValue === "string" &&
       !SAFE_TOKEN_RE.test(finalValue)
+    ) {
+      continue; // drop the invalid value; keep the event
+    }
+
+    // 8. item_id has its own, more permissive shape (token or path) — see plan 043.
+    if (
+      key === "item_id" &&
+      typeof finalValue === "string" &&
+      !SAFE_ITEM_ID_RE.test(finalValue)
     ) {
       continue; // drop the invalid value; keep the event
     }

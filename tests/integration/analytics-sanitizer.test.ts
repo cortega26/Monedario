@@ -428,12 +428,53 @@ describe("sanitizeAnalyticsEvent — free-form token shape", () => {
     expect(result!.params.calculator_slug).toBeUndefined();
   });
 
-  it("conserva un item_id con forma de path (item_id queda fuera de este plan)", () => {
+  it("conserva un item_id con forma de path real de producción", () => {
     const result = sanitizeAnalyticsEvent("resume_click", {
       item_type: "calculator",
       item_id: "/calculadoras/sueldo-liquido/",
     });
     expect(result).not.toBeNull();
     expect(result!.params.item_id).toBe("/calculadoras/sueldo-liquido/");
+  });
+
+  it("conserva un item_id como token kebab simple", () => {
+    const result = sanitizeAnalyticsEvent("resume_click", {
+      item_type: "calculator",
+      item_id: "sueldo-liquido",
+    });
+    expect(result).not.toBeNull();
+    expect(result!.params.item_id).toBe("sueldo-liquido");
+  });
+
+  it("descarta un item_id con mayúsculas o unicode pero conserva el evento", () => {
+    const upper = sanitizeAnalyticsEvent("resume_click", {
+      item_type: "calculator",
+      item_id: "Sueldo-Liquido",
+    });
+    expect(upper).not.toBeNull();
+    expect(upper!.params.item_id).toBeUndefined();
+
+    const unicode = sanitizeAnalyticsEvent("resume_click", {
+      item_type: "calculator",
+      item_id: "café☕",
+    });
+    expect(unicode).not.toBeNull();
+    expect(unicode!.params.item_id).toBeUndefined();
+  });
+
+  it("descarta un item_id con intento de path traversal pero conserva el evento", () => {
+    const dotdot = sanitizeAnalyticsEvent("resume_click", {
+      item_type: "calculator",
+      item_id: "../etc/passwd",
+    });
+    expect(dotdot).not.toBeNull();
+    expect(dotdot!.params.item_id).toBeUndefined();
+
+    const doubleSlash = sanitizeAnalyticsEvent("resume_click", {
+      item_type: "calculator",
+      item_id: "//..//",
+    });
+    expect(doubleSlash).not.toBeNull();
+    expect(doubleSlash!.params.item_id).toBeUndefined();
   });
 });
