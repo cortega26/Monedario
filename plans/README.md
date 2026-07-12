@@ -80,10 +80,7 @@ paralelizable entre sí salvo que se indique lo contrario.
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
 |---|------|--------|-----------|----------|--------|--------------------|--------|
 | 1 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | BLOCKED (hipótesis descartada; causa de campo sin identificar — ver nota abajo) |
-| 2 | [040](040-seo-title-snippet-refresh-brief.md) | Brief SEO title/snippet (evidencia + candidatos + firma humana) — valor esperado degradado con honestidad | P3 | S | LOW | todos | TODO |
-| 3 | [042](042-remove-calculator-completed-typo-event.md) | Quitar el evento typo `calculator_completed` de 8 archivos + 2 tests que lo fijan (código muerto, cero impacto en métricas) | P3 | S | LOW | todos | TODO |
-| 4 | [043](043-analytics-item-id-shape-decision.md) | Decidir y aplicar la forma segura de `item_id` (carve-out de 038; requiere firma humana en Step 1) | P3 | S | LOW–MED | todos (038 ya mergeado) | TODO |
-> **035, 036, 037, 038 y 044 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
+> **035, 036, 037, 038, 039, 040, 042, 043 y 044 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
 
 **Por qué este orden:**
 - **035, 038, 039, 037 y 036 ya ejecutados** (ver notas abajo): máxima
@@ -99,6 +96,115 @@ paralelizable entre sí salvo que se indique lo contrario.
   decisión* — se detiene en una compuerta de firma humana (Step 1) antes de
   tocar código.
 
+> **040, 042 y 043 EJECUTADOS EN PARALELO, APROBADOS EN REVISIÓN Y MERGEADOS
+> (2026-07-12, a pedido del operador — "Execute plans 040, 042 and 043 in
+> parallel", luego "commit, push, merge and clean").**
+> Los tres tenían compuertas de decisión humana explícitas en el propio plan
+> (040 Step 4: firma de copy; 043 Step 1: elección de opción); ambas se
+> resolvieron con el operador en esta misma sesión antes de despachar, para
+> que cada ejecutor pudiera completar el plan entero en un solo despacho en
+> vez de detenerse en la compuerta. 042 no tenía compuerta y se despachó de
+> inmediato. Los tres corrieron en worktrees aislados independientes
+> (ninguno depende de los otros dos, sin solape de archivos entre sí).
+>
+> **040 (worktree `agent-a73f792f882ea7980`, rama
+> `advisor/040-seo-title-snippet-refresh-brief`, commit `d6003846`,
+> `feat(seo): refrescar title/description de seguro-cesantia (plan 040)`):**
+> el operador aprobó el **Título A** (`Simulador de Seguro de Cesantía:
+> calcula tu cobertura (AFC y Fondo Solidario)`) tras reverificar en vivo que
+> `2026-W27-query-page.json` sigue siendo el export GSC más reciente (no
+> existe `2026-W28`) y que las queries "simulador"/"simular" de
+> seguro-cesantia siguen en posición 4–9 con CTR débil pese a impresiones
+> reales. Diff acotado a **1 archivo**
+> (`src/pages/calculadoras/seguro-cesantia.astro`, 4 líneas cambiadas): título
+> y descripción actualizados en `<Layout>` y en `<CalculatorJsonLd>` (única
+> otra copia del string viejo en el archivo); `apv.astro` y
+> `conversor-uf.astro` **intactos**. **Revisión (tech-lead) APROBADA** —
+> reverificado de forma independiente en el worktree, no solo el reporte del
+> ejecutor: `check-reader-facing-copy.mjs` → 0 issues; `check-dialect.mjs` →
+> OK, 53 archivos; `astro check` → 0 errores (mismo hint preexistente ajeno de
+> `content.config.ts`); `format:check` → OK; `git status` limpio, solo el
+> archivo en alcance. **Judgment call documentado por el ejecutor, sin
+> decidir por su cuenta:** el `<CalculatorHero>` de la página (H1 "Calculadora
+> de Seguro de Cesantía" + su propia descripción) quedó sin tocar — no era una
+> copia del string viejo y no había copy H1 aprobado — así que hoy el
+> `<title>`/meta llevan "Simulador" pero el H1 visible sigue diciendo
+> "Calculadora". Queda abierto para el operador decidir si el H1 debe
+> converger con el nuevo framing en un follow-up, no es parte de este plan.
+> **Seguimiento de medición (no ejecutable por agente):** a las 2–4 semanas de
+> desplegado, comparar CTR/posición de seguro-cesantia en las queries
+> "simulador"/"solidario" contra el baseline W27 documentado en el plan.
+> **MERGEADO a `main` el 2026-07-12** (merge commit `013b59b0`, `--no-ff`
+> sobre `advisor/040-seo-title-snippet-refresh-brief`).
+>
+> **042 (worktree `agent-ab78ff238c8155b9c`, rama
+> `advisor/042-remove-calculator-completed-typo-event`, commit `1de64e2a`,
+> `fix(analytics): quitar evento typo calculator_completed`):** sin compuerta
+> humana, limpieza mecánica. Diff acotado a los **9 archivos** en alcance
+> (8 fuente + 1 test), **52 líneas eliminadas, 0 insertadas** — confirmado
+> leyendo el diff completo, cada bloque removido es exactamente el
+> `trackAnalyticsEvent("calculator_completed", ...)` que seguía al evento real
+> `calculator_complete`, sin tocar este último. **Revisión (tech-lead)
+> APROBADA** — reverificado de forma independiente: `grep -rn
+> "calculator_completed" src/` → sin matches; mismo grep sobre
+> `homepage-content.test.ts` → sin matches; `grep -c '"calculator_complete"'
+> formController.ts` → `2` (ambas llamadas reales intactas); suite completa
+> `pnpm test` → **1028/1028** (una menos que el baseline de 1029, exactamente
+> el test eliminado); `astro check` → 0 errores; eslint acotado a los 8
+> archivos → exit 0; `format:check` → exit 0; `git status` limpio, solo los 9
+> archivos del plan. El test hermano que exige que `calculator_complete`
+> siga disparándose quedó intacto, verificado en el diff.
+> **MERGEADO a `main` el 2026-07-12** (merge commit `afeb9203`, `--no-ff`
+> sobre `advisor/042-remove-calculator-completed-typo-event`).
+>
+> **043 (worktree `agent-a2c620fed1cf2b13a`, rama
+> `advisor/043-analytics-item-id-shape-decision`, commit `7c5fe277`,
+> `fix(security): validar la forma de item_id en analytics (opción 2)`):** el
+> operador eligió **Opción 2** (aceptar path o token vía `SAFE_ITEM_ID_RE`
+> además de `SAFE_TOKEN_RE`), reforzada por un hallazgo del reviewer antes de
+> preguntar: `buildCounterKey` en
+> `workers/analytics-collector/src/index.ts:293` ya usa `item_id` como slug
+> de la clave de agregación KV para `resume_click` — confirmando que la
+> Opción 3 (cambiar `item_id` de pathname a slug) habría partido/fusionado en
+> silencio los agregados históricos del scorecard semanal en el borde del
+> deploy, exactamente la advertencia del plan. Diff acotado a los 4 archivos
+> en alcance más la actualización de una línea en el archivo (ya archivado) de
+> 038 que el propio plan pide actualizar como referencia cruzada: `+117/-7`.
+> **Revisión (tech-lead) APROBADA** — reverificada de forma independiente en
+> el worktree: diff línea por línea confirma `SAFE_ITEM_ID_RE` añadido junto a
+> `FREE_FORM_TOKEN_KEYS`/`SAFE_TOKEN_RE` en ambos archivos, aplicado como
+> chequeo separado (rechazo en el worker, drop en el cliente), `item_id`
+> **no** agregado a `FREE_FORM_TOKEN_KEYS`; `pnpm exec vitest run` de los 2
+> archivos de test objetivo → 104/104; suite completa `pnpm test` →
+> **1035/1035** (1029 + 6 tests nuevos); `npx tsc --noEmit` del worker → exit
+> 0; `astro check` → 0 errores; eslint acotado → exit 0; `format:check` →
+> exit 0; `git status` limpio. Tests nuevos auditados — no vacíos: cubren
+> forma real de producción (pathname) y token kebab simple como casos
+> positivos, mayúsculas/unicode y path-traversal (`../etc/passwd`, `//..//`)
+> como casos negativos, en ambos archivos de test (worker + cliente).
+> Confirmado por grep que `sanitizeCollectorEvent` (ruta de export) sigue sin
+> tocar los tres constantes de forma, igual que el precedente de 038.
+> **Desviaciones documentadas y aprobadas en mérito:** el ejecutor actualizó
+> los comentarios inline preexistentes que decían "item_id is intentionally
+> excluded" para reflejar que ahora tiene su propio chequeo (no una exclusión
+> simple), y renombró dos títulos de test que decían "(item_id queda fuera de
+> este plan)" — ambas ediciones son de documentación, no de comportamiento, y
+> mantienen la instrucción explícita del plan de que los dos regexes queden
+> "visualmente distintos" en una revisión de código.
+> **MERGEADO a `main` el 2026-07-12** (merge commit `66fd6a3c`, `--no-ff`
+> sobre `advisor/043-analytics-item-id-shape-decision`). Con este merge, el
+> hallazgo original de 037/038 sobre `item_id` queda completamente cerrado.
+>
+> **Reverificado en el árbol principal tras los tres merges** (040 →
+> `013b59b0`, 042 → `afeb9203`, 043 → `66fd6a3c`, aplicados en ese orden sin
+> conflictos por no compartir archivos): `pnpm test` → **1034/1034** (124
+> archivos; 1029 base − 1 test eliminado por 042 + 6 tests nuevos de 043);
+> `astro check` → 0 errores (mismo hint preexistente ajeno); `npx tsc --noEmit`
+> del worker → exit 0; `eslint` sobre los 11 archivos fuente tocados → exit 0;
+> `format:check` → exit 0; `git status` limpio salvo este archivo. Empujado a
+> `origin/main`. Worktrees y ramas locales de los tres ejecutores eliminados
+> tras el merge.
+>
 > **041 BLOQUEADO (2026-07-11, vía `/improve execute 041`):** ejecutor
 > despachado en worktree aislado, sin drift previo. **Step 1 (compuerta de
 > diagnóstico) descartó la hipótesis del plan antes de escribir código** — se
@@ -661,8 +767,11 @@ Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main
 | [036](archive/036-analytics-export-failure-detection.md) | Hacer detectable un export de analytics ausente/fallido (clase de fallo OBS-01) | P2 | M | DONE (fast-forward `9049cb76`) |
 | [037](archive/037-analytics-export-secret-header.md) | Recibir el secreto del export manual por `Authorization` header, no por query string | P2 | S | DONE (merge commit `9d722ac6`) — rotación de `EXPORT_SECRET` pendiente, paso humano |
 | [038](archive/038-analytics-freeform-dimension-shape.md) | Restringir la forma de `calculator_slug`/`rule_id`/`action_id` en analytics | P2 | S | DONE (fast-forward `5ebda2e0`) — `item_id` separado al plan 043 |
-| [039](archive/039-calculator-funnel-instrumentation.md) | Reparar instrumentación del embudo (views=0, completes sobre-contados, evento typo) | P1 | M | DONE parcial (commit `a661e61a`) — typo residual desglosado en [042](042-remove-calculator-completed-typo-event.md) |
+| [039](archive/039-calculator-funnel-instrumentation.md) | Reparar instrumentación del embudo (views=0, completes sobre-contados, evento typo) | P1 | M | DONE parcial (commit `a661e61a`) — typo residual desglosado en [042](archive/042-remove-calculator-completed-typo-event.md) |
 | [044](archive/044-calculator-prefill-hint-cls.md) | Convertir el aviso de prellenado en toast `fixed` para eliminar su CLS (0.0125) | P3 | S | DONE (merge commit `d737d7df`) — carve-out del diagnóstico de 041 (BLOCKED, ver nota arriba); no cierra el CLS de campo (p75 1.008), aún sin causa identificada |
+| [040](archive/040-seo-title-snippet-refresh-brief.md) | Brief SEO title/snippet de seguro-cesantia — Título A aprobado por el operador | P3 | S | DONE (merge commit `013b59b0`) — apv y conversor-uf sin tocar (bajo valor esperado); seguimiento de medición pendiente a 2–4 semanas |
+| [042](archive/042-remove-calculator-completed-typo-event.md) | Quitar el evento typo `calculator_completed` de 8 archivos + el test que lo fijaba | P3 | S | DONE (merge commit `afeb9203`) — código muerto, cero impacto en métricas; cierra el ítem residual de 039 |
+| [043](archive/043-analytics-item-id-shape-decision.md) | Restringir la forma de `item_id` en analytics (carve-out de 038) — Opción 2 elegida por el operador | P3 | S | DONE (merge commit `66fd6a3c`) — cierra el hallazgo original de 037/038 sobre `item_id` |
 
 ### Auditorías 2026-06-15 a 2026-06-19
 

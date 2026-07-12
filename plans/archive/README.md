@@ -38,6 +38,9 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [038](038-analytics-freeform-dimension-shape.md) | Restringir la forma de `calculator_slug`/`rule_id`/`action_id` en analytics (cardinalidad/poisoning) — alcance revisado a 3 de 4 claves tras bloqueo inicial; `item_id` separado al plan 043 | 2026-07-10 | sí (fast-forward `5ebda2e0`) |
 | [036](036-analytics-export-failure-detection.md) | Hacer detectable un export de analytics ausente/fallido: re-throw en el worker `scheduled` + detección de semana vencida en el consumidor (cierra la clase de fallo OBS-01) | 2026-07-10 | sí (fast-forward `9049cb76`) |
 | [044](044-calculator-prefill-hint-cls.md) | Convertir el aviso de prellenado en toast `fixed` para eliminar su CLS (0.0125) — carve-out del diagnóstico de 041 (BLOCKED); no cierra el CLS de campo (p75 1.008) | 2026-07-12 | sí (merge commit `d737d7df`) |
+| [040](040-seo-title-snippet-refresh-brief.md) | Brief SEO title/snippet de seguro-cesantia (Título A aprobado por el operador); apv y conversor-uf sin tocar por bajo valor esperado | 2026-07-12 | sí (merge commit `013b59b0`) |
+| [042](042-remove-calculator-completed-typo-event.md) | Quitar el evento typo `calculator_completed` de 8 archivos + el test que lo fijaba (código muerto, cero impacto en métricas) — cierra el ítem residual de 039 | 2026-07-12 | sí (merge commit `afeb9203`) |
+| [043](043-analytics-item-id-shape-decision.md) | Restringir la forma de `item_id` en analytics vía `SAFE_ITEM_ID_RE` (Opción 2 elegida por el operador; carve-out de 038) | 2026-07-12 | sí (merge commit `66fd6a3c`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 

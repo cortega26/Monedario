@@ -25,7 +25,7 @@
 - **Planned at**: commit `520a8685`, 2026-07-10
 - **Revised** at commit `0e1a2a7a`, 2026-07-11 — scope narrowed from 4 keys to
   3. See "Revision history" below for why. `item_id` is **out of scope** for
-  this plan; it moved to [plan 043](../043-analytics-item-id-shape-decision.md).
+  this plan; it moved to [plan 043](043-analytics-item-id-shape-decision.md).
 - **DONE — executed, reviewed, and merged** (2026-07-11): commit `5ebda2e0`,
   fast-forwarded into `main` from `advisor/038-analytics-freeform-dimension-shape`
   (worktree `.claude/worktrees/agent-a1a3d6125d7804444`) by explicit operator
@@ -76,7 +76,7 @@ constraint now for the three verified-safe keys (`calculator_slug`,
 `rule_id`, `action_id`) — this plan, revised below. `item_id`'s fix (exclude
 it / accept the path shape / fix the source to emit a slug) is a
 product/analytics-semantics decision, not resolved here — see
-[plan 043](../043-analytics-item-id-shape-decision.md).
+[plan 043](043-analytics-item-id-shape-decision.md).
 
 ## Why this matters
 
