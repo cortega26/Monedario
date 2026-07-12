@@ -91,15 +91,15 @@ function writeRadioGroup(el: HTMLInputElement, value: unknown): boolean {
   return true;
 }
 
-function ensureHint(host: HTMLElement): HTMLElement {
-  const existing = host.querySelector<HTMLElement>(`#${HINT_ID}`);
+function ensureHint(): HTMLElement {
+  const existing = document.querySelector<HTMLElement>(`#${HINT_ID}`);
   if (existing) return existing;
 
   const hint = document.createElement("div");
   hint.id = HINT_ID;
   hint.className =
-    "mb-4 flex items-center justify-between gap-3 rounded-lg border border-border bg-muted/40 px-3 py-2 text-xs text-secondary";
-  hint.setAttribute("role", "note");
+    "fixed inset-x-4 top-28 z-50 mx-auto flex max-w-sm items-center justify-between gap-3 rounded-lg border border-border bg-background px-3 py-2 text-xs text-secondary shadow-lg sm:inset-x-auto sm:end-4";
+  hint.setAttribute("role", "status");
 
   const label = document.createElement("span");
   label.textContent = "✓ Pre-rellenado de tu última simulación";
@@ -113,7 +113,7 @@ function ensureHint(host: HTMLElement): HTMLElement {
 
   hint.appendChild(label);
   hint.appendChild(button);
-  host.prepend(hint);
+  document.body.appendChild(hint);
 
   return hint;
 }
@@ -210,12 +210,7 @@ function init(): void {
   }
 
   if (prefillCount > 0) {
-    const hostSelector = root.dataset.profilePrefillHost ?? "form, .grid";
-    const host =
-      root.querySelector<HTMLElement>(hostSelector) ??
-      (root.firstElementChild as HTMLElement | null) ??
-      root;
-    const hint = ensureHint(host);
+    const hint = ensureHint();
     hint
       .querySelector<HTMLButtonElement>("#profile-prefill-clear")
       ?.addEventListener("click", () => {
