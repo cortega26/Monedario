@@ -174,6 +174,65 @@ regression. `astro check` → 0 errors.
   sample is small; the metric may be dominated by a device/condition you can't
   reproduce locally) rather than changing markup blindly.
 
+## Resultado de ejecución (BLOCKED, 2026-07-11, vía `/improve execute 041`)
+
+Ejecutor despachado en worktree aislado (rama `advisor/041-impuesto-cls-load-shift`,
+sin drift: `git diff --stat 520a8685..HEAD -- ...` vacío antes de despachar). **Step 1
+contradijo la hipótesis del plan** — se detuvo correctamente en la condición de STOP
+("Step 1 shows the dominant shift is NOT the result-panel swap"), sin tocar ningún
+archivo. Verificado de forma independiente por el revisor, no solo confiando en el
+reporte:
+
+- **La hipótesis del swap `#resultado-contenido` está descartada por diseño, no solo
+  por medición.** Grep del script inline de la página confirma que el cálculo/swap
+  solo está enganchado al evento `click` de `#calcBtn` (línea 450) — no existe ningún
+  listener `input`/`change` en los campos que dispare `calculateSecondCategoryTax`.
+  Los eventos sintéticos `input`/`change` que `calculator-prefill.ts` despacha en
+  carga (líneas 68-69, 80-81, 137-138) no tienen a quién notificar en esta página. El
+  swap solo puede ocurrir dentro de un gesto de usuario real, lo que lo excluye de CLS
+  por definición (`hadRecentInput`), no por casualidad de medición.
+- **Medición empírica (Playwright + `PerformanceObserver({type:'layout-shift'})`,
+  viewport móvil 390×844, build de producción vía `pnpm run preview`):**
+  perfil prellenado en `localStorage` (`monedario_profile`) → 1 entrada de layout-shift,
+  valor **0.0125**, en t=81ms, `hadRecentInput:false`; `data-is-example` permaneció
+  `"true"` — el panel de resultado **nunca cambió**. La fuente real fue el bloque
+  "✓ Pre-rellenado de tu última simulación" que `ensureHint()` en
+  `calculator-prefill.ts:94-119` inserta con `host.prepend(hint)` dentro de
+  `#calculator-form-card`, empujando el formulario hacia abajo. Confirmado por lectura
+  directa del código (`ensureHint`, `host.prepend`). Carga sin prellenado (primera
+  visita): 0 entradas, CLS 0.0000.
+- **Sospechoso secundario (Fraunces) también descartado**, confirmado por lectura:
+  `src/layouts/Layout.astro:28-30` fija `shouldPreloadDisplayFont = false`
+  explícitamente para `/calculadoras/*` ("their hero H1 is not Fraunces"); el `<h1>`
+  de esta página no usa ninguna clase de fuente de display.
+- **Brecha de magnitud sin explicar — el hallazgo real, no un detalle menor:** el único
+  shift de carga reproducible localmente es 0.0125, **~80× menor** que el p75 de campo
+  reportado (1.008, RUM 2026-W27). El hint bar es geométrico (dispara a t=81ms sin
+  depender de condiciones de red), así que *aunque se corrigiera*, no cerraría esa
+  brecha. **La causa del 1.008 de campo sigue sin identificarse.** La muestra RUM es de
+  solo 20 visitas — no está descartado que sea una sesión atípica en vez de un bug
+  sistemático, pero tampoco hay evidencia para afirmar eso; sigue abierto.
+
+**Decisión: BLOCKED, no REJECTED.** El problema de campo (CLS 1.008 en esta ruta) es
+real y sigue sin causa identificada — no se está cerrando como "arreglado" ni como
+"no reproducible sin más". Lo que cae es la hipótesis específica (`calculator-prefill`
+→ swap del panel de resultado), que la propia compuerta de diagnóstico del plan atrapó
+antes de escribir ningún código — el diseño "diagnose-then-fix" funcionó como estaba
+pensado.
+
+**No en alcance de esta ejecución (a decisión del operador, no del ejecutor):**
+1. El hint bar de `ensureHint()` sí tiene un shift de carga real (0.0125, bajo impacto)
+   y es un patrón compartido — cualquier calculadora con `data-profile-prefill-host`
+   que reciba un hit de prellenado probablemente lo muestra. Candidato a limpieza de
+   bajo riesgo si se decide seguir, pero está fuera del alcance de 041
+   (`calculator-prefill.ts` es explícitamente out-of-scope en este plan).
+2. La causa real del 1.008 de campo no se investigó más allá de esta página — el plan
+   de seguimiento, si se decide, debería ampliar la búsqueda del Step 1 en vez de asumir
+   que el hint bar es "el bug del 1.008" (no lo es, por la brecha de magnitud).
+
+Rama `advisor/041-impuesto-cls-load-shift` verificada sin commits (idéntica a `main`,
+`1be689b3`) y eliminada tras la verificación — no había trabajo que preservar.
+
 ## Maintenance notes
 
 - If Step 1 shows the same example→real swap causes CLS on other prefilled

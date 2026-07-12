@@ -79,10 +79,11 @@ paralelizable entre sí salvo que se indique lo contrario.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
 |---|------|--------|-----------|----------|--------|--------------------|--------|
-| 1 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | TODO |
+| 1 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | BLOCKED (hipótesis descartada; causa de campo sin identificar — ver nota abajo) |
 | 2 | [040](040-seo-title-snippet-refresh-brief.md) | Brief SEO title/snippet (evidencia + candidatos + firma humana) — valor esperado degradado con honestidad | P3 | S | LOW | todos | TODO |
 | 3 | [042](042-remove-calculator-completed-typo-event.md) | Quitar el evento typo `calculator_completed` de 8 archivos + 2 tests que lo fijan (código muerto, cero impacto en métricas) | P3 | S | LOW | todos | TODO |
 | 4 | [043](043-analytics-item-id-shape-decision.md) | Decidir y aplicar la forma segura de `item_id` (carve-out de 038; requiere firma humana en Step 1) | P3 | S | LOW–MED | todos (038 ya mergeado) | TODO |
+| 5 | [044](044-calculator-prefill-hint-cls.md) | Convertir el aviso de prellenado en toast `fixed` para eliminar su CLS (0.0125, carve-out de 041) | P3 | S | LOW | todos | APROBADO — pendiente de merge (branch `advisor/044-calculator-prefill-hint-cls`) |
 
 > **035, 036, 037 y 038 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
 
@@ -100,6 +101,76 @@ paralelizable entre sí salvo que se indique lo contrario.
   decisión* — se detiene en una compuerta de firma humana (Step 1) antes de
   tocar código.
 
+> **041 BLOQUEADO (2026-07-11, vía `/improve execute 041`):** ejecutor
+> despachado en worktree aislado, sin drift previo. **Step 1 (compuerta de
+> diagnóstico) descartó la hipótesis del plan antes de escribir código** — se
+> detuvo correctamente en su propia condición de STOP, `git status` limpio, la
+> rama resultante idéntica a `main` (borrada tras verificar). Reviewer
+> reverificó cada afirmación leyendo el código, no solo el reporte del
+> ejecutor: el cálculo/swap de `#resultado-contenido` está enganchado
+> únicamente al evento `click` de `#calcBtn` — no hay listener `input`/`change`
+> en los campos, así que los eventos sintéticos que `calculator-prefill.ts`
+> despacha en carga no tienen a quién notificar; el swap solo puede ocurrir
+> dentro de un gesto de usuario, lo que lo excluye de CLS por diseño, no por
+> casualidad de medición. Medición empírica (Playwright +
+> `PerformanceObserver` sobre build de producción, viewport móvil) confirmó:
+> `#resultado-contenido` nunca cambió (`data-is-example` siguió `"true"`); el
+> único shift de carga real fue el bloque "Pre-rellenado de tu última
+> simulación" que `ensureHint()` en `calculator-prefill.ts` inserta con
+> `host.prepend()` en la columna del formulario — **valor 0.0125, ~80× menor**
+> que el p75 de campo reportado (1.008, RUM 2026-W27). Sospechoso secundario
+> (Fraunces) también descartado por lectura directa (`Layout.astro:28-30`
+> desactiva el preload en `/calculadoras/*` porque su `<h1>` no usa Fraunces).
+>
+> **BLOCKED, no REJECTED ni DONE:** el problema de campo (CLS 1.008 en esta
+> ruta) sigue sin causa identificada — cae la hipótesis, no el hallazgo RUM. No
+> se archivó (la política de archivado es solo para planes DONE); el plan
+> queda en `plans/` con su diagnóstico completo documentado para quien decida
+> el siguiente paso. **Abierto, no decidido por este agente:** (1) el hint bar
+> de `ensureHint()` sí tiene un shift real de bajo impacto (0.0125) y es un
+> patrón compartido por toda calculadora con `data-profile-prefill-host` —
+> candidato de limpieza de bajo riesgo si se decide seguir, pero
+> `calculator-prefill.ts` es explícitamente out-of-scope de 041; (2) la causa
+> real del 1.008 de campo no se investigó más allá de esta página — un
+> seguimiento debería ampliar la búsqueda del Step 1 en vez de asumir que el
+> hint bar es "el bug", porque la brecha de magnitud lo descarta. La muestra
+> RUM es de solo 20 visitas, así que tampoco está descartado que sea una
+> sesión atípica.
+>
+> **044 EJECUTADO Y APROBADO EN REVISIÓN, PENDIENTE DE MERGE (2026-07-12, vía
+> `/improve execute 044`):** ejecutor en worktree aislado
+> (`.claude/worktrees/agent-a14e6c16a1c1a1cc9`, rama
+> `advisor/044-calculator-prefill-hint-cls`, commit `9da2ce6b`,
+> `fix(perf): convertir el aviso de prellenado en toast fixed para eliminar su CLS`).
+> Sin drift antes de despachar. **Revisión (tech-lead) APROBADA** —
+> reverificada de forma independiente en el worktree: diff acotado a los 2
+> archivos en alcance; suite completa `pnpm test` 1029/1029 (124 archivos);
+> `astro check` 0 errores; `eslint`/`format:check` de los archivos en alcance
+> exit 0; los 3 tests nuevos auditados leyendo sus aserciones (no vacíos —
+> caso 1 verifica `hint.parentElement === document.body`, la aserción
+> estructural que prueba el fix). **Desviación documentada y aprobada en
+> mérito:** el plan marcaba `top-4` como punto de partida no vinculante; el
+> ejecutor midió con Playwright una colisión visual real con el header (81px
+> mobile, 93px desktop) y ajustó a `top-28` — confirmado por el revisor
+> directamente en las capturas de pantalla (`toast_mobile.png`/
+> `toast_desktop.png`), sin superposición con `BackToTopButton`. CLS
+> re-medido por el ejecutor con `PerformanceObserver`: cero entradas con y sin
+> perfil prellenado — consistente con la garantía estructural de que un
+> elemento `fixed` anclado a `document.body` no puede desplazar otros
+> elementos. Rama sin upstream (no pusheada, sin PR). **No mergeado a `main`
+> todavía** — por política de cierre atómico de este repo, no se marca DONE ni
+> se archiva hasta integrarse en `main`; queda `APROBADO — pendiente de merge`
+> a decisión del operador.
+>
+> **Plan 044 escrito el mismo día como carve-out de bajo riesgo de este
+> diagnóstico** (a pedido del operador, tras indicarle esperar los próximos
+> scorecards RUM antes de investigar más el 1.008): el shift real de 0.0125
+> que sí se confirmó (el aviso "Pre-rellenado..." insertándose en flujo normal
+> vía `host.prepend()`) tiene una corrección barata e independiente —
+> convertirlo en un toast `fixed` (mismo patrón que `BackToTopButton.astro`),
+> que por construcción no puede producir CLS. No cierra el 1.008 de campo;
+> es una limpieza de bajo riesgo sobre el único hallazgo real y ya diagnosticado.
+>
 > **036 EJECUTADO, APROBADO Y MERGEADO (2026-07-11, vía `/improve execute
 > 036`):** ejecutor en worktree aislado (`.claude/worktrees/agent-a5081695d39b9c24f`,
 > rama `advisor/036-analytics-export-failure-detection`, commit original `c6a1ac88`,
