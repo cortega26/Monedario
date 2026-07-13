@@ -22,10 +22,16 @@
  *   CLOUDFLARE_ANALYTICS_TOKEN   Token with Account+Zone Analytics:Read
  *   CLOUDFLARE_ZONE_ID           Zone ID for monedario.cl
  *   CLOUDFLARE_ACCOUNT_ID        Account ID
+ *
+ * Optional env:
+ *   CLOUDFLARE_SITE_HOST         Hostname to scope RUM to (default: monedario.cl).
+ *                                RUM is account-scoped (multi-site), unlike
+ *                                traffic which is zone-scoped — see GROWTH-005.
  */
 
 import { mkdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import {
   buildSchemaHeader,
   isoWeekToDateRange,
@@ -35,6 +41,18 @@ import {
 
 const OUTPUT_BASE        = "output/operations/data-signals/cloudflare";
 const CF_GRAPHQL         = "https://api.cloudflare.com/client/v4/graphql";
+
+/**
+ * Hostname to scope RUM Web Vitals queries to (GROWTH-005). Unlike
+ * `fetchDailyTraffic` (already zone-scoped), `rumWebVitalsEventsAdaptiveGroups`
+ * only exists at the account level in Cloudflare's GraphQL Analytics schema —
+ * the account hosts several sites besides monedario.cl, so without a hostname
+ * filter, RUM for routes shared across sites (e.g. `/`) silently mixes
+ * cross-hostname traffic. monedario.cl has no `www` variant to cover (verified:
+ * zero repo references to www.monedario.cl). Override via CLOUDFLARE_SITE_HOST
+ * (e.g. for testing against a different site).
+ */
+const SITE_HOST = process.env.CLOUDFLARE_SITE_HOST ?? "monedario.cl";
 
 // ---------------------------------------------------------------------------
 // CLI
@@ -137,15 +155,23 @@ async function fetchDailyTraffic(token, zoneTag, from, to) {
   return data.viewer.zones[0]?.httpRequests1dGroups ?? [];
 }
 
-async function fetchRumWebVitals(token, accountTag, fromDt, toDt) {
-  const data = await gql(token, `
-    query RUM($accountTag: string!, $from: DateTime!, $to: DateTime!) {
+/**
+ * Builds the GraphQL query + variables for RUM Web Vitals, scoped by
+ * hostname (GROWTH-005 fix). Exported so the query shape is testable without
+ * a network call — `rumWebVitalsEventsAdaptiveGroups` is account-scoped, so
+ * without `requestHost` in the filter, RUM for routes shared across the
+ * account's sites (e.g. `/`) mixes cross-hostname traffic silently.
+ */
+export function buildRumQuery(accountTag, host, fromDt, toDt) {
+  return {
+    query: `
+    query RUM($accountTag: string!, $host: string!, $from: DateTime!, $to: DateTime!) {
       viewer {
         accounts(filter: { accountTag: $accountTag }) {
           rumWebVitalsEventsAdaptiveGroups(
             limit: 100
             orderBy: [count_DESC]
-            filter: { datetime_geq: $from, datetime_leq: $to }
+            filter: { datetime_geq: $from, datetime_leq: $to, requestHost: $host }
           ) {
             count
             dimensions { requestPath }
@@ -158,7 +184,14 @@ async function fetchRumWebVitals(token, accountTag, fromDt, toDt) {
         }
       }
     }
-  `, { accountTag, from: fromDt, to: toDt });
+  `,
+    variables: { accountTag, host, from: fromDt, to: toDt },
+  };
+}
+
+export async function fetchRumWebVitals(token, accountTag, host, fromDt, toDt) {
+  const { query, variables } = buildRumQuery(accountTag, host, fromDt, toDt);
+  const data = await gql(token, query, variables);
   return data.viewer.accounts[0]?.rumWebVitalsEventsAdaptiveGroups ?? [];
 }
 
@@ -233,7 +266,7 @@ async function main() {
 
   const [rawTraffic, rawRum] = await Promise.all([
     fetchDailyTraffic(token, zoneId, from, to),
-    fetchRumWebVitals(token, accountId, `${from}T00:00:00Z`, `${to}T23:59:59Z`),
+    fetchRumWebVitals(token, accountId, SITE_HOST, `${from}T00:00:00Z`, `${to}T23:59:59Z`),
   ]);
 
   const trafficRows = rawTraffic.map(normalizeDayRow);
@@ -296,7 +329,11 @@ async function main() {
   console.error("[cloudflare-fetch] done");
 }
 
-main().catch((err) => {
-  console.error(`[cloudflare-fetch] fatal: ${err.message}`);
-  process.exit(1);
-});
+// Guarded so importing this module (e.g. from tests, to exercise buildRumQuery)
+// does not also run main() — mirrors the pattern in lcp-gate.mjs.
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  main().catch((err) => {
+    console.error(`[cloudflare-fetch] fatal: ${err.message}`);
+    process.exit(1);
+  });
+}
