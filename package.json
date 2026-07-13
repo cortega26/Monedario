@@ -56,6 +56,7 @@
     "scorecard:opportunities": "node scripts/scorecard-opportunities.mjs",
     "fetch:economic-history": "node scripts/fetch-economic-history.mjs",
     "check:no-postid-urls": "node scripts/check-no-postid-urls.mjs",
+    "check:obs01-freeze": "node scripts/check-obs01-freeze.mjs",
     "routes:snapshot": "node scripts/snapshot-routes.mjs",
     "routes:compare": "node scripts/compare-routes.mjs docs/reports/routes_snapshot_before.json output/validation/routes_snapshot_after.json",
     "check:routes": "node scripts/snapshot-routes.mjs --out output/validation/routes_snapshot_after.json && pnpm run routes:compare",
