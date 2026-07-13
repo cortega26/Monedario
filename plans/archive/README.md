@@ -42,6 +42,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [042](042-remove-calculator-completed-typo-event.md) | Quitar el evento typo `calculator_completed` de 8 archivos + el test que lo fijaba (código muerto, cero impacto en métricas) — cierra el ítem residual de 039 | 2026-07-12 | sí (merge commit `afeb9203`) |
 | [043](043-analytics-item-id-shape-decision.md) | Restringir la forma de `item_id` en analytics vía `SAFE_ITEM_ID_RE` (Opción 2 elegida por el operador; carve-out de 038) | 2026-07-12 | sí (merge commit `66fd6a3c`) |
 | [045](045-measurement-resequence-two-lanes.md) | Spike de dirección: re-secuenciar el crecimiento en dos carriles (SEO/GSC desbloqueado vs. journeys tras baseline); entregable `docs/reports/GROWTH-DIRECTION-DELTA-2026-W27.md`; follow-up de implementación desglosado al plan 047 (GROWTH-005) | 2026-07-13 | sí (fast-forward `f34210ff`) |
+| [047](047-growth-005-rum-hostname-filter.md) | Filtrar el RUM de Cloudflare por hostname (`requestHost: monedario.cl`) para cerrar GROWTH-005 — Step 1 (compuerta de viabilidad de schema) resuelto por introspección GraphQL en vivo, no adivinado | 2026-07-13 | sí (fast-forward `442cb309`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
