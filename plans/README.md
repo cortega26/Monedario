@@ -6,6 +6,7 @@ Follow-through de auditorías externas: `/improve` el 2026-06-17 (commit `fd2b5d
 Tercera auditoría profunda: `/improve deep` el 2026-06-19 (commit `9a4eb37d`) → planes 027–030.
 Cuarta auditoría profunda: `/improve deep` el 2026-06-26 (commit `a7bb8b2e`) → planes 032–034.
 Quinta auditoría profunda: `/improve deep` el 2026-07-10 (commit `520a8685`) → planes 035–038.
+Auditoría de dirección: `/improve next` el 2026-07-12 (commit `0102b11a`) → spikes de dirección 045–046 (delta W27 sobre la auditoría canónica `GROWTH-DIRECTION-AUDIT-2026-06-28.md`, corte W25).
 Foco de la quinta pasada: el delta desde la cuarta pasada (72 commits) y los módulos
 nunca auditados. El núcleo maduro (matemática de calculadoras, engines, provider
 económico) sigue limpio — reverificado. **Todos los hallazgos reales están en la
@@ -80,7 +81,70 @@ paralelizable entre sí salvo que se indique lo contrario.
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
 |---|------|--------|-----------|----------|--------|--------------------|--------|
 | 1 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | BLOCKED (hipótesis descartada; causa de campo sin identificar — ver nota abajo) |
-> **035, 036, 037, 038, 039, 040, 042, 043 y 044 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
+| 2 | [046](046-converter-recurrence-return-hook-spike.md) | **Spike de dirección**: investigar si hay recurrencia real sobre los conversores (superficie de mayor **tráfico** según RUM W27; recurrencia **por confirmar**) y, solo si la hay, diseñar un return-hook privacy-safe | P2 | M | LOW | todos | TODO (spike de diseño; por defecto "medir antes de construir"; compuerta de decisión humana) |
+| 3 | [047](047-growth-005-rum-hostname-filter.md) | Filtrar el RUM de Cloudflare por hostname (`monedario.cl`) para cerrar GROWTH-005 (contaminación cross-hostname en rutas compartidas como `/`) | P2 | M | MED | todos | TODO (follow-up de implementación del brief 045 §5; **compuerta de viabilidad de schema externo en Step 1** — si el dataset RUM no expone hostname, STOP y documentar) |
+> **035, 036, 037, 038, 039, 040, 042, 043, 044 y 045 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
+
+> **046 es un spike de dirección (`/improve next`, 2026-07-12)**, no un plan de
+> implementación: produce un documento de análisis read-only y se detiene en una
+> compuerta de decisión humana. NO toca código de producto. Su premisa usa rutas
+> **únicas** de monedario (no contaminadas por GROWTH-005), así que es independiente
+> de 041 y de 047. **045 (el otro spike del mismo lote) ya se ejecutó, aprobó y
+> archivó** — ver nota abajo. **047** es el follow-up de implementación que el brief
+> de 045 §5 especificó (cerrar GROWTH-005 con filtro de hostname en el RUM); es
+> paralelizable con todo, pero trae una compuerta de viabilidad de schema externo
+> en su Step 1.
+
+> **045 EJECUTADO, APROBADO EN REVISIÓN, MERGEADO (local) Y ARCHIVADO
+> (2026-07-13, vía `/improve execute 045`).** Ejecutor `general-purpose` en
+> worktree aislado (`.claude/worktrees/agent-ae6c38d724e20dc29`, rama
+> `advisor/045-measurement-resequence-two-lanes`, commit `f34210ff`,
+> `docs(reports): brief de re-secuencia de medición en dos carriles (spike 045)`).
+> Entregable: `docs/reports/GROWTH-DIRECTION-DELTA-2026-W27.md` (260 líneas, 1
+> solo archivo en el commit). **Adaptaciones de despacho documentadas:** (1) todo
+> `output/operations/weekly-search-performance/` está **gitignored** — un worktree
+> limpio solo trae el `2026-W19` (force-added), así que el reviewer verificó la
+> evidencia de scorecard (W27 `0 views · 568 starts · 916 completes`) contra el
+> árbol principal y la inlineó; el ejecutor NO pudo re-verificarla y así lo
+> declara en el brief. (2) Etiqueta de archivo corregida a **W27** (no el `-W28`
+> literal del plan) porque no existe W28+; autorizado por el propio plan ("usa el
+> label real"). (3) El plan 045 es **untracked** en `main`, así que se inlineó su
+> texto completo en el despacho; se instruyó OMITIR la edición de `plans/README.md`
+> (la mantiene el reviewer). **Revisión (tech-lead) APROBADA** — reverificada de
+> forma independiente, no solo el reporte del ejecutor: `check-docs-structure.mjs`
+> exit 0 re-corrido en el worktree; el commit toca **1 solo archivo** en scope
+> (`docs/reports/`), worktree limpio, sin tocar `scripts/`/`src/`/`workers/` ni el
+> plan maestro. Cada cita de archivo *tracked* verificada contra el archivo real:
+> la inconsistencia diagrama-vs-gate del plan maestro (§5 serializa PR-04 bajo
+> OBS-01 pero su "Gate de entrada" línea 760 solo pide "baseline GSC de 4 semanas
+> por URL", no el baseline first-party de OBS-01 que es el gate de PR-03 en línea
+> 708) es **real** y es el dato más fuerte del brief; el Progress Log del plan
+> maestro (2026-07-07) corrobora el embudo (`seguro-cesantia 112 starts/186
+> completes`, `calculator_view` en 0) de forma independiente al scorecard
+> gitignored; `SITE_ROUTE_ALLOWLIST` (mitigación parcial de GROWTH-005) y la
+> deprioritización de apv/conversor-uf por el plan 040 ("bajo valor esperado")
+> también confirmadas. **Tono honesto verificado:** el hallazgo central se
+> clasifica como **"sin-datos"** (W27 es pre-fix; 039/042/043 se mergearon después
+> de su ventana), NO como "los fixes fallaron"; GROWTH-005 como "parcialmente
+> mitigado", no "abierto sin más"; carril A con caveat explícito de zero-click.
+> **Desviaciones aprobadas en mérito:** el ejecutor añadió dos hallazgos más allá
+> del plan (la inconsistencia diagrama-vs-gate y la deprioritización previa de
+> 040), ambos verificados verdaderos y que fortalecen el brief. **Cierre
+> (2026-07-13, a pedido del operador — "acepto tu sugerencia, adelante"):** la rama
+> `advisor/045-measurement-resequence-two-lanes` se integró a `main` local por
+> **fast-forward** (`0102b11a..f34210ff`); ese ff también puso `main` local al día
+> con `origin/main`, que estaba 2 commits de bots adelante (refresh de snapshot
+> económico `b8406e55` y de `page-lastmod` `52fe278a`, ambos ya en `origin/main`,
+> verificados no relacionados con este trabajo). Cierre atómico en el mismo turno:
+> `045-*.md` movido a [`plans/archive/`](archive/045-measurement-resequence-two-lanes.md),
+> esta tabla renumerada, índice de archivados actualizado. **No empujado a
+> `origin/main`** (el operador no lo pidió). En la misma unidad de trabajo se
+> escribió el plan **047** (follow-up de implementación de GROWTH-005 que el brief
+> especifica) y se trackeó **046** (antes untracked). **Nota menor (no bloqueante),
+> pendiente para el futuro:** el brief incluye una línea de procedencia ("la cita
+> viene verificada por el reviewer de este plan") que filtra proceso de review a un
+> doc permanente de `docs/reports/`; defendible como procedencia, candidato a
+> limpieza futura.
 
 **Por qué este orden:**
 - **035, 038, 039, 037 y 036 ya ejecutados** (ver notas abajo): máxima
@@ -772,6 +836,7 @@ Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main
 | [040](archive/040-seo-title-snippet-refresh-brief.md) | Brief SEO title/snippet de seguro-cesantia — Título A aprobado por el operador | P3 | S | DONE (merge commit `013b59b0`) — apv y conversor-uf sin tocar (bajo valor esperado); seguimiento de medición pendiente a 2–4 semanas |
 | [042](archive/042-remove-calculator-completed-typo-event.md) | Quitar el evento typo `calculator_completed` de 8 archivos + el test que lo fijaba | P3 | S | DONE (merge commit `afeb9203`) — código muerto, cero impacto en métricas; cierra el ítem residual de 039 |
 | [043](archive/043-analytics-item-id-shape-decision.md) | Restringir la forma de `item_id` en analytics (carve-out de 038) — Opción 2 elegida por el operador | P3 | S | DONE (merge commit `66fd6a3c`) — cierra el hallazgo original de 037/038 sobre `item_id` |
+| [045](archive/045-measurement-resequence-two-lanes.md) | **Spike de dirección** (`/improve next` 2026-07-12): re-secuenciar el crecimiento en dos carriles + checklist de baseline; entregable `docs/reports/GROWTH-DIRECTION-DELTA-2026-W27.md` | P1 | S | DONE (fast-forward `f34210ff`) — brief read-only; follow-up de implementación desglosado en el plan 047 (GROWTH-005); adopción de la re-secuencia = decisión del owner |
 
 ### Auditorías 2026-06-15 a 2026-06-19
 
@@ -1001,6 +1066,40 @@ Tercera auditoría profunda 2026-06-19:
   términos de glosario que empiezan/terminan en carácter acentuado no auto-enlazan.
   Baja frecuencia (allowlist curada, la mayoría son kebab sin acento inicial/final).
   S, no abierto.
+
+## Considerados y reconciliados — auditoría de dirección `/improve next` 2026-07-12 (para no re-derivar)
+
+Esta pasada fue de **dirección** (delta W27 sobre la auditoría canónica
+`GROWTH-DIRECTION-AUDIT-2026-06-28.md`, corte W25). La densidad del roadmap
+existente es tal que casi toda dirección "obvia" ya está evaluada y es propiedad
+del mantenedor. Solo dos hallazgos resultaron **aditivos** (spikes 045 y 046). Lo
+demás se verificó como **ya owned** — no re-proponer sin evidencia nueva:
+
+- **UTM zero-click / captura de CTR sobre el clúster UTM**: owned. GROWTH-003 lo
+  acepta como apuesta secundaria; la tabla de rechazados difiere las páginas
+  programáticas UF/UTM ("alto zero-click"); y §8.2 clasifica "impresiones UF/UTM sin
+  click" como **métrica de vanidad**. El instinto inicial de esta pasada (los ~15k
+  impresiones/semana de `utm*` en posición 6–9 con CTR 0.1–0.5%) ya estaba resuelto.
+- **GEO / citación en motores generativos**: owned. En este repo "GEO" = Generative
+  Engine Optimization (no geográfico). GROWTH-006 lo mantiene como disciplina de
+  medición; `llms.txt`/`llms-full.txt` existen, la métrica "GEO citation rate"
+  (`combinaciones citadas / 48`) está planificada, y hay docs GEO del 2026-06-29
+  (`docs/operations/geo-*`). No re-auditar.
+- **Autoridad del clúster "sueldo líquido" (pos 73–95)**: owned. Ya identificado
+  arriba en "Hallazgos clave de la revisión de datos" y en GROWTH-004; es pipeline
+  editorial, no metadata.
+- **Calculadoras nuevas** (inflación ya shipeó como `actualizador-inflacion`;
+  CAE/rentabilidad real diferidas), **clústeres bancos/fintech y migrantes** (hubs
+  ya existen en `src/pages/guias/`), **comparadores** (HOLD por neutralidad),
+  **CalculatorShell 017/018/019**, **donaciones** (GROWTH-008), **merchandising
+  home vs. realidad** (GROWTH-010): todos en la sección "Dirección" de abajo o en
+  los findings GROWTH-*. No re-derivar.
+
+**Nota sobre GROWTH-005 (contaminación de RUM por hostname)**: verificado **aún sin
+implementar** al commit `0102b11a` — `scripts/data-signals/cloudflare-fetch.mjs`
+función `fetchRumWebVitals` (≈líneas 140-162) sigue consultando el RUM por
+`accountTag` sin dimensión de hostname. El plan 045 lo diagnostica y especifica el
+follow-up; no lo arregla (spike documental).
 
 ## Dirección (decisión del mantenedor — no planificado aún)
 

@@ -41,6 +41,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [040](040-seo-title-snippet-refresh-brief.md) | Brief SEO title/snippet de seguro-cesantia (Título A aprobado por el operador); apv y conversor-uf sin tocar por bajo valor esperado | 2026-07-12 | sí (merge commit `013b59b0`) |
 | [042](042-remove-calculator-completed-typo-event.md) | Quitar el evento typo `calculator_completed` de 8 archivos + el test que lo fijaba (código muerto, cero impacto en métricas) — cierra el ítem residual de 039 | 2026-07-12 | sí (merge commit `afeb9203`) |
 | [043](043-analytics-item-id-shape-decision.md) | Restringir la forma de `item_id` en analytics vía `SAFE_ITEM_ID_RE` (Opción 2 elegida por el operador; carve-out de 038) | 2026-07-12 | sí (merge commit `66fd6a3c`) |
+| [045](045-measurement-resequence-two-lanes.md) | Spike de dirección: re-secuenciar el crecimiento en dos carriles (SEO/GSC desbloqueado vs. journeys tras baseline); entregable `docs/reports/GROWTH-DIRECTION-DELTA-2026-W27.md`; follow-up de implementación desglosado al plan 047 (GROWTH-005) | 2026-07-13 | sí (fast-forward `f34210ff`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
