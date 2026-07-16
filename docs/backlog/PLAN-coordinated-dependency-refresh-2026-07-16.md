@@ -124,6 +124,8 @@ Compatibility resolution:
   Astro Shield's Astro 4 range, Wrangler's Workers Types 4 range, and a
   Tailwind Typography range that already includes installed Tailwind 4.3.2.
   No new peer family is introduced by this refresh; blocking gates pass.
+- 2026-07-16: Opened PR #328 with the full change-control record. It supersedes
+  Dependabot PRs #319 and #320 after successful merge.
 
 ## Change Control Record
 
