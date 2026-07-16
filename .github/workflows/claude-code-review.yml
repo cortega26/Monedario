@@ -15,7 +15,7 @@ jobs:
     if: >
       github.event.pull_request.head.repo.full_name == github.repository &&
       !endsWith(github.actor, '[bot]')
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 15
     permissions:
       contents: write
