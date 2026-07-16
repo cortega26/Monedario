@@ -1098,7 +1098,7 @@ function buildSourceSummary(analyticsJson, cloudflarePerf) {
     sources.push("Eventos first-party: n/d (export no disponible)");
   }
 
-  return sources.join("  \n");
+  return sources.join(" · ");
 }
 
 function buildCalculatorFunnelSection(analyticsJson, cloudflarePerf) {
@@ -1146,8 +1146,7 @@ _Sin eventos registrados esta semana._
 
   const parts = [
     `\n## Señales de calculadoras (first-party) — ${week}\n`,
-    `**Fuentes diferenciadas:**  `,
-    buildSourceSummary(analyticsJson, cloudflarePerf),
+    `**Fuentes diferenciadas:** ${buildSourceSummary(analyticsJson, cloudflarePerf)}`,
     "",
     table(
       [

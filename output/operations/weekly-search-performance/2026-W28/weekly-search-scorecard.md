@@ -1,6 +1,6 @@
 # Weekly Search Performance Scorecard
 
-Generated: `2026-07-16T23:05:26.113Z`
+Generated: `2026-07-16T23:12:17.749Z`
 
 ## Headline
 
@@ -162,7 +162,7 @@ _… y 7 más. Lista completa en `2026-W28-url-inspection.json`._
 
 - W28 provider exports were recovered locally after GitHub-hosted runner capacity prevented the scheduled Data Signals jobs from starting.
 - GSC recorded 498 organic clicks in W28, so the prior ~100 clicks/week deferral threshold for privacy-aggregated first-party behavior analysis is no longer applicable.
-- The W28 first-party analytics export was initially absent because Cloudflare interpreted numeric weekday 1 as Sunday while the export logic assumes Monday; repair is tracked in PR #330.
+- The W28 first-party analytics export was recovered after PR #330 merged and its exact tree was deployed: the live trigger is 57 7 * * MON and header-authenticated export smoke checks passed.
 
 ## Performance real (Cloudflare RUM — 2026-W28)
 
@@ -201,10 +201,7 @@ _… y 7 más. Lista completa en `2026-W28-url-inspection.json`._
 
 ## Señales de calculadoras (first-party) — 2026-W28
 
-**Fuentes diferenciadas:**  
-CDN pageviews: 14919  
-RUM samples: 990  
-Eventos first-party: 676 views · 551 starts · 708 completes · 0 errors
+**Fuentes diferenciadas:** CDN pageviews: 14919 · RUM samples: 990 · Eventos first-party: 676 views · 551 starts · 708 completes · 0 errors
 
 | Calculadora | Views | Starts | Completes | Errors | Starts/view | Results/start | Error rate | Shares | NBS clicks | NBS CTR | Support |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
