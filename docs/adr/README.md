@@ -23,6 +23,7 @@ Crea un ADR cuando cambie alguno de estos ejes:
 | `ADR-20260412-external-link-ci-gate.md` | Accepted | Gate de links externos en CI | validation, CI |
 | `ADR-20260511-editorial-artifact-location-policy.md` | Accepted | Politica de ubicacion de artefactos editoriales | editorial, governance |
 | `ADR-20260529-repo-self-healing-maintenance.md` | Accepted | Mantenimiento auto-reparable: gate diario en main, auto-PR de drift mecanico, deteccion de codigo muerto | CI, governance |
+| `ADR-20260716-temporary-self-hosted-actions-bridge.md` | Accepted | Puente temporal de runner self-hosted ante agotamiento de minutos | CI, operations |
 
 ## Convencion minima
 
