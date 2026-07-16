@@ -15,7 +15,7 @@ zone_id = "9d53871bed75e9ad5d4cc5da84a18fcf"
 # Lunes 07:57 UTC (madrugada en Chile). Se usa minuto 57 para evitar congestión
 # en :00/:30 con otros cron jobs del ecosistema Cloudflare.
 [triggers]
-crons = ["57 7 * * 1"]
+crons = ["57 7 * * MON"]
 
 # ── KV Namespace ────────────────────────────────────────────────────────────
 # Contadores agregados. Clave: telemetry:v1:{date}:{event}:{slug}:{dimension}
