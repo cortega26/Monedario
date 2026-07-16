@@ -82,6 +82,8 @@ mandatory defense-in-depth.
   Astro diagnostics with 0 errors, production build of 327 pages, 1,551 links
   with no failures, 53/53 unchanged public routes, and 52/52 unchanged RSS
   entries.
+- 2026-07-16: Opened replacement PR #329; #321/#322/#324 remain open until
+  #329 passes remote review and merges.
 
 ## Change Control Record
 
