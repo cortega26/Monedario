@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import {
@@ -732,6 +734,18 @@ describe("runExport", () => {
 });
 
 describe("scheduled()", () => {
+  it("runs on Monday after the previous ISO week is complete", () => {
+    const config = readFileSync(
+      new URL(
+        "../../../workers/analytics-collector/wrangler.toml",
+        import.meta.url,
+      ),
+      "utf8",
+    );
+
+    expect(config).toMatch(/crons\s*=\s*\["57 7 \* \* MON"\]/);
+  });
+
   it("re-throws infrastructure failures so the invocation is marked failed", async () => {
     const env = {
       ANALYTICS_TELEMETRY: {
