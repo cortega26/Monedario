@@ -49,7 +49,7 @@ concurrency:
 jobs:
   freeze-check:
     name: OBS-01 freeze check
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 5
 
     steps:
