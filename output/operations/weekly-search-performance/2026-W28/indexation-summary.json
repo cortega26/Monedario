@@ -1,0 +1,35 @@
+{
+  "weekLabel": "2026-W28",
+  "dateRange": {
+    "currentStart": "2026-07-06",
+    "currentEnd": "2026-07-12",
+    "previousStart": "2026-06-29",
+    "previousEnd": "2026-07-05"
+  },
+  "google": {
+    "property": "sc-domain:monedario.cl",
+    "sitemapStatus": "success: 184 submitted, 0 errors, 0 warnings",
+    "indexedPages": 157,
+    "excludedPages": 27,
+    "coverageNotes": "URL Inspection checked all 184 sitemap URLs on 2026-07-16: 157 submitted and indexed (85%) and 27 crawled but currently not indexed. Indexing and robots access were allowed for every inspected URL; the run completed with 0 API errors. The sitemap API's indexed=0 field is not used as coverage evidence.",
+    "alerts": [
+      "Review the 27 crawled-but-not-indexed URLs as a cohort; do not request indexing or rewrite YMYL pages without the applicable editorial and non-cannibalization gates."
+    ],
+    "manualActions": "not checked by the automated recovery",
+    "enhancementIssues": []
+  },
+  "bing": {
+    "site": "https://monedario.cl/",
+    "sitemapStatus": "reachable: HTTP 200 on 2026-07-16",
+    "urlsDiscovered": null,
+    "coverageNotes": "The live sitemap is reachable and robots.txt allows general search crawlers, including Bingbot through User-agent: *. No Bing Webmaster Tools API/export is configured in the repository, so discovered/indexed URL counts could not be independently verified.",
+    "alerts": [
+      "Manual Bing Webmaster Tools verification remains required before claiming Bing index coverage."
+    ]
+  },
+  "notes": [
+    "W28 provider exports were recovered locally after GitHub-hosted runner capacity prevented the scheduled Data Signals jobs from starting.",
+    "GSC recorded 498 organic clicks in W28, so the prior ~100 clicks/week deferral threshold for privacy-aggregated first-party behavior analysis is no longer applicable.",
+    "The W28 first-party analytics export was recovered after PR #330 merged and its exact tree was deployed: the live trigger is 57 7 * * MON and header-authenticated export smoke checks passed."
+  ]
+}

@@ -6,12 +6,12 @@
 > improvises. Al terminar, actualiza la fila de este plan en `plans/README.md`,
 > salvo que un revisor te haya despachado y te diga que él mantiene el índice.
 >
-> **Este plan tiene una compuerta de viabilidad externa en el Step 1.** El fix
-> depende de una capacidad del schema GraphQL de Cloudflare Analytics que este
-> plan NO pudo verificar en vivo al escribirse (no había credenciales
-> disponibles). El Step 1 es esa verificación; si el schema no soporta el
-> filtrado por hostname, el entregable pasa a ser *documentar la limitación* y
-> te detienes — no fuerces una implementación que la API no soporta. Cumple el
+> **La compuerta de viabilidad externa del Step 1 quedó verificada el
+> 2026-07-16 durante la auditoría W28.** Una consulta live, read-only, al dataset
+> `rumWebVitalsEventsAdaptiveGroups` confirmó que `requestHost` existe como
+> filtro y dimensión; el mismo query limitado a `monedario.cl` devolvió solo ese
+> hostname. El ejecutor debe repetir el smoke de schema para detectar drift, pero
+> ya no debe tratar la capacidad como desconocida. Cumple el
 > criterio obligatorio de viabilidad de `docs/development/CRITERIO_VIABILIDAD.md`:
 > analiza la viabilidad de forma realista, no solo técnica.
 >
@@ -28,17 +28,30 @@
 
 ## Status
 
+- **Closure**: DONE — implementation and independent review passed; integrated
+  by the final Issue #315 change
 - **Priority**: P2
 - **Effort**: M
-- **Risk**: MED (depende de una capacidad del schema externo de Cloudflare que
-  debe verificarse en vivo; el fix en sí es acotado, pero el Step 1 puede
-  invalidarlo)
+- **Risk**: MED (la capacidad `requestHost` fue verificada en vivo el 2026-07-16;
+  el riesgo remanente es drift del schema externo o un filtro mal cableado)
 - **Depends on**: none
 - **Category**: bug (corrección de datos / contaminación cross-hostname)
 - **Planned at**: commit `f34210ff`, 2026-07-13
 - **Origen**: follow-up especificado por el brief
   `docs/reports/GROWTH-DIRECTION-DELTA-2026-W27.md` §5 (spike 045). GROWTH-005 en
   la auditoría canónica `docs/reports/GROWTH-DIRECTION-AUDIT-2026-06-28.md`.
+- **Execution**: implementación y revisión técnica aprobadas el 2026-07-16 en
+  `56efa9f0`, integrada como `a3ac9504`; gates locales y cierre atómico aprobados.
+
+## Viabilidad verificada (delta 2026-07-16)
+
+La auditoría W28 ejecutó un query read-only contra Cloudflare GraphQL usando el
+mismo dataset de producción. `requestHost` fue aceptado en `filter`, se solicitó
+también en `dimensions`, y las filas de control filtradas por `monedario.cl`
+contenían únicamente ese host. No se registra ningún token, identificador de
+cuenta ni valor secreto en este plan. Resultado: **Opción A confirmada**; el
+executor debe implementar `requestHost: $host` y mantener el allowlist de rutas
+como defensa en profundidad.
 
 ## Why this matters
 
@@ -201,7 +214,7 @@ puntual o contra la documentación pública, no corriendo el pipeline completo.
 
 ## Steps
 
-### Step 1: Verificar qué capacidad de scope-por-hostname soporta el dataset RUM (compuerta de viabilidad)
+### Step 1: Reconfirmar `requestHost` y detectar drift del schema
 
 `rumWebVitalsEventsAdaptiveGroups` hoy se consulta bajo `accounts`. Determina
 cuál de estas tres opciones es la que la API realmente soporta, en este orden de
@@ -338,16 +351,16 @@ Corre la suite completa y los gates de lint/formato.
 Todas deben cumplirse (salvo STOP en Step 1 con Opción C, que es cierre por
 "no viable — limitación documentada"):
 
-- [ ] Step 1 resuelto por escrito (opción A / B / C con evidencia del schema).
-- [ ] `fetchRumWebVitals` scopea el RUM a `monedario.cl` (por `requestHost` o por
+- [x] Step 1 resuelto por escrito (opción A / B / C con evidencia del schema).
+- [x] `fetchRumWebVitals` scopea el RUM a `monedario.cl` (por `requestHost` o por
   zona), verificable con `grep`.
-- [ ] `sanitizeRumRoutes` sigue llamándose en `main` (defensa en profundidad).
-- [ ] `normalizeRumRow` conserva el shape `{ path, count, clsP75, inpP75Ms, lcpP75Ms }`.
-- [ ] `tests/scripts/cloudflare-rum-query.test.ts` existe y afirma el hostname/zona.
-- [ ] `pnpm test` → 0 failures.
-- [ ] `pnpm exec eslint <archivos en scope>` → exit 0; `format:check` → exit 0.
-- [ ] `git status`: no hay archivos fuera de scope modificados.
-- [ ] Fila de este plan actualizada en `plans/README.md`.
+- [x] `sanitizeRumRoutes` sigue llamándose en `main` (defensa en profundidad).
+- [x] `normalizeRumRow` conserva el shape `{ path, count, clsP75, inpP75Ms, lcpP75Ms }`.
+- [x] `tests/scripts/cloudflare-rum-query.test.ts` existe y afirma el hostname/zona.
+- [x] `pnpm test` → 0 failures.
+- [x] `pnpm exec eslint <archivos en scope>` → exit 0; `format:check` → exit 0.
+- [x] `git status`: no hay archivos fuera de scope modificados.
+- [x] Fila de este plan actualizada en `plans/README.md`.
 
 ## STOP conditions
 
