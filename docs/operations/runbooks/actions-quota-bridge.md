@@ -28,9 +28,10 @@ The image pins and checksum-verifies:
 - GitHub Actions runner `2.335.1`;
 - Node.js `24.15.0`.
 
-Google Chrome is installed for Lighthouse compatibility. Workflow-local pnpm,
-uv, Gitleaks, Opengrep, Playwright, and project dependencies are installed by
-the existing workflow steps without root access.
+Python 3.12.3 is installed for repository URL-check subprocesses, and Google
+Chrome 150 is installed for Lighthouse compatibility. Workflow-local pnpm, uv,
+Gitleaks, Opengrep, Playwright, and project dependencies are installed by the
+existing workflow steps without root access.
 
 ## Routine operations
 
@@ -119,7 +120,7 @@ docker run --rm --user runner \
   --env RUNNER_REMOVE_TOKEN="${remove_token}" \
   --volume monedario-actions-runner-data:/runner \
   monedario-actions-runner:2.335.1 \
-  -lc 'cd /runner && ./config.sh remove --unattended --token "$RUNNER_REMOVE_TOKEN"'
+  -lc 'cd /runner && ./config.sh remove --token "$RUNNER_REMOVE_TOKEN"'
 
 unset remove_token
 docker volume rm monedario-actions-runner-data

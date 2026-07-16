@@ -1,6 +1,6 @@
 # Plan: temporary GitHub Actions quota bridge
 
-Status: in progress
+Status: implemented — active bridge pending scheduled retirement
 Owner: repository owner
 Started: 2026-07-16
 Target retirement: 2026-08-01 after hosted-minute reset is confirmed
@@ -55,7 +55,7 @@ Target retirement: 2026-08-01 after hosted-minute reset is confirmed
    default.
 3. Remove hosted-image root-write assumptions from shared bootstrap/security
    installation steps.
-4. Provision a dedicated local account, install the runner, register it only to
+4. Provision a container-isolated non-root runner, register it only to
    `cortega26/Monedario`, and select it through the repository variable.
 5. Run repository gates and a live workflow smoke test.
 6. Commit, push, open a draft PR, and record final evidence here.
@@ -76,7 +76,7 @@ Target retirement: 2026-08-01 after hosted-minute reset is confirmed
 2. Delete repository variable `ACTIONS_RUNNER_LABEL`.
 3. Cancel and re-run any job that was queued before variable deletion.
 4. Stop and unregister the repository runner.
-5. Remove the dedicated runner account after its work directory is deleted.
+5. Remove the runner container, named volume, and local image.
 
 The workflow expressions then resolve to `ubuntu-latest`; no rollback commit is
 required. The portability changes may remain because they do not alter default
@@ -109,6 +109,18 @@ behavior.
 - 2026-07-16: Full mandatory validation passed: lint, boundaries, format, 1,036
   tests, frontmatter, routes (53 before/after; no changes), Astro check (0
   errors), and production build/URL check (327 pages; 1,543 links; 0 broken).
+- 2026-07-16: PR #326 exercised every routed PR workflow on the custom
+  runner label. The first full-build attempt exposed a missing system `python3`
+  runtime in the image during URL checking; the image was rebuilt with Python
+  3.12.3 and the failed job was re-run rather than weakening the gate.
+- 2026-07-16: GitHub Actions run `29520310584` attempt 2 passed the complete
+  CI chain on the self-hosted runner: code standards/tests, build, internal URL
+  and RSS checks, accessibility audit, and the blocking external URL check.
+  Python CI, Gitleaks, Opengrep, Trivy, and Cloudflare Pages also passed on the
+  same PR head.
+- 2026-07-16: After the live run drained, the runner container was recreated
+  from its persistent registration volume without `RUNNER_TOKEN`; GitHub
+  reports it online and idle with the intended custom label.
 
 ## Change Control Record
 
@@ -164,4 +176,20 @@ not benchmark-driven product/editorial work and creates no visible surface.
 
 ## Completion evidence
 
-Pending implementation and validation.
+- Implementation commit: `521aaf82` (`chore(ci): add temporary self-hosted
+  runner bridge`).
+- Review surface: PR #326 on branch `agent/actions-quota-bridge`.
+- Routing proof: repository variable resolves all 27 jobs to
+  `monedario-local-bridge`; deleting the variable restores `ubuntu-latest`.
+- Isolation proof: listener/job UID 10001, named runner volume only, no host
+  workspace/home/SSH/cloud-credential/Docker-socket mounts, and no retained
+  registration token.
+- Local proof: all mandatory gates passed, including 125 test files / 1,036
+  tests, 53 unchanged routes, 327 built pages, and 1,543 checked links with 0
+  broken.
+- Live proof: GitHub Actions run `29520310584` attempt 2 passed the full CI,
+  browser accessibility, external URL, Python, and security workflow chain on
+  the custom self-hosted label.
+- Remaining scheduled operation: execute the August 1 retirement section in
+  `docs/operations/runbooks/actions-quota-bridge.md` only after the hosted
+  allowance reset is confirmed.
