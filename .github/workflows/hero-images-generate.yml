@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   refresh-hero-image-prompts:
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 15
 
     steps:
