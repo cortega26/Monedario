@@ -59,7 +59,7 @@ complete events. Values over 100% are valid event ratios, not impossible users.
 **In scope**:
 
 - `workers/analytics-collector/src/index.ts`
-- `workers/analytics-collector/README.md`
+- `workers/analytics-collector/wrangler.toml`
 - `scripts/build-weekly-search-report.mjs`
 - `tests/workers/analytics-collector/schema.test.ts`
 - `tests/scripts/build-weekly-search-report.test.ts`
@@ -143,6 +143,23 @@ suite passed 1,055/1,055, Worker typecheck passed, and lint/docs/format/boundary
 checks passed. The real W28 scorecard now renders `Results/start` event ratios
 and the explicit no-user/no-session caveat. The plan remains open until merge,
 deployment, smoke verification, and atomic archival.
+
+Late PR review identified a cutover hazard in the first implementation: changing
+the date semantics inside the existing `telemetry:v1` prefix would mix legacy UTC
+and new local-calendar rows in the first weekly exports. The corrected design
+keeps UTC writes/reads on `telemetry:v1` through a configured Monday 00:00 Chile
+boundary and begins local-calendar writes/reads on `telemetry:v2` at that exact
+boundary. Each ISO week reads exactly one version, so no double-read,
+deduplication guess, or historical rewrite is introduced.
+
+Rollback is time-dependent: before the cutover the bounded Worker/config change
+can be reverted; after the boundary, set `ANALYTICS_DISABLED=1` and fix forward
+on v2 rather than splitting the active week back across namespaces.
+
+Cutover regression evidence: focused Worker/report tests passed 86/86; the full
+suite passed 1,061/1,061; Worker typecheck, lint, docs, formatting, boundaries,
+frontmatter, `URL.PUBLIC.NO_POST_ID`, routes 53→53, RSS 52→52, Astro check/build
+(327 pages), and 1,563-link URL validation all passed.
 
 ## STOP conditions
 

@@ -32,24 +32,29 @@ input identity.
    configuration error, not a silent fallback to UTC.
 3. Keep artifact windows as explicit ISO dates and preserve the existing
    `schemaVersion: 1` JSON shape.
-4. Do not rewrite historical counter keys. Pre-change keys keep their recorded
-   dates; future writes use the configured local calendar. A requested export
-   continues reading one key prefix for each explicit date in its window, so no
-   double-read or deduplication migration is introduced.
-5. Label `completes / starts` as `results/start` and render it as an event ratio
+4. Do not change date semantics inside the existing namespace. Legacy UTC
+   counters remain under `telemetry:v1`; local-calendar counters begin under
+   `telemetry:v2` at the configured `COUNTER_KEY_CUTOVER_AT` boundary.
+5. The cutover timestamp must resolve to Monday 00:00:00 in
+   `EXPORT_TIMEZONE`. Before it, ingestion writes v1/UTC; at and after it,
+   ingestion writes v2/local dates. Exports before the cutover ISO week read
+   only v1, while the cutover week and later read only v2. No weekly artifact
+   double-reads, deduplicates, rewrites, or mixes the two conventions.
+6. Label `completes / starts` as `results/start` and render it as an event ratio
    such as `1.66×`. It may exceed `1×` and must not be described as conversion,
    completion probability, users, or sessions.
-6. Remove the arbitrary `<35%` tool-friction action. Aggregate event ratios may
+7. Remove the arbitrary `<35%` tool-friction action. Aggregate event ratios may
    support trend observation, but they do not establish a cohort UX failure.
-7. Keep error rate and next-best-step CTR because their event denominators are
+8. Keep error rate and next-best-step CTR because their event denominators are
    explicit; always disclose that all values are aggregate event counts.
 
 ## Consequences
 
 - Chilean midnight and ISO-week boundaries behave consistently across summer
   and winter offsets.
-- Existing R2 artifacts and KV history remain readable without destructive
-  migration or double counting.
+- Existing R2 artifacts and v1 KV history remain readable without destructive
+  migration or double counting. The first v2 week begins at a clean local-week
+  boundary, so no artifact combines UTC and Chile-calendar counters.
 - Weekly scorecards no longer manufacture conversion claims or UX actions from
   privacy-preserving event counters.
 - True conversion analysis remains unavailable unless a separately reviewed
@@ -61,16 +66,21 @@ input identity.
 - Local Sunday/Monday and Dec/Jan ISO-year boundaries.
 - Invalid timezone failure.
 - End-to-end ingestion key selection under a UTC/local-date crossover.
+- Pre-cutover v1 and post-cutover v2 ingestion, single-prefix weekly export
+  selection, and rejection of a non-Monday/non-midnight cutover.
 - Scorecard fixture with 100 completes and 31 starts rendering `3.23×` without
   a completion-rate label or friction action.
 - Worker/report focused tests, full tests, lint, docs, format, and boundaries.
 
 ## Rollback
 
-Revert the Worker helper/call sites, report semantics, tests, and this ADR as
-one change. No stored data migration is required. A rollback would
-reintroduce the known UTC/local-calendar ambiguity and misleading event-ratio
-labels, so it should be used only to contain an identified production defect.
+Before `COUNTER_KEY_CUTOVER_AT`, revert the Worker helper/call sites,
+configuration, report semantics, tests, and this ADR as one change; no v2 data
+exists yet. At or after the boundary, do **not** roll the writer back to v1:
+that would split W30 across namespaces. Instead set `ANALYTICS_DISABLED=1` to
+stop ingestion, then deploy a fix-forward that preserves v2/local-calendar key
+selection. Existing v1/v2 counters and R2 artifacts require no destructive
+migration in either case.
 
 ## Change Control Record
 
@@ -86,7 +96,8 @@ labels, so it should be used only to contain an identified production defect.
 5. **Boundary integrity:** no new production dependency or cross-layer import.
 6. **Test coverage impact:** adds calendar-boundary, invalid-timezone, ingestion,
    and results-per-start regression coverage.
-7. **Rollback strategy:** revert the bounded commit; no data migration.
+7. **Rollback strategy:** bounded revert before cutover; after cutover, disable
+   ingestion and fix forward while preserving v2. No destructive migration.
 8. **Regression risk:** medium around calendar boundaries and downstream report
    wording; pure helpers, explicit dates, focused fixtures, and the full gate set
    mitigate it.
