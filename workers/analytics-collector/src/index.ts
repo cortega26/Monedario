@@ -291,20 +291,32 @@ export function sanitizeCollectorEvent(
 
 // ── Helper: build KV counter key ─────────────────────────────────────────────
 
-function getDateString(): string {
-  // UTC date in ISO format: YYYY-MM-DD
-  const now = new Date();
-  const year = now.getUTCFullYear();
-  const month = String(now.getUTCMonth() + 1).padStart(2, "0");
-  const day = String(now.getUTCDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
+export function calendarDateInTimeZone(date: Date, timeZone: string): string {
+  let parts: Intl.DateTimeFormatPart[];
+  try {
+    parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).formatToParts(date);
+  } catch {
+    throw new Error(`Invalid EXPORT_TIMEZONE: "${timeZone}"`);
+  }
+
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  if (!values.year || !values.month || !values.day) {
+    throw new Error(`Could not resolve calendar date in EXPORT_TIMEZONE: "${timeZone}"`);
+  }
+  return `${values.year}-${values.month}-${values.day}`;
 }
 
 function buildCounterKey(
   event: string,
   params: Record<string, string | number | boolean>,
+  timeZone: string,
 ): string {
-  const date = getDateString();
+  const date = calendarDateInTimeZone(new Date(), timeZone);
   const slug = String(params.calculator_slug ?? params.item_id ?? params.page_type ?? "unknown");
 
   // Build a stable dimension suffix from non-slug params, sorted by key
@@ -349,8 +361,9 @@ async function ingestEvent(
   kv: KVNamespace,
   event: string,
   params: Record<string, string | number | boolean>,
+  timeZone: string,
 ): Promise<void> {
-  const key = buildCounterKey(event, params);
+  const key = buildCounterKey(event, params, timeZone);
 
   try {
     // Increment counter with TTL
@@ -385,11 +398,14 @@ function corsHeaders(): Record<string, string> {
  * from UTC, then walk back to the most-recently-completed Sunday, then
  * back to Monday of that week, and compute the ISO week from that Monday.
  */
-function previousCompleteISOWeekInTz(): string {
+export function previousCompleteISOWeekInTz(
+  timeZone: string,
+  now = new Date(),
+): string {
   // Use the most recent fully completed Sunday as the reference. On Sunday
   // itself, the current ISO week is still in progress, so step back 7 days.
-  const now = new Date();
-  const todayUtc = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  const localDate = calendarDateInTimeZone(now, timeZone);
+  const todayUtc = new Date(`${localDate}T00:00:00Z`);
   const dayNum = todayUtc.getUTCDay() || 7; // 1=Monday … 7=Sunday
   const daysBack = dayNum === 7 ? 7 : dayNum;
   const completedSunday = new Date(todayUtc.getTime() - daysBack * 86_400_000);
@@ -766,7 +782,9 @@ async function handleManualExport(request: Request, env: Env): Promise<Response>
   }
 
   const requestedWeek = url.searchParams.get("week");
-  const week = requestedWeek ?? previousCompleteISOWeekInTz();
+  const week =
+    requestedWeek ??
+    previousCompleteISOWeekInTz(env.EXPORT_TIMEZONE ?? "America/Santiago");
   if (!/^\d{4}-W\d{2}$/.test(week)) {
     return jsonResponse({ error: "invalid_week" }, 400);
   }
@@ -874,7 +892,13 @@ export default {
     }
 
     // Ingest — increment KV counters
-    await ingestEvent(env.ANALYTICS_TELEMETRY, validation.event, validation.params);
+    const timeZone = env.EXPORT_TIMEZONE ?? "America/Santiago";
+    await ingestEvent(
+      env.ANALYTICS_TELEMETRY,
+      validation.event,
+      validation.params,
+      timeZone,
+    );
 
     // 202 Accepted — no echo of the payload
     return new Response(null, { status: 202, headers: corsHeaders() });
@@ -897,7 +921,7 @@ export default {
     const tz = env.EXPORT_TIMEZONE ?? "America/Santiago";
 
     // Compute the previous complete ISO week.
-    const week = previousCompleteISOWeekInTz();
+    const week = previousCompleteISOWeekInTz(tz);
     console.log(`[analytics-export] trigger=cron week=${week} tz=${tz}`);
 
     try {

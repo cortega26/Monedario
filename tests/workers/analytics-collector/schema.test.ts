@@ -7,7 +7,9 @@ import {
   validateEventPayload,
   sanitizeCollectorEvent,
   MAX_BODY_SIZE,
+  calendarDateInTimeZone,
   dateToISOWeekUTC,
+  previousCompleteISOWeekInTz,
   isoWeekToDateRangeUTC,
   parseCounterKey,
   aggregateWindow,
@@ -456,6 +458,59 @@ describe("dateToISOWeekUTC", () => {
   });
 });
 
+describe("Chile calendar boundaries", () => {
+  it("uses the Santiago calendar date across summer and winter UTC crossovers", () => {
+    expect(
+      calendarDateInTimeZone(
+        new Date("2026-01-15T02:30:00Z"),
+        "America/Santiago",
+      ),
+    ).toBe("2026-01-14");
+    expect(
+      calendarDateInTimeZone(
+        new Date("2026-07-15T03:30:00Z"),
+        "America/Santiago",
+      ),
+    ).toBe("2026-07-14");
+  });
+
+  it("selects the previous complete week from local Sunday and Monday", () => {
+    expect(
+      previousCompleteISOWeekInTz(
+        "America/Santiago",
+        new Date("2026-07-13T03:30:00Z"),
+      ),
+    ).toBe("2026-W27");
+    expect(
+      previousCompleteISOWeekInTz(
+        "America/Santiago",
+        new Date("2026-07-13T04:30:00Z"),
+      ),
+    ).toBe("2026-W28");
+  });
+
+  it("handles the ISO-year rollover using the local Monday", () => {
+    expect(
+      previousCompleteISOWeekInTz(
+        "America/Santiago",
+        new Date("2026-01-05T02:30:00Z"),
+      ),
+    ).toBe("2025-W52");
+    expect(
+      previousCompleteISOWeekInTz(
+        "America/Santiago",
+        new Date("2026-01-05T03:30:00Z"),
+      ),
+    ).toBe("2026-W01");
+  });
+
+  it("rejects an invalid configured timezone", () => {
+    expect(() =>
+      calendarDateInTimeZone(new Date("2026-07-16T00:00:00Z"), "Mars/Olympus"),
+    ).toThrow('Invalid EXPORT_TIMEZONE: "Mars/Olympus"');
+  });
+});
+
 describe("isoWeekToDateRangeUTC", () => {
   it("returns Monday–Sunday range for W26 2026", () => {
     const range = isoWeekToDateRangeUTC("2026-W26");
@@ -763,6 +818,37 @@ describe("scheduled()", () => {
     await expect(
       analyticsCollector.scheduled({} as never, env),
     ).rejects.toThrow();
+  });
+});
+
+describe("event ingestion calendar", () => {
+  it("writes counters under the configured local date", async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-07-15T03:30:00Z"));
+    const env = makeEnv();
+    env.ANALYTICS_DISABLED = "0";
+    env.EXPORT_TIMEZONE = "America/Santiago";
+
+    const response = await analyticsCollector.fetch(
+      new Request("https://monedario.cl/api/analytics/event", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Origin: "https://monedario.cl",
+          "CF-Connecting-IP": "192.0.2.1",
+        },
+        body: JSON.stringify({
+          event: "calculator_start",
+          params: { calculator_slug: "sueldo-liquido", interaction_type: "input" },
+        }),
+      }),
+      env,
+    );
+
+    expect(response.status).toBe(202);
+    const kv = env.ANALYTICS_TELEMETRY as unknown as MockKV;
+    expect(kv.store.get("telemetry:v1:2026-07-14:calculator_start:sueldo-liquido:input")).toBe("1");
+    expect(kv.store.has("telemetry:v1:2026-07-15:calculator_start:sueldo-liquido:input")).toBe(false);
   });
 });
 

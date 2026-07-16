@@ -1067,6 +1067,12 @@ function safeRate(numerator, denominator) {
   return `${((numerator / denominator) * 100).toFixed(1)}%`;
 }
 
+function safeEventRatio(numerator, denominator) {
+  if (!denominator || denominator <= 0) return "n/d";
+  if (numerator === null || numerator === undefined) return "n/d";
+  return `${(numerator / denominator).toFixed(2)}×`;
+}
+
 function buildSourceSummary(analyticsJson, cloudflarePerf) {
   const sources = [];
 
@@ -1098,7 +1104,7 @@ function buildSourceSummary(analyticsJson, cloudflarePerf) {
 function buildCalculatorFunnelSection(analyticsJson, cloudflarePerf) {
   if (!analyticsJson?.available) {
     return `
-## Funnel de calculadoras (first-party)
+## Señales de calculadoras (first-party)
 
 _Export semanal de analytics no disponible para esta semana._
 `;
@@ -1108,7 +1114,7 @@ _Export semanal de analytics no disponible para esta semana._
   const slugs = Object.keys(bySlug).sort();
   if (slugs.length === 0) {
     return `
-## Funnel de calculadoras (first-party) — ${week}
+## Señales de calculadoras (first-party) — ${week}
 
 _Sin eventos registrados esta semana._
 `;
@@ -1117,8 +1123,8 @@ _Sin eventos registrados esta semana._
   // Build per-calculator rows
   const rows = slugs.map((slug) => {
     const a = bySlug[slug];
-    const startRate = safeRate(a.starts, a.views);
-    const completionRate = safeRate(a.completes, a.starts);
+    const startsPerView = safeEventRatio(a.starts, a.views);
+    const resultsPerStart = safeEventRatio(a.completes, a.starts);
     const errorRate = safeRate(a.errors, a.starts);
     const nextStepCTR = safeRate(a.nextStepClicks, a.nextStepShown);
 
@@ -1128,8 +1134,8 @@ _Sin eventos registrados esta semana._
       nDformat(a.starts),
       nDformat(a.completes),
       nDformat(a.errors),
-      startRate,
-      completionRate,
+      startsPerView,
+      resultsPerStart,
       errorRate,
       nDformat(a.shares),
       nDformat(a.nextStepClicks),
@@ -1139,7 +1145,7 @@ _Sin eventos registrados esta semana._
   });
 
   const parts = [
-    `\n## Funnel de calculadoras (first-party) — ${week}\n`,
+    `\n## Señales de calculadoras (first-party) — ${week}\n`,
     `**Fuentes diferenciadas:**  `,
     buildSourceSummary(analyticsJson, cloudflarePerf),
     "",
@@ -1150,8 +1156,8 @@ _Sin eventos registrados esta semana._
         "Starts",
         "Completes",
         "Errors",
-        "Start rate",
-        "Completion rate",
+        "Starts/view",
+        "Results/start",
         "Error rate",
         "Shares",
         "NBS clicks",
@@ -1168,7 +1174,7 @@ _Sin eventos registrados esta semana._
       `scenario actions=${totals.scenarioActions} · resume clicks=${totals.resumeClicks} · ` +
       `official source clicks=${totals.officialSourceClicks}`,
     "",
-    `_Start rate = starts / views. Completion rate = completes / starts. Error rate = errors / starts. NBS CTR = next-step clicks / next-step shown. "n/d" indica denominador cero o fuente no disponible._`,
+    `_Starts/view y results/start son ratios de conteos de eventos agregados; pueden superar 1× y no representan usuarios, sesiones ni conversión de cohorte. Error rate = errors / starts. NBS CTR = next-step clicks / next-step shown. "n/d" indica denominador cero o fuente no disponible._`,
     "",
   ];
 
@@ -1187,10 +1193,10 @@ _Sin eventos registrados esta semana._
     parts.push("### Journey prioritario\n");
     parts.push(
       table(
-        ["Calculadora", "Views", "Starts", "Completes", "Start rate", "Completion rate", "Next-step CTR", "Share rate"],
+        ["Calculadora", "Views", "Starts", "Completes", "Starts/view", "Results/start", "Next-step CTR", "Share rate"],
         priorityData.map((a) => {
-          const startRate = safeRate(a.starts, a.views);
-          const completionRate = safeRate(a.completes, a.starts);
+          const startsPerView = safeEventRatio(a.starts, a.views);
+          const resultsPerStart = safeEventRatio(a.completes, a.starts);
           const nextStepCTR = safeRate(a.nextStepClicks, a.nextStepShown);
           const shareRate = safeRate(a.shares, a.completes);
           return [
@@ -1198,8 +1204,8 @@ _Sin eventos registrados esta semana._
             nDformat(a.views),
             nDformat(a.starts),
             nDformat(a.completes),
-            startRate,
-            completionRate,
+            startsPerView,
+            resultsPerStart,
             nextStepCTR,
             shareRate,
           ];
@@ -1405,7 +1411,7 @@ function getAnalyticsMetrics(pageEvents, pagePath) {
     cta,
     starts,
     completes,
-    completionRate:
+    resultsPerStart:
       starts.current > 0 ? completes.current / starts.current : null,
   };
 }
@@ -1512,23 +1518,6 @@ function classifyTrackedPage(entry, pageRow, queryPulse, analyticsMetrics) {
       text: `El tráfico sube, pero los CTA no acompañan. Reforzar enlaces hacia ${entry.nextStepPaths.join(
         ", "
       )}.`,
-    });
-  }
-
-  if (
-    entry.role === "tool" &&
-    analyticsMetrics.starts.current >= 10 &&
-    analyticsMetrics.completionRate !== null &&
-    analyticsMetrics.completionRate < 0.35
-  ) {
-    if (status === "steady" || status === "watch") {
-      status = "action_needed";
-    }
-    actions.push({
-      type: "tool_ux",
-      text: `Completion rate ${formatPercent(
-        analyticsMetrics.completionRate * 100
-      )}. Revisar fricción del formulario o copy del resultado.`,
     });
   }
 
@@ -1764,10 +1753,10 @@ function renderTrackedTable(trackedPages) {
         : "n/d";
       const analytics =
         item.role === "tool"
-          ? `starts ${item.analyticsMetrics.starts.current}, completes ${item.analyticsMetrics.completes.current}, CR ${
-              item.analyticsMetrics.completionRate === null
+          ? `starts ${item.analyticsMetrics.starts.current}, completes ${item.analyticsMetrics.completes.current}, results/start ${
+              item.analyticsMetrics.resultsPerStart === null
                 ? "n/d"
-                : formatPercent(item.analyticsMetrics.completionRate * 100)
+                : `${item.analyticsMetrics.resultsPerStart.toFixed(2)}×`
             }`
           : `cta_click ${item.analyticsMetrics.cta.current} (${formatSignedNumber(
               item.analyticsMetrics.cta.current -

@@ -338,13 +338,15 @@ describe("build-weekly-search-report script", () => {
     expect(markdown).toContain("winner");
     expect(markdown).toContain("loser");
     expect(markdown).toContain("La demanda del query set sube, pero la landing cae");
-    expect(markdown).toContain("Completion rate 20.0%");
+    expect(markdown).toContain("results/start 0.20×");
+    expect(markdown).not.toContain("Completion rate");
+    expect(markdown).not.toContain("Revisar fricción del formulario");
     expect(markdown).toContain("El tráfico sube, pero los CTA no acompañan");
 
     const json = JSON.parse(readFileSync(jsonOut, "utf8"));
     expect(json.totals.trackedWinnerCount).toBe(1);
     expect(json.totals.trackedLoserCount).toBe(1);
-    expect(json.totals.trackedActionCount).toBe(1);
+    expect(json.totals.trackedActionCount).toBe(0);
     expect(json.source).toBe("csv");
   });
 
@@ -405,6 +407,56 @@ describe("build-weekly-search-report script", () => {
     expect(readFileSync(markdownOut, "utf8")).toContain(
       "previous artifact 2026-W15 is missing",
     );
+  });
+
+  it("renders aggregate completes per start as an event ratio, not conversion", () => {
+    const root = createTempRoot();
+    const week = "2026-W16";
+    const inputDir = path.join(root, week);
+    writeMinimalJsonBundle(inputDir, week);
+    const watchlistPath = path.join(root, "watchlist.json");
+    writeFileSync(
+      watchlistPath,
+      JSON.stringify({ site: "monedario.cl", pages: [] }),
+      "utf8",
+    );
+    const gscDir = makeGscJsonDir(root, week);
+    const analyticsDir = path.join(root, "analytics");
+    mkdirSync(analyticsDir, { recursive: true });
+    writeFileSync(
+      path.join(analyticsDir, `${week}.json`),
+      JSON.stringify({
+        source: "first-party-events",
+        schemaVersion: 1,
+        week,
+        window: { from: "2026-04-13", to: "2026-04-19" },
+        data: [
+          { date: "2026-04-14", event_name: "calculator_view", calculator_slug: "prepago-credito", dimensions: "", count: 30 },
+          { date: "2026-04-14", event_name: "calculator_start", calculator_slug: "prepago-credito", dimensions: "", count: 31 },
+          { date: "2026-04-14", event_name: "calculator_complete", calculator_slug: "prepago-credito", dimensions: "", count: 100 },
+        ],
+      }),
+      "utf8",
+    );
+    const markdownOut = path.join(inputDir, "scorecard.md");
+
+    const result = runScript([
+      "--input", inputDir,
+      "--watchlist", watchlistPath,
+      "--out", markdownOut,
+      "--gsc-json-dir", gscDir,
+      "--analytics-json-dir", analyticsDir,
+      "--cloudflare-json-dir", path.join(root, "missing-cloudflare"),
+    ]);
+
+    expect(result.status).toBe(0);
+    const markdown = readFileSync(markdownOut, "utf8");
+    expect(markdown).toContain("Results/start");
+    expect(markdown).toContain("3.23×");
+    expect(markdown).toContain(
+      "no representan usuarios, sesiones ni conversión de cohorte",
+    );
+    expect(markdown).not.toContain("Completion rate");
   });
 
   it("compares W01 with the previous ISO year and preserves changed, new, removed, and normalized query identities", () => {
