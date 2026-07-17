@@ -67,7 +67,7 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 ## Pendientes (trabajo abierto)
 
 Los planes abajo vienen de la quinta y sexta auditorías profundas (035–038,
-048–052; 047, 048 y 050 ya archivados) y de la
+048–052; 047–050 ya archivados) y de la
 revisión de datos de tráfico que le siguió (039–041, mismo commit `520a8685`,
 2026-07-10, a pedido del usuario tras la quinta auditoría; origen: los
 scorecards y exports reales en `output/operations/`). Originalmente siete;
@@ -86,12 +86,11 @@ paralelizable entre sí salvo que se indique lo contrario.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
 |---|------|--------|-----------|----------|--------|--------------------|--------|
-| 1 | [049](049-analytics-calendar-and-funnel-semantics.md) | Alinear semanas a Chile y reportar ratios de eventos sin llamarlos conversión | P1 | M | MED | 052 | IN PROGRESS (implementación `ba33fb71` y revisión local aprobadas: 1.055 tests; pendiente deploy/smoke y archivo atómico) |
-| 2 | [051](051-analytics-deployment-parity.md) | Hacer reproducible y verificable el deploy del Worker de analytics | P1 | M | MED | 052 | TODO (depende del smoke manual de #330) |
-| 3 | [052](052-worker-manual-trigger-auth.md) | Sacar secretos de URLs y separar el PAT del trigger manual | P1 | S | LOW/MED | 049, 051 | IN PROGRESS (código `ae9246bd` aprobado localmente; deploy/rotación y smoke pendientes, PAT requiere autoridad de emisión) |
-| 4 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | BLOCKED (hipótesis descartada; causa de campo sin identificar — ver nota abajo) |
-| 5 | [046](046-converter-recurrence-return-hook-spike.md) | **Spike de dirección**: investigar si hay recurrencia real sobre los conversores (superficie de mayor **tráfico** según RUM W27; recurrencia **por confirmar**) y, solo si la hay, diseñar un return-hook privacy-safe | P2 | M | LOW | todos | TODO (spike de diseño; por defecto "medir antes de construir"; compuerta de decisión humana) |
-> **035–040, 042–045, 047, 048 y 050 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
+| 1 | [051](051-analytics-deployment-parity.md) | Hacer reproducible y verificable el deploy del Worker de analytics | P1 | M | MED | 052 | TODO (prerrequisito cumplido: #330 desplegado y smoke verificado el 2026-07-16) |
+| 2 | [052](052-worker-manual-trigger-auth.md) | Sacar secretos de URLs y separar el PAT del trigger manual | P1 | S | LOW/MED | 049, 051 | IN PROGRESS (código `ae9246bd` aprobado localmente; deploy/rotación y smoke pendientes, PAT requiere autoridad de emisión) |
+| 3 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | BLOCKED (hipótesis descartada; causa de campo sin identificar — ver nota abajo) |
+| 4 | [046](046-converter-recurrence-return-hook-spike.md) | **Spike de dirección**: investigar si hay recurrencia real sobre los conversores (superficie de mayor **tráfico** según RUM W27; recurrencia **por confirmar**) y, solo si la hay, diseñar un return-hook privacy-safe | P2 | M | LOW | todos | TODO (spike de diseño; por defecto "medir antes de construir"; compuerta de decisión humana) |
+> **035–040, 042–045 y 047–050 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
 
 > **046 es un spike de dirección (`/improve next`, 2026-07-12)**, no un plan de
 > implementación: produce un documento de análisis read-only y se detiene en una
@@ -853,6 +852,7 @@ Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main
 |------|--------|-----------|----------|--------|
 | [047](archive/047-growth-005-rum-hostname-filter.md) | Filtrar RUM por `requestHost = monedario.cl` y conservar allowlist defensiva | P2 | M | DONE (commit `a3ac9504`; final Issue #315 change) |
 | [048](archive/048-search-signal-integrity.md) | Deltas WoW reales, estados de fuente explícitos y CTR acotado | P1 | M | DONE (commit `e472ea43`; final Issue #315 change) |
+| [049](archive/049-analytics-calendar-and-funnel-semantics.md) | Alinear semanas a Chile con cutover versionado y reportar ratios de eventos honestamente | P1 | M | DONE (PR #331, squash `ac0c4a17`; Worker `dbc273e9-4f89-48f8-b572-fff6e536ff81`) |
 | [050](archive/050-weekly-search-ops-current-scale.md) | Restaurar revisión semanal con decisión explícita el 2026-08-01 | P1 | S | DONE (commit `e01d4a93`; final Issue #315 change) |
 
 ### Quinta auditoría profunda 2026-07-10

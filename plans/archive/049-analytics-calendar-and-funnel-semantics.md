@@ -3,12 +3,12 @@
 > **Executor instructions**: Execute every step and verification. Do not migrate
 > storage or add user/session identity without an approved follow-up design.
 >
-> **Drift check**: `git diff --stat efe021c7..HEAD -- workers/analytics-collector/src/index.ts workers/analytics-collector/README.md scripts/build-weekly-search-report.mjs tests/workers/analytics-collector/schema.test.ts tests/scripts/build-weekly-search-report.test.ts docs/adr/`
+> **Drift check**: `git diff --stat efe021c7..HEAD -- workers/analytics-collector/src/index.ts workers/analytics-collector/wrangler.toml scripts/build-weekly-search-report.mjs tests/workers/analytics-collector/schema.test.ts tests/scripts/build-weekly-search-report.test.ts docs/adr/`
 
 ## Status
 
-- **Execution**: IN PROGRESS — implementation `ba33fb71` locally reviewed; final Issue #315
-  PR integration and production deployment remain pending
+- **Execution**: DONE — merged in PR #331 (`ac0c4a17`), deployed as Worker
+  version `dbc273e9-4f89-48f8-b572-fff6e536ff81`, and smoke-verified
 - **Priority**: P1
 - **Effort**: M
 - **Risk**: MED
@@ -160,6 +160,12 @@ Cutover regression evidence: focused Worker/report tests passed 86/86; the full
 suite passed 1,061/1,061; Worker typecheck, lint, docs, formatting, boundaries,
 frontmatter, `URL.PUBLIC.NO_POST_ID`, routes 53→53, RSS 52→52, Astro check/build
 (327 pages), and 1,563-link URL validation all passed.
+
+Production closure: exact merged tree `ac0c4a17` deployed on 2026-07-16 as
+`dbc273e9-4f89-48f8-b572-fff6e536ff81`; trigger remained `57 7 * * MON` and
+`COUNTER_KEY_CUTOVER_AT=2026-07-20T04:00:00Z`. Header-authenticated W28 export
+returned 200 with 310 rows / 2,044 events; missing-header and query-only secret
+requests returned 401. No schema, PII, or historical-data migration occurred.
 
 ## STOP conditions
 

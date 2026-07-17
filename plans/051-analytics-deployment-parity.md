@@ -10,7 +10,7 @@
 - **Priority**: P1
 - **Effort**: M
 - **Risk**: MED
-- **Depends on**: PR #330 deployed and verified manually once
+- **Depends on**: none; PR #330 was deployed and verified manually on 2026-07-16
 - **Category**: tests / CI / deployment
 - **Planned at**: commit `efe021c7`, 2026-07-16
 - **Origin**: W28 missed-export incident and `/improve deep`
@@ -29,8 +29,11 @@ next failure is detected immediately, not a week later.
 - `package.json` has dev/deploy/tail scripts for the economic and Reddit Workers,
   but none for `workers/analytics-collector/wrangler.toml`.
 - No workflow owns analytics-collector deployment.
-- PR #330 changes the intended trigger to `57 7 * * MON` and adds a source-config
-  regression test; that does not prove live parity.
+- PR #330 was merged as `353fa875`, deployed as Worker version
+  `73e72057-cf67-430e-b4e4-2fa5610807a1`, and manually verified with the exact
+  `57 7 * * MON` schedule plus header-only export smoke. This satisfies the
+  one-time prerequisite; automated deployment parity remains the work of this
+  plan.
 - `workers/analytics-collector/src/index.ts` accepts the export secret only through
   `Authorization: Bearer`; its tests reject query-string credentials.
 - The temporary runner ADR requires trusted internal triggers, immutable actions,
