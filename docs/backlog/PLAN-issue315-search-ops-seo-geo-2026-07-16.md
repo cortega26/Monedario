@@ -176,6 +176,13 @@ Tracking issue: GitHub #315 (`Weekly search ops: 2026-W28`)
   changed. Focused tests passed 4/4, the 327-page build and 1,564-link internal
   URL gate passed, and the exact external CI-mode gate reported zero blocking
   failures across 462 unique external URLs.
+- 2026-07-16: A later closure run exposed another referrer to AFC's marketing
+  root returning HTTP 410 to the lightweight CI probe. Scrapling 0.4.7 fetched
+  the same URL with browser-like headers at HTTP 200, title `AFC Chile - Le damos
+  la bienvenida`, and a 69,003-byte body. The validator now records AFC
+  403/410/429 responses as non-blocking automation issues while retaining AFC's
+  `official_source` identity and blocking genuine 404/5xx failures. Authoritative
+  AFC citations remain intact.
 
 ## Change Control Record
 
@@ -202,8 +209,9 @@ Tracking issue: GitHub #315 (`Weekly search ops: 2026-W28`)
   weekly report, focused Worker/report tests, and a data-contract ADR without
   changing the event payload, export schema, KV binding, or PII scope; internal
   key prefixes are versioned to prevent mixed calendar semantics. The final
-  admitted CI repair is limited to the two official balance-retrieval links in
-  `src/pages/calculadoras/seguro-cesantia.astro`.
+  admitted CI repair covers the two official balance-retrieval links in
+  `src/pages/calculadoras/seguro-cesantia.astro` plus the narrow AFC
+  anti-automation classification in `scripts/urlcheck/` and its focused test.
 
 3. Invariant preservation
 - Referenced: Constitution §§1, 4, 6, 9, 10 and `URL.PUBLIC.NO_POST_ID`.
