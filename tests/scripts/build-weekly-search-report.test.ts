@@ -66,6 +66,55 @@ function makeGscJsonDir(root: string, week: string) {
   return gscDir;
 }
 
+function writeGscWeek(
+  gscDir: string,
+  week: string,
+  window: { from: string; to: string },
+  pages: object[],
+  queries: object[],
+  headerOverrides: Record<string, unknown> = {},
+) {
+  mkdirSync(gscDir, { recursive: true });
+  const header = {
+    fetchedAt: "2026-07-16T00:00:00Z",
+    schemaVersion: 1,
+    source: "gsc",
+    week,
+    window,
+    ...headerOverrides,
+  };
+  writeFileSync(
+    path.join(gscDir, `${week}-pages.json`),
+    JSON.stringify({ ...header, data: pages }),
+    "utf8",
+  );
+  writeFileSync(
+    path.join(gscDir, `${week}-queries.json`),
+    JSON.stringify({ ...header, data: queries }),
+    "utf8",
+  );
+}
+
+function writeMinimalJsonBundle(inputDir: string, week: string) {
+  mkdirSync(inputDir, { recursive: true });
+  writeFileSync(
+    path.join(inputDir, "indexation-summary.json"),
+    JSON.stringify({
+      weekLabel: week,
+      google: {
+        sitemapStatus: "ok",
+        coverageNotes: "ok",
+        alerts: [],
+        manualActions: "none",
+        enhancementIssues: [],
+      },
+      bing: { sitemapStatus: "ok", coverageNotes: "ok", alerts: [] },
+      notes: [],
+    }),
+    "utf8",
+  );
+}
+
 function makeCfJsonDir(root: string, week: string) {
   const cfDir = path.join(root, "cloudflare");
   mkdirSync(cfDir, { recursive: true });
@@ -289,13 +338,15 @@ describe("build-weekly-search-report script", () => {
     expect(markdown).toContain("winner");
     expect(markdown).toContain("loser");
     expect(markdown).toContain("La demanda del query set sube, pero la landing cae");
-    expect(markdown).toContain("Completion rate 20.0%");
+    expect(markdown).toContain("results/start 0.20×");
+    expect(markdown).not.toContain("Completion rate");
+    expect(markdown).not.toContain("Revisar fricción del formulario");
     expect(markdown).toContain("El tráfico sube, pero los CTA no acompañan");
 
     const json = JSON.parse(readFileSync(jsonOut, "utf8"));
     expect(json.totals.trackedWinnerCount).toBe(1);
     expect(json.totals.trackedLoserCount).toBe(1);
-    expect(json.totals.trackedActionCount).toBe(1);
+    expect(json.totals.trackedActionCount).toBe(0);
     expect(json.source).toBe("csv");
   });
 
@@ -344,7 +395,483 @@ describe("build-weekly-search-report script", () => {
     const json = JSON.parse(readFileSync(jsonOut, "utf8"));
     expect(json.source).toBe("json");
     expect(json.totals.clicks).toBeGreaterThan(0);
+    expect(json.totals.clicksDelta).toBeNull();
+    expect(json.comparison).toEqual({
+      status: "unavailable",
+      currentWeek: "2026-W16",
+      previousWeek: "2026-W15",
+    });
+    expect(json.topPageWinners).toEqual([]);
+    expect(json.topPageLosers).toEqual([]);
     expect(json.cloudflarePerf).toBeNull();
+    expect(readFileSync(markdownOut, "utf8")).toContain(
+      "previous artifact 2026-W15 is missing",
+    );
+  });
+
+  it("renders aggregate completes per start as an event ratio, not conversion", () => {
+    const root = createTempRoot();
+    const week = "2026-W16";
+    const inputDir = path.join(root, week);
+    writeMinimalJsonBundle(inputDir, week);
+    const watchlistPath = path.join(root, "watchlist.json");
+    writeFileSync(
+      watchlistPath,
+      JSON.stringify({ site: "monedario.cl", pages: [] }),
+      "utf8",
+    );
+    const gscDir = makeGscJsonDir(root, week);
+    const analyticsDir = path.join(root, "analytics");
+    mkdirSync(analyticsDir, { recursive: true });
+    writeFileSync(
+      path.join(analyticsDir, `${week}.json`),
+      JSON.stringify({
+        source: "first-party-events",
+        schemaVersion: 1,
+        week,
+        window: { from: "2026-04-13", to: "2026-04-19" },
+        data: [
+          { date: "2026-04-14", event_name: "calculator_view", calculator_slug: "prepago-credito", dimensions: "", count: 30 },
+          { date: "2026-04-14", event_name: "calculator_start", calculator_slug: "prepago-credito", dimensions: "", count: 31 },
+          { date: "2026-04-14", event_name: "calculator_complete", calculator_slug: "prepago-credito", dimensions: "", count: 100 },
+        ],
+      }),
+      "utf8",
+    );
+    const markdownOut = path.join(inputDir, "scorecard.md");
+
+    const result = runScript([
+      "--input", inputDir,
+      "--watchlist", watchlistPath,
+      "--out", markdownOut,
+      "--gsc-json-dir", gscDir,
+      "--analytics-json-dir", analyticsDir,
+      "--cloudflare-json-dir", path.join(root, "missing-cloudflare"),
+    ]);
+
+    expect(result.status).toBe(0);
+    const markdown = readFileSync(markdownOut, "utf8");
+    expect(markdown).toContain("Results/start");
+    expect(markdown).toContain("3.23×");
+    expect(markdown).toContain(
+      "no representan usuarios, sesiones ni conversión de cohorte",
+    );
+    expect(markdown).not.toContain("Completion rate");
+  });
+
+  it("compares W01 with the previous ISO year and preserves changed, new, removed, and normalized query identities", () => {
+    const root = createTempRoot();
+    const week = "2026-W01";
+    const inputDir = path.join(root, week);
+    writeMinimalJsonBundle(inputDir, week);
+    const watchlistPath = path.join(root, "watchlist.json");
+    writeFileSync(
+      watchlistPath,
+      JSON.stringify({ site: "monedario.cl", pages: [] }),
+      "utf8",
+    );
+
+    const gscDir = path.join(root, "gsc");
+    writeGscWeek(
+      gscDir,
+      week,
+      { from: "2025-12-29", to: "2026-01-04" },
+      [
+        { clicks: 20, ctr: 0.1, impressions: 200, page: "https://monedario.cl/posts/existing/", position: 4 },
+        { clicks: 5, ctr: 0.1, impressions: 50, page: "https://monedario.cl/posts/new/", position: 10 },
+      ],
+      [
+        { clicks: 12, ctr: 0.1, impressions: 120, position: 4, query: "  Tax   Refund " },
+        { clicks: 3, ctr: 0.1, impressions: 30, position: 9, query: "new query" },
+      ],
+    );
+    writeGscWeek(
+      gscDir,
+      "2025-W52",
+      { from: "2025-12-22", to: "2025-12-28" },
+      [
+        { clicks: 10, ctr: 0.1, impressions: 100, page: "https://monedario.cl/posts/existing/", position: 5 },
+        { clicks: 7, ctr: 0.1, impressions: 70, page: "https://monedario.cl/posts/removed/", position: 6 },
+      ],
+      [
+        { clicks: 8, ctr: 0.1, impressions: 80, position: 5, query: "tax refund" },
+        { clicks: 4, ctr: 0.1, impressions: 40, position: 8, query: "removed query" },
+      ],
+    );
+
+    const jsonOut = path.join(inputDir, "scorecard.json");
+    const result = runScript([
+      "--input", inputDir,
+      "--watchlist", watchlistPath,
+      "--json-out", jsonOut,
+      "--gsc-json-dir", gscDir,
+      "--analytics-json-dir", path.join(root, "missing-analytics"),
+      "--cloudflare-json-dir", path.join(root, "missing-cloudflare"),
+    ]);
+
+    expect(result.status).toBe(0);
+    const json = JSON.parse(readFileSync(jsonOut, "utf8"));
+    expect(json.comparison).toEqual({
+      status: "available",
+      currentWeek: "2026-W01",
+      previousWeek: "2025-W52",
+    });
+    expect(json.totals).toMatchObject({
+      clicks: 25,
+      clicksDelta: 8,
+      impressions: 250,
+      impressionsDelta: 80,
+    });
+    expect(json.topPageWinners[0]).toMatchObject({
+      path: "/posts/existing/",
+      clicksDelta: 10,
+      impressionsDelta: 100,
+      ctrDelta: 0,
+      positionDelta: -1,
+      identityStatus: "existing",
+    });
+    expect(json.topPageWinners[1]).toMatchObject({
+      path: "/posts/new/",
+      clicksDelta: 5,
+      position: 10,
+      positionDelta: null,
+      identityStatus: "new",
+    });
+    expect(json.topPageLosers[0]).toMatchObject({
+      path: "/posts/removed/",
+      clicks: 0,
+      clicksDelta: -7,
+      position: null,
+      positionDelta: null,
+      identityStatus: "removed",
+    });
+    expect(json.topQueryWinners).toHaveLength(2);
+    expect(json.topQueryWinners[0]).toMatchObject({
+      clicksDelta: 4,
+      identityStatus: "existing",
+    });
+    expect(json.topQueryLosers[0]).toMatchObject({
+      label: "removed query",
+      clicksDelta: -4,
+      position: null,
+      positionDelta: null,
+      identityStatus: "removed",
+    });
+    expect(json.topQueryWinners[1]).toMatchObject({
+      label: "new query",
+      position: 9,
+      positionDelta: null,
+      identityStatus: "new",
+    });
+    expect(json.inputStatus).toMatchObject({
+      analytics: { status: "missing" },
+      cloudflare: {
+        status: "missing",
+        rum: { status: "missing" },
+        traffic: { status: "missing" },
+      },
+      urlInspection: { status: "missing" },
+    });
+    const markdown = readFileSync(
+      path.join(inputDir, "weekly-search-scorecard.md"),
+      "utf8"
+    );
+    expect(markdown).toContain("analytics=missing");
+    expect(markdown).toContain("new identity; prior position n/d");
+    expect(markdown).toContain("removed identity; current position n/d");
+  });
+
+  it("fails on a corrupt previous GSC artifact instead of treating it as missing", () => {
+    const root = createTempRoot();
+    const week = "2026-W16";
+    const inputDir = path.join(root, week);
+    writeMinimalJsonBundle(inputDir, week);
+    const watchlistPath = path.join(root, "watchlist.json");
+    writeFileSync(watchlistPath, JSON.stringify({ site: "monedario.cl", pages: [] }), "utf8");
+    const gscDir = path.join(root, "gsc");
+    writeGscWeek(gscDir, week, { from: "2026-04-13", to: "2026-04-19" }, [], []);
+    writeGscWeek(gscDir, "2026-W15", { from: "2026-04-06", to: "2026-04-12" }, [], []);
+    const corruptPath = path.join(gscDir, "2026-W15-pages.json");
+    writeFileSync(corruptPath, "{not-json", "utf8");
+    const jsonOut = path.join(inputDir, "scorecard.json");
+
+    const result = runScript([
+      "--input", inputDir,
+      "--watchlist", watchlistPath,
+      "--json-out", jsonOut,
+      "--gsc-json-dir", gscDir,
+    ]);
+
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain(corruptPath);
+    expect(result.stderr).toContain("invalid JSON");
+    expect(() => readFileSync(jsonOut, "utf8")).toThrow();
+  });
+
+  it("fails on wrong GSC metadata with the artifact path and reason", () => {
+    const root = createTempRoot();
+    const week = "2026-W16";
+    const inputDir = path.join(root, week);
+    writeMinimalJsonBundle(inputDir, week);
+    const watchlistPath = path.join(root, "watchlist.json");
+    writeFileSync(watchlistPath, JSON.stringify({ site: "monedario.cl", pages: [] }), "utf8");
+    const gscDir = path.join(root, "gsc");
+    writeGscWeek(
+      gscDir,
+      week,
+      { from: "2026-04-13", to: "2026-04-19" },
+      [],
+      [],
+      { source: "not-gsc" },
+    );
+
+    const result = runScript([
+      "--input", inputDir,
+      "--watchlist", watchlistPath,
+      "--gsc-json-dir", gscDir,
+    ]);
+
+    expect(result.status).toBe(1);
+    expect(result.stderr).toContain(path.join(gscDir, "2026-W16-pages.json"));
+    expect(result.stderr).toContain("source must be gsc");
+  });
+
+  it("fails before writing outputs for present-invalid optional signal artifacts", () => {
+    for (const kind of ["analytics", "cloudflare", "inspection"] as const) {
+      const root = createTempRoot();
+      const week = "2026-W16";
+      const inputDir = path.join(root, week);
+      writeMinimalJsonBundle(inputDir, week);
+      const watchlistPath = path.join(root, "watchlist.json");
+      writeFileSync(
+        watchlistPath,
+        JSON.stringify({ site: "monedario.cl", pages: [] }),
+        "utf8",
+      );
+      const gscDir = makeGscJsonDir(root, week);
+      const analyticsDir = path.join(root, "analytics");
+      const cloudflareDir = path.join(root, "cloudflare-invalid");
+      let invalidPath: string;
+      let expectedReason: string;
+
+      if (kind === "analytics") {
+        mkdirSync(analyticsDir, { recursive: true });
+        invalidPath = path.join(analyticsDir, `${week}.json`);
+        writeFileSync(invalidPath, '{"token":"TOP_SECRET"', "utf8");
+        expectedReason = "invalid JSON";
+      } else if (kind === "cloudflare") {
+        mkdirSync(cloudflareDir, { recursive: true });
+        invalidPath = path.join(cloudflareDir, `${week}-rum.json`);
+        writeFileSync(
+          invalidPath,
+          JSON.stringify({
+            schemaVersion: 2,
+            source: "cloudflare-rum",
+            week,
+            window: { from: "2026-04-13", to: "2026-04-19" },
+            data: [],
+          }),
+          "utf8",
+        );
+        expectedReason = "schemaVersion must be 1";
+      } else {
+        invalidPath = path.join(gscDir, `${week}-url-inspection.json`);
+        writeFileSync(
+          invalidPath,
+          JSON.stringify({
+            schemaVersion: 1,
+            source: "gsc-url-inspection",
+            week,
+            window: { from: "2026-04-13", to: "2026-04-19" },
+            summary: {},
+            data: {},
+          }),
+          "utf8",
+        );
+        expectedReason = "data must be an array";
+      }
+
+      const markdownOut = path.join(inputDir, `${kind}.md`);
+      const jsonOut = path.join(inputDir, `${kind}.json`);
+      const result = runScript([
+        "--input", inputDir,
+        "--watchlist", watchlistPath,
+        "--out", markdownOut,
+        "--json-out", jsonOut,
+        "--gsc-json-dir", gscDir,
+        "--analytics-json-dir", analyticsDir,
+        "--cloudflare-json-dir", cloudflareDir,
+      ]);
+
+      expect(result.status).toBe(1);
+      expect(result.stderr).toContain(invalidPath);
+      expect(result.stderr).toContain(expectedReason);
+      expect(result.stderr).not.toContain("TOP_SECRET");
+      expect(() => readFileSync(markdownOut, "utf8")).toThrow();
+      expect(() => readFileSync(jsonOut, "utf8")).toThrow();
+    }
+  });
+
+  it("rejects invalid consumed fields in analytics, Cloudflare, and URL Inspection artifacts", () => {
+    const week = "2026-W16";
+    const window = { from: "2026-04-13", to: "2026-04-19" };
+    const cases = [
+      {
+        name: "analytics-event",
+        target: "analytics",
+        reason: "data[0].event_name is not allowlisted",
+        document: {
+          schemaVersion: 1,
+          source: "first-party-events",
+          week,
+          window,
+          data: [
+            {
+              date: "2026-04-13",
+              event_name: "TOP_SECRET",
+              calculator_slug: "tool",
+              count: 1,
+            },
+          ],
+        },
+      },
+      {
+        name: "analytics-date",
+        target: "analytics",
+        reason: "data[0].date must be inside the artifact window",
+        document: {
+          schemaVersion: 1,
+          source: "first-party-events",
+          week,
+          window,
+          data: [
+            {
+              date: "TOP_SECRET",
+              event_name: "calculator_view",
+              calculator_slug: "tool",
+              count: 1,
+            },
+          ],
+        },
+      },
+      {
+        name: "rum-metric",
+        target: "rum",
+        reason: "data[0].lcpP75Ms must be null or a non-negative finite number",
+        document: {
+          schemaVersion: 1,
+          source: "cloudflare-rum",
+          week,
+          window,
+          data: [
+            {
+              path: "/",
+              count: 1,
+              lcpP75Ms: "TOP_SECRET",
+              clsP75: 0,
+              inpP75Ms: null,
+            },
+          ],
+        },
+      },
+      {
+        name: "traffic-summary",
+        target: "traffic",
+        reason: "summary.pageViews must be a non-negative finite number",
+        document: {
+          schemaVersion: 1,
+          source: "cloudflare-traffic",
+          week,
+          window,
+          summary: {
+            pageViews: "TOP_SECRET",
+            requests: 1,
+            cacheRatioPct: 0,
+            bandwidthMB: 0,
+          },
+          data: [],
+        },
+      },
+      {
+        name: "inspection-url",
+        target: "inspection",
+        reason: "data[0].url must be an absolute URL",
+        document: {
+          schemaVersion: 1,
+          source: "gsc-url-inspection",
+          week,
+          window,
+          summary: { total: 1, indexed: 0, notIndexed: 0, other: 1, indexedPct: 0 },
+          errors: 0,
+          data: [{ url: "TOP_SECRET", coverageState: null, lastCrawl: null }],
+        },
+      },
+      {
+        name: "inspection-summary",
+        target: "inspection",
+        reason: "summary.total must be a non-negative integer",
+        document: {
+          schemaVersion: 1,
+          source: "gsc-url-inspection",
+          week,
+          window,
+          summary: {
+            total: "TOP_SECRET",
+            indexed: 0,
+            notIndexed: 0,
+            other: 0,
+            indexedPct: null,
+          },
+          errors: 0,
+          data: [],
+        },
+      },
+    ];
+
+    for (const testCase of cases) {
+      const root = createTempRoot();
+      const inputDir = path.join(root, week);
+      writeMinimalJsonBundle(inputDir, week);
+      const watchlistPath = path.join(root, "watchlist.json");
+      writeFileSync(
+        watchlistPath,
+        JSON.stringify({ site: "monedario.cl", pages: [] }),
+        "utf8"
+      );
+      const gscDir = makeGscJsonDir(root, week);
+      const analyticsDir = path.join(root, "analytics");
+      const cloudflareDir = path.join(root, "cloudflare");
+      let invalidPath;
+      if (testCase.target === "analytics") {
+        mkdirSync(analyticsDir, { recursive: true });
+        invalidPath = path.join(analyticsDir, `${week}.json`);
+      } else if (testCase.target === "inspection") {
+        invalidPath = path.join(gscDir, `${week}-url-inspection.json`);
+      } else {
+        mkdirSync(cloudflareDir, { recursive: true });
+        invalidPath = path.join(cloudflareDir, `${week}-${testCase.target}.json`);
+      }
+      writeFileSync(invalidPath, JSON.stringify(testCase.document), "utf8");
+
+      const markdownOut = path.join(inputDir, `${testCase.name}.md`);
+      const jsonOut = path.join(inputDir, `${testCase.name}.json`);
+      const result = runScript([
+        "--input", inputDir,
+        "--watchlist", watchlistPath,
+        "--out", markdownOut,
+        "--json-out", jsonOut,
+        "--gsc-json-dir", gscDir,
+        "--analytics-json-dir", analyticsDir,
+        "--cloudflare-json-dir", cloudflareDir,
+      ]);
+
+      expect(result.status, testCase.name).toBe(1);
+      expect(result.stderr).toContain(invalidPath);
+      expect(result.stderr).toContain(testCase.reason);
+      expect(result.stderr).not.toContain("TOP_SECRET");
+      expect(() => readFileSync(markdownOut, "utf8")).toThrow();
+      expect(() => readFileSync(jsonOut, "utf8")).toThrow();
+    }
   });
 
   it("falls back to CSV when JSON files are missing (hermetic test)", () => {

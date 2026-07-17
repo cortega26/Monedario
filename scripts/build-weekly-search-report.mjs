@@ -7,6 +7,20 @@ const DEFAULT_WATCHLIST_PATH = path.resolve(
 const DEFAULT_GSC_JSON_DIR = "output/operations/data-signals/gsc";
 const DEFAULT_CF_JSON_DIR = "output/operations/data-signals/cloudflare";
 const DEFAULT_ANALYTICS_JSON_DIR = "output/operations/data-signals/analytics";
+const ANALYTICS_EVENT_NAMES = new Set([
+  "calculator_view",
+  "calculator_start",
+  "calculator_complete",
+  "calculator_error",
+  "next_best_step_shown",
+  "next_best_step_click",
+  "result_action_click",
+  "share_result_click",
+  "scenario_action",
+  "resume_click",
+  "support_page_click",
+  "official_source_click",
+]);
 
 function parseArgs(argv) {
   const options = {
@@ -143,6 +157,29 @@ function weekLabelToDateRange(weekLabel) {
     previousStart: toIsoDateString(previousMonday),
     previousEnd: toIsoDateString(previousSunday),
   };
+}
+
+function isoWeekWindow(weekLabel) {
+  const range = weekLabelToDateRange(weekLabel);
+  if (!range) return null;
+  return { from: range.currentStart, to: range.currentEnd };
+}
+
+function dateToIsoWeek(date) {
+  const thursday = new Date(date.getTime());
+  const day = thursday.getUTCDay() || 7;
+  thursday.setUTCDate(thursday.getUTCDate() + 4 - day);
+  const isoYear = thursday.getUTCFullYear();
+  const yearStart = new Date(Date.UTC(isoYear, 0, 1));
+  const week = Math.ceil(((thursday - yearStart) / 86400000 + 1) / 7);
+  return `${isoYear}-W${String(week).padStart(2, "0")}`;
+}
+
+function previousIsoWeekLabel(weekLabel) {
+  const range = weekLabelToDateRange(weekLabel);
+  if (!range) return null;
+  const previousMonday = new Date(`${range.previousStart}T00:00:00Z`);
+  return dateToIsoWeek(previousMonday);
 }
 
 function initInputDirectory(inputDir) {
@@ -524,63 +561,235 @@ function extractWeekFromDir(inputDir) {
   return /^\d{4}-W\d{2}$/.test(base) ? base : null;
 }
 
-function readGscJson(gscJsonDir, week) {
-  const queriesPath = path.join(gscJsonDir, `${week}-queries.json`);
-  const pagesPath = path.join(gscJsonDir, `${week}-pages.json`);
-  if (!existsSync(queriesPath) || !existsSync(pagesPath)) return null;
+function invalidArtifact(filePath, reason) {
+  throw new Error(
+    `[weekly-search-report] Invalid artifact ${path.resolve(filePath)}: ${reason}`
+  );
+}
 
-  let queriesDoc, pagesDoc;
+function parseJsonArtifact(filePath) {
   try {
-    queriesDoc = JSON.parse(readFileSync(queriesPath, "utf8"));
-    pagesDoc = JSON.parse(readFileSync(pagesPath, "utf8"));
+    return JSON.parse(readFileSync(filePath, "utf8"));
   } catch {
-    return null;
+    return invalidArtifact(filePath, "invalid JSON");
   }
-  if (queriesDoc.schemaVersion !== 1 || pagesDoc.schemaVersion !== 1) return null;
+}
 
-  const pageRows = (pagesDoc.data ?? []).map(item => ({
-    label: item.page,
-    path: normalizePathLabel(item.page),
-    clicks: item.clicks ?? 0,
-    clicksDelta: 0,
-    impressions: item.impressions ?? 0,
-    impressionsDelta: 0,
-    ctr: (item.ctr ?? 0) * 100,
-    ctrDelta: 0,
-    position: item.position ?? 0,
-    positionDelta: 0,
-  }));
+function validateSignalHeader(doc, filePath, { source, week }) {
+  if (!doc || typeof doc !== "object" || Array.isArray(doc)) {
+    invalidArtifact(filePath, "root must be an object");
+  }
+  if (doc.schemaVersion !== 1) {
+    invalidArtifact(filePath, "schemaVersion must be 1");
+  }
+  if (doc.source !== source) {
+    invalidArtifact(filePath, `source must be ${source}`);
+  }
+  if (doc.week !== week) {
+    invalidArtifact(filePath, `week must be ${week}`);
+  }
+  const expectedWindow = isoWeekWindow(week);
+  if (
+    !expectedWindow ||
+    doc.window?.from !== expectedWindow.from ||
+    doc.window?.to !== expectedWindow.to
+  ) {
+    invalidArtifact(
+      filePath,
+      `window must be ${expectedWindow?.from ?? "n/d"} to ${expectedWindow?.to ?? "n/d"}`
+    );
+  }
+}
 
-  const queryRows = (queriesDoc.data ?? []).map(item => ({
-    label: item.query,
-    path: null,
-    clicks: item.clicks ?? 0,
-    clicksDelta: 0,
-    impressions: item.impressions ?? 0,
-    impressionsDelta: 0,
-    ctr: (item.ctr ?? 0) * 100,
-    ctrDelta: 0,
-    position: item.position ?? 0,
-    positionDelta: 0,
-  }));
+function normalizeQueryIdentity(query) {
+  return query.trim().replace(/\s+/g, " ").toLowerCase();
+}
 
-  return { pageRows, queryRows };
+function validateGscDocument(filePath, week, kind) {
+  const doc = parseJsonArtifact(filePath);
+  validateSignalHeader(doc, filePath, { source: "gsc", week });
+  if (!Array.isArray(doc.data)) {
+    invalidArtifact(filePath, "data must be an array");
+  }
+
+  const identityField = kind === "pages" ? "page" : "query";
+  const seen = new Set();
+  for (let index = 0; index < doc.data.length; index += 1) {
+    const row = doc.data[index];
+    if (!row || typeof row !== "object" || Array.isArray(row)) {
+      invalidArtifact(filePath, `data[${index}] must be an object`);
+    }
+    if (typeof row[identityField] !== "string" || !row[identityField].trim()) {
+      invalidArtifact(filePath, `data[${index}].${identityField} must be a non-empty string`);
+    }
+    for (const metric of ["clicks", "impressions", "ctr", "position"]) {
+      if (typeof row[metric] !== "number" || !Number.isFinite(row[metric]) || row[metric] < 0) {
+        invalidArtifact(filePath, `data[${index}].${metric} must be a non-negative number`);
+      }
+    }
+    if (row.ctr > 1) {
+      invalidArtifact(filePath, `data[${index}].ctr must be between 0 and 1`);
+    }
+    const identity =
+      kind === "pages"
+        ? normalizePathLabel(row.page)
+        : normalizeQueryIdentity(row.query);
+    if (!identity) {
+      invalidArtifact(filePath, `data[${index}].${identityField} has no usable identity`);
+    }
+    if (seen.has(identity)) {
+      invalidArtifact(filePath, `data contains duplicate normalized ${identityField} identity`);
+    }
+    seen.add(identity);
+  }
+  return doc;
+}
+
+function loadGscWeek(gscJsonDir, week, required) {
+  const pagesPath = path.join(gscJsonDir, `${week}-pages.json`);
+  const queriesPath = path.join(gscJsonDir, `${week}-queries.json`);
+  const hasPages = existsSync(pagesPath);
+  const hasQueries = existsSync(queriesPath);
+
+  if (!hasPages && !hasQueries) {
+    if (required) {
+      return null;
+    }
+    return { status: "missing", pagesPath, queriesPath };
+  }
+  if (!hasPages || !hasQueries) {
+    invalidArtifact(
+      hasPages ? queriesPath : pagesPath,
+      `paired ${week} GSC pages and queries artifacts are required`
+    );
+  }
+
+  return {
+    status: "available",
+    pages: validateGscDocument(pagesPath, week, "pages"),
+    queries: validateGscDocument(queriesPath, week, "queries"),
+  };
+}
+
+function buildComparedRows(currentData, previousData, kind) {
+  const identityFor = item =>
+    kind === "pages"
+      ? normalizePathLabel(item.page)
+      : normalizeQueryIdentity(item.query);
+  const labelFor = item => (kind === "pages" ? item.page : item.query);
+  const previousByIdentity = new Map(
+    (previousData ?? []).map(item => [identityFor(item), item])
+  );
+  const currentIdentities = new Set(currentData.map(identityFor));
+  const comparisonAvailable = previousData !== null;
+  const combined = [
+    ...currentData.map(item => ({ current: item, previous: previousByIdentity.get(identityFor(item)) ?? null })),
+    ...(previousData ?? [])
+      .filter(item => !currentIdentities.has(identityFor(item)))
+      .map(item => ({ current: null, previous: item })),
+  ];
+
+  return combined.map(({ current, previous }) => {
+    const identityStatus = !comparisonAvailable
+      ? "unavailable"
+      : current && previous
+        ? "existing"
+        : current
+          ? "new"
+          : "removed";
+    const currentMetrics = current ?? { clicks: 0, impressions: 0, ctr: 0, position: 0 };
+    const previousMetrics = previous ?? { clicks: 0, impressions: 0, ctr: 0, position: 0 };
+    return {
+      label: labelFor(current ?? previous),
+      path: kind === "pages" ? identityFor(current ?? previous) : null,
+      clicks: currentMetrics.clicks,
+      clicksDelta: comparisonAvailable ? currentMetrics.clicks - previousMetrics.clicks : null,
+      impressions: currentMetrics.impressions,
+      impressionsDelta: comparisonAvailable
+        ? currentMetrics.impressions - previousMetrics.impressions
+        : null,
+      ctr: currentMetrics.ctr * 100,
+      ctrDelta: comparisonAvailable
+        ? (currentMetrics.ctr - previousMetrics.ctr) * 100
+        : null,
+      position: current?.position ?? null,
+      positionDelta: comparisonAvailable && identityStatus === "existing"
+        ? currentMetrics.position - previousMetrics.position
+        : null,
+      comparisonStatus: comparisonAvailable ? "available" : "unavailable",
+      identityStatus,
+    };
+  });
+}
+
+function readGscJson(gscJsonDir, week) {
+  const current = loadGscWeek(gscJsonDir, week, true);
+  if (!current) return null;
+
+  const previousWeek = previousIsoWeekLabel(week);
+  const previous = loadGscWeek(gscJsonDir, previousWeek, false);
+  const comparisonAvailable = previous.status === "available";
+
+  return {
+    pageRows: buildComparedRows(
+      current.pages.data,
+      comparisonAvailable ? previous.pages.data : null,
+      "pages"
+    ),
+    queryRows: buildComparedRows(
+      current.queries.data,
+      comparisonAvailable ? previous.queries.data : null,
+      "queries"
+    ),
+    comparison: {
+      status: comparisonAvailable ? "available" : "unavailable",
+      currentWeek: week,
+      previousWeek,
+    },
+  };
 }
 
 function readAnalyticsJson(analyticsJsonDir, week) {
   const analyticsPath = path.join(analyticsJsonDir, `${week}.json`);
-  if (!existsSync(analyticsPath)) return null;
-
-  let doc;
-  try {
-    doc = JSON.parse(readFileSync(analyticsPath, "utf8"));
-  } catch {
-    return null;
+  if (!existsSync(analyticsPath)) {
+    return {
+      status: "missing",
+      path: path.resolve(analyticsPath),
+      value: null,
+    };
   }
 
-  // Validate schema version and source
-  if (doc.schemaVersion !== 1) return null;
-  if (doc.source !== "first-party-events") return null;
+  const doc = parseJsonArtifact(analyticsPath);
+  validateSignalHeader(doc, analyticsPath, {
+    source: "first-party-events",
+    week,
+  });
+  if (!Array.isArray(doc.data)) {
+    invalidArtifact(analyticsPath, "data must be an array");
+  }
+  for (let index = 0; index < doc.data.length; index += 1) {
+    const row = doc.data[index];
+    if (!row || typeof row !== "object" || Array.isArray(row)) {
+      invalidArtifact(analyticsPath, `data[${index}] must be an object`);
+    }
+    if (!ANALYTICS_EVENT_NAMES.has(row.event_name)) {
+      invalidArtifact(analyticsPath, `data[${index}].event_name is not allowlisted`);
+    }
+    if (typeof row.calculator_slug !== "string" || !row.calculator_slug) {
+      invalidArtifact(analyticsPath, `data[${index}].calculator_slug must be a non-empty string`);
+    }
+    if (typeof row.count !== "number" || !Number.isFinite(row.count) || row.count < 0) {
+      invalidArtifact(analyticsPath, `data[${index}].count must be a non-negative number`);
+    }
+    if (
+      typeof row.date !== "string" ||
+      !/^\d{4}-\d{2}-\d{2}$/.test(row.date) ||
+      row.date < doc.window.from ||
+      row.date > doc.window.to
+    ) {
+      invalidArtifact(analyticsPath, `data[${index}].date must be inside the artifact window`);
+    }
+  }
 
   // Aggregate per calculator_slug from the flat data rows.
   const data = doc.data ?? [];
@@ -673,12 +882,16 @@ function readAnalyticsJson(analyticsJsonDir, week) {
   const bySlugObj = Object.fromEntries(bySlug);
 
   return {
-    available: true,
-    week: doc.week,
-    window: doc.window,
-    totals,
-    bySlug: bySlugObj,
-    data,
+    status: "available",
+    path: path.resolve(analyticsPath),
+    value: {
+      available: true,
+      week: doc.week,
+      window: doc.window,
+      totals,
+      bySlug: bySlugObj,
+      data,
+    },
   };
 }
 
@@ -686,28 +899,141 @@ function readCloudflarePerf(cloudflareJsonDir, week) {
   const rumPath = path.join(cloudflareJsonDir, `${week}-rum.json`);
   const trafficPath = path.join(cloudflareJsonDir, `${week}-traffic.json`);
 
-  let rum = null;
-  let traffic = null;
-  if (existsSync(rumPath)) {
-    try { rum = JSON.parse(readFileSync(rumPath, "utf8")); } catch {}
-  }
-  if (existsSync(trafficPath)) {
-    try { traffic = JSON.parse(readFileSync(trafficPath, "utf8")); } catch {}
-  }
-  if (!rum && !traffic) return null;
-  return { rum, traffic };
+  const readCloudflareArtifact = (filePath, source, kind) => {
+    if (!existsSync(filePath)) {
+      return { status: "missing", path: path.resolve(filePath), value: null };
+    }
+    const doc = parseJsonArtifact(filePath);
+    validateSignalHeader(doc, filePath, { source, week });
+    if (!Array.isArray(doc.data)) {
+      invalidArtifact(filePath, "data must be an array");
+    }
+    if (kind === "rum") {
+      for (let index = 0; index < doc.data.length; index += 1) {
+        const row = doc.data[index];
+        if (!row || typeof row !== "object" || Array.isArray(row)) {
+          invalidArtifact(filePath, `data[${index}] must be an object`);
+        }
+        if (typeof row.path !== "string" || !row.path.startsWith("/")) {
+          invalidArtifact(filePath, `data[${index}].path must be a site-relative path`);
+        }
+        if (typeof row.count !== "number" || !Number.isFinite(row.count) || row.count < 0) {
+          invalidArtifact(filePath, `data[${index}].count must be a non-negative number`);
+        }
+        for (const metric of ["lcpP75Ms", "clsP75", "inpP75Ms"]) {
+          const value = row[metric];
+          if (
+            value !== null &&
+            (typeof value !== "number" || !Number.isFinite(value) || value < 0)
+          ) {
+            invalidArtifact(
+              filePath,
+              `data[${index}].${metric} must be null or a non-negative finite number`
+            );
+          }
+        }
+      }
+    } else {
+      if (!doc.summary || typeof doc.summary !== "object" || Array.isArray(doc.summary)) {
+        invalidArtifact(filePath, "summary must be an object");
+      }
+      for (const metric of ["pageViews", "requests", "cacheRatioPct", "bandwidthMB"]) {
+        const value = doc.summary[metric];
+        if (typeof value !== "number" || !Number.isFinite(value) || value < 0) {
+          invalidArtifact(filePath, `summary.${metric} must be a non-negative finite number`);
+        }
+      }
+    }
+    return { status: "available", path: path.resolve(filePath), value: doc };
+  };
+
+  const rumResult = readCloudflareArtifact(rumPath, "cloudflare-rum", "rum");
+  const trafficResult = readCloudflareArtifact(
+    trafficPath,
+    "cloudflare-traffic",
+    "traffic"
+  );
+  const availableCount = [rumResult, trafficResult].filter(
+    result => result.status === "available"
+  ).length;
+  return {
+    status:
+      availableCount === 2
+        ? "available"
+        : availableCount === 1
+          ? "partial"
+          : "missing",
+    artifacts: { rum: rumResult, traffic: trafficResult },
+    value:
+      availableCount > 0
+        ? { rum: rumResult.value, traffic: trafficResult.value }
+        : null,
+  };
 }
 
 function readUrlInspection(gscJsonDir, week) {
   const inspectionPath = path.join(gscJsonDir, `${week}-url-inspection.json`);
-  if (!existsSync(inspectionPath)) return null;
-  try {
-    const doc = JSON.parse(readFileSync(inspectionPath, "utf8"));
-    if (!doc?.summary || !Array.isArray(doc.data)) return null;
-    return doc;
-  } catch {
-    return null;
+  if (!existsSync(inspectionPath)) {
+    return {
+      status: "missing",
+      path: path.resolve(inspectionPath),
+      value: null,
+    };
   }
+  const doc = parseJsonArtifact(inspectionPath);
+  validateSignalHeader(doc, inspectionPath, {
+    source: "gsc-url-inspection",
+    week,
+  });
+  if (!doc.summary || typeof doc.summary !== "object" || Array.isArray(doc.summary)) {
+    invalidArtifact(inspectionPath, "summary must be an object");
+  }
+  if (!Array.isArray(doc.data)) {
+    invalidArtifact(inspectionPath, "data must be an array");
+  }
+  for (const metric of ["total", "indexed", "notIndexed", "other"]) {
+    const value = doc.summary[metric];
+    if (!Number.isInteger(value) || value < 0) {
+      invalidArtifact(inspectionPath, `summary.${metric} must be a non-negative integer`);
+    }
+  }
+  if (
+    doc.summary.indexedPct !== null &&
+    (typeof doc.summary.indexedPct !== "number" ||
+      !Number.isFinite(doc.summary.indexedPct) ||
+      doc.summary.indexedPct < 0 ||
+      doc.summary.indexedPct > 100)
+  ) {
+    invalidArtifact(inspectionPath, "summary.indexedPct must be null or a percentage");
+  }
+  if (doc.errors !== undefined && (!Number.isInteger(doc.errors) || doc.errors < 0)) {
+    invalidArtifact(inspectionPath, "errors must be a non-negative integer");
+  }
+  for (let index = 0; index < doc.data.length; index += 1) {
+    const row = doc.data[index];
+    if (!row || typeof row !== "object" || Array.isArray(row)) {
+      invalidArtifact(inspectionPath, `data[${index}] must be an object`);
+    }
+    try {
+      new URL(row.url);
+    } catch {
+      invalidArtifact(inspectionPath, `data[${index}].url must be an absolute URL`);
+    }
+    if (row.coverageState !== null && typeof row.coverageState !== "string") {
+      invalidArtifact(inspectionPath, `data[${index}].coverageState must be null or a string`);
+    }
+    if (
+      row.lastCrawl !== null &&
+      (typeof row.lastCrawl !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(row.lastCrawl))
+    ) {
+      invalidArtifact(inspectionPath, `data[${index}].lastCrawl must be null or an ISO date`);
+    }
+  }
+  return {
+    status: "available",
+    path: path.resolve(inspectionPath),
+    value: doc,
+  };
 }
 
 function rateLcp(ms) {
@@ -741,6 +1067,12 @@ function safeRate(numerator, denominator) {
   return `${((numerator / denominator) * 100).toFixed(1)}%`;
 }
 
+function safeEventRatio(numerator, denominator) {
+  if (!denominator || denominator <= 0) return "n/d";
+  if (numerator === null || numerator === undefined) return "n/d";
+  return `${(numerator / denominator).toFixed(2)}×`;
+}
+
 function buildSourceSummary(analyticsJson, cloudflarePerf) {
   const sources = [];
 
@@ -766,13 +1098,13 @@ function buildSourceSummary(analyticsJson, cloudflarePerf) {
     sources.push("Eventos first-party: n/d (export no disponible)");
   }
 
-  return sources.join("  \n");
+  return sources.join(" · ");
 }
 
 function buildCalculatorFunnelSection(analyticsJson, cloudflarePerf) {
   if (!analyticsJson?.available) {
     return `
-## Funnel de calculadoras (first-party)
+## Señales de calculadoras (first-party)
 
 _Export semanal de analytics no disponible para esta semana._
 `;
@@ -782,7 +1114,7 @@ _Export semanal de analytics no disponible para esta semana._
   const slugs = Object.keys(bySlug).sort();
   if (slugs.length === 0) {
     return `
-## Funnel de calculadoras (first-party) — ${week}
+## Señales de calculadoras (first-party) — ${week}
 
 _Sin eventos registrados esta semana._
 `;
@@ -791,8 +1123,8 @@ _Sin eventos registrados esta semana._
   // Build per-calculator rows
   const rows = slugs.map((slug) => {
     const a = bySlug[slug];
-    const startRate = safeRate(a.starts, a.views);
-    const completionRate = safeRate(a.completes, a.starts);
+    const startsPerView = safeEventRatio(a.starts, a.views);
+    const resultsPerStart = safeEventRatio(a.completes, a.starts);
     const errorRate = safeRate(a.errors, a.starts);
     const nextStepCTR = safeRate(a.nextStepClicks, a.nextStepShown);
 
@@ -802,8 +1134,8 @@ _Sin eventos registrados esta semana._
       nDformat(a.starts),
       nDformat(a.completes),
       nDformat(a.errors),
-      startRate,
-      completionRate,
+      startsPerView,
+      resultsPerStart,
       errorRate,
       nDformat(a.shares),
       nDformat(a.nextStepClicks),
@@ -813,9 +1145,8 @@ _Sin eventos registrados esta semana._
   });
 
   const parts = [
-    `\n## Funnel de calculadoras (first-party) — ${week}\n`,
-    `**Fuentes diferenciadas:**  `,
-    buildSourceSummary(analyticsJson, cloudflarePerf),
+    `\n## Señales de calculadoras (first-party) — ${week}\n`,
+    `**Fuentes diferenciadas:** ${buildSourceSummary(analyticsJson, cloudflarePerf)}`,
     "",
     table(
       [
@@ -824,8 +1155,8 @@ _Sin eventos registrados esta semana._
         "Starts",
         "Completes",
         "Errors",
-        "Start rate",
-        "Completion rate",
+        "Starts/view",
+        "Results/start",
         "Error rate",
         "Shares",
         "NBS clicks",
@@ -842,7 +1173,7 @@ _Sin eventos registrados esta semana._
       `scenario actions=${totals.scenarioActions} · resume clicks=${totals.resumeClicks} · ` +
       `official source clicks=${totals.officialSourceClicks}`,
     "",
-    `_Start rate = starts / views. Completion rate = completes / starts. Error rate = errors / starts. NBS CTR = next-step clicks / next-step shown. "n/d" indica denominador cero o fuente no disponible._`,
+    `_Starts/view y results/start son ratios de conteos de eventos agregados; pueden superar 1× y no representan usuarios, sesiones ni conversión de cohorte. Error rate = errors / starts. NBS CTR = next-step clicks / next-step shown. "n/d" indica denominador cero o fuente no disponible._`,
     "",
   ];
 
@@ -861,10 +1192,10 @@ _Sin eventos registrados esta semana._
     parts.push("### Journey prioritario\n");
     parts.push(
       table(
-        ["Calculadora", "Views", "Starts", "Completes", "Start rate", "Completion rate", "Next-step CTR", "Share rate"],
+        ["Calculadora", "Views", "Starts", "Completes", "Starts/view", "Results/start", "Next-step CTR", "Share rate"],
         priorityData.map((a) => {
-          const startRate = safeRate(a.starts, a.views);
-          const completionRate = safeRate(a.completes, a.starts);
+          const startsPerView = safeEventRatio(a.starts, a.views);
+          const resultsPerStart = safeEventRatio(a.completes, a.starts);
           const nextStepCTR = safeRate(a.nextStepClicks, a.nextStepShown);
           const shareRate = safeRate(a.shares, a.completes);
           return [
@@ -872,8 +1203,8 @@ _Sin eventos registrados esta semana._
             nDformat(a.views),
             nDformat(a.starts),
             nDformat(a.completes),
-            startRate,
-            completionRate,
+            startsPerView,
+            resultsPerStart,
             nextStepCTR,
             shareRate,
           ];
@@ -968,6 +1299,7 @@ function loadJson(filePath, label) {
 }
 
 function getDeltaPercent(current, delta) {
+  if (delta === null || delta === undefined) return null;
   const previous = current - delta;
   if (previous <= 0) {
     return delta > 0 ? 100 : 0;
@@ -976,12 +1308,16 @@ function getDeltaPercent(current, delta) {
 }
 
 function formatSignedNumber(value, digits = 0) {
+  if (value === null || value === undefined) return "n/d";
   const sign = value > 0 ? "+" : "";
   return `${sign}${value.toFixed(digits)}`;
 }
 
 function formatMetricPair(current, delta, suffix = "", digits = 0) {
   if (current === null || current === undefined) return "n/d";
+  if (delta === null || delta === undefined) {
+    return `${current.toFixed(digits)}${suffix} (comparison n/d)`;
+  }
   return `${current.toFixed(digits)}${suffix} (${formatSignedNumber(
     delta,
     digits
@@ -1017,6 +1353,12 @@ function sumMetric(rows, key) {
   return rows.reduce((total, row) => total + (row[key] ?? 0), 0);
 }
 
+function sumDeltaMetric(rows, key) {
+  return rows.some(row => row[key] === null || row[key] === undefined)
+    ? null
+    : sumMetric(rows, key);
+}
+
 function aggregateQueryPulse(queryRows, queryThemes) {
   const loweredThemes = (queryThemes ?? []).map(theme => theme.toLowerCase());
   if (loweredThemes.length === 0) {
@@ -1032,8 +1374,8 @@ function aggregateQueryPulse(queryRows, queryThemes) {
 
   const impressions = sumMetric(matches, "impressions");
   const clicks = sumMetric(matches, "clicks");
-  const impressionsDelta = sumMetric(matches, "impressionsDelta");
-  const clicksDelta = sumMetric(matches, "clicksDelta");
+  const impressionsDelta = sumDeltaMetric(matches, "impressionsDelta");
+  const clicksDelta = sumDeltaMetric(matches, "clicksDelta");
   const ctrWeighted =
     impressions > 0
       ? matches.reduce((total, row) => total + row.ctr * row.impressions, 0) /
@@ -1068,7 +1410,7 @@ function getAnalyticsMetrics(pageEvents, pagePath) {
     cta,
     starts,
     completes,
-    completionRate:
+    resultsPerStart:
       starts.current > 0 ? completes.current / starts.current : null,
   };
 }
@@ -1084,19 +1426,25 @@ function classifyTrackedPage(entry, pageRow, queryPulse, analyticsMetrics) {
   }
 
   if (pageRow) {
+    const hasComparison = pageRow.clicksDelta !== null;
+    const hasPositionComparison = pageRow.positionDelta !== null;
     const clickDeltaPct = getDeltaPercent(pageRow.clicks, pageRow.clicksDelta);
     const winner =
-      pageRow.clicksDelta >= 10 ||
-      clickDeltaPct >= 20 ||
-      (pageRow.impressions >= 150 &&
-        pageRow.positionDelta <= -0.5 &&
-        pageRow.ctrDelta >= 0.3);
+      hasComparison &&
+      (pageRow.clicksDelta >= 10 ||
+        clickDeltaPct >= 20 ||
+        (hasPositionComparison &&
+          pageRow.impressions >= 150 &&
+          pageRow.positionDelta <= -0.5 &&
+          pageRow.ctrDelta >= 0.3));
     const loser =
-      pageRow.clicksDelta <= -10 ||
-      clickDeltaPct <= -20 ||
-      (pageRow.impressions >= 150 &&
-        pageRow.ctrDelta <= -0.7 &&
-        pageRow.positionDelta >= 0.5);
+      hasComparison &&
+      (pageRow.clicksDelta <= -10 ||
+        clickDeltaPct <= -20 ||
+        (hasPositionComparison &&
+          pageRow.impressions >= 150 &&
+          pageRow.ctrDelta <= -0.7 &&
+          pageRow.positionDelta >= 0.5));
     const watch =
       pageRow.impressions >= 150 &&
       ((pageRow.position >= 4 && pageRow.position <= 15) || pageRow.ctr < 3);
@@ -1112,10 +1460,12 @@ function classifyTrackedPage(entry, pageRow, queryPulse, analyticsMetrics) {
     } else if (winner) {
       status = "winner";
       reasons.push(
-        `Clics ${formatSignedNumber(pageRow.clicksDelta)} con posición ${formatSignedNumber(
-          -pageRow.positionDelta,
-          1
-        )} puntos mejor respecto a la semana previa.`
+        hasPositionComparison
+          ? `Clics ${formatSignedNumber(pageRow.clicksDelta)} con posición ${formatSignedNumber(
+              -pageRow.positionDelta,
+              1
+            )} puntos mejor respecto a la semana previa.`
+          : `Clics ${formatSignedNumber(pageRow.clicksDelta)}; identidad ${pageRow.identityStatus} sin comparación de posición.`
       );
     } else if (watch) {
       status = "watch";
@@ -1171,23 +1521,6 @@ function classifyTrackedPage(entry, pageRow, queryPulse, analyticsMetrics) {
   }
 
   if (
-    entry.role === "tool" &&
-    analyticsMetrics.starts.current >= 10 &&
-    analyticsMetrics.completionRate !== null &&
-    analyticsMetrics.completionRate < 0.35
-  ) {
-    if (status === "steady" || status === "watch") {
-      status = "action_needed";
-    }
-    actions.push({
-      type: "tool_ux",
-      text: `Completion rate ${formatPercent(
-        analyticsMetrics.completionRate * 100
-      )}. Revisar fricción del formulario o copy del resultado.`,
-    });
-  }
-
-  if (
     status === "steady" &&
     queryPulse &&
     queryPulse.impressions >= 150 &&
@@ -1208,7 +1541,8 @@ function classifyTrackedPage(entry, pageRow, queryPulse, analyticsMetrics) {
 }
 
 function topMovers(rows, key, direction, limit = 5) {
-  const sorted = [...rows].sort((left, right) =>
+  const comparable = rows.filter(row => Number.isFinite(row[key]));
+  const sorted = comparable.sort((left, right) =>
     direction === "desc" ? right[key] - left[key] : left[key] - right[key]
   );
   return sorted.filter(row => (direction === "desc" ? row[key] > 0 : row[key] < 0)).slice(0, limit);
@@ -1247,7 +1581,7 @@ function buildIndexationStatus(indexation) {
   return sections;
 }
 
-function buildSummary({ watchlist, indexation, pageRows, queryRows, analytics, analyticsJson, gscSource, cloudflarePerf, urlInspection }) {
+function buildSummary({ watchlist, indexation, pageRows, queryRows, analytics, analyticsJson, gscSource, gscComparison, cloudflarePerf, urlInspection, inputStatus }) {
   const pageByPath = new Map(pageRows.map(row => [row.path, row]));
 
   const trackedPages = watchlist.pages.map(entry => {
@@ -1305,12 +1639,14 @@ function buildSummary({ watchlist, indexation, pageRows, queryRows, analytics, a
     site: watchlist.site,
     weekLabel: indexation.weekLabel ?? "weekly-review",
     source: gscSource ?? "csv",
+    comparison: gscComparison,
+    inputStatus,
     dateRange: indexation.dateRange ?? null,
     totals: {
       clicks: sumMetric(pageRows, "clicks"),
-      clicksDelta: sumMetric(pageRows, "clicksDelta"),
+      clicksDelta: sumDeltaMetric(pageRows, "clicksDelta"),
       impressions: sumMetric(pageRows, "impressions"),
-      impressionsDelta: sumMetric(pageRows, "impressionsDelta"),
+      impressionsDelta: sumDeltaMetric(pageRows, "impressionsDelta"),
       trackedWinnerCount: trackedPages.filter(item => item.status === "winner")
         .length,
       trackedLoserCount: trackedPages.filter(item => item.status === "loser")
@@ -1345,6 +1681,9 @@ function buildHeadline(summary) {
   return [
     `- Week label: \`${summary.weekLabel}\``,
     `- Date comparison: \`${dateLine}\``,
+    summary.comparison.status === "unavailable"
+      ? `- GSC comparison: \`unavailable\` — previous artifact ${summary.comparison.previousWeek} is missing; deltas and movers are not inferred.`
+      : `- GSC comparison: \`${summary.comparison.currentWeek} vs ${summary.comparison.previousWeek}\``,
     `- GSC clicks total: \`${formatMetricPair(
       summary.totals.clicks,
       summary.totals.clicksDelta
@@ -1360,6 +1699,7 @@ function buildHeadline(summary) {
     summary.analyticsJson?.available
       ? `- First-party analytics: \`${summary.analyticsJson.week}\` — ${Object.keys(summary.analyticsJson.bySlug).length} calculators, ${summary.analyticsJson.totals.views} views · ${summary.analyticsJson.totals.starts} starts · ${summary.analyticsJson.totals.completes} completes`
       : "- First-party analytics: export not available for this week",
+    `- Optional input status: \`analytics=${summary.inputStatus.analytics.status}\`, \`cloudflare-rum=${summary.inputStatus.cloudflare.rum.status}\`, \`cloudflare-traffic=${summary.inputStatus.cloudflare.traffic.status}\`, \`url-inspection=${summary.inputStatus.urlInspection.status}\``,
   ];
 }
 
@@ -1377,10 +1717,16 @@ function renderMoverTable(rows, kind) {
       formatMetricPair(row.clicks, row.clicksDelta),
       formatMetricPair(row.impressions, row.impressionsDelta),
       `${formatPercent(row.ctr)} (${formatSignedNumber(row.ctrDelta, 1)} pp)`,
-      `${row.position.toFixed(1)} (${formatSignedNumber(
-        -row.positionDelta,
-        1
-      )} better)`,
+      row.identityStatus === "new"
+        ? `${row.position.toFixed(1)} (new identity; prior position n/d)`
+        : row.identityStatus === "removed"
+          ? "n/d (removed identity; current position n/d)"
+          : row.positionDelta === null
+            ? `${row.position.toFixed(1)} (comparison n/d)`
+        : `${row.position.toFixed(1)} (${formatSignedNumber(
+            -row.positionDelta,
+            1
+          )} better)`,
     ])
   );
 }
@@ -1390,22 +1736,26 @@ function renderTrackedTable(trackedPages) {
     ["URL", "Rol", "Organic", "Query pulse", "Analytics", "Status", "Next move"],
     trackedPages.map(item => {
       const organic = item.pageRow
-        ? `Clicks ${formatSignedNumber(item.pageRow.clicksDelta)}, CTR ${formatSignedNumber(
-            item.pageRow.ctrDelta,
-            1
-          )} pp`
+        ? item.pageRow.clicksDelta === null
+          ? "Comparison unavailable"
+          : `Clicks ${formatSignedNumber(item.pageRow.clicksDelta)}, CTR ${formatSignedNumber(
+              item.pageRow.ctrDelta,
+              1
+            )} pp`
         : "n/d";
       const queryPulse = item.queryPulse
-        ? `Clicks ${formatSignedNumber(
-            item.queryPulse.clicksDelta
-          )}, Pos ${item.queryPulse.position.toFixed(1)}`
+        ? item.queryPulse.clicksDelta === null
+          ? `Clicks comparison n/d, Pos ${item.queryPulse.position.toFixed(1)}`
+          : `Clicks ${formatSignedNumber(
+              item.queryPulse.clicksDelta
+            )}, Pos ${item.queryPulse.position.toFixed(1)}`
         : "n/d";
       const analytics =
         item.role === "tool"
-          ? `starts ${item.analyticsMetrics.starts.current}, completes ${item.analyticsMetrics.completes.current}, CR ${
-              item.analyticsMetrics.completionRate === null
+          ? `starts ${item.analyticsMetrics.starts.current}, completes ${item.analyticsMetrics.completes.current}, results/start ${
+              item.analyticsMetrics.resultsPerStart === null
                 ? "n/d"
-                : formatPercent(item.analyticsMetrics.completionRate * 100)
+                : `${item.analyticsMetrics.resultsPerStart.toFixed(2)}×`
             }`
           : `cta_click ${item.analyticsMetrics.cta.current} (${formatSignedNumber(
               item.analyticsMetrics.cta.current -
@@ -1529,15 +1879,21 @@ function main() {
   const queriesCsvPath = path.join(options.inputDir, "gsc-queries.csv");
   const hasCsv = existsSync(pagesCsvPath) && existsSync(queriesCsvPath);
 
-  let pageRows, queryRows, gscSource;
+  let pageRows, queryRows, gscSource, gscComparison;
   if (hasCsv) {
     pageRows = readSearchCsv(pagesCsvPath, "pages");
     queryRows = readSearchCsv(queriesCsvPath, "queries");
     gscSource = "csv";
+    gscComparison = {
+      status: "available",
+      currentWeek: week ?? indexation.weekLabel ?? "current",
+      previousWeek: "embedded-in-csv",
+    };
   } else if (gscJson) {
     pageRows = gscJson.pageRows;
     queryRows = gscJson.queryRows;
     gscSource = "json";
+    gscComparison = gscJson.comparison;
     console.log(
       `[weekly-search-report] GSC source: JSON (${path.resolve(options.gscJsonDir)}/${week}-*.json)`
     );
@@ -1545,20 +1901,54 @@ function main() {
     pageRows = readSearchCsv(pagesCsvPath, "pages");
     queryRows = readSearchCsv(queriesCsvPath, "queries");
     gscSource = "csv";
+    gscComparison = {
+      status: "available",
+      currentWeek: week ?? indexation.weekLabel ?? "current",
+      previousWeek: "embedded-in-csv",
+    };
   }
 
   const analytics = readAnalyticsCsv(
     path.join(options.inputDir, "analytics-events.csv")
   );
-  const analyticsJson = week
+  const noWeekResult = { status: "missing", path: null, value: null };
+  const analyticsResult = week
     ? readAnalyticsJson(options.analyticsJsonDir, week)
-    : null;
-  const cloudflarePerf = week
+    : noWeekResult;
+  const cloudflareResult = week
     ? readCloudflarePerf(options.cloudflareJsonDir, week)
-    : null;
-  const urlInspection = week
+    : {
+        status: "missing",
+        artifacts: { rum: noWeekResult, traffic: noWeekResult },
+        value: null,
+      };
+  const inspectionResult = week
     ? readUrlInspection(options.gscJsonDir, week)
-    : null;
+    : noWeekResult;
+  const analyticsJson = analyticsResult.value;
+  const cloudflarePerf = cloudflareResult.value;
+  const urlInspection = inspectionResult.value;
+  const inputStatus = {
+    analytics: {
+      status: analyticsResult.status,
+      path: analyticsResult.path,
+    },
+    cloudflare: {
+      status: cloudflareResult.status,
+      rum: {
+        status: cloudflareResult.artifacts.rum.status,
+        path: cloudflareResult.artifacts.rum.path,
+      },
+      traffic: {
+        status: cloudflareResult.artifacts.traffic.status,
+        path: cloudflareResult.artifacts.traffic.path,
+      },
+    },
+    urlInspection: {
+      status: inspectionResult.status,
+      path: inspectionResult.path,
+    },
+  };
 
   const summary = buildSummary({
     watchlist,
@@ -1568,8 +1958,10 @@ function main() {
     analytics,
     analyticsJson,
     gscSource,
+    gscComparison,
     cloudflarePerf,
     urlInspection,
+    inputStatus,
   });
   const markdown = buildMarkdown(summary);
 

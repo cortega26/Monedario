@@ -1,0 +1,270 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "Monedario W28 Traffic, SEO and GEO Decision Report",
+    "description": "Source-backed weekly search-operations analysis for 2026-07-06 through 2026-07-12.",
+    "generatedAt": "2026-07-16T22:50:00Z",
+    "cards": [
+      {
+        "id": "organic_clicks",
+        "description": "Google Search clicks in W28, with the prior complete week as comparison.",
+        "dataset": "headline",
+        "sourceId": "gsc_weekly",
+        "metrics": [
+          { "label": "Organic clicks", "field": "clicks", "format": "number" },
+          { "label": "WoW", "field": "clicks_delta", "format": "number", "signed": true }
+        ]
+      },
+      {
+        "id": "search_impressions",
+        "description": "Google Search impressions in W28, with the prior complete week as comparison.",
+        "dataset": "headline",
+        "sourceId": "gsc_weekly",
+        "metrics": [
+          { "label": "Impressions", "field": "impressions", "format": "number" },
+          { "label": "WoW", "field": "impressions_delta", "format": "number", "signed": true }
+        ]
+      },
+      {
+        "id": "indexed_share",
+        "description": "Share of submitted sitemap URLs confirmed indexed by URL Inspection.",
+        "dataset": "headline",
+        "sourceId": "gsc_inspection",
+        "metrics": [
+          { "label": "Google indexed", "field": "indexed_share", "format": "percent" },
+          { "label": "Not indexed", "field": "not_indexed", "format": "number" }
+        ]
+      },
+      {
+        "id": "pageviews",
+        "description": "First-party Cloudflare pageviews for W28 on monedario.cl.",
+        "dataset": "headline",
+        "sourceId": "cloudflare_weekly",
+        "metrics": [
+          { "label": "Pageviews", "field": "pageviews", "format": "number" },
+          { "label": "Requests", "field": "requests", "format": "number" }
+        ]
+      },
+      {
+        "id": "first_party_events",
+        "description": "Privacy-aggregated, allowlisted first-party events recovered from R2 for W28.",
+        "dataset": "headline",
+        "sourceId": "analytics_weekly",
+        "metrics": [
+          { "label": "Tool events", "field": "events", "format": "number" },
+          { "label": "Aggregate rows", "field": "event_rows", "format": "number" }
+        ]
+      }
+    ],
+    "charts": [
+      {
+        "id": "organic_click_trend",
+        "title": "Organic clicks reached a new plateau in W27–W28",
+        "subtitle": "W28 held at 498 clicks while impressions expanded 14.1%; W20 is absent because no complete artifact exists.",
+        "type": "line",
+        "dataset": "weekly_search",
+        "sourceId": "gsc_history",
+        "encodings": {
+          "x": { "field": "week", "type": "ordinal", "label": "ISO week" },
+          "y": { "field": "clicks", "type": "quantitative", "label": "Clicks", "format": "number" },
+          "tooltip": [
+            { "field": "impressions", "type": "quantitative", "label": "Impressions", "format": "number" },
+            { "field": "ctr", "type": "quantitative", "label": "CTR", "format": "percent" },
+            { "field": "coverage", "type": "nominal", "label": "Coverage" }
+          ]
+        },
+        "yAxisTitle": "Google Search clicks",
+        "valueFormat": "number",
+        "layout": "full"
+      }
+    ],
+    "tables": [],
+    "sources": [
+      { "id": "gsc_weekly", "label": "W28/W27 Google Search Console artifacts", "path": "output/operations/data-signals/gsc/2026-W28-pages.json" },
+      { "id": "gsc_history", "label": "Complete weekly Google Search Console page artifacts", "path": "output/operations/data-signals/gsc/" },
+      { "id": "gsc_inspection", "label": "W28 URL Inspection and sitemap evidence", "path": "output/operations/data-signals/gsc/2026-W28-url-inspection.json" },
+      { "id": "cloudflare_weekly", "label": "W28 Cloudflare traffic and hostname-filtered RUM", "path": "output/operations/data-signals/cloudflare/2026-W28-traffic.json" },
+      { "id": "analytics_weekly", "label": "W28 privacy-aggregated first-party analytics", "path": "output/operations/data-signals/analytics/2026-W28.json" },
+      { "id": "decision_bundle", "label": "W28 scorecard and bounded CTR audit", "path": "output/operations/weekly-search-performance/2026-W28/weekly-search-scorecard.json" }
+    ],
+    "blocks": [
+      { "id": "title", "type": "markdown", "body": "# Monedario W28 Traffic, SEO and GEO Decision Report" },
+      {
+        "id": "executive_summary",
+        "type": "markdown",
+        "body": "## Executive Summary\n\nW28 delivered **498 Google Search clicks**, essentially flat week over week, while impressions rose **14.1% to 94,443**. That combination is distribution growth without proportional click capture: aggregate CTR fell from **0.601% to 0.527%**. The gap is concentrated rather than sitewide—`/calculadoras/conversor-utm/` generated 77,088 W28 impressions and 268 clicks, while several other pages gained clicks.\n\nThe correct response is controlled experimentation and measurement, not bulk rewriting. Google URL Inspection confirms **157 of 184 submitted URLs indexed (85%)** and 27 crawled but not indexed; every inspected URL was allowed by robots and indexing rules. Cloudflare recorded **14,919 pageviews**, and recovered first-party analytics provides a usable aggregate baseline. One field-performance incident remains material: `/calculadoras/impuesto-segunda-categoria/` had p75 LCP **4.779s** and CLS **0.119** from 30 samples, but the earlier speculative CLS hypothesis was disproved.\n\nRecommendation: run one governed UTM intent experiment on existing surfaces, triage the 27 non-indexed URLs as a portfolio before any intervention, and establish the first fixed multi-engine GEO citation baseline before adding more GEO-oriented surface area."
+      },
+      { "id": "metrics", "type": "metric-strip", "cardIds": ["organic_clicks", "search_impressions", "indexed_share", "pageviews", "first_party_events"] },
+      {
+        "id": "search_findings",
+        "type": "markdown",
+        "body": "## Search demand expanded faster than click capture\n\nW28 added only one click versus W27 but gained 11,703 impressions. The UTM converter alone accounted for about **82% of W28 impressions** and **54% of clicks**, so aggregate CTR is strongly shaped by high-volume current-value queries. Query-level totals are lower than page totals because Search Console anonymizes some queries. Treat the bounded 3.5% CTR screen as a review queue only; it is not a target or click forecast."
+      },
+      { "id": "trend", "type": "chart", "chartId": "organic_click_trend", "layout": "full" },
+      {
+        "id": "movers",
+        "type": "markdown",
+        "body": "## Page movement was mixed, not uniformly negative\n\n- `/calculadoras/credito-consumo/`: **20 clicks, +13 WoW**.\n- `/calculadoras/prepago-credito/`: **32 clicks, +8 WoW**.\n- `/calculadoras/deposito-a-plazo/`: **8 clicks, +8 WoW**.\n- `/guias/impuestos-personas/operacion-renta/`: **20 clicks, +5 WoW**.\n- `/calculadoras/seguro-cesantia/`: **89 clicks, -36 WoW**, the largest loss; diagnose query and SERP mix before editing."
+      },
+      {
+        "id": "indexation_findings",
+        "type": "markdown",
+        "body": "## Indexation is healthy enough for targeted portfolio triage\n\nURL Inspection checked all 184 sitemap URLs: 157 were submitted and indexed and 27 were crawled but currently not indexed. There were no inspection API errors, and robots/indexing permission was present for every URL. The sitemap API's `indexed=0` field is not used as coverage evidence. Bing could reach the sitemap with HTTP 200 and robots allowed, but no trustworthy Bing Webmaster Tools coverage export was available; Bing coverage therefore remains a manual verification item."
+      },
+      {
+        "id": "product_findings",
+        "type": "markdown",
+        "body": "## First-party use signals are useful but are event ratios, not user conversion\n\nThe recovered W28 export contains **2,044 allowlisted events in 310 aggregate rows**, with no raw visitor records or personal data. It recorded 676 views, 551 starts, and 708 completes. Completes divided by starts can exceed 100% because these are independent event counts, not a cohort or user funnel. The UTM converter led starts (228); APV and the second-category tax calculator drove most next-best-step impressions. These signals support prioritization, not claims about people converting."
+      },
+      {
+        "id": "geo_findings",
+        "type": "markdown",
+        "body": "## GEO needs a repeatable citation baseline before more implementation\n\nThe repository already exposes crawlable, source-conscious content and machine-readable discovery surfaces. The missing decision input is an observed answer-engine baseline: which existing pages are cited, for which intents, and by which engines. Use a fixed 12-query set across four engines, record citation and answer inclusion consistently, and repeat monthly for three cuts before proposing more GEO-specific pages, schema, or `llms.txt` work."
+      },
+      {
+        "id": "actions",
+        "type": "markdown",
+        "body": "## Recommended next actions\n\n1. **Run one governed 28-day UTM intent experiment** on the existing converter/article surfaces. Change one variable and URL at a time; classify current-value, conversion, official-navigation, and explanatory intent before editing.\n2. **Triage the 27 crawled-not-indexed URLs as a portfolio.** Classify them as strategic, utility-complete, or insufficient, then select at most one to three interventions—no bulk rewrite or indexing request.\n3. **Establish a fixed GEO citation baseline:** four engines by 12 queries, repeated monthly for three cuts. Do not add URLs, schema, or discovery files until the baseline identifies a measured gap."
+      },
+      {
+        "id": "questions",
+        "type": "markdown",
+        "body": "## Decision questions for the next review\n\n- Which UTM intent class—current value, conversion, official navigation, or explanation—has the largest impression-weighted snippet mismatch?\n- Of the 27 crawled-not-indexed URLs, how many are strategically differentiated, utility-complete, and internally supported versus thin or redundant?\n- Does the fixed GEO baseline show citations concentrated in a few authoritative surfaces, or a broader discoverability problem?\n- Does the second-category tax calculator's LCP reproduce in lab/trace evidence, and which measured resource or render phase explains it?"
+      },
+      {
+        "id": "caveats",
+        "type": "markdown",
+        "body": "## Caveats and interpretation limits\n\n- Weekly history has missing artifacts, including W20; the trend chart does not interpolate gaps.\n- Search Console query anonymization means query totals do not reconcile exactly to page totals.\n- The four-week CTR audit is a prioritization heuristic that does not control for exact position, intent, brand, device, or seasonality.\n- Cloudflare RUM is hostname-filtered and route-allowlisted, but the highlighted performance route has only 30 samples.\n- First-party analytics is aggregate event telemetry, not users, sessions, or a cohort conversion funnel.\n- Google coverage is based on URL Inspection; Bing coverage has not been verified inside Bing Webmaster Tools.\n- No recommendation in this report bypasses YMYL editorial, topic-ownership, non-cannibalization, or URL contract gates."
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-07-16T22:50:00Z",
+    "status": "ready",
+    "datasets": {
+      "headline": [
+        {
+          "clicks": 498,
+          "clicks_delta": 1,
+          "impressions": 94443,
+          "impressions_delta": 11703,
+          "indexed_share": 0.8532608696,
+          "not_indexed": 27,
+          "pageviews": 14919,
+          "requests": 47399,
+          "events": 2044,
+          "event_rows": 310
+        }
+      ],
+      "weekly_search": [
+        { "week": "2026-W16", "clicks": 9, "impressions": 1412, "ctr": 0.00637394, "coverage": "complete artifact" },
+        { "week": "2026-W17", "clicks": 12, "impressions": 1814, "ctr": 0.00661522, "coverage": "complete artifact" },
+        { "week": "2026-W18", "clicks": 15, "impressions": 2374, "ctr": 0.00631845, "coverage": "complete artifact" },
+        { "week": "2026-W19", "clicks": 5, "impressions": 1670, "ctr": 0.00299401, "coverage": "complete artifact" },
+        { "week": "2026-W21", "clicks": 14, "impressions": 2562, "ctr": 0.00546448, "coverage": "complete artifact; W20 missing" },
+        { "week": "2026-W22", "clicks": 46, "impressions": 7009, "ctr": 0.006563, "coverage": "complete artifact" },
+        { "week": "2026-W23", "clicks": 49, "impressions": 8697, "ctr": 0.00563413, "coverage": "complete artifact" },
+        { "week": "2026-W24", "clicks": 87, "impressions": 10674, "ctr": 0.00815065, "coverage": "complete artifact" },
+        { "week": "2026-W25", "clicks": 136, "impressions": 15041, "ctr": 0.00904195, "coverage": "complete artifact" },
+        { "week": "2026-W26", "clicks": 248, "impressions": 46299, "ctr": 0.00535649, "coverage": "complete artifact" },
+        { "week": "2026-W27", "clicks": 497, "impressions": 82740, "ctr": 0.00600677, "coverage": "complete artifact" },
+        { "week": "2026-W28", "clicks": 498, "impressions": 94443, "ctr": 0.005272, "coverage": "complete artifact" }
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "gsc_weekly",
+      "label": "W28/W27 Google Search Console artifacts",
+      "path": "output/operations/data-signals/gsc/2026-W28-pages.json",
+      "query": {
+        "engine": "repository-artifact",
+        "language": "sql",
+        "sql": "SELECT * FROM read_json_auto('output/operations/data-signals/gsc/2026-W28-pages.json') UNION ALL BY NAME SELECT * FROM read_json_auto('output/operations/data-signals/gsc/2026-W27-pages.json')",
+        "description": "Joins normalized W28 and W27 page/query exports using the weekly scorecard comparison contract.",
+        "executed_at": "2026-07-16T22:40:00Z",
+        "tables_used": ["output/operations/data-signals/gsc/2026-W28-pages.json", "output/operations/data-signals/gsc/2026-W27-pages.json"],
+        "filters": ["ISO weeks 2026-W27 and 2026-W28", "Google web search"],
+        "metric_definitions": ["CTR = clicks / impressions", "Click and impression deltas = W28 minus W27"]
+      }
+    },
+    {
+      "id": "gsc_history",
+      "label": "Complete weekly Google Search Console page artifacts",
+      "path": "output/operations/data-signals/gsc/",
+      "query": {
+        "engine": "repository-artifact",
+        "language": "sql",
+        "sql": "SELECT * FROM read_json_auto('output/operations/data-signals/gsc/*-pages.json', filename = true)",
+        "description": "Uses complete weekly page artifacts without interpolating missing weeks.",
+        "executed_at": "2026-07-16T22:40:00Z",
+        "tables_used": ["output/operations/data-signals/gsc/*-pages.json"],
+        "filters": ["Complete artifacts from 2026-W16 through 2026-W28", "W20 omitted because no complete artifact exists"],
+        "metric_definitions": ["Weekly clicks and impressions are sums of page rows", "CTR = weekly clicks / weekly impressions"]
+      }
+    },
+    {
+      "id": "gsc_inspection",
+      "label": "W28 URL Inspection and sitemap evidence",
+      "path": "output/operations/data-signals/gsc/2026-W28-url-inspection.json",
+      "query": {
+        "engine": "repository-artifact",
+        "language": "sql",
+        "sql": "SELECT * FROM read_json_auto('output/operations/data-signals/gsc/2026-W28-url-inspection.json')",
+        "description": "Summarizes URL Inspection results for every submitted sitemap URL.",
+        "executed_at": "2026-07-16T22:40:00Z",
+        "tables_used": ["output/operations/data-signals/gsc/2026-W28-url-inspection.json", "output/operations/data-signals/gsc/2026-W28-sitemaps.json"],
+        "filters": ["184 submitted sitemap URLs", "Inspection run completed 2026-07-16"],
+        "metric_definitions": ["Indexed share = submitted-and-indexed URLs / inspected submitted URLs"]
+      }
+    },
+    {
+      "id": "cloudflare_weekly",
+      "label": "W28 Cloudflare traffic and hostname-filtered RUM",
+      "path": "output/operations/data-signals/cloudflare/2026-W28-traffic.json",
+      "query": {
+        "engine": "cloudflare-graphql",
+        "language": "sql",
+        "sql": "SELECT * FROM read_json_auto('output/operations/data-signals/cloudflare/2026-W28-traffic.json')",
+        "description": "Aggregates W28 traffic and RUM at source for requestHost monedario.cl.",
+        "executed_at": "2026-07-16T22:40:00Z",
+        "tables_used": ["output/operations/data-signals/cloudflare/2026-W28-traffic.json", "output/operations/data-signals/cloudflare/2026-W28-rum.json"],
+        "filters": ["2026-07-06 through 2026-07-12", "requestHost = monedario.cl", "route inventory allowlist"],
+        "metric_definitions": ["RUM p75 values are provider percentile aggregates", "Cache ratio is cached requests divided by total requests"]
+      }
+    },
+    {
+      "id": "analytics_weekly",
+      "label": "W28 privacy-aggregated first-party analytics",
+      "path": "output/operations/data-signals/analytics/2026-W28.json",
+      "query": {
+        "engine": "cloudflare-r2",
+        "language": "sql",
+        "sql": "SELECT * FROM read_json_auto('output/operations/data-signals/analytics/2026-W28.json')",
+        "description": "Reads weekly aggregate counts for six allowlisted event types; no raw visitor events are included.",
+        "executed_at": "2026-07-16T22:40:00Z",
+        "tables_used": ["output/operations/data-signals/analytics/2026-W28.json"],
+        "filters": ["2026-07-06 through 2026-07-12", "Six allowlisted event types", "Aggregate rows only"],
+        "metric_definitions": ["Tool events = sum of aggregate row counts", "Starts and completes are independent event counts, not user cohorts"]
+      }
+    },
+    {
+      "id": "decision_bundle",
+      "label": "W28 scorecard and bounded CTR audit",
+      "path": "output/operations/weekly-search-performance/2026-W28/weekly-search-scorecard.json",
+      "query": {
+        "engine": "repository-scripts",
+        "language": "sql",
+        "sql": "SELECT * FROM read_json_auto('output/operations/weekly-search-performance/2026-W28/weekly-search-scorecard.json')",
+        "description": "Combines the validated W28 scorecard with a four-complete-week CTR prioritization audit.",
+        "executed_at": "2026-07-16T22:40:00Z",
+        "tables_used": ["output/operations/weekly-search-performance/2026-W28/weekly-search-scorecard.json", "output/operations/weekly-search-performance/2026-W28/ctr-opportunities.json"],
+        "filters": ["CTR audit weeks 2026-W25 through 2026-W28", "No universal click forecast"],
+        "metric_definitions": ["CTR opportunity gap is a prioritization heuristic, not a KPI or expected-click estimate"]
+      }
+    }
+  ]
+}

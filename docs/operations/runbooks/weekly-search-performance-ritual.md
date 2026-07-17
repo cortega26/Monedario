@@ -1,6 +1,6 @@
 # Weekly Search Performance Ritual
 
-Fecha de corte: 2026-03-12
+Fecha de corte: 2026-07-16
 
 ## Objetivo
 
@@ -25,13 +25,35 @@ El ritual ahora es **híbrido e issue-driven**:
 
 Si no existen exports para la semana, el workflow igual deja issue + checklist + bundle inicializado. El workflow usa la **última semana ISO completa** (la misma referencia que `data-signals.yml`) y, si ya existen JSON repo-locales de GSC para esa semana, genera un scorecard inicial automáticamente aunque después igual haya que completar indexación/Bing o analytics.
 
-### Cadencia: quincenal (2026-06-01)
+### Cadencia semanal acotada (2026-07-16)
 
-Aunque el nombre y el cron son "weekly", el workflow corre de forma **quincenal**: el `schedule` dispara todos los lunes pero el job se autodescarta en semanas ISO impares (step "Gate cadence"). `workflow_dispatch` manual siempre corre. Motivo: con el volumen actual (~1.4k impresiones, clics de un dígito por semana) un ritual semanal generaba más ruido que señal; quincenal preserva la señal con la mitad de issues. Cuando el tráfico crezca, volver a semanal es revertir el guard.
+El workflow corre **todos los lunes** sobre la última semana ISO completa, tanto en
+semanas pares como impares. Esta cadencia queda vigente hasta terminar julio de
+2026. La calibración W28 ya no corresponde al supuesto de bajo volumen que motivó
+la pausa quincenal: GSC registró **498 clics y 94.443 impresiones**, suficiente para
+usar la señal como input primario cuando el export tiene cobertura adecuada. Una
+semana aislada no define dirección: las decisiones deben contrastarse contra
+varias semanas comparables.
 
-### `analytics-events.csv` diferido
+El **2026-08-01** se revisará la evidencia operativa y se elegirá explícitamente
+una de tres opciones: mantener colección y revisión semanales; recolectar cada
+semana pero revisar con personas cada dos semanas; o volver a colección y revisión
+quincenal. La decisión se basa en señal útil, carga real y tiempo de cola, no en el
+umbral histórico. La colección automática y la revisión humana son separables.
 
-El análisis de comportamiento on-site (`analytics-events.csv`: scroll, CTA, tool completion) queda **diferido hasta que el tráfico lo amerite (>~100 clics/semana)**. Hoy las decisiones las maneja la señal de GSC (`pnpm run data-signals:gsc:local` + `audit:striking-distance` / `audit:cannibalization`); con clics de un dígito el CSV no produce decisiones que GSC no dé. El scorecard funciona sin él. No es un pendiente: es una espera deliberada por tamaño de muestra.
+### Analytics first-party activo
+
+El input principal de comportamiento on-site es el JSON agregado en
+`output/operations/data-signals/analytics/<week>.json`. El pipeline first-party ya
+está activo y el export W28 fue validado con **310 filas agregadas, 2.044 eventos y
+6 tipos de evento**. `analytics-events.csv` se conserva como fallback compatible
+del scorecard, no como fuente pendiente de activación.
+
+Un JSON ausente después de la ventana de export es un **incidente de
+colección/export**, no una razón para diferir analytics ni un cero de eventos. Un
+JSON presente pero inválido es un **incidente de calidad de datos** y no debe
+usarse para decidir hasta repararlo o regenerarlo. El issue semanal registra uno
+de tres estados: `available`, `missing` o `invalid`.
 
 ## Fuentes de verdad
 
@@ -67,7 +89,10 @@ Luego se dejan en esa misma carpeta:
 
 - `gsc-pages.csv`
 - `gsc-queries.csv`
-- `analytics-events.csv` opcional
+- `analytics-events.csv` opcional como fallback manual
+
+El JSON first-party no se copia al bundle: el scorecard lo busca por semana en
+`output/operations/data-signals/analytics/`.
 
 ## Inputs requeridos
 
@@ -104,7 +129,17 @@ No hace falta una API para esto. El objetivo es dejar el estado semanal fijado e
 
 ### 3. Analytics / eventos del sitio
 
-Exportar un CSV simple con esta forma:
+Confirmar primero el JSON agregado de la misma semana:
+
+```text
+output/operations/data-signals/analytics/<week>.json
+```
+
+Debe declarar `source: first-party-events`, `schemaVersion: 1`, la semana correcta
+y filas agregadas con conteos no negativos. Si falta o no valida, abrir y resolver
+el incidente indicado arriba antes de interpretar el funnel.
+
+Como fallback manual, se puede exportar un CSV simple con esta forma:
 
 ```csv
 page_path,event_name,event_count,event_count_previous
@@ -199,14 +234,12 @@ Qué hacer:
 
 ## Decisiones semanales obligatorias
 
-Cada corrida debe cerrar con tres decisiones explícitas, aunque sean pequeñas:
+Cada corrida debe cerrar con **1 a 3 decisiones totales**, distribuidas según la
+evidencia entre estas categorías:
 
-1. `Refresh ahora`
-   - máximo 1 a 3 URLs.
-2. `Internal linking / packaging`
-   - máximo 1 a 3 cambios.
-3. `Seguimiento de indexación`
-   - qué alerta o estado se revisa la próxima semana.
+1. `Refresh ahora`.
+2. `Internal linking / packaging`.
+3. `Seguimiento de indexación`.
 
 Si la scorecard no produce decisiones, el ritual se está volviendo ceremonial y hay que simplificarlo más.
 
@@ -217,7 +250,8 @@ Si la scorecard no produce decisiones, el ritual se está volviendo ceremonial y
 1. Abrir GSC y Bing usando el estado autenticado de Sprint 2E si sigue vigente.
 2. Exportar GSC pages/queries.
 3. Anotar estado de sitemap/indexación en `indexation-summary.json`.
-4. Exportar el CSV mínimo de analytics.
+4. Confirmar que el JSON first-party de la semana está disponible y válido; usar
+   el CSV solo como fallback manual.
 5. Ejecutar el script.
 
 Alternativa programada:
@@ -251,4 +285,6 @@ La semana queda cerrada solo si existen:
 - el bundle semanal bajo `output/operations/weekly-search-performance/<week>/`;
 - una scorecard generada por script;
 - 1 a 3 acciones decididas;
+- el estado de analytics documentado y cualquier ausencia/invalidez tratada como
+  incidente;
 - una nota clara de indexación/cobertura para Google y Bing.

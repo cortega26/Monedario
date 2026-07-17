@@ -1,6 +1,6 @@
 # Topic Intake Policy — Gate 00
 
-Fecha de corte: 2026-06-17
+Fecha de corte: 2026-07-16
 
 Autoridad aplicable:
 1. `AGENTS.md`
@@ -68,13 +68,14 @@ da el puntaje del candidato.
 dimensión puntúa **1**, re-encuadra el alcance antes de proceder (no promedies
 por encima de un bloqueo real).
 
-## 3. Calibraciones (aprendidas en el worked example 2026-06-17)
+## 3. Calibraciones
 
-1. **GSC es confirmatorio-solo a la escala actual.** A ~1.374 impresiones / 2
-   clics por semana (solo 12 queries con ≥10 imp), casi todo es greenfield, así
-   que striking-distance no discrimina. Usa GSC como confirmación una vez cruzado
-   un umbral de impresiones; mientras tanto, estima demanda con **gap de cluster +
-   SERP de competidores + Reddit**.
+1. **El rol de GSC depende de cobertura y muestra, no de una etiqueta fija.** En
+   W28 (corte 2026-07-16), GSC registró 498 clics y 94.443 impresiones: con exports
+   completos y suficientes impresiones puede ser evidencia primaria para demanda,
+   striking-distance y priorización. Contrasta varias semanas comparables y evita
+   convertir una sola semana en tendencia. Para intenciones greenfield sin muestra
+   propia suficiente, complementa con gap de cluster, SERP y evidencia de audiencia.
 2. **`CANONICAL_TOPIC_REGISTRY` es el kill-switch más potente.** Atrapa temas que
    parecen nuevos pero ya están "owned" (independientes, jóvenes, ahorro
    conservador, fondo de emergencia no son clusters greenfield). Corre el

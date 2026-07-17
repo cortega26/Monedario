@@ -1,13 +1,13 @@
 # Backlog Monedario.cl — Estado actual
 
-> Generado el 2026-04-08. Última actualización: 2026-07-07.
+> Generado el 2026-04-08. Última actualización: 2026-07-16.
 > Lectura obligatoria antes de ejecutar cualquier ticket: `AGENTS.md` y `context/INVARIANTS.md`.
 
 ---
 
-## Estado actual — 2026-06-28
+## Estado actual — 2026-07-16
 
-Completado: Fases 0–3 salvo decisiones pendientes explícitas (`MON-301`, `MON-304`), auditorías de calculadoras, UX backlog (15/16), Phase 1 Profile Persistence, Phase 2 High-Value Roadmap (Waves 1–5), Optimization, Editorial Timeliness, Blog Advisory Standardization, Date Display Consistency, Guardrail Automation, GitHub Actions remediation, Next Best Step, Data Signals (parcial), modernización estratégica 2026-05-11, cierre mobile CWV/LCP (`TD-0039`), `TD-0057` backfill canónico YMYL (46 artículos), SEO roadmap Sprints 0, 2 y 3, publicación Sprint 2B firmada y quick wins de auditoría profunda 2026-05-15, **componentización de calculadoras `TD-0063` + `TD-0069`** (5 componentes, 15 calculadoras, markup duplication 0.84%→0.29%).
+Completado: Fases 0–3 salvo decisiones pendientes explícitas (`MON-301`, `MON-304`), auditorías de calculadoras, UX backlog (15/16), Phase 1 Profile Persistence, Phase 2 High-Value Roadmap (Waves 1–5), Optimization, Editorial Timeliness, Blog Advisory Standardization, Date Display Consistency, Guardrail Automation, GitHub Actions remediation, Next Best Step, Data Signals (parcial), modernización estratégica 2026-05-11, cierre mobile CWV/LCP (`TD-0039`), `TD-0057` backfill canónico YMYL (46 artículos), SEO roadmap Sprints 0, 2 y 3, publicación Sprint 2B firmada, quick wins de auditoría profunda 2026-05-15, **componentización de calculadoras `TD-0063` + `TD-0069`** (5 componentes, 15 calculadoras, markup duplication 0.84%→0.29%) y la infraestructura de medición first-party (collector, export JSON y scorecard). W28 ya entrega una semana post-fix válida: 498 clics / 94.443 impresiones GSC y 310 filas / 2.044 eventos / 6 tipos en analytics agregado.
 
 Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados el 2026-05-20 en `docs/TECH_DEBT_BACKLOG.md`.
 
@@ -15,15 +15,16 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 
 | Orden | Item | Por qué ahora |
 |-------|------|---------------|
-| 1 | `PLAN-calculator-led-growth-2026-06-28.md` — PR-00 medición first-party | W25 cruzó 100 clics y 92,6% provino de calculadoras; falta completion/next-step |
-| 2 | SEO striking-distance dentro del plan maestro | Capturar demanda existente después de baseline y clasificación zero-click |
-| 3 | Programa Audit of Small Details (`ASD-###`) | Programa audit-only; ejecutar sin competir con PR-00/PR-02 |
+| 1 | Ritual semanal de search ops hasta fin de julio | W28 invalida el supuesto de bajo volumen; acumular evidencia comparable y cerrar 1–3 decisiones por semana |
+| 2 | `PLAN-calculator-led-growth-2026-06-28.md` — consolidar OBS-01 | La medición first-party ya está desplegada; usar W27 parcial + W28 post-fix y respetar el gate del plan antes de modificar journeys |
+| 3 | SEO striking-distance dentro del plan maestro | Capturar demanda existente con GSC de cobertura suficiente y contraste multiweek |
+| 4 | Programa Audit of Small Details (`ASD-###`) | Programa audit-only; ejecutar sin competir con la revisión de evidencia operativa |
 
 ### Pendiente — implementación por código
 
 | Plan | Archivo | Bloqueador |
 |------|---------|------------|
-| Crecimiento liderado por calculadoras | `PLAN-calculator-led-growth-2026-06-28.md` | OBS-01 activo: W27 primera semana completa generada, pero `calculator_view=0` hizo parcial el baseline de funnel; fix de medición aplicado y requiere semana posterior para start rate |
+| Crecimiento liderado por calculadoras | `PLAN-calculator-led-growth-2026-06-28.md` | OBS-01 activo: W27 quedó parcial; W28 es la primera semana post-fix válida. Consolidar evidencia multiweek y aplicar el gate del plan antes de PR-03 |
 | Phase 2 — Data Signals (MON-ENV-DATA3b..3c) | `PHASE_2_DATA_SIGNALS.md` | Requiere suscripción Ahrefs Advanced+ |
 | Hero image system — remediación manual por lotes | `HERO_IMAGE_SYSTEM_REMEDIATION_2026-04-30.md` | Manual: assets finales pendientes |
 | TypeScript 7 compatibility | `TS7_COMPATIBILITY_AUDIT_2026-04-30.md` | Blocked — esperando TS7 stable |
@@ -91,7 +92,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 
 | File | Status |
 |------|--------|
-| `PLAN-calculator-led-growth-2026-06-28.md` | **IN PROGRESS**; OBS-01 activo, no saltar baseline posterior al fix de `calculator_view` |
+| `PLAN-calculator-led-growth-2026-06-28.md` | **IN PROGRESS**; medición desplegada, W28 post-fix válida; consolidar OBS-01 sin saltar su gate |
 | `PHASE_2_DATA_SIGNALS.md` | Parcialmente completado; DATA3a..3c bloqueado |
 | `HERO_IMAGE_SYSTEM_REMEDIATION_2026-04-30.md` | Pendiente remediación manual |
 | `PLAN-heroimage-prompt-repair-2026-05-01.md` | Código completo; assets manuales pendientes |
@@ -112,7 +113,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 
 | Archivo | Estado | Última actualización | Bloqueador | Próximo paso |
 |---|---|---:|---|---|
-| `PLAN-calculator-led-growth-2026-06-28.md` | **IN PROGRESS** | 2026-07-07 | OBS-01 requiere baseline posterior al fix de `calculator_view`; no pasar a PR-03 todavía | Esperar/generar la siguiente semana completa y re-evaluar start rate, completion, NBS y guardrails |
+| `PLAN-calculator-led-growth-2026-06-28.md` | **IN PROGRESS** | 2026-07-16 | W28 entrega la primera semana post-fix válida; OBS-01 todavía exige una decisión explícita sobre suficiencia multiweek antes de PR-03 | Contrastar W27/W28, documentar suficiencia o inconclusión y aplicar el gate del plan antes de cambiar journeys |
 | `PLAN-audit-deep-remediation-2026-05-16.md` | Parcialmente cerrado | 2026-05-16 | `TD-0075`/`TD-0077` requieren medición/ADR; `TD-0079` bloqueado por flujo OG con TTF | Ejecutar `TD-0065` (deps bump) o preparar ADR para TD-0075/TD-0077 |
 | `PLAN-calculator-componentization-td-0063-0069-2026-05-20.md` | **Completado** | 2026-05-20 | — | `TD-0063` + `TD-0069` cerrados; 5 componentes, 15 calculadoras refactorizadas |
 | `PLAN-github-workflow-hardening-2026-05-13.md` | Parcialmente cerrado | 2026-05-13 | La fase 3 ya registra diminishing returns | Reabrir solo con hallazgo concreto de CI o archivar cuando se acepte el cierre operativo |

@@ -156,8 +156,7 @@ describe("analytics scorecard integration", () => {
     expect(stdout).toContain("analytics-json=yes");
 
     const markdown = readFileSync(markdownOut, "utf8");
-    // Should contain the funnel section
-    expect(markdown).toContain("Funnel de calculadoras (first-party)");
+    expect(markdown).toContain("Señales de calculadoras (first-party)");
     expect(markdown).toContain("tool-a");
     expect(markdown).toContain("50"); // starts
     expect(markdown).toContain("25"); // completes
@@ -172,7 +171,7 @@ describe("analytics scorecard integration", () => {
     expect(json.analyticsJson.totals.errors).toBe(5);
   });
 
-  it("calculates correct rates: views=100, starts=50, completes=25", () => {
+  it("calculates explicit event ratios: views=100, starts=50, completes=25", () => {
     const root = createTempRoot();
     const week = "2026-W26";
     const inputDir = path.join(root, week);
@@ -200,13 +199,13 @@ describe("analytics scorecard integration", () => {
     expect(result.status).toBe(0);
 
     const markdown = readFileSync(markdownOut, "utf8");
-    // Start rate = 50/100 = 50.0%
-    expect(markdown).toContain("50.0%");
-    // Completion rate = 25/50 = 50.0%
-    // Both rates should appear
-    const matches = markdown.match(/50\.0%/g);
-    expect(matches).not.toBeNull();
-    expect(matches!.length).toBeGreaterThanOrEqual(2);
+    expect(markdown).toContain("Starts/view");
+    expect(markdown).toContain("Results/start");
+    expect(markdown).toContain("0.50×");
+    expect(markdown).toContain(
+      "no representan usuarios, sesiones ni conversión de cohorte",
+    );
+    expect(markdown).not.toContain("Completion rate");
 
     const json = JSON.parse(readFileSync(jsonOut, "utf8"));
     expect(json.analyticsJson.totals.views).toBe(100);
@@ -221,7 +220,7 @@ describe("analytics scorecard integration", () => {
     makeMinimalBundle(inputDir, week);
 
     const analyticsDir = path.join(root, "analytics");
-    // Only views, no starts → start rate and completion rate should be "n/d"
+    // Only views, no starts → both event ratios should be "n/d"
     makeAnalyticsJson(analyticsDir, week, [
       { date: "2026-06-22", event_name: "calculator_view", calculator_slug: "tool-a", dimensions: "", count: 100 },
     ]);
@@ -241,7 +240,7 @@ describe("analytics scorecard integration", () => {
     expect(result.status).toBe(0);
 
     const markdown = readFileSync(markdownOut, "utf8");
-    // Should show "n/d" for start rate since starts=0 → denominator zero
+    // Should show "n/d" when an event-ratio denominator is zero.
     expect(markdown).toContain("n/d");
     // Should NOT show "0%" for rates with zero denominator
     // (the "n/d" check above covers this)
