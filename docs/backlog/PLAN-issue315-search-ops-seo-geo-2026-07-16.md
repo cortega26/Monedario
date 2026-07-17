@@ -169,6 +169,13 @@ Tracking issue: GitHub #315 (`Weekly search ops: 2026-W28`)
   2,044 events; missing-header and query-only authentication returned 401.
   Plan 049 was closed and archived atomically. Issue #315 remote closure follows
   the merge of this final bookkeeping change.
+- 2026-07-16: Final closure CI identified a real HTTP 410 from AFC's redesigned
+  marketing root for non-browser clients. The two calculator links used solely
+  to retrieve a real CIC balance now target AFC's official Sucursal Virtual at
+  `https://personas.afc.cl/`; no formula, claim, route, or eligibility behavior
+  changed. Focused tests passed 4/4, the 327-page build and 1,564-link internal
+  URL gate passed, and the exact external CI-mode gate reported zero blocking
+  failures across 462 unique external URLs.
 
 ## Change Control Record
 
@@ -194,12 +201,15 @@ Tracking issue: GitHub #315 (`Weekly search ops: 2026-W28`)
   Analytics calendar/interpretation paths from plan 049 update the collector,
   weekly report, focused Worker/report tests, and a data-contract ADR without
   changing the event payload, export schema, KV binding, or PII scope; internal
-  key prefixes are versioned to prevent mixed calendar semantics.
+  key prefixes are versioned to prevent mixed calendar semantics. The final
+  admitted CI repair is limited to the two official balance-retrieval links in
+  `src/pages/calculadoras/seguro-cesantia.astro`.
 
 3. Invariant preservation
 - Referenced: Constitution §§1, 4, 6, 9, 10 and `URL.PUBLIC.NO_POST_ID`.
-- Proof: recovery and analysis do not derive URLs from `post.id` or change public
-  behavior; later source work must add targeted proof before admission.
+- Proof: recovery and analysis do not derive URLs from `post.id`; the admitted
+  link repair changes no Monedario public path, canonical, route, RSS identity,
+  calculator formula, or structured claim.
 
 4. Contract preservation
 - `CONTRACT.PUBLIC_URLS`, `CONTRACT.ROUTES_SNAPSHOT`, and
