@@ -1,6 +1,6 @@
 # Plan: Issue #315 search operations, traffic analysis, and SEO/GEO improvement
 
-Status: in progress
+Status: complete
 Owner: repository owner
 Started: 2026-07-16
 Tracking issue: GitHub #315 (`Weekly search ops: 2026-W28`)
@@ -110,10 +110,10 @@ Tracking issue: GitHub #315 (`Weekly search ops: 2026-W28`)
 
 ## Rollback
 
-- Revert the final squash merge. Generated W28 exports and reports can be
-  removed together without altering production state.
-- If a runtime improvement is admitted, document its independent rollback in
-  the final Change Control Record and verify no persisted data migration exists.
+- Generated W28 exports and reports can be reverted with squash `ac0c4a17`.
+- Before the analytics cutover, the bounded Worker/config change can be
+  reverted. At or after 2026-07-20 00:00 CLT, set `ANALYTICS_DISABLED=1` and
+  fix forward on v2; reverting the writer to v1 would split W30 counters.
 
 ## Progress log
 
@@ -160,6 +160,15 @@ Tracking issue: GitHub #315 (`Weekly search ops: 2026-W28`)
   and exact structural verification passed. Shared-reader browser verification
   retained a documented horizontal-overflow limitation after both native tables
   were removed; the self-contained HTML and semantic fallback remain readable.
+- 2026-07-16: PR #331 passed all blocking build/test/security/URL checks and
+  merged by expected head SHA as `ac0c4a17`. A late P1 review finding was fixed
+  before merge with a versioned v1/UTC → v2/Santiago cutover at the W30 local
+  boundary; the full suite passed 1,061/1,061.
+- 2026-07-16: Deployed exact merge `ac0c4a17` as analytics Worker version
+  `dbc273e9-4f89-48f8-b572-fff6e536ff81`. Live W28 export returned 310 rows /
+  2,044 events; missing-header and query-only authentication returned 401.
+  Plan 049 was closed and archived atomically. Issue #315 remote closure follows
+  the merge of this final bookkeeping change.
 
 ## Change Control Record
 
@@ -184,7 +193,8 @@ Tracking issue: GitHub #315 (`Weekly search ops: 2026-W28`)
   one focused static test, and a time-bounded cadence ADR.
   Analytics calendar/interpretation paths from plan 049 update the collector,
   weekly report, focused Worker/report tests, and a data-contract ADR without
-  changing the event payload, export schema, storage architecture, or PII scope.
+  changing the event payload, export schema, KV binding, or PII scope; internal
+  key prefixes are versioned to prevent mixed calendar semantics.
 
 3. Invariant preservation
 - Referenced: Constitution §§1, 4, 6, 9, 10 and `URL.PUBLIC.NO_POST_ID`.
@@ -204,8 +214,9 @@ Tracking issue: GitHub #315 (`Weekly search ops: 2026-W28`)
   require targeted tests plus the repository regression suite.
 
 7. Rollback strategy
-- Revert the final squash merge; no credential, provider, or production-data
-  mutation is part of recovery.
+- Revert generated evidence/report changes as one unit. The analytics Worker is
+  revertible before cutover; after cutover, disable ingestion and fix forward on
+  v2. No destructive production-data migration is required.
 
 8. Regression risk
 - Current risk is low for production and medium for analytical interpretation:

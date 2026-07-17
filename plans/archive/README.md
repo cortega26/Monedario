@@ -44,6 +44,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [045](045-measurement-resequence-two-lanes.md) | Spike de dirección: re-secuenciar el crecimiento en dos carriles (SEO/GSC desbloqueado vs. journeys tras baseline); entregable `docs/reports/GROWTH-DIRECTION-DELTA-2026-W27.md`; follow-up de implementación desglosado al plan 047 (GROWTH-005) | 2026-07-13 | sí (fast-forward `f34210ff`) |
 | [047](047-growth-005-rum-hostname-filter.md) | Filtrar el RUM de Cloudflare por `requestHost = monedario.cl` y conservar la allowlist defensiva | 2026-07-16 | sí (commit `a3ac9504`; final Issue #315 change) |
 | [048](048-search-signal-integrity.md) | Restaurar comparaciones WoW, estados de fuente explícitos y auditoría CTR acotada | 2026-07-16 | sí (commit `e472ea43`; final Issue #315 change) |
+| [049](049-analytics-calendar-and-funnel-semantics.md) | Alinear semanas a Chile con cutover v1→v2 y reportar ratios de eventos sin llamarlos conversión | 2026-07-16 | sí (PR #331, squash `ac0c4a17`; deploy `dbc273e9-4f89-48f8-b572-fff6e536ff81`) |
 | [050](050-weekly-search-ops-current-scale.md) | Restaurar el loop semanal con revisión de cadencia el 2026-08-01 | 2026-07-16 | sí (commit `e01d4a93`; final Issue #315 change) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
