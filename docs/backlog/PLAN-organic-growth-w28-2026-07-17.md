@@ -395,6 +395,7 @@ y no se bajan umbrales retroactivamente.
 | 2026-07-17 | Planificación | DONE | Plan creado desde el informe W28 | Pendiente sign-off de Carlos; registrar en `docs/backlog/README.md` |
 | 2026-07-17 | WS-1/WS-2/WS-3 análisis | DONE | Anexo §11 (intención UTM, triage 27 URLs, diagnóstico rename cesantía) | Lectura pura, sin cambios en producción |
 | 2026-07-17 | WS-2 internal linking `reajuste-arriendo` | DONE | 3 enlaces entrantes nuevos desde `uf-hoy.astro`, guía `indicadores-economicos.astro` e `ipc.md` (**7→10**); build: 1.538 enlaces, **0 internos rotos**; prettier OK | Sin cambio de URL ni copy YMYL. Monitorear recrawl→indexación en W29–W31; resto del triage (20 posts) espera `audit:cannibalization` |
+| 2026-07-17 | AUT-1 `audit:calculator-interlinks` | DONE | `scripts/audit-calculator-interlinks.mjs` + 5 tests (todos PASS); prettier/eslint OK | Descubre huérfanas: `actualizador-inflacion`, `gratificacion-legal` (0 editoriales), `deposito-a-plazo` (2, con demanda W28), `iva` (2) → cola WS-2 |
 
 Estados permitidos: `TODO`, `IN PROGRESS`, `DONE`, `BLOCKED`, `INCONCLUSIVE`,
 `REJECTED`.
@@ -571,17 +572,25 @@ Inspection **solo para `reajuste-arriendo`** es legítima para acelerar el recra
 *Indexed* en el artefacto de URL Inspection. La indexación es señal rezagada
 (Google debe recrawlear).
 
-**Automatización propuesta (evitar que se repita el punto ciego):**
+**Automatización (evitar que se repita el punto ciego):**
 
-- **AUT-1 (guardrail build-time, determinista, recomendado):** un `check:*` que
-  cruce los slugs de calculadoras **activas** de `src/config/calculatorPortfolio.ts`
-  con el conteo de enlaces internos entrantes y **falle/avise** si una tool activa
-  cae por debajo de un umbral (habría cazado `reajuste-arriendo` con 7). No depende
-  de datos externos; encaja con el patrón `check:*` + test en `tests/static-analysis/`.
-- **AUT-2 (enriquecimiento del ritual semanal):** cruzar esos mismos slugs contra
-  el último `*-url-inspection.json` y elevar `action_needed` cuando una calculadora
-  activa esté *Crawled - currently not indexed*. Se engancha en el pipeline de
-  data-signals/scorecard que ya baja URL Inspection.
+- **AUT-1 — IMPLEMENTADO (2026-07-17):** `scripts/audit-calculator-interlinks.mjs`
+  (`pnpm run audit:calculator-interlinks`, 5 tests en
+  `tests/scripts/audit-calculator-interlinks.test.ts`). Toma como fuente de verdad
+  los `.astro` reales de `src/pages/calculadoras/`, cuenta enlaces internos
+  entrantes por calculadora activa y separa referencias **estructurales** (config,
+  hub `/calculadoras/`, buscador) de **editoriales** (guías, blog, glosario, otras
+  calculadoras). Informativo por defecto (exit 0); `--strict --min=<n>` lo
+  promueve a guardrail que falla. No depende de datos externos.
 
-Ambas son cambios enfocados y con test; **no se implementan en el mismo cambio que
-el linking** (disciplina de un concern por PR).
+  **Hallazgo al ejecutarlo (más oportunidades esta semana):** dos calculadoras
+  activas están prácticamente **huérfanas** — `actualizador-inflacion` y
+  `gratificacion-legal` (0 enlaces editoriales, solo la referencia estructural) —
+  y `deposito-a-plazo` (2) está sub-enlazada **pese a ganar +8 clics en W28**;
+  `iva` (2) también. `reajuste-arriendo` ya aparece sano (7) tras §11.4.
+  **Siguiente WS-2:** repetir el patrón de enlazado editorial en estas cuatro.
+
+- **AUT-2 — propuesto (enriquecimiento del ritual semanal):** cruzar esos slugs
+  contra el último `*-url-inspection.json` y elevar `action_needed` cuando una
+  calculadora activa esté *Crawled - currently not indexed*. Se engancha en el
+  pipeline de data-signals/scorecard que ya baja URL Inspection.
