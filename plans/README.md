@@ -86,7 +86,7 @@ paralelizable entre sí salvo que se indique lo contrario.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
 |---|------|--------|-----------|----------|--------|--------------------|--------|
-| 1 | [051](051-analytics-deployment-parity.md) | Hacer reproducible y verificable el deploy del Worker de analytics | P1 | M | MED | 052 | TODO (depende del smoke manual de #330) |
+| 1 | [051](051-analytics-deployment-parity.md) | Hacer reproducible y verificable el deploy del Worker de analytics | P1 | M | MED | 052 | TODO (prerrequisito cumplido: #330 desplegado y smoke verificado el 2026-07-16) |
 | 2 | [052](052-worker-manual-trigger-auth.md) | Sacar secretos de URLs y separar el PAT del trigger manual | P1 | S | LOW/MED | 049, 051 | IN PROGRESS (código `ae9246bd` aprobado localmente; deploy/rotación y smoke pendientes, PAT requiere autoridad de emisión) |
 | 3 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | BLOCKED (hipótesis descartada; causa de campo sin identificar — ver nota abajo) |
 | 4 | [046](046-converter-recurrence-return-hook-spike.md) | **Spike de dirección**: investigar si hay recurrencia real sobre los conversores (superficie de mayor **tráfico** según RUM W27; recurrencia **por confirmar**) y, solo si la hay, diseñar un return-hook privacy-safe | P2 | M | LOW | todos | TODO (spike de diseño; por defecto "medir antes de construir"; compuerta de decisión humana) |
