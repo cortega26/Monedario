@@ -413,6 +413,8 @@ y no se bajan umbrales retroactivamente.
 | 2026-07-17 | WS-2 linking (cola sub-enlazada, tanda 2) | DONE | `deposito-a-plazo` **2→3** (CTA a la calculadora en `InversionReadinessChecklist.astro`, resultado `horizonte`) — prioridad por demanda W28 (+8); `actualizador-inflacion` **0→1** (`relatedCalculators` en `ipc.md`, fit IPC perfecto). Build: 1.563 enlaces, **0 rotos**; prettier OK | Quedan `gratificacion-legal` (0) e `iva` (2) |
 | 2026-07-17 | WS-2 linking (cola, tanda 3) | DONE | `gratificacion-legal` **0→1** (`relatedCalculators` en glosario `gratificacion.md`, fit directo). Build 0 rotos; prettier OK. Suite completo **1.050 tests PASS** | **Wins seguros de linking agotados:** las 4 huérfanas/prioritarias (reajuste-arriendo, deposito-a-plazo, actualizador-inflacion, gratificacion-legal) quedan enlazadas. Subir la cola (1–2 → 3) ya requiere superficies editoriales YMYL (pipeline), no linking estructural |
 | 2026-07-18 | WS-4 incidente CWV `impuesto-segunda-categoria` | DONE (no-op) | Lighthouse móvil throttled (mediana 3): **Perf 99 · LCP 1.807 ms · CLS 0.000**. No reproduce el p75 de campo (4,779 s / 0,119) → cola de 30 muestras, no defecto | **No se interviene.** Cierra la pregunta abierta del informe. P3 (inline→Panel) queda como cosmético de baja urgencia, sin justificación de performance |
+| 2026-07-18 | WS-1 conversor UTM | DONE (no-op) | SERP verificado: mercado de microsites de dominio-exacto, monedario 6º; único gap on-page ("calculadora utm") de bajo volumen y disputado. Baseline GSC W28 de vuelta en el repo | **No se shippea tweak de baja confianza** (§11.6). Techo on-page alcanzado; subir requiere autoridad. SEO-W28-01 = diseñado, prioridad baja |
+| 2026-07-18 | WS-3 seguro-cesantia | BLOCKED | Gate `check:obs01-freeze` bloquea hoy (`exit=1`); cambio exacto documentado en §11.6 (revertir title a "Calculadora…" + coherencia) | **Ejecutar al cierre de OBS-01 (~2026-07-26).** Sin override; sin tercer cambio de journey a mitad de ventana |
 
 Estados permitidos: `TODO`, `IN PROGRESS`, `DONE`, `BLOCKED`, `INCONCLUSIVE`,
 `REJECTED`.
@@ -642,3 +644,43 @@ datos GSC frescos (el bundle de deploy se limpió; regenerar con
 - **Baseline:** 28 días por clúster (regenerar). **Registro:** fila SEO-W28-01 (§9).
 - **Gates si toca copy con vigencia:** `check:frontmatter`, `check:editorial`,
   `check:editorial-timeliness`, `check:economic-source-consistency`.
+
+### 11.6 Cierre de WS-1 y WS-3 (2026-07-18)
+
+**WS-1 (conversor UTM) — NO se ejecuta; techo on-page alcanzado.** Verificación de
+SERP para "utm a peso chileno": el top-10 es un **enjambre de microsites de
+dominio-exacto** (`valor-utm.cl`, `utmchile.cl`, `utmhoy.cl`, `utmvalor.cl`,
+`valordelautm.cl`, `valorutmhoy.com`, `miscalculadoras.cl/calculadora-de-utm`…),
+con **monedario 6º** ya compitiendo dignamente. No estamos capados por SII/Google
+(imbatible) sino por un mercado EMD saturado. El único gap on-page real
+("calculadora utm": 683 impr, pos 7,1; el término no aparece en title/H1) es de
+bajo volumen y también disputado por EMDs. Un cambio de una variable no mueve un
+head term de pos 7 a top-3 ahí. **Decisión: no shippear un tweak de baja
+confianza** (evita la trampa del cambio-token; ídem P3/WS-4). SEO-W28-01 queda
+**diseñado, prioridad baja**; subir el conversor requiere autoridad (enlaces/PR),
+otro workstream. *Nota de medibilidad:* `output/operations/data-signals/gsc/2026-W28-*.json`
+volvió al repo (PRs #331), así que el baseline existe; el freno es la evidencia
+del SERP, no la falta de datos.
+
+**WS-3 (seguro-cesantia) — congelada; cambio LISTO para ejecutar al cierre de
+OBS-01.** El gate `check:obs01-freeze` bloquea el archivo hoy (verificado,
+`exit=1`); no se hace override (un tercer cambio de journey a mitad de ventana
+corrompe el baseline). Decisión resuelta y data-backed para aplicar **cuando
+OBS-01 cierre (~2026-07-26)**:
+
+- **Datos (query-page W28):** convierte la familia "calcular/cálculo"
+  (`calcular seguro de cesantia` 18 clics @ pos 2,97; `calculo…` 8 @ 3,1); la
+  familia "simulador" tiene alto volumen pero **~0 clics @ pos 7-9**.
+- **Cambio exacto en `src/pages/calculadoras/seguro-cesantia.astro`** (revertir el
+  título del plan 040 + resolver la incoherencia title↔H1):
+  - `title=` y meta `name=`:
+    `"Simulador de Seguro de Cesantía: calcula tu cobertura (AFC y Fondo Solidario)"`
+    → `"Calculadora de Seguro de Cesantía: calcula tu cobertura (AFC y Fondo Solidario)"`
+    (recupera el término que convierte; **conserva** la description rica del plan 040).
+  - H1, `name` del schema `WebApplication` y `calculator_name` de analytics ya
+    dicen "Calculadora" → tras el cambio **la página queda coherente** (hoy el
+    title dice "Simulador" y el resto "Calculadora").
+- **Gate:** al ejecutarlo, `check:obs01-freeze` debe estar en verde (OBS-01 DONE)
+  o requerir el label `obs01-freeze-override` con sign-off explícito del owner.
+- **Medición:** comparar clics/CTR/posición de la familia "calcular" vs "simulador"
+  a 28 días desde el cambio.
