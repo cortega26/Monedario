@@ -596,3 +596,34 @@ Inspection **solo para `reajuste-arriendo`** es legítima para acelerar el recra
   contra el último `*-url-inspection.json` y elevar `action_needed` cuando una
   calculadora activa esté *Crawled - currently not indexed*. Se engancha en el
   pipeline de data-signals/scorecard que ya baja URL Inspection.
+
+### 11.5 WS-1 — Diseño del experimento SEO-W28-01 (listo para aprobación)
+
+Operacionaliza §11.1. **No ejecutado**: requiere sign-off de enfoque del owner y
+datos GSC frescos (el bundle de deploy se limpió; regenerar con
+`pnpm run data-signals:gsc:local`).
+
+- **Objetivo:** capturar el pocket **CONVERT/TOOL** (24.627 impr, ~42,5% del
+  conversor, pos ~6, CTR 0,17%) **sin** tocar la clase VALUE zero-click (~50%,
+  techo estructural del snippet).
+- **Superficie:** `/calculadoras/conversor-utm/` — **no** está en el cohorte
+  congelado OBS-01, por lo que es editable sin violar el freeze.
+- **Hipótesis:** somos la herramienta para "N UTM a peso(s) chilenos" y
+  "calculadora utm" pero rankeamos pos ~6–7; mejorar el targeting de conversión
+  sube la posición del clúster y captura clics que el snippet no resuelve para
+  montos arbitrarios.
+- **Cambio — UNA variable, UNA URL.** Elegir uno:
+  - **Opción B (recomendada, menor riesgo):** reforzar enlaces internos entrantes
+    con anchor de **conversión** (no de "valor") desde `uf-hoy`, la guía de
+    indicadores, el glosario UTM y el artículo UTM. No toca el title que ya
+    rankea para la clase VALUE.
+  - **Opción A (mayor riesgo):** title/meta que prometa la conversión de montos
+    ("UTM a pesos: convierte cualquier monto…") conservando el valor vigente.
+- **Métrica primaria (28 días, GSC):** clics + posición media del **clúster
+  CONVERT/TOOL** (`* utm a peso(s) chilenos`, `calculadora utm`, `utm a clp`).
+  **No** CTR agregado (contaminado por zero-click).
+- **Guardrail / rollback:** revertir si los clics totales del conversor caen >20%
+  con impresiones estables, o si la posición de la clase VALUE empeora >2 puestos.
+- **Baseline:** 28 días por clúster (regenerar). **Registro:** fila SEO-W28-01 (§9).
+- **Gates si toca copy con vigencia:** `check:frontmatter`, `check:editorial`,
+  `check:editorial-timeliness`, `check:economic-source-consistency`.
