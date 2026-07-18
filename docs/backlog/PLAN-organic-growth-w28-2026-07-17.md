@@ -252,6 +252,20 @@ sintéticos del maestro preservados.
 **STOP:** si la corrección arrastra cambio de copy YMYL (entonces pasa por
 pipeline) o toca una tool congelada.
 
+**RESUELTO (2026-07-18) — no reproduce en lab; sin defecto que corregir.**
+Medición Lighthouse **móvil con throttling** (Slow-4G + 4× CPU, mediana de 3 runs;
+`perf:ci` usa preset *desktop* y no cubre esta URL, así que se corrió un `lhci
+collect` móvil ad hoc) sobre `/calculadoras/impuesto-segunda-categoria/`:
+**Performance 99 · LCP 1.807 ms · CLS 0.000** (elemento LCP = `<p>` de intro,
+texto; **cero** elementos con layout-shift). El incidente de campo (p75 4,779 s /
+CLS 0,119) **no reproduce**: es cola de dispositivos reales sobre 30 muestras, no
+un defecto de layout ni de render. Refuerzo: los componentes compartidos
+(TrustBadge, DataFreshness, NextBestStep) están en todas las calculadoras; si
+fueran la causa, el CLS aparecería en todas, no solo en esta. **No se interviene.**
+Responde la pregunta abierta del informe W28 (¿reproduce el LCP en lab/trace?). La
+estandarización P3 (inline→Field/Panel) queda como cosmético de baja urgencia sin
+justificación de performance.
+
 ---
 
 ### WS-5 — Baseline de citación GEO (medir antes de construir)
@@ -398,6 +412,7 @@ y no se bajan umbrales retroactivamente.
 | 2026-07-17 | AUT-1 `audit:calculator-interlinks` | DONE | `scripts/audit-calculator-interlinks.mjs` + 5 tests (todos PASS); prettier/eslint OK | Descubre huérfanas: `actualizador-inflacion`, `gratificacion-legal` (0 editoriales), `deposito-a-plazo` (2, con demanda W28), `iva` (2) → cola WS-2 |
 | 2026-07-17 | WS-2 linking (cola sub-enlazada, tanda 2) | DONE | `deposito-a-plazo` **2→3** (CTA a la calculadora en `InversionReadinessChecklist.astro`, resultado `horizonte`) — prioridad por demanda W28 (+8); `actualizador-inflacion` **0→1** (`relatedCalculators` en `ipc.md`, fit IPC perfecto). Build: 1.563 enlaces, **0 rotos**; prettier OK | Quedan `gratificacion-legal` (0) e `iva` (2) |
 | 2026-07-17 | WS-2 linking (cola, tanda 3) | DONE | `gratificacion-legal` **0→1** (`relatedCalculators` en glosario `gratificacion.md`, fit directo). Build 0 rotos; prettier OK. Suite completo **1.050 tests PASS** | **Wins seguros de linking agotados:** las 4 huérfanas/prioritarias (reajuste-arriendo, deposito-a-plazo, actualizador-inflacion, gratificacion-legal) quedan enlazadas. Subir la cola (1–2 → 3) ya requiere superficies editoriales YMYL (pipeline), no linking estructural |
+| 2026-07-18 | WS-4 incidente CWV `impuesto-segunda-categoria` | DONE (no-op) | Lighthouse móvil throttled (mediana 3): **Perf 99 · LCP 1.807 ms · CLS 0.000**. No reproduce el p75 de campo (4,779 s / 0,119) → cola de 30 muestras, no defecto | **No se interviene.** Cierra la pregunta abierta del informe. P3 (inline→Panel) queda como cosmético de baja urgencia, sin justificación de performance |
 
 Estados permitidos: `TODO`, `IN PROGRESS`, `DONE`, `BLOCKED`, `INCONCLUSIVE`,
 `REJECTED`.
