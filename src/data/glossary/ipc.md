@@ -10,6 +10,8 @@ relatedCalculators:
     label: Convierte UF a pesos (valor indexado al IPC)
   - href: /calculadoras/reajuste-arriendo/
     label: Reajusta tu arriendo según la variación del IPC o la UF
+  - href: /calculadoras/actualizador-inflacion/
+    label: Actualiza un monto en pesos por inflación (índice IPC del INE)
 ---
 
 El **Índice de Precios al Consumidor (IPC)** es el indicador económico que mide oficialmente la **inflación** (o deflación) en Chile. Es publicado mensualmente por el Instituto Nacional de Estadísticas (INE).

@@ -396,6 +396,7 @@ y no se bajan umbrales retroactivamente.
 | 2026-07-17 | WS-1/WS-2/WS-3 análisis | DONE | Anexo §11 (intención UTM, triage 27 URLs, diagnóstico rename cesantía) | Lectura pura, sin cambios en producción |
 | 2026-07-17 | WS-2 internal linking `reajuste-arriendo` | DONE | 3 enlaces entrantes nuevos desde `uf-hoy.astro`, guía `indicadores-economicos.astro` e `ipc.md` (**7→10**); build: 1.538 enlaces, **0 internos rotos**; prettier OK | Sin cambio de URL ni copy YMYL. Monitorear recrawl→indexación en W29–W31; resto del triage (20 posts) espera `audit:cannibalization` |
 | 2026-07-17 | AUT-1 `audit:calculator-interlinks` | DONE | `scripts/audit-calculator-interlinks.mjs` + 5 tests (todos PASS); prettier/eslint OK | Descubre huérfanas: `actualizador-inflacion`, `gratificacion-legal` (0 editoriales), `deposito-a-plazo` (2, con demanda W28), `iva` (2) → cola WS-2 |
+| 2026-07-17 | WS-2 linking (cola sub-enlazada, tanda 2) | DONE | `deposito-a-plazo` **2→3** (CTA a la calculadora en `InversionReadinessChecklist.astro`, resultado `horizonte`) — prioridad por demanda W28 (+8); `actualizador-inflacion` **0→1** (`relatedCalculators` en `ipc.md`, fit IPC perfecto). Build: 1.563 enlaces, **0 rotos**; prettier OK | Quedan `gratificacion-legal` (0 → vía `sueldo-liquido`/gratificación) e `iva` (2); ambos con vías más editoriales (posible pipeline YMYL) |
 
 Estados permitidos: `TODO`, `IN PROGRESS`, `DONE`, `BLOCKED`, `INCONCLUSIVE`,
 `REJECTED`.
