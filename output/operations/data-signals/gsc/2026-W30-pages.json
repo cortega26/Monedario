@@ -1,0 +1,866 @@
+{
+  "fetchedAt": "2026-07-27T15:41:55Z",
+  "schemaVersion": 1,
+  "source": "gsc",
+  "week": "2026-W30",
+  "window": {
+    "from": "2026-07-20",
+    "to": "2026-07-26"
+  },
+  "data": [
+    {
+      "clicks": 643,
+      "ctr": 0.0053,
+      "impressions": 121694,
+      "page": "https://monedario.cl/calculadoras/conversor-utm/",
+      "position": 6.63
+    },
+    {
+      "clicks": 42,
+      "ctr": 0.0303,
+      "impressions": 1386,
+      "page": "https://monedario.cl/calculadoras/seguro-cesantia/",
+      "position": 6.61
+    },
+    {
+      "clicks": 30,
+      "ctr": 0.1172,
+      "impressions": 256,
+      "page": "https://monedario.cl/calculadoras/prepago-credito/",
+      "position": 5.66
+    },
+    {
+      "clicks": 16,
+      "ctr": 0.0343,
+      "impressions": 466,
+      "page": "https://monedario.cl/calculadoras/credito-consumo/",
+      "position": 6.93
+    },
+    {
+      "clicks": 16,
+      "ctr": 0.0894,
+      "impressions": 179,
+      "page": "https://monedario.cl/calculadoras/operacion-renta/",
+      "position": 5.7
+    },
+    {
+      "clicks": 11,
+      "ctr": 0.0169,
+      "impressions": 652,
+      "page": "https://monedario.cl/calculadoras/impuesto-segunda-categoria/",
+      "position": 8.83
+    },
+    {
+      "clicks": 8,
+      "ctr": 0.0116,
+      "impressions": 687,
+      "page": "https://monedario.cl/calculadoras/actualizador-inflacion/",
+      "position": 7.97
+    },
+    {
+      "clicks": 7,
+      "ctr": 0.0075,
+      "impressions": 939,
+      "page": "https://monedario.cl/calculadoras/deposito-a-plazo/",
+      "position": 7.11
+    },
+    {
+      "clicks": 6,
+      "ctr": 0.2,
+      "impressions": 30,
+      "page": "https://monedario.cl/calculadoras/simulador-renegociacion/",
+      "position": 5.53
+    },
+    {
+      "clicks": 4,
+      "ctr": 0.0039,
+      "impressions": 1014,
+      "page": "https://monedario.cl/posts/utm-chile-que-es-como-funciona/",
+      "position": 10.44
+    },
+    {
+      "clicks": 3,
+      "ctr": 0.0086,
+      "impressions": 347,
+      "page": "https://monedario.cl/calculadoras/simulador-jubilacion/",
+      "position": 11.5
+    },
+    {
+      "clicks": 3,
+      "ctr": 0.0222,
+      "impressions": 135,
+      "page": "https://monedario.cl/posts/fraude-tarjeta-que-hacer/",
+      "position": 9.4
+    },
+    {
+      "clicks": 3,
+      "ctr": 0.0154,
+      "impressions": 195,
+      "page": "https://monedario.cl/posts/impuesto-global-complementario-chile/",
+      "position": 8.15
+    },
+    {
+      "clicks": 2,
+      "ctr": 0.0046,
+      "impressions": 433,
+      "page": "https://monedario.cl/calculadoras/comisiones-afp/",
+      "position": 10.32
+    },
+    {
+      "clicks": 2,
+      "ctr": 0.0215,
+      "impressions": 93,
+      "page": "https://monedario.cl/calculadoras/reajuste-arriendo/",
+      "position": 8.49
+    },
+    {
+      "clicks": 2,
+      "ctr": 0.0044,
+      "impressions": 451,
+      "page": "https://monedario.cl/calculadoras/sueldo-liquido/",
+      "position": 11.79
+    },
+    {
+      "clicks": 2,
+      "ctr": 0.0556,
+      "impressions": 36,
+      "page": "https://monedario.cl/posts/contribuciones-bienes-raices-chile/",
+      "position": 12.31
+    },
+    {
+      "clicks": 1,
+      "ctr": 0.0055,
+      "impressions": 181,
+      "page": "https://monedario.cl/calculadoras/apv/",
+      "position": 10.06
+    },
+    {
+      "clicks": 1,
+      "ctr": 0.0001,
+      "impressions": 7178,
+      "page": "https://monedario.cl/calculadoras/conversor-uf/",
+      "position": 9.46
+    },
+    {
+      "clicks": 1,
+      "ctr": 0.0159,
+      "impressions": 63,
+      "page": "https://monedario.cl/calculadoras/dividendo-hipotecario/",
+      "position": 11.54
+    },
+    {
+      "clicks": 1,
+      "ctr": 0.0093,
+      "impressions": 107,
+      "page": "https://monedario.cl/calculadoras/gratificacion-legal/",
+      "position": 13.18
+    },
+    {
+      "clicks": 1,
+      "ctr": 0.0313,
+      "impressions": 32,
+      "page": "https://monedario.cl/glosario/uta/",
+      "position": 7.44
+    },
+    {
+      "clicks": 1,
+      "ctr": 0.0345,
+      "impressions": 29,
+      "page": "https://monedario.cl/posts/cae-costo-real-credito-chile/",
+      "position": 8.38
+    },
+    {
+      "clicks": 1,
+      "ctr": 0.0035,
+      "impressions": 285,
+      "page": "https://monedario.cl/posts/como-cambiarse-de-afp/",
+      "position": 21.28
+    },
+    {
+      "clicks": 1,
+      "ctr": 0.0122,
+      "impressions": 82,
+      "page": "https://monedario.cl/posts/deposito-a-plazo-uf-vs-pesos/",
+      "position": 8.72
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 8,
+      "page": "https://monedario.cl/",
+      "position": 4.63
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "page": "https://monedario.cl/accessibilidad/",
+      "position": 4.33
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "page": "https://monedario.cl/acerca-de/",
+      "position": 10.5
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 6,
+      "page": "https://monedario.cl/autor/",
+      "position": 6.83
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 28,
+      "page": "https://monedario.cl/calculadoras/",
+      "position": 14.18
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 8,
+      "page": "https://monedario.cl/calculadoras/boleta-honorarios-liquido/",
+      "position": 9.63
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 16,
+      "page": "https://monedario.cl/calculadoras/finiquito-indemnizacion/",
+      "position": 59.25
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 21,
+      "page": "https://monedario.cl/calculadoras/interes-compuesto/",
+      "position": 7.71
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 81,
+      "page": "https://monedario.cl/calculadoras/iva/",
+      "position": 8.7
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/calculadoras/sueldo-liquido",
+      "position": 1
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 13,
+      "page": "https://monedario.cl/calculadoras/tarjeta-credito/",
+      "position": 8.85
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 12,
+      "page": "https://monedario.cl/calendario/",
+      "position": 19
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 41,
+      "page": "https://monedario.cl/como-usamos-los-datos/",
+      "position": 10.8
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/cookies/",
+      "position": 11
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 25,
+      "page": "https://monedario.cl/glosario/",
+      "position": 6.84
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/glosario/afc/",
+      "position": 10
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "page": "https://monedario.cl/glosario/afp/",
+      "position": 9.67
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/glosario/apv/",
+      "position": 11
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 5,
+      "page": "https://monedario.cl/glosario/boleta-honorarios/",
+      "position": 6.4
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "page": "https://monedario.cl/glosario/cae/",
+      "position": 10
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 18,
+      "page": "https://monedario.cl/glosario/cic/",
+      "position": 11.17
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/glosario/clave-unica/",
+      "position": 11
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/glosario/copago/",
+      "position": 10
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 22,
+      "page": "https://monedario.cl/glosario/corredor-bolsa/",
+      "position": 31
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/glosario/credito-hipotecario/",
+      "position": 11
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 87,
+      "page": "https://monedario.cl/glosario/ctc/",
+      "position": 8.99
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 16,
+      "page": "https://monedario.cl/glosario/cuenta-rut/",
+      "position": 18.88
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "page": "https://monedario.cl/glosario/custodia/",
+      "position": 9.75
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "page": "https://monedario.cl/glosario/dividendo-hipotecario/",
+      "position": 8.33
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 5,
+      "page": "https://monedario.cl/glosario/gratificacion/",
+      "position": 6.2
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 18,
+      "page": "https://monedario.cl/glosario/impuesto-unico/",
+      "position": 12.39
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/glosario/indemnizacion/",
+      "position": 9
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/glosario/inflacion/",
+      "position": 27
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "page": "https://monedario.cl/glosario/ipc/",
+      "position": 13.75
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 25,
+      "page": "https://monedario.cl/glosario/iva/",
+      "position": 42.76
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 306,
+      "page": "https://monedario.cl/glosario/renta-imponible/",
+      "position": 11.91
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 23,
+      "page": "https://monedario.cl/glosario/rescate/",
+      "position": 10.39
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 6,
+      "page": "https://monedario.cl/glosario/sbif/",
+      "position": 8.67
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/glosario/sernac/",
+      "position": 5.5
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/glosario/tope-imponible/",
+      "position": 45
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 6,
+      "page": "https://monedario.cl/glosario/utm/",
+      "position": 9.5
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/guias/ahorro-e-inversion/",
+      "position": 49
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 8,
+      "page": "https://monedario.cl/guias/bancos-fintech/",
+      "position": 40.5
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 5,
+      "page": "https://monedario.cl/guias/deuda-credito/",
+      "position": 28.2
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "page": "https://monedario.cl/guias/empleo-ingresos/",
+      "position": 24
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "page": "https://monedario.cl/guias/finanzas-migrantes/",
+      "position": 40.33
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 7,
+      "page": "https://monedario.cl/guias/impuestos-personas/",
+      "position": 25.57
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 33,
+      "page": "https://monedario.cl/guias/impuestos-personas/operacion-renta/",
+      "position": 22.18
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 9,
+      "page": "https://monedario.cl/guias/pensiones-afp/",
+      "position": 26.67
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "page": "https://monedario.cl/guias/presupuesto-control-financiero/",
+      "position": 29
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 11,
+      "page": "https://monedario.cl/guias/seguridad-financiera/",
+      "position": 28.36
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 15,
+      "page": "https://monedario.cl/guias/sueldo-remuneraciones/",
+      "position": 23.73
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 10,
+      "page": "https://monedario.cl/guias/uf-costo-de-vida/",
+      "position": 26
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 15,
+      "page": "https://monedario.cl/guias/uf-costo-de-vida/indicadores-economicos/",
+      "position": 26.13
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 10,
+      "page": "https://monedario.cl/leyes/",
+      "position": 13.1
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/leyes/dfl-1-1998-impuesto-territorial/",
+      "position": 1
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 6,
+      "page": "https://monedario.cl/leyes/ley-18010-credito-dinero/",
+      "position": 6.5
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 10,
+      "page": "https://monedario.cl/leyes/ley-18469-fonasa/",
+      "position": 7.5
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/leyes/ley-19628-proteccion-datos/",
+      "position": 7
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/leyes/ley-19728-seguro-cesantia/",
+      "position": 42
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "page": "https://monedario.cl/leyes/ley-20027-credito-aval-estado/",
+      "position": 10.33
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/leyes/ley-20555-sernac-financiero/",
+      "position": 13
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/leyes/ley-20575-datos-comerciales/",
+      "position": 8.5
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "page": "https://monedario.cl/leyes/ley-21130-modernizacion-bancaria/",
+      "position": 7.25
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "page": "https://monedario.cl/leyes/ley-21133-honorarios-retencion/",
+      "position": 7.67
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/leyes/ley-21680-registro-deuda-consolidada/",
+      "position": 11
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 12,
+      "page": "https://monedario.cl/leyes/ley-21719-proteccion-datos-modernizacion/",
+      "position": 79.5
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "page": "https://monedario.cl/metodologia/",
+      "position": 2.33
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "page": "https://monedario.cl/posts/",
+      "position": 6.33
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 12,
+      "page": "https://monedario.cl/posts/bancos-y-fintech-chile/",
+      "position": 10
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 11,
+      "page": "https://monedario.cl/posts/como-elegir-inversion-segun-plazo-riesgo-objetivos/",
+      "position": 8.09
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 13,
+      "page": "https://monedario.cl/posts/como-invertir-en-etfs-desde-chile/",
+      "position": 10.85
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 42,
+      "page": "https://monedario.cl/posts/como-leer-cartola-afp-chile/",
+      "position": 12.79
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 13,
+      "page": "https://monedario.cl/posts/como-salir-boletin-comercial-chile/",
+      "position": 19.85
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 32,
+      "page": "https://monedario.cl/posts/descuentos-de-sueldo/",
+      "position": 7.78
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 208,
+      "page": "https://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
+      "position": 16.72
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 7,
+      "page": "https://monedario.cl/posts/finanzas-para-migrantes-chile/",
+      "position": 8.71
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/posts/fonasa-vs-isapre-comparativa/",
+      "position": 11
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 45,
+      "page": "https://monedario.cl/posts/fondos-mutuos-comisiones-rescate-impuestos/",
+      "position": 9.69
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 5,
+      "page": "https://monedario.cl/posts/gratificacion-legal-chile/",
+      "position": 8
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 5,
+      "page": "https://monedario.cl/posts/indemnizacion-anos-de-servicio-chile/",
+      "position": 18.2
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 67,
+      "page": "https://monedario.cl/posts/liquidacion-de-sueldo/",
+      "position": 16.87
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "page": "https://monedario.cl/posts/prepago-credito-cuando-conviene-chile/",
+      "position": 35.25
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 6,
+      "page": "https://monedario.cl/posts/primer-empleo-chile-guia-completa/",
+      "position": 5.67
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 58,
+      "page": "https://monedario.cl/posts/que-es-el-apv/",
+      "position": 40.36
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 60,
+      "page": "https://monedario.cl/posts/que-es-el-ipc-chile-como-se-calcula/",
+      "position": 13.9
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 86,
+      "page": "https://monedario.cl/posts/reajuste-arriendo-uf-ipc-chile/",
+      "position": 11.33
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 27,
+      "page": "https://monedario.cl/posts/renegociacion-superir/",
+      "position": 10.74
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 34,
+      "page": "https://monedario.cl/posts/sueldo-imponible-chile/",
+      "position": 7.74
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "page": "https://monedario.cl/posts/suplantacion-identidad-creditos-no-reconocidos/",
+      "position": 32
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 14,
+      "page": "https://monedario.cl/posts/tarjeta-credito-costo-real-chile/",
+      "position": 9
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 3,
+      "page": "https://monedario.cl/privacidad/",
+      "position": 7.67
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/tags/chile/",
+      "position": 20
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 1,
+      "page": "https://monedario.cl/tags/isapre/",
+      "position": 3
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 2,
+      "page": "https://monedario.cl/tags/previsi%C3%B3n/",
+      "position": 19
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 4,
+      "page": "https://monedario.cl/terminos/",
+      "position": 3.75
+    },
+    {
+      "clicks": 0,
+      "ctr": 0,
+      "impressions": 28,
+      "page": "https://monedario.cl/uf-hoy/",
+      "position": 6.29
+    }
+  ]
+}
