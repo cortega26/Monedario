@@ -311,6 +311,10 @@ const glossary = defineCollection({
   schema: z.object({
     term: z.string().trim().min(1),
     shortDefinition: z.string().trim().min(10).max(160),
+    // Optional SEO title override. Glossary pages default to "<term> | Glosario
+    // Financiero", but definitional queries ("qué es <term>") rank better when
+    // the title matches that intent. Set per-term only where the data warrants.
+    seoTitle: z.string().trim().min(1).max(70).optional(),
     relatedTerms: z.array(z.string()).default([]),
     relatedCalculators: z
       .array(z.object({ href: z.string(), label: z.string() }))
