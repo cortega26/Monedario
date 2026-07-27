@@ -145,10 +145,6 @@ jobs:
     name: Vulnerability scan (Trivy)
     runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 15
-    # Start as informational so the team can triage the initial baseline before
-    # deciding which severities should become blocking.
-    continue-on-error: true
-
     steps:
       - name: "☁️ Checkout repository"
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
@@ -157,6 +153,9 @@ jobs:
         run: mkdir -p output/security
 
       - name: "🛡️ Run Trivy"
+        # Keep the baseline visible in the job summary without leaving the
+        # workflow check red while findings are being triaged.
+        continue-on-error: true
         uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
         with:
           version: v0.70.0
