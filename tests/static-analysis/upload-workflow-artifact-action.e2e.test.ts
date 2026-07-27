@@ -48,8 +48,8 @@ describe("upload-workflow-artifact action", () => {
       workflowContent.match(/uses: \.\/\.github\/actions\/upload-workflow-artifact/g)
         ?.length ?? 0;
 
-    expect(helperUsesCount).toBe(8);
-    expect(workflowContent).toContain("artifact-name: site-dist");
+    expect(helperUsesCount).toBe(7);
+    expect(workflowContent).not.toContain("artifact-name: site-dist");
     expect(workflowContent).toContain("artifact-name: a11y-report");
     expect(workflowContent).toContain("artifact-name: hero-images-artifacts");
     expect(workflowContent).not.toContain("uses: actions/upload-artifact@");

@@ -1,0 +1,6043 @@
+{
+  "generatedAt": "2026-07-16T23:12:17.749Z",
+  "site": "monedario.cl",
+  "weekLabel": "2026-W28",
+  "source": "json",
+  "comparison": {
+    "status": "available",
+    "currentWeek": "2026-W28",
+    "previousWeek": "2026-W27"
+  },
+  "inputStatus": {
+    "analytics": {
+      "status": "available",
+      "path": "/tmp/monedario-issue315-20260716/output/operations/data-signals/analytics/2026-W28.json"
+    },
+    "cloudflare": {
+      "status": "available",
+      "rum": {
+        "status": "available",
+        "path": "/tmp/monedario-issue315-20260716/output/operations/data-signals/cloudflare/2026-W28-rum.json"
+      },
+      "traffic": {
+        "status": "available",
+        "path": "/tmp/monedario-issue315-20260716/output/operations/data-signals/cloudflare/2026-W28-traffic.json"
+      }
+    },
+    "urlInspection": {
+      "status": "available",
+      "path": "/tmp/monedario-issue315-20260716/output/operations/data-signals/gsc/2026-W28-url-inspection.json"
+    }
+  },
+  "dateRange": {
+    "currentStart": "2026-07-06",
+    "currentEnd": "2026-07-12",
+    "previousStart": "2026-06-29",
+    "previousEnd": "2026-07-05"
+  },
+  "totals": {
+    "clicks": 498,
+    "clicksDelta": 1,
+    "impressions": 94443,
+    "impressionsDelta": 11703,
+    "trackedWinnerCount": 5,
+    "trackedLoserCount": 4,
+    "trackedActionCount": 0
+  },
+  "analyticsTotals": {
+    "cta_click": {
+      "current": 0,
+      "previous": 0
+    },
+    "calculator_start": {
+      "current": 0,
+      "previous": 0
+    },
+    "calculator_complete": {
+      "current": 0,
+      "previous": 0
+    },
+    "next_best_step_shown": {
+      "current": 0,
+      "previous": 0
+    },
+    "next_best_step_click": {
+      "current": 0,
+      "previous": 0
+    }
+  },
+  "trackedPages": [
+    {
+      "path": "/guias/sueldo-remuneraciones/",
+      "label": "Hub sueldo y remuneraciones",
+      "cluster": "sueldo-remuneraciones",
+      "role": "hub",
+      "priority": "p1",
+      "refreshSla": "weekly",
+      "queryThemes": [
+        "sueldo liquido",
+        "remuneraciones",
+        "liquidacion de sueldo"
+      ],
+      "nextStepPaths": [
+        "/posts/como-calcular-sueldo-liquido/",
+        "/calculadoras/sueldo-liquido/"
+      ],
+      "pageRow": {
+        "label": "https://monedario.cl/guias/sueldo-remuneraciones/",
+        "path": "/guias/sueldo-remuneraciones/",
+        "clicks": 0,
+        "clicksDelta": 0,
+        "impressions": 6,
+        "impressionsDelta": -8,
+        "ctr": 0,
+        "ctrDelta": 0,
+        "position": 51.5,
+        "positionDelta": -25.709999999999994,
+        "comparisonStatus": "available",
+        "identityStatus": "existing"
+      },
+      "queryPulse": {
+        "queryCount": 95,
+        "clicks": 0,
+        "clicksDelta": 0,
+        "impressions": 52,
+        "impressionsDelta": -76,
+        "ctr": 0,
+        "position": 72.21096153846155
+      },
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "steady",
+      "reasons": [],
+      "actions": []
+    },
+    {
+      "path": "/posts/como-calcular-sueldo-liquido/",
+      "label": "Owner sueldo liquido explicativo",
+      "cluster": "sueldo-remuneraciones",
+      "role": "owner",
+      "priority": "p1",
+      "refreshSla": "quarterly",
+      "queryThemes": [
+        "descuentos sueldo",
+        "sueldo liquido",
+        "liquidacion de sueldo"
+      ],
+      "nextStepPaths": [
+        "/calculadoras/sueldo-liquido/",
+        "/posts/liquidacion-de-sueldo/"
+      ],
+      "pageRow": null,
+      "queryPulse": {
+        "queryCount": 86,
+        "clicks": 0,
+        "clicksDelta": 0,
+        "impressions": 46,
+        "impressionsDelta": -75,
+        "ctr": 0,
+        "position": 72.32565217391306
+      },
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "watch",
+      "reasons": [
+        "No apareció en el export de páginas de GSC del rango."
+      ],
+      "actions": []
+    },
+    {
+      "path": "/posts/liquidacion-de-sueldo/",
+      "label": "Owner liquidacion de sueldo",
+      "cluster": "sueldo-remuneraciones",
+      "role": "owner",
+      "priority": "p1",
+      "refreshSla": "quarterly",
+      "queryThemes": [
+        "liquidacion de sueldo",
+        "leer liquidacion",
+        "descuentos sueldo"
+      ],
+      "nextStepPaths": [
+        "/posts/como-calcular-sueldo-liquido/",
+        "/calculadoras/sueldo-liquido/"
+      ],
+      "pageRow": {
+        "label": "https://monedario.cl/posts/liquidacion-de-sueldo/",
+        "path": "/posts/liquidacion-de-sueldo/",
+        "clicks": 0,
+        "clicksDelta": -4,
+        "impressions": 62,
+        "impressionsDelta": -14,
+        "ctr": 0,
+        "ctrDelta": -5.26,
+        "position": 26.73,
+        "positionDelta": -3.719999999999999,
+        "comparisonStatus": "available",
+        "identityStatus": "existing"
+      },
+      "queryPulse": {
+        "queryCount": 27,
+        "clicks": 0,
+        "clicksDelta": 0,
+        "impressions": 16,
+        "impressionsDelta": -15,
+        "ctr": 0,
+        "position": 55.436875
+      },
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "loser",
+      "reasons": [
+        "Clics -4 y CTR -5.3 pp."
+      ],
+      "actions": []
+    },
+    {
+      "path": "/posts/finiquito-e-indemnizaciones-en-chile/",
+      "label": "Owner finiquito e indemnizaciones",
+      "cluster": "empleo-ingresos",
+      "role": "owner",
+      "priority": "p1",
+      "refreshSla": "quarterly",
+      "queryThemes": [
+        "finiquito",
+        "indemnizacion anos de servicio"
+      ],
+      "nextStepPaths": [
+        "/calculadoras/finiquito-indemnizacion/",
+        "/posts/indemnizacion-anos-de-servicio-chile/"
+      ],
+      "pageRow": null,
+      "queryPulse": {
+        "queryCount": 9,
+        "clicks": 0,
+        "clicksDelta": 0,
+        "impressions": 6,
+        "impressionsDelta": -11,
+        "ctr": 0,
+        "position": 89.33166666666666
+      },
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "watch",
+      "reasons": [
+        "No apareció en el export de páginas de GSC del rango."
+      ],
+      "actions": []
+    },
+    {
+      "path": "/posts/seguro-de-cesantia/",
+      "label": "Owner seguro de cesantia",
+      "cluster": "empleo-ingresos",
+      "role": "owner",
+      "priority": "p1",
+      "refreshSla": "72h",
+      "queryThemes": [
+        "seguro de cesantia",
+        "afc",
+        "como cobrar seguro de cesantia"
+      ],
+      "nextStepPaths": [
+        "/calculadoras/seguro-cesantia/",
+        "/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/"
+      ],
+      "pageRow": {
+        "label": "https://monedario.cl/posts/seguro-de-cesantia/",
+        "path": "/posts/seguro-de-cesantia/",
+        "clicks": 0,
+        "clicksDelta": 0,
+        "impressions": 11,
+        "impressionsDelta": -4,
+        "ctr": 0,
+        "ctrDelta": 0,
+        "position": 25.09,
+        "positionDelta": 8.690000000000001,
+        "comparisonStatus": "available",
+        "identityStatus": "existing"
+      },
+      "queryPulse": {
+        "queryCount": 60,
+        "clicks": 42,
+        "clicksDelta": -12,
+        "impressions": 376,
+        "impressionsDelta": -113,
+        "ctr": 11.171037234042554,
+        "position": 8.17744680851064
+      },
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "watch",
+      "reasons": [
+        "El query set ya está cerca de primera página completa y merece seguimiento."
+      ],
+      "actions": []
+    },
+    {
+      "path": "/posts/boleta-honorarios-2026-retencion-cobertura/",
+      "label": "Owner boleta honorarios 2026",
+      "cluster": "impuestos-personas",
+      "role": "owner",
+      "priority": "p1",
+      "refreshSla": "72h",
+      "queryThemes": [
+        "boleta honorarios",
+        "retencion honorarios 2026",
+        "honorarios 2026"
+      ],
+      "nextStepPaths": [
+        "/calculadoras/boleta-honorarios-liquido/",
+        "/posts/operacion-renta-f22-checklist/"
+      ],
+      "pageRow": {
+        "label": "https://monedario.cl/posts/boleta-honorarios-2026-retencion-cobertura/",
+        "path": "/posts/boleta-honorarios-2026-retencion-cobertura/",
+        "clicks": 0,
+        "clicksDelta": 0,
+        "impressions": 1,
+        "impressionsDelta": 0,
+        "ctr": 0,
+        "ctrDelta": 0,
+        "position": 11,
+        "positionDelta": 2,
+        "comparisonStatus": "available",
+        "identityStatus": "existing"
+      },
+      "queryPulse": {
+        "queryCount": 9,
+        "clicks": 0,
+        "clicksDelta": 0,
+        "impressions": 0,
+        "impressionsDelta": -20,
+        "ctr": 0,
+        "position": 0
+      },
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "steady",
+      "reasons": [],
+      "actions": []
+    },
+    {
+      "path": "/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/",
+      "label": "Owner reforma previsional",
+      "cluster": "pensiones-afp",
+      "role": "owner",
+      "priority": "p1",
+      "refreshSla": "72h",
+      "queryThemes": [
+        "reforma previsional",
+        "ley 21735",
+        "fondos generacionales"
+      ],
+      "nextStepPaths": [
+        "/posts/que-es-el-apv/",
+        "/posts/fondos-afp-a-b-c-d-e/"
+      ],
+      "pageRow": {
+        "label": "https://monedario.cl/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/",
+        "path": "/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/",
+        "clicks": 0,
+        "clicksDelta": 0,
+        "impressions": 4,
+        "impressionsDelta": 4,
+        "ctr": 0,
+        "ctrDelta": 0,
+        "position": 9.5,
+        "positionDelta": null,
+        "comparisonStatus": "available",
+        "identityStatus": "new"
+      },
+      "queryPulse": null,
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "steady",
+      "reasons": [],
+      "actions": []
+    },
+    {
+      "path": "/posts/que-es-el-apv/",
+      "label": "Owner APV",
+      "cluster": "ahorro-e-inversion",
+      "role": "owner",
+      "priority": "p1",
+      "refreshSla": "72h",
+      "queryThemes": [
+        "apv",
+        "beneficio tributario apv",
+        "regimen a regimen b"
+      ],
+      "nextStepPaths": [
+        "/calculadoras/apv/",
+        "/posts/que-es-la-cuenta-2-afp/"
+      ],
+      "pageRow": null,
+      "queryPulse": {
+        "queryCount": 12,
+        "clicks": 0,
+        "clicksDelta": 0,
+        "impressions": 34,
+        "impressionsDelta": 1,
+        "ctr": 0,
+        "position": 23.763529411764708
+      },
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "watch",
+      "reasons": [
+        "No apareció en el export de páginas de GSC del rango."
+      ],
+      "actions": []
+    },
+    {
+      "path": "/posts/fondos-afp-a-b-c-d-e/",
+      "label": "Owner fondos AFP A-E",
+      "cluster": "pensiones-afp",
+      "role": "owner",
+      "priority": "p1",
+      "refreshSla": "72h",
+      "queryThemes": [
+        "fondos afp",
+        "fondo a b c d e",
+        "que fondo afp me conviene"
+      ],
+      "nextStepPaths": [
+        "/posts/como-cambiarse-de-afp/",
+        "/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/"
+      ],
+      "pageRow": null,
+      "queryPulse": {
+        "queryCount": 1,
+        "clicks": 0,
+        "clicksDelta": 0,
+        "impressions": 1,
+        "impressionsDelta": 1,
+        "ctr": 0,
+        "position": 7
+      },
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "watch",
+      "reasons": [
+        "No apareció en el export de páginas de GSC del rango."
+      ],
+      "actions": []
+    },
+    {
+      "path": "/posts/informe-deudas-cmf-vs-dicom/",
+      "label": "Owner informe deudas CMF vs DICOM",
+      "cluster": "deuda-credito",
+      "role": "owner",
+      "priority": "p2",
+      "refreshSla": "weekly",
+      "queryThemes": [
+        "informe deudas cmf",
+        "cmf vs dicom",
+        "informe deudas gratis"
+      ],
+      "nextStepPaths": [
+        "/posts/renegociacion-superir/",
+        "/guias/deuda-credito/"
+      ],
+      "pageRow": null,
+      "queryPulse": null,
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "watch",
+      "reasons": [
+        "No apareció en el export de páginas de GSC del rango."
+      ],
+      "actions": []
+    },
+    {
+      "path": "/posts/renegociacion-superir/",
+      "label": "Owner renegociacion Superir",
+      "cluster": "deuda-credito",
+      "role": "owner",
+      "priority": "p2",
+      "refreshSla": "weekly",
+      "queryThemes": [
+        "renegociacion superir",
+        "quien puede renegociar deudas"
+      ],
+      "nextStepPaths": [
+        "/calculadoras/simulador-renegociacion/",
+        "/posts/informe-deudas-cmf-vs-dicom/"
+      ],
+      "pageRow": {
+        "label": "https://monedario.cl/posts/renegociacion-superir/",
+        "path": "/posts/renegociacion-superir/",
+        "clicks": 2,
+        "clicksDelta": 2,
+        "impressions": 38,
+        "impressionsDelta": 35,
+        "ctr": 5.26,
+        "ctrDelta": 5.26,
+        "position": 9.71,
+        "positionDelta": 2.380000000000001,
+        "comparisonStatus": "available",
+        "identityStatus": "existing"
+      },
+      "queryPulse": null,
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "winner",
+      "reasons": [
+        "Clics +2 con posición -2.4 puntos mejor respecto a la semana previa."
+      ],
+      "actions": [
+        {
+          "type": "internal_linking",
+          "text": "El tráfico sube, pero los CTA no acompañan. Reforzar enlaces hacia /calculadoras/simulador-renegociacion/, /posts/informe-deudas-cmf-vs-dicom/."
+        }
+      ]
+    },
+    {
+      "path": "/posts/que-es-la-uf/",
+      "label": "Owner UF",
+      "cluster": "uf-costo-de-vida",
+      "role": "owner",
+      "priority": "p2",
+      "refreshSla": "weekly",
+      "queryThemes": [
+        "que es la uf",
+        "por que sube la uf",
+        "como afecta la uf"
+      ],
+      "nextStepPaths": [
+        "/calculadoras/conversor-uf/",
+        "/posts/reajuste-arriendo-uf-ipc-chile/"
+      ],
+      "pageRow": null,
+      "queryPulse": null,
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "watch",
+      "reasons": [
+        "No apareció en el export de páginas de GSC del rango."
+      ],
+      "actions": []
+    },
+    {
+      "path": "/posts/reajuste-arriendo-uf-ipc-chile/",
+      "label": "Owner reajuste de arriendo",
+      "cluster": "uf-costo-de-vida",
+      "role": "owner",
+      "priority": "p2",
+      "refreshSla": "weekly",
+      "queryThemes": [
+        "reajuste arriendo",
+        "reajuste arriendo uf",
+        "reajuste arriendo ipc"
+      ],
+      "nextStepPaths": [
+        "/calculadoras/reajuste-arriendo/",
+        "/posts/que-es-la-uf/"
+      ],
+      "pageRow": {
+        "label": "https://monedario.cl/posts/reajuste-arriendo-uf-ipc-chile/",
+        "path": "/posts/reajuste-arriendo-uf-ipc-chile/",
+        "clicks": 0,
+        "clicksDelta": 0,
+        "impressions": 14,
+        "impressionsDelta": 3,
+        "ctr": 0,
+        "ctrDelta": 0,
+        "position": 7.64,
+        "positionDelta": -1.0000000000000009,
+        "comparisonStatus": "available",
+        "identityStatus": "existing"
+      },
+      "queryPulse": null,
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "steady",
+      "reasons": [],
+      "actions": []
+    },
+    {
+      "path": "/posts/indemnizacion-anos-de-servicio-chile/",
+      "label": "Support indemnizacion años de servicio",
+      "cluster": "empleo-ingresos",
+      "role": "support",
+      "priority": "p2",
+      "refreshSla": "weekly",
+      "queryThemes": [
+        "indemnizacion anos de servicio"
+      ],
+      "nextStepPaths": [
+        "/posts/finiquito-e-indemnizaciones-en-chile/",
+        "/calculadoras/finiquito-indemnizacion/"
+      ],
+      "pageRow": {
+        "label": "https://monedario.cl/posts/indemnizacion-anos-de-servicio-chile/",
+        "path": "/posts/indemnizacion-anos-de-servicio-chile/",
+        "clicks": 0,
+        "clicksDelta": -1,
+        "impressions": 0,
+        "impressionsDelta": -41,
+        "ctr": 0,
+        "ctrDelta": -2.44,
+        "position": null,
+        "positionDelta": null,
+        "comparisonStatus": "available",
+        "identityStatus": "removed"
+      },
+      "queryPulse": null,
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "loser",
+      "reasons": [
+        "Clics -1 y CTR -2.4 pp."
+      ],
+      "actions": []
+    },
+    {
+      "path": "/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/",
+      "label": "Support CIC vs Fondo Solidario",
+      "cluster": "empleo-ingresos",
+      "role": "support",
+      "priority": "p2",
+      "refreshSla": "weekly",
+      "queryThemes": [
+        "cuenta individual de cesantia",
+        "fondo solidario cesantia",
+        "cic afc"
+      ],
+      "nextStepPaths": [
+        "/posts/seguro-de-cesantia/",
+        "/calculadoras/seguro-cesantia/"
+      ],
+      "pageRow": null,
+      "queryPulse": {
+        "queryCount": 1,
+        "clicks": 0,
+        "clicksDelta": 0,
+        "impressions": 1,
+        "impressionsDelta": 1,
+        "ctr": 0,
+        "position": 12
+      },
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "watch",
+      "reasons": [
+        "No apareció en el export de páginas de GSC del rango."
+      ],
+      "actions": []
+    },
+    {
+      "path": "/calculadoras/sueldo-liquido/",
+      "label": "Tool sueldo liquido",
+      "cluster": "sueldo-remuneraciones",
+      "role": "tool",
+      "priority": "p1",
+      "refreshSla": "weekly",
+      "queryThemes": [
+        "sueldo liquido",
+        "sueldo bruto a liquido",
+        "calculadora sueldo liquido"
+      ],
+      "nextStepPaths": [
+        "/posts/como-calcular-sueldo-liquido/"
+      ],
+      "pageRow": {
+        "label": "https://monedario.cl/calculadoras/sueldo-liquido/",
+        "path": "/calculadoras/sueldo-liquido/",
+        "clicks": 3,
+        "clicksDelta": 2,
+        "impressions": 493,
+        "impressionsDelta": -380,
+        "ctr": 0.61,
+        "ctrDelta": 0.5,
+        "position": 18.99,
+        "positionDelta": -12.510000000000002,
+        "comparisonStatus": "available",
+        "identityStatus": "existing"
+      },
+      "queryPulse": {
+        "queryCount": 73,
+        "clicks": 0,
+        "clicksDelta": 0,
+        "impressions": 33,
+        "impressionsDelta": -77,
+        "ctr": 0,
+        "position": 81.18151515151514
+      },
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "winner",
+      "reasons": [
+        "Clics +2 con posición +12.5 puntos mejor respecto a la semana previa."
+      ],
+      "actions": []
+    },
+    {
+      "path": "/calculadoras/boleta-honorarios-liquido/",
+      "label": "Tool boleta honorarios liquido",
+      "cluster": "impuestos-personas",
+      "role": "tool",
+      "priority": "p1",
+      "refreshSla": "weekly",
+      "queryThemes": [
+        "simulador honorarios",
+        "honorarios liquido",
+        "retencion honorarios"
+      ],
+      "nextStepPaths": [
+        "/posts/boleta-honorarios-2026-retencion-cobertura/"
+      ],
+      "pageRow": {
+        "label": "https://monedario.cl/calculadoras/boleta-honorarios-liquido/",
+        "path": "/calculadoras/boleta-honorarios-liquido/",
+        "clicks": 0,
+        "clicksDelta": 0,
+        "impressions": 10,
+        "impressionsDelta": -86,
+        "ctr": 0,
+        "ctrDelta": 0,
+        "position": 41.5,
+        "positionDelta": -23.069999999999993,
+        "comparisonStatus": "available",
+        "identityStatus": "existing"
+      },
+      "queryPulse": null,
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "steady",
+      "reasons": [],
+      "actions": []
+    },
+    {
+      "path": "/calculadoras/finiquito-indemnizacion/",
+      "label": "Tool finiquito",
+      "cluster": "empleo-ingresos",
+      "role": "tool",
+      "priority": "p1",
+      "refreshSla": "weekly",
+      "queryThemes": [
+        "calculadora finiquito",
+        "simulador finiquito"
+      ],
+      "nextStepPaths": [
+        "/posts/finiquito-e-indemnizaciones-en-chile/"
+      ],
+      "pageRow": {
+        "label": "https://monedario.cl/calculadoras/finiquito-indemnizacion/",
+        "path": "/calculadoras/finiquito-indemnizacion/",
+        "clicks": 0,
+        "clicksDelta": 0,
+        "impressions": 8,
+        "impressionsDelta": -11,
+        "ctr": 0,
+        "ctrDelta": 0,
+        "position": 78.5,
+        "positionDelta": -5.030000000000001,
+        "comparisonStatus": "available",
+        "identityStatus": "existing"
+      },
+      "queryPulse": {
+        "queryCount": 2,
+        "clicks": 0,
+        "clicksDelta": 0,
+        "impressions": 5,
+        "impressionsDelta": -3,
+        "ctr": 0,
+        "position": 93.398
+      },
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "steady",
+      "reasons": [],
+      "actions": []
+    },
+    {
+      "path": "/calculadoras/seguro-cesantia/",
+      "label": "Tool seguro de cesantia",
+      "cluster": "empleo-ingresos",
+      "role": "tool",
+      "priority": "p1",
+      "refreshSla": "weekly",
+      "queryThemes": [
+        "calculadora seguro de cesantia",
+        "simulador afc",
+        "estimar pago afc"
+      ],
+      "nextStepPaths": [
+        "/posts/seguro-de-cesantia/"
+      ],
+      "pageRow": {
+        "label": "https://monedario.cl/calculadoras/seguro-cesantia/",
+        "path": "/calculadoras/seguro-cesantia/",
+        "clicks": 89,
+        "clicksDelta": -36,
+        "impressions": 1424,
+        "impressionsDelta": -248,
+        "ctr": 6.25,
+        "ctrDelta": -1.2300000000000004,
+        "position": 6.52,
+        "positionDelta": 0.7399999999999993,
+        "comparisonStatus": "available",
+        "identityStatus": "existing"
+      },
+      "queryPulse": {
+        "queryCount": 2,
+        "clicks": 2,
+        "clicksDelta": 1,
+        "impressions": 10,
+        "impressionsDelta": 3,
+        "ctr": 20,
+        "position": 6.6
+      },
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "loser",
+      "reasons": [
+        "Clics -36 y CTR -1.2 pp."
+      ],
+      "actions": [
+        {
+          "type": "refresh",
+          "text": "La demanda del query set sube, pero la landing cae. Revisar intención, snippet y primeras secciones."
+        }
+      ]
+    },
+    {
+      "path": "/calculadoras/apv/",
+      "label": "Tool APV",
+      "cluster": "ahorro-e-inversion",
+      "role": "tool",
+      "priority": "p1",
+      "refreshSla": "weekly",
+      "queryThemes": [
+        "simulador apv",
+        "apv regimen a vs b",
+        "calculadora apv"
+      ],
+      "nextStepPaths": [
+        "/posts/que-es-el-apv/"
+      ],
+      "pageRow": {
+        "label": "https://monedario.cl/calculadoras/apv/",
+        "path": "/calculadoras/apv/",
+        "clicks": 2,
+        "clicksDelta": -1,
+        "impressions": 293,
+        "impressionsDelta": 39,
+        "ctr": 0.6799999999999999,
+        "ctrDelta": -0.5,
+        "position": 9.46,
+        "positionDelta": 0.5100000000000016,
+        "comparisonStatus": "available",
+        "identityStatus": "existing"
+      },
+      "queryPulse": {
+        "queryCount": 4,
+        "clicks": 0,
+        "clicksDelta": 0,
+        "impressions": 18,
+        "impressionsDelta": -1,
+        "ctr": 0,
+        "position": 21.27722222222222
+      },
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "loser",
+      "reasons": [
+        "Clics -1 y CTR -0.5 pp."
+      ],
+      "actions": [
+        {
+          "type": "refresh",
+          "text": "Refresh de title/snippet y apertura: hay impresiones con posición 4-15 y CTR débil."
+        }
+      ]
+    },
+    {
+      "path": "/calculadoras/conversor-uf/",
+      "label": "Tool conversor UF",
+      "cluster": "uf-costo-de-vida",
+      "role": "tool",
+      "priority": "p2",
+      "refreshSla": "weekly",
+      "queryThemes": [
+        "uf a pesos",
+        "conversor uf",
+        "valor uf hoy"
+      ],
+      "nextStepPaths": [
+        "/posts/que-es-la-uf/"
+      ],
+      "pageRow": {
+        "label": "https://monedario.cl/calculadoras/conversor-uf/",
+        "path": "/calculadoras/conversor-uf/",
+        "clicks": 4,
+        "clicksDelta": 1,
+        "impressions": 6028,
+        "impressionsDelta": 1866,
+        "ctr": 0.06999999999999999,
+        "ctrDelta": 0,
+        "position": 10.82,
+        "positionDelta": -0.16999999999999993,
+        "comparisonStatus": "available",
+        "identityStatus": "existing"
+      },
+      "queryPulse": {
+        "queryCount": 381,
+        "clicks": 0,
+        "clicksDelta": 0,
+        "impressions": 536,
+        "impressionsDelta": 207,
+        "ctr": 0,
+        "position": 20.222462686567162
+      },
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "winner",
+      "reasons": [
+        "Clics +1 con posición +0.2 puntos mejor respecto a la semana previa."
+      ],
+      "actions": [
+        {
+          "type": "refresh",
+          "text": "Refresh de title/snippet y apertura: hay impresiones con posición 4-15 y CTR débil."
+        }
+      ]
+    },
+    {
+      "path": "/calculadoras/reajuste-arriendo/",
+      "label": "Tool reajuste arriendo",
+      "cluster": "uf-costo-de-vida",
+      "role": "tool",
+      "priority": "p2",
+      "refreshSla": "weekly",
+      "queryThemes": [
+        "calculadora reajuste arriendo",
+        "reajuste arriendo uf",
+        "reajuste arriendo ipc"
+      ],
+      "nextStepPaths": [
+        "/posts/reajuste-arriendo-uf-ipc-chile/"
+      ],
+      "pageRow": {
+        "label": "https://monedario.cl/calculadoras/reajuste-arriendo/",
+        "path": "/calculadoras/reajuste-arriendo/",
+        "clicks": 0,
+        "clicksDelta": 0,
+        "impressions": 6,
+        "impressionsDelta": -1,
+        "ctr": 0,
+        "ctrDelta": 0,
+        "position": 8,
+        "positionDelta": 0.13999999999999968,
+        "comparisonStatus": "available",
+        "identityStatus": "existing"
+      },
+      "queryPulse": null,
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "steady",
+      "reasons": [],
+      "actions": []
+    },
+    {
+      "path": "/calculadoras/credito-consumo/",
+      "label": "Tool credito de consumo",
+      "cluster": "deuda-credito",
+      "role": "tool",
+      "priority": "p2",
+      "refreshSla": "weekly",
+      "queryThemes": [
+        "simulador credito consumo",
+        "cuota credito consumo",
+        "cae credito consumo"
+      ],
+      "nextStepPaths": [
+        "/posts/cae-costo-real-credito-chile/"
+      ],
+      "pageRow": {
+        "label": "https://monedario.cl/calculadoras/credito-consumo/",
+        "path": "/calculadoras/credito-consumo/",
+        "clicks": 20,
+        "clicksDelta": 13,
+        "impressions": 506,
+        "impressionsDelta": 194,
+        "ctr": 3.95,
+        "ctrDelta": 1.71,
+        "position": 6.8,
+        "positionDelta": -0.6100000000000003,
+        "comparisonStatus": "available",
+        "identityStatus": "existing"
+      },
+      "queryPulse": null,
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "winner",
+      "reasons": [
+        "Clics +13 con posición +0.6 puntos mejor respecto a la semana previa."
+      ],
+      "actions": []
+    },
+    {
+      "path": "/calculadoras/simulador-renegociacion/",
+      "label": "Tool renegociacion",
+      "cluster": "deuda-credito",
+      "role": "tool",
+      "priority": "p2",
+      "refreshSla": "weekly",
+      "queryThemes": [
+        "simulador renegociacion",
+        "renegociar deudas simulador"
+      ],
+      "nextStepPaths": [
+        "/posts/renegociacion-superir/"
+      ],
+      "pageRow": {
+        "label": "https://monedario.cl/calculadoras/simulador-renegociacion/",
+        "path": "/calculadoras/simulador-renegociacion/",
+        "clicks": 3,
+        "clicksDelta": 1,
+        "impressions": 43,
+        "impressionsDelta": 11,
+        "ctr": 6.98,
+        "ctrDelta": 0.7300000000000001,
+        "position": 6.33,
+        "positionDelta": 0.8899999999999997,
+        "comparisonStatus": "available",
+        "identityStatus": "existing"
+      },
+      "queryPulse": null,
+      "analyticsMetrics": {
+        "cta": {
+          "current": 0,
+          "previous": 0
+        },
+        "starts": {
+          "current": 0,
+          "previous": 0
+        },
+        "completes": {
+          "current": 0,
+          "previous": 0
+        },
+        "resultsPerStart": null
+      },
+      "status": "winner",
+      "reasons": [
+        "Clics +1 con posición -0.9 puntos mejor respecto a la semana previa."
+      ],
+      "actions": []
+    }
+  ],
+  "topPageWinners": [
+    {
+      "label": "https://monedario.cl/calculadoras/credito-consumo/",
+      "path": "/calculadoras/credito-consumo/",
+      "clicks": 20,
+      "clicksDelta": 13,
+      "impressions": 506,
+      "impressionsDelta": 194,
+      "ctr": 3.95,
+      "ctrDelta": 1.71,
+      "position": 6.8,
+      "positionDelta": -0.6100000000000003,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    },
+    {
+      "label": "https://monedario.cl/calculadoras/prepago-credito/",
+      "path": "/calculadoras/prepago-credito/",
+      "clicks": 32,
+      "clicksDelta": 8,
+      "impressions": 254,
+      "impressionsDelta": 47,
+      "ctr": 12.6,
+      "ctrDelta": 1.0099999999999998,
+      "position": 5.09,
+      "positionDelta": -0.3100000000000005,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    },
+    {
+      "label": "https://monedario.cl/calculadoras/deposito-a-plazo/",
+      "path": "/calculadoras/deposito-a-plazo/",
+      "clicks": 8,
+      "clicksDelta": 8,
+      "impressions": 516,
+      "impressionsDelta": 461,
+      "ctr": 1.55,
+      "ctrDelta": 1.55,
+      "position": 5.93,
+      "positionDelta": -2.5199999999999996,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    },
+    {
+      "label": "https://monedario.cl/calculadoras/operacion-renta/",
+      "path": "/calculadoras/operacion-renta/",
+      "clicks": 20,
+      "clicksDelta": 5,
+      "impressions": 212,
+      "impressionsDelta": 15,
+      "ctr": 9.43,
+      "ctrDelta": 1.8199999999999994,
+      "position": 5.18,
+      "positionDelta": -0.3200000000000003,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    },
+    {
+      "label": "https://monedario.cl/calculadoras/comisiones-afp/",
+      "path": "/calculadoras/comisiones-afp/",
+      "clicks": 6,
+      "clicksDelta": 4,
+      "impressions": 1284,
+      "impressionsDelta": -47,
+      "ctr": 0.47000000000000003,
+      "ctrDelta": 0.32,
+      "position": 10.45,
+      "positionDelta": 1.4499999999999993,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    }
+  ],
+  "topPageLosers": [
+    {
+      "label": "https://monedario.cl/calculadoras/seguro-cesantia/",
+      "path": "/calculadoras/seguro-cesantia/",
+      "clicks": 89,
+      "clicksDelta": -36,
+      "impressions": 1424,
+      "impressionsDelta": -248,
+      "ctr": 6.25,
+      "ctrDelta": -1.2300000000000004,
+      "position": 6.52,
+      "positionDelta": 0.7399999999999993,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    },
+    {
+      "label": "https://monedario.cl/calculadoras/conversor-utm/",
+      "path": "/calculadoras/conversor-utm/",
+      "clicks": 268,
+      "clicksDelta": -4,
+      "impressions": 77088,
+      "impressionsDelta": 8506,
+      "ctr": 0.35000000000000003,
+      "ctrDelta": -0.05,
+      "position": 5.76,
+      "positionDelta": -0.20999999999999996,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    },
+    {
+      "label": "https://monedario.cl/posts/liquidacion-de-sueldo/",
+      "path": "/posts/liquidacion-de-sueldo/",
+      "clicks": 0,
+      "clicksDelta": -4,
+      "impressions": 62,
+      "impressionsDelta": -14,
+      "ctr": 0,
+      "ctrDelta": -5.26,
+      "position": 26.73,
+      "positionDelta": -3.719999999999999,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    },
+    {
+      "label": "https://monedario.cl/calculadoras/impuesto-segunda-categoria/",
+      "path": "/calculadoras/impuesto-segunda-categoria/",
+      "clicks": 18,
+      "clicksDelta": -3,
+      "impressions": 1416,
+      "impressionsDelta": 242,
+      "ctr": 1.27,
+      "ctrDelta": -0.52,
+      "position": 8.44,
+      "positionDelta": -0.16999999999999993,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    },
+    {
+      "label": "https://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
+      "path": "/posts/donde-ver-si-estoy-en-dicom-gratis/",
+      "clicks": 1,
+      "clicksDelta": -2,
+      "impressions": 327,
+      "impressionsDelta": 148,
+      "ctr": 0.31,
+      "ctrDelta": -1.3699999999999999,
+      "position": 22.27,
+      "positionDelta": -2.1400000000000006,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    }
+  ],
+  "topQueryWinners": [
+    {
+      "label": "utm",
+      "path": null,
+      "clicks": 28,
+      "clicksDelta": 22,
+      "impressions": 4477,
+      "impressionsDelta": 2199,
+      "ctr": 0.63,
+      "ctrDelta": 0.37,
+      "position": 5.37,
+      "positionDelta": -3.4899999999999993,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    },
+    {
+      "label": "valor utm",
+      "path": null,
+      "clicks": 31,
+      "clicksDelta": 14,
+      "impressions": 7988,
+      "impressionsDelta": 1836,
+      "ctr": 0.38999999999999996,
+      "ctrDelta": 0.10999999999999999,
+      "position": 3.71,
+      "positionDelta": -0.16999999999999993,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    },
+    {
+      "label": "valor utm hoy",
+      "path": null,
+      "clicks": 28,
+      "clicksDelta": 14,
+      "impressions": 1709,
+      "impressionsDelta": 1118,
+      "ctr": 1.6400000000000001,
+      "ctrDelta": -0.7299999999999998,
+      "position": 3.28,
+      "positionDelta": 1.9699999999999998,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    },
+    {
+      "label": "utm hoy",
+      "path": null,
+      "clicks": 18,
+      "clicksDelta": 8,
+      "impressions": 6219,
+      "impressionsDelta": 2378,
+      "ctr": 0.29,
+      "ctrDelta": 0.029999999999999992,
+      "position": 6.47,
+      "positionDelta": 0.9199999999999999,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    },
+    {
+      "label": "valor utm hoy chile",
+      "path": null,
+      "clicks": 7,
+      "clicksDelta": 6,
+      "impressions": 389,
+      "impressionsDelta": 253,
+      "ctr": 1.7999999999999998,
+      "ctrDelta": 1.0599999999999998,
+      "position": 3.81,
+      "positionDelta": 2.12,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    }
+  ],
+  "topQueryLosers": [
+    {
+      "label": "calcular seguro de cesantia",
+      "path": null,
+      "clicks": 18,
+      "clicksDelta": -11,
+      "impressions": 77,
+      "impressionsDelta": -6,
+      "ctr": 23.380000000000003,
+      "ctrDelta": -11.559999999999999,
+      "position": 2.97,
+      "positionDelta": 0.9200000000000004,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    },
+    {
+      "label": "utm a peso chileno",
+      "path": null,
+      "clicks": 15,
+      "clicksDelta": -8,
+      "impressions": 3721,
+      "impressionsDelta": -630,
+      "ctr": 0.4,
+      "ctrDelta": -0.13,
+      "position": 6.9,
+      "positionDelta": 0.0600000000000005,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    },
+    {
+      "label": "simular seguro de cesantia",
+      "path": null,
+      "clicks": 0,
+      "clicksDelta": -6,
+      "impressions": 13,
+      "impressionsDelta": -75,
+      "ctr": 0,
+      "ctrDelta": -6.819999999999999,
+      "position": 5.54,
+      "positionDelta": 1.3499999999999996,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    },
+    {
+      "label": "simulador seguro cesantia",
+      "path": null,
+      "clicks": 0,
+      "clicksDelta": -5,
+      "impressions": 79,
+      "impressionsDelta": -45,
+      "ctr": 0,
+      "ctrDelta": -4.03,
+      "position": 6.96,
+      "positionDelta": 1.1600000000000001,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    },
+    {
+      "label": "convertidor utm a pesos",
+      "path": null,
+      "clicks": 1,
+      "clicksDelta": -4,
+      "impressions": 140,
+      "impressionsDelta": -94,
+      "ctr": 0.7100000000000001,
+      "ctrDelta": -1.43,
+      "position": 5.89,
+      "positionDelta": 0.5099999999999998,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    }
+  ],
+  "queryQuickWins": [
+    {
+      "label": "utm hoy",
+      "path": null,
+      "clicks": 18,
+      "clicksDelta": 8,
+      "impressions": 6219,
+      "impressionsDelta": 2378,
+      "ctr": 0.29,
+      "ctrDelta": 0.029999999999999992,
+      "position": 6.47,
+      "positionDelta": 0.9199999999999999,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    },
+    {
+      "label": "utm",
+      "path": null,
+      "clicks": 28,
+      "clicksDelta": 22,
+      "impressions": 4477,
+      "impressionsDelta": 2199,
+      "ctr": 0.63,
+      "ctrDelta": 0.37,
+      "position": 5.37,
+      "positionDelta": -3.4899999999999993,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    },
+    {
+      "label": "utm a peso chileno",
+      "path": null,
+      "clicks": 15,
+      "clicksDelta": -8,
+      "impressions": 3721,
+      "impressionsDelta": -630,
+      "ctr": 0.4,
+      "ctrDelta": -0.13,
+      "position": 6.9,
+      "positionDelta": 0.0600000000000005,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    },
+    {
+      "label": "utm a peso",
+      "path": null,
+      "clicks": 1,
+      "clicksDelta": -2,
+      "impressions": 2211,
+      "impressionsDelta": -1198,
+      "ctr": 0.05,
+      "ctrDelta": -0.039999999999999994,
+      "position": 7.42,
+      "positionDelta": -0.6999999999999993,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    },
+    {
+      "label": "valor de la utm",
+      "path": null,
+      "clicks": 4,
+      "clicksDelta": 1,
+      "impressions": 1101,
+      "impressionsDelta": -59,
+      "ctr": 0.36,
+      "ctrDelta": 0.1,
+      "position": 5.78,
+      "positionDelta": -0.6799999999999997,
+      "comparisonStatus": "available",
+      "identityStatus": "existing"
+    }
+  ],
+  "refreshCandidates": [
+    {
+      "path": "/calculadoras/seguro-cesantia/",
+      "label": "Tool seguro de cesantia",
+      "text": "La demanda del query set sube, pero la landing cae. Revisar intención, snippet y primeras secciones."
+    },
+    {
+      "path": "/calculadoras/apv/",
+      "label": "Tool APV",
+      "text": "Refresh de title/snippet y apertura: hay impresiones con posición 4-15 y CTR débil."
+    },
+    {
+      "path": "/calculadoras/conversor-uf/",
+      "label": "Tool conversor UF",
+      "text": "Refresh de title/snippet y apertura: hay impresiones con posición 4-15 y CTR débil."
+    }
+  ],
+  "linkingCandidates": [
+    {
+      "path": "/posts/renegociacion-superir/",
+      "label": "Owner renegociacion Superir",
+      "text": "El tráfico sube, pero los CTA no acompañan. Reforzar enlaces hacia /calculadoras/simulador-renegociacion/, /posts/informe-deudas-cmf-vs-dicom/."
+    }
+  ],
+  "indexationStatus": [
+    {
+      "platform": "Google Search Console",
+      "status": "success: 184 submitted, 0 errors, 0 warnings",
+      "coverage": "URL Inspection checked all 184 sitemap URLs on 2026-07-16: 157 submitted and indexed (85%) and 27 crawled but currently not indexed. Indexing and robots access were allowed for every inspected URL; the run completed with 0 API errors. The sitemap API's indexed=0 field is not used as coverage evidence.",
+      "alerts": [
+        "Review the 27 crawled-but-not-indexed URLs as a cohort; do not request indexing or rewrite YMYL pages without the applicable editorial and non-cannibalization gates.",
+        "Manual action: not checked by the automated recovery"
+      ]
+    },
+    {
+      "platform": "Bing Webmaster",
+      "status": "reachable: HTTP 200 on 2026-07-16",
+      "coverage": "The live sitemap is reachable and robots.txt allows general search crawlers, including Bingbot through User-agent: *. No Bing Webmaster Tools API/export is configured in the repository, so discovered/indexed URL counts could not be independently verified.",
+      "alerts": [
+        "Manual Bing Webmaster Tools verification remains required before claiming Bing index coverage."
+      ]
+    }
+  ],
+  "indexationCoverage": {
+    "fetchedAt": "2026-07-16T22:05:16Z",
+    "schemaVersion": 1,
+    "source": "gsc-url-inspection",
+    "week": "2026-W28",
+    "window": {
+      "from": "2026-07-06",
+      "to": "2026-07-12"
+    },
+    "summary": {
+      "total": 184,
+      "indexed": 157,
+      "notIndexed": 27,
+      "other": 0,
+      "indexedPct": 85,
+      "byCoverage": {
+        "Submitted and indexed": 157,
+        "Crawled - currently not indexed": 27
+      }
+    },
+    "errors": 0,
+    "data": [
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-16",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-01",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/accessibilidad/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-14",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/acerca-de/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-28",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/apoyar/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-04-12",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/archives/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-04",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/autor/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-30",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-14",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/actualizador-inflacion/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-16",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/apv/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-30",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/boleta-honorarios-liquido/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-11",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/comisiones-afp/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-15",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/conversor-uf/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-16",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/conversor-utm/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-08",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/credito-consumo/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-04",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/deposito-a-plazo/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-15",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/dividendo-hipotecario/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-16",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/finiquito-indemnizacion/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-15",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/gratificacion-legal/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-12",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/impuesto-segunda-categoria/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-02",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/interes-compuesto/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-06",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/iva/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-14",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/operacion-renta/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-15",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/prepago-credito/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-04-21",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/reajuste-arriendo/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-16",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/seguro-cesantia/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-14",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/simulador-jubilacion/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-16",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/simulador-renegociacion/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-11",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/sueldo-liquido/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-09",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calculadoras/tarjeta-credito/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-10",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/calendario/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-14",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/como-usamos-los-datos/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-03",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/cookies/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-16",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-04-09",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/afc/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-04-06",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/afp/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-04",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/apv/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-11",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/boleta-honorarios/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-28",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/cae/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/caec/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-23",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/cic/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-18",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/clave-unica/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-04-21",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/cmf/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/copago/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-23",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/corredor-bolsa/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-18",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/credito-aval-estado/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-12",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/credito-hipotecario/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-02",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/ctc/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/cuenta-2/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-29",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/cuenta-rut/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-13",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/custodia/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-16",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/dicom/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-04",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/dividendo-hipotecario/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/etf/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-15",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/finiquito/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-23",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/fonasa/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/fondo-emergencia/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-02",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/fondo-mutuo/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-18",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/fondo-solidario/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/ges/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-21",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/global-complementario/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-12",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/gratificacion/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-07",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/impuesto-unico/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-25",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/indemnizacion/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-06",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/inflacion/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-29",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/ipc/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-23",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/isapre/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-14",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/iva/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-14",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/liquidez/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-19",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/lpc/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-18",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/multifondo/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-08",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/operacion-renta/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-14",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/renta-imponible/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/renta-variable/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-15",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/rescate/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-29",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/sbif/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/seguro-cesantia/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-21",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/sernac/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-08",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/sii/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/spread/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-17",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/sueldo-bruto/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-04-21",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/tmc/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-18",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/tope-imponible/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-14",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/tpm/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/uf/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-18",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/uta/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-21",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/utm/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/glosario/volatilidad/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-01",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/guias/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/guias/ahorro-e-inversion/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-12",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/guias/bancos-fintech/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-14",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/guias/deuda-credito/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-06",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/guias/empleo-ingresos/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/guias/empleo-ingresos/licencia-medica-wizard/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-14",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/guias/finanzas-migrantes/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/guias/impuestos-personas/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-13",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/guias/impuestos-personas/operacion-renta/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-12",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/guias/pensiones-afp/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-02",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/guias/presupuesto-control-financiero/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-30",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/guias/seguridad-financiera/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-15",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/guias/seguridad-financiera/fraude-cargo-no-reconocido/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-16",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/guias/sueldo-remuneraciones/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/guias/uf-costo-de-vida/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-13",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/guias/uf-costo-de-vida/indicadores-economicos/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-02",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/codigo-del-trabajo/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/dfl-1-1998-impuesto-territorial/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/dl-3500-sistema-afp/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-21",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/dl-824-impuesto-renta/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-01",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/dl-830-codigo-tributario/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-01",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/ley-18010-credito-dinero/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-04",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/ley-18469-fonasa/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/ley-18933-isapres/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-26",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/ley-19496-proteccion-consumidor/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/ley-19628-proteccion-datos/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-29",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/ley-19728-seguro-cesantia/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-18",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/ley-20009-tarjetas-fraude/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/ley-20027-credito-aval-estado/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-21",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/ley-20555-sernac-financiero/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-02",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/ley-20575-datos-comerciales/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-04",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/ley-21130-modernizacion-bancaria/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-26",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/ley-21133-honorarios-retencion/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-28",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/ley-21236-portabilidad-financiera/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-16",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/ley-21521-fintech/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-27",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/ley-21561-reduccion-jornada/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-20",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/ley-21680-registro-deuda-consolidada/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-10",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/ley-21719-proteccion-datos-modernizacion/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-04-21",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/leyes/proyecto-reforma-previsional-2025/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-09",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/metodologia/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-07",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-04-06",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-25",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/bancos-y-fintech-chile/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-12",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/boleta-honorarios-2026-retencion-cobertura/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-09",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/cae-costo-real-credito-chile/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-12",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/como-calcular-sueldo-liquido/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-03",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/como-cambiarse-de-afp/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-26",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/como-elegir-inversion-segun-plazo-riesgo-objetivos/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-10",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/como-hacer-presupuesto-mensual-chile/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-03",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/como-invertir-en-etfs-desde-chile/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-06",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/como-leer-cartola-afp-chile/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-19",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/como-salir-boletin-comercial-chile/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-29",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/contribuciones-bienes-raices-chile/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-22",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/credito-hipotecario-chile-guia-completa/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-08",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/cuanto-descuenta-la-afp-de-tu-sueldo/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-06",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/deposito-a-plazo-uf-vs-pesos/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-24",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/descuentos-de-sueldo/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-04-21",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/devolucion-impuestos-fechas-compensaciones/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-02",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-04-10",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/el-poder-del-interes-compuesto/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-04-20",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/estafas-financieras-chile-vishing-smishing-marketplace/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-25",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/finanzas-para-migrantes-chile/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-04-21",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/finiquito-e-indemnizaciones-en-chile/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-22",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/fonasa-vs-isapre-comparativa/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-04",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/fondo-emergencia-chile/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-04-21",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/fondos-afp-a-b-c-d-e/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-30",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/fondos-mutuos-comisiones-rescate-impuestos/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-14",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/fraude-tarjeta-que-hacer/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-22",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/gratificacion-legal-chile/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-22",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/impuesto-global-complementario-chile/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-02",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/indemnizacion-anos-de-servicio-chile/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-04-21",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/informe-deudas-cmf-vs-dicom/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-04-20",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/licencia-medica-desde-que-dia-pagan/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-11",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/liquidacion-de-sueldo/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-02",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/operacion-renta-centro/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-04-21",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/operacion-renta-f22-checklist/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-29",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/pgu-pension-garantizada-universal/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-05-20",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/prepago-credito-cuando-conviene-chile/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-04",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/primer-empleo-chile-guia-completa/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-04-10",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/que-es-el-apv/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-04-23",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/que-es-el-ipc-chile-como-se-calcula/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-04-24",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/que-es-la-cuenta-2-afp/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-04-21",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/que-es-la-uf/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-29",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/reajuste-arriendo-uf-ipc-chile/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-08",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-02",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/renegociacion-superir/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-26",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/rentas-mixtas-sueldo-honorarios/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Crawled - currently not indexed",
+        "indexingState": "INDEXING_STATE_UNSPECIFIED",
+        "lastCrawl": "2026-03-26",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/",
+        "verdict": "NEUTRAL"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-09",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/seguro-de-cesantia/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-26",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/sueldo-imponible-chile/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-03",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/suplantacion-identidad-creditos-no-reconocidos/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-26",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/tarjeta-credito-costo-real-chile/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-11",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/posts/utm-chile-que-es-como-funciona/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-04",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/privacidad/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-06-22",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/terminos/",
+        "verdict": "PASS"
+      },
+      {
+        "coverageState": "Submitted and indexed",
+        "indexingState": "INDEXING_ALLOWED",
+        "lastCrawl": "2026-07-13",
+        "robotsTxtState": "ALLOWED",
+        "url": "https://monedario.cl/uf-hoy/",
+        "verdict": "PASS"
+      }
+    ]
+  },
+  "notes": [
+    "W28 provider exports were recovered locally after GitHub-hosted runner capacity prevented the scheduled Data Signals jobs from starting.",
+    "GSC recorded 498 organic clicks in W28, so the prior ~100 clicks/week deferral threshold for privacy-aggregated first-party behavior analysis is no longer applicable.",
+    "The W28 first-party analytics export was recovered after PR #330 merged and its exact tree was deployed: the live trigger is 57 7 * * MON and header-authenticated export smoke checks passed."
+  ],
+  "analyticsAvailable": false,
+  "analyticsJson": {
+    "available": true,
+    "week": "2026-W28",
+    "window": {
+      "from": "2026-07-06",
+      "to": "2026-07-12"
+    },
+    "totals": {
+      "views": 676,
+      "starts": 551,
+      "completes": 708,
+      "errors": 0,
+      "nextStepShown": 82,
+      "nextStepClicks": 4,
+      "shares": 0,
+      "supportClicks": 0,
+      "resultActionClicks": 0,
+      "scenarioActions": 0,
+      "resumeClicks": 0,
+      "officialSourceClicks": 23
+    },
+    "bySlug": {
+      "conversor-uf": {
+        "views": 53,
+        "starts": 56,
+        "completes": 56,
+        "errors": 0,
+        "nextStepShown": 0,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "conversor-utm": {
+        "views": 277,
+        "starts": 228,
+        "completes": 222,
+        "errors": 0,
+        "nextStepShown": 0,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "credito-consumo": {
+        "views": 31,
+        "starts": 21,
+        "completes": 56,
+        "errors": 0,
+        "nextStepShown": 0,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "deposito-a-plazo": {
+        "views": 6,
+        "starts": 8,
+        "completes": 6,
+        "errors": 0,
+        "nextStepShown": 0,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "gratificacion-legal": {
+        "views": 12,
+        "starts": 11,
+        "completes": 9,
+        "errors": 0,
+        "nextStepShown": 0,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "impuesto-segunda-categoria": {
+        "views": 33,
+        "starts": 20,
+        "completes": 25,
+        "errors": 0,
+        "nextStepShown": 38,
+        "nextStepClicks": 1,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "operacion-renta": {
+        "views": 25,
+        "starts": 16,
+        "completes": 31,
+        "errors": 0,
+        "nextStepShown": 1,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "prepago-credito": {
+        "views": 35,
+        "starts": 38,
+        "completes": 63,
+        "errors": 0,
+        "nextStepShown": 0,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "seguro-cesantia": {
+        "views": 88,
+        "starts": 87,
+        "completes": 104,
+        "errors": 0,
+        "nextStepShown": 0,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "simulador-renegociacion": {
+        "views": 5,
+        "starts": 2,
+        "completes": 5,
+        "errors": 0,
+        "nextStepShown": 0,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "apv": {
+        "views": 23,
+        "starts": 16,
+        "completes": 21,
+        "errors": 0,
+        "nextStepShown": 40,
+        "nextStepClicks": 3,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "reajuste-arriendo": {
+        "views": 3,
+        "starts": 4,
+        "completes": 8,
+        "errors": 0,
+        "nextStepShown": 0,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "sueldo-liquido": {
+        "views": 37,
+        "starts": 22,
+        "completes": 73,
+        "errors": 0,
+        "nextStepShown": 3,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "unknown": {
+        "views": 0,
+        "starts": 0,
+        "completes": 0,
+        "errors": 0,
+        "nextStepShown": 0,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 23
+      },
+      "iva": {
+        "views": 2,
+        "starts": 1,
+        "completes": 1,
+        "errors": 0,
+        "nextStepShown": 0,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "simulador-jubilacion": {
+        "views": 14,
+        "starts": 9,
+        "completes": 9,
+        "errors": 0,
+        "nextStepShown": 0,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "dividendo-hipotecario": {
+        "views": 7,
+        "starts": 3,
+        "completes": 8,
+        "errors": 0,
+        "nextStepShown": 0,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "comisiones-afp": {
+        "views": 13,
+        "starts": 4,
+        "completes": 5,
+        "errors": 0,
+        "nextStepShown": 0,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "finiquito-indemnizacion": {
+        "views": 2,
+        "starts": 1,
+        "completes": 2,
+        "errors": 0,
+        "nextStepShown": 0,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "actualizador-inflacion": {
+        "views": 3,
+        "starts": 1,
+        "completes": 1,
+        "errors": 0,
+        "nextStepShown": 0,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "boleta-honorarios-liquido": {
+        "views": 1,
+        "starts": 0,
+        "completes": 0,
+        "errors": 0,
+        "nextStepShown": 0,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "interes-compuesto": {
+        "views": 1,
+        "starts": 0,
+        "completes": 0,
+        "errors": 0,
+        "nextStepShown": 0,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      },
+      "tarjeta-credito": {
+        "views": 5,
+        "starts": 3,
+        "completes": 3,
+        "errors": 0,
+        "nextStepShown": 0,
+        "nextStepClicks": 0,
+        "shares": 0,
+        "supportClicks": 0,
+        "resultActionClicks": 0,
+        "scenarioActions": 0,
+        "resumeClicks": 0,
+        "officialSourceClicks": 0
+      }
+    },
+    "data": [
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_complete",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "",
+        "count": 10
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_complete",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "",
+        "count": 27
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_complete",
+        "calculator_slug": "credito-consumo",
+        "dimensions": "",
+        "count": 10
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_complete",
+        "calculator_slug": "deposito-a-plazo",
+        "dimensions": "",
+        "count": 3
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_complete",
+        "calculator_slug": "gratificacion-legal",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_complete",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_complete",
+        "calculator_slug": "operacion-renta",
+        "dimensions": "",
+        "count": 4
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_complete",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "",
+        "count": 9
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_complete",
+        "calculator_slug": "seguro-cesantia",
+        "dimensions": "",
+        "count": 22
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_complete",
+        "calculator_slug": "simulador-renegociacion",
+        "dimensions": "",
+        "count": 4
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_start",
+        "calculator_slug": "apv",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "click",
+        "count": 1
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "focusin",
+        "count": 9
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "click",
+        "count": 1
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "focusin",
+        "count": 28
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_start",
+        "calculator_slug": "credito-consumo",
+        "dimensions": "focusin",
+        "count": 4
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_start",
+        "calculator_slug": "deposito-a-plazo",
+        "dimensions": "focusin",
+        "count": 2
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_start",
+        "calculator_slug": "gratificacion-legal",
+        "dimensions": "focusin",
+        "count": 2
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_start",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_start",
+        "calculator_slug": "operacion-renta",
+        "dimensions": "focusin",
+        "count": 3
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_start",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "focusin",
+        "count": 6
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_start",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "input",
+        "count": 1
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_start",
+        "calculator_slug": "reajuste-arriendo",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_start",
+        "calculator_slug": "seguro-cesantia",
+        "dimensions": "focusin",
+        "count": 20
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_start",
+        "calculator_slug": "simulador-renegociacion",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "calculator_start",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "apv",
+        "dimensions": "1:apv-to-sl",
+        "count": 8
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "1:isc-to-sl",
+        "count": 6
+      },
+      {
+        "date": "2026-07-06",
+        "event_name": "official_source_click",
+        "calculator_slug": "unknown",
+        "dimensions": "",
+        "count": 4
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_complete",
+        "calculator_slug": "apv",
+        "dimensions": "",
+        "count": 9
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_complete",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "",
+        "count": 5
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_complete",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "",
+        "count": 51
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_complete",
+        "calculator_slug": "credito-consumo",
+        "dimensions": "",
+        "count": 23
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_complete",
+        "calculator_slug": "gratificacion-legal",
+        "dimensions": "",
+        "count": 3
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_complete",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "",
+        "count": 4
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_complete",
+        "calculator_slug": "iva",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_complete",
+        "calculator_slug": "operacion-renta",
+        "dimensions": "",
+        "count": 14
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_complete",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "",
+        "count": 7
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_complete",
+        "calculator_slug": "reajuste-arriendo",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_complete",
+        "calculator_slug": "seguro-cesantia",
+        "dimensions": "",
+        "count": 13
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_complete",
+        "calculator_slug": "simulador-jubilacion",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_complete",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "",
+        "count": 25
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_start",
+        "calculator_slug": "apv",
+        "dimensions": "focusin",
+        "count": 3
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_start",
+        "calculator_slug": "apv",
+        "dimensions": "input",
+        "count": 2
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "focusin",
+        "count": 5
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "click",
+        "count": 3
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "focusin",
+        "count": 48
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_start",
+        "calculator_slug": "credito-consumo",
+        "dimensions": "focusin",
+        "count": 4
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_start",
+        "calculator_slug": "deposito-a-plazo",
+        "dimensions": "focusin",
+        "count": 2
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_start",
+        "calculator_slug": "dividendo-hipotecario",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_start",
+        "calculator_slug": "gratificacion-legal",
+        "dimensions": "focusin",
+        "count": 3
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_start",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "focusin",
+        "count": 6
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_start",
+        "calculator_slug": "iva",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_start",
+        "calculator_slug": "operacion-renta",
+        "dimensions": "focusin",
+        "count": 4
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_start",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "focusin",
+        "count": 8
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_start",
+        "calculator_slug": "reajuste-arriendo",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_start",
+        "calculator_slug": "seguro-cesantia",
+        "dimensions": "focusin",
+        "count": 18
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_start",
+        "calculator_slug": "simulador-jubilacion",
+        "dimensions": "focusin",
+        "count": 2
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_start",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "focusin",
+        "count": 4
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_start",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "input",
+        "count": 3
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_view",
+        "calculator_slug": "apv",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_view",
+        "calculator_slug": "comisiones-afp",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_view",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "",
+        "count": 4
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_view",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "",
+        "count": 17
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_view",
+        "calculator_slug": "credito-consumo",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_view",
+        "calculator_slug": "dividendo-hipotecario",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_view",
+        "calculator_slug": "finiquito-indemnizacion",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_view",
+        "calculator_slug": "gratificacion-legal",
+        "dimensions": "",
+        "count": 3
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_view",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "",
+        "count": 8
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_view",
+        "calculator_slug": "iva",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_view",
+        "calculator_slug": "operacion-renta",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_view",
+        "calculator_slug": "seguro-cesantia",
+        "dimensions": "",
+        "count": 9
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "calculator_view",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "",
+        "count": 4
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "next_best_step_click",
+        "calculator_slug": "apv",
+        "dimensions": "1:apv-to-sl",
+        "count": 1
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "apv",
+        "dimensions": "1:apv-to-sl",
+        "count": 12
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "1:isc-to-apv",
+        "count": 2
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "1:isc-to-sl",
+        "count": 7
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "operacion-renta",
+        "dimensions": "1:opren-to-apv",
+        "count": 1
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "1:sl-to-cesantia",
+        "count": 1
+      },
+      {
+        "date": "2026-07-07",
+        "event_name": "official_source_click",
+        "calculator_slug": "unknown",
+        "dimensions": "",
+        "count": 9
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_complete",
+        "calculator_slug": "apv",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_complete",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "",
+        "count": 16
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_complete",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "",
+        "count": 32
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_complete",
+        "calculator_slug": "credito-consumo",
+        "dimensions": "",
+        "count": 10
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_complete",
+        "calculator_slug": "deposito-a-plazo",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_complete",
+        "calculator_slug": "dividendo-hipotecario",
+        "dimensions": "",
+        "count": 7
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_complete",
+        "calculator_slug": "gratificacion-legal",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_complete",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "",
+        "count": 14
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_complete",
+        "calculator_slug": "operacion-renta",
+        "dimensions": "",
+        "count": 8
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_complete",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "",
+        "count": 11
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_complete",
+        "calculator_slug": "seguro-cesantia",
+        "dimensions": "",
+        "count": 19
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_complete",
+        "calculator_slug": "simulador-jubilacion",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_complete",
+        "calculator_slug": "simulador-renegociacion",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_complete",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "",
+        "count": 7
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_start",
+        "calculator_slug": "apv",
+        "dimensions": "focusin",
+        "count": 2
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "click",
+        "count": 1
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "focusin",
+        "count": 15
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "click",
+        "count": 1
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "focusin",
+        "count": 31
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_start",
+        "calculator_slug": "credito-consumo",
+        "dimensions": "focusin",
+        "count": 5
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_start",
+        "calculator_slug": "deposito-a-plazo",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_start",
+        "calculator_slug": "dividendo-hipotecario",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_start",
+        "calculator_slug": "gratificacion-legal",
+        "dimensions": "focusin",
+        "count": 3
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_start",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "focusin",
+        "count": 4
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_start",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "input",
+        "count": 2
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_start",
+        "calculator_slug": "operacion-renta",
+        "dimensions": "focusin",
+        "count": 3
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_start",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "focusin",
+        "count": 7
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_start",
+        "calculator_slug": "reajuste-arriendo",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_start",
+        "calculator_slug": "seguro-cesantia",
+        "dimensions": "focusin",
+        "count": 18
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_start",
+        "calculator_slug": "simulador-jubilacion",
+        "dimensions": "focusin",
+        "count": 2
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_start",
+        "calculator_slug": "simulador-renegociacion",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_start",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "focusin",
+        "count": 2
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_start",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "input",
+        "count": 2
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_view",
+        "calculator_slug": "actualizador-inflacion",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_view",
+        "calculator_slug": "apv",
+        "dimensions": "",
+        "count": 7
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_view",
+        "calculator_slug": "boleta-honorarios-liquido",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_view",
+        "calculator_slug": "comisiones-afp",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_view",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "",
+        "count": 18
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_view",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "",
+        "count": 59
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_view",
+        "calculator_slug": "credito-consumo",
+        "dimensions": "",
+        "count": 14
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_view",
+        "calculator_slug": "deposito-a-plazo",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_view",
+        "calculator_slug": "dividendo-hipotecario",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_view",
+        "calculator_slug": "gratificacion-legal",
+        "dimensions": "",
+        "count": 4
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_view",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "",
+        "count": 10
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_view",
+        "calculator_slug": "interes-compuesto",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_view",
+        "calculator_slug": "operacion-renta",
+        "dimensions": "",
+        "count": 11
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_view",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "",
+        "count": 11
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_view",
+        "calculator_slug": "reajuste-arriendo",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_view",
+        "calculator_slug": "seguro-cesantia",
+        "dimensions": "",
+        "count": 32
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_view",
+        "calculator_slug": "simulador-jubilacion",
+        "dimensions": "",
+        "count": 4
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_view",
+        "calculator_slug": "simulador-renegociacion",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_view",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "",
+        "count": 12
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "calculator_view",
+        "calculator_slug": "tarjeta-credito",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "next_best_step_click",
+        "calculator_slug": "apv",
+        "dimensions": "1:apv-to-sl",
+        "count": 1
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "next_best_step_click",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "1:isc-to-sl",
+        "count": 1
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "apv",
+        "dimensions": "1:apv-to-sl",
+        "count": 5
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "1:isc-to-apv",
+        "count": 1
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "1:isc-to-sl",
+        "count": 7
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "1:sl-to-apv-midhigh",
+        "count": 1
+      },
+      {
+        "date": "2026-07-08",
+        "event_name": "official_source_click",
+        "calculator_slug": "unknown",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_complete",
+        "calculator_slug": "actualizador-inflacion",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_complete",
+        "calculator_slug": "apv",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_complete",
+        "calculator_slug": "comisiones-afp",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_complete",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "",
+        "count": 13
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_complete",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "",
+        "count": 17
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_complete",
+        "calculator_slug": "credito-consumo",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_complete",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "",
+        "count": 24
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_complete",
+        "calculator_slug": "seguro-cesantia",
+        "dimensions": "",
+        "count": 31
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_complete",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "",
+        "count": 25
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_start",
+        "calculator_slug": "actualizador-inflacion",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_start",
+        "calculator_slug": "apv",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_start",
+        "calculator_slug": "comisiones-afp",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "focusin",
+        "count": 13
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "click",
+        "count": 1
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "focusin",
+        "count": 17
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_start",
+        "calculator_slug": "credito-consumo",
+        "dimensions": "focusin",
+        "count": 2
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_start",
+        "calculator_slug": "credito-consumo",
+        "dimensions": "input",
+        "count": 1
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_start",
+        "calculator_slug": "deposito-a-plazo",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_start",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "focusin",
+        "count": 6
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_start",
+        "calculator_slug": "seguro-cesantia",
+        "dimensions": "focusin",
+        "count": 14
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_start",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "focusin",
+        "count": 7
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_view",
+        "calculator_slug": "actualizador-inflacion",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_view",
+        "calculator_slug": "apv",
+        "dimensions": "",
+        "count": 3
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_view",
+        "calculator_slug": "comisiones-afp",
+        "dimensions": "",
+        "count": 3
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_view",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "",
+        "count": 16
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_view",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "",
+        "count": 36
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_view",
+        "calculator_slug": "credito-consumo",
+        "dimensions": "",
+        "count": 4
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_view",
+        "calculator_slug": "deposito-a-plazo",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_view",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "",
+        "count": 3
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_view",
+        "calculator_slug": "operacion-renta",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_view",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "",
+        "count": 8
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_view",
+        "calculator_slug": "seguro-cesantia",
+        "dimensions": "",
+        "count": 16
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_view",
+        "calculator_slug": "simulador-jubilacion",
+        "dimensions": "",
+        "count": 3
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "calculator_view",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "",
+        "count": 12
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "apv",
+        "dimensions": "1:apv-to-sl",
+        "count": 3
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "1:isc-to-apv",
+        "count": 1
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "1:isc-to-sl",
+        "count": 2
+      },
+      {
+        "date": "2026-07-09",
+        "event_name": "official_source_click",
+        "calculator_slug": "unknown",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_complete",
+        "calculator_slug": "apv",
+        "dimensions": "",
+        "count": 7
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_complete",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "",
+        "count": 6
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_complete",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "",
+        "count": 36
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_complete",
+        "calculator_slug": "credito-consumo",
+        "dimensions": "",
+        "count": 11
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_complete",
+        "calculator_slug": "finiquito-indemnizacion",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_complete",
+        "calculator_slug": "gratificacion-legal",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_complete",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_complete",
+        "calculator_slug": "operacion-renta",
+        "dimensions": "",
+        "count": 3
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_complete",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "",
+        "count": 8
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_complete",
+        "calculator_slug": "reajuste-arriendo",
+        "dimensions": "",
+        "count": 7
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_complete",
+        "calculator_slug": "seguro-cesantia",
+        "dimensions": "",
+        "count": 7
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_complete",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "",
+        "count": 15
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_start",
+        "calculator_slug": "apv",
+        "dimensions": "focusin",
+        "count": 2
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "focusin",
+        "count": 6
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "click",
+        "count": 1
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "focusin",
+        "count": 35
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_start",
+        "calculator_slug": "credito-consumo",
+        "dimensions": "focusin",
+        "count": 3
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_start",
+        "calculator_slug": "finiquito-indemnizacion",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_start",
+        "calculator_slug": "gratificacion-legal",
+        "dimensions": "focusin",
+        "count": 3
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_start",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "focusin",
+        "count": 2
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_start",
+        "calculator_slug": "operacion-renta",
+        "dimensions": "focusin",
+        "count": 2
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_start",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "focusin",
+        "count": 6
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_start",
+        "calculator_slug": "reajuste-arriendo",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_start",
+        "calculator_slug": "seguro-cesantia",
+        "dimensions": "focusin",
+        "count": 5
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_start",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "focusin",
+        "count": 2
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_view",
+        "calculator_slug": "apv",
+        "dimensions": "",
+        "count": 5
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_view",
+        "calculator_slug": "comisiones-afp",
+        "dimensions": "",
+        "count": 3
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_view",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "",
+        "count": 6
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_view",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "",
+        "count": 58
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_view",
+        "calculator_slug": "credito-consumo",
+        "dimensions": "",
+        "count": 6
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_view",
+        "calculator_slug": "dividendo-hipotecario",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_view",
+        "calculator_slug": "finiquito-indemnizacion",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_view",
+        "calculator_slug": "gratificacion-legal",
+        "dimensions": "",
+        "count": 4
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_view",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "",
+        "count": 4
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_view",
+        "calculator_slug": "operacion-renta",
+        "dimensions": "",
+        "count": 7
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_view",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "",
+        "count": 7
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_view",
+        "calculator_slug": "reajuste-arriendo",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_view",
+        "calculator_slug": "seguro-cesantia",
+        "dimensions": "",
+        "count": 13
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_view",
+        "calculator_slug": "simulador-renegociacion",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "calculator_view",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "",
+        "count": 5
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "apv",
+        "dimensions": "1:apv-to-sl",
+        "count": 5
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "1:isc-to-sl",
+        "count": 4
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "1:sl-to-apv-midhigh",
+        "count": 1
+      },
+      {
+        "date": "2026-07-10",
+        "event_name": "official_source_click",
+        "calculator_slug": "unknown",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_complete",
+        "calculator_slug": "apv",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_complete",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "",
+        "count": 3
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_complete",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "",
+        "count": 42
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_complete",
+        "calculator_slug": "deposito-a-plazo",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_complete",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_complete",
+        "calculator_slug": "operacion-renta",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_complete",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_complete",
+        "calculator_slug": "seguro-cesantia",
+        "dimensions": "",
+        "count": 7
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_complete",
+        "calculator_slug": "simulador-jubilacion",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_complete",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_start",
+        "calculator_slug": "apv",
+        "dimensions": "focusin",
+        "count": 3
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_start",
+        "calculator_slug": "apv",
+        "dimensions": "input",
+        "count": 1
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "focusin",
+        "count": 3
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "focusin",
+        "count": 44
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_start",
+        "calculator_slug": "deposito-a-plazo",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_start",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "focusin",
+        "count": 2
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_start",
+        "calculator_slug": "operacion-renta",
+        "dimensions": "focusin",
+        "count": 4
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_start",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_start",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "input",
+        "count": 1
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_start",
+        "calculator_slug": "seguro-cesantia",
+        "dimensions": "focusin",
+        "count": 5
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_start",
+        "calculator_slug": "simulador-jubilacion",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_start",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_view",
+        "calculator_slug": "actualizador-inflacion",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_view",
+        "calculator_slug": "apv",
+        "dimensions": "",
+        "count": 4
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_view",
+        "calculator_slug": "comisiones-afp",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_view",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "",
+        "count": 5
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_view",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "",
+        "count": 74
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_view",
+        "calculator_slug": "credito-consumo",
+        "dimensions": "",
+        "count": 4
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_view",
+        "calculator_slug": "deposito-a-plazo",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_view",
+        "calculator_slug": "dividendo-hipotecario",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_view",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "",
+        "count": 3
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_view",
+        "calculator_slug": "operacion-renta",
+        "dimensions": "",
+        "count": 4
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_view",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "",
+        "count": 6
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_view",
+        "calculator_slug": "seguro-cesantia",
+        "dimensions": "",
+        "count": 9
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_view",
+        "calculator_slug": "simulador-jubilacion",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_view",
+        "calculator_slug": "simulador-renegociacion",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_view",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "",
+        "count": 3
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "calculator_view",
+        "calculator_slug": "tarjeta-credito",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "next_best_step_click",
+        "calculator_slug": "apv",
+        "dimensions": "1:apv-to-sl",
+        "count": 1
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "apv",
+        "dimensions": "1:apv-to-opren",
+        "count": 1
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "apv",
+        "dimensions": "1:apv-to-sl",
+        "count": 3
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "apv",
+        "dimensions": "2:apv-to-sl",
+        "count": 1
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "1:isc-to-sl",
+        "count": 3
+      },
+      {
+        "date": "2026-07-11",
+        "event_name": "official_source_click",
+        "calculator_slug": "unknown",
+        "dimensions": "",
+        "count": 3
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_complete",
+        "calculator_slug": "apv",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_complete",
+        "calculator_slug": "comisiones-afp",
+        "dimensions": "",
+        "count": 3
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_complete",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "",
+        "count": 3
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_complete",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "",
+        "count": 17
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_complete",
+        "calculator_slug": "credito-consumo",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_complete",
+        "calculator_slug": "deposito-a-plazo",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_complete",
+        "calculator_slug": "dividendo-hipotecario",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_complete",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "",
+        "count": 3
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_complete",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_complete",
+        "calculator_slug": "seguro-cesantia",
+        "dimensions": "",
+        "count": 5
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_complete",
+        "calculator_slug": "simulador-jubilacion",
+        "dimensions": "",
+        "count": 4
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_complete",
+        "calculator_slug": "tarjeta-credito",
+        "dimensions": "",
+        "count": 3
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_start",
+        "calculator_slug": "apv",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_start",
+        "calculator_slug": "comisiones-afp",
+        "dimensions": "focusin",
+        "count": 2
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_start",
+        "calculator_slug": "comisiones-afp",
+        "dimensions": "input",
+        "count": 1
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "focusin",
+        "count": 3
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_start",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "focusin",
+        "count": 18
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_start",
+        "calculator_slug": "credito-consumo",
+        "dimensions": "focusin",
+        "count": 2
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_start",
+        "calculator_slug": "deposito-a-plazo",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_start",
+        "calculator_slug": "dividendo-hipotecario",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_start",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "focusin",
+        "count": 1
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_start",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "input",
+        "count": 2
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_start",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "focusin",
+        "count": 2
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_start",
+        "calculator_slug": "seguro-cesantia",
+        "dimensions": "focusin",
+        "count": 7
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_start",
+        "calculator_slug": "simulador-jubilacion",
+        "dimensions": "focusin",
+        "count": 4
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_start",
+        "calculator_slug": "tarjeta-credito",
+        "dimensions": "focusin",
+        "count": 3
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_view",
+        "calculator_slug": "apv",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_view",
+        "calculator_slug": "comisiones-afp",
+        "dimensions": "",
+        "count": 3
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_view",
+        "calculator_slug": "conversor-uf",
+        "dimensions": "",
+        "count": 4
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_view",
+        "calculator_slug": "conversor-utm",
+        "dimensions": "",
+        "count": 33
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_view",
+        "calculator_slug": "credito-consumo",
+        "dimensions": "",
+        "count": 2
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_view",
+        "calculator_slug": "deposito-a-plazo",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_view",
+        "calculator_slug": "dividendo-hipotecario",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_view",
+        "calculator_slug": "gratificacion-legal",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_view",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "",
+        "count": 5
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_view",
+        "calculator_slug": "prepago-credito",
+        "dimensions": "",
+        "count": 3
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_view",
+        "calculator_slug": "seguro-cesantia",
+        "dimensions": "",
+        "count": 9
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_view",
+        "calculator_slug": "simulador-jubilacion",
+        "dimensions": "",
+        "count": 6
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_view",
+        "calculator_slug": "sueldo-liquido",
+        "dimensions": "",
+        "count": 1
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "calculator_view",
+        "calculator_slug": "tarjeta-credito",
+        "dimensions": "",
+        "count": 3
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "apv",
+        "dimensions": "1:apv-to-sl",
+        "count": 2
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "1:isc-to-apv",
+        "count": 2
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "next_best_step_shown",
+        "calculator_slug": "impuesto-segunda-categoria",
+        "dimensions": "1:isc-to-sl",
+        "count": 3
+      },
+      {
+        "date": "2026-07-12",
+        "event_name": "official_source_click",
+        "calculator_slug": "unknown",
+        "dimensions": "",
+        "count": 1
+      }
+    ]
+  },
+  "cloudflarePerf": {
+    "rum": {
+      "fetchedAt": "2026-07-16T22:40:51Z",
+      "schemaVersion": 1,
+      "source": "cloudflare-rum",
+      "week": "2026-W28",
+      "window": {
+        "from": "2026-07-06",
+        "to": "2026-07-12"
+      },
+      "data": [
+        {
+          "clsP75": 0,
+          "count": 390,
+          "inpP75Ms": 80,
+          "lcpP75Ms": 880,
+          "path": "/calculadoras/conversor-utm/"
+        },
+        {
+          "clsP75": 0,
+          "count": 70,
+          "inpP75Ms": 80,
+          "lcpP75Ms": 1280,
+          "path": "/calculadoras/seguro-cesantia/"
+        },
+        {
+          "clsP75": 0,
+          "count": 50,
+          "inpP75Ms": 40,
+          "lcpP75Ms": 696,
+          "path": "/calculadoras/prepago-credito/"
+        },
+        {
+          "clsP75": 0,
+          "count": 50,
+          "inpP75Ms": 80,
+          "lcpP75Ms": 2264,
+          "path": "/calculadoras/operacion-renta/"
+        },
+        {
+          "clsP75": 0.021,
+          "count": 50,
+          "inpP75Ms": 32,
+          "lcpP75Ms": 1644,
+          "path": "/calculadoras/conversor-uf/"
+        },
+        {
+          "clsP75": 0,
+          "count": 40,
+          "inpP75Ms": 64,
+          "lcpP75Ms": 2768,
+          "path": "/calculadoras/credito-consumo/"
+        },
+        {
+          "clsP75": 0,
+          "count": 40,
+          "inpP75Ms": 8,
+          "lcpP75Ms": 1444,
+          "path": "/"
+        },
+        {
+          "clsP75": 0.002,
+          "count": 30,
+          "inpP75Ms": 64,
+          "lcpP75Ms": 1872,
+          "path": "/calculadoras/sueldo-liquido/"
+        },
+        {
+          "clsP75": 0,
+          "count": 30,
+          "inpP75Ms": null,
+          "lcpP75Ms": 776,
+          "path": "/posts/que-es-el-apv/"
+        },
+        {
+          "clsP75": 0.119,
+          "count": 30,
+          "inpP75Ms": null,
+          "lcpP75Ms": 4779,
+          "path": "/calculadoras/impuesto-segunda-categoria/"
+        },
+        {
+          "clsP75": 0,
+          "count": 30,
+          "inpP75Ms": 56,
+          "lcpP75Ms": 1180,
+          "path": "/posts/licencia-medica-desde-que-dia-pagan/"
+        },
+        {
+          "clsP75": 0,
+          "count": 20,
+          "inpP75Ms": null,
+          "lcpP75Ms": 788,
+          "path": "/calculadoras/comisiones-afp/"
+        },
+        {
+          "clsP75": 0,
+          "count": 20,
+          "inpP75Ms": 0,
+          "lcpP75Ms": 1136,
+          "path": "/posts/seguro-de-cesantia/"
+        },
+        {
+          "clsP75": null,
+          "count": 10,
+          "inpP75Ms": null,
+          "lcpP75Ms": 648,
+          "path": "/posts/sueldo-imponible-chile/"
+        },
+        {
+          "clsP75": null,
+          "count": 10,
+          "inpP75Ms": null,
+          "lcpP75Ms": null,
+          "path": "/posts/impuesto-global-complementario-chile/"
+        },
+        {
+          "clsP75": 0,
+          "count": 10,
+          "inpP75Ms": 200,
+          "lcpP75Ms": 3236,
+          "path": "/calculadoras/simulador-jubilacion/"
+        },
+        {
+          "clsP75": 0,
+          "count": 10,
+          "inpP75Ms": null,
+          "lcpP75Ms": null,
+          "path": "/guias/impuestos-personas/operacion-renta/"
+        },
+        {
+          "clsP75": 0.014,
+          "count": 10,
+          "inpP75Ms": 40,
+          "lcpP75Ms": 1084,
+          "path": "/posts/cae-costo-real-credito-chile/"
+        },
+        {
+          "clsP75": 0,
+          "count": 10,
+          "inpP75Ms": 56,
+          "lcpP75Ms": 1624,
+          "path": "/calculadoras/reajuste-arriendo/"
+        },
+        {
+          "clsP75": 0,
+          "count": 10,
+          "inpP75Ms": 80,
+          "lcpP75Ms": 596,
+          "path": "/posts/liquidacion-de-sueldo/"
+        },
+        {
+          "clsP75": 0,
+          "count": 10,
+          "inpP75Ms": null,
+          "lcpP75Ms": 264,
+          "path": "/posts/informe-deudas-cmf-vs-dicom/"
+        },
+        {
+          "clsP75": 0,
+          "count": 10,
+          "inpP75Ms": null,
+          "lcpP75Ms": 692,
+          "path": "/posts/renegociacion-superir/"
+        },
+        {
+          "clsP75": 0,
+          "count": 10,
+          "inpP75Ms": null,
+          "lcpP75Ms": 264,
+          "path": "/calculadoras/apv/"
+        },
+        {
+          "clsP75": 0,
+          "count": 10,
+          "inpP75Ms": 0,
+          "lcpP75Ms": 616,
+          "path": "/posts/descuentos-de-sueldo/"
+        },
+        {
+          "clsP75": 0,
+          "count": 10,
+          "inpP75Ms": 8,
+          "lcpP75Ms": 788,
+          "path": "/posts/cuanto-descuenta-la-afp-de-tu-sueldo/"
+        },
+        {
+          "clsP75": 0,
+          "count": 10,
+          "inpP75Ms": null,
+          "lcpP75Ms": 760,
+          "path": "/posts/boleta-honorarios-2026-retencion-cobertura/"
+        },
+        {
+          "clsP75": 0,
+          "count": 10,
+          "inpP75Ms": null,
+          "lcpP75Ms": 428,
+          "path": "/posts/deposito-a-plazo-uf-vs-pesos/"
+        }
+      ],
+      "_meta": {
+        "totalRawRoutes": 28,
+        "keptRoutes": 27,
+        "discardedRoutes": 1,
+        "discarded": [
+          {
+            "path": "/glosario/gratificacion/",
+            "count": 10,
+            "reason": "route_not_in_site_inventory"
+          }
+        ]
+      }
+    },
+    "traffic": {
+      "fetchedAt": "2026-07-16T22:40:51Z",
+      "schemaVersion": 1,
+      "source": "cloudflare-traffic",
+      "week": "2026-W28",
+      "window": {
+        "from": "2026-07-06",
+        "to": "2026-07-12"
+      },
+      "summary": {
+        "bandwidthMB": 467.21,
+        "cacheRatioPct": 30.7,
+        "pageViews": 14919,
+        "requests": 47399
+      },
+      "data": [
+        {
+          "bandwidthMB": 80.95,
+          "cacheRatioPct": 30,
+          "cachedRequests": 2353,
+          "date": "2026-07-06",
+          "pageViews": 2674,
+          "requests": 7843
+        },
+        {
+          "bandwidthMB": 76.69,
+          "cacheRatioPct": 25.5,
+          "cachedRequests": 2286,
+          "date": "2026-07-07",
+          "pageViews": 2062,
+          "requests": 8954
+        },
+        {
+          "bandwidthMB": 73.35,
+          "cacheRatioPct": 38.1,
+          "cachedRequests": 2831,
+          "date": "2026-07-08",
+          "pageViews": 2412,
+          "requests": 7435
+        },
+        {
+          "bandwidthMB": 61.38,
+          "cacheRatioPct": 29.3,
+          "cachedRequests": 1899,
+          "date": "2026-07-09",
+          "pageViews": 1930,
+          "requests": 6471
+        },
+        {
+          "bandwidthMB": 54.89,
+          "cacheRatioPct": 35.8,
+          "cachedRequests": 2063,
+          "date": "2026-07-10",
+          "pageViews": 1494,
+          "requests": 5756
+        },
+        {
+          "bandwidthMB": 48.83,
+          "cacheRatioPct": 28.8,
+          "cachedRequests": 1405,
+          "date": "2026-07-11",
+          "pageViews": 1607,
+          "requests": 4883
+        },
+        {
+          "bandwidthMB": 71.12,
+          "cacheRatioPct": 28,
+          "cachedRequests": 1698,
+          "date": "2026-07-12",
+          "pageViews": 2740,
+          "requests": 6057
+        }
+      ]
+    }
+  }
+}

@@ -7,6 +7,11 @@ Tercera auditoría profunda: `/improve deep` el 2026-06-19 (commit `9a4eb37d`) �
 Cuarta auditoría profunda: `/improve deep` el 2026-06-26 (commit `a7bb8b2e`) → planes 032–034.
 Quinta auditoría profunda: `/improve deep` el 2026-07-10 (commit `520a8685`) → planes 035–038.
 Auditoría de dirección: `/improve next` el 2026-07-12 (commit `0102b11a`) → spikes de dirección 045–046 (delta W27 sobre la auditoría canónica `GROWTH-DIRECTION-AUDIT-2026-06-28.md`, corte W25).
+Sexta auditoría profunda: `/improve deep` el 2026-07-16 (commit `efe021c7`) →
+planes 048–052, basada en el bundle W28, el incidente del export first-party y
+una revisión read-only de correctness, security, performance, architecture,
+tests, DX, docs y direction. El plan 047 también quedó con su viabilidad externa
+confirmada en vivo: Cloudflare RUM soporta `requestHost` como filtro/dimensión.
 Foco de la quinta pasada: el delta desde la cuarta pasada (72 commits) y los módulos
 nunca auditados. El núcleo maduro (matemática de calculadoras, engines, provider
 económico) sigue limpio — reverificado. **Todos los hallazgos reales están en la
@@ -61,7 +66,8 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 
 ## Pendientes (trabajo abierto)
 
-Los planes abajo vienen de la quinta auditoría profunda (035–038) y de la
+Los planes abajo vienen de la quinta y sexta auditorías profundas (035–038,
+048–052; 047–050 ya archivados) y de la
 revisión de datos de tráfico que le siguió (039–041, mismo commit `520a8685`,
 2026-07-10, a pedido del usuario tras la quinta auditoría; origen: los
 scorecards y exports reales en `output/operations/`). Originalmente siete;
@@ -80,16 +86,37 @@ paralelizable entre sí salvo que se indique lo contrario.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
 |---|------|--------|-----------|----------|--------|--------------------|--------|
-| 1 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | BLOCKED (hipótesis descartada; causa de campo sin identificar — ver nota abajo) |
-| 2 | [046](046-converter-recurrence-return-hook-spike.md) | **Spike de dirección**: investigar si hay recurrencia real sobre los conversores (superficie de mayor **tráfico** según RUM W27; recurrencia **por confirmar**) y, solo si la hay, diseñar un return-hook privacy-safe | P2 | M | LOW | todos | TODO (spike de diseño; por defecto "medir antes de construir"; compuerta de decisión humana) |
-> **035, 036, 037, 038, 039, 040, 042, 043, 044, 045 y 047 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
+| 1 | [051](051-analytics-deployment-parity.md) | Hacer reproducible y verificable el deploy del Worker de analytics | P1 | M | MED | 052 | TODO (prerrequisito cumplido: #330 desplegado y smoke verificado el 2026-07-16) |
+| 2 | [052](052-worker-manual-trigger-auth.md) | Sacar secretos de URLs y separar el PAT del trigger manual | P1 | S | LOW/MED | 049, 051 | IN PROGRESS (código `ae9246bd` aprobado localmente; deploy/rotación y smoke pendientes, PAT requiere autoridad de emisión) |
+| 3 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | BLOCKED (hipótesis descartada; causa de campo sin identificar — ver nota abajo) |
+| 4 | [046](046-converter-recurrence-return-hook-spike.md) | **Spike de dirección**: investigar si hay recurrencia real sobre los conversores (superficie de mayor **tráfico** según RUM W27; recurrencia **por confirmar**) y, solo si la hay, diseñar un return-hook privacy-safe | P2 | M | LOW | todos | TODO (spike de diseño; por defecto "medir antes de construir"; compuerta de decisión humana) |
+> **035–040, 042–045 y 047–050 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
 
 > **046 es un spike de dirección (`/improve next`, 2026-07-12)**, no un plan de
 > implementación: produce un documento de análisis read-only y se detiene en una
 > compuerta de decisión humana. NO toca código de producto. Su premisa usa rutas
 > **únicas** de monedario (no contaminadas por GROWTH-005), así que es independiente
-> de 041 y de 047. **045 (el otro spike del mismo lote) y 047 (su follow-up de
-> implementación) ya se ejecutaron, aprobaron y archivaron** — ver notas abajo.
+> de 041 y del ya archivado 047. **045 (el otro spike del mismo lote) y su
+> follow-up 047 ya se ejecutaron, aprobaron y archivaron** — ver nota abajo. La
+> viabilidad de 047 quedó confirmada en vivo el 2026-07-16 (`requestHost`
+> aceptado como filtro y dimensión) antes de integrar el filtro.
+
+### Decisiones y rechazos de la auditoría 2026-07-16
+
+- **No crear otra URL UTM ni un hub “UTM hoy”**: el conversor existente concentra
+  la demanda y ya hay ownership explícito para intención explicativa.
+- **No aplicar 3,5% CTR como forecast universal**: búsquedas de valor actual y
+  conversión son parcialmente zero-click; el número solo sirve como heurística.
+- **No reescribir ni pedir indexación masiva de las 27 URLs**: el cohort mezcla
+  superficies y `crawled, currently not indexed` no identifica una causa común.
+- **No agregar más `llms`, schema o crawler directives antes de medir GEO**: la
+  infraestructura ya existe; corresponde ejecutar el baseline fijo de 48
+  combinaciones durante al menos tres cortes comparables.
+- **No reabrir la carrera KV por intuición**: ADR-20260628 acepta consistencia
+  eventual a la escala actual; solo se revisa al cruzar su umbral operativo.
+- **No parchear LCP/CLS a ciegas**: W28 sí alerta LCP p75 4.779 ms con 30 muestras,
+  pero la causa de campo sigue sin reproducirse. 041 permanece BLOCKED y el
+  siguiente paso es traza mobile field-to-lab, no CSS especulativo.
 
 > **045 EJECUTADO, APROBADO EN REVISIÓN, MERGEADO (local) Y ARCHIVADO
 > (2026-07-13, vía `/improve execute 045`).** Ejecutor `general-purpose` en
@@ -141,75 +168,6 @@ paralelizable entre sí salvo que se indique lo contrario.
 > viene verificada por el reviewer de este plan") que filtra proceso de review a un
 > doc permanente de `docs/reports/`; defendible como procedencia, candidato a
 > limpieza futura.
-
-> **047 EJECUTADO, APROBADO EN REVISIÓN, MERGEADO Y ARCHIVADO (2026-07-13, vía
-> `/improve execute 047`).** El Step 1 (compuerta de viabilidad de schema
-> externo) se resolvió **antes** de despachar al ejecutor, no dentro del
-> despacho: el revisor corrió una introspección GraphQL en vivo contra
-> `https://api.cloudflare.com/client/v4/graphql` con el
-> `CLOUDFLARE_ANALYTICS_TOKEN` real de `.env.local` (autorizada explícitamente
-> por el operador para ese uso puntual y read-only), confirmando que
-> `AccountRumWebVitalsEventsAdaptiveGroupsFilter_InputObject` expone
-> `requestHost` (con toda su familia de operadores: `_in`, `_like`, `_neq`,
-> etc.) — **Opción A**, campo no adivinado. La documentación pública del
-> schema de Cloudflare confirmó además que `rumWebVitalsEventsAdaptiveGroups`
-> solo existe bajo `account`, nunca bajo `zones` (Opción B descartada). Un grep
-> del repo confirmó cero referencias a `www.monedario.cl` (el host canónico es
-> `monedario.cl`, `src/config.ts:4`), así que no hacía falta cobertura
-> multi-host. Con el Step 1 ya resuelto, el ejecutor (`general-purpose`, worktree
-> aislado `.claude/worktrees/agent-aa4c4c699f0d36007`, rama
-> `advisor/047-growth-005-rum-hostname-filter`, commit `442cb309`,
-> `fix(data-signals): filtrar RUM de Cloudflare por hostname (GROWTH-005)`) fue
-> directo a la implementación sin re-derivar la compuerta.
->
-> Diff acotado a los 2 archivos en alcance (`+169/-10`): `fetchRumWebVitals`
-> ahora filtra por `requestHost: $host` vía una constante `SITE_HOST`
-> (`process.env.CLOUDFLARE_SITE_HOST ?? "monedario.cl"`), y el armado del query
-> se factorizó en una función pura exportada `buildRumQuery` para poder
-> testearlo sin red. **Revisión (tech-lead) APROBADA** — reverificada de forma
-> independiente en el worktree y de nuevo en el árbol principal tras el merge:
-> `node --check` exit 0; `pnpm exec vitest run tests/scripts/cloudflare-rum-query.test.ts`
-> → 6/6 (incluye una aserción sobre el body real del POST mockeado, no solo
-> sobre la función pura); suite completa `pnpm test` → **1040/1040** (125
-> archivos); `eslint` de los 2 archivos en alcance → exit 0; `format:check` →
-> exit 0; `git status` limpio, solo los 2 archivos del plan. Confirmado por
-> grep que `sanitizeRumRoutes` y `normalizeRumRow` (shape
-> `{ path, count, clsP75, inpP75Ms, lcpP75Ms }`) quedaron intactos. Confirmado
-> que ningún otro archivo del repo importaba de `cloudflare-fetch.mjs` antes de
-> este cambio, así que exportar `buildRumQuery`/`fetchRumWebVitals` no tiene
-> radio de impacto adicional.
->
-> **Desviaciones documentadas y aprobadas en mérito:** (1) el `main().catch(...)`
-> del pie del archivo quedó guardado tras
-> `if (process.argv[1] === fileURLToPath(import.meta.url))` — necesario para que
-> importar el módulo desde el test no dispare `main()` como efecto secundario
-> (falla por env vars ausentes); mismo patrón ya establecido en
-> `scripts/data-signals/lcp-gate.mjs:178`, verificado idéntico por el revisor.
-> (2) se exportaron tanto `buildRumQuery` como `fetchRumWebVitals` (el plan pedía
-> solo una); permite un test más fuerte que afirma el hostname tanto en el query
-> puro como en el body real de `fetch` mockeado.
->
-> **MERGEADO a `main` el 2026-07-13** (fast-forward `a60b5bf7..442cb309`, a
-> pedido del operador tras la recomendación del revisor — "OK, do it"; el
-> propio plan seguía sin drift respecto a su `Planned at` en el momento del
-> merge). Reverificado en el árbol principal tras el merge: `pnpm test`
-> 1040/1040, `eslint`/`format:check` limpios, `git status` limpio salvo un
-> archivo no relacionado (`docs/backlog/PLAN-calculator-led-growth-2026-06-28.md`,
-> edición previa del operador, no tocado por este trabajo). No empujado a
-> `origin/main` (el operador no lo pidió). Worktree y rama local del ejecutor
-> eliminados tras el merge. **Archivado por política de cierre atómico** — el
-> archivo del plan vive ahora en
-> [`archive/047-growth-005-rum-hostname-filter.md`](archive/047-growth-005-rum-hostname-filter.md).
->
-> **Pendiente identificado, no ejecutado en este plan (a propósito, fuera de
-> alcance):** la nota de mantenimiento del propio plan pide anotar en el
-> scorecard/README de operaciones que el RUM de rutas compartidas (`/`) no es
-> comparable pre/post-fix (las series históricas mezclaban hostnames); ese
-> archivo (`scripts/build-weekly-search-report.mjs` y el README de operaciones)
-> estaba explícitamente fuera de alcance de 047 y sigue pendiente como
-> seguimiento separado. Con este cierre, el 4º ítem del checklist de baseline
-> del brief 045 (`GROWTH-005 cerrado para rutas compartidas`,
-> `docs/reports/GROWTH-DIRECTION-DELTA-2026-W27.md` §4) queda tachado.
 
 **Por qué este orden:**
 - **035, 038, 039, 037 y 036 ya ejecutados** (ver notas abajo): máxima
@@ -888,6 +846,15 @@ paralelizable entre sí salvo que se indique lo contrario.
 
 Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main`.
 
+### Sexta auditoría profunda / Issue #315 — 2026-07-16
+
+| Plan | Título | Prioridad | Esfuerzo | Estado |
+|------|--------|-----------|----------|--------|
+| [047](archive/047-growth-005-rum-hostname-filter.md) | Filtrar RUM por `requestHost = monedario.cl` y conservar allowlist defensiva | P2 | M | DONE (commit `a3ac9504`; final Issue #315 change) |
+| [048](archive/048-search-signal-integrity.md) | Deltas WoW reales, estados de fuente explícitos y CTR acotado | P1 | M | DONE (commit `e472ea43`; final Issue #315 change) |
+| [049](archive/049-analytics-calendar-and-funnel-semantics.md) | Alinear semanas a Chile con cutover versionado y reportar ratios de eventos honestamente | P1 | M | DONE (PR #331, squash `ac0c4a17`; Worker `dbc273e9-4f89-48f8-b572-fff6e536ff81`) |
+| [050](archive/050-weekly-search-ops-current-scale.md) | Restaurar revisión semanal con decisión explícita el 2026-08-01 | P1 | S | DONE (commit `e01d4a93`; final Issue #315 change) |
+
 ### Quinta auditoría profunda 2026-07-10
 
 | Plan | Título | Prioridad | Esfuerzo | Estado |
@@ -902,7 +869,6 @@ Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main
 | [042](archive/042-remove-calculator-completed-typo-event.md) | Quitar el evento typo `calculator_completed` de 8 archivos + el test que lo fijaba | P3 | S | DONE (merge commit `afeb9203`) — código muerto, cero impacto en métricas; cierra el ítem residual de 039 |
 | [043](archive/043-analytics-item-id-shape-decision.md) | Restringir la forma de `item_id` en analytics (carve-out de 038) — Opción 2 elegida por el operador | P3 | S | DONE (merge commit `66fd6a3c`) — cierra el hallazgo original de 037/038 sobre `item_id` |
 | [045](archive/045-measurement-resequence-two-lanes.md) | **Spike de dirección** (`/improve next` 2026-07-12): re-secuenciar el crecimiento en dos carriles + checklist de baseline; entregable `docs/reports/GROWTH-DIRECTION-DELTA-2026-W27.md` | P1 | S | DONE (fast-forward `f34210ff`) — brief read-only; follow-up de implementación desglosado en el plan 047 (GROWTH-005); adopción de la re-secuencia = decisión del owner |
-| [047](archive/047-growth-005-rum-hostname-filter.md) | Filtrar el RUM de Cloudflare por hostname (`requestHost: monedario.cl`) para cerrar GROWTH-005 — Step 1 (schema) resuelto por introspección GraphQL en vivo | P2 | M | DONE (fast-forward `442cb309`) — follow-up de implementación de 045; anotar el corte de comparabilidad histórica en el scorecard queda pendiente, fuera de alcance |
 
 ### Auditorías 2026-06-15 a 2026-06-19
 

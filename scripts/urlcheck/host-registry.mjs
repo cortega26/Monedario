@@ -85,6 +85,16 @@ registerHosts("known_soft_nonblocking", [
   "google.cl",
 ]);
 
+// Official hosts proven to return anti-automation statuses to the lightweight
+// CI probe while serving valid content to a browser-like client. These remain
+// `official_source`; only the documented anti-bot statuses are downgraded.
+const AUTOMATION_BLOCKING_HOSTS = new Set(["www.afc.cl", "afc.cl"]);
+
+/** Returns true when a host has a verified automation-only blocking response. */
+export function isAutomationBlockingHost(hostname) {
+  return AUTOMATION_BLOCKING_HOSTS.has(hostname);
+}
+
 // ---- Allowed redirect families ----
 // Define which final hosts are acceptable for a given original host.
 // Handles www ↔ non-www and http → https normalizations.

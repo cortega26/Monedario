@@ -24,8 +24,11 @@ export const MAX_BODY_SIZE = 2048;
 /** Rate limit: max requests per IP per rolling 60-second window. */
 const RATE_LIMIT_MAX = 30;
 
-/** KV key prefix for telemetry counters. */
-const KV_PREFIX = "telemetry:v1";
+/** Legacy counters use UTC dates. Preserved until the explicit cutover. */
+const LEGACY_KV_PREFIX = "telemetry:v1";
+
+/** Versioned counters whose dates follow EXPORT_TIMEZONE. */
+const LOCAL_CALENDAR_KV_PREFIX = "telemetry:v2";
 
 /** KV TTL in seconds (35 days = 5 weeks). */
 const KV_TTL_SECONDS = 60 * 60 * 24 * 35; // 3_024_000
@@ -291,20 +294,152 @@ export function sanitizeCollectorEvent(
 
 // ── Helper: build KV counter key ─────────────────────────────────────────────
 
-function getDateString(): string {
-  // UTC date in ISO format: YYYY-MM-DD
-  const now = new Date();
-  const year = now.getUTCFullYear();
-  const month = String(now.getUTCMonth() + 1).padStart(2, "0");
-  const day = String(now.getUTCDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`;
+export function calendarDateInTimeZone(date: Date, timeZone: string): string {
+  let parts: Intl.DateTimeFormatPart[];
+  try {
+    parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).formatToParts(date);
+  } catch {
+    throw new Error(`Invalid EXPORT_TIMEZONE: "${timeZone}"`);
+  }
+
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  if (!values.year || !values.month || !values.day) {
+    throw new Error(`Could not resolve calendar date in EXPORT_TIMEZONE: "${timeZone}"`);
+  }
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
+interface CounterStorageSelection {
+  prefix: string;
+  date: string;
+}
+
+interface CounterCalendarCutover {
+  instant: Date;
+  localDate: string;
+  week: string;
+}
+
+function calendarDateTimeInTimeZone(
+  date: Date,
+  timeZone: string,
+): { date: string; hour: string; minute: string; second: string } {
+  let parts: Intl.DateTimeFormatPart[];
+  try {
+    parts = new Intl.DateTimeFormat("en-CA", {
+      timeZone,
+      hourCycle: "h23",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    }).formatToParts(date);
+  } catch {
+    throw new Error(`Invalid EXPORT_TIMEZONE: "${timeZone}"`);
+  }
+
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  if (
+    !values.year ||
+    !values.month ||
+    !values.day ||
+    !values.hour ||
+    !values.minute ||
+    !values.second
+  ) {
+    throw new Error(`Could not resolve cutover in EXPORT_TIMEZONE: "${timeZone}"`);
+  }
+
+  return {
+    date: `${values.year}-${values.month}-${values.day}`,
+    hour: values.hour,
+    minute: values.minute,
+    second: values.second,
+  };
+}
+
+function parseCounterCalendarCutover(
+  cutoverAt: string | undefined,
+  timeZone: string,
+): CounterCalendarCutover | null {
+  if (!cutoverAt) return null;
+  if (!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/.test(cutoverAt)) {
+    throw new Error(
+      `Invalid COUNTER_KEY_CUTOVER_AT: "${cutoverAt}" (expected an ISO UTC timestamp)`,
+    );
+  }
+
+  const instant = new Date(cutoverAt);
+  if (Number.isNaN(instant.getTime())) {
+    throw new Error(`Invalid COUNTER_KEY_CUTOVER_AT: "${cutoverAt}"`);
+  }
+
+  const local = calendarDateTimeInTimeZone(instant, timeZone);
+  const localDate = new Date(`${local.date}T00:00:00Z`);
+  if (
+    local.hour !== "00" ||
+    local.minute !== "00" ||
+    local.second !== "00" ||
+    localDate.getUTCDay() !== 1
+  ) {
+    throw new Error(
+      "COUNTER_KEY_CUTOVER_AT must resolve to Monday 00:00:00 in EXPORT_TIMEZONE",
+    );
+  }
+
+  return {
+    instant,
+    localDate: local.date,
+    week: dateToISOWeekUTC(localDate),
+  };
+}
+
+/**
+ * Selects the one counter namespace/date convention used for an ingestion.
+ * Before the configured boundary, v1 preserves the established UTC contract.
+ * At and after the boundary, v2 stores the configured local calendar date.
+ */
+export function counterStorageForInstant(
+  now: Date,
+  timeZone: string,
+  cutoverAt?: string,
+): CounterStorageSelection {
+  const cutover = parseCounterCalendarCutover(cutoverAt, timeZone);
+  if (!cutover || now < cutover.instant) {
+    return { prefix: LEGACY_KV_PREFIX, date: now.toISOString().slice(0, 10) };
+  }
+
+  return {
+    prefix: LOCAL_CALENDAR_KV_PREFIX,
+    date: calendarDateInTimeZone(now, timeZone),
+  };
+}
+
+/** Selects exactly one versioned prefix for an explicit ISO-week export. */
+export function counterPrefixForExportWeek(
+  week: string,
+  timeZone: string,
+  cutoverAt?: string,
+): string {
+  const cutover = parseCounterCalendarCutover(cutoverAt, timeZone);
+  if (!cutover || week < cutover.week) return LEGACY_KV_PREFIX;
+  return LOCAL_CALENDAR_KV_PREFIX;
 }
 
 function buildCounterKey(
   event: string,
   params: Record<string, string | number | boolean>,
+  timeZone: string,
+  cutoverAt?: string,
 ): string {
-  const date = getDateString();
+  const storage = counterStorageForInstant(new Date(), timeZone, cutoverAt);
   const slug = String(params.calculator_slug ?? params.item_id ?? params.page_type ?? "unknown");
 
   // Build a stable dimension suffix from non-slug params, sorted by key
@@ -315,7 +450,7 @@ function buildCounterKey(
 
   const dimSuffix = dimEntries.length > 0 ? `:${dimEntries.join(":")}` : "";
 
-  return `${KV_PREFIX}:${date}:${event}:${slug}${dimSuffix}`;
+  return `${storage.prefix}:${storage.date}:${event}:${slug}${dimSuffix}`;
 }
 
 // ── Rate limiter (KV-backed) ─────────────────────────────────────────────────
@@ -349,8 +484,10 @@ async function ingestEvent(
   kv: KVNamespace,
   event: string,
   params: Record<string, string | number | boolean>,
+  timeZone: string,
+  cutoverAt?: string,
 ): Promise<void> {
-  const key = buildCounterKey(event, params);
+  const key = buildCounterKey(event, params, timeZone, cutoverAt);
 
   try {
     // Increment counter with TTL
@@ -385,11 +522,14 @@ function corsHeaders(): Record<string, string> {
  * from UTC, then walk back to the most-recently-completed Sunday, then
  * back to Monday of that week, and compute the ISO week from that Monday.
  */
-function previousCompleteISOWeekInTz(): string {
+export function previousCompleteISOWeekInTz(
+  timeZone: string,
+  now = new Date(),
+): string {
   // Use the most recent fully completed Sunday as the reference. On Sunday
   // itself, the current ISO week is still in progress, so step back 7 days.
-  const now = new Date();
-  const todayUtc = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+  const localDate = calendarDateInTimeZone(now, timeZone);
+  const todayUtc = new Date(`${localDate}T00:00:00Z`);
   const dayNum = todayUtc.getUTCDay() || 7; // 1=Monday … 7=Sunday
   const daysBack = dayNum === 7 ? 7 : dayNum;
   const completedSunday = new Date(todayUtc.getTime() - daysBack * 86_400_000);
@@ -454,18 +594,19 @@ export interface TelemetryCounter {
 }
 
 /**
- * Lists all telemetry counters from KV (paginated).
- * Parses keys of the form `telemetry:v1:{date}:{event}:{slug}[:{dimensions...}]`
+ * Lists telemetry counters from one versioned KV namespace (paginated).
+ * Parses keys of the form `telemetry:vN:{date}:{event}:{slug}[:{dimensions...}]`
  * and returns parsed rows with counts.
  */
 async function listTelemetryCounters(
   kv: KVNamespace,
+  counterPrefix: string,
   window?: { from: string; to: string },
 ): Promise<TelemetryCounter[]> {
   const counters: TelemetryCounter[] = [];
   const prefixes = window
-    ? datesInWindowUTC(window.from, window.to).map((date) => `${KV_PREFIX}:${date}:`)
-    : [`${KV_PREFIX}:`];
+    ? datesInWindowUTC(window.from, window.to).map((date) => `${counterPrefix}:${date}:`)
+    : [`${counterPrefix}:`];
 
   for (const prefix of prefixes) {
     let cursor: string | undefined;
@@ -507,7 +648,7 @@ function datesInWindowUTC(from: string, to: string): string[] {
 
 /**
  * Parses a KV counter key into its components.
- * Key format: telemetry:v1:{date}:{event}:{slug}[:{dimension...}]
+ * Key format: telemetry:v1|v2:{date}:{event}:{slug}[:{dimension...}]
  */
 export function parseCounterKey(
   key: string,
@@ -516,7 +657,12 @@ export function parseCounterKey(
   // Minimum 5 segments: prefix:v1:date:event:slug
   const parts = key.split(":");
   if (parts.length < 5) return null;
-  if (parts[0] !== "telemetry" || parts[1] !== "v1") return null;
+  if (
+    parts[0] !== "telemetry" ||
+    (parts[1] !== "v1" && parts[1] !== "v2")
+  ) {
+    return null;
+  }
 
   const date = parts[2];
   if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return null;
@@ -704,18 +850,29 @@ export interface Env {
   ANALYTICS_DISABLED?: string;
   SCHEMA_VERSION?: string;
   EXPORT_TIMEZONE?: string;
+  COUNTER_KEY_CUTOVER_AT?: string;
   EXPORT_SECRET?: string;
 }
 
 export async function runExport(env: Env, week: string): Promise<ExportRunSummary> {
   const schemaVersion = parseInt(env.SCHEMA_VERSION ?? "1", 10);
+  const timeZone = env.EXPORT_TIMEZONE ?? "America/Santiago";
+  const counterPrefix = counterPrefixForExportWeek(
+    week,
+    timeZone,
+    env.COUNTER_KEY_CUTOVER_AT,
+  );
   const window = isoWeekToDateRangeUTC(week);
 
   console.log(
-    `[analytics-export] week=${week} window=${window.from}→${window.to}`,
+    `[analytics-export] week=${week} window=${window.from}→${window.to} prefix=${counterPrefix}`,
   );
 
-  const counters = await listTelemetryCounters(env.ANALYTICS_TELEMETRY, window);
+  const counters = await listTelemetryCounters(
+    env.ANALYTICS_TELEMETRY,
+    counterPrefix,
+    window,
+  );
   const aggregated = aggregateWindow(counters, window.from, window.to);
   console.log(
     `[analytics-export] listed=${counters.length} aggregated=${aggregated.length} rows`,
@@ -766,7 +923,9 @@ async function handleManualExport(request: Request, env: Env): Promise<Response>
   }
 
   const requestedWeek = url.searchParams.get("week");
-  const week = requestedWeek ?? previousCompleteISOWeekInTz();
+  const week =
+    requestedWeek ??
+    previousCompleteISOWeekInTz(env.EXPORT_TIMEZONE ?? "America/Santiago");
   if (!/^\d{4}-W\d{2}$/.test(week)) {
     return jsonResponse({ error: "invalid_week" }, 400);
   }
@@ -874,7 +1033,14 @@ export default {
     }
 
     // Ingest — increment KV counters
-    await ingestEvent(env.ANALYTICS_TELEMETRY, validation.event, validation.params);
+    const timeZone = env.EXPORT_TIMEZONE ?? "America/Santiago";
+    await ingestEvent(
+      env.ANALYTICS_TELEMETRY,
+      validation.event,
+      validation.params,
+      timeZone,
+      env.COUNTER_KEY_CUTOVER_AT,
+    );
 
     // 202 Accepted — no echo of the payload
     return new Response(null, { status: 202, headers: corsHeaders() });
@@ -897,7 +1063,7 @@ export default {
     const tz = env.EXPORT_TIMEZONE ?? "America/Santiago";
 
     // Compute the previous complete ISO week.
-    const week = previousCompleteISOWeekInTz();
+    const week = previousCompleteISOWeekInTz(tz);
     console.log(`[analytics-export] trigger=cron week=${week} tz=${tz}`);
 
     try {

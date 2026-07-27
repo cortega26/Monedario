@@ -79,11 +79,11 @@ const seguroCesantiaFaqs = [
 ---
 
 <Layout
-  title="Simulador de Seguro de Cesantía: calcula tu cobertura (AFC y Fondo Solidario)"
+  title="Calculadora de Seguro de Cesantía: calcula tu cobertura (AFC y Fondo Solidario)"
   description="Simula tu seguro de cesantía: cuánto te pagan, por cuántos meses y con qué causal, según tu sueldo y saldo CIC. Incluye Fondo de Cesantía Solidario."
 >
   <CalculatorJsonLd
-    name="Simulador de Seguro de Cesantía: calcula tu cobertura (AFC y Fondo Solidario)"
+    name="Calculadora de Seguro de Cesantía: calcula tu cobertura (AFC y Fondo Solidario)"
     description="Simula tu seguro de cesantía: cuánto te pagan, por cuántos meses y con qué causal, según tu sueldo y saldo CIC. Incluye Fondo de Cesantía Solidario."
     faqs={seguroCesantiaFaqs}
   />
@@ -343,9 +343,9 @@ const seguroCesantiaFaqs = [
       <p class="text-sm text-muted">
         Esta calculadora no reemplaza la liquidación oficial de AFC. El saldo
         exacto de tu CIC está en <a
-          href="https://www.afc.cl"
+          href="https://personas.afc.cl/"
           target="_blank"
-          rel="noopener noreferrer">afc.cl</a
+          rel="noopener noreferrer">Sucursal Virtual de AFC</a
         > con tu ClaveÚnica y los montos del FCS se revisan en la tabla vigente de
         AFC.
       </p>
@@ -789,10 +789,10 @@ const seguroCesantiaFaqs = [
       finalNote.className = "mt-3 text-xs text-muted";
       finalNote.append("Consulta tu saldo real en ");
       const afcLink = document.createElement("a");
-      afcLink.href = "https://www.afc.cl";
+      afcLink.href = "https://personas.afc.cl/";
       afcLink.target = "_blank";
       afcLink.className = "underline";
-      afcLink.textContent = "afc.cl";
+      afcLink.textContent = "Sucursal Virtual de AFC";
       finalNote.append(afcLink, " con tu ClaveÚnica.");
 
       document

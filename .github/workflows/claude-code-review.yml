@@ -15,7 +15,7 @@ jobs:
     if: >
       github.event.pull_request.head.repo.full_name == github.repository &&
       !endsWith(github.actor, '[bot]')
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 15
     permissions:
       contents: write
@@ -31,7 +31,7 @@ jobs:
 
       - name: Run Claude Code Review
         id: claude-review
-        uses: anthropics/claude-code-action@4633baf5267540f3f8cb58b684f79901d564c280 # v1
+        uses: anthropics/claude-code-action@e90deca47693f9457b72f2b53c17d7c445a87342 # v1
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           plugin_marketplaces: "https://github.com/anthropics/claude-code.git"

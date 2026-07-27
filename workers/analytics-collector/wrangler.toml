@@ -15,10 +15,12 @@ zone_id = "9d53871bed75e9ad5d4cc5da84a18fcf"
 # Lunes 07:57 UTC (madrugada en Chile). Se usa minuto 57 para evitar congestión
 # en :00/:30 con otros cron jobs del ecosistema Cloudflare.
 [triggers]
-crons = ["57 7 * * 1"]
+crons = ["57 7 * * MON"]
 
 # ── KV Namespace ────────────────────────────────────────────────────────────
-# Contadores agregados. Clave: telemetry:v1:{date}:{event}:{slug}:{dimension}
+# Contadores agregados. Claves versionadas:
+#   telemetry:v1:{utc-date}:{event}:{slug}:{dimension} (legado)
+#   telemetry:v2:{local-date}:{event}:{slug}:{dimension} (desde el cutover)
 # TTL = 35 días (5 semanas). Se crea con:
 #   npx wrangler kv:namespace create ANALYTICS_TELEMETRY
 #   npx wrangler kv:namespace create ANALYTICS_TELEMETRY --preview
@@ -40,6 +42,11 @@ SCHEMA_VERSION = "1"
 
 # Timezone para cálculo de semana ISO en el export semanal.
 EXPORT_TIMEZONE = "America/Santiago"
+
+# Cutover a claves v2 exactamente al inicio de una semana local. Antes de este
+# instante el writer y los exports conservan v1/UTC; desde este instante usan
+# v2/America-Santiago. 2026-07-20 00:00 CLT = 04:00 UTC.
+COUNTER_KEY_CUTOVER_AT = "2026-07-20T04:00:00Z"
 
 # TTL en días de los contadores KV (5 semanas = 35 días). Expresado en segundos.
 KV_COUNTER_TTL_SECONDS = "3024000"

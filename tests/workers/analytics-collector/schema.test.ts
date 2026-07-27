@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import {
@@ -5,7 +7,11 @@ import {
   validateEventPayload,
   sanitizeCollectorEvent,
   MAX_BODY_SIZE,
+  calendarDateInTimeZone,
+  counterStorageForInstant,
+  counterPrefixForExportWeek,
   dateToISOWeekUTC,
+  previousCompleteISOWeekInTz,
   isoWeekToDateRangeUTC,
   parseCounterKey,
   aggregateWindow,
@@ -454,6 +460,106 @@ describe("dateToISOWeekUTC", () => {
   });
 });
 
+describe("Chile calendar boundaries", () => {
+  it("uses the Santiago calendar date across summer and winter UTC crossovers", () => {
+    expect(
+      calendarDateInTimeZone(
+        new Date("2026-01-15T02:30:00Z"),
+        "America/Santiago",
+      ),
+    ).toBe("2026-01-14");
+    expect(
+      calendarDateInTimeZone(
+        new Date("2026-07-15T03:30:00Z"),
+        "America/Santiago",
+      ),
+    ).toBe("2026-07-14");
+  });
+
+  it("selects the previous complete week from local Sunday and Monday", () => {
+    expect(
+      previousCompleteISOWeekInTz(
+        "America/Santiago",
+        new Date("2026-07-13T03:30:00Z"),
+      ),
+    ).toBe("2026-W27");
+    expect(
+      previousCompleteISOWeekInTz(
+        "America/Santiago",
+        new Date("2026-07-13T04:30:00Z"),
+      ),
+    ).toBe("2026-W28");
+  });
+
+  it("handles the ISO-year rollover using the local Monday", () => {
+    expect(
+      previousCompleteISOWeekInTz(
+        "America/Santiago",
+        new Date("2026-01-05T02:30:00Z"),
+      ),
+    ).toBe("2025-W52");
+    expect(
+      previousCompleteISOWeekInTz(
+        "America/Santiago",
+        new Date("2026-01-05T03:30:00Z"),
+      ),
+    ).toBe("2026-W01");
+  });
+
+  it("rejects an invalid configured timezone", () => {
+    expect(() =>
+      calendarDateInTimeZone(new Date("2026-07-16T00:00:00Z"), "Mars/Olympus"),
+    ).toThrow('Invalid EXPORT_TIMEZONE: "Mars/Olympus"');
+  });
+
+  it("selects UTC v1 before cutover and local-date v2 at the boundary", () => {
+    const cutoverAt = "2026-07-20T04:00:00Z";
+
+    expect(
+      counterStorageForInstant(
+        new Date("2026-07-20T03:59:59Z"),
+        "America/Santiago",
+        cutoverAt,
+      ),
+    ).toEqual({ prefix: "telemetry:v1", date: "2026-07-20" });
+    expect(
+      counterStorageForInstant(
+        new Date("2026-07-20T04:00:00Z"),
+        "America/Santiago",
+        cutoverAt,
+      ),
+    ).toEqual({ prefix: "telemetry:v2", date: "2026-07-20" });
+  });
+
+  it("assigns each export week to exactly one versioned prefix", () => {
+    const cutoverAt = "2026-07-20T04:00:00Z";
+
+    expect(
+      counterPrefixForExportWeek("2026-W29", "America/Santiago", cutoverAt),
+    ).toBe("telemetry:v1");
+    expect(
+      counterPrefixForExportWeek("2026-W30", "America/Santiago", cutoverAt),
+    ).toBe("telemetry:v2");
+  });
+
+  it("rejects a cutover that is not Monday local midnight", () => {
+    expect(() =>
+      counterPrefixForExportWeek(
+        "2026-W30",
+        "America/Santiago",
+        "2026-07-20T03:59:59Z",
+      ),
+    ).toThrow("must resolve to Monday 00:00:00");
+    expect(() =>
+      counterPrefixForExportWeek(
+        "2026-W30",
+        "America/Santiago",
+        "2026-07-21T04:00:00Z",
+      ),
+    ).toThrow("must resolve to Monday 00:00:00");
+  });
+});
+
 describe("isoWeekToDateRangeUTC", () => {
   it("returns Monday–Sunday range for W26 2026", () => {
     const range = isoWeekToDateRangeUTC("2026-W26");
@@ -508,7 +614,18 @@ describe("parseCounterKey", () => {
 
   it("returns null for invalid prefix", () => {
     expect(parseCounterKey("other:v1:2026-06-28:event:slug", 1)).toBeNull();
-    expect(parseCounterKey("telemetry:v2:2026-06-28:event:slug", 1)).toBeNull();
+    expect(parseCounterKey("telemetry:v3:2026-06-28:event:slug", 1)).toBeNull();
+  });
+
+  it("parses local-calendar v2 keys", () => {
+    expect(
+      parseCounterKey("telemetry:v2:2026-07-20:calculator_view:sueldo-liquido", 7),
+    ).toMatchObject({
+      date: "2026-07-20",
+      event: "calculator_view",
+      slug: "sueldo-liquido",
+      count: 7,
+    });
   });
 
   it("returns null for too few segments", () => {
@@ -729,9 +846,41 @@ describe("runExport", () => {
       },
     ]);
   });
+
+  it("never mixes v1 and v2 counters across the configured cutover", async () => {
+    const env = makeEnv({
+      "telemetry:v1:2026-07-13:calculator_view:sueldo-liquido": "11",
+      "telemetry:v2:2026-07-13:calculator_view:sueldo-liquido": "99",
+      "telemetry:v1:2026-07-20:calculator_view:sueldo-liquido": "88",
+      "telemetry:v2:2026-07-20:calculator_view:sueldo-liquido": "12",
+    });
+    env.EXPORT_TIMEZONE = "America/Santiago";
+    env.COUNTER_KEY_CUTOVER_AT = "2026-07-20T04:00:00Z";
+
+    const legacy = await runExport(env, "2026-W29");
+    const local = await runExport(env, "2026-W30");
+
+    expect(legacy.totalEvents).toBe(11);
+    expect(local.totalEvents).toBe(12);
+  });
 });
 
 describe("scheduled()", () => {
+  it("runs on Monday after the previous ISO week is complete", () => {
+    const config = readFileSync(
+      new URL(
+        "../../../workers/analytics-collector/wrangler.toml",
+        import.meta.url,
+      ),
+      "utf8",
+    );
+
+    expect(config).toMatch(/crons\s*=\s*\["57 7 \* \* MON"\]/);
+    expect(config).toMatch(
+      /COUNTER_KEY_CUTOVER_AT\s*=\s*"2026-07-20T04:00:00Z"/,
+    );
+  });
+
   it("re-throws infrastructure failures so the invocation is marked failed", async () => {
     const env = {
       ANALYTICS_TELEMETRY: {
@@ -749,6 +898,70 @@ describe("scheduled()", () => {
     await expect(
       analyticsCollector.scheduled({} as never, env),
     ).rejects.toThrow();
+  });
+});
+
+describe("event ingestion calendar", () => {
+  const cutoverAt = "2026-07-20T04:00:00Z";
+
+  it("preserves v1 UTC keys before the Monday-local cutover", async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-07-15T03:30:00Z"));
+    const env = makeEnv();
+    env.ANALYTICS_DISABLED = "0";
+    env.EXPORT_TIMEZONE = "America/Santiago";
+    env.COUNTER_KEY_CUTOVER_AT = cutoverAt;
+
+    const response = await analyticsCollector.fetch(
+      new Request("https://monedario.cl/api/analytics/event", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Origin: "https://monedario.cl",
+          "CF-Connecting-IP": "192.0.2.1",
+        },
+        body: JSON.stringify({
+          event: "calculator_start",
+          params: { calculator_slug: "sueldo-liquido", interaction_type: "input" },
+        }),
+      }),
+      env,
+    );
+
+    expect(response.status).toBe(202);
+    const kv = env.ANALYTICS_TELEMETRY as unknown as MockKV;
+    expect(kv.store.get("telemetry:v1:2026-07-15:calculator_start:sueldo-liquido:input")).toBe("1");
+    expect(kv.store.has("telemetry:v2:2026-07-14:calculator_start:sueldo-liquido:input")).toBe(false);
+  });
+
+  it("writes v2 counters under the configured local date after cutover", async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-07-21T03:30:00Z"));
+    const env = makeEnv();
+    env.ANALYTICS_DISABLED = "0";
+    env.EXPORT_TIMEZONE = "America/Santiago";
+    env.COUNTER_KEY_CUTOVER_AT = cutoverAt;
+
+    const response = await analyticsCollector.fetch(
+      new Request("https://monedario.cl/api/analytics/event", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Origin: "https://monedario.cl",
+          "CF-Connecting-IP": "192.0.2.2",
+        },
+        body: JSON.stringify({
+          event: "calculator_start",
+          params: { calculator_slug: "sueldo-liquido", interaction_type: "input" },
+        }),
+      }),
+      env,
+    );
+
+    expect(response.status).toBe(202);
+    const kv = env.ANALYTICS_TELEMETRY as unknown as MockKV;
+    expect(kv.store.get("telemetry:v2:2026-07-20:calculator_start:sueldo-liquido:input")).toBe("1");
+    expect(kv.store.has("telemetry:v1:2026-07-21:calculator_start:sueldo-liquido:input")).toBe(false);
   });
 });
 

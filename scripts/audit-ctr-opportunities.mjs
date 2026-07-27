@@ -1,163 +1,182 @@
 #!/usr/bin/env node
 
 /**
- * audit-ctr-opportunities.mjs
+ * Bounded, on-demand full-catalog CTR opportunity sweep.
  *
- * One-off, on-demand full-catalog CTR-opportunity sweep. Complements the
- * weekly search scorecard, which only evaluates the 24-page watchlist —
- * this pass covers every page GSC has data for.
- *
- * Aggregates all weekly GSC "pages" exports in
- * output/operations/data-signals/gsc/ and flags pages that rank on page 1–2
- * but convert poorly: enough impressions to be reliable, average position
- * 4–15, and CTR below target. Writes a dated evidence report to docs/reports/.
- *
- * This is NOT a scheduled job. Run it manually when you want a sweep:
- *   node scripts/audit-ctr-opportunities.mjs
- *
- * It produces evidence only — proposed title/description rewrites are a
- * separate editorial step.
+ * Defaults to the latest four complete weekly GSC page artifacts. Use --all
+ * only for intentional all-history discovery. The 3.5% threshold is a
+ * prioritization heuristic, never an expected CTR or click forecast.
  */
 
-import { readdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
+import path from "node:path";
 
-const GSC_DIR = "output/operations/data-signals/gsc";
-const MIN_IMPRESSIONS = 150; // aggregate floor — below this, CTR is mostly noise
+const DEFAULT_GSC_DIR = "output/operations/data-signals/gsc";
+const DEFAULT_ROLLING_WEEKS = 4;
+const MIN_IMPRESSIONS = 150;
 const POSITION_MIN = 4;
 const POSITION_MAX = 15;
-const CTR_TARGET = 0.035; // 3.5% — matches build-weekly-search-report.mjs
+const CTR_OPPORTUNITY_HEURISTIC = 0.035;
 
-const pageFiles = readdirSync(GSC_DIR)
-  .filter(f => /-pages\.json$/.test(f))
-  .sort();
+function parseArgs(argv) {
+  const today = new Date().toISOString().slice(0, 10);
+  const options = {
+    gscDir: DEFAULT_GSC_DIR,
+    weeks: DEFAULT_ROLLING_WEEKS,
+    all: false,
+    outputFile: `docs/reports/CTR-AUDIT-${today}.md`,
+    jsonFile: `docs/reports/CTR-AUDIT-${today}.json`,
+  };
+  let weeksSpecified = false;
 
-if (pageFiles.length === 0) {
-  console.error(`No *-pages.json files found in ${GSC_DIR}`);
-  process.exit(1);
-}
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    if (arg === "--gsc-dir") {
+      options.gscDir = argv[++index] ?? "";
+    } else if (arg === "--weeks") {
+      weeksSpecified = true;
+      options.weeks = Number(argv[++index]);
+    } else if (arg === "--all") {
+      options.all = true;
+    } else if (arg === "--out") {
+      options.outputFile = argv[++index] ?? "";
+    } else if (arg === "--json-out") {
+      options.jsonFile = argv[++index] ?? "";
+    } else if (arg === "--help" || arg === "-h") {
+      console.log(`Usage:
+  node scripts/audit-ctr-opportunities.mjs [options]
 
-/** @type {Map<string, {clicks:number,impressions:number,posImpr:number,weeks:Set<string>}>} */
-const pages = new Map();
-const weeksCovered = new Set();
-
-for (const file of pageFiles) {
-  const parsed = JSON.parse(readFileSync(`${GSC_DIR}/${file}`, "utf-8"));
-  const week = parsed.week ?? file.replace("-pages.json", "");
-  weeksCovered.add(week);
-  for (const row of parsed.data ?? []) {
-    if (!row.page || !row.impressions) continue;
-    const agg = pages.get(row.page) ?? {
-      clicks: 0,
-      impressions: 0,
-      posImpr: 0,
-      weeks: new Set(),
-    };
-    agg.clicks += row.clicks ?? 0;
-    agg.impressions += row.impressions;
-    agg.posImpr += (row.position ?? 0) * row.impressions;
-    agg.weeks.add(week);
-    pages.set(row.page, agg);
+Options:
+  --gsc-dir <dir>   GSC artifact directory (default: ${DEFAULT_GSC_DIR})
+  --weeks <count>   Latest complete weeks to include (default: ${DEFAULT_ROLLING_WEEKS})
+  --all             Explicit all-history discovery mode
+  --out <file>      Markdown output path
+  --json-out <file> JSON output path`);
+      process.exit(0);
+    } else {
+      throw new Error(`unknown argument: ${arg}`);
+    }
   }
+
+  if (!options.gscDir || !options.outputFile || !options.jsonFile) {
+    throw new Error("--gsc-dir, --out, and --json-out require non-empty values");
+  }
+  if (!Number.isInteger(options.weeks) || options.weeks < 1) {
+    throw new Error("--weeks must be a positive integer");
+  }
+  if (options.all && weeksSpecified) {
+    throw new Error("--all and --weeks are mutually exclusive");
+  }
+  return options;
 }
 
-const analyzed = [...pages.entries()].map(([page, a]) => ({
-  page: page.replace(/^https?:\/\/[^/]+/, ""),
-  clicks: a.clicks,
-  impressions: a.impressions,
-  ctr: a.clicks / a.impressions,
-  position: a.posImpr / a.impressions,
-  weeks: a.weeks.size,
-}));
+function isoWeekWindow(week) {
+  const match = /^(\d{4})-W(\d{2})$/.exec(week);
+  if (!match) return null;
+  const year = Number(match[1]);
+  const weekNumber = Number(match[2]);
+  const jan4 = new Date(Date.UTC(year, 0, 4));
+  const jan4Day = jan4.getUTCDay() || 7;
+  const weekOneMonday = new Date(jan4.getTime() - (jan4Day - 1) * 86400000);
+  const monday = new Date(
+    weekOneMonday.getTime() + (weekNumber - 1) * 7 * 86400000
+  );
+  const sunday = new Date(monday.getTime() + 6 * 86400000);
+  return {
+    from: monday.toISOString().slice(0, 10),
+    to: sunday.toISOString().slice(0, 10),
+  };
+}
 
-const candidates = analyzed
-  .filter(
-    p =>
-      p.impressions >= MIN_IMPRESSIONS &&
-      p.position >= POSITION_MIN &&
-      p.position <= POSITION_MAX &&
-      p.ctr < CTR_TARGET
-  )
-  .map(p => ({
-    ...p,
-    missedClicks: Math.round(p.impressions * (CTR_TARGET - p.ctr)),
-  }))
-  .sort((a, b) => b.missedClicks - a.missedClicks);
+function readWeeklyArtifact(gscDir, file) {
+  const filePath = path.join(gscDir, file);
+  const fileWeek = file.replace(/-pages\.json$/, "");
+  let doc;
+  try {
+    doc = JSON.parse(readFileSync(filePath, "utf8"));
+  } catch {
+    throw new Error(`invalid artifact ${path.resolve(filePath)}: invalid JSON`);
+  }
+  const expectedWindow = isoWeekWindow(fileWeek);
+  if (!doc || typeof doc !== "object" || Array.isArray(doc)) {
+    throw new Error(`invalid artifact ${path.resolve(filePath)}: root must be an object`);
+  }
+  if (doc.schemaVersion !== 1 || doc.source !== "gsc" || doc.week !== fileWeek) {
+    throw new Error(
+      `invalid artifact ${path.resolve(filePath)}: schemaVersion/source/week mismatch`
+    );
+  }
+  if (
+    !expectedWindow ||
+    doc.window?.from !== expectedWindow.from ||
+    doc.window?.to !== expectedWindow.to
+  ) {
+    throw new Error(`invalid artifact ${path.resolve(filePath)}: window mismatch`);
+  }
+  if (!Array.isArray(doc.data)) {
+    throw new Error(`invalid artifact ${path.resolve(filePath)}: data must be an array`);
+  }
+  return doc;
+}
 
-// Pages with real volume stuck below page 2 — a ranking problem, not a CTR
-// problem. Surfaced separately so they are not mistaken for CTR candidates.
-const rankingBound = analyzed
-  .filter(p => p.impressions >= MIN_IMPRESSIONS && p.position > POSITION_MAX)
-  .sort((a, b) => b.impressions - a.impressions);
+function percent(value) {
+  return `${(value * 100).toFixed(2)}%`;
+}
 
-const pct = n => `${(n * 100).toFixed(2)}%`;
-const today = new Date().toISOString().slice(0, 10);
-const weekList = [...weeksCovered].sort().join(", ");
-const totalMissed = candidates.reduce((s, c) => s + c.missedClicks, 0);
+function buildMarkdown(report) {
+  const candidateRows = report.candidates.length
+    ? report.candidates
+        .map(
+          candidate =>
+            `| ${candidate.page} | ${candidate.weeks} | ${candidate.impressions} | ${candidate.clicks} | ${percent(candidate.ctr)} | ${candidate.position.toFixed(1)} | ${candidate.heuristicGapPp.toFixed(2)} pp |`
+        )
+        .join("\n")
+    : "| _(ninguna página supera el umbral)_ | | | | | | |";
+  const rankingRows = report.rankingBound.length
+    ? report.rankingBound
+        .slice(0, 10)
+        .map(
+          page =>
+            `| ${page.page} | ${page.impressions} | ${percent(page.ctr)} | ${page.position.toFixed(1)} |`
+        )
+        .join("\n")
+    : "| _(ninguna)_ | | | |";
 
-const candidateRows = candidates.length
-  ? candidates
-      .map(
-        c =>
-          `| ${c.page} | ${c.weeks} | ${c.impressions} | ${c.clicks} | ${pct(c.ctr)} | ${c.position.toFixed(1)} | ${c.missedClicks} |`
-      )
-      .join("\n")
-  : "| _(ninguna página supera el umbral)_ | | | | | | |";
+  return `# Auditoría de oportunidades de CTR
 
-const rankingRows = rankingBound.length
-  ? rankingBound
-      .slice(0, 10)
-      .map(
-        p =>
-          `| ${p.page} | ${p.impressions} | ${pct(p.ctr)} | ${p.position.toFixed(1)} |`
-      )
-      .join("\n")
-  : "| _(ninguna)_ | | | |";
-
-const report = `# Auditoría de oportunidades de CTR
-
-**Fecha:** ${today}
-**Alcance:** catálogo completo — todas las páginas con datos en Google Search Console
-**Ventana de datos:** ${weekList} (${weeksCovered.size} semanas)
+**Fecha:** ${report.generatedAt.slice(0, 10)}
+**Alcance:** catálogo completo — páginas con datos en los artefactos seleccionados
+**Modo de ventana:** ${report.window.mode}
+**Semanas seleccionadas:** ${report.window.selectedWeeks.join(", ")} (${report.window.selectedWeeks.length} semanas)
 **Generado por:** \`scripts/audit-ctr-opportunities.mjs\` — barrido puntual, no programado
-
-## Por qué existe este informe
-
-El scorecard semanal (\`build-weekly-search-report.mjs\`) solo evalúa la
-watchlist de 24 páginas. Este barrido cubre **las ${analyzed.length} páginas**
-con datos en GSC, para detectar oportunidades de CTR fuera de esa lista.
 
 ## Método
 
-Se agregan todos los export semanales de GSC (\`*-pages.json\`) sumando clics e
-impresiones por página y calculando la posición media ponderada por
-impresiones. Una página es **candidata** si cumple las tres condiciones:
+Se agregan solo los artefactos semanales seleccionados, sumando clics e
+impresiones por página y calculando la posición media ponderada por impresiones.
+La selección predeterminada usa las últimas ${DEFAULT_ROLLING_WEEKS} semanas
+completas; \`--all\` habilita de forma explícita el descubrimiento histórico.
 
-- Impresiones agregadas ≥ ${MIN_IMPRESSIONS} (por debajo, el CTR es ruido).
-- Posición media entre ${POSITION_MIN} y ${POSITION_MAX} (ya rankea en página 1–2; el problema es el clic, no el ranking).
-- CTR agregado < ${pct(CTR_TARGET)} (mismo umbral que el scorecard semanal).
-
-\`Clics perdidos\` estima cuántos clics adicionales se obtendrían si la página
-alcanzara un CTR de ${pct(CTR_TARGET)}: \`impresiones × (${pct(CTR_TARGET)} − CTR actual)\`.
+Una página es candidata si registra al menos ${MIN_IMPRESSIONS} impresiones,
+posición media entre ${POSITION_MIN} y ${POSITION_MAX}, y CTR bajo
+${percent(CTR_OPPORTUNITY_HEURISTIC)}. Ese porcentaje es un **heurístico de oportunidad**
+para priorizar revisión; no es KPI, calibración ni pronóstico.
+La brecha se expresa solo en puntos porcentuales y no se proyectan clics.
 
 ## Resumen
 
-- Páginas analizadas: **${analyzed.length}**
-- Candidatas a refresh de title/snippet: **${candidates.length}**
-- Clics perdidos estimados (total): **~${totalMissed}**
+- Páginas analizadas: **${report.totals.pagesAnalyzed}**
+- Candidatas a revisión de title/snippet: **${report.totals.candidates}**
+- Heurístico de oportunidad CTR: **${percent(CTR_OPPORTUNITY_HEURISTIC)}**
+- Proyección universal de clics: **no se calcula**
 
-## Candidatas — refresh de title/meta description
+## Candidatas — revisión de title/meta description
 
-Ordenadas por tamaño de oportunidad (clics perdidos estimados).
-
-| Página | Semanas | Impresiones | Clics | CTR | Posición | Clics perdidos |
+| Página | Semanas | Impresiones | Clics | CTR | Posición | Brecha heurística CTR |
 |---|---|---|---|---|---|---|
 ${candidateRows}
 
 ## Fuera de alcance — problema de ranking, no de CTR
-
-Páginas con volumen real pero ancladas por debajo de la posición ${POSITION_MAX}.
-Reescribir el title no las arregla: necesitan trabajo de contenido y enlazado,
-no de CTR. Se listan aquí solo para no confundirlas con candidatas.
 
 | Página | Impresiones | CTR | Posición |
 |---|---|---|---|
@@ -165,29 +184,109 @@ ${rankingRows}
 
 ## Advertencias
 
-- **Volumen bajo.** Monedario es un sitio joven (fundado en enero de 2026); la
-  mayoría de las páginas tienen pocas impresiones y cero clics. Con este
-  volumen, el valor principal de esta auditoría es **fijar método y línea
-  base** — será accionable de verdad cuando el tráfico crezca.
-- **Una semana es ruido.** Por eso se agregan ${weeksCovered.size} semanas. Aun
-  así, conviene confirmar la tendencia antes de actuar sobre una página con
-  pocas semanas de cobertura (columna \`Semanas\`).
-- **Las reescrituras pasan por el proceso editorial.** Este informe es
-  evidencia, no contenido. Cambiar el title o la meta description de una página
-  YMYL es trabajo del pipeline editorial, no una edición unilateral.
-
-## Próximos pasos
-
-1. Revisar las candidatas y decidir cuáles ameritan reescritura.
-2. Enrutar las elegidas al pipeline editorial para reescribir title/snippet.
-3. Re-ejecutar este barrido tras ~4 semanas para medir el efecto.
-4. Si el barrido rinde candidatas reales de forma recurrente, recién entonces
-   evaluar automatizarlo en cadencia trimestral.
+- El heurístico no calibra posición exacta, intención, marca, dispositivo ni
+  estacionalidad. Una página con cero clics tampoco recibe un pronóstico.
+- Conviene confirmar la tendencia antes de actuar sobre pocas semanas.
+- Las reescrituras pasan por el proceso editorial; este informe es evidencia,
+  no contenido ni autorización para editar una superficie YMYL.
 `;
+}
 
-const outPath = `docs/reports/CTR-AUDIT-${today}.md`;
-writeFileSync(outPath, report);
-console.log(
-  `CTR audit: ${analyzed.length} pages analyzed, ${candidates.length} candidate(s), ~${totalMissed} estimated missed clicks.`
-);
-console.log(`CTR audit: report written to ${outPath}`);
+function main() {
+  const options = parseArgs(process.argv.slice(2));
+  const pageFiles = readdirSync(options.gscDir)
+    .filter(file => /^\d{4}-W\d{2}-pages\.json$/.test(file))
+    .sort();
+  if (pageFiles.length === 0) {
+    throw new Error(`no *-pages.json files found in ${options.gscDir}`);
+  }
+  const selectedFiles = options.all ? pageFiles : pageFiles.slice(-options.weeks);
+  const documents = selectedFiles.map(file => readWeeklyArtifact(options.gscDir, file));
+  const selectedWeeks = documents.map(document => document.week);
+
+  /** @type {Map<string, {clicks:number,impressions:number,posImpr:number,weeks:Set<string>}>} */
+  const pages = new Map();
+  for (const document of documents) {
+    for (const row of document.data) {
+      if (!row.page || !row.impressions) continue;
+      const aggregate = pages.get(row.page) ?? {
+        clicks: 0,
+        impressions: 0,
+        posImpr: 0,
+        weeks: new Set(),
+      };
+      aggregate.clicks += row.clicks ?? 0;
+      aggregate.impressions += row.impressions;
+      aggregate.posImpr += (row.position ?? 0) * row.impressions;
+      aggregate.weeks.add(document.week);
+      pages.set(row.page, aggregate);
+    }
+  }
+
+  const analyzed = [...pages.entries()].map(([pageUrl, aggregate]) => ({
+    page: pageUrl.replace(/^https?:\/\/[^/]+/, ""),
+    clicks: aggregate.clicks,
+    impressions: aggregate.impressions,
+    ctr: aggregate.clicks / aggregate.impressions,
+    position: aggregate.posImpr / aggregate.impressions,
+    weeks: aggregate.weeks.size,
+  }));
+  const candidates = analyzed
+    .filter(
+      page =>
+        page.impressions >= MIN_IMPRESSIONS &&
+        page.position >= POSITION_MIN &&
+        page.position <= POSITION_MAX &&
+        page.ctr < CTR_OPPORTUNITY_HEURISTIC
+    )
+    .map(page => ({
+      ...page,
+      heuristicGapPp: (CTR_OPPORTUNITY_HEURISTIC - page.ctr) * 100,
+    }))
+    .sort(
+      (left, right) =>
+        right.heuristicGapPp - left.heuristicGapPp ||
+        right.impressions - left.impressions
+    );
+  const rankingBound = analyzed
+    .filter(
+      page => page.impressions >= MIN_IMPRESSIONS && page.position > POSITION_MAX
+    )
+    .sort((left, right) => right.impressions - left.impressions);
+  const report = {
+    generatedAt: new Date().toISOString(),
+    window: {
+      mode: options.all ? "all-history-discovery" : "rolling-complete-weeks",
+      requestedWeeks: options.all ? null : options.weeks,
+      selectedWeeks,
+    },
+    heuristic: {
+      kind: "opportunity-screening",
+      ctrThreshold: CTR_OPPORTUNITY_HEURISTIC,
+      clickProjection: null,
+    },
+    totals: {
+      pagesAnalyzed: analyzed.length,
+      candidates: candidates.length,
+    },
+    candidates,
+    rankingBound,
+  };
+
+  mkdirSync(path.dirname(options.outputFile), { recursive: true });
+  mkdirSync(path.dirname(options.jsonFile), { recursive: true });
+  writeFileSync(options.outputFile, buildMarkdown(report), "utf8");
+  writeFileSync(options.jsonFile, JSON.stringify(report, null, 2) + "\n", "utf8");
+  console.log(
+    `CTR audit: ${analyzed.length} pages analyzed, ${candidates.length} candidate(s), ${selectedWeeks.length} week(s) selected.`
+  );
+  console.log(`CTR audit: markdown written to ${options.outputFile}`);
+  console.log(`CTR audit: JSON written to ${options.jsonFile}`);
+}
+
+try {
+  main();
+} catch (error) {
+  console.error(`[ctr-audit] ${error.message}`);
+  process.exit(1);
+}

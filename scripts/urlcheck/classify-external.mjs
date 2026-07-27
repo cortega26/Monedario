@@ -4,6 +4,7 @@ import {
   getAllowedFamily,
   isBinaryContentType,
   isBlockingCategory,
+  isAutomationBlockingHost,
 } from "./host-registry.mjs";
 
 /**
@@ -15,6 +16,9 @@ const HARD_FAIL_STATUSES = new Set([404, 410, 500, 502, 503, 504]);
  * HTTP status codes that indicate transient server issues; not blocking.
  */
 const TRANSIENT_STATUSES = new Set([429, 503]);
+
+/** Statuses used by verified anti-automation responses. */
+const AUTOMATION_BLOCK_STATUSES = new Set([403, 410, 429]);
 
 /**
  * @typedef {Object} ExternalResult
@@ -98,6 +102,23 @@ export function classifyExternalResult(link, probe) {
       };
     }
     return { ...base, classification: "ok", blocking: false };
+  }
+
+  // ---- Verified anti-automation responses ----
+  // Keep the host classified as an official source and preserve 404/5xx
+  // blocking semantics. Only statuses independently verified as automation
+  // blocks are downgraded to telemetry.
+  if (
+    probe.status !== null &&
+    AUTOMATION_BLOCK_STATUSES.has(probe.status) &&
+    isAutomationBlockingHost(sourceHost)
+  ) {
+    return {
+      ...base,
+      classification: "non_blocking_host_issue",
+      blocking: false,
+      matched_signal: `automation_block_HTTP_${probe.status}`,
+    };
   }
 
   // ---- Hard fail: 404 / 410 / 5xx ----

@@ -5,6 +5,9 @@ relatedTerms: ["sueldo-bruto", "renta-imponible", "finiquito"]
 relatedGuides:
   - href: /posts/gratificacion-legal-chile/
     label: Gratificación legal en Chile
+relatedCalculators:
+  - href: /calculadoras/gratificacion-legal/
+    label: Calcula tu gratificación legal según el Código del Trabajo
 relatedLaws:
   - href: /leyes/codigo-del-trabajo/
     label: Código del Trabajo (arts. 47–52)

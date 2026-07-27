@@ -1,6 +1,6 @@
 # Module Index (Agent Quick Map)
 
-Last updated: 2026-05-11
+Last updated: 2026-07-16
 
 ## 1. Repository map
 
@@ -16,6 +16,7 @@ Last updated: 2026-05-11
 | `docs/governance/` | Stable governance policies and ADR-adjacent execution rules | Read for strategy/process changes before inventing new visible patterns. |
 | `docs/reports/` | Canonical route and RSS baselines only | Inputs tracked for `check:routes` and `check:rss`. |
 | `output/validation/` | Generated route/RSS validation snapshots | Local current snapshots emitted by validation scripts. |
+| `output/operations/data-signals/` | Repo-local weekly GSC, Cloudflare, and aggregate first-party analytics signals | Missing/invalid analytics exports are operational incidents; do not infer zero events. |
 | `context/` | Agent context layer and project state docs | Keep concise and cross-referenced. |
 | `context/AGENT_PREFLIGHT.md` | Single-file session warm-up: hard stops, gate map, invariant IDs, env vars | Load first when starting any agent session to cut cold-start token cost. |
 | `tests/` | Vitest suites by layer | Required when runtime layers change per AGENTS rules. |
@@ -53,6 +54,15 @@ Last updated: 2026-05-11
   - `src/infrastructure/editorial/editorial-volatile-data.snapshot.json`
   - `output/validation/editorial-timeliness/report.json`
   - `.github/workflows/editorial-timeliness-audit.yml`
+- Weekly search operations:
+  - `.github/workflows/weekly-search-ops.yml` for Monday issue/bundle automation
+  - `docs/operations/runbooks/weekly-search-performance-ritual.md` for cadence and human review
+  - `scripts/build-weekly-search-report.mjs` for scorecard generation
+  - `scripts/data-signals/fetch-analytics-export.mjs` for aggregate first-party JSON
+  - `docs/adr/ADR-20260716-weekly-search-ops-at-current-scale.md` for the time-bounded July cadence decision
+- Temporary Actions runner bridge:
+  - `docs/adr/ADR-20260716-temporary-self-hosted-actions-bridge.md`
+  - `ACTIONS_RUNNER_LABEL` selects the incident runner; unset falls back to `ubuntu-latest`
 - Deprecated redirect URL guard:
   - `tests/e2e/redirect-links.e2e.test.ts`
   - protects `src/` from reintroducing known redirecting official-source URLs

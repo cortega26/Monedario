@@ -1,9 +1,5 @@
-# Cadence: biweekly (even ISO weeks). The cron fires every Monday, but the job
-# short-circuits on odd ISO weeks via the "Gate cadence" step below. Rationale:
-# at the current traffic volume (~1.4k impressions, single-digit clicks/week) a
-# weekly ritual produced more noise than signal; biweekly keeps the same signal
-# with half the recurring issues. Manual workflow_dispatch always runs (no gate).
-# GitHub cron has no native fortnightly schedule, hence the deterministic guard.
+# Cadence: weekly through July 2026. Review the measured operating cadence on
+# 2026-08-01; see ADR-20260716-weekly-search-ops-at-current-scale.md.
 name: Weekly Search Ops
 
 on:
@@ -22,7 +18,7 @@ permissions:
 jobs:
   weekly-ops:
     name: Prepare weekly search ops bundle
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 10
 
     steps:
@@ -39,38 +35,20 @@ jobs:
         run: |
           echo "label=$(node --input-type=module -e "import { previousCompleteISOWeek } from './scripts/data-signals/gsc-utils.mjs'; process.stdout.write(previousCompleteISOWeek());")" >> "$GITHUB_OUTPUT"
 
-      - name: "🚦 Gate cadence (biweekly on even ISO weeks)"
-        id: cadence
-        run: |
-          # Manual dispatch always proceeds; scheduled runs only on even ISO weeks.
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "proceed=true" >> "$GITHUB_OUTPUT"
-            echo "Manual dispatch — proceeding."
-          else
-            WEEK_NUM=$(printf '%s' "${{ steps.week.outputs.label }}" | sed -E 's/.*-W0*([0-9]+)/\1/')
-            if [ $((WEEK_NUM % 2)) -eq 0 ]; then
-              echo "proceed=true" >> "$GITHUB_OUTPUT"
-              echo "ISO week $WEEK_NUM is even — proceeding (biweekly cadence)."
-            else
-              echo "proceed=false" >> "$GITHUB_OUTPUT"
-              echo "ISO week $WEEK_NUM is odd — skipping (biweekly cadence)."
-            fi
-          fi
-
       - name: "📁 Initialize weekly bundle"
-        if: steps.cadence.outputs.proceed == 'true'
         run: node scripts/build-weekly-search-report.mjs --input "output/operations/weekly-search-performance/${{ steps.week.outputs.label }}" --init
 
       - name: "🔎 Detect export availability"
         id: exports
-        if: steps.cadence.outputs.proceed == 'true'
         run: |
           INPUT_DIR="output/operations/weekly-search-performance/${{ steps.week.outputs.label }}"
           GSC_JSON_DIR="output/operations/data-signals/gsc"
+          ANALYTICS_JSON="output/operations/data-signals/analytics/${{ steps.week.outputs.label }}.json"
 
           HAS_INDEXATION=false
           HAS_CSV=false
           HAS_JSON=false
+          ANALYTICS_STATUS=missing
 
           if [ -f "$INPUT_DIR/indexation-summary.json" ]; then
             HAS_INDEXATION=true
@@ -95,12 +73,45 @@ jobs:
             echo "gsc_source=missing" >> "$GITHUB_OUTPUT"
           fi
 
+          if [ -f "$ANALYTICS_JSON" ]; then
+            if WEEK_LABEL="${{ steps.week.outputs.label }}" ANALYTICS_JSON="$ANALYTICS_JSON" node --input-type=module <<'EOF'
+          import fs from "node:fs";
+
+          try {
+            const doc = JSON.parse(fs.readFileSync(process.env.ANALYTICS_JSON, "utf8"));
+            const valid =
+              doc.source === "first-party-events" &&
+              doc.schemaVersion === 1 &&
+              doc.week === process.env.WEEK_LABEL &&
+              typeof doc.window?.from === "string" &&
+              typeof doc.window?.to === "string" &&
+              Array.isArray(doc.data) &&
+              doc.data.every(row =>
+                typeof row.date === "string" &&
+                typeof row.event_name === "string" &&
+                typeof row.calculator_slug === "string" &&
+                typeof row.count === "number" &&
+                row.count >= 0
+              );
+            process.exit(valid ? 0 : 1);
+          } catch {
+            process.exit(1);
+          }
+          EOF
+            then
+              ANALYTICS_STATUS=available
+            else
+              ANALYTICS_STATUS=invalid
+            fi
+          fi
+
+          echo "analytics_status=$ANALYTICS_STATUS" >> "$GITHUB_OUTPUT"
+
       - name: "📊 Build weekly scorecard"
-        if: steps.cadence.outputs.proceed == 'true' && steps.exports.outputs.scorecard_ready == 'true'
+        if: steps.exports.outputs.scorecard_ready == 'true'
         run: node scripts/build-weekly-search-report.mjs --input "output/operations/weekly-search-performance/${{ steps.week.outputs.label }}"
 
       - name: "📤 Upload weekly bundle"
-        if: steps.cadence.outputs.proceed == 'true'
         uses: ./.github/actions/upload-workflow-artifact
         with:
           artifact-name: weekly-search-ops-${{ steps.week.outputs.label }}
@@ -108,19 +119,20 @@ jobs:
           path: output/operations/weekly-search-performance/${{ steps.week.outputs.label }}/
 
       - name: "📝 Build weekly ops issue payload"
-        if: steps.cadence.outputs.proceed == 'true'
         id: issue_payload
         shell: bash
         env:
           WEEK_LABEL: ${{ steps.week.outputs.label }}
           SCORECARD_READY: ${{ steps.exports.outputs.scorecard_ready }}
           GSC_SOURCE: ${{ steps.exports.outputs.gsc_source }}
+          ANALYTICS_STATUS: ${{ steps.exports.outputs.analytics_status }}
         run: |
           set -euo pipefail
 
           title="Weekly search ops: $WEEK_LABEL"
           scorecard_generated="no"
           status_line="The required exports were not available in the workflow workspace. Complete the bundle and rerun the script or workflow."
+          analytics_line="First-party analytics export is missing. Treat this as a collection/export incident: investigate it and record the outcome; do not defer review based on traffic volume or interpret absence as zero events."
 
           if [[ "$SCORECARD_READY" == "true" ]]; then
             scorecard_generated="yes"
@@ -130,6 +142,12 @@ jobs:
             else
               status_line="The required exports were available, so the workflow generated the scorecard automatically."
             fi
+          fi
+
+          if [[ "$ANALYTICS_STATUS" == "available" ]]; then
+            analytics_line="The first-party analytics JSON is available and valid for this week; review its acquisition-to-journey signals in the scorecard."
+          elif [[ "$ANALYTICS_STATUS" == "invalid" ]]; then
+            analytics_line="The first-party analytics JSON exists but failed structural validation. Treat this as a data-quality incident: repair or regenerate the export before using it for decisions."
           fi
 
           {
@@ -143,24 +161,26 @@ jobs:
               "- Bundle path: \`output/operations/weekly-search-performance/$WEEK_LABEL/\`" \
               "- Scorecard generated: \`$scorecard_generated\`" \
               "- Workflow artifact: \`weekly-search-ops-$WEEK_LABEL\`" \
+              "- Analytics status: \`$ANALYTICS_STATUS\`" \
               "" \
               "### Checklist" \
               "- [ ] Confirm Google Search Console pages export" \
               "- [ ] Confirm Google Search Console queries export" \
               "- [ ] Update indexation-summary.json with Google + Bing status" \
+              "- [ ] Confirm first-party analytics status and investigate missing/invalid exports as incidents" \
               "- [ ] Generate or review weekly scorecard" \
               "- [ ] Decide 1-3 next actions" \
+              "- [ ] In the final July issue, complete the 2026-08-01 cadence review" \
               "" \
-              "_Deferred until traffic warrants it (>~100 clicks/week): \`analytics-events.csv\` on-site behavior analysis. At current volume GSC signal drives the decisions — see the ritual runbook._" \
+              "$status_line" \
               "" \
-              "$status_line"
+              "$analytics_line"
             echo '__ISSUE_BODY__'
             echo 'desired_state=open'
             echo 'labels_json=["ops","search","weekly"]'
           } >> "$GITHUB_OUTPUT"
 
       - name: "📝 Sync weekly ops issue"
-        if: steps.cadence.outputs.proceed == 'true'
         uses: ./.github/actions/upsert-issue-by-title
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}

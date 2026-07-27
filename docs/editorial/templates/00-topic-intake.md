@@ -51,9 +51,11 @@ Solo se puntúan los candidatos que pasaron las 5 kill-switches. Escala 1
 | Mantención (inverso: 5 = bajo costo) | | |
 | **Promedio** | | |
 
-> **GSC es confirmatorio-solo** a la escala actual del sitio (ver política):
-> apóyate en gap de cluster + SERP de competidores + Reddit para estimar demanda.
-> Si una dimensión puntúa **1**, re-encuadra el alcance antes de proceder.
+> Calibra el rol de GSC según cobertura y muestra (ver política): puede ser
+> evidencia primaria cuando el export tiene impresiones suficientes; para una
+> intención greenfield sin muestra propia, complementa con gap de cluster, SERP y
+> evidencia de audiencia. Contrasta varias semanas. Si una dimensión puntúa **1**,
+> re-encuadra el alcance antes de proceder.
 
 ## Veredicto
 

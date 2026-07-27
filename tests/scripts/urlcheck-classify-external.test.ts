@@ -247,6 +247,27 @@ describe("classifyExternalResult – redirect/host mismatch", () => {
 // ---- non_blocking_host_issue tests ----
 
 describe("classifyExternalResult – non_blocking_host_issue", () => {
+  it("downgrades AFC HTTP 410 verified as an automation block without losing official-source identity", () => {
+    const result = classifyExternalResult(
+      makeLink("https://www.afc.cl/"),
+      makeProbe("https://www.afc.cl/", { status: 410 })
+    );
+    expect(result.host_category).toBe("official_source");
+    expect(result.classification).toBe("non_blocking_host_issue");
+    expect(result.blocking).toBe(false);
+    expect(result.matched_signal).toBe("automation_block_HTTP_410");
+  });
+
+  it("keeps AFC HTTP 404 blocking because it is not an automation-block signal", () => {
+    const result = classifyExternalResult(
+      makeLink("https://www.afc.cl/recurso-inexistente"),
+      makeProbe("https://www.afc.cl/recurso-inexistente", { status: 404 })
+    );
+    expect(result.host_category).toBe("official_source");
+    expect(result.classification).toBe("hard_fail");
+    expect(result.blocking).toBe(true);
+  });
+
   it("classifies 403 from brand_profile as non_blocking_host_issue", () => {
     const result = classifyExternalResult(
       makeLink("https://www.instagram.com/monedario/"),
