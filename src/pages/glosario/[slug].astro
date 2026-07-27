@@ -24,6 +24,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const {
   term,
+  seoTitle,
   shortDefinition,
   relatedTerms,
   relatedCalculators,
@@ -55,7 +56,7 @@ if (relatedTerms.length > 0) {
 ---
 
 <Layout
-  title={`${term} | Glosario Financiero`}
+  title={seoTitle ?? `${term} | Glosario Financiero`}
   description={shortDefinition}
   canonicalURL={canonicalUrl}
 >

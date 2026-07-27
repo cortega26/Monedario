@@ -1,5 +1,6 @@
 ---
 term: "Renta Imponible"
+seoTitle: "¿Qué es la Renta Imponible? Cálculo y ejemplo | Monedario"
 shortDefinition: "La parte del sueldo sobre la que se calculan AFP, salud y seguro de cesantía. Puede ser menor al sueldo bruto si hay asignaciones no imponibles."
 relatedTerms: ["sueldo-bruto", "afp", "fonasa", "utm"]
 relatedCalculators:
