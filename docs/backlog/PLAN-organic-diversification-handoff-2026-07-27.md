@@ -171,3 +171,14 @@ Cada corte quincenal (ver `docs/operations/runbooks/weekly-search-performance-ri
 2. **WS-A** — aplicar `seoTitle` a los términos que califiquen en el próximo corte.
 3. **WS-C** — diseñar el baseline de retención ahora que el funnel es válido.
 4. Registrar este handoff en `docs/backlog/README.md` (tabla de planes vigentes).
+
+---
+
+## 9. Registro de ejecución
+
+| Fecha | Workstream | Estado | Evidencia / decisión |
+|---|---|---|---|
+| 2026-07-27 | WS-A + WS-D | INCONCLUSIVE / no change | Corte agregado disponible: 4 oportunidades striking-distance, ninguna `/glosario/`; `audit:cannibalization` detectó 0 queries competidoras. No hay `seoTitle` calificado para editar. `operacion-renta` queda bloqueada por sign-off externo; `comisiones-afp` requiere refresh YMYL y no se toca sin pipeline. |
+| 2026-07-27 | WS-B | READY FOR MERGE | Con autorización del owner se implementó y verificó un piloto guide-only en dos listas estáticas de prosa: 0→4 links en ahorro/inversión y 0→2 en pensiones/AFP. Evidencia y gates en [`PLAN-glossary-linker-expansion-design-2026-07-27.md`](PLAN-glossary-linker-expansion-design-2026-07-27.md). Calculadoras, widgets, cards, CTAs y copy quedan fuera; medir a +28 días antes de ampliar. |
+| 2026-07-27 | WS-C | DESIGN READY | Métricas agregadas y límites de interpretación documentados en [`PLAN-aggregated-journey-baseline-design-2026-07-27.md`](PLAN-aggregated-journey-baseline-design-2026-07-27.md). |
+| 2026-07-27 | Calculadoras sub-enlazadas | INCONCLUSIVE / no change | `actualizador-inflacion`, `gratificacion-legal` e `iva` siguen bajo el umbral editorial; elevarlas requiere cambios YMYL, por lo que no se aplicó linking estructural adicional. |

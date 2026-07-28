@@ -94,6 +94,11 @@ describe("injectGlossaryLinks", () => {
     expect(result).toContain('data-analytics-label="sii"');
   });
 
+  it("preserves the matched term as accessible link text", () => {
+    const result = injectGlossaryLinks("<p>La AFP gestiona los fondos.</p>");
+    expect(result).toContain('>AFP</a>');
+  });
+
   it("injects a glossary link for a multi-word term", () => {
     const result = injectGlossaryLinks(
       "<p>Primero arma tu fondo de emergencia antes de invertir.</p>"

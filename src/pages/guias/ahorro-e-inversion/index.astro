@@ -5,6 +5,7 @@ import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import ResumeWidget from "@/components/ResumeWidget.astro";
 import StartHere from "@/components/StartHere.astro";
+import GlossaryContentWrapper from "@/components/GlossaryContentWrapper.astro";
 import { getPath } from "@/utils/getPath";
 
 const SITE_BASE = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
@@ -138,22 +139,29 @@ const articulosSeccion = [
 
     <section class="border-b border-border py-8">
       <h2 class="mb-4 text-2xl font-bold">Errores comunes de la sección</h2>
-      <ul class="list-disc space-y-2 pl-6 text-secondary">
-        <li>Comparar solo rentabilidad y no costo total neto.</li>
-        <li>
-          Usar instrumentos de alta volatilidad para metas de corto plazo.
-        </li>
-        <li>Invertir sin revisar reglas de rescate, vencimiento o custodia.</li>
-        <li>
-          Asumir que todos los intermediarios tienen el mismo nivel de
-          supervisión aplicable.
-        </li>
-        <li>Postergar revisión tributaria hasta el cierre del año.</li>
-        <li>
-          Confundir una decisión de ahorro con beneficio tributario con una duda
-          operativa sobre AFP obligatoria.
-        </li>
-      </ul>
+      <GlossaryContentWrapper>
+        <ul
+          class="list-disc space-y-2 pl-6 text-secondary"
+          data-glossary-linker-scope="guide-prose"
+        >
+          <li>Comparar solo rentabilidad y no costo total neto.</li>
+          <li>
+            Usar instrumentos de alta volatilidad para metas de corto plazo.
+          </li>
+          <li>
+            Invertir sin revisar reglas de rescate, vencimiento o custodia.
+          </li>
+          <li>
+            Asumir que todos los intermediarios tienen el mismo nivel de
+            supervisión aplicable.
+          </li>
+          <li>Postergar revisión tributaria hasta el cierre del año.</li>
+          <li>
+            Confundir una decisión de ahorro con beneficio tributario con una
+            duda operativa sobre AFP obligatoria.
+          </li>
+        </ul>
+      </GlossaryContentWrapper>
     </section>
 
     <StartHere
