@@ -113,6 +113,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 
 | Archivo | Estado | Última actualización | Bloqueador | Próximo paso |
 |---|---|---:|---|---|
+| `PLAN-organic-diversification-handoff-2026-07-27.md` | **READY FOR MERGE** | 2026-07-27 | WS-B piloto guide-only verificado (dos listas de prosa; sin calculadoras) | Merge y medir a +28 días; no ampliar a calculadoras sin una decisión nueva |
 | `PLAN-calculator-led-growth-2026-06-28.md` | **IN PROGRESS** | 2026-07-16 | W28 entrega la primera semana post-fix válida; OBS-01 todavía exige una decisión explícita sobre suficiencia multiweek antes de PR-03 | Contrastar W27/W28, documentar suficiencia o inconclusión y aplicar el gate del plan antes de cambiar journeys |
 | `PLAN-audit-deep-remediation-2026-05-16.md` | Parcialmente cerrado | 2026-05-16 | `TD-0075`/`TD-0077` requieren medición/ADR; `TD-0079` bloqueado por flujo OG con TTF | Ejecutar `TD-0065` (deps bump) o preparar ADR para TD-0075/TD-0077 |
 | `PLAN-calculator-componentization-td-0063-0069-2026-05-20.md` | **Completado** | 2026-05-20 | — | `TD-0063` + `TD-0069` cerrados; 5 componentes, 15 calculadoras refactorizadas |

@@ -435,6 +435,28 @@ describe("Wave 3 structural guards", () => {
     expect(source).toContain("<GlossaryContentWrapper>");
   });
 
+  it("limits the guide linker pilot to explicitly marked prose", () => {
+    const guidePaths = [
+      "src/pages/guias/ahorro-e-inversion/index.astro",
+      "src/pages/guias/pensiones-afp/index.astro",
+    ];
+
+    for (const guidePath of guidePaths) {
+      const source = readFileSync(guidePath, "utf8");
+      expect(source).toContain(
+        'import GlossaryContentWrapper from "@/components/GlossaryContentWrapper.astro"'
+      );
+      expect(source).toContain("<GlossaryContentWrapper>");
+      expect(source).toContain('data-glossary-linker-scope="guide-prose"');
+    }
+
+    const calculatorSource = readFileSync(
+      "src/pages/calculadoras/sueldo-liquido.astro",
+      "utf8"
+    );
+    expect(calculatorSource).not.toContain("GlossaryContentWrapper");
+  });
+
   it("injectGlossaryLinks utility has no imports from domain or application layers", () => {
     const source = readFileSync(
       "src/utils/injectGlossaryLinks.ts",

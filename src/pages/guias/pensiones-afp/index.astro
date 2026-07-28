@@ -6,6 +6,7 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import ContextLinkSection from "@/components/ContextLinkSection.astro";
 import ResumeWidget from "@/components/ResumeWidget.astro";
 import StartHere from "@/components/StartHere.astro";
+import GlossaryContentWrapper from "@/components/GlossaryContentWrapper.astro";
 import { getPath } from "@/utils/getPath";
 import {
   pensionHubPrimaryCards,
@@ -100,23 +101,30 @@ const relatedCards = pensionHubRelatedCards.filter(
 
     <section class="border-b border-border py-8">
       <h2 class="mb-4 text-2xl font-bold">Errores comunes</h2>
-      <ul class="list-disc space-y-2 pl-6 text-secondary">
-        <li>
-          Elegir AFP o fondo solo por una foto de rentabilidad de corto plazo.
-        </li>
-        <li>Confundir comisión baja con mejor resultado previsional total.</li>
-        <li>
-          Leer la reforma como si todo ya operara igual hoy, sin separar 2026,
-          2027 y 2033.
-        </li>
-        <li>
-          Confundir APV con elección de fondo AFP o con proyección de pensión.
-        </li>
-        <li>
-          Seguir aquí cuando tu duda real es la liquidación mensual. En ese
-          caso, te conviene ir a sueldo y remuneraciones.
-        </li>
-      </ul>
+      <GlossaryContentWrapper>
+        <ul
+          class="list-disc space-y-2 pl-6 text-secondary"
+          data-glossary-linker-scope="guide-prose"
+        >
+          <li>
+            Elegir AFP o fondo solo por una foto de rentabilidad de corto plazo.
+          </li>
+          <li>
+            Confundir comisión baja con mejor resultado previsional total.
+          </li>
+          <li>
+            Leer la reforma como si todo ya operara igual hoy, sin separar 2026,
+            2027 y 2033.
+          </li>
+          <li>
+            Confundir APV con elección de fondo AFP o con proyección de pensión.
+          </li>
+          <li>
+            Seguir aquí cuando tu duda real es la liquidación mensual. En ese
+            caso, te conviene ir a sueldo y remuneraciones.
+          </li>
+        </ul>
+      </GlossaryContentWrapper>
     </section>
 
     <div data-hub-section="recommended-route">
