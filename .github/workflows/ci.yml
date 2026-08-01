@@ -11,6 +11,31 @@ on:
       - edited
       - synchronize
       - reopened
+    paths-ignore:
+      - "docs/**"
+      - "**.md"
+      - "README.*"
+      - "LICENSE"
+      - ".github/workflows/check-afp-commissions.yml"
+      - ".github/workflows/check-ts7-readiness.yml"
+      - ".github/workflows/claude-code-review.yml"
+      - ".github/workflows/data-signals.yml"
+      - ".github/workflows/dependency-automerge.yml"
+      - ".github/workflows/doc-gardening.yml"
+      - ".github/workflows/editorial-timeliness-audit.yml"
+      - ".github/workflows/geo-files-review.yml"
+      - ".github/workflows/guardrail-drift-audit.yml"
+      - ".github/workflows/hero-images-generate.yml"
+      - ".github/workflows/indexnow.yml"
+      - ".github/workflows/lighthouse-ci.yml"
+      - ".github/workflows/obs01-freeze-gate.yml"
+      - ".github/workflows/page-lastmod.yml"
+      - ".github/workflows/python-ci.yml"
+      - ".github/workflows/python-deps-autoupdate.yml"
+      - ".github/workflows/refresh-economic-snapshot.yml"
+      - ".github/workflows/security-scans.yml"
+      - ".github/workflows/self-heal.yml"
+      - ".github/workflows/weekly-search-ops.yml"
   workflow_dispatch:
   schedule:
     # Semanal (lunes 05:00 UTC). Antes diario; reducido para ahorrar minutos de
@@ -149,6 +174,14 @@ jobs:
       - name: "🚀 Build the project"
         run: pnpm run build:ci
 
+      - name: "📤 Share build output with dependent jobs"
+        uses: actions/upload-artifact@26627127f5bae11ce8487a6646150312332105d3 # v7
+        with:
+          name: site-build-output
+          path: dist/
+          retention-days: 1
+          if-no-files-found: error
+
       - name: "🕰️ Economic snapshot freshness (scheduled only)"
         if: github.event_name == 'schedule'
         run: pnpm run check:economic-snapshot-freshness
@@ -262,8 +295,11 @@ jobs:
         with:
           node-version: 22
 
-      - name: "🚀 Build the project"
-        run: pnpm run build:ci
+      - name: "⬇️ Restore build output from build job"
+        uses: actions/download-artifact@8b180144005ac882e695226e3e25a5e2c9e3df10 # v7
+        with:
+          name: site-build-output
+          path: dist/
 
       - name: "🔗 External URL check (blocking gate – CI mode)"
         id: urlcheck_external_ci
@@ -305,8 +341,11 @@ jobs:
       - name: "🌐 Install Playwright browsers"
         run: pnpm exec playwright install chromium
 
-      - name: "🚀 Build the project"
-        run: pnpm run build:ci
+      - name: "⬇️ Restore build output from build job"
+        uses: actions/download-artifact@8b180144005ac882e695226e3e25a5e2c9e3df10 # v7
+        with:
+          name: site-build-output
+          path: dist/
 
       - name: "🎯 Run accessibility tests"
         run: pnpm exec playwright test tests/accessibility/

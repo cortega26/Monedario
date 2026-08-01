@@ -9,9 +9,8 @@ name: Self-Heal Mechanical Drift
 on:
   workflow_dispatch:
   schedule:
-    # Semanal (lunes 04:00 UTC). Antes diario; reducido para ahorrar minutos de
-    # Actions — cada drift detectado abría un auto-PR que disparaba CI completo.
-    - cron: "0 4 * * 1"
+    # Wednesday 04:00 UTC (moved from Monday to spread weekly load)
+    - cron: "0 4 * * 3"
 
 concurrency:
   group: self-heal-${{ github.ref }}

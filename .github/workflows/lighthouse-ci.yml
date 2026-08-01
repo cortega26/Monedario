@@ -2,7 +2,8 @@ name: Lighthouse CI
 
 on:
   schedule:
-    - cron: "0 10 * * 1"
+    # Thursday 10:00 UTC (moved from Monday to spread weekly load)
+    - cron: "0 10 * * 4"
   workflow_dispatch:
 
 concurrency:
