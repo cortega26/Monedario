@@ -175,7 +175,7 @@ jobs:
         run: pnpm run build:ci
 
       - name: "📤 Share build output with dependent jobs"
-        uses: actions/upload-artifact@26627127f5bae11ce8487a6646150312332105d3 # v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: site-build-output
           path: dist/
