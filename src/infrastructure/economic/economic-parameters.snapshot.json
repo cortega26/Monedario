@@ -12,23 +12,23 @@
     "pensionAndHealthMonthlyTaxableCapUf": 90
   },
   "indicatorUpdatedAt": {
-    "uf": "2026-07-31",
-    "utm": "2026-07-01",
+    "uf": "2026-08-01",
+    "utm": "2026-08-01",
     "uta": "2025-12-01",
     "ipc": "2026-06-01",
     "dolar": "2026-07-31"
   },
-  "lastUpdated": "2026-07-31",
-  "capturedAt": "2026-07-31T10:15:40.164Z",
+  "lastUpdated": "2026-08-01",
+  "capturedAt": "2026-08-01T10:15:58.318Z",
   "source": "mindicador.cl/api",
   "prev": {
     "uf": {
       "valor": 40844.79,
-      "fecha": "2026-07-30"
+      "fecha": "2026-07-31"
     },
     "utm": {
-      "valor": 71506,
-      "fecha": "2026-06-01"
+      "valor": 71649,
+      "fecha": "2026-07-01"
     },
     "dolar": {
       "valor": 935.57,
