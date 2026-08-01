@@ -26,9 +26,11 @@ jobs:
     name: Secret scan (Gitleaks)
     runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 10
-    # Start as informational so private-repo scanning can be adopted without
-    # blocking every PR on the first rollout.
+    # Schedule-only: informational scan that never blocks PRs. The weekly
+    # scheduled run with a fresh vulnerability DB provides the real value.
+    # Per-PR scanning was removed to conserve GitHub Actions minutes.
     continue-on-error: true
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
 
     steps:
       - name: "☁️ Checkout repository"
@@ -84,9 +86,11 @@ jobs:
     name: Static analysis (Opengrep)
     runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 15
-    # Start as informational because the p/ci ruleset is remote and can evolve
-    # independently of repository changes.
+    # Schedule-only: informational scan because the p/ci ruleset is remote and
+    # can evolve independently of repository changes. Per-PR scanning was removed
+    # to conserve GitHub Actions minutes.
     continue-on-error: true
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
 
     steps:
       - name: "☁️ Checkout repository"
@@ -145,6 +149,9 @@ jobs:
     name: Vulnerability scan (Trivy)
     runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 15
+    # Schedule-only: vulnerability DB is only fresh on scheduled runs.
+    # Per-PR scanning was removed to conserve GitHub Actions minutes.
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     steps:
       - name: "☁️ Checkout repository"
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

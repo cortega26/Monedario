@@ -2,8 +2,9 @@ name: Data Signals
 
 on:
   schedule:
-    # Runs daily at 06:00 UTC (03:00 Chile summer, 02:00 winter)
-    - cron: "0 6 * * *"
+    # Runs Monday + Thursday at 06:00 UTC (03:00 Chile summer, 02:00 winter).
+    # Reduced from daily to 2×/week to conserve GitHub Actions minutes.
+    - cron: "0 6 * * 1,4"
   workflow_dispatch:
     inputs:
       week:

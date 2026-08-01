@@ -5,8 +5,8 @@ updates:
     schedule:
       interval: "weekly"
     cooldown:
-      default-days: 7
-    open-pull-requests-limit: 10
+      default-days: 14
+    open-pull-requests-limit: 5
     labels:
       - "dependencies"
       - "npm"
@@ -16,22 +16,25 @@ updates:
         patterns:
           - "*"
         update-types:
+          - "minor"
           - "patch"
       dev-tooling:
         dependency-type: "development"
         patterns:
           - "*"
         update-types:
+          - "minor"
           - "patch"
-    rebase-strategy: "auto"
+    # Auto-rebase disabled: each rebase triggers full CI (~80 min per PR).
+    # Manual rebase via @dependabot rebase comment still works.
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
     cooldown:
-      default-days: 7
-    open-pull-requests-limit: 10
+      default-days: 14
+    open-pull-requests-limit: 3
     labels:
       - "dependencies"
       - "github-actions"
@@ -40,5 +43,5 @@ updates:
         patterns:
           - "*"
         update-types:
+          - "minor"
           - "patch"
-    rebase-strategy: "auto"
