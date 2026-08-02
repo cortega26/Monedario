@@ -34,9 +34,7 @@ describe("weekly search ops at current scale", () => {
 
   it("preserves the runner fallback and least-privilege workflow permissions", () => {
     expect(workflow.permissions).toEqual({ contents: "read", issues: "write" });
-    expect(workflow.jobs["weekly-ops"]?.["runs-on"]).toBe(
-      "${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}"
-    );
+    expect(workflow.jobs["weekly-ops"]?.["runs-on"]).toBe("ubuntu-latest");
   });
 
   it("classifies analytics incidents without the obsolete traffic deferral", () => {

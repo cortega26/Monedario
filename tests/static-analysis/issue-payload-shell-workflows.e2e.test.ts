@@ -21,7 +21,7 @@ const workflows = [
     ],
   },
   {
-    path: ".github/workflows/check-ts7-readiness.yml",
+    path: ".github/workflows/check-ts7-readiness.yml.disabled",
     requiredFragments: [
       'shell: bash',
       'desired_state=open',

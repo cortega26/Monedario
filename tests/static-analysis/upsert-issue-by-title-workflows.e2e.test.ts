@@ -24,7 +24,7 @@ const delegatedWorkflows = [
   ".github/workflows/check-afp-commissions.yml",
   ".github/workflows/editorial-timeliness-audit.yml",
   ".github/workflows/weekly-search-ops.yml",
-  ".github/workflows/check-ts7-readiness.yml",
+  ".github/workflows/check-ts7-readiness.yml.disabled",
 ];
 
 function readUtf8(relativePath: string): string {

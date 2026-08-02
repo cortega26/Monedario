@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 
 const repoRoot = process.cwd();
 const workflowsDir = path.join(repoRoot, ".github", "workflows");
-const expectedRunner = "${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}";
+const expectedRunner = "ubuntu-latest";
 
 function read(relativePath: string): string {
   return fs.readFileSync(path.join(repoRoot, relativePath), "utf8");
