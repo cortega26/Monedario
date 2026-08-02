@@ -1,6 +1,6 @@
 # Plan: Homepage social preview and installable icon assets
 
-Status: complete locally — ready for normal review and deployment
+Status: complete — merged, deployed, and production-verified
 Owner: repository owner
 Started: 2026-08-01
 
@@ -103,3 +103,13 @@ Started: 2026-08-01
   robots/header, service-worker, test, and plan changes. No data migration is
   required. Production remains on the prior metadata until these changes pass
   normal review and are deployed by Cloudflare Pages.
+- 2026-08-01: PR #378 passed all GitHub gates and was squash-merged as
+  `a3df0106`. Cloudflare Pages production deployment
+  `e24082d3-fd4a-4f61-83b0-e68c226777a9` completed successfully.
+- 2026-08-01: Production verification passed on the canonical bare homepage:
+  Open Graph and Twitter metadata reference `https://monedario.cl/og-image`.
+  Facebook, Twitter, and LinkedIn crawler requests with external referrers all
+  receive HTTP 200, `image/jpeg`, and a valid 1200×630 JPEG. Favicons, Apple
+  touch icon, and Web App Manifest return HTTP 200 with correct MIME types.
+  The custom-domain homepage cache refreshed from the prior `/og.jpg` tag to
+  `/og-image`; no broad cache purge was performed.
