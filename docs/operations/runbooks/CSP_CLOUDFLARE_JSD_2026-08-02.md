@@ -53,6 +53,13 @@ Tampoco carga Ko-fi fuera de la página de apoyo.
 4. Si Cloudflare ignora `no-transform`, detener el despliegue y desactivar Bot
    Fight Mode desde **Security → Bots**; en plan Free no admite skip por ruta.
 
+Nota operativa (2026-08-02): el token de `.env.local` no tiene permiso de
+Cache Purge (API de zona devuelve 10000), así que la propagación del edge en
+dominio custom depende del TTL de 5 min; la URL limpia puede seguir sirviendo
+el HTML pre-deploy mientras tanto (verificar con `?cb=<timestamp>` para leer
+el origen). Para purgar a mano se requiere un token con permiso
+`Zone > Cache Purge`.
+
 La verificación de producción permanece pendiente hasta que este diff se
 despliegue. Preview/build solo demuestran la configuración de origen, no la
 respuesta final de la zona.
