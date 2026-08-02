@@ -26,6 +26,13 @@
 /images/*
   Cache-Control: public, max-age=31536000, immutable
 
+# Extensionless JPEG used by social crawlers. Keeping the URL extensionless
+# avoids Cloudflare Hotlink Protection's extension-based external-referrer rule.
+/og-image
+  Content-Type: image/jpeg
+  Cache-Control: public, max-age=86400, s-maxage=604800, stale-while-revalidate=86400
+  X-Robots-Tag: noindex, nofollow
+
 # Pagefind search bundle — keep TTL short so CSP/_headers changes propagate
 # within 5 min to the worker + WASM without needing a manual cache purge.
 # Rationale: CSP rules live in _headers; when the CSP changes but the
