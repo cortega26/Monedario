@@ -561,8 +561,8 @@ describe("gsc-fetch GAP gate", () => {
 
   it("backfill mode: a present target-week export counts as weeks_present=1", () => {
     const dir = tmpDir();
-    writeFileSync(path.join(dir, "2026-W30-pages.json"), "{}\n", "utf8");
-    const r = run(["--week=2026-W30"], { GSC_OUTPUT_BASE: dir });
+    writeFileSync(path.join(dir, "2026-W17-pages.json"), "{}\n", "utf8");
+    const r = run(["--week=2026-W17"], { GSC_OUTPUT_BASE: dir });
     expect(r.status).toBe(1);
     expect(r.stderr).toContain("weeks_present=1");
     expect(r.stderr).toContain("GAP (backfill mode)");
@@ -571,14 +571,22 @@ describe("gsc-fetch GAP gate", () => {
 
   it("backfill mode: a complete lookback window does not trigger the gate", () => {
     const dir = tmpDir();
-    for (let i = 0; i < 12; i++) {
-      const week = missingExportWeeks([], "2026-W30", 12)[i];
+    for (const week of missingExportWeeks([], "2026-W17", 12)) {
       writeFileSync(path.join(dir, `${week}-pages.json`), "{}\n", "utf8");
     }
-    const r = run(["--week=2026-W30"], { GSC_OUTPUT_BASE: dir });
+    const r = run(["--week=2026-W17"], { GSC_OUTPUT_BASE: dir });
     expect(r.status).toBe(1);
     expect(r.stderr).toContain("weeks_present=12 missing=[]");
     expect(r.stderr).not.toContain("GAP");
     expect(r.stderr).toContain("Missing env var");
+  });
+
+  it("explicit --week equal to the previous complete week is still strict", () => {
+    const dir = tmpDir();
+    const target = previousCompleteISOWeek();
+    const r = run([`--week=${target}`], { GSC_OUTPUT_BASE: dir });
+    expect(r.status).toBe(1);
+    expect(r.stderr).toContain("GAP");
+    expect(r.stderr).not.toContain("Missing env var");
   });
 });

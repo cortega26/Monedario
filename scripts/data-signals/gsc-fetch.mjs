@@ -8,10 +8,11 @@
  * cannibalization audit (scripts/audit-cannibalization.mjs); the country and
  * device exports feed the strategic-viability measurement baseline.
  *
- * A GAP gate runs before auth: if the week before the target week is missing
- * from the output dir and its export is overdue, the default mode aborts with
- * exit 1 (so a lost week fails the data-signals job instead of passing
- * silently); explicit --week backfill mode only warns.
+ * A GAP gate runs before auth: when the target week is the previous complete
+ * week (the normal CI case — the workflow always passes an explicit
+ * --week=<previous complete> even on schedule), a missing overdue week before
+ * it aborts with exit 1 (so a lost week fails the data-signals job instead of
+ * passing silently); older targets (real backfills) only warn.
  *
  * Usage:
  *   node scripts/data-signals/gsc-fetch.mjs [--week=YYYY-Www] [--dry-run] [--site=sc-domain:monedario.cl]
@@ -197,14 +198,19 @@ async function main() {
 
   if (args.help) printUsage(0);
 
-  const week = args.week ?? previousCompleteISOWeek();
-  const explicitWeek = args.week !== null;
+  const previousComplete = previousCompleteISOWeek();
+  const week = args.week ?? previousComplete;
+  // Strict only when the target IS the previous complete week: the workflow
+  // always passes an explicit --week=<previous complete> even in the
+  // scheduled case, so "was --week passed" is NOT a reliable backfill signal.
+  // Older targets (real backfills) stay permissive.
+  const strictGate = week === previousComplete;
 
   // ---- GAP gate: detect lost weeks before auth ----------------------------
   // Runs before credential validation so a lost export fails the job loudly
   // instead of passing silently, and so the gate is testable without
-  // credentials. Default mode aborts when the week before the target is
-  // missing AND overdue; explicit --week (backfill) mode only warns.
+  // credentials. Strict mode aborts when the week before the target is
+  // missing AND overdue; real backfills (older targets) only warn.
   const outputBase = process.env.GSC_OUTPUT_BASE || OUTPUT_BASE;
   const availableWeeks = deriveAvailableWeeks(outputBase);
   const missing = missingExportWeeks(availableWeeks, week);
@@ -217,11 +223,7 @@ async function main() {
       new Date(Date.parse(`${weekFrom}T00:00:00Z`) - 7 * 86_400_000)
     );
     if (missing.includes(prevWeek) && isExportOverdue(prevWeek)) {
-      if (explicitWeek) {
-        console.error(
-          `[gsc-fetch] GAP (backfill mode): weeks missing: ${missing.join(", ")}`
-        );
-      } else {
+      if (strictGate) {
         console.error(
           `[gsc-fetch] GAP: missing exports: ${missing.join(", ")}. ` +
             "Backfill with --week=<week> or a manual data-signals.yml run " +
@@ -229,6 +231,9 @@ async function main() {
         );
         process.exit(1);
       }
+      console.error(
+        `[gsc-fetch] GAP (backfill mode): weeks missing: ${missing.join(", ")}`
+      );
     } else {
       console.error(
         `[gsc-fetch] WARNING: older missing exports (outside the GAP rule): ${missing.join(", ")}`
