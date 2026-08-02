@@ -11,7 +11,10 @@ export const SITE = {
   profile: "https://github.com/cortega26",
   desc: "Finanzas personales para chilenos. Guías sobre AFP, APV, impuestos, inversiones y calculadoras prácticas.",
   title: "Monedario",
-  ogImage: "og.jpg",
+  // Extensionless route avoids Cloudflare Hotlink Protection, which blocks
+  // externally-referred .jpg/.png requests used by social preview crawlers.
+  ogImage: "og-image",
+  ogImageType: "image/jpeg",
   lightAndDarkMode: true,
   postPerIndex: 6,
   postPerPage: 8,

@@ -46,13 +46,17 @@ const {
 const siteContext = Astro.site ?? Astro.url;
 const resolvedCanonicalURL = new URL(canonicalURL, siteContext).href;
 const socialImageURL = new URL(ogImage, siteContext);
+const defaultSocialImagePath = SITE.ogImage ? `/${SITE.ogImage}` : "/og.png";
+const defaultSocialImageURL = new URL(defaultSocialImagePath, siteContext);
 const ogImageExt = socialImageURL.pathname.split(".").pop()?.toLowerCase();
 const ogImageType =
-  ogImageExt === "jpg" || ogImageExt === "jpeg"
-    ? "image/jpeg"
-    : ogImageExt === "webp"
-      ? "image/webp"
-      : "image/png";
+  socialImageURL.pathname === defaultSocialImageURL.pathname
+    ? SITE.ogImageType
+    : ogImageExt === "jpg" || ogImageExt === "jpeg"
+      ? "image/jpeg"
+      : ogImageExt === "webp"
+        ? "image/webp"
+        : "image/png";
 
 const SITE_ORIGIN = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
   /\/+$/,

@@ -4,13 +4,13 @@ import { SITE } from "@/config";
 // Derive base path from the configured website URL (e.g. "/" or "/subpath")
 const BASE = new URL(SITE.website).pathname.replace(/\/$/, "");
 
-const getRobotsTxt = (sitemapURL: URL) => `
+export const getRobotsTxt = (sitemapURL: URL) => `
 User-agent: *
 Allow: /
 
-# No indexar los generadores de OG images ni el índice de búsqueda interna
-Disallow: ${BASE}/og.png
-Disallow: ${BASE}/og.jpg
+# Los assets de vista previa social deben ser rastreables. Sus respuestas usan
+# X-Robots-Tag: noindex para evitar que aparezcan como resultados independientes.
+# El índice de búsqueda interna no necesita rastreo.
 Disallow: ${BASE}/pagefind/
 
 # /buscar/, /search/ y /tags/ quedan crawlables para que los bots vean el noindex
