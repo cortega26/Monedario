@@ -29,7 +29,12 @@ function isStaticAsset(url) {
     pathname.startsWith("/_astro/") ||
     pathname.startsWith("/fonts/") ||
     pathname.startsWith("/images/") ||
-    pathname === "/favicon.svg"
+    pathname === "/favicon.svg" ||
+    pathname === "/favicon.ico" ||
+    pathname === "/favicon-16x16.png" ||
+    pathname === "/favicon-32x32.png" ||
+    pathname === "/apple-touch-icon.png" ||
+    pathname === "/site.webmanifest"
   );
 }
 

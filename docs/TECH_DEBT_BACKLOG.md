@@ -2,6 +2,26 @@
 
 Fecha de corte: 2026-05-30
 
+## TD-0097 — Política de antigüedad de dependencias bloquea los gates locales
+
+- **ID:** TD-0097
+- **Título corto:** Resolver baseline bloqueado por minimumReleaseAge
+- **Descripción:** El 2026-08-01, `pnpm run test` no alcanzó a iniciar Vitest: Corepack rechazó `@napi-rs/wasm-runtime@1.2.2`, `js-yaml@5.2.3` y `postcss@8.5.25` por estar dentro de `minimumReleaseAge`.
+- **Evidencia:** salida local de `pnpm run test` antes de cambios de runtime.
+- **Impacto:** bloquea gates locales aunque el código de la tarea no haya fallado.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** XS
+- **Propuesta de solución:** el owner confirma excepciones esperadas o regenera el lockfile tras el periodo de antigüedad; una tarea no relacionada no debe cambiar esta política.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `pnpm run test` inicia Vitest sin modificación automática de política.
+  - [ ] Las excepciones, si existen, tienen revisión de supply chain explícita.
+- **Owner:** Sin asignar
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-08-01
+- **Última actualización:** 2026-08-01
+
 ## Métricas
 
 ### Total de items por urgencia
