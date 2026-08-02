@@ -7,6 +7,7 @@ Tercera auditoría profunda: `/improve deep` el 2026-06-19 (commit `9a4eb37d`) �
 Cuarta auditoría profunda: `/improve deep` el 2026-06-26 (commit `a7bb8b2e`) → planes 032–034.
 Quinta auditoría profunda: `/improve deep` el 2026-07-10 (commit `520a8685`) → planes 035–038.
 Auditoría de dirección: `/improve next` el 2026-07-12 (commit `0102b11a`) → spikes de dirección 045–046 (delta W27 sobre la auditoría canónica `GROWTH-DIRECTION-AUDIT-2026-06-28.md`, corte W25).
+Auditoría de dirección: `/improve next` el 2026-08-02 (commit `0bd51540`) → planes 053–056 (delta sobre el memo de viabilidad estratégica `output/audits/strategic-viability-2026-08-02/monedario-strategic-viability-audit.html`, untracked; ventana de experimentos 2026-08-02 → 2026-11-02).
 Sexta auditoría profunda: `/improve deep` el 2026-07-16 (commit `efe021c7`) →
 planes 048–052, basada en el bundle W28, el incidente del export first-party y
 una revisión read-only de correctness, security, performance, architecture,
@@ -90,6 +91,9 @@ paralelizable entre sí salvo que se indique lo contrario.
 | 2 | [052](052-worker-manual-trigger-auth.md) | Sacar secretos de URLs y separar el PAT del trigger manual | P1 | S | LOW/MED | 049, 051 | IN PROGRESS (código `ae9246bd` aprobado localmente; deploy/rotación y smoke pendientes, PAT requiere autoridad de emisión) |
 | 3 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | BLOCKED (hipótesis descartada; causa de campo sin identificar — ver nota abajo) |
 | 4 | [046](046-converter-recurrence-return-hook-spike.md) | **Spike de dirección**: investigar si hay recurrencia real sobre los conversores (superficie de mayor **tráfico** según RUM W27; recurrencia **por confirmar**) y, solo si la hay, diseñar un return-hook privacy-safe | P2 | M | LOW | todos | TODO (spike de diseño; por defecto "medir antes de construir"; compuerta de decisión humana) |
+| 5 | [054](054-editorial-evidence-ledger-spike.md) | **Spike de dirección**: ledger de evidencia del pipeline editorial (inventario 3/53, reproducción del checker, veredicto claim vs. evidencia) | P1 | M | LOW | todos | TODO (spike read-only; compuerta de decisión humana: backfill vs. ajuste del claim) |
+| 6 | [055](055-calculator-consolidation-spike.md) | **Spike de dirección**: consolidación por URL de 5 calculadoras (dossier de evidencia + opciones de migración con gates de ruta/RSS/ADR) | P2 | M | MED | todos | TODO (spike; compuerta humana por URL; la ejecución posterior de sus recomendaciones es un plan aparte) |
+| 7 | [056](056-decision-paths-afc-prepago-credito-spike.md) | **Spike de dirección**: rutas de decisión contextuales AFC/prepago/crédito (diseño de NextSteps + extensión del patrón post-resultado) | P2 | M | LOW | 046 | TODO (spike; firma de copy y elección de piloto = compuertas humanas) |
 > **035–040, 042–045 y 047–050 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
 
 > **046 es un spike de dirección (`/improve next`, 2026-07-12)**, no un plan de
@@ -100,6 +104,19 @@ paralelizable entre sí salvo que se indique lo contrario.
 > follow-up 047 ya se ejecutaron, aprobaron y archivaron** — ver nota abajo. La
 > viabilidad de 047 quedó confirmada en vivo el 2026-07-16 (`requestHost`
 > aceptado como filtro y dimensión) antes de integrar el filtro.
+>
+> **053 CERRADO (mergeado y archivado 2026-08-02); 054–056 son los planes
+> pendientes de la auditoría de dirección (`/improve next`, 2026-08-02)**,
+> basados en el memo de viabilidad estratégica del mismo día
+> (`output/audits/strategic-viability-2026-08-02/`, untracked — veredicto
+> "continuar con foco estricto", ventana de experimentos 2026-08-02 → 2026-11-02).
+> Los tres restantes son spikes de diseño/evidencia read-only con compuertas
+> humanas. El commit `e17013b7` (#382, el mismo día) ya implementó parte de la
+> fundación utility-led que el memo pide (contrato de analytics v2 con
+> `alert_interest_*`/`support_*`/`next_step_*`, copy de privacidad corregido en
+> `HeroHomepage.astro:93`, `UtmPostResultActions` en conversor-utm, registry de
+> umbrales en `docs/operations/UTILITY_LED_EXPERIMENT_REGISTRY.md`) — ver
+> "Considerados y reconciliados" abajo para lo que NO se re-propone.
 
 ### Decisiones y rechazos de la auditoría 2026-07-16
 
@@ -846,6 +863,12 @@ paralelizable entre sí salvo que se indique lo contrario.
 
 Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main`.
 
+### Auditoría de dirección 2026-08-02 (plans 053–056; 054–056 pendientes)
+
+| Plan | Título | Prioridad | Esfuerzo | Estado |
+|------|--------|-----------|----------|--------|
+| [053](archive/053-gsc-measurement-baseline.md) | Completar el baseline de medición GSC (gate de semanas faltantes estricto en CI + exports de país/dispositivo) | P1 | M | DONE (fast-forward `f1e37560`+`bc979708`, 2026-08-02) — incluye ronda de auditoría que corrigió el gate estricto en CI; backfill de 2026-W29 pendiente como paso operativo |
+
 ### Sexta auditoría profunda / Issue #315 — 2026-07-16
 
 | Plan | Título | Prioridad | Esfuerzo | Estado |
@@ -931,6 +954,16 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED (razón)` · `REJECTED (ra
 
 ## Notas de dependencia
 
+- **053 EJECUTADO, MERGEADO Y ARCHIVADO (2026-08-02, fast-forward
+  `f1e37560`+`bc979708`)** — su gate de semanas faltantes y los exports de
+  país/dispositivo son prerequisito informativo para 055 y 056: el registry
+  (`UTILITY_LED_EXPERIMENT_REGISTRY.md`) exige integridad ≥95% antes de decidir
+  con datos. El backfill de 2026-W29 sigue pendiente como paso operativo del
+  operador (workflow_dispatch con `week=2026-W29`).
+- **056 se relaciona con 046** (mismo embudo de conversores): 046 diseña el
+  return-hook de recurrencia; 056 diseña los siguientes pasos contextuales. Si
+  046 se ejecuta antes de 056, el ejecutor de 056 debe reconciliar ambos
+  diseños (condición de STOP explícita en el plan).
 - **022 y 023 son independientes entre sí** y de los planes previos; pueden
   ejecutarse en paralelo o en cualquier orden. Ambos son defensa-en-profundidad
   de bajo riesgo (P3).
@@ -1132,6 +1165,50 @@ implementar** al commit `0102b11a` — `scripts/data-signals/cloudflare-fetch.mj
 función `fetchRumWebVitals` (≈líneas 140-162) sigue consultando el RUM por
 `accountTag` sin dimensión de hostname. El plan 045 lo diagnostica y especifica el
 follow-up; no lo arregla (spike documental).
+
+## Considerados y reconciliados — auditoría de dirección `/improve next` 2026-08-02 (para no re-derivar)
+
+Delta sobre el memo de viabilidad estratégica 2026-08-02. Los ítems del memo
+que ya están resueltos o en curso en el repo se verificaron y NO se
+re-proponen (evidencia de cada uno abajo):
+
+- **Promesa de privacidad ("sin recolección de datos")**: corregida.
+  `HeroHomepage.astro:93` dice "Sin publicidad. Sin registro requerido.
+  Métricas agregadas, sin datos financieros personales. Fuentes oficiales." y
+  `/privacidad.astro` describe la telemetría agregada sin identificadores. La
+  fundación #382 (`e17013b7`, 2026-08-02) consolidó el copy. No abrir.
+- **Error CSP de Cloudflare / validación CSP en producción**: en curso, fuera
+  de planes. TD-0099 (commit `09dc219d`, "no-transform en toda regla
+  Cache-Control") y TD-0102 (incidente documentado en `docs/operations/`,
+  commit `b7e94fec`) con runbook; la validación en producción es paso
+  operativo pendiente, no un plan de código. No abrir.
+- **Instrumentación de alerta / apoyo / siguiente paso**: ya construida.
+  Contrato v2 en `src/contracts/analytics-events.ts` (`alert_interest_shown/
+  submit`, `support_shown/click/confirmed`, `next_step_shown/click`),
+  `UtmPostResultActions.astro` vivo en conversor-utm, umbrales GREEN/WATCH/
+  HALT en `UTILITY_LED_EXPERIMENT_REGISTRY.md` (ventana 2026-08-02 → 2026-11-02).
+  Lo que falta (diseño de rutas por cluster, extensión a AFC/prepago) es el
+  plan 056. No abrir duplicados.
+- **Alerta UTM/UF recurrente**: correctamente **gateada** — el registry exige
+  `alert_interest_shown ≥2%` antes de construirla; hoy el botón solo mide
+  interés agregado (copy explícito en `UtmPostResultActions.astro`). Construir
+  solo si el umbral cruza. No abrir ahora.
+- **Ejemplo UTM desactualizado** (ítem "hacer ahora" del memo): mitigado —
+  `src/data/blog/utm-chile-que-es-como-funciona.md` usa valores fechados
+  ("abril 2026: $69.889") con cajas de advertencia explícitas, y existe
+  `check:editorial-timeliness` para la caducidad. Es ítem de contenido del
+  proceso editorial, no de código. No abrir.
+- **Recurrencia / retorno etiquetado**: ya planificado — spike 046 (TODO,
+  mismo embudo). El plan 056 lo referencia en vez de duplicarlo. No escribir
+  otro spike de recurrencia.
+- **Apoyo voluntario (memo sección L)**: instrumentado y live (link a
+  `/apoyar.astro` en el bloque post-resultado); la medición de umbrales es del
+  registry. La extensión a AFC/prepago cae dentro del diseño del plan 056.
+  No abrir como plan separado.
+- **Costo de mantenimiento / inventario de 184 URLs**: el memo propone un
+  objetivo de ~80 URLs activas; el único camino de código es la consolidación
+  por URL → plan 055. La gobernanza del inventario (congelar URLs nuevas) es
+  decisión del mantenedor, no un plan.
 
 ## Dirección (decisión del mantenedor — no planificado aún)
 

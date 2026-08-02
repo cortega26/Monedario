@@ -46,6 +46,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [048](048-search-signal-integrity.md) | Restaurar comparaciones WoW, estados de fuente explícitos y auditoría CTR acotada | 2026-07-16 | sí (commit `e472ea43`; final Issue #315 change) |
 | [049](049-analytics-calendar-and-funnel-semantics.md) | Alinear semanas a Chile con cutover v1→v2 y reportar ratios de eventos sin llamarlos conversión | 2026-07-16 | sí (PR #331, squash `ac0c4a17`; deploy `dbc273e9-4f89-48f8-b572-fff6e536ff81`) |
 | [050](050-weekly-search-ops-current-scale.md) | Restaurar el loop semanal con revisión de cadencia el 2026-08-01 | 2026-07-16 | sí (commit `e01d4a93`; final Issue #315 change) |
+| [053](053-gsc-measurement-baseline.md) | Completar el baseline de medición GSC: gate de semanas faltantes (estricto en CI tras revisión de auditoría) + exports de país/dispositivo; backfill de 2026-W29 pendiente como paso operativo | 2026-08-02 | sí (fast-forward `f1e37560` + `bc979708`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
