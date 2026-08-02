@@ -5,8 +5,9 @@ permissions:
 
 on:
   workflow_dispatch: {}
-  schedule:
-    - cron: "0 7 * * 1"
+  # Schedule removed: scan-articles.mjs and build-prompts.mjs already run
+  # in ci.yml's build job every Monday. The scheduled run here was fully
+  # redundant with CI. Manual dispatch kept for on-demand use.
 
 concurrency:
   group: hero-images-manual-${{ github.ref }}
