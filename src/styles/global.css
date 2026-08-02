@@ -154,8 +154,14 @@ main[data-layout="calculator"] section.prose.prose-sm {
     font-family: var(--font-display);
   }
 
-  [data-layout="calculator"] h1,
-  [data-layout="calculator"] h2 {
+  /* Calculator pages render all headings (including the shared footer's) in the
+     body typeface: the display face (Fraunces) is otherwise pulled into the
+     critical path of every calculator just for below-the-fold footer labels,
+     which cost ~150-450 ms of simulated mobile LCP on /calculadoras/*
+     (2026-08-02 trace + Lantern analysis, TD-0101). `:has()` is safe here:
+     Chromium 105+, Safari 15.4+, Firefox 121+. */
+  body:has(main[data-layout="calculator"]) h1,
+  body:has(main[data-layout="calculator"]) h2 {
     font-family: var(--font-body);
   }
 }

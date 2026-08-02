@@ -26,7 +26,9 @@ const performanceSensitivePath = /^\/(?:posts|guias|calculadoras)(?:\/|$)/.test(
 // fetch it inside its short block window, so the H1 stays in the Georgia fallback for
 // the whole page load. Preload it on the homepage — the landing page whose branded
 // headline is the whole point — so the H1 renders in Fraunces instead of Georgia.
-// Skip the preload only on /calculadoras/* (their hero H1 is not Fraunces).
+// Skip the preload on /calculadoras/*: their headings (including the shared footer's,
+// see the body:has() rule in global.css) all use the body typeface, so the display
+// font is not fetched on those pages at all (LCP guardrail, TD-0101).
 const isHomepage = Astro.url.pathname === "/" || Astro.url.pathname === "";
 const shouldPreloadDisplayFont = !/^\/calculadoras(?:\/|$)/.test(
   Astro.url.pathname

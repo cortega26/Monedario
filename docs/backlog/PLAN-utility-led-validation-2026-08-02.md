@@ -142,6 +142,7 @@ No se avanza al despliegue si falla cualquiera de estos gates:
 - 2026-08-02 — El propietario precisó el principio rector: perseverar y construir confianza a mediano/largo plazo mientras el proyecto sea sostenible. Se agregó Gate D; ingresos cero no constituyen causal de cierre.
 - 2026-08-02 — Implementación completada en código: freeze de 184 URLs indexables, baseline GSC reproducible, contrato analytics v2, scorecard semanal, UTM vigente con fuente primaria SII, acciones postresultado, auditoría editorial, backlog bloqueado y pack B2B documental.
 - 2026-08-02 — Cierre parcial: la configuración de origen CSP está lista pero requiere comprobar la respuesta final de Cloudflare; LCP UTM superó 1,7 s en dos de tres corridas; nueve SLA editoriales preexistentes siguen vencidos.
+- 2026-08-02 — Guardrail LCP UTM cerrado (TD-0101): causa raíz = fuente display Fraunces en el camino crítico de calculadoras por los h2 del footer (regla base compartida); fix = override de tipografía extendido a toda la página en calculadoras (`body:has`) + preload condicional. LCP móvil 1.353/1.352/1.204 ms en tres corridas (≤1,7 s), Performance 100, CLS 0, TBT 0; build, 1.076 tests unitarios, 58/58 Playwright y gates de rutas/RSS/freeze pasan. Commit `perf(utm): close mobile lcp guardrail` enviado a la rama del PR #382 (sin merge). Pendiente: validación CSP en producción tras merge y nueve SLA editoriales.
 
 ## Evidencia de cierre
 
