@@ -19,6 +19,10 @@ const afterPath = resolveArg(
   process.argv[3],
   "output/validation/routes_snapshot_after.json"
 );
+const exceptionsPath = resolveArg(
+  process.argv[4],
+  "docs/governance/url-freeze-exceptions.json"
+);
 
 function loadRoutes(filePath) {
   const raw = readFileSync(filePath, "utf8");
@@ -29,6 +33,38 @@ function loadRoutes(filePath) {
 
 const beforeRoutes = loadRoutes(beforePath);
 const afterRoutes = loadRoutes(afterPath);
+
+function loadApprovedExceptions(filePath) {
+  const parsed = JSON.parse(readFileSync(filePath, "utf8"));
+  const now = Date.now();
+  return new Set(
+    (parsed.exceptions ?? [])
+      .filter(entry => {
+        const required = [
+          "url",
+          "problem",
+          "evidence",
+          "hypothesis",
+          "cost",
+          "maintenance",
+          "metric",
+          "threshold",
+          "decision",
+          "approvedBy",
+          "approvedAt",
+          "expiresAt",
+        ];
+        return (
+          required.every(key => String(entry[key] ?? "").trim().length > 0) &&
+          entry.decision === "APPROVED" &&
+          Date.parse(entry.expiresAt) >= now
+        );
+      })
+      .map(entry => entry.url)
+  );
+}
+
+const approvedExceptions = loadApprovedExceptions(exceptionsPath);
 
 if (beforeRoutes.size === 0) {
   console.error(
@@ -49,11 +85,21 @@ if (removed.length > 0) {
   process.exit(1);
 }
 
+const unapprovedAdded = added.filter(route => !approvedExceptions.has(route));
+if (unapprovedAdded.length > 0) {
+  console.error(
+    `[compare-routes] Unapproved route additions detected: ${unapprovedAdded.length}`
+  );
+  for (const route of unapprovedAdded) console.error(`- ${route}`);
+  console.error(
+    `[compare-routes] Strategy freeze requires a complete, active entry in ${exceptionsPath}`
+  );
+  process.exit(1);
+}
+
 if (added.length > 0) {
-  console.warn(`[compare-routes] Added routes: ${added.length}`);
-  for (const route of added) {
-    console.warn(`- ${route}`);
-  }
+  console.warn(`[compare-routes] Approved route additions: ${added.length}`);
+  for (const route of added) console.warn(`- ${route}`);
 } else {
   console.log("[compare-routes] No route changes detected.");
 }

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "week": "YYYY-Www",
+  "weeklyHours": null,
+  "weeklyCostClp": null,
+  "tokenUsage": null,
+  "burnoutLevel1To5": null,
+  "qualityIncidents": [],
+  "learningSignal": null,
+  "reputationSignal": null,
+  "maintenanceTasks": [],
+  "blockers": [],
+  "revenueClpOptional": null,
+  "note": "Ingresos cero no son fallo; completar antes de decidir expansión."
+}

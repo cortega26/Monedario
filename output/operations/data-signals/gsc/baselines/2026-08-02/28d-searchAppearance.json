@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "source": "google-search-console",
+  "site": "sc-domain:monedario.cl",
+  "windowName": "28d",
+  "window": {
+    "from": "2026-07-03",
+    "to": "2026-07-30"
+  },
+  "dimension": "searchAppearance",
+  "fetchedAt": "2026-08-02T17:10:29.446Z",
+  "data": [
+    {
+      "searchAppearance": "PRODUCT_SNIPPETS",
+      "clicks": 0,
+      "impressions": 2236,
+      "ctr": 0,
+      "position": 9.335867620751342
+    }
+  ]
+}

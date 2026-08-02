@@ -38,7 +38,7 @@ bucket_name = "monedario-analytics-exports"
 # ── Environment variables ───────────────────────────────────────────────────
 [vars]
 # Schema version del artefacto de export. Incrementar solo con breaking change.
-SCHEMA_VERSION = "1"
+SCHEMA_VERSION = "2"
 
 # Timezone para cálculo de semana ISO en el export semanal.
 EXPORT_TIMEZONE = "America/Santiago"

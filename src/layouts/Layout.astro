@@ -2,6 +2,7 @@
 import { ClientRouter } from "astro:transitions";
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 import { SITE } from "@/config";
+import packageInfo from "../../package.json";
 import { getPath } from "@/utils/getPath";
 import "@/styles/global.css";
 
@@ -141,6 +142,7 @@ const structuredData = !pubDatetime
   lang={SITE.lang ?? "es"}
   class={scrollSmooth ? "scroll-smooth" : undefined}
   data-analytics-transport={SITE.analyticsTransport ? "enabled" : undefined}
+  data-app-version={packageInfo.version}
 >
   <head>
     <meta charset="UTF-8" />

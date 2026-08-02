@@ -20,6 +20,16 @@ const ANALYTICS_EVENT_NAMES = new Set([
   "resume_click",
   "support_page_click",
   "official_source_click",
+  "next_step_shown",
+  "next_step_click",
+  "source_click",
+  "share_attempt",
+  "share_success",
+  "alert_interest_shown",
+  "alert_interest_submit",
+  "support_shown",
+  "support_click",
+  "support_confirmed",
 ]);
 
 function parseArgs(argv) {
@@ -214,6 +224,9 @@ Optional file:
 - \`analytics-events.csv\`
   - GA4 export filtered to the same weekly window
   - Expected columns: \`page_path,event_name,event_count,event_count_previous\`
+- \`utility-led-ops.json\`
+  - Weekly sustainability inputs: hours, cost, tokens, burnout, incidents,
+    learning, reputation, maintenance and blockers.
 
 Notes:
 
@@ -260,6 +273,29 @@ Notes:
       null,
       2
     ) + "\n",
+  );
+
+  writeTemplateFile(
+    path.join(inputDir, "utility-led-ops.json"),
+    JSON.stringify(
+      {
+        schemaVersion: 1,
+        week: weekLabel,
+        weeklyHours: null,
+        weeklyCostClp: null,
+        tokenUsage: null,
+        burnoutLevel1To5: null,
+        qualityIncidents: [],
+        learningSignal: null,
+        reputationSignal: null,
+        maintenanceTasks: [],
+        blockers: [],
+        revenueClpOptional: null,
+        note: "Ingresos cero no son fallo; la sostenibilidad es el gate de continuidad.",
+      },
+      null,
+      2
+    ) + "\n"
   );
 
   console.log(
@@ -575,12 +611,21 @@ function parseJsonArtifact(filePath) {
   }
 }
 
-function validateSignalHeader(doc, filePath, { source, week }) {
+function validateSignalHeader(
+  doc,
+  filePath,
+  { source, week, schemaVersions = [1] }
+) {
   if (!doc || typeof doc !== "object" || Array.isArray(doc)) {
     invalidArtifact(filePath, "root must be an object");
   }
-  if (doc.schemaVersion !== 1) {
-    invalidArtifact(filePath, "schemaVersion must be 1");
+  if (!schemaVersions.includes(doc.schemaVersion)) {
+    invalidArtifact(
+      filePath,
+      schemaVersions.length === 1
+        ? `schemaVersion must be ${schemaVersions[0]}`
+        : `schemaVersion must be one of ${schemaVersions.join(", ")}`
+    );
   }
   if (doc.source !== source) {
     invalidArtifact(filePath, `source must be ${source}`);
@@ -763,6 +808,7 @@ function readAnalyticsJson(analyticsJsonDir, week) {
   validateSignalHeader(doc, analyticsPath, {
     source: "first-party-events",
     week,
+    schemaVersions: [1, 2],
   });
   if (!Array.isArray(doc.data)) {
     invalidArtifact(analyticsPath, "data must be an array");
@@ -775,8 +821,9 @@ function readAnalyticsJson(analyticsJsonDir, week) {
     if (!ANALYTICS_EVENT_NAMES.has(row.event_name)) {
       invalidArtifact(analyticsPath, `data[${index}].event_name is not allowlisted`);
     }
-    if (typeof row.calculator_slug !== "string" || !row.calculator_slug) {
-      invalidArtifact(analyticsPath, `data[${index}].calculator_slug must be a non-empty string`);
+    const calculatorId = row.calculator_id ?? row.calculator_slug;
+    if (typeof calculatorId !== "string" || !calculatorId) {
+      invalidArtifact(analyticsPath, `data[${index}] requires calculator_id or legacy calculator_slug`);
     }
     if (typeof row.count !== "number" || !Number.isFinite(row.count) || row.count < 0) {
       invalidArtifact(analyticsPath, `data[${index}].count must be a non-negative number`);
@@ -796,7 +843,7 @@ function readAnalyticsJson(analyticsJsonDir, week) {
   const bySlug = new Map();
 
   for (const row of data) {
-    const slug = row.calculator_slug ?? "unknown";
+    const slug = row.calculator_id ?? row.calculator_slug ?? "unknown";
     if (!bySlug.has(slug)) {
       bySlug.set(slug, {
         views: 0,
@@ -811,6 +858,11 @@ function readAnalyticsJson(analyticsJsonDir, week) {
         scenarioActions: 0,
         resumeClicks: 0,
         officialSourceClicks: 0,
+        shareSuccess: 0,
+        alertInterestShown: 0,
+        alertInterestSubmits: 0,
+        supportShown: 0,
+        supportConfirmed: 0,
       });
     }
     const acc = bySlug.get(slug);
@@ -829,16 +881,35 @@ function readAnalyticsJson(analyticsJsonDir, week) {
         acc.errors += row.count;
         break;
       case "next_best_step_shown":
+      case "next_step_shown":
         acc.nextStepShown += row.count;
         break;
       case "next_best_step_click":
+      case "next_step_click":
         acc.nextStepClicks += row.count;
         break;
       case "share_result_click":
+      case "share_attempt":
         acc.shares += row.count;
         break;
+      case "share_success":
+        acc.shareSuccess += row.count;
+        break;
       case "support_page_click":
+      case "support_click":
         acc.supportClicks += row.count;
+        break;
+      case "support_shown":
+        acc.supportShown += row.count;
+        break;
+      case "support_confirmed":
+        acc.supportConfirmed += row.count;
+        break;
+      case "alert_interest_shown":
+        acc.alertInterestShown += row.count;
+        break;
+      case "alert_interest_submit":
+        acc.alertInterestSubmits += row.count;
         break;
       case "result_action_click":
         acc.resultActionClicks += row.count;
@@ -850,6 +921,7 @@ function readAnalyticsJson(analyticsJsonDir, week) {
         acc.resumeClicks += row.count;
         break;
       case "official_source_click":
+      case "source_click":
         acc.officialSourceClicks += row.count;
         break;
       // Other allowlisted events are counted but not surfaced individually
@@ -862,6 +934,8 @@ function readAnalyticsJson(analyticsJsonDir, week) {
     nextStepShown: 0, nextStepClicks: 0, shares: 0,
     supportClicks: 0, resultActionClicks: 0, scenarioActions: 0,
     resumeClicks: 0, officialSourceClicks: 0,
+    shareSuccess: 0, alertInterestShown: 0, alertInterestSubmits: 0,
+    supportShown: 0, supportConfirmed: 0,
   };
   for (const acc of bySlug.values()) {
     totals.views += acc.views;
@@ -876,6 +950,11 @@ function readAnalyticsJson(analyticsJsonDir, week) {
     totals.scenarioActions += acc.scenarioActions;
     totals.resumeClicks += acc.resumeClicks;
     totals.officialSourceClicks += acc.officialSourceClicks;
+    totals.shareSuccess += acc.shareSuccess;
+    totals.alertInterestShown += acc.alertInterestShown;
+    totals.alertInterestSubmits += acc.alertInterestSubmits;
+    totals.supportShown += acc.supportShown;
+    totals.supportConfirmed += acc.supportConfirmed;
   }
 
   // Convert Map to plain object for JSON serialization.
@@ -1171,14 +1250,60 @@ _Sin eventos registrados esta semana._
       `shares=${totals.shares} · NBS shown=${totals.nextStepShown} · NBS clicks=${totals.nextStepClicks} · ` +
       `support clicks=${totals.supportClicks} · result actions=${totals.resultActionClicks} · ` +
       `scenario actions=${totals.scenarioActions} · resume clicks=${totals.resumeClicks} · ` +
-      `official source clicks=${totals.officialSourceClicks}`,
+      `official source clicks=${totals.officialSourceClicks} · share success=${totals.shareSuccess} · ` +
+      `alert shown=${totals.alertInterestShown} · alert interest=${totals.alertInterestSubmits} · ` +
+      `support shown=${totals.supportShown} · support confirmed=${totals.supportConfirmed}`,
     "",
     `_Starts/view y results/start son ratios de conteos de eventos agregados; pueden superar 1× y no representan usuarios, sesiones ni conversión de cohorte. Error rate = errors / starts. NBS CTR = next-step clicks / next-step shown. "n/d" indica denominador cero o fuente no disponible._`,
     "",
   ];
 
+  parts.push("### Experimentos utility-led\n");
+  parts.push(
+    table(
+      [
+        "Calculadora",
+        "Next shown",
+        "Next clicks",
+        "Next CTR",
+        "Share success",
+        "Alert shown",
+        "Alert interest",
+        "Alert ratio",
+        "Support shown",
+        "Support clicks",
+        "Support CTR",
+        "Support confirmed",
+      ],
+      rows.length === 0
+        ? []
+        : slugs.map(slug => {
+            const a = bySlug[slug];
+            return [
+              `\`${slug}\``,
+              nDformat(a.nextStepShown),
+              nDformat(a.nextStepClicks),
+              safeRate(a.nextStepClicks, a.nextStepShown),
+              nDformat(a.shareSuccess),
+              nDformat(a.alertInterestShown),
+              nDformat(a.alertInterestSubmits),
+              safeRate(a.alertInterestSubmits, a.alertInterestShown),
+              nDformat(a.supportShown),
+              nDformat(a.supportClicks),
+              safeRate(a.supportClicks, a.supportShown),
+              nDformat(a.supportConfirmed),
+            ];
+          })
+    )
+  );
+  parts.push(
+    '\n_"Support confirmed" solo cuenta confirmación fiable; un click externo nunca se interpreta como pago._',
+    ""
+  );
+
   // Per-calculator detailed funnel for priority tools
   const prioritySlugs = [
+    "conversor-utm",
     "seguro-cesantia",
     "operacion-renta",
     "prepago-credito",
@@ -1296,6 +1421,79 @@ function loadJson(filePath, label) {
     console.error(`[weekly-search-report] Failed to read ${label}: ${error}`);
     process.exit(1);
   }
+}
+
+function readUtilityOps(inputDir, week) {
+  const file = path.join(inputDir, "utility-led-ops.json");
+  if (!existsSync(file)) {
+    return {
+      status: "INPUT_REQUIRED",
+      weeklyHours: null,
+      weeklyCostClp: null,
+      tokenUsage: null,
+      burnoutLevel: null,
+      qualityIncidents: [],
+      learningSignal: null,
+      reputationSignal: null,
+      maintenanceTasks: [],
+      blockers: [],
+      note: "Zero revenue is not a failure; sustainability is the continuation gate.",
+    };
+  }
+  const document = parseJsonArtifact(file);
+  if (document.schemaVersion !== 1) invalidArtifact(file, "schemaVersion must be 1");
+  if (week && document.week !== week) invalidArtifact(file, `week must be ${week}`);
+  for (const key of ["weeklyHours", "weeklyCostClp", "tokenUsage", "revenueClpOptional"]) {
+    if (
+      document[key] !== null &&
+      (typeof document[key] !== "number" ||
+        !Number.isFinite(document[key]) ||
+        document[key] < 0)
+    ) {
+      invalidArtifact(file, `${key} must be null or a non-negative number`);
+    }
+  }
+  if (
+    document.burnoutLevel1To5 !== null &&
+    (![1, 2, 3, 4, 5].includes(document.burnoutLevel1To5) ||
+      !Number.isInteger(document.burnoutLevel1To5))
+  ) {
+    invalidArtifact(file, "burnoutLevel1To5 must be null or an integer from 1 to 5");
+  }
+  for (const key of ["qualityIncidents", "maintenanceTasks", "blockers"]) {
+    if (!Array.isArray(document[key])) invalidArtifact(file, `${key} must be an array`);
+  }
+  const complete =
+    document.weeklyHours !== null &&
+    document.weeklyCostClp !== null &&
+    document.burnoutLevel1To5 !== null;
+  const hasCriticalIncident = document.qualityIncidents.some(
+    incident => incident?.severity === "critical"
+  );
+  const watch =
+    document.weeklyHours > 6 ||
+    document.weeklyCostClp > 25_000 ||
+    document.burnoutLevel1To5 >= 3;
+  return {
+    status: !complete
+      ? "INPUT_REQUIRED"
+      : hasCriticalIncident
+        ? "HALT"
+        : watch
+          ? "WATCH"
+          : "GREEN",
+    weeklyHours: document.weeklyHours,
+    weeklyCostClp: document.weeklyCostClp,
+    tokenUsage: document.tokenUsage,
+    burnoutLevel: document.burnoutLevel1To5,
+    qualityIncidents: document.qualityIncidents,
+    learningSignal: document.learningSignal,
+    reputationSignal: document.reputationSignal,
+    maintenanceTasks: document.maintenanceTasks,
+    blockers: document.blockers,
+    revenueClpOptional: document.revenueClpOptional,
+    note: document.note,
+  };
 }
 
 function getDeltaPercent(current, delta) {
@@ -1581,7 +1779,7 @@ function buildIndexationStatus(indexation) {
   return sections;
 }
 
-function buildSummary({ watchlist, indexation, pageRows, queryRows, analytics, analyticsJson, gscSource, gscComparison, cloudflarePerf, urlInspection, inputStatus }) {
+function buildSummary({ watchlist, indexation, pageRows, queryRows, analytics, analyticsJson, gscSource, gscComparison, cloudflarePerf, urlInspection, inputStatus, utilityOps }) {
   const pageByPath = new Map(pageRows.map(row => [row.path, row]));
 
   const trackedPages = watchlist.pages.map(entry => {
@@ -1634,6 +1832,29 @@ function buildSummary({ watchlist, indexation, pageRows, queryRows, analytics, a
     .sort((left, right) => right.impressions - left.impressions)
     .slice(0, 5);
 
+  const utilityStatus =
+    !analyticsJson || utilityOps.status === "HALT"
+      ? "HALT"
+      : utilityOps.status === "INPUT_REQUIRED" ||
+          utilityOps.status === "WATCH" ||
+          (analyticsJson.totals.starts > 0 &&
+            analyticsJson.totals.errors / analyticsJson.totals.starts > 0.1)
+        ? "WATCH"
+        : "GREEN";
+  const utilityActions = (
+    !analyticsJson
+      ? ["Restaurar o validar el export first-party antes de interpretar el funnel."]
+      : [
+          "Contrastar adquisición UTM con complete/start antes de ampliar superficies.",
+          ...(analyticsJson.totals.alertInterestSubmits > 0
+            ? ["Revisar interés agregado en avisos sin construir email ni backend."]
+            : []),
+          ...(analyticsJson.totals.supportClicks > 0
+            ? ["Revisar clics de apoyo como señal agregada; no inferir pagos ni retorno individual."]
+            : []),
+        ]
+  ).slice(0, 3);
+
   return {
     generatedAt: new Date().toISOString(),
     site: watchlist.site,
@@ -1670,6 +1891,20 @@ function buildSummary({ watchlist, indexation, pageRows, queryRows, analytics, a
     analyticsAvailable: analytics.available,
     analyticsJson: analyticsJson ?? null,
     cloudflarePerf: cloudflarePerf ?? null,
+    utilityLed: {
+      status: utilityStatus,
+      acquisition: {
+        clicks: sumMetric(pageRows, "clicks"),
+        impressions: sumMetric(pageRows, "impressions"),
+      },
+      product: analyticsJson?.totals ?? null,
+      integrity: {
+        gsc: "available",
+        analytics: analyticsJson ? "available" : "missing",
+      },
+      operations: utilityOps,
+      actions: utilityActions,
+    },
   };
 }
 
@@ -1856,7 +2091,18 @@ ${
     : "- No additional manual notes were logged in `indexation-summary.json`."
 }
 ${buildPerformanceSection(summary.cloudflarePerf, summary.weekLabel)}
-${buildCalculatorFunnelSection(summary.analyticsJson, summary.cloudflarePerf)}`;
+${buildCalculatorFunnelSection(summary.analyticsJson, summary.cloudflarePerf)}
+
+## Utility-led operating gate
+
+- Status: **${summary.utilityLed.status}**
+- Integrity: GSC **${summary.utilityLed.integrity.gsc}** · analytics **${summary.utilityLed.integrity.analytics}**
+- Operations/sustainability: **${summary.utilityLed.operations.status}** — record weekly hours, cost, burnout, quality incidents, learning and reputation before deciding expansion.
+- Revenue: not a continuation gate; zero revenue is compatible with a sustainable learning period.
+
+### Next actions (maximum 3)
+
+${summary.utilityLed.actions.map(action => `- ${action}`).join("\n")}`;
 }
 
 function main() {
@@ -1928,6 +2174,7 @@ function main() {
   const analyticsJson = analyticsResult.value;
   const cloudflarePerf = cloudflareResult.value;
   const urlInspection = inspectionResult.value;
+  const utilityOps = readUtilityOps(options.inputDir, week);
   const inputStatus = {
     analytics: {
       status: analyticsResult.status,
@@ -1962,6 +2209,7 @@ function main() {
     cloudflarePerf,
     urlInspection,
     inputStatus,
+    utilityOps,
   });
   const markdown = buildMarkdown(summary);
 

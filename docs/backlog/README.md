@@ -1,11 +1,13 @@
 # Backlog Monedario.cl — Estado actual
 
-> Generado el 2026-04-08. Última actualización: 2026-07-16.
+> Generado el 2026-04-08. Última actualización: 2026-08-02.
 > Lectura obligatoria antes de ejecutar cualquier ticket: `AGENTS.md` y `context/INVARIANTS.md`.
 
 ---
 
-## Estado actual — 2026-07-16
+## Estado actual — 2026-08-02
+
+Desde 2026-08-02 rige `FOCO ESTRICTO / VALIDACIÓN UTILITY-LED`. Nuevas superficies permanecen en `UTILITY_LED_BLOCKED_PENDING_EVIDENCE.md`; la continuidad del proyecto se evalúa por sostenibilidad, utilidad, aprendizaje y confianza, no por ingresos de corto plazo.
 
 Completado: Fases 0–3 salvo decisiones pendientes explícitas (`MON-301`, `MON-304`), auditorías de calculadoras, UX backlog (15/16), Phase 1 Profile Persistence, Phase 2 High-Value Roadmap (Waves 1–5), Optimization, Editorial Timeliness, Blog Advisory Standardization, Date Display Consistency, Guardrail Automation, GitHub Actions remediation, Next Best Step, Data Signals (parcial), modernización estratégica 2026-05-11, cierre mobile CWV/LCP (`TD-0039`), `TD-0057` backfill canónico YMYL (46 artículos), SEO roadmap Sprints 0, 2 y 3, publicación Sprint 2B firmada, quick wins de auditoría profunda 2026-05-15, **componentización de calculadoras `TD-0063` + `TD-0069`** (5 componentes, 15 calculadoras, markup duplication 0.84%→0.29%) y la infraestructura de medición first-party (collector, export JSON y scorecard). W28 ya entrega una semana post-fix válida: 498 clics / 94.443 impresiones GSC y 310 filas / 2.044 eventos / 6 tipos en analytics agregado.
 
@@ -15,15 +17,16 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 
 | Orden | Item | Por qué ahora |
 |-------|------|---------------|
-| 1 | Ritual semanal de search ops hasta fin de julio | W28 invalida el supuesto de bajo volumen; acumular evidencia comparable y cerrar 1–3 decisiones por semana |
-| 2 | `PLAN-calculator-led-growth-2026-06-28.md` — consolidar OBS-01 | La medición first-party ya está desplegada; usar W27 parcial + W28 post-fix y respetar el gate del plan antes de modificar journeys |
-| 3 | SEO striking-distance dentro del plan maestro | Capturar demanda existente con GSC de cobertura suficiente y contraste multiweek |
-| 4 | Programa Audit of Small Details (`ASD-###`) | Programa audit-only; ejecutar sin competir con la revisión de evidencia operativa |
+| 1 | Validar CSP/Cloudflare después del despliegue | Confirmar que `no-transform` evita JSD sin relajar la CSP hash-only |
+| 2 | Cerrar guardrail LCP de UTM | Dos de tres corridas móviles superaron 1,7 s; conservar el umbral y corregir antes de cerrar |
+| 3 | Ejecutar ritual utility-led por dos semanas comparables | Medir utilidad, carga, costo, calidad, aprendizaje y reputación; ingresos siguen siendo opcionales |
+| 4 | Revisar nueve SLA editoriales vencidos | Aplicar pipeline y firmas reales, priorizando riesgo, sin fabricar fechas ni evidencia |
 
 ### Pendiente — implementación por código
 
 | Plan | Archivo | Bloqueador |
 |------|---------|------------|
+| Validación utility-led, días 1–30 | `PLAN-utility-led-validation-2026-08-02.md` | Cierre parcial: validación CSP desplegada, LCP UTM y nueve SLA editoriales pendientes |
 | Crecimiento liderado por calculadoras | `PLAN-calculator-led-growth-2026-06-28.md` | OBS-01 activo: W27 quedó parcial; W28 es la primera semana post-fix válida. Consolidar evidencia multiweek y aplicar el gate del plan antes de PR-03 |
 | Phase 2 — Data Signals (MON-ENV-DATA3b..3c) | `PHASE_2_DATA_SIGNALS.md` | Requiere suscripción Ahrefs Advanced+ |
 | Hero image system — remediación manual por lotes | `HERO_IMAGE_SYSTEM_REMEDIATION_2026-04-30.md` | Manual: assets finales pendientes |

@@ -2176,3 +2176,39 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Fecha de creación:** 2026-05-15
 - **Última actualización:** 2026-05-16
 - **Nota 2026-05-16:** `docs/backlog/README.md` ahora incluye tabla `Status — planes vigentes` para los 7 planes activos tras archivar `PLAN-publish-signed-off-sprint-2b-articles-2026-05-11.md` y `PLAN-strategic-repository-modernization-2026-05-11.md` en `docs/archive/backlog/`. No se actualizó `MODULE_INDEX.md`: no contenía punteros específicos a esos planes.
+
+## TD-0098 — Nueve SLA de revisión editorial vencidos
+- **Descripción:** `pnpm run check:editorial-timeliness` falla por nueve revisiones vencidas entre 2026-07-28 y 2026-08-01: contribuciones-bienes-raices, deposito-a-plazo-uf-vs-pesos, gratificacion-legal, operacion-renta-centro, pgu, que-es-el-apv, que-es-el-ipc, que-es-la-uf y reajuste-arriendo.
+- **Evidencia:** baseline 2026-08-02; no se cambiaron fechas sin revisión real.
+- **Severidad (1-5):** 3
+- **Estado:** `BLOCKED_PENDING_EVIDENCE`
+- **Mitigación:** revisar por riesgo con `NORMA_YMYL`, pipeline aplicable y firma humana; no fabricar artifacts ni `updatedDate`.
+- **Owner:** HumanEditor
+- **Fecha:** 2026-08-02
+
+## TD-0099 — Cloudflare JSD inyecta bootstrap incompatible con CSP hash-only
+- **Descripción:** producción agrega `__CF$cv$params` con hash variable y genera error CSP. El token actual recibe 403 en Bot Management. El origen ya declara `Cache-Control: no-transform`, mecanismo documentado para impedir la transformación sin debilitar CSP.
+- **Evidencia:** `docs/operations/runbooks/CSP_CLOUDFLARE_JSD_2026-08-02.md`.
+- **Severidad (1-5):** 3
+- **Estado:** `READY_FOR_DEPLOYMENT_VALIDATION`
+- **Mitigación:** desplegar y confirmar header efectivo, ausencia de JSD inyectado y cero errores CSP. Si Cloudflare ignora `no-transform`, desactivar Bot Fight Mode/JavaScript Detections; nunca añadir `unsafe-inline`.
+- **Owner:** Carlos
+- **Fecha:** 2026-08-02
+
+## TD-0100 — CLS mínimo en sueldo-líquido excede el contrato de cero
+- **Descripción:** Lighthouse baseline encontró CLS 0,000259 en tres de tres runs de `/calculadoras/sueldo-liquido/`; el umbral contractual es 0.
+- **Evidencia:** `pnpm run perf:ci` del 2026-08-02; las demás rutas completaron la medición.
+- **Severidad (1-5):** 2
+- **Estado:** Pendiente
+- **Mitigación:** diagnosticar en tarea separada y conservar el umbral; el trabajo UTM debe demostrar no regresión contra esta línea base.
+- **Owner:** —
+- **Fecha:** 2026-08-02
+
+## TD-0101 — LCP móvil de UTM excede el guardrail en dos de tres corridas
+- **Descripción:** tres corridas móviles aisladas de `/calculadoras/conversor-utm/` obtuvieron LCP de 1.657 ms, 1.807 ms y 1.807 ms. Aunque Lighthouse marca performance 99, accesibilidad 100, SEO 100, CLS 0 y TBT 0, dos corridas superan el contrato de LCP ≤1,7 s.
+- **Evidencia:** reportes locales `/tmp/monedario-utm-lighthouse-3runs/`; medición 2026-08-02. Un intento reversible de mover el badge de confianza no mejoró el resultado y fue revertido.
+- **Severidad (1-5):** 3
+- **Estado:** Pendiente
+- **Mitigación:** perfilar la hoja compartida que bloquea render dentro de las restricciones del ADR, repetir tres corridas comparables y contrastar luego con RUM. No relajar el umbral.
+- **Owner:** —
+- **Fecha:** 2026-08-02

@@ -86,6 +86,7 @@ docs/backlog/*
 !docs/backlog/PHASE_2_DATA_SIGNALS.md
 !docs/backlog/ux-backlog.md
 !docs/backlog/PLAN-*.md
+!docs/backlog/UTILITY_LED_BLOCKED_PENDING_EVIDENCE.md
 !docs/backlog/prompt-*.md
 !docs/editorial/artifacts/
 !docs/editorial/artifacts/**

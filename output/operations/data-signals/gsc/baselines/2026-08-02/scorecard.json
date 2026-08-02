@@ -1,0 +1,484 @@
+{
+  "status": "GREEN",
+  "integrityPercent": 100,
+  "acquisition": {
+    "current28d": {
+      "clicks": 2513,
+      "impressions": 479325,
+      "ctr": 0.005242789339174881,
+      "position": 7.228853074636207
+    },
+    "previous28d": {
+      "clicks": 797,
+      "impressions": 123913,
+      "ctr": 0.006431932081379678,
+      "position": 8.710272529920186
+    },
+    "trailing3m": {
+      "clicks": 3416,
+      "impressions": 624052,
+      "ctr": 0.005473902815790992,
+      "position": 7.886982174562376
+    },
+    "trend": {
+      "clicks": 2.153074027603513,
+      "impressions": 2.8682381993818242
+    },
+    "queryReported": {
+      "clicks": 1660,
+      "impressions": 345946,
+      "ctr": 0.004798436750244258,
+      "position": 7.354303850890023
+    },
+    "hiddenQueryClicks": 853,
+    "brand": {
+      "clicks": 1,
+      "impressions": 14,
+      "ctr": 0.07142857142857142,
+      "position": 1.6428571428571428
+    },
+    "nonBrand": {
+      "clicks": 1659,
+      "impressions": 345932
+    },
+    "utm": {
+      "clicks": 1442,
+      "impressions": 320040,
+      "ctr": 0.004505686789151356,
+      "position": 6.615535558055243
+    },
+    "utmShare": 0.5738161559888579,
+    "nonUtmShare": 0.42618384401114207,
+    "topPageShare": 0.7075208913649025,
+    "top3PageShare": 0.8467966573816156,
+    "positions": {
+      "top1": 0.0005810155342163228,
+      "top3": 0.004575858660022084,
+      "top5": 0.037306400420874936,
+      "top10": 0.9641100056078116
+    }
+  },
+  "opportunities": {
+    "winners": [
+      {
+        "page": "/calculadoras/conversor-utm/",
+        "currentClicks": 1778,
+        "previousClicks": 238,
+        "deltaClicks": 1540
+      },
+      {
+        "page": "/calculadoras/prepago-credito/",
+        "currentClicks": 109,
+        "previousClicks": 55,
+        "deltaClicks": 54
+      },
+      {
+        "page": "/calculadoras/impuesto-segunda-categoria/",
+        "currentClicks": 59,
+        "previousClicks": 18,
+        "deltaClicks": 41
+      },
+      {
+        "page": "/calculadoras/deposito-a-plazo/",
+        "currentClicks": 22,
+        "previousClicks": 4,
+        "deltaClicks": 18
+      },
+      {
+        "page": "/calculadoras/credito-consumo/",
+        "currentClicks": 58,
+        "previousClicks": 43,
+        "deltaClicks": 15
+      },
+      {
+        "page": "/calculadoras/actualizador-inflacion/",
+        "currentClicks": 13,
+        "previousClicks": 0,
+        "deltaClicks": 13
+      },
+      {
+        "page": "/calculadoras/operacion-renta/",
+        "currentClicks": 72,
+        "previousClicks": 60,
+        "deltaClicks": 12
+      },
+      {
+        "page": "/calculadoras/simulador-jubilacion/",
+        "currentClicks": 17,
+        "previousClicks": 6,
+        "deltaClicks": 11
+      },
+      {
+        "page": "/posts/impuesto-global-complementario-chile/",
+        "currentClicks": 9,
+        "previousClicks": 0,
+        "deltaClicks": 9
+      },
+      {
+        "page": "/calculadoras/sueldo-liquido/",
+        "currentClicks": 12,
+        "previousClicks": 5,
+        "deltaClicks": 7
+      }
+    ],
+    "losers": [
+      {
+        "page": "/calculadoras/seguro-cesantia/",
+        "currentClicks": 241,
+        "previousClicks": 283,
+        "deltaClicks": -42
+      },
+      {
+        "page": "/guias/impuestos-personas/operacion-renta/",
+        "currentClicks": 0,
+        "previousClicks": 3,
+        "deltaClicks": -3
+      },
+      {
+        "page": "/guias/uf-costo-de-vida/indicadores-economicos/",
+        "currentClicks": 1,
+        "previousClicks": 3,
+        "deltaClicks": -2
+      },
+      {
+        "page": "/posts/fondos-mutuos-comisiones-rescate-impuestos/",
+        "currentClicks": 1,
+        "previousClicks": 3,
+        "deltaClicks": -2
+      },
+      {
+        "page": "/autor/",
+        "currentClicks": 0,
+        "previousClicks": 2,
+        "deltaClicks": -2
+      },
+      {
+        "page": "/calculadoras/",
+        "currentClicks": 0,
+        "previousClicks": 2,
+        "deltaClicks": -2
+      },
+      {
+        "page": "/posts/indemnizacion-anos-de-servicio-chile/",
+        "currentClicks": 1,
+        "previousClicks": 2,
+        "deltaClicks": -1
+      },
+      {
+        "page": "/guias/presupuesto-control-financiero/",
+        "currentClicks": 0,
+        "previousClicks": 1,
+        "deltaClicks": -1
+      },
+      {
+        "page": "/leyes/dl-830-codigo-tributario/",
+        "currentClicks": 0,
+        "previousClicks": 1,
+        "deltaClicks": -1
+      },
+      {
+        "page": "/leyes/ley-18469-fonasa/",
+        "currentClicks": 0,
+        "previousClicks": 1,
+        "deltaClicks": -1
+      }
+    ],
+    "highImpressionLowCtr": [
+      {
+        "query": "valor utm",
+        "clicks": 197,
+        "impressions": 46013,
+        "ctr": 0.004281398735140069,
+        "position": 6.052876361028405
+      },
+      {
+        "query": "utm hoy",
+        "clicks": 280,
+        "impressions": 41337,
+        "ctr": 0.006773592665166799,
+        "position": 5.670005080194499
+      },
+      {
+        "query": "utm",
+        "clicks": 138,
+        "impressions": 31139,
+        "ctr": 0.00443174154597129,
+        "position": 7.925848614277915
+      },
+      {
+        "query": "valor utm hoy",
+        "clicks": 180,
+        "impressions": 26597,
+        "ctr": 0.00676768056547731,
+        "position": 5.853592510433508
+      },
+      {
+        "query": "utm a peso chileno",
+        "clicks": 118,
+        "impressions": 17511,
+        "ctr": 0.006738621437953287,
+        "position": 7.197875621038205
+      },
+      {
+        "query": "utm a peso",
+        "clicks": 54,
+        "impressions": 11043,
+        "ctr": 0.004889975550122249,
+        "position": 7.358145431495065
+      },
+      {
+        "query": "1 utm",
+        "clicks": 4,
+        "impressions": 6525,
+        "ctr": 0.0006130268199233716,
+        "position": 6.883831417624521
+      },
+      {
+        "query": "valor de la utm",
+        "clicks": 17,
+        "impressions": 6006,
+        "ctr": 0.0028305028305028305,
+        "position": 6.726273726273726
+      },
+      {
+        "query": "utm valor",
+        "clicks": 24,
+        "impressions": 4763,
+        "ctr": 0.005038841066554693,
+        "position": 6.918328784379593
+      },
+      {
+        "query": "valor utm hoy chile",
+        "clicks": 25,
+        "impressions": 4092,
+        "ctr": 0.006109481915933529,
+        "position": 6.058895405669599
+      },
+      {
+        "query": "utm a pesos",
+        "clicks": 13,
+        "impressions": 3436,
+        "ctr": 0.0037834691501746217,
+        "position": 7.886204889406287
+      },
+      {
+        "query": "1 utm a pesos chilenos",
+        "clicks": 7,
+        "impressions": 2815,
+        "ctr": 0.002486678507992895,
+        "position": 6.137477797513322
+      },
+      {
+        "query": "utm hoy chile",
+        "clicks": 23,
+        "impressions": 2480,
+        "ctr": 0.009274193548387096,
+        "position": 6.604838709677419
+      },
+      {
+        "query": "calculadora utm",
+        "clicks": 10,
+        "impressions": 2150,
+        "ctr": 0.004651162790697674,
+        "position": 7.231627906976744
+      },
+      {
+        "query": "10 utm a pesos chilenos",
+        "clicks": 0,
+        "impressions": 2071,
+        "ctr": 0,
+        "position": 6.962819893771125
+      },
+      {
+        "query": "cuanto es 1 utm",
+        "clicks": 5,
+        "impressions": 2023,
+        "ctr": 0.002471576866040534,
+        "position": 6.348492338111715
+      },
+      {
+        "query": "3 utm a pesos chilenos",
+        "clicks": 1,
+        "impressions": 1864,
+        "ctr": 0.000536480686695279,
+        "position": 6.610515021459228
+      },
+      {
+        "query": "utm a clp",
+        "clicks": 9,
+        "impressions": 1751,
+        "ctr": 0.005139920045688178,
+        "position": 8.128498001142205
+      },
+      {
+        "query": "a cuanto esta la utm",
+        "clicks": 6,
+        "impressions": 1702,
+        "ctr": 0.0035252643948296123,
+        "position": 6.898942420681551
+      },
+      {
+        "query": "5 utm a pesos chilenos",
+        "clicks": 3,
+        "impressions": 1370,
+        "ctr": 0.0021897810218978104,
+        "position": 6.951094890510949
+      }
+    ],
+    "usefulPositionLowVolume": [
+      {
+        "query": "10 utm a pesos chilenos",
+        "clicks": 0,
+        "impressions": 2071,
+        "ctr": 0,
+        "position": 6.962819893771125
+      },
+      {
+        "query": "3 utm a pesos chilenos",
+        "clicks": 1,
+        "impressions": 1864,
+        "ctr": 0.000536480686695279,
+        "position": 6.610515021459228
+      },
+      {
+        "query": "100 utm",
+        "clicks": 2,
+        "impressions": 1248,
+        "ctr": 0.0016025641025641025,
+        "position": 7.889423076923077
+      },
+      {
+        "query": "cuanto es una utm",
+        "clicks": 0,
+        "impressions": 1114,
+        "ctr": 0,
+        "position": 7.481149012567325
+      },
+      {
+        "query": "10 utm",
+        "clicks": 0,
+        "impressions": 1079,
+        "ctr": 0,
+        "position": 7.234476367006487
+      },
+      {
+        "query": "1.5 utm a pesos chilenos",
+        "clicks": 1,
+        "impressions": 1038,
+        "ctr": 0.0009633911368015414,
+        "position": 5.3747591522158
+      },
+      {
+        "query": "a cuánto está la utm",
+        "clicks": 1,
+        "impressions": 1032,
+        "ctr": 0.0009689922480620155,
+        "position": 7.111434108527132
+      },
+      {
+        "query": "4 utm a pesos chilenos",
+        "clicks": 1,
+        "impressions": 1005,
+        "ctr": 0.0009950248756218905,
+        "position": 5.298507462686567
+      },
+      {
+        "query": "a cómo está la utm",
+        "clicks": 2,
+        "impressions": 1004,
+        "ctr": 0.00199203187250996,
+        "position": 8.423306772908367
+      },
+      {
+        "query": "de utm a pesos",
+        "clicks": 2,
+        "impressions": 958,
+        "ctr": 0.0020876826722338203,
+        "position": 7.018789144050104
+      },
+      {
+        "query": "valor de utm",
+        "clicks": 2,
+        "impressions": 958,
+        "ctr": 0.0020876826722338203,
+        "position": 6.293319415448852
+      },
+      {
+        "query": "1 utm valor",
+        "clicks": 0,
+        "impressions": 928,
+        "ctr": 0,
+        "position": 8.55926724137931
+      },
+      {
+        "query": "100 utm a pesos chilenos",
+        "clicks": 0,
+        "impressions": 837,
+        "ctr": 0,
+        "position": 4.648745519713262
+      },
+      {
+        "query": "2 utm a pesos chilenos",
+        "clicks": 1,
+        "impressions": 763,
+        "ctr": 0.001310615989515072,
+        "position": 3.7771952817824377
+      },
+      {
+        "query": "1 5 utm a pesos chilenos",
+        "clicks": 1,
+        "impressions": 751,
+        "ctr": 0.0013315579227696406,
+        "position": 6.548601864181092
+      },
+      {
+        "query": "valor de utm hoy",
+        "clicks": 2,
+        "impressions": 731,
+        "ctr": 0.0027359781121751026,
+        "position": 6.8960328317373465
+      },
+      {
+        "query": "precio utm",
+        "clicks": 0,
+        "impressions": 673,
+        "ctr": 0,
+        "position": 6.285289747399703
+      },
+      {
+        "query": "0.5 utm a pesos chilenos",
+        "clicks": 0,
+        "impressions": 657,
+        "ctr": 0,
+        "position": 5.750380517503805
+      },
+      {
+        "query": "2 utm",
+        "clicks": 0,
+        "impressions": 650,
+        "ctr": 0,
+        "position": 8.132307692307691
+      },
+      {
+        "query": "5 utm",
+        "clicks": 0,
+        "impressions": 635,
+        "ctr": 0,
+        "position": 7.124409448818898
+      }
+    ]
+  },
+  "discrepancies": {
+    "pageVsQueryClicks": 853,
+    "pageVsQueryImpressions": 133379,
+    "explanation": "GSC may suppress query rows for privacy; page totals are the acquisition denominator."
+  },
+  "actions": [
+    "Review the UTM query/page segment against calculator completion before changing acquisition surfaces.",
+    "Investigate only the largest non-brand opportunity whose evidence is stable across 28d and 3m."
+  ],
+  "warnings": [
+    "28d-page.json: 1 trailing-slash URL variants were normalized and aggregated",
+    "3m-page.json: 1 trailing-slash URL variants were normalized and aggregated"
+  ]
+}
