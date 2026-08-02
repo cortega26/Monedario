@@ -25,9 +25,14 @@ Pagefind y orígenes explícitos. No contiene wildcard, `'unsafe-inline'` en
 
 ## Corrección mínima
 
-`public/_headers` declara `Cache-Control: no-transform` en el bloque global. Las
-reglas específicas de caché se combinan con esa directiva, por lo que conservan
-sus TTL mientras Cloudflare debe abstenerse de transformar el HTML. Además, los
+`public/_headers` declara `Cache-Control: no-transform` en el bloque global **y en
+cada regla específica que define su propio `Cache-Control`** (calculadoras, posts,
+guias, home, assets, etc.). Cloudflare no combina valores del mismo header entre
+reglas: la regla más específica reemplaza por completo el valor global, por lo que
+un `no-transform` solo en `/*` deja desprotegidas las rutas con regla propia — fue
+el motivo por el que la inyección JSD reapareció en `/calculadoras/*` pese al fix
+inicial (2026-08-02, validación post-merge). Invariante verificable en tests:
+todo `Cache-Control` de `_headers` debe incluir `no-transform`. Además, los
 orígenes de Ko-fi salieron de la CSP global y quedaron limitados a
 `/apoyar/*`.
 

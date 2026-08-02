@@ -153,13 +153,30 @@ describe("public/_headers — Pagefind CSP invariants", () => {
   });
 
   it("prevents Cloudflare from injecting per-request JavaScript into static HTML", () => {
+    // Cloudflare _headers semantics: when the same header is set by multiple
+    // matching rules, the most specific rule's value REPLACES the global one
+    // (values are not merged). A `Cache-Control: no-transform` on the global
+    // `/*` block alone therefore leaves every path with its own Cache-Control
+    // rule unprotected — which is exactly how JavaScript Detections (JSD)
+    // re-injected its bootstrap on /calculadoras/* (TD-0099, 2026-08-02).
+    // Invariant: EVERY Cache-Control rule in the file must carry no-transform.
     const content = readPublicHeaders();
-    const globalBlock = content
-      .split(/(?=^\/[^\n]*$)/gm)
-      .map(block => block.trim())
-      .find(block => block.startsWith("/*\n"));
 
-    expect(globalBlock).toContain("Cache-Control: no-transform");
+    const cacheControlLines = content
+      .split("\n")
+      .map(line => line.trim())
+      .filter(line => line.startsWith("Cache-Control:"));
+    expect(
+      cacheControlLines.length,
+      "at least the global /* Cache-Control rule must exist"
+    ).toBeGreaterThan(0);
+
+    for (const line of cacheControlLines) {
+      expect(
+        line,
+        "every Cache-Control rule must include no-transform (Cloudflare does not merge header values across rules)"
+      ).toContain("no-transform");
+    }
   });
 
   it("CSP header is structurally intact — no merge-conflict corruption", () => {
