@@ -16,7 +16,7 @@ permissions:
 jobs:
   audit:
     name: Audit docs and mechanical drift
-    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     timeout-minutes: 15
 
     steps:

@@ -33,7 +33,7 @@ permissions:
 jobs:
   upgrade-and-pr:
     name: Upgrade Python deps and open PR
-    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     timeout-minutes: 10
 
     steps:

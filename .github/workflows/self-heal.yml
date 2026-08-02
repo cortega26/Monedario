@@ -24,7 +24,7 @@ permissions:
 jobs:
   self-heal:
     name: Regenerate mechanical artifacts and open PR
-    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     timeout-minutes: 15
 
     steps:

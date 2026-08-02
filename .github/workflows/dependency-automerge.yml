@@ -19,7 +19,7 @@ permissions:
 jobs:
   automerge:
     name: Enable auto-merge for safe Dependabot patches
-    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     timeout-minutes: 10
     if: github.event.pull_request.user.login == 'dependabot[bot]'
 

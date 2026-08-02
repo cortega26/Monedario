@@ -24,7 +24,7 @@ concurrency:
 jobs:
   gitleaks:
     name: Secret scan (Gitleaks)
-    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     timeout-minutes: 10
     # Schedule-only: informational scan that never blocks PRs. The weekly
     # scheduled run with a fresh vulnerability DB provides the real value.
@@ -84,7 +84,7 @@ jobs:
 
   opengrep:
     name: Static analysis (Opengrep)
-    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     timeout-minutes: 15
     # Schedule-only: informational scan because the p/ci ruleset is remote and
     # can evolve independently of repository changes. Per-PR scanning was removed
@@ -147,7 +147,7 @@ jobs:
 
   trivy:
     name: Vulnerability scan (Trivy)
-    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     timeout-minutes: 15
     # Schedule-only: vulnerability DB is only fresh on scheduled runs.
     # Per-PR scanning was removed to conserve GitHub Actions minutes.
@@ -206,7 +206,7 @@ jobs:
 
   python-audit:
     name: Python dependency audit (pip-audit)
-    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     timeout-minutes: 5
     # Weekly schedule only: Python deps are auxiliary (MCP server, font tools,
     # scraping). They don't touch the production build path, so per-PR scanning

@@ -23,7 +23,7 @@ permissions:
 jobs:
   submit:
     name: Submit changed URLs to IndexNow
-    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
+    runs-on: ubuntu-latest
     timeout-minutes: 5
 
     steps:
