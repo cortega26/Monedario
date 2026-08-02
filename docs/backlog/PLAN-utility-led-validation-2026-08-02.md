@@ -168,7 +168,7 @@ No se avanza al despliegue si falla cualquiera de estos gates:
 
 ### Pendientes y rollback
 
-1. Desplegar `Cache-Control: no-transform` y verificar ausencia de JSD inyectado/error CSP. Rollback: retirar solo esa directiva o desactivar Bot Fight Mode; nunca relajar CSP.
+1. ~~Desplegar `Cache-Control: no-transform` y verificar ausencia de JSD inyectado/error CSP.~~ **Resuelto 2026-08-02:** deploy del PR #382 + fix de override en `public/_headers` (commit `09dc219d`) — `no-transform` en todas las reglas Cache-Control porque Cloudflare no combina valores del mismo header entre reglas. Validado en producción: header efectivo con `no-transform`, cero `__CF$cv$params`, cero violaciones CSP en Chromium limpio, consola sin errores (TD-0099 `VALIDATED`). Rollback si regresara: retirar solo esa directiva o desactivar Bot Fight Mode; nunca relajar CSP.
 2. ~~Diagnosticar LCP UTM dentro del ADR vigente, repetir tres corridas y contrastar con RUM.~~ **Resuelto 2026-08-02:** causa raíz = fuente display Fraunces en el camino crítico de calculadoras (h2 del footer fuera de `main[data-layout]`); corrección en `global.css` + `Layout.astro` (commit `86669710`, PR #382, TD-0101). Tres corridas de cierre: LCP 1.353/1.352/1.204 ms, Performance 100, CLS 0, TBT 0. **Queda solo el contraste con RUM tras un merge controlado.** Rollback: revertir el commit; retirar el bloque `UtmPostResultActions` ya no aplica como rollback del LCP.
 3. Ejecutar las nueve revisiones vencidas con roles independientes y firma humana. No existe rollback de contenido porque esta tarea no fabricó ni modificó sus gates.
 

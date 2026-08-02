@@ -1,6 +1,6 @@
 # CSP y Cloudflare JavaScript Detections
 
-**Estado:** `READY_FOR_DEPLOYMENT_VALIDATION`
+**Estado:** `VALIDATED` (2026-08-02, deploy PR #382 + fix de override en `_headers` commit `09dc219d`)
 **Fecha de reproducción:** 2026-08-02
 **Ruta:** `https://monedario.cl/calculadoras/conversor-utm/`
 

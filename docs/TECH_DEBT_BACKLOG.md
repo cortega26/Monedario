@@ -2190,8 +2190,8 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Descripción:** producción agrega `__CF$cv$params` con hash variable y genera error CSP. El token actual recibe 403 en Bot Management. El origen ya declara `Cache-Control: no-transform`, mecanismo documentado para impedir la transformación sin debilitar CSP.
 - **Evidencia:** `docs/operations/runbooks/CSP_CLOUDFLARE_JSD_2026-08-02.md`.
 - **Severidad (1-5):** 3
-- **Estado:** `READY_FOR_DEPLOYMENT_VALIDATION`
-- **Mitigación:** desplegar y confirmar header efectivo, ausencia de JSD inyectado y cero errores CSP. Si Cloudflare ignora `no-transform`, desactivar Bot Fight Mode/JavaScript Detections; nunca añadir `unsafe-inline`.
+- **Estado:** `VALIDATED` el 2026-08-02 (deploy del PR #382 + fix de override en `public/_headers`, commit `09dc219d`)
+- **Mitigación (aplicada):** `no-transform` en TODAS las reglas `Cache-Control` de `_headers` (Cloudflare no combina valores del mismo header entre reglas; la regla específica reemplaza la global — el fix inicial solo en `/*` dejaba desprotegidas las rutas con regla propia). Verificación en producción: header efectivo `public, max-age=300, no-transform`, cero `__CF$cv$params`, cero violaciones CSP en perfil Chromium limpio, consola sin errores. Si Cloudflare volviera a ignorar `no-transform`, desactivar Bot Fight Mode/JavaScript Detections; nunca añadir `unsafe-inline`.
 - **Owner:** Carlos
 - **Fecha:** 2026-08-02
 
@@ -2219,5 +2219,14 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Riesgos restantes:** cambio visual intencional: en páginas de calculadoras los h2 del footer usan la fuente del body (antes Fraunces); `sueldo-liquido` conserva Fraunces en su número grande (utility `font-display` intacta). `body:has()` requiere Chromium 105+/Safari 15.4+/Firefox 121+.
 - **Rollback:** revertir el commit (o solo `global.css` + `Layout.astro`) restaura el preload condicional previo y la tipografía Fraunces en el footer de calculadoras; no toca fórmula, ruta, snapshot ni CSP.
 - **Mitigación (contraste con RUM):** pendiente de validación en producción tras el merge controlado; el umbral no se relajó.
+- **Owner:** Carlos
+- **Fecha:** 2026-08-02
+
+## TD-0102 — Worker analytics desactualizado tras merge del cliente (422 en eventos)
+- **Descripción:** tras el merge del PR #382 (2026-08-02), el sitio sirvió el cliente analytics schema v2 mientras el worker `monedario-analytics-collector` seguía en la versión desplegada el 2026-07-17 (pre-v2). Todo `POST /api/analytics/event` del cliente nuevo fue rechazado con 422 (validador antiguo vs payload v2) desde el deploy del sitio hasta el redeploy del worker: telemetría perdida en esa ventana.
+- **Evidencia:** verificación local del validador actual (acepta el payload) vs `wrangler deployments list` (último deploy 2026-07-17); 422 reproduccido en producción antes del redeploy y 202 tras él.
+- **Severidad (1-5):** 3
+- **Estado:** CERRADO el 2026-08-02 (redeploy del worker con schema v2, versión `18f27b65`)
+- **Mitigación:** el deploy del worker es manual e independiente del deploy del sitio; el release del PR debe incluir ambos. Verificación post-deploy: evento válido → 202; evento con clave financiera (`monto`) → 422 (frontera de privacidad intacta). No existe gate automático que detecte desincronización cliente/worker.
 - **Owner:** Carlos
 - **Fecha:** 2026-08-02
