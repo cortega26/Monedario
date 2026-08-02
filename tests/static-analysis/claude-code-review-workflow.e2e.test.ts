@@ -2,7 +2,9 @@
  * E2E tests for the Claude code review workflow.
  *
  * The workflow is currently disabled (renamed to .yml.disabled) pending OAuth
- * token renewal. The test validates the preserved configuration.
+ * token renewal. The test validates the preserved configuration — with active
+ * path scoping so reviews only fire for code, test, script, and config changes
+ * — so it's ready when re-enabled.
  */
 import { describe, expect, it } from "vitest";
 import fs from "node:fs";
