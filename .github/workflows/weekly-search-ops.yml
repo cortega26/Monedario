@@ -81,7 +81,7 @@ jobs:
             const doc = JSON.parse(fs.readFileSync(process.env.ANALYTICS_JSON, "utf8"));
             const valid =
               doc.source === "first-party-events" &&
-              doc.schemaVersion === 1 &&
+              [1, 2].includes(doc.schemaVersion) &&
               doc.week === process.env.WEEK_LABEL &&
               typeof doc.window?.from === "string" &&
               typeof doc.window?.to === "string" &&
@@ -89,7 +89,7 @@ jobs:
               doc.data.every(row =>
                 typeof row.date === "string" &&
                 typeof row.event_name === "string" &&
-                typeof row.calculator_slug === "string" &&
+                typeof (row.calculator_id ?? row.calculator_slug) === "string" &&
                 typeof row.count === "number" &&
                 row.count >= 0
               );

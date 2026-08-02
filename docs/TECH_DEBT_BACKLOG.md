@@ -2176,3 +2176,48 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Fecha de creación:** 2026-05-15
 - **Última actualización:** 2026-05-16
 - **Nota 2026-05-16:** `docs/backlog/README.md` ahora incluye tabla `Status — planes vigentes` para los 7 planes activos tras archivar `PLAN-publish-signed-off-sprint-2b-articles-2026-05-11.md` y `PLAN-strategic-repository-modernization-2026-05-11.md` en `docs/archive/backlog/`. No se actualizó `MODULE_INDEX.md`: no contenía punteros específicos a esos planes.
+
+## TD-0098 — Nueve SLA de revisión editorial vencidos
+- **Descripción:** `pnpm run check:editorial-timeliness` falla por nueve revisiones vencidas entre 2026-07-28 y 2026-08-01: contribuciones-bienes-raices, deposito-a-plazo-uf-vs-pesos, gratificacion-legal, operacion-renta-centro, pgu, que-es-el-apv, que-es-el-ipc, que-es-la-uf y reajuste-arriendo.
+- **Evidencia:** baseline 2026-08-02; no se cambiaron fechas sin revisión real.
+- **Severidad (1-5):** 3
+- **Estado:** `BLOCKED_PENDING_EVIDENCE`
+- **Mitigación:** revisar por riesgo con `NORMA_YMYL`, pipeline aplicable y firma humana; no fabricar artifacts ni `updatedDate`.
+- **Owner:** HumanEditor
+- **Fecha:** 2026-08-02
+
+## TD-0099 — Cloudflare JSD inyecta bootstrap incompatible con CSP hash-only
+- **Descripción:** producción agrega `__CF$cv$params` con hash variable y genera error CSP. El token actual recibe 403 en Bot Management. El origen ya declara `Cache-Control: no-transform`, mecanismo documentado para impedir la transformación sin debilitar CSP.
+- **Evidencia:** `docs/operations/runbooks/CSP_CLOUDFLARE_JSD_2026-08-02.md`.
+- **Severidad (1-5):** 3
+- **Estado:** `READY_FOR_DEPLOYMENT_VALIDATION`
+- **Mitigación:** desplegar y confirmar header efectivo, ausencia de JSD inyectado y cero errores CSP. Si Cloudflare ignora `no-transform`, desactivar Bot Fight Mode/JavaScript Detections; nunca añadir `unsafe-inline`.
+- **Owner:** Carlos
+- **Fecha:** 2026-08-02
+
+## TD-0100 — CLS mínimo en sueldo-líquido excede el contrato de cero
+- **Descripción:** Lighthouse baseline encontró CLS 0,000259 en tres de tres runs de `/calculadoras/sueldo-liquido/`; el umbral contractual es 0.
+- **Evidencia:** `pnpm run perf:ci` del 2026-08-02; las demás rutas completaron la medición.
+- **Severidad (1-5):** 2
+- **Estado:** Pendiente
+- **Mitigación:** diagnosticar en tarea separada y conservar el umbral; el trabajo UTM debe demostrar no regresión contra esta línea base.
+- **Owner:** —
+- **Fecha:** 2026-08-02
+
+## TD-0101 — LCP móvil de UTM excede el guardrail en dos de tres corridas
+- **Descripción:** tres corridas móviles aisladas de `/calculadoras/conversor-utm/` obtuvieron LCP de 1.657 ms, 1.807 ms y 1.807 ms. Aunque Lighthouse marca performance 99, accesibilidad 100, SEO 100, CLS 0 y TBT 0, dos corridas superan el contrato de LCP ≤1,7 s.
+- **Evidencia:** reportes locales `/tmp/monedario-utm-lighthouse-3runs/`; medición 2026-08-02. Un intento reversible de mover el badge de confianza no mejoró el resultado y fue revertido.
+- **Severidad (1-5):** 3
+- **Estado:** CERRADO el 2026-08-02 (commit `perf(utm): close mobile lcp guardrail` en la rama del PR #382, sin merge)
+- **Causa raíz (medida):** el LCP simulado Lantern es el tiempo de fin del nodo que termina último en el grafo pessimista antes del LCP observado. En la UTM ese nodo era la fuente **Fraunces (47,5 KB)**: la regla base `h1,h2 { font-family: var(--font-display) }` la arrastraba al camino crítico de todas las calculadoras solo por tres títulos h2 del footer (bajo el fold, fuera de `main[data-layout="calculator"]`). Su transferencia simulada (1.051–1.201 ms, bimodal por la granularidad RTT del simulador) fijaba LCP en 1.652–1.807 ms y FCP en 1.202–1.507 ms. El intento previo de mover el badge no afectaba este nodo.
+- **Corrección (diff de 2 archivos):**
+  1. `src/styles/global.css`: el override de tipografía de calculadoras pasa de `[data-layout="calculator"] h1,h2` a `body:has(main[data-layout="calculator"]) h1,h2` — todos los encabezados de la página (incluido el footer compartido) usan la fuente del body en calculadoras; Fraunces ya no se descarga en esas páginas.
+  2. `src/layouts/Layout.astro`: el preload de Fraunces queda condicional a páginas no-calculadoras (si se emitiera en calculadoras, el preload forzaría la descarga y anularía el fix). Sin cambios de CSP, rutas, SEO, analytics ni fórmulas.
+- **Baseline (2026-08-02, mismas condiciones mobile CPU 4× + simulate):** LCP 1.657/1.807/1.807 (evidencia original); reproducción local 1.812 (FCP 1.662). Post-fix: **LCP 1.353/1.352/1.204 ms**, FCP 1.032–1.202, Performance 100, CLS 0, TBT 0, Speed Index ≤1.202.
+- **Reportes de cierre:** `/tmp/monedario-utm-lighthouse-final/` (3 corridas) y `/tmp/monedario-utm-lighthouse-baseline/` (1 corrida con trace de referencia).
+- **Pruebas ejecutadas:** `pnpm run build` (327 páginas, freeze 184/184, cero enlaces rotos), `lint`, `format:check`, `check:boundaries`, `test` (136 archivos / 1.076 pruebas), `check:routes` (53/53), `check:rss` (52/52), `check:no-postid-urls` (260), Playwright a11y completo (58/58, incluye 5 tests UTM utility-led y WCAG 2.2 AA móvil), smoke E2E de cálculo (10 UTM = $716.490 al 2026-08-01), sin JS (banner visible, CTA oculto), sin errores de consola originados por el cambio (solo el 404 preexistente de `/api/analytics/event` en preview local sin Worker).
+- **Riesgos restantes:** cambio visual intencional: en páginas de calculadoras los h2 del footer usan la fuente del body (antes Fraunces); `sueldo-liquido` conserva Fraunces en su número grande (utility `font-display` intacta). `body:has()` requiere Chromium 105+/Safari 15.4+/Firefox 121+.
+- **Rollback:** revertir el commit (o solo `global.css` + `Layout.astro`) restaura el preload condicional previo y la tipografía Fraunces en el footer de calculadoras; no toca fórmula, ruta, snapshot ni CSP.
+- **Mitigación (contraste con RUM):** pendiente de validación en producción tras el merge controlado; el umbral no se relajó.
+- **Owner:** Carlos
+- **Fecha:** 2026-08-02

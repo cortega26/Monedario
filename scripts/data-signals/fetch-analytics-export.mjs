@@ -33,10 +33,22 @@ const ACCOUNT_ID = getRequiredEnv("CLOUDFLARE_ACCOUNT_ID");
 const BUCKET_NAME = "monedario-analytics-exports";
 
 const ALLOWED_EVENTS = new Set([
+  // Current schema (v2).
   "calculator_view",
   "calculator_start",
   "calculator_complete",
   "calculator_error",
+  "next_step_shown",
+  "next_step_click",
+  "source_click",
+  "share_attempt",
+  "share_success",
+  "alert_interest_shown",
+  "alert_interest_submit",
+  "support_shown",
+  "support_click",
+  "support_confirmed",
+  // Historical schema (v1), retained so old weekly exports stay readable.
   "next_best_step_shown",
   "next_best_step_click",
   "result_action_click",
@@ -134,8 +146,8 @@ function validateExportArtifact(json, week) {
     errors.push(`source must be "first-party-events", got "${json.source}"`);
   }
 
-  if (json.schemaVersion !== 1) {
-    errors.push(`schemaVersion must be 1, got ${json.schemaVersion}`);
+  if (![1, 2].includes(json.schemaVersion)) {
+    errors.push(`schemaVersion must be 1 or 2, got ${json.schemaVersion}`);
   }
 
   if (json.week !== week) {
@@ -170,8 +182,11 @@ function validateExportArtifact(json, week) {
     if (!ALLOWED_EVENTS.has(row.event_name)) {
       errors.push(`${prefix}: unknown event_name "${row.event_name}"`);
     }
-    if (!row.calculator_slug || typeof row.calculator_slug !== "string") {
-      errors.push(`${prefix}: calculator_slug is required`);
+    const calculatorId = row.calculator_id ?? row.calculator_slug;
+    if (!calculatorId || typeof calculatorId !== "string") {
+      errors.push(`${prefix}: calculator_id or calculator_slug is required`);
+    } else if (!/^[a-z0-9][a-z0-9._-]{0,79}$/.test(calculatorId)) {
+      errors.push(`${prefix}: calculator identity must be a bounded safe token`);
     }
     if (typeof row.count !== "number" || row.count < 0) {
       errors.push(`${prefix}: count must be a non-negative number, got ${row.count}`);
@@ -181,7 +196,7 @@ function validateExportArtifact(json, week) {
     }
 
     // Dedup check
-    const dedupKey = `${row.date}|${row.event_name}|${row.calculator_slug}|${row.dimensions ?? ""}`;
+    const dedupKey = `${row.date}|${row.event_name}|${calculatorId ?? ""}|${row.dimensions ?? ""}`;
     if (seen.has(dedupKey)) {
       errors.push(`${prefix}: duplicate row key "${dedupKey}"`);
     }

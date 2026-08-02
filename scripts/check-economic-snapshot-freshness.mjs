@@ -26,12 +26,12 @@ const SNAPSHOT_PATH = path.join(
 
 // Generous thresholds (days). The point is to catch a DEAD pipeline, not to
 // chase every publication lag. UF/dólar are ~daily; UTM is monthly.
-const CAPTURE_MAX_DAYS = 10; // capturedAt: is the snapshot being regenerated at all?
+const CAPTURE_MAX_DAYS = 7; // critical pipeline: surface failure within one week
 const INDICATOR_MAX_DAYS = {
   uf: 10,
-  utm: 45,
   dolar: 10,
 };
+const UTM_MONTH_BOUNDARY_GRACE_DAYS = 7;
 
 function now() {
   const override = process.env.ECONOMIC_SNAPSHOT_NOW;
@@ -83,6 +83,24 @@ function main() {
     }
   }
 
+  const utmDate = snapshot.indicatorUpdatedAt?.utm;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(utmDate ?? ""))) {
+    errors.push(`indicatorUpdatedAt.utm missing or unparseable: ${utmDate}`);
+  } else {
+    const currentMonth = ref.toISOString().slice(0, 7);
+    const utmMonth = utmDate.slice(0, 7);
+    if (utmMonth > currentMonth) {
+      errors.push(`utm has a future reference month: ${utmDate}`);
+    } else if (
+      utmMonth !== currentMonth &&
+      ref.getUTCDate() > UTM_MONTH_BOUNDARY_GRACE_DAYS
+    ) {
+      errors.push(
+        `utm reference month ${utmMonth} is stale after the ${UTM_MONTH_BOUNDARY_GRACE_DAYS}d month-boundary grace; expected ${currentMonth}`
+      );
+    }
+  }
+
   if (errors.length > 0) {
     console.error(
       `[check-economic-snapshot-freshness] FAIL: ${errors.length} stale signal(s):`
@@ -95,7 +113,7 @@ function main() {
   }
 
   console.log(
-    `[check-economic-snapshot-freshness] OK. capturedAt ${captureAge.toFixed(1)}d old; uf/utm/dólar within thresholds.`
+    `[check-economic-snapshot-freshness] OK. capturedAt ${captureAge.toFixed(1)}d old; uf/dólar within daily thresholds and UTM within the monthly 7d gate.`
   );
 }
 

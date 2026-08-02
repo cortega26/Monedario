@@ -1,0 +1,183 @@
+<section
+  id="utm-post-result-actions"
+  class="hidden border-t border-border py-8"
+  aria-labelledby="utm-next-step-title"
+  data-analytics-post-result
+>
+  <h2 id="utm-next-step-title" class="mb-2 text-xl font-semibold">
+    ¿Qué puedes hacer con este resultado?
+  </h2>
+  <p class="mb-4 max-w-2xl text-sm leading-relaxed text-secondary">
+    Si la cifra corresponde a otro tipo de unidad o quieres compararla en el
+    tiempo, continúa con una de estas dos herramientas.
+  </p>
+  <ul class="mb-8 space-y-3" aria-label="Siguientes pasos relacionados">
+    <li>
+      <a
+        href="/calculadoras/conversor-uf/?utm_source=conversor-utm&utm_medium=post-result&utm_campaign=utility-led-v1"
+        class="inline-flex min-h-11 items-center text-sm font-medium text-accent underline underline-offset-4"
+        data-next-step-id="convert-uf"
+      >
+        Convertir UF a pesos
+      </a>
+      <span class="ml-2 text-sm text-secondary">
+        para contratos, créditos o arriendos.
+      </span>
+    </li>
+    <li>
+      <a
+        href="/calculadoras/actualizador-inflacion/?utm_source=conversor-utm&utm_medium=post-result&utm_campaign=utility-led-v1"
+        class="inline-flex min-h-11 items-center text-sm font-medium text-accent underline underline-offset-4"
+        data-next-step-id="adjust-inflation"
+      >
+        Actualizar un monto por inflación
+      </a>
+      <span class="ml-2 text-sm text-secondary">
+        para comparar poder de compra entre fechas.
+      </span>
+    </li>
+  </ul>
+
+  <div class="border-t border-border pt-6" data-alert-interest>
+    <p class="mb-3 text-sm font-medium">
+      ¿Le serviría recibir un aviso cuando cambie la UTM?
+    </p>
+    <button
+      type="button"
+      class="min-h-11 rounded-lg border border-border px-4 py-2 text-sm font-medium hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+      data-alert-interest-submit
+    >
+      Me interesa
+    </button>
+    <p class="mt-2 text-xs text-secondary" aria-live="polite" data-alert-status>
+      Esto solo mide interés agregado; no activa avisos ni solicita su correo.
+    </p>
+  </div>
+
+  <div class="mt-6 border-t border-border pt-6" data-support-block>
+    <p class="mb-2 text-sm font-medium">¿Esta herramienta le ahorró tiempo?</p>
+    <p class="mb-3 max-w-2xl text-sm leading-relaxed text-secondary">
+      Puede apoyar voluntariamente el mantenimiento de Monedario. Los aportes no
+      cambian los cálculos, las fuentes, las recomendaciones ni la cobertura
+      editorial.
+    </p>
+    <a
+      href="/apoyar/?utm_source=conversor-utm&utm_medium=post-result&utm_campaign=utility-led-v1"
+      class="inline-flex min-h-11 items-center text-sm font-medium text-accent underline underline-offset-4"
+      data-support-link
+    >
+      Conocer formas de apoyar
+    </a>
+  </div>
+</section>
+
+<script>
+  import { trackAnalyticsEvent } from "@/utils/analytics";
+
+  const ROOT_SELECTOR = "[data-analytics-post-result]";
+  const BASE = {
+    calculator_id: "conversor-utm",
+    page_type: "calculator",
+    interaction_variant: "contextual_v1",
+  } as const;
+  const ATTRIBUTION = {
+    utm_source: "conversor-utm",
+    utm_medium: "post-result",
+    utm_campaign: "utility-led-v1",
+  } as const;
+
+  function initUtmPostResultActions() {
+    const root = document.querySelector<HTMLElement>(ROOT_SELECTOR);
+    if (!root || root.dataset.initialized === "true") return;
+    root.dataset.initialized = "true";
+
+    const shown = new Set<string>();
+    const recordShown = (key: string, callback: () => void) => {
+      if (shown.has(key)) return;
+      shown.add(key);
+      callback();
+    };
+
+    const observer = new IntersectionObserver(
+      entries => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          const target = entry.target as HTMLElement;
+          if (target.dataset.nextStepId) {
+            recordShown(`next:${target.dataset.nextStepId}`, () => {
+              trackAnalyticsEvent("next_step_shown", {
+                ...BASE,
+                next_step_id: target.dataset.nextStepId,
+              });
+            });
+          } else if (target.hasAttribute("data-alert-interest")) {
+            recordShown("alert", () =>
+              trackAnalyticsEvent("alert_interest_shown", BASE)
+            );
+          } else if (target.hasAttribute("data-support-block")) {
+            recordShown("support", () =>
+              trackAnalyticsEvent("support_shown", {
+                ...BASE,
+                support_location: "post_result",
+              })
+            );
+          }
+          observer.unobserve(target);
+        }
+      },
+      { threshold: 0.25 }
+    );
+
+    root
+      .querySelectorAll<HTMLElement>(
+        "[data-next-step-id], [data-alert-interest], [data-support-block]"
+      )
+      .forEach(element => observer.observe(element));
+
+    root
+      .querySelectorAll<HTMLAnchorElement>("[data-next-step-id]")
+      .forEach(link => {
+        link.addEventListener("click", () => {
+          trackAnalyticsEvent("next_step_click", {
+            ...BASE,
+            ...ATTRIBUTION,
+            next_step_id: link.dataset.nextStepId,
+          });
+        });
+      });
+
+    const interestButton = root.querySelector<HTMLButtonElement>(
+      "[data-alert-interest-submit]"
+    );
+    interestButton?.addEventListener("click", () => {
+      if (interestButton.disabled) return;
+      interestButton.disabled = true;
+      interestButton.textContent = "Interés registrado";
+      const status = root.querySelector<HTMLElement>("[data-alert-status]");
+      if (status) {
+        status.textContent =
+          "Gracias. Esto no activa avisos ni solicita su correo.";
+      }
+      trackAnalyticsEvent("alert_interest_submit", BASE);
+    });
+
+    root
+      .querySelector<HTMLAnchorElement>("[data-support-link]")
+      ?.addEventListener("click", () => {
+        trackAnalyticsEvent("support_click", {
+          ...BASE,
+          ...ATTRIBUTION,
+          support_location: "post_result",
+        });
+      });
+
+    document.addEventListener(
+      "calculator:result",
+      () => root.classList.remove("hidden"),
+      { once: true }
+    );
+  }
+
+  initUtmPostResultActions();
+  document.addEventListener("astro:page-load", initUtmPostResultActions);
+</script>

@@ -2,6 +2,7 @@
 import { ClientRouter } from "astro:transitions";
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 import { SITE } from "@/config";
+import packageInfo from "../../package.json";
 import { getPath } from "@/utils/getPath";
 import "@/styles/global.css";
 
@@ -25,7 +26,12 @@ const performanceSensitivePath = /^\/(?:posts|guias|calculadoras)(?:\/|$)/.test(
 // fetch it inside its short block window, so the H1 stays in the Georgia fallback for
 // the whole page load. Preload it on the homepage — the landing page whose branded
 // headline is the whole point — so the H1 renders in Fraunces instead of Georgia.
-// Skip the preload only on /calculadoras/* (their hero H1 is not Fraunces).
+// Skip the preload on /calculadoras/*: their headings (including the shared footer's,
+// see the body:has() rule in global.css) all use the body typeface, so the display
+// font is not fetched on those pages at all — except pages that opt in via the
+// `font-display` utility (currently only sueldo-liquido's result figure, which is
+// fetched lazily from CSS without a preload, exactly as before this guardrail).
+// (LCP guardrail, TD-0101.)
 const isHomepage = Astro.url.pathname === "/" || Astro.url.pathname === "";
 const shouldPreloadDisplayFont = !/^\/calculadoras(?:\/|$)/.test(
   Astro.url.pathname
@@ -141,6 +147,7 @@ const structuredData = !pubDatetime
   lang={SITE.lang ?? "es"}
   class={scrollSmooth ? "scroll-smooth" : undefined}
   data-analytics-transport={SITE.analyticsTransport ? "enabled" : undefined}
+  data-app-version={packageInfo.version}
 >
   <head>
     <meta charset="UTF-8" />

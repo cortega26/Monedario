@@ -4,7 +4,6 @@ import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
 import Footer from "@/components/Footer.astro";
 import MethodologyBlock from "@/components/MethodologyBlock.astro";
-import PrimaryCTA from "@/components/PrimaryCTA.astro";
 import ShareCalculatorResult from "@/components/ShareCalculatorResult.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
@@ -19,7 +18,9 @@ import {
 import { getPath } from "@/utils/getPath";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorDataFreshness from "@/components/calculator/CalculatorDataFreshness.astro";
-import { utmWorkedExample } from "@/application/use-cases/ConvertUtm.methodology";
+import { buildUtmWorkedExample } from "@/application/use-cases/ConvertUtm.methodology";
+import { evaluateCriticalMonthlyFreshness } from "@/utils/economicFreshness";
+import UtmPostResultActions from "@/components/UtmPostResultActions.astro";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 const utmArticlePath = getPath("/posts/utm-chile-que-es-como-funciona/");
@@ -27,24 +28,34 @@ const impuestoSegundaCategoriaPath = getPath(
   "/calculadoras/impuesto-segunda-categoria/"
 );
 const utmLastUpdated = resolveEconomicIndicatorDate(economicParameters, "utm");
+const utmFreshness = evaluateCriticalMonthlyFreshness(utmLastUpdated);
+if (utmFreshness.status === "stale") {
+  throw new Error(
+    `[conversor-utm] UTM crítica vencida: ${utmFreshness.reason}. Actualiza el snapshot desde SII antes de publicar.`
+  );
+}
+const utmWorkedExample = buildUtmWorkedExample(
+  economicParameters.utm,
+  utmLastUpdated
+);
 const economicSourceLabel = resolveEconomicSourceLabel(
   economicParameters.source
 );
 const economicSourceMeta =
   economicParameters.source === "live"
     ? {
-        bannerText: "Consulta en línea a mindicador.cl",
+        bannerText: "Valor oficial publicado por el SII",
         methodologyNote:
-          "El valor UTM se consulta en línea desde la API de mindicador.cl, que replica el valor publicado por el SII.",
+          "El valor se contrasta con la tabla UTM oficial del SII; la consulta en línea usa mindicador.cl solo como transporte de respaldo.",
       }
     : economicParameters.source === "snapshot"
       ? {
-          bannerText: "Snapshot económico del sitio",
+          bannerText: "Snapshot verificado contra el SII",
           methodologyNote:
-            "El valor UTM mostrado proviene del snapshot económico del sitio, actualizado con referencia en mindicador.cl.",
+            "El valor UTM mostrado proviene del snapshot económico del sitio y se verifica contra la tabla oficial del SII.",
         }
       : {
-          bannerText: "Valor de respaldo interno del sitio",
+          bannerText: "Respaldo interno — publicación bloqueada si vence",
           methodologyNote:
             "El valor UTM mostrado corresponde al valor de respaldo interno del sitio usado cuando la fuente económica no está disponible.",
         };
@@ -325,25 +336,21 @@ const conversorUtmFaqs = [
       </p>
     </section>
 
-    <PrimaryCTA
-      text="Guía completa de la UTM →"
-      href="/posts/utm-chile-que-es-como-funciona/"
-      context="Entiende cómo funciona la UTM, cómo se reajusta cada mes y en qué casos la usa el Estado chileno."
-    />
+    <UtmPostResultActions />
     <ShareCalculatorResult />
     <MethodologyBlock
       example={utmWorkedExample.example}
       notes={`${economicSourceMeta.methodologyNote} La UTM se reajusta el primer día hábil de cada mes según la variación del IPC del mes anterior publicado por el INE. La UTA de referencia mostrada usa el valor anual informado por la misma fuente cuando está disponible; si no, se aproxima desde la serie económica cargada por el sitio. Verifica siempre el dato vigente en el SII antes de usarlo en trámites, multas o impuestos.`}
       sources={[
         {
-          name: "mindicador.cl — API valor UTM",
-          url: "https://mindicador.cl/api/utm",
-          date: "2026-04",
-        },
-        {
           name: "SII — Valores UTM vigentes",
           url: "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm",
-          date: "2026-04",
+          date: utmLastUpdated,
+        },
+        {
+          name: "mindicador.cl — transporte de respaldo del snapshot",
+          url: "https://mindicador.cl/api/utm",
+          date: utmLastUpdated,
         },
       ]}
     />

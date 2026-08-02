@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "fetchedAt": "2026-08-02T17:10:29.446Z",
+  "site": "sc-domain:monedario.cl",
+  "asOf": "2026-08-02",
+  "windows": {
+    "28d": {
+      "from": "2026-07-03",
+      "to": "2026-07-30"
+    },
+    "previous-28d": {
+      "from": "2026-06-05",
+      "to": "2026-07-02"
+    },
+    "3m": {
+      "from": "2026-05-01",
+      "to": "2026-07-30"
+    }
+  },
+  "files": [
+    {
+      "filename": "28d-page.json",
+      "rows": 156,
+      "required": true
+    },
+    {
+      "filename": "28d-query.json",
+      "rows": 6993,
+      "required": true
+    },
+    {
+      "filename": "28d-country.json",
+      "rows": 130,
+      "required": true
+    },
+    {
+      "filename": "28d-device.json",
+      "rows": 3,
+      "required": true
+    },
+    {
+      "filename": "28d-searchAppearance.json",
+      "rows": 1,
+      "required": false
+    },
+    {
+      "filename": "previous-28d-page.json",
+      "rows": 162,
+      "required": true
+    },
+    {
+      "filename": "previous-28d-query.json",
+      "rows": 5018,
+      "required": true
+    },
+    {
+      "filename": "3m-page.json",
+      "rows": 202,
+      "required": true
+    },
+    {
+      "filename": "3m-query.json",
+      "rows": 9328,
+      "required": true
+    },
+    {
+      "filename": "sitemaps.json",
+      "rows": 1,
+      "required": true
+    }
+  ],
+  "warnings": []
+}

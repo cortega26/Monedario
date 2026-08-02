@@ -122,6 +122,46 @@ describe("public/_headers — Pagefind CSP invariants", () => {
     expect(scriptSrc).toContain("'self'");
   });
 
+  it("keeps Ko-fi origins scoped to /apoyar and never enables inline/eval scripts", () => {
+    const content = readPublicHeaders();
+    const blocks = content
+      .split(/(?=^\/[^\n]*$)/gm)
+      .map(block => block.trim())
+      .filter(Boolean);
+    const globalBlock = blocks.find(block => block.startsWith("/*\n"));
+    const supportBlock = blocks.find(block =>
+      block.startsWith("/apoyar/*\n")
+    );
+
+    expect(globalBlock, "global /* header block is required").toBeTruthy();
+    expect(
+      supportBlock,
+      "a path-specific /apoyar/* header block is required"
+    ).toBeTruthy();
+    expect(globalBlock).not.toContain("ko-fi.com");
+    expect(globalBlock).not.toContain("storage.ko-fi.com");
+    expect(globalBlock).not.toContain("cdn.ko-fi.com");
+    expect(supportBlock).toContain("https://storage.ko-fi.com");
+
+    for (const block of [globalBlock!, supportBlock!]) {
+      const scriptSrc = block.match(/\bscript-src\s+([^;\n]+)/)?.[1] ?? "";
+      const tokens = scriptSrc.trim().split(/\s+/);
+      expect(tokens).not.toContain("'unsafe-inline'");
+      expect(tokens).not.toContain("'unsafe-eval'");
+      expect(tokens).toContain("'wasm-unsafe-eval'");
+    }
+  });
+
+  it("prevents Cloudflare from injecting per-request JavaScript into static HTML", () => {
+    const content = readPublicHeaders();
+    const globalBlock = content
+      .split(/(?=^\/[^\n]*$)/gm)
+      .map(block => block.trim())
+      .find(block => block.startsWith("/*\n"));
+
+    expect(globalBlock).toContain("Cache-Control: no-transform");
+  });
+
   it("CSP header is structurally intact — no merge-conflict corruption", () => {
     // Merge conflicts on the single-line CSP are common because every
     // branch touches _headers. A corrupted CSP can break the entire site

@@ -98,7 +98,9 @@ function sendAnalyticsEvent(
   // Gate 2b: dedup once-per-view events (e.g. calculator_complete on recalcs)
   if (ONCE_PER_VIEW_EVENTS.has(eventName)) {
     const slug = String(
-      (params as Record<string, unknown>).calculator_slug ?? ""
+      (params as Record<string, unknown>).calculator_id ??
+        (params as Record<string, unknown>).calculator_slug ??
+        ""
     );
     const dedupKey = `${eventName}:${slug}`;
     if (sentOncePerView.has(dedupKey)) return;
@@ -106,10 +108,11 @@ function sendAnalyticsEvent(
   }
 
   // Gate 3: sanitize — this is the client-side boundary
-  const sanitized = sanitizeAnalyticsEvent(
-    eventName,
-    params as Record<string, unknown>
-  );
+  const sanitized = sanitizeAnalyticsEvent(eventName, {
+    page_type: getCurrentPageType(),
+    app_version: document.documentElement.dataset.appVersion,
+    ...params,
+  } as Record<string, unknown>);
   if (!sanitized) return;
 
   const body = JSON.stringify(sanitized);
@@ -163,13 +166,8 @@ function installGlobalClickTracking() {
     if (!anchor) return;
     if (!isOfficialSourceUrl(anchor.href)) return;
 
-    track("official_source_click", {
-      source_url: anchor.href,
-      source_domain: new URL(anchor.href).hostname,
-      source_label:
-        anchor.dataset.analyticsLabel ??
-        anchor.textContent?.trim() ??
-        anchor.href,
+    track("source_click", {
+      source_type: "official",
     });
   });
 }
@@ -224,7 +222,7 @@ function initCalculatorStartTracking(): Cleanup {
     calculatorRoot.setAttribute(CALCULATOR_VIEW_FLAG, "true");
     track("calculator_view", {
       page_type: "calculator",
-      calculator_slug: calculatorSlug,
+      calculator_id: calculatorSlug,
     });
   }
 
@@ -232,15 +230,15 @@ function initCalculatorStartTracking(): Cleanup {
     if (hasStarted) return;
     hasStarted = true;
     track("calculator_start", {
-      calculator_slug: calculatorSlug,
+      calculator_id: calculatorSlug,
       calculator_name: calculatorName,
-      interaction_type: interactionType,
+      interaction_variant: interactionType,
     });
   };
 
   const handleFocusIn = (event: Event) => {
     if ((event.target as Element | null)?.closest("input, select, textarea")) {
-      startTracking("focusin");
+      startTracking("focus");
     }
   };
 
@@ -252,7 +250,7 @@ function initCalculatorStartTracking(): Cleanup {
 
   const handleClick = (event: Event) => {
     if ((event.target as Element | null)?.closest("button")) {
-      startTracking("click");
+      startTracking("button");
     }
   };
 
