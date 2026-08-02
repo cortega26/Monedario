@@ -91,9 +91,8 @@ paralelizable entre sí salvo que se indique lo contrario.
 | 2 | [052](052-worker-manual-trigger-auth.md) | Sacar secretos de URLs y separar el PAT del trigger manual | P1 | S | LOW/MED | 049, 051 | IN PROGRESS (código `ae9246bd` aprobado localmente; deploy/rotación y smoke pendientes, PAT requiere autoridad de emisión) |
 | 3 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | BLOCKED (hipótesis descartada; causa de campo sin identificar — ver nota abajo) |
 | 4 | [046](046-converter-recurrence-return-hook-spike.md) | **Spike de dirección**: investigar si hay recurrencia real sobre los conversores (superficie de mayor **tráfico** según RUM W27; recurrencia **por confirmar**) y, solo si la hay, diseñar un return-hook privacy-safe | P2 | M | LOW | todos | TODO (spike de diseño; por defecto "medir antes de construir"; compuerta de decisión humana) |
-| 5 | [054](054-editorial-evidence-ledger-spike.md) | **Spike de dirección**: ledger de evidencia del pipeline editorial (inventario 3/53, reproducción del checker, veredicto claim vs. evidencia) | P1 | M | LOW | todos | TODO (spike read-only; compuerta de decisión humana: backfill vs. ajuste del claim) |
-| 6 | [055](055-calculator-consolidation-spike.md) | **Spike de dirección**: consolidación por URL de 5 calculadoras (dossier de evidencia + opciones de migración con gates de ruta/RSS/ADR) | P2 | M | MED | todos | TODO (spike; compuerta humana por URL; la ejecución posterior de sus recomendaciones es un plan aparte) |
-| 7 | [056](056-decision-paths-afc-prepago-credito-spike.md) | **Spike de dirección**: rutas de decisión contextuales AFC/prepago/crédito (diseño de NextSteps + extensión del patrón post-resultado) | P2 | M | LOW | 046 | TODO (spike; firma de copy y elección de piloto = compuertas humanas) |
+| 5 | [055](055-calculator-consolidation-spike.md) | **Spike de dirección**: consolidación por URL de 5 calculadoras (dossier de evidencia + opciones de migración con gates de ruta/RSS/ADR) | P2 | M | MED | todos | TODO (spike; compuerta humana por URL; la ejecución posterior de sus recomendaciones es un plan aparte) |
+| 6 | [056](056-decision-paths-afc-prepago-credito-spike.md) | **Spike de dirección**: rutas de decisión contextuales AFC/prepago/crédito (diseño de NextSteps + extensión del patrón post-resultado) | P2 | M | LOW | 046 | TODO (spike; firma de copy y elección de piloto = compuertas humanas) |
 > **035–040, 042–045 y 047–050 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
 
 > **046 es un spike de dirección (`/improve next`, 2026-07-12)**, no un plan de
@@ -117,6 +116,50 @@ paralelizable entre sí salvo que se indique lo contrario.
 > `HeroHomepage.astro:93`, `UtmPostResultActions` en conversor-utm, registry de
 > umbrales en `docs/operations/UTILITY_LED_EXPERIMENT_REGISTRY.md`) — ver
 > "Considerados y reconciliados" abajo para lo que NO se re-propone.
+>
+> **054 EJECUTADO Y APROBADO EN REVISIÓN (2026-08-02, vía `/improve execute
+> 054`):** ejecutor en worktree aislado
+> (`.claude/worktrees/agent-aa7c1665be7df0105`, rama
+> `advisor/054-editorial-evidence-ledger`, commit `673ad8dc`,
+> `docs(reports): ledger de evidencia del pipeline editorial (spike 054)`).
+> Entregable: `docs/reports/EDITORIAL-EVIDENCE-LEDGER-2026-08-02.md` (263
+> líneas, 1 solo archivo en el commit, worktree limpio). **Revisión
+> (tech-lead) APROBADA** — reverificada de forma independiente, no solo el
+> reporte del ejecutor: conteo de posts recalculado (53; pubDate ≥ 2026-04-25 →
+> 10, updatedDate → 15, en_alcance 22), `find` de packets (3×06 + 3×07, los
+> mismos 3 pares citados), los tres modos del checker re-ejecutados (warn exit
+> 0 con 47/47, CI exit 1, estricto exit 0), y cada cita de archivo:línea del
+> ledger verificada contra el archivo real (content.config.ts:43-44,
+> MIN_SOURCES:20, loadAllowlist:285-286, detectYmyStatus:295, evaluatePost:481,
+> run:636; metodologia.astro:115-135 y acerca-de.astro:106-116 verbatim).
+> **Hallazgos clave del ledger:** el número 47/47 del memo SÍ coincide con la
+> salida real, pero el modo advertencia NO lo explica (el modo estricto también
+> pasa) — el conteo refleja la definición propia del checker (brief+dossier+
+> fecha_corte+≥1 fuente, `MIN_SOURCES=1`); el checker nunca referencia
+> 06/07/firma/siete etapas (grep = 0); la allowlist YMYL
+> (`context/EDITORIAL_YMYL_ALLOWLIST.txt`) **no existe** (allowlist_entries=0) —
+> los 47 YMYL salen de `category` (45) + tags (2); solo 1 de los 47 YMYL tiene
+> packet 06/07, y los otros 2 packets son posts `category: general` que el
+> checker ni evalúa. Veredicto: "el gap real es 19" (de 22 posts en alcance del
+> claim, 19 sin cadena de siete registros; el corpus histórico queda
+> correctamente fuera por el aside de metodologia.astro:128-134).
+> **Desviaciones documentadas y aprobadas en mérito:** correcciones de líneas
+> citadas por el plan (content.config.ts 17,19 → 43-44; evaluatePost ~290 →
+> 481) y precisión de "50 carpetas temáticas" → 49 + `_intake` (50 dirs);
+> `pnpm install --frozen-lockfile` requerido en el worktree (esperado, node_modules
+> ausente). Sin STOP activado (mapeos 0 ambiguos; ninguna evidencia contradice
+> el disclaimer público). **Merge pendiente de decisión del operador** — spike
+> read-only con compuerta humana en la sección "Decisión del operador" del
+> ledger (5 preguntas: opción A/B/C, alcance del backfill, semántica del
+> checker, governance, evidencia que cambiaría el veredicto).
+> **Cierre (2026-08-02, a pedido del operador — "2"):** la rama
+> `advisor/054-editorial-evidence-ledger` se integró a `main` local por
+> **fast-forward** (`3c343e00..673ad8dc`); worktree y rama eliminados tras el
+> merge. Cierre atómico en el mismo turno: `054-*.md` movido a
+> [`plans/archive/`](archive/054-editorial-evidence-ledger-spike.md), esta
+> tabla renumerada, índice de archivados actualizado. **No empujado a
+> `origin/main`** (el operador no lo pidió). La compuerta humana del ledger
+> ("Decisión del operador": opciones A/B/C) sigue abierta para el operador.
 
 ### Decisiones y rechazos de la auditoría 2026-07-16
 
@@ -863,11 +906,12 @@ paralelizable entre sí salvo que se indique lo contrario.
 
 Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main`.
 
-### Auditoría de dirección 2026-08-02 (plans 053–056; 054–056 pendientes)
+### Auditoría de dirección 2026-08-02 (plans 053–056; 055–056 pendientes)
 
 | Plan | Título | Prioridad | Esfuerzo | Estado |
 |------|--------|-----------|----------|--------|
 | [053](archive/053-gsc-measurement-baseline.md) | Completar el baseline de medición GSC (gate de semanas faltantes estricto en CI + exports de país/dispositivo) | P1 | M | DONE (fast-forward `f1e37560`+`bc979708`, 2026-08-02) — incluye ronda de auditoría que corrigió el gate estricto en CI; backfill de 2026-W29 pendiente como paso operativo |
+| [054](archive/054-editorial-evidence-ledger-spike.md) | **Spike de dirección**: ledger de evidencia del pipeline editorial (inventario 3/53, reproducción del checker, veredicto claim vs. evidencia) | P1 | M | DONE (fast-forward `673ad8dc`, 2026-08-02) — entregable `docs/reports/EDITORIAL-EVIDENCE-LEDGER-2026-08-02.md`; gap real = 19 (22 en alcance, 19 sin cadena 06/07); compuerta humana abierta (opciones A/B/C en el ledger); merge local, sin push |
 
 ### Sexta auditoría profunda / Issue #315 — 2026-07-16
 
