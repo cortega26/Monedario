@@ -1,8 +1,8 @@
 /**
  * E2E tests for the Claude code review workflow.
  *
- * Verifies that `.github/workflows/claude-code-review.yml` exists and has the
- * expected trigger structure matching the version on the default branch.
+ * The workflow is currently disabled (renamed to .yml.disabled) pending OAuth
+ * token renewal. The test validates the preserved configuration.
  */
 import { describe, expect, it } from "vitest";
 import fs from "node:fs";
@@ -12,7 +12,7 @@ const WORKFLOW_PATH = path.join(
   process.cwd(),
   ".github",
   "workflows",
-  "claude-code-review.yml",
+  "claude-code-review.yml.disabled",
 );
 
 describe("claude-code-review workflow", () => {
