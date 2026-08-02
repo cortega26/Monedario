@@ -20,7 +20,7 @@ function extractJobSection(content: string, jobName: string, nextJobName?: strin
 }
 
 describe("ci workflow — build isolation", () => {
-  it("PR follow-up jobs depend on build and create their own dist output", () => {
+  it("PR follow-up jobs depend on build and pull build output via artifact", () => {
     const content = fs.readFileSync(workflowPath, "utf8");
     const externalUrlPrSection = extractJobSection(
       content,
@@ -28,13 +28,21 @@ describe("ci workflow — build isolation", () => {
       "a11y-audit",
     );
     const a11ySection = extractJobSection(content, "a11y-audit");
+    const buildSection = extractJobSection(content, "build", "external-url-audit");
 
+    // The build job uploads site-build-output for downstream consumers.
+    expect(buildSection).toContain("actions/upload-artifact@");
+    expect(buildSection).toContain("name: site-build-output");
+    expect(buildSection).toContain('run: pnpm run build:ci');
+
+    // Downstream jobs pull the artifact instead of rebuilding, saving
+    // ~2 min of compute per job.
     expect(externalUrlPrSection).toContain("needs: [lint-and-test, build]");
-    expect(externalUrlPrSection).toContain('run: pnpm run build:ci');
-    expect(externalUrlPrSection).not.toContain("actions/download-artifact@");
+    expect(externalUrlPrSection).toContain("actions/download-artifact@");
+    expect(externalUrlPrSection).not.toContain('run: pnpm run build:ci');
 
     expect(a11ySection).toContain("needs: build");
-    expect(a11ySection).toContain('run: pnpm run build:ci');
-    expect(a11ySection).not.toContain("actions/download-artifact@");
+    expect(a11ySection).toContain("actions/download-artifact@");
+    expect(a11ySection).not.toContain('run: pnpm run build:ci');
   });
 });

@@ -296,7 +296,7 @@ jobs:
           node-version: 22
 
       - name: "⬇️ Restore build output from build job"
-        uses: actions/download-artifact@8b180144005ac882e695226e3e25a5e2c9e3df10 # v7
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
           name: site-build-output
           path: dist/
@@ -342,7 +342,7 @@ jobs:
         run: pnpm exec playwright install chromium
 
       - name: "⬇️ Restore build output from build job"
-        uses: actions/download-artifact@8b180144005ac882e695226e3e25a5e2c9e3df10 # v7
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131 # v7
         with:
           name: site-build-output
           path: dist/

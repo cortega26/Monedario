@@ -20,11 +20,18 @@ describe("claude-code-review workflow", () => {
     expect(fs.existsSync(WORKFLOW_PATH)).toBe(true);
   });
 
-  it("pull_request trigger has no active path scoping", () => {
+  it("pull_request trigger scopes runs to source changes via paths", () => {
     const content = fs.readFileSync(WORKFLOW_PATH, "utf8");
     expect(content).toContain("pull_request:");
-    // The file may contain commented-out path hints but must not have an
-    // active (uncommented) `paths:` key.
-    expect(content).not.toMatch(/^\s+paths:/m);
+    // Path scoping is active (not commented out) so reviews only fire for
+    // code, test, script, worker, and config changes — not docs or CI.
+    expect(content).toMatch(/^\s+paths:/m);
+    expect(content).toContain('"src/**"');
+    expect(content).toContain('"tests/**"');
+    expect(content).toContain('"scripts/**"');
+    // Docs and CI changes skip review.
+    expect(content).toMatch(/^\s+paths-ignore:/m);
+    expect(content).toContain('"docs/**"');
+    expect(content).toContain('".github/**"');
   });
 });
