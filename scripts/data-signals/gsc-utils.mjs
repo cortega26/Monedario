@@ -81,6 +81,26 @@ export function isExportOverdue(week, now = new Date(), graceDays = 2) {
 }
 
 /**
+ * Semanas ISO continuas entre la semana objetivo y `lookbackWeeks` semanas
+ * atrás (ambas inclusive) que NO están en `availableWeeks`.
+ * @param {string[]} availableWeeks - etiquetas YYYY-Www presentes, p.ej. ["2026-W30"]
+ * @param {string} targetWeek - etiqueta YYYY-Www de la semana objetivo
+ * @param {number} [lookbackWeeks=12] - cuántas semanas hacia atrás mirar
+ * @returns {string[]} etiquetas faltantes en orden cronológico (la más antigua primero)
+ */
+export function missingExportWeeks(availableWeeks, targetWeek, lookbackWeeks = 12) {
+  const { from } = isoWeekToDateRange(targetWeek); // throws on invalid format
+  const present = new Set(availableWeeks ?? []);
+  const missing = [];
+  for (let i = 0; i < lookbackWeeks; i++) {
+    const weekStart = new Date(Date.parse(`${from}T00:00:00Z`) - i * 7 * 86_400_000);
+    const label = dateToISOWeek(weekStart);
+    if (!present.has(label)) missing.push(label);
+  }
+  return missing.reverse(); // oldest first
+}
+
+/**
  * Returns the YYYY-Www of the last fully elapsed ISO week
  * (the week whose Sunday has already passed).
  * @returns {string}
@@ -162,6 +182,38 @@ export function normalizeQueryPageRow(row) {
     page: row.keys[1],
     position: roundTo(row.position, 2),
     query: row.keys[0],
+  };
+}
+
+/**
+ * Normalizes a GSC search-analytics row keyed by "country" dimension.
+ * GSC returns ISO country codes in lowercase, e.g. "chl".
+ * Output keys are sorted alphabetically; missing values default to "" / 0.
+ * @param {{ keys?: string[], clicks?: number, impressions?: number, ctr?: number, position?: number }} row
+ */
+export function normalizeCountryRow(row) {
+  return {
+    clicks: row.clicks ?? 0,
+    ctr: roundTo(row.ctr ?? 0, 4),
+    impressions: row.impressions ?? 0,
+    key: row.keys?.[0] ?? "",
+    position: roundTo(row.position ?? 0, 2),
+  };
+}
+
+/**
+ * Normalizes a GSC search-analytics row keyed by "device" dimension.
+ * GSC returns "MOBILE" | "DESKTOP" | "TABLET".
+ * Output keys are sorted alphabetically; missing values default to "" / 0.
+ * @param {{ keys?: string[], clicks?: number, impressions?: number, ctr?: number, position?: number }} row
+ */
+export function normalizeDeviceRow(row) {
+  return {
+    clicks: row.clicks ?? 0,
+    ctr: roundTo(row.ctr ?? 0, 4),
+    impressions: row.impressions ?? 0,
+    key: row.keys?.[0] ?? "",
+    position: roundTo(row.position ?? 0, 2),
   };
 }
 
