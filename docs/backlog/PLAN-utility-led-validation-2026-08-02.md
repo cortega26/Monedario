@@ -169,7 +169,7 @@ No se avanza al despliegue si falla cualquiera de estos gates:
 ### Pendientes y rollback
 
 1. Desplegar `Cache-Control: no-transform` y verificar ausencia de JSD inyectado/error CSP. Rollback: retirar solo esa directiva o desactivar Bot Fight Mode; nunca relajar CSP.
-2. Diagnosticar LCP UTM dentro del ADR vigente, repetir tres corridas y contrastar con RUM. Rollback UI: retirar el bloque `UtmPostResultActions` sin tocar fórmula, ruta ni snapshot.
+2. ~~Diagnosticar LCP UTM dentro del ADR vigente, repetir tres corridas y contrastar con RUM.~~ **Resuelto 2026-08-02:** causa raíz = fuente display Fraunces en el camino crítico de calculadoras (h2 del footer fuera de `main[data-layout]`); corrección en `global.css` + `Layout.astro` (commit `86669710`, PR #382, TD-0101). Tres corridas de cierre: LCP 1.353/1.352/1.204 ms, Performance 100, CLS 0, TBT 0. **Queda solo el contraste con RUM tras un merge controlado.** Rollback: revertir el commit; retirar el bloque `UtmPostResultActions` ya no aplica como rollback del LCP.
 3. Ejecutar las nueve revisiones vencidas con roles independientes y firma humana. No existe rollback de contenido porque esta tarea no fabricó ni modificó sus gates.
 
 El gate de sostenibilidad comienza con el template semanal. Cero ingresos es un resultado admisible mientras horas, costos, agotamiento y calidad permanezcan dentro de umbral y exista aprendizaje, crecimiento o reputación verificable.
