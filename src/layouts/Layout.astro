@@ -159,7 +159,28 @@ const structuredData = !pubDatetime
         />
       )
     }
+    <link rel="icon" href={getPath("/favicon.ico")} sizes="any" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href={getPath("/favicon-32x32.png")}
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href={getPath("/favicon-16x16.png")}
+    />
     <link rel="icon" type="image/svg+xml" href={getPath("/favicon.svg")} />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href={getPath("/apple-touch-icon.png")}
+    />
+    <link rel="manifest" href={getPath("/site.webmanifest")} />
+    <meta name="apple-mobile-web-app-title" content={SITE.title} />
+    <meta name="theme-color" content="#1a4f8a" />
     <link rel="canonical" href={resolvedCanonicalURL} />
     <meta name="generator" content={Astro.generator} />
 
@@ -204,10 +225,12 @@ const structuredData = !pubDatetime
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@monedario_cl" />
     <meta name="twitter:url" content={resolvedCanonicalURL} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImageURL} />
+    <meta name="twitter:image:alt" content={description} />
 
     <!-- Google JSON-LD Structured data -->
     {
