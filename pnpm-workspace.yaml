@@ -14,14 +14,22 @@ overrides:
   js-yaml@^3.13.1: 4.3.0
   js-yaml@^4.1.1: 4.3.0
   uuid: '>=11.1.1'
+  # Seguridad (2026-08-03): parche de alert HIGH fast-uri, transitorio —
+  # remover al cumplir la política de 7 días (desde 2026-08-07).
+  fast-uri@^3.0.1: 3.1.5
 minimumReleaseAge: 10080
 # Transitional, version-pinned exceptions for packages already trusted in the
 # lockfile before the seven-day policy was enabled. Future releases remain
 # subject to minimumReleaseAge and these entries can be removed after aging out.
 minimumReleaseAgeExclude:
-  # Seguridad: brace-expansion 1.1.17 (fix CVE DoS, publicada 2026-07-29).
-  # Transitoria — removible cuando cumpla los 7 días (desde 2026-08-05).
+  # Seguridad (2026-08-03): brace-expansion 1.1.17 — transitoria, removible
+  # desde 2026-08-06 (cuando 1.1.18 y 5.0.9 cumplan 7 días; un `pnpm update
+  # brace-expansion` natural las resuelve sin override — límite de pnpm: el
+  # exclude solo exime 1 versión por paquete, por eso no se fuerza hoy).
   - 'brace-expansion@1.1.17'
+  # Seguridad (2026-08-03): fast-uri 3.1.5 (parche forzado por override),
+  # transitoria — removible desde 2026-08-07 junto con el override.
+  - 'fast-uri@3.1.5'
   - '@bruits/satteri-darwin-arm64@0.9.4'
   - '@bruits/satteri-darwin-x64@0.9.4'
   - '@bruits/satteri-linux-arm64-gnu@0.9.4'
