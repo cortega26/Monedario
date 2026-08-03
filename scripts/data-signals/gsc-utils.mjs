@@ -174,7 +174,7 @@ export function normalizePageRow(row) {
  * con trailing slash, ignorando query/host. Debe mantenerse idéntica a la
  * identidad que valida `build-weekly-search-report.mjs` (el fetch consolida
  * bajo esta identidad y el scorecard rechaza duplicados bajo la misma).
- * @param {string} page
+ * @param {string | null | undefined} page — null/undefined devuelven "".
  */
 export function normalizePageIdentity(page) {
   const text = `${page ?? ""}`.trim();
