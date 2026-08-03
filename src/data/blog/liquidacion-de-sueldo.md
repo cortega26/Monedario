@@ -39,6 +39,10 @@ articleLead:
     - "No sustituye la revisión contractual completa."
     - "No calcula por sí sola finiquitos ni indemnizaciones."
     - "No determina la validez de descuentos discutidos judicialmente."
+volatileData:
+  - id: "pensions.afp.worker_mandatory_contribution"
+    sync: strict
+    expectedValue: 10
 reviewPolicy:
   cadenceLabel: monthly
   maxDays: 30

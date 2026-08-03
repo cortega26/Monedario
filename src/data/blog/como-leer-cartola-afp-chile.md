@@ -48,6 +48,10 @@ faqs:
     a: "Revisa tu liquidación de sueldo para ese mes. Si el empleador declaró pero no pagó, está en mora con la AFP. Puedes verificarlo en el portal de tu AFP. Si tampoco declaró, tienes derecho a denunciarlo ante la Superintendencia de Pensiones (SP Atiende)."
   - q: "¿Dónde puedo reclamar si hay un error?"
     a: "Primero contacta a tu AFP directamente (portal web, fono de atención, sucursal). Si no resuelve en 15 días hábiles, presenta un reclamo en SP Atiende de la Superintendencia de Pensiones en spensiones.cl. El plazo para reclamar ante la SP es de hasta 4 años desde el período en cuestión."
+volatileData:
+  - id: "pensions.afp.worker_mandatory_contribution"
+    sync: strict
+    expectedValue: 10
 reviewPolicy:
   cadenceLabel: monthly
   maxDays: 30
