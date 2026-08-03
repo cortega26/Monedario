@@ -30,7 +30,7 @@ const EXPORT_SECRET = "fak3-export-secret";
 const EXPORT_URL = "https://monedario.cl/api/analytics/export";
 const WEEK = "2026-W31";
 
-function jsonResponse(status, body, headers = {}) {
+function jsonResponse(status: number, body: unknown, headers: Record<string, string> = {}) {
   return new Response(JSON.stringify(body), {
     status,
     headers: { "Content-Type": "application/json", ...headers },
@@ -41,9 +41,14 @@ function jsonResponse(status, body, headers = {}) {
  * Fetch fake con enrutado por URL.
  * `routes`: arreglo de `{ match: (url) => boolean, handler: () => Response }`.
  */
-function makeFakeFetch(routes) {
-  return vi.fn(async (url, init) => {
-    const parsed = new URL(url);
+type FakeRoute = {
+  match: (url: URL) => boolean;
+  handler: (url: URL, init?: RequestInit) => Response | Promise<Response>;
+};
+
+function makeFakeFetch(routes: FakeRoute[]) {
+  return vi.fn(async (url: RequestInfo | URL, init?: RequestInit) => {
+    const parsed = new URL(typeof url === "string" ? url : url.toString());
     for (const route of routes) {
       if (route.match(parsed)) {
         return route.handler(parsed, init);
@@ -53,7 +58,17 @@ function makeFakeFetch(routes) {
   });
 }
 
-function makeDeps(fetch, overrides = {}) {
+type Deps = {
+  fetch: typeof globalThis.fetch;
+  now: () => Date;
+  sleep: (ms: number) => Promise<void>;
+  log: (level: string, message: string) => void;
+};
+
+function makeDeps(
+  fetch: Deps["fetch"],
+  overrides: Partial<Omit<Deps, "fetch">> = {},
+): Deps {
   return {
     fetch,
     now: overrides.now ?? (() => new Date("2026-08-03T12:00:00Z")),
@@ -62,7 +77,7 @@ function makeDeps(fetch, overrides = {}) {
   };
 }
 
-function deploymentsResponse(createdOn, versionId = "version-1") {
+function deploymentsResponse(createdOn: string, versionId = "version-1") {
   return jsonResponse(200, {
     result: {
       deployments: [
@@ -78,7 +93,7 @@ function deploymentsResponse(createdOn, versionId = "version-1") {
   });
 }
 
-function schedulesResponse(crons) {
+function schedulesResponse(crons: string[]) {
   return jsonResponse(200, {
     result: {
       schedules: crons.map((cron) => ({ cron, created_on: "2026-07-16T00:00:00Z" })),
@@ -86,7 +101,7 @@ function schedulesResponse(crons) {
   });
 }
 
-function r2Response(status, headers = {}) {
+function r2Response(status: number, headers: Record<string, string> = {}) {
   return new Response(null, {
     status,
     headers: { "content-length": "1234", "last-modified": "Mon, 03 Aug 2026 12:00:00 GMT", ...headers },
@@ -415,7 +430,7 @@ describe("checkR2Freshness", () => {
       {
         match: () => true,
         handler: (_u, init) => {
-          expect(init?.headers["If-Modified-Since"]).toBe(referenceTime.toUTCString());
+          expect((init?.headers as Record<string, string> | undefined)?.["If-Modified-Since"]).toBe(referenceTime.toUTCString());
           return r2Response(200);
         },
       },
@@ -538,7 +553,7 @@ describe("verifyDeploymentParity — escenarios completos", () => {
         match: (u) => u.pathname.includes("/r2/buckets/"),
         handler: (_u, init) => {
           // now() congelado en 2026-08-03T12:00:00Z → referencia = now − 2 s.
-          expect(init?.headers["If-Modified-Since"]).toBe(
+          expect((init?.headers as Record<string, string> | undefined)?.["If-Modified-Since"]).toBe(
             new Date(Date.parse("2026-08-03T12:00:00Z") - R2_REFERENCE_SKEW_MS).toUTCString(),
           );
           return r2Response(200);
