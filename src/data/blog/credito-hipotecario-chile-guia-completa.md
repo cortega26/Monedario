@@ -62,7 +62,7 @@ faqs:
 volatileData:
   - id: "economic.uf.value"
     sync: reference
-    expectedValue: 40823.03
+    expectedValue: 40844.79
 reviewPolicy:
   cadenceLabel: quarterly
   maxDays: 60
