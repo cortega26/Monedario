@@ -2,6 +2,7 @@
 title: "¿Cuánto puede subir tu arriendo en Chile? UF vs IPC"
 author: "Equipo Monedario"
 pubDate: 2026-03-12T12:00:00Z
+updatedDate: 2026-08-03T00:00:00Z
 slug: reajuste-arriendo-uf-ipc-chile
 featured: false
 lang: es-CL

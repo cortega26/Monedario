@@ -29,7 +29,7 @@ articleLead:
   calculatorLabel: "Calcular interés neto de un DAP"
   nextStepHref: "/calculadoras/interes-compuesto/"
   nextStepLabel: "Comparar con interés compuesto"
-  validAsOf: 2026-03-30
+  validAsOf: 2026-08-03
   officialSources:
     - label: "CMF Educa — Depósitos a plazo"
       href: "https://www.cmfchile.cl/educa/621/w3-article-27170.html"

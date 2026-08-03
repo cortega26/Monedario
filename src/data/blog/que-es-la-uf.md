@@ -2,7 +2,7 @@
 title: "UF en simple: qué es, por qué sube todos los días y cómo te afecta"
 author: "Equipo Monedario"
 pubDate: 2026-02-24T12:00:00Z
-updatedDate: 2026-04-04T12:00:00Z
+updatedDate: 2026-08-03T00:00:00Z
 slug: que-es-la-uf
 featured: false
 lang: es-CL
@@ -101,18 +101,18 @@ Si recién llegaste al país y estás arrendando por primera vez, revisa [cómo 
 
 Firmaste un contrato de arriendo en enero de 2023 a **12 UF** cuando la UF valía $35.000 → pagabas **$420.000/mes**.
 
-La UF fue subiendo con la inflación. Hoy la UF vale $44.500 → pagas **$534.000/mes**. El contrato no cambió ni una coma. Solo cambió la UF.
+La UF fue subiendo con la inflación. Al 3 de agosto de 2026, la UF vale **$40.844,79** (fuente: Banco Central) → pagas **$490.137/mes**. El contrato no cambió ni una coma. Solo cambió la UF.
 
 **¿Cómo se calcula el reajuste mes a mes?**
 
 Supón que el IPC de enero fue **0,5%**. Eso significa que la UF sube aproximadamente 0,5% desde el 10 de febrero al 9 de marzo. Si tu arriendo es 12 UF:
 
-| Situación                        | Valor UF | Arriendo en pesos |
-| -------------------------------- | -------- | ----------------- |
-| Antes del reajuste               | $44.500  | $534.000          |
-| Después del reajuste (+0,5%)     | $44.723  | $536.676          |
-| Diferencia mensual               |          | **+$2.676**       |
-| Impacto acumulado anual (aprox.) |          | **~+$32.000**     |
+| Situación                        | Valor UF   | Arriendo en pesos |
+| -------------------------------- | ---------- | ----------------- |
+| Antes del reajuste               | $40.844,79 | $490.137          |
+| Después del reajuste (+0,5%)     | $41.049    | $492.588          |
+| Diferencia mensual               |            | **+$2.451**       |
+| Impacto acumulado anual (aprox.) |            | **~+$29.400**     |
 
 Este incremento es automático, sin que el arrendador haga nada. Está incorporado en la fórmula de la UF.
 
@@ -138,11 +138,11 @@ La fórmula es directa:
 
 **Pesos a UF:**
 Divide el monto en pesos por el valor actual de la UF.
-Ejemplo: $1.000.000 ÷ $44.500 = **22,47 UF**
+Ejemplo: $1.000.000 ÷ $40.844,79 = **24,48 UF**
 
 **UF a pesos:**
 Multiplica la cantidad en UF por el valor actual de la UF.
-Ejemplo: 15 UF × $44.500 = **$667.500**
+Ejemplo: 15 UF × $40.844,79 = **$612.672**
 
 El valor de la UF que debes usar es el del **día en que se realiza la operación**, no el del día en que se pactó el contrato.
 
