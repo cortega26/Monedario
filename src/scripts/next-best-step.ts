@@ -54,9 +54,11 @@ function buildCard(
     "mt-3 inline-flex items-center rounded-full bg-accent px-4 py-1.5 text-sm font-semibold text-background transition-opacity hover:opacity-90";
   link.textContent = suggestion.ctaLabel;
   link.addEventListener("click", () => {
-    trackAnalyticsEvent("next_best_step_click", {
-      rule_id: suggestion.id,
-      calculator_slug: calculatorSlug,
+    // Taxonomía v2 (post-rename e17013b7): el transporte normalizaba
+    // next_best_step_click/rule_id/calculator_slug a estos nombres canónicos.
+    trackAnalyticsEvent("next_step_click", {
+      next_step_id: suggestion.id,
+      calculator_id: calculatorSlug,
       position,
     });
   });
@@ -112,9 +114,9 @@ function init(): void {
       suggestions.forEach((suggestion, index) => {
         const position = index + 1;
         section.appendChild(buildCard(suggestion, position, slug));
-        trackAnalyticsEvent("next_best_step_shown", {
-          rule_id: suggestion.id,
-          calculator_slug: slug,
+        trackAnalyticsEvent("next_step_shown", {
+          next_step_id: suggestion.id,
+          calculator_id: slug,
           position,
         });
       });

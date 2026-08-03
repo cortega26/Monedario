@@ -168,12 +168,18 @@ export function sanitizeAnalyticsPayload(
   return { event: eventName, params: clean };
 }
 
-const LEGACY_EVENT_NAMES: Readonly<Record<string, AnalyticsEventName>> = {
-  next_best_step_shown: "next_step_shown",
-  next_best_step_click: "next_step_click",
-  official_source_click: "source_click",
-  share_result_click: "share_attempt",
-};
+export const LEGACY_EVENT_NAMES: Readonly<Record<string, AnalyticsEventName>> =
+  {
+    next_best_step_shown: "next_step_shown",
+    next_best_step_click: "next_step_click",
+    official_source_click: "source_click",
+    share_result_click: "share_attempt",
+    // Decisión de taxonomía 2026-08-03 (fix export v2): los CTAs de página de
+    // resultado pasaron a ser next-step y el clic al enlace de soporte pasó a
+    // support_click (ver UtmPostResultActions.astro).
+    result_action_click: "next_step_click",
+    support_page_click: "support_click",
+  };
 
 const LEGACY_PARAM_NAMES: Readonly<Record<string, AnalyticsPropertyName>> = {
   calculator_slug: "calculator_id",
