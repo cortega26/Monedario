@@ -51,7 +51,7 @@ reviewPolicy:
   computedAt: "2026-07-01"
 ---
 
-> **Información vigente al 2026-05-03.** El monto de la PGU se reajusta periódicamente por ley. Verifica el valor actualizado directamente en el [IPS](https://www.ips.gob.cl/) o [ChileAtiende](https://www.chileatiende.gob.cl/) antes de tomar cualquier decisión.
+> **Información vigente al 2026-08-03.** El monto de la PGU se reajusta periódicamente por ley. Verifica el valor actualizado directamente en el [IPS](https://www.ips.gob.cl/) o [ChileAtiende](https://www.chileatiende.gob.cl/) antes de tomar cualquier decisión.
 
 Llegaste a los 65 años y no sabes si te corresponde la PGU, cuánto recibirías o si tu pensión AFP la reduce. Este artículo responde esas preguntas con fuentes oficiales — sin prometer un monto exacto individual, porque eso lo determina el IPS según tu caso.
 
@@ -59,7 +59,7 @@ Llegaste a los 65 años y no sabes si te corresponde la PGU, cuánto recibirías
 
 La Pensión Garantizada Universal (PGU) es una pensión estatal mensual que el Estado de Chile paga a adultos mayores que cumplan los requisitos legales. La PGU fue creada por la [Ley 21.419](https://www.bcn.cl/leychile/navegar?idNorma=1171923) ("Crea la Pensión Garantizada Universal y Modifica los Cuerpos Legales que Indica", promulgada 26-ENE-2022) y está administrada por el IPS. Su objetivo es garantizar un ingreso mínimo en la vejez, independientemente de si la persona cotizó en el sistema AFP o no.
 
-El monto vigente al 2026-05-03 es **$231.732 mensuales** (65–81 años) y **$250.275 mensuales** (82 años o más, desde febrero 2026), según ChileAtiende — ver la sección [¿Cuánto se paga?](#cuánto-se-paga-monto-y-calendario-de-ajuste) más abajo. El monto se reajusta por decreto; verifica el valor actualizado en el [IPS](https://www.ips.gob.cl/).
+El monto vigente al 2026-08-03 es **$231.732 mensuales** (65–81 años) y **$250.275 mensuales** (82 años o más, desde febrero 2026), según ChileAtiende — ver la sección [¿Cuánto se paga?](#cuánto-se-paga-monto-y-calendario-de-ajuste) más abajo. El monto se reajusta por decreto; verifica el valor actualizado en el [IPS](https://www.ips.gob.cl/).
 
 Para entender el contexto de cambios al sistema previsional que afectan a la PGU, revisa la guía de [reforma previsional vigente](/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/).
 
