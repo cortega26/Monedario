@@ -109,6 +109,10 @@ function isAllowedLocation(filePath) {
     return true;
   }
 
+  if (filePath === "workers/analytics-collector/README.md") {
+    return true;
+  }
+
   return ALLOWED_PREFIXES.some((prefix) => filePath.startsWith(prefix));
 }
 
