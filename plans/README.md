@@ -7,6 +7,7 @@ Tercera auditoría profunda: `/improve deep` el 2026-06-19 (commit `9a4eb37d`) �
 Cuarta auditoría profunda: `/improve deep` el 2026-06-26 (commit `a7bb8b2e`) → planes 032–034.
 Quinta auditoría profunda: `/improve deep` el 2026-07-10 (commit `520a8685`) → planes 035–038.
 Auditoría de dirección: `/improve next` el 2026-07-12 (commit `0102b11a`) → spikes de dirección 045–046 (delta W27 sobre la auditoría canónica `GROWTH-DIRECTION-AUDIT-2026-06-28.md`, corte W25).
+Auditoría de dirección: `/improve next` el 2026-08-02 (commit `0bd51540`) → planes 053–056 (delta sobre el memo de viabilidad estratégica `output/audits/strategic-viability-2026-08-02/monedario-strategic-viability-audit.html`, untracked; ventana de experimentos 2026-08-02 → 2026-11-02).
 Sexta auditoría profunda: `/improve deep` el 2026-07-16 (commit `efe021c7`) →
 planes 048–052, basada en el bundle W28, el incidente del export first-party y
 una revisión read-only de correctness, security, performance, architecture,
@@ -86,10 +87,11 @@ paralelizable entre sí salvo que se indique lo contrario.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
 |---|------|--------|-----------|----------|--------|--------------------|--------|
-| 1 | [051](051-analytics-deployment-parity.md) | Hacer reproducible y verificable el deploy del Worker de analytics | P1 | M | MED | 052 | TODO (prerrequisito cumplido: #330 desplegado y smoke verificado el 2026-07-16) |
-| 2 | [052](052-worker-manual-trigger-auth.md) | Sacar secretos de URLs y separar el PAT del trigger manual | P1 | S | LOW/MED | 049, 051 | IN PROGRESS (código `ae9246bd` aprobado localmente; deploy/rotación y smoke pendientes, PAT requiere autoridad de emisión) |
-| 3 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | BLOCKED (hipótesis descartada; causa de campo sin identificar — ver nota abajo) |
-| 4 | [046](046-converter-recurrence-return-hook-spike.md) | **Spike de dirección**: investigar si hay recurrencia real sobre los conversores (superficie de mayor **tráfico** según RUM W27; recurrencia **por confirmar**) y, solo si la hay, diseñar un return-hook privacy-safe | P2 | M | LOW | todos | TODO (spike de diseño; por defecto "medir antes de construir"; compuerta de decisión humana) |
+| 1 | [052](052-worker-manual-trigger-auth.md) | Sacar secretos de URLs y separar el PAT del trigger manual | P1 | S | LOW/MED | 049, 051 | IN PROGRESS (código `ae9246bd` aprobado localmente; deploy/rotación y smoke pendientes, PAT requiere autoridad de emisión) |
+| 2 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | BLOCKED (hipótesis descartada; causa de campo sin identificar — ver nota abajo) |
+| 3 | [046](046-converter-recurrence-return-hook-spike.md) | **Spike de dirección**: investigar si hay recurrencia real sobre los conversores (superficie de mayor **tráfico** según RUM W27; recurrencia **por confirmar**) y, solo si la hay, diseñar un return-hook privacy-safe | P2 | M | LOW | todos | TODO (spike de diseño; por defecto "medir antes de construir"; compuerta de decisión humana) |
+| 4 | [055](055-calculator-consolidation-spike.md) | **Spike de dirección**: consolidación por URL de 5 calculadoras (dossier de evidencia + opciones de migración con gates de ruta/RSS/ADR) | P2 | M | MED | todos | TODO (spike; compuerta humana por URL; la ejecución posterior de sus recomendaciones es un plan aparte) |
+| 5 | [056](056-decision-paths-afc-prepago-credito-spike.md) | **Spike de dirección**: rutas de decisión contextuales AFC/prepago/crédito (diseño de NextSteps + extensión del patrón post-resultado) | P2 | M | LOW | 046 | TODO (spike; firma de copy y elección de piloto = compuertas humanas) |
 > **035–040, 042–045 y 047–050 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
 
 > **046 es un spike de dirección (`/improve next`, 2026-07-12)**, no un plan de
@@ -100,6 +102,127 @@ paralelizable entre sí salvo que se indique lo contrario.
 > follow-up 047 ya se ejecutaron, aprobaron y archivaron** — ver nota abajo. La
 > viabilidad de 047 quedó confirmada en vivo el 2026-07-16 (`requestHost`
 > aceptado como filtro y dimensión) antes de integrar el filtro.
+>
+> **053 CERRADO (mergeado y archivado 2026-08-02); 054–056 son los planes
+> pendientes de la auditoría de dirección (`/improve next`, 2026-08-02)**,
+> basados en el memo de viabilidad estratégica del mismo día
+> (`output/audits/strategic-viability-2026-08-02/`, untracked — veredicto
+> "continuar con foco estricto", ventana de experimentos 2026-08-02 → 2026-11-02).
+> Los tres restantes son spikes de diseño/evidencia read-only con compuertas
+> humanas. El commit `e17013b7` (#382, el mismo día) ya implementó parte de la
+> fundación utility-led que el memo pide (contrato de analytics v2 con
+> `alert_interest_*`/`support_*`/`next_step_*`, copy de privacidad corregido en
+> `HeroHomepage.astro:93`, `UtmPostResultActions` en conversor-utm, registry de
+> umbrales en `docs/operations/UTILITY_LED_EXPERIMENT_REGISTRY.md`) — ver
+> "Considerados y reconciliados" abajo para lo que NO se re-propone.
+>
+> **051 EJECUTADO Y APROBADO EN REVISIÓN (2026-08-02, vía `/improve execute
+> 051`):** ejecutor en worktree aislado
+> (`.claude/worktrees/agent-af4805f8364715cb4`, rama
+> `advisor/051-analytics-deployment-parity`, commit `8a182486`,
+> `ci(analytics): verify Worker deployment parity`). Entregable: 9 archivos
+> (+1825 líneas) — workflow `deploy-analytics-collector.yml` (dispatch manual
+> solo, `contents: read`, acciones pineadas, concurrency serializado, dry-run
+> antes del deploy, verifier post-deploy), verifier
+> `scripts/data-signals/verify-analytics-worker-deployment.mjs` (5 chequeos:
+> versión activa con `--deployed-not-before`, cron exacto `57 7 * * MON` con
+> polling acotado ≤15 min, rechazo de auth por query-string, smoke de export
+> por header solo-metadatos, frescura R2 vía `If-Modified-Since` sin descargar
+> body), 25 tests del verifier + 11 aserciones estáticas del workflow, ADR
+> `ADR-20260716-analytics-worker-deployment-parity`, runbook
+> `docs/operations/runbooks/analytics-worker-deployment.md`, README del worker
+> y trio `worker:analytics:dev/deploy/tail` en package.json. **Revisión
+> (tech-lead) APROBADA** — gates re-corridos de forma independiente en el
+> worktree: suite completa 1128/1128, vitest acotado 136/136, wrangler
+> dry-run exit 0, `check:docs`/`check:boundaries`/`lint`/`format:check` exit 0
+> (parse YAML con ruby sustituido por js-yaml del repo — ruby no está instalado
+> en el entorno, misma cobertura, documentado). Compatibilidad del smoke
+> verificada contra la forma real del endpoint (`index.ts:817-821` devuelve
+> solo week/window/rows/totalEvents; key R2 `analytics-exports/{week}.json`
+> coincide con la línea 752). Sin secretos ni IDs externos commiteados
+> (escaneado; solo `${{ secrets.* }}`/env en el workflow y docs). Sin runner
+> label (retiro del 01-08 respetado; el test estático lo exige).
+> **Desviaciones documentadas y aprobadas en mérito:** (1)
+> `scripts/check-docs-structure.mjs` +4 líneas fuera del alcance literal —
+> allowlist del README del worker, requerida para que `check:docs` pase, mismo
+> patrón que los otros dos README de workers; (2) Step 5 (smoke de producción)
+> **diferido al operador** — sin credenciales Cloudflare en el worktree
+> (condición de STOP del propio plan); checklist de evidencia no secreta en el
+> runbook §2. **Merge + deploy de producción pendientes de decisión del
+> operador** (igual que 052: requiere emitir token mínimamente scoped y
+> configurar secrets/vars de GitHub). **Auditoría post-entrega (2026-08-02, a
+> pedido del operador): 5 hallazgos corregidos** en commit adicional
+> `e5efcc66` (+126/−6, 4 archivos): (1) timeout del job 15→30 min (el peor
+> caso del verifier — deploy ~5 min + polling de propagación ≤15 min —
+> excedía el tope; el run habría fallado por timeout en vez de por paridad);
+> (2) margen `R2_REFERENCE_SKEW_MS = 2 s` en la referencia del smoke (los
+> HTTP dates se truncan a segundos → 304 falso si PUT y GET caían en el mismo
+> segundo); (3) `parseArgs` exportada + 7 tests de CLI (antes sin cobertura);
+> (4) regex de semana reforzada a 01-53 (W99 escribía artefacto R2 basura);
+> (5) `TZ: America/Santiago` en el step "Resolver semana" (alinea con
+> `EXPORT_TIMEZONE` del worker en el borde lunes 00:00-04:00 UTC). Gates
+> reverificados: suite completa 1136/1136 (8 tests nuevos), vitest acotado
+> 144/144, format/lint/docs exit 0. Sin push ni PR.
+> **Segundo pase de auditoría (2026-08-02, señalado por el operador al crear
+> el token):** el permiso "Worker Routes:Edit" es de **ZONA**, no de cuenta —
+> corregidas las 4 menciones (workflow header + mensaje del step de validación,
+> ADR punto 4, runbook §1) en commit `79d78372` con la nota del modo de falla
+> (`workers.api.error.unauthorized` al sincronizar la ruta). Permisos del
+> token verificados en vivo (read-only): Workers Scripts PASS (deployments +
+> schedules), Zone Worker Routes PASS (ruta `monedario.cl/api/analytics/*`),
+> R2 Storage:Read PASS (GET artefacto 2026-W30), y paridad global OK
+> (query-string 401).
+> **Cierre (2026-08-02, a pedido del operador):** merge por fast-forward
+> `1974e3be..79d78372`, cierre atómico en el mismo turno (`051-*.md` movido a
+> [`plans/archive/`](archive/051-analytics-deployment-parity.md), tabla
+> renumerada, índices actualizados), push a `origin/main` y limpieza de
+> worktree/rama. **Pendiente del operador:** primer deploy vía
+> `gh workflow run deploy-analytics-collector.yml --ref main` con el token ya
+> verificado, y registrar la evidencia del runbook §2.
+>
+> **054 EJECUTADO Y APROBADO EN REVISIÓN (2026-08-02, vía `/improve execute
+> 054`):** ejecutor en worktree aislado
+> (`.claude/worktrees/agent-aa7c1665be7df0105`, rama
+> `advisor/054-editorial-evidence-ledger`, commit `673ad8dc`,
+> `docs(reports): ledger de evidencia del pipeline editorial (spike 054)`).
+> Entregable: `docs/reports/EDITORIAL-EVIDENCE-LEDGER-2026-08-02.md` (263
+> líneas, 1 solo archivo en el commit, worktree limpio). **Revisión
+> (tech-lead) APROBADA** — reverificada de forma independiente, no solo el
+> reporte del ejecutor: conteo de posts recalculado (53; pubDate ≥ 2026-04-25 →
+> 10, updatedDate → 15, en_alcance 22), `find` de packets (3×06 + 3×07, los
+> mismos 3 pares citados), los tres modos del checker re-ejecutados (warn exit
+> 0 con 47/47, CI exit 1, estricto exit 0), y cada cita de archivo:línea del
+> ledger verificada contra el archivo real (content.config.ts:43-44,
+> MIN_SOURCES:20, loadAllowlist:285-286, detectYmyStatus:295, evaluatePost:481,
+> run:636; metodologia.astro:115-135 y acerca-de.astro:106-116 verbatim).
+> **Hallazgos clave del ledger:** el número 47/47 del memo SÍ coincide con la
+> salida real, pero el modo advertencia NO lo explica (el modo estricto también
+> pasa) — el conteo refleja la definición propia del checker (brief+dossier+
+> fecha_corte+≥1 fuente, `MIN_SOURCES=1`); el checker nunca referencia
+> 06/07/firma/siete etapas (grep = 0); la allowlist YMYL
+> (`context/EDITORIAL_YMYL_ALLOWLIST.txt`) **no existe** (allowlist_entries=0) —
+> los 47 YMYL salen de `category` (45) + tags (2); solo 1 de los 47 YMYL tiene
+> packet 06/07, y los otros 2 packets son posts `category: general` que el
+> checker ni evalúa. Veredicto: "el gap real es 19" (de 22 posts en alcance del
+> claim, 19 sin cadena de siete registros; el corpus histórico queda
+> correctamente fuera por el aside de metodologia.astro:128-134).
+> **Desviaciones documentadas y aprobadas en mérito:** correcciones de líneas
+> citadas por el plan (content.config.ts 17,19 → 43-44; evaluatePost ~290 →
+> 481) y precisión de "50 carpetas temáticas" → 49 + `_intake` (50 dirs);
+> `pnpm install --frozen-lockfile` requerido en el worktree (esperado, node_modules
+> ausente). Sin STOP activado (mapeos 0 ambiguos; ninguna evidencia contradice
+> el disclaimer público). **Merge pendiente de decisión del operador** — spike
+> read-only con compuerta humana en la sección "Decisión del operador" del
+> ledger (5 preguntas: opción A/B/C, alcance del backfill, semántica del
+> checker, governance, evidencia que cambiaría el veredicto).
+> **Cierre (2026-08-02, a pedido del operador — "2"):** la rama
+> `advisor/054-editorial-evidence-ledger` se integró a `main` local por
+> **fast-forward** (`3c343e00..673ad8dc`); worktree y rama eliminados tras el
+> merge. Cierre atómico en el mismo turno: `054-*.md` movido a
+> [`plans/archive/`](archive/054-editorial-evidence-ledger-spike.md), esta
+> tabla renumerada, índice de archivados actualizado. **No empujado a
+> `origin/main`** (el operador no lo pidió). La compuerta humana del ledger
+> ("Decisión del operador": opciones A/B/C) sigue abierta para el operador.
 
 ### Decisiones y rechazos de la auditoría 2026-07-16
 
@@ -846,6 +969,13 @@ paralelizable entre sí salvo que se indique lo contrario.
 
 Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main`.
 
+### Auditoría de dirección 2026-08-02 (plans 053–056; 055–056 pendientes)
+
+| Plan | Título | Prioridad | Esfuerzo | Estado |
+|------|--------|-----------|----------|--------|
+| [053](archive/053-gsc-measurement-baseline.md) | Completar el baseline de medición GSC (gate de semanas faltantes estricto en CI + exports de país/dispositivo) | P1 | M | DONE (fast-forward `f1e37560`+`bc979708`, 2026-08-02) — incluye ronda de auditoría que corrigió el gate estricto en CI; backfill de 2026-W29 pendiente como paso operativo |
+| [054](archive/054-editorial-evidence-ledger-spike.md) | **Spike de dirección**: ledger de evidencia del pipeline editorial (inventario 3/53, reproducción del checker, veredicto claim vs. evidencia) | P1 | M | DONE (fast-forward `673ad8dc`, 2026-08-02) — entregable `docs/reports/EDITORIAL-EVIDENCE-LEDGER-2026-08-02.md`; gap real = 19 (22 en alcance, 19 sin cadena 06/07); compuerta humana abierta (opciones A/B/C en el ledger); merge local, sin push |
+
 ### Sexta auditoría profunda / Issue #315 — 2026-07-16
 
 | Plan | Título | Prioridad | Esfuerzo | Estado |
@@ -854,6 +984,7 @@ Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main
 | [048](archive/048-search-signal-integrity.md) | Deltas WoW reales, estados de fuente explícitos y CTR acotado | P1 | M | DONE (commit `e472ea43`; final Issue #315 change) |
 | [049](archive/049-analytics-calendar-and-funnel-semantics.md) | Alinear semanas a Chile con cutover versionado y reportar ratios de eventos honestamente | P1 | M | DONE (PR #331, squash `ac0c4a17`; Worker `dbc273e9-4f89-48f8-b572-fff6e536ff81`) |
 | [050](archive/050-weekly-search-ops-current-scale.md) | Restaurar revisión semanal con decisión explícita el 2026-08-01 | P1 | S | DONE (commit `e01d4a93`; final Issue #315 change) |
+| [051](archive/051-analytics-deployment-parity.md) | Hacer reproducible y verificable el deploy del Worker de analytics (workflow manual + verifier de paridad + ADR/runbook) | P1 | M | DONE (fast-forward `79d78372`, 2026-08-02) — auditoría post-entrega integrada (`e5efcc66`, `79d78372`); **smoke de producción (Step 5) pendiente del operador** |
 
 ### Quinta auditoría profunda 2026-07-10
 
@@ -931,6 +1062,16 @@ Status: `TODO` · `IN PROGRESS` · `DONE` · `BLOCKED (razón)` · `REJECTED (ra
 
 ## Notas de dependencia
 
+- **053 EJECUTADO, MERGEADO Y ARCHIVADO (2026-08-02, fast-forward
+  `f1e37560`+`bc979708`)** — su gate de semanas faltantes y los exports de
+  país/dispositivo son prerequisito informativo para 055 y 056: el registry
+  (`UTILITY_LED_EXPERIMENT_REGISTRY.md`) exige integridad ≥95% antes de decidir
+  con datos. El backfill de 2026-W29 sigue pendiente como paso operativo del
+  operador (workflow_dispatch con `week=2026-W29`).
+- **056 se relaciona con 046** (mismo embudo de conversores): 046 diseña el
+  return-hook de recurrencia; 056 diseña los siguientes pasos contextuales. Si
+  046 se ejecuta antes de 056, el ejecutor de 056 debe reconciliar ambos
+  diseños (condición de STOP explícita en el plan).
 - **022 y 023 son independientes entre sí** y de los planes previos; pueden
   ejecutarse en paralelo o en cualquier orden. Ambos son defensa-en-profundidad
   de bajo riesgo (P3).
@@ -1132,6 +1273,50 @@ implementar** al commit `0102b11a` — `scripts/data-signals/cloudflare-fetch.mj
 función `fetchRumWebVitals` (≈líneas 140-162) sigue consultando el RUM por
 `accountTag` sin dimensión de hostname. El plan 045 lo diagnostica y especifica el
 follow-up; no lo arregla (spike documental).
+
+## Considerados y reconciliados — auditoría de dirección `/improve next` 2026-08-02 (para no re-derivar)
+
+Delta sobre el memo de viabilidad estratégica 2026-08-02. Los ítems del memo
+que ya están resueltos o en curso en el repo se verificaron y NO se
+re-proponen (evidencia de cada uno abajo):
+
+- **Promesa de privacidad ("sin recolección de datos")**: corregida.
+  `HeroHomepage.astro:93` dice "Sin publicidad. Sin registro requerido.
+  Métricas agregadas, sin datos financieros personales. Fuentes oficiales." y
+  `/privacidad.astro` describe la telemetría agregada sin identificadores. La
+  fundación #382 (`e17013b7`, 2026-08-02) consolidó el copy. No abrir.
+- **Error CSP de Cloudflare / validación CSP en producción**: en curso, fuera
+  de planes. TD-0099 (commit `09dc219d`, "no-transform en toda regla
+  Cache-Control") y TD-0102 (incidente documentado en `docs/operations/`,
+  commit `b7e94fec`) con runbook; la validación en producción es paso
+  operativo pendiente, no un plan de código. No abrir.
+- **Instrumentación de alerta / apoyo / siguiente paso**: ya construida.
+  Contrato v2 en `src/contracts/analytics-events.ts` (`alert_interest_shown/
+  submit`, `support_shown/click/confirmed`, `next_step_shown/click`),
+  `UtmPostResultActions.astro` vivo en conversor-utm, umbrales GREEN/WATCH/
+  HALT en `UTILITY_LED_EXPERIMENT_REGISTRY.md` (ventana 2026-08-02 → 2026-11-02).
+  Lo que falta (diseño de rutas por cluster, extensión a AFC/prepago) es el
+  plan 056. No abrir duplicados.
+- **Alerta UTM/UF recurrente**: correctamente **gateada** — el registry exige
+  `alert_interest_shown ≥2%` antes de construirla; hoy el botón solo mide
+  interés agregado (copy explícito en `UtmPostResultActions.astro`). Construir
+  solo si el umbral cruza. No abrir ahora.
+- **Ejemplo UTM desactualizado** (ítem "hacer ahora" del memo): mitigado —
+  `src/data/blog/utm-chile-que-es-como-funciona.md` usa valores fechados
+  ("abril 2026: $69.889") con cajas de advertencia explícitas, y existe
+  `check:editorial-timeliness` para la caducidad. Es ítem de contenido del
+  proceso editorial, no de código. No abrir.
+- **Recurrencia / retorno etiquetado**: ya planificado — spike 046 (TODO,
+  mismo embudo). El plan 056 lo referencia en vez de duplicarlo. No escribir
+  otro spike de recurrencia.
+- **Apoyo voluntario (memo sección L)**: instrumentado y live (link a
+  `/apoyar.astro` en el bloque post-resultado); la medición de umbrales es del
+  registry. La extensión a AFC/prepago cae dentro del diseño del plan 056.
+  No abrir como plan separado.
+- **Costo de mantenimiento / inventario de 184 URLs**: el memo propone un
+  objetivo de ~80 URLs activas; el único camino de código es la consolidación
+  por URL → plan 055. La gobernanza del inventario (congelar URLs nuevas) es
+  decisión del mantenedor, no un plan.
 
 ## Dirección (decisión del mantenedor — no planificado aún)
 

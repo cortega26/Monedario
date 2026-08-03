@@ -75,6 +75,33 @@ describe("buildSnapshot", () => {
     expect(snapshot.uta).toBe(70588 * 12);
   });
 
+  it("uses the official SII UTM override and records provenance", async () => {
+    const snapshot = await buildSnapshot({
+      ...makeDeps(),
+      fetchUtmOverride: async () => ({
+        value: 71_649,
+        dateIso: "2026-08-01",
+        sourceUrl: "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm",
+      }),
+    });
+    expect(snapshot.utm).toBe(71_649);
+    expect(snapshot.indicatorUpdatedAt.utm).toBe("2026-08-01");
+    expect(snapshot.provenance?.utm.status).toBe("primary");
+    expect(snapshot.provenance?.utm.primarySource).toBe("SII");
+  });
+
+  it("marks the aggregator fallback explicitly when SII is unavailable", async () => {
+    const snapshot = await buildSnapshot({
+      ...makeDeps(),
+      fetchUtmOverride: async () => null,
+    });
+    expect(snapshot.utm).toBe(70_588);
+    expect(snapshot.provenance?.utm.status).toBe("fallback");
+    expect(snapshot.provenance?.utm.sourceUrl).toBe(
+      "https://mindicador.cl/api/utm"
+    );
+  });
+
   it("omits dolar entirely when API does not return it", async () => {
     const rest = { ...sampleApi };
     delete rest.dolar;

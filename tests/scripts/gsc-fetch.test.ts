@@ -1,4 +1,6 @@
 import { spawnSync } from "node:child_process";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import os from "node:os";
 import path from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import {
@@ -8,6 +10,9 @@ import {
   findCannibalizationGroups,
   findStrikingDistance,
   isoWeekToDateRange,
+  missingExportWeeks,
+  normalizeCountryRow,
+  normalizeDeviceRow,
   normalizePageRow,
   normalizeQueryPageRow,
   normalizeQueryRow,
@@ -102,6 +107,110 @@ describe("previousCompleteISOWeek", () => {
     vi.useFakeTimers();
     vi.setSystemTime(new Date("2026-01-04T12:00:00Z"));
     expect(previousCompleteISOWeek()).toBe("2025-W52");
+  });
+});
+
+describe("missingExportWeeks", () => {
+  it("flags the immediately preceding week when absent", () => {
+    expect(missingExportWeeks(["2026-W28", "2026-W30"], "2026-W30", 3)).toEqual([
+      "2026-W29",
+    ]);
+  });
+
+  it("reports a middle gap in chronological order", () => {
+    // W27 and W28 missing between W26 and W29; W30 is the target.
+    expect(
+      missingExportWeeks(["2026-W26", "2026-W29", "2026-W30"], "2026-W30", 5),
+    ).toEqual(["2026-W27", "2026-W28"]);
+  });
+
+  it("excludes gaps beyond the lookback window", () => {
+    // lookback 2 → window is [2026-W29, 2026-W30]; W28 and W26 are out of range.
+    expect(missingExportWeeks(["2026-W26", "2026-W30"], "2026-W30", 2)).toEqual([
+      "2026-W29",
+    ]);
+  });
+
+  it("returns the full window when nothing is available", () => {
+    const missing = missingExportWeeks([], "2026-W30");
+    expect(missing).toHaveLength(12);
+    expect(missing[0]).toBe("2026-W19");
+    expect(missing[11]).toBe("2026-W30");
+  });
+
+  it("returns empty when every window week is present", () => {
+    expect(
+      missingExportWeeks(["2026-W28", "2026-W29", "2026-W30"], "2026-W30", 3),
+    ).toEqual([]);
+  });
+
+  it("ignores out-of-range or malformed labels in availableWeeks", () => {
+    expect(
+      missingExportWeeks(
+        ["garbage", "2027-W01", "2026-W29", "2026-W30"],
+        "2026-W30",
+        2,
+      ),
+    ).toEqual([]);
+  });
+
+  it("throws on an invalid target week format", () => {
+    expect(() => missingExportWeeks([], "2026-17")).toThrow(/Invalid ISO week/);
+  });
+});
+
+describe("normalizeCountryRow", () => {
+  it("normalizes a country row with alphabetically sorted keys", () => {
+    const result = normalizeCountryRow({
+      keys: ["chl"],
+      clicks: 30,
+      impressions: 900,
+      ctr: 0.033333,
+      position: 7.5,
+    });
+    expect(result).toEqual({
+      clicks: 30,
+      ctr: 0.0333,
+      impressions: 900,
+      key: "chl",
+      position: 7.5,
+    });
+    expect(Object.keys(result)).toEqual([
+      "clicks",
+      "ctr",
+      "impressions",
+      "key",
+      "position",
+    ]);
+  });
+
+  it("defaults to empty key and zeros when fields are missing", () => {
+    expect(normalizeCountryRow({})).toEqual({
+      clicks: 0,
+      ctr: 0,
+      impressions: 0,
+      key: "",
+      position: 0,
+    });
+  });
+});
+
+describe("normalizeDeviceRow", () => {
+  it("normalizes a device row with alphabetically sorted keys", () => {
+    const result = normalizeDeviceRow({
+      keys: ["MOBILE"],
+      clicks: 10,
+      impressions: 500,
+      ctr: 0.02,
+      position: 3.1,
+    });
+    expect(result.key).toBe("MOBILE");
+    expect(result.clicks).toBe(10);
+    expect(result.impressions).toBe(500);
+  });
+
+  it("defaults to empty key when keys are missing", () => {
+    expect(normalizeDeviceRow({}).key).toBe("");
   });
 });
 
@@ -410,5 +519,74 @@ describe("gsc-fetch CLI", () => {
     const r = run(["--unknown-flag"]);
     expect(r.status).toBe(1);
     expect(r.stderr).toContain("Unknown argument");
+  });
+});
+
+describe("gsc-fetch GAP gate", () => {
+  const tmpDirs: string[] = [];
+
+  afterEach(() => {
+    for (const dir of tmpDirs.splice(0)) {
+      rmSync(dir, { recursive: true, force: true });
+    }
+  });
+
+  function tmpDir(): string {
+    const dir = mkdtempSync(path.join(os.tmpdir(), "gsc-"));
+    tmpDirs.push(dir);
+    return dir;
+  }
+
+  it("default mode: a missing previous week aborts before the credential check", () => {
+    const dir = tmpDir();
+    const target = previousCompleteISOWeek();
+    const { from } = isoWeekToDateRange(target);
+    const prevWeek = dateToISOWeek(
+      new Date(Date.parse(`${from}T00:00:00Z`) - 7 * 86_400_000),
+    );
+    const r = run([], { GSC_OUTPUT_BASE: dir });
+    expect(r.status).toBe(1);
+    expect(r.stderr).toContain("GAP");
+    expect(r.stderr).toContain(prevWeek);
+    expect(r.stderr).not.toContain("Missing env var");
+  });
+
+  it("backfill mode: the same gap only warns, then exits on missing credentials", () => {
+    const dir = tmpDir();
+    const r = run(["--week=2026-W17"], { GSC_OUTPUT_BASE: dir });
+    expect(r.status).toBe(1);
+    expect(r.stderr).toContain("GAP (backfill mode)");
+    expect(r.stderr).toContain("Missing env var");
+  });
+
+  it("backfill mode: a present target-week export counts as weeks_present=1", () => {
+    const dir = tmpDir();
+    writeFileSync(path.join(dir, "2026-W17-pages.json"), "{}\n", "utf8");
+    const r = run(["--week=2026-W17"], { GSC_OUTPUT_BASE: dir });
+    expect(r.status).toBe(1);
+    expect(r.stderr).toContain("weeks_present=1");
+    expect(r.stderr).toContain("GAP (backfill mode)");
+    expect(r.stderr).toContain("Missing env var");
+  });
+
+  it("backfill mode: a complete lookback window does not trigger the gate", () => {
+    const dir = tmpDir();
+    for (const week of missingExportWeeks([], "2026-W17", 12)) {
+      writeFileSync(path.join(dir, `${week}-pages.json`), "{}\n", "utf8");
+    }
+    const r = run(["--week=2026-W17"], { GSC_OUTPUT_BASE: dir });
+    expect(r.status).toBe(1);
+    expect(r.stderr).toContain("weeks_present=12 missing=[]");
+    expect(r.stderr).not.toContain("GAP");
+    expect(r.stderr).toContain("Missing env var");
+  });
+
+  it("explicit --week equal to the previous complete week is still strict", () => {
+    const dir = tmpDir();
+    const target = previousCompleteISOWeek();
+    const r = run([`--week=${target}`], { GSC_OUTPUT_BASE: dir });
+    expect(r.status).toBe(1);
+    expect(r.stderr).toContain("GAP");
+    expect(r.stderr).not.toContain("Missing env var");
   });
 });

@@ -57,7 +57,7 @@ describe("analytics browser script", () => {
         event: "calculator_view",
         params: {
           page_type: "calculator",
-          calculator_slug: "seguro-cesantia",
+          calculator_id: "seguro-cesantia",
         },
       },
     ]);
@@ -70,11 +70,11 @@ describe("analytics browser script", () => {
     await vi.runOnlyPendingTimersAsync();
 
     window.monedarioAnalytics?.track("calculator_complete", {
-      calculator_slug: "sueldo-liquido",
+      calculator_id: "sueldo-liquido",
       outcome_class: "success",
     });
     window.monedarioAnalytics?.track("calculator_complete", {
-      calculator_slug: "sueldo-liquido",
+      calculator_id: "sueldo-liquido",
       outcome_class: "success",
     });
 
@@ -91,7 +91,7 @@ describe("analytics browser script", () => {
     await vi.runOnlyPendingTimersAsync();
 
     window.monedarioAnalytics?.track("calculator_complete", {
-      calculator_slug: "sueldo-liquido",
+      calculator_id: "sueldo-liquido",
       outcome_class: "success",
     });
 
@@ -99,7 +99,7 @@ describe("analytics browser script", () => {
     await vi.runOnlyPendingTimersAsync();
 
     window.monedarioAnalytics?.track("calculator_complete", {
-      calculator_slug: "sueldo-liquido",
+      calculator_id: "sueldo-liquido",
       outcome_class: "success",
     });
 
@@ -116,11 +116,11 @@ describe("analytics browser script", () => {
     await vi.runOnlyPendingTimersAsync();
 
     window.monedarioAnalytics?.track("calculator_start", {
-      calculator_slug: "sueldo-liquido",
+      calculator_id: "sueldo-liquido",
       interaction_type: "input",
     });
     window.monedarioAnalytics?.track("calculator_start", {
-      calculator_slug: "sueldo-liquido",
+      calculator_id: "sueldo-liquido",
       interaction_type: "input",
     });
 

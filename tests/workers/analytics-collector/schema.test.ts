@@ -18,10 +18,16 @@ import {
   buildExportArtifact,
   validateExportArtifact,
   runExport,
+  LEGACY_EXPORT_EVENTS,
+  LEGACY_UNMAPPED_EXPORT_EVENTS,
   type TelemetryCounter,
   type ExportDataRow,
   type Env,
 } from "../../../workers/analytics-collector/src/index";
+import {
+  ANALYTICS_EVENT_ALLOWLIST,
+  LEGACY_EVENT_NAMES,
+} from "../../../src/contracts/analytics-events";
 
 class MockKV {
   store = new Map<string, string>();
@@ -88,21 +94,21 @@ describe("validateEventPayload", () => {
     const result = validateEventPayload({
       event: "calculator_start",
       params: {
-        calculator_slug: "sueldo-liquido",
-        interaction_type: "input",
+        calculator_id: "sueldo-liquido",
+        interaction_variant: "input",
       },
     });
     expect(result.valid).toBe(true);
     expect(result.event).toBe("calculator_start");
     expect(result.params).toEqual({
-      calculator_slug: "sueldo-liquido",
-      interaction_type: "input",
+      calculator_id: "sueldo-liquido",
+      interaction_variant: "input",
     });
   });
 
   it("rechaza payload sin campo event", () => {
     const result = validateEventPayload({
-      params: { calculator_slug: "test" },
+      params: { calculator_id: "test" },
     });
     expect(result.valid).toBe(false);
   });
@@ -149,8 +155,8 @@ describe("validateEventPayload", () => {
     const result = validateEventPayload({
       event: "calculator_start",
       params: {
-        calculator_slug: "test",
-        interaction_type: "click",
+        calculator_id: "test",
+        interaction_variant: "button",
         unknown_field: "should-be-rejected",
         otro_campo: 42,
       },
@@ -162,31 +168,31 @@ describe("validateEventPayload", () => {
     const result = validateEventPayload({
       event: "calculator_start",
       params: {
-        calculator_slug: "test",
-        interaction_type: "click",
+        calculator_id: "test",
+        interaction_variant: "button",
         profile_signal: "derived text",
       },
     });
     expect(result.valid).toBe(false);
   });
 
-  it("rechaza si calculator_slug excede 200 chars", () => {
+  it("rechaza si calculator_id excede 200 chars", () => {
     const result = validateEventPayload({
       event: "calculator_start",
       params: {
-        calculator_slug: "a".repeat(201),
-        interaction_type: "click",
+        calculator_id: "a".repeat(201),
+        interaction_variant: "button",
       },
     });
     expect(result.valid).toBe(false);
   });
 
-  it("rechaza outcome_class inválido", () => {
+  it("rechaza propiedades heredadas aunque el evento siga vigente", () => {
     const result = validateEventPayload({
       event: "calculator_complete",
       params: {
-        calculator_slug: "test",
-        outcome_class: "invalid_outcome",
+        calculator_id: "test",
+        outcome_class: "success",
       },
     });
     expect(result.valid).toBe(false);
@@ -194,163 +200,117 @@ describe("validateEventPayload", () => {
 
   it("acepta todos los eventos allowlisted con params válidos", () => {
     const validCases = [
-      {
-        event: "calculator_view",
-        params: { page_type: "calculator", calculator_slug: "t" },
-      },
-      {
-        event: "calculator_start",
-        params: { calculator_slug: "t", interaction_type: "click" },
-      },
-      {
-        event: "calculator_complete",
-        params: { calculator_slug: "t", outcome_class: "success" },
-      },
-      {
-        event: "calculator_error",
-        params: { calculator_slug: "t", error_code: "validation" },
-      },
-      {
-        event: "next_best_step_shown",
-        params: { calculator_slug: "t", rule_id: "r1", position: 1 },
-      },
-      {
-        event: "next_best_step_click",
-        params: { calculator_slug: "t", rule_id: "r1", position: 1 },
-      },
-      {
-        event: "result_action_click",
-        params: { calculator_slug: "t", action_id: "share" },
-      },
-      {
-        event: "share_result_click",
-        params: { calculator_slug: "t", channel: "copy" },
-      },
-      {
-        event: "scenario_action",
-        params: { calculator_slug: "t", action: "save" },
-      },
-      {
-        event: "resume_click",
-        params: { item_type: "calculator", item_id: "sueldo-liquido" },
-      },
-      {
-        event: "support_page_click",
-        params: { page_type: "post", source_context: "article" },
-      },
-      {
-        event: "official_source_click",
-        params: { page_type: "post", source_domain: "sii.cl" },
-      },
-    ];
+      ["calculator_view", { calculator_id: "t", page_type: "calculator" }],
+      ["calculator_start", { calculator_id: "t", interaction_variant: "button" }],
+      ["calculator_complete", { calculator_id: "t" }],
+      ["calculator_error", { calculator_id: "t", error_category: "validation" }],
+      ["next_step_shown", { calculator_id: "t", next_step_id: "r1" }],
+      ["next_step_click", { calculator_id: "t", next_step_id: "r1" }],
+      ["source_click", { calculator_id: "t", source_type: "official" }],
+      ["share_attempt", { calculator_id: "t", share_method: "copy" }],
+      ["share_success", { calculator_id: "t", share_method: "native" }],
+      ["alert_interest_shown", { calculator_id: "t", interaction_variant: "contextual_v1" }],
+      ["alert_interest_submit", { calculator_id: "t", interaction_variant: "contextual_v1" }],
+      ["support_shown", { calculator_id: "t", support_location: "post_result" }],
+      ["support_click", { calculator_id: "t", support_location: "post_result" }],
+      ["support_confirmed", { calculator_id: "t", support_location: "post_result" }],
+    ] as const;
 
-    for (const { event, params } of validCases) {
+    for (const [event, params] of validCases) {
       const result = validateEventPayload({ event, params });
       expect(result.valid).toBe(true);
     }
   });
 
-  // ── Free-form token dimensions (calculator_slug, rule_id, action_id) ──
+  // ── Free-form token dimensions (calculator_id, next_step_id, action_id) ──
 
-  it("acepta un calculator_slug corto y válido", () => {
+  it("acepta un calculator_id corto y válido", () => {
     const result = validateEventPayload({
       event: "calculator_view",
-      params: { page_type: "calculator", calculator_slug: "sueldo-liquido" },
+      params: { page_type: "calculator", calculator_id: "sueldo-liquido" },
     });
     expect(result.valid).toBe(true);
   });
 
-  it("acepta un rule_id real", () => {
+  it("acepta un next_step_id real", () => {
+    const result = validateEventPayload({
+      event: "next_step_click",
+      params: {
+        calculator_id: "sueldo-liquido",
+        next_step_id: "sl-to-apv-midhigh",
+      },
+    });
+    expect(result.valid).toBe(true);
+  });
+
+  it("rechaza calculator_id con espacio", () => {
+    const result = validateEventPayload({
+      event: "calculator_view",
+      params: { page_type: "calculator", calculator_id: "sueldo liquido" },
+    });
+    expect(result.valid).toBe(false);
+  });
+
+  it("rechaza calculator_id con path/puntuación", () => {
+    const result = validateEventPayload({
+      event: "calculator_view",
+      params: { page_type: "calculator", calculator_id: "../etc" },
+    });
+    expect(result.valid).toBe(false);
+  });
+
+  it("rechaza calculator_id con mayúsculas", () => {
+    const result = validateEventPayload({
+      event: "calculator_view",
+      params: { page_type: "calculator", calculator_id: "Sueldo" },
+    });
+    expect(result.valid).toBe(false);
+  });
+
+  it("rechaza calculator_id con unicode", () => {
+    const result = validateEventPayload({
+      event: "calculator_view",
+      params: { page_type: "calculator", calculator_id: "café☕" },
+    });
+    expect(result.valid).toBe(false);
+  });
+
+  it("acepta attribution UTM acotada", () => {
+    const result = validateEventPayload({
+      event: "next_step_click",
+      params: {
+        calculator_id: "conversor-utm",
+        next_step_id: "convert-uf",
+        utm_source: "conversor-utm",
+        utm_medium: "post-result",
+        utm_campaign: "utility-led-v1",
+      },
+    });
+    expect(result.valid).toBe(true);
+  });
+
+  it("rechaza attribution con texto libre", () => {
+    const result = validateEventPayload({
+      event: "next_step_click",
+      params: { calculator_id: "conversor-utm", utm_campaign: "texto libre" },
+    });
+    expect(result.valid).toBe(false);
+  });
+
+  it("normaliza eventos legados (pre-rename) antes de la validación estricta", () => {
     const result = validateEventPayload({
       event: "next_best_step_click",
       params: {
         calculator_slug: "sueldo-liquido",
         rule_id: "sl-to-apv-midhigh",
-        position: 1,
       },
     });
     expect(result.valid).toBe(true);
-  });
-
-  it("rechaza calculator_slug con espacio", () => {
-    const result = validateEventPayload({
-      event: "calculator_view",
-      params: { page_type: "calculator", calculator_slug: "sueldo liquido" },
+    expect(result.event).toBe("next_step_click");
+    expect(result.params).toEqual({
+      calculator_id: "sueldo-liquido",
+      next_step_id: "sl-to-apv-midhigh",
     });
-    expect(result.valid).toBe(false);
-  });
-
-  it("rechaza calculator_slug con path/puntuación", () => {
-    const result = validateEventPayload({
-      event: "calculator_view",
-      params: { page_type: "calculator", calculator_slug: "../etc" },
-    });
-    expect(result.valid).toBe(false);
-  });
-
-  it("rechaza calculator_slug con mayúsculas", () => {
-    const result = validateEventPayload({
-      event: "calculator_view",
-      params: { page_type: "calculator", calculator_slug: "Sueldo" },
-    });
-    expect(result.valid).toBe(false);
-  });
-
-  it("rechaza calculator_slug con unicode", () => {
-    const result = validateEventPayload({
-      event: "calculator_view",
-      params: { page_type: "calculator", calculator_slug: "café☕" },
-    });
-    expect(result.valid).toBe(false);
-  });
-
-  // ── item_id shape (plan 043 — bare token or site-relative path) ──
-
-  it("acepta item_id con forma de path real de producción", () => {
-    const result = validateEventPayload({
-      event: "resume_click",
-      params: {
-        item_type: "calculator",
-        item_id: "/calculadoras/sueldo-liquido/",
-      },
-    });
-    expect(result.valid).toBe(true);
-  });
-
-  it("acepta item_id como token kebab simple", () => {
-    const result = validateEventPayload({
-      event: "resume_click",
-      params: { item_type: "calculator", item_id: "sueldo-liquido" },
-    });
-    expect(result.valid).toBe(true);
-  });
-
-  it("rechaza item_id con mayúsculas o unicode", () => {
-    const upper = validateEventPayload({
-      event: "resume_click",
-      params: { item_type: "calculator", item_id: "Sueldo-Liquido" },
-    });
-    expect(upper.valid).toBe(false);
-
-    const unicode = validateEventPayload({
-      event: "resume_click",
-      params: { item_type: "calculator", item_id: "café☕" },
-    });
-    expect(unicode.valid).toBe(false);
-  });
-
-  it("rechaza item_id con intento de path traversal", () => {
-    const dotdot = validateEventPayload({
-      event: "resume_click",
-      params: { item_type: "calculator", item_id: "../etc/passwd" },
-    });
-    expect(dotdot.valid).toBe(false);
-
-    const doubleSlash = validateEventPayload({
-      event: "resume_click",
-      params: { item_type: "calculator", item_id: "//..//" },
-    });
-    expect(doubleSlash.valid).toBe(false);
   });
 });
 
@@ -361,8 +321,8 @@ describe("payload size", () => {
     const bigPayload = {
       event: "calculator_start",
       params: {
-        calculator_slug: "a".repeat(2100),
-        interaction_type: "click",
+        calculator_id: "a".repeat(2100),
+        interaction_variant: "button",
       },
     };
     const body = JSON.stringify(bigPayload);
@@ -373,8 +333,8 @@ describe("payload size", () => {
     const smallPayload = {
       event: "calculator_start",
       params: {
-        calculator_slug: "sueldo-liquido",
-        interaction_type: "click",
+        calculator_id: "sueldo-liquido",
+        interaction_variant: "button",
       },
     };
     const body = JSON.stringify(smallPayload);
@@ -386,18 +346,16 @@ describe("payload size", () => {
 
 describe("sanitizeCollectorEvent", () => {
   it("elimina profile_signal aunque sea la única key extra", () => {
-    const result = sanitizeCollectorEvent("next_best_step_shown", {
-      calculator_slug: "test",
-      rule_id: "r1",
-      position: 1,
+    const result = sanitizeCollectorEvent("next_step_shown", {
+      calculator_id: "test",
+      next_step_id: "r1",
       profile_signal: "sueldo >= 1M",
     });
     expect(result).not.toBeNull();
     expect(result!.params).not.toHaveProperty("profile_signal");
     expect(result!.params).toEqual({
-      calculator_slug: "test",
-      rule_id: "r1",
-      position: 1,
+      calculator_id: "test",
+      next_step_id: "r1",
     });
   });
 
@@ -410,8 +368,8 @@ describe("sanitizeCollectorEvent", () => {
 
   it("elimina campos con valores objeto o array", () => {
     const result = sanitizeCollectorEvent("calculator_start", {
-      calculator_slug: "test",
-      interaction_type: "click",
+      calculator_id: "test",
+      interaction_variant: "button",
       nested: { a: 1 },
       arr: [1, 2, 3],
     });
@@ -420,15 +378,14 @@ describe("sanitizeCollectorEvent", () => {
     expect(result!.params).not.toHaveProperty("arr");
   });
 
-  it("trunca strings largos", () => {
+  it("descarta strings largos en la ruta tolerante", () => {
     const longString = "x".repeat(500);
     const result = sanitizeCollectorEvent("calculator_view", {
       page_type: "calculator",
-      calculator_slug: longString,
+      calculator_id: longString,
     });
     expect(result).not.toBeNull();
-    const slug = result!.params.calculator_slug as string;
-    expect(slug.length).toBeLessThanOrEqual(200);
+    expect(result!.params.calculator_id).toBeUndefined();
   });
 });
 
@@ -686,6 +643,54 @@ describe("aggregateWindow", () => {
     const slugs = result.map((r) => r.calculator_slug).sort();
     expect(slugs).toEqual(["tool-a", "tool-b"]);
   });
+
+  it("normaliza contadores legados y excluye los sin sucesor v2 (export v2)", () => {
+    const counters: TelemetryCounter[] = [
+      { date: "2026-07-27", event: "next_best_step_shown", slug: "tool-a", dimensions: "", count: 4 },
+      { date: "2026-07-28", event: "official_source_click", slug: "tool-a", dimensions: "", count: 3 },
+      { date: "2026-07-29", event: "resume_click", slug: "tool-a", dimensions: "", count: 2 },
+      { date: "2026-07-30", event: "calculator_view", slug: "tool-a", dimensions: "", count: 1 },
+    ];
+
+    const rows = aggregateWindow(counters, "2026-07-27", "2026-08-02");
+
+    expect(rows.map((r) => r.event_name).sort()).toEqual([
+      "calculator_view",
+      "next_step_shown",
+      "source_click",
+    ]);
+    expect(rows.find((r) => r.event_name === "resume_click")).toBeUndefined();
+
+    const artifact = buildExportArtifact(
+      "2026-W31",
+      { from: "2026-07-27", to: "2026-08-02" },
+      rows,
+      2,
+    );
+    expect(validateExportArtifact(artifact).valid).toBe(true);
+  });
+
+  it("preserva los nombres legados en agregados schema v1", () => {
+    const counters: TelemetryCounter[] = [
+      { date: "2026-07-13", event: "next_best_step_shown", slug: "tool-a", dimensions: "", count: 4 },
+      { date: "2026-07-14", event: "resume_click", slug: "tool-a", dimensions: "", count: 2 },
+    ];
+
+    const rows = aggregateWindow(counters, "2026-07-13", "2026-07-19", 1);
+
+    expect(rows.map((r) => r.event_name).sort()).toEqual([
+      "next_best_step_shown",
+      "resume_click",
+    ]);
+
+    const artifact = buildExportArtifact(
+      "2026-W29",
+      { from: "2026-07-13", to: "2026-07-19" },
+      rows,
+      1,
+    );
+    expect(validateExportArtifact(artifact).valid).toBe(true);
+  });
 });
 
 // ── Export artifact validation ─────────────────────────────────────────────
@@ -709,6 +714,29 @@ describe("buildExportArtifact", () => {
     expect(artifact.window.to).toBe("2026-06-28");
     expect(artifact.data.length).toBe(1);
   });
+
+  it("uses calculator_id and removes the legacy column in schema v2", () => {
+    const artifact = buildExportArtifact(
+      "2026-W31",
+      { from: "2026-07-27", to: "2026-08-02" },
+      [
+        {
+          date: "2026-08-02",
+          event_name: "support_click",
+          calculator_slug: "conversor-utm",
+          dimensions: "post_result",
+          count: 1,
+        },
+      ],
+      2,
+    );
+
+    expect(artifact.data[0]).toMatchObject({
+      calculator_id: "conversor-utm",
+    });
+    expect(artifact.data[0]).not.toHaveProperty("calculator_slug");
+    expect(validateExportArtifact(artifact).valid).toBe(true);
+  });
 });
 
 describe("validateExportArtifact", () => {
@@ -726,7 +754,7 @@ describe("validateExportArtifact", () => {
     expect(result.errors).toEqual([]);
   });
 
-  it("rejects schemaVersion !== 1", () => {
+  it("accepts current schemaVersion 2", () => {
     const artifact = buildExportArtifact(
       "2026-W26",
       validWindow,
@@ -734,8 +762,7 @@ describe("validateExportArtifact", () => {
       2,
     );
     const result = validateExportArtifact(artifact);
-    expect(result.valid).toBe(false);
-    expect(result.errors.some((e) => e.includes("schemaVersion"))).toBe(true);
+    expect(result.valid).toBe(true);
   });
 
   it("rejects invalid week format", () => {
@@ -863,6 +890,51 @@ describe("runExport", () => {
     expect(legacy.totalEvents).toBe(11);
     expect(local.totalEvents).toBe(12);
   });
+
+  it("exporta v2 normalizando legados, descartando los sin sucesor y logueando descartados", async () => {
+    const env = makeEnv({
+      "telemetry:v2:2026-07-27:next_best_step_shown:sueldo-liquido": "4",
+      "telemetry:v2:2026-07-28:official_source_click:sueldo-liquido": "3",
+      "telemetry:v2:2026-07-29:resume_click:sueldo-liquido": "2",
+      "telemetry:v2:2026-07-30:calculator_view:sueldo-liquido": "1",
+    });
+    env.SCHEMA_VERSION = "2";
+    env.EXPORT_TIMEZONE = "America/Santiago";
+    env.COUNTER_KEY_CUTOVER_AT = "2026-07-20T04:00:00Z";
+
+    const logSpy = vi.spyOn(console, "log").mockImplementation(() => undefined);
+    let summary: Awaited<ReturnType<typeof runExport>>;
+    let loggedDiscards = false;
+    try {
+      summary = await runExport(env, "2026-W31");
+      // Capturar antes de mockRestore(): restore limpia mock.calls.
+      loggedDiscards = logSpy.mock.calls.some((call) =>
+        String(call[0]).includes(
+          "descartados=1 contadores sin taxonomía v2 (legados)",
+        ),
+      );
+    } finally {
+      logSpy.mockRestore();
+    }
+
+    // resume_click se descarta: 4+3+1 = 8 eventos en 3 filas
+    expect(summary).toMatchObject({
+      week: "2026-W31",
+      rows: 3,
+      totalEvents: 8,
+    });
+    expect(loggedDiscards).toBe(true);
+
+    const written = getMockR2(env).objects.get("analytics-exports/2026-W31.json");
+    expect(written).toBeDefined();
+    const artifact = JSON.parse(written ?? "") as ReturnType<typeof buildExportArtifact>;
+    expect(validateExportArtifact(artifact).valid).toBe(true);
+    expect(artifact.data.map((r) => r.event_name).sort()).toEqual([
+      "calculator_view",
+      "next_step_shown",
+      "source_click",
+    ]);
+  });
 });
 
 describe("scheduled()", () => {
@@ -922,7 +994,7 @@ describe("event ingestion calendar", () => {
         },
         body: JSON.stringify({
           event: "calculator_start",
-          params: { calculator_slug: "sueldo-liquido", interaction_type: "input" },
+          params: { calculator_id: "sueldo-liquido", interaction_variant: "input" },
         }),
       }),
       env,
@@ -952,7 +1024,7 @@ describe("event ingestion calendar", () => {
         },
         body: JSON.stringify({
           event: "calculator_start",
-          params: { calculator_slug: "sueldo-liquido", interaction_type: "input" },
+          params: { calculator_id: "sueldo-liquido", interaction_variant: "input" },
         }),
       }),
       env,
@@ -1078,4 +1150,23 @@ describe("manual export endpoint", () => {
       totalEvents: 5,
     });
   });
+});
+
+// ── Barrido de cobertura de eventos legados ─────────────────────────────────
+
+describe("cobertura de eventos legados (barrido)", () => {
+  it.each([...LEGACY_EXPORT_EVENTS].sort())(
+    "%s está en la allowlist nueva, mapeado al canónico v2 o declarado descartable",
+    (name) => {
+      const inAllowlist = Object.hasOwn(ANALYTICS_EVENT_ALLOWLIST, name);
+      const mapped = Object.hasOwn(LEGACY_EVENT_NAMES, name);
+      const discarded = LEGACY_UNMAPPED_EXPORT_EVENTS.has(name);
+      expect(inAllowlist || mapped || discarded).toBe(true);
+      if (mapped) {
+        expect(
+          Object.hasOwn(ANALYTICS_EVENT_ALLOWLIST, LEGACY_EVENT_NAMES[name]),
+        ).toBe(true);
+      }
+    },
+  );
 });

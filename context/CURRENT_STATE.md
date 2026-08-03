@@ -1,6 +1,8 @@
 # Current State
 
-Date: 2026-07-16
+Date: 2026-08-02
+
+- Strategic state is `FOCO ESTRICTO / VALIDACIÓN UTILITY-LED` through 2026-11-02. No new indexable surface is permitted without the evidence-complete exception gate in `docs/governance/STRATEGIC_FOCUS_2026Q3.md`.
 
 - Context layer added: `context/INVARIANTS.md`, `context/CONTRACTS.md`, `context/MODULE_INDEX.md`.
 - Canonical URL identity invariant active: `URL.PUBLIC.NO_POST_ID`.

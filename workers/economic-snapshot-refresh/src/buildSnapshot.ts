@@ -64,6 +64,14 @@ export interface EconomicSnapshot {
   lastUpdated: string;
   capturedAt: string;
   source: "mindicador.cl/api";
+  provenance?: {
+    utm: {
+      primarySource: "SII";
+      sourceUrl: string;
+      status: "primary" | "fallback";
+      verifiedAt: string;
+    };
+  };
 }
 
 /** Generic shape for a single-indicator authoritative override. */
@@ -87,6 +95,8 @@ export interface BuildSnapshotDeps {
   fetchUfOverride?: () => Promise<IndicatorOverride | null>;
   /** Optional authoritative USD observado source (BCCh). Overrides mindicador.cl when present. */
   fetchUsdOverride?: () => Promise<IndicatorOverride | null>;
+  /** Optional official UTM source (SII). Overrides the aggregator when present. */
+  fetchUtmOverride?: () => Promise<(IndicatorOverride & { sourceUrl?: string }) | null>;
 }
 
 function toIsoDate(value: string | undefined, fallback: string): string {
@@ -136,7 +146,23 @@ export async function buildSnapshot(deps: BuildSnapshotDeps): Promise<EconomicSn
     }
   }
 
-  const utm = Number(payload?.utm?.valor);
+  let utm = Number(payload?.utm?.valor);
+  let utmOverrideDate: string | undefined;
+  let utmSourceUrl = "https://mindicador.cl/api/utm";
+  let utmProvenanceStatus: "primary" | "fallback" = "fallback";
+  if (deps.fetchUtmOverride) {
+    try {
+      const override = await deps.fetchUtmOverride();
+      if (override) {
+        utm = override.value;
+        utmOverrideDate = override.dateIso;
+        utmSourceUrl = override.sourceUrl ?? utmSourceUrl;
+        utmProvenanceStatus = "primary";
+      }
+    } catch {
+      // Keep the explicit mindicador fallback; provenance records the downgrade.
+    }
+  }
 
   const utaRefYear = getUtaReferenceYear(now);
   const decUtm = await deps.fetchDecemberUtm(utaRefYear);
@@ -177,7 +203,7 @@ export async function buildSnapshot(deps: BuildSnapshotDeps): Promise<EconomicSn
 
   const rawDates = {
     uf: ufOverrideDate ?? payload?.uf?.fecha,
-    utm: payload?.utm?.fecha,
+    utm: utmOverrideDate ?? payload?.utm?.fecha,
     uta: decUtm !== null ? `${utaRefYear}-12-01` : payload?.utm?.fecha,
     ipc: ipcOverrideDate ?? payload?.ipc?.fecha,
     tmc: payload?.tmc?.fecha,
@@ -239,6 +265,14 @@ export async function buildSnapshot(deps: BuildSnapshotDeps): Promise<EconomicSn
     lastUpdated,
     capturedAt: now.toISOString(),
     source: "mindicador.cl/api",
+    provenance: {
+      utm: {
+        primarySource: "SII",
+        sourceUrl: utmSourceUrl,
+        status: utmProvenanceStatus,
+        verifiedAt: now.toISOString(),
+      },
+    },
   };
 
   return snapshot;

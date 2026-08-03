@@ -34,7 +34,8 @@ function isStaticAsset(url) {
     pathname === "/favicon-16x16.png" ||
     pathname === "/favicon-32x32.png" ||
     pathname === "/apple-touch-icon.png" ||
-    pathname === "/site.webmanifest"
+    pathname === "/site.webmanifest" ||
+    pathname === "/og-image"
   );
 }
 

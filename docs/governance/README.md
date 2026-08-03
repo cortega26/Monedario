@@ -11,3 +11,4 @@ Governance is intentionally anchored at stable canonical paths.
 - Canonical debt ledger: `docs/TECH_DEBT_BACKLOG.md`
 - YMYL norm: `docs/editorial/NORMA_YMYL.md`
 - Financial data verification policy: `docs/governance/FINANCIAL_DATA_VERIFICATION_POLICY.md`
+- Utility-led strategic focus and URL freeze: `docs/governance/STRATEGIC_FOCUS_2026Q3.md`

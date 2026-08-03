@@ -2,10 +2,17 @@
 /**
  * MON-ENV-DATA1b — GSC data-signals fetcher
  *
- * Fetches Search Analytics (queries, pages, query×page) and Sitemaps from the
- * Google Search Console API and writes normalized JSON to
+ * Fetches Search Analytics (queries, pages, query×page, countries, devices)
+ * and Sitemaps from the Google Search Console API and writes normalized JSON to
  * output/operations/data-signals/gsc/. The query×page export powers the
- * cannibalization audit (scripts/audit-cannibalization.mjs).
+ * cannibalization audit (scripts/audit-cannibalization.mjs); the country and
+ * device exports feed the strategic-viability measurement baseline.
+ *
+ * A GAP gate runs before auth: when the target week is the previous complete
+ * week (the normal CI case — the workflow always passes an explicit
+ * --week=<previous complete> even on schedule), a missing overdue week before
+ * it aborts with exit 1 (so a lost week fails the data-signals job instead of
+ * passing silently); older targets (real backfills) only warn.
  *
  * Usage:
  *   node scripts/data-signals/gsc-fetch.mjs [--week=YYYY-Www] [--dry-run] [--site=sc-domain:monedario.cl]
@@ -13,16 +20,24 @@
  * Required env:
  *   GOOGLE_APPLICATION_CREDENTIALS_JSON  — full service-account JSON as a string
  *
+ * Optional env:
+ *   GSC_OUTPUT_BASE  — override the output directory (used by tests)
+ *
  * Auth: JWT RS256 signed with the service-account private key.
  * No external npm dependencies — uses Node built-ins only.
  */
 
-import { mkdirSync, writeFileSync } from "node:fs";
+import { mkdirSync, readdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fetchAccessToken } from "./gsc-auth.mjs";
 import {
   buildSchemaHeader,
+  dateToISOWeek,
+  isExportOverdue,
   isoWeekToDateRange,
+  missingExportWeeks,
+  normalizeCountryRow,
+  normalizeDeviceRow,
   normalizePageRow,
   normalizeQueryPageRow,
   normalizeQueryRow,
@@ -58,8 +73,32 @@ Output (without --dry-run):
   ${OUTPUT_BASE}/<week>-pages.json
   ${OUTPUT_BASE}/<week>-query-page.json
   ${OUTPUT_BASE}/<week>-sitemaps.json
+  ${OUTPUT_BASE}/<week>-countries.json
+  ${OUTPUT_BASE}/<week>-devices.json
 `);
   process.exit(code);
+}
+
+/**
+ * Returns the YYYY-Www labels present in the output dir, derived from the
+ * pages/queries export files. Missing or unreadable dir → empty list.
+ * @param {string} outputBase
+ * @returns {string[]}
+ */
+function deriveAvailableWeeks(outputBase) {
+  let entries;
+  try {
+    entries = readdirSync(outputBase, { withFileTypes: true });
+  } catch {
+    return [];
+  }
+  const weeks = new Set();
+  for (const entry of entries) {
+    if (!entry.isFile()) continue;
+    const m = /^(\d{4}-W\d{2})-(?:pages|queries)\.json$/.exec(entry.name);
+    if (m) weeks.add(m[1]);
+  }
+  return [...weeks];
 }
 
 function parseArgs(argv) {
@@ -159,6 +198,49 @@ async function main() {
 
   if (args.help) printUsage(0);
 
+  const previousComplete = previousCompleteISOWeek();
+  const week = args.week ?? previousComplete;
+  // Strict only when the target IS the previous complete week: the workflow
+  // always passes an explicit --week=<previous complete> even in the
+  // scheduled case, so "was --week passed" is NOT a reliable backfill signal.
+  // Older targets (real backfills) stay permissive.
+  const strictGate = week === previousComplete;
+
+  // ---- GAP gate: detect lost weeks before auth ----------------------------
+  // Runs before credential validation so a lost export fails the job loudly
+  // instead of passing silently, and so the gate is testable without
+  // credentials. Strict mode aborts when the week before the target is
+  // missing AND overdue; real backfills (older targets) only warn.
+  const outputBase = process.env.GSC_OUTPUT_BASE || OUTPUT_BASE;
+  const availableWeeks = deriveAvailableWeeks(outputBase);
+  const missing = missingExportWeeks(availableWeeks, week);
+  console.error(
+    `[gsc-fetch] weeks_present=${availableWeeks.length} missing=[${missing.join(",")}]`
+  );
+  if (missing.length > 0) {
+    const { from: weekFrom } = isoWeekToDateRange(week);
+    const prevWeek = dateToISOWeek(
+      new Date(Date.parse(`${weekFrom}T00:00:00Z`) - 7 * 86_400_000)
+    );
+    if (missing.includes(prevWeek) && isExportOverdue(prevWeek)) {
+      if (strictGate) {
+        console.error(
+          `[gsc-fetch] GAP: missing exports: ${missing.join(", ")}. ` +
+            "Backfill with --week=<week> or a manual data-signals.yml run " +
+            "(workflow_dispatch input week), then re-run."
+        );
+        process.exit(1);
+      }
+      console.error(
+        `[gsc-fetch] GAP (backfill mode): weeks missing: ${missing.join(", ")}`
+      );
+    } else {
+      console.error(
+        `[gsc-fetch] WARNING: older missing exports (outside the GAP rule): ${missing.join(", ")}`
+      );
+    }
+  }
+
   const credsJson = process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON;
   if (!credsJson) {
     console.error(
@@ -177,7 +259,6 @@ async function main() {
     process.exit(1);
   }
 
-  const week = args.week ?? previousCompleteISOWeek();
   const { from, to } = isoWeekToDateRange(week);
   const site = args.site ?? DEFAULT_SITE;
 
@@ -185,10 +266,19 @@ async function main() {
 
   const token = await fetchAccessToken(creds, GSC_SCOPE);
 
-  const [queryRows, pageRows, queryPageRows, sitemapEntries] = await Promise.all([
+  const [
+    queryRows,
+    pageRows,
+    queryPageRows,
+    countryRows,
+    deviceRows,
+    sitemapEntries,
+  ] = await Promise.all([
     fetchSearchAnalytics(site, from, to, ["query"], token),
     fetchSearchAnalytics(site, from, to, ["page"], token),
     fetchSearchAnalytics(site, from, to, ["query", "page"], token),
+    fetchSearchAnalytics(site, from, to, ["country"], token),
+    fetchSearchAnalytics(site, from, to, ["device"], token),
     fetchSitemaps(site, token),
   ]);
 
@@ -206,6 +296,14 @@ async function main() {
     ...header,
     data: queryPageRows.map(normalizeQueryPageRow),
   };
+  const countriesDoc = {
+    ...header,
+    data: countryRows.map(normalizeCountryRow),
+  };
+  const devicesDoc = {
+    ...header,
+    data: deviceRows.map(normalizeDeviceRow),
+  };
   const sitemapsDoc = {
     ...header,
     data: sitemapEntries.map(normalizeSitemapEntry),
@@ -219,13 +317,17 @@ async function main() {
     process.stdout.write(JSON.stringify(pagesDoc, null, 2) + "\n");
     process.stdout.write(sep(`query-page (${queryPageDoc.data.length} rows)`));
     process.stdout.write(JSON.stringify(queryPageDoc, null, 2) + "\n");
+    process.stdout.write(sep(`countries (${countriesDoc.data.length} rows)`));
+    process.stdout.write(JSON.stringify(countriesDoc, null, 2) + "\n");
+    process.stdout.write(sep(`devices (${devicesDoc.data.length} rows)`));
+    process.stdout.write(JSON.stringify(devicesDoc, null, 2) + "\n");
     process.stdout.write(sep(`sitemaps (${sitemapsDoc.data.length} entries)`));
     process.stdout.write(JSON.stringify(sitemapsDoc, null, 2) + "\n");
     console.error("[gsc-fetch] dry-run — no files written");
     return;
   }
 
-  const dir = path.resolve(OUTPUT_BASE);
+  const dir = path.resolve(outputBase);
   mkdirSync(dir, { recursive: true });
 
   for (const [filename, doc] of [
@@ -233,6 +335,8 @@ async function main() {
     [`${week}-pages.json`, pagesDoc],
     [`${week}-query-page.json`, queryPageDoc],
     [`${week}-sitemaps.json`, sitemapsDoc],
+    [`${week}-countries.json`, countriesDoc],
+    [`${week}-devices.json`, devicesDoc],
   ]) {
     const filePath = path.join(dir, filename);
     writeFileSync(filePath, JSON.stringify(doc, null, 2) + "\n", "utf8");

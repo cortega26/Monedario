@@ -68,6 +68,26 @@ describe("check-economic-snapshot-freshness", () => {
     expect(r.status).toBe(0); // fresh snapshot has no imm date and still passes
   });
 
+  it("allows previous-month UTM only through day 7", () => {
+    const snapshot = {
+      capturedAt: "2026-07-06T10:00:00.000Z",
+      indicatorUpdatedAt: {
+        uf: "2026-07-06",
+        utm: "2026-06-01",
+        dolar: "2026-07-06",
+      },
+    };
+    expect(run(writeSnapshot(snapshot), "2026-07-07T12:00:00.000Z").status).toBe(0);
+    const stale = {
+      ...snapshot,
+      capturedAt: "2026-07-08T10:00:00.000Z",
+      indicatorUpdatedAt: { ...snapshot.indicatorUpdatedAt, uf: "2026-07-08", dolar: "2026-07-08" },
+    };
+    const r = run(writeSnapshot(stale), "2026-07-08T12:00:00.000Z");
+    expect(r.status).toBe(1);
+    expect(r.stderr).toContain("month-boundary grace");
+  });
+
   it("fails clearly when the snapshot file is missing", () => {
     const root = mkdtempSync(path.join(tmpdir(), "econ-fresh-missing-"));
     tempRoots.push(root);

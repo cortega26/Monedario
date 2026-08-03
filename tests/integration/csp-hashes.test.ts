@@ -122,6 +122,63 @@ describe("public/_headers — Pagefind CSP invariants", () => {
     expect(scriptSrc).toContain("'self'");
   });
 
+  it("keeps Ko-fi origins scoped to /apoyar and never enables inline/eval scripts", () => {
+    const content = readPublicHeaders();
+    const blocks = content
+      .split(/(?=^\/[^\n]*$)/gm)
+      .map(block => block.trim())
+      .filter(Boolean);
+    const globalBlock = blocks.find(block => block.startsWith("/*\n"));
+    const supportBlock = blocks.find(block =>
+      block.startsWith("/apoyar/*\n")
+    );
+
+    expect(globalBlock, "global /* header block is required").toBeTruthy();
+    expect(
+      supportBlock,
+      "a path-specific /apoyar/* header block is required"
+    ).toBeTruthy();
+    expect(globalBlock).not.toContain("ko-fi.com");
+    expect(globalBlock).not.toContain("storage.ko-fi.com");
+    expect(globalBlock).not.toContain("cdn.ko-fi.com");
+    expect(supportBlock).toContain("https://storage.ko-fi.com");
+
+    for (const block of [globalBlock!, supportBlock!]) {
+      const scriptSrc = block.match(/\bscript-src\s+([^;\n]+)/)?.[1] ?? "";
+      const tokens = scriptSrc.trim().split(/\s+/);
+      expect(tokens).not.toContain("'unsafe-inline'");
+      expect(tokens).not.toContain("'unsafe-eval'");
+      expect(tokens).toContain("'wasm-unsafe-eval'");
+    }
+  });
+
+  it("prevents Cloudflare from injecting per-request JavaScript into static HTML", () => {
+    // Cloudflare _headers semantics: when the same header is set by multiple
+    // matching rules, the most specific rule's value REPLACES the global one
+    // (values are not merged). A `Cache-Control: no-transform` on the global
+    // `/*` block alone therefore leaves every path with its own Cache-Control
+    // rule unprotected — which is exactly how JavaScript Detections (JSD)
+    // re-injected its bootstrap on /calculadoras/* (TD-0099, 2026-08-02).
+    // Invariant: EVERY Cache-Control rule in the file must carry no-transform.
+    const content = readPublicHeaders();
+
+    const cacheControlLines = content
+      .split("\n")
+      .map(line => line.trim())
+      .filter(line => line.startsWith("Cache-Control:"));
+    expect(
+      cacheControlLines.length,
+      "at least the global /* Cache-Control rule must exist"
+    ).toBeGreaterThan(0);
+
+    for (const line of cacheControlLines) {
+      expect(
+        line,
+        "every Cache-Control rule must include no-transform (Cloudflare does not merge header values across rules)"
+      ).toContain("no-transform");
+    }
+  });
+
   it("CSP header is structurally intact — no merge-conflict corruption", () => {
     // Merge conflicts on the single-line CSP are common because every
     // branch touches _headers. A corrupted CSP can break the entire site

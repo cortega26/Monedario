@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { convertUtm } from "@/application/use-cases/ConvertUtm";
-import { utmWorkedExample } from "@/application/use-cases/ConvertUtm.methodology";
+import { buildUtmWorkedExample } from "@/application/use-cases/ConvertUtm.methodology";
 
 describe("convertUtm", () => {
   it("converts UTM to pesos using the injected UTM value", () => {
@@ -37,8 +37,11 @@ describe("convertUtm", () => {
 
 describe("convertUtm — ejemplo de metodología (anti-drift)", () => {
   it("la salida real coincide con el ejemplo publicado", () => {
+    const utmWorkedExample = buildUtmWorkedExample(71_649, "2026-08-01");
     expect(convertUtm(utmWorkedExample.input)).toEqual(
       utmWorkedExample.expected
     );
+    expect(utmWorkedExample.example.scenario).toContain("$71.649");
+    expect(utmWorkedExample.example.scenario).toContain("2026-08-01");
   });
 });

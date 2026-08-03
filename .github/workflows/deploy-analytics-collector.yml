@@ -1,0 +1,159 @@
+name: Deploy Analytics Collector
+
+# Despliegue controlado y verificable del worker `monedario-analytics-collector`.
+#
+# Diseño (ver docs/adr/ADR-20260716-analytics-worker-deployment-parity.md):
+#   - Trigger manual (`workflow_dispatch`) SOLO: el repo no tiene un
+#     production environment protegido que habilite auto-deploy, así que el
+#     despliegue queda en manos de un humano; no se debilita la seguridad.
+#   - Permisos mínimos: `contents: read`. No se despliega en PRs ni se pasan
+#     secretos en URLs.
+#   - Acciones pinnadas a SHAs inmutables; instalación congelada
+#     (frozen-lockfile) vía la action compartida bootstrap-pnpm.
+#   - Tests enfocados + `wrangler deploy --dry-run` ANTES de desplegar.
+#   - Concurrency: un solo deploy a la vez (serializado).
+#   - Post-deploy: verifier de paridad (versión activa, cron exacto
+#     `57 7 * * MON`, rechazo de auth por query-string, smoke de export
+#     autenticado y frescura del artefacto R2).
+#
+# Runner: ubuntu-latest. Desde 2026-08-01 el runner self-hosted temporal está
+# retirado (cláusula de retiro de ADR-20260716-temporary-self-hosted-actions-bridge
+# cumplida); el retiro cambia el ruteo del runner, no la semántica de deploy.
+#
+# Secretos requeridos:
+#   CLOUDFLARE_API_TOKEN   Token mínimamente scoped (Workers Scripts:Edit,
+#                          Worker Routes:Edit — permiso de ZONA, scope:
+#                          monedario.cl —, Workers R2 Storage:Read).
+#   EXPORT_SECRET          Secret del worker (solo para el smoke de export
+#                          autenticado; opcional — sin él la verificación corre
+#                          en modo read-only).
+# Variables requeridas:
+#   CLOUDFLARE_ACCOUNT_ID  Account ID de Cloudflare.
+
+on:
+  workflow_dispatch:
+    inputs:
+      week:
+        description: >-
+          Semana ISO para el smoke de export y el chequeo R2 (ej. 2026-W31).
+          Vacío = semana completa anterior.
+        required: false
+        default: ""
+
+concurrency:
+  group: deploy-analytics-collector
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy y verificar paridad
+    runs-on: ubuntu-latest
+    # 30 min = pasos de deploy (~5 min) + ventana completa del verifier
+    # (polling de propagación del cron hasta 15 min) con holgura. 15 min
+    # cortaría el job antes de agotar la ventana de propagación legítima y el
+    # run fallaría por timeout en vez de por paridad.
+    timeout-minutes: 30
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+      EXPORT_SECRET: ${{ secrets.EXPORT_SECRET }}
+    outputs:
+      week: ${{ steps.week.outputs.value }}
+      deployed_not_before: ${{ steps.deploy.outputs.deployed_not_before }}
+
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+
+      - name: "📦 Bootstrap pnpm workspace"
+        uses: ./.github/actions/bootstrap-pnpm
+        with:
+          node-version: 22
+
+      - name: "🔎 Validar configuración de despliegue"
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          missing=()
+
+          for name in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID; do
+            if [[ -z "${!name:-}" ]]; then
+              missing+=("$name")
+            fi
+          done
+
+          if [[ "${#missing[@]}" -gt 0 ]]; then
+            printf 'Falta configuración de GitHub Actions: %s\n' "${missing[*]}" >&2
+            echo "Secret esperado: CLOUDFLARE_API_TOKEN (Workers Scripts:Edit + Worker Routes:Edit (zona, monedario.cl) + R2 Storage:Read)" >&2
+            echo "Variable esperada: CLOUDFLARE_ACCOUNT_ID" >&2
+            exit 1
+          fi
+
+          if [[ -z "${EXPORT_SECRET:-}" ]]; then
+            echo "⚠️  EXPORT_SECRET no configurado: el smoke de export autenticado se omitirá (verificación read-only)."
+          fi
+
+      - name: "🗓️ Resolver semana"
+        id: week
+        env:
+          # TZ alineada con EXPORT_TIMEZONE del worker (America/Santiago): en el
+          # borde lunes 00:00-04:00 UTC el runner (UTC) calcularía una semana
+          # completa anterior distinta de la que el worker considera "anterior".
+          TZ: America/Santiago
+          INPUT_WEEK: ${{ github.event.inputs.week }}
+        run: |
+          if [ -n "$INPUT_WEEK" ]; then
+            echo "value=$INPUT_WEEK" >> "$GITHUB_OUTPUT"
+          else
+            # Semana ISO completa anterior (termina el domingo pasado).
+            DOW=$(date +%u)   # 1=Mon … 7=Sun (GNU date, ubuntu-latest)
+            LAST_SUNDAY=$(date -d "today - ${DOW} days" +%Y-%m-%d)
+            WEEK_MONDAY=$(date -d "${LAST_SUNDAY} - 6 days" +%Y-%m-%d)
+            YEAR=$(date -d "${WEEK_MONDAY}" +%G)
+            WEEK=$(date -d "${WEEK_MONDAY}" +%V)
+            WEEK_STR="${YEAR}-W${WEEK}"
+            echo "value=${WEEK_STR}" >> "$GITHUB_OUTPUT"
+            echo "Semana completa anterior resuelta: ${WEEK_STR}"
+          fi
+
+      - name: "🧪 Tests enfocados del worker"
+        run: |
+          pnpm exec vitest run tests/workers/analytics-collector tests/static-analysis
+
+      - name: "🧪 Wrangler dry run (antes de desplegar)"
+        id: dry-run
+        run: |
+          pnpm exec wrangler deploy --dry-run --config workers/analytics-collector/wrangler.toml
+
+      - name: "🚀 Desplegar worker"
+        id: deploy
+        run: |
+          echo "deployed_not_before=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> "$GITHUB_OUTPUT"
+          pnpm exec wrangler deploy --config workers/analytics-collector/wrangler.toml
+
+      - name: "🔍 Verificar paridad de despliegue (full — incluye smoke de export)"
+        if: env.EXPORT_SECRET != ''
+        env:
+          WEEK: ${{ steps.week.outputs.value }}
+          DEPLOYED_NOT_BEFORE: ${{ steps.deploy.outputs.deployed_not_before }}
+        run: |
+          node scripts/data-signals/verify-analytics-worker-deployment.mjs \
+            --week="$WEEK" \
+            --smoke-export \
+            --deployed-not-before="$DEPLOYED_NOT_BEFORE"
+
+      - name: "🔍 Verificar paridad de despliegue (read-only)"
+        if: env.EXPORT_SECRET == ''
+        env:
+          WEEK: ${{ steps.week.outputs.value }}
+          DEPLOYED_NOT_BEFORE: ${{ steps.deploy.outputs.deployed_not_before }}
+        run: |
+          node scripts/data-signals/verify-analytics-worker-deployment.mjs \
+            --week="$WEEK" \
+            --deployed-not-before="$DEPLOYED_NOT_BEFORE"

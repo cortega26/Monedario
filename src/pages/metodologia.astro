@@ -3,14 +3,13 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
-import SupportCallout from "@/components/SupportCallout.astro";
 import { getPath } from "@/utils/getPath";
 import { SITE } from "@/config";
 ---
 
 <Layout
   title={`Proceso editorial | ${SITE.title}`}
-  description="Las siete etapas que sigue cada contenido de Monedario: fuentes oficiales trazables, auditoría independiente de cálculos, revisión regulatoria y firma humana antes de publicar."
+  description="Controles editoriales de Monedario: fuentes oficiales, pruebas y protocolo de siete etapas aplicable a contenido YMYL nuevo o actualizado sustantivamente desde el 25 de abril de 2026."
 >
   <Header />
   <Breadcrumb />
@@ -25,10 +24,10 @@ import { SITE } from "@/config";
         Cómo se elabora el contenido de Monedario
       </h1>
       <p class="max-w-2xl text-base leading-relaxed text-secondary">
-        Este documento describe el proceso que sigue cada artículo, guía y
-        calculadora publicados en el sitio: desde la definición del tema hasta
-        la firma del editor humano responsable. Si buscas información sobre qué
-        es Monedario y qué cubre, visita la página
+        Este documento distingue los controles verificables de todo el sitio y
+        el protocolo formal que rige el contenido YMYL nuevo o actualizado de
+        forma sustantiva desde el 25 de abril de 2026. Si buscas información
+        sobre qué es Monedario y qué cubre, visita la página
         <a
           href={getPath("/acerca-de/")}
           class="text-accent underline underline-offset-4 hover:opacity-80"
@@ -50,7 +49,7 @@ import { SITE } from "@/config";
       <div class="mt-6 grid max-w-2xl gap-4 sm:grid-cols-2">
         <div class="rounded-xl border border-border p-5">
           <p class="mb-1 text-sm font-semibold text-foreground">
-            Cada cifra trae su fuente
+            Cifras con fuente consultable
           </p>
           <p class="text-sm leading-relaxed text-secondary">
             Tramos del impuesto: SII. Tasas previsionales: SPensiones. UF, UTM e
@@ -60,7 +59,7 @@ import { SITE } from "@/config";
         </div>
         <div class="rounded-xl border border-border p-5">
           <p class="mb-1 text-sm font-semibold text-foreground">
-            Cada cálculo trae su fórmula
+            Cálculos reproducibles
           </p>
           <p class="text-sm leading-relaxed text-secondary">
             Las calculadoras muestran cómo se obtiene el número: tramos
@@ -70,7 +69,7 @@ import { SITE } from "@/config";
         </div>
         <div class="rounded-xl border border-border p-5">
           <p class="mb-1 text-sm font-semibold text-foreground">
-            Cada artículo legal está citado
+            Citas legales consultables
           </p>
           <p class="text-sm leading-relaxed text-secondary">
             Cuando un texto se apoya en una ley o circular, está enlazada a la
@@ -115,14 +114,25 @@ import { SITE } from "@/config";
     <section id="metodologia" class="border-b border-border py-10">
       <h2 class="mb-2 text-2xl font-bold">Proceso editorial</h2>
       <p class="mb-8 max-w-2xl text-sm leading-relaxed text-secondary">
-        El contenido de Monedario sobre impuestos, pensiones, deuda y cálculos
-        financieros se elabora siguiendo un proceso de siete etapas y lo firma
-        un editor humano identificado antes de publicarse. La auditoría de los
-        números y la revisión regulatoria las realiza un rol independiente del
-        que redactó el borrador. En algunas etapas usamos asistencia de
-        inteligencia artificial; abajo está el detalle de dónde, con qué
-        restricciones y qué decisiones son siempre humanas.
+        Para el contenido YMYL nuevo y las actualizaciones sustantivas cubiertas
+        desde la fecha indicada abajo, Monedario exige un proceso de siete
+        etapas y la firma de un editor humano antes de publicar. La auditoría de
+        números y la revisión regulatoria corresponden a roles independientes de
+        quien redactó. En algunas etapas usamos asistencia de inteligencia
+        artificial; abajo está el alcance y qué decisiones siguen siendo
+        humanas.
       </p>
+      <aside
+        class="mb-8 max-w-2xl border-l-4 border-accent pl-4 text-sm leading-relaxed text-secondary"
+      >
+        <strong class="text-foreground">Alcance de esta promesa:</strong> la cadena
+        formal de siete registros aplica prospectivamente a contenido YMYL nuevo y
+        a actualizaciones sustantivas desde el 25 de abril de 2026. El corpus histórico
+        fue creado mientras estos controles evolucionaban y no posee evidencia uniforme
+        de las siete etapas; por eso Monedario no afirma que esa cadena exista retroactivamente.
+        Las piezas históricas siguen sujetas a fuentes, vigencia, estructura, pruebas
+        y retroauditoría por riesgo.
+      </aside>
 
       <ol class="max-w-2xl space-y-5">
         <li class="flex gap-4">
@@ -234,14 +244,14 @@ import { SITE } from "@/config";
             Editor responsable y firma humana
           </h3>
           <p class="text-sm leading-relaxed text-secondary">
-            Cada artículo sobre temas con consecuencias económicas reales —
-            impuestos, pensiones, deuda, cálculos previsionales o tributarios —
-            lleva la firma de
+            Cada pieza cubierta por el protocolo vigente sobre temas con
+            consecuencias económicas reales — impuestos, pensiones, deuda,
+            cálculos previsionales o tributarios — lleva la firma de
             <a
               href={getPath("/autor/")}
               class="text-accent underline underline-offset-4 hover:opacity-80"
               >{SITE.authorFullName}</a
-            >, editor responsable. Esa firma no es decorativa: es un gate
+            >, editor responsable. Esa firma no es decorativa: es un control
             explícito del proceso de publicación. Si el artículo no está
             firmado, no se publica. Si durante la auditoría aparece un problema,
             el artículo vuelve a etapa de borrador hasta que se resuelva.
@@ -324,12 +334,11 @@ import { SITE } from "@/config";
           <h3 class="mb-2 text-lg font-semibold">Datos económicos en vivo</h3>
           <p class="text-sm leading-relaxed text-secondary">
             Los indicadores económicos que usamos en calculadoras y conversores
-            — UF, UTM, IPC y dólar — se actualizan directamente desde el Banco
-            Central de Chile y el Instituto Nacional de Estadísticas mediante un
-            proceso automático. No los ingresamos a mano: cada valor mostrado
-            lleva la fecha de su origen oficial. Si una fuente externa no
-            responde, mostramos el último valor verificado en lugar de
-            inventarlo.
+            — UF, UTM, IPC y dólar — se actualizan mediante un proceso
+            automático que consulta Banco Central, SII e INE según el indicador,
+            con respaldo controlado cuando una fuente falla. Cada valor mostrado
+            lleva fecha de vigencia; los parámetros críticos vencidos bloquean
+            la publicación en vez de presentarse silenciosamente como actuales.
           </p>
         </div>
 
@@ -342,15 +351,16 @@ import { SITE } from "@/config";
             class="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-secondary"
           >
             <li>
-              No publicamos cifras que no estén trazadas a una fuente oficial.
-              Si no encontramos la fuente, no entra al borrador.
+              El protocolo vigente no admite cifras sin traza a una fuente
+              oficial. Si no se encuentra la fuente, no entra al borrador.
             </li>
             <li>
               No permitimos que el mismo rol redacte y audite la misma pieza.
             </li>
             <li>
-              No publicamos contenido sobre impuestos, pensiones, deuda o
-              cálculos sin la firma del editor humano responsable.
+              El protocolo vigente no permite publicar contenido YMYL nuevo o
+              sustantivamente actualizado sin la firma del editor humano
+              responsable.
             </li>
             <li>
               No cambiamos una URL pública ni removemos contenido del feed sin
@@ -586,8 +596,6 @@ import { SITE } from "@/config";
         >.
       </p>
     </section>
-
-    <SupportCallout context="about" pageTitle="Monedario" />
   </main>
   <Footer />
 </Layout>

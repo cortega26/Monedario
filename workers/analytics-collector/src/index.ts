@@ -15,6 +15,13 @@
  */
 
 import type { KVNamespace, R2Bucket } from "@cloudflare/workers-types";
+import {
+  ANALYTICS_SCHEMA_VERSION,
+  isAnalyticsEventName,
+  LEGACY_EVENT_NAMES,
+  normalizeLegacyAnalyticsEvent,
+  sanitizeAnalyticsPayload,
+} from "../../../src/contracts/analytics-events";
 
 // ── Constants ────────────────────────────────────────────────────────────────
 
@@ -37,127 +44,39 @@ const KV_TTL_SECONDS = 60 * 60 * 24 * 35; // 3_024_000
 const ALLOWED_ORIGIN = "https://monedario.cl";
 
 /** Max string length for dimension values. */
-const MAX_STRING_LENGTH = 200;
+const MAX_STRING_LENGTH = 80;
 
 /** Concurrent KV reads per batch during export. */
 const KV_EXPORT_READ_BATCH_SIZE = 50;
 
-// ── Allowlist (must match client-side sanitizer — dual enforcement) ──────────
-
-const EVENT_ALLOWLIST: Readonly<Record<string, ReadonlySet<string>>> = {
-  calculator_view: new Set(["page_type", "calculator_slug"]),
-  calculator_start: new Set(["calculator_slug", "interaction_type"]),
-  calculator_complete: new Set(["calculator_slug", "outcome_class"]),
-  calculator_error: new Set(["calculator_slug", "error_code"]),
-  next_best_step_shown: new Set(["calculator_slug", "rule_id", "position"]),
-  next_best_step_click: new Set(["calculator_slug", "rule_id", "position"]),
-  result_action_click: new Set(["calculator_slug", "action_id"]),
-  share_result_click: new Set(["calculator_slug", "channel"]),
-  scenario_action: new Set(["calculator_slug", "action"]),
-  resume_click: new Set(["item_type", "item_id"]),
-  support_page_click: new Set(["page_type", "source_context"]),
-  official_source_click: new Set(["page_type", "source_domain"]),
-};
-
-const FORBIDDEN_KEYS = new Set([
-  "profile_signal",
-  "rationale",
-  "sueldo",
-  "deuda",
-  "monto",
-  "resultado",
-  "pension",
-  "impuesto",
-  "input_values",
-  "inputs",
-  "raw_values",
-  "calculator_name",
-  "email",
-  "rut",
-  "nombre",
-  "telefono",
-  "direccion",
-  "user_id",
-  "session_id",
-  "cookie_id",
-  "fingerprint",
-  "ip",
-  "user_agent",
-  "referrer",
-  "query_string",
-  "destination_url",
-  "source_url",
-  "target_href",
-  "share_url",
-  "page_path",
-  "cta_label",
-  "source_label",
-  "error_message",
-  "article_title",
-  "article_slug",
-  "scroll_depth_percent",
+export const LEGACY_EXPORT_EVENTS = new Set([
+  "calculator_view",
+  "calculator_start",
+  "calculator_complete",
+  "calculator_error",
+  "next_best_step_shown",
+  "next_best_step_click",
+  "result_action_click",
+  "share_result_click",
+  "scenario_action",
+  "resume_click",
+  "support_page_click",
+  "official_source_click",
 ]);
 
-const ENUM_VALUES: Readonly<Record<string, ReadonlySet<string>>> = {
-  outcome_class: new Set([
-    "success",
-    "validation_error",
-    "calculation_error",
-    "empty_input",
-  ]),
-  error_code: new Set(["validation", "calculation", "network", "timeout"]),
-  interaction_type: new Set(["focusin", "input", "click"]),
-  action: new Set(["save", "load", "compare", "delete"]),
-  channel: new Set(["copy", "whatsapp", "telegram", "email", "native"]),
-  item_type: new Set(["calculator", "post", "guide"]),
-  page_type: new Set([
-    "calculator",
-    "post",
-    "guide",
-    "home",
-    "hub",
-    "search",
-    "support",
-    "legal",
-    "unknown",
-  ]),
-  source_context: new Set(["result", "article", "hub", "footer", "header"]),
-  source_domain: new Set([
-    "sii.cl",
-    "bcentral.cl",
-    "suseso.gob.cl",
-    "cmfchile.cl",
-    "spensiones.cl",
-    "chileatiende.gob.cl",
-    "hacienda.cl",
-    "dt.gob.cl",
-    "ine.gob.cl",
-    "registrocivil.cl",
-    "bcn.cl",
-    "leychile.cl",
-    "senado.cl",
-    "camara.cl",
-    "minvu.cl",
-  ]),
-};
-
-const TRANSMISSIBLE_EVENTS = new Set(Object.keys(EVENT_ALLOWLIST));
-
-/** Free-form dimensions (no enum) — constrained to safe lowercase tokens.
- *  item_id is intentionally excluded from this set — it uses its own,
- *  more permissive check (SAFE_ITEM_ID_RE) below; see plan 043. */
-const FREE_FORM_TOKEN_KEYS = new Set([
-  "calculator_slug",
-  "rule_id",
-  "action_id",
+/**
+ * Legacy event names with no successor in the v2 taxonomy. Their counters are
+ * excluded from v2 exports instead of failing artifact validation.
+ *
+ * Decisión del operador 2026-08-03: descartar legados sin mapeo en vez de
+ * inventar un canónico. resume_click es un KPI documentado (ux-backlog) cuyo
+ * transporte está desactivado desde e17013b7 — follow-up de producto si se
+ * quiere reintroducir.
+ */
+export const LEGACY_UNMAPPED_EXPORT_EVENTS = new Set([
+  "resume_click",
+  "scenario_action",
 ]);
-/** Lowercase alnum start, then kebab/snake. Bounds cardinality; blocks garbage. */
-const SAFE_TOKEN_RE = /^[a-z0-9][a-z0-9_-]*$/;
-
-/** item_id may be a bare kebab token OR a site-relative path
- *  (e.g. "/calculadoras/sueldo-liquido/") — the ResumeWidget calculator
- *  case stores window.location.pathname, not a slug. See plan 043. */
-const SAFE_ITEM_ID_RE = /^\/?[a-z0-9]+(?:[-_/][a-z0-9]+)*\/?$/;
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -186,72 +105,26 @@ export function validateEventPayload(body: unknown): ValidationResult {
   // Must have string "event"
   if (typeof raw.event !== "string") return { valid: false };
 
-  // Event must be in allowlist
-  if (!TRANSMISSIBLE_EVENTS.has(raw.event)) return { valid: false };
-
   // Must have "params" as a non-null, non-array object
   if (raw.params === null || raw.params === undefined) return { valid: false };
   if (typeof raw.params !== "object") return { valid: false };
   if (Array.isArray(raw.params)) return { valid: false };
 
-  const rawParams = raw.params as Record<string, unknown>;
-  const allowedKeys = EVENT_ALLOWLIST[raw.event];
-
-  // Check for forbidden or unknown keys — any extra key makes the payload invalid
-  for (const key of Object.keys(rawParams)) {
-    if (FORBIDDEN_KEYS.has(key)) return { valid: false };
-    if (!allowedKeys.has(key)) return { valid: false };
-  }
-
-  // Validate each param
-  const clean: Record<string, string | number | boolean> = {};
-  for (const key of allowedKeys) {
-    const value = rawParams[key];
-
-    // Missing required key? Allow — some dimensions are optional per event.
-    if (value === undefined) continue;
-
-    // Only primitives
-    const t = typeof value;
-    if (t !== "string" && t !== "number" && t !== "boolean") return { valid: false };
-
-    // String constraints
-    if (t === "string") {
-      const s = value as string;
-      if (s.length > MAX_STRING_LENGTH) return { valid: false };
-      if (s.length === 0) continue; // skip empty strings
-      clean[key] = s;
-    } else {
-      clean[key] = value as number | boolean;
-    }
-
-    // Enum validation
-    const allowedEnums = ENUM_VALUES[key];
-    if (allowedEnums) {
-      const strVal = String(clean[key]);
-      if (!allowedEnums.has(strVal)) return { valid: false };
-    }
-
-    // Free-form token dimensions must match a safe shape (reject the payload).
-    if (
-      FREE_FORM_TOKEN_KEYS.has(key) &&
-      typeof clean[key] === "string" &&
-      !SAFE_TOKEN_RE.test(clean[key] as string)
-    ) {
-      return { valid: false };
-    }
-
-    // item_id has its own, more permissive shape (token or path) — see plan 043.
-    if (
-      key === "item_id" &&
-      typeof clean[key] === "string" &&
-      !SAFE_ITEM_ID_RE.test(clean[key] as string)
-    ) {
-      return { valid: false };
-    }
-  }
-
-  return { valid: true, event: raw.event, params: clean };
+  // Compatibility stays before the privacy boundary: normalize legacy
+  // pre-rename event names (e.g. next_best_step_click) before the strict
+  // v2 sanitization, so legacy emitters are not lost (contract design).
+  const normalized = normalizeLegacyAnalyticsEvent(
+    raw.event,
+    raw.params as Record<string, unknown>,
+  );
+  const sanitized = sanitizeAnalyticsPayload(
+    normalized.event,
+    normalized.params,
+    { rejectUnknown: true },
+  );
+  return sanitized
+    ? { valid: true, event: sanitized.event, params: sanitized.params }
+    : { valid: false };
 }
 
 /**
@@ -263,33 +136,10 @@ export function sanitizeCollectorEvent(
   eventName: string,
   params: Record<string, unknown>,
 ): { event: string; params: Record<string, string | number | boolean> } | null {
-  if (!TRANSMISSIBLE_EVENTS.has(eventName)) return null;
-
-  const allowedKeys = EVENT_ALLOWLIST[eventName];
-  const clean: Record<string, string | number | boolean> = {};
-
-  for (const [key, value] of Object.entries(params)) {
-    if (FORBIDDEN_KEYS.has(key)) continue;
-    if (!allowedKeys.has(key)) continue;
-    if (value === undefined || value === null) continue;
-
-    const t = typeof value;
-    if (t !== "string" && t !== "number" && t !== "boolean") continue;
-
-    let finalValue: string | number | boolean;
-    if (t === "string") {
-      finalValue = (value as string).slice(0, MAX_STRING_LENGTH);
-    } else {
-      finalValue = value as number | boolean;
-    }
-
-    const allowedEnums = ENUM_VALUES[key];
-    if (allowedEnums && !allowedEnums.has(String(finalValue))) continue;
-
-    clean[key] = finalValue;
-  }
-
-  return { event: eventName, params: clean };
+  const sanitized = sanitizeAnalyticsPayload(eventName, params);
+  return sanitized
+    ? { event: sanitized.event, params: sanitized.params }
+    : null;
 }
 
 // ── Helper: build KV counter key ─────────────────────────────────────────────
@@ -440,11 +290,11 @@ function buildCounterKey(
   cutoverAt?: string,
 ): string {
   const storage = counterStorageForInstant(new Date(), timeZone, cutoverAt);
-  const slug = String(params.calculator_slug ?? params.item_id ?? params.page_type ?? "unknown");
+  const slug = String(params.calculator_id ?? params.page_type ?? "unknown");
 
   // Build a stable dimension suffix from non-slug params, sorted by key
   const dimEntries = Object.entries(params)
-    .filter(([k]) => k !== "calculator_slug" && k !== "item_id" && k !== "page_type")
+    .filter(([k]) => k !== "calculator_id" && k !== "page_type")
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([, v]) => String(v));
 
@@ -679,7 +529,8 @@ export function parseCounterKey(
 export interface ExportDataRow {
   date: string;
   event_name: string;
-  calculator_slug: string;
+  calculator_id?: string;
+  calculator_slug?: string;
   dimensions: string;
   count: number;
 }
@@ -708,26 +559,51 @@ export interface ExportRunSummary {
 // ── Aggregation ──────────────────────────────────────────────────────────────
 
 /**
+ * Resolves the v2 event name for a counter row.
+ *
+ * Legacy pre-rename counters (before e17013b7) persist in KV until the 35-day
+ * TTL expires: mapped names (LEGACY_EVENT_NAMES) normalize to the v2
+ * taxonomy; unmapped names (LEGACY_UNMAPPED_EXPORT_EVENTS or any future
+ * unknown) have no v2 successor and return null — they are excluded from
+ * exports rather than failing artifact validation.
+ */
+function resolveCounterEvent(event: string): string | null {
+  const canonical = LEGACY_EVENT_NAMES[event] ?? event;
+  return isAnalyticsEventName(canonical) ? canonical : null;
+}
+
+/**
  * Filters counters to the target date window and aggregates by
  * (date, event_name, calculator_slug, dimensions).
+ *
+ * v2 exports normalize legacy counter names to the new taxonomy so the
+ * artifact validates uniformly; legacy counters without a v2 successor are
+ * excluded from the aggregate (they must not fail the export). v1 exports
+ * keep the legacy names, matching LEGACY_EXPORT_EVENTS validation.
  */
 export function aggregateWindow(
   counters: TelemetryCounter[],
   from: string,
   to: string,
+  schemaVersion: number = ANALYTICS_SCHEMA_VERSION,
 ): ExportDataRow[] {
   const map = new Map<string, ExportDataRow>();
 
   for (const c of counters) {
     if (c.date < from || c.date > to) continue;
-    const rowKey = `${c.date}|${c.event}|${c.slug}|${c.dimensions}`;
+    const event =
+      schemaVersion === ANALYTICS_SCHEMA_VERSION
+        ? resolveCounterEvent(c.event)
+        : c.event;
+    if (event === null) continue;
+    const rowKey = `${c.date}|${event}|${c.slug}|${c.dimensions}`;
     const existing = map.get(rowKey);
     if (existing) {
       existing.count += c.count;
     } else {
       map.set(rowKey, {
         date: c.date,
-        event_name: c.event,
+        event_name: event,
         calculator_slug: c.slug,
         dimensions: c.dimensions,
         count: c.count,
@@ -740,7 +616,7 @@ export function aggregateWindow(
     if (dateCmp !== 0) return dateCmp;
     const eventCmp = a.event_name.localeCompare(b.event_name);
     if (eventCmp !== 0) return eventCmp;
-    return a.calculator_slug.localeCompare(b.calculator_slug);
+    return (a.calculator_slug ?? "").localeCompare(b.calculator_slug ?? "");
   });
 }
 
@@ -755,21 +631,33 @@ export function buildExportArtifact(
   data: ExportDataRow[],
   schemaVersion: number,
 ): ExportArtifact {
+  const versionedData = data.map((row) => {
+    const calculatorIdentity = row.calculator_id ?? row.calculator_slug ?? "";
+    const common = {
+      date: row.date,
+      event_name: row.event_name,
+      dimensions: row.dimensions,
+      count: row.count,
+    };
+    return schemaVersion === ANALYTICS_SCHEMA_VERSION
+      ? { ...common, calculator_id: calculatorIdentity }
+      : { ...common, calculator_slug: calculatorIdentity };
+  });
   return {
     source: "first-party-events",
     schemaVersion,
     week,
     window,
-    data,
+    data: versionedData,
   };
 }
 
 /**
  * Validates the export artifact before persisting.
- * - schemaVersion must be 1
+ * - schemaVersion must be 1 (historical) or 2 (current taxonomy)
  * - counts must be >= 0
  * - event_name must be in TRANSMISSIBLE_EVENTS
- * - calculator_slug must be non-empty
+ * - calculator_id (v2) or calculator_slug (v1) must be non-empty
  * - date must be within the declared window
  * - dimensions, if non-empty, must use only allowlisted enum values
  */
@@ -778,8 +666,10 @@ export function validateExportArtifact(
 ): ExportValidationResult {
   const errors: string[] = [];
 
-  if (artifact.schemaVersion !== 1) {
-    errors.push(`schemaVersion must be 1, got ${artifact.schemaVersion}`);
+  if (![1, ANALYTICS_SCHEMA_VERSION].includes(artifact.schemaVersion)) {
+    errors.push(
+      `schemaVersion must be 1 or ${ANALYTICS_SCHEMA_VERSION}, got ${artifact.schemaVersion}`,
+    );
   }
 
   if (artifact.source !== "first-party-events") {
@@ -795,14 +685,32 @@ export function validateExportArtifact(
   }
 
   for (const row of artifact.data) {
+    const calculatorIdentity = row.calculator_id ?? row.calculator_slug;
     if (row.count < 0) {
-      errors.push(`negative count for ${row.event_name}/${row.calculator_slug}`);
+      errors.push(`negative count for ${row.event_name}/${calculatorIdentity}`);
     }
-    if (!row.event_name || !TRANSMISSIBLE_EVENTS.has(row.event_name)) {
+    if (
+      !row.event_name ||
+      (artifact.schemaVersion === ANALYTICS_SCHEMA_VERSION &&
+        !isAnalyticsEventName(row.event_name)) ||
+      (artifact.schemaVersion === 1 && !LEGACY_EXPORT_EVENTS.has(row.event_name))
+    ) {
       errors.push(`invalid event_name: "${row.event_name}"`);
     }
-    if (!row.calculator_slug || row.calculator_slug.length === 0) {
-      errors.push("calculator_slug is empty");
+    if (!calculatorIdentity || calculatorIdentity.length === 0) {
+      errors.push("calculator_id or calculator_slug is empty");
+    }
+    if (
+      artifact.schemaVersion === ANALYTICS_SCHEMA_VERSION &&
+      (typeof row.calculator_id !== "string" || row.calculator_slug !== undefined)
+    ) {
+      errors.push("schemaVersion 2 requires calculator_id and forbids calculator_slug");
+    }
+    if (
+      artifact.schemaVersion === 1 &&
+      (typeof row.calculator_slug !== "string" || row.calculator_id !== undefined)
+    ) {
+      errors.push("schemaVersion 1 requires calculator_slug and forbids calculator_id");
     }
     if (!row.date || row.date < artifact.window.from || row.date > artifact.window.to) {
       errors.push(`date ${row.date} outside window ${artifact.window.from}→${artifact.window.to}`);
@@ -855,7 +763,10 @@ export interface Env {
 }
 
 export async function runExport(env: Env, week: string): Promise<ExportRunSummary> {
-  const schemaVersion = parseInt(env.SCHEMA_VERSION ?? "1", 10);
+  const schemaVersion = parseInt(
+    env.SCHEMA_VERSION ?? String(ANALYTICS_SCHEMA_VERSION),
+    10,
+  );
   const timeZone = env.EXPORT_TIMEZONE ?? "America/Santiago";
   const counterPrefix = counterPrefixForExportWeek(
     week,
@@ -873,10 +784,27 @@ export async function runExport(env: Env, week: string): Promise<ExportRunSummar
     counterPrefix,
     window,
   );
-  const aggregated = aggregateWindow(counters, window.from, window.to);
+  const aggregated = aggregateWindow(
+    counters,
+    window.from,
+    window.to,
+    schemaVersion,
+  );
+  const discarded =
+    schemaVersion === ANALYTICS_SCHEMA_VERSION
+      ? counters.reduce(
+          (sum, c) => sum + (resolveCounterEvent(c.event) === null ? 1 : 0),
+          0,
+        )
+      : 0;
   console.log(
     `[analytics-export] listed=${counters.length} aggregated=${aggregated.length} rows`,
   );
+  if (discarded > 0) {
+    console.log(
+      `[analytics-export] descartados=${discarded} contadores sin taxonomía v2 (legados)`,
+    );
+  }
 
   const artifact = buildExportArtifact(week, window, aggregated, schemaVersion);
   const validation = validateExportArtifact(artifact);
@@ -1057,7 +985,7 @@ export default {
    *
    * The artifact schema matches the contract in the ADR and plan §7:
    *   { source, schemaVersion, week, window, data: [{ date, event_name,
-   *     calculator_slug, dimensions, count }] }
+   *     calculator_id, dimensions, count }] }
    */
   async scheduled(_event: ScheduledEvent, env: Env): Promise<void> {
     const tz = env.EXPORT_TIMEZONE ?? "America/Santiago";

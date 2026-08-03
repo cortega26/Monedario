@@ -135,7 +135,7 @@ Confirmar primero el JSON agregado de la misma semana:
 output/operations/data-signals/analytics/<week>.json
 ```
 
-Debe declarar `source: first-party-events`, `schemaVersion: 1`, la semana correcta
+Debe declarar `source: first-party-events`, `schemaVersion: 1` o `2`, la semana correcta
 y filas agregadas con conteos no negativos. Si falta o no valida, abrir y resolver
 el incidente indicado arriba antes de interpretar el funnel.
 
@@ -150,9 +150,26 @@ page_path,event_name,event_count,event_count_previous
 
 Eventos que más importan hoy:
 
-- `cta_click`
+- `calculator_view`
 - `calculator_start`
 - `calculator_complete`
+- `calculator_error`
+- `next_step_shown` / `next_step_click`
+- `share_success`
+- `alert_interest_shown` / `alert_interest_submit`
+- `support_shown` / `support_click` / `support_confirmed`
+
+El scorecard acepta nombres históricos del schema v1 para continuidad, pero los
+payloads nuevos usan el contrato v2. `support_confirmed` solo puede aparecer con
+confirmación fiable; un click de salida no es un pago.
+
+### 4. Operación y sostenibilidad
+
+Completar `utility-led-ops.json` en el bundle semanal con horas, costo directo,
+tokens, agotamiento, incidentes, mantenimiento, bloqueos, aprendizaje y señal
+reputacional. Si falta, el estado utility-led queda `WATCH / INPUT_REQUIRED` y
+no se decide expansión. Ingresos cero son compatibles con continuidad mientras
+la carga, el costo, la calidad y el aprendizaje sean sostenibles.
 
 Si no se exporta `analytics-events.csv`, la scorecard sigue funcionando, pero pierde lectura de packaging/CTA y tool completion.
 

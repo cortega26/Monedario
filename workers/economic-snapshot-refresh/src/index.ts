@@ -9,6 +9,7 @@ import {
 import { getCurrentFile, putFile, type GitHubContentsConfig } from "./githubClient";
 import { createIneIpcFetcher } from "./sources/ineIpc";
 import { BCCH_SERIES, fetchBcchLatest } from "./sources/bcchSiete";
+import { createSiiUtmFetcher } from "./sources/siiUtm";
 
 export interface Env {
   GITHUB_TOKEN: string;
@@ -79,6 +80,7 @@ async function runRefresh(env: Env): Promise<void> {
     : undefined;
 
   const fetchers = createMindicadorFetchers({ timeoutMs });
+  const siiUtm = createSiiUtmFetcher({ timeoutMs });
 
   const ineIpc = createIneIpcFetcher();
   const fetchIpcOverride = async (): Promise<IndicatorOverride | null> => {
@@ -156,6 +158,31 @@ async function runRefresh(env: Env): Promise<void> {
     fetchIpcOverride,
     fetchUfOverride: makeBcchOverride("uf", BCCH_SERIES.UF),
     fetchUsdOverride: makeBcchOverride("usd", BCCH_SERIES.USD_OBSERVED),
+    fetchUtmOverride: async () => {
+      try {
+        const reading = await siiUtm();
+        if (!reading) {
+          log("warn", "utm.override.empty", {
+            source: "SII",
+            fallback: "mindicador.cl",
+          });
+          return null;
+        }
+        log("info", "utm.override.applied", {
+          source: "SII",
+          value: reading.value,
+          dateIso: reading.dateIso,
+        });
+        return reading;
+      } catch (err) {
+        log("warn", "utm.override.failed", {
+          source: "SII",
+          message: err instanceof Error ? err.message : String(err),
+          fallback: "mindicador.cl",
+        });
+        return null;
+      }
+    },
     now: () => new Date(),
   });
 
