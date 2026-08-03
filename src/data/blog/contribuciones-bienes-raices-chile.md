@@ -20,10 +20,10 @@ topicRole: owner
 canonicalTopic: contribuciones-bienes-raices-tramite
 articleAdvisory: "Contenido educativo. Las tasas, montos de exención y fechas de vencimiento se actualizan periódicamente; verifica en el SII y TGR antes de pagar o reclamar."
 articleLead:
-  answer: "Las contribuciones de bienes raíces son un impuesto territorial anual sobre el avalúo fiscal de tu propiedad, calculado a tasas vigentes de 0,893%–1,042% para propiedades habitacionales y 1,042% para no habitacionales (Decreto 437 de Hacienda, reavalúo 2022). Se pagan en 4 cuotas al año. Existen exenciones para primera vivienda (los primeros $47.360.490 de avalúo están exentos) y adultos mayores según el avalúo de la propiedad."
+  answer: "Las contribuciones de bienes raíces son un impuesto territorial anual sobre el avalúo fiscal de tu propiedad, calculado a tasas vigentes de 0,893%–1,042% para propiedades habitacionales y 1,042% para no habitacionales (Decreto 437 de Hacienda, reavalúo 2022). Se pagan en 4 cuotas al año. Existen exenciones para primera vivienda (los primeros $61.711.570 de avalúo están exentos, monto reajustado semestralmente) y adultos mayores según el avalúo de la propiedad."
   nextStepHref: "/posts/operacion-renta-f22-checklist/"
   nextStepLabel: "Declarar contribuciones en el F22"
-  validAsOf: 2026-05-03
+  validAsOf: 2026-08-03
   officialSources:
     - label: "SII — Contribuciones de bienes raíces"
       href: "https://www.sii.cl/"
@@ -54,7 +54,7 @@ reviewPolicy:
   computedAt: "2026-05-06"
 ---
 
-> **Información vigente al 2026-05-03.** Las tasas de contribuciones, los montos de exención y las fechas exactas de pago se actualizan periódicamente. Verifica los valores vigentes en el [SII](https://www.sii.cl/) y la [TGR](https://pagos.tgr.cl/) antes de realizar cualquier pago o trámite.
+> **Información vigente al 2026-08-03.** Las tasas de contribuciones, los montos de exención y las fechas exactas de pago se actualizan periódicamente. Verifica los valores vigentes en el [SII](https://www.sii.cl/) y la [TGR](https://pagos.tgr.cl/) antes de realizar cualquier pago o trámite.
 
 Si tienes una propiedad en Chile, puede corresponder el pago de contribuciones de bienes raíces. Es un impuesto territorial anual que se cobra hasta en cuatro cuotas, aunque muchos propietarios de primera vivienda tienen exención total o parcial sin saberlo — conviene verificar en el SII antes de asumir que el cobro aplica.
 
@@ -68,17 +68,17 @@ La base de cálculo es el **avalúo fiscal** de tu propiedad — un valor oficia
 
 > **Contribuciones anuales** = Avalúo fiscal × Tasa anual correspondiente
 
-Las tasas varían según el tipo de bien raíz. Tasas vigentes para el período del reavalúo 2022, fijadas por [Decreto Supremo N°437 de Hacienda (25.03.2022)](https://www.sii.cl/destacados/reavaluo/2022/4326-4341.html) y [Resolución Ex. SII N°11/2022](https://www.sii.cl/normativa_legislacion/resoluciones/2022/reso11.pdf):
+Las tasas varían según el tipo de bien raíz, fijadas por [Decreto Supremo N°437 de Hacienda (25.03.2022)](https://www.sii.cl/destacados/reavaluo/2022/4326-4341.html) para el período del reavalúo 2022. La [Ley N°21.806 (5 de febrero de 2026)](https://www.sii.cl/noticias/2026/060226noti01pcr.htm) postergó el próximo reavalúo de bienes raíces no agrícolas hasta 2027, por lo que los valores base del reavalúo 2022 siguen vigentes hasta el 31 de diciembre de 2026 — durante este período el SII solo actualiza los montos según la variación del IPC. El monto de avalúo que separa el tramo habitacional inferior del superior se reajusta semestralmente según esa variación (cada 1 de enero y 1 de julio):
 
 | Tipo de bien raíz                                                 | Tasa anual vigente |
 | ----------------------------------------------------------------- | ------------------ |
-| No agrícola habitacional — tramo inferior (avalúo ≤ $169.144.585) | **0,893%**         |
-| No agrícola habitacional — tramo superior (avalúo > $169.144.585) | **1,042%**         |
+| No agrícola habitacional — tramo inferior (avalúo ≤ $220.398.431) | **0,893%**         |
+| No agrícola habitacional — tramo superior (avalúo > $220.398.431) | **1,042%**         |
 | No agrícola no habitacional (comercial, industrial, oficinas)     | **1,042%**         |
 | Sitios no edificados, propiedades abandonadas y pozos lastreros   | **1,23%**          |
 | Agrícola                                                          | **0,4%**           |
 
-La tasa habitacional se divide en dos tramos: el umbral de $169.144.585 (vigente desde enero de 2022) separa el tramo inferior del superior. Consulta el monto exacto para tu propiedad ingresando tu RUT o rol en el portal del [SII](https://www.sii.cl/).
+La tasa habitacional se divide en dos tramos: el umbral de $220.398.431 (vigente desde el 01.07.2026, según la [tabla de reajustes y exenciones del SII](https://www.sii.cl/ayudas/ayudas_por_servicios/2242-reajustes_exenciones-2468.html)) separa el tramo inferior del superior. Este monto se reajusta cada semestre — consulta el monto exacto para tu propiedad ingresando tu RUT o rol en el portal del [SII](https://www.sii.cl/).
 
 **Ejemplo orientativo**: Una propiedad habitacional con avalúo fiscal de $80.000.000 (sin exención de primera vivienda, tramo inferior) pagaría aproximadamente $80.000.000 × 0,893% = **$714.400 anuales** (~$178.600 por cuota trimestral), antes de aplicar exenciones si corresponden.
 
@@ -99,7 +99,7 @@ Las contribuciones se pagan en **4 cuotas anuales**, con vencimientos el **30 de
 
 ### Primera vivienda
 
-Los predios no agrícolas destinados a la habitación tienen un **monto de avalúo exento** de $47.360.490 (vigente desde enero de 2022, conforme al Art. 2° de la [Ley sobre Impuesto Territorial DFL-1/1998](https://www.bcn.cl/leychile/navegar?idNorma=128563) y la Resolución Ex. SII N°11/2022). Esto significa que los primeros $47.360.490 del avalúo fiscal no pagan contribuciones. Si el avalúo es inferior a ese monto, la propiedad está completamente exenta. El SII aplica la exención automáticamente si tiene los datos actualizados. Si crees tener derecho y no aparece aplicada, inicia el trámite en el SII.
+Los predios no agrícolas destinados a la habitación tienen un **monto de avalúo exento** de $61.711.570 (vigente desde el 01.07.2026, conforme al Art. 2° de la [Ley sobre Impuesto Territorial DFL-1/1998](https://www.bcn.cl/leychile/navegar?idNorma=128563); el monto se reajusta semestralmente según la [tabla de reajustes y exenciones del SII](https://www.sii.cl/ayudas/ayudas_por_servicios/2242-reajustes_exenciones-2468.html)). Esto significa que los primeros $61.711.570 del avalúo fiscal no pagan contribuciones. Si el avalúo es inferior a ese monto, la propiedad está completamente exenta. El SII aplica la exención automáticamente si tiene los datos actualizados. Si crees tener derecho y no aparece aplicada, inicia el trámite en el SII.
 
 ### Adultos mayores (65 años o más)
 

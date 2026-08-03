@@ -4,7 +4,7 @@ description: "Preguntas frecuentes sobre Operación Renta 2026: quién debe decl
 slug: operacion-renta-centro
 author: "Equipo Monedario"
 pubDate: 2026-04-29T00:00:00Z
-updatedDate: 2026-04-29T00:00:00Z
+updatedDate: 2026-08-03T00:00:00Z
 tags:
   - impuestos
   - operacion-renta
@@ -21,6 +21,14 @@ homepagePriority: 0
 draft: false
 heroImage: /images/hero/operacion-renta-centro.avif
 articleAdvisory: "Esta guía es informativa y no constituye asesoría tributaria. Verifica siempre los plazos y montos vigentes en sii.cl antes de actuar."
+articleLead:
+  answer: "Debes declarar el Formulario 22 en 2026 si en 2025 tuviste dos o más empleadores, emitiste boletas de honorarios, recibiste rentas del exterior, o tuviste ingresos por arriendo u otras rentas distintas al sueldo único. Si trabajaste todo el año con un solo empleador y sin otros ingresos, generalmente estás exento porque tu empleador ya realizó las retenciones."
+  validAsOf: 2026-08-03
+  officialSources:
+    - label: "SII — Operación Renta"
+      href: "https://www.sii.cl/"
+    - label: "TGR — Portal de pago"
+      href: "https://pagos.tgr.cl/"
 reviewPolicy:
   cadenceLabel: monthly
   maxDays: 30
@@ -82,7 +90,7 @@ Si tu única renta durante 2025 fue una pensión de AFP u otro organismo previsi
 
 ### Ingresos inferiores al umbral de exención
 
-Si tus ingresos anuales totales durante 2025 estuvieron por debajo del umbral de exención del impuesto global complementario, no debes impuesto y puedes no estar obligado a declarar. El umbral de exención del IGC para el año tributario 2025 es de **$11.265.804 anuales** (equivalente a 13,5 UTA, usando la UTA de abril 2026: $838.668). Por debajo de este monto, el impuesto global complementario es cero.
+Si tus ingresos anuales totales durante 2025 estuvieron por debajo del umbral de exención del impuesto global complementario, no debes impuesto y puedes no estar obligado a declarar. El umbral de exención del IGC para el año tributario 2025 es de **$11.265.804 anuales** (equivalente a 13,5 UTA, usando la UTA de diciembre de 2025: $834.504). Por debajo de este monto, el impuesto global complementario es cero.
 
 ---
 
@@ -195,7 +203,7 @@ El 15,25% retenido aparece como crédito en tu declaración. Si tu impuesto calc
 
 Si emitiste $1.000.000 en boletas de honorarios, tus clientes retuvieron y enviaron al SII $152.500 (15,25%). Al declarar, el SII calcula el impuesto que corresponde sobre tu renta total del año. Si ese impuesto es $80.000, el SII te devuelve $72.500. Si es $200.000, debes pagar $47.500 adicionales.
 
-> Los tramos de impuesto son progresivos y se aplican sobre la Renta Líquida Imponible (RLI) total del año, no solo sobre los honorarios. Los tramos del IGC para el año tributario 2026 (rentas de 2025) están publicados en [sii.cl/valores_y_fechas/renta/2026/personas_naturales.html](https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html). El primer tramo exento aplica hasta 13,5 UTA anuales ($11.265.804 con UTA de abril 2026); la tasa marginal máxima es 40% sobre rentas que superen 310 UTA (~$259 millones), vigente desde Ley 21.210.
+> Los tramos de impuesto son progresivos y se aplican sobre la Renta Líquida Imponible (RLI) total del año, no solo sobre los honorarios. Los tramos del IGC para el año tributario 2026 (rentas de 2025) están publicados en [sii.cl/valores_y_fechas/renta/2026/personas_naturales.html](https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html). El primer tramo exento aplica hasta 13,5 UTA anuales ($11.265.804, usando la UTA de diciembre de 2025: $834.504); la tasa marginal máxima es 40% sobre rentas que superen 310 UTA (~$259 millones), vigente desde Ley 21.210.
 
 ---
 
@@ -225,7 +233,7 @@ Para la mayoría de trabajadores dependientes o independientes con ingresos simp
 
 ## Información vigente para Operación Renta 2026
 
-Esta guía fue elaborada con fecha de corte 2026-04-24 y actualizada el 2026-04-29 con verificación de fuentes SII/TGR. Todos los umbrales, plazos y tasas citados han sido contrastados contra publicaciones oficiales vigentes de la campaña 2026.
+Esta guía fue elaborada con fecha de corte 2026-04-24 y actualizada el 2026-08-03 con verificación de fuentes SII/TGR. Todos los umbrales, plazos y tasas citados han sido contrastados contra publicaciones oficiales vigentes de la campaña 2026.
 
 **Fuentes primarias:**
 
@@ -233,6 +241,6 @@ Esta guía fue elaborada con fecha de corte 2026-04-24 y actualizada el 2026-04-
 - Tesorería General de la República: [tgr.cl](https://pagos.tgr.cl)
 - Ley de Impuesto a la Renta (DL 824), Código Tributario (DL 830) y Ley 21.133 — BCN
 
-**Última revisión editorial:** Carlos Ortega — 2026-04-29
+**Última revisión editorial:** Carlos Ortega — 2026-08-03
 
 Si tienes dudas sobre el [Impuesto Global Complementario](/posts/impuesto-global-complementario-chile/) o cómo afecta tu declaración, esa guía complementa el proceso de Operación Renta. Para el paso a paso del Formulario 22, revisa el [checklist F22](/posts/operacion-renta-f22-checklist/).
