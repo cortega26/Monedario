@@ -13,11 +13,12 @@ Comandos canónicos: `workers/analytics-collector/README.md`.
 | Permiso | Uso |
 |---|---|
 | Workers Scripts:Edit | deploy + rollback |
-| Workers Routes:Edit | ruta `monedario.cl/api/analytics/*` |
+| Worker Routes:Edit — permiso de **zona**, en la sección "Zone permissions" del token (Include → Specific zone → `monedario.cl`) | ruta `monedario.cl/api/analytics/*` |
 | Workers R2 Storage:Read | chequeo de frescura del verifier |
 
 No se necesita scope de Observability para el verifier. No usar tokens amplios
-de cuenta.
+de cuenta. Sin el permiso de zona "Worker Routes" el deploy falla con
+`workers.api.error.unauthorized` al sincronizar la ruta del `wrangler.toml`.
 
 ### Configuración de GitHub Actions
 

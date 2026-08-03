@@ -22,7 +22,8 @@ name: Deploy Analytics Collector
 #
 # Secretos requeridos:
 #   CLOUDFLARE_API_TOKEN   Token mínimamente scoped (Workers Scripts:Edit,
-#                          Workers Routes:Edit, Workers R2 Storage:Read).
+#                          Worker Routes:Edit — permiso de ZONA, scope:
+#                          monedario.cl —, Workers R2 Storage:Read).
 #   EXPORT_SECRET          Secret del worker (solo para el smoke de export
 #                          autenticado; opcional — sin él la verificación corre
 #                          en modo read-only).
@@ -89,7 +90,7 @@ jobs:
 
           if [[ "${#missing[@]}" -gt 0 ]]; then
             printf 'Falta configuración de GitHub Actions: %s\n' "${missing[*]}" >&2
-            echo "Secret esperado: CLOUDFLARE_API_TOKEN (Workers Scripts:Edit + Routes:Edit + R2 Storage:Read)" >&2
+            echo "Secret esperado: CLOUDFLARE_API_TOKEN (Workers Scripts:Edit + Worker Routes:Edit (zona, monedario.cl) + R2 Storage:Read)" >&2
             echo "Variable esperada: CLOUDFLARE_ACCOUNT_ID" >&2
             exit 1
           fi

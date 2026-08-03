@@ -43,7 +43,9 @@ changes runner routing, not deploy semantics.
 4. **Token scope.** The deploy and verification flows require a minimally
    scoped token, not a broad account token:
    - Workers Scripts:Edit (deploy + rollback),
-   - Workers Routes:Edit (route `monedario.cl/api/analytics/*`),
+   - Worker Routes:Edit — zone-scoped permission
+     (Zone → Worker Routes → Edit, scope: monedario.cl) for the route
+     `monedario.cl/api/analytics/*`,
    - Workers R2 Storage:Read (verifier freshness checks; optional
      Storage:Write if the export is regenerated outside the Worker).
    The verifier needs no Observability scope. The worker secret
