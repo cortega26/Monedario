@@ -36,6 +36,7 @@ import {
   isExportOverdue,
   isoWeekToDateRange,
   missingExportWeeks,
+  consolidatePageRows,
   normalizeCountryRow,
   normalizeDeviceRow,
   normalizePageRow,
@@ -290,7 +291,10 @@ async function main() {
   };
   const pagesDoc = {
     ...header,
-    data: pageRows.map(normalizePageRow),
+    // Consolidación de trailing-slash: GSC reporta la misma página con y sin
+    // slash como filas separadas; el validador del scorecard rechaza esa
+    // duplicación (hallazgo 2026-08-03, W30).
+    data: consolidatePageRows(pageRows.map(normalizePageRow)),
   };
   const queryPageDoc = {
     ...header,

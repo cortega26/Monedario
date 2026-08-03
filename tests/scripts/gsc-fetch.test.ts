@@ -6,6 +6,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import {
   aggregateQueryPageRows,
   buildSchemaHeader,
+  consolidatePageRows,
   dateToISOWeek,
   findCannibalizationGroups,
   findStrikingDistance,
@@ -13,6 +14,7 @@ import {
   missingExportWeeks,
   normalizeCountryRow,
   normalizeDeviceRow,
+  normalizePageIdentity,
   normalizePageRow,
   normalizeQueryPageRow,
   normalizeQueryRow,
@@ -265,6 +267,67 @@ describe("normalizePageRow", () => {
       "page",
       "position",
     ]);
+  });
+});
+
+describe("normalizePageIdentity", () => {
+  it("normaliza URL completa a pathname con trailing slash", () => {
+    expect(normalizePageIdentity("https://monedario.cl/calculadoras/sueldo-liquido")).toBe(
+      "/calculadoras/sueldo-liquido/"
+    );
+    expect(normalizePageIdentity("https://monedario.cl/calculadoras/sueldo-liquido/")).toBe(
+      "/calculadoras/sueldo-liquido/"
+    );
+  });
+
+  it("ignora query string y host", () => {
+    expect(normalizePageIdentity("https://monedario.cl/uf?utm_source=x")).toBe("/uf/");
+    expect(normalizePageIdentity("https://www.monedario.cl/uf/")).toBe("/uf/");
+  });
+
+  it("acepta paths relativos y devuelve vacío para entrada vacía", () => {
+    expect(normalizePageIdentity("/uf")).toBe("/uf/");
+    expect(normalizePageIdentity("")).toBe("");
+    expect(normalizePageIdentity(null)).toBe("");
+  });
+});
+
+describe("consolidatePageRows", () => {
+  it("consolida la misma página con y sin trailing slash sumando métricas", () => {
+    const rows = [
+      { page: "https://monedario.cl/calculadoras/sueldo-liquido/", clicks: 2, impressions: 451, ctr: 0.0044, position: 6.5 },
+      { page: "https://monedario.cl/calculadoras/sueldo-liquido", clicks: 0, impressions: 1, ctr: 0, position: 99 },
+    ];
+    const result = consolidatePageRows(rows);
+    expect(result).toHaveLength(1);
+    expect(result[0].page).toBe("https://monedario.cl/calculadoras/sueldo-liquido/");
+    expect(result[0].clicks).toBe(2);
+    expect(result[0].impressions).toBe(452);
+    // ctr = 2/452 ≈ 0.0044 (redondeado a 4 decimales)
+    expect(result[0].ctr).toBe(0.0044);
+    // position ponderada por impresiones: (451*6.5 + 1*99) / 452 ≈ 6.71
+    expect(result[0].position).toBeCloseTo(6.71, 1);
+  });
+
+  it("no duplica filas ya únicas y preserva el orden", () => {
+    const rows = [
+      { page: "/a/", clicks: 1, impressions: 10, ctr: 0.1, position: 1 },
+      { page: "/b/", clicks: 3, impressions: 30, ctr: 0.1, position: 2 },
+    ];
+    const result = consolidatePageRows(rows);
+    expect(result.map((r) => r.page)).toEqual(["/a/", "/b/"]);
+    expect(result[0].clicks).toBe(1);
+    expect(result[1].clicks).toBe(3);
+  });
+
+  it("recalcula ctr a cero sin impresiones", () => {
+    const rows = [
+      { page: "/a", clicks: 0, impressions: 0, ctr: 0, position: 0 },
+      { page: "/a/", clicks: 0, impressions: 0, ctr: 0, position: 0 },
+    ];
+    const result = consolidatePageRows(rows);
+    expect(result).toHaveLength(1);
+    expect(result[0].ctr).toBe(0);
   });
 });
 

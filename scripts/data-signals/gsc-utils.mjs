@@ -170,6 +170,66 @@ export function normalizePageRow(row) {
 }
 
 /**
+ * Identidad canónica de una página para consolidación y validación: pathname
+ * con trailing slash, ignorando query/host. Debe mantenerse idéntica a la
+ * identidad que valida `build-weekly-search-report.mjs` (el fetch consolida
+ * bajo esta identidad y el scorecard rechaza duplicados bajo la misma).
+ * @param {string} page
+ */
+export function normalizePageIdentity(page) {
+  const text = `${page ?? ""}`.trim();
+  if (!text) return "";
+  try {
+    const url = new URL(text);
+    return url.pathname.endsWith("/") ? url.pathname : `${url.pathname}/`;
+  } catch {
+    if (text.startsWith("/")) {
+      return text.endsWith("/") ? text : `${text}/`;
+    }
+    return text;
+  }
+}
+
+/**
+ * Consolida filas de pages que GSC reporta por separado para la misma página
+ * (p. ej. con y sin trailing slash: `https://…/sueldo-liquido/` y
+ * `https://…/sueldo-liquido`). Suma clicks/impressions, recalcula ctr y
+ * pondera position por impresiones. Preserva el orden de primera aparición.
+ *
+ * Hallazgo 2026-08-03: el scorecard rechazaba W30 por duplicados de identidad
+ * normalizada (0 clicks + 1 impresión en la variante sin slash).
+ * @param {Array<{page: string, clicks: number, impressions: number, ctr: number, position: number}>} rows
+ */
+export function consolidatePageRows(rows) {
+  const byIdentity = new Map();
+  for (const row of rows) {
+    const identity = normalizePageIdentity(row.page);
+    if (!identity) continue;
+    const acc = byIdentity.get(identity) ?? {
+      page: row.page,
+      clicks: 0,
+      impressions: 0,
+      ctr: 0,
+      position: 0,
+    };
+    const weightedPosition = acc.impressions * acc.position;
+    acc.clicks += row.clicks;
+    acc.impressions += row.impressions;
+    acc.position =
+      acc.impressions > 0
+        ? (weightedPosition + row.impressions * row.position) / acc.impressions
+        : 0;
+    acc.ctr = acc.impressions > 0 ? acc.clicks / acc.impressions : 0;
+    byIdentity.set(identity, acc);
+  }
+  return [...byIdentity.values()].map((row) => ({
+    ...row,
+    ctr: roundTo(row.ctr, 4),
+    position: roundTo(row.position, 2),
+  }));
+}
+
+/**
  * Normalizes a GSC search-analytics row keyed by ["query","page"] dimensions.
  * Output keys are sorted alphabetically.
  * @param {{ keys: string[], clicks: number, impressions: number, ctr: number, position: number }} row
