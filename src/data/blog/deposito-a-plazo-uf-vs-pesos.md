@@ -108,7 +108,7 @@ En inflación moderada, los pesos ganan por simplicidad y resultado nominal.
 **Escenario 2: inflación anualizada 8,0%**
 
 - Opción A (pesos): sigue en torno a **$1.039.500** nominal —pero pierde poder de compra real.
-- Opción B (UF): 0,99% real + 3,92% de reajuste → aprox. 4,91% → **$1.049.100**
+- Opción B (UF): 0,99% real + 3,95% de reajuste → aprox. 4,97% → **$1.049.700**
 
 En inflación alta, UF supera en resultado nominal y protege mejor el poder de compra.
 
@@ -174,7 +174,8 @@ Si quieres integrar esta decisión en una estrategia más amplia de instrumentos
 
 ## Fuentes y referencias primarias
 
-- Banco Central, UF y mecanismo de reajuste: https://www.bcentral.cl/web/banco-central/preguntas-frecuentes/-/asset_publisher/0u850BwdK7p5/content/que-es-la-uf-y-como-se-reajusta-
+- Banco Central, valor diario de la UF: https://si3.bcentral.cl/Indicadoressiete/secure/Indicadoresdiarios.aspx
+- Banco Central, metodología oficial de la UF (mecanismo de reajuste): https://si3.bcentral.cl/estadisticas/Principal1/Metodologias/EMF/UF.pdf
 - CMF Educa, Depósitos a plazo (definiciones y plazos mínimos): <https://www.cmfchile.cl/educa/621/w3-article-27170.html>
 - SII FAQ, obligación de declarar rentas de inversiones: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0597.htm
 

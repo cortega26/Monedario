@@ -102,7 +102,7 @@ La UF se actualiza mensualmente según el IPC publicado. Esto significa que tus 
 
 ### Pensiones y ajustes previsionales
 
-Las pensiones del Pilar Solidario se reajustan periódicamente usando el IPC como referencia, aunque el mecanismo exacto depende de reglamentos vigentes.
+Las pensiones solidarias — hoy representadas por la [PGU (Pensión Garantizada Universal)](/posts/pgu-pension-garantizada-universal/) — se reajustan periódicamente usando el IPC como referencia, aunque el mecanismo exacto depende de la normativa vigente y se ve afectado por la [reforma previsional 2025](/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/).
 
 ---
 
