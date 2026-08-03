@@ -53,13 +53,11 @@ volatileData:
     sync: strict
     expectedValue: 10
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: semiannual
+  maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - category:prevision
-    - validAsOf
-    - officialSources
+    - registry:categoryPolicies.prevision
   computedAt: "2026-05-06"
 ---
 

@@ -24,7 +24,8 @@ reviewPolicy:
   cadenceLabel: semiannual
   maxDays: 180
   dataTriggers: []
-  derivationFactors: []
+  derivationFactors:
+    - registry:categoryPolicies.general
   computedAt: "2026-05-06"
 ---
 

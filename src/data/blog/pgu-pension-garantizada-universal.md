@@ -41,13 +41,11 @@ articleLead:
     - "No recomienda AFP ni estrategia de inversión."
     - "El monto se actualiza; verifica siempre en el IPS el valor vigente."
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: quarterly
+  maxDays: 90
   dataTriggers: []
   derivationFactors:
-    - category:prevision
-    - validAsOf
-    - officialSources
+    - registry:slugOverrides.pgu-pension-garantizada-universal
   computedAt: "2026-07-01"
 ---
 

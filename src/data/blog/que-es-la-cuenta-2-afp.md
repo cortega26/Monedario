@@ -33,13 +33,11 @@ volatileData:
     sync: strict
     expectedValue: 10
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: semiannual
+  maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - category:prevision
-    - validAsOf
-    - officialSources
+    - registry:slugOverrides.que-es-la-cuenta-2-afp
   computedAt: "2026-05-06"
 ---
 

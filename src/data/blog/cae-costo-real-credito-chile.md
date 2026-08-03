@@ -41,12 +41,11 @@ articleLead:
     - "No audita automáticamente la legalidad del contrato."
     - "No sirve para casos de insolvencia o renegociación formal."
 reviewPolicy:
-  cadenceLabel: quarterly
-  maxDays: 60
+  cadenceLabel: annual
+  maxDays: 365
   dataTriggers: []
   derivationFactors:
-    - validAsOf
-    - officialSources
+    - registry:categoryPolicies.deuda-credito
   computedAt: "2026-05-06"
 ---
 

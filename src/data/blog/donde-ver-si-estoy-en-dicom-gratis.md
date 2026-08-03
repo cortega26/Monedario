@@ -39,12 +39,11 @@ articleLead:
     - "No confirma por sí solo la eliminación de antecedentes."
     - "No sustituye reclamos formales ante acreedores o reguladores."
 reviewPolicy:
-  cadenceLabel: quarterly
-  maxDays: 60
+  cadenceLabel: annual
+  maxDays: 365
   dataTriggers: []
   derivationFactors:
-    - validAsOf
-    - officialSources
+    - registry:categoryPolicies.deuda-credito
   computedAt: "2026-05-06"
 ---
 

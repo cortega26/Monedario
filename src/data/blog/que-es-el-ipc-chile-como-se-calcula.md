@@ -26,10 +26,11 @@ volatileData:
   - id: "economic.uf.value"
     sync: reference
 reviewPolicy:
-  cadenceLabel: semiannual
-  maxDays: 180
+  cadenceLabel: monthly
+  maxDays: 30
   dataTriggers: []
-  derivationFactors: []
+  derivationFactors:
+    - registry:slugOverrides.que-es-el-ipc-chile-como-se-calcula
   computedAt: "2026-05-06"
 ---
 

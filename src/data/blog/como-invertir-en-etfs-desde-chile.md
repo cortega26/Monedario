@@ -19,11 +19,11 @@ featured: false
 draft: false
 heroImage: /images/hero/como-invertir-en-etfs-desde-chile.avif
 reviewPolicy:
-  cadenceLabel: quarterly
-  maxDays: 45
+  cadenceLabel: semiannual
+  maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - category:ahorro-inversion
+    - registry:categoryPolicies.ahorro-inversion
   computedAt: "2026-05-06"
 ---
 

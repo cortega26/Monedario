@@ -40,13 +40,11 @@ articleLead:
     - "No sustituye asesoría laboral si la causal está discutida."
     - "No reemplaza revisar el documento y sus respaldos."
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: semiannual
+  maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - category:empleo-ingresos
-    - validAsOf
-    - officialSources
+    - registry:categoryPolicies.empleo-ingresos
   computedAt: "2026-05-06"
 ---
 

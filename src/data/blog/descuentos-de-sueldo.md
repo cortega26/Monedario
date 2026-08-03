@@ -48,18 +48,16 @@ volatileData:
   - id: "pensions.afp.uno_commission"
     sync: strict
     expectedValue: 0.46
+updatedDate: 2026-08-03T00:00:00Z
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: semiannual
+  maxDays: 180
   dataTriggers:
     - pensions.afp.uno_commission
     - pensions.afp.worker_mandatory_contribution
   derivationFactors:
-    - category:empleo-ingresos
-    - validAsOf
-    - officialSources
-  computedAt: "2026-07-01"
-updatedDate: 2026-07-01T00:00:00Z
+    - registry:slugOverrides.descuentos-de-sueldo
+  computedAt: "2026-08-03"
 ---
 
 Tu liquidación muestra una línea de descuento que no esperabas. Antes de asumir que está mal o antes de firmar conforme sin preguntar, hay una distinción que cambia todo: no todos los descuentos que aparecen en una liquidación tienen el mismo origen ni el mismo respaldo legal.

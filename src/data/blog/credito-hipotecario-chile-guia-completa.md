@@ -64,12 +64,11 @@ volatileData:
     sync: reference
     expectedValue: 40844.79
 reviewPolicy:
-  cadenceLabel: quarterly
-  maxDays: 60
+  cadenceLabel: annual
+  maxDays: 365
   dataTriggers: []
   derivationFactors:
-    - validAsOf
-    - officialSources
+    - registry:categoryPolicies.deuda-credito
   computedAt: "2026-05-06"
 ---
 

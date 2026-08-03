@@ -30,11 +30,11 @@ articleLead:
     - label: "TGR — Portal de pago"
       href: "https://pagos.tgr.cl/"
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: quarterly
+  maxDays: 90
   dataTriggers: []
   derivationFactors:
-    - category:impuestos
+    - registry:categoryPolicies.impuestos
   computedAt: "2026-05-06"
 ---
 

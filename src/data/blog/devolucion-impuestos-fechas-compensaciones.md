@@ -19,11 +19,11 @@ featured: false
 draft: false
 heroImage: /images/hero/devolucion-impuestos-fechas-compensaciones.avif
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: quarterly
+  maxDays: 90
   dataTriggers: []
   derivationFactors:
-    - category:impuestos
+    - registry:slugOverrides.devolucion-impuestos-fechas-compensaciones
   computedAt: "2026-05-06"
 ---
 

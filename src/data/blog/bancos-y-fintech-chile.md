@@ -39,12 +39,11 @@ articleLead:
     - "No reemplaza asesoría financiera personalizada."
     - "Las tarifas y condiciones cambian; verifica directamente con cada entidad."
 reviewPolicy:
-  cadenceLabel: quarterly
-  maxDays: 60
+  cadenceLabel: semiannual
+  maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - validAsOf
-    - officialSources
+    - registry:categoryPolicies.general
   computedAt: "2026-07-01"
 ---
 

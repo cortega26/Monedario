@@ -2,17 +2,16 @@ import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { dump, load } from "js-yaml";
+import * as prettier from "prettier";
+import {
+  loadEditorialTimelinessPolicy,
+  resolveEditorialTimelinessPolicy,
+} from "./lib/editorial-timeliness-policy.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const BLOG_DIR = path.resolve(__dirname, "../src/data/blog");
-
-const CATEGORY_MAX_DAYS = {
-  impuestos: 30,
-  prevision: 30,
-  "empleo-ingresos": 30,
-  "ahorro-inversion": 45,
-  "seguridad-financiera": 45,
-};
+const REPO_ROOT = path.resolve(__dirname, "..");
+const BLOG_DIR = path.join(REPO_ROOT, "src", "data", "blog");
+const POLICY_PATH = path.join(REPO_ROOT, "src", "config", "editorial-timeliness-policy.json");
 
 function cadenceLabelFor(maxDays, dataTriggers) {
   if (dataTriggers.length > 0 && maxDays <= 1) return "on_data_change";
@@ -22,16 +21,11 @@ function cadenceLabelFor(maxDays, dataTriggers) {
   return "annual";
 }
 
-function deriveReviewPolicy(frontmatter, body) {
-  let maxDays = 180;
+function deriveReviewPolicy(frontmatter, body, slug, policy) {
+  const effectivePolicy = resolveEditorialTimelinessPolicy(frontmatter, slug, policy);
+  let maxDays = effectivePolicy.cadenceDays;
   const dataTriggers = new Set();
-  const derivationFactors = [];
-
-  const categoryMax = CATEGORY_MAX_DAYS[frontmatter.category];
-  if (categoryMax !== undefined) {
-    maxDays = Math.min(maxDays, categoryMax);
-    derivationFactors.push(`category:${frontmatter.category}`);
-  }
+  const derivationFactors = [`registry:${effectivePolicy.policySource}`];
 
   for (const entry of frontmatter.volatileData ?? []) {
     if (entry.sync === "strict") {
@@ -58,23 +52,12 @@ function deriveReviewPolicy(frontmatter, body) {
     derivationFactors.push("template:uta");
   }
 
-  if (frontmatter.articleLead?.validAsOf) {
-    maxDays = Math.min(maxDays, 60);
-    derivationFactors.push("validAsOf");
-  }
-
-  if ((frontmatter.articleLead?.officialSources ?? []).length > 0) {
-    maxDays = Math.min(maxDays, 60);
-    derivationFactors.push("officialSources");
-  }
-
   const sortedTriggers = [...dataTriggers].sort();
   return {
     cadenceLabel: cadenceLabelFor(maxDays, sortedTriggers),
     maxDays,
     dataTriggers: sortedTriggers,
     derivationFactors: [...new Set(derivationFactors)],
-    computedAt: new Date().toISOString().slice(0, 10),
   };
 }
 
@@ -143,6 +126,7 @@ function findMdFiles(dir) {
 }
 
 async function main() {
+  const policy = loadEditorialTimelinessPolicy(POLICY_PATH);
   const files = findMdFiles(BLOG_DIR);
   let updated = 0;
   let skipped = 0;
@@ -161,8 +145,10 @@ async function main() {
       continue;
     }
 
+    const slug =
+      typeof data?.slug === "string" ? data.slug.trim() : path.basename(filePath, path.extname(filePath));
     const body = content.slice(end);
-    const computed = deriveReviewPolicy(data ?? {}, body);
+    const computed = deriveReviewPolicy(data ?? {}, body, slug, policy);
     const hasDataTriggers = computed.dataTriggers.length > 0;
 
     // Bump updatedDate for articles with economic data triggers (UF, UTM, IPC, etc.)
@@ -178,14 +164,33 @@ async function main() {
       continue;
     }
 
+    // computedAt feeds ArticleJsonLd's public `lastReviewed`/`reviewedBy` fields,
+    // which assert that a human reviewed the article on that date. Only stamp
+    // today when a volatile data trigger actually changed (a real automated
+    // check event) or this is the article's first computation — a cadence
+    // policy refactor alone must not manufacture a review date.
+    const previousComputedAt =
+      typeof data?.reviewPolicy?.computedAt === "string" ? data.reviewPolicy.computedAt : null;
+    computed.computedAt = previousComputedAt && !bumpUpdatedDate ? previousComputedAt : todayStr;
+
     const updatedDateValue = bumpUpdatedDate ? `${todayStr}T00:00:00Z` : null;
-    const updatedContent = injectReviewPolicy(
+    const rawContent = injectReviewPolicy(
       content,
       yamlStr,
       end,
       computed,
       updatedDateValue
     );
+    // js-yaml's dump() quotes ambiguous scalars (e.g. computedAt dates) with
+    // single quotes, which disagrees with this repo's Prettier config
+    // (singleQuote: false) and fails the pre-commit prettier --check gate.
+    // Formatting through Prettier here keeps the generator's output stable
+    // against any future formatting-rule drift, not just today's mismatch.
+    const prettierConfig = await prettier.resolveConfig(filePath);
+    const updatedContent = await prettier.format(rawContent, {
+      ...prettierConfig,
+      filepath: filePath,
+    });
     writeFileSync(filePath, updatedContent, "utf-8");
     const dateNote = bumpUpdatedDate ? ` + updatedDate→${todayStr}` : "";
     console.log(

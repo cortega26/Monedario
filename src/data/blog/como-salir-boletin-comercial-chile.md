@@ -49,12 +49,11 @@ faqs:
   - q: "¿Cómo sé si tengo anotaciones en el Boletín Comercial?"
     a: "Puedes consultar en boletincomercial.cl. La Ley 20.575 obliga al servicio a ofrecer una consulta básica gratuita. Si aparece una anotación que no reconoces, tienes derecho a pedir información al acreedor y, si hay error, reclamar ante la CMF."
 reviewPolicy:
-  cadenceLabel: quarterly
-  maxDays: 60
+  cadenceLabel: annual
+  maxDays: 365
   dataTriggers: []
   derivationFactors:
-    - validAsOf
-    - officialSources
+    - registry:categoryPolicies.deuda-credito
   computedAt: "2026-05-06"
 ---
 

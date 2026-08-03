@@ -42,13 +42,11 @@ volatileData:
   - id: "economic.uf.value"
     sync: reference
 reviewPolicy:
-  cadenceLabel: quarterly
-  maxDays: 45
+  cadenceLabel: monthly
+  maxDays: 30
   dataTriggers: []
   derivationFactors:
-    - category:ahorro-inversion
-    - validAsOf
-    - officialSources
+    - registry:slugOverrides.que-es-el-apv
   computedAt: "2026-05-06"
 ---
 

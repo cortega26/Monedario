@@ -40,12 +40,11 @@ articleLead:
     - "Para créditos hipotecarios, pueden aplicar condiciones contractuales distintas."
     - "No considera el costo de oportunidad de ese dinero en inversiones alternativas."
 reviewPolicy:
-  cadenceLabel: quarterly
-  maxDays: 60
+  cadenceLabel: annual
+  maxDays: 365
   dataTriggers: []
   derivationFactors:
-    - validAsOf
-    - officialSources
+    - registry:categoryPolicies.deuda-credito
   computedAt: "2026-05-06"
 ---
 

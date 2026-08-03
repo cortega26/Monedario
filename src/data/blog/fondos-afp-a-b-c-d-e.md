@@ -39,13 +39,11 @@ articleLead:
     - "No define por sí sola si debes cambiarte de AFP."
     - "No resume toda la reforma previsional."
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: semiannual
+  maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - category:prevision
-    - validAsOf
-    - officialSources
+    - registry:slugOverrides.fondos-afp-a-b-c-d-e
   computedAt: "2026-05-06"
 ---
 

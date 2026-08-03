@@ -44,18 +44,16 @@ volatileData:
   - id: "pensions.afp.uno_commission"
     sync: strict
     expectedValue: 0.46
+updatedDate: 2026-08-03T00:00:00Z
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: semiannual
+  maxDays: 180
   dataTriggers:
     - pensions.afp.uno_commission
     - pensions.afp.worker_mandatory_contribution
   derivationFactors:
-    - category:empleo-ingresos
-    - validAsOf
-    - officialSources
-  computedAt: "2026-07-01"
-updatedDate: 2026-07-01T00:00:00Z
+    - registry:slugOverrides.cuanto-descuenta-la-afp-de-tu-sueldo
+  computedAt: "2026-08-03"
 ---
 
 Cada mes aparece en tu liquidación una línea que dice "AFP" y un número que te descuentan. Para la mayoría es un cálculo opaco que simplemente aceptan. Esta guía lo abre: cuánto corresponde a cotización obligatoria, cuánto es comisión y cómo verificar que ese cargo calza con tu AFP y tu imponible.

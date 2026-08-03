@@ -52,20 +52,18 @@ volatileData:
   - id: "economic.afc.monthly_taxable_cap_uf"
     sync: strict
     expectedValue: 135.2
+updatedDate: 2026-08-03T00:00:00Z
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: semiannual
+  maxDays: 180
   dataTriggers:
     - economic.afc.monthly_taxable_cap_uf
     - pensions.afp.uno_commission
     - pensions.afp.worker_mandatory_contribution
     - pensions.previsional.monthly_taxable_cap_uf
   derivationFactors:
-    - category:empleo-ingresos
-    - validAsOf
-    - officialSources
-  computedAt: "2026-07-01"
-updatedDate: 2026-07-01T00:00:00Z
+    - registry:slugOverrides.como-calcular-sueldo-liquido
+  computedAt: "2026-08-03"
 ---
 
 Te ofrecieron $1.200.000 brutos. Llegó el día de pago y te cayeron $950.000. Esta guía existe para rehacer ese cálculo de principio a fin: partir desde el bruto, separar el imponible y llegar al depósito final con AFP, salud, cesantía e impuesto.

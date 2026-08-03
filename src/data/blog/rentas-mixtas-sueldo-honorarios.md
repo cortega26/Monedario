@@ -51,13 +51,11 @@ faqs:
   - q: "¿Puedo tener sueldo, boletas y aun así quedar exento del Global Complementario?"
     a: "Sí, si tu renta total anual (sueldo bruto + honorarios brutos) no supera el tramo exento del Global Complementario (13,5 UTA anuales para AT 2026, aproximadamente $11.322.018 anuales), no pagas impuesto adicional. Pero igual debes declarar."
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: quarterly
+  maxDays: 90
   dataTriggers: []
   derivationFactors:
-    - category:impuestos
-    - validAsOf
-    - officialSources
+    - registry:categoryPolicies.impuestos
   computedAt: "2026-05-06"
 ---
 

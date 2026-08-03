@@ -20,11 +20,11 @@ homepagePriority: 200
 draft: false
 heroImage: /images/hero/operacion-renta-f22-checklist.avif
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: quarterly
+  maxDays: 90
   dataTriggers: []
   derivationFactors:
-    - category:impuestos
+    - registry:slugOverrides.operacion-renta-f22-checklist
   computedAt: "2026-05-06"
 ---
 
