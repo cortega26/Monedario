@@ -23,7 +23,7 @@ articleLead:
   answer: "Las contribuciones de bienes raíces son un impuesto territorial anual sobre el avalúo fiscal de tu propiedad, calculado a tasas vigentes de 0,893%–1,042% para propiedades habitacionales y 1,042% para no habitacionales (Decreto 437 de Hacienda, reavalúo 2022). Se pagan en 4 cuotas al año. Existen exenciones para primera vivienda (los primeros $47.360.490 de avalúo están exentos) y adultos mayores según el avalúo de la propiedad."
   nextStepHref: "/posts/operacion-renta-f22-checklist/"
   nextStepLabel: "Declarar contribuciones en el F22"
-  validAsOf: 2026-05-03
+  validAsOf: 2026-08-03
   officialSources:
     - label: "SII — Contribuciones de bienes raíces"
       href: "https://www.sii.cl/"

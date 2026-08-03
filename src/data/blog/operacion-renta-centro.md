@@ -4,7 +4,7 @@ description: "Preguntas frecuentes sobre Operación Renta 2026: quién debe decl
 slug: operacion-renta-centro
 author: "Equipo Monedario"
 pubDate: 2026-04-29T00:00:00Z
-updatedDate: 2026-04-29T00:00:00Z
+updatedDate: 2026-08-03T00:00:00Z
 tags:
   - impuestos
   - operacion-renta

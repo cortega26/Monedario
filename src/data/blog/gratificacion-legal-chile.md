@@ -23,7 +23,7 @@ articleLead:
   answer: "La gratificación legal es la participación obligatoria que el empleador debe pagar a los trabajadores. La modalidad más común es el 25% de las remuneraciones imponibles anuales, con un tope máximo de 4,75 veces el Ingreso Mínimo Mensual (IMM) vigente."
   nextStepHref: "/posts/como-calcular-sueldo-liquido/"
   nextStepLabel: "Calcular tu sueldo líquido completo"
-  validAsOf: 2026-05-03
+  validAsOf: 2026-08-03
   officialSources:
     - label: "BCN — Código del Trabajo, arts. 47–52"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=207436"

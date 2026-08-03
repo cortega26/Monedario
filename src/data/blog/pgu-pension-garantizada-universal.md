@@ -23,7 +23,7 @@ articleLead:
   answer: "$231.732 mensuales (65–81 años), $250.275 mensuales (82 años o más, desde febrero 2026), según ChileAtiende. Montos sujetos a reajuste periódico — verifica el valor vigente en el IPS antes de solicitar."
   nextStepHref: "https://www.ips.gob.cl/"
   nextStepLabel: "Tramitar en el IPS"
-  validAsOf: 2026-05-03
+  validAsOf: 2026-08-03
   officialSources:
     - label: "IPS — Pensión Garantizada Universal"
       href: "https://www.ips.gob.cl/"
