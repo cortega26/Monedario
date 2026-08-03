@@ -54,7 +54,7 @@ reviewPolicy:
 
 La tasa en pesos parece más alta. La tasa en UF es más baja pero viene con reajuste. ¿Cuál conviene? La respuesta no está en el número de arriba sino en lo que pasa con la inflación durante el plazo que tú necesitas. Esta guía te ayuda a decidir con números concretos.
 
-> **Información vigente al 2026-03-30.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.
+> **Información vigente al 2026-08-03.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.
 
 Para una mirada más amplia de instrumentos, revisa primero la [guía de ahorro e inversión en Chile](/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/). Si quieres entender cómo funciona la UF antes de comparar tasas, parte por la [guía UF, inflación y costo de vida](/guias/uf-costo-de-vida/). Y si ya tienes tasa, plazo y monto definidos, aterriza el cálculo con la [calculadora de depósito a plazo](/calculadoras/deposito-a-plazo/).
 
@@ -180,5 +180,5 @@ Si quieres integrar esta decisión en una estrategia más amplia de instrumentos
 
 ## Información de vigencia
 
-- Revisado el: 2026-02-28.
+- Revisado el: 2026-08-03.
 - Puede quedar desactualizado cuando: cambios en metodología oficial de UF, modificaciones regulatorias de DAP o cambios en criterios tributarios aplicables.

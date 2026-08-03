@@ -36,7 +36,7 @@ reviewPolicy:
 
 Llegó el aviso de pago y el arriendo subió. O el arrendador avisa que el próximo mes cambia el monto. La primera reacción suele ser preguntarse si corresponde — y la respuesta depende de una sola cosa: lo que dice el contrato.
 
-> **Información vigente al 2026-03-12.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.
+> **Información vigente al 2026-08-03.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo.
 
 En Chile no existe un reajuste automático de arriendo que aplique por ley a todos los contratos. Lo que existe son distintas formas de pactar el reajuste — y cada una funciona distinto. Entender esa diferencia evita conflictos y permite verificar si el monto que te cobran es correcto.
 
@@ -53,7 +53,7 @@ Si necesitas pasar de inmediato a números, usa la [calculadora de reajuste de a
 
 ## Qué determina el reajuste
 
-El contrato de arriendo es el documento que define todo. No existe una norma que obligue a usar UF ni IPC — las partes acuerdan libremente la referencia y la periodicidad. La Ley 18.101 sobre arrendamiento de predios urbanos regula aspectos generales del contrato, pero no impone una fórmula de reajuste específica.
+El contrato de arriendo es el documento que define todo. No existe una norma que obligue a usar UF ni IPC — las partes acuerdan libremente la referencia y la periodicidad. La [Ley 18.101](https://www.bcn.cl/leychile/navegar?idNorma=29526) sobre arrendamiento de predios urbanos regula aspectos generales del contrato, pero no impone una fórmula de reajuste específica.
 
 Esto tiene una consecuencia práctica importante: el mismo "reajuste por inflación" puede funcionar de maneras muy distintas según cómo quedó redactado el contrato.
 

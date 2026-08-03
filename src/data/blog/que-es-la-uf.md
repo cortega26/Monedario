@@ -39,7 +39,7 @@ Tu arriendo sube todos los años "por la UF" y tu dividendo también. Pero casi 
 
 ## Qué es la UF
 
-La **Unidad de Fomento (UF)** es una unidad de medida del valor del dinero que se ajusta automáticamente con la inflación. No es un tipo de cambio, no es una moneda y no la emite ningún banco privado — la calcula y publica el **Banco Central de Chile** todos los meses.
+La **Unidad de Fomento (UF)** es una unidad de medida del valor del dinero que se ajusta automáticamente con la inflación. No es un tipo de cambio, no es una moneda y no la emite ningún banco privado — la calcula y publica el **Banco Central de Chile** todos los días.
 
 La idea detrás de la UF es simple: si precias algo en pesos y hay inflación, ese precio pierde valor real con el tiempo. Pero si lo precias en UF, el valor se mantiene constante en términos de poder adquisitivo, porque la UF sube exactamente lo mismo que sube el costo de vida.
 
@@ -90,7 +90,7 @@ Fuente: [Banco Central de Chile — Metodología UF](https://si3.bcentral.cl/est
 
 ### Arriendo en UF
 
-Es el caso más común. Si tu arriendo es de **12 UF mensuales** y la UF vale $44.000, pagas $528.000. Si la UF sube a $45.000, pagas $540.000 — aunque el contrato diga exactamente lo mismo.
+Es el caso más común. Si tu arriendo es de **12 UF mensuales** y la UF vale $40.000, pagas $480.000. Si la UF sube a $41.000, pagas $492.000 — aunque el contrato diga exactamente lo mismo.
 
 Esto significa que si hay inflación, tu arriendo **sube automáticamente** sin que el arrendador tenga que hacer nada ni avisarte. Está incorporado al contrato desde el primer día.
 
