@@ -88,10 +88,11 @@ $553.553, Ley 21.830; entre otros).
   `create-pull-request`, revirtiendo el commit automático cada semana desde
   2026-07-05 sin señal visible en el resumen del job. Corregido y snapshot
   refrescado a 2026-08-03 (PR #391).
-- Observaciones menores pendientes de iteración editorial futura (no bloquean;
-  ver reportes de los ComplianceAgents): redondeo del escenario 2 en
-  `deposito-a-plazo-uf-vs-pesos` (3,92 % vs 3,945 % — internamente consistente),
-  URL de BCentral con patrón `asset_publisher` frágil, hedge de la reforma
-  previsional en `que-es-el-ipc-chile-como-se-calcula`.
+- Observaciones menores de los ComplianceAgents resueltas el 2026-08-03
+  (commit `7e0ecdf8`): redondeo del escenario 2 en `deposito-a-plazo-uf-vs-pesos`
+  (3,95 % = 8 %×180/365; compuesto 4,97 %; $1.049.700), URL frágil de BCentral
+  (`asset_publisher`) reemplazada por indicadores diarios + metodología oficial,
+  y hedge de pensiones en `que-es-el-ipc-chile-como-se-calcula` (PGU + reforma
+  previsional 2025 en lugar de "Pilar Solidario").
 - La exclusión `brace-expansion@1.1.17` de la política de 7 días es removible
   desde 2026-08-05 (sin relación con este plan).
