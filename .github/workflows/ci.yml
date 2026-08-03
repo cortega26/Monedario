@@ -145,13 +145,6 @@ jobs:
           EDITORIAL_SCOPE: ${{ github.event_name == 'pull_request' && 'changed' || 'all' }}
           EDITORIAL_DIFF_BASE_REF: ${{ github.base_ref }}
 
-      - name: "🕒 Check editorial timeliness SLA"
-        # No bloquear PRs de Dependabot o cambios no-editoriales con SLA
-        # de revisión editorial vencido. El scheduled semanal sigue siendo
-        # bloqueante para detectar deriva.
-        continue-on-error: ${{ github.event_name == 'pull_request' }}
-        run: pnpm run check:editorial-timeliness
-
       - name: "🚫 Guard against post.id URL regressions"
         run: pnpm run check:no-postid-urls
 
@@ -192,6 +185,18 @@ jobs:
 
       - name: "📡 Check RSS baseline (no removals)"
         run: pnpm run check:rss
+
+      # Al final del job a propósito: si el gate editorial falla en scheduled
+      # (contenido con ventana de revisión vencida) el resto del job ya corrió
+      # (typecheck, build, URL/RSS). Así un fallo editorial no enmascara fallos
+      # técnicos de main (2026-08-03: el typecheck de main estuvo roto un día
+      # sin detectarse porque este gate abortaba el job antes del astro check).
+      - name: "🕒 Check editorial timeliness SLA"
+        # No bloquear PRs de Dependabot o cambios no-editoriales con SLA
+        # de revisión editorial vencido. El scheduled semanal sigue siendo
+        # bloqueante para detectar deriva.
+        continue-on-error: ${{ github.event_name == 'pull_request' }}
+        run: pnpm run check:editorial-timeliness
 
       - name: "🧩 Ensure URL check artifacts exist"
         if: always() && steps.urlcheck_ci.outcome == 'skipped'
