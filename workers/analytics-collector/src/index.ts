@@ -18,6 +18,8 @@ import type { KVNamespace, R2Bucket } from "@cloudflare/workers-types";
 import {
   ANALYTICS_SCHEMA_VERSION,
   isAnalyticsEventName,
+  LEGACY_EVENT_NAMES,
+  normalizeLegacyAnalyticsEvent,
   sanitizeAnalyticsPayload,
 } from "../../../src/contracts/analytics-events";
 
@@ -47,7 +49,7 @@ const MAX_STRING_LENGTH = 80;
 /** Concurrent KV reads per batch during export. */
 const KV_EXPORT_READ_BATCH_SIZE = 50;
 
-const LEGACY_EXPORT_EVENTS = new Set([
+export const LEGACY_EXPORT_EVENTS = new Set([
   "calculator_view",
   "calculator_start",
   "calculator_complete",
@@ -60,6 +62,20 @@ const LEGACY_EXPORT_EVENTS = new Set([
   "resume_click",
   "support_page_click",
   "official_source_click",
+]);
+
+/**
+ * Legacy event names with no successor in the v2 taxonomy. Their counters are
+ * excluded from v2 exports instead of failing artifact validation.
+ *
+ * Decisión del operador 2026-08-03: descartar legados sin mapeo en vez de
+ * inventar un canónico. resume_click es un KPI documentado (ux-backlog) cuyo
+ * transporte está desactivado desde e17013b7 — follow-up de producto si se
+ * quiere reintroducir.
+ */
+export const LEGACY_UNMAPPED_EXPORT_EVENTS = new Set([
+  "resume_click",
+  "scenario_action",
 ]);
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -94,9 +110,16 @@ export function validateEventPayload(body: unknown): ValidationResult {
   if (typeof raw.params !== "object") return { valid: false };
   if (Array.isArray(raw.params)) return { valid: false };
 
-  const sanitized = sanitizeAnalyticsPayload(
+  // Compatibility stays before the privacy boundary: normalize legacy
+  // pre-rename event names (e.g. next_best_step_click) before the strict
+  // v2 sanitization, so legacy emitters are not lost (contract design).
+  const normalized = normalizeLegacyAnalyticsEvent(
     raw.event,
     raw.params as Record<string, unknown>,
+  );
+  const sanitized = sanitizeAnalyticsPayload(
+    normalized.event,
+    normalized.params,
     { rejectUnknown: true },
   );
   return sanitized
@@ -536,26 +559,51 @@ export interface ExportRunSummary {
 // ── Aggregation ──────────────────────────────────────────────────────────────
 
 /**
+ * Resolves the v2 event name for a counter row.
+ *
+ * Legacy pre-rename counters (before e17013b7) persist in KV until the 35-day
+ * TTL expires: mapped names (LEGACY_EVENT_NAMES) normalize to the v2
+ * taxonomy; unmapped names (LEGACY_UNMAPPED_EXPORT_EVENTS or any future
+ * unknown) have no v2 successor and return null — they are excluded from
+ * exports rather than failing artifact validation.
+ */
+function resolveCounterEvent(event: string): string | null {
+  const canonical = LEGACY_EVENT_NAMES[event] ?? event;
+  return isAnalyticsEventName(canonical) ? canonical : null;
+}
+
+/**
  * Filters counters to the target date window and aggregates by
  * (date, event_name, calculator_slug, dimensions).
+ *
+ * v2 exports normalize legacy counter names to the new taxonomy so the
+ * artifact validates uniformly; legacy counters without a v2 successor are
+ * excluded from the aggregate (they must not fail the export). v1 exports
+ * keep the legacy names, matching LEGACY_EXPORT_EVENTS validation.
  */
 export function aggregateWindow(
   counters: TelemetryCounter[],
   from: string,
   to: string,
+  schemaVersion: number = ANALYTICS_SCHEMA_VERSION,
 ): ExportDataRow[] {
   const map = new Map<string, ExportDataRow>();
 
   for (const c of counters) {
     if (c.date < from || c.date > to) continue;
-    const rowKey = `${c.date}|${c.event}|${c.slug}|${c.dimensions}`;
+    const event =
+      schemaVersion === ANALYTICS_SCHEMA_VERSION
+        ? resolveCounterEvent(c.event)
+        : c.event;
+    if (event === null) continue;
+    const rowKey = `${c.date}|${event}|${c.slug}|${c.dimensions}`;
     const existing = map.get(rowKey);
     if (existing) {
       existing.count += c.count;
     } else {
       map.set(rowKey, {
         date: c.date,
-        event_name: c.event,
+        event_name: event,
         calculator_slug: c.slug,
         dimensions: c.dimensions,
         count: c.count,
@@ -736,10 +784,27 @@ export async function runExport(env: Env, week: string): Promise<ExportRunSummar
     counterPrefix,
     window,
   );
-  const aggregated = aggregateWindow(counters, window.from, window.to);
+  const aggregated = aggregateWindow(
+    counters,
+    window.from,
+    window.to,
+    schemaVersion,
+  );
+  const discarded =
+    schemaVersion === ANALYTICS_SCHEMA_VERSION
+      ? counters.reduce(
+          (sum, c) => sum + (resolveCounterEvent(c.event) === null ? 1 : 0),
+          0,
+        )
+      : 0;
   console.log(
     `[analytics-export] listed=${counters.length} aggregated=${aggregated.length} rows`,
   );
+  if (discarded > 0) {
+    console.log(
+      `[analytics-export] descartados=${discarded} filas sin taxonomía v2 (legados)`,
+    );
+  }
 
   const artifact = buildExportArtifact(week, window, aggregated, schemaVersion);
   const validation = validateExportArtifact(artifact);

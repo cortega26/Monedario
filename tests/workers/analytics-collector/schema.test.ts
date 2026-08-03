@@ -18,10 +18,16 @@ import {
   buildExportArtifact,
   validateExportArtifact,
   runExport,
+  LEGACY_EXPORT_EVENTS,
+  LEGACY_UNMAPPED_EXPORT_EVENTS,
   type TelemetryCounter,
   type ExportDataRow,
   type Env,
 } from "../../../workers/analytics-collector/src/index";
+import {
+  ANALYTICS_EVENT_ALLOWLIST,
+  LEGACY_EVENT_NAMES,
+} from "../../../src/contracts/analytics-events";
 
 class MockKV {
   store = new Map<string, string>();
@@ -289,6 +295,22 @@ describe("validateEventPayload", () => {
       params: { calculator_id: "conversor-utm", utm_campaign: "texto libre" },
     });
     expect(result.valid).toBe(false);
+  });
+
+  it("normaliza eventos legados (pre-rename) antes de la validación estricta", () => {
+    const result = validateEventPayload({
+      event: "next_best_step_click",
+      params: {
+        calculator_slug: "sueldo-liquido",
+        rule_id: "sl-to-apv-midhigh",
+      },
+    });
+    expect(result.valid).toBe(true);
+    expect(result.event).toBe("next_step_click");
+    expect(result.params).toEqual({
+      calculator_id: "sueldo-liquido",
+      next_step_id: "sl-to-apv-midhigh",
+    });
   });
 });
 
@@ -621,6 +643,54 @@ describe("aggregateWindow", () => {
     const slugs = result.map((r) => r.calculator_slug).sort();
     expect(slugs).toEqual(["tool-a", "tool-b"]);
   });
+
+  it("normaliza contadores legados y excluye los sin sucesor v2 (export v2)", () => {
+    const counters: TelemetryCounter[] = [
+      { date: "2026-07-27", event: "next_best_step_shown", slug: "tool-a", dimensions: "", count: 4 },
+      { date: "2026-07-28", event: "official_source_click", slug: "tool-a", dimensions: "", count: 3 },
+      { date: "2026-07-29", event: "resume_click", slug: "tool-a", dimensions: "", count: 2 },
+      { date: "2026-07-30", event: "calculator_view", slug: "tool-a", dimensions: "", count: 1 },
+    ];
+
+    const rows = aggregateWindow(counters, "2026-07-27", "2026-08-02");
+
+    expect(rows.map((r) => r.event_name).sort()).toEqual([
+      "calculator_view",
+      "next_step_shown",
+      "source_click",
+    ]);
+    expect(rows.find((r) => r.event_name === "resume_click")).toBeUndefined();
+
+    const artifact = buildExportArtifact(
+      "2026-W31",
+      { from: "2026-07-27", to: "2026-08-02" },
+      rows,
+      2,
+    );
+    expect(validateExportArtifact(artifact).valid).toBe(true);
+  });
+
+  it("preserva los nombres legados en agregados schema v1", () => {
+    const counters: TelemetryCounter[] = [
+      { date: "2026-07-13", event: "next_best_step_shown", slug: "tool-a", dimensions: "", count: 4 },
+      { date: "2026-07-14", event: "resume_click", slug: "tool-a", dimensions: "", count: 2 },
+    ];
+
+    const rows = aggregateWindow(counters, "2026-07-13", "2026-07-19", 1);
+
+    expect(rows.map((r) => r.event_name).sort()).toEqual([
+      "next_best_step_shown",
+      "resume_click",
+    ]);
+
+    const artifact = buildExportArtifact(
+      "2026-W29",
+      { from: "2026-07-13", to: "2026-07-19" },
+      rows,
+      1,
+    );
+    expect(validateExportArtifact(artifact).valid).toBe(true);
+  });
 });
 
 // ── Export artifact validation ─────────────────────────────────────────────
@@ -819,6 +889,51 @@ describe("runExport", () => {
 
     expect(legacy.totalEvents).toBe(11);
     expect(local.totalEvents).toBe(12);
+  });
+
+  it("exporta v2 normalizando legados, descartando los sin sucesor y logueando descartados", async () => {
+    const env = makeEnv({
+      "telemetry:v2:2026-07-27:next_best_step_shown:sueldo-liquido": "4",
+      "telemetry:v2:2026-07-28:official_source_click:sueldo-liquido": "3",
+      "telemetry:v2:2026-07-29:resume_click:sueldo-liquido": "2",
+      "telemetry:v2:2026-07-30:calculator_view:sueldo-liquido": "1",
+    });
+    env.SCHEMA_VERSION = "2";
+    env.EXPORT_TIMEZONE = "America/Santiago";
+    env.COUNTER_KEY_CUTOVER_AT = "2026-07-20T04:00:00Z";
+
+    const logSpy = vi.spyOn(console, "log").mockImplementation(() => undefined);
+    let summary: Awaited<ReturnType<typeof runExport>>;
+    let loggedDiscards = false;
+    try {
+      summary = await runExport(env, "2026-W31");
+      // Capturar antes de mockRestore(): restore limpia mock.calls.
+      loggedDiscards = logSpy.mock.calls.some((call) =>
+        String(call[0]).includes(
+          "descartados=1 filas sin taxonomía v2 (legados)",
+        ),
+      );
+    } finally {
+      logSpy.mockRestore();
+    }
+
+    // resume_click se descarta: 4+3+1 = 8 eventos en 3 filas
+    expect(summary).toMatchObject({
+      week: "2026-W31",
+      rows: 3,
+      totalEvents: 8,
+    });
+    expect(loggedDiscards).toBe(true);
+
+    const written = getMockR2(env).objects.get("analytics-exports/2026-W31.json");
+    expect(written).toBeDefined();
+    const artifact = JSON.parse(written ?? "") as ReturnType<typeof buildExportArtifact>;
+    expect(validateExportArtifact(artifact).valid).toBe(true);
+    expect(artifact.data.map((r) => r.event_name).sort()).toEqual([
+      "calculator_view",
+      "next_step_shown",
+      "source_click",
+    ]);
   });
 });
 
@@ -1035,4 +1150,23 @@ describe("manual export endpoint", () => {
       totalEvents: 5,
     });
   });
+});
+
+// ── Barrido de cobertura de eventos legados ─────────────────────────────────
+
+describe("cobertura de eventos legados (barrido)", () => {
+  it.each([...LEGACY_EXPORT_EVENTS].sort())(
+    "%s está en la allowlist nueva, mapeado al canónico v2 o declarado descartable",
+    (name) => {
+      const inAllowlist = Object.hasOwn(ANALYTICS_EVENT_ALLOWLIST, name);
+      const mapped = Object.hasOwn(LEGACY_EVENT_NAMES, name);
+      const discarded = LEGACY_UNMAPPED_EXPORT_EVENTS.has(name);
+      expect(inAllowlist || mapped || discarded).toBe(true);
+      if (mapped) {
+        expect(
+          Object.hasOwn(ANALYTICS_EVENT_ALLOWLIST, LEGACY_EVENT_NAMES[name]),
+        ).toBe(true);
+      }
+    },
+  );
 });
