@@ -9,14 +9,17 @@ overrides:
   qs: '>=6.15.2'
   esbuild: '>=0.28.1'
   shiki: 4.3.1
-  js-yaml@^3.13.1: 4.2.0
-  js-yaml@^4.1.1: 4.2.0
+  js-yaml@^3.13.1: 4.3.0
+  js-yaml@^4.1.1: 4.3.0
   uuid: '>=11.1.1'
 minimumReleaseAge: 10080
 # Transitional, version-pinned exceptions for packages already trusted in the
 # lockfile before the seven-day policy was enabled. Future releases remain
 # subject to minimumReleaseAge and these entries can be removed after aging out.
 minimumReleaseAgeExclude:
+  # Seguridad: brace-expansion 1.1.17 (fix CVE DoS, publicada 2026-07-29).
+  # Transitoria — removible cuando cumpla los 7 días (desde 2026-08-05).
+  - 'brace-expansion@1.1.17'
   - '@bruits/satteri-darwin-arm64@0.9.4'
   - '@bruits/satteri-darwin-x64@0.9.4'
   - '@bruits/satteri-linux-arm64-gnu@0.9.4'
