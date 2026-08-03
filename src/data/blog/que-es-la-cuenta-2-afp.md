@@ -28,6 +28,10 @@ articleLead:
       href: "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9930.html"
     - label: "Superintendencia de Pensiones - giros Cuenta 2"
       href: "https://www.spensiones.cl/portal/institucional/594/w3-article-2906.html"
+volatileData:
+  - id: "pensions.afp.worker_mandatory_contribution"
+    sync: strict
+    expectedValue: 10
 reviewPolicy:
   cadenceLabel: monthly
   maxDays: 30
