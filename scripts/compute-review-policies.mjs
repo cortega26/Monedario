@@ -2,6 +2,7 @@ import { readdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { dump, load } from "js-yaml";
+import * as prettier from "prettier";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const BLOG_DIR = path.resolve(__dirname, "../src/data/blog");
@@ -179,13 +180,23 @@ async function main() {
     }
 
     const updatedDateValue = bumpUpdatedDate ? `${todayStr}T00:00:00Z` : null;
-    const updatedContent = injectReviewPolicy(
+    const rawContent = injectReviewPolicy(
       content,
       yamlStr,
       end,
       computed,
       updatedDateValue
     );
+    // js-yaml's dump() quotes ambiguous scalars (e.g. computedAt dates) with
+    // single quotes, which disagrees with this repo's Prettier config
+    // (singleQuote: false) and fails the pre-commit prettier --check gate.
+    // Formatting through Prettier here keeps the generator's output stable
+    // against any future formatting-rule drift, not just today's mismatch.
+    const prettierConfig = await prettier.resolveConfig(filePath);
+    const updatedContent = await prettier.format(rawContent, {
+      ...prettierConfig,
+      filepath: filePath,
+    });
     writeFileSync(filePath, updatedContent, "utf-8");
     const dateNote = bumpUpdatedDate ? ` + updatedDate→${todayStr}` : "";
     console.log(
