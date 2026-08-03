@@ -15,8 +15,11 @@ import {
   checkQueryStringRejected,
   checkR2Freshness,
   EXPECTED_CRONS,
+  MAX_WAIT_MS,
+  parseArgs,
   QUERY_STRING_DECOY,
   R2_BUCKET,
+  R2_REFERENCE_SKEW_MS,
   verifyDeploymentParity,
   WORKER_NAME,
 } from "../../scripts/data-signals/verify-analytics-worker-deployment.mjs";
@@ -429,6 +432,78 @@ describe("checkR2Freshness", () => {
   });
 });
 
+describe("parseArgs (CLI)", () => {
+  /** Ejecuta fn esperando que llame process.exit(2) por argumento inválido. */
+  function expectExitCode2(fn: () => void) {
+    const exitSpy = vi
+      .spyOn(process, "exit")
+      .mockImplementation((() => {
+        throw new Error("process.exit");
+      }) as never);
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    try {
+      expect(fn).toThrow("process.exit");
+      expect(exitSpy).toHaveBeenCalledWith(2);
+    } finally {
+      exitSpy.mockRestore();
+      errorSpy.mockRestore();
+    }
+  }
+
+  it("reconoce --help y -h", () => {
+    expect(parseArgs(["--help"]).help).toBe(true);
+    expect(parseArgs(["-h"]).help).toBe(true);
+  });
+
+  it("parsea los argumentos válidos", () => {
+    const opts = parseArgs([
+      "--week=2026-W31",
+      "--smoke-export",
+      "--deployed-not-before=2026-08-03T10:00:00Z",
+      "--json",
+    ]);
+    expect(opts.week).toBe("2026-W31");
+    expect(opts.smokeExport).toBe(true);
+    expect(opts.deployedNotBefore).toBe("2026-08-03T10:00:00Z");
+    expect(opts.json).toBe(true);
+  });
+
+  it("usa defaults cuando no hay argumentos", () => {
+    const opts = parseArgs([]);
+    expect(opts.week).toBeNull();
+    expect(opts.smokeExport).toBe(false);
+    expect(opts.deployedNotBefore).toBeNull();
+    expect(opts.maxWaitMs).toBe(MAX_WAIT_MS);
+    expect(opts.json).toBe(false);
+    expect(opts.help).toBe(false);
+  });
+
+  it("acepta semanas ISO 01-53 y rechaza semanas inexistentes", () => {
+    expect(parseArgs(["--week=2026-W01"]).week).toBe("2026-W01");
+    expect(parseArgs(["--week=2026-W53"]).week).toBe("2026-W53");
+
+    for (const bad of ["2026-W00", "2026-W54", "2026-W99", "2026-W1", "2026-31", "malo"]) {
+      expectExitCode2(() => parseArgs([`--week=${bad}`]));
+    }
+  });
+
+  it("rechaza --deployed-not-before no parseable", () => {
+    expectExitCode2(() => parseArgs(["--deployed-not-before=garbage"]));
+  });
+
+  it("rechaza --max-wait-minutes inválidos (0 o no numérico) y acota el máximo", () => {
+    expectExitCode2(() => parseArgs(["--max-wait-minutes=0"]));
+    expectExitCode2(() => parseArgs(["--max-wait-minutes=abc"]));
+
+    // 30 min se acotan a la ventana máxima de 15 min del verifier.
+    expect(parseArgs(["--max-wait-minutes=30"]).maxWaitMs).toBe(MAX_WAIT_MS);
+  });
+
+  it("rechaza argumentos desconocidos", () => {
+    expectExitCode2(() => parseArgs(["--bogus"]));
+  });
+});
+
 describe("verifyDeploymentParity — escenarios completos", () => {
   it("paridad completa OK (estado actual: version, cron, auth y R2 frescos)", async () => {
     const fetch = makeFakeFetch([
@@ -451,6 +526,30 @@ describe("verifyDeploymentParity — escenarios completos", () => {
       "smoke-export-autenticado",
       "r2-frescura",
     ]);
+  });
+
+  it("usa una referencia R2 con margen de 2 s en el smoke (evita 304 falso por resolución de 1 s de HTTP dates)", async () => {
+    const fetch = makeFakeFetch([
+      { match: (u) => u.pathname.endsWith("/deployments"), handler: () => deploymentsResponse("2026-08-03T11:00:00Z") },
+      { match: (u) => u.pathname.endsWith("/schedules"), handler: () => schedulesResponse(EXPECTED_CRONS) },
+      { match: (u) => u.searchParams.has("secret"), handler: () => jsonResponse(401, { error: "missing_secret" }) },
+      { match: (u) => u.pathname.endsWith("/export"), handler: () => jsonResponse(200, { week: WEEK, window: { from: "2026-07-27", to: "2026-08-02" }, rows: 3, totalEvents: 10 }) },
+      {
+        match: (u) => u.pathname.includes("/r2/buckets/"),
+        handler: (_u, init) => {
+          // now() congelado en 2026-08-03T12:00:00Z → referencia = now − 2 s.
+          expect(init?.headers["If-Modified-Since"]).toBe(
+            new Date(Date.parse("2026-08-03T12:00:00Z") - R2_REFERENCE_SKEW_MS).toUTCString(),
+          );
+          return r2Response(200);
+        },
+      },
+    ]);
+    const result = await verifyDeploymentParity(makeDeps(fetch), baseConfig({
+      smokeExport: true,
+      exportSecret: EXPORT_SECRET,
+    }));
+    expect(result.ok).toBe(true);
   });
 
   it("falla el smoke sin EXPORT_SECRET", async () => {

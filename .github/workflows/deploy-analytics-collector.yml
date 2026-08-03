@@ -50,7 +50,11 @@ jobs:
   deploy:
     name: Deploy y verificar paridad
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # 30 min = pasos de deploy (~5 min) + ventana completa del verifier
+    # (polling de propagación del cron hasta 15 min) con holgura. 15 min
+    # cortaría el job antes de agotar la ventana de propagación legítima y el
+    # run fallaría por timeout en vez de por paridad.
+    timeout-minutes: 30
     env:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
@@ -97,6 +101,10 @@ jobs:
       - name: "🗓️ Resolver semana"
         id: week
         env:
+          # TZ alineada con EXPORT_TIMEZONE del worker (America/Santiago): en el
+          # borde lunes 00:00-04:00 UTC el runner (UTC) calcularía una semana
+          # completa anterior distinta de la que el worker considera "anterior".
+          TZ: America/Santiago
           INPUT_WEEK: ${{ github.event.inputs.week }}
         run: |
           if [ -n "$INPUT_WEEK" ]; then

@@ -68,6 +68,11 @@ export const EXPECTED_CRONS = ["57 7 * * MON"];
 export const POLL_INTERVAL_MS = 20_000;
 export const MAX_WAIT_MS = 15 * 60_000;
 export const VERSION_SLACK_MS = 15 * 60_000;
+// Margen de la referencia R2 en el smoke: los HTTP dates se truncan a
+// segundos, así que si el PUT del smoke y el GET del chequeo caen en el mismo
+// segundo que now(), If-Modified-Since haría parecer el objeto "no modificado"
+// → 304 falso en un deploy correcto. 2 s cubren la resolución de 1 s con holgura.
+export const R2_REFERENCE_SKEW_MS = 2_000;
 export const QUERY_STRING_DECOY = "query-string-decoy-not-a-credential";
 
 // ── Helpers puros ────────────────────────────────────────────────────────────
@@ -425,7 +430,10 @@ export async function verifyDeploymentParity(deps, config) {
         detail: "EXPORT_SECRET requerido para --smoke-export",
       });
     } else {
-      const smokeStartedAt = now();
+      // Referencia con margen R2_REFERENCE_SKEW_MS (ver constante): evita el
+      // 304 falso por truncamiento a segundos de los HTTP dates cuando el
+      // chequeo R2 corre inmediatamente después del smoke.
+      const smokeStartedAt = new Date(now().getTime() - R2_REFERENCE_SKEW_MS);
       results.push(
         await runCheck(deps, "smoke-export-autenticado", () =>
           checkAuthenticatedExport(
@@ -516,7 +524,7 @@ algún chequeo falla; exit 2 en error de uso o de configuración.
   process.exit(code);
 }
 
-function parseArgs(argv) {
+export function parseArgs(argv) {
   const opts = {
     week: null,
     smokeExport: false,
@@ -531,8 +539,10 @@ function parseArgs(argv) {
     if (arg === "--json") { opts.json = true; continue; }
     if (arg.startsWith("--week=")) {
       const val = arg.slice("--week=".length);
-      if (!/^\d{4}-W\d{2}$/.test(val)) {
-        console.error(`[verify-analytics-worker-deployment] Formato de --week inválido: "${val}". Se espera YYYY-Www.`);
+      // Semanas ISO válidas: 01-53. Evita que una semana inexistente (p. ej.
+      // 2026-W99) pase la validación y genere un artefacto R2 basura.
+      if (!/^\d{4}-W(0[1-9]|[1-4]\d|5[0-3])$/.test(val)) {
+        console.error(`[verify-analytics-worker-deployment] Semana ISO inválida (01-53): "${val}". Se espera YYYY-Www.`);
         process.exit(2);
       }
       opts.week = val;

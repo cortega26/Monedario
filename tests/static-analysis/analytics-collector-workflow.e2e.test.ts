@@ -61,7 +61,10 @@ describe("deploy-analytics-collector workflow — deployment parity", () => {
   it("corre en ubuntu-latest con timeout acotado (runner self-hosted retirado)", () => {
     const deploy = workflow.jobs["deploy"];
     expect(deploy["runs-on"]).toBe("ubuntu-latest");
-    expect(deploy["timeout-minutes"]).toBeLessThanOrEqual(15);
+    // 30 min: pasos de deploy (~5 min) + ventana completa del verifier
+    // (hasta 15 min de polling de propagación del cron) con holgura. Un tope
+    // menor cortaría el job antes de agotar la ventana de propagación.
+    expect(deploy["timeout-minutes"]).toBeLessThanOrEqual(30);
     expect(source).not.toContain("ACTIONS_RUNNER_LABEL");
   });
 
