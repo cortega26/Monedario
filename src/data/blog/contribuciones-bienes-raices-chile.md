@@ -44,13 +44,11 @@ articleLead:
     - "Las tasas y exenciones se actualizan; verifica los valores vigentes en el SII."
     - "No reemplaza asesoría tributaria específica para tu propiedad."
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: quarterly
+  maxDays: 90
   dataTriggers: []
   derivationFactors:
-    - category:impuestos
-    - validAsOf
-    - officialSources
+    - registry:categoryPolicies.impuestos
   computedAt: "2026-05-06"
 ---
 

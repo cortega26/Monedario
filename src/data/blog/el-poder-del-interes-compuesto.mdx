@@ -42,13 +42,11 @@ articleLead:
     - "Los montos son nominales, no ajustados por inflación."
     - "No modela costos de transacción ni impuestos."
 reviewPolicy:
-  cadenceLabel: quarterly
-  maxDays: 45
+  cadenceLabel: semiannual
+  maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - category:ahorro-inversion
-    - validAsOf
-    - officialSources
+    - registry:categoryPolicies.ahorro-inversion
   computedAt: "2026-05-06"
 ---
 

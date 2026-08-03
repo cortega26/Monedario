@@ -44,12 +44,11 @@ articleLead:
     - "No cubre AFP, cotizaciones de salud ni remesas."
     - "Los procedimientos de trámites cambian; verifica en la fuente oficial antes de actuar."
 reviewPolicy:
-  cadenceLabel: quarterly
-  maxDays: 60
+  cadenceLabel: semiannual
+  maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - validAsOf
-    - officialSources
+    - registry:categoryPolicies.general
   computedAt: "2026-07-01"
 ---
 

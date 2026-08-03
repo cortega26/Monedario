@@ -40,13 +40,11 @@ articleLead:
     - "No calcula por sí sola finiquitos ni indemnizaciones."
     - "No determina la validez de descuentos discutidos judicialmente."
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: semiannual
+  maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - category:empleo-ingresos
-    - validAsOf
-    - officialSources
+    - registry:categoryPolicies.empleo-ingresos
   computedAt: "2026-05-06"
 ---
 

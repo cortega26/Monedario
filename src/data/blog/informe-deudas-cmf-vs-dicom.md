@@ -38,12 +38,11 @@ articleLead:
     - "No confirma por sí solo protestos o morosidades fuera del sistema financiero supervisado."
     - "No resuelve disputas por fraude sin reclamo ante la institución acreedora."
 reviewPolicy:
-  cadenceLabel: quarterly
-  maxDays: 60
+  cadenceLabel: annual
+  maxDays: 365
   dataTriggers: []
   derivationFactors:
-    - validAsOf
-    - officialSources
+    - registry:categoryPolicies.deuda-credito
   computedAt: "2026-05-06"
 ---
 

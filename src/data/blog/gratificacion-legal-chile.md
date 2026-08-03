@@ -41,13 +41,11 @@ articleLead:
     - "Los valores del IMM se actualizan; verifica el vigente en Ministerio del Trabajo."
     - "No cubre regímenes especiales ni contratos sujetos a estatutos particulares."
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: quarterly
+  maxDays: 90
   dataTriggers: []
   derivationFactors:
-    - category:empleo-ingresos
-    - validAsOf
-    - officialSources
+    - registry:slugOverrides.gratificacion-legal-chile
   computedAt: "2026-05-06"
 ---
 

@@ -20,11 +20,11 @@ featured: false
 draft: false
 heroImage: /images/hero/estafas-financieras-chile-vishing-smishing-marketplace.avif
 reviewPolicy:
-  cadenceLabel: quarterly
-  maxDays: 45
+  cadenceLabel: annual
+  maxDays: 365
   dataTriggers: []
   derivationFactors:
-    - category:seguridad-financiera
+    - registry:categoryPolicies.seguridad-financiera
   computedAt: "2026-05-06"
 ---
 

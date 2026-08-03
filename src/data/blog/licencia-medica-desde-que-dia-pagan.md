@@ -20,11 +20,11 @@ featured: false
 draft: false
 heroImage: /images/hero/licencia-medica-desde-que-dia-pagan.avif
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: semiannual
+  maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - category:empleo-ingresos
+    - registry:categoryPolicies.empleo-ingresos
   computedAt: "2026-05-06"
 ---
 

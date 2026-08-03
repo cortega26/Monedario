@@ -39,13 +39,11 @@ articleLead:
     - "No define por sí sola exenciones legales o por monto."
     - "No reemplaza asesoría tributaria en casos mixtos."
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: quarterly
+  maxDays: 90
   dataTriggers: []
   derivationFactors:
-    - category:impuestos
-    - validAsOf
-    - officialSources
+    - registry:slugOverrides.boleta-honorarios-2026-retencion-cobertura
   computedAt: "2026-05-06"
 ---
 

@@ -39,12 +39,11 @@ articleLead:
     - "No reemplaza asesoría financiera personalizada."
     - "Las características operativas de cada instrumento pueden cambiar; verifica directamente con tu banco."
 reviewPolicy:
-  cadenceLabel: quarterly
-  maxDays: 60
+  cadenceLabel: semiannual
+  maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - validAsOf
-    - officialSources
+    - registry:categoryPolicies.general
   computedAt: "2026-05-12"
 ---
 

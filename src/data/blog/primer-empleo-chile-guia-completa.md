@@ -46,13 +46,11 @@ faqs:
   - q: "¿Debo firmar el contrato el primer día?"
     a: "No es obligatorio firmar el primer día, pero sí debes revisar el documento antes de hacerlo. Pide una copia en borrador, léela con calma y consulta dudas antes de estampar tu firma. Una vez firmado, las condiciones quedan vigentes hasta que se acuerde una modificación por escrito."
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: semiannual
+  maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - category:empleo-ingresos
-    - validAsOf
-    - officialSources
+    - registry:categoryPolicies.empleo-ingresos
   computedAt: "2026-05-06"
 ---
 

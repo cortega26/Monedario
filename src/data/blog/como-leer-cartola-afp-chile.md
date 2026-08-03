@@ -49,13 +49,11 @@ faqs:
   - q: "¿Dónde puedo reclamar si hay un error?"
     a: "Primero contacta a tu AFP directamente (portal web, fono de atención, sucursal). Si no resuelve en 15 días hábiles, presenta un reclamo en SP Atiende de la Superintendencia de Pensiones en spensiones.cl. El plazo para reclamar ante la SP es de hasta 4 años desde el período en cuestión."
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: semiannual
+  maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - category:prevision
-    - validAsOf
-    - officialSources
+    - registry:categoryPolicies.prevision
   computedAt: "2026-05-06"
 ---
 

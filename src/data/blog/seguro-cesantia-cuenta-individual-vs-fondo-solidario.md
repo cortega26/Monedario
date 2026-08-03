@@ -42,13 +42,11 @@ articleLead:
     - "No reemplaza revisar continuidad y causal real."
     - "No garantiza acceso automático al FCS."
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: semiannual
+  maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - category:empleo-ingresos
-    - validAsOf
-    - officialSources
+    - registry:categoryPolicies.empleo-ingresos
   computedAt: "2026-05-06"
 ---
 

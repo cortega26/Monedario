@@ -59,12 +59,11 @@ faqs:
   - q: "¿Cómo afecta el IPC a la UTM?"
     a: "La UTM se reajusta cada mes según la variación del IPC del mes anterior. Si el IPC fue positivo (inflación), la UTM sube; si fue negativo (deflación), puede bajar o mantenerse."
 reviewPolicy:
-  cadenceLabel: quarterly
-  maxDays: 60
+  cadenceLabel: semiannual
+  maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - validAsOf
-    - officialSources
+    - registry:categoryPolicies.general
   computedAt: "2026-05-06"
 ---
 

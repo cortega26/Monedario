@@ -29,13 +29,11 @@ articleLead:
     - label: "Superintendencia de Pensiones - giros Cuenta 2"
       href: "https://www.spensiones.cl/portal/institucional/594/w3-article-2906.html"
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: semiannual
+  maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - category:prevision
-    - validAsOf
-    - officialSources
+    - registry:slugOverrides.que-es-la-cuenta-2-afp
   computedAt: "2026-05-06"
 ---
 

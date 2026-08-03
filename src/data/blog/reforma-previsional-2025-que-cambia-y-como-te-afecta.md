@@ -43,13 +43,11 @@ articleLead:
     - "No calcula pensión final ni proyección completa."
     - "No debe leerse como si todos los hitos ya estuvieran vigentes."
 reviewPolicy:
-  cadenceLabel: monthly
-  maxDays: 30
+  cadenceLabel: semiannual
+  maxDays: 180
   dataTriggers: []
   derivationFactors:
-    - category:prevision
-    - validAsOf
-    - officialSources
+    - registry:slugOverrides.reforma-previsional-2025-que-cambia-y-como-te-afecta
   computedAt: "2026-05-06"
 ---
 

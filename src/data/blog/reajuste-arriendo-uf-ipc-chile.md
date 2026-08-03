@@ -25,10 +25,11 @@ volatileData:
   - id: "economic.ipc.monthly_variation"
     sync: reference
 reviewPolicy:
-  cadenceLabel: semiannual
-  maxDays: 180
+  cadenceLabel: monthly
+  maxDays: 30
   dataTriggers: []
-  derivationFactors: []
+  derivationFactors:
+    - registry:slugOverrides.reajuste-arriendo-uf-ipc-chile
   computedAt: "2026-05-06"
 ---
 

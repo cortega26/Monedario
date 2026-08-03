@@ -44,13 +44,11 @@ articleLead:
     - "No proyecta portafolios con reinversión de largo plazo."
     - "No reemplaza asesoría tributaria individual."
 reviewPolicy:
-  cadenceLabel: quarterly
-  maxDays: 45
+  cadenceLabel: monthly
+  maxDays: 30
   dataTriggers: []
   derivationFactors:
-    - category:ahorro-inversion
-    - validAsOf
-    - officialSources
+    - registry:slugOverrides.deposito-a-plazo-uf-vs-pesos
   computedAt: "2026-05-14"
 ---
 

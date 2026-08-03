@@ -2,6 +2,10 @@ import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { load as internalSafeLoad, JSON_SCHEMA } from "js-yaml";
+import {
+  loadEditorialTimelinessPolicy,
+  resolveEditorialTimelinessPolicy,
+} from "./lib/editorial-timeliness-policy.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -46,12 +50,6 @@ const REPORT_PATH = path.join(
 const TODAY = normalizeDateInput(
   process.env.EDITORIAL_TIMELINESS_TODAY || new Date().toISOString()
 );
-const SOURCE_MODES = new Set([
-  "manual_review",
-  "manual_review_with_official_sources",
-  "runtime_snapshot_plus_editorial_review",
-  "evergreen",
-]);
 const VOLATILE_SYNC_MODES = new Set(["reference", "strict"]);
 
 function normalizeDateInput(value) {
@@ -99,46 +97,6 @@ function listContentFiles(dirPath) {
 
 function readJson(filePath) {
   return JSON.parse(readFileSync(filePath, "utf8"));
-}
-
-function loadPolicy() {
-  const raw = readJson(POLICY_PATH);
-  if (!Number.isInteger(raw.defaultCadenceDays) || raw.defaultCadenceDays <= 0) {
-    throw new Error("editorial timeliness policy requires defaultCadenceDays > 0.");
-  }
-  if (!SOURCE_MODES.has(raw.defaultSourceMode)) {
-    throw new Error(`Unknown defaultSourceMode "${raw.defaultSourceMode}".`);
-  }
-  if (raw.defaultSourceMode === "evergreen") {
-    throw new Error(
-      '"evergreen" sourceMode is not allowed as defaultSourceMode; it must be set per-slug via slugOverrides.'
-    );
-  }
-  for (const [category, policy] of Object.entries(raw.categoryPolicies ?? {})) {
-    if (!Number.isInteger(policy.cadenceDays) || policy.cadenceDays <= 0) {
-      throw new Error(`Category "${category}" requires cadenceDays > 0.`);
-    }
-    if (!SOURCE_MODES.has(policy.sourceMode)) {
-      throw new Error(`Category "${category}" has unknown sourceMode "${policy.sourceMode}".`);
-    }
-    if (policy.sourceMode === "evergreen") {
-      throw new Error(
-        `Category "${category}" cannot use "evergreen" sourceMode; use a slugOverride instead.`
-      );
-    }
-  }
-  for (const [slug, override] of Object.entries(raw.slugOverrides ?? {})) {
-    if (
-      override.cadenceDays !== undefined &&
-      (!Number.isInteger(override.cadenceDays) || override.cadenceDays <= 0)
-    ) {
-      throw new Error(`Slug override "${slug}" requires cadenceDays > 0 when present.`);
-    }
-    if (override.sourceMode && !SOURCE_MODES.has(override.sourceMode)) {
-      throw new Error(`Slug override "${slug}" has unknown sourceMode "${override.sourceMode}".`);
-    }
-  }
-  return raw;
 }
 
 function loadVolatileRegistry() {
@@ -193,32 +151,6 @@ function loadEconomicSnapshotDate() {
   }
 }
 
-function resolveEffectivePolicy(frontmatter, slug, policy) {
-  const categoryPolicy = policy.categoryPolicies?.[frontmatter.category] ?? {};
-  const slugOverride = policy.slugOverrides?.[slug] ?? {};
-
-  const cadenceDays =
-    slugOverride.cadenceDays ??
-    categoryPolicy.cadenceDays ??
-    policy.defaultCadenceDays;
-
-  const policySource =
-    slugOverride.cadenceDays !== undefined || slugOverride.sourceMode !== undefined
-      ? `slugOverrides.${slug}`
-      : categoryPolicy.cadenceDays !== undefined || categoryPolicy.sourceMode !== undefined
-        ? `categoryPolicies.${frontmatter.category}`
-        : "defaultPolicy";
-
-  return {
-    cadenceDays,
-    sourceMode:
-      slugOverride.sourceMode ??
-      categoryPolicy.sourceMode ??
-      policy.defaultSourceMode,
-    policySource,
-  };
-}
-
 function normalizeExpectedValue(value) {
   if (typeof value === "number") return value;
   if (typeof value === "string") {
@@ -256,7 +188,7 @@ function buildRecord(filePath, frontmatter, policy, volatileRegistry, volatileSn
       ? frontmatter.slug.trim()
       : path.basename(filePath, path.extname(filePath));
   const relativePath = path.relative(REPO_ROOT, filePath).replace(/\\/g, "/");
-  const effectivePolicy = resolveEffectivePolicy(frontmatter, slug, policy);
+  const effectivePolicy = resolveEditorialTimelinessPolicy(frontmatter, slug, policy);
   const validAsOf = parseOptionalDate(frontmatter.articleLead?.validAsOf);
   const updatedDate = parseOptionalDate(frontmatter.updatedDate);
   const pubDate = parseOptionalDate(frontmatter.pubDate);
@@ -345,7 +277,7 @@ function writeReport(report) {
 }
 
 function main() {
-  const policy = loadPolicy();
+  const policy = loadEditorialTimelinessPolicy(POLICY_PATH);
   const volatileRegistry = loadVolatileRegistry();
   const volatileSnapshot = loadVolatileSnapshot();
   const files = listContentFiles(BLOG_DIR);

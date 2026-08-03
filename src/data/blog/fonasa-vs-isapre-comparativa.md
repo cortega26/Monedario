@@ -36,13 +36,11 @@ articleLead:
     - "No sustituye asesoría médica ni revisión del contrato del plan."
     - "Los precios de planes Isapre varían por edad y carga familiar."
 reviewPolicy:
-  cadenceLabel: quarterly
-  maxDays: 45
+  cadenceLabel: annual
+  maxDays: 365
   dataTriggers: []
   derivationFactors:
-    - category:seguridad-financiera
-    - validAsOf
-    - officialSources
+    - registry:categoryPolicies.seguridad-financiera
   computedAt: "2026-05-06"
 ---
 
