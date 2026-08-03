@@ -802,7 +802,7 @@ export async function runExport(env: Env, week: string): Promise<ExportRunSummar
   );
   if (discarded > 0) {
     console.log(
-      `[analytics-export] descartados=${discarded} filas sin taxonomía v2 (legados)`,
+      `[analytics-export] descartados=${discarded} contadores sin taxonomía v2 (legados)`,
     );
   }
 

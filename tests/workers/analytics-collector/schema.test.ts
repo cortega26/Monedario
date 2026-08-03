@@ -910,7 +910,7 @@ describe("runExport", () => {
       // Capturar antes de mockRestore(): restore limpia mock.calls.
       loggedDiscards = logSpy.mock.calls.some((call) =>
         String(call[0]).includes(
-          "descartados=1 filas sin taxonomía v2 (legados)",
+          "descartados=1 contadores sin taxonomía v2 (legados)",
         ),
       );
     } finally {
