@@ -64,16 +64,6 @@ const utmDisplay = economicParameters.utm.toLocaleString("es-CL", {
   maximumFractionDigits: 0,
 });
 const utmDateDisplay = formatEconomicDate(utmLastUpdated);
-const utmMonthYearDisplay = new Intl.DateTimeFormat("es-CL", {
-  month: "short",
-  year: "numeric",
-  timeZone: "UTC",
-}).format(new Date(`${utmLastUpdated}T00:00:00.000Z`));
-// Search demand for this page is dominated by "value right now" queries (utm
-// hoy, valor utm) — the title/description surface the live figure so the SERP
-// snippet answers that intent instead of a generic "converter" label.
-const conversorUtmTitle = `UTM hoy: $${utmDisplay} (SII) — Conversor a pesos chilenos | Monedario`;
-const conversorUtmDescription = `UTM hoy vale $${utmDisplay} según el SII (actualizado ${utmMonthYearDisplay}). Convierte cualquier monto UTM a pesos chilenos: multas, impuestos y trámites.`;
 
 const utaDisplay = economicParameters.uta
   ? "$" + Math.round(economicParameters.uta).toLocaleString("es-CL")
@@ -126,10 +116,13 @@ const conversorUtmFaqs = [
 ];
 ---
 
-<Layout title={conversorUtmTitle} description={conversorUtmDescription}>
+<Layout
+  title="Conversor UTM a Pesos Chilenos: valor de hoy del SII | Monedario"
+  description="Convierte cualquier monto en UTM a pesos chilenos al valor oficial del SII de hoy: multas, impuestos y trámites. Incluye conversión inversa (pesos a UTM) y tabla de referencia."
+>
   <CalculatorJsonLd
     name="Conversor UTM a Pesos Chilenos"
-    description={conversorUtmDescription}
+    description="Convierte cualquier monto en UTM a pesos chilenos al valor oficial del SII de hoy: multas, impuestos y trámites. Incluye conversión inversa (pesos a UTM) y tabla de referencia."
     faqs={conversorUtmFaqs}
     dateModified={utmLastUpdated}
   />
