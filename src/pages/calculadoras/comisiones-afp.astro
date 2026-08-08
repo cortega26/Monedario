@@ -14,6 +14,7 @@ import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getPath } from "@/utils/getPath";
 import { AFP_COMMISSIONS_PERCENT } from "@/config/afpCommissions";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import GlossaryContentWrapper from "@/components/GlossaryContentWrapper.astro";
 import { afpWorkedExample } from "@/application/use-cases/CompareAfpCommissions.methodology";
 
 const simuladorJubilacionPath = getPath("/calculadoras/simulador-jubilacion/");
@@ -288,7 +289,7 @@ const calculatorNextStepItems = [
             <div>
               <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
               <dd class="text-sm leading-relaxed text-secondary">
-                {faq.answer}
+                <GlossaryContentWrapper>{faq.answer}</GlossaryContentWrapper>
               </dd>
             </div>
           ))

@@ -17,6 +17,7 @@ import { getEconomicParameters } from "@/application/use-cases/GetEconomicParame
 import { getPath } from "@/utils/getPath";
 import { AFP_COMMISSIONS_PERCENT } from "@/config/afpCommissions";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import GlossaryContentWrapper from "@/components/GlossaryContentWrapper.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 import { calculateApvComparison } from "@/application/use-cases/CalculateApvComparison";
@@ -480,7 +481,7 @@ const calculatorNextStepItems = [
             <div>
               <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
               <dd class="text-sm leading-relaxed text-secondary">
-                {faq.answer}
+                <GlossaryContentWrapper>{faq.answer}</GlossaryContentWrapper>
               </dd>
             </div>
           ))

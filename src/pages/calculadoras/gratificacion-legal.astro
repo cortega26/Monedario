@@ -13,6 +13,7 @@ import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { getPath } from "@/utils/getPath";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import GlossaryContentWrapper from "@/components/GlossaryContentWrapper.astro";
 import {
   DEFAULT_IMM,
   DEFAULT_IMM_EFFECTIVE_DATE,
@@ -335,7 +336,7 @@ const gratiFaqs = [
             <div>
               <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
               <dd class="text-sm leading-relaxed text-secondary">
-                {faq.answer}
+                <GlossaryContentWrapper>{faq.answer}</GlossaryContentWrapper>
               </dd>
             </div>
           ))

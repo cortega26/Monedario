@@ -21,6 +21,7 @@ import CalculatorDataFreshness from "@/components/calculator/CalculatorDataFresh
 import { buildUtmWorkedExample } from "@/application/use-cases/ConvertUtm.methodology";
 import { evaluateCriticalMonthlyFreshness } from "@/utils/economicFreshness";
 import UtmPostResultActions from "@/components/UtmPostResultActions.astro";
+import GlossaryContentWrapper from "@/components/GlossaryContentWrapper.astro";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 const utmArticlePath = getPath("/posts/utm-chile-que-es-como-funciona/");
@@ -364,7 +365,7 @@ const conversorUtmFaqs = [
             <div>
               <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
               <dd class="text-sm leading-relaxed text-secondary">
-                {faq.answer}
+                <GlossaryContentWrapper>{faq.answer}</GlossaryContentWrapper>
               </dd>
             </div>
           ))

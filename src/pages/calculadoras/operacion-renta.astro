@@ -17,6 +17,7 @@ import { simulateOperacionRenta } from "@/application/use-cases/SimulateOperacio
 import { operacionRentaWorkedExample } from "@/application/use-cases/SimulateOperacionRenta.methodology";
 import { getPath } from "@/utils/getPath";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import GlossaryContentWrapper from "@/components/GlossaryContentWrapper.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 import CalculatorDataFreshness from "@/components/calculator/CalculatorDataFreshness.astro";
@@ -408,7 +409,7 @@ const operacionRentaFaqs = [
             <div>
               <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
               <dd class="text-sm leading-relaxed text-secondary">
-                {faq.answer}
+                <GlossaryContentWrapper>{faq.answer}</GlossaryContentWrapper>
               </dd>
             </div>
           ))

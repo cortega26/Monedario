@@ -15,6 +15,7 @@ import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParamete
 import { getPath } from "@/utils/getPath";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import CalculatorDataFreshness from "@/components/calculator/CalculatorDataFreshness.astro";
+import GlossaryContentWrapper from "@/components/GlossaryContentWrapper.astro";
 import { formatEconomicDate } from "@/domain/economic/economicSourcePresentation";
 import { ufWorkedExample } from "@/application/use-cases/ConvertUf.methodology";
 import ufHistoricoRaw from "@/data/economic-history/uf-historico.json";
@@ -282,7 +283,7 @@ const ufFaqs = [
             <div>
               <dt class="mb-1 font-medium text-foreground">{faq.question}</dt>
               <dd class="text-sm leading-relaxed text-secondary">
-                {faq.answer}
+                <GlossaryContentWrapper>{faq.answer}</GlossaryContentWrapper>
               </dd>
             </div>
           ))
