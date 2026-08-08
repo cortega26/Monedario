@@ -35,6 +35,17 @@ const ufDisplay = economicParameters.uf.toLocaleString("es-CL", {
   maximumFractionDigits: 2,
 });
 const ufDateDisplay = formatEconomicDate(ufLastUpdated);
+const ufMonthYearDisplay = new Intl.DateTimeFormat("es-CL", {
+  month: "short",
+  year: "numeric",
+  timeZone: "UTC",
+}).format(new Date(`${ufLastUpdated}T00:00:00.000Z`));
+// Same fix as conversor-utm: search demand here is "value right now" queries
+// (uf hoy, valor uf), so the snippet surfaces the live figure instead of a
+// generic "converter" label. See commit e0317d86 for the UTM baseline —
+// this page's CTR was even lower (~0% at position ~10 across 4 weeks).
+const conversorUfTitle = `UF hoy: $${ufDisplay} — Conversor a pesos chilenos | Monedario`;
+const conversorUfDescription = `UF hoy vale $${ufDisplay} según el Banco Central (actualizado ${ufMonthYearDisplay}). Convierte cualquier monto UF a pesos: arriendos, créditos y contratos.`;
 const currentCalculator = CALCULATOR_PORTFOLIO.find(
   calc => calc.slug === "conversor-uf"
 );
@@ -84,13 +95,10 @@ const ufFaqs = [
 ];
 ---
 
-<Layout
-  title="Conversor UF a Pesos Chilenos: valor oficial de hoy | Monedario"
-  description="Convierte cualquier monto en UF a pesos chilenos al valor oficial del Banco Central de hoy: 500 UF, 1.000 UF o el que necesites. Con tabla de referencia para arriendos y créditos."
->
+<Layout title={conversorUfTitle} description={conversorUfDescription}>
   <CalculatorJsonLd
     name="Conversor UF a Pesos Chilenos"
-    description="Convierte cualquier monto en UF a pesos chilenos al valor oficial del Banco Central de hoy: 500 UF, 1.000 UF o el que necesites. Con tabla de referencia para arriendos y créditos."
+    description={conversorUfDescription}
     faqs={ufFaqs}
     dateModified={ufLastUpdated}
   />
