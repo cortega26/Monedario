@@ -110,7 +110,7 @@ Como la CuentaRUT es la cuenta vista más usada del país, sirve de ejemplo conc
 
 **¿Y si eres extranjero o estás fuera de Chile?** También se puede. BancoEstado indica que una persona en el extranjero puede solicitarla por la web (queda pendiente firmar el contrato en una sucursal) o abrirla y habilitarla por la App "si el cliente en el extranjero cuenta con la app habilitada y una cédula de identidad vigente", siempre que haya activado la aplicación en Chile y tenga un número de celular chileno. El plástico, eso sí, se entrega solo en territorio nacional.
 
-Si recién llegaste al país, abrir una cuenta básica suele ser uno de los primeros trámites para ordenar tu vida financiera. (Estamos preparando una guía dedicada a finanzas para migrantes; mientras tanto, una cuenta vista es el punto de partida.)
+Si recién llegaste al país, abrir una cuenta básica suele ser uno de los primeros trámites para ordenar tu vida financiera. Revisa la guía [finanzas para migrantes en Chile](/posts/finanzas-para-migrantes-chile/) para los pasos completos: RUT, cuenta y arriendo.
 
 ## ¿Cuánto cuesta? Comisiones sin sorpresas
 

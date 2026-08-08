@@ -221,8 +221,9 @@ Una vez que tienes RUT, cuenta y vivienda, los siguientes pasos comunes son:
   artículo — verifica con la entidad correspondiente.
 - **Ampliar tu acceso bancario:** la CuentaRUT es el punto de partida. Qué productos
   adicionales puedes llegar a acceder depende de cada banco y de tu historial — consulta
-  condiciones directamente con cada entidad. La guía sobre
-  [bancos y fintech en Chile](/guias/bancos-fintech/) profundiza en las opciones disponibles.
+  condiciones directamente con cada entidad. La guía
+  [bancos y fintech en Chile: cómo elegir dónde tener tu cuenta](/posts/bancos-y-fintech-chile/)
+  profundiza en las opciones disponibles.
 - **Remesas:** enviar dinero a tu país de origen tiene sus propias herramientas y costos —
   también escapa al alcance de este artículo.
 

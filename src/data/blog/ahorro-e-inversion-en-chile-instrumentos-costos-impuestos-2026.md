@@ -60,7 +60,9 @@ No todos los instrumentos sirven para lo mismo. Esta tabla te da una primera ori
 - **¿Qué comisiones cobran los fondos mutuos y cuándo se paga el rescate?** → [Fondos mutuos: comisiones, rescate e impuestos](/posts/fondos-mutuos-comisiones-rescate-impuestos/)
 - **¿Conviene el DAP en UF o pesos para mi plazo y monto?** → [Depósito a plazo en UF vs pesos: qué conviene y cuándo](/posts/deposito-a-plazo-uf-vs-pesos/)
 
-Si todavía no sabes cuál elegir, sigue leyendo.
+Si todavía no sabes cuál elegir, sigue leyendo — o revisa el checklist interactivo de
+[cómo elegir una inversión según plazo, riesgo y objetivos](/posts/como-elegir-inversion-segun-plazo-riesgo-objetivos/)
+si prefieres partir por las preguntas antes que por la tabla de instrumentos.
 
 ## Cómo elegir sin mezclar objetivos
 
