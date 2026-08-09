@@ -42,7 +42,6 @@ volatileData:
   - id: economic.uta.value
     sync: strict
     expectedValue: 834504
-updatedDate: 2026-08-03T00:00:00Z
 reviewPolicy:
   cadenceLabel: quarterly
   maxDays: 90
@@ -51,7 +50,8 @@ reviewPolicy:
   derivationFactors:
     - registry:categoryPolicies.impuestos
     - template:uta
-  computedAt: "2026-08-03"
+  computedAt: "2026-08-09"
+updatedDate: 2026-08-09T00:00:00Z
 ---
 
 > **Información vigente al 2026-05-14.** Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el [SII](https://www.sii.cl/) antes de tu Operación Renta. Este artículo no cubre ganancias de capital.

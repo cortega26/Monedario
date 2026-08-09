@@ -2,7 +2,6 @@
 title: "Cuenta 2 de la AFP: ahorro flexible, retiros e impuestos"
 author: "Equipo Monedario"
 pubDate: 2026-02-23T12:00:00Z
-updatedDate: 2026-04-12T18:55:00Z
 slug: que-es-la-cuenta-2-afp
 featured: false
 lang: es-CL
@@ -35,10 +34,12 @@ volatileData:
 reviewPolicy:
   cadenceLabel: semiannual
   maxDays: 180
-  dataTriggers: []
+  dataTriggers:
+    - pensions.afp.worker_mandatory_contribution
   derivationFactors:
     - registry:slugOverrides.que-es-la-cuenta-2-afp
-  computedAt: "2026-05-06"
+  computedAt: "2026-08-09"
+updatedDate: 2026-08-09T00:00:00Z
 ---
 
 Cuando la gente habla de su AFP, casi siempre se refiere a la cuenta obligatoria donde va el 10% del sueldo. Pero existe una segunda cuenta —voluntaria, flexible y mucho menos conocida— que puede servir como instrumento de ahorro de mediano plazo con rentabilidades similares a las de tu cotización obligatoria: la **Cuenta 2**, también llamada Cuenta de Ahorro Voluntario (CAV).
