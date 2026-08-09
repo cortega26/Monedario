@@ -122,7 +122,7 @@ describe("public/_headers — Pagefind CSP invariants", () => {
     expect(scriptSrc).toContain("'self'");
   });
 
-  it("keeps Ko-fi's image origin scoped to /apoyar and never enables inline/eval scripts", () => {
+  it("keeps the local Ko-fi image within the default image policy and never enables inline/eval scripts", () => {
     const content = readPublicHeaders();
     const blocks = content
       .split(/(?=^\/[^\n]*$)/gm)
@@ -141,8 +141,8 @@ describe("public/_headers — Pagefind CSP invariants", () => {
     expect(globalBlock).not.toContain("ko-fi.com");
     expect(globalBlock).not.toContain("storage.ko-fi.com");
     expect(globalBlock).not.toContain("cdn.ko-fi.com");
-    expect(supportBlock).toContain("img-src 'self' data: https://storage.ko-fi.com");
-    expect(supportBlock).not.toContain("script-src 'self' 'wasm-unsafe-eval' https://static.cloudflareinsights.com https://storage.ko-fi.com");
+    expect(supportBlock).toContain("img-src 'self' data:");
+    expect(supportBlock).not.toContain("storage.ko-fi.com");
 
     for (const block of [globalBlock!, supportBlock!]) {
       const scriptSrc = block.match(/\bscript-src\s+([^;\n]+)/)?.[1] ?? "";

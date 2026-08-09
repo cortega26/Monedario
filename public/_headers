@@ -23,9 +23,9 @@
   Content-Type: text/plain; charset=utf-8
   Cache-Control: public, max-age=300, no-transform
 
-# Ko-fi's official cup image is used only by the support-page button.
+# The Ko-fi cup image is served locally by the support-page button.
 /apoyar/*
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://storage.ko-fi.com; connect-src 'self' https://static.cloudflareinsights.com https://api.web3forms.com; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'wasm-unsafe-eval' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self' https://static.cloudflareinsights.com https://api.web3forms.com; font-src 'self'; form-action 'self'; frame-ancestors 'none'; base-uri 'self'
 
 # Hashed assets (Astro build output) — cache forever
 /_astro/*
