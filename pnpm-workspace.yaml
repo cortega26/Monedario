@@ -11,8 +11,11 @@ overrides:
   shiki: 4.3.1
   # Activo (intencional desde #305): los rangos viejos de js-yaml se fuerzan a
   # v4 (API unificada) mientras el root usa v5. No eliminar sin re-evaluar.
-  js-yaml@^3.13.1: 4.3.0
-  js-yaml@^4.1.1: 4.3.0
+  js-yaml@^3.13.1: 4.3.1
+  js-yaml@^4.1.1: 4.3.1
+  nanoid@^3.3.16: 3.3.17
+  brace-expansion@^1.1.7: 1.1.18
+  brace-expansion@^5.0.5: 5.0.9
   uuid: '>=11.1.1'
   # Seguridad (2026-08-03): parche de alert HIGH fast-uri, transitorio —
   # remover al cumplir la política de 7 días (desde 2026-08-07).
@@ -22,11 +25,9 @@ minimumReleaseAge: 10080
 # lockfile before the seven-day policy was enabled. Future releases remain
 # subject to minimumReleaseAge and these entries can be removed after aging out.
 minimumReleaseAgeExclude:
-  # Seguridad (2026-08-03): brace-expansion 1.1.17 — transitoria, removible
-  # desde 2026-08-06 (cuando 1.1.18 y 5.0.9 cumplan 7 días; un `pnpm update
-  # brace-expansion` natural las resuelve sin override — límite de pnpm: el
-  # exclude solo exime 1 versión por paquete, por eso no se fuerza hoy).
-  - 'brace-expansion@1.1.17'
+  # Seguridad (2026-08-09): nanoid 3.3.17 corrige GHSA-2v37-7h3g-55p8. Esta
+  # excepción vence al cumplir los siete días de maduración (2026-08-10).
+  - 'nanoid@3.3.17'
   # Seguridad (2026-08-03): fast-uri 3.1.5 (parche forzado por override),
   # transitoria — removible desde 2026-08-07 junto con el override.
   - 'fast-uri@3.1.5'
