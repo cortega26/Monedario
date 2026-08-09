@@ -21,6 +21,7 @@ import react from "@astrojs/react";
 import mdx from "@astrojs/mdx";
 import { shield } from "@kindspells/astro-shield";
 import { cspHashesIntegration } from "./src/integrations/csp-hashes";
+import { inlineLinkSpacingIntegration } from "./src/integrations/inline-link-spacing";
 import { swVersionIntegration } from "./src/integrations/sw-version";
 
 const tocUi = getUiCopyForLocale(SITE.lang);
@@ -273,6 +274,7 @@ export default defineConfig({
         allowInlineStyles: "static",
       },
     }),
+    inlineLinkSpacingIntegration(),
     cspHashesIntegration(),
     swVersionIntegration(),
   ],
