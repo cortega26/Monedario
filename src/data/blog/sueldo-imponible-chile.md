@@ -44,7 +44,6 @@ volatileData:
   - id: economic.utm.value
     sync: strict
     expectedValue: 71649
-updatedDate: 2026-08-03T00:00:00Z
 reviewPolicy:
   cadenceLabel: monthly
   maxDays: 30
@@ -53,7 +52,8 @@ reviewPolicy:
   derivationFactors:
     - registry:categoryPolicies.empleo-ingresos
     - template:utm
-  computedAt: "2026-08-03"
+  computedAt: "2026-08-09"
+updatedDate: 2026-08-09T00:00:00Z
 ---
 
 > **Información vigente al 2026-07-01.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo.

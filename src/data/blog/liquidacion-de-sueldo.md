@@ -2,7 +2,6 @@
 title: "Liquidación de sueldo en Chile: cómo auditar el comprobante y sus líneas clave"
 author: "Equipo Monedario"
 pubDate: 2026-03-08T18:20:00Z
-updatedDate: 2026-04-12T18:30:00Z
 slug: liquidacion-de-sueldo
 featured: false
 lang: es-CL
@@ -46,10 +45,12 @@ volatileData:
 reviewPolicy:
   cadenceLabel: semiannual
   maxDays: 180
-  dataTriggers: []
+  dataTriggers:
+    - pensions.afp.worker_mandatory_contribution
   derivationFactors:
     - registry:categoryPolicies.empleo-ingresos
-  computedAt: "2026-05-06"
+  computedAt: "2026-08-09"
+updatedDate: 2026-08-09T00:00:00Z
 ---
 
 El depósito cayó y el número no cuadra con lo que esperabas. Abres la liquidación y ves líneas que no entiendes o cifras que no puedes verificar. Aquí empieza el problema real: la mayoría de los trabajadores no sabe qué debe mostrar el comprobante ni qué preguntar cuando algo no cierra.

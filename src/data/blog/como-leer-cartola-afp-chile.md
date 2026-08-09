@@ -2,7 +2,6 @@
 title: "Cómo leer la cartola AFP: qué significa cada campo y cómo detectar errores"
 author: "Equipo Monedario"
 pubDate: 2026-04-09T12:00:00Z
-updatedDate: 2026-05-11T00:00:00Z
 slug: como-leer-cartola-afp-chile
 featured: false
 lang: es-CL
@@ -55,10 +54,12 @@ volatileData:
 reviewPolicy:
   cadenceLabel: semiannual
   maxDays: 180
-  dataTriggers: []
+  dataTriggers:
+    - pensions.afp.worker_mandatory_contribution
   derivationFactors:
     - registry:categoryPolicies.prevision
-  computedAt: "2026-05-06"
+  computedAt: "2026-08-09"
+updatedDate: 2026-08-09T00:00:00Z
 ---
 
 La **cartola AFP** es tu estado de cuenta previsional trimestral. Llega cuatro veces al año —en enero, abril, julio y octubre— y resume lo que pasó con tu dinero durante ese período.
