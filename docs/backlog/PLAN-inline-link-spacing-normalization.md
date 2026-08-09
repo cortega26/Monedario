@@ -50,3 +50,10 @@ puntuación.
 
 Revertir `src/integrations/inline-link-spacing.ts` y su registro en
 `astro.config.ts`. No requiere migración de datos ni de contenido.
+
+## Despliegue
+
+- Producción: `b21846f4-a496-4074-8e8b-f5af5c1859d1` de Cloudflare Pages.
+- Commit de aplicación: `59c89bc2` (`fix(render): normalize inline link spacing`).
+- Verificado en `https://monedario.cl/autor/`: el HTML servido contiene los
+  espacios normalizados antes y después de los enlaces inline correspondientes.
