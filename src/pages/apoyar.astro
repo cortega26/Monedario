@@ -77,7 +77,7 @@ import { SITE } from "@/config";
       </div>
     </section>
 
-    <!-- Aporte voluntario: panel Ko-fi embebido + enlace de respaldo -->
+    <!-- Aporte voluntario -->
     <section class="border-b border-border py-8">
       <h2 class="mb-3 text-xl font-semibold">Aporte voluntario</h2>
       <p class="mb-1 max-w-xl text-sm leading-relaxed text-secondary">
@@ -91,30 +91,26 @@ import { SITE } from "@/config";
         navegador te redirija brevemente a PayPal para completar el pago.
       </p>
 
-      <!--
-        Contenedor del widget Ko-fi.
-        min-height reservado previene desplazamiento de contenido (CLS)
-        mientras el widget inicializa. El script se carga de forma
-        perezosa cuando este contenedor entra al viewport.
-      -->
-      <div
-        id="kofi-widget-container"
-        aria-label="Panel de aporte voluntario a través de Ko-fi"
-        class="mb-4 max-w-sm"
-      >
-        <div
-          id="kofi-widget-placeholder"
-          class="flex min-h-[200px] max-w-sm items-center justify-center rounded-xl border border-border bg-surface-muted/30"
+      <div class="mb-4">
+        <a
+          href="https://ko-fi.com/monedario?utm_source=monedario&utm_medium=apoyar&utm_campaign=apoya_monedario"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex h-9 items-center gap-1.5 rounded-[7px] bg-[#29abe0] px-3 text-sm font-bold text-white no-underline shadow-[1px_1px_0_rgb(0_0_0_/_20%)] transition-opacity hover:opacity-85 focus-visible:text-white"
+          data-analytics-cta="donate"
+          data-analytics-label="kofi-button"
+          data-analytics-location="apoyar_page"
         >
-          <a
-            href="https://ko-fi.com/monedario?utm_source=monedario&utm_medium=apoyar&utm_campaign=apoya_monedario"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 rounded-lg bg-[#0f766e] px-5 py-3 text-sm font-semibold text-white hover:opacity-90"
-          >
-            ☕ Apoya en Ko-fi
-          </a>
-        </div>
+          <img
+            src="https://storage.ko-fi.com/cdn/cup-border.png"
+            width="22"
+            height="15"
+            alt=""
+            aria-hidden="true"
+            class="h-[15px] w-[22px] shrink-0 border-0!"
+          />
+          Apoya Monedario en Ko-fi
+        </a>
       </div>
 
       <!-- Enlace de respaldo: siempre visible, no depende del widget -->
@@ -294,99 +290,3 @@ import { SITE } from "@/config";
     }
   })();
 </script>
-
-<!--
-  Ko-fi widget: carga perezosa vía IntersectionObserver.
-  El script de Ko-fi se inyecta solo cuando #kofi-widget-container
-  entra al viewport, y solo en esta página — nunca globalmente.
--->
-<script is:inline data-cfasync="false">
-  (function () {
-    "use strict";
-
-    const widgetContainer = document.getElementById("kofi-widget-container");
-    const placeholder = document.getElementById("kofi-widget-placeholder");
-    if (!widgetContainer) return;
-
-    // Guard: skip if already initialized (SPA navigation re-runs inline scripts)
-    if (widgetContainer.dataset.initialized) return;
-    widgetContainer.dataset.initialized = "true";
-
-    let loaded = false;
-
-    function hidePlaceholder() {
-      if (placeholder) placeholder.style.display = "none";
-    }
-
-    function showWidgetError() {
-      if (placeholder) {
-        const link = placeholder.querySelector("a");
-        if (link) link.textContent = "Apoya en Ko-fi →";
-      }
-    }
-
-    function initWidget(target) {
-      const kofi = window.kofiwidget2;
-
-      if (!kofi) {
-        showWidgetError();
-        return;
-      }
-
-      const isDark =
-        document.documentElement.getAttribute("data-theme") === "dark";
-      const btnColor = isDark ? "#14b8a6" : "#0d9488";
-      kofi.init("Apoya Monedario", btnColor, "monedario");
-
-      // safe: kofi.getHTML() comes from the trusted third-party Ko-fi widget loaded via CDN
-      target.innerHTML = kofi.getHTML();
-
-      const kofiLink = target.querySelector("a");
-      if (kofiLink) {
-        kofiLink.style.setProperty("color", "#ffffff", "important");
-      }
-
-      hidePlaceholder();
-    }
-
-    function loadKofiScript(target) {
-      if (loaded) return;
-      loaded = true;
-
-      const script = document.createElement("script");
-      script.src = "https://storage.ko-fi.com/cdn/widget/Widget_2.js";
-      script.onload = function () {
-        initWidget(target);
-      };
-      script.onerror = showWidgetError;
-      document.head.appendChild(script);
-    }
-
-    if (typeof IntersectionObserver !== "undefined") {
-      const observer = new IntersectionObserver(
-        function (entries) {
-          if (entries[0] && entries[0].isIntersecting) {
-            loadKofiScript(widgetContainer);
-            observer.disconnect();
-          }
-        },
-        { rootMargin: "300px" }
-      );
-      observer.observe(widgetContainer);
-    } else {
-      loadKofiScript(widgetContainer);
-    }
-  })();
-</script>
-
-<style is:global>
-  /*
-    The Ko-fi widget button (<a class="kofi-button">) inherits the site's dark
-    body text color. Override here to ensure white text on the teal background
-    regardless of theme, and cover both the widget class and the bare <a> tag.
-  */
-  #kofi-widget-container .kofi-button,
-  #kofi-widget-container a {
-    color: #fff !important;
-  }
-</style>
