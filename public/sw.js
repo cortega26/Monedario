@@ -3,6 +3,12 @@ const CACHE = "monedario-__SW_CACHE_VERSION__";
 const ASSETS_CACHE = "monedario-assets-__SW_CACHE_VERSION__";
 const MAX_PAGES = 50;
 const VOLATILE_HTML_PATHS = new Set([
+  "/calculadoras/conversor-uf/",
+  "/calculadoras/conversor-uf/index.html",
+  "/calculadoras/conversor-utm/",
+  "/calculadoras/conversor-utm/index.html",
+  "/uf-hoy/",
+  "/uf-hoy/index.html",
   "/guias/uf-costo-de-vida/indicadores-economicos/",
   "/guias/uf-costo-de-vida/indicadores-economicos/index.html",
 ]);
