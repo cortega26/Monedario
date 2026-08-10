@@ -58,6 +58,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [063](063-chile-calendar-tz.md) | Calendario chileno (`America/Santiago`) en fetcher SII y gates de frescura UTM: `calendarPartsInTz`/`chileCalendarParts`/`chileMonthKeyAndDay`; test de frontera verificado OLD stale → NEW grace | 2026-08-10 | sí (fast-forward `5b0f0b46`) — deploy del worker pendiente |
 | [064](064-no-fabricated-indicator-dates.md) | No fabricar fecha "hoy": `toRealIsoDate` y `indicatorUpdatedAt` solo con fechas observadas; tipo aflojado (`uf?/utm?/uta?`), `mergePrev` con `?.`; 3 tests nuevos | 2026-08-10 | sí (fast-forward `efd03dcc`) — deploy del worker pendiente |
 | [065](065-jsonld-escape.md) | Escapar `<` en JSON-LD: `serializeJsonLd` leaf (`\u003c`) en 29 sitios; guard de input no-stringificable; flake de la suite registrado como TD-0103 | 2026-08-10 | sí (fast-forward `7523c0c3`) |
+| [066](066-secret-scan-pr.md) | Scan gitleaks bloqueante por PR (diff-scoped, sin `--stdin` en 8.30.1 — verificado) + quitar allowlist de `.env`; pipeline validado con secreto en `.env` → exit 1 | 2026-08-10 | sí (merge `dccebfb9`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
