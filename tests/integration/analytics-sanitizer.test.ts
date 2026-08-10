@@ -24,6 +24,7 @@ describe("analytics v2 contract", () => {
       "support_shown",
       "support_click",
       "support_confirmed",
+      "article_calculator_cta_click",
     ]);
     expect(ANALYTICS_ALLOWED_PROPERTIES).toEqual([
       "calculator_id",
@@ -39,6 +40,9 @@ describe("analytics v2 contract", () => {
       "utm_medium",
       "utm_campaign",
       "app_version",
+      "cta_type",
+      "cta_location",
+      "destination_url",
     ]);
   });
 
@@ -129,5 +133,41 @@ describe("analytics v2 contract", () => {
         calculator_id: 123456,
       })?.params
     ).toEqual({});
+  });
+
+  it("accepts the article calculator CTA click with only internal destinations", () => {
+    expect(
+      sanitizeAnalyticsPayload("article_calculator_cta_click", {
+        cta_type: "article-calculator-cta",
+        cta_location: "article_body",
+        destination_url: "https://monedario.cl/calculadoras/iva/",
+        page_type: "post",
+        app_version: "5.5.1",
+        cta_label: "Calcular mi IVA", // free text: fuera del contrato, se descarta
+      })
+    ).toEqual({
+      event: "article_calculator_cta_click",
+      params: {
+        cta_type: "article-calculator-cta",
+        cta_location: "article_body",
+        destination_url: "https://monedario.cl/calculadoras/iva/",
+        page_type: "post",
+        app_version: "5.5.1",
+      },
+    });
+  });
+
+  it("drops external destinations on the CTA click (strict and lenient)", () => {
+    const payload = {
+      cta_type: "article-calculator-cta",
+      destination_url: "https://example.com/?secret=abc",
+    };
+    const lenient = sanitizeAnalyticsPayload("article_calculator_cta_click", payload);
+    expect(lenient?.params.destination_url).toBeUndefined();
+    expect(
+      sanitizeAnalyticsPayload("article_calculator_cta_click", payload, {
+        rejectUnknown: true,
+      })
+    ).toBeNull();
   });
 });

@@ -40,6 +40,7 @@ export function isTransmissibleEvent(eventName: string): boolean {
 }
 
 const CTA_EVENT_NAMES: Record<string, string> = {
+  "article-calculator-cta": "article_calculator_cta_click",
   "calculator-trust-link": "calculator_trust_link_click",
   "hub-route": "hub_route_click",
   "next-step": "next_step_click",

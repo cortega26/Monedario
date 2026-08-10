@@ -25,7 +25,6 @@ const { href, label, description, cta = "Usar calculadora →" } = Astro.props;
       data-analytics-cta="article-calculator-cta"
       data-analytics-label={label}
       data-analytics-location="article_body"
-      onclick="window.monedarioAnalytics?.track('article_calculator_cta_click', { calculator_href: this.href, label: this.dataset.analyticsLabel })"
     >
       {cta}
     </a>

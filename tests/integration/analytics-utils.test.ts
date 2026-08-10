@@ -41,6 +41,9 @@ describe("analytics utilities", () => {
     expect(getAnalyticsEventNameForCta("search-chip")).toBe(
       "search_chip_click"
     );
+    expect(getAnalyticsEventNameForCta("article-calculator-cta")).toBe(
+      "article_calculator_cta_click"
+    );
     expect(getAnalyticsEventNameForCta("unknown-cta")).toBe("cta_click");
   });
 });

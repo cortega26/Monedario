@@ -57,9 +57,6 @@ const NON_TRANSMISSIBLE_EXCEPTIONS: Readonly<Record<string, string>> = {
     "(action_label/action_type/destination_href) no mapean a canónicos v2 " +
     "(next_step_click requiere next_step_id). El payload está fijado por " +
     "tests/integration/homepage-content.test.ts.",
-  article_calculator_cta_click:
-    "CTA inline (CalculatorCTA.astro) sin sucesor en la taxonomía v2; los " +
-    "CTA dinámicos (getAnalyticsEventNameForCta) quedan fuera del patrón.",
 };
 
 function emitterFiles(): string[] {

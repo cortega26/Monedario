@@ -72,6 +72,13 @@ export const ANALYTICS_EVENT_ALLOWLIST = {
     "support_location",
     "app_version",
   ],
+  article_calculator_cta_click: [
+    "cta_type",
+    "cta_location",
+    "destination_url",
+    "page_type",
+    "app_version",
+  ],
 } as const;
 
 export type AnalyticsEventName = keyof typeof ANALYTICS_EVENT_ALLOWLIST;
@@ -92,6 +99,9 @@ export const ANALYTICS_ALLOWED_PROPERTIES = [
   "utm_medium",
   "utm_campaign",
   "app_version",
+  "cta_type",
+  "cta_location",
+  "destination_url",
 ] as const satisfies readonly AnalyticsPropertyName[];
 
 const ENUM_VALUES: Readonly<Record<string, ReadonlySet<string>>> = {
@@ -120,6 +130,9 @@ const ENUM_VALUES: Readonly<Record<string, ReadonlySet<string>>> = {
 
 const SAFE_TOKEN = /^[a-z0-9][a-z0-9._-]{0,79}$/;
 const APP_VERSION = /^[0-9]+\.[0-9]+\.[0-9]+(?:-[a-z0-9.-]+)?$/;
+// destination_url solo admite URLs internas del sitio (el clic CTA apunta a
+// una calculadora de monedario.cl). Evita exfiltrar destinos externos.
+const INTERNAL_URL = /^https:\/\/(?:www\.)?monedario\.cl\/[a-z0-9/._-]*$/;
 const FORBIDDEN_KEY_PATTERN =
   /(?:amount|balance|debt|email|fingerprint|income|input|ip|monto|name|nombre|pension|phone|query|result|resultado|rut|salary|session|sueldo|tax|telefono|user|value|valor)/i;
 
@@ -157,7 +170,9 @@ export function sanitizeAnalyticsPayload(
       ? enumValues.has(value)
       : key === "app_version"
         ? APP_VERSION.test(value)
-        : SAFE_TOKEN.test(value);
+        : key === "destination_url"
+          ? INTERNAL_URL.test(value)
+          : SAFE_TOKEN.test(value);
     if (!valid) {
       if (options.rejectUnknown) return null;
       continue;
