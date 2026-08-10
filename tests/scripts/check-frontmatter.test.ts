@@ -181,4 +181,31 @@ describe("check-frontmatter rule classes (characterization)", () => {
     expect(result.status).toBe(0);
     expect(result.stdout + result.stderr).toContain("outside recommended range");
   });
+
+  it("a valid articleAdvisory passes", () => {
+    const result = run(
+      makeMinimalFixture(fm =>
+        fm.replace("\n---", "\narticleAdvisory: Consulta con un tributarista.\n---")
+      )
+    );
+    expect(result.status).toBe(0);
+  });
+
+  it("a too-short articleAdvisory is a blocking error", () => {
+    const result = run(
+      makeMinimalFixture(fm => fm.replace("\n---", "\narticleAdvisory: Corto.\n---"))
+    );
+    expect(result.status).toBe(1);
+    expect(result.stdout + result.stderr).toContain("at least 12");
+  });
+
+  it("an articleAdvisory with HTML is a blocking error", () => {
+    const result = run(
+      makeMinimalFixture(fm =>
+        fm.replace("\n---", "\narticleAdvisory: Consulta con un <b>tributarista</b>.\n---")
+      )
+    );
+    expect(result.status).toBe(1);
+    expect(result.stdout + result.stderr).toContain("must not contain HTML");
+  });
 });
