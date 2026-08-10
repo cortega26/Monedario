@@ -58,7 +58,7 @@ Cada ejecutor debe leer el plan completo y honrar sus condiciones de STOP.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Depende de | Estado |
 |---|------|--------|-----------|----------|--------|------------|--------|
-| 1 | [068](068-frontmatter-characterization.md) | Caracterización de `check-frontmatter.mjs` (7+ casos) | P2 | M | MED | 067 (opcional) | TODO |
+| 1 | [068](068-frontmatter-characterization.md) | Caracterización de `check-frontmatter.mjs` (7+ casos) | P2 | M | MED | 067 (opcional) | IN PROGRESS |
 | 2 | [069](069-legal-constants-check.md) | Check de consistencia de constantes legales espejadas | P2 | S–M | LOW | — | TODO |
 | 3 | [070](070-url-freeze-exceptions-module.md) | Módulo único de excepciones URL-freeze (esquema compartido) | P2 | M | LOW/MED | — | TODO |
 | 4 | [071](071-indicadores-hoy-tests.md) | Tests del endpoint indicadores-hoy + formateadores | P2 | S–M | LOW | — | TODO |

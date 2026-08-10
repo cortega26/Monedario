@@ -1,3 +1,8 @@
+// Valida el comportamiento del parser js-yaml (block scalars, arrays, fechas)
+// con la config que check-frontmatter.mjs usa. NO prueba las reglas del gate
+// editorial — esas viven en tests/scripts/check-frontmatter.test.ts
+// (caracterización por clase de regla). El nombre original
+// (frontmatter-schema.test.ts) daba una confianza falsa de cubrir el gate.
 import { describe, it, expect } from "vitest";
 import { JSON_SCHEMA, load } from "js-yaml";
 

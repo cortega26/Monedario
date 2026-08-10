@@ -101,3 +101,84 @@ describe("check-frontmatter seoTitle rule", () => {
     expect(schemaMax).toEqual([65, 65]);
   });
 });
+
+// ── Caracterización por clase de regla (plan 068) ───────────────────────────
+// Cada clase de regla del gate con su severidad REAL (leída del script, no
+// asumida): TITLE_RANGE y DESCRIPTION_RANGE son warnings (exit 0 con texto en
+// stderr); las reglas bloqueantes son las que terminan en `errors` (exit 1).
+
+const MINIMAL_POST = `---
+title: "Caracterización del gate editorial"
+description: "Descripción de prueba del gate editorial de frontmatter para los tests de caracterización."
+slug: caracterizacion-gate-editorial
+author: "Equipo Monedario"
+pubDate: 2026-08-01T12:00:00Z
+tags:
+  - impuestos
+category: impuestos
+cluster: impuestos
+lang: es-CL
+---`;
+
+function makeMinimalFixture(mutations: (fm: string) => string): string {
+  const root = mkdtempSync(path.join(tmpdir(), "frontmatter-class-"));
+  tempRoots.push(root);
+  mkdirSync(path.join(root, "src", "data", "blog"), { recursive: true });
+  mkdirSync(path.join(root, "src", "config"), { recursive: true });
+  writeFileSync(
+    path.join(root, "src", "config", "clusters.ts"),
+    'export const CLUSTERS = ["impuestos"];\n',
+    "utf8"
+  );
+  writeFileSync(
+    path.join(root, "src", "data", "blog", "post.md"),
+    `${mutations(MINIMAL_POST)}\n# Título\n\nCuerpo.\n`,
+    "utf8"
+  );
+  return root;
+}
+
+describe("check-frontmatter rule classes (characterization)", () => {
+  it("canary: a minimal valid post passes", () => {
+    const result = run(makeMinimalFixture(fm => fm));
+    expect(result.status).toBe(0);
+  });
+
+  it("deprecated fields are a blocking error (pubDatetime)", () => {
+    const result = run(
+      makeMinimalFixture(fm => fm.replace("pubDate:", "pubDatetime:"))
+    );
+    expect(result.status).toBe(1);
+    expect(result.stdout + result.stderr).toContain('Deprecated field "pubDatetime"');
+  });
+
+  it("a category outside the allowlist is a blocking error", () => {
+    const result = run(
+      makeMinimalFixture(fm => fm.replace("category: impuestos", "category: cocina"))
+    );
+    expect(result.status).toBe(1);
+    expect(result.stdout + result.stderr).toContain("must be one of");
+  });
+
+  it("a missing lang is a blocking error", () => {
+    const result = run(makeMinimalFixture(fm => fm.replace("\nlang: es-CL", "")));
+    expect(result.status).toBe(1);
+    expect(result.stdout + result.stderr).toContain('Missing required field "lang"');
+  });
+
+  it("title range is a warning, not blocking (15 chars)", () => {
+    const result = run(
+      makeMinimalFixture(fm => fm.replace('title: "Caracterización del gate editorial"', 'title: "Título corto"'))
+    );
+    expect(result.status).toBe(0);
+    expect(result.stdout + result.stderr).toContain("outside recommended range");
+  });
+
+  it("short description is a warning, not blocking", () => {
+    const result = run(
+      makeMinimalFixture(fm => fm.replace("Descripción de prueba del gate editorial de frontmatter para los tests de caracterización.", "Corta."))
+    );
+    expect(result.status).toBe(0);
+    expect(result.stdout + result.stderr).toContain("outside recommended range");
+  });
+});
