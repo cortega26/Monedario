@@ -90,6 +90,9 @@ jobs:
       - name: "🧭 Check policy registry"
         run: pnpm run check:policy-registry
 
+      - name: "🧮 Check mirrored legal constants"
+        run: pnpm run check:legal-constants
+
       - name: "📖 Check docs structure"
         run: pnpm run check:docs
 
