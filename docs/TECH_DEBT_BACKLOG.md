@@ -2230,3 +2230,18 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Mitigación:** el deploy del worker es manual e independiente del deploy del sitio; el release del PR debe incluir ambos. Verificación post-deploy: evento válido → 202; evento con clave financiera (`monto`) → 422 (frontera de privacidad intacta). No existe gate automático que detecte desincronización cliente/worker.
 - **Owner:** Carlos
 - **Fecha:** 2026-08-02
+
+## TD-0103 — Test flaky intermitente en la suite (sin identificar, preexistente)
+- **ID:** TD-0103
+- **Título corto:** Identificar el test que falla de forma intermitente en `pnpm test`
+- **Descripción:** durante los gates de los planes 060/061/065 (2026-08-10, 18:04–19:06), `pnpm test` falló 3 veces con exactamente 1 test fallido de ~1230, siempre con `Test Files 1 failed` y sin reproducirse en la corrida siguiente. Cada fallo ocurrió en cadenas de comandos (`&&`) o tras otra invocación de vitest; nunca se capturó el nombre del test (el reporte se perdió en el tail). 18+ corridas consecutivas posteriores (incl. 10 con `--reporter=verbose`) salieron verdes.
+- **Evidencia:** 3 fallos transitorios registrados en sesión (18:04, 18:57, 19:06); ninguna reproducción con verbose; los fallos son anteriores al código del plan 065 (aparecieron primero en gates del 060).
+- **Impacto:** bajo (no bloqueó merges; gates re-corridos verdes); riesgo de enmascarar un fallo real si coincide.
+- **Riesgo:** medio (es un test de la suite, no de infraestructura)
+- **Severidad (1-5):** 2
+- **Urgencia:** P3
+- **Esfuerzo estimado:** M (capturar con `--reporter=verbose` + loop hasta reproducir, o `--retry` con logs)
+- **Sospechosos a descartar/primeros:** tests que usan `new Date()` sin fake timers (fronteras de calendario); tests con `spawnSync` de scripts que tocan red; paralelismo de workers vitest bajo carga (transform 50-80 s).
+- **Estado:** ABIERTO
+- **Owner:** Carlos
+- **Fecha:** 2026-08-10

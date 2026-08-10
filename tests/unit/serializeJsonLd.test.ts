@@ -27,4 +27,16 @@ describe("serializeJsonLd", () => {
     };
     expect(JSON.parse(serializeJsonLd(value))).toEqual(value);
   });
+
+  it("does not crash on non-stringifiable input (undefined/function/symbol)", () => {
+    expect(serializeJsonLd(undefined)).toBe("");
+    expect(serializeJsonLd(() => {})).toBe("");
+    expect(serializeJsonLd(Symbol("x"))).toBe("");
+  });
+
+  it("keeps trivial values unchanged (regression)", () => {
+    expect(serializeJsonLd({})).toBe("{}");
+    expect(serializeJsonLd(null)).toBe("null");
+    expect(serializeJsonLd([])).toBe("[]");
+  });
 });
