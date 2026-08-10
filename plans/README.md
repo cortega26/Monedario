@@ -58,30 +58,29 @@ Cada ejecutor debe leer el plan completo y honrar sus condiciones de STOP.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Depende de | Estado |
 |---|------|--------|-----------|----------|--------|------------|--------|
-| 1 | [058](058-sw-volatile-money-paths.md) | SW network-first para conversor-uf/utm y uf-hoy (valores stale hoy) | P1 | S | LOW | — | IN PROGRESS |
-| 2 | [059](059-kv-counter-integrity.md) | Superficializar fallos KV de contadores + documentar aproximación | P1 | S–M | LOW/MED | — | TODO |
-| 3 | [060](060-uta-honest-fallback.md) | UTA: fallback a diciembre SII + warn si se anualiza UTM×12 | P1 | S | LOW | — | TODO |
-| 4 | [061](061-calculator-cta-event.md) | Reactivar `article_calculator_cta_click` (onclick CSP-bloqueado) | P2 | S | LOW | — | TODO |
-| 5 | [062](062-inline-link-spacing-tokenizer.md) | Tokenizer spacing: preservar `<` literal y stacks | P2 | S | LOW/MED | — | TODO |
-| 6 | [063](063-chile-calendar-tz.md) | Calendario America/Santiago en fetcher SII y gates de frescura | P2 | S | LOW | — | TODO |
-| 7 | [064](064-no-fabricated-indicator-dates.md) | No fabricar fecha "hoy" por indicador (gate de frescura real) | P2 | S | LOW | — | TODO |
-| 8 | [065](065-jsonld-escape.md) | Escapar `<` en toda serialización JSON-LD | P2 | S | LOW | — | TODO |
-| 9 | [066](066-secret-scan-pr.md) | Gitleaks bloqueante por PR + quitar allowlist de `.env` | P1 | S | LOW | — | TODO |
-| 10 | [067](067-seotitle-tests.md) | seoTitle: presupuesto 65 en schema + gate + tests de resolución | P1 | M | LOW | — | TODO |
-| 11 | [068](068-frontmatter-characterization.md) | Caracterización de `check-frontmatter.mjs` (7+ casos) | P2 | M | MED | 067 (opcional) | TODO |
-| 12 | [069](069-legal-constants-check.md) | Check de consistencia de constantes legales espejadas | P2 | S–M | LOW | — | TODO |
-| 13 | [070](070-url-freeze-exceptions-module.md) | Módulo único de excepciones URL-freeze (esquema compartido) | P2 | M | LOW/MED | — | TODO |
-| 14 | [071](071-indicadores-hoy-tests.md) | Tests del endpoint indicadores-hoy + formateadores | P2 | S–M | LOW | — | TODO |
-| 15 | [072](072-analytics-fetch-branches.md) | Tests de las ~12 ramas del fetch handler del collector | P2 | M | LOW | 059 (opcional) | TODO |
-| 16 | [073](073-coverage-widen.md) | Ampliar gate de cobertura a `src/**` (con caracterización) | P2 | S+M | MED | 067, 068, 071, 072 (recomendado) | TODO |
-| 17 | [074](074-stale-overrides.md) | Limpiar overrides/exclusiones de maduración vencidos | P2 | S | LOW | — | TODO |
-| 18 | [075](075-iso-week-module.md) | Módulo compartido de semana ISO (Jan-4) para scripts | P2 | S | LOW | — | TODO |
-| 19 | [076](076-pyproject-prune.md) | Podar stack Python no usado (scraping/MCP) | P2 | M | LOW/MED | — | TODO |
-| 20 | [077](077-check-ci-aggregate.md) | `check:ci` — un comando que reproduce el CI localmente | P2 | S–M | LOW | — | TODO |
-| 21 | [078](078-lhci-mobile-wiring.md) | Ejecutar config Lighthouse mobile (warn-only, scheduled) | P3 | S | LOW | — | TODO |
-| 22 | [079](079-push-validation.md) | Validar snapshot/artefactos al llegar a main (push + validador) | P2 | M | MED | — | TODO |
-| 23 | [080](080-clp-formatter-unify.md) | Unificar formateadores CLP en formatCLP + guard de estilo | P3 | S–M | MED | — | TODO |
-| 24 | [081](081-postbuild-verification.md) | Capa de verificación post-build (aserciones sobre dist/) | P2 | L | MED | 057, 062, 065, 067 (aserciones condicionales) | TODO |
+| 1 | [059](059-kv-counter-integrity.md) | Superficializar fallos KV de contadores + documentar aproximación | P1 | S–M | LOW/MED | — | TODO |
+| 2 | [060](060-uta-honest-fallback.md) | UTA: fallback a diciembre SII + warn si se anualiza UTM×12 | P1 | S | LOW | — | TODO |
+| 3 | [061](061-calculator-cta-event.md) | Reactivar `article_calculator_cta_click` (onclick CSP-bloqueado) | P2 | S | LOW | — | TODO |
+| 4 | [062](062-inline-link-spacing-tokenizer.md) | Tokenizer spacing: preservar `<` literal y stacks | P2 | S | LOW/MED | — | TODO |
+| 5 | [063](063-chile-calendar-tz.md) | Calendario America/Santiago en fetcher SII y gates de frescura | P2 | S | LOW | — | TODO |
+| 6 | [064](064-no-fabricated-indicator-dates.md) | No fabricar fecha "hoy" por indicador (gate de frescura real) | P2 | S | LOW | — | TODO |
+| 7 | [065](065-jsonld-escape.md) | Escapar `<` en toda serialización JSON-LD | P2 | S | LOW | — | TODO |
+| 8 | [066](066-secret-scan-pr.md) | Gitleaks bloqueante por PR + quitar allowlist de `.env` | P1 | S | LOW | — | TODO |
+| 9 | [067](067-seotitle-tests.md) | seoTitle: presupuesto 65 en schema + gate + tests de resolución | P1 | M | LOW | — | TODO |
+| 10 | [068](068-frontmatter-characterization.md) | Caracterización de `check-frontmatter.mjs` (7+ casos) | P2 | M | MED | 067 (opcional) | TODO |
+| 11 | [069](069-legal-constants-check.md) | Check de consistencia de constantes legales espejadas | P2 | S–M | LOW | — | TODO |
+| 12 | [070](070-url-freeze-exceptions-module.md) | Módulo único de excepciones URL-freeze (esquema compartido) | P2 | M | LOW/MED | — | TODO |
+| 13 | [071](071-indicadores-hoy-tests.md) | Tests del endpoint indicadores-hoy + formateadores | P2 | S–M | LOW | — | TODO |
+| 14 | [072](072-analytics-fetch-branches.md) | Tests de las ~12 ramas del fetch handler del collector | P2 | M | LOW | 059 (opcional) | TODO |
+| 15 | [073](073-coverage-widen.md) | Ampliar gate de cobertura a `src/**` (con caracterización) | P2 | S+M | MED | 067, 068, 071, 072 (recomendado) | TODO |
+| 16 | [074](074-stale-overrides.md) | Limpiar overrides/exclusiones de maduración vencidos | P2 | S | LOW | — | TODO |
+| 17 | [075](075-iso-week-module.md) | Módulo compartido de semana ISO (Jan-4) para scripts | P2 | S | LOW | — | TODO |
+| 18 | [076](076-pyproject-prune.md) | Podar stack Python no usado (scraping/MCP) | P2 | M | LOW/MED | — | TODO |
+| 19 | [077](077-check-ci-aggregate.md) | `check:ci` — un comando que reproduce el CI localmente | P2 | S–M | LOW | — | TODO |
+| 20 | [078](078-lhci-mobile-wiring.md) | Ejecutar config Lighthouse mobile (warn-only, scheduled) | P3 | S | LOW | — | TODO |
+| 21 | [079](079-push-validation.md) | Validar snapshot/artefactos al llegar a main (push + validador) | P2 | M | MED | — | TODO |
+| 22 | [080](080-clp-formatter-unify.md) | Unificar formateadores CLP en formatCLP + guard de estilo | P3 | S–M | MED | — | TODO |
+| 23 | [081](081-postbuild-verification.md) | Capa de verificación post-build (aserciones sobre dist/) | P2 | L | MED | 057, 062, 065, 067 (aserciones condicionales) | TODO |
 
 ## Orden global de ejecución (para un ejecutor fresco que parte de cero)
 
@@ -188,9 +187,9 @@ restantes (035–040, 042–045, 047–051, 053–054) están DONE y archivados.
 |---|------|--------|-----------|----------|--------|--------------------|--------|
 | 1 | [052](052-worker-manual-trigger-auth.md) | Sacar secretos de URLs y separar el PAT del trigger manual | P1 | S | LOW/MED | 049, 051 | IN PROGRESS (código `ae9246bd` aprobado localmente; deploy/rotación y smoke pendientes, PAT requiere autoridad de emisión) |
 | 2 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | BLOCKED (hipótesis descartada; causa de campo sin identificar — ver nota abajo) |
-| 3 | [046](046-converter-recurrence-return-hook-spike.md) | **Spike de dirección**: investigar si hay recurrencia real sobre los conversores (superficie de mayor **tráfico** según RUM W27; recurrencia **por confirmar**) y, solo si la hay, diseñar un return-hook privacy-safe | P2 | M | LOW | todos | TODO (spike de diseño; por defecto "medir antes de construir"; compuerta de decisión humana) |
-| 4 | [055](055-calculator-consolidation-spike.md) | **Spike de dirección**: consolidación por URL de 5 calculadoras (dossier de evidencia + opciones de migración con gates de ruta/RSS/ADR) | P2 | M | MED | todos | TODO (spike; compuerta humana por URL; la ejecución posterior de sus recomendaciones es un plan aparte) |
-| 5 | [056](056-decision-paths-afc-prepago-credito-spike.md) | **Spike de dirección**: rutas de decisión contextuales AFC/prepago/crédito (diseño de NextSteps + extensión del patrón post-resultado) | P2 | M | LOW | 046 | TODO (spike; firma de copy y elección de piloto = compuertas humanas) |
+| 3| [046](046-converter-recurrence-return-hook-spike.md) | **Spike de dirección**: investigar si hay recurrencia real sobre los conversores (superficie de mayor **tráfico** según RUM W27; recurrencia **por confirmar**) y, solo si la hay, diseñar un return-hook privacy-safe | P2 | M | LOW | todos | TODO (spike de diseño; por defecto "medir antes de construir"; compuerta de decisión humana) |
+| 4| [055](055-calculator-consolidation-spike.md) | **Spike de dirección**: consolidación por URL de 5 calculadoras (dossier de evidencia + opciones de migración con gates de ruta/RSS/ADR) | P2 | M | MED | todos | TODO (spike; compuerta humana por URL; la ejecución posterior de sus recomendaciones es un plan aparte) |
+| 5| [056](056-decision-paths-afc-prepago-credito-spike.md) | **Spike de dirección**: rutas de decisión contextuales AFC/prepago/crédito (diseño de NextSteps + extensión del patrón post-resultado) | P2 | M | LOW | 046 | TODO (spike; firma de copy y elección de piloto = compuertas humanas) |
 > **035–040, 042–045 y 047–050 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
 
 > **046 es un spike de dirección (`/improve next`, 2026-07-12)**, no un plan de
@@ -1078,6 +1077,7 @@ Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main
 | Plan | Título | Prioridad | Esfuerzo | Estado |
 |------|--------|-----------|----------|--------|
 | [057](archive/057-pagefind-prune.md) | Purgar el índice pagefind en cada build (33 MB acumulado → 1.3 MB) | P1 | S | DONE (fast-forward `70f6a1d9`, 2026-08-10) — `rm -rf dist/pagefind` en `build`/`build:ci`; `public/pagefind` resultó ser gitignored (sin eliminaciones tracked); build exit 0, índice 1.3 MB/72 archivos, suite 1187/1187 |
+| [058](archive/058-sw-volatile-money-paths.md) | SW network-first para conversor-uf/utm y uf-hoy (valores stale hoy) | P1 | S | DONE (fast-forward `7d5c4910`, 2026-08-10) — 6 rutas nuevas en `VOLATILE_HTML_PATHS` (con y sin `/index.html`); rama network-first existente cubre las 3 páginas; build exit 0, `dist/sw.js` verificado, suite 1187/1187 |
 
 ### Auditoría de dirección 2026-08-02 (plans 053–056; 055–056 pendientes)
 
