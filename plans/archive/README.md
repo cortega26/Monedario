@@ -60,6 +60,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [065](065-jsonld-escape.md) | Escapar `<` en JSON-LD: `serializeJsonLd` leaf (`\u003c`) en 29 sitios; guard de input no-stringificable; flake de la suite registrado como TD-0103 | 2026-08-10 | sí (fast-forward `7523c0c3`) |
 | [066](066-secret-scan-pr.md) | Scan gitleaks bloqueante por PR (diff-scoped, sin `--stdin` en 8.30.1 — verificado) + quitar allowlist de `.env`; pipeline validado con secreto en `.env` → exit 1 | 2026-08-10 | sí (merge `dccebfb9`) |
 | [067](067-seotitle-tests.md) | Presupuesto seoTitle 65 en schema + gate + tests; regla "| Monedario" del plan descartada en mérito (38/41 posts reales la contradecían); guard de sincronía schema↔gate | 2026-08-10 | sí (fast-forward `3f073c99`) |
+| [068](068-frontmatter-characterization.md) | Caracterización de check-frontmatter.mjs (9 casos por clase de regla con severidad real); `frontmatter-schema.test.ts` renombrado a `yaml-parser.test.ts`; clase articleAdvisory añadida en auditoría | 2026-08-10 | sí (fast-forward `47414be0`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
