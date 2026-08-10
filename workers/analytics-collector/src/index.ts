@@ -322,9 +322,10 @@ async function checkRateLimit(
     await kv.put(key, String(count + 1), { expirationTtl: 120 });
     return true;
   } catch (error) {
-    // If KV is unreachable, allow the request (fail open for rate limiting,
-    // fail closed for the actual event writing), but never silently: log a
-    // truncated key (only the minute suffix — never the full IP).
+    // If KV is unreachable, allow the request: rate limiting fails open (the
+    // request proceeds) and ingestion also fails open (the counter is lost,
+    // logged loudly in ingestEvent). Log a truncated key here too — only the
+    // minute suffix, never the full IP.
     const suffix = key.split(":").at(-1);
     console.error(
       `[analytics-collector] KV rate-limit check failed (window ${suffix}):`,
@@ -355,7 +356,7 @@ async function ingestEvent(
     // un fallo persistente de KV debe ser visible en Workers Logs, no solo
     // como un gap en el export.
     console.error(
-      `[analytics-collector] KV write failed for counter ${key}:`,
+      `[analytics-collector] KV counter update failed (read or write) for key ${key}:`,
       error instanceof Error ? error.message : String(error)
     );
   }

@@ -1109,6 +1109,10 @@ describe("counter integrity (KV failure surfacing)", () => {
     expect(
       spy.mock.calls.some((call) => String(call[0]).includes("rate-limit"))
     ).toBe(true);
+    // Privacy guard: the truncated rate-limit key must never leak the full IP.
+    expect(
+      spy.mock.calls.every((call) => !String(call[0]).includes("192.0.2.1"))
+    ).toBe(true);
     spy.mockRestore();
   });
 });
