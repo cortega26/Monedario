@@ -1,5 +1,6 @@
 ---
 title: "Operación Renta F22: checklist para revisar, enviar y rectificar sin errores"
+seoTitle: "Operación Renta: Checklist del Formulario 22 | Monedario"
 description: "Checklist práctico para revisar la propuesta del SII, enviar tu Formulario 22 y corregir observaciones sin atrasar tu devolución en Operación Renta."
 slug: operacion-renta-f22-checklist
 author: "Equipo Monedario"

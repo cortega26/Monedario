@@ -1,5 +1,6 @@
 ---
 title: "Cómo calcular el costo real de una tarjeta de crédito en Chile"
+seoTitle: "Costo Real de una Tarjeta de Crédito en Chile | Monedario"
 description: "Entiende cuánto te cuesta realmente tu tarjeta de crédito en Chile: intereses, pago mínimo y cómo reducir la deuda más rápido."
 slug: tarjeta-credito-costo-real-chile
 author: "Equipo Monedario"

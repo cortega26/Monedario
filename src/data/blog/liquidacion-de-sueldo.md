@@ -1,5 +1,6 @@
 ---
 title: "Liquidación de sueldo en Chile: cómo auditar el comprobante y sus líneas clave"
+seoTitle: "Liquidación de Sueldo en Chile: Cómo Auditarla | Monedario"
 author: "Equipo Monedario"
 pubDate: 2026-03-08T18:20:00Z
 slug: liquidacion-de-sueldo

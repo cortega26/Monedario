@@ -1,5 +1,6 @@
 ---
 title: "Indemnización por años de servicio en Chile: cuándo aplica y cómo calcularla"
+seoTitle: "Indemnización por Años de Servicio en Chile | Monedario"
 author: "Equipo Monedario"
 description: "Guía puntual para revisar indemnización por años de servicio: causal aplicable, regla de 30 días, tope de 11 años y año fraccionado."
 slug: indemnizacion-anos-de-servicio-chile

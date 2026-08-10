@@ -1,5 +1,6 @@
 ---
 title: "Finiquito e indemnizaciones en Chile: qué te corresponde y cómo revisarlo"
+seoTitle: "Finiquito e Indemnizaciones en Chile | Monedario"
 author: "Equipo Monedario"
 description: "Guía para revisar tu finiquito, calcular lo que te corresponde y detectar errores antes de firmar o aceptar montos sin revisar."
 slug: finiquito-e-indemnizaciones-en-chile

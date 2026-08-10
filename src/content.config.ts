@@ -38,6 +38,12 @@ const blog = defineCollection({
     z
       .object({
         title: z.string().trim().min(1),
+        // Optional SEO title override for <title>/meta only. Posts default
+        // to "<title> | Monedario"; use this when the frontmatter title is
+        // too long for SERPs (Bing flags anything past ~65 chars) without
+        // shortening the H1, which always renders the frontmatter "title"
+        // field unchanged.
+        seoTitle: z.string().trim().min(1).max(70).optional(),
         description: z.string().trim().min(1),
         slug: z.string().trim().min(1),
         pubDate: z.date(),

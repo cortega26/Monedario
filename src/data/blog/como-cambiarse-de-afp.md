@@ -1,5 +1,6 @@
 ---
 title: "¿Puedo cambiarme de AFP? Cómo hacerlo y qué considerar en 2026"
+seoTitle: "Cómo Cambiarse de AFP en Chile 2026 | Monedario"
 author: "Equipo Monedario"
 pubDate: 2026-02-23T13:00:00Z
 slug: como-cambiarse-de-afp

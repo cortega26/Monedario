@@ -48,6 +48,7 @@ const readingTime = getReadingTime(post.body ?? "");
 
 const {
   title = article.title,
+  seoTitle,
   author = article.author,
   description = article.description,
   ogImage: initOgImage,
@@ -105,7 +106,7 @@ const ogImage = ogImageUrl
   : undefined;
 
 const layoutProps = {
-  title: `${title} | ${SITE.title}`,
+  title: seoTitle ?? `${title} | ${SITE.title}`,
   author,
   description,
   pubDatetime,

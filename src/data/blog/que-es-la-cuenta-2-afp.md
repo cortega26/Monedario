@@ -1,5 +1,6 @@
 ---
 title: "Cuenta 2 de la AFP: ahorro flexible, retiros e impuestos"
+seoTitle: "Cuenta 2 de la AFP: Qué Es y Cómo Funciona | Monedario"
 author: "Equipo Monedario"
 pubDate: 2026-02-23T12:00:00Z
 slug: que-es-la-cuenta-2-afp

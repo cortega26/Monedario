@@ -1,5 +1,6 @@
 ---
 title: "PGU en Chile: requisitos, monto vigente y cómo tramitarla"
+seoTitle: "PGU en Chile: Requisitos y Monto 2026 | Monedario"
 author: "Equipo Monedario"
 description: "Pensión Garantizada Universal en Chile: quiénes pueden recibirla, cuánto se paga, cómo tramitarla ante el IPS y cómo se complementa con la pensión AFP."
 slug: pgu-pension-garantizada-universal

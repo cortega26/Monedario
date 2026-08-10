@@ -1,5 +1,6 @@
 ---
 title: "Descuentos de sueldo en Chile: cuáles son legales, voluntarios y prohibidos"
+seoTitle: "Descuentos de Sueldo en Chile: Cuáles Son Legales | Monedario"
 author: "Equipo Monedario"
 pubDate: 2026-03-08T18:10:00Z
 slug: descuentos-de-sueldo

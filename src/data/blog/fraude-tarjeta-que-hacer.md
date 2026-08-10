@@ -1,5 +1,6 @@
 ---
 title: "Cargo no reconocido: qué hacer en 24 horas (Ley 20.009)"
+seoTitle: "Fraude con Tarjeta: Qué Hacer en Chile | Monedario"
 author: "Equipo Monedario"
 pubDate: 2026-02-24T13:00:00Z
 updatedDate: 2026-04-22T00:00:00Z

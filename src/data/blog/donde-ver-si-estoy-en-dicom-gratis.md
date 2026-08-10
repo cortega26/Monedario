@@ -1,5 +1,6 @@
 ---
 title: "Dónde ver si estás en DICOM gratis en Chile y qué revisar primero"
+seoTitle: "Cómo Ver si Estoy en DICOM Gratis en Chile | Monedario"
 author: "Equipo Monedario"
 description: "Guía práctica para separar Informe de Deudas CMF, Boletín Comercial y reportes privados tipo DICOM, y partir por el reporte correcto sin pagar de más."
 slug: donde-ver-si-estoy-en-dicom-gratis
