@@ -107,4 +107,26 @@ describe("normalizeInlineLinkSpacing", () => {
     expect(once).toBe("<p>a < b <a href=\"/x/\">enlace</a></p>");
     expect(normalizeInlineLinkSpacing(once)).toBe(once);
   });
+
+  it("keeps JSON-LD with a raw <letter intact and spacing active after the script", () => {
+    const html =
+      '<script type="application/ld+json">{"description":"a<b"}</script><p>x<a href="/y/">z</a></p>';
+
+    expect(normalizeInlineLinkSpacing(html)).toBe(
+      '<script type="application/ld+json">{"description":"a<b"}</script><p>x <a href="/y/">z</a></p>'
+    );
+  });
+
+  it("round-trips comments containing > and keeps spacing active after them", () => {
+    const html =
+      "<!-- a > b --><p>x<a href=\"/y/\">z</a></p>";
+
+    expect(normalizeInlineLinkSpacing(html)).toBe(
+      "<!-- a > b --><p>x <a href=\"/y/\">z</a></p>"
+    );
+  });
+
+  it("treats < followed by a digit as literal text", () => {
+    expect(normalizeInlineLinkSpacing("<p>a <2 b</p>")).toBe("<p>a <2 b</p>");
+  });
 });
