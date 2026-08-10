@@ -58,7 +58,7 @@ Cada ejecutor debe leer el plan completo y honrar sus condiciones de STOP.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Depende de | Estado |
 |---|------|--------|-----------|----------|--------|------------|--------|
-| 1 | [066](066-secret-scan-pr.md) | Gitleaks bloqueante por PR + quitar allowlist de `.env` | P1 | S | LOW | — | TODO |
+| 1 | [066](066-secret-scan-pr.md) | Gitleaks bloqueante por PR + quitar allowlist de `.env` | P1 | S | LOW | — | IN PROGRESS |
 | 2 | [067](067-seotitle-tests.md) | seoTitle: presupuesto 65 en schema + gate + tests de resolución | P1 | M | LOW | — | TODO |
 | 3 | [068](068-frontmatter-characterization.md) | Caracterización de `check-frontmatter.mjs` (7+ casos) | P2 | M | MED | 067 (opcional) | TODO |
 | 4 | [069](069-legal-constants-check.md) | Check de consistencia de constantes legales espejadas | P2 | S–M | LOW | — | TODO |
