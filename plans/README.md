@@ -8,6 +8,7 @@ Cuarta auditoría profunda: `/improve deep` el 2026-06-26 (commit `a7bb8b2e`) �
 Quinta auditoría profunda: `/improve deep` el 2026-07-10 (commit `520a8685`) → planes 035–038.
 Auditoría de dirección: `/improve next` el 2026-07-12 (commit `0102b11a`) → spikes de dirección 045–046 (delta W27 sobre la auditoría canónica `GROWTH-DIRECTION-AUDIT-2026-06-28.md`, corte W25).
 Auditoría de dirección: `/improve next` el 2026-08-02 (commit `0bd51540`) → planes 053–056 (delta sobre el memo de viabilidad estratégica `output/audits/strategic-viability-2026-08-02/monedario-strategic-viability-audit.html`, untracked; ventana de experimentos 2026-08-02 → 2026-11-02).
+Séptima auditoría profunda: `/improve deep` el 2026-08-10 (commit `90370b4e`) → planes 057–081 (ver sección "Pendientes — séptima auditoría" más abajo).
 Sexta auditoría profunda: `/improve deep` el 2026-07-16 (commit `efe021c7`) →
 planes 048–052, basada en el bundle W28, el incidente del export first-party y
 una revisión read-only de correctness, security, performance, architecture,
@@ -48,8 +49,105 @@ heurística sin acceso al sitio). Ya implementado fuera de plan: el bug del IMM
 obsoleto (sueldo mínimo corregido a $553.553 como constante legal gestionada con
 guard de regresión, commit `fd2b5dff`).
 
+Séptima auditoría profunda: `/improve deep` el 2026-08-10 (commit `90370b4e`) → planes 057–081 (25), sobre el delta de 140 commits desde `efe021c7` (2026-07-16) + terreno nunca auditado (integraciones post-build, endpoints JSON, SW, gates nuevos). Revertido como **política, no bug**: los títulos live UF/UTM (`e0317d86`/`539cd5dc`) se revirtieron por conflicto con la ventana de medición OBS-01/PR #354 — pero el rationale quedó sin documentar (deuda menor de docs). Foco de esta pasada (todos los hallazgos reales, veteados leyendo el código): **pagefind 33 MB acumulado** (PERF, fix de 1 línea), **SW sirviendo UF/UTM stale en las páginas de dinero**, **contadores KV no atómicos con fallos tragados en silencio**, **UTA fabricada con UTM corriente cuando mindicador falla**, **`onclick` inline bloqueado por la CSP propia**, **tokenizer de inline-link-spacing que elimina `<`**, **timezone UTC en vez de Chile**, **fechas fabricadas "hoy" que anulan el gate de frescura**, **JSON-LD sin escapar `<`**, **security-scans fantasma en PRs**, **seoTitle con cero tests**, **3 espejos de constantes legales**, y la capa de tests/verificación post-build inexistente. Precios reverificados limpios: matemática de calculadoras, TaxEngine, provider económico, remark plugins, js-yaml v5, auth del collector (header-only, plan 037 intacto), regexes de shape (038/043 intactos).
+
 Ejecutar en el orden de la tabla salvo que las dependencias indiquen lo contrario.
 Cada ejecutor debe leer el plan completo y honrar sus condiciones de STOP.
+
+## Pendientes — séptima auditoría (2026-08-10, `90370b4e`)
+
+| Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Depende de | Estado |
+|---|------|--------|-----------|----------|--------|------------|--------|
+| 1 | [057](057-pagefind-prune.md) | Purgar índice pagefind en cada build (33 MB acumulado → ~1.3 MB) | P1 | S | LOW | — | IN PROGRESS |
+| 2 | [058](058-sw-volatile-money-paths.md) | SW network-first para conversor-uf/utm y uf-hoy (valores stale hoy) | P1 | S | LOW | — | TODO |
+| 3 | [059](059-kv-counter-integrity.md) | Superficializar fallos KV de contadores + documentar aproximación | P1 | S–M | LOW/MED | — | TODO |
+| 4 | [060](060-uta-honest-fallback.md) | UTA: fallback a diciembre SII + warn si se anualiza UTM×12 | P1 | S | LOW | — | TODO |
+| 5 | [061](061-calculator-cta-event.md) | Reactivar `article_calculator_cta_click` (onclick CSP-bloqueado) | P2 | S | LOW | — | TODO |
+| 6 | [062](062-inline-link-spacing-tokenizer.md) | Tokenizer spacing: preservar `<` literal y stacks | P2 | S | LOW/MED | — | TODO |
+| 7 | [063](063-chile-calendar-tz.md) | Calendario America/Santiago en fetcher SII y gates de frescura | P2 | S | LOW | — | TODO |
+| 8 | [064](064-no-fabricated-indicator-dates.md) | No fabricar fecha "hoy" por indicador (gate de frescura real) | P2 | S | LOW | — | TODO |
+| 9 | [065](065-jsonld-escape.md) | Escapar `<` en toda serialización JSON-LD | P2 | S | LOW | — | TODO |
+| 10 | [066](066-secret-scan-pr.md) | Gitleaks bloqueante por PR + quitar allowlist de `.env` | P1 | S | LOW | — | TODO |
+| 11 | [067](067-seotitle-tests.md) | seoTitle: presupuesto 65 en schema + gate + tests de resolución | P1 | M | LOW | — | TODO |
+| 12 | [068](068-frontmatter-characterization.md) | Caracterización de `check-frontmatter.mjs` (7+ casos) | P2 | M | MED | 067 (opcional) | TODO |
+| 13 | [069](069-legal-constants-check.md) | Check de consistencia de constantes legales espejadas | P2 | S–M | LOW | — | TODO |
+| 14 | [070](070-url-freeze-exceptions-module.md) | Módulo único de excepciones URL-freeze (esquema compartido) | P2 | M | LOW/MED | — | TODO |
+| 15 | [071](071-indicadores-hoy-tests.md) | Tests del endpoint indicadores-hoy + formateadores | P2 | S–M | LOW | — | TODO |
+| 16 | [072](072-analytics-fetch-branches.md) | Tests de las ~12 ramas del fetch handler del collector | P2 | M | LOW | 059 (opcional) | TODO |
+| 17 | [073](073-coverage-widen.md) | Ampliar gate de cobertura a `src/**` (con caracterización) | P2 | S+M | MED | 067, 068, 071, 072 (recomendado) | TODO |
+| 18 | [074](074-stale-overrides.md) | Limpiar overrides/exclusiones de maduración vencidos | P2 | S | LOW | — | TODO |
+| 19 | [075](075-iso-week-module.md) | Módulo compartido de semana ISO (Jan-4) para scripts | P2 | S | LOW | — | TODO |
+| 20 | [076](076-pyproject-prune.md) | Podar stack Python no usado (scraping/MCP) | P2 | M | LOW/MED | — | TODO |
+| 21 | [077](077-check-ci-aggregate.md) | `check:ci` — un comando que reproduce el CI localmente | P2 | S–M | LOW | — | TODO |
+| 22 | [078](078-lhci-mobile-wiring.md) | Ejecutar config Lighthouse mobile (warn-only, scheduled) | P3 | S | LOW | — | TODO |
+| 23 | [079](079-push-validation.md) | Validar snapshot/artefactos al llegar a main (push + validador) | P2 | M | MED | — | TODO |
+| 24 | [080](080-clp-formatter-unify.md) | Unificar formateadores CLP en formatCLP + guard de estilo | P3 | S–M | MED | — | TODO |
+| 25 | [081](081-postbuild-verification.md) | Capa de verificación post-build (aserciones sobre dist/) | P2 | L | MED | 057, 062, 065, 067 (aserciones condicionales) | TODO |
+
+## Orden global de ejecución (para un ejecutor fresco que parte de cero)
+
+**Lee primero `AGENTS.md`** (protocolo de ejecución, reglas 2.1–2.13: scope
+block, diffs mínimos, condiciones de halt, gates de CI) y `pnpm install`
+si `node_modules/` no existe.
+
+**La secuencia a ejecutar es la tabla de la séptima auditoría (057 → 081,
+orden 1–25).** Los planes de la tabla antigua (052, 041, 046, 055, 056) NO
+forman parte de esa secuencia:
+
+- **052** — IN PROGRESS: su código (`ae9246bd`) vive en una rama local NO
+  mergeada a `main`. **No re-implementar**: requiere decisión del operador
+  (merge, deploy y rotación de PAT — pasos no ejecutables por agente).
+- **041** — BLOCKED: no intentar (hipótesis descartada; falta causa de campo).
+- **046, 055, 056** — spikes de dirección con compuertas humanas: ejecutar
+  solo si el operador lo pide; se detienen en la compuerta.
+
+**Loop por plan (uno a uno):**
+1. Leer el plan completo; correr su drift check contra `90370b4e`.
+2. Implementar; correr TODOS sus comandos de verificación.
+3. Commit en rama `advisor/NNN-slug` (convención del repo, ver `git log`).
+4. Actualizar la fila del plan en su tabla (IN PROGRESS → el estado final).
+5. **Detenerse para revisión/merge del operador** — cada plan dice "NO push/PR
+   salvo pedido del operador": ese freno es deliberado.
+6. **No empezar el siguiente plan hasta que el anterior esté mergeado a
+   `main`**: los excerpts y drift checks de cada plan asumen
+   `main = 90370b4e + planes anteriores`. Si el operador autoriza el merge,
+   hacer el **cierre atómico** de la "Política obligatoria de cierre y
+   archivo" (mover a `plans/archive/`, actualizar índices y la tabla).
+
+**Compuertas humanas (pasos que un agente NO puede completar; marcar el plan
+BLOCKED y reportar):** deploys de workers (`wrangler deploy` para 059/060/063/
+064/072 — los fixes del snapshot worker y del collector no están en
+producción hasta desplegar), rotación de secrets (052, 066 implícito),
+decisión Durable Objects (059), conversión de bots a PRs (079), elección de
+slugs para los checks de 081 (el ejecutor elige y anota — excepción, no
+compuerta).
+
+**Recordatorio de cierre (aplica a ambas tablas):** en cuanto un plan pasa a
+`DONE`, su archivo se mueve a `plans/archive/` en la misma unidad de cambio y
+deja de aparecer en su tabla. Ninguna tabla debe mostrar una fila `DONE`.
+
+## Dependency notes (séptima auditoría)
+
+- **057 antes que cualquier crecimiento de pagefind**: el índice limpio (~1.3 MB) es la base; 081 check `pagefind-bounded` lo protege (activo solo si 057 está en main).
+- **073 después de 067/068/071/072**: ampliar el gate de cobertura antes de cubrir los archivos nuevos haría fallar CI de inmediato; el orden evita el dolor.
+- **072 opcionalmente después de 059**: los tests de fallo KV se adaptan a la versión logueada (los casos 429/guards no dependen).
+- **081 es el destino de las aserciones de artefacto**: 057 (tamaño), 062 (spacing), 065 (JSON-LD), 067 (título/H1) activan sus checks solo cuando su plan aterrice en main; el script debe tolerar la ausencia.
+- **068 y 067 tocan el mismo script** (`check-frontmatter.mjs`): si se ejecutan en paralelo, 068 reconcilia con la regla seotitle de 067 (el plan lo dice explícitamente).
+- **063 y 060 tocan `siiUtm.ts`/`buildSnapshot.ts`**: zonas distintas (timezone vs fallback UTA); sin conflicto si se secuencian, verificar drift si van en paralelo.
+
+## Hallazgos considerados y rechazados (2026-08-10)
+
+- **Trigger `?secret=` del worker económico (SEC-01/CORRECTNESS-07)**: ya planificado — plan 052 IN PROGRESS (código `ae9246bd` aprobado, deploy/rotación pendientes). No se re-propone.
+- **Spoofabilidad del analytics (SEC-07)**: tradeoff de diseño aceptado (endpoint público sin proof-of-origin); se recomienda documentar en ADR, no cambiar código. Revisitarlo si el scorecard pasa de ranking relativo a valores absolutos.
+- **Fuga de strings de error en triggers manuales (SEC-05)**: post-auth, bajo valor; si se toca 052 en el futuro, devolver `{"error":"trigger_failed"}` genérico en el mismo cambio.
+- **zod@3.25.76 coexistente via LHCI (DEPS-03)**: inevitable (chromium-bidi pinnea zod@3); anotar en `docs/TECH_DEBT_BACKLOG.md` como aceptado, desaparece si se reemplaza LHCI.
+- **Dev majors atrasados (DEPS-04)**: eslint-plugin-astro 3.x se intentó y revirtió (`c0fc2439`); TS7 ya tiene workflow de readiness `.disabled`; sin costo de seguridad. No planificar.
+- **`check:images` borra PNGs (DX-03)**: PNGs son untracked (solo AVIFs commiteados); el impacto es solo local en el pipeline de generación de imágenes — no justifica plan.
+- **guardrail-drift-audit sin try/catch (DX-07)**: marginal (MED confianza, fallo poco probable); si se toca `guardrail-drift-audit.yml` por otra razón, copiar el patrón de `check-afp-commissions.yml:60-65`.
+- **Consolidación de las 3 integraciones post-build (ARCH-07)**: los 3 globs independientes sobre dist son reales, pero el conflicto con astro-shield es inferencia; se pospone — el plan 081 agrega las aserciones de integridad que harían seguro ese refactor futuro.
+- **Payload UF histórico 207 KB (PERF-03)**: interacción lazy + cacheada (`max-age=86400`); revisitarlo cuando se agreguen series ipc/utm históricas (mismo patrón ×3).
+- **Conversión de bots a PRs (DX-01, parte governance)**: NO es un plan de código — el 079 valida post-push como mitigación; la conversión a PR+automerge rompería la SLA de frescura 3×/día y es decisión del operador.
+- **Rejects menores**: `fmt` deprecated en `indicadores.ts` (knip lo cubre); error leak `?secret=` documentado en docs históricas (037 ya lo verificó); Dependabot automerge (verificado sano).
 
 ## Política obligatoria de cierre y archivo
 
@@ -75,9 +173,11 @@ scorecards y exports reales en `output/operations/`). Originalmente siete;
 **035, 036, 037, 038 y 039 ya están DONE y archivados** (ver arriba — 039
 parcialmente, con su typo residual desglosado en el plan 042; 038 con alcance
 revisado a 3 de 4 claves, el resto desglosado en el plan 043 — ver nota abajo).
-El plan 043 se sumó el 2026-07-11 como *carve-out* de 038. Se listan en **un
-único orden de ejecución recomendado** — no dos lotes separados; todo es
-paralelizable entre sí salvo que se indique lo contrario.
+El plan 043 se sumó el 2026-07-11 como *carve-out* de 038. Los planes que
+siguen vivos de este lote (052, 041, 046, 055, 056) **no forman parte de la
+secuencia de la séptima auditoría** (057–081): ver la sección
+"Orden global de ejecución" arriba para su estado y tratamiento. Los
+restantes (035–040, 042–045, 047–051, 053–054) están DONE y archivados.
 
 > **Recordatorio de cierre**: en cuanto un plan de esta tabla pase a `DONE`,
 > deja de aparecer aquí — su archivo se mueve a
@@ -292,7 +392,12 @@ paralelizable entre sí salvo que se indique lo contrario.
 > doc permanente de `docs/reports/`; defendible como procedencia, candidato a
 > limpieza futura.
 
-**Por qué este orden:**
+**Por qué este orden:** *(bloque histórico de la tabla de la quinta/sexta
+auditoría — los planes que cita (040, 042, 043, 035–038) están archivados y
+ya no aplican a la tabla vigente; el orden actual de este lote es: 052 (si el
+operador lo retoma), 041 BLOCKED, y los spikes 046/055/056 solo a pedido del
+operador. La secuencia ejecutable pendiente es la de la séptima auditoría
+057–081.)*
 - **035, 038, 039, 037 y 036 ya ejecutados** (ver notas abajo): máxima
   prioridad/mayor confianza primero, e independientes de todo lo demás — no
   había razón para esperar.
