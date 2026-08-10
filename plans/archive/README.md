@@ -51,6 +51,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [054](054-editorial-evidence-ledger-spike.md) | Spike de dirección: ledger de evidencia del pipeline editorial (inventario 3/53, reproducción del checker, veredicto claim vs. evidencia — gap real = 19); entregable `docs/reports/EDITORIAL-EVIDENCE-LEDGER-2026-08-02.md`; compuerta humana abierta | 2026-08-02 | sí (fast-forward `673ad8dc`) |
 | [057](057-pagefind-prune.md) | Purgar el índice pagefind en cada build (`rm -rf dist/pagefind` antes de re-indexar; 33 MB acumulado → 1.3 MB) | 2026-08-10 | sí (fast-forward `70f6a1d9`) |
 | [058](058-sw-volatile-money-paths.md) | SW network-first para conversor-uf/utm y uf-hoy: 6 rutas nuevas en `VOLATILE_HTML_PATHS` (valores monetarios del día dejan de servirse stale) | 2026-08-10 | sí (fast-forward `7d5c4910`) |
+| [059](059-kv-counter-integrity.md) | Superficializar fallos KV de contadores: `console.error` en `ingestEvent`/`checkRateLimit` (clave truncada sin IP), documentación de la aproximación, 3 tests; auditoría adversarial integrada (regla CDN `/uf-hoy/`, log preciso, guard de privacidad, test de sincronía SW↔`_headers`) | 2026-08-10 | sí (fast-forward `1e99a772`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
