@@ -157,6 +157,47 @@ describe("analytics v2 contract", () => {
     });
   });
 
+  it("passes the strict server boundary (rejectUnknown) with a full CTA payload", () => {
+    expect(
+      sanitizeAnalyticsPayload(
+        "article_calculator_cta_click",
+        {
+          cta_type: "article-calculator-cta",
+          cta_location: "article_body",
+          destination_url: "https://monedario.cl/calculadoras/sueldo-liquido/",
+          page_type: "post",
+          app_version: "5.5.1",
+        },
+        { rejectUnknown: true }
+      )
+    ).not.toBeNull();
+  });
+
+  it.each([
+    "https://www.monedario.cl/calculadoras/iva/",
+    "https://monedario.cl/calculadoras/iva",
+    "https://monedario.cl/",
+  ])("accepts internal destination variant %s", (url) => {
+    const result = sanitizeAnalyticsPayload("article_calculator_cta_click", {
+      destination_url: url,
+    });
+    expect(result?.params.destination_url).toBe(url);
+  });
+
+  it.each([
+    "https://monedario.cl.evil.com/calculadoras/",
+    "https://monedario.cl:8443/calculadoras/",
+    "https://monedario.cl/calculadoras/iva?utm_source=x",
+    "https://monedario.cl/CALCULADORAS/",
+    "https://example.com/calculadoras/",
+    "https://monedario.cl.evil.com",
+  ])("rejects non-canonical destination %s", (url) => {
+    const lenient = sanitizeAnalyticsPayload("article_calculator_cta_click", {
+      destination_url: url,
+    });
+    expect(lenient?.params.destination_url).toBeUndefined();
+  });
+
   it("drops external destinations on the CTA click (strict and lenient)", () => {
     const payload = {
       cta_type: "article-calculator-cta",
