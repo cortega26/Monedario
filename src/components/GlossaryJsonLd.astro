@@ -1,4 +1,5 @@
 ---
+import { serializeJsonLd } from "@/utils/serializeJsonLd";
 interface Props {
   term: string;
   shortDefinition: string;
@@ -28,5 +29,5 @@ const definedTermSchema = {
 <script
   type="application/ld+json"
   is:inline
-  set:html={JSON.stringify(definedTermSchema)}
+  set:html={serializeJsonLd(definedTermSchema)}
 />

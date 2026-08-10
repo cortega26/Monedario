@@ -1,4 +1,5 @@
 ---
+import { serializeJsonLd } from "@/utils/serializeJsonLd";
 import { getCollection, type CollectionEntry } from "astro:content";
 import { render } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
@@ -101,14 +102,14 @@ const lastVerifiedStr = d.lastVerified.toLocaleDateString("es-CL", {
   <script
     type="application/ld+json"
     is:inline
-    set:html={JSON.stringify(legislationSchema)}
+    set:html={serializeJsonLd(legislationSchema)}
   />
   {
     faqSchema && (
       <script
         type="application/ld+json"
         is:inline
-        set:html={JSON.stringify(faqSchema)}
+        set:html={serializeJsonLd(faqSchema)}
       />
     )
   }

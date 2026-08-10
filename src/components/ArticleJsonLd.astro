@@ -1,4 +1,5 @@
 ---
+import { serializeJsonLd } from "@/utils/serializeJsonLd";
 /**
  * ArticleJsonLd.astro
  *
@@ -156,14 +157,14 @@ const faqSchema =
 <script
   type="application/ld+json"
   is:inline
-  set:html={JSON.stringify(articleSchema)}
+  set:html={serializeJsonLd(articleSchema)}
 />
 {
   faqSchema && (
     <script
       type="application/ld+json"
       is:inline
-      set:html={JSON.stringify(faqSchema)}
+      set:html={serializeJsonLd(faqSchema)}
     />
   )
 }

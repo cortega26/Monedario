@@ -1,4 +1,5 @@
 ---
+import { serializeJsonLd } from "@/utils/serializeJsonLd";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
@@ -75,7 +76,7 @@ const webPageSchema = {
   <script
     is:inline
     type="application/ld+json"
-    set:html={JSON.stringify(webPageSchema)}
+    set:html={serializeJsonLd(webPageSchema)}
   />
   <Header />
   <Breadcrumb />

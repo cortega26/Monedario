@@ -1,4 +1,5 @@
 ---
+import { serializeJsonLd } from "@/utils/serializeJsonLd";
 import { ClientRouter } from "astro:transitions";
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 import { SITE } from "@/config";
@@ -249,7 +250,7 @@ const structuredData = !pubDatetime
         <script
           type="application/ld+json"
           is:inline
-          set:html={JSON.stringify(structuredData)}
+          set:html={serializeJsonLd(structuredData)}
         />
       )
     }

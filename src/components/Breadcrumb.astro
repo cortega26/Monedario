@@ -1,4 +1,5 @@
 ---
+import { serializeJsonLd } from "@/utils/serializeJsonLd";
 /**
  * Breadcrumbs robustos para deploy bajo dominio raíz o subpath sin duplicar base.
  * - No usa BASE/RAW_BASE.
@@ -115,7 +116,7 @@ const breadcrumbItems = [
     <script
       type="application/ld+json"
       is:inline
-      set:html={JSON.stringify({
+      set:html={serializeJsonLd({
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         itemListElement: breadcrumbItems,

@@ -1,4 +1,5 @@
 ---
+import { serializeJsonLd } from "@/utils/serializeJsonLd";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import CalculatorJsonLd from "@/components/CalculatorJsonLd.astro";
@@ -242,7 +243,7 @@ const calculatorNextStepItems = [
       id="ipc-serie-data"
       type="application/json"
       is:inline
-      set:html={JSON.stringify({
+      set:html={serializeJsonLd({
         serie: ipcSerie,
         first: ipcFirstKey,
         last: ipcLastKey,
