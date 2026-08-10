@@ -54,6 +54,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [059](059-kv-counter-integrity.md) | Superficializar fallos KV de contadores: `console.error` en `ingestEvent`/`checkRateLimit` (clave truncada sin IP), documentación de la aproximación, 3 tests; auditoría adversarial integrada (regla CDN `/uf-hoy/`, log preciso, guard de privacidad, test de sincronía SW↔`_headers`) | 2026-08-10 | sí (fast-forward `1e99a772`) |
 | [060](060-uta-honest-fallback.md) | UTA honesta: fallback mindicador → SII diciembre (`parseSiiUtm`) → null + warn al anualizar UTM×12; headers browser-like para SII; guard `value > 0`; auditoría adversarial integrada (verificado contra HTML real del SII) | 2026-08-10 | sí (fast-forward `da9e1ee5`) — deploy del worker pendiente |
 | [061](061-calculator-cta-event.md) | Reactivar `article_calculator_cta_click`: onclick inline eliminado (CSP-safe), mapeo `CTA_EVENT_NAMES`, allowlist compartida cliente+worker, regex `INTERNAL_URL` en la frontera de seguridad; auditoría adversarial integrada (8 guards del regex) | 2026-08-10 | sí (fast-forward `9245604a`) — deploy del collector pendiente |
+| [062](062-inline-link-spacing-tokenizer.md) | Tokenizer robusto para `<` literales y stacks de exclusión: `(<[a-zA-Z\/!][^<>]*>)|([^<]+)|(.)`; auditoría adversarial integrada (bug vivo confirmado en 54 archivos del dist; 8 guards de regresión) | 2026-08-10 | sí (fast-forward `15b880e2`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
