@@ -1,3 +1,6 @@
+import { DEFAULT_HEADERS } from "./govFetch";
+import { parseSiiUtm } from "./sources/siiUtm";
+
 const DEFAULT_AFC_MONTHLY_TAXABLE_CAP_UF = 135.2;
 const DEFAULT_PENSION_AND_HEALTH_MONTHLY_TAXABLE_CAP_UF = 90;
 const DEFAULT_TMC_FALLBACK = 3.49;
@@ -167,6 +170,13 @@ export async function buildSnapshot(deps: BuildSnapshotDeps): Promise<EconomicSn
   const utaRefYear = getUtaReferenceYear(now);
   const decUtm = await deps.fetchDecemberUtm(utaRefYear);
   const uta = decUtm !== null ? decUtm * 12 : utm * 12;
+  if (decUtm === null) {
+    // Fallback no silencioso: la UTA anualizada con UTM corriente es aproximada
+    // y solo debe ocurrir cuando mindicador Y SII fallan.
+    console.warn(
+      `[economic-snapshot] UTA fallback: UTM de diciembre ${utaRefYear} no disponible; UTA anualizada = UTM corriente × 12`
+    );
+  }
 
   const ipcRaw = payload?.ipc?.valor;
   let ipc = typeof ipcRaw === "number" ? ipcRaw : NaN;
@@ -283,6 +293,57 @@ export interface FetcherOptions {
   baseUrl?: string;
 }
 
+/**
+ * December UTM for the UTA reference year, with an honest fallback chain:
+ * 1. mindicador.cl serie (current behavior);
+ * 2. SII utm{year}.htm December row (already parsed by `parseSiiUtm`);
+ * 3. null — the caller falls back to current UTM × 12 and warns loudly.
+ * The SII request uses the same browser-like headers as `govFetch` (bare HTTP
+ * clients get 403 from sii.cl) — with the injected `fetchImpl` for tests.
+ */
+export async function fetchDecemberUtmWithSiiFallback(
+  fetchImpl: typeof fetch,
+  baseUrl: string,
+  timeoutMs: number,
+  year: number,
+): Promise<number | null> {
+  // 1. mindicador (comportamiento actual)
+  try {
+    const response = await fetchImpl(`${baseUrl}/utm/${year}`, {
+      signal: AbortSignal.timeout(timeoutMs),
+    });
+    if (response.ok) {
+      const payload = (await response.json()) as UtmSerieResponse;
+      const decEntry = payload?.serie?.find(e => e.fecha?.startsWith(`${year}-12`));
+      const value = decEntry?.valor;
+      if (typeof value === "number" && Number.isFinite(value)) return value;
+    }
+  } catch {
+    // cae al fallback SII
+  }
+  // 2. SII: la página utm{year}.htm lista los 12 meses; "Diciembre" = monthIndex 11
+  try {
+    const response = await fetchImpl(
+      `https://www.sii.cl/valores_y_fechas/utm/utm${year}.htm`,
+      {
+        signal: AbortSignal.timeout(timeoutMs),
+        headers: {
+          ...DEFAULT_HEADERS,
+          Accept: "text/html,application/xhtml+xml",
+          Referer: "https://www.sii.cl/valores_y_fechas/",
+        },
+      },
+    );
+    if (response.ok) {
+      const reading = parseSiiUtm(await response.text(), year, 11);
+      if (reading) return reading.value;
+    }
+  } catch {
+    // fallback final abajo
+  }
+  return null;
+}
+
 export function createMindicadorFetchers(options: FetcherOptions = {}): {
   fetchApi: BuildSnapshotDeps["fetchApi"];
   fetchDecemberUtm: BuildSnapshotDeps["fetchDecemberUtm"];
@@ -298,20 +359,8 @@ export function createMindicadorFetchers(options: FetcherOptions = {}): {
     return (await response.json()) as MindicadorApiResponse;
   };
 
-  const fetchDecemberUtm: BuildSnapshotDeps["fetchDecemberUtm"] = async year => {
-    try {
-      const response = await fetch(`${baseUrl}/utm/${year}`, {
-        signal: AbortSignal.timeout(timeoutMs),
-      });
-      if (!response.ok) return null;
-      const payload = (await response.json()) as UtmSerieResponse;
-      const decEntry = payload?.serie?.find(e => e.fecha?.startsWith(`${year}-12`));
-      const value = decEntry?.valor;
-      return typeof value === "number" && Number.isFinite(value) ? value : null;
-    } catch {
-      return null;
-    }
-  };
+  const fetchDecemberUtm: BuildSnapshotDeps["fetchDecemberUtm"] = async year =>
+    fetchDecemberUtmWithSiiFallback(fetch, baseUrl, timeoutMs, year);
 
   return { fetchApi, fetchDecemberUtm };
 }

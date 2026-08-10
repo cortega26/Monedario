@@ -1,7 +1,8 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
   assertPlausibleDelta,
   buildSnapshot,
+  fetchDecemberUtmWithSiiFallback,
   getUtaReferenceYear,
   mergePrev,
   serializeSnapshot,
@@ -43,6 +44,60 @@ describe("getUtaReferenceYear", () => {
     expect(getUtaReferenceYear(new Date("2026-01-01T00:00:00Z"))).toBe(2025);
     expect(getUtaReferenceYear(new Date("2026-12-31T23:59:00Z"))).toBe(2025);
     expect(getUtaReferenceYear(new Date("2027-03-15T00:00:00Z"))).toBe(2026);
+  });
+});
+
+describe("fetchDecemberUtmWithSiiFallback", () => {
+  const SII_URL = "https://www.sii.cl/valores_y_fechas/utm/utm2025.htm";
+
+  it("falls back to the SII December row when mindicador fails", async () => {
+    const fetchImpl = async (url: string | URL | Request) => {
+      const href = String(url);
+      if (href.includes("/utm/2025")) {
+        return new Response(null, { status: 503 });
+      }
+      if (href === SII_URL) {
+        return new Response(
+          "<table><tr><th>Diciembre</th><td>37.000</td></tr></table>"
+        );
+      }
+      throw new Error(`unexpected URL: ${href}`);
+    };
+
+    const value = await fetchDecemberUtmWithSiiFallback(
+      fetchImpl as typeof fetch,
+      "https://mindicador.cl/api",
+      5000,
+      2025,
+    );
+
+    expect(value).toBe(37000);
+  });
+
+  it("returns null when both mindicador and SII fail", async () => {
+    const fetchImpl = async () => new Response(null, { status: 503 });
+
+    const value = await fetchDecemberUtmWithSiiFallback(
+      fetchImpl as typeof fetch,
+      "https://mindicador.cl/api",
+      5000,
+      2025,
+    );
+
+    expect(value).toBeNull();
+  });
+
+  it("regression: null December UTM still yields UTM × 12, now with an explicit warn", async () => {
+    const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
+    try {
+      const snapshot = await buildSnapshot(makeDeps({ decemberUtm: null }));
+      expect(snapshot.uta).toBe(70588 * 12);
+      expect(warnSpy).toHaveBeenCalledWith(
+        expect.stringContaining("UTA fallback")
+      );
+    } finally {
+      warnSpy.mockRestore();
+    }
   });
 });
 

@@ -21,6 +21,8 @@ const DEFAULT_HEADERS: Record<string, string> = {
   "Accept-Encoding": "gzip, deflate, br",
 };
 
+export { DEFAULT_HEADERS };
+
 export interface GovFetchOptions {
   /** Override the default Chrome-like User-Agent. */
   userAgent?: string;

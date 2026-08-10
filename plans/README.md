@@ -58,7 +58,7 @@ Cada ejecutor debe leer el plan completo y honrar sus condiciones de STOP.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Depende de | Estado |
 |---|------|--------|-----------|----------|--------|------------|--------|
-| 1 | [060](060-uta-honest-fallback.md) | UTA: fallback a diciembre SII + warn si se anualiza UTM×12 | P1 | S | LOW | — | TODO |
+| 1 | [060](060-uta-honest-fallback.md) | UTA: fallback a diciembre SII + warn si se anualiza UTM×12 | P1 | S | LOW | — | IN PROGRESS |
 | 2 | [061](061-calculator-cta-event.md) | Reactivar `article_calculator_cta_click` (onclick CSP-bloqueado) | P2 | S | LOW | — | TODO |
 | 3 | [062](062-inline-link-spacing-tokenizer.md) | Tokenizer spacing: preservar `<` literal y stacks | P2 | S | LOW/MED | — | TODO |
 | 4 | [063](063-chile-calendar-tz.md) | Calendario America/Santiago en fetcher SII y gates de frescura | P2 | S | LOW | — | TODO |
