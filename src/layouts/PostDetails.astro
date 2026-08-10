@@ -14,6 +14,7 @@ import {
   getCanonicalPathFromSlug,
 } from "@/domain/content/path";
 import { slugifyStr } from "@/utils/slugify";
+import { resolvePageTitle } from "@/utils/seoTitle";
 import { getReadingTime } from "@/utils/readingTime";
 import { toArticleView, type ArticleView } from "@/utils/articleView";
 import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
@@ -106,7 +107,7 @@ const ogImage = ogImageUrl
   : undefined;
 
 const layoutProps = {
-  title: seoTitle ?? `${title} | ${SITE.title}`,
+  title: resolvePageTitle(title, SITE.title, seoTitle),
   author,
   description,
   pubDatetime,

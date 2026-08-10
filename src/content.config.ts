@@ -43,7 +43,7 @@ const blog = defineCollection({
         // too long for SERPs (Bing flags anything past ~65 chars) without
         // shortening the H1, which always renders the frontmatter "title"
         // field unchanged.
-        seoTitle: z.string().trim().min(1).max(70).optional(),
+        seoTitle: z.string().trim().min(1).max(65).optional(),
         description: z.string().trim().min(1),
         slug: z.string().trim().min(1),
         pubDate: z.date(),
@@ -320,7 +320,7 @@ const glossary = defineCollection({
     // Optional SEO title override. Glossary pages default to "<term> | Glosario
     // Financiero", but definitional queries ("qué es <term>") rank better when
     // the title matches that intent. Set per-term only where the data warrants.
-    seoTitle: z.string().trim().min(1).max(70).optional(),
+    seoTitle: z.string().trim().min(1).max(65).optional(),
     relatedTerms: z.array(z.string()).default([]),
     relatedCalculators: z
       .array(z.object({ href: z.string(), label: z.string() }))

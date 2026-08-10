@@ -14,11 +14,18 @@ import {
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const REPO_ROOT = path.resolve(__dirname, "..");
+// FRONTMATTER_REPO_ROOT: hook de testabilidad (patrón OBS01_FREEZE_PLAN_PATH).
+// Apunta a un árbol fixture con src/data/blog/ y src/config/clusters.ts.
+const REPO_ROOT = path.resolve(
+  process.env.FRONTMATTER_REPO_ROOT || path.resolve(__dirname, "..")
+);
 const BLOG_DIR = path.join(REPO_ROOT, "src", "data", "blog");
 
 const TITLE_RANGE = { min: 20, max: 110 };
 const DESCRIPTION_RANGE = { min: 120, max: 200 };
+// Presupuesto del <title> SERP: seoTitle se usa sin sufijo, su longitud == la
+// del título renderizado (ver src/utils/seoTitle.ts).
+const SEO_TITLE_MAX = 65;
 
 const DEPRECATED_FIELDS = [
   "pubDatetime",
@@ -612,6 +619,22 @@ for (const filePath of files) {
         warnings,
         relativeFilePath,
         `Title length ${titleLength} outside recommended range (${TITLE_RANGE.min}-${TITLE_RANGE.max}).`
+      );
+    }
+  }
+
+  if (typeof frontmatter.seoTitle === "string") {
+    const seoTitleValue = frontmatter.seoTitle.trim();
+    const seoTitleLength = seoTitleValue.length;
+    // Nota (auditoría 067): seoTitle se usa verbatim en el Layout — el sufijo
+    // "| Monedario" incluido por el autor ES la convención vigente (38/41
+    // posts de c7bf4832 lo llevan) y su longitud ya cuenta contra el
+    // presupuesto. Solo se valida la longitud.
+    if (seoTitleLength > SEO_TITLE_MAX) {
+      pushIssue(
+        errors,
+        relativeFilePath,
+        `seoTitle "${seoTitleValue}" is ${seoTitleLength} chars (max ${SEO_TITLE_MAX}).`
       );
     }
   }

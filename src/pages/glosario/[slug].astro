@@ -7,6 +7,7 @@ import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
 import GlossaryJsonLd from "@/components/GlossaryJsonLd.astro";
 import { getPath } from "@/utils/getPath";
+import { resolvePageTitle } from "@/utils/seoTitle";
 import { formatMetadataDate } from "@/utils/metadataDate";
 
 export async function getStaticPaths() {
@@ -56,7 +57,7 @@ if (relatedTerms.length > 0) {
 ---
 
 <Layout
-  title={seoTitle ?? `${term} | Glosario Financiero`}
+  title={resolvePageTitle(term, "Glosario Financiero", seoTitle)}
   description={shortDefinition}
   canonicalURL={canonicalUrl}
 >
