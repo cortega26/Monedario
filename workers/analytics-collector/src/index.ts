@@ -321,9 +321,15 @@ async function checkRateLimit(
     // Increment with 120s TTL (2 windows to avoid edge cases)
     await kv.put(key, String(count + 1), { expirationTtl: 120 });
     return true;
-  } catch {
+  } catch (error) {
     // If KV is unreachable, allow the request (fail open for rate limiting,
-    // fail closed for the actual event writing).
+    // fail closed for the actual event writing), but never silently: log a
+    // truncated key (only the minute suffix — never the full IP).
+    const suffix = key.split(":").at(-1);
+    console.error(
+      `[analytics-collector] KV rate-limit check failed (window ${suffix}):`,
+      error instanceof Error ? error.message : String(error)
+    );
     return true;
   }
 }
@@ -344,9 +350,14 @@ async function ingestEvent(
     const current = await kv.get(key);
     const count = current ? parseInt(current, 10) : 0;
     await kv.put(key, String(count + 1), { expirationTtl: KV_TTL_SECONDS });
-  } catch {
-    // KV write failure: silently drop. We don't have a dead-letter queue at
-    // this scale. The export will show a gap if persistent.
+  } catch (error) {
+    // Fail-open (el evento no bloquea la respuesta), pero NUNCA en silencio:
+    // un fallo persistente de KV debe ser visible en Workers Logs, no solo
+    // como un gap en el export.
+    console.error(
+      `[analytics-collector] KV write failed for counter ${key}:`,
+      error instanceof Error ? error.message : String(error)
+    );
   }
 }
 

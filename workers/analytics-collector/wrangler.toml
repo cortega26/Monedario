@@ -21,6 +21,7 @@ crons = ["57 7 * * MON"]
 # Contadores agregados. Claves versionadas:
 #   telemetry:v1:{utc-date}:{event}:{slug}:{dimension} (legado)
 #   telemetry:v2:{local-date}:{event}:{slug}:{dimension} (desde el cutover)
+# Contadores aproximados: read-modify-write no atómico sobre KV eventualmente consistente (ver README).
 # TTL = 35 días (5 semanas). Se crea con:
 #   npx wrangler kv:namespace create ANALYTICS_TELEMETRY
 #   npx wrangler kv:namespace create ANALYTICS_TELEMETRY --preview

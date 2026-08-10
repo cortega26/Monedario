@@ -65,6 +65,24 @@ Para el endpoint manual local, configurar `EXPORT_SECRET` en
 EXPORT_SECRET = "valor-solo-local"
 ```
 
+## Precisión de contadores
+
+Los contadores de eventos (`calculator_complete`, `calculator_view`,
+`next_step_*`, …) son **aproximados por diseño**: se incrementan con
+read-modify-write sobre KV (`get` → `parseInt` → `put`) sin primitiva atómica,
+y KV es eventualmente consistente. Consecuencias:
+
+- una lectura puede devolver un valor stale (el contador puede *bajar*);
+- dos ingesta concurrentes en la misma clave pierden un incremento;
+- durante fallos de KV se pierden incrementos — ahora **logueados**
+  (`console.error` → Workers Logs), no silenciosos.
+
+Los contadores sirven para ranking relativo y scorecards semanales, no como
+conteo exacto de eventos. Para exactitud por evento se evalúa una migración a
+Durable Objects (incremento atómico real) — decisión del operador, no
+implementada. Ver `docs/adr/ADR-20260628-first-party-analytics.md` para el
+trade-off de consistencia eventual aceptado a la escala actual.
+
 ## Secrets
 
 - `EXPORT_SECRET` — protege el endpoint manual de export. Se configura con:

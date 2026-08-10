@@ -1037,6 +1037,82 @@ describe("event ingestion calendar", () => {
   });
 });
 
+describe("counter integrity (KV failure surfacing)", () => {
+  const postEvent = (ip = "192.0.2.1") =>
+    new Request("https://monedario.cl/api/analytics/event", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Origin: "https://monedario.cl",
+        "CF-Connecting-IP": ip,
+      },
+      body: JSON.stringify({
+        event: "calculator_start",
+        params: { calculator_id: "sueldo-liquido", interaction_variant: "input" },
+      }),
+    });
+
+  class FailingPutKV extends MockKV {
+    override async put(): Promise<void> {
+      throw new Error("KV unreachable");
+    }
+  }
+
+  class FailingGetKV extends MockKV {
+    override async get(): Promise<string | null> {
+      throw new Error("KV unreachable");
+    }
+  }
+
+  it("KV write failure during ingestion does not break the response but logs the counter key", async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-07-15T03:30:00Z"));
+    const env = makeEnv();
+    env.ANALYTICS_DISABLED = "0";
+    env.ANALYTICS_TELEMETRY = new FailingPutKV() as unknown as Env["ANALYTICS_TELEMETRY"];
+    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+    const response = await analyticsCollector.fetch(postEvent(), env);
+
+    expect(response.status).toBe(202);
+    expect(
+      spy.mock.calls.some((call) =>
+        String(call[0]).includes("telemetry:v1:2026-07-15:calculator_start:sueldo-liquido:input")
+      )
+    ).toBe(true);
+    spy.mockRestore();
+  });
+
+  it("returns 429 when the rate limit counter is exhausted", async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-07-15T03:30:00Z"));
+    const minute = Math.floor(Date.now() / 60_000);
+    const env = makeEnv({ [`rate_limit:192.0.2.1:${minute}`]: "30" });
+    env.ANALYTICS_DISABLED = "0";
+
+    const response = await analyticsCollector.fetch(postEvent(), env);
+
+    expect(response.status).toBe(429);
+  });
+
+  it("KV failure during the rate-limit check is fail-open and logs a truncated key", async () => {
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-07-15T03:30:00Z"));
+    const env = makeEnv();
+    env.ANALYTICS_DISABLED = "0";
+    env.ANALYTICS_TELEMETRY = new FailingGetKV() as unknown as Env["ANALYTICS_TELEMETRY"];
+    const spy = vi.spyOn(console, "error").mockImplementation(() => {});
+
+    const response = await analyticsCollector.fetch(postEvent(), env);
+
+    expect(response.status).toBe(202);
+    expect(
+      spy.mock.calls.some((call) => String(call[0]).includes("rate-limit"))
+    ).toBe(true);
+    spy.mockRestore();
+  });
+});
+
 describe("manual export endpoint", () => {
   it("returns 503 when EXPORT_SECRET is not configured", async () => {
     const env = makeEnv();
