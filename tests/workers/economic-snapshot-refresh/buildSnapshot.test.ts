@@ -49,41 +49,121 @@ describe("getUtaReferenceYear", () => {
 
 describe("fetchDecemberUtmWithSiiFallback", () => {
   const SII_URL = "https://www.sii.cl/valores_y_fechas/utm/utm2025.htm";
+  const SII_FIXTURE =
+    "<table><tr><th>Diciembre</th><td>37.000</td></tr></table>";
+
+  function mindicadorRespondingWith(
+    response: Response,
+    siiResponse: Response = new Response(SII_FIXTURE),
+  ): typeof fetch {
+    return (async (url: string | URL | Request) => {
+      const href = String(url);
+      if (href.includes("/utm/2025")) return response;
+      if (href === SII_URL) return siiResponse;
+      throw new Error(`unexpected URL: ${href}`);
+    }) as typeof fetch;
+  }
 
   it("falls back to the SII December row when mindicador fails", async () => {
-    const fetchImpl = async (url: string | URL | Request) => {
-      const href = String(url);
-      if (href.includes("/utm/2025")) {
-        return new Response(null, { status: 503 });
-      }
-      if (href === SII_URL) {
-        return new Response(
-          "<table><tr><th>Diciembre</th><td>37.000</td></tr></table>"
-        );
-      }
-      throw new Error(`unexpected URL: ${href}`);
-    };
-
     const value = await fetchDecemberUtmWithSiiFallback(
-      fetchImpl as typeof fetch,
+      mindicadorRespondingWith(new Response(null, { status: 503 })),
       "https://mindicador.cl/api",
       5000,
       2025,
     );
-
     expect(value).toBe(37000);
   });
 
-  it("returns null when both mindicador and SII fail", async () => {
-    const fetchImpl = async () => new Response(null, { status: 503 });
-
+  it("falls back to the SII December row when mindicador returns non-JSON (gateway hiccup)", async () => {
     const value = await fetchDecemberUtmWithSiiFallback(
-      fetchImpl as typeof fetch,
+      mindicadorRespondingWith(
+        new Response("<html>upstream error</html>", { status: 200 }),
+      ),
+      "https://mindicador.cl/api",
+      5000,
+      2025,
+    );
+    expect(value).toBe(37000);
+  });
+
+  it("falls back to the SII December row when mindicador's serie has no December entry", async () => {
+    const value = await fetchDecemberUtmWithSiiFallback(
+      mindicadorRespondingWith(
+        new Response(
+          JSON.stringify({ serie: [{ fecha: "2025-11-01", valor: 70000 }] }),
+          { status: 200 },
+        ),
+      ),
+      "https://mindicador.cl/api",
+      5000,
+      2025,
+    );
+    expect(value).toBe(37000);
+  });
+
+  it("falls back to the SII December row when mindicador December value is not positive", async () => {
+    const value = await fetchDecemberUtmWithSiiFallback(
+      mindicadorRespondingWith(
+        new Response(
+          JSON.stringify({ serie: [{ fecha: "2025-12-01", valor: 0 }] }),
+          { status: 200 },
+        ),
+      ),
+      "https://mindicador.cl/api",
+      5000,
+      2025,
+    );
+    expect(value).toBe(37000);
+  });
+
+  it("requests the SII page with browser-like headers (gov sites 403 bare clients)", async () => {
+    let siiInit: RequestInit | undefined;
+    const fetchImpl = (async (url: string | URL | Request, init?: RequestInit) => {
+      const href = String(url);
+      if (href.includes("/utm/2025")) return new Response(null, { status: 503 });
+      if (href === SII_URL) {
+        siiInit = init;
+        return new Response(SII_FIXTURE);
+      }
+      throw new Error(`unexpected URL: ${href}`);
+    }) as typeof fetch;
+
+    await fetchDecemberUtmWithSiiFallback(
+      fetchImpl,
       "https://mindicador.cl/api",
       5000,
       2025,
     );
 
+    const headers = siiInit?.headers as Record<string, string> | undefined;
+    expect(headers?.["User-Agent"]).toContain("Mozilla/5.0");
+    expect(headers?.Referer).toBe("https://www.sii.cl/valores_y_fechas/");
+    expect(headers?.Accept).toContain("text/html");
+  });
+
+  it("returns null when both mindicador and SII fail", async () => {
+    const value = await fetchDecemberUtmWithSiiFallback(
+      mindicadorRespondingWith(
+        new Response(null, { status: 503 }),
+        new Response(null, { status: 503 }),
+      ),
+      "https://mindicador.cl/api",
+      5000,
+      2025,
+    );
+    expect(value).toBeNull();
+  });
+
+  it("returns null when SII responds 200 but the HTML has no December row", async () => {
+    const value = await fetchDecemberUtmWithSiiFallback(
+      mindicadorRespondingWith(
+        new Response(null, { status: 503 }),
+        new Response("<html>maintenance</html>"),
+      ),
+      "https://mindicador.cl/api",
+      5000,
+      2025,
+    );
     expect(value).toBeNull();
   });
 

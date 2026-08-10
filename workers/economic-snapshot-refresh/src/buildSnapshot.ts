@@ -1,5 +1,5 @@
 import { DEFAULT_HEADERS } from "./govFetch";
-import { parseSiiUtm } from "./sources/siiUtm";
+import { parseSiiUtm, siiUtmPageUrl } from "./sources/siiUtm";
 
 const DEFAULT_AFC_MONTHLY_TAXABLE_CAP_UF = 135.2;
 const DEFAULT_PENSION_AND_HEALTH_MONTHLY_TAXABLE_CAP_UF = 90;
@@ -316,16 +316,18 @@ export async function fetchDecemberUtmWithSiiFallback(
       const payload = (await response.json()) as UtmSerieResponse;
       const decEntry = payload?.serie?.find(e => e.fecha?.startsWith(`${year}-12`));
       const value = decEntry?.valor;
-      if (typeof value === "number" && Number.isFinite(value)) return value;
+      // Same positivity guard as parseSiiUtm: a glitched 0 would otherwise
+      // produce an UTA of 0 on a YMYL page.
+      if (typeof value === "number" && Number.isFinite(value) && value > 0) {
+        return value;
+      }
     }
   } catch {
     // cae al fallback SII
   }
   // 2. SII: la página utm{year}.htm lista los 12 meses; "Diciembre" = monthIndex 11
   try {
-    const response = await fetchImpl(
-      `https://www.sii.cl/valores_y_fechas/utm/utm${year}.htm`,
-      {
+    const response = await fetchImpl(siiUtmPageUrl(year), {
         signal: AbortSignal.timeout(timeoutMs),
         headers: {
           ...DEFAULT_HEADERS,

@@ -21,6 +21,10 @@ export interface SiiUtmReading {
   sourceUrl: string;
 }
 
+export function siiUtmPageUrl(year: number): string {
+  return `https://www.sii.cl/valores_y_fechas/utm/utm${year}.htm`;
+}
+
 export function parseSiiUtm(
   html: string,
   year: number,
@@ -39,7 +43,7 @@ export function parseSiiUtm(
   return {
     value,
     dateIso: `${year}-${String(monthIndex + 1).padStart(2, "0")}-01`,
-    sourceUrl: `https://www.sii.cl/valores_y_fechas/utm/utm${year}.htm`,
+    sourceUrl: siiUtmPageUrl(year),
   };
 }
 
@@ -49,9 +53,9 @@ export function createSiiUtmFetcher(options: {
 } = {}): () => Promise<SiiUtmReading | null> {
   return async () => {
     const now = options.now?.() ?? new Date();
-    const year = now.getUTCFullYear();
-    const monthIndex = now.getUTCMonth();
-    const url = `https://www.sii.cl/valores_y_fechas/utm/utm${year}.htm`;
+  const year = now.getUTCFullYear();
+  const monthIndex = now.getUTCMonth();
+  const url = siiUtmPageUrl(year);
     const response = await govFetch(url, {
       accept: "text/html,application/xhtml+xml",
       referer: "https://www.sii.cl/valores_y_fechas/",
