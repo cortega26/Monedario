@@ -53,6 +53,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [058](058-sw-volatile-money-paths.md) | SW network-first para conversor-uf/utm y uf-hoy: 6 rutas nuevas en `VOLATILE_HTML_PATHS` (valores monetarios del día dejan de servirse stale) | 2026-08-10 | sí (fast-forward `7d5c4910`) |
 | [059](059-kv-counter-integrity.md) | Superficializar fallos KV de contadores: `console.error` en `ingestEvent`/`checkRateLimit` (clave truncada sin IP), documentación de la aproximación, 3 tests; auditoría adversarial integrada (regla CDN `/uf-hoy/`, log preciso, guard de privacidad, test de sincronía SW↔`_headers`) | 2026-08-10 | sí (fast-forward `1e99a772`) |
 | [060](060-uta-honest-fallback.md) | UTA honesta: fallback mindicador → SII diciembre (`parseSiiUtm`) → null + warn al anualizar UTM×12; headers browser-like para SII; guard `value > 0`; auditoría adversarial integrada (verificado contra HTML real del SII) | 2026-08-10 | sí (fast-forward `da9e1ee5`) — deploy del worker pendiente |
+| [061](061-calculator-cta-event.md) | Reactivar `article_calculator_cta_click`: onclick inline eliminado (CSP-safe), mapeo `CTA_EVENT_NAMES`, allowlist compartida cliente+worker, regex `INTERNAL_URL` en la frontera de seguridad; auditoría adversarial integrada (8 guards del regex) | 2026-08-10 | sí (fast-forward `9245604a`) — deploy del collector pendiente |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
