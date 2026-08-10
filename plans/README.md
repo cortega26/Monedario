@@ -58,21 +58,20 @@ Cada ejecutor debe leer el plan completo y honrar sus condiciones de STOP.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Depende de | Estado |
 |---|------|--------|-----------|----------|--------|------------|--------|
-| 1 | [067](067-seotitle-tests.md) | seoTitle: presupuesto 65 en schema + gate + tests de resolución | P1 | M | LOW | — | IN PROGRESS |
-| 2 | [068](068-frontmatter-characterization.md) | Caracterización de `check-frontmatter.mjs` (7+ casos) | P2 | M | MED | 067 (opcional) | TODO |
-| 3 | [069](069-legal-constants-check.md) | Check de consistencia de constantes legales espejadas | P2 | S–M | LOW | — | TODO |
-| 4 | [070](070-url-freeze-exceptions-module.md) | Módulo único de excepciones URL-freeze (esquema compartido) | P2 | M | LOW/MED | — | TODO |
-| 5 | [071](071-indicadores-hoy-tests.md) | Tests del endpoint indicadores-hoy + formateadores | P2 | S–M | LOW | — | TODO |
-| 6 | [072](072-analytics-fetch-branches.md) | Tests de las ~12 ramas del fetch handler del collector | P2 | M | LOW | 059 (opcional) | TODO |
-| 7 | [073](073-coverage-widen.md) | Ampliar gate de cobertura a `src/**` (con caracterización) | P2 | S+M | MED | 067, 068, 071, 072 (recomendado) | TODO |
-| 8 | [074](074-stale-overrides.md) | Limpiar overrides/exclusiones de maduración vencidos | P2 | S | LOW | — | TODO |
-| 9 | [075](075-iso-week-module.md) | Módulo compartido de semana ISO (Jan-4) para scripts | P2 | S | LOW | — | TODO |
-| 10 | [076](076-pyproject-prune.md) | Podar stack Python no usado (scraping/MCP) | P2 | M | LOW/MED | — | TODO |
-| 11 | [077](077-check-ci-aggregate.md) | `check:ci` — un comando que reproduce el CI localmente | P2 | S–M | LOW | — | TODO |
-| 12 | [078](078-lhci-mobile-wiring.md) | Ejecutar config Lighthouse mobile (warn-only, scheduled) | P3 | S | LOW | — | TODO |
-| 13 | [079](079-push-validation.md) | Validar snapshot/artefactos al llegar a main (push + validador) | P2 | M | MED | — | TODO |
-| 14 | [080](080-clp-formatter-unify.md) | Unificar formateadores CLP en formatCLP + guard de estilo | P3 | S–M | MED | — | TODO |
-| 15 | [081](081-postbuild-verification.md) | Capa de verificación post-build (aserciones sobre dist/) | P2 | L | MED | 057, 062, 065, 067 (aserciones condicionales) | TODO |
+| 1 | [068](068-frontmatter-characterization.md) | Caracterización de `check-frontmatter.mjs` (7+ casos) | P2 | M | MED | 067 (opcional) | TODO |
+| 2 | [069](069-legal-constants-check.md) | Check de consistencia de constantes legales espejadas | P2 | S–M | LOW | — | TODO |
+| 3 | [070](070-url-freeze-exceptions-module.md) | Módulo único de excepciones URL-freeze (esquema compartido) | P2 | M | LOW/MED | — | TODO |
+| 4 | [071](071-indicadores-hoy-tests.md) | Tests del endpoint indicadores-hoy + formateadores | P2 | S–M | LOW | — | TODO |
+| 5 | [072](072-analytics-fetch-branches.md) | Tests de las ~12 ramas del fetch handler del collector | P2 | M | LOW | 059 (opcional) | TODO |
+| 6 | [073](073-coverage-widen.md) | Ampliar gate de cobertura a `src/**` (con caracterización) | P2 | S+M | MED | 067, 068, 071, 072 (recomendado) | TODO |
+| 7 | [074](074-stale-overrides.md) | Limpiar overrides/exclusiones de maduración vencidos | P2 | S | LOW | — | TODO |
+| 8 | [075](075-iso-week-module.md) | Módulo compartido de semana ISO (Jan-4) para scripts | P2 | S | LOW | — | TODO |
+| 9 | [076](076-pyproject-prune.md) | Podar stack Python no usado (scraping/MCP) | P2 | M | LOW/MED | — | TODO |
+| 10 | [077](077-check-ci-aggregate.md) | `check:ci` — un comando que reproduce el CI localmente | P2 | S–M | LOW | — | TODO |
+| 11 | [078](078-lhci-mobile-wiring.md) | Ejecutar config Lighthouse mobile (warn-only, scheduled) | P3 | S | LOW | — | TODO |
+| 12 | [079](079-push-validation.md) | Validar snapshot/artefactos al llegar a main (push + validador) | P2 | M | MED | — | TODO |
+| 13 | [080](080-clp-formatter-unify.md) | Unificar formateadores CLP en formatCLP + guard de estilo | P3 | S–M | MED | — | TODO |
+| 14 | [081](081-postbuild-verification.md) | Capa de verificación post-build (aserciones sobre dist/) | P2 | L | MED | 057, 062, 065, 067 (aserciones condicionales) | TODO |
 
 ## Orden global de ejecución (para un ejecutor fresco que parte de cero)
 
@@ -1064,7 +1063,7 @@ operador. La secuencia ejecutable pendiente es la de la séptima auditoría
 
 Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main`.
 
-### Séptima auditoría profunda 2026-08-10 (plans 057–081; 067–081 pendientes)
+### Séptima auditoría profunda 2026-08-10 (plans 057–081; 068–081 pendientes)
 
 | Plan | Título | Prioridad | Esfuerzo | Estado |
 |------|--------|-----------|----------|--------|
@@ -1078,6 +1077,7 @@ Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main
 | [064](archive/064-no-fabricated-indicator-dates.md) | No fabricar fecha "hoy" por indicador (gate de frescura real) | P2 | S | DONE (fast-forward `efd03dcc`, 2026-08-10) — `toRealIsoDate` + `indicatorUpdatedAt` solo con fechas observadas; desviaciones en mérito: tipo aflojado a `uf?/utm?/uta?` (el plan afirmaba `uta` ya opcional — no lo era; consumidores verificados: provider propio todo-opcional, `mergePrev` corregido a `?.` por TS18048), `toIsoDate` muerto eliminado; 3 tests nuevos (fecha faltante omitida, happy path, `lastUpdated` = hoy requiere `decemberUtm: null` — el UTA del 060 siempre aporta fecha real); suite 1227/1227; **deploy del snapshot worker pendiente (compuerta humana)** |
 | [065](archive/065-jsonld-escape.md) | Escapar `<` en toda serialización JSON-LD | P2 | S | DONE (fast-forward `7523c0c3`, 2026-08-10) — `serializeJsonLd` leaf (`\u003c`) migrado en 29 sitios/25 archivos (completitud verificada 29/29, 0 emisores fuera de `set:html`); **auditoría adversarial integrada** (commit `7523c0c3`): guard de input no-stringificable (undefined/function/symbol → `""`, antes TypeError en build), 5 tests; flake intermitente de la suite registrado como TD-0103 (18 corridas sin reproducir, preexistente); suite 1232/1232 |
 | [066](archive/066-secret-scan-pr.md) | Gitleaks bloqueante por PR + quitar allowlist de `.env` | P1 | S | DONE (merge `dccebfb9`, 2026-08-10) — job `gitleaks-pr` bloqueante (sin `continue-on-error`, `fetch-depth: 0`); desviación en mérito: `--stdin` no existe en 8.30.1 (verificado contra el binario) → scan diff-scoped materializando los archivos ACMR del PR (`git diff -z --name-only` + `gitleaks dir`); allowlist `.env`/`.env.local` eliminada; pipeline validado end-to-end (secreto en `.env` → exit 1, antes oculto); suite 1232/1232; integrado con el refresh page-lastmod del bot (#404) vía merge ort |
+| [067](archive/067-seotitle-tests.md) | seoTitle: presupuesto 65 en schema + gate + tests de resolución | P1 | M | DONE (fast-forward `3f073c99`, 2026-08-10) — `.max(65)` en posts+glosario, `SEO_TITLE_MAX` en el gate con hook `FRONTMATTER_REPO_ROOT`, `resolvePageTitle` compartido; **hallazgo del audit en la implementación**: la regla "| Monedario" del plan era incompatible (38/41 posts reales llevan el sufijo de marca dentro del seoTitle — el Layout usa verbatim, sin duplicación posible; aplicada rompía CI con 41 errores) → eliminada en mérito y convertida en test de aceptación; longitud máxima real 61 ≤ 65; **auditoría adversarial integrada** (commit `3f073c99`): fixture robusto (primer post real vía readdir), guard de sincronía schema↔gate (ambos 65), H1 verificada en PostDetails:296, gate confirmado en ci.yml:124; suite 1240/1240 |
 
 ### Auditoría de dirección 2026-08-02 (plans 053–056; 055–056 pendientes)
 
