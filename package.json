@@ -146,7 +146,7 @@
     "husky": "^9.1.7",
     "js-yaml": "^5.2.3",
     "knip": "^6.25.0",
-    "linkinator": "^7.6.1",
+    "linkinator": "^8.0.2",
     "lint-staged": "^17.0.8",
     "openai": "^6.46.0",
     "pagefind": "^1.5.2",
