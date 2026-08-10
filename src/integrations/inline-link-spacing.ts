@@ -31,7 +31,12 @@ const VOID_TAGS = new Set([
   "wbr",
 ]);
 
-const TAG_OR_TEXT = /(<[^>]*>)|([^<]+)/g;
+// Tag plausible: '<' seguido de letra (apertura/cierre), '/' (cierre) o '!'
+// (comentarios/declaraciones). El contenido del tag excluye '<' (un tag válido
+// nunca contiene otro '<'; con '[^>]*' una comparación JS como `a<b && c`
+// dentro de un <script> tragaba el `</script>` y dejaba excludedStack sin pop).
+// Todo lo demás es texto — incluye '<' literal (alternativa (.) final).
+const TAG_OR_TEXT = /(<[a-zA-Z\/!][^<>]*>)|([^<]+)|(.)/g;
 const TAG_NAME = /^<\/?([a-zA-Z][a-zA-Z0-9-]*)/;
 const NEEDS_SPACE_BEFORE_LINK = /[\p{L}\p{N}\p{M}.,:;…—!?]$/u;
 const STARTS_WITH_WORD = /^[\p{L}\p{N}\p{M}]/u;
@@ -80,7 +85,7 @@ export function normalizeInlineLinkSpacing(html: string): string {
   let needsSpaceAfterAnchor = false;
 
   for (const match of html.matchAll(TAG_OR_TEXT)) {
-    const [, tag, text] = match;
+    const [, tag, text, stray] = match;
 
     if (tag !== undefined) {
       const details = tagDetails(tag);
@@ -115,16 +120,17 @@ export function normalizeInlineLinkSpacing(html: string): string {
       continue;
     }
 
-    if (text !== undefined) {
+    const textPart = text ?? stray;
+    if (textPart !== undefined) {
       if (
         needsSpaceAfterAnchor &&
         readingStack.length > 0 &&
         excludedStack.length === 0 &&
-        STARTS_WITH_WORD.test(text)
+        STARTS_WITH_WORD.test(textPart)
       ) {
         parts.push(" ");
       }
-      parts.push(text);
+      parts.push(textPart);
       needsSpaceAfterAnchor = false;
     }
   }

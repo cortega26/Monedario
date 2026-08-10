@@ -72,4 +72,39 @@ describe("normalizeInlineLinkSpacing", () => {
 
     expect(normalizeInlineLinkSpacing(html)).toBe(html);
   });
+
+  it("preserves a literal < in text", () => {
+    expect(normalizeInlineLinkSpacing("<p>a < b</p>")).toBe("<p>a < b</p>");
+  });
+
+  it("preserves a script with a spaced comparison byte-for-byte and keeps spacing active after it", () => {
+    const html =
+      '<script>if (a < b) c()</script><p>hola<a href="/x/">mundo</a></p>';
+
+    expect(normalizeInlineLinkSpacing(html)).toBe(
+      '<script>if (a < b) c()</script><p>hola <a href="/x/">mundo</a></p>'
+    );
+  });
+
+  it("preserves a script with an unspaced comparison (a<b) — the </script> is not swallowed", () => {
+    const html =
+      '<script>if (a<b && c) x()</script><p>hola<a href="/x/">mundo</a></p>';
+
+    expect(normalizeInlineLinkSpacing(html)).toBe(
+      '<script>if (a<b && c) x()</script><p>hola <a href="/x/">mundo</a></p>'
+    );
+  });
+
+  it("preserves a literal < inside pre", () => {
+    expect(normalizeInlineLinkSpacing("<pre>1 < 2</pre>")).toBe(
+      "<pre>1 < 2</pre>"
+    );
+  });
+
+  it("is idempotent with a literal < (no spurious spaces around it)", () => {
+    const html = "<p>a < b<a href=\"/x/\">enlace</a></p>";
+    const once = normalizeInlineLinkSpacing(html);
+    expect(once).toBe("<p>a < b <a href=\"/x/\">enlace</a></p>");
+    expect(normalizeInlineLinkSpacing(once)).toBe(once);
+  });
 });
