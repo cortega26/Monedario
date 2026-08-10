@@ -25,6 +25,27 @@ export function siiUtmPageUrl(year: number): string {
   return `https://www.sii.cl/valores_y_fechas/utm/utm${year}.htm`;
 }
 
+/**
+ * Calendar parts in Chilean local time. Chile lives 3-4h behind UTC: deciding
+ * month/day with getUTC*() would adopt the next month's SII page up to 4h
+ * early (the page pre-publishes the following month). Pattern: Intl with
+ * America/Santiago, same as calendarDateInTimeZone in the analytics collector.
+ */
+export function calendarPartsInTz(
+  now: Date,
+  timeZone = "America/Santiago",
+): { year: number; monthIndex: number; day: number } {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone,
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(now);
+  const get = (type: string) =>
+    Number(parts.find(p => p.type === type)?.value ?? "0");
+  return { year: get("year"), monthIndex: get("month") - 1, day: get("day") };
+}
+
 export function parseSiiUtm(
   html: string,
   year: number,
@@ -53,8 +74,7 @@ export function createSiiUtmFetcher(options: {
 } = {}): () => Promise<SiiUtmReading | null> {
   return async () => {
     const now = options.now?.() ?? new Date();
-  const year = now.getUTCFullYear();
-  const monthIndex = now.getUTCMonth();
+    const { year, monthIndex } = calendarPartsInTz(now);
   const url = siiUtmPageUrl(year);
     const response = await govFetch(url, {
       accept: "text/html,application/xhtml+xml",

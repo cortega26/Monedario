@@ -1,5 +1,32 @@
 import { describe, expect, it } from "vitest";
-import { parseSiiUtm } from "../../../workers/economic-snapshot-refresh/src/sources/siiUtm";
+import {
+  calendarPartsInTz,
+  parseSiiUtm,
+} from "../../../workers/economic-snapshot-refresh/src/sources/siiUtm";
+
+describe("calendarPartsInTz", () => {
+  it("resolves the Chilean calendar at the UTC month boundary", () => {
+    // 2026-09-01T00:30Z = 2026-08-31T20:30 en Chile → agosto, no septiembre.
+    expect(calendarPartsInTz(new Date("2026-09-01T00:30:00Z"))).toEqual({
+      year: 2026,
+      monthIndex: 7,
+      day: 31,
+    });
+    expect(calendarPartsInTz(new Date("2026-09-01T04:30:00Z"))).toEqual({
+      year: 2026,
+      monthIndex: 8,
+      day: 1,
+    });
+  });
+
+  it("matches UTC outside the boundary window (regression)", () => {
+    expect(calendarPartsInTz(new Date("2026-08-10T12:00:00Z"))).toEqual({
+      year: 2026,
+      monthIndex: 7,
+      day: 10,
+    });
+  });
+});
 
 describe("parseSiiUtm", () => {
   const html = `

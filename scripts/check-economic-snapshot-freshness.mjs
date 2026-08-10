@@ -48,6 +48,23 @@ function ageInDays(isoOrDate, ref) {
   return (ref.getTime() - then.getTime()) / 86_400_000;
 }
 
+// Chile vive 3-4h detrás de UTC: el mes/día de la gracia UTM se resuelve con el
+// calendario local (Intl + America/Santiago), nunca con getUTC*().
+function chileMonthKeyAndDay(ref) {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Santiago",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(ref);
+  const get = (type) =>
+    Number(parts.find((p) => p.type === type)?.value ?? "0");
+  return {
+    monthKey: `${String(get("year")).padStart(4, "0")}-${String(get("month")).padStart(2, "0")}`,
+    day: get("day"),
+  };
+}
+
 function main() {
   let snapshot;
   try {
@@ -87,13 +104,13 @@ function main() {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(String(utmDate ?? ""))) {
     errors.push(`indicatorUpdatedAt.utm missing or unparseable: ${utmDate}`);
   } else {
-    const currentMonth = ref.toISOString().slice(0, 7);
+    const { monthKey: currentMonth, day: currentDay } = chileMonthKeyAndDay(ref);
     const utmMonth = utmDate.slice(0, 7);
     if (utmMonth > currentMonth) {
       errors.push(`utm has a future reference month: ${utmDate}`);
     } else if (
       utmMonth !== currentMonth &&
-      ref.getUTCDate() > UTM_MONTH_BOUNDARY_GRACE_DAYS
+      currentDay > UTM_MONTH_BOUNDARY_GRACE_DAYS
     ) {
       errors.push(
         `utm reference month ${utmMonth} is stale after the ${UTM_MONTH_BOUNDARY_GRACE_DAYS}d month-boundary grace; expected ${currentMonth}`

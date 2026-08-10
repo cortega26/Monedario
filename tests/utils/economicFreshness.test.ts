@@ -11,17 +11,42 @@ describe("evaluateCriticalMonthlyFreshness", () => {
     ).toBe("fresh");
   });
 
-  it("allows only seven days of month-boundary grace", () => {
+  it("allows only seven days of month-boundary grace (Chilean calendar)", () => {
     expect(
       evaluateCriticalMonthlyFreshness(
         "2026-07-01",
         new Date("2026-08-07T23:59:00Z")
       ).status
     ).toBe("grace");
+    // 2026-08-08T00:00Z es aún 2026-08-07 en Chile (20:00): día local 7 → grace.
+    // El día 8 chileno empieza a las 04:00Z.
     expect(
       evaluateCriticalMonthlyFreshness(
         "2026-07-01",
-        new Date("2026-08-08T00:00:00Z")
+        new Date("2026-08-08T04:30:00Z")
+      ).status
+    ).toBe("stale");
+  });
+
+  it("does not declare stale up to 4h before the grace expires in Chile (month boundary)", () => {
+    // 2026-09-08T00:30Z = 2026-09-07T20:30 en Chile: día local 7 ≤ gracia.
+    // Con getUTC*() este caso daba "stale" (día UTC 8 > 7) — el bug del plan.
+    expect(
+      evaluateCriticalMonthlyFreshness(
+        "2026-08-01",
+        new Date("2026-09-08T00:30:00Z"),
+        7
+      ).status
+    ).toBe("grace");
+  });
+
+  it("keeps the same verdict for non-boundary instants (regression)", () => {
+    // Mediodía UTC del día 10: día 10 tanto en UTC como en Chile → stale.
+    expect(
+      evaluateCriticalMonthlyFreshness(
+        "2026-08-01",
+        new Date("2026-09-10T12:00:00Z"),
+        7
       ).status
     ).toBe("stale");
   });

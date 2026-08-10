@@ -3,6 +3,25 @@ export type CriticalMonthlyFreshness =
   | { status: "grace"; reason: string }
   | { status: "stale"; reason: string };
 
+// Chile vive 3-4h detrás de UTC: decidir mes/día con getUTC*() declararía
+// "stale" hasta 4h antes de que venza la gracia en Chile. El mes/día siempre
+// se resuelven con el calendario local (Intl + America/Santiago).
+function chileCalendarParts(now: Date): {
+  year: number;
+  month: number;
+  day: number;
+} {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Santiago",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(now);
+  const get = (type: string) =>
+    Number(parts.find(p => p.type === type)?.value ?? "0");
+  return { year: get("year"), month: get("month"), day: get("day") };
+}
+
 export function evaluateCriticalMonthlyFreshness(
   indicatorDate: string,
   now = new Date(),
@@ -11,7 +30,8 @@ export function evaluateCriticalMonthlyFreshness(
   if (!/^\d{4}-\d{2}-\d{2}$/.test(indicatorDate)) {
     return { status: "stale", reason: `fecha inválida: ${indicatorDate}` };
   }
-  const currentMonth = now.toISOString().slice(0, 7);
+  const { year, month, day } = chileCalendarParts(now);
+  const currentMonth = `${year}-${String(month).padStart(2, "0")}`;
   const indicatorMonth = indicatorDate.slice(0, 7);
   if (indicatorMonth === currentMonth) {
     return { status: "fresh", reason: `UTM vigente para ${currentMonth}` };
@@ -19,7 +39,7 @@ export function evaluateCriticalMonthlyFreshness(
   if (indicatorMonth > currentMonth) {
     return { status: "stale", reason: `fecha futura: ${indicatorDate}` };
   }
-  if (now.getUTCDate() <= graceDays) {
+  if (day <= graceDays) {
     return {
       status: "grace",
       reason: `UTM del mes anterior dentro de la gracia de ${graceDays} días`,
