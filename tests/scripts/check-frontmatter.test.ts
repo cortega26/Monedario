@@ -1,4 +1,4 @@
-import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
@@ -13,13 +13,21 @@ const SCRIPT = path.resolve("scripts/check-frontmatter.mjs");
 const REAL_BLOG_DIR = path.resolve("src/data/blog");
 const tempRoots: string[] = [];
 
+function firstRealPost(): string {
+  const posts = readdirSync(REAL_BLOG_DIR).filter(file => file.endsWith(".md"));
+  if (posts.length === 0) {
+    throw new Error(`No blog posts found in ${REAL_BLOG_DIR}`);
+  }
+  return path.join(REAL_BLOG_DIR, posts[0]);
+}
+
 function makeFixture(seoTitle?: string): string {
   const root = mkdtempSync(path.join(tmpdir(), "frontmatter-"));
   tempRoots.push(root);
   mkdirSync(path.join(root, "src", "data", "blog"), { recursive: true });
   mkdirSync(path.join(root, "src", "config"), { recursive: true });
 
-  const sourcePost = readFileSync(path.join(REAL_BLOG_DIR, "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.md"), "utf8");
+  const sourcePost = readFileSync(firstRealPost(), "utf8");
   const cluster = sourcePost.match(/^cluster:\s*([a-z0-9-]+)/m)?.[1] ?? "ahorro-e-inversion";
   writeFileSync(
     path.join(root, "src", "config", "clusters.ts"),
@@ -80,5 +88,16 @@ describe("check-frontmatter seoTitle rule", () => {
     );
     const result = run(root);
     expect(result.status).toBe(0);
+  });
+
+  it("keeps the gate budget in sync with the content schema (both 65)", () => {
+    const script = readFileSync(SCRIPT, "utf8");
+    const schema = readFileSync(path.resolve("src/content.config.ts"), "utf8");
+    const gateMax = Number(script.match(/SEO_TITLE_MAX = (\d+)/)?.[1]);
+    const schemaMax = schema.match(/seoTitle: z\.string\(\)\.trim\(\)\.min\(1\)\.max\((\d+)\)/g)?.map(
+      match => Number(match.match(/\.max\((\d+)\)/)?.[1])
+    );
+    expect(gateMax).toBe(65);
+    expect(schemaMax).toEqual([65, 65]);
   });
 });
