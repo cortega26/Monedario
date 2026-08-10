@@ -49,6 +49,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [051](051-analytics-deployment-parity.md) | Deploy reproducible y verificable del Worker de analytics: workflow manual + verifier de paridad (versión activa, cron `57 7 * * MON`, auth header-only, frescura R2) + ADR/runbook; auditoría post-entrega integrada (timeout 30, margen R2 2 s, tests CLI, semana 01-53, TZ) | 2026-08-02 | sí (fast-forward `79d78372`) — smoke de producción (Step 5) pendiente del operador |
 | [053](053-gsc-measurement-baseline.md) | Completar el baseline de medición GSC: gate de semanas faltantes (estricto en CI tras revisión de auditoría) + exports de país/dispositivo; backfill de 2026-W29 pendiente como paso operativo | 2026-08-02 | sí (fast-forward `f1e37560` + `bc979708`) |
 | [054](054-editorial-evidence-ledger-spike.md) | Spike de dirección: ledger de evidencia del pipeline editorial (inventario 3/53, reproducción del checker, veredicto claim vs. evidencia — gap real = 19); entregable `docs/reports/EDITORIAL-EVIDENCE-LEDGER-2026-08-02.md`; compuerta humana abierta | 2026-08-02 | sí (fast-forward `673ad8dc`) |
+| [057](057-pagefind-prune.md) | Purgar el índice pagefind en cada build (`rm -rf dist/pagefind` antes de re-indexar; 33 MB acumulado → 1.3 MB) | 2026-08-10 | sí (fast-forward `70f6a1d9`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
