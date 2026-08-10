@@ -52,6 +52,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [057](057-pagefind-prune.md) | Purgar el índice pagefind en cada build (`rm -rf dist/pagefind` antes de re-indexar; 33 MB acumulado → 1.3 MB) | 2026-08-10 | sí (fast-forward `70f6a1d9`) |
 | [058](058-sw-volatile-money-paths.md) | SW network-first para conversor-uf/utm y uf-hoy: 6 rutas nuevas en `VOLATILE_HTML_PATHS` (valores monetarios del día dejan de servirse stale) | 2026-08-10 | sí (fast-forward `7d5c4910`) |
 | [059](059-kv-counter-integrity.md) | Superficializar fallos KV de contadores: `console.error` en `ingestEvent`/`checkRateLimit` (clave truncada sin IP), documentación de la aproximación, 3 tests; auditoría adversarial integrada (regla CDN `/uf-hoy/`, log preciso, guard de privacidad, test de sincronía SW↔`_headers`) | 2026-08-10 | sí (fast-forward `1e99a772`) |
+| [060](060-uta-honest-fallback.md) | UTA honesta: fallback mindicador → SII diciembre (`parseSiiUtm`) → null + warn al anualizar UTM×12; headers browser-like para SII; guard `value > 0`; auditoría adversarial integrada (verificado contra HTML real del SII) | 2026-08-10 | sí (fast-forward `da9e1ee5`) — deploy del worker pendiente |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 

@@ -58,28 +58,27 @@ Cada ejecutor debe leer el plan completo y honrar sus condiciones de STOP.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Depende de | Estado |
 |---|------|--------|-----------|----------|--------|------------|--------|
-| 1 | [060](060-uta-honest-fallback.md) | UTA: fallback a diciembre SII + warn si se anualiza UTM×12 | P1 | S | LOW | — | IN PROGRESS |
-| 2 | [061](061-calculator-cta-event.md) | Reactivar `article_calculator_cta_click` (onclick CSP-bloqueado) | P2 | S | LOW | — | TODO |
-| 3 | [062](062-inline-link-spacing-tokenizer.md) | Tokenizer spacing: preservar `<` literal y stacks | P2 | S | LOW/MED | — | TODO |
-| 4 | [063](063-chile-calendar-tz.md) | Calendario America/Santiago en fetcher SII y gates de frescura | P2 | S | LOW | — | TODO |
-| 5 | [064](064-no-fabricated-indicator-dates.md) | No fabricar fecha "hoy" por indicador (gate de frescura real) | P2 | S | LOW | — | TODO |
-| 6 | [065](065-jsonld-escape.md) | Escapar `<` en toda serialización JSON-LD | P2 | S | LOW | — | TODO |
-| 7 | [066](066-secret-scan-pr.md) | Gitleaks bloqueante por PR + quitar allowlist de `.env` | P1 | S | LOW | — | TODO |
-| 8 | [067](067-seotitle-tests.md) | seoTitle: presupuesto 65 en schema + gate + tests de resolución | P1 | M | LOW | — | TODO |
-| 9 | [068](068-frontmatter-characterization.md) | Caracterización de `check-frontmatter.mjs` (7+ casos) | P2 | M | MED | 067 (opcional) | TODO |
-| 10 | [069](069-legal-constants-check.md) | Check de consistencia de constantes legales espejadas | P2 | S–M | LOW | — | TODO |
-| 11 | [070](070-url-freeze-exceptions-module.md) | Módulo único de excepciones URL-freeze (esquema compartido) | P2 | M | LOW/MED | — | TODO |
-| 12 | [071](071-indicadores-hoy-tests.md) | Tests del endpoint indicadores-hoy + formateadores | P2 | S–M | LOW | — | TODO |
-| 13 | [072](072-analytics-fetch-branches.md) | Tests de las ~12 ramas del fetch handler del collector | P2 | M | LOW | 059 (opcional) | TODO |
-| 14 | [073](073-coverage-widen.md) | Ampliar gate de cobertura a `src/**` (con caracterización) | P2 | S+M | MED | 067, 068, 071, 072 (recomendado) | TODO |
-| 15 | [074](074-stale-overrides.md) | Limpiar overrides/exclusiones de maduración vencidos | P2 | S | LOW | — | TODO |
-| 16 | [075](075-iso-week-module.md) | Módulo compartido de semana ISO (Jan-4) para scripts | P2 | S | LOW | — | TODO |
-| 17 | [076](076-pyproject-prune.md) | Podar stack Python no usado (scraping/MCP) | P2 | M | LOW/MED | — | TODO |
-| 18 | [077](077-check-ci-aggregate.md) | `check:ci` — un comando que reproduce el CI localmente | P2 | S–M | LOW | — | TODO |
-| 19 | [078](078-lhci-mobile-wiring.md) | Ejecutar config Lighthouse mobile (warn-only, scheduled) | P3 | S | LOW | — | TODO |
-| 20 | [079](079-push-validation.md) | Validar snapshot/artefactos al llegar a main (push + validador) | P2 | M | MED | — | TODO |
-| 21 | [080](080-clp-formatter-unify.md) | Unificar formateadores CLP en formatCLP + guard de estilo | P3 | S–M | MED | — | TODO |
-| 22 | [081](081-postbuild-verification.md) | Capa de verificación post-build (aserciones sobre dist/) | P2 | L | MED | 057, 062, 065, 067 (aserciones condicionales) | TODO |
+| 1 | [061](061-calculator-cta-event.md) | Reactivar `article_calculator_cta_click` (onclick CSP-bloqueado) | P2 | S | LOW | — | TODO |
+| 2 | [062](062-inline-link-spacing-tokenizer.md) | Tokenizer spacing: preservar `<` literal y stacks | P2 | S | LOW/MED | — | TODO |
+| 3 | [063](063-chile-calendar-tz.md) | Calendario America/Santiago en fetcher SII y gates de frescura | P2 | S | LOW | — | TODO |
+| 4 | [064](064-no-fabricated-indicator-dates.md) | No fabricar fecha "hoy" por indicador (gate de frescura real) | P2 | S | LOW | — | TODO |
+| 5 | [065](065-jsonld-escape.md) | Escapar `<` en toda serialización JSON-LD | P2 | S | LOW | — | TODO |
+| 6 | [066](066-secret-scan-pr.md) | Gitleaks bloqueante por PR + quitar allowlist de `.env` | P1 | S | LOW | — | TODO |
+| 7 | [067](067-seotitle-tests.md) | seoTitle: presupuesto 65 en schema + gate + tests de resolución | P1 | M | LOW | — | TODO |
+| 8 | [068](068-frontmatter-characterization.md) | Caracterización de `check-frontmatter.mjs` (7+ casos) | P2 | M | MED | 067 (opcional) | TODO |
+| 9 | [069](069-legal-constants-check.md) | Check de consistencia de constantes legales espejadas | P2 | S–M | LOW | — | TODO |
+| 10 | [070](070-url-freeze-exceptions-module.md) | Módulo único de excepciones URL-freeze (esquema compartido) | P2 | M | LOW/MED | — | TODO |
+| 11 | [071](071-indicadores-hoy-tests.md) | Tests del endpoint indicadores-hoy + formateadores | P2 | S–M | LOW | — | TODO |
+| 12 | [072](072-analytics-fetch-branches.md) | Tests de las ~12 ramas del fetch handler del collector | P2 | M | LOW | 059 (opcional) | TODO |
+| 13 | [073](073-coverage-widen.md) | Ampliar gate de cobertura a `src/**` (con caracterización) | P2 | S+M | MED | 067, 068, 071, 072 (recomendado) | TODO |
+| 14 | [074](074-stale-overrides.md) | Limpiar overrides/exclusiones de maduración vencidos | P2 | S | LOW | — | TODO |
+| 15 | [075](075-iso-week-module.md) | Módulo compartido de semana ISO (Jan-4) para scripts | P2 | S | LOW | — | TODO |
+| 16 | [076](076-pyproject-prune.md) | Podar stack Python no usado (scraping/MCP) | P2 | M | LOW/MED | — | TODO |
+| 17 | [077](077-check-ci-aggregate.md) | `check:ci` — un comando que reproduce el CI localmente | P2 | S–M | LOW | — | TODO |
+| 18 | [078](078-lhci-mobile-wiring.md) | Ejecutar config Lighthouse mobile (warn-only, scheduled) | P3 | S | LOW | — | TODO |
+| 19 | [079](079-push-validation.md) | Validar snapshot/artefactos al llegar a main (push + validador) | P2 | M | MED | — | TODO |
+| 20 | [080](080-clp-formatter-unify.md) | Unificar formateadores CLP en formatCLP + guard de estilo | P3 | S–M | MED | — | TODO |
+| 21 | [081](081-postbuild-verification.md) | Capa de verificación post-build (aserciones sobre dist/) | P2 | L | MED | 057, 062, 065, 067 (aserciones condicionales) | TODO |
 
 ## Orden global de ejecución (para un ejecutor fresco que parte de cero)
 
@@ -1071,13 +1070,14 @@ operador. La secuencia ejecutable pendiente es la de la séptima auditoría
 
 Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main`.
 
-### Séptima auditoría profunda 2026-08-10 (plans 057–081; 060–081 pendientes)
+### Séptima auditoría profunda 2026-08-10 (plans 057–081; 061–081 pendientes)
 
 | Plan | Título | Prioridad | Esfuerzo | Estado |
 |------|--------|-----------|----------|--------|
 | [057](archive/057-pagefind-prune.md) | Purgar el índice pagefind en cada build (33 MB acumulado → 1.3 MB) | P1 | S | DONE (fast-forward `70f6a1d9`, 2026-08-10) — `rm -rf dist/pagefind` en `build`/`build:ci`; `public/pagefind` resultó ser gitignored (sin eliminaciones tracked); build exit 0, índice 1.3 MB/72 archivos, suite 1187/1187 |
 | [058](archive/058-sw-volatile-money-paths.md) | SW network-first para conversor-uf/utm y uf-hoy (valores stale hoy) | P1 | S | DONE (fast-forward `7d5c4910`, 2026-08-10) — 6 rutas nuevas en `VOLATILE_HTML_PATHS` (con y sin `/index.html`); rama network-first existente cubre las 3 páginas; build exit 0, `dist/sw.js` verificado, suite 1187/1187 |
 | [059](archive/059-kv-counter-integrity.md) | Superficializar fallos KV de contadores + documentar aproximación | P1 | S–M | DONE (fast-forward `1e99a772`, 2026-08-10) — `console.error` en `ingestEvent`/`checkRateLimit` (clave truncada sin IP), README + wrangler.toml documentan la aproximación, 3 tests nuevos; **auditoría adversarial post-implementación integrada en el mismo branch** (commit `1e99a772`): regla CDN `max-age=300` para `/uf-hoy/` que el plan 058 había asumido, mensaje de log preciso get/put, comentario fail-open corregido, guard de no-fuga de IP, y `tests/integration/sw-volatile-paths.test.ts` (rutas vivas + presencia de las 3 páginas + sincronía SW↔`_headers`); suite 1193/1193 |
+| [060](archive/060-uta-honest-fallback.md) | UTA: fallback a diciembre SII + warn si se anualiza UTM×12 | P1 | S | DONE (fast-forward `da9e1ee5`, 2026-08-10) — `fetchDecemberUtmWithSiiFallback` (mindicador → SII vía `parseSiiUtm` → null + warn), headers browser-like para SII (403 de sitios gov), **auditoría adversarial integrada** (commit `da9e1ee5`): guard `value > 0` en branch mindicador, `siiUtmPageUrl` compartida (DRY), 5 tests nuevos de sad paths + guard de headers; verificado contra HTML real de SII (Diciembre 2025 = 69.542, UTA oficial 834.504 cruz-valida `×12`); suite 1201/1201; **deploy del worker pendiente (compuerta humana)** |
 
 ### Auditoría de dirección 2026-08-02 (plans 053–056; 055–056 pendientes)
 
