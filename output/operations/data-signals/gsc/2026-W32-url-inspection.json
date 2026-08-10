@@ -1,0 +1,1496 @@
+{
+  "fetchedAt": "2026-08-10T07:46:11Z",
+  "schemaVersion": 1,
+  "source": "gsc-url-inspection",
+  "week": "2026-W32",
+  "window": {
+    "from": "2026-08-03",
+    "to": "2026-08-09"
+  },
+  "summary": {
+    "total": 184,
+    "indexed": 172,
+    "notIndexed": 12,
+    "other": 0,
+    "indexedPct": 93,
+    "byCoverage": {
+      "Submitted and indexed": 172,
+      "Crawled - currently not indexed": 12
+    }
+  },
+  "errors": 0,
+  "data": [
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-09",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-09",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/accessibilidad/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-17",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/acerca-de/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-03",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/apoyar/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Crawled - currently not indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-18",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/archives/",
+      "verdict": "NEUTRAL"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-03",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/autor/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-23",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-14",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/actualizador-inflacion/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-07",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/apv/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-31",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/boleta-honorarios-liquido/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-10",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/comisiones-afp/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-10",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/conversor-uf/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-09",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/conversor-utm/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-07",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/credito-consumo/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-26",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/deposito-a-plazo/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-08",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/dividendo-hipotecario/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-08",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/finiquito-indemnizacion/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-30",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/gratificacion-legal/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-08",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/impuesto-segunda-categoria/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-17",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/interes-compuesto/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-06",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/iva/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-10",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/operacion-renta/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-09",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/prepago-credito/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-17",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/reajuste-arriendo/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-09",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/seguro-cesantia/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-08",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/simulador-jubilacion/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-07",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/simulador-renegociacion/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-10",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/sueldo-liquido/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-04",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calculadoras/tarjeta-credito/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-03",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/calendario/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-09",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/como-usamos-los-datos/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-23",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/cookies/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-01",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-04-09",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/afc/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-16",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/afp/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-18",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/apv/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-11",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/boleta-honorarios/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-23",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/cae/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-08",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/caec/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-18",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/cic/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-28",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/clave-unica/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-04",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/cmf/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-18",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/copago/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-20",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/corredor-bolsa/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-04",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/credito-aval-estado/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-02",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/credito-hipotecario/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-01",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/ctc/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-18",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/cuenta-2/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-23",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/cuenta-rut/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-31",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/custodia/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Crawled - currently not indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-05-16",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/dicom/",
+      "verdict": "NEUTRAL"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-06-04",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/dividendo-hipotecario/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-22",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/etf/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-15",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/finiquito/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-05-23",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/fonasa/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-18",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/fondo-emergencia/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-02",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/fondo-mutuo/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-24",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/fondo-solidario/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-08",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/ges/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-09",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/global-complementario/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-12",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/gratificacion/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-18",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/impuesto-unico/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-30",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/indemnizacion/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-01",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/inflacion/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-30",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/ipc/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-04",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/isapre/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-14",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/iva/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-14",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/liquidez/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-05-19",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/lpc/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-31",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/multifondo/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-06-08",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/operacion-renta/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-14",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/renta-imponible/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-22",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/renta-variable/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-09",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/rescate/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-31",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/sbif/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-23",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/seguro-cesantia/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-06-21",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/sernac/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-06-08",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/sii/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-23",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/spread/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-04",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/sueldo-bruto/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-04",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/tmc/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-30",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/tope-imponible/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-06-14",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/tpm/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-23",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/uf/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-30",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/uta/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-18",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/utm/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-08",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/glosario/volatilidad/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-22",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/guias/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-23",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/guias/ahorro-e-inversion/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-01",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/guias/bancos-fintech/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-14",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/guias/deuda-credito/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-01",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/guias/empleo-ingresos/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-04",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/guias/empleo-ingresos/licencia-medica-wizard/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-09",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/guias/finanzas-migrantes/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-09",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/guias/impuestos-personas/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-06-13",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/guias/impuestos-personas/operacion-renta/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-06",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/guias/pensiones-afp/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-28",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/guias/presupuesto-control-financiero/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-10",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/guias/seguridad-financiera/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-28",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/guias/seguridad-financiera/fraude-cargo-no-reconocido/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-16",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/guias/sueldo-remuneraciones/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-08",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/guias/uf-costo-de-vida/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-03",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/guias/uf-costo-de-vida/indicadores-economicos/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-01",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-23",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/codigo-del-trabajo/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-19",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/dfl-1-1998-impuesto-territorial/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-23",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/dl-3500-sistema-afp/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Crawled - currently not indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-05-21",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/dl-824-impuesto-renta/",
+      "verdict": "NEUTRAL"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-30",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/dl-830-codigo-tributario/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-24",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/ley-18010-credito-dinero/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-03",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/ley-18469-fonasa/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-22",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/ley-18933-isapres/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-05-26",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/ley-19496-proteccion-consumidor/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-08",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/ley-19628-proteccion-datos/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-05-29",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/ley-19728-seguro-cesantia/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-08",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/ley-20009-tarjetas-fraude/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-22",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/ley-20027-credito-aval-estado/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-17",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/ley-20555-sernac-financiero/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-02",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/ley-20575-datos-comerciales/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-04",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/ley-21130-modernizacion-bancaria/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-19",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/ley-21133-honorarios-retencion/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-06",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/ley-21236-portabilidad-financiera/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-31",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/ley-21521-fintech/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-19",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/ley-21561-reduccion-jornada/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-09",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/ley-21680-registro-deuda-consolidada/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-23",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/ley-21719-proteccion-datos-modernizacion/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-02",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/leyes/proyecto-reforma-previsional-2025/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-10",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/metodologia/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-04",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-30",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-06-25",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/bancos-y-fintech-chile/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-05-12",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/boleta-honorarios-2026-retencion-cobertura/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-09",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/cae-costo-real-credito-chile/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-08",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/como-calcular-sueldo-liquido/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-10",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/como-cambiarse-de-afp/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-06-26",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/como-elegir-inversion-segun-plazo-riesgo-objetivos/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Crawled - currently not indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-05-10",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/como-hacer-presupuesto-mensual-chile/",
+      "verdict": "NEUTRAL"
+    },
+    {
+      "coverageState": "Crawled - currently not indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-01",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/como-invertir-en-etfs-desde-chile/",
+      "verdict": "NEUTRAL"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-10",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/como-leer-cartola-afp-chile/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-30",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/como-salir-boletin-comercial-chile/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-17",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/contribuciones-bienes-raices-chile/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Crawled - currently not indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-05-22",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/credito-hipotecario-chile-guia-completa/",
+      "verdict": "NEUTRAL"
+    },
+    {
+      "coverageState": "Crawled - currently not indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-06-08",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/cuanto-descuenta-la-afp-de-tu-sueldo/",
+      "verdict": "NEUTRAL"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-24",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/deposito-a-plazo-uf-vs-pesos/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-04",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/descuentos-de-sueldo/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-30",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/devolucion-impuestos-fechas-compensaciones/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-28",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Crawled - currently not indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-04-10",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/el-poder-del-interes-compuesto/",
+      "verdict": "NEUTRAL"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-04",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/estafas-financieras-chile-vishing-smishing-marketplace/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-06-25",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/finanzas-para-migrantes-chile/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-04",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/finiquito-e-indemnizaciones-en-chile/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-31",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/fonasa-vs-isapre-comparativa/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Crawled - currently not indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-04",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/fondo-emergencia-chile/",
+      "verdict": "NEUTRAL"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-04",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/fondos-afp-a-b-c-d-e/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-04",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/fondos-mutuos-comisiones-rescate-impuestos/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-10",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/fraude-tarjeta-que-hacer/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-25",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/gratificacion-legal-chile/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-30",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/impuesto-global-complementario-chile/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-09",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/indemnizacion-anos-de-servicio-chile/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-04",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/informe-deudas-cmf-vs-dicom/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-04",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/licencia-medica-desde-que-dia-pagan/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-05",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/liquidacion-de-sueldo/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Crawled - currently not indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-02",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/operacion-renta-centro/",
+      "verdict": "NEUTRAL"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-01",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/operacion-renta-f22-checklist/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-06-29",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/pgu-pension-garantizada-universal/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-30",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/prepago-credito-cuando-conviene-chile/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-04",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/primer-empleo-chile-guia-completa/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-19",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/que-es-el-apv/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-10",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/que-es-el-ipc-chile-como-se-calcula/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-30",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/que-es-la-cuenta-2-afp/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-02",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/que-es-la-uf/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-07",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/reajuste-arriendo-uf-ipc-chile/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-06-08",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-24",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/renegociacion-superir/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Crawled - currently not indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-06-26",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/rentas-mixtas-sueldo-honorarios/",
+      "verdict": "NEUTRAL"
+    },
+    {
+      "coverageState": "Crawled - currently not indexed",
+      "indexingState": "INDEXING_STATE_UNSPECIFIED",
+      "lastCrawl": "2026-03-26",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/",
+      "verdict": "NEUTRAL"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-30",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/seguro-de-cesantia/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-06-26",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/sueldo-imponible-chile/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-09",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/suplantacion-identidad-creditos-no-reconocidos/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-23",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/tarjeta-credito-costo-real-chile/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-08-07",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/posts/utm-chile-que-es-como-funciona/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-18",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/privacidad/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-17",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/terminos/",
+      "verdict": "PASS"
+    },
+    {
+      "coverageState": "Submitted and indexed",
+      "indexingState": "INDEXING_ALLOWED",
+      "lastCrawl": "2026-07-13",
+      "robotsTxtState": "ALLOWED",
+      "url": "https://monedario.cl/uf-hoy/",
+      "verdict": "PASS"
+    }
+  ]
+}
