@@ -1,5 +1,6 @@
 ---
 title: "Devolución de impuestos en Chile: fechas de pago, estado y compensaciones"
+seoTitle: "Devolución de Impuestos en Chile: Fechas de Pago | Monedario"
 description: "Guía para saber cuándo depositan la devolución, cómo revisar el estado en SII/TGR y qué hacer si hay retención o compensación."
 slug: devolucion-impuestos-fechas-compensaciones
 author: "Equipo Monedario"

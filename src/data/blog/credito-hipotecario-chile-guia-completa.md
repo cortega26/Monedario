@@ -1,5 +1,6 @@
 ---
 title: "Crédito hipotecario en Chile: guía paso a paso para compradores 2026"
+seoTitle: "Crédito Hipotecario en Chile: Guía 2026 | Monedario"
 description: "Todo lo que necesitas saber antes de firmar un crédito hipotecario en Chile: requisitos, pie, tasas, costos reales y errores más comunes."
 slug: credito-hipotecario-chile-guia-completa
 author: "Equipo Monedario"

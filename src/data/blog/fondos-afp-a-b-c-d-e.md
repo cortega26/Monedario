@@ -1,5 +1,6 @@
 ---
 title: "Fondos AFP A, B, C, D y E: diferencias, riesgo y cuál te conviene"
+seoTitle: "Fondos AFP A, B, C, D y E: Cuál Elegir | Monedario"
 author: "Equipo Monedario"
 pubDate: 2026-02-23T11:00:00Z
 updatedDate: 2026-03-12T19:08:00Z

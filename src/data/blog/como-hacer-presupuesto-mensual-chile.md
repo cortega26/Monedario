@@ -1,5 +1,6 @@
 ---
 title: "Presupuesto mensual en Chile: método práctico sin plantilla mágica"
+seoTitle: "Presupuesto Mensual en Chile: Método Práctico | Monedario"
 author: "Equipo Monedario"
 description: "Guía para crear un presupuesto mensual en Chile: clasificar ingresos y gastos, detectar fugas y construir hábitos de control financiero."
 slug: como-hacer-presupuesto-mensual-chile

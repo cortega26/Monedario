@@ -1,5 +1,6 @@
 ---
 title: "Descuento AFP en tu sueldo: cotización obligatoria, comisión y cómo revisarlo"
+seoTitle: "Descuento AFP en tu Sueldo: Cómo Revisarlo | Monedario"
 author: "Equipo Monedario"
 pubDate: 2026-02-23T10:00:00Z
 slug: cuanto-descuenta-la-afp-de-tu-sueldo

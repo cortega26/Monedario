@@ -1,5 +1,6 @@
 ---
 title: "CAE de un crédito: qué es, cómo se calcula y por qué la tasa sola engaña"
+seoTitle: "CAE de un Crédito: Qué Es y Cómo se Calcula | Monedario"
 description: "Guía práctica para entender la CAE en Chile, qué incluye frente a la tasa y cómo comparar el costo real de un crédito antes de firmar."
 slug: cae-costo-real-credito-chile
 author: "Equipo Monedario"

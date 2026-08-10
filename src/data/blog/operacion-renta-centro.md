@@ -1,5 +1,6 @@
 ---
 title: "Operación Renta 2026: orientación inicial y preguntas frecuentes"
+seoTitle: "Operación Renta 2026: Preguntas Frecuentes | Monedario"
 description: "Preguntas frecuentes sobre Operación Renta 2026: quién debe declarar, cómo funciona la propuesta automática del SII y cuándo llega la devolución."
 slug: operacion-renta-centro
 author: "Equipo Monedario"

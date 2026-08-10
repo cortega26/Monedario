@@ -1,5 +1,6 @@
 ---
 title: "Renegociación Superir: qué es, quién puede pedir y cómo hacerlo sin abogado"
+seoTitle: "Renegociación Superir: Qué Es y Cómo Pedirla | Monedario"
 author: "Equipo Monedario"
 pubDate: 2026-02-24T14:00:00Z
 updatedDate: 2026-03-12T18:45:00Z

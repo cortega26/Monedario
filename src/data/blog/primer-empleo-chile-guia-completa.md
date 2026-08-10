@@ -1,5 +1,6 @@
 ---
 title: "Primer empleo en Chile: qué firmar, descuentos y cómo empezar"
+seoTitle: "Primer Empleo en Chile: Guía Completa | Monedario"
 author: "Equipo Monedario"
 pubDate: 2026-04-09T12:00:00Z
 slug: primer-empleo-chile-guia-completa

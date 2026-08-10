@@ -1,5 +1,6 @@
 ---
 title: "Nota metodológica: simulación de interés compuesto 1990-2025"
+seoTitle: "Interés Compuesto: Nota Metodológica | Monedario"
 description: "Supuestos, fórmulas, fuentes y cálculos corregidos del ejercicio sobre invertir el 10% del sueldo mínimo en el NASDAQ-100 entre 1990 y 2025."
 slug: interes-compuesto-nota-metodologica
 author: "Equipo Monedario"

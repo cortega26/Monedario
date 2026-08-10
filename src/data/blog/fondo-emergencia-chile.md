@@ -1,5 +1,6 @@
 ---
 title: "Fondo de emergencia en Chile: cuánto necesitas y dónde guardarlo"
+seoTitle: "Fondo de Emergencia en Chile: Cuánto Ahorrar | Monedario"
 author: "Equipo Monedario"
 description: "Guía práctica para construir tu colchón de emergencia en Chile: cuánto ahorrar, en qué instrumentos con liquidez real y cómo hacerlo paso a paso."
 slug: fondo-emergencia-chile

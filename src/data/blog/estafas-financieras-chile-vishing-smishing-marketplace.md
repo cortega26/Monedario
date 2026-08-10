@@ -1,5 +1,6 @@
 ---
 title: "Estafas financieras en Chile: señales por canal y checklist de 24 horas"
+seoTitle: "Estafas Financieras en Chile: Cómo Detectarlas | Monedario"
 author: "Equipo Monedario"
 description: "Guía para detectar estafas financieras en Chile por llamada, SMS, WhatsApp, marketplace y portabilidad, y saber qué hacer en 24 horas."
 slug: estafas-financieras-chile-vishing-smishing-marketplace

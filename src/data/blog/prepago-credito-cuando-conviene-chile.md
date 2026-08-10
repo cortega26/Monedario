@@ -1,5 +1,6 @@
 ---
 title: "¿Cuándo conviene hacer un prepago de crédito en Chile?"
+seoTitle: "Prepago de Crédito: Cuándo Conviene en Chile | Monedario"
 description: "Aprende cuándo vale la pena hacer un abono extraordinario a tu crédito en Chile, cómo calcular el ahorro real y qué dice la ley sobre prepago sin multa."
 slug: prepago-credito-cuando-conviene-chile
 author: "Equipo Monedario"

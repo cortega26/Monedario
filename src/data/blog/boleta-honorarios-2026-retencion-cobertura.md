@@ -1,5 +1,6 @@
 ---
 title: "Boleta de honorarios 2026: retención 15,25%, líquido recibido y cobertura anual"
+seoTitle: "Boleta de Honorarios 2026: Retención y Cobertura | Monedario"
 description: "Explicación práctica de la retención 2026 en boletas de honorarios, cuánto recibes líquido y cómo se conecta con la cobertura previsional anual."
 slug: boleta-honorarios-2026-retencion-cobertura
 author: "Equipo Monedario"

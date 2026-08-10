@@ -1,5 +1,6 @@
 ---
 title: "Fondos mutuos: comisiones, rescate e impuestos (sin letra chica)"
+seoTitle: "Fondos Mutuos en Chile: Comisiones e Impuestos | Monedario"
 description: "Guía práctica para entender costos reales, plazos de rescate y tratamiento tributario básico de fondos mutuos en Chile durante 2026."
 slug: fondos-mutuos-comisiones-rescate-impuestos
 author: "Equipo Monedario"

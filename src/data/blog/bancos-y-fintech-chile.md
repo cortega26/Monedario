@@ -1,5 +1,6 @@
 ---
 title: "Bancos y fintech en Chile: cómo elegir dónde tener tu cuenta"
+seoTitle: "Bancos y Fintech en Chile: Cómo Elegir | Monedario"
 author: "Equipo Monedario"
 description: "Guía neutral para elegir dónde tener tu dinero en Chile: tipos de cuenta, banco vs. fintech, cómo abrir una cuenta básica y cómo saber si una app está regulada."
 slug: bancos-y-fintech-chile

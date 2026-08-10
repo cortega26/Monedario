@@ -1,5 +1,6 @@
 ---
 title: "Cómo leer la cartola AFP: qué significa cada campo y cómo detectar errores"
+seoTitle: "Cómo Leer la Cartola AFP en Chile | Monedario"
 author: "Equipo Monedario"
 pubDate: 2026-04-09T12:00:00Z
 slug: como-leer-cartola-afp-chile

@@ -1,5 +1,6 @@
 ---
 title: "Cómo calcular tu sueldo líquido en Chile: del imponible al depósito final"
+seoTitle: "Cómo Calcular tu Sueldo Líquido en Chile | Monedario"
 author: "Equipo Monedario"
 pubDate: 2026-02-24T10:00:00Z
 slug: como-calcular-sueldo-liquido
