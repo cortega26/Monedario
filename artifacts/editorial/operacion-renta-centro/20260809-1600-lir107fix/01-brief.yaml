@@ -1,0 +1,44 @@
+slug: operacion-renta-centro
+run_type: refresh
+query_anchor: "¿la ganancia de capital en venta de acciones con presencia bursátil está exenta de impuesto en 2025/2026?"
+ymyl: true
+ymyl_risk: alta
+requires_calculation: false
+regulatory_sensitivity: alta
+target_audience: "Personas naturales en Chile que vendieron acciones, cuotas de fondos mutuos o de inversión, o bienes raíces en 2025 y deben evaluar si están obligadas a declarar el Formulario 22 en la campaña Operación Renta 2026."
+cut_off_date: 2026-08-09
+category: impuestos
+title: "Operación Renta 2026: orientación inicial y preguntas frecuentes"
+
+motivo_del_refresh: >
+  Defecto de exactitud detectado en la sección "Ganancias de capital"
+  (src/data/blog/operacion-renta-centro.md:77): el párrafo publicado afirma que
+  "La Ley 21.210 (Modernización Tributaria, 2020) estableció que la ganancia de
+  capital en venta de acciones con presencia bursátil sigue exenta". Esto es
+  incorrecto en dos aspectos verificados contra fuente primaria: (1) la ley que
+  modificó el tratamiento del art. 107 LIR es la Ley N° 21.420 (2022), no la Ley
+  21.210 (2020); (2) desde el 2 de septiembre de 2022 esa ganancia no está
+  exenta — paga un impuesto único de 10%, salvo inversionistas institucionales
+  (Circular SII N° 39/2022). El error se detectó como hallazgo colateral durante
+  el research de un borrador no publicado sobre el art. 107 LIR
+  (ver artifacts/editorial/_intake/articulo-107-lir-ganancia-capital-acciones/).
+
+alcance_del_refresh: >
+  Reescribir únicamente el párrafo bajo "### Ganancias de capital" para reflejar
+  con exactitud el régimen vigente del art. 107 LIR (10% desde 2022-09-02),
+  distinguirlo del régimen de fondos mutuos/inversión sin presencia bursátil
+  (Art. 108/109 LIR) y del de bienes raíces (Art. 17 N°8 LIR), y advertir sobre
+  el proyecto de ley aprobado por el Congreso el 2026-08-04 (Boletín 18.216-05)
+  que restituiría la exención desde 2027-01-01 pero que a la fecha de corte no
+  es ley vigente (pendiente de control de constitucionalidad). No se modifica
+  ninguna otra sección del artículo.
+
+separacion_de_roles:
+  draft_agent: "Claude Code, esta sesión (misma sesión que hizo el research inicial de 107 LIR)"
+  math_audit_agent: "PENDIENTE — requiere ChatGPT o modelo distinto, sesión separada"
+  compliance_agent: "PENDIENTE — requiere sesión de Claude Code nueva, sin exposición a esta conversación"
+  human_sign_off: "PENDIENTE — requerido antes de merge a main por regulatory_sensitivity=alta"
+  nota: >
+    Esta sesión actúa como DraftAgent para este refresh. No puede actuar como
+    MathAuditAgent ni ComplianceAgent del mismo run (INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES).
+    El cambio queda en el working tree, sin commit, hasta sign-off humano.

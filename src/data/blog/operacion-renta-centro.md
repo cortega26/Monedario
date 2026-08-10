@@ -4,7 +4,7 @@ description: "Preguntas frecuentes sobre Operación Renta 2026: quién debe decl
 slug: operacion-renta-centro
 author: "Equipo Monedario"
 pubDate: 2026-04-29T00:00:00Z
-updatedDate: 2026-08-03T00:00:00Z
+updatedDate: 2026-08-09T00:00:00Z
 tags:
   - impuestos
   - operacion-renta
@@ -74,7 +74,15 @@ Si arrendaste una propiedad en 2025 y los ingresos superaron los límites de exe
 
 ### Ganancias de capital
 
-Si vendiste acciones, fondos mutuos, bienes raíces u otros activos en 2025 con ganancia, podrías estar obligado a declarar dependiendo del monto y el tipo de activo. La Ley 21.210 (Modernización Tributaria, 2020) estableció que la ganancia de capital en venta de acciones con presencia bursátil sigue exenta, mientras que la venta de bienes raíces por personas naturales tributa solo sobre la ganancia que supere 8.000 UF en la vida del contribuyente (Art. 17 N°8 LIR reformado). Para fondos mutuos y otros instrumentos, la ganancia obtenida puede estar afecta al Impuesto Único de 10% o al IGC según el tipo de fondo. Verifica el régimen específico aplicable a cada instrumento en sii.cl.
+Si vendiste acciones, fondos mutuos, fondos de inversión, bienes raíces u otros activos en 2025 con ganancia, podrías estar obligado a declarar dependiendo del monto y el tipo de activo.
+
+**Acciones y cuotas de fondos que califican bajo el Art. 107 LIR:** cuando la operación de venta o rescate cumple los requisitos que la ley exige para ese tipo de valor (incluidas las condiciones de cómo se adquirió y cómo se enajena, y no solo la presencia bursátil o composición de cartera del instrumento), esta ganancia **no está exenta**. Desde el 2 de septiembre de 2022 paga un impuesto único del 10% sobre el mayor valor, según la Ley N° 21.420 (Circular SII N° 39 de 2022), que eliminó la exención que existía hasta entonces. La excepción son los inversionistas institucionales, que conservan la calidad de ingreso no renta. _(Nota de vigencia: el Congreso aprobó el 4 de agosto de 2026 un proyecto de ley —Boletín 18.216-05— que restituiría esta exención desde el 1 de enero de 2027; a la fecha de esta actualización el proyecto está en control de constitucionalidad ante el Tribunal Constitucional y no es ley vigente. No apliques la exención a ventas realizadas en 2025.)_
+
+**Otros fondos mutuos y de inversión:** no todos los fondos quedan fuera del art. 107 LIR ni todos quedan dentro — depende de si cumplen los requisitos de presencia bursátil o de composición de cartera que la ley exige para ese tipo de fondo. Si tu fondo no los cumple, el mayor valor tributa con reglas propias que no son las del art. 107 (no asumas la tasa del 10% por defecto). No hay una regla única aplicable a "fondos mutuos" en general: verifica en el reglamento interno del fondo o en sii.cl si tu instrumento específico califica bajo el art. 107 y, si no, qué régimen le corresponde.
+
+**Bienes raíces:** la venta por personas naturales está sujeta a un límite acumulado de 8.000 UF en la vida del contribuyente (Art. 17 N°8 LIR reformado por la Ley 21.210), sobre el cual el mayor valor sí tributa, y además a condiciones adicionales de plazo de tenencia según cómo adquiriste el inmueble. No asumas que solo aplica el umbral de 8.000 UF — verifica tu caso en sii.cl.
+
+Verifica el régimen específico aplicable a cada instrumento en sii.cl.
 
 ---
 
@@ -233,13 +241,14 @@ Para la mayoría de trabajadores dependientes o independientes con ingresos simp
 
 ## Información vigente para Operación Renta 2026
 
-Esta guía fue elaborada con fecha de corte 2026-04-24 y actualizada el 2026-08-03 con verificación de fuentes SII/TGR. Todos los umbrales, plazos y tasas citados han sido contrastados contra publicaciones oficiales vigentes de la campaña 2026.
+Esta guía fue elaborada con fecha de corte 2026-04-24 y actualizada el 2026-08-09 con verificación de fuentes SII/TGR. Todos los umbrales, plazos y tasas citados han sido contrastados contra publicaciones oficiales vigentes de la campaña 2026.
 
 **Fuentes primarias:**
 
 - Servicio de Impuestos Internos: [sii.cl](https://www.sii.cl)
 - Tesorería General de la República: [tgr.cl](https://pagos.tgr.cl)
 - Ley de Impuesto a la Renta (DL 824), Código Tributario (DL 830) y Ley 21.133 — BCN
+- Circular SII N° 39 de 2022 y Ley N° 21.420 — régimen tributario del art. 107 LIR sobre ganancias de capital
 
 **Última revisión editorial:** Carlos Ortega — 2026-08-03
 
