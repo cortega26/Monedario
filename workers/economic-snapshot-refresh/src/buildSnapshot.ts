@@ -51,12 +51,12 @@ export interface EconomicSnapshot {
   afcTopes: { monthlyTaxableCapUf: number };
   previsionalTopes: { pensionAndHealthMonthlyTaxableCapUf: number };
   indicatorUpdatedAt: {
-    uf: string;
-    utm: string;
+    uf?: string;
+    utm?: string;
     ipc?: string;
     tmc?: string;
     dolar?: string;
-    uta: string;
+    uta?: string;
   };
   /** Previous-period values for delta display. Populated by mergePrev; absent on first run. */
   prev?: {
@@ -102,11 +102,15 @@ export interface BuildSnapshotDeps {
   fetchUtmOverride?: () => Promise<(IndicatorOverride & { sourceUrl?: string }) | null>;
 }
 
-function toIsoDate(value: string | undefined, fallback: string): string {
-  if (typeof value === "string" && value.length >= 10) {
+// Fecha real observada del upstream; undefined si falta o es inválida.
+// A diferencia del viejo toIsoDate (eliminado: ya no hay fallback por
+// indicador), NUNCA fabrica "hoy": un indicador sin fecha debe hacer fallar
+// los gates de frescura, no pasar con una fecha inventada.
+function toRealIsoDate(value: string | undefined): string | undefined {
+  if (typeof value === "string" && /^\d{4}-\d{2}-\d{2}/.test(value)) {
     return value.slice(0, 10);
   }
-  return fallback;
+  return undefined;
 }
 
 function getLatestIsoDate(values: Array<string | undefined>, fallback: string): string {
@@ -244,15 +248,12 @@ export async function buildSnapshot(deps: BuildSnapshotDeps): Promise<EconomicSn
   }
   assertFinitePositive(uta, "UTA");
 
-  const indicatorUpdatedAt: EconomicSnapshot["indicatorUpdatedAt"] = {
-    uf: toIsoDate(rawDates.uf, lastUpdated),
-    utm: toIsoDate(rawDates.utm, lastUpdated),
-    uta: toIsoDate(rawDates.uta, lastUpdated),
-  };
-  if (rawDates.ipc) indicatorUpdatedAt.ipc = toIsoDate(rawDates.ipc, lastUpdated);
-  if (rawDates.tmc) indicatorUpdatedAt.tmc = toIsoDate(rawDates.tmc, lastUpdated);
-  if (dolar !== undefined) {
-    indicatorUpdatedAt.dolar = toIsoDate(rawDates.dolar, lastUpdated);
+  const indicatorUpdatedAt: EconomicSnapshot["indicatorUpdatedAt"] = {};
+  for (const [key, value] of Object.entries(rawDates) as Array<
+    [keyof typeof rawDates, string | undefined]
+  >) {
+    const date = toRealIsoDate(value);
+    if (date) indicatorUpdatedAt[key] = date;
   }
 
   const snapshot: EconomicSnapshot = {
@@ -400,7 +401,7 @@ export function mergePrev(
 
   if (typeof current.utm === "number" && current.indicatorUpdatedAt?.utm) {
     const curMonth = current.indicatorUpdatedAt.utm.slice(0, 7);
-    const newMonth = newSnapshot.indicatorUpdatedAt.utm.slice(0, 7);
+    const newMonth = newSnapshot.indicatorUpdatedAt.utm?.slice(0, 7);
     if (curMonth !== newMonth) {
       carry.utm = { valor: current.utm, fecha: current.indicatorUpdatedAt.utm };
     } else if (current.prev?.utm) {

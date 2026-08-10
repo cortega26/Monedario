@@ -483,3 +483,33 @@ describe("assertPlausibleDelta", () => {
     expect(() => assertPlausibleDelta("not json", snapshot)).not.toThrow();
   });
 });
+
+describe("no fabricated indicator dates (plan 064)", () => {
+  it("omits indicatorUpdatedAt.utm when the upstream provides no fecha", async () => {
+    const snapshot = await buildSnapshot(
+      makeDeps({ api: { ...sampleApi, utm: { valor: 70588 } } })
+    );
+    expect(snapshot.indicatorUpdatedAt).not.toHaveProperty("utm");
+  });
+
+  it("keeps real indicator dates unchanged (happy path regression)", async () => {
+    const snapshot = await buildSnapshot(makeDeps());
+    expect(snapshot.indicatorUpdatedAt.uf).toBe("2026-05-16");
+    expect(snapshot.indicatorUpdatedAt.utm).toBe("2026-05-01");
+    expect(snapshot.indicatorUpdatedAt.uta).toBe("2025-12-01");
+  });
+
+  it("keeps lastUpdated falling back to today even when no indicator has a date", async () => {
+    const now = new Date("2026-05-16T12:00:00.000Z");
+    const noDates: MindicadorApiResponse = {
+      uf: { valor: 40357.67 },
+      utm: { valor: 70588 },
+      ipc: { valor: -0.2 },
+      tmc: { valor: 3.49 },
+      dolar: { valor: 891 },
+    };
+    const snapshot = await buildSnapshot(makeDeps({ api: noDates, now, decemberUtm: null }));
+    expect(snapshot.lastUpdated).toBe("2026-05-16");
+    expect(snapshot.indicatorUpdatedAt).toEqual({});
+  });
+});
