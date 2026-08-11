@@ -19,6 +19,29 @@
 - **Planned at**: commit `90370b4e`, 2026-08-10
 - **Issue**: —
 
+## Progress
+
+- 2026-08-11 — Implementación completa (sin commit/merge aún, a la espera del
+  operador). Inventario real (20 sitios en 18 archivos) ≠ inventario del plan
+  (~13): el patrón grep del plan (`const fmt|const fmtClp`) no capturaba
+  `function fmt` (apv:618, credito-consumo:394) ni `formatPeso`
+  (operacion-renta:32) — migrados igualmente ("el inventario real manda").
+  `iva.astro` tenía DOS sitios divergentes (44 y 301), no uno. Los 3 sitios
+  divergentes (iva×2, gratificacion-legal:27) ahora redondean vía formatCLP.
+  **STOP condición 3 (guard false-positive) ejercitada**: el guard capturó
+  `conversor-uf.astro:611` — histórico UF con `toLocaleString("es-CL", {min/
+  maxFractionDigits: 2})`, formato deliberado con precisión (centavos UF), NO
+  es el bug de redondeo. Regex de la regla 2 ajustada a calls SIN options
+  (documentado en el script + test de regresión). `fmtCurrency` (Intl
+  currency CLP, boleta-honorarios/finiquito) NO migrado: familia distinta con
+  rendering distinto — fuera del patrón y del guard (reportado). Inline de
+  un solo uso (`"$" + Math.round(x)…` en apv/conversor-uf/conversor-utm/
+  sueldo-liquido) dejado intacto, como autoriza el plan. Verificado: guard
+  exit 0 (23 archivos), 5 tests (4 del plan + 1 regresión de la regex),
+  suite 1327/1327, astro check 0 errores (hint preexistente), format + lint
+  verdes, call sites de fmt/fmtClp/formatPeso intactos (sin huérfanos),
+  ningún test existente aserta el rendering con decimales.
+
 ## Por qué importa
 
 Cada calculadora redefine su formateador CLP: ~13 páginas definen
