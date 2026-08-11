@@ -64,6 +64,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [069](069-legal-constants-check.md) | Check de consistencia de constantes legales espejadas (4 constantes/16 mirrors, inventario declarativo); auditoría: comentarios `//` filtrados (ocultaban drift), test de integración real | 2026-08-10 | sí (fast-forward `c83ad352`) |
 | [070](070-url-freeze-exceptions-module.md) | Esquema único de excepciones URL-freeze en `scripts/lib/` (12 campos compartidos; cada gate conserva su validación); equivalencia byte-idéntica verificada | 2026-08-10 | sí (fast-forward `c21e93d9`) |
 | [071](071-indicadores-hoy-tests.md) | Tests del endpoint indicadores-hoy + formateadores; auditoría: formateadores consolidados a fuente única, types reales en tests (astro check exit 0) | 2026-08-10 | sí (fast-forward `de865e59`) |
+| [072](072-analytics-fetch-branches.md) | Guards HTTP del collector cubiertos (10 ramas); auditoría: 413 por stream explícito, ataques de prefijo de Origin, CORS en 403 | 2026-08-10 | sí (fast-forward `a619461b`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
