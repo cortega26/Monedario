@@ -6,6 +6,9 @@ import { fileURLToPath } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..");
+// Gate feed RSS — las adiciones NO requieren excepción (política existente,
+// decisión de governance pendiente de revisión; distinto de routes/indexable
+// que usan scripts/lib/url-freeze-exceptions.mjs).
 
 function resolveArg(input, fallback) {
   return path.resolve(REPO_ROOT, input ?? fallback);

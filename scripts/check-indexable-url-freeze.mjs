@@ -1,22 +1,11 @@
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { REQUIRED_EXCEPTION_FIELDS } from "./lib/url-freeze-exceptions.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const REQUIRED_EXCEPTION_FIELDS = [
-  "url",
-  "problem",
-  "evidence",
-  "hypothesis",
-  "cost",
-  "maintenance",
-  "metric",
-  "threshold",
-  "decision",
-  "approvedBy",
-  "approvedAt",
-  "expiresAt",
-];
+// Gate sitemap+HTML renderizado — requiere excepción aprobada (esquema en
+// scripts/lib/url-freeze-exceptions.mjs).
 
 export function normalizeIndexableUrl(value) {
   const url = new URL(value);

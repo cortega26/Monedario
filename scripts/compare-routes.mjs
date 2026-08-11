@@ -2,10 +2,13 @@
 import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { loadApprovedExceptionUrls } from "./lib/url-freeze-exceptions.mjs";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const REPO_ROOT = path.resolve(__dirname, "..");
+// Gate rutas derivadas de contenido — requiere excepción aprobada (mismo
+// módulo de esquema: scripts/lib/url-freeze-exceptions.mjs).
 
 function resolveArg(input, fallback) {
   return path.resolve(REPO_ROOT, input ?? fallback);
@@ -35,33 +38,7 @@ const beforeRoutes = loadRoutes(beforePath);
 const afterRoutes = loadRoutes(afterPath);
 
 function loadApprovedExceptions(filePath) {
-  const parsed = JSON.parse(readFileSync(filePath, "utf8"));
-  const now = Date.now();
-  return new Set(
-    (parsed.exceptions ?? [])
-      .filter(entry => {
-        const required = [
-          "url",
-          "problem",
-          "evidence",
-          "hypothesis",
-          "cost",
-          "maintenance",
-          "metric",
-          "threshold",
-          "decision",
-          "approvedBy",
-          "approvedAt",
-          "expiresAt",
-        ];
-        return (
-          required.every(key => String(entry[key] ?? "").trim().length > 0) &&
-          entry.decision === "APPROVED" &&
-          Date.parse(entry.expiresAt) >= now
-        );
-      })
-      .map(entry => entry.url)
-  );
+  return loadApprovedExceptionUrls(filePath);
 }
 
 const approvedExceptions = loadApprovedExceptions(exceptionsPath);
