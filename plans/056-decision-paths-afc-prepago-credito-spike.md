@@ -296,6 +296,38 @@ Detente y reporta (no improvises) si:
   `check:reader-facing-copy` / `check:dialect` como gates) — ajústalo al tono
   y anótalo; no dejes copy que falle los checks en el diseño.
 
+## Reconciliación (2026-08-11)
+
+Drift verificado contra `0bd51540..HEAD` antes de cualquier ejecución:
+
+- **`src/contracts/analytics-events.ts` +35**: contrato ampliado con el evento
+  `article_calculator_cta_click` (params `cta_type`, `cta_location`,
+  `destination_url` — este último con regex `INTERNAL_URL` de solo URLs
+  monedario.cl) y `LEGACY_EVENT_NAMES` ahora exportado, que añade
+  `result_action_click → next_step_click` y `support_page_click → support_click`.
+  Los eventos que este spike usa (`next_step_shown/click`, `alert_interest_*`,
+  `support_*`) **siguen existiendo sin cambios**; el `SAFE_TOKEN` citado
+  (línea ~130 ahora, antes 121) conserva su regex.
+- **`seguro-cesantia.astro` / `prepago-credito.astro`**: solo `formatCLP`
+  (+3/+6 líneas) — el bloque `NextSteps` está en `seguro-cesantia.astro:403`
+  (el plan citaba 402) y `prepago-credito.astro:386` (citaba 390); extractos
+  del "Estado actual" verificados idénticos en contenido.
+- **`NextSteps.astro`, `UtmPostResultActions.astro` y
+  `UTILITY_LED_EXPERIMENT_REGISTRY.md`: sin cambios** — los extractos citados
+  siguen vigentes byte a byte.
+- El spike 046 **no se ha ejecutado** (sigue TODO en `plans/`), así que la
+  condición "si 046 ya se ejecutó, reconcilia" no aplica; su sección de
+  reconciliación reencuadra el patrón post-resultado, lo que refuerza la
+  premisa de este spike (el patrón ya existe y está instrumentado).
+- El evento `article_calculator_cta_click` es un insumo nuevo para el Step 4
+  (medición): los CTAs de página de resultado ya tienen su propio evento;
+  verificar que los `next_step_id` propuestos no colisionen con los
+  `cta_type`/`destination_url` de ese evento.
+
+Estado tras reconciliación: **TODO** — premisa intacta y **más viable** (la
+instrumentación que pedía medir ya está completa). El resto del plan aplica
+sin cambios.
+
 ## Notas de mantenimiento
 
 - La implementación de este diseño (componentes, copy, pilotos) será un plan

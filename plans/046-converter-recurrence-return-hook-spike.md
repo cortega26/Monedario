@@ -290,6 +290,40 @@ Detente y reporta (no improvises) si:
 - Cualquier paso te empuja a escribir código de producto o a crear una URL/superficie
   nueva: fuera de scope de un spike.
 
+## Reconciliación (2026-08-11)
+
+Drift verificado contra `0102b11a..HEAD` antes de cualquier ejecución:
+
+- **`conversor-utm.astro` cambió sustancialmente (+49 líneas):** ahora importa
+  `UtmPostResultActions` (patrón post-resultado vivo: 2 links de siguiente paso,
+  bloque de interés de aviso, bloque de apoyo — los mismos mecanismos que este
+  spike preveía diseñar), añade `evaluateCriticalMonthlyFreshness` (gate: build
+  falla si la UTM está stale — GROWTH-009 implementado en la página) y
+  `buildUtmWorkedExample`, y actualiza el banner/metodología a "valor oficial
+  SII". **El spike se reencuadra**: ya no es "diseñar un return-hook desde
+  cero" sino "evaluar si el patrón post-resultado existente constituye un
+  return-hook de recurrencia y qué opciones de extensión tiene" — la pregunta
+  de recurrencia (Step 4) sigue intacta y es la primera.
+- **`conversor-uf.astro` (+6)**: solo `GlossaryContentWrapper` en FAQs y
+  `formatCLP` — cosmético, sin efecto en la premisa.
+- **Infra sin-PII intacta**: `ResumeWidget.astro`, `resumeState.ts`,
+  `calculator-prefill.ts` sin cambios desde `0102b11a` — el punto 3 del
+  "Estado actual" sigue verificándose.
+- **Datos**: el scorecard citado (W27) sigue existiendo; W28 ya está
+  disponible (y W29–W32 con analytics v2). La métrica de recurrencia debe
+  leerse de los exports W28+ con el contrato v2, no del RUM W27.
+- **`PLAN-calculator-led-growth-2026-06-28.md` (+2)**: cambios menores, la
+  referencia §3.2 (cero-PII) sigue vigente.
+- Relación con la fundación utility-led (`e17013b7`, 2026-08-02): el contrato
+  v2 (`next_step_*`, `alert_interest_*`, `support_*`) y
+  `UTILITY_LED_EXPERIMENT_REGISTRY.md` ya instrumentan la medición que este
+  spike pedía — el documento de diseño debe partir de esos umbrales, no
+  proponer métricas nuevas incompatibles.
+
+Estado tras reconciliación: **TODO** — premisa viva con reencuadre (evaluar lo
+construido, no diseñar desde cero). El resto del plan (steps, scope, STOP
+conditions) aplica sin cambios.
+
 ## Maintenance notes
 
 Para quien decida después:

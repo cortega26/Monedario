@@ -249,6 +249,33 @@ Detente y reporta (no improvises) si:
 - Descubres que alguna de las 5 tiene demanda real en W30 (p. ej. está en el top-10 de páginas) — regístralo tal cual y refuerza la opción "mantener" con ese dato; no lo ocultes para que el memo "tenga razón".
 - El protocolo del Step 4 contradice un invariante (p. ej. si RSS.NO_REMOVALS impide una opción que propusiste) — ajústalo en el dossier y explícalo; no silencies la contradicción.
 
+## Reconciliación (2026-08-11)
+
+Drift verificado contra `0bd51540..HEAD` antes de cualquier ejecución:
+
+- **Las 5 páginas candidatas cambiaron SOLO cosméticamente** (`formatCLP`
+  unificado + `GlossaryContentWrapper` en FAQs; `apv.astro` +6, `comisiones-afp`
+  +6, `boleta-honorarios-liquido` +3, `gratificacion-legal` +9, `tarjeta-credito`
+  +6): inventario, motores y estructura intactos. Las líneas citadas de
+  patrones (CalculatorHero, domain use-cases, NextSteps) siguen siendo válidas.
+- **Datos disponibles más frescos**: los exports GSC **2026-W32** ya existen
+  (`2026-W32-pages.json`/`queries.json`/`query-page.json`/`sitemaps.json`/
+  `url-inspection.json`), y analytics llega a `2026-W32.json`. El dossier debe
+  usar W32 como corte (el plan citaba W30 por ser lo más reciente al escribir).
+  La limitación W29 (sin export GSC) queda obsoleta.
+- **`check-indexable-url-freeze.mjs` refactorizado**: las excepciones ya no
+  llevan los 13 campos inline; se validan vía `isCompleteException()` desde
+  `scripts/lib/url-freeze-exceptions.mjs` (mismo esquema, mecanismo extraído).
+  El gate sigue activo — la cita del protocolo (Step 4, punto 4) debe apuntar
+  al lib, no al script.
+- **`scripts/snapshot-routes.mjs` sin cambios** — el protocolo de snapshot de
+  rutas citado sigue byte-idéntico.
+- 053 (baseline GSC) aterrizó (W32 url-inspection existe) — la dependencia de
+  datos declarada en Status se cumple; los datos por URL serán completos.
+
+Estado tras reconciliación: **TODO** — premisa viva, inventario intacto, datos
+actualizados a W32. El resto del plan aplica sin cambios.
+
 ## Notas de mantenimiento
 
 - La ejecución de cualquier opción elegida será un plan futuro separado (con

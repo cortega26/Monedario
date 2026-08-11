@@ -67,8 +67,9 @@ block, diffs mínimos, condiciones de halt, gates de CI) y `pnpm install`
 si `node_modules/` no existe.
 
 **La secuencia de la séptima auditoría (057 → 081, orden 1–25) está COMPLETA
-(2026-08-11):** los 25 planes fueron ejecutados y archivados. Los planes de la
-tabla antigua (052, 041, 046, 055, 056) NO forman parte de esa secuencia:
+(2026-08-11):** los 25 planes fueron ejecutados y archivados. De la tabla
+antigua solo quedan vivos 041, 046, 055 y 056 (052 ya fue DONE y archivado —
+ver abajo), y NO forman parte de esa secuencia:
 
 - **052** — DONE y archivado (2026-08-11, PR #420, squash `8bc8a0a2`):
   re-implementado tras reconciliación (la rama original `ae9246bd` se perdió),
@@ -77,7 +78,12 @@ tabla antigua (052, 041, 046, 055, 056) NO forman parte de esa secuencia:
   rotación del PAT (autoridad de cuenta GitHub) — checklist en el ADR.
 - **041** — BLOCKED: no intentar (hipótesis descartada; falta causa de campo).
 - **046, 055, 056** — spikes de dirección con compuertas humanas: ejecutar
-  solo si el operador lo pide; se detienen en la compuerta.
+  solo si el operador lo pide; se detienen en la compuerta. **Reconciliados
+  contra el estado actual el 2026-08-11** (drift checks re-corridos contra
+  HEAD; secciones "Reconciliación" añadidas a cada plan y filas de la tabla
+  actualizadas): premisas vivas, extractos re-verificados, datos al día
+  (046: patrón post-resultado ya existente en conversor-utm; 055: GSC W32 +
+  freeze refactorizado; 056: contrato v2 ampliado, componentes intactos).
 
 **Loop por plan (uno a uno):**
 1. Leer el plan completo; correr su drift check contra `90370b4e`.
@@ -152,10 +158,12 @@ scorecards y exports reales en `output/operations/`). Originalmente siete;
 parcialmente, con su typo residual desglosado en el plan 042; 038 con alcance
 revisado a 3 de 4 claves, el resto desglosado en el plan 043 — ver nota abajo).
 El plan 043 se sumó el 2026-07-11 como *carve-out* de 038. Los planes que
-siguen vivos de este lote (052, 041, 046, 055, 056) **no forman parte de la
+siguen vivos de este lote (041, 046, 055, 056) **no forman parte de la
 secuencia de la séptima auditoría** (057–081): ver la sección
-"Orden global de ejecución" arriba para su estado y tratamiento. Los
-restantes (035–040, 042–045, 047–051, 053–054) están DONE y archivados.
+"Orden global de ejecución" arriba para su estado y tratamiento (los tres
+spikes 046/055/056 fueron reconciliados contra el estado actual el
+2026-08-11). Los restantes (035–040, 042–045, 047–051, 053–054 y el 052,
+cerrado con PR #420 el 2026-08-11) están DONE y archivados.
 
 > **Recordatorio de cierre**: en cuanto un plan de esta tabla pase a `DONE`,
 > deja de aparecer aquí — su archivo se mueve a
@@ -166,9 +174,9 @@ restantes (035–040, 042–045, 047–051, 053–054) están DONE y archivados.
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
 |---|------|--------|-----------|----------|--------|--------------------|--------|
 | 2 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | BLOCKED (hipótesis descartada; causa de campo sin identificar — ver nota abajo) |
-| 3| [046](046-converter-recurrence-return-hook-spike.md) | **Spike de dirección**: investigar si hay recurrencia real sobre los conversores (superficie de mayor **tráfico** según RUM W27; recurrencia **por confirmar**) y, solo si la hay, diseñar un return-hook privacy-safe | P2 | M | LOW | todos | TODO (spike de diseño; por defecto "medir antes de construir"; compuerta de decisión humana) |
-| 4| [055](055-calculator-consolidation-spike.md) | **Spike de dirección**: consolidación por URL de 5 calculadoras (dossier de evidencia + opciones de migración con gates de ruta/RSS/ADR) | P2 | M | MED | todos | TODO (spike; compuerta humana por URL; la ejecución posterior de sus recomendaciones es un plan aparte) |
-| 5| [056](056-decision-paths-afc-prepago-credito-spike.md) | **Spike de dirección**: rutas de decisión contextuales AFC/prepago/crédito (diseño de NextSteps + extensión del patrón post-resultado) | P2 | M | LOW | 046 | TODO (spike; firma de copy y elección de piloto = compuertas humanas) |
+| 3| [046](046-converter-recurrence-return-hook-spike.md) | **Spike de dirección**: investigar si hay recurrencia real sobre los conversores (superficie de mayor **tráfico** según RUM W27; recurrencia **por confirmar**) y, solo si la hay, diseñar un return-hook privacy-safe | P2 | M | LOW | todos | TODO (spike de diseño; reconciliado 2026-08-11 — reencuadrado: el patrón post-resultado ya existe en conversor-utm vía `UtmPostResultActions`; evaluar lo construido, no diseñar desde cero) |
+| 4| [055](055-calculator-consolidation-spike.md) | **Spike de dirección**: consolidación por URL de 5 calculadoras (dossier de evidencia + opciones de migración con gates de ruta/RSS/ADR) | P2 | M | MED | todos | TODO (spike; reconciliado 2026-08-11 — datos actualizados a GSC W32; freeze refactorizado a `scripts/lib/url-freeze-exceptions.mjs`; inventario intacto) |
+| 5| [056](056-decision-paths-afc-prepago-credito-spike.md) | **Spike de dirección**: rutas de decisión contextuales AFC/prepago/crédito (diseño de NextSteps + extensión del patrón post-resultado) | P2 | M | LOW | 046 | TODO (spike; reconciliado 2026-08-11 — premisa intacta y más viable: contrato v2 ampliado con `article_calculator_cta_click`; componentes/registry sin cambios; extractos re-verificados) |
 > **035–040, 042–045 y 047–050 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
 
 > **046 es un spike de dirección (`/improve next`, 2026-07-12)**, no un plan de
@@ -371,10 +379,10 @@ restantes (035–040, 042–045, 047–051, 053–054) están DONE y archivados.
 
 **Por qué este orden:** *(bloque histórico de la tabla de la quinta/sexta
 auditoría — los planes que cita (040, 042, 043, 035–038) están archivados y
-ya no aplican a la tabla vigente; el orden actual de este lote es: 052 (si el
-operador lo retoma), 041 BLOCKED, y los spikes 046/055/056 solo a pedido del
-operador. La secuencia ejecutable pendiente es la de la séptima auditoría
-057–081.)*
+ya no aplican a la tabla vigente; el orden actual de este lote es: 041
+BLOCKED, y los spikes 046/055/056 solo a pedido del
+operador (reconciliados 2026-08-11). La secuencia ejecutable pendiente es la
+de la séptima auditoría 057–081, ya completa — 052 fue cerrado con PR #420.)*
 - **035, 038, 039, 037 y 036 ya ejecutados** (ver notas abajo): máxima
   prioridad/mayor confianza primero, e independientes de todo lo demás — no
   había razón para esperar.
