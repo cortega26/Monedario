@@ -61,6 +61,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [066](066-secret-scan-pr.md) | Scan gitleaks bloqueante por PR (diff-scoped, sin `--stdin` en 8.30.1 — verificado) + quitar allowlist de `.env`; pipeline validado con secreto en `.env` → exit 1 | 2026-08-10 | sí (merge `dccebfb9`) |
 | [067](067-seotitle-tests.md) | Presupuesto seoTitle 65 en schema + gate + tests; regla "| Monedario" del plan descartada en mérito (38/41 posts reales la contradecían); guard de sincronía schema↔gate | 2026-08-10 | sí (fast-forward `3f073c99`) |
 | [068](068-frontmatter-characterization.md) | Caracterización de check-frontmatter.mjs (9 casos por clase de regla con severidad real); `frontmatter-schema.test.ts` renombrado a `yaml-parser.test.ts`; clase articleAdvisory añadida en auditoría | 2026-08-10 | sí (fast-forward `47414be0`) |
+| [069](069-legal-constants-check.md) | Check de consistencia de constantes legales espejadas (4 constantes/16 mirrors, inventario declarativo); auditoría: comentarios `//` filtrados (ocultaban drift), test de integración real | 2026-08-10 | sí (fast-forward `c83ad352`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
