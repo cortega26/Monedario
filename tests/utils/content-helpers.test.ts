@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { toArticleView, type ArticleView } from "@/utils/articleView";
 import getPostsByTag from "@/utils/getPostsByTag";
 import getSortedPosts from "@/utils/getSortedPosts";
-import { getUniqueTagsWithCount } from "@/utils/getUniqueTags";
+import getUniqueTags, { getUniqueTagsWithCount } from "@/utils/getUniqueTags";
 import { getUiCopyForLocale } from "@/i18n/ui";
 
 function entry(overrides: Record<string, unknown> = {}) {
@@ -95,6 +95,14 @@ describe("getSortedPosts / getPostsByTag / getUniqueTags", () => {
     expect(tags).toEqual([
       { tag: "a", tagName: "a", count: 2 },
       { tag: "b", tagName: "b", count: 1 },
+    ]);
+  });
+
+  it("getUniqueTags (default) lista tags sin conteo, ordenados alfabéticamente", () => {
+    const tags = getUniqueTags(posts as never);
+    expect(tags).toEqual([
+      { tag: "a", tagName: "a" },
+      { tag: "b", tagName: "b" },
     ]);
   });
 });
