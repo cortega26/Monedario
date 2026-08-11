@@ -69,7 +69,9 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [074](074-stale-overrides.md) | Overrides y exclusiones de maduración vencidos eliminados (61 muertas, 4 vivas conservadas); resolución natural verificada post-cambio; TD-0104 registrado | 2026-08-10 | sí (fast-forward `59e72a98`) |
 | [075](075-iso-week-module.md) | Módulo compartido de semana ISO (Jan-4); equivalencia viejo-vs-nuevo probada con 358 casos (0 diffs); 8 tests de año-límite | 2026-08-10 | sí (fast-forward `4915bd47`) |
 | [076](076-pyproject-prune.md) | Stack Python de scraping/MCP podado (22 deps → 4); lockfile −891 líneas; sin doc-drift; pip-audit 0 vulns (skips ambientales documentados) | 2026-08-10 | sí (fast-forward `56bf32d7`) |
-| [077](077-check-ci-aggregate.md) | `check:ci` espeja el CI localmente (23 gates); audit: legal-citations/hero añadidos, check:images excluido (borra PNGs), divergencias documentadas | 2026-08-10 | sí (fast-forward `450b258b`) |
+ | [077](077-check-ci-aggregate.md) | `check:ci` espeja el CI localmente (23 gates); audit: legal-citations/hero añadidos, check:images excluido (borra PNGs), divergencias documentadas | 2026-08-10 | sí (fast-forward `450b258b`) |
+| [078](078-lhci-mobile-wiring.md) | Lighthouse mobile cableado en el workflow scheduled (`perf:ci:mobile`, warn-only, `if: always`); timeout 30, artifacts untracked | 2026-08-10 | sí (PR #415, squash `76373cd8`) |
+| [079](079-push-validation.md) | Validación post-push de artefactos commiteados por bots (snapshot económico + JSON de data-signals); workflow con paths filtrados y `contents: read`; `[skip ci]` removido; 8 tests | 2026-08-10 | sí (PR #415, squash `76373cd8`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
