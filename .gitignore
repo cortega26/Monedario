@@ -90,6 +90,7 @@ docs/backlog/*
 !docs/backlog/PLAN-*.md
 !docs/backlog/UTILITY_LED_BLOCKED_PENDING_EVIDENCE.md
 !docs/backlog/prompt-*.md
+!docs/backlog/DECISION-PATHS-*.md
 !docs/editorial/artifacts/
 !docs/editorial/artifacts/**
 
