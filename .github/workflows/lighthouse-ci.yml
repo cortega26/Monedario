@@ -14,7 +14,9 @@ jobs:
   lighthouse:
     name: Performance audit
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    # Build + desktop (5 URLs × 3) + mobile CPU-4x (5 URLs × 3): los collects
+    # suman ~7 min en local y más en runners compartidos; 15 min era al límite.
+    timeout-minutes: 30
 
     steps:
       - name: "☁️ Checkout repository"
@@ -34,6 +36,9 @@ jobs:
       - name: "📱 Lighthouse CI — mobile (warn-only, scheduled)"
         # Telemetría no-bloqueante: el throttling CPU-4x móvil en runners
         # compartidos es flaky como gate. Los umbrales objetivo (perf ≥ 0.8,
-        # LCP ≤ 2500, CLS ≤ 0.1) están en lighthouserc.mobile.cjs.
+        # LCP ≤ 2500, CLS ≤ 0.1) están en lighthouserc.mobile.cjs. Corre
+        # SIEMPRE (if: always) para que la telemetría mobile no se pierda
+        # cuando el run desktop falla (p. ej. el flake de CLS sub-pixel).
+        if: always()
         run: pnpm run perf:ci:mobile
         continue-on-error: true
