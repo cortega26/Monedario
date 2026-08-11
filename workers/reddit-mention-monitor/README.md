@@ -55,7 +55,7 @@ run).
 - Local dry-run with a token in `.dev.vars` / env:
   ```bash
   wrangler dev workers/reddit-mention-monitor/wrangler.toml --test-scheduled
-  curl "http://localhost:8787/__check?secret=<CHECK_SECRET>"
+  curl -H "Authorization: Bearer $CHECK_SECRET" "http://localhost:8787/__check"
   ```
   Run it twice: the second run should report `alerted: 0` (dedup working).
 - Production: trigger once from the Cloudflare dashboard; confirm an embed arrives in Discord and,

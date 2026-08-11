@@ -37,6 +37,24 @@ function log(level: LogLevel, event: string, fields: Record<string, unknown> = {
   else console.log(line);
 }
 
+function constantTimeEqual(a: string, b: string): boolean {
+  const maxLength = Math.max(a.length, b.length);
+  let diff = a.length ^ b.length;
+
+  for (let i = 0; i < maxLength; i += 1) {
+    diff |= (a.charCodeAt(i) || 0) ^ (b.charCodeAt(i) || 0);
+  }
+
+  return diff === 0;
+}
+
+function jsonResponse(body: unknown, status: number): Response {
+  return new Response(JSON.stringify(body) + "\n", {
+    status,
+    headers: { "Content-Type": "application/json; charset=utf-8" },
+  });
+}
+
 function assertEnv(env: Env): void {
   for (const key of [
     "REDDIT_CLIENT_ID",
@@ -130,16 +148,28 @@ export default {
     );
   },
 
-  // Manual smoke trigger. Gated by ?secret=<CHECK_SECRET>; the workers.dev URL is
-  // guessable so we require the secret even though the Worker is unrouted.
+  // Manual smoke trigger. Auth via `Authorization: Bearer <CHECK_SECRET>`.
+  // Query-string credentials are rejected: the old `?secret=` form returns
+  // 401 because only the header is read. The workers.dev URL is guessable so
+  // we require the secret even though the Worker is unrouted.
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
     if (url.pathname !== "/__check") {
       return new Response("Not Found", { status: 404 });
     }
-    const provided = url.searchParams.get("secret");
-    if (!env.CHECK_SECRET || provided !== env.CHECK_SECRET) {
-      return new Response("Forbidden", { status: 403 });
+    if (!env.CHECK_SECRET) {
+      return jsonResponse({ error: "check_not_configured" }, 503);
+    }
+    const authHeader = request.headers.get("Authorization");
+    const provided =
+      authHeader && authHeader.startsWith("Bearer ")
+        ? authHeader.slice("Bearer ".length).trim()
+        : null;
+    if (!provided) {
+      return jsonResponse({ error: "missing_secret" }, 401);
+    }
+    if (!constantTimeEqual(provided, env.CHECK_SECRET)) {
+      return jsonResponse({ error: "invalid_secret" }, 403);
     }
     try {
       const result = await runMonitor(env);

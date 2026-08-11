@@ -90,10 +90,13 @@ Wrangler prints the assigned `*.workers.dev` URL. The cron trigger registers aut
 
 In the Cloudflare dashboard → **Workers & Pages** → `monedario-economic-snapshot-refresh` → **Triggers** → **Cron Triggers** → **Run now**.
 
-Alternatively, trigger via HTTP (gated by the PAT for safety):
+Alternatively, trigger via HTTP (gated by the dedicated `TRIGGER_SECRET` for safety; never the PAT):
 
 ```bash
-curl "https://monedario-economic-snapshot-refresh.<your-subdomain>.workers.dev/__refresh?secret=<PAT>"
+# Read the secret from a protected source (e.g. a secrets manager or a shell
+# variable set outside the command line). Command-line headers can still enter
+# process/history on some systems — prefer the dashboard "Run now" trigger.
+curl -H "Authorization: Bearer $TRIGGER_SECRET" "https://monedario-economic-snapshot-refresh.<your-subdomain>.workers.dev/__refresh"
 ```
 
 Expected outcomes:
@@ -132,7 +135,9 @@ Recommended cadence: **every 11 months** (1 month buffer before the 1-year hard 
 
 1. Generate a new PAT with the same scope (see step 2 above).
 2. `pnpm exec wrangler secret put GITHUB_TOKEN --config workers/economic-snapshot-refresh/wrangler.toml` — paste the new token.
-3. Trigger a manual run from the dashboard to verify it works.
+3. If the PAT was ever used in a `?secret=` URL (or log exposure cannot be ruled out), rotate `TRIGGER_SECRET` (`wrangler secret put TRIGGER_SECRET` — a dedicated secret, never the PAT) and re-verify a header smoke.
+4. Trigger a manual run from the dashboard to verify it works.
+5. Revoke the old PAT in GitHub settings.
 4. Revoke the old PAT in GitHub settings.
 
 Add a calendar reminder for this date.
