@@ -10,6 +10,7 @@
 
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import { isoWeekWindow } from "./lib/iso-week.mjs";
 
 const DEFAULT_GSC_DIR = "output/operations/data-signals/gsc";
 const DEFAULT_ROLLING_WEEKS = 4;
@@ -68,24 +69,6 @@ Options:
     throw new Error("--all and --weeks are mutually exclusive");
   }
   return options;
-}
-
-function isoWeekWindow(week) {
-  const match = /^(\d{4})-W(\d{2})$/.exec(week);
-  if (!match) return null;
-  const year = Number(match[1]);
-  const weekNumber = Number(match[2]);
-  const jan4 = new Date(Date.UTC(year, 0, 4));
-  const jan4Day = jan4.getUTCDay() || 7;
-  const weekOneMonday = new Date(jan4.getTime() - (jan4Day - 1) * 86400000);
-  const monday = new Date(
-    weekOneMonday.getTime() + (weekNumber - 1) * 7 * 86400000
-  );
-  const sunday = new Date(monday.getTime() + 6 * 86400000);
-  return {
-    from: monday.toISOString().slice(0, 10),
-    to: sunday.toISOString().slice(0, 10),
-  };
 }
 
 function readWeeklyArtifact(gscDir, file) {
