@@ -2245,3 +2245,14 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Estado:** ABIERTO
 - **Owner:** Carlos
 - **Fecha:** 2026-08-10
+
+## TD-0104 — Guard CI para excepciones de maduración muertas en pnpm-workspace.yaml
+- **ID:** TD-0104
+- **Título corto:** Check de exclusiones muertas en `minimumReleaseAgeExclude`
+- **Descripción:** `minimumReleaseAgeExclude` acumuló 61 entradas apuntando a versiones ausentes del lockfile (limpiadas en el plan 074) porque nada falla cuando una excepción deja de ser necesaria: la lista se pudre en silencio y destruye la señal de auditoría de la política de 7 días (no se distingue lo load-bearing de lo cadáver). El maintenance note del plan 074 lo sanciona como "política futura (hoy es manual)".
+- **Fix propuesto:** script `check-workspace-exclusions.mjs` que parsea `pnpm-workspace.yaml` + `pnpm-lock.yaml` y falla (exit 1) si una entrada de `minimumReleaseAgeExclude` no existe como clave resuelta en el lockfile — con la excepción explícita de las exclusiones "vencidas pero aún presentes" (nanoid/fast-uri-style, que envejecen por fecha). Cablear en `check` + ci.yml. Tests con fixtures (patrón de `check-legal-constants`).
+- **Riesgo:** bajo; esfuerzo S; sin impacto en resolución.
+- **Severidad (1-5):** 2
+- **Estado:** ABIERTO (recomendación del audit del plan 074, 2026-08-10)
+- **Owner:** Carlos
+- **Fecha:** 2026-08-10
