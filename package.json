@@ -68,6 +68,7 @@
     "rss:compare": "node scripts/compare-rss.mjs docs/reports/rss_snapshot.json output/validation/rss_snapshot_after.json",
     "check:rss": "node scripts/rss-to-json.mjs --in dist/rss.xml --out output/validation/rss_snapshot_after.json && pnpm run rss:compare",
     "perf:ci": "lhci collect --config=lighthouserc.cjs && lhci assert --config=lighthouserc.cjs",
+    "perf:ci:mobile": "lhci collect --config=lighthouserc.mobile.cjs && lhci assert --config=lighthouserc.mobile.cjs",
     "check:boundaries": "node scripts/check-domain-boundaries.mjs",
     "check:toc-i18n": "node scripts/check-toc-i18n.mjs",
     "check:editorial-guard": "node scripts/check-editorial-guard.mjs",

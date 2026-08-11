@@ -43,6 +43,12 @@ A regression is any change that degrades previously valid behavior in contracts,
   - Speed Index <= 3.0s
   - CLS = 0
   - TBT = 0ms
+- Estado real (plan 078): el run **desktop** (lighthouserc.cjs) es el gate
+  scheduled con asserts en error; el run **mobile** (lighthouserc.mobile.cjs,
+  CPU-4x) corre en el mismo scheduled como **telemetría warn-only**
+  (`perf:ci:mobile`, `continue-on-error`) — no bloquea. Los umbrales objetivo
+  declarados arriba siguen siendo la meta; el mobile se convertirá en gate de
+  PR solo tras una base estable de mediciones scheduled.
 - Compliant behavior: Provide JSON report in `artifacts/` meeting thresholds.
 - Violation: Merging font/layout change without performance evidence.
 

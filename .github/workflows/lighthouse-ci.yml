@@ -30,3 +30,10 @@ jobs:
 
       - name: "🔬 Run Lighthouse CI"
         run: pnpm run perf:ci
+
+      - name: "📱 Lighthouse CI — mobile (warn-only, scheduled)"
+        # Telemetría no-bloqueante: el throttling CPU-4x móvil en runners
+        # compartidos es flaky como gate. Los umbrales objetivo (perf ≥ 0.8,
+        # LCP ≤ 2500, CLS ≤ 0.1) están en lighthouserc.mobile.cjs.
+        run: pnpm run perf:ci:mobile
+        continue-on-error: true
