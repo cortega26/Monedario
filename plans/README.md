@@ -56,9 +56,9 @@ Cada ejecutor debe leer el plan completo y honrar sus condiciones de STOP.
 
 ## Pendientes — séptima auditoría (2026-08-10, `90370b4e`)
 
-| Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Depende de | Estado |
-|---|------|--------|-----------|----------|--------|------------|--------|
-| 4 | [081](081-postbuild-verification.md) | Capa de verificación post-build (aserciones sobre dist/) | P2 | L | MED | 057, 062, 065, 067 (aserciones condicionales) | TODO |
+**Completada el 2026-08-11** — los 4 planes restantes (078–081) fueron
+ejecutados y archivados (PRs #415, #416, #419). Sin pendientes de esta
+auditoría.
 
 ## Orden global de ejecución (para un ejecutor fresco que parte de cero)
 
@@ -66,9 +66,9 @@ Cada ejecutor debe leer el plan completo y honrar sus condiciones de STOP.
 block, diffs mínimos, condiciones de halt, gates de CI) y `pnpm install`
 si `node_modules/` no existe.
 
-**La secuencia a ejecutar es la tabla de la séptima auditoría (057 → 081,
-orden 1–25).** Los planes de la tabla antigua (052, 041, 046, 055, 056) NO
-forman parte de esa secuencia:
+**La secuencia de la séptima auditoría (057 → 081, orden 1–25) está COMPLETA
+(2026-08-11):** los 25 planes fueron ejecutados y archivados. Los planes de la
+tabla antigua (052, 041, 046, 055, 056) NO forman parte de esa secuencia:
 
 - **052** — IN PROGRESS: su código (`ae9246bd`) vive en una rama local NO
   mergeada a `main`. **No re-implementar**: requiere decisión del operador
@@ -1050,13 +1050,14 @@ operador. La secuencia ejecutable pendiente es la de la séptima auditoría
 
 Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main`.
 
-### Séptima auditoría profunda 2026-08-10 (plans 057–081; 081 pendiente)
+### Séptima auditoría profunda 2026-08-10 (plans 057–081; todos archivados)
 
 | Plan | Título | Prioridad | Esfuerzo | Estado |
 |------|--------|-----------|----------|--------|
 | [078](archive/078-lhci-mobile-wiring.md) | Ejecutar config Lighthouse mobile (warn-only, scheduled) | P3 | S | DONE (squash `76373cd8`, PR #415, 2026-08-11) — `perf:ci:mobile` cableado en `lighthouse-ci.yml` scheduled con `if: always` (la telemetría mobile no se pierde), timeout 30, artifacts untracked; desviación documentada en el plan: `cancel-in-progress` del workflow reutilizado sin cambios |
 | [079](archive/079-push-validation.md) | Validar snapshot/artefactos al llegar a main (push + validador) | P2 | M | DONE (squash `76373cd8`, PR #415, 2026-08-11) — `scripts/validate-committed-artifacts.mjs` (parseo snapshot + finitos uf/utm/opcionales + fecha indicatorUpdatedAt.utm + parseo recursivo JSON de data-signals, reporta TODOS los fallos, `VALIDATE_ARTIFACTS_ROOT`); workflow `validate-committed-artifacts.yml` (push a main, paths filtrados, `contents: read`, setup-node SHA-pineado); `[skip ci]` removido de data-signals (verificado: el worker de snapshot commitea con COMMIT_MESSAGE sin `[skip ci]` en wrangler.toml:20 — el push del bot dispara el validador); `check:committed-artifacts`; 8 tests; suite 1322/1322, format + lint verdes; 119 JSON de data-signals parsean |
 | [080](archive/080-clp-formatter-unify.md) | Unificar formateadores CLP en formatCLP + guard de estilo | P3 | S–M | DONE (squash `32bd56ce`, PR #416, 2026-08-11) — 20 sitios en 18 calculadoras migrados a `formatCLP` (incl. `function fmt` y `formatPeso` que el grep del plan no capturaba); 3 sitios divergentes corregidos (iva ×2, gratificacion-legal — ahora redondean); guard `check-no-inline-clp-formatters.mjs` cableado en `check`; STOP condición 3 ejercitada: conversor-uf:611 (histórico UF con options explícitas) → regex de la regla 2 ajustada a calls sin options + test de regresión; `fmtCurrency` (Intl) NO migrado (familia distinta, reportado); 5 tests; suite 1327/1327, astro check 0 errores, format + lint verdes |
+| [081](archive/081-postbuild-verification.md) | Capa de verificación post-build (aserciones sobre dist/) | P2 | L | DONE (squash `33e04b30`, PR #419, 2026-08-11) — `scripts/check-postbuild.mjs` con 6 checks activos (csp-hashes-injected, sitemap-noindex-free, seoTitle-rendered, pagefind-bounded, jsonld-no-script-breakout, spacing-sanity) + check 2 waivado por el propio plan; paso final de `build`/`build:ci` + `check:postbuild`; desviación en mérito: breakout JSON-LD detectado por balance `<script>`/`</script>` (la extracción naive trunca en el cierre inyectado); fix de CI: runner solo en ejecución directa (import por vitest disparaba checks contra dist inexistente); 13 tests; build:ci completo exit 0 (0.3s/327 páginas); suite verde, format + lint verdes |
 | [057](archive/057-pagefind-prune.md) | Purgar el índice pagefind en cada build (33 MB acumulado → 1.3 MB) | P1 | S | DONE (fast-forward `70f6a1d9`, 2026-08-10) — `rm -rf dist/pagefind` en `build`/`build:ci`; `public/pagefind` resultó ser gitignored (sin eliminaciones tracked); build exit 0, índice 1.3 MB/72 archivos, suite 1187/1187 |
 | [058](archive/058-sw-volatile-money-paths.md) | SW network-first para conversor-uf/utm y uf-hoy (valores stale hoy) | P1 | S | DONE (fast-forward `7d5c4910`, 2026-08-10) — 6 rutas nuevas en `VOLATILE_HTML_PATHS` (con y sin `/index.html`); rama network-first existente cubre las 3 páginas; build exit 0, `dist/sw.js` verificado, suite 1187/1187 |
 | [059](archive/059-kv-counter-integrity.md) | Superficializar fallos KV de contadores + documentar aproximación | P1 | S–M | DONE (fast-forward `1e99a772`, 2026-08-10) — `console.error` en `ingestEvent`/`checkRateLimit` (clave truncada sin IP), README + wrangler.toml documentan la aproximación, 3 tests nuevos; **auditoría adversarial post-implementación integrada en el mismo branch** (commit `1e99a772`): regla CDN `max-age=300` para `/uf-hoy/` que el plan 058 había asumido, mensaje de log preciso get/put, comentario fail-open corregido, guard de no-fuga de IP, y `tests/integration/sw-volatile-paths.test.ts` (rutas vivas + presencia de las 3 páginas + sincronía SW↔`_headers`); suite 1193/1193 |

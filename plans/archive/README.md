@@ -73,6 +73,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [078](078-lhci-mobile-wiring.md) | Lighthouse mobile cableado en el workflow scheduled (`perf:ci:mobile`, warn-only, `if: always`); timeout 30, artifacts untracked | 2026-08-10 | sí (PR #415, squash `76373cd8`) |
 | [079](079-push-validation.md) | Validación post-push de artefactos commiteados por bots (snapshot económico + JSON de data-signals); workflow con paths filtrados y `contents: read`; `[skip ci]` removido; 8 tests | 2026-08-10 | sí (PR #415, squash `76373cd8`) |
 | [080](080-clp-formatter-unify.md) | Unificar formateadores CLP en `formatCLP` (20 sitios/18 calculadoras, 3 divergentes corregidos) + guard `check-no-inline-clp-formatters` en `check`; regex ajustada por el caso UF-histórico | 2026-08-10 | sí (PR #416, squash `32bd56ce`) |
+| [081](081-postbuild-verification.md) | Verificación declarativa del post-build (`check-postbuild.mjs`, 6 checks sobre `dist/`) como paso final de `build`/`build:ci`; breakout JSON-LD por balance de script tags; fix de import-time en CI | 2026-08-10 | sí (PR #419, squash `33e04b30`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
