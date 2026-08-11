@@ -135,9 +135,9 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.9",
+    "@astrojs/check": "^0.9.10",
     "@axe-core/playwright": "^4.12.1",
-    "@cloudflare/workers-types": "^5.20260708.1",
+    "@cloudflare/workers-types": "^5.20260728.1",
     "@lhci/cli": "^0.15.1",
     "@pagefind/default-ui": "^1.5.2",
     "@playwright/test": "^1.61.1",
@@ -147,7 +147,7 @@
     "@vitest/coverage-v8": "^4.1.10",
     "eslint": "^10.7.0",
     "eslint-plugin-astro": "^2.1.1",
-    "globals": "^17.7.0",
+    "globals": "^17.8.0",
     "happy-dom": "^20.10.6",
     "husky": "^9.1.7",
     "js-yaml": "^5.2.3",
@@ -163,7 +163,7 @@
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.63.0",
     "vitest": "^4.1.10",
-    "wrangler": "^4.110.0"
+    "wrangler": "^4.115.0"
   },
   "lint-staged": {
     "*.{ts,tsx,astro,mjs,js}": [
