@@ -58,17 +58,16 @@ Cada ejecutor debe leer el plan completo y honrar sus condiciones de STOP.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Depende de | Estado |
 |---|------|--------|-----------|----------|--------|------------|--------|
-| 1 | [071](071-indicadores-hoy-tests.md) | Tests del endpoint indicadores-hoy + formateadores | P2 | S–M | LOW | — | IN PROGRESS |
-| 2 | [072](072-analytics-fetch-branches.md) | Tests de las ~12 ramas del fetch handler del collector | P2 | M | LOW | 059 (opcional) | TODO |
-| 3 | [073](073-coverage-widen.md) | Ampliar gate de cobertura a `src/**` (con caracterización) | P2 | S+M | MED | 067, 068, 071, 072 (recomendado) | TODO |
-| 4 | [074](074-stale-overrides.md) | Limpiar overrides/exclusiones de maduración vencidos | P2 | S | LOW | — | TODO |
-| 5 | [075](075-iso-week-module.md) | Módulo compartido de semana ISO (Jan-4) para scripts | P2 | S | LOW | — | TODO |
-| 6 | [076](076-pyproject-prune.md) | Podar stack Python no usado (scraping/MCP) | P2 | M | LOW/MED | — | TODO |
-| 7 | [077](077-check-ci-aggregate.md) | `check:ci` — un comando que reproduce el CI localmente | P2 | S–M | LOW | — | TODO |
-| 8 | [078](078-lhci-mobile-wiring.md) | Ejecutar config Lighthouse mobile (warn-only, scheduled) | P3 | S | LOW | — | TODO |
-| 9 | [079](079-push-validation.md) | Validar snapshot/artefactos al llegar a main (push + validador) | P2 | M | MED | — | TODO |
-| 10 | [080](080-clp-formatter-unify.md) | Unificar formateadores CLP en formatCLP + guard de estilo | P3 | S–M | MED | — | TODO |
-| 11 | [081](081-postbuild-verification.md) | Capa de verificación post-build (aserciones sobre dist/) | P2 | L | MED | 057, 062, 065, 067 (aserciones condicionales) | TODO |
+| 1 | [072](072-analytics-fetch-branches.md) | Tests de las ~12 ramas del fetch handler del collector | P2 | M | LOW | 059 (opcional) | TODO |
+| 2 | [073](073-coverage-widen.md) | Ampliar gate de cobertura a `src/**` (con caracterización) | P2 | S+M | MED | 067, 068, 071, 072 (recomendado) | TODO |
+| 3 | [074](074-stale-overrides.md) | Limpiar overrides/exclusiones de maduración vencidos | P2 | S | LOW | — | TODO |
+| 4 | [075](075-iso-week-module.md) | Módulo compartido de semana ISO (Jan-4) para scripts | P2 | S | LOW | — | TODO |
+| 5 | [076](076-pyproject-prune.md) | Podar stack Python no usado (scraping/MCP) | P2 | M | LOW/MED | — | TODO |
+| 6 | [077](077-check-ci-aggregate.md) | `check:ci` — un comando que reproduce el CI localmente | P2 | S–M | LOW | — | TODO |
+| 7 | [078](078-lhci-mobile-wiring.md) | Ejecutar config Lighthouse mobile (warn-only, scheduled) | P3 | S | LOW | — | TODO |
+| 8 | [079](079-push-validation.md) | Validar snapshot/artefactos al llegar a main (push + validador) | P2 | M | MED | — | TODO |
+| 9 | [080](080-clp-formatter-unify.md) | Unificar formateadores CLP en formatCLP + guard de estilo | P3 | S–M | MED | — | TODO |
+| 10 | [081](081-postbuild-verification.md) | Capa de verificación post-build (aserciones sobre dist/) | P2 | L | MED | 057, 062, 065, 067 (aserciones condicionales) | TODO |
 
 ## Orden global de ejecución (para un ejecutor fresco que parte de cero)
 
@@ -1060,7 +1059,7 @@ operador. La secuencia ejecutable pendiente es la de la séptima auditoría
 
 Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main`.
 
-### Séptima auditoría profunda 2026-08-10 (plans 057–081; 071–081 pendientes)
+### Séptima auditoría profunda 2026-08-10 (plans 057–081; 072–081 pendientes)
 
 | Plan | Título | Prioridad | Esfuerzo | Estado |
 |------|--------|-----------|----------|--------|
@@ -1078,6 +1077,7 @@ Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main
 | [068](archive/068-frontmatter-characterization.md) | Caracterización de `check-frontmatter.mjs` (7+ casos) | P2 | M | DONE (fast-forward `47414be0`, 2026-08-10) — 9 casos de caracterización (canario, deprecated, categoría, lang, título warning, description warning, advisory válido/corto/HTML) reconciliados en el archivo de 067; severidad REAL leída del script (title/description = warnings, no bloqueantes como asumía el plan); `frontmatter-schema.test.ts` renombrado a `yaml-parser.test.ts` y repuntado; hook `FRONTMATTER_REPO_ROOT` reutilizado; **auditoría adversarial integrada** (commit `47414be0`): clase articleAdvisory añadida (3 casos) + bug del fixture atrapado (inserción tras el `---` de cierre dejaba el campo fuera del frontmatter — los negativos lo detectaron); suite 1249/1249 |
 | [069](archive/069-legal-constants-check.md) | Check de consistencia de constantes legales espejadas | P2 | S–M | DONE (fast-forward `c83ad352`, 2026-08-10) — `check-legal-constants.mjs` con inventario declarativo 4 constantes/16 mirrors (IMM, fecha, topes 135.2/90 con los nombres reales de cada bundle — el tope 135.2 vive en 5 archivos con 3 nombres distintos); cableado en `check` + ci.yml; **auditoría adversarial integrada** (commit `c83ad352`): bug real confirmado y corregido (un mirror comentado ocultaba drift — las líneas `//` se filtran antes de matchear), test de integración contra el repo real (inventario stale = falso verde), test de pattern drift; suite 1255/1255 |
 | [070](archive/070-url-freeze-exceptions-module.md) | Módulo único de excepciones URL-freeze (esquema compartido) | P2 | M | DONE (fast-forward `c21e93d9`, 2026-08-10) — `scripts/lib/url-freeze-exceptions.mjs` (12 campos + `isCompleteException`/`loadApprovedExceptionUrls`/`validateExceptionSchema`); STOP del plan verificado: los gates tenían criterios de validación distintos (indexable estricto con approvedAt + mensajes; routes silencioso) — el módulo unifica solo el esquema y preserva ambos comportamientos; premisa del plan ("indexable filtra en silencio") corregida en la cabecera del módulo; **auditoría adversarial integrada** (commit `c21e93d9`): equivalencia byte-idéntica viejo vs nuevo probada empíricamente, gate migrado a `isCompleteException`, borde `expiresAt == now` testeado; suite 1262/1262 |
+| [071](archive/071-indicadores-hoy-tests.md) | Tests del endpoint indicadores-hoy + formateadores | P2 | S–M | DONE (fast-forward `de865e59`, 2026-08-10) — exports del endpoint, `getIndicadoresWith(loader)` factory aditivo, 9 tests (formateadores con formatos reales verificados, deltas, buildTitle, fechas con índice seguro, dolar presente/ausente/prev); shape real documentado (key `dolar` presente con undefined — consumidores guardan con `!== undefined`); **auditoría adversarial integrada** (commit `de865e59`): formateadores duplicados byte-idénticos de `IndicadoresHoy.astro` consolidados en `@/utils/indicadores` (fuente única), types reales corregidos en tests (`telemetryFlag`/`source` — `astro check` venía fallando enmascarado por un pipe desde el plan); suite 1271/1271, astro check exit 0 |
 
 ### Auditoría de dirección 2026-08-02 (plans 053–056; 055–056 pendientes)
 

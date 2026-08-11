@@ -63,6 +63,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [068](068-frontmatter-characterization.md) | Caracterización de check-frontmatter.mjs (9 casos por clase de regla con severidad real); `frontmatter-schema.test.ts` renombrado a `yaml-parser.test.ts`; clase articleAdvisory añadida en auditoría | 2026-08-10 | sí (fast-forward `47414be0`) |
 | [069](069-legal-constants-check.md) | Check de consistencia de constantes legales espejadas (4 constantes/16 mirrors, inventario declarativo); auditoría: comentarios `//` filtrados (ocultaban drift), test de integración real | 2026-08-10 | sí (fast-forward `c83ad352`) |
 | [070](070-url-freeze-exceptions-module.md) | Esquema único de excepciones URL-freeze en `scripts/lib/` (12 campos compartidos; cada gate conserva su validación); equivalencia byte-idéntica verificada | 2026-08-10 | sí (fast-forward `c21e93d9`) |
+| [071](071-indicadores-hoy-tests.md) | Tests del endpoint indicadores-hoy + formateadores; auditoría: formateadores consolidados a fuente única, types reales en tests (astro check exit 0) | 2026-08-10 | sí (fast-forward `de865e59`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
