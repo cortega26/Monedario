@@ -1,7 +1,7 @@
 [project]
 name = "monedario-tooling"
 version = "0.1.0"
-description = "Python tooling scripts for Monedario — GSC, font subsetting, repo auditing, and scraping"
+description = "Python tooling scripts for Monedario — GSC token generation, font subsetting, and repo auditing"
 requires-python = ">=3.13"
 license = { text = "MIT" }
 readme = "README.md"
@@ -11,45 +11,7 @@ dependencies = [
     "google-api-python-client>=2.194",
     "google-auth>=2.49",
 
-    # Web scraping — data signals and competitive adaptation
-    "scrapling>=0.4.9",
-    "beautifulsoup4>=4.14",
-    "lxml>=6.1",
-    "cssselect>=1.4",
-    "browserforge>=1.2",
-    "curl-cffi>=0.15",
-    "tld>=0.13",
-    "Protego>=0.6",
-    "w3lib>=2.4",
-
-    # Browser automation — Playwright + Patchright
-    "playwright>=1.58",
-    "patchright>=1.58",
-
-    # HTTP clients
-    "httpx>=0.28",
-    "requests>=2.33",
-
-    # Data validation and config
-    "pydantic>=2.13",
-    "pydantic-settings>=2.14",
-    "python-dotenv>=1.2",
-
-    # MCP server
-    "mcp>=1.27",
-    "uvicorn>=0.46",
-
-    # Cryptography
-    "cryptography>=47",
-
-    # Terminal output
-    "rich>=15",
-
-    # Fast JSON codecs
-    "orjson>=3.11",
-    "msgspec>=0.21",
-
-    # Font processing — subset-fonts.py
+    # Font processing — subset-fonts.py (invocado vía subprocess)
     "fonttools[woff]>=4.56",
     "brotli>=1.1",
 ]
