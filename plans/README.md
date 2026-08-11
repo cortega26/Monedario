@@ -70,14 +70,11 @@ si `node_modules/` no existe.
 (2026-08-11):** los 25 planes fueron ejecutados y archivados. Los planes de la
 tabla antigua (052, 041, 046, 055, 056) NO forman parte de esa secuencia:
 
-- **052** — IN PROGRESS (reconciliado 2026-08-11): la rama local con el fix
-  aprobado (`ae9246bd`) **ya no existe** — el código nunca se mergeó y la
-  vulnerabilidad sigue viva (`?secret=<GITHUB_TOKEN>` con PAT de escritura en
-  `workers/economic-snapshot-refresh/src/index.ts:230`; idem `CHECK_SECRET` en
-  reddit-mention-monitor). **Requiere re-implementación** (el plan es la
-  especificación); registrado como TD-0105 (severidad 5). Bloqueado por
-  decisión del operador: deploy de secrets dedicados y rotación de PAT
-  requieren autoridad a nivel de cuenta GitHub.
+- **052** — DONE y archivado (2026-08-11, PR #420, squash `8bc8a0a2`):
+  re-implementado tras reconciliación (la rama original `ae9246bd` se perdió),
+  desplegado, forma legacy `?secret=` rechazada (401 verificado en
+  producción). **Pendientes del operador**: smoke positivo por header y
+  rotación del PAT (autoridad de cuenta GitHub) — checklist en el ADR.
 - **041** — BLOCKED: no intentar (hipótesis descartada; falta causa de campo).
 - **046, 055, 056** — spikes de dirección con compuertas humanas: ejecutar
   solo si el operador lo pide; se detienen en la compuerta.
@@ -118,7 +115,7 @@ deja de aparecer en su tabla. Ninguna tabla debe mostrar una fila `DONE`.
 
 ## Hallazgos considerados y rechazados (2026-08-10)
 
-- **Trigger `?secret=` del worker económico (SEC-01/CORRECTNESS-07)**: ya planificado — plan 052 IN PROGRESS (código `ae9246bd` aprobado, deploy/rotación pendientes). No se re-propone.
+- **Trigger `?secret=` del worker económico (SEC-01/CORRECTNESS-07)**: resuelto — plan 052 DONE (PR #420, desplegado; forma legacy 401 en producción). No se re-propone.
 - **Spoofabilidad del analytics (SEC-07)**: tradeoff de diseño aceptado (endpoint público sin proof-of-origin); se recomienda documentar en ADR, no cambiar código. Revisitarlo si el scorecard pasa de ranking relativo a valores absolutos.
 - **Fuga de strings de error en triggers manuales (SEC-05)**: post-auth, bajo valor; si se toca 052 en el futuro, devolver `{"error":"trigger_failed"}` genérico en el mismo cambio.
 - **zod@3.25.76 coexistente via LHCI (DEPS-03)**: inevitable (chromium-bidi pinnea zod@3); anotar en `docs/TECH_DEBT_BACKLOG.md` como aceptado, desaparece si se reemplaza LHCI.
@@ -168,7 +165,6 @@ restantes (035–040, 042–045, 047–051, 053–054) están DONE y archivados.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
 |---|------|--------|-----------|----------|--------|--------------------|--------|
-| 1 | [052](052-worker-manual-trigger-auth.md) | Sacar secretos de URLs y separar el PAT del trigger manual | P1 | S | LOW/MED | 049, 051 | IN PROGRESS (código `ae9246bd` aprobado localmente; deploy/rotación y smoke pendientes, PAT requiere autoridad de emisión) |
 | 2 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | BLOCKED (hipótesis descartada; causa de campo sin identificar — ver nota abajo) |
 | 3| [046](046-converter-recurrence-return-hook-spike.md) | **Spike de dirección**: investigar si hay recurrencia real sobre los conversores (superficie de mayor **tráfico** según RUM W27; recurrencia **por confirmar**) y, solo si la hay, diseñar un return-hook privacy-safe | P2 | M | LOW | todos | TODO (spike de diseño; por defecto "medir antes de construir"; compuerta de decisión humana) |
 | 4| [055](055-calculator-consolidation-spike.md) | **Spike de dirección**: consolidación por URL de 5 calculadoras (dossier de evidencia + opciones de migración con gates de ruta/RSS/ADR) | P2 | M | MED | todos | TODO (spike; compuerta humana por URL; la ejecución posterior de sus recomendaciones es un plan aparte) |
@@ -1101,6 +1097,7 @@ Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main
 | [049](archive/049-analytics-calendar-and-funnel-semantics.md) | Alinear semanas a Chile con cutover versionado y reportar ratios de eventos honestamente | P1 | M | DONE (PR #331, squash `ac0c4a17`; Worker `dbc273e9-4f89-48f8-b572-fff6e536ff81`) |
 | [050](archive/050-weekly-search-ops-current-scale.md) | Restaurar revisión semanal con decisión explícita el 2026-08-01 | P1 | S | DONE (commit `e01d4a93`; final Issue #315 change) |
 | [051](archive/051-analytics-deployment-parity.md) | Hacer reproducible y verificable el deploy del Worker de analytics (workflow manual + verifier de paridad + ADR/runbook) | P1 | M | DONE (fast-forward `79d78372`, 2026-08-02) — auditoría post-entrega integrada (`e5efcc66`, `79d78372`); **smoke de producción (Step 5) pendiente del operador** |
+| [052](archive/052-worker-manual-trigger-auth.md) | Sacar secretos de URLs y separar el PAT del trigger manual | P1 | S | DONE (squash `8bc8a0a2`, PR #420, 2026-08-11) — **re-implementado** (la rama original con `ae9246bd` se perdió; TD-0105): ambos workers autentican por `Authorization: Bearer` (TRIGGER_SECRET dedicado / CHECK_SECRET), comparación en tiempo constante, forma legacy `?secret=` rechazada (401 verificado en producción); 17 tests; ADR-20260716. Secrets desplegados y workers deployed (`93e040ba` / `c0e5ed1d`); **pendientes del operador**: smoke positivo por header y rotación del PAT (autoridad de cuenta GitHub) |
 
 ### Quinta auditoría profunda 2026-07-10
 

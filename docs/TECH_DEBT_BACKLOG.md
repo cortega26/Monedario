@@ -2268,6 +2268,6 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Fix propuesto:** re-implementar el plan 052 completo (sigue siendo la especificación válida): secret dedicado por worker, `Authorization` header, comparación de tiempo constante, rechazo explícito de `?secret=`, actualizar READMEs y tests. NO reutilizar el PAT de escritura como secret de trigger. Compuertas humanas: crear/desplegar secrets dedicados y rotar/revocar el PAT (autoridad a nivel de cuenta GitHub).
 - **Riesgo:** alto (P1 security, superficie expuesta en producción); esfuerzo S–M (re-implementación) + pasos de operador.
 - **Severidad (1-5):** 5
-- **Estado:** CÓDIGO LISTO (2026-08-11, rama `advisor/052-worker-manual-trigger-auth`); TRIGGER_SECRET y CHECK_SECRET ya desplegados en Cloudflare; pendiente: merge, deploy de ambos workers, smoke productivo y rotación del PAT (compuerta humana). Plan 052 sigue como referencia viva hasta el cierre.
+- **Estado:** CERRADO (2026-08-11): código mergeado (PR #420, squash `8bc8a0a2`) y workers desplegados (versions `93e040ba`/`c0e5ed1d`); forma legacy `?secret=` verificada 401 en producción. **Residual del operador (fuera del backlog)**: smoke positivo por header con los secrets ya guardados y rotación del PAT en GitHub — checklist en ADR-20260716.
 - **Owner:** Sin asignar
 - **Fecha:** 2026-08-11
