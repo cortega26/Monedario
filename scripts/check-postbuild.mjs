@@ -298,24 +298,37 @@ const CHECKS = [
 ];
 
 // ─── Runner ──────────────────────────────────────────────────────────────────
+//
+// Only runs when executed directly (`node scripts/check-postbuild.mjs`), never
+// when imported by tests for the pure helpers (vitest imports the module, and
+// the default dist dir does not exist in CI).
 
-const distArg = process.argv[2];
-const distDir = path.resolve(distArg ?? "dist");
+import { fileURLToPath } from "node:url";
 
-const violations = [];
-for (const check of CHECKS) {
-  violations.push(...check.run(distDir));
-}
+const __filename = fileURLToPath(import.meta.url);
+const isDirectRun =
+  process.argv[1] !== undefined &&
+  path.resolve(process.argv[1]) === path.resolve(__filename);
 
-if (violations.length > 0) {
-  console.error(`[check-postbuild] Found ${violations.length} violation(s) in ${distDir}:`);
-  for (const violation of violations) {
-    console.error(`- ${violation}`);
+if (isDirectRun) {
+  const distArg = process.argv[2];
+  const distDir = path.resolve(distArg ?? "dist");
+
+  const violations = [];
+  for (const check of CHECKS) {
+    violations.push(...check.run(distDir));
   }
-  process.exit(1);
-}
 
-const pageCount = listHtmlPages(distDir).length;
-console.log(
-  `[check-postbuild] OK. ${CHECKS.length} checks passed over ${pageCount} HTML pages.`
-);
+  if (violations.length > 0) {
+    console.error(`[check-postbuild] Found ${violations.length} violation(s) in ${distDir}:`);
+    for (const violation of violations) {
+      console.error(`- ${violation}`);
+    }
+    process.exit(1);
+  }
+
+  const pageCount = listHtmlPages(distDir).length;
+  console.log(
+    `[check-postbuild] OK. ${CHECKS.length} checks passed over ${pageCount} HTML pages.`
+  );
+}
