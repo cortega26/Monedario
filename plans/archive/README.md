@@ -66,6 +66,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [071](071-indicadores-hoy-tests.md) | Tests del endpoint indicadores-hoy + formateadores; auditoría: formateadores consolidados a fuente única, types reales en tests (astro check exit 0) | 2026-08-10 | sí (fast-forward `de865e59`) |
 | [072](072-analytics-fetch-branches.md) | Guards HTTP del collector cubiertos (10 ramas); auditoría: 413 por stream explícito, ataques de prefijo de Origin, CORS en 403 | 2026-08-10 | sí (fast-forward `a619461b`) |
 | [073](073-coverage-widen.md) | Gate de cobertura ampliado a `src/**` (91.02% global) con exclusions documentadas y 25 tests de caracterización; residual único preexistente reportado | 2026-08-10 | sí (fast-forward `6a658057`) |
+| [074](074-stale-overrides.md) | Overrides y exclusiones de maduración vencidos eliminados (61 muertas, 4 vivas conservadas); resolución natural verificada post-cambio; TD-0104 registrado | 2026-08-10 | sí (fast-forward `59e72a98`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
