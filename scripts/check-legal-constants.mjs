@@ -127,7 +127,14 @@ for (const entry of CONSTANT_MIRRORS) {
       );
       continue;
     }
-    const match = source.match(mirror.pattern);
+    // Skip line-commented mirrors: a commented-out old value would match first
+    // and shadow the real assignment, hiding drift (// comments only; the
+    // mirrored files never use /* */ blocks around these constants).
+    const activeSource = source
+      .split("\n")
+      .filter(line => !/^\s*\/\//.test(line))
+      .join("\n");
+    const match = activeSource.match(mirror.pattern);
     if (!match) {
       errors.push(
         `check-legal-constants: no match ${entry.constant} ${mirror.path}`

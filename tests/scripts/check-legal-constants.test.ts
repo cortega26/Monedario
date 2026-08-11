@@ -87,4 +87,25 @@ describe("check-legal-constants", () => {
     expect(result.status).toBe(1);
     expect(result.stdout + result.stderr).toContain("no match");
   });
+
+  it("does not let a commented-out old value shadow a drifted assignment", () => {
+    const result = run(makeFixture(files => {
+      const drifted = files[
+        "workers/economic-snapshot-refresh/src/buildSnapshot.ts"
+      ].replace("const DEFAULT_IMM = 553_553;", "const DEFAULT_IMM = 553_554;");
+      files["workers/economic-snapshot-refresh/src/buildSnapshot.ts"] =
+        "// const DEFAULT_IMM = 553_553;\n" + drifted;
+    }));
+    expect(result.status).toBe(1);
+    expect(result.stdout + result.stderr).toContain("DEFAULT_IMM");
+  });
+
+  it("passes against the real repository mirrors (integration)", () => {
+    const result = spawnSync("node", [SCRIPT], {
+      encoding: "utf8",
+      env: { ...process.env, LEGAL_CONSTANTS_ROOT: "" },
+    });
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("OK");
+  });
 });
