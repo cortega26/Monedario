@@ -68,6 +68,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [073](073-coverage-widen.md) | Gate de cobertura ampliado a `src/**` (91.02% global) con exclusions documentadas y 25 tests de caracterización; residual único preexistente reportado | 2026-08-10 | sí (fast-forward `6a658057`) |
 | [074](074-stale-overrides.md) | Overrides y exclusiones de maduración vencidos eliminados (61 muertas, 4 vivas conservadas); resolución natural verificada post-cambio; TD-0104 registrado | 2026-08-10 | sí (fast-forward `59e72a98`) |
 | [075](075-iso-week-module.md) | Módulo compartido de semana ISO (Jan-4); equivalencia viejo-vs-nuevo probada con 358 casos (0 diffs); 8 tests de año-límite | 2026-08-10 | sí (fast-forward `4915bd47`) |
+| [076](076-pyproject-prune.md) | Stack Python de scraping/MCP podado (22 deps → 4); lockfile −891 líneas; sin doc-drift; pip-audit 0 vulns (skips ambientales documentados) | 2026-08-10 | sí (fast-forward `56bf32d7`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 

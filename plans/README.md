@@ -58,12 +58,11 @@ Cada ejecutor debe leer el plan completo y honrar sus condiciones de STOP.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Depende de | Estado |
 |---|------|--------|-----------|----------|--------|------------|--------|
-| 1 | [076](076-pyproject-prune.md) | Podar stack Python no usado (scraping/MCP) | P2 | M | LOW/MED | — | IN PROGRESS |
-| 2 | [077](077-check-ci-aggregate.md) | `check:ci` — un comando que reproduce el CI localmente | P2 | S–M | LOW | — | TODO |
-| 3 | [078](078-lhci-mobile-wiring.md) | Ejecutar config Lighthouse mobile (warn-only, scheduled) | P3 | S | LOW | — | TODO |
-| 4 | [079](079-push-validation.md) | Validar snapshot/artefactos al llegar a main (push + validador) | P2 | M | MED | — | TODO |
-| 5 | [080](080-clp-formatter-unify.md) | Unificar formateadores CLP en formatCLP + guard de estilo | P3 | S–M | MED | — | TODO |
-| 6 | [081](081-postbuild-verification.md) | Capa de verificación post-build (aserciones sobre dist/) | P2 | L | MED | 057, 062, 065, 067 (aserciones condicionales) | TODO |
+| 1 | [077](077-check-ci-aggregate.md) | `check:ci` — un comando que reproduce el CI localmente | P2 | S–M | LOW | — | TODO |
+| 2 | [078](078-lhci-mobile-wiring.md) | Ejecutar config Lighthouse mobile (warn-only, scheduled) | P3 | S | LOW | — | TODO |
+| 3 | [079](079-push-validation.md) | Validar snapshot/artefactos al llegar a main (push + validador) | P2 | M | MED | — | TODO |
+| 4 | [080](080-clp-formatter-unify.md) | Unificar formateadores CLP en formatCLP + guard de estilo | P3 | S–M | MED | — | TODO |
+| 5 | [081](081-postbuild-verification.md) | Capa de verificación post-build (aserciones sobre dist/) | P2 | L | MED | 057, 062, 065, 067 (aserciones condicionales) | TODO |
 
 ## Orden global de ejecución (para un ejecutor fresco que parte de cero)
 
@@ -1055,7 +1054,7 @@ operador. La secuencia ejecutable pendiente es la de la séptima auditoría
 
 Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main`.
 
-### Séptima auditoría profunda 2026-08-10 (plans 057–081; 076–081 pendientes)
+### Séptima auditoría profunda 2026-08-10 (plans 057–081; 077–081 pendientes)
 
 | Plan | Título | Prioridad | Esfuerzo | Estado |
 |------|--------|-----------|----------|--------|
@@ -1078,6 +1077,7 @@ Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main
 | [073](archive/073-coverage-widen.md) | Ampliar gate de cobertura a `src/**` (con caracterización) | P2 | S+M | DONE (fast-forward `6a658057`, 2026-08-10) — `include: ["src/**/*.ts"]` con exclusions documentadas (STOP >8 activado: pages/components/scripts/config/content, utils DOM, `constants.ts`, `content.config.ts`, remark parsers — auditados limpios — y `workers/**` — hallazgo: el glob matcheaba `workers/*/src/*.ts`); 25 tests de caracterización (csp-hashes internals+hook, sw-version hook, getPath BASE_URL, articleView, tag-helpers, i18n, readingTime, slugify); global **91.02%** lines; objetivos: contracts 100%, csp-hashes 100%, sw-version 100%, inline-link-spacing 81.5%, indicadores 80%; residual único preexistente: SimulateDebtRenegotiation 78.4%; **auditoría adversarial integrada** (commit `6a658057`): getUniqueTags default cubierto, exclusiones verificadas como principios; flake TD-0103 identificado (timeout 5000ms en verify-analytics-worker-deployment bajo carga); suite 1306/1306 |
 | [074](archive/074-stale-overrides.md) | Limpiar overrides/exclusiones de maduración vencidos | P2 | S | DONE (fast-forward `59e72a98`, 2026-08-10) — overrides removidos (nanoid/brace-expansion/fast-uri, verificados redundantes con `pnpm why` post-cambio: la resolución natural produce exactamente las mismas versiones), 61 exclusiones muertas eliminadas (escaneo preciso contra claves reales del lockfile con formato mixto), 4 vivas conservadas (napi-rs, eslint-plugin-astro, js-yaml@5.2.3, postcss@8.5.25 — el plan las daba por muertas, discrepancia reportada); lockfile byte-idéntico (el diff transitorio del primer install era solo el espejo de metadata de overrides — 0 cambios de versión); `pnpm audit --prod` 0 vulns; **auditoría adversarial integrada** (commit `59e72a98`): prueba decisiva `pnpm why` sin overrides, sin downgrade silencioso (snapshots intactos), metadata stale del lockfile documentada (informativa, se sincroniza sola), TD-0104 registrado (guard CI para exclusiones muertas — causa raíz de la pudrición, diferido por el plan); suite 1306/1306 |
 | [075](archive/075-iso-week-module.md) | Módulo compartido de semana ISO (Jan-4) para scripts | P2 | S | DONE (fast-forward `4915bd47`, 2026-08-10) — `scripts/lib/iso-week.mjs` (4 funciones) migrado en audit-ctr + build-weekly-search-report sin tocar expectativas (15 tests existentes pasan sin cambios); 8 tests de año-límite con valores reales (discrepancia del plan documentada: 2026 SÍ tiene W53 — 31-dic es jueves; quirk W99 caracterizado, benigno por el guard `!expectedWindow` del caller); `toIsoDateString` muerto eliminado; **auditoría adversarial** (sin cambios): equivalencia viejo-vs-nuevo probada con **358 casos, 0 diffs** (W01–W53 × 6 años × 2 funciones + 27 fechas de borde + malformados); suite 1314/1314 |
+| [076](archive/076-pyproject-prune.md) | Podar stack Python no usado (scraping/MCP) | P2 | M | DONE (fast-forward `56bf32d7`, 2026-08-10) — 22 deps podadas (inventario real de imports verificado: solo googleapiclient/google-auth + fonttools/brotli — hallazgo: subset-fonts.py usa stdlib + subprocess, las deps pip se quedan para el runtime); descripción corregida; `uv.lock` −891 líneas (70 de 116 paquetes), `uv lock --check` en sync; pytest 38/38, ruff limpio, pip-audit exit 0; sin doc-drift en la policy de adaptación; **auditoría adversarial** (sin cambios): venv podado sin cruft (verificado), imports runtime OK, los 3 skips de pip-audit local son paquetes ambientales del operador (proyecto polla — fuera del repo; CI corre limpio), workflows sin referencias a podadas; suite Node 1314/1314 |
 
 ### Auditoría de dirección 2026-08-02 (plans 053–056; 055–056 pendientes)
 
