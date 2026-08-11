@@ -58,7 +58,6 @@ Cada ejecutor debe leer el plan completo y honrar sus condiciones de STOP.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Depende de | Estado |
 |---|------|--------|-----------|----------|--------|------------|--------|
-| 3 | [080](080-clp-formatter-unify.md) | Unificar formateadores CLP en formatCLP + guard de estilo | P3 | S–M | MED | — | TODO |
 | 4 | [081](081-postbuild-verification.md) | Capa de verificación post-build (aserciones sobre dist/) | P2 | L | MED | 057, 062, 065, 067 (aserciones condicionales) | TODO |
 
 ## Orden global de ejecución (para un ejecutor fresco que parte de cero)
@@ -1051,12 +1050,13 @@ operador. La secuencia ejecutable pendiente es la de la séptima auditoría
 
 Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main`.
 
-### Séptima auditoría profunda 2026-08-10 (plans 057–081; 080–081 pendientes)
+### Séptima auditoría profunda 2026-08-10 (plans 057–081; 081 pendiente)
 
 | Plan | Título | Prioridad | Esfuerzo | Estado |
 |------|--------|-----------|----------|--------|
 | [078](archive/078-lhci-mobile-wiring.md) | Ejecutar config Lighthouse mobile (warn-only, scheduled) | P3 | S | DONE (squash `76373cd8`, PR #415, 2026-08-11) — `perf:ci:mobile` cableado en `lighthouse-ci.yml` scheduled con `if: always` (la telemetría mobile no se pierde), timeout 30, artifacts untracked; desviación documentada en el plan: `cancel-in-progress` del workflow reutilizado sin cambios |
 | [079](archive/079-push-validation.md) | Validar snapshot/artefactos al llegar a main (push + validador) | P2 | M | DONE (squash `76373cd8`, PR #415, 2026-08-11) — `scripts/validate-committed-artifacts.mjs` (parseo snapshot + finitos uf/utm/opcionales + fecha indicatorUpdatedAt.utm + parseo recursivo JSON de data-signals, reporta TODOS los fallos, `VALIDATE_ARTIFACTS_ROOT`); workflow `validate-committed-artifacts.yml` (push a main, paths filtrados, `contents: read`, setup-node SHA-pineado); `[skip ci]` removido de data-signals (verificado: el worker de snapshot commitea con COMMIT_MESSAGE sin `[skip ci]` en wrangler.toml:20 — el push del bot dispara el validador); `check:committed-artifacts`; 8 tests; suite 1322/1322, format + lint verdes; 119 JSON de data-signals parsean |
+| [080](archive/080-clp-formatter-unify.md) | Unificar formateadores CLP en formatCLP + guard de estilo | P3 | S–M | DONE (squash `32bd56ce`, PR #416, 2026-08-11) — 20 sitios en 18 calculadoras migrados a `formatCLP` (incl. `function fmt` y `formatPeso` que el grep del plan no capturaba); 3 sitios divergentes corregidos (iva ×2, gratificacion-legal — ahora redondean); guard `check-no-inline-clp-formatters.mjs` cableado en `check`; STOP condición 3 ejercitada: conversor-uf:611 (histórico UF con options explícitas) → regex de la regla 2 ajustada a calls sin options + test de regresión; `fmtCurrency` (Intl) NO migrado (familia distinta, reportado); 5 tests; suite 1327/1327, astro check 0 errores, format + lint verdes |
 | [057](archive/057-pagefind-prune.md) | Purgar el índice pagefind en cada build (33 MB acumulado → 1.3 MB) | P1 | S | DONE (fast-forward `70f6a1d9`, 2026-08-10) — `rm -rf dist/pagefind` en `build`/`build:ci`; `public/pagefind` resultó ser gitignored (sin eliminaciones tracked); build exit 0, índice 1.3 MB/72 archivos, suite 1187/1187 |
 | [058](archive/058-sw-volatile-money-paths.md) | SW network-first para conversor-uf/utm y uf-hoy (valores stale hoy) | P1 | S | DONE (fast-forward `7d5c4910`, 2026-08-10) — 6 rutas nuevas en `VOLATILE_HTML_PATHS` (con y sin `/index.html`); rama network-first existente cubre las 3 páginas; build exit 0, `dist/sw.js` verificado, suite 1187/1187 |
 | [059](archive/059-kv-counter-integrity.md) | Superficializar fallos KV de contadores + documentar aproximación | P1 | S–M | DONE (fast-forward `1e99a772`, 2026-08-10) — `console.error` en `ingestEvent`/`checkRateLimit` (clave truncada sin IP), README + wrangler.toml documentan la aproximación, 3 tests nuevos; **auditoría adversarial post-implementación integrada en el mismo branch** (commit `1e99a772`): regla CDN `max-age=300` para `/uf-hoy/` que el plan 058 había asumido, mensaje de log preciso get/put, comentario fail-open corregido, guard de no-fuga de IP, y `tests/integration/sw-volatile-paths.test.ts` (rutas vivas + presencia de las 3 páginas + sincronía SW↔`_headers`); suite 1193/1193 |
