@@ -6,7 +6,9 @@ import {
   default as analyticsCollector,
   validateEventPayload,
   sanitizeCollectorEvent,
+  ALLOWED_ORIGIN,
   MAX_BODY_SIZE,
+  RATE_LIMIT_MAX,
   calendarDateInTimeZone,
   counterStorageForInstant,
   counterPrefixForExportWeek,
@@ -1087,7 +1089,7 @@ describe("counter integrity (KV failure surfacing)", () => {
     vi.useFakeTimers();
     vi.setSystemTime(new Date("2026-07-15T03:30:00Z"));
     const minute = Math.floor(Date.now() / 60_000);
-    const env = makeEnv({ [`rate_limit:192.0.2.1:${minute}`]: "30" });
+    const env = makeEnv({ [`rate_limit:192.0.2.1:${minute}`]: String(RATE_LIMIT_MAX) });
     env.ANALYTICS_DISABLED = "0";
 
     const response = await analyticsCollector.fetch(postEvent(), env);
@@ -1249,4 +1251,126 @@ describe("cobertura de eventos legados (barrido)", () => {
       }
     },
   );
+});
+
+// ── Fetch handler: guards HTTP (plan 072) ───────────────────────────────────
+
+describe("fetch handler — guards HTTP", () => {
+  const EVENT_URL = "https://monedario.cl/api/analytics/event";
+
+  function enabledEnv() {
+    const env = makeEnv();
+    env.ANALYTICS_DISABLED = "0";
+    return env;
+  }
+
+  function post(init: RequestInit, env = enabledEnv()) {
+    return analyticsCollector.fetch(new Request(EVENT_URL, init), env);
+  }
+
+  const VALID_BODY = JSON.stringify({
+    event: "calculator_start",
+    params: { calculator_id: "sueldo-liquido", interaction_variant: "input" },
+  });
+
+  it("OPTIONS responde 204 con CORS", async () => {
+    const response = await analyticsCollector.fetch(
+      new Request(EVENT_URL, { method: "OPTIONS" }),
+      enabledEnv()
+    );
+    expect(response.status).toBe(204);
+    expect(response.headers.get("Access-Control-Allow-Origin")).toBe(
+      ALLOWED_ORIGIN
+    );
+  });
+
+  it("rechaza eventos cuando ANALYTICS_DISABLED=1 (503)", async () => {
+    const env = makeEnv();
+    env.ANALYTICS_DISABLED = "1";
+    const response = await post(
+      { method: "POST", headers: { "Content-Type": "application/json" }, body: VALID_BODY },
+      env
+    );
+    expect(response.status).toBe(503);
+  });
+
+  it("rechaza métodos no-POST (405)", async () => {
+    const response = await post({ method: "PUT", body: VALID_BODY });
+    expect(response.status).toBe(405);
+  });
+
+  it("rechaza un Origin no permitido (403)", async () => {
+    const response = await post({
+      method: "POST",
+      headers: { Origin: "https://evil.example" },
+      body: VALID_BODY,
+    });
+    expect(response.status).toBe(403);
+  });
+
+  it("rechaza Content-Type no-JSON (415)", async () => {
+    const response = await post({
+      method: "POST",
+      headers: { "Content-Type": "text/plain" },
+      body: VALID_BODY,
+    });
+    expect(response.status).toBe(415);
+  });
+
+  it("rechaza Content-Length declarado > MAX_BODY_SIZE (413, sin leer body)", async () => {
+    const response = await post({
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Content-Length": String(MAX_BODY_SIZE + 1),
+      },
+      body: "",
+    });
+    expect(response.status).toBe(413);
+  });
+
+  it("rechaza un body real > MAX_BODY_SIZE (413, defensa en profundidad)", async () => {
+    const response = await post({
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        event: "calculator_start",
+        params: { calculator_id: "a".repeat(MAX_BODY_SIZE + 10), interaction_variant: "button" },
+      }),
+    });
+    expect(response.status).toBe(413);
+  });
+
+  it("rechaza JSON inválido (400)", async () => {
+    const response = await post({
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: "not json",
+    });
+    expect(response.status).toBe(400);
+  });
+
+  it("rechaza payload JSON válido pero schema inválido (422)", async () => {
+    const response = await post({
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ foo: 1 }),
+    });
+    expect(response.status).toBe(422);
+  });
+
+  it("acepta un POST válido (202) con CORS", async () => {
+    const response = await post({
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Origin: ALLOWED_ORIGIN,
+      },
+      body: VALID_BODY,
+    });
+    expect(response.status).toBe(202);
+    expect(response.headers.get("Access-Control-Allow-Origin")).toBe(
+      ALLOWED_ORIGIN
+    );
+  });
 });

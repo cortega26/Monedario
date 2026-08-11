@@ -29,7 +29,7 @@ import {
 export const MAX_BODY_SIZE = 2048;
 
 /** Rate limit: max requests per IP per rolling 60-second window. */
-const RATE_LIMIT_MAX = 30;
+export const RATE_LIMIT_MAX = 30;
 
 /** Legacy counters use UTC dates. Preserved until the explicit cutover. */
 const LEGACY_KV_PREFIX = "telemetry:v1";
@@ -41,7 +41,7 @@ const LOCAL_CALENDAR_KV_PREFIX = "telemetry:v2";
 const KV_TTL_SECONDS = 60 * 60 * 24 * 35; // 3_024_000
 
 /** Allowed origin. CORS preflight and origin header are checked against this. */
-const ALLOWED_ORIGIN = "https://monedario.cl";
+export const ALLOWED_ORIGIN = "https://monedario.cl";
 
 /** Max string length for dimension values. */
 const MAX_STRING_LENGTH = 80;
