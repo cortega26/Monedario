@@ -68,7 +68,7 @@ si `node_modules/` no existe.
 
 **La secuencia de la séptima auditoría (057 → 081, orden 1–25) está COMPLETA
 (2026-08-11):** los 25 planes fueron ejecutados y archivados. De la tabla
-antigua solo quedan vivos 041, 046, 055 y el 082 (052 y 056 ya fueron DONE
+antigua solo quedan vivos 041, 046 y 055 (052, 056 y 082 ya fueron DONE
 y archivados —
 ver abajo), y NO forman parte de esa secuencia:
 
@@ -162,13 +162,14 @@ scorecards y exports reales en `output/operations/`). Originalmente siete;
 parcialmente, con su typo residual desglosado en el plan 042; 038 con alcance
 revisado a 3 de 4 claves, el resto desglosado en el plan 043 — ver nota abajo).
 El plan 043 se sumó el 2026-07-11 como *carve-out* de 038. Los planes que
-siguen vivos de este lote (041, 046, 055 y el 082, derivado del 056) **no
+siguen vivos de este lote (041, 046, 055) **no
 forman parte de la secuencia de la séptima auditoría** (057–081): ver la
 sección "Orden global de ejecución" arriba para su estado y tratamiento (los
 spikes 046/055 fueron reconciliados contra el estado actual el 2026-08-11; el
-056 se ejecutó y archivó ese mismo día, derivando el 082). Los restantes
-(035–040, 042–045, 047–051, 053–054, 056 y el 052, cerrado con PR #420 el
-2026-08-11) están DONE y archivados.
+056 se ejecutó y archivó ese mismo día, derivando el 082, ejecutado y
+archivado el mismo día). Los restantes
+(035–040, 042–045, 047–051, 053–054, 056, 082 y el 052, cerrado con PR #420
+el 2026-08-11) están DONE y archivados.
 
 > **Recordatorio de cierre**: en cuanto un plan de esta tabla pase a `DONE`,
 > deja de aparecer aquí — su archivo se mueve a
@@ -181,7 +182,6 @@ spikes 046/055 fueron reconciliados contra el estado actual el 2026-08-11; el
 | 2 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | BLOCKED (hipótesis descartada; causa de campo sin identificar — ver nota abajo) |
 | 3| [046](046-converter-recurrence-return-hook-spike.md) | **Spike de dirección**: investigar si hay recurrencia real sobre los conversores (superficie de mayor **tráfico** según RUM W27; recurrencia **por confirmar**) y, solo si la hay, diseñar un return-hook privacy-safe | P2 | M | LOW | todos | TODO (spike de diseño; reconciliado 2026-08-11 — reencuadrado: el patrón post-resultado ya existe en conversor-utm vía `UtmPostResultActions`; evaluar lo construido, no diseñar desde cero) |
 | 4| [055](055-calculator-consolidation-spike.md) | **Spike de dirección**: consolidación por URL de 5 calculadoras (dossier de evidencia + opciones de migración con gates de ruta/RSS/ADR) | P2 | M | MED | todos | TODO (spike; reconciliado 2026-08-11 — datos actualizados a GSC W32; freeze refactorizado a `scripts/lib/url-freeze-exceptions.mjs`; inventario intacto) |
-| 5| [082](082-next-steps-decision-paths.md) | Implementar los conjuntos de NextSteps contextuales del diseño 056 (paso 1: `related` en portfolio, sin post-result) | P2 | S | LOW | todos | IN PROGRESS → EJECUTADO (2026-08-11) — 3 ítems en `related` de seguro-cesantia y prepago-credito con el copy aprobado; **desviación en mérito aprobada por el operador**: guard de `CalculatorPortfolio.test.ts` relajado (antes exigía que `related` solo apuntara a calculadoras; ahora verifica existencia de cualquier superficie interna — posts/guias/glosario — y el orden del recorrido). Verificación pendiente: push |
 > **035–040, 042–045 y 047–050 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
 
 > **046 es un spike de dirección (`/improve next`, 2026-07-12)**, no un plan de
@@ -1103,6 +1103,7 @@ Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main
 | [053](archive/053-gsc-measurement-baseline.md) | Completar el baseline de medición GSC (gate de semanas faltantes estricto en CI + exports de país/dispositivo) | P1 | M | DONE (fast-forward `f1e37560`+`bc979708`, 2026-08-02) — incluye ronda de auditoría que corrigió el gate estricto en CI; backfill de 2026-W29 pendiente como paso operativo |
 | [054](archive/054-editorial-evidence-ledger-spike.md) | **Spike de dirección**: ledger de evidencia del pipeline editorial (inventario 3/53, reproducción del checker, veredicto claim vs. evidencia) | P1 | M | DONE (fast-forward `673ad8dc`, 2026-08-02) — entregable `docs/reports/EDITORIAL-EVIDENCE-LEDGER-2026-08-02.md`; gap real = 19 (22 en alcance, 19 sin cadena 06/07); compuerta humana abierta (opciones A/B/C en el ledger); merge local, sin push |
 | [056](archive/056-decision-paths-afc-prepago-credito-spike.md) | **Spike de dirección**: rutas de decisión contextuales AFC/prepago/crédito (diseño de NextSteps + extensión del patrón post-resultado) | P2 | M | DONE (2026-08-11, commit `f2c64ce7`) — entregable `docs/backlog/DECISION-PATHS-AFC-PREPAGO-CREDITO-2026-08-02.md` (recorridos mapeados, hueco único = reempleo AFC; sets de 3 NextSteps con `next_step_id` verificados contra `SAFE_TOKEN`; generalización parametrizada de `UtmPostResultActions`; medición con umbrales del registry y datos W30–W32; piloto recomendado = prepago-credito). Ejecutado reconciliado (drift re-corrido 2026-08-11). **Desviación aprobada en mérito**: `.gitignore` +1 línea (`!docs/backlog/DECISION-PATHS-*.md`) para commiteable. Derivó el plan **082** (implementación paso 1); compuertas humanas resueltas en sesión (copy aprobado) o diferidas (§5: hueco reempleo, enlace externo, alerta AFC — fuera de alcance del 082) |
+| [082](archive/082-next-steps-decision-paths.md) | Implementar los NextSteps contextuales AFC/prepago del diseño 056 (paso 1, sin post-result) | P2 | S | DONE (commit `04e61411`, 2026-08-11) — 3 ítems en `related` de seguro-cesantia (finiquito, CIC vs FCS) y prepago-credito (ahorro, entre costo y renegociación) con copy aprobado por el operador; **desviación aprobada en mérito**: guard de `CalculatorPortfolio.test.ts` relajado (antes exigía `related` solo → calculadoras; ahora verifica existencia de cualquier superficie interna: posts/guias/glosario) + 2 tests nuevos de orden/copy; suite 1358/1358, astro check 0 errores, `check:routes` sin diffs, interlinks sin under-linked nuevos. Paso 2 (post-result parametrizado) diferido hasta 2 semanas comparables del registry |
 
 ### Sexta auditoría profunda / Issue #315 — 2026-07-16
 
