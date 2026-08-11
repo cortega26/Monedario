@@ -58,15 +58,14 @@ Cada ejecutor debe leer el plan completo y honrar sus condiciones de STOP.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Depende de | Estado |
 |---|------|--------|-----------|----------|--------|------------|--------|
-| 1 | [073](073-coverage-widen.md) | Ampliar gate de cobertura a `src/**` (con caracterización) | P2 | S+M | MED | 067, 068, 071, 072 (recomendado) | IN PROGRESS |
-| 2 | [074](074-stale-overrides.md) | Limpiar overrides/exclusiones de maduración vencidos | P2 | S | LOW | — | TODO |
-| 3 | [075](075-iso-week-module.md) | Módulo compartido de semana ISO (Jan-4) para scripts | P2 | S | LOW | — | TODO |
-| 4 | [076](076-pyproject-prune.md) | Podar stack Python no usado (scraping/MCP) | P2 | M | LOW/MED | — | TODO |
-| 5 | [077](077-check-ci-aggregate.md) | `check:ci` — un comando que reproduce el CI localmente | P2 | S–M | LOW | — | TODO |
-| 6 | [078](078-lhci-mobile-wiring.md) | Ejecutar config Lighthouse mobile (warn-only, scheduled) | P3 | S | LOW | — | TODO |
-| 7 | [079](079-push-validation.md) | Validar snapshot/artefactos al llegar a main (push + validador) | P2 | M | MED | — | TODO |
-| 8 | [080](080-clp-formatter-unify.md) | Unificar formateadores CLP en formatCLP + guard de estilo | P3 | S–M | MED | — | TODO |
-| 9 | [081](081-postbuild-verification.md) | Capa de verificación post-build (aserciones sobre dist/) | P2 | L | MED | 057, 062, 065, 067 (aserciones condicionales) | TODO |
+| 1 | [074](074-stale-overrides.md) | Limpiar overrides/exclusiones de maduración vencidos | P2 | S | LOW | — | TODO |
+| 2 | [075](075-iso-week-module.md) | Módulo compartido de semana ISO (Jan-4) para scripts | P2 | S | LOW | — | TODO |
+| 3 | [076](076-pyproject-prune.md) | Podar stack Python no usado (scraping/MCP) | P2 | M | LOW/MED | — | TODO |
+| 4 | [077](077-check-ci-aggregate.md) | `check:ci` — un comando que reproduce el CI localmente | P2 | S–M | LOW | — | TODO |
+| 5 | [078](078-lhci-mobile-wiring.md) | Ejecutar config Lighthouse mobile (warn-only, scheduled) | P3 | S | LOW | — | TODO |
+| 6 | [079](079-push-validation.md) | Validar snapshot/artefactos al llegar a main (push + validador) | P2 | M | MED | — | TODO |
+| 7 | [080](080-clp-formatter-unify.md) | Unificar formateadores CLP en formatCLP + guard de estilo | P3 | S–M | MED | — | TODO |
+| 8 | [081](081-postbuild-verification.md) | Capa de verificación post-build (aserciones sobre dist/) | P2 | L | MED | 057, 062, 065, 067 (aserciones condicionales) | TODO |
 
 ## Orden global de ejecución (para un ejecutor fresco que parte de cero)
 
@@ -1058,7 +1057,7 @@ operador. La secuencia ejecutable pendiente es la de la séptima auditoría
 
 Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main`.
 
-### Séptima auditoría profunda 2026-08-10 (plans 057–081; 073–081 pendientes)
+### Séptima auditoría profunda 2026-08-10 (plans 057–081; 074–081 pendientes)
 
 | Plan | Título | Prioridad | Esfuerzo | Estado |
 |------|--------|-----------|----------|--------|
@@ -1078,6 +1077,7 @@ Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main
 | [070](archive/070-url-freeze-exceptions-module.md) | Módulo único de excepciones URL-freeze (esquema compartido) | P2 | M | DONE (fast-forward `c21e93d9`, 2026-08-10) — `scripts/lib/url-freeze-exceptions.mjs` (12 campos + `isCompleteException`/`loadApprovedExceptionUrls`/`validateExceptionSchema`); STOP del plan verificado: los gates tenían criterios de validación distintos (indexable estricto con approvedAt + mensajes; routes silencioso) — el módulo unifica solo el esquema y preserva ambos comportamientos; premisa del plan ("indexable filtra en silencio") corregida en la cabecera del módulo; **auditoría adversarial integrada** (commit `c21e93d9`): equivalencia byte-idéntica viejo vs nuevo probada empíricamente, gate migrado a `isCompleteException`, borde `expiresAt == now` testeado; suite 1262/1262 |
 | [071](archive/071-indicadores-hoy-tests.md) | Tests del endpoint indicadores-hoy + formateadores | P2 | S–M | DONE (fast-forward `de865e59`, 2026-08-10) — exports del endpoint, `getIndicadoresWith(loader)` factory aditivo, 9 tests (formateadores con formatos reales verificados, deltas, buildTitle, fechas con índice seguro, dolar presente/ausente/prev); shape real documentado (key `dolar` presente con undefined — consumidores guardan con `!== undefined`); **auditoría adversarial integrada** (commit `de865e59`): formateadores duplicados byte-idénticos de `IndicadoresHoy.astro` consolidados en `@/utils/indicadores` (fuente única), types reales corregidos en tests (`telemetryFlag`/`source` — `astro check` venía fallando enmascarado por un pipe desde el plan); suite 1271/1271, astro check exit 0 |
 | [072](archive/072-analytics-fetch-branches.md) | Tests de las ~12 ramas del fetch handler del collector | P2 | M | DONE (fast-forward `a619461b`, 2026-08-10) — 10 guards HTTP nuevos (OPTIONS 204, disabled 503, PUT 405, Origin 403, CT 415, CL 413, body 413, JSON 400, payload 422, 202+CORS) sin duplicar los ya cubiertos (429/fail-open/export); `RATE_LIMIT_MAX`/`ALLOWED_ORIGIN` exportadas (aditivo); ningún guard sorprendió (sin bugs); **auditoría adversarial integrada** (commit `a619461b`): guard 413-de-stream explícito (el body string dependía de que Node no setee CL — frágil), ataques de prefijo de Origin (match exacto: `monedario.cl.evil.com`/www/puerto → 403), CORS en 403; suite 1282/1282 |
+| [073](archive/073-coverage-widen.md) | Ampliar gate de cobertura a `src/**` (con caracterización) | P2 | S+M | DONE (fast-forward `6a658057`, 2026-08-10) — `include: ["src/**/*.ts"]` con exclusions documentadas (STOP >8 activado: pages/components/scripts/config/content, utils DOM, `constants.ts`, `content.config.ts`, remark parsers — auditados limpios — y `workers/**` — hallazgo: el glob matcheaba `workers/*/src/*.ts`); 25 tests de caracterización (csp-hashes internals+hook, sw-version hook, getPath BASE_URL, articleView, tag-helpers, i18n, readingTime, slugify); global **91.02%** lines; objetivos: contracts 100%, csp-hashes 100%, sw-version 100%, inline-link-spacing 81.5%, indicadores 80%; residual único preexistente: SimulateDebtRenegotiation 78.4%; **auditoría adversarial integrada** (commit `6a658057`): getUniqueTags default cubierto, exclusiones verificadas como principios; flake TD-0103 identificado (timeout 5000ms en verify-analytics-worker-deployment bajo carga); suite 1306/1306 |
 
 ### Auditoría de dirección 2026-08-02 (plans 053–056; 055–056 pendientes)
 
