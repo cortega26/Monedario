@@ -1,0 +1,46 @@
+name: Validate committed artifacts
+
+# Validates the artifacts that bots write directly to `main` without PR CI:
+# the economic snapshot (build-critical, auto-deployed by Cloudflare Pages,
+# written 3x/day by the snapshot worker) and the data-signals JSON files
+# (committed by the weekly data-signals job). A malformed artifact (broken
+# JSON, NaN value, invalid date) would otherwise deploy to production with
+# zero checks — the silent-failure class this repo most fears.
+#
+# Triggered only when those artifact paths change, so normal PR-merged
+# commits to src/ don't pay the cost. Read-only (contents: read); it must
+# never be able to auto-commit.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/infrastructure/economic/economic-parameters.snapshot.json"
+      - "output/operations/data-signals/**"
+
+concurrency:
+  group: validate-committed-artifacts
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate committed artifacts
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: "☁️ Checkout repository"
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: "🟢 Setup Node.js"
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+
+      - name: "🧾 Validate committed artifacts"
+        run: node scripts/validate-committed-artifacts.mjs

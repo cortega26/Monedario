@@ -61,6 +61,7 @@
     "check:no-postid-urls": "node scripts/check-no-postid-urls.mjs",
     "check:indexable-url-freeze": "node scripts/check-indexable-url-freeze.mjs",
     "check:obs01-freeze": "node scripts/check-obs01-freeze.mjs",
+    "check:committed-artifacts": "node scripts/validate-committed-artifacts.mjs",
     "routes:snapshot": "node scripts/snapshot-routes.mjs",
     "routes:compare": "node scripts/compare-routes.mjs docs/reports/routes_snapshot_before.json output/validation/routes_snapshot_after.json",
     "check:routes": "node scripts/snapshot-routes.mjs --out output/validation/routes_snapshot_after.json && pnpm run routes:compare",
