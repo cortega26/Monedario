@@ -21,6 +21,25 @@
 - **Planned at**: commit `90370b4e`, 2026-08-10
 - **Issue**: —
 
+## Progress
+
+- 2026-08-11 — Implementación completa (sin commit/merge aún, a la espera del
+  operador). `scripts/check-postbuild.mjs` con 6 checks activos + 1 waivado
+  por el propio plan (check 2, csp-hashes-dist-consistency: "este check solo
+  valida (1)" — documentado en el script). Dependencias 057/062/065/067 todas
+  en main → los 6 checks activos. **Desviación en mérito (check 6)**: la
+  extracción naive del plan no puede detectar el breakout — la regex
+  trunca el bloque EXACTAMENTE en el `</script>` inyectado (demostrado por un
+  test que falló). Cambiado a balance `<script>` vs `</script>` por página
+  (un breakout deja un closer huérfano) — estrictamente más fuerte y
+  consistente con el check 7 (spacing-sanity usa el mismo contador). Slugs
+  hardcodeados de seoTitle tomados del frontmatter real (operacion-renta-
+  f22-checklist, tarjeta-credito-costo-real-chile, informe-deudas-cmf-vs-
+  dicom + deposito-a-plazo-uf-vs-pesos sin seoTitle). Verificado: 13 tests
+  (helpers + mini-dist válido/roto), build:ci completo exit 0 con el paso
+  nuevo (0.3s sobre 327 páginas — STOP 60s no se acerca), suite completa
+  verde, format + lint verdes, git status solo archivos en alcance.
+
 ## Por qué importa
 
 Las tres integraciones post-build (inline-link-spacing, csp-hashes, sw-version)
