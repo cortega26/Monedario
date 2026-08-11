@@ -70,12 +70,18 @@ Inicio rapido:
 - Validar antes de proponer un cambio:
   - `pnpm run check:ci` — espeja el set de gates del CI localmente (lint,
     format, tests, boundaries, context, policy-registry, legal-constants,
-    docs, frontmatter, editorial, no-postid-urls, routes, astro check y los
-    checks de consistencia/registro)
+    docs, frontmatter, legal-citations, hero images/prompts, editorial,
+    editorial-timeliness, no-postid-urls, routes, astro check y los checks de
+    consistencia/registro)
   - `pnpm run check` — set editorial/contexto ampliado (incluye `check:links`
-    con red y checks de imágenes)
+    con red, `check:images` y `check:hero-images`/`check:hero-prompts`)
   - Gates post-build (rss, urls:ci, indexable-url-freeze, toc-i18n,
     editorial-guard, snapshot-freshness): requieren `pnpm run build` primero
+  - Notas del espejo: `check:editorial` corre sin `EDITORIAL_ENFORCE=1` (el CI
+    lo activa); los checks de hero validan sin regenerar (el CI ejecuta
+    scan-articles/build-prompts/png-to-avif antes); `check:editorial-timeliness`
+    usa el modo estricto del scheduled (en PRs el CI lo corre no-bloqueante);
+    `check:images` queda fuera porque borra PNGs locales (DX-03)
 
 Notas:
 
