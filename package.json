@@ -7,8 +7,8 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "dev": "astro dev",
-    "build": "pnpm run check:images && pnpm run check:hero-images && pnpm run check:frontmatter && pnpm run check:legal-citations && astro check && astro build && pnpm run check:indexable-url-freeze && pnpm run check:toc-i18n && pnpm run check:editorial-guard && rm -rf dist/pagefind && pagefind --site dist && node -e \"require('fs').appendFileSync('dist/pagefind/pagefind-worker.js','/* _headers-csp-v2 */\\\\n')\" && cp -r dist/pagefind public/ && pnpm run check:urls",
-    "build:ci": "pnpm run og:jpegs && node scripts/check-images.mjs && pnpm run check:legal-citations && astro build && pnpm run check:indexable-url-freeze && pnpm run check:toc-i18n && pnpm run check:editorial-guard && rm -rf dist/pagefind && pagefind --site dist && node -e \"require('fs').appendFileSync('dist/pagefind/pagefind-worker.js','/* _headers-csp-v2 */\\\\n')\" && cp -r dist/pagefind public/",
+    "build": "pnpm run check:images && pnpm run check:hero-images && pnpm run check:frontmatter && pnpm run check:legal-citations && astro check && astro build && pnpm run check:indexable-url-freeze && pnpm run check:toc-i18n && pnpm run check:editorial-guard && rm -rf dist/pagefind && pagefind --site dist && node -e \"require('fs').appendFileSync('dist/pagefind/pagefind-worker.js','/* _headers-csp-v2 */\\\\n')\" && cp -r dist/pagefind public/ && pnpm run check:urls && node scripts/check-postbuild.mjs dist",
+    "build:ci": "pnpm run og:jpegs && node scripts/check-images.mjs && pnpm run check:legal-citations && astro build && pnpm run check:indexable-url-freeze && pnpm run check:toc-i18n && pnpm run check:editorial-guard && rm -rf dist/pagefind && pagefind --site dist && node -e \"require('fs').appendFileSync('dist/pagefind/pagefind-worker.js','/* _headers-csp-v2 */\\\\n')\" && cp -r dist/pagefind public/ && node scripts/check-postbuild.mjs dist",
     "preview": "astro preview",
     "sync": "astro sync",
     "astro": "astro",
@@ -112,7 +112,8 @@
     "images:generate:one": "node scripts/hero-images/manual-only.mjs images:generate:one",
     "images:generate:cluster": "node scripts/hero-images/manual-only.mjs images:generate:cluster",
     "images:generate:retry": "node scripts/hero-images/manual-only.mjs images:generate:retry",
-    "prepare": "husky"
+    "prepare": "husky",
+    "check:postbuild": "node scripts/check-postbuild.mjs dist"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.2.1",
