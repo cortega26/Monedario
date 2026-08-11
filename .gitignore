@@ -91,6 +91,7 @@ docs/backlog/*
 !docs/backlog/UTILITY_LED_BLOCKED_PENDING_EVIDENCE.md
 !docs/backlog/prompt-*.md
 !docs/backlog/DECISION-PATHS-*.md
+!docs/backlog/CALCULATOR-CONSOLIDATION-*.md
 !docs/editorial/artifacts/
 !docs/editorial/artifacts/**
 
