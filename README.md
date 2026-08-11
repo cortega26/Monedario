@@ -68,11 +68,14 @@ Inicio rapido:
 - Compilar para producción y generar búsqueda:
   - pnpm run build
 - Validar antes de proponer un cambio:
-  - pnpm run lint
-  - pnpm run check:boundaries
-  - pnpm run format:check
-  - pnpm run test
-  - pnpm run check
+  - `pnpm run check:ci` — espeja el set de gates del CI localmente (lint,
+    format, tests, boundaries, context, policy-registry, legal-constants,
+    docs, frontmatter, editorial, no-postid-urls, routes, astro check y los
+    checks de consistencia/registro)
+  - `pnpm run check` — set editorial/contexto ampliado (incluye `check:links`
+    con red y checks de imágenes)
+  - Gates post-build (rss, urls:ci, indexable-url-freeze, toc-i18n,
+    editorial-guard, snapshot-freshness): requieren `pnpm run build` primero
 
 Notas:
 

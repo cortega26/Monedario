@@ -43,9 +43,10 @@ Guia minima para arrancar en este repositorio sin tener que reconstruir el flujo
 ## Comandos comunes
 
 ```sh
-pnpm run lint
-pnpm run check:boundaries
-pnpm run format:check
+pnpm run check:ci
 pnpm run test
-pnpm run check
 ```
+`check:ci` espeja los gates del CI localmente. Los checks post-build (rss,
+urls, indexable-url-freeze, toc-i18n, editorial-guard, snapshot-freshness)
+requieren `pnpm run build` antes. `pnpm run check` agrega el set
+editorial/contexto (incluye `check:links` con red).

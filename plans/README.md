@@ -58,7 +58,7 @@ Cada ejecutor debe leer el plan completo y honrar sus condiciones de STOP.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Depende de | Estado |
 |---|------|--------|-----------|----------|--------|------------|--------|
-| 1 | [077](077-check-ci-aggregate.md) | `check:ci` — un comando que reproduce el CI localmente | P2 | S–M | LOW | — | TODO |
+| 1 | [077](077-check-ci-aggregate.md) | `check:ci` — un comando que reproduce el CI localmente | P2 | S–M | LOW | — | IN PROGRESS |
 | 2 | [078](078-lhci-mobile-wiring.md) | Ejecutar config Lighthouse mobile (warn-only, scheduled) | P3 | S | LOW | — | TODO |
 | 3 | [079](079-push-validation.md) | Validar snapshot/artefactos al llegar a main (push + validador) | P2 | M | MED | — | TODO |
 | 4 | [080](080-clp-formatter-unify.md) | Unificar formateadores CLP en formatCLP + guard de estilo | P3 | S–M | MED | — | TODO |

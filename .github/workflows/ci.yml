@@ -230,8 +230,9 @@ jobs:
 
             This means drift has landed on `main` that the PR gate would have
             blocked (e.g. a failing test, format drift, or a broken contract
-            check). Open the failed run, reproduce locally with `pnpm run check`
-            and `pnpm run test`, and fix in a small PR.
+            check). Open the failed run, reproduce locally with `pnpm run
+            check:ci` and `pnpm run test` (or `pnpm run build` for post-build
+            gates), and fix in a small PR.
 
             Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           desired-state: open
