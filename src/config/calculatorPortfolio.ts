@@ -219,6 +219,16 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
         label: "Sueldo líquido",
         when: "si todavía estás en etapa de revisar descuentos mensuales y no una salida por cesantía.",
       },
+      {
+        href: "/calculadoras/finiquito-indemnizacion/",
+        label: "Calcular tu finiquito",
+        when: "si ya terminó la relación laboral, revisa qué te corresponde por años de servicio.",
+      },
+      {
+        href: "/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/",
+        label: "Cuenta individual vs. Fondo Solidario",
+        when: "cuándo el FCS complementa tu CIC y qué requisitos exige.",
+      },
     ],
   },
   {
@@ -373,6 +383,11 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
         href: "/calculadoras/credito-consumo/",
         label: "Crédito de consumo",
         when: "si el préstamo todavía no está tomado y tu decisión es si firmarlo.",
+      },
+      {
+        href: "/guias/ahorro-e-inversion/",
+        label: "Ahorro: qué hago con la cuota liberada",
+        when: "dónde colocar el monto que dejas de pagar, según tu horizonte.",
       },
       {
         href: "/calculadoras/simulador-renegociacion/",
