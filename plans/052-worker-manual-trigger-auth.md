@@ -27,6 +27,23 @@
   index.ts` (`?secret=<CHECK_SECRET>`). Estado real: **requiere re-implementación
   desde cero** (el plan completo sigue siendo la especificación válida).
   Registrado como TD-0105 (severidad 5, P1) — ver `docs/TECH_DEBT_BACKLOG.md`.
+- **Re-implementación 2026-08-11 (completa, sin commit/merge aún)**: ambos
+  workers migrados al patrón del analytics-collector — `Authorization: Bearer`
+  header, `constantTimeEqual` (XOR, sin early exit), 503 no-config / 401
+  missing / 403 invalid / 404 route / 500 downstream, y la forma legacy
+  `?secret=` queda rechazada (401). Economic usa `TRIGGER_SECRET` dedicado —
+  NUNCA compara contra `GITHUB_TOKEN` (test explícito: el PAT válido → 403).
+  ADR-20260716-worker-manual-trigger-auth creado con el despliegue/rotación
+  coordinados. READMEs + wrangler.toml actualizados (smoke por header, warning
+  de history de CLI, preferir dashboard Run now). 17 tests (9 economic + 8
+  reddit: header válido, missing, wrong, scheme malformado, query-only, ruta
+  equivocada, no-config, error downstream, PAT-no-válido). Verificado: suite
+  1357/1357, eslint 0, audit prod limpio, check:docs/format/boundaries OK,
+  rg de regresión sin patterns de URL-secret (solo tests negativos +
+  comentarios). Secrets 2026-08-11: `TRIGGER_SECRET` creado y `CHECK_SECRET`
+  rotado en Cloudflare (wrangler secret put). **Pendiente (compuerta
+  humana)**: paso 4 del plan — merge, deploy de ambos workers, smoke
+  productivo y rotación del PAT (requiere autoridad de cuenta GitHub).
 
 ## Why this matters
 
