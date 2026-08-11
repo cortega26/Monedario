@@ -1306,6 +1306,25 @@ describe("fetch handler — guards HTTP", () => {
       body: VALID_BODY,
     });
     expect(response.status).toBe(403);
+    expect(response.headers.get("Access-Control-Allow-Origin")).toBe(
+      ALLOWED_ORIGIN
+    );
+  });
+
+  it("rechaza Origins que solo COMPARTEN prefijo con el permitido (403, match exacto)", async () => {
+    for (const origin of [
+      "https://monedario.cl.evil.example",
+      "https://www.monedario.cl",
+      "https://monedario.cl:8443",
+      "https://monedario.cl.evil.com",
+    ]) {
+      const response = await post({
+        method: "POST",
+        headers: { Origin: origin },
+        body: VALID_BODY,
+      });
+      expect(response.status, `origin=${origin}`).toBe(403);
+    }
   });
 
   it("rechaza Content-Type no-JSON (415)", async () => {
@@ -1330,13 +1349,23 @@ describe("fetch handler — guards HTTP", () => {
   });
 
   it("rechaza un body real > MAX_BODY_SIZE (413, defensa en profundidad)", async () => {
+    // Body stream (chunked): sin Content-Length — fuerza el guard de
+    // text.length, no el de CL. Un body string en algunos runtimes genera CL
+    // automáticamente y el test pasaría por la rama equivocada en silencio.
+    const bigBody = JSON.stringify({
+      event: "calculator_start",
+      params: { calculator_id: "a".repeat(MAX_BODY_SIZE + 10), interaction_variant: "button" },
+    });
     const response = await post({
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        event: "calculator_start",
-        params: { calculator_id: "a".repeat(MAX_BODY_SIZE + 10), interaction_variant: "button" },
+      body: new ReadableStream({
+        start(controller) {
+          controller.enqueue(new TextEncoder().encode(bigBody));
+          controller.close();
+        },
       }),
+      duplex: "half",
     });
     expect(response.status).toBe(413);
   });
