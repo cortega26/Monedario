@@ -16,31 +16,31 @@ const MESES_CORTO = [
   "DIC",
 ];
 
-function fmtDiaMesCorto(fecha: string): string {
+export function fmtDiaMesCorto(fecha: string): string {
   const parts = fecha.split("-");
   const m = parseInt(parts[1]!, 10) - 1;
   const d = parseInt(parts[2]!, 10);
   return `${d} ${MESES_CORTO[m] ?? ""}`;
 }
 
-function fmtMesCorto(fecha: string): string {
+export function fmtMesCorto(fecha: string): string {
   const m = parseInt(fecha.split("-")[1]!, 10) - 1;
   return MESES_CORTO[m] ?? "";
 }
 
-function fmtDelta(current: number, prev: number): string {
+export function fmtDelta(current: number, prev: number): string {
   const pct = ((current - prev) / prev) * 100;
   return pct.toLocaleString("es-CL", { maximumFractionDigits: 2 });
 }
 
-function fmtClp(value: number, decimals = 0): string {
+export function fmtClp(value: number, decimals = 0): string {
   return `$${value.toLocaleString("es-CL", {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   })}`;
 }
 
-function buildDelta(
+export function buildDelta(
   current: number,
   prev: { valor: number; fecha: string } | undefined,
   formatVs: (fecha: string) => string
@@ -53,13 +53,13 @@ function buildDelta(
   };
 }
 
-const OFFICIAL_SOURCES: Record<string, string> = {
+export const OFFICIAL_SOURCES: Record<string, string> = {
   uf: "Banco Central de Chile",
   utm: "SII",
   dolar: "Banco Central de Chile",
 };
 
-function buildTitle(
+export function buildTitle(
   indicator: string,
   source: string,
   description: string

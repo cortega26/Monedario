@@ -29,7 +29,20 @@ export interface Indicadores {
 }
 
 export async function getIndicadores(): Promise<Indicadores> {
-  const { parameters, telemetryFlag } = await getEconomicParameters();
+  return getIndicadoresWith(getEconomicParameters);
+}
+
+/**
+ * Factory con loader inyectable (tests): misma lógica que getIndicadores sin
+ * tocar el provider. El loader debe devolver { parameters, telemetryFlag }.
+ */
+export async function getIndicadoresWith(
+  loader: () => Promise<{
+    parameters: EconomicParameters;
+    telemetryFlag: EconomicTelemetryFlag;
+  }>
+): Promise<Indicadores> {
+  const { parameters, telemetryFlag } = await loader();
   return {
     uf: parameters.uf,
     utm: parameters.utm,

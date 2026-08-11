@@ -58,7 +58,7 @@ Cada ejecutor debe leer el plan completo y honrar sus condiciones de STOP.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Depende de | Estado |
 |---|------|--------|-----------|----------|--------|------------|--------|
-| 1 | [071](071-indicadores-hoy-tests.md) | Tests del endpoint indicadores-hoy + formateadores | P2 | S–M | LOW | — | TODO |
+| 1 | [071](071-indicadores-hoy-tests.md) | Tests del endpoint indicadores-hoy + formateadores | P2 | S–M | LOW | — | IN PROGRESS |
 | 2 | [072](072-analytics-fetch-branches.md) | Tests de las ~12 ramas del fetch handler del collector | P2 | M | LOW | 059 (opcional) | TODO |
 | 3 | [073](073-coverage-widen.md) | Ampliar gate de cobertura a `src/**` (con caracterización) | P2 | S+M | MED | 067, 068, 071, 072 (recomendado) | TODO |
 | 4 | [074](074-stale-overrides.md) | Limpiar overrides/exclusiones de maduración vencidos | P2 | S | LOW | — | TODO |
