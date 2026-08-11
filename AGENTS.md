@@ -1,126 +1,108 @@
 # AGENTS.md
 
-Operational protocol for AI/human agents in this repository.
+**Precedence (fixed):** `docs/AI_ENGINEERING_CONSTITUTION.md` > `AGENTS.md` > `context/*.md` > source code.
+Constitution wins on conflict. If a change violates the Constitution or an invariant, stop and report — no workarounds.
 
-Binding document: `docs/AI_ENGINEERING_CONSTITUTION.md`.
+Rules live in `docs/development/`. This file is the entry map, not the manual.
 
-Non-override clause: this file defines execution procedure only. It never overrides constitutional constraints, invariants, or prohibitions.
+## Hard Stops
 
-Constitutional precedence is absolute: when AGENTS.md conflicts with Constitution, Constitution wins.
+- Never derive a public URL from `post.id` (`URL.PUBLIC.NO_POST_ID`).
+- Never mark a gate `[X]` in `07-publish-packet.md` — only humans sign off publication gates.
+- Never draft and audit/comply a YMYL piece in the same agent session (`INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES`).
+- Never change a public slug without a route/RSS snapshot before/after + ADR.
+- No new indexable URL without approved exception (strategic focus: `FOCO ESTRICTO / VALIDACIÓN UTILITY-LED` through 2026-11-02).
+- `no-console: "error"` in `src/` — use proper logging or none. Scripts (`scripts/*.mjs`) and workers are exempt.
 
-**Design principle — índice, no enciclopedia:** Este archivo es el mapa de entrada, no el manual exhaustivo. Las reglas detalladas viven en `docs/development/`. Si sientes la necesidad de agregar más de 5 líneas aquí, crea o actualiza un documento en `docs/development/` y enlázalo desde la sección correspondiente.
+## Quickstart — Commands
 
-## Canonical Context
-
-- Canonical context layer for agent execution:
-  - `context/INVARIANTS.md`
-  - `context/CONTRACTS.md`
-  - `context/EDITORIAL_AI_PIPELINE.md`
-  - `CONTRACT.YMYL_RESPONSE_STRUCTURE` (ver `context/CONTRACTS.md`)
-  - `context/MODULE_INDEX.md`
-  - `context/CURRENT_STATE.md`
-- Canonical editorial policy for YMYL execution: `docs/editorial/NORMA_YMYL.md`
-- Canonical strategy policy for benchmark-driven work: `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md`
-- **Criterio obligatorio de viabilidad para decisiones estratégicas y de producto:** ver [`docs/development/CRITERIO_VIABILIDAD.md`](docs/development/CRITERIO_VIABILIDAD.md)
-- **Foco estratégico vigente (2026-08-02 a 2026-11-02):** `FOCO ESTRICTO / VALIDACIÓN UTILITY-LED`; ver [`docs/governance/STRATEGIC_FOCUS_2026Q3.md`](docs/governance/STRATEGIC_FOCUS_2026Q3.md). Toda nueva URL indexable requiere excepción aprobada y auditable.
-- Before changes touching routes/RSS/canonical/guard gates → read `context/INVARIANTS.md` + `context/CONTRACTS.md`.
-- Before new YMYL content or refresh → read `docs/editorial/NORMA_YMYL.md` + `context/EDITORIAL_AI_PIPELINE.md`.
-- Before new URL/calculator/hub/surface → read `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md`, `docs/editorial/NON_CANNIBALIZATION_PROCESS.md`, `docs/editorial/TOPIC_OWNERSHIP_POLICY.md`.
-- Before creating or publishing a calculator → follow `docs/development/CALCULATOR_CREATION_CHECKLIST.md`.
-
-## 1. Authority Hierarchy
-
-**Precedence order (fixed):** `docs/AI_ENGINEERING_CONSTITUTION.md` > `AGENTS.md` > `context/*.md` > source code.
-
-- If any requested change conflicts with the Constitution or domain invariants, stop and return a conflict report — no workarounds.
-- Architectural invariants must be quoted by ID/name from `context/INVARIANTS.md`, `context/CONTRACTS.md`, or `docs/architecture/DOMAIN_CONTRACT_BOUNDARIES.md` before modification.
-- Mandatory citation for URL identity work: `URL.PUBLIC.NO_POST_ID`.
-
-## 2. Agent Execution Model → [`docs/development/AGENT_EXECUTION_PROTOCOL.md`](docs/development/AGENT_EXECUTION_PROTOCOL.md)
-
-Rules 2.1–2.13 + execution checklist. Key rules at a glance:
-
-- Scope block required before any edit (Rule 2.1).
-- Minimal diffs only; full rewrites are exceptional (Rules 2.2–2.3).
-- Halt conditions are enumerated and non-negotiable (Rule 2.6).
-- `post.id` must never derive public URLs (Rule 2.7).
-- YMYL content requires full editorial pipeline (Rule 2.8).
-- **Rule 2.9 — Separation of Duties:** `DraftAgent` must not be the same agent instance as `MathAuditAgent` or `ComplianceAgent` for the same editorial run. When `DraftAgent` and an audit role share the same model family (e.g., Claude), the auditor must operate in a fresh session with zero exposure to draft context or conversation history. A Claude Code session started clean satisfies this for `ComplianceAgent`. No agent may mark gates `[X]` in `07-publish-packet.md`.
-- New articles require a manually placed hero image (Rule 2.10).
-- Failed tasks require capability gap diagnosis, not retries (Rule 2.12).
-- Multi-session tasks require a plan artifact in `docs/backlog/` (Rule 2.13).
-- **Blocked editorial pipeline:** read and follow `context/EDITORIAL_AI_PIPELINE.md` §9 (Blocked Pipeline Protocol) before taking any action.
-
-## 3. Change Control Protocol → [`docs/development/CHANGE_CONTROL_PROTOCOL.md`](docs/development/CHANGE_CONTROL_PROTOCOL.md)
-
-Eight-step change declaration template + Competitive Adaptation Appendix. Route-affecting changes must also pass `check:no-postid-urls`, `check:routes`, `check:rss`.
-
-## 4. Constitution Binding Rules → [`docs/development/CONSTITUTION_BINDING_RULES.md`](docs/development/CONSTITUTION_BINDING_RULES.md)
-
-Architectural edits require constitutional citation. ADRs required for layer/contract/URL/CI changes. Refactors forbidden during bugfix tasks.
-
-## 5. Regression Prevention → [`docs/development/REGRESSION_PREVENTION.md`](docs/development/REGRESSION_PREVENTION.md)
-
-Mandatory CI gate set (`lint`, `check:boundaries`, `format:check`, `test`, `check:frontmatter`, `check:routes`, `astro check`, `build`). Domain/application/infrastructure changes require co-located test updates. Performance guardrails for hot paths (Mobile Perf ≥ 99, LCP ≤ 1.7s, CLS = 0).
-
-## 6. Context Engineering Discipline → [`docs/development/CONTEXT_ENGINEERING.md`](docs/development/CONTEXT_ENGINEERING.md)
-
-Minimal context extraction; no raw file dumps; Task Brief template required; explicit scope boundary in every response; external knowledge must be committed to repo before it can guide agent work.
-
-## 7. Technical Debt Governance → [`docs/development/TECH_DEBT_GOVERNANCE.md`](docs/development/TECH_DEBT_GOVERNANCE.md)
-
-All debt logged in `docs/TECH_DEBT_BACKLOG.md` with severity 1–5. Severity 4–5 blocks feature work. Periodic doc-gardening required. Custom lint scripts must emit file+rule+remediation in error messages.
-
-## 8. Commit & PR Standards → [`docs/development/COMMIT_PR_STANDARDS.md`](docs/development/COMMIT_PR_STANDARDS.md)
-
-Conventional commits (`feat|fix|refactor|chore|test|perf|docs`). PR requires change control record + test evidence. Breaking changes require `BREAKING CHANGE:` block + ADR.
-
-## 9. Conversation Management → [`docs/development/CONVERSATION_MANAGEMENT.md`](docs/development/CONVERSATION_MANAGEMENT.md)
-
-New conversation on context/domain change. Checkpoint architectural state in `context/PROJECT_CONTEXT_MASTER.md`. Structural tasks and content tasks in separate PRs.
-
-## Deterministic Closure Conditions
-
-A change is complete only if all are true:
-- Scope remained bounded to declared in-scope paths.
-- Constitution and AGENTS checks are satisfied with no unresolved conflict.
-- Required CI gates passed.
-- Change control record is complete.
-- If the task worked from a plan, backlog, roadmap, or equivalent tracking artifact, that artifact was updated as part of the DoD work.
-- Regression risk and rollback are explicitly documented.
-
-If any condition fails, task status is `HALT` until resolved.
-
-<!-- CODEGRAPH_START -->
-## CodeGraph
-
-This project has a CodeGraph MCP server (`codegraph_*` tools) configured. CodeGraph is a tree-sitter-parsed knowledge graph of every symbol, edge, and file. Reads are sub-millisecond and return structural information grep cannot.
-
-### When to prefer codegraph over native search
-
-Use codegraph for **structural** questions — what calls what, what would break, where is X defined, what is X's signature. Use native grep/read only for **literal text** queries (string contents, comments, log messages) or after you already have a specific file open.
-
-| Question | Tool |
+| What | Command |
 |---|---|
-| "Where is X defined?" / "Find symbol named X" | `codegraph_search` |
-| "What calls function Y?" | `codegraph_callers` |
-| "What does Y call?" | `codegraph_callees` |
-| "What would break if I changed Z?" | `codegraph_impact` |
-| "Show me Y's signature / source / docstring" | `codegraph_node` |
-| "Give me focused context for a task/area" | `codegraph_context` |
-| "Survey an unfamiliar module/topic" | `codegraph_explore` |
-| "What files exist under path/" | `codegraph_files` |
-| "Is the index healthy?" | `codegraph_status` |
+| Install (deterministic) | `pnpm install --frozen-lockfile` (_pnpm only_; `preinstall` blocks npm/yarn) |
+| Dev server | `pnpm run dev` |
+| Local CI mirror | `pnpm run check:ci` — gates only, **no build, no URL/RSS checks**. Mirrors CI: lint, format, test, boundaries, context, editorial, routes, astro check, consistency gates |
+| Build (full) | `pnpm run build` — image checks → astro check → astro build → pagefind → URL check. Post-build gates (`check:rss`, `check:urls:ci`, `check:indexable-url-freeze`, `check:toc-i18n`, `check:editorial-guard`, `check:economic-snapshot-freshness`) require a build first and are NOT in `check:ci` |
+| Tests (Vitest) | `pnpm run test` |
+| Single test file | `pnpm exec vitest run tests/path/to/file.test.ts` |
+| A11y tests (Playwright) | `pnpm exec playwright test` (needs `pnpm exec astro preview --port 4321` running) |
+| Lint | `pnpm run lint` |
+| Format check | `pnpm run format:check` |
+| Python deps (uv) | `uv sync` |
+| Python lint | `uv run ruff check scripts/ tests/ --fix` |
+| Python tests | `uv run pytest` |
 
-### Rules of thumb
+## Architecture & Toolchain
 
-- **Trust codegraph results.** They come from a full AST parse. Do NOT re-verify them with grep — that's slower, less accurate, and wastes context.
-- **Don't grep first** when looking up a symbol by name. `codegraph_search` is faster and returns kind + location + signature in one call.
-- **Don't chain `codegraph_search` + `codegraph_node`** when you just want context — `codegraph_context` is one call.
-- **`codegraph_explore` is the heavy hitter** for unfamiliar areas — it returns full source from all relevant files in one call, but is token-heavy. If your harness supports parallel subagents (e.g., Claude Code's Task tool), spawn one for explore-class questions to keep main session context clean.
-- **Index lag**: the file watcher debounces ~500ms behind writes; don't re-query immediately after editing a file in the same turn.
+- **Runtime:** Node 22 (`.nvmrc`). Package manager: pnpm only (enforced at `preinstall`).
+- **Framework:** Astro 7 + TypeScript 6 + React 19. TailwindCSS v4 (Vite plugin, not PostCSS).
+- **`trailingSlash: "always"`** — every internal link must end with `/`. Use `BASE_URL` normalized with `/` suffix.
+- **Prettier:** double quotes, no arrow parens, es5 trailing commas, 80-column line width, LF endings. `pnpm run format:check` / `pnpm run format`.
+- **eslint:** typescript-eslint recommended + eslint-plugin-astro. `no-console: error` (except `scripts/` and `workers/`).
+- **`@` alias** → `./src/` (both TypeScript and Vitest).
+- **Economic parameter provider default:** `snapshot` (reads `src/infrastructure/economic/economic-parameters.snapshot.json` — deterministic, no network). Set `TPI_ECONOMIC_PROVIDER_MODE=live` to fetch from `mindicador.cl`. Always use `getEconomicParameters()` in calculators — never fetch economic data directly.
+- **Search:** Pagefind (`pnpm run build` generates `dist/pagefind/`). Static search index, no backend.
+- **Editorial gates are warn-only locally:** `check:editorial` fails CI (runs with `EDITORIAL_ENFORCE=1`) but only warns in `check:ci`. Same for `check:small-details` (`SMALL_DETAILS_ENFORCE=1`). Green local `check:ci` does not guarantee these pass in CI.
+- **OG images:** generated at build via `src/utils/generateOgImages.ts` (Satori + resvg-js). The `ogImage` property in `SITE` is extensionless to avoid Cloudflare Hotlink Protection blocks.
+- **Workers:** Cloudflare Workers (`workers/`) — `analytics-collector`, `economic-snapshot-refresh`, `reddit-mention-monitor` — deploy independently via `pnpm run worker:*:deploy` (wrangler, per-worker `wrangler.toml`), not as part of the Astro build.
+- **Deployment:** Cloudflare Pages (static build). No deploy workflow in repo CI; CI is gate-only.
+- **License:** AGPL-3.0 for code (`LICENSE.md`), CC BY-NC 4.0 for editorial content (`LICENSE-CONTENT.md`).
+- **Pre-commit:** husky + lint-staged runs `prettier --check` + `eslint` on staged files.
 
-### If `.codegraph/` doesn't exist
+## Python Tooling
 
-The MCP server returns "not initialized." Ask the user: *"I notice this project doesn't have CodeGraph initialized. Want me to run `codegraph init -i` to build the index?"*
-<!-- CODEGRAPH_END -->
+The `scripts/` and `tests/` directories contain Python tools managed with `uv` (not pip).
+
+- **`tests/` is shared by both toolchains:** Vitest runs `tests/**/*.test.ts` (excluding `tests/accessibility/**`); pytest runs the root-level `test_*.py` files + `conftest.py`. Don't run `uv run pytest` expecting TS tests (or vice versa).
+- **Config:** `pyproject.toml` (deps + ruff + pytest + coverage). Lockfile: `uv.lock`.
+- **Requires Python ≥ 3.13.**
+- CI gates: `python-ci.yml` (ruff + pytest on PR), `python-deps-autoupdate.yml` (monthly lockfile bump), `security-scans.yml` → `python-audit` (weekly pip-audit).
+
+## Layer Map
+
+| Path | What | Rules |
+|---|---|---|
+| `src/domain/` | Business logic, pure functions | No I/O, no `fetch`, no framework imports |
+| `src/application/` | Use cases orchestrating domain | No direct I/O beyond infrastructure calls |
+| `src/infrastructure/` | External boundaries (network, file reads) | Runtime validation with Zod |
+| `src/pages/` | Astro pages/routes | Do not put business logic here |
+| `src/components/` | UI components (Astro + React) | Stateless where possible |
+| `src/content.config.ts` | Astro content collection schema | Changing fields affects frontmatter checks |
+| `src/data/` | Editorial content (MDX/MD) | Out of scope unless explicit content task |
+
+## Key Process — Editorial Pipeline
+
+Before editing or creating YMYL/editorial content, read the workflow:
+
+- `context/EDITORIAL_AI_PIPELINE.md` — full pipeline with role playbooks
+- `context/EDITORIAL_AI_PIPELINE.md` §9 — Blocked Pipeline Protocol (read this when `06-compliance.md` shows `BLOCKED`)
+- `docs/editorial/NORMA_YMYL.md` — YMYL quality standard
+
+## Key Process — URL/Route/RSS Changes
+
+Route-affecting changes must pass: `check:no-postid-urls`, `check:routes`, `check:rss`. Note `check:rss` reads `dist/rss.xml` — it only runs after a build.
+
+Snapshots live in `docs/reports/` (baselines) and `output/validation/` (generated). Update baselines after intentional route changes.
+
+## Agent Execution Rules
+
+- Declare scope (in-scope/out-of-scope paths) before any edit.
+- Spec-driven execution loop for coding tasks: `docs/development/AGENT_EXECUTION_PROTOCOL.md` §2.14 (root `spec.md` / `todo.md` are allowlisted by `check:docs`; plan-driven tasks use the plan as the spec).
+- Minimal diffs only; full rewrites are exceptional.
+- Halt conditions are non-negotiable — do not work around them.
+- Failed tasks require capability gap diagnosis, not retries.
+- Multi-session tasks need a plan artifact in `docs/backlog/`.
+- New articles require a manually placed hero image.
+- Architectural edits require constitutional citation. ADRs required for layer/contract/URL/CI changes. Refactors forbidden during bugfix tasks.
+- Conventional commits (`feat|fix|refactor|chore|test|perf|docs`). PR requires change control record + test evidence. Breaking changes need `BREAKING CHANGE:` block + ADR.
+- Technical debt logged in `docs/TECH_DEBT_BACKLOG.md` (severity 1–5). Severity 4–5 blocks feature work.
+
+## Closure Conditions
+
+A change is done only when: scope stayed bounded, Constitution + AGENTS checks pass, CI gates pass, change control record is complete, relevant tracking artifacts updated, and regression risk + rollback are documented. Otherwise: `HALT`.
+
+## Context Layer
+
+Session warm-up: `context/AGENT_PREFLIGHT.md` (hard stops, gate map, invariant IDs, env vars).
+Before route/RSS edits: `context/INVARIANTS.md` + `context/CONTRACTS.md`.
+Before new URLs/surfaces: `docs/governance/COMPETITIVE_ADAPTATION_POLICY.md`.
+Module map: `context/MODULE_INDEX.md`.
