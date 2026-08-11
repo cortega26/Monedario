@@ -24,6 +24,7 @@ MINDICADOR_TIMEOUT_MS = "12000"
 enabled = true
 
 # Secrets (set via `wrangler secret put`):
-#   GITHUB_TOKEN   — fine-grained PAT, repo cortega26/Monedario, Contents: Read & Write
+#   GITHUB_TOKEN   — fine-grained PAT, repo cortega26/Monedario, Contents: Read & Write (GitHub API only)
+#   TRIGGER_SECRET — dedicated manual-trigger secret for /__refresh (Authorization header; NEVER the PAT)
 #   BCCH_USER      — Banco Central SiETE account email (optional; without it UF/USD use mindicador.cl)
 #   BCCH_PASSWORD  — Banco Central SiETE password

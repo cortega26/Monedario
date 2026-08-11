@@ -33,4 +33,4 @@ enabled = true
 #   REDDIT_CLIENT_ID       — from reddit.com/prefs/apps (app type: script/web)
 #   REDDIT_CLIENT_SECRET   — same app
 #   DISCORD_WEBHOOK_URL    — Discord channel webhook that receives the alerts
-#   CHECK_SECRET           — arbitrary string gating the manual /__check endpoint
+#   CHECK_SECRET           — arbitrary string gating /__check (Authorization header, never in URLs)

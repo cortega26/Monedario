@@ -24,6 +24,8 @@ export interface Env {
   /** BCCh SiETE auth. Both optional — if absent, snapshot falls back to mindicador.cl. */
   BCCH_USER?: string;
   BCCH_PASSWORD?: string;
+  /** Dedicated manual-trigger secret for /__refresh. NEVER the GitHub PAT. */
+  TRIGGER_SECRET?: string;
 }
 
 type LogLevel = "info" | "warn" | "error";
@@ -71,6 +73,24 @@ function assertEnv(env: Env): GitHubContentsConfig {
     authorName: env.COMMIT_AUTHOR_NAME,
     authorEmail: env.COMMIT_AUTHOR_EMAIL,
   };
+}
+
+function constantTimeEqual(a: string, b: string): boolean {
+  const maxLength = Math.max(a.length, b.length);
+  let diff = a.length ^ b.length;
+
+  for (let i = 0; i < maxLength; i += 1) {
+    diff |= (a.charCodeAt(i) || 0) ^ (b.charCodeAt(i) || 0);
+  }
+
+  return diff === 0;
+}
+
+function jsonResponse(body: unknown, status: number): Response {
+  return new Response(JSON.stringify(body) + "\n", {
+    status,
+    headers: { "Content-Type": "application/json; charset=utf-8" },
+  });
 }
 
 async function runRefresh(env: Env): Promise<void> {
@@ -227,17 +247,29 @@ export default {
     );
   },
 
-  // Manual trigger for smoke tests. Requires `?secret=<GITHUB_TOKEN>` to avoid
-  // public abuse; in practice the Worker is unrouted (no custom domain), but
-  // workers.dev URLs are guessable, so we gate it.
+  // Manual trigger for smoke tests. Auth via `Authorization: Bearer
+  // <TRIGGER_SECRET>` (dedicated secret — NEVER the GitHub PAT). Query-string
+  // credentials are rejected: the old `?secret=` form returns 401 because
+  // only the header is read. In practice the Worker is unrouted (no custom
+  // domain), but workers.dev URLs are guessable, so we gate it.
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
     if (url.pathname !== "/__refresh") {
       return new Response("Not Found", { status: 404 });
     }
-    const provided = url.searchParams.get("secret");
-    if (!provided || provided !== env.GITHUB_TOKEN) {
-      return new Response("Forbidden", { status: 403 });
+    if (!env.TRIGGER_SECRET) {
+      return jsonResponse({ error: "trigger_not_configured" }, 503);
+    }
+    const authHeader = request.headers.get("Authorization");
+    const provided =
+      authHeader && authHeader.startsWith("Bearer ")
+        ? authHeader.slice("Bearer ".length).trim()
+        : null;
+    if (!provided) {
+      return jsonResponse({ error: "missing_secret" }, 401);
+    }
+    if (!constantTimeEqual(provided, env.TRIGGER_SECRET)) {
+      return jsonResponse({ error: "invalid_secret" }, 403);
     }
     try {
       await runRefresh(env);
