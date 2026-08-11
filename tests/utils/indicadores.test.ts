@@ -1,12 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { getIndicadoresWith } from "@/utils/indicadores";
 import type { EconomicParameters } from "@/domain/economic/EconomicParameters";
+import type { EconomicTelemetryFlag } from "@/infrastructure/economic/EconomicParameterProvider";
 
 function loaderWith(
   overrides: Partial<EconomicParameters> = {}
 ): () => Promise<{
   parameters: EconomicParameters;
-  telemetryFlag: "none";
+  telemetryFlag: EconomicTelemetryFlag;
 }> {
   return async () => ({
     parameters: {
@@ -20,7 +21,7 @@ function loaderWith(
       afcTopes: { monthlyTaxableCapUf: 135.2 },
       previsionalTopes: { pensionAndHealthMonthlyTaxableCapUf: 90 },
       lastUpdated: "2026-08-10",
-      source: "primary",
+      source: "snapshot",
       indicatorUpdatedAt: {
         uf: "2026-08-10",
         utm: "2026-08-01",
@@ -28,7 +29,7 @@ function loaderWith(
       },
       ...overrides,
     },
-    telemetryFlag: "none",
+    telemetryFlag: "economic_parameters_snapshot",
   });
 }
 
@@ -62,7 +63,7 @@ describe("getIndicadoresWith", () => {
   it("no crashea ni inventa prev cuando está ausente", async () => {
     const result = await getIndicadoresWith(loaderWith());
     expect(result).not.toHaveProperty("prev");
-    expect(result.source).toBe("primary");
-    expect(result.telemetryFlag).toBe("none");
+    expect(result.source).toBe("snapshot");
+    expect(result.telemetryFlag).toBe("economic_parameters_snapshot");
   });
 });

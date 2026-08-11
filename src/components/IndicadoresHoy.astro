@@ -1,40 +1,14 @@
 ---
-import { getIndicadores, fmtFecha } from "@/utils/indicadores";
+import {
+  fmtDelta,
+  fmtDiaMesCorto,
+  fmtFecha,
+  fmtMesCorto,
+  getIndicadores,
+} from "@/utils/indicadores";
 import { getPath } from "@/utils/getPath";
 
 const indicadores = await getIndicadores();
-
-const MESES_CORTO = [
-  "ENE",
-  "FEB",
-  "MAR",
-  "ABR",
-  "MAY",
-  "JUN",
-  "JUL",
-  "AGO",
-  "SEP",
-  "OCT",
-  "NOV",
-  "DIC",
-];
-
-function fmtDiaMesCorto(fecha: string): string {
-  const parts = fecha.split("-");
-  const m = parseInt(parts[1]!, 10) - 1;
-  const d = parseInt(parts[2]!, 10);
-  return `${d} ${MESES_CORTO[m] ?? ""}`;
-}
-
-function fmtMesCorto(fecha: string): string {
-  const m = parseInt(fecha.split("-")[1]!, 10) - 1;
-  return MESES_CORTO[m] ?? "";
-}
-
-function fmtDelta(current: number, prev: number): string {
-  const pct = ((current - prev) / prev) * 100;
-  return pct.toLocaleString("es-CL", { maximumFractionDigits: 2 });
-}
 
 const ufFecha = indicadores.fechas.uf;
 const utmFecha = indicadores.fechas.utm;

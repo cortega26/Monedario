@@ -1,37 +1,14 @@
 import type { APIRoute } from "astro";
-import { getIndicadores, fmtFecha } from "@/utils/indicadores";
+import {
+  fmtDelta,
+  fmtDiaMesCorto,
+  fmtFecha,
+  fmtMesCorto,
+  getIndicadores,
+} from "@/utils/indicadores";
 
-const MESES_CORTO = [
-  "ENE",
-  "FEB",
-  "MAR",
-  "ABR",
-  "MAY",
-  "JUN",
-  "JUL",
-  "AGO",
-  "SEP",
-  "OCT",
-  "NOV",
-  "DIC",
-];
-
-export function fmtDiaMesCorto(fecha: string): string {
-  const parts = fecha.split("-");
-  const m = parseInt(parts[1]!, 10) - 1;
-  const d = parseInt(parts[2]!, 10);
-  return `${d} ${MESES_CORTO[m] ?? ""}`;
-}
-
-export function fmtMesCorto(fecha: string): string {
-  const m = parseInt(fecha.split("-")[1]!, 10) - 1;
-  return MESES_CORTO[m] ?? "";
-}
-
-export function fmtDelta(current: number, prev: number): string {
-  const pct = ((current - prev) / prev) * 100;
-  return pct.toLocaleString("es-CL", { maximumFractionDigits: 2 });
-}
+// Re-export para tests/consumidores (fuente única en @/utils/indicadores).
+export { fmtDelta, fmtDiaMesCorto, fmtMesCorto };
 
 export function fmtClp(value: number, decimals = 0): string {
   return `$${value.toLocaleString("es-CL", {
