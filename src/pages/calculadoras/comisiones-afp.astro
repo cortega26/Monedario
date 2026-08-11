@@ -330,6 +330,7 @@ const calculatorNextStepItems = [
   import { compareAfpCommissions } from "@/application/use-cases/CompareAfpCommissions";
   import { AFP_COMMISSIONS_PERCENT } from "@/config/afpCommissions";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { formatCLP } from "@/utils/formatCLP";
 
   declare global {
     interface Window {
@@ -337,7 +338,7 @@ const calculatorNextStepItems = [
     }
   }
 
-  const fmt = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+  const fmt = formatCLP;
 
   function calcular() {
     const rawImponible = (

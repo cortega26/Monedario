@@ -19,9 +19,10 @@ import { getPath } from "@/utils/getPath";
 import { estimateUnemploymentCoverage } from "@/application/use-cases/EstimateUnemploymentCoverage";
 import CalculatorDataFreshness from "@/components/calculator/CalculatorDataFreshness.astro";
 import { formatEconomicDate } from "@/domain/economic/economicSourcePresentation";
+import { formatCLP } from "@/utils/formatCLP";
 
 const { parameters: economicParameters } = await getEconomicParameters();
-const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+const fmtClp = formatCLP;
 const exampleResult = estimateUnemploymentCoverage({
   grossSalary: 800_000,
   contractType: "indefinido",

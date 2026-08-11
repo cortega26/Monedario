@@ -386,6 +386,7 @@ const conversorUtmFaqs = [
 <script>
   import { convertUtm } from "@/application/use-cases/ConvertUtm";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { formatCLP } from "@/utils/formatCLP";
 
   declare global {
     interface Window {
@@ -405,7 +406,7 @@ const conversorUtmFaqs = [
 
   const economicContext = readEconomicContext();
 
-  const fmt = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+  const fmt = formatCLP;
   const fmtUtm = (n: number) =>
     n.toLocaleString("es-CL", {
       minimumFractionDigits: 2,

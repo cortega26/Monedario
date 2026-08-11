@@ -606,6 +606,7 @@ const calculatorNextStepItems = [
   import "@/scripts/calculator-prefill";
   import { calculateApvComparison } from "@/application/use-cases/CalculateApvComparison";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { formatCLP } from "@/utils/formatCLP";
 
   declare global {
     interface Window {
@@ -615,7 +616,7 @@ const calculatorNextStepItems = [
   }
 
   function fmt(n: number): string {
-    return "$" + Math.round(n).toLocaleString("es-CL");
+    return formatCLP(n);
   }
 
   function fmtPct(n: number): string {

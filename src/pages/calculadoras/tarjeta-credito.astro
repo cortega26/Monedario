@@ -17,7 +17,8 @@ import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 import CalculatorScenarios from "@/components/calculator/CalculatorScenarios.astro";
 import { simulateCreditCardCost } from "@/application/use-cases/SimulateCreditCardCost";
-const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+import { formatCLP } from "@/utils/formatCLP";
+const fmtClp = formatCLP;
 const exampleResult = simulateCreditCardCost({
   debt: 500_000,
   monthlyRatePercent: 3.49,
@@ -261,6 +262,7 @@ const calculatorNextStepItems = [
   import { simulateCreditCardCost } from "@/application/use-cases/SimulateCreditCardCost";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
+  import { formatCLP } from "@/utils/formatCLP";
   import {
     initScenarioPanel,
     restoreInputs,
@@ -278,7 +280,7 @@ const calculatorNextStepItems = [
     null;
 
   function fmt(n: number): string {
-    return "$" + Math.round(n).toLocaleString("es-CL");
+    return formatCLP(n);
   }
 
   function showError(message: string) {

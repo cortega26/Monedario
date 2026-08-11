@@ -379,6 +379,7 @@ const dapFaqs = [
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
   import { saveCalculatorResult } from "@/utils/resumeState";
+  import { formatCLP } from "@/utils/formatCLP";
   import {
     initScenarioPanel,
     restoreInputs,
@@ -395,7 +396,7 @@ const dapFaqs = [
   let scenarioLastResult: ReturnType<typeof calculateTermDeposit> | null = null;
 
   function fmt(n: number): string {
-    return "$" + Math.round(n).toLocaleString("es-CL");
+    return formatCLP(n);
   }
 
   function showError(message: string) {
