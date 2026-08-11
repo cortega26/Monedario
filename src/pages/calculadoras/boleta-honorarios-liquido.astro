@@ -16,8 +16,9 @@ import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getPath } from "@/utils/getPath";
 import { calculateHonorariosNet } from "@/application/use-cases/CalculateHonorariosNet";
 import { honorariosWorkedExample } from "@/application/use-cases/CalculateHonorariosNet.methodology";
+import { formatCLP } from "@/utils/formatCLP";
 
-const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+const fmtClp = formatCLP;
 const exampleResult = calculateHonorariosNet({
   grossFee: 500_000,
   withholdingRatePercent: 15.25,

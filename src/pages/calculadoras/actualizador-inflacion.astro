@@ -287,6 +287,7 @@ const calculatorNextStepItems = [
 <script>
   import { calculateInflationAdjustment } from "@/application/use-cases/CalculateInflationAdjustment";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { formatCLP } from "@/utils/formatCLP";
 
   const serieDataEl = document.getElementById("ipc-serie-data");
   const serieData = serieDataEl
@@ -315,7 +316,7 @@ const calculatorNextStepItems = [
   const resultadoDetalle = document.getElementById("resultado-detalle")!;
   const resultadoError = document.getElementById("resultado-error")!;
 
-  const fmt = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+  const fmt = formatCLP;
   let hasTrackedCompletion = false;
 
   function calcular(): void {

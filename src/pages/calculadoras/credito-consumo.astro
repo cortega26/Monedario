@@ -19,7 +19,8 @@ import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 import { calculateConsumerCredit } from "@/application/use-cases/CalculateConsumerCredit";
 import { consumerCreditWorkedExample } from "@/application/use-cases/CalculateConsumerCredit.methodology";
-const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+import { formatCLP } from "@/utils/formatCLP";
+const fmtClp = formatCLP;
 const exampleResult = calculateConsumerCredit({
   principal: 2_000_000,
   termMonths: 24,
@@ -373,6 +374,7 @@ const creditoConsumoFaqs = [
   import { calculateConsumerCredit } from "@/application/use-cases/CalculateConsumerCredit";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
+  import { formatCLP } from "@/utils/formatCLP";
   import {
     initScenarioPanel,
     restoreInputs,
@@ -390,7 +392,7 @@ const creditoConsumoFaqs = [
     null;
 
   function fmt(n: number): string {
-    return "$" + Math.round(n).toLocaleString("es-CL");
+    return formatCLP(n);
   }
 
   function showError(message: string) {

@@ -393,6 +393,7 @@ const interesCompuestoFaqs = [
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { saveCalculatorResult } from "@/utils/resumeState";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
+  import { formatCLP } from "@/utils/formatCLP";
   import {
     initScenarioPanel,
     restoreInputs,
@@ -410,7 +411,7 @@ const interesCompuestoFaqs = [
     null;
 
   function fmt(n: number): string {
-    return "$" + Math.round(n).toLocaleString("es-CL");
+    return formatCLP(n);
   }
 
   function fmtPct(n: number): string {

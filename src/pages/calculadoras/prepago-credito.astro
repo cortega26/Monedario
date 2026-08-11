@@ -18,9 +18,10 @@ import { creditPrepaymentWorkedExample } from "@/application/use-cases/SimulateC
 import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
 import CalculatorDataFreshness from "@/components/calculator/CalculatorDataFreshness.astro";
 import { formatEconomicDate } from "@/domain/economic/economicSourcePresentation";
+import { formatCLP } from "@/utils/formatCLP";
 const { parameters: economicParameters } = await getEconomicParameters();
 const ufLastUpdated = resolveEconomicIndicatorDate(economicParameters, "uf");
-const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+const fmtClp = formatCLP;
 const exampleResult = simulateCreditPrepayment({
   currentBalance: 5_000_000,
   monthlyPayment: 150_000,
@@ -397,6 +398,7 @@ const calculatorNextStepItems = [
   import { simulateCreditPrepayment } from "@/application/use-cases/SimulateCreditPrepayment";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
+  import { formatCLP } from "@/utils/formatCLP";
 
   declare global {
     interface Window {
@@ -405,7 +407,7 @@ const calculatorNextStepItems = [
   }
 
   function fmt(n: number) {
-    return "$" + Math.round(n).toLocaleString("es-CL");
+    return formatCLP(n);
   }
 
   function fmtM(n: number) {

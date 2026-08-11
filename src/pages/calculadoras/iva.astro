@@ -15,6 +15,7 @@ import CalculatorRadioGroup from "@/components/calculator/CalculatorRadioGroup.a
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { ivaWorkedExample } from "@/application/use-cases/CalculateIva.methodology";
+import { formatCLP } from "@/utils/formatCLP";
 
 // La calculadora IVA aún no está registrada en el portafolio (pendiente de
 // visto bueno editorial). Cuando se registre, currentCalculator devolverá su
@@ -41,7 +42,7 @@ const calculatorNextStepItems = [
 // Ejemplo mostrado por defecto en el panel de resultado, derivado del mismo
 // fixture que verifica el test anti-drift para que nunca quede desactualizado.
 const ex = ivaWorkedExample.expected;
-const fmtClp = (n: number) => "$" + n.toLocaleString("es-CL");
+const fmtClp = formatCLP;
 ---
 
 <Layout
@@ -291,6 +292,7 @@ const fmtClp = (n: number) => "$" + n.toLocaleString("es-CL");
 <script>
   import { calculateIva } from "@/application/use-cases/CalculateIva";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { formatCLP } from "@/utils/formatCLP";
 
   declare global {
     interface Window {
@@ -298,7 +300,7 @@ const fmtClp = (n: number) => "$" + n.toLocaleString("es-CL");
     }
   }
 
-  const fmt = (n: number) => "$" + n.toLocaleString("es-CL");
+  const fmt = formatCLP;
   const formatInput = (n: number) => Math.round(n).toLocaleString("es-CL");
   const parseInput = (raw: string): number => {
     const digitsOnly = raw.replace(/\D/g, "");

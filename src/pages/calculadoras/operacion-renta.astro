@@ -16,6 +16,7 @@ import { getEconomicParameters } from "@/application/use-cases/GetEconomicParame
 import { simulateOperacionRenta } from "@/application/use-cases/SimulateOperacionRenta";
 import { operacionRentaWorkedExample } from "@/application/use-cases/SimulateOperacionRenta.methodology";
 import { getPath } from "@/utils/getPath";
+import { formatCLP } from "@/utils/formatCLP";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import GlossaryContentWrapper from "@/components/GlossaryContentWrapper.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
@@ -29,7 +30,7 @@ const apvPath = getPath("/calculadoras/apv/");
 const glosarioGlobalPath = getPath("/glosario/global-complementario/");
 const glosarioOperacionRentaPath = getPath("/glosario/operacion-renta/");
 
-const formatPeso = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+const formatPeso = formatCLP;
 
 const exampleResult = simulateOperacionRenta({
   sueldosBrutos: 18_000_000,
@@ -476,6 +477,7 @@ const operacionRentaFaqs = [
   import { simulateOperacionRenta } from "@/application/use-cases/SimulateOperacionRenta";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
+  import { formatCLP } from "@/utils/formatCLP";
 
   declare global {
     interface Window {
@@ -485,7 +487,7 @@ const operacionRentaFaqs = [
   }
 
   function fmt(n: number): string {
-    return "$" + Math.round(n).toLocaleString("es-CL");
+    return formatCLP(n);
   }
 
   function fmtPct(n: number): string {

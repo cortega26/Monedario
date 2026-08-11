@@ -21,11 +21,12 @@ import { formatEconomicDate } from "@/domain/economic/economicSourcePresentation
 
 import { calculateMortgage } from "@/application/use-cases/CalculateMortgage";
 import { mortgageWorkedExample } from "@/application/use-cases/CalculateMortgage.methodology";
+import { formatCLP } from "@/utils/formatCLP";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 const ufValuePesos = economicParameters.uf;
 const ufLastUpdated = resolveEconomicIndicatorDate(economicParameters, "uf");
-const fmtClp = (n: number) => "$" + Math.round(n).toLocaleString("es-CL");
+const fmtClp = formatCLP;
 const exampleResult = calculateMortgage({
   propertyValue: 3000,
   currency: "uf",
@@ -420,6 +421,7 @@ const calculatorNextStepItems = [
   import { calculateMortgage } from "@/application/use-cases/CalculateMortgage";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
+  import { formatCLP } from "@/utils/formatCLP";
   import {
     initScenarioPanel,
     restoreInputs,
@@ -438,7 +440,7 @@ const calculatorNextStepItems = [
   const ufValuePesos = parseFloat(mainEl.dataset.uf ?? "39841.72");
 
   function fmtPesos(n: number): string {
-    return "$" + Math.round(n).toLocaleString("es-CL");
+    return formatCLP(n);
   }
 
   function getSelectedRadio(name: string): string {
