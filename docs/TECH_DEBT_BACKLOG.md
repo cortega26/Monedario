@@ -2256,3 +2256,18 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Estado:** ABIERTO (recomendación del audit del plan 074, 2026-08-10)
 - **Owner:** Carlos
 - **Fecha:** 2026-08-10
+
+## TD-0105 — Plan 052 perdido: trigger manual de workers con secret en query string sigue en producción
+
+- **ID:** TD-0105
+- **Título corto:** Re-implementar plan 052 (auth de triggers manuales por header)
+- **Descripción:** El plan 052 (P1 security, 2026-07-16) tenía su implementación aprobada en el commit `ae9246bd`, que vivía en una rama local **ya inexistente** — el fix nunca se mergeó a `main`. Reconciliación 2026-08-11 (post séptima auditoría): la vulnerabilidad sigue viva en producción:
+  - `workers/economic-snapshot-refresh/src/index.ts:230` — `/__refresh` autentica con `?secret=<GITHUB_TOKEN>` (el PAT de escritura de repo): una URL filtrada (logs, shell history, telemetría) expone autoridad de escritura al repositorio.
+  - `workers/reddit-mention-monitor/src/index.ts:133-141` — `/__check` autentica con `?secret=<CHECK_SECRET>`.
+  - El patrón correcto ya existe y está testeado: `workers/analytics-collector` (Authorization header + comparación en tiempo constante + rechazo de query string).
+- **Fix propuesto:** re-implementar el plan 052 completo (sigue siendo la especificación válida): secret dedicado por worker, `Authorization` header, comparación de tiempo constante, rechazo explícito de `?secret=`, actualizar READMEs y tests. NO reutilizar el PAT de escritura como secret de trigger. Compuertas humanas: crear/desplegar secrets dedicados y rotar/revocar el PAT (autoridad a nivel de cuenta GitHub).
+- **Riesgo:** alto (P1 security, superficie expuesta en producción); esfuerzo S–M (re-implementación) + pasos de operador.
+- **Severidad (1-5):** 5
+- **Estado:** ABIERTO (reconciliación 2026-08-11; plan 052 en `plans/`, IN PROGRESS)
+- **Owner:** Sin asignar
+- **Fecha:** 2026-08-11

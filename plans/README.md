@@ -49,7 +49,7 @@ heurística sin acceso al sitio). Ya implementado fuera de plan: el bug del IMM
 obsoleto (sueldo mínimo corregido a $553.553 como constante legal gestionada con
 guard de regresión, commit `fd2b5dff`).
 
-Séptima auditoría profunda: `/improve deep` el 2026-08-10 (commit `90370b4e`) → planes 057–081 (25), sobre el delta de 140 commits desde `efe021c7` (2026-07-16) + terreno nunca auditado (integraciones post-build, endpoints JSON, SW, gates nuevos). Revertido como **política, no bug**: los títulos live UF/UTM (`e0317d86`/`539cd5dc`) se revirtieron por conflicto con la ventana de medición OBS-01/PR #354 — pero el rationale quedó sin documentar (deuda menor de docs). Foco de esta pasada (todos los hallazgos reales, veteados leyendo el código): **pagefind 33 MB acumulado** (PERF, fix de 1 línea), **SW sirviendo UF/UTM stale en las páginas de dinero**, **contadores KV no atómicos con fallos tragados en silencio**, **UTA fabricada con UTM corriente cuando mindicador falla**, **`onclick` inline bloqueado por la CSP propia**, **tokenizer de inline-link-spacing que elimina `<`**, **timezone UTC en vez de Chile**, **fechas fabricadas "hoy" que anulan el gate de frescura**, **JSON-LD sin escapar `<`**, **security-scans fantasma en PRs**, **seoTitle con cero tests**, **3 espejos de constantes legales**, y la capa de tests/verificación post-build inexistente. Precios reverificados limpios: matemática de calculadoras, TaxEngine, provider económico, remark plugins, js-yaml v5, auth del collector (header-only, plan 037 intacto), regexes de shape (038/043 intactos).
+Séptima auditoría profunda: `/improve deep` el 2026-08-10 (commit `90370b4e`) → planes 057–081 (25), sobre el delta de 140 commits desde `efe021c7` (2026-07-16) + terreno nunca auditado (integraciones post-build, endpoints JSON, SW, gates nuevos). Revertido como **política, no bug**: los títulos live UF/UTM (`e0317d86`/`539cd5dc`, reverts `a5796fa7`/`00180e56`) se revirtieron porque el `fix(seo)` cambiaba el `<title>`/description de las dos páginas de dinero más medidas (conversor-uf/utm, ~73% de las impresiones orgánicas según GSC W28–W31) DENTRO de la ventana de medición OBS-01 (PR #354): cualquier cambio de título habría contaminado el baseline de CTR. Decisión: no tocar titles/descriptions de superficies en medición hasta el cierre de ventana; re-evaluar tras OBS-01 (los valores live pueden reintroducirse vía el mecanismo seoTitle del plan 067, que ahora tiene gate propio). Foco de esta pasada (todos los hallazgos reales, veteados leyendo el código): **pagefind 33 MB acumulado** (PERF, fix de 1 línea), **SW sirviendo UF/UTM stale en las páginas de dinero**, **contadores KV no atómicos con fallos tragados en silencio**, **UTA fabricada con UTM corriente cuando mindicador falla**, **`onclick` inline bloqueado por la CSP propia**, **tokenizer de inline-link-spacing que elimina `<`**, **timezone UTC en vez de Chile**, **fechas fabricadas "hoy" que anulan el gate de frescura**, **JSON-LD sin escapar `<`**, **security-scans fantasma en PRs**, **seoTitle con cero tests**, **3 espejos de constantes legales**, y la capa de tests/verificación post-build inexistente. Precios reverificados limpios: matemática de calculadoras, TaxEngine, provider económico, remark plugins, js-yaml v5, auth del collector (header-only, plan 037 intacto), regexes de shape (038/043 intactos).
 
 Ejecutar en el orden de la tabla salvo que las dependencias indiquen lo contrario.
 Cada ejecutor debe leer el plan completo y honrar sus condiciones de STOP.
@@ -70,9 +70,14 @@ si `node_modules/` no existe.
 (2026-08-11):** los 25 planes fueron ejecutados y archivados. Los planes de la
 tabla antigua (052, 041, 046, 055, 056) NO forman parte de esa secuencia:
 
-- **052** — IN PROGRESS: su código (`ae9246bd`) vive en una rama local NO
-  mergeada a `main`. **No re-implementar**: requiere decisión del operador
-  (merge, deploy y rotación de PAT — pasos no ejecutables por agente).
+- **052** — IN PROGRESS (reconciliado 2026-08-11): la rama local con el fix
+  aprobado (`ae9246bd`) **ya no existe** — el código nunca se mergeó y la
+  vulnerabilidad sigue viva (`?secret=<GITHUB_TOKEN>` con PAT de escritura en
+  `workers/economic-snapshot-refresh/src/index.ts:230`; idem `CHECK_SECRET` en
+  reddit-mention-monitor). **Requiere re-implementación** (el plan es la
+  especificación); registrado como TD-0105 (severidad 5). Bloqueado por
+  decisión del operador: deploy de secrets dedicados y rotación de PAT
+  requieren autoridad a nivel de cuenta GitHub.
 - **041** — BLOCKED: no intentar (hipótesis descartada; falta causa de campo).
 - **046, 055, 056** — spikes de dirección con compuertas humanas: ejecutar
   solo si el operador lo pide; se detienen en la compuerta.

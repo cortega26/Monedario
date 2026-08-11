@@ -19,6 +19,14 @@
   plan sigue `IN PROGRESS` porque los secretos dedicados aún no se desplegaron,
   falta el smoke productivo y la rotación/revocación del PAT requiere autoridad
   de emisión a nivel de cuenta GitHub.
+- **Reconciliación 2026-08-11**: el commit `ae9246bd` **ya no existe en el
+  repo** (la rama local donde vivía se perdió) — el fix NUNCA se mergeó a
+  `main`. La vulnerabilidad sigue viva en producción:
+  `workers/economic-snapshot-refresh/src/index.ts:230` (`?secret=<GITHUB_TOKEN>`
+  con el PAT de escritura de repo) y `workers/reddit-mention-monitor/src/
+  index.ts` (`?secret=<CHECK_SECRET>`). Estado real: **requiere re-implementación
+  desde cero** (el plan completo sigue siendo la especificación válida).
+  Registrado como TD-0105 (severidad 5, P1) — ver `docs/TECH_DEBT_BACKLOG.md`.
 
 ## Why this matters
 
