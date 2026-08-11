@@ -1,26 +1,33 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
-import worker from "../../../workers/reddit-mention-monitor/src/index";
+import worker, { type Env } from "../../../workers/reddit-mention-monitor/src/index";
 
-function makeKv(): KVNamespace {
+// Structural KV mock. NOT typed as KVNamespace: @cloudflare/workers-types is
+// not in the repo tsconfig that astro check uses (same note as logic.test.ts).
+type KvCache = {
+  get: (key: string) => Promise<string | null>;
+  put: (key: string, value: string) => Promise<void>;
+};
+
+function makeKv(): KvCache {
   const store = new Map<string, string>();
   return {
     get: async (key: string) => store.get(key) ?? null,
     put: async (key: string, value: string) => {
       store.set(key, value);
     },
-  } as unknown as KVNamespace;
+  };
 }
 
-function makeEnv(overrides: Record<string, unknown> = {}) {
+function makeEnv(overrides: Record<string, unknown> = {}): Env {
   return {
-    REDDIT_SEEN: makeKv(),
+    REDDIT_SEEN: makeKv() as unknown as Env["REDDIT_SEEN"],
     REDDIT_CLIENT_ID: "client-id",
     REDDIT_CLIENT_SECRET: "client-secret",
     DISCORD_WEBHOOK_URL: "https://discord.example/hook",
     REDDIT_USER_AGENT: "monedario-test",
     CHECK_SECRET: "check-secret",
     ...overrides,
-  };
+  } as unknown as Env;
 }
 
 afterEach(() => {
