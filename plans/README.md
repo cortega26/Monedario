@@ -68,7 +68,8 @@ si `node_modules/` no existe.
 
 **La secuencia de la séptima auditoría (057 → 081, orden 1–25) está COMPLETA
 (2026-08-11):** los 25 planes fueron ejecutados y archivados. De la tabla
-antigua solo quedan vivos 041, 046, 055 y 056 (052 ya fue DONE y archivado —
+antigua solo quedan vivos 041, 046, 055 y el 082 (052 y 056 ya fueron DONE
+y archivados —
 ver abajo), y NO forman parte de esa secuencia:
 
 - **052** — DONE y archivado (2026-08-11, PR #420, squash `8bc8a0a2`):
@@ -77,13 +78,16 @@ ver abajo), y NO forman parte de esa secuencia:
   producción). **Pendientes del operador**: smoke positivo por header y
   rotación del PAT (autoridad de cuenta GitHub) — checklist en el ADR.
 - **041** — BLOCKED: no intentar (hipótesis descartada; falta causa de campo).
-- **046, 055, 056** — spikes de dirección con compuertas humanas: ejecutar
+- **046, 055** — spikes de dirección con compuertas humanas: ejecutar
   solo si el operador lo pide; se detienen en la compuerta. **Reconciliados
   contra el estado actual el 2026-08-11** (drift checks re-corridos contra
   HEAD; secciones "Reconciliación" añadidas a cada plan y filas de la tabla
   actualizadas): premisas vivas, extractos re-verificados, datos al día
   (046: patrón post-resultado ya existente en conversor-utm; 055: GSC W32 +
-  freeze refactorizado; 056: contrato v2 ampliado, componentes intactos).
+  freeze refactorizado).
+- **056** — EJECUTADO Y ARCHIVADO (2026-08-11, commit `f2c64ce7`): spike
+  completado, entregable en `docs/backlog/`, derivó el plan **082**
+  (implementación del paso 1, TODO en la tabla de pendientes).
 
 **Loop por plan (uno a uno):**
 1. Leer el plan completo; correr su drift check contra `90370b4e`.
@@ -158,12 +162,13 @@ scorecards y exports reales en `output/operations/`). Originalmente siete;
 parcialmente, con su typo residual desglosado en el plan 042; 038 con alcance
 revisado a 3 de 4 claves, el resto desglosado en el plan 043 — ver nota abajo).
 El plan 043 se sumó el 2026-07-11 como *carve-out* de 038. Los planes que
-siguen vivos de este lote (041, 046, 055, 056) **no forman parte de la
-secuencia de la séptima auditoría** (057–081): ver la sección
-"Orden global de ejecución" arriba para su estado y tratamiento (los tres
-spikes 046/055/056 fueron reconciliados contra el estado actual el
-2026-08-11). Los restantes (035–040, 042–045, 047–051, 053–054 y el 052,
-cerrado con PR #420 el 2026-08-11) están DONE y archivados.
+siguen vivos de este lote (041, 046, 055 y el 082, derivado del 056) **no
+forman parte de la secuencia de la séptima auditoría** (057–081): ver la
+sección "Orden global de ejecución" arriba para su estado y tratamiento (los
+spikes 046/055 fueron reconciliados contra el estado actual el 2026-08-11; el
+056 se ejecutó y archivó ese mismo día, derivando el 082). Los restantes
+(035–040, 042–045, 047–051, 053–054, 056 y el 052, cerrado con PR #420 el
+2026-08-11) están DONE y archivados.
 
 > **Recordatorio de cierre**: en cuanto un plan de esta tabla pase a `DONE`,
 > deja de aparecer aquí — su archivo se mueve a
@@ -176,7 +181,7 @@ cerrado con PR #420 el 2026-08-11) están DONE y archivados.
 | 2 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | BLOCKED (hipótesis descartada; causa de campo sin identificar — ver nota abajo) |
 | 3| [046](046-converter-recurrence-return-hook-spike.md) | **Spike de dirección**: investigar si hay recurrencia real sobre los conversores (superficie de mayor **tráfico** según RUM W27; recurrencia **por confirmar**) y, solo si la hay, diseñar un return-hook privacy-safe | P2 | M | LOW | todos | TODO (spike de diseño; reconciliado 2026-08-11 — reencuadrado: el patrón post-resultado ya existe en conversor-utm vía `UtmPostResultActions`; evaluar lo construido, no diseñar desde cero) |
 | 4| [055](055-calculator-consolidation-spike.md) | **Spike de dirección**: consolidación por URL de 5 calculadoras (dossier de evidencia + opciones de migración con gates de ruta/RSS/ADR) | P2 | M | MED | todos | TODO (spike; reconciliado 2026-08-11 — datos actualizados a GSC W32; freeze refactorizado a `scripts/lib/url-freeze-exceptions.mjs`; inventario intacto) |
-| 5| [056](056-decision-paths-afc-prepago-credito-spike.md) | **Spike de dirección**: rutas de decisión contextuales AFC/prepago/crédito (diseño de NextSteps + extensión del patrón post-resultado) | P2 | M | LOW | 046 | EJECUTADO Y APROBADO EN REVISIÓN (2026-08-11, reconciliado antes de ejecutar) — entregable `docs/backlog/DECISION-PATHS-AFC-PREPAGO-CREDITO-2026-08-02.md`: recorridos mapeados (hueco único = reempleo AFC), sets de 3 NextSteps por página con `next_step_id` verificados contra `SAFE_TOKEN` (sin colisiones), generalización parametrizada de `UtmPostResultActions` (reveal `calculator:result` ya emitido en ambas páginas), medición con umbrales del registry citados file:line y datos W30–W32, piloto recomendado = prepago-credito. **Desviación aprobada en mérito**: `.gitignore` +1 línea (`!docs/backlog/DECISION-PATHS-*.md`) para que el entregable del plan (que no matcheaba ningún allowlist) sea commiteable — misma clase de desviación que el 051 con su README. Cierre/archivo a pedido del operador; compuertas humanas abiertas en §5 del documento (copy, piloto, hueco reempleo, enlace externo, alerta AFC) |
+| 5| [082](082-next-steps-decision-paths.md) | Implementar los conjuntos de NextSteps contextuales del diseño 056 (paso 1: `related` en portfolio, sin post-result) | P2 | S | LOW | todos | TODO (derivado del spike 056; copy aprobado por el operador 2026-08-11; paso 2 post-result diferido hasta 2 semanas comparables del registry) |
 > **035–040, 042–045 y 047–050 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
 
 > **046 es un spike de dirección (`/improve next`, 2026-07-12)**, no un plan de
@@ -189,12 +194,14 @@ cerrado con PR #420 el 2026-08-11) están DONE y archivados.
 > aceptado como filtro y dimensión) antes de integrar el filtro.
 >
 > **053 CERRADO (mergeado y archivado 2026-08-02); 054–056 son los planes
-> pendientes de la auditoría de dirección (`/improve next`, 2026-08-02)**,
+> de la auditoría de dirección (`/improve next`, 2026-08-02)**,
 > basados en el memo de viabilidad estratégica del mismo día
 > (`output/audits/strategic-viability-2026-08-02/`, untracked — veredicto
 > "continuar con foco estricto", ventana de experimentos 2026-08-02 → 2026-11-02).
-> Los tres restantes son spikes de diseño/evidencia read-only con compuertas
-> humanas. El commit `e17013b7` (#382, el mismo día) ya implementó parte de la
+> Los tres eran spikes de diseño/evidencia read-only con compuertas
+> humanas. 054 y 056 archivados; 055 pendiente (dossier por URL). El 056 se
+> ejecutó el 2026-08-11 y derivó el plan **082** (paso 1 de implementación).
+> El commit `e17013b7` (#382, el mismo día) ya implementó parte de la
 > fundación utility-led que el memo pide (contrato de analytics v2 con
 > `alert_interest_*`/`support_*`/`next_step_*`, copy de privacidad corregido en
 > `HeroHomepage.astro:93`, `UtmPostResultActions` en conversor-utm, registry de
@@ -380,7 +387,7 @@ cerrado con PR #420 el 2026-08-11) están DONE y archivados.
 **Por qué este orden:** *(bloque histórico de la tabla de la quinta/sexta
 auditoría — los planes que cita (040, 042, 043, 035–038) están archivados y
 ya no aplican a la tabla vigente; el orden actual de este lote es: 041
-BLOCKED, y los spikes 046/055/056 solo a pedido del
+BLOCKED, y los spikes 046/055 solo a pedido del
 operador (reconciliados 2026-08-11). La secuencia ejecutable pendiente es la
 de la séptima auditoría 057–081, ya completa — 052 fue cerrado con PR #420.)*
 - **035, 038, 039, 037 y 036 ya ejecutados** (ver notas abajo): máxima
@@ -1089,12 +1096,13 @@ Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main
 | [076](archive/076-pyproject-prune.md) | Podar stack Python no usado (scraping/MCP) | P2 | M | DONE (fast-forward `56bf32d7`, 2026-08-10) — 22 deps podadas (inventario real de imports verificado: solo googleapiclient/google-auth + fonttools/brotli — hallazgo: subset-fonts.py usa stdlib + subprocess, las deps pip se quedan para el runtime); descripción corregida; `uv.lock` −891 líneas (70 de 116 paquetes), `uv lock --check` en sync; pytest 38/38, ruff limpio, pip-audit exit 0; sin doc-drift en la policy de adaptación; **auditoría adversarial** (sin cambios): venv podado sin cruft (verificado), imports runtime OK, los 3 skips de pip-audit local son paquetes ambientales del operador (proyecto polla — fuera del repo; CI corre limpio), workflows sin referencias a podadas; suite Node 1314/1314 |
 | [077](archive/077-check-ci-aggregate.md) | `check:ci` — un comando que reproduce el CI localmente | P2 | S–M | DONE (fast-forward `450b258b`, 2026-08-10) — `check:ci` con 23 gates (espejo del CI verificado contra ci.yml + 6 huérfanos rápidos, todos <1.4s medidos); texto del issue automático y README/START_HERE corregidos; **hallazgo preexistente reportado (STOP)**: `check:editorial-timeliness` falla por 4 posts con SLA vencido el 2026-08-09 (el scheduled CI en main falla hoy igual; deuda editorial, no se tocó); **auditoría adversarial integrada** (commit `450b258b`): `check:legal-citations` y los 2 checks de hero añadidos (huecos del espejo), `check:images` excluido con razón (borra PNGs — DX-03), divergencias documentadas (editorial sin ENFORCE, hero validación-solo, timeliness modo estricto); lockfile sync de metadata de 074 materializado (benigno) |
 
-### Auditoría de dirección 2026-08-02 (plans 053–056; 055–056 pendientes)
+### Auditoría de dirección 2026-08-02 (plans 053–056; 055 pendiente)
 
 | Plan | Título | Prioridad | Esfuerzo | Estado |
 |------|--------|-----------|----------|--------|
 | [053](archive/053-gsc-measurement-baseline.md) | Completar el baseline de medición GSC (gate de semanas faltantes estricto en CI + exports de país/dispositivo) | P1 | M | DONE (fast-forward `f1e37560`+`bc979708`, 2026-08-02) — incluye ronda de auditoría que corrigió el gate estricto en CI; backfill de 2026-W29 pendiente como paso operativo |
 | [054](archive/054-editorial-evidence-ledger-spike.md) | **Spike de dirección**: ledger de evidencia del pipeline editorial (inventario 3/53, reproducción del checker, veredicto claim vs. evidencia) | P1 | M | DONE (fast-forward `673ad8dc`, 2026-08-02) — entregable `docs/reports/EDITORIAL-EVIDENCE-LEDGER-2026-08-02.md`; gap real = 19 (22 en alcance, 19 sin cadena 06/07); compuerta humana abierta (opciones A/B/C en el ledger); merge local, sin push |
+| [056](archive/056-decision-paths-afc-prepago-credito-spike.md) | **Spike de dirección**: rutas de decisión contextuales AFC/prepago/crédito (diseño de NextSteps + extensión del patrón post-resultado) | P2 | M | DONE (2026-08-11, commit `f2c64ce7`) — entregable `docs/backlog/DECISION-PATHS-AFC-PREPAGO-CREDITO-2026-08-02.md` (recorridos mapeados, hueco único = reempleo AFC; sets de 3 NextSteps con `next_step_id` verificados contra `SAFE_TOKEN`; generalización parametrizada de `UtmPostResultActions`; medición con umbrales del registry y datos W30–W32; piloto recomendado = prepago-credito). Ejecutado reconciliado (drift re-corrido 2026-08-11). **Desviación aprobada en mérito**: `.gitignore` +1 línea (`!docs/backlog/DECISION-PATHS-*.md`) para commiteable. Derivó el plan **082** (implementación paso 1); compuertas humanas resueltas en sesión (copy aprobado) o diferidas (§5: hueco reempleo, enlace externo, alerta AFC — fuera de alcance del 082) |
 
 ### Sexta auditoría profunda / Issue #315 — 2026-07-16
 
