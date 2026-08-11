@@ -58,7 +58,7 @@ Cada ejecutor debe leer el plan completo y honrar sus condiciones de STOP.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Depende de | Estado |
 |---|------|--------|-----------|----------|--------|------------|--------|
-| 1 | [078](078-lhci-mobile-wiring.md) | Ejecutar config Lighthouse mobile (warn-only, scheduled) | P3 | S | LOW | — | TODO |
+| 1 | [078](078-lhci-mobile-wiring.md) | Ejecutar config Lighthouse mobile (warn-only, scheduled) | P3 | S | LOW | — | IN PROGRESS |
 | 2 | [079](079-push-validation.md) | Validar snapshot/artefactos al llegar a main (push + validador) | P2 | M | MED | — | TODO |
 | 3 | [080](080-clp-formatter-unify.md) | Unificar formateadores CLP en formatCLP + guard de estilo | P3 | S–M | MED | — | TODO |
 | 4 | [081](081-postbuild-verification.md) | Capa de verificación post-build (aserciones sobre dist/) | P2 | L | MED | 057, 062, 065, 067 (aserciones condicionales) | TODO |

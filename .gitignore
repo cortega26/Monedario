@@ -6,6 +6,8 @@ dist/
 output/audit/
 output/hero-downloads/
 output/hero-images/
+# Lighthouse CI artifacts (timestamps in filenames — regenerated per run)
+.lighthouseci/
 output/operations/weekly-search-performance/
 output/performance/
 output/playwright/

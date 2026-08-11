@@ -1,7 +1,7 @@
 # Agent Execution Protocol
 
 Rules governing how agents scope, execute, and close tasks in this repository.
-Referenced from `AGENTS.md §2`. Constitutional precedence applies — see `docs/AI_ENGINEERING_CONSTITUTION.md`.
+Referenced from `AGENTS.md` (Agent Execution Rules). Constitutional precedence applies — see `docs/AI_ENGINEERING_CONSTITUTION.md`.
 
 ## Rule 2.1 - Scope declaration is mandatory before editing
 
@@ -95,6 +95,18 @@ Referenced from `AGENTS.md §2`. Constitutional precedence applies — see `docs
 - Enforcement: For tasks that span more than one editing session or touch more than three files: create a lightweight plan document in `docs/backlog/` before starting. For complex multi-PR work, use a full exec-plan in `docs/backlog/` with a progress log that is updated as work advances. For any task executed from a plan, backlog item, roadmap, or equivalent tracking artifact, the agent must update that artifact as part of the DoD work whenever status, scope, decisions, blockers, or completion evidence changed. The final response must cite the updated artifact path. If the artifact cannot be updated, task status is `HALT` until the documentation gap is resolved.
 - Compliant behavior: Creating `docs/backlog/PLAN-slug-migration.md` with phases, decisions, and progress log before executing a multi-step migration, then updating it before closure with status, evidence, and any decisions made.
 - Violation: Starting a multi-file refactor with no plan artifact, reconstructing intent from conversation history on every new session, or closing a plan-driven task without updating the source tracking artifact.
+
+## Rule 2.14 - Spec-driven execution loop for coding tasks
+
+- Rationale: Written specs and running tests make work verifiable and resumable; intent kept only in conversation drifts and dies between sessions. Proof is by execution, not assumption.
+- Enforcement: For any non-trivial coding task (multi-file or behavioral change):
+  1. **Spec first.** When a plan exists (`plans/*.md`, `docs/backlog/*`), the plan IS the spec — do not create a parallel `spec.md` (mirror drift). Create root `spec.md` (allowlisted by `check:docs`) only for ad-hoc tasks without a plan, or when a plan's drift check fired and needs reconciliation. A spec has: goals, implementation details, and a verification table listing the exact command + expected result that proves each piece works.
+  2. **Track as you go.** Maintain root `todo.md` (also allowlisted) as a checklist of verifiable sub-tasks; check items off as work advances. Empty or delete `todo.md` at task close — stale mirrors are a violation. Plan-driven tasks still update their plan row/progress per Rule 2.13.
+  3. **Prove with tests.** Add or extend tests in the existing `tests/` categories (unit / integration / static-analysis) — never a new per-task folder. Run `pnpm run test` after every meaningful commit. Tests of lasting invariants stay in the suite; task-only scaffolding is removed at close.
+  4. **Review before closure.** One adversarial pass before marking done: reread the spec (or plan) and the diff against live code, list gaps, fix them. For L/XL-effort tasks, add a fresh sub-agent review of spec vs implementation and loop on its feedback; stop once gaps resolve — no artificial rounds.
+- Clarification policy: Do not ask the user about anything the spec and the tests can answer. Exception — ambiguity touching contracts, invariants, public URLs/surfaces, or plan STOP conditions always goes through Rules 2.5/2.6 (ask or halt).
+- Compliant behavior: Ad-hoc refactor with root `spec.md` + `todo.md`, verification table executed item by item, files removed at close, suite green.
+- Violation: Starting a multi-file change with no spec, no todo list, and no tests; leaving a stale `todo.md` behind after closure; padding the review loop with repeated identical sub-agent passes.
 
 ## Execution checklist (required before code edits)
 - [ ] Scope declared (in-scope/out-of-scope).
