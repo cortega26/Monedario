@@ -7,7 +7,15 @@
 // por diseño (el gate indexable reporta entradas inválidas y falla; el de
 // rutas filtra en silencio) y normalización de URLs distinta (indexable usa
 // normalizeIndexableUrl, rutas usa la URL cruda). Este módulo unifica solo el
-// ESQUEMA de campos; cada gate conserva su comportamiento.
+// ESQUEMA de campos; cada gate conserva su comportamiento. El gate indexable
+// conserva su loop de mensajes específicos (usa isCompleteException) — su
+// salida se verificó byte-idéntica contra el código previo.
+//
+// validateExceptionSchema es la API de contrato para gates futuros (p. ej. el
+// plan 081): reporta TODAS las violaciones. OJO: su regla "decision !=
+// APPROVED" NO debe aplicarse a un registry que contenga propuestas
+// pendientes/denegadas como documentación de governance — el gate indexable
+// las salta en silencio deliberadamente.
 
 import { readFileSync } from "node:fs";
 

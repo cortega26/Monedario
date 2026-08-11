@@ -69,6 +69,15 @@ describe("loadApprovedExceptionUrls (compare-routes behavior)", () => {
     ]);
     expect(loadApprovedExceptionUrls(file, NOW)).toEqual(new Set());
   });
+
+  it("keeps an entry whose expiresAt equals now (boundary of >= now)", () => {
+    const file = writeRegistry([
+      { ...VALID_ENTRY, expiresAt: "2026-08-03T00:00:00Z" },
+    ]);
+    expect(loadApprovedExceptionUrls(file, NOW)).toEqual(
+      new Set(["https://monedario.cl/nueva/"])
+    );
+  });
 });
 
 describe("validateExceptionSchema (indexable gate behavior)", () => {

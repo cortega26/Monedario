@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { REQUIRED_EXCEPTION_FIELDS } from "./lib/url-freeze-exceptions.mjs";
+import { isCompleteException } from "./lib/url-freeze-exceptions.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 // Gate sitemap+HTML renderizado — requiere excepción aprobada (esquema en
@@ -70,9 +70,7 @@ export function checkIndexableUrlFreeze({
   const exceptions = new Set();
 
   for (const entry of exceptionDocument.exceptions ?? []) {
-    const complete = REQUIRED_EXCEPTION_FIELDS.every(
-      key => String(entry[key] ?? "").trim().length > 0
-    );
+    const complete = isCompleteException(entry);
     if (!complete) {
       errors.push(`incomplete exception record for ${entry.url ?? "unknown URL"}`);
       continue;
