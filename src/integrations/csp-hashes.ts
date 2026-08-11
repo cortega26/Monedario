@@ -13,16 +13,16 @@ const SCRIPT_RE = /<script([^>]*)>([\s\S]*?)<\/script>/gi;
 const NON_EXEC_TYPES =
   /^(?:application\/(?!ecmascript|javascript)|text\/(?!javascript))/i;
 
-function isExecutable(attrs: string): boolean {
+export function isExecutable(attrs: string): boolean {
   const m = attrs.match(/\btype\s*=\s*["']([^"']+)["']/i);
   return !m || !NON_EXEC_TYPES.test(m[1]);
 }
 
-function sha256base64(content: string): string {
+export function sha256base64(content: string): string {
   return createHash("sha256").update(content, "utf8").digest("base64");
 }
 
-async function collectHashes(distDir: string): Promise<Set<string>> {
+export async function collectHashes(distDir: string): Promise<Set<string>> {
   const hashes = new Set<string>();
   for await (const file of glob("**/*.html", { cwd: distDir })) {
     const html = readFileSync(join(distDir, file), "utf8");

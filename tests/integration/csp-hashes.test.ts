@@ -1,4 +1,4 @@
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -247,5 +247,99 @@ describe("public/_headers — Pagefind CSP invariants", () => {
         `${directive} must include ${minimumSource}`
       ).toContain(minimumSource);
     }
+  });
+});
+
+// ── Caracterización de los internals (plan 073) ─────────────────────────────
+
+describe("csp-hashes pure functions", () => {
+  it("classifies executable vs data script types", async () => {
+    const { isExecutable, sha256base64 } = await import("@/integrations/csp-hashes");
+    expect(isExecutable("")).toBe(true);
+    expect(isExecutable('type="application/ld+json"')).toBe(false);
+    expect(isExecutable("type='application/json'")).toBe(false);
+    expect(isExecutable('type="application/javascript"')).toBe(true);
+    expect(isExecutable('type="text/javascript"')).toBe(true);
+    expect(isExecutable('type="module"')).toBe(true);
+
+    const first = sha256base64("const a = 1;");
+    expect(first).toBe(sha256base64("const a = 1;"));
+    expect(first).toMatch(/^[A-Za-z0-9+/]+=*$/);
+  });
+
+  it("collects only executable inline scripts across the dist tree", async () => {
+    const { collectHashes, sha256base64 } = await import("@/integrations/csp-hashes");
+    const dir = mkdtempSync(join(tmpdir(), "csp-hashes-"));
+    tempDirs.push(dir);
+    writeFileSync(
+      join(dir, "page.html"),
+      '<script>const a = 1;</script><script type="application/ld+json">{"x":"<"}</script>'
+    );
+    writeFileSync(join(dir, "other.html"), "<p>sin scripts</p>");
+    mkdirSync(join(dir, "sub"));
+    writeFileSync(join(dir, "sub", "nested.html"), '<script>const b = 2;</script>');
+
+    const hashes = await collectHashes(dir);
+    expect(hashes).toEqual(
+      new Set([
+        `'sha256-${sha256base64("const a = 1;")}'`,
+        `'sha256-${sha256base64("const b = 2;")}'`,
+      ])
+    );
+  });
+
+  it("returns an empty set for a tree without inline scripts", async () => {
+    const { collectHashes } = await import("@/integrations/csp-hashes");
+    const dir = mkdtempSync(join(tmpdir(), "csp-hashes-empty-"));
+    tempDirs.push(dir);
+    writeFileSync(join(dir, "page.html"), "<p>nada</p>");
+    expect(await collectHashes(dir)).toEqual(new Set());
+  });
+});
+
+describe("cspHashesIntegration hook", () => {
+  it("inyecta los hashes en _headers durante build:done", async () => {
+    const { cspHashesIntegration } = await import("@/integrations/csp-hashes");
+    const dir = mkdtempSync(join(tmpdir(), "csp-hook-"));
+    tempDirs.push(dir);
+    writeFileSync(
+      join(dir, "index.html"),
+      '<script>const a = 1;</script><script type="application/ld+json">{"x":1}</script>'
+    );
+    writeFileSync(
+      join(dir, "_headers"),
+      "/*\n  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline';\n"
+    );
+
+    const logs: string[] = [];
+    await cspHashesIntegration().hooks["astro:build:done"]!({
+      dir: new URL(`file://${dir}/`),
+      logger: {
+        info: (m: string) => logs.push(`info: ${m}`),
+        warn: (m: string) => logs.push(`warn: ${m}`),
+      },
+    } as never);
+
+    const headers = readFileSync(join(dir, "_headers"), "utf8");
+    expect(headers).toContain("'sha256-");
+    expect(headers).not.toContain("'unsafe-inline'");
+    expect(logs.some(l => l.startsWith("info:"))).toBe(true);
+  });
+
+  it("advierte y deja _headers intacto cuando no hay scripts inline", async () => {
+    const { cspHashesIntegration } = await import("@/integrations/csp-hashes");
+    const dir = mkdtempSync(join(tmpdir(), "csp-hook-empty-"));
+    tempDirs.push(dir);
+    writeFileSync(join(dir, "index.html"), "<p>sin scripts</p>");
+    writeFileSync(join(dir, "_headers"), "/*\n  Content-Security-Policy: script-src 'self';\n");
+
+    const logs: string[] = [];
+    await cspHashesIntegration().hooks["astro:build:done"]!({
+      dir: new URL(`file://${dir}/`),
+      logger: { info: () => {}, warn: (m: string) => logs.push(`warn: ${m}`) },
+    } as never);
+
+    expect(logs.some(l => l.startsWith("warn:"))).toBe(true);
+    expect(readFileSync(join(dir, "_headers"), "utf8")).toContain("script-src 'self';");
   });
 });

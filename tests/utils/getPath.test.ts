@@ -14,3 +14,18 @@ describe("getPath", () => {
     expect(getPath("//cdn.example.com/asset.css")).toBe("//cdn.example.com/asset.css");
   });
 });
+
+describe("getPath with BASE_URL", () => {
+  it("prefija la base y evita duplicarla", async () => {
+    const { vi } = await import("vitest");
+    vi.stubEnv("BASE_URL", "/blog");
+    try {
+      const { getPath } = await import("@/utils/getPath");
+      expect(getPath("posts/x")).toBe("/blog/posts/x");
+      expect(getPath("/blog/posts/x")).toBe("/blog/posts/x");
+      expect(getPath("/")).toBe("/blog/");
+    } finally {
+      vi.unstubAllEnvs();
+    }
+  });
+});

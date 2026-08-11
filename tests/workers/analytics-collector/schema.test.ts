@@ -1366,7 +1366,7 @@ describe("fetch handler — guards HTTP", () => {
         },
       }),
       duplex: "half",
-    });
+    } as unknown as RequestInit & { duplex: "half" });
     expect(response.status).toBe(413);
   });
 
