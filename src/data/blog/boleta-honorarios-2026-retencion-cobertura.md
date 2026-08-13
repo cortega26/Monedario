@@ -25,7 +25,7 @@ articleLead:
   calculatorLabel: "Calcular líquido por boleta"
   nextStepHref: "/posts/operacion-renta-f22-checklist/"
   nextStepLabel: "Ir al checklist F22"
-  validAsOf: 2026-05-11
+  validAsOf: 2026-08-12
   officialSources:
     - label: "SII — Boletas de honorarios"
       href: "https://www.sii.cl/destacados/boletas_honorarios/"

@@ -1,0 +1,30 @@
+slug: operacion-renta-f22-checklist
+query_anchor: "operacion renta f22 checklist"
+ymyl: true
+requires_calculation: false
+regulatory_sensitivity: alta
+target_audience: "Contribuyente persona natural que ya declaro (o intento declarar) su F22 AT2026 y llega al articulo fuera de la ventana de declaracion, o que busca la guia de referencia para el ciclo cerrado."
+cut_off_date: 2026-08-12
+origin: "output/audits/corpus-2026-08-12/fichas/operacion-renta-f22-checklist.md (Fase A2, ComplianceAgent adversarial, 2026-08-12). Verdicto FAIL 6,575/10. Hallazgo principal R2 vigencia: el articulo describe en presente indicativo una ventana AT2026 que ya cerro (con pago 2026-04-30, sin pago 2026-05-08); hoy es 2026-08-12."
+remediation_type: sustantiva
+decision_editorial: "La pieza queda PERENNE (no se archiva). Se reencuadra la ventana AT2026 como referencia fechada del ciclo cerrado, se explica que puede hacer hoy quien llega fuera de ventana, y se senala cuando abre el proximo ciclo (AT2027) sin inventar fechas no publicadas."
+scope:
+  in:
+    - "Declarar explicitamente en la primera pantalla que la ventana AT2026 ya cerro."
+    - "Conservar el calendario AT2026 (fechas de declaracion y de deposito de devolucion) como referencia fechada, no como instruccion accionable hoy."
+    - "Agregar seccion sobre que hacer hoy fuera de ventana: rectificatoria, consulta de estado/observaciones, consulta de devolucion."
+    - "Senalar que el calendario AT2027 aun no esta publicado por el SII a la fecha de esta revision, sin inventar fechas."
+    - "Agregar articleLead (ausente pese a featured/homepagePriority 200)."
+  out:
+    - "No se cambia slug, title, seoTitle, H1, rutas ni canonical (congelados por PR #408/#409)."
+    - "No se modifican las cifras ya verificadas por la auditoria (credito educacion $174.803, calendario de deposito, Prestamo Solidario) — se conservan tal cual, reencuadradas como dato del ciclo AT2026."
+    - "No se reescribe prosa no afectada por el reencuadre temporal (plan PLAN-auditoria-corpus-publicado-2026-08-12 Sec 11)."
+    - "No se tocan los otros 3 articulos del lote 0."
+benchmarkSet:
+  - "N/A — este run no usa benchmark externo; es remediacion de conformidad sobre pieza ya publicada."
+patternHypothesis: "N/A"
+localDelta: "N/A — no aplica adaptacion competitiva; el delta es correccion de vigencia editorial."
+nonCopyBoundaries:
+  - "N/A"
+ownerTarget: "operacion-renta-f22-checklist ya es owner de canonicalTopic f22-revisar-enviar; no cambia."
+successSignal: "Un lector que llegue en agosto 2026 entiende en la primera pantalla que la ventana AT2026 cerro, sabe que puede hacer hoy (rectificatoria/consulta de estado/consulta de devolucion), y no interpreta el calendario AT2026 como instruccion vigente."

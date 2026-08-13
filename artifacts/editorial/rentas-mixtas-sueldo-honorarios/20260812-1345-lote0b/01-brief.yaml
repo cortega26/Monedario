@@ -1,0 +1,31 @@
+slug: rentas-mixtas-sueldo-honorarios
+query_anchor: "rentas mixtas sueldo y honorarios declarar"
+ymyl: true
+requires_calculation: true
+regulatory_sensitivity: alta
+target_audience: "Contribuyente persona natural con sueldo y boletas de honorarios en el mismo año, que busca entender si debe declarar y cómo se calcula el Global Complementario sobre rentas mixtas."
+cut_off_date: 2026-08-12
+origin: "output/audits/corpus-2026-08-12/fichas/rentas-mixtas-sueldo-honorarios.md (Fase A2, ComplianceAgent adversarial, 2026-08-12). Verdicto FAIL 7,225/10. Dos hallazgos independientes: R5 exactitud (FAIL confirmado, tramo exento IGC citado en $11.322.018 vs. oficial $11.265.804) y R2 vigencia (FAIL, versión más leve: obligación de declarar en presente/imperativo sin señalar cierre de ventana AT2026)."
+remediation_type: sustantiva
+decision_editorial: "La pieza queda PERENNE (owner de canonicalTopic rentas-mixtas). Se corrige la cifra del tramo exento IGC a su valor oficial verificado y se reencuadra la obligación de declarar como regla permanente, separando la vigencia del ciclo AT2026 (ya cerrado) de la regla en sí. No se toca la fórmula (13,5 UTA), la tabla de tramos porcentuales del Art. 52 LIR, la retención 15,25% de boletas, ni las tablas 'Resumen orientativo'."
+scope:
+  in:
+    - "Corregir el monto del tramo exento del Global Complementario de $11.322.018 a $11.265.804 en las dos apariciones (FAQ y bloque 'Respuesta rápida' del cuerpo), citando la fuente SII."
+    - "Reencuadrar articleLead.answer y el bloque 'Respuesta rápida' para separar la regla permanente de declarar (aplica a quien tenga rentas mixtas en cualquier año) de la instrucción de acción para el ciclo AT2026 específico (ventana ya cerrada: 30-04-2026 con pago, 08-05-2026 sin pago), con nota de qué hacer si el plazo ya pasó."
+    - "Mover articleLead.validAsOf y updatedDate a la fecha de esta revisión (2026-08-12), con registro NORMA §5.3."
+  out:
+    - "No se cambia slug, title, seoTitle, H1, rutas ni canonical."
+    - "No se toca la retención 15,25% de boletas ni la estructura de tramos porcentuales del Art. 52 LIR — ya verificadas correctas por la auditoría."
+    - "No se reestructuran las dos tablas 'Resumen orientativo' (NORMA §3.2) — solo se corrige el monto si aparece ahí también (no aparece en ninguna de las dos)."
+    - "No se toca el deferral de 'facilidades de pago... consulta en sii.cl' (línea ~216) — registrado CONDITIONAL/border-line en la ficha, decisión Bucket B separada."
+    - "No se remedia la estructura DoD (H2 faltantes, R7b) — SHOULD no bloqueante."
+    - "No se tocan otros artículos del corpus."
+benchmarkSet:
+  - "N/A — este run no usa benchmark externo; es remediación de conformidad sobre pieza ya publicada."
+patternHypothesis: "N/A"
+localDelta: "N/A — no aplica adaptación competitiva; el delta es corrección de exactitud numérica y de vigencia editorial."
+nonCopyBoundaries:
+  - "N/A"
+ownerTarget: "rentas-mixtas-sueldo-honorarios ya es owner de canonicalTopic rentas-mixtas; no cambia."
+successSignal: "Un lector que llegue hoy ve el monto correcto del tramo exento IGC ($11.265.804) citado con fuente, entiende que la obligación de declarar con rentas mixtas es una regla permanente, y sabe que la ventana de declaración AT2026 específica ya cerró con un puntero claro a qué hacer si no alcanzó a declarar."
+blocking_note: "requires_calculation=true: este run corrige una cifra calculada (tramo exento IGC = 13,5 UTA x valor UTA dic-2025). Por política de EDITORIAL_AI_PIPELINE.md §4, este run NO puede avanzar a Fase C sin un 05-math-audit.md producido por MathAuditAgent en sesión fresca e independiente. DraftAgent no produce ese archivo en esta sesión."

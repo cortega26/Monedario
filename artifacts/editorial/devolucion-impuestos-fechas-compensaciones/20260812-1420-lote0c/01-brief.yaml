@@ -1,0 +1,33 @@
+slug: devolucion-impuestos-fechas-compensaciones
+query_anchor: "cuando depositan mi devolucion de impuestos"
+ymyl: true
+requires_calculation: false
+regulatory_sensitivity: alta
+target_audience: "Contribuyente persona natural que ya declaro su F22 AT2026, esperaba devolucion y llega al articulo fuera de la ventana de pago (o busca la guia de referencia para un futuro ciclo), o que aun no ha declarado y quiere saber que opciones tiene."
+cut_off_date: 2026-08-12
+origin: "output/audits/corpus-2026-08-12/fichas/devolucion-impuestos-fechas-compensaciones.md (Fase A2, ComplianceAgent adversarial, 2026-08-12). Verdicto FAIL 6,75/10. Hallazgo principal R2 vigencia: el articulo esta construido alrededor del ciclo AT2026, cuyo calendario de pago cerro el 27-29 de mayo de 2026 (deposito) / 29 de mayo (cheques); hoy es 2026-08-12, mas de dos meses y medio despues del cierre. Hallazgo secundario R1: no existe articleLead; la respuesta ancla ('cuando depositan') queda fuera de las dos primeras pantallas."
+remediation_type: sustantiva
+decision_editorial: "La pieza queda PERENNE (no se archiva). Se reencuadra el calendario AT2026 como referencia fechada de un ciclo cerrado, se agrega articleLead con la respuesta ancla, se explica que puede hacer hoy quien declaro y nunca recibio deposito, que puede hacer quien no alcanzo a declarar dentro de AT2026, y se senala que el calendario AT2027 aun no esta publicado por el SII, sin inventar fechas. Consistente con la decision ya tomada para operacion-renta-f22-checklist (mismo defecto, mismo lote 0)."
+scope:
+  in:
+    - "Agregar articleLead (answer, validAsOf, officialSources, covers, limits, calculatorHref/Label, nextStepHref/Label) — ausente en la version publicada."
+    - "Declarar explicitamente en la primera pantalla (articleLead.answer + apertura del cuerpo) que el ciclo AT2026 ya cerro."
+    - "Conservar el calendario AT2026 (fechas de deposito/cheque) como referencia fechada, no como instruccion vigente — las fechas en si no se tocan (R5 PASS)."
+    - "Explicar que puede hacer hoy alguien que declaro y nunca le llego el deposito: consulta de estado / rectificatoria en sii.cl. Conservar los deferrals legitimos existentes hacia SII/TGR para datos de cuenta individual (R4 ya PASS)."
+    - "Explicar que puede hacer alguien que no alcanzo a declarar dentro de AT2026."
+    - "Senalar que el calendario AT2027 aun no esta publicado por el SII (reverificado 2026-08-12 via WebSearch, consistente con el hallazgo ya documentado en el run de operacion-renta-f22-checklist del mismo dia)."
+  out:
+    - "No se cambia slug, title, seoTitle, H1, rutas ni canonical."
+    - "No se modifican las fechas del calendario AT2026 en si — ya verificadas contra fuente oficial (SII, comunicado 31-03-2026); el defecto es de encuadre temporal, no de exactitud."
+    - "No se tocan los deferrals legitimos existentes hacia SII/TGR para consulta de cuenta individual (R4 PASS/N-A en la ficha)."
+    - "No se reescribe estructura ni prosa no afectada por el reencuadre temporal (PLAN-auditoria-corpus-publicado-2026-08-12 Sec 11)."
+    - "No se tocan los otros articulos del corpus, incluido operacion-renta-f22-checklist (ya remediado en run previo)."
+    - "No se edita docs/backlog/PLAN-auditoria-corpus-publicado-2026-08-12.md — la nota de registro NORMA §5.3 va solo en 07-publish-packet.md de este run."
+benchmarkSet:
+  - "N/A — remediacion de conformidad sobre pieza ya publicada, sin benchmark externo."
+patternHypothesis: "N/A"
+localDelta: "N/A — no aplica adaptacion competitiva; el delta es correccion de vigencia editorial (mismo patron aplicado a operacion-renta-f22-checklist en el mismo lote)."
+nonCopyBoundaries:
+  - "N/A"
+ownerTarget: "devolucion-impuestos-fechas-compensaciones ya es owner de canonicalTopic: devolucion-impuestos; no cambia."
+successSignal: "Un lector que llegue en agosto 2026 entiende en la primera pantalla que el ciclo AT2026 cerro, sabe que puede hacer hoy si declaro y no le llego el deposito (consulta de estado/rectificatoria), sabe que puede hacer si no alcanzo a declarar, y no interpreta el calendario AT2026 como instruccion vigente."
