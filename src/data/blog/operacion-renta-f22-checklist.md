@@ -5,7 +5,7 @@ description: "Checklist práctico para revisar la propuesta del SII, enviar tu F
 slug: operacion-renta-f22-checklist
 author: "Equipo Monedario"
 pubDate: 2026-02-28T15:00:00Z
-updatedDate: 2026-05-11T00:00:00Z
+updatedDate: 2026-08-13T00:00:00Z
 tags:
   - impuestos
   - operacion-renta
@@ -20,6 +20,31 @@ featured: true
 homepagePriority: 200
 draft: false
 heroImage: /images/hero/operacion-renta-f22-checklist.avif
+articleLead:
+  answer: "La Operación Renta AT2026 ya cerró: el plazo con pago venció el 30 de abril de 2026 y el plazo sin pago (con devolución), el 8 de mayo de 2026. Si ya declaraste, revisa observaciones o rectifica en 'Consulta y seguimiento' de sii.cl. Si estabas obligado a declarar y no alcanzaste a hacerlo, igual debes regularizar: el SII habilita 'Declarar renta (F22)' en Servicios online para regularizar declaraciones no presentadas, y la presentación fuera de plazo genera multa e interés. El próximo ciclo, AT2027, todavía no tiene calendario publicado por el SII."
+  validAsOf: 2026-08-13
+  officialSources:
+    - label: "SII — Calendario y novedades Operación Renta AT2026"
+      href: "https://www.sii.cl/noticias/2026/310326noti01pcr.htm"
+    - label: "SII — Consulta de estado y rectificatoria por internet"
+      href: "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8954.htm"
+    - label: "SII — Regularización de declaraciones de renta no presentadas"
+      href: "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0595.htm"
+    - label: "SII — Multas por Declaración de Renta fuera de plazo"
+      href: "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3095.htm"
+    - label: "SII — Qué pasa si no declaré Renta o mi información no cuadra"
+      href: "https://www.sii.cl/contribuyentes/p7renta.htm"
+  covers:
+    - "Qué hacer si tu declaración AT2026 quedó observada o necesitas rectificarla."
+    - "Cuándo llega tu devolución y qué hacer si no alcanzaste a declarar."
+    - "Cuándo se abre el próximo ciclo (AT2027)."
+  limits:
+    - "No reemplaza el calendario oficial: confirma fechas exactas en sii.cl antes de declarar."
+    - "No calcula multas ni intereses por declaración fuera de plazo — esos montos dependen de tu caso."
+  calculatorHref: "/calculadoras/operacion-renta/"
+  calculatorLabel: "Simulador Operación Renta 2026"
+  nextStepHref: "/posts/devolucion-impuestos-fechas-compensaciones/"
+  nextStepLabel: "Revisar estado de tu devolución"
 reviewPolicy:
   cadenceLabel: quarterly
   maxDays: 90
@@ -31,7 +56,15 @@ reviewPolicy:
 
 Abres la propuesta del SII, ves los números y no sabes si aceptar o si algo está mal. Esta guía te ayuda a revisar cada punto antes de enviar el F22 y a reaccionar rápido si aparecen observaciones — para que no pierdas tiempo ni atrases tu devolución.
 
-La plataforma del SII está abierta desde el 1 de abril. El plazo depende de si debes pagar: declaraciones **con pago**, del 8 al **30 de abril**; declaraciones **sin pago** (con devolución), hasta el **8 de mayo de 2026**. Cuándo declares dentro de ese período determina cuándo recibes tu devolución.
+**Estado del ciclo AT2026 (revisado el 13 de agosto de 2026): ya cerró.** La plataforma del SII estuvo abierta desde el 1 de abril hasta el 8 de mayo de 2026: declaraciones **con pago**, del 8 al **30 de abril**; declaraciones **sin pago** (con devolución), hasta el **8 de mayo**. Esas fechas quedan como referencia de cómo funcionó el ciclo, no como plazo vigente hoy. Si ya declaraste, revisa la sección "Fuera de la ventana AT2026" más abajo; si no alcanzaste a declarar, esa misma sección explica tus opciones.
+
+## Fuera de la ventana AT2026: qué puedes hacer hoy
+
+- **Si tu declaración quedó observada:** entra a sii.cl → Servicios online → Renta → Declaración de Renta → "Consulta y seguimiento" → "Consultar estado de declaración" para ver el detalle de la observación y rectificar por internet. Este trámite está disponible desde la segunda semana de junio del año en curso — es decir, después del cierre de la ventana de abril-mayo, por lo que no está atado a ella. La ficha oficial no publica fecha de cierre, así que confirma en sii.cl que sigue habilitado al momento de tu consulta.
+- **Si quieres saber cuándo llega tu devolución** (ya declarada): revisa [devolución de impuestos: fechas, estado y compensaciones](/posts/devolucion-impuestos-fechas-compensaciones/).
+- **Si necesitas rectificar** una declaración ya enviada: usa la misma opción "Consulta y seguimiento" del primer punto. Si la rectificatoria genera devolución, esta se paga alrededor de tres semanas después de que el SII autorice el monto a la Tesorería General de la República (TGR).
+- **Si estabas obligado a declarar y no alcanzaste a hacerlo dentro de la ventana AT2026:** igual debes regularizar. El SII permite regularizar declaraciones no presentadas en sii.cl → Servicios online → Declaración de renta → "Declarar renta (F22)" (te pedirá autenticarte con Clave Tributaria o ClaveÚnica). La presentación fuera de plazo genera multa e interés: para declaraciones con pago, 10% de los impuestos reajustados si el atraso es de hasta 5 meses (sube 2% por cada mes adicional, con tope de 30%) más interés penal; para declaraciones con devolución o sin pago, la multa va de 1 UTM a 1 UTA. El monto exacto y la elegibilidad de condonación (Formulario 2667) dependen de tu caso — confírmalo en sii.cl al declarar. Mientras no regularices, el SII te marca como "No declarante F22", lo que puede bloquear otros trámites ante el Servicio.
+- **Próximo ciclo (AT2027):** a la fecha de esta revisión (agosto de 2026), el SII todavía no publica el calendario de la Operación Renta AT2027. Según el único precedente reciente observado, el comunicado de apertura de AT2026 se publicó el 31 de marzo de 2026 — no hay datos de varios años que confirmen que esa fecha se repite todos los años. Revisa sii.cl cuando se acerque esa fecha para confirmar el calendario oficial.
 
 ## ¿Tienes que declarar o solo aceptar la propuesta?
 
@@ -69,9 +102,9 @@ Si quieres calcular el beneficio del APV antes de declarar: [Simulador APV Chile
 
 Si quieres estimar tu resultado completo (devolución o pago adicional) con sueldos, honorarios y arriendos: [Simulador Operación Renta 2026](/calculadoras/operacion-renta/).
 
-### Cuándo llega la devolución
+### Cuándo llega la devolución (calendario del ciclo AT2026, ya ejecutado)
 
-Si te devuelven, la fecha depende de cuándo declares:
+Este calendario corresponde a la ventana AT2026, que ya cerró; se conserva como referencia de cómo funcionó el mecanismo, no como fecha futura. Si declaraste dentro de esa ventana, la fecha de tu depósito dependía de cuándo declaraste:
 
 | Fecha de presentación    | Depósito bancario   | Cheque             |
 | ------------------------ | ------------------- | ------------------ |
@@ -167,10 +200,15 @@ Para el contexto completo de la Operación Renta 2026 — umbrales de obligació
 - SII FAQ, reemplazo de declaración enviada por Internet: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8950.htm
 - SII FAQ, consulta de estado y observaciones, rectificatoria: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8954.htm
 - SII FAQ, rectificatoria que origina devolución (autorización y pago vía TGR): https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0516.htm
+- SII FAQ, regularización de declaraciones de renta no presentadas (contribuyentes que no declararon en años/periodos anteriores): https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0595.htm
+- SII FAQ, multas asociadas a la presentación de una Declaración de Renta fuera de plazo: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3095.htm
+- SII, "¿Qué pasa si no declaré Renta o la información de mi declaración no cuadra con la del SII?": https://www.sii.cl/contribuyentes/p7renta.htm
 - ChileAtiende, Declaración de Renta 2026: https://www.chileatiende.gob.cl/fichas/3178-declaracion-de-renta
 - ChileAtiende, Operación Renta 2026: https://www.chileatiende.gob.cl/fichas/10199-operacion-renta-2026
 
 ## Información de vigencia
 
-- Revisado el: 2026-05-11. Datos verificados contra comunicado SII del 31 de marzo de 2026.
-- Puede quedar desactualizado cuando: cambios en reglas de reemplazo/rectificatoria, modificaciones al calendario de devoluciones, o actualizaciones en navegación SII/TGR.
+- Revisado el: 2026-08-12. La ventana AT2026 (con pago hasta el 30-04-2026, sin pago hasta el 08-05-2026) ya cerró; se actualizó el artículo para declararlo y para explicar qué hacer hoy fuera de esa ventana. Cifras de crédito por educación, calendario de depósito y Préstamo Solidario COVID-19 sin cambios, verificadas contra el comunicado SII del 31 de marzo de 2026 y FAQ SII adicionales del 12 de agosto de 2026 (ver fuentes).
+- Corrección del mismo día (ronda 2, 12 de agosto de 2026): se corrigió una contradicción interna entre `articleLead.answer` y el cuerpo sobre si es posible declarar fuera de la ventana AT2026. Ambos textos ahora afirman lo mismo, respaldados por SII FAQ 001_140_0595 (mecanismo de regularización, mismo portal "Servicios online → Declaración de renta → Declarar renta (F22)") y SII FAQ 001_140_3095 (porcentajes de multa e interés). Se reformuló también la afirmación sobre disponibilidad permanente del trámite de consulta/rectificatoria (FAQ 001_140_8954 solo confirma fecha de apertura, no de cierre).
+- Precisión de ronda 3 (13 de agosto de 2026, cierre de Bucket C del compliance de ronda 2): se agregó como fuente adicional sii.cl/contribuyentes/p7renta.htm, que confirma el mecanismo de regularización sin la restricción "años anteriores" de FAQ 001_140_0595. Se matizó "igual debes hacerlo" a "si estabas obligado a declarar y no alcanzaste a hacerlo, igual debes regularizar" en `articleLead.answer` y en el cuerpo, siguiendo la condición explícita en esa misma fuente. Corrección de registro: la sesión de ronda 3 juzgó que este matiz no ameritaba mover `updatedDate`; el compliance de ronda 3 (sesión fresca) lo marcó como defecto no bloqueante (DEFECT-NUEVO #1) porque acotar una instrucción imperativa que antes se aplicaba a lectores sin obligación real de declarar es una corrección de precisión sobre la Respuesta Ancla (NORMA §5.1), no un ajuste de estilo. Se corrige aquí: `updatedDate` y `articleLead.validAsOf` se mueven a 2026-08-13.
+- Puede quedar desactualizado cuando: el SII publique el calendario AT2027, cambien las reglas de reemplazo/rectificatoria, o se actualice la navegación SII/TGR.

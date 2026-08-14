@@ -5,7 +5,7 @@ description: "Con sueldo y boletas de honorarios debes declarar siempre. Aprende
 slug: rentas-mixtas-sueldo-honorarios
 author: "Equipo Monedario"
 pubDate: 2026-04-09T12:00:00Z
-updatedDate: 2026-05-11T00:00:00Z
+updatedDate: 2026-08-12T00:00:00Z
 tags:
   - impuestos
   - rentas-mixtas
@@ -21,17 +21,19 @@ featured: false
 draft: false
 heroImage: /images/hero/rentas-mixtas-sueldo-honorarios.avif
 articleLead:
-  answer: "Si en 2025 tuviste sueldo y emitiste boletas de honorarios, debes declarar Operación Renta 2026 obligatoriamente: el SII no puede precalcular tu impuesto porque cada empleador y pagador retuvo de forma independiente. Tu resultado final depende del Impuesto Global Complementario sobre la suma de ambas rentas, descontando lo ya retenido."
+  answer: "Si tienes sueldo y emites boletas de honorarios en el mismo año, debes declarar Operación Renta obligatoriamente: es una regla permanente, no exclusiva de un año tributario. El SII no puede precalcular tu impuesto porque cada empleador y pagador retuvo de forma independiente. Para el ciclo AT2026 (ingresos de 2025), la ventana de declaración ya cerró (30 de abril de 2026 con pago, 8 de mayo de 2026 sin pago); si no alcanzaste a declarar, revisa el checklist F22 para tus opciones fuera de plazo. Tu resultado final depende del Impuesto Global Complementario sobre la suma de ambas rentas, descontando lo ya retenido."
   calculatorHref: "/calculadoras/operacion-renta/"
   calculatorLabel: "Simular resultado Operación Renta"
   nextStepHref: "/posts/operacion-renta-f22-checklist/"
   nextStepLabel: "Ir al checklist F22"
-  validAsOf: 2026-05-11
+  validAsOf: 2026-08-12
   officialSources:
     - label: "SII — Boletas de honorarios"
       href: "https://www.sii.cl/destacados/boletas_honorarios/"
     - label: "SII — Información general Personas Naturales AT 2026"
       href: "https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html"
+    - label: "SII — Calendario Operación Renta AT2026"
+      href: "https://www.sii.cl/noticias/2026/310326noti01pcr.htm"
   covers:
     - "Por qué debes declarar aunque el SII genere propuesta."
     - "Cómo se calcula el Global Complementario sobre rentas mixtas."
@@ -50,7 +52,7 @@ faqs:
   - q: "¿Qué es el PPM en operación renta para honorarios?"
     a: "La retención del 15,25% que el pagador descuenta al momento de emitir cada boleta actúa como pago provisional mensual (PPM) para efectos del F22. Esa retención acumulada durante el año se descuenta del impuesto anual final."
   - q: "¿Puedo tener sueldo, boletas y aun así quedar exento del Global Complementario?"
-    a: "Sí, si tu renta total anual (sueldo bruto + honorarios brutos) no supera el tramo exento del Global Complementario (13,5 UTA anuales para AT 2026, aproximadamente $11.322.018 anuales), no pagas impuesto adicional. Pero igual debes declarar."
+    a: "Sí, si tu renta total anual (sueldo bruto + honorarios brutos) no supera el tramo exento del Global Complementario (13,5 UTA anuales para AT 2026, $11.265.804 anuales), no pagas impuesto adicional. Pero igual debes declarar."
 reviewPolicy:
   cadenceLabel: quarterly
   maxDays: 90
@@ -64,13 +66,15 @@ Si en 2025 tuviste sueldo _y_ emitiste boletas de honorarios, la propuesta del S
 
 ## Regla general: con rentas mixtas siempre debes declarar
 
-**Respuesta rápida (regla general):** Quienes percibieron sueldo _y_ emitieron boletas de honorarios en 2025 **deben declarar** Operación Renta 2026 (F22) obligatoriamente. El SII puede generar una propuesta, pero esa propuesta no incluye automáticamente tus boletas de honorarios, porque cada pagador retiene de forma independiente sin conocer tus otras fuentes de ingreso.
+**Respuesta rápida (regla general):** Quien percibe sueldo _y_ emite boletas de honorarios en el mismo año **debe declarar** Operación Renta (F22) obligatoriamente. Esta es una regla permanente: aplica a quien cumpla ese criterio en cualquier año tributario, no solo en 2026. El SII puede generar una propuesta, pero esa propuesta no incluye automáticamente tus boletas de honorarios, porque cada pagador retiene de forma independiente sin conocer tus otras fuentes de ingreso.
 
-**Excepción relevante:** Si el total de tus ingresos anuales (sueldo + honorarios brutos) no supera el tramo exento del Global Complementario (~$11.322.018 anuales para AT 2026, equivalente a 13,5 UTA), no generarás impuesto adicional. Aun así, **la obligación de declarar subsiste**.
+**Estado del ciclo AT2026:** la ventana de declaración para ingresos de 2025 ya cerró: 30 de abril de 2026 (declaraciones con pago) y 8 de mayo de 2026 (sin pago, con devolución). Si tuviste rentas mixtas en 2025, esta guía te sirve igual para entender el cálculo, hayas declarado o no. Si no alcanzaste a declarar dentro de plazo, revisa el [checklist de Operación Renta F22](/posts/operacion-renta-f22-checklist/) para tus opciones fuera de ventana; el próximo ciclo (AT2027) aún no tiene calendario publicado por el SII.
 
-**Vigencia:** Operación Renta Año Tributario 2026 (ingresos enero–diciembre 2025), vigente a 2026-04-09.
+**Excepción relevante:** Si el total de tus ingresos anuales (sueldo + honorarios brutos) no supera el tramo exento del Global Complementario ($11.265.804 anuales para AT 2026, equivalente a 13,5 UTA), no generarás impuesto adicional. Aun así, **la obligación de declarar subsiste**.
 
-**Fuentes:** [SII — Boletas de honorarios](https://www.sii.cl/destacados/boletas_honorarios/); [SII — Información AT 2026 Personas Naturales](https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html).
+**Vigencia:** La obligación de declarar con rentas mixtas es permanente. Las cifras y el calendario de esta página corresponden al Año Tributario 2026 (ingresos enero–diciembre 2025), revisado el 2026-08-12.
+
+**Fuentes:** [SII — Boletas de honorarios](https://www.sii.cl/destacados/boletas_honorarios/); [SII — Información AT 2026 Personas Naturales](https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html); [SII — Calendario Operación Renta AT2026](https://www.sii.cl/noticias/2026/310326noti01pcr.htm).
 
 | Situación                                  | ¿Hay propuesta del SII? | ¿Debes declarar? | Herramienta                       |
 | ------------------------------------------ | ----------------------- | ---------------- | --------------------------------- |
@@ -137,7 +141,7 @@ Los escenarios que suelen generar impuesto adicional a pagar:
 Escenarios típicos de devolución:
 
 - **Honorarios muy bajos:** Tu renta de honorarios es pequeña y tu empleador ya retuvo en exceso por el método de proyección anual del sueldo (el empleador retiene como si el sueldo del mes se recibiera durante todo el año, lo que sobreestima el impuesto mensual en algunos meses).
-- **APV Régimen B:** Si realizaste aportes a APV bajo Régimen B (crédito fiscal del 15% sobre los aportes, directamente en el F22), eso reduce tu impuesto final y puede generar o aumentar una devolución. O si aportaste en Régimen A, el APV reduce tu base imponible del IGC.
+- **APV Régimen B:** Si realizaste aportes a APV bajo Régimen B (rebaja de tu base imponible del IGC, con tope de 600 UF anuales), eso reduce tu impuesto determinado y puede generar o aumentar una devolución. El Régimen A no participa de este cálculo: su beneficio es una bonificación estatal del 15% sobre los aportes (tope 6 UTM anuales) que la Tesorería General de la República deposita directamente en tu cuenta de ahorro previsional, no un crédito en el F22.
 - **Solo un empleador estable y pocas boletas:** Si tienes un sueldo fijo alto con retención precisa y emitiste boletas pequeñas con el 15,25%, la retención total puede superar el IGC calculado.
 
 Para entender mejor cómo funciona el Impuesto de Segunda Categoría mensualmente: [Calculadora de Impuesto de Segunda Categoría](/calculadoras/impuesto-segunda-categoria/).
@@ -190,16 +194,16 @@ Sí. Aunque el monto de honorarios sea pequeño y no genere impuesto adicional, 
 
 Si realizaste aportes a APV durante 2025:
 
-- **Régimen A:** El aporte reduce tu base imponible del IGC (se descuenta de la renta gravada antes de aplicar los tramos). Especialmente útil si estás en un tramo intermedio.
-- **Régimen B:** Generas un crédito fiscal del 15% sobre los aportes, que se aplica directamente en el F22 reduciendo el impuesto determinado.
+- **Régimen A:** Recibes una bonificación estatal equivalente al 15% de los aportes, con tope de 6 UTM anuales. La Tesorería General de la República la deposita directamente en tu cuenta de ahorro previsional; no reduce tu base imponible ni aparece como crédito en el F22.
+- **Régimen B:** El aporte reduce tu base imponible del IGC (se descuenta de la renta gravada antes de aplicar los tramos), con tope de 600 UF anuales. Especialmente útil si tu tasa marginal supera el 15%.
 
-En ambos casos, debes declarar (no sirve solo aceptar la propuesta) para que el beneficio se aplique. Si tienes APV y rentas mixtas, el simulador puede ayudarte a estimar cuánto baja tu impuesto antes de declarar: [Simulador Operación Renta 2026](/calculadoras/operacion-renta/).
+Para el Régimen B, debes declarar (no sirve solo aceptar la propuesta) para que la rebaja se refleje en el impuesto determinado del F22. El bono del Régimen A se calcula y paga aparte, a partir de la información que reporta tu AFP o institución autorizada, y no depende de tu declaración de renta. Si tienes APV y rentas mixtas, el simulador puede ayudarte a estimar cuánto baja tu impuesto antes de declarar: [Simulador Operación Renta 2026](/calculadoras/operacion-renta/).
 
 ## Cuándo esperar devolución y cuándo pagar
 
 ### Si te corresponde devolución
 
-El SII deposita en tu cuenta bancaria (o emite cheque) según el calendario oficial de Operación Renta 2026. Los plazos típicos para AT 2026:
+El SII deposita en tu cuenta bancaria (o emite cheque) según el calendario oficial de Operación Renta. Este fue el calendario de depósito del ciclo AT2026 (ya ejecutado):
 
 | Fecha de declaración     | Depósito bancario aproximado |
 | ------------------------ | ---------------------------- |
@@ -211,6 +215,6 @@ Si el SII detectó compensaciones (deudas, pensión de alimentos, CAE), TGR pued
 
 ### Si debes pagar impuesto adicional
 
-El plazo para pagar con rentas mixtas es hasta el **30 de abril de 2026** si declinas o si el vencimiento aplica según tu situación. Pagar fuera del plazo genera reajuste e intereses.
+En el ciclo AT2026, el plazo para pagar con rentas mixtas venció el **30 de abril de 2026**. Declarar o pagar fuera de plazo genera reajuste e intereses.
 
-Si el monto es alto y quieres dividirlo, el SII puede ofrecer facilidades de pago. Consulta directamente en sii.cl al momento de declarar.
+Si el monto es alto y quieres dividirlo, puedes solicitar un [convenio de pago](https://tgr.gob.cl/convenios-de-pago/) en cuotas: lo administra la Tesorería General de la República (TGR), no el SII. La regla general es plazo de hasta 24 cuotas mensuales y pie inicial de entre 10% y 30% del monto adeudado, con una deuda mínima de 1 UTM para poder solicitarlo. El porcentaje exacto del pie dentro de ese rango depende de tu comportamiento de pago y de si ofreces garantía, así que la aprobación final es caso a caso. Se solicita en tgr.gob.cl con tu Clave Tributaria (SII) o ClaveÚnica.

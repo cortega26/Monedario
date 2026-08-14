@@ -2181,9 +2181,10 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Descripción:** `pnpm run check:editorial-timeliness` falla por nueve revisiones vencidas entre 2026-07-28 y 2026-08-01: contribuciones-bienes-raices, deposito-a-plazo-uf-vs-pesos, gratificacion-legal, operacion-renta-centro, pgu, que-es-el-apv, que-es-el-ipc, que-es-la-uf y reajuste-arriendo.
 - **Evidencia:** baseline 2026-08-02; no se cambiaron fechas sin revisión real.
 - **Severidad (1-5):** 3
-- **Estado:** `BLOCKED_PENDING_EVIDENCE`
+- **Estado:** `RESOLVED` (2026-08-03)
 - **Mitigación:** revisar por riesgo con `NORMA_YMYL`, pipeline aplicable y firma humana; no fabricar artifacts ni `updatedDate`.
 - **Owner:** HumanEditor
+- **Cierre:** los nueve se resolvieron el 2026-08-03 vía `PLAN-reauditoria-timeliness-2026-08-03.md` — cadencia 30d por reparación de la causa raíz (workflow de snapshot volátil congelado desde 2026-07-05, PR #391) más re-auditoría adversarial que encontró un defecto real de contenido (`que-es-la-uf`: UF $44.500 → $40.844,79); cadencia 90d por verificación de fuentes y corrección de cifras con firma del editor (PR #392). Verificado el 2026-08-12: `check:editorial-timeliness` reporta `stale=4` y ninguno de los nueve está en esa lista. La cohorte vencida vigente es distinta y se trata en `PLAN-auditoria-corpus-publicado-2026-08-12.md` (lote 0).
 - **Fecha:** 2026-08-02
 
 ## TD-0099 — Cloudflare JSD inyecta bootstrap incompatible con CSP hash-only
