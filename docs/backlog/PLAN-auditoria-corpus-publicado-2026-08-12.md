@@ -580,8 +580,8 @@ agente marcó gates de publicación ni firmó en nombre del editor humano.
 |---|---|---|---|
 | `boleta-honorarios-2026-retencion-cobertura` | SLA vencido, sin defecto de contenido (ficha original: `CONDITIONAL` 8,95/10) | No requirió nueva ronda de compliance — re-confirmación de vigencia sin cambio sustantivo | Ninguno |
 | `operacion-renta-f22-checklist` | R2 vigencia → 3 defectos de ronda 1 compliance → resueltos (ronda 2) → 3 ítems Bucket C (`TODO:SOURCE` + 2 precisiones de cita/matiz) → resueltos (ronda 3) → desfase de `updatedDate` hallado por compliance ronda 3 → corregido | **`CONDITIONAL` 9,325/10** (ronda 4, `06-compliance-round4.md`) | DEFECT-NUEVO #2 (informativo, no bloqueante): cobertura opcional sobre "citación a las unidades del SII" que la fuente `p7renta.htm` menciona y el artículo no — no bloquea, follow-up si se desea |
-| `devolucion-impuestos-fechas-compensaciones` | R1 respuesta ancla + R2 vigencia → defecto de cita (ronda 1 compliance) → resuelto (ronda 2) → discrepancia de fuentes SII sobre umbral $3M (ronda 2 compliance) → dirimida (ronda 3) → desfase de fechas (ronda 3 y 4 compliance, dos ubicaciones distintas) → corregido en dos pasadas | **`CONDITIONAL` 9,450/10** (ronda 5, `06-compliance-round5.md`) | Ninguno — cero `TODO:SOURCE`, cero defectos abiertos; no alcanza `PASS` solo por estar bajo el umbral 9,5/10 |
-| `rentas-mixtas-sueldo-honorarios` | R5 cifra IGC + R2 vigencia → ERROR APV fuera de alcance hallado por math audit → corregido → deferral border-line "facilidades de pago" → fortalecido con regla pública verificable (TGR, no SII) | **`CONDITIONAL` 9,350/10** (ronda 2, `06-compliance-round2.md`) | Bucket C: estructura DoD §2 (SHOULD, no bloqueante) |
+| `devolucion-impuestos-fechas-compensaciones` | R1 respuesta ancla + R2 vigencia → defecto de cita → discrepancia de fuentes SII sobre umbral $3M → dos desfases de fecha (rondas 3-4) → contradicción interna "29 de mayo" hallada por revisor externo (ronda 6) → todo corregido | **`CONDITIONAL` 9,450/10** (ronda 6, `06-compliance-round6.md`) | Ninguno — cero `TODO:SOURCE`, cero defectos abiertos; no alcanza `PASS` solo por estar bajo el umbral 9,5/10 |
+| `rentas-mixtas-sueldo-honorarios` | R5 cifra IGC + R2 vigencia → ERROR APV fuera de alcance hallado por math audit → corregido → deferral border-line "facilidades de pago" → fortalecido con regla pública verificable (TGR) → math audit formal re-emitido (PASS) tras hallazgo de revisor externo sobre sustitución de rol | **`CONDITIONAL` 9,350/10** (ronda 3, `06-compliance-round3.md`) | Bucket C: estructura DoD §2 (SHOULD, no bloqueante) |
 
 Los tres artículos sustantivos terminaron en `CONDITIONAL` en el rango
 9,3-9,45/10, **sin ningún defecto bloqueante abierto**. Ninguno alcanza
@@ -590,11 +590,48 @@ queda una décima de margen bajo el umbral); esa última fracción de puntaje
 es la que el editor humano decide si amerita otra ronda o si el estado
 actual es aceptable para publicar.
 
+### 18.1bis Revisión externa (bot Codex, PR #423) — 3 hallazgos, 3 resueltos
+
+Un revisor automático dejó 3 comentarios sobre el primer commit del PR,
+antes del cierre de papeleo. Se investigó cada uno de forma independiente
+en vez de descartarlos:
+
+1. **P1 — `rentas-mixtas`, defecto de proceso real.** El bot señaló que
+   `05-math-audit.md` terminaba en `FAIL` y que ninguna sesión posterior
+   había generado un math audit formal que lo superara — la ronda 2 de
+   compliance había "declarado resuelto" el hallazgo APV con su propia
+   verificación, sin `MathAuditAgent` fresco de por medio, citando
+   `AGENTS.md`. Válido: aunque la corrección de contenido ya estaba bien
+   verificada, el registro formal seguía sin cerrar. Se despachó un
+   `MathAuditAgent` fresco que re-auditó el artículo completo de forma
+   independiente y emitió `05-math-audit-round2.md` con veredicto **PASS**
+   (12/12 VERIFIED), preservando el `FAIL` original como histórico.
+2. **P1 — `f22-checklist`, ya resuelto.** El bot señaló sobre el commit
+   inicial que "igual debes hacerlo" no estaba condicionado a la
+   obligación real de declarar. Correcto en ese momento — pero ya lo había
+   resuelto la ronda 2/3 de este mismo lote (commit `2837802d`), antes de
+   que el bot revisara. Verificado contra el texto actual: sin acción
+   adicional.
+3. **P2 — `devolucion-impuestos`, hallazgo real que sobrevivió 5 rondas de
+   compliance.** El bot encontró que la línea 56 describía el 29 de mayo
+   como el fin de todo pago posible de devolución del año tributario,
+   contradiciendo las líneas 74 y 76 del mismo artículo sobre rectificatoria
+   y regularización tardía. Se reformuló para distinguir "calendario
+   ordinario" de "posibilidad de devolución del año tributario", verificado
+   por una sexta ronda de compliance dedicada.
+
+Lección explícita (ver también §18.6): una revisión externa independiente
+—humana o de otro sistema— encontró en minutos algo que 5 rondas propias
+de compliance adversarial no atraparon. La separación de funciones reduce
+el riesgo, no lo elimina; una segunda fuente de revisión externa al propio
+proceso vale la pena en contenido YMYL, incluso después de un pipeline
+riguroso.
+
 ### 18.2 Registro de artefactos por run
 
 - `artifacts/editorial/operacion-renta-f22-checklist/20260812-1312-lote0b/` — `06-compliance.md` (ronda 1, FAIL) → `06-compliance-round2.md` (ronda 2, CONDITIONAL 8,73) → `06-compliance-round3.md` (ronda 3, CONDITIONAL 9,25) → `06-compliance-round4.md` (ronda 4, CONDITIONAL 9,325 — vigente). Las tres primeras se preservan como registro histórico.
-- `artifacts/editorial/devolucion-impuestos-fechas-compensaciones/20260812-1420-lote0c/` — `06-compliance.md` (ronda 1, FAIL) → `06-compliance-round2.md` (ronda 2, FAIL) → `06-compliance-round3.md` (ronda 3, FAIL) → `06-compliance-round4.md` (ronda 4, FAIL 9,0 — encontró un segundo desfase de fecha en línea 56 del cuerpo, distinto del corregido en ronda 3) → `06-compliance-round5.md` (ronda 5, CONDITIONAL 9,45 — vigente, cero defectos). Las cuatro primeras se preservan como registro histórico.
-- `artifacts/editorial/rentas-mixtas-sueldo-honorarios/20260812-1345-lote0b/` — `05-math-audit.md` (FAIL puntual por ERROR APV, resuelto) + `06-compliance.md` (ronda 1, CONDITIONAL 9,275) → `06-compliance-round2.md` (ronda 2, CONDITIONAL 9,35 — vigente, verifica el fix del deferral TGR).
+- `artifacts/editorial/devolucion-impuestos-fechas-compensaciones/20260812-1420-lote0c/` — `06-compliance.md` (ronda 1, FAIL) → `06-compliance-round2.md` (ronda 2, FAIL) → `06-compliance-round3.md` (ronda 3, FAIL) → `06-compliance-round4.md` (ronda 4, FAIL 9,0 — segundo desfase de fecha) → `06-compliance-round5.md` (ronda 5, CONDITIONAL 9,45) → `06-compliance-round6.md` (ronda 6, CONDITIONAL 9,45 — vigente, verifica el fix de la contradicción "29 de mayo" hallada por revisor externo). Las cinco primeras se preservan como registro histórico.
+- `artifacts/editorial/rentas-mixtas-sueldo-honorarios/20260812-1345-lote0b/` — `05-math-audit.md` (ronda 1, FAIL por ERROR APV — preservado como histórico) → `05-math-audit-round2.md` (ronda 2, **PASS** 12/12, vigente — re-auditoría formal tras hallazgo de revisor externo sobre sustitución de rol) + `06-compliance.md` (ronda 1, CONDITIONAL 9,275) → `06-compliance-round2.md` (ronda 2, CONDITIONAL 9,35) → `06-compliance-round3.md` (ronda 3, CONDITIONAL 9,35 — vigente, verifica el math audit PASS).
 - `boleta-honorarios-2026-retencion-cobertura` no tiene run de pipeline nuevo — remediación fue metadata-only (Bucket C), documentada en el registro (§17).
 
 ### 18.3 Qué falta — exclusivamente Bucket A (humano)
