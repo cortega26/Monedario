@@ -106,3 +106,47 @@ este archivo.
   `06-compliance-round2.md` en esta sesión — corresponde a ComplianceAgent
   en sesión fresca (Fase C). El estado del paquete sigue pendiente de esa
   re-revisión y de la firma humana.
+
+## Ronda 3 — cierre de Bucket C (TODO:SOURCE + DEFECT-NUEVO #1/#2)
+
+- **Contexto:** `06-compliance-round2.md` (ComplianceAgent, sesión fresca,
+  ronda 2, sin exposición al draft de ronda 2) emitió veredicto
+  **CONDITIONAL (8,73/10)**. Los 3 defectos bloqueantes de ronda 1 seguían
+  verificados como resueltos; no había defectos nuevos bloqueantes. Quedaban
+  3 ítems Bucket C en la sección "Ruta de resolución" que impedían `PASS`.
+- **Sesión que ejecuta esta ronda:** DraftAgent, sesión nueva, 2026-08-13.
+- **Ítem 1 — `TODO:SOURCE` de `sii.cl/destacados/renta/2026/personas/`:**
+  **RESUELTO** (no declarado irrecuperable). Se reintentó el fetch con una
+  tercera técnica — renderizado headless con Playwright/Chromium, que
+  ejecuta el JS de la SPA — tras confirmar que WebFetch y
+  `scrapling extract get --impersonate chrome` (ambos GET estático) seguían
+  devolviendo solo el shell SvelteKit vacío. Esta vez sí se obtuvo contenido
+  (2692 caracteres). El contenido no contradice ni aporta datos que el
+  artículo publicado necesite citar, así que el blog file no se modificó a
+  partir de este fetch específico. Detalle completo en `04-draft.md` y
+  `02-dossier.md`.
+- **Ítem 2 — DEFECT-NUEVO #1 (cita frágil para el mecanismo AT2026-en-curso):**
+  **RESUELTO.** Se refetcheó `https://www.sii.cl/contribuyentes/p7renta.htm`
+  (Playwright), que confirma el mismo mecanismo de regularización sin la
+  restricción "años anteriores" de `001_140_0595.htm`. Se agregó como
+  fuente adicional en `articleLead.officialSources` y en "Fuentes y
+  referencias primarias" del blog file. La nota de auto-revisión en
+  `02-dossier.md` se simplificó: la cadena de tres fuentes de ronda 2 ya no
+  es el único respaldo.
+- **Ítem 3 — DEFECT-NUEVO #2 (modalidad "debes" no acotada):** **RESUELTO.**
+  La misma fuente `p7renta.htm` condiciona textualmente la obligación de
+  regularizar a "si usted... estaba obligado a hacerlo". Se matizó
+  `articleLead.answer` y el bullet correspondiente del cuerpo de "igual
+  debes hacerlo" a "si estabas obligado a declarar y no alcanzaste a
+  hacerlo, igual debes regularizar", sin alterar el resto del significado
+  ya verificado (mecanismo, multas, "No declarante F22").
+- **Archivos tocados:** `src/data/blog/operacion-renta-f22-checklist.md`
+  (fuente nueva + matiz de modalidad, sin tocar `updatedDate`),
+  `02-dossier.md`, `04-draft.md`, este archivo (sección nueva, sin marcar
+  gates). **No se editó** `06-compliance.md` ni `06-compliance-round2.md`
+  (registro histórico preservado) ni
+  `docs/backlog/PLAN-auditoria-corpus-publicado-2026-08-12.md`.
+- **No se marcó ningún gate `[X]` en esta lista.** No se genera
+  `06-compliance-round3.md` en esta sesión — corresponde a ComplianceAgent
+  en sesión fresca. Pendiente: compliance ronda 3 (sesión fresca) → firma
+  humana.

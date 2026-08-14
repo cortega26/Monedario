@@ -53,7 +53,7 @@ reviewPolicy:
   computedAt: "2026-05-06"
 ---
 
-**Estado del ciclo AT2026 (revisado el 12 de agosto de 2026): ya cerró.** El SII terminó de pagar las devoluciones de ese año tributario el 29 de mayo de 2026 (última fecha del calendario de depósito y cheque). Si ya declaraste y esperabas tu devolución, esta guía te explica qué hacer hoy: cómo revisar si nunca te llegó el depósito, qué hacer si no alcanzaste a declarar dentro de AT2026 y cuándo se abre el próximo ciclo (AT2027).
+**Estado del ciclo AT2026 (revisado el 13 de agosto de 2026): ya cerró.** El SII terminó de pagar las devoluciones de ese año tributario el 29 de mayo de 2026 (última fecha del calendario de depósito y cheque). Si ya declaraste y esperabas tu devolución, esta guía te explica qué hacer hoy: cómo revisar si nunca te llegó el depósito, qué hacer si no alcanzaste a declarar dentro de AT2026 y cuándo se abre el próximo ciclo (AT2027).
 
 ## Ciclo AT2026 cerrado: qué hacer hoy
 

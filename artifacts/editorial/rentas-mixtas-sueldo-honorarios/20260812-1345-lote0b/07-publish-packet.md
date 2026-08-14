@@ -186,6 +186,99 @@ Ver salida literal en el reporte final de la sesión. Comandos ejecutados:
 `pnpm run check:dialect`, `pnpm run check:editorial-timeliness`,
 `pnpm run check:links`, `pnpm vitest run`, `pnpm run format:check`.
 
+## Ronda — resolución deferral facilidades de pago (sesión posterior, 2026-08-13)
+
+`06-compliance.md` (ComplianceAgent, sesión fresca, 2026-08-13) dejó
+registrado como observación no bloqueante (Bucket B, OBS-1 = R4 de la ficha
+original) un deferral border-line en línea 220 de
+`src/data/blog/rentas-mixtas-sueldo-honorarios.md`: "Si el monto es alto y
+quieres dividirlo, el SII puede ofrecer facilidades de pago. Consulta
+directamente en sii.cl al momento de declarar." Defendible por NORMA §2.4
+condición 2, pero vago sobre un trámite con reglas generales potencialmente
+públicas.
+
+**Investigación (esta sesión, DraftAgent, 2026-08-13):**
+
+1. `WebSearch` inicial apuntó a que el trámite lo administra la Tesorería
+   General de la República (TGR), no el SII directamente.
+2. `WebFetch` a `https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_2870.htm`
+   confirmó explícitamente: los giros del Formulario 22 sí pueden acogerse a
+   convenio de pago **en la Tesorería General de la República**, con base
+   legal en el art. 192° del Código Tributario. Esto corrige un error
+   fáctico del texto original (atribuía el trámite al SII / sii.cl cuando en
+   realidad se tramita en tgr.gob.cl).
+3. `WebFetch` directo a `https://tgr.gob.cl/convenios-de-pago/` y a
+   `https://tgr.gob.cl/suscribir-convenio-de-pago-para-deudas-fiscales-y-territoriales/`
+   devolvió HTTP 403. Se aplicó el fallback documentado (`scrapling extract
+   get --impersonate chrome`) contra `https://tgr.gob.cl/convenios-de-pago/`,
+   que sí devolvió el HTML completo (200 OK). Extracto literal relevante
+   ("Convenio para deudas vencidas de Impuestos Fiscales y Aduaneros"): "Este
+   convenio da la facilidad de pagar tus deudas vencidas de Impuestos
+   Fiscales y Aduaneros en cuotas mensuales. Ley N° 20.780 Política de
+   Convenios y Condonación permanente del Servicio de Tesorerías. Plazo
+   hasta 24 cuotas (de acuerdo al comportamiento de pago). Pie entre un 10%
+   y un 30% (de acuerdo al comportamiento de pago, si tiene o no garantía).
+   Con un mínimo de 1 UTM puedes solicitar un convenio de pago en cuotas
+   mensuales." Fetch 2026-08-13.
+4. `https://www.chileatiende.gob.cl/fichas/4399-convenio-de-pago-para-deudas-fiscales-y-territoriales`
+   (fuente pública oficial, gob.cl) corroboró de forma independiente el
+   mismo plazo máximo (24 meses) y el mínimo de 1 UTM.
+
+**Resultado:** se encontró una fuente pública oficial con reglas generales
+verificables (plazo, pie, monto mínimo, entidad administradora), por lo que
+NORMA §2.4 exige reformular en vez de mantener el deferral vago. Se
+reformuló la línea 220 citando la regla concreta; queda como deferral
+legítimo (§2.4 condición 2) solo lo intrínsecamente individual: el
+porcentaje exacto del pie dentro del rango 10%-30% (depende del
+comportamiento de pago y de si hay garantía) y la aprobación final del
+convenio, que es caso a caso.
+
+**Texto antes:**
+
+> Si el monto es alto y quieres dividirlo, el SII puede ofrecer facilidades
+> de pago. Consulta directamente en sii.cl al momento de declarar.
+
+**Texto después:**
+
+> Si el monto es alto y quieres dividirlo, puedes solicitar un [convenio de
+> pago](https://tgr.gob.cl/convenios-de-pago/) en cuotas: lo administra la
+> Tesorería General de la República (TGR), no el SII. La regla general es
+> plazo de hasta 24 cuotas mensuales y pie inicial de entre 10% y 30% del
+> monto adeudado, con una deuda mínima de 1 UTM para poder solicitarlo. El
+> porcentaje exacto del pie dentro de ese rango depende de tu comportamiento
+> de pago y de si ofreces garantía, así que la aprobación final es caso a
+> caso. Se solicita en tgr.gob.cl con tu Clave Tributaria (SII) o
+> ClaveÚnica.
+
+**Fuentes citadas en el cambio:**
+
+- SII — Preguntas frecuentes, giros F22 y convenio de pago en TGR:
+  <https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_2870.htm>
+  (fetch 2026-08-13).
+- TGR — Convenios de pago (condiciones generales, vía `scrapling` tras 403
+  de `WebFetch`): <https://tgr.gob.cl/convenios-de-pago/> (fetch 2026-08-13).
+- ChileAtiende — Convenio de pago para deudas fiscales y territoriales
+  (corroboración): <https://www.chileatiende.gob.cl/fichas/4399-convenio-de-pago-para-deudas-fiscales-y-territoriales>
+  (fetch 2026-08-13).
+
+**Gates ejecutados tras el cambio** (salida literal en el reporte de sesión):
+`pnpm run check:frontmatter` (OK), `pnpm run check:editorial` (OK, warnings
+preexistentes en otros artículos, no relacionados con este cambio),
+`pnpm run check:dialect` (OK), `pnpm run check:links` (OK, 0 enlaces rotos),
+`pnpm vitest run` (157 archivos, 1358 tests, todos pasan),
+`pnpm run format:check` (OK).
+
+**No se tocó:** R5, R2, fix APV, slug/title/seoTitle/H1/canonical, ningún
+otro artículo del corpus, `docs/backlog/PLAN-auditoria-corpus-publicado-2026-08-12.md`.
+No se editó `06-compliance.md` (se preserva como registro histórico). No se
+produjo ningún archivo de compliance nuevo.
+
+**Ningún gate de la sección "Estado del paquete" se marca `[X]` por esta
+ronda.** Este cambio de contenido requiere una verificación de conformidad
+en sesión fresca (Bucket B: `ComplianceAgent`) antes de que pueda contar
+para el veredicto CONDITIONAL (9,275/10) ya emitido, y sigue pendiente la
+firma humana.
+
 ## Nota
 
 Ningún gate de esta lista está marcado `[X]`. Solo el editor humano firma

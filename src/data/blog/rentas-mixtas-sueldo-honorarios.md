@@ -217,4 +217,4 @@ Si el SII detectó compensaciones (deudas, pensión de alimentos, CAE), TGR pued
 
 En el ciclo AT2026, el plazo para pagar con rentas mixtas venció el **30 de abril de 2026**. Declarar o pagar fuera de plazo genera reajuste e intereses.
 
-Si el monto es alto y quieres dividirlo, el SII puede ofrecer facilidades de pago. Consulta directamente en sii.cl al momento de declarar.
+Si el monto es alto y quieres dividirlo, puedes solicitar un [convenio de pago](https://tgr.gob.cl/convenios-de-pago/) en cuotas: lo administra la Tesorería General de la República (TGR), no el SII. La regla general es plazo de hasta 24 cuotas mensuales y pie inicial de entre 10% y 30% del monto adeudado, con una deuda mínima de 1 UTM para poder solicitarlo. El porcentaje exacto del pie dentro de ese rango depende de tu comportamiento de pago y de si ofreces garantía, así que la aprobación final es caso a caso. Se solicita en tgr.gob.cl con tu Clave Tributaria (SII) o ClaveÚnica.

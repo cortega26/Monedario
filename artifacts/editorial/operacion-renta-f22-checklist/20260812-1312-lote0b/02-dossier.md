@@ -111,35 +111,19 @@ oficiales en vivo para reconciliar ambas.
   puedes usar el flujo normal") era la afirmacion incorrecta, no el cuerpo;
   se corrigio el lead para alinearlo con el cuerpo y con esta fuente.
 
-  **Nota sobre el alcance literal de esta fuente (auto-revision antes de
-  publicar el reporte final):** el texto citado dice "años anteriores", no
-  "AT2026". En agosto de 2026, AT2026 es el año tributario en curso, no un
-  "año anterior" en sentido estricto. Para que la aplicacion a AT2026 sea
-  defendible ante una re-revision adversarial, se documenta aqui la cadena
-  de tres fuentes que la sostiene, en vez de dejarla implicita:
-  1. FAQ 001_140_0504 define "fuera de plazo" como toda declaracion
-     "presentada despues del plazo establecido del periodo de presentacion
-     del Formulario 22" — por definicion, un F22 AT2026 presentado en
-     agosto de 2026 cae en esta categoria, sin necesidad de que haya
-     transcurrido un año tributario completo.
-  2. FAQ 001_140_0595 (citada arriba) usa el termino generico
-     "declaraciones no presentadas" para el canal de regularizacion; no
-     dice literalmente "solo aplica a años tributarios ya cerrados por
-     completo, no al actual". El bullet del cuerpo del articulo refleja
-     esto: usa la misma redaccion generica de la fuente ("regularizar
-     declaraciones no presentadas"), sin afirmar que el SII confirmo el
-     caso especifico "AT2026 vigente" — es una aplicacion razonable del
-     texto generico al caso definido por (1), no una cita literal
-     AT2026-especifica.
-  3. FAQ 001_140_3095 confirma que existen multas para exactamente este
-     escenario (declaracion de renta fuera de plazo), lo que corrobora que
-     el SII contempla y regula la presentacion tardia como caso normal, no
-     como vacio de procedimiento.
-  Si una revision futura considera que esta cadena no es suficiente
-  respaldo (p. ej. porque AT2026 tecnicamente sigue "en curso" segun algun
-  criterio del SII no verificado), la resolucion correcta seria retroceder
-  el bullet del cuerpo a un deferral explicito ("consulta tu caso en
-  sii.cl") en vez de la afirmacion del mecanismo — ver NORMA §2.4.
+  **Nota sobre el alcance literal de esta fuente (auto-revision, actualizada
+  y simplificada en ronda 3, 2026-08-13):** el texto citado dice "años
+  anteriores", no "AT2026". En ronda 2 esto se sostenia con una cadena de
+  tres fuentes (0504 + 0595 + 3095) que la propia ronda 2 reconocia como no
+  trivial. En ronda 3 se encontro y refetcheo una fuente directa que hace
+  innecesaria esa cadena: `https://www.sii.cl/contribuyentes/p7renta.htm`
+  ("¿Que pasa si no declare Renta...?") confirma el mismo mecanismo
+  ("Declarar Renta F22" vía menu Ayuda → "¿Como se hace para...?") con
+  lenguaje general de "no declarante" — sin la restriccion "años
+  anteriores" y sin necesidad de inferencia. Ver seccion "Ronda 3" abajo
+  para la cita literal completa. La cadena de tres fuentes de ronda 2 se
+  conserva como respaldo secundario (no se retracta, sigue siendo correcta),
+  pero ya no es el unico sosten de la afirmacion.
 - SII FAQ, "¿Cuales son las multas asociadas a la presentacion de una
   Declaracion de Renta fuera de plazo?":
   <https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_3095.htm>
@@ -225,3 +209,68 @@ oficiales en vivo para reconciliar ambas.
   §2.4: "Tramos ISC (tabla publica en SII)" es deferral ilegitimo si se evita
   citar la tabla; aqui la tabla de multas SI se cita, y solo se defiere el
   monto final especifico del lector.
+
+## Fuentes oficiales — refetcheadas para ronda 3 (cierre Bucket C, 2026-08-13)
+
+Contexto: `06-compliance-round2.md` (ComplianceAgent, sesion fresca, ronda 2)
+emitio veredicto CONDITIONAL (8,73/10) y dejo 3 items Bucket C en su seccion
+"Ruta de resolucion": (1) resolver o descartar formalmente el `TODO:SOURCE`
+de `sii.cl/destacados/renta/2026/personas/`, (2) agregar
+`sii.cl/contribuyentes/p7renta.htm` como fuente adicional (DEFECT-NUEVO #1),
+(3) acotar "igual debes hacerlo" a los contribuyentes obligados a declarar
+(DEFECT-NUEVO #2).
+
+- SII, "Operación Renta Personas AT 2026" (landing con preguntas frecuentes
+  de elegibilidad): <https://www.sii.cl/destacados/renta/2026/personas/> —
+  reintento de fetch 2026-08-13 con Playwright (`chromium.launch()` +
+  `page.goto(..., wait_until="networkidle")` + `page.inner_text("body")`),
+  tecnica distinta de WebFetch y de `scrapling extract get` (ambas hacen un
+  GET estatico y solo devuelven el shell SvelteKit de 1340 bytes sin
+  contenido, confirmado de nuevo en esta ronda antes de probar Playwright).
+  Esta vez si se obtuvo el contenido renderizado (2692 caracteres): menu de
+  navegacion, preguntas frecuentes de la landing, y el criterio general de
+  obligacion de declarar ("En 2025 tuviste ingresos anuales mayores a
+  $11.265.804. Si estos ingresos corresponden a sueldos pagados por un solo
+  empleador, no estas obligado a presentar tu declaracion..."). Uso: el
+  `TODO:SOURCE` queda **RESUELTO** (ver `04-draft.md`). El contenido no
+  contradice ninguna afirmacion publicada del articulo ni introduce un dato
+  que el cuerpo necesite citar (el articulo usa criterios cualitativos en la
+  tabla de obligacion de declarar, no el umbral en pesos); por eso no se
+  modifico el blog file a partir de este fetch especifico.
+- SII, "¿Que pasa si no declare Renta o la informacion de mi declaracion no
+  cuadra con la del SII?": <https://www.sii.cl/contribuyentes/p7renta.htm> —
+  fetch 2026-08-13 (Playwright, misma tecnica). Cita literal completa del
+  parrafo relevante: *"Si usted no declaro rentas y estaba obligado a
+  hacerlo, sera citado a las unidades del SII. Ademas, usted presentara en
+  los registros del SII la anotacion tributaria, No declarante F22, la cual,
+  le impedira realizar algunos tramites importantes con el Servicio. Para
+  regularizar esta situacion, debe presentar su declaracion anual de
+  impuesto a la renta a traves de Internet. ¿Como hacerlo?. Puede seguir las
+  instrucciones presentes en el sitio web del SII, menu Ayuda, opcion ¿Como
+  se hace para...?, opcion Declaracion, pago, devolucion de impuestos y
+  condonacion de intereses y multas, opcion Declarar Renta (F22). El hecho
+  de no haber presentado su declaracion dentro del plazo legal, generara
+  multas e intereses a su declaracion."* Uso doble:
+  1. **DEFECT-NUEVO #1:** confirma el mismo mecanismo (portal SII, opcion
+     "Declarar Renta F22") que `001_140_0595.htm`, pero con lenguaje general
+     de "no declarante" — sin la restriccion "años anteriores" que obligaba
+     a la cadena de tres fuentes de ronda 2. Se agrego como fuente adicional
+     en `articleLead.officialSources` y en "Fuentes y referencias primarias"
+     del blog file.
+  2. **DEFECT-NUEVO #2:** el propio texto de esta fuente condiciona la
+     obligacion de regularizar a "si usted... estaba obligado a hacerlo" —
+     confirma exactamente el matiz que el compliance de ronda 2 senalo como
+     faltante en `articleLead.answer` y el cuerpo. Se uso este texto como
+     base para acotar "igual debes hacerlo" a "si estabas obligado a
+     declarar y no alcanzaste a hacerlo, igual debes regularizar".
+  Tambien confirma, de forma consistente con la fuente ChileAtiende ya
+  citada, la anotacion "No declarante F22" y que la presentacion fuera de
+  plazo genera multas e intereses — sin introducir cifras nuevas ni
+  contradecir los porcentajes ya citados de `001_140_3095.htm`.
+
+Archivos actualizados en esta ronda: `src/data/blog/operacion-renta-f22-checklist.md`,
+`02-dossier.md` (este archivo), `04-draft.md`, `07-publish-packet.md`. No se
+genero `06-compliance-round3.md` (corresponde a ComplianceAgent en sesion
+fresca). No se edito `06-compliance.md` ni `06-compliance-round2.md` (se
+preservan como registro historico). No se edito
+`docs/backlog/PLAN-auditoria-corpus-publicado-2026-08-12.md`.

@@ -94,24 +94,39 @@ ninguna cifra calculada. No hay items `VERIFIED` que trasladar desde un math
 audit; las cifras que se conservan (R5) ya estaban en el articulo publicado y
 provienen de la ficha de auditoria, no de un math audit de este pipeline.
 
-## TODO:SOURCE (si los hay)
+## TODO:SOURCE — RESUELTO en ronda 3 (2026-08-13)
 
-Ninguno de estos bloquea el blog file (ninguna afirmacion publicada depende
-de un fetch no resuelto). Se documenta aqui, ademas de en `02-dossier.md`,
-por consistencia con NORMA §2.4 (el marcador debe aparecer en el artifact
-04-draft.md):
+El marcador original quedo cerrado en ronda 3. Historial completo:
 
 ```
-TODO:SOURCE: https://www.sii.cl/destacados/renta/2026/personas/ — fetch result:
-pagina SPA (SvelteKit) sin markup con texto util, tanto via WebFetch como via
-`scrapling extract get --impersonate chrome`. No se pudo confirmar ni
-desmentir nada desde esta URL. No bloquea el reencuadre porque el estado de
-cierre de ventana AT2026 ya esta confirmado por el comunicado del 31-03-2026
-mas la fecha de hoy (2026-08-12).
+TODO:SOURCE (ronda 1/2, sin resolver): https://www.sii.cl/destacados/renta/2026/personas/
+— fetch result: pagina SPA (SvelteKit) sin markup con texto util, tanto via
+WebFetch como via `scrapling extract get --impersonate chrome` (GET estatico,
+sin ejecucion de JS). No se pudo confirmar ni desmentir nada desde esta URL.
+No bloqueaba el reencuadre porque el estado de cierre de ventana AT2026 ya
+estaba confirmado por el comunicado del 31-03-2026 mas la fecha de hoy.
+
+RESUELTO (ronda 3, 2026-08-13): se reintento el fetch con una tercera tecnica
+— renderizado headless con Playwright/Chromium (`page.goto(...,
+wait_until="networkidle")` + `page.inner_text("body")`), distinta de las dos
+tecnicas previas porque ejecuta el JS de la SPA en vez de pedir el HTML
+estatico. Este metodo si obtuvo contenido util: 2692 caracteres de texto
+renderizado (navegacion, preguntas frecuentes de la landing "Operacion Renta
+Personas AT 2026" y el criterio general de quien debe declarar — ingresos
+2025 > $11.265.804, con excepcion de un solo empleador). Contenido
+verificado: no contradice ninguna afirmacion publicada del articulo; tampoco
+aporta ningun dato nuevo que el articulo necesite citar (el umbral en pesos
+no esta usado en el cuerpo del articulo, que usa criterios cualitativos en
+la tabla "¿Tienes que declarar o solo aceptar la propuesta?"). Por lo tanto
+no se modifico el cuerpo del articulo a partir de este fetch — el marcador
+se cierra por confirmacion positiva del contenido (NORMA §2.4: fuente
+publica y fetcheable, ahora efectivamente fetcheada y citable si una futura
+revision necesita ese umbral), no por declaracion de irrecuperabilidad.
 ```
 
 Todas las afirmaciones nuevas o reencuadradas del blog file citan una fuente
-fetcheada y confirmada (ver `02-dossier.md`).
+fetcheada y confirmada (ver `02-dossier.md`). No queda ningun `TODO:SOURCE`
+pendiente en este artifact tras ronda 3.
 
 ## Ronda 2 — remediacion de DEFECT #1, #2, #3 (compliance FAIL 6,05/10)
 
@@ -174,3 +189,58 @@ No se genera `06-compliance-round2.md` en esta sesion (le corresponde a
 ComplianceAgent en sesion fresca). No se marca ningun gate en
 `07-publish-packet.md`. No se edito `06-compliance.md` (se preserva como
 registro historico del veredicto FAIL de ronda 1).
+
+## Ronda 3 — cierre de Bucket C (TODO:SOURCE + DEFECT-NUEVO #1/#2)
+
+`06-compliance-round2.md` (ComplianceAgent, sesion fresca, ronda 2) emitio
+veredicto **CONDITIONAL (8,73/10)**: los 3 defectos bloqueantes de ronda 1
+seguian resueltos y verificados, pero quedaban 3 items Bucket C que impedian
+`PASS` — documentados en su seccion "Ruta de resolucion". Los tres se
+resolvieron en esta sesion (DraftAgent, 2026-08-13):
+
+1. **`TODO:SOURCE` de `sii.cl/destacados/renta/2026/personas/` — RESUELTO**
+   (no "irrecuperable permanente"). Ver seccion "TODO:SOURCE" arriba para el
+   detalle tecnico. Reintentado con una tercera tecnica (Playwright headless,
+   renderiza JS) tras las dos fallidas previas (WebFetch, scrapling GET
+   estatico); esta vez si devolvio contenido. El contenido no contradice ni
+   aporta datos que el articulo publicado necesite citar, asi que el blog
+   file no se modifico a partir de este fetch.
+2. **DEFECT-NUEVO #1 (cita fragil para el mecanismo AT2026-en-curso) —
+   RESUELTO.** Se refetcheo `https://www.sii.cl/contribuyentes/p7renta.htm`
+   (Playwright headless, 2026-08-13). Cita literal relevante: *"Si usted no
+   declaro rentas y estaba obligado a hacerlo, sera citado a las unidades
+   del SII... Para regularizar esta situacion, debe presentar su
+   declaracion anual de impuesto a la renta a traves de Internet... opcion
+   Declarar Renta (F22)... El hecho de no haber presentado su declaracion
+   dentro del plazo legal, generara multas e intereses a su declaracion."*
+   Esta fuente confirma el mismo mecanismo (portal SII, "Declarar Renta
+   F22") sin la restriccion "años anteriores" de `001_140_0595.htm` — cubre
+   de forma directa y general cualquier declaracion no presentada,
+   incluyendo la del año en curso. Se agrego como fuente adicional en
+   `articleLead.officialSources` y en "Fuentes y referencias primarias" del
+   blog file. Con esta fuente, la cadena de tres fuentes documentada en
+   `02-dossier.md` para sostener la aplicacion a AT2026 deja de ser el unico
+   respaldo — se simplifico esa nota (ver `02-dossier.md`, seccion "Ronda 3").
+3. **DEFECT-NUEVO #2 (modalidad "debes" no acotada) — RESUELTO.** La misma
+   fuente `p7renta.htm` confirma ademas la condicion que el articulo omitia:
+   la obligacion de regularizar aplica a quien "estaba obligado a hacerlo"
+   (no a cualquier no-declarante). Se matizo `articleLead.answer` y el
+   bullet correspondiente del cuerpo ("Si no alcanzaste a declarar dentro de
+   la ventana AT2026...") de "igual debes hacerlo" a "si estabas obligado a
+   declarar y no alcanzaste a hacerlo, igual debes regularizar", sin cambiar
+   el resto del significado ya verificado (mecanismo, multas, "No declarante
+   F22").
+
+Archivos actualizados en esta ronda: `src/data/blog/operacion-renta-f22-checklist.md`
+(fuente nueva en `articleLead.officialSources` + "Fuentes y referencias
+primarias" + matiz de modalidad en `articleLead.answer` y en el cuerpo),
+`02-dossier.md` (fuentes ronda 3 + nota simplificada), `04-draft.md` (este
+archivo), `07-publish-packet.md` (nota de ronda 3, ningun gate marcado).
+
+No se genera `06-compliance-round3.md` en esta sesion (le corresponde a
+ComplianceAgent en sesion fresca). No se edito `06-compliance.md` ni
+`06-compliance-round2.md` (se preservan como registro historico). No se
+edito `docs/backlog/PLAN-auditoria-corpus-publicado-2026-08-12.md`. No se
+modifico `updatedDate` del frontmatter: los tres cambios de esta ronda son
+precision de fuente/modalidad, no una regla, cifra, umbral o reforma nueva
+(NORMA §5.2 — no ameritan bump de frescura ni registro en backlog).

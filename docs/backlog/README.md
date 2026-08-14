@@ -20,13 +20,13 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | 1 | Validar CSP/Cloudflare después del despliegue | Confirmar que `no-transform` evita JSD sin relajar la CSP hash-only |
 | 2 | Cerrar guardrail LCP de UTM | Dos de tres corridas móviles superaron 1,7 s; conservar el umbral y corregir antes de cerrar |
 | 3 | Ejecutar ritual utility-led por dos semanas comparables | Medir utilidad, carga, costo, calidad, aprendizaje y reputación; ingresos siguen siendo opcionales |
-| 4 | Revisar los cuatro SLA editoriales vencidos de `impuestos-personas` | Cohorte vigente al 2026-08-12 (`boleta-honorarios`, `devolucion-impuestos`, `operacion-renta-f22-checklist`, `rentas-mixtas`): `manual_review`, vencidos el 2026-08-09, bloquean `pnpm run check`. Los nueve de `TD-0098` se cerraron el 2026-08-03. Ver `PLAN-auditoria-corpus-publicado-2026-08-12.md` (lote 0) |
+| 4 | Firmar (editor humano) el lote 0 de `impuestos-personas` | Los cuatro SLA vencidos ya se remediaron y verificaron (compliance adversarial en múltiples rondas): `CONDITIONAL` 9,3-9,45/10, cero defectos bloqueantes. `check:editorial-timeliness` ya no los reporta como stale. Falta solo la firma humana en `07-publish-packet.md` y decidir el merge de PR #423. Ver `PLAN-auditoria-corpus-publicado-2026-08-12.md` §18 |
 
 ### Pendiente — implementación por código
 
 | Plan | Archivo | Bloqueador |
 |------|---------|------------|
-| Auditoría del corpus publicado vs. estándares vigentes | `PLAN-auditoria-corpus-publicado-2026-08-12.md` | PROPUESTO — pendiente de aprobación del editor. Lote 0 (4 SLA vencidos de `impuestos-personas`) tiene el gate `check:editorial-timeliness` en rojo |
+| Auditoría del corpus publicado vs. estándares vigentes | `PLAN-auditoria-corpus-publicado-2026-08-12.md` | Lote 0 ejecutado y en PR #423 (`CONDITIONAL` 9,3-9,45/10, cero defectos bloqueantes); pendiente firma humana y decisión de merge. Lotes 1-5 (resto del corpus) sin iniciar |
 | Validación utility-led, días 1–30 | `PLAN-utility-led-validation-2026-08-02.md` | Cierre parcial: CSP validada en producción (TD-0099) y guardrail LCP UTM cerrado (TD-0101); queda el contraste con RUM tras merge. Los nueve SLA editoriales se cerraron el 2026-08-03 (`TD-0098` resuelto) |
 | Crecimiento liderado por calculadoras | `PLAN-calculator-led-growth-2026-06-28.md` | OBS-01 activo: W27 quedó parcial; W28 es la primera semana post-fix válida. Consolidar evidencia multiweek y aplicar el gate del plan antes de PR-03 |
 | Phase 2 — Data Signals (MON-ENV-DATA3b..3c) | `PHASE_2_DATA_SIGNALS.md` | Requiere suscripción Ahrefs Advanced+ |

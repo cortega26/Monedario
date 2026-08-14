@@ -1,7 +1,7 @@
 # PLAN — Auditoría del corpus publicado contra estándares vigentes
 
-**Estado:** PROPUESTO — pendiente de aprobación del editor humano
-**Fecha:** 2026-08-12
+**Estado:** LOTE 0 EJECUTADO — PR #423 abierta, pendiente firma humana (§18)
+**Fecha:** 2026-08-12 (actualizado 2026-08-13)
 **Commit base de la medición:** `8be28d3b`
 **Alcance:** los 53 artículos publicados de `src/data/blog/**`
 **Autoridad:** `docs/AI_ENGINEERING_CONSTITUTION.md` → `AGENTS.md` → `context/*.md` → código
@@ -574,21 +574,28 @@ Al aprobar este plan hay que corregir bookkeeping desactualizado:
 del §7), despachados y consolidados en una sesión de orquestación; ningún
 agente marcó gates de publicación ni firmó en nombre del editor humano.
 
-### 18.1 Resultado por artículo
+### 18.1 Resultado por artículo (estado final, post cierre de papeleo)
 
 | Artículo | Hallazgos remediados | Verdicto final de compliance | Bucket abierto |
 |---|---|---|---|
 | `boleta-honorarios-2026-retencion-cobertura` | SLA vencido, sin defecto de contenido (ficha original: `CONDITIONAL` 8,95/10) | No requirió nueva ronda de compliance — re-confirmación de vigencia sin cambio sustantivo | Ninguno |
-| `operacion-renta-f22-checklist` | R2 vigencia (ronda 1) → 3 defectos nuevos encontrados por compliance (ronda 1) → resueltos (ronda 2) | `CONDITIONAL` 8,73/10 (ronda 2, `06-compliance-round2.md`) | Bucket C: `TODO:SOURCE` sin resolver (fetch irrecuperable de `sii.cl/destacados/renta/2026/personas/`), 2 precisiones menores de cita/matiz — no bloqueantes, quedan como follow-up |
-| `devolucion-impuestos-fechas-compensaciones` | R1 respuesta ancla + R2 vigencia (ronda 1) → defecto de cita (ronda 1 compliance) → resuelto (ronda 2) → discrepancia de fuentes SII sobre umbral $3M (ronda 2 compliance) → dirimida (ronda 3) → desfase de fechas (ronda 3 compliance) → corregido | `FAIL` 9,075/10 (ronda 3, `06-compliance-round3.md`) — el único defecto pendiente al momento del veredicto (desfase de fechas) ya está corregido, verificado por gates directos, sin nueva ronda de compliance dedicada | Ninguno bloqueante; verificación de gates confirma el fix, no una ronda adversarial completa |
-| `rentas-mixtas-sueldo-honorarios` | R5 cifra IGC + R2 vigencia (ronda 1) → ERROR APV fuera de alcance hallado por math audit → corregido | `CONDITIONAL` 9,275/10 (`06-compliance.md`) | Bucket B: deferral border-line de "facilidades de pago" (línea ~220); Bucket C: estructura DoD §2 — ninguno bloqueante |
+| `operacion-renta-f22-checklist` | R2 vigencia → 3 defectos de ronda 1 compliance → resueltos (ronda 2) → 3 ítems Bucket C (`TODO:SOURCE` + 2 precisiones de cita/matiz) → resueltos (ronda 3) → desfase de `updatedDate` hallado por compliance ronda 3 → corregido | **`CONDITIONAL` 9,325/10** (ronda 4, `06-compliance-round4.md`) | DEFECT-NUEVO #2 (informativo, no bloqueante): cobertura opcional sobre "citación a las unidades del SII" que la fuente `p7renta.htm` menciona y el artículo no — no bloquea, follow-up si se desea |
+| `devolucion-impuestos-fechas-compensaciones` | R1 respuesta ancla + R2 vigencia → defecto de cita (ronda 1 compliance) → resuelto (ronda 2) → discrepancia de fuentes SII sobre umbral $3M (ronda 2 compliance) → dirimida (ronda 3) → desfase de fechas (ronda 3 y 4 compliance, dos ubicaciones distintas) → corregido en dos pasadas | **`CONDITIONAL` 9,450/10** (ronda 5, `06-compliance-round5.md`) | Ninguno — cero `TODO:SOURCE`, cero defectos abiertos; no alcanza `PASS` solo por estar bajo el umbral 9,5/10 |
+| `rentas-mixtas-sueldo-honorarios` | R5 cifra IGC + R2 vigencia → ERROR APV fuera de alcance hallado por math audit → corregido → deferral border-line "facilidades de pago" → fortalecido con regla pública verificable (TGR, no SII) | **`CONDITIONAL` 9,350/10** (ronda 2, `06-compliance-round2.md`) | Bucket C: estructura DoD §2 (SHOULD, no bloqueante) |
+
+Los tres artículos sustantivos terminaron en `CONDITIONAL` en el rango
+9,3-9,45/10, **sin ningún defecto bloqueante abierto**. Ninguno alcanza
+`PASS` puro (NORMA §7 exige ≥9,5/10 + cero ítems abiertos, y en dos casos
+queda una décima de margen bajo el umbral); esa última fracción de puntaje
+es la que el editor humano decide si amerita otra ronda o si el estado
+actual es aceptable para publicar.
 
 ### 18.2 Registro de artefactos por run
 
-- `artifacts/editorial/operacion-renta-f22-checklist/20260812-1312-lote0b/` — `06-compliance.md` (ronda 1, FAIL, preservado como histórico) + `06-compliance-round2.md` (ronda 2, CONDITIONAL, vigente)
-- `artifacts/editorial/devolucion-impuestos-fechas-compensaciones/20260812-1420-lote0c/` — `06-compliance.md` (ronda 1, FAIL) + `06-compliance-round2.md` (ronda 2, FAIL) + `06-compliance-round3.md` (ronda 3, FAIL — vigente; defecto de fechas resuelto post-veredicto, ver 18.1)
-- `artifacts/editorial/rentas-mixtas-sueldo-honorarios/20260812-1345-lote0b/` — `05-math-audit.md` (FAIL puntual por ERROR APV, resuelto y confirmado por compliance) + `06-compliance.md` (CONDITIONAL, vigente)
-- `boleta-honorarios-2026-retencion-cobertura` no tiene run de pipeline nuevo — remediación fue metadata-only (Bucket C), documentada en este registro (§17).
+- `artifacts/editorial/operacion-renta-f22-checklist/20260812-1312-lote0b/` — `06-compliance.md` (ronda 1, FAIL) → `06-compliance-round2.md` (ronda 2, CONDITIONAL 8,73) → `06-compliance-round3.md` (ronda 3, CONDITIONAL 9,25) → `06-compliance-round4.md` (ronda 4, CONDITIONAL 9,325 — vigente). Las tres primeras se preservan como registro histórico.
+- `artifacts/editorial/devolucion-impuestos-fechas-compensaciones/20260812-1420-lote0c/` — `06-compliance.md` (ronda 1, FAIL) → `06-compliance-round2.md` (ronda 2, FAIL) → `06-compliance-round3.md` (ronda 3, FAIL) → `06-compliance-round4.md` (ronda 4, FAIL 9,0 — encontró un segundo desfase de fecha en línea 56 del cuerpo, distinto del corregido en ronda 3) → `06-compliance-round5.md` (ronda 5, CONDITIONAL 9,45 — vigente, cero defectos). Las cuatro primeras se preservan como registro histórico.
+- `artifacts/editorial/rentas-mixtas-sueldo-honorarios/20260812-1345-lote0b/` — `05-math-audit.md` (FAIL puntual por ERROR APV, resuelto) + `06-compliance.md` (ronda 1, CONDITIONAL 9,275) → `06-compliance-round2.md` (ronda 2, CONDITIONAL 9,35 — vigente, verifica el fix del deferral TGR).
+- `boleta-honorarios-2026-retencion-cobertura` no tiene run de pipeline nuevo — remediación fue metadata-only (Bucket C), documentada en el registro (§17).
 
 ### 18.3 Qué falta — exclusivamente Bucket A (humano)
 
@@ -597,14 +604,12 @@ Ningún agente puede completar lo que sigue (`INVARIANT.EDITORIAL.SEPARATION_OF_
 
 1. **Firma humana de `07-publish-packet.md`** en los tres runs con artefactos
    (`operacion-renta-f22-checklist`, `devolucion-impuestos-fechas-compensaciones`,
-   `rentas-mixtas-sueldo-honorarios`). Ninguno alcanzó `PASS` puro (todos
-   `CONDITIONAL` o con el único defecto pendiente ya resuelto por gates) —
-   el editor debe revisar cada `06-compliance*.md` y decidir si el estado
-   `CONDITIONAL`/defecto-resuelto-sin-ronda-4 es aceptable para publicar, o
-   si exige una ronda adicional antes de firmar.
-2. **Decisión editorial sobre los Bucket B/C abiertos** (§18.1): resolver o
-   descartar formalmente, no bloquean publicación pero sí el cierre `PASS`
-   completo de cada pieza.
+   `rentas-mixtas-sueldo-honorarios`). Los tres están en `CONDITIONAL`
+   9,3-9,45/10, sin defectos bloqueantes abiertos — el editor debe revisar
+   el `06-compliance-round*.md` vigente de cada uno (§18.2) y decidir si ese
+   estado es aceptable para publicar.
+2. **DEFECT-NUEVO #2 de `f22-checklist`** (§18.1): cobertura opcional, no
+   bloqueante — decidir si se agrega o se descarta.
 3. **Revisión de la discrepancia SII no resuelta por el sitio**: la FAQ
    001_140_8366.htm del propio SII contradice su comunicado 31-03-2026 sobre
    el umbral de $3.000.000. El sitio ya resolvió esto editorialmente con
