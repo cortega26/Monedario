@@ -24,7 +24,7 @@ articleLead:
   answer: "La remuneración imponible es la base sobre la que se calculan las cotizaciones previsionales (AFP, salud, AFC) y el Impuesto de Segunda Categoría. No es lo mismo que el sueldo bruto: algunos componentes como la asignación de colación o movilización están excluidos."
   nextStepHref: "/posts/como-calcular-sueldo-liquido/"
   nextStepLabel: "Calcular tu sueldo líquido completo"
-  validAsOf: 2026-07-01
+  validAsOf: 2026-08-19
   officialSources:
     - label: "BCN — Código del Trabajo, art. 41"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=207436"
@@ -36,7 +36,7 @@ articleLead:
     - "Qué componentes del sueldo entran en la base imponible y cuáles no."
     - "Cómo la base imponible determina AFP, salud, AFC e ISC."
     - "El tope máximo imponible y su efecto en la cotización previsional."
-    - "Cómo el APV puede reducir la base del ISC (Modalidad B) o generar un crédito tributario directo (Modalidad A)."
+    - "Cómo el APV puede reducir la base del ISC (Modalidad B) o recibir una bonificación estatal del 15% (Modalidad A)."
   limits:
     - "No calcula el sueldo líquido completo — para eso usa la calculadora."
     - "Los tramos ISC y el tope UF se actualizan; verifica los valores vigentes en SII y Superintendencia de Pensiones."
@@ -54,10 +54,10 @@ reviewPolicy:
     - registry:categoryPolicies.empleo-ingresos
     - template:utm
   computedAt: "2026-08-09"
-updatedDate: 2026-08-09T00:00:00Z
+updatedDate: 2026-08-19T00:00:00Z
 ---
 
-> **Información vigente al 2026-07-01.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo.
+> **Información vigente al 2026-08-19.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo.
 
 Revisas tu liquidación y ves dos cifras distintas: "sueldo bruto" y "remuneración imponible". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque los descuentos de AFP, salud e impuesto no se calculan sobre el bruto — se calculan sobre el imponible.
 
@@ -137,10 +137,10 @@ El **tramo del 4%** (entre [[utm * 13.5 | clp]] y [[utm * 30 | clp]]) cubre al t
 
 El Ahorro Previsional Voluntario (APV) puede reducir tu carga tributaria según la modalidad elegida:
 
-- **Modalidad A**: genera un crédito tributario directo sobre el monto cotizado, hasta **50 UF mensuales o 600 UF anuales** ([art. 42 bis LIR](https://www.bcn.cl/leychile/navegar?idNorma=6368)).
-- **Modalidad B**: reduce la base imponible del ISC, con el mismo tope de 600 UF anuales establecido en el mismo artículo.
+- **Modalidad A**: no rebaja la base imponible, pero al momento del retiro de los fondos el trabajador no paga impuesto por los aportes; el beneficio se materializa como una bonificación estatal del **15%** sobre el monto ahorrado en el año, con tope de **6 UTM anuales**, depositada por la Tesorería General de la República directamente en la cuenta de ahorro previsional ([art. 20, letra L, del D.L. 3.500](https://www.bcn.cl/leychile/navegar?idNorma=7147) para la elección del régimen y [art. 20, letra O, del D.L. 3.500](https://www.bcn.cl/leychile/navegar?idNorma=7147) para la bonificación).
+- **Modalidad B**: reduce la base imponible del ISC (o del Impuesto Global Complementario), con tope de **50 UF mensuales** o **600 UF anuales** ([art. 20, letra L, del D.L. 3.500](https://www.bcn.cl/leychile/navegar?idNorma=7147), en concordancia con el [art. 42 bis de la LIR](https://www.bcn.cl/leychile/navegar?idNorma=6368) por la rebaja de base imponible).
 
-Los topes se expresan en UF — verifica los valores vigentes en el [SII](https://www.sii.cl/) (instrucciones del F22 del año tributario correspondiente).
+Los topes de la Modalidad B se expresan en UF; la bonificación de la Modalidad A, en UTM — verifica los valores vigentes en el [SII](https://www.sii.cl/) (instrucciones del F22 del año tributario correspondiente) y la [Superintendencia de Pensiones](https://www.spensiones.cl/).
 
 El resultado exacto depende de tu base imponible, tu tramo y el monto cotizado en APV. Esto no es asesoría tributaria: consulta con tu AFP o institución APV los efectos específicos de tu situación.
 
