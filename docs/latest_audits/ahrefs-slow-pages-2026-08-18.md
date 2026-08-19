@@ -64,9 +64,9 @@ El issue "Slow page" de Ahrefs = "the HTML code of the page took a long time to 
 
 es la combinación que explica el umbral de 44.7 KB → 199 URLs.
 
-### H3 — Bot Fight Mode (DESCARTADA para el estado actual: BFM OFF verificado 2026-08-19)
+### H3 — Bot Fight Mode (NO SUSTENTADA / NO APLICABLE AL ESTADO ACTUAL; BFM verificado OFF el 2026-08-19)
 
-El runbook del 02-08 documentaba **Bot Fight Mode activo** en esa fecha (plan free; API de zona devolvía 403, no se pudo desactivar entonces) y, con él, JavaScript Detections. Sin embargo, la verificación manual en la consola de Cloudflare del **2026-08-19** confirma que **Bot Fight Mode está actualmente desactivado** (el Cloudflare Managed Ruleset/WAF sigue activo, pero no es Bot Fight Mode). Por tanto H3 queda **descartada/no aplicable al estado actual** de la zona: no hay un mecanismo de BFM activo que tarpiteara las IPs de Ahrefs en esta ventana.
+El runbook del 02-08 documentaba **Bot Fight Mode activo** en esa fecha (plan free; API de zona devolvía 403, no se pudo desactivar entonces) y, con él, JavaScript Detections. La verificación manual en la consola de Cloudflare del **2026-08-19** confirma que Bot Fight Mode está actualmente **desactivado** (el Cloudflare Managed Ruleset/WAF sigue activo, pero no es Bot Fight Mode). **El estado exacto de BFM durante el crawl del 17–18/08 no está verificado retrospectivamente**, por lo que no puede afirmarse ni descartarse que haya afectado esa ventana. En consecuencia, H3 queda **no sustentada y no aplicable al estado actual**: no hay evidencia que la respalde y el mecanismo ya no está activo. Tampoco puede afirmarse que JavaScript Detections esté definitivamente inactivo; la retirada de `no-transform` + la validación post-deploy del runbook serán la prueba operacional.
 
 ### Descartadas
 
@@ -82,14 +82,14 @@ El runbook del 02-08 documentaba **Bot Fight Mode activo** en esa fecha (plan fr
 
 - **Medido**: tiempos desde Chile y 8 países; HIT/MISS/origen; ausencia de compresión (H1); tamaños y composición por familia; cero redirects/errores/variación por UA; timeline de `_headers` (compresión off desde 02-08); ausencia de cambios estructurales 15–18/08.
 - **Inferido**: que Ahrefs mide descarga del documento (según docs públicos de Ahrefs: "Slow page = HTML took a long time to load"); que su ruta/límites de renderer son peores que los de check-host; que el umbral de 3 s + tamaño explica las 199 URLs.
-- **No verificable sin el snapshot de Ahrefs**: el set exacto de 199 URLs y su load time por URL; la distribución de su métrica "Content encoding" (si marca ~199 páginas como sin comprimir, H1 queda probada directamente); si el proyecto cambió crawl speed / JS rendering en Ahrefs; la hora exacta del crawl. (Nota: Bot Fight Mode, candidato a explicar un comportamiento solo-para-bots, quedó descartado — verificado OFF el 2026-08-19.)
+- **No verificable sin el snapshot de Ahrefs**: el set exacto de 199 URLs y su load time por URL; la distribución de su métrica "Content encoding" (si marca ~199 páginas como sin comprimir, H1 queda probada directamente); si el proyecto cambió crawl speed / JS rendering en Ahrefs; la hora exacta del crawl. (Nota: Bot Fight Mode, candidato a explicar un comportamiento solo-para-bots, queda **no sustentado / no aplicable al estado actual** — verificado OFF el 2026-08-19; su estado durante el crawl 17–18/08 no está verificado retrospectivamente.)
 
 ---
 
 ## 5. Cambio mínimo recomendado (por causa)
 
 1. **H1 (raíz, mayor impacto) — restaurar la compresión en el edge**:
-   - El bloqueante es `no-transform` (escudo anti-JSD impuesto el 02-08). Con **Bot Fight Mode ya desactivado** (verificado manualmente el 2026-08-19), el riesgo JSD que motivó el escudo es materialmente menor; la retirada de `no-transform` es ahora un cambio de bajo riesgo, condicionado a la validación post-deploy del runbook.
+   - El bloqueante es `no-transform` (escudo anti-JSD impuesto el 02-08). No puede afirmarse que JavaScript Detections esté definitivamente inactivo; la retirada de `no-transform` + la validación post-deploy del runbook serán la prueba operacional (BFM verificado OFF el 2026-08-19; su estado durante el crawl 17–18/08 no está verificado retrospectivamente).
    - Mientras tanto, evaluar el trade-off documentado en el runbook: sin `no-transform`, JavaScript Detections podría re-inyectar su bootstrap y violar la CSP (error de consola, sin romper funcionalidad visible).
    - Alternativa intermedia sin tocar Cloudflare: precomprimir en build (`dist/**/*.br`) no es suficiente en Pages sin reglas de Content-Encoding; no recomendado.
 2. **H2 (mitigación de medición) — subir el TTL del HTML**: `max-age=300` → `max-age=3600` (o `s-maxage` mayor) para rutas no volátiles (`/posts/*`, `/tags/*`, `/glosario/*`, `/leyes/*`, `/guias/*`), manteniendo `must-revalidate` solo en las volátiles (`/uf-hoy/`, `/api/indicadores-hoy.json`, convertidores). Reduce re-descargas y revalidaciones durante un crawl largo y para usuarios repetidos. No afecta LCP real.
@@ -111,7 +111,7 @@ El runbook del 02-08 documentaba **Bot Fight Mode activo** en esa fecha (plan fr
 
 Plan sugerido:
 1. Confirmar en Ahrefs (Content encoding + load time por URL).
-2. Retirar `no-transform` (PR #425; con BFM ya OFF, verificado 19-08, el riesgo JSD es bajo) → validar post-deploy `Content-Encoding: br` y ausencia de JSD → rollback inmediato si JSD reaparece.
+2. Retirar `no-transform` (PR #425) → validar post-deploy `Content-Encoding: br` y ausencia de JSD (prueba operacional; BFM OFF verificado 19-08, estado durante el crawl 17–18 no verificado) → rollback inmediato si JSD reaparece.
 3. Subir TTL de HTML no volátil a 1 h.
 4. Observar el próximo crawl (2–3 días) y comparar el set de lentas.
 
