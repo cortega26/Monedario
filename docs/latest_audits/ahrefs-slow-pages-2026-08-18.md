@@ -125,3 +125,14 @@ Plan sugerido:
 - Inventario: sitemap + hub de tags (316 URLs únicas), una sola pasada sin reintentos.
 - Composición por familia: análisis de `dist/` (build local == producción, verificado byte a byte en 6 páginas) y de las respuestas de producción.
 - Sin pruebas de carga ni comportamiento agresivo.
+
+---
+
+## Resultado del experimento 2026-08-19
+
+- El PR #425 (merge `909f4d05`) retiró temporalmente `no-transform` de todas las reglas `Cache-Control` para restaurar la compresión del edge.
+- **La compresión volvió**: `Content-Encoding: br` en el origin (cache-buster) y en URLs revalidadas del edge; el edge conservó objetos stale >15 min por falta de permiso de Cache Purge (comportamiento documentado en el runbook).
+- **JSD reapareció condicionalmente en Chromium limpio** pese a BFM OFF verificado: `window.__CF$cv$params` + `<script src="/cdn-cgi/challenge-platform/scripts/jsd/main.js">` inyectado en `<head>` (ausente en curl, sin fingerprint de navegador).
+- **La CSP hash-only bloqueó el bootstrap** (`Executing inline script violates ... The action has been blocked`), sin romper funcionalidad visible.
+- Se decidió el rollback mediante el **PR #426** (restaura `no-transform` en todas las reglas; sin merge, pendiente de deploy y revalidación post-deploy).
+- **Conclusión:** H1 queda confirmada — la pérdida de compresión desde el 02-08 explica el set por tamaño y el impacto medido —, pero retirar `no-transform` **no es viable hasta identificar la fuente real de la inyección JSD** (no es BFM, que ya está OFF).
