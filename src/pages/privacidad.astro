@@ -32,8 +32,9 @@ import { SITE } from "@/config";
         tratados por proveedores externos cuando interactúas con ellos.
       </p>
       <p class="mt-3 text-sm text-secondary">
-        Última actualización:
-        <strong class="text-foreground">2 de agosto de 2026</strong>.
+        Última actualización: <strong class="text-foreground"
+          >2 de agosto de 2026</strong
+        >.
       </p>
     </section>
 
@@ -42,9 +43,9 @@ import { SITE } from "@/config";
       <h2 class="mb-4 text-2xl font-bold">Responsable del tratamiento</h2>
       <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
         <p>
-          El responsable de los tratamientos mínimos asociados a este sitio es
-          <strong class="text-foreground">Carlos Ortega González</strong>,
-          persona natural domiciliada en Santiago, Chile, en su calidad de
+          El responsable de los tratamientos mínimos asociados a este sitio es <strong
+            class="text-foreground">Carlos Ortega González</strong
+          >, persona natural domiciliada en Santiago, Chile, en su calidad de
           editor y operador de Monedario.
         </p>
         <p>
@@ -225,9 +226,9 @@ import { SITE } from "@/config";
             <dd>
               Tu propio navegador, mediante
               <code class="text-accent">localStorage</code> y
-              <code class="text-accent">sessionStorage</code>. Estos datos
-              <strong class="text-foreground">no se envían</strong> a Monedario ni
-              a sus servidores.
+              <code class="text-accent">sessionStorage</code>. Estos datos <strong
+                class="text-foreground">no se envían</strong
+              > a Monedario ni a sus servidores.
             </dd>
             <dt class="font-semibold text-foreground">Finalidad</dt>
             <dd>
@@ -260,8 +261,9 @@ import { SITE } from "@/config";
             </dd>
             <dt class="font-semibold text-foreground">Quién lo trata</dt>
             <dd>
-              El responsable, mediante el proveedor de correo del dominio
-              <strong class="text-foreground">monedario.cl</strong>.
+              El responsable, mediante el proveedor de correo del dominio <strong
+                class="text-foreground">monedario.cl</strong
+              >.
             </dd>
             <dt class="font-semibold text-foreground">Finalidad</dt>
             <dd>
@@ -325,9 +327,9 @@ import { SITE } from "@/config";
       <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
         <p>
           En la configuración actualmente descrita en esta política, Monedario
-          utiliza
-          <strong class="text-foreground">Cloudflare Web Analytics</strong>
-          para medir el uso agregado del sitio. Esta herramienta:
+          utiliza <strong class="text-foreground"
+            >Cloudflare Web Analytics</strong
+          > para medir el uso agregado del sitio. Esta herramienta:
         </p>
         <ul class="list-disc space-y-1.5 pl-5 text-sm">
           <li>No utiliza cookies de seguimiento.</li>
@@ -365,21 +367,21 @@ import { SITE } from "@/config";
       </h2>
       <div class="max-w-2xl space-y-3 text-base leading-relaxed text-secondary">
         <p>
-          Además de la analítica técnica de Cloudflare, Monedario opera un
-          <strong class="text-foreground">endpoint propio</strong> que recibe eventos
-          de uso de sus calculadoras y acciones postresultado. Esta medición permite
-          contar, por ejemplo, eventos de inicio o finalización de cálculo, sin inferir
-          personas únicas ni conocer los valores usados.
+          Además de la analítica técnica de Cloudflare, Monedario opera un <strong
+            class="text-foreground">endpoint propio</strong
+          > que recibe eventos de uso de sus calculadoras y acciones postresultado.
+          Esta medición permite contar, por ejemplo, eventos de inicio o finalización
+          de cálculo, sin inferir personas únicas ni conocer los valores usados.
         </p>
         <ul class="list-disc space-y-1.5 pl-5 text-sm">
           <li>
-            <strong class="text-foreground">Qué se transmite:</strong>
-            únicamente el tipo de evento (inicio, finalización, error categórico,
-            siguiente paso, fuente, compartir, interés en avisos o apoyo) y dimensiones
-            acotadas predefinidas: identificador de calculadora, tipo de página, cluster,
-            variante, siguiente paso, tipo de fuente/error/compartición, ubicación
-            del apoyo, etiquetas UTM propias y versión de la aplicación. La lista
-            completa está documentada en el repositorio público del proyecto.
+            <strong class="text-foreground">Qué se transmite:</strong> únicamente
+            el tipo de evento (inicio, finalización, error categórico, siguiente paso,
+            fuente, compartir, interés en avisos o apoyo) y dimensiones acotadas predefinidas:
+            identificador de calculadora, tipo de página, cluster, variante, siguiente
+            paso, tipo de fuente/error/compartición, ubicación del apoyo, etiquetas
+            UTM propias y versión de la aplicación. La lista completa está documentada
+            en el repositorio público del proyecto.
           </li>
           <li>
             <strong class="text-foreground">Qué NO se transmite:</strong> ningún valor
@@ -391,18 +393,17 @@ import { SITE } from "@/config";
           <li>
             <strong class="text-foreground"
               >Sin cookies ni identificadores:</strong
-            >
-            esta medición no utiliza cookies, no crea identificadores de sesión y
-            no asocia eventos entre sí. No es posible reconstruir el recorrido de
+            > esta medición no utiliza cookies, no crea identificadores de sesión
+            y no asocia eventos entre sí. No es posible reconstruir el recorrido de
             una persona entre calculadoras.
           </li>
           <li>
-            <strong class="text-foreground">Dónde se procesa:</strong>
-            los eventos se reciben en un Worker de Cloudflare operado por Monedario,
-            que valida el esquema y solo incrementa contadores. La IP no forma parte
-            del evento ni del export. Para limitar abuso, el Worker usa temporalmente
-            la IP como clave de rate limit con expiración de 120 segundos; esa clave
-            no se cruza con eventos, no se exporta y no crea un historial persistente.
+            <strong class="text-foreground">Dónde se procesa:</strong> los eventos
+            se reciben en un Worker de Cloudflare operado por Monedario, que valida
+            el esquema y solo incrementa contadores. La IP no forma parte del evento
+            ni del export. Para limitar abuso, el Worker usa temporalmente la IP como
+            clave de rate limit con expiración de 120 segundos; esa clave no se cruza
+            con eventos, no se exporta y no crea un historial persistente.
           </li>
         </ul>
         <p class="mt-3 text-sm font-semibold text-foreground">
@@ -559,8 +560,7 @@ import { SITE } from "@/config";
         <li>
           <strong class="text-foreground"
             >Bloqueo provisional del tratamiento</strong
-          >
-          mientras se resuelve una solicitud relativa a tus datos.
+          > mientras se resuelve una solicitud relativa a tus datos.
         </li>
         <li>
           <strong class="text-foreground"
@@ -603,8 +603,7 @@ import { SITE } from "@/config";
         <p>
           <strong class="text-foreground"
             >Alcance práctico de estos derechos:</strong
-          >
-          dado que Monedario no crea cuentas, no exige registro, no usa formularios
+          > dado que Monedario no crea cuentas, no exige registro, no usa formularios
           de captura y la analítica del sitio es agregada y sin identificadores individuales,
           normalmente no existe una ficha de usuario ni un historial individual sobre
           el cual responder. Los datos que sí podrían vincularse a una persona identificable
@@ -632,8 +631,7 @@ import { SITE } from "@/config";
         <p>
           Sin perjuicio de tu derecho a contactar previamente al responsable,
           puedes presentar reclamaciones relativas al tratamiento de tus datos
-          personales ante la
-          <strong class="text-foreground"
+          personales ante la <strong class="text-foreground"
             >Agencia de Protección de Datos Personales</strong
           > una vez que se encuentre plenamente operativa conforme a la Ley N° 21.719,
           y ante las demás autoridades competentes según corresponda.
@@ -691,10 +689,10 @@ import { SITE } from "@/config";
         <ul class="list-disc space-y-1.5 pl-5 text-sm">
           <li>
             Notificar a la autoridad de protección de datos competente sin
-            dilación indebida y, en lo posible, dentro de las
-            <strong class="text-foreground">setenta y dos (72) horas</strong>
-            siguientes desde que tuvo conocimiento efectivo, conforme al régimen aplicable
-            bajo la Ley N° 21.719.
+            dilación indebida y, en lo posible, dentro de las <strong
+              class="text-foreground">setenta y dos (72) horas</strong
+            > siguientes desde que tuvo conocimiento efectivo, conforme al régimen
+            aplicable bajo la Ley N° 21.719.
           </li>
           <li>
             Comunicar a los titulares afectados cuando la vulneración comporte
@@ -757,12 +755,12 @@ import { SITE } from "@/config";
         <p>
           Cuando una modificación cambie materialmente el modelo de privacidad
           del sitio, las tecnologías usadas o los derechos del titular,
-          Monedario procurará anunciar el cambio con un
-          <strong class="text-foreground">preaviso razonable</strong>
-          mediante la actualización de la fecha visible en esta página y, en la medida
-          en que ello sea operacionalmente posible, mediante aviso destacado en otras
-          secciones del sitio. El uso continuado del sitio tras la fecha de actualización
-          se entenderá como conocimiento de la versión vigente.
+          Monedario procurará anunciar el cambio con un <strong
+            class="text-foreground">preaviso razonable</strong
+          > mediante la actualización de la fecha visible en esta página y, en la
+          medida en que ello sea operacionalmente posible, mediante aviso destacado
+          en otras secciones del sitio. El uso continuado del sitio tras la fecha
+          de actualización se entenderá como conocimiento de la versión vigente.
         </p>
       </div>
     </section>

@@ -285,6 +285,43 @@ function checkReaderFacingCopyWarnings() {
   return findings;
 }
 
+const BOLD_GLUE_OPEN_RE = /[A-Za-zÁ-Úá-ú0-9,:;]\n\s*<strong/g;
+const BOLD_GLUE_CLOSE_RE = /<\/strong\s*>\s*\n\s*[A-Za-zÁ-Úá-ú0-9]|<\/strong>[A-Za-zÁ-Úá-ú0-9]/g;
+
+function checkBoldGlueWarnings() {
+  const findings = [];
+  const files = listFilesRecursively(
+    path.join(REPO_ROOT, "src"),
+    new Set([".astro"])
+  );
+
+  for (const filePath of files) {
+    const relative = toRelative(filePath);
+    const source = readFileSync(filePath, "utf8");
+    const matches = [
+      ...[...source.matchAll(BOLD_GLUE_OPEN_RE)].map(m => m.index),
+      ...[...source.matchAll(BOLD_GLUE_CLOSE_RE)].map(m => m.index),
+    ].sort((a, b) => a - b);
+
+    for (const index of matches) {
+      findings.push(
+        createFinding({
+          severity: "error",
+          asd: "ASD-004",
+          file: relative,
+          line: lineForIndex(source, index),
+          rule: "bold-glue",
+          message: `Bold text is glued to adjacent text; add a space on the same line as the tag boundary.`,
+          remediation:
+            "Put the space between text and <strong> on the same line (Astro drops whitespace across line breaks).",
+        })
+      );
+    }
+  }
+
+  return findings;
+}
+
 function extractReaderFacingText(source) {
   return source
     .replace(/^---\n[\s\S]*?\n---\n?/m, "\n")
@@ -391,6 +428,7 @@ function runSmallDetailsCheck() {
   }
 
   findings.push(...checkReaderFacingCopyWarnings());
+  findings.push(...checkBoldGlueWarnings());
   findings.push(...checkExternalUrlSummary());
 
   const errors = findings.filter(finding => finding.severity === "error");
@@ -445,6 +483,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
 }
 
 export {
+  checkBoldGlueWarnings,
   checkCalculatorErrorWiring,
   checkCalculatorTrustSurfaces,
   runSmallDetailsCheck,
