@@ -89,8 +89,8 @@ El runbook del 02-08 documentaba **Bot Fight Mode activo** en esa fecha (plan fr
 ## 5. Cambio mínimo recomendado (por causa)
 
 1. **H1 (raíz, mayor impacto) — restaurar la compresión en el edge**:
-   - El bloqueante es `no-transform` (escudo anti-JSD impuesto el 02-08). No puede afirmarse que JavaScript Detections esté definitivamente inactivo; la retirada de `no-transform` + la validación post-deploy del runbook serán la prueba operacional (BFM verificado OFF el 2026-08-19; su estado durante el crawl 17–18/08 no está verificado retrospectivamente).
-   - Mientras tanto, evaluar el trade-off documentado en el runbook: sin `no-transform`, JavaScript Detections podría re-inyectar su bootstrap y violar la CSP (error de consola, sin romper funcionalidad visible).
+   - El bloqueante era `no-transform` (escudo anti-JSD impuesto el 02-08). La causa raíz de la inyección JSD fue confirmada y desactivada el 2026-08-19: `GET /zones/{zone_id}/bot_management` mostró `enable_js: true` con `fight_mode: false`, y se ejecutó `PUT {"enable_js": false}` (HTTP 200, GET confirmó el resto sin cambios). Con JavaScript Detections desactivado, el PR #427 retira `no-transform` para restaurar la compresión, con verificación post-deploy obligatoria y rollback inmediato si JSD reaparece.
+   - Mientras tanto, el trade-off del runbook quedó resuelto: sin `no-transform`, JavaScript Detections ya no tiene por qué re-inyectar su bootstrap (está desactivado); si se reactiva, violaría la CSP (error de consola, sin romper funcionalidad visible) y se restauraría `no-transform`.
    - Alternativa intermedia sin tocar Cloudflare: precomprimir en build (`dist/**/*.br`) no es suficiente en Pages sin reglas de Content-Encoding; no recomendado.
 2. **H2 (mitigación de medición) — subir el TTL del HTML**: `max-age=300` → `max-age=3600` (o `s-maxage` mayor) para rutas no volátiles (`/posts/*`, `/tags/*`, `/glosario/*`, `/leyes/*`, `/guias/*`), manteniendo `must-revalidate` solo en las volátiles (`/uf-hoy/`, `/api/indicadores-hoy.json`, convertidores). Reduce re-descargas y revalidaciones durante un crawl largo y para usuarios repetidos. No afecta LCP real.
 3. **Observacional — confirmar con el snapshot de Ahrefs**: revisar en Site Audit la columna "Content encoding" (si ~199 URLs salen como sin comprimir, H1 queda probada) y los load times por URL (correlación con HTML ≥ 45 KB). Re-crawl post-fix para validar.
@@ -111,8 +111,8 @@ El runbook del 02-08 documentaba **Bot Fight Mode activo** en esa fecha (plan fr
 
 Plan sugerido:
 1. Confirmar en Ahrefs (Content encoding + load time por URL).
-2. Retirar `no-transform` (PR #425) → validar post-deploy `Content-Encoding: br` y ausencia de JSD (prueba operacional; BFM OFF verificado 19-08, estado durante el crawl 17–18 no verificado) → rollback inmediato si JSD reaparece.
-3. Subir TTL de HTML no volátil a 1 h.
+2. ~~Retirar `no-transform` (PR #425) → validar post-deploy~~ — **hecho y revertido (PR #426).** La causa raíz de JSD fue confirmada por API (2026-08-19, `enable_js: true` con `fight_mode: false`) y desactivada (`PUT {"enable_js": false}`). **2ª reversión: PR #427 retira `no-transform`** con la fuente de la inyección desactivada → validar post-deploy `Content-Encoding: br` y ausencia de JSD → rollback inmediato si reaparece.
+3. Subir TTL de HTML no volátil a 1 h (evaluar por separado; no incluido en el PR #427).
 4. Observar el próximo crawl (2–3 días) y comparar el set de lentas.
 
 **Prioridad del hallazgo**: 1 causa común transversal (payload sin comprimir desde 02-08) que explica el set por tamaño; el *gatillo temporal* (55 → 199 entre 17 y 18/08) no tiene correlato en cambios del sitio y apunta al lado de la medición (crawl/renderer de Ahrefs) — parcialmente no verificable sin el snapshot.
@@ -128,11 +128,17 @@ Plan sugerido:
 
 ---
 
-## Resultado del experimento 2026-08-19
+## Resultado del experimento 2026-08-19 (1ª reversión, PR #425)
 
 - El PR #425 (merge `909f4d05`) retiró temporalmente `no-transform` de todas las reglas `Cache-Control` para restaurar la compresión del edge.
 - **La compresión volvió**: `Content-Encoding: br` en el origin (cache-buster) y en URLs revalidadas del edge; el edge conservó objetos stale >15 min por falta de permiso de Cache Purge (comportamiento documentado en el runbook).
 - **JSD reapareció condicionalmente en Chromium limpio** pese a BFM OFF verificado: `window.__CF$cv$params` + `<script src="/cdn-cgi/challenge-platform/scripts/jsd/main.js">` inyectado en `<head>` (ausente en curl, sin fingerprint de navegador).
 - **La CSP hash-only bloqueó el bootstrap** (`Executing inline script violates ... The action has been blocked`), sin romper funcionalidad visible.
-- Se decidió el rollback mediante el **PR #426** (restaura `no-transform` en todas las reglas; sin merge, pendiente de deploy y revalidación post-deploy).
-- **Conclusión:** H1 queda confirmada — la pérdida de compresión desde el 02-08 explica el set por tamaño y el impacto medido —, pero retirar `no-transform` **no es viable hasta identificar la fuente real de la inyección JSD** (no es BFM, que ya está OFF).
+- Se ejecutó el rollback mediante el **PR #426** (merge `75165187`): restauró `no-transform` en todas las reglas y el invariante del test; revalidación post-deploy exitosa (cero `__CF$cv$params`, consola vacía en 5 páginas, funcionalidad intacta).
+- **Conclusión:** H1 queda confirmada — la pérdida de compresión desde el 02-08 explica el set por tamaño y el impacto medido —, pero retirar `no-transform` requería identificar la fuente real de la inyección JSD (no era BFM, que ya estaba OFF).
+
+## Resultado del experimento 2026-08-19 (2ª reversión, PR #427 — sin merge)
+
+- **Causa raíz de la inyección JSD confirmada por API (2026-08-19):** `GET /zones/{zone_id}/bot_management` con un token dedicado (permiso `Zone > Bot Management`) devolvió **`enable_js: true`** con **`fight_mode: false`** — la inyección era **JavaScript Detections** (independiente de Bot Fight Mode, ya OFF) y quedó **desactivada explícitamente** con `PUT {"enable_js": false}` (HTTP 200; GET confirmó `enable_js: false`, `fight_mode: false`, resto sin cambios). Informe: `docs/reports/JSD-SOURCE-INVESTIGATION-2026-08-19.md`.
+- **2ª reversión (PR #427, 2026-08-19, sin merge):** retira de nuevo `no-transform` de todas las reglas `Cache-Control` de `public/_headers` para restaurar la compresión del edge, ahora con la fuente de la inyección desactivada. No toca CSP, TTL (`max-age`), WAF, configuración de Cloudflare, código ni rutas. Invariante del test invertido a "ninguna regla debe incluir no-transform", conservando la red de seguridad de TTL (`max-age=300`).
+- **Verificación post-deploy obligatoria:** `Content-Encoding` presente, ausencia de `__CF$cv$params`, cero errores CSP en Chromium limpio, funcionalidad intacta. Rollback inmediato si JSD reaparece (restaurar `no-transform` + revertir el invariante del test).
