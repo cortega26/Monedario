@@ -153,14 +153,17 @@ describe("public/_headers — Pagefind CSP invariants", () => {
     }
   });
 
-  it("prevents Cloudflare from injecting per-request JavaScript into static HTML", () => {
-    // Cloudflare _headers semantics: when the same header is set by multiple
-    // matching rules, the most specific rule's value REPLACES the global one
-    // (values are not merged). A `Cache-Control: no-transform` on the global
-    // `/*` block alone therefore leaves every path with its own Cache-Control
-    // rule unprotected — which is exactly how JavaScript Detections (JSD)
-    // re-injected its bootstrap on /calculadoras/* (TD-0099, 2026-08-02).
-    // Invariant: EVERY Cache-Control rule in the file must carry no-transform.
+  it("keeps edge compression enabled — no Cache-Control rule carries no-transform", () => {
+    // Cloudflare does not compress responses whose Cache-Control includes
+    // `no-transform`. Between 2026-08-02 and 2026-08-18 every rule in this
+    // file carried it (TD-0099 JSD workaround), so all HTML/CSS/JS was served
+    // uncompressed: wire payload ~2.5-4x larger, which pushed 199 pages over
+    // Ahrefs' 3s document-load threshold ("Slow pages" 2026-08-17/18).
+    // Reversed 2026-08-18: the JSD/CSP risk is now guarded by the post-deploy
+    // validation in docs/operations/runbooks/CSP_CLOUDFLARE_JSD_2026-08-02.md
+    // (rollback = restore no-transform immediately if it reappears).
+    // Invariant: NO Cache-Control rule in the file may carry no-transform,
+    // so a silent re-introduction is caught before deploy.
     const content = readPublicHeaders();
 
     const cacheControlLines = content
@@ -169,15 +172,22 @@ describe("public/_headers — Pagefind CSP invariants", () => {
       .filter(line => line.startsWith("Cache-Control:"));
     expect(
       cacheControlLines.length,
-      "at least the global /* Cache-Control rule must exist"
+      "HTML rules with Cache-Control must exist (e.g. /posts/*, /tags/*)"
     ).toBeGreaterThan(0);
 
     for (const line of cacheControlLines) {
       expect(
         line,
-        "every Cache-Control rule must include no-transform (Cloudflare does not merge header values across rules)"
-      ).toContain("no-transform");
+        "no Cache-Control rule may include no-transform (it disables Cloudflare edge compression)"
+      ).not.toContain("no-transform");
     }
+
+    // Safety net: the HTML rules must still pin their 5-minute TTL — the
+    // compression reversal must not change freshness semantics.
+    const htmlRules = cacheControlLines.filter(line =>
+      line.includes("public, max-age=300")
+    );
+    expect(htmlRules.length).toBeGreaterThan(10);
   });
 
   it("CSP header is structurally intact — no merge-conflict corruption", () => {
