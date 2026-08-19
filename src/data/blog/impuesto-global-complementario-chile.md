@@ -24,7 +24,7 @@ articleLead:
   answer: "El IGC es el impuesto anual que grava la totalidad de tus rentas del año: suma sueldo, honorarios, dividendos y arriendos para determinar tu tramo real. Los trabajadores con solo sueldo lo pagan indirectamente vía ISC; quienes tienen rentas mixtas deben liquidarlo en el F22."
   nextStepHref: "/posts/operacion-renta-f22-checklist/"
   nextStepLabel: "Completar el F22"
-  validAsOf: 2026-05-14
+  validAsOf: 2026-08-19
   officialSources:
     - label: "SII — Datos informativos AT 2026 (IGC)"
       href: "https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html"
@@ -52,10 +52,10 @@ reviewPolicy:
     - registry:categoryPolicies.impuestos
     - template:uta
   computedAt: "2026-08-09"
-updatedDate: 2026-08-09T00:00:00Z
+updatedDate: 2026-08-19T00:00:00Z
 ---
 
-> **Información vigente al 2026-05-14.** Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el [SII](https://www.sii.cl/) antes de tu Operación Renta. Este artículo no cubre ganancias de capital.
+> **Información vigente al 2026-08-19.** Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el [SII](https://www.sii.cl/) antes de tu Operación Renta. Este artículo no cubre ganancias de capital.
 
 Tienes sueldo y además emites boletas de honorarios. O eres socio de una empresa y también recibes sueldo. O arriendas una propiedad. En todos esos casos, el Impuesto de Segunda Categoría que te retienen mensualmente no cierra el ciclo: al final del año, el SII suma todas tus rentas y liquida el Impuesto Global Complementario (IGC) en el F22.
 
@@ -123,16 +123,16 @@ Varios pagos realizados durante el año se convierten en créditos que reducen e
 Lo que tu empleador descontó mes a mes como Impuesto de Segunda Categoría se imputa directamente contra el IGC. Es el crédito más importante para los trabajadores dependientes.
 
 **Retenciones de boletas de honorarios**
-La retención aplicada a tus boletas de honorarios es un crédito contra el IGC. Para el año tributario 2026, la tasa de retención es **15,25%** (verifica en el [SII](https://www.sii.cl/) ante posibles actualizaciones). Si cotizaste como trabajador independiente, también están sujetas cotizaciones previsionales obligatorias sobre tus honorarios según la Ley 21.242 (entrada en vigor progresiva desde 2019) — revisa el F22 del SII o consulta a un contador para el monto aplicable a tu año tributario.
+La retención aplicada a tus boletas de honorarios es un crédito contra el IGC. Para el año tributario 2026, la tasa de retención es **15,25%** (verifica en el [SII](https://www.sii.cl/) ante posibles actualizaciones). Si cotizaste como trabajador independiente, también están sujetas cotizaciones previsionales obligatorias sobre tus honorarios según la Ley 21.133 (entrada en vigor progresiva desde 2019) — revisa el F22 del SII o consulta a un contador para el monto aplicable a tu año tributario.
 
 **APV Modalidad A vs Modalidad B**
 
 El APV puede reducir el IGC según la modalidad elegida, de acuerdo con el [artículo 42 bis de la LIR](https://www.bcn.cl/leychile/navegar?idNorma=6368):
 
-- **Modalidad A**: genera un crédito tributario directo sobre el monto cotizado, hasta **50 UF mensuales o 600 UF anuales** ([art. 42 bis LIR](https://www.bcn.cl/leychile/navegar?idNorma=6368)).
-- **Modalidad B**: reduce la base imponible del IGC, con el mismo tope de 600 UF anuales establecido en el mismo artículo.
+- **Modalidad A**: otorga una bonificación estatal del **15%** sobre el monto ahorrado en el año (tope de **6 UTM anuales**), depositada por la Tesorería General de la República directamente en tu cuenta de ahorro previsional — no es un crédito en el F22.
+- **Modalidad B**: reduce la base imponible del IGC, con tope de **50 UF mensuales o 600 UF anuales**.
 
-Los topes se expresan en UF — verifica los valores vigentes en el [SII](https://www.sii.cl/) para confirmar actualizaciones al año tributario correspondiente.
+Los topes se expresan en UF (la bonificación de la Modalidad A, en UTM) — verifica los valores vigentes en el [SII](https://www.sii.cl/) para confirmar actualizaciones al año tributario correspondiente.
 
 **Contribuciones de bienes raíces** (solo para arrendadores)
 Las contribuciones pagadas pueden ser deducibles como gasto en rentas de arrendamiento — las condiciones exactas dependen del régimen tributario y del año tributario. Consulta las instrucciones del F22 del SII o a un contador para confirmar si aplica a tu situación. Para el contexto del impuesto territorial, revisa la guía de [contribuciones de bienes raíces](/posts/contribuciones-bienes-raices-chile/).
