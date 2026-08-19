@@ -1,6 +1,6 @@
 # CSP y Cloudflare JavaScript Detections
 
-**Estado:** `VALIDATED` (2026-08-02, deploy PR #382 + fix de override en `_headers` commit `09dc219d`)
+**Estado:** `VALIDATED` (2026-08-02, deploy PR #382 + fix de override en `_headers` commit `09dc219d`) → **REVALIDADO** el 2026-08-19 tras rollback del intento de reversión (ver "Actualización 2026-08-19")
 **Fecha de reproducción:** 2026-08-02
 **Ruta:** `https://monedario.cl/calculadoras/conversor-utm/`
 
@@ -70,3 +70,41 @@ Retirar únicamente `Cache-Control: no-transform` si se demuestra una regresión
 material de entrega, volver a desplegar y documentar el resultado. No relajar
 CSP. La alternativa es desactivar Bot Fight Mode o adoptar una protección
 configurable compatible con nonce dinámico.
+
+## Actualización 2026-08-19 — reversión experimental retirada (rollback)
+
+**Qué se probó:** el PR #425 (merge `909f4d05`) retiró `no-transform` de todas
+las reglas para restaurar la compresión del edge, tras la auditoría de Ahrefs
+"Slow pages" (`docs/latest_audits/ahrefs-slow-pages-2026-08-18.md`, archivo
+retirado con el revert). Bot Fight Mode estaba verificado **OFF** manualmente el
+2026-08-19 (Managed Ruleset activo, sin BFM).
+
+**Resultado de la reversión:** la compresión volvió al origin
+(`Content-Encoding: br`, `cache-control` sin `no-transform` en respuesta
+cache-busted y en URLs revalidadas; el edge conservó objetos stale >15 min por
+falta de permiso de Cache Purge, comportamiento ya documentado arriba). **Pero
+JSD re-inyectó su bootstrap en respuestas de navegador pese a BFM OFF:**
+
+- DOM Chromium limpio (`https://monedario.cl/?cb=20260819-validacion1`,
+  2026-08-19 ~15:45 UTC): `window.__CF$cv$params={r:'a2da4897ff387d01',t:'MTc4NzE1NDMwNw=='}`
+  + `<script src="/cdn-cgi/challenge-platform/scripts/jsd/main.js">` inyectado
+  en `<head>`.
+- Consola: `Executing inline script violates ... The action has been blocked`
+  (bootstrap JSD bloqueado por la CSP hash-only; hash dinámico no declarable)
+  y violaciones report-only de `/cdn-cgi/challenge-platform/`.
+- curl (sin fingerprint de navegador): HTML sin `__CF$cv$params` — la inyección
+  es condicional al cliente, como en la evidencia original del 02-08.
+
+**Conclusión:** con BFM OFF verificado, la inyección JSD continúa (el toggle de
+JavaScript Detections puede estar activo por separado, o el Managed Ruleset la
+produce); el escudo `no-transform` sigue siendo necesario y la compresión del
+edge permanece deshabilitada por seguridad.
+
+**Rollback ejecutado (2026-08-19):** revert `dabed860` de `909f4d05` —
+restaurado `no-transform` en todas las reglas `Cache-Control` de
+`public/_headers` y el invariante del test ("toda regla debe incluir
+no-transform"). Re-verificación post-deploy pendiente: esperar TTL de 5 min y
+confirmar en Chromium limpio la ausencia de `__CF$cv$params` y de errores
+`Executing inline script violates`. El reporte de Ahrefs "Slow pages" queda
+abierto; cualquier reintento de compresión requiere primero identificar y
+desactivar la fuente real de la inyección JSD (no BFM, que ya está OFF).
