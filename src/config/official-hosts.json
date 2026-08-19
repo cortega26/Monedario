@@ -54,6 +54,11 @@
       "type": "oficial"
     },
     {
+      "host": "tgr.gob.cl",
+      "label": "Tesorería General de la República",
+      "type": "oficial"
+    },
+    {
       "host": "servel.cl",
       "label": "Servicio Electoral de Chile",
       "type": "oficial"
