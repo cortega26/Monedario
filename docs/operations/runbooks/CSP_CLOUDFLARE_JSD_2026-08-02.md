@@ -1,6 +1,6 @@
 # CSP y Cloudflare JavaScript Detections
 
-**Estado:** `REVERSED-PENDING-VALIDATION` (2026-08-18, PR — reversión de `no-transform` para restaurar compresión en el edge)
+**Estado:** `REVERSAL-PENDING-MERGE` (2026-08-18, PR #425 — reversión de `no-transform` para restaurar compresión en el edge; **sin merge, sin deploy a la fecha**)
 **Estado anterior:** `VALIDATED` (2026-08-02, deploy PR #382 + fix de override en `_headers` commit `09dc219d`)
 **Fecha de reproducción:** 2026-08-02
 **Ruta:** `https://monedario.cl/calculadoras/conversor-utm/`
@@ -40,7 +40,7 @@ Esto preserva la CSP hash-only y evita las alternativas inseguras: no agrega
 `'unsafe-inline'`, nonce estático, wildcard ni un hash copiado de una respuesta.
 Tampoco carga Ko-fi fuera de la página de apoyo.
 
-## Actualización 2026-08-18 — reversión: restaurar la compresión del edge
+## Actualización 2026-08-18 — reversión propuesta: restaurar la compresión del edge
 
 **Contexto:** auditoría de rendimiento por el reporte de Ahrefs "Slow pages"
 (55 URLs el 2026-08-17, 199 el 2026-08-18). Diagnóstico:
@@ -53,17 +53,23 @@ Control / Compression). Desde el 2026-08-02 todo el sitio se sirvió sin
 payload de ~2.5–4× en el cable. Las 199 URLs lentas de Ahrefs coinciden con todo
 documento HTML ≥ 44.7 KB (umbral de tamaño, no familia).
 
-**Cambio aplicado:** se retiró `no-transform` de **todas** las reglas
-`Cache-Control` de `public/_headers`. **No se tocó** la CSP, los TTL
-(`max-age`), ni configuración alguna de Cloudflare (Bot Fight Mode sigue activo).
+**Cambio propuesto (PR #425, sin merge):** retirar `no-transform` de **todas**
+las reglas `Cache-Control` de `public/_headers`. **No se toca** la CSP, los TTL
+(`max-age`), ni configuración alguna de Cloudflare.
 
-**Riesgo asumido:** sin `no-transform`, JavaScript Detections puede re-inyectar
-su bootstrap en el HTML y violar la CSP hash-only (error de consola
-`Executing inline script violates`; el bootstrap no bloquea la página). Se
-mitiga con la verificación post-deploy obligatoria (abajo) y el rollback
-inmediato si reaparece.
+**Nota 2026-08-19 (verificación manual en Cloudflare):** Bot Fight Mode está
+**actualmente desactivado**; el Cloudflare Managed Ruleset/WAF sigue activo,
+pero no es Bot Fight Mode. El runbook del 02-08 lo documentaba activo en esa
+fecha, cuando la API de zona devolvía 403. Con BFM OFF, el mecanismo que
+inyectaba JavaScript Detections no está activo en el estado actual.
 
-## Verificación reproducible (post-deploy 2026-08-18 — OBLIGATORIA)
+**Riesgo asumido:** sin `no-transform`, si BFM/JS Detections llegara a
+reactivarse podría re-inyectar su bootstrap en el HTML y violar la CSP hash-only
+(error de consola `Executing inline script violates`; el bootstrap no bloquea la
+página). Se mitiga con la verificación post-deploy obligatoria (abajo) y el
+rollback inmediato si reaparece.
+
+## Verificación reproducible (post-deploy del PR #425 — OBLIGATORIA)
 
 1. Ejecutar build y confirmar que `dist/_headers` no contiene `no-transform` y
    conserva los hashes generados (`pnpm run check:postbuild` o
@@ -103,7 +109,10 @@ Si reaparece la inyección JSD (`__CF$cv$params` / errores CSP de
 4. Registrar el resultado en este runbook y en `docs/TECH_DEBT_BACKLOG.md`
    (TD-0099) con fecha y evidencia.
 
-Alternativas de fondo si JSD vuelve: desactivar Bot Fight Mode desde
-**Security → Bots** (en plan Free no admite skip por ruta; el token actual
-recibe 403 en `/bot_management`) o adoptar una protección configurable
-compatible con nonce dinámico. No relajar CSP (`unsafe-inline`, wildcard).
+Alternativas de fondo si JSD vuelve: verificar en Cloudflare que Bot Fight
+Mode continúe **desactivado** (estado confirmado manualmente el 2026-08-19) y,
+si estuviera activo, apagarlo desde **Security → Bots** (en plan Free no admite
+skip por ruta; el token actual recibe 403 en `/bot_management`); evaluar
+excepciones del Managed Ruleset para el dominio, o adoptar una protección
+configurable compatible con nonce dinámico. No relajar CSP
+(`unsafe-inline`, wildcard).
