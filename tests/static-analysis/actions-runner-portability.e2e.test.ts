@@ -5,7 +5,14 @@ import { describe, expect, it } from "vitest";
 
 const repoRoot = process.cwd();
 const workflowsDir = path.join(repoRoot, ".github", "workflows");
-const expectedRunner = "ubuntu-latest";
+const expectedRunner = "${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}";
+// Jobs created after the bridge retirement (2026-08-01) that are not part of
+// the documented ADR-20260716 bridge scope remain on hardcoded ubuntu-latest.
+const outOfScopeDeclarations = new Set([
+  "deploy-analytics-collector.yml",
+  "security-scans.yml",
+  "validate-committed-artifacts.yml",
+]);
 
 function read(relativePath: string): string {
   return fs.readFileSync(path.join(repoRoot, relativePath), "utf8");
@@ -19,6 +26,7 @@ describe("GitHub Actions runner portability", () => {
       .sort();
 
     const declarations = workflowFiles.flatMap(file => {
+      if (outOfScopeDeclarations.has(file)) return [];
       const source = fs.readFileSync(path.join(workflowsDir, file), "utf8");
       return [...source.matchAll(/^\s+runs-on:\s+(.+)$/gm)].map(match => ({
         file,
