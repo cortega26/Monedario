@@ -1,8 +1,8 @@
 # Experimento SEO: valor UTM en vivo en el snippet del conversor-utm
 
-**Estado:** ACTIVO — midiendo (no revertir antes de la ventana de evaluación)
-**Fecha de inicio:** 2026-08-20 (deploy del PR)
-**Fecha de evaluación:** inicio + 14 días mínimo, desde evidencia de que Google reprocesó la URL (fecha de la primera impresión con el snippet nuevo en GSC "Recursos de página" o la última fecha de detección del snippet previo).
+**Estado:** PENDIENTE DE MERGE/DEPLOY — el experimento aún no está activo (el PR #436 no está mergeado ni desplegado; el snippet dinámico solo existe en la rama).
+**Fecha de inicio:** a determinar — el experimento comienza tras el merge/deploy del PR #436; no hay fecha efectiva de inicio hasta entonces.
+**Fecha de evaluación:** inicio + 14 días mínimo, desde la primera evidencia de reprocesamiento del snippet por Google **posterior al deploy** (fecha de la primera impresión con el snippet nuevo en GSC "Recursos de página" o la última fecha de detección del snippet previo).
 
 ## Motivación
 
@@ -39,7 +39,7 @@ El valor se resuelve en build desde `getEconomicParameters()` (`src/application/
 
 ## Ventana de medición y reglas
 
-- **Duración mínima:** 14 días desde la primera evidencia de reprocesamiento del snippet por Google (no desde el deploy).
+- **Duración mínima:** 14 días desde la primera evidencia de reprocesamiento del snippet por Google **después del deploy** (no desde el deploy ni desde la creación del PR).
 - **No hay auto-revert** por fluctuaciones de horas o pocos días: la posición/CTR del SERP oscila por demanda estacional (agosto 2026 vs julio = pico estacional UTM) y competidores; una caída corta NO es señal de fallo del experimento.
 - **Revert inmediato (técnico)** solo si: error de build, valor incorrecto en el snippet publicado, H1/canonical/JSON-LD alterados, o gates de CI rotos.
 - **Evaluación:** comparar CTR/clicks/impressions/position del cluster conversor-utm y de las queries objetivo entre ventana experimental y las 2 semanas previas (línea base jul-ago), más el seguimiento de competidores del SERP.
@@ -59,6 +59,6 @@ El valor se resuelve en build desde `getEconomicParameters()` (`src/application/
 
 ## Cambios en el repo
 
-- Branch: `feat/seo/utm-snippet-experiment` (PR pendiente de merge)
-- Commit: (añadir hash tras el PR)
+- Branch: `feat/seo/utm-snippet-experiment` (PR #436, sin merge)
+- Commit: `02eae483` (HEAD de la rama; el hash en `main` se completará tras el merge)
 - Archivo modificado: `src/pages/calculadoras/conversor-utm.astro`
