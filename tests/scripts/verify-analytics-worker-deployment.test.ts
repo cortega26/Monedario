@@ -197,7 +197,7 @@ describe("checkActiveVersion", () => {
 });
 
 describe("checkExactSchedule", () => {
-  it("pasa cuando el cron es exactamente 57 7 * * MON", async () => {
+  it("pasa cuando el cron es exactamente 30 5 * * MON", async () => {
     const fetch = makeFakeFetch([
       { match: (u) => u.pathname.endsWith(`/workers/scripts/${WORKER_NAME}/schedules`), handler: () => schedulesResponse(EXPECTED_CRONS) },
     ]);
@@ -206,7 +206,7 @@ describe("checkExactSchedule", () => {
       pollIntervalMs: 1,
     });
     expect(result.ok).toBe(true);
-    expect(result.detail).toContain("57 7 * * MON");
+    expect(result.detail).toContain("30 5 * * MON");
   });
 
   it("falla si el cron no coincide (p. ej. build antiguo con domingo)", async () => {

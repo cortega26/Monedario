@@ -188,9 +188,10 @@ jobs:
             exit 1
           fi
 
-          # schemaVersion must be 1
+          # schemaVersion must be 1 or 2 (v2 produced since the 2026-07-20
+          # counter cutover; v1 remains valid for historical exports)
           SV=$(jq -r '.schemaVersion' "$FILE")
-          if [ "$SV" != "1" ]; then
+          if [ "$SV" != "1" ] && [ "$SV" != "2" ]; then
             echo "[validate-analytics] FAIL: schemaVersion=${SV}" >&2
             exit 1
           fi

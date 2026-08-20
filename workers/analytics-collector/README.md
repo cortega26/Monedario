@@ -14,7 +14,7 @@ y `docs/operations/runbooks/analytics-worker-deployment.md`.
    rechaza PII/keys desconocidas y acumula contadores en KV
    (`telemetry:v1` antes del cutover, `telemetry:v2` después — ver ADR de
    calendario).
-2. **Export semanal (cron):** cada lunes `57 7 * * MON` UTC agrega los
+2. **Export semanal (cron):** cada lunes `30 5 * * MON` UTC agrega los
    contadores de la semana ISO completa anterior y escribe
    `analytics-exports/YYYY-Www.json` en R2 (`ANALYTICS_EXPORTS` →
    `monedario-analytics-exports`). El artefacto es agregado, sin raw events ni
@@ -100,7 +100,7 @@ El despliegue se hace por `.github/workflows/deploy-analytics-collector.yml`
 (dispatch manual) y verifica automáticamente:
 
 1. versión activa (posterior al inicio del deploy);
-2. cron exacto `57 7 * * MON`;
+2. cron exacto `30 5 * * MON`;
 3. rechazo de credenciales en query-string;
 4. smoke de export autenticado por header (con `EXPORT_SECRET` configurado);
 5. frescura del artefacto R2 (metadatos vía `If-Modified-Since`, sin descargar
@@ -127,7 +127,7 @@ Procedimiento completo (incluido el chequeo de paridad tras el rollback) en
 | Archivo | Propósito |
 |---|---|
 | `src/index.ts` | Worker: ingesta de eventos, validación estricta, contadores KV, export semanal y endpoint manual. |
-| `wrangler.toml` | Config: ruta `monedario.cl/api/analytics/*`, cron `57 7 * * MON`, KV/R2, vars. |
+| `wrangler.toml` | Config: ruta `monedario.cl/api/analytics/*`, cron `30 5 * * MON`, KV/R2, vars. |
 | `tsconfig.json` | TS config del worker. |
 | `../../tests/workers/analytics-collector/schema.test.ts` | Tests unitarios del worker (validación, calendario, export, auth por header). |
 | `../../scripts/data-signals/verify-analytics-worker-deployment.mjs` | Verifier de paridad de despliegue (versión, cron, auth, R2). |

@@ -7,7 +7,9 @@
  */
 import { describe, expect, it } from "vitest";
 import fs from "node:fs";
+import os from "node:os";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
 
 const workflowPath = path.join(
   process.cwd(),
@@ -100,5 +102,49 @@ describe("data-signals workflow — configuration preflight", () => {
     // Verify the workflow doesn't reference raw event files
     expect(content).not.toContain("raw-events");
     expect(content).not.toContain("event-payloads");
+  });
+
+  it("accepts analytics schemaVersion 1 and 2 and rejects any other value", () => {
+    const content = fs.readFileSync(workflowPath, "utf8");
+
+    // The validator must accept exactly {1, 2} — the worker has produced
+    // v2 since the 2026-07-20 counter cutover; v1 remains valid for
+    // historical exports. It must NOT be relaxed to any future version.
+    expect(content).toContain('[ "$SV" != "1" ] && [ "$SV" != "2" ]');
+
+    // Extract the real validator guard from the workflow and evaluate it
+    // against fixture files with bash + jq (the same tools the workflow uses).
+    const guard = content.match(
+      /SV=\$\(jq -r '\.schemaVersion' "\$FILE"\)\s*\n(\s*)if (.+); then/,
+    );
+    expect(guard).not.toBeNull();
+    const condition = guard![2];
+
+    const accepted = (fixture: string): boolean => {
+      const dir = fs.mkdtempSync(path.join(os.tmpdir(), "ds-validate-"));
+      const file = path.join(dir, "fixture.json");
+      fs.writeFileSync(file, fixture, "utf8");
+      try {
+        execFileSync(
+          "/bin/bash",
+          ["-c", `FILE="${file}"` + "\n" + `SV=$(jq -r '.schemaVersion' "$FILE")` + "\n" + `if ${condition}; then exit 1; fi`],
+          { stdio: "pipe" },
+        );
+        return true;
+      } catch {
+        return false;
+      } finally {
+        fs.rmSync(dir, { recursive: true, force: true });
+      }
+    };
+
+    // v1 → valid; v2 → valid; v3/unknown/missing/invalid → rejected
+    expect(accepted('{"schemaVersion": 1, "source": "first-party-events"}')).toBe(true);
+    expect(accepted('{"schemaVersion": 2, "source": "first-party-events"}')).toBe(true);
+    expect(accepted('{"schemaVersion": 3, "source": "first-party-events"}')).toBe(false);
+    expect(accepted('{"schemaVersion": "unknown", "source": "first-party-events"}')).toBe(false);
+    expect(accepted('{"source": "first-party-events"}')).toBe(false);
+    expect(accepted('{"schemaVersion": null, "source": "first-party-events"}')).toBe(false);
+    expect(accepted('{"schemaVersion": 2.5, "source": "first-party-events"}')).toBe(false);
   });
 });

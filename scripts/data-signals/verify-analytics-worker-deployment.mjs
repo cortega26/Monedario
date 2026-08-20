@@ -4,7 +4,7 @@
  * worker `monedario-analytics-collector` contra la fuente de verdad del repo.
  *
  * Contexto (incidente W28): la fuente local tenía auth por header y el
- * calendario `57 7 * * MON`, mientras el worker vivo seguía en un build
+ * calendario `57 7 * * MON` (hoy `30 5 * * MON`), mientras el worker vivo seguía en un build
  * antiguo con auth por query-string y trigger domingo. Ningún gate detectaba
  * el desfase porque nada verificaba la versión activa, el cron exacto, el
  * comportamiento de auth ni la frescura del artefacto R2. Este verifier
@@ -15,7 +15,7 @@
  *      deployment/version id y created_on. Con `--deployed-not-before`
  *      falla si el despliegue activo es anterior a ese instante.
  *   2. Cron exacto: `GET /schedules` debe devolver exactamente
- *      `["57 7 * * MON"]`. Polling acotado (por defecto 15 min, intervalos
+ *      `["30 5 * * MON"]`. Polling acotado (por defecto 15 min, intervalos
  *      de 20 s — nunca más de 60 s) para la propagación del trigger.
  *   3. Rechazo de auth por query-string: `GET export?week=...&secret=...`
  *      SIN header Authorization debe responder 401.
@@ -64,7 +64,7 @@ const CF_API = "https://api.cloudflare.com/client/v4";
 export const WORKER_NAME = "monedario-analytics-collector";
 export const R2_BUCKET = "monedario-analytics-exports";
 export const DEFAULT_EXPORT_URL = "https://monedario.cl/api/analytics/export";
-export const EXPECTED_CRONS = ["57 7 * * MON"];
+export const EXPECTED_CRONS = ["30 5 * * MON"];
 export const POLL_INTERVAL_MS = 20_000;
 export const MAX_WAIT_MS = 15 * 60_000;
 export const VERSION_SLACK_MS = 15 * 60_000;
