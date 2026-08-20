@@ -1,0 +1,17 @@
+{
+  "fetchedAt": "2026-08-20T18:26:11Z",
+  "schemaVersion": 1,
+  "source": "cloudflare-rum",
+  "week": "2026-W33",
+  "window": {
+    "from": "2026-08-10",
+    "to": "2026-08-16"
+  },
+  "data": [],
+  "_meta": {
+    "totalRawRoutes": 0,
+    "keptRoutes": 0,
+    "discardedRoutes": 0,
+    "discarded": []
+  }
+}
