@@ -51,7 +51,7 @@ concurrency:
 jobs:
   lint-and-test:
     name: Code standards & tests
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 5
 
     steps:
@@ -98,7 +98,7 @@ jobs:
 
   build:
     name: Code standards & build
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 10
     # Runs on PRs (blocking gate) AND on the daily schedule against the default
     # branch, so drift that lands on main (e.g. a stale test guard) is caught
@@ -249,7 +249,7 @@ jobs:
 
   external-url-audit:
     name: External URL audit (non-blocking)
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 15
     if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     continue-on-error: true
@@ -288,7 +288,7 @@ jobs:
 
   external-url-check-pr:
     name: External URL check – PR
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
     needs: [lint-and-test, build]
     timeout-minutes: 15
     # Official/trusted hard failures block merge. Transient network errors and
@@ -332,7 +332,7 @@ jobs:
 
   a11y-audit:
     name: Accessibility audit (non-blocking)
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
     needs: build
     timeout-minutes: 10
     if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'

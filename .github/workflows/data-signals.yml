@@ -26,7 +26,7 @@ permissions:
 jobs:
   fetch:
     name: Fetch GSC + Cloudflare signals
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
     # The GSC URL Inspection step alone needs ~20min for the current sitemap size
     # (184 URLs, paced ~400ms + real per-call API latency ~6.5s observed). At the
     # prior 10min budget every scheduled run since 2026-07-03 was killed mid-run,

@@ -16,7 +16,7 @@ permissions:
 jobs:
   check:
     name: Check TypeScript 7 readiness
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
     timeout-minutes: 5
 
     steps:
