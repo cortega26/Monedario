@@ -12,10 +12,10 @@ zone_id = "9d53871bed75e9ad5d4cc5da84a18fcf"
 
 # ── Triggers ────────────────────────────────────────────────────────────────
 # Cron semanal: exporta agregados de KV → R2 o repo.
-# Lunes 07:57 UTC (madrugada en Chile). Se usa minuto 57 para evitar congestión
-# en :00/:30 con otros cron jobs del ecosistema Cloudflare.
+# Lunes 05:30 UTC (madrugada en Chile), ANTES del fetch de data-signals
+# (lunes 06:00 UTC) para que el export exista cuando el consumidor lo pide.
 [triggers]
-crons = ["57 7 * * MON"]
+crons = ["30 5 * * MON"]
 
 # ── KV Namespace ────────────────────────────────────────────────────────────
 # Contadores agregados. Claves versionadas:

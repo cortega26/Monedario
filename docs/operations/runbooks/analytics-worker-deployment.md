@@ -44,7 +44,7 @@ gh workflow run deploy-analytics-collector.yml --ref main
 
 El workflow: valida configuración → tests enfocados del worker → dry-run de
 wrangler → `wrangler deploy` → verifier de paridad (versión activa, cron exacto
-`57 7 * * MON`, rechazo de query-string, smoke de export si `EXPORT_SECRET`
+`30 5 * * MON`, rechazo de query-string, smoke de export si `EXPORT_SECRET`
 está configurado, frescura R2).
 
 Seguir el run:
@@ -65,7 +65,7 @@ de operaciones cada uno de estos puntos:
 - [ ] Run del workflow `deploy-analytics-collector.yml` en verde (commit
       desplegado = HEAD del branch/PR).
 - [ ] `version-activa: PASS` con el deployment/version id y `created_on`.
-- [ ] `cron-exacto: PASS` — `["57 7 * * MON"]`.
+- [ ] `cron-exacto: PASS` — `["30 5 * * MON"]`.
 - [ ] `auth-rechaza-query-string: PASS` — HTTP 401.
 - [ ] `smoke-export-autenticado: PASS` — HTTP 200, solo metadatos
       (`week`, `window`, `rows`, `totalEvents`).

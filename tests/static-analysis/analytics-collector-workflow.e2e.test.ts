@@ -167,9 +167,9 @@ describe("deploy-analytics-collector workflow — deployment parity", () => {
     expect(readOnly?.if).toBe("env.EXPORT_SECRET == ''");
   });
 
-  it("documenta el cron exacto 57 7 * * MON en el workflow", () => {
+  it("documenta el cron exacto 30 5 * * MON en el workflow", () => {
     // El verifier exige el cron exacto; el workflow debe declararlo para que el
     // desfase schedule-vs-fuente-de-verdad sea visible en la revisión.
-    expect(source).toContain("57 7 * * MON");
+    expect(source).toContain("30 5 * * MON");
   });
 });

@@ -949,7 +949,7 @@ describe("scheduled()", () => {
       "utf8",
     );
 
-    expect(config).toMatch(/crons\s*=\s*\["57 7 \* \* MON"\]/);
+    expect(config).toMatch(/crons\s*=\s*\["30 5 \* \* MON"\]/);
     expect(config).toMatch(
       /COUNTER_KEY_CUTOVER_AT\s*=\s*"2026-07-20T04:00:00Z"/,
     );

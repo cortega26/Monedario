@@ -55,7 +55,7 @@ changes runner routing, not deploy semantics.
    `scripts/data-signals/verify-analytics-worker-deployment.mjs` must pass:
    - active deployment/version is not older than the deploy start
      (`--deployed-not-before`, clock-skew tolerance 15 min);
-   - `GET /schedules` returns exactly `57 7 * * MON`;
+   - `GET /schedules` returns exactly `30 5 * * MON`;
    - the manual export endpoint rejects query-string credentials (HTTP 401);
    - the authenticated header-only export smoke returns 200 with metadata only
      (`week`, `window`, `rows`, `totalEvents`) — never `data` or `r2Key`;

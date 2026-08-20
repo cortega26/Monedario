@@ -13,7 +13,7 @@ name: Deploy Analytics Collector
 #   - Tests enfocados + `wrangler deploy --dry-run` ANTES de desplegar.
 #   - Concurrency: un solo deploy a la vez (serializado).
 #   - Post-deploy: verifier de paridad (versión activa, cron exacto
-#     `57 7 * * MON`, rechazo de auth por query-string, smoke de export
+#     `30 5 * * MON`, rechazo de auth por query-string, smoke de export
 #     autenticado y frescura del artefacto R2).
 #
 # Runner: ubuntu-latest. Desde 2026-08-01 el runner self-hosted temporal está
