@@ -217,4 +217,134 @@ const widgetId = "internal";
     expect(result.stdout).toContain("warnings=1");
     expect(result.stdout).toContain("ASD-403/external-url-non-ok-budget");
   });
+
+  it("fails on direct open-side bold glue: texto<strong>", () => {
+    const root = createTempProject();
+    writePage(
+      root,
+      "glue",
+      `---
+const visible = "sí";
+---
+<p>El texto<strong class="x">pegado</strong> aquí.</p>
+`
+    );
+
+    const result = runCheck(root, true);
+
+    expect(result.status).toBe(1);
+    expect(result.stdout).toContain("bold-glue");
+  });
+
+  it("fails on newline open-side bold glue: texto\\n<strong>", () => {
+    const root = createTempProject();
+    writePage(
+      root,
+      "glue",
+      `---
+const visible = "sí";
+---
+<p>El texto
+<strong class="x">pegado</strong> aquí.</p>
+`
+    );
+
+    const result = runCheck(root, true);
+
+    expect(result.status).toBe(1);
+    expect(result.stdout).toContain("bold-glue");
+  });
+
+  it("fails on direct close-side bold glue: </strong>texto", () => {
+    const root = createTempProject();
+    writePage(
+      root,
+      "glue",
+      `---
+const visible = "sí";
+---
+<p><strong class="x">Pegado</strong>texto aquí.</p>
+`
+    );
+
+    const result = runCheck(root, true);
+
+    expect(result.status).toBe(1);
+    expect(result.stdout).toContain("bold-glue");
+  });
+
+  it("fails on newline close-side bold glue: </strong>\\ntexto", () => {
+    const root = createTempProject();
+    writePage(
+      root,
+      "glue",
+      `---
+const visible = "sí";
+---
+<p><strong class="x">Pegado</strong>
+texto aquí.</p>
+`
+    );
+
+    const result = runCheck(root, true);
+
+    expect(result.status).toBe(1);
+    expect(result.stdout).toContain("bold-glue");
+  });
+
+  it("passes when a space separates text and <strong>", () => {
+    const root = createTempProject();
+    writePage(
+      root,
+      "bien",
+      `---
+const visible = "sí";
+---
+<p>El texto <strong class="x">con espacio</strong> aquí.</p>
+`
+    );
+
+    const result = runCheck(root, true);
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).not.toContain("bold-glue");
+  });
+
+  it("does not flag punctuation after closing bold", () => {
+    const root = createTempProject();
+    writePage(
+      root,
+      "bien",
+      `---
+const visible = "sí";
+---
+<p>El texto <strong class="x">con espacio</strong>, y más.</p>
+`
+    );
+
+    const result = runCheck(root, true);
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).not.toContain("bold-glue");
+  });
+
+  it("does not flag block-level <strong> at the start of a line after a tag", () => {
+    const root = createTempProject();
+    writePage(
+      root,
+      "bloque",
+      `---
+const visible = "sí";
+---
+<p>
+  <strong class="x">Bloque</strong> válido.
+</p>
+`
+    );
+
+    const result = runCheck(root, true);
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).not.toContain("bold-glue");
+  });
 });
