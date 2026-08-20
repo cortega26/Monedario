@@ -285,7 +285,7 @@ function checkReaderFacingCopyWarnings() {
   return findings;
 }
 
-const BOLD_GLUE_OPEN_RE = /[A-Za-zÁ-Úá-ú0-9,:;]\n\s*<strong/g;
+const BOLD_GLUE_OPEN_RE = /[A-Za-zÁ-Úá-ú0-9,:;](?:\n\s*)?<strong/g;
 const BOLD_GLUE_CLOSE_RE = /<\/strong\s*>\s*\n\s*[A-Za-zÁ-Úá-ú0-9]|<\/strong>[A-Za-zÁ-Úá-ú0-9]/g;
 
 function checkBoldGlueWarnings() {
