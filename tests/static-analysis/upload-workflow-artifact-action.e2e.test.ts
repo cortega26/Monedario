@@ -52,9 +52,9 @@ describe("upload-workflow-artifact action", () => {
     expect(workflowContent).not.toContain("artifact-name: site-dist");
     expect(workflowContent).toContain("artifact-name: a11y-report");
     expect(workflowContent).toContain("artifact-name: hero-images-artifacts");
-    // The ci.yml build job uses actions/upload-artifact@ directly to share
-    // site-build-output with downstream jobs — that's an intra-workflow
-    // artifact transfer, not a published "workflow artifact" that the shared
-    // helper owns. Other workflows must still route through the helper.
+    // The ci.yml build job uses actions/cache/save for the intra-workflow
+    // site-build-handoff transfer — that's not a published "workflow
+    // artifact" that the shared helper owns. Other workflows must still
+    // route through the helper.
   });
 });

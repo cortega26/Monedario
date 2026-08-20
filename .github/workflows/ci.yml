@@ -170,14 +170,6 @@ jobs:
       - name: "🚀 Build the project"
         run: pnpm run build:ci
 
-      - name: "📤 Share build output with dependent jobs"
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
-        with:
-          name: site-build-output
-          path: dist/
-          retention-days: 1
-          if-no-files-found: error
-
       - name: "🕰️ Economic snapshot freshness (scheduled only)"
         if: github.event_name == 'schedule'
         run: pnpm run check:economic-snapshot-freshness
@@ -200,6 +192,18 @@ jobs:
         # bloqueante para detectar deriva.
         continue-on-error: ${{ github.event_name == 'pull_request' }}
         run: pnpm run check:editorial-timeliness
+
+      - name: "💾 Save build output handoff cache"
+        # Solo cuando existe consumidor downstream (a11y-audit /
+        # external-url-check-pr) y tras los gates del job: un run fallido o
+        # cancelado no publica dist/ para que ningún job lo restaure.
+        # Key exclusiva del intento: un rerun jamás puede restaurar el dist/
+        # de un intento anterior (miss intencional en los consumidores).
+        if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: dist/
+          key: site-build-handoff-${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: "🧩 Ensure URL check artifacts exist"
         if: always() && steps.urlcheck_ci.outcome == 'skipped'
@@ -304,11 +308,12 @@ jobs:
         with:
           node-version: 22
 
-      - name: "⬇️ Restore build output from build job"
-        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+      - name: "⬇️ Restore build output handoff cache"
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
-          name: site-build-output
           path: dist/
+          key: site-build-handoff-${{ github.run_id }}-${{ github.run_attempt }}
+          fail-on-cache-miss: true
 
       - name: "🔗 External URL check (blocking gate – CI mode)"
         id: urlcheck_external_ci
@@ -350,11 +355,12 @@ jobs:
       - name: "🌐 Install Playwright browsers"
         run: pnpm exec playwright install chromium
 
-      - name: "⬇️ Restore build output from build job"
-        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+      - name: "⬇️ Restore build output handoff cache"
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
-          name: site-build-output
           path: dist/
+          key: site-build-handoff-${{ github.run_id }}-${{ github.run_attempt }}
+          fail-on-cache-miss: true
 
       - name: "🎯 Run accessibility tests"
         run: pnpm exec playwright test tests/accessibility/
