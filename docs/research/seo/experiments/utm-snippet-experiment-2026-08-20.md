@@ -1,8 +1,8 @@
 # Experimento SEO: valor UTM en vivo en el snippet del conversor-utm
 
-**Estado:** PENDIENTE DE MERGE/DEPLOY — el experimento aún no está activo (el PR #436 no está mergeado ni desplegado; el snippet dinámico solo existe en la rama).
-**Fecha de inicio:** a determinar — el experimento comienza tras el merge/deploy del PR #436; no hay fecha efectiva de inicio hasta entonces.
-**Fecha de evaluación:** inicio + 14 días mínimo, desde la primera evidencia de reprocesamiento del snippet por Google **posterior al deploy** (fecha de la primera impresión con el snippet nuevo en GSC "Recursos de página" o la última fecha de detección del snippet previo).
+**Estado:** ACTIVO — midiendo (no revertir antes de completar la ventana de evaluación). El contador de 14 días aún NO ha comenzado: está pendiente la primera evidencia de reprocesamiento del snippet por Google tras el deploy.
+**Fecha de inicio:** 2026-08-20 19:28 UTC — deploy en producción del merge del PR #436 (snippet dinámico sirviéndose en monedario.cl).
+**Fecha de evaluación:** inicio + 14 días mínimo, desde la primera evidencia de reprocesamiento del snippet por Google **posterior al deploy** (fecha de la primera impresión con el snippet nuevo en GSC "Recursos de página" o la última fecha de detección del snippet previo). Se actualizará cuando GSC lo confirme.
 
 ## Motivación
 
@@ -60,5 +60,6 @@ El valor se resuelve en build desde `getEconomicParameters()` (`src/application/
 ## Cambios en el repo
 
 - Branch: `feat/seo/utm-snippet-experiment` (PR #436, sin merge)
-- Commit: `02eae483` (HEAD de la rama; el hash en `main` se completará tras el merge)
+- Merge: PR #436 mergeado (squash) a `main` el 2026-08-20 19:28:03 UTC → SHA `316e8cba`
+- Deploy: Cloudflare Pages deployment `12cea8b3-568e-4705-a6cb-50e173f2ee50` (production), disparado 2026-08-20 19:28:05 UTC, activo ~19:31 UTC (HTML con snippet nuevo verificado en monedario.cl)
 - Archivo modificado: `src/pages/calculadoras/conversor-utm.astro`
