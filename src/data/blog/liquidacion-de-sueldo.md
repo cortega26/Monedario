@@ -50,8 +50,8 @@ reviewPolicy:
     - pensions.afp.worker_mandatory_contribution
   derivationFactors:
     - registry:categoryPolicies.empleo-ingresos
-  computedAt: "2026-08-09"
-updatedDate: 2026-08-09T00:00:00Z
+  computedAt: "2026-08-23"
+updatedDate: 2026-08-23T00:00:00Z
 ---
 
 El depósito cayó y el número no cuadra con lo que esperabas. Abres la liquidación y ves líneas que no entiendes o cifras que no puedes verificar. Aquí empieza el problema real: la mayoría de los trabajadores no sabe qué debe mostrar el comprobante ni qué preguntar cuando algo no cierra.
