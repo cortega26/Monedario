@@ -59,8 +59,8 @@ reviewPolicy:
     - pensions.afp.worker_mandatory_contribution
   derivationFactors:
     - registry:categoryPolicies.prevision
-  computedAt: "2026-08-23"
-updatedDate: 2026-08-23T00:00:00Z
+  computedAt: "2026-08-30"
+updatedDate: 2026-08-30T00:00:00Z
 ---
 
 La **cartola AFP** es tu estado de cuenta previsional trimestral. Llega cuatro veces al año —en enero, abril, julio y octubre— y resume lo que pasó con tu dinero durante ese período.
