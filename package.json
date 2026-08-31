@@ -124,7 +124,7 @@
     "@kindspells/astro-shield": "^1.7.1",
     "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/vite": "^4.3.2",
-    "astro": "^7.1.5",
+    "astro": "^7.2.2",
     "date-fns": "^4.4.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
