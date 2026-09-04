@@ -18,11 +18,14 @@ Disallow: ${BASE}/pagefind/
 
 # ── Crawlers de IA ──────────────────────────────────────────────────────────
 # Los bots de recuperación y cita (OAI-SearchBot, PerplexityBot,
-# Claude-SearchBot, ChatGPT-User, Perplexity-User, Claude-User) quedan
-# permitidos vía "User-agent: *": generan tráfico de citación hacia Monedario.
+# Claude-SearchBot, ChatGPT-User, Perplexity-User, Claude-User, Amzn-SearchBot,
+# Amzn-User) quedan permitidos vía "User-agent: *": generan tráfico de
+# citación hacia Monedario.
 # Los bots siguientes se usan para entrenar modelos de IA y se bloquean.
 # Nota: Google-Extended solo afecta a Gemini; no afecta a Googlebot ni al
-# ranking en Google Search.
+# ranking en Google Search. Amazonbot entrena modelos (Nova); Amzn-SearchBot
+# y Amzn-User son crawlers separados de Amazon (Alexa/citación) y quedan
+# permitidos.
 User-agent: GPTBot
 User-agent: ClaudeBot
 User-agent: Google-Extended
@@ -30,6 +33,7 @@ User-agent: Applebot-Extended
 User-agent: CCBot
 User-agent: meta-externalagent
 User-agent: Bytespider
+User-agent: Amazonbot
 Disallow: /
 
 # La URL canónica del sitio está en el sitemap
