@@ -68,7 +68,7 @@
         "¿Cuánto cuesta? Comisiones sin sorpresas"
       ],
       "bodyExcerpt": "> **Información vigente al 2026-06-17.** Las tarifas, productos y condiciones de bancos y fintech cambian con frecuencia. Antes de contratar, verifica directamente con la entidad y en las fuentes oficiales que citamos. Abrir una cuenta debería ser simple, pero cuando te pones a mirar aparece un menú que confunde: cuenta vista, cuenta corriente, cuenta de ahorro, CuentaRUT, billeteras digitales, \"cuentas fintech\". Y todas prometen lo mismo: que tu plata esté ahí cuando la necesitas. La buena noticia es que no necesitas entenderlas todas. Necesitas entender **cuál calza con lo que vas a hacer**: recibir el sueldo, mover dinero del día a día, juntar para una meta o probar una app nueva. Esta guía te ayuda a decidir con criterios estables, sin recomendarte una marca ni empujarte a un producto. ## ¿Qué cuenta me conviene para mi dinero del día a día? Si lo que quieres es **recibir tu sueldo y mover plata todos los días**, la cuenta a la que accede prácticamente cualquier persona es una **cuenta vista**. No te pide un nivel de renta y no usa cheques: funciona con tarjeta de débito, transferencias y giros. La CuentaRUT de BancoEstado es el ejemplo más conocido, pero casi todos los bancos ",
-      "wordCount": 1714,
+      "wordCount": 1706,
       "sourceFile": "bancos-y-fintech-chile.md"
     },
     {
@@ -551,23 +551,23 @@
       "cluster": "impuestos-personas",
       "sourcePath": "src/data/blog/devolucion-impuestos-fechas-compensaciones.md",
       "heroImage": "/images/hero/devolucion-impuestos-fechas-compensaciones.avif",
-      "summary": "Ya enviaste tu declaración, tu propuesta dijo devolución y la fecha pasó. Esta guía responde la pregunta que más se repite: ¿ cuándo depositan? Y si no depositaron, te explica cómo revisar el estado y qué hacer. Qué hacer ahora (3 pasos) 1. Revisa en SII si la declaración está ac...",
+      "summary": "Estado del ciclo AT2026 (revisado el 13 de agosto de 2026): el calendario ordinario ya cerró. El 29 de mayo de 2026 fue la última fecha del calendario ordinario de depósito y cheque para quienes declararon dentro de la ventana AT2026 (1 de abril al 8 de mayo). Esa fecha no es el...",
       "leadParagraphs": [
-        "Ya enviaste tu declaración, tu propuesta dijo devolución y la fecha pasó. Esta guía responde la pregunta que más se repite: ¿_cuándo depositan?_ Y si no depositaron, te explica cómo revisar el estado y qué hacer.",
-        "1. Revisa en SII si la declaración está aceptada o con observaciones. 2. Si está aceptada y no hay depósito, revisa en TGR si hubo compensación o retención. 3. Valida cuenta bancaria y ciclo de pago del año tributario vigente.",
-        "Datos mínimos:"
+        "**Estado del ciclo AT2026 (revisado el 13 de agosto de 2026): el calendario ordinario ya cerró.** El 29 de mayo de 2026 fue la última fecha del calendario ordinario de depósito y cheque para quienes declararon dentro de la ventana AT2026 (1 de abril al 8 de mayo). Esa fecha no es el fin de todo pago posible de devolución de este año tributario: si rectificas tu declaración o regularizas una declaración no presentada, el pago que resulte se procesa después, fuera de ese calendario (detalle más abajo). Si ya declaraste y esperabas tu devolución, esta guía te explica qué hacer hoy: cómo revisar si nunca te llegó el depósito, qué hacer si no alcanzaste a declarar dentro de AT2026 y cuándo se abre el próximo ciclo (AT2027).",
+        "El calendario de depósito y cheque de AT2026 (detalle en la sección siguiente) ya se ejecutó por completo. Esas fechas quedan como referencia de cómo funcionó el ciclo, no como plazo vigente hoy. Qué hacer depende de tu situación:",
+        "**Si declaraste dentro de AT2026 y nunca te llegó el depósito:**"
       ],
       "headings": [
-        "Qué hacer ahora (3 pasos)",
-        "Fechas de referencia y ventanas de pago",
+        "Ciclo AT2026 cerrado: qué hacer hoy",
+        "Fechas de referencia y ventanas de pago (calendario del ciclo AT2026, ya ejecutado)",
         "Si te pasa X, haz Y",
         "Errores que retrasan el pago",
         "Preguntas frecuentes (rápidas)",
         "Fuentes y referencias primarias",
         "Información de vigencia"
       ],
-      "bodyExcerpt": "Ya enviaste tu declaración, tu propuesta dijo devolución y la fecha pasó. Esta guía responde la pregunta que más se repite: ¿_cuándo depositan?_ Y si no depositaron, te explica cómo revisar el estado y qué hacer. ## Qué hacer ahora (3 pasos) 1. Revisa en SII si la declaración está aceptada o con observaciones. 2. Si está aceptada y no hay depósito, revisa en TGR si hubo compensación o retención. 3. Valida cuenta bancaria y ciclo de pago del año tributario vigente. Datos mínimos: - RUT y clave SII. - Folio/comprobante de declaración. - Cuenta bancaria informada al declarar. La fecha de pago no depende solo del día en que declaras: también influyen autorización SII, compensaciones/retenciones en TGR y estado de la cuenta bancaria. Si todavía estás revisando tu F22, parte por . Para estimar si te devolverán o deberás pagar antes de abrir el SII: . ## Fechas de referencia y ventanas de pago Para Año Tributario 2026, el SII publicó el calendario oficial el 31 de marzo de 2026: | Fecha de presentación | Depósito bancario | Cheque | | ------------------------ | ------------------- | ------------------ | | 1 al 8 de abril | 29 de abril de 2026 | 29 de mayo de 2026 | | 9 al 23 de abril | 15",
-      "wordCount": 677,
+      "bodyExcerpt": "**Estado del ciclo AT2026 (revisado el 13 de agosto de 2026): el calendario ordinario ya cerró.** El 29 de mayo de 2026 fue la última fecha del calendario ordinario de depósito y cheque para quienes declararon dentro de la ventana AT2026 (1 de abril al 8 de mayo). Esa fecha no es el fin de todo pago posible de devolución de este año tributario: si rectificas tu declaración o regularizas una declaración no presentada, el pago que resulte se procesa después, fuera de ese calendario (detalle más abajo). Si ya declaraste y esperabas tu devolución, esta guía te explica qué hacer hoy: cómo revisar si nunca te llegó el depósito, qué hacer si no alcanzaste a declarar dentro de AT2026 y cuándo se abre el próximo ciclo (AT2027). ## Ciclo AT2026 cerrado: qué hacer hoy El calendario de depósito y cheque de AT2026 (detalle en la sección siguiente) ya se ejecutó por completo. Esas fechas quedan como referencia de cómo funcionó el ciclo, no como plazo vigente hoy. Qué hacer depende de tu situación: **Si declaraste dentro de AT2026 y nunca te llegó el depósito:** 1. Revisa en SII si la declaración está aceptada o con observaciones. 2. Si está aceptada y no hay depósito, revisa en TGR si hubo compe",
+      "wordCount": 1685,
       "sourceFile": "devolucion-impuestos-fechas-compensaciones.md"
     },
     {
@@ -704,7 +704,7 @@
         "¿Qué documentos puede pedirte el propietario?"
       ],
       "bodyExcerpt": "> **Información vigente al 2026-06-22.** Los requisitos de trámites del Estado pueden cambiar. > Antes de actuar, verifica siempre en las fuentes oficiales que citamos: SII (sii.cl), > Registro Civil (registrocivil.cl) y BancoEstado (bancoestado.cl). Llegaste a Chile y necesitas tres cosas concretas para funcionar: un número de identidad tributaria, una cuenta donde recibir tus ingresos, y un techo. Esta guía cubre los aspectos que hemos podido verificar en fuentes oficiales — los pasos de cada trámite pueden cambiar, así que te indicamos dónde confirmar cada uno antes de actuar. --- ## Paso 1 — El RUT y la cédula de extranjero El RUT (Rol Único Tributario) es el número con el que el Estado chileno identifica a personas y empresas para efectos tributarios. Como extranjero, tu situación depende de si ya tienes residencia en Chile o no. ### ¿Necesitas solicitar un RUT? **Si ya tienes residencia y cédula de identidad para extranjeros:** No debes solicitar un RUT por separado. El SII registra automáticamente a las personas extranjeras residentes con el RUN (Rol Único Nacional) de su cédula de identidad para efectos tributarios. Tu cédula de extranjero ya incluye ese número. Fuente: , *",
-      "wordCount": 1501,
+      "wordCount": 1500,
       "sourceFile": "finanzas-para-migrantes-chile.md"
     },
     {
@@ -955,9 +955,9 @@
       "cluster": "impuestos-personas",
       "sourcePath": "src/data/blog/impuesto-global-complementario-chile.md",
       "heroImage": "/images/hero/impuesto-global-complementario-chile.avif",
-      "summary": "Información vigente al 2026 05 14. Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el antes de tu Operación Renta. Este artículo no cubre ganancias de capital. Tienes sueldo y además emites boletas de honorarios. O...",
+      "summary": "Información vigente al 2026 08 19. Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el antes de tu Operación Renta. Este artículo no cubre ganancias de capital. Tienes sueldo y además emites boletas de honorarios. O...",
       "leadParagraphs": [
-        "> **Información vigente al 2026-05-14.** Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el [SII](https://www.sii.cl/) antes de tu Operación Renta. Este artículo no cubre ganancias de capital.",
+        "> **Información vigente al 2026-08-19.** Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el [SII](https://www.sii.cl/) antes de tu Operación Renta. Este artículo no cubre ganancias de capital.",
         "Tienes sueldo y además emites boletas de honorarios. O eres socio de una empresa y también recibes sueldo. O arriendas una propiedad. En todos esos casos, el Impuesto de Segunda Categoría que te retienen mensualmente no cierra el ciclo: al final del año, el SII suma todas tus rentas y liquida el Impuesto Global Complementario (IGC) en el F22.",
         "El IGC es el impuesto anual que grava la totalidad de las rentas obtenidas durante el año por personas naturales domiciliadas en Chile, regulado en los artículos 52 a 57 de la [Ley de Impuesto a la Renta](https://www.bcn.cl/leychile/navegar?idNorma=6368)."
       ],
@@ -970,8 +970,8 @@
         "Cómo se declara: el F22",
         "¿Resultado: pago adicional o devolución?"
       ],
-      "bodyExcerpt": "> **Información vigente al 2026-05-14.** Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el antes de tu Operación Renta. Este artículo no cubre ganancias de capital. Tienes sueldo y además emites boletas de honorarios. O eres socio de una empresa y también recibes sueldo. O arriendas una propiedad. En todos esos casos, el Impuesto de Segunda Categoría que te retienen mensualmente no cierra el ciclo: al final del año, el SII suma todas tus rentas y liquida el Impuesto Global Complementario (IGC) en el F22. ## ¿Qué es el Impuesto Global Complementario? El IGC es el impuesto anual que grava la totalidad de las rentas obtenidas durante el año por personas naturales domiciliadas en Chile, regulado en los artículos 52 a 57 de la . El nombre lo explica: \"global\" porque suma todas las fuentes de renta; \"complementario\" porque complementa el ISC que se retuvo mensualmente durante el año. Si tus retenciones durante el año fueron suficientes para cubrir el IGC calculado, no pagas nada adicional — o recibes devolución. Si fueron insuficientes, pagas la diferencia. ## ¿Quiénes deben pagarlo? No todos los contribuyentes liquidan I",
-      "wordCount": 1176,
+      "bodyExcerpt": "> **Información vigente al 2026-08-19.** Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el antes de tu Operación Renta. Este artículo no cubre ganancias de capital. Tienes sueldo y además emites boletas de honorarios. O eres socio de una empresa y también recibes sueldo. O arriendas una propiedad. En todos esos casos, el Impuesto de Segunda Categoría que te retienen mensualmente no cierra el ciclo: al final del año, el SII suma todas tus rentas y liquida el Impuesto Global Complementario (IGC) en el F22. ## ¿Qué es el Impuesto Global Complementario? El IGC es el impuesto anual que grava la totalidad de las rentas obtenidas durante el año por personas naturales domiciliadas en Chile, regulado en los artículos 52 a 57 de la . El nombre lo explica: \"global\" porque suma todas las fuentes de renta; \"complementario\" porque complementa el ISC que se retuvo mensualmente durante el año. Si tus retenciones durante el año fueron suficientes para cubrir el IGC calculado, no pagas nada adicional — o recibes devolución. Si fueron insuficientes, pagas la diferencia. ## ¿Quiénes deben pagarlo? No todos los contribuyentes liquidan I",
+      "wordCount": 1203,
       "sourceFile": "impuesto-global-complementario-chile.md"
     },
     {
@@ -1170,7 +1170,7 @@
         "¿Quién NO necesita declarar?"
       ],
       "bodyExcerpt": "Esta guía responde preguntas frecuentes sobre la campaña. Para la información estructurada completa y acceso a la calculadora, visita el . ## Respuesta rápida: ¿debo declarar la renta en 2026? > **Regla general:** Debes declarar el Formulario 22 si en 2025 tuviste dos o más empleadores, emitiste boletas de honorarios, recibiste rentas del exterior, o tuviste ingresos por arriendo u otras rentas distintas al sueldo único. Los trabajadores con un solo empleador, sin otros ingresos, generalmente están exentos porque su empleador ya realizó las retenciones. > > **Excepciones:** Si trabajaste todo 2025 con un solo empleador y no tuviste ingresos adicionales, tu empleador ya declaró y pagó el impuesto por ti. Consulta el SII directamente para confirmar si tienes propuesta automática. > > **Vigencia:** Esta guía cubre la campaña 2026 para el año tributario 2025. El plazo de declaración por internet es el **8 de mayo de 2026**. Los plazos exactos se publican en sii.cl cada año. > > **Fuentes:** Servicio de Impuestos Internos (sii.cl) — Ley de Impuesto a la Renta (Artículo 65 y siguientes); Tesorería General de la República (tgr.cl). --- ## ¿Quién DEBE declarar el Formulario 22? La obligaci",
-      "wordCount": 2430,
+      "wordCount": 2726,
       "sourceFile": "operacion-renta-centro.md"
     },
     {
@@ -1186,24 +1186,24 @@
       "cluster": "impuestos-personas",
       "sourcePath": "src/data/blog/operacion-renta-f22-checklist.md",
       "heroImage": "/images/hero/operacion-renta-f22-checklist.avif",
-      "summary": "Abres la propuesta del SII, ves los números y no sabes si aceptar o si algo está mal. Esta guía te ayuda a revisar cada punto antes de enviar el F22 y a reaccionar rápido si aparecen observaciones — para que no pierdas tiempo ni atrases tu devolución. La plataforma del SII está a...",
+      "summary": "Abres la propuesta del SII, ves los números y no sabes si aceptar o si algo está mal. Esta guía te ayuda a revisar cada punto antes de enviar el F22 y a reaccionar rápido si aparecen observaciones — para que no pierdas tiempo ni atrases tu devolución. Estado del ciclo AT2026 (rev...",
       "leadParagraphs": [
         "Abres la propuesta del SII, ves los números y no sabes si aceptar o si algo está mal. Esta guía te ayuda a revisar cada punto antes de enviar el F22 y a reaccionar rápido si aparecen observaciones — para que no pierdas tiempo ni atrases tu devolución.",
-        "La plataforma del SII está abierta desde el 1 de abril. El plazo depende de si debes pagar: declaraciones **con pago**, del 8 al **30 de abril**; declaraciones **sin pago** (con devolución), hasta el **8 de mayo de 2026**. Cuándo declares dentro de ese período determina cuándo recibes tu devolución.",
+        "**Estado del ciclo AT2026 (revisado el 13 de agosto de 2026): ya cerró.** La plataforma del SII estuvo abierta desde el 1 de abril hasta el 8 de mayo de 2026: declaraciones **con pago**, del 8 al **30 de abril**; declaraciones **sin pago** (con devolución), hasta el **8 de mayo**. Esas fechas quedan como referencia de cómo funcionó el ciclo, no como plazo vigente hoy. Si ya declaraste, revisa la sección \"Fuera de la ventana AT2026\" más abajo; si no alcanzaste a declarar, esa misma sección explica tus opciones.",
         "La propuesta ya te muestra el resultado. Busca las líneas \"Impuesto determinado\" y \"Total créditos y retenciones\":"
       ],
       "headings": [
+        "Fuera de la ventana AT2026: qué puedes hacer hoy",
         "¿Tienes que declarar o solo aceptar la propuesta?",
         "¿Te van a devolver o debes pagar?",
-        "Cuándo llega la devolución",
+        "Cuándo llega la devolución (calendario del ciclo AT2026, ya ejecutado)",
         "Qué hacer ahora (10 minutos)",
         "Escenarios frecuentes (si te pasa X, haz Y)",
         "Errores que más atrasan la devolución",
-        "Preguntas frecuentes (rápidas)",
-        "Fuentes y referencias primarias"
+        "Preguntas frecuentes (rápidas)"
       ],
-      "bodyExcerpt": "Abres la propuesta del SII, ves los números y no sabes si aceptar o si algo está mal. Esta guía te ayuda a revisar cada punto antes de enviar el F22 y a reaccionar rápido si aparecen observaciones — para que no pierdas tiempo ni atrases tu devolución. La plataforma del SII está abierta desde el 1 de abril. El plazo depende de si debes pagar: declaraciones **con pago**, del 8 al **30 de abril**; declaraciones **sin pago** (con devolución), hasta el **8 de mayo de 2026**. Cuándo declares dentro de ese período determina cuándo recibes tu devolución. ## ¿Tienes que declarar o solo aceptar la propuesta? | Situación | Qué hacer | | -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | | Un solo empleador, sin otras rentas | Acepta la propuesta si los datos son correctos. No necesitas hacer nada más. | | Dos o más empleadores simultáneos | Debes declarar. Cada empleador retuvo de forma independiente; casi siempre hay ",
-      "wordCount": 1450,
+      "bodyExcerpt": "Abres la propuesta del SII, ves los números y no sabes si aceptar o si algo está mal. Esta guía te ayuda a revisar cada punto antes de enviar el F22 y a reaccionar rápido si aparecen observaciones — para que no pierdas tiempo ni atrases tu devolución. **Estado del ciclo AT2026 (revisado el 13 de agosto de 2026): ya cerró.** La plataforma del SII estuvo abierta desde el 1 de abril hasta el 8 de mayo de 2026: declaraciones **con pago**, del 8 al **30 de abril**; declaraciones **sin pago** (con devolución), hasta el **8 de mayo**. Esas fechas quedan como referencia de cómo funcionó el ciclo, no como plazo vigente hoy. Si ya declaraste, revisa la sección \"Fuera de la ventana AT2026\" más abajo; si no alcanzaste a declarar, esa misma sección explica tus opciones. ## Fuera de la ventana AT2026: qué puedes hacer hoy - **Si tu declaración quedó observada:** entra a sii.cl → Servicios online → Renta → Declaración de Renta → \"Consulta y seguimiento\" → \"Consultar estado de declaración\" para ver el detalle de la observación y rectificar por internet. Este trámite está disponible desde la segunda semana de junio del año en curso — es decir, después del cierre de la ventana de abril-mayo, por lo ",
+      "wordCount": 2249,
       "sourceFile": "operacion-renta-f22-checklist.md"
     },
     {
@@ -1557,8 +1557,8 @@
       "summary": "Si en 2025 tuviste sueldo y emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas...",
       "leadParagraphs": [
         "Si en 2025 tuviste sueldo _y_ emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas más— para que llegues al F22 sin sorpresas.",
-        "**Respuesta rápida (regla general):** Quienes percibieron sueldo _y_ emitieron boletas de honorarios en 2025 **deben declarar** Operación Renta 2026 (F22) obligatoriamente. El SII puede generar una propuesta, pero esa propuesta no incluye automáticamente tus boletas de honorarios, porque cada pagador retiene de forma independiente sin conocer tus otras fuentes de ingreso.",
-        "**Excepción relevante:** Si el total de tus ingresos anuales (sueldo + honorarios brutos) no supera el tramo exento del Global Complementario (~$11.322.018 anuales para AT 2026, equivalente a 13,5 UTA), no generarás impuesto adicional. Aun así, **la obligación de declarar subsiste**."
+        "**Respuesta rápida (regla general):** Quien percibe sueldo _y_ emite boletas de honorarios en el mismo año **debe declarar** Operación Renta (F22) obligatoriamente. Esta es una regla permanente: aplica a quien cumpla ese criterio en cualquier año tributario, no solo en 2026. El SII puede generar una propuesta, pero esa propuesta no incluye automáticamente tus boletas de honorarios, porque cada pagador retiene de forma independiente sin conocer tus otras fuentes de ingreso.",
+        "**Estado del ciclo AT2026:** la ventana de declaración para ingresos de 2025 ya cerró: 30 de abril de 2026 (declaraciones con pago) y 8 de mayo de 2026 (sin pago, con devolución). Si tuviste rentas mixtas en 2025, esta guía te sirve igual para entender el cálculo, hayas declarado o no. Si no alcanzaste a declarar dentro de plazo, revisa el [checklist de Operación Renta F22](/posts/operacion-renta-f22-checklist/) para tus opciones fuera de ventana; el próximo ciclo (AT2027) aún no tiene calendario publicado por el SII."
       ],
       "headings": [
         "Regla general: con rentas mixtas siempre debes declarar",
@@ -1570,8 +1570,8 @@
         "Paso a paso para declarar con rentas mixtas",
         "Lo que necesitas antes de entrar al SII"
       ],
-      "bodyExcerpt": "Si en 2025 tuviste sueldo _y_ emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas más— para que llegues al F22 sin sorpresas. ## Regla general: con rentas mixtas siempre debes declarar **Respuesta rápida (regla general):** Quienes percibieron sueldo _y_ emitieron boletas de honorarios en 2025 **deben declarar** Operación Renta 2026 (F22) obligatoriamente. El SII puede generar una propuesta, pero esa propuesta no incluye automáticamente tus boletas de honorarios, porque cada pagador retiene de forma independiente sin conocer tus otras fuentes de ingreso. **Excepción relevante:** Si el total de tus ingresos anuales (sueldo + honorarios brutos) no supera el tramo exento del Global Complementario (~$11.322.018 anuales para AT 2026, equivalente a 13,5 UTA), no generarás impuesto adicional. Aun así, **la obligación de declarar subsiste**. **Vigencia:** Operación Renta Año Tributario 2026 (ingresos enero–diciembre 2025), vigente a 2026-04-09. **Fuentes:** ; . | Situación | ¿Hay propuesta del",
-      "wordCount": 1769,
+      "bodyExcerpt": "Si en 2025 tuviste sueldo _y_ emitiste boletas de honorarios, la propuesta del SII no cubre tu caso completo: debes declarar obligatoriamente. Esta guía explica el mecanismo —cómo se suman ambas rentas, cómo se calcula el impuesto final y qué determina si recibes devolución o pagas más— para que llegues al F22 sin sorpresas. ## Regla general: con rentas mixtas siempre debes declarar **Respuesta rápida (regla general):** Quien percibe sueldo _y_ emite boletas de honorarios en el mismo año **debe declarar** Operación Renta (F22) obligatoriamente. Esta es una regla permanente: aplica a quien cumpla ese criterio en cualquier año tributario, no solo en 2026. El SII puede generar una propuesta, pero esa propuesta no incluye automáticamente tus boletas de honorarios, porque cada pagador retiene de forma independiente sin conocer tus otras fuentes de ingreso. **Estado del ciclo AT2026:** la ventana de declaración para ingresos de 2025 ya cerró: 30 de abril de 2026 (declaraciones con pago) y 8 de mayo de 2026 (sin pago, con devolución). Si tuviste rentas mixtas en 2025, esta guía te sirve igual para entender el cálculo, hayas declarado o no. Si no alcanzaste a declarar dentro de plazo, revi",
+      "wordCount": 2057,
       "sourceFile": "rentas-mixtas-sueldo-honorarios.md"
     },
     {
@@ -1654,9 +1654,9 @@
       "cluster": "sueldo-remuneraciones",
       "sourcePath": "src/data/blog/sueldo-imponible-chile.md",
       "heroImage": "/images/hero/sueldo-imponible-chile.avif",
-      "summary": "Información vigente al 2026 07 01. El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves...",
+      "summary": "Información vigente al 2026 08 19. El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves...",
       "leadParagraphs": [
-        "> **Información vigente al 2026-07-01.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo.",
+        "> **Información vigente al 2026-08-19.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo.",
         "Revisas tu liquidación y ves dos cifras distintas: \"sueldo bruto\" y \"remuneración imponible\". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque los descuentos de AFP, salud e impuesto no se calculan sobre el bruto — se calculan sobre el imponible.",
         "Si ya sabes qué es el imponible y quieres calcular el líquido completo, salta a la [calculadora de sueldo líquido](/posts/como-calcular-sueldo-liquido/). Si tienes el número y quieres auditar las líneas del comprobante, ve a [cómo auditar tu liquidación](/posts/liquidacion-de-sueldo/). Y si quieres distinguir cuáles de esos descuentos son legales, cuáles autorizaste y cuáles no deberían estar, revisa la guía de [descuentos de sueldo](/posts/descuentos-de-sueldo/)."
       ],
@@ -1669,8 +1669,8 @@
         "APV y reducción de la base imponible",
         "Ejemplo numérico orientativo"
       ],
-      "bodyExcerpt": "> **Información vigente al 2026-07-01.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves dos cifras distintas: \"sueldo bruto\" y \"remuneración imponible\". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque los descuentos de AFP, salud e impuesto no se calculan sobre el bruto — se calculan sobre el imponible. Si ya sabes qué es el imponible y quieres calcular el líquido completo, salta a la . Si tienes el número y quieres auditar las líneas del comprobante, ve a . Y si quieres distinguir cuáles de esos descuentos son legales, cuáles autorizaste y cuáles no deberían estar, revisa la guía de . ## ¿Qué es el sueldo imponible? Definición legal El sueldo imponible (o remuneración imponible) es la base de cálculo que la ley define para las cotizaciones previsionales y el Impuesto de Segunda Categoría. Está regulado en el artículo 41 del como el conjunto de remuneraciones que constituyen la base afecta a descuentos. No todo lo que recibe un trabajador es ",
-      "wordCount": 1109,
+      "bodyExcerpt": "> **Información vigente al 2026-08-19.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo. Revisas tu liquidación y ves dos cifras distintas: \"sueldo bruto\" y \"remuneración imponible\". En algunos casos son iguales. En otros, la imponible es menor. Esa diferencia importa porque los descuentos de AFP, salud e impuesto no se calculan sobre el bruto — se calculan sobre el imponible. Si ya sabes qué es el imponible y quieres calcular el líquido completo, salta a la . Si tienes el número y quieres auditar las líneas del comprobante, ve a . Y si quieres distinguir cuáles de esos descuentos son legales, cuáles autorizaste y cuáles no deberían estar, revisa la guía de . ## ¿Qué es el sueldo imponible? Definición legal El sueldo imponible (o remuneración imponible) es la base de cálculo que la ley define para las cotizaciones previsionales y el Impuesto de Segunda Categoría. Está regulado en el artículo 41 del como el conjunto de remuneraciones que constituyen la base afecta a descuentos. No todo lo que recibe un trabajador es ",
+      "wordCount": 1243,
       "sourceFile": "sueldo-imponible-chile.md"
     },
     {
