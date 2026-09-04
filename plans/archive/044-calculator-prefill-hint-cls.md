@@ -16,7 +16,7 @@
 - **Priority**: P3
 - **Effort**: S
 - **Risk**: LOW
-- **Depends on**: none (independent follow-up carved out of plan 041, archived — see `plans/041-impuesto-cls-load-shift.md` "Resultado de ejecución" section for the diagnosis that found this)
+- **Depends on**: none (independent follow-up carved out of plan 041, archived — see `plans/archive/041-impuesto-cls-load-shift.md` "Resultado de ejecución" section for the diagnosis that found this)
 - **Category**: perf
 - **Planned at**: commit `1be689b3`, 2026-07-11
 

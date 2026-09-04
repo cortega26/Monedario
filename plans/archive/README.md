@@ -1,7 +1,13 @@
-# Planes archivados (completados)
+# Planes archivados (cerrados)
 
-Planes de implementación cuyo trabajo ya está **hecho, verificado y mergeado en
-`main`**. Se conservan como registro de auditoría; no son trabajo pendiente.
+Planes cuyo trabajo ya está **hecho, verificado y mergeado en `main`**. Se
+conservan como registro de auditoría; no son trabajo pendiente.
+
+Desde el 2026-09-04 esta carpeta también recibe planes **cerrados sin
+implementar** (`REJECTED` / `SUPERSEDED`), por decisión del operador: `plans/`
+debe contener únicamente trabajo pendiente. Esos casos van marcados como tales en
+la columna "Mergeado en `main`" y su justificación vive en
+[`../README.md` § Cierre de planes heredados](../README.md#cierre-de-planes-heredados-2026-09-04).
 
 No uses material archivado como política vigente: si un plan archivado describe
 un estado del código, verifica contra el código actual antes de actuar.
@@ -77,6 +83,9 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [079](079-push-validation.md) | Validación post-push de artefactos commiteados por bots (snapshot económico + JSON de data-signals); workflow con paths filtrados y `contents: read`; `[skip ci]` removido; 8 tests | 2026-08-10 | sí (PR #415, squash `76373cd8`) |
 | [080](080-clp-formatter-unify.md) | Unificar formateadores CLP en `formatCLP` (20 sitios/18 calculadoras, 3 divergentes corregidos) + guard `check-no-inline-clp-formatters` en `check`; regex ajustada por el caso UF-histórico | 2026-08-10 | sí (PR #416, squash `32bd56ce`) |
 | [081](081-postbuild-verification.md) | Verificación declarativa del post-build (`check-postbuild.mjs`, 6 checks sobre `dist/`) como paso final de `build`/`build:ci`; breakout JSON-LD por balance de script tags; fix de import-time en CI | 2026-08-10 | sí (PR #419, squash `33e04b30`) |
+| [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` — **REJECTED 2026-09-04**: el `CLS p75 1,008` que lo motivaba era contaminación RUM anterior al plan 047 (sin filtro `requestHost`); con datos limpios el peor CLS del sitio es 0,014 | 2026-07-10 | no aplica (cerrado sin implementar) |
+| [046](046-converter-recurrence-return-hook-spike.md) | Spike: recurrencia en conversores y return-hook privacy-safe — **SUPERSEDED 2026-09-04** por los planes 085 (evalúa el vehículo) y 083 (arregla la entrega): el hook ya existe e instrumentado en `UtmPostResultActions.astro:43`; falta volumen de impresiones, no diseño | 2026-07-12 | no aplica (cerrado sin implementar) |
+| [055](055-calculator-consolidation-spike.md) | Spike: consolidación por URL de 5 calculadoras — entregable `docs/backlog/CALCULATOR-CONSOLIDATION-2026-08-02.md`; **archivado 2026-09-04**. Premisa APV (MANTENER, basada en W32) vencida por W34/W35 → supeditada al plan 086; compuerta humana §5 sigue abierta | 2026-08-02 | sí (ejecutado y aprobado 2026-08-11) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 

@@ -21,7 +21,7 @@
 >   src/pages/calculadoras/prepago-credito.astro \
 >   src/contracts/analytics-events.ts \
 >   docs/operations/UTILITY_LED_EXPERIMENT_REGISTRY.md \
->   plans/046-converter-recurrence-return-hook-spike.md
+>   plans/archive/046-converter-recurrence-return-hook-spike.md
 > ```
 > Si alguno cambió desde `0bd51540`, revalida los extractos. Mismatch =
 > condición de STOP. Además: si el spike 046 **ya se ejecutó** y su documento

@@ -9,6 +9,7 @@ Quinta auditoría profunda: `/improve deep` el 2026-07-10 (commit `520a8685`) �
 Auditoría de dirección: `/improve next` el 2026-07-12 (commit `0102b11a`) → spikes de dirección 045–046 (delta W27 sobre la auditoría canónica `GROWTH-DIRECTION-AUDIT-2026-06-28.md`, corte W25).
 Auditoría de dirección: `/improve next` el 2026-08-02 (commit `0bd51540`) → planes 053–056 (delta sobre el memo de viabilidad estratégica `output/audits/strategic-viability-2026-08-02/monedario-strategic-viability-audit.html`, untracked; ventana de experimentos 2026-08-02 → 2026-11-02).
 Séptima auditoría profunda: `/improve deep` el 2026-08-10 (commit `90370b4e`) → planes 057–081 (ver sección "Pendientes — séptima auditoría" más abajo).
+Auditoría de dirección: `/improve next` el 2026-09-04 (commit `08a6b5b4`) → planes 083–086 (tercera pasada de dirección; delta sobre la ventana utility-led 2026-08-02 → 2026-11-02, con datos reales W31–W35 de `output/operations/data-signals/`).
 Sexta auditoría profunda: `/improve deep` el 2026-07-16 (commit `efe021c7`) →
 planes 048–052, basada en el bundle W28, el incidente del export first-party y
 una revisión read-only de correctness, security, performance, architecture,
@@ -137,6 +138,172 @@ deja de aparecer en su tabla. Ninguna tabla debe mostrar una fila `DONE`.
 - **Conversión de bots a PRs (DX-01, parte governance)**: NO es un plan de código — el 079 valida post-push como mitigación; la conversión a PR+automerge rompería la SLA de frescura 3×/día y es decisión del operador.
 - **Rejects menores**: `fmt` deprecated en `indicadores.ts` (knip lo cubre); error leak `?secret=` documentado en docs históricas (037 ya lo verificó); Dependabot automerge (verificado sano).
 
+## Auditoría de dirección `/improve next` — 2026-09-04 (commit `08a6b5b4`)
+
+Tercera pasada de dirección. **Delta sobre la ventana utility-led** (2026-08-02 →
+2026-11-02) usando los datos reales que el repo ya genera: exports first-party
+W31–W35 (`output/operations/data-signals/analytics/`), GSC W35
+(`output/operations/data-signals/gsc/`) y el scorecard del 2026-09-04.
+
+**Hallazgo espinal (verificado leyendo el código y los exports, no inferido):** el
+programa utility-led decide en noviembre sobre tres señales, y las tres superficies
+que las producen tienen entregas incompatibles entre sí:
+
+| Vehículo | Dónde | Entrega (impresiones/completitudes) | CTR |
+|---|---|---|---|
+| Tarjeta en flujo (`src/scripts/next-best-step.ts`) | impuesto-2ª, APV | 140–630% | 2,6–18,8% |
+| Panel post-resultado (`UtmPostResultActions.astro`) | solo conversor-utm | 6,7–12,9% | 0% (0 de 108) |
+| `NextSteps.astro` estático | 10+ calculadoras | **no emite impresiones** | no computable |
+
+`NextSteps.astro` (108 líneas, **sin `<script>`**) es la superficie que desplegó el
+plan 082: sus clics se emiten por el manejador genérico de `data-analytics-cta`
+**sin `calculator_id`**, así que caen en buckets fantasma (`calculator`/`unknown`)
+— 8, 2 y 7 clics por semana en W33/W34/W35, cerca de la mitad del total.
+
+**Poder estadístico (la corrección más importante de esta pasada):** el registry
+tiene piso de tiempo e integridad pero **no de denominador**. Con P(0)=(1−p)^n:
+
+- `next_step_click` 0/108 → P(0)=0,037 al umbral HALT de 3% → **decidible, real**.
+- `alert_interest_submit` 0/79 → P(0)=**0,203** al GREEN de 2% → **indecidible**.
+- `support_click` 0/62 → P(0)=**0,733** al GREEN de 0,5% → **sin información**.
+
+Se necesitan n≈149 y n≈598. **No debe escribirse "0% → no construir alertas"** en
+ningún documento de decisión: ese es exactamente el error que el plan 084 previene.
+
+**Gate D sin datos:** `utility-led-ops.json` de W35 tiene `weeklyHours`,
+`weeklyCostClp` y `burnoutLevel1To5` en `null`, pese a que el registry declara la
+sostenibilidad —no el ingreso— como gate de continuidad.
+
+**Concentración:** GSC W35 = 773 clics; `/calculadoras/conversor-utm/` se lleva 571
+(74%) y 121.300 de 150.899 impresiones (80%), CTR 0,47% en posición 7,8. Los
+conversores completan al 99% y no generan siguiente paso: son consultas de un dato.
+
+## Hallazgos considerados y rechazados (2026-09-04)
+
+- **Salud de indexación**: *verificado limpio, no planificar.* La memoria de
+  sesiones previas hablaba de ~42% "Crawled - currently not indexed" (corte
+  2026-07-03). Con URL Inspection W35 la realidad es **173/184 indexadas (94%)** y
+  solo 11 sin confirmar. El problema se resolvió; no se re-audita.
+- **Placeholders de `indexation-summary.json`** (`"Replace this text with what
+  Google Search Console actually shows this week."`): cosmético — la sección
+  "Indexación real (URL Inspection)" del scorecard ya trae el dato verdadero desde
+  la API. No justifica un plan.
+- **`support_click` y `alert_interest_submit` en cero como señal de producto**:
+  **rechazado como hallazgo**. Se verificó empíricamente que ambos eventos pasan el
+  sanitizador del cliente y la re-validación del worker (`rejectUnknown: true`), así
+  que el cero no es un defecto de transporte; pero los denominadores (62 y 79) no
+  alcanzan para concluir nada. No es hallazgo ni evidencia: es ausencia de poder.
+- **Hipótesis descartadas durante el veteo** (se documentan para no reintentarlas):
+  (1) que `ATTRIBUTION` sobrescribiera `calculator_id` en `UtmPostResultActions` —
+  falso, `ATTRIBUTION` no contiene esa clave; (2) que el worker rechazara los
+  eventos con `interaction_variant` fuera de allowlist — falso, el cliente los
+  descarta antes y el worker acepta. Ambas se probaron ejecutando el sanitizador
+  real contra los payloads reales.
+- **`article_calculator_cta_click` sin `calculator_id`**: real pero menor — su
+  allowlist no incluye esa clave por diseño y el destino sí es recuperable desde
+  `dimensions` (`…:https://monedario.cl/calculadoras/apv/`). Volumen ~1/semana.
+  Anotar si se toca el contrato por otra razón; no justifica plan propio.
+- **`calculator_error` en cero en todo el sitio y todas las semanas**: sospechoso
+  (o nada falla nunca, o el evento no se emite), pero sin evidencia de cuál. Queda
+  como pregunta abierta dentro del plan 086, no como plan propio.
+- **UTM zero-click, GEO, autoridad del clúster "sueldo líquido", calculadoras
+  nuevas, comparadores, donaciones, copy de privacidad, CSP**: *owned* por pasadas
+  anteriores (ver las secciones de 2026-07-12 y 2026-08-02 más abajo). No se
+  re-derivan.
+- **Recurrencia / return-hook (plan 046)**: **no se abre un spike nuevo.** El plan
+  085 responde su pregunta reconciliada ("evaluar lo construido") con datos y deja
+  046 listo para cerrarse o reorientarse.
+- **Extender el patrón post-resultado a más calculadoras**: deliberadamente **no**
+  se planifica ahora. El plan 082 lo difirió hasta cruzar umbrales, y esta auditoría
+  muestra que el vehículo post-resultado es el que peor entrega — ampliarlo antes
+  del 085 sería replicar el problema.
+
+## Notas de dependencia (auditoría de dirección 2026-09-04)
+
+- **083 antes de leer cualquier razón de siguiente paso como definitiva**: hasta que
+  `NextSteps.astro` emita impresiones y sus clics tengan identidad, las razones
+  publicadas mezclan superficies medidas con superficies mudas.
+- **084 es independiente de 083** y puede ir en paralelo: uno arregla el numerador y
+  el denominador; el otro arregla la regla con que se leen.
+- **085 se ejecuta mejor después de 084** (usa la regla de denominador mínimo para
+  dimensionar sus opciones), pero no lo requiere: trae los `n_min` inlineados.
+- **086 es independiente de los tres** y no comparte archivos con ninguno.
+- **Ninguno de los cuatro toca rutas, slugs, RSS, títulos SEO de superficies en
+  medición ni contenido YMYL.** El freeze de URLs hasta 2026-11-02 se respeta.
+
+## Cierre de planes heredados (2026-09-04)
+
+Los tres planes que sobrevivían de auditorías anteriores se cerraron y archivaron
+el 2026-09-04, verificando cada premisa contra los datos vigentes (RUM/GSC/
+analytics W35) antes de decidir. **No se re-proponen.**
+
+### 041 — REJECTED: la premisa de campo desapareció
+
+El plan perseguía un `CLS p75 = 1,008` en `/calculadoras/impuesto-segunda-categoria/`
+(RUM 2026-W27). Ese número provenía de la consulta RUM **anterior** al plan 047,
+que agregaba por `accountTag` **sin** dimensión de hostname — la contaminación
+GROWTH-005 (tráfico de otras propiedades de la misma cuenta Cloudflare).
+
+Hoy `scripts/data-signals/cloudflare-fetch.mjs:154` filtra `requestHost: $host`.
+Con datos limpios (`output/operations/data-signals/cloudflare/2026-W35-rum.json`):
+
+| Ruta | CLS p75 | n |
+|---|---:|---:|
+| `/calculadoras/impuesto-segunda-categoria/` | **0,014** | 30 |
+| `/posts/sueldo-imponible-chile/` | 0,012 | 10 |
+| todo el resto del sitio | 0 | — |
+
+El umbral "Good" de CLS es <0,1: el **peor** valor del sitio entero es 0,014. Y
+coincide con lo que el ejecutor de 041 ya había medido en laboratorio — la barra de
+`ensureHint()` producía un shift de **0,0125** —, así que ese residuo mínimo es el
+hint bar y es inofensivo (el plan 044, archivado, ya lo trató).
+
+No es que faltara encontrar la causa de campo: **no hay problema de campo**. Pasa de
+`BLOCKED` a `REJECTED`.
+
+### 046 — SUPERSEDED: su pregunta ya está instrumentada
+
+046 proponía investigar si existe recurrencia real sobre los conversores y, solo si
+la había, **diseñar** un return-hook privacy-safe. Ese diseño ya está vivo en
+producción: `src/components/UtmPostResultActions.astro:43` pregunta literalmente
+*"¿Le serviría recibir un aviso cuando cambie la UTM?"*, con el descargo *"Esto solo
+mide interés agregado; no activa avisos ni solicita su correo."* — agregado, sin PII,
+sin correo. Es exactamente el hook que 046 iba a diseñar.
+
+Lo que falta no es diseño sino **entrega**: 79 impresiones en cinco semanas, cuando
+hacen falta n≈149 para poder decidir (ver la auditoría del 2026-09-04 más arriba).
+
+Además hay un límite estructural: 046 pregunta por *recurrencia*, y medir retorno
+individual está explícitamente prohibido en
+`docs/backlog/UTILITY_LED_BLOCKED_PENDING_EVIDENCE.md` ("cuentas, historial,
+personalización, perfilamiento, cohortes o retorno individual — fuera de alcance; no
+autorizado"). Ningún spike puede responderla de frente; solo por proxy agregado, que
+es lo que ya está montado.
+
+Su base de evidencia también envejeció: partía de 310 visitas RUM en W27; en W35
+`conversor-utm` va en 640. La dirección no cambia, los extractos sí.
+
+**Sucesores**: plan 085 (evalúa el vehículo con datos) + plan 083 (arregla la
+entrega). No escribir otro spike de recurrencia.
+
+### 055 — DONE y archivado, con una premisa anotada
+
+055 se ejecutó y aprobó en revisión el 2026-08-11; su entregable
+(`docs/backlog/CALCULATOR-CONSOLIDATION-2026-08-02.md`) está en el árbol y solo
+faltaba el cierre. Se archiva ahora.
+
+**Anotación obligatoria antes de actuar sobre su §5**: su hallazgo titular
+—"APV contradice la clasificación del memo → recomendación **MANTENER**"— se apoyaba
+en W32 (37v/17s/14c, ascenso 2→8→14). Con W34/W35 la completitud de APV cayó a
+**19%** y **14%**. Eso no invierte la recomendación (una calculadora que se empieza y
+no se termina es argumento para arreglarla, no para consolidarla), pero **la
+evidencia que la sostenía ya no es la vigente**: queda supeditada al plan 086.
+Las otras cuatro clasificaciones ("activación baja") siguen en pie — en GSC W35
+ninguna supera 3 clics.
+
+La compuerta humana del dossier (6 preguntas, §5) **sigue abierta**: archivar el plan
+no la resuelve.
+
 ## Política obligatoria de cierre y archivo
 
 El cierre de un plan es atómico. En la misma unidad de cambio que lo marca DONE,
@@ -179,19 +346,19 @@ el 2026-08-11) están DONE y archivados.
 
 | Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
 |---|------|--------|-----------|----------|--------|--------------------|--------|
-| 2 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` (swap de resultado por prefill) | P2 | S–M | LOW | todos | BLOCKED (hipótesis descartada; causa de campo sin identificar — ver nota abajo) |
-| 3| [046](046-converter-recurrence-return-hook-spike.md) | **Spike de dirección**: investigar si hay recurrencia real sobre los conversores (superficie de mayor **tráfico** según RUM W27; recurrencia **por confirmar**) y, solo si la hay, diseñar un return-hook privacy-safe | P2 | M | LOW | todos | TODO (spike de diseño; reconciliado 2026-08-11 — reencuadrado: el patrón post-resultado ya existe en conversor-utm vía `UtmPostResultActions`; evaluar lo construido, no diseñar desde cero) |
-| 4| [055](055-calculator-consolidation-spike.md) | **Spike de dirección**: consolidación por URL de 5 calculadoras (dossier de evidencia + opciones de migración con gates de ruta/RSS/ADR) | P2 | M | MED | todos | EJECUTADO Y APROBADO EN REVISIÓN (2026-08-11, reconciliado antes de ejecutar) — entregable `docs/backlog/CALCULATOR-CONSOLIDATION-2026-08-02.md`: datos GSC W32 + analytics W30–W32 por URL, inventario funcional de las 5, opciones con trade-offs, protocolo de ejecución (ADR/snapshot/RSS/freeze/canónicos/YMYL), compuerta humana con 6 preguntas. **Hallazgo clave**: APV contradice la clasificación del memo (37v/17s/14c W32, ascenso 2→8→14) → recomendación MANTENER; las otras 4 sí son "activación baja" (≤1 click GSC). **Desviación aprobada en mérito**: `.gitignore` +1 línea (`!docs/backlog/CALCULATOR-CONSOLIDATION-*.md`). Cierre/archivo a pedido del operador; decisiones §5 del dossier |
-> **035–040, 042–045 y 047–050 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
-
-> **046 es un spike de dirección (`/improve next`, 2026-07-12)**, no un plan de
-> implementación: produce un documento de análisis read-only y se detiene en una
-> compuerta de decisión humana. NO toca código de producto. Su premisa usa rutas
-> **únicas** de monedario (no contaminadas por GROWTH-005), así que es independiente
-> de 041 y del ya archivado 047. **045 (el otro spike del mismo lote) y su
-> follow-up 047 ya se ejecutaron, aprobaron y archivaron** — ver nota abajo. La
-> viabilidad de 047 quedó confirmada en vivo el 2026-07-16 (`requestHost`
-> aceptado como filtro y dimensión) antes de integrar el filtro.
+| 1 | [083](083-next-step-instrumentation-parity.md) | Dar paridad de instrumentación a las tres superficies de "siguiente paso" y cerrar el drift del enum `page_type` | P1 | M | MED | 084, 085, 086 (sin archivos en común) | EJECUTADO Y APROBADO EN REVISIÓN (2026-09-04, vía `/improve execute 083`) — worktree `agent-a587c3fbb4d431f04`, rama `advisor/083-next-step-instrumentation-parity`, commit `1a761389`. **Revisión (tech lead) APROBADA** — reverificada de forma independiente en el worktree: `astro check` 0 errores, `pnpm run test` 1397/1397, `lint`/`format:check`/`check:boundaries`/`check:dead-code`/`check:ci` exit 0. Scope limpio: 6 archivos (`NextSteps.astro`, `analytics-events.ts`, `tests/*`, más `src/utils/nextSteps.ts` — desviación autorizada por el propio plan). `page_type` ampliado solo con `"article"`/`"calculator-index"`; `FORBIDDEN_KEY_PATTERN` y `ANALYTICS_ALLOWED_PROPERTIES` intactos. `data-analytics-cta="next-step"` removido del ancla (sin doble conteo verificado contra `UtmPostResultActions`, que no comparte el wrapper `[data-analytics-next-steps]`). **Desviación aprobada en mérito**: el Paso 2 del plan pedía `page_type: "calculator"` fijo; el ejecutor lo leyó en runtime desde `data-analytics-page-type` porque `NextSteps` también se renderiza en `PostDetails.astro` (páginas de artículo, `page_type="article"`) — confirmado leyendo el layout. Fijarlo habría reintroducido el mismo defecto que el plan corrige. **Consecuencia a monitorear, no defecto**: en páginas de artículo `calculator_id` queda `undefined` a propósito (identidad falsa es peor que ausente), así que esos eventos siguen sin dueño de calculadora — el bucket fantasma se cierra completo en páginas de calculadora, parcialmente en artículos. **Sin cobertura de test para el `<script>` en sí** (vitest corre en `node`, `src/components/**` excluido de coverage — decisión correcta del plan, no hay harness de componentes Astro); la señal de aceptación real es el export de la semana **2026-W36**: `next_step_shown` > 0 para `seguro-cesantia`/`prepago-credito`. **Paso 0 sin baseline pre-edición independiente** (el ejecutor no corrió la tabla de comandos sobre el árbol sin modificar antes de editar); aceptado porque el drift check dio vacío y el estado post-cambio es verde. Merge/push pendiente de decisión del operador.
+| 2 | [084](084-utility-led-decision-readiness.md) | Hacer decidible la ventana utility-led: regla de denominador mínimo + captura del Gate D | P1 | S–M | LOW | 083, 085, 086 | TODO |
+| 3 | [085](085-journey-thesis-vehicle-spike.md) | **Spike de dirección**: qué vehículo y qué superficie pueden probar la tesis del recorrido antes del 2026-11-02 (actualiza el encuadre de 046 y la premisa APV de 055) | P2 | M | LOW | 084, 086 | TODO |
+| 4 | [086](086-apv-completion-drop-diagnosis.md) | Diagnosticar la caída de completitud de APV (58% → 14% en tres semanas) | P2 | S–M | LOW | 083, 084, 085 (sin archivos en común) | TODO |
+> **035–040, 042–055 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
+>
+> **Cierre del 2026-09-04**: los tres últimos planes heredados (**041**, **046**,
+> **055**) se archivaron en esta fecha por decisión del operador ("todo lo que ya
+> NO corresponda a planes pendientes no debería estar en `plans/`"). Ninguno queda
+> vivo. Justificación de cada uno en
+> [Cierre de planes heredados](#cierre-de-planes-heredados-2026-09-04). **La tabla
+> de pendientes queda con los cuatro planes de la auditoría de dirección del
+> 2026-09-04 (083–086) y nada más.**
 >
 > **053 CERRADO (mergeado y archivado 2026-08-02); 054–056 son los planes
 > de la auditoría de dirección (`/improve next`, 2026-08-02)**,
@@ -1064,7 +1231,18 @@ de la séptima auditoría 057–081, ya completa — 052 fue cerrado con PR #420
 
 ## Completados — archivados
 
-Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main`.
+Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main`,
+salvo las dos excepciones cerradas sin implementar que se indican abajo.
+
+### Planes heredados cerrados 2026-09-04 (041, 046, 055)
+
+| Plan | Título | Cierre | Estado |
+|------|--------|--------|--------|
+| [041](archive/041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` | 2026-09-04 | **REJECTED** — premisa desaparecida: el `CLS p75 1,008` era contaminación RUM pre-047; con `requestHost` el peor CLS del sitio es 0,014. No implementado (no correspondía) |
+| [046](archive/046-converter-recurrence-return-hook-spike.md) | Spike: recurrencia en conversores y return-hook privacy-safe | 2026-09-04 | **SUPERSEDED** por 085 + 083 — el hook ya existe y está instrumentado (`UtmPostResultActions.astro:43`); falta entrega, no diseño. No implementado (no correspondía) |
+| [055](archive/055-calculator-consolidation-spike.md) | Spike: consolidación por URL de 5 calculadoras | 2026-09-04 | **DONE** (ejecutado y aprobado 2026-08-11; entregable `docs/backlog/CALCULATOR-CONSOLIDATION-2026-08-02.md`). Premisa APV anotada como vencida → plan 086; compuerta §5 sigue abierta |
+
+Justificación completa en [Cierre de planes heredados](#cierre-de-planes-heredados-2026-09-04).
 
 ### Séptima auditoría profunda 2026-08-10 (plans 057–081; todos archivados)
 
