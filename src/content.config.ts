@@ -339,7 +339,7 @@ const glossary = defineCollection({
         z
           .object({
             label: z.string().trim().min(1),
-            href: z.string().url(),
+            href: z.url(),
           })
           .strict()
       )
