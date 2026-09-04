@@ -48,6 +48,7 @@ const ALLOWED_EVENTS = new Set([
   "support_shown",
   "support_click",
   "support_confirmed",
+  "article_calculator_cta_click",
   // Historical schema (v1), retained so old weekly exports stay readable.
   "next_best_step_shown",
   "next_best_step_click",

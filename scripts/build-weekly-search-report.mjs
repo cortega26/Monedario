@@ -31,6 +31,7 @@ const ANALYTICS_EVENT_NAMES = new Set([
   "support_shown",
   "support_click",
   "support_confirmed",
+  "article_calculator_cta_click",
 ]);
 
 function parseArgs(argv) {
