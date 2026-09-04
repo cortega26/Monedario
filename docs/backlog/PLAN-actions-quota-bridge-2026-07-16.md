@@ -1,9 +1,10 @@
 # Plan: temporary GitHub Actions quota bridge
 
-Status: implemented — active bridge pending scheduled retirement
+Status: retired 2026-09-04 (second retirement — see the "Lifecycle after
+this plan" note in the Completion evidence section: retired 2026-08-01,
+reactivated 2026-08-19/20 per PR #433/#434, retired again 2026-09-04)
 Owner: repository owner
 Started: 2026-07-16
-Target retirement: 2026-08-01 after hosted-minute reset is confirmed
 
 ## Task Brief
 
@@ -194,6 +195,22 @@ not benchmark-driven product/editorial work and creates no visible surface.
   2026-08-19/20 (PR #433/#434, minutes exhausted again inside 3 weeks of the
   prior reset), retired again 2026-09-04 — see the runbook's "Retirement
   evidence — 2026-09-04" section for the second retirement's evidence.
-  Retirement is a manual runbook execution each time, not automated; if
-  minutes are exhausted a third time, follow PR #433's diff as the
-  reactivation template rather than re-deriving it.
+  Retirement is a manual runbook execution each time, not automated.
+- **If minutes are exhausted a third time, do NOT use PR #433's diff as the
+  reactivation template** — it only restores the
+  `${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}` fallback pattern in
+  workflow files, which is already present in source (retirement only
+  deletes the repository *variable*, never that pattern — see the runbook's
+  "with no variable set, every job resolves to `ubuntu-latest`" note). That
+  PR alone reactivates nothing: it does not rebuild the runner image, create
+  the container/volume, or register a runner with GitHub. Full reactivation
+  needs, in order: (1) rebuild the image from the local build definition
+  (`/home/carlos/.local/share/monedario-actions-runner/`, pinned to GitHub
+  Actions runner `2.335.1` + Node `24.15.0` — see the runbook's "Live
+  configuration" section for the exact image/container/volume names and
+  isolation constraints); (2) register a fresh repository-only runner named
+  `monedario-local-bridge-202607` with label `monedario-local-bridge`
+  (Implementation phase 4 above has the isolation requirements — non-root,
+  named-volume-only, no Docker socket); (3) set the repository variable
+  `ACTIONS_RUNNER_LABEL=monedario-local-bridge`; (4) run a live workflow
+  smoke test (phase 5) before trusting it for real PR traffic.

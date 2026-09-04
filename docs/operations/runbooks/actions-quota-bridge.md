@@ -130,11 +130,14 @@ queue time — deleting the variable afterward does not retarget an
 already-queued job):
 
 ```bash
-gh run list --status queued --json databaseId --jq '.[].databaseId' |
-  xargs -n1 gh run cancel
-# then, once each shows a terminal status:
-gh run list --status cancelled --json databaseId --jq '.[].databaseId' |
-  xargs -n1 gh run rerun
+queued_ids="$(gh run list --status queued --json databaseId --jq '.[].databaseId')"
+echo "${queued_ids}" | xargs -n1 gh run cancel
+# Wait until every ID above shows a terminal status (gh run list --json status),
+# then rerun the SAME captured IDs — do not re-query `--status cancelled`,
+# which can return unrelated historical cancellations past this incident
+# (including ones with deployment or repository-write side effects) and, if
+# more than the default 20-result page qualify, can omit runs from this batch.
+echo "${queued_ids}" | xargs -n1 gh run rerun
 ```
 
 Remove the GitHub runner registration and local resources:
@@ -162,9 +165,19 @@ clear), skip the token-based removal and force it from the admin side
 instead, then still run the two `docker` cleanup commands above:
 
 ```bash
-runner_id="$(gh api repos/cortega26/Monedario/actions/runners --jq '.runners[0].id')"
-gh api -X DELETE "repos/cortega26/Monedario/actions/runners/${runner_id}"
+runner_ids="$(gh api repos/cortega26/Monedario/actions/runners \
+  --jq '[.runners[] | select(.name == "monedario-local-bridge-202607")] | .[].id')"
+runner_count="$(echo "${runner_ids}" | grep -c . || true)"
+if [ "${runner_count}" != "1" ]; then
+  echo "Expected exactly one runner named monedario-local-bridge-202607, found ${runner_count}. Aborting — do not delete blind." >&2
+  exit 1
+fi
+gh api -X DELETE "repos/cortega26/Monedario/actions/runners/${runner_ids}"
 ```
+
+Never delete by `.runners[0]` alone — with more than one registered runner
+that can unregister an unrelated one while leaving the stale bridge
+registration in place.
 
 Finally verify:
 
