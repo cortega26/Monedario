@@ -35,7 +35,12 @@ jobs:
         # default (AppArmor), which breaks Chrome's own sandbox and makes
         # Lighthouse's headless launch fail with "No usable sandbox!".
         # Restoring the kernel setting keeps Chrome's sandbox enabled instead
-        # of disabling it via --no-sandbox.
+        # of disabling it via --no-sandbox. GitHub-hosted only: if
+        # ACTIONS_RUNNER_LABEL ever routes this job back to the self-hosted
+        # bridge (docs/operations/runbooks/actions-quota-bridge.md), its
+        # container runs as UID 10001 without general sudo and this would
+        # fail before the audit even starts.
+        if: runner.environment == 'github-hosted'
         run: sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
 
       - name: "🔬 Run Lighthouse CI"
