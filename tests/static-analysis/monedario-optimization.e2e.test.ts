@@ -30,7 +30,12 @@ describe("Monedario optimization implementation", () => {
     expect(content).toContain("currentHref: string");
     expect(content).toContain("excludeHrefs?: string[]");
     expect(content).toContain("slice(0, 3)");
-    expect(content).toContain('data-analytics-cta="next-step"');
+    // Plan 083: el ancla dejó de usar el manejador genérico de CTA
+    // (data-analytics-cta="next-step") para evitar el doble conteo con su
+    // propia instrumentación de impresión/clic vía data-next-step-id.
+    expect(content).not.toContain('data-analytics-cta="next-step"');
+    expect(content).toContain("data-next-step-id={deriveNextStepId(item.href)}");
+    expect(content).toContain("next_step_shown");
   });
 
   it("renders trust and next steps on every calculator detail page", () => {

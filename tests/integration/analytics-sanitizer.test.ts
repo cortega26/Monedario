@@ -211,4 +211,49 @@ describe("analytics v2 contract", () => {
       })
     ).toBeNull();
   });
+
+  // Plan 083: el enum page_type no admitía "article" ni "calculator-index",
+  // pese a que PostDetails.astro y el índice de calculadoras los emiten; el
+  // sanitizador los descartaba en silencio en todos los eventos de esas páginas.
+  it.each(["article", "calculator-index"])(
+    'conserva page_type="%s" tras ampliar el enum',
+    pageType => {
+      expect(
+        sanitizeAnalyticsPayload("calculator_view", {
+          page_type: pageType,
+          calculator_id: "conversor-uf",
+          app_version: "5.5.1",
+        })
+      ).toEqual({
+        event: "calculator_view",
+        params: {
+          page_type: pageType,
+          calculator_id: "conversor-uf",
+          app_version: "5.5.1",
+        },
+      });
+    }
+  );
+
+  it("no descarta el payload en la ruta estricta del worker (rejectUnknown) con page_type=article", () => {
+    const result = sanitizeAnalyticsPayload(
+      "calculator_view",
+      {
+        page_type: "article",
+        calculator_id: "conversor-uf",
+        app_version: "5.5.1",
+      },
+      { rejectUnknown: true }
+    );
+    expect(result).not.toBeNull();
+  });
+
+  it("sigue rechazando un page_type que no está en el enum ampliado", () => {
+    const result = sanitizeAnalyticsPayload("calculator_view", {
+      page_type: "articulo",
+      calculator_id: "conversor-uf",
+      app_version: "5.5.1",
+    });
+    expect(result?.params.page_type).toBeUndefined();
+  });
 });

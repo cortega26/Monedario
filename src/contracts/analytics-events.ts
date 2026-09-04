@@ -105,8 +105,13 @@ export const ANALYTICS_ALLOWED_PROPERTIES = [
 ] as const satisfies readonly AnalyticsPropertyName[];
 
 const ENUM_VALUES: Readonly<Record<string, ReadonlySet<string>>> = {
+  // "article" lo emite PostDetails.astro y "calculator-index" lo emite el
+  // índice de calculadoras; ambos faltaban en el enum y se descartaban en
+  // silencio (plan 083).
   page_type: new Set([
+    "article",
     "calculator",
+    "calculator-index",
     "post",
     "guide",
     "home",

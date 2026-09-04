@@ -1,5 +1,6 @@
 ---
 import { getPath } from "@/utils/getPath";
+import { deriveCalculatorId, deriveNextStepId } from "@/utils/nextSteps";
 
 export type NextStepItem = {
   href: string;
@@ -53,6 +54,11 @@ const visibleItems = items
     return true;
   })
   .slice(0, 3);
+
+// Identidad derivada de `currentHref` (no de una prop nueva, ver Notas de
+// mantenimiento del plan 083): en `/calculadoras/<slug>/` resuelve el slug;
+// en cualquier otro origen (índice, artículos) queda `undefined` a propósito.
+const resolvedCalculatorId = deriveCalculatorId(currentHref);
 ---
 
 {
@@ -60,6 +66,8 @@ const visibleItems = items
     <section
       class="mt-10 border-t border-border pt-8 pb-10"
       data-next-steps-cluster={cluster}
+      data-analytics-next-steps
+      data-analytics-calculator-id={resolvedCalculatorId}
       aria-labelledby="next-steps-title"
     >
       <div class="mb-5 max-w-2xl">
@@ -93,7 +101,7 @@ const visibleItems = items
             <a
               href={getPath(item.href)}
               class="mt-4 inline-flex min-h-[24px] items-center py-1 text-sm font-semibold text-accent underline underline-offset-4 hover:opacity-80"
-              data-analytics-cta="next-step"
+              data-next-step-id={deriveNextStepId(item.href)}
               data-analytics-label={item.title}
               data-analytics-location={location}
               aria-label={`${item.cta ?? defaultCta(item.href)} ${item.title}`}
@@ -106,3 +114,73 @@ const visibleItems = items
     </section>
   )
 }
+
+<script>
+  import { trackAnalyticsEvent } from "@/utils/analytics";
+
+  const ROOT_SELECTOR = "[data-analytics-next-steps]";
+
+  // page_type se lee del marcador de página vigente (igual que el manejador
+  // genérico en src/scripts/analytics.ts) en vez de fijarse en "calculator":
+  // este componente también se renderiza en páginas de artículo
+  // (PostDetails.astro), donde el page_type correcto es "article".
+  function getPageType(): string {
+    const typed = document.querySelector<HTMLElement>(
+      "[data-analytics-page-type]"
+    );
+    return typed?.dataset.analyticsPageType ?? "unknown";
+  }
+
+  function initNextSteps() {
+    const roots = document.querySelectorAll<HTMLElement>(ROOT_SELECTOR);
+
+    roots.forEach(root => {
+      if (root.dataset.initialized === "true") return;
+      root.dataset.initialized = "true";
+
+      const calculatorId = root.dataset.analyticsCalculatorId;
+      const pageType = getPageType();
+      const basePayload = {
+        ...(calculatorId ? { calculator_id: calculatorId } : {}),
+        page_type: pageType,
+      };
+
+      const shown = new Set<string>();
+      const observer = new IntersectionObserver(
+        entries => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            const target = entry.target as HTMLElement;
+            const nextStepId = target.dataset.nextStepId;
+            if (nextStepId && !shown.has(nextStepId)) {
+              shown.add(nextStepId);
+              trackAnalyticsEvent("next_step_shown", {
+                ...basePayload,
+                next_step_id: nextStepId,
+              });
+            }
+            observer.unobserve(target);
+          }
+        },
+        { threshold: 0.25 }
+      );
+
+      root
+        .querySelectorAll<HTMLAnchorElement>("[data-next-step-id]")
+        .forEach(link => {
+          observer.observe(link);
+          link.addEventListener("click", () => {
+            const nextStepId = link.dataset.nextStepId;
+            if (!nextStepId) return;
+            trackAnalyticsEvent("next_step_click", {
+              ...basePayload,
+              next_step_id: nextStepId,
+            });
+          });
+        });
+    });
+  }
+
+  initNextSteps();
+  document.addEventListener("astro:page-load", initNextSteps);
+</script>
