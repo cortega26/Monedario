@@ -63,8 +63,8 @@ reviewPolicy:
     - pensions.previsional.monthly_taxable_cap_uf
   derivationFactors:
     - registry:slugOverrides.como-calcular-sueldo-liquido
-  computedAt: "2026-08-23"
-updatedDate: 2026-08-23T00:00:00Z
+  computedAt: "2026-08-30"
+updatedDate: 2026-08-30T00:00:00Z
 ---
 
 Te ofrecieron $1.200.000 brutos. Llegó el día de pago y te cayeron $950.000. Esta guía existe para rehacer ese cálculo de principio a fin: partir desde el bruto, separar el imponible y llegar al depósito final con AFP, salud, cesantía e impuesto.
