@@ -1,6 +1,13 @@
 # GitHub Actions quota bridge runbook
 
-Status: active until the hosted-minute reset is confirmed on or after 2026-08-01
+Status: retired 2026-09-04. History: added 2026-07-16 (minutes exhausted),
+retired 2026-08-01, reactivated 2026-08-19/20 (PR #433/#434, minutes
+exhausted again within 3 weeks of the prior reset), retired again 2026-09-04
+after the user confirmed the September hosted-minute allowance had reset.
+**This retirement is manual, not automatic — there is no scheduled job that
+reverts `ACTIONS_RUNNER_LABEL` on the monthly reset.** If minutes run out
+again, re-run the reactivation steps this doc used to describe (see PR #433's
+diff for the exact restore pattern) and update this Status line again.
 
 Authority: `docs/adr/ADR-20260716-temporary-self-hosted-actions-bridge.md`
 
@@ -95,9 +102,13 @@ container, remove the runner in GitHub Settings, rotate repository secrets that
 were available to jobs, and rebuild from an empty volume. Do not reuse the old
 work volume.
 
-## Retirement on August 1
+## Retirement
 
-First confirm the GitHub-hosted allowance has reset. Then execute in this order:
+This is a **manual checklist, not an automated process** — nothing reverts
+`ACTIONS_RUNNER_LABEL` on its own when the monthly hosted-minute allowance
+resets. Run this after confirming the reset (ask the user to check
+github.com/settings/billing; there is no billing API scope available to
+verify this directly).
 
 ```bash
 gh variable delete ACTIONS_RUNNER_LABEL --repo cortega26/Monedario
@@ -106,8 +117,25 @@ docker stop monedario-actions-runner
 docker rm monedario-actions-runner
 ```
 
+`gh workflow enable` only works if the file is still named
+`claude-code-review.yml` (a workflow disabled via the API). If it was
+disabled by renaming to `claude-code-review.yml.disabled` instead (as it was
+2026-08-01, for an unrelated reason — see "Known deviations" below), that
+step will 403 with "Unable to enable a workflow that is not active"; skip it
+and handle the rename separately.
+
 Cancel and re-run any workflow that was queued before the variable deletion so
-the new run resolves to `ubuntu-latest`.
+the new run resolves to `ubuntu-latest` (a job's `runs-on` label is fixed at
+queue time — deleting the variable afterward does not retarget an
+already-queued job):
+
+```bash
+gh run list --status queued --json databaseId --jq '.[].databaseId' |
+  xargs -n1 gh run cancel
+# then, once each shows a terminal status:
+gh run list --status cancelled --json databaseId --jq '.[].databaseId' |
+  xargs -n1 gh run rerun
+```
 
 Remove the GitHub runner registration and local resources:
 
@@ -127,6 +155,17 @@ docker volume rm monedario-actions-runner-data
 docker image rm monedario-actions-runner:2.335.1
 ```
 
+If `config.sh remove` fails with "Runner ... is currently running a job and
+cannot be deleted" even though no job is actually in progress (this happens
+when the container was stopped mid-job and GitHub's server-side state didn't
+clear), skip the token-based removal and force it from the admin side
+instead, then still run the two `docker` cleanup commands above:
+
+```bash
+runner_id="$(gh api repos/cortega26/Monedario/actions/runners --jq '.runners[0].id')"
+gh api -X DELETE "repos/cortega26/Monedario/actions/runners/${runner_id}"
+```
+
 Finally verify:
 
 ```bash
@@ -139,3 +178,34 @@ gh workflow list --all --repo cortega26/Monedario |
 Update `docs/backlog/PLAN-actions-quota-bridge-2026-07-16.md` with retirement
 evidence. The workflow fallback remains in source as a dormant incident control;
 with no variable set, every job resolves to `ubuntu-latest`.
+
+## Known deviations from this runbook
+
+- `claude-code-review.yml` was disabled by renaming to `.yml.disabled`
+  (`2e6b8ee5`, 2026-08-01), not via `gh workflow disable`, and not solely
+  because of this bridge — the stated reason was an expired
+  `CLAUDE_CODE_OAUTH_TOKEN` (all runs were failing with `is_error:true`).
+  Do not re-enable it as part of a routine retirement without first
+  confirming the OAuth token has been renewed; it will otherwise resume
+  failing on every run.
+
+## Retirement evidence — 2026-09-04
+
+- User confirmed the September hosted-minute allowance had reset before
+  retirement began.
+- `gh variable delete ACTIONS_RUNNER_LABEL` — done.
+- `claude-code-review.yml` re-enable — skipped; still `.yml.disabled` for the
+  unrelated OAuth-token reason above.
+- Container stopped/removed while one job was still mid-execution (queue had
+  built up to 13 jobs from same-session PR/issue work); this left the runner
+  registration in a stale "busy" state that blocked the normal
+  `config.sh remove --token` flow. Worked around with
+  `DELETE /repos/{owner}/{repo}/actions/runners/{id}` (documented above as
+  the new fallback path).
+- 6 runs left queued against the deleted runner label were cancelled and
+  rerun; confirmed resolving to `ubuntu-latest` (run `33885629878`, jobs
+  reported `runner_name: "GitHub Actions ..."`, `labels: ["ubuntu-latest"]`).
+- Docker volume `monedario-actions-runner-data` and image
+  `monedario-actions-runner:2.335.1` removed.
+- Verified: `gh api repos/cortega26/Monedario/actions/runners` → `[]`;
+  `gh variable list` no longer lists `ACTIONS_RUNNER_LABEL`.

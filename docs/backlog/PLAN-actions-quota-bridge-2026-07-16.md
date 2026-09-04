@@ -190,6 +190,10 @@ not benchmark-driven product/editorial work and creates no visible surface.
 - Live proof: GitHub Actions run `29520310584` attempt 2 passed the full CI,
   browser accessibility, external URL, Python, and security workflow chain on
   the custom self-hosted label.
-- Remaining scheduled operation: execute the August 1 retirement section in
-  `docs/operations/runbooks/actions-quota-bridge.md` only after the hosted
-  allowance reset is confirmed.
+- Lifecycle after this plan: retired 2026-08-01 (`042c8766`), reactivated
+  2026-08-19/20 (PR #433/#434, minutes exhausted again inside 3 weeks of the
+  prior reset), retired again 2026-09-04 — see the runbook's "Retirement
+  evidence — 2026-09-04" section for the second retirement's evidence.
+  Retirement is a manual runbook execution each time, not automated; if
+  minutes are exhausted a third time, follow PR #433's diff as the
+  reactivation template rather than re-deriving it.
