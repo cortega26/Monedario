@@ -1,0 +1,193 @@
+{
+  "fetchedAt": "2026-09-04T15:53:20Z",
+  "schemaVersion": 1,
+  "source": "cloudflare-rum",
+  "week": "2026-W35",
+  "window": {
+    "from": "2026-08-24",
+    "to": "2026-08-30"
+  },
+  "data": [
+    {
+      "clsP75": 0,
+      "count": 640,
+      "inpP75Ms": 72,
+      "lcpP75Ms": 1120,
+      "path": "/calculadoras/conversor-utm/"
+    },
+    {
+      "clsP75": 0,
+      "count": 120,
+      "inpP75Ms": 32,
+      "lcpP75Ms": 1508,
+      "path": "/calculadoras/conversor-uf/"
+    },
+    {
+      "clsP75": 0,
+      "count": 90,
+      "inpP75Ms": 0,
+      "lcpP75Ms": 1888,
+      "path": "/"
+    },
+    {
+      "clsP75": 0,
+      "count": 70,
+      "inpP75Ms": 72,
+      "lcpP75Ms": 1204,
+      "path": "/calculadoras/prepago-credito/"
+    },
+    {
+      "clsP75": 0,
+      "count": 50,
+      "inpP75Ms": 80,
+      "lcpP75Ms": 2440,
+      "path": "/calculadoras/credito-consumo/"
+    },
+    {
+      "clsP75": 0.014,
+      "count": 30,
+      "inpP75Ms": 56,
+      "lcpP75Ms": 1864,
+      "path": "/calculadoras/impuesto-segunda-categoria/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": 88,
+      "lcpP75Ms": 1320,
+      "path": "/calculadoras/seguro-cesantia/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": 104,
+      "lcpP75Ms": 752,
+      "path": "/posts/donde-ver-si-estoy-en-dicom-gratis/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": null,
+      "lcpP75Ms": 1760,
+      "path": "/posts/fondos-afp-a-b-c-d-e/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": 0,
+      "lcpP75Ms": 884,
+      "path": "/posts/licencia-medica-desde-que-dia-pagan/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": 32,
+      "lcpP75Ms": 180,
+      "path": "/calculadoras/apv/"
+    },
+    {
+      "clsP75": 0.001,
+      "count": 20,
+      "inpP75Ms": null,
+      "lcpP75Ms": 856,
+      "path": "/calculadoras/operacion-renta/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 0,
+      "lcpP75Ms": 488,
+      "path": "/guias/deuda-credito/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 200,
+      "path": "/calculadoras/finiquito-indemnizacion/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 48,
+      "lcpP75Ms": 144,
+      "path": "/calculadoras/simulador-jubilacion/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 56,
+      "lcpP75Ms": 648,
+      "path": "/calculadoras/deposito-a-plazo/"
+    },
+    {
+      "clsP75": 0.012,
+      "count": 10,
+      "inpP75Ms": 0,
+      "lcpP75Ms": 496,
+      "path": "/posts/sueldo-imponible-chile/"
+    },
+    {
+      "clsP75": null,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 3962,
+      "path": "/posts/que-es-la-cuenta-2-afp/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 2676,
+      "path": "/guias/bancos-fintech/"
+    },
+    {
+      "clsP75": null,
+      "count": 10,
+      "inpP75Ms": 0,
+      "lcpP75Ms": null,
+      "path": "/posts/descuentos-de-sueldo/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 436,
+      "path": "/posts/informe-deudas-cmf-vs-dicom/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 5624,
+      "path": "/posts/que-es-el-apv/"
+    }
+  ],
+  "_meta": {
+    "totalRawRoutes": 26,
+    "keptRoutes": 22,
+    "discardedRoutes": 4,
+    "discarded": [
+      {
+        "path": "/glosario/cic/",
+        "count": 40,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/glosario/ctc/",
+        "count": 20,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/glosario/sii/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/uf-hoy/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      }
+    ]
+  }
+}
