@@ -93,6 +93,7 @@ docs/backlog/*
 !docs/backlog/DECISION-PATHS-*.md
 !docs/backlog/CALCULATOR-CONSOLIDATION-*.md
 !docs/backlog/DIAGNOSTICO-*.md
+!docs/backlog/JOURNEY-THESIS-VEHICLE-*.md
 !docs/editorial/artifacts/
 !docs/editorial/artifacts/**
 

@@ -1,0 +1,570 @@
+# Spike de dirección: vehículo y superficie para probar la tesis del recorrido
+
+**Plan de origen:** `plans/085-journey-thesis-vehicle-spike.md` (planeado sobre commit `08a6b5b4`, 2026-09-04).
+**Corte de datos:** export first-party `2026-W35` (ventana 2026-08-24 a 2026-08-30) y GSC `2026-W35-pages.json`. **Este corte es anterior a la instrumentación del plan 083** (commit `1a761389`, ya en `main`/`HEAD` al momento de ejecutar este spike). Ver nota de reconciliación al final de esta sección.
+**Tipo:** documento de análisis, read-only. No cambia código, rutas, contenido ni contratos.
+
+## Nota de reconciliación (083 ya aterrizó)
+
+Este spike se planeó tratando la instrumentación de `NextSteps.astro` como un
+escenario futuro ("si 083 aterriza primero..."). Al momento de ejecutar el
+spike, **el plan 083 ya está en el historial de la rama base**
+(`git merge-base --is-ancestor 1a761389 HEAD` confirma que el commit que
+instrumentó `NextSteps.astro` es ancestro del `HEAD` actual). En consecuencia:
+
+- `src/components/NextSteps.astro` **ya no** es "108 líneas, sin `<script>`":
+  hoy tiene 186 líneas e incluye un `<script>` que emite
+  `next_step_shown`/`next_step_click` con identidad de calculadora.
+- Todos los números de este documento sobre "NextSteps.astro no emite
+  impresiones" son una lectura correcta de los exports **W31–W35**, generados
+  **antes** de que 083 aterrizara. No describen el comportamiento del código
+  actual — describen el comportamiento del código que estuvo en producción
+  durante la ventana medida.
+- No existe todavía ningún export **posterior** a 083 (el más reciente
+  disponible sigue siendo `2026-W35.json`). El desempeño real del vehículo
+  `NextSteps.astro` ya instrumentado se conocerá recién con el export de la
+  semana en que ese cambio esté sirviendo tráfico en producción (candidato:
+  `2026-W36` en adelante).
+- La opción de plan equivalente a "arreglar la instrumentación de
+  `NextSteps.astro`" ya no es una opción disponible: ya se ejecutó. La
+  Sección 4 refleja esto.
+
+## 1. Resumen ejecutivo
+
+Se midió, con los nueve eventos de embudo (`calculator_view` →
+`calculator_complete` → `next_step_*` → `alert_interest_*` → `support_*`)
+agregados por calculadora y semana sobre los cinco exports W31–W35, y
+cruzados con el ranking de demanda de GSC W35, si la tesis del recorrido
+(`consulta → respuesta → herramienta → siguiente decisión → confianza y
+retorno`) es comprobable sobre el tráfico donde hoy se está probando.
+
+Hallazgo: no lo es, por dos razones independientes y verificadas por
+separado. **Vehículo**: el panel post-resultado de `conversor-utm`
+(`UtmPostResultActions.astro`) solo se muestra al 6,7%–12,9% de quienes
+completan la calculadora (frente a 141,9%–633,3% de la tarjeta dinámica en
+`apv`/`impuesto-segunda-categoria`), porque vive 137 líneas de marcado más
+abajo del resultado y depende de que la persona haga scroll hasta un
+`IntersectionObserver` con `threshold: 0.25`. **Demanda**: `conversor-utm`
+concentra 74% de los clics y 80% de las impresiones de búsqueda del sitio,
+pero es una consulta de respuesta única (completitud 99%) con el CTR
+orgánico más bajo del sitio (0,47%, posición 7,8) — el patrón inverso al del
+tramo medio (`prepago-credito` 8,6%, `operacion-renta` 7,3%), donde la
+persona sí llega con una decisión pendiente. Las 6 preguntas de la Sección 6
+piden al operador elegir entre subir la entrega en `conversor-utm`, mudar el
+vehículo dinámico al tramo medio, o declarar la superficie actual no apta
+para esta tesis.
+
+## 2. Evidencia
+
+### 2.1 Tabla de vehículos (Paso 1 del plan) — recalculada desde los JSON crudos
+
+Fuente: `output/operations/data-signals/analytics/2026-W3{1,2,3,4,5}.json`,
+agregando `count` por `calculator_id` + `event_name`. Entrega =
+`next_step_shown / calculator_complete`; CTR = `next_step_click /
+next_step_shown` (solo semanas con denominador > 0).
+
+**`apv`** (vehículo: tarjeta dinámica `next-best-step.ts`, vía `NextBestStep.astro`):
+
+| Semana | complete | shown | click | entrega | CTR |
+|---|---:|---:|---:|---:|---:|
+| W31 | 8 | 23 | 3 | 287,5% | 13,0% |
+| W32 | 14 | 32 | 3 | 228,6% | 9,4% |
+| W33 | 19 | 45 | 6 | 236,8% | 13,3% |
+| W34 | 4 | 13 | 0 | 325,0% | 0,0% |
+| W35 | 3 | 19 | 2 | 633,3% | 10,5% |
+
+**`impuesto-segunda-categoria`** (mismo vehículo):
+
+| Semana | complete | shown | click | entrega | CTR |
+|---|---:|---:|---:|---:|---:|
+| W31 | 13 | 21 | 2 | 161,5% | 9,5% |
+| W32 | 13 | 27 | 5 | 207,7% | 18,5% |
+| W33 | 26 | 48 | 9 | 184,6% | 18,8% |
+| W34 | 22 | 39 | 1 | 177,3% | 2,6% |
+| W35 | 31 | 44 | 3 | 141,9% | 6,8% |
+
+**`conversor-utm`** (vehículo: panel post-resultado `UtmPostResultActions.astro`):
+
+| Semana | complete | shown | click | entrega | CTR |
+|---|---:|---:|---:|---:|---:|
+| W31 | 675 | 6 | 0 | 0,9% | 0,0% |
+| W32 | 764 | 61 | 0 | 8,0% | 0,0% |
+| W33 | 298 | 26 | 0 | 8,7% | 0,0% |
+| W34 | 404 | 52 | 0 | 12,9% | 0,0% |
+| W35 | 445 | 30 | 0 | 6,7% | 0,0% |
+
+**Verificación de control (cifras exigidas por el plan) — coinciden exactas:**
+
+| Semana | utm `next_step_shown` | utm `next_step_click` | isc `next_step_shown` |
+|---|---:|---:|---:|
+| W33 | 26 | 0 | 48 |
+| W34 | 52 | 0 | 39 |
+| W35 | 30 | 0 | 44 |
+
+**`NextSteps.astro` (vehículo estático, pre-083)**: en los cinco exports
+W31–W35, ninguna de las calculadoras que solo usan `NextSteps.astro`
+(`seguro-cesantia`, `prepago-credito`, `credito-consumo`, `boleta-honorarios-liquido`,
+`reajuste-arriendo`, `dividendo-hipotecario`, `gratificacion-legal`,
+`tarjeta-credito`, `actualizador-inflacion`, `conversor-uf`,
+`simulador-jubilacion`, `simulador-renegociacion`) registra un solo
+`next_step_shown`. Entrega no computable (denominador de eventos = 0), no
+"0%" — el vehículo, en ese período, no emitía la señal. Nota: algunas páginas
+que sí incluyen `NextBestStep.astro` en su marcado (`deposito-a-plazo`,
+`interes-compuesto`, `comisiones-afp`) también muestran 0 en todas las
+semanas — el componente está presente pero sus reglas de elegibilidad
+(`src/data/nextBestStep/rules.ts`) no lo activan para esos slugs en el
+período medido; esto no cambia la conclusión sobre `NextSteps.astro`, pero
+matiza que "tener el componente en la página" no es lo mismo que "el
+componente decide mostrarse".
+
+### 2.2 Buckets sin identidad real de calculadora
+
+`next_step_click` con `calculator_id` en `"calculator"` o `"unknown"` (sin
+`calculator_id` real, atribuible al fallback documentado en el commit
+`1a761389` para páginas de artículo/`page_type` no-calculadora):
+
+| Bucket | Clics W31–W35 |
+|---|---:|
+| `calculator` | 22 |
+| `unknown` | 3 |
+| **Total sin identidad** | **25 de 65 (38,5%)** |
+
+Esto es aparte del hallazgo de entrega/demanda: casi cuatro de cada diez
+clics de "siguiente paso" registrados en la ventana no se pueden atribuir a
+una calculadora de origen, lo que limita cualquier lectura por calculadora
+de la CTR agregada (no afecta las cifras de `apv`/`impuesto-2ª`/`conversor-utm`
+de arriba, que sí tienen `calculator_id` real).
+
+También se confirma, contando eventos en los cinco exports: `alert_interest_submit`
+y `support_click` no aparecen **ni una sola vez** en W31–W35 (conteo total de
+nombres de evento: `alert_interest_shown=79`, `support_shown=62`,
+`source_click=54`, sin ningún `alert_interest_submit` ni `support_click`
+registrado). Esto es consistente con la regla de denominador mínimo del
+registro de experimentos (ver 2.4): con `alert_interest_shown` acumulado en
+79 (< n_min=149) y `support_shown` en 62 (< n_min=598), cualquier lectura de
+esas dos señales debe reportarse como `SIN DATOS SUFICIENTES`, no como 0%.
+
+### 2.3 Demanda por URL (Paso 2 del plan)
+
+Fuente: `output/operations/data-signals/gsc/2026-W35-pages.json` (159 filas),
+filtrado a `/calculadoras/`.
+
+**Verificación de control — coincide exacta:**
+`/calculadoras/conversor-utm/`: 571 clics de 773 totales del sitio (73,9% ≈
+74%) y 121.300 impresiones de 150.899 totales (80,4% ≈ 80%).
+
+Top calculadoras por clics W35, ordenadas descendente:
+
+| Página | Clics | Impresiones | CTR | Posición |
+|---|---:|---:|---:|---:|
+| conversor-utm | 571 | 121.300 | 0,47% | 7,8 |
+| seguro-cesantia | 40 | 2.087 | 1,92% | 7,8 |
+| impuesto-segunda-categoria | 35 | 1.955 | 1,79% | 9,1 |
+| prepago-credito | 35 | 407 | 8,60% | 5,7 |
+| operacion-renta | 23 | 315 | 7,30% | 6,6 |
+| credito-consumo | 19 | 685 | 2,77% | 7,6 |
+| deposito-a-plazo | 8 | 2.717 | 0,29% | 7,3 |
+| comisiones-afp | 3 | 860 | 0,35% | 11,3 |
+| simulador-jubilacion | 3 | 730 | 0,41% | 10,6 |
+| sueldo-liquido | 2 | 1.144 | 0,17% | 27,2 |
+| apv | 1 | 342 | 0,29% | 8,4 |
+| conversor-uf | 1 | 8.453 | 0,01% | 10,4 |
+
+Cruce con actividad first-party W35: `conversor-utm` (view=676) +
+`conversor-uf` (view=234) = 910 de 1.294 vistas totales del sitio (70,3% ≈
+70%), con completitud (`calculator_complete/calculator_start`) de 98,9% y
+99,4% (≈ 99% y 99%) respectivamente — conversores de un dato: se completan
+casi siempre y no dejan una decisión pendiente evidente.
+
+En el tramo medio, el patrón se invierte: `prepago-credito` (CTR 8,6%,
+posición 5,7) y `operacion-renta` (CTR 7,3%, posición 6,6) tienen CTR
+orgánico 15–18 veces mayor que `conversor-utm` con una fracción de sus
+impresiones, y `impuesto-segunda-categoria` combina demanda moderada (35
+clics, 1.955 impresiones) con el mejor desempeño de "siguiente paso" del
+sitio (entrega 141,9%–184,6%, CTR hasta 18,8%).
+
+**Intersección demanda + CTR + decisión pendiente**: `prepago-credito`,
+`operacion-renta` e `impuesto-segunda-categoria` son las tres URLs donde
+coinciden tráfico real, CTR de búsqueda alto (indicio de intención
+específica, no solo curiosidad) y una decisión posterior de producto
+(pagar antes o no, ajustar régimen, aportar a AFP) que ya tiene un vehículo
+con datos que la respalda.
+
+### 2.4 Confirmaciones cruzadas (para no duplicar análisis ya hecho)
+
+- **Regla de denominador mínimo** (`docs/operations/UTILITY_LED_EXPERIMENT_REGISTRY.md:26-30`):
+  `next_step_shown` con `n_min=99` (umbral HALT 3%) y denominador acumulado
+  W31–W35 de 108 → **suficiente**. `alert_interest_shown` con `n_min=149`
+  (umbral GREEN 2%) y denominador acumulado de 79 → **insuficiente**.
+  `support_shown` con `n_min=598` (umbral GREEN 0,5%) y denominador
+  acumulado de 62 → **insuficiente**. Estas cifras se citan del registro, no
+  se re-derivan. Nota propia de este spike: el denominador de 108 para
+  `next_step_shown` en `conversor-utm` (Sección 3) son impresiones por
+  ancla —dos anclas por persona que scrollea— no 108 personas distintas
+  (n≈54 real). El veredicto "suficiente" es correcto según la convención del
+  propio registro (cuenta eventos, no personas), pero no debe leerse como
+  "108 intentos independientes" al razonar sobre demanda condicional.
+- **APV (dossier 055, `docs/backlog/CALCULATOR-CONSOLIDATION-2026-08-02.md`)**:
+  la recomendación MANTENER se apoyaba en completitud 82% (W32, confirmado:
+  `calculator_complete/calculator_start` = 14/17 = 82,4%). Con W34/W35 esa
+  completitud cayó a 19,0% (4/21) y 14,3% (3/21) — confirmado exacto contra
+  `docs/backlog/DIAGNOSTICO-apv-completion-2026-09-04.md`, que ya investigó
+  la causa (plan 086, ejecutado) y concluyó **causa no identificada** (ningún
+  defecto reproducible en el código; hallazgo instrumental: `calculator_error`
+  no se emite en ningún punto del sitio). Este spike no re-deriva esa causa —
+  cita el diagnóstico ya hecho.
+- **Archivo no encontrado**: el plan cita
+  `output/operations/weekly-search-performance/2026-W35/weekly-search-scorecard.md`
+  como síntesis de referencia. Ese directorio no existe en el checkout actual
+  — solo `2026-W19/` y `2026-W28/` están presentes bajo
+  `output/operations/weekly-search-performance/`. No se cita ni se contradice
+  ese documento porque no está disponible; los números de este spike se
+  recalcularon directamente desde los JSON crudos de `data-signals/`.
+
+## 3. Diagnóstico separado en dos capas
+
+### Capa 1 — Vehículo (entrega): ¿cuánta gente ve cada superficie?
+
+El panel post-resultado de `conversor-utm` está en
+`src/pages/calculadoras/conversor-utm.astro:340`; el bloque de resultado
+está en la línea 203, con otra `<section>` intermedia en la 266 — 137 líneas
+de marcado entre el resultado y el panel. `UtmPostResultActions.astro`
+confirma un `IntersectionObserver` con `{ threshold: 0.25 }` (líneas 101-127
+del componente) que solo dispara `next_step_shown` cuando el elemento
+observado entra 25% en el viewport — es decir, solo cuenta a quienes hacen
+scroll explícito más allá del resultado. Esto explica directamente por qué
+la entrega es 6,7%–12,9% del `calculator_complete`, frente al 141,9%–633,3%
+de la tarjeta dinámica (`NextBestStep.astro` + `next-best-step.ts`), que se
+inyecta en el flujo de la propia calculadora sin depender de scroll
+adicional más allá de completar el cálculo.
+
+### Capa 2 — Demanda (CTR condicional a que sí se vio)
+
+**Corrección de denominador**: `UtmPostResultActions.astro` tiene dos anclas
+con `data-next-step-id` (`convert-uf` y `adjust-inflation`), y el
+`IntersectionObserver` emite un `next_step_shown` por ancla observada. Al
+desagregar por `dimensions` se confirma que ambas anclas disparan en
+lockstep exacto en las tres semanas: W33 13/13, W34 26/26, W35 15/15. Es
+decir, **los 108 `next_step_shown` acumulados en W33–W35 no son 108 personas
+distintas — son ~54 personas que ven las dos anclas cada una**. El
+denominador correcto para razonar sobre demanda condicional es n≈54, no
+n=108.
+
+Con ese denominador correcto, la probabilidad de observar cero clics por
+puro azar es mucho más alta de lo que sugeriría n=108:
+
+| Tasa de conversión hipotética | P(cero clics en n=54) |
+|---|---:|
+| 2,6% (extremo bajo demostrado, isc W34) | 24,1% |
+| 5,0% | 6,3% |
+| 6,8% (isc W35) | 2,2% |
+| 10,0% (punto medio del rango) | 0,3% |
+| 13,3%–18,8% (extremo alto demostrado) | ≈0,0% |
+
+**Lectura corregida**: a una tasa de conversión igual al extremo bajo
+demostrado por la tarjeta dinámica (2,6%), observar cero clics en 54
+personas es un resultado plausible en uno de cada cuatro casos — no exige
+postular una demanda distinta en esta superficie. Solo si la tasa de
+conversión real fuera comparable al punto medio o alto del rango demostrado
+(≥10%) el cero se volvería estadísticamente sorprendente. Esto **debilita**
+la inferencia de un componente de demanda específico y **refuerza** la
+lectura de vehículo: con una población tan pequeña (n≈54) y una tasa de
+conversión baja-a-moderada, el 0 observado no permite distinguir "esta
+gente no quiere el siguiente paso" de "el vehículo entrega tan poco volumen
+que el ruido estadístico por sí solo explica el cero". El vehículo explica
+la mayor parte del 0 total (87–93% de quienes completan `conversor-utm`
+nunca ven el panel, y de los que sí lo ven, el n es demasiado chico para
+descartar una tasa de conversión moderada); la evidencia disponible **no
+obliga** a postular un componente de demanda adicional específico de esta
+superficie, aunque tampoco lo descarta — separar ambas explicaciones exige
+más volumen, no más semanas al ritmo actual.
+
+**Qué evidencia cambiaría esta lectura**: si al subir el panel junto al
+resultado (Opción A, Sección 4) la entrega sube y el n de personas expuestas
+crece a varios cientos por semana, y el CTR sigue en 0% o cercano a 0%
+durante dos semanas comparables con ese n mucho mayor, eso sí confirmaría
+demanda baja específica de la superficie con confianza estadística real. Si
+en cambio el CTR sube a niveles comparables a `impuesto-segunda-categoria`
+(6,8%–18,8%), eso confirmaría que el problema siempre fue vehículo. Nótese
+que ambos escenarios miden una **población distinta y más amplia** que los
+~54 scrollers actuales — ver la advertencia de composición en la Opción A
+(Sección 4).
+
+## 4. Opciones
+
+Todas caben dentro del freeze de URLs vigente hasta 2026-11-02: ninguna crea,
+renombra ni elimina una URL pública, ni toca `<title>`/`<meta description>`
+de superficies en medición.
+
+### Opción A — Subir el panel post-resultado junto al bloque de resultado en `conversor-utm`
+
+Mover (no rediseñar) `<UtmPostResultActions />` de la línea 340 a
+inmediatamente después de la línea 203, eliminando la dependencia de scroll
+más allá del propio resultado. Es un cambio de posición de un componente
+existente, no de contenido, título ni ruta.
+
+- **Costo**: bajo — mover un `<component />` dentro de una página ya
+  instrumentada; no toca `UtmPostResultActions.astro` en sí.
+- **Riesgo**: bajo — no cambia el contrato de eventos ni el `IntersectionObserver`
+  (que seguiría existiendo, pero dispararía casi de inmediato al estar en
+  viewport).
+- **Reversibilidad**: alta — un solo commit revertible.
+- **Qué mediría**: importante — esto no es "la misma prueba con más
+  observaciones". Los ~54 scrollers actuales son una población
+  auto-seleccionada (llegó hasta ahí por su cuenta, con un umbral de
+  `threshold: 0,25`); subir el panel junto al resultado expone a una
+  población distinta y mucho más amplia (potencialmente el 90–100% de
+  quienes completan, no solo quien scrollea). Si esa población más amplia
+  mantiene un CTR cercano a 0% durante dos semanas comparables, es un
+  veredicto de demanda mucho más fuerte que el n≈54 actual (ver tabla de
+  Capa 2). Si el CTR sube a niveles comparables a
+  `impuesto-segunda-categoria` (6,8%–18,8%), confirma que el problema
+  siempre fue vehículo, y además revela que los 54 scrollers originales eran
+  una muestra no representativa (más autoseleccionada) del resto de quienes
+  completan la calculadora.
+- **Impresiones semanales estimadas**: con `calculator_complete` de
+  `conversor-utm` en 404–445/semana (W34–W35) y una entrega de **personas
+  expuestas** cercana al 90–100% (visibilidad inmediata, sin garantía de
+  igualar el 140%+ de la tarjeta dinámica porque el panel ofrece solo 2 CTAs
+  frente a la lógica contextual de la tarjeta), el rango estimado es de
+  **360–400 personas/semana** que verían el panel. Como cada persona expuesta
+  dispara dos eventos `next_step_shown` (una por ancla — ver Sección 3), el
+  conteo de **eventos** `next_step_shown` sería aproximadamente el doble:
+  **~720–800/semana**. Es este conteo de eventos, no el de personas, el
+  comparable con los mínimos del registro (que cuenta eventos, no personas,
+  por convención — ver nota de la Sección 2.4): cruza el `n_min=99` de
+  `next_step_shown` en la primera semana, y si el bloque de interés en
+  alertas también gana visibilidad en la misma proporción, acumularía el
+  `n_min=149` de `alert_interest_shown` en menos de una semana (`alert_interest_shown`
+  emite un evento por persona, no dos, así que el conteo relevante ahí es
+  ~360–400/semana) y el `n_min=598` de `support_shown` en aproximadamente
+  1,5 semanas (mismo supuesto de un evento por persona). Esta es una proyección de orden
+  de magnitud, no una medición — no reemplaza los datos reales que
+  produciría el cambio, y no es directamente comparable con la proyección de
+  la Opción B (ver nota ahí).
+
+### Opción B — Llevar el vehículo dinámico (`next-best-step.ts`) al tramo medio
+
+Extender las reglas de `src/data/nextBestStep/rules.ts` para que la tarjeta
+dinámica se active también en `prepago-credito`, `operacion-renta` y
+`credito-consumo` (todas ya incluyen o podrían incluir `NextBestStep.astro`
+sin tocar rutas), con destinos de "siguiente paso" que ya existen dentro del
+propio sitio.
+
+- **Costo**: medio — requiere definir reglas de elegibilidad y CTAs
+  contextuales por calculadora, no solo mover un componente.
+- **Riesgo**: bajo-medio — toca la lógica de reglas compartida
+  (`rules.ts`), que ya sirve a `apv`/`impuesto-2ª`; un error de regla podría
+  degradar la entrega ya demostrada en esas dos calculadoras si no se aísla
+  bien por `calculatorSlug`.
+- **Reversibilidad**: alta — reglas por slug, removibles sin tocar el
+  componente base.
+- **Qué mediría**: si el vehículo que ya funciona en `apv`/`impuesto-2ª`
+  sostiene una entrega y CTR comparables en calculadoras con decisión
+  pendiente real y mejor CTR orgánico, aislando el efecto de vehículo del
+  efecto de superficie observado en la Sección 3.
+- **Impresiones semanales estimadas**: sumando `calculator_complete` W35 de
+  `prepago-credito` (22) + `operacion-renta` (14) + `credito-consumo` (15) =
+  51/semana. Aplicando el rango de entrega demostrado (141,9%–633,3%,
+  medido en **eventos** `next_step_shown` de la tarjeta dinámica, no en
+  personas — este spike no verificó cuántos eventos emite la tarjeta por
+  persona, a diferencia del panel de `conversor-utm`, donde sí se confirmó
+  1:2 con datos crudos en la Sección 3), el `next_step_shown` combinado
+  estimado sería de **~72–320 eventos/semana** — cruza el `n_min=99` en la
+  primera o segunda semana, pero **no alcanza por sí solo** el `n_min=598`
+  de `support_shown` ni el `n_min=149` de `alert_interest_shown` en un plazo
+  corto salvo que se sostenga varias semanas dentro de la ventana restante
+  (~8 semanas al 2026-09-04). **Nota de unidades**: esta proyección y la de
+  la Opción A están expresadas en eventos de vehículos distintos con tasas
+  de emisión por persona potencialmente distintas (el panel de
+  `conversor-utm` emite 2 eventos por persona confirmado; la tarjeta
+  dinámica no fue auditada de la misma forma en este spike) — no deben
+  leerse como directamente comparables entre sí sin esa verificación
+  adicional.
+
+### Opción C — Mantener la entrega actual y extender la ventana de medición
+
+No tocar código; seguir acumulando exports semanales de `conversor-utm` tal
+como está hoy.
+
+- **Costo**: nulo.
+- **Riesgo**: nulo en el sentido técnico, pero alto en el sentido de
+  oportunidad: consume semanas de la ventana utility-led sin cambiar la
+  entrega.
+- **Reversibilidad**: no aplica (no hay cambio que revertir).
+- **Qué mediría**: nada nuevo estructuralmente — solo más de la misma señal
+  débil.
+- **Impresiones semanales estimadas**: ~30–52/semana, el ritmo ya observado.
+  `next_step_shown` ya cruzó su propio `n_min=99` (108 acumulado en 3
+  semanas). `alert_interest_shown` acumula 79 en W31–W35 (promedio 15,8/semana:
+  W31=3, W32=27, W33=11, W34=25, W35=13) contra un `n_min=149` — faltan 70,
+  que al ritmo promedio actual tomarían **~4,4 semanas adicionales**. La
+  ventana utility-led cierra el 2026-11-02, es decir quedan ~8,4 semanas
+  desde el 2026-09-04: al ritmo promedio, **sí alcanzaría a cruzar el
+  mínimo dentro de la ventana restante**, pero con margen ajustado
+  (~4 semanas de colchón, no de sobra) y sensible a la varianza semana a
+  semana observada (de 3 a 27 eventos): un par de semanas flojas como W31
+  bastarían para no llegar a tiempo. Esta opción no acelera nada — solo deja
+  que el resultado dependa de que las próximas semanas no repliquen la
+  semana más baja de la ventana medida.
+
+### Opción D — Declarar la tesis no comprobable sobre tráfico de `conversor-utm` y reenfocar en el tramo medio
+
+Congelar el experimento de "siguiente paso" en `conversor-utm` como
+aprendizaje (documentado, no borrado) y concentrar la instrumentación y el
+análisis futuro en las calculadoras del tramo medio (`prepago-credito`,
+`operacion-renta`, `impuesto-segunda-categoria`, `credito-consumo`), que ya
+muestran CTR de búsqueda 6–18 veces mayor y, en el caso de
+`impuesto-segunda-categoria`, el mejor desempeño de "siguiente paso" del
+sitio con el vehículo dinámico ya existente.
+
+- **Costo**: bajo — es una decisión de foco, no de construcción; puede
+  combinarse con la Opción B para tener trabajo ejecutable.
+- **Riesgo**: bajo — no descarta reabrir `conversor-utm` más adelante si la
+  Opción A cambia el panorama.
+- **Reversibilidad**: alta.
+- **Qué mediría**: nada por sí sola — es la decisión de dónde invertir la
+  medición, no un experimento.
+- **Impresiones semanales**: no aplica directamente; el efecto se mide a
+  través de la Opción B si se ejecuta en paralelo.
+
+**Opción bloqueada, no propuesta como ejecutable**: cualquier variante que
+implique crear una nueva URL de "siguiente paso" dedicada, o un artículo
+puente entre `conversor-utm` y el tramo medio, choca con el freeze de URLs
+vigente hasta 2026-11-02 (`docs/backlog/UTILITY_LED_BLOCKED_PENDING_EVIDENCE.md:7`)
+y requeriría una excepción fechada y aprobada — no se incluye como camino
+disponible en esta compuerta.
+
+## 5. Actualización explícita de dos recomendaciones previas
+
+### Encuadre del plan 046 ("evaluar lo construido, no diseñar desde cero")
+
+El plan 046 (`plans/archive/046-converter-recurrence-return-hook-spike.md`,
+ya marcado `SUPERSEDED` en `plans/README.md:1242`) partía de la pregunta de
+si valía la pena construir un "hook de retorno" para conversores. La
+respuesta correcta, como el propio archivo de planes ya anota, es que **el
+hook ya existe y está instrumentado** (`UtmPostResultActions.astro`) —
+faltaba entrega, no diseño. Este spike **es** esa evaluación pedida por 046:
+midió la entrega real del hook ya construido (6,7%–12,9%) y encontró la
+causa estructural (distancia de marcado + umbral de scroll). Con este
+documento, 046 queda listo para cerrarse definitivamente sin abrir una
+Fase 2 de diseño — lo que sigue es una decisión de entrega (Sección 4), no
+de arquitectura.
+
+### Hallazgo de APV del dossier 055 (recomendaba MANTENER con datos de W32)
+
+El dossier 055 (`docs/backlog/CALCULATOR-CONSOLIDATION-2026-08-02.md`)
+recomendó **mantener** APV como candidata a consolidación, apoyado en una
+completitud de 82% y una tendencia ascendente de completes (2→8→14) en
+W30–W32. Con W34/W35 esa completitud cayó a 19,0% y 14,3% — confirmado
+contra los mismos JSON crudos. **Este spike no investiga la causa**: eso ya
+lo hizo el plan 086, ejecutado y documentado en
+`docs/backlog/DIAGNOSTICO-apv-completion-2026-09-04.md`, con veredicto
+**causa no identificada** (sin defecto reproducible; hallazgo instrumental
+sobre `calculator_error`, que nunca se emite en el sitio). La recomendación
+MANTENER del dossier 055 sigue siendo correcta como decisión de no
+consolidar, pero el argumento que la sostenía (tendencia ascendente W30→W32)
+ya no representa el estado actual — cualquier decisión futura sobre APV debe
+usar datos posteriores a W35, tal como el propio plan 086 ya señaló.
+
+## 6. Compuerta de decisión del operador
+
+1. **¿Se autoriza mover `<UtmPostResultActions />` de la línea 340 a
+   inmediatamente después de la línea 203 en `conversor-utm.astro`
+   (Opción A)?**
+   Recomendación: sí. Es el cambio de menor costo y mayor poder
+   diagnóstico — en una semana expone el panel a una población mucho más
+   amplia que los ~54 scrollers actuales (ver Sección 3, Capa 2, y la
+   advertencia de composición en la Opción A) y produce, con ese n mayor,
+   una lectura de demanda con confianza real, sin tocar rutas, títulos ni
+   contenido.
+
+2. **¿Se autoriza extender las reglas de `next-best-step.ts` a
+   `prepago-credito`, `operacion-renta` y `credito-consumo` (Opción B)?**
+   Recomendación: sí, pero después de la Opción A y solo si esta última
+   confirma que el problema es de vehículo y no de demanda — si el problema
+   fuera de demanda, mudar el mismo vehículo a otra superficie sin cambiar
+   el diagnóstico de fondo repetiría el experimento sin nueva información.
+
+3. **¿Se acepta que la ventana utility-led restante (~8,4 semanas al
+   2026-09-04) es insuficiente para que `support_shown` cruce su mínimo de
+   denominador (598) al ritmo actual de `conversor-utm`, y que aun si
+   `alert_interest_shown` cruzara el suyo (149) a tiempo, el margen sería
+   demasiado ajustado para apostar por esperar en vez de actuar (Opción C
+   descartada como estrategia principal)?**
+   Recomendación: sí, con la aritmética corregida. `support_shown` acumula
+   62 en W31–W35 (promedio 12,4/semana): al ritmo actual necesitaría ~43
+   semanas adicionales para llegar a 598 — muy por encima de las ~8,4
+   semanas restantes, así que esa señal queda descartada bajo Opción C sin
+   ambigüedad. `alert_interest_shown`, en cambio, acumula 79 (promedio
+   15,8/semana) y necesitaría solo ~4,4 semanas adicionales para llegar a
+   149 — **sí cruzaría dentro de la ventana restante al ritmo promedio**,
+   con un colchón de ~4 semanas. Pero ese promedio esconde una varianza
+   semanal de 3 a 27 eventos (W31 fue la más baja): un par de semanas flojas
+   consecutivas sí podrían dejarlo corto. La recomendación de priorizar la
+   Opción A en vez de esperar pasivamente se sostiene igual, pero por un
+   motivo distinto al que se argumentaba antes de esta corrección: no es que
+   la espera sea matemáticamente inviable para las dos señales, sino que (a)
+   `support_shown` de todas formas no llegaría a tiempo, y (b) el argumento
+   de la Sección 3 —que los ~54 `next_step_shown` actuales son una muestra
+   autoseleccionada, no representativa de la población más amplia que
+   expondría la Opción A— sigue siendo válido independientemente de esta
+   aritmética.
+
+4. **¿Se declara la tesis del recorrido "no comprobable con evidencia
+   suficiente sobre tráfico de `conversor-utm` tal como está hoy" y se
+   reenfoca el esfuerzo de medición en el tramo medio (Opción D)?**
+   Recomendación: parcial — no cerrar `conversor-utm` (la Opción A todavía
+   no se ha probado), pero sí priorizar el tramo medio como superficie
+   principal de aprendizaje mientras se ejecuta A.
+
+5. **¿Se da por cerrado el plan 046 con este documento como su evaluación
+   pendiente, sin abrir una fase de diseño nueva?**
+   Recomendación: sí — el plan 086 ya cerró la investigación de causa de
+   APV, este documento cierra la pregunta de entrega de 046; ninguno de los
+   dos requiere trabajo de diseño adicional, solo la decisión de entrega de
+   la pregunta 1.
+
+6. **¿Se acepta que la recomendación MANTENER de APV (dossier 055) sigue
+   vigente como decisión de no consolidar, pero que su justificación debe
+   re-escribirse citando W34/W35 y el diagnóstico 086 en vez de la tendencia
+   ascendente W30–W32 ya superada?**
+   Recomendación: sí — es una corrección de cita, no un cambio de decisión.
+
+Este documento termina en esta compuerta. No implementa ninguna opción.
+
+## 7. Lo que este spike NO afirma
+
+- **No afirma** que `conversor-utm` carezca de demanda para "siguiente
+  paso" — el análisis de la Sección 3 muestra que la evidencia actual
+  (n≈54 personas distintas, CTR=0%) es, a las tasas de conversión bajas
+  demostradas por la tarjeta dinámica, un resultado plausible por azar
+  (hasta 24% de probabilidad), no una señal fuerte de demanda baja. No se
+  puede separar "vehículo insuficiente" de "demanda específicamente baja en
+  esta superficie" sin un n mucho mayor, que solo produciría la Opción A.
+- **No afirma** que el problema de completitud de APV esté resuelto o
+  explicado — eso lo dejó abierto, explícitamente, el plan 086
+  (`causa no identificada`). Este spike solo actualiza la cita de la
+  recomendación previa de 055.
+- **Denominadores chicos**: `alert_interest_shown` (79) y `support_shown`
+  (62) acumulados en cinco semanas están por debajo de sus mínimos
+  estadísticos (149 y 598) — cualquier lectura de esas dos señales en este
+  documento es descriptiva, no una conclusión GREEN/WATCH/HALT.
+- **Una sola superficie con vehículo correctamente ubicado en el flujo**:
+  el vehículo dinámico (`next-best-step.ts`) solo tiene datos de
+  entrega/CTR confiables en `apv` e `impuesto-segunda-categoria`; su
+  comportamiento en calculadoras nuevas del tramo medio (Opción B) es una
+  proyección de orden de magnitud (Sección 4), no una medición.
+  `NextSteps.astro`, aunque ya instrumentado por el plan 083, no tiene
+  todavía ningún export que mida su desempeño real en producción.
+- **Sin datos de scroll ni de tiempo en página**: la explicación de "quien
+  scrollea hasta el panel ya resolvió su tarea" (Sección 3, Capa 2) es una
+  hipótesis consistente con los datos disponibles, no una medición directa
+  de comportamiento de scroll — el sitio no instrumenta profundidad de
+  scroll ni tiempo de permanencia.
+- **No se identifican personas ni cohortes** (invariante A2): todos los
+  números de este documento son eventos agregados por calculadora y semana,
+  nunca sesiones ni usuarios individuales. Ninguna opción de la Sección 4
+  propone identificación persistente, cuentas, ni medición de retorno
+  individual.
+- **No hay monetización ni afiliación** en ninguna opción propuesta.
