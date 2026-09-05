@@ -281,4 +281,61 @@ describe("weekly scorecard: Gate D sustainability capture", () => {
     const json = JSON.parse(readFileSync(jsonOut, "utf8"));
     expect(json.utilityLed.operations.status).toBe("INPUT_REQUIRED");
   });
+
+  it("omits the SIN REGISTRO line and keeps the bullet list intact when the gate is filled in", () => {
+    const root = createTempRoot();
+    const week = "2026-W35";
+    const inputDir = path.join(root, week);
+    makeMinimalBundle(inputDir);
+
+    // Mismo documento que el caso anterior, pero con los tres campos que
+    // gobiernan la continuidad completos: el Gate D no debe imprimir
+    // "SIN REGISTRO" ni dejar una línea en blanco que rompa la lista
+    // markdown en dos listas separadas.
+    writeFileSync(
+      path.join(inputDir, "utility-led-ops.json"),
+      JSON.stringify(
+        {
+          schemaVersion: 1,
+          week,
+          weeklyHours: 4,
+          weeklyCostClp: 12000,
+          tokenUsage: null,
+          burnoutLevel1To5: 2,
+          qualityIncidents: [],
+          learningSignal: "usuarios completan la calculadora en menos pasos",
+          reputationSignal: null,
+          maintenanceTasks: [],
+          blockers: [],
+          revenueClpOptional: null,
+          note: "Ingresos cero no son fallo; la sostenibilidad es el gate de continuidad.",
+        },
+        null,
+        2
+      ) + "\n",
+      "utf8"
+    );
+
+    const watchlistPath = makeWatchlist(root);
+    const markdownOut = path.join(inputDir, "scorecard.md");
+    const jsonOut = path.join(inputDir, "scorecard.json");
+
+    const result = runScript([
+      "--input", inputDir,
+      "--watchlist", watchlistPath,
+      "--out", markdownOut,
+      "--json-out", jsonOut,
+    ]);
+
+    expect(result.status).toBe(0);
+    const markdown = readFileSync(markdownOut, "utf8");
+    expect(markdown).not.toContain("SIN REGISTRO");
+    // Discrimina el bug de línea en blanco: si la interpolación vacía queda
+    // en su propia línea, esta aserción falla porque el bullet de Revenue
+    // no queda inmediatamente después del de Operations/sustainability.
+    expect(markdown).toContain("before deciding expansion.\n- Revenue:");
+
+    const json = JSON.parse(readFileSync(jsonOut, "utf8"));
+    expect(json.utilityLed.operations.status).toBe("GREEN");
+  });
 });

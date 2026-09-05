@@ -2101,10 +2101,9 @@ ${buildCalculatorFunnelSection(summary.analyticsJson, summary.cloudflarePerf)}
 
 - Status: **${summary.utilityLed.status}**
 - Integrity: GSC **${summary.utilityLed.integrity.gsc}** · analytics **${summary.utilityLed.integrity.analytics}**
-- Operations/sustainability: **${summary.utilityLed.operations.status}** — record weekly hours, cost, burnout, quality incidents, learning and reputation before deciding expansion.
-${
+- Operations/sustainability: **${summary.utilityLed.operations.status}** — record weekly hours, cost, burnout, quality incidents, learning and reputation before deciding expansion.${
   summary.utilityLed.operations.status === "INPUT_REQUIRED"
-    ? `- **Gate D: SIN REGISTRO** — la sostenibilidad no se evaluó esta semana. Registra weeklyHours, weeklyCostClp y burnoutLevel1To5 en \`output/operations/weekly-search-performance/${summary.weekLabel}/utility-led-ops.json\` antes de decidir expansión.`
+    ? `\n- **Gate D: SIN REGISTRO** — la sostenibilidad no se evaluó esta semana. Registra weeklyHours, weeklyCostClp y burnoutLevel1To5 en \`output/operations/weekly-search-performance/${summary.weekLabel}/utility-led-ops.json\` antes de decidir expansión.`
     : ""
 }
 - Revenue: not a continuation gate; zero revenue is compatible with a sustainable learning period.
