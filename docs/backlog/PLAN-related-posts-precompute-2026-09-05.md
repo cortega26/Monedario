@@ -1,6 +1,9 @@
 # Cierre de related posts precompute — 2026-09-05
 
-Estado: COMPLETADO localmente; sin publicación ni despliegue.
+Estado: implementación COMPLETADA; integración HALT por gate Lighthouse.
+
+PR: https://github.com/cortega26/Monedario/pull/460 (commit de producto `11423344`).
+Push realizado; merge y eliminación de la rama pendientes.
 
 ## Objetivo y alcance
 
@@ -57,3 +60,24 @@ Los gates locales conservan sus avisos no bloqueantes de editorial/small-details
 esto no acredita ejecución de CI remota. Otros cambios locales preexistentes
 permanecen fuera de esta unidad. Sin medición comparativa de tiempo de build:
 la evidencia de amortización es el test del contador de construcción de matriz.
+
+## Verificación previa al merge
+
+Todos los checks de GitHub finalizaron correctamente, incluidos build, tests,
+URLs externas, Python, secretos, accesibilidad y Cloudflare Pages.
+El merge candidato `2427b648` combina `11423344` con `main` (`9cf7fe45`).
+Su build en un worktree limpio pasó: 327 HTML y 7024 enlaces sin internos rotos.
+
+Lighthouse desktop local, configuración del repositorio sin `ci.upload`,
+cinco URLs por tres mediciones: Performance 100 en todas; todos los límites
+pasan salvo CLS de `/calculadoras/sueldo-liquido/`:
+`0.0002594572347558619` en las tres mediciones frente al máximo `0`.
+El artículo medido pasa con CLS/TBT 0 y LCP máximo 484 ms.
+El fallo también aparece con idéntico valor en el workspace original.
+La calculadora no forma parte del diff del PR; no se ha medido un build de la
+base sin el PR y por tanto no se afirma causalidad ni una baseline verde.
+
+Bloqueo: `docs/development/REGRESSION_PREVENTION.md` §5.4 exige cumplir los
+umbrales para cambios de layout/páginas de artículos. No se omite ni se relaja
+el gate. Para integrar falta resolver el CLS en una tarea separada o una
+excepción explícita del mantenedor. La rama se conserva mientras tanto.
