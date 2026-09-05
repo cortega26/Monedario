@@ -396,10 +396,17 @@ como está hoy.
   débil.
 - **Impresiones semanales estimadas**: ~30–52/semana, el ritmo ya observado.
   `next_step_shown` ya cruzó su propio `n_min=99` (108 acumulado en 3
-  semanas), pero `alert_interest_shown` (79 acumulado en 5 semanas, n_min=149)
-  tardaría aproximadamente 9–10 semanas más en alcanzar el mínimo al ritmo
-  actual — **eso excede el cierre de la ventana utility-led (2026-11-02)**.
-  Esta opción no permite decidir dentro del plazo disponible.
+  semanas). `alert_interest_shown` acumula 79 en W31–W35 (promedio 15,8/semana:
+  W31=3, W32=27, W33=11, W34=25, W35=13) contra un `n_min=149` — faltan 70,
+  que al ritmo promedio actual tomarían **~4,4 semanas adicionales**. La
+  ventana utility-led cierra el 2026-11-02, es decir quedan ~8,4 semanas
+  desde el 2026-09-04: al ritmo promedio, **sí alcanzaría a cruzar el
+  mínimo dentro de la ventana restante**, pero con margen ajustado
+  (~4 semanas de colchón, no de sobra) y sensible a la varianza semana a
+  semana observada (de 3 a 27 eventos): un par de semanas flojas como W31
+  bastarían para no llegar a tiempo. Esta opción no acelera nada — solo deja
+  que el resultado dependa de que las próximas semanas no repliquen la
+  semana más baja de la ventana medida.
 
 ### Opción D — Declarar la tesis no comprobable sobre tráfico de `conversor-utm` y reenfocar en el tramo medio
 
@@ -479,13 +486,30 @@ usar datos posteriores a W35, tal como el propio plan 086 ya señaló.
    fuera de demanda, mudar el mismo vehículo a otra superficie sin cambiar
    el diagnóstico de fondo repetiría el experimento sin nueva información.
 
-3. **¿Se acepta que la ventana utility-led restante (~8 semanas al
-   2026-09-04) es insuficiente para que `alert_interest_shown` y
-   `support_shown` crucen sus mínimos de denominador (149 y 598) al ritmo
-   actual de `conversor-utm` (Opción C descartada)?**
-   Recomendación: sí — los cálculos de la Sección 4 muestran que, sin subir
-   la entrega, `alert_interest_shown` no alcanzaría su mínimo antes del
-   cierre de la ventana.
+3. **¿Se acepta que la ventana utility-led restante (~8,4 semanas al
+   2026-09-04) es insuficiente para que `support_shown` cruce su mínimo de
+   denominador (598) al ritmo actual de `conversor-utm`, y que aun si
+   `alert_interest_shown` cruzara el suyo (149) a tiempo, el margen sería
+   demasiado ajustado para apostar por esperar en vez de actuar (Opción C
+   descartada como estrategia principal)?**
+   Recomendación: sí, con la aritmética corregida. `support_shown` acumula
+   62 en W31–W35 (promedio 12,4/semana): al ritmo actual necesitaría ~43
+   semanas adicionales para llegar a 598 — muy por encima de las ~8,4
+   semanas restantes, así que esa señal queda descartada bajo Opción C sin
+   ambigüedad. `alert_interest_shown`, en cambio, acumula 79 (promedio
+   15,8/semana) y necesitaría solo ~4,4 semanas adicionales para llegar a
+   149 — **sí cruzaría dentro de la ventana restante al ritmo promedio**,
+   con un colchón de ~4 semanas. Pero ese promedio esconde una varianza
+   semanal de 3 a 27 eventos (W31 fue la más baja): un par de semanas flojas
+   consecutivas sí podrían dejarlo corto. La recomendación de priorizar la
+   Opción A en vez de esperar pasivamente se sostiene igual, pero por un
+   motivo distinto al que se argumentaba antes de esta corrección: no es que
+   la espera sea matemáticamente inviable para las dos señales, sino que (a)
+   `support_shown` de todas formas no llegaría a tiempo, y (b) el argumento
+   de la Sección 3 —que los ~54 `next_step_shown` actuales son una muestra
+   autoseleccionada, no representativa de la población más amplia que
+   expondría la Opción A— sigue siendo válido independientemente de esta
+   aritmética.
 
 4. **¿Se declara la tesis del recorrido "no comprobable con evidencia
    suficiente sobre tráfico de `conversor-utm` tal como está hoy" y se
