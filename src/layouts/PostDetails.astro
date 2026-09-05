@@ -17,6 +17,10 @@ import { slugifyStr } from "@/utils/slugify";
 import { resolvePageTitle } from "@/utils/seoTitle";
 import { getReadingTime } from "@/utils/readingTime";
 import { toArticleView, type ArticleView } from "@/utils/articleView";
+import {
+  computeRelatedSlugs,
+  filterPrecomputedRelatedRanked,
+} from "@/utils/relatedPosts";
 import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
 import IconChevronRight from "@/assets/icons/IconChevronRight.svg";
 import RelatedPosts from "@/components/RelatedPosts.astro";
@@ -41,9 +45,10 @@ type Props = {
   post: CollectionEntry<"blog">;
   posts: CollectionEntry<"blog">[];
   allArticleViews: ArticleView[];
+  relatedRankedSlugs?: string[];
 };
 
-const { post, posts, allArticleViews } = Astro.props;
+const { post, posts, allArticleViews, relatedRankedSlugs } = Astro.props;
 const article = toArticleView(post);
 const readingTime = getReadingTime(post.body ?? "");
 
@@ -259,6 +264,23 @@ const relatedPostsExcludedSlugs = [
   prevPost?.slug,
   nextPost?.slug,
 ].filter(Boolean) as string[];
+const relatedPostSlugs =
+  relatedRankedSlugs !== undefined
+    ? filterPrecomputedRelatedRanked(
+        relatedRankedSlugs,
+        article.slug,
+        relatedPostsExcludedSlugs
+      )
+    : computeRelatedSlugs(
+        posts,
+        {
+          slug: article.slug,
+          tags,
+          cluster: currentCluster,
+          canonicalTopic: post.data.canonicalTopic,
+        },
+        { allArticleViews, excludedSlugs: relatedPostsExcludedSlugs }
+      );
 const articleAdvisoryText = resolveBlogArticleAdvisory(post);
 
 // ── Hero image ─────────────────────────────────────────────────────────────
@@ -531,13 +553,9 @@ const hasHeroImage = !!heroImageSrc;
     </div>
 
     <RelatedPosts
-      currentSlug={article.slug}
-      currentTags={tags}
       allPosts={posts}
       allArticleViews={allArticleViews}
-      excludedSlugs={relatedPostsExcludedSlugs}
-      currentCluster={currentCluster}
-      currentCanonicalTopic={post.data.canonicalTopic}
+      relatedSlugs={relatedPostSlugs}
     />
   </main>
 
