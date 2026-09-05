@@ -198,7 +198,12 @@ con datos que la respalda.
   (umbral GREEN 2%) y denominador acumulado de 79 → **insuficiente**.
   `support_shown` con `n_min=598` (umbral GREEN 0,5%) y denominador
   acumulado de 62 → **insuficiente**. Estas cifras se citan del registro, no
-  se re-derivan.
+  se re-derivan. Nota propia de este spike: el denominador de 108 para
+  `next_step_shown` en `conversor-utm` (Sección 3) son impresiones por
+  ancla —dos anclas por persona que scrollea— no 108 personas distintas
+  (n≈54 real). El veredicto "suficiente" es correcto según la convención del
+  propio registro (cuenta eventos, no personas), pero no debe leerse como
+  "108 intentos independientes" al razonar sobre demanda condicional.
 - **APV (dossier 055, `docs/backlog/CALCULATOR-CONSOLIDATION-2026-08-02.md`)**:
   la recomendación MANTENER se apoyaba en completitud 82% (W32, confirmado:
   `calculator_complete/calculator_start` = 14/17 = 82,4%). Con W34/W35 esa
@@ -235,39 +240,55 @@ adicional más allá de completar el cálculo.
 
 ### Capa 2 — Demanda (CTR condicional a que sí se vio)
 
-Aquí la evidencia es más ambigua de lo que sugiere el 0 crudo. De los 108
-`next_step_shown` acumulados en `conversor-utm` durante W33–W35, el CTR
-observado es exactamente 0% en las tres semanas — no "bajo", sino nulo. Con
-una tasa de conversión hipotética igual al extremo bajo demostrado por la
-tarjeta dinámica (2,6%, `impuesto-segunda-categoria` W34), la probabilidad
-de observar cero clics en 108 intentos por puro azar es de
-`(1-0,026)^108 ≈ 5,8%` — plausible pero no el resultado más probable. Con
-una tasa media del rango demostrado (≈10%), esa probabilidad cae a
-`(0,9)^108 ≈ 0,001%` — prácticamente imposible. Esto sugiere que **no basta
-con "vehículo insuficiente"** para explicar el 0 total: si la demanda de
-quien scrollea hasta el panel fuera comparable a la de quien recibe la
-tarjeta dinámica en `apv`/`impuesto-2ª`, algún clic debería haber aparecido.
+**Corrección de denominador**: `UtmPostResultActions.astro` tiene dos anclas
+con `data-next-step-id` (`convert-uf` y `adjust-inflation`), y el
+`IntersectionObserver` emite un `next_step_shown` por ancla observada. Al
+desagregar por `dimensions` se confirma que ambas anclas disparan en
+lockstep exacto en las tres semanas: W33 13/13, W34 26/26, W35 15/15. Es
+decir, **los 108 `next_step_shown` acumulados en W33–W35 no son 108 personas
+distintas — son ~54 personas que ven las dos anclas cada una**. El
+denominador correcto para razonar sobre demanda condicional es n≈54, no
+n=108.
 
-**Lectura más defendible**: quien scrollea 137 líneas más allá del resultado
-en un conversor de un solo dato ya obtuvo lo que buscaba — es una población
-auto-seleccionada de "curiosos que ya resolvieron su tarea", distinta de la
-población que ve la tarjeta dinámica en `apv`/`impuesto-2ª` (calculadoras
-donde el resultado deja abierta una decisión posterior real: ¿cotizar más en
-AFP?, ¿ajustar el régimen tributario?). El vehículo explica la mayor parte
-del 0 (87–93% de quienes completan `conversor-utm` nunca ven el panel), pero
-el patrón de CTR-cero-en-108 apunta además a un componente de demanda
-específico de esta superficie: la pregunta que resuelve `conversor-utm` no
-deja, para la mayoría, una decisión pendiente del tipo que el panel ofrece.
+Con ese denominador correcto, la probabilidad de observar cero clics por
+puro azar es mucho más alta de lo que sugeriría n=108:
+
+| Tasa de conversión hipotética | P(cero clics en n=54) |
+|---|---:|
+| 2,6% (extremo bajo demostrado, isc W34) | 24,1% |
+| 5,0% | 6,3% |
+| 6,8% (isc W35) | 2,2% |
+| 10,0% (punto medio del rango) | 0,3% |
+| 13,3%–18,8% (extremo alto demostrado) | ≈0,0% |
+
+**Lectura corregida**: a una tasa de conversión igual al extremo bajo
+demostrado por la tarjeta dinámica (2,6%), observar cero clics en 54
+personas es un resultado plausible en uno de cada cuatro casos — no exige
+postular una demanda distinta en esta superficie. Solo si la tasa de
+conversión real fuera comparable al punto medio o alto del rango demostrado
+(≥10%) el cero se volvería estadísticamente sorprendente. Esto **debilita**
+la inferencia de un componente de demanda específico y **refuerza** la
+lectura de vehículo: con una población tan pequeña (n≈54) y una tasa de
+conversión baja-a-moderada, el 0 observado no permite distinguir "esta
+gente no quiere el siguiente paso" de "el vehículo entrega tan poco volumen
+que el ruido estadístico por sí solo explica el cero". El vehículo explica
+la mayor parte del 0 total (87–93% de quienes completan `conversor-utm`
+nunca ven el panel, y de los que sí lo ven, el n es demasiado chico para
+descartar una tasa de conversión moderada); la evidencia disponible **no
+obliga** a postular un componente de demanda adicional específico de esta
+superficie, aunque tampoco lo descarta — separar ambas explicaciones exige
+más volumen, no más semanas al ritmo actual.
 
 **Qué evidencia cambiaría esta lectura**: si al subir el panel junto al
-resultado (Opción A, Sección 4) la entrega sube a niveles comparables a la
-tarjeta dinámica (>100% de `calculator_complete`) y el CTR sigue siendo 0%
-o cercano a 0% durante dos semanas comparables con n ≥ 99, eso confirmaría
-que el problema es de demanda específica de la superficie, no de vehículo —
-y cerraría la pregunta sin necesidad de mudar el experimento al tramo medio.
-Si en cambio el CTR sube a niveles comparables a `impuesto-segunda-categoria`
-(6,8%–18,8%) apenas mejora la entrega, eso confirmaría que el problema
-siempre fue vehículo.
+resultado (Opción A, Sección 4) la entrega sube y el n de personas expuestas
+crece a varios cientos por semana, y el CTR sigue en 0% o cercano a 0%
+durante dos semanas comparables con ese n mucho mayor, eso sí confirmaría
+demanda baja específica de la superficie con confianza estadística real. Si
+en cambio el CTR sube a niveles comparables a `impuesto-segunda-categoria`
+(6,8%–18,8%), eso confirmaría que el problema siempre fue vehículo. Nótese
+que ambos escenarios miden una **población distinta y más amplia** que los
+~54 scrollers actuales — ver la advertencia de composición en la Opción A
+(Sección 4).
 
 ## 4. Opciones
 
@@ -288,9 +309,19 @@ existente, no de contenido, título ni ruta.
   (que seguiría existiendo, pero dispararía casi de inmediato al estar en
   viewport).
 - **Reversibilidad**: alta — un solo commit revertible.
-- **Qué mediría**: si la entrega sube a >100% de `calculator_complete` y el
-  CTR sigue en 0%, confirma demanda baja específica de la superficie (ver
-  Capa 2). Si el CTR sube junto con la entrega, confirma que era vehículo.
+- **Qué mediría**: importante — esto no es "la misma prueba con más
+  observaciones". Los ~54 scrollers actuales son una población
+  auto-seleccionada (llegó hasta ahí por su cuenta, con un umbral de
+  `threshold: 0,25`); subir el panel junto al resultado expone a una
+  población distinta y mucho más amplia (potencialmente el 90–100% de
+  quienes completan, no solo quien scrollea). Si esa población más amplia
+  mantiene un CTR cercano a 0% durante dos semanas comparables, es un
+  veredicto de demanda mucho más fuerte que el n≈54 actual (ver tabla de
+  Capa 2). Si el CTR sube a niveles comparables a
+  `impuesto-segunda-categoria` (6,8%–18,8%), confirma que el problema
+  siempre fue vehículo, y además revela que los 54 scrollers originales eran
+  una muestra no representativa (más autoseleccionada) del resto de quienes
+  completan la calculadora.
 - **Impresiones semanales estimadas**: con `calculator_complete` de
   `conversor-utm` en 404–445/semana (W34–W35) y una entrega cercana al 90–100%
   (visibilidad inmediata, similar en orden de magnitud a la tarjeta
@@ -417,8 +448,11 @@ usar datos posteriores a W35, tal como el propio plan 086 ya señaló.
    inmediatamente después de la línea 203 en `conversor-utm.astro`
    (Opción A)?**
    Recomendación: sí. Es el cambio de menor costo y mayor poder
-   diagnóstico — en una semana separa vehículo de demanda con datos, sin
-   tocar rutas, títulos ni contenido.
+   diagnóstico — en una semana expone el panel a una población mucho más
+   amplia que los ~54 scrollers actuales (ver Sección 3, Capa 2, y la
+   advertencia de composición en la Opción A) y produce, con ese n mayor,
+   una lectura de demanda con confianza real, sin tocar rutas, títulos ni
+   contenido.
 
 2. **¿Se autoriza extender las reglas de `next-best-step.ts` a
    `prepago-credito`, `operacion-renta` y `credito-consumo` (Opción B)?**
@@ -460,11 +494,12 @@ Este documento termina en esta compuerta. No implementa ninguna opción.
 ## 7. Lo que este spike NO afirma
 
 - **No afirma** que `conversor-utm` carezca de demanda para "siguiente
-  paso" — el análisis de la Sección 3 muestra que la evidencia actual (n=108,
-  CTR=0%) es compatible con una demanda baja específica de la superficie,
-  pero también con un vehículo tan pobre que ni siquiera mide bien a quien
-  sí tendría intención. No se puede separar ambas explicaciones sin ejecutar
-  la Opción A.
+  paso" — el análisis de la Sección 3 muestra que la evidencia actual
+  (n≈54 personas distintas, CTR=0%) es, a las tasas de conversión bajas
+  demostradas por la tarjeta dinámica, un resultado plausible por azar
+  (hasta 24% de probabilidad), no una señal fuerte de demanda baja. No se
+  puede separar "vehículo insuficiente" de "demanda específicamente baja en
+  esta superficie" sin un n mucho mayor, que solo produciría la Opción A.
 - **No afirma** que el problema de completitud de APV esté resuelto o
   explicado — eso lo dejó abierto, explícitamente, el plan 086
   (`causa no identificada`). Este spike solo actualiza la cita de la
