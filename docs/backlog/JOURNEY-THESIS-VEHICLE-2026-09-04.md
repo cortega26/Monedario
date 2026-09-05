@@ -323,17 +323,25 @@ existente, no de contenido, título ni ruta.
   una muestra no representativa (más autoseleccionada) del resto de quienes
   completan la calculadora.
 - **Impresiones semanales estimadas**: con `calculator_complete` de
-  `conversor-utm` en 404–445/semana (W34–W35) y una entrega cercana al 90–100%
-  (visibilidad inmediata, similar en orden de magnitud a la tarjeta
-  dinámica, aunque sin garantía de igualar su 140%+ porque el panel ofrece
-  solo 2 CTAs frente a la lógica contextual de la tarjeta), el `next_step_shown`
-  semanal pasaría de ~30–52 a un rango estimado de **360–450/semana**. Esto
-  cruza el `n_min=99` de `next_step_shown` en la primera semana, y
-  acumularía el `n_min=149` de `alert_interest_shown` (si el bloque de
-  interés en alertas también gana visibilidad) en menos de una semana, y el
-  `n_min=598` de `support_shown` en 1,5–2 semanas. Esta es una proyección de
-  orden de magnitud, no una medición — no reemplaza los datos reales que
-  produciría el cambio.
+  `conversor-utm` en 404–445/semana (W34–W35) y una entrega de **personas
+  expuestas** cercana al 90–100% (visibilidad inmediata, sin garantía de
+  igualar el 140%+ de la tarjeta dinámica porque el panel ofrece solo 2 CTAs
+  frente a la lógica contextual de la tarjeta), el rango estimado es de
+  **360–400 personas/semana** que verían el panel. Como cada persona expuesta
+  dispara dos eventos `next_step_shown` (una por ancla — ver Sección 3), el
+  conteo de **eventos** `next_step_shown` sería aproximadamente el doble:
+  **~720–800/semana**. Es este conteo de eventos, no el de personas, el
+  comparable con los mínimos del registro (que cuenta eventos, no personas,
+  por convención — ver nota de la Sección 2.4): cruza el `n_min=99` de
+  `next_step_shown` en la primera semana, y si el bloque de interés en
+  alertas también gana visibilidad en la misma proporción, acumularía el
+  `n_min=149` de `alert_interest_shown` en menos de una semana (`alert_interest_shown`
+  emite un evento por persona, no dos, así que el conteo relevante ahí es
+  ~360–400/semana) y el `n_min=598` de `support_shown` en aproximadamente
+  1,5 semanas (mismo supuesto de un evento por persona). Esta es una proyección de orden
+  de magnitud, no una medición — no reemplaza los datos reales que
+  produciría el cambio, y no es directamente comparable con la proyección de
+  la Opción B (ver nota ahí).
 
 ### Opción B — Llevar el vehículo dinámico (`next-best-step.ts`) al tramo medio
 
@@ -357,12 +365,22 @@ propio sitio.
   efecto de superficie observado en la Sección 3.
 - **Impresiones semanales estimadas**: sumando `calculator_complete` W35 de
   `prepago-credito` (22) + `operacion-renta` (14) + `credito-consumo` (15) =
-  51/semana. Aplicando el rango de entrega demostrado (141,9%–633,3%), el
-  `next_step_shown` combinado estimado sería de **~72–320/semana** — cruza
-  el `n_min=99` en la primera o segunda semana, pero **no alcanza por sí
-  solo** el `n_min=598` de `support_shown` ni el `n_min=149` de
-  `alert_interest_shown` en un plazo corto salvo que se sostenga varias
-  semanas dentro de la ventana restante (~8 semanas al 2026-09-04).
+  51/semana. Aplicando el rango de entrega demostrado (141,9%–633,3%,
+  medido en **eventos** `next_step_shown` de la tarjeta dinámica, no en
+  personas — este spike no verificó cuántos eventos emite la tarjeta por
+  persona, a diferencia del panel de `conversor-utm`, donde sí se confirmó
+  1:2 con datos crudos en la Sección 3), el `next_step_shown` combinado
+  estimado sería de **~72–320 eventos/semana** — cruza el `n_min=99` en la
+  primera o segunda semana, pero **no alcanza por sí solo** el `n_min=598`
+  de `support_shown` ni el `n_min=149` de `alert_interest_shown` en un plazo
+  corto salvo que se sostenga varias semanas dentro de la ventana restante
+  (~8 semanas al 2026-09-04). **Nota de unidades**: esta proyección y la de
+  la Opción A están expresadas en eventos de vehículos distintos con tasas
+  de emisión por persona potencialmente distintas (el panel de
+  `conversor-utm` emite 2 eventos por persona confirmado; la tarjeta
+  dinámica no fue auditada de la misma forma en este spike) — no deben
+  leerse como directamente comparables entre sí sin esa verificación
+  adicional.
 
 ### Opción C — Mantener la entrega actual y extender la ventana de medición
 
