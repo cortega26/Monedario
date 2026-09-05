@@ -1,5 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { dateToIsoWeek, weekLabelToDateRange, isoWeekWindow } from "./lib/iso-week.mjs";
 
 const DEFAULT_WATCHLIST_PATH = path.resolve(
@@ -1115,6 +1116,35 @@ function safeEventRatio(numerator, denominator) {
   return `${(numerator / denominator).toFixed(2)}×`;
 }
 
+// Regla de denominador mínimo (docs/operations/UTILITY_LED_EXPERIMENT_REGISTRY.md,
+// sección "Regla de denominador mínimo"): ninguna señal se declara GREEN, WATCH o
+// HALT si su denominador acumulado no alcanza el n que permite descartar el
+// umbral de referencia con 95% de confianza, asumiendo P(0 clics) = (1-p)^n.
+export function minimumDenominator(thresholdRate) {
+  if (!(thresholdRate > 0 && thresholdRate < 1)) return null;
+  return Math.ceil(Math.log(0.05) / Math.log(1 - thresholdRate));
+}
+
+// Umbrales de referencia usados solo para calcular el denominador mínimo, no
+// para reclasificar GREEN/WATCH/HALT (eso sigue siendo criterio del registry).
+const UTILITY_LED_SUFFICIENCY_THRESHOLDS = {
+  nextStep: 0.03, // HALT de expansión: <3% no ampliar CTA
+  alertInterest: 0.02, // GREEN: >=2%
+  support: 0.005, // GREEN: >=0,5%
+};
+
+// Denominador insuficiente se reporta como "SIN DATOS SUFICIENTES", nunca como
+// HALT ni como 0%: un cero con denominador chico no es evidencia de ausencia
+// de demanda.
+export function sufficiencyLabel(denominator, thresholdRate) {
+  const nMin = minimumDenominator(thresholdRate);
+  if (nMin === null) return "n/d";
+  if (denominator === null || denominator === undefined || denominator < 0) {
+    return "SIN DATOS SUFICIENTES";
+  }
+  return denominator >= nMin ? "SUFICIENTE" : "SIN DATOS SUFICIENTES";
+}
+
 function buildSourceSummary(analyticsJson, cloudflarePerf) {
   const sources = [];
 
@@ -1219,6 +1249,11 @@ _Sin eventos registrados esta semana._
     "",
     `_Starts/view y results/start son ratios de conteos de eventos agregados; pueden superar 1× y no representan usuarios, sesiones ni conversión de cohorte. Error rate = errors / starts. NBS CTR = next-step clicks / next-step shown. "n/d" indica denominador cero o fuente no disponible._`,
     "",
+    "**Suficiencia estadística (regla de denominador mínimo, ver `docs/operations/UTILITY_LED_EXPERIMENT_REGISTRY.md`):**",
+    `- Siguiente paso / mostrado: n=${nDformat(totals.nextStepShown)} · n_min=${minimumDenominator(UTILITY_LED_SUFFICIENCY_THRESHOLDS.nextStep)} · ${sufficiencyLabel(totals.nextStepShown, UTILITY_LED_SUFFICIENCY_THRESHOLDS.nextStep)}`,
+    `- Interés aviso / mostrado: n=${nDformat(totals.alertInterestShown)} · n_min=${minimumDenominator(UTILITY_LED_SUFFICIENCY_THRESHOLDS.alertInterest)} · ${sufficiencyLabel(totals.alertInterestShown, UTILITY_LED_SUFFICIENCY_THRESHOLDS.alertInterest)}`,
+    `- Apoyo click / mostrado: n=${nDformat(totals.supportShown)} · n_min=${minimumDenominator(UTILITY_LED_SUFFICIENCY_THRESHOLDS.support)} · ${sufficiencyLabel(totals.supportShown, UTILITY_LED_SUFFICIENCY_THRESHOLDS.support)}`,
+    "",
   ];
 
   parts.push("### Experimentos utility-led\n");
@@ -1237,6 +1272,9 @@ _Sin eventos registrados esta semana._
         "Support clicks",
         "Support CTR",
         "Support confirmed",
+        "Next suficiencia",
+        "Alert suficiencia",
+        "Support suficiencia",
       ],
       rows.length === 0
         ? []
@@ -1255,6 +1293,9 @@ _Sin eventos registrados esta semana._
               nDformat(a.supportClicks),
               safeRate(a.supportClicks, a.supportShown),
               nDformat(a.supportConfirmed),
+              sufficiencyLabel(a.nextStepShown, UTILITY_LED_SUFFICIENCY_THRESHOLDS.nextStep),
+              sufficiencyLabel(a.alertInterestShown, UTILITY_LED_SUFFICIENCY_THRESHOLDS.alertInterest),
+              sufficiencyLabel(a.supportShown, UTILITY_LED_SUFFICIENCY_THRESHOLDS.support),
             ];
           })
     )
@@ -2061,6 +2102,11 @@ ${buildCalculatorFunnelSection(summary.analyticsJson, summary.cloudflarePerf)}
 - Status: **${summary.utilityLed.status}**
 - Integrity: GSC **${summary.utilityLed.integrity.gsc}** · analytics **${summary.utilityLed.integrity.analytics}**
 - Operations/sustainability: **${summary.utilityLed.operations.status}** — record weekly hours, cost, burnout, quality incidents, learning and reputation before deciding expansion.
+${
+  summary.utilityLed.operations.status === "INPUT_REQUIRED"
+    ? `- **Gate D: SIN REGISTRO** — la sostenibilidad no se evaluó esta semana. Registra weeklyHours, weeklyCostClp y burnoutLevel1To5 en \`output/operations/weekly-search-performance/${summary.weekLabel}/utility-led-ops.json\` antes de decidir expansión.`
+    : ""
+}
 - Revenue: not a continuation gate; zero revenue is compatible with a sustainable learning period.
 
 ### Next actions (maximum 3)
@@ -2194,4 +2240,6 @@ function main() {
   );
 }
 
-main();
+if (process.argv[1] === fileURLToPath(import.meta.url)) {
+  main();
+}
