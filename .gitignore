@@ -92,6 +92,7 @@ docs/backlog/*
 !docs/backlog/prompt-*.md
 !docs/backlog/DECISION-PATHS-*.md
 !docs/backlog/CALCULATOR-CONSOLIDATION-*.md
+!docs/backlog/DIAGNOSTICO-*.md
 !docs/editorial/artifacts/
 !docs/editorial/artifacts/**
 
