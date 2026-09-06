@@ -19,6 +19,17 @@ export type HistoricalUfResult =
     }
   | { found: false; reason: "before_range" | "after_range" | "no_data" };
 
+const ISO_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+
+function isIsoDate(value: string): boolean {
+  if (!ISO_DATE_PATTERN.test(value)) return false;
+  const asDate = new Date(`${value}T00:00:00.000Z`);
+  return (
+    !Number.isNaN(asDate.getTime()) &&
+    asDate.toISOString().slice(0, 10) === value
+  );
+}
+
 /**
  * Busca el valor de la UF para una fecha dada.
  * Si la fecha no tiene dato exacto, retrocede día a día hasta 7 días.
@@ -28,6 +39,10 @@ export function lookupHistoricalUf(
   input: HistoricalUfInput
 ): HistoricalUfResult {
   const { date, lookup, lastAvailableDate, firstAvailableDate } = input;
+
+  if (!isIsoDate(date)) return { found: false, reason: "no_data" };
+  if (!isIsoDate(firstAvailableDate) || !isIsoDate(lastAvailableDate))
+    return { found: false, reason: "no_data" };
 
   if (date < firstAvailableDate)
     return { found: false, reason: "before_range" };

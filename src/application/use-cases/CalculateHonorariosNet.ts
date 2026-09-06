@@ -31,10 +31,24 @@ export interface HonorariosNetOutput {
   assumptions: string[];
 }
 
+const ISO_DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/;
+
+function isIsoDate(value: string): boolean {
+  if (!ISO_DATE_PATTERN.test(value)) return false;
+  const asDate = new Date(`${value}T00:00:00.000Z`);
+  return (
+    !Number.isNaN(asDate.getTime()) &&
+    asDate.toISOString().slice(0, 10) === value
+  );
+}
+
 function computeFiscalYearWindow(currentDate?: string): {
   startsOn: string;
   endsOn: string;
 } {
+  if (currentDate !== undefined && !isIsoDate(currentDate)) {
+    throw new Error("currentDate must be an ISO date in YYYY-MM-DD format.");
+  }
   const d = currentDate ? new Date(`${currentDate}T00:00:00.000Z`) : new Date();
   const year = d.getUTCFullYear();
   const month = d.getUTCMonth() + 1; // 1–12

@@ -39,7 +39,10 @@ export function evaluateCriticalMonthlyFreshness(
   if (indicatorMonth > currentMonth) {
     return { status: "stale", reason: `fecha futura: ${indicatorDate}` };
   }
-  if (day <= graceDays) {
+  const prevMonthNum = month === 1 ? 12 : month - 1;
+  const prevYear = month === 1 ? year - 1 : year;
+  const previousMonth = `${prevYear}-${String(prevMonthNum).padStart(2, "0")}`;
+  if (indicatorMonth === previousMonth && day <= graceDays) {
     return {
       status: "grace",
       reason: `UTM del mes anterior dentro de la gracia de ${graceDays} días`,

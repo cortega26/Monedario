@@ -473,7 +473,7 @@ export function setupFormListeners(): void {
         "afp-tasa"
       ) as HTMLSelectElement | null;
       const afpName =
-        afpSelect?.options[afpSelect.selectedIndex]?.text.split(" ")[0];
+        afpSelect?.options[afpSelect.selectedIndex]?.text?.split(" ")?.[0];
       if (afpName) p.set("afp", afpName);
 
       const saludChecked = document.querySelector(

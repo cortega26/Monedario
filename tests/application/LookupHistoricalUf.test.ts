@@ -76,3 +76,18 @@ describe("lookupHistoricalUf — anti-drift (ejemplo de metodología)", () => {
     );
   });
 });
+
+describe("lookupHistoricalUf — fechas malformadas", () => {
+  it.each(["2026-08-19T15:00:00", "2026-8-5", "not-a-date"])(
+    "retorna no_data tipado para %s sin lanzar ni NaN",
+    date => {
+      const result = lookupHistoricalUf({
+        date,
+        lookup: BASE_LOOKUP,
+        firstAvailableDate: FIRST,
+        lastAvailableDate: LAST,
+      });
+      expect(result).toEqual({ found: false, reason: "no_data" });
+    }
+  );
+});

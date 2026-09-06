@@ -61,4 +61,67 @@ describe("evaluateCriticalMonthlyFreshness", () => {
         .status
     ).toBe("stale");
   });
+
+  it("marks 2-month-old indicators as stale even inside the grace week", () => {
+    expect(
+      evaluateCriticalMonthlyFreshness(
+        "2026-07-01",
+        new Date("2026-09-05T15:00:00Z")
+      ).status
+    ).toBe("stale");
+  });
+
+  it("marks 3-month-old indicators as stale even inside the grace week", () => {
+    expect(
+      evaluateCriticalMonthlyFreshness(
+        "2026-06-01",
+        new Date("2026-09-05T15:00:00Z")
+      ).status
+    ).toBe("stale");
+  });
+
+  it("grants grace only to the previous month on day <= 7", () => {
+    expect(
+      evaluateCriticalMonthlyFreshness(
+        "2026-08-01",
+        new Date("2026-09-05T15:00:00Z")
+      ).status
+    ).toBe("grace");
+  });
+
+  it("marks the previous month as stale from day 8 onward", () => {
+    expect(
+      evaluateCriticalMonthlyFreshness(
+        "2026-08-01",
+        new Date("2026-09-10T15:00:00Z")
+      ).status
+    ).toBe("stale");
+  });
+
+  it("handles the January to previous-December boundary", () => {
+    expect(
+      evaluateCriticalMonthlyFreshness(
+        "2025-12-01",
+        new Date("2026-01-05T15:00:00Z")
+      ).status
+    ).toBe("grace");
+    expect(
+      evaluateCriticalMonthlyFreshness(
+        "2025-11-01",
+        new Date("2026-01-05T15:00:00Z")
+      ).status
+    ).toBe("stale");
+    expect(
+      evaluateCriticalMonthlyFreshness(
+        "2025-10-01",
+        new Date("2026-01-05T15:00:00Z")
+      ).status
+    ).toBe("stale");
+    expect(
+      evaluateCriticalMonthlyFreshness(
+        "2025-12-01",
+        new Date("2026-01-10T15:00:00Z")
+      ).status
+    ).toBe("stale");
+  });
 });

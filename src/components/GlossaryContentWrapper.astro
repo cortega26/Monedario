@@ -1,8 +1,158 @@
 ---
 import { injectGlossaryLinks } from "@/utils/injectGlossaryLinks";
 
+// Allowlist sanitizer (sin dependencias): el pipeline markdown/MDX permite
+// HTML crudo (ver astro.config.ts: mdx() + remarkPlugins sin rehype sanitize;
+// src/data/blog usa <details>/<summary> legítimos). El wrapper hace set:html,
+// así que se sanea antes de inyectar links de glosario.
+const ALLOWED_TAGS = new Set([
+  "a",
+  "p",
+  "div",
+  "span",
+  "strong",
+  "em",
+  "b",
+  "i",
+  "u",
+  "s",
+  "code",
+  "pre",
+  "blockquote",
+  "ul",
+  "ol",
+  "li",
+  "dl",
+  "dt",
+  "dd",
+  "details",
+  "summary",
+  "table",
+  "thead",
+  "tbody",
+  "tfoot",
+  "tr",
+  "th",
+  "td",
+  "h1",
+  "h2",
+  "h3",
+  "h4",
+  "h5",
+  "h6",
+  "br",
+  "hr",
+  "sup",
+  "sub",
+  "small",
+  "mark",
+  "kbd",
+  "abbr",
+]);
+
+const VOID_ELEMENTS = new Set(["br", "hr"]);
+
+function sanitizeHref(value: string): string | null {
+  const v = value.trim();
+  if (v === "") return null;
+  if (v.startsWith("#") || v.startsWith("/")) return v;
+  if (/^https?:\/\//i.test(v)) return v;
+  if (/^mailto:/i.test(v)) return v;
+  return null;
+}
+
+function sanitizeAttributes(tagName: string, raw: string): string {
+  const out: string[] = [];
+  const re =
+    /([a-zA-Z_:][a-zA-Z0-9:._-]*)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'`=<>`]+)))?/g;
+  for (const m of raw.matchAll(re)) {
+    const name = (m[1] ?? "").toLowerCase();
+    const value = m[2] ?? m[3] ?? m[4] ?? "";
+    if (name.startsWith("on")) continue;
+    if (name === "style" || name === "src" || name === "srcset") continue;
+    if (name.startsWith("data-")) {
+      out.push(`${name}="${value.replace(/"/g, "&quot;")}"`);
+      continue;
+    }
+    if (name === "class" || name === "title") {
+      out.push(`${name}="${value.replace(/"/g, "&quot;")}"`);
+      continue;
+    }
+    if (tagName === "a") {
+      if (name === "href") {
+        const safe = sanitizeHref(value);
+        if (safe !== null) out.push(`href="${safe.replace(/"/g, "&quot;")}"`);
+        continue;
+      }
+      if (name === "target" && (value === "_blank" || value === "_self")) {
+        out.push(`target="${value}"`);
+        continue;
+      }
+      if (name === "rel") {
+        out.push(`rel="${value.replace(/"/g, "&quot;")}"`);
+        continue;
+      }
+    }
+    if (tagName === "details" && name === "open") {
+      out.push("open");
+      continue;
+    }
+    if (
+      (tagName === "td" || tagName === "th") &&
+      (name === "colspan" || name === "rowspan") &&
+      /^\d{1,2}$/.test(value)
+    ) {
+      out.push(`${name}="${value}"`);
+    }
+  }
+  return out.length > 0 ? ` ${out.join(" ")}` : "";
+}
+
+function sanitizeGlossaryHtml(html: string): string {
+  const withoutDangerous = html
+    .replace(/<!--[\s\S]*?-->/g, "")
+    .replace(/<script[\s\S]*?<\/script\s*>/gi, "")
+    .replace(/<style[\s\S]*?<\/style\s*>/gi, "")
+    .replace(/<iframe[\s\S]*?<\/iframe\s*>/gi, "")
+    .replace(/<object[\s\S]*?<\/object\s*>/gi, "")
+    .replace(/<embed[^>]*>/gi, "")
+    .replace(/<link[^>]*>/gi, "")
+    .replace(/<meta[^>]*>/gi, "")
+    .replace(/<form[\s\S]*?<\/form\s*>/gi, match =>
+      match.replace(/<[^>]*>/g, "")
+    );
+  const parts: string[] = [];
+  const tokenRe = /(<[^>]*>)|([^<]+)/g;
+  for (const match of withoutDangerous.matchAll(tokenRe)) {
+    const tag = match[1];
+    const text = match[2];
+    if (text !== undefined) {
+      parts.push(text);
+      continue;
+    }
+    if (tag === undefined) continue;
+    const nameMatch = tag.match(/^<\/?([a-zA-Z][a-zA-Z0-9-]*)/);
+    if (!nameMatch) continue;
+    const tagName = (nameMatch[1] ?? "").toLowerCase();
+    if (!ALLOWED_TAGS.has(tagName)) continue;
+    const isClosing = tag.startsWith("</");
+    if (isClosing) {
+      if (!VOID_ELEMENTS.has(tagName)) parts.push(`</${tagName}>`);
+      continue;
+    }
+    const attrsRaw = tag
+      .replace(/^<[a-zA-Z][a-zA-Z0-9-]*/, "")
+      .replace(/\/?>$/, "");
+    const attrs = sanitizeAttributes(tagName, attrsRaw);
+    if (VOID_ELEMENTS.has(tagName)) parts.push(`<${tagName}${attrs}>`);
+    else parts.push(`<${tagName}${attrs}>`);
+  }
+  return parts.join("");
+}
+
 const rawHtml = await Astro.slots.render("default");
-const processedHtml = injectGlossaryLinks(rawHtml);
+const safeHtml = sanitizeGlossaryHtml(rawHtml);
+const processedHtml = injectGlossaryLinks(safeHtml);
 ---
 
 <Fragment set:html={processedHtml} />

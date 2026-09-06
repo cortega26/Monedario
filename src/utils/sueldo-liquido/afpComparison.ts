@@ -67,11 +67,17 @@ export function renderAfpComparison(options: AfpComparisonOptions): void {
 
   comparisons.sort((a, b) => b.net - a.net);
 
+  const firstComparison = comparisons[0];
+  const lastComparison = comparisons[comparisons.length - 1];
+  if (!firstComparison || !lastComparison) {
+    section.classList.add("hidden");
+    return;
+  }
   const currentNet =
     comparisons.find(c => Math.abs(c.rate - currentAfpRate) < 0.01)?.net ??
-    comparisons[0].net;
-  const bestNet = comparisons[0].net;
-  const worstNet = comparisons[comparisons.length - 1].net;
+    firstComparison.net;
+  const bestNet = firstComparison.net;
+  const worstNet = lastComparison.net;
   const maxSaving = bestNet - worstNet;
 
   container.innerHTML = "";
@@ -194,12 +200,18 @@ export function renderAfpComparisonInverso(options: AfpInversoOptions): void {
     // Lower gross needed = better: sort ascending
     comparisons.sort((a, b) => a.gross - b.gross);
 
-    const cheapestAfpName = comparisons[0].name;
+    const firstComparison = comparisons[0];
+    const lastComparison = comparisons[comparisons.length - 1];
+    if (!firstComparison || !lastComparison) {
+      section.classList.add("hidden");
+      return;
+    }
+    const cheapestAfpName = firstComparison.name;
     const currentGross =
       comparisons.find(c => Math.abs(c.rate - currentAfpRate) < 0.01)?.gross ??
-      comparisons[0].gross;
-    const bestGross = comparisons[0].gross;
-    const worstGross = comparisons[comparisons.length - 1].gross;
+      firstComparison.gross;
+    const bestGross = firstComparison.gross;
+    const worstGross = lastComparison.gross;
     const maxDiff = worstGross - bestGross;
 
     container.innerHTML = "";

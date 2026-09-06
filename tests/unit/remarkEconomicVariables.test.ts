@@ -58,4 +58,23 @@ describe("remarkEconomicVariables", () => {
       "[remarkEconomicVariables] Could not resolve [[utm|bogus]]: Unknown format: bogus",
     ]);
   });
+
+  it("rejects trailing garbage after a valid expression", async () => {
+    const { remarkEconomicVariables } = await loadPlugin({
+      snapshotExists: true,
+      snapshotJson: { utm: 68000, uf: 39000, uta: 816000 },
+    });
+    const transformer = remarkEconomicVariables();
+    const messages: string[] = [];
+    const tree: { type: "root"; children: TextNode[] } = {
+      type: "root",
+      children: [{ type: "text", value: "Monto [[2+3)|clp]]" }],
+    };
+
+    transformer(tree, { message: msg => void messages.push(msg) });
+
+    expect(tree.children[0]?.value).toBe("Monto [[2+3)|clp]]");
+    expect(messages.length).toBe(1);
+    expect(messages[0]).toContain("Unexpected trailing characters");
+  });
 });

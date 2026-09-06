@@ -24,8 +24,15 @@ const { parameters: economicParameters } = await getEconomicParameters();
 
 // Solo los extremos del rango para el atributo min/max del input; el lookup
 // se carga bajo demanda desde /api/uf-historico-lookup.json
-const ufFirstDate = ufHistoricoRaw.serie[0]!.fecha;
-const ufLastDate = ufHistoricoRaw.serie[ufHistoricoRaw.serie.length - 1]!.fecha;
+const ufFirstEntry = ufHistoricoRaw.serie[0];
+const ufLastEntry = ufHistoricoRaw.serie[ufHistoricoRaw.serie.length - 1];
+if (!ufFirstEntry || !ufLastEntry) {
+  throw new Error(
+    "[conversor-uf] Serie UF histórica vacía; actualiza src/data/economic-history/uf-historico.json antes de publicar."
+  );
+}
+const ufFirstDate = ufFirstEntry.fecha;
+const ufLastDate = ufLastEntry.fecha;
 const ufHistoricoEndpoint = getPath("/api/uf-historico-lookup.json");
 const ufGuidePath = getPath("/posts/que-es-la-uf/");
 const ufHubPath = getPath("/guias/uf-costo-de-vida/");

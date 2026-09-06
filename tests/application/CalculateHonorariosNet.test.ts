@@ -57,3 +57,14 @@ describe("calculateHonorariosNet — ejemplo de metodología (anti-drift)", () =
     );
   });
 });
+
+describe("calculateHonorariosNet — currentDate inválido", () => {
+  it.each(["2026-08-19T15:00:00", "2026-8-5", "not-a-date"])(
+    "lanza en vez de ventana NaN para %s",
+    currentDate => {
+      expect(() =>
+        calculateHonorariosNet({ grossFee: 500000, currentDate })
+      ).toThrow("currentDate must be an ISO date in YYYY-MM-DD format.");
+    }
+  );
+});

@@ -88,7 +88,12 @@ function evalExpr(raw: string, vars: Vars): number {
     throw new Error(`Invalid expression after substitution: ${expr}`);
   }
 
-  return parseAddSub(expr, { pos: 0 });
+  const state = { pos: 0 };
+  const result = parseAddSub(expr, state);
+  if (state.pos !== expr.length) {
+    throw new Error(`Unexpected trailing characters at pos ${state.pos}`);
+  }
+  return result;
 }
 
 function formatClp(value: number): string {
