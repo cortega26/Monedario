@@ -30,8 +30,8 @@ reviewPolicy:
     - pensions.afp.uno_commission
   derivationFactors:
     - registry:slugOverrides.como-cambiarse-de-afp
-  computedAt: "2026-08-30"
-updatedDate: 2026-08-30T00:00:00Z
+  computedAt: "2026-09-06"
+updatedDate: 2026-09-06T00:00:00Z
 ---
 
 Cambiarse de AFP es uno de los trámites más simples que puedes hacer para mejorar tu situación previsional, y sin embargo la mayoría de las personas nunca lo hace. En esta guía te explicamos cómo funciona el proceso, qué debes evaluar y qué cambia con la Reforma de Pensiones aprobada en 2025.
