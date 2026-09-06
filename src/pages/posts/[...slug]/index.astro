@@ -3,27 +3,53 @@ import { type CollectionEntry, getCollection } from "astro:content";
 import PostDetails from "@/layouts/PostDetails.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
 import { getSlugParamFromCanonicalSlug } from "@/domain/content/path";
-import { toArticleView } from "@/utils/articleView";
+import { toArticleView, type ArticleView } from "@/utils/articleView";
+import { computeRelatedMap } from "@/utils/relatedPosts";
 
 type Props = {
   post: CollectionEntry<"blog">;
+  posts?: CollectionEntry<"blog">[];
+  allArticleViews?: ArticleView[];
+  relatedRankedSlugs?: string[];
 };
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
-  const postResult = posts.map(post => ({
-    params: { slug: getSlugParamFromCanonicalSlug(toArticleView(post).slug) },
-    props: { post },
-  }));
+  const sortedPosts = getSortedPosts(posts);
+  const sortedViews = sortedPosts.map(toArticleView);
+  const relatedMatrix = computeRelatedMap(sortedPosts, {
+    allArticleViews: sortedViews,
+  });
+  const postResult = posts.map(post => {
+    const slug = toArticleView(post).slug;
+    return {
+      params: { slug: getSlugParamFromCanonicalSlug(slug) },
+      props: {
+        post,
+        posts: sortedPosts,
+        allArticleViews: sortedViews,
+        relatedRankedSlugs: relatedMatrix.get(slug),
+      },
+    };
+  });
 
   return postResult;
 }
 
-const { post } = Astro.props;
+const {
+  post,
+  posts: postsProp,
+  allArticleViews: viewsProp,
+  relatedRankedSlugs,
+} = Astro.props as Props;
 
-const posts = await getCollection("blog");
-const sortedPosts = getSortedPosts(posts);
-const articleViews = sortedPosts.map(toArticleView);
+const posts = postsProp ?? getSortedPosts(await getCollection("blog"));
+const articleViews = viewsProp ?? posts.map(toArticleView);
 ---
 
-<PostDetails post={post} posts={sortedPosts} allArticleViews={articleViews} />
+<PostDetails
+  post={post}
+  posts={posts}
+  allArticleViews={articleViews}
+  relatedRankedSlugs={relatedRankedSlugs}
+/>

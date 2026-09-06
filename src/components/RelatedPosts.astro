@@ -2,79 +2,32 @@
 import type { CollectionEntry } from "astro:content";
 import { getCanonicalPathFromSlug } from "@/domain/content/path";
 import { toArticleView, type ArticleView } from "@/utils/articleView";
-import { scoreRelatedPostCandidate } from "@/utils/relatedPosts";
 import Datetime from "./Datetime.astro";
 import ArticlePlaceholder from "./ArticlePlaceholder.astro";
 
 interface Props {
-  currentSlug: string;
-  currentTags: string[];
   allPosts: CollectionEntry<"blog">[];
   allArticleViews?: ArticleView[];
-  excludedSlugs?: string[];
-  currentCluster?: string;
-  currentCanonicalTopic?: string;
+  relatedSlugs: string[];
 }
 
-const {
-  currentSlug,
-  currentTags,
-  allPosts,
-  allArticleViews,
-  excludedSlugs = [],
-  currentCluster,
-  currentCanonicalTopic,
-} = Astro.props as Props;
-const excludedSlugSet = new Set(excludedSlugs);
-
-const normalizedPosts = allArticleViews
-  ? allPosts.map((post, i) => ({ post, article: allArticleViews[i] }))
-  : allPosts.map(post => ({ post, article: toArticleView(post) }));
-
-const candidatePosts = normalizedPosts.filter(
-  ({ article }) =>
-    article.slug !== currentSlug &&
-    !excludedSlugSet.has(article.slug) &&
-    !article.draft &&
-    !article.unlisted
-);
-
-const scoredPosts = candidatePosts.map(item => {
-  const score = scoreRelatedPostCandidate(
-    {
-      tags: currentTags,
-      cluster: currentCluster,
-      canonicalTopic: currentCanonicalTopic,
-    },
-    {
-      tags: item.article.tags,
-      cluster: item.article.cluster,
-      canonicalTopic: item.post.data.canonicalTopic,
-    }
-  );
-
-  return { ...item, score };
-});
+const { allPosts, allArticleViews, relatedSlugs } = Astro.props as Props;
 
 type RelatedItem = {
   post: CollectionEntry<"blog">;
-  article: ReturnType<typeof toArticleView>;
-  score: number;
+  article: ArticleView;
 };
 
-const sortByScoreAndDate = (a: RelatedItem, b: RelatedItem) =>
-  b.score - a.score ||
-  b.article.pubDate.getTime() - a.article.pubDate.getTime();
+const relatedBySlug = new Map<string, RelatedItem>(
+  allPosts.map((post, i) => {
+    const article = allArticleViews ? allArticleViews[i] : toArticleView(post);
+    return [article.slug, { post, article }];
+  })
+);
 
-const tagMatchedPosts = scoredPosts
-  .filter(item => item.score > 0)
-  .sort(sortByScoreAndDate);
-
-const fallbackPosts = scoredPosts
-  .filter(item => item.score === 0)
-  .sort((a, b) => b.article.pubDate.getTime() - a.article.pubDate.getTime());
-
-const relatedPosts = [...tagMatchedPosts, ...fallbackPosts].slice(0, 3);
+const relatedPosts = relatedSlugs
+  .map(slug => relatedBySlug.get(slug))
+  .filter((item): item is RelatedItem => item !== undefined);
 ---
 
 {
