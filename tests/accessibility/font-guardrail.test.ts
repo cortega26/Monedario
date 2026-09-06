@@ -7,7 +7,8 @@ import { test, expect } from "@playwright/test";
  *   El fix en global.css (body:has(main[data-layout="calculator"])) y el preload
  *   condicional en Layout.astro deben permanecer, o el LCP vuelve a superar 1,7 s.
  * - sueldo-liquido conserva Fraunces únicamente para su figura opt-in
- *   (utility `font-display`) — la exclusión no debe expandirse ni revertirse.
+ *   (utility `font-display`), precargada para evitar el salto de la fuente fallback.
+ *   La excepción no debe expandirse a calculadoras sin esta figura.
  * - Las páginas editoriales (posts) deben seguir precargando Fraunces.
  */
 
@@ -39,7 +40,7 @@ test.describe("Display font loading guardrail (TD-0101)", () => {
     }
   });
 
-  test("sueldo-liquido keeps the display font only for its opt-in figure", async ({
+  test("sueldo-liquido preloads and reuses the display font for its initial figure", async ({
     page,
   }) => {
     const fontRequests: string[] = [];
@@ -51,6 +52,15 @@ test.describe("Display font loading guardrail (TD-0101)", () => {
     await page.waitForLoadState("networkidle");
 
     expect(fontRequests).toHaveLength(1);
+    await expect(
+      page.locator('link[rel="preload"][as="font"][href*="fraunces"]')
+    ).toHaveCount(1);
+    const fontInitiators = await page.evaluate(() =>
+      (performance.getEntriesByType("resource") as PerformanceResourceTiming[])
+        .filter(entry => entry.name.includes("/fonts/fraunces-"))
+        .map(entry => entry.initiatorType)
+    );
+    expect(fontInitiators).toEqual(["link"]);
 
     const figureFont = await page.evaluate(() => {
       const el = document.querySelector(".font-display");

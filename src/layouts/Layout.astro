@@ -22,21 +22,14 @@ type Props = {
 const performanceSensitivePath = /^\/(?:posts|guias|calculadoras)(?:\/|$)/.test(
   Astro.url.pathname
 );
-// Fraunces (--font-display) is the branded editorial H1 typeface and is declared
-// `font-display: optional` in global.css: without a preload the browser will not
-// fetch it inside its short block window, so the H1 stays in the Georgia fallback for
-// the whole page load. Preload it on the homepage — the landing page whose branded
-// headline is the whole point — so the H1 renders in Fraunces instead of Georgia.
-// Skip the preload on /calculadoras/*: their headings (including the shared footer's,
-// see the body:has() rule in global.css) all use the body typeface, so the display
-// font is not fetched on those pages at all — except pages that opt in via the
-// `font-display` utility (currently only sueldo-liquido's result figure, which is
-// fetched lazily from CSS without a preload, exactly as before this guardrail).
-// (LCP guardrail, TD-0101.)
+// Fraunces uses `font-display: swap`. Preload it where initial content needs it
+// so CSS discovery does not delay the font and shift the fallback text.
+// Calculator headings and footers use the body font (TD-0101); sueldo-liquido
+// alone needs Fraunces for its visible result figure and already downloads it.
 const isHomepage = Astro.url.pathname === "/" || Astro.url.pathname === "";
-const shouldPreloadDisplayFont = !/^\/calculadoras(?:\/|$)/.test(
-  Astro.url.pathname
-);
+const shouldPreloadDisplayFont =
+  !/^\/calculadoras(?:\/|$)/.test(Astro.url.pathname) ||
+  Astro.url.pathname === "/calculadoras/sueldo-liquido/";
 
 const {
   title = SITE.title,
