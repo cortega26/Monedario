@@ -1,6 +1,6 @@
 # Cierre de related posts precompute — 2026-09-05
 
-Estado: implementación COMPLETADA; integración HALT por gate Lighthouse.
+Estado: implementación COMPLETADA; causa del bloqueo resuelta en PR #461.
 
 PR: https://github.com/cortega26/Monedario/pull/460 (commit de producto `11423344`).
 Push realizado; merge y eliminación de la rama pendientes.
@@ -74,10 +74,20 @@ pasan salvo CLS de `/calculadoras/sueldo-liquido/`:
 `0.0002594572347558619` en las tres mediciones frente al máximo `0`.
 El artículo medido pasa con CLS/TBT 0 y LCP máximo 484 ms.
 El fallo también aparece con idéntico valor en el workspace original.
-La calculadora no forma parte del diff del PR; no se ha medido un build de la
-base sin el PR y por tanto no se afirma causalidad ni una baseline verde.
+La calculadora no forma parte del diff del PR. La investigación posterior midió
+main (`9cf7fe45`) sin el PR: reproduce el mismo valor en las tres corridas.
+Se confirma un fallo previo al cambio de relacionados.
 
-Bloqueo: `docs/development/REGRESSION_PREVENTION.md` §5.4 exige cumplir los
-umbrales para cambios de layout/páginas de artículos. No se omite ni se relaja
-el gate. Para integrar falta resolver el CLS en una tarea separada o una
-excepción explícita del mantenedor. La rama se conserva mientras tanto.
+`docs/development/REGRESSION_PREVENTION.md` §5.4 exige cumplir los umbrales.
+Se resolvió la causa en una unidad independiente, sin excepción ni cambio de gate:
+PR https://github.com/cortega26/Monedario/pull/461, commit `1674d0f6`.
+La exclusión general de precarga de calculadoras retrasaba Fraunces aunque
+sueldo líquido la necesita en el monto inicial. La precarga selectiva conserva
+la fuente y reutiliza la misma descarga; UTM sigue sin descargar Fraunces.
+
+Resultado: cinco páginas × tres corridas desktop, Performance 100 y CLS/TBT 0.
+Sueldo móvil: LCP mediano 1959/1957 ms antes/después, Speed Index 1880/1436 ms,
+sin regresión apreciable de LCP. Evidencia y límites en
+`artifacts/lighthouse/sueldo-font-preload-2026-09-05.json` y
+`docs/backlog/PLAN-sueldo-font-preload-2026-09-05.md` (aportados por #461).
+Decisión: integrar primero #461 y después #460. No se aprobó excepción.
