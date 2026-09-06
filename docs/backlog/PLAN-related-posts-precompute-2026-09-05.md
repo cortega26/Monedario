@@ -1,9 +1,13 @@
 # Cierre de related posts precompute — 2026-09-05
 
-Estado: implementación COMPLETADA; causa del bloqueo resuelta en PR #461.
+Estado: COMPLETADO e integrado en main; causa del bloqueo resuelta en PR #461.
 
 PR: https://github.com/cortega26/Monedario/pull/460 (commit de producto `11423344`).
-Push realizado; merge y eliminación de la rama pendientes.
+Integrado por squash en `fc623ff2` (2026-09-06 UTC). Rama remota eliminada;
+rama local y worktree auxiliar retirados en el cierre del 2026-09-06.
+La corrección de fuente también está integrada en `b0db4567` (PR #461).
+Los cambios de producto de ambas ramas se compararon contra main sin diferencias;
+se conservaron los 18 archivos locales ajenos a esta tarea.
 
 ## Objetivo y alcance
 
