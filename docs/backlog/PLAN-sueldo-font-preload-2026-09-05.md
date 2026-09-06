@@ -1,6 +1,10 @@
 # Precarga de fuente del resultado de sueldo — 2026-09-05
 
-Estado: CORRECCIÓN VERIFICADA, lista para integración. Base: `main`, `9cf7fe45`.
+Estado: COMPLETADO e integrado. Base de medición: `main`, `9cf7fe45`.
+
+PR: https://github.com/cortega26/Monedario/pull/461. Integrado por squash en
+`b0db4567` (2026-09-06 UTC), con todos los checks remotos verdes. Rama remota
+eliminada; rama local y worktree temporal retirados en el cierre del 2026-09-06.
 
 ## Diagnóstico y decisión
 
