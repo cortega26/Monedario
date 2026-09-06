@@ -2277,3 +2277,23 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Estado:** CERRADO (2026-08-11): código mergeado (PR #420, squash `8bc8a0a2`) y workers desplegados (versions `93e040ba`/`c0e5ed1d`); forma legacy `?secret=` verificada 401 en producción. **Residual del operador (fuera del backlog)**: smoke positivo por header con los secrets ya guardados y rotación del PAT en GitHub — checklist en ADR-20260716.
 - **Owner:** Sin asignar
 - **Fecha:** 2026-08-11
+
+## TD-0106 — CLS del monto inicial por descubrimiento tardío de Fraunces
+
+- **Severidad (1-5):** 1
+- **Estado:** CERRADO por la corrección de precarga selectiva de sueldo líquido.
+- **Fecha:** 2026-09-05
+- **Causa:** Fraunces usa `swap`, pero sueldo líquido estaba excluido del preload
+  aunque su monto inicial requiere esa fuente. El cambio desde Georgia produce
+  CLS `0.0002594572347558619`, reproducido en main y en el PR #460 (3/3).
+- **Impacto:** desplazamiento visual mínimo y bloqueo del umbral desktop CLS 0;
+  no afecta cálculos ni datos. No es regresión de artículos relacionados.
+- **Resolución:** precarga solo para sueldo líquido; una única descarga reutilizada,
+  sin fuente nueva, sin cambio de tipografía ni de umbrales. UTM sigue sin Fraunces.
+- **Evidencia:** `artifacts/lighthouse/sueldo-font-preload-2026-09-05.json`;
+  CLS desktop 0 en las 15 mediciones finales. LCP móvil de sueldo sin regresión
+  apreciable (medianas 1959/1957 ms); Speed Index 1880/1436 ms.
+- **Prevención y rollback:** test de precarga/reutilización en
+  `tests/accessibility/font-guardrail.test.ts`; revertir esta corrección si se
+  detecta regresión de carga. Detalle en
+  `docs/backlog/PLAN-sueldo-font-preload-2026-09-05.md`.

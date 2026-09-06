@@ -1,0 +1,526 @@
+{
+  "date": "2026-09-05",
+  "base_commit": "9cf7fe45",
+  "related_merge_before_fix": "2427b648",
+  "method": "Cold-cache Lighthouse, same local machine; three runs per URL. Repository desktop/mobile settings, ci.upload removed. Mobile comparison limited to sueldo-liquido and conversor-utm.",
+  "cause": "The initial salary figure swaps from Georgia to Fraunces after CSS discovers the font. main and related-posts PR reproduce identical CLS.",
+  "fix": "Preload the already-required Fraunces font only on sueldo-liquido; preserve font-display swap and other calculator exclusions.",
+  "scope_limit": "Lab load metrics, not field data or a guarantee for every device/network. No performance budgets changed.",
+  "scenarios": {
+    "main_desktop": {
+      "lighthouse_versions": [
+        "12.6.1"
+      ],
+      "urls": {
+        "/calculadoras/sueldo-liquido/": {
+          "runs": [
+            {
+              "largest-contentful-paint": 569.42915,
+              "speed-index": 489.42915000000005,
+              "cumulative-layout-shift": 0.0002594572347558619,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 534.2188,
+              "speed-index": 454.2188,
+              "cumulative-layout-shift": 0.0002594572347558619,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 566.4327499999999,
+              "speed-index": 486.43274999999994,
+              "cumulative-layout-shift": 0.0002594572347558619,
+              "total-blocking-time": 0,
+              "performance": 1
+            }
+          ],
+          "median": {
+            "largest-contentful-paint": 566.4327499999999,
+            "speed-index": 486.43274999999994,
+            "cumulative-layout-shift": 0.0002594572347558619,
+            "total-blocking-time": 0,
+            "performance": 1
+          }
+        }
+      }
+    },
+    "related_pr_desktop": {
+      "lighthouse_versions": [
+        "12.6.1"
+      ],
+      "urls": {
+        "/posts/como-calcular-sueldo-liquido/": {
+          "runs": [
+            {
+              "largest-contentful-paint": 483.4595,
+              "speed-index": 337.32437500000003,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 444.3188,
+              "speed-index": 325.3985,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 483.1789,
+              "speed-index": 337.97362499999997,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            }
+          ],
+          "median": {
+            "largest-contentful-paint": 483.1789,
+            "speed-index": 337.32437500000003,
+            "cumulative-layout-shift": 0,
+            "total-blocking-time": 0,
+            "performance": 1
+          }
+        },
+        "/calculadoras/sueldo-liquido/": {
+          "runs": [
+            {
+              "largest-contentful-paint": 530.5877499999999,
+              "speed-index": 450.58774999999997,
+              "cumulative-layout-shift": 0.0002594572347558619,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 526.9945,
+              "speed-index": 446.9945,
+              "cumulative-layout-shift": 0.0002594572347558619,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 527.3037999999999,
+              "speed-index": 487.3037999999999,
+              "cumulative-layout-shift": 0.0002594572347558619,
+              "total-blocking-time": 0,
+              "performance": 1
+            }
+          ],
+          "median": {
+            "largest-contentful-paint": 527.3037999999999,
+            "speed-index": 450.58774999999997,
+            "cumulative-layout-shift": 0.0002594572347558619,
+            "total-blocking-time": 0,
+            "performance": 1
+          }
+        },
+        "/": {
+          "runs": [
+            {
+              "largest-contentful-paint": 445.3437,
+              "speed-index": 286.679625,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 416.10620000000006,
+              "speed-index": 311.13275,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 444.53009999999995,
+              "speed-index": 285.66262500000005,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            }
+          ],
+          "median": {
+            "largest-contentful-paint": 444.53009999999995,
+            "speed-index": 286.679625,
+            "cumulative-layout-shift": 0,
+            "total-blocking-time": 0,
+            "performance": 1
+          }
+        },
+        "/guias/": {
+          "runs": [
+            {
+              "largest-contentful-paint": 402.6229,
+              "speed-index": 263.27862500000003,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 402.3438,
+              "speed-index": 262.92975,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 403.4145,
+              "speed-index": 264.26812499999994,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            }
+          ],
+          "median": {
+            "largest-contentful-paint": 402.6229,
+            "speed-index": 263.27862500000003,
+            "cumulative-layout-shift": 0,
+            "total-blocking-time": 0,
+            "performance": 1
+          }
+        },
+        "/guias/ahorro-e-inversion/": {
+          "runs": [
+            {
+              "largest-contentful-paint": 402.9948,
+              "speed-index": 263.74350000000004,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 403.60630000000003,
+              "speed-index": 264.507875,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 403.69870000000003,
+              "speed-index": 264.623375,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            }
+          ],
+          "median": {
+            "largest-contentful-paint": 403.60630000000003,
+            "speed-index": 264.507875,
+            "cumulative-layout-shift": 0,
+            "total-blocking-time": 0,
+            "performance": 1
+          }
+        }
+      }
+    },
+    "fixed_desktop": {
+      "lighthouse_versions": [
+        "12.6.1"
+      ],
+      "urls": {
+        "/": {
+          "runs": [
+            {
+              "largest-contentful-paint": 447.1821,
+              "speed-index": 288.977625,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 451.0645,
+              "speed-index": 293.83062500000005,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 443.8924,
+              "speed-index": 284.8655,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            }
+          ],
+          "median": {
+            "largest-contentful-paint": 447.1821,
+            "speed-index": 288.977625,
+            "cumulative-layout-shift": 0,
+            "total-blocking-time": 0,
+            "performance": 1
+          }
+        },
+        "/posts/como-calcular-sueldo-liquido/": {
+          "runs": [
+            {
+              "largest-contentful-paint": 485.13689999999997,
+              "speed-index": 326.421125,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 444.1704,
+              "speed-index": 325.21299999999997,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 443.9925999999999,
+              "speed-index": 336.99074999999993,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            }
+          ],
+          "median": {
+            "largest-contentful-paint": 444.1704,
+            "speed-index": 326.421125,
+            "cumulative-layout-shift": 0,
+            "total-blocking-time": 0,
+            "performance": 1
+          }
+        },
+        "/guias/": {
+          "runs": [
+            {
+              "largest-contentful-paint": 406.7867,
+              "speed-index": 268.483375,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 404.194,
+              "speed-index": 265.2425,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 403.0711,
+              "speed-index": 263.83887500000003,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            }
+          ],
+          "median": {
+            "largest-contentful-paint": 404.194,
+            "speed-index": 265.2425,
+            "cumulative-layout-shift": 0,
+            "total-blocking-time": 0,
+            "performance": 1
+          }
+        },
+        "/guias/ahorro-e-inversion/": {
+          "runs": [
+            {
+              "largest-contentful-paint": 403.7876,
+              "speed-index": 264.7345,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 405.7145,
+              "speed-index": 267.14312499999994,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 404.9828,
+              "speed-index": 266.2285,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            }
+          ],
+          "median": {
+            "largest-contentful-paint": 404.9828,
+            "speed-index": 266.2285,
+            "cumulative-layout-shift": 0,
+            "total-blocking-time": 0,
+            "performance": 1
+          }
+        },
+        "/calculadoras/sueldo-liquido/": {
+          "runs": [
+            {
+              "largest-contentful-paint": 496.66150000000016,
+              "speed-index": 391.6630500000001,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 526.1567,
+              "speed-index": 390.774225,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 525.1346000000001,
+              "speed-index": 388.98555,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            }
+          ],
+          "median": {
+            "largest-contentful-paint": 525.1346000000001,
+            "speed-index": 390.774225,
+            "cumulative-layout-shift": 0,
+            "total-blocking-time": 0,
+            "performance": 1
+          }
+        }
+      }
+    },
+    "main_mobile": {
+      "lighthouse_versions": [
+        "12.6.1"
+      ],
+      "urls": {
+        "/calculadoras/conversor-utm/": {
+          "runs": [
+            {
+              "largest-contentful-paint": 1503.1796,
+              "speed-index": 1130.5643,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 1275.9928,
+              "speed-index": 1141.6187,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 1353.4915999999998,
+              "speed-index": 1205.2374,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            }
+          ],
+          "median": {
+            "largest-contentful-paint": 1353.4915999999998,
+            "speed-index": 1141.6187,
+            "cumulative-layout-shift": 0,
+            "total-blocking-time": 0,
+            "performance": 1
+          }
+        },
+        "/calculadoras/sueldo-liquido/": {
+          "runs": [
+            {
+              "largest-contentful-paint": 1964.1105000000002,
+              "speed-index": 1814.1105,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 0.98
+            },
+            {
+              "largest-contentful-paint": 1955.4443999999999,
+              "speed-index": 1880.4443999999999,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 0.98
+            },
+            {
+              "largest-contentful-paint": 1959.48255,
+              "speed-index": 1884.48255,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 0.98
+            }
+          ],
+          "median": {
+            "largest-contentful-paint": 1959.48255,
+            "speed-index": 1880.4443999999999,
+            "cumulative-layout-shift": 0,
+            "total-blocking-time": 0,
+            "performance": 0.98
+          }
+        }
+      }
+    },
+    "fixed_mobile": {
+      "lighthouse_versions": [
+        "12.6.1"
+      ],
+      "urls": {
+        "/calculadoras/conversor-utm/": {
+          "runs": [
+            {
+              "largest-contentful-paint": 1262.6172000000001,
+              "speed-index": 1138.66505,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 1353.5969,
+              "speed-index": 1205.39535,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            },
+            {
+              "largest-contentful-paint": 1264.9694,
+              "speed-index": 1131.973225,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 1
+            }
+          ],
+          "median": {
+            "largest-contentful-paint": 1264.9694,
+            "speed-index": 1138.66505,
+            "cumulative-layout-shift": 0,
+            "total-blocking-time": 0,
+            "performance": 1
+          }
+        },
+        "/calculadoras/sueldo-liquido/": {
+          "runs": [
+            {
+              "largest-contentful-paint": 1956.6076,
+              "speed-index": 1436.5632999999998,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 0.99
+            },
+            {
+              "largest-contentful-paint": 1956.8654,
+              "speed-index": 1360.2981,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 0.99
+            },
+            {
+              "largest-contentful-paint": 2106.1964,
+              "speed-index": 1435.8437000000001,
+              "cumulative-layout-shift": 0,
+              "total-blocking-time": 0,
+              "performance": 0.99
+            }
+          ],
+          "median": {
+            "largest-contentful-paint": 1956.8654,
+            "speed-index": 1435.8437000000001,
+            "cumulative-layout-shift": 0,
+            "total-blocking-time": 0,
+            "performance": 0.99
+          }
+        }
+      }
+    }
+  }
+}
