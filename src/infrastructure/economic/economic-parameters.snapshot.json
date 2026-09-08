@@ -2,7 +2,7 @@
   "uf": 40884.32,
   "utm": 71721,
   "uta": 834504,
-  "ipc": 0.1,
+  "ipc": 0.6,
   "tmc": 3.49,
   "dolar": 933.82,
   "imm": 553553,
@@ -17,18 +17,18 @@
     "uf": "2026-09-08",
     "utm": "2026-09-01",
     "uta": "2025-12-01",
-    "ipc": "2026-07-01",
+    "ipc": "2026-08-01",
     "dolar": "2026-09-08"
   },
   "lastUpdated": "2026-09-08",
-  "capturedAt": "2026-09-08T10:16:02.893Z",
+  "capturedAt": "2026-09-08T14:16:24.910Z",
   "source": "mindicador.cl/api",
   "provenance": {
     "utm": {
       "primarySource": "SII",
       "sourceUrl": "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm",
       "status": "primary",
-      "verifiedAt": "2026-09-08T10:16:02.893Z"
+      "verifiedAt": "2026-09-08T14:16:24.910Z"
     }
   },
   "prev": {
