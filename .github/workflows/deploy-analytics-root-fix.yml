@@ -1,0 +1,125 @@
+name: Deploy Analytics Root Fix
+
+# One-time guarded rollout for the 2026-09-11 KV quota incident.
+# Keeps the repository-wide minimumReleaseAge policy untouched by installing
+# only exact tooling needed for focused tests and Wrangler deployment.
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-analytics-root-fix
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Validate, deploy and smoke root fix
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+      EXPORT_SECRET: ${{ secrets.EXPORT_SECRET }}
+      WRANGLER_VERSION: "4.125.0"
+      WRANGLER_CONFIG: workers/analytics-collector/wrangler.toml
+      INGEST_URL: https://monedario.cl/api/analytics/event
+      EXPORT_URL: https://monedario.cl/api/analytics/export
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e
+        with:
+          node-version: 22
+
+      - name: Validate migration invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          test -n "${CLOUDFLARE_API_TOKEN:-}"
+          test -n "${CLOUDFLARE_ACCOUNT_ID:-}"
+
+          grep -Eq '^main[[:space:]]*=[[:space:]]*"src/worker-v2.ts"$' "$WRANGLER_CONFIG"
+          grep -Eq '^ANALYTICS_DISABLED[[:space:]]*=[[:space:]]*"0"$' "$WRANGLER_CONFIG"
+          grep -q 'name = "ANALYTICS_RATE_LIMITER"' "$WRANGLER_CONFIG"
+          grep -q 'name = "ANALYTICS_COUNTERS"' "$WRANGLER_CONFIG"
+          grep -q 'storage = "sqlite"' "$WRANGLER_CONFIG"
+
+          # Guard the root cause directly: the new hot path may reference the
+          # legacy binding for export reads, but it must never PUT to it.
+          if grep -Eq 'ANALYTICS_TELEMETRY[[:space:]]*\.[[:space:]]*put|ANALYTICS_TELEMETRY\.put' \
+            workers/analytics-collector/src/worker-v2.ts; then
+            echo "Refusing deploy: new worker still writes ANALYTICS_TELEMETRY KV." >&2
+            exit 1
+          fi
+
+      - name: Focused root-cause tests
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes vitest@4.1.11 run tests/workers/analytics-collector/root-cause.test.ts
+
+      - name: Wrangler dry run
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes "wrangler@${WRANGLER_VERSION}" deploy --dry-run --config "$WRANGLER_CONFIG"
+
+      - name: Deploy root fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes "wrangler@${WRANGLER_VERSION}" deploy --config "$WRANGLER_CONFIG"
+
+      - name: Verify durable ingestion is live
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          payload='{"event":"calculator_view","params":{"calculator_id":"root-fix-smoke","page_type":"calculator"}}'
+          for attempt in 1 2 3 4 5 6; do
+            status="$(curl --silent --show-error --output /dev/null \
+              --write-out '%{http_code}' \
+              --request POST \
+              --header 'Origin: https://monedario.cl' \
+              --header 'Content-Type: application/json' \
+              --data "$payload" \
+              "$INGEST_URL" || true)"
+
+            if [[ "$status" == "202" ]]; then
+              echo "Verified: ingestion accepted through Durable Object storage."
+              exit 0
+            fi
+
+            echo "Attempt ${attempt}: expected 202, got ${status:-curl-error}; waiting for propagation..."
+            sleep 10
+          done
+
+          echo "Root-fix deploy did not produce a healthy 202 ingestion response." >&2
+          exit 1
+
+      - name: Verify mixed-source export
+        if: env.EXPORT_SECRET != ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          status="$(curl --silent --show-error --output /tmp/export-response.json \
+            --write-out '%{http_code}' \
+            --header "Authorization: Bearer ${EXPORT_SECRET}" \
+            "$EXPORT_URL")"
+          if [[ "$status" != "200" ]]; then
+            cat /tmp/export-response.json >&2 || true
+            echo "Expected export HTTP 200, got ${status}." >&2
+            exit 1
+          fi
+          cat /tmp/export-response.json
+          echo "Verified: legacy-KV + Durable Object export path is healthy."
