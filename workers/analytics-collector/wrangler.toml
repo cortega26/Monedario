@@ -1,5 +1,5 @@
 name = "monedario-analytics-collector"
-main = "src/index.ts"
+main = "src/worker-v2.ts"
 compatibility_date = "2026-06-28"
 workers_dev = true
 
@@ -11,75 +11,65 @@ pattern = "monedario.cl/api/analytics/*"
 zone_id = "9d53871bed75e9ad5d4cc5da84a18fcf"
 
 # ── Triggers ────────────────────────────────────────────────────────────────
-# Cron semanal: exporta agregados de KV → R2 o repo.
-# Lunes 05:30 UTC (madrugada en Chile), ANTES del fetch de data-signals
-# (lunes 06:00 UTC) para que el export exista cuando el consumidor lo pide.
+# Cron semanal: exporta agregados históricos KV + contadores SQLite → R2.
+# Lunes 05:30 UTC, antes del fetch de data-signals de las 06:00 UTC.
 [triggers]
 crons = ["30 5 * * MON"]
 
-# ── KV Namespace ────────────────────────────────────────────────────────────
-# Contadores agregados. Claves versionadas:
-#   telemetry:v1:{utc-date}:{event}:{slug}:{dimension} (legado)
-#   telemetry:v2:{local-date}:{event}:{slug}:{dimension} (desde el cutover)
-# Contadores aproximados: read-modify-write no atómico sobre KV eventualmente consistente (ver README).
-# TTL = 35 días (5 semanas). Se crea con:
-#   npx wrangler kv:namespace create ANALYTICS_TELEMETRY
-#   npx wrangler kv:namespace create ANALYTICS_TELEMETRY --preview
+# ── Legacy KV (read-only after 2026-09-11 migration) ───────────────────────
+# Historical counters remain readable until their existing TTL expires.
+# New ingestion MUST NOT write to this namespace.
 [[kv_namespaces]]
 binding = "ANALYTICS_TELEMETRY"
 id = "f9de0048ca334578805b5bdd55bc71e0"
 
-# ── R2 Bucket (export semanal) ──────────────────────────────────────────────
-# Almacena los JSON de export semanal. Se crea con:
-#   npx wrangler r2 bucket create monedario-analytics-exports
+# ── Native Workers Rate Limiting ───────────────────────────────────────────
+# Replaces the former KV get+put limiter, eliminating one KV write per event.
+[[ratelimits]]
+name = "ANALYTICS_RATE_LIMITER"
+namespace_id = "26091101"
+
+  [ratelimits.simple]
+  limit = 30
+  period = 60
+
+# ── Atomic counter storage ─────────────────────────────────────────────────
+# One deterministic Durable Object instance stores aggregated counters in
+# SQLite. Atomic UPSERT removes KV's read-modify-write race and 1,000-write/day
+# account limit from the hot ingestion path.
+[[durable_objects.bindings]]
+name = "ANALYTICS_COUNTERS"
+class_name = "AnalyticsCounters"
+
+[exports.AnalyticsCounters]
+type = "durable-object"
+storage = "sqlite"
+
+# ── R2 Bucket (weekly exports) ──────────────────────────────────────────────
 [[r2_buckets]]
 binding = "ANALYTICS_EXPORTS"
 bucket_name = "monedario-analytics-exports"
 
 # ── Environment variables ───────────────────────────────────────────────────
 [vars]
-# Schema version del artefacto de export. Incrementar solo con breaking change.
 SCHEMA_VERSION = "2"
-
-# Timezone para cálculo de semana ISO en el export semanal.
 EXPORT_TIMEZONE = "America/Santiago"
 
-# Cutover a claves v2 exactamente al inicio de una semana local. Antes de este
-# instante el writer y los exports conservan v1/UTC; desde este instante usan
-# v2/America-Santiago. 2026-07-20 00:00 CLT = 04:00 UTC.
+# Historical KV key-format cutover. Still required to read the correct legacy
+# prefix while old KV counters remain within their TTL.
 COUNTER_KEY_CUTOVER_AT = "2026-07-20T04:00:00Z"
 
-# TTL en días de los contadores KV (5 semanas = 35 días). Expresado en segundos.
-KV_COUNTER_TTL_SECONDS = "3024000"
-
-# Body máximo aceptado en el endpoint de eventos (bytes).
 MAX_BODY_SIZE = "2048"
-
-# Rate limit: máximo de requests por IP en ventana de 60 segundos.
-RATE_LIMIT_MAX = "30"
-
-# Dominio allowlist para origin check (solo same-origin).
 ALLOWED_ORIGIN = "https://monedario.cl"
 
-# EMERGENCIA 2026-09-11: desactivar temporalmente la ingesta para detener el
-# agotamiento diario de la cuota KV mientras se migra el rate limit fuera de KV
-# y se redefine el almacenamiento de contadores.
-ANALYTICS_DISABLED = "1"
+# Root-cause fix: ingestion is re-enabled only after the deploy workflow passes
+# focused tests + Wrangler dry-run. New writes go to SQLite DO, never KV.
+ANALYTICS_DISABLED = "0"
 
 [observability]
 enabled = true
 
 # ── Secrets ─────────────────────────────────────────────────────────────────
-# Configurar con `wrangler secret put <NAME>`:
-#
-#   EXPORT_GITHUB_TOKEN   — Fine-grained PAT con Contents: Write sobre
-#                           cortega26/Monedario. Solo necesario si el export
-#                           semanal se persiste en el repo en vez de R2.
-#                           Alternativa: dejar el export solo en R2 y usar
-#                           un script local (data-signals) para bajarlo.
-#
-#   EXPORT_SECRET         — String arbitrario que protege el endpoint manual
-#                           de export. Se envía por header:
-#                           Authorization: Bearer <EXPORT_SECRET>
-#                           (GET /api/analytics/export?week=YYYY-Www).
-#                           No requerido para el cron trigger.
+# EXPORT_SECRET protects GET /api/analytics/export via Authorization: Bearer.
+# CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID are supplied by GitHub Actions
+# to deployment tooling, not exposed as Worker bindings.
