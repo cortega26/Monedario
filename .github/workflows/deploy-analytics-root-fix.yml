@@ -48,7 +48,12 @@ jobs:
           corepack prepare "pnpm@${PNPM_VERSION}" --activate
           TOOL_ROOT="${RUNNER_TEMP}/analytics-root-tools"
           mkdir -p "$TOOL_ROOT"
-          printf '%s\n' '{"name":"analytics-root-tools","private":true,"pnpm":{"onlyBuiltDependencies":["esbuild","workerd"]}}' > "$TOOL_ROOT/package.json"
+          printf '%s\n' '{"name":"analytics-root-tools","private":true}' > "$TOOL_ROOT/package.json"
+          cat > "$TOOL_ROOT/pnpm-workspace.yaml" <<'YAML'
+          allowBuilds:
+            esbuild: true
+            workerd: true
+          YAML
           pnpm --dir "$TOOL_ROOT" add --save-dev \
             "vitest@${VITEST_VERSION}" \
             "wrangler@${WRANGLER_VERSION}"
@@ -115,7 +120,12 @@ jobs:
           corepack prepare "pnpm@${PNPM_VERSION}" --activate
           TOOL_ROOT="${RUNNER_TEMP}/analytics-root-tools"
           mkdir -p "$TOOL_ROOT"
-          printf '%s\n' '{"name":"analytics-root-tools","private":true,"pnpm":{"onlyBuiltDependencies":["esbuild","workerd"]}}' > "$TOOL_ROOT/package.json"
+          printf '%s\n' '{"name":"analytics-root-tools","private":true}' > "$TOOL_ROOT/package.json"
+          cat > "$TOOL_ROOT/pnpm-workspace.yaml" <<'YAML'
+          allowBuilds:
+            esbuild: true
+            workerd: true
+          YAML
           pnpm --dir "$TOOL_ROOT" add --save-dev "wrangler@${WRANGLER_VERSION}"
           ln -s "$TOOL_ROOT/node_modules" "$GITHUB_WORKSPACE/node_modules"
           echo "TOOL_ROOT=$TOOL_ROOT" >> "$GITHUB_ENV"
