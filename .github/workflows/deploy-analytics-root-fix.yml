@@ -2,8 +2,8 @@ name: Deploy Analytics Root Fix
 
 # Guarded rollout for the 2026-09-11 KV quota incident. Branch pushes run only
 # focused validation. Production deploy remains manual from main.
-# Tooling is installed outside the workspace so the repository's normal
-# minimumReleaseAge supply-chain policy remains unchanged.
+# Tooling is installed in a temporary package outside the workspace so the
+# repository's minimumReleaseAge policy remains unchanged.
 
 on:
   push:
@@ -19,6 +19,7 @@ permissions:
   contents: read
 
 env:
+  PNPM_VERSION: "11.7.0"
   VITEST_VERSION: "4.1.11"
   WRANGLER_VERSION: "4.125.0"
   WRANGLER_CONFIG: workers/analytics-collector/wrangler.toml
@@ -43,16 +44,14 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          corepack enable
+          corepack prepare "pnpm@${PNPM_VERSION}" --activate
           TOOL_ROOT="${RUNNER_TEMP}/analytics-root-tools"
           mkdir -p "$TOOL_ROOT"
-          cd "$TOOL_ROOT"
-          npm init --yes >/dev/null
-          npm install \
-            --package-lock=false \
-            --no-save \
+          printf '%s\n' '{"name":"analytics-root-tools","private":true}' > "$TOOL_ROOT/package.json"
+          pnpm --dir "$TOOL_ROOT" add --save-dev \
             "vitest@${VITEST_VERSION}" \
             "wrangler@${WRANGLER_VERSION}"
-          cd "$GITHUB_WORKSPACE"
           ln -s "$TOOL_ROOT/node_modules" "$GITHUB_WORKSPACE/node_modules"
           echo "TOOL_ROOT=$TOOL_ROOT" >> "$GITHUB_ENV"
 
@@ -112,15 +111,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          corepack enable
+          corepack prepare "pnpm@${PNPM_VERSION}" --activate
           TOOL_ROOT="${RUNNER_TEMP}/analytics-root-tools"
           mkdir -p "$TOOL_ROOT"
-          cd "$TOOL_ROOT"
-          npm init --yes >/dev/null
-          npm install \
-            --package-lock=false \
-            --no-save \
-            "wrangler@${WRANGLER_VERSION}"
-          cd "$GITHUB_WORKSPACE"
+          printf '%s\n' '{"name":"analytics-root-tools","private":true}' > "$TOOL_ROOT/package.json"
+          pnpm --dir "$TOOL_ROOT" add --save-dev "wrangler@${WRANGLER_VERSION}"
           ln -s "$TOOL_ROOT/node_modules" "$GITHUB_WORKSPACE/node_modules"
           echo "TOOL_ROOT=$TOOL_ROOT" >> "$GITHUB_ENV"
 
