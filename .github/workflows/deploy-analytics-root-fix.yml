@@ -17,6 +17,7 @@ permissions:
   contents: read
 
 env:
+  PNPM_VERSION: "11.7.0"
   WRANGLER_VERSION: "4.125.0"
   WRANGLER_CONFIG: workers/analytics-collector/wrangler.toml
 
@@ -35,6 +36,14 @@ jobs:
         uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e
         with:
           node-version: 22
+
+      - name: Setup isolated pnpm tooling
+        shell: bash
+        run: |
+          set -euo pipefail
+          corepack enable
+          corepack prepare "pnpm@${PNPM_VERSION}" --activate
+          pnpm --version
 
       - name: Validate migration invariants
         shell: bash
@@ -56,13 +65,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          npx --yes vitest@4.1.11 run tests/workers/analytics-collector/root-cause.test.ts
+          pnpm dlx "vitest@4.1.11" run tests/workers/analytics-collector/root-cause.test.ts
 
       - name: Wrangler dry run
         shell: bash
         run: |
           set -euo pipefail
-          npx --yes "wrangler@${WRANGLER_VERSION}" deploy --dry-run --config "$WRANGLER_CONFIG"
+          pnpm dlx "wrangler@${WRANGLER_VERSION}" deploy --dry-run --config "$WRANGLER_CONFIG"
 
   deploy:
     name: Deploy and smoke root fix
@@ -88,6 +97,14 @@ jobs:
         with:
           node-version: 22
 
+      - name: Setup isolated pnpm tooling
+        shell: bash
+        run: |
+          set -euo pipefail
+          corepack enable
+          corepack prepare "pnpm@${PNPM_VERSION}" --activate
+          pnpm --version
+
       - name: Validate Cloudflare credentials
         shell: bash
         run: |
@@ -99,7 +116,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          npx --yes "wrangler@${WRANGLER_VERSION}" deploy --config "$WRANGLER_CONFIG"
+          pnpm dlx "wrangler@${WRANGLER_VERSION}" deploy --config "$WRANGLER_CONFIG"
 
       - name: Verify durable ingestion is live
         shell: bash
