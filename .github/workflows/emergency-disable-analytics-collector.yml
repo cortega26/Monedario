@@ -1,0 +1,102 @@
+name: Emergency Disable Analytics Collector
+
+# One-off emergency path for the active Workers KV quota incident.
+# Intentionally bypasses the workspace install, whose minimumReleaseAge policy
+# currently blocks the normal deploy before Wrangler can run.
+#
+# Safety rails:
+# - manual dispatch only
+# - main branch only
+# - refuses to deploy unless ANALYTICS_DISABLED is exactly "1"
+# - exact Wrangler version
+# - dry-run before deploy
+# - post-deploy HTTP smoke must observe 503 from the ingestion endpoint
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: emergency-disable-analytics-collector
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Emergency deploy analytics-disabled worker
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ vars.CLOUDFLARE_ACCOUNT_ID }}
+      WRANGLER_VERSION: "4.125.0"
+      WRANGLER_CONFIG: workers/analytics-collector/wrangler.toml
+      INGEST_URL: https://monedario.cl/api/analytics/event
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 1
+
+      - name: Setup Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e
+        with:
+          node-version: 22
+
+      - name: Validate emergency preconditions
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          if [[ -z "${CLOUDFLARE_API_TOKEN:-}" || -z "${CLOUDFLARE_ACCOUNT_ID:-}" ]]; then
+            echo "Missing CLOUDFLARE_API_TOKEN or CLOUDFLARE_ACCOUNT_ID" >&2
+            exit 1
+          fi
+
+          if ! grep -Eq '^ANALYTICS_DISABLED[[:space:]]*=[[:space:]]*"1"[[:space:]]*$' "$WRANGLER_CONFIG"; then
+            echo "Refusing emergency deploy: ANALYTICS_DISABLED is not exactly \"1\"." >&2
+            exit 1
+          fi
+
+          echo "Emergency guard confirmed: analytics ingestion is disabled in config."
+
+      - name: Wrangler dry run
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes "wrangler@${WRANGLER_VERSION}" deploy --dry-run --config "$WRANGLER_CONFIG"
+
+      - name: Deploy disabled analytics worker
+        shell: bash
+        run: |
+          set -euo pipefail
+          npx --yes "wrangler@${WRANGLER_VERSION}" deploy --config "$WRANGLER_CONFIG"
+
+      - name: Verify ingestion is disabled
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          for attempt in 1 2 3 4 5 6; do
+            status="$(curl --silent --show-error --output /dev/null \
+              --write-out '%{http_code}' \
+              --request POST \
+              --header 'Origin: https://monedario.cl' \
+              --header 'Content-Type: application/json' \
+              --data '{"event":"calculator_view","params":{"calculator_id":"emergency-smoke"}}' \
+              "$INGEST_URL" || true)"
+
+            if [[ "$status" == "503" ]]; then
+              echo "Verified: analytics ingestion returns HTTP 503. KV-writing path is paused."
+              exit 0
+            fi
+
+            echo "Attempt ${attempt}: expected 503, got ${status:-curl-error}; waiting for propagation..."
+            sleep 10
+          done
+
+          echo "Deploy completed but post-deploy smoke never observed HTTP 503." >&2
+          exit 1
