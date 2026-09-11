@@ -45,12 +45,14 @@ jobs:
           set -euo pipefail
           TOOL_ROOT="${RUNNER_TEMP}/analytics-root-tools"
           mkdir -p "$TOOL_ROOT"
+          cd "$TOOL_ROOT"
+          npm init --yes >/dev/null
           npm install \
-            --prefix "$TOOL_ROOT" \
             --package-lock=false \
             --no-save \
             "vitest@${VITEST_VERSION}" \
             "wrangler@${WRANGLER_VERSION}"
+          cd "$GITHUB_WORKSPACE"
           ln -s "$TOOL_ROOT/node_modules" "$GITHUB_WORKSPACE/node_modules"
           echo "TOOL_ROOT=$TOOL_ROOT" >> "$GITHUB_ENV"
 
@@ -112,11 +114,13 @@ jobs:
           set -euo pipefail
           TOOL_ROOT="${RUNNER_TEMP}/analytics-root-tools"
           mkdir -p "$TOOL_ROOT"
+          cd "$TOOL_ROOT"
+          npm init --yes >/dev/null
           npm install \
-            --prefix "$TOOL_ROOT" \
             --package-lock=false \
             --no-save \
             "wrangler@${WRANGLER_VERSION}"
+          cd "$GITHUB_WORKSPACE"
           ln -s "$TOOL_ROOT/node_modules" "$GITHUB_WORKSPACE/node_modules"
           echo "TOOL_ROOT=$TOOL_ROOT" >> "$GITHUB_ENV"
 
