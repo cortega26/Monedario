@@ -80,7 +80,23 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          cp tsconfig.json "${RUNNER_TEMP}/tsconfig.project.json"
+          restore_tsconfig() { cp "${RUNNER_TEMP}/tsconfig.project.json" tsconfig.json; }
+          trap restore_tsconfig EXIT
+          cat > tsconfig.json <<'JSON'
+          {
+            "compilerOptions": {
+              "target": "ES2022",
+              "module": "ESNext",
+              "moduleResolution": "Bundler",
+              "lib": ["ES2022", "DOM"],
+              "skipLibCheck": true
+            }
+          }
+          JSON
           "$TOOL_ROOT/node_modules/.bin/vitest" run tests/workers/analytics-collector/root-cause.test.ts
+          restore_tsconfig
+          trap - EXIT
 
       - name: Wrangler dry run
         shell: bash
