@@ -9,21 +9,20 @@ implementación, no cambios implementados ni autorización de publicación.
 
 | Orden | Plan | Resultado esperado | Prioridad | Esfuerzo | Riesgo | Dependencia | Estado |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | [089](089-scenario-calculation-consistency.md) | Escenarios guardan entradas y resultado del mismo cálculo | P1 | M–L | MED | Ninguna | TODO |
-| 2 | [090](090-python-audit-summary-integrity.md) | Reporte Python distingue limpio, hallazgos e incompleto | P2 | S–M | LOW | Ninguna | TODO |
-| 3 | [091](091-economic-refresh-idempotency.md) | Refrescos sin cambios de datos no producen commits | P2 | S–M | MED | Ninguna | TODO |
-| 4 | [092](092-analytics-bounded-body-read.md) | Collector lee el body con límite de bytes | P2 | S–M | MED | Ninguna | TODO |
-| 5 | [093](093-git-audit-commit-summary.md) | Exportador muestra el commit solicitado | P3 | S | LOW | Ninguna | TODO |
+| 1 | [090](090-python-audit-summary-integrity.md) | Reporte Python distingue limpio, hallazgos e incompleto | P2 | S–M | LOW | Ninguna | TODO |
+| 2 | [091](091-economic-refresh-idempotency.md) | Refrescos sin cambios de datos no producen commits | P2 | S–M | MED | Ninguna | TODO |
+| 3 | [092](092-analytics-bounded-body-read.md) | Collector lee el body con límite de bytes | P2 | S–M | MED | Ninguna | TODO |
+| 4 | [093](093-git-audit-commit-summary.md) | Exportador muestra el commit solicitado | P3 | S | LOW | Ninguna | TODO |
 
-**Completados de esta selección:** [087](archive/087-ci-coverage-enforcement.md) — CI y espejo local ejecutan el umbral de cobertura (mergeado 2026-09-12, merge `f111752b`, test `df8cc14e`; residual conocido: `check:editorial-timeliness` con deriva UTM preexistente, fuera de alcance); [088](archive/088-profile-numeric-roundtrip.md) — perfil conserva decimales nativos y montos (mergeado 2026-09-12, fast-forward `4bb17a7d`).
+**Completados de esta selección:** [087](archive/087-ci-coverage-enforcement.md) — CI y espejo local ejecutan el umbral de cobertura (mergeado 2026-09-12, merge `f111752b`, test `df8cc14e`; residual conocido: `check:editorial-timeliness` con deriva UTM preexistente, fuera de alcance); [088](archive/088-profile-numeric-roundtrip.md) — perfil conserva decimales nativos y montos (mergeado 2026-09-12, fast-forward `4bb17a7d`); [089](archive/089-scenario-calculation-consistency.md) — escenarios guardan entradas y resultado del mismo cálculo (mergeado 2026-09-12, fast-forward `da033cb4`).
 
 **Orden y dependencias:** 087 (ver Completados arriba) recuperó la red de cobertura; era recomendación operativa, no dependencia funcional de los demás. No hay aristas obligatorias entre los planes restantes. 090 toca un workflow distinto del que tocó 087;
 091 y 092 son Workers diferentes. Todos comparten el índice de planes: integrar
 sus actualizaciones de estado de manera secuencial para evitar pisarlas.
 No se autoriza despliegue por el solo hecho de seleccionar un plan.
 
-**Criterio net-positive:** 089 corrige resultados inconsistentes (088, ya mergeado,
-corregía entradas);
+**Criterio net-positive:** 089 ya mergeado (corregía resultados inconsistentes;
+088, también mergeado, corregía entradas);
 087/090 restauran controles/evidencia; 091 evita trabajo recurrente inútil;
 092 completa el límite de un endpoint público sin sumar infraestructura;
 093 tiene impacto menor pero corrección y prueba muy pequeñas. En 089 se estima
