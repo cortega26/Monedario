@@ -60,14 +60,13 @@ para `execute`.
 
 | Orden | Plan | Resultado esperado | Prioridad | Esfuerzo | Riesgo | Dependencia | Estado |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | [096](096-lockfile-release-age-excludes.md) | `pnpm install` (incluido `--frozen-lockfile` de CI), hooks y checkouts frescos vuelven a funcionar | P1 | S | MED | Ninguna | EJECUTADO Y APROBADO EN REVISIÓN (2026-09-12, vía `/improve execute 096`) — worktree `.claude/worktrees/agent-096-1789253360`, rama `advisor/096-lockfile-release-age-excludes`, commit `fdaf7cfa` (hook pre-commit pasado sin `--no-verify`). Re-verificación independiente: install exit 0 (era exit 1), lockfile intacto, suite 1441/1442 con único fallo en portability (094 pendiente), scope limpio (solo `pnpm-workspace.yaml`). Hallazgo del ejecutor aprobado en mérito: pnpm es first-match-wins por nombre en excludes — el fix une 1.2.2/1.2.4 en `'... || ...'` (plan enmendado). Sin merge/push (decisión del operador). |
-| 2 | [094](094-runner-portability.md) | Suite vitest 1442/1442: workflows de emergencia usan el runner portable | P1 | S | LOW | 096 mergeado | TODO |
-| 3 | [095](095-sueldo-imponible-utm-refresh.md) | `check:editorial-timeliness` en verde: artículo revalidado contra UTM septiembre (71721) | P1 | S–M | LOW | 096 mergeado | TODO |
+| 1 | [094](094-runner-portability.md) | Suite vitest 1442/1442: workflows de emergencia usan el runner portable | P1 | S | LOW | 096 mergeado ✓ | TODO |
+| 2 | [095](095-sueldo-imponible-utm-refresh.md) | `check:editorial-timeliness` en verde: artículo revalidado contra UTM septiembre (71721) | P1 | S–M | LOW | 096 mergeado ✓ | TODO |
 
-**Orden y dependencias:** 096 primero y sin atajos — los ejecutores de 094 y
-095 necesitan `pnpm install` funcionando para correr gates y commitear por el
-hook; sin 096 mergeado ambos paran en su Step 0 por diseño. 094 y 095 son
-paralelizables entre sí una vez mergeado 096 (archivos disjuntos: workflows vs
+**Completados de este seguimiento:** [096](archive/096-lockfile-release-age-excludes.md) — installs/hooks/CI desbloqueados (mergeado 2026-09-12, merge `2e0fe2e0`, test `fdaf7cfa`).
+
+**Orden y dependencias:** 096 ya mergeado (ver Completados) — 094 y 095 pueden
+ejecutarse en paralelo (archivos disjuntos: workflows vs
 `src/data/blog/sueldo-imponible-chile.md`). Cuando los tres aterricen,
 `pnpm run check:ci` debe salir 0 completo. Todos comparten el índice:
 integrar actualizaciones de estado secuencialmente.
