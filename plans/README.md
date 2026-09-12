@@ -58,18 +58,12 @@ rojo por causas ajenas a 087, verificadas en árbol prístino. El usuario pidió
 fijarlas todas («dig into that and fix them»). Planes autocontenidos, listos
 para `execute`.
 
-| Orden | Plan | Resultado esperado | Prioridad | Esfuerzo | Riesgo | Dependencia | Estado |
-| --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | [094](094-runner-portability.md) | Suite vitest 1442/1442: workflows de emergencia usan el runner portable | P1 | S | LOW | 096 mergeado ✓ | TODO |
-| 2 | [095](095-sueldo-imponible-utm-refresh.md) | `check:editorial-timeliness` en verde: artículo revalidado contra UTM septiembre (71721) | P1 | S–M | LOW | 096 mergeado ✓ | TODO |
+**Completados de este seguimiento (nada pendiente):**
+- [096](archive/096-lockfile-release-age-excludes.md) — installs/hooks/CI desbloqueados (mergeado 2026-09-12, merge `2e0fe2e0`, test `fdaf7cfa`).
+- [094](archive/094-runner-portability.md) — runner portable en workflows de emergencia (fast-forward `59457be1`).
+- [095](archive/095-sueldo-imponible-utm-refresh.md) — `check:editorial-timeliness` en verde, UTM septiembre 71721 (merge `edac4a33`, test `b4ce4a63`).
 
-**Completados de este seguimiento:** [096](archive/096-lockfile-release-age-excludes.md) — installs/hooks/CI desbloqueados (mergeado 2026-09-12, merge `2e0fe2e0`, test `fdaf7cfa`).
-
-**Orden y dependencias:** 096 ya mergeado (ver Completados) — 094 y 095 pueden
-ejecutarse en paralelo (archivos disjuntos: workflows vs
-`src/data/blog/sueldo-imponible-chile.md`). Cuando los tres aterricen,
-`pnpm run check:ci` debe salir 0 completo. Todos comparten el índice:
-integrar actualizaciones de estado secuencialmente.
+**Cierre:** los tres aterrizaron; `pnpm run check:ci` debe salir 0 completo (verificado al cerrar — ver fila de merge).
 
 
 Auditoría inicial: `/improve deep` el 2026-06-11 (commit `8256c9d2`) → planes 001–019.
