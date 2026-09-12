@@ -79,7 +79,7 @@ jobs:
         run: pnpm run format:check
 
       - name: "🧪 Run tests"
-        run: pnpm run test
+        run: pnpm run test:coverage
 
       - name: "🧱 Check domain boundaries"
         run: pnpm run check:boundaries
