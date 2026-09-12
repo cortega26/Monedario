@@ -9,17 +9,16 @@ implementación, no cambios implementados ni autorización de publicación.
 
 | Orden | Plan | Resultado esperado | Prioridad | Esfuerzo | Riesgo | Dependencia | Estado |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | [087](087-ci-coverage-enforcement.md) | CI y espejo local ejecutan el umbral de cobertura | P1 | S | LOW | Ninguna | EJECUTADO Y APROBADO EN REVISIÓN (2026-09-12, vía `/improve execute 087`) — worktree `.claude/worktrees/agent-087-1789251518`, rama `advisor/087-ci-coverage-enforcement`, commit `df8cc14e`. Re-verificación independiente del revisor: focal 4/4, `test` 163/1442, `test:coverage` exit 0 con 91,81% líneas, `lint`/`format:check`/`check:docs`/`check:policy-registry`/`check:context` exit 0, `vitest.config.ts` intacto, discriminación probada con fixture revertida, scope limpio (5 archivos en alcance). `check:ci` falla solo en `check:editorial-timeliness`, probado preexistente en árbol prístino (deriva UTM vs reviewDate en `src/data/blog/sueldo-imponible-chile.md`, fuera de alcance) — pendiente de owners de contenido. Sin merge/push/PR (decisión del operador). |
-| 2 | [088](088-profile-numeric-roundtrip.md) | Perfil conserva decimales nativos y montos | P1 | S | MED | Ninguna | TODO |
-| 3 | [089](089-scenario-calculation-consistency.md) | Escenarios guardan entradas y resultado del mismo cálculo | P1 | M–L | MED | Ninguna | TODO |
-| 4 | [090](090-python-audit-summary-integrity.md) | Reporte Python distingue limpio, hallazgos e incompleto | P2 | S–M | LOW | Ninguna | TODO |
-| 5 | [091](091-economic-refresh-idempotency.md) | Refrescos sin cambios de datos no producen commits | P2 | S–M | MED | Ninguna | TODO |
-| 6 | [092](092-analytics-bounded-body-read.md) | Collector lee el body con límite de bytes | P2 | S–M | MED | Ninguna | TODO |
-| 7 | [093](093-git-audit-commit-summary.md) | Exportador muestra el commit solicitado | P3 | S | LOW | Ninguna | TODO |
+| 1 | [088](088-profile-numeric-roundtrip.md) | Perfil conserva decimales nativos y montos | P1 | S | MED | Ninguna | TODO |
+| 2 | [089](089-scenario-calculation-consistency.md) | Escenarios guardan entradas y resultado del mismo cálculo | P1 | M–L | MED | Ninguna | TODO |
+| 3 | [090](090-python-audit-summary-integrity.md) | Reporte Python distingue limpio, hallazgos e incompleto | P2 | S–M | LOW | Ninguna | TODO |
+| 4 | [091](091-economic-refresh-idempotency.md) | Refrescos sin cambios de datos no producen commits | P2 | S–M | MED | Ninguna | TODO |
+| 5 | [092](092-analytics-bounded-body-read.md) | Collector lee el body con límite de bytes | P2 | S–M | MED | Ninguna | TODO |
+| 6 | [093](093-git-audit-commit-summary.md) | Exportador muestra el commit solicitado | P3 | S | LOW | Ninguna | TODO |
 
-**Orden y dependencias:** 087 primero para recuperar la red de cobertura; es
-recomendación operativa, no dependencia funcional de los demás. No hay aristas
-obligatorias entre estos siete planes. 087 y 090 tocan workflows distintos;
+**Completados de esta selección:** [087](archive/087-ci-coverage-enforcement.md) — CI y espejo local ejecutan el umbral de cobertura (mergeado 2026-09-12, merge `f111752b`, test `df8cc14e`; residual conocido: `check:editorial-timeliness` con deriva UTM preexistente, fuera de alcance).
+
+**Orden y dependencias:** 087 (ver Completados arriba) recuperó la red de cobertura; era recomendación operativa, no dependencia funcional de los demás. No hay aristas obligatorias entre los planes restantes. 090 toca un workflow distinto del que tocó 087;
 091 y 092 son Workers diferentes. Todos comparten el índice de planes: integrar
 sus actualizaciones de estado de manera secuencial para evitar pisarlas.
 No se autoriza despliegue por el solo hecho de seleccionar un plan.
