@@ -24,6 +24,7 @@ import { updateResultDisplay, fmt, fmtPct } from "./resultRenderer";
 type NetSalaryResult = ReturnType<typeof calculateNetSalary>;
 
 let lastResultado: NetSalaryResult | null = null;
+let lastScenarioInputs: Record<string, string> | null = null;
 let lastOtrosDescuentos = 0;
 let lastModoLabel = "";
 let lastBaseBruto: number | undefined = undefined;
@@ -228,6 +229,11 @@ function checkMinWage(rawInput: number, jornadaFraction = 1) {
 function handleCalculate(): void {
   hideError();
   setLoading(true);
+  lastScenarioInputs = null;
+  const scenarioForm = document.getElementById("calculator-form-card");
+  const scenarioCandidateInputs = scenarioForm
+    ? snapshotInputs(scenarioForm)
+    : null;
   const modo = getModo();
   const rawInput =
     parseFloat((document.getElementById("sueldo") as HTMLInputElement).value) ||
@@ -271,6 +277,7 @@ function handleCalculate(): void {
       economicParameters: getParams(),
     });
     lastResultado = resultado;
+    lastScenarioInputs = scenarioCandidateInputs;
     lastOtrosDescuentos = 0;
     lastModoLabel = "Sueldo Bruto Estimado";
     lastBaseBruto = undefined;
@@ -379,6 +386,7 @@ function handleCalculate(): void {
       economicParameters: getParams(),
     });
     lastResultado = resultado;
+    lastScenarioInputs = scenarioCandidateInputs;
     lastOtrosDescuentos = otrosDescuentos ?? 0;
     lastModoLabel = "Sueldo Líquido";
     lastBaseBruto = rawInputEscalado;
@@ -698,7 +706,7 @@ export function setupFormListeners(): void {
   if (scenarioFormCard) {
     initScenarioPanel({
       calculatorId: window.location.pathname,
-      readInputs: () => snapshotInputs(scenarioFormCard),
+      readInputs: () => (lastScenarioInputs ? { ...lastScenarioInputs } : null),
       applyInputs: inputs => {
         restoreInputs(scenarioFormCard, inputs);
         (
@@ -706,7 +714,7 @@ export function setupFormListeners(): void {
         )?.click();
       },
       buildSummary: () => {
-        if (!lastResultado) return null;
+        if (!lastScenarioInputs || !lastResultado) return null;
         const r = lastResultado;
         return [
           {

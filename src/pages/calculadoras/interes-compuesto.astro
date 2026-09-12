@@ -409,6 +409,7 @@ const interesCompuestoFaqs = [
 
   let scenarioLastResult: ReturnType<typeof calculateCompoundInterest> | null =
     null;
+  let scenarioLastInputs: Record<string, string> | null = null;
 
   function fmt(n: number): string {
     return formatCLP(n);
@@ -570,6 +571,11 @@ const interesCompuestoFaqs = [
 
   document.getElementById("calcBtn")?.addEventListener("click", () => {
     hideError();
+    scenarioLastInputs = null;
+    const scenarioForm = document.getElementById("calculator-form-card");
+    const scenarioCandidateInputs = scenarioForm
+      ? snapshotInputs(scenarioForm)
+      : null;
     const capital = parseFloat(
       (document.getElementById("capital-inicial") as HTMLInputElement).value
     );
@@ -605,6 +611,7 @@ const interesCompuestoFaqs = [
     scenarioLastResult = result;
     renderResultado(result);
     renderTabla(result.yearlyEvolution);
+    scenarioLastInputs = scenarioCandidateInputs;
     focusResultado();
     saveCalculatorResult(
       window.location.pathname,
@@ -637,7 +644,7 @@ const interesCompuestoFaqs = [
   if (scenarioFormCard) {
     initScenarioPanel({
       calculatorId: window.location.pathname,
-      readInputs: () => snapshotInputs(scenarioFormCard),
+      readInputs: () => (scenarioLastInputs ? { ...scenarioLastInputs } : null),
       applyInputs: inputs => {
         restoreInputs(scenarioFormCard, inputs);
         (
@@ -645,7 +652,7 @@ const interesCompuestoFaqs = [
         )?.click();
       },
       buildSummary: () => {
-        if (!scenarioLastResult) return null;
+        if (!scenarioLastInputs || !scenarioLastResult) return null;
         const r = scenarioLastResult;
         return [
           { label: "Monto final", value: fmt(r.finalAmount) },
