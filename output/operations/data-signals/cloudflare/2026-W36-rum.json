@@ -1,0 +1,209 @@
+{
+  "fetchedAt": "2026-09-10T10:55:05Z",
+  "schemaVersion": 1,
+  "source": "cloudflare-rum",
+  "week": "2026-W36",
+  "window": {
+    "from": "2026-08-31",
+    "to": "2026-09-06"
+  },
+  "data": [
+    {
+      "clsP75": 0,
+      "count": 1800,
+      "inpP75Ms": 88,
+      "lcpP75Ms": 1224,
+      "path": "/calculadoras/conversor-utm/"
+    },
+    {
+      "clsP75": 1,
+      "count": 280,
+      "inpP75Ms": 48,
+      "lcpP75Ms": 1024,
+      "path": "/calculadoras/conversor-uf/"
+    },
+    {
+      "clsP75": 0,
+      "count": 160,
+      "inpP75Ms": 16,
+      "lcpP75Ms": 52,
+      "path": "/buscar/"
+    },
+    {
+      "clsP75": 0,
+      "count": 80,
+      "inpP75Ms": null,
+      "lcpP75Ms": 3228,
+      "path": "/"
+    },
+    {
+      "clsP75": 0,
+      "count": 50,
+      "inpP75Ms": 96,
+      "lcpP75Ms": 1124,
+      "path": "/calculadoras/seguro-cesantia/"
+    },
+    {
+      "clsP75": 1,
+      "count": 40,
+      "inpP75Ms": 40,
+      "lcpP75Ms": 1128,
+      "path": "/calculadoras/impuesto-segunda-categoria/"
+    },
+    {
+      "clsP75": 0,
+      "count": 40,
+      "inpP75Ms": 40,
+      "lcpP75Ms": 8428,
+      "path": "/calculadoras/prepago-credito/"
+    },
+    {
+      "clsP75": 0,
+      "count": 40,
+      "inpP75Ms": null,
+      "lcpP75Ms": 140,
+      "path": "/calculadoras/"
+    },
+    {
+      "clsP75": 0,
+      "count": 30,
+      "inpP75Ms": 24,
+      "lcpP75Ms": 196,
+      "path": "/calculadoras/credito-consumo/"
+    },
+    {
+      "clsP75": 1,
+      "count": 30,
+      "inpP75Ms": 80,
+      "lcpP75Ms": 832,
+      "path": "/calculadoras/sueldo-liquido/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": null,
+      "lcpP75Ms": 524,
+      "path": "/posts/cae-costo-real-credito-chile/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 24,
+      "lcpP75Ms": 964,
+      "path": "/calculadoras/dividendo-hipotecario/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 40,
+      "lcpP75Ms": 648,
+      "path": "/calculadoras/deposito-a-plazo/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 964,
+      "path": "/posts/como-salir-boletin-comercial-chile/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 16,
+      "lcpP75Ms": 1460,
+      "path": "/calculadoras/operacion-renta/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 1408,
+      "path": "/posts/reajuste-arriendo-uf-ipc-chile/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 564,
+      "path": "/calculadoras/actualizador-inflacion/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 216,
+      "lcpP75Ms": 780,
+      "path": "/posts/descuentos-de-sueldo/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 752,
+      "path": "/posts/cuanto-descuenta-la-afp-de-tu-sueldo/"
+    },
+    {
+      "clsP75": 0.021,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 2412,
+      "path": "/apoyar/"
+    }
+  ],
+  "_meta": {
+    "totalRawRoutes": 30,
+    "keptRoutes": 20,
+    "discardedRoutes": 10,
+    "discarded": [
+      {
+        "path": "/leyes/ley-18933-isapres/",
+        "count": 40,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/glosario/cae/",
+        "count": 20,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/glosario/renta-imponible/",
+        "count": 20,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/glosario/ctc/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/calendario/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/glosario/tmc/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/leyes/ley-21130-modernizacion-bancaria/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/leyes/ley-20575-datos-comerciales/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/leyes/ley-18469-fonasa/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      },
+      {
+        "path": "/uf-hoy/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      }
+    ]
+  }
+}

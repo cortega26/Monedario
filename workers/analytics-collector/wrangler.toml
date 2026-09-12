@@ -61,12 +61,10 @@ RATE_LIMIT_MAX = "30"
 # Dominio allowlist para origin check (solo same-origin).
 ALLOWED_ORIGIN = "https://monedario.cl"
 
-# Si está en "1", los eventos se rechazan con 503 (feature flag off).
-# Cambiar a "0" para activar la recolección solo después de:
-#   - Actualizar /privacidad/ y /cookies/
-#   - Obtener sign-off legal
-#   - Verificar el worker en entorno de prueba
-ANALYTICS_DISABLED = "0"
+# EMERGENCIA 2026-09-11: desactivar temporalmente la ingesta para detener el
+# agotamiento diario de la cuota KV mientras se migra el rate limit fuera de KV
+# y se redefine el almacenamiento de contadores.
+ANALYTICS_DISABLED = "1"
 
 [observability]
 enabled = true
