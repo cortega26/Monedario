@@ -96,6 +96,10 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [041](041-impuesto-cls-load-shift.md) | Corregir CLS de carga en `impuesto-segunda-categoria` — **REJECTED 2026-09-04**: el `CLS p75 1,008` que lo motivaba era contaminación RUM anterior al plan 047 (sin filtro `requestHost`); con datos limpios el peor CLS del sitio es 0,014 | 2026-07-10 | no aplica (cerrado sin implementar) |
 | [046](046-converter-recurrence-return-hook-spike.md) | Spike: recurrencia en conversores y return-hook privacy-safe — **SUPERSEDED 2026-09-04** por los planes 085 (evalúa el vehículo) y 083 (arregla la entrega): el hook ya existe e instrumentado en `UtmPostResultActions.astro:43`; falta volumen de impresiones, no diseño | 2026-07-12 | no aplica (cerrado sin implementar) |
 | [055](055-calculator-consolidation-spike.md) | Spike: consolidación por URL de 5 calculadoras — entregable `docs/backlog/CALCULATOR-CONSOLIDATION-2026-08-02.md`; **archivado 2026-09-04**. Premisa APV (MANTENER, basada en W32) vencida por W34/W35 → supeditada al plan 086; compuerta humana §5 sigue abierta | 2026-08-02 | sí (ejecutado y aprobado 2026-08-11) |
+| [083](083-next-step-instrumentation-parity.md) | Dar paridad de instrumentación a las tres superficies de "siguiente paso" y cerrar el drift del enum `page_type` | 2026-09-04 | sí (merge `e3bd14b3`); DONE verificado y archivado 2026-09-12 |
+| [084](084-utility-led-decision-readiness.md) | Hacer decidible la ventana utility-led — regla de denominador mínimo y captura del Gate D | 2026-09-04 | sí (merge `b02f0c70`); DONE verificado y archivado 2026-09-12 |
+| [085](085-journey-thesis-vehicle-spike.md) | Spike de dirección — qué vehículo y qué superficie pueden probar la tesis del recorrido antes del 2026-11-02 | 2026-09-04 | sí (merge `2935878f`); DONE verificado y archivado 2026-09-12 |
+| [086](086-apv-completion-drop-diagnosis.md) | Diagnosticar la caída de completitud de la calculadora APV (58% → 14% en tres semanas) | 2026-09-04 | sí (merge `d412aa57`); DONE verificado y archivado 2026-09-12 |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 

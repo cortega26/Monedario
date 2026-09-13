@@ -1,5 +1,11 @@
 # Plan 086: Diagnosticar la caída de completitud de la calculadora APV (58% → 14% en tres semanas)
 
+> **DONE — verificado el 2026-09-12 contra `13c939ed`.** Integrado en `main`
+> mediante `d412aa57`. Archivado en esta reconciliación; no volver a ejecutar
+> las instrucciones históricas de abajo.
+> Causa no identificada: cierre válido según el Paso 3. W36 mejora a 6/18 completitudes, sin demostrar recuperación. Instrumentación calculator_error y placeholders siguen como seguimientos.
+> Evidencia y pendientes vigentes: [reconciliación](../RECONCILIATION-2026-09-12.md).
+
 > **Instrucciones para el ejecutor**: este plan es un **diagnóstico**, no un
 > arreglo. El Paso 3 es una compuerta: si el diagnóstico no identifica una causa
 > con evidencia reproducible, **te detienes y reportas** en vez de "arreglar" algo
@@ -15,6 +21,8 @@
 > descartar la persistencia de la caída.
 
 ## Status
+
+- **State**: DONE (verificado 2026-09-12; merge `d412aa57`)
 
 - **Priority**: P2
 - **Effort**: S–M
@@ -244,3 +252,11 @@ actualice la recomendación "MANTENER APV" del dossier 055 con esta evidencia nu
 - **Seguimiento sugerido**: que `calculator_error` deje de ser 0 en todo el sitio
   es sospechoso por sí mismo — o ninguna calculadora falla nunca, o el evento no se
   emite. Vale como hallazgo aparte si este diagnóstico lo confirma.
+
+## Registro histórico de ejecución y revisión
+
+Revisión registrada en el índice antes de la reconciliación. Sus menciones de
+merge/push pendiente y de W36 como futuro quedan superadas por la nota de cierre
+anterior; se conservan para trazabilidad, no como trabajo activo.
+
+EJECUTADO Y APROBADO EN REVISIÓN (2026-09-04, vía `/improve execute 086`) — worktree `agent-a93c175af00d3f961`, rama `advisor/086-apv-completion-drop-diagnosis`, commit `690ff53e`. Entregable `docs/backlog/DIAGNOSTICO-apv-completion-2026-09-04.md`. **Revisión (tech lead) APROBADA** — reverificada de forma independiente, no solo el reporte del ejecutor: tabla global-vs-APV recalculada desde los JSON crudos (coincide exacta: 94,2%/66,7% → 91,8%/14,3%), `calculator_id="apv"` confirmado constante en las 5 semanas, `calculator_error` confirmado con cero emisores en todo `src/` (grep propio), `readEconomicParameters()` confirmado fuera de cualquier try/catch en `apv.astro:648` (el try en línea 721 es del cálculo, no de esta llamada), equivalencia funcional de `formatCLP` confirmada byte a byte contra el diff real del commit `32bd56ce`, y valores UF/UTM muestreados como válidos en los commits de refresco de la ventana. **Veredicto: causa no identificada** — resultado válido según la propia compuerta del plan (Paso 3), no una ejecución fallida. Scope limpio: el documento + 1 línea de `.gitignore` (`!docs/backlog/DIAGNOSTICO-*.md`, mismo patrón que `CALCULATOR-CONSOLIDATION-*.md` — desviación aprobada en mérito, precedente idéntico al del plan 055). `check:docs` exit 0, `git diff --name-only -- src/ workers/ scripts/` vacío, sin procesos de dev server huérfanos. **El hallazgo instrumental es el resultado real de este plan**: `calculator_error` nunca se emite en ningún punto del sitio, y el bloque de renderizado de `apv.astro:742-991` (incluida la llamada sin guard de la línea 648) no tiene manejo de excepciones — un fallo real ahí dejaría `calculator_start` disparado y el botón "Calcular" inerte sin rastro distinguible del abandono, coincidiendo estructuralmente con el patrón observado pero sin evidencia que lo confirme con los datos actuales. **Candidato a plan futuro, sin número reservado** (junto con el hallazgo del `utilityStatus` de 084 — mismo número de plan candidato, dos hallazgos, no escrito aún). **Hallazgo secundario, sitewide, no causal**: `type="number"` + placeholders con puntos como separador de miles (`"Ej: 1.500.000"`) es rechazado por la validación nativa del navegador en 19 calculadoras, incluida `sueldo-liquido` (la de mejor completitud) — descarta por sí solo que sea la causa de APV, pero es un defecto de producto real e independiente. **Actualiza la recomendación del dossier 055**: MANTENER se sostiene, pero el argumento que la sostenía ("ascenso real W30→W32") ya no representa el estado actual; decisiones futuras deben usar datos posteriores a W35. **Nota de medición para W36**: `calculator_complete / calculator_start` de APV debe leerse limpio (no lo toca 083); pero `next_step_shown`/`next_step_click` de APV en W36 subirán por la instrumentación del plan 083, sin relación con esta caída — no confundir ambas señales. Commit/merge/push pendiente de instrucción del operador (alcance nuevo, no cubierto por el "haz lo que falta" del 084).

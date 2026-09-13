@@ -1,5 +1,11 @@
 # Plan 083: Dar paridad de instrumentación a las tres superficies de "siguiente paso" y cerrar el drift del enum `page_type`
 
+> **DONE — verificado el 2026-09-12 contra `13c939ed`.** Integrado en `main`
+> mediante `e3bd14b3`. Archivado en esta reconciliación; no volver a ejecutar
+> las instrucciones históricas de abajo.
+> Código y contrato presentes; tests pasan. W36 registra 6 impresiones en seguro-cesantia y 3 en prepago-credito: seguimiento cumplido. La prop calculatorId explícita sigue diferida.
+> Evidencia y pendientes vigentes: [reconciliación](../RECONCILIATION-2026-09-12.md).
+
 > **Instrucciones para el ejecutor**: sigue este plan paso a paso. Ejecuta cada
 > comando de verificación y confirma el resultado esperado antes de pasar al
 > siguiente paso. Si ocurre cualquier cosa de la sección "Condiciones de STOP",
@@ -19,6 +25,8 @@
 > compara los extractos contra el código vivo antes de escribir. Mismatch = STOP.
 
 ## Status
+
+- **State**: DONE (verificado 2026-09-12; merge `e3bd14b3`)
 
 - **Priority**: P1
 - **Effort**: M
@@ -446,3 +454,11 @@ Detente y reporta (no improvises) si:
   página (en vez de derivarlo de `currentHref`) es más robusto pero toca 10+
   páginas y agregaría una prop sin uso si se hiciera a medias; se dejó fuera para
   mantener el diff chico dentro de la ventana de medición.
+
+## Registro histórico de ejecución y revisión
+
+Revisión registrada en el índice antes de la reconciliación. Sus menciones de
+merge/push pendiente y de W36 como futuro quedan superadas por la nota de cierre
+anterior; se conservan para trazabilidad, no como trabajo activo.
+
+EJECUTADO Y APROBADO EN REVISIÓN (2026-09-04, vía `/improve execute 083`) — worktree `agent-a587c3fbb4d431f04`, rama `advisor/083-next-step-instrumentation-parity`, commit `1a761389`. **Revisión (tech lead) APROBADA** — reverificada de forma independiente en el worktree: `astro check` 0 errores, `pnpm run test` 1397/1397, `lint`/`format:check`/`check:boundaries`/`check:dead-code`/`check:ci` exit 0. Scope limpio: 6 archivos (`NextSteps.astro`, `analytics-events.ts`, `tests/*`, más `src/utils/nextSteps.ts` — desviación autorizada por el propio plan). `page_type` ampliado solo con `"article"`/`"calculator-index"`; `FORBIDDEN_KEY_PATTERN` y `ANALYTICS_ALLOWED_PROPERTIES` intactos. `data-analytics-cta="next-step"` removido del ancla (sin doble conteo verificado contra `UtmPostResultActions`, que no comparte el wrapper `[data-analytics-next-steps]`). **Desviación aprobada en mérito**: el Paso 2 del plan pedía `page_type: "calculator"` fijo; el ejecutor lo leyó en runtime desde `data-analytics-page-type` porque `NextSteps` también se renderiza en `PostDetails.astro` (páginas de artículo, `page_type="article"`) — confirmado leyendo el layout. Fijarlo habría reintroducido el mismo defecto que el plan corrige. **Consecuencia a monitorear, no defecto**: en páginas de artículo `calculator_id` queda `undefined` a propósito (identidad falsa es peor que ausente), así que esos eventos siguen sin dueño de calculadora — el bucket fantasma se cierra completo en páginas de calculadora, parcialmente en artículos. **Sin cobertura de test para el `<script>` en sí** (vitest corre en `node`, `src/components/**` excluido de coverage — decisión correcta del plan, no hay harness de componentes Astro); la señal de aceptación real es el export de la semana **2026-W36**: `next_step_shown` > 0 para `seguro-cesantia`/`prepago-credito`. **Paso 0 sin baseline pre-edición independiente** (el ejecutor no corrió la tabla de comandos sobre el árbol sin modificar antes de editar); aceptado porque el drift check dio vacío y el estado post-cambio es verde. Merge/push pendiente de decisión del operador.

@@ -1,5 +1,11 @@
 # Plan 084: Hacer decidible la ventana utility-led — regla de denominador mínimo y captura del Gate D
 
+> **DONE — verificado el 2026-09-12 contra `13c939ed`.** Integrado en `main`
+> mediante `b02f0c70`. Archivado en esta reconciliación; no volver a ejecutar
+> las instrucciones históricas de abajo.
+> Mínimos, suficiencia y aviso Gate D presentes y probados. Captura operativa sin datos locales posteriores a W35; INPUT_REQUIRED → WATCH del titular queda como decisión separada.
+> Evidencia y pendientes vigentes: [reconciliación](../RECONCILIATION-2026-09-12.md).
+
 > **Instrucciones para el ejecutor**: sigue este plan paso a paso. Ejecuta cada
 > comando de verificación y confirma el resultado esperado antes de pasar al
 > siguiente. Si ocurre cualquier cosa de "Condiciones de STOP", detente y reporta.
@@ -15,6 +21,8 @@
 > Mismatch con los extractos de "Estado actual" = STOP.
 
 ## Status
+
+- **State**: DONE (verificado 2026-09-12; merge `b02f0c70`)
 
 - **Priority**: P1
 - **Effort**: S–M
@@ -355,3 +363,11 @@ Casos nuevos:
   acercarse la fecha los denominadores de alerta y apoyo siguen bajo el mínimo, la
   decisión correcta es *extender la medición o cambiar la entrega* (plan 085), no
   declarar HALT — pero esa es una decisión del operador, no de un ejecutor.
+
+## Registro histórico de ejecución y revisión
+
+Revisión registrada en el índice antes de la reconciliación. Sus menciones de
+merge/push pendiente y de W36 como futuro quedan superadas por la nota de cierre
+anterior; se conservan para trazabilidad, no como trabajo activo.
+
+EJECUTADO Y APROBADO EN REVISIÓN (2026-09-04, vía `/improve execute 084`) — worktree `agent-a26957221acbfcbe2`, rama `advisor/084-utility-led-decision-readiness`, dos commits (`e7aa0845`, `9c7d0609`). **Revisión (tech lead) APROBADA** — reverificada de forma independiente en el worktree: `pnpm run test` 1406/1406, `check:docs`/`lint`/`format:check`/`check:ci` exit 0, y `--init` (ruta usada por `weekly-search-ops.yml`) probado aparte con exit 0 sin tocar el template de `utility-led-ops.json`. Scope limpio: exactamente los 4 archivos declarados (`UTILITY_LED_EXPERIMENT_REGISTRY.md`, `UTILITY_LED_BLOCKED_PENDING_EVIDENCE.md`, `build-weekly-search-report.mjs`, `tests/scripts/utility-led-sufficiency.test.ts`), 0 líneas eliminadas en el registry — ningún umbral GREEN/WATCH/HALT preexistente se tocó. `minimumDenominator`/`sufficiencyLabel` exportadas y testeadas (149/598/99, entradas inválidas → `null`, regresión de clasificación conservada). **Autocorrección del ejecutor durante la ejecución**: detectó y arregló un bug propio (línea en blanco que partía la lista markdown del Gate D en dos cuando el gate SÍ está lleno) con test de regresión que discrimina el bug (commit `9c7d0609`). **Corrección de premisa del plan, aprobada en mérito**: el Paso 4 asumía que el estado `INPUT_REQUIRED` del Gate D se omitía en silencio; verificado que ya se imprimía (línea 2063 pre-cambio) — el ejecutor ajustó el paso a "aclarar la redacción", no "arreglar una omisión", y así lo documentó. **Ambigüedad del plan, no del ejecutor**: el Paso 3 no especificaba si la suficiencia va a nivel de totales, por calculadora, o ambos — el ejecutor implementó ambos niveles, consistente con el ejemplo trabajado del propio plan y con la instrucción literal "agrega columnas". **Hallazgo nuevo, verificado, NO corregido (fuera de alcance de 084 por diseño)**: `scripts/build-weekly-search-report.mjs:1839-1846` — el `utilityStatus` de titular colapsa `utilityOps.status === "INPUT_REQUIRED"` al mismo `WATCH` que un error rate real >10%, exactamente la confusión que el propio plan 084 previene para las señales individuales pero no para el veredicto de titular. Verificado leyendo el código: reclasificarlo cambiaría un veredicto ya publicado, por lo que corregirlo requiere una decisión del operador, no un ajuste de ejecutor. **Candidato a plan futuro, sin número reservado** (no escrito aún — a pedido del operador). Merge/push pendiente de decisión del operador.

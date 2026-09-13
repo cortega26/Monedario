@@ -1,5 +1,11 @@
 # Plan 085: Spike de dirección — qué vehículo y qué superficie pueden probar la tesis del recorrido antes del 2026-11-02
 
+> **DONE — verificado el 2026-09-12 contra `13c939ed`.** Integrado en `main`
+> mediante `2935878f`. Archivado en esta reconciliación; no volver a ejecutar
+> las instrucciones históricas de abajo.
+> Dossier y correcciones integrados; spike terminado. Opciones de producto pendientes de decisión. Proyecciones con corte W35/2026-09-04. Los ~54 son exposiciones aproximadas, no personas únicas medidas.
+> Evidencia y pendientes vigentes: [reconciliación](../RECONCILIATION-2026-09-12.md).
+
 > **Instrucciones para el ejecutor**: este es un **spike de dirección read-only**.
 > Produce **un documento de análisis** y se detiene en una compuerta de decisión
 > humana. **NO toca código de producto, rutas, contenido ni contratos.** Ejecuta
@@ -19,6 +25,8 @@
 > export **posterior** a `2026-W35`, úsalo y dilo en el documento.
 
 ## Status
+
+- **State**: DONE (verificado 2026-09-12; merge `2935878f`)
 
 - **Priority**: P2
 - **Effort**: M
@@ -264,3 +272,11 @@ pnpm run check:docs && pnpm run format:check
   en semanas. Anota la fecha de corte de los datos en el encabezado del documento.
 - **Diferido a propósito**: este spike no decide ni implementa. La ejecución de la
   opción elegida es un plan posterior, después de la compuerta humana.
+
+## Registro histórico de ejecución y revisión
+
+Revisión registrada en el índice antes de la reconciliación. Sus menciones de
+merge/push pendiente y de W36 como futuro quedan superadas por la nota de cierre
+anterior; se conservan para trazabilidad, no como trabajo activo.
+
+EJECUTADO Y APROBADO EN REVISIÓN (2026-09-05, vía `/improve execute 085`) — worktree `agent-ab29642198c76c51b`, rama `advisor/085-journey-thesis-vehicle-spike`, 4 commits (`a660ecc1`, `247be7e6`, `99db0341`, `65a2e02c`). Entregable `docs/backlog/JOURNEY-THESIS-VEHICLE-2026-09-04.md`. **Reconciliación previa al despacho**: el plan 083 ya había aterrizado, así que el ejecutor recibió instrucción explícita de tratar la instrumentación de `NextSteps.astro` como hecho consumado, no hipótesis — el documento lo refleja en su "Nota de reconciliación". **Autocorrección del propio ejecutor durante la ejecución (verificada, sustantiva)**: al desagregar `next_step_shown` de `conversor-utm` por `dimensions` encontró que las dos anclas del panel post-resultado disparan en lockstep exacto (W33 13/13, W34 26/26, W35 15/15) — los "0 de 108" citados en las revisiones de 083/084 son en realidad **~54 personas distintas**, no 108 eventos independientes. Recalculó P(0 clics) con el denominador correcto: 24,1% a la tasa baja demostrada (2,6%), lo que **debilita** (no descarta) la inferencia de demanda baja específica de la superficie. Esto no invalida el análisis de 084 (que usa eventos como unidad, consistente con su propia convención — A2: acciones agregadas, no personas) pero es una precisión real sobre un número que yo mismo usé sin esa distinción. **Revisión (tech lead) APROBADA tras 1 ronda de corrección**: reverificado de forma independiente — tablas de vehículos recalculadas desde los JSON crudos (coinciden exactas), probabilidades binomiales recalculadas y confirmadas, cruce de demanda GSC verificado (571/773 clics, 121.300/150.899 impresiones). **Encontré y corregí un error real durante la revisión**: la Opción C afirmaba que `alert_interest_shown` "excedía el cierre de la ventana" (9-10 semanas necesarias) — verificación independiente mostró 149/15,8=9,4 semanas **totales** desde cero, cuando la cifra correcta es (149−79)/15,8≈4,4 semanas **adicionales** desde el acumulado actual, contra ~8,4 semanas restantes de ventana: la conclusión se invertía. Enviado de vuelta al ejecutor (2 intentos por límite de sesión de la API), corregido con precisión en el commit `65a2e02c` — distingue `alert_interest_shown` (cruzaría con margen ajustado, ~4 semanas de colchón, sensible a varianza semanal 3–27) de `support_shown` (62 acumulado, ~43 semanas necesarias — claramente insuficiente, no afectado por el error). Scope limpio en ambas rondas: solo el documento + 1 línea de `.gitignore` (mismo patrón precedente que 055/086). `check:docs`/`format:check` exit 0 tras la corrección. **Compuerta humana con 6 preguntas cerradas** (Sección 6 del documento) — recomienda Opción A (subir el panel junto al resultado) como prioridad, con B condicional a que A confirme vehículo-no-demanda. Cierra 046 (SUPERSEDED, confirmado por este spike) y actualiza la cita de la recomendación MANTENER de APV (055) sin cambiar la decisión. Merge/push pendiente — a continuación.

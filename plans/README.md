@@ -1,20 +1,36 @@
 # Implementation Plans
 
-## Selección vigente — auditoría profunda 2026-09-06
+## Estado vigente — reconciliación 2026-09-12
+
+**No quedan planes numerados pendientes de implementación.** Los últimos cuatro
+(083–086) ya estaban integrados en `main`; se verificaron y archivaron.
+087–096 también están integrados y archivados. Base revisada: `13c939ed`.
+
+El [informe de reconciliación](RECONCILIATION-2026-09-12.md) contiene los commits,
+59 tests focalizados pasando, evidencia W36 y límites de la verificación.
+Siguen abiertos la captura del Gate D, la decisión sobre el titular
+`INPUT_REQUIRED`/`WATCH`, la elección de vehículo del 085 y la instrumentación
+diagnóstica del 086. Los deploys de 091/092 siguen registrados como pendientes;
+esta revisión local no verifica el estado de producción.
+
+Las secciones fechadas de auditoría y revisión conservadas abajo son históricas;
+no constituyen una cola de ejecución. Para próximos pasos, usar el informe de
+reconciliación y sus seguimientos, sin duplicar los planes cerrados.
+
+## Selección completada — auditoría profunda 2026-09-06
 
 Sobre `db9d07c8`, el mantenedor seleccionó **«Todos los net-positive»** del
 [informe de auditoría](AUDIT-2026-09-06.md). Los siete hallazgos justifican un
-arreglo acotado y se convierten en **087–093**. Estos documentos son planes de
-implementación, no cambios implementados ni autorización de publicación.
+arreglo acotado y dieron origen a **087–093**, ahora implementados y archivados.
+La selección no autoriza por sí sola la publicación.
 
 Sin pendientes en esta selección: los siete planes (087–093) están mergeados y archivados (ver Completados abajo).
 
-**Completados de esta selección:** [087](archive/087-ci-coverage-enforcement.md) — CI y espejo local ejecutan el umbral de cobertura (mergeado 2026-09-12, merge `f111752b`, test `df8cc14e`; residual conocido: `check:editorial-timeliness` con deriva UTM preexistente, fuera de alcance); [088](archive/088-profile-numeric-roundtrip.md) — perfil conserva decimales nativos y montos (mergeado 2026-09-12, fast-forward `4bb17a7d`); [089](archive/089-scenario-calculation-consistency.md) — escenarios guardan entradas y resultado del mismo cálculo (mergeado 2026-09-12, fast-forward `da033cb4`); [090](archive/090-python-audit-summary-integrity.md) — reporte Python distingue limpio, hallazgos e incompleto (mergeado 2026-09-12, fast-forward `218be569`); [091](archive/091-economic-refresh-idempotency.md) — refrescos sin cambios de datos no producen commits (mergeado 2026-09-12, fast-forward `b5805eed`; deploy del worker pendiente); [092](archive/092-analytics-bounded-body-read.md) — collector lee el body con límite de bytes (mergeado 2026-09-12, fast-forward `0ca87cda`; deploy del collector pendiente); [093](archive/093-git-audit-commit-summary.md) — exportador muestra el commit solicitado (mergeado 2026-09-12, fast-forward `4e7c22ae`).
+**Completados de esta selección:** [087](archive/087-ci-coverage-enforcement.md) — CI y espejo local ejecutan el umbral de cobertura (mergeado 2026-09-12, merge `f111752b`, test `df8cc14e`; deriva UTM preexistente resuelta posteriormente por 095); [088](archive/088-profile-numeric-roundtrip.md) — perfil conserva decimales nativos y montos (mergeado 2026-09-12, fast-forward `4bb17a7d`); [089](archive/089-scenario-calculation-consistency.md) — escenarios guardan entradas y resultado del mismo cálculo (mergeado 2026-09-12, fast-forward `da033cb4`); [090](archive/090-python-audit-summary-integrity.md) — reporte Python distingue limpio, hallazgos e incompleto (mergeado 2026-09-12, fast-forward `218be569`); [091](archive/091-economic-refresh-idempotency.md) — refrescos sin cambios de datos no producen commits (mergeado 2026-09-12, fast-forward `b5805eed`; deploy del worker pendiente); [092](archive/092-analytics-bounded-body-read.md) — collector lee el body con límite de bytes (mergeado 2026-09-12, fast-forward `0ca87cda`; deploy del collector pendiente); [093](archive/093-git-audit-commit-summary.md) — exportador muestra el commit solicitado (mergeado 2026-09-12, fast-forward `4e7c22ae`).
 
-**Orden y dependencias:** 087 (ver Completados arriba) recuperó la red de cobertura; era recomendación operativa, no dependencia funcional de los demás. No hay aristas obligatorias entre los planes restantes. 090 toca un workflow distinto del que tocó 087;
-091 y 092 son Workers diferentes. Todos comparten el índice de planes: integrar
-sus actualizaciones de estado de manera secuencial para evitar pisarlas.
-No se autoriza despliegue por el solo hecho de seleccionar un plan.
+**Orden histórico:** 087 recuperó la red de cobertura antes de los demás fixes;
+era recomendación operativa, no dependencia funcional. La secuencia está
+completa. No se autoriza despliegue por el solo hecho de seleccionar un plan.
 
 **Criterio net-positive:** 089 ya mergeado (corregía resultados inconsistentes;
 088, también mergeado, corregía entradas);
@@ -31,24 +47,22 @@ Los demás candidatos descartados/diferidos constan en el informe de auditoría.
 **Numeración:** las menciones históricas a un posible «087» en los resultados de
 084/086 eran propuestas sin archivo. No reservaban número: esos dos asuntos
 siguen sin plan numerado y 087 corresponde ahora al gate de cobertura.
-Los estados históricos de 083–086 no se reconcilian en este encargo.
+083–086 se reconciliaron y archivaron el 2026-09-12 (ver estado vigente).
 
-**QA de planificación:** `pnpm run check:docs` exit 0; siete documentos con
+**QA histórico de planificación (2026-09-06):** `pnpm run check:docs` exit 0; siete documentos con
 scopes, paths, SHA, secciones de aceptación/STOP/rollback y enlaces del índice
 verificados; `git diff --check` sin errores. No se reejecutaron tests de runtime
 porque este encargo solo modificó planes. La suite y cobertura de la auditoría
 son baseline, no evidencia de implementación de estos arreglos.
 
-**Entrega:** versionar los archivos nuevos bajo `plans/` junto con esta entrada
-antes de usar `execute` en worktrees; no están gitignored. Ningún commit, push,
-PR, merge ni deploy fue realizado durante esta planificación.
+**Entrega histórica:** la planificación no hizo commit, push, PR, merge ni
+deploy. Los planes se versionaron e implementaron en sesiones posteriores.
 
 ## Seguimiento 2026-09-12 — breakage preexistente detectado al cerrar 087 (094–096)
 
 Sobre `ece35800` (087 ya mergeado y archivado), el cierre dejó tres gates en
 rojo por causas ajenas a 087, verificadas en árbol prístino. El usuario pidió
-fijarlas todas («dig into that and fix them»). Planes autocontenidos, listos
-para `execute`.
+fijarlas todas («dig into that and fix them»). Los tres planes ya se completaron.
 
 **Completados de este seguimiento (nada pendiente):**
 - [096](archive/096-lockfile-release-age-excludes.md) — installs/hooks/CI desbloqueados (mergeado 2026-09-12, merge `2e0fe2e0`, test `fdaf7cfa`).
@@ -119,59 +133,15 @@ Cada ejecutor debe leer el plan completo y honrar sus condiciones de STOP.
 ejecutados y archivados (PRs #415, #416, #419). Sin pendientes de esta
 auditoría.
 
-## Orden global de ejecución (para un ejecutor fresco que parte de cero)
+## Orden global de ejecución
 
-**Lee primero `AGENTS.md`** (protocolo de ejecución, reglas 2.1–2.13: scope
-block, diffs mínimos, condiciones de halt, gates de CI) y `pnpm install`
-si `node_modules/` no existe.
+No hay una secuencia pendiente a fecha 2026-09-12. 057–081 y 082 ya estaban
+archivados; 041 fue REJECTED, 046 SUPERSEDED y 055 DONE el 2026-09-04.
+083–096 también están cerrados. Los estados BLOCKED/TODO de las revisiones
+antiguas no deben usarse para despachar trabajo de nuevo.
 
-**La secuencia de la séptima auditoría (057 → 081, orden 1–25) está COMPLETA
-(2026-08-11):** los 25 planes fueron ejecutados y archivados. De la tabla
-antigua solo quedan vivos 041, 046 y 055 (052, 056 y 082 ya fueron DONE
-y archivados —
-ver abajo), y NO forman parte de esa secuencia:
-
-- **052** — DONE y archivado (2026-08-11, PR #420, squash `8bc8a0a2`):
-  re-implementado tras reconciliación (la rama original `ae9246bd` se perdió),
-  desplegado, forma legacy `?secret=` rechazada (401 verificado en
-  producción). **Pendientes del operador**: smoke positivo por header y
-  rotación del PAT (autoridad de cuenta GitHub) — checklist en el ADR.
-- **041** — BLOCKED: no intentar (hipótesis descartada; falta causa de campo).
-- **046, 055** — spikes de dirección con compuertas humanas: ejecutar
-  solo si el operador lo pide; se detienen en la compuerta. **Reconciliados
-  contra el estado actual el 2026-08-11** (drift checks re-corridos contra
-  HEAD; secciones "Reconciliación" añadidas a cada plan y filas de la tabla
-  actualizadas): premisas vivas, extractos re-verificados, datos al día
-  (046: patrón post-resultado ya existente en conversor-utm; 055: GSC W32 +
-  freeze refactorizado).
-- **056** — EJECUTADO Y ARCHIVADO (2026-08-11, commit `f2c64ce7`): spike
-  completado, entregable en `docs/backlog/`, derivó el plan **082**
-  (implementación del paso 1, TODO en la tabla de pendientes).
-
-**Loop por plan (uno a uno):**
-1. Leer el plan completo; correr su drift check contra `90370b4e`.
-2. Implementar; correr TODOS sus comandos de verificación.
-3. Commit en rama `advisor/NNN-slug` (convención del repo, ver `git log`).
-4. Actualizar la fila del plan en su tabla (IN PROGRESS → el estado final).
-5. **Detenerse para revisión/merge del operador** — cada plan dice "NO push/PR
-   salvo pedido del operador": ese freno es deliberado.
-6. **No empezar el siguiente plan hasta que el anterior esté mergeado a
-   `main`**: los excerpts y drift checks de cada plan asumen
-   `main = 90370b4e + planes anteriores`. Si el operador autoriza el merge,
-   hacer el **cierre atómico** de la "Política obligatoria de cierre y
-   archivo" (mover a `plans/archive/`, actualizar índices y la tabla).
-
-**Compuertas humanas (pasos que un agente NO puede completar; marcar el plan
-BLOCKED y reportar):** deploys de workers (`wrangler deploy` para 059/060/063/
-064/072 — los fixes del snapshot worker y del collector no están en
-producción hasta desplegar), rotación de secrets (052, 066 implícito),
-decisión Durable Objects (059), conversión de bots a PRs (079), elección de
-slugs para los checks de 081 (el ejecutor elige y anota — excepción, no
-compuerta).
-
-**Recordatorio de cierre (aplica a ambas tablas):** en cuanto un plan pasa a
-`DONE`, su archivo se mueve a `plans/archive/` en la misma unidad de cambio y
-deja de aparecer en su tabla. Ninguna tabla debe mostrar una fila `DONE`.
+Los seguimientos de operación y decisión están en el
+[informe vigente](RECONCILIATION-2026-09-12.md#seguimientos-conservados-y-orden-útil).
 
 ## Dependency notes (séptima auditoría)
 
@@ -197,6 +167,10 @@ deja de aparecer en su tabla. Ninguna tabla debe mostrar una fila `DONE`.
 - **Rejects menores**: `fmt` deprecated en `indicadores.ts` (knip lo cubre); error leak `?secret=` documentado en docs históricas (037 ya lo verificó); Dependabot automerge (verificado sano).
 
 ## Auditoría de dirección `/improve next` — 2026-09-04 (commit `08a6b5b4`)
+
+> Estado previo a 083–086, conservado como evidencia histórica. La falta de
+> instrumentación y de mínimos ya está resuelta. La inferencia de independencia
+> de los 108 eventos fue corregida por 085; ver la reconciliación vigente.
 
 Tercera pasada de dirección. **Delta sobre la ventana utility-led** (2026-08-02 →
 2026-11-02) usando los datos reales que el repo ya genera: exports first-party
@@ -378,45 +352,20 @@ planes **pendientes**; los cerrados se listan abajo con enlace al archivo.
 
 ## Pendientes (trabajo abierto)
 
-Los planes abajo vienen de la quinta y sexta auditorías profundas (035–038,
-048–052; 047–050 ya archivados) y de la
-revisión de datos de tráfico que le siguió (039–041, mismo commit `520a8685`,
-2026-07-10, a pedido del usuario tras la quinta auditoría; origen: los
-scorecards y exports reales en `output/operations/`). Originalmente siete;
-**035, 036, 037, 038 y 039 ya están DONE y archivados** (ver arriba — 039
-parcialmente, con su typo residual desglosado en el plan 042; 038 con alcance
-revisado a 3 de 4 claves, el resto desglosado en el plan 043 — ver nota abajo).
-El plan 043 se sumó el 2026-07-11 como *carve-out* de 038. Los planes que
-siguen vivos de este lote (041, 046, 055) **no
-forman parte de la secuencia de la séptima auditoría** (057–081): ver la
-sección "Orden global de ejecución" arriba para su estado y tratamiento (los
-spikes 046/055 fueron reconciliados contra el estado actual el 2026-08-11; el
-056 se ejecutó y archivó ese mismo día, derivando el 082, ejecutado y
-archivado el mismo día). Los restantes
-(035–040, 042–045, 047–051, 053–054, 056, 082 y el 052, cerrado con PR #420
-el 2026-08-11) están DONE y archivados.
+**Ningún plan numerado pendiente.** Los 083–086 se movieron al archivo con
+su registro de revisión y evidencia de merge. Los seguimientos que permanecen
+abiertos están en el [informe de reconciliación](RECONCILIATION-2026-09-12.md).
 
-> **Recordatorio de cierre**: en cuanto un plan de esta tabla pase a `DONE`,
-> deja de aparecer aquí — su archivo se mueve a
-> [`plans/archive/`](archive/README.md) de forma automática, en la misma
-> unidad de cambio que lo cierra (ver "Política obligatoria de cierre y
-> archivo" arriba). Esta tabla nunca debe mostrar una fila en estado `DONE`.
+### Notas históricas de ejecución (no son pendientes vigentes)
 
-| Orden | Plan | Título | Prioridad | Esfuerzo | Riesgo | Paralelizable con | Estado |
-|---|------|--------|-----------|----------|--------|--------------------|--------|
-| 1 | [083](083-next-step-instrumentation-parity.md) | Dar paridad de instrumentación a las tres superficies de "siguiente paso" y cerrar el drift del enum `page_type` | P1 | M | MED | 084, 085, 086 (sin archivos en común) | EJECUTADO Y APROBADO EN REVISIÓN (2026-09-04, vía `/improve execute 083`) — worktree `agent-a587c3fbb4d431f04`, rama `advisor/083-next-step-instrumentation-parity`, commit `1a761389`. **Revisión (tech lead) APROBADA** — reverificada de forma independiente en el worktree: `astro check` 0 errores, `pnpm run test` 1397/1397, `lint`/`format:check`/`check:boundaries`/`check:dead-code`/`check:ci` exit 0. Scope limpio: 6 archivos (`NextSteps.astro`, `analytics-events.ts`, `tests/*`, más `src/utils/nextSteps.ts` — desviación autorizada por el propio plan). `page_type` ampliado solo con `"article"`/`"calculator-index"`; `FORBIDDEN_KEY_PATTERN` y `ANALYTICS_ALLOWED_PROPERTIES` intactos. `data-analytics-cta="next-step"` removido del ancla (sin doble conteo verificado contra `UtmPostResultActions`, que no comparte el wrapper `[data-analytics-next-steps]`). **Desviación aprobada en mérito**: el Paso 2 del plan pedía `page_type: "calculator"` fijo; el ejecutor lo leyó en runtime desde `data-analytics-page-type` porque `NextSteps` también se renderiza en `PostDetails.astro` (páginas de artículo, `page_type="article"`) — confirmado leyendo el layout. Fijarlo habría reintroducido el mismo defecto que el plan corrige. **Consecuencia a monitorear, no defecto**: en páginas de artículo `calculator_id` queda `undefined` a propósito (identidad falsa es peor que ausente), así que esos eventos siguen sin dueño de calculadora — el bucket fantasma se cierra completo en páginas de calculadora, parcialmente en artículos. **Sin cobertura de test para el `<script>` en sí** (vitest corre en `node`, `src/components/**` excluido de coverage — decisión correcta del plan, no hay harness de componentes Astro); la señal de aceptación real es el export de la semana **2026-W36**: `next_step_shown` > 0 para `seguro-cesantia`/`prepago-credito`. **Paso 0 sin baseline pre-edición independiente** (el ejecutor no corrió la tabla de comandos sobre el árbol sin modificar antes de editar); aceptado porque el drift check dio vacío y el estado post-cambio es verde. Merge/push pendiente de decisión del operador.
-| 2 | [084](084-utility-led-decision-readiness.md) | Hacer decidible la ventana utility-led: regla de denominador mínimo + captura del Gate D | P1 | S–M | LOW | 083, 085, 086 | EJECUTADO Y APROBADO EN REVISIÓN (2026-09-04, vía `/improve execute 084`) — worktree `agent-a26957221acbfcbe2`, rama `advisor/084-utility-led-decision-readiness`, dos commits (`e7aa0845`, `9c7d0609`). **Revisión (tech lead) APROBADA** — reverificada de forma independiente en el worktree: `pnpm run test` 1406/1406, `check:docs`/`lint`/`format:check`/`check:ci` exit 0, y `--init` (ruta usada por `weekly-search-ops.yml`) probado aparte con exit 0 sin tocar el template de `utility-led-ops.json`. Scope limpio: exactamente los 4 archivos declarados (`UTILITY_LED_EXPERIMENT_REGISTRY.md`, `UTILITY_LED_BLOCKED_PENDING_EVIDENCE.md`, `build-weekly-search-report.mjs`, `tests/scripts/utility-led-sufficiency.test.ts`), 0 líneas eliminadas en el registry — ningún umbral GREEN/WATCH/HALT preexistente se tocó. `minimumDenominator`/`sufficiencyLabel` exportadas y testeadas (149/598/99, entradas inválidas → `null`, regresión de clasificación conservada). **Autocorrección del ejecutor durante la ejecución**: detectó y arregló un bug propio (línea en blanco que partía la lista markdown del Gate D en dos cuando el gate SÍ está lleno) con test de regresión que discrimina el bug (commit `9c7d0609`). **Corrección de premisa del plan, aprobada en mérito**: el Paso 4 asumía que el estado `INPUT_REQUIRED` del Gate D se omitía en silencio; verificado que ya se imprimía (línea 2063 pre-cambio) — el ejecutor ajustó el paso a "aclarar la redacción", no "arreglar una omisión", y así lo documentó. **Ambigüedad del plan, no del ejecutor**: el Paso 3 no especificaba si la suficiencia va a nivel de totales, por calculadora, o ambos — el ejecutor implementó ambos niveles, consistente con el ejemplo trabajado del propio plan y con la instrucción literal "agrega columnas". **Hallazgo nuevo, verificado, NO corregido (fuera de alcance de 084 por diseño)**: `scripts/build-weekly-search-report.mjs:1839-1846` — el `utilityStatus` de titular colapsa `utilityOps.status === "INPUT_REQUIRED"` al mismo `WATCH` que un error rate real >10%, exactamente la confusión que el propio plan 084 previene para las señales individuales pero no para el veredicto de titular. Verificado leyendo el código: reclasificarlo cambiaría un veredicto ya publicado, por lo que corregirlo requiere una decisión del operador, no un ajuste de ejecutor. **Candidato a plan futuro, sin número reservado** (no escrito aún — a pedido del operador). Merge/push pendiente de decisión del operador.
-| 3 | [085](085-journey-thesis-vehicle-spike.md) | **Spike de dirección**: qué vehículo y qué superficie pueden probar la tesis del recorrido antes del 2026-11-02 (actualiza el encuadre de 046 y la premisa APV de 055) | P2 | M | LOW | 084, 086 | EJECUTADO Y APROBADO EN REVISIÓN (2026-09-05, vía `/improve execute 085`) — worktree `agent-ab29642198c76c51b`, rama `advisor/085-journey-thesis-vehicle-spike`, 4 commits (`a660ecc1`, `247be7e6`, `99db0341`, `65a2e02c`). Entregable `docs/backlog/JOURNEY-THESIS-VEHICLE-2026-09-04.md`. **Reconciliación previa al despacho**: el plan 083 ya había aterrizado, así que el ejecutor recibió instrucción explícita de tratar la instrumentación de `NextSteps.astro` como hecho consumado, no hipótesis — el documento lo refleja en su "Nota de reconciliación". **Autocorrección del propio ejecutor durante la ejecución (verificada, sustantiva)**: al desagregar `next_step_shown` de `conversor-utm` por `dimensions` encontró que las dos anclas del panel post-resultado disparan en lockstep exacto (W33 13/13, W34 26/26, W35 15/15) — los "0 de 108" citados en las revisiones de 083/084 son en realidad **~54 personas distintas**, no 108 eventos independientes. Recalculó P(0 clics) con el denominador correcto: 24,1% a la tasa baja demostrada (2,6%), lo que **debilita** (no descarta) la inferencia de demanda baja específica de la superficie. Esto no invalida el análisis de 084 (que usa eventos como unidad, consistente con su propia convención — A2: acciones agregadas, no personas) pero es una precisión real sobre un número que yo mismo usé sin esa distinción. **Revisión (tech lead) APROBADA tras 1 ronda de corrección**: reverificado de forma independiente — tablas de vehículos recalculadas desde los JSON crudos (coinciden exactas), probabilidades binomiales recalculadas y confirmadas, cruce de demanda GSC verificado (571/773 clics, 121.300/150.899 impresiones). **Encontré y corregí un error real durante la revisión**: la Opción C afirmaba que `alert_interest_shown` "excedía el cierre de la ventana" (9-10 semanas necesarias) — verificación independiente mostró 149/15,8=9,4 semanas **totales** desde cero, cuando la cifra correcta es (149−79)/15,8≈4,4 semanas **adicionales** desde el acumulado actual, contra ~8,4 semanas restantes de ventana: la conclusión se invertía. Enviado de vuelta al ejecutor (2 intentos por límite de sesión de la API), corregido con precisión en el commit `65a2e02c` — distingue `alert_interest_shown` (cruzaría con margen ajustado, ~4 semanas de colchón, sensible a varianza semanal 3–27) de `support_shown` (62 acumulado, ~43 semanas necesarias — claramente insuficiente, no afectado por el error). Scope limpio en ambas rondas: solo el documento + 1 línea de `.gitignore` (mismo patrón precedente que 055/086). `check:docs`/`format:check` exit 0 tras la corrección. **Compuerta humana con 6 preguntas cerradas** (Sección 6 del documento) — recomienda Opción A (subir el panel junto al resultado) como prioridad, con B condicional a que A confirme vehículo-no-demanda. Cierra 046 (SUPERSEDED, confirmado por este spike) y actualiza la cita de la recomendación MANTENER de APV (055) sin cambiar la decisión. Merge/push pendiente — a continuación.
-| 4 | [086](086-apv-completion-drop-diagnosis.md) | Diagnosticar la caída de completitud de APV (58% → 14% en tres semanas) | P2 | S–M | LOW | 083, 084, 085 (sin archivos en común) | EJECUTADO Y APROBADO EN REVISIÓN (2026-09-04, vía `/improve execute 086`) — worktree `agent-a93c175af00d3f961`, rama `advisor/086-apv-completion-drop-diagnosis`, commit `690ff53e`. Entregable `docs/backlog/DIAGNOSTICO-apv-completion-2026-09-04.md`. **Revisión (tech lead) APROBADA** — reverificada de forma independiente, no solo el reporte del ejecutor: tabla global-vs-APV recalculada desde los JSON crudos (coincide exacta: 94,2%/66,7% → 91,8%/14,3%), `calculator_id="apv"` confirmado constante en las 5 semanas, `calculator_error` confirmado con cero emisores en todo `src/` (grep propio), `readEconomicParameters()` confirmado fuera de cualquier try/catch en `apv.astro:648` (el try en línea 721 es del cálculo, no de esta llamada), equivalencia funcional de `formatCLP` confirmada byte a byte contra el diff real del commit `32bd56ce`, y valores UF/UTM muestreados como válidos en los commits de refresco de la ventana. **Veredicto: causa no identificada** — resultado válido según la propia compuerta del plan (Paso 3), no una ejecución fallida. Scope limpio: el documento + 1 línea de `.gitignore` (`!docs/backlog/DIAGNOSTICO-*.md`, mismo patrón que `CALCULATOR-CONSOLIDATION-*.md` — desviación aprobada en mérito, precedente idéntico al del plan 055). `check:docs` exit 0, `git diff --name-only -- src/ workers/ scripts/` vacío, sin procesos de dev server huérfanos. **El hallazgo instrumental es el resultado real de este plan**: `calculator_error` nunca se emite en ningún punto del sitio, y el bloque de renderizado de `apv.astro:742-991` (incluida la llamada sin guard de la línea 648) no tiene manejo de excepciones — un fallo real ahí dejaría `calculator_start` disparado y el botón "Calcular" inerte sin rastro distinguible del abandono, coincidiendo estructuralmente con el patrón observado pero sin evidencia que lo confirme con los datos actuales. **Candidato a plan futuro, sin número reservado** (junto con el hallazgo del `utilityStatus` de 084 — mismo número de plan candidato, dos hallazgos, no escrito aún). **Hallazgo secundario, sitewide, no causal**: `type="number"` + placeholders con puntos como separador de miles (`"Ej: 1.500.000"`) es rechazado por la validación nativa del navegador en 19 calculadoras, incluida `sueldo-liquido` (la de mejor completitud) — descarta por sí solo que sea la causa de APV, pero es un defecto de producto real e independiente. **Actualiza la recomendación del dossier 055**: MANTENER se sostiene, pero el argumento que la sostenía ("ascenso real W30→W32") ya no representa el estado actual; decisiones futuras deben usar datos posteriores a W35. **Nota de medición para W36**: `calculator_complete / calculator_start` de APV debe leerse limpio (no lo toca 083); pero `next_step_shown`/`next_step_click` de APV en W36 subirán por la instrumentación del plan 083, sin relación con esta caída — no confundir ambas señales. Commit/merge/push pendiente de instrucción del operador (alcance nuevo, no cubierto por el "haz lo que falta" del 084).
 > **035–040, 042–055 archivados** (ver [`Completados — archivados`](#completados--archivados) abajo) — ya no aparecen en esta tabla.
 >
 > **Cierre del 2026-09-04**: los tres últimos planes heredados (**041**, **046**,
 > **055**) se archivaron en esta fecha por decisión del operador ("todo lo que ya
 > NO corresponda a planes pendientes no debería estar en `plans/`"). Ninguno queda
 > vivo. Justificación de cada uno en
-> [Cierre de planes heredados](#cierre-de-planes-heredados-2026-09-04). **La tabla
-> de pendientes queda con los cuatro planes de la auditoría de dirección del
-> 2026-09-04 (083–086) y nada más.**
+> [Cierre de planes heredados](#cierre-de-planes-heredados-2026-09-04). En ese corte
+> quedaron 083–086; también se archivaron en la reconciliación del 2026-09-12.
 >
 > **053 CERRADO (mergeado y archivado 2026-08-02); 054–056 son los planes
 > de la auditoría de dirección (`/improve next`, 2026-08-02)**,
@@ -1289,6 +1238,15 @@ de la séptima auditoría 057–081, ya completa — 052 fue cerrado con PR #420
 
 ## Completados — archivados
 
+### Auditoría de dirección 083–086 — reconciliados 2026-09-12
+
+| Plan | Título | Cierre |
+| --- | --- | --- |
+| [083](archive/083-next-step-instrumentation-parity.md) | Dar paridad de instrumentación a las tres superficies de "siguiente paso" y cerrar el drift del enum `page_type` | **DONE verificado 2026-09-12**; merge `e3bd14b3` |
+| [084](archive/084-utility-led-decision-readiness.md) | Hacer decidible la ventana utility-led — regla de denominador mínimo y captura del Gate D | **DONE verificado 2026-09-12**; merge `b02f0c70` |
+| [085](archive/085-journey-thesis-vehicle-spike.md) | Spike de dirección — qué vehículo y qué superficie pueden probar la tesis del recorrido antes del 2026-11-02 | **DONE verificado 2026-09-12**; merge `2935878f` |
+| [086](archive/086-apv-completion-drop-diagnosis.md) | Diagnosticar la caída de completitud de la calculadora APV (58% → 14% en tres semanas) | **DONE verificado 2026-09-12**; merge `d412aa57` |
+
 Movidos a [`plans/archive/`](archive/README.md). Todos DONE y mergeados en `main`,
 salvo las dos excepciones cerradas sin implementar que se indican abajo.
 
@@ -1332,7 +1290,7 @@ Justificación completa en [Cierre de planes heredados](#cierre-de-planes-hereda
 | [076](archive/076-pyproject-prune.md) | Podar stack Python no usado (scraping/MCP) | P2 | M | DONE (fast-forward `56bf32d7`, 2026-08-10) — 22 deps podadas (inventario real de imports verificado: solo googleapiclient/google-auth + fonttools/brotli — hallazgo: subset-fonts.py usa stdlib + subprocess, las deps pip se quedan para el runtime); descripción corregida; `uv.lock` −891 líneas (70 de 116 paquetes), `uv lock --check` en sync; pytest 38/38, ruff limpio, pip-audit exit 0; sin doc-drift en la policy de adaptación; **auditoría adversarial** (sin cambios): venv podado sin cruft (verificado), imports runtime OK, los 3 skips de pip-audit local son paquetes ambientales del operador (proyecto polla — fuera del repo; CI corre limpio), workflows sin referencias a podadas; suite Node 1314/1314 |
 | [077](archive/077-check-ci-aggregate.md) | `check:ci` — un comando que reproduce el CI localmente | P2 | S–M | DONE (fast-forward `450b258b`, 2026-08-10) — `check:ci` con 23 gates (espejo del CI verificado contra ci.yml + 6 huérfanos rápidos, todos <1.4s medidos); texto del issue automático y README/START_HERE corregidos; **hallazgo preexistente reportado (STOP)**: `check:editorial-timeliness` falla por 4 posts con SLA vencido el 2026-08-09 (el scheduled CI en main falla hoy igual; deuda editorial, no se tocó); **auditoría adversarial integrada** (commit `450b258b`): `check:legal-citations` y los 2 checks de hero añadidos (huecos del espejo), `check:images` excluido con razón (borra PNGs — DX-03), divergencias documentadas (editorial sin ENFORCE, hero validación-solo, timeliness modo estricto); lockfile sync de metadata de 074 materializado (benigno) |
 
-### Auditoría de dirección 2026-08-02 (plans 053–056; 055 pendiente)
+### Auditoría de dirección 2026-08-02 (plans 053–056; todos archivados)
 
 | Plan | Título | Prioridad | Esfuerzo | Estado |
 |------|--------|-----------|----------|--------|
