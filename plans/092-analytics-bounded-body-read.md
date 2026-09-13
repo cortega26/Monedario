@@ -206,9 +206,33 @@ anotados; este plan no obliga a reconstruir pruebas por cambios de estilo.
 
 ## Registro de control de cambios — completar al ejecutar
 
-- Estado de implementación y commit(s): pendiente.
-- Baseline real (Node, pnpm/Python, comandos y salidas): pendiente.
-- Cambios y correspondencia con el alcance: pendiente.
-- Evidencia de aceptación y gates: pendiente.
-- Riesgo residual y rollback probado/documentado: pendiente.
-- Despliegue (cuando aplique), revisión y actualización del índice: pendiente.
+- Estado de implementación y commit(s): implementado en rama
+  `advisor/092-analytics-bounded-body-read` (worktree aislado; main intacto).
+  Commits: `fix(analytics-collector)` (helper + tests) y `docs(...)` (ADR +
+  README). Sin push/PR/merge/deploy.
+- Baseline real (Node, pnpm/Python, comandos y salidas): Node v22.20.0, pnpm
+  11.7.0. `pnpm install --frozen-lockfile` → exit 0. Drift
+  `git diff --stat db9d07c8..HEAD -- <4 paths>` → vacío (clean). Baseline:
+  focal 102 passed, `tsc -p workers/analytics-collector/tsconfig.json` → 0,
+  `check:docs` → 0 (733 Markdown, 44 ADR).
+- Cambios y correspondencia con el alcance: `workers/.../src/index.ts`
+  (helper privado `readBoundedBodyText` + reemplazo de `request.text()`),
+  `tests/.../schema.test.ts` (+7 casos, helpers `closedStream`/`streamInit`),
+  `workers/analytics-collector/README.md` (nota de tamaño, 12 líneas),
+  `docs/adr/ADR-20260906-analytics-body-byte-limit.md` (nuevo). Sin tocar
+  contrato, schema, rate limit, rutas, wrangler, secretos, deps.
+- Evidencia de aceptación y gates: focal 109/109; discriminación: con
+  `index.ts` anterior (stash) fallan exactamente «cancela la lectura
+  temprana…» y «mide bytes, no caracteres…» (2 failed / 107 passed).
+  `pnpm run test` 165 archivos / 1487 tests → 0; `lint`, `format:check`
+  (incl. prettier de los 4 archivos), `check:ci`, typecheck Worker,
+  `check:docs`, `check:context`, `check:policy-registry` → exit 0.
+- Riesgo residual y rollback probado/documentado: la cota incluye el chunk
+  ya entregado por el runtime (documentado en ADR, no prometido). Rollback =
+  revertir helper/integración + tests (sin migraciones; KV/R2 intactos). No
+  probado por revert ejecución, documentado.
+- Despliegue (cuando aplique), revisión y actualización del índice:
+  DESPLIEGUE PENDIENTE — el collector se despliega por wrangler fuera de
+  este plan; versión desplegada sin verificar. `todo.md` no creado (no
+  aplica retiro). `plans/README.md` NO tocado por override (lo mantiene el
+  revisor).

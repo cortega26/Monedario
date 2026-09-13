@@ -25,6 +25,18 @@ y `docs/operations/runbooks/analytics-worker-deployment.md`.
    solo metadatos (`week`, `window`, `rows`, `totalEvents`), nunca `data` ni
    la clave R2.
 
+## Límite de tamaño del body
+
+`POST /api/analytics/event` acepta cuerpos de hasta `MAX_BODY_SIZE` (2048)
+**bytes recibidos**, no caracteres: el conteo usa los bytes UTF-8 del stream
+y un cuerpo de exactamente 2048 bytes sigue a validación. Por encima del
+límite responde 413 con CORS y cancela la lectura sin pedir el resto del
+stream; un `Content-Length` declarado excesivo se rechaza antes de leer,
+pero ante cuerpos reales manda la lectura acotada. Lectura rota, cuerpo
+vacío o JSON inválido responden 400. Ningún rechazo de tamaño toca
+contadores. Detalle y trade-offs:
+`docs/adr/ADR-20260906-analytics-body-byte-limit.md`.
+
 ## Comandos canónicos
 
 Todos usan la config explícita del worker (`--config
