@@ -12,9 +12,21 @@ overrides:
   shiki: 4.3.1
   # Activo (intencional desde #305): los rangos viejos de js-yaml se fuerzan a
   # v4 (API unificada) mientras el root usa v5. No eliminar sin re-evaluar.
-  js-yaml@^3.13.1: 4.3.1
-  js-yaml@^4.1.1: 4.3.1
+  # Seguridad (2026-09-13): 4.3.1→4.3.2 por GHSA-2883-xcg3-v3hh (alerta #114,
+  # maxTotalMergeKeys no limita CPU). Pineado exacto, no rango.
+  js-yaml@^3.13.1: 4.3.2
+  js-yaml@^4.1.1: 4.3.2
   uuid: '>=11.1.1'
+  # Seguridad (2026-09-13): pines transitivos con CVE cuyo padre no publica
+  # release que los corrija — se fuerzan al parcheado exacto.
+  # - fflate 0.7.3→0.7.5 por GHSA-px8p-9vwx-vf98 (alerta #115, ZIP64 loop);
+  #   satori@0.33.4 (último publicado) pinea 0.7.3 exacto.
+  # - sharp 0.35.2→0.35.4 por GHSA-g89c-p67h-r497 / GHSA-2jg2-4ch7-h545
+  #   (alerta #113, libheif); lo pinea miniflare vía wrangler@4.127.1.
+  # Revisar al subir satori/wrangler: quitar la línea cuyo padre ya resuelva
+  # el parcheado, correr `pnpm install` y conservar si el lockfile queda limpio.
+  fflate@0.7.3: 0.7.5
+  sharp@0.35.2: 0.35.4
 minimumReleaseAge: 10080
 # Transitional, version-pinned exceptions for packages already trusted in the
 # lockfile before the seven-day policy was enabled. Future releases remain
