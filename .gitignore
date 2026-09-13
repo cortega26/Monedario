@@ -23,6 +23,7 @@ output/operations/data-signals/gsc/aggregate-query-page.json
 .astro/
 .cache/
 .claude/
+.codex/
 .continue/
 .vscode/
 .qodo/
