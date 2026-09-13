@@ -1,7 +1,17 @@
 """Tests para scripts/repo/git_audit_export.py — funciones puras del exportador de auditoría git."""
 
+import os
+import re
+import subprocess
+
 import pytest
-from repo.git_audit_export import filter_hint, md_code_block, section, validate_git_args
+from repo.git_audit_export import (
+    filter_hint,
+    git_show_commit,
+    md_code_block,
+    section,
+    validate_git_args,
+)
 
 
 class TestValidateGitArgs:
@@ -96,3 +106,68 @@ class TestFilterHint:
 
     def test_empty_list(self):
         assert filter_hint([]) == ""
+
+
+def _git_tmp(
+    repo: str, *args: str, env_extra: dict[str, str] | None = None
+) -> subprocess.CompletedProcess[str]:
+    """Ejecuta git en el repo desechable con identidad ficticia y config global ignorada."""
+    env = {
+        **os.environ,
+        "GIT_CONFIG_NOSYSTEM": "1",
+        "GIT_CONFIG_GLOBAL": os.devnull,
+        "GIT_AUTHOR_NAME": "Autor Ficticio",
+        "GIT_AUTHOR_EMAIL": "autor-ficticio@example.com",
+        "GIT_COMMITTER_NAME": "Autor Ficticio",
+        "GIT_COMMITTER_EMAIL": "autor-ficticio@example.com",
+        **(env_extra or {}),
+    }
+    return subprocess.run(
+        ["git", *args],
+        cwd=repo,
+        capture_output=True,
+        text=True,
+        check=True,
+        shell=False,
+        env=env,
+    )
+
+
+def _make_two_commit_repo(path) -> tuple[str, str]:
+    """Crea un repo desechable con dos commits y devuelve (repo, sha_del_primero)."""
+    repo = str(path)
+    _git_tmp(repo, "init", "-b", "main")
+    # Desactivar firma y hooks solo dentro del repo desechable, nunca global.
+    _git_tmp(repo, "config", "--local", "commit.gpgsign", "false")
+    hooks_dir = path / "no-hooks"
+    hooks_dir.mkdir()
+    _git_tmp(repo, "config", "--local", "core.hooksPath", str(hooks_dir))
+    (path / "notes.txt").write_text("primera línea\n", encoding="utf-8")
+    _git_tmp(repo, "add", "notes.txt")
+    _git_tmp(repo, "commit", "-m", "primer asunto resumen")
+    first_sha = _git_tmp(repo, "rev-parse", "HEAD").stdout.strip()
+    (path / "notes.txt").write_text("primera línea\nsegunda línea\n", encoding="utf-8")
+    _git_tmp(repo, "add", "notes.txt")
+    _git_tmp(repo, "commit", "-m", "segundo asunto head")
+    return repo, first_sha
+
+
+class TestGitShowCommitSummary:
+    """El bloque Resumen debe mostrar la revisión solicitada, no HEAD ni vacío."""
+
+    @pytest.mark.parametrize(
+        ("path_filters", "include_patch"),
+        [(None, False), (None, True), (["notes.txt"], False)],
+    )
+    def test_summary_shows_requested_sha_not_head(
+        self, tmp_path, path_filters: list[str] | None, include_patch: bool
+    ):
+        repo, first_sha = _make_two_commit_repo(tmp_path)
+        out = git_show_commit(repo, first_sha, path_filters, include_patch)
+        match = re.search(r"\*\*Resumen:\*\*\n\n```text\n(.*?)\n```", out, re.DOTALL)
+        assert match is not None
+        summary = match.group(1).strip()
+        assert summary != ""
+        assert first_sha[:7] in summary
+        assert "primer asunto resumen" in summary
+        assert "segundo asunto head" not in summary

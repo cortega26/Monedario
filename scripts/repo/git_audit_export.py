@@ -126,7 +126,7 @@ def git_show_commit(
     out.append(section(f"Commit {sha}", 2))
 
     out.append("**Resumen:**\n\n")
-    out.append(md_code_block(run_git(repo, ["show", "--no-patch", "--oneline", "--", sha]), "text"))
+    out.append(md_code_block(run_git(repo, ["show", "--no-patch", "--oneline", sha, "--"]), "text"))
 
     out.append("**Archivos tocados:**\n\n")
     name_only_args = ["show", "--name-only", "--pretty=format:", sha, "--"]
