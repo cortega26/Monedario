@@ -272,34 +272,126 @@ jobs:
       - name: "🔐 Audit Python dependencies for known CVEs"
         id: audit
         # pip-audit scans the resolved environment against PyPA Advisory Database
+        # Exit codes: 0 clean, 1 vulnerabilities, other operational failure.
+        # Capture the code in a step output without masking failures,
+        # and remove only this run's report so a stale file is never reused.
         run: |
           set -euo pipefail
-          uv run pip-audit --format json --output output/security/python-audit.json --desc on || true
+          rm -f output/security/python-audit.json
+          audit_exit=0
+          uv run pip-audit --format json --output output/security/python-audit.json --desc on || audit_exit=$?
+          echo "audit_exit=${audit_exit}" >> "$GITHUB_OUTPUT"
 
       - name: "📝 Publish Python audit summary"
         if: always()
+        env:
+          AUDIT_EXIT_CODE: ${{ steps.audit.outputs.audit_exit }}
         run: |
-          if [[ -s output/security/python-audit.json ]]; then
-            vuln_count=$(jq 'length' output/security/python-audit.json 2>/dev/null || echo "0")
-            {
-              echo "### Python Dependency Vulnerabilities"
+          set -euo pipefail
+          report="output/security/python-audit.json"
+          audit_code="${AUDIT_EXIT_CODE:-}"
+          status="INCOMPLETE"
+          reason=""
+          vuln_packages=""
+          skipped=""
+          report_present="no"
+          report_valid="no"
+          if [[ -s "${report}" ]]; then
+            report_present="yes"
+          fi
+          if [[ "${report_present}" == "yes" ]]; then
+            if jq -e 'type == "object" and has("dependencies") and (.dependencies | type == "array")' "${report}" >/dev/null 2>&1; then
+              if jq -e '[.dependencies[] | select((has("skip_reason") | not) and ((has("vulns") | not) or (.vulns | type != "array")))] | length == 0' "${report}" >/dev/null 2>&1; then
+                report_valid="yes"
+                vuln_packages=$(jq '[.dependencies[] | select(has("vulns") and (.vulns | type == "array") and (.vulns | length > 0))] | length' "${report}" 2>/dev/null || echo "ERR")
+                skipped=$(jq '[.dependencies[] | select(has("skip_reason"))] | length' "${report}" 2>/dev/null || echo "ERR")
+                if [[ "${vuln_packages}" == "ERR" || "${skipped}" == "ERR" ]]; then
+                  report_valid="no"
+                  reason="failed to count vulnerable or skipped dependencies"
+                  vuln_packages=""
+                  skipped=""
+                fi
+              else
+                reason="report has malformed dependency entries (expected vulns array or skip_reason)"
+              fi
+            else
+              reason="report is not a pip-audit JSON object with a dependencies array"
+            fi
+          else
+            reason="report missing or empty"
+          fi
+          if [[ -z "${audit_code}" ]]; then
+            status="INCOMPLETE"
+            if [[ -n "${reason}" ]]; then
+              reason="audit exit code missing (audit step skipped or output not set); ${reason}"
+            else
+              reason="audit exit code missing (audit step skipped or output not set)"
+            fi
+          elif [[ "${report_valid}" != "yes" ]]; then
+            status="INCOMPLETE"
+            if [[ -z "${reason}" ]]; then
+              reason="invalid report"
+            fi
+            reason="${reason} (exit code ${audit_code})"
+          elif ! [[ "${audit_code}" =~ ^[0-9]+$ ]]; then
+            status="INCOMPLETE"
+            reason="non-numeric audit exit code '${audit_code}'"
+          elif [[ "${audit_code}" -eq 0 ]]; then
+            if [[ "${vuln_packages}" -gt 0 ]]; then
+              status="INCOMPLETE"
+              reason="exit code 0 contradicts ${vuln_packages} vulnerable package(s) in report"
+            elif [[ "${skipped}" -gt 0 ]]; then
+              status="INCOMPLETE"
+              reason="partial audit: ${skipped} skipped dependenc(ies); not a full clean audit"
+            else
+              status="CLEAN"
+            fi
+          elif [[ "${audit_code}" -eq 1 ]]; then
+            if [[ "${vuln_packages}" -gt 0 ]]; then
+              status="VULNERABILITIES"
+            else
+              status="INCOMPLETE"
+              reason="exit code 1 contradicts clean report (0 vulnerable packages; ${skipped} skipped)"
+            fi
+          else
+            status="INCOMPLETE"
+            reason="operational failure with exit code ${audit_code}"
+          fi
+          {
+            echo "### Python Dependency Vulnerabilities"
+            echo ""
+            echo "- Status: ${status}"
+            if [[ -n "${audit_code}" ]]; then
+              echo "- Audit exit code: ${audit_code}"
+            else
+              echo "- Audit exit code: missing"
+            fi
+            if [[ "${report_valid}" == "yes" ]]; then
+              echo "- Vulnerable packages: ${vuln_packages}"
+              echo "- Skipped dependencies: ${skipped}"
+            else
+              echo "- Vulnerable packages: unknown"
+              echo "- Skipped dependencies: unknown"
+            fi
+            if [[ "${status}" == "CLEAN" ]]; then
               echo ""
-              echo "- Vulnerable packages: ${vuln_count}"
-              echo ""
-              if [[ "${vuln_count}" -gt 0 ]]; then
+              echo "No vulnerabilities found. ✓"
+            else
+              if [[ -n "${reason}" ]]; then
+                echo ""
+                echo "- Detail: ${reason}"
+              fi
+              if [[ "${report_valid}" == "yes" ]] && [[ "${vuln_packages}" != "" ]] && [[ "${vuln_packages}" -gt 0 ]]; then
+                echo ""
                 echo "<details><summary>Expand CVE details</summary>"
                 echo ""
                 echo '```json'
-                cat output/security/python-audit.json
+                cat "${report}"
                 echo '```'
                 echo "</details>"
               fi
-            } >> "$GITHUB_STEP_SUMMARY"
-          else
-            echo "### Python Dependency Vulnerabilities" >> "$GITHUB_STEP_SUMMARY"
-            echo "" >> "$GITHUB_STEP_SUMMARY"
-            echo "No vulnerabilities found. ✓" >> "$GITHUB_STEP_SUMMARY"
-          fi
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"
 
       - name: "📤 Upload Python audit artifact"
         if: always()
