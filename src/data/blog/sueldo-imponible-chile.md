@@ -53,8 +53,8 @@ reviewPolicy:
   derivationFactors:
     - registry:categoryPolicies.empleo-ingresos
     - template:utm
-  computedAt: "2026-09-12"
-updatedDate: 2026-09-12T00:00:00Z
+  computedAt: "2026-09-13"
+updatedDate: 2026-09-13T00:00:00Z
 ---
 
 > **Información vigente al 2026-09-12.** El tope máximo imponible en UF y los tramos del Impuesto de Segunda Categoría se actualizan periódicamente. Verifica los valores vigentes en la Superintendencia de Pensiones y el SII antes de hacer cualquier cálculo.
