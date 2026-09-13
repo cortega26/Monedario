@@ -86,6 +86,58 @@ function constantTimeEqual(a: string, b: string): boolean {
   return diff === 0;
 }
 
+// Idempotency contract (ADR-20260516-economic-snapshot-cloudflare-worker): two
+// payloads are equivalent when every data field matches, ignoring ONLY the
+// observation instants — the root capture instant and the UTM provenance
+// verification instant. Object key order and whitespace never matter (parsed
+// JSON); array order does. Inputs are never mutated. Invalid JSON throws so a
+// corrupt read is an observable failure, never a false no-op.
+function isObservationInstant(path: Array<string | number>): boolean {
+  if (path.length === 1 && path[0] === "capturedAt") return true;
+  return (
+    path.length === 3 &&
+    path[0] === "provenance" &&
+    path[1] === "utm" &&
+    path[2] === "verifiedAt"
+  );
+}
+
+function deepEqualJson(
+  a: unknown,
+  b: unknown,
+  path: Array<string | number>
+): boolean {
+  if (Object.is(a, b)) return true;
+  if (typeof a !== "object" || typeof b !== "object" || a === null || b === null) {
+    return false;
+  }
+  const aIsArray = Array.isArray(a);
+  const bIsArray = Array.isArray(b);
+  if (aIsArray || bIsArray) {
+    if (!aIsArray || !bIsArray) return false;
+    const aItems = a as Array<unknown>;
+    const bItems = b as Array<unknown>;
+    if (aItems.length !== bItems.length) return false;
+    return aItems.every((item, i) => deepEqualJson(item, bItems[i], [...path, i]));
+  }
+  const aRecord = a as Record<string, unknown>;
+  const bRecord = b as Record<string, unknown>;
+  const keys = new Set([...Object.keys(aRecord), ...Object.keys(bRecord)]);
+  for (const key of keys) {
+    const child = [...path, key];
+    if (isObservationInstant(child)) continue;
+    if (!(key in aRecord) || !(key in bRecord)) return false;
+    if (!deepEqualJson(aRecord[key], bRecord[key], child)) return false;
+  }
+  return true;
+}
+
+function snapshotsEqual(currentJson: string, serialized: string): boolean {
+  const current: unknown = JSON.parse(currentJson);
+  const next: unknown = JSON.parse(serialized);
+  return deepEqualJson(current, next, []);
+}
+
 function jsonResponse(body: unknown, status: number): Response {
   return new Response(JSON.stringify(body) + "\n", {
     status,
@@ -211,14 +263,10 @@ async function runRefresh(env: Env): Promise<void> {
   const snapshot = mergePrev(current.content, rawSnapshot);
   const serialized = serializeSnapshot(snapshot);
 
-  // capturedAt always differs run-to-run; ignore it for the idempotency check.
-  const stableContent = (raw: string): string =>
-    raw.replace(/"capturedAt": "[^"]+",?\n?/, "");
-
-  if (stableContent(current.content) === stableContent(serialized)) {
+  if (snapshotsEqual(current.content, serialized)) {
     log("info", "refresh.noop", {
       lastUpdated: snapshot.lastUpdated,
-      reason: "payload unchanged (capturedAt excluded)",
+      reason: "payload unchanged (observation instants excluded)",
     });
     return;
   }
