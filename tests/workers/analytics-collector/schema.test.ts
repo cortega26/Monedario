@@ -1268,6 +1268,27 @@ describe("fetch handler — guards HTTP", () => {
     return analyticsCollector.fetch(new Request(EVENT_URL, init), env);
   }
 
+  function closedStream(bytes: Uint8Array) {
+    return new ReadableStream<Uint8Array>({
+      start(controller) {
+        controller.enqueue(bytes);
+        controller.close();
+      },
+    });
+  }
+
+  function streamInit(
+    body: ReadableStream<Uint8Array>,
+    extraHeaders: Record<string, string> = {}
+  ): RequestInit & { duplex: "half" } {
+    return {
+      method: "POST",
+      headers: { "Content-Type": "application/json", ...extraHeaders },
+      body,
+      duplex: "half",
+    } as unknown as RequestInit & { duplex: "half" };
+  }
+
   const VALID_BODY = JSON.stringify({
     event: "calculator_start",
     params: { calculator_id: "sueldo-liquido", interaction_variant: "input" },
@@ -1401,5 +1422,186 @@ describe("fetch handler — guards HTTP", () => {
     expect(response.headers.get("Access-Control-Allow-Origin")).toBe(
       ALLOWED_ORIGIN
     );
+  });
+
+  it("cancela la lectura temprana ante un stream sin Content-Length que supera MAX (413)", async () => {
+    let pulled = 0;
+    let cancelled = false;
+    const totalChunks = 8;
+    const chunk = new Uint8Array(1024).fill(0x61);
+    const env = enabledEnv();
+    const response = await post(
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: new ReadableStream<Uint8Array>({
+          pull(controller) {
+            pulled += 1;
+            if (pulled <= totalChunks) {
+              controller.enqueue(chunk);
+            } else {
+              controller.close();
+            }
+          },
+          cancel() {
+            cancelled = true;
+          },
+        }),
+        duplex: "half",
+      } as unknown as RequestInit & { duplex: "half" },
+      env
+    );
+    expect(response.status).toBe(413);
+    expect(response.headers.get("Access-Control-Allow-Origin")).toBe(
+      ALLOWED_ORIGIN
+    );
+    // Lectura temprana: cancela sin pedir los chunks restantes.
+    expect(cancelled).toBe(true);
+    expect(pulled).toBeLessThan(totalChunks);
+    expect(
+      (env.ANALYTICS_TELEMETRY as unknown as MockKV).store.size
+    ).toBe(0);
+  });
+
+  it("acepta un body de exactamente MAX bytes y rechaza MAX+1 (bytes, no caracteres)", async () => {
+    const encoder = new TextEncoder();
+    const baseBytes = encoder.encode(VALID_BODY).length;
+    expect(baseBytes).toBeLessThan(MAX_BODY_SIZE);
+    // Relleno con whitespace: JSON.parse lo tolera y no toca el schema.
+    const exact = VALID_BODY + " ".repeat(MAX_BODY_SIZE - baseBytes);
+    expect(encoder.encode(exact).length).toBe(MAX_BODY_SIZE);
+
+    const okEnv = enabledEnv();
+    const ok = await post(
+      streamInit(closedStream(encoder.encode(exact))),
+      okEnv
+    );
+    expect(ok.status).toBe(202);
+
+    const over = `${exact} `;
+    expect(encoder.encode(over).length).toBe(MAX_BODY_SIZE + 1);
+    const overEnv = enabledEnv();
+    const rejected = await post(
+      streamInit(closedStream(encoder.encode(over))),
+      overEnv
+    );
+    expect(rejected.status).toBe(413);
+    expect(
+      (overEnv.ANALYTICS_TELEMETRY as unknown as MockKV).store.size
+    ).toBe(0);
+  });
+
+  it("mide bytes, no caracteres: por encima de MAX bytes pero debajo de MAX caracteres es 413", async () => {
+    // "é" ocupa 1 unidad UTF-16 pero 2 bytes UTF-8.
+    const unicodeBody = JSON.stringify({
+      event: "calculator_start",
+      params: {
+        calculator_id: "é".repeat(1500),
+        interaction_variant: "input",
+      },
+    });
+    expect(unicodeBody.length).toBeLessThan(MAX_BODY_SIZE);
+    expect(new TextEncoder().encode(unicodeBody).length).toBeGreaterThan(
+      MAX_BODY_SIZE
+    );
+    const env = enabledEnv();
+    const response = await post(
+      streamInit(closedStream(new TextEncoder().encode(unicodeBody))),
+      env
+    );
+    expect(response.status).toBe(413);
+    expect(
+      (env.ANALYTICS_TELEMETRY as unknown as MockKV).store.size
+    ).toBe(0);
+  });
+
+  it("decodifica multibyte partida entre chunks: mismo 422 que el cuerpo sin dividir", async () => {
+    const unicodeSmall = JSON.stringify({
+      event: "calculator_start",
+      params: {
+        calculator_id: "sueldo-líquido",
+        interaction_variant: "input",
+      },
+    });
+    const raw = new TextEncoder().encode(unicodeSmall);
+    expect(raw.length).toBeLessThan(MAX_BODY_SIZE);
+    // Corta dentro del "í" (U+00ED = C3 AD en UTF-8).
+    const cut = raw.indexOf(0xc3) + 1;
+    expect(cut).toBeGreaterThan(0);
+
+    const whole = await post({
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: unicodeSmall,
+    });
+    expect(whole.status).toBe(422);
+
+    const split = await post(
+      streamInit(
+        new ReadableStream<Uint8Array>({
+          start(controller) {
+            controller.enqueue(raw.slice(0, cut));
+            controller.enqueue(raw.slice(cut));
+            controller.close();
+          },
+        })
+      )
+    );
+    // Nunca un 400 causado por partir la secuencia multibyte.
+    expect(split.status).toBe(whole.status);
+  });
+
+  it("la lectura real manda: Content-Length legítimo con body mayor es 413", async () => {
+    const big = JSON.stringify({
+      event: "calculator_start",
+      params: {
+        calculator_id: "a".repeat(MAX_BODY_SIZE + 10),
+        interaction_variant: "button",
+      },
+    });
+    const env = enabledEnv();
+    const response = await post(
+      streamInit(closedStream(new TextEncoder().encode(big)), {
+        "Content-Length": "100",
+      }),
+      env
+    );
+    expect(response.status).toBe(413);
+    expect(
+      (env.ANALYTICS_TELEMETRY as unknown as MockKV).store.size
+    ).toBe(0);
+  });
+
+  it("stream roto responde 400 sin escrituras KV", async () => {
+    const env = enabledEnv();
+    const response = await post(
+      streamInit(
+        new ReadableStream<Uint8Array>({
+          start(controller) {
+            controller.enqueue(new TextEncoder().encode('{"event":'));
+            controller.error(new Error("boom"));
+          },
+        })
+      ),
+      env
+    );
+    expect(response.status).toBe(400);
+    expect(
+      (env.ANALYTICS_TELEMETRY as unknown as MockKV).store.size
+    ).toBe(0);
+  });
+
+  it("body nulo o vacío responde 400", async () => {
+    const nullBody = await post({
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    });
+    expect(nullBody.status).toBe(400);
+    const emptyBody = await post({
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: "",
+    });
+    expect(emptyBody.status).toBe(400);
   });
 });

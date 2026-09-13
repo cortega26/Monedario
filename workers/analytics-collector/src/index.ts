@@ -897,6 +897,73 @@ async function handleManualExport(request: Request, env: Env): Promise<Response>
   }
 }
 
+// ── Bounded body read ──────────────────────────────────────────────────────
+
+/**
+ * Outcome of the bounded body read: either the decoded text, or the HTTP
+ * status the caller must answer with (CORS headers added by the caller).
+ */
+type BoundedBodyRead =
+  | { ok: true; text: string }
+  | { ok: false; status: 400 | 413 };
+
+/**
+ * Reads the request body keeping at most MAX_BODY_SIZE bytes in memory.
+ *
+ * Byte accounting uses the raw chunk sizes (`Uint8Array.byteLength`), not
+ * `string.length`, so multibyte UTF-8 counts what it retains. The text is
+ * decoded once, after the whole in-limit body arrived, so characters split
+ * across chunks reassemble correctly.
+ *
+ * On overflow the chunk that crossed the bound is dropped (never retained),
+ * the stream is cancelled best-effort and the caller answers 413: a failed
+ * cancel never replaces the status, never leaves an unhandled rejection,
+ * and is never awaited (cleanup must not stall the response). A missing or
+ * broken stream yields 400, like an empty or unparsable body did before.
+ */
+async function readBoundedBodyText(
+  request: Request,
+): Promise<BoundedBodyRead> {
+  const stream: ReadableStream<Uint8Array> | null = request.body;
+  if (stream === null) {
+    return { ok: false, status: 400 };
+  }
+  const reader = stream.getReader();
+  const chunks: Uint8Array[] = [];
+  let receivedBytes = 0;
+  try {
+    for (;;) {
+      const next = await reader.read().catch(() => null);
+      if (next === null) {
+        return { ok: false, status: 400 };
+      }
+      if (next.done) {
+        break;
+      }
+      receivedBytes += next.value.byteLength;
+      if (receivedBytes > MAX_BODY_SIZE) {
+        // Best-effort cleanup: fire-and-forget, failures swallowed.
+        void reader.cancel().catch(() => undefined);
+        return { ok: false, status: 413 };
+      }
+      chunks.push(next.value);
+    }
+  } finally {
+    try {
+      reader.releaseLock();
+    } catch {
+      // Cleanup noise only — the status decided above always wins.
+    }
+  }
+  const merged = new Uint8Array(receivedBytes);
+  let offset = 0;
+  for (const chunk of chunks) {
+    merged.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+  return { ok: true, text: new TextDecoder().decode(merged) };
+}
+
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     // CORS preflight
@@ -940,17 +1007,17 @@ export default {
       return new Response(null, { status: 413, headers: corsHeaders() });
     }
 
-    // Read body
+    // Read body (bounded: at most MAX_BODY_SIZE bytes retained/read on)
     let body: unknown;
+    const bounded = await readBoundedBodyText(request);
+    if (!bounded.ok) {
+      return new Response(null, {
+        status: bounded.status,
+        headers: corsHeaders(),
+      });
+    }
     try {
-      const text = await request.text();
-
-      // Size guard on actual text (defense in depth)
-      if (text.length > MAX_BODY_SIZE) {
-        return new Response(null, { status: 413, headers: corsHeaders() });
-      }
-
-      body = JSON.parse(text);
+      body = JSON.parse(bounded.text);
     } catch {
       return new Response(null, { status: 400, headers: corsHeaders() });
     }

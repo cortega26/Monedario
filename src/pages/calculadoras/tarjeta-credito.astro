@@ -278,6 +278,7 @@ const calculatorNextStepItems = [
 
   let scenarioLastResult: ReturnType<typeof simulateCreditCardCost> | null =
     null;
+  let scenarioLastInputs: Record<string, string> | null = null;
 
   function fmt(n: number): string {
     return formatCLP(n);
@@ -306,6 +307,11 @@ const calculatorNextStepItems = [
   document.getElementById("calcBtn")?.addEventListener("click", () => {
     hideError();
     setLoading(true);
+    scenarioLastInputs = null;
+    const scenarioForm = document.getElementById("calculator-form-card");
+    const scenarioCandidateInputs = scenarioForm
+      ? snapshotInputs(scenarioForm)
+      : null;
     const deuda =
       parseFloat(
         (document.getElementById("deuda") as HTMLInputElement).value
@@ -454,6 +460,7 @@ const calculatorNextStepItems = [
         ...(primerasCuotas.length > 0 ? [firstPaymentsBox] : []),
         doublePaymentBox
       );
+    scenarioLastInputs = scenarioCandidateInputs;
 
     document.dispatchEvent(
       new CustomEvent("calculator:result", {
@@ -474,7 +481,7 @@ const calculatorNextStepItems = [
   if (scenarioFormCard) {
     initScenarioPanel({
       calculatorId: window.location.pathname,
-      readInputs: () => snapshotInputs(scenarioFormCard),
+      readInputs: () => (scenarioLastInputs ? { ...scenarioLastInputs } : null),
       applyInputs: inputs => {
         restoreInputs(scenarioFormCard, inputs);
         (
@@ -482,7 +489,7 @@ const calculatorNextStepItems = [
         )?.click();
       },
       buildSummary: () => {
-        if (!scenarioLastResult) return null;
+        if (!scenarioLastInputs || !scenarioLastResult) return null;
         const r = scenarioLastResult.baseline;
         return [
           { label: "Total a pagar", value: fmt(r.totalPaid) },

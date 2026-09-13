@@ -43,6 +43,14 @@ function readScalarField(
   el: BindableInput,
   field: UserProfileField
 ): ProfilePatch[UserProfileField] {
+  if (
+    NUMERIC_FIELDS.has(field) &&
+    el instanceof HTMLInputElement &&
+    el.type === "number"
+  ) {
+    const native = el.valueAsNumber;
+    return Number.isFinite(native) ? native : undefined;
+  }
   return toStoredValue(el.value.trim(), field);
 }
 

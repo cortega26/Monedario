@@ -69,7 +69,8 @@ Inicio rapido:
   - pnpm run build
 - Validar antes de proponer un cambio:
   - `pnpm run check:ci` — espeja el set de gates del CI localmente (lint,
-    format, tests, boundaries, context, policy-registry, legal-constants,
+    format, tests con coverage y umbral del 80% (`test:coverage`, igual que
+    el CI; `test` queda como corrida rápida sin coverage), boundaries, context, policy-registry, legal-constants,
     docs, frontmatter, legal-citations, hero images/prompts, editorial,
     editorial-timeliness, no-postid-urls, routes, astro check y los checks de
     consistencia/registro)

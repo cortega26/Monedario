@@ -340,6 +340,7 @@ const calculatorNextStepItems = [
   let scenarioLastResult: ReturnType<
     typeof simulateRetirementProjection
   > | null = null;
+  let scenarioLastInputs: Record<string, string> | null = null;
 
   function fmt(n: number): string {
     return formatCLP(n);
@@ -390,6 +391,11 @@ const calculatorNextStepItems = [
 
   document.getElementById("calcBtn")?.addEventListener("click", () => {
     clearInlineError();
+    scenarioLastInputs = null;
+    const scenarioForm = document.getElementById("calculator-form-card");
+    const scenarioCandidateInputs = scenarioForm
+      ? snapshotInputs(scenarioForm)
+      : null;
     const edad =
       parseInt((document.getElementById("edad") as HTMLInputElement).value) ||
       35;
@@ -631,6 +637,7 @@ const calculatorNextStepItems = [
         hint,
         scopeBox
       );
+    scenarioLastInputs = scenarioCandidateInputs;
 
     document.dispatchEvent(
       new CustomEvent("calculator:result", {
@@ -650,7 +657,7 @@ const calculatorNextStepItems = [
   if (scenarioFormCard) {
     initScenarioPanel({
       calculatorId: window.location.pathname,
-      readInputs: () => snapshotInputs(scenarioFormCard),
+      readInputs: () => (scenarioLastInputs ? { ...scenarioLastInputs } : null),
       applyInputs: inputs => {
         restoreInputs(scenarioFormCard, inputs);
         (
@@ -658,7 +665,7 @@ const calculatorNextStepItems = [
         )?.click();
       },
       buildSummary: () => {
-        if (!scenarioLastResult) return null;
+        if (!scenarioLastInputs || !scenarioLastResult) return null;
         const s = scenarioLastResult.selectedScenario;
         return [
           { label: "Saldo al jubilar", value: fmtM(s.projectedBalance) },

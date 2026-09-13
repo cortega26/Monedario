@@ -435,6 +435,7 @@ const calculatorNextStepItems = [
   }
 
   let scenarioLastResult: ReturnType<typeof calculateMortgage> | null = null;
+  let scenarioLastInputs: Record<string, string> | null = null;
 
   const mainEl = document.getElementById("main-content") as HTMLElement;
   const ufValuePesos = parseFloat(mainEl.dataset.uf ?? "39841.72");
@@ -536,6 +537,11 @@ const calculatorNextStepItems = [
   document.getElementById("calcBtn")?.addEventListener("click", () => {
     hideError();
     setLoading(true);
+    scenarioLastInputs = null;
+    const scenarioForm = document.getElementById("calculator-form-card");
+    const scenarioCandidateInputs = scenarioForm
+      ? snapshotInputs(scenarioForm)
+      : null;
     const propertyValue =
       parseFloat(
         (document.getElementById("propertyValue") as HTMLInputElement).value
@@ -719,6 +725,7 @@ const calculatorNextStepItems = [
     });
 
     document.getElementById("amort-section")!.classList.remove("hidden");
+    scenarioLastInputs = scenarioCandidateInputs;
 
     // Toggle full table
     let expanded = false;
@@ -752,7 +759,7 @@ const calculatorNextStepItems = [
   if (scenarioFormCard) {
     initScenarioPanel({
       calculatorId: window.location.pathname,
-      readInputs: () => snapshotInputs(scenarioFormCard),
+      readInputs: () => (scenarioLastInputs ? { ...scenarioLastInputs } : null),
       applyInputs: inputs => {
         restoreInputs(scenarioFormCard, inputs);
         (
@@ -760,7 +767,7 @@ const calculatorNextStepItems = [
         )?.click();
       },
       buildSummary: () => {
-        if (!scenarioLastResult) return null;
+        if (!scenarioLastInputs || !scenarioLastResult) return null;
         const r = scenarioLastResult;
         return [
           { label: "Dividendo mensual", value: fmtPesos(r.basePaymentPesos) },

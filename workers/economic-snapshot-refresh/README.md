@@ -4,10 +4,10 @@ Refreshes `src/infrastructure/economic/economic-parameters.snapshot.json` on a d
 
 ## What it does
 
-1. **Three daily cron triggers** at `10:15`, `14:15`, and `18:15` UTC — self-healing. Each run is idempotent (payload-diff ignoring `capturedAt`), so a successful early run makes the later ones no-ops. If 10:15 fails, 14:15 retries; if both fail, 18:15 is the last chance before tomorrow. No manual intervention needed for transient failures.
+1. **Three daily cron triggers** at `10:15`, `14:15`, and `18:15` UTC — self-healing. Each run is idempotent (payload-diff ignoring only the observation instants — root `capturedAt` and `provenance.utm.verifiedAt`), so a successful early run makes the later ones no-ops. If 10:15 fails, 14:15 retries; if both fail, 18:15 is the last chance before tomorrow. No manual intervention needed for transient failures.
 2. **Fetches IPC from INE and the requested month's UTM from SII directly.** Those authoritative values override mindicador.cl when available. A source timeout or HTML change is logged and falls back to mindicador.cl so the remaining snapshot can still refresh; provenance records whether UTM used the primary or fallback path.
 3. Builds a snapshot with the same shape produced by `scripts/refresh-economic-snapshot.mjs`.
-4. Compares with the current file on `main` (excluding `capturedAt`, which is non-deterministic).
+4. Compares with the current file on `main`, ignoring only the observation instants (`capturedAt` and `provenance.utm.verifiedAt`, which change on every run). Indicator vigencia dates, values, provenance status/source, and any other data field still trigger a commit. On a no-op the file keeps its last-write time even though the Worker re-verified the data.
 5. If different, commits the new content to `main` via the GitHub Contents API as `monedario-snapshot-bot`. Cloudflare Pages auto-deploys on push.
 6. If identical, exits silently (no empty commits).
 
