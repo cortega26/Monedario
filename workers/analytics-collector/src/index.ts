@@ -903,7 +903,7 @@ async function handleManualExport(request: Request, env: Env): Promise<Response>
  * Outcome of the bounded body read: either the decoded text, or the HTTP
  * status the caller must answer with (CORS headers added by the caller).
  */
-type BoundedBodyRead =
+export type BoundedBodyRead =
   | { ok: true; text: string }
   | { ok: false; status: 400 | 413 };
 
@@ -921,7 +921,7 @@ type BoundedBodyRead =
  * and is never awaited (cleanup must not stall the response). A missing or
  * broken stream yields 400, like an empty or unparsable body did before.
  */
-async function readBoundedBodyText(
+export async function readBoundedBodyText(
   request: Request,
 ): Promise<BoundedBodyRead> {
   const stream: ReadableStream<Uint8Array> | null = request.body;
