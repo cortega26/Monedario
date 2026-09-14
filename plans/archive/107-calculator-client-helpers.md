@@ -7,8 +7,10 @@
 > in `plans/README.md` — unless a reviewer dispatched you and told you they
 > maintain the index.
 >
-> **Drift check (run first)**: `git diff --stat 0e506a8b..HEAD -- src/pages/calculadoras/ src/utils/sueldo-liquido/formController.ts src/scripts/calculator-prefill.ts src/utils/formatCLP.ts src/utils/injectGlossaryLinks.ts tests/`
-> On mismatch with "Current state", STOP.
+> **Drift check (run first)**: `git diff --stat dcd381d9..HEAD -- src/utils/calculatorScenarioSave.ts src/pages/calculadoras/credito-consumo.astro src/pages/calculadoras/deposito-a-plazo.astro src/pages/calculadoras/dividendo-hipotecario.astro src/pages/calculadoras/interes-compuesto.astro src/pages/calculadoras/simulador-jubilacion.astro src/pages/calculadoras/tarjeta-credito.astro src/utils/sueldo-liquido/formController.ts src/scripts/calculator-prefill.ts src/pages/calculadoras/operacion-renta.astro src/pages/calculadoras/conversor-utm.astro src/pages/calculadoras/iva.astro src/utils/formatCLP.ts src/utils/injectGlossaryLinks.ts tests/unit/injectGlossaryLinks.test.ts tests/integration/calculator-prefill.test.ts tests/unit/calculator-controllers-scenario-io.test.ts`
+> On mismatch with "Current state", STOP. (Reconciled from the original
+> broad paths: `src/pages/calculadoras/` + `tests/` moved under plans
+> 102/104/108 and unrelated suites since planning — all assessed below.)
 
 ## Status
 
@@ -18,35 +20,59 @@
 - **Depends on**: plans/archive/108-scenario-save-extraction.md (DONE 2026-09-14, merge `6b512348` — extract the save-snapshot helper first; this plan reuses it for the adapter. Note the helper's `getLastResult` option: accepted-but-unread by the shared body (save semantics belong to 089); use it when `makeStandardScenarioAdapter` needs the result getter.)
 - **Category**: tech-debt
 - **Planned at**: commit `0e506a8b`, 2026-09-14
+- **Reconciled at**: commit `dcd381d9`, 2026-09-14 — post-102/104/108 drift
+  assessed file-by-file; Step 1 RESCOPED (see inline) because plan 108
+  already unified the adapters under a different name; Steps 2–3 excerpts
+  re-read against live code, both findings intact
 - **Issue**: —
 
 ## Why this matters
 
 Three copy-paste clusters force every locale/bug fix to be hand-edited in
-N places. Seven calculator pages carry near-identical scenario-panel adapter
-blocks; four sites re-implement Chilean-number parsing (`.` thousands, `,`
-decimal) with divergent edge behavior; the glossary injector rebuilds one
-regex per text node (`O(nodes × terms)` compilations per page × ~327 pages).
-One shared helper each collapses the clusters with no behavior change on
-healthy inputs. CLP formatting itself is explicitly excluded — plan 080
-already unified it (archived 2026-08-11); do not re-touch `formatCLP`
-call sites here.
+N places. Seven calculator pages carried near-identical scenario-panel
+adapter blocks — plan 108 (DONE 2026-09-14, merge `6b512348`) already
+unified them as `createScenarioSaveAdapter` in
+`src/utils/calculatorScenarioSave.ts`, so Step 1 below is verify-and-pin
+only (no second wrapper). Four sites re-implement Chilean-number parsing
+(`.` thousands, `,` decimal) with divergent edge behavior; the glossary
+injector rebuilds one regex per text node (`O(nodes × terms)` compilations
+per page × ~327 pages). One shared helper each collapses the remaining two
+clusters with no behavior change on healthy inputs. CLP formatting itself
+is explicitly excluded — plan 080 already unified it (archived 2026-08-11);
+do not re-touch `formatCLP` call sites here.
 
 ## Current state
 
 Files and roles:
 
-- Scenario adapters (POST-089 shape): `src/pages/calculadoras/deposito-a-plazo.astro:589-610`,
-  plus `credito-consumo`, `dividendo-hipotecario`, `interes-compuesto`,
-  `simulador-jubilacion`, `tarjeta-credito`, `src/utils/sueldo-liquido/formController.ts:707-715`
-- Parsers: `src/scripts/calculator-prefill.ts:30-55`,
-  `src/utils/sueldo-liquido/formController.ts:634,646`,
-  `src/pages/calculadoras/operacion-renta.astro:531-535`,
-  `conversor-utm.astro:417`, `iva.astro:306`
-- Glossary: `src/utils/injectGlossaryLinks.ts:80,95-113` (`MAX_AUTO_LINKS=5`)
-- Canonical format: `src/utils/formatCLP.ts:2` (hands off — plan 080 done)
+- Scenario adapters (UNIFIED by 108 — Step 1 is verify-only):
+  `src/utils/calculatorScenarioSave.ts` exports `createScenarioSaveAdapter`;
+  all seven call sites (six pages + `formController.ts`) call it; zero
+  remaining `restoreInputs(scenarioFormCard` call sites (verified by grep
+  over `src/pages/calculadoras/*.astro` + `formController.ts`). Do NOT add
+  a `makeStandardScenarioAdapter` wrapper — it would be pure indirection
+  over the landed helper.
+- Parsers (verified live): `src/scripts/calculator-prefill.ts:30-40`
+  (two-replace idiom; native-number path `:42-55` preserved by 088),
+  `src/utils/sueldo-liquido/formController.ts` TWO text sites (both
+  `.replace(/\./g, "").replace(",", ".")` — note the second replace is a
+  STRING `","`, i.e. first-comma-only, unlike prefill's global `/,/g`;
+  the unified helper standardizes on global handling — healthy inputs
+  identical, multi-comma garbage → `undefined` either way; document it),
+  `src/pages/calculadoras/operacion-renta.astro:525-535` (DISTINCT
+  conditional-strip + `parseFloat(...) || 0` semantics — NOT the two-replace
+  idiom, EXCLUDED by the plan's own rule below),
+  `conversor-utm.astro:424-427` + `iva.astro:312-315` digit-only (`/\D/g` →
+  `NaN` on empty — distinct, excluded)
+- Glossary (verified live): `src/utils/injectGlossaryLinks.ts` —
+  `injectIntoText` rebuilds `GLOSSARY_ALLOWLIST.filter` + `new RegExp` per
+  call; `MAX_AUTO_LINKS` gate; 19-test corpus in
+  `tests/unit/injectGlossaryLinks.test.ts` (the byte-identical proof lives
+  here)
+- Canonical format: `src/utils/formatCLP.ts:2` (hands off — plan 080 done;
+  file untouched since planning)
 
-Excerpts as of `0e506a8b` (verified by reading):
+Excerpts as of `dcd381d9` (re-read; Step-1 target state already holds via 108, Steps 2–3 findings intact):
 
 ```html
 <!-- deposito-a-plazo.astro:589-610 (POST-089 shape) -->
@@ -99,11 +125,11 @@ must be preserved; conventional commits.
 
 **In scope**:
 
-- `src/utils/calculatorScenariosUI.ts` (new `makeStandardScenarioAdapter` next to `snapshotInputs`/`restoreInputs`)
-- 7 adapter call sites (one-line replacements, behavior-identical)
-- New `parseCLNumber(raw): number | undefined` helper (location: next to `formatCLP`, e.g. `src/utils/formatCLP.ts` or `src/utils/parseCLNumber.ts` — one file only) + 4 text-parser adoptions (prefill text path, formController text paths, operacion-renta, UTM/IVA digit-only sites keep digit-only semantics — document, don't merge semantics)
+- Step-1 pin test only (no source change — the unification already landed
+  via 108)
+- New `parseCLNumber(raw): number | undefined` helper (location: next to `formatCLP`, e.g. `src/utils/formatCLP.ts` or `src/utils/parseCLNumber.ts` — one file only) + 3 text-parser adoptions (prefill text path, 2 formController text paths; operacion-renta + UTM/IVA digit-only sites documented untouched — no semantic merge)
 - `src/utils/injectGlossaryLinks.ts` (hoist one compiled `RegExp` + `Map` per page; byte-identical output)
-- Tests for all three helpers
+- Tests for the pin + parser + glossary
 
 **Out of scope**:
 
@@ -129,23 +155,33 @@ failure on clean tree → STOP + report.
 
 **Verify**: all pass unmodified.
 
-### Step 1: Shared scenario adapter (uses plan 108's helper)
+### Step 1: Scenario adapter — VERIFY ONLY (unified by 108, do not re-wrap)
 
-Add `makeStandardScenarioAdapter(getLastInputs, formCard, calcBtnId)` next to
-`snapshotInputs`/`restoreInputs`, built on the extracted save-snapshot helper
-from plan 108. Replace each 7-line adapter block with one call. Byte-identical
-behavior: same `calculatorId` (`window.location.pathname`), same null-when-empty
-read, same restore+click apply.
+Plan 108 landed the unification this step wanted, as
+`createScenarioSaveAdapter` in `src/utils/calculatorScenarioSave.ts` (NOT
+`makeStandardScenarioAdapter` in `calculatorScenariosUI.ts`). Do NOT create
+a second wrapper — pure indirection churn. Instead: (a) verify all seven
+call sites still call the single helper (`grep -c
+"restoreInputs(scenarioFormCard" src/pages/calculadoras/*.astro
+src/utils/sueldo-liquido/formController.ts` → all zeros) and `buildSummary`
+stayed per-page; (b) pin it with a static test (new or in the 108 suite)
+asserting exactly the seven known call sites import
+`createScenarioSaveAdapter` and no page calls `restoreInputs` directly, so
+the cluster cannot re-fork silently.
 
-**Verify**: scenario-IO tests + prefill integration pass; `grep -c "restoreInputs(scenarioFormCard" src/pages/calculadoras/*.astro` drops to ≤1 (inside the helper).
+**Verify**: grep all-zeros; new pin test passes.
 
 ### Step 2: Shared Chilean parser (text paths only)
 
 Add `parseCLNumber`: strips `.` thousands, `,`→`.`, trims, `""`→`undefined`,
-non-finite→`undefined`. Adopt in the 4 text sites; leave the native-number
-`valueAsNumber` branches and the UTM/IVA digit-only (`/\D/g`) semantics
-intact (call the helper only where the two-replace idiom already exists —
-document each site's choice in a comment).
+non-finite→`undefined`. Adopt at the THREE true two-replace sites
+(`calculator-prefill.ts` text path, the TWO `formController.ts` text sites —
+note their second replace is string-`","` first-comma-only; the helper uses
+global handling, identical on healthy inputs, `undefined` on multi-comma
+garbage either way — document this per site). EXCLUDED (document, don't
+merge semantics): `operacion-renta.astro:525-535` (conditional-strip +
+`|| 0` — distinct semantics), the native-number `valueAsNumber` branches
+(088 owns), and the UTM/IVA digit-only (`/\D/g`) sites.
 
 **Verify**: prefill roundtrip tests pass; add parser unit tests (thousands,
 decimal-comma, empty, garbage, `1.500.000` → `1500000`).
@@ -161,16 +197,17 @@ if none pins it).
 
 ## Test plan
 
-- Adapter: existing `calculator-controllers-scenario-io` suite + one
-  per-page wiring test (panel initializes with the shared adapter).
+- Adapter: existing `calculator-controllers-scenario-io` suite stays green
+  + anti-refork pin test (seven call sites, one helper import, no direct
+  `restoreInputs`).
 - Parser: unit matrix (above) modeled on prefill roundtrip tests.
 - Glossary: golden output test pre/post hoist.
 - Verification: focused-tests command → all pass.
 
 ## Done criteria
 
-- [ ] 7 adapter blocks replaced by one helper (grep-clean per Step 1)
-- [ ] 4 text-parser sites share `parseCLNumber`; native/digit-only paths documented untouched
+- [ ] Adapter unification verified as landed (grep all-zeros) + anti-refork pin test (no new wrapper)
+- [ ] 3 text-parser sites share `parseCLNumber` (operacion-renta documented untouched); native/digit-only paths documented untouched
 - [ ] Glossary output byte-identical with hoisted regex (test-pinned)
 - [ ] No new `Intl.NumberFormat("es-CL")` instances (080 boundary respected)
 - [ ] Focused tests + `astro check` + scoped lint green; diff in-scope only; `plans/README.md` updated
