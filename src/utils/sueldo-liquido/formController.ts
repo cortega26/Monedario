@@ -7,9 +7,9 @@ import { trackAnalyticsEvent } from "@/utils/analytics";
 import { saveCalculatorResult } from "@/utils/resumeState";
 import {
   initScenarioPanel,
-  restoreInputs,
   snapshotInputs,
 } from "@/utils/calculatorScenariosUI";
+import { createScenarioSaveAdapter } from "@/utils/calculatorScenarioSave";
 import {
   renderAfpComparison,
   renderAfpComparisonInverso,
@@ -705,14 +705,11 @@ export function setupFormListeners(): void {
   const scenarioFormCard = document.getElementById("calculator-form-card");
   if (scenarioFormCard) {
     initScenarioPanel({
-      calculatorId: window.location.pathname,
-      readInputs: () => (lastScenarioInputs ? { ...lastScenarioInputs } : null),
-      applyInputs: inputs => {
-        restoreInputs(scenarioFormCard, inputs);
-        (
-          document.getElementById("calcBtn") as HTMLButtonElement | null
-        )?.click();
-      },
+      ...createScenarioSaveAdapter({
+        getLastInputs: () => lastScenarioInputs,
+        getLastResult: () => lastResultado,
+        formCard: scenarioFormCard,
+      }),
       buildSummary: () => {
         if (!lastScenarioInputs || !lastResultado) return null;
         const r = lastResultado;

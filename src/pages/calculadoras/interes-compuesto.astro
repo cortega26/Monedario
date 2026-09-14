@@ -396,9 +396,9 @@ const interesCompuestoFaqs = [
   import { formatCLP } from "@/utils/formatCLP";
   import {
     initScenarioPanel,
-    restoreInputs,
     snapshotInputs,
   } from "@/utils/calculatorScenariosUI";
+  import { createScenarioSaveAdapter } from "@/utils/calculatorScenarioSave";
 
   declare global {
     interface Window {
@@ -643,14 +643,11 @@ const interesCompuestoFaqs = [
   const scenarioFormCard = document.getElementById("calculator-form-card");
   if (scenarioFormCard) {
     initScenarioPanel({
-      calculatorId: window.location.pathname,
-      readInputs: () => (scenarioLastInputs ? { ...scenarioLastInputs } : null),
-      applyInputs: inputs => {
-        restoreInputs(scenarioFormCard, inputs);
-        (
-          document.getElementById("calcBtn") as HTMLButtonElement | null
-        )?.click();
-      },
+      ...createScenarioSaveAdapter({
+        getLastInputs: () => scenarioLastInputs,
+        getLastResult: () => scenarioLastResult,
+        formCard: scenarioFormCard,
+      }),
       buildSummary: () => {
         if (!scenarioLastInputs || !scenarioLastResult) return null;
         const r = scenarioLastResult;
