@@ -100,6 +100,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [084](084-utility-led-decision-readiness.md) | Hacer decidible la ventana utility-led — regla de denominador mínimo y captura del Gate D | 2026-09-04 | sí (merge `b02f0c70`); DONE verificado y archivado 2026-09-12 |
 | [085](085-journey-thesis-vehicle-spike.md) | Spike de dirección — qué vehículo y qué superficie pueden probar la tesis del recorrido antes del 2026-11-02 | 2026-09-04 | sí (merge `2935878f`); DONE verificado y archivado 2026-09-12 |
 | [086](086-apv-completion-drop-diagnosis.md) | Diagnosticar la caída de completitud de la calculadora APV (58% → 14% en tres semanas) | 2026-09-04 | sí (merge `d412aa57`); DONE verificado y archivado 2026-09-12 |
+| [097](097-worker-v2-bounded-body.md) | Reutilizar el bounded byte reader en la ingesta live de worker-v2 (cierra regresión UTF-16 `string.length` + buffer-or-reject) + 5 guard tests; reparación de baseline type-only incluida | 2026-09-14 | sí (merge `67487da9`; commits `c34a8241` + `570a1679`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 

@@ -1,5 +1,95 @@
 # Implementation Plans
 
+## Auditoría profunda 2026-09-14 — planes 097–113 (TODO)
+
+Sobre `0e506a8b`, selección del mantenedor: **«All the net-positive ones»**.
+17 planes bundled (cada uno cubre 1–4 hallazgos co-ubicados del mismo área para
+evitar conflictos de merge; la correspondencia hallazgo→plan está en la tabla).
+Base: `0e506a8b`. Verificación de esta fase: solo escritura en `plans/`
+(17 archivos nuevos + este índice); `git diff --check` sin errores. Ningún
+criterio de aceptación ejecutado (son planes, no implementaciones).
+QA de planificación: scopes, paths, SHA `0e506a8b`, secciones de aceptación/
+STOP/rollback y enlaces del índice verificados por lectura directa del código
+citado (los extractos vienen de lecturas propias, no de reportes delegados).
+
+### Orden de ejecución y estado
+
+| Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
+|------|-------|----------|--------|------------|--------|
+| 098 | [worker-v2 config + validation](098-worker-v2-config-validation.md) | P1 | S | 097 | TODO |
+| 099 | [analytics export hardening](099-analytics-export-hardening.md) | P2 | M | 097, 098 | TODO |
+| 100 | [analytics taxonomy + tests](100-analytics-taxonomy-tests.md) | P1 | M | 097, 098, 099 | TODO |
+| 101 | [pagefind public purge](101-pagefind-public-purge.md) | P2 | S | — | TODO |
+| 102 | [UF history payload](102-uf-history-payload.md) | P2 | M | — | TODO |
+| 103 | [economic date honesty](103-economic-date-honesty.md) | P1 | S | — | TODO |
+| 104 | [mortgage totals insurance](104-mortgage-totals-insurance.md) | P1 | S | — | TODO |
+| 105 | [input contract hardening](105-input-contract-hardening.md) | P2 | S | — | TODO |
+| 106 | [supply-chain hygiene](106-supply-chain-hygiene.md) | P2 | S | — | TODO |
+| 108 | [scenario-save extraction](108-scenario-save-extraction.md) | P2 | M | — | TODO |
+| 107 | [calculator client helpers](107-calculator-client-helpers.md) | P3 | S | 108 | TODO |
+| 109 | [onboarding + env docs](109-onboarding-env-docs.md) | P3 | S | — | TODO |
+| 110 | [worker typecheck + logging](110-worker-typecheck-logging.md) | P3 | S | (secuenciar tras 097–100 si coinciden) | TODO |
+| 111 | [vehicle decision spike](111-vehicle-decision-spike.md) | P2 | S | — | TODO |
+| 112 | [APV error spike + dictionary](112-apv-error-spike.md) | P2 | M | (coordinar nombres con 100) | TODO |
+| 113 | [gate-d + titular + citation](113-gate-d-titular-citation.md) | P3 | S | — | TODO |
+
+Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
+
+Recomendación operativa: 097→098→099→100 en serie estricta (mismo archivo
+worker); 108 antes que 107 (el helper de guardado precede al adaptador);
+101/102/103/104/105/106 en paralelo entre sí una vez 097–100 van en serie;
+109/110 docs/DX en paralelo en cualquier momento (110 re-chequea drift si
+coincide con 097–100); 111/112/113 spikes en paralelo (112 coordina
+taxonomía con 100, sin dependencia de código).
+
+### Notas de dependencia (2026-09-14)
+
+- **098 tras 097**: mismo `worker-v2.ts` (reader vs validación); el drift check
+  de 098 lo exige.
+- **099 tras 097+098**: export + validación tocan las mismas regiones; los
+  tests de 099 asumen el reader y la validación nuevos.
+- **100 tras 097+098+099**: sus tests pinean el comportamiento nuevo; correrlo
+  antes daría falsos rojos/verdes.
+- **107 tras 108**: el adaptador compartido se construye sobre el helper de
+  guardado extraído en 108.
+- **110 tras 097–100 si coinciden en el tiempo**: líneas distintas del mismo
+  worker; el drift check manda.
+- **112 coordina con 100**: una sola taxonomía (nombres de eventos); sin
+  dependencia de código.
+
+### Hallazgos considerados y rechazados (2026-09-14)
+
+- **Unificación CLP (TECHDEBT-08 standalone)**: hecho — plan 080 DONE y
+  archivado (2026-08-11). No se re-planifica; el plan 107 lo respeta como borde.
+- **Colapso de walks post-build en un pase (PERF-04)**: diferido — el script
+  `check-postbuild.mjs` es del plan 081 DONE; re-arquitecturarlo sin medida de
+  build es riesgo sin retorno. Reabrir solo con perfil de tiempos.
+- **Caracterización completa sueldo-líquido (TEST-05 full)**: diferido — L,
+  congela comportamiento que debe revisarse contra SII/tabla antes; el slice
+  útil (save-adapter) va en 108.
+- **Split god-module formController / regroup utils / page splits (TECHDEBT-05/10/18)**:
+  no net-positive ahora (M, churn de imports, freeze de títulos) — reabrir con
+  diseño de seams.
+- **Reemplazo LHCI, promoción knip a bloqueante, paralelización check:ci,
+  scope self-heal, hooks con --fix, consolidación installs, cachés CI,
+  checker de excludes**: gobierno/M o necesidades de diseño — no planes de
+  código ahora; constan como diferidos.
+- **Investiga-solamente LOW (sufijo official-host, timer flakes, shield hash
+  vs pagefind-worker append, ClientRouter/defer, OG JPEG dual pipeline, TTFs
+  en /fonts/, reddit fan-out paralelo, sanitize rename, inline-style survey,
+  PERF-12–18, SEC-11, TEST-12/13, CORR-19 scope, DO single-shard, waitUntil,
+  ventana UTC vs America/Santiago)**: olor sin medida o con decisión ADR
+  pendiente — no se venden como fixes; el plan que los roza los deja como
+  assert/investigate acotado (099 §3) o los cita como diferidos.
+- **Discord markdown, creds BCCH en query, error-reflection post-auth,
+  hrefs editoriales (SEC-06/07/08/09)**: MED/LOW con bajo impacto productivo
+  (canal ops, diseño de vendor, solo-autenticado, solo-editorial) — revisitar
+  solo si esos workers/templates se tocan por otra razón.
+- **zod 4.4.3 vs 4.5.4 / astro 7.2.9→7.3.1 float**: solo-transitivo / flotación
+  `^` intencional — track en 106, sin plan propio.
+- **Dimensiones con `:` (CORR-16 standalone)**: plegado como §3 del plan 099
+  (assert-or-fix con migración versionada), no plan propio.
+
 ## Estado vigente — reconciliación 2026-09-12
 
 **No quedan planes numerados pendientes de implementación.** Los últimos cuatro
@@ -1237,6 +1327,14 @@ de la séptima auditoría 057–081, ya completa — 052 fue cerrado con PR #420
 > #240 (squash `369ff01b`), rama remota eliminada.
 
 ## Completados — archivados
+
+### Auditoría profunda 2026-09-14 — plan 097 (bundle worker 097–100; resto TODO)
+
+| Plan | Título | Cierre |
+| --- | --- | --- |
+| [097](archive/097-worker-v2-bounded-body.md) | Enforce byte-accurate bounded body read on worker-v2 ingestion | **DONE 2026-09-14**; merge `67487da9` (commits `c34a8241` + `570a1679`; `check:ci` exit 0 pre-merge, tsc + 118 tests verdes post-merge). Desviación autorizada: reparación de baseline type-only (`DurableCounterRow` interface→type, TS2344 preexistente en árbol limpio). Criterio grep literal documentado como intent-met (byte accounting vive en el reader compartido de `index.ts`; pinneado por test unicode-bytes→413 en path v2) |
+
+Movido a [`plans/archive/`](archive/README.md).
 
 ### Auditoría de dirección 083–086 — reconciliados 2026-09-12
 
