@@ -18,21 +18,20 @@ import CalculatorDataFreshness from "@/components/calculator/CalculatorDataFresh
 import GlossaryContentWrapper from "@/components/GlossaryContentWrapper.astro";
 import { formatEconomicDate } from "@/domain/economic/economicSourcePresentation";
 import { ufWorkedExample } from "@/application/use-cases/ConvertUf.methodology";
-import ufHistoricoRaw from "@/data/economic-history/uf-historico.json";
+import ufRango from "@/data/economic-history/uf-rango.json";
 
 const { parameters: economicParameters } = await getEconomicParameters();
 
 // Solo los extremos del rango para el atributo min/max del input; el lookup
-// se carga bajo demanda desde /api/uf-historico-lookup.json
-const ufFirstEntry = ufHistoricoRaw.serie[0];
-const ufLastEntry = ufHistoricoRaw.serie[ufHistoricoRaw.serie.length - 1];
-if (!ufFirstEntry || !ufLastEntry) {
+// se resuelve por fecha vía /api/uf-historico-lookup.json?date= (sin descargar
+// el mapa completo de ~212 KB)
+const ufFirstDate = ufRango.first;
+const ufLastDate = ufRango.last;
+if (!ufFirstDate || !ufLastDate) {
   throw new Error(
-    "[conversor-uf] Serie UF histórica vacía; actualiza src/data/economic-history/uf-historico.json antes de publicar."
+    "[conversor-uf] Rango UF histórico vacío; actualiza src/data/economic-history/uf-historico.json antes de publicar."
   );
 }
-const ufFirstDate = ufFirstEntry.fecha;
-const ufLastDate = ufLastEntry.fecha;
 const ufHistoricoEndpoint = getPath("/api/uf-historico-lookup.json");
 const ufGuidePath = getPath("/posts/que-es-la-uf/");
 const ufHubPath = getPath("/guias/uf-costo-de-vida/");
@@ -381,6 +380,7 @@ const ufFaqs = [
 
 <script>
   import { convertUf } from "@/application/use-cases/ConvertUf";
+  import { fetchHistoricalUf } from "@/application/use-cases/FetchHistoricalUf";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { formatCLP } from "@/utils/formatCLP";
 
@@ -517,15 +517,8 @@ const ufFaqs = [
   });
   tablaEl.replaceChildren(...tableRows);
 
-  // ── LOOKUP HISTÓRICO (carga bajo demanda) ────────────────────
-  type HistoricoData = {
-    lookup: Record<string, number>;
-    first: string;
-    last: string;
-  };
-  let historicData: HistoricoData | null = null;
-  let historicFetchPromise: Promise<void> | null = null;
-
+  // Rango del dataset (inyectado en SSR vía min/max del input); el valor
+  // por fecha se resuelve contra el endpoint de rango, un fetch por candidata.
   const fechaInput = document.getElementById(
     "fecha-historica"
   ) as HTMLInputElement | null;
@@ -539,81 +532,63 @@ const ufFaqs = [
     "resultado-historico-error"
   )!;
 
-  async function loadHistoricData(): Promise<void> {
-    if (historicData) return;
-    const endpoint = fechaInput?.dataset.historicoEndpoint;
-    if (!endpoint) return;
-    try {
-      const res = await fetch(endpoint);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      historicData = (await res.json()) as HistoricoData;
-    } catch {
-      historicData = null;
-      historicFetchPromise = null; // permite reintentar en el próximo change
-    }
-  }
-
-  // Pre-carga cuando el usuario enfoca el input por primera vez
-  fechaInput?.addEventListener(
-    "focus",
-    () => {
-      if (!historicFetchPromise) historicFetchPromise = loadHistoricData();
-    },
-    { once: true }
-  );
+  // Rango del dataset (inyectado en SSR vía min/max del input) y endpoint.
+  const historicoEndpoint = fechaInput?.dataset.historicoEndpoint ?? "";
+  const historicoFirst = fechaInput?.min ?? "";
+  const historicoLast = fechaInput?.max ?? "";
 
   function fmtDate(iso: string): string {
     const [y, m, d] = iso.split("-");
     return `${d}/${m}/${y}`;
   }
 
-  function buscarUfHistorica(date: string): void {
-    if (!historicData) {
-      resHistoricoError.textContent =
-        "No pudimos cargar los datos históricos. Revisa tu conexión e inténtalo nuevamente.";
-      resHistoricoError.classList.remove("hidden");
-      return;
-    }
-    const { lookup, first, last } = historicData;
+  function mostrarErrorHistorico(mensaje: string): void {
+    resHistorico.classList.add("hidden");
+    resHistoricoError.textContent = mensaje;
+    resHistoricoError.classList.remove("hidden");
+  }
 
+  async function buscarUfHistorica(date: string): Promise<void> {
     resHistoricoError.classList.add("hidden");
     resHistorico.classList.add("hidden");
 
-    if (date < first) {
-      resHistoricoError.textContent = `El dataset histórico comienza el ${fmtDate(first)}. Ingresa una fecha posterior.`;
-      resHistoricoError.classList.remove("hidden");
-      return;
-    }
-    if (date > last) {
-      resHistoricoError.textContent = `El dataset histórico llega hasta el ${fmtDate(last)}. Ingresa una fecha anterior.`;
-      resHistoricoError.classList.remove("hidden");
+    if (!historicoEndpoint || !historicoFirst || !historicoLast) {
+      mostrarErrorHistorico(
+        "No pudimos cargar los datos históricos. Revisa tu conexión e inténtalo nuevamente."
+      );
       return;
     }
 
-    // Intento exact + fallback hasta 7 días atrás
-    let resolvedDate = date;
-    let valor: number | undefined = lookup[date];
-    if (valor === undefined) {
-      const d = new Date(date + "T12:00:00Z");
-      for (let i = 1; i <= 7; i++) {
-        d.setUTCDate(d.getUTCDate() - 1);
-        const candidate = d.toISOString().slice(0, 10);
-        if (candidate < first) break;
-        if (lookup[candidate] !== undefined) {
-          resolvedDate = candidate;
-          valor = lookup[candidate];
-          break;
-        }
+    const resultado = await fetchHistoricalUf(
+      url => fetch(url),
+      historicoEndpoint,
+      date,
+      historicoFirst,
+      historicoLast
+    );
+
+    if (!resultado.found) {
+      if (resultado.reason === "before_range") {
+        mostrarErrorHistorico(
+          `El dataset histórico comienza el ${fmtDate(historicoFirst)}. Ingresa una fecha posterior.`
+        );
+      } else if (resultado.reason === "after_range") {
+        mostrarErrorHistorico(
+          `El dataset histórico llega hasta el ${fmtDate(historicoLast)}. Ingresa una fecha anterior.`
+        );
+      } else if (resultado.reason === "network_error") {
+        mostrarErrorHistorico(
+          "No pudimos cargar los datos históricos. Revisa tu conexión e inténtalo nuevamente."
+        );
+      } else {
+        mostrarErrorHistorico(
+          "No hay dato disponible para esa fecha. Prueba una fecha cercana."
+        );
       }
-    }
-
-    if (valor === undefined) {
-      resHistoricoError.textContent =
-        "No hay dato disponible para esa fecha. Prueba una fecha cercana.";
-      resHistoricoError.classList.remove("hidden");
       return;
     }
 
+    const { resolvedDate, value: valor } = resultado;
     const valorFmt =
       "$" +
       valor.toLocaleString("es-CL", {
@@ -628,9 +603,8 @@ const ufFaqs = [
     resHistorico.classList.remove("hidden");
   }
 
-  fechaInput?.addEventListener("change", async () => {
+  fechaInput?.addEventListener("change", () => {
     if (!fechaInput.value) return;
-    await loadHistoricData();
-    buscarUfHistorica(fechaInput.value);
+    void buscarUfHistorica(fechaInput.value);
   });
 </script>
