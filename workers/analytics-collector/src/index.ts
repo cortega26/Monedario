@@ -825,7 +825,7 @@ export async function runExport(env: Env, week: string): Promise<ExportRunSummar
   }
 
   const key = `analytics-exports/${week}.json`;
-  const body = JSON.stringify(artifact, null, 2) + "\n";
+  const body = JSON.stringify(artifact) + "\n";
   await env.ANALYTICS_EXPORTS.put(key, body, {
     httpMetadata: { contentType: "application/json" },
   });

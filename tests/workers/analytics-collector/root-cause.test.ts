@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 import analyticsWorker, {
   runExportV2,
@@ -9,6 +9,10 @@ import { MAX_BODY_SIZE } from "../../../workers/analytics-collector/src/index";
 class MockKV {
   store = new Map<string, string>();
   putCalls = 0;
+  listCalls = 0;
+  // Paginates like the real KV list cursor protocol so export cursor loops
+  // are exercised (page size mirrors the exporter's batch idiom).
+  static readonly LIST_PAGE_SIZE = 50;
 
   constructor(initial: Record<string, string> = {}) {
     for (const [key, value] of Object.entries(initial)) this.store.set(key, value);
@@ -23,16 +27,32 @@ class MockKV {
     throw new Error("legacy KV must be read-only");
   }
 
-  async list(options?: { prefix?: string }): Promise<{
+  async list(options?: { prefix?: string; cursor?: string }): Promise<{
     keys: Array<{ name: string }>;
     list_complete: boolean;
     cursor?: string;
   }> {
+    this.listCalls += 1;
     const prefix = options?.prefix ?? "";
+    const names = [...this.store.keys()]
+      .filter((key) => key.startsWith(prefix))
+      .sort();
+    let offset = 0;
+    if (options?.cursor !== undefined) {
+      const parsed = parseInt(options.cursor, 10);
+      offset = Number.isInteger(parsed) && parsed >= 0 ? parsed : 0;
+    }
+    const page = names.slice(offset, offset + MockKV.LIST_PAGE_SIZE);
+    const next = offset + page.length;
+    if (next < names.length) {
+      return {
+        keys: page.map((name) => ({ name })),
+        list_complete: false,
+        cursor: String(next),
+      };
+    }
     return {
-      keys: [...this.store.keys()]
-        .filter((key) => key.startsWith(prefix))
-        .map((name) => ({ name })),
+      keys: page.map((name) => ({ name })),
       list_complete: true,
     };
   }
@@ -40,8 +60,10 @@ class MockKV {
 
 class MockR2 {
   objects = new Map<string, string>();
-  async put(key: string, value: string): Promise<void> {
+  lastOptions: unknown;
+  async put(key: string, value: string, options?: unknown): Promise<void> {
     this.objects.set(key, value);
+    this.lastOptions = options;
   }
 }
 
@@ -56,7 +78,10 @@ type Counter = {
 class MockCounterStub {
   counters = new Map<string, Counter>();
   incrementCalls = 0;
+  listCalls = 0;
   failWrites = false;
+  // Raw rows injected into /list output to simulate poisoned durable rows.
+  extraListRows: unknown[] = [];
 
   seed(counter: Counter): void {
     this.counters.set(this.key(counter), { ...counter });
@@ -64,6 +89,20 @@ class MockCounterStub {
 
   private key(counter: Omit<Counter, "count">): string {
     return [counter.date, counter.event, counter.slug, counter.dimensions].join("|");
+  }
+
+  private static compare(a: Counter, b: Counter): number {
+    const parts: Array<[string, string]> = [
+      [a.date, b.date],
+      [a.event, b.event],
+      [a.slug, b.slug],
+      [a.dimensions, b.dimensions],
+    ];
+    for (const [left, right] of parts) {
+      if (left < right) return -1;
+      if (left > right) return 1;
+    }
+    return 0;
   }
 
   async fetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
@@ -84,12 +123,33 @@ class MockCounterStub {
     }
 
     if (request.method === "GET" && url.pathname === "/list") {
+      this.listCalls += 1;
       const from = url.searchParams.get("from") ?? "";
       const to = url.searchParams.get("to") ?? "";
-      const counters = [...this.counters.values()].filter(
-        (counter) => counter.date >= from && counter.date <= to,
-      );
-      return Response.json({ counters });
+      const limitRaw = url.searchParams.get("limit");
+      const cursorRaw = url.searchParams.get("cursor");
+      const sorted = [...this.counters.values()]
+        .filter((counter) => counter.date >= from && counter.date <= to)
+        .sort(MockCounterStub.compare);
+      // Opaque offset cursor (the exporter never decodes it — it round-trips
+      // whatever the server returns, exactly like the real keyset cursor).
+      let offset = 0;
+      if (cursorRaw !== null) {
+        const match = /^offset:(\d+)$/.exec(cursorRaw);
+        offset = match ? parseInt(match[1], 10) : 0;
+      }
+      const limit =
+        limitRaw === null ? sorted.length : parseInt(limitRaw, 10);
+      const page = sorted.slice(offset, offset + limit);
+      const next = offset + page.length;
+      // Poisoned rows ride the first page only (they belong to the window;
+      // repeating them per page would simulate duplicates, not poison).
+      const rows: unknown[] =
+        offset === 0 ? [...page, ...this.extraListRows] : [...page];
+      if (next < sorted.length) {
+        return Response.json({ counters: rows, cursor: `offset:${next}` });
+      }
+      return Response.json({ counters: rows });
     }
 
     if (request.method === "GET" && url.pathname === "/health") {
@@ -202,12 +262,15 @@ describe("root-cause fix: ingestion", () => {
 
 describe("root-cause fix: weekly export", () => {
   it("sums legacy KV and new durable counters without double-writing KV", async () => {
+    // 2026-W31 (2026-07-27→08-02) predates the legacy KV sunset
+    // (cutover 2026-07-20 + 35-day TTL), so the KV scan still runs here;
+    // post-sunset weeks are covered by the plan-099 legacy-skip test.
     const kv = new MockKV({
-      "telemetry:v2:2026-09-07:calculator_start:sueldo-liquido:input": "3",
+      "telemetry:v2:2026-07-27:calculator_start:sueldo-liquido:input": "3",
     });
     const counters = new MockCounterStub();
     counters.seed({
-      date: "2026-09-07",
+      date: "2026-07-27",
       event: "calculator_start",
       slug: "sueldo-liquido",
       dimensions: "input",
@@ -215,14 +278,14 @@ describe("root-cause fix: weekly export", () => {
     });
     const env = makeEnv({ kv, counters });
 
-    const result = await runExportV2(env, "2026-W37");
+    const result = await runExportV2(env, "2026-W31");
 
     expect(result.totalEvents).toBe(5);
     expect(result.rows).toBe(1);
     expect(kv.putCalls).toBe(0);
 
     const r2 = env.ANALYTICS_EXPORTS as unknown as MockR2;
-    const raw = r2.objects.get("analytics-exports/2026-W37.json");
+    const raw = r2.objects.get("analytics-exports/2026-W31.json");
     expect(raw).toBeDefined();
     const artifact = JSON.parse(raw ?? "{}") as {
       data: Array<{ count: number; event_name: string }>;
@@ -593,5 +656,272 @@ describe("plan 098: fail-closed config and input validation", () => {
     expect(response.headers.get("Access-Control-Allow-Origin")).toBe(
       "https://monedario.cl",
     );
+  });
+});
+
+describe("plan 099: analytics export hardening", () => {
+  const W31_DATES = [
+    "2026-07-27",
+    "2026-07-28",
+    "2026-07-29",
+    "2026-07-30",
+    "2026-07-31",
+    "2026-08-01",
+    "2026-08-02",
+  ];
+
+  function ctaClickEvent(): Request {
+    return new Request("https://monedario.cl/api/analytics/event", {
+      method: "POST",
+      headers: {
+        Origin: "https://monedario.cl",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        event: "article_calculator_cta_click",
+        params: {
+          cta_type: "article-calculator-cta",
+          cta_location: "post-result",
+          destination_url: "https://monedario.cl/calculadoras/sueldo-liquido/",
+          page_type: "article",
+          app_version: "1.2.3",
+        },
+      }),
+    });
+  }
+
+  it("paginates the DO export to exhaustion with exact totals", async () => {
+    const counters = new MockCounterStub();
+    for (let i = 0; i < 120; i += 1) {
+      counters.seed({
+        date: W31_DATES[i % W31_DATES.length],
+        event: "calculator_start",
+        slug: "tool",
+        dimensions: `dim-${i}`,
+        count: 1,
+      });
+    }
+    const env = makeEnv({ kv: new MockKV(), counters });
+
+    const first = await runExportV2(env, "2026-W31");
+
+    expect(first.totalEvents).toBe(120);
+    expect(first.rows).toBe(120);
+    // 120 rows at 50 per page forces multiple round-trips.
+    expect(counters.listCalls).toBeGreaterThanOrEqual(3);
+
+    // A retry replays the same pages: identical totals, never duplicated.
+    const second = await runExportV2(env, "2026-W31");
+    expect(second.totalEvents).toBe(120);
+    expect(second.rows).toBe(120);
+  });
+
+  it("pages legacy KV cursors without double-counting", async () => {
+    const initial: Record<string, string> = {};
+    for (let i = 0; i < 60; i += 1) {
+      initial[`telemetry:v2:2026-07-27:calculator_start:tool:d${i}`] = "1";
+    }
+    const kv = new MockKV(initial);
+    const env = makeEnv({ kv, counters: new MockCounterStub() });
+
+    const result = await runExportV2(env, "2026-W31");
+
+    expect(result.totalEvents).toBe(60);
+    // 60 keys on one date at 50 per mock page forces a cursor follow-up.
+    expect(kv.listCalls).toBeGreaterThanOrEqual(2);
+
+    const retry = await runExportV2(env, "2026-W31");
+    expect(retry.totalEvents).toBe(60);
+  });
+
+  it("excludes poisoned durable rows without failing the week", async () => {
+    const counters = new MockCounterStub();
+    counters.seed({
+      date: "2026-07-27",
+      event: "calculator_start",
+      slug: "tool",
+      dimensions: "ok-a",
+      count: 2,
+    });
+    counters.seed({
+      date: "2026-07-28",
+      event: "calculator_start",
+      slug: "tool",
+      dimensions: "ok-b",
+      count: 3,
+    });
+    counters.extraListRows = [
+      null,
+      "not-a-row",
+      {
+        date: "2026-13-40",
+        event: "calculator_start",
+        slug: "s",
+        dimensions: "",
+        count: 1,
+      },
+      { date: "2026-07-27", event: "", slug: "s", dimensions: "", count: 1 },
+      {
+        date: "2026-07-27",
+        event: "calculator_start",
+        slug: "s",
+        dimensions: "",
+        count: -1,
+      },
+      {
+        date: "2026-07-27",
+        event: "calculator_start",
+        slug: "s",
+        dimensions: "",
+        count: "3",
+      },
+      {
+        date: "2020-01-01",
+        event: "calculator_start",
+        slug: "s",
+        dimensions: "",
+        count: 9,
+      },
+    ];
+    const env = makeEnv({ kv: new MockKV(), counters });
+
+    const result = await runExportV2(env, "2026-W31");
+
+    expect(result.totalEvents).toBe(5);
+    expect(result.rows).toBe(2);
+    const r2 = env.ANALYTICS_EXPORTS as unknown as MockR2;
+    expect(r2.objects.get("analytics-exports/2026-W31.json")).toBeDefined();
+  });
+
+  it("skips the legacy KV scan past TTL and keeps old-week re-exports", async () => {
+    const logSpy = vi.spyOn(console, "log").mockImplementation(() => undefined);
+    try {
+      const kv = new MockKV({
+        "telemetry:v2:2026-09-07:calculator_start:sueldo-liquido:stale": "5",
+      });
+      const counters = new MockCounterStub();
+      counters.seed({
+        date: "2026-09-07",
+        event: "calculator_start",
+        slug: "sueldo-liquido",
+        dimensions: "fresh",
+        count: 2,
+      });
+      const env = makeEnv({ kv, counters });
+
+      // 2026-W37 starts after cutover (2026-07-20) + 35-day TTL: the stale
+      // KV key must not be read and the export still succeeds on DO data.
+      const result = await runExportV2(env, "2026-W37");
+
+      expect(result.totalEvents).toBe(2);
+      expect(kv.listCalls).toBe(0);
+      expect(
+        logSpy.mock.calls.some((args) =>
+          args.map(String).join(" ").includes("legacy_skipped"),
+        ),
+      ).toBe(true);
+    } finally {
+      logSpy.mockRestore();
+    }
+
+    // Manual old-week re-export (?week=2026-W29) predates the sunset and
+    // must still scan legacy KV.
+    const oldKv = new MockKV({
+      "telemetry:v1:2026-07-13:calculator_start:sueldo-liquido:kept": "4",
+    });
+    const oldCounters = new MockCounterStub();
+    oldCounters.seed({
+      date: "2026-07-13",
+      event: "calculator_start",
+      slug: "sueldo-liquido",
+      dimensions: "kept",
+      count: 1,
+    });
+    const oldEnv = makeEnv({ kv: oldKv, counters: oldCounters });
+
+    const oldResult = await runExportV2(oldEnv, "2026-W29");
+
+    expect(oldResult.totalEvents).toBe(5);
+    expect(oldKv.listCalls).toBeGreaterThan(0);
+  });
+
+  it("writes a compact artifact that round-trips through JSON.parse", async () => {
+    const counters = new MockCounterStub();
+    counters.seed({
+      date: "2026-07-27",
+      event: "calculator_start",
+      slug: "tool",
+      dimensions: "input",
+      count: 7,
+    });
+    const env = makeEnv({ kv: new MockKV(), counters });
+
+    await runExportV2(env, "2026-W31");
+
+    const r2 = env.ANALYTICS_EXPORTS as unknown as MockR2;
+    const raw = r2.objects.get("analytics-exports/2026-W31.json") ?? "";
+    expect(raw.endsWith("\n")).toBe(true);
+    expect(raw.includes("\n  ")).toBe(false);
+    const parsed = JSON.parse(raw) as { data: unknown[] };
+    expect(Array.isArray(parsed.data)).toBe(true);
+    expect(parsed.data).toHaveLength(1);
+    const options = r2.lastOptions as {
+      httpMetadata?: { contentType?: string };
+    };
+    expect(options?.httpMetadata?.contentType).toBe("application/json");
+  });
+
+  it("keeps the legacy dimensions join for enum-only events", async () => {
+    const counters = new MockCounterStub();
+    const env = makeEnv({ kv: new MockKV(), counters });
+
+    const response = await analyticsWorker.fetch(validEvent(), env);
+
+    expect(response.status).toBe(202);
+    const stored = [...counters.counters.values()];
+    expect(stored).toHaveLength(1);
+    // No ":"-bearing value: the historical bare-values join is preserved so
+    // the series merges with pre-099 rows.
+    expect(stored[0].dimensions).toBe("input");
+  });
+
+  it("serializes a colon-bearing destination_url as versioned pairs", async () => {
+    const counters = new MockCounterStub();
+    const env = makeEnv({ kv: new MockKV(), counters });
+
+    const response = await analyticsWorker.fetch(ctaClickEvent(), env);
+
+    expect(response.status).toBe(202);
+    const stored = [...counters.counters.values()];
+    expect(stored).toHaveLength(1);
+    expect(stored[0].dimensions).toBe(
+      "v2:app_version=1.2.3:cta_location=post-result:cta_type=article-calculator-cta:destination_url=https\\://monedario.cl/calculadoras/sueldo-liquido/",
+    );
+  });
+
+  it("carries new-format dimensions through export opaquely", async () => {
+    const dimensions =
+      "v2:app_version=1.2.3:cta_location=post-result:cta_type=article-calculator-cta:destination_url=https\\://monedario.cl/calculadoras/sueldo-liquido/";
+    const counters = new MockCounterStub();
+    counters.seed({
+      date: "2026-07-27",
+      event: "article_calculator_cta_click",
+      slug: "article",
+      dimensions,
+      count: 2,
+    });
+    const env = makeEnv({ kv: new MockKV(), counters });
+
+    const result = await runExportV2(env, "2026-W31");
+
+    expect(result.totalEvents).toBe(2);
+    const r2 = env.ANALYTICS_EXPORTS as unknown as MockR2;
+    const raw = r2.objects.get("analytics-exports/2026-W31.json") ?? "";
+    const artifact = JSON.parse(raw) as {
+      data: Array<{ dimensions: string; count: number }>;
+    };
+    expect(artifact.data).toHaveLength(1);
+    expect(artifact.data[0].dimensions).toBe(dimensions);
+    expect(artifact.data[0].count).toBe(2);
   });
 });

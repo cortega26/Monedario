@@ -21,6 +21,14 @@ import {
 
 const DO_NAME = "analytics-counters-v1";
 const KV_EXPORT_READ_BATCH_SIZE = 50;
+// DO export page size. Mirrors the 50-row KV batch idiom for symmetry; raise
+// this (not cron memory) first if export cardinality grows again.
+const DO_EXPORT_PAGE_SIZE = 50;
+// Upper bound for an explicit ?limit= on the DO /list endpoint.
+const DO_LIST_MAX_LIMIT = 1000;
+// Legacy KV keys expire 35 days after write. Mirrors KV_TTL_SECONDS in
+// ./index (which owns the TTL); keep the two in sync.
+const LEGACY_KV_TTL_MS = 35 * 24 * 60 * 60 * 1000;
 const INTERNAL_DO_ORIGIN = "https://analytics-counter.internal";
 
 interface RateLimitBinding {
@@ -71,6 +79,55 @@ interface IncrementPayload {
 
 function isIsoDate(value: string): boolean {
   return /^\d{4}-\d{2}-\d{2}$/.test(value);
+}
+
+/**
+ * Opaque keyset cursor for the DO /list endpoint: the ordering tuple of the
+ * last row of the previous page, JSON-encoded. The exporter passes it back
+ * verbatim; keyset pagination (strict > on the full ORDER BY tuple) means a
+ * retried page returns the same rows instead of double-counting them.
+ */
+function encodeListCursor(row: DurableCounterRow): string {
+  return JSON.stringify([row.date, row.event, row.slug, row.dimensions]);
+}
+
+function decodeListCursor(value: string): DurableCounterRow | null {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(value);
+  } catch {
+    return null;
+  }
+  if (!Array.isArray(parsed) || parsed.length !== 4) return null;
+  const [date, event, slug, dimensions] = parsed;
+  if (typeof date !== "string" || !isIsoDate(date)) return null;
+  if (
+    typeof event !== "string" ||
+    event.length === 0 ||
+    event.length > 80 ||
+    typeof slug !== "string" ||
+    slug.length === 0 ||
+    slug.length > 80 ||
+    typeof dimensions !== "string" ||
+    dimensions.length > 1024
+  ) {
+    return null;
+  }
+  return { date, event, slug, dimensions, count: 0 };
+}
+
+/**
+ * Parses the DO /list ?limit=. Null (absent) selects the default page size;
+ * anything outside 1..DO_LIST_MAX_LIMIT is rejected fail-closed (null).
+ */
+function parseListLimit(raw: string | null): number | null {
+  if (raw === null) return DO_EXPORT_PAGE_SIZE;
+  if (!/^\d+$/.test(raw)) return null;
+  const parsed = parseInt(raw, 10);
+  if (!Number.isSafeInteger(parsed) || parsed < 1 || parsed > DO_LIST_MAX_LIMIT) {
+    return null;
+  }
+  return parsed;
 }
 
 function isIncrementPayload(value: unknown): value is IncrementPayload {
@@ -152,17 +209,56 @@ export class AnalyticsCounters {
       if (!isIsoDate(from) || !isIsoDate(to) || from > to) {
         return new Response("invalid_window", { status: 400 });
       }
+      const limit = parseListLimit(url.searchParams.get("limit"));
+      if (limit === null) {
+        return new Response("invalid_limit", { status: 400 });
+      }
+      const cursorParam = url.searchParams.get("cursor");
+      let cursor: DurableCounterRow | null = null;
+      if (cursorParam !== null) {
+        cursor = decodeListCursor(cursorParam);
+        if (!cursor) {
+          return new Response("invalid_cursor", { status: 400 });
+        }
+      }
 
-      const rows = this.sql
-        .exec<DurableCounterRow>(
-          `SELECT date, event, slug, dimensions, count
-           FROM counters
-           WHERE date >= ? AND date <= ?
-           ORDER BY date, event, slug, dimensions`,
-          from,
-          to,
-        )
-        .toArray();
+      // Keyset pagination on the full ORDER BY tuple: stable under concurrent
+      // increments (new rows sort after the cursor) and retry-safe (the same
+      // cursor replays the same page instead of skipping or duplicating).
+      const rows = (
+        cursor
+          ? this.sql.exec<DurableCounterRow>(
+              `SELECT date, event, slug, dimensions, count
+               FROM counters
+               WHERE date >= ? AND date <= ?
+                 AND (date, event, slug, dimensions) > (?, ?, ?, ?)
+               ORDER BY date, event, slug, dimensions
+               LIMIT ?`,
+              from,
+              to,
+              cursor.date,
+              cursor.event,
+              cursor.slug,
+              cursor.dimensions,
+              limit,
+            )
+          : this.sql.exec<DurableCounterRow>(
+              `SELECT date, event, slug, dimensions, count
+               FROM counters
+               WHERE date >= ? AND date <= ?
+               ORDER BY date, event, slug, dimensions
+               LIMIT ?`,
+              from,
+              to,
+              limit,
+            )
+      ).toArray();
+      // First-page shape stays { counters } so old readers still parse; the
+      // cursor field appears only when another page may follow.
+      if (rows.length === limit) {
+        const last = rows[rows.length - 1];
+        return Response.json({ counters: rows, cursor: encodeListCursor(last) });
+      }
       return Response.json({ counters: rows });
     }
 
@@ -305,17 +401,60 @@ async function checkRateLimit(
   }
 }
 
+/**
+ * Migration note (plan 099 — dimensions ":" collision). DO `dimensions`
+ * historically joined bare values with ":" and dropped the keys. Enumerating
+ * the allowlist shows exactly one value can carry ":": `destination_url`,
+ * whose INTERNAL_URL validator permits "https://..." (emitted by
+ * article_calculator_cta_click via src/scripts/analytics.ts, and it flows
+ * into dimensions like every other non-excluded param). All other allowlisted
+ * properties validate via SAFE_TOKEN / APP_VERSION / colon-free enums.
+ *
+ * Going forward, rows with a ":", "=", ";" or "\" in any value are written
+ * as versioned escaped `key=value` pairs joined with ":" ("v2:..."). The
+ * ":" join is deliberate: export validation (validateExportArtifact, owned by
+ * ./index and out of scope here) splits dimensions on ":" and rejects pieces
+ * over 80 chars, so ";"-joining would concentrate every pair into one long
+ * piece and fail realistic URLs. "=" never appears in legacy rows (no
+ * allowlisted value can contain it), so readers distinguish formats by its
+ * presence. Enum-only events keep the legacy join so their historical series
+ * merges unchanged; URL-bearing rows start a disambiguated series (the old
+ * ambiguous join could not attribute them correctly anyway). Old keys stay
+ * readable: nothing re-parses dimensions server-side (aggregation groups by
+ * exact string, downstream treats them opaquely), so both formats flow
+ * through export.
+ */
+const DIMENSIONS_VERSION_PREFIX = "v2:";
+
+function escapeDimensionPart(value: string): string {
+  return value
+    .replace(/\\/g, "\\\\")
+    .replace(/;/g, "\\;")
+    .replace(/:/g, "\\:")
+    .replace(/=/g, "\\=");
+}
+
 function durableCounterFromEvent(
   event: string,
   params: Record<string, string | number | boolean>,
   timeZone: string,
 ): IncrementPayload {
   const slug = String(params.calculator_id ?? params.page_type ?? "unknown");
-  const dimensions = Object.entries(params)
+  const entries = Object.entries(params)
     .filter(([key]) => key !== "calculator_id" && key !== "page_type")
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([, value]) => String(value))
-    .join(":");
+    .sort(([a], [b]) => a.localeCompare(b));
+  const needsEscapedFormat = entries.some(([, value]) =>
+    /[:;\\=]/.test(String(value)),
+  );
+  const dimensions = needsEscapedFormat
+    ? DIMENSIONS_VERSION_PREFIX +
+      entries
+        .map(
+          ([key, value]) =>
+            `${escapeDimensionPart(key)}=${escapeDimensionPart(String(value))}`,
+        )
+        .join(":")
+    : entries.map(([, value]) => String(value)).join(":");
 
   return {
     date: calendarDateInTimeZone(new Date(), timeZone),
@@ -343,22 +482,71 @@ async function ingestEvent(
   }
 }
 
+/**
+ * Fail-closed shape check for one DO export row. Poisoned rows (nulls, wrong
+ * types, malformed dates, negative counts) are excluded and logged so a
+ * single bad row can never fail the whole week atomically.
+ */
+function isDurableCounterRow(value: unknown): value is DurableCounterRow {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+  const row = value as Record<string, unknown>;
+  return (
+    typeof row.date === "string" &&
+    isIsoDate(row.date) &&
+    typeof row.event === "string" &&
+    row.event.length > 0 &&
+    row.event.length <= 80 &&
+    typeof row.slug === "string" &&
+    row.slug.length > 0 &&
+    row.slug.length <= 80 &&
+    typeof row.dimensions === "string" &&
+    row.dimensions.length <= 1024 &&
+    Number.isInteger(row.count) &&
+    (row.count as number) >= 0
+  );
+}
+
 async function listDurableCounters(
   env: Env,
   window: { from: string; to: string },
 ): Promise<TelemetryCounter[]> {
-  const url = new URL(`${INTERNAL_DO_ORIGIN}/list`);
-  url.searchParams.set("from", window.from);
-  url.searchParams.set("to", window.to);
-  const response = await getCounterStub(env).fetch(url);
-  if (!response.ok) {
-    throw new Error(`Durable counter export failed with HTTP ${response.status}`);
+  const counters: TelemetryCounter[] = [];
+  let cursor: string | undefined;
+  for (;;) {
+    const url = new URL(`${INTERNAL_DO_ORIGIN}/list`);
+    url.searchParams.set("from", window.from);
+    url.searchParams.set("to", window.to);
+    url.searchParams.set("limit", String(DO_EXPORT_PAGE_SIZE));
+    if (cursor !== undefined) url.searchParams.set("cursor", cursor);
+    const response = await getCounterStub(env).fetch(url);
+    if (!response.ok) {
+      throw new Error(
+        `Durable counter export failed with HTTP ${response.status}`,
+      );
+    }
+    const body = (await response.json()) as {
+      counters?: unknown;
+      cursor?: unknown;
+    };
+    if (!Array.isArray(body.counters)) {
+      throw new Error("Durable counter export returned an invalid payload");
+    }
+    for (const row of body.counters) {
+      if (!isDurableCounterRow(row)) {
+        console.error("[analytics-export] skipping invalid durable row");
+        continue;
+      }
+      counters.push(row);
+    }
+    const next =
+      typeof body.cursor === "string" && body.cursor.length > 0
+        ? body.cursor
+        : undefined;
+    // A cursor with an empty page would loop forever — treat as exhausted.
+    if (next === undefined || body.counters.length === 0) break;
+    cursor = next;
   }
-  const body = (await response.json()) as { counters?: TelemetryCounter[] };
-  if (!Array.isArray(body.counters)) {
-    throw new Error("Durable counter export returned an invalid payload");
-  }
-  return body.counters;
+  return counters;
 }
 
 async function listLegacyKvCounters(
@@ -401,6 +589,23 @@ async function listLegacyKvCounters(
   return counters;
 }
 
+/**
+ * True once the export window starts after the legacy KV sunset (cutover
+ * instant + 35-day key TTL). Missing or unparsable cutover never skips
+ * (fail-safe: keep scanning).
+ */
+function isLegacyKvSunset(
+  windowFrom: string,
+  cutoverAt: string | undefined,
+): boolean {
+  if (!cutoverAt) return false;
+  const cutover = new Date(cutoverAt);
+  if (Number.isNaN(cutover.getTime())) return false;
+  const from = new Date(`${windowFrom}T00:00:00Z`);
+  if (Number.isNaN(from.getTime())) return false;
+  return from.getTime() > cutover.getTime() + LEGACY_KV_TTL_MS;
+}
+
 export async function runExportV2(
   env: Env,
   week: string,
@@ -417,10 +622,24 @@ export async function runExportV2(
     env.COUNTER_KEY_CUTOVER_AT,
   );
 
-  const [legacyCounters, durableCounters] = await Promise.all([
-    listLegacyKvCounters(env.ANALYTICS_TELEMETRY, legacyPrefix, window),
-    listDurableCounters(env, window),
-  ]);
+  // Legacy KV sunset: ingestion stopped writing KV at the cutover and every
+  // key carries a 35-day TTL, so a window starting after cutover + TTL cannot
+  // hold legacy keys. The gate uses window.from (a straddling window still
+  // scans) so explicit old-week re-exports (?week=) keep working.
+  const durablePromise = listDurableCounters(env, window);
+  let legacyCounters: TelemetryCounter[] = [];
+  let durableCounters: TelemetryCounter[];
+  if (isLegacyKvSunset(window.from, env.COUNTER_KEY_CUTOVER_AT)) {
+    console.log(
+      `[analytics-export] week=${week} legacy_skipped window_from=${window.from} (past cutover + TTL)`,
+    );
+    durableCounters = await durablePromise;
+  } else {
+    [legacyCounters, durableCounters] = await Promise.all([
+      listLegacyKvCounters(env.ANALYTICS_TELEMETRY, legacyPrefix, window),
+      durablePromise,
+    ]);
+  }
 
   // No double-write exists: legacy KV is read-only after this migration and
   // every new event is written only to the Durable Object. Summing the two
@@ -439,7 +658,10 @@ export async function runExportV2(
   }
 
   const key = `analytics-exports/${week}.json`;
-  const body = JSON.stringify(artifact, null, 2) + "\n";
+  // Compact artifact: downstream parses with whitespace-insensitive
+  // JSON.parse, so pretty-printing only inflated the weekly R2 write and
+  // every downstream read.
+  const body = JSON.stringify(artifact) + "\n";
   await env.ANALYTICS_EXPORTS.put(key, body, {
     httpMetadata: { contentType: "application/json" },
   });
