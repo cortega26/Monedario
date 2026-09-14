@@ -7,7 +7,7 @@
 > in `plans/README.md` — unless a reviewer dispatched you and told you they
 > maintain the index.
 >
-> **Drift check (run first)**: `git diff --stat 0e506a8b..HEAD -- START_HERE.md README.md docs/operations/runbooks/bootstrap-checklist.md context/AGENT_ENTRYPOINTS.json context/AGENT_ENTRYPOINTS.md context/AGENT_PREFLIGHT.md .env.example`
+> **Drift check (run first)**: `git diff --stat 7d82ccbf..HEAD -- START_HERE.md README.md docs/operations/runbooks/bootstrap-checklist.md context/AGENT_ENTRYPOINTS.json context/AGENT_ENTRYPOINTS.md context/AGENT_PREFLIGHT.md .env.example`
 > On mismatch with "Current state", STOP.
 
 ## Status
@@ -18,6 +18,12 @@
 - **Depends on**: none
 - **Category**: dx
 - **Planned at**: commit `0e506a8b`, 2026-09-14
+- **Reconciled at**: commit `7d82ccbf`, 2026-09-14 — all eight doc paths
+  untouched since planning (drift empty); every version/env claim re-read
+  live and confirmed; `PROJECT_CONTEXT_MASTER.md` CONFIRMED in scope (3
+  stale version sites at `:66,73,185`); plan-106 pip-audit evidence already
+  in tree (`TECH_DEBT_BACKLOG.md` TD-0097 note + `security-scans.yml`
+  comment — cite, don't re-derive)
 - **Issue**: —
 
 ## Why this matters
@@ -48,7 +54,8 @@ Files and roles:
 - `context/AGENT_PREFLIGHT.md:82-91` — env table lists 4 vars only
 - `package.json:15` (`check`) — includes `check:images` + `check:links`
 
-Excerpts as of `0e506a8b` (verified by reading):
+Excerpts as of `7d82ccbf` (all re-read; manifests: `packageManager`
+`pnpm@11.7.0`, `astro ^7.2.9` at `package.json:127`, `.nvmrc` = `22`):
 
 ```md
 <!-- START_HERE.md:7 -->
@@ -111,11 +118,12 @@ npm/yarn); docs gates via `check:docs`; prettier double-quotes/80-col.
 
 Set every onboarding reference to Node 22 / pnpm 11.7.0 / Astro 7 from
 `package.json` (`packageManager`, `astro` range) and `.nvmrc`. Files at
-minimum: `START_HERE.md`, `bootstrap-checklist.md`, `README.md`,
-`AGENT_ENTRYPOINTS.json` (+ `.md` if mirrored), `PROJECT_CONTEXT_MASTER.md`
-if it repeats them. Add one source-of-truth sentence ("versions follow
-`package.json#packageManager` and `.nvmrc`; docs must not pin competing
-majors").
+minimum: `START_HERE.md:7`, `bootstrap-checklist.md:8`, `README.md:17`,
+`AGENT_ENTRYPOINTS.json:15` (+ `.md` if mirrored — verified: no version
+strings in the `.md`, check again), `PROJECT_CONTEXT_MASTER.md:66,73,185`
+(confirmed stale: "Astro 6" ×3 + `pnpm@10.30.2` at `:73`). Add one
+source-of-truth sentence ("versions follow `package.json#packageManager`
+and `.nvmrc`; docs must not pin competing majors").
 
 **Verify**: `grep -rn "pnpm 10\|Astro 6" START_HERE.md README.md docs/operations/runbooks/bootstrap-checklist.md context/AGENT_ENTRYPOINTS.json` → no matches (excluding historical changelogs).
 

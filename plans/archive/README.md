@@ -112,6 +112,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [106](106-supply-chain-hygiene.md) | Higiene supply-chain: retiro de excludes madurados + huérfanos, pins CVE parent-aware con `remove-when`, excepción extract-zip dev-only + pip-audit venv documentados, TD-0097 al día (4 commits) | 2026-09-14 | sí (merge `25bd5b65`; 4 commits por cohorte + docs) |
 | [108](108-scenario-save-extraction.md) | Extraer helper `createScenarioSaveAdapter` del snapshot-save (089) con 6 tests happy-dom bajo el gate; 7 call sites rewired net-negativo | 2026-09-14 | sí (merge `6b512348`; 3 commits helper→rewire→tests) |
 | [107](107-calculator-client-helpers.md) | Unificar helpers cliente: pin anti-refork del adapter (108 ya unificó), `parseCLNumber` en 3 sitios, regex glossary hoisted byte-idéntico + 18 tests (3 commits) | 2026-09-14 | sí (merge `06d3ba3e`; 3 commits pin→parser→glossary) |
+| [109](109-onboarding-env-docs.md) | Alinear versiones onboarding (pnpm 11.7.0/Astro 7) + tablas env + bootstrap en dos etapas + pip-audit venv (solo docs, 2 commits) | 2026-09-14 | sí (merge `acb0f331`; commits `d9350b14` + `c52ddfde`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
