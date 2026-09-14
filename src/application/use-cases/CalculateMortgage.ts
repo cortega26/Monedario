@@ -46,6 +46,10 @@ export interface MortgageOutput {
   /** Sum of all base payments (no insurance, conservative) */
   totalPaidPesos: number;
   totalInterestPesos: number;
+  /** Lifetime insurance cost: sum of schedule desgravamen + fire UF × UF value */
+  totalInsurancePesos: number;
+  /** Lifetime outlay including insurance (totalPaidPesos + totalInsurancePesos) */
+  totalPaidWithInsurancePesos: number;
   amortizationSchedule: AmortizationRow[];
 }
 
@@ -211,6 +215,12 @@ export function calculateMortgage(input: MortgageInput): MortgageOutput {
     amortizationSchedule[0].desgravamenUF + fireInsuranceUF;
   const totalPaymentMonth1UF = basePaymentUF + insuranceMonth1UF;
   const totalPaidPesos = basePaymentUF * termMonths * input.ufValuePesos;
+  const totalInsurancePesos =
+    amortizationSchedule.reduce(
+      (sum, row) => sum + row.desgravamenUF + row.fireInsuranceUF,
+      0
+    ) * input.ufValuePesos;
+  const totalPaidWithInsurancePesos = totalPaidPesos + totalInsurancePesos;
 
   return {
     loanAmountUF,
@@ -226,6 +236,8 @@ export function calculateMortgage(input: MortgageInput): MortgageOutput {
     totalPaymentMonth1Pesos: totalPaymentMonth1UF * input.ufValuePesos,
     totalPaidPesos,
     totalInterestPesos: totalPaidPesos - loanAmountPesos,
+    totalInsurancePesos,
+    totalPaidWithInsurancePesos,
     amortizationSchedule,
   };
 }

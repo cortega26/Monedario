@@ -117,6 +117,52 @@ describe("calculateMortgage", () => {
     );
   });
 
+  it("sin seguros: totales con seguros equivalen a los base", () => {
+    const result = calculateMortgage({
+      propertyValue: 5000,
+      currency: "uf",
+      downPaymentPercent: 20,
+      annualRatePercent: 4.5,
+      termYears: 20,
+      ufValuePesos: UF_VALUE,
+    });
+
+    expect(result.totalInsurancePesos).toBe(0);
+    expect(result.totalPaidWithInsurancePesos).toBeCloseTo(
+      result.totalPaidPesos,
+      6
+    );
+  });
+
+  it("con seguros: la diferencia equivale a la suma de seguros del schedule", () => {
+    const result = calculateMortgage({
+      propertyValue: 4000,
+      currency: "uf",
+      downPaymentPercent: 20,
+      annualRatePercent: 4.5,
+      termYears: 20,
+      ufValuePesos: UF_VALUE,
+      monthlyDesgravamenRatePercent: 0.025,
+      monthlyFireInsuranceUF: 0.5,
+    });
+
+    const scheduleInsuranceUF = result.amortizationSchedule.reduce(
+      (sum, row) => sum + row.desgravamenUF + row.fireInsuranceUF,
+      0
+    );
+    expect(result.totalInsurancePesos).toBeCloseTo(
+      scheduleInsuranceUF * UF_VALUE,
+      0
+    );
+    expect(result.totalPaidWithInsurancePesos - result.totalPaidPesos).toBeCloseTo(
+      result.totalInsurancePesos,
+      0
+    );
+    expect(result.totalPaidWithInsurancePesos).toBeGreaterThan(
+      result.totalPaidPesos
+    );
+  });
+
   it("validation: downPaymentPercent = 0 throws", () => {
     expect(() =>
       calculateMortgage({

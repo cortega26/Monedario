@@ -299,7 +299,7 @@ const calculatorNextStepItems = [
               </span>
             </div>
             <div class="flex justify-between">
-              <span class="text-secondary">Total intereses</span>
+              <span class="text-secondary">Total intereses (sin seguros)</span>
               <span class="font-medium text-foreground/80">
                 {fmtClp(exampleResult.totalInterestPesos)}
               </span>
@@ -387,7 +387,7 @@ const calculatorNextStepItems = [
     <CalculatorScenarios />
     <MethodologyBlock
       example={mortgageWorkedExample.example}
-      notes="El dividendo base se calcula con amortización francesa (cuota de capital+interés constante en UF). Los seguros son opcionales: el desgravamen varía según el saldo pendiente (decrece con el tiempo); el seguro de incendio/sismo es fijo. Las tasas son aproximadas — solicita la Hoja de Condiciones (CAE) a tu institución financiera."
+      notes="El dividendo base se calcula con amortización francesa (cuota de capital+interés constante en UF). Los seguros son opcionales: el desgravamen varía según el saldo pendiente (decrece con el tiempo); el seguro de incendio/sismo es fijo. El total sin seguros suma solo las cuotas base; el total con seguros agrega los seguros con las tasas que tú ingresas, ambos convertidos a pesos con la UF vigente del Banco Central de Chile. Las tasas son aproximadas — solicita la Hoja de Condiciones (CAE) a tu institución financiera."
       sources={[
         {
           name: "CMF Educa — Créditos hipotecarios",
@@ -667,6 +667,19 @@ const calculatorNextStepItems = [
         fmtPesos(resultado.totalInterestPesos),
         "text-red-400"
       ),
+      ...(hasInsurance
+        ? [
+            buildRow(
+              "Total seguros",
+              fmtPesos(resultado.totalInsurancePesos),
+              "text-muted"
+            ),
+            buildRow(
+              "Total a pagar (con seguros)",
+              fmtPesos(resultado.totalPaidWithInsurancePesos)
+            ),
+          ]
+        : []),
     ];
 
     const interestRatio = (
@@ -771,8 +784,14 @@ const calculatorNextStepItems = [
         const r = scenarioLastResult;
         return [
           { label: "Dividendo mensual", value: fmtPesos(r.basePaymentPesos) },
-          { label: "Total intereses", value: fmtPesos(r.totalInterestPesos) },
-          { label: "Total a pagar", value: fmtPesos(r.totalPaidPesos) },
+          {
+            label: "Total intereses (sin seguros)",
+            value: fmtPesos(r.totalInterestPesos),
+          },
+          {
+            label: "Total a pagar (sin seguros)",
+            value: fmtPesos(r.totalPaidPesos),
+          },
         ];
       },
     });
