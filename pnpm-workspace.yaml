@@ -18,27 +18,26 @@ overrides:
   js-yaml@^4.1.1: 4.3.2
   uuid: '>=11.1.1'
   # Seguridad (2026-09-13): pines transitivos con CVE cuyo padre no publica
-  # release que los corrija — se fuerzan al parcheado exacto.
-  # - fflate 0.7.3→0.7.5 por GHSA-px8p-9vwx-vf98 (alerta #115, ZIP64 loop);
+  # release que los corrija — se fuerzan al parcheado.
+  # - fflate <0.7.5→0.7.5 por GHSA-px8p-9vwx-vf98 (alerta #115, ZIP64 loop);
   #   satori@0.33.4 (último publicado) pinea 0.7.3 exacto.
-  # - sharp 0.35.2→0.35.4 por GHSA-g89c-p67h-r497 / GHSA-2jg2-4ch7-h545
+  #   remove-when: satori publique release que resuelva fflate >=0.7.5.
+  # - sharp <0.35.4→0.35.4 por GHSA-g89c-p67h-r497 / GHSA-2jg2-4ch7-h545
   #   (alerta #113, libheif); lo pinea miniflare vía wrangler@4.127.1.
+  #   remove-when: wrangler/miniflare publique release que resuelva sharp
+  #   >=0.35.4.
   # Revisar al subir satori/wrangler: quitar la línea cuyo padre ya resuelva
   # el parcheado, correr `pnpm install` y conservar si el lockfile queda limpio.
-  fflate@0.7.3: 0.7.5
-  sharp@0.35.2: 0.35.4
+  # Aserción lockfile: lo resuelto debe seguir siendo fflate 0.7.5 y
+  # sharp 0.35.4 (`pnpm why fflate sharp`); si un bump paterno mueve la
+  # resolución, re-evaluar el pin en vez de asumir que sigue cubriendo.
+  fflate@<0.7.5: 0.7.5
+  sharp@<0.35.4: 0.35.4
 minimumReleaseAge: 10080
 # Transitional, version-pinned exceptions for packages already trusted in the
 # lockfile before the seven-day policy was enabled. Future releases remain
 # subject to minimumReleaseAge and these entries can be removed after aging out.
 minimumReleaseAgeExclude:
-  # Seguridad (2026-08-09): nanoid 3.3.17 corrige GHSA-2v37-7h3g-55p8. Esta
-  # excepción vence al cumplir los siete días de maduración (2026-08-10).
-  # Seguridad (2026-08-03): fast-uri 3.1.5 (parche forzado por override),
-  # transitoria — removible desde 2026-08-07 junto con el override.
-  # Seguridad (2026-09-04): qs 6.16.0 corrige GHSA (array-limit bypass,
-  # alertas Dependabot #104). Publicado 2026-08-29; excepción transitoria
-  # hasta madurar los siete días — removible desde 2026-09-05.
   # NOTA (2026-09-12): pnpm evalúa minimumReleaseAgeExclude con first-match-wins
   # por nombre — dos entradas del mismo paquete NO se suman. Por eso 1.2.2 y
   # 1.2.4 van en unión `||` en una sola línea (removible desde ~2026-09-18).
@@ -50,7 +49,6 @@ minimumReleaseAgeExclude:
   # `pnpm install --frozen-lockfile`, conservar solo si sale 0.
   - 'js-yaml@5.2.3 || 5.4.2'
   - 'postcss@8.5.25'
-  - 'qs@6.16.0'
   # Transitoria (2026-09-12): bumps del 2026-09-11 (sharp 0.35.4 vía PR #472 +
   # runtime-group) publicaron 19 transitivas el 2026-09-07/09/10, dentro de la
   # ventana de siete días. Removible cuando maduren (~2026-09-17/18): quitar

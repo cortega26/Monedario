@@ -20,7 +20,17 @@ Fecha de corte: 2026-05-30
 - **Owner:** Sin asignar
 - **Estado:** Backlog
 - **Fecha de creación:** 2026-08-01
-- **Última actualización:** 2026-08-01
+- **Última actualización:** 2026-09-14
+- **Nota 2026-09-14 (plan 106, higiene supply-chain):** retiradas las exclusiones maduradas (`qs@6.16.0`, vencida 2026-09-05) y los comentarios huérfanos 2026-08 (nanoid/fast-uri); `pnpm install --frozen-lockfile` en verde tras cada retiro. Pines CVE ahora parent-aware con trigger de retiro (`fflate@<0.7.5` → quitar cuando satori resuelva fflate >=0.7.5; `sharp@<0.35.4` → quitar cuando wrangler/miniflare resuelva sharp >=0.35.4; resuelto hoy: 0.7.5/0.35.4).
+- **Pendiente por calendario (no retirar antes):** unión napi (`1.2.2 || 1.2.4`, ~2026-09-18), unión js-yaml (`|| 5.4.2`, ~2026-09-20), cohorte rolldown 1.2.8 (~2026-09-17/18), cohorte clack/vite (~2026-09-19/20); `eslint-plugin-astro@2.1.1` y `postcss@8.5.25` sin fecha (dejar).
+- **Excepción `extract-zip@2.0.1` (solo dev):** los 2 HIGH de `pnpm audit` (`GHSA-jmr9-qjv8-65gv`, `GHSA-7pqw-9j4j-h8q3`) llegan solo por la cadena dev `@lhci/cli → lighthouse → puppeteer → extract-zip`; no hay advisory de runtime enmascarado. Sin parche publicado (máx. `2.0.1` del 2020-06-10; re-chequear el registro mensualmente por un `2.0.2` real y preferir el parche si aparece).
+- **Invocación canónica pip-audit (venv del proyecto):** `.venv/bin/python -m pip_audit` o `uv run --project . --frozen pip-audit`; el `uv run pip-audit` desnudo puede auditar otro intérprete (p. ej. hereda `VIRTUAL_ENV` externo) y no es señal válida.
+- **Seguimiento sin acción:** split zod (`4.4.3` vía @astrojs/rss+sitemap+knip vs `4.5.4` raíz/astro/openai; `3.25.76` vía chromium-bidi = ruta LHCI aceptada — solo seguir releases); float astro `^7.2.9` resuelve `7.3.1` (revisar changelog en el próximo bump; rollback = manifest + lockfile); sonda TS7 solo como nota mensual dispatch-only.
+- **Checklist de retiro por bump de Dependabot:**
+  - [ ] Al subir satori, probar quitar el pin fflate (remove-when).
+  - [ ] Al subir wrangler/miniflare, probar quitar el pin sharp (remove-when).
+  - [ ] Al madurar cada cohorte con fecha, retirar líneas + frozen install en verde.
+  - [ ] Re-chequeo mensual del registro por un `extract-zip 2.0.2` real.
 
 ## Métricas
 
