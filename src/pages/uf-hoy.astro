@@ -10,21 +10,17 @@ import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParamete
 import { formatEconomicDate } from "@/domain/economic/economicSourcePresentation";
 import { formatCLP } from "@/utils/indicadores";
 import { getPath } from "@/utils/getPath";
-import ufHistoricoRaw from "@/data/economic-history/uf-historico.json";
+import ufMensualRaw from "@/data/economic-history/uf-mensual.json";
 
-// Muestra mensual — últimos 5 años — para el gráfico histórico
+// Muestra mensual — últimos 5 años — para el gráfico histórico.
+// El sidecar ya trae un punto por mes; aquí solo se filtra por cutoff en build
+// (sin parsear los ~638 KB de la serie diaria).
 const hoy = new Date();
 hoy.setFullYear(hoy.getFullYear() - 5);
 const cutoff = hoy.toISOString().slice(0, 10);
-const ufMeses = new Set<string>();
-const ufPuntos = ufHistoricoRaw.serie
-  .filter(p => p.fecha >= cutoff)
-  .filter(p => {
-    const mes = p.fecha.slice(0, 7);
-    if (ufMeses.has(mes)) return false;
-    ufMeses.add(mes);
-    return true;
-  });
+const ufPuntos = ufMensualRaw.puntos.filter(
+  p => p.fecha.slice(0, 7) >= cutoff.slice(0, 7)
+);
 
 const { parameters } = await getEconomicParameters();
 

@@ -1,9 +1,11 @@
 /**
  * Ingesta de series históricas desde mindicador.cl.
- * Genera 3 archivos en src/data/economic-history/:
+ * Genera 5 archivos en src/data/economic-history/:
  *   - uf-historico.json   — valor diario de la UF
  *   - utm-historico.json  — valor mensual de la UTM
  *   - ipc-historico.json  — variación mensual IPC (%) — no es índice acumulado
+ *   - uf-rango.json       — sidecar liviano {first, last, count} del rango UF
+ *   - uf-mensual.json     — sidecar liviano con un punto por mes (gráfico uf-hoy)
  *
  * Uso:
  *   node scripts/fetch-economic-history.mjs [--desde=2000] [--hasta=2026]
@@ -144,7 +146,51 @@ const files = [
 for (const { name, data } of files) {
   const path = join(OUT_DIR, name);
   writeFileSync(path, JSON.stringify(data, null, 2) + "\n", "utf8");
-  console.log(`\n✓ ${name} — ${data.totalEntradas} entradas (${data.desdeFecha} → ${data.hastaFecha})`);
+  console.log(
+    `\n✓ ${name} — ${data.totalEntradas} entradas (${data.desdeFecha} → ${data.hastaFecha})`
+  );
 }
 
-console.log("\nIngesta completada.");
+// --- Sidecars livianos UF ---------------------------------------------------
+// Evitan parsear los ~638 KB de uf-historico.json por dos strings (rango) o
+// ~60 puntos mensuales (gráfico). Derivan de los mismos datos ya ingeridos.
+
+const ufRango = {
+  first: ufData.desdeFecha,
+  last: ufData.hastaFecha,
+  count: ufData.totalEntradas,
+};
+writeFileSync(
+  join(OUT_DIR, "uf-rango.json"),
+  JSON.stringify(ufRango, null, 2) + "\n",
+  "utf8"
+);
+console.log(
+  `\n✓ uf-rango.json — ${ufRango.count} entradas (${ufRango.first} → ${ufRango.last})`
+);
+
+// Un punto por mes (primera fecha disponible del mes, serie ascendente).
+const ufMesesVistos = new Set();
+const ufPuntosMensuales = [];
+for (const entry of ufData.serie) {
+  const mes = entry.fecha.slice(0, 7);
+  if (ufMesesVistos.has(mes)) continue;
+  ufMesesVistos.add(mes);
+  ufPuntosMensuales.push({ fecha: entry.fecha, valor: entry.valor });
+}
+const ufMensual = {
+  fuente: "mindicador.cl",
+  indicador: "uf",
+  granularidad: "mensual",
+  actualizadoEl: ufData.actualizadoEl,
+  count: ufPuntosMensuales.length,
+  puntos: ufPuntosMensuales,
+};
+writeFileSync(
+  join(OUT_DIR, "uf-mensual.json"),
+  JSON.stringify(ufMensual, null, 2) + "\n",
+  "utf8"
+);
+console.log(`uf-mensual.json: ${ufMensual.count} puntos mensuales`);
+
+console.log("Ingesta completada.");
