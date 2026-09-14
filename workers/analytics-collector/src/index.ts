@@ -78,6 +78,32 @@ export const LEGACY_UNMAPPED_EXPORT_EVENTS = new Set([
   "scenario_action",
 ]);
 
+// ── Structured logging ─────────────────────────────────────────────────────────
+
+type LogLevel = "info" | "warn" | "error";
+
+export function log(
+  level: LogLevel,
+  event: string,
+  fields: Record<string, unknown> = {},
+): void {
+  const entry = {
+    level,
+    event,
+    timestamp: new Date().toISOString(),
+    worker: "analytics-collector",
+    ...fields,
+  };
+  const line = JSON.stringify(entry);
+  if (level === "error") {
+    console.error(line);
+  } else if (level === "warn") {
+    console.warn(line);
+  } else {
+    console.log(line);
+  }
+}
+
 // ── Types ────────────────────────────────────────────────────────────────────
 
 interface ValidationResult {
@@ -327,10 +353,9 @@ async function checkRateLimit(
     // logged loudly in ingestEvent). Log a truncated key here too — only the
     // minute suffix, never the full IP.
     const suffix = key.split(":").at(-1);
-    console.error(
-      `[analytics-collector] KV rate-limit check failed (window ${suffix}):`,
-      error instanceof Error ? error.message : String(error)
-    );
+    log("error", "kv_rate_limit_check_failed", {
+      message: `[analytics-collector] KV rate-limit check failed (window ${suffix}): ${error instanceof Error ? error.message : String(error)}`,
+    });
     return true;
   }
 }
@@ -355,10 +380,9 @@ async function ingestEvent(
     // Fail-open (el evento no bloquea la respuesta), pero NUNCA en silencio:
     // un fallo persistente de KV debe ser visible en Workers Logs, no solo
     // como un gap en el export.
-    console.error(
-      `[analytics-collector] KV counter update failed (read or write) for key ${key}:`,
-      error instanceof Error ? error.message : String(error)
-    );
+    log("error", "kv_counter_update_failed", {
+      message: `[analytics-collector] KV counter update failed (read or write) for key ${key}: ${error instanceof Error ? error.message : String(error)}`,
+    });
   }
 }
 
@@ -787,9 +811,9 @@ export async function runExport(env: Env, week: string): Promise<ExportRunSummar
   );
   const window = isoWeekToDateRangeUTC(week);
 
-  console.log(
-    `[analytics-export] week=${week} window=${window.from}→${window.to} prefix=${counterPrefix}`,
-  );
+  log("info", "export_started", {
+    message: `[analytics-export] week=${week} window=${window.from}→${window.to} prefix=${counterPrefix}`,
+  });
 
   const counters = await listTelemetryCounters(
     env.ANALYTICS_TELEMETRY,
@@ -809,13 +833,13 @@ export async function runExport(env: Env, week: string): Promise<ExportRunSummar
           0,
         )
       : 0;
-  console.log(
-    `[analytics-export] listed=${counters.length} aggregated=${aggregated.length} rows`,
-  );
+  log("info", "export_listed", {
+    message: `[analytics-export] listed=${counters.length} aggregated=${aggregated.length} rows`,
+  });
   if (discarded > 0) {
-    console.log(
-      `[analytics-export] descartados=${discarded} contadores sin taxonomía v2 (legados)`,
-    );
+    log("info", "export_discarded_legacy", {
+      message: `[analytics-export] descartados=${discarded} contadores sin taxonomía v2 (legados)`,
+    });
   }
 
   const artifact = buildExportArtifact(week, window, aggregated, schemaVersion);
@@ -831,9 +855,9 @@ export async function runExport(env: Env, week: string): Promise<ExportRunSummar
   });
 
   const totalEvents = aggregated.reduce((sum, row) => sum + row.count, 0);
-  console.log(
-    `[analytics-export] written to R2 key=${key} size=${body.length} rows=${aggregated.length}`,
-  );
+  log("info", "export_written", {
+    message: `[analytics-export] written to R2 key=${key} size=${body.length} rows=${aggregated.length}`,
+  });
 
   return {
     week,
@@ -888,11 +912,11 @@ async function handleManualExport(request: Request, env: Env): Promise<Response>
       totalEvents: result.totalEvents,
     });
   } catch (error) {
-    console.error(
-      `[analytics-export] manual export failed: ${
+    log("error", "manual_export_failed", {
+      message: `[analytics-export] manual export failed: ${
         error instanceof Error ? error.message : String(error)
       }`,
-    );
+    });
     return jsonResponse({ error: "export_failed" }, 500);
   }
 }
@@ -1071,13 +1095,17 @@ export default {
 
     // Compute the previous complete ISO week.
     const week = previousCompleteISOWeekInTz(tz);
-    console.log(`[analytics-export] trigger=cron week=${week} tz=${tz}`);
+    log("info", "export_trigger", {
+      message: `[analytics-export] trigger=cron week=${week} tz=${tz}`,
+    });
 
     try {
       await runExport(env, week);
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
-      console.error(`[analytics-export] export failed for week=${week}: ${message}`);
+      log("error", "export_failed", {
+        message: `[analytics-export] export failed for week=${week}: ${message}`,
+      });
       throw error instanceof Error ? error : new Error(message);
     }
   },

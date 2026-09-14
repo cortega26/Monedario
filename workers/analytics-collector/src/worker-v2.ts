@@ -9,6 +9,7 @@ import {
   counterPrefixForExportWeek,
   dateToISOWeekUTC,
   isoWeekToDateRangeUTC,
+  log,
   MAX_BODY_SIZE,
   parseCounterKey,
   previousCompleteISOWeekInTz,
@@ -393,10 +394,9 @@ async function checkRateLimit(
   } catch (error) {
     // Analytics must not become an availability dependency for the website.
     // Fail open, but never expose the actor key/IP in logs.
-    console.error(
-      "[analytics-collector] native rate-limit check failed:",
-      error instanceof Error ? error.message : String(error),
-    );
+    log("error", "native_rate_limit_check_failed", {
+      message: `[analytics-collector] native rate-limit check failed: ${error instanceof Error ? error.message : String(error)}`,
+    });
     return true;
   }
 }
@@ -548,7 +548,9 @@ async function listDurableCounters(
     }
     for (const row of body.counters) {
       if (!isDurableCounterRow(row)) {
-        console.error("[analytics-export] skipping invalid durable row");
+        log("error", "export_invalid_row_skipped", {
+          message: "[analytics-export] skipping invalid durable row",
+        });
         continue;
       }
       counters.push(row);
@@ -645,9 +647,9 @@ export async function runExportV2(
   let legacyCounters: TelemetryCounter[] = [];
   let durableCounters: TelemetryCounter[];
   if (isLegacyKvSunset(window.from, env.COUNTER_KEY_CUTOVER_AT)) {
-    console.log(
-      `[analytics-export] week=${week} legacy_skipped window_from=${window.from} (past cutover + TTL)`,
-    );
+    log("info", "export_legacy_skipped", {
+      message: `[analytics-export] week=${week} legacy_skipped window_from=${window.from} (past cutover + TTL)`,
+    });
     durableCounters = await durablePromise;
   } else {
     [legacyCounters, durableCounters] = await Promise.all([
@@ -682,9 +684,9 @@ export async function runExportV2(
   });
 
   const totalEvents = aggregated.reduce((sum, row) => sum + row.count, 0);
-  console.log(
-    `[analytics-export] week=${week} legacy=${legacyCounters.length} durable=${durableCounters.length} aggregated=${aggregated.length} total=${totalEvents}`,
-  );
+  log("info", "export_summary", {
+    message: `[analytics-export] week=${week} legacy=${legacyCounters.length} durable=${durableCounters.length} aggregated=${aggregated.length} total=${totalEvents}`,
+  });
 
   return {
     week,
@@ -739,10 +741,9 @@ async function handleManualExport(request: Request, env: Env): Promise<Response>
       allowedOrigin,
     );
   } catch (error) {
-    console.error(
-      "[analytics-export] manual export failed:",
-      error instanceof Error ? error.message : String(error),
-    );
+    log("error", "manual_export_failed", {
+      message: `[analytics-export] manual export failed: ${error instanceof Error ? error.message : String(error)}`,
+    });
     return jsonResponse({ error: "export_failed" }, 500, allowedOrigin);
   }
 }
@@ -815,10 +816,9 @@ export default {
     try {
       await ingestEvent(env, validation.event, validation.params);
     } catch (error) {
-      console.error(
-        "[analytics-collector] Durable counter write failed:",
-        error instanceof Error ? error.message : String(error),
-      );
+      log("error", "durable_counter_write_failed", {
+        message: `[analytics-collector] Durable counter write failed: ${error instanceof Error ? error.message : String(error)}`,
+      });
       return new Response(null, {
         status: 503,
         headers: { ...corsHeaders(allowedOrigin), "Retry-After": "30" },
@@ -831,7 +831,9 @@ export default {
   async scheduled(_event: ScheduledEvent, env: Env): Promise<void> {
     const timeZone = env.EXPORT_TIMEZONE ?? "America/Santiago";
     const week = previousCompleteISOWeekInTz(timeZone);
-    console.log(`[analytics-export] trigger=cron week=${week} tz=${timeZone}`);
+    log("info", "export_trigger", {
+      message: `[analytics-export] trigger=cron week=${week} tz=${timeZone}`,
+    });
     await runExportV2(env, week);
   },
 };
