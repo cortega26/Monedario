@@ -107,6 +107,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [101](101-pagefind-public-purge.md) | Purgar el índice Pagefind stale commiteado antes del copy-back — **REJECTED 2026-09-14**: `public/pagefind` está gitignored (cero archivos trackeados); el stale es solo-local y nunca llega al repo ni a producción | 2026-09-14 | no aplica (cerrado sin implementar, sin despachar) |
 | [103](103-economic-date-honesty.md) | Fechas honestas: `toIsoDate` → `undefined` (nunca hoy) + `provenance.uta.{status,referenceYear,referenceDate}` estable (sin instantes, idempotencia 091 intacta) + 5 tests | 2026-09-14 | sí (merge `153c596c`; commit `8da83704`) |
 | [104](104-mortgage-totals-insurance.md) | Totales hipotecarios con seguros: `totalInsurancePesos` + `totalPaidWithInsurancePesos` aditivos + etiquetas `(sin/con seguros)` armonizadas + frase metodológica + 2 tests | 2026-09-14 | sí (merge `1ad6efce`; commit `a43cf808`) |
+| [102](102-uf-history-payload.md) | Historial UF por rango (`?date=`/`?from=&to=`, legado intacto) + sidecars `uf-rango.json`/`uf-mensual.json` + helper testeable + 35 tests; sin tocar titles (freeze OBS-01) | 2026-09-14 | sí (merge `64cb1f88`; commit `1591c20e`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 

@@ -7,8 +7,11 @@
 > in `plans/README.md` — unless a reviewer dispatched you and told you they
 > maintain the index.
 >
-> **Drift check (run first)**: `git diff --stat 0e506a8b..HEAD -- src/pages/api/uf-historico-lookup.json.ts src/pages/calculadoras/conversor-uf.astro src/pages/uf-hoy.astro src/data/economic-history/ scripts/fetch-economic-history.mjs tests/`
-> On mismatch with "Current state", STOP.
+> **Drift check (run first)**: `git diff --stat cee0b53f..HEAD -- src/pages/api/uf-historico-lookup.json.ts src/pages/calculadoras/conversor-uf.astro src/pages/uf-hoy.astro src/data/economic-history/ scripts/fetch-economic-history.mjs`
+> On mismatch with "Current state", STOP. (NOTE: the original check also
+> covered `tests/`; reconciled to drop it — the only `tests/` movement since
+> planning is unrelated suites from plans 097–104, and this plan's tests are
+> new files. If a same-named endpoint/client test appears, treat as drift.)
 
 ## Status
 
@@ -18,6 +21,11 @@
 - **Depends on**: none
 - **Category**: perf
 - **Planned at**: commit `0e506a8b`, 2026-09-14
+- **Reconciled at**: commit `cee0b53f`, 2026-09-14 — in-scope source files
+  untouched since planning (drift empty; `tests/` movement is unrelated
+  suites from 097–104); excerpts re-read against live code, both findings
+  intact; three reconciliation notes inline (entry count, writer lines,
+  uf-hoy SSG constraint)
 - **Issue**: —
 
 ## Why this matters
@@ -43,10 +51,16 @@ Files and roles:
 - `src/pages/uf-hoy.astro:13,20-27` — full import, keeps ~60 monthly points
   via double `.filter`
 - `src/data/economic-history/uf-historico.json` — 638,325-byte source
-- `scripts/fetch-economic-history.mjs:139-141` — data-fetch writer (sidecar home)
-- `src/application/use-cases/LookupHistoricalUf.ts:64` — 7-day fallback logic
+  (measured 9,685 entries, `2000-01-01` → `2026-07-09`; file shape
+  `{fuente, ..., desdeFecha, hastaFecha, totalEntradas, serie}` — the
+  sidecar can derive straight from `desdeFecha/hastaFecha/totalEntradas`)
+- `scripts/fetch-economic-history.mjs:138-148` — data-fetch writer (files
+  array `:138-142`, write loop `:144-148`; sidecar home)
+- `src/application/use-cases/LookupHistoricalUf.ts:62-77` — 7-day fallback
+  logic (exact match + up-to-7-days-backward loop over a `lookup` map;
+  stays client-side AND plan-unchanged)
 
-Excerpts as of `0e506a8b` (verified by reading):
+Excerpts as of `cee0b53f` (re-read; in-scope sources byte-identical to planning):
 
 ```ts
 // src/pages/api/uf-historico-lookup.json.ts:2
@@ -68,10 +82,12 @@ return new Response(JSON.stringify({ lookup, first, last }), {
 });
 ```
 
-`conversor-uf.astro:21` imports the full JSON; only `serie[0].fecha` and
-`serie.at(-1).fecha` are used at `:27-35`; `:547` fetches the endpoint then
-`await res.json()` over the whole map. Measured: source 638,325 bytes;
-built lookup 211,968 bytes.
+`conversor-uf.astro:21` imports the full JSON; only `serie[0]`/`.at(-1)`
+are used at `:27-28,34-35` (min/max input attrs); client `:542-554`
+fetches the endpoint once then `await res.json()` over the whole map, and
+`:570-577+` resolves via the map (`const { lookup, first, last } =
+historicData`, `HistoricoData` type at `:521-525`). Source 638,325 bytes;
+built lookup ~212 KB.
 
 Conventions: API routes are Astro `APIRoute`; `Cache-Control: public,
 max-age=86400` is the established caching idiom here; `trailingSlash:
@@ -144,13 +160,19 @@ Same `Content-Type` + `Cache-Control`. Validate date format (400 on garbage).
 
 ### Step 3: Switch the two pages to sidecar + range query
 
-`conversor-uf.astro`: replace the full-JSON import with the sidecar import
-for first/last; replace full-file `fetch` + `res.json()` with
-`fetch(endpoint + "?date=" + iso)` (keep client fallback loop calling the
-range endpoint per candidate date, bounded to 8 tries as today). `uf-hoy.astro`:
-same sidecar swap; keep the ~60-point monthly filter but source it from the
-range endpoint (or keep one full import here only if the monthly table truly
-needs it — measure first; default is range-based).
+`conversor-uf.astro`: replace the full-JSON import (`:21`) with the
+sidecar import for first/last (`:27-28,34-35`); rework the client
+(`:521-554,570+`) from fetch-once-full-map to `fetch(endpoint + "?date=" +
+iso)` per candidate date, keeping the 7-day client fallback loop bounded
+to 8 tries (reshape the `HistoricoData` type at `:521-525` accordingly —
+same file, in scope).
+RECONCILIATION NOTE (uf-hoy SSG constraint): `uf-hoy.astro` frontmatter
+executes at BUILD time (SSG) — it CANNOT fetch its own API route. So the
+`?from=&to=` path is for the conversor CLIENT only. For uf-hoy's ~60
+monthly chart points choose: (i) a second tiny sidecar (e.g. monthly
+`{fecha,valor}` points emitted by the fetch script — additive, same step,
+preferred), or (ii) keep the ONE full import in uf-hoy with a comment
+(the plan's documented fallback). Do not attempt build-time self-fetch.
 
 **Verify**: `astro check` + unit tests pass; `grep -n "uf-historico.json" src/pages/calculadoras/conversor-uf.astro src/pages/uf-hoy.astro` → only the API route (or documented single remaining) imports the full serie.
 
