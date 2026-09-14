@@ -32,9 +32,6 @@ minimumReleaseAge: 10080
 # lockfile before the seven-day policy was enabled. Future releases remain
 # subject to minimumReleaseAge and these entries can be removed after aging out.
 minimumReleaseAgeExclude:
-  # Seguridad (2026-09-04): qs 6.16.0 corrige GHSA (array-limit bypass,
-  # alertas Dependabot #104). Publicado 2026-08-29; excepción transitoria
-  # hasta madurar los siete días — removible desde 2026-09-05.
   # NOTA (2026-09-12): pnpm evalúa minimumReleaseAgeExclude con first-match-wins
   # por nombre — dos entradas del mismo paquete NO se suman. Por eso 1.2.2 y
   # 1.2.4 van en unión `||` en una sola línea (removible desde ~2026-09-18).
@@ -46,7 +43,6 @@ minimumReleaseAgeExclude:
   # `pnpm install --frozen-lockfile`, conservar solo si sale 0.
   - 'js-yaml@5.2.3 || 5.4.2'
   - 'postcss@8.5.25'
-  - 'qs@6.16.0'
   # Transitoria (2026-09-12): bumps del 2026-09-11 (sharp 0.35.4 vía PR #472 +
   # runtime-group) publicaron 19 transitivas el 2026-09-07/09/10, dentro de la
   # ventana de siete días. Removible cuando maduren (~2026-09-17/18): quitar
