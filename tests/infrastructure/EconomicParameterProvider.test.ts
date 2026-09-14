@@ -307,4 +307,82 @@ describe("EconomicParameterProvider", () => {
     expect(telemetry.externalFetchCount).toBe(1);
     expect(telemetry.cacheHitCount).toBeGreaterThanOrEqual(1);
   });
+
+  // Plan 103: a missing upstream `fecha` must never be stamped as today.
+  // The provider returns `undefined` for that indicator and `lastUpdated`
+  // falls back to the stale FALLBACK_LAST_UPDATED so freshness gates fail
+  // loudly instead of passing with false recency.
+  const FALLBACK_LAST_UPDATED = "2026-05-28";
+
+  it("flags staleness (not today) when live indicators omit fecha", async () => {
+    setMode("live");
+    const today = new Date().toISOString().slice(0, 10);
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        uf: { valor: 40123 },
+        utm: { valor: 68000 },
+        ipc: { valor: 0.3 },
+        tmc: { valor: 3.75 },
+        dolar: { valor: 945.12 },
+      }),
+    });
+    vi.stubGlobal("fetch", fetchMock);
+
+    const { getEconomicParameterBundle } = await loadProviderModule();
+    const { parameters } = await getEconomicParameterBundle();
+
+    expect(parameters.lastUpdated).toBe(FALLBACK_LAST_UPDATED);
+    expect(parameters.lastUpdated).not.toBe(today);
+    expect(parameters.indicatorUpdatedAt?.ipc).toBeUndefined();
+    expect(parameters.indicatorUpdatedAt?.tmc).toBeUndefined();
+  });
+
+  it("flags staleness (not today) when live fechas are empty or garbage", async () => {
+    setMode("live");
+    const today = new Date().toISOString().slice(0, 10);
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        uf: { valor: 40123, fecha: "" },
+        utm: { valor: 68000, fecha: "xx" },
+        ipc: { valor: 0.3, fecha: "" },
+        tmc: { valor: 3.75, fecha: "not-a-date" },
+        dolar: { valor: 945.12, fecha: "" },
+      }),
+    });
+    vi.stubGlobal("fetch", fetchMock);
+
+    const { getEconomicParameterBundle } = await loadProviderModule();
+    const { parameters } = await getEconomicParameterBundle();
+
+    // Garbage (even 10+ chars) maps to undefined — never to today — and the
+    // domain invariant stays green because undefined is an allowed absence.
+    expect(parameters.lastUpdated).toBe(FALLBACK_LAST_UPDATED);
+    expect(parameters.lastUpdated).not.toBe(today);
+    expect(parameters.indicatorUpdatedAt?.ipc).toBeUndefined();
+    expect(parameters.indicatorUpdatedAt?.tmc).toBeUndefined();
+  });
+
+  it("selects the latest real date while ignoring missing fechas", async () => {
+    setMode("live");
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      json: async () => ({
+        uf: { valor: 40123, fecha: "2026-03-15T00:00:00.000Z" },
+        utm: { valor: 68000 },
+        ipc: { valor: 0.3 },
+        tmc: { valor: 3.75 },
+        dolar: { valor: 945.12 },
+      }),
+    });
+    vi.stubGlobal("fetch", fetchMock);
+
+    const { getEconomicParameterBundle } = await loadProviderModule();
+    const { parameters } = await getEconomicParameterBundle();
+
+    expect(parameters.lastUpdated).toBe("2026-03-15");
+    expect(parameters.indicatorUpdatedAt?.uf).toBe("2026-03-15");
+    expect(parameters.indicatorUpdatedAt?.ipc).toBeUndefined();
+  });
 });

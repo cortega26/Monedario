@@ -74,6 +74,11 @@ export interface EconomicSnapshot {
       status: "primary" | "fallback";
       verifiedAt: string;
     };
+    uta: {
+      status: "primary" | "fallback";
+      referenceYear: number;
+      referenceDate: string;
+    };
   };
 }
 
@@ -181,6 +186,16 @@ export async function buildSnapshot(deps: BuildSnapshotDeps): Promise<EconomicSn
       `[economic-snapshot] UTA fallback: UTM de diciembre ${utaRefYear} no disponible; UTA anualizada = UTM corriente × 12`
     );
   }
+  // Stable-only UTA provenance (plan 091 idempotency ignores ONLY observation
+  // instants): the December reference on primary, the actually-annualized UTM
+  // date on fallback. NEVER a per-run instant like verifiedAt here.
+  const utaProvenanceStatus: "primary" | "fallback" =
+    decUtm !== null ? "primary" : "fallback";
+  const utaReferenceDate =
+    decUtm !== null
+      ? `${utaRefYear}-12-01`
+      : (toRealIsoDate(utmOverrideDate ?? payload?.utm?.fecha) ??
+        `${utaRefYear}-12-01`);
 
   const ipcRaw = payload?.ipc?.valor;
   let ipc = typeof ipcRaw === "number" ? ipcRaw : NaN;
@@ -282,6 +297,11 @@ export async function buildSnapshot(deps: BuildSnapshotDeps): Promise<EconomicSn
         sourceUrl: utmSourceUrl,
         status: utmProvenanceStatus,
         verifiedAt: now.toISOString(),
+      },
+      uta: {
+        status: utaProvenanceStatus,
+        referenceYear: utaRefYear,
+        referenceDate: utaReferenceDate,
       },
     },
   };

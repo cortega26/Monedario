@@ -210,6 +210,26 @@ describe("buildSnapshot", () => {
     expect(snapshot.uta).toBe(70588 * 12);
   });
 
+  it("flags estimated UTA as fallback provenance with the annualized UTM date", async () => {
+    const snapshot = await buildSnapshot(makeDeps({ decemberUtm: null }));
+    expect(snapshot.uta).toBe(70588 * 12);
+    expect(snapshot.provenance?.uta.status).toBe("fallback");
+    expect(snapshot.provenance?.uta.referenceYear).toBe(2025);
+    // Actually-annualized current-UTM date, not the missing December date.
+    expect(snapshot.provenance?.uta.referenceDate).toBe("2026-05-01");
+    // No per-run instant inside provenance.uta (plan 091 idempotency).
+    expect(snapshot.provenance?.uta).not.toHaveProperty("verifiedAt");
+  });
+
+  it("flags December-based UTA as primary provenance with the December reference", async () => {
+    const snapshot = await buildSnapshot(makeDeps({ decemberUtm: 69542 }));
+    expect(snapshot.uta).toBe(69542 * 12);
+    expect(snapshot.provenance?.uta.status).toBe("primary");
+    expect(snapshot.provenance?.uta.referenceYear).toBe(2025);
+    expect(snapshot.provenance?.uta.referenceDate).toBe("2025-12-01");
+    expect(snapshot.provenance?.uta).not.toHaveProperty("verifiedAt");
+  });
+
   it("uses the official SII UTM override and records provenance", async () => {
     const snapshot = await buildSnapshot({
       ...makeDeps(),
