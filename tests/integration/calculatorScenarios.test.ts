@@ -102,4 +102,40 @@ describe("calculatorScenarios", () => {
     });
     expect(saved.name).toBe("Escenario sin nombre");
   });
+
+  it("falls back to empty defaults on corrupted stores without throwing", () => {
+    // Mirrors the module's STORAGE_KEY ("monedario_scenarios", not exported).
+    const key = "monedario_scenarios";
+    const raws = [
+      '{"a": 1}',
+      "[]",
+      "not-json{",
+      JSON.stringify({ [CALC]: "not-an-array" }),
+      JSON.stringify({ [CALC]: [{ id: 1, name: 2 }] }),
+      JSON.stringify({
+        [CALC]: [{ id: "x", name: "X", ts: 1, inputs: {}, summary: "nope" }],
+      }),
+    ];
+    for (const raw of raws) {
+      localStorage.setItem(key, raw);
+      expect(() => listScenarios(CALC)).not.toThrow();
+      expect(listScenarios(CALC)).toEqual([]);
+    }
+  });
+
+  it("drops mistyped entries but keeps well-shaped ones", () => {
+    const key = "monedario_scenarios";
+    const good = {
+      id: "good",
+      name: "Good",
+      ts: 1,
+      inputs: { sueldo: "1500000" },
+      summary: [{ label: "Líquido", value: "$1.200.000" }],
+    };
+    localStorage.setItem(
+      key,
+      JSON.stringify({ [CALC]: [good, { id: 42 }, "nope", null] })
+    );
+    expect(listScenarios(CALC)).toEqual([good]);
+  });
 });

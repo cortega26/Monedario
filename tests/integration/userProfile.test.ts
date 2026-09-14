@@ -109,4 +109,29 @@ describe("userProfile", () => {
     expect(isKnownProfileField("intent_mode")).toBe(true);
     expect(isKnownProfileField("totallyMadeUpField")).toBe(false);
   });
+
+  it("drops unknown persisted keys on read without throwing", () => {
+    storage.setItem(
+      PROFILE_STORAGE_KEY,
+      JSON.stringify({
+        v: PROFILE_SCHEMA_VERSION,
+        ts: 123,
+        sueldoImponible: 900_000,
+        bogus: 42,
+        nested: { a: 1 },
+      })
+    );
+    let profile: ReturnType<typeof getProfile> | undefined;
+    expect(() => {
+      profile = getProfile();
+    }).not.toThrow();
+    expect(profile!.sueldoImponible).toBe(900_000);
+    expect(profile!.ts).toBe(123);
+    expect(
+      (profile as unknown as Record<string, unknown>).bogus
+    ).toBeUndefined();
+    expect(
+      (profile as unknown as Record<string, unknown>).nested
+    ).toBeUndefined();
+  });
 });
