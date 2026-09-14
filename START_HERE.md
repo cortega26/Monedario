@@ -19,7 +19,7 @@ Etapa 2 (con red, explícita; solo con la etapa 1 en verde):
 2. Python: `uv sync`, `uv run ruff check scripts/ tests/`,
    `uv run pytest`.
 
-Las versiones siguen a `package.json#packageManager` y `.nvmrc`; la docs no debe fijar majors distintos.
+Las versiones siguen a `package.json#packageManager` y `.nvmrc`; los docs no deben fijar majors distintos.
 
 ## Leer en este orden
 
