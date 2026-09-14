@@ -16,7 +16,6 @@ citado (los extractos vienen de lecturas propias, no de reportes delegados).
 
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|-------|----------|--------|------------|--------|
-| 098 | [worker-v2 config + validation](098-worker-v2-config-validation.md) | P1 | S | 097 | TODO |
 | 099 | [analytics export hardening](099-analytics-export-hardening.md) | P2 | M | 097, 098 | TODO |
 | 100 | [analytics taxonomy + tests](100-analytics-taxonomy-tests.md) | P1 | M | 097, 098, 099 | TODO |
 | 101 | [pagefind public purge](101-pagefind-public-purge.md) | P2 | S | — | TODO |
@@ -1328,11 +1327,12 @@ de la séptima auditoría 057–081, ya completa — 052 fue cerrado con PR #420
 
 ## Completados — archivados
 
-### Auditoría profunda 2026-09-14 — plan 097 (bundle worker 097–100; resto TODO)
+### Auditoría profunda 2026-09-14 — planes 097–098 (bundle worker 097–100; resto TODO)
 
 | Plan | Título | Cierre |
 | --- | --- | --- |
 | [097](archive/097-worker-v2-bounded-body.md) | Enforce byte-accurate bounded body read on worker-v2 ingestion | **DONE 2026-09-14**; merge `67487da9` (commits `c34a8241` + `570a1679`; `check:ci` exit 0 pre-merge, tsc + 118 tests verdes post-merge). Desviación autorizada: reparación de baseline type-only (`DurableCounterRow` interface→type, TS2344 preexistente en árbol limpio). Criterio grep literal documentado como intent-met (byte accounting vive en el reader compartido de `index.ts`; pinneado por test unicode-bytes→413 en path v2) |
+| [098](archive/098-worker-v2-config-validation.md) | Harden worker-v2 config and input validation | **DONE 2026-09-14**; merge `7366f12d` (commit `bfa39a9d`; `check:ci` exit 0 pre-merge, tsc + 133 tests verdes post-merge). Ejecución delegada + revisión adversarial del asesor (veredicto APPROVE). Desviaciones aceptadas en mérito: `wrangler.toml` intacto (vars ya presentes, ahora leídas/validadas); `SCHEMA_VERSION=abc` en export manual → 500 `export_failed` (fail-closed, sin rama v1 silenciosa); override laxo de `MAX_BODY_SIZE` no eleva el cap del reader 097 (fail-closed, comentado en código). Excerpts reconciliados a `79877da6` antes del despacho |
 
 Movido a [`plans/archive/`](archive/README.md).
 

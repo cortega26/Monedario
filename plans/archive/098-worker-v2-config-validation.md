@@ -7,7 +7,7 @@
 > in `plans/README.md` — unless a reviewer dispatched you and told you they
 > maintain the index.
 >
-> **Drift check (run first)**: `git diff --stat 0e506a8b..HEAD -- workers/analytics-collector/src/worker-v2.ts workers/analytics-collector/wrangler.toml docs/adr/ADR-20260628-first-party-analytics.md tests/workers/analytics-collector/`
+> **Drift check (run first)**: `git diff --stat 79877da6..HEAD -- workers/analytics-collector/src/worker-v2.ts workers/analytics-collector/wrangler.toml docs/adr/ADR-20260628-first-party-analytics.md tests/workers/analytics-collector/`
 > If any in-scope file changed since this plan was written, compare the
 > "Current state" excerpts against the live code before proceeding; on a
 > mismatch, treat it as a STOP condition.
@@ -20,6 +20,9 @@
 - **Depends on**: plans/archive/097-worker-v2-bounded-body.md (DONE 2026-09-14, merge `67487da9`; same file; run after 097 to avoid merge conflicts)
 - **Category**: security
 - **Planned at**: commit `0e506a8b`, 2026-09-14
+- **Reconciled at**: commit `79877da6`, 2026-09-14 — plan 097 landed (merge
+  `67487da9`); excerpts below re-read against live code, all four findings
+  intact (only line numbers shifted)
 - **Issue**: —
 
 ## Why this matters
@@ -42,11 +45,14 @@ Files and roles:
 - `workers/analytics-collector/wrangler.toml` — bindings, crons, vars
 - `docs/adr/ADR-20260628-first-party-analytics.md` — architecture (still
   describes KV counters; stale after DO migration)
-- `tests/workers/analytics-collector/root-cause.test.ts` — v2 tests
+- `tests/workers/analytics-collector/root-cause.test.ts` — v2 tests (9: 4
+  root-cause + 5 byte-limit guards added by 097)
 
-Excerpts as of `0e506a8b`:
+Excerpts as of `79877da6` (re-read after 097 landed; 097 added the
+`readBoundedBodyText` import at line 13 and converted `DurableCounterRow` to a
+type alias — neither touches the regions below):
 
-`worker-v2.ts:3-17` imports constants instead of env vars:
+`worker-v2.ts:3-18` imports constants instead of env vars:
 
 ```ts
 import {
@@ -57,8 +63,10 @@ import {
   ...
 } from "./index";
 ```
+(`readBoundedBodyText` is also imported since 097 — unrelated to this plan; do
+not touch the body-reader call.)
 
-`worker-v2.ts:36-47` `Env` has no `MAX_BODY_SIZE`/`ALLOWED_ORIGIN` fields:
+`worker-v2.ts:37-48` `Env` has no `MAX_BODY_SIZE`/`ALLOWED_ORIGIN` fields:
 
 ```ts
 export interface Env {
@@ -86,12 +94,12 @@ MAX_BODY_SIZE = "2048"
 ALLOWED_ORIGIN = "https://monedario.cl"
 ```
 
-`worker-v2.ts:317`: `const schemaVersion = parseInt(env.SCHEMA_VERSION ?? "2", 10);`
-then `worker-v2.ts:335-340` branches on it (NaN → legacy v1 branch silently).
+`worker-v2.ts:318`: `const schemaVersion = parseInt(env.SCHEMA_VERSION ?? "2", 10);`
+then `worker-v2.ts:336-341` branches on it (NaN → legacy v1 branch silently).
 
-`worker-v2.ts:387`: `if (!/^\d{4}-W\d{2}$/.test(week))` — no 01–53 range check.
+`worker-v2.ts:388`: `if (!/^\d{4}-W\d{2}$/.test(week))` — no 01–53 range check.
 
-`worker-v2.ts:391-394` and `:465-468`:
+`worker-v2.ts:392-395` and `:469-472`:
 
 ```ts
 const ip =
