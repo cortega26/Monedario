@@ -1,11 +1,13 @@
 import type { DurableObjectState, KVNamespace, R2Bucket } from "@cloudflare/workers-types";
 
+import { ANALYTICS_SCHEMA_VERSION } from "../../../src/contracts/analytics-events";
 import {
   aggregateWindow,
   ALLOWED_ORIGIN,
   buildExportArtifact,
   calendarDateInTimeZone,
   counterPrefixForExportWeek,
+  dateToISOWeekUTC,
   isoWeekToDateRangeUTC,
   MAX_BODY_SIZE,
   parseCounterKey,
@@ -45,6 +47,11 @@ export interface Env {
   EXPORT_TIMEZONE?: string;
   COUNTER_KEY_CUTOVER_AT?: string;
   EXPORT_SECRET?: string;
+  // Operative overrides for the compiled defaults in ./index. Wrangler vars
+  // stay the source of truth for operators; invalid values fall back closed
+  // to the constants (never fail open, never read unread vars).
+  MAX_BODY_SIZE?: string;
+  ALLOWED_ORIGIN?: string;
 }
 
 type DurableCounterRow = {
@@ -163,21 +170,104 @@ export class AnalyticsCounters {
   }
 }
 
-function corsHeaders(): Record<string, string> {
+/**
+ * Resolves the max body size in bytes. Reads MAX_BODY_SIZE from env (so
+ * wrangler.toml stays operative) with the compiled constant as fallback.
+ * Invalid values (NaN, non-integer, <= 0) fall back closed to the constant.
+ */
+function resolveMaxBodySize(env: Env): number {
+  const raw = env.MAX_BODY_SIZE;
+  if (raw === undefined) return MAX_BODY_SIZE;
+  const parsed = parseInt(raw, 10);
+  if (!Number.isInteger(parsed) || parsed <= 0) return MAX_BODY_SIZE;
+  return parsed;
+}
+
+/**
+ * Resolves the allowed CORS origin. Reads ALLOWED_ORIGIN from env with the
+ * compiled constant as fallback. Must parse as an https origin with no path;
+ * anything else falls back closed to the constant.
+ */
+function resolveAllowedOrigin(env: Env): string {
+  const raw = env.ALLOWED_ORIGIN;
+  if (!raw) return ALLOWED_ORIGIN;
+  try {
+    const url = new URL(raw);
+    if (url.protocol !== "https:" || url.origin !== raw) return ALLOWED_ORIGIN;
+    return url.origin;
+  } catch {
+    return ALLOWED_ORIGIN;
+  }
+}
+
+/**
+ * Fail-closed schema version. Only 1 (historical) and the current taxonomy
+ * version are accepted; anything else (typo, NaN, out-of-range) throws before
+ * any KV/DO listing so a misconfiguration can never silently select the
+ * legacy v1 branch.
+ */
+function resolveSchemaVersion(env: Env): number {
+  const raw = env.SCHEMA_VERSION ?? String(ANALYTICS_SCHEMA_VERSION);
+  const parsed = parseInt(raw, 10);
+  if (
+    !Number.isInteger(parsed) ||
+    ![1, ANALYTICS_SCHEMA_VERSION].includes(parsed)
+  ) {
+    throw new Error(`Invalid SCHEMA_VERSION: "${raw}"`);
+  }
+  return parsed;
+}
+
+/**
+ * Strict export-week validation. Accepts only YYYY-Www with week 01–53 whose
+ * Monday round-trips to the claimed ISO week (rejects W00/W54/W99 and W53 in
+ * years with only 52 weeks before any R2 write).
+ */
+function isValidExportWeek(week: string): boolean {
+  const match = /^(\d{4})-W(\d{2})$/.exec(week);
+  if (!match) return false;
+  const weekNum = parseInt(match[2], 10);
+  if (!Number.isInteger(weekNum) || weekNum < 1 || weekNum > 53) return false;
+  let window: { from: string; to: string };
+  try {
+    window = isoWeekToDateRangeUTC(week);
+  } catch {
+    return false;
+  }
+  const monday = new Date(`${window.from}T00:00:00Z`);
+  if (Number.isNaN(monday.getTime())) return false;
+  return dateToISOWeekUTC(monday) === week;
+}
+
+/**
+ * Rate-limit identity. Only CF-Connecting-IP is trusted; when absent the
+ * caller falls into a single "unknown" bucket. Proxy-forwarded headers (XFF)
+ * are never trusted behind Cloudflare — a client can forge them to rotate
+ * identity past the limiter.
+ */
+function rateLimitIdentity(request: Request): string {
+  return request.headers.get("CF-Connecting-IP") ?? "unknown";
+}
+
+function corsHeaders(allowedOrigin: string): Record<string, string> {
   return {
-    "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
+    "Access-Control-Allow-Origin": allowedOrigin,
     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Max-Age": "86400",
   };
 }
 
-function jsonResponse(body: unknown, status = 200): Response {
+function jsonResponse(
+  body: unknown,
+  status = 200,
+  allowedOrigin: string = ALLOWED_ORIGIN,
+): Response {
   return new Response(JSON.stringify(body) + "\n", {
     status,
     headers: {
       "Content-Type": "application/json; charset=utf-8",
-      ...corsHeaders(),
+      ...corsHeaders(allowedOrigin),
     },
   });
 }
@@ -315,7 +405,10 @@ export async function runExportV2(
   env: Env,
   week: string,
 ): Promise<ExportRunSummary> {
-  const schemaVersion = parseInt(env.SCHEMA_VERSION ?? "2", 10);
+  if (!isValidExportWeek(week)) {
+    throw new Error(`Invalid export week: "${week}"`);
+  }
+  const schemaVersion = resolveSchemaVersion(env);
   const timeZone = env.EXPORT_TIMEZONE ?? "America/Santiago";
   const window = isoWeekToDateRangeUTC(week);
   const legacyPrefix = counterPrefixForExportWeek(
@@ -366,8 +459,9 @@ export async function runExportV2(
 }
 
 async function handleManualExport(request: Request, env: Env): Promise<Response> {
+  const allowedOrigin = resolveAllowedOrigin(env);
   if (!env.EXPORT_SECRET) {
-    return jsonResponse({ error: "export_not_configured" }, 503);
+    return jsonResponse({ error: "export_not_configured" }, 503, allowedOrigin);
   }
 
   const url = new URL(request.url);
@@ -376,48 +470,52 @@ async function handleManualExport(request: Request, env: Env): Promise<Response>
     authHeader?.startsWith("Bearer ")
       ? authHeader.slice("Bearer ".length).trim()
       : null;
-  if (!providedSecret) return jsonResponse({ error: "missing_secret" }, 401);
+  if (!providedSecret)
+    return jsonResponse({ error: "missing_secret" }, 401, allowedOrigin);
   if (!constantTimeEqual(providedSecret, env.EXPORT_SECRET)) {
-    return jsonResponse({ error: "invalid_secret" }, 403);
+    return jsonResponse({ error: "invalid_secret" }, 403, allowedOrigin);
   }
 
   const requestedWeek = url.searchParams.get("week");
   const week =
     requestedWeek ??
     previousCompleteISOWeekInTz(env.EXPORT_TIMEZONE ?? "America/Santiago");
-  if (!/^\d{4}-W\d{2}$/.test(week)) {
-    return jsonResponse({ error: "invalid_week" }, 400);
+  if (!isValidExportWeek(week)) {
+    return jsonResponse({ error: "invalid_week" }, 400, allowedOrigin);
   }
 
-  const ip =
-    request.headers.get("CF-Connecting-IP") ??
-    request.headers.get("X-Forwarded-For")?.split(",")[0]?.trim() ??
-    "unknown";
+  const ip = rateLimitIdentity(request);
   if (!(await checkRateLimit(env.ANALYTICS_RATE_LIMITER, `export:${ip}`))) {
-    return jsonResponse({ error: "rate_limited" }, 429);
+    return jsonResponse({ error: "rate_limited" }, 429, allowedOrigin);
   }
 
   try {
     const result = await runExportV2(env, week);
-    return jsonResponse({
-      week: result.week,
-      window: result.window,
-      rows: result.rows,
-      totalEvents: result.totalEvents,
-    });
+    return jsonResponse(
+      {
+        week: result.week,
+        window: result.window,
+        rows: result.rows,
+        totalEvents: result.totalEvents,
+      },
+      200,
+      allowedOrigin,
+    );
   } catch (error) {
     console.error(
       "[analytics-export] manual export failed:",
       error instanceof Error ? error.message : String(error),
     );
-    return jsonResponse({ error: "export_failed" }, 500);
+    return jsonResponse({ error: "export_failed" }, 500, allowedOrigin);
   }
 }
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
+    const maxBodySize = resolveMaxBodySize(env);
+    const allowedOrigin = resolveAllowedOrigin(env);
     if (request.method === "OPTIONS") {
-      return new Response(null, { status: 204, headers: corsHeaders() });
+      return new Response(null, { status: 204, headers: corsHeaders(allowedOrigin) });
     }
 
     const url = new URL(request.url);
@@ -426,25 +524,25 @@ export default {
     }
 
     if (env.ANALYTICS_DISABLED === "1") {
-      return new Response(null, { status: 503, headers: corsHeaders() });
+      return new Response(null, { status: 503, headers: corsHeaders(allowedOrigin) });
     }
     if (request.method !== "POST") {
-      return new Response(null, { status: 405, headers: corsHeaders() });
+      return new Response(null, { status: 405, headers: corsHeaders(allowedOrigin) });
     }
 
     const origin = request.headers.get("Origin");
-    if (origin && origin !== ALLOWED_ORIGIN) {
-      return new Response(null, { status: 403, headers: corsHeaders() });
+    if (origin && origin !== allowedOrigin) {
+      return new Response(null, { status: 403, headers: corsHeaders(allowedOrigin) });
     }
 
     const contentType = request.headers.get("Content-Type");
     if (!contentType?.includes("application/json")) {
-      return new Response(null, { status: 415, headers: corsHeaders() });
+      return new Response(null, { status: 415, headers: corsHeaders(allowedOrigin) });
     }
 
     const contentLength = request.headers.get("Content-Length");
-    if (contentLength && parseInt(contentLength, 10) > MAX_BODY_SIZE) {
-      return new Response(null, { status: 413, headers: corsHeaders() });
+    if (contentLength && parseInt(contentLength, 10) > maxBodySize) {
+      return new Response(null, { status: 413, headers: corsHeaders(allowedOrigin) });
     }
 
     let body: unknown;
@@ -452,26 +550,29 @@ export default {
     if (!bounded.ok) {
       return new Response(null, {
         status: bounded.status,
-        headers: corsHeaders(),
+        headers: corsHeaders(allowedOrigin),
       });
+    }
+    // Enforce an operator-lowered MAX_BODY_SIZE override on the retained
+    // bytes. The shared bounded reader caps at the compiled constant, so
+    // this check only fires when the env override is stricter (fail-closed).
+    if (new TextEncoder().encode(bounded.text).byteLength > maxBodySize) {
+      return new Response(null, { status: 413, headers: corsHeaders(allowedOrigin) });
     }
     try {
       body = JSON.parse(bounded.text);
     } catch {
-      return new Response(null, { status: 400, headers: corsHeaders() });
+      return new Response(null, { status: 400, headers: corsHeaders(allowedOrigin) });
     }
 
     const validation = validateEventPayload(body);
     if (!validation.valid || !validation.event || !validation.params) {
-      return new Response(null, { status: 422, headers: corsHeaders() });
+      return new Response(null, { status: 422, headers: corsHeaders(allowedOrigin) });
     }
 
-    const ip =
-      request.headers.get("CF-Connecting-IP") ??
-      request.headers.get("X-Forwarded-For")?.split(",")[0]?.trim() ??
-      "unknown";
+    const ip = rateLimitIdentity(request);
     if (!(await checkRateLimit(env.ANALYTICS_RATE_LIMITER, ip))) {
-      return new Response(null, { status: 429, headers: corsHeaders() });
+      return new Response(null, { status: 429, headers: corsHeaders(allowedOrigin) });
     }
 
     try {
@@ -483,11 +584,11 @@ export default {
       );
       return new Response(null, {
         status: 503,
-        headers: { ...corsHeaders(), "Retry-After": "30" },
+        headers: { ...corsHeaders(allowedOrigin), "Retry-After": "30" },
       });
     }
 
-    return new Response(null, { status: 202, headers: corsHeaders() });
+    return new Response(null, { status: 202, headers: corsHeaders(allowedOrigin) });
   },
 
   async scheduled(_event: ScheduledEvent, env: Env): Promise<void> {
