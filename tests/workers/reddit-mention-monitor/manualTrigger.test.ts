@@ -1,5 +1,27 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import worker, { type Env } from "../../../workers/reddit-mention-monitor/src/index";
+import type { Match } from "../../../workers/reddit-mention-monitor/src/discord";
+
+// Forces postAlert to deliver only the first match (partial Discord failure).
+// Off by default so existing cases exercise the real implementation.
+const discordControl = vi.hoisted(() => ({ failPartially: false }));
+
+vi.mock("../../../workers/reddit-mention-monitor/src/discord", async importOriginal => {
+  const actual =
+    await importOriginal<typeof import("../../../workers/reddit-mention-monitor/src/discord")>();
+  return {
+    ...actual,
+    postAlert: async (url: string, matches: Match[], timeoutMs?: number) => {
+      if (!discordControl.failPartially) {
+        return actual.postAlert(url, matches, timeoutMs);
+      }
+      return {
+        delivered: matches.slice(0, 1),
+        error: new Error("Discord webhook failed (429): rate limited"),
+      };
+    },
+  };
+});
 
 // Structural KV mock. NOT typed as KVNamespace: @cloudflare/workers-types is
 // not in the repo tsconfig that astro check uses (same note as logic.test.ts).
@@ -32,6 +54,7 @@ function makeEnv(overrides: Record<string, unknown> = {}): Env {
 
 afterEach(() => {
   vi.unstubAllGlobals();
+  discordControl.failPartially = false;
 });
 
 describe("/__check manual trigger auth", () => {
@@ -55,7 +78,52 @@ describe("/__check manual trigger auth", () => {
       makeEnv(),
     );
     expect(res.status).toBe(200);
-    await expect(res.json()).resolves.toEqual({ found: 0, alerted: 0 });
+    await expect(res.json()).resolves.toEqual({ found: 0, alerted: 0, attempted: 0 });
+  });
+
+  it("reports delivered (not attempted) when Discord partially fails", async () => {
+    discordControl.failPartially = true;
+    const child = (id: string, title: string) => ({
+      data: {
+        name: id,
+        title,
+        subreddit: "chile",
+        permalink: `/r/chile/comments/${id}/`,
+        author: "example-user",
+        score: 10,
+        created_utc: 0,
+        over_18: false,
+      },
+    });
+    let searchCalls = 0;
+    vi.stubGlobal("fetch", vi.fn(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.includes("/api/v1/access_token")) {
+        return { ok: true, json: async () => ({ access_token: "t" }) };
+      }
+      if (url.includes("/search")) {
+        searchCalls += 1;
+        if (searchCalls === 1) {
+          return {
+            ok: true,
+            json: async () => ({
+              data: { children: [child("t3_a", "AFP post"), child("t3_b", "AFP otro")] },
+            }),
+          };
+        }
+        return { ok: true, json: async () => ({ data: { children: [] } }) };
+      }
+      throw new Error(`unexpected fetch: ${url}`);
+    }));
+
+    const res = await worker.fetch(
+      new Request("https://example.workers.dev/__check", {
+        headers: { Authorization: "Bearer check-secret" },
+      }),
+      makeEnv(),
+    );
+    expect(res.status).toBe(200);
+    await expect(res.json()).resolves.toEqual({ found: 2, alerted: 1, attempted: 2 });
   });
 
   it("returns 401 when the Authorization header is missing", async () => {
