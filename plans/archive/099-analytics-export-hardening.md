@@ -7,7 +7,7 @@
 > in `plans/README.md` — unless a reviewer dispatched you and told you they
 > maintain the index.
 >
-> **Drift check (run first)**: `git diff --stat 0e506a8b..HEAD -- workers/analytics-collector/src/worker-v2.ts workers/analytics-collector/src/index.ts tests/workers/analytics-collector/`
+> **Drift check (run first)**: `git diff --stat a55d5344..HEAD -- workers/analytics-collector/src/worker-v2.ts workers/analytics-collector/src/index.ts tests/workers/analytics-collector/`
 > On mismatch with "Current state", STOP.
 
 ## Status
@@ -15,9 +15,13 @@
 - **Priority**: P2
 - **Effort**: M
 - **Risk**: MED
-- **Depends on**: plans/archive/097-worker-v2-bounded-body.md (DONE 2026-09-14), plans/098-worker-v2-config-validation.md (same files; sequence strictly after both)
+- **Depends on**: plans/archive/097-worker-v2-bounded-body.md (DONE 2026-09-14), plans/archive/098-worker-v2-config-validation.md (DONE 2026-09-14; same files; sequence strictly after both)
 - **Category**: perf
 - **Planned at**: commit `0e506a8b`, 2026-09-14
+- **Reconciled at**: commit `a55d5344`, 2026-09-14 — plans 097 (merge
+  `67487da9`) and 098 (merge `7366f12d`) landed; excerpts below re-read
+  against live code, all three findings intact (only line numbers shifted;
+  notes on 098 interactions inline)
 - **Issue**: —
 
 ## Why this matters
@@ -38,16 +42,23 @@ Files:
 
 - `workers/analytics-collector/src/worker-v2.ts` — `runExportV2`, `listLegacyKvCounters`, `listDurableCounters`, DO class
 - `workers/analytics-collector/src/index.ts` — shared aggregation/artifact builders, `KV_TTL_SECONDS`, `KV_EXPORT_READ_BATCH_SIZE`
-- `tests/workers/analytics-collector/root-cause.test.ts` — single-page mocks
+- `tests/workers/analytics-collector/root-cause.test.ts` — 24 v2 tests;
+  `MockKV.list` still always returns `list_complete: true` (line 36);
+  mixed-export test at lines 203-236
 
-Excerpts as of `0e506a8b`:
+Excerpts as of `a55d5344` (re-read after 097/098 landed; 097 added the
+`readBoundedBodyText` ingestion call, 098 added `resolveSchemaVersion`,
+`isValidExportWeek`, `rateLimitIdentity` and env resolvers — none touch the
+export-listing regions below except `runExportV2`'s new fail-closed preamble,
+noted inline):
 
-`worker-v2.ts:141-159` — DO `/list`: unbounded `SELECT ... ORDER BY`, no
-`LIMIT`. `worker-v2.ts:255-271` — exporter consumes the whole window in one
-`response.json()`. Contrast KV path `worker-v2.ts:295-306` batched at 50
-(`KV_EXPORT_READ_BATCH_SIZE = 50`, `worker-v2.ts:20`).
+`worker-v2.ts:149-167` — DO `/list`: unbounded `SELECT ... ORDER BY`, no
+`LIMIT`. `worker-v2.ts:346-362` (`listDurableCounters`) — exporter consumes
+the whole window in one `response.json()`. Contrast KV path
+`worker-v2.ts:381-400` batched at 50 (`KV_EXPORT_READ_BATCH_SIZE = 50`,
+`worker-v2.ts:23`).
 
-`worker-v2.ts:326-329`:
+`worker-v2.ts:420-423`:
 
 ```ts
 const [legacyCounters, durableCounters] = await Promise.all([
@@ -56,17 +67,36 @@ const [legacyCounters, durableCounters] = await Promise.all([
 ]);
 ```
 
-`workers/analytics-collector/src/index.ts:41`:
-`KV_TTL_SECONDS = 3_024_000` (35 days). `wrangler.toml:60`:
-`COUNTER_KEY_CUTOVER_AT = "2026-07-20T04:00:00Z"`.
+`runExportV2` (`worker-v2.ts:404-411`) now starts with 098's fail-closed
+preamble (`isValidExportWeek` throw + `resolveSchemaVersion` throw) before
+any listing — place the Step-2 legacy-skip gate after these lines, and keep
+the manual `?week=` override path (`worker-v2.ts:479-481`,
+`requestedWeek ?? previousCompleteISOWeekInTz(...)`) working for old-week
+re-exports.
 
-`worker-v2.ts:348` (identical in `index.ts:828`):
+`workers/analytics-collector/src/index.ts:41`:
+`KV_TTL_SECONDS = 60 * 60 * 24 * 35` (35 days). `wrangler.toml:60`:
+`COUNTER_KEY_CUTOVER_AT = "2026-07-20T04:00:00Z"`. Cron unchanged:
+`wrangler.toml:17` `crons = ["30 5 * * MON"]`.
+
+`worker-v2.ts:442` (identical in `index.ts:828`):
 `const body = JSON.stringify(artifact, null, 2) + "\n";`
 
-Dimensions serialization `worker-v2.ts:223-227` joins only values with `":"`
-(keys dropped); reparsed via `split(":")` in `index.ts:515-537` — potential
-collision if any allowlisted value contains `":"` (investigate inside this
-plan; `SAFE_TOKEN` permits `. _ -`, so confirm first).
+Downstream still parses with plain `JSON.parse`
+(`scripts/data-signals/fetch-analytics-export.mjs:249`), which is
+whitespace-insensitive — compact JSON needs no consumer change (executor:
+confirm read-only, do not edit).
+
+Dimensions serialization `worker-v2.ts:314-318` (`durableCounterFromEvent`)
+joins only values with `":"` (keys dropped); reparsed via `split(":")` in
+`index.ts:515-537` (`parseCounterKey`, `dimensions = parts.slice(5).join(":")`).
+Concrete lead for the Step-3 investigation (verified, not just suspected):
+`destination_url` IS in event allowlists
+(`src/contracts/analytics-events.ts:78,104`), its validator `INTERNAL_URL`
+(`analytics-events.ts:140`) permits `https://...` (contains `:`), and
+`SAFE_TOKEN` (`analytics-events.ts:136`, `/^[a-z0-9][a-z0-9._-]{0,79}$/`)
+permits no colon — so enumerate whether any ingested event actually carries
+`destination_url` into `dimensions`.
 
 Conventions: export errors throw (`Export artifact validation failed`);
 cron `30 5 * * MON`; conventional commits; worker typecheck per plan 097.
@@ -122,23 +152,31 @@ page so old readers still parse.
 ### Step 2: Skip the legacy KV scan past TTL + compact the artifact
 
 Gate `listLegacyKvCounters` on the export window: if `window.from` exceeds
-cutover-week + 35 days, skip the KV scan (log `legacy_skipped`), keeping a
-manual `--week`/query override path for old-week re-exports. Change
+cutover-week + 35 days, skip the KV scan (log `legacy_skipped`), keeping the
+manual `?week=` override path (`worker-v2.ts:479-481`) for old-week
+re-exports. Place the gate after 098's fail-closed preamble
+(`isValidExportWeek`/`resolveSchemaVersion` throws at `runExportV2` start) —
+do not move or weaken those throws. Change
 `JSON.stringify(artifact, null, 2)` → `JSON.stringify(artifact)` on the R2
-write only (both `worker-v2.ts:348` and the mirrored `index.ts:828` line —
+write only (both `worker-v2.ts:442` and the mirrored `index.ts:828` line —
 that line in `index.ts` is in scope for this step despite the Scope list;
 if it diverges, STOP). Confirm `scripts/data-signals/` parses compact JSON
-(read-only check, no edit).
+(read-only check — `fetch-analytics-export.mjs:249` uses plain `JSON.parse`;
+no edit).
 
 **Verify**: typecheck exit 0; `grep -n "null, 2" workers/analytics-collector/src/worker-v2.ts` → no matches on the export write.
 
 ### Step 3: Rule out (or fix) the dimensions separator collision
 
-Investigate: enumerate allowlisted dimension values for `":"`. If unreachable,
-add a code comment + a unit test pinning a `":"`-bearing value as rejected by
-validation. If reachable, serialize as escaped `key=value` pairs with a
-versioned prefix and migration note (keep old keys readable). Do not split the
-historical series silently.
+Investigate: enumerate allowlisted dimension values for `":"`. Start from
+the verified lead in "Current state": `destination_url` is allowlisted
+(`analytics-events.ts:78,104`) with `INTERNAL_URL` permitting `https://`,
+and every non-excluded param value flows into DO `dimensions` via
+`durableCounterFromEvent`. If unreachable in practice, add a code comment +
+a unit test pinning a `":"`-bearing value as rejected by validation. If
+reachable, serialize as escaped `key=value` pairs with a versioned prefix
+and migration note (keep old keys readable). Do not split the historical
+series silently.
 
 **Verify**: focused tests pass; either a pinning test or the escaped format
 with migration comment exists.
@@ -156,8 +194,8 @@ cursor retry, poisoned rows excluded, R2 metadata content-type preserved.
 - New tests in `root-cause.test.ts`: multi-page KV (>50 keys + cursor),
   DO pagination loop, poisoned-row exclusion, legacy-skip past TTL,
   compact-write parse roundtrip. Model on existing mixed-export test
-  (`root-cause.test.ts:202-235`) with multi-page MockKV (current mock always
-  returns `list_complete: true` — extend the mock, test-only change).
+  (`root-cause.test.ts:203-236`) with multi-page MockKV (current mock always
+  returns `list_complete: true` at line 36 — extend the mock, test-only change).
 - Verification: focused-tests command → all pass.
 
 ## Done criteria

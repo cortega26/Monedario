@@ -102,6 +102,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [086](086-apv-completion-drop-diagnosis.md) | Diagnosticar la caída de completitud de la calculadora APV (58% → 14% en tres semanas) | 2026-09-04 | sí (merge `d412aa57`); DONE verificado y archivado 2026-09-12 |
 | [097](097-worker-v2-bounded-body.md) | Reutilizar el bounded byte reader en la ingesta live de worker-v2 (cierra regresión UTF-16 `string.length` + buffer-or-reject) + 5 guard tests; reparación de baseline type-only incluida | 2026-09-14 | sí (merge `67487da9`; commits `c34a8241` + `570a1679`) |
 | [098](098-worker-v2-config-validation.md) | Endurecer config y validación de worker-v2: `MAX_BODY_SIZE`/`ALLOWED_ORIGIN` desde env con fallback, `SCHEMA_VERSION` fail-closed, semana 01–53 con round-trip ISO, limiter solo `CF-Connecting-IP` + 15 tests + enmienda ADR | 2026-09-14 | sí (merge `7366f12d`; commit `bfa39a9d`) |
+| [099](099-analytics-export-hardening.md) | Endurecer el export semanal: paginación keyset del DO `/list`, sunset del scan KV legado past TTL (log `legacy_skipped`), artefacto R2 compacto, formato escapado `v2:` para `destination_url` + 8 tests | 2026-09-14 | sí (merge `fe935119`; commits `28c43ef4` + `d43112da`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 

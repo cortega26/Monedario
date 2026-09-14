@@ -15,7 +15,7 @@
 - **Priority**: P1
 - **Effort**: M
 - **Risk**: MED
-- **Depends on**: plans/archive/097-worker-v2-bounded-body.md (DONE 2026-09-14), plans/098-worker-v2-config-validation.md, plans/099-analytics-export-hardening.md (tests pin their behavior; run last among the worker bundle)
+- **Depends on**: plans/archive/097-worker-v2-bounded-body.md (DONE 2026-09-14), plans/archive/098-worker-v2-config-validation.md (DONE 2026-09-14), plans/archive/099-analytics-export-hardening.md (DONE 2026-09-14; tests pin their behavior; run last among the worker bundle)
 - **Category**: tests
 - **Planned at**: commit `0e506a8b`, 2026-09-14
 - **Issue**: —
