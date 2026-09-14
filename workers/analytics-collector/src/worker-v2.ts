@@ -423,6 +423,21 @@ async function checkRateLimit(
  * readable: nothing re-parses dimensions server-side (aggregation groups by
  * exact string, downstream treats them opaquely), so both formats flow
  * through export.
+ *
+ * Piece-length boundary: `validateExportArtifact` (owned by ./index, out of
+ * scope) splits artifact row `dimensions` on EVERY ":" and rejects the row
+ * if any piece exceeds 80 chars (MAX_STRING_LENGTH). The escaped `\:` does
+ * not shield the URL from that split — today the pair lands as two pieces,
+ * the longest being the 55-char
+ * `//monedario.cl/calculadoras/impuesto-segunda-categoria/` tail (longest of
+ * the 22 calculator routes), which passes. The tight boundary appears under
+ * the candidate follow-up (splitting on unescaped colons only): the pair
+ * would then be a single 78-char piece — 2 chars of headroom, effectively
+ * none. In general any future colon-free URL-bearing value must keep
+ * `len("key=") + len(escaped value) <= 80`, or `runExportV2` throws before
+ * any R2 write and the entire weekly export fails atomically. Future editors
+ * adding URL-bearing params or longer slugs must re-check this boundary
+ * (candidate follow-up: teach the validator about `v2:`-prefixed pieces).
  */
 const DIMENSIONS_VERSION_PREFIX = "v2:";
 
