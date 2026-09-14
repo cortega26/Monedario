@@ -7,8 +7,10 @@
 > in `plans/README.md` — unless a reviewer dispatched you and told you they
 > maintain the index.
 >
-> **Drift check (run first)**: `git diff --stat 0e506a8b..HEAD -- src/application/use-cases/SimulateCreditPrepayment.ts src/application/use-cases/shared/creditAmortization.ts src/utils/calculatorScenarios.ts src/utils/userProfile.ts src/utils/resumeState.ts workers/reddit-mention-monitor/src/index.ts tests/`
-> On mismatch with "Current state", STOP.
+> **Drift check (run first)**: `git diff --stat cee0b53f..HEAD -- src/application/use-cases/SimulateCreditPrepayment.ts src/application/use-cases/shared/creditAmortization.ts src/utils/calculatorScenarios.ts src/utils/userProfile.ts src/utils/resumeState.ts workers/reddit-mention-monitor/src/index.ts tests/application/SimulateCreditPrepayment.test.ts tests/integration/calculatorScenarios.test.ts tests/integration/userProfile.test.ts tests/workers/reddit-mention-monitor/ tests/unit/resumeState.test.ts`
+> On mismatch with "Current state", STOP. (NOTE: the original check covered
+> all of `tests/`; reconciled to the per-area suites — the only `tests/`
+> movement since planning is unrelated suites from plans 097–104.)
 
 ## Status
 
@@ -18,6 +20,11 @@
 - **Depends on**: none
 - **Category**: bug
 - **Planned at**: commit `0e506a8b`, 2026-09-14
+- **Reconciled at**: commit `cee0b53f`, 2026-09-14 — all six source files
+  untouched since planning (drift empty); excerpts re-read against live
+  code, all three findings intact; four reconciliation notes inline
+  (assertInput error style, `isKnownProfileField` reuse, resumeState test
+  home + stub pattern, runMonitor consumers pre-grepped)
 - **Issue**: —
 
 ## Why this matters
@@ -40,7 +47,7 @@ Files and roles:
 - `workers/reddit-mention-monitor/src/index.ts:119-136`
 - Tests: unit/integration/worker suites per area
 
-Excerpts as of `0e506a8b` (verified by reading):
+Excerpts as of `cee0b53f` (re-read; all six sources byte-identical to planning):
 
 ```ts
 // SimulateCreditPrepayment.ts:51-53
@@ -82,7 +89,11 @@ return { found: totalFound, alerted: matches.length };
 (Only `delivered` are marked seen at `:121`; `error` is logged at `:122-128`
 but the return still reports attempted as alerted.)
 
-Conventions: use-cases throw `Error` with Spanish messages on invalid input;
+Conventions: use-cases throw `Error` on invalid input — match the
+immediately-surrounding style (the `assertInput` block in
+`SimulateCreditPrepayment.ts` is ENGLISH, e.g. the neighboring
+`remainingMonths` guard; later domain errors in the same file are Spanish —
+do NOT convert existing messages, just match the block you edit);
 storage helpers fail-open to empty store on parse error (extend, don't
 replace); worker uses structured `log(level,event,fields)`; conventional
 commits.
@@ -130,10 +141,12 @@ clean tree → STOP + report.
 ### Step 1: Bound remainingMonths + non-amortizing guard
 
 Assert `remainingMonths <= 600` (50 years — rejects nonsense, accepts every
-real Chilean credit) in `assertInput`; keep the existing Spanish error style.
-Also throw early when the payment can't amortize (the `withoutPrepayment.months
->= maxMonths` check at `:97` already exists — add the symmetric early guard
-for non-finite/negative `paymentStrategy` results per the shared helper's
+real Chilean credit) in `assertInput`, matching that block's ENGLISH error
+style (e.g. `"remainingMonths must be a finite number greater than 0 and at most 600."` —
+keep the existing message prefix so greps keep working). Also throw early when
+the payment can't amortize (the `withoutPrepayment.months >= maxMonths` check
+at `:97` already exists — add the symmetric early guard for
+non-finite/negative `paymentStrategy` results per the shared helper's
 contract). No loop change.
 
 **Verify**: focused application tests pass; add tests: `remainingMonths: 1e12`
@@ -144,10 +157,20 @@ contract). No loop change.
 Add narrow guards at the three load sites (hand-rolled or Zod — match the
 file's existing style, no new dependency): `ScenarioStore` values must be
 arrays of `{id,name,ts,inputs,summary}`-shaped objects; `UserProfileV1`
-spread must allowlist known keys; `ResumeData` must match its interface.
-On mismatch: fall back to the same empty default as the parse-error path
-(never throw, never migrate silently). Existing quota-ignore `catch`
-behavior unchanged.
+spread must allowlist known keys — REUSE the existing
+`isKnownProfileField` (`userProfile.ts:45`, already used by
+`updateProfile`) to filter persisted keys in `readRaw`, do not invent a
+second list; `ResumeData` must match its interface (`resumeState.ts:16-19`:
+`pages` array of `{url,title,ts}` strings/numbers, optional `calculator`
+`{id,label,ts}` — reject mistyped entries, never log values). On mismatch:
+fall back to the same empty default as the parse-error path (never throw,
+never migrate silently). Existing quota-ignore `catch` behavior unchanged.
+Test homes: extend `tests/integration/calculatorScenarios.test.ts` and
+`tests/integration/userProfile.test.ts` in place; `resumeState` has NO
+existing suite — create `tests/unit/resumeState.test.ts`, copying the
+`MemoryStorage` + `installLocalStorage` stub pattern from
+`tests/integration/calculatorScenarios.test.ts:11-33` (vitest runs node
+env, no DOM localStorage).
 
 **Verify**: unit/integration tests pass; add tests: corrupted store
 (`"{\"a\": 1}"`, `"[]"`, non-array entry, unknown-key profile) → empty
@@ -156,8 +179,14 @@ default, no throw.
 ### Step 3: Report delivered, not attempted
 
 Return `{ found, alerted: delivered.length, attempted: matches.length }`
-and keep the `alert.partial_failure` warn log as-is. Update any caller/test
-that destructures the return (grep `runMonitor` consumers first).
+and keep the `alert.partial_failure` warn log as-is. Consumers pre-grepped
+at reconciliation: the ONLY consumers are the worker's own manual `fetch`
+endpoint (`index.ts:175-176`, serializes the return with `JSON.stringify`)
+and `tests/workers/reddit-mention-monitor/manualTrigger.test.ts:58`, which
+asserts the EXACT shape `{ found: 0, alerted: 0 }` — update that assertion
+to include `attempted: 0` (in-scope test update, not a break). No
+out-of-scope dashboard consumes the return, so the STOP condition on that
+point is pre-cleared; it still applies if you find any other consumer.
 
 **Verify**: reddit-monitor tests pass; add test: partial Discord failure
 (1 of 2 delivered) → `alerted: 1, attempted: 2`.
