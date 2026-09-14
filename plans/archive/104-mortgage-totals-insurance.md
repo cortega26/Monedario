@@ -7,7 +7,7 @@
 > in `plans/README.md` — unless a reviewer dispatched you and told you they
 > maintain the index.
 >
-> **Drift check (run first)**: `git diff --stat 0e506a8b..HEAD -- src/application/use-cases/CalculateMortgage.ts src/pages/calculadoras/dividendo-hipotecario.astro tests/application/ tests/domain/`
+> **Drift check (run first)**: `git diff --stat 5a00858c..HEAD -- src/application/use-cases/CalculateMortgage.ts src/pages/calculadoras/dividendo-hipotecario.astro tests/application/ tests/domain/`
 > On mismatch with "Current state", STOP.
 
 ## Status
@@ -18,6 +18,11 @@
 - **Depends on**: none
 - **Category**: bug
 - **Planned at**: commit `0e506a8b`, 2026-09-14
+- **Reconciled at**: commit `5a00858c`, 2026-09-14 — in-scope files
+  untouched since planning (drift empty); excerpts re-read against live
+  code, finding intact; page-state notes inline (the interactive block
+  already qualifies labels — the gaps are the engine outputs, the static
+  example, the scenario summary, and the MethodologyBlock notes)
 - **Issue**: —
 
 ## Why this matters
@@ -37,11 +42,29 @@ contract break).
 Files and roles:
 
 - `src/application/use-cases/CalculateMortgage.ts:140-231` — engine
-- `src/pages/calculadoras/dividendo-hipotecario.astro` — display (incl.
-  methodology block)
-- Tests: `tests/application/*mortgage*`, `tests/domain/*` (tax/invariants)
+- `src/pages/calculadoras/dividendo-hipotecario.astro` — display.
+  RECONCILIATION NOTE (page state as of `5a00858e`; the interactive results
+  block ALREADY qualifies its labels, so Step 2 is harmonization, not a
+  redesign — follow the page's own `(sin seguros)` pattern):
+  headline `:622` "Dividendo base (sin seguros)" + rows `:661-668` "Total a
+  pagar (sin seguros)" / "Total intereses (sin seguros)" (qualified ✓);
+  static example `:301-306` "Total intereses" UNQUALIFIED (shows
+  `totalInterestPesos`); scenario summary `:773-775` "Total intereses" /
+  "Total a pagar" UNQUALIFIED; `MethodologyBlock` `:388-390` notes explain
+  insurance optionality but never state which lifetime total includes
+  seguros. The amortization table already toggles insurance columns
+  (`:686-693` `showDesg`/`showFire`) — mirror that conditional idiom for
+  any new con-seguros row (show only when insurance inputs are present, so
+  zero-insurance output doesn't duplicate the base row).
+- Tests: `tests/application/CalculateMortgage.test.ts` (engine cases +
+  `:159+` "ejemplo de metodología — anti-drift" pinning the published
+  example — keep green; label-only changes must not move its figures).
+  `tests/accessibility/calculator-scenario-consistency.test.ts` touches this
+  page but asserts only input-fill/scenario keys (verified: no label
+  assertions) — no update needed there; do NOT run the Playwright suite
+  (needs a preview server; out of scope).
 
-Excerpts as of `0e506a8b` (verified by reading):
+Excerpts as of `5a00858c` (re-read; in-scope files byte-identical to planning):
 
 ```ts
 // CalculateMortgage.ts:146-152
@@ -123,12 +146,19 @@ insurance → difference equals summed schedule insurance.
 
 ### Step 2: Display the honest total + methodology note
 
-In `dividendo-hipotecario.astro`, display the with-insurance total as the
-headline lifetime figure (or alongside with unambiguous labels — pick the
-page's existing label pattern, e.g. "Costo total" vs "Total intereses", and
-keep both visible so no reader loses the old number). Add one methodology
-sentence: which total includes seguros, that rates are user-provided, and
-the effective-date/UF source. Spanish, low-hype, no absolute promises.
+Follow the page's EXISTING label pattern (no redesign): the interactive
+block already uses "Total a pagar (sin seguros)" / "Total intereses (sin
+seguros)" (`:661-668`). (a) Add the with-insurance lifetime row alongside
+("Total a pagar (con seguros)" + optionally "Total seguros"), shown only
+when insurance inputs are present — mirror the table's `showDesg`/`showFire`
+conditional idiom (`:686-693`) so zero-insurance output doesn't duplicate
+the base row. (b) Harmonize the two unqualified sites to the same pattern:
+static example "Total intereses" (`:301-306`) and scenario summary
+(`:773-775`). (c) Extend the `MethodologyBlock` `notes` prop (`:390`) with
+one sentence: which lifetime total includes seguros, that insurance rates
+are user-provided, and the UF source. Spanish, low-hype, no absolute
+promises. Do not touch routes/slugs/titles, the `<h2>`/`PrimaryCTA`, or the
+worked-example figures (the `:159+` anti-drift test pins them).
 
 **Verify**: `astro check` exit 0; page renders the new labels (scoped test or
 manual preview excerpt in the commit message — no screenshot required).

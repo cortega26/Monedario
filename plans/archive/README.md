@@ -106,6 +106,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [100](100-analytics-taxonomy-tests.md) | Cerrar la brecha de taxonomía (12 eventos + 4 params Tier-A/B, enums outcome/mode/scroll, CLIENT_ONLY stripping) + worker-v2 en el gate de cobertura (89.96%) + 18 tests de matriz/fetch/auth/DO + workflow con ambas suites | 2026-09-14 | sí (merge `29856700`; commit `2a560702`) |
 | [101](101-pagefind-public-purge.md) | Purgar el índice Pagefind stale commiteado antes del copy-back — **REJECTED 2026-09-14**: `public/pagefind` está gitignored (cero archivos trackeados); el stale es solo-local y nunca llega al repo ni a producción | 2026-09-14 | no aplica (cerrado sin implementar, sin despachar) |
 | [103](103-economic-date-honesty.md) | Fechas honestas: `toIsoDate` → `undefined` (nunca hoy) + `provenance.uta.{status,referenceYear,referenceDate}` estable (sin instantes, idempotencia 091 intacta) + 5 tests | 2026-09-14 | sí (merge `153c596c`; commit `8da83704`) |
+| [104](104-mortgage-totals-insurance.md) | Totales hipotecarios con seguros: `totalInsurancePesos` + `totalPaidWithInsurancePesos` aditivos + etiquetas `(sin/con seguros)` armonizadas + frase metodológica + 2 tests | 2026-09-14 | sí (merge `1ad6efce`; commit `a43cf808`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
