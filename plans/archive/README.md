@@ -113,6 +113,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [108](108-scenario-save-extraction.md) | Extraer helper `createScenarioSaveAdapter` del snapshot-save (089) con 6 tests happy-dom bajo el gate; 7 call sites rewired net-negativo | 2026-09-14 | sí (merge `6b512348`; 3 commits helper→rewire→tests) |
 | [107](107-calculator-client-helpers.md) | Unificar helpers cliente: pin anti-refork del adapter (108 ya unificó), `parseCLNumber` en 3 sitios, regex glossary hoisted byte-idéntico + 18 tests (3 commits) | 2026-09-14 | sí (merge `06d3ba3e`; 3 commits pin→parser→glossary) |
 | [109](109-onboarding-env-docs.md) | Alinear versiones onboarding (pnpm 11.7.0/Astro 7) + tablas env + bootstrap en dos etapas + pip-audit venv (solo docs, 2 commits) | 2026-09-14 | sí (merge `acb0f331`; commits `d9350b14` + `c52ddfde`) |
+| [110](110-worker-typecheck-logging.md) | Gates `worker:*:typecheck` + `check:workers` en `check:ci`/CI + envelope JSON compartido en analytics-collector (16 sitios, texto legado verbatim) + ejemplos de tail (2 commits) | 2026-09-14 | sí (merge `e78b02b8`; 2 commits gate→envelope) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 

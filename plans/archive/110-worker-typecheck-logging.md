@@ -7,8 +7,11 @@
 > in `plans/README.md` — unless a reviewer dispatched you and told you they
 > maintain the index.
 >
-> **Drift check (run first)**: `git diff --stat 0e506a8b..HEAD -- package.json tsconfig.json workers/analytics-collector/ workers/economic-snapshot-refresh/src/index.ts workers/reddit-mention-monitor/src/index.ts .github/workflows/ci.yml AGENTS.md`
-> On mismatch with "Current state", STOP.
+> **Drift check (run first)**: `git diff --stat 206016cb..HEAD -- package.json tsconfig.json workers/analytics-collector/ workers/economic-snapshot-refresh/src/index.ts workers/reddit-mention-monitor/src/index.ts .github/workflows/ci.yml AGENTS.md`
+> On mismatch with "Current state", STOP. (Reconciled base: the `0e506a8b`
+> check showed only `index.ts`, `worker-v2.ts` (plans 097–099 landed work)
+> and reddit `index.ts` (plan 105 return shape) — all assessed below. The
+> 097–100 series is DONE, so no concurrent-edit sequencing remains.)
 
 ## Status
 
@@ -18,6 +21,10 @@
 - **Depends on**: none (sequence after 097–100 if run together — same worker files, different lines; re-run drift check)
 - **Category**: dx
 - **Planned at**: commit `0e506a8b`, 2026-09-14
+- **Reconciled at**: commit `206016cb`, 2026-09-14 — 097–100 DONE (no
+  sequencing constraint left); worker drift is their landed work, fully
+  inventoried below (16 ad-hoc sites, was ~6); exemplar logger, scripts,
+  CI job, README-allowlist and log-asserting tests all re-read
 - **Issue**: —
 
 ## Why this matters
@@ -37,17 +44,42 @@ analytics incidents can't be filtered or correlated like the other two.
 
 Files and roles:
 
-- `tsconfig.json:3` — excludes `workers/**`
-- `package.json:7-116,78-86` — scripts; `worker:*:dev --test-scheduled`,
-  `deploy`, `tail`; no typecheck/test shortcuts
-- `plans/archive/037-*.md:100-104` — tribal `npx tsc --noEmit -p workers/analytics-collector/tsconfig.json`
-- `workers/economic-snapshot-refresh/src/index.ts:33-48` — JSON logger (exemplar)
+- `workers/economic-snapshot-refresh/src/index.ts:33-49` — JSON logger
+  exemplar (`log(level,event,fields)` → `{level,event,timestamp,
+  worker,...fields}`, routed error→`console.error`/warn→`console.warn`/
+  else→`console.log`)
 - `workers/reddit-mention-monitor/src/index.ts:27-38` — same envelope
-- `workers/analytics-collector/src/worker-v2.ts:209-214` + `index.ts` ad-hoc sites — strings
-- `.github/workflows/ci.yml` — where the gate wires in; `AGENTS.md` — where it is documented
+  (inline returns, same routing)
+- `workers/analytics-collector/src/worker-v2.ts` — 7 ad-hoc sites:
+  `:396-400` (native rate-limit fail, IP-safe by 098), `:551` (poison-row
+  skip), `:648-650` (`legacy_skipped`), `:685-687` (export summary),
+  `:742-744` (manual export failed), `:818-820` (ingest fail), `:834`
+  (cron trigger)
+- `workers/analytics-collector/src/index.ts` — 9 ad-hoc sites: `:330-334`
+  (KV rate-limit fail, minute-suffix only — deliberate, see comment),
+  `:358-362` (ingest fail, logs FULL counter key), `:790`/:`812`/:`816`/
+  `:834` (export progress), `:891-895` (manual fail), `:1074` (cron
+  trigger), `:1080` (export failed)
+- Log-asserting tests that MUST stay green (assert on `String(call[0])`
+  substrings — the verbatim-message rule in Step 2 keeps them passing):
+  `root-cause.test.ts:798+` ("legacy_skipped"),
+  `schema.test.ts:907+` ("descartados=…sin taxonomía v2"),
+  `schema.test.ts:1075+` (counter key), `schema.test.ts:1106+`
+  ("rate-limit")
+- `package.json:78-86` — `worker:*:dev/deploy/tail` per worker, no
+  typecheck shortcuts; `check:ci` (`:34`) runs lint … `astro check`
+  (worker-blind: root `tsconfig.json:3` excludes `workers/**`)
+- `.github/workflows/ci.yml:52+` — `lint-and-test` job (lint, format,
+  test:coverage, boundaries, context, policy-registry, legal-constants,
+  docs — NO astro-check step; add a workers-gate step here)
+- `workers/analytics-collector/README.md` — path-allowlisted for
+  `check:docs` (edits safe); has `worker:analytics:tail` row (`:51`).
+  (Its "Precisión de contadores" section still describes KV
+  read-modify-write — stale since the DO migration, but OUT OF SCOPE:
+  do not touch it here.)
 
-Excerpts as of `0e506a8b` (verified by reading the worker files and configs;
-tribal line per archive reference):
+Excerpts as of `206016cb` (re-read; the `:209-214`-era refs from planning
+predate 097–099 — the 16-site inventory above supersedes them):
 
 ```json
 // tsconfig.json (root) — workers excluded (line ~3)
@@ -115,20 +147,35 @@ failure on clean tree → STOP + report.
 
 ### Step 1: Checked-in typecheck gate
 
-Add per-worker `worker:<name>:typecheck` scripts + aggregate
-`check:workers`; wire `check:workers` into `check:ci` (position: next to
-`astro check`) and into `ci.yml` lint-and-test. Document the split (root
-excludes workers) in `AGENTS.md` one-liner.
+Add per-worker scripts following each worker's existing prefix
+(`worker:analytics:typecheck`, `worker:economic-snapshot:typecheck`,
+`worker:reddit-monitor:typecheck`, each `npx tsc --noEmit -p
+workers/<name>/tsconfig.json` — all three tsconfigs verified present) +
+aggregate `check:workers` running all three. Wire `check:workers` into
+`check:ci` (position: next to `astro check`) and as a new step in `ci.yml`
+`lint-and-test` (append after the docs step; no other job edits).
+Document the split (root excludes workers) in `AGENTS.md` one-liner.
 
 **Verify**: `pnpm run check:workers` → exit 0; `pnpm run check:docs` → exit 0.
 
-### Step 2: Structured envelope in analytics-collector (legacy text preserved)
+### Step 2: Structured envelope in analytics-collector (legacy text preserved VERBATIM)
 
-Adopt the shared JSON envelope in both analytics-collector files, keeping
-each legacy message string verbatim as one field (e.g. `message`). Document
-two tail-filter examples in the worker README (allowlist-safe).
+Define the shared `log(level,event,fields)` ONCE — export it from
+`workers/analytics-collector/src/index.ts` (mirroring the economic
+`:33-49` shape with `worker: "analytics-collector"`) and import it in
+`worker-v2.ts`. Do NOT duplicate the helper per file; do NOT touch the
+economic/reddit loggers. Convert all 16 ad-hoc sites (7 in `worker-v2.ts`,
+9 in `index.ts` per the Current-state inventory) with two hard rules:
+(a) each legacy message string moves VERBATIM into one field (e.g.
+`message`) — four existing tests assert on `String(call[0])` substrings
+("legacy_skipped", "descartados=…", counter key, "rate-limit") and must
+keep passing UNCHANGED; (b) add NO new sensitive fields — in particular,
+do not "improve" the full-counter-key log at `index.ts:358-362` or the
+minute-suffix truncation at `:330-334` (privacy posture changes are out
+of scope; the 098 IP-safety stays as-is). Document two tail-filter
+examples in `workers/analytics-collector/README.md` (path-allowlisted).
 
-**Verify**: scoped eslint exit 0; `grep -c "console.error(\"[analytics" workers/analytics-collector/src/worker-v2.ts` → 0 bare-string sites (all enveloped); existing alert strings still present as field values (grep the text).
+**Verify**: scoped eslint exit 0; `grep -n "console\.\(error\|log\|warn\)(" workers/analytics-collector/src/worker-v2.ts workers/analytics-collector/src/index.ts` → only the shared helper's three routing lines remain; the four log-asserting tests pass unmodified; existing alert strings still present as field values (grep the text).
 
 ## Test plan
 
