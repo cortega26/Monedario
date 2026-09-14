@@ -7,7 +7,7 @@
 > in `plans/README.md` — unless a reviewer dispatched you and told you they
 > maintain the index.
 >
-> **Drift check (run first)**: `git diff --stat 0e506a8b..HEAD -- src/infrastructure/economic/EconomicParameterProvider.ts workers/economic-snapshot-refresh/src/buildSnapshot.ts tests/infrastructure/EconomicParameterProvider.test.ts tests/workers/economic-snapshot-refresh/`
+> **Drift check (run first)**: `git diff --stat 4234805c..HEAD -- src/infrastructure/economic/EconomicParameterProvider.ts workers/economic-snapshot-refresh/src/buildSnapshot.ts tests/infrastructure/EconomicParameterProvider.test.ts tests/workers/economic-snapshot-refresh/`
 > On mismatch with "Current state", STOP.
 
 ## Status
@@ -18,6 +18,11 @@
 - **Depends on**: none
 - **Category**: bug
 - **Planned at**: commit `0e506a8b`, 2026-09-14
+- **Reconciled at**: commit `4234805c`, 2026-09-14 — in-scope files
+  untouched since planning (drift empty); excerpts re-read against live
+  code, both findings intact; three reconciliation notes inline (provider
+  callers verified `undefined`-safe; no readers of `provenance.utm.status`
+  exist; 091-idempotency guard for the new provenance block)
 - **Issue**: —
 
 ## Why this matters
@@ -42,7 +47,7 @@ Files and roles:
 - Tests: `tests/infrastructure/EconomicParameterProvider.test.ts`
   (snapshot/live/memo/IMM pinning), worker `buildSnapshot` suite
 
-Excerpts as of `0e506a8b` (verified by reading):
+Excerpts as of `4234805c` (re-read; in-scope files byte-identical to planning):
 
 ```ts
 // EconomicParameterProvider.ts:123-128
@@ -53,6 +58,14 @@ function toIsoDate(value: string | undefined): string {
   return new Date().toISOString().slice(0, 10);
 }
 ```
+
+RECONCILIATION NOTE (Step-1 assumption verified): all live callers already
+tolerate `undefined` — the internal `.map` filters falsy values
+(`:134-140`), the six `indicatorUpdatedAt` assignments are guarded
+ternaries (`? toIsoDate(...) : undefined`, `:249-254`), and the final
+`getLatestIsoDate` falls back to `FALLBACK_LAST_UPDATED` (`:256-267`). The
+type change `string` → `string | undefined` is contained; no caller needs a
+behavior change. If you find any other caller, STOP per STOP conditions.
 
 Contrast the worker's honest version (`buildSnapshot.ts:109-114`):
 `toRealIsoDate` returns `undefined` so freshness gates fail loudly.
@@ -71,9 +84,31 @@ if (decUtm === null) {
 }
 ```
 
-`rawDates.uta` (`:221`) reuses `payload?.utm?.fecha` on fallback, and
-`buildSnapshot.ts:259-265` builds the snapshot with no UTA-fallback
-provenance field (UTM has one; UTA does not).
+`rawDates.uta` (`:221`) reuses `payload?.utm?.fecha` on fallback, and the
+snapshot literal (`:259-287`) carries `provenance.utm.{primarySource,
+sourceUrl,status,verifiedAt}` (`:279-286`, type at `:70-77`) but no UTA
+block.
+
+RECONCILIATION NOTE (Step-2 scoping, verified by grep): NOTHING outside
+`buildSnapshot.ts` reads `provenance.utm.status` — no freshness gate, script,
+or component consumes it. "The same way UTM fallback is surfaced" therefore
+means write-only parity: extend the `EconomicSnapshot` interface (`:70-77`)
+and the snapshot literal with a `provenance.uta` block. Do NOT add readers
+and do NOT edit any consumer/gate file (out of scope).
+
+RECONCILIATION NOTE (091-idempotency guard, load-bearing): the worker's
+idempotency check (`index.ts`, OUT OF SCOPE) ignores ONLY `capturedAt` and
+`provenance.utm.verifiedAt` as observation instants — a `status` flip
+correctly produces a commit (real change), but any PER-RUN instant you add
+inside `provenance.uta` (e.g. a mirrored `verifiedAt: now.toISOString()`)
+would break idempotency and commit on every refresh, reintroducing exactly
+what plan 091 fixed. Therefore `provenance.uta` MUST contain only stable
+values: `status: "primary" | "fallback"` + reference year/date used (e.g.
+`referenceYear`, `referenceDate: "${utaRefYear}-12-01"` on primary or the
+actually-used date on fallback). NO timestamps. `tests/workers/
+economic-snapshot-refresh/idempotency.test.ts` pins this — it must stay
+green unmodified in intent (extend only if it asserts the exact provenance
+shape; prefer additive assertions).
 
 Conventions: provider callers already handle `undefined` via
 `getLatestIsoDate` fallback paths; worker provenance pattern mirrors UTM;
@@ -133,10 +168,15 @@ types only. No new fallback value anywhere.
 ### Step 2: Provenance-flag estimated UTA
 
 Add `provenance.uta.status: "primary" | "fallback"` (mirroring the UTM
-pattern) plus the reference year/date used; include it in the built snapshot
-and export validation. Keep the `console.warn` text unchanged. Surface the
-flag in freshness gates the same way UTM fallback is surfaced (read-only
-wiring; no threshold change).
+pattern at `buildSnapshot.ts:279-286`, type at `:70-77`) plus the reference
+year/date used; include it in the built snapshot and export validation. HARD
+CONSTRAINT (plan 091 idempotency): stable values ONLY — `status` plus
+reference year/date; NEVER a per-run instant such as `verifiedAt` (the
+out-of-scope idempotency check ignores only `capturedAt` and
+`provenance.utm.verifiedAt`; a fresh timestamp per run would commit on every
+refresh). Keep the `console.warn` text unchanged. Parity with UTM is
+write-only (verified: no consumer reads `provenance.utm.status`) — do not
+create readers or edit gate files.
 
 **Verify**: worker tests pass; add tests: December-UTM-missing →
 `status: "fallback"` + snapshot still builds; December-present →
