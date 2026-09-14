@@ -94,7 +94,7 @@ jobs:
             }
           }
           JSON
-          "$TOOL_ROOT/node_modules/.bin/vitest" run tests/workers/analytics-collector/root-cause.test.ts
+          "$TOOL_ROOT/node_modules/.bin/vitest" run tests/workers/analytics-collector/root-cause.test.ts tests/workers/analytics-collector/schema.test.ts
           restore_tsconfig
           trap - EXIT
 

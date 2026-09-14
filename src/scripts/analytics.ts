@@ -195,7 +195,10 @@ function initArticleScrollTracking(): Cleanup {
       track("article_scroll_depth", {
         article_slug: articleSlug,
         article_title: articleTitle,
-        scroll_depth_percent: milestone,
+        // Stringificado: el contrato solo acepta strings acotados (enum
+        // scroll_depth_percent); el número crudo se descartaría en silencio
+        // en el sanitizador y rechazaría el evento en el worker (plan 100).
+        scroll_depth_percent: String(milestone),
       });
     }
   };

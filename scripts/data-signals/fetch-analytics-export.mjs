@@ -49,6 +49,20 @@ const ALLOWED_EVENTS = new Set([
   "support_click",
   "support_confirmed",
   "article_calculator_cta_click",
+  // Plan 100: eventos reconciliados (Tier A/B) — ver
+  // src/contracts/analytics-events.ts.
+  "calculator_mode_toggle",
+  "calculator_copy_link",
+  "calculator_copy_result",
+  "calculator_print_click",
+  "calculator_share_click",
+  "resume_cleared",
+  "article_scroll_depth",
+  "cta_click",
+  "calculator_trust_link_click",
+  "hub_route_click",
+  "related_content_click",
+  "search_chip_click",
   // Historical schema (v1), retained so old weekly exports stay readable.
   "next_best_step_shown",
   "next_best_step_click",
