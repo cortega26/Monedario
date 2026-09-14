@@ -67,6 +67,42 @@ describe("simulateCreditPrepayment", () => {
     ).toThrow(/monthlyRatePercent/i);
   });
 
+  it("rejects absurd remainingMonths instead of looping near-forever", () => {
+    const base = {
+      currentBalance: 10000000,
+      monthlyPayment: 240000,
+      monthlyRatePercent: 0.9,
+      prepaymentAmount: 1000000,
+      prepaymentCost: 0,
+      effect: "reducir-plazo" as const,
+      alternativeAnnualReturnPercent: 5,
+    };
+    expect(() =>
+      simulateCreditPrepayment({ ...base, remainingMonths: 1e12 })
+    ).toThrow(/remainingMonths/);
+    expect(() =>
+      simulateCreditPrepayment({ ...base, remainingMonths: 601 })
+    ).toThrow(/remainingMonths/);
+    expect(() =>
+      simulateCreditPrepayment({ ...base, remainingMonths: 600 })
+    ).not.toThrow();
+  });
+
+  it("fails early when the with-prepayment payment cannot amortize", () => {
+    expect(() =>
+      simulateCreditPrepayment({
+        currentBalance: 10000000,
+        monthlyPayment: 2e20,
+        monthlyRatePercent: 1e15,
+        remainingMonths: 72,
+        prepaymentAmount: 1000000,
+        prepaymentCost: 0,
+        effect: "reducir-cuota",
+        alternativeAnnualReturnPercent: 5,
+      })
+    ).toThrow(/no alcanza a amortizar/);
+  });
+
   describe("ejemplo de metodología — anti-drift", () => {
     it("el ahorro y los meses reales coinciden con el ejemplo publicado", () => {
       // Si la fórmula cambia y el ejemplo mostrado al usuario queda
