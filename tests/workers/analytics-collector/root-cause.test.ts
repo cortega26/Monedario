@@ -4,6 +4,7 @@ import analyticsWorker, {
   runExportV2,
   type Env,
 } from "../../../workers/analytics-collector/src/worker-v2";
+import { MAX_BODY_SIZE } from "../../../workers/analytics-collector/src/index";
 
 class MockKV {
   store = new Map<string, string>();
@@ -231,5 +232,145 @@ describe("root-cause fix: weekly export", () => {
       event_name: "calculator_start",
       count: 5,
     });
+  });
+});
+
+describe("root-cause fix: worker-v2 bounded body (plan 097)", () => {
+  const EVENT_URL = "https://monedario.cl/api/analytics/event";
+
+  function postV2(
+    init: RequestInit,
+    env: Env = makeEnv(),
+  ): Promise<Response> {
+    return analyticsWorker.fetch(new Request(EVENT_URL, init), env);
+  }
+
+  function closedStream(bytes: Uint8Array): ReadableStream<Uint8Array> {
+    return new ReadableStream<Uint8Array>({
+      start(controller) {
+        controller.enqueue(bytes);
+        controller.close();
+      },
+    });
+  }
+
+  function streamInit(
+    body: ReadableStream<Uint8Array>,
+    extraHeaders: Record<string, string> = {},
+  ): RequestInit & { duplex: "half" } {
+    return {
+      method: "POST",
+      headers: { "Content-Type": "application/json", ...extraHeaders },
+      body,
+      duplex: "half",
+    } as unknown as RequestInit & { duplex: "half" };
+  }
+
+  const VALID_BODY = JSON.stringify({
+    event: "calculator_start",
+    params: { calculator_id: "sueldo-liquido", interaction_variant: "input" },
+  });
+
+  it("accepts a body of exactly MAX bytes (202)", async () => {
+    const encoder = new TextEncoder();
+    const baseBytes = encoder.encode(VALID_BODY).length;
+    expect(baseBytes).toBeLessThan(MAX_BODY_SIZE);
+    // Trailing whitespace: JSON.parse tolerates it, schema untouched.
+    const exact = VALID_BODY + " ".repeat(MAX_BODY_SIZE - baseBytes);
+    expect(encoder.encode(exact).length).toBe(MAX_BODY_SIZE);
+
+    const response = await postV2(
+      streamInit(closedStream(encoder.encode(exact))),
+    );
+    expect(response.status).toBe(202);
+  });
+
+  it("rejects a body of MAX+1 bytes (413)", async () => {
+    const encoder = new TextEncoder();
+    const baseBytes = encoder.encode(VALID_BODY).length;
+    const over = VALID_BODY + " ".repeat(MAX_BODY_SIZE - baseBytes + 1);
+    expect(encoder.encode(over).length).toBe(MAX_BODY_SIZE + 1);
+
+    const env = makeEnv();
+    const response = await postV2(
+      streamInit(closedStream(encoder.encode(over))),
+      env,
+    );
+    expect(response.status).toBe(413);
+    expect(
+      (env.ANALYTICS_COUNTERS as unknown as MockCounterNamespace).stub
+        .incrementCalls,
+    ).toBe(0);
+  });
+
+  it("counts bytes, not chars: over MAX bytes but under MAX chars is 413", async () => {
+    // "é" is 1 UTF-16 unit but 2 UTF-8 bytes.
+    const unicodeBody = JSON.stringify({
+      event: "calculator_start",
+      params: {
+        calculator_id: "é".repeat(1500),
+        interaction_variant: "input",
+      },
+    });
+    expect(unicodeBody.length).toBeLessThan(MAX_BODY_SIZE);
+    expect(new TextEncoder().encode(unicodeBody).length).toBeGreaterThan(
+      MAX_BODY_SIZE,
+    );
+
+    const response = await postV2(
+      streamInit(closedStream(new TextEncoder().encode(unicodeBody))),
+    );
+    expect(response.status).toBe(413);
+  });
+
+  it("stream accounting wins: lying Content-Length with a large body is 413", async () => {
+    const big = JSON.stringify({
+      event: "calculator_start",
+      params: {
+        calculator_id: "a".repeat(MAX_BODY_SIZE + 10),
+        interaction_variant: "button",
+      },
+    });
+    const response = await postV2(
+      streamInit(closedStream(new TextEncoder().encode(big)), {
+        "Content-Length": "100",
+      }),
+    );
+    expect(response.status).toBe(413);
+  });
+
+  it("decodes multibyte split across chunks: same status as the undivided body (no 400)", async () => {
+    const unicodeSmall = JSON.stringify({
+      event: "calculator_start",
+      params: {
+        calculator_id: "sueldo-líquido",
+        interaction_variant: "input",
+      },
+    });
+    const raw = new TextEncoder().encode(unicodeSmall);
+    expect(raw.length).toBeLessThan(MAX_BODY_SIZE);
+    // Cut inside the "í" (U+00ED = C3 AD in UTF-8).
+    const cut = raw.indexOf(0xc3) + 1;
+    expect(cut).toBeGreaterThan(0);
+
+    const whole = await postV2({
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: unicodeSmall,
+    });
+
+    const split = await postV2(
+      streamInit(
+        new ReadableStream<Uint8Array>({
+          start(controller) {
+            controller.enqueue(raw.slice(0, cut));
+            controller.enqueue(raw.slice(cut));
+            controller.close();
+          },
+        }),
+      ),
+    );
+    // Never a 400 caused by splitting the multibyte sequence.
+    expect(split.status).toBe(whole.status);
   });
 });

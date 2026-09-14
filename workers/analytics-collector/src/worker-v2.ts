@@ -10,6 +10,7 @@ import {
   MAX_BODY_SIZE,
   parseCounterKey,
   previousCompleteISOWeekInTz,
+  readBoundedBodyText,
   validateEventPayload,
   validateExportArtifact,
   type ExportRunSummary,
@@ -46,13 +47,13 @@ export interface Env {
   EXPORT_SECRET?: string;
 }
 
-interface DurableCounterRow {
+type DurableCounterRow = {
   date: string;
   event: string;
   slug: string;
   dimensions: string;
   count: number;
-}
+};
 
 interface IncrementPayload {
   date: string;
@@ -447,12 +448,15 @@ export default {
     }
 
     let body: unknown;
+    const bounded = await readBoundedBodyText(request);
+    if (!bounded.ok) {
+      return new Response(null, {
+        status: bounded.status,
+        headers: corsHeaders(),
+      });
+    }
     try {
-      const text = await request.text();
-      if (text.length > MAX_BODY_SIZE) {
-        return new Response(null, { status: 413, headers: corsHeaders() });
-      }
-      body = JSON.parse(text);
+      body = JSON.parse(bounded.text);
     } catch {
       return new Response(null, { status: 400, headers: corsHeaders() });
     }
