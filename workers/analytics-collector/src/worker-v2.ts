@@ -46,13 +46,13 @@ export interface Env {
   EXPORT_SECRET?: string;
 }
 
-interface DurableCounterRow {
+type DurableCounterRow = {
   date: string;
   event: string;
   slug: string;
   dimensions: string;
   count: number;
-}
+};
 
 interface IncrementPayload {
   date: string;
