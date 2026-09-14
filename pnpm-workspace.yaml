@@ -18,15 +18,21 @@ overrides:
   js-yaml@^4.1.1: 4.3.2
   uuid: '>=11.1.1'
   # Seguridad (2026-09-13): pines transitivos con CVE cuyo padre no publica
-  # release que los corrija — se fuerzan al parcheado exacto.
-  # - fflate 0.7.3→0.7.5 por GHSA-px8p-9vwx-vf98 (alerta #115, ZIP64 loop);
+  # release que los corrija — se fuerzan al parcheado.
+  # - fflate <0.7.5→0.7.5 por GHSA-px8p-9vwx-vf98 (alerta #115, ZIP64 loop);
   #   satori@0.33.4 (último publicado) pinea 0.7.3 exacto.
-  # - sharp 0.35.2→0.35.4 por GHSA-g89c-p67h-r497 / GHSA-2jg2-4ch7-h545
+  #   remove-when: satori publique release que resuelva fflate >=0.7.5.
+  # - sharp <0.35.4→0.35.4 por GHSA-g89c-p67h-r497 / GHSA-2jg2-4ch7-h545
   #   (alerta #113, libheif); lo pinea miniflare vía wrangler@4.127.1.
+  #   remove-when: wrangler/miniflare publique release que resuelva sharp
+  #   >=0.35.4.
   # Revisar al subir satori/wrangler: quitar la línea cuyo padre ya resuelva
   # el parcheado, correr `pnpm install` y conservar si el lockfile queda limpio.
-  fflate@0.7.3: 0.7.5
-  sharp@0.35.2: 0.35.4
+  # Aserción lockfile: lo resuelto debe seguir siendo fflate 0.7.5 y
+  # sharp 0.35.4 (`pnpm why fflate sharp`); si un bump paterno mueve la
+  # resolución, re-evaluar el pin en vez de asumir que sigue cubriendo.
+  fflate@<0.7.5: 0.7.5
+  sharp@<0.35.4: 0.35.4
 minimumReleaseAge: 10080
 # Transitional, version-pinned exceptions for packages already trusted in the
 # lockfile before the seven-day policy was enabled. Future releases remain
