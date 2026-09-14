@@ -39,6 +39,12 @@ export function isTransmissibleEvent(eventName: string): boolean {
   return isAnalyticsEventName(normalized.event);
 }
 
+// Plan 100 (Tier A-b): el tracker global de CTAs siempre envía params de
+// forma CTA (cta_type/cta_location/destination_url + page_type/app_version).
+// Cada nombre mapeado aquí DEBE existir en el allowlist con esos params:
+// resolver a un evento no-transmisible pierde la telemetría en silencio
+// (gate de transporte + worker rejectUnknown). El fallback cta_click cubre
+// cualquier data-analytics-cta futuro sin entrada propia.
 const CTA_EVENT_NAMES: Record<string, string> = {
   "article-calculator-cta": "article_calculator_cta_click",
   "calculator-trust-link": "calculator_trust_link_click",

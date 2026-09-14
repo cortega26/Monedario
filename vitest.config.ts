@@ -18,13 +18,16 @@ export default defineConfig({
       provider: "v8",
       reporter: ["text", "json-summary"],
       reportsDirectory: "coverage",
-      include: ["src/**/*.ts"],
+      include: ["src/**/*.ts", "workers/analytics-collector/src/worker-v2.ts"],
       // Capas build-time/DOM que vitest de Node no ejercita (plan 073 — el
       // STOP de >8 archivos se resolvió con exclude selectivo documentado en
       // vez de bajar el umbral): páginas/endpoints, componentes, runtime del
       // cliente, config data, utils DOM, bundles de workers (typecheck
       // propio) y parsers remark (verificados limpios en auditoría read-only
       // 2026-08-10; caracterización fuera del alcance del plan).
+      // Plan 100: worker-v2.ts cuenta en el gate (include gana solo si el
+      // exclude no lo cubre — exclude tiene precedencia, por eso el legado
+      // index.ts y los demás workers se excluyen por ruta exacta).
       exclude: [
         "src/pages/**",
         "src/components/**",
@@ -41,7 +44,9 @@ export default defineConfig({
         "src/utils/categoryIcons.ts",
         "src/utils/resumeState.ts",
         "src/utils/sueldo-liquido/**",
-        "workers/**",
+        "workers/analytics-collector/src/index.ts",
+        "workers/economic-snapshot-refresh/**",
+        "workers/reddit-mention-monitor/**",
       ],
       thresholds: {
         lines: 80,

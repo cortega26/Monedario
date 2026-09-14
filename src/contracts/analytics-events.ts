@@ -9,7 +9,14 @@ export const ANALYTICS_EVENT_ALLOWLIST = {
     "interaction_variant",
     "app_version",
   ],
-  calculator_complete: ["calculator_id", "page_type", "cluster", "app_version"],
+  calculator_complete: [
+    "calculator_id",
+    "page_type",
+    "cluster",
+    "outcome",
+    "mode",
+    "app_version",
+  ],
   calculator_error: [
     "calculator_id",
     "page_type",
@@ -79,6 +86,68 @@ export const ANALYTICS_EVENT_ALLOWLIST = {
     "page_type",
     "app_version",
   ],
+  // Plan 100 (Tier A): eventos que el cliente ya emitía pero el allowlist no
+  // definía — se perdían en el gate de transporte (isTransmissibleEvent) o en
+  // el worker (rejectUnknown: true). Todos los params son constantes de
+  // desarrollo o enums acotados, sin PII.
+  calculator_mode_toggle: ["calculator_id", "page_type", "mode", "app_version"],
+  calculator_copy_link: ["calculator_id", "page_type", "app_version"],
+  calculator_copy_result: ["calculator_id", "page_type", "app_version"],
+  // Plan 100 (Tier B, PII-free probado): sin params de usuario — solo
+  // constantes (calculator_slug) o payload vacío + page_type/app_version.
+  calculator_print_click: ["calculator_id", "page_type", "app_version"],
+  calculator_share_click: ["calculator_id", "page_type", "app_version"],
+  resume_cleared: ["page_type", "app_version"],
+  article_scroll_depth: [
+    "article_slug",
+    "scroll_depth_percent",
+    "page_type",
+    "app_version",
+  ],
+  // Fallback único del tracker global de CTAs (getAnalyticsEventNameForCta):
+  // todo data-analytics-cta sin entrada propia resuelve aquí con params de
+  // forma CTA (cta_type preserva la distinción).
+  cta_click: [
+    "cta_type",
+    "cta_location",
+    "destination_url",
+    "page_type",
+    "app_version",
+  ],
+  // Nombres de continuidad del tracker global (Tier A-b, primera opción del
+  // plan: allowlist con los params realmente enviados). Misma forma CTA que
+  // article_calculator_cta_click/cta_click; cta_label viaja solo en dataLayer
+  // (CLIENT_ONLY_PARAMS). "next-step" reutiliza next_step_click (ya
+  // allowlisted): los emisores manuales envían sus params propios y el
+  // tracker global no lo usa en el markup actual.
+  calculator_trust_link_click: [
+    "cta_type",
+    "cta_location",
+    "destination_url",
+    "page_type",
+    "app_version",
+  ],
+  hub_route_click: [
+    "cta_type",
+    "cta_location",
+    "destination_url",
+    "page_type",
+    "app_version",
+  ],
+  related_content_click: [
+    "cta_type",
+    "cta_location",
+    "destination_url",
+    "page_type",
+    "app_version",
+  ],
+  search_chip_click: [
+    "cta_type",
+    "cta_location",
+    "destination_url",
+    "page_type",
+    "app_version",
+  ],
 } as const;
 
 export type AnalyticsEventName = keyof typeof ANALYTICS_EVENT_ALLOWLIST;
@@ -102,6 +171,13 @@ export const ANALYTICS_ALLOWED_PROPERTIES = [
   "cta_type",
   "cta_location",
   "destination_url",
+  // Plan 100: params de los eventos reconciliados (Tier A/B). outcome/mode
+  // son etiquetas acotadas de desarrollo; article_slug es slug de contenido;
+  // scroll_depth_percent viaja como string ("25"/"50"/"75"/"100", ver enum).
+  "outcome",
+  "mode",
+  "article_slug",
+  "scroll_depth_percent",
 ] as const satisfies readonly AnalyticsPropertyName[];
 
 const ENUM_VALUES: Readonly<Record<string, ReadonlySet<string>>> = {
@@ -131,6 +207,32 @@ const ENUM_VALUES: Readonly<Record<string, ReadonlySet<string>>> = {
   ]),
   share_method: new Set(["copy", "whatsapp", "native"]),
   support_location: new Set(["post_result"]),
+  // Plan 100: etiquetas de resultado/modo emitidas como constantes por las
+  // calculadoras (sueldo-líquido, finiquito, reajuste-arriendo,
+  // simulador-renegociación…). Ninguna porta PII: son ramas de código, no
+  // input de usuario.
+  outcome: new Set([
+    "success",
+    "fixed-pesos",
+    "uf",
+    "ipc",
+    "minimum-not-met",
+    "basic-filter-pass",
+    "missing-documents",
+    "basic-filter-fail",
+  ]),
+  mode: new Set([
+    "bruto-a-liquido",
+    "liquido-a-bruto",
+    "finiquito",
+    "vacaciones",
+    "finiquito-completo",
+    "vacaciones-proporcionales",
+  ]),
+  // El hito llega como número al tracker y se convierte a string en el
+  // emisor (src/scripts/analytics.ts) para preservar el invariante "solo
+  // strings acotados, nunca resultados numéricos".
+  scroll_depth_percent: new Set(["25", "50", "75", "100"]),
 };
 
 const SAFE_TOKEN = /^[a-z0-9][a-z0-9._-]{0,79}$/;
@@ -214,6 +316,22 @@ const LEGACY_VALUES: Readonly<Record<string, string>> = {
   click: "button",
 };
 
+/**
+ * Plan 100: campos intencionalmente solo-cliente. Viajan en `dataLayer` para
+ * depuración pero NUNCA se transmiten: el texto libre (títulos, etiquetas de
+ * CTA, nombres display) no puede sobrevivir al boundary estricto del worker
+ * (rejectUnknown) y `calculator_name` además matchea el patrón FORBIDDEN
+ * ("name"). Se eliminan en la normalización —antes del boundary de
+ * privacidad— para que el evento válido no se pierda por un acompañante
+ * no-transmisible. No agregar aquí params con valor analítico: esto es
+ * descarte, no mapeo.
+ */
+const CLIENT_ONLY_PARAMS: ReadonlySet<string> = new Set([
+  "calculator_name",
+  "cta_label",
+  "article_title",
+]);
+
 /** Compatibility stays before the privacy boundary; transmitted payloads are v2 only. */
 export function normalizeLegacyAnalyticsEvent(
   eventName: string,
@@ -222,6 +340,7 @@ export function normalizeLegacyAnalyticsEvent(
   const event = LEGACY_EVENT_NAMES[eventName] ?? eventName;
   const normalized: Record<string, unknown> = {};
   for (const [key, rawValue] of Object.entries(params)) {
+    if (CLIENT_ONLY_PARAMS.has(key)) continue;
     const nextKey = LEGACY_PARAM_NAMES[key] ?? key;
     const value =
       typeof rawValue === "string"

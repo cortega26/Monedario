@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 
 import analyticsWorker, {
+  AnalyticsCounters,
   runExportV2,
   type Env,
 } from "../../../workers/analytics-collector/src/worker-v2";
@@ -923,5 +924,212 @@ describe("plan 099: analytics export hardening", () => {
     expect(artifact.data).toHaveLength(1);
     expect(artifact.data[0].dimensions).toBe(dimensions);
     expect(artifact.data[0].count).toBe(2);
+  });
+});
+
+describe("plan 100: v2 fetch branch matrix", () => {
+  const EVENT_URL = "https://monedario.cl/api/analytics/event";
+
+  function postRaw(body: string, contentType: string): Request {
+    return new Request(EVENT_URL, {
+      method: "POST",
+      headers: {
+        Origin: "https://monedario.cl",
+        "Content-Type": contentType,
+      },
+      body,
+    });
+  }
+
+  it("rejects non-POST ingestion with 405", async () => {
+    const env = makeEnv();
+    const response = await analyticsWorker.fetch(
+      new Request(EVENT_URL, { method: "GET" }),
+      env,
+    );
+    expect(response.status).toBe(405);
+  });
+
+  it("rejects a foreign Origin with 403", async () => {
+    const env = makeEnv();
+    const response = await analyticsWorker.fetch(
+      new Request(EVENT_URL, {
+        method: "POST",
+        headers: {
+          Origin: "https://evil.example.com",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ event: "calculator_view", params: {} }),
+      }),
+      env,
+    );
+    expect(response.status).toBe(403);
+  });
+
+  it("rejects a non-JSON content type with 415", async () => {
+    const env = makeEnv();
+    const response = await analyticsWorker.fetch(
+      postRaw("{}", "text/plain"),
+      env,
+    );
+    expect(response.status).toBe(415);
+  });
+
+  it("rejects malformed JSON with 400", async () => {
+    const env = makeEnv();
+    const response = await analyticsWorker.fetch(
+      postRaw("{oops", "application/json"),
+      env,
+    );
+    expect(response.status).toBe(400);
+  });
+
+  it("rejects a schema-invalid payload with 422", async () => {
+    const env = makeEnv();
+    const response = await analyticsWorker.fetch(
+      postRaw(
+        JSON.stringify({ event: "not_a_real_event", params: {} }),
+        "application/json",
+      ),
+      env,
+    );
+    expect(response.status).toBe(422);
+  });
+
+  it("rejects everything with 503 while ANALYTICS_DISABLED=1", async () => {
+    const counters = new MockCounterStub();
+    const env = { ...makeEnv({ counters }), ANALYTICS_DISABLED: "1" };
+    const response = await analyticsWorker.fetch(validEvent(), env);
+    expect(response.status).toBe(503);
+    expect(counters.incrementCalls).toBe(0);
+  });
+});
+
+describe("plan 100: v2 manual-export auth matrix", () => {
+  const EXPORT_URL = "https://monedario.cl/api/analytics/export?week=2026-W37";
+
+  function exportGet(auth?: string): Request {
+    const headers: Record<string, string> = {};
+    if (auth !== undefined) headers.Authorization = auth;
+    return new Request(EXPORT_URL, { method: "GET", headers });
+  }
+
+  it("returns 503 export_not_configured without EXPORT_SECRET", async () => {
+    const env = { ...makeEnv(), EXPORT_SECRET: undefined };
+    const response = await analyticsWorker.fetch(
+      exportGet("Bearer secret"),
+      env,
+    );
+    expect(response.status).toBe(503);
+    expect(await response.json()).toEqual({ error: "export_not_configured" });
+  });
+
+  it("returns 401 missing_secret without Authorization", async () => {
+    const env = makeEnv();
+    const response = await analyticsWorker.fetch(exportGet(), env);
+    expect(response.status).toBe(401);
+    expect(await response.json()).toEqual({ error: "missing_secret" });
+  });
+
+  it("returns 403 invalid_secret on a wrong bearer", async () => {
+    const env = makeEnv();
+    const response = await analyticsWorker.fetch(
+      exportGet("Bearer wrong"),
+      env,
+    );
+    expect(response.status).toBe(403);
+    expect(await response.json()).toEqual({ error: "invalid_secret" });
+  });
+
+  it("returns 429 when the export rate limiter refuses", async () => {
+    const limiter = new MockRateLimiter(false);
+    const env = makeEnv({ limiter });
+    const response = await analyticsWorker.fetch(
+      exportGet("Bearer secret"),
+      env,
+    );
+    expect(response.status).toBe(429);
+    expect(await response.json()).toEqual({ error: "rate_limited" });
+  });
+});
+
+describe("plan 100: AnalyticsCounters edges via direct instantiation", () => {
+  // The class only uses state.storage.sql; a stub whose exec returns an
+  // empty row set suffices for every early-return edge below.
+  function makeDO(): AnalyticsCounters {
+    const stub = {
+      exec: () => ({ toArray: () => [] as unknown[] }),
+    };
+    return new AnalyticsCounters({
+      storage: { sql: stub },
+    } as unknown as ConstructorParameters<typeof AnalyticsCounters>[0]);
+  }
+
+  function doRequest(path: string, init?: RequestInit): Request {
+    return new Request(`https://analytics-counter.internal${path}`, init);
+  }
+
+  it("answers /health with { ok: true }", async () => {
+    const response = await makeDO().fetch(doRequest("/health"));
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual({ ok: true });
+  });
+
+  it("rejects an inverted /list window with invalid_window", async () => {
+    const response = await makeDO().fetch(
+      doRequest("/list?from=2026-08-02&to=2026-07-27"),
+    );
+    expect(response.status).toBe(400);
+    expect(await response.text()).toBe("invalid_window");
+  });
+
+  it("rejects a missing /list window with invalid_window", async () => {
+    const response = await makeDO().fetch(doRequest("/list"));
+    expect(response.status).toBe(400);
+    expect(await response.text()).toBe("invalid_window");
+  });
+
+  it("rejects an out-of-range /list limit with invalid_limit", async () => {
+    for (const limit of ["0", "1001", "abc"]) {
+      const response = await makeDO().fetch(
+        doRequest(`/list?from=2026-07-27&to=2026-08-02&limit=${limit}`),
+      );
+      expect(response.status).toBe(400);
+      expect(await response.text()).toBe("invalid_limit");
+    }
+  });
+
+  it("rejects an undecodable /list cursor with invalid_cursor", async () => {
+    const response = await makeDO().fetch(
+      doRequest("/list?from=2026-07-27&to=2026-08-02&cursor=not-json"),
+    );
+    expect(response.status).toBe(400);
+    expect(await response.text()).toBe("invalid_cursor");
+  });
+
+  it("rejects a malformed /increment body with invalid_json", async () => {
+    const response = await makeDO().fetch(
+      doRequest("/increment", { method: "POST", body: "{oops" }),
+    );
+    expect(response.status).toBe(400);
+    expect(await response.text()).toBe("invalid_json");
+  });
+
+  it("rejects a well-formed but schema-invalid /increment with invalid_counter", async () => {
+    const response = await makeDO().fetch(
+      doRequest("/increment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ date: "2026-07-27" }),
+      }),
+    );
+    expect(response.status).toBe(422);
+    expect(await response.text()).toBe("invalid_counter");
+  });
+
+  it("answers unknown routes with not_found", async () => {
+    const response = await makeDO().fetch(doRequest("/nope"));
+    expect(response.status).toBe(404);
+    expect(await response.text()).toBe("not_found");
   });
 });
