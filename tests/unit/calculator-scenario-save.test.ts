@@ -1,4 +1,6 @@
 // @vitest-environment happy-dom
+import { readdirSync, readFileSync } from "node:fs";
+import path from "node:path";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { createScenarioSaveAdapter } from "@/utils/calculatorScenarioSave";
 import { listScenarios } from "@/utils/calculatorScenarios";
@@ -178,6 +180,76 @@ describe("createScenarioSaveAdapter", () => {
     expect(
       (document.getElementById("monto") as HTMLInputElement).value
     ).toBe("1000");
+  });
+});
+
+describe("scenario adapter unification pin (plan 107 step 1)", () => {
+  // The seven call sites unified by plan 108. If a new calculator is added,
+  // extend this list — and wire it through the same helper.
+  const CALL_SITES = [
+    "src/pages/calculadoras/credito-consumo.astro",
+    "src/pages/calculadoras/deposito-a-plazo.astro",
+    "src/pages/calculadoras/dividendo-hipotecario.astro",
+    "src/pages/calculadoras/interes-compuesto.astro",
+    "src/pages/calculadoras/simulador-jubilacion.astro",
+    "src/pages/calculadoras/tarjeta-credito.astro",
+    "src/utils/sueldo-liquido/formController.ts",
+  ];
+
+  const read = (rel: string): string =>
+    readFileSync(path.resolve(rel), "utf8");
+
+  it("all seven call sites import the single shared helper", () => {
+    for (const rel of CALL_SITES) {
+      const source = read(rel);
+      expect(
+        source.includes("createScenarioSaveAdapter"),
+        `${rel} must use createScenarioSaveAdapter`
+      ).toBe(true);
+    }
+  });
+
+  it("no calculator page or formController calls restoreInputs directly", () => {
+    const pagesDir = path.resolve("src/pages/calculadoras");
+    const astroFiles = readdirSync(pagesDir)
+      .filter(f => f.endsWith(".astro"))
+      .map(f => path.join(pagesDir, f));
+    const checked = [
+      ...astroFiles,
+      path.resolve("src/utils/sueldo-liquido/formController.ts"),
+    ];
+    for (const file of checked) {
+      const source = readFileSync(file, "utf8");
+      expect(
+        source.includes("restoreInputs"),
+        `${file} must not call restoreInputs directly`
+      ).toBe(false);
+    }
+    // The helper itself remains the single owner of restoreInputs.
+    expect(read("src/utils/calculatorScenarioSave.ts")).toContain(
+      "restoreInputs"
+    );
+  });
+
+  it("no second adapter wrapper exists alongside the shared helper", () => {
+    // Pin on the call/definition form (`name(`/ `name<`), not a bare mention:
+    // the helper's own doc comment references the rejected wrapper name.
+    for (const rel of CALL_SITES) {
+      expect(read(rel)).not.toContain("makeStandardScenarioAdapter(");
+      expect(read(rel)).not.toContain("makeStandardScenarioAdapter<");
+    }
+    const helper = read("src/utils/calculatorScenarioSave.ts");
+    expect(helper).not.toContain("makeStandardScenarioAdapter(");
+    expect(helper).not.toContain("makeStandardScenarioAdapter<");
+  });
+
+  it("buildSummary stays per-page at every call site", () => {
+    for (const rel of CALL_SITES) {
+      expect(
+        read(rel).includes("buildSummary"),
+        `${rel} must keep its per-page buildSummary`
+      ).toBe(true);
+    }
   });
 });
 

@@ -10,6 +10,7 @@ import {
   snapshotInputs,
 } from "@/utils/calculatorScenariosUI";
 import { createScenarioSaveAdapter } from "@/utils/calculatorScenarioSave";
+import { parseCLNumber } from "@/utils/parseCLNumber";
 import {
   renderAfpComparison,
   renderAfpComparisonInverso,
@@ -630,10 +631,12 @@ export function setupFormListeners(): void {
         radio.checked = true;
         updateModoUI();
       }
-      const amount = parseFloat(
-        (bruto ?? liquido)!.replace(/\./g, "").replace(",", ".")
-      );
-      if (Number.isFinite(amount) && amount > 0) {
+      // Shared Chilean parser (plan 107): standardizes the legacy
+      // first-comma-only replace on global comma handling. Identical on
+      // healthy inputs; malformed multi-comma params now reject
+      // (undefined) instead of parseFloat's partial parse.
+      const amount = parseCLNumber((bruto ?? liquido)!);
+      if (amount !== undefined && amount > 0) {
         const sueldoInput = document.getElementById(
           "sueldo"
         ) as HTMLInputElement | null;
@@ -643,8 +646,9 @@ export function setupFormListeners(): void {
 
     // Pre-fill imponible (bruto mode only)
     if (imponible && !liquido) {
-      const amount = parseFloat(imponible.replace(/\./g, "").replace(",", "."));
-      if (Number.isFinite(amount) && amount > 0) {
+      // Shared Chilean parser (plan 107): see first-comma-only note above.
+      const amount = parseCLNumber(imponible);
+      if (amount !== undefined && amount > 0) {
         const imponibleInput = document.getElementById(
           "sueldo-imponible"
         ) as HTMLInputElement | null;
