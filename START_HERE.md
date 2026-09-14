@@ -4,11 +4,22 @@ Guia minima para arrancar en este repositorio sin tener que reconstruir el flujo
 
 ## Bootstrap en 60 segundos
 
-1. Usa Node 22 y pnpm 10.
+Etapa 1 (offline, no destructiva):
+
+1. Usa Node 22 y pnpm 11.7.0.
 2. Ejecuta `pnpm install --frozen-lockfile`.
 3. Usa `.env.example` como base para fijar modo local reproducible (`TPI_ECONOMIC_PROVIDER_MODE=snapshot`).
-4. Ejecuta `pnpm run check`.
+4. Ejecuta `pnpm run test`.
 5. Ejecuta `pnpm run dev`.
+
+Etapa 2 (con red, explícita; solo con la etapa 1 en verde):
+
+1. Ejecuta `pnpm run check` (incluye `check:links` con red y
+   `check:images`, que borra PNGs locales).
+2. Python: `uv sync`, `uv run ruff check scripts/ tests/`,
+   `uv run pytest`.
+
+Las versiones siguen a `package.json#packageManager` y `.nvmrc`; los docs no deben fijar majors distintos.
 
 ## Leer en este orden
 

@@ -14,7 +14,7 @@ Este sitio es 100% educativo: no solicita datos personales, no ofrece asesoría 
 
 ## Tecnologías principales
 
-- Astro 6 + TypeScript 6
+- Astro 7 + TypeScript 6
 - TailwindCSS (Vite plugin)
 - Pagefind (búsqueda estática)
 - Shiki (resaltado de código)

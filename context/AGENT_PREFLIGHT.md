@@ -87,6 +87,9 @@ Full registry: `context/INVARIANTS.md`
 | `EDITORIAL_ENFORCE` | `0` | Set to `1` for blocking mode in `check:editorial-artifacts` |
 | `EDITORIAL_SCOPE` | `all` | Set to `changed` to scope `check:reader-facing-copy` to modified files |
 | `HERO_PROMPTS_STRICT_FALLBACK` | `0` | Keep warn-first during rollout. Promote to `1` only when fallback warnings are intentionally resolved. |
+| `SMALL_DETAILS_ENFORCE` | `0` (warn-only) | Set to `1` for blocking mode in `check:small-details` (`check:small-details:enforce`) |
+| `URLCHECK_MODE` | local (unset) | Set to `ci` for CI mode in `scripts/check-urls.mjs` (`check:urls:ci`) |
+| `BUILD_DEV_PAGES` | unset (excluded) | Set to `1` to include `/dev/*` pages in `pnpm run build` (diagnostic only) |
 
 Full variable reference: `.env.example`
 
