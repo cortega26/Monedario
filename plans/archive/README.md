@@ -110,6 +110,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [102](102-uf-history-payload.md) | Historial UF por rango (`?date=`/`?from=&to=`, legado intacto) + sidecars `uf-rango.json`/`uf-mensual.json` + helper testeable + 35 tests; sin tocar titles (freeze OBS-01) | 2026-09-14 | sí (merge `64cb1f88`; commit `1591c20e`) |
 | [105](105-input-contract-hardening.md) | Contratos de entrada: bound 600m prepago + guard no-amortizante, validación de shapes en 3 stores, `alerted` vs `attempted` en reddit monitor + 12 tests (3 commits) | 2026-09-14 | sí (merge `14a0455c`; commits `a1c04b3d`/`4ca3b974`/`9e50b5cd`) |
 | [106](106-supply-chain-hygiene.md) | Higiene supply-chain: retiro de excludes madurados + huérfanos, pins CVE parent-aware con `remove-when`, excepción extract-zip dev-only + pip-audit venv documentados, TD-0097 al día (4 commits) | 2026-09-14 | sí (merge `25bd5b65`; 4 commits por cohorte + docs) |
+| [108](108-scenario-save-extraction.md) | Extraer helper `createScenarioSaveAdapter` del snapshot-save (089) con 6 tests happy-dom bajo el gate; 7 call sites rewired net-negativo | 2026-09-14 | sí (merge `6b512348`; 3 commits helper→rewire→tests) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 

@@ -15,7 +15,7 @@
 - **Priority**: P3
 - **Effort**: S
 - **Risk**: LOW
-- **Depends on**: plans/108-scenario-save-extraction.md (extract the save-snapshot helper first; this plan reuses it for the adapter)
+- **Depends on**: plans/archive/108-scenario-save-extraction.md (DONE 2026-09-14, merge `6b512348` — extract the save-snapshot helper first; this plan reuses it for the adapter. Note the helper's `getLastResult` option: accepted-but-unread by the shared body (save semantics belong to 089); use it when `makeStandardScenarioAdapter` needs the result getter.)
 - **Category**: tech-debt
 - **Planned at**: commit `0e506a8b`, 2026-09-14
 - **Issue**: —
