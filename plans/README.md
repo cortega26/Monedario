@@ -16,7 +16,6 @@ citado (los extractos vienen de lecturas propias, no de reportes delegados).
 
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|-------|----------|--------|------------|--------|
-| 101 | [pagefind public purge](101-pagefind-public-purge.md) | P2 | S | — | TODO |
 | 102 | [UF history payload](102-uf-history-payload.md) | P2 | M | — | TODO |
 | 103 | [economic date honesty](103-economic-date-honesty.md) | P1 | S | — | TODO |
 | 104 | [mortgage totals insurance](104-mortgage-totals-insurance.md) | P1 | S | — | TODO |
@@ -86,6 +85,15 @@ taxonomía con 100, sin dependencia de código).
   `^` intencional — track en 106, sin plan propio.
 - **Dimensiones con `:` (CORR-16 standalone)**: plegado como §3 del plan 099
   (assert-or-fix con migración versionada), no plan propio.
+- **Purge de `public/pagefind` (plan 101, REJECTED 2026-09-14 sin despachar)**:
+  la premisa era falsa en este árbol — `public/pagefind` está gitignored
+  (`.gitignore:66`, cero archivos trackeados, cero historial), así que el peso
+  stale (3,6 MB local vs 1,3 MB en `dist/`, verificado) nunca se commitea ni
+  llega a producción (cada build hace `rm -rf dist/pagefind` antes de
+  regenerar). Se disparó la condición STOP del propio plan
+  («`public/pagefind` turns out gitignored»). Archivo movido a
+  `archive/101-pagefind-public-purge.md`. Reabrir solo si `public/pagefind`
+  vuelve a trackearse.
 
 ## Estado vigente — reconciliación 2026-09-12
 

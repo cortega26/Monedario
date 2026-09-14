@@ -104,6 +104,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [098](098-worker-v2-config-validation.md) | Endurecer config y validación de worker-v2: `MAX_BODY_SIZE`/`ALLOWED_ORIGIN` desde env con fallback, `SCHEMA_VERSION` fail-closed, semana 01–53 con round-trip ISO, limiter solo `CF-Connecting-IP` + 15 tests + enmienda ADR | 2026-09-14 | sí (merge `7366f12d`; commit `bfa39a9d`) |
 | [099](099-analytics-export-hardening.md) | Endurecer el export semanal: paginación keyset del DO `/list`, sunset del scan KV legado past TTL (log `legacy_skipped`), artefacto R2 compacto, formato escapado `v2:` para `destination_url` + 8 tests | 2026-09-14 | sí (merge `fe935119`; commits `28c43ef4` + `d43112da`) |
 | [100](100-analytics-taxonomy-tests.md) | Cerrar la brecha de taxonomía (12 eventos + 4 params Tier-A/B, enums outcome/mode/scroll, CLIENT_ONLY stripping) + worker-v2 en el gate de cobertura (89.96%) + 18 tests de matriz/fetch/auth/DO + workflow con ambas suites | 2026-09-14 | sí (merge `29856700`; commit `2a560702`) |
+| [101](101-pagefind-public-purge.md) | Purgar el índice Pagefind stale commiteado antes del copy-back — **REJECTED 2026-09-14**: `public/pagefind` está gitignored (cero archivos trackeados); el stale es solo-local y nunca llega al repo ni a producción | 2026-09-14 | no aplica (cerrado sin implementar, sin despachar) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
