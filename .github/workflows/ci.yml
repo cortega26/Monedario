@@ -96,6 +96,9 @@ jobs:
       - name: "📖 Check docs structure"
         run: pnpm run check:docs
 
+      - name: "🔧 Check workers typecheck"
+        run: pnpm run check:workers
+
   build:
     name: Code standards & build
     runs-on: ${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}
