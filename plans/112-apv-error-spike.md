@@ -15,7 +15,7 @@
 - **Priority**: P2
 - **Effort**: M
 - **Risk**: MED
-- **Depends on**: none (design spike; implementation ships separately. Informational: plan 100's taxonomy work — coordinate event names, don't duplicate)
+- **Depends on**: none (design spike; implementation ships separately. Informational: plan 100's taxonomy work is DONE (2026-09-14, merge `29856700`) — reuse its Tier-A event/param names, don't duplicate or fork)
 - **Category**: direction
 - **Planned at**: commit `0e506a8b`, 2026-09-14
 - **Issue**: —
