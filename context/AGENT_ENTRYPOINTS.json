@@ -12,7 +12,7 @@
       ],
       "requiredGates": ["pnpm run test", "pnpm run check"],
       "notes": [
-        "Use Node 22 and pnpm 10.",
+        "Use Node 22 and pnpm 11.7.0 (versions follow package.json#packageManager and .nvmrc; docs must not pin competing majors).",
         "Default local mode should stay TPI_ECONOMIC_PROVIDER_MODE=snapshot unless the task explicitly needs live economic data."
       ]
     },
