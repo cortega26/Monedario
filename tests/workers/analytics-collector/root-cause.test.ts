@@ -374,3 +374,224 @@ describe("root-cause fix: worker-v2 bounded body (plan 097)", () => {
     expect(split.status).toBe(whole.status);
   });
 });
+
+describe("plan 098: fail-closed config and input validation", () => {
+  const EXPORT_URL = "https://monedario.cl/api/analytics/export";
+
+  function exportRequest(
+    week: string | null,
+    secret = "secret",
+    extraHeaders: Record<string, string> = {},
+  ): Request {
+    const url = week === null ? EXPORT_URL : `${EXPORT_URL}?week=${week}`;
+    return new Request(url, {
+      method: "GET",
+      headers: { Authorization: `Bearer ${secret}`, ...extraHeaders },
+    });
+  }
+
+  function eventWithHeaders(headers: Record<string, string>): Request {
+    return new Request("https://monedario.cl/api/analytics/event", {
+      method: "POST",
+      headers: {
+        Origin: "https://monedario.cl",
+        "Content-Type": "application/json",
+        ...headers,
+      },
+      body: JSON.stringify({
+        event: "calculator_start",
+        params: {
+          calculator_id: "sueldo-liquido",
+          interaction_variant: "input",
+        },
+      }),
+    });
+  }
+
+  it("rejects SCHEMA_VERSION=abc before any listing (no silent v1 branch)", async () => {
+    const env = { ...makeEnv(), SCHEMA_VERSION: "abc" };
+    await expect(runExportV2(env, "2026-W37")).rejects.toThrow(
+      "Invalid SCHEMA_VERSION",
+    );
+    const r2 = env.ANALYTICS_EXPORTS as unknown as MockR2;
+    expect(r2.objects.size).toBe(0);
+  });
+
+  it("rejects out-of-range SCHEMA_VERSION=99", async () => {
+    const env = { ...makeEnv(), SCHEMA_VERSION: "99" };
+    await expect(runExportV2(env, "2026-W37")).rejects.toThrow(
+      "Invalid SCHEMA_VERSION",
+    );
+  });
+
+  it("manual export with SCHEMA_VERSION=abc fails closed (no 200 legacy taxonomy)", async () => {
+    const env = { ...makeEnv(), SCHEMA_VERSION: "abc" };
+    const response = await analyticsWorker.fetch(
+      exportRequest("2026-W37"),
+      env,
+    );
+    expect(response.status).toBe(500);
+    expect(await response.json()).toEqual({ error: "export_failed" });
+    const r2 = env.ANALYTICS_EXPORTS as unknown as MockR2;
+    expect(r2.objects.size).toBe(0);
+  });
+
+  it("rejects ?week=2026-W99 with 400 invalid_week", async () => {
+    const env = makeEnv();
+    const response = await analyticsWorker.fetch(
+      exportRequest("2026-W99"),
+      env,
+    );
+    expect(response.status).toBe(400);
+    expect(await response.json()).toEqual({ error: "invalid_week" });
+    const r2 = env.ANALYTICS_EXPORTS as unknown as MockR2;
+    expect(r2.objects.size).toBe(0);
+  });
+
+  it("rejects ?week=2026-W00 with 400 invalid_week", async () => {
+    const env = makeEnv();
+    const response = await analyticsWorker.fetch(
+      exportRequest("2026-W00"),
+      env,
+    );
+    expect(response.status).toBe(400);
+    expect(await response.json()).toEqual({ error: "invalid_week" });
+  });
+
+  it("rejects ?week=2026-W54 with 400 invalid_week", async () => {
+    const env = makeEnv();
+    const response = await analyticsWorker.fetch(
+      exportRequest("2026-W54"),
+      env,
+    );
+    expect(response.status).toBe(400);
+    expect(await response.json()).toEqual({ error: "invalid_week" });
+  });
+
+  it("rejects W53 in a 52-week year (2025-W53 Monday belongs to 2026-W01)", async () => {
+    const env = makeEnv();
+    const response = await analyticsWorker.fetch(
+      exportRequest("2025-W53"),
+      env,
+    );
+    expect(response.status).toBe(400);
+    expect(await response.json()).toEqual({ error: "invalid_week" });
+  });
+
+  it("runExportV2 throws on W99 before any R2 write", async () => {
+    const env = makeEnv();
+    await expect(runExportV2(env, "2026-W99")).rejects.toThrow(
+      "Invalid export week",
+    );
+    const r2 = env.ANALYTICS_EXPORTS as unknown as MockR2;
+    expect(r2.objects.size).toBe(0);
+  });
+
+  it("ignores spoofed X-Forwarded-For: same CF IP shares one limiter key", async () => {
+    const limiter = new MockRateLimiter(true);
+    const env = makeEnv({ limiter });
+    const first = await analyticsWorker.fetch(
+      eventWithHeaders({
+        "CF-Connecting-IP": "192.0.2.10",
+        "X-Forwarded-For": "203.0.113.1",
+      }),
+      env,
+    );
+    const second = await analyticsWorker.fetch(
+      eventWithHeaders({
+        "CF-Connecting-IP": "192.0.2.10",
+        "X-Forwarded-For": "203.0.113.2, 203.0.113.3",
+      }),
+      env,
+    );
+    expect(first.status).toBe(202);
+    expect(second.status).toBe(202);
+    expect(limiter.calls).toEqual(["192.0.2.10", "192.0.2.10"]);
+  });
+
+  it("missing CF-Connecting-IP falls into a single unknown bucket (XFF ignored)", async () => {
+    const limiter = new MockRateLimiter(true);
+    const env = makeEnv({ limiter });
+    const response = await analyticsWorker.fetch(
+      eventWithHeaders({ "X-Forwarded-For": "203.0.113.9" }),
+      env,
+    );
+    expect(response.status).toBe(202);
+    expect(limiter.calls).toEqual(["unknown"]);
+  });
+
+  it("manual-export limiter key ignores XFF too", async () => {
+    const limiter = new MockRateLimiter(true);
+    const env = makeEnv({ limiter });
+    const first = await analyticsWorker.fetch(
+      exportRequest("2026-W37", "secret", {
+        "CF-Connecting-IP": "192.0.2.44",
+        "X-Forwarded-For": "203.0.113.5",
+      }),
+      env,
+    );
+    const second = await analyticsWorker.fetch(
+      exportRequest("2026-W37", "secret", {
+        "CF-Connecting-IP": "192.0.2.44",
+        "X-Forwarded-For": "203.0.113.6",
+      }),
+      env,
+    );
+    expect(first.status).toBe(200);
+    expect(second.status).toBe(200);
+    expect(limiter.calls).toEqual([
+      "export:192.0.2.44",
+      "export:192.0.2.44",
+    ]);
+  });
+
+  it("honors a stricter MAX_BODY_SIZE env override with 413", async () => {
+    const env = { ...makeEnv(), MAX_BODY_SIZE: "10" };
+    const response = await analyticsWorker.fetch(validEvent(), env);
+    expect(response.status).toBe(413);
+    const stub = env.ANALYTICS_COUNTERS as unknown as MockCounterNamespace;
+    expect(stub.stub.incrementCalls).toBe(0);
+  });
+
+  it("falls back to the constant on an invalid MAX_BODY_SIZE override", async () => {
+    const env = { ...makeEnv(), MAX_BODY_SIZE: "abc" };
+    const response = await analyticsWorker.fetch(validEvent(), env);
+    expect(response.status).toBe(202);
+  });
+
+  it("honors an ALLOWED_ORIGIN env override (allow + deny)", async () => {
+    const env = {
+      ...makeEnv(),
+      ALLOWED_ORIGIN: "https://example.com",
+    };
+    const allowed = await analyticsWorker.fetch(
+      eventWithHeaders({
+        Origin: "https://example.com",
+        "CF-Connecting-IP": "192.0.2.10",
+      }),
+      env,
+    );
+    expect(allowed.status).toBe(202);
+    expect(allowed.headers.get("Access-Control-Allow-Origin")).toBe(
+      "https://example.com",
+    );
+
+    const denied = await analyticsWorker.fetch(
+      eventWithHeaders({
+        Origin: "https://monedario.cl",
+        "CF-Connecting-IP": "192.0.2.10",
+      }),
+      env,
+    );
+    expect(denied.status).toBe(403);
+  });
+
+  it("falls back to the constant on an invalid ALLOWED_ORIGIN override", async () => {
+    const env = { ...makeEnv(), ALLOWED_ORIGIN: "not-a-url" };
+    const response = await analyticsWorker.fetch(validEvent(), env);
+    expect(response.status).toBe(202);
+    expect(response.headers.get("Access-Control-Allow-Origin")).toBe(
+      "https://monedario.cl",
+    );
+  });
+});

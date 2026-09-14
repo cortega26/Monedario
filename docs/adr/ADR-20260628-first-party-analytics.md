@@ -346,3 +346,33 @@ Esta arquitectura debe reabrirse si ocurre cualquiera de estas condiciones:
 - Crear o rotar credenciales Cloudflare.
 - Actualizar las páginas de privacidad y cookies (eso corresponde al PR-01, que debe
   ejecutarse en una sesión separada con los sign-offs ya obtenidos).
+
+## Amendment 2026-09-14 — worker-v2 hardening (plans 097/098)
+
+Date: 2026-09-14. Docs-only note; no design change to the decision above.
+
+The hot ingestion path from "Arquitectura elegida" has since migrated: new
+events write only to the SQLite-backed Durable Object (`AnalyticsCounters`
+in `workers/analytics-collector/src/worker-v2.ts`) and rate limiting uses
+the native Workers Rate Limiting binding (`ANALYTICS_RATE_LIMITER`, 30/min).
+The legacy KV namespace (`ANALYTICS_TELEMETRY`) is read-only with its
+35-day TTL until historic counters expire; new ingestion never writes to KV.
+The weekly export (`runExportV2`) mixes both sources — legacy KV rows plus
+Durable Object rows — so a mid-week cutover is preserved without
+double-writing.
+
+- Plan 097 added the bounded streaming body reader (byte-counted 2 KB cap,
+  413 on overflow) without changing the quota rationale: ~4 000
+  requests/month stays far below the Workers free tier, and KV writes left
+  the hot path entirely.
+- Plan 098 hardened `worker-v2` config and input validation:
+  `MAX_BODY_SIZE` / `ALLOWED_ORIGIN` resolve from env with
+  compiled-constant fallback (no dead `wrangler.toml` vars),
+  `SCHEMA_VERSION` fails closed on NaN/range, manual-export weeks validate
+  01–53 with an ISO round-trip check, and limiter keys trust only
+  `CF-Connecting-IP`.
+
+Verification gates for this note: `npx tsc --noEmit -p
+workers/analytics-collector/tsconfig.json` and `pnpm exec vitest run
+tests/workers/analytics-collector/root-cause.test.ts` (root-cause,
+byte-limit, and validation guards, all passing).
