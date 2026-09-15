@@ -7,8 +7,12 @@
 > in `plans/README.md` — unless a reviewer dispatched you and told you they
 > maintain the index.
 >
-> **Drift check (run first)**: `git diff --stat 0e506a8b..HEAD -- docs/backlog/JOURNEY-THESIS-VEHICLE-2026-09-04.md plans/RECONCILIATION-2026-09-12.md docs/operations/UTILITY_LED_EXPERIMENT_REGISTRY.md output/operations/data-signals/analytics/`
-> On mismatch with "Current state", STOP.
+> **Drift check (run first)**: `git diff --stat 159ee045..HEAD -- docs/backlog/JOURNEY-THESIS-VEHICLE-2026-09-04.md plans/RECONCILIATION-2026-09-12.md docs/operations/UTILITY_LED_EXPERIMENT_REGISTRY.md output/operations/data-signals/analytics/`
+> On mismatch with "Current state", STOP. (Reconciled base: the `0e506a8b`
+> check showed exactly one delta — new `2026-W37.json` export (57 KB,
+> force-added). That is WANTED evidence, not invalidating drift: W37 is
+> the first complete post-083 week. Dossier, registry and reconciliation
+> texts are byte-identical to planning.)
 
 ## Status
 
@@ -18,6 +22,24 @@
 - **Depends on**: none (read-only spike; no code dependency. Informational input: post-083 W36+ exports)
 - **Category**: direction
 - **Planned at**: commit `0e506a8b`, 2026-09-14
+- **Reconciled at**: commit `159ee045`, 2026-09-15 — dossier refs
+  (`:299-310` Opción A, `:346` Opción B, Q-lines `:483+`), reconciliation
+  `:73-79`, registry `n_min` table all re-read live and confirmed; weekly
+  exports W26–W37 all tracked and present (worktree-safe). Week map:
+  W36 = partial cutover week (083 merged 2026-09-04, EXCLUDE from
+  comparable sets); W37 (2026-09-07→13) = first complete post-083 week.
+  Date the record for the real execution day (`JOURNEY-THESIS-DECISION-
+  2026-09-*.md` glob covers it).
+- **BLOCKED 2026-09-15** — dispatched once (`advisor/111-vehicle-decision-
+  spike` worktree, since removed); executor STOPPED correctly on the
+  plan's explicit STOP condition, verified independently by the reviewer:
+  `2026-W37.json` holds only 5 dates (Mon 09-07 → Fri 09-11; Sat/Sun
+  missing) while W34/W35/W36 all hold 7 — truncated export, not zero
+  weekend traffic. With W36 excluded, ZERO complete post-083 weeks exist.
+  RE-RUN CONDITION: dispatch again once a complete 7-day post-083 week
+  exists in `output/operations/data-signals/analytics/` (either a
+  complete W37 re-export or W38+, verifying 7 dates first). Do NOT
+  annualize the 5-day partial. No files were changed by the stopped run.
 - **Issue**: —
 
 ## Why this matters

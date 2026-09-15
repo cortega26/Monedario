@@ -16,7 +16,7 @@ citado (los extractos vienen de lecturas propias, no de reportes delegados).
 
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|-------|----------|--------|------------|--------|
-| 111 | [vehicle decision spike](111-vehicle-decision-spike.md) | P2 | S | — | TODO |
+| 111 | [vehicle decision spike](111-vehicle-decision-spike.md) | P2 | S | — | BLOCKED (no complete post-083 week yet — W37 export truncated to 5 dates; re-run on a complete 7-day week) |
 | 112 | [APV error spike + dictionary](112-apv-error-spike.md) | P2 | M | (coordinar nombres con 100) | TODO |
 | 113 | [gate-d + titular + citation](113-gate-d-titular-citation.md) | P3 | S | — | TODO |
 
