@@ -9,6 +9,7 @@ import {
   type ProfilePatch,
   type UserProfileField,
 } from "@/utils/userProfile";
+import { parseCLNumber } from "@/utils/parseCLNumber";
 
 const DEBOUNCE_MS = 500;
 const HINT_ID = "profile-prefill-hint";
@@ -33,8 +34,7 @@ function toStoredValue(
 ): ProfilePatch[UserProfileField] {
   if (raw === "") return undefined;
   if (NUMERIC_FIELDS.has(field)) {
-    const parsed = Number(raw.replace(/\./g, "").replace(/,/g, "."));
-    return Number.isFinite(parsed) ? parsed : undefined;
+    return parseCLNumber(raw);
   }
   return raw;
 }

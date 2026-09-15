@@ -273,6 +273,10 @@ jobs:
         id: audit
         # pip-audit scans the resolved environment against PyPA Advisory Database
         # Exit codes: 0 clean, 1 vulnerabilities, other operational failure.
+        # Canonical local equivalent (project venv): `.venv/bin/python -m pip_audit`
+        # or `uv run --project . --frozen pip-audit`. Bare `uv run pip-audit`
+        # may resolve an unrelated interpreter (e.g. an inherited VIRTUAL_ENV)
+        # instead of the project environment — its result is not a valid signal.
         # Capture the code in a step output without masking failures,
         # and remove only this run's report so a stale file is never reused.
         run: |

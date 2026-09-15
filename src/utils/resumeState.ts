@@ -18,11 +18,45 @@ export interface ResumeData {
   calculator?: ResumedCalculator;
 }
 
+function isResumedPage(value: unknown): value is ResumedPage {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+  const page = value as Record<string, unknown>;
+  return (
+    typeof page.url === "string" &&
+    typeof page.title === "string" &&
+    typeof page.ts === "number" &&
+    Number.isFinite(page.ts)
+  );
+}
+
+function isResumedCalculator(value: unknown): value is ResumedCalculator {
+  if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+  const calculator = value as Record<string, unknown>;
+  return (
+    typeof calculator.id === "string" &&
+    typeof calculator.label === "string" &&
+    typeof calculator.ts === "number" &&
+    Number.isFinite(calculator.ts)
+  );
+}
+
 function load(): ResumeData {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return { pages: [] };
-    return JSON.parse(raw) as ResumeData;
+    const parsed = JSON.parse(raw) as Partial<ResumeData> | null;
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+      return { pages: [] };
+    }
+    if (!Array.isArray(parsed.pages)) return { pages: [] };
+    const data: ResumeData = { pages: parsed.pages.filter(isResumedPage) };
+    if (
+      parsed.calculator !== undefined &&
+      isResumedCalculator(parsed.calculator)
+    ) {
+      data.calculator = parsed.calculator;
+    }
+    return data;
   } catch {
     return { pages: [] };
   }

@@ -63,14 +63,14 @@
 - El snapshot económico existente sigue siendo la fuente automática para indicadores runtime, pero ahora convive con una disciplina explícita de revisión editorial para claims temporales.
 
 ## 0. Resumen ejecutivo
-El repositorio es un sitio estático en **Astro 6** enfocado en educación financiera para Chile, con contenido editorial, glosario/leyes y una suite de calculadoras financieras.
+El repositorio es un sitio estático en **Astro 7** enfocado en educación financiera para Chile, con contenido editorial, glosario/leyes y una suite de calculadoras financieras.
 El proyecto está funcional en producción bajo dominio propio raíz (`https://monedario.cl/`) y combina contenido Markdown/MDX con páginas `.astro` de lógica cliente.
 Las personalizaciones más relevantes son: homepage editorial, calculadoras, helpers de rutas compatibles con dominio raíz o subpath, mejoras de UX (breadcrumbs/back button/reveal), y componentes de indicadores económicos.
 Los riesgos principales están en drift documental/contextual, deuda operativa en scripts/workflows, y mantenimiento de reglas YMYL y datos económicos versionados.
 
 ### Checkpoint 2026-05-13 (Docs/Context Truth Refresh)
 
-- Stack activo confirmado: Astro 6, TypeScript 6, Node 22 y `pnpm@10.30.2`.
+- Stack activo confirmado: Astro 7, TypeScript 6, Node 22 y `pnpm@11.7.0`.
 - El árbol no contiene un `deploy.yml` activo; GitHub Actions cubre CI y jobs operativos. La publicación productiva la gestiona Cloudflare Pages a partir de este repositorio.
 - `TPI_ECONOMIC_PROVIDER_MODE` queda en modo `snapshot` por defecto; `live` solo se usa explícitamente por env.
 - `README.md`, `docs/codebase/STACK.md` y `package.json` son las referencias activas para stack/tooling; esta entrada reemplaza los supuestos históricos de Astro 5, Node 20 y GitHub Pages workflow-managed deploy.
@@ -177,12 +177,12 @@ Los riesgos principales están en drift documental/contextual, deuda operativa e
 
 ### Runtime y package management
 - **Node objetivo:** 22 (`README.md`, `.nvmrc`, `.github/workflows/ci.yml`).
-- **Gestor en uso:** `pnpm` (`packageManager: pnpm@10.30.2`).
+- **Gestor en uso:** `pnpm` (`packageManager: pnpm@11.7.0`).
 - **Lockfiles presentes:** `pnpm-lock.yaml`.
 
 ### Dependencias principales (relevantes)
 
-- **Framework/app:** Astro 6, React 19, MDX, RSS, Sitemap.
+- **Framework/app:** Astro 7, React 19, MDX, RSS, Sitemap.
 - **Build/UI:** TailwindCSS 4, Pagefind, Shiki, Sharp, Satori, Resvg.
 - **Calidad:** TypeScript 6, Vitest 4, ESLint 10, Prettier 3, `@astrojs/check`.
 - **Datos económicos:** provider snapshot-first con modo `live` opcional vía `TPI_ECONOMIC_PROVIDER_MODE=live`.

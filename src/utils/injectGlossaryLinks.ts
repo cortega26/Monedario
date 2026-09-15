@@ -36,12 +36,47 @@ function escapeRe(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+type GlossaryEntry = (typeof GLOSSARY_ALLOWLIST)[number];
+
+interface GlossaryMatcher {
+  re: RegExp;
+  byLowerTerm: Map<string, GlossaryEntry>;
+  /** linkedSlugs.size when built; the set only grows within a page. */
+  linkedSize: number;
+}
+
 export function injectGlossaryLinks(html: string): string {
   // Pre-scan for existing data-glossary-term links to prevent double-injection
   const linkedSlugs = new Set<string>();
   for (const m of html.matchAll(/data-glossary-term="([^"]+)"/g)) {
     linkedSlugs.add(m[1]);
   }
+
+  // One compiled RegExp + lookup Map per page, rebuilt only when a link is
+  // emitted (the linked set only grows, so a size check detects staleness).
+  // Built from exactly the same `available` array the per-node code used, so
+  // output is byte-identical to rebuilding per text node.
+  let matcher: GlossaryMatcher | null = null;
+  const getMatcher = (): GlossaryMatcher | null => {
+    if (matcher && matcher.linkedSize === linkedSlugs.size) return matcher;
+    const available = GLOSSARY_ALLOWLIST.filter(e => !linkedSlugs.has(e.slug));
+    if (available.length === 0) {
+      matcher = null;
+      return null;
+    }
+    const pattern = available.map(e => `\\b${escapeRe(e.term)}\\b`).join("|");
+    const byLowerTerm = new Map<string, GlossaryEntry>();
+    for (const e of available) {
+      const key = e.term.toLowerCase();
+      if (!byLowerTerm.has(key)) byLowerTerm.set(key, e);
+    }
+    matcher = {
+      re: new RegExp(pattern, "gi"),
+      byLowerTerm,
+      linkedSize: linkedSlugs.size,
+    };
+    return matcher;
+  };
 
   let totalLinks = 0;
   const excludedStack: string[] = [];
@@ -77,7 +112,12 @@ export function injectGlossaryLinks(html: string): string {
       if (excludedStack.length > 0 || totalLinks >= MAX_AUTO_LINKS) {
         parts.push(text);
       } else {
-        const result = injectIntoText(text, linkedSlugs, totalLinks);
+        const result = injectIntoText(
+          text,
+          linkedSlugs,
+          totalLinks,
+          getMatcher
+        );
         totalLinks += result.newLinks;
         parts.push(result.text);
       }
@@ -90,15 +130,18 @@ export function injectGlossaryLinks(html: string): string {
 function injectIntoText(
   text: string,
   linkedSlugs: Set<string>,
-  currentLinks: number
+  currentLinks: number,
+  getMatcher: () => GlossaryMatcher | null
 ): { text: string; newLinks: number } {
-  const available = GLOSSARY_ALLOWLIST.filter(e => !linkedSlugs.has(e.slug));
-  if (available.length === 0 || currentLinks >= MAX_AUTO_LINKS) {
+  if (currentLinks >= MAX_AUTO_LINKS) {
+    return { text, newLinks: 0 };
+  }
+  const matcher = getMatcher();
+  if (!matcher) {
     return { text, newLinks: 0 };
   }
 
-  const pattern = available.map(e => `\\b${escapeRe(e.term)}\\b`).join("|");
-  const re = new RegExp(pattern, "gi");
+  const re = matcher.re;
 
   let last = 0;
   let newLinks = 0;
@@ -108,9 +151,7 @@ function injectIntoText(
     if (currentLinks + newLinks >= MAX_AUTO_LINKS) break;
 
     const matched = m[0];
-    const entry = available.find(
-      e => e.term.toLowerCase() === matched.toLowerCase()
-    );
+    const entry = matcher.byLowerTerm.get(matched.toLowerCase());
     if (!entry || linkedSlugs.has(entry.slug)) continue;
 
     const def = entry.shortDefinition.replace(/"/g, "&quot;");

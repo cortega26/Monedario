@@ -7,8 +7,13 @@
 > in `plans/README.md` — unless a reviewer dispatched you and told you they
 > maintain the index.
 >
-> **Drift check (run first)**: `git diff --stat 0e506a8b..HEAD -- src/pages/calculadoras/ src/utils/sueldo-liquido/formController.ts src/utils/calculatorScenariosUI.ts vitest.config.ts tests/accessibility/calculator-scenario-consistency.test.ts package.json .github/workflows/ci.yml`
-> On mismatch with "Current state", STOP.
+> **Drift check (run first)**: `git diff --stat 37276dc4..HEAD -- src/pages/calculadoras/ src/utils/sueldo-liquido/formController.ts src/utils/calculatorScenariosUI.ts vitest.config.ts tests/accessibility/calculator-scenario-consistency.test.ts package.json .github/workflows/ci.yml`
+> On mismatch with "Current state", STOP. (Reconciled base: the `0e506a8b`
+> check showed only three touched files — `conversor-uf.astro` (plan 102,
+> no scenario adapter, disjoint), `dividendo-hipotecario.astro` (plan 104,
+> labels/methodology only, adapter block intact), `vitest.config.ts`
+> (plan 100, coverage include only, excludes intact). None touch the
+> adapter shape.)
 
 ## Status
 
@@ -18,6 +23,10 @@
 - **Depends on**: none (plan 107 depends on THIS plan — run first among the calculator pair)
 - **Category**: tests
 - **Planned at**: commit `0e506a8b`, 2026-09-14
+- **Reconciled at**: commit `37276dc4`, 2026-09-14 — post-102/104 drift
+  assessed file-by-file (all disjoint from the adapter shape, see drift
+  note); all six pages + controller re-read, shape confirmed; happy-dom
+  dependency and test pattern confirmed
 - **Issue**: —
 
 ## Why this matters
@@ -42,13 +51,31 @@ Files and roles:
   `deposito-a-plazo.astro` (`:589-610`), `dividendo-hipotecario.astro`,
   `interes-compuesto.astro`, `simulador-jubilacion.astro`,
   `tarjeta-credito.astro`, `src/utils/sueldo-liquido/formController.ts`
-- `src/utils/calculatorScenariosUI.ts:318` — `initScenarioPanel` flow
-- `vitest.config.ts:15,29` — excludes `tests/accessibility/**` and `src/pages/**`
-- `tests/accessibility/calculator-scenario-consistency.test.ts:178-328` — only verifier (needs `astro preview :4321`)
-- `package.json:34` (`check:ci`) — runs `test:coverage`, never `test:a11y`
-- `ci.yml:338-344` — `a11y-audit` is `continue-on-error: true`
+- `src/utils/calculatorScenariosUI.ts` — `initScenarioPanel(options)`
+  (`:90`; `snapshotInputs` `:39`, `restoreInputs` `:57`; the `:318` ref
+  from planning is the panel flow interior — the signature at `:90` is what
+  the helper wraps)
+- Verified per-page adapter sites (all share the excerpt shape):
+  `credito-consumo.astro:599` (`scenarioLastInputs/Result` `:391-393`),
+  `deposito-a-plazo.astro:591` (`:396-397`), `interes-compuesto.astro:645`
+  (`:410-412`), `simulador-jubilacion.astro:658` (`:340-343`),
+  `tarjeta-credito.astro:482` (`:279-281`),
+  `dividendo-hipotecario.astro:773` (`:437-438`, intact post-104),
+  `formController.ts:707` (same shape, variant names `lastScenarioInputs`/
+  `lastScenarioResult` — the helper's `getLastInputs/getLastResult`
+  params exist precisely to absorb this variance).
+  `conversor-uf.astro` has NO scenario adapter (plan-102 edits disjoint).
+- `happy-dom@^20.12.0` in `package.json:151`; DOM-test pattern is
+  `// @vitest-environment happy-dom` (`tests/integration/
+  calculator-prefill.test.ts:1`). The new helper lives in `src/utils/` —
+  covered by `src/**/*.ts` include, NOT excluded — so the 80-line gate
+  applies to it; write tests to cover it fully.
+- `vitest.config.ts:15` + excludes (incl. `src/pages/**`) intact;
+  `tests/accessibility/calculator-scenario-consistency.test.ts`,
+  `package.json` `check:ci`, `ci.yml` a11y `continue-on-error` all
+  unchanged since planning (absent from drift output).
 
-Excerpt as of `0e506a8b` (verified by reading `deposito-a-plazo.astro:589-610`):
+Excerpt as of `37276dc4` (shape re-verified on all six pages + controller; only `formController.ts` renames the pair vars):
 
 ```html
 const scenarioFormCard = document.getElementById("calculator-form-card");

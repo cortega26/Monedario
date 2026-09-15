@@ -7,7 +7,7 @@
 > in `plans/README.md` — unless a reviewer dispatched you and told you they
 > maintain the index.
 >
-> **Drift check (run first)**: `git diff --stat 0e506a8b..HEAD -- pnpm-workspace.yaml pnpm-lock.yaml package.json docs/TECH_DEBT_BACKLOG.md .github/workflows/security-scans.yml`
+> **Drift check (run first)**: `git diff --stat 6d80d32b..HEAD -- pnpm-workspace.yaml pnpm-lock.yaml package.json docs/TECH_DEBT_BACKLOG.md .github/workflows/security-scans.yml`
 > On mismatch with "Current state", STOP.
 
 ## Status
@@ -18,6 +18,10 @@
 - **Depends on**: none
 - **Category**: migration
 - **Planned at**: commit `0e506a8b`, 2026-09-14
+- **Reconciled at**: commit `6d80d32b`, 2026-09-14 — in-scope files
+  untouched since planning (drift empty); full file re-read, excerpts and
+  line numbers confirmed; maturity table precomputed below for today
+  (2026-09-14) — executor still runs Step 0 to verify it independently
 - **Issue**: —
 
 ## Why this matters
@@ -44,7 +48,7 @@ Files and roles:
 - `.github/workflows/security-scans.yml` — pip-audit summary (plan 090 fixed
   clean/findings/incomplete distinction)
 
-Excerpts as of `0e506a8b` (verified by reading):
+Excerpts as of `6d80d32b` (full file re-read; line numbers confirmed, comments quoted verbatim):
 
 ```yaml
 # pnpm-workspace.yaml:28-29
@@ -63,6 +67,21 @@ Stale comments for `nanoid 3.3.17` (vence 2026-08-10) and `fast-uri 3.1.5`
 `4.5.4` root+astro+openai; `4.4.3` via @astrojs/rss+sitemap+knip) — transitive
 only, no action beyond tracking. `astro ^7.2.9` resolves `7.3.1` (float
 within `^`; last reviewed bump tested `7.2.9`).
+
+RECONCILIATION NOTE — maturity table for today (2026-09-14), still subject
+to Step-0 verification. REMOVE now: the two orphaned 2026-08 comment blocks
+(`:35-38`, no live entries) and `- 'qs@6.16.0'` (`:53` with its `:39-41`
+comment — matured 2026-09-05). LEAVE (future-dated or undated): napi union
+`:45` (~09-18), `eslint-plugin-astro@2.1.1` `:46` (no removal date —
+leave), js-yaml union `:51` (~09-20), `postcss@8.5.25` `:52` (no removal
+date — leave), rolldown cohort `:58-75` (~09-17/18), clack/vite cohort
+`:80-86` (~09-19/20). Note `fast-uri: '>=3.1.6'` override (`:10`) already
+supersedes the orphaned 3.1.5 comment. The fflate/sharp pins (`:28-29`)
+already carry remove-when guidance (`:20-27`); Step 2 converts that prose
+into per-line `remove-when:` triggers + range form. TD-0097 lives at
+`docs/TECH_DEBT_BACKLOG.md:5-23`; the pip-audit wrong-interpreter call is
+`security-scans.yml:282` (`uv run pip-audit`); no `check-workspace-*`
+script pattern exists (do not create CI scripts).
 
 Conventions: `pnpm install --frozen-lockfile` is the verification for every
 exclude removal (per the file's own comments); `first-match-wins` per-name

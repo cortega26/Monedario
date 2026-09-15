@@ -57,7 +57,15 @@ function readRaw(): UserProfileV1 {
     if (!raw) return emptyProfile();
     const parsed = JSON.parse(raw) as Partial<UserProfileV1> | null;
     if (!parsed || parsed.v !== SCHEMA_VERSION) return emptyProfile();
-    return { ...emptyProfile(), ...parsed, v: SCHEMA_VERSION };
+    const clean = emptyProfile();
+    if (typeof parsed.ts === "number" && Number.isFinite(parsed.ts)) {
+      clean.ts = parsed.ts;
+    }
+    for (const [key, value] of Object.entries(parsed)) {
+      if (!isKnownProfileField(key)) continue;
+      (clean as unknown as Record<string, unknown>)[key] = value;
+    }
+    return clean;
   } catch {
     return emptyProfile();
   }

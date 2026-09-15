@@ -73,7 +73,9 @@ export function passesFilter(post: RedditPost, minScore: number): boolean {
   return true;
 }
 
-async function runMonitor(env: Env): Promise<{ found: number; alerted: number }> {
+async function runMonitor(
+  env: Env
+): Promise<{ found: number; alerted: number; attempted: number }> {
   assertEnv(env);
   const minScore = Number(env.MIN_SCORE ?? "0");
   const limit = Number(env.SEARCH_LIMIT ?? "25");
@@ -116,8 +118,10 @@ async function runMonitor(env: Env): Promise<{ found: number; alerted: number }>
     }
   }
 
+  let deliveredCount = 0;
   if (matches.length > 0) {
     const { delivered, error } = await postAlert(env.DISCORD_WEBHOOK_URL, matches);
+    deliveredCount = delivered.length;
     await Promise.all(delivered.map(m => markSeen(env.REDDIT_SEEN, m.post.id)));
     if (error) {
       log("warn", "alert.partial_failure", {
@@ -131,9 +135,10 @@ async function runMonitor(env: Env): Promise<{ found: number; alerted: number }>
   log("info", "run.complete", {
     keywordGroups: KEYWORD_GROUPS.length,
     found: totalFound,
-    alerted: matches.length,
+    alerted: deliveredCount,
+    attempted: matches.length,
   });
-  return { found: totalFound, alerted: matches.length };
+  return { found: totalFound, alerted: deliveredCount, attempted: matches.length };
 }
 
 export default {

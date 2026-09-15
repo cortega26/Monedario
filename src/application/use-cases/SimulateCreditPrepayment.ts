@@ -48,8 +48,14 @@ function assertInput(input: CreditPrepaymentInput): void {
   if (!Number.isFinite(input.prepaymentCost) || input.prepaymentCost < 0) {
     throw new Error("prepaymentCost must be a finite number >= 0.");
   }
-  if (!Number.isFinite(input.remainingMonths) || input.remainingMonths <= 0) {
-    throw new Error("remainingMonths must be a finite number greater than 0.");
+  if (
+    !Number.isFinite(input.remainingMonths) ||
+    input.remainingMonths <= 0 ||
+    input.remainingMonths > 600
+  ) {
+    throw new Error(
+      "remainingMonths must be a finite number greater than 0 and at most 600."
+    );
   }
   if (
     !Number.isFinite(input.monthlyRatePercent) ||
@@ -118,6 +124,16 @@ export function simulateCreditPrepayment(
     input.effect === "reducir-plazo"
       ? input.monthlyPayment
       : (newMonthlyPaymentIfReducePayment ?? 0);
+
+  if (
+    balanceAfterPrepayment > 0 &&
+    (!Number.isFinite(paymentForSimulation) ||
+      paymentForSimulation <= balanceAfterPrepayment * monthlyRateDecimal)
+  ) {
+    throw new Error(
+      "La cuota del escenario con prepago no alcanza a amortizar el saldo restante: ni siquiera cubre el interés mensual estimado. Revisa la comisión, el plazo o el tipo de efecto elegido."
+    );
+  }
 
   const withPrepayment = simulateCreditRepayment({
     principal: balanceAfterPrepayment,

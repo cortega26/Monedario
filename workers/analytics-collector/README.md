@@ -56,6 +56,16 @@ Ninguno de estos comandos imprime ni persiste secretos; `EXPORT_SECRET` viaja
 solo por header o por `wrangler secret put` (nunca por URL ni en archivos
 trackeados).
 
+## Filtrar logs estructurados
+
+Los logs son JSON (`level`, `event`, `timestamp`, `worker`, `message`).
+Dos filtros útiles sobre el tail:
+
+```bash
+pnpm run worker:analytics:tail | grep '"event":"export_failed"'
+pnpm run worker:analytics:tail | grep '"event":"export_legacy_skipped"'
+```
+
 ## Local development
 
 ```bash

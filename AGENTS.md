@@ -43,7 +43,7 @@ Rules live in `docs/development/`. This file is the entry map, not the manual.
 - **Search:** Pagefind (`pnpm run build` generates `dist/pagefind/`). Static search index, no backend.
 - **Editorial gates are warn-only locally:** `check:editorial` fails CI (runs with `EDITORIAL_ENFORCE=1`) but only warns in `check:ci`. Same for `check:small-details` (`SMALL_DETAILS_ENFORCE=1`). Green local `check:ci` does not guarantee these pass in CI.
 - **OG images:** generated at build via `src/utils/generateOgImages.ts` (Satori + resvg-js). The `ogImage` property in `SITE` is extensionless to avoid Cloudflare Hotlink Protection blocks.
-- **Workers:** Cloudflare Workers (`workers/`) — `analytics-collector`, `economic-snapshot-refresh`, `reddit-mention-monitor` — deploy independently via `pnpm run worker:*:deploy` (wrangler, per-worker `wrangler.toml`), not as part of the Astro build.
+- **Workers:** Cloudflare Workers (`workers/`) — `analytics-collector`, `economic-snapshot-refresh`, `reddit-mention-monitor` — deploy independently via `pnpm run worker:*:deploy` (wrangler, per-worker `wrangler.toml`), not as part of the Astro build. Root `tsconfig.json` excludes `workers/**`, so typecheck workers via `pnpm run check:workers`.
 - **Deployment:** Cloudflare Pages (static build). No deploy workflow in repo CI; CI is gate-only.
 - **License:** AGPL-3.0 for code (`LICENSE.md`), CC BY-NC 4.0 for editorial content (`LICENSE-CONTENT.md`).
 - **Pre-commit:** husky + lint-staged runs `prettier --check` + `eslint` on staged files.
