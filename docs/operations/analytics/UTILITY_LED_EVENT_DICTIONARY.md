@@ -9,7 +9,7 @@
 | `calculator_view` | La calculadora se inicializa en una vista de página | una vez por vista |
 | `calculator_start` | Primera interacción sustantiva con input o botón | una vez por vista |
 | `calculator_complete` | Primer resultado válido renderizado | una vez por calculadora/vista; recalcular no suma |
-| `calculator_error` | Un intento falla por validación, cálculo, red o fuente vencida | una vez por intento/categoría en el emisor |
+| `calculator_error` | Un intento falla por validación, cálculo, red o fuente vencida | una vez por intento/categoría en el emisor. Estado: contract-defined, unemitted sitewide as of 2026-09-14 — zero values do not imply healthy; see DIAGNOSTICO §Qué NO se descartó and `docs/backlog/APV-ERROR-INSTRUMENTATION-2026-09-14.md` |
 | `next_step_shown` | El enlace contextual entra al menos 25% al viewport después de un resultado | una vez por `next_step_id`/vista |
 | `next_step_click` | Activación del enlace contextual | cada activación explícita |
 | `source_click` | Activación de una fuente oficial/metodología/snapshot | cada activación |
