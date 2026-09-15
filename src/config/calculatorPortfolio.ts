@@ -473,6 +473,11 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
         label: "Conversor UF",
         when: "si tu monto está expresado en UF (vivienda, hipotecas, arriendos) y no en UTM.",
       },
+      {
+        href: "/calculadoras/actualizador-inflacion/",
+        label: "Actualizador por inflación",
+        when: "si quieres entender por qué cambia la UTM cada mes: sigue la variación del IPC que la reajusta.",
+      },
     ],
   },
   {
@@ -500,6 +505,11 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
         href: "/calculadoras/conversor-uf/",
         label: "Conversor UF",
         when: "si tu monto está expresado en UF y necesitas el equivalente en pesos de hoy.",
+      },
+      {
+        href: "/calculadoras/conversor-utm/",
+        label: "Conversor UTM ↔ Pesos",
+        when: "si el monto que actualizaste está en UTM (multas, impuestos, trámites) y necesitas su valor en pesos.",
       },
     ],
   },
