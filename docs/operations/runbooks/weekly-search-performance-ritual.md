@@ -167,7 +167,7 @@ confirmación fiable; un click de salida no es un pago.
 
 Completar `utility-led-ops.json` en el bundle semanal con horas, costo directo,
 tokens, agotamiento, incidentes, mantenimiento, bloqueos, aprendizaje y señal
-reputacional. Si falta, el estado utility-led queda `WATCH / INPUT_REQUIRED` y
+reputacional. Si falta, el estado utility-led queda `INPUT_REQUIRED` (titular) con `Gate D: SIN REGISTRO` y
 no se decide expansión. Ingresos cero son compatibles con continuidad mientras
 la carga, el costo, la calidad y el aprendizaje sean sostenibles.
 
