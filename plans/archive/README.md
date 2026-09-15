@@ -116,6 +116,8 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [110](110-worker-typecheck-logging.md) | Gates `worker:*:typecheck` + `check:workers` en `check:ci`/CI + envelope JSON compartido en analytics-collector (16 sitios, texto legado verbatim) + ejemplos de tail (2 commits) | 2026-09-14 | sí (merge `e78b02b8`; 2 commits gate→envelope) |
 | [112](112-apv-error-spike.md) | Spike: diseño de instrumentación mínima de errores APV (E1–E5, taxonomía enum existente, progreso propuesto no-decidido, checklist privacidad, handoff tests) + caveat unemitted en diccionario (solo docs) | 2026-09-14 | sí (merge `6e45e750`; commit `fb4450ae`) |
 | [113](113-gate-d-titular-citation.md) | Rutina de captura Gate-D + taxonomía titular en tres vías (`INPUT_REQUIRED`≠`WATCH`, vía `SIN REGISTRO`) + cita APV a W34/W35 HALT con veredicto intacto + 2 tests mapping | 2026-09-14 | sí (merge `04ccef30`; commit `d4d5e273`) |
+| [114](114-apv-error-implementation.md) | Emisiones `calculator_error` E1–E4 en APV (helper + dedupe + reset, wiring, 16 tests) + pin estático; progreso NO creado (propuesta) | 2026-09-15 | sí (merge `d4981b2c`; helper+tests → wiring) |
+| [115](115-conformance-sweep.md) | Runbook titular conformado a 3 vías + excepción `APV-*` en gitignore (2 líneas) | 2026-09-15 | sí (merge `c908edad`; 1 commit) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
