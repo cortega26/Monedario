@@ -7,8 +7,11 @@
 > in `plans/README.md` — unless a reviewer dispatched you and told you they
 > maintain the index.
 >
-> **Drift check (run first)**: `git diff --stat 0e506a8b..HEAD -- docs/backlog/DIAGNOSTICO-apv-completion-2026-09-04.md src/contracts/analytics-events.ts docs/operations/analytics/UTILITY_LED_EVENT_DICTIONARY.md src/pages/calculadoras/apv.astro plans/archive/086-apv-completion-drop-diagnosis.md`
-> On mismatch with "Current state", STOP.
+> **Drift check (run first)**: `git diff --stat ab44d813..HEAD -- docs/backlog/DIAGNOSTICO-apv-completion-2026-09-04.md src/contracts/analytics-events.ts docs/operations/analytics/UTILITY_LED_EVENT_DICTIONARY.md src/pages/calculadoras/apv.astro plans/archive/086-apv-completion-drop-diagnosis.md`
+> On mismatch with "Current state", STOP. (Reconciled base: the `0e506a8b`
+> check showed exactly one delta — `src/contracts/analytics-events.ts`
+> (+120/−1, landed plan 100). The `calculator_error` entry and the
+> zero-emitter state are intact; post-100 taxonomy interactions below.)
 
 ## Status
 
@@ -18,6 +21,11 @@
 - **Depends on**: none (design spike; implementation ships separately. Informational: plan 100's taxonomy work is DONE (2026-09-14, merge `29856700`) — reuse its Tier-A event/param names, don't duplicate or fork)
 - **Category**: direction
 - **Planned at**: commit `0e506a8b`, 2026-09-14
+- **Reconciled at**: commit `ab44d813`, 2026-09-15 — diagnostic refs
+  (`:58-62` table, `:244-252` follow-up), dictionary row text, apv refs
+  (`:648` unguarded read, `:742-991` render block), 086 review note all
+  re-read live and confirmed; zero-emitter grep still 0; post-100
+  taxonomy interactions inline below
 - **Issue**: —
 
 ## Why this matters
@@ -35,7 +43,7 @@ immediately corrects the dictionary row — no calculator math or route change.
 
 ## Current state
 
-Facts, inlined (verified by reading):
+Excerpts as of `ab44d813` (re-read; only the contract file moved, via landed plan 100):
 
 - Diagnostic: `docs/backlog/DIAGNOSTICO-apv-completion-2026-09-04.md:58-62`
   (APV 3/21 W35 vs global 844/775 = 91.8%, site-stable); `:206-215` (grep over
@@ -47,10 +55,28 @@ Facts, inlined (verified by reading):
 - Reconciliation (`plans/RECONCILIATION-2026-09-12.md:51,84-86`): W36 6/18
   (33.3%) still <50%; 088 persistence fix did not change APV; placeholder
   issue persists as documented independent problem.
-- Contract: `src/contracts/analytics-events.ts:13-19` declares
-  `calculator_error` with `error_category`; dictionary
+- Contract: `src/contracts/analytics-events.ts:21-27` declares
+  `calculator_error` with `error_category` (entry UNCHANGED by landed plan
+  100); `error_category` enum (`:201-207`) is now concrete:
+  `validation/calculation/network/timeout/stale_source` — the spike's
+  "validation/calc/red/stale-source" categories MUST reuse these values
+  (red→`network`), extending only additively. Dictionary
   (`docs/operations/analytics/UTILITY_LED_EVENT_DICTIONARY.md:12`) documents
   it as emitted — the contradiction to fix.
+- RECONCILIATION NOTE (post-100 measurement break): APV's own
+  `calculator_complete` (`apv.astro:985-991`, legacy
+  `calculator_slug/calculator_name/outcome` params) now TRANSMITS thanks to
+  plan 100 (slug→id normalization + CLIENT_ONLY stripping) — pre-100 it
+  was rejected like sueldo-líquido's. The ERROR gap is unchanged (still
+  zero emitters sitewide, re-verified), but completion denominators in new
+  exports are measured under the fixed taxonomy: the spike doc must not
+  pool pre/post-100 completion semantics without naming the break (same
+  rule as the plan's 112-emission split note).
+- RECONCILIATION NOTE (stale dictionary property list): the dictionary's
+  "Propiedades permitidas" line does NOT list plan-100's new params
+  (`outcome/mode/article_slug/...`) — cite the CONTRACT as canonical (per
+  the dictionary's own header), do NOT "fix" the list here (out of scope;
+  one-row annotation only).
 - 086 review (`plans/archive/086-apv-completion-drop-diagnosis.md:262`):
   unguarded `readEconomicParameters()` at `apv.astro:648` re-verified.
 - Privacy: aggregate-only, no amounts/results/free-text/PII/persistent IDs
