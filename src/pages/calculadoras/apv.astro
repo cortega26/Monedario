@@ -604,6 +604,7 @@ const calculatorNextStepItems = [
   import "@/scripts/calculator-prefill";
   import { calculateApvComparison } from "@/application/use-cases/CalculateApvComparison";
   import { trackAnalyticsEvent } from "@/utils/analytics";
+  import { emitApvError, resetApvErrorDedupe } from "@/utils/apvErrorTelemetry";
   import { formatCLP } from "@/utils/formatCLP";
 
   declare global {
@@ -645,8 +646,6 @@ const calculatorNextStepItems = [
     return { uf, utm };
   }
 
-  const economicParameters = readEconomicParameters();
-
   document.querySelectorAll("input[name='salud']").forEach(radio => {
     radio.addEventListener("change", () => {
       const isIsapre =
@@ -663,6 +662,16 @@ const calculatorNextStepItems = [
 
   document.getElementById("calcBtn")?.addEventListener("click", () => {
     clearFormError();
+    resetApvErrorDedupe();
+
+    let economicParameters: { uf: number; utm: number };
+    try {
+      economicParameters = readEconomicParameters();
+    } catch {
+      emitApvError("stale_source");
+      showFormError("No se pudieron cargar los parámetros económicos.");
+      return;
+    }
 
     const bruto =
       parseFloat(
@@ -689,6 +698,7 @@ const calculatorNextStepItems = [
       showFormError(
         "Ingresa tu sueldo y al menos un aporte APV: mensual por planilla o directo anual."
       );
+      emitApvError("validation");
       return;
     }
 
@@ -736,258 +746,267 @@ const calculatorNextStepItems = [
           ? error.message
           : "No se pudo calcular la comparación APV."
       );
+      emitApvError("calculation");
       return;
     }
 
-    const buildCard = (
-      title: string,
-      colorClass: string,
-      items: Array<{ label: string; value: string }>,
-      badgeLabel?: string
-    ): HTMLDivElement => {
-      const card = document.createElement("div");
-      card.className = `mb-4 rounded-lg border p-4 ${
-        badgeLabel ? "border-accent bg-accent/5" : "border-border"
-      }`;
+    try {
+      const buildCard = (
+        title: string,
+        colorClass: string,
+        items: Array<{ label: string; value: string }>,
+        badgeLabel?: string
+      ): HTMLDivElement => {
+        const card = document.createElement("div");
+        card.className = `mb-4 rounded-lg border p-4 ${
+          badgeLabel ? "border-accent bg-accent/5" : "border-border"
+        }`;
 
-      if (badgeLabel) {
-        const badge = document.createElement("p");
-        badge.className =
-          "mb-2 text-xs font-bold tracking-widest text-accent uppercase";
-        badge.textContent = badgeLabel;
-        card.appendChild(badge);
-      }
+        if (badgeLabel) {
+          const badge = document.createElement("p");
+          badge.className =
+            "mb-2 text-xs font-bold tracking-widest text-accent uppercase";
+          badge.textContent = badgeLabel;
+          card.appendChild(badge);
+        }
 
-      const titleElement = document.createElement("h3");
-      titleElement.className = `mb-3 text-base font-bold ${colorClass}`;
-      titleElement.textContent = title;
-      card.appendChild(titleElement);
+        const titleElement = document.createElement("h3");
+        titleElement.className = `mb-3 text-base font-bold ${colorClass}`;
+        titleElement.textContent = title;
+        card.appendChild(titleElement);
 
-      for (const item of items) {
-        const line = document.createElement("div");
-        line.className =
-          "flex justify-between border-b border-border py-1.5 text-sm last:border-0";
+        for (const item of items) {
+          const line = document.createElement("div");
+          line.className =
+            "flex justify-between border-b border-border py-1.5 text-sm last:border-0";
 
-        const labelElement = document.createElement("span");
-        labelElement.className = "text-secondary";
-        labelElement.textContent = item.label;
+          const labelElement = document.createElement("span");
+          labelElement.className = "text-secondary";
+          labelElement.textContent = item.label;
 
-        const valueElement = document.createElement("span");
-        valueElement.className = "font-mono font-semibold";
-        valueElement.textContent = item.value;
+          const valueElement = document.createElement("span");
+          valueElement.className = "font-mono font-semibold";
+          valueElement.textContent = item.value;
 
-        line.append(labelElement, valueElement);
-        card.appendChild(line);
-      }
+          line.append(labelElement, valueElement);
+          card.appendChild(line);
+        }
 
-      return card;
-    };
+        return card;
+      };
 
-    const summary = document.createElement("div");
-    summary.className =
-      "mb-4 rounded-lg bg-foreground/5 p-3 text-sm text-secondary";
-    const marginalText = document.createElement("p");
-    const marginalStrong = document.createElement("strong");
-    marginalStrong.textContent = "Tu tasa marginal de impuesto:";
-    marginalText.append(marginalStrong, ` ${fmtPct(resultado.marginalRate)}`);
-    const taxText = document.createElement("p");
-    const taxStrong = document.createElement("strong");
-    taxStrong.textContent = "Impuesto sin APV:";
-    taxText.append(taxStrong, ` ${fmt(resultado.taxWithoutApv)}/mes`);
-    const targetText = document.createElement("p");
-    const targetStrong = document.createElement("strong");
-    targetStrong.textContent = "Aporte mensual para agotar bono A:";
-    targetText.append(
-      targetStrong,
-      ` ${fmt(resultado.regimeA.monthlyContributionForMaxBonus)}`
-    );
-    const directContributionText = document.createElement("p");
-    const directContributionStrong = document.createElement("strong");
-    directContributionStrong.textContent = "Aporte directo anual adicional:";
-    directContributionText.append(
-      directContributionStrong,
-      ` ${fmt(aporteDirectoAnual)}`
-    );
-    const taxableSalaryText = document.createElement("p");
-    const taxableSalaryStrong = document.createElement("strong");
-    taxableSalaryStrong.textContent = "Imponible usado:";
-    taxableSalaryText.append(
-      taxableSalaryStrong,
-      ` ${fmt(resultado.taxableSalary)}`
-    );
-    const nonTaxableText = document.createElement("p");
-    const nonTaxableStrong = document.createElement("strong");
-    nonTaxableStrong.textContent = "No imponible estimado:";
-    nonTaxableText.append(
-      nonTaxableStrong,
-      ` ${fmt(resultado.nonTaxableIncome)}`
-    );
-    summary.append(
-      marginalText,
-      taxText,
-      targetText,
-      directContributionText,
-      taxableSalaryText,
-      nonTaxableText
-    );
-
-    const strategyMessage = document.createElement("div");
-    strategyMessage.className =
-      "mb-4 rounded-lg border border-border p-3 text-sm text-secondary";
-
-    const strategyLabel = document.createElement("strong");
-    strategyLabel.textContent = "Sugerencia orientativa:";
-
-    const strategyCopy =
-      resultado.recommendedStrategy === "A"
-        ? " Tu beneficio estimado es mayor si concentras este aporte en Régimen A."
-        : resultado.recommendedStrategy === "B"
-          ? " Tu beneficio estimado es mayor si concentras este aporte en Régimen B."
-          : ` Podría convenirte dividir el aporte: ${fmt(
-              resultado.mixedStrategy.contributionToRegimeA
-            )} en A y ${fmt(resultado.mixedStrategy.contributionToRegimeB)} en B.`;
-
-    strategyMessage.append(strategyLabel, strategyCopy);
-
-    const regimeACard = buildCard(
-      "Régimen A — Bono del Estado",
-      "text-blue-500",
-      [
-        {
-          label: "Aporte anual bonificable considerado",
-          value: fmt(resultado.regimeA.effectiveAnnualContribution),
-        },
-        { label: "Impuesto mensual", value: fmt(resultado.regimeA.monthlyTax) },
-        {
-          label: "Bono Estado anual (15%)",
-          value: `+ ${fmt(resultado.regimeA.annualBonus)}`,
-        },
-        {
-          label: "Beneficio mensual equivalente",
-          value: fmt(resultado.regimeA.monthlyBenefit),
-        },
-        {
-          label: "Aporte anual para bono máximo",
-          value: fmt(resultado.regimeA.annualContributionForMaxBonus),
-        },
-      ],
-      resultado.recommendedStrategy === "A"
-        ? "Sugerencia orientativa"
-        : undefined
-    );
-
-    const regimeBCard = buildCard(
-      "Régimen B — Rebaja de impuesto",
-      "text-green-500",
-      [
-        {
-          label: "Aporte anual con beneficio considerado",
-          value: fmt(resultado.regimeB.effectiveAnnualContribution),
-        },
-        {
-          label: "Promedio mensual equivalente",
-          value: fmt(resultado.regimeB.effectiveMonthlyContribution),
-        },
-        {
-          label: "Descuento por planilla con beneficio",
-          value: fmt(resultado.regimeB.effectiveAnnualPayrollContribution),
-        },
-        {
-          label: "Depósito directo anual con beneficio",
-          value: fmt(resultado.regimeB.effectiveAnnualDirectContribution),
-        },
-        {
-          label: "Base imponible reducida (equiv. mensual)",
-          value: fmt(resultado.regimeB.reducedTaxBase),
-        },
-        {
-          label: "Impuesto con APV (equiv. mensual)",
-          value: fmt(resultado.regimeB.monthlyTax),
-        },
-        {
-          label: "Ahorro impuesto mensual equivalente",
-          value: fmt(resultado.regimeB.monthlyBenefit),
-        },
-        {
-          label: "Ahorro impuesto anual",
-          value: fmt(resultado.regimeB.annualBenefit),
-        },
-      ],
-      resultado.recommendedStrategy === "B"
-        ? "Sugerencia orientativa"
-        : undefined
-    );
-
-    const shouldRenderMixedCard =
-      resultado.mixedStrategy.contributionToRegimeA > 0 &&
-      resultado.mixedStrategy.contributionToRegimeB > 0;
-
-    const mixedCard = shouldRenderMixedCard
-      ? buildCard(
-          "Estrategia mixta — Parte en A y parte en B",
-          "text-accent",
-          [
-            {
-              label: "Aporte anual a Régimen A",
-              value: fmt(resultado.mixedStrategy.annualContributionToRegimeA),
-            },
-            {
-              label: "Aporte anual a Régimen B",
-              value: fmt(resultado.mixedStrategy.annualContributionToRegimeB),
-            },
-            {
-              label: "Bono A mensual equivalente",
-              value: fmt(resultado.mixedStrategy.regimeAMonthlyBenefit),
-            },
-            {
-              label: "Ahorro tributario B mensual equivalente",
-              value: fmt(resultado.mixedStrategy.regimeBMonthlyBenefit),
-            },
-            {
-              label: "Beneficio total mensual",
-              value: fmt(resultado.mixedStrategy.monthlyBenefit),
-            },
-          ],
-          resultado.recommendedStrategy === "MIXED"
-            ? "Sugerencia orientativa"
-            : undefined
-        )
-      : null;
-
-    const note = document.createElement("p");
-    note.className = "mt-2 text-xs text-muted";
-    note.textContent = `El bono del Régimen A se acredita en tu cuenta APV al año siguiente (Operación Renta). En Régimen B, los descuentos por planilla tienen tope mensual de 50 UF (~${fmt(resultado.regimeB.monthlyContributionCap)}) y los aportes con beneficio comparten además un tope anual conjunto de 600 UF (~${fmt(resultado.regimeB.annualContributionCap)}). Si incluyes depósitos directos, esta tarjeta muestra equivalentes mensuales para aproximar un beneficio que normalmente se regulariza en Operación Renta.`;
-
-    document
-      .getElementById("resultado-contenido")!
-      .replaceChildren(
-        summary,
-        strategyMessage,
-        regimeACard,
-        regimeBCard,
-        ...(mixedCard ? [mixedCard] : []),
-        note
+      const summary = document.createElement("div");
+      summary.className =
+        "mb-4 rounded-lg bg-foreground/5 p-3 text-sm text-secondary";
+      const marginalText = document.createElement("p");
+      const marginalStrong = document.createElement("strong");
+      marginalStrong.textContent = "Tu tasa marginal de impuesto:";
+      marginalText.append(marginalStrong, ` ${fmtPct(resultado.marginalRate)}`);
+      const taxText = document.createElement("p");
+      const taxStrong = document.createElement("strong");
+      taxStrong.textContent = "Impuesto sin APV:";
+      taxText.append(taxStrong, ` ${fmt(resultado.taxWithoutApv)}/mes`);
+      const targetText = document.createElement("p");
+      const targetStrong = document.createElement("strong");
+      targetStrong.textContent = "Aporte mensual para agotar bono A:";
+      targetText.append(
+        targetStrong,
+        ` ${fmt(resultado.regimeA.monthlyContributionForMaxBonus)}`
+      );
+      const directContributionText = document.createElement("p");
+      const directContributionStrong = document.createElement("strong");
+      directContributionStrong.textContent = "Aporte directo anual adicional:";
+      directContributionText.append(
+        directContributionStrong,
+        ` ${fmt(aporteDirectoAnual)}`
+      );
+      const taxableSalaryText = document.createElement("p");
+      const taxableSalaryStrong = document.createElement("strong");
+      taxableSalaryStrong.textContent = "Imponible usado:";
+      taxableSalaryText.append(
+        taxableSalaryStrong,
+        ` ${fmt(resultado.taxableSalary)}`
+      );
+      const nonTaxableText = document.createElement("p");
+      const nonTaxableStrong = document.createElement("strong");
+      nonTaxableStrong.textContent = "No imponible estimado:";
+      nonTaxableText.append(
+        nonTaxableStrong,
+        ` ${fmt(resultado.nonTaxableIncome)}`
+      );
+      summary.append(
+        marginalText,
+        taxText,
+        targetText,
+        directContributionText,
+        taxableSalaryText,
+        nonTaxableText
       );
 
-    const _annualBenefit =
-      resultado.recommendedStrategy === "A"
-        ? resultado.regimeA.annualBonus
-        : resultado.recommendedStrategy === "B"
-          ? resultado.regimeB.annualBenefit
-          : resultado.mixedStrategy.monthlyBenefit * 12;
+      const strategyMessage = document.createElement("div");
+      strategyMessage.className =
+        "mb-4 rounded-lg border border-border p-3 text-sm text-secondary";
 
-    document.dispatchEvent(
-      new CustomEvent("calculator:result", {
-        detail: {
-          summaryText: `Simulador APV: régimen recomendado ${resultado.recommendedStrategy} — beneficio anual estimado ${fmt(_annualBenefit)}`,
-        },
-      })
-    );
-    window.showCalculatorNextActions?.();
-    trackAnalyticsEvent("calculator_complete", {
-      calculator_slug: "apv",
-      calculator_name: "Simulador APV",
-      outcome: "success",
-    });
+      const strategyLabel = document.createElement("strong");
+      strategyLabel.textContent = "Sugerencia orientativa:";
+
+      const strategyCopy =
+        resultado.recommendedStrategy === "A"
+          ? " Tu beneficio estimado es mayor si concentras este aporte en Régimen A."
+          : resultado.recommendedStrategy === "B"
+            ? " Tu beneficio estimado es mayor si concentras este aporte en Régimen B."
+            : ` Podría convenirte dividir el aporte: ${fmt(
+                resultado.mixedStrategy.contributionToRegimeA
+              )} en A y ${fmt(resultado.mixedStrategy.contributionToRegimeB)} en B.`;
+
+      strategyMessage.append(strategyLabel, strategyCopy);
+
+      const regimeACard = buildCard(
+        "Régimen A — Bono del Estado",
+        "text-blue-500",
+        [
+          {
+            label: "Aporte anual bonificable considerado",
+            value: fmt(resultado.regimeA.effectiveAnnualContribution),
+          },
+          {
+            label: "Impuesto mensual",
+            value: fmt(resultado.regimeA.monthlyTax),
+          },
+          {
+            label: "Bono Estado anual (15%)",
+            value: `+ ${fmt(resultado.regimeA.annualBonus)}`,
+          },
+          {
+            label: "Beneficio mensual equivalente",
+            value: fmt(resultado.regimeA.monthlyBenefit),
+          },
+          {
+            label: "Aporte anual para bono máximo",
+            value: fmt(resultado.regimeA.annualContributionForMaxBonus),
+          },
+        ],
+        resultado.recommendedStrategy === "A"
+          ? "Sugerencia orientativa"
+          : undefined
+      );
+
+      const regimeBCard = buildCard(
+        "Régimen B — Rebaja de impuesto",
+        "text-green-500",
+        [
+          {
+            label: "Aporte anual con beneficio considerado",
+            value: fmt(resultado.regimeB.effectiveAnnualContribution),
+          },
+          {
+            label: "Promedio mensual equivalente",
+            value: fmt(resultado.regimeB.effectiveMonthlyContribution),
+          },
+          {
+            label: "Descuento por planilla con beneficio",
+            value: fmt(resultado.regimeB.effectiveAnnualPayrollContribution),
+          },
+          {
+            label: "Depósito directo anual con beneficio",
+            value: fmt(resultado.regimeB.effectiveAnnualDirectContribution),
+          },
+          {
+            label: "Base imponible reducida (equiv. mensual)",
+            value: fmt(resultado.regimeB.reducedTaxBase),
+          },
+          {
+            label: "Impuesto con APV (equiv. mensual)",
+            value: fmt(resultado.regimeB.monthlyTax),
+          },
+          {
+            label: "Ahorro impuesto mensual equivalente",
+            value: fmt(resultado.regimeB.monthlyBenefit),
+          },
+          {
+            label: "Ahorro impuesto anual",
+            value: fmt(resultado.regimeB.annualBenefit),
+          },
+        ],
+        resultado.recommendedStrategy === "B"
+          ? "Sugerencia orientativa"
+          : undefined
+      );
+
+      const shouldRenderMixedCard =
+        resultado.mixedStrategy.contributionToRegimeA > 0 &&
+        resultado.mixedStrategy.contributionToRegimeB > 0;
+
+      const mixedCard = shouldRenderMixedCard
+        ? buildCard(
+            "Estrategia mixta — Parte en A y parte en B",
+            "text-accent",
+            [
+              {
+                label: "Aporte anual a Régimen A",
+                value: fmt(resultado.mixedStrategy.annualContributionToRegimeA),
+              },
+              {
+                label: "Aporte anual a Régimen B",
+                value: fmt(resultado.mixedStrategy.annualContributionToRegimeB),
+              },
+              {
+                label: "Bono A mensual equivalente",
+                value: fmt(resultado.mixedStrategy.regimeAMonthlyBenefit),
+              },
+              {
+                label: "Ahorro tributario B mensual equivalente",
+                value: fmt(resultado.mixedStrategy.regimeBMonthlyBenefit),
+              },
+              {
+                label: "Beneficio total mensual",
+                value: fmt(resultado.mixedStrategy.monthlyBenefit),
+              },
+            ],
+            resultado.recommendedStrategy === "MIXED"
+              ? "Sugerencia orientativa"
+              : undefined
+          )
+        : null;
+
+      const note = document.createElement("p");
+      note.className = "mt-2 text-xs text-muted";
+      note.textContent = `El bono del Régimen A se acredita en tu cuenta APV al año siguiente (Operación Renta). En Régimen B, los descuentos por planilla tienen tope mensual de 50 UF (~${fmt(resultado.regimeB.monthlyContributionCap)}) y los aportes con beneficio comparten además un tope anual conjunto de 600 UF (~${fmt(resultado.regimeB.annualContributionCap)}). Si incluyes depósitos directos, esta tarjeta muestra equivalentes mensuales para aproximar un beneficio que normalmente se regulariza en Operación Renta.`;
+
+      document
+        .getElementById("resultado-contenido")!
+        .replaceChildren(
+          summary,
+          strategyMessage,
+          regimeACard,
+          regimeBCard,
+          ...(mixedCard ? [mixedCard] : []),
+          note
+        );
+
+      const _annualBenefit =
+        resultado.recommendedStrategy === "A"
+          ? resultado.regimeA.annualBonus
+          : resultado.recommendedStrategy === "B"
+            ? resultado.regimeB.annualBenefit
+            : resultado.mixedStrategy.monthlyBenefit * 12;
+
+      document.dispatchEvent(
+        new CustomEvent("calculator:result", {
+          detail: {
+            summaryText: `Simulador APV: régimen recomendado ${resultado.recommendedStrategy} — beneficio anual estimado ${fmt(_annualBenefit)}`,
+          },
+        })
+      );
+      window.showCalculatorNextActions?.();
+      trackAnalyticsEvent("calculator_complete", {
+        calculator_slug: "apv",
+        calculator_name: "Simulador APV",
+        outcome: "success",
+      });
+    } catch {
+      showFormError("No se pudo calcular la comparación APV.");
+      emitApvError("calculation");
+    }
   });
 </script>
