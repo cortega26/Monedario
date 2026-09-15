@@ -89,10 +89,14 @@ EXPORT_SECRET = "valor-solo-local"
 
 ## Precisión de contadores
 
-Los contadores de eventos (`calculator_complete`, `calculator_view`,
-`next_step_*`, …) son **aproximados por diseño**: se incrementan con
-read-modify-write sobre KV (`get` → `parseInt` → `put`) sin primitiva atómica,
-y KV es eventualmente consistente. Consecuencias:
+La ingesta actual (`src/worker-v2.ts`) agrega con UPSERT atómico sobre
+SQLite en un Durable Object: sin carrera de lectura-modificación-escritura
+ni límite diario de escrituras KV (#475).
+
+Los contadores de semanas históricas leídos desde KV siguen siendo
+**aproximados por diseño** (read-modify-write `get` → `parseInt` → `put`
+sin primitiva atómica, eventual consistencia). Consecuencias, solo para
+datos pre-migración:
 
 - una lectura puede devolver un valor stale (el contador puede *bajar*);
 - dos ingesta concurrentes en la misma clave pierden un incremento;
@@ -100,10 +104,8 @@ y KV es eventualmente consistente. Consecuencias:
   (`console.error` → Workers Logs), no silenciosos.
 
 Los contadores sirven para ranking relativo y scorecards semanales, no como
-conteo exacto de eventos. Para exactitud por evento se evalúa una migración a
-Durable Objects (incremento atómico real) — decisión del operador, no
-implementada. Ver `docs/adr/ADR-20260628-first-party-analytics.md` para el
-trade-off de consistencia eventual aceptado a la escala actual.
+conteo exacto de eventos. Ver `docs/adr/ADR-20260628-first-party-analytics.md`
+para el trade-off de consistencia eventual aceptado a la escala actual.
 
 ## Secrets
 
@@ -148,8 +150,10 @@ Procedimiento completo (incluido el chequeo de paridad tras el rollback) en
 
 | Archivo | Propósito |
 |---|---|
-| `src/index.ts` | Worker: ingesta de eventos, validación estricta, contadores KV, export semanal y endpoint manual. |
-| `wrangler.toml` | Config: ruta `monedario.cl/api/analytics/*`, cron `30 5 * * MON`, KV/R2, vars. |
+| `src/worker-v2.ts` | Entrypoint vivo (`main` en `wrangler.toml`): ingesta con rate limiting nativo, contadores atómicos en Durable Object SQLite, export semanal y endpoint manual. |
+| `src/index.ts` | Helpers compartidos (validación, calendario, agregación/export) + lectura legacy KV solo para semanas históricas. Sin escrituras KV (#475). |
+| `wrangler.toml` | Config: ruta `monedario.cl/api/analytics/*`, cron `30 5 * * MON`, rate limiting + DO + KV (solo lectura) + R2, vars. |
 | `tsconfig.json` | TS config del worker. |
-| `../../tests/workers/analytics-collector/schema.test.ts` | Tests unitarios del worker (validación, calendario, export, auth por header). |
+| `../../tests/workers/analytics-collector/schema.test.ts` | Tests de helpers (validación, calendario, export histórico KV, taxonomía legada). |
+| `../../tests/workers/analytics-collector/root-cause.test.ts` | Tests del entrypoint vivo (ingesta sin KV, rate limiter nativo, export v2, matrices de guards/auth). |
 | `../../scripts/data-signals/verify-analytics-worker-deployment.mjs` | Verifier de paridad de despliegue (versión, cron, auth, R2). |

@@ -1,17 +1,15 @@
 /**
- * Analytics Collector — Cloudflare Worker
+ * Analytics Collector — shared ingestion/export helpers (Cloudflare Worker).
  *
- * Receives sanitized first-party events from monedario.cl, validates them
- * server-side against a strict schema, and increments aggregated counters in KV.
+ * Live entrypoint is ./worker-v2 (native rate limiting + SQLite-backed
+ * Durable Object counters). This module keeps the pure helpers it needs
+ * (validation, calendar math, export aggregation) plus the legacy KV
+ * READ path used to export historical weeks until their TTL expires.
+ * KV writes were removed with the v2 migration (#475): nothing here may
+ * put to ANALYTICS_TELEMETRY.
  *
  * Contract: docs/backlog/PLAN-calculator-led-growth-2026-06-28.md §7
  * ADR: docs/adr/ADR-20260628-first-party-analytics.md
- *
- * Endpoint: POST /api/analytics/event
- * Response: 202 Accepted (no echo) on success.
- *
- * Feature flag: ANALYTICS_DISABLED env var. Set to "1" to reject all events
- * with 503. Set to "0" to enable collection.
  */
 
 import type { KVNamespace, R2Bucket } from "@cloudflare/workers-types";
@@ -28,17 +26,11 @@ import {
 /** Maximum body size in bytes. Larger payloads get 413. */
 export const MAX_BODY_SIZE = 2048;
 
-/** Rate limit: max requests per IP per rolling 60-second window. */
-export const RATE_LIMIT_MAX = 30;
-
 /** Legacy counters use UTC dates. Preserved until the explicit cutover. */
 const LEGACY_KV_PREFIX = "telemetry:v1";
 
 /** Versioned counters whose dates follow EXPORT_TIMEZONE. */
 const LOCAL_CALENDAR_KV_PREFIX = "telemetry:v2";
-
-/** KV TTL in seconds (35 days = 5 weeks). */
-const KV_TTL_SECONDS = 60 * 60 * 24 * 35; // 3_024_000
 
 /** Allowed origin. CORS preflight and origin header are checked against this. */
 export const ALLOWED_ORIGIN = "https://monedario.cl";
@@ -190,11 +182,6 @@ export function calendarDateInTimeZone(date: Date, timeZone: string): string {
   return `${values.year}-${values.month}-${values.day}`;
 }
 
-interface CounterStorageSelection {
-  prefix: string;
-  date: string;
-}
-
 interface CounterCalendarCutover {
   instant: Date;
   localDate: string;
@@ -277,27 +264,6 @@ function parseCounterCalendarCutover(
   };
 }
 
-/**
- * Selects the one counter namespace/date convention used for an ingestion.
- * Before the configured boundary, v1 preserves the established UTC contract.
- * At and after the boundary, v2 stores the configured local calendar date.
- */
-export function counterStorageForInstant(
-  now: Date,
-  timeZone: string,
-  cutoverAt?: string,
-): CounterStorageSelection {
-  const cutover = parseCounterCalendarCutover(cutoverAt, timeZone);
-  if (!cutover || now < cutover.instant) {
-    return { prefix: LEGACY_KV_PREFIX, date: now.toISOString().slice(0, 10) };
-  }
-
-  return {
-    prefix: LOCAL_CALENDAR_KV_PREFIX,
-    date: calendarDateInTimeZone(now, timeZone),
-  };
-}
-
 /** Selects exactly one versioned prefix for an explicit ISO-week export. */
 export function counterPrefixForExportWeek(
   week: string,
@@ -307,94 +273,6 @@ export function counterPrefixForExportWeek(
   const cutover = parseCounterCalendarCutover(cutoverAt, timeZone);
   if (!cutover || week < cutover.week) return LEGACY_KV_PREFIX;
   return LOCAL_CALENDAR_KV_PREFIX;
-}
-
-function buildCounterKey(
-  event: string,
-  params: Record<string, string | number | boolean>,
-  timeZone: string,
-  cutoverAt?: string,
-): string {
-  const storage = counterStorageForInstant(new Date(), timeZone, cutoverAt);
-  const slug = String(params.calculator_id ?? params.page_type ?? "unknown");
-
-  // Build a stable dimension suffix from non-slug params, sorted by key
-  const dimEntries = Object.entries(params)
-    .filter(([k]) => k !== "calculator_id" && k !== "page_type")
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([, v]) => String(v));
-
-  const dimSuffix = dimEntries.length > 0 ? `:${dimEntries.join(":")}` : "";
-
-  return `${storage.prefix}:${storage.date}:${event}:${slug}${dimSuffix}`;
-}
-
-// ── Rate limiter (KV-backed) ─────────────────────────────────────────────────
-
-async function checkRateLimit(
-  kv: KVNamespace,
-  ip: string,
-): Promise<boolean> {
-  const minute = Math.floor(Date.now() / 60_000);
-  const key = `rate_limit:${ip}:${minute}`;
-
-  try {
-    const current = await kv.get(key);
-    const count = current ? parseInt(current, 10) : 0;
-
-    if (count >= RATE_LIMIT_MAX) return false; // rate limited
-
-    // Increment with 120s TTL (2 windows to avoid edge cases)
-    await kv.put(key, String(count + 1), { expirationTtl: 120 });
-    return true;
-  } catch (error) {
-    // If KV is unreachable, allow the request: rate limiting fails open (the
-    // request proceeds) and ingestion also fails open (the counter is lost,
-    // logged loudly in ingestEvent). Log a truncated key here too — only the
-    // minute suffix, never the full IP.
-    const suffix = key.split(":").at(-1);
-    log("error", "kv_rate_limit_check_failed", {
-      message: `[analytics-collector] KV rate-limit check failed (window ${suffix}): ${error instanceof Error ? error.message : String(error)}`,
-    });
-    return true;
-  }
-}
-
-// ── Event ingestion ──────────────────────────────────────────────────────────
-
-async function ingestEvent(
-  kv: KVNamespace,
-  event: string,
-  params: Record<string, string | number | boolean>,
-  timeZone: string,
-  cutoverAt?: string,
-): Promise<void> {
-  const key = buildCounterKey(event, params, timeZone, cutoverAt);
-
-  try {
-    // Increment counter with TTL
-    const current = await kv.get(key);
-    const count = current ? parseInt(current, 10) : 0;
-    await kv.put(key, String(count + 1), { expirationTtl: KV_TTL_SECONDS });
-  } catch (error) {
-    // Fail-open (el evento no bloquea la respuesta), pero NUNCA en silencio:
-    // un fallo persistente de KV debe ser visible en Workers Logs, no solo
-    // como un gap en el export.
-    log("error", "kv_counter_update_failed", {
-      message: `[analytics-collector] KV counter update failed (read or write) for key ${key}: ${error instanceof Error ? error.message : String(error)}`,
-    });
-  }
-}
-
-// ── CORS headers ─────────────────────────────────────────────────────────────
-
-function corsHeaders(): Record<string, string> {
-  return {
-    "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
-    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
-    "Access-Control-Max-Age": "86400",
-  };
 }
 
 // ── ISO week helpers (timezone-aware for export) ─────────────────────────────
@@ -765,28 +643,7 @@ export function validateExportArtifact(
   return { valid: errors.length === 0, errors };
 }
 
-function constantTimeEqual(a: string, b: string): boolean {
-  const maxLength = Math.max(a.length, b.length);
-  let diff = a.length ^ b.length;
-
-  for (let i = 0; i < maxLength; i += 1) {
-    diff |= (a.charCodeAt(i) || 0) ^ (b.charCodeAt(i) || 0);
-  }
-
-  return diff === 0;
-}
-
-function jsonResponse(body: unknown, status = 200): Response {
-  return new Response(JSON.stringify(body) + "\n", {
-    status,
-    headers: {
-      "Content-Type": "application/json; charset=utf-8",
-      ...corsHeaders(),
-    },
-  });
-}
-
-// ── Main handler ─────────────────────────────────────────────────────────────
+// ── Weekly export (legacy KV read + R2 write) ─────────────────────────────────
 
 export interface Env {
   ANALYTICS_TELEMETRY: KVNamespace;
@@ -868,59 +725,6 @@ export async function runExport(env: Env, week: string): Promise<ExportRunSummar
   };
 }
 
-async function handleManualExport(request: Request, env: Env): Promise<Response> {
-  if (!env.EXPORT_SECRET) {
-    return jsonResponse({ error: "export_not_configured" }, 503);
-  }
-
-  const url = new URL(request.url);
-  const authHeader = request.headers.get("Authorization");
-  const providedSecret =
-    authHeader && authHeader.startsWith("Bearer ")
-      ? authHeader.slice("Bearer ".length).trim()
-      : null;
-  if (!providedSecret) {
-    return jsonResponse({ error: "missing_secret" }, 401);
-  }
-  if (!constantTimeEqual(providedSecret, env.EXPORT_SECRET)) {
-    return jsonResponse({ error: "invalid_secret" }, 403);
-  }
-
-  const requestedWeek = url.searchParams.get("week");
-  const week =
-    requestedWeek ??
-    previousCompleteISOWeekInTz(env.EXPORT_TIMEZONE ?? "America/Santiago");
-  if (!/^\d{4}-W\d{2}$/.test(week)) {
-    return jsonResponse({ error: "invalid_week" }, 400);
-  }
-
-  const ip =
-    request.headers.get("CF-Connecting-IP") ??
-    request.headers.get("X-Forwarded-For")?.split(",")[0]?.trim() ??
-    "unknown";
-  const allowed = await checkRateLimit(env.ANALYTICS_TELEMETRY, `export:${ip}`);
-  if (!allowed) {
-    return jsonResponse({ error: "rate_limited" }, 429);
-  }
-
-  try {
-    const result = await runExport(env, week);
-    return jsonResponse({
-      week: result.week,
-      window: result.window,
-      rows: result.rows,
-      totalEvents: result.totalEvents,
-    });
-  } catch (error) {
-    log("error", "manual_export_failed", {
-      message: `[analytics-export] manual export failed: ${
-        error instanceof Error ? error.message : String(error)
-      }`,
-    });
-    return jsonResponse({ error: "export_failed" }, 500);
-  }
-}
-
 // ── Bounded body read ──────────────────────────────────────────────────────
 
 /**
@@ -987,126 +791,7 @@ export async function readBoundedBodyText(
   }
   return { ok: true, text: new TextDecoder().decode(merged) };
 }
-
-export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
-    // CORS preflight
-    if (request.method === "OPTIONS") {
-      return new Response(null, {
-        status: 204,
-        headers: corsHeaders(),
-      });
-    }
-
-    const url = new URL(request.url);
-    if (request.method === "GET" && url.pathname === "/api/analytics/export") {
-      return handleManualExport(request, env);
-    }
-
-    // Feature flag: reject all events when disabled
-    if (env.ANALYTICS_DISABLED === "1") {
-      return new Response(null, { status: 503, headers: corsHeaders() });
-    }
-
-    // Only POST
-    if (request.method !== "POST") {
-      return new Response(null, { status: 405, headers: corsHeaders() });
-    }
-
-    // Origin check
-    const origin = request.headers.get("Origin");
-    if (origin && origin !== ALLOWED_ORIGIN) {
-      return new Response(null, { status: 403, headers: corsHeaders() });
-    }
-
-    // Content-Type check
-    const contentType = request.headers.get("Content-Type");
-    if (!contentType || !contentType.includes("application/json")) {
-      return new Response(null, { status: 415, headers: corsHeaders() });
-    }
-
-    // Body size check (early exit before reading body)
-    const contentLength = request.headers.get("Content-Length");
-    if (contentLength && parseInt(contentLength, 10) > MAX_BODY_SIZE) {
-      return new Response(null, { status: 413, headers: corsHeaders() });
-    }
-
-    // Read body (bounded: at most MAX_BODY_SIZE bytes retained/read on)
-    let body: unknown;
-    const bounded = await readBoundedBodyText(request);
-    if (!bounded.ok) {
-      return new Response(null, {
-        status: bounded.status,
-        headers: corsHeaders(),
-      });
-    }
-    try {
-      body = JSON.parse(bounded.text);
-    } catch {
-      return new Response(null, { status: 400, headers: corsHeaders() });
-    }
-
-    // Validate payload
-    const validation = validateEventPayload(body);
-    if (!validation.valid || !validation.event || !validation.params) {
-      return new Response(null, { status: 422, headers: corsHeaders() });
-    }
-
-    // Rate limit (best-effort IP extraction)
-    const ip =
-      request.headers.get("CF-Connecting-IP") ??
-      request.headers.get("X-Forwarded-For")?.split(",")[0]?.trim() ??
-      "unknown";
-
-    const allowed = await checkRateLimit(env.ANALYTICS_TELEMETRY, ip);
-    if (!allowed) {
-      return new Response(null, { status: 429, headers: corsHeaders() });
-    }
-
-    // Ingest — increment KV counters
-    const timeZone = env.EXPORT_TIMEZONE ?? "America/Santiago";
-    await ingestEvent(
-      env.ANALYTICS_TELEMETRY,
-      validation.event,
-      validation.params,
-      timeZone,
-      env.COUNTER_KEY_CUTOVER_AT,
-    );
-
-    // 202 Accepted — no echo of the payload
-    return new Response(null, { status: 202, headers: corsHeaders() });
-  },
-
-  /**
-   * Cron trigger: weekly export of aggregated counters to R2.
-   *
-   * Runs every Monday at 07:57 UTC (madrugada en Chile). Aggregates all KV
-   * counters for the previous complete ISO week, builds a strict-schema JSON
-   * artifact, validates it, and persists it to R2 at:
-   *
-   *   analytics-exports/YYYY-Www.json
-   *
-   * The artifact schema matches the contract in the ADR and plan §7:
-   *   { source, schemaVersion, week, window, data: [{ date, event_name,
-   *     calculator_id, dimensions, count }] }
-   */
-  async scheduled(_event: ScheduledEvent, env: Env): Promise<void> {
-    const tz = env.EXPORT_TIMEZONE ?? "America/Santiago";
-
-    // Compute the previous complete ISO week.
-    const week = previousCompleteISOWeekInTz(tz);
-    log("info", "export_trigger", {
-      message: `[analytics-export] trigger=cron week=${week} tz=${tz}`,
-    });
-
-    try {
-      await runExport(env, week);
-    } catch (error) {
-      const message = error instanceof Error ? error.message : String(error);
-      log("error", "export_failed", {
-        message: `[analytics-export] export failed for week=${week}: ${message}`,
-      });
-      throw error instanceof Error ? error : new Error(message);
-    }
-  },
-};
+// Legacy v1 fetch/scheduled entrypoint removed with the v2 migration (#475):
+// the live entrypoint is ./worker-v2 (native rate limiting + SQLite-backed
+// Durable Object counters). Its behavior is covered by
+// tests/workers/analytics-collector/root-cause.test.ts.
