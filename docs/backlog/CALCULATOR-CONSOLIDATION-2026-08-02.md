@@ -16,10 +16,16 @@ first-party W30–W32) y el inventario funcional de cada página.
 
 **Hallazgo principal:** los datos W32 **matizan** la clasificación del memo:
 
-- **APV** — la única de las 5 con actividad real: 3 clics GSC, 37 views / 17
-  starts / 14 completes (W32), en ascenso (2→8→14 completes en 3 semanas). La
-  clasificación "activación baja" era cierta para W30 pero **no se sostiene en
-  W32**. Recomendación preliminar: **mantener** (re-evaluar), no consolidar.
+- **APV** — a W32 era la única de las 5 con actividad real: 3 clics GSC, 37
+  views / 17 starts / 14 completes (W32), en ascenso entonces (2→8→14
+  completes en 3 semanas). Esa serie W30–W32 es histórica y ya no representa el estado
+  actual: W34/W35 cayeron a 19,0%/14,3% de completitud, bajo el piso HALT
+  de 50% ("Resultado / inicio"), con causa no identificada según el
+  diagnóstico 086
+  (`docs/backlog/DIAGNOSTICO-apv-completion-2026-09-04.md`). La
+  clasificación "activación baja" era cierta para W30 pero **no se
+  sostenía en W32**. Recomendación preliminar: **mantener** (re-evaluar),
+  no consolidar — el veredicto no cambia, solo su cita (ver §3.1).
 - **Comisiones AFP, Boleta de honorarios, Gratificación legal, Tarjeta de
   crédito** — datos consistentes con "activación baja": ≤1 click GSC W32,
   ≤10 views y ≤5 completes por semana. Recomendación preliminar: consolidar o
@@ -59,7 +65,7 @@ demostrada vía GSC en W32.
 
 | Calculadora | W30 v/s/c | W31 v/s/c | W32 v/s/c | Tendencia |
 |---|---|---|---|---|
-| apv | 35/9/2 | 27/12/8 | 37/17/14 | **ascenso real** (completes 2→8→14) |
+| apv | 35/9/2 | 27/12/8 | 37/17/14 | 2→8→14 en W30–W32 (serie histórica; estado actual en §3.1) |
 | comisiones-afp | 6/0/0 | 10/3/3 | 8/1/1 | marginal |
 | boleta-honorarios-liquido | 1/0/0 | 3/0/0 | 4/2/2 | marginal |
 | gratificacion-legal | 14/4/3 | 4/3/3 | 6/5/3 | marginal |
@@ -154,14 +160,23 @@ Fuente: `output/operations/data-signals/analytics/{W30,W31,W32}.json`
 
 | Opción | Esfuerzo | Riesgo | Trade-off |
 |---|---|---|---|
-| Mantener tal cual | — | LOW | Los datos W32 contradicen "activación baja": 14 completes/semana (82% complete/start) y 16 superficies que enlazan. Costo de mantenimiento real: UTM del snapshot + comisiones AFP. |
+| Mantener tal cual | — | LOW | A W32 los datos contradecían "activación baja": 14 completes/semana (82% complete/start) y 16 superficies que enlazan. Esa serie es histórica (ver Dato decisivo). Costo de mantenimiento real: UTM del snapshot + comisiones AFP. |
 | Integrar en simulador-jubilacion + redirigir | M | MED | Diluye un JTBD distinto (comparación A/B vs. proyección de pensión); pierde 16 enlaces entrantes y el momentum W32. |
 | Noindex + mantener | S | LOW | Esconde una página con uso real creciente. |
 | Convertir en dato comparativo | M | MED | Regresión del único caso de uso con completes reales. |
 
-**Dato decisivo**: APV es la única de las 5 que **no** cumple el criterio de
-consolidación del memo ("activación baja") en la semana más reciente. El
-veredicto del memo se basó en W30; W32 muestra lo contrario.
+**Dato decisivo (cita actualizada 2026-09-15 — no es un cambio de
+decisión)**: a W32, APV era la única de las 5 que **no** cumplía el criterio
+de consolidación del memo ("activación baja"): 14 completes/semana (82%
+complete/start). Esa serie W30–W32 ya no representa el estado actual:
+W34/W35 muestran 19,0%/14,3% de completitud, bajo el piso HALT de 50% de
+"Resultado / inicio", con causa no identificada según el diagnóstico 086
+(`docs/backlog/DIAGNOSTICO-apv-completion-2026-09-04.md`). El veredicto
+MANTENER sigue vigente como decisión de no consolidar — el diagnóstico no
+encontró defecto de producto que justifique retirar la calculadora — pero
+su argumento citado pasa a ser W34/W35 + 086, no el ascenso W30–W32.
+Cualquier decisión futura de mantener/consolidar APV requiere datos
+posteriores a W35.
 
 ### 3.2 Comisiones AFP — recomendación: **CONVERTIR EN DATO COMPARATIVO**
 
@@ -236,7 +251,7 @@ propio despacho; este dossier es el insumo, no la orden.
 
 | URL | Datos W32 | Recomendación preliminar | Evidencia que la cambiaría |
 |---|---|---|---|
-| APV | 3 clics, 37v/17s/14c | **MANTENER** (re-evaluar en 2 semanas) | Si completes caen a <5/semana en W33–W34 |
+| APV | W34 19,0% / W35 14,3% (HALT; antes: 37v/17s/14c en W32) | **MANTENER** (cita actualizada, ver §3.1) | Solo con datos posteriores a W35 |
 | Comisiones AFP | 1 click, 8v/1s/1c | **Convertir en dato comparativo** (post/hub) o noindex | Si la query "comisión más barata" sube |
 | Boleta honorarios | 0 clics, 4v/2s/2c | **Consolidar en operacion-renta** o noindex | Si la intención mensual se demuestra en queries |
 | Gratificación legal | 0 clics, 6v/5s/3c | **Consolidar en sueldo-liquido** | Si el post hermano gana tráfico |
