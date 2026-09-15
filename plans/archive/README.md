@@ -115,6 +115,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [109](109-onboarding-env-docs.md) | Alinear versiones onboarding (pnpm 11.7.0/Astro 7) + tablas env + bootstrap en dos etapas + pip-audit venv (solo docs, 2 commits) | 2026-09-14 | sí (merge `acb0f331`; commits `d9350b14` + `c52ddfde`) |
 | [110](110-worker-typecheck-logging.md) | Gates `worker:*:typecheck` + `check:workers` en `check:ci`/CI + envelope JSON compartido en analytics-collector (16 sitios, texto legado verbatim) + ejemplos de tail (2 commits) | 2026-09-14 | sí (merge `e78b02b8`; 2 commits gate→envelope) |
 | [112](112-apv-error-spike.md) | Spike: diseño de instrumentación mínima de errores APV (E1–E5, taxonomía enum existente, progreso propuesto no-decidido, checklist privacidad, handoff tests) + caveat unemitted en diccionario (solo docs) | 2026-09-14 | sí (merge `6e45e750`; commit `fb4450ae`) |
+| [113](113-gate-d-titular-citation.md) | Rutina de captura Gate-D + taxonomía titular en tres vías (`INPUT_REQUIRED`≠`WATCH`, vía `SIN REGISTRO`) + cita APV a W34/W35 HALT con veredicto intacto + 2 tests mapping | 2026-09-14 | sí (merge `04ccef30`; commit `d4d5e273`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 

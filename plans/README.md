@@ -1,6 +1,6 @@
 # Implementation Plans
 
-## Auditoría profunda 2026-09-14 — planes 097–113 (TODO)
+## Auditoría profunda 2026-09-14 — planes 097–113 (completa salvo 111 BLOCKED)
 
 Sobre `0e506a8b`, selección del mantenedor: **«All the net-positive ones»**.
 17 planes bundled (cada uno cubre 1–4 hallazgos co-ubicados del mismo área para
@@ -17,7 +17,6 @@ citado (los extractos vienen de lecturas propias, no de reportes delegados).
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|-------|----------|--------|------------|--------|
 | 111 | [vehicle decision spike](111-vehicle-decision-spike.md) | P2 | S | — | BLOCKED (no complete post-083 week yet — W37 export truncated to 5 dates; re-run on a complete 7-day week) |
-| 113 | [gate-d + titular + citation](113-gate-d-titular-citation.md) | P3 | S | — | TODO |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
 
@@ -1341,6 +1340,7 @@ de la séptima auditoría 057–081, ya completa — 052 fue cerrado con PR #420
 | [109](archive/109-onboarding-env-docs.md) | Fix onboarding versions and document the env + bootstrap contract | **DONE 2026-09-14**; merge `acb0f331` (commits `d9350b14` + `c52ddfde`; `check:ci` exit 0 pre-merge, `check:docs` + prettier + stale-grep verdes post-merge). Ejecución delegada + revisión adversarial (APPROVE tras 1 ronda REVISE de una palabra). Sin drift. Hallazgo de ejecución: 4º sitio stale (`PROJECT_CONTEXT_MASTER.md:180`) incluido; `AGENT_ENTRYPOINTS.md` verificado sin versiones (intacto). Sin valores de secretos (revisado: solo nombres). Excerpts reconciliados a `7d82ccbf` antes del despacho |
 | [110](archive/110-worker-typecheck-logging.md) | Add worker typecheck gates and unify analytics logging | **DONE 2026-09-14**; merge `e78b02b8` (2 commits gate→envelope; `check:ci` exit 0 pre-merge —incluye el nuevo gate—, `check:workers` + 159 tests verdes post-merge). Ejecución delegada + revisión adversarial (APPROVE sin rondas REVISE). Drift = trabajo landed 097–105, inventariado (16 sitios ad-hoc). Decisiones en mérito: helper `log()` único exportado de `index.ts` (no duplicado); mensajes legado verbatim como `message` (4 tests de logs sin tocar); postura de privacidad intacta (IP/key logging sin cambios); README con ejemplos verificados. Excerpts reconciliados a `206016cb` antes del despacho |
 | [112](archive/112-apv-error-spike.md) | Spike APV error instrumentation + annotate the event dictionary | **DONE 2026-09-14**; merge `6e45e750` (commit `fb4450ae`, spike + dictionary row; `check:ci` exit 0 pre-merge, `check:docs` + prettier verdes post-merge). Ejecución delegada + revisión adversarial (APPROVE sin rondas REVISE). Sin drift salvo contrato vía 100 (entrada `calculator_error` intacta, cero emisores re-verificado). Decisiones en mérito: progreso como propuesta no-decidida (no bifurca taxonomía); quiebre de medición pre/post-100 nombrado; fila diccionario una sola; doc con `git add -f` (backlog gitignored, sin excepción `APV-*` — follow-up sugerido). Excerpts reconciliados a `ab44d813` antes del despacho |
+| [113](archive/113-gate-d-titular-citation.md) | Define the Gate-D capture routine, titular semantics, and refresh the APV citation | **DONE 2026-09-14**; merge `04ccef30` (commit `d4d5e273`, docs + mapping + 2 tests; `check:ci` exit 0 pre-merge, 11/11 + `check:docs` verdes post-merge). Ejecución delegada + revisión adversarial (APPROVE sin rondas REVISE). Sin drift salvo Sets del plan 100 (mapeo titular intacto, shift +14). Decisiones en mérito: split titular en tres vías del propio plan (sin operator call pendiente); SIN REGISTRO sin código nuevo (derivación preexistente); cita APV solo-cita con veredicto intacto; runbook stale-line intacta (out of scope, flagged). Excerpts reconciliados a `ef734707` antes del despacho |
 
 Movido a [`plans/archive/`](archive/README.md).
 

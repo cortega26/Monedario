@@ -7,8 +7,11 @@
 > in `plans/README.md` — unless a reviewer dispatched you and told you they
 > maintain the index.
 >
-> **Drift check (run first)**: `git diff --stat 0e506a8b..HEAD -- docs/operations/UTILITY_LED_EXPERIMENT_REGISTRY.md docs/operations/templates/utility-led-weekly-ops.json scripts/build-weekly-search-report.mjs docs/backlog/CALCULATOR-CONSOLIDATION-2026-08-02.md docs/backlog/JOURNEY-THESIS-VEHICLE-2026-09-04.md plans/archive/084-utility-led-decision-readiness.md`
-> On mismatch with "Current state", STOP.
+> **Drift check (run first)**: `git diff --stat ef734707..HEAD -- docs/operations/UTILITY_LED_EXPERIMENT_REGISTRY.md docs/operations/templates/utility-led-weekly-ops.json scripts/build-weekly-search-report.mjs docs/backlog/CALCULATOR-CONSOLIDATION-2026-08-02.md docs/backlog/JOURNEY-THESIS-VEHICLE-2026-09-04.md plans/archive/084-utility-led-decision-readiness.md`
+> On mismatch with "Current state", STOP. (Reconciled base: the `0e506a8b`
+> check showed exactly one delta — plan-100's `ANALYTICS_EVENT_NAMES` Sets
+> addition (`:36-47`, +14 lines, far from the titular mapping). The titular
+> collapse shifted +14 lines but is logic-identical.)
 
 ## Status
 
@@ -18,6 +21,15 @@
 - **Depends on**: none (docs/wording + test-covered mapping; do not reopen 084 implementation)
 - **Category**: docs
 - **Planned at**: commit `0e506a8b`, 2026-09-14
+- **Reconciled at**: commit `ef734707`, 2026-09-15 — registry Gate-D
+  block + SIN REGISTRO rule, template null defaults, APV ascent
+  sentences + MANTENER verdict, diagnostic update section, sufficiency
+  suite (12 its) all re-read live and confirmed; titular mapping
+  re-read at its shifted location (below); RULING on the STOP clause:
+  the desired three-way split IS fully specified in this plan's own
+  text (Step 1 + vocabulary + done criteria) — no operator call is
+  missing. STOP applies only if implementation reveals a need beyond
+  it (a fourth titular state or consumer-specific variants).
 - **Issue**: —
 
 ## Why this matters
@@ -37,7 +49,7 @@ Three docs-only corrections unblock the final weeks' stop/expand calls.
 
 ## Current state
 
-Facts, inlined (verified by reading):
+Excerpts as of `ef734707` (re-read; only the generator file moved, via landed plan 100):
 
 - Registry: `docs/operations/UTILITY_LED_EXPERIMENT_REGISTRY.md:34-43,63-67`
   (Gate-D thresholds + `Gate D: SIN REGISTRO` on nulls).
@@ -45,8 +57,14 @@ Facts, inlined (verified by reading):
   generator `scripts/build-weekly-search-report.mjs:248,1435` (null defaults).
 - Reconciliation (`plans/RECONCILIATION-2026-09-12.md:62-67`): last local ops
   file W35, all three null, no W36 scorecard.
-- Titular: `scripts/build-weekly-search-report.mjs:1839-1847` maps
-  `INPUT_REQUIRED` → `WATCH`; `plans/archive/084-utility-led-decision-readiness.md:373`
+- Titular: `scripts/build-weekly-search-report.mjs:1853-1862` maps
+  `INPUT_REQUIRED` → `WATCH` (shifted +14 from the planned `:1839-1847` by
+  plan-100's Sets addition; logic identical):
+  `!analyticsJson || HALT → HALT`; `INPUT_REQUIRED || WATCH ||
+  error-rate>10% → WATCH`; else `GREEN`. Target split (specified by this
+  plan, no operator call missing): `INPUT_REQUIRED` → distinct
+  `INPUT_REQUIRED` headline; breach stays `WATCH`; nulls/missing ops →
+  `SIN REGISTRO` path. `plans/archive/084-utility-led-decision-readiness.md:373`
   records the collapse as verified and out-of-scope.
 - APV dossier: `docs/backlog/CALCULATOR-CONSOLIDATION-2026-08-02.md:20,62,69,153-157`
   (MANTENER on W32 ascent); `docs/backlog/DIAGNOSTICO-apv-completion-2026-09-04.md:262-276`
