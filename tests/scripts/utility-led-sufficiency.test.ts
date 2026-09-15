@@ -339,3 +339,98 @@ describe("weekly scorecard: Gate D sustainability capture", () => {
     expect(json.utilityLed.operations.status).toBe("GREEN");
   });
 });
+
+describe("weekly scorecard: titular taxonomy (plan 113)", () => {
+  function makeLowErrorAnalytics(analyticsDir: string, week: string) {
+    // Starts altos sin errores: la tasa de error (0/500) no dispara el
+    // WATCH de brecha, así el titular solo refleja el estado de Gate D.
+    makeAnalyticsJson(analyticsDir, week, [
+      { date: "2026-08-25", event_name: "calculator_view", calculator_slug: "tool-a", dimensions: "", count: 1000 },
+      { date: "2026-08-25", event_name: "calculator_start", calculator_slug: "tool-a", dimensions: "", count: 500 },
+      { date: "2026-08-25", event_name: "calculator_complete", calculator_slug: "tool-a", dimensions: "", count: 100 },
+    ]);
+  }
+
+  function writeOpsFile(inputDir: string, week: string, fields: object) {
+    mkdirSync(inputDir, { recursive: true });
+    writeFileSync(
+      path.join(inputDir, "utility-led-ops.json"),
+      JSON.stringify(
+        {
+          schemaVersion: 1,
+          week,
+          weeklyHours: null,
+          weeklyCostClp: null,
+          tokenUsage: null,
+          burnoutLevel1To5: null,
+          qualityIncidents: [],
+          learningSignal: null,
+          reputationSignal: null,
+          maintenanceTasks: [],
+          blockers: [],
+          revenueClpOptional: null,
+          note: "Ingresos cero no son fallo; la sostenibilidad es el gate de continuidad.",
+          ...fields,
+        },
+        null,
+        2
+      ) + "\n",
+      "utf8"
+    );
+  }
+
+  function runScorecardWithAnalytics(root: string, week: string) {
+    const inputDir = path.join(root, week);
+    makeMinimalBundle(inputDir);
+    const analyticsDir = path.join(root, "analytics");
+    makeLowErrorAnalytics(analyticsDir, week);
+    const watchlistPath = makeWatchlist(root);
+    const markdownOut = path.join(inputDir, "scorecard.md");
+    const jsonOut = path.join(inputDir, "scorecard.json");
+    const result = runScript([
+      "--input", inputDir,
+      "--watchlist", watchlistPath,
+      "--out", markdownOut,
+      "--json-out", jsonOut,
+      "--analytics-json-dir", analyticsDir,
+    ]);
+    expect(result.status).toBe(0);
+    return {
+      markdown: readFileSync(markdownOut, "utf8"),
+      json: JSON.parse(readFileSync(jsonOut, "utf8")),
+    };
+  }
+
+  it("prints a distinct INPUT_REQUIRED titular (not breach-WATCH) when ops fields are null", () => {
+    const root = createTempRoot();
+    const week = "2026-W35";
+    writeOpsFile(path.join(root, week), week, {});
+    const { markdown, json } = runScorecardWithAnalytics(root, week);
+
+    expect(json.utilityLed.operations.status).toBe("INPUT_REQUIRED");
+    // El titular ya no colapsa el dato pendiente en el WATCH de brecha.
+    expect(json.utilityLed.status).toBe("INPUT_REQUIRED");
+    expect(json.utilityLed.status).not.toBe("WATCH");
+    expect(markdown).toContain("Status: **INPUT_REQUIRED**");
+    // Los nulos siguen el camino SIN REGISTRO del Gate D.
+    expect(markdown).toContain("Gate D: SIN REGISTRO");
+  });
+
+  it("keeps the breach-WATCH titular when ops values breach thresholds with analytics present", () => {
+    const root = createTempRoot();
+    const week = "2026-W35";
+    // 8 horas supera el umbral WATCH (>6) con los tres campos completos.
+    writeOpsFile(path.join(root, week), week, {
+      weeklyHours: 8,
+      weeklyCostClp: 12000,
+      burnoutLevel1To5: 2,
+    });
+    const { markdown, json } = runScorecardWithAnalytics(root, week);
+
+    expect(json.utilityLed.operations.status).toBe("WATCH");
+    expect(json.utilityLed.status).toBe("WATCH");
+    expect(json.utilityLed.status).not.toBe("INPUT_REQUIRED");
+    expect(markdown).toContain("Status: **WATCH**");
+    expect(markdown).not.toContain("SIN REGISTRO");
+  });
+});

@@ -65,3 +65,34 @@ scorecard imprime `Gate D: SIN REGISTRO` en vez de omitir la sección en
 silencio o de mostrar un estado que se confunda con GREEN/WATCH/HALT. No se
 deben inventar valores retroactivos para semanas pasadas: dejar `null` y
 reportarlo es el comportamiento correcto.
+
+### Rutina de captura semanal (Gate D)
+
+- Responsable: el operador que corre el ritual semanal
+  (`docs/operations/runbooks/weekly-search-performance-ritual.md`, inputs
+  §4). El workflow programado solo inicializa el bundle; los valores los
+  completa una persona.
+- Cadencia: cada semana, en el mismo bloque de trabajo que los exports de
+  GSC/analytics y antes de decidir expansión. El archivo vive en el bundle
+  semanal (`output/operations/weekly-search-performance/<semana>/`) y nace
+  con los tres campos en `null` desde la plantilla
+  (`docs/operations/templates/utility-led-weekly-ops.json`, vía `--init`).
+- Qué obliga cada `null`: cualquiera de los tres en `null` deja el Gate D
+  en `SIN REGISTRO` y bloquea la decisión de expansión hasta completarlo.
+  Los `null` históricos se conservan: jamás se rellenan semanas pasadas.
+
+### Taxonomía del titular (`utilityLed.status`)
+
+El titular distingue tres situaciones que antes colapsaban en un solo
+`WATCH`; cada una obliga algo distinto y la consume el operador en la
+llamada semanal de parar/expandir (ventana hasta 2026-11-02):
+
+| Titular | Cuándo | Qué obliga al lector |
+|---|---|---|
+| `INPUT_REQUIRED` | falta el archivo o alguno de los tres campos sigue en `null` | completar `utility-led-ops.json` antes de decidir expansión; no es una brecha, es un dato pendiente |
+| `WATCH` (brecha) | valores presentes pero sobre umbral (horas, costo, agotamiento) o tasa de error >10% | revisar carga/presupuesto/funnel antes de expandir |
+| `HALT` / `GREEN` | incidente crítico o analytics ausente / todo dentro de umbral | sin cambios: detener expansión / seguir igual |
+
+`SIN REGISTRO` no es un valor del titular: es la línea del Gate D que se
+imprime en la sección operativa cuando el estado de operaciones es
+`INPUT_REQUIRED`, y el titular muestra `INPUT_REQUIRED` en ese caso.

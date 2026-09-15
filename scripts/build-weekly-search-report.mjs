@@ -1853,12 +1853,13 @@ function buildSummary({ watchlist, indexation, pageRows, queryRows, analytics, a
   const utilityStatus =
     !analyticsJson || utilityOps.status === "HALT"
       ? "HALT"
-      : utilityOps.status === "INPUT_REQUIRED" ||
-          utilityOps.status === "WATCH" ||
-          (analyticsJson.totals.starts > 0 &&
-            analyticsJson.totals.errors / analyticsJson.totals.starts > 0.1)
-        ? "WATCH"
-        : "GREEN";
+      : utilityOps.status === "INPUT_REQUIRED"
+        ? "INPUT_REQUIRED"
+        : utilityOps.status === "WATCH" ||
+            (analyticsJson.totals.starts > 0 &&
+              analyticsJson.totals.errors / analyticsJson.totals.starts > 0.1)
+          ? "WATCH"
+          : "GREEN";
   const utilityActions = (
     !analyticsJson
       ? ["Restaurar o validar el export first-party antes de interpretar el funnel."]
