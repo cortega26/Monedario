@@ -46,6 +46,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | Refresco y consolidación contenido | `PLAN-content-refresh-consolidation-2026-09-16.md` | TODO — sign-off owner; lote 0 mergeado (PR #423), lotes 1–5 encolables |
 | Reevaluación monetización | `PLAN-monetization-reevaluation-2026-09-16.md` | TODO — sign-off owner; evidencia + discovery + ADR borrador, sin implementar |
 | Evolución visual/UX | `PLAN-ux-evolution-cta-2026-09-16.md` | TODO — sign-off owner; slices S1–S4, sin rebrand |
+| Integridad medición (Sprint 0 adaptado) | `PLAN-measurement-integrity-2026-09-16.md` | TODO — sign-off owner; pre-requisito panel F1, sin GA4 ni trackers |
 
 ### Bloqueado — requiere acción humana
 
@@ -107,6 +108,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | `PLAN-content-refresh-consolidation-2026-09-16.md` | **TODO**; lotes YMYL con pipeline + ownership, tras firma lote 0 |
 | `PLAN-monetization-reevaluation-2026-09-16.md` | **TODO**; evidencia funnel + discovery B2B + ADR borrador, nada comercial sin gate |
 | `PLAN-ux-evolution-cta-2026-09-16.md` | **TODO**; slices S1–S4 evolución, LHCI/axe sin regresión |
+| `PLAN-measurement-integrity-2026-09-16.md` | **TODO**; auditoría + registry + metodología, antes de panel F1 |
 | `PHASE_2_DATA_SIGNALS.md` | Parcialmente completado; DATA3a..3c bloqueado |
 | `HERO_IMAGE_SYSTEM_REMEDIATION_2026-04-30.md` | Pendiente remediación manual |
 | `PLAN-heroimage-prompt-repair-2026-05-01.md` | Código completo; assets manuales pendientes |
