@@ -2,7 +2,8 @@
 
 **Plan:** `docs/backlog/PLAN-content-refresh-consolidation-2026-09-16.md` · fase F0
 (cola + ownership, read-only).
-**Estado F0:** TODO — pendiente de sign-off del owner (Carlos Ortega).
+**Estado F0:** FIRMADO por el owner 2026-09-16. Lotes 1–5
+encolados para F1.
 **Alcance de este documento:** SOLO cola. No se tocó contenido, frontmatter,
 config, artefactos ni código.
 

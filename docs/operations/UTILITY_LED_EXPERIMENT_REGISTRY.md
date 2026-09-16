@@ -31,7 +31,7 @@ GREEN de la fila (o el umbral HALT cuando la fila lo define en esos términos).
 
 **Consecuencia**: denominador insuficiente se reporta como `SIN DATOS SUFICIENTES`, nunca como HALT ni como 0%. Un cero con denominador chico no es evidencia de ausencia de demanda.
 
-### Umbrales F0 — panel post-resultado (plan 2026-09-16, TODO pendiente de firma)
+### Umbrales F0 — panel post-resultado (plan 2026-09-16, FIRMADO 2026-09-16)
 
 `P(0) = (1 − p)^n`; `n_min = ceil( ln(0,05) / ln(1 − p) )` al 95% de
 confianza. Sin veredicto bajo `n_min`: `SIN DATOS SUFICIENTES`, nunca
@@ -51,12 +51,13 @@ objetivo F2. ² Éxito = subida sostenida 4 semanas comparables, sin
 veredicto puntual. W36: 0,73% Wilson 95% [0,37%, 1,44%] (referencia, no
 veredicto).
 
-Supuesto share: p = 1% propuesto sin baseline (cero eventos share en
-W36); la regla +50% vs base rige solo tras medir base con n ≥ `n_min`.
+Supuesto share: p = 1% aceptado como interino el 2026-09-16 (cero
+eventos share en W36); la regla +50% vs base rige solo tras medir base
+con n ≥ `n_min`.
 W37 (2026-09-07→09-13) truncada a 5 días: no usar como denominador.
-Discrepancia a firmar: el plan pide `next_step` ≥3% con n≥149, pero la
-fórmula da `n_min` = 99 al 3% (149 corresponde al 2%); vale el cálculo
-salvo firma en contra.
+Discrepancia resuelta 2026-09-16 (sign-off owner): el plan pedía
+`next_step` ≥3% con n≥149, pero la fórmula da `n_min` = 99 al 3%
+(149 corresponde al 2%); **vale el cálculo (99)**.
 
 ## Gate de sostenibilidad semanal
 

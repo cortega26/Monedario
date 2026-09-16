@@ -1,7 +1,8 @@
 # PLAN — Integridad de medición first-party (Sprint 0 adaptado,
 sin GA4)
 
-**Estado:** TODO — pendiente de sign-off del owner
+**Estado:** FIRMADO 2026-09-16 — F0+F1 autorizados (pre-requisito
+de panel F1)
 **Fecha:** 2026-09-16
 **Owner de decisión:** Carlos Ortega
 **Prioridad:** P0 (pre-requisito de panel F1) · **Esfuerzo:** S/M ·

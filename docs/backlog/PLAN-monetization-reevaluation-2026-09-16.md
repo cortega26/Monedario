@@ -1,7 +1,9 @@
 # PLAN — Reevaluación de monetización (evidencia + discovery, sin
 cambiar la promesa aún)
 
-**Estado:** TODO — pendiente de sign-off del owner
+**Estado:** FIRMADO 2026-09-16 — F0/F1 (medición) autorizados;
+F2 discovery B2B autorizado en paralelo; F3/F4 bloqueados hasta
+revisión 2026-11-02
 **Fecha:** 2026-09-16
 **Owner de decisión:** Carlos Ortega
 **Prioridad:** P1 (negocio) · **Esfuerzo:** S (evidencia) + S (discovery)

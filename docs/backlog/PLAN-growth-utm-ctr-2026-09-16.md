@@ -1,6 +1,6 @@
 # PLAN — UTM/UF CTR fix (traffic P0, inside FOCO)
 
-**Estado:** TODO — pendiente de sign-off del owner
+**Estado:** F0 FIRMADO 2026-09-16 — F1 autorizado
 **Fecha:** 2026-09-16
 **Owner de decisión:** Carlos Ortega
 **Prioridad:** P0 (tráfico) · **Esfuerzo:** S/M · **Riesgo:** MED (YMYL +
@@ -154,3 +154,4 @@ Revert del PR de snippet/enlace correspondiente; re-correr
 
 - 2026-09-16 — Plan creado (TODO). Pendiente sign-off y baseline firmado.
 - 2026-09-16 — F0 baseline registrado (sin commit, por instrucción): `docs/reports/CTR-BASELINE-W36-2026-09-16.md` (W36 2026-08-31→09-06, 7 días verificados; W37 excluida por truncada 5 días). UTM: 1.484 clics / 170.074 impr / CTR 0,87% / pos 7,25; `utm` 1,78% @ 6,73, `utm hoy` 0,95% @ 6,66. UF: 6 clics / 24.831 impr / CTR 0,02% / pos 9,69; funnel UTM 1280/856/842, UF 169/144/141. Sin ventana OBS/PR activa sobre UTM/UF (STOP no triggered). F0 sigue TODO — firma del owner pendiente.
+- 2026-09-16 — Sign-off owner: F0 FIRMADO (baseline W36 congela como comparación para F5). F1 autorizado.

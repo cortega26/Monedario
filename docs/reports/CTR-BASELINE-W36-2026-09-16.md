@@ -1,7 +1,8 @@
 # CTR Baseline W36 — UTM/UF (registrado F0, pendiente sign-off owner)
 
 **Plan:** `docs/backlog/PLAN-growth-utm-ctr-2026-09-16.md` (fase F0)
-**Estado:** TODO — baseline registrado, pendiente de firma del owner (Carlos Ortega). F0 NO marcada completa.
+**Estado:** FIRMADO por el owner 2026-09-16. W36 congela como única
+semana de comparación para F5.
 **Fecha de registro:** 2026-09-16
 
 > W37 llegó truncada (5 días: 09-07→09-11) y NO se usa como baseline.

@@ -1,7 +1,8 @@
 # PLAN — Panel post-resultado: siguiente paso, fuente, compartir y apoyo
 (Conversión + confianza, inside FOCO)
 
-**Estado:** TODO — pendiente de sign-off del owner
+**Estado:** F0 FIRMADO 2026-09-16 — F1 autorizado tras auditoría
+measurement-integrity F0 (pre-requisito de emisores)
 **Fecha:** 2026-09-16
 **Owner de decisión:** Carlos Ortega
 **Prioridad:** P0 (funnel) · **Esfuerzo:** M · **Riesgo:** MED (calculadora
@@ -140,7 +141,7 @@ STOP/HALT:
 | Métrica | Baseline W37 | Umbral |
 |---|---|---|
 | Entrega post-resultado / `complete` | 6,7–12,9% (UTM) | ≥60% |
-| `next_step_click/shown` | 1/157 (0,6%) | ≥3%, n≥149 |
+| `next_step_click/shown` | 1/157 (0,6%) | ≥3%, n≥99 (firmado 2026-09-16) |
 | `support_shown/sem` | 9 | visible post-`complete` en piloto |
 | `source_click/complete` | 3/633 | subida sostenida 4 sem |
 | `share_success/complete` | a fijar en F0 | +50% vs base |
@@ -162,3 +163,7 @@ agregados no requieren rollback.
   n semanal W36 (última semana completa; W37 truncada a 5 días, no
   usada). Firma del owner pendiente; discrepancia a firmar: plan pide
   `next_step` n≥149 pero la fórmula da 99 al 3%.
+- 2026-09-16 — Sign-off owner: F0 FIRMADO. Discrepancia resuelta a
+  favor del cálculo (`next_step n_min` = 99 @3%); supuesto share p=1%
+  aceptado como interino. F1 autorizado tras auditoría
+  measurement-integrity F0.

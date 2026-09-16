@@ -1,7 +1,7 @@
 # PLAN — Refresco y consolidación de contenido (sin URLs nuevas,
 hasta 2026-11-02)
 
-**Estado:** TODO — pendiente de sign-off del owner
+**Estado:** F0 FIRMADO 2026-09-16 — F1 (lote 1) autorizado
 **Fecha:** 2026-09-16
 **Owner de decisión:** Carlos Ortega
 **Prioridad:** P1 (calidad/contenido) · **Esfuerzo:** M (por lotes) ·

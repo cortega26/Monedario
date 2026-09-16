@@ -1,7 +1,8 @@
 # PLAN — Evolución visual/UX (sistema CTA + onboarding + discovery,
 sin rebrand)
 
-**Estado:** TODO — pendiente de sign-off del owner
+**Estado:** FIRMADO 2026-09-16 — S1 autorizado tras panel F2
+(coordinar CTAs, no duplicar)
 **Fecha:** 2026-09-16
 **Owner de decisión:** Carlos Ortega
 **Prioridad:** P1 (UX) · **Esfuerzo:** M (por slices) · **Riesgo:** MED
