@@ -205,3 +205,31 @@ Revert por fase; re-correr `test`, `check:boundaries`, `check:docs`,
   cross-check W36 (7/7 días): 22 IDs reales resuelven 22/22; buckets
   `calculator`/`unknown` documentados como esperados no-registry
   (fallback `worker-v2.ts:457`). Gate F1: PASS.
+- 2026-09-16 — F2 docs COMPLETO (pendiente de firma del owner):
+  `docs/operations/MEASUREMENT-COMPARISON-METHODOLOGY.md` (capas
+  L1–L5, cinco ratios diagnósticos con W36 trabajado incl. caso UF
+  2.350% como ejemplo canónico anti-embudo, doctrina "diagnóstico, no
+  conversión", regla 7/7, incidente W37) +
+  `docs/operations/DERIVED-METRICS-DEFINITIONS.md` (activación 68,3%,
+  completitud 93,8%, CTA-intent 4/117 con `n_min` 99, densidad de
+  intent 1,10% con denominador `complete` —desviación explícita: sin
+  identidad de usuario first-party por diseño). Gate F2: revisión
+  owner (doctrina, no código).
+- 2026-09-16 — F3 procedimiento registrado (pendiente de firma) +
+  ejecución parcial:
+  `docs/operations/ANALYTICS-VALIDATION-PROCEDURE.md` (pasos
+  view/start/complete/intent, uso del verifier 051, filas esperadas,
+  rollback-if-red). Ejecutado read-only: verifier `--help` exit 0,
+  forma W36 SHAPE OK (357 filas, 7/7, 0 malformadas), unitario del
+  verifier 33/33 verde; deploy vivo verificado en lectura (run
+  `34917907337` success 2026-09-15, cubre cron `30 5 * * MON` e
+  ingesta DO re-habilitada —sin pendientes de deploy). Diferido con
+  motivo (sin secretos/navegador en sesión): verifier vivo + e2e real
+  en preview (owner post-deploy). STOP triggers: ninguno.
+- 2026-09-16 — F4 reporte de cierre registrado (pendiente de firma):
+  `docs/reports/MEASUREMENT-INTEGRITY-REPORT-2026-09-16.md` (§15
+  adaptado, 14 puntos: F0 10/10 LIMPIO, 3 problemas contenidos,
+  arquitectura, 6 archivos docs cambiados por este plan, taxonomía v2,
+  registry 22/22, privacidad sin hallazgos, tests, config manual
+  restante, brechas, riesgos, 5 experimentos Sprint-1 propuestos no
+  implementados). Plan COMPLETO salvo partes vivas F3 diferidas.
