@@ -1,10 +1,12 @@
-Status: DRAFT — pending MathAuditAgent and ComplianceAgent review
-Role: DraftAgent (Muse Spark / OpenCode, sesion 2026-09-16)
+Status: DRAFT v2 — resolved with human verification 2026-09-16, pending compliance delta re-check
+Role: DraftAgent (Muse Spark / OpenCode, sesion 2026-09-16) + verifier resolutions owner 2026-09-16
 
 Slug: `informe-deudas-cmf-vs-dicom` · run `2026-09-16-pilot-01`
 Scope: refresh de exactitud/vigencia del articulo publicado. No toca
-frontmatter, slug, titulo ni codigo. Texto propuesto abajo; marcadores sustantivos: 12
-(3 menciones meta de la cadena en alcance/deferral/resumen no son marcadores).
+frontmatter, slug, titulo ni codigo. Texto propuesto abajo; marcadores sustantivos: 0
+(verificacion humana 2026-09-16 resolvio 12/12; 4 sub-items reducidos de
+alcance en vez de afirmados: alegacion procesal, canal exacto de denuncia,
+glosa literal de castigos, requisito "numero de documento").
 
 > **Fecha de corte visible (propuesta para el articulo):** Vigente al
 > 16 de septiembre de 2026. El Informe CMF se actualiza semanalmente con
@@ -37,12 +39,10 @@ las deudas de sus clientes y con esa informacion la CMF edita el **Estado
 de Deudores** y el **Informe de Deudas de Personas Naturales**.
 
 Muestra tus **deudas vigentes con el sistema financiero supervisado**: en
-general bancos y cooperativas TODO:SOURCE: confirmar alcance exacto de
-entidades reportantes (emisores de tarjetas, otras supervisadas) contra
-Manual SI D10/D27 o portal conocetudeuda. Incluye deudas directas y, como
-deudor indirecto, los avales y codeudas en que apareces TODO:SOURCE:
-confirmar glosa de secciones directas/indirectas/castigos contra fuente
-oficial.
+general bancos y cooperativas fiscalizadas por la CMF (CMF Educa). Incluye
+deudas directas (lo que debes) y, como deudor indirecto, los avales y
+codeudas en que apareces (CMF Educa). No se afirma glosa de "castigos" por
+falta de fuente literal verificada.
 
 Lo que **no** incluye: morosidades comerciales fuera del sistema
 supervisado, protestos por si solos, servicios basicos o deudas entre
@@ -59,7 +59,7 @@ personas.
 |---|---|---|---|
 | **Que es** | Registro oficial de deudas con el sistema financiero regulado | Registro de protestos de documentos | Producto comercial de empresa privada |
 | **Quien lo emite** | CMF (Estado) | Camara de Comercio de Santiago | Equifax (privada, no fiscalizada por CMF) |
-| **Costo** | Gratis TODO:SOURCE: confirmar "ilimitado" | Consulta gratuita minima por ley, resto pagado TODO:SOURCE: confirmar base legal exacta | Segun producto |
+| **Costo** | Gratis (CMF Educa; "ilimitado" sin respaldo: no se afirma) | Según modalidad en boletincomercial.cl (sin atribución legal verificada) | Segun producto |
 | **Acceso** | conocetudeuda.cmfchile.cl con ClaveUnica | boletincomercial.cl | equifax.cl |
 
 Ante disconformidad con Boletin o DICOM debes dirigirte a esas entidades;
@@ -72,56 +72,62 @@ no estan sujetas a fiscalizacion de la CMF (CMF Educa, cita literal).
 2. Autenticate con tu RUN y ClaveUnica (otorgada por el Registro Civil).
 3. Obtienes tu informe inmediatamente.
 
-Si no tienes ClaveUnica, obtenla con tu RUT y numero de documento TODO:SOURCE:
-confirmar requisitos vigentes de obtencion. Si consultass por un familiar
-fallecido, la via oficial es **CMF sin papel** con los documentos requeridos
-TODO:SOURCE: confirmar lista documental exacta (correccion: el articulo
-vigente dice "presencial en la CMF"; la fuente oficial indica CMF sin papel).
+Si no tienes ClaveUnica, obtenla con tu RUT en claveunica.gob.cl
+(requisito "numero de documento" no verificado: no se afirma). Si consultas
+por un familiar fallecido, la via oficial es **CMF sin papel**
+([tramite para herederos](https://www.cmfchile.cl/portal/principal/613/w3-article-95399.html),
+verificacion humana 2026-09-16; correccion sobre el articulo vigente, que
+dice "presencial en la CMF").
 
-> **Dato importante:** los datos pueden traer desfase respecto de la
-> operacion real: si pagaste o cerraste una deuda, no asumas correccion el
-> mismo dia TODO:SOURCE: confirmar magnitud del desfase ("10 y 20 días
-> hábiles" sin respaldo en fuente consultada; verificar en FAQ del portal).
+> **Dato importante:** el informe se actualiza semanalmente, con un desfase
+> de entre 10 y 20 días respecto de la fecha de la consulta (CMF,
+> verificacion humana 2026-09-16: es desfase del snapshot semanal, no plazo
+> de baja). Tras un pago rige la regla legal: el acreedor avisa dentro de 7
+> días hábiles y el registro se actualiza en los 3 días siguientes (Ley
+> 19.628, art. 19, verificacion humana 2026-09-16).
 
 ### Cuanto tiempo permanece una deuda
 
 **Informe CMF:** muestra el estado actual; pagada la deuda, deja de aparecer
 como activa. **Boletin:** el protesto permanece hasta su aclaracion (pago o
-acuerdo); el derecho a pedir la eliminacion acreditado el pago corresponde a
-la ley de borrado de antecedentes comerciales TODO:SOURCE: re-atribuir con
-articulo literal (candidata Ley 19.812 y/o cancelacion Ley 19.628; el
-articulo vigente lo atribuye a Ley 20.575, que segun ficha interna regula el
-principio de finalidad). **Dato laboral:** tu historial comercial solo puede
-usarse para evaluar solvencia crediticia; usarlo para filtrar empleos esta
-prohibido (Ley 20.575, principio de finalidad; cita BCN pendiente de
-verificacion manual).
+acuerdo); no se pueden seguir comunicando los datos de una obligacion
+despues de pagada o extinguida (Ley 19.628, art. 18, inc. 2.°, texto
+introducido por Ley 19.812, art. 1.° N°4; verificacion humana 2026-09-16 —
+corrige la atribucion a Ley 20.575 del articulo vigente, que regula solo
+finalidad). **Dato laboral:** tu historial comercial solo puede usarse para
+evaluar tu solvencia al contratar (Ley 20.575, art. 1, inc. 3.°,
+verificacion humana 2026-09-16); fuera de ese caso requiere tu
+autorizacion. No se afirma uso por arrendadores (sin fuente).
 
-**Prescripcion:** en general 5 años para obligaciones ordinarias (Codigo
-Civil, art. 2515) contados desde la ultima gestion de cobro o
-reconocimiento, y hay que alegarla ante el tribunal; no borra registros por
-si sola TODO:SOURCE: confirmar cita literal BCN y matiz ordinaria/ejecutiva.
+**Prescripcion:** en general 5 años para obligaciones ordinarias contados
+desde que la obligacion se hizo exigible (Codigo Civil, arts. 2514 y 2515,
+verificacion humana 2026-09-16); no borra registros por si sola. No se
+afirma el deber de alegarla (matiz procesal no verificado esta sesion).
 
 ### Que hacer si encuentras una deuda que no reconoces
 
 1. Anota institucion acreedora y producto.
 2. Pide a esa institucion el origen de la deuda.
 3. Si confirma error, exige correccion del reporte a la CMF; si no responde,
-   reclama ante la CMF (hub de reclamos verificado vivo 2026-09-16)
-   TODO:SOURCE: confirmar URL exacta del tramite de reclamo bancario.
-4. Si sospechas suplantacion, denuncia ante la policia TODO:SOURCE:
-   confirmar via OS-9/PDI y canal vigente.
+   reclama ante la CMF ([ingreso de reclamo ciudadano](https://www.cmfchile.cl/sitio/siac4/ingresoWebCiudadano.php),
+   verificacion humana 2026-09-16).
+4. Si sospechas suplantacion, haz la denuncia policial correspondiente
+   (canal exacto OS-9/PDI no verificado esta sesion: no se afirma sigla).
 
-Solo tu accedes a tu informe con tu ClaveUnica; un tercero requiere tu
-autorizacion TODO:SOURCE: confirmar regimen de mandato/autorizacion.
+Solo tu accedes a tu informe con tu ClaveUnica; los empleadores pueden
+usarlo solo para evaluar tu solvencia al contratar (Ley 20.575, art. 1,
+inc. 3.°); fuera de ese caso un tercero requiere tu autorizacion. No se
+afirma uso por arrendadores (sin fuente).
 
-## Vigilancia normativa (stub, sin cambios vigentes)
+## Vigilancia normativa (verificacion humana 2026-09-16)
 
-- Aprobado y no vigente a la fecha de corte: N/A — ninguna reforma
+- Ley 21.680 (Registro de Deuda Consolidada) vigente desde el 01-abr-2026;
+  el deudor accede a su propia informacion (art. 7). Boundary para el
+  lector: el RDC es un registro distinto al Informe CMF y no lo reemplaza.
+- Aprobado y no vigente a la fecha de corte: N/A — ninguna otra reforma
   verificada en este pass.
-- Vigencia legal pendiente: N/A. Aplicacion operativa pendiente: N/A.
-- Item de verificacion para auditores: existencia/estado de registro de
-  deuda consolidada u otra reforma atingente — verificar y, si aplica,
-  completar separacion aprobado/vigencia/aplicacion + "hoy vs despues".
+- "Hoy vs despues": N/A (RDC ya vigente; sin transicion pendiente
+  verificada).
 
 ## VERIFIED carry-forward
 
@@ -144,9 +150,15 @@ fuente citada. Ningun VERIFIED fue omitido ni diferido.
 Slug, titulo, frontmatter (`articleLead`, `reviewPolicy`), imagenes, links
 nuevos, hub F2, articulo support. Cifra "8.000 UF" no existe en esta pieza.
 
-## Resumen de marcadores del draft: 12 sustantivos (marcador = valor sin fuente; las menciones meta no cuentan)
+## Resumen de marcadores del draft: 0 pendientes (verificacion humana 2026-09-16)
 
-Desfase de reporte · "ilimitado" · requisitos ClaveUnica · documental de
-heredero · base de eliminacion Boletin · base de consulta gratuita ·
-cita art. 2515 · acceso de terceros · URL reclamo bancario · via OS-9/PDI ·
-glosa directas/indirectas/castigos · alcance de entidades reportantes.
+Resueltos 12/12: desfase (snapshot + regla 7+3 art. 19) · "ilimitado"
+(retirado) · ClaveUnica (RUT; doc-number no afirmado) · heredero (CMF sin
+papel + link; lista documental exacta no afirmada) · eliminacion Boletin
+(19.628 art. 18 inc. 2.°) · gratuidad (atribucion 20.575 retirada) ·
+2515 (arts. 2514-2515; alegacion no afirmada) · terceros (carve-out
+empleadores; arrendadores no afirmados) · reclamo (deep-link verificado) ·
+OS-9/PDI (denuncia policial generica; sigla no afirmada) · glosa (directa/
+indirecta confirmadas; castigos no afirmado) · entidades (bancos y
+cooperativas fiscalizadas). Sub-items con alcance reducido en vez de
+afirmados: C(c), H exacto, castigos literal, doc-number.
