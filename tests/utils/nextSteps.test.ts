@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 
+import { sanitizeAnalyticsPayload } from "@/contracts/analytics-events";
 import { deriveCalculatorId, deriveNextStepId } from "@/utils/nextSteps";
 
 // Mismo patrón de validación que aplica el sanitizador de analytics
@@ -69,5 +70,71 @@ describe("deriveCalculatorId", () => {
 
   it('devuelve undefined sin barra final "/calculadoras/apv"', () => {
     expect(deriveCalculatorId("/calculadoras/apv")).toBeUndefined();
+  });
+});
+
+// F1 (PLAN-result-panel-conversion): el payload que NextSteps.astro emite en
+// cada impresión/clic (calculator_id + interaction_variant + next_step_id)
+// debe pasar el boundary estricto del worker (rejectUnknown) además del
+// lenient del cliente. Ambos lados comparten el mismo contrato
+// (src/contracts/analytics-events.ts); este test fija esa paridad.
+describe("F1 emitter contract (NextSteps click/s shown payload)", () => {
+  it("calculator_id + interaction_variant + next_step_id pasa estricto", () => {
+    for (const event of ["next_step_shown", "next_step_click"] as const) {
+      const params: Record<string, unknown> =
+        event === "next_step_shown"
+          ? {
+              calculator_id: "conversor-utm",
+              page_type: "calculator",
+              interaction_variant: "contextual_v1",
+              next_step_id: "calculadoras-conversor-uf",
+            }
+          : {
+              calculator_id: "conversor-utm",
+              page_type: "calculator",
+              interaction_variant: "contextual_v1",
+              next_step_id: "calculadoras-conversor-uf",
+              utm_source: "conversor-utm",
+              utm_medium: "post-result",
+              utm_campaign: "utility-led-v1",
+            };
+      const strict = sanitizeAnalyticsPayload(event, params, {
+        rejectUnknown: true,
+      });
+      expect(strict).not.toBeNull();
+      expect(strict?.params.calculator_id).toBe("conversor-utm");
+      expect(strict?.params.interaction_variant).toBe("contextual_v1");
+    }
+  });
+
+  it("sin calculator_id (artículos) sigue transmitiendo con page_type", () => {
+    const strict = sanitizeAnalyticsPayload(
+      "next_step_click",
+      {
+        page_type: "article",
+        interaction_variant: "contextual_v1",
+        next_step_id: "calculadoras-apv",
+      },
+      { rejectUnknown: true }
+    );
+    expect(strict).not.toBeNull();
+    expect(strict?.params).not.toHaveProperty("calculator_id");
+  });
+
+  it("FORBIDDEN_KEY_PATTERN nunca deja pasar valores financieros/PII", () => {
+    const strict = sanitizeAnalyticsPayload(
+      "next_step_click",
+      {
+        calculator_id: "conversor-utm",
+        page_type: "calculator",
+        interaction_variant: "contextual_v1",
+        next_step_id: "calculadoras-conversor-uf",
+        monto: "1000000",
+        resultado: "14-5-utm",
+        email: "persona@example.com",
+      },
+      { rejectUnknown: true }
+    );
+    expect(strict).toBeNull();
   });
 });

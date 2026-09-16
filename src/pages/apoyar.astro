@@ -157,7 +157,7 @@ import { SITE } from "@/config";
 
   Whitelist de valores reconocidos:
   about | footer | calculadora | calculadora-sueldo-liquido |
-  guia | guia-impuestos | linkedin | facebook
+  calculadora-utm | guia | guia-impuestos | linkedin | facebook
 -->
 <script is:inline data-cfasync="false">
   (function () {
@@ -185,6 +185,12 @@ import { SITE } from "@/config";
         cuerpo:
           "Monedario mantiene herramientas gratuitas para ayudar a personas en Chile a entender mejor su dinero.\n\nSi esta calculadora te ahorró tiempo, dudas o cálculos manuales, puedes apoyar su mantenimiento con una pequeña donación voluntaria. También ayuda mucho compartirla con alguien a quien le pueda servir.",
         utmContent: "calculadora_sueldo_liquido",
+      },
+      "calculadora-utm": {
+        titulo: "¿Te sirvió esta calculadora?",
+        cuerpo:
+          "Monedario mantiene herramientas gratuitas para ayudar a personas en Chile a entender mejor su dinero.\n\nSi esta calculadora te ahorró tiempo, dudas o cálculos manuales, puedes apoyar su mantenimiento con una pequeña donación voluntaria. También ayuda mucho compartirla con alguien a quien le pueda servir.",
+        utmContent: "calculadora_utm",
       },
       guia: {
         titulo: "Ayuda a mantener esta guía actualizada",

@@ -139,10 +139,18 @@ const resolvedCalculatorId = deriveCalculatorId(currentHref);
       root.dataset.initialized = "true";
 
       const calculatorId = root.dataset.analyticsCalculatorId;
+      const cluster = root.dataset.nextStepsCluster;
       const pageType = getPageType();
+      // F1 (PLAN-result-panel-conversion): todo clic/impresión lleva
+      // calculator_id (cuando resuelve a /calculadoras/<slug>/) +
+      // interaction_variant. cluster se adjunta cuando la página lo declara.
+      // En artículos calculator_id queda ausente a propósito (identidad falsa
+      // es peor que ausente; ver CALCULATOR-REGISTRY § Cross-check W36).
       const basePayload = {
         ...(calculatorId ? { calculator_id: calculatorId } : {}),
+        ...(cluster ? { cluster } : {}),
         page_type: pageType,
+        interaction_variant: "contextual_v1",
       };
 
       const shown = new Set<string>();

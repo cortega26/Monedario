@@ -118,7 +118,11 @@ Fuera de alcance (BLOCKED, ver
    firmados.
 2. **F1 — Identidad de eventos (083).** `NextSteps.astro` emite
    impresiones; todo clic lleva `calculator_id` + variante. Tests
-   allowlist ambos lados. Gate: cero buckets fantasma en export semanal.
+   allowlist ambos lados. Gate: cero buckets fantasma *inexplicados* en
+   export semanal — omisiones en artículos son sentinelas esperadas
+   (`unknown`/`calculator`, registry § Cross-check W36), no fallos;
+   en superficies `/calculadoras/` el `calculator_id` es obligatorio.
+   Enmienda firmada 2026-09-16 (identidad falsa peor que ausente).
 3. **F2 — Panel UTM (piloto).** Estandarizar panel + 2 siguientes pasos
    + fuentes + compartir + apoyo `?src=calculadora-utm`. E2E + a11y +
    CSP. Gate C utility-led (experimentos habilitados).
@@ -167,3 +171,30 @@ agregados no requieren rollback.
   favor del cálculo (`next_step n_min` = 99 @3%); supuesto share p=1%
   aceptado como interino. F1 autorizado tras auditoría
   measurement-integrity F0.
+- 2026-09-16 — F1 ejecutado (TODO, pendiente gate semanal): `NextSteps.astro`
+  basePayload ahora incluye `interaction_variant: "contextual_v1"` +
+  `cluster` (cuando la página lo declara) en cada `next_step_shown`/`click`;
+  `calculator_id` se mantiene cuando `currentHref` resuelve a
+  `/calculadoras/<slug>/` y se omite a propósito en artículos (identidad
+  falsa peor que ausente; registry § Cross-check W36). Sin cambio de
+  taxonomía: los 4 campos ya estaban allowlisted en v2 (cliente + worker
+  comparten `sanitizeAnalyticsPayload`; paridad fijada en
+  `tests/utils/nextSteps.test.ts`). Nota: el gap "sin impresiones" de la
+  orden ya estaba cerrado por 083 (`e3bd14b3`/`1a761389`); lo restante era
+  la variante. Gate: cero buckets fantasma en export semanal (no decidible
+  con semana <7 días).
+- 2026-09-16 — F2 ejecutado en piloto UTM ONLY (TODO, pendiente E2E/a11y):
+  `conversor-utm.astro` panel `#resultado` con heading `#resultado-heading`
+  (`tabindex=-1`), respuesta `text-4xl`, `aria-live=polite` conservado,
+  línea `Fuente: SII · Vigente al …` (reusa `utmDateDisplay` +
+  `economicSourceLabel`; sin claims numéricos nuevos; `MethodologyBlock` +
+  Fecha de corte intactos); foco no robado en cada tecla (conversor en vivo;
+  heading queda para foco programático). `UtmPostResultActions.astro`: 2
+  acciones = 1 calculadora (`conversor-uf`, `convert-uf`) + 1 guía
+  (`/posts/utm-chile-que-es-como-funciona/`, `guia-utm`); apoyo
+  `/apoyar/?src=calculadora-utm` solo dentro de `#utm-post-result-actions`
+  (revelado por `calculator:result`; sin banner global; whitelist
+  `calculadora-utm` añadida en `apoyar.astro` espejando `calculadora`);
+  share WhatsApp + copiar sin PII en payload (`ShareCalculatorResult`
+  intacto). No replicado a UF ni otras (umbral F3 no cruzado). Sin URLs
+  nuevas, sin cambios de slugs/canonical/fórmulas/snapshot/routes/RSS.
