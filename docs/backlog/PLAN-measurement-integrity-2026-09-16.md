@@ -168,3 +168,40 @@ Revert por fase; re-correr `test`, `check:boundaries`, `check:docs`,
 
 - 2026-09-16 — Plan creado (TODO) desde veredicto ADAPT sobre
   propuesta externa. Secuencia: antes de panel F1 (emisores).
+- 2026-09-16 — F0 auditoría COMPLETA, veredicto: LIMPIO con 1 gap
+  conocido verificado (no corregido, owned por panel F1).
+  Checklist: init única (flags `CLICK_HANDLER_FLAG` /
+  `CALCULATOR_VIEW_FLAG` / `pendingAnalyticsInit` + `pageCleanup`,
+  `src/scripts/analytics.ts:14-17,142-147,271-294`) pass;
+  no-duplicación (`ONCE_PER_VIEW_EVENTS` + reset en
+  `astro:page-load`/`astro:after-swap`, `:99-108,301-308`;
+  `hasStarted`/`firedMilestones`/`shown` por emisor) pass;
+  ClientRouter deshabilitado en posts/guias/calculadoras
+  (`src/layouts/Layout.astro:22-24,43`; explícito `false` en
+  `src/pages/index.astro:31` y `calculadoras/index.astro:47`) pass;
+  `page_location`/`page_title`/`hostname` N/A por diseño (solo viaja
+  `page_path`=pathname, `src/scripts/analytics.ts:38`; `destination_url`
+  gated a interna `analytics-events.ts:242`; origen enforced servidor
+  `workers/analytics-collector/src/index.ts:36`); supresión dev/test
+  parcial-por-diseño (flag-gated `analytics.ts:78-93`, endpoint relativo
+  `/api/analytics/event`, 403 server-side a `Origin != monedario.cl`
+  `worker-v2.ts:771-773` — localhost nunca contamina prod) pass-nota;
+  fail-safe (timeout 3 s, keepalive, `.catch` silencioso `:123-140`)
+  pass; CSP sin endpoints nuevos (`connect-src 'self'`,
+  `public/_headers:2`; collector same-origin) pass; privacidad
+  re-verificada (allowlist + `FORBIDDEN_KEY_PATTERN` + strings ≤80 +
+  `rejectUnknown` servidor `:243-244` worker `:138-142`; query/hash
+  nunca enviados; `calculator_name`/`cta_label`/`article_title`
+  CLIENT_ONLY `:329-333`; `support_confirmed` sin emisores en `src/`
+  — cero riesgo de confirmación no fiable) pass; gap NextSteps
+  VERIFICADO (`NextSteps.astro:61,143-146,172-179`, sin cambios).
+  Tests: 7 archivos analytics, 113/113 verdes (ver reporte de cierre).
+  STOP triggers: ninguno (sin PII, sin duplicación real, sin terceros).
+- 2026-09-16 — F1 registry COMPLETO:
+  `docs/operations/CALCULATOR-REGISTRY.md` creado (no existía registry
+  central; `docs/operations/analytics/` solo tenía event dictionary).
+  22/22 calculadoras (id=slug estable, nombre público, categoría del set
+  sugerido, ruta con trailing slash); emisores verificados 22/22;
+  cross-check W36 (7/7 días): 22 IDs reales resuelven 22/22; buckets
+  `calculator`/`unknown` documentados como esperados no-registry
+  (fallback `worker-v2.ts:457`). Gate F1: PASS.

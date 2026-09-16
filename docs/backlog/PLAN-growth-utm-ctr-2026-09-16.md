@@ -121,7 +121,12 @@ Fuera de alcance (BLOCKED hasta 2026-11-02 o excepción aprobada, ver
    existentes; lo que pida URL nueva → backlog bloqueado, no este plan.
 6. **F5 — Medición (14–28 días).** Comparar GSC clics/CTR/posición vs
    baseline; RUM LCP/INP/CLS sin regresión. Decisión: keep / revert /
-   extender a segunda query.
+   extender a segunda query. Confundidor registrado 2026-09-16: el
+   título/H1 interpolan valor+fecha del snapshot mensual — el refresco
+   UTM de octubre cae dentro de la ventana y cambiará el título
+   renderizado a mitad de medición (solo interpolación, no plantilla).
+   Lectura primaria al día 14 (pre-refresco); la lectura extendida a
+   28 días debe anotar el confound y no decidir solo con ella.
 
 STOP/HALT:
 
@@ -155,3 +160,4 @@ Revert del PR de snippet/enlace correspondiente; re-correr
 - 2026-09-16 — Plan creado (TODO). Pendiente sign-off y baseline firmado.
 - 2026-09-16 — F0 baseline registrado (sin commit, por instrucción): `docs/reports/CTR-BASELINE-W36-2026-09-16.md` (W36 2026-08-31→09-06, 7 días verificados; W37 excluida por truncada 5 días). UTM: 1.484 clics / 170.074 impr / CTR 0,87% / pos 7,25; `utm` 1,78% @ 6,73, `utm hoy` 0,95% @ 6,66. UF: 6 clics / 24.831 impr / CTR 0,02% / pos 9,69; funnel UTM 1280/856/842, UF 169/144/141. Sin ventana OBS/PR activa sobre UTM/UF (STOP no triggered). F0 sigue TODO — firma del owner pendiente.
 - 2026-09-16 — Sign-off owner: F0 FIRMADO (baseline W36 congela como comparación para F5). F1 autorizado.
+- 2026-09-16 — F1 implementado (sin commit, por instrucción; TODO global sigue hasta F5). Solo `src/pages/calculadoras/conversor-utm.astro` (6+/6-): título `Valor UTM hoy: $X (fecha, SII) | Monedario`, descripción `Valor UTM hoy: $X vigente al [fecha] según el SII…`, H1 `Valor UTM hoy: $X`, primer párrafo del hero con valor+fecha+fuente en ≤120 chars; `CalculatorJsonLd` sincronizado a las mismas variables (patrón plan 067 verificado: este archivo no usa mecanismo `seoTitle` —solo posts/glosario vía `resolvePageTitle`— así que N/A). Sin tocar slugs, canonical, fórmulas, snapshot, UF ni analytics labels. Gates: `check:reader-facing-copy` OK (93 scanned, 0 issues), `check:dialect` OK (53 files), `astro check` 0 errores, `prettier --check` OK, `git diff --check` limpio. Sin test unitario que cubra el copy de conversor-utm (solo a11y Playwright por IDs, no afectados). STOP no triggered (sin ventana OBS/PR sobre UTM/UF, sin cambio de rutas). Supuesto inicio de medición F5: despliegue = día 0; comparar semanas completas de 7 días vs baseline W36 (2026-08-31→09-06) a 14–28 días.
