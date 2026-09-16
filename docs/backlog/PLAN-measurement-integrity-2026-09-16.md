@@ -205,7 +205,7 @@ Revert por fase; re-correr `test`, `check:boundaries`, `check:docs`,
   cross-check W36 (7/7 días): 22 IDs reales resuelven 22/22; buckets
   `calculator`/`unknown` documentados como esperados no-registry
   (fallback `worker-v2.ts:457`). Gate F1: PASS.
-- 2026-09-16 — F2 docs COMPLETO (pendiente de firma del owner):
+- 2026-09-16 — F2 docs COMPLETO + FIRMADO por el owner:
   `docs/operations/MEASUREMENT-COMPARISON-METHODOLOGY.md` (capas
   L1–L5, cinco ratios diagnósticos con W36 trabajado incl. caso UF
   2.350% como ejemplo canónico anti-embudo, doctrina "diagnóstico, no
@@ -215,7 +215,7 @@ Revert por fase; re-correr `test`, `check:boundaries`, `check:docs`,
   intent 1,10% con denominador `complete` —desviación explícita: sin
   identidad de usuario first-party por diseño). Gate F2: revisión
   owner (doctrina, no código).
-- 2026-09-16 — F3 procedimiento registrado (pendiente de firma) +
+- 2026-09-16 — F3 procedimiento registrado + FIRMADO por el owner +
   ejecución parcial:
   `docs/operations/ANALYTICS-VALIDATION-PROCEDURE.md` (pasos
   view/start/complete/intent, uso del verifier 051, filas esperadas,
@@ -226,7 +226,7 @@ Revert por fase; re-correr `test`, `check:boundaries`, `check:docs`,
   ingesta DO re-habilitada —sin pendientes de deploy). Diferido con
   motivo (sin secretos/navegador en sesión): verifier vivo + e2e real
   en preview (owner post-deploy). STOP triggers: ninguno.
-- 2026-09-16 — F4 reporte de cierre registrado (pendiente de firma):
+- 2026-09-16 — F4 reporte de cierre registrado + FIRMADO por el owner:
   `docs/reports/MEASUREMENT-INTEGRITY-REPORT-2026-09-16.md` (§15
   adaptado, 14 puntos: F0 10/10 LIMPIO, 3 problemas contenidos,
   arquitectura, 6 archivos docs cambiados por este plan, taxonomía v2,

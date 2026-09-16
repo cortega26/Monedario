@@ -138,11 +138,11 @@ rollback-if-red, evidencia ejecutada vs diferida el 2026-09-16).
 
 ## 14. Cierre y gates del plan
 
-F0 CLEAR · F1 DONE (22/22) · F2 registrado, pendiente firma owner
+F0 CLEAR · F1 DONE (22/22) · F2 FIRMADO por el owner 2026-09-16
 (doctrina, este reporte + F2a/F2b) · F3 evidencia parcial registrada
-(partes vivas diferidas con motivo) · F4 este documento (pendiente de
-firma). Métricas del plan: emisores 22/22, duplicados/PII 0, terceros
-nuevos 0, tests verdes.
+(partes vivas diferidas con motivo) · F4 este documento (FIRMADO por el
+owner 2026-09-16). Métricas del plan: emisores 22/22, duplicados/PII 0,
+terceros nuevos 0, tests verdes.
 Pendiente de deploy del worker: **ninguno** al 2026-09-16 (último
 deploy success 09-15 cubre cron, auth header-only e ingesta DO).
 STOP triggers activados en F2–F4: ninguno.

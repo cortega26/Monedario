@@ -1,7 +1,7 @@
 # Metodología de comparación de medición
 
 **Owner:** `docs/backlog/PLAN-measurement-integrity-2026-09-16.md` (F2) ·
-**Fecha:** 2026-09-16 · **Estado:** registrado, pendiente de firma del owner
+**Fecha:** 2026-09-16 · **Estado:** FIRMADO por el owner 2026-09-16
 **Precedencia:** `docs/AI_ENGINEERING_CONSTITUTION.md` → `AGENTS.md` →
 `context/*.md` → implementación.
 

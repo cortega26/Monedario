@@ -1,9 +1,9 @@
 # Procedimiento de validación analytics end-to-end
 
 **Owner:** `docs/backlog/PLAN-measurement-integrity-2026-09-16.md` (F3) ·
-**Fecha:** 2026-09-16 · **Estado:** procedimiento registrado, pendiente
-de firma del owner; ejecución parcial (partes read-only ejecutadas,
-partes con credenciales diferidas —ver §7).
+**Fecha:** 2026-09-16 · **Estado:** procedimiento FIRMADO por el owner
+2026-09-16; ejecución parcial (partes read-only ejecutadas, partes con
+credenciales diferidas —ver §7).
 **Runbook de deploy:** `docs/operations/runbooks/analytics-worker-deployment.md` ·
 **Verifier:** `scripts/data-signals/verify-analytics-worker-deployment.mjs` (plan 051).
 

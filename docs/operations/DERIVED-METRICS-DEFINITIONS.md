@@ -1,7 +1,7 @@
 # Definiciones congeladas de métricas derivadas
 
 **Owner:** `docs/backlog/PLAN-measurement-integrity-2026-09-16.md` (F2) ·
-**Fecha:** 2026-09-16 · **Estado:** registrado, pendiente de firma del owner
+**Fecha:** 2026-09-16 · **Estado:** FIRMADO por el owner 2026-09-16
 **Contrato:** `src/contracts/analytics-events.ts` (taxonomía v2) ·
 **Diccionario:** `docs/operations/analytics/UTILITY_LED_EVENT_DICTIONARY.md`
 **Registro de umbrales:** `docs/operations/UTILITY_LED_EXPERIMENT_REGISTRY.md`
