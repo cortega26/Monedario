@@ -155,3 +155,10 @@ factual → corrección forward con nuevo packet, no rewrite silencioso.
 - 2026-09-16 — Precondición lote 0 resuelta: PR #423 (`impuestos-personas`)
   verificado MERGED 2026-08-14. Lotes 1–5 pueden encolarse; cada lote
   mantiene pipeline completo + firma humana propia.
+- 2026-09-16 — F0 ejecutado (read-only, TODO sin completar): cola en
+  `docs/reports/CONTENT-REFRESH-QUEUE-2026-09-16.md` (lotes 1–5, 46
+  artículos; `impuestos-personas` excluido por lote 0). Señales:
+  `audit:topic-overlap` OK sin double-owners, `audit:cannibalization` OK,
+  `check:editorial-timeliness` OK (`stale=0`), GSC W36 como orden
+  principal (W37 truncado, solo contraste). Sin HALT activo; F0 sigue
+  TODO pendiente de sign-off del owner.

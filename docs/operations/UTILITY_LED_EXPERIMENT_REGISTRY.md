@@ -31,6 +31,33 @@ GREEN de la fila (o el umbral HALT cuando la fila lo define en esos términos).
 
 **Consecuencia**: denominador insuficiente se reporta como `SIN DATOS SUFICIENTES`, nunca como HALT ni como 0%. Un cero con denominador chico no es evidencia de ausencia de demanda.
 
+### Umbrales F0 — panel post-resultado (plan 2026-09-16, TODO pendiente de firma)
+
+`P(0) = (1 − p)^n`; `n_min = ceil( ln(0,05) / ln(1 − p) )` al 95% de
+confianza. Sin veredicto bajo `n_min`: `SIN DATOS SUFICIENTES`, nunca
+HALT ni 0%.
+
+| Señal | p de decisión | `n_min` | n semanal W36 (2026-08-31→09-06) | Semanas estimadas |
+|---|---|---:|---:|---:|
+| `next_step_click` / `next_step_shown` | 3% (HALT: no ampliar CTA) | 99 | 117 | ~1 |
+| `alert_interest_submit` / `alert_interest_shown` | 2% (GREEN) | 149 | 22 | ~7 |
+| `support_click` / `support_shown` | 0,5% (GREEN) | 598 | 18 | ~34¹ |
+| `share_success` / `calculator_complete` | 1% (supuesto F0, sin base) | 299 | 1091 `complete`; 0 eventos share | ~1 tras instrumentar (F2) |
+| `source_click` / `calculator_complete` | direccional, sin umbral | — | 8/1091 | intervalo Wilson 95% semanal² |
+
+¹ ~34 semanas excede la ventana (cierra 2026-11-02): sin subida de
+`support_shown` no hay veredicto en ventana; subir la entrega es el
+objetivo F2. ² Éxito = subida sostenida 4 semanas comparables, sin
+veredicto puntual. W36: 0,73% Wilson 95% [0,37%, 1,44%] (referencia, no
+veredicto).
+
+Supuesto share: p = 1% propuesto sin baseline (cero eventos share en
+W36); la regla +50% vs base rige solo tras medir base con n ≥ `n_min`.
+W37 (2026-09-07→09-13) truncada a 5 días: no usar como denominador.
+Discrepancia a firmar: el plan pide `next_step` ≥3% con n≥149, pero la
+fórmula da `n_min` = 99 al 3% (149 corresponde al 2%); vale el cálculo
+salvo firma en contra.
+
 ## Gate de sostenibilidad semanal
 
 - Horas: ≤6 GREEN; 6–10 WATCH; >10 durante tres semanas detiene expansión y obliga a reducir alcance.

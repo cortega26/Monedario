@@ -156,3 +156,9 @@ agregados no requieren rollback.
 
 - 2026-09-16 — Plan creado (TODO). Precedentes 082–086 y Gate D
   (horas/costo/agotamiento en `utility-led-ops.json`) incorporados.
+- 2026-09-16 — F0 en curso (TODO, no completa): `n_min` calculados
+  (3%→99, 2%→149, 0,5%→598, share 1% supuesto→299; fuente
+  direccional con intervalo Wilson) y tabla F0 añadida al registry con
+  n semanal W36 (última semana completa; W37 truncada a 5 días, no
+  usada). Firma del owner pendiente; discrepancia a firmar: plan pide
+  `next_step` n≥149 pero la fórmula da 99 al 3%.
