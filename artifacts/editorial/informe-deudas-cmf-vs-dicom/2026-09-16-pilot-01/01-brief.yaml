@@ -1,0 +1,37 @@
+slug: informe-deudas-cmf-vs-dicom
+run_id: 2026-09-16-pilot-01
+run_type: refresh
+query_anchor: "informe de deudas cmf vs dicom: que muestra cada registro y cual pedir primero"
+ymyl: true
+requires_calculation: false
+regulatory_sensitivity: alta
+target_audience: "Personas en Chile que quieren saber que deudas aparecen a su nombre: si buscan deudas financieras vigentes (CMF) o protestos/morosidades comerciales (Boletin/DICOM), y cual reporte pedir primero sin pagar de mas."
+cut_off_date: 2026-09-16
+category: deuda-credito
+cluster: deuda-credito
+topic_role: owner
+canonical_topic: informe-deudas-cmf-vs-dicom
+title: "Informe de deudas CMF: como sacarlo y por que no es DICOM"
+justificacion_requires_calculation: "El refresh verifica cifras citadas contra fuente oficial (frecuencia semanal, desfase de reporte, plazo de prescripcion) pero no realiza operaciones aritmeticas, conversiones de unidades ni ejemplos calculados. Sin formulas ni topes computados: false."
+justificacion_regulatory_sensitivity: "La pieza interpreta alcance de supervision CMF (que deudas reportan las entidades fiscalizadas), derechos legales (eliminacion de antecedentes comerciales, principio de finalidad Ley 20.575) y prescripcion (art. 2515 CC). Interpretacion regulatoria/legal directa: alta segun pipeline seccion 5."
+benchmarkSet:
+  - "N/A — run de refresh por exactitud/vigencia, no benchmark-driven. Unica observacion estructural interna: articulo support `donde-ver-si-estoy-en-dicom-gratis` (mismo canonicalTopic) como limite de diferenciacion."
+patternHypothesis: "N/A — sin benchmark externo consultado en este run."
+localDelta: "Separacion operativa CMF vs Boletin vs DICOM con regla de decision ('cual pedir primero segun tu duda'), Respuesta rapida con vigencia visible, correccion del flujo de heredero a canal oficial vigente (CMF sin papel), y re-atribucion legal precisa (Ley 20.575 = finalidad; eliminacion/consulta gratuita con base exacta por verificar)."
+nonCopyBoundaries:
+  - "No se copia texto, claims ni estructura URL de ningun competidor (sin benchmark consultado)."
+  - "No se copian claims del articulo support; la boundary owner/support se declara, no se duplica."
+  - "Ninguna afirmacion YMYL se justifica por contenido no oficial."
+ownerTarget: "owner `informe-deudas-cmf-vs-dicom` (cluster `deuda-credito`, hub `/guias/deuda-credito/` en F2). Support boundary: `donde-ver-si-estoy-en-dicom-gratis` (mismo canonicalTopic, enfoque 'donde consultar gratis'); sin conflicto de ownership (audit:topic-overlap F0: 0 double-owners)."
+successSignal: "stale = 0 en lote 1; TODO:SOURCE = 0 tras auditorias; `audit:topic-overlap` sin double-owners; GSC del slug no peor a 28 dias vs base W36 (5 clics / 282 impr. / pos. 13,72)."
+fuentes_declaradas:
+  - "https://www.cmfchile.cl/educa/621/w3-article-27663.html (CMF Educa — fetch directo 2026-09-16, VERIFICADO)"
+  - "https://conocetudeuda.cmfchile.cl/informe-deudas/ (portal tramite — fetch 2026-09-16 solo titulo, app JS; TODO:SOURCE)"
+  - "https://www.cmfchile.cl/portal/principal/613/w3-propertyvalue-43332.html (hub de reclamos CMF — fetch 2026-09-16, vivo)"
+  - "BCN Ley 20.575 / Ley 19.628 / Ley 19.812 / art. 2515 CC — LeyChile bloquea fetch automatico; verificacion manual pendiente (TODO:SOURCE)"
+separacion_de_roles:
+  draft_agent: "Muse Spark (OpenCode), sesion 2026-09-16 — SOLO brief/dossier/outline/draft"
+  math_audit_agent: "PENDIENTE — sesion separada (ChatGPT u otro modelo), NO esta sesion"
+  compliance_agent: "PENDIENTE — sesion fresca separada, NO esta sesion"
+  human_sign_off: "PENDIENTE — obligatorio por regulatory_sensitivity=alta"
+  nota: "Esta sesion no puede producir 05/06/07 ni firmar gates (SEPARATION_OF_DUTIES). Sin 05/06/07 en este run-id."

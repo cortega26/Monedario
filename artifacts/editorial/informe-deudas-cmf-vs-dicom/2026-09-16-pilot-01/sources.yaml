@@ -1,0 +1,22 @@
+# Official / primary sources for run 2026-09-16-pilot-01 (draft stage).
+# Retrieval method noted per entry; JS-blocked fetches are TODO:SOURCE, not memory-filled.
+- title: "¿Qué es el Informe de Deudas de CMF? (CMF Educa)"
+  publisher: "Comisión para el Mercado Financiero"
+  date: 2026-09-16
+  url: "https://www.cmfchile.cl/educa/621/w3-article-27663.html"
+  retrieval: "direct fetch OK 2026-09-16; literal quotes in 02-dossier.md"
+- title: "Conoce tu deuda — Informe de Deudas (portal de trámite)"
+  publisher: "Comisión para el Mercado Financiero"
+  date: 2026-09-16
+  url: "https://conocetudeuda.cmfchile.cl/informe-deudas/"
+  retrieval: "fetch 2026-09-16 returned title only (JS app); content TODO:SOURCE"
+- title: "Reclamos contra entidades supervisadas (hub)"
+  publisher: "Comisión para el Mercado Financiero"
+  date: 2026-09-16
+  url: "https://www.cmfchile.cl/portal/principal/613/w3-propertyvalue-43332.html"
+  retrieval: "direct fetch OK 2026-09-16; hub alive, exact banking-claim URL TODO:SOURCE"
+- title: "Ley 20.575 — principio de finalidad (verificación manual pendiente)"
+  publisher: "Biblioteca del Congreso Nacional"
+  date: 2026-09-16
+  url: "https://www.bcn.cl/leychile/navegar?idNorma=1037366"
+  retrieval: "LeyChile blocks automated fetch (JS); manual verification TODO:SOURCE"
