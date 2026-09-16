@@ -162,3 +162,4 @@ factual → corrección forward con nuevo packet, no rewrite silencioso.
   `check:editorial-timeliness` OK (`stale=0`), GSC W36 como orden
   principal (W37 truncado, solo contraste). Sin HALT activo; F0 sigue
   TODO pendiente de sign-off del owner.
+- 2026-09-16 — Piloto lote 1 disparado: `informe-deudas-cmf-vs-dicom` (brief→dossier→outline→draft); auditorías matemática/compliance en sesiones separadas; sin packet ni merge sin firma humana.

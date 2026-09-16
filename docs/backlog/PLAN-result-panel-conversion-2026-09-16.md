@@ -198,3 +198,4 @@ agregados no requieren rollback.
   share WhatsApp + copiar sin PII en payload (`ShareCalculatorResult`
   intacto). No replicado a UF ni otras (umbral F3 no cruzado). Sin URLs
   nuevas, sin cambios de slugs/canonical/fórmulas/snapshot/routes/RSS.
+- 2026-09-16 — Deploy (push `cfaaf738`): day-0 F4. Dos semanas comparables de 7 días vs regla de poder F0; ceros bajo `n_min` no deciden.
