@@ -5,7 +5,7 @@ author: "Equipo Monedario"
 description: "Guía práctica para separar Informe de Deudas CMF, Boletín Comercial y reportes privados tipo DICOM, y partir por el reporte correcto sin pagar de más."
 slug: donde-ver-si-estoy-en-dicom-gratis
 pubDate: 2026-03-12T19:00:00Z
-updatedDate: 2026-04-12T18:30:00Z
+updatedDate: 2026-09-17T12:00:00Z
 tags:
   - dicom
   - boletin-comercial
@@ -25,7 +25,7 @@ articleLead:
   answer: "No existe un solo botón oficial que te diga 'estás en DICOM'. Si quieres revisar deudas financieras vigentes, parte por el Informe de Deudas CMF. Si buscas protestos o un reporte comercial más amplio, necesitas separar Boletín Comercial y reportes privados antes de pagar o sacar conclusiones."
   nextStepHref: "/posts/informe-deudas-cmf-vs-dicom/"
   nextStepLabel: "Obtén tu informe de deudas CMF gratis"
-  validAsOf: 2026-04-12
+  validAsOf: 2026-09-17
   officialSources:
     - label: "CMF Chile - Informe de Deudas de Personas"
       href: "https://www.cmfchile.cl/educa/621/w3-article-27663.html"
@@ -60,9 +60,9 @@ Antes de pagar por un informe privado, conviene agotar las opciones gratuitas of
 
 ## Los tres sistemas y cómo acceder a cada uno
 
-### Informe de Deudas CMF — gratis, ilimitado
+### Informe de Deudas CMF — gratis
 
-La Comisión para el Mercado Financiero publica el Informe de Deudas de Personas Naturales, que muestra todas las deudas vigentes con bancos, cooperativas, emisores de tarjetas y otras entidades supervisadas por la CMF. Es el punto de partida correcto para la mayoría de las personas.
+La Comisión para el Mercado Financiero publica el Informe de Deudas de Personas Naturales, que muestra las deudas vigentes con bancos, cooperativas y demás entidades sujetas a fiscalización de la CMF. Es el punto de partida correcto para la mayoría de las personas.
 
 **Para qué sirve:** revisar qué deudas financieras activas aparecen a tu nombre, detectar productos que no reconoces, confirmar saldos antes de una negociación o renegociación.
 
@@ -73,9 +73,9 @@ La Comisión para el Mercado Financiero publica el Informe de Deudas de Personas
 1. Entra a [conocetudeuda.cmfchile.cl](https://conocetudeuda.cmfchile.cl/informe-deudas/)
 2. Haz clic en "Obtener Informe" e inicia sesión con ClaveÚnica
 3. El sistema genera el PDF en segundos
-4. Puedes descargarlo las veces que quieras, sin costo
+4. Puedes descargarlo sin costo
 
-Si no tienes ClaveÚnica, puedes obtenerla en [claveunica.gob.cl](https://www.claveunica.gob.cl) con tu RUT y número de serie del carnet.
+Si no tienes ClaveÚnica, puedes obtenerla en [claveunica.gob.cl](https://www.claveunica.gob.cl) con tu RUT.
 
 ### Boletín Comercial — consulta mínima por ley
 
@@ -121,7 +121,7 @@ Tener el reporte no es el final del proceso. Dependiendo de lo que encuentres, e
 ## Preguntas frecuentes
 
 **¿Cuánto demora en actualizarse el informe CMF si pagué una deuda?**
-La CMF informa que el informe se actualiza semanalmente, pero los datos pueden venir con un desfase de 10 a 20 días hábiles desde la operación real. Si pagaste hace dos días, el informe todavía puede mostrar la deuda activa.
+La CMF informa que el informe se actualiza semanalmente, con antecedentes al cierre de cada viernes y al último día del mes. Si pagaste hace dos días, el informe todavía puede mostrar la deuda activa.
 
 **¿Cualquier persona puede ver mi informe CMF?**
 No. Solo tú puedes descargarlo con tu ClaveÚnica. Ningún tercero puede acceder sin tu autorización.

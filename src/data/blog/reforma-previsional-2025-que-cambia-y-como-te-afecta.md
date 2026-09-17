@@ -4,7 +4,7 @@ author: "Equipo Monedario"
 description: "Guía práctica de la reforma previsional chilena: el 7% adicional del empleador, el BAC, los fondos generacionales y qué significa para tu jubilación."
 slug: reforma-previsional-2025-que-cambia-y-como-te-afecta
 pubDate: 2026-03-03T23:00:00Z
-updatedDate: 2026-03-12T19:05:00Z
+updatedDate: 2026-09-17T00:00:00Z
 tags:
   - reforma-previsional
   - afp
@@ -26,7 +26,7 @@ articleLead:
   calculatorLabel: "Comparar APV ahora"
   nextStepHref: "/posts/fondos-afp-a-b-c-d-e/"
   nextStepLabel: "Ver fondos AFP vigentes"
-  validAsOf: 2026-04-12
+  validAsOf: 2026-09-17
   officialSources:
     - label: "BCN — Ley 21.735"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=1212060"
@@ -51,7 +51,7 @@ reviewPolicy:
   computedAt: "2026-05-06"
 ---
 
-En julio de 2025 se promulgó la reforma previsional más importante en décadas. Cambia cómo se financia tu jubilación, introduce nuevos componentes del Seguro Social y reemplaza los multifondos con un esquema distinto. Como su implementación se despliega por etapas entre 2025 y 2033, conviene entenderla separando con cuidado qué ya opera hoy y qué todavía viene después.
+La reforma previsional más importante en décadas fue promulgada el 20 de marzo de 2025 y publicada el 26 de marzo de 2025 (Ley 21.735). Cambia cómo se financia tu jubilación, introduce nuevos componentes del Seguro Social y reemplaza los multifondos con un esquema distinto. Como su implementación se despliega por etapas entre 2025 y 2033, conviene entenderla separando con cuidado qué ya opera hoy y qué todavía viene después.
 
 Si quieres entender primero cómo funciona el sistema actual, conviene separar la elección de fondo vigente del descuento previsional del trabajador antes de volver a esta pieza.
 
@@ -59,9 +59,16 @@ Si quieres entender primero cómo funciona el sistema actual, conviene separar l
 
 La reforma tiene **tres grandes cambios**, pero no todos operan igual hoy:
 
-1. **El empleador paga una nueva cotización adicional.** Parte en **1%** desde agosto de 2025 y sube gradualmente hasta **7%** en agosto de 2033. No te lo descuentan a ti.
-2. **No todo ese nuevo aporte entra directo a tu cuenta individual.** Hoy solo una fracción de ese nuevo 1% va a tu AFP; el resto alimenta componentes colectivos del nuevo Seguro Social.
+1. **El empleador paga una nueva cotización adicional.** Fue de **1%** entre agosto de 2025 y julio de 2026 y es de **3,5%** desde las remuneraciones de agosto de 2026; la ley contempla subidas graduales hasta **7%** en agosto de 2033. No te lo descuentan a ti.
+2. **No todo ese nuevo aporte entra directo a tu cuenta individual.** Hoy solo una fracción de ese nuevo 3,5% va a tu AFP; el resto alimenta componentes colectivos del nuevo Seguro Social.
 3. **Los multifondos A-E se reemplazan por fondos generacionales.** La transición operativa parte en **abril de 2027**, no antes.
+
+Hitos con fecha verificada (fecha de corte 2026-09-17):
+
+- **Mayo de 2025:** opera la ampliación del Seguro de Lagunas a la cesantía con cargo a cuentas individuales.
+- **Enero de 2026:** opera el primer pago del BAC y la CEV.
+- **Remuneraciones de agosto de 2026:** el aporte del empleador es de 3,5%, con 0,9% de CRP en recaudación.
+- **Abril de 2027:** parte la transición a fondos generacionales.
 
 ## Si tu pregunta real es una de estas, cambia de tema
 
@@ -80,11 +87,12 @@ La reforma obliga al empleador a pagar un porcentaje adicional sobre tu remunera
 
 ### Qué cambia hoy versus después
 
-| Bloque                                      | Hoy (fecha de corte 2026-04-12)                                | Después                                                           |
-| ------------------------------------------- | -------------------------------------------------------------- | ----------------------------------------------------------------- |
-| Nuevo aporte del empleador                  | Ya existe una nueva cotización de **1%** desde agosto de 2025. | Sube gradualmente hasta llegar a **7%** en agosto de 2033.        |
-| Tramo que va directo a tu cuenta individual | Hoy solo **0,1%** de ese nuevo 1% entra directo a tu AFP.      | La fracción directa sube gradualmente hasta **4,5%** en 2033.     |
-| Multifondos / fondos generacionales         | Los fondos **A, B, C, D y E siguen vigentes** en 2026.         | La transición a fondos generacionales parte en **abril de 2027**. |
+| Bloque | Hoy (fecha de corte 2026-09-17) | Después |
+| Nuevo aporte del empleador | La cotización es de **3,5%** desde las remuneraciones de agosto de 2026 (0,1% a tu cuenta individual, 0,9% a Cotización con Rentabilidad Protegida (CRP) y 2,5% al SSP: SIS y Compensación por Diferencias de Expectativa de Vida (CEV)); entre agosto de 2025 y julio de 2026 fue de 1%. | Sube gradualmente hasta llegar a **7%** en agosto de 2033. |
+| Tramo que va directo a tu cuenta individual | Hoy solo **0,1%** de ese nuevo 3,5% entra directo a tu AFP. | La fracción directa sube gradualmente hasta **4,5%** en 2033. |
+| Multifondos / fondos generacionales | Los fondos **A, B, C, D y E siguen vigentes** en 2026. | La transición a fondos generacionales parte en **abril de 2027**. |
+
+La **Cotización con Rentabilidad Protegida (CRP)** es transitoria (30 años): el **0,9%** que se recauda por esa vía desde las remuneraciones de agosto de 2026 se reintegra a tu pensión con reajustes e intereses desde la edad legal (60 años las mujeres, 65 los hombres), y por esa vía se financia el pago del BAC.
 
 ### ¿A ti te afecta el sueldo líquido?
 
@@ -126,7 +134,11 @@ La idea general es reforzar pensiones bajas y compensar brechas previsionales. P
 
 ### ¿Cuánto paga hoy?
 
-No conviene prometer un monto fijo desde esta guía. En 2026 el sistema todavía está en implementación gradual, así que esta pieza debe usarse para entender estructura y calendario, no para leer BAC como un simulador de monto.
+El BAC se paga desde enero de 2026 a personas pensionadas por vejez o invalidez de 65 años o más (con excepción por trabajo pesado): **0,1 UF por cada año cotizado, con tope de 25 años**. Exige un mínimo de cotizaciones enteradas —**120 meses las mujeres y 240 meses los hombres**— y no ser pensionado de Capredena o Dipreca. El requisito de las mujeres sube gradualmente hasta 180 meses (132 en 2028; 144 en 2030; 156 en 2032; 168 en 2034; 180 en 2036). Para quienes se pensionen desde agosto de 2025, al monto anterior se le resta una anualidad calculada con las nuevas cotizaciones del empleador a cuentas individuales.
+
+### Compensación por Diferencias de Expectativa de Vida (CEV)
+
+La CEV también se paga desde enero de 2026 y compensa a las mujeres por su mayor longevidad: busca igualar la pensión que obtendría un hombre con el mismo saldo, edad y grupo familiar. El porcentaje depende de la edad de pensión —**100% a los 65 o más; 75%, 50%, 25%, 15% y 5% entre los 64 y los 60 años**—, con un piso de **0,25 UF mensuales** y un tope de cálculo de **18 UF** de pensión autofinanciada. Exige estar incorporada al SSP con al menos una cotización al FAPP antes de los 50 años; quienes ya estaban afiliadas antes del 1 de agosto de 2025 se entienden incorporadas desde esa fecha.
 
 ---
 
@@ -190,3 +202,5 @@ Si tienes más de 65 años o estás próximo a jubilar, revisa los requisitos y 
 - Superintendencia de Pensiones, recaudación del aporte del empleador: https://www.spensiones.cl/portal/institucional/594/w3-article-16615.html
 - Superintendencia de Pensiones, diseño de fondos generacionales: https://www.spensiones.cl/portal/institucional/594/w3-article-16668.html
 - Superintendencia de Pensiones, beneficios por años cotizados (BAC): <https://www.spensiones.cl/portal/institucional/594/w3-article-16708.html>
+- Subsecretaría de Previsión Social, publicación de la reforma en el Diario Oficial: https://previsionsocial.gob.cl/diario-oficial-publica-la-reforma-previsional-en-mayo-inicia-vigencia-el-seguro-de-lagunas-y-en-septiembre-aumenta-la-pgu-al-primer-grupo-de-beneficiarios/
+- Superintendencia de Pensiones, cotización de cargo del empleador: https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-10906.html

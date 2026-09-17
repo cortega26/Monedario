@@ -5,7 +5,7 @@ description: "Supuestos, fórmulas, fuentes y cálculos corregidos del ejercicio
 slug: interes-compuesto-nota-metodologica
 author: "Equipo Monedario"
 pubDate: 2026-03-06T15:00:00Z
-updatedDate: 2026-04-22T00:00:00Z
+updatedDate: 2026-09-17T00:00:00Z
 tags:
   - ahorro
   - interes-compuesto
@@ -28,11 +28,11 @@ reviewPolicy:
   computedAt: "2026-05-06"
 ---
 
-Este documento detalla los supuestos, fuentes de datos y fórmulas del artículo [El poder del interés compuesto: cómo el 10% del sueldo mínimo se convierte en más de $125 millones](/posts/el-poder-del-interes-compuesto/). Está aquí para que cualquier lector pueda replicar los cálculos, cuestionar los supuestos o detectar errores. Si encuentras una discrepancia, el canal correcto es el mismo artículo.
+Este documento detalla los supuestos, fuentes de datos y fórmulas del artículo [El poder del interés compuesto: cómo el 10% del sueldo mínimo se convierte en más de $118 millones](/posts/el-poder-del-interes-compuesto/). Está aquí para que cualquier lector pueda replicar los cálculos, cuestionar los supuestos o detectar errores. Si encuentras una discrepancia, el canal correcto es el mismo artículo.
 
 **Fecha de corte del ejercicio:** **2025-12-31**.
 
-**Actualización 2026-03-07:** la serie 2025 del NASDAQ-100 dejó de usar un dato parcial conservador y pasó a usar el cierre anual reportado para 2025. Ese ajuste cambia el resultado final del ejercicio de **USD 104.018 / CLP 100,9 millones** a **USD 129.495 / CLP 125,6 millones**.
+**Actualización 2026-03-07:** la serie 2025 del NASDAQ-100 dejó de usar un dato parcial conservador y pasó a usar el cierre anual reportado para 2025. Ese ajuste cambia el resultado final del ejercicio de **USD 104.018 / CLP 100,9 millones** a **USD 129.495 / CLP 118,0 millones**.
 
 **Revisión editorial 2026-04-22:** se revalidaron las referencias históricas y la fecha de corte; el ejercicio sigue cerrado al 2025-12-31 y no incorpora datos posteriores.
 
@@ -68,7 +68,7 @@ Se usaron valores del sueldo mínimo bruto chileno como puntos de control. Entre
 | 2020 | $320.500                  |
 | 2022 | $380.000                  |
 | 2024 | $460.000                  |
-| 2025 | $500.000                  |
+| 2025 | $529.000                  |
 
 **Fuentes base del ejercicio:** SUSESO, Dirección del Trabajo y Biblioteca del Congreso Nacional.
 
@@ -117,9 +117,9 @@ Los aportes en pesos se convierten a USD con el tipo de cambio del mes. El ejerc
 | 2022 | 873         |
 | 2023 | 840         |
 | 2024 | 960         |
-| 2025 | 970         |
+| 2025 | 911,18      |
 
-El tipo de cambio final usado para convertir el resultado a pesos es **970 CLP/USD** en diciembre de 2025.
+El tipo de cambio final usado para convertir el resultado a pesos es **911,18 CLP/USD** en diciembre de 2025.
 
 ## 5. Retornos del NASDAQ-100 (Total Return)
 
@@ -191,20 +191,20 @@ si i no pertenece al set de lagunas:
 
 ## 7. Resultados de la fase de acumulación
 
-| Métrica                                           | Valor                   |
-| ------------------------------------------------- | ----------------------- |
-| Total aportado (CLP)                              | $6.183.108              |
-| Total aportado (USD, al TC histórico de cada mes) | $9.453                  |
-| Valor final del portafolio (dic 2025, USD)        | $129.495                |
-| Valor final del portafolio (dic 2025, CLP a 970)  | $125.610.531 (~$125,6M) |
-| Multiplicador sobre lo aportado                   | 13,7x                   |
+| Métrica                                             | Valor                   |
+| --------------------------------------------------- | ----------------------- |
+| Total aportado (CLP)                                | $6.183.108              |
+| Total aportado (USD, al TC histórico de cada mes)   | $9.453                  |
+| Valor final del portafolio (dic 2025, USD)          | $129.495                |
+| Valor final del portafolio (dic 2025, CLP a 911,18) | $117.993.254 (~$118,0M) |
+| Multiplicador sobre lo aportado                     | 13,7x                   |
 
 ## 8. Cálculo de la mensualidad de retiro
 
 Se usa una anualidad ordinaria con capital decreciente, asumiendo:
 
 - **Tasa de retorno durante el retiro:** 6% anual nominal.
-- **Colchón final:** 10% del capital original (~$12.950 USD / ~$12,6M CLP).
+- **Colchón final:** 10% del capital original (~$12.950 USD / ~$11,8M CLP).
 - **Horizonte:** escenarios de 301, 333 y 366 meses según expectativa de vida referencial usada en el ejercicio.
 
 Fórmula:
@@ -218,9 +218,9 @@ Resultados:
 
 | Escenario           | Meses | Mensualidad (USD) | Mensualidad (CLP) |
 | ------------------- | ----- | ----------------- | ----------------- |
-| Hombre (~79 años)   | 301   | $802              | ~$778.000         |
-| Promedio (~82 años) | 333   | $771              | ~$748.000         |
-| Mujer (~84 años)    | 366   | $746              | ~$723.000         |
+| Hombre (~79 años)   | 301   | $802              | ~$731.000         |
+| Promedio (~82 años) | 333   | $771              | ~$703.000         |
+| Mujer (~84 años)    | 366   | $746              | ~$680.000         |
 
 ## 9. Lo que esta simulación no modela
 
@@ -254,7 +254,7 @@ Para la imagen mental del departamento se usaron rangos de mercado de 2025:
 | Santiago Centro  | ~3.100 UF                            | BDO Chile / BioBioChile |
 | Estación Central | ~2.600 UF                            | BDO Chile / BioBioChile |
 
-El capital final de **$125,6 millones CLP** equivale aproximadamente a **3.263 [UF](/guias/uf-costo-de-vida/)**, usando una UF cercana a $38.500 en diciembre de 2025. En esa lógica, el resultado permite comprar al contado una unidad en el rango inferior de las comunas listadas o una propiedad de mayor estándar en varias ciudades regionales.
+El capital final de **$118,0 millones CLP** equivale aproximadamente a **2.970 [UF](/guias/uf-costo-de-vida/)**, usando una UF de $39.727,96 al 31 de diciembre de 2025. En esa lógica, el resultado permite comprar al contado una unidad en el rango inferior de las comunas listadas o una propiedad de mayor estándar en varias ciudades regionales.
 
 Los rangos de arriendo referenciales de **$350.000 a $500.000 mensuales** para departamentos de 2 dormitorios en comunas intermedias de Santiago se atribuyen en el documento corregido a datos publicados por TocToc y HDI Seguros para 2025.
 

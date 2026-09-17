@@ -5,7 +5,7 @@ author: "Equipo Monedario"
 description: "Guía puntual para revisar indemnización por años de servicio: causal aplicable, regla de 30 días, tope de 11 años y año fraccionado."
 slug: indemnizacion-anos-de-servicio-chile
 pubDate: 2026-03-12T14:25:00Z
-updatedDate: 2026-03-12T14:25:00Z
+updatedDate: 2026-09-17T00:00:00Z
 tags:
   - finiquito
   - indemnizacion
@@ -26,7 +26,7 @@ articleLead:
   calculatorLabel: "Calcular indemnización"
   nextStepHref: "/posts/finiquito-e-indemnizaciones-en-chile/"
   nextStepLabel: "Volver a la guía de finiquito"
-  validAsOf: 2026-04-12
+  validAsOf: 2026-09-17
   officialSources:
     - label: "BCN — Código del Trabajo"
       href: "https://www.bcn.cl/leychile/navegar?idNorma=207436"
@@ -57,11 +57,11 @@ Esta guía aísla esa sola partida. Si necesitas revisar el finiquito completo �
 
 La indemnización por años de servicio funciona sobre tres variables. Si cualquiera de las tres está mal, el monto total es incorrecto.
 
-**Primero: la causal tiene que habilitarla.** La indemnización por años de servicio no aplica a todos los tipos de término de contrato. Solo corresponde cuando la causal de despido abre el régimen indemnizatorio legal. No es automática por el solo hecho de haber trabajado varios años en una empresa.
+**Primero: el contrato tiene que haber estado vigente un año o más, y la causal tiene que habilitarla.** La indemnización por años de servicio no aplica a todos los tipos de término de contrato. Solo corresponde cuando el contrato duró al menos un año y la causal de despido abre el régimen indemnizatorio legal. No es automática por el solo hecho de haber trabajado varios años en una empresa.
 
 **Segundo: la base es la última remuneración mensual.** No el promedio de los últimos meses. No el sueldo que tenías hace un año. La última remuneración mensual al momento del término, incluyendo los componentes que la ley considera parte de esa base.
 
-**Tercero: se multiplica por los años completos de servicio, con tope de 11.** La fórmula es 30 días por cada año. Si la antigüedad tiene meses incompletos, aplica la regla del año fraccionado — que no es trivial.
+**Tercero: se multiplica por los años completos de servicio, con tope de 11.** La fórmula es 30 días por cada año. Si la antigüedad tiene meses incompletos, aplica la regla del año fraccionado — que no es trivial: la fracción superior a seis meses cuenta como un año adicional, una vez cumplido el primer año de vigencia del contrato.
 
 ## Causales: cuándo corresponde y cuándo no
 
@@ -70,13 +70,24 @@ Este es el punto donde más finiquitos tienen errores. La indemnización por añ
 **Corresponde con estas causales principales:**
 
 - Necesidades de la empresa, establecimiento o servicio (art. 161 del Código del Trabajo). Es la causal más frecuente para despidos que activan la indemnización.
+- Desahucio del empleador (art. 161 del Código del Trabajo). Es la otra causal del mismo artículo que habilita el derecho.
 - Despido declarado injustificado por tribunal (art. 168). Acá además pueden corresponder recargos.
+
+Los recargos del art. 168 se calculan sobre la indemnización por años de servicio según la causal invocada:
+
+| Causal invocada                                                      | Recargo |
+| -------------------------------------------------------------------- | ------- |
+| Art. 161 aplicado en forma improcedente                              | 30%     |
+| Art. 159 injustificado o sin invocar causal legal                    | 50%     |
+| Art. 160 aplicado en forma indebida                                  | 80%     |
+| Art. 160 N°1, N°5 o N°6 declarado además carente de motivo plausible | 100%    |
 
 **No corresponde como regla general con estas causales:**
 
 - Renuncia voluntaria (art. 159 N°2).
 - Mutuo acuerdo (art. 159 N°1), salvo que se pacte expresamente en el finiquito.
-- Vencimiento del plazo o término de obra (art. 159 N°4 y N°5).
+- Vencimiento del plazo convenido (art. 159 N°4).
+- Término de obra o faena (art. 159 N°5): rige una indemnización especial de 2,5 días de remuneración por cada mes trabajado y fracción superior a 15 días, si el contrato estuvo vigente un mes o más y se puso término por esa causal (base según art. 172).
 - Despido por conducta indebida (art. 160).
 
 La causal que aparece en la carta de despido y en el finiquito determina qué corresponde. Si esa causal está mal puesta — ya sea por error o por conveniencia del empleador — el cálculo resultante puede ser incorrecto hacia arriba o hacia abajo.
@@ -86,6 +97,8 @@ La causal que aparece en la carta de despido y en el finiquito determina qué co
 La fórmula base es esta:
 
 > **Indemnización = 30 días de la última remuneración mensual × años de servicio (máximo 11)**
+
+La base mensual de ese cálculo tiene un tope: no se considera una remuneración mensual superior a 90 [UF](/guias/uf-costo-de-vida/) del último día del mes anterior al pago (art. 172). Si la última remuneración mensual supera ese valor, el cálculo usa 90 UF como base.
 
 Ejemplo con números concretos:
 
@@ -110,17 +123,17 @@ La diferencia entre esos dos escenarios es $950.000 — exactamente un mes de su
 
 Esta es la segunda fuente más frecuente de errores. La base de cálculo no es necesariamente lo que dice la última liquidación.
 
-**Incluye como regla general:** sueldo base, horas extraordinarias si son habituales, [gratificaciones](/glosario/gratificacion/) proporcionales cuando corresponde.
+**Incluye como regla general:** sueldo base, [gratificaciones](/glosario/gratificacion/) proporcionales cuando se pagan mes a mes, asignaciones de colación y movilización cuando se pagan mensualmente, comisiones y bonos mensuales.
 
-**Puede excluirse o tener tratamiento especial:** asignaciones no imponibles como colación o movilización, bonos esporádicos que no forman parte de la remuneración regular, comisiones que varían significativamente mes a mes.
+**Se excluye:** horas extraordinarias (aun pagadas en forma mensual), asignación familiar, aguinaldos y gratificaciones que se pagan una sola vez al año, y bonos esporádicos que no forman parte de la remuneración regular.
 
-Cuando la remuneración tiene componentes variables relevantes — comisiones, bonos por metas, horas extra que no son constantes — el cálculo de la base puede volverse disputado. En ese escenario, antes de firmar el finiquito conviene pedir la fórmula exacta que usó el empleador para determinar la "última remuneración mensual".
+Cuando la remuneración tiene componentes variables relevantes — comisiones, bonos por metas — la base es el promedio de lo percibido en los últimos tres meses calendario (art. 172). Por ejemplo, comisiones de $600.000, $900.000 y $750.000 en los últimos tres meses dan una base de $750.000. Antes de firmar el finiquito conviene pedir la fórmula exacta que usó el empleador para determinar la "última remuneración mensual".
 
 ## El tope de 11 años
 
 La ley establece un máximo de 11 años de servicio para esta indemnización. Quien lleva 15 años en la misma empresa no recibe 15 meses — recibe 11.
 
-Esto no significa que no pueda haber más: si el contrato colectivo, el contrato individual o el acuerdo de finiquito establece algo más favorable para el trabajador, esa cláusula prevalece. El tope de 11 es el piso que establece la ley, no el techo que acuerdan las partes.
+Esto no significa que no pueda haber más: si el contrato colectivo, el contrato individual o el acuerdo de finiquito establece algo más favorable para el trabajador, esa cláusula prevalece. El tope de 11 años es el máximo del régimen legal supletorio; las partes pueden pactar más, y el pacto solo reemplaza a la regla legal si la supera.
 
 ## Cuatro cosas que revisar antes de firmar
 
@@ -141,12 +154,12 @@ Como regla general, no. La renuncia voluntaria no activa el régimen indemnizato
 No de forma automática. Si en el finiquito de mutuo acuerdo se pacta expresamente el pago de esta indemnización, corresponde lo que acuerden las partes. Sin ese pacto expreso, la causal de mutuo acuerdo no la genera por sí sola.
 
 **¿Qué pasa si me despidieron con una causal disciplinaria que creo es falsa?**
-Si el tribunal declara que la causal del art. 160 fue indebida, el despido se recalifica como injustificado y corresponde indemnización por años de servicio más los recargos del art. 168. Este camino requiere acción judicial ante el Juzgado de Letras del Trabajo.
+Si el tribunal declara que la causal del art. 160 fue indebida, el despido se recalifica como injustificado y corresponde indemnización por años de servicio más los recargos del art. 168. Este camino requiere acción judicial ante el Juzgado de Letras del Trabajo dentro de 60 días hábiles desde la separación; el plazo se suspende si se reclama ante la Inspección del Trabajo, con un tope absoluto de 90 días hábiles desde la separación (art. 168).
 
 **¿La indemnización por años de servicio paga impuesto?**
-La indemnización legal por años de servicio hasta el límite de 90 [UF](/guias/uf-costo-de-vida/) por año trabajado está exenta de impuesto único de segunda categoría. Lo que supere ese tope puede quedar afecto. Si recibes una indemnización grande o hubo negociación por sobre el mínimo legal, conviene revisar el tratamiento tributario con el SII o con asesoría.
+Las indemnizaciones legales y las pactadas en contratos o convenios colectivos no constituyen renta para ningún efecto tributario (art. 178 del Código del Trabajo). El tope de 90 [UF](/guias/uf-costo-de-vida/) del último día del mes anterior al pago limita la base de la indemnización legal (art. 172); lo que exceda ese tope toma el carácter de indemnización voluntaria y tributa según el art. 17 N°13 de la Ley sobre Impuesto a la Renta, calculado sobre el promedio reajustado de las últimas 24 remuneraciones. Si recibes montos por sobre el mínimo legal, conviene revisar el tratamiento tributario con el SII o con asesoría.
 
 **¿Puedo reclamar después de firmar el finiquito?**
-Depende de si firmaste con reserva de derechos o sin ella. Si firmaste sin reserva y sin impugnar nada, la posición se complica. Si firmaste con reserva escrita en el mismo documento indicando los montos en disputa, la puerta judicial sigue abierta. El plazo general de prescripción para acciones laborales derivadas del finiquito es de 2 años desde el término del contrato.
+Depende de si firmaste con reserva de derechos o sin ella. Si firmaste sin reserva y sin impugnar nada, la posición se complica. Si firmaste con reserva escrita en el mismo documento indicando los montos en disputa, la puerta judicial sigue abierta. El plazo general de prescripción para acciones laborales derivadas del finiquito es de 2 años desde el término del contrato. Ese plazo de 2 años es la prescripción general y no reemplaza el plazo de 60/90 días hábiles para impugnar el despido ante el juzgado.
 
 Para aterrizar los números con tus datos, usa la [calculadora de finiquito e indemnizaciones](/calculadoras/finiquito-indemnizacion/). Para revisar cómo encaja esta partida en el cuadro completo del finiquito, sigue con la [guía de finiquito e indemnizaciones en Chile](/posts/finiquito-e-indemnizaciones-en-chile/).
