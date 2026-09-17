@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-14T12:04:15Z",
+  "fetchedAt": "2026-09-17T11:16:08Z",
   "schemaVersion": 1,
   "source": "gsc-url-inspection",
   "week": "2026-W37",
@@ -23,7 +23,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-13",
+      "lastCrawl": "2026-09-16",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/",
       "verdict": "PASS"
@@ -31,7 +31,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-03",
+      "lastCrawl": "2026-09-09",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/accessibilidad/",
       "verdict": "PASS"
@@ -79,7 +79,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-04",
+      "lastCrawl": "2026-09-14",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/actualizador-inflacion/",
       "verdict": "PASS"
@@ -103,7 +103,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-06",
+      "lastCrawl": "2026-09-15",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/comisiones-afp/",
       "verdict": "PASS"
@@ -111,7 +111,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-14",
+      "lastCrawl": "2026-09-17",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/conversor-uf/",
       "verdict": "PASS"
@@ -119,7 +119,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-08",
+      "lastCrawl": "2026-09-16",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/conversor-utm/",
       "verdict": "PASS"
@@ -127,7 +127,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-05",
+      "lastCrawl": "2026-09-13",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/credito-consumo/",
       "verdict": "PASS"
@@ -143,7 +143,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-03",
+      "lastCrawl": "2026-09-17",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/dividendo-hipotecario/",
       "verdict": "PASS"
@@ -159,7 +159,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-07-30",
+      "lastCrawl": "2026-09-16",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/gratificacion-legal/",
       "verdict": "PASS"
@@ -167,7 +167,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-04",
+      "lastCrawl": "2026-09-15",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/impuesto-segunda-categoria/",
       "verdict": "PASS"
@@ -191,7 +191,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-06",
+      "lastCrawl": "2026-09-15",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/operacion-renta/",
       "verdict": "PASS"
@@ -215,7 +215,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-10",
+      "lastCrawl": "2026-09-15",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/seguro-cesantia/",
       "verdict": "PASS"
@@ -239,7 +239,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-07",
+      "lastCrawl": "2026-09-14",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/sueldo-liquido/",
       "verdict": "PASS"
@@ -311,7 +311,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-07-11",
+      "lastCrawl": "2026-09-17",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/glosario/boleta-honorarios/",
       "verdict": "PASS"
@@ -743,7 +743,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-08-16",
+      "lastCrawl": "2026-09-15",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/guias/deuda-credito/",
       "verdict": "PASS"
@@ -783,7 +783,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-06-13",
+      "lastCrawl": "2026-09-14",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/guias/impuestos-personas/operacion-renta/",
       "verdict": "PASS"
@@ -1255,7 +1255,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-08-30",
+      "lastCrawl": "2026-09-17",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/posts/fondos-mutuos-comisiones-rescate-impuestos/",
       "verdict": "PASS"
@@ -1295,7 +1295,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-06",
+      "lastCrawl": "2026-09-17",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/posts/informe-deudas-cmf-vs-dicom/",
       "verdict": "PASS"
@@ -1479,7 +1479,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-08-20",
+      "lastCrawl": "2026-09-15",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/terminos/",
       "verdict": "PASS"
