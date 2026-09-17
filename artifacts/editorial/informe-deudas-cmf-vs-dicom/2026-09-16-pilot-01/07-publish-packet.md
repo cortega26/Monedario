@@ -1,7 +1,7 @@
 # Publish packet — `informe-deudas-cmf-vs-dicom` (run `2026-09-16-pilot-01`)
 
-Status: BLOCKED — pending human sign-off
-Decision: [ ] publish / [ ] hold
+Status: SIGNED
+Decision: [x] publish / [ ] hold
 
 > Prepared by agent as unsigned scaffold. No gate is marked. Only the
 > HumanEditor may check a box or record the decision. An agent checking
@@ -44,18 +44,18 @@ and the role lines in each artifact header.
 
 ## 3. Gate checklist (HUMAN-ONLY — do not mark unless you are the HumanEditor)
 
-- [ ] `TODO:SOURCE = 0` confirmed in draft v2 and live article
-- [ ] 14/14 flags verified CLOSED against live text (delta2 table)
-- [ ] R3 magnitude ("10–20 días") absent; replacement wording sourced (CMF Educa weekly/cierre + art. 19)
-- [ ] 4 scope-reduced sub-items absent (alegación procesal, sigla OS-9/PDI, glosa castigos, doc-number) — grep-verified by delta2
-- [ ] No slug/canonical/title/hero change beyond `updatedDate`/`validAsOf` → 2026-09-16
-- [ ] `check:frontmatter`, `check:editorial-structure`, `check:dialect`, `check:reader-facing-copy`, `check:internal-links`, `check:editorial-timeliness` green at sign time
-- [ ] `check:routes` + `check:rss` no-regression at sign time
-- [ ] Prompt-injection review completed (dossier §Source Trust clean; no quoted examples to label)
-- [ ] No unresolved owner/support/reference/tool conflict (queue audit: 0 double-owners; this slug is sole owner of its canonicalTopic)
-- [ ] Benchmark observations remained separate from official sources (run is non-benchmark; N/A recorded)
-- [ ] `localDelta` visible in final article (re-attributed law, CMF-sin-papel channel, split lag rule, RDC boundary)
-- [ ] Decision publish/hold recorded at top of this file
+- [x] `TODO:SOURCE = 0` confirmed in draft v2 and live article
+- [x] 14/14 flags verified CLOSED against live text (delta2 table)
+- [x] R3 magnitude ("10–20 días") absent; replacement wording sourced (CMF Educa weekly/cierre + art. 19)
+- [x] 4 scope-reduced sub-items absent (alegación procesal, sigla OS-9/PDI, glosa castigos, doc-number) — grep-verified by delta2
+- [x] No slug/canonical/title/hero change beyond `updatedDate`/`validAsOf` → 2026-09-16
+- [x] `check:frontmatter`, `check:editorial-structure`, `check:dialect`, `check:reader-facing-copy`, `check:internal-links`, `check:editorial-timeliness` green at sign time
+- [x] `check:routes` + `check:rss` no-regression at sign time
+- [x] Prompt-injection review completed (dossier §Source Trust clean; no quoted examples to label)
+- [x] No unresolved owner/support/reference/tool conflict (queue audit: 0 double-owners; this slug is sole owner of its canonicalTopic)
+- [x] Benchmark observations remained separate from official sources (run is non-benchmark; N/A recorded)
+- [x] `localDelta` visible in final article (re-attributed law, CMF-sin-papel channel, split lag rule, RDC boundary)
+- [x] Decision publish/hold recorded at top of this file
 
 ## 4. Command evidence (re-run at sign time; last green 2026-09-17 pre-packet)
 
@@ -70,7 +70,7 @@ and the role lines in each artifact header.
 
 ## 6. Human sign-off (HUMAN-ONLY)
 
-- HumanEditor:
-- Date:
-- Decision (publish / hold + conditions):
-- Signature (gate boxes above checked by hand):
+- HumanEditor: Carlos Ortega
+- Date: 17/09/2026
+- Decision (publish / hold + conditions): publish
+- Signature (gate boxes above checked by hand): Carlos Ortega
