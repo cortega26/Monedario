@@ -1,0 +1,7 @@
+# Add one item per official or primary source.
+# The strict editorial gate will keep failing until at least one valid entry exists.
+# Example:
+# - title: "Nombre de la fuente"
+#   publisher: "Organismo"
+#   date: 2026-09-17
+#   url: "https://example.gob.cl/recurso"

@@ -1,0 +1,39 @@
+slug: donde-ver-si-estoy-en-dicom-gratis
+run_id: 2026-09-17-lote1-02
+run_type: refresh
+query_anchor: "donde ver si estoy en dicom gratis: que reporte pedir primero segun tu duda"
+ymyl: true
+requires_calculation: false
+regulatory_sensitivity: alta
+target_audience: "Personas en Chile que buscan 'DICOM gratis' y necesitan separar su duda real: deudas financieras vigentes (Informe CMF), protestos de documentos (Boletin Comercial) o reporte comercial amplio (privados tipo Equifax), partiendo por el canal gratuito correcto sin pagar de mas."
+cut_off_date: 2026-09-17
+category: deuda-credito
+cluster: deuda-credito
+topic_role: support
+canonical_topic: informe-deudas-cmf-vs-dicom
+title: "Dónde ver si estás en DICOM gratis en Chile y qué revisar primero"
+justificacion_requires_calculation: "El refresh verifica hechos citados contra fuente oficial (gratuidad, canales de acceso, periodicidad semanal del Estado de Deudores, desfase de reporte) pero no realiza operaciones aritmeticas, conversiones de unidades ni ejemplos calculados. Sin formulas, topes computados ni tablas numericas derivadas: false (la heuristica del scaffold marco true por deteccion cruda de cifras; se descarta tras revision del cuerpo)."
+justificacion_regulatory_sensitivity: "La pieza interpreta alcance de supervision CMF (que registros cubre cada canal), derechos legales (eliminacion de protestos tras pago, consulta basica gratuita del Boletin, uso autorizado de datos comerciales) y acceso autenticado via ClaveUnica. Interpretacion regulatoria/legal directa sobre decisiones de credito, arriendo y contratacion: alta segun pipeline seccion 5. Coincide con la estimacion F0 de la cola ('alta, misma base' que el owner)."
+benchmarkSet:
+  - "N/A — run de refresh por exactitud/vigencia y diferenciacion owner/support, no benchmark-driven. Sin URLs externas consultadas."
+patternHypothesis: "N/A — sin benchmark externo consultado en este run."
+localDelta: "Regla de decision 'segun tu duda' con Respuesta rapida + vigencia + fecha de corte visible; tabla de decision etiquetada 'Resumen orientativo'; correccion de atribuciones legales sin respaldo (Ley 20.575 como base de eliminacion/consulta gratuita) con TODO:SOURCE y re-atribucion candidata verificable; boundary explicita con el owner sin duplicar su contenido operativo del Informe CMF."
+nonCopyBoundaries:
+  - "No se copia texto, claims ni estructura URL de ningun competidor (sin benchmark consultado)."
+  - "No se copian conclusiones legales del run piloto del owner (2026-09-16-pilot-01); cada claim se re-deriva de fetches frescos de este run o va con TODO:SOURCE."
+  - "No se duplica el contenido operativo del owner; el cross-link lo referencia, no lo reproduce."
+  - "Ninguna afirmacion YMYL se justifica por contenido no oficial."
+ownerTarget: "Support de `informe-deudas-cmf-vs-dicom` (canonical owner, cluster `deuda-credito`, run piloto `2026-09-16-pilot-01`, packet pendiente de firma humana). Este support responde 'donde consultar gratis segun tu duda'; el owner responde 'que es cada registro y como operar el Informe CMF'. Hub `/guias/deuda-credito/` en F2. Sin conflicto de ownership (cola F0: 0 double-owners; overlap conocido donde-ver <-> informe-deudas 0,405; query canibalizada `credit score chile` se mitiga con regla de decision cruzada, no duplicando contenido)."
+successSignal: "stale = 0 en lote 1; TODO:SOURCE = 0 tras auditorias; `audit:topic-overlap` sin double-owners; GSC del slug no peor a 28 dias vs base W36 (1 clic / 288 impr. / pos. 19,56)."
+fuentes_declaradas:
+  - "https://www.cmfchile.cl/educa/621/w3-article-27663.html (CMF Educa — fetch directo 2026-09-17, VERIFICADO, citas literales en dossier)"
+  - "https://conocetudeuda.cmfchile.cl/informe-deudas/ (portal tramite — fetch 2026-09-17 solo titulo, app JS sin contenido extraible; TODO:SOURCE)"
+  - "https://www.boletincomercial.cl (fetch 2026-09-17 solo 'Sitio Publico', app JS sin contenido extraible; TODO:SOURCE)"
+  - "https://www.bcn.cl/leychile/navegar?idLey=20575 (fetch 2026-09-17 bloqueado: app JS, error de compatibilidad; verificacion manual pendiente, TODO:SOURCE)"
+  - "Referencia interna de contraste (no oficial): `src/data/laws/ley-20575-datos-comerciales.md`"
+separacion_de_roles:
+  draft_agent: "Muse Spark (OpenCode), sesion 2026-09-17 — SOLO brief/dossier/outline/draft"
+  math_audit_agent: "PENDIENTE — sesion separada, NO esta sesion"
+  compliance_agent: "PENDIENTE — sesion fresca separada, NO esta sesion"
+  human_sign_off: "PENDIENTE — obligatorio por regulatory_sensitivity=alta"
+  nota: "Esta sesion no puede producir 05/06/07 ni firmar gates (SEPARATION_OF_DUTIES). Sin 05/06/07 en este run-id."
