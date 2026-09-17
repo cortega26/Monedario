@@ -4,8 +4,8 @@ Status: BLOCKED — pending human sign-off
 Decision: [ ] publish / [ ] hold
 
 > Prepared by agent as unsigned scaffold. No gate is marked. Only the
-> HumanEditor may check a box or record the decision. Marking any `[X]`
-> by an agent violates `INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES` and
+> HumanEditor may check a box or record the decision. An agent checking
+> any gate box violates `INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES` and
 > `AGENTS.md` hard stops.
 
 ## 1. Artifact map
