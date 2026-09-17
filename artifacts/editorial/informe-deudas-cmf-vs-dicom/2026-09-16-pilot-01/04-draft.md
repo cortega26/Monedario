@@ -79,12 +79,13 @@ por un familiar fallecido, la via oficial es **CMF sin papel**
 verificacion humana 2026-09-16; correccion sobre el articulo vigente, que
 dice "presencial en la CMF").
 
-> **Dato importante:** el informe se actualiza semanalmente, con un desfase
-> de entre 10 y 20 días respecto de la fecha de la consulta (CMF,
-> verificacion humana 2026-09-16: es desfase del snapshot semanal, no plazo
-> de baja). Tras un pago rige la regla legal: el acreedor avisa dentro de 7
-> días hábiles y el registro se actualiza en los 3 días siguientes (Ley
-> 19.628, art. 19, verificacion humana 2026-09-16).
+> **Dato importante:** el informe se actualiza semanalmente, con
+> antecedentes al cierre de cada viernes y al ultimo dia del mes (CMF Educa,
+> cita literal verificada 2026-09-17 — la magnitud "10-20 dias" se retira por
+> carecer de fuente primaria: dossier claim #5 "No publicar sin fuente").
+> Tras un pago rige la regla legal: el acreedor avisa dentro de 7 dias
+> habiles y el registro se actualiza en los 3 dias siguientes (Ley 19.628,
+> art. 19, verificacion humana 2026-09-16).
 
 ### Cuanto tiempo permanece una deuda
 
@@ -152,13 +153,9 @@ nuevos, hub F2, articulo support. Cifra "8.000 UF" no existe en esta pieza.
 
 ## Resumen de marcadores del draft: 0 pendientes (verificacion humana 2026-09-16)
 
-Resueltos 12/12: desfase (snapshot + regla 7+3 art. 19) · "ilimitado"
-(retirado) · ClaveUnica (RUT; doc-number no afirmado) · heredero (CMF sin
-papel + link; lista documental exacta no afirmada) · eliminacion Boletin
-(19.628 art. 18 inc. 2.°) · gratuidad (atribucion 20.575 retirada) ·
-2515 (arts. 2514-2515; alegacion no afirmada) · terceros (carve-out
-empleadores; arrendadores no afirmados) · reclamo (deep-link verificado) ·
-OS-9/PDI (denuncia policial generica; sigla no afirmada) · glosa (directa/
-indirecta confirmadas; castigos no afirmado) · entidades (bancos y
-cooperativas fiscalizadas). Sub-items con alcance reducido en vez de
-afirmados: C(c), H exacto, castigos literal, doc-number.
+Resueltos 12/12 + R3-corregido 2026-09-17 (magnitud "10-20 dias" retirada
+de draft y articulo por falta de fuente primaria; reemplazada por
+actualizacion semanal con cierre viernes/fin de mes, cita literal CMF Educa
+verificada por fetch directo 2026-09-17); alcance reducido (no afirmado):
+C(c), H exacto, castigos literal, doc-number ClaveUnica, lista documental
+heredero.

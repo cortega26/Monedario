@@ -105,7 +105,7 @@ El trámite es online y requiere **ClaveÚnica**.
 
 Si no tienes ClaveÚnica, puedes obtenerla en [claveunica.gob.cl](https://www.claveunica.gob.cl/) con tu RUT.
 
-> **Dato importante:** El informe se actualiza semanalmente, con un desfase de entre 10 y 20 días respecto de la fecha de la consulta (CMF). Además, pagada una deuda, el acreedor debe avisar dentro de 7 días hábiles y el registro debe actualizarse en los 3 días siguientes (Ley 19.628, art. 19). Si recién pagaste o cerraste una deuda, no asumas que el reporte se corregirá el mismo día.
+> **Dato importante:** El informe se actualiza semanalmente, con antecedentes al cierre de cada viernes y al último día del mes (CMF). Además, pagada una deuda, el acreedor debe avisar dentro de 7 días hábiles y el registro debe actualizarse en los 3 días siguientes (Ley 19.628, art. 19). Si recién pagaste o cerraste una deuda, no asumas que el reporte se corregirá el mismo día.
 
 Fuente oficial: [CMF Chile](https://www.cmfchile.cl/educa/621/w3-article-27663.html)
 
@@ -182,14 +182,14 @@ El informe no es solo para saber si "estás en DICOM". Tiene usos prácticos con
 <details>
 <summary>¿Cada cuánto se actualiza el informe CMF?</summary>
 
-La CMF informa una actualización semanal, con un desfase de entre 10 y 20 días respecto de la fecha de la consulta. Tras un pago, la actualización sigue la regla legal de 7 + 3 días hábiles (Ley 19.628, art. 19).
+La CMF informa una actualización semanal, con datos al cierre de cada viernes y al último día del mes. Tras un pago, la actualización sigue la regla legal de 7 + 3 días hábiles (Ley 19.628, art. 19).
 
 </details>
 
 <details>
 <summary>¿El informe CMF lo puede ver cualquier persona?</summary>
 
-No. Solo tú puedes ver tu propio informe usando tu ClaveÚnica. La ley permite a los empleadores usar tu historial comercial solo para evaluar tu solvencia al contratar (Ley 20.575, principio de finalidad); fuera de ese caso, ningún tercero puede descargarlo sin tu autorización.
+No. Solo tú puedes ver tu propio informe usando tu ClaveÚnica. La ley permite a los empleadores usar tu historial comercial solo para evaluar tu solvencia al contratar (Ley 20.575, art. 1, inc. 3.°); fuera de ese caso, ningún tercero puede descargarlo sin tu autorización.
 
 </details>
 
