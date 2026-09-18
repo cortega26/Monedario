@@ -3,7 +3,7 @@ title: "Renegociación Superir: qué es, quién puede pedir y cómo hacerlo sin 
 seoTitle: "Renegociación Superir: Qué Es y Cómo Pedirla | Monedario"
 author: "Equipo Monedario"
 pubDate: 2026-02-24T14:00:00Z
-updatedDate: 2026-03-12T18:45:00Z
+updatedDate: 2026-09-17T18:45:00Z
 slug: renegociacion-superir
 featured: false
 lang: es-CL
@@ -26,7 +26,7 @@ articleLead:
   calculatorLabel: "Filtrar elegibilidad básica"
   nextStepHref: "/posts/cae-costo-real-credito-chile/"
   nextStepLabel: "Entiende la CAE antes de renegociar"
-  validAsOf: 2026-04-12
+  validAsOf: 2026-09-17
   officialSources:
     - label: "Superir - Requisitos de renegociación"
       href: "https://www.superir.gob.cl/perfil-deudor-requisito-renegociacion/"
@@ -69,7 +69,7 @@ La **Superintendencia de Insolvencia y Reemprendimiento (Superir)** es el organi
 
 Para personas naturales con deudas que no puede pagar, la Superir ofrece la **renegociación**: un procedimiento donde actúa como mediadora entre tú y tus acreedores para llegar a un acuerdo de pago que sea viable para ambos lados.
 
-No es un tribunal. No es una demanda. No te van a quitar la casa por iniciar este proceso. Es una mesa de negociación con el Estado como árbitro.
+No es un tribunal. No es una demanda. No te van a quitar la casa por iniciar este proceso. Es una mesa de negociación con el Estado como mediador.
 
 **Lo que puede lograr una renegociación:**
 
@@ -91,7 +91,7 @@ Ojo con los detalles de esta regla:
 
 - Deben ser **dos o más deudas distintas** — no sirve una sola deuda grande con un solo acreedor
 - Cada deuda debe tener **más de 90 días corridos** de atraso al momento de presentar la solicitud
-- El total de esas deudas vencidas debe superar las **80 [UF](/guias/uf-costo-de-vida/)** (~$3.500.000 aproximadamente, según el valor del día)
+- El total de esas deudas vencidas debe superar las **80 [UF](/guias/uf-costo-de-vida/)** (~$3.276.072 con la UF al 2026-09-17; valor referencial, verifica el valor del día)
 
 **Error frecuente:** Pensar que las 80 UF se refieren a cada deuda individual. No — es el total de todas las deudas vencidas sumadas.
 
@@ -255,7 +255,7 @@ No. La Superir actúa como mediadora y el proceso está diseñado para que cualq
 Depende de la completitud de tus antecedentes, de la respuesta de los acreedores y de si la solicitud requiere rectificaciones. Usa los plazos administrativos de admisibilidad como referencia, pero asume que el proceso completo puede extenderse más si faltan documentos o no hay acuerdo rápido.
 
 **¿Puedo seguir usando mis cuentas bancarias durante el proceso?**
-Sí. La renegociación no congela tus cuentas ni te impide operar financieramente mientras el proceso avanza.
+Sí. Solicitarla no congela tus cuentas por sí solo, pero el banco puede suspender tus líneas de crédito o sobregiro y no puedes disponer de tus bienes embargables mientras el proceso avanza (art. 264 N°4 y N°6, Ley 20.720).
 
 **¿Qué pasa si no llego a acuerdo?**
 Si no hay acuerdo en la audiencia de renegociación, el proceso pasa a la audiencia de ejecución (venta de bienes). Si tampoco hay acuerdo ahí, la Superir envía los antecedentes al tribunal para iniciar un proceso de **Liquidación Simplificada** — que es esencialmente declararte insolvente y liquidar tus bienes para pagar las deudas.

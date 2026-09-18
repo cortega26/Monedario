@@ -3,7 +3,7 @@ title: "Fondos AFP A, B, C, D y E: diferencias, riesgo y cuál te conviene"
 seoTitle: "Fondos AFP A, B, C, D y E: Cuál Elegir | Monedario"
 author: "Equipo Monedario"
 pubDate: 2026-02-23T11:00:00Z
-updatedDate: 2026-03-12T19:08:00Z
+updatedDate: 2026-09-17T12:00:00Z
 slug: fondos-afp-a-b-c-d-e
 featured: true
 lang: es-CL
@@ -25,7 +25,7 @@ articleLead:
   calculatorLabel: "Proyectar jubilación"
   nextStepHref: "/posts/como-cambiarse-de-afp/"
   nextStepLabel: "Cómo cambiarte de AFP paso a paso"
-  validAsOf: 2026-04-12
+  validAsOf: 2026-09-17
   officialSources:
     - label: "Superintendencia de Pensiones"
       href: "https://www.spensiones.cl/"
@@ -64,19 +64,19 @@ Este artículo mantiene la explicación histórica de [multifondos](/glosario/mu
 
 - **Qué cambia hoy (2026):**
   - Los multifondos **A, B, C, D y E siguen vigentes** y puedes elegir/cambiar fondo como hasta ahora.
-  - La cotización adicional del empleador ya comenzó en **1%** (agosto 2025), sin descuento adicional a tu sueldo líquido.
+  - La cotización adicional del empleador es de **3,5%** desde las remuneraciones de agosto de 2026 (0,1% a tu cuenta individual, 2,5% a SIS/CEV y 0,9% a CRP); entre agosto de 2025 y julio de 2026 fue de 1%. Sigue siendo de cargo del empleador, sin descuento adicional a tu sueldo líquido.
 - **Qué cambia después (2027 en adelante):**
-  - Desde **abril de 2027** empieza el paso a **fondos generacionales**. Conviene revisar ese cronograma por separado para no mezclar transición del sistema con elección de fondo vigente hoy.
-  - En paralelo, desde **agosto de 2027** el aporte adicional del empleador sube a **3,5%**, dentro del calendario que llega a 7%.
+  - Desde **abril de 2027** empieza el paso a **fondos generacionales**. Conviene revisar ese cronograma por separado para no mezclar transición del sistema con elección de fondo vigente hoy. La SP publicó en consulta (03-07-2026) una propuesta de 10 fondos asignados por año de nacimiento; el régimen definitivo estaba pendiente al cierre de la consulta (31-07-2026).
+  - En paralelo, el aporte adicional del empleador sigue subiendo de forma gradual hasta **7%** en agosto de 2033.
 
 Calendario resumido:
 
-| Hito                                  | Fecha           | Efecto práctico                                    |
-| ------------------------------------- | --------------- | -------------------------------------------------- |
-| Inicio aporte adicional del empleador | Agosto 2025     | +1% de cargo empleador.                            |
-| Vigencia general de la reforma        | Septiembre 2025 | Comienza implementación por etapas.                |
-| Inicio fondos generacionales          | Abril 2027      | Transición desde A-E a nuevo esquema por cohortes. |
-| Siguiente alza aporte empleador       | Agosto 2027     | Aporte adicional sube a 3,5%.                      |
+| Hito                                  | Fecha           | Efecto práctico                                                            |
+| ------------------------------------- | --------------- | -------------------------------------------------------------------------- |
+| Inicio aporte adicional del empleador | Agosto 2025     | +1% de cargo empleador (entre ago-2025 y jul-2026).                        |
+| Vigencia general de la reforma        | Septiembre 2025 | Comienza implementación por etapas.                                        |
+| Inicio fondos generacionales          | Abril 2027      | Transición desde A-E a nuevo esquema por cohortes.                         |
+| Alza aporte empleador a 3,5%          | Agosto de 2026  | 3,5% de cargo empleador: 0,1% cuenta individual + 2,5% SIS/CEV + 0,9% CRP. |
 
 ## Tabla de contenidos
 
@@ -186,6 +186,8 @@ No es necesariamente la peor opción, pero tampoco es la más optimizada para tu
 
 Sí, y es gratuito e ilimitado. Puedes cambiarte de fondo cuantas veces quieras sin costo. El trámite se hace directamente en el sitio web o app de tu AFP en minutos.
 
+Importante: la ley restringe la elección por edad. Desde los 51 años en el caso de las mujeres y desde los 56 en el de los hombres no puedes elegir el Fondo A para tu ahorro obligatorio; si ya estás pensionado, solo puedes optar entre los fondos C, D y E.
+
 Lo que debes evitar es cambiar de fondo por pánico cuando el mercado cae. Es uno de los errores más comunes y más costosos: pasarse al Fondo E en plena crisis significa **cristalizar las pérdidas** —vender tus cuotas barato— y quedarte fuera cuando el mercado se recupere. El daño no es solo la caída; es no estar cuando sube.
 
 ## ¿Puedo estar en más de un fondo?
@@ -226,7 +228,10 @@ Si quieres salir de la lógica "fondo por fondo" y mirar el cambio estructural d
 ### Fuentes oficiales para el bloque 2025-2027
 
 - ChileAtiende, aportes del empleador al sistema de pensiones: https://www.chileatiende.gob.cl/fichas/130987-aportes-del-empleador-al-sistema-de-pensiones
+- Superintendencia de Pensiones, cotización de cargo del empleador: https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-10906.html
+- Superintendencia de Pensiones, fondos de pensiones (límites y restricciones de elección): https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9909.html
 - Superintendencia de Pensiones, implementación de fondos generacionales: https://www.spensiones.cl/portal/institucional/594/w3-article-16668.html
+- Superintendencia de Pensiones, propuesta de Régimen de Inversión de fondos generacionales (consulta 03-07-2026): https://www.spensiones.cl/portal/institucional/594/w3-article-17076.html
 - BCN, Ley N° 21.735: https://www.bcn.cl/leychile/navegar?idNorma=1212060
 
 ---

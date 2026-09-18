@@ -5,7 +5,7 @@ author: "Equipo Monedario"
 description: "Guía para crear un presupuesto mensual en Chile: clasificar ingresos y gastos, detectar fugas y construir hábitos de control financiero."
 slug: como-hacer-presupuesto-mensual-chile
 pubDate: 2026-03-03T23:45:00Z
-updatedDate: 2026-04-08T00:00:00Z
+updatedDate: 2026-09-17T00:00:00Z
 tags:
   - presupuesto
   - finanzas-personales
@@ -141,7 +141,7 @@ Con los datos de registro en mano:
 2. **Suma todos los compromisos fijos** y descuéntalos.
 3. **Lo que queda es tu presupuesto libre** para variables y ahorro.
 4. **Asigna una cifra a cada categoría variable** antes de que empiece el mes.
-5. **Reserva para irregulares:** divide el gasto anual estimado en cuotas mensuales (si el SOAP te cuesta $150.000 en octubre, reserva $12.500/mes todo el año).
+5. **Reserva para irregulares:** divide el gasto anual estimado en cuotas mensuales (si el SOAP de tu auto cuesta entre $10.000 y $13.500 en marzo, reserva entre $833 y $1.125/mes todo el año).
 
 ---
 
