@@ -114,6 +114,11 @@ export const CANONICAL_TOPIC_REGISTRY = {
       ownerSlug: "como-leer-cartola-afp-chile",
       intentLabel: "leer e interpretar la cartola AFP",
     },
+    "afiliacion-cotizacion-voluntaria": {
+      ownerSlug: "cotizacion-voluntaria-afp-independiente",
+      intentLabel:
+        "afiliacion y cotizacion voluntaria AFP para quien no cotiza por boletas",
+    },
   },
   "ahorro-e-inversion": {
     "elegir-instrumento-ahorro-inversion": {

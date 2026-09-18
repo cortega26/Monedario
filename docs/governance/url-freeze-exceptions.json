@@ -1,5 +1,20 @@
 {
   "schemaVersion": 1,
   "strategy": "UTILITY_LED_VALIDATION_2026Q3",
-  "exceptions": []
+  "exceptions": [
+    {
+      "url": "https://monedario.cl/posts/cotizacion-voluntaria-afp-independiente/",
+      "problem": "Vacio de contenido confirmado en Gate 00 (2026-09-17): cero articulos en el sitio cubren la afiliacion/cotizacion VOLUNTARIA en AFP para quien no cotiza por boletas obligatorias (freelance bajo el umbral de 5 IMM, socios que reciben retiros/dividendos, personas sin actividad remunerada formal). Mecanismo legal distinto (art. 92 J DL 3.500) al que ya cubren boleta-honorarios-2026-retencion-cobertura (obligatorio) y rentas-mixtas-sueldo-honorarios (tributario) -- confirmado sin conflicto de ownership por audit:topic-overlap.",
+      "evidence": "Vacio de contenido confirmado por grep exhaustivo sobre src/data/blog/, glosario y leyes (Gate 00, 2026-09-17). Evidencia de demanda: un usuario real consulto esta pregunta especifica en Reddit (referencia directa del aprobador, 2026-09-17) -- señal de demanda real, no solo inferida de paginas oficiales dedicadas al tema (Superintendencia de Pensiones, AAFP, SII). No se pudo obtener volumen de busqueda agregado via Ahrefs (Insufficient plan en la sesion de Gate 00); esta evidencia queda como limitacion conocida, no resuelta por esta excepcion.",
+      "hypothesis": "Un lector sin boletas obligatorias que busca como cotizar siendo independiente/freelance sin boletas no encuentra hoy respuesta en el sitio. Publicar esta pieza captura esa intencion dentro del cluster pensiones-afp ya existente, sin crear cluster nuevo ni calculadora nueva, y sin capturar datos financieros personales del lector.",
+      "cost": "Costo de produccion ya incurrido en su totalidad: pipeline editorial completo (Gate 00, brief, dossier con 13 fuentes fetcheadas, outline, draft, 2 rondas de math-audit independientes, compliance, correccion de 4 defectos, imagen hero generada y validada). Cero costo incremental de desarrollo pendiente.",
+      "maintenance": "Cadence semestral ya configurada (reviewPolicy.cadenceLabel=semiannual, maxDays=180), mismo patron que los articulos hermanos del cluster pensiones-afp. Dos valores volatiles (Ingreso Minimo para Fines No Remuneracionales, tasa SIS) pendientes de registro en editorial-volatile-data-registry.json para sincronizacion automatica futura -- no bloqueante.",
+      "metric": "Clics e impresiones en GSC para la URL; interaccion con los enlaces de siguiente-paso hacia boleta-honorarios-2026-retencion-cobertura, pgu-pension-garantizada-universal y fondos-afp-a-b-c-d-e; ausencia continuada de señal de canibalizacion en audit:topic-overlap.",
+      "threshold": "Revisar junto con el resto del foco en la ventana del 2026-11-02. Umbral minimo sugerido: >=1 clic o >=50 impresiones en GSC en las primeras 4 semanas post-publicacion.",
+      "decision": "APPROVED",
+      "approvedBy": "Carlos Ortega",
+      "approvedAt": "2026-09-17",
+      "expiresAt": "2026-11-02"
+    }
+  ]
 }

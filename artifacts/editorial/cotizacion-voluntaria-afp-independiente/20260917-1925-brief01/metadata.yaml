@@ -1,0 +1,8 @@
+slug: cotizacion-voluntaria-afp-independiente
+source_path: src/data/blog/cotizacion-voluntaria-afp-independiente.md
+run_id: 20260917-1925-brief01
+scaffolded_at: 2026-09-17T22:25:00.000Z
+cut_off_date: 2026-09-17
+draft_agent: claude-code-this-session
+math_audit_agent: claude-code-subagent-2-rounds-conditional
+compliance_agent: claude-code-subagent-conditional-8.725

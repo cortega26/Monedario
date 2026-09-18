@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "source": "src/data/blog/**",
   "inclusionRule": "valid frontmatter (drafts included for pre-publication image planning)",
-  "articleCount": 53,
+  "articleCount": 54,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -404,6 +404,41 @@
       "bodyExcerpt": "> **Información vigente al 2026-08-03.** Las tasas de contribuciones, los montos de exención y las fechas exactas de pago se actualizan periódicamente. Verifica los valores vigentes en el y la antes de realizar cualquier pago o trámite. Si tienes una propiedad en Chile, puede corresponder el pago de contribuciones de bienes raíces. Es un impuesto territorial anual que se cobra hasta en cuatro cuotas, aunque muchos propietarios de primera vivienda tienen exención total o parcial sin saberlo — conviene verificar en el SII antes de asumir que el cobro aplica. ## ¿Qué son las contribuciones de bienes raíces? Las contribuciones de bienes raíces son el impuesto territorial que grava la propiedad inmueble en Chile. El impuesto se rige principalmente por el (Ministerio de Hacienda), que refunde la Ley N°17.235. Lo administra el SII (determina el avalúo y las tasas) y lo recauda la TGR (Tesorería General de la República). No se cobra sobre el valor de mercado de la propiedad, sino sobre el **avalúo fiscal** — un valor oficial fijado por el SII, generalmente inferior al precio de mercado. ## ¿Cómo se calcula el monto? La base de cálculo es el **avalúo fiscal** de tu propiedad — un valor ofic",
       "wordCount": 1012,
       "sourceFile": "contribuciones-bienes-raices-chile.md"
+    },
+    {
+      "slug": "cotizacion-voluntaria-afp-independiente",
+      "title": "Cotización voluntaria en AFP: cómo afiliarte si no tienes boletas obligatorias",
+      "tags": [
+        "afiliacion-voluntaria",
+        "afp",
+        "cotizaciones",
+        "independientes",
+        "freelance",
+        "sis"
+      ],
+      "category": "prevision",
+      "cluster": "pensiones-afp",
+      "sourcePath": "src/data/blog/cotizacion-voluntaria-afp-independiente.md",
+      "heroImage": "/images/hero/cotizacion-voluntaria-afp-independiente.avif",
+      "summary": "Información vigente al 2026 09 17. El ingreso mínimo mensual y la tasa del Seguro de Invalidez y Sobrevivencia (SIS) se reajustan periódicamente. Verifica los valores actualizados en la antes de cotizar. Si no emites boletas de honorarios, o las que emites no llegan al umbral que...",
+      "leadParagraphs": [
+        "> **Información vigente al 2026-09-17.** El ingreso mínimo mensual y la tasa del Seguro de Invalidez y Sobrevivencia (SIS) se reajustan periódicamente. Verifica los valores actualizados en la [Superintendencia de Pensiones](https://www.spensiones.cl/) antes de cotizar.",
+        "Si no emites boletas de honorarios, o las que emites no llegan al umbral que obliga a cotizar, probablemente asumiste que no tienes forma de seguir aportando a tu pensión mientras no trabajes como dependiente. No es así: existe una figura legal específica —el **afiliado o afiliada voluntario/a**— para quien quiere cotizar sin estar obligado. Esta guía explica quién califica, cuánto cotizas, cómo te afilias y, sobre todo, qué NO resuelve esta cotización (dos errores comunes: pensar que da acceso a la PGU o que incluye salud automáticamente).",
+        "La misma expresión se usa para dos mecanismos previsionales diferentes en Chile, y confundirlos lleva a errores:"
+      ],
+      "headings": [
+        "Antes de seguir: \"cotización voluntaria\" significa dos cosas distintas",
+        "¿Quién califica como afiliado o afiliada voluntario/a?",
+        "Cuánto puedes cotizar (con el cálculo)",
+        "Cómo te afilias: trámite y plazos",
+        "Qué cubre tu cotización voluntaria (y qué no)",
+        "Tasa del Seguro de Invalidez y Sobrevivencia (SIS)",
+        "Cotización de salud voluntaria (aparte de la AFP)",
+        "¿Cotizar voluntariamente te da acceso a la Pensión Garantizada Universal (PGU)?"
+      ],
+      "bodyExcerpt": "> **Información vigente al 2026-09-17.** El ingreso mínimo mensual y la tasa del Seguro de Invalidez y Sobrevivencia (SIS) se reajustan periódicamente. Verifica los valores actualizados en la antes de cotizar. Si no emites boletas de honorarios, o las que emites no llegan al umbral que obliga a cotizar, probablemente asumiste que no tienes forma de seguir aportando a tu pensión mientras no trabajes como dependiente. No es así: existe una figura legal específica —el **afiliado o afiliada voluntario/a**— para quien quiere cotizar sin estar obligado. Esta guía explica quién califica, cuánto cotizas, cómo te afilias y, sobre todo, qué NO resuelve esta cotización (dos errores comunes: pensar que da acceso a la PGU o que incluye salud automáticamente). ## Antes de seguir: \"cotización voluntaria\" significa dos cosas distintas La misma expresión se usa para dos mecanismos previsionales diferentes en Chile, y confundirlos lleva a errores: 1. **Afiliación voluntaria** (el tema de este artículo): el estatus de quien **no cotiza obligatoriamente** — no ejerce actividad remunerada, o es independiente sin boletas de honorarios — y decide cotizar igual, un 10% de un monto que elige. 2. **Cotizaci",
+      "wordCount": 1959,
+      "sourceFile": "cotizacion-voluntaria-afp-independiente.md"
     },
     {
       "slug": "credito-hipotecario-chile-guia-completa",

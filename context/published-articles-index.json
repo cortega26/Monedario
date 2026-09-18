@@ -5,7 +5,7 @@
   "source": "src/data/blog/**",
   "publishableRule": "draft !== true",
   "ordering": "slug asc",
-  "publishedCount": 53,
+  "publishedCount": 54,
   "articles": [
     {
       "slug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
@@ -201,6 +201,23 @@
       "sourcePath": "src/data/blog/contribuciones-bienes-raices-chile.md",
       "heroImage": "/images/hero/contribuciones-bienes-raices-chile.avif",
       "summary": "Información vigente al 2026 08 03. Las tasas de contribuciones, los montos de exención y las fechas exactas de pago se actualizan periódicamente. Verifica los valores vigentes en el y la antes de realizar cualquier pago o trámite. Si tienes una propiedad en Chile, puede correspon..."
+    },
+    {
+      "slug": "cotizacion-voluntaria-afp-independiente",
+      "title": "Cotización voluntaria en AFP: cómo afiliarte si no tienes boletas obligatorias",
+      "category": "prevision",
+      "cluster": "pensiones-afp",
+      "tags": [
+        "afiliacion-voluntaria",
+        "afp",
+        "cotizaciones",
+        "independientes",
+        "freelance",
+        "sis"
+      ],
+      "sourcePath": "src/data/blog/cotizacion-voluntaria-afp-independiente.md",
+      "heroImage": "/images/hero/cotizacion-voluntaria-afp-independiente.avif",
+      "summary": "Información vigente al 2026 09 17. El ingreso mínimo mensual y la tasa del Seguro de Invalidez y Sobrevivencia (SIS) se reajustan periódicamente. Verifica los valores actualizados en la antes de cotizar. Si no emites boletas de honorarios, o las que emites no llegan al umbral que..."
     },
     {
       "slug": "credito-hipotecario-chile-guia-completa",

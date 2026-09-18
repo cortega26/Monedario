@@ -1,0 +1,67 @@
+# Official / primary sources for run 20260917-1925-brief01.
+# Fetch results updated 2026-09-17 by ResearchAgent (Claude Code subagent,
+# substituting ChatGPT — see 01-brief.yaml -> separacion_de_roles.research_agent).
+# Full claims, literal quotes, and cross-references are in 02-dossier.md.
+#
+# Entries below (added by DraftAgent, Stage 04, misma sesión 2026-09-17)
+# resuelven dos TODO:SOURCE que el outline (03-outline.md) marcó como
+# necesarios antes de escribir el ejemplo numérico y el paso a paso.
+- title: "Capítulo XVI. Afiliados Voluntarios (Compendio de Normas del Sistema de Pensiones)"
+  publisher: "Superintendencia de Pensiones"
+  date: 2026-09-17
+  url: "https://www.spensiones.cl/portal/compendio/596/w3-propertyvalue-3628.html"
+  retrieval: "fetch OK 2026-09-17 (WebFetch, resumen) — texto normativo literal segun ese resumen: base de cotizacion minima = 'ingreso minimo mensual para fines no remuneracionales vigente el mes de devengamiento' (numeral 15). CORRECCION post-05-math-audit.md (ronda 1, misma sesion): una relectura con descarga HTML cruda (curl) de los numerales 1-10 completos mostro que el numeral 15 esta acotado a la subseccion 'Autorizacion de Descuentos' (pago via conyuge/conviviente civil de un trabajador dependiente) — NO es un piso general para aporte directo. El numeral 10 (aportes directos, el caso de la mayoria del publico objetivo) no menciona ningun piso en pesos. El blog file fue corregido para no generalizar $356.815. Confirma tambien (numeral 2) que la regla de 'AFP adjudicataria o asignataria' SI es general (seccion 'Procedimiento de afiliacion'), no exclusiva de independientes por boletas — contradice la nota anterior de este mismo registro, que decia que el capitulo no desarrollaba este punto; la lectura cruda del numeral 2 si lo cubre. Confirma anulacion de incorporacion si no hay pago dentro de 5 meses (numeral 6) y que quien ya tuvo AFP antes no necesita el formulario (numeral 3). NO contiene referencia al art. 92 J DL 3.500 (confirmado explicitamente su ausencia en este capitulo)."
+  retrieval_role: "draft-stage (Stage 04) + correccion post-math-audit ronda 1, no research-stage"
+- title: "5. Afiliación de personas naturales que no ejercen una actividad remunerada (Compendio de Normas del Sistema de Pensiones)"
+  publisher: "Superintendencia de Pensiones"
+  date: 2026-09-17
+  url: "https://www.spensiones.cl/portal/compendio/596/w3-propertyvalue-4085.html"
+  retrieval: "fetch OK 2026-09-17 — confirma tramite (formulario 'Solicitud de Incorporacion'), momento en que la afiliacion se hace efectiva (dia del pago de la primera cotizacion), y anulacion a los 5 meses sin pago. Explicitamente NO contiene referencia al art. 92 J DL 3.500 (fetch confirma su ausencia)."
+  retrieval_role: "draft-stage (Stage 04), no research-stage"
+- title: "¿Cuál es el valor del ingreso mínimo mensual?"
+  publisher: "Dirección del Trabajo (DT)"
+  date: 2026-09-17
+  url: "https://www.dt.gob.cl/portal/1628/w3-article-60141.html"
+  retrieval: "fetch OK 2026-09-17 — ingreso minimo mensual general (18-65 anos): $553.553 vigente desde 01-05-2026 (Ley N 21.830, D.O. 22-06-2026); menores de 18/mayores de 65: $412.938; ingreso minimo para fines NO remuneracionales: $356.815. CORRECCION post-05-math-audit.md: $553.553 (el general) es la base que usa el blog file para el ejemplo de calculo, no $356.815 — ver correccion en la entrada del Compendio Cap. XVI arriba."
+  retrieval_role: "draft-stage (Stage 04), no research-stage"
+- title: "¿Qué se entiende por afiliada o afiliado voluntario? (re-verificado con descarga cruda tras 05-math-audit.md)"
+  publisher: "Superintendencia de Pensiones"
+  date: 2026-09-17
+  url: "https://www.spensiones.cl/portal/institucional/594/w3-article-5947.html"
+  retrieval: "fetch OK 2026-09-17 (WebFetch, resumen) — texto literal extraído en 02-dossier.md (claims a, a-bis, b-quater, d, d-bis). RE-VERIFICADO en esta sesion con descarga HTML cruda (curl): confirma cita literal exacta 'Las afiliadas y los afiliados voluntarios pueden cotizar el 10% de cualquier monto mayor al ingreso minimo' — SIN el calificador 'para fines no remuneracionales' en ninguna parte de la pagina — y 'La comision que cobra la AFP se calcula sobre ese monto' (cargo aparte del 10%, misma base). Resuelve el TODO:SOURCE #3 de 05-math-audit.md: la lectura mas literal/natural de 'ingreso minimo' sin calificador es el general ($553.553)."
+  retrieval_role: "draft-stage (Stage 04) + correccion post-math-audit ronda 1, no research-stage"
+- title: "Cotización previsional obligatoria"
+  publisher: "Superintendencia de Pensiones"
+  date: 2026-09-17
+  url: "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html"
+  retrieval: "fetch OK 2026-09-17 — texto literal extraído en 02-dossier.md (claim e-quater); revela ambiguedad terminologica: esta pagina describe cotizacion obligatoria de dependientes MAS 'cotizacion voluntaria' tipo APV/cuenta 2 (hasta 50 UF), NO el estatus 'afiliado voluntario' — ver flag critico en 02-dossier.md"
+- title: "Trabajadoras y trabajadores independientes"
+  publisher: "Superintendencia de Pensiones"
+  date: 2026-09-17
+  url: "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9913.html"
+  retrieval: "fetch OK 2026-09-17 — texto literal extraído en 02-dossier.md (claim e: umbral 5 IMM boletas / 4 IMM renta imponible exenta)"
+- title: "¿El trabajador independiente puede afiliarse a cualquier AFP?"
+  publisher: "Superintendencia de Pensiones"
+  date: 2026-09-17
+  url: "https://www.spensiones.cl/portal/institucional/594/w3-article-10098.html"
+  retrieval: "fetch OK 2026-09-17 — texto literal extraído en 02-dossier.md (claim c: AFP adjudicataria de licitacion, actualmente AFP Planvital); pendiente verificar si aplica igual a afiliado voluntario puro (ver Pregunta Abierta 3)"
+- title: "¿Cómo cotizo si soy independiente?"
+  publisher: "Asociación de AFP de Chile (AAFP)"
+  date: 2026-09-17
+  url: "https://www.aafp.cl/tramites/como-cotizo-si-soy-independiente/"
+  retrieval: "fetch OK 2026-09-17 — texto literal extraido en 02-dossier.md (claims e-bis, e-ter). ALERTA: esta fuente tambien devolvio SIS 1,53% (sin fecha de vigencia visible), tercera cifra distinta de las de fuentes #2/#7 (1,49-1,62%) y #6 (1,15%) — ver nota de conflicto de cifras SIS en 02-dossier.md"
+- title: "Cotizaciones previsionales obligatorias para trabajadores independientes"
+  publisher: "Servicio de Impuestos Internos (SII)"
+  date: 2026-09-17
+  url: "https://www.sii.cl/boleta_honorarios/ayuda/cotizacion_previsional.htm"
+  retrieval: "fetch OK 2026-09-17 — texto literal extraido en 02-dossier.md (claim e-bis); usado solo como contraste/diferenciador, no como fuente primaria del mecanismo voluntario. ALERTA DE VIGENCIA: esta pagina devolvio cifras probablemente obsoletas (SIS 1,15%, tope 867,6 UF anual, ingreso minimo mensual $225.000) incompatibles con fuentes #2/#7 de Superintendencia de Pensiones (tope 90 UF mensual, SIS 1,49-1,62% en 2026) — NO usar las cifras de esta pagina para el draft, ver nota en claim e-bis de 02-dossier.md"
+- title: "Tasa de Seguro de Invalidez y Sobrevivencia (SIS) vigente para independientes y voluntarios"
+  publisher: "Superintendencia de Pensiones"
+  date: 2026-09-17
+  url: "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9917.html"
+  retrieval: "fetch OK 2026-09-17 — confirma tasa 1,62% desde abril 2026 para independientes/voluntarios y 1,49% (ano tributario 2026) para independientes via retencion SII (claims b, b-bis, b-quater). Numero exacto de oficio/circular (Oficio Ordinario N 7429, 14-04-2026) solo corroborado por fuente secundaria no oficial (teced.cl) — queda TODO:SOURCE el instrumento normativo exacto, ver Pregunta Abierta 2 en 02-dossier.md"
+- title: "DL 3.500 — texto legal de afiliación voluntaria (art. 92 J)"
+  publisher: "Biblioteca del Congreso Nacional (LeyChile)"
+  date: 2026-09-17
+  url: "https://www.bcn.cl/leychile/navegar?idNorma=7147"
+  retrieval: "BLOQUEADO — WebFetch devolvio solo el shell de carga JS de la SPA de LeyChile (mensaje de timeout/compatibilidad). Intento de fallback con `scrapling extract get --impersonate chrome` tuvo HTTP 200 pero devolvio el MISMO shell JS (confirmado inspeccionando el HTML guardado) — LeyChile requiere renderizado de JS que ninguna de las dos herramientas ejecuto. Intento adicional (3): navegacion del Compendio de Normas del Sistema de Pensiones de spensiones.cl (Libro I -> Afiliacion e Incorporacion -> Capitulo III Tipos de Afiliacion, w3-propertyvalue-4075.html) confirmo la existencia de 'afiliados voluntarios' como tipo de afiliacion reconocido, pero el texto numerado operativo no se renderizo (pagina indice, no texto corrido). TODO:SOURCE: texto operativo completo del art. 92 J sigue sin fetchear (ver Pregunta Abierta 1 en 02-dossier.md). Referencia al articulo 92 J SI quedo verificada de forma oficial indirecta via spensiones.cl (w3-article-6930.html, ver 02-dossier.md fuente 9)."
