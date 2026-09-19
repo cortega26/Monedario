@@ -1,0 +1,10 @@
+# Fase 1 — dependencias de la interfaz web.
+# Versiones fijadas (no rangos) a proposito: son las que se probaron
+# localmente end-to-end antes de desplegar. fastapi trae su propia
+# version compatible de starlette — no fijarla aparte evita el problema
+# que se encontro en pruebas (la firma de TemplateResponse cambio entre
+# versiones de starlette).
+fastapi==0.141.1
+uvicorn==0.46.0
+jinja2==3.1.6
+python-multipart==0.0.26

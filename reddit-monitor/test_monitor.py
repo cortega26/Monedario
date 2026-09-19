@@ -407,3 +407,15 @@ def test_rm010_rotacion_conserva_lo_nuevo(tmp_path):
     assert path.read_text(encoding="utf-8").splitlines() == [
         "linea-7", "linea-8", "linea-9",
     ]
+
+
+def test_lexicon_normalize_no_depende_de_unicodedata_local():
+    # Regresion: lexicon.py redefinia normalize/strip_accents con un
+    # `unicodedata` sin importar (NameError silenciado como "aviso"). Debe
+    # re-exportar las funciones unicas de normalize.py.
+    import lexicon
+    import normalize as norm
+
+    assert lexicon.normalize is norm.normalize
+    assert lexicon.strip_accents is norm.strip_accents
+    assert lexicon.normalize("Ahorré Éxito") == "ahorre exito"

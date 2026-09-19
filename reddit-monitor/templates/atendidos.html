@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block nav_atendidos %}active{% endblock %}
+{% block content %}
+{% if not items %}
+<div class="empty">Todavía no has marcado nada como atendido.</div>
+{% endif %}
+{% for it in items %}
+<div class="card">
+  <div>
+    <span class="badge {{ 'conf-Alta' if it.status == 'atendido' else 'viejo' }}">{{ it.status }}</span>
+    <span class="muted">r/{{ it.subreddit }} · {{ it.status_changed_at[:16] if it.status_changed_at else '' }}</span>
+  </div>
+  <div class="snippet">{{ it.snippet }}</div>
+  <a class="reddit-link" href="https://reddit.com{{ it.permalink }}" target="_blank" rel="noopener">Ver en Reddit →</a>
+  {% if it.utm_url %}
+  <div class="muted" style="margin-top:6px; word-break:break-all;">Link usado: {{ it.utm_url }}</div>
+  {% endif %}
+  {% if it.action_notes %}
+  <div class="muted" style="margin-top:4px;">Nota: {{ it.action_notes }}</div>
+  {% endif %}
+</div>
+{% endfor %}
+{% endblock %}

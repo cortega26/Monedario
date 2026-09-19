@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block nav_queue %}active{% endblock %}
+{% block content %}
+<div class="stats">{{ n_pendientes }} pendiente{{ 's' if n_pendientes != 1 else '' }} · {{ n_atendidos_hoy }} atendido{{ 's' if n_atendidos_hoy != 1 else '' }} hoy</div>
+
+{% if not items %}
+<div class="empty">Sin pendientes por ahora. Vuelve más tarde.</div>
+{% endif %}
+
+{% for it in items %}
+<div class="card">
+  <div>
+    <span class="badge {{ it.urgency_class }}">{{ it.urgency_label }}</span>
+    <span class="badge conf-{{ it.confidence }}">{{ it.confidence }}</span>
+    {% if it.ml_confidence is not none %}
+    <span class="muted">ml: {{ "%.2f"|format(it.ml_confidence) }}</span>
+    {% endif %}
+  </div>
+  <div class="muted" style="margin-top:6px;">r/{{ it.subreddit }} · {{ it.type }}</div>
+  <div class="snippet">{{ it.snippet }}</div>
+  <a class="reddit-link" href="https://reddit.com{{ it.permalink }}" target="_blank" rel="noopener">Ver en Reddit →</a>
+
+  <details>
+    <summary>Marcar atendido</summary>
+    <form class="inline" method="post" action="/matches/{{ it.id }}/atender">
+      <label><input type="checkbox" name="incluyo_link" value="true"> Incluí un link a Monedario</label>
+      <label>URL de Monedario (opcional)
+        <input type="url" name="url_monedario" placeholder="https://monedario.cl/...">
+      </label>
+      <label>Nota (opcional)
+        <input type="text" name="nota" placeholder="ej: respondí sobre dividendo hipotecario">
+      </label>
+      <div class="actions">
+        <button type="submit" class="primary">Guardar y marcar atendido</button>
+      </div>
+    </form>
+  </details>
+
+  <form class="inline" method="post" action="/matches/{{ it.id }}/descartar" style="margin-top:6px;">
+    <button type="submit" class="secondary">No vale la pena — descartar</button>
+  </form>
+</div>
+{% endfor %}
+
+{% if n_pages > 1 %}
+<div class="muted" style="margin-top:12px;">
+  Página {{ page }} de {{ n_pages }} ·
+  {% if page > 1 %}<a href="/?page={{ page - 1 }}">← anterior</a>{% endif %}
+  {% if page > 1 and page < n_pages %} · {% endif %}
+  {% if page < n_pages %}<a href="/?page={{ page + 1 }}">siguiente →</a>{% endif %}
+</div>
+{% endif %}
+{% endblock %}

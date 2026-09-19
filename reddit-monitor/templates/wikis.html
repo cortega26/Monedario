@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block nav_wikis %}active{% endblock %}
+{% block content %}
+<p class="muted">Subreddits donde ya se detectaron menciones — revisa si la wiki de recursos tiene Monedario listado. Es la ganancia de tráfico compuesto más barata: una vez listado, sigue funcionando solo.</p>
+
+{% for it in items %}
+<div class="card">
+  <div style="font-weight:600;">r/{{ it.subreddit }}</div>
+  <form class="inline" method="post" action="/wikis/{{ it.subreddit }}">
+    <label><input type="checkbox" name="checked" value="true" {% if it.checked %}checked{% endif %}> Ya revisé la wiki de este subreddit</label>
+    <label><input type="checkbox" name="has_monedario" value="true" {% if it.has_monedario %}checked{% endif %}> Monedario ya está listado ahí</label>
+    <label>Nota
+      <input type="text" name="notes" value="{{ it.notes or '' }}" placeholder="ej: escribí a los mods 12/09">
+    </label>
+    <div class="actions">
+      <button type="submit" class="primary">Guardar</button>
+    </div>
+  </form>
+</div>
+{% endfor %}
+{% endblock %}

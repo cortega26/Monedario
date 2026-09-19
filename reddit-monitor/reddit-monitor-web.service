@@ -1,0 +1,25 @@
+[Unit]
+Description=Monedario - Reddit monitor - interfaz web (Fase 1)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/reddit-monitor
+EnvironmentFile=/home/ubuntu/reddit-monitor/.env
+# Solo localhost: nunca se expone directo a internet, solo via Cloudflare
+# Tunnel (ver cloudflared_setup.sh). Sin esto, cualquiera podria llegar
+# directo por IP:puerto saltandose el tunnel.
+ExecStart=/usr/bin/python3 -m uvicorn app:app --host 127.0.0.1 --port 8088
+Restart=on-failure
+RestartSec=5
+
+# Mismo criterio de aislamiento que reddit-monitor.service — proceso
+# liviano (FastAPI puro, sin PyTorch), pero igual con techo explicito.
+MemoryMax=512M
+MemoryHigh=384M
+TasksMax=64
+
+[Install]
+WantedBy=multi-user.target

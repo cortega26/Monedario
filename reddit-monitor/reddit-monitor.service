@@ -1,0 +1,17 @@
+[Unit]
+Description=Monedario - Reddit monitor (corrida única)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/reddit-monitor
+EnvironmentFile=-/home/ubuntu/reddit-monitor/.env
+ExecStart=/home/ubuntu/reddit-monitor/run_monitor.sh
+
+# Aislamiento de recursos respecto a Pogo-lab (que corre en la misma VM):
+# un bug de memoria en este servicio no debe poder afectarla.
+MemoryMax=256M
+MemoryHigh=192M
+TasksMax=64

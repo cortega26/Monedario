@@ -1,0 +1,13 @@
+[Unit]
+Description=Corre reddit-monitor.service cada 1h15m
+
+[Timer]
+# Igual que la ventana normal del script (1h15m). El propio monitor.py
+# ya sabe ampliar la ventana de búsqueda si detecta una corrida saltada
+# en runs.log, así que no hace falta compensar nada acá.
+OnBootSec=5min
+OnUnitActiveSec=75min
+Persistent=true
+
+[Install]
+WantedBy=timers.target

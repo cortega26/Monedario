@@ -32,13 +32,11 @@ config.json y los digest-*.md existentes (staged desde la carpeta real)
 para poder deduplicar y reconstruir el indice correctamente.
 """
 import json
-import math
 import re
 import sqlite3
 import sys
 import time
 import traceback
-import unicodedata
 import urllib.error
 import urllib.request
 import urllib.parse
@@ -47,6 +45,19 @@ from datetime import datetime, timezone, timedelta
 
 import db as dbmod
 import lexicon
+# RM-014: single normalize module (re-exported so `monitor.normalize`
+# keeps working for existing callers/tests).
+from normalize import compile_keyword_patterns, keyword_pattern, normalize, strip_accents
+# RM-015: single ENTRY_RE source (canonical digest entry pattern).
+from entries import ENTRY_RE
+
+__all__ = [
+    "ENTRY_RE",
+    "strip_accents",
+    "normalize",
+    "keyword_pattern",
+    "compile_keyword_patterns",
+]
 
 CHILE_TZ = timezone(timedelta(hours=-3))
 
@@ -288,15 +299,6 @@ def append_jsonl(workdir: Path, filename: str, rows: list[dict]) -> None:
     _trim_file_to_last_n_lines(path, LOG_TAIL_LINES)
 
 
-def strip_accents(text: str) -> str:
-    nfkd = unicodedata.normalize("NFKD", text)
-    return "".join(c for c in nfkd if not unicodedata.combining(c))
-
-
-def normalize(text: str) -> str:
-    return strip_accents(text or "").lower()
-
-
 def get_token(client_id: str, client_secret: str, user_agent: str) -> str:
     auth = f"{client_id}:{client_secret}".encode()
     import base64
@@ -374,8 +376,7 @@ def matched_keywords(text: str, keywords: list[str]) -> list[str]:
     norm = normalize(text)
     hits = []
     for kw in keywords:
-        pattern = r"\b" + re.escape(normalize(kw)) + r"\b"
-        if re.search(pattern, norm):
+        if keyword_pattern(kw).search(norm):
             hits.append(kw)
     return hits
 
@@ -426,7 +427,7 @@ def has_finance_context(text: str, keyword: str, context_words: list[str]) -> bo
         word_norm = normalize(word)
         if word_norm == kw_norm:
             continue
-        if re.search(r"\b" + re.escape(word_norm) + r"\b", norm):
+        if keyword_pattern(word).search(norm):
             return True
     return False
 
@@ -475,6 +476,134 @@ def confidence_label(score: int) -> str:
     return "Baja"
 
 
+# --- RM-013: split de la god-function collect_items ------------------------------
+# collect_items() hacia fetch (red) + clasificacion (reglas) + records, todo
+# en una sola funcion de ~140 lineas con los bloques de post/comment
+# duplicados. Ahora son tres piezas:
+#   fetch_subreddit() — solo red, devuelve los dicts crudos de la API.
+#   classify_text() — UNICA entrada al clasificador, compartida por posts
+#     y comentarios: keywords expandidas + desambiguacion + intencion + ML.
+#   process_post() / process_comment() — convierten un dict crudo en
+#     (items, discarded) usando classify_text(), sin logica propia.
+# collect_items() queda como orquestador delgado con la misma firma y la
+# misma semantica (incluido el orden de conteo de stats).
+
+
+def fetch_subreddit(subreddit: str, token: str, user_agent: str) -> tuple[list[dict], list[dict]]:
+    """Solo red: devuelve (posts_crudos, comentarios_crudos), cada uno la
+    lista de dicts `data` tal cual los entrega la API de Reddit."""
+    listing = api_get(f"/r/{subreddit}/new?limit=50", token, user_agent)
+    posts = listing.get("data", {}).get("children", [])
+    comments_resp = api_get(f"/r/{subreddit}/comments?limit=50", token, user_agent)
+    comments = comments_resp.get("data", {}).get("children", [])
+    return posts, comments
+
+
+def classify_text(text: str, cfg: dict) -> dict:
+    """Unica entrada al clasificador (RM-013): todo item, sea post o
+    comentario, pasa por aqui. Devuelve keywords (crudas + desambiguadas),
+    metodos de match, score/señales de intencion y campos ML."""
+    kws_raw, kw_methods = find_keywords_expanded(text, cfg)
+    kws, kws_ambiguos = disambiguate_keywords(
+        text, kws_raw, cfg["ambiguous_keywords"], cfg["finance_context_words"]
+    )
+    score, signals = intent_score(text, cfg["intent_phrases"], cfg["interrogative_starters"])
+    margin, ml_conf, ml_ver = score_semantic(text, cfg)
+    return {
+        "kws": kws,
+        "kws_ambiguos": kws_ambiguos,
+        "kw_methods": kw_methods,
+        "intent_score": score,
+        "signals": signals,
+        "ml_margin": margin,
+        "ml_conf": ml_conf,
+        "ml_ver": ml_ver,
+    }
+
+
+def _build_item_records(*, item_type: str, subreddit: str, d: dict,
+                        text: str, title: str | None, num_comments: int | None,
+                        cfg: dict, snippet_source: str | None = None) -> tuple[list[dict], list[dict]]:
+    """Convierte un dict crudo de la API en (items, discarded) con las
+    mismas reglas que el collect_items() original: registro de descarte
+    por ambiguedad sin contexto + aceptado si intent_score >= 1.
+    snippet_source permite que el snippet salga de otro texto que el
+    clasificado (posts: title-or-body en vez de title+body)."""
+    items: list[dict] = []
+    discarded: list[dict] = []
+    cls = classify_text(text, cfg)
+    kws, kws_ambiguos, kw_methods = cls["kws"], cls["kws_ambiguos"], cls["kw_methods"]
+    engagement = {
+        "score": d.get("score"),
+        "num_comments": num_comments,
+        "subreddit_subscribers": d.get("subreddit_subscribers"),
+        "author": d.get("author"),
+    }
+    snippet_text = (snippet_source if snippet_source is not None else text)[:220].replace("\n", " ").strip()
+    if kws_ambiguos:
+        discarded.append({
+            "type": item_type,
+            "subreddit": subreddit,
+            "permalink": d.get("permalink", ""),
+            "created_utc": d.get("created_utc", 0),
+            "keyword": kws_ambiguos[0],
+            "confidence": "Baja",
+            "signals": ["descartado: ambiguedad de sentido sin contexto financiero"],
+            "snippet": snippet_text,
+            "keyword_match_methods": kw_methods,
+            "ml_semantic_margin": cls["ml_margin"], "ml_confidence": cls["ml_conf"],
+            "ml_model_version": cls["ml_ver"],
+        })
+    if kws:
+        record = {
+            "type": item_type,
+            "subreddit": subreddit,
+            "permalink": d.get("permalink", ""),
+            "created_utc": d.get("created_utc", 0),
+            "keyword": kws[0],
+            "keywords": kws,
+            "keyword_match_methods": kw_methods,
+            "title": title,
+            "confidence": confidence_label(cls["intent_score"]),
+            "intent_score": cls["intent_score"],
+            "signals": cls["signals"],
+            "snippet": snippet_text,
+            "ml_semantic_margin": cls["ml_margin"], "ml_confidence": cls["ml_conf"],
+            "ml_model_version": cls["ml_ver"],
+            **engagement,
+        }
+        if cls["intent_score"] >= 1:
+            items.append(record)
+        else:
+            discarded.append(record)
+    return items, discarded
+
+
+def process_post(d: dict, subreddit: str, cfg: dict) -> tuple[list[dict], list[dict]]:
+    """Procesa un post crudo (dict `data` de la API). snippet sale de
+    title-or-body, igual que antes."""
+    title = d.get("title", "")
+    body = d.get("selftext", "")
+    full_text = f"{title} {body}"
+    return _build_item_records(
+        item_type="post", subreddit=subreddit, d=d, text=full_text,
+        title=title, num_comments=d.get("num_comments"), cfg=cfg,
+        snippet_source=title or body,
+    )
+
+
+def process_comment(d: dict, subreddit: str, cfg: dict) -> tuple[list[dict], list[dict]]:
+    """Procesa un comentario crudo. num_comments queda en None a proposito:
+    los comentarios no traen el contador del post padre y no vale una
+    llamada extra a la API solo por el score de prioridad (compute_priority
+    lo trata como neutro, no como cero)."""
+    body = d.get("body", "")
+    return _build_item_records(
+        item_type="comment", subreddit=subreddit, d=d, text=body,
+        title=None, num_comments=None, cfg=cfg,
+    )
+
+
 def collect_items(subreddit: str, token: str, user_agent: str, cutoff: float, cfg: dict) -> tuple[list[dict], list[dict], dict]:
     """Devuelve (items_aceptados, items_descartados, stats_de_escaneo).
 
@@ -488,136 +617,36 @@ def collect_items(subreddit: str, token: str, user_agent: str, cutoff: float, cf
     subreddit_subscribers/author (gratis, ya vienen en la respuesta de la
     API) y la lista COMPLETA de keywords que matchearon (antes solo se
     guardaba la primera) — necesario para poder medir que keyword especifica
-    genera ruido vs señal real."""
-    items = []
-    discarded = []
-    keywords = cfg["keywords"]
-    intent_phrases = cfg["intent_phrases"]
-    interrogative_starters = cfg["interrogative_starters"]
+    genera ruido vs señal real.
+
+    [RM-013] Orquestador delgado: el fetch vive en fetch_subreddit() y la
+    clasificacion en process_post()/process_comment() (entrada unica
+    classify_text()). Misma firma, misma semantica, mismo orden de stats."""
+    items: list[dict] = []
+    discarded: list[dict] = []
     stats = {"subreddit": subreddit, "posts_scanned": 0, "comments_scanned": 0,
               "posts_en_ventana": 0, "comments_en_ventana": 0}
 
-    listing = api_get(f"/r/{subreddit}/new?limit=50", token, user_agent)
-    posts = listing.get("data", {}).get("children", [])
+    posts, com_children = fetch_subreddit(subreddit, token, user_agent)
     stats["posts_scanned"] = len(posts)
     for child in posts:
         d = child.get("data", {})
         if d.get("created_utc", 0) < cutoff:
             continue
         stats["posts_en_ventana"] += 1
-        title = d.get("title", "")
-        body = d.get("selftext", "")
-        full_text = f"{title} {body}"
-        kws_raw, kw_methods = find_keywords_expanded(full_text, cfg)
-        kws, kws_ambiguos = disambiguate_keywords(
-            full_text, kws_raw, cfg["ambiguous_keywords"], cfg["finance_context_words"]
-        )
-        engagement = {
-            "score": d.get("score"),
-            "num_comments": d.get("num_comments"),
-            "subreddit_subscribers": d.get("subreddit_subscribers"),
-            "author": d.get("author"),
-        }
-        snippet_text = (title or body)[:220].replace("\n", " ").strip()
-        if kws_ambiguos:
-            margin, ml_conf, ml_ver = score_semantic(full_text, cfg)
-            discarded.append({
-                "type": "post",
-                "subreddit": subreddit,
-                "permalink": d.get("permalink", ""),
-                "created_utc": d.get("created_utc", 0),
-                "keyword": kws_ambiguos[0],
-                "confidence": "Baja",
-                "signals": ["descartado: ambiguedad de sentido sin contexto financiero"],
-                "snippet": snippet_text,
-                "keyword_match_methods": kw_methods,
-                "ml_semantic_margin": margin, "ml_confidence": ml_conf, "ml_model_version": ml_ver,
-            })
-        if kws:
-            score, signals = intent_score(full_text, intent_phrases, interrogative_starters)
-            margin, ml_conf, ml_ver = score_semantic(full_text, cfg)
-            record = {
-                "type": "post",
-                "subreddit": subreddit,
-                "permalink": d.get("permalink", ""),
-                "created_utc": d.get("created_utc", 0),
-                "keyword": kws[0],
-                "keywords": kws,
-                "keyword_match_methods": kw_methods,
-                "title": title,
-                "confidence": confidence_label(score),
-                "intent_score": score,
-                "signals": signals,
-                "snippet": snippet_text,
-                "ml_semantic_margin": margin, "ml_confidence": ml_conf, "ml_model_version": ml_ver,
-                **engagement,
-            }
-            if score >= 1:
-                items.append(record)
-            else:
-                discarded.append(record)
+        post_items, post_discarded = process_post(d, subreddit, cfg)
+        items.extend(post_items)
+        discarded.extend(post_discarded)
 
-    comments = api_get(f"/r/{subreddit}/comments?limit=50", token, user_agent)
-    com_children = comments.get("data", {}).get("children", [])
     stats["comments_scanned"] = len(com_children)
     for child in com_children:
         d = child.get("data", {})
         if d.get("created_utc", 0) < cutoff:
             continue
         stats["comments_en_ventana"] += 1
-        body = d.get("body", "")
-        kws_raw, kw_methods = find_keywords_expanded(body, cfg)
-        kws, kws_ambiguos = disambiguate_keywords(
-            body, kws_raw, cfg["ambiguous_keywords"], cfg["finance_context_words"]
-        )
-        # los comentarios no traen num_comments (serian los del post padre,
-        # requeriria una llamada extra a la API que no vale la pena solo
-        # para el score de prioridad) — se deja en None, compute_priority_score
-        # lo trata como neutro, no como cero.
-        engagement = {
-            "score": d.get("score"),
-            "num_comments": None,
-            "subreddit_subscribers": d.get("subreddit_subscribers"),
-            "author": d.get("author"),
-        }
-        snippet_text = body[:220].replace("\n", " ").strip()
-        if kws_ambiguos:
-            margin, ml_conf, ml_ver = score_semantic(body, cfg)
-            discarded.append({
-                "type": "comment",
-                "subreddit": subreddit,
-                "permalink": d.get("permalink", ""),
-                "created_utc": d.get("created_utc", 0),
-                "keyword": kws_ambiguos[0],
-                "confidence": "Baja",
-                "signals": ["descartado: ambiguedad de sentido sin contexto financiero"],
-                "snippet": snippet_text,
-                "keyword_match_methods": kw_methods,
-                "ml_semantic_margin": margin, "ml_confidence": ml_conf, "ml_model_version": ml_ver,
-            })
-        if kws:
-            score, signals = intent_score(body, intent_phrases, interrogative_starters)
-            margin, ml_conf, ml_ver = score_semantic(body, cfg)
-            record = {
-                "type": "comment",
-                "subreddit": subreddit,
-                "permalink": d.get("permalink", ""),
-                "created_utc": d.get("created_utc", 0),
-                "keyword": kws[0],
-                "keywords": kws,
-                "keyword_match_methods": kw_methods,
-                "title": None,
-                "confidence": confidence_label(score),
-                "intent_score": score,
-                "signals": signals,
-                "snippet": snippet_text,
-                "ml_semantic_margin": margin, "ml_confidence": ml_conf, "ml_model_version": ml_ver,
-                **engagement,
-            }
-            if score >= 1:
-                items.append(record)
-            else:
-                discarded.append(record)
+        comment_items, comment_discarded = process_comment(d, subreddit, cfg)
+        items.extend(comment_items)
+        discarded.extend(comment_discarded)
 
     return items, discarded, stats
 
@@ -656,6 +685,12 @@ def parse_entries(block: str) -> list[str]:
 
 
 def entry_sort_key(entry: str) -> tuple:
+    # RM-015: via canonica ENTRY_RE (unica fuente); fallback a los regex
+    # sueltos para entradas editadas a mano que no calzan el formato
+    # completo — mismo resultado en ambos caminos para entradas sanas.
+    m = ENTRY_RE.match(entry)
+    if m is not None:
+        return (CONF_RANK.get(m.group("conf"), 3), m.group("time"))
     conf_match = re.search(r"\[(Alta|Media|Baja)\]", entry)
     time_match = re.search(r"^### (\d{2}:\d{2})", entry, flags=re.MULTILINE)
     conf_rank = CONF_RANK.get(conf_match.group(1), 3) if conf_match else 3
@@ -853,6 +888,11 @@ def run(workdir: Path) -> tuple[list[dict], str, bool, int, float | None, bool, 
     con db_error describiendo la causa."""
     config_path_existed = (workdir / "config.json").exists()
     cfg = load_config(workdir)
+    # RM-014: compilar una sola vez a startup los regex de keywords (y de
+    # contexto) en vez de recompilarlos por cada item escaneado.
+    compile_keyword_patterns(
+        list(cfg.get("keywords", [])) + list(cfg.get("finance_context_words", []))
+    )
     creds = json.loads((workdir / "credentials.json").read_text(encoding="utf-8"))
     token = get_token(creds["client_id"], creds["client_secret"], creds["user_agent"])
 
@@ -994,7 +1034,50 @@ def run(workdir: Path) -> tuple[list[dict], str, bool, int, float | None, bool, 
     return new_items, day_str, not config_path_existed, len(all_discarded), gap_extended_hours, db_degraded, db_error
 
 
+# --- RM-016: modo config --check -------------------------------------------------
+# Report-only: difiere las claves del config.json en disco contra
+# DEFAULT_CONFIG sin escribir nada (load_config normal crea/rellena el
+# archivo — este modo ni lo toca). Exit 0 si estan en sync, 1 si no.
+# - "missing": claves de DEFAULT_CONFIG ausentes en disco (la corrida las
+#   rellenaria con defaults en memoria, pero conviene saberlo).
+# - "extra": claves en disco que el codigo ignora (ej. _scope_notes, que es
+#   intencional y documentado — igual se reporta para visibilidad).
+
+def config_check(workdir: Path) -> int:
+    """Diff report-only de config.json vs DEFAULT_CONFIG. No escribe nada."""
+    config_path = workdir / "config.json"
+    if not config_path.exists():
+        print(f"config.json ausente en {workdir} — la proxima corrida lo crearia con defaults.")
+        return 1
+    try:
+        on_disk = json.loads(config_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError) as exc:
+        print(f"config.json ilegible ({exc}) — la corrida fallaria al cargarlo.")
+        return 1
+    if not isinstance(on_disk, dict):
+        print("config.json no es un objeto JSON — la corrida fallaria al cargarlo.")
+        return 1
+    default_keys = set(DEFAULT_CONFIG)
+    disk_keys = set(on_disk)
+    missing = sorted(default_keys - disk_keys)
+    extra = sorted(disk_keys - default_keys)
+    if not missing and not extra:
+        print(f"config.json en sync ({len(default_keys)} claves).")
+        return 0
+    for key in missing:
+        print(f"missing: {key} (se usaria el default en memoria)")
+    for key in extra:
+        print(f"extra: {key} (ignorada en runtime)")
+    return 1
+
+
 def main() -> int:
+    if "--check" in sys.argv[1:]:
+        rest = [a for a in sys.argv[1:] if a != "--check"]
+        if len(rest) != 1:
+            print("Uso: monitor.py --check <directorio_de_trabajo>", file=sys.stderr)
+            return 2
+        return config_check(Path(rest[0]))
     if len(sys.argv) < 2:
         print("Uso: monitor.py <directorio_de_trabajo>", file=sys.stderr)
         return 2

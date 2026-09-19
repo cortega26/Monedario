@@ -78,6 +78,13 @@ CREATE TABLE IF NOT EXISTS matches (
     intent_score            INTEGER NOT NULL,
     intent_signals          TEXT,                  -- JSON array de strings
     filter_version          TEXT NOT NULL,          -- para poder comparar antes/después de ajustar config.json
+    -- [Fase 0.6, schema v2] trazabilidad del matching expandido + capa
+    -- semantica en observacion. Van en el CREATE (no solo en la migracion)
+    -- para que una DB fresca nunca nazca sin estas columnas (RM-016).
+    keyword_match_methods   TEXT,                  -- JSON {keyword: regex|lemma|stem|related_term}
+    ml_semantic_margin      REAL,
+    ml_confidence           REAL,
+    ml_model_version        TEXT,
     -- score de priorización para ordenar la cola (recalculable, no es el dato crudo)
     priority_score          REAL,
     -- estado de triage (reemplaza mover líneas entre "Pendiente"/"Atendido" a mano)
@@ -114,7 +121,12 @@ CREATE TABLE IF NOT EXISTS discarded (
     confidence          TEXT,
     reason              TEXT,      -- 'ambiguedad de sentido' | señales insuficientes
     snippet             TEXT,
-    filter_version      TEXT NOT NULL
+    filter_version      TEXT NOT NULL,
+    -- [Fase 0.6, schema v2] mismas columnas que en matches (ver arriba).
+    keyword_match_methods   TEXT,
+    ml_semantic_margin      REAL,
+    ml_confidence           REAL,
+    ml_model_version        TEXT
 );
 CREATE INDEX IF NOT EXISTS idx_discarded_keyword ON discarded(keyword);
 
@@ -161,8 +173,11 @@ CREATE TABLE IF NOT EXISTS content_gaps (
 );
 
 -- version simple de esquema, para poder saber si una VM/copia quedó atrasada
+-- [RM-016] v2 = Fase 0.6 (columnas ML en matches/discarded). db.connect()
+-- falla rapido si la DB dice otra version: hay que correr
+-- migrate_fase06_schema.py primero.
 CREATE TABLE IF NOT EXISTS schema_meta (
     key     TEXT PRIMARY KEY,
     value   TEXT NOT NULL
 );
-INSERT OR IGNORE INTO schema_meta (key, value) VALUES ('schema_version', '1');
+INSERT OR IGNORE INTO schema_meta (key, value) VALUES ('schema_version', '2');

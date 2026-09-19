@@ -1,0 +1,12 @@
+[Unit]
+Description=Corre reddit-weekly-report.service los lunes 09:00
+
+[Timer]
+# Lunes 09:00 hora de Chile continental. Chile usa horario de verano;
+# ajusta OnCalendar si notas que se corre a otra hora local tras el cambio
+# de horario (systemd usa la timezone del sistema, revisa `timedatectl`).
+OnCalendar=Mon *-*-* 09:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target
