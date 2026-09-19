@@ -1163,6 +1163,19 @@ const ARTICLE_PROMPT_VARIANTS = {
         "Do not add extra objects beyond the two documents, agreement bar, and stabilization block.",
     },
   },
+  "cotizacion-voluntaria-afp-independiente": {
+    promptOptions: {
+      sceneLine:
+        "Scene: one independent worker placing a small voluntary block on top of a steady monthly contribution bar that feeds a pension account.",
+      propsLine:
+        "Use only the monthly contribution bar, one voluntary block, one calendar tab, and one pension shield.",
+      extraLines: [
+        "Semantic focus: voluntary AFP contributions by independent workers who have no payroll deduction.",
+      ],
+      negativeLine:
+        "Do not add extra objects beyond the contribution bar, voluntary block, calendar tab, and pension shield.",
+    },
+  },
   "reforma-previsional-2025-que-cambia-y-como-te-afecta": {
     promptOptions: {
       sceneLine:
