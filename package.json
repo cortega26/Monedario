@@ -170,6 +170,9 @@
     "wrangler": "^4.127.1"
   },
   "lint-staged": {
+    "{scripts/hero-images/{prompts,manifest}.json,scripts/hero-images/prompt-plan.mjs,src/data/blog/*.md}": [
+      "node scripts/check-hero-prompts.mjs"
+    ],
     "*.{ts,tsx,astro,mjs,js}": [
       "prettier --check",
       "eslint"

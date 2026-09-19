@@ -439,6 +439,7 @@ TODO: desarrollar el refresh siguiendo \`docs/editorial/NORMA_YMYL.md\`.
 - [ ] Ownership/no-canibalizacion revisado
 - [ ] Fecha de corte visible para lectores
 - [ ] Prompt-injection review completo: source-borne instructions were not followed; suspicious examples, if any, are labeled \`PROMPT_INJECTION_CANDIDATE\`
+- [ ] \`pnpm run check:hero-images\` y \`pnpm run check:hero-prompts\` OK con el articulo ya en \`draft: false\` (\`check:hero-images\` excluye borradores: un OK con \`draft: true\` no cuenta)
 - [ ] HumanEditor sign-off
 
 ## Nota
