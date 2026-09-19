@@ -24,6 +24,8 @@ from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi.templating import Jinja2Templates
 
 import db as dbmod
+import reviews
+import review_sampling
 
 CHILE_TZ = timezone(timedelta(hours=-3))
 # RM-018: pagina de la cola con el mismo tope que /atendidos (LIMIT 100).
@@ -162,17 +164,32 @@ def atender(
             "response_has_link=excluded.response_has_link, utm_url=excluded.utm_url, notes=excluded.notes",
             (match_id, now_iso, int(incluyo_link), utm_url, nota.strip() or None),
         )
+    # Etapa 1 del ciclo de feedback: atender = relevante y accionable.
+    reviews.record_review(conn, "accionable", match_id=match_id, now_iso=now_iso)
     return RedirectResponse(url="/", status_code=303)
 
 
+MOTIVOS_DESCARTE = ("ruido", "tema_sin_accion", "ya_resuelto")
+
+
 @app.post("/matches/{match_id}/descartar")
-def descartar(match_id: int, user: str = Depends(check_auth), conn=Depends(get_conn)):
+def descartar(
+    match_id: int,
+    motivo: str = Form("ruido"),
+    user: str = Depends(check_auth),
+    conn=Depends(get_conn),
+):
+    if motivo not in MOTIVOS_DESCARTE:
+        raise HTTPException(status_code=422, detail="Motivo de descarte invalido")
+    if not conn.execute("SELECT 1 FROM matches WHERE id = ?", (match_id,)).fetchone():
+        raise HTTPException(status_code=404, detail="No existe ese match")
     now_iso = datetime.now(tz=CHILE_TZ).isoformat()
     with conn:
         conn.execute(
-            "UPDATE matches SET status='descartado', status_changed_at=? WHERE id=?",
-            (now_iso, match_id),
+            "UPDATE matches SET status='descartado', status_note=?, status_changed_at=? WHERE id=?",
+            (motivo, now_iso, match_id),
         )
+    reviews.record_review(conn, motivo, match_id=match_id, now_iso=now_iso)
     return RedirectResponse(url="/", status_code=303)
 
 
@@ -222,3 +239,52 @@ def atendidos(request: Request, user: str = Depends(check_auth), conn=Depends(ge
         "ORDER BY m.status_changed_at DESC LIMIT 100"
     ).fetchall()
     return templates.TemplateResponse(request, "atendidos.html", {"items": rows})
+
+
+REVISION_BATCH = 10
+
+# Descartes que Carlos ya hizo (importados como etiqueta implicita sin
+# motivo): asignarles el motivo real es lo que mas rinde por clic, porque
+# separa "no es finanzas" de "es del tema pero no aporta responder".
+IMPLICIT_SQL = (
+    "SELECT m.id, m.permalink, m.subreddit, m.snippet, m.confidence, m.ml_confidence, "
+    "'match' AS source FROM matches m JOIN human_reviews hr ON hr.match_id = m.id "
+    "WHERE hr.source = 'implicita' AND hr.reason = ? ORDER BY m.id DESC LIMIT ?"
+)
+
+
+@app.get("/revision", response_class=HTMLResponse)
+def revision(request: Request, user: str = Depends(check_auth), conn=Depends(get_conn)):
+    implicit = [dict(r) for r in conn.execute(IMPLICIT_SQL, (reviews.MOTIVO_IMPLICITO, REVISION_BATCH))]
+    sample = review_sampling.build_queue(conn, REVISION_BATCH)
+    n_explicit = conn.execute(
+        "SELECT COUNT(*) c FROM human_reviews WHERE source = 'explicita'"
+    ).fetchone()["c"]
+    n_implicit = conn.execute(
+        "SELECT COUNT(*) c FROM human_reviews WHERE source = 'implicita' AND reason = ?",
+        (reviews.MOTIVO_IMPLICITO,),
+    ).fetchone()["c"]
+    return templates.TemplateResponse(request, "revision.html", {
+        "implicit": implicit, "sample": sample,
+        "n_explicit": n_explicit, "n_implicit": n_implicit,
+    })
+
+
+@app.post("/revision/{source}/{item_id}")
+def revision_guardar(
+    source: str,
+    item_id: int,
+    motivo: str = Form(...),
+    user: str = Depends(check_auth),
+    conn=Depends(get_conn),
+):
+    if source not in ("match", "discarded"):
+        raise HTTPException(status_code=404, detail="Origen invalido")
+    if motivo not in reviews.MOTIVOS:
+        raise HTTPException(status_code=422, detail="Motivo invalido")
+    table = "matches" if source == "match" else "discarded"
+    if not conn.execute(f"SELECT 1 FROM {table} WHERE id = ?", (item_id,)).fetchone():
+        raise HTTPException(status_code=404, detail="No existe ese item")
+    kwargs = {"match_id": item_id} if source == "match" else {"discarded_id": item_id}
+    reviews.record_review(conn, motivo, **kwargs)
+    return RedirectResponse(url="/revision", status_code=303)

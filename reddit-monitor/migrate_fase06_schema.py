@@ -15,6 +15,11 @@ from pathlib import Path
 
 import db as dbmod
 
+# Cada migracion sella SU version, no la esperada por el codigo actual: si
+# sellara EXPECTED_SCHEMA_VERSION, correrla sola marcaria la DB como v3 sin
+# haber agregado las columnas v3.
+PHASE06_SCHEMA_VERSION = "2"
+
 NEW_COLUMNS = {
     "matches": [
         ("keyword_match_methods", "TEXT"),
@@ -61,15 +66,15 @@ def main() -> int:
         conn.execute(
             "INSERT INTO schema_meta (key, value) VALUES ('schema_version', ?) "
             "ON CONFLICT(key) DO UPDATE SET value = excluded.value",
-            (dbmod.EXPECTED_SCHEMA_VERSION,),
+            (PHASE06_SCHEMA_VERSION,),
         )
         conn.commit()
         if added:
             print(f"Columnas agregadas: {', '.join(added)} "
-                  f"(schema_version -> {dbmod.EXPECTED_SCHEMA_VERSION})")
+                  f"(schema_version -> {PHASE06_SCHEMA_VERSION})")
         else:
             print(f"Esquema ya estaba al dia (Fase 0.6) — nada que hacer "
-                  f"(schema_version -> {dbmod.EXPECTED_SCHEMA_VERSION}).")
+                  f"(schema_version -> {PHASE06_SCHEMA_VERSION}).")
         return 0
     finally:
         conn.close()

@@ -10,6 +10,9 @@
     <span class="badge {{ 'conf-Alta' if it.status == 'atendido' else 'viejo' }}">{{ it.status }}</span>
     <span class="muted">r/{{ it.subreddit }} · {{ it.status_changed_at[:16] if it.status_changed_at else '' }}</span>
   </div>
+  {% if it.status == 'descartado' and it.status_note %}
+  <div class="muted">Motivo: {{ it.status_note }}</div>
+  {% endif %}
   <div class="snippet">{{ it.snippet }}</div>
   <a class="reddit-link" href="https://reddit.com{{ it.permalink }}" target="_blank" rel="noopener">Ver en Reddit →</a>
   {% if it.utm_url %}

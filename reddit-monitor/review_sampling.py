@@ -30,6 +30,7 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
 import db as dbmod
+import reviews
 
 CHILE_TZ = timezone(timedelta(hours=-3))
 
@@ -98,15 +99,10 @@ def build_queue(conn, limit: int, seed: int | None = None) -> list[dict]:
 
 
 def save_review(conn, row: dict, label: str) -> None:
-    now_iso = datetime.now(tz=CHILE_TZ).isoformat()
-    match_id = row["id"] if row["source"] == "match" else None
-    discarded_id = row["id"] if row["source"] == "discarded" else None
-    with conn:
-        conn.execute(
-            "INSERT INTO human_reviews (match_id, discarded_id, reviewer, label, reviewed_at) "
-            "VALUES (?, ?, 'carlos', ?, ?)",
-            (match_id, discarded_id, label, now_iso),
-        )
+    """r/n del CLI -> motivos 'accionable'/'ruido' (ver reviews.MOTIVOS)."""
+    motivo = "accionable" if label == "relevante" else "ruido"
+    kwargs = {"match_id": row["id"]} if row["source"] == "match" else {"discarded_id": row["id"]}
+    reviews.record_review(conn, motivo, **kwargs)
 
 
 def main() -> int:

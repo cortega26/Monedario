@@ -37,7 +37,12 @@
   </details>
 
   <form class="inline" method="post" action="/matches/{{ it.id }}/descartar" style="margin-top:6px;">
-    <button type="submit" class="secondary">No vale la pena — descartar</button>
+    <div class="muted" style="margin-bottom:4px;">Descartar porque…</div>
+    <div class="actions">
+      <button type="submit" name="motivo" value="ruido" class="secondary">No es de finanzas</button>
+      <button type="submit" name="motivo" value="tema_sin_accion" class="secondary">Del tema, sin cómo aportar</button>
+      <button type="submit" name="motivo" value="ya_resuelto" class="secondary">Ya resuelto</button>
+    </div>
   </form>
 </div>
 {% endfor %}

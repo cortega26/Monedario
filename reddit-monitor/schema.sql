@@ -140,6 +140,13 @@ CREATE TABLE IF NOT EXISTS human_reviews (
     label         TEXT NOT NULL CHECK (label IN ('relevante', 'ruido')),
     reviewed_at   TEXT NOT NULL,
     notes         TEXT,
+    -- [schema v3, Etapa 1 del ciclo de feedback] ver reviews.py. Sin CHECK
+    -- ni indices sobre estas columnas a proposito: schema.sql se ejecuta en
+    -- cada connect() ANTES de migrar, y un indice sobre una columna que la
+    -- DB vieja aun no tiene la rompería. La validacion vive en reviews.py.
+    reason        TEXT,                              -- motivo (reviews.MOTIVOS)
+    on_topic      INTEGER,                           -- 1 = trata de finanzas, 0 = no, NULL = desconocido
+    source        TEXT NOT NULL DEFAULT 'explicita', -- 'explicita' | 'implicita'
     CHECK ((match_id IS NOT NULL) <> (discarded_id IS NOT NULL))  -- una u otra, no ambas ni ninguna
 );
 
@@ -173,11 +180,12 @@ CREATE TABLE IF NOT EXISTS content_gaps (
 );
 
 -- version simple de esquema, para poder saber si una VM/copia quedó atrasada
--- [RM-016] v2 = Fase 0.6 (columnas ML en matches/discarded). db.connect()
--- falla rapido si la DB dice otra version: hay que correr
--- migrate_fase06_schema.py primero.
+-- [RM-016] v2 = Fase 0.6 (columnas ML en matches/discarded); v3 = columnas
+-- reason/on_topic/source en human_reviews. db.connect() falla rapido si la
+-- DB dice otra version: hay que correr migrate_fase06_schema.py y luego
+-- migrate_v3_reviews.py.
 CREATE TABLE IF NOT EXISTS schema_meta (
     key     TEXT PRIMARY KEY,
     value   TEXT NOT NULL
 );
-INSERT OR IGNORE INTO schema_meta (key, value) VALUES ('schema_version', '2');
+INSERT OR IGNORE INTO schema_meta (key, value) VALUES ('schema_version', '3');

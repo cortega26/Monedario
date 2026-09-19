@@ -13,9 +13,10 @@ from pathlib import Path
 SCHEMA_PATH = Path(__file__).parent / "schema.sql"
 
 # RM-016: disciplina de version de esquema. v2 = Fase 0.6 (columnas ML en
-# matches/discarded). Sube aqui cada vez que schema.sql agregue columnas;
-# migrate_fase06_schema.py deja schema_meta en este valor al migrar.
-EXPECTED_SCHEMA_VERSION = "2"
+# matches/discarded), v3 = etiquetas humanas (reason/on_topic/source en
+# human_reviews). Sube aqui cada vez que schema.sql agregue columnas; el
+# ULTIMO script de migracion deja schema_meta en este valor.
+EXPECTED_SCHEMA_VERSION = "3"
 
 
 def get_schema_version(conn: sqlite3.Connection) -> str | None:
@@ -42,7 +43,7 @@ def assert_schema_version(conn: sqlite3.Connection, db_path: Path) -> None:
         return
     raise RuntimeError(
         f"{db_path}: schema_version={version!r} != esperada {EXPECTED_SCHEMA_VERSION!r} — "
-        "corre las migraciones primero: python3 migrate_fase06_schema.py <directorio_de_trabajo>"
+        "corre las migraciones primero: python3 migrate_fase06_schema.py <dir> && python3 migrate_v3_reviews.py <dir>"
     )
 
 
