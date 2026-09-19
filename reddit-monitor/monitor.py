@@ -83,6 +83,10 @@ except ImportError:
     _SEMANTIC_AVAILABLE = False
 
 DEFAULT_CONFIG = {
+    # Cuentas de Reddit propias (sin "u/"; no distingue mayusculas). Todo lo
+    # que escriban se descarta antes de clasificarlo: no tiene sentido
+    # sugerirnos responder a nuestras propias respuestas.
+    "own_authors": [],
     "subreddits": [
         "chile", "Santiago", "RepublicadeChile", "FinanzasChile",
         "AskChile", "BolsaChile",
@@ -521,6 +525,31 @@ def classify_text(text: str, cfg: dict) -> dict:
     }
 
 
+def normalize_author(author) -> str:
+    """Forma canonica de un nombre de usuario para compararlo: Reddit no
+    distingue mayusculas y a veces se escribe "u/nombre" o "/u/nombre"."""
+    if not isinstance(author, str):
+        return ""
+    name = author.strip().lower()
+    for prefix in ("/u/", "u/"):
+        if name.startswith(prefix):
+            name = name[len(prefix):]
+    return name
+
+
+def own_author_set(cfg: dict) -> set[str]:
+    """Cuentas propias de cfg["own_authors"], normalizadas y sin vacios."""
+    raw = cfg.get("own_authors") or []
+    if isinstance(raw, str):  # tolera un solo nombre escrito como string
+        raw = [raw]
+    return {n for n in (normalize_author(a) for a in raw) if n}
+
+
+def is_own_author(author, cfg: dict) -> bool:
+    name = normalize_author(author)
+    return bool(name) and name in own_author_set(cfg)
+
+
 def _build_item_records(*, item_type: str, subreddit: str, d: dict,
                         text: str, title: str | None, num_comments: int | None,
                         cfg: dict, snippet_source: str | None = None) -> tuple[list[dict], list[dict]]:
@@ -531,6 +560,11 @@ def _build_item_records(*, item_type: str, subreddit: str, d: dict,
     clasificado (posts: title-or-body en vez de title+body)."""
     items: list[dict] = []
     discarded: list[dict] = []
+    # Descarte temprano de lo escrito por nosotros: antes de clasificar (no
+    # gasta NLP/embeddings) y sin registrarlo como "descartado por intencion",
+    # que ensuciaria la auditoria de falsos negativos.
+    if is_own_author(d.get("author"), cfg):
+        return items, discarded
     cls = classify_text(text, cfg)
     kws, kws_ambiguos, kw_methods = cls["kws"], cls["kws_ambiguos"], cls["kw_methods"]
     engagement = {
