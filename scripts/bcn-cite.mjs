@@ -543,8 +543,41 @@ function validateSelector(sel) {
     throw new CiteError("BAD_SELECTOR", "--inciso debe ser un entero >= 1");
 }
 
+/**
+ * @typedef {object} CiteResolvedDate
+ * @property {string} iso
+ * @property {string} rule
+ * @property {number} [n]
+ * @property {string} [unit]
+ * @property {string} [anchor]
+ */
+
+/**
+ * @typedef {object} CiteResult
+ * @property {string} literal
+ * @property {object} locator
+ * @property {object} version
+ * @property {object[]} notes
+ * @property {CiteResolvedDate} [resolvedDate] Solo con resolveDates y fecha resoluble.
+ */
+
+/**
+ * @typedef {object} CiteOptions
+ * @property {string} [idVersion]
+ * @property {boolean} [resolveDates]
+ * @property {string} [cacheDir]
+ * @property {boolean} [noCache]
+ * @property {object} [data] Norma inyectada (fixture): evita la red.
+ */
+
 // Cita pura sobre datos ya cargados (sin red). Lanza CiteError en
 // NOT_FOUND (parte/bloque ausente) o RESIDUE (resto de nota: fail-closed).
+/**
+ * @param {any} data
+ * @param {any} selector
+ * @param {{ idNorma?: string, idVersion?: string, resolveDates?: boolean }} [options]
+ * @returns {CiteResult}
+ */
 export function citeFromData(
   data,
   selector,
@@ -611,6 +644,12 @@ export function citeFromData(
 }
 
 // Cita con red + cache. Acepta data inyectada (fixture) para uso hermetico.
+/**
+ * @param {string} idNorma
+ * @param {any} selector
+ * @param {CiteOptions} [options]
+ * @returns {Promise<CiteResult>}
+ */
 export async function cite(
   idNorma,
   selector,
