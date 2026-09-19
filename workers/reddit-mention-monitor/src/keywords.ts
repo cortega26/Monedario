@@ -7,6 +7,15 @@
 //
 // `query` uses Reddit search syntax (supports OR, quotes). Keep groups focused so
 // the suggested calculator is unambiguous.
+//
+// SCOPE CONTRACT (docs/adr/ADR-20260919-reddit-scope-contract.md, RM-005):
+// this worker is POSTS-ONLY by construction (Reddit /search returns posts;
+// we never poll /comments). Comment coverage — including calculator-bound
+// terms from all 5 groups below when they appear in comments — belongs
+// exclusively to the Python research system (reddit-monitor/). Lexical
+// overlap between both keyword sets is intentional, NOT a violation:
+// the partition is by access-pattern x channel, not by string. A thread
+// surfacing in both Discord and the digest is expected, NOT a bug.
 
 export interface KeywordGroup {
   /** Reddit search query (Reddit search operators allowed). */
