@@ -25,6 +25,7 @@ from fastapi.templating import Jinja2Templates
 
 import db as dbmod
 import reviews
+import resources
 import review_sampling
 
 CHILE_TZ = timezone(timedelta(hours=-3))
@@ -33,6 +34,7 @@ QUEUE_PAGE_SIZE = 100
 BASE_DIR = Path(__file__).parent
 DB_PATH = Path(os.environ.get("REDDIT_MONITOR_DB", BASE_DIR / "reddit_monitor.db"))
 WEB_PASSWORD = os.environ.get("WEB_PASSWORD", "")
+CONFIG_PATH = BASE_DIR / "config.json"
 
 app = FastAPI(title="Monedario — Reddit monitor")
 templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
@@ -108,10 +110,12 @@ def queue(request: Request, page: int = 1, user: str = Depends(check_auth), conn
         "ORDER BY priority_score DESC NULLS LAST, created_utc DESC LIMIT ? OFFSET ?",
         (QUEUE_PAGE_SIZE, (page - 1) * QUEUE_PAGE_SIZE),
     ).fetchall()
+    resource_map = resources.load_resource_map(CONFIG_PATH)
     items = []
     for r in rows:
         cls, label = urgency_badge(r["created_utc"])
         items.append({
+            "resource": resources.suggest_resource(f"{r['title'] or ''} {r['snippet']}", resource_map),
             "id": r["id"], "subreddit": r["subreddit"], "permalink": r["permalink"],
             "snippet": r["snippet"], "confidence": r["confidence"],
             "ml_confidence": r["ml_confidence"], "urgency_class": cls, "urgency_label": label,

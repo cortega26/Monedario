@@ -18,6 +18,9 @@
   </div>
   <div class="muted" style="margin-top:6px;">r/{{ it.subreddit }} · {{ it.type }}</div>
   <div class="snippet">{{ it.snippet }}</div>
+  {% if it.resource %}
+  <div class="muted">Sugerencia: <a href="{{ it.resource.url }}" target="_blank" rel="noopener">{{ it.resource.label }}</a></div>
+  {% endif %}
   <a class="reddit-link" href="https://reddit.com{{ it.permalink }}" target="_blank" rel="noopener">Ver en Reddit →</a>
 
   <details>
@@ -25,7 +28,7 @@
     <form class="inline" method="post" action="/matches/{{ it.id }}/atender">
       <label><input type="checkbox" name="incluyo_link" value="true"> Incluí un link a Monedario</label>
       <label>URL de Monedario (opcional)
-        <input type="url" name="url_monedario" placeholder="https://monedario.cl/...">
+        <input type="url" name="url_monedario" placeholder="https://monedario.cl/..." value="{{ it.resource.url if it.resource else '' }}">
       </label>
       <label>Nota (opcional)
         <input type="text" name="nota" placeholder="ej: respondí sobre dividendo hipotecario">
