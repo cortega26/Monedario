@@ -16,7 +16,28 @@ import {
 
 const SCRIPT_PATH = path.resolve("scripts/bcn-cite.mjs");
 const GOLDEN_PATH = path.resolve("tests/bcn-cite.golden.json");
-const golden = JSON.parse(readFileSync(GOLDEN_PATH, "utf8"));
+
+interface GoldenQuote {
+  id: string;
+  locatorLabel: string;
+  idNorma: string;
+  idVersion?: string;
+  idParte: number | string;
+  locator: {
+    idParte?: number | string;
+    art?: string;
+    inciso?: number;
+    numeral?: string;
+    final?: boolean;
+    transitorio?: string;
+  };
+  expected: string;
+  expectDate?: string;
+}
+
+const golden: { quotes: GoldenQuote[] } = JSON.parse(
+  readFileSync(GOLDEN_PATH, "utf8")
+);
 
 // Fixtures: HTML verbatim de get_norma_json (sept 2026, Ultima Version).
 // Hojas chicas van completas; hojas grandes (CT-168, art. 264, art. 260)
@@ -84,8 +105,8 @@ const FIXTURES = {
   8674774: { html: F_8674774, meta: {} },
 };
 
-function fixtureNorma(idParte) {
-  const f = FIXTURES[idParte];
+function fixtureNorma(idParte: number | string) {
+  const f = FIXTURES[idParte as unknown as keyof typeof FIXTURES];
   return {
     html: [{ i: String(idParte), t: f.html }],
     estructura: [],
@@ -93,7 +114,7 @@ function fixtureNorma(idParte) {
   };
 }
 
-const tempRoots = [];
+const tempRoots: string[] = [];
 
 afterEach(() => {
   for (const root of tempRoots.splice(0)) {
@@ -211,7 +232,7 @@ describe("bcn-cite unidades puras", () => {
 });
 
 describe("bcn-cite CLI validacion de args (sin red)", () => {
-  const run = args =>
+  const run = (args: string[]) =>
     spawnSync("node", [SCRIPT_PATH, ...args], { encoding: "utf8" });
 
   it("exige idNorma y selector (exit 2)", () => {
