@@ -42,6 +42,17 @@ WHERE m.status IN ('atendido', 'descartado')
 """
 
 
+# Etiquetas explicitas anteriores a los motivos (las del CLI review_sampling.py,
+# donde r=relevante / n=ruido): se les asigna el motivo equivalente para que
+# no queden en un tercer estado sin motivo que la taxonomia no contempla.
+LEGACY_SQL = """
+UPDATE human_reviews
+SET reason = CASE label WHEN 'relevante' THEN 'accionable' ELSE 'ruido' END,
+    on_topic = CASE label WHEN 'relevante' THEN 1 ELSE 0 END
+WHERE reason IS NULL AND source = 'explicita'
+"""
+
+
 def main() -> int:
     if len(sys.argv) < 2:
         print("Uso: migrate_v3_reviews.py <directorio_de_trabajo>", file=sys.stderr)
@@ -68,13 +79,15 @@ def main() -> int:
                     conn.execute(f"ALTER TABLE human_reviews ADD COLUMN {name} {ddl}")
                     added.append(name)
             imported = conn.execute(IMPORT_SQL, ("descarte_previo",)).rowcount
+            legacy = conn.execute(LEGACY_SQL).rowcount
             conn.execute(
                 "INSERT INTO schema_meta (key, value) VALUES ('schema_version', ?) "
                 "ON CONFLICT(key) DO UPDATE SET value = excluded.value",
                 (SCHEMA_VERSION,),
             )
         print(f"Columnas agregadas: {', '.join(added) or 'ninguna (ya estaban)'}; "
-              f"etiquetas implicitas importadas: {imported} (schema_version -> {SCHEMA_VERSION}).")
+              f"etiquetas implicitas importadas: {imported}; "
+              f"etiquetas antiguas con motivo asignado: {legacy} (schema_version -> {SCHEMA_VERSION}).")
         return 0
     finally:
         conn.close()

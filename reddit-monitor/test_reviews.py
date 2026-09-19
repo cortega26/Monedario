@@ -88,6 +88,26 @@ def test_migracion_v3_agrega_columnas_e_importa_implicitas(tmp_path, monkeypatch
         "ruido", reviews.MOTIVO_IMPLICITO, None, "implicita")
 
 
+def test_migracion_v3_asigna_motivo_a_etiquetas_explicitas_antiguas(tmp_path, monkeypatch):
+    path = tmp_path / "reddit_monitor.db"
+    c = dbmod.connect(path)
+    m1, m2 = _insert_match(c, 1), _insert_match(c, 2)
+    c.executescript("UPDATE schema_meta SET value = '2' WHERE key = 'schema_version';")
+    # Filas como las dejaba review_sampling.py antes de los motivos.
+    c.execute("INSERT INTO human_reviews (match_id, label, reviewed_at) VALUES (?, 'ruido', 'x')", (m1,))
+    c.execute("INSERT INTO human_reviews (match_id, label, reviewed_at) VALUES (?, 'relevante', 'x')", (m2,))
+    c.commit()
+    c.close()
+    import migrate_v3_reviews
+    monkeypatch.setattr(sys, "argv", ["migrate_v3_reviews.py", str(tmp_path)])
+    assert migrate_v3_reviews.main() == 0
+    c = dbmod.connect(path)
+    got = {r["match_id"]: (r["reason"], r["on_topic"], r["source"])
+           for r in c.execute("SELECT * FROM human_reviews")}
+    c.close()
+    assert got == {m1: ("ruido", 0, "explicita"), m2: ("accionable", 1, "explicita")}
+
+
 def test_migrate_fase06_no_sella_v3(tmp_path, monkeypatch):
     """Correr solo la migracion de Fase 0.6 no debe marcar la DB como v3."""
     path = tmp_path / "reddit_monitor.db"
@@ -198,3 +218,35 @@ def test_cola_y_atendidos_renderizan_con_motivos(client):
     assert f"/matches/{pend}/descartar" in cola.text
     atendidos = tc.get("/atendidos")
     assert atendidos.status_code == 200 and "Motivo: ya_resuelto" in atendidos.text
+
+
+def test_wikis_renderiza_y_guarda(client):
+    tc, path = client
+    c = dbmod.connect(path)
+    _insert_match(c, 1)
+    c.close()
+    page = tc.get("/wikis")  # antes: 500 por tabla subreddit_wiki_status inexistente
+    assert page.status_code == 200 and "chile" in page.text
+    assert tc.post("/wikis/chile", data={"checked": "true", "notes": "sin wiki"}).status_code == 303
+    c = dbmod.connect(path)
+    row = c.execute("SELECT checked, has_monedario, notes FROM subreddit_wiki_status").fetchone()
+    c.close()
+    assert (row["checked"], row["has_monedario"], row["notes"]) == (1, 0, "sin wiki")
+
+
+def test_revision_guarda_etiqueta_de_descarte_automatico(client):
+    """Rama discarded de /revision (la otra suite solo usa match_id)."""
+    tc, path = client
+    c = dbmod.connect(path)
+    did = c.execute(
+        "INSERT INTO discarded (type, subreddit, detected_at, snippet, filter_version) "
+        "VALUES ('post', 'chile', '2026-09-19T10:00:00-03:00', 'descartado auto', 'v')"
+    ).lastrowid
+    c.commit()
+    c.close()
+    assert tc.post(f"/revision/discarded/{did}", data={"motivo": "accionable"}).status_code == 303
+    c = dbmod.connect(path)
+    h = c.execute("SELECT match_id, label, reason FROM human_reviews WHERE discarded_id = ?", (did,)).fetchone()
+    c.close()
+    assert (h["match_id"], h["label"], h["reason"]) == (None, "relevante", "accionable")  # falso negativo
+    assert tc.post("/revision/discarded/9999", data={"motivo": "ruido"}).status_code == 404

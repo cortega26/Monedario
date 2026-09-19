@@ -179,6 +179,18 @@ CREATE TABLE IF NOT EXISTS content_gaps (
     notes                TEXT
 );
 
+-- Seguimiento de wikis de recursos por subreddit (pagina /wikis de la UI).
+-- Faltaba en el esquema: la app la consultaba pero ninguna DB la tenia, asi
+-- que /wikis respondia 500. CREATE IF NOT EXISTS: se crea sola en el proximo
+-- connect(), sin migracion ni cambio de version.
+CREATE TABLE IF NOT EXISTS subreddit_wiki_status (
+    subreddit       TEXT PRIMARY KEY,
+    checked         INTEGER NOT NULL DEFAULT 0,
+    has_monedario   INTEGER NOT NULL DEFAULT 0,
+    notes           TEXT,
+    updated_at      TEXT
+);
+
 -- version simple de esquema, para poder saber si una VM/copia quedó atrasada
 -- [RM-016] v2 = Fase 0.6 (columnas ML en matches/discarded); v3 = columnas
 -- reason/on_topic/source en human_reviews. db.connect() falla rapido si la
