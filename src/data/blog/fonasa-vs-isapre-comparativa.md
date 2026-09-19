@@ -4,7 +4,7 @@ author: "Equipo Monedario"
 description: "Compara Fonasa e Isapre en Chile: tramos, copagos, GES, CAEC y cuándo conviene cada sistema según tu situación de salud e ingreso."
 slug: fonasa-vs-isapre-comparativa
 pubDate: 2026-04-08T12:00:00Z
-updatedDate: 2026-04-08T12:00:00Z
+updatedDate: 2026-09-18T12:00:00Z
 tags:
   - seguridad-financiera
   - fonasa
@@ -22,7 +22,7 @@ heroImage: /images/hero/fonasa-vs-isapre-comparativa.avif
 articleAdvisory: "Contenido educativo; no reemplaza la revisión de tu plan, preexistencias ni asesoría médica para decidir."
 articleLead:
   answer: "Fonasa conviene si tienes enfermedades preexistentes, ingresos variables o carga familiar amplia. Isapre puede convenir si buscas red privada y tienes ingresos estables sin preexistencias relevantes."
-  validAsOf: 2026-04-08
+  validAsOf: 2026-09-18
   officialSources:
     - label: "Superintendencia de Salud"
       href: "https://www.superdesalud.gob.cl"
@@ -73,20 +73,20 @@ Todo trabajador dependiente o independiente que cotiza en Chile aporta el **7% d
 La diferencia estructural entre los dos sistemas:
 
 - **Fonasa** es un seguro estatal, universal y sin fines de lucro. Acepta a cualquier persona, sin importar su estado de salud ni sus enfermedades previas.
-- **Isapre** es una institución privada de salud previsional, supervisada por la Superintendencia de Salud. Firma un contrato con el cotizante, puede establecer exclusiones por preexistencias y cobra según un precio de plan que varía por edad, sexo y cargas.
+- **Isapre** es una institución privada de salud previsional, supervisada por la Superintendencia de Salud. Firma un contrato con el cotizante, puede establecer exclusiones por preexistencias y cobra según un precio de plan que varía por edad y cargas: la tabla única de factores eliminó la diferenciación por sexo y restringe la de edad ([Circular IF/N° 343](https://www.superdesalud.gob.cl/normativa/circular-if-n-343/), vigente desde el 01-04-2020).
 
 ### Tramos Fonasa y cuánto pagas en cada uno
 
 Fonasa clasifica a sus beneficiarios en cuatro tramos según ingreso imponible mensual y situación previsional:
 
-| Tramo | Quiénes son                                                                                                                          | Copago en red Fonasa (MAI) |
-| ----- | ------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- |
-| **A** | Personas sin capacidad de pago: indigentes, pensionados con monto inferior al umbral mínimo, personas con Ficha de Protección Social | **0%** (atención gratuita) |
-| **B** | Cotizantes con ingreso imponible hasta el Ingreso Mínimo Mensual (IMM) vigente                                                       | Verificar en fonasa.cl     |
-| **C** | Ingreso en tramo medio                                                                                                               | Verificar en fonasa.cl     |
-| **D** | Ingreso superior                                                                                                                     | Verificar en fonasa.cl     |
+| Tramo | Quiénes son                                                                    | Copago en red Fonasa (MAI)          |
+| ----- | ------------------------------------------------------------------------------ | ----------------------------------- |
+| **A** | Personas carentes de recursos y causantes de subsidio familiar (Ley 18.020)    | **0%** (Copago Cero en red pública) |
+| **B** | Cotizantes con ingreso imponible hasta el Ingreso Mínimo Mensual (IMM) vigente | **0%** (Copago Cero en red pública) |
+| **C** | Ingreso en tramo medio (con 3 o más cargas pasa a Tramo B)                     | **0%** (Copago Cero en red pública) |
+| **D** | Ingreso superior (con 3 o más cargas pasa a Tramo C)                           | **0%** (Copago Cero en red pública) |
 
-> **Nota:** Los umbrales exactos de cada tramo y los copagos específicos se actualizan periódicamente mediante resolución de Fonasa. Consulta los valores vigentes en [fonasa.cl](https://www.fonasa.cl/sites/fonasa/beneficiarios/informacion-general/tramos) antes de tomar una decisión. En atención primaria (CESFAM, postas), los copagos son menores o cero para la mayoría de los tramos.
+> **Nota:** Desde septiembre de 2022 rige el Copago Cero en la Modalidad de Atención Institucional (red pública: CESFAM, postas y hospitales públicos): todos los tramos tienen 0% de copago. Los umbrales exactos de ingreso de cada tramo se actualizan periódicamente; consulta los valores vigentes en [fonasa.cl](https://www.fonasa.cl/sites/fonasa/beneficiarios/informacion-general/tramos) antes de tomar una decisión.
 
 **Modalidad de Libre Elección (MLE):** Fonasa también permite atenderse con médicos y clínicas privadas registradas, pagando un bono. Fonasa subsidia parte del arancel oficial y el paciente paga el resto. El copago en MLE es generalmente mayor que en la red hospitalaria pública y no depende del tramo. Consulta los valores de bonificación MLE en [fonasa.cl](https://www.fonasa.cl/sites/fonasa/beneficiarios/tramites/valor-bono).
 
@@ -101,7 +101,7 @@ Ejemplo orientativo:
 - Si el plan Isapre cuesta $85.000: pagas $22.000 adicionales al mes.
 - Si cotizas en Fonasa, tu costo base es $63.000 y no hay cargo adicional de salud.
 
-El precio del plan Isapre **sube con la edad, el sexo (tabla de factores regulada), el número de cargas familiares y el tipo de cobertura contratada**. Este ajuste está regulado por la Superintendencia de Salud.
+El precio del plan Isapre **sube con la edad (tabla única de factores, sin diferenciación por sexo), el número de cargas familiares y el tipo de cobertura contratada**. Este ajuste está regulado por la Superintendencia de Salud. No se puede cobrar por cargas no natas ni menores de 2 años desde el 01-12-2022.
 
 ---
 
@@ -109,17 +109,17 @@ El precio del plan Isapre **sube con la edad, el sexo (tabla de factores regulad
 
 > **Nota (resumen orientativo):** Esta tabla simplifica la normativa para fines informativos. El resultado puede variar según plan específico, edad, cargas y condiciones del contrato. Verifica en [superdesalud.gob.cl](https://www.superdesalud.gob.cl) antes de tomar una decisión.
 
-| Criterio                                | Fonasa                                       | Isapre                                    |
-| --------------------------------------- | -------------------------------------------- | ----------------------------------------- |
-| **Cotización base**                     | 7% sueldo imponible                          | 7% + precio del plan                      |
-| **Aceptación con enfermedades previas** | Sí, sin condiciones                          | Puede excluirlas o cobrar más             |
-| **Cargas familiares (cónyuge, hijos)**  | Sin costo adicional                          | Aumenta el precio del plan                |
-| **GES (patologías garantizadas)**       | Sí, garantizado                              | Sí, garantizado                           |
-| **Cobertura catastrófica**              | Red hospitalaria pública sin límite de gasto | CAEC (sobre deducible anual del plan)     |
-| **Red de atención**                     | CESFAM, hospitales y clínicas públicas       | Clínicas y médicos de la red del plan     |
-| **Libre elección de médico**            | Vía MLE (copago mayor)                       | Dentro de red del plan                    |
-| **Embarazo y parto**                    | Cubierto por GES sin condición               | GES cubre; verificar exclusiones del plan |
-| **Precio estable en el tiempo**         | Sí (varía por cambio de tramo de ingreso)    | No: varía por edad y ajustes de tabla     |
+| Criterio                                | Fonasa                                       | Isapre                                                          |
+| --------------------------------------- | -------------------------------------------- | --------------------------------------------------------------- |
+| **Cotización base**                     | 7% sueldo imponible                          | 7% + precio del plan                                            |
+| **Aceptación con enfermedades previas** | Sí, sin condiciones                          | Puede excluirlas o cobrar más                                   |
+| **Cargas familiares (cónyuge, hijos)**  | Sin costo adicional                          | Aumenta el precio del plan (salvo no natos y menores de 2 años) |
+| **GES (patologías garantizadas)**       | Sí, garantizado                              | Sí, garantizado                                                 |
+| **Cobertura catastrófica**              | Red hospitalaria pública sin límite de gasto | CAEC (sobre deducible anual del plan)                           |
+| **Red de atención**                     | CESFAM, hospitales y clínicas públicas       | Clínicas y médicos de la red del plan                           |
+| **Libre elección de médico**            | Vía MLE (copago mayor)                       | Dentro de red del plan                                          |
+| **Embarazo y parto**                    | Cubierto por GES sin condición               | GES cubre; verificar exclusiones del plan                       |
+| **Precio estable en el tiempo**         | Sí (varía por cambio de tramo de ingreso)    | No: varía por edad y ajustes de tabla                           |
 
 ---
 
@@ -129,7 +129,7 @@ El precio del plan Isapre **sube con la edad, el sexo (tabla de factores regulad
 
 - Tienes una **enfermedad crónica** o preexistencia ya diagnosticada. Una Isapre puede excluirla o encarecerte el plan. Fonasa no puede hacerlo.
 - Tienes **cargas familiares numerosas** (hijos, cónyuge). En Fonasa no pagan más, en Isapre sí.
-- Tu ingreso es **bajo a medio** (Tramos A, B o C): los copagos son bajos o nulos en la red pública.
+- Tu ingreso es **bajo a medio** (Tramos A, B o C): la atención en la red pública no tiene copago (Copago Cero).
 - Eres **independiente o tienes ingresos variables**: el precio base de Fonasa es siempre el 7%, sin sorpresas.
 - Estás **planificando un embarazo**: Fonasa cubre el GES de embarazo sin condiciones previas; una Isapre puede tener cláusulas de espera.
 - Priorizas **atención primaria gratuita** (CESFAM, vacunación, controles preventivos).
@@ -151,7 +151,7 @@ El precio del plan Isapre **sube con la edad, el sexo (tabla de factores regulad
 
 ### De Isapre a Fonasa
 
-- Puedes hacerlo **en cualquier momento**, enviando aviso a la Isapre con **30 días de anticipación**.
+- Puedes hacerlo **una vez transcurrido un año de vigencia de beneficios contractuales**, mediante **comunicación escrita a la Isapre con copia a tu empleador o entidad pagadora, con al menos un mes de anticipación** ([DFL-1, art. 197](https://www.bcn.cl/leychile/navegar?idNorma=249177)).
 - No requiere aprobación: Fonasa está obligada a aceptarte.
 - **Situaciones que lo justifican:** te diagnosticaron una enfermedad que la Isapre empieza a excluir o reclasificar; el precio del plan sube significativamente; pierdes el empleo y tus ingresos bajan.
 
@@ -174,7 +174,7 @@ El **GES** (Garantías Explícitas en Salud, antes AUGE) cubre un conjunto de pa
 
 Más allá del GES:
 
-- **En Fonasa:** la red hospitalaria pública cubre hospitalizaciones por condiciones catastróficas (cáncer, cirugías mayores, trasplantes) sin tope de gasto, pagando el copago según tu tramo.
+- **En Fonasa:** la red hospitalaria pública cubre hospitalizaciones por condiciones catastróficas (cáncer, cirugías mayores, trasplantes) sin tope de gasto, sin copago en la red pública (Copago Cero vigente desde septiembre de 2022).
 - **En Isapre:** el **CAEC** (Cobertura Adicional para Enfermedades Catastróficas) cubre el 100% de los gastos hospitalarios una vez que el cotizante supera un deducible anual máximo definido en el plan. Verifica el valor del deducible de tu plan específico en el contrato o en [superdesalud.gob.cl](https://www.superdesalud.gob.cl).
 
 La diferencia práctica más importante: en Fonasa, la atención catastrófica ocurre en la **red hospitalaria pública**. En Isapre, dentro de la **red privada del plan**.
@@ -189,11 +189,11 @@ Sí. El empleador descuenta el **7% de la remuneración imponible** en ambos cas
 
 ### ¿El GES es igual en Fonasa y en Isapre?
 
-Sí. El GES es una garantía legal que aplica por igual a ambos sistemas. Las patologías cubiertas, los plazos de atención y los copagos máximos son los mismos. La diferencia está en qué red de salud (pública o privada) se usa para la atención. Consulta el listado actualizado de patologías GES en [superdesalud.gob.cl](https://www.superdesalud.gob.cl).
+El GES es una garantía legal que aplica en ambos sistemas: las patologías cubiertas y los plazos de atención son los mismos. Los copagos, no: en Fonasa rige el Copago Cero en la red pública, mientras que en Isapre el copago es de 20% y además se paga una prima GES mensual por cada beneficiario ([ChileAtiende](https://www.chileatiende.gob.cl/fichas/2464-plan-de-salud-de-isapres)). La diferencia también está en qué red de salud (pública o privada) se usa para la atención. Consulta el listado actualizado de patologías GES en [superdesalud.gob.cl](https://www.superdesalud.gob.cl/orientacion-en-salud/garantias-explicitas-en-salud-ges/).
 
 ### ¿Puedo mantener a mi familia en Fonasa sin pagar más?
 
-Sí. Las cargas familiares (cónyuge, hijos menores de 18 años, mayores de 18 con discapacidad o que estudian, y padres mayores bajo ciertas condiciones) están cubiertas con la cotización del titular, **sin costo adicional**. En Isapre, cada carga aumenta el precio del plan.
+Sí. Las cargas familiares (cónyuge, hijos menores de 18 años, mayores de 18 con discapacidad o que estudian, y padres mayores bajo ciertas condiciones) están cubiertas con la cotización del titular, **sin costo adicional**. En Isapre, cada carga aumenta el precio del plan, salvo las cargas no natas y los menores de 2 años, cuyo cobro está prohibido desde el 01-12-2022 ([Ley 21.674, art. 2°](https://www.bcn.cl/leychile/navegar?idNorma=1203779)).
 
 ### ¿Qué es el CAEC y cuándo se activa?
 
@@ -201,11 +201,11 @@ El CAEC es un seguro catastrófico dentro de los planes Isapre. Se activa cuando
 
 ### ¿Puede la Isapre subirme el precio o excluir una enfermedad que ya tengo?
 
-Sí. Las Isapres pueden ajustar el precio del plan conforme su tabla de factores (regulada por la Superintendencia de Salud) y el ajuste por IPC anual. También pueden excluir condiciones preexistentes al momento de firmar el contrato. Si ya tienes una enfermedad diagnosticada y quieres cambiarte a Isapre, es posible que te la excluyan o que el plan sea más caro.
+Sí. Las Isapres pueden ajustar el precio base del plan una vez al año mediante el proceso de adecuación con tope ICSA y verificación de costos de la Superintendencia de Salud (el alza rige en junio y los planes con menos de un año están exentos); no existe un reajuste por IPC ([Superintendencia de Salud](https://www.superdesalud.gob.cl/tax-materias-isapres/alzas-de-precio-base-de-las-isapres-5014/)). También pueden excluir condiciones preexistentes al momento de firmar el contrato. Si ya tienes una enfermedad diagnosticada y quieres cambiarte a Isapre, es posible que te la excluyan o que el plan sea más caro.
 
 ### ¿Puedo cambiar de Fonasa a Isapre cuando quiera?
 
-De Fonasa a Isapre, puedes intentarlo en cualquier momento, pero la **Isapre puede rechazarte** si presentas enfermedades preexistentes o condiciones de alto costo. La Isapre evalúa tu estado de salud antes de aceptarte. De Isapre a Fonasa, el cambio es siempre libre: Fonasa no puede rechazarte.
+De Fonasa a Isapre, puedes intentarlo en cualquier momento, pero la **Isapre puede rechazarte** si presentas enfermedades preexistentes o condiciones de alto costo. La Isapre evalúa tu estado de salud antes de aceptarte. De Isapre a Fonasa, el cambio es libre una vez cumplido el año mínimo de vigencia: Fonasa no puede rechazarte.
 
 ### ¿Qué pasa con mi cobertura si pierdo el empleo?
 

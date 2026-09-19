@@ -4,7 +4,7 @@ description: "Qué es la UTM en Chile, cómo se reajusta mensualmente según el 
 slug: utm-chile-que-es-como-funciona
 author: "Equipo Monedario"
 pubDate: 2026-04-09T12:00:00Z
-updatedDate: 2026-04-09T12:00:00Z
+updatedDate: 2026-09-18T12:00:00Z
 tags:
   - utm
   - uta
@@ -32,7 +32,7 @@ articleLead:
   calculatorLabel: "Convertir UTM a pesos"
   nextStepHref: "/calculadoras/impuesto-segunda-categoria/"
   nextStepLabel: "Calcular impuesto de segunda categoría"
-  validAsOf: 2026-04-09
+  validAsOf: 2026-09-18
   officialSources:
     - label: "SII — UTM, UTA e IPC 2026"
       href: "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm"
@@ -49,7 +49,7 @@ articleLead:
     - "No sustituye asesoría tributaria para casos específicos."
 faqs:
   - q: "¿Cuánto vale la UTM hoy?"
-    a: "El valor de la UTM cambia el primer día hábil de cada mes. Puedes ver el valor vigente en la tabla oficial del SII: sii.cl/valores_y_fechas/utm/utm2026.htm. El valor indicado en este artículo ($69.889) corresponde a abril 2026."
+    a: "El valor de la UTM cambia el primer día hábil de cada mes. Puedes ver el valor vigente en la tabla oficial del SII: sii.cl/valores_y_fechas/utm/utm2026.htm. El valor indicado en este artículo ($71.721) corresponde a septiembre 2026."
   - q: "¿Cuál es la diferencia entre UTM y UTA?"
     a: "La UTM es mensual y es el valor base. La UTA equivale a 12 veces la UTM del mes de diciembre del año correspondiente y se usa para calcular los tramos anuales del Impuesto Global Complementario."
   - q: "¿Cuál es la diferencia entre UTM y UF?"
@@ -75,11 +75,11 @@ La **UTM (Unidad Tributaria Mensual)** es la unidad de valor que usa el Estado c
 >
 > **Cómo cambia:** Se reajusta cada mes según la variación del IPC del mes anterior.
 >
-> **Valor vigente (abril 2026):** $69.889
+> **Valor vigente (septiembre 2026):** $71.721
 >
 > **Fuente oficial:** [SII — UTM/UTA/IPC 2026](https://www.sii.cl/valores_y_fechas/utm/utm2026.htm)
 >
-> **Vigencia:** Válido durante todo abril 2026. El valor cambia el primer día hábil de cada mes — verifica siempre en SII.cl.
+> **Vigencia:** Válido durante todo septiembre 2026. El valor cambia el primer día hábil de cada mes — verifica siempre en SII.cl.
 
 Si pagas una multa de tránsito mañana, el monto en pesos que te cobran depende de cuántas UTM tiene la multa multiplicado por el valor vigente **en ese momento**. El mismo número de UTM puede significar más o menos pesos según el mes. Si necesitas la equivalencia exacta ahora, usa el [conversor UTM a pesos](/calculadoras/conversor-utm/).
 
@@ -132,8 +132,7 @@ La UTA de un año equivale a **12 veces la UTM del mes de diciembre** de ese añ
 
 **Ejemplo orientativo** _(solo referencia — verifica siempre el valor vigente en SII.cl)_:
 
-- UTM abril 2026: $69.889
-- Referencia SII para UTA abril 2026: $838.668 (= $69.889 × 12)
+- UTA anual vigente (año tributario 2026): $834.504 (= 12 × $69.542, con la UTM de diciembre de 2025). La columna "UTA" mensual de la tabla SII (UTM del mes × 12) es solo referencial y no sirve para el IGC.
 
 > **Nota:** Los tramos anuales del IGC usan la UTA del año tributario correspondiente, según la tabla oficial del SII. Consulta los valores exactos para tu declaración en [SII — Datos informativos AT 2026](https://www.sii.cl/valores_y_fechas/renta/datos_informativos_2026.html).
 
@@ -167,11 +166,11 @@ La **Ley de Tránsito N°18.290** expresa la mayoría de sus multas en UTM. Cuan
 
 **Ejemplo orientativo** _(solo referencia — el monto exacto depende de la infracción y del UTM vigente al pago)_:
 
-| Multa (en UTM) | Equivalente aprox. en pesos (UTM abril 2026: $69.889) |
-| -------------- | ----------------------------------------------------- |
-| 1 UTM          | ~$69.889                                              |
-| 2 UTM          | ~$139.778                                             |
-| 5 UTM          | ~$349.445                                             |
+| Multa (en UTM) | Equivalente aprox. en pesos (UTM septiembre 2026: $71.721) |
+| -------------- | ---------------------------------------------------------- |
+| 1 UTM          | ~$71.721                                                   |
+| 2 UTM          | ~$143.442                                                  |
+| 5 UTM          | ~$358.605                                                  |
 
 > **Importante:** El valor exacto en pesos depende de la UTM **del mes en que efectúas el pago**. Si la multa vence en un mes distinto al de la infracción, el monto en pesos puede variar. Verifica siempre el UTM vigente en SII.cl antes de pagar.
 
@@ -181,32 +180,32 @@ El Estado usa UTM (para cálculo mensual) y UTA (para cálculo anual) para fijar
 
 **Impuesto Único de Segunda Categoría (Art. 43 N°1 LIR — sueldos y pensiones):**
 
-El umbral de exención es de **13,5 UTM mensuales**. Para abril 2026 (UTM = $69.889), el umbral de exención equivale a **$943.501 bruto/mes aproximado**.
+El umbral de exención es de **13,5 UTM mensuales**. Para septiembre 2026 (UTM = $71.721), el umbral de exención equivale a **$968.233 bruto/mes aproximado**.
 
-| Tramo mensual — orientativo, abril 2026 | Tasa marginal |
-| --------------------------------------- | ------------- |
-| Hasta $943.501 (13,5 UTM)               | Exento        |
-| $943.502 – $2.096.670                   | 4%            |
-| $2.096.671 – $3.494.450                 | 8%            |
-| $3.494.451 – $4.892.230                 | 13,5%         |
-| $4.892.231 – $6.290.010                 | 23%           |
-| $6.290.011 – $8.386.680                 | 30,4%         |
-| $8.386.681 – $21.665.590                | 35%           |
-| Más de $21.665.590                      | 40%           |
+| Tramo mensual — orientativo, septiembre 2026 | Tasa marginal |
+| -------------------------------------------- | ------------- |
+| Hasta $968.233 (13,5 UTM)                    | Exento        |
+| $968.234 – $2.151.630                        | 4%            |
+| $2.151.631 – $3.586.050                      | 8%            |
+| $3.586.051 – $5.020.470                      | 13,5%         |
+| $5.020.471 – $6.454.890                      | 23%           |
+| $6.454.891 – $8.606.520                      | 30,4%         |
+| $8.606.521 – $22.233.510                     | 35%           |
+| Más de $22.233.510                           | 40%           |
 
-> **Tabla orientativa — datos de abril 2026.** Los tramos en pesos cambian cada mes con la UTM. Fuente: [SII — Impuesto Única 2da Categoría 2026](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm). Verifica siempre la tabla vigente del mes correspondiente.
+> **Tabla orientativa — datos de septiembre 2026.** Los tramos en pesos cambian cada mes con la UTM. Fuente: [SII — Impuesto Único 2da Categoría 2026](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm). Verifica siempre la tabla vigente del mes correspondiente.
 
 Si tu remuneración bruta mensual supera el umbral, tu empleador aplica retención mensual según los tramos progresivos hasta el 40%. Para calcular tu retención, usa la [calculadora de Impuesto de Segunda Categoría](/calculadoras/impuesto-segunda-categoria/).
 
 **Impuesto Global Complementario (IGC — anual):**
 
-El IGC usa la UTA para definir los tramos anuales. El umbral estándar de exención es **13,5 UTA anuales**. Los tramos exactos y tasas vigentes para el año tributario 2026 están publicados en [SII — Datos informativos AT 2026](https://www.sii.cl/valores_y_fechas/renta/datos_informativos_2026.html). Para calcular tu posible devolución o pago, usa la [calculadora de Operación Renta](/calculadoras/operacion-renta/).
+El IGC usa la UTA para definir los tramos anuales. El umbral estándar de exención es **13,5 UTA anuales** (13,5 UTA de diciembre del año anterior: **$11.265.804** para el año tributario 2026). Los tramos exactos y tasas vigentes para el año tributario 2026 están publicados en [SII — Datos informativos AT 2026](https://www.sii.cl/valores_y_fechas/renta/datos_informativos_2026.html). Para calcular tu posible devolución o pago, usa la [calculadora de Operación Renta](/calculadoras/operacion-renta/).
 
 ### APV Régimen A — bono estatal
 
-Si tienes APV (Ahorro Previsional Voluntario) en el Régimen A, el Estado bonifica con el 15% del ahorro anual. El monto máximo del bono está limitado en UTM: **6 UTM anuales de subsidio máximo** según LIR Art. 42 bis.
+Si tienes APV (Ahorro Previsional Voluntario) en el Régimen A, el Estado bonifica con el 15% del ahorro anual. El monto máximo del bono está limitado en UTM: **6 UTM anuales de subsidio máximo** según el art. 20 letra O) del D.L. N° 3.500.
 
-**Ejemplo orientativo** (referencia para el período de escritura): 6 × $69.889 = ~$419.334 máximo _(orientativo — el valor exacto en pesos depende del UTM de cada mes del año; verifica en [tabla SII AT 2026](https://www.sii.cl/valores_y_fechas/renta/datos_informativos_2026.html))_.
+**Ejemplo orientativo** (referencia para el período de escritura): 6 × $69.542 (UTM de diciembre de 2025) = $417.252 máximo _(orientativo — verifica en [tabla SII AT 2026](https://www.sii.cl/valores_y_fechas/renta/datos_informativos_2026.html))_.
 
 ### Aranceles y trámites del Estado
 
@@ -235,7 +234,7 @@ El valor oficial de la UTM lo publica mensualmente el SII:
 
 2. **Banco Central de Chile:** [si3.bcentral.cl](https://si3.bcentral.cl/Siete/) — series históricas disponibles.
 
-> **Dado que el valor de la UTM cambia el primer día hábil de cada mes, el valor mencionado en este artículo ($69.889, vigente en abril 2026) puede no coincidir con el valor actual.** Antes de usar la UTM en cualquier cálculo real —multa, impuesto, arancel— verifica siempre el valor vigente directamente en SII.cl.
+> **Dado que el valor de la UTM cambia el primer día hábil de cada mes, el valor mencionado en este artículo ($71.721, vigente en septiembre 2026) puede no coincidir con el valor actual.** Antes de usar la UTM en cualquier cálculo real —multa, impuesto, arancel— verifica siempre el valor vigente directamente en SII.cl.
 
 ---
 

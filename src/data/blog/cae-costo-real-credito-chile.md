@@ -5,7 +5,7 @@ description: "Guía práctica para entender la CAE en Chile, qué incluye frente
 slug: cae-costo-real-credito-chile
 author: "Equipo Monedario"
 pubDate: 2026-03-02T19:00:00Z
-updatedDate: 2026-04-12T18:30:00Z
+updatedDate: 2026-09-18T00:00:00Z
 tags:
   - credito
   - cae
@@ -27,7 +27,7 @@ articleLead:
   calculatorLabel: "Simular una oferta"
   nextStepHref: "/posts/renegociacion-superir/"
   nextStepLabel: "Conoce el proceso de renegociación Superir"
-  validAsOf: 2026-04-12
+  validAsOf: 2026-09-18
   officialSources:
     - label: "CMF Educa - CAE y hoja resumen"
       href: "https://www.cmfchile.cl/educa/621/w3-propertyvalue-43579.html"
@@ -71,7 +71,7 @@ En esta guía, "CAE" siempre se refiere al primer significado: el indicador de c
 
 ## Qué es la CAE y por qué existe
 
-La **CAE (Carga Anual Equivalente)** es un indicador expresado como porcentaje anual que resume el costo total de un crédito: tasa de interés, seguros obligatorios, comisiones y gastos. Lo establece la CMF como estándar de comparación para que no puedas ser engañado comparando una tasa mensual sin costos con otra que sí los incluye.
+La **CAE (Carga Anual Equivalente)** es un indicador expresado como porcentaje anual que resume el costo total de un crédito: tasa de interés, seguros asociados, comisiones y gastos. Lo establece el SERNAC Financiero como estándar de comparación para que no puedas ser engañado comparando una tasa mensual sin costos con otra que sí los incluye.
 
 Un ejemplo directo:
 
@@ -85,7 +85,7 @@ La tasa de interés mensual de B parece más barata. La CAE revela que puede ser
 **Sí incluye:**
 
 - Tasa de interés pura del crédito.
-- Seguros asociados obligatorios (desgravamen, por ejemplo).
+- Seguros asociados voluntarios (desgravamen, por ejemplo).
 - Gastos operacionales o de formalización cuando son parte del contrato.
 - Comisiones de administración o mantención cuando aplican.
 
@@ -103,18 +103,18 @@ Este es el punto central. La tasa de interés mensual y la CAE son cosas distint
 
 **Ejemplo concreto — mismo monto, misma tasa, distinto costo real:**
 
-| Descripción             | Crédito A      | Crédito B      |
-| ----------------------- | -------------- | -------------- |
-| Monto solicitado        | $2.000.000     | $2.000.000     |
-| Tasa mensual            | 1,5%           | 1,5%           |
-| Plazo                   | 24 meses       | 24 meses       |
-| Comisión de originación | $0             | $80.000        |
-| Seguro de desgravamen   | $0             | $3.500/mes     |
-| **CAE anual**           | **~19,6%**     | **~26,8%**     |
-| Cuota mensual aprox.    | $98.900        | $102.400       |
-| **Total pagado**        | **$2.373.600** | **$2.457.600** |
+| Descripción             | Crédito A      | Crédito B                             |
+| ----------------------- | -------------- | ------------------------------------- |
+| Monto solicitado        | $2.000.000     | $2.000.000                            |
+| Tasa mensual            | 1,5%           | 1,5%                                  |
+| Plazo                   | 24 meses       | 24 meses                              |
+| Comisión de originación | $0             | $80.000                               |
+| Seguro de desgravamen   | $0             | $3.500/mes                            |
+| **CAE anual**           | **~19,6%**     | **~29,2%**                            |
+| Cuota mensual aprox.    | $99.848        | $103.348                              |
+| **Total pagado**        | **$2.396.352** | **$2.480.352 + $80.000 = $2.560.352** |
 
-**Diferencia total: $84.000** — por dos créditos con exactamente la misma tasa mensual nominal. La tasa mensual no te dijo nada de eso. La CAE sí.
+**Diferencia total: $164.000** — por dos créditos con exactamente la misma tasa mensual nominal. La tasa mensual no te dijo nada de eso. La CAE sí.
 
 ## TMC y CAE no cumplen la misma función
 
@@ -149,11 +149,11 @@ Ejemplo numérico con dos escenarios comparables (crédito de consumo, $3.000.00
 | Tasa mensual           | 1,80%      | 1,50%                             |
 | Seguro mensual         | $0         | $9.500                            |
 | Gastos iniciales       | $0         | $65.000                           |
-| Cuota mensual estimada | $108.800   | $101.400                          |
-| Total pagado           | $3.916.800 | $3.715.400 + $65.000 = $3.780.400 |
-| CAE aproximado         | 23,9%      | 24,2%                             |
+| Cuota mensual estimada | $113.951   | $117.957                          |
+| Total pagado           | $4.102.236 | $4.246.452 + $65.000 = $4.311.452 |
+| CAE aproximado         | 23,9%      | 29,1%                             |
 
-La opción B tiene cuota más baja pero costo total mayor. Sin la CAE, la comparación engaña.
+La opción B tiene tasa más baja pero cuota más alta y costo total mayor. Sin la CAE, la comparación engaña.
 
 > Los valores anteriores son ejemplos ilustrativos calculados para fines educativos. Las condiciones reales varían según institución, perfil de riesgo y momento de contratación. Verifica siempre con la Hoja de Información Precontractual de cada oferta.
 
@@ -170,7 +170,7 @@ Al inicio del crédito, la mayor parte de la cuota son intereses. Con el tiempo,
 
 ## Prepago anticipado: tu derecho y cuándo conviene
 
-En Chile, tienes derecho a prepagar cualquier crédito de consumo en cualquier momento (**Ley N° 18.010**). El banco puede cobrar una comisión de prepago, pero tiene un tope legal.
+En Chile, tienes derecho a prepagar un crédito de consumo en la gran mayoría de los casos (Ley N° 18.010), pero se necesita el consentimiento del acreedor si prepagas menos del 10% del capital adeudado o si el crédito supera las 5.000 UF. El banco puede cobrar una comisión de prepago con tope legal de un mes de intereses en operaciones no reajustables (en pesos) o de un mes y medio en operaciones reajustables (en UF), calculada sobre el capital prepagado.
 
 Si planeas prepagar, el momento óptimo es durante el primer tercio del plazo, cuando el saldo de capital aún es alto y los intereses futuros evitados son mayores. Pregunta el costo de prepago antes de contratar.
 

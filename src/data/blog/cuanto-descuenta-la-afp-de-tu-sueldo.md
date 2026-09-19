@@ -24,7 +24,7 @@ articleLead:
   calculatorLabel: "Ver el sueldo líquido completo"
   nextStepHref: "/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/"
   nextStepLabel: "Entender la reforma previsional"
-  validAsOf: 2026-04-22
+  validAsOf: 2026-09-18
   officialSources:
     - label: "Superintendencia de Pensiones"
       href: "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html"
@@ -54,7 +54,7 @@ reviewPolicy:
   derivationFactors:
     - registry:slugOverrides.cuanto-descuenta-la-afp-de-tu-sueldo
   computedAt: "2026-09-13"
-updatedDate: 2026-09-13T00:00:00Z
+updatedDate: 2026-09-18T00:00:00Z
 ---
 
 Cada mes aparece en tu liquidación una línea que dice "AFP" y un número que te descuentan. Para la mayoría es un cálculo opaco que simplemente aceptan. Esta guía lo abre: cuánto corresponde a cotización obligatoria, cuánto es comisión y cómo verificar que ese cargo calza con tu AFP y tu imponible.
@@ -65,10 +65,10 @@ Este bloque separa lo vigente hoy de los cambios ya aprobados por la reforma pre
 
 - **Qué cambia hoy (2026):**
   - En tu liquidación, el descuento del trabajador sigue siendo **10% de cotización obligatoria + comisión AFP**.
-  - Desde agosto de 2025 existe una **cotización adicional del empleador de 1%**, pero no se descuenta de tu sueldo líquido.
+  - Entre agosto de 2025 y julio de 2026 rigió una **cotización adicional del empleador de 1%**, pero no se descontaba de tu sueldo líquido.
 - **Qué cambia después (2027 en adelante):**
   - Desde **abril de 2027** comienza la implementación de **fondos generacionales**, reemplazando progresivamente los multifondos A, B, C, D y E.
-  - Desde **agosto de 2027** la cotización adicional del empleador sube a **3,5%** (con alzas posteriores hasta 7%).
+  - Desde las remuneraciones de **agosto de 2026** la cotización adicional del empleador es de **3,5%** (0,1% a tu cuenta individual, 0,9% a CRP y 2,5% a SIS/CEV; entre agosto de 2025 y julio de 2026 fue de 1%), con alzas posteriores hasta 7%.
 
 Calendario resumido de implementación:
 
@@ -77,13 +77,13 @@ Calendario resumido de implementación:
 | Inicio cotización empleador      | Agosto 2025     | +1% de cargo del empleador (no descuenta de tu sueldo). |
 | Vigencia general de reforma      | Septiembre 2025 | Comienza entrada en régimen por etapas.                 |
 | Fondos generacionales            | Abril 2027      | Transición desde multifondos A-E a nuevo esquema.       |
-| Nueva etapa cotización empleador | Agosto 2027     | Aporte adicional sube a 3,5%.                           |
+| Nueva etapa cotización empleador | Agosto 2026     | Aporte adicional sube a 3,5%.                           |
 
 ## ¿Cuánto te descuenta realmente la línea AFP?
 
 **Respuesta rápida (regla general):** hoy la línea AFP del trabajador dependiente se compone de **10% de cotización obligatoria** más la **comisión de su AFP**, por lo que el descuento total suele moverse entre **10,46% y 11,45%** del imponible según administradora.  
 **Excepciones comunes:** la cotización adicional de la reforma previsional es de cargo del empleador y no baja tu líquido; si tu duda es el total de descuentos de la liquidación, aquí no se cubren salud, cesantía ni el impuesto completo.  
-**Vigencia / fecha de corte:** 2026-04-22.  
+**Vigencia / fecha de corte:** 2026-09-18.  
 **Fuentes oficiales:** [Superintendencia de Pensiones](https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9908.html), [ChileAtiende](https://www.chileatiende.gob.cl/fichas/130987-aportes-del-empleador-al-sistema-de-pensiones), [BCN, Ley N° 21.735](https://www.bcn.cl/leychile/navegar?idNorma=1212060).
 
 Si hablamos del descuento que sale desde tu remuneración imponible como trabajador, el total hoy se mueve aproximadamente entre **10.46% y 11.45%** según tu AFP. Este porcentaje se divide en dos partes:
