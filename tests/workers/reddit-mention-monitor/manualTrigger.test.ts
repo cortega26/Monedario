@@ -185,6 +185,67 @@ describe("/__check manual trigger auth", () => {
     await expect(res.json()).resolves.toEqual({ error: "check_not_configured" });
   });
 
+  it("tolerates a single markSeen KV failure without failing the run (RM-011b)", async () => {
+    const child = (id: string, title: string) => ({
+      data: {
+        name: id,
+        title,
+        subreddit: "chile",
+        permalink: `/r/chile/comments/${id}/`,
+        author: "example-user",
+        score: 10,
+        created_utc: 0,
+        over_18: false,
+      },
+    });
+    let searchCalls = 0;
+    vi.stubGlobal("fetch", vi.fn(async (input: RequestInfo | URL) => {
+      const url = String(input);
+      if (url.includes("/api/v1/access_token")) {
+        return { ok: true, json: async () => ({ access_token: "t" }) };
+      }
+      if (url.includes("/search")) {
+        searchCalls += 1;
+        if (searchCalls === 1) {
+          return {
+            ok: true,
+            json: async () => ({
+              data: { children: [child("t3_a", "AFP post"), child("t3_b", "AFP otro")] },
+            }),
+          };
+        }
+        return { ok: true, json: async () => ({ data: { children: [] } }) };
+      }
+      if (url.includes("discord.example")) {
+        return new Response(null, { status: 204 });
+      }
+      throw new Error(`unexpected fetch: ${url}`);
+    }));
+
+    // KV whose put throws for one id: delivery must still be reported and the
+    // run must stay 200 (the failed mark is retried next cron, at-least-once).
+    const store = new Map<string, string>();
+    const putAttempts: string[] = [];
+    const flakyKv = {
+      get: async (key: string) => store.get(key) ?? null,
+      put: async (key: string, value: string) => {
+        putAttempts.push(key);
+        if (key === "t3_b") throw new Error("KV is down");
+        store.set(key, value);
+      },
+    };
+
+    const res = await worker.fetch(
+      new Request("https://example.workers.dev/__check", {
+        headers: { Authorization: "Bearer check-secret" },
+      }),
+      makeEnv({ REDDIT_SEEN: flakyKv }),
+    );
+    expect(res.status).toBe(200);
+    await expect(res.json()).resolves.toEqual({ found: 2, alerted: 2, attempted: 2 });
+    expect(putAttempts).toEqual(["t3_a", "t3_b"]);
+  });
+
   it("returns 500 when the downstream run fails despite valid auth", async () => {
     const res = await worker.fetch(
       new Request("https://example.workers.dev/__check", {

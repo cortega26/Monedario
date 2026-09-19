@@ -1,7 +1,12 @@
-import { describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { buildEmbed, chunkEmbeds, type Match } from "../../../workers/reddit-mention-monitor/src/discord";
 import { filterUnseen } from "../../../workers/reddit-mention-monitor/src/dedup";
-import { passesFilter } from "../../../workers/reddit-mention-monitor/src/index";
+import {
+  DEFAULT_MIN_SCORE,
+  DEFAULT_SEARCH_LIMIT,
+  parseMonitorConfig,
+  passesFilter,
+} from "../../../workers/reddit-mention-monitor/src/index";
 import { SUBREDDIT_SCOPE, TARGET_SUBREDDITS } from "../../../workers/reddit-mention-monitor/src/keywords";
 import type { RedditPost } from "../../../workers/reddit-mention-monitor/src/redditClient";
 
@@ -72,6 +77,54 @@ describe("chunkEmbeds", () => {
     }));
     const chunks = chunkEmbeds(embeds);
     expect(chunks.map(c => c.length)).toEqual([10, 10, 3]);
+  });
+});
+
+describe("parseMonitorConfig", () => {
+  afterEach(() => vi.restoreAllMocks());
+
+  function silenceWarn() {
+    return vi.spyOn(console, "warn").mockImplementation(() => {});
+  }
+
+  it("falls back to safe defaults (with a warn log) for NaN numerics", () => {
+    const warn = silenceWarn();
+    const config = parseMonitorConfig({ MIN_SCORE: "not-a-number", SEARCH_LIMIT: "NaN" });
+    expect(config.minScore).toBe(DEFAULT_MIN_SCORE);
+    expect(config.limit).toBe(DEFAULT_SEARCH_LIMIT);
+    expect(warn).toHaveBeenCalledTimes(2);
+    expect(warn.mock.calls[0][0]).toContain("config.invalid_min_score");
+    expect(warn.mock.calls[1][0]).toContain("config.invalid_search_limit");
+  });
+
+  it("falls back for out-of-range SEARCH_LIMIT (below 1 or above 100)", () => {
+    silenceWarn();
+    expect(parseMonitorConfig({ SEARCH_LIMIT: "0" }).limit).toBe(DEFAULT_SEARCH_LIMIT);
+    expect(parseMonitorConfig({ SEARCH_LIMIT: "500" }).limit).toBe(DEFAULT_SEARCH_LIMIT);
+    expect(parseMonitorConfig({ SEARCH_LIMIT: "-5" }).limit).toBe(DEFAULT_SEARCH_LIMIT);
+  });
+
+  it("falls back for a negative MIN_SCORE", () => {
+    silenceWarn();
+    expect(parseMonitorConfig({ MIN_SCORE: "-1" }).minScore).toBe(DEFAULT_MIN_SCORE);
+  });
+
+  it("passes valid values through (flooring fractional limits)", () => {
+    const warn = silenceWarn();
+    const config = parseMonitorConfig({ MIN_SCORE: "3", SEARCH_LIMIT: "25.9" });
+    expect(config.minScore).toBe(3);
+    expect(config.limit).toBe(25);
+    expect(warn).not.toHaveBeenCalled();
+  });
+
+  it("uses defaults silently when vars are unset", () => {
+    const warn = silenceWarn();
+    expect(parseMonitorConfig({})).toEqual({
+      minScore: DEFAULT_MIN_SCORE,
+      limit: DEFAULT_SEARCH_LIMIT,
+      timeWindow: "day",
+    });
+    expect(warn).not.toHaveBeenCalled();
   });
 });
 

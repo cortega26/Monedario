@@ -65,3 +65,4 @@ STOP: cambio de semántica de alertas sin update ADR · nuevo tracking persisten
 ## Progress log
 
 - 2026-09-19 — Roadmap + plan creados. Auditoría previa (3 briefs, 2026-09-19) archivada en historial de sesión.
+- 2026-09-19 — Wave 0 CERRADA (600 + set +x + runbook, sin rotación). Wave 1 CERRADA (ADR contrato + partición). Wave 2 CERRADA (LIFT REJECT; ver arriba).

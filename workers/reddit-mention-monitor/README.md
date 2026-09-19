@@ -13,6 +13,10 @@ See `docs/adr/ADR-20260601-reddit-mention-monitor.md` for the rationale and viab
 matches to Discord → mark them seen (after a successful alert, so a Discord failure retries next
 run).
 
+Batch policy: Discord delivery stops at the first failed batch (a 429 or 5xx with `Retry-After`
+is retried once per batch); undelivered matches stay unseen in KV and are retried on the next run
+(at-least-once — a crash between POST and markSeen may duplicate an alert).
+
 | Piece | File |
 |---|---|
 | Reddit OAuth + search + normalize | `src/redditClient.ts` |

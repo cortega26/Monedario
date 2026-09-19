@@ -73,13 +73,52 @@ export function passesFilter(post: RedditPost, minScore: number): boolean {
   return true;
 }
 
+export const DEFAULT_MIN_SCORE = 0;
+export const DEFAULT_SEARCH_LIMIT = 25;
+/** Reddit `limit` range per the search API (see wrangler.toml `[vars]`). */
+export const MAX_SEARCH_LIMIT = 100;
+
+export interface MonitorConfig {
+  minScore: number;
+  limit: number;
+  timeWindow: string;
+}
+
+/**
+ * Validates numeric env thresholds (RM-011a). NaN / non-finite / out-of-range
+ * values fall back to safe defaults with a warn log instead of poisoning the
+ * run (NaN minScore would filter everything; NaN limit would hit Reddit with
+ * `limit=NaN`). Pure apart from the warn log. Exported for tests.
+ */
+export function parseMonitorConfig(
+  env: Pick<Env, "MIN_SCORE" | "SEARCH_LIMIT" | "SEARCH_TIME_WINDOW">
+): MonitorConfig {
+  let minScore = env.MIN_SCORE === undefined ? DEFAULT_MIN_SCORE : Number(env.MIN_SCORE);
+  if (!Number.isFinite(minScore) || minScore < 0) {
+    log("warn", "config.invalid_min_score", {
+      raw: env.MIN_SCORE ?? null,
+      fallback: DEFAULT_MIN_SCORE,
+    });
+    minScore = DEFAULT_MIN_SCORE;
+  }
+  let limit = env.SEARCH_LIMIT === undefined ? DEFAULT_SEARCH_LIMIT : Number(env.SEARCH_LIMIT);
+  if (!Number.isFinite(limit) || limit < 1 || limit > MAX_SEARCH_LIMIT) {
+    log("warn", "config.invalid_search_limit", {
+      raw: env.SEARCH_LIMIT ?? null,
+      fallback: DEFAULT_SEARCH_LIMIT,
+    });
+    limit = DEFAULT_SEARCH_LIMIT;
+  } else {
+    limit = Math.floor(limit);
+  }
+  return { minScore, limit, timeWindow: env.SEARCH_TIME_WINDOW ?? "day" };
+}
+
 async function runMonitor(
   env: Env
 ): Promise<{ found: number; alerted: number; attempted: number }> {
   assertEnv(env);
-  const minScore = Number(env.MIN_SCORE ?? "0");
-  const limit = Number(env.SEARCH_LIMIT ?? "25");
-  const timeWindow = env.SEARCH_TIME_WINDOW ?? "day";
+  const { minScore, limit, timeWindow } = parseMonitorConfig(env);
 
   const token = await getAppToken(
     env.REDDIT_CLIENT_ID,
@@ -122,7 +161,21 @@ async function runMonitor(
   if (matches.length > 0) {
     const { delivered, error } = await postAlert(env.DISCORD_WEBHOOK_URL, matches);
     deliveredCount = delivered.length;
-    await Promise.all(delivered.map(m => markSeen(env.REDDIT_SEEN, m.post.id)));
+    // Per-ID tolerance (RM-011b): one KV failure must not reject the whole
+    // post-delivery fan-out. A failed mark stays unmarked and is re-alerted
+    // (at-least-once) next run instead of failing the run or losing the count.
+    await Promise.all(
+      delivered.map(async m => {
+        try {
+          await markSeen(env.REDDIT_SEEN, m.post.id);
+        } catch (err) {
+          log("warn", "dedup.mark_seen_failed", {
+            id: m.post.id,
+            message: err instanceof Error ? err.message : String(err),
+          });
+        }
+      })
+    );
     if (error) {
       log("warn", "alert.partial_failure", {
         delivered: delivered.length,

@@ -1,0 +1,4 @@
+# Los digest-*.md de más de 90 días se mueven aquí (ver "Rotación de
+# digests (90d)" en PLAYBOOK.md). Los globs `digest-*.md` de monitor.py y
+# weekly_report.py no son recursivos, así que index.md y el reporte semanal
+# siguen funcionando sin cambios.

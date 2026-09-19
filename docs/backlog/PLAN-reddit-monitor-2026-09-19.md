@@ -62,3 +62,4 @@ MEDICIÓN: scoreboard antes/después por wave en el Progress log de aquí.
 ## Progress log
 
 - 2026-09-19 — Plan + roadmap creados. Wave 0 despachada.
+- 2026-09-19 — Wave 2 CERRADA (veredicto LIFT REJECT tras fixes): retries con Retry-After + split 401/403, token refresh once, degraded-status, dead-letter ntfy, rotación logs, backup offsite doc + RESTORE.md + integrity_check, worker config validation + markSeen tolerante + chunkEmbeds + batch policy doc. Tests: pytest 33 + RM-008 4/4, vitest 39, tsc 0. Abierto no-bloqueante: 8 fallos preexistentes test_fase06 (spacy + schema drift → RM-016 Wave 3); NextSteps.astro ajeno sin revertir.
