@@ -419,3 +419,52 @@ def test_lexicon_normalize_no_depende_de_unicodedata_local():
     assert lexicon.normalize is norm.normalize
     assert lexicon.strip_accents is norm.strip_accents
     assert lexicon.normalize("Ahorré Éxito") == "ahorre exito"
+
+
+# --- descarte temprano de autores propios (own_authors) ---
+
+def _raw_comment(author, body="Alguien sabe como calcular el dividendo hipotecario? "
+                              "necesito ayuda con mi credito hipotecario"):
+    return {"body": body, "author": author, "permalink": "/r/chile/comments/x/y/z/",
+            "created_utc": 1.0, "score": 1, "subreddit_subscribers": 1000}
+
+
+def _cfg_with(own):
+    cfg = dict(m.DEFAULT_CONFIG)
+    cfg["own_authors"] = own
+    return cfg
+
+
+def test_control_un_tercero_si_genera_match():
+    items, _ = m.process_comment(_raw_comment("otro_usuario"), "chile", _cfg_with(["yo"]))
+    assert items  # sin este control, los tests de abajo pasarian por una razon equivocada
+
+
+@pytest.mark.parametrize("author", ["yo", "YO", "u/yo", "/u/Yo", " yo "])
+def test_comentario_propio_se_descarta_temprano(author):
+    items, discarded = m.process_comment(_raw_comment(author), "chile", _cfg_with(["yo"]))
+    assert items == [] and discarded == []  # ni match ni "descartado por intencion"
+
+
+def test_post_propio_tambien_se_descarta():
+    post = {"title": "Como calculo el dividendo hipotecario?", "selftext": "ayuda con mi credito hipotecario",
+            "author": "Yo", "permalink": "/r/chile/comments/x/", "created_utc": 1.0,
+            "score": 1, "num_comments": 0, "subreddit_subscribers": 1000}
+    assert m.process_post(post, "chile", _cfg_with(["yo"])) == ([], [])
+
+
+def test_own_authors_vacio_o_ausente_no_filtra_a_nadie():
+    assert m.process_comment(_raw_comment("yo"), "chile", _cfg_with([]))[0]
+    cfg = dict(m.DEFAULT_CONFIG)
+    cfg.pop("own_authors")
+    assert m.process_comment(_raw_comment("yo"), "chile", cfg)[0]
+
+
+def test_autor_borrado_o_faltante_no_se_confunde_con_uno_propio():
+    cfg = _cfg_with(["yo", "", "   "])  # entradas vacias no deben matchear nada
+    assert m.process_comment(_raw_comment("[deleted]"), "chile", cfg)[0]
+    assert m.process_comment(_raw_comment(None), "chile", cfg)[0]
+
+
+def test_own_authors_como_string_se_tolera():
+    assert m.own_author_set({"own_authors": "Yo"}) == {"yo"}
