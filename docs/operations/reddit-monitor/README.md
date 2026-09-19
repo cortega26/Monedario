@@ -1,5 +1,9 @@
 # Migrar reddit-monitor a tu VM Oracle (`pogo-lab-prod-a1`)
 
+> **Documento histórico** de la migración inicial a la VM (septiembre 2026). Para
+> operar el sistema hoy (interfaz web, etiquetas, migraciones, despliegue) ver
+> [PLAYBOOK.md](PLAYBOOK.md).
+
 ## Qué encontré / qué hice
 
 Con tu permiso entré a `Pogo-lab` y ubiqué todo lo necesario:

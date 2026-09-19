@@ -1,9 +1,28 @@
 # Playbook — Monitor de Reddit para Monedario.cl
 
-Guía de uso completa del sistema, tal como quedó armado. Todo vive en
-`~/VS_Code_Projects/products/monedario/reddit-monitor/`.
+Guía de uso completa del sistema, tal como quedó armado. El código vive en
+`~/VS_Code_Projects/products/monedario/reddit-monitor/` (versionado en este
+repositorio) y corre en la VM en `/home/ubuntu/reddit-monitor/`.
 
-## El ciclo diario (5-10 min, cuando te acomode)
+## Interfaz web (ciclo diario recomendado)
+
+`https://reddit.monedario.cl` (HTTP Basic Auth, usuario `carlos`, contraseña en
+`WEB_PASSWORD` del `.env` de la VM; el sitio envía `noindex` y su `robots.txt`
+bloquea todo). Reemplaza la edición manual de los digests, que se siguen
+generando como respaldo.
+
+| Página | Para qué sirve |
+|---|---|
+| **Cola** (`/`) | Pendientes ordenados por prioridad y urgencia. *Marcar atendido* guarda la acción (y el link con UTM si lo usaste) y la etiqueta `accionable`. *Descartar porque…* pide el motivo en un clic (ver tabla más abajo). |
+| **Atendidos** (`/atendidos`) | Historial de atendidos y descartados, con el motivo del descarte. |
+| **Revisión** (`/revision`) | Dos bloques: los descartes previos sin motivo (asígnales el real) y una muestra para calibrar el filtro (casos donde las reglas y la capa semántica discrepan, incluidos descartes automáticos que quizá eran buenos). |
+| **Wikis** (`/wikis`) | Seguimiento de wikis de recursos por subreddit. |
+
+Cada decisión en la cola o en `/revision` es una **etiqueta** que alimenta la
+mejora del filtro: no es trámite, es lo que permite decidir con datos si hace
+falta un modelo.
+
+## El ciclo diario con digests (alternativa manual)
 
 1. Abre `index.md` — te dice, por día, cuántos pendientes y atendidos hay
    sin que abras archivo por archivo.
@@ -28,6 +47,58 @@ Guía de uso completa del sistema, tal como quedó armado. Todo vive en
 
 No hace falta que hagas esto todos los días — el sistema no pierde nada
 si te atrasas dos o tres días, las entradas quedan esperando en Pendiente.
+
+## Etiquetas y ciclo de feedback
+
+Motivos disponibles y cómo se traducen a etiqueta (fuente única: `reviews.py`):
+
+| Motivo | Etiqueta (objetivo: ¿accionable?) | ¿Es del tema? | Cuándo |
+|---|---|---|---|
+| `accionable` | relevante | sí | Atendido, o "sí valía la pena" en `/revision` |
+| `tema_sin_accion` | ruido | sí | Es de finanzas, pero no hay cómo aportar |
+| `ya_resuelto` | ruido | sí | Ya tiene buenas respuestas o está cerrado |
+| `ruido` | ruido | no | No es un tema financiero |
+
+Separar "no es del tema" de "es del tema, sin cómo aportar" importa: mezclados,
+un modelo aprendería a rechazar temas buenos. Las etiquetas importadas de
+decisiones históricas (`descarte_previo`) son **implícitas** y pesan 0,3 frente
+a 1,0 de las explícitas.
+
+**Etapas** (estado al 2026-09-19):
+
+1. **Captura de etiquetas** — hecha: motivos en la cola, `/revision`, migración v3.
+2. **Línea base** — hecha la herramienta; falta volumen de etiquetas.
+   `python3 eval_filter.py .` (en la VM, dentro de `~/reddit-monitor`) mide la
+   precisión de las reglas, los falsos negativos y el AUC de `ml_confidence`,
+   con intervalos de Wilson y aviso "no concluyente" bajo 30 casos. **Sin
+   descartes automáticos etiquetados, el recall es desconocido, no bueno.**
+3. **Modo sombra** — pendiente: un clasificador puntúa cada item y se guarda
+   junto a la decisión de las reglas, sin decidir nada.
+4. **Promoción** — pendiente. Puerta: 150 o más etiquetas explícitas (40 o más
+   por clase) y mejor precisión que las reglas en datos apartados. Primero solo
+   ordena la cola; los de baja puntuación pasan a "baja prioridad", nunca se
+   descartan (para no perder falsos negativos).
+
+Hallazgo que condiciona el diseño: los prototipos actuales de la capa semántica
+no discriminan (`ml_confidence` fue más alto en los descartados que en los
+pendientes); la ruta prevista es usar los embeddings como *features* de un
+clasificador entrenado con estas etiquetas, no como regla fija.
+
+## Subreddits monitoreados
+
+`chile`, `Santiago`, `RepublicadeChile`, `FinanzasChile`, `AskChile`,
+`ChileInversiones`, `derechoenchile`, `ChileStartup`, `chile_autos`, `ChileIT`
+(`config.json`). Criterio del 2026-09-19: sub chileno, al menos 1.000 miembros,
+actividad real y matches con las keywords; se descartaron `BolsaChile` (0,1
+posts/día, último post hace 142 días) y los subs hispanos o españoles
+(`finanzas`, `inversionESP`, `Inversiones`: otra normativa y moneda). Medido
+sobre los últimos 100 posts de cada sub.
+
+Ojo: el **Worker de alertas** (Discord) tiene su propia lista, en
+`workers/reddit-mention-monitor/src/keywords.ts`. Por el contrato de alcance
+(`docs/adr/ADR-20260919-reddit-scope-contract.md`) el monitor Python hace la
+investigación y el Worker las alertas, así que agregar un sub aquí no genera
+alertas de Discord.
 
 ## El ciclo semanal (lunes, ya generado solo)
 
@@ -82,14 +153,52 @@ reiniciar nada ni avisarme.
 
 ## Mantenimiento
 
-- El código vive en `monitor.py`, `weekly_report.py`, `utm_link.py`,
-  `test_monitor.py`. Corre `python3 -m pytest test_monitor.py` si en algún
-  momento tocas algo tú mismo, antes de dejar que la tarea programada use
-  la versión nueva.
+- El código vive en `monitor.py`, `app.py` (web), `weekly_report.py`,
+  `reviews.py`, `dataset.py`, `eval_filter.py`, `utm_link.py` y sus tests
+  (`test_monitor.py`, `test_fase06.py`, `test_reviews.py`, `test_eval.py`).
+  Antes de desplegar cambios: `python3 -m pytest test_monitor.py test_reviews.py
+  test_eval.py` en local. `test_fase06.py` necesita spaCy, que solo está en la
+  VM (allí: `python3 -m pytest -p no:anyio test_fase06.py`).
 - `credentials.json` nunca se sube a ningún lado (está en `.gitignore`) —
   solo vive en tu computador y se usa localmente en cada corrida.
-- Si aún no lo hiciste: `git init && git add . && git commit -m "setup"`
-  en esta carpeta, para tener historial y poder revertir si algo se rompe.
+- El código está versionado en el repositorio `monedario` (carpeta
+  `reddit-monitor/`); los datos de ejecución (DB, logs, digests) están en
+  `.gitignore` y no se suben.
+
+### Esquema y migraciones
+
+`schema_meta.schema_version` declara la versión de la DB y `db.connect()` **falla
+rápido** si no coincide con la que espera el código. Versiones: v1 base, v2 Fase
+0.6 (columnas ML), v3 etiquetas humanas (`reason`, `on_topic`, `source` en
+`human_reviews`). Para subir una DB antigua, en este orden (ambas idempotentes):
+
+```bash
+python3 migrate_fase06_schema.py .   # v1 -> v2
+python3 migrate_v3_reviews.py .      # v2 -> v3 (además importa etiquetas implícitas)
+```
+
+Al añadir un cambio de esquema: `schema.sql` corre en **cada** conexión antes de
+migrar, así que nunca debe crear índices ni restricciones sobre columnas nuevas
+(una DB vieja fallaría al conectar). Cada migración sella su propia versión, no
+la que espera el código actual, y la última sube `EXPECTED_SCHEMA_VERSION` en
+`db.py`.
+
+### Desplegar cambios a la VM
+
+Para el primer despliegue está `deploy.sh`; para actualizar código:
+
+1. Parar `reddit-monitor.timer` y `reddit-monitor-web.service` (nunca
+   `pogo-lab.service`, que comparte la VM).
+2. Respaldar: `bash backup_db.sh` y un `tar` del código.
+3. Copiar el árbol con `tar` por SSH, excluyendo `*.db*`, `credentials.json`,
+   `.env`, logs y digests. Los `.sh` deben conservar el bit de ejecución.
+4. Migrar (sección anterior).
+5. Escaneo manual: `sudo systemctl start reddit-monitor.service` y revisar
+   `runs.log`.
+6. Reactivar timer y servicio web.
+7. Verificar con GET **autenticados** de `/`, `/revision`, `/atendidos` y
+   `/wikis` (un 401 solo prueba que la ruta existe; `curl -I` da 405 porque
+   FastAPI no atiende HEAD en rutas GET).
 
 ### Copia offsite de la DB (RM-012, mensual sugerido)
 
