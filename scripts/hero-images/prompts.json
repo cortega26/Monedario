@@ -503,8 +503,8 @@
         "quality": "auto",
         "size": "1536x1024"
       },
-      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #0d9488. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: one simplified human figure standing upright, in a recognizable everyday money situation.\nPlace one dominant financial object near the figure: shield, upward arrow. Add at most one supporting contextual cue if it strengthens the moment.\nInclude one simplified human figure or visible hands performing a readable gesture so the image feels like an everyday financial moment, not a sterile diagram.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: build the main action in the left or center-left area, with asymmetry, clear focal hierarchy, and breathing room on the right. Keep key elements inside the safe area.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nAvoid photorealism, 3D rendering, CGI, neon, fake UI, clutter, golden-coin finance clichés, and malformed interfaces.",
-      "promptHash": "1c92901b36671fe40d720f063fdf218c3b48728a38653bca9c7b2839f5f46b47",
+      "prompt": "Create a flat editorial vector illustration for a trusted personal finance publication.\nUse simple controlled shapes, a minimal but expressive scene, and a calm human tone. Keep it unmistakably editorial, not photoreal, not stock-finance, and not app-marketing art.\nBackground: solid color #0d9488. Mostly flat color background with room for one gentle grounding shape or tonal separation if it improves hierarchy. No gradients, no glow, no texture noise, and no glossy effects.\nScene: one independent worker placing a small voluntary block on top of a steady monthly contribution bar that feeds a pension account.\nUse only the monthly contribution bar, one voluntary block, one calendar tab, and one pension shield.\nAllow one controlled depth cue through overlap, scale contrast, or a simple grounding shape. Keep the illustration flat but not sterile.\nLighting: soft and even. One simple shadow block or grounding shape is allowed if it helps hierarchy. No cinematic lighting, no photoreal depth, and no glossy rendering.\nKeep shapes crisp, controlled, and simplified, with enough variation in scale and overlap to feel editorial rather than diagrammatic clipart.\nColor palette: 4 to 5 flat colors maximum. Keep the palette restrained, with one softer accent allowed for warmth or hierarchy.\nComposition: build the main action in the left or center-left area, with asymmetry, clear focal hierarchy, and breathing room on the right. Keep key elements inside the safe area.\nSemantic focus: voluntary AFP contributions by independent workers who have no payroll deduction.\nNo text, no letters, no numbers, no logos, and no symbols that read like UI labels anywhere in the image.\nCanvas: 1200x630 pixels, landscape.\nDo not add extra objects beyond the contribution bar, voluntary block, calendar tab, and pension shield.",
+      "promptHash": "079c347a4538fd2f6e820ecac2b5af4d05019daecad468158f3c653dbcb8854e",
       "selectors": {
         "ruleId": "prevision",
         "category": "prevision",
@@ -688,10 +688,9 @@
       "primaryIntent": "guiar",
       "toneClass": "serio",
       "visualEvidence": [
-        "text contains 'f22' in article body/title context",
         "text contains 'sii' in article body/title context",
-        "text contains 'retencion' in article body/title context",
-        "primary intent classified as 'guiar' from article text"
+        "primary intent classified as 'guiar' from article text",
+        "reader situation anchored to scene rule 'renta'"
       ],
       "palette": {
         "category": "Credito / Deuda / Impuestos / Riesgo",
@@ -710,9 +709,7 @@
         "category": "impuestos",
         "cluster": "impuestos-personas",
         "matchedKeywords": [
-          "f22",
-          "sii",
-          "retencion"
+          "sii"
         ]
       }
     },
