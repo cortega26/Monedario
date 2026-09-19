@@ -1,0 +1,64 @@
+# PLAN — reddit-monitor hardening + completion (Waves 0–5)
+
+**Estado:** EN CURSO (Wave 0) · **Fecha:** 2026-09-19 · **Owner:** Carlos Ortega
+**Roadmap:** `ROADMAP-reddit-monitor-2026-09-19.md` (scoreboard, backlog RM-001–037, waves).
+**Decisiones firmadas:** delineación worker↔Python · secretos solo-código sin rotación · hardening + features.
+
+## Objetivo y límites
+
+Endurecer `reddit-monitor/` (Python, untracked) y `workers/reddit-mention-monitor/`
+(tracked) en sad paths, seguridad operativa, refactors, tests y features a medio
+construir, sin cambiar superficies públicas ni semántica de alertas sin ADR.
+
+En alcance: archivos bajo `reddit-monitor/`, `workers/reddit-mention-monitor/`,
+`tests/workers/reddit-mention-monitor/`, ADRs/docs que los gobiernan.
+
+Fuera de alcance (BLOCKED): pipeline editorial, calculadoras, rutas/canonical/RSS,
+monetización, auto-posteo a Reddit (listen-only es hard stop), tracking
+persistente/user-level, exposición pública nueva sin Access-equivalente.
+
+## Autoridad, invariantes y supuestos
+
+- Precedencia: `docs/AI_ENGINEERING_CONSTITUTION.md` → `AGENTS.md` → `context/*.md` → código.
+- Invariantes aplicables: separación de deberes NO aplica (no hay contenido YMYL aquí);
+  `ROUTES.NO_SILENT_CHANGES` / `RSS.NO_REMOVALS` intactos (no se tocan rutas);
+  exfiltración mínima y `no-console` (workers exentos) se respetan.
+- Supuestos: A1 `reddit-monitor/` sigue untracked durante el programa (su gitificación
+  es decisión owner separada); A2 la VM Oracle sigue siendo el host prod de Python;
+  A3 ntfy sin auth se mantiene por decisión firmada (runbook de rotación, sin rotación).
+
+## Change Control Record
+
+1. Scope: ver arriba.
+2. Impacted modules: `reddit-monitor/*.py`, `*.sh`, `*.service/*.timer`, `schema.sql`,
+   `workers/reddit-mention-monitor/src/*.ts`, `tests/workers/reddit-mention-monitor/*`,
+   `docs/adr/ADR-2026*-reddit-*.md`, este roadmap/plan.
+3. Invariant preservation: sin URLs públicas nuevas; sin tracking nuevo; listen-only.
+4. Contract preservation: contrato worker↔Python solo vía ADR Wave 1; `cite`-like fail-closed
+   donde aplique (bcn-cite no se toca).
+5. Boundary integrity: `pnpm run check:boundaries` no afectado (Python fuera de src/);
+   `check:workers` debe seguir verde.
+6. Test coverage: pytest (Python) + vitest (worker) por wave; sad paths con matriz chaos.
+7. Rollback: por wave (ver roadmap).
+8. Regression risk: MED — doble sistema de alertas + credenciales + systemd. Mitigación:
+   waves ordenadas, remediate→verify por cluster, commits pequeños, Wave 4 tras flags.
+
+## Competitive Adaptation Appendix
+
+- benchmarkSet: N/A (trabajo interno, no benchmark-driven).
+- patternHypothesis: N/A.
+- localDelta: contrato explícito alerta-vs-research, backoff con Retry-After, backup offsite
+  de 92 KB, schema versionado, content_gaps cerrable, calibración mensual.
+- nonCopyBoundaries: N/A.
+- ownerTarget: superficies reddit existentes (sin superficie nueva).
+- successSignal: scoreboard del roadmap en verde por wave.
+- ownership conflict check: pass.
+
+## Fases y gates
+
+Ver roadmap Waves 0–5. Gate global por wave + STOP permanentes del roadmap.
+MEDICIÓN: scoreboard antes/después por wave en el Progress log de aquí.
+
+## Progress log
+
+- 2026-09-19 — Plan + roadmap creados. Wave 0 despachada.
