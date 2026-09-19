@@ -67,6 +67,7 @@ Competitive adaptation expectations for benchmark-informed runs:
 - `02-dossier.md` separates `official sources`, `benchmark observations`, and `gap/opportunity`.
 - `03-outline.md` includes a visible differentiation line (H1/intention/snippet/CTA or equivalent).
 - `07-publish-packet.md` confirms no unresolved ownership conflict and that the promised `localDelta` is visible in the final deliverable.
+- `07-publish-packet.md` records `pnpm run check:hero-images` and `pnpm run check:hero-prompts` run with the article already at `draft: false`. `check:hero-images` skips drafts, so a pass while `draft: true` proves nothing; a duplicate hero prompt (e.g. two articles on the same `recipeId` without their own `ARTICLE_PROMPT_VARIANTS` scene) is only caught by `check:hero-prompts`. A `pre-commit` hook also runs it when `src/data/blog/*.md` or `scripts/hero-images/*` change.
 
 Artifact contracts are defined in:
 - `CONTRACT.EDITORIAL.BRIEF`
