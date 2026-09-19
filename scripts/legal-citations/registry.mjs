@@ -163,6 +163,16 @@ export const KNOWN_IDS_WITHOUT_LAW_PAGES = [
   { idNorma: "29526", label: "Ley 18.101 — Arrendamiento de predios urbanos" },
   { idNorma: "1042092", label: "Ley 20.609 — Medidas contra la discriminación" },
   { idNorma: "1171923", label: "Ley 21.419 — Crea la Pensión Garantizada Universal" },
+  {
+    idNorma: "249177",
+    label:
+      "DFL 1/2005 (Salud) — Texto refundido del DL 2.763/1979 y de las leyes 18.933 y 18.469 (Isapre)",
+  },
+  {
+    idNorma: "1203779",
+    label:
+      "Ley 21.674 — Modifica el DFL 1/2005 (Salud); crea un nuevo modelo de atención en Fonasa",
+  },
 ];
 
 export function getHistoryUrl(historyPageId) {
