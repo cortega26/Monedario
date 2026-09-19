@@ -1,0 +1,14 @@
+# Dependencias de la Fase 0.6 (matching expandido + capa semantica).
+# El resto del proyecto (monitor.py, db.py, migrate_history.py) sigue sin
+# dependencias externas — esto es deliberadamente opcional y aislado: si
+# la instalacion de este archivo fallara, monitor.py sigue funcionando
+# igual que antes (ver _SEMANTIC_AVAILABLE en monitor.py).
+#
+# --extra-index-url (no --index-url) para no reemplazar PyPI como fuente
+# principal — solo agrega el indice de wheels CPU-only de PyTorch como
+# fuente adicional, asi el resto de los paquetes se instalan normal.
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
+sentence-transformers
+spacy
+nltk

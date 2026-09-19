@@ -70,7 +70,6 @@ def test_find_keywords_expanded_degrades_to_regex_on_failure(monkeypatch):
     def boom(*a, **kw):
         raise RuntimeError("spaCy no disponible")
     monkeypatch.setattr(lexicon, "expanded_keyword_matches", boom)
-    cfg = monitor.load_config.__wrapped__ if hasattr(monitor.load_config, "__wrapped__") else None
     found, method = monitor.find_keywords_expanded(
         "quiero invertir en algo seguro", {"keywords": ["invertir"], "related_terms": {}}
     )
@@ -124,11 +123,14 @@ def test_write_to_db_persists_ml_fields_and_match_methods(workdir):
         error_detail=None, now_ts=now,
     )
     conn = dbmod.connect(workdir / "reddit_monitor.db")
-    row = conn.execute("SELECT * FROM matches").fetchone()
-    assert row["ml_semantic_margin"] == pytest.approx(0.12)
-    assert row["ml_confidence"] == pytest.approx(0.77)
-    assert row["ml_model_version"] == "embed:test:v1"
-    assert json.loads(row["keyword_match_methods"]) == {"ahorro": "stem"}
+    try:
+        row = conn.execute("SELECT * FROM matches").fetchone()
+        assert row["ml_semantic_margin"] == pytest.approx(0.12)
+        assert row["ml_confidence"] == pytest.approx(0.77)
+        assert row["ml_model_version"] == "embed:test:v1"
+        assert json.loads(row["keyword_match_methods"]) == {"ahorro": "stem"}
+    finally:
+        conn.close()
 
 
 def test_write_to_db_handles_missing_ml_fields_gracefully(workdir):
@@ -149,17 +151,25 @@ def test_write_to_db_handles_missing_ml_fields_gracefully(workdir):
         error_detail=None, now_ts=now,
     )
     conn = dbmod.connect(workdir / "reddit_monitor.db")
-    row = conn.execute("SELECT * FROM matches").fetchone()
-    assert row["ml_semantic_margin"] is None
+    try:
+        row = conn.execute("SELECT * FROM matches").fetchone()
+        assert row["ml_semantic_margin"] is None
+    finally:
+        conn.close()
 
 
-def test_schema_has_ml_columns():
-    conn = dbmod.connect(Path("/tmp") / f"schema_check_{time.time_ns()}.db")
-    cols_matches = {r["name"] for r in conn.execute("PRAGMA table_info(matches)")}
-    cols_discarded = {r["name"] for r in conn.execute("PRAGMA table_info(discarded)")}
-    for col in ("ml_semantic_margin", "ml_confidence", "ml_model_version", "keyword_match_methods"):
-        assert col in cols_matches
-        assert col in cols_discarded
+def test_schema_has_ml_columns(tmp_path):
+    # RM-017: antes escribia un archivo con nombre unico en /tmp real y lo
+    # dejaba tirado (leak); ahora usa el tmp_path del test y cierra la conn.
+    conn = dbmod.connect(tmp_path / "schema_check.db")
+    try:
+        cols_matches = {r["name"] for r in conn.execute("PRAGMA table_info(matches)")}
+        cols_discarded = {r["name"] for r in conn.execute("PRAGMA table_info(discarded)")}
+        for col in ("ml_semantic_margin", "ml_confidence", "ml_model_version", "keyword_match_methods"):
+            assert col in cols_matches
+            assert col in cols_discarded
+    finally:
+        conn.close()
 
 
 # --- RM-008: write_to_db falla -> degraded + marca + runs.log (mock, sin red) ---

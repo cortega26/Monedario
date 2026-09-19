@@ -20,7 +20,7 @@ Requiere ADR por `docs/AI_ENGINEERING_CONSTITUTION.md` §9
 (cambio de semantica de alertas sin update ADR).
 
 Antecedentes: `docs/adr/ADR-20260601-reddit-mention-monitor.md` (Worker:
-listen-only, 15 min, Discord), `reddit-monitor/PLAYBOOK.md` (ciclo
+listen-only, 15 min, Discord), `docs/operations/reddit-monitor/PLAYBOOK.md` (ciclo
 Pendiente→Atendido), `docs/operations/COMMUNITY_SEEDING_KIT.md` (targets y
 respuestas-tipo A–E).
 

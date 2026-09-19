@@ -1,0 +1,16 @@
+credentials.json
+__pycache__/
+*.pyc
+.pytest_cache/
+testrun*/
+
+# Datos de ejecucion del monitor (generados en la VM / por corridas locales)
+reddit_monitor.db*
+backups/
+runs.log
+scan_stats.jsonl
+descartados.jsonl
+ntfy_failures.jsonl
+digest-*.md
+index.md
+.coverage

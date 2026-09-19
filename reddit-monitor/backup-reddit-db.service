@@ -1,0 +1,9 @@
+[Unit]
+Description=Backup de reddit_monitor.db (corrida única)
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/reddit-monitor
+ExecStart=/home/ubuntu/reddit-monitor/backup_db.sh

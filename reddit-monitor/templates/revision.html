@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block nav_revision %}active{% endblock %}
+{% macro botones(it) %}
+<form class="inline" method="post" action="/revision/{{ it.source }}/{{ it.id }}">
+  <div class="actions">
+    <button type="submit" name="motivo" value="accionable" class="primary">Accionable</button>
+    <button type="submit" name="motivo" value="tema_sin_accion" class="secondary">Del tema, sin cómo aportar</button>
+    <button type="submit" name="motivo" value="ya_resuelto" class="secondary">Ya resuelto</button>
+    <button type="submit" name="motivo" value="ruido" class="secondary">No es de finanzas</button>
+  </div>
+</form>
+{% endmacro %}
+{% block content %}
+<div class="stats">{{ n_explicit }} etiqueta{{ 's' if n_explicit != 1 else '' }} explícita{{ 's' if n_explicit != 1 else '' }} · {{ n_implicit }} descarte{{ 's' if n_implicit != 1 else '' }} previo{{ 's' if n_implicit != 1 else '' }} sin motivo</div>
+
+{% if implicit %}
+<h2 style="font-size:16px;">Descartes previos: ¿por qué los descartaste?</h2>
+<p class="muted">Ya los descartaste antes, pero sin motivo. Indicarlo separa “no es finanzas” de “es del tema, sin cómo aportar”.</p>
+{% for it in implicit %}
+<div class="card">
+  <div class="muted">r/{{ it.subreddit }} · regla: {{ it.confidence }}</div>
+  <div class="snippet">{{ it.snippet }}</div>
+  <a class="reddit-link" href="https://reddit.com{{ it.permalink }}" target="_blank" rel="noopener">Ver en Reddit →</a>
+  {{ botones(it) }}
+</div>
+{% endfor %}
+{% endif %}
+
+<h2 style="font-size:16px;">Muestra para calibrar el filtro</h2>
+<p class="muted">Casos donde las reglas y la capa semántica discrepan (los más informativos), más algunos donde coinciden.</p>
+{% if not sample %}
+<div class="empty">No queda nada por revisar por ahora.</div>
+{% endif %}
+{% for it in sample %}
+<div class="card">
+  <div>
+    <span class="badge {{ 'conf-Alta' if it.source == 'match' else 'viejo' }}">{{ 'mantenido por reglas' if it.source == 'match' else 'descartado por reglas' }}</span>
+    <span class="muted">r/{{ it.subreddit }} · regla: {{ it.confidence }}{% if it.ml_confidence is not none %} · ml: {{ "%.2f"|format(it.ml_confidence) }}{% endif %}</span>
+  </div>
+  <div class="snippet">{{ it.snippet }}</div>
+  <a class="reddit-link" href="https://reddit.com{{ it.permalink }}" target="_blank" rel="noopener">Ver en Reddit →</a>
+  {{ botones(it) }}
+</div>
+{% endfor %}
+{% endblock %}
