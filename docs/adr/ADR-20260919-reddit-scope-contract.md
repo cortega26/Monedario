@@ -1,7 +1,7 @@
 # ADR-20260919-reddit-scope-contract
 
 Date: 2026-09-19
-Status: Accepted
+Status: Superseded by ADR-20260919-reddit-single-monitor
 
 ## Context
 

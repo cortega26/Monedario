@@ -105,10 +105,6 @@ function isAllowedLocation(filePath) {
     return true;
   }
 
-  if (filePath === "workers/reddit-mention-monitor/README.md") {
-    return true;
-  }
-
   if (filePath === "workers/analytics-collector/README.md") {
     return true;
   }

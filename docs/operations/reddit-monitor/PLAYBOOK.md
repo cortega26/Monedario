@@ -94,11 +94,10 @@ posts/día, último post hace 142 días) y los subs hispanos o españoles
 (`finanzas`, `inversionESP`, `Inversiones`: otra normativa y moneda). Medido
 sobre los últimos 100 posts de cada sub.
 
-Ojo: el **Worker de alertas** (Discord) tiene su propia lista, en
-`workers/reddit-mention-monitor/src/keywords.ts`. Por el contrato de alcance
-(`docs/adr/ADR-20260919-reddit-scope-contract.md`) el monitor Python hace la
-investigación y el Worker las alertas, así que agregar un sub aquí no genera
-alertas de Discord.
+Este monitor es el **único** sistema que escucha Reddit para Monedario: el
+Worker de alertas de Cloudflare se retiró (nunca llegó a funcionar; ver
+`docs/adr/ADR-20260919-reddit-single-monitor.md`). Los avisos van por ntfy y la
+cola web.
 
 ## El ciclo semanal (lunes, ya generado solo)
 

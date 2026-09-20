@@ -46,7 +46,6 @@ export default defineConfig({
         "src/utils/sueldo-liquido/**",
         "workers/analytics-collector/src/index.ts",
         "workers/economic-snapshot-refresh/**",
-        "workers/reddit-mention-monitor/**",
       ],
       thresholds: {
         lines: 80,
