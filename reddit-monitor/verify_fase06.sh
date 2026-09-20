@@ -59,6 +59,8 @@ echo
 echo "== 6. Servicio corrio exitosamente con el limite de memoria nuevo =="
 LAST_RESULT="$(ssh_cmd "systemctl show reddit-monitor.service -p Result --value" 2>/dev/null)"
 check "última corrida = success (fue: $LAST_RESULT)" $([ "$LAST_RESULT" = "success" ] && echo 0 || echo 1)
+# RM-022: 1610612736 bytes = 1536M = MemoryMax de reddit-monitor.service (la
+# capa semantica necesita ~1.5G; si se cambia el .service, actualizar aqui).
 MEM_MAX="$(ssh_cmd "systemctl show reddit-monitor.service -p MemoryMax --value" 2>/dev/null)"
 check "MemoryMax actualizado (actual: $MEM_MAX bytes)" $([ "$MEM_MAX" = "1610612736" ] && echo 0 || echo 1)
 

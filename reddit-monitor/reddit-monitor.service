@@ -12,6 +12,12 @@ ExecStart=/home/ubuntu/reddit-monitor/run_monitor.sh
 
 # Aislamiento de recursos respecto a Pogo-lab (que corre en la misma VM):
 # un bug de memoria en este servicio no debe poder afectarla.
-MemoryMax=256M
-MemoryHigh=192M
+# RM-022: la capa semantica (sentence-transformers MiniLM, ver semantic.py)
+# ocupa ~1.2GB RSS mientras corre + overhead de torch — con el tope viejo
+# de 256M el OOM-killer mataba la corrida cada vez que ML estaba activo.
+# 1536M = 1610612736 bytes, debe coincidir con lo que espera
+# verify_fase06.sh §6 (systemctl show informa bytes). MemoryHigh mantiene la
+# proporcion 75% del tope para estrangular antes de matar.
+MemoryMax=1536M
+MemoryHigh=1152M
 TasksMax=64

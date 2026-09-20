@@ -1,4 +1,5 @@
 """Etapa 2: dataset etiquetado y evaluador de linea base."""
+import json
 import sys
 
 import pytest
@@ -101,3 +102,45 @@ def test_cli_solo_lectura_y_filtro_explicitas(tmp_path, monkeypatch, capsys):
     assert eval_filter.main() == 0
     assert "Ejemplos etiquetados: 1 (1 explicitos, 0 implicitos)" in capsys.readouterr().out
     assert (tmp_path / "reddit_monitor.db").stat().st_mtime_ns == before  # no escribe
+
+
+# --- RM-021: calibrate.py (reporte mensual, sin etiquetas = exit 0) ---
+
+def test_calibrate_sin_etiquetas_dice_insufficient_labels_y_sale_0(tmp_path, capsys):
+    import calibrate
+    c = dbmod.connect(tmp_path / "reddit_monitor.db")
+    c.close()
+    assert calibrate.main([str(tmp_path)]) == 0
+    out = capsys.readouterr().out
+    assert "insufficient labels" in out
+    assert not (tmp_path / "calibration_history.jsonl").exists()  # nada que historizar
+
+
+def test_calibrate_barrido_elige_corte_y_no_toca_config(tmp_path, capsys):
+    import calibrate
+    c = dbmod.connect(tmp_path / "reddit_monitor.db")
+    for n, motivo in enumerate(["accionable", "accionable", "ruido", "ruido"]):
+        reviews.record_review(c, motivo, match_id=_match(c, n))
+    c.close()
+    assert calibrate.main([str(tmp_path)]) == 0
+    out = capsys.readouterr().out
+    assert "Barrido de corte" in out and "candidato" in out
+    assert "no concluyente" in out  # n=4 < MIN_N: orientativo, no orden
+    hist = (tmp_path / "calibration_history.jsonl").read_text(encoding="utf-8").splitlines()
+    assert len(hist) == 1 and json.loads(hist[0])["n"] == 4
+
+
+def test_calibrate_threshold_sweep_matematica():
+    import calibrate
+    exs = [
+        dataset.Example(source="match", item_id=i, subreddit="chile", text="t",
+                        keywords=("afp",), rule_kept=True,
+                        rule_confidence="Alta" if s >= 2 else "Baja",
+                        intent_score=s, ml_confidence=None,
+                        label=1 if s >= 2 else 0, on_topic=1,
+                        reason="accionable", explicit=True, weight=1.0)
+        for i, s in enumerate([0, 1, 2, 3])
+    ]
+    rows = {r["t"]: r for r in calibrate.threshold_sweep(exs)}
+    assert rows[2]["precision"] == 1.0 and rows[2]["recall"] == 1.0
+    assert rows[1]["recall"] == 1.0 and rows[1]["precision"] < 1.0

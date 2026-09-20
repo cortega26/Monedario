@@ -468,3 +468,55 @@ def test_autor_borrado_o_faltante_no_se_confunde_con_uno_propio():
 
 def test_own_authors_como_string_se_tolera():
     assert m.own_author_set({"own_authors": "Yo"}) == {"yo"}
+
+
+# --- RM-020: writer content_gaps idempotente por (keyword, week) ---
+
+def test_rm020_flag_default_off(monkeypatch):
+    import weekly_report as wr
+    monkeypatch.delenv("CONTENT_GAPS_ENABLED", raising=False)
+    assert wr.content_gaps_enabled() is False
+    monkeypatch.setenv("CONTENT_GAPS_ENABLED", "1")
+    assert wr.content_gaps_enabled() is True
+    monkeypatch.setenv("CONTENT_GAPS_ENABLED", "0")
+    assert wr.content_gaps_enabled() is False
+
+
+def test_rm020_writer_idempotente_por_keyword_y_semana(tmp_path):
+    import db as dbmod
+    import weekly_report as wr
+    db_path = tmp_path / "reddit_monitor.db"
+    now = "2026-09-20T00:00:00-03:00"
+
+    assert wr.write_content_gaps(db_path, {"afp": 3, "uf": 1}, "2026-W38", now_iso=now) == {
+        "inserted": 2, "updated": 0, "skipped": 0}
+    # misma semana otra vez: no-op total
+    assert wr.write_content_gaps(db_path, {"afp": 3, "uf": 1}, "2026-W38", now_iso=now) == {
+        "inserted": 0, "updated": 0, "skipped": 2}
+    # semana nueva: acumula sin tocar status
+    assert wr.write_content_gaps(db_path, {"afp": 2}, "2026-W39", now_iso=now) == {
+        "inserted": 0, "updated": 1, "skipped": 0}
+
+    conn = dbmod.connect(db_path)
+    try:
+        row = conn.execute(
+            "SELECT times_seen, status, notes FROM content_gaps WHERE keyword = 'afp'").fetchone()
+        assert row["times_seen"] == 5
+        assert row["status"] == "detectado"  # el writer solo crea 'detectado'
+        assert row["notes"] == "[gap-week:2026-W38] [gap-week:2026-W39]"
+        # triage humano previo no se pisa al acumular otra semana
+        conn.execute("UPDATE content_gaps SET status = 'publicado', "
+                     "content_url = 'https://x/' WHERE keyword = 'afp'")
+        conn.commit()
+    finally:
+        conn.close()
+    assert wr.write_content_gaps(db_path, {"afp": 9}, "2026-W40", now_iso=now) == {
+        "inserted": 0, "updated": 1, "skipped": 0}
+    conn = dbmod.connect(db_path)
+    try:
+        row = conn.execute(
+            "SELECT times_seen, status, content_url FROM content_gaps WHERE keyword = 'afp'").fetchone()
+        assert (row["times_seen"], row["status"], row["content_url"]) == (
+            14, "publicado", "https://x/")
+    finally:
+        conn.close()

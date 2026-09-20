@@ -20,6 +20,7 @@ Requiere credentials.json y los digest-*.md en el mismo directorio.
 Escribe reporte-semanal-<AAAA>-W<NN>.md en el mismo directorio.
 """
 import json
+import os
 import re
 import sys
 from collections import Counter
@@ -27,6 +28,7 @@ from pathlib import Path
 from datetime import datetime, timezone, timedelta
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+import db as dbmod  # noqa: E402 — escritura via db.connect, nunca sqlite3 directo
 from monitor import get_token, api_get, load_config, log_run  # noqa: E402
 # RM-015: ENTRY_RE canonica (unica fuente en entries.py).
 from entries import ENTRY_RE  # noqa: E402
@@ -121,6 +123,82 @@ def update_kpis(workdir: Path, kpis: dict, wiki_lines: list[str], today_str: str
     return changed
 
 
+def keyword_ranking(pend: list[dict], aten: list[dict]) -> Counter:
+    """Ranking de keywords de la semana (fuente unica: lo usa el reporte en
+    Markdown y el writer RM-020, para que ambos vean los mismos numeros)."""
+    return Counter(e["kw"] for e in (pend + aten))
+
+
+# --- RM-020: writer content_gaps desde el ranking semanal -------------------
+# Mapeo al esquema REAL de schema.sql (content_gaps NO tiene columnas
+# week/hits/disposition: solo keyword UNIQUE, first/last_seen_at,
+# times_seen, status, content_url, notes — no se agregan columnas para no
+# subir la version de esquema RM-016 ni exigir migracion):
+#   week  -> etiqueta [gap-week:AAAA-WNN] en notes + last_seen_at (la
+#            etiqueta es lo que hace idempotente el re-proceso: la misma
+#            semana aplicada dos veces no suma dos veces).
+#   hits  -> times_seen (acumula; solo suma semanas no vistas antes).
+#   disposition candidate|article|calculator|rejected -> dominio status
+#            existente: candidate = 'detectado' (unico estado que escribe
+#            este writer, al insertar); article|calculator = 'publicado'
+#            (+ content_url) y rejected = 'descartado', ambos solo por
+#            triage humano en la UI; 'en_backlog' es intermedio humano.
+#            El writer NUNCA pisa status/content_url/first_seen_at en
+#            conflicto: el triage humano manda.
+# Gate: CONTENT_GAPS_ENABLED=1 (default OFF — sin la variable no se escribe
+# nada; ver content_gaps_enabled()).
+
+def content_gaps_enabled() -> bool:
+    """Feature flag RM-020: default OFF, se habilita con =1."""
+    return os.environ.get("CONTENT_GAPS_ENABLED", "") == "1"
+
+
+def gap_week_tag(week_label: str) -> str:
+    return f"[gap-week:{week_label}]"
+
+
+def write_content_gaps(db_path: Path, ranking: dict[str, int],
+                       week_label: str, now_iso: str | None = None) -> dict[str, int]:
+    """Upsert idempotente por (keyword, week) del ranking semanal a
+    content_gaps, SOLO via db.connect. Devuelve conteo
+    {inserted, updated, skipped}. Re-correr la misma semana es no-op."""
+    now_iso = now_iso or datetime.now(tz=CHILE_TZ).isoformat()
+    tag = gap_week_tag(week_label)
+    stats = {"inserted": 0, "updated": 0, "skipped": 0}
+    conn = dbmod.connect(db_path)
+    try:
+        with conn:
+            for keyword, hits in ranking.items():
+                kw = (keyword or "").strip()
+                if not kw or hits <= 0:
+                    continue
+                row = conn.execute(
+                    "SELECT times_seen, last_seen_at, notes FROM content_gaps WHERE keyword = ?",
+                    (kw,),
+                ).fetchone()
+                if row is None:
+                    conn.execute(
+                        "INSERT INTO content_gaps (keyword, first_seen_at, times_seen, "
+                        "last_seen_at, status, notes) VALUES (?, ?, ?, ?, 'detectado', ?)",
+                        (kw, now_iso, hits, now_iso, tag),
+                    )
+                    stats["inserted"] += 1
+                elif tag in (row["notes"] or ""):
+                    stats["skipped"] += 1  # semana ya aplicada: no-op
+                else:
+                    prev_notes = (row["notes"] or "").strip()
+                    notes = f"{prev_notes} {tag}".strip()
+                    conn.execute(
+                        "UPDATE content_gaps SET times_seen = ?, last_seen_at = ?, notes = ? "
+                        "WHERE keyword = ?",
+                        (row["times_seen"] + hits, now_iso, notes, kw),
+                    )
+                    stats["updated"] += 1
+    finally:
+        conn.close()
+    return stats
+
+
 def check_wiki_opportunities(token: str, user_agent: str, subreddits: list[str]) -> list[str]:
     lines = []
     for sub in subreddits:
@@ -177,7 +255,7 @@ def render_report(pend: list[dict], aten: list[dict], files_used: list[str],
                    all_time_pend: list[dict], all_time_aten: list[dict],
                    kpis: dict) -> str:
     all_entries = pend + aten
-    kw_counter = Counter(e["kw"] for e in all_entries)
+    kw_counter = keyword_ranking(pend, aten)
     sub_counter = Counter(e["sub"] for e in all_entries)
     conf_counter = Counter(e["conf"] for e in all_entries)
 
@@ -296,6 +374,22 @@ def main() -> int:
                           all_time_pend, all_time_aten, kpis),
             encoding="utf-8",
         )
+
+        # RM-020: writer content_gaps, default OFF (CONTENT_GAPS_ENABLED=1).
+        # Un fallo aqui no tumba el reporte: el Markdown ya esta escrito.
+        gaps_line = ""
+        if content_gaps_enabled():
+            try:
+                gaps_stats = write_content_gaps(
+                    workdir / "reddit_monitor.db", keyword_ranking(pend, aten), week_label,
+                )
+                gaps_line = (
+                    f"content_gaps: {gaps_stats['inserted']} nuevas, "
+                    f"{gaps_stats['updated']} actualizadas, "
+                    f"{gaps_stats['skipped']} ya aplicadas ({week_label})"
+                )
+            except Exception as exc:  # noqa: BLE001
+                gaps_line = f"content_gaps: OMITIDO por error ({exc})"
     except Exception as exc:  # noqa: BLE001
         log_run(workdir, "weekly_report", "error", str(exc))
         print(f"ERROR: {exc}", file=sys.stderr)
@@ -305,6 +399,8 @@ def main() -> int:
     summary = f"Reporte generado: {report_path.name} ({len(pend) + len(aten)} entradas analizadas)"
     log_run(workdir, "weekly_report", "ok", summary)
     print(summary)
+    if gaps_line:
+        print(gaps_line)
     commit_files = [report_path.name, "runs.log"]
     if kpis_changed:
         commit_files.append("kpis.json")

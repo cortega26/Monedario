@@ -4,11 +4,29 @@
 # la instalacion de este archivo fallara, monitor.py sigue funcionando
 # igual que antes (ver _SEMANTIC_AVAILABLE en monitor.py).
 #
+# Versiones pineadas con == (RM-022): compatibles con Python 3.9–3.13 en
+# CPU x86_64/aarch64 Linux (verificado a nivel de metadatos PyPI el
+# 2026-09-20: torch 2.8.0 y spacy 3.8.7 publican wheels cp313-manylinux;
+# sentence-transformers 5.1.0 es py3-none-any; nltk es puro-Python).
+#
+# Como verificar SIN instalar en prod (solo metadatos, no toca nada):
+#   pip index versions torch sentence-transformers spacy nltk
+# Verificacion real en un venv DESECHABLE (nunca en prod directo):
+#   python3 -m venv /tmp/mlcheck && /tmp/mlcheck/bin/pip install -r requirements-ml.txt && \
+#     /tmp/mlcheck/bin/python -c 'import torch, sentence_transformers, spacy, nltk; print("ok")'
+#
+# PASO OBLIGATORIO tras instalar (el modelo NO viene con el paquete spacy):
+#   python -m spacy download es_core_news_sm
+# (descarga el build compatible con el spacy instalado, serie 3.8.x) y luego:
+#   python -c "import spacy; spacy.load('es_core_news_sm')"
+# Sin ese modelo, lexicon.py se degrada a regex exacto (ver verify_fase06.sh
+# §1, que chequea exactamente estos dos imports en la VM).
+#
 # --extra-index-url (no --index-url) para no reemplazar PyPI como fuente
 # principal — solo agrega el indice de wheels CPU-only de PyTorch como
 # fuente adicional, asi el resto de los paquetes se instalan normal.
 --extra-index-url https://download.pytorch.org/whl/cpu
-torch
-sentence-transformers
-spacy
-nltk
+torch==2.8.0
+sentence-transformers==5.1.0
+spacy==3.8.7
+nltk==3.9.1
