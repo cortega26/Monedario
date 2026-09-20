@@ -1,11 +1,11 @@
 # Backlog Monedario.cl — Estado actual
 
-> Generado el 2026-04-08. Última actualización: 2026-08-02.
+> Generado el 2026-04-08. Última actualización: 2026-09-20.
 > Lectura obligatoria antes de ejecutar cualquier ticket: `AGENTS.md` y `context/INVARIANTS.md`.
 
 ---
 
-## Estado actual — 2026-08-02
+## Estado actual — 2026-09-20
 
 Desde 2026-08-02 rige `FOCO ESTRICTO / VALIDACIÓN UTILITY-LED`. Nuevas superficies permanecen en `UTILITY_LED_BLOCKED_PENDING_EVIDENCE.md`; la continuidad del proyecto se evalúa por sostenibilidad, utilidad, aprendizaje y confianza, no por ingresos de corto plazo.
 
@@ -41,12 +41,12 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | Blog Advisory Architecture | `BLOG_ADVISORY_ARCHITECTURE_PLAN_2026-04-22.md` | Propuesta futuro mediano |
 | Audit of the Small Details | `PLAN-audit-small-details-2026-05-22.md` | Programa activo de auditoria y backlog `ASD-###`; primera pasada audit-only completa |
 | ~~Trigger manual del export de analytics~~ | `PLAN-analytics-export-manual-trigger-2026-06-30.md` | **Cerrado 2026-07-07** — endpoint manual `GET /api/analytics/export?secret=&week=` implementado, desplegado y verificado contra R2 para W26/W27 |
-| CTR UTM/UF (tráfico P0) | `PLAN-growth-utm-ctr-2026-09-16.md` | TODO — sign-off owner; FOCO hasta 2026-11-02, sin URLs nuevas |
-| Panel post-resultado (funnel) | `PLAN-result-panel-conversion-2026-09-16.md` | TODO — sign-off owner; piloto UTM, no ampliar sin umbral |
-| Refresco y consolidación contenido | `PLAN-content-refresh-consolidation-2026-09-16.md` | TODO — sign-off owner; lote 0 mergeado (PR #423), lotes 1–5 encolables |
-| Reevaluación monetización | `PLAN-monetization-reevaluation-2026-09-16.md` | TODO — sign-off owner; evidencia + discovery + ADR borrador, sin implementar |
-| Evolución visual/UX | `PLAN-ux-evolution-cta-2026-09-16.md` | TODO — sign-off owner; slices S1–S4, sin rebrand |
-| Integridad medición (Sprint 0 adaptado) | `PLAN-measurement-integrity-2026-09-16.md` | TODO — sign-off owner; pre-requisito panel F1, sin GA4 ni trackers |
+| CTR UTM/UF (tráfico P0) | `PLAN-growth-utm-ctr-2026-09-16.md` | F1 desplegado; lectura primaria F5 vence 2026-09-30; FOCO hasta 2026-11-02, sin URLs nuevas |
+| Panel post-resultado (funnel) | `PLAN-result-panel-conversion-2026-09-16.md` | F1+F2 desplegados; F4 dos semanas comparables desde 2026-09-16; piloto UTM, no ampliar sin umbral |
+| Refresco y consolidación contenido | `PLAN-content-refresh-consolidation-2026-09-16.md` | Piloto packet FIRMADO (publish); lote 1 artículo 2 en compliance CONDITIONAL; lotes 2–5 encolables tras firma |
+| Reevaluación monetización | `PLAN-monetization-reevaluation-2026-09-16.md` | En acumulación de evidencia (F1); discovery + ADR borrador, sin implementar |
+| Evolución visual/UX | `PLAN-ux-evolution-cta-2026-09-16.md` | S1 encolado post-panel-F4; slices S1–S4, sin rebrand |
+| Integridad medición (Sprint 0 adaptado) | `PLAN-measurement-integrity-2026-09-16.md` | **DONE (FIRMADO)** — pre-requisito panel F1 cumplido, sin GA4 ni trackers |
 
 ### Bloqueado — requiere acción humana
 
@@ -103,12 +103,13 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | File | Status |
 |------|--------|
 | `PLAN-calculator-led-growth-2026-06-28.md` | **IN PROGRESS**; medición desplegada, W28 post-fix válida; consolidar OBS-01 sin saltar su gate |
-| `PLAN-growth-utm-ctr-2026-09-16.md` | **TODO**; CTR UTM/UF, una URL por vez, baseline W37 firmado antes de editar |
-| `PLAN-result-panel-conversion-2026-09-16.md` | **TODO**; identidad eventos + panel piloto UTM, umbrales pre-declarados |
-| `PLAN-content-refresh-consolidation-2026-09-16.md` | **TODO**; lotes YMYL con pipeline + ownership, tras firma lote 0 |
-| `PLAN-monetization-reevaluation-2026-09-16.md` | **TODO**; evidencia funnel + discovery B2B + ADR borrador, nada comercial sin gate |
-| `PLAN-ux-evolution-cta-2026-09-16.md` | **TODO**; slices S1–S4 evolución, LHCI/axe sin regresión |
-| `PLAN-measurement-integrity-2026-09-16.md` | **TODO**; auditoría + registry + metodología, antes de panel F1 |
+| `PLAN-growth-utm-ctr-2026-09-16.md` | **IN PROGRESS**; F1 desplegado, lectura primaria F5 vence 2026-09-30; una URL por vez |
+| `PLAN-result-panel-conversion-2026-09-16.md` | **IN PROGRESS**; F1+F2 desplegados, F4 dos semanas comparables desde 2026-09-16; umbrales pre-declarados |
+| `PLAN-content-refresh-consolidation-2026-09-16.md` | **IN PROGRESS**; piloto packet FIRMADO (publish), lote 1 artículo 2 en compliance CONDITIONAL; pipeline + ownership |
+| `PLAN-monetization-reevaluation-2026-09-16.md` | **IN PROGRESS**; en acumulación de evidencia (F1) + discovery B2B + ADR borrador, nada comercial sin gate |
+| `PLAN-ux-evolution-cta-2026-09-16.md` | **QUEUED**; S1 encolado post-panel-F4; slices S1–S4 evolución, LHCI/axe sin regresión |
+| `PLAN-measurement-integrity-2026-09-16.md` | **DONE (FIRMADO)**; auditoría + registry + metodología + reporte de cierre, pre-requisito panel F1 cumplido |
+| `PLAN-reddit-monitor-2026-09-19.md` | **CERRADO**; Waves 0–4 cerradas + CSRF gate + worker retirado (#509) + teardown ejecutado |
 | `PHASE_2_DATA_SIGNALS.md` | Parcialmente completado; DATA3a..3c bloqueado |
 | `HERO_IMAGE_SYSTEM_REMEDIATION_2026-04-30.md` | Pendiente remediación manual |
 | `PLAN-heroimage-prompt-repair-2026-05-01.md` | Código completo; assets manuales pendientes |

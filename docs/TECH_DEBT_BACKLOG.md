@@ -2307,3 +2307,110 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
   `tests/accessibility/font-guardrail.test.ts`; revertir esta corrección si se
   detecta regresión de carga. Detalle en
   `docs/backlog/PLAN-sueldo-font-preload-2026-09-05.md`.
+
+## TD-0107 — Gate de timeliness con ceguera semántica (`stale=0` con datos falsos vivos)
+
+- **ID:** TD-0107
+- **Título corto:** El gate de frescura no detecta hechos falsos vigentes
+- **Descripción:** `check-editorial-timeliness` computa `stale` solo desde la
+  cadencia (`dueDate` por categoría/`slugOverrides`): un artículo con `stale=0`
+  puede contener hechos duros falsos vigentes (montos desactualizados, topes
+  derogados, referencias legales movidas) sin que ningún gate lo señale. La
+  frescura calendario se confunde así con veracidad, que es lo que importa en
+  YMYL. Confirmado por 4+ auditorías adversariales independientes del batch
+  2026-09 que hallaron defectos de hechos duros en artículos que el gate
+  reportaba como frescos.
+- **Evidencia:** `scripts/check-editorial-timeliness.mjs` (~L226: `stale` deriva
+  solo de `dueDate`, sin inspección de contenido); reportes
+  `docs/reports/AUDIT-*-2026-09-1*.md` con hallazgos de hechos duros en
+  artículos no marcados stale.
+- **Impacto:** Falsa confianza editorial: artículos "al día" según el gate
+  pueden desinformar en decisiones de dinero/salud/previsión (riesgo YMYL).
+- **Riesgo:** alto
+- **Severidad (1-5):** 4
+- **Urgencia:** P1
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** (a) Documentar que `stale=0` no certifica veracidad
+  (solo cadencia); (b) evaluar datasets `volatileData` dedicados para los hechos
+  que más se repiten en los hallazgos (topes/montos/tasas); (c) mantener la
+  cobertura por rondas de auditoría adversarial como señal de veracidad, no solo
+  el gate calendario.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] La política de timeliness declara explícito que `stale=0` ≠ verificado.
+  - [ ] Los hechos duros con más hallazgos repetidos tienen dataset/owner o
+    cadencia justificada.
+  - [ ] `pnpm run check:editorial-timeliness` sigue en verde tras el cambio.
+- **Owner:** Sin asignar
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-09-20
+- **Última actualización:** 2026-09-20
+
+## TD-0108 — 13 artículos publicados sin `validAsOf`, absorbidos en silencio por el gate
+
+- **ID:** TD-0108
+- **Título corto:** Backfill de `validAsOf` faltante en 13 artículos
+- **Descripción:** 13 de 54 archivos en `src/data/blog/` no declaran `validAsOf`
+  y el gate de timeliness los absorbe en silencio (caen a la cadencia genérica
+  sin señalar la ausencia del dato). Sin `validAsOf` no hay ancla explícita de
+  "hasta cuándo es válido este dato", justo lo que TD-0107 muestra que falta.
+- **Evidencia:** `grep -ri validAsOf src/data/blog/` (2026-09-20): 13 archivos
+  sin coincidencia —
+  `ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026`,
+  `como-cambiarse-de-afp`, `como-hacer-presupuesto-mensual-chile`,
+  `como-invertir-en-etfs-desde-chile`,
+  `estafas-financieras-chile-vishing-smishing-marketplace`,
+  `fondos-mutuos-comisiones-rescate-impuestos`, `fraude-tarjeta-que-hacer`,
+  `interes-compuesto-nota-metodologica`, `licencia-medica-desde-que-dia-pagan`,
+  `que-es-el-ipc-chile-como-se-calcula`, `que-es-la-uf`,
+  `reajuste-arriendo-uf-ipc-chile`, `suplantacion-identidad-creditos-no-reconocidos`.
+- **Impacto:** Revisión editorial sin ancla temporal explícita en ~24% del
+  corpus; el lector y el revisor no saben desde cuándo rige cada dato.
+- **Riesgo:** medio
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** S
+- **Propuesta de solución:** (a) Backfill de `validAsOf` en los 13 (igual a
+  `updatedDate` solo donde una fuente primaria lo respalde en sesión; el resto
+  va a auditoría); (b) endurecer `check-frontmatter` o el gate de timeliness
+  para exigir `validAsOf` en publicados y no absorber la ausencia en silencio.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] Los 13 artículos declaran `validAsOf` con fuente o están en auditoría.
+  - [ ] Un gate falla (o advierte explícitamente) ante publicado sin `validAsOf`.
+  - [ ] `pnpm run check:editorial-timeliness` sigue en verde tras el cambio.
+- **Owner:** Sin asignar
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-09-20
+- **Última actualización:** 2026-09-20
+
+## TD-0109 — Posible replicación de fórmula indemnización F1–F3 en calculadora (NHV-8, código productivo sin auditar)
+
+- **ID:** TD-0109
+- **Título corto:** Auditar fórmulas F1–F3 de finiquito-indemnización en producción
+- **Descripción:** La auditoría adversarial del artículo de indemnización
+  levantó NHV-8: posible replicación de sus fórmulas F1–F3 en la calculadora
+  productiva `/calculadoras/finiquito-indemnizacion/`. El código de producción
+  que calcula dinero real para el lector no ha sido auditado contra las
+  fórmulas corregidas del artículo.
+- **Evidencia:** NHV-8 del reporte de auditoría del artículo
+  (`docs/reports/AUDIT-indemnizacion-anos-de-servicio-chile-2026-09-17.md`);
+  código productivo `src/pages/calculadoras/finiquito-indemnizacion.astro` +
+  `src/application/use-cases/EstimateFiniquito.ts` (+
+  `EstimateFiniquito.methodology.ts`).
+- **Impacto:** Si la calculadora replica una fórmula defectuosa, el error llega
+  directo al bolsillo del lector (monto de indemnización mal estimado).
+- **Riesgo:** medio-alto
+- **Severidad (1-5):** 3
+- **Urgencia:** P2
+- **Esfuerzo estimado:** S–M
+- **Propuesta de solución:** Auditoría focalizada de las fórmulas F1–F3 en el
+  código productivo contra las fórmulas verificadas del artículo (fuentes
+  primarias DT/SUSESO en sesión), y tests de regresión numérica que fijen los
+  valores correctos.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] F1–F3 del código productivo verificadas contra fuentes primarias.
+  - [ ] Tests de regresión numérica fijan los valores correctos.
+  - [ ] `pnpm run test` y `pnpm run check` en verde.
+- **Owner:** Sin asignar
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-09-20
+- **Última actualización:** 2026-09-20

@@ -173,6 +173,10 @@ export const KNOWN_IDS_WITHOUT_LAW_PAGES = [
     label:
       "Ley 21.674 — Modifica el DFL 1/2005 (Salud); crea un nuevo modelo de atención en Fonasa",
   },
+  {
+    idNorma: "16346",
+    label: "D.S. 950 — Reglamento del Boletín de Informaciones Comerciales",
+  },
 ];
 
 export function getHistoryUrl(historyPageId) {
