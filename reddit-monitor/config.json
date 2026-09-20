@@ -2,7 +2,7 @@
   "own_authors": [
     "Killeramn-26"
   ],
-  "_scope_notes": "SCOPE CONTRACT docs/adr/ADR-20260919-reddit-scope-contract.md (RM-005). Python owns RESEARCH: broad lexicon below + comments (incl. calculator-bound terms in comments) + digests/weekly/triage UI + ntfy. Worker owns ALERTING: 5 calculator-bound queries, TARGET_SUBREDDITS, posts-only, Discord, 15-min. Non-behavioral key: load_config (monitor.py) reads known keys by name and ignores extras; file is only rewritten on first run. Lexical overlap with worker queries is intentional, NOT a violation; double-surfacing is expected, NOT a bug.",
+  "_scope_notes": "SINGLE MONITOR docs/adr/ADR-20260919-reddit-single-monitor.md: reddit-monitor/ is the only Reddit listener (Python owns alerting + research: lexicon + comments + digests/weekly/triage UI + ntfy). The Cloudflare worker was retired 2026-09-19 (never functioned). Non-behavioral key: load_config reads known keys by name and ignores extras.",
   "subreddits": [
     "chile",
     "Santiago",
