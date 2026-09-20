@@ -62,6 +62,8 @@ scp -i "$VM_KEY" \
     "$(dirname "$0")/reddit-monitor.timer" \
     "$(dirname "$0")/reddit-weekly-report.service" \
     "$(dirname "$0")/reddit-weekly-report.timer" \
+    "$(dirname "$0")/reddit-assist.service" \
+    "$(dirname "$0")/reddit-assist.timer" \
     "$VM_HOST:$REMOTE_DIR/"
 
 echo "== 5. Preguntando tu topic de ntfy.sh =="
@@ -79,10 +81,13 @@ ssh -i "$VM_KEY" "$VM_HOST" "
     chmod +x $REMOTE_DIR/run_monitor.sh $REMOTE_DIR/run_weekly_report.sh
     sudo cp $REMOTE_DIR/reddit-monitor.service $REMOTE_DIR/reddit-monitor.timer \
            $REMOTE_DIR/reddit-weekly-report.service $REMOTE_DIR/reddit-weekly-report.timer \
+           $REMOTE_DIR/reddit-assist.service $REMOTE_DIR/reddit-assist.timer \
            /etc/systemd/system/
     sudo systemctl daemon-reload
     sudo systemctl enable --now reddit-monitor.timer
     sudo systemctl enable --now reddit-weekly-report.timer
+    # reddit-assist.timer NO se activa aqui: necesita ANTHROPIC_API_KEY en .env
+    # (ver PLAYBOOK, seccion "Asistente IA").
 "
 
 echo "== 7. Prueba inmediata =="

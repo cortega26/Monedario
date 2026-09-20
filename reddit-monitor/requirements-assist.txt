@@ -1,0 +1,5 @@
+# Asistente IA (assist.py) con provider=anthropic: SDK oficial de Anthropic.
+# NO se necesita con provider=openai_compat (modelo local): ese adaptador usa solo la libreria estandar. Solo lo necesita el
+# proceso del asistente; el escaneo y la web no lo importan.
+# Fijar la version que se pruebe en la VM (pip index versions anthropic) antes de activar.
+anthropic>=1.0,<2

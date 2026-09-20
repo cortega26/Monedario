@@ -18,6 +18,27 @@
   </div>
   <div class="muted" style="margin-top:6px;">r/{{ it.subreddit }} · {{ it.type }}{% if it.comment_only %} · <strong>solo comentarios</strong> (el post original no pasó el filtro){% endif %}</div>
   <div class="snippet">{{ it.snippet }}</div>
+  {% if it.ai %}
+  <div class="ai-box">
+    <div>
+      <span class="badge conf-{{ 'Alta' if it.ai.classification == 'financiero' else ('Baja' if it.ai.classification == 'no_financiero' else 'Media') }}">IA: {{ it.ai.classification }}</span>
+      <span class="muted">oportunidad: {{ it.ai.opportunity }} · {{ it.ai.created_at }}</span>
+    </div>
+    <div class="muted">{{ it.ai.reason }}</div>
+    {% if it.ai.would_discard %}<div class="warn">Modo observación: en modo automático este hilo se descartaría. Sigue aquí, tú decides.</div>{% endif %}
+    {% if not it.ai.context_sufficient %}<div class="warn">Contexto insuficiente para decidir: revisa el hilo completo en Reddit.</div>{% endif %}
+    {% if it.ai.limits %}<div class="warn">Limitaciones del contexto: {{ it.ai.limits|join(', ') }}</div>{% endif %}
+    {% if it.ai.draft %}
+    <label>Borrador de IA, sin revisar (selecciona y copia; nada se publica solo)
+      <textarea readonly rows="5" onfocus="this.select()">{{ it.ai.draft }}</textarea>
+    </label>
+    {% elif it.ai.draft_blocked %}
+    <div class="warn">Borrador bloqueado por el verificador de estilo: {{ it.ai.draft_blocked }}</div>
+    {% endif %}
+    {% if it.ai.warnings %}<div class="warn">Avisos del verificador: {{ it.ai.warnings|join(' · ') }}</div>{% endif %}
+    {% if it.ai.verify %}<div class="warn">Verificar antes de enviar: {{ it.ai.verify|join(' · ') }}</div>{% endif %}
+  </div>
+  {% endif %}
   {% if it.resource %}
   <div class="muted">Sugerencia: <a href="{{ it.resource.url }}" target="_blank" rel="noopener">{{ it.resource.label }}</a></div>
   {% endif %}

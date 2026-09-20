@@ -1,0 +1,19 @@
+[Unit]
+Description=Monedario - Reddit monitor - asistente IA (analisis y borradores, corrida unica)
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=ubuntu
+WorkingDirectory=/home/ubuntu/reddit-monitor
+# .env trae ANTHROPIC_API_KEY (modo 600; nunca en el repo ni en logs).
+EnvironmentFile=-/home/ubuntu/reddit-monitor/.env
+# Proceso SEPARADO de reddit-monitor.service: si falla, el escaneo y el panel no se enteran.
+ExecStart=/usr/bin/python3 assist.py .
+TimeoutStartSec=15min
+
+# Sin PyTorch: liviano, con techo explicito (la VM la comparte otra aplicacion).
+MemoryMax=256M
+MemoryHigh=192M
+TasksMax=32

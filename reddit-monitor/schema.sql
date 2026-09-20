@@ -191,6 +191,76 @@ CREATE TABLE IF NOT EXISTS subreddit_wiki_status (
     updated_at      TEXT
 );
 
+-- [Asistente IA] Analisis automatico de hilos (assist.py). Tablas SEPARADAS de
+-- human_reviews a proposito: lo que decide la IA nunca se mezcla con las
+-- etiquetas humanas que alimentan el dataset. Aditivas (CREATE IF NOT EXISTS,
+-- sin subir schema_version): una DB v3 las recibe sola en el proximo connect().
+CREATE TABLE IF NOT EXISTS ai_assessments (
+    id                  INTEGER PRIMARY KEY AUTOINCREMENT,
+    thread_key          TEXT NOT NULL,
+    match_id            INTEGER NOT NULL REFERENCES matches(id) ON DELETE CASCADE, -- principal del hilo
+    match_ids           TEXT NOT NULL,      -- JSON: ids pendientes del hilo que cubre este analisis
+    context_fingerprint TEXT NOT NULL,      -- SHA-256 del contexto enviado al modelo
+    prompt_version      TEXT NOT NULL,
+    model               TEXT,               -- NULL si no hubo llamada (contexto no analizable)
+    mode                TEXT NOT NULL,      -- observacion | automatico
+    classification      TEXT NOT NULL CHECK (classification IN ('financiero', 'no_financiero', 'incierto')),
+    reason              TEXT NOT NULL,
+    context_sufficient  INTEGER NOT NULL CHECK (context_sufficient IN (0, 1)),
+    opportunity         TEXT NOT NULL CHECK (opportunity IN ('si', 'no', 'incierta')),
+    draft               TEXT,
+    draft_blocked       TEXT,               -- errores del verificador (reply_lint) si bloqueo el borrador
+    draft_warnings      TEXT,               -- JSON: avisos del verificador
+    pending_verification TEXT,              -- JSON: datos/fuentes por verificar
+    resource_url        TEXT,
+    context_source      TEXT,               -- procedencia del contexto (reddit_api)
+    context_fetched_at  TEXT,
+    context_limits      TEXT,               -- JSON: limitaciones (eliminado, recortado, no recuperado)
+    created_at          TEXT NOT NULL,
+    applied_at          TEXT,               -- cuando se aplico un descarte automatico
+    applied_match_ids   TEXT,               -- JSON: ids descartados por esta decision
+    restored_at         TEXT,               -- cuando una persona restauro el descarte
+    UNIQUE (thread_key, context_fingerprint, prompt_version)
+);
+CREATE INDEX IF NOT EXISTS idx_ai_assessments_thread ON ai_assessments(thread_key);
+
+-- Una persona restauro (o se hizo cargo de) el hilo: el asistente no lo vuelve a tocar.
+CREATE TABLE IF NOT EXISTS ai_holds (
+    thread_key  TEXT PRIMARY KEY,
+    held_at     TEXT NOT NULL,
+    reason      TEXT
+);
+
+-- Presupuesto por mes (micro-USD enteros: sin errores de coma flotante).
+CREATE TABLE IF NOT EXISTS ai_budget (
+    period      TEXT PRIMARY KEY,           -- AAAA-MM
+    spent_micro INTEGER NOT NULL DEFAULT 0,
+    calls       INTEGER NOT NULL DEFAULT 0,
+    updated_at  TEXT
+);
+
+-- Fallos por hilo y contexto: limita los reintentos (sin bucles que gasten).
+CREATE TABLE IF NOT EXISTS ai_failures (
+    thread_key          TEXT NOT NULL,
+    context_fingerprint TEXT NOT NULL,      -- 'ctx' mientras el contexto no se pudo recuperar
+    attempts            INTEGER NOT NULL DEFAULT 0,
+    last_error          TEXT,
+    last_at             TEXT,
+    PRIMARY KEY (thread_key, context_fingerprint)
+);
+
+CREATE TABLE IF NOT EXISTS ai_runs (
+    id          INTEGER PRIMARY KEY AUTOINCREMENT,
+    started_at  TEXT NOT NULL,
+    mode        TEXT NOT NULL,
+    candidates  INTEGER NOT NULL DEFAULT 0,
+    assessed    INTEGER NOT NULL DEFAULT 0,
+    discarded   INTEGER NOT NULL DEFAULT 0,
+    failures    INTEGER NOT NULL DEFAULT 0,
+    spent_micro INTEGER NOT NULL DEFAULT 0,
+    note        TEXT
+);
+
 -- version simple de esquema, para poder saber si una VM/copia quedó atrasada
 -- [RM-016] v2 = Fase 0.6 (columnas ML en matches/discarded); v3 = columnas
 -- reason/on_topic/source en human_reviews. db.connect() falla rapido si la

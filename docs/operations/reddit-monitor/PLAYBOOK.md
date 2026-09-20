@@ -72,8 +72,7 @@ a 1,0 de las explícitas.
    precisión de las reglas, los falsos negativos y el AUC de `ml_confidence`,
    con intervalos de Wilson y aviso "no concluyente" bajo 30 casos. **Sin
    descartes automáticos etiquetados, el recall es desconocido, no bueno.**
-3. **Modo sombra** — pendiente: un clasificador puntúa cada item y se guarda
-   junto a la decisión de las reglas, sin decidir nada.
+3. **Modo sombra** — el asistente IA en modo `observacion` (ver sección "Asistente IA") clasifica y guarda sin decidir nada; el clasificador entrenado con etiquetas sigue pendiente.
 4. **Promoción** — pendiente. Puerta: 150 o más etiquetas explícitas (40 o más
    por clase) y mejor precisión que las reglas en datos apartados. Primero solo
    ordena la cola; los de baja puntuación pasan a "baja prioridad", nunca se
@@ -83,6 +82,74 @@ Hallazgo que condiciona el diseño: los prototipos actuales de la capa semántic
 no discriminan (`ml_confidence` fue más alto en los descartados que en los
 pendientes); la ruta prevista es usar los embeddings como *features* de un
 clasificador entrenado con estas etiquetas, no como regla fija.
+
+## Asistente IA (análisis y borradores)
+
+Proceso **separado** del escaneo (`assist.py`, `reddit-assist.service` + `reddit-assist.timer`, cada 90 min). Analiza los hilos pendientes recientes, prepara borradores en español chileno y, solo en modo automático, descarta los claramente ajenos a finanzas. **No publica nada**: el borrador es texto para que lo revises y lo envíes tú. Especificación: `docs/backlog/PLAN-reddit-assist-2026-09-20.md`.
+
+### Qué hace y qué no
+
+- Recupera el hilo completo desde la API de Reddit (lectura, mismas credenciales del monitor), con tope de tamaño y de comentarios, y lo manda a un solo modelo configurable (`assist.provider`: **`openai_compat`**, el modelo local Qwen3.5-35B-A3B del PC de Carlos publicado con un Cloudflare Tunnel, que es como viene instalado; o `anthropic`, con `claude-sonnet-5`). Montaje del modelo local en `LOCAL_LLM.md` que responde JSON validado: clasificación (`financiero`/`no_financiero`/`incierto`), motivo, contexto suficiente, oportunidad (`si`/`no`/`incierta`), borrador y datos por verificar.
+- Guarda todo en tablas `ai_*`, **nunca** en `human_reviews`: lo automático no se mezcla con tus etiquetas ni con el dataset. Cada análisis registra modelo, versión del prompt, fecha, motivo y huella (SHA-256) del contexto.
+- Lo ambiguo, sin contexto, con error o sin presupuesto **queda pendiente**. Un tema financiero sin oportunidad sigue siendo `financiero`, nunca "ajeno".
+- Los borradores pasan por `reply_lint.py` (un ERROR los bloquea; la UI muestra el motivo). Solo se admiten enlaces del `resource_map`, con UTM y la divulgación de que eres del equipo de Monedario.
+- En la cola cada hilo muestra: clasificación y motivo, advertencias (contexto insuficiente, limitaciones, "verificar antes de enviar") y el borrador en un cuadro de texto para copiar. **Atendidos** identifica los descartes IA y trae **Restaurar a la cola**.
+
+### Modos (`config.json` → `assist.mode`)
+
+| Modo | Efecto |
+|---|---|
+| `desactivado` | No hace nada (valor por defecto si falta la clave). |
+| `observacion` | **Instalado así.** Guarda clasificaciones y borradores; no cambia ningún estado. Los hilos que se descartarían llevan el aviso "Modo observación". |
+| `automatico` | Además descarta `no_financiero` con contexto suficiente y recuperado sin limitaciones (`status_note='ia_no_financiero'`). Solo actúa sobre análisis hechos en ese modo: no es retroactivo sobre lo analizado en observación. |
+
+Nada promueve el modo por el mero paso del tiempo: cambiar `mode` es una decisión tuya.
+
+### Costos y límites
+
+Con el modelo local (`openai_compat`) no hay costo por token: solo aplican los topes de tiempo, tamaño y lote, y una caída del modelo (PC apagado, túnel caído, 502/524) deja los hilos pendientes **sin gastar intentos** (`ai_runs.note = modelo_no_disponible`). Lo que sigue sobre tarifas y presupuesto aplica al proveedor `anthropic`.
+
+`config.json` → `assist`: `max_batch` (hilos por corrida, 10), `max_age_days` (solo hilos de los últimos 3 días: no se reprocesa el histórico), `max_context_chars`, `max_comments`, `max_comment_chars`, `max_output_tokens`, `timeout_s`, `sdk_retries`, `max_attempts` (fallos por hilo antes de rendirse) y `monthly_budget_usd` (5 por defecto).
+
+- **Tarifas configuradas** (`assist.pricing`, USD por millón de tokens entrada/salida, copiadas de la lista de Anthropic al 2026-06-24; **verifícalas** antes de fiarte): `claude-sonnet-5` 2/10, `claude-haiku-4-5` 1/5, `claude-opus-5` 5/25. Un modelo sin tarifa no corre.
+- **Cómo se controla el gasto:** antes de cada llamada se *reserva* una estimación (entrada ≈ caracteres/3 + `max_output_tokens`) en `ai_budget` con una transacción `BEGIN IMMEDIATE` (sirve entre procesos concurrentes y sobrevive reinicios); al terminar se liquida con el `usage` real. Si el proveedor falla por timeout o devuelve una salida malformada, se conserva la reserva completa (la llamada pudo facturarse): se cobra la estimación, no el costo real. Al agotarse el presupuesto del mes, todo queda pendiente. Es una **estimación, no una garantía exacta**: el tope duro es el límite de gasto mensual del workspace en la consola de Anthropic. Crea una clave dedicada y fija ese límite.
+- Orden de magnitud: un hilo ≈ 2.000 tokens de entrada y 300 de salida ≈ 0,007 USD con Sonnet 5, es decir unos 10 hilos por corrida y 16 corridas/día como máximo ≈ 1 USD/día en el peor caso; lo normal es mucho menos porque solo se analizan hilos nuevos.
+- No se reprocesa el histórico: `python3 assist.py . --backfill-days 14 --limit 30` es la única vía, explícita y con tope (máx. 200).
+
+### Activar la observación (en la VM)
+
+Requiere tu autorización de despliegue; con el modelo local también el montaje de `LOCAL_LLM.md` (llama-server + cloudflared en tu PC, service token de Access). Con `anthropic` haría falta una clave de Anthropic. No se hace desde el repo.
+
+```bash
+# 1) Desde tu PC, con el guion de despliegue de siempre (parar timer + web, respaldo, copiar):
+#    sin migraciones: las tablas ai_* se crean solas en el primer connect() (la schema_version sigue en 3).
+# 2) En la VM, dentro de ~/reddit-monitor:
+bash backup_db.sh
+# solo si provider=anthropic: python3 -m pip install --user -r requirements-assist.txt
+nano .env && chmod 600 .env                                    # LOCAL_LLM_API_KEY, CF_ACCESS_CLIENT_ID/SECRET (o ANTHROPIC_API_KEY); ver .env.example
+grep -A3 '"assist"' config.json                                # confirma "mode": "observacion"
+python3 assist.py .                                            # prueba manual: imprime el resumen JSON
+sudo cp reddit-assist.service reddit-assist.timer /etc/systemd/system/ && sudo systemctl daemon-reload
+sudo systemctl enable --now reddit-assist.timer
+journalctl -u reddit-assist.service -n 30 --no-pager           # nunca contiene la clave ni el texto de Reddit
+```
+
+Verifica con GET autenticados de `/` (aparece "IA: …" en los hilos analizados) y `/atendidos`. Si falta la clave o la config es inválida, el servicio termina con error visible en systemd; el escaneo y el panel no se ven afectados.
+
+### Evaluar y promover al modo automático
+
+1. Deja correr la observación 1 o 2 semanas y trabaja la cola como siempre: cada decisión tuya es el veredicto contra el que se mide a la IA.
+2. `python3 assist.py . --report` cuenta los hilos que la IA llamó `no_financiero` (con contexto suficiente) y sobre los que ya diste un veredicto explícito, cuántos coinciden (`ruido`) y cuántos eran del tema o accionables (descarte erróneo), con intervalo de Wilson.
+3. Revisa además una muestra a mano: los hilos con el aviso "Modo observación" en la cola.
+4. Puerta sugerida: **al menos 40 hilos `no_financiero` con veredicto tuyo y 0 descartes erróneos** (cota superior de Wilson ≈ 9 %; con más volumen exige ≤ 5 %). Sin volumen, el resultado es "no concluyente", no "bueno". Con el modelo local (más sensible a instrucciones inyectadas y a reglas de estilo), exige además que `--eval-samples` no clasifique como `no_financiero` ningún caso financiero, ambiguo ni de inyección, y revisa a mano al menos 20 borradores.
+5. Calidad del modelo con casos sintéticos (explícito; facturable solo con `anthropic`): `python3 assist.py . --eval-samples` corre `assist_samples.json` (financiero, no financiero, ambiguo e inyección). Los tests automáticos prueban el contrato con proveedor falso; **no demuestran precisión real**.
+6. Si se cumple: edita `"mode": "automatico"` en `config.json` de la VM (aplica en la siguiente corrida). Durante la primera semana revisa **Atendidos** a diario y restaura lo que no debió descartarse.
+
+### Restaurar y rollback
+
+- **Restaurar un hilo:** botón en `/atendidos`. Vuelve a `pendiente`, queda en `ai_holds` (la IA no lo vuelve a tocar) y no crea etiquetas. Una decisión tuya (atender o descartar) también prevalece siempre: antes de aplicar, el asistente comprueba que las filas sigan pendientes y sin tocar.
+- **Restaurar todos:** `python3 assist.py . --restore-all-auto`.
+- **Apagar:** `sudo systemctl disable --now reddit-assist.timer` o `"mode": "desactivado"`. Las tablas `ai_*` quedan inertes y la versión anterior del código las ignora; `human_reviews`, `matches` y el dataset no se tocan, así que no hay datos humanos que revertir. Con el respaldo de `backup_db.sh` la restauración completa sigue en `RESTORE.md`.
 
 ## Subreddits monitoreados
 
@@ -168,7 +235,7 @@ reiniciar nada ni avisarme.
 
 - El código vive en `monitor.py`, `app.py` (web), `weekly_report.py`,
   `reviews.py`, `dataset.py`, `eval_filter.py`, `utm_link.py` y sus tests
-  (`test_monitor.py`, `test_fase06.py`, `test_reviews.py`, `test_eval.py`).
+  (`test_monitor.py`, `test_fase06.py`, `test_reviews.py`, `test_eval.py`, `test_assist.py`). El asistente IA (`assist.py`, `assist_provider.py`) se documenta en su sección.
   Antes de desplegar cambios: `python3 -m pytest test_monitor.py test_reviews.py
   test_eval.py` en local. `test_fase06.py` necesita spaCy, que solo está en la
   VM (allí: `python3 -m pytest -p no:anyio test_fase06.py`).

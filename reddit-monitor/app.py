@@ -13,6 +13,7 @@ WEB_PASSWORD (ver .env). Suficiente para una herramienta interna de un
 solo usuario detras de un subdominio no adivinable — no se monta
 Cloudflare Access para mantener la superficie de configuracion minima.
 """
+import json
 import os
 import secrets
 from datetime import datetime, timezone, timedelta
@@ -23,6 +24,7 @@ from fastapi.responses import RedirectResponse, HTMLResponse, PlainTextResponse
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi.templating import Jinja2Templates
 
+import assist
 import db as dbmod
 import reviews
 import resources
@@ -108,6 +110,30 @@ def urgency_badge(created_utc: float) -> tuple[str, str]:
     return "viejo", f"{age_hours / 24:.0f} d"
 
 
+def load_assessments(conn, keys: list[str]) -> dict[str, dict]:
+    """Ultimo analisis del asistente IA por hilo, listo para la plantilla. Es
+    contenido no confiable (lo escribio un modelo a partir de texto de Reddit):
+    la plantilla lo escapa como todo lo demas."""
+    if not keys:
+        return {}
+    marks = ",".join("?" * len(keys))
+    out = {}
+    for a in conn.execute(f"SELECT * FROM ai_assessments WHERE thread_key IN ({marks}) ORDER BY id", keys):
+        limits = json.loads(a["context_limits"] or "[]")
+        out[a["thread_key"]] = {
+            "classification": a["classification"], "reason": a["reason"], "mode": a["mode"],
+            "opportunity": a["opportunity"], "context_sufficient": bool(a["context_sufficient"]),
+            "draft": a["draft"] if not a["draft_blocked"] else None,
+            "draft_blocked": a["draft_blocked"],
+            "warnings": json.loads(a["draft_warnings"] or "[]"),
+            "verify": json.loads(a["pending_verification"] or "[]"),
+            "limits": limits, "model": a["model"], "created_at": a["created_at"][:16],
+            "would_discard": a["classification"] == "no_financiero" and bool(a["context_sufficient"])
+                              and a["mode"] == "observacion",
+        }
+    return out
+
+
 @app.get("/", response_class=HTMLResponse)
 def queue(request: Request, page: int = 1, user: str = Depends(check_auth), conn=Depends(get_conn)):
     # Los pendientes se agrupan por hilo (un post y sus comentarios = una
@@ -125,6 +151,7 @@ def queue(request: Request, page: int = 1, user: str = Depends(check_auth), conn
     page = min(page, n_pages)
     page_groups = groups[(page - 1) * QUEUE_PAGE_SIZE: page * QUEUE_PAGE_SIZE]
     resource_map = resources.load_resource_map(CONFIG_PATH)
+    ai = load_assessments(conn, [g["key"] for g in page_groups])
     items = []
     for g in page_groups:
         r = g["primary"]
@@ -139,6 +166,7 @@ def queue(request: Request, page: int = 1, user: str = Depends(check_auth), conn
                        for e in g["extras"]],
             "extra_ids": [e["id"] for e in g["extras"]],
             "comment_only": not g["has_post"],
+            "ai": ai.get(g["key"]),
         })
     # RM-018: "hoy" en hora Chile, no UTC. status_changed_at se guarda en
     # ISO con offset -03:00 (ver CHILE_TZ): SQLite lo normaliza a UTC al
@@ -224,6 +252,19 @@ def atender(
     return RedirectResponse(url="/", status_code=303)
 
 
+@app.post("/matches/{match_id}/restaurar")
+def restaurar(match_id: int, request: Request, user: str = Depends(check_auth), conn=Depends(get_conn)):
+    """Devuelve a la cola un descarte automatico (IA). La persona se hace cargo del
+    hilo: queda en ai_holds y el asistente no vuelve a tocarlo. No crea etiquetas."""
+    require_same_origin(request)
+    if not conn.execute("SELECT 1 FROM matches WHERE id = ?", (match_id,)).fetchone():
+        raise HTTPException(status_code=404, detail="No existe ese match")
+    now_iso = datetime.now(tz=CHILE_TZ).isoformat()
+    if not assist.restore_thread(conn, match_id, now_iso):
+        raise HTTPException(status_code=409, detail="Ese match no es un descarte automatico")
+    return RedirectResponse(url="/atendidos", status_code=303)
+
+
 MOTIVOS_DESCARTE = ("ruido", "tema_sin_accion", "ya_resuelto")
 
 
@@ -301,7 +342,10 @@ def atendidos(request: Request, user: str = Depends(check_auth), conn=Depends(ge
         "WHERE m.status IN ('atendido', 'descartado') "
         "ORDER BY m.status_changed_at DESC LIMIT 100"
     ).fetchall()
-    return templates.TemplateResponse(request, "atendidos.html", {"items": rows})
+    ai = load_assessments(conn, [threads.thread_key(r["permalink"]) for r in rows if (r["status_note"] or "").startswith("ia_")])
+    items = [{**dict(r), "auto": (r["status_note"] or "").startswith("ia_"),
+              "ai": ai.get(threads.thread_key(r["permalink"]))} for r in rows]
+    return templates.TemplateResponse(request, "atendidos.html", {"items": items})
 
 
 REVISION_BATCH = 10
