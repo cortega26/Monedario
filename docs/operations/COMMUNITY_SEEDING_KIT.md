@@ -109,9 +109,10 @@ autopromoción de **cada** subreddit antes de postear (varios exigen el 9:1 y ba
 
 ## Escuchar dónde sembrar (automático)
 
-El monitor de menciones de Reddit (`workers/reddit-mention-monitor/`, ver
-`docs/adr/ADR-20260601-reddit-mention-monitor.md`) avisa por Discord cada ~15 min cuando alguien
-postea sobre estos temas, con la calculadora sugerida. Flujo: **llega la alerta → abres este kit →
+El monitor de Reddit (`reddit-monitor/`, ver `docs/operations/reddit-monitor/PLAYBOOK.md` y
+`docs/adr/ADR-20260919-reddit-single-monitor.md`) revisa las comunidades cada hora, filtra por
+intención, avisa por ntfy y deja los hilos en una cola web (`reddit.monedario.cl`) con la
+calculadora sugerida cuando aplica. Flujo: **llega el aviso o abres la cola → abres este kit →
 respondes con valor**. El monitor solo escucha; nunca postea por ti.
 
 ## Medir si funciona

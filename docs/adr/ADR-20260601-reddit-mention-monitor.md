@@ -1,7 +1,7 @@
 # ADR-20260601-reddit-mention-monitor
 
 Date: 2026-06-01
-Status: Accepted
+Status: Superseded by ADR-20260919-reddit-single-monitor
 
 ## Context
 
