@@ -24,6 +24,7 @@
     "check:images": "pnpm run images:convert && pnpm run og:jpegs && node scripts/check-images.mjs",
     "check:hero-images": "node scripts/check-hero-images.mjs",
     "check:hero-prompts": "node scripts/check-hero-prompts.mjs",
+    "export:reddit-catalog": "node scripts/export-reddit-catalog.mjs",
     "images:convert": "node scripts/png-to-avif.mjs --dir public/images/hero",
     "og:jpegs": "node scripts/generate-og-jpegs.mjs",
     "og:jpegs:force": "node scripts/generate-og-jpegs.mjs --force",

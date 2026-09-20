@@ -14,3 +14,6 @@ ntfy_failures.jsonl
 digest-*.md
 index.md
 .coverage
+
+# Generado por scripts/export-reddit-catalog.mjs al correr el piloto; no se versiona.
+catalog.json
