@@ -1,6 +1,6 @@
 # Piloto: monitor de Reddit bidireccional (oportunidades y brechas)
 
-Fecha: 2026-09-19 · Estado: **resultados del piloto; validación humana pendiente** · Plan: `docs/adr/ADR-20260919-reddit-single-monitor.md` (dirección bidireccional)
+Fecha: 2026-09-19 · Estado: **resultados del piloto; enfoque mensual adoptado el 2026-09-20; validación de temas pendiente** · Plan: `docs/adr/ADR-20260919-reddit-single-monitor.md` (dirección bidireccional)
 
 ## Pregunta
 
@@ -8,7 +8,7 @@ Fecha: 2026-09-19 · Estado: **resultados del piloto; validación humana pendien
 
 ## Método
 
-- **Catálogo:** `scripts/export-reddit-catalog.mjs` → `reddit-monitor/catalog.json`: 163 páginas (53 artículos, 22 calculadoras, 11 guías, 54 términos de glosario, 23 leyes). URL siempre derivada del `slug`/ruta.
+- **Catálogo:** `scripts/export-reddit-catalog.mjs` → `reddit-monitor/catalog.json` (se genera al correr el piloto y **no se versiona**): 163 páginas (53 artículos, 22 calculadoras, 11 guías, 54 términos de glosario, 23 leyes). URL siempre derivada del `slug`/ruta.
 - **Corpus:** `spike_gaps.py` en la VM. Paginó `/new` de los 10 subs del monitor (≈1.000 posts por sub) y aplicó filtros: últimos 180 días, sin posts fijados ni hilos plantilla (título repetido ≥5 veces con dígitos normalizados), sin cuentas propias, y **relevancia financiera** = sub 100 % financiero (`FinanzasChile`, `ChileInversiones`) o keyword del monitor.
 - **Resultado del filtrado:** 8.516 crudos → 7.017 recientes → 6.950 sin plantillas → **2.104 analizados** (≈82 por semana en 25,6 semanas).
 - **Análisis:** similitud coseno con MiniLM (`embed:paraphrase-multilingual-MiniLM-L12-v2:v1`); agrupación jerárquica (enlace promedio, similitud ≥0,55).
@@ -60,21 +60,28 @@ La corrida completa tardó ≈15 min en la VM (≈4 min de descarga y ≈10 min 
 
 | Componente | Veredicto | Motivo |
 |---|---|---|
-| **Brechas** (corpus + análisis semanal + `/brechas`) | **GO**, con las correcciones del punto 4 | ≈70 % de los grupos mayores son demanda real; el filtro de relevancia funciona. |
+| **Brechas** de contenido | **GO**, como análisis mensual bajo demanda (ver "Enfoque adoptado") y con las correcciones del punto 4 | ≈70 % de los grupos mayores son demanda real; el filtro de relevancia funciona. |
 | **Sugerencia automática por embeddings** en la cola | **NO-GO** | ≈47 % de precisión; el efecto imán a guías genéricas la vuelve ruido. |
 
 Para **oportunidades**, el camino recomendado es ampliar el mapa por frases (`resource_map`, alta precisión, cobertura baja) con frases curadas por artículo y calculadora, y dejar los embeddings solo como ayuda de descubrimiento para el humano ("páginas posiblemente relacionadas", sin autocompletar). Un reordenador con LLM sobre los ~80 hilos semanales sería barato, pero exige clave de API y política de uso: **no se propone aún**.
 
-## Cambios propuestos al plan
-1. Fase 2 (sugerencias semánticas): se sustituye por la ampliación curada de `resource_map`.
-2. Fase 1: guardar solo los posts que pasan el filtro de relevancia (versionado), con `author_hash` opcional para contar solicitantes distintos.
-3. Fase 3: añadir fusión de grupos, etiquetado por términos, ventana móvil de 180 días y mínimos de recurrencia (≥3 hilos en ≥3 semanas).
-4. Fase 3: `/brechas` muestra las tres páginas más cercanas como ayuda; el estado (`detectado`, `en_backlog`, `publicado`, `descartado`) lo decide una persona.
+## Enfoque adoptado (2026-09-20)
 
-## Decisiones que requieren a Carlos
-1. **Validar** los 7 temas de la tabla: ¿son realmente contenido que Monedario querría publicar?
-2. ¿Aceptas guardar un **hash con sal del autor** para contar solicitantes distintos? (Sin él, la recurrencia puede inflarse.)
-3. ¿Confirmas el veredicto NO-GO para las sugerencias por embeddings y la alternativa curada?
+El plan original era infraestructura permanente: esquema v4, corpus persistente, análisis semanal, unidad systemd y página `/brechas`. Con ≈82 posts financieros por semana y un solo usuario, eso es más de lo que el problema justifica. Se adopta en su lugar:
+
+1. **Análisis mensual bajo demanda** con este piloto (`spike_gaps.py`): unos 15 minutos sobre una ventana de 180 días. Salen 1 o 2 temas por mes, que se revisan con Carlos y se llevan a la Puerta 00.
+2. **Disposición en `content_gaps`**, como fija el contrato de convergencia del 2026-09-19 (`docs/backlog/ROADMAP-reddit-monitor-2026-09-19.md`): mismo vocabulario (`detectado`, `en_backlog`, `publicado`, `descartado`) y sin tabla ni JSON paralelos. `catalog.json` es solo la entrada del análisis.
+3. **Sin seguimiento por usuario:** la recurrencia se cuenta por hilos distintos, no por autores. Se descarta el hash de autor propuesto antes, porque contradice la regla de no crear seguimiento persistente a nivel de usuario.
+4. **Sin corpus permanente de terceros:** los datos del análisis (título y 300 caracteres, sin autor) se borran al terminar.
+5. **Sugerencias por embeddings descartadas.** Para oportunidades se amplía el `resource_map` con frases curadas por artículo y calculadora.
+
+Se construirá la versión persistente solo si, tras 2 o 3 ciclos, la cadencia mensual resulta un cuello de botella. Limitación a vigilar: `/new` devuelve como máximo unos 1.000 posts por sub; con el volumen actual alcanza para 180 días, pero un sub más activo podría quedar cortado.
+
+Correcciones pendientes en el propio análisis (punto 4 de los hallazgos): fusión de grupos, etiquetado por términos frecuentes y mostrar las tres páginas más cercanas como ayuda para el humano.
+
+## Pendiente de Carlos
+
+- **Validar los 7 temas** de la tabla del punto 3. Son candidatos a la Puerta 00; los dos sin página propia (portafolio y crédito automotriz) son los más claros.
 
 ## Limitaciones
 - Evaluación manual y sin una segunda persona; los porcentajes son orientativos (muestra de 30 y de 10).

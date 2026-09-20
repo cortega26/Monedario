@@ -2,10 +2,7 @@ import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import {
-  buildCatalog,
-  structuralDrift,
-} from "../../scripts/export-reddit-catalog.mjs";
+import { buildCatalog } from "../../scripts/export-reddit-catalog.mjs";
 
 const roots: string[] = [];
 
@@ -160,33 +157,5 @@ describe("buildCatalog", () => {
     const root = mkdtempSync(path.join(tmpdir(), "reddit-catalog-empty-"));
     roots.push(root);
     expect(buildCatalog({ root }).entries).toEqual([]);
-  });
-});
-
-describe("structuralDrift", () => {
-  const base = () =>
-    buildCatalog({ root: fixtureRoot(), registry: REGISTRY, guideHubs: GUIDE_HUBS });
-
-  it("no marca deriva si solo cambia el texto o la descripción", () => {
-    const committed = base();
-    const fresh = base();
-    fresh.entries[0].text = "otra descripcion totalmente distinta";
-    expect(structuralDrift(committed, fresh)).toEqual([]);
-  });
-
-  it("detecta páginas nuevas, eliminadas y renombradas", () => {
-    const committed = base();
-    const fresh = base();
-    const removed = fresh.entries.pop()!;
-    fresh.entries[0].title = "Título nuevo";
-    fresh.entries.push({ ...removed, id: "nueva", url: "/glosario/nueva/", type: "glossary" });
-    const drift = structuralDrift(committed, fresh).join("\n");
-    expect(drift).toContain("+ falta en catalog.json: glossary:nueva");
-    expect(drift).toContain("~ cambió:");
-    expect(drift).toContain(`- sobra en catalog.json: ${removed.type}:${removed.id}`);
-  });
-
-  it("trata un catalog.json inexistente como deriva total", () => {
-    expect(structuralDrift(null, base()).length).toBe(base().entries.length);
   });
 });

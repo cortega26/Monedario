@@ -21,8 +21,12 @@ Que hace:
 La version con tests, persistencia y umbrales calibrados sera gap_analysis.py
 (Fase 3); este archivo se elimina o se reduce a un wrapper.
 
-Uso (en la VM, donde estan el modelo y las credenciales):
-    python3 spike_gaps.py <directorio_de_trabajo> [--pages 10] [--out /tmp/spike.json]
+Uso: (1) en el repo, `pnpm run export:reddit-catalog` genera reddit-monitor/catalog.json
+(no se versiona); (2) copiar spike_gaps.py y catalog.json a la VM; (3) alli, donde
+estan el modelo y las credenciales:
+    python3 spike_gaps.py <directorio_de_trabajo> [--pages 10] [--days 180]
+Al terminar, borrar de la VM el catalogo y los JSON temporales (contienen titulos
+de terceros).
 """
 import argparse
 import json

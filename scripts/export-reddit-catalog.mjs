@@ -6,9 +6,10 @@
 //   - similitud alta  -> oportunidad: sugerir esa página
 //   - similitud baja y recurrente -> brecha de contenido
 //
-// La VM no tiene el repo, así que el catálogo viaja como snapshot
-// (`reddit-monitor/catalog.json`). `--check` falla si el archivo commiteado
-// quedó desactualizado respecto de las fuentes (patrón de check-catalog-drift).
+// La VM no tiene el repo, así que el catálogo se genera aquí, al momento de
+// correr el análisis, y se copia junto con `spike_gaps.py`. NO se versiona:
+// `reddit-monitor/catalog.json` está en .gitignore, así que no puede quedar
+// desactualizado y publicar un artículo no exige regenerar nada.
 //
 // Reglas del repo que este script respeta:
 //   - URL pública derivada SIEMPRE del slug/ruta, nunca de `post.id`
@@ -17,7 +18,6 @@
 //
 // Uso:
 //   node scripts/export-reddit-catalog.mjs            # escribe reddit-monitor/catalog.json
-//   node scripts/export-reddit-catalog.mjs --check    # exit 1 si está desactualizado
 //   node scripts/export-reddit-catalog.mjs --out ruta # otro destino
 
 import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
@@ -210,8 +210,8 @@ function lawEntries(root) {
 /**
  * Construye el catálogo. Pura respecto de `root` y de las dos tablas
  * inyectables (por defecto las reales del repo), para poder probarla con un
- * árbol de fixtures. El resultado es determinista (sin fechas) para que
- * `--check` compare contenido y no ruido.
+ * árbol de fixtures. El resultado es determinista (sin fechas): mismas
+ * fuentes, mismo archivo.
  *
  * @param {{ root?: string, registry?: any, guideHubs?: any }} [options]
  * @returns {Catalog}
@@ -240,37 +240,6 @@ export function serialize(catalog) {
   return `${JSON.stringify(catalog, null, 2)}\n`;
 }
 
-/** Lo que importa para el guardrail: qué páginas existen, dónde viven y cómo
- *  se llaman. Retocar una descripción no debe bloquear una edición editorial. */
-function structure(catalog) {
-  return new Map(
-    (catalog?.entries ?? []).map(e => [
-      `${e.type}:${e.id}`,
-      `${e.url} | ${e.title}`,
-    ])
-  );
-}
-
-/**
- * Diferencias estructurales entre el catálogo commiteado y el regenerado.
- * @param {Catalog | null} committed
- * @param {Catalog} fresh
- * @returns {string[]}
- */
-export function structuralDrift(committed, fresh) {
-  const before = structure(committed);
-  const after = structure(fresh);
-  const drift = [];
-  for (const [key, value] of after) {
-    if (!before.has(key)) drift.push(`+ falta en catalog.json: ${key}`);
-    else if (before.get(key) !== value)
-      drift.push(`~ cambió: ${key} (${before.get(key)} -> ${value})`);
-  }
-  for (const key of before.keys())
-    if (!after.has(key)) drift.push(`- sobra en catalog.json: ${key}`);
-  return drift;
-}
-
 async function loadRealTables() {
   const [{ CANONICAL_TOPIC_REGISTRY }, { GUIDE_HUBS }] = await Promise.all([
     import(pathToFileURL(path.join(DEFAULT_ROOT, "src/config/editorial-topic-policy.mjs")).href),
@@ -280,7 +249,6 @@ async function loadRealTables() {
 }
 
 async function main(argv) {
-  const check = argv.includes("--check");
   const outIndex = argv.indexOf("--out");
   const out = path.resolve(
     DEFAULT_ROOT,
@@ -288,24 +256,6 @@ async function main(argv) {
   );
   const catalog = buildCatalog({ root: DEFAULT_ROOT, ...(await loadRealTables()) });
   const text = serialize(catalog);
-
-  if (check) {
-    const committed = existsSync(out) ? JSON.parse(readFileSync(out, "utf8")) : null;
-    const drift = structuralDrift(committed, catalog);
-    if (drift.length > 0) {
-      console.error(
-        `[export-reddit-catalog] ${path.relative(DEFAULT_ROOT, out)} está desactualizado ` +
-          `(${drift.length} diferencia(s) estructural(es)). Regenera con: ` +
-          "node scripts/export-reddit-catalog.mjs"
-      );
-      for (const line of drift.slice(0, 8)) console.error(`  ${line}`);
-      return 1;
-    }
-    console.log(
-      `[export-reddit-catalog] OK. ${catalog.entries.length} entradas (${JSON.stringify(catalog.counts)}).`
-    );
-    return 0;
-  }
 
   writeFileSync(out, text, "utf8");
   console.log(
