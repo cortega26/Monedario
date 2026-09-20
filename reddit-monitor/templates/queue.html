@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block nav_queue %}active{% endblock %}
 {% block content %}
-<div class="stats">{{ n_pendientes }} pendiente{{ 's' if n_pendientes != 1 else '' }} · {{ n_atendidos_hoy }} atendido{{ 's' if n_atendidos_hoy != 1 else '' }} hoy</div>
+<div class="stats">{{ n_hilos }} hilo{{ 's' if n_hilos != 1 else '' }} · {{ n_pendientes }} pendiente{{ 's' if n_pendientes != 1 else '' }} · {{ n_atendidos_hoy }} atendido{{ 's' if n_atendidos_hoy != 1 else '' }} hoy</div>
 
 {% if not items %}
 <div class="empty">Sin pendientes por ahora. Vuelve más tarde.</div>
@@ -16,16 +16,25 @@
     <span class="muted">ml: {{ "%.2f"|format(it.ml_confidence) }}</span>
     {% endif %}
   </div>
-  <div class="muted" style="margin-top:6px;">r/{{ it.subreddit }} · {{ it.type }}</div>
+  <div class="muted" style="margin-top:6px;">r/{{ it.subreddit }} · {{ it.type }}{% if it.comment_only %} · <strong>solo comentarios</strong> (el post original no pasó el filtro){% endif %}</div>
   <div class="snippet">{{ it.snippet }}</div>
   {% if it.resource %}
   <div class="muted">Sugerencia: <a href="{{ it.resource.url }}" target="_blank" rel="noopener">{{ it.resource.label }}</a></div>
   {% endif %}
   <a class="reddit-link" href="https://reddit.com{{ it.permalink }}" target="_blank" rel="noopener">Ver en Reddit →</a>
+  {% if it.extras %}
+  <details>
+    <summary>+{{ it.extras|length }} comentario{{ 's' if it.extras|length != 1 else '' }} del hilo</summary>
+    {% for ex in it.extras %}
+    <div class="muted" style="margin:6px 0;"><span class="badge conf-{{ ex.confidence }}">{{ ex.confidence }}</span> {{ ex.snippet }}</div>
+    {% endfor %}
+  </details>
+  {% endif %}
 
   <details>
     <summary>Marcar atendido</summary>
     <form class="inline" method="post" action="/matches/{{ it.id }}/atender">
+      {% for eid in it.extra_ids %}<input type="hidden" name="ids" value="{{ eid }}">{% endfor %}
       <label><input type="checkbox" name="incluyo_link" value="true"> Incluí un link a Monedario</label>
       <label>URL de Monedario (opcional)
         <input type="url" name="url_monedario" placeholder="https://monedario.cl/..." value="{{ it.resource.url if it.resource else '' }}">
@@ -40,6 +49,7 @@
   </details>
 
   <form class="inline" method="post" action="/matches/{{ it.id }}/descartar" style="margin-top:6px;">
+    {% for eid in it.extra_ids %}<input type="hidden" name="ids" value="{{ eid }}">{% endfor %}
     <div class="muted" style="margin-bottom:4px;">Descartar porque…</div>
     <div class="actions">
       <button type="submit" name="motivo" value="ruido" class="secondary">No es de finanzas</button>
