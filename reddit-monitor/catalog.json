@@ -1,0 +1,1593 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/export-reddit-catalog.mjs",
+  "counts": {
+    "article": 53,
+    "calculator": 22,
+    "glossary": 54,
+    "guide": 11,
+    "law": 23
+  },
+  "entries": [
+    {
+      "type": "article",
+      "id": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
+      "url": "/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/",
+      "title": "¿ETF, DAP o fondo mutuo en Chile? Cómo elegir (2026)",
+      "text": "¿ETF, DAP o fondo mutuo en Chile? Cómo elegir (2026). Cómo elegir entre ETF, DAP y fondos mutuos en Chile: criterios de plazo, riesgo y costo total para tomar la decisión correcta según tu objetivo. elegir instrumento de ahorro e inversion. ahorro, inversiones, impuestos, chile",
+      "coverage": "full",
+      "cluster": "ahorro-e-inversion",
+      "category": "ahorro-inversion",
+      "canonicalTopic": "elegir-instrumento-ahorro-inversion",
+      "topicRole": "owner",
+      "ownerSlug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026"
+    },
+    {
+      "type": "article",
+      "id": "bancos-y-fintech-chile",
+      "url": "/posts/bancos-y-fintech-chile/",
+      "title": "Bancos y fintech en Chile: cómo elegir dónde tener tu cuenta",
+      "text": "Bancos y fintech en Chile: cómo elegir dónde tener tu cuenta. Guía neutral para elegir dónde tener tu dinero en Chile: tipos de cuenta, banco vs. fintech, cómo abrir una cuenta básica y cómo saber si una app está regulada. comparar tipos de cuenta entre bancos y fintech en Chile. bancos, fintech, cuenta-vista, cuentarut, finanzas-personales",
+      "coverage": "full",
+      "cluster": "bancos-fintech",
+      "category": "general",
+      "canonicalTopic": "tipos-de-cuenta-banco-vs-fintech-chile",
+      "topicRole": "owner",
+      "ownerSlug": "bancos-y-fintech-chile"
+    },
+    {
+      "type": "article",
+      "id": "boleta-honorarios-2026-retencion-cobertura",
+      "url": "/posts/boleta-honorarios-2026-retencion-cobertura/",
+      "title": "Boleta de honorarios 2026: retención 15,25%, líquido recibido y cobertura anual",
+      "text": "Boleta de honorarios 2026: retención 15,25%, líquido recibido y cobertura anual. Explicación práctica de la retención 2026 en boletas de honorarios, cuánto recibes líquido y cómo se conecta con la cobertura previsional anual. boleta honorarios retencion y cobertura anual. boletas, honorarios, retencion, seguridad-social",
+      "coverage": "full",
+      "cluster": "impuestos-personas",
+      "category": "impuestos",
+      "canonicalTopic": "honorarios-retencion-cobertura",
+      "topicRole": "owner",
+      "ownerSlug": "boleta-honorarios-2026-retencion-cobertura"
+    },
+    {
+      "type": "article",
+      "id": "cae-costo-real-credito-chile",
+      "url": "/posts/cae-costo-real-credito-chile/",
+      "title": "CAE de un crédito: qué es, cómo se calcula y por qué la tasa sola engaña",
+      "text": "CAE de un crédito: qué es, cómo se calcula y por qué la tasa sola engaña. Guía práctica para entender la CAE en Chile, qué incluye frente a la tasa y cómo comparar el costo real de un crédito antes de firmar. CAE costo real del credito. credito, cae, tmc, deuda, consumo",
+      "coverage": "full",
+      "cluster": "deuda-credito",
+      "category": "deuda-credito",
+      "canonicalTopic": "cae-costo-real",
+      "topicRole": "owner",
+      "ownerSlug": "cae-costo-real-credito-chile"
+    },
+    {
+      "type": "article",
+      "id": "como-calcular-sueldo-liquido",
+      "url": "/posts/como-calcular-sueldo-liquido/",
+      "title": "Cómo calcular tu sueldo líquido en Chile: del imponible al depósito final",
+      "text": "Cómo calcular tu sueldo líquido en Chile: del imponible al depósito final. Guía para reconstruir tu sueldo líquido en Chile desde el bruto e imponible hasta AFP, salud, cesantía e impuesto mensual, sin confundir cada línea. calcular sueldo liquido. sueldo, descuentos, afp, impuestos, liquidacion",
+      "coverage": "full",
+      "cluster": "sueldo-remuneraciones",
+      "category": "empleo-ingresos",
+      "canonicalTopic": "calcular-sueldo-liquido",
+      "topicRole": "owner",
+      "ownerSlug": "como-calcular-sueldo-liquido"
+    },
+    {
+      "type": "article",
+      "id": "como-cambiarse-de-afp",
+      "url": "/posts/como-cambiarse-de-afp/",
+      "title": "¿Puedo cambiarme de AFP? Cómo hacerlo y qué considerar en 2026",
+      "text": "¿Puedo cambiarme de AFP? Cómo hacerlo y qué considerar en 2026. Guía actualizada 2026 para cambiarse de AFP en Chile: requisitos, pasos, qué evaluar y los cambios que trae la Reforma de Pensiones (Ley 21.735). cambiarse de AFP. afp, pensiones, cambio-afp, reforma-pensiones",
+      "coverage": "full",
+      "cluster": "pensiones-afp",
+      "category": "prevision",
+      "canonicalTopic": "cambio-afp",
+      "topicRole": "owner",
+      "ownerSlug": "como-cambiarse-de-afp"
+    },
+    {
+      "type": "article",
+      "id": "como-elegir-inversion-segun-plazo-riesgo-objetivos",
+      "url": "/posts/como-elegir-inversion-segun-plazo-riesgo-objetivos/",
+      "title": "Cómo elegir una inversión en Chile: plazo, riesgo y objetivos",
+      "text": "Cómo elegir una inversión en Chile: plazo, riesgo y objetivos. Antes de elegir instrumento importan el horizonte, la liquidez, la tolerancia a pérdida y la tributación. Marco educativo con checklist interactivo. elegir instrumento de ahorro e inversion. inversiones, ahorro, educacion-financiera, plazo, riesgo",
+      "coverage": "full",
+      "cluster": "ahorro-e-inversion",
+      "category": "ahorro-inversion",
+      "canonicalTopic": "elegir-instrumento-ahorro-inversion",
+      "topicRole": "support",
+      "ownerSlug": "ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026"
+    },
+    {
+      "type": "article",
+      "id": "como-hacer-presupuesto-mensual-chile",
+      "url": "/posts/como-hacer-presupuesto-mensual-chile/",
+      "title": "Presupuesto mensual en Chile: método práctico sin plantilla mágica",
+      "text": "Presupuesto mensual en Chile: método práctico sin plantilla mágica. Guía para crear un presupuesto mensual en Chile: clasificar ingresos y gastos, detectar fugas y construir hábitos de control financiero. hacer presupuesto mensual y controlar gastos. presupuesto, finanzas-personales, ahorro, gasto-hormiga, control-financiero",
+      "coverage": "full",
+      "cluster": "presupuesto-control-financiero",
+      "category": "general",
+      "canonicalTopic": "presupuesto-mensual-control-financiero",
+      "topicRole": "owner",
+      "ownerSlug": "como-hacer-presupuesto-mensual-chile"
+    },
+    {
+      "type": "article",
+      "id": "como-invertir-en-etfs-desde-chile",
+      "url": "/posts/como-invertir-en-etfs-desde-chile/",
+      "title": "¿Cómo comprar ETF en Chile? Corredoras, costos y más",
+      "text": "¿Cómo comprar ETF en Chile? Corredoras, costos y más. Para comprar ETF en Chile necesitas una corredora habilitada. Acá explicamos cuánto cobran, cómo funciona la custodia y qué impuestos aplican. invertir ETFs desde Chile. etf, inversiones, corredoras, impuestos",
+      "coverage": "full",
+      "cluster": "ahorro-e-inversion",
+      "category": "ahorro-inversion",
+      "canonicalTopic": "invertir-etfs-desde-chile",
+      "topicRole": "owner",
+      "ownerSlug": "como-invertir-en-etfs-desde-chile"
+    },
+    {
+      "type": "article",
+      "id": "como-leer-cartola-afp-chile",
+      "url": "/posts/como-leer-cartola-afp-chile/",
+      "title": "Cómo leer la cartola AFP: qué significa cada campo y cómo detectar errores",
+      "text": "Cómo leer la cartola AFP: qué significa cada campo y cómo detectar errores. Guía completa para leer la cartola AFP trimestral: qué muestra cada sección, qué errores buscar y cómo reclamar ante la Superintendencia de Pensiones. leer e interpretar la cartola AFP. afp, pensiones, cartola, previsión",
+      "coverage": "full",
+      "cluster": "pensiones-afp",
+      "category": "prevision",
+      "canonicalTopic": "cartola-afp",
+      "topicRole": "owner",
+      "ownerSlug": "como-leer-cartola-afp-chile"
+    },
+    {
+      "type": "article",
+      "id": "como-salir-boletin-comercial-chile",
+      "url": "/posts/como-salir-boletin-comercial-chile/",
+      "title": "Cómo salir del Boletín Comercial: plazos, pasos y qué hacer si hay un error",
+      "text": "Cómo salir del Boletín Comercial: plazos, pasos y qué hacer si hay un error. Cómo eliminar anotaciones del Boletín Comercial en Chile: cuándo caducan, cómo solicitarlo al pagar la deuda y cómo reclamar ante la CMF. eliminar anotaciones del Boletin Comercial. boletin-comercial, dicom, deudas, credito",
+      "coverage": "full",
+      "cluster": "deuda-credito",
+      "category": "deuda-credito",
+      "canonicalTopic": "boletin-comercial-eliminacion",
+      "topicRole": "owner",
+      "ownerSlug": "como-salir-boletin-comercial-chile"
+    },
+    {
+      "type": "article",
+      "id": "contribuciones-bienes-raices-chile",
+      "url": "/posts/contribuciones-bienes-raices-chile/",
+      "title": "Contribuciones de bienes raíces en Chile: cálculo, cuotas y exenciones",
+      "text": "Contribuciones de bienes raíces en Chile: cálculo, cuotas y exenciones. Cómo calcular contribuciones de bienes raíces, cuándo pagar las cuotas, exenciones para primera vivienda o adultos mayores y deducción en el F22. calcular y pagar contribuciones de bienes raices en Chile. contribuciones, bienes-raices, impuesto-territorial, sii, primera-vivienda",
+      "coverage": "full",
+      "cluster": "impuestos-personas",
+      "category": "impuestos",
+      "canonicalTopic": "contribuciones-bienes-raices-tramite",
+      "topicRole": "owner",
+      "ownerSlug": "contribuciones-bienes-raices-chile"
+    },
+    {
+      "type": "article",
+      "id": "cotizacion-voluntaria-afp-independiente",
+      "url": "/posts/cotizacion-voluntaria-afp-independiente/",
+      "title": "Cotización voluntaria en AFP: cómo afiliarte si no tienes boletas obligatorias",
+      "text": "Cotización voluntaria en AFP: cómo afiliarte si no tienes boletas obligatorias. Cómo afiliarte voluntariamente a una AFP en Chile si no tienes boletas obligatorias: quién califica, cuánto cotizas como mínimo y qué cubre realmente. afiliacion y cotizacion voluntaria AFP para quien no cotiza por boletas. afiliacion-voluntaria, afp, cotizaciones, independientes, freelance, sis",
+      "coverage": "full",
+      "cluster": "pensiones-afp",
+      "category": "prevision",
+      "canonicalTopic": "afiliacion-cotizacion-voluntaria",
+      "topicRole": "owner",
+      "ownerSlug": "cotizacion-voluntaria-afp-independiente"
+    },
+    {
+      "type": "article",
+      "id": "credito-hipotecario-chile-guia-completa",
+      "url": "/posts/credito-hipotecario-chile-guia-completa/",
+      "title": "Crédito hipotecario en Chile: guía paso a paso para compradores 2026",
+      "text": "Crédito hipotecario en Chile: guía paso a paso para compradores 2026. Todo lo que necesitas saber antes de firmar un crédito hipotecario en Chile: requisitos, pie, tasas, costos reales y errores más comunes. entender y obtener un credito hipotecario en Chile paso a paso. credito-hipotecario, dividendo, uf, vivienda, deuda",
+      "coverage": "full",
+      "cluster": "deuda-credito",
+      "category": "deuda-credito",
+      "canonicalTopic": "credito-hipotecario-proceso",
+      "topicRole": "owner",
+      "ownerSlug": "credito-hipotecario-chile-guia-completa"
+    },
+    {
+      "type": "article",
+      "id": "cuanto-descuenta-la-afp-de-tu-sueldo",
+      "url": "/posts/cuanto-descuenta-la-afp-de-tu-sueldo/",
+      "title": "Descuento AFP en tu sueldo: cotización obligatoria, comisión y cómo revisarlo",
+      "text": "Descuento AFP en tu sueldo: cotización obligatoria, comisión y cómo revisarlo. Desglose de la línea AFP en tu sueldo: cotización obligatoria, comisión, reforma vigente y cómo revisar ese descuento sin recalcular el líquido. descuento AFP del trabajador. afp, pensiones, descuentos, sueldo",
+      "coverage": "full",
+      "cluster": "sueldo-remuneraciones",
+      "category": "empleo-ingresos",
+      "canonicalTopic": "descuento-afp-trabajador",
+      "topicRole": "owner",
+      "ownerSlug": "cuanto-descuenta-la-afp-de-tu-sueldo"
+    },
+    {
+      "type": "article",
+      "id": "deposito-a-plazo-uf-vs-pesos",
+      "url": "/posts/deposito-a-plazo-uf-vs-pesos/",
+      "title": "Depósito a plazo: UF vs pesos — qué conviene y cuándo",
+      "text": "Depósito a plazo: UF vs pesos — qué conviene y cuándo. Comparativa práctica para elegir depósito a plazo en UF o pesos según inflación, plazo, liquidez y costo de oportunidad real en Chile 2026. deposito a plazo UF vs pesos. deposito-a-plazo, uf, ahorro, inversiones",
+      "coverage": "full",
+      "cluster": "ahorro-e-inversion",
+      "category": "ahorro-inversion",
+      "canonicalTopic": "deposito-plazo-uf-vs-pesos",
+      "topicRole": "owner",
+      "ownerSlug": "deposito-a-plazo-uf-vs-pesos"
+    },
+    {
+      "type": "article",
+      "id": "descuentos-de-sueldo",
+      "url": "/posts/descuentos-de-sueldo/",
+      "title": "Descuentos de sueldo en Chile: cuáles son legales, voluntarios y prohibidos",
+      "text": "Descuentos de sueldo en Chile: cuáles son legales, voluntarios y prohibidos. Cómo separar descuentos legales, autorizados y prohibidos en tu sueldo chileno, sin confundir la clasificación jurídica con el líquido. clasificar descuentos de sueldo. sueldo, descuentos, liquidacion, afp, impuestos",
+      "coverage": "full",
+      "cluster": "sueldo-remuneraciones",
+      "category": "empleo-ingresos",
+      "canonicalTopic": "clasificacion-descuentos-sueldo",
+      "topicRole": "owner",
+      "ownerSlug": "descuentos-de-sueldo"
+    },
+    {
+      "type": "article",
+      "id": "devolucion-impuestos-fechas-compensaciones",
+      "url": "/posts/devolucion-impuestos-fechas-compensaciones/",
+      "title": "Devolución de impuestos en Chile: fechas de pago, estado y compensaciones",
+      "text": "Devolución de impuestos en Chile: fechas de pago, estado y compensaciones. Guía para saber cuándo depositan la devolución, cómo revisar el estado en SII/TGR y qué hacer si hay retención o compensación. devolucion de impuestos fechas y compensaciones. impuestos, devolucion, operacion-renta, tgr",
+      "coverage": "full",
+      "cluster": "impuestos-personas",
+      "category": "impuestos",
+      "canonicalTopic": "devolucion-impuestos",
+      "topicRole": "owner",
+      "ownerSlug": "devolucion-impuestos-fechas-compensaciones"
+    },
+    {
+      "type": "article",
+      "id": "donde-ver-si-estoy-en-dicom-gratis",
+      "url": "/posts/donde-ver-si-estoy-en-dicom-gratis/",
+      "title": "Dónde ver si estás en DICOM gratis en Chile y qué revisar primero",
+      "text": "Dónde ver si estás en DICOM gratis en Chile y qué revisar primero. Guía práctica para separar Informe de Deudas CMF, Boletín Comercial y reportes privados tipo DICOM, y partir por el reporte correcto sin pagar de más. informe deudas CMF vs DICOM. dicom, boletin-comercial, cmf, deudas, historial-crediticio",
+      "coverage": "full",
+      "cluster": "deuda-credito",
+      "category": "deuda-credito",
+      "canonicalTopic": "informe-deudas-cmf-vs-dicom",
+      "topicRole": "support",
+      "ownerSlug": "informe-deudas-cmf-vs-dicom"
+    },
+    {
+      "type": "article",
+      "id": "el-poder-del-interes-compuesto",
+      "url": "/posts/el-poder-del-interes-compuesto/",
+      "title": "El poder del interés compuesto: 10% del sueldo mínimo a $125 millones",
+      "text": "El poder del interés compuesto: 10% del sueldo mínimo a $125 millones. Ejercicio educativo: invertir el 10% del sueldo mínimo en el NASDAQ-100 entre 1990 y 2025 habría cerrado cerca de $118,0 millones. interes compuesto caso. ahorro, inversion, interes-compuesto, nasdaq-100, jubilacion, bolsa",
+      "coverage": "full",
+      "cluster": "ahorro-e-inversion",
+      "category": "ahorro-inversion",
+      "canonicalTopic": "interes-compuesto-caso",
+      "topicRole": "owner",
+      "ownerSlug": "el-poder-del-interes-compuesto"
+    },
+    {
+      "type": "article",
+      "id": "estafas-financieras-chile-vishing-smishing-marketplace",
+      "url": "/posts/estafas-financieras-chile-vishing-smishing-marketplace/",
+      "title": "Estafas financieras en Chile: señales por canal y checklist de 24 horas",
+      "text": "Estafas financieras en Chile: señales por canal y checklist de 24 horas. Guía para detectar estafas financieras en Chile por llamada, SMS, WhatsApp, marketplace y portabilidad, y saber qué hacer en 24 horas. detectar y prevenir estafas financieras por canal. seguridad-financiera, fraude, vishing, smishing, portabilidad",
+      "coverage": "full",
+      "cluster": "seguridad-financiera",
+      "category": "seguridad-financiera",
+      "canonicalTopic": "estafas-financieras-prevencion",
+      "topicRole": "owner",
+      "ownerSlug": "estafas-financieras-chile-vishing-smishing-marketplace"
+    },
+    {
+      "type": "article",
+      "id": "finanzas-para-migrantes-chile",
+      "url": "/posts/finanzas-para-migrantes-chile/",
+      "title": "Cómo ordenar tus finanzas en Chile siendo migrante",
+      "text": "Cómo ordenar tus finanzas en Chile siendo migrante. Guía práctica para extranjeros en Chile: cómo obtener el RUT, abrir una cuenta básica (CuentaRUT) y arrendar una vivienda. Pasos orientativos con remisión a fuentes oficiales. primeros pasos financieros para migrantes en Chile. migrantes, rut, cuentarut, arriendo, finanzas-personales",
+      "coverage": "full",
+      "cluster": "finanzas-migrantes",
+      "category": "general",
+      "canonicalTopic": "finanzas-iniciales-migrantes-chile",
+      "topicRole": "owner",
+      "ownerSlug": "finanzas-para-migrantes-chile"
+    },
+    {
+      "type": "article",
+      "id": "finiquito-e-indemnizaciones-en-chile",
+      "url": "/posts/finiquito-e-indemnizaciones-en-chile/",
+      "title": "Finiquito e indemnizaciones en Chile: qué te corresponde y cómo revisarlo",
+      "text": "Finiquito e indemnizaciones en Chile: qué te corresponde y cómo revisarlo. Guía para revisar tu finiquito, calcular lo que te corresponde y detectar errores antes de firmar o aceptar montos sin revisar. finiquito e indemnizaciones. empleo-ingresos, finiquito, indemnizacion, trabajo, despido",
+      "coverage": "full",
+      "cluster": "empleo-ingresos",
+      "category": "empleo-ingresos",
+      "canonicalTopic": "finiquito-indemnizaciones",
+      "topicRole": "owner",
+      "ownerSlug": "finiquito-e-indemnizaciones-en-chile"
+    },
+    {
+      "type": "article",
+      "id": "fonasa-vs-isapre-comparativa",
+      "url": "/posts/fonasa-vs-isapre-comparativa/",
+      "title": "Fonasa o Isapre: cuál conviene según tu caso (2026)",
+      "text": "Fonasa o Isapre: cuál conviene según tu caso (2026). Compara Fonasa e Isapre en Chile: tramos, copagos, GES, CAEC y cuándo conviene cada sistema según tu situación de salud e ingreso. comparar Fonasa e Isapre segun cobertura y costo. seguridad-financiera, fonasa, isapre, salud, cobertura",
+      "coverage": "full",
+      "cluster": "seguridad-financiera",
+      "category": "seguridad-financiera",
+      "canonicalTopic": "fonasa-vs-isapre",
+      "topicRole": "owner",
+      "ownerSlug": "fonasa-vs-isapre-comparativa"
+    },
+    {
+      "type": "article",
+      "id": "fondo-emergencia-chile",
+      "url": "/posts/fondo-emergencia-chile/",
+      "title": "Fondo de emergencia en Chile: cuánto necesitas y dónde guardarlo",
+      "text": "Fondo de emergencia en Chile: cuánto necesitas y dónde guardarlo. Guía práctica para construir tu colchón de emergencia en Chile: cuánto ahorrar, en qué instrumentos con liquidez real y cómo hacerlo paso a paso. construir fondo de emergencia en Chile. fondo-emergencia, ahorro, presupuesto, finanzas-personales, liquidez",
+      "coverage": "full",
+      "cluster": "presupuesto-control-financiero",
+      "category": "general",
+      "canonicalTopic": "fondo-emergencia-colchon",
+      "topicRole": "owner",
+      "ownerSlug": "fondo-emergencia-chile"
+    },
+    {
+      "type": "article",
+      "id": "fondos-afp-a-b-c-d-e",
+      "url": "/posts/fondos-afp-a-b-c-d-e/",
+      "title": "Fondos AFP A, B, C, D y E: diferencias, riesgo y cuál te conviene",
+      "text": "Fondos AFP A, B, C, D y E: diferencias, riesgo y cuál te conviene. Explicación clara de los fondos AFP A, B, C, D y E: en qué invierte cada uno, cuánto riesgo tienen y cuál conviene según tu edad y perfil. elegir fondos AFP. afp, fondos, pensiones, inversiones",
+      "coverage": "full",
+      "cluster": "pensiones-afp",
+      "category": "prevision",
+      "canonicalTopic": "elegir-fondos-afp",
+      "topicRole": "owner",
+      "ownerSlug": "fondos-afp-a-b-c-d-e"
+    },
+    {
+      "type": "article",
+      "id": "fondos-mutuos-comisiones-rescate-impuestos",
+      "url": "/posts/fondos-mutuos-comisiones-rescate-impuestos/",
+      "title": "Fondos mutuos: comisiones, rescate e impuestos (sin letra chica)",
+      "text": "Fondos mutuos: comisiones, rescate e impuestos (sin letra chica). Guía práctica para entender costos reales, plazos de rescate y tratamiento tributario básico de fondos mutuos en Chile durante 2026. fondos mutuos costos rescate impuestos. fondos-mutuos, inversiones, comisiones, impuestos",
+      "coverage": "full",
+      "cluster": "ahorro-e-inversion",
+      "category": "ahorro-inversion",
+      "canonicalTopic": "fondos-mutuos-costos-rescate-impuestos",
+      "topicRole": "owner",
+      "ownerSlug": "fondos-mutuos-comisiones-rescate-impuestos"
+    },
+    {
+      "type": "article",
+      "id": "fraude-tarjeta-que-hacer",
+      "url": "/posts/fraude-tarjeta-que-hacer/",
+      "title": "Cargo no reconocido: qué hacer en 24 horas (Ley 20.009)",
+      "text": "Cargo no reconocido: qué hacer en 24 horas (Ley 20.009). Qué hacer ante un fraude con tarjeta en Chile: pasos inmediatos, plazos clave y qué establece la Ley 20.009 sobre devolución del dinero. actuar ante fraude con tarjeta segun Ley 20.009. fraude, tarjetas, seguridad-financiera, ley-20009, derechos",
+      "coverage": "full",
+      "cluster": "seguridad-financiera",
+      "category": "seguridad-financiera",
+      "canonicalTopic": "fraude-tarjeta-ley-20009",
+      "topicRole": "owner",
+      "ownerSlug": "fraude-tarjeta-que-hacer"
+    },
+    {
+      "type": "article",
+      "id": "gratificacion-legal-chile",
+      "url": "/posts/gratificacion-legal-chile/",
+      "title": "Gratificación legal en Chile: cómo calcularla y cuál es el tope",
+      "text": "Gratificación legal en Chile: cómo calcularla y cuál es el tope. Qué es la gratificación legal, sus dos modalidades del Código del Trabajo, cómo calcular el 25% con tope de 4,75 IMM y cuándo recibirla. calcular gratificacion legal y tope IMM. gratificacion, sueldo, remuneraciones, codigo-del-trabajo, empleo",
+      "coverage": "full",
+      "cluster": "sueldo-remuneraciones",
+      "category": "empleo-ingresos",
+      "canonicalTopic": "gratificacion-legal-calculo-tope",
+      "topicRole": "owner",
+      "ownerSlug": "gratificacion-legal-chile"
+    },
+    {
+      "type": "article",
+      "id": "impuesto-global-complementario-chile",
+      "url": "/posts/impuesto-global-complementario-chile/",
+      "title": "Impuesto Global Complementario en Chile: qué es, tramos y quién lo paga",
+      "text": "Impuesto Global Complementario en Chile: qué es, tramos y quién lo paga. Qué es el IGC, quiénes deben pagarlo, qué rentas suma, cuáles son los tramos vigentes en UTA y qué créditos permiten reducirlo: ISC, honorarios y APV. entender y calcular el impuesto global complementario. igc, impuesto-global-complementario, renta, operacion-renta, impuestos",
+      "coverage": "full",
+      "cluster": "impuestos-personas",
+      "category": "impuestos",
+      "canonicalTopic": "igc-impuesto-global-complementario",
+      "topicRole": "owner",
+      "ownerSlug": "impuesto-global-complementario-chile"
+    },
+    {
+      "type": "article",
+      "id": "indemnizacion-anos-de-servicio-chile",
+      "url": "/posts/indemnizacion-anos-de-servicio-chile/",
+      "title": "Indemnización por años de servicio en Chile: cuándo aplica y cómo calcularla",
+      "text": "Indemnización por años de servicio en Chile: cuándo aplica y cómo calcularla. Guía puntual para revisar indemnización por años de servicio: causal aplicable, regla de 30 días, tope de 11 años y año fraccionado. finiquito e indemnizaciones. finiquito, indemnizacion, trabajo, empleo-ingresos",
+      "coverage": "full",
+      "cluster": "empleo-ingresos",
+      "category": "empleo-ingresos",
+      "canonicalTopic": "finiquito-indemnizaciones",
+      "topicRole": "support",
+      "ownerSlug": "finiquito-e-indemnizaciones-en-chile"
+    },
+    {
+      "type": "article",
+      "id": "informe-deudas-cmf-vs-dicom",
+      "url": "/posts/informe-deudas-cmf-vs-dicom/",
+      "title": "Informe de deudas CMF: cómo sacarlo y por qué no es DICOM",
+      "text": "Informe de deudas CMF: cómo sacarlo y por qué no es DICOM. Guía práctica sobre el Informe de Deudas CMF: cómo descargarlo gratis, qué incluye, qué no incluye y en qué se diferencia del DICOM y el Boletín Comercial. informe deudas CMF vs DICOM. deudas, credito, cmf, dicom, historial-crediticio",
+      "coverage": "full",
+      "cluster": "deuda-credito",
+      "category": "deuda-credito",
+      "canonicalTopic": "informe-deudas-cmf-vs-dicom",
+      "topicRole": "owner",
+      "ownerSlug": "informe-deudas-cmf-vs-dicom"
+    },
+    {
+      "type": "article",
+      "id": "licencia-medica-desde-que-dia-pagan",
+      "url": "/posts/licencia-medica-desde-que-dia-pagan/",
+      "title": "Licencia médica en Chile: desde qué día te pagan y cómo reclamar",
+      "text": "Licencia médica en Chile: desde qué día te pagan y cómo reclamar. Desde qué día se paga una licencia médica en Chile, cuánto es el subsidio, quién paga según el caso y cómo apelar si te lo rechazan. licencia medica pago y rechazo. empleo-ingresos, licencia-medica, subsidio, suseso, trabajo",
+      "coverage": "full",
+      "cluster": "empleo-ingresos",
+      "category": "empleo-ingresos",
+      "canonicalTopic": "licencia-medica-pago",
+      "topicRole": "owner",
+      "ownerSlug": "licencia-medica-desde-que-dia-pagan"
+    },
+    {
+      "type": "article",
+      "id": "liquidacion-de-sueldo",
+      "url": "/posts/liquidacion-de-sueldo/",
+      "title": "Liquidación de sueldo en Chile: cómo auditar el comprobante y sus líneas clave",
+      "text": "Liquidación de sueldo en Chile: cómo auditar el comprobante y sus líneas clave. Guía para auditar tu liquidación de sueldo en Chile: qué debe mostrar el comprobante, qué respaldos pedir y qué líneas revisar antes de darlo por bueno. auditar liquidacion de sueldo. sueldo, liquidacion, descuentos, trabajo",
+      "coverage": "full",
+      "cluster": "sueldo-remuneraciones",
+      "category": "empleo-ingresos",
+      "canonicalTopic": "auditar-liquidacion-sueldo",
+      "topicRole": "owner",
+      "ownerSlug": "liquidacion-de-sueldo"
+    },
+    {
+      "type": "article",
+      "id": "operacion-renta-centro",
+      "url": "/posts/operacion-renta-centro/",
+      "title": "Operación Renta 2026: orientación inicial y preguntas frecuentes",
+      "text": "Operación Renta 2026: orientación inicial y preguntas frecuentes. Preguntas frecuentes sobre Operación Renta 2026: quién debe declarar, cómo funciona la propuesta automática del SII y cuándo llega la devolución. operacion renta F22 checklist. impuestos, operacion-renta, f22, sii, declaracion-renta",
+      "coverage": "full",
+      "cluster": "impuestos-personas",
+      "category": "impuestos",
+      "canonicalTopic": "f22-revisar-enviar",
+      "topicRole": "support",
+      "ownerSlug": "operacion-renta-f22-checklist"
+    },
+    {
+      "type": "article",
+      "id": "operacion-renta-f22-checklist",
+      "url": "/posts/operacion-renta-f22-checklist/",
+      "title": "Operación Renta F22: checklist para revisar, enviar y rectificar sin errores",
+      "text": "Operación Renta F22: checklist para revisar, enviar y rectificar sin errores. Checklist práctico para revisar la propuesta del SII, enviar tu Formulario 22 y corregir observaciones sin atrasar tu devolución en Operación Renta. operacion renta F22 checklist. impuestos, operacion-renta, f22, sii",
+      "coverage": "full",
+      "cluster": "impuestos-personas",
+      "category": "impuestos",
+      "canonicalTopic": "f22-revisar-enviar",
+      "topicRole": "owner",
+      "ownerSlug": "operacion-renta-f22-checklist"
+    },
+    {
+      "type": "article",
+      "id": "pgu-pension-garantizada-universal",
+      "url": "/posts/pgu-pension-garantizada-universal/",
+      "title": "PGU en Chile: requisitos, monto vigente y cómo tramitarla",
+      "text": "PGU en Chile: requisitos, monto vigente y cómo tramitarla. Pensión Garantizada Universal en Chile: quiénes pueden recibirla, cuánto se paga, cómo tramitarla ante el IPS y cómo se complementa con la pensión AFP. requisitos y tramite de la PGU en Chile. pgu, pension, ips, adultos-mayores, prevision",
+      "coverage": "full",
+      "cluster": "pensiones-afp",
+      "category": "prevision",
+      "canonicalTopic": "pgu-pension-garantizada",
+      "topicRole": "owner",
+      "ownerSlug": "pgu-pension-garantizada-universal"
+    },
+    {
+      "type": "article",
+      "id": "prepago-credito-cuando-conviene-chile",
+      "url": "/posts/prepago-credito-cuando-conviene-chile/",
+      "title": "¿Cuándo conviene hacer un prepago de crédito en Chile?",
+      "text": "¿Cuándo conviene hacer un prepago de crédito en Chile?. Aprende cuándo vale la pena hacer un abono extraordinario a tu crédito en Chile, cómo calcular el ahorro real y qué dice la ley sobre prepago sin multa. cuando conviene hacer un prepago de credito. prepago, credito, deuda, amortizacion, consumo",
+      "coverage": "full",
+      "cluster": "deuda-credito",
+      "category": "deuda-credito",
+      "canonicalTopic": "prepago-credito-calculo",
+      "topicRole": "owner",
+      "ownerSlug": "prepago-credito-cuando-conviene-chile"
+    },
+    {
+      "type": "article",
+      "id": "primer-empleo-chile-guia-completa",
+      "url": "/posts/primer-empleo-chile-guia-completa/",
+      "title": "Primer empleo en Chile: qué firmar, descuentos y cómo empezar",
+      "text": "Primer empleo en Chile: qué firmar, descuentos y cómo empezar. Primer empleo formal en Chile: qué revisar en el contrato, cómo leer la liquidación, AFP, Fonasa, seguro de cesantía y primer sueldo. guia integral de primer empleo en Chile. primer-empleo, contrato, liquidacion, afp, presupuesto",
+      "coverage": "full",
+      "cluster": "empleo-ingresos",
+      "category": "empleo-ingresos",
+      "canonicalTopic": "primer-empleo-integral",
+      "topicRole": "owner",
+      "ownerSlug": "primer-empleo-chile-guia-completa"
+    },
+    {
+      "type": "article",
+      "id": "que-es-el-apv",
+      "url": "/posts/que-es-el-apv/",
+      "title": "APV en Chile: beneficio tributario, regímenes A y B, y cuándo conviene",
+      "text": "APV en Chile: beneficio tributario, regímenes A y B, y cuándo conviene. Guía para evaluar el APV en Chile: regímenes A y B, topes, retiros y cuándo conviene según tu base imponible y tasa marginal. APV beneficio tributario. apv, ahorro, impuestos, pensiones",
+      "coverage": "full",
+      "cluster": "ahorro-e-inversion",
+      "category": "ahorro-inversion",
+      "canonicalTopic": "apv-beneficio-tributario",
+      "topicRole": "owner",
+      "ownerSlug": "que-es-el-apv"
+    },
+    {
+      "type": "article",
+      "id": "que-es-el-ipc-chile-como-se-calcula",
+      "url": "/posts/que-es-el-ipc-chile-como-se-calcula/",
+      "title": "Qué es el IPC en Chile: cómo se calcula y por qué afecta tu bolsillo",
+      "text": "Qué es el IPC en Chile: cómo se calcula y por qué afecta tu bolsillo. Explicación práctica del IPC chileno: cómo lo calcula el INE, para qué sirve, cómo impacta tu arriendo, sueldo y deudas, y cómo leerlo sin confundirte. entender IPC e inflacion de costo de vida. ipc, inflacion, uf, presupuesto, costo-de-vida",
+      "coverage": "full",
+      "cluster": "uf-costo-de-vida",
+      "category": "general",
+      "canonicalTopic": "ipc-inflacion-costo-de-vida",
+      "topicRole": "owner",
+      "ownerSlug": "que-es-el-ipc-chile-como-se-calcula"
+    },
+    {
+      "type": "article",
+      "id": "que-es-la-cuenta-2-afp",
+      "url": "/posts/que-es-la-cuenta-2-afp/",
+      "title": "Cuenta 2 de la AFP: ahorro flexible, retiros e impuestos",
+      "text": "Cuenta 2 de la AFP: ahorro flexible, retiros e impuestos. Guía sobre la Cuenta 2 de la AFP como ahorro flexible: cómo funciona, cuánto puedes retirar, qué impuestos pagas y cuándo conviene frente al APV. cuenta 2 AFP. afp, ahorro, cuenta-2, pensiones",
+      "coverage": "full",
+      "cluster": "pensiones-afp",
+      "category": "prevision",
+      "canonicalTopic": "cuenta2-afp",
+      "topicRole": "owner",
+      "ownerSlug": "que-es-la-cuenta-2-afp"
+    },
+    {
+      "type": "article",
+      "id": "que-es-la-uf",
+      "url": "/posts/que-es-la-uf/",
+      "title": "UF en simple: qué es, por qué sube todos los días y cómo te afecta",
+      "text": "UF en simple: qué es, por qué sube todos los días y cómo te afecta. Qué es la Unidad de Fomento (UF), cómo se calcula, por qué cambia cada día y cómo impacta tu arriendo, dividendo y deudas en Chile. entender UF y reajustes de costo de vida. uf, inflacion, ipc, arriendos, creditos",
+      "coverage": "full",
+      "cluster": "uf-costo-de-vida",
+      "category": "general",
+      "canonicalTopic": "uf-reajustes-costo-de-vida",
+      "topicRole": "owner",
+      "ownerSlug": "que-es-la-uf"
+    },
+    {
+      "type": "article",
+      "id": "reajuste-arriendo-uf-ipc-chile",
+      "url": "/posts/reajuste-arriendo-uf-ipc-chile/",
+      "title": "¿Cuánto puede subir tu arriendo en Chile? UF vs IPC",
+      "text": "¿Cuánto puede subir tu arriendo en Chile? UF vs IPC. ¿Cuánto puede subir tu arriendo? Depende del contrato. Explicamos UF vs IPC, cuándo aplica cada uno y cómo calcular el nuevo monto sin confundirte. interpretar reajuste de arriendo en UF o IPC. arriendos, uf, ipc, inflacion, costo-de-vida",
+      "coverage": "full",
+      "cluster": "uf-costo-de-vida",
+      "category": "general",
+      "canonicalTopic": "reajuste-arriendo-contrato-uf-ipc",
+      "topicRole": "owner",
+      "ownerSlug": "reajuste-arriendo-uf-ipc-chile"
+    },
+    {
+      "type": "article",
+      "id": "reforma-previsional-2025-que-cambia-y-como-te-afecta",
+      "url": "/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/",
+      "title": "Reforma previsional 2025: qué cambia y cómo te afecta",
+      "text": "Reforma previsional 2025: qué cambia y cómo te afecta. Guía práctica de la reforma previsional chilena: el 7% adicional del empleador, el BAC, los fondos generacionales y qué significa para tu jubilación. reforma previsional y cambios vigentes. reforma-previsional, afp, pensiones, empleador, fondos-generacionales",
+      "coverage": "full",
+      "cluster": "pensiones-afp",
+      "category": "prevision",
+      "canonicalTopic": "reforma-previsional-cambios",
+      "topicRole": "owner",
+      "ownerSlug": "reforma-previsional-2025-que-cambia-y-como-te-afecta"
+    },
+    {
+      "type": "article",
+      "id": "renegociacion-superir",
+      "url": "/posts/renegociacion-superir/",
+      "title": "Renegociación Superir: qué es, quién puede pedir y cómo hacerlo sin abogado",
+      "text": "Renegociación Superir: qué es, quién puede pedir y cómo hacerlo sin abogado. Guía práctica sobre renegociación en Superir: requisitos, documentos y errores que frenan la solicitud de personas con deudas. renegociacion Superir. deudas, renegociacion, superir, sobreendeudamiento, credito",
+      "coverage": "full",
+      "cluster": "deuda-credito",
+      "category": "deuda-credito",
+      "canonicalTopic": "renegociacion-superir",
+      "topicRole": "owner",
+      "ownerSlug": "renegociacion-superir"
+    },
+    {
+      "type": "article",
+      "id": "rentas-mixtas-sueldo-honorarios",
+      "url": "/posts/rentas-mixtas-sueldo-honorarios/",
+      "title": "Rentas mixtas: cómo declarar sueldo y boletas de honorarios",
+      "text": "Rentas mixtas: cómo declarar sueldo y boletas de honorarios. Con sueldo y boletas de honorarios debes declarar siempre. Aprende cómo se calcula el Global Complementario y si pagarás más o recuperarás impuesto. tributacion de rentas mixtas sueldo y honorarios. impuestos, rentas-mixtas, honorarios, operacion-renta, sii",
+      "coverage": "full",
+      "cluster": "impuestos-personas",
+      "category": "impuestos",
+      "canonicalTopic": "rentas-mixtas",
+      "topicRole": "owner",
+      "ownerSlug": "rentas-mixtas-sueldo-honorarios"
+    },
+    {
+      "type": "article",
+      "id": "seguro-cesantia-cuenta-individual-vs-fondo-solidario",
+      "url": "/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/",
+      "title": "CIC vs Fondo Solidario: cómo funciona cada capa del Seguro de Cesantía",
+      "text": "CIC vs Fondo Solidario: cómo funciona cada capa del Seguro de Cesantía. CIC y Fondo de Cesantía Solidario no son lo mismo: quién financia cada capa, cuál aplica primero y qué condiciones mínimas exige el Fondo Solidario. seguro de cesantia cobertura y cobro. cesantia, afc, proteccion-social, empleo-ingresos",
+      "coverage": "full",
+      "cluster": "empleo-ingresos",
+      "category": "empleo-ingresos",
+      "canonicalTopic": "seguro-cesantia-cobertura",
+      "topicRole": "support",
+      "ownerSlug": "seguro-de-cesantia"
+    },
+    {
+      "type": "article",
+      "id": "seguro-de-cesantia",
+      "url": "/posts/seguro-de-cesantia/",
+      "title": "Seguro de cesantía: saldo, cuándo cobrar y montos",
+      "text": "Seguro de cesantía: saldo, cuándo cobrar y montos. Seguro de Cesantía en Chile: qué son la CIC y el FCS, cómo consultar tu saldo, cuándo cobrar y cuánto recibes según tu tipo de contrato. seguro de cesantia cobertura y cobro. cesantia, afc, desempleo, proteccion-social, trabajo",
+      "coverage": "full",
+      "cluster": "empleo-ingresos",
+      "category": "empleo-ingresos",
+      "canonicalTopic": "seguro-cesantia-cobertura",
+      "topicRole": "owner",
+      "ownerSlug": "seguro-de-cesantia"
+    },
+    {
+      "type": "article",
+      "id": "sueldo-imponible-chile",
+      "url": "/posts/sueldo-imponible-chile/",
+      "title": "Sueldo imponible en Chile: qué es, qué incluye y cómo afecta tus descuentos",
+      "text": "Sueldo imponible en Chile: qué es, qué incluye y cómo afecta tus descuentos. Qué es la remuneración imponible en Chile, qué componentes entran en la base y cómo determina tus cotizaciones previsionales e impuesto. entender sueldo imponible y su efecto en descuentos. sueldo-imponible, remuneraciones, cotizaciones, impuesto-segunda-categoria, descuentos",
+      "coverage": "full",
+      "cluster": "sueldo-remuneraciones",
+      "category": "empleo-ingresos",
+      "canonicalTopic": "sueldo-imponible-base-descuentos",
+      "topicRole": "owner",
+      "ownerSlug": "sueldo-imponible-chile"
+    },
+    {
+      "type": "article",
+      "id": "suplantacion-identidad-creditos-no-reconocidos",
+      "url": "/posts/suplantacion-identidad-creditos-no-reconocidos/",
+      "title": "¿Suplantaron tu identidad? Cómo detectarlo y frenarlo",
+      "text": "¿Suplantaron tu identidad? Cómo detectarlo y frenarlo. Si aparecen créditos que nunca pediste, puede que suplantaron tu identidad. Cómo detectarlo, frenarlo y reclamar ante el banco, CMF y Carabineros. detectar y frenar suplantacion de identidad con creditos no reconocidos. seguridad-financiera, suplantacion, credito, historial-crediticio, cmf",
+      "coverage": "full",
+      "cluster": "seguridad-financiera",
+      "category": "seguridad-financiera",
+      "canonicalTopic": "suplantacion-identidad-creditos",
+      "topicRole": "owner",
+      "ownerSlug": "suplantacion-identidad-creditos-no-reconocidos"
+    },
+    {
+      "type": "article",
+      "id": "tarjeta-credito-costo-real-chile",
+      "url": "/posts/tarjeta-credito-costo-real-chile/",
+      "title": "Cómo calcular el costo real de una tarjeta de crédito en Chile",
+      "text": "Cómo calcular el costo real de una tarjeta de crédito en Chile. Entiende cuánto te cuesta realmente tu tarjeta de crédito en Chile: intereses, pago mínimo y cómo reducir la deuda más rápido. calcular costo real tarjeta de credito. tarjeta-credito, deuda, consumo, credito, interes",
+      "coverage": "full",
+      "cluster": "deuda-credito",
+      "category": "deuda-credito",
+      "canonicalTopic": "tarjeta-credito-costo-interes",
+      "topicRole": "owner",
+      "ownerSlug": "tarjeta-credito-costo-real-chile"
+    },
+    {
+      "type": "article",
+      "id": "utm-chile-que-es-como-funciona",
+      "url": "/posts/utm-chile-que-es-como-funciona/",
+      "title": "UTM en Chile: qué es, cómo funciona y para qué sirve",
+      "text": "UTM en Chile: qué es, cómo funciona y para qué sirve. Qué es la UTM en Chile, cómo se reajusta mensualmente según el IPC y para qué sirve: multas, tramos de impuesto, trámites y diferencia con la UF. entender UTM y UTA como unidades tributarias reajustables en Chile. utm, uta, uf, ipc, inflacion, impuestos",
+      "coverage": "full",
+      "cluster": "uf-costo-de-vida",
+      "category": "general",
+      "canonicalTopic": "utm-uta-unidades-tributarias",
+      "topicRole": "owner",
+      "ownerSlug": "utm-chile-que-es-como-funciona"
+    },
+    {
+      "type": "calculator",
+      "id": "actualizador-inflacion",
+      "url": "/calculadoras/actualizador-inflacion/",
+      "title": "Calculadora IPC Chile — Actualiza pesos por inflación",
+      "text": "Calculadora IPC Chile — Actualiza pesos por inflación. Calcula cuánto valen hoy tus pesos de antes con el IPC oficial del INE: ingresa cualquier monto histórico y actualízalo por inflación al instante",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "apv",
+      "url": "/calculadoras/apv/",
+      "title": "Simulador APV Chile 2026: ¿cuánto ahorras en Régimen A o B?",
+      "text": "Simulador APV Chile 2026: ¿cuánto ahorras en Régimen A o B?. ¿Te conviene APV en Chile? Compara Régimen A y B según tu sueldo y aporte mensual, y calcula el ahorro tributario real antes de decidir",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "boleta-honorarios-liquido",
+      "url": "/calculadoras/boleta-honorarios-liquido/",
+      "title": "Calculadora Boleta de Honorarios 2026",
+      "text": "Calculadora Boleta de Honorarios 2026. Calcula cuánto te llega líquido por boleta, cuánto retiene el SII y cuál sería tu base anual de cobertura previsional orientativa",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "comisiones-afp",
+      "url": "/calculadoras/comisiones-afp/",
+      "title": "Comisiones AFP 2026: compara cuál es la más barata",
+      "text": "Comisiones AFP 2026: compara cuál es la más barata. Compara las comisiones vigentes de las 7 AFP en 2026 y descubre cuál es la más barata. Ingresa tu sueldo y mira cuánto te descuenta cada AFP al mes en comisión",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "conversor-uf",
+      "url": "/calculadoras/conversor-uf/",
+      "title": "Conversor UF a Pesos Chilenos: valor oficial de hoy",
+      "text": "Conversor UF a Pesos Chilenos: valor oficial de hoy. Convierte cualquier monto en UF a pesos chilenos al valor oficial del Banco Central de hoy: 500 UF, 1.000 UF o el que necesites. Con tabla de referencia para arriendos y créditos",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "conversor-utm",
+      "url": "/calculadoras/conversor-utm/",
+      "title": "Qué hacer con este resultado",
+      "text": "Qué hacer con este resultado. Sigue con una herramienta relacionada o vuelve al índice si necesitas resolver otra pregunta",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "credito-consumo",
+      "url": "/calculadoras/credito-consumo/",
+      "title": "Calculadora de CAE y cuota de tu crédito de consumo",
+      "text": "Calculadora de CAE y cuota de tu crédito de consumo. Calcula cuota mensual, intereses totales y la Carga Anual Equivalente (CAE) de una oferta de crédito de consumo. No es el Crédito con Aval del Estado",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "deposito-a-plazo",
+      "url": "/calculadoras/deposito-a-plazo/",
+      "title": "Calculadora Depósito a Plazo Chile 2026",
+      "text": "Calculadora Depósito a Plazo Chile 2026. Calcula el interés bruto, impuesto 4% y monto neto de tu depósito a plazo. Ingresa monto, plazo en días y tasa TIR. Gratis y actualizado 2026",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "dividendo-hipotecario",
+      "url": "/calculadoras/dividendo-hipotecario/",
+      "title": "Calculadora de Dividendo Hipotecario Chile 2026",
+      "text": "Calculadora de Dividendo Hipotecario Chile 2026. Calcula tu dividendo mensual en UF y pesos según el valor de la propiedad, pie, tasa y plazo. Incluye seguros y tabla de amortización",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "finiquito-indemnizacion",
+      "url": "/calculadoras/finiquito-indemnizacion/",
+      "title": "Calculadora de Finiquito e Indemnización",
+      "text": "Calculadora de Finiquito e Indemnización. Estima finiquito, aviso previo, años de servicio y feriado proporcional con supuestos visibles para revisar tu salida laboral",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "gratificacion-legal",
+      "url": "/calculadoras/gratificacion-legal/",
+      "title": "Calculadora de Gratificación Legal Chile 2026",
+      "text": "Calculadora de Gratificación Legal Chile 2026. Estima cuánto te corresponde de gratificación según el Código del Trabajo. Dos modalidades: 25% mensualizado (art. 50) o porcentaje de utilidades del empleador (art. 47)",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "impuesto-segunda-categoria",
+      "url": "/calculadoras/impuesto-segunda-categoria/",
+      "title": "Calcula tu Impuesto Único 2026 — Segunda Categoría",
+      "text": "Calcula tu Impuesto Único 2026 — Segunda Categoría. Calcula al instante tu impuesto único 2026 según tu sueldo imponible: descubre tu tramo SII y cuánto pagas, con tabla actualizada a la UTM vigente",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "interes-compuesto",
+      "url": "/calculadoras/interes-compuesto/",
+      "title": "Calculadora de Interés Compuesto",
+      "text": "Calculadora de Interés Compuesto. Calcula cuánto crece tu dinero con interés compuesto: monto final, interés generado y evolución año a año. Gratis, sin registro",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "iva",
+      "url": "/calculadoras/iva/",
+      "title": "Calculadora de IVA Chile 19% — Neto y Bruto",
+      "text": "Calculadora de IVA Chile 19% — Neto y Bruto. Calcula el IVA del 19% en Chile: obtén el monto neto, el IVA y el bruto en segundos. Sin registro, sin publicidad",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "operacion-renta",
+      "url": "/calculadoras/operacion-renta/",
+      "title": "Simulador Operación Renta 2026 Chile: ¿Te devuelven o debes pagar?",
+      "text": "Simulador Operación Renta 2026 Chile: ¿Te devuelven o debes pagar?. Calcula tu Impuesto Global Complementario 2026: ingresa sueldos, honorarios y arriendos, descuenta retenciones y APV, y descubre si el SII te devuelve o debes pagar",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "prepago-credito",
+      "url": "/calculadoras/prepago-credito/",
+      "title": "¿Conviene prepagar el crédito? Simulador hipotecario y consumo Chile 2026",
+      "text": "¿Conviene prepagar el crédito? Simulador hipotecario y consumo Chile 2026. Calcula cuánto ahorras en intereses al hacer un abono extraordinario a tu crédito hipotecario o de consumo. Compara prepagar vs. invertir ese dinero",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "reajuste-arriendo",
+      "url": "/calculadoras/reajuste-arriendo/",
+      "title": "Calculadora de Reajuste de Arriendo",
+      "text": "Calculadora de Reajuste de Arriendo. Calcula el reajuste de arriendo según variación de UF o IPC y estima tu nuevo canon mensual",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "seguro-cesantia",
+      "url": "/calculadoras/seguro-cesantia/",
+      "title": "Calculadora de Seguro de Cesantía: calcula tu cobertura (AFC y Fondo Solidario)",
+      "text": "Calculadora de Seguro de Cesantía: calcula tu cobertura (AFC y Fondo Solidario). Simula tu seguro de cesantía: cuánto te pagan, por cuántos meses y con qué causal, según tu sueldo y saldo CIC. Incluye Fondo de Cesantía Solidario",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "simulador-jubilacion",
+      "url": "/calculadoras/simulador-jubilacion/",
+      "title": "Simulador de Jubilación Chile",
+      "text": "Simulador de Jubilación Chile. Proyecta tu ahorro previsional y una pensión estimada según sueldo, edad y rentabilidad esperada",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "simulador-renegociacion",
+      "url": "/calculadoras/simulador-renegociacion/",
+      "title": "Renegociación de Deudas Chile 2026",
+      "text": "Renegociación de Deudas Chile 2026. Simula gratis tu renegociación de deudas con Superir: verifica elegibilidad y estima tu cuota mensual orientativa",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "sueldo-liquido",
+      "url": "/calculadoras/sueldo-liquido/",
+      "title": "Calculadora de Sueldo Líquido y Bruto Chile 2026",
+      "text": "Calculadora de Sueldo Líquido y Bruto Chile 2026. Convierte de sueldo bruto a líquido y de líquido a bruto al instante, con desglose de AFP, salud, cesantía e impuesto. Gratis y actualizado 2026",
+      "coverage": "full"
+    },
+    {
+      "type": "calculator",
+      "id": "tarjeta-credito",
+      "url": "/calculadoras/tarjeta-credito/",
+      "title": "Costo Real de Tarjeta de Crédito",
+      "text": "Costo Real de Tarjeta de Crédito. Simula cuánto pagas en intereses y tiempo al cubrir pago mínimo o cuota fija de tarjeta de crédito",
+      "coverage": "full"
+    },
+    {
+      "type": "glossary",
+      "id": "afc",
+      "url": "/glosario/afc/",
+      "title": "Administradora de Fondos de Cesantía (AFC)",
+      "text": "Administradora de Fondos de Cesantía (AFC). Institución privada fiscalizada por la Superintendencia de Pensiones en Chile que administra los dineros formales de las cuentas de desempleo",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "afp",
+      "url": "/glosario/afp/",
+      "title": "Asociación de Fondos de Pensiones (AFP)",
+      "text": "Asociación de Fondos de Pensiones (AFP). Sociedades anónimas privadas que administran los ahorros obligatorios para la pensión por vejez de los trabajadores en Chile",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "apv",
+      "url": "/glosario/apv/",
+      "title": "Ahorro Previsional Voluntario (APV)",
+      "text": "Ahorro Previsional Voluntario (APV). Herramienta de ahorro con beneficios tributarios diseñada para que los chilenos aumenten sus pensiones por sobre la cotización obligatoria",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "boleta-honorarios",
+      "url": "/glosario/boleta-honorarios/",
+      "title": "Boleta de Honorarios",
+      "text": "Boleta de Honorarios. Documento tributario que emiten los trabajadores independientes en Chile al cobrar por sus servicios. El SII retiene un porcentaje para cotizaciones y renta",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "cae",
+      "url": "/glosario/cae/",
+      "title": "Carga Anual Equivalente (CAE)",
+      "text": "Carga Anual Equivalente (CAE). Indicador en porcentaje que refleja el costo total anual de un crédito, incluyendo intereses, comisiones y seguros",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "caec",
+      "url": "/glosario/caec/",
+      "title": "CAEC",
+      "text": "CAEC. Cobertura Adicional para Enfermedades Catastróficas de las Isapres, que se activa cuando el gasto supera cierto deducible del plan",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "cic",
+      "url": "/glosario/cic/",
+      "title": "Cuenta Individual de Cesantía (CIC)",
+      "text": "Cuenta Individual de Cesantía (CIC). Cuenta personal donde se acumulan los aportes del seguro de cesantía del trabajador y del empleador",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "clave-unica",
+      "url": "/glosario/clave-unica/",
+      "title": "Clave Única",
+      "text": "Clave Única. Clave de autenticación del Estado chileno emitida por el Registro Civil para acceder a servicios digitales como SII, AFP y ChileAtiende",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "cmf",
+      "url": "/glosario/cmf/",
+      "title": "Comisión para el Mercado Financiero (CMF)",
+      "text": "Comisión para el Mercado Financiero (CMF). Máxima institución estatal reguladora y fiscalizadora del sector bancario, de seguros y valores en Chile",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "copago",
+      "url": "/glosario/copago/",
+      "title": "Copago",
+      "text": "Copago. Parte del costo de una atención o prestación que paga directamente la persona, aunque tenga cobertura de salud",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "corredor-bolsa",
+      "url": "/glosario/corredor-bolsa/",
+      "title": "Corredor de Bolsa",
+      "text": "Corredor de Bolsa. Intermediario autorizado para comprar y vender instrumentos en bolsa por cuenta de sus clientes",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "credito-aval-estado",
+      "url": "/glosario/credito-aval-estado/",
+      "title": "Crédito con Aval del Estado (CAE)",
+      "text": "Crédito con Aval del Estado (CAE). Préstamo estudiantil chileno garantizado por el Estado para financiar carreras de educación superior, gestionado por la Comisión Ingresa",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "credito-hipotecario",
+      "url": "/glosario/credito-hipotecario/",
+      "title": "Crédito Hipotecario",
+      "text": "Crédito Hipotecario. Préstamo a largo plazo para comprar una vivienda, en el que la propiedad queda como garantía. En Chile se expresa generalmente en UF",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "ctc",
+      "url": "/glosario/ctc/",
+      "title": "Costo Total del Crédito (CTC)",
+      "text": "Costo Total del Crédito (CTC). Monto total real que terminarás pagando al final de un préstamo, sumando el capital prestado, intereses y todo cargo adicional",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "cuenta-2",
+      "url": "/glosario/cuenta-2/",
+      "title": "Cuenta 2",
+      "text": "Cuenta 2. Cuenta de ahorro voluntario administrada por la AFP, separada de la cotización obligatoria y con retiros más flexibles",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "cuenta-rut",
+      "url": "/glosario/cuenta-rut/",
+      "title": "Cuenta RUT",
+      "text": "Cuenta RUT. Cuenta bancaria gratuita de BancoEstado disponible para cualquier chileno o extranjero con RUT. Es la cuenta más masiva del sistema financiero chileno",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "custodia",
+      "url": "/glosario/custodia/",
+      "title": "Custodia",
+      "text": "Custodia. Servicio mediante el cual una institución mantiene registrados y resguardados tus títulos o instrumentos financieros",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "dicom",
+      "url": "/glosario/dicom/",
+      "title": "Directorio de Información Comercial (DICOM)",
+      "text": "Directorio de Información Comercial (DICOM). Registro histórico privado de morosidad y protesto de deudas, nombre comercial propiedad de Equifax en Chile",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "dividendo-hipotecario",
+      "url": "/glosario/dividendo-hipotecario/",
+      "title": "Dividendo Hipotecario",
+      "text": "Dividendo Hipotecario. La cuota mensual del crédito hipotecario. En Chile se expresa en UF, por lo que su valor en pesos cambia con la inflación cada mes",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "etf",
+      "url": "/glosario/etf/",
+      "title": "ETF (Exchange-Traded Fund)",
+      "text": "ETF (Exchange-Traded Fund). Fondo de inversión que se transa en bolsa como una acción. Sirve para invertir en una canasta de activos con una sola compra",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "finiquito",
+      "url": "/glosario/finiquito/",
+      "title": "Finiquito",
+      "text": "Finiquito. Documento legal que certifica el término de una relación laboral en Chile, detallando las sumas que el empleador le paga al trabajador al momento de su salida",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "fonasa",
+      "url": "/glosario/fonasa/",
+      "title": "Fondo Nacional de Salud (Fonasa)",
+      "text": "Fondo Nacional de Salud (Fonasa). Sistema público de salud en Chile que cubre a quienes cotizan el 7% obligatorio y no tienen Isapre. Afilia a más de 16 millones de personas",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "fondo-emergencia",
+      "url": "/glosario/fondo-emergencia/",
+      "title": "Fondo de Emergencia",
+      "text": "Fondo de Emergencia. Colchón de plata separado para cubrir imprevistos sin endeudarte ni tener que vender inversiones en mal momento",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "fondo-mutuo",
+      "url": "/glosario/fondo-mutuo/",
+      "title": "Fondo Mutuo",
+      "text": "Fondo Mutuo. Instrumento de inversión colectiva regulado por la CMF en Chile. Reúne dinero de muchas personas y lo invierte en activos financieros según su perfil de riesgo",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "fondo-solidario",
+      "url": "/glosario/fondo-solidario/",
+      "title": "Fondo Solidario de Cesantía",
+      "text": "Fondo Solidario de Cesantía. Fondo del Seguro de Cesantía financiado por el empleador y el Estado que complementa el Fondo Individual cuando los ahorros del trabajador son insuficientes",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "ges",
+      "url": "/glosario/ges/",
+      "title": "GES",
+      "text": "GES. Garantías Explícitas en Salud: conjunto de enfermedades y tratamientos con cobertura, plazos y protección financiera definidos por ley en Chile",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "global-complementario",
+      "url": "/glosario/global-complementario/",
+      "title": "Impuesto Global Complementario",
+      "text": "Impuesto Global Complementario. Impuesto anual a la renta para personas con múltiples fuentes de ingreso en Chile. Se declara en la Operación Renta y ajusta lo ya pagado durante el año",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "gratificacion",
+      "url": "/glosario/gratificacion/",
+      "title": "Gratificación",
+      "text": "Gratificación. Participación del trabajador en las utilidades de la empresa, de pago obligatorio según el Código del Trabajo chileno",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "impuesto-unico",
+      "url": "/glosario/impuesto-unico/",
+      "title": "Impuesto Único de Segunda Categoría",
+      "text": "Impuesto Único de Segunda Categoría. Impuesto mensual progresivo para trabajadores dependientes en Chile. Aplica cuando el sueldo supera el primer tramo exento y se descuenta en la liquidación",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "indemnizacion",
+      "url": "/glosario/indemnizacion/",
+      "title": "Indemnización por Años de Servicio",
+      "text": "Indemnización por Años de Servicio. Pago obligatorio al trabajador despedido por necesidades de la empresa (art. 161), equivalente a un mes de sueldo por cada año trabajado, con tope de 11 meses",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "inflacion",
+      "url": "/glosario/inflacion/",
+      "title": "Inflación",
+      "text": "Inflación. Aumento sostenido del nivel general de precios que reduce el poder adquisitivo; en Chile se mide mensualmente con el IPC del INE",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "ipc",
+      "url": "/glosario/ipc/",
+      "title": "Índice de Precios al Consumidor (IPC)",
+      "text": "Índice de Precios al Consumidor (IPC). Indicador mensual del Instituto Nacional de Estadísticas (INE) que mide la inflación y cómo cambia el costo de la vida en Chile",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "isapre",
+      "url": "/glosario/isapre/",
+      "title": "Institución de Salud Previsional (Isapre)",
+      "text": "Institución de Salud Previsional (Isapre). Aseguradoras privadas de salud en Chile que reciben el 7% obligatorio de cotización más un adicional según el plan elegido",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "iva",
+      "url": "/glosario/iva/",
+      "title": "IVA",
+      "text": "IVA. Impuesto indirecto del 19% que grava la mayoría de compras y servicios en Chile. Lo fiscaliza el SII y está incluido en el precio final",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "liquidez",
+      "url": "/glosario/liquidez/",
+      "title": "Liquidez",
+      "text": "Liquidez. Facilidad y rapidez con que puedes convertir un activo en plata disponible sin perder mucho valor en el proceso",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "lpc",
+      "url": "/glosario/lpc/",
+      "title": "LPC",
+      "text": "LPC. Sigla de la Ley de Protección al Consumidor (N° 19.496). Regula derechos ante compras defectuosas, cobros indebidos y garantías en Chile",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "multifondo",
+      "url": "/glosario/multifondo/",
+      "title": "Multifondo AFP",
+      "text": "Multifondo AFP. Cinco fondos de inversión (A al E) de las AFP chilenas con distintos niveles de riesgo, donde cada afiliado elige cómo distribuir su ahorro previsional",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "operacion-renta",
+      "url": "/glosario/operacion-renta/",
+      "title": "Operación Renta",
+      "text": "Operación Renta. Declaración anual de impuestos ante el SII, realizada en abril. Determina si recibes devolución o debes pagar según tus ingresos del año anterior",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "renta-imponible",
+      "url": "/glosario/renta-imponible/",
+      "title": "Renta Imponible",
+      "text": "Renta Imponible. La parte del sueldo sobre la que se calculan AFP, salud y seguro de cesantía. Puede ser menor al sueldo bruto si hay asignaciones no imponibles",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "renta-variable",
+      "url": "/glosario/renta-variable/",
+      "title": "Renta Variable",
+      "text": "Renta Variable. Tipo de inversión cuyo valor y retorno no están garantizados y pueden cambiar bastante con el mercado",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "rescate",
+      "url": "/glosario/rescate/",
+      "title": "Rescate",
+      "text": "Rescate. Solicitud para retirar plata desde un fondo o instrumento y convertirla en dinero disponible, según las reglas del producto",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "sbif",
+      "url": "/glosario/sbif/",
+      "title": "Superintendencia de Bancos e Instituciones Financieras (SBIF)",
+      "text": "Superintendencia de Bancos e Instituciones Financieras (SBIF). Antigua agencia estatal que fiscalizaba a los bancos en Chile. Fue disuelta y absorbida legalmente en 2019 por la Comisión para el Mercado Financiero (CMF)",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "seguro-cesantia",
+      "url": "/glosario/seguro-cesantia/",
+      "title": "Seguro de Cesantía",
+      "text": "Seguro de Cesantía. Sistema de protección para trabajadores formales en Chile que entrega pagos al quedar sin empleo, con cargo a tu cuenta individual y al fondo solidario",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "sernac",
+      "url": "/glosario/sernac/",
+      "title": "Servicio Nacional del Consumidor (SERNAC)",
+      "text": "Servicio Nacional del Consumidor (SERNAC). Agencia gubernamental destinada a informar, educar y proteger los derechos de los consumidores en Chile frente a las empresas proveedoras",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "sii",
+      "url": "/glosario/sii/",
+      "title": "Servicio de Impuestos Internos (SII)",
+      "text": "Servicio de Impuestos Internos (SII). Agencia gubernamental chilena encargada exclusiva de la aplicación, fiscalización y tasación de todos los impuestos y tributos internos vigentes",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "spread",
+      "url": "/glosario/spread/",
+      "title": "Spread",
+      "text": "Spread. Diferencia entre el precio de compra y el precio de venta de un activo. Es un costo implícito que puede encarecer una inversión o transacción",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "sueldo-bruto",
+      "url": "/glosario/sueldo-bruto/",
+      "title": "Sueldo Bruto",
+      "text": "Sueldo Bruto. El total acordado en el contrato antes de cualquier descuento. No es lo que depositan en tu cuenta — es la base sobre la que se calculan AFP, salud e impuestos",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "tmc",
+      "url": "/glosario/tmc/",
+      "title": "Tasa Máxima Convencional (TMC)",
+      "text": "Tasa Máxima Convencional (TMC). Tasa de interés máxima legal que las instituciones pueden cobrar por un crédito en Chile. Protege contra la usura",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "tope-imponible",
+      "url": "/glosario/tope-imponible/",
+      "title": "Tope Imponible",
+      "text": "Tope Imponible. Límite máximo del sueldo sobre el cual se calculan las cotizaciones previsionales y de salud en Chile",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "tpm",
+      "url": "/glosario/tpm/",
+      "title": "Tasa de Política Monetaria (TPM)",
+      "text": "Tasa de Política Monetaria (TPM). La 'tasa de interés madre' que el Banco Central fija para los bancos comerciales, afectando el costo de solicitar créditos e hipotecarios en Chile",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "uf",
+      "url": "/glosario/uf/",
+      "title": "Unidad de Fomento (UF)",
+      "text": "Unidad de Fomento (UF). Unidad de cuenta chilena que se reajusta diariamente según la inflación (IPC) para mantener el poder adquisitivo del dinero",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "uta",
+      "url": "/glosario/uta/",
+      "title": "Unidad Tributaria Anual (UTA)",
+      "text": "Unidad Tributaria Anual (UTA). Unidad de valor tributario equivalente a 12 veces la UTM del mes de diciembre, usada para calcular tramos del impuesto a la renta en Chile",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "utm",
+      "url": "/glosario/utm/",
+      "title": "Unidad Tributaria Mensual (UTM)",
+      "text": "Unidad Tributaria Mensual (UTM). Unidad económica reajustable mensualmente por inflación, usada para fijar multas, impuestos y beneficios fiscales",
+      "coverage": "partial"
+    },
+    {
+      "type": "glossary",
+      "id": "volatilidad",
+      "url": "/glosario/volatilidad/",
+      "title": "Volatilidad",
+      "text": "Volatilidad. Medida de cuánto sube y baja el valor de una inversión en el tiempo. Más volatilidad suele significar más incertidumbre de corto plazo",
+      "coverage": "partial"
+    },
+    {
+      "type": "guide",
+      "id": "ahorro-e-inversion",
+      "url": "/guias/ahorro-e-inversion/",
+      "title": "Ahorro e inversión",
+      "text": "Ahorro e inversión. Sección para aprender a ahorrar e invertir según instrumento, costo, impuestos y plazo. ¿Dónde poner el excedente según plazo, riesgo e impuestos?",
+      "coverage": "full",
+      "cluster": "ahorro-e-inversion"
+    },
+    {
+      "type": "guide",
+      "id": "bancos-fintech",
+      "url": "/guias/bancos-fintech/",
+      "title": "Bancos y fintech",
+      "text": "Bancos y fintech. Sección para elegir dónde tener tu dinero en Chile: tipos de cuenta, diferencia entre banco y fintech y cómo abrir una cuenta básica. ¿Dónde tener tu dinero: qué cuenta te conviene y si una fintech es segura?",
+      "coverage": "full",
+      "cluster": "bancos-fintech"
+    },
+    {
+      "type": "guide",
+      "id": "deuda-credito",
+      "url": "/guias/deuda-credito/",
+      "title": "Deuda y crédito",
+      "text": "Deuda y crédito. Sección para entender el CAE, revisar tus deudas y tomar mejores decisiones de crédito. ¿Cuánto te cuesta la deuda real y cómo salir de ella?",
+      "coverage": "full",
+      "cluster": "deuda-credito"
+    },
+    {
+      "type": "guide",
+      "id": "empleo-ingresos",
+      "url": "/guias/empleo-ingresos/",
+      "title": "Empleo e ingresos",
+      "text": "Empleo e ingresos. Sección para cesantía, licencias médicas, finiquito y otros problemas que afectan tu ingreso laboral. ¿Qué pasa con tu ingreso si te despiden, renuncias o te enfermas?",
+      "coverage": "full",
+      "cluster": "empleo-ingresos"
+    },
+    {
+      "type": "guide",
+      "id": "finanzas-migrantes",
+      "url": "/guias/finanzas-migrantes/",
+      "title": "Finanzas para migrantes",
+      "text": "Finanzas para migrantes. Sección para ordenar los primeros asuntos financieros al instalarte en Chile: identidad tributaria (RUT), cuenta básica y arriendo, con fuentes oficiales. ¿Recién llegaste a Chile? Cómo obtener RUT, abrir cuenta y arrendar",
+      "coverage": "full",
+      "cluster": "finanzas-migrantes"
+    },
+    {
+      "type": "guide",
+      "id": "impuestos-personas",
+      "url": "/guias/impuestos-personas/",
+      "title": "Impuestos para personas",
+      "text": "Impuestos para personas. Sección para declarar renta, revisar devoluciones y entender tus principales dudas tributarias. ¿Cómo declarar, cuándo hay devolución y qué pagar como independiente?",
+      "coverage": "full",
+      "cluster": "impuestos-personas"
+    },
+    {
+      "type": "guide",
+      "id": "pensiones-afp",
+      "url": "/guias/pensiones-afp/",
+      "title": "Pensiones y AFP",
+      "text": "Pensiones y AFP. Sección sobre previsión obligatoria en Chile: cotización, fondos y decisiones que afectan tu pensión futura. ¿Cuánto cotizas, en qué fondo estás y cómo te afecta la reforma?",
+      "coverage": "full",
+      "cluster": "pensiones-afp"
+    },
+    {
+      "type": "guide",
+      "id": "presupuesto-control-financiero",
+      "url": "/guias/presupuesto-control-financiero/",
+      "title": "Presupuesto y control financiero",
+      "text": "Presupuesto y control financiero. Sección para ordenar ingresos, gastos y hábitos de control financiero antes de tomar decisiones más complejas. ¿Cómo ordenar tu caja mensual y construir un presupuesto realista?",
+      "coverage": "full",
+      "cluster": "presupuesto-control-financiero"
+    },
+    {
+      "type": "guide",
+      "id": "seguridad-financiera",
+      "url": "/guias/seguridad-financiera/",
+      "title": "Seguridad financiera",
+      "text": "Seguridad financiera. Sección para fraudes, cargos no reconocidos y protección de tus cuentas frente a suplantaciones o estafas. ¿Qué hacer si detectas un cargo no reconocido o suplantación?",
+      "coverage": "full",
+      "cluster": "seguridad-financiera"
+    },
+    {
+      "type": "guide",
+      "id": "sueldo-remuneraciones",
+      "url": "/guias/sueldo-remuneraciones/",
+      "title": "Sueldo y remuneraciones",
+      "text": "Sueldo y remuneraciones. Sección para entender tu sueldo líquido, la liquidación y los descuentos de cada mes. ¿Por qué tu sueldo líquido es menor que el bruto y qué descuentan?",
+      "coverage": "full",
+      "cluster": "sueldo-remuneraciones"
+    },
+    {
+      "type": "guide",
+      "id": "uf-costo-de-vida",
+      "url": "/guias/uf-costo-de-vida/",
+      "title": "UF, inflación y costo de vida",
+      "text": "UF, inflación y costo de vida. Sección para entender cómo se conectan UF, IPC y reajustes con tu bolsillo, tu arriendo y otros contratos indexados. ¿Cómo afecta la UF y la inflación a tu arriendo y contratos?",
+      "coverage": "full",
+      "cluster": "uf-costo-de-vida"
+    },
+    {
+      "type": "law",
+      "id": "codigo-del-trabajo",
+      "url": "/leyes/codigo-del-trabajo/",
+      "title": "Código del Trabajo: derechos laborales base",
+      "text": "Código del Trabajo: derechos laborales base. DFL N° 1-T/2003 — Fija el texto refundido, coordinado y sistematizado del Código del Trabajo",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "dfl-1-1998-impuesto-territorial",
+      "url": "/leyes/dfl-1-1998-impuesto-territorial/",
+      "title": "DFL-1/1998: Contribuciones de Bienes Raíces",
+      "text": "DFL-1/1998: Contribuciones de Bienes Raíces. DFL N° 1/1998 — Ley sobre Impuesto Territorial (Contribuciones de Bienes Raíces)",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "dl-3500-sistema-afp",
+      "url": "/leyes/dl-3500-sistema-afp/",
+      "title": "DL 3.500: Sistema AFP y cotizaciones previsionales",
+      "text": "DL 3.500: Sistema AFP y cotizaciones previsionales. Decreto Ley Nº 3.500 — Establece un nuevo sistema de pensiones",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "dl-824-impuesto-renta",
+      "url": "/leyes/dl-824-impuesto-renta/",
+      "title": "Decreto Ley 824: Ley de Impuesto a la Renta",
+      "text": "Decreto Ley 824: Ley de Impuesto a la Renta. Decreto Ley Nº 824 — Aprueba el texto de la Ley sobre Impuesto a la Renta",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "dl-830-codigo-tributario",
+      "url": "/leyes/dl-830-codigo-tributario/",
+      "title": "Código Tributario (DL 830)",
+      "text": "Código Tributario (DL 830). Decreto Ley Nº 830 — Código Tributario",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "ley-18010-credito-dinero",
+      "url": "/leyes/ley-18010-credito-dinero/",
+      "title": "Ley 18.010: Operaciones de Crédito y TMC",
+      "text": "Ley 18.010: Operaciones de Crédito y TMC. Ley Nº 18.010 — Establece normas para las operaciones de crédito y otras obligaciones de dinero",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "ley-18469-fonasa",
+      "url": "/leyes/ley-18469-fonasa/",
+      "title": "Ley 18.469: Fonasa y cotización de salud",
+      "text": "Ley 18.469: Fonasa y cotización de salud. Ley Nº 18.469 — Regula el ejercicio del derecho constitucional a la protección de la salud y crea un régimen de prestaciones de salud",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "ley-18933-isapres",
+      "url": "/leyes/ley-18933-isapres/",
+      "title": "Ley 18.933: Isapres y salud privada",
+      "text": "Ley 18.933: Isapres y salud privada. Ley Nº 18.933 — Crea la Superintendencia de Instituciones de Salud Previsional, dicta normas para el otorgamiento de prestaciones por Isapres",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "ley-19496-proteccion-consumidor",
+      "url": "/leyes/ley-19496-proteccion-consumidor/",
+      "title": "Ley del Consumidor (19.496): cómo te protege",
+      "text": "Ley del Consumidor (19.496): cómo te protege. Ley Nº 19.496 — Establece normas sobre protección de los derechos de los consumidores",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "ley-19628-proteccion-datos",
+      "url": "/leyes/ley-19628-proteccion-datos/",
+      "title": "Ley 19.628: Datos Personales Chile (base)",
+      "text": "Ley 19.628: Datos Personales Chile (base). Ley Nº 19.628 — Sobre Protección de la Vida Privada (Protección de Datos Personales)",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "ley-19728-seguro-cesantia",
+      "url": "/leyes/ley-19728-seguro-cesantia/",
+      "title": "Ley 19.728: Seguro de Cesantía",
+      "text": "Ley 19.728: Seguro de Cesantía. Ley Nº 19.728 — Establece un seguro de cesantía",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "ley-20009-tarjetas-fraude",
+      "url": "/leyes/ley-20009-tarjetas-fraude/",
+      "title": "Leyes 20.009 y 21.234: Fraude con Tarjetas",
+      "text": "Leyes 20.009 y 21.234: Fraude con Tarjetas. Ley Nº 20.009 y su modificación Ley Nº 21.234 — Estatuto de protección al titular de tarjeta de crédito y débito (Ley de Fraudes)",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "ley-20027-credito-aval-estado",
+      "url": "/leyes/ley-20027-credito-aval-estado/",
+      "title": "Ley 20.027: Crédito con Aval del Estado (CAE)",
+      "text": "Ley 20.027: Crédito con Aval del Estado (CAE). Ley Nº 20.027 — Establece normas para el financiamiento de estudios de educación superior",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "ley-20555-sernac-financiero",
+      "url": "/leyes/ley-20555-sernac-financiero/",
+      "title": "Ley 20.555: SERNAC Financiero",
+      "text": "Ley 20.555: SERNAC Financiero. Ley Nº 20.555 — Modifica la Ley Nº 19.496, sobre Protección de los Derechos de los Consumidores, para dotar de atribuciones en materias financieras, de seguros e intermediación previsional al Servicio Nacional del Consumidor",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "ley-20575-datos-comerciales",
+      "url": "/leyes/ley-20575-datos-comerciales/",
+      "title": "Ley 20.575: DICOM solo sirve para crédito",
+      "text": "Ley 20.575: DICOM solo sirve para crédito. Ley Nº 20.575 — Establece el principio de finalidad en el tratamiento de datos personales",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "ley-21130-modernizacion-bancaria",
+      "url": "/leyes/ley-21130-modernizacion-bancaria/",
+      "title": "Ley 21.130: Banca moderna y CMF unificada",
+      "text": "Ley 21.130: Banca moderna y CMF unificada. Ley Nº 21.130 — Moderniza la legislación bancaria",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "ley-21133-honorarios-retencion",
+      "url": "/leyes/ley-21133-honorarios-retencion/",
+      "title": "Ley 21.133: Retención Boletas de Honorarios",
+      "text": "Ley 21.133: Retención Boletas de Honorarios. Ley Nº 21.133 — Adecua el sistema previsional de los trabajadores independientes",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "ley-21236-portabilidad-financiera",
+      "url": "/leyes/ley-21236-portabilidad-financiera/",
+      "title": "Ley 21.236: Portabilidad Financiera",
+      "text": "Ley 21.236: Portabilidad Financiera. Ley Nº 21.236 — Portabilidad Financiera",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "ley-21521-fintech",
+      "url": "/leyes/ley-21521-fintech/",
+      "title": "Ley Fintech (21.521): qué regula en Chile",
+      "text": "Ley Fintech (21.521): qué regula en Chile. Ley Nº 21.521 — Incentiva la Industria Fintec e instruye la portabilidad de información financiera (Ley Fintech)",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "ley-21561-reduccion-jornada",
+      "url": "/leyes/ley-21561-reduccion-jornada/",
+      "title": "Ley 21.561: Ley 40h — reducción de jornada",
+      "text": "Ley 21.561: Ley 40h — reducción de jornada. Ley Nº 21.561 — Modifica el Código del Trabajo para reducir la jornada laboral (Ley 40 horas)",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "ley-21680-registro-deuda-consolidada",
+      "url": "/leyes/ley-21680-registro-deuda-consolidada/",
+      "title": "Ley 21.680: Registro de Deuda Consolidada",
+      "text": "Ley 21.680: Registro de Deuda Consolidada. Ley Nº 21.680 — Crea el Registro de Deuda Consolidada",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "ley-21719-proteccion-datos-modernizacion",
+      "url": "/leyes/ley-21719-proteccion-datos-modernizacion/",
+      "title": "Ley 21.719: tus derechos sobre datos personales",
+      "text": "Ley 21.719: tus derechos sobre datos personales. Ley Nº 21.719 — Regula la protección y el tratamiento de los datos personales y crea la Agencia de Protección de Datos Personales",
+      "coverage": "partial"
+    },
+    {
+      "type": "law",
+      "id": "proyecto-reforma-previsional-2025",
+      "url": "/leyes/proyecto-reforma-previsional-2025/",
+      "title": "Ley 21.735: Reforma Previsional 2025",
+      "text": "Ley 21.735: Reforma Previsional 2025. Ley Nº 21.735 — Reforma el sistema de pensiones",
+      "coverage": "partial"
+    }
+  ]
+}
