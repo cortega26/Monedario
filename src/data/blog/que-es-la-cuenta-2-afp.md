@@ -39,8 +39,8 @@ reviewPolicy:
     - pensions.afp.worker_mandatory_contribution
   derivationFactors:
     - registry:slugOverrides.que-es-la-cuenta-2-afp
-  computedAt: "2026-09-13"
-updatedDate: 2026-09-13T00:00:00Z
+  computedAt: "2026-09-20"
+updatedDate: 2026-09-20T00:00:00Z
 ---
 
 Cuando la gente habla de su AFP, casi siempre se refiere a la cuenta obligatoria donde va el 10% del sueldo. Pero existe una segunda cuenta —voluntaria, flexible y mucho menos conocida— que puede servir como instrumento de ahorro de mediano plazo con rentabilidades similares a las de tu cotización obligatoria: la **Cuenta 2**, también llamada Cuenta de Ahorro Voluntario (CAV).
