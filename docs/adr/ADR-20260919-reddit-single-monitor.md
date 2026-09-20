@@ -85,3 +85,8 @@ keywords, dos de subreddits y documentación que se desactualizaba.
 - Baja en Cloudflare (acción manual, fuera de este PR): borrar el Worker
   (`wrangler delete --name monedario-reddit-mention-monitor`, lo que elimina su
   cron y su secreto) y luego el namespace KV `REDDIT_SEEN`.
+- **Teardown ejecutado 2026-09-19 por el owner:** worker
+  `monedario-reddit-mention-monitor` eliminado (`Successfully deleted`) y
+  namespace KV `58a032ea6f754c999f0bceabb29fd887` (`REDDIT_SEEN`) eliminado
+  (verificación posterior: `KV gone`). Solo existía `CHECK_SECRET`; no había
+  webhook Discord ni secretos Reddit en Cloudflare, nada que revocar.
