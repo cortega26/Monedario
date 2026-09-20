@@ -27,10 +27,13 @@ import db as dbmod
 import reviews
 import resources
 import review_sampling
+import threads
 
 CHILE_TZ = timezone(timedelta(hours=-3))
 # RM-018: pagina de la cola con el mismo tope que /atendidos (LIMIT 100).
 QUEUE_PAGE_SIZE = 100
+# Tope de seguridad de filas pendientes que se agrupan por consulta.
+QUEUE_MAX_ROWS = 2000
 BASE_DIR = Path(__file__).parent
 DB_PATH = Path(os.environ.get("REDDIT_MONITOR_DB", BASE_DIR / "reddit_monitor.db"))
 WEB_PASSWORD = os.environ.get("WEB_PASSWORD", "")
@@ -73,6 +76,16 @@ def check_auth(credentials: HTTPBasicCredentials = Depends(security)) -> str:
     return credentials.username
 
 
+def require_same_origin(request: Request) -> None:
+    """Bloqueo CSRF mínimo (RM-018): los navegadores envían siempre el header
+    Sec-Fetch-Site en cada request; curl y los scripts de salud no lo envían.
+    Se rechaza solo el cross-site declarado; la ausencia del header se permite
+    para no romper verify_fase1.sh ni usos API directos."""
+    site = (request.headers.get("sec-fetch-site") or "").lower()
+    if site and site != "same-origin":
+        raise HTTPException(status_code=403, detail="Origen cruzado rechazado")
+
+
 def get_conn():
     conn = dbmod.connect(DB_PATH)
     try:
@@ -97,22 +110,24 @@ def urgency_badge(created_utc: float) -> tuple[str, str]:
 
 @app.get("/", response_class=HTMLResponse)
 def queue(request: Request, page: int = 1, user: str = Depends(check_auth), conn=Depends(get_conn)):
-    # RM-018: paginada como /atendidos (antes traia TODOS los pendientes
-    # sin tope). n_pendientes sigue siendo el total, no el largo de la pagina.
+    # Los pendientes se agrupan por hilo (un post y sus comentarios = una
+    # tarjeta) y se paginan los HILOS, no las filas. n_pendientes sigue siendo
+    # el total de filas; n_hilos, el de tarjetas.
     page = max(1, page)
-    total = conn.execute(
-        "SELECT COUNT(*) c FROM matches WHERE status = 'pendiente'"
-    ).fetchone()["c"]
-    n_pages = max(1, -(-total // QUEUE_PAGE_SIZE))
-    page = min(page, n_pages)
-    rows = conn.execute(
+    all_rows = conn.execute(
         "SELECT * FROM matches WHERE status = 'pendiente' "
-        "ORDER BY priority_score DESC NULLS LAST, created_utc DESC LIMIT ? OFFSET ?",
-        (QUEUE_PAGE_SIZE, (page - 1) * QUEUE_PAGE_SIZE),
+        "ORDER BY priority_score DESC NULLS LAST, created_utc DESC LIMIT ?",
+        (QUEUE_MAX_ROWS,),
     ).fetchall()
+    groups = threads.group_by_thread(all_rows)
+    total = len(all_rows)
+    n_pages = max(1, -(-len(groups) // QUEUE_PAGE_SIZE))
+    page = min(page, n_pages)
+    page_groups = groups[(page - 1) * QUEUE_PAGE_SIZE: page * QUEUE_PAGE_SIZE]
     resource_map = resources.load_resource_map(CONFIG_PATH)
     items = []
-    for r in rows:
+    for g in page_groups:
+        r = g["primary"]
         cls, label = urgency_badge(r["created_utc"])
         items.append({
             "resource": resources.suggest_resource(f"{r['title'] or ''} {r['snippet']}", resource_map),
@@ -120,6 +135,10 @@ def queue(request: Request, page: int = 1, user: str = Depends(check_auth), conn
             "snippet": r["snippet"], "confidence": r["confidence"],
             "ml_confidence": r["ml_confidence"], "urgency_class": cls, "urgency_label": label,
             "type": r["type"],
+            "extras": [{"id": e["id"], "snippet": e["snippet"], "confidence": e["confidence"]}
+                       for e in g["extras"]],
+            "extra_ids": [e["id"] for e in g["extras"]],
+            "comment_only": not g["has_post"],
         })
     # RM-018: "hoy" en hora Chile, no UTC. status_changed_at se guarda en
     # ISO con offset -03:00 (ver CHILE_TZ): SQLite lo normaliza a UTC al
@@ -132,20 +151,40 @@ def queue(request: Request, page: int = 1, user: str = Depends(check_auth), conn
         (hoy_cl,),
     ).fetchone()["c"]
     return templates.TemplateResponse(request, "queue.html", {
-        "items": items, "n_pendientes": total, "n_atendidos_hoy": n_atendidos_hoy,
+        "items": items, "n_pendientes": total, "n_hilos": len(groups),
+        "n_atendidos_hoy": n_atendidos_hoy,
         "page": page, "n_pages": n_pages,
     })
+
+
+def thread_mates(conn, match_id: int, candidate_ids: list[int]) -> list[int]:
+    """De `candidate_ids`, los que siguen pendientes y son del MISMO hilo que
+    `match_id`. Filtrar aqui evita que un id ajeno del formulario toque otros
+    hilos."""
+    primary = conn.execute("SELECT permalink FROM matches WHERE id = ?", (match_id,)).fetchone()
+    if not primary or not candidate_ids:
+        return []
+    key = threads.thread_key(primary["permalink"])
+    marks = ",".join("?" * len(candidate_ids))
+    rows = conn.execute(
+        f"SELECT id, permalink FROM matches WHERE status = 'pendiente' AND id IN ({marks})",
+        candidate_ids,
+    ).fetchall()
+    return [r["id"] for r in rows if r["id"] != match_id and threads.thread_key(r["permalink"]) == key]
 
 
 @app.post("/matches/{match_id}/atender")
 def atender(
     match_id: int,
+    request: Request,
     incluyo_link: bool = Form(False),
     url_monedario: str = Form(""),
     nota: str = Form(""),
+    ids: list[int] = Form([]),
     user: str = Depends(check_auth),
     conn=Depends(get_conn),
 ):
+    require_same_origin(request)
     match = conn.execute("SELECT * FROM matches WHERE id = ?", (match_id,)).fetchone()
     if not match:
         raise HTTPException(status_code=404, detail="No existe ese match")
@@ -170,6 +209,18 @@ def atender(
         )
     # Etapa 1 del ciclo de feedback: atender = relevante y accionable.
     reviews.record_review(conn, "accionable", match_id=match_id, now_iso=now_iso)
+    # Al responder el hilo, sus otros comentarios pendientes dejan de tener
+    # sentido. Se cierran SIN etiqueta humana: no es un juicio sobre ellos y
+    # no debe entrar al entrenamiento del filtro.
+    mates = thread_mates(conn, match_id, ids)
+    if mates:
+        marks = ",".join("?" * len(mates))
+        with conn:
+            conn.execute(
+                f"UPDATE matches SET status='descartado', status_note='hilo_atendido', "
+                f"status_changed_at=? WHERE id IN ({marks})",
+                [now_iso, *mates],
+            )
     return RedirectResponse(url="/", status_code=303)
 
 
@@ -179,21 +230,27 @@ MOTIVOS_DESCARTE = ("ruido", "tema_sin_accion", "ya_resuelto")
 @app.post("/matches/{match_id}/descartar")
 def descartar(
     match_id: int,
+    request: Request,
     motivo: str = Form("ruido"),
+    ids: list[int] = Form([]),
     user: str = Depends(check_auth),
     conn=Depends(get_conn),
 ):
+    require_same_origin(request)
     if motivo not in MOTIVOS_DESCARTE:
         raise HTTPException(status_code=422, detail="Motivo de descarte invalido")
     if not conn.execute("SELECT 1 FROM matches WHERE id = ?", (match_id,)).fetchone():
         raise HTTPException(status_code=404, detail="No existe ese match")
     now_iso = datetime.now(tz=CHILE_TZ).isoformat()
-    with conn:
-        conn.execute(
-            "UPDATE matches SET status='descartado', status_note=?, status_changed_at=? WHERE id=?",
-            (motivo, now_iso, match_id),
-        )
-    reviews.record_review(conn, motivo, match_id=match_id, now_iso=now_iso)
+    # El motivo es una decision sobre el HILO: se aplica al principal y a sus
+    # comentarios pendientes (que la tarjeta muestra plegados).
+    for target in [match_id, *thread_mates(conn, match_id, ids)]:
+        with conn:
+            conn.execute(
+                "UPDATE matches SET status='descartado', status_note=?, status_changed_at=? WHERE id=?",
+                (motivo, now_iso, target),
+            )
+        reviews.record_review(conn, motivo, match_id=target, now_iso=now_iso)
     return RedirectResponse(url="/", status_code=303)
 
 
@@ -216,12 +273,14 @@ def wikis(request: Request, user: str = Depends(check_auth), conn=Depends(get_co
 @app.post("/wikis/{subreddit}")
 def update_wiki(
     subreddit: str,
+    request: Request,
     checked: bool = Form(False),
     has_monedario: bool = Form(False),
     notes: str = Form(""),
     user: str = Depends(check_auth),
     conn=Depends(get_conn),
 ):
+    require_same_origin(request)
     now_iso = datetime.now(tz=CHILE_TZ).isoformat()
     with conn:
         conn.execute(
@@ -278,10 +337,12 @@ def revision(request: Request, user: str = Depends(check_auth), conn=Depends(get
 def revision_guardar(
     source: str,
     item_id: int,
+    request: Request,
     motivo: str = Form(...),
     user: str = Depends(check_auth),
     conn=Depends(get_conn),
 ):
+    require_same_origin(request)
     if source not in ("match", "discarded"):
         raise HTTPException(status_code=404, detail="Origen invalido")
     if motivo not in reviews.MOTIVOS:

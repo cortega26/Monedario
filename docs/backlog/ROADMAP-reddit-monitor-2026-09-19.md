@@ -58,7 +58,15 @@
 - **Wave 4 — Completitud (RM-020–022).** Features tras flags env (default off). Gate: un ciclo semanal vivo con filas + reporte calibración.
 - **Wave 5 — Tests (RM-023–037).** Intercalados con Waves 2–3, cierre aquí. Gate: cobertura en cada sad path.
 
-## Reglas permanentes (no negociables)
+## Contrato de convergencia gaps-pilot (2026-09-19, arquitecto)
+
+`catalog.json` = snapshot INPUT de lo publicado (generado por
+`export:reddit-catalog`, con `--check` + lint-staged; la VM no tiene el repo).
+`content_gaps` (SQLite) = único store de DISPOSICIÓN de brechas. La Fase 3
+(`gap_analysis.py`) debe escribir sus brechas por similitud en `content_gaps`
+con el mismo vocabulario (`detectado/en_backlog/publicado/descartado`) y las
+mismas transiciones human-only del writer RM-020 — nunca un JSON paralelo.
+Verificado 2026-09-19: export `--check` OK (163 entradas), 8 tests verdes.
 
 STOP: cambio de semántica de alertas sin update ADR · nuevo tracking persistente/user-level · auto-posteo (listen-only) · exposición pública más allá de la superficie actual sin Access-equivalente. Rollback por wave (0: chmod revert; 1: revert config; 2: `monitor.py.bak`/wrangler rollback; 3: git revert por commit; 4: env-flag off). Fuera de alcance: pipeline editorial, calculadoras, rutas, monetización.
 
