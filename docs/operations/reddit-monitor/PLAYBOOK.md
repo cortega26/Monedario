@@ -246,7 +246,9 @@ deja que un reporte semanal corra para consolidar `kpis.json`.
 
 ## Lo que NO hacemos, nunca
 
-- No automatizamos respuestas ni publicaciones. Todo lo que sale de tu
-  cuenta de Reddit lo escribes tú, a mano.
+- No publicamos nada de forma automática ni sin revisión. La IA puede
+  preparar borradores (voz, filtros y reglas duras, incluida la de **nunca
+  emojis**, en [REPLY_GUIDE.md](REPLY_GUIDE.md)), pero cada respuesta la
+  revisas, la editas y la envías tú desde tu cuenta.
 - No usamos varias cuentas para simular consenso ni votamos artificialmente.
 - No enlazamos donde el contenido no aporta valor real a la pregunta.
