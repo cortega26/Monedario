@@ -126,6 +126,20 @@ Todo lo ajustable vive en `config.json`, se crea solo con valores por
 defecto en la primera corrida. Puedes editarlo directo:
 
 - `subreddits`: agrega o quita subs a monitorear.
+- `own_authors`: tus cuentas de Reddit (sin `u/`, sin distinguir mayúsculas).
+  Todo lo que escriban se descarta antes de clasificarlo, para que el monitor
+  no te sugiera responder a tus propias respuestas. Si ya se coló algo,
+  `python3 purge_own_authors.py .` cuenta los matches propios (dry-run) y
+  `--apply` los borra junto con sus etiquetas (haz `bash backup_db.sh` antes).
+- `resource_map`: qué recurso de Monedario sugerir según el hilo. Lista
+  ordenada de grupos `{label, url, phrases}`; gana el primer grupo cuyas
+  frases aparecen en el título o el snippet (sin acentos ni mayúsculas, por
+  palabra completa). La cola muestra "Sugerencia: …" y prellena la URL del
+  formulario de atender. Solo se aceptan URLs `https://`. Aplica al momento,
+  incluso a los pendientes ya guardados. Los grupos actuales vienen de las 5
+  búsquedas del antiguo Worker de alertas (calculadoras). Ojo: es una
+  coincidencia por frase exacta, con cobertura baja (unos pocos hilos por
+  semana); sirve para agregar frases o guías del blog, no para adivinar.
 - `keywords`: agrega términos que veas que faltan (o quita los que generen
   demasiado ruido — revisa `descartados.jsonl` para detectar cuáles).
 - `intent_phrases` / `interrogative_starters`: las señales que detectan

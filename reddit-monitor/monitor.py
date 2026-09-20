@@ -87,6 +87,8 @@ DEFAULT_CONFIG = {
     # que escriban se descarta antes de clasificarlo: no tiene sentido
     # sugerirnos responder a nuestras propias respuestas.
     "own_authors": [],
+    # Sugerencia de calculadora por hilo (ver resources.py). Vacio por defecto.
+    "resource_map": [],
     "subreddits": [
         "chile", "Santiago", "RepublicadeChile", "FinanzasChile",
         "AskChile", "BolsaChile",

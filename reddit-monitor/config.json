@@ -44,7 +44,11 @@
     "credito hipotecario",
     "prestamo",
     "interes compuesto",
-    "impuesto"
+    "impuesto",
+    "finiquito",
+    "operacion renta",
+    "formulario 22",
+    "devolucion de impuestos"
   ],
   "intent_phrases": [
     "alguien sabe",
@@ -110,5 +114,63 @@
     "Alta": 6,
     "Media": 3,
     "Baja": 1
-  }
+  },
+  "resource_map": [
+    {
+      "label": "Simulador Operación Renta",
+      "url": "https://monedario.cl/calculadoras/operacion-renta/",
+      "phrases": [
+        "operacion renta",
+        "devolucion de impuestos",
+        "simulador renta",
+        "formulario 22",
+        "declaracion de renta"
+      ]
+    },
+    {
+      "label": "Calculadora de finiquito",
+      "url": "https://monedario.cl/calculadoras/finiquito-indemnizacion/",
+      "phrases": [
+        "finiquito",
+        "indemnizacion por despido",
+        "indemnizacion despido"
+      ]
+    },
+    {
+      "label": "Calculadora de sueldo líquido",
+      "url": "https://monedario.cl/calculadoras/sueldo-liquido/",
+      "phrases": [
+        "sueldo liquido",
+        "de bruto a liquido",
+        "cuanto me descuentan del sueldo",
+        "sueldo bruto"
+      ]
+    },
+    {
+      "label": "Comparador de comisiones AFP",
+      "url": "https://monedario.cl/calculadoras/comisiones-afp/",
+      "phrases": [
+        "comision afp",
+        "comisiones afp",
+        "cuanto descuenta la afp",
+        "cambiarse de afp",
+        "cambio de afp",
+        "cambiarme de afp",
+        "comision de la afp",
+        "comisiones de las afp",
+        "comision de afp",
+        "comisiones de afp"
+      ]
+    },
+    {
+      "label": "Conversor UF ↔ pesos",
+      "url": "https://monedario.cl/calculadoras/conversor-uf/",
+      "phrases": [
+        "uf a pesos",
+        "valor de la uf",
+        "cuanto es la uf",
+        "convertir uf"
+      ]
+    }
+  ]
 }

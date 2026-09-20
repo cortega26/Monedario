@@ -1,6 +1,5 @@
 """Etapa 1 del ciclo de feedback: etiquetas humanas (reviews.py, migracion
 v3, endpoints de la UI)."""
-import base64
 import sqlite3
 import sys
 
@@ -121,20 +120,6 @@ def test_migrate_fase06_no_sella_v3(tmp_path, monkeypatch):
     raw = sqlite3.connect(path)
     assert raw.execute("SELECT value FROM schema_meta").fetchone()[0] == "2"
     raw.close()
-
-
-@pytest.fixture
-def client(tmp_path, monkeypatch):
-    from fastapi.testclient import TestClient
-    import app as webapp
-    path = tmp_path / "web.db"
-    monkeypatch.setattr(webapp, "DB_PATH", path)
-    monkeypatch.setattr(webapp, "WEB_PASSWORD", "")
-    tc = TestClient(webapp.app, follow_redirects=False)
-    # HTTPBasic exige el header aunque WEB_PASSWORD este vacio (cualquier
-    # credencial pasa en ese caso).
-    tc.headers["Authorization"] = "Basic " + base64.b64encode(b"carlos:x").decode()
-    return tc, path
 
 
 def test_descartar_guarda_motivo_y_etiqueta(client):
