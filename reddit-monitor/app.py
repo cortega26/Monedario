@@ -73,6 +73,16 @@ def check_auth(credentials: HTTPBasicCredentials = Depends(security)) -> str:
     return credentials.username
 
 
+def require_same_origin(request: Request) -> None:
+    """Bloqueo CSRF mínimo (RM-018): los navegadores envían siempre el header
+    Sec-Fetch-Site en cada request; curl y los scripts de salud no lo envían.
+    Se rechaza solo el cross-site declarado; la ausencia del header se permite
+    para no romper verify_fase1.sh ni usos API directos."""
+    site = (request.headers.get("sec-fetch-site") or "").lower()
+    if site and site != "same-origin":
+        raise HTTPException(status_code=403, detail="Origen cruzado rechazado")
+
+
 def get_conn():
     conn = dbmod.connect(DB_PATH)
     try:
@@ -140,12 +150,14 @@ def queue(request: Request, page: int = 1, user: str = Depends(check_auth), conn
 @app.post("/matches/{match_id}/atender")
 def atender(
     match_id: int,
+    request: Request,
     incluyo_link: bool = Form(False),
     url_monedario: str = Form(""),
     nota: str = Form(""),
     user: str = Depends(check_auth),
     conn=Depends(get_conn),
 ):
+    require_same_origin(request)
     match = conn.execute("SELECT * FROM matches WHERE id = ?", (match_id,)).fetchone()
     if not match:
         raise HTTPException(status_code=404, detail="No existe ese match")
@@ -179,10 +191,12 @@ MOTIVOS_DESCARTE = ("ruido", "tema_sin_accion", "ya_resuelto")
 @app.post("/matches/{match_id}/descartar")
 def descartar(
     match_id: int,
+    request: Request,
     motivo: str = Form("ruido"),
     user: str = Depends(check_auth),
     conn=Depends(get_conn),
 ):
+    require_same_origin(request)
     if motivo not in MOTIVOS_DESCARTE:
         raise HTTPException(status_code=422, detail="Motivo de descarte invalido")
     if not conn.execute("SELECT 1 FROM matches WHERE id = ?", (match_id,)).fetchone():
@@ -216,12 +230,14 @@ def wikis(request: Request, user: str = Depends(check_auth), conn=Depends(get_co
 @app.post("/wikis/{subreddit}")
 def update_wiki(
     subreddit: str,
+    request: Request,
     checked: bool = Form(False),
     has_monedario: bool = Form(False),
     notes: str = Form(""),
     user: str = Depends(check_auth),
     conn=Depends(get_conn),
 ):
+    require_same_origin(request)
     now_iso = datetime.now(tz=CHILE_TZ).isoformat()
     with conn:
         conn.execute(
@@ -278,10 +294,12 @@ def revision(request: Request, user: str = Depends(check_auth), conn=Depends(get
 def revision_guardar(
     source: str,
     item_id: int,
+    request: Request,
     motivo: str = Form(...),
     user: str = Depends(check_auth),
     conn=Depends(get_conn),
 ):
+    require_same_origin(request)
     if source not in ("match", "discarded"):
         raise HTTPException(status_code=404, detail="Origen invalido")
     if motivo not in reviews.MOTIVOS:
