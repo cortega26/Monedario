@@ -26,7 +26,7 @@
 # principal — solo agrega el indice de wheels CPU-only de PyTorch como
 # fuente adicional, asi el resto de los paquetes se instalan normal.
 --extra-index-url https://download.pytorch.org/whl/cpu
-torch==2.8.0
+torch==2.12.1+cpu
 sentence-transformers==5.1.0
 spacy==3.8.7
-nltk==3.9.1
+nltk==3.10.3
