@@ -48,6 +48,9 @@ describe("analytics v2 contract", () => {
         "calculator_print_click",
         "calculator_share_click",
         "resume_cleared",
+        // Pre-contrato de monetización (ADR-20260921): tipados, sin emisores.
+        "affiliate_click",
+        "lead_submit",
       ].sort()
     );
     expect([...ANALYTICS_ALLOWED_PROPERTIES].sort()).toEqual(
@@ -73,6 +76,9 @@ describe("analytics v2 contract", () => {
         "mode",
         "article_slug",
         "scroll_depth_percent",
+        // Pre-contrato de monetización (ADR-20260921).
+        "affiliate_slot",
+        "lead_type",
       ].sort()
     );
   });
@@ -546,6 +552,26 @@ describe("plan 100: every allowlisted event round-trips through both sanitizers"
         cta_location: "search_chips",
         destination_url: "https://monedario.cl/calculadoras/iva/",
         page_type: "home",
+        app_version: APP,
+      },
+    ],
+    // Pre-contrato de monetización (ADR-20260921): tipados, sin emisores.
+    // El slot es un token de desarrollo; lead_type una etiqueta.
+    [
+      "affiliate_click",
+      {
+        calculator_id: "conversor-utm",
+        page_type: "calculator",
+        affiliate_slot: "utm-bajo-resultado",
+        app_version: APP,
+      },
+    ],
+    [
+      "lead_submit",
+      {
+        calculator_id: "conversor-utm",
+        page_type: "calculator",
+        lead_type: "newsletter",
         app_version: APP,
       },
     ],
