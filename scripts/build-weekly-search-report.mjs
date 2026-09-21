@@ -845,6 +845,8 @@ function readAnalyticsJson(analyticsJsonDir, week) {
         alertInterestSubmits: 0,
         supportShown: 0,
         supportConfirmed: 0,
+        affiliateClicks: 0,
+        leadSubmits: 0,
       });
     }
     const acc = bySlug.get(slug);
@@ -893,6 +895,12 @@ function readAnalyticsJson(analyticsJsonDir, week) {
       case "alert_interest_submit":
         acc.alertInterestSubmits += row.count;
         break;
+      case "affiliate_click":
+        acc.affiliateClicks += row.count;
+        break;
+      case "lead_submit":
+        acc.leadSubmits += row.count;
+        break;
       case "result_action_click":
         acc.resultActionClicks += row.count;
         break;
@@ -918,6 +926,7 @@ function readAnalyticsJson(analyticsJsonDir, week) {
     resumeClicks: 0, officialSourceClicks: 0,
     shareSuccess: 0, alertInterestShown: 0, alertInterestSubmits: 0,
     supportShown: 0, supportConfirmed: 0,
+    affiliateClicks: 0, leadSubmits: 0,
   };
   for (const acc of bySlug.values()) {
     totals.views += acc.views;
@@ -937,6 +946,8 @@ function readAnalyticsJson(analyticsJsonDir, week) {
     totals.alertInterestSubmits += acc.alertInterestSubmits;
     totals.supportShown += acc.supportShown;
     totals.supportConfirmed += acc.supportConfirmed;
+    totals.affiliateClicks += acc.affiliateClicks;
+    totals.leadSubmits += acc.leadSubmits;
   }
 
   // Convert Map to plain object for JSON serialization.
@@ -1263,7 +1274,8 @@ _Sin eventos registrados esta semana._
       `scenario actions=${totals.scenarioActions} · resume clicks=${totals.resumeClicks} · ` +
       `official source clicks=${totals.officialSourceClicks} · share success=${totals.shareSuccess} · ` +
       `alert shown=${totals.alertInterestShown} · alert interest=${totals.alertInterestSubmits} · ` +
-      `support shown=${totals.supportShown} · support confirmed=${totals.supportConfirmed}`,
+      `support shown=${totals.supportShown} · support confirmed=${totals.supportConfirmed} · ` +
+      `affiliate clicks=${totals.affiliateClicks} · lead submits=${totals.leadSubmits}`,
     "",
     `_Starts/view y results/start son ratios de conteos de eventos agregados; pueden superar 1× y no representan usuarios, sesiones ni conversión de cohorte. Error rate = errors / starts. NBS CTR = next-step clicks / next-step shown. "n/d" indica denominador cero o fuente no disponible._`,
     "",

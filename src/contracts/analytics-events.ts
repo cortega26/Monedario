@@ -254,6 +254,9 @@ const ENUM_VALUES: Readonly<Record<string, ReadonlySet<string>>> = {
 };
 
 const SAFE_TOKEN = /^[a-z0-9][a-z0-9._-]{0,79}$/;
+// affiliate_slot: SAFE_TOKEN sin secuencias de 6+ dígitos, para no chocar con
+// la heurística anti-PII de scripts/data-signals/fetch-analytics-export.mjs.
+const AFFILIATE_SLOT = /^(?!.*\d{6})[a-z0-9][a-z0-9._-]{0,79}$/;
 const APP_VERSION = /^[0-9]+\.[0-9]+\.[0-9]+(?:-[a-z0-9.-]+)?$/;
 // destination_url solo admite URLs internas del sitio (el clic CTA apunta a
 // una calculadora de monedario.cl). Evita exfiltrar destinos externos.
@@ -297,7 +300,9 @@ export function sanitizeAnalyticsPayload(
         ? APP_VERSION.test(value)
         : key === "destination_url"
           ? INTERNAL_URL.test(value)
-          : SAFE_TOKEN.test(value);
+          : key === "affiliate_slot"
+            ? AFFILIATE_SLOT.test(value)
+            : SAFE_TOKEN.test(value);
     if (!valid) {
       if (options.rejectUnknown) return null;
       continue;
