@@ -63,6 +63,10 @@ const ALLOWED_EVENTS = new Set([
   "hub_route_click",
   "related_content_click",
   "search_chip_click",
+  // Pre-contrato de monetización (ADR-20260921, sin emisores todavía) — ver
+  // src/contracts/analytics-events.ts.
+  "affiliate_click",
+  "lead_submit",
   // Historical schema (v1), retained so old weekly exports stay readable.
   "next_best_step_shown",
   "next_best_step_click",

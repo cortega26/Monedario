@@ -74,15 +74,32 @@ const TRANSPORT_TIMEOUT_MS = 3_000;
  *   document.documentElement.dataset.analyticsTransport = "enabled"
  * or:
  *   window.__monedarioAnalyticsTransport = true
+ *
+ * Resolution order (ADR-20260921-production-only-transport):
+ *  1. Explicit opt-in (`window.__monedarioAnalyticsTransport === true`) wins
+ *     everywhere: unit/integration tests, manual preview verification and the
+ *     Playwright accessibility suite all use it on non-production hosts.
+ *  2. Otherwise the build-time DOM flag is the master switch: absent (or any
+ *     value other than "enabled") means off.
+ *  3. With the DOM flag on, only production hosts transmit. Preview
+ *     deployments (*.pages.dev, branch deploys), local dev and E2E runners
+ *     never pollute the production aggregates — no dashboard allowlist, no
+ *     per-environment build matrix. Cloudflare Web Analytics (edge beacon,
+ *     cookieless) remains the always-on baseline and needs no gate.
  */
+const PRODUCTION_HOSTS = new Set(["monedario.cl", "www.monedario.cl"]);
+
 function isTransportEnabled(): boolean {
-  if (document.documentElement.dataset.analyticsTransport === "enabled") {
-    return true;
-  }
-  return (
+  if (
     (window as unknown as Record<string, unknown>)
       .__monedarioAnalyticsTransport === true
-  );
+  ) {
+    return true;
+  }
+  if (document.documentElement.dataset.analyticsTransport !== "enabled") {
+    return false;
+  }
+  return PRODUCTION_HOSTS.has(window.location.hostname.toLowerCase());
 }
 
 function sendAnalyticsEvent(

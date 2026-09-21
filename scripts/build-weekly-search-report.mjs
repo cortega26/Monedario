@@ -47,6 +47,10 @@ const ANALYTICS_EVENT_NAMES = new Set([
   "hub_route_click",
   "related_content_click",
   "search_chip_click",
+  // Pre-contrato de monetización (ADR-20260921, sin emisores todavía) — ver
+  // src/contracts/analytics-events.ts.
+  "affiliate_click",
+  "lead_submit",
 ]);
 
 function parseArgs(argv) {

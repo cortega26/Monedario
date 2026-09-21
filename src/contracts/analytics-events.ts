@@ -148,6 +148,18 @@ export const ANALYTICS_EVENT_ALLOWLIST = {
     "page_type",
     "app_version",
   ],
+  // Pre-contrato de monetización (ADR-20260921-precontract-monetization-events):
+  // tipados pero SIN emisores. Activar monetización el día de la firma es un
+  // switch (emitir), no un proyecto. Sin PII: slots y tipos son etiquetas de
+  // desarrollo; el mapeo slot→URL del partner vive fuera del payload (el
+  // contrato solo admite destination_url internas).
+  affiliate_click: [
+    "calculator_id",
+    "page_type",
+    "affiliate_slot",
+    "app_version",
+  ],
+  lead_submit: ["calculator_id", "page_type", "lead_type", "app_version"],
 } as const;
 
 export type AnalyticsEventName = keyof typeof ANALYTICS_EVENT_ALLOWLIST;
@@ -178,6 +190,9 @@ export const ANALYTICS_ALLOWED_PROPERTIES = [
   "mode",
   "article_slug",
   "scroll_depth_percent",
+  // Pre-contrato de monetización: etiquetas de desarrollo, sin PII.
+  "affiliate_slot",
+  "lead_type",
 ] as const satisfies readonly AnalyticsPropertyName[];
 
 const ENUM_VALUES: Readonly<Record<string, ReadonlySet<string>>> = {
@@ -233,6 +248,9 @@ const ENUM_VALUES: Readonly<Record<string, ReadonlySet<string>>> = {
   // emisor (src/scripts/analytics.ts) para preservar el invariante "solo
   // strings acotados, nunca resultados numéricos".
   scroll_depth_percent: new Set(["25", "50", "75", "100"]),
+  // Pre-contrato de monetización: tipos de captación como etiquetas
+  // (qué formulario, no quién ni con qué datos).
+  lead_type: new Set(["newsletter", "alert", "contact"]),
 };
 
 const SAFE_TOKEN = /^[a-z0-9][a-z0-9._-]{0,79}$/;

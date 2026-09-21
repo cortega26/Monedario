@@ -20,8 +20,10 @@
 | `support_shown` | El bloque de apoyo entra 25% al viewport postresultado | una vez por vista |
 | `support_click` | Activación del enlace interno a `/apoyar/` | cada activación explícita |
 | `support_confirmed` | Confirmación fiable del proveedor, sin inferencia por salida | definido, pero no emitido hasta existir callback/webhook autorizado |
+| `affiliate_click` | Activación de un slot de afiliado firmado | definido, pero no emitido hasta firma de contrato (ADR-20260921). El slot es un token de desarrollo; el mapeo slot→URL vive fuera del payload |
+| `lead_submit` | Envío confirmado de un formulario propio (newsletter, alerta, contacto) | definido, pero no emitido hasta firma de contrato (ADR-20260921). `lead_type` es etiqueta, nunca datos del formulario |
 
-Propiedades permitidas, sin excepciones: `calculator_id`, `page_type`, `cluster`, `interaction_variant`, `next_step_id`, `source_type`, `error_category`, `share_method`, `support_location`, `utm_source`, `utm_medium`, `utm_campaign`, `app_version`.
+Propiedades permitidas, sin excepciones: `calculator_id`, `page_type`, `cluster`, `interaction_variant`, `next_step_id`, `source_type`, `error_category`, `share_method`, `support_location`, `utm_source`, `utm_medium`, `utm_campaign`, `app_version`, `affiliate_slot`, `lead_type`.
 
 Las etiquetas UTM solo miden activaciones de enlaces propios en agregado. No prueban que una persona volvió, no enlazan sesiones y no permiten cohortes 7/30 días. “Retorno” solo puede describirse como tráfico agregado etiquetado, nunca como usuario recurrente.
 
