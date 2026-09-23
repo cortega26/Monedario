@@ -134,7 +134,7 @@
         "Cómo funciona la cuota: lo que pagas y a qué va"
       ],
       "bodyExcerpt": "Cuando comparas créditos, el número que más te empujan es la cuota o la tasa mensual. El problema es que ninguna de esas dos cifras, por sí sola, te dice cuánto terminarás pagando en total. La **CAE** existe precisamente para cerrar esa trampa. Usa esta guía si todavía estás evaluando una oferta, una repactación o un prepago. Si tu problema ya no es comparar sino ordenar deudas vencidas o revisar qué aparece a tu nombre, cambia de ruta: primero diagnóstico; después, si corresponde, salida formal. Para llevar la comparación a números, abre la . Si el crédito ya existe y estás decidiendo un abono, prueba también la . ## Dos CAE que no tienen nada que ver entre sí Antes de entrar al tema, hay que despejar una confusión frecuente de vocabulario chileno: - **CAE (Carga Anual Equivalente):** Indicador del costo total anual de un crédito. Incluye tasas, comisiones y seguros. Es el número que te permite comparar dos créditos de forma justa. - **CAE (Crédito con Aval del Estado):** Préstamo estudiantil gestionado por la Comisión Ingresa. No tiene relación directa con el indicador financiero anterior. En esta guía, \"CAE\" siempre se refiere al primer significado: el indicador de costo del cré",
-      "wordCount": 2356,
+      "wordCount": 2417,
       "sourceFile": "cae-costo-real-credito-chile.md"
     },
     {
@@ -269,7 +269,7 @@
         "Paso 5: El método 50/30/20 y por qué no siempre aplica en Chile"
       ],
       "bodyExcerpt": "> **Respuesta rápida:** Una guía de base ampliamente utilizada en educación financiera es la regla 50/30/20: destinar hasta un 50% del ingreso neto a gastos fijos (arriendo, deudas, servicios), hasta un 30% a gastos variables (alimentación, ocio) y al menos un 20% a ahorro o reducción de deudas. Es un punto de partida, no una obligación, y debe ajustarse a tu situación real. > > **Resumen orientativo:** Esta distribución es una referencia orientativa de educación financiera, no una norma legal. Adáptala según tu ingreso, carga familiar y metas. Antes de invertir en algo, antes de ahorrar para algo, antes de salir de una deuda, necesitas saber a dónde va tu plata. La mayoría de los problemas financieros personales no son de ingreso — son de control. Este artículo te da un método concreto para hacer un presupuesto que funcione en la realidad chilena, no en una hoja teórica. Si ya tienes claro cuánto recibes de sueldo líquido, complementa con la . Si es tu primer empleo, la te explica además contrato, AFP y Fonasa antes de llegar al presupuesto. > **Resumen orientativo:** Los patrones de gasto descritos a continuación son referencias de educación financiera basadas en comportamiento g",
-      "wordCount": 1338,
+      "wordCount": 1346,
       "sourceFile": "como-hacer-presupuesto-mensual-chile.md"
     },
     {
@@ -354,8 +354,8 @@
       "summary": "En Chile, estar \"en el Boletín Comercial\" es la causa concreta de lo que coloquialmente se llama \"estar en DICOM\". No son lo mismo, pero están relacionados: el Boletín Comercial es el registro oficial de protestos y documentos impagos; DICOM es un producto privado que recoge ese...",
       "leadParagraphs": [
         "En Chile, estar \"en el Boletín Comercial\" es la causa concreta de lo que coloquialmente se llama \"estar en DICOM\". No son lo mismo, pero están relacionados: el Boletín Comercial es el registro oficial de protestos y documentos impagos; DICOM es un producto privado que recoge ese y otros datos.",
-        "La regla de fondo es esta: si pagaste la deuda, la ley te da derecho a que te eliminen en **5 días hábiles**. Si la deuda sigue impaga, la anotación persiste indefinidamente — no hay un plazo automático de borrado mientras no haya pago. Así lo establece la **Ley 20.575**, vigente a 2026-04-09.",
-        "El **Boletín Comercial** es el registro nacional de documentos comerciales protestados e impagos. Lo administra la **Cámara de Comercio de Santiago (CCS)** bajo supervisión de la **Comisión para el Mercado Financiero (CMF)**. No es un sistema privado ni discrecional: su funcionamiento está regulado por la Ley 20.575 y normas de la CMF."
+        "La regla de fondo es esta: si pagaste la deuda, el acreedor debe avisar el pago al responsable del registro dentro de **7 días hábiles** (Ley 19.628, art. 19). Si la deuda sigue impaga, los datos no pueden comunicarse pasados **5 años** desde que la obligación se hizo exigible (Ley 19.628, art. 18) y pierden vigencia pasados más de **5 años** desde su publicación (D.S. 950, art. 10). Vigente a 2026-09-20.",
+        "El **Boletín Comercial** es el registro nacional de documentos comerciales protestados e impagos. Lo administra la **Cámara de Comercio de Santiago (CCS)** conforme al D.S. 950. No es un sistema discrecional: su funcionamiento está regulado por la Ley 19.628 y el D.S. 950; la CMF declara que no lo fiscaliza."
       ],
       "headings": [
         "Tabla de contenidos",
@@ -365,10 +365,10 @@
         "Cómo solicitar la eliminación voluntaria",
         "Paso 1 — Paga y obtén comprobante",
         "Paso 2 — Exige al acreedor que notifique a la CCS",
-        "Paso 3 — Si el acreedor no cumple en el plazo, reclama ante la CMF"
+        "Paso 3 — Si el acreedor no cumple en el plazo, exige al responsable y recurre al juzgado"
       ],
-      "bodyExcerpt": "En Chile, estar \"en el Boletín Comercial\" es la causa concreta de lo que coloquialmente se llama \"estar en DICOM\". No son lo mismo, pero están relacionados: el Boletín Comercial es el registro oficial de protestos y documentos impagos; DICOM es un producto privado que recoge ese y otros datos. La regla de fondo es esta: si pagaste la deuda, la ley te da derecho a que te eliminen en **5 días hábiles**. Si la deuda sigue impaga, la anotación persiste indefinidamente — no hay un plazo automático de borrado mientras no haya pago. Así lo establece la **Ley 20.575**, vigente a 2026-04-09. ## Tabla de contenidos ## ¿Qué es el Boletín Comercial y qué registra? El **Boletín Comercial** es el registro nacional de documentos comerciales protestados e impagos. Lo administra la **Cámara de Comercio de Santiago (CCS)** bajo supervisión de la **Comisión para el Mercado Financiero (CMF)**. No es un sistema privado ni discrecional: su funcionamiento está regulado por la Ley 20.575 y normas de la CMF. Qué registra principalmente: - Cheques rechazados por falta de fondos o por orden de no pago. - Letras de cambio y pagarés protestados ante notario. - Otros documentos mercantiles que el sistema financ",
-      "wordCount": 1286,
+      "bodyExcerpt": "En Chile, estar \"en el Boletín Comercial\" es la causa concreta de lo que coloquialmente se llama \"estar en DICOM\". No son lo mismo, pero están relacionados: el Boletín Comercial es el registro oficial de protestos y documentos impagos; DICOM es un producto privado que recoge ese y otros datos. La regla de fondo es esta: si pagaste la deuda, el acreedor debe avisar el pago al responsable del registro dentro de **7 días hábiles** (Ley 19.628, art. 19). Si la deuda sigue impaga, los datos no pueden comunicarse pasados **5 años** desde que la obligación se hizo exigible (Ley 19.628, art. 18) y pierden vigencia pasados más de **5 años** desde su publicación (D.S. 950, art. 10). Vigente a 2026-09-20. ## Tabla de contenidos ## ¿Qué es el Boletín Comercial y qué registra? El **Boletín Comercial** es el registro nacional de documentos comerciales protestados e impagos. Lo administra la **Cámara de Comercio de Santiago (CCS)** conforme al D.S. 950. No es un sistema discrecional: su funcionamiento está regulado por la Ley 19.628 y el D.S. 950; la CMF declara que no lo fiscaliza. Qué registra principalmente: - Cheques rechazados por falta de fondos o por orden de no pago. - Letras de cambio y ",
+      "wordCount": 1533,
       "sourceFile": "como-salir-boletin-comercial-chile.md"
     },
     {
@@ -437,7 +437,7 @@
         "¿Cotizar voluntariamente te da acceso a la Pensión Garantizada Universal (PGU)?"
       ],
       "bodyExcerpt": "> **Información vigente al 2026-09-17.** El ingreso mínimo mensual y la tasa del Seguro de Invalidez y Sobrevivencia (SIS) se reajustan periódicamente. Verifica los valores actualizados en la antes de cotizar. Si no emites boletas de honorarios, o las que emites no llegan al umbral que obliga a cotizar, probablemente asumiste que no tienes forma de seguir aportando a tu pensión mientras no trabajes como dependiente. No es así: existe una figura legal específica —el **afiliado o afiliada voluntario/a**— para quien quiere cotizar sin estar obligado. Esta guía explica quién califica, cuánto cotizas, cómo te afilias y, sobre todo, qué NO resuelve esta cotización (dos errores comunes: pensar que da acceso a la PGU o que incluye salud automáticamente). ## Antes de seguir: \"cotización voluntaria\" significa dos cosas distintas La misma expresión se usa para dos mecanismos previsionales diferentes en Chile, y confundirlos lleva a errores: 1. **Afiliación voluntaria** (el tema de este artículo): el estatus de quien **no cotiza obligatoriamente** — no ejerce actividad remunerada, o es independiente sin boletas de honorarios — y decide cotizar igual, un 10% de un monto que elige. 2. **Cotizaci",
-      "wordCount": 1959,
+      "wordCount": 1971,
       "sourceFile": "cotizacion-voluntaria-afp-independiente.md"
     },
     {
@@ -458,7 +458,7 @@
       "leadParagraphs": [
         "Un **crédito hipotecario** es, en términos simples, un préstamo a largo plazo donde la propiedad que compras queda como garantía. En Chile casi todos se expresan en **[UF](/posts/que-es-la-uf/)** (Unidad de Fomento), lo que significa que tu dividendo se reajusta con la inflación cada mes.",
         "Esta guía cubre el proceso completo — desde que decides que quieres comprar hasta que firmas en notaría y el Conservador inscribe la propiedad a tu nombre — con los costos reales que los bancos no siempre adelantan.",
-        "> **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifica en las fuentes oficiales referenciadas al final."
+        "> **Información vigente al 2026-09-20.** Ante cambios normativos o de política pública, verifica en las fuentes oficiales referenciadas al final."
       ],
       "headings": [
         "Tabla de contenidos",
@@ -470,8 +470,8 @@
         "Antigüedad laboral",
         "LTV y flujo de documentos"
       ],
-      "bodyExcerpt": "Un **crédito hipotecario** es, en términos simples, un préstamo a largo plazo donde la propiedad que compras queda como garantía. En Chile casi todos se expresan en ** ** (Unidad de Fomento), lo que significa que tu dividendo se reajusta con la inflación cada mes. Esta guía cubre el proceso completo — desde que decides que quieres comprar hasta que firmas en notaría y el Conservador inscribe la propiedad a tu nombre — con los costos reales que los bancos no siempre adelantan. > **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifica en las fuentes oficiales referenciadas al final. Para estimar cuánto pagarías de dividendo mensual antes de hablar con un banco, usa la ## Tabla de contenidos ## ¿Qué es un crédito hipotecario y quién lo otorga? El **crédito hipotecario** es el financiamiento que entrega una institución financiera para comprar un bien raíz. La propiedad queda como garantía (eso es la \"hipoteca\"): si dejas de pagar, el acreedor puede ejecutarla y recuperar el capital prestado. En Chile lo otorgan: - **Bancos comerciales** (BancoEstado, Santander, BCI, Scotiabank, Itaú, entre otros) - **Cajas de compensación** (Los Andes, Los Héroes,",
-      "wordCount": 1645,
+      "bodyExcerpt": "Un **crédito hipotecario** es, en términos simples, un préstamo a largo plazo donde la propiedad que compras queda como garantía. En Chile casi todos se expresan en ** ** (Unidad de Fomento), lo que significa que tu dividendo se reajusta con la inflación cada mes. Esta guía cubre el proceso completo — desde que decides que quieres comprar hasta que firmas en notaría y el Conservador inscribe la propiedad a tu nombre — con los costos reales que los bancos no siempre adelantan. > **Información vigente al 2026-09-20.** Ante cambios normativos o de política pública, verifica en las fuentes oficiales referenciadas al final. Para estimar cuánto pagarías de dividendo mensual antes de hablar con un banco, usa la ## Tabla de contenidos ## ¿Qué es un crédito hipotecario y quién lo otorga? El **crédito hipotecario** es el financiamiento que entrega una institución financiera para comprar un bien raíz. La propiedad queda como garantía (eso es la \"hipoteca\"): si dejas de pagar, el acreedor puede ejecutarla y recuperar el capital prestado. En Chile lo otorgan: - **Bancos comerciales** (BancoEstado, Santander, BCI, Scotiabank, Itaú, entre otros) - **Cooperativas de ahorro y crédito y compañías de",
+      "wordCount": 1850,
       "sourceFile": "credito-hipotecario-chile-guia-completa.md"
     },
     {
@@ -503,8 +503,8 @@
         "Ejemplo práctico",
         "¿Cómo se relaciona esta línea con el resto de tu liquidación?"
       ],
-      "bodyExcerpt": "Cada mes aparece en tu liquidación una línea que dice \"AFP\" y un número que te descuentan. Para la mayoría es un cálculo opaco que simplemente aceptan. Esta guía lo abre: cuánto corresponde a cotización obligatoria, cuánto es comisión y cómo verificar que ese cargo calza con tu AFP y tu imponible. ## Qué mirar primero (hoy vs después) Este bloque separa lo vigente hoy de los cambios ya aprobados por la reforma previsional (Ley N° 21.735): - **Qué cambia hoy (2026):** - En tu liquidación, el descuento del trabajador sigue siendo **10% de cotización obligatoria + comisión AFP**. - Desde agosto de 2025 existe una **cotización adicional del empleador de 1%**, pero no se descuenta de tu sueldo líquido. - **Qué cambia después (2027 en adelante):** - Desde **abril de 2027** comienza la implementación de **fondos generacionales**, reemplazando progresivamente los multifondos A, B, C, D y E. - Desde **agosto de 2027** la cotización adicional del empleador sube a **3,5%** (con alzas posteriores hasta 7%). Calendario resumido de implementación: | Hito | Fecha | Impacto práctico | | -------------------------------- | --------------- | ------------------------------------------------------- | |",
-      "wordCount": 1248,
+      "bodyExcerpt": "Cada mes aparece en tu liquidación una línea que dice \"AFP\" y un número que te descuentan. Para la mayoría es un cálculo opaco que simplemente aceptan. Esta guía lo abre: cuánto corresponde a cotización obligatoria, cuánto es comisión y cómo verificar que ese cargo calza con tu AFP y tu imponible. ## Qué mirar primero (hoy vs después) Este bloque separa lo vigente hoy de los cambios ya aprobados por la reforma previsional (Ley N° 21.735): - **Qué cambia hoy (2026):** - En tu liquidación, el descuento del trabajador sigue siendo **10% de cotización obligatoria + comisión AFP**. - Entre agosto de 2025 y julio de 2026 rigió una **cotización adicional del empleador de 1%**, pero no se descontaba de tu sueldo líquido. - **Qué cambia después (2027 en adelante):** - Desde **abril de 2027** comienza la implementación de **fondos generacionales**, reemplazando progresivamente los multifondos A, B, C, D y E. - Desde las remuneraciones de **agosto de 2026** la cotización adicional del empleador es de **3,5%** (0,1% a tu cuenta individual, 0,9% a CRP y 2,5% a SIS/CEV; entre agosto de 2025 y julio de 2026 fue de 1%), con alzas posteriores hasta 7%. Calendario resumido de implementación: | Hito ",
+      "wordCount": 1278,
       "sourceFile": "cuanto-descuenta-la-afp-de-tu-sueldo.md"
     },
     {
@@ -628,20 +628,20 @@
       "headings": [
         "El problema con buscar \"DICOM gratis\"",
         "Los tres sistemas y cómo acceder a cada uno",
-        "Informe de Deudas CMF — gratis, ilimitado",
+        "Informe de Deudas CMF — gratis",
         "Boletín Comercial — consulta mínima por ley",
         "Reportes privados tipo DICOM — pagados, más amplios",
         "Qué te dice cada uno de forma práctica",
         "Qué hacer después de revisar el informe",
         "Preguntas frecuentes"
       ],
-      "bodyExcerpt": "Te llamaron por una deuda que no reconoces. O el arrendador te pidió \"DICOM\". O simplemente quieres saber qué aparece a tu nombre antes de pedir un crédito. En los tres casos la pregunta parece la misma, pero el reporte que necesitas no lo es — y empezar por el equivocado puede costarte tiempo, plata o sacar conclusiones falsas. ## El problema con buscar \"DICOM gratis\" \"DICOM\" no es un sistema oficial del Estado. Es el nombre comercial de un producto de Equifax, empresa privada que vende reportes comerciales. Con el tiempo ese nombre se volvió sinónimo genérico de \"antecedentes financieros\", igual que \"Kleenex\" se usa para hablar de cualquier pañuelo. Cuando alguien dice \"estoy en DICOM\" puede estar describiendo tres situaciones distintas: tiene deudas morosas reportadas al sistema financiero regulado, tiene cheques o documentos protestados, o figura en algún reporte comercial privado. Cada una de esas situaciones se revisa en un lugar distinto. Antes de pagar por un informe privado, conviene agotar las opciones gratuitas oficiales. La mayoría de las veces responden la pregunta real. ## Los tres sistemas y cómo acceder a cada uno ### Informe de Deudas CMF — gratis, ilimitado La Com",
-      "wordCount": 1202,
+      "bodyExcerpt": "Te llamaron por una deuda que no reconoces. O el arrendador te pidió \"DICOM\". O simplemente quieres saber qué aparece a tu nombre antes de pedir un crédito. En los tres casos la pregunta parece la misma, pero el reporte que necesitas no lo es — y empezar por el equivocado puede costarte tiempo, plata o sacar conclusiones falsas. ## El problema con buscar \"DICOM gratis\" \"DICOM\" no es un sistema oficial del Estado. Es el nombre comercial de un producto de Equifax, empresa privada que vende reportes comerciales. Con el tiempo ese nombre se volvió sinónimo genérico de \"antecedentes financieros\", igual que \"Kleenex\" se usa para hablar de cualquier pañuelo. Cuando alguien dice \"estoy en DICOM\" puede estar describiendo tres situaciones distintas: tiene deudas morosas reportadas al sistema financiero regulado, tiene cheques o documentos protestados, o figura en algún reporte comercial privado. Cada una de esas situaciones se revisa en un lugar distinto. Antes de pagar por un informe privado, conviene agotar las opciones gratuitas oficiales. La mayoría de las veces responden la pregunta real. ## Los tres sistemas y cómo acceder a cada uno ### Informe de Deudas CMF — gratis La Comisión para ",
+      "wordCount": 1184,
       "sourceFile": "donde-ver-si-estoy-en-dicom-gratis.md"
     },
     {
       "slug": "el-poder-del-interes-compuesto",
-      "title": "El poder del interés compuesto: 10% del sueldo mínimo a $125 millones",
+      "title": "El poder del interés compuesto: 10% del sueldo mínimo a $118 millones",
       "tags": [
         "ahorro",
         "inversion",
@@ -658,7 +658,7 @@
       "leadParagraphs": [
         "Imagina a alguien que nunca ganó más que el sueldo mínimo. Sin bonos, sin ascensos, sin herencias. Solo el sueldo de cada mes y la disciplina de apartar el 10% del líquido para invertirlo. Durante 36 años tuvo 24 meses sin trabajo — lagunas reales, como las que le pasan a cualquier trabajador chileno. El resto del tiempo, ese 10% fue al NASDAQ-100. Lo que ocurrió después es lo que este ejercicio trata de mostrar.",
         "Si quieres llevar esta lógica a tu caso con tasa, aporte y plazo propios, usa la [calculadora de interés compuesto](/calculadoras/interes-compuesto/).",
-        "> **En resumen:** Invertir el 10% del sueldo mínimo en el NASDAQ-100 durante 36 años (1990–2025) habría producido ~$125,6 millones CLP (~USD 129.495), partiendo de aportes totales de ~$6,2 millones. El capital final equivale a 13,7 veces lo aportado."
+        "> **En resumen:** Invertir el 10% del sueldo mínimo en el NASDAQ-100 durante 36 años (1990–2025) habría producido ~$118,0 millones CLP (~USD 129.495), partiendo de aportes totales de ~$6,2 millones. El capital final equivale a 13,7 veces lo aportado."
       ],
       "headings": [
         "Respuesta rápida",
@@ -666,12 +666,12 @@
         "Lo que habría pasado, década a década",
         "Las crisis no lo destruyeron",
         "El multiplicador que pocos intuyen",
-        "¿Y con esos $125 millones, cuánto se puede retirar por mes?",
+        "¿Y con esos $118 millones, cuánto se puede retirar por mes?",
         "Críticas razonables a este ejercicio",
         "Lo que esto no es"
       ],
-      "bodyExcerpt": "Imagina a alguien que nunca ganó más que el sueldo mínimo. Sin bonos, sin ascensos, sin herencias. Solo el sueldo de cada mes y la disciplina de apartar el 10% del líquido para invertirlo. Durante 36 años tuvo 24 meses sin trabajo — lagunas reales, como las que le pasan a cualquier trabajador chileno. El resto del tiempo, ese 10% fue al NASDAQ-100. Lo que ocurrió después es lo que este ejercicio trata de mostrar. Si quieres llevar esta lógica a tu caso con tasa, aporte y plazo propios, usa la . ## Respuesta rápida > **En resumen:** Invertir el 10% del sueldo mínimo en el NASDAQ-100 durante 36 años (1990–2025) habría producido ~$125,6 millones CLP (~USD 129.495), partiendo de aportes totales de ~$6,2 millones. El capital final equivale a 13,7 veces lo aportado. **Resultado del ejercicio:** si alguien hubiera invertido el 10% de su sueldo líquido entre enero de 1990 y diciembre de 2025, la cartera cerraría cerca de **USD 129.495**, equivalentes a **$125,6 millones CLP** al tipo de cambio de cierre usado en la simulación. **Aporte total estimado:** alrededor de **$6.183.108 CLP** de bolsillo, equivalentes a unos **USD 9.453** al tipo de cambio histórico de cada aporte. **Qué significa",
-      "wordCount": 1986,
+      "bodyExcerpt": "Imagina a alguien que nunca ganó más que el sueldo mínimo. Sin bonos, sin ascensos, sin herencias. Solo el sueldo de cada mes y la disciplina de apartar el 10% del líquido para invertirlo. Durante 36 años tuvo 24 meses sin trabajo — lagunas reales, como las que le pasan a cualquier trabajador chileno. El resto del tiempo, ese 10% fue al NASDAQ-100. Lo que ocurrió después es lo que este ejercicio trata de mostrar. Si quieres llevar esta lógica a tu caso con tasa, aporte y plazo propios, usa la . ## Respuesta rápida > **En resumen:** Invertir el 10% del sueldo mínimo en el NASDAQ-100 durante 36 años (1990–2025) habría producido ~$118,0 millones CLP (~USD 129.495), partiendo de aportes totales de ~$6,2 millones. El capital final equivale a 13,7 veces lo aportado. **Resultado del ejercicio:** si alguien hubiera invertido el 10% de su sueldo líquido entre enero de 1990 y diciembre de 2025, la cartera cerraría cerca de **USD 129.495**, equivalentes a **$118,0 millones CLP** al tipo de cambio de cierre usado en la simulación. **Aporte total estimado:** alrededor de **$6.183.108 CLP** de bolsillo, equivalentes a unos **USD 9.453** al tipo de cambio histórico de cada aporte. **Qué significa",
+      "wordCount": 1985,
       "sourceFile": "el-poder-del-interes-compuesto.mdx"
     },
     {
@@ -807,7 +807,7 @@
         "Cuándo puede convenir una Isapre"
       ],
       "bodyExcerpt": "Fonasa sirve a más del 80% de los chilenos. Isapre, al resto. Pero la única pregunta que importa es: ¿cuál te conviene a ti? Esta guía da una respuesta concreta según tu situación: si tienes enfermedades previas, si tienes familia a cargo, si tu ingreso es variable o si estás buscando red privada. ## Tabla de contenidos ## Fonasa o Isapre: la respuesta según tu caso **Respuesta rápida (regla general):** Fonasa conviene a la mayoría de los trabajadores chilenos porque garantiza cobertura universal sin discriminar por enfermedades previas, incluye cargas familiares sin costo adicional y cubre las patologías del GES igual que cualquier Isapre. Isapre puede convenir si tienes ingresos altos, no tienes preexistencias relevantes y priorizas atención en clínicas privadas. **Excepción(es) comunes:** - Si tienes una enfermedad crónica diagnosticada, una Isapre puede excluirla del contrato o incrementar el precio del plan por esa condición. - Si tu sueldo es alto y encuentras un plan Isapre cuyo precio total (incluyendo el extra sobre el 7%) es competitivo con lo que pagarías en copagos por uso frecuente de red privada, la Isapre puede ser conveniente. - Si tienes muchas cargas familiares (h",
-      "wordCount": 1996,
+      "wordCount": 2182,
       "sourceFile": "fonasa-vs-isapre-comparativa.md"
     },
     {
@@ -871,8 +871,8 @@
         "Fondo D — Conservador",
         "Fondo C — El equilibrado"
       ],
-      "bodyExcerpt": "Cuando te afilias a una AFP, tu dinero no queda guardado en una caja fuerte —se invierte en uno de cinco fondos disponibles. Elegir bien puede significar una pensión significativamente mayor. Elegir mal, lo contrario. Lo que pocos saben es que si no eliges nada, la AFP elige por ti. Aquí te explicamos qué es cada fondo, sin tecnicismos. ## Si tu duda real es otra, cambia de tema ahora - **Quieres entender la transición 2027+ y no solo elegir fondo hoy:** cambia a una guía de reforma previsional. - **Tu decisión es tributaria y no de riesgo:** cambia a una guía o simulador de APV. - **Tu pregunta ya es cuánto podrías acumular al jubilar:** cambia a una proyección previsional. ## Qué cambia entre 2025 y 2027 Este artículo mantiene la explicación histórica de A-E, pero debes separar contexto actual vs transición aprobada: - **Qué cambia hoy (2026):** - Los multifondos **A, B, C, D y E siguen vigentes** y puedes elegir/cambiar fondo como hasta ahora. - La cotización adicional del empleador ya comenzó en **1%** (agosto 2025), sin descuento adicional a tu sueldo líquido. - **Qué cambia después (2027 en adelante):** - Desde **abril de 2027** empieza el paso a **fondos generacionales**. Co",
-      "wordCount": 1558,
+      "bodyExcerpt": "Cuando te afilias a una AFP, tu dinero no queda guardado en una caja fuerte —se invierte en uno de cinco fondos disponibles. Elegir bien puede significar una pensión significativamente mayor. Elegir mal, lo contrario. Lo que pocos saben es que si no eliges nada, la AFP elige por ti. Aquí te explicamos qué es cada fondo, sin tecnicismos. ## Si tu duda real es otra, cambia de tema ahora - **Quieres entender la transición 2027+ y no solo elegir fondo hoy:** cambia a una guía de reforma previsional. - **Tu decisión es tributaria y no de riesgo:** cambia a una guía o simulador de APV. - **Tu pregunta ya es cuánto podrías acumular al jubilar:** cambia a una proyección previsional. ## Qué cambia entre 2025 y 2027 Este artículo mantiene la explicación histórica de A-E, pero debes separar contexto actual vs transición aprobada: - **Qué cambia hoy (2026):** - Los multifondos **A, B, C, D y E siguen vigentes** y puedes elegir/cambiar fondo como hasta ahora. - La cotización adicional del empleador es de **3,5%** desde las remuneraciones de agosto de 2026 (0,1% a tu cuenta individual, 2,5% a SIS/CEV y 0,9% a CRP); entre agosto de 2025 y julio de 2026 fue de 1%. Sigue siendo de cargo del emplead",
+      "wordCount": 1718,
       "sourceFile": "fondos-afp-a-b-c-d-e.md"
     },
     {
@@ -1037,8 +1037,8 @@
         "Cuatro cosas que revisar antes de firmar",
         "Preguntas frecuentes"
       ],
-      "bodyExcerpt": "El finiquito llegó con un número. El número parece razonable, pero razonable no es lo mismo que correcto. La indemnización por años de servicio es la partida donde más errores silenciosos aparecen — y la mayoría no son por mala fe sino porque la causal está mal aplicada, la base de cálculo usa el sueldo equivocado, o la antigüedad está mal contada. Esta guía aísla esa sola partida. Si necesitas revisar el finiquito completo — haberes pendientes, feriado proporcional, aviso previo — la guía de tiene el cuadro completo. ## La regla base y sus tres componentes La indemnización por años de servicio funciona sobre tres variables. Si cualquiera de las tres está mal, el monto total es incorrecto. **Primero: la causal tiene que habilitarla.** La indemnización por años de servicio no aplica a todos los tipos de término de contrato. Solo corresponde cuando la causal de despido abre el régimen indemnizatorio legal. No es automática por el solo hecho de haber trabajado varios años en una empresa. **Segundo: la base es la última remuneración mensual.** No el promedio de los últimos meses. No el sueldo que tenías hace un año. La última remuneración mensual al momento del término, incluyendo los ",
-      "wordCount": 1242,
+      "bodyExcerpt": "El finiquito llegó con un número. El número parece razonable, pero razonable no es lo mismo que correcto. La indemnización por años de servicio es la partida donde más errores silenciosos aparecen — y la mayoría no son por mala fe sino porque la causal está mal aplicada, la base de cálculo usa el sueldo equivocado, o la antigüedad está mal contada. Esta guía aísla esa sola partida. Si necesitas revisar el finiquito completo — haberes pendientes, feriado proporcional, aviso previo — la guía de tiene el cuadro completo. ## La regla base y sus tres componentes La indemnización por años de servicio funciona sobre tres variables. Si cualquiera de las tres está mal, el monto total es incorrecto. **Primero: el contrato tiene que haber estado vigente un año o más, y la causal tiene que habilitarla.** La indemnización por años de servicio no aplica a todos los tipos de término de contrato. Solo corresponde cuando el contrato duró al menos un año y la causal de despido abre el régimen indemnizatorio legal. No es automática por el solo hecho de haber trabajado varios años en una empresa. **Segundo: la base es la última remuneración mensual.** No el promedio de los últimos meses. No el sueldo ",
+      "wordCount": 1613,
       "sourceFile": "indemnizacion-anos-de-servicio-chile.md"
     },
     {
@@ -1058,8 +1058,8 @@
       "summary": "La frase \"estoy en DICOM\" se usa en Chile como atajo para varias cosas distintas: deudas financieras vigentes, morosidades comerciales, protestos o incluso un informe privado que te pidió un tercero. El primer error es tratarlas como si fueran el mismo registro. La regla práctica...",
       "leadParagraphs": [
         "La frase \"estoy en DICOM\" se usa en Chile como atajo para varias cosas distintas: deudas financieras vigentes, morosidades comerciales, protestos o incluso un informe privado que te pidió un tercero. El primer error es tratarlas como si fueran el mismo registro.",
-        "La regla práctica es esta: si quieres ver qué deudas financieras vigentes aparecen a tu nombre, parte por el **Informe de Deudas CMF**. Si lo que buscas es revisar protestos, retail o un reporte privado usado por un arrendador o empleador, separa ese problema y no asumas que el CMF cubre todo.",
-        "La **Comisión para el Mercado Financiero (CMF)** es el organismo que supervisa bancos, cooperativas, emisores de tarjetas y otras entidades financieras en Chile. Como parte de esa supervisión, las instituciones reportan periódicamente las deudas de sus clientes y con esa información la CMF arma el **Informe de Deudas de Personas Naturales**."
+        "La regla práctica es esta: si quieres ver qué deudas financieras vigentes aparecen a tu nombre, parte por el **Informe de Deudas CMF**. Si lo que buscas es revisar protestos, retail o un reporte privado pedido por un tercero (por ejemplo, un empleador), separa ese problema y no asumas que el CMF cubre todo.",
+        "La **Comisión para el Mercado Financiero (CMF)** es el organismo que supervisa bancos, cooperativas y demás entidades financieras bajo su fiscalización en Chile. Como parte de esa supervisión, las instituciones reportan periódicamente las deudas de sus clientes y con esa información la CMF arma el **Informe de Deudas de Personas Naturales**."
       ],
       "headings": [
         "Tabla de contenidos",
@@ -1071,8 +1071,8 @@
         "Cuánto tiempo permanece una deuda en el sistema",
         "Tu informe comercial gratuito: Boletín Comercial"
       ],
-      "bodyExcerpt": "La frase \"estoy en DICOM\" se usa en Chile como atajo para varias cosas distintas: deudas financieras vigentes, morosidades comerciales, protestos o incluso un informe privado que te pidió un tercero. El primer error es tratarlas como si fueran el mismo registro. La regla práctica es esta: si quieres ver qué deudas financieras vigentes aparecen a tu nombre, parte por el **Informe de Deudas CMF**. Si lo que buscas es revisar protestos, retail o un reporte privado usado por un arrendador o empleador, separa ese problema y no asumas que el CMF cubre todo. ## Tabla de contenidos ## Qué es el Informe de Deudas CMF La **Comisión para el Mercado Financiero (CMF)** es el organismo que supervisa bancos, cooperativas, emisores de tarjetas y otras entidades financieras en Chile. Como parte de esa supervisión, las instituciones reportan periódicamente las deudas de sus clientes y con esa información la CMF arma el **Informe de Deudas de Personas Naturales**. Ese informe muestra el detalle de tus **deudas vigentes con el sistema financiero supervisado**. Es gratuito, oficial y lo puedes descargar con ClaveÚnica. Es el punto de partida correcto cuando necesitas ordenar acreedores, confirmar produ",
-      "wordCount": 1584,
+      "bodyExcerpt": "La frase \"estoy en DICOM\" se usa en Chile como atajo para varias cosas distintas: deudas financieras vigentes, morosidades comerciales, protestos o incluso un informe privado que te pidió un tercero. El primer error es tratarlas como si fueran el mismo registro. La regla práctica es esta: si quieres ver qué deudas financieras vigentes aparecen a tu nombre, parte por el **Informe de Deudas CMF**. Si lo que buscas es revisar protestos, retail o un reporte privado pedido por un tercero (por ejemplo, un empleador), separa ese problema y no asumas que el CMF cubre todo. ## Tabla de contenidos ## Qué es el Informe de Deudas CMF La **Comisión para el Mercado Financiero (CMF)** es el organismo que supervisa bancos, cooperativas y demás entidades financieras bajo su fiscalización en Chile. Como parte de esa supervisión, las instituciones reportan periódicamente las deudas de sus clientes y con esa información la CMF arma el **Informe de Deudas de Personas Naturales**. Ese informe muestra el detalle de tus **deudas vigentes con el sistema financiero supervisado**. Es gratuito, oficial y lo puedes descargar con ClaveÚnica. Es el punto de partida correcto cuando necesitas ordenar acreedores, c",
+      "wordCount": 1617,
       "sourceFile": "informe-deudas-cmf-vs-dicom.md"
     },
     {
@@ -1089,9 +1089,9 @@
       "heroImage": "/images/hero/interes-compuesto-nota-metodologica.avif",
       "summary": "Este documento detalla los supuestos, fuentes de datos y fórmulas del artículo . Está aquí para que cualquier lector pueda replicar los cálculos, cuestionar los supuestos o detectar errores. Si encuentras una discrepancia, el canal correcto es el mismo artículo. Fecha de corte de...",
       "leadParagraphs": [
-        "Este documento detalla los supuestos, fuentes de datos y fórmulas del artículo [El poder del interés compuesto: cómo el 10% del sueldo mínimo se convierte en más de $125 millones](/posts/el-poder-del-interes-compuesto/). Está aquí para que cualquier lector pueda replicar los cálculos, cuestionar los supuestos o detectar errores. Si encuentras una discrepancia, el canal correcto es el mismo artículo.",
+        "Este documento detalla los supuestos, fuentes de datos y fórmulas del artículo [El poder del interés compuesto: cómo el 10% del sueldo mínimo se convierte en más de $118 millones](/posts/el-poder-del-interes-compuesto/). Está aquí para que cualquier lector pueda replicar los cálculos, cuestionar los supuestos o detectar errores. Si encuentras una discrepancia, el canal correcto es el mismo artículo.",
         "**Fecha de corte del ejercicio:** **2025-12-31**.",
-        "**Actualización 2026-03-07:** la serie 2025 del NASDAQ-100 dejó de usar un dato parcial conservador y pasó a usar el cierre anual reportado para 2025. Ese ajuste cambia el resultado final del ejercicio de **USD 104.018 / CLP 100,9 millones** a **USD 129.495 / CLP 125,6 millones**."
+        "**Actualización 2026-03-07:** la serie 2025 del NASDAQ-100 dejó de usar un dato parcial conservador y pasó a usar el cierre anual reportado para 2025. Ese ajuste cambia el resultado final del ejercicio de **USD 104.018 / CLP 100,9 millones** a **USD 129.495 / CLP 118,0 millones**."
       ],
       "headings": [
         "1. Período y estructura de la simulación",
@@ -1103,8 +1103,8 @@
         "7. Resultados de la fase de acumulación",
         "8. Cálculo de la mensualidad de retiro"
       ],
-      "bodyExcerpt": "Este documento detalla los supuestos, fuentes de datos y fórmulas del artículo . Está aquí para que cualquier lector pueda replicar los cálculos, cuestionar los supuestos o detectar errores. Si encuentras una discrepancia, el canal correcto es el mismo artículo. **Fecha de corte del ejercicio:** **2025-12-31**. **Actualización 2026-03-07:** la serie 2025 del NASDAQ-100 dejó de usar un dato parcial conservador y pasó a usar el cierre anual reportado para 2025. Ese ajuste cambia el resultado final del ejercicio de **USD 104.018 / CLP 100,9 millones** a **USD 129.495 / CLP 125,6 millones**. **Revisión editorial 2026-04-22:** se revalidaron las referencias históricas y la fecha de corte; el ejercicio sigue cerrado al 2025-12-31 y no incorpora datos posteriores. ## 1. Período y estructura de la simulación - **Período:** enero de 1990 a diciembre de 2025 (**432 meses = 36 años**). - **Meses con aporte:** **408**. - **Meses sin aporte (lagunas):** **24**, distribuidos aleatoriamente con semilla fija (`numpy.random.seed(42)`). - **Edad de inicio laboral asumida:** **18 años**. - **Edad de retiro al final de la fase de acumulación:** **54 años**. ## 2. Sueldo mínimo histórico (CLP) Se usaro",
-      "wordCount": 1559,
+      "bodyExcerpt": "Este documento detalla los supuestos, fuentes de datos y fórmulas del artículo . Está aquí para que cualquier lector pueda replicar los cálculos, cuestionar los supuestos o detectar errores. Si encuentras una discrepancia, el canal correcto es el mismo artículo. **Fecha de corte del ejercicio:** **2025-12-31**. **Actualización 2026-03-07:** la serie 2025 del NASDAQ-100 dejó de usar un dato parcial conservador y pasó a usar el cierre anual reportado para 2025. Ese ajuste cambia el resultado final del ejercicio de **USD 104.018 / CLP 100,9 millones** a **USD 129.495 / CLP 118,0 millones**. **Revisión editorial 2026-04-22:** se revalidaron las referencias históricas y la fecha de corte; el ejercicio sigue cerrado al 2025-12-31 y no incorpora datos posteriores. ## 1. Período y estructura de la simulación - **Período:** enero de 1990 a diciembre de 2025 (**432 meses = 36 años**). - **Meses con aporte:** **408**. - **Meses sin aporte (lagunas):** **24**, distribuidos aleatoriamente con semilla fija (`numpy.random.seed(42)`). - **Edad de inicio laboral asumida:** **18 años**. - **Edad de retiro al final de la fase de acumulación:** **54 años**. ## 2. Sueldo mínimo histórico (CLP) Se usaro",
+      "wordCount": 1560,
       "sourceFile": "interes-compuesto-nota-metodologica.md"
     },
     {
@@ -1521,9 +1521,9 @@
       "cluster": "pensiones-afp",
       "sourcePath": "src/data/blog/reforma-previsional-2025-que-cambia-y-como-te-afecta.md",
       "heroImage": "/images/hero/reforma-previsional-2025-que-cambia-y-como-te-afecta.avif",
-      "summary": "En julio de 2025 se promulgó la reforma previsional más importante en décadas. Cambia cómo se financia tu jubilación, introduce nuevos componentes del Seguro Social y reemplaza los multifondos con un esquema distinto. Como su implementación se despliega por etapas entre 2025 y 20...",
+      "summary": "La reforma previsional más importante en décadas fue promulgada el 20 de marzo de 2025 y publicada el 26 de marzo de 2025 (Ley 21.735). Cambia cómo se financia tu jubilación, introduce nuevos componentes del Seguro Social y reemplaza los multifondos con un esquema distinto. Como...",
       "leadParagraphs": [
-        "En julio de 2025 se promulgó la reforma previsional más importante en décadas. Cambia cómo se financia tu jubilación, introduce nuevos componentes del Seguro Social y reemplaza los multifondos con un esquema distinto. Como su implementación se despliega por etapas entre 2025 y 2033, conviene entenderla separando con cuidado qué ya opera hoy y qué todavía viene después.",
+        "La reforma previsional más importante en décadas fue promulgada el 20 de marzo de 2025 y publicada el 26 de marzo de 2025 (Ley 21.735). Cambia cómo se financia tu jubilación, introduce nuevos componentes del Seguro Social y reemplaza los multifondos con un esquema distinto. Como su implementación se despliega por etapas entre 2025 y 2033, conviene entenderla separando con cuidado qué ya opera hoy y qué todavía viene después.",
         "Si quieres entender primero cómo funciona el sistema actual, conviene separar la elección de fondo vigente del descuento previsional del trabajador antes de volver a esta pieza.",
         "La reforma tiene **tres grandes cambios**, pero no todos operan igual hoy:"
       ],
@@ -1537,8 +1537,8 @@
         "¿Y en licencias médicas?",
         "¿Y los independientes?"
       ],
-      "bodyExcerpt": "En julio de 2025 se promulgó la reforma previsional más importante en décadas. Cambia cómo se financia tu jubilación, introduce nuevos componentes del Seguro Social y reemplaza los multifondos con un esquema distinto. Como su implementación se despliega por etapas entre 2025 y 2033, conviene entenderla separando con cuidado qué ya opera hoy y qué todavía viene después. Si quieres entender primero cómo funciona el sistema actual, conviene separar la elección de fondo vigente del descuento previsional del trabajador antes de volver a esta pieza. ## Lo esencial en 3 minutos La reforma tiene **tres grandes cambios**, pero no todos operan igual hoy: 1. **El empleador paga una nueva cotización adicional.** Parte en **1%** desde agosto de 2025 y sube gradualmente hasta **7%** en agosto de 2033. No te lo descuentan a ti. 2. **No todo ese nuevo aporte entra directo a tu cuenta individual.** Hoy solo una fracción de ese nuevo 1% va a tu AFP; el resto alimenta componentes colectivos del nuevo Seguro Social. 3. **Los multifondos A-E se reemplazan por fondos generacionales.** La transición operativa parte en **abril de 2027**, no antes. ## Si tu pregunta real es una de estas, cambia de tema - *",
-      "wordCount": 1360,
+      "bodyExcerpt": "La reforma previsional más importante en décadas fue promulgada el 20 de marzo de 2025 y publicada el 26 de marzo de 2025 (Ley 21.735). Cambia cómo se financia tu jubilación, introduce nuevos componentes del Seguro Social y reemplaza los multifondos con un esquema distinto. Como su implementación se despliega por etapas entre 2025 y 2033, conviene entenderla separando con cuidado qué ya opera hoy y qué todavía viene después. Si quieres entender primero cómo funciona el sistema actual, conviene separar la elección de fondo vigente del descuento previsional del trabajador antes de volver a esta pieza. ## Lo esencial en 3 minutos La reforma tiene **tres grandes cambios**, pero no todos operan igual hoy: 1. **El empleador paga una nueva cotización adicional.** Fue de **1%** entre agosto de 2025 y julio de 2026 y es de **3,5%** desde las remuneraciones de agosto de 2026; la ley contempla subidas graduales hasta **7%** en agosto de 2033. No te lo descuentan a ti. 2. **No todo ese nuevo aporte entra directo a tu cuenta individual.** Hoy solo una fracción de ese nuevo 3,5% va a tu AFP; el resto alimenta componentes colectivos del nuevo Seguro Social. 3. **Los multifondos A-E se reemplazan ",
+      "wordCount": 1762,
       "sourceFile": "reforma-previsional-2025-que-cambia-y-como-te-afecta.md"
     },
     {
@@ -1572,7 +1572,7 @@
         "Los documentos: la parte que más rechazos genera"
       ],
       "bodyExcerpt": "Tener una deuda atrasada no significa automáticamente que te convenga entrar a un procedimiento concursal. La renegociación Superir es útil cuando el problema ya es estructural: varias deudas vencidas, mora acumulada y una caja que no alcanza para seguir sosteniendo los pagos. Si todavía estás tratando de entender qué acreedores tienes o cuánto cuesta realmente una deuda, esta no es la primera guía. En ese caso conviene partir por un diagnóstico de acreedores o por una comparación seria del costo real del crédito. El resto de las salidas relacionadas aparece más abajo. ## Tabla de contenidos ## Mora no es lo mismo que sobreendeudamiento Antes de seguir, conviene separar tres escenarios: - **Tienes una o dos cuotas atrasadas, pero todavía puedes ordenar el pago.** Aquí primero conviene medir el costo real, el prepago o la repactación, no entrar a un proceso concursal. Parte por la o la . - **Tienes varias deudas activas y no sabes bien qué aparece a tu nombre.** Primero ordena acreedores y montos antes de intentar una salida formal. - **Ya tienes varias deudas vencidas, pasan los meses y no ves cómo cumplir sin un acuerdo estructural.** Ahí sí esta guía empieza a ser relevante. Si q",
-      "wordCount": 1881,
+      "wordCount": 1910,
       "sourceFile": "renegociacion-superir.md"
     },
     {
@@ -1760,7 +1760,7 @@
       "leadParagraphs": [
         "Una tarjeta de crédito te da liquidez inmediata, pero tiene un precio. Ese precio no siempre es obvio porque los estados de cuenta muestran el pago mínimo — una cifra baja que parece manejable — sin mostrar cuánto terminarás pagando si te quedas en ese nivel. Antes de usar la calculadora, conviene entender por qué ese número importa.",
         "Si estás evaluando pedir un crédito nuevo o comparar ofertas, complementa esto con la [guía de la CAE](/posts/cae-costo-real-credito-chile/), que explica cómo comparar el costo total de un crédito antes de firmar.",
-        "Las tarjetas de crédito cobran interés sobre el **saldo vigente** cada período de facturación. La tasa puede expresarse mensual o anual, y varía según el emisor y el segmento de la tarjeta. La CMF publica la **tasa máxima convencional (TMC)** para tarjetas, que es el techo legal que ningún emisor puede superar."
+        "Las tarjetas de crédito cobran interés sobre el **saldo vigente** cada período de facturación. La tasa puede expresarse mensual o anual, y varía según el emisor y el segmento de la tarjeta. La CMF publica la **[tasa máxima convencional (TMC)](https://www.cmfchile.cl/portal/estadisticas/617/w3-propertyvalue-30141.html)** para tarjetas, que es el techo legal que ningún emisor puede superar."
       ],
       "headings": [
         "Cómo funciona el interés en una tarjeta",
@@ -1769,8 +1769,8 @@
         "Cuándo usar esta herramienta",
         "Señales de que la deuda rotativa ya es un problema"
       ],
-      "bodyExcerpt": "Una tarjeta de crédito te da liquidez inmediata, pero tiene un precio. Ese precio no siempre es obvio porque los estados de cuenta muestran el pago mínimo — una cifra baja que parece manejable — sin mostrar cuánto terminarás pagando si te quedas en ese nivel. Antes de usar la calculadora, conviene entender por qué ese número importa. Si estás evaluando pedir un crédito nuevo o comparar ofertas, complementa esto con la , que explica cómo comparar el costo total de un crédito antes de firmar. ## Cómo funciona el interés en una tarjeta Las tarjetas de crédito cobran interés sobre el **saldo vigente** cada período de facturación. La tasa puede expresarse mensual o anual, y varía según el emisor y el segmento de la tarjeta. La CMF publica la **tasa máxima convencional (TMC)** para tarjetas, que es el techo legal que ningún emisor puede superar. El mecanismo central es este: si no pagas el saldo completo al vencimiento del estado de cuenta, sobre el saldo restante se calculan intereses. Esos intereses se suman al siguiente saldo, y el ciclo continúa. A diferencia de un crédito de consumo con cuota fija, la tarjeta no tiene fecha de término definida si solo pagas el mínimo. El plazo de pa",
-      "wordCount": 758,
+      "bodyExcerpt": "Una tarjeta de crédito te da liquidez inmediata, pero tiene un precio. Ese precio no siempre es obvio porque los estados de cuenta muestran el pago mínimo — una cifra baja que parece manejable — sin mostrar cuánto terminarás pagando si te quedas en ese nivel. Antes de usar la calculadora, conviene entender por qué ese número importa. Si estás evaluando pedir un crédito nuevo o comparar ofertas, complementa esto con la , que explica cómo comparar el costo total de un crédito antes de firmar. ## Cómo funciona el interés en una tarjeta Las tarjetas de crédito cobran interés sobre el **saldo vigente** cada período de facturación. La tasa puede expresarse mensual o anual, y varía según el emisor y el segmento de la tarjeta. La CMF publica la ** ** para tarjetas, que es el techo legal que ningún emisor puede superar. El mecanismo central es este: si no pagas el saldo completo al vencimiento del estado de cuenta, sobre el saldo restante se . Esos intereses se suman al siguiente saldo, y el ciclo continúa. A diferencia de un crédito de consumo con cuota fija, la tarjeta no tiene fecha de término definida si solo pagas el mínimo. El plazo de pago depende completamente de cuánto abonas cada ",
+      "wordCount": 977,
       "sourceFile": "tarjeta-credito-costo-real-chile.md"
     },
     {
@@ -1791,7 +1791,7 @@
       "summary": "La UTM (Unidad Tributaria Mensual) es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Cambia el primer día hábil de cada mes. Respuesta rápida Qué es: Unidad de medida del valor monetario que el Estado usa para expresar...",
       "leadParagraphs": [
         "La **UTM (Unidad Tributaria Mensual)** es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Cambia el primer día hábil de cada mes.",
-        "> **Respuesta rápida** > > **Qué es:** Unidad de medida del valor monetario que el Estado usa para expresar multas, impuestos y aranceles — no es una moneda, sino un indicador de referencia reajustable. > > **Cómo cambia:** Se reajusta cada mes según la variación del IPC del mes anterior. > > **Valor vigente (abril 2026):** $69.889 > > **Fuente oficial:** [SII — UTM/UTA/IPC 2026](https://www.sii.cl/valores_y_fechas/utm/utm2026.htm) > > **Vigencia:** Válido durante todo abril 2026. El valor cambia el primer día hábil de cada mes — verifica siempre en SII.cl.",
+        "> **Respuesta rápida** > > **Qué es:** Unidad de medida del valor monetario que el Estado usa para expresar multas, impuestos y aranceles — no es una moneda, sino un indicador de referencia reajustable. > > **Cómo cambia:** Se reajusta cada mes según la variación del IPC del mes anterior. > > **Valor vigente (septiembre 2026):** $71.721 > > **Fuente oficial:** [SII — UTM/UTA/IPC 2026](https://www.sii.cl/valores_y_fechas/utm/utm2026.htm) > > **Vigencia:** Válido durante todo septiembre 2026. El valor cambia el primer día hábil de cada mes — verifica siempre en SII.cl.",
         "Si pagas una multa de tránsito mañana, el monto en pesos que te cobran depende de cuántas UTM tiene la multa multiplicado por el valor vigente **en ese momento**. El mismo número de UTM puede significar más o menos pesos según el mes. Si necesitas la equivalencia exacta ahora, usa el [conversor UTM a pesos](/calculadoras/conversor-utm/)."
       ],
       "headings": [
@@ -1804,8 +1804,8 @@
         "La UTM vs la UF — ¿cuál es la diferencia?",
         "Usos prácticos de la UTM"
       ],
-      "bodyExcerpt": "La **UTM (Unidad Tributaria Mensual)** es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Cambia el primer día hábil de cada mes. > **Respuesta rápida** > > **Qué es:** Unidad de medida del valor monetario que el Estado usa para expresar multas, impuestos y aranceles — no es una moneda, sino un indicador de referencia reajustable. > > **Cómo cambia:** Se reajusta cada mes según la variación del IPC del mes anterior. > > **Valor vigente (abril 2026):** $69.889 > > **Fuente oficial:** > > **Vigencia:** Válido durante todo abril 2026. El valor cambia el primer día hábil de cada mes — verifica siempre en SII.cl. Si pagas una multa de tránsito mañana, el monto en pesos que te cobran depende de cuántas UTM tiene la multa multiplicado por el valor vigente **en ese momento**. El mismo número de UTM puede significar más o menos pesos según el mes. Si necesitas la equivalencia exacta ahora, usa el . > **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Si quieres ver este frente completo junto con UF, reajustes y herramient",
-      "wordCount": 1707,
+      "bodyExcerpt": "La **UTM (Unidad Tributaria Mensual)** es la unidad de valor que usa el Estado chileno para fijar multas, tramos de impuestos y aranceles de trámites. Cambia el primer día hábil de cada mes. > **Respuesta rápida** > > **Qué es:** Unidad de medida del valor monetario que el Estado usa para expresar multas, impuestos y aranceles — no es una moneda, sino un indicador de referencia reajustable. > > **Cómo cambia:** Se reajusta cada mes según la variación del IPC del mes anterior. > > **Valor vigente (septiembre 2026):** $71.721 > > **Fuente oficial:** > > **Vigencia:** Válido durante todo septiembre 2026. El valor cambia el primer día hábil de cada mes — verifica siempre en SII.cl. Si pagas una multa de tránsito mañana, el monto en pesos que te cobran depende de cuántas UTM tiene la multa multiplicado por el valor vigente **en ese momento**. El mismo número de UTM puede significar más o menos pesos según el mes. Si necesitas la equivalencia exacta ahora, usa el . > **Información vigente al 2026-04-09.** Ante cambios normativos o de política pública, verifique en las fuentes oficiales referenciadas al final de este artículo. Si quieres ver este frente completo junto con UF, reajustes y ",
+      "wordCount": 1741,
       "sourceFile": "utm-chile-que-es-como-funciona.md"
     }
   ]
