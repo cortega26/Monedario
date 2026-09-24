@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-21T12:17:12Z",
+  "fetchedAt": "2026-09-24T11:32:10Z",
   "schemaVersion": 1,
   "source": "gsc-url-inspection",
   "week": "2026-W38",
@@ -9,13 +9,14 @@
   },
   "summary": {
     "total": 185,
-    "indexed": 175,
+    "indexed": 174,
     "notIndexed": 10,
-    "other": 0,
-    "indexedPct": 95,
+    "other": 1,
+    "indexedPct": 94,
     "byCoverage": {
-      "Submitted and indexed": 175,
-      "Crawled - currently not indexed": 10
+      "Submitted and indexed": 174,
+      "Crawled - currently not indexed": 10,
+      "Discovered - currently not indexed": 1
     }
   },
   "errors": 0,
@@ -111,7 +112,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-21",
+      "lastCrawl": "2026-09-24",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/conversor-uf/",
       "verdict": "PASS"
@@ -119,7 +120,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-21",
+      "lastCrawl": "2026-09-23",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/conversor-utm/",
       "verdict": "PASS"
@@ -127,7 +128,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-13",
+      "lastCrawl": "2026-09-21",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/credito-consumo/",
       "verdict": "PASS"
@@ -135,7 +136,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-10",
+      "lastCrawl": "2026-09-19",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/deposito-a-plazo/",
       "verdict": "PASS"
@@ -191,7 +192,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-15",
+      "lastCrawl": "2026-09-24",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/operacion-renta/",
       "verdict": "PASS"
@@ -199,7 +200,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-18",
+      "lastCrawl": "2026-09-23",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/calculadoras/prepago-credito/",
       "verdict": "PASS"
@@ -599,7 +600,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-07-22",
+      "lastCrawl": "2026-09-22",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/glosario/renta-variable/",
       "verdict": "PASS"
@@ -1021,12 +1022,12 @@
       "verdict": "PASS"
     },
     {
-      "coverageState": "Submitted and indexed",
+      "coverageState": "Crawled - currently not indexed",
       "indexingState": "INDEXING_ALLOWED",
       "lastCrawl": "2026-07-23",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/leyes/ley-21719-proteccion-datos-modernizacion/",
-      "verdict": "PASS"
+      "verdict": "NEUTRAL"
     },
     {
       "coverageState": "Submitted and indexed",
@@ -1039,7 +1040,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-19",
+      "lastCrawl": "2026-09-22",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/metodologia/",
       "verdict": "PASS"
@@ -1271,7 +1272,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-08-28",
+      "lastCrawl": "2026-09-10",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/posts/fraude-tarjeta-que-hacer/",
       "verdict": "PASS"
@@ -1429,10 +1430,10 @@
       "verdict": "NEUTRAL"
     },
     {
-      "coverageState": "Crawled - currently not indexed",
+      "coverageState": "Discovered - currently not indexed",
       "indexingState": "INDEXING_STATE_UNSPECIFIED",
-      "lastCrawl": "2026-03-26",
-      "robotsTxtState": "ALLOWED",
+      "lastCrawl": null,
+      "robotsTxtState": "ROBOTS_TXT_STATE_UNSPECIFIED",
       "url": "https://monedario.cl/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/",
       "verdict": "NEUTRAL"
     },
@@ -1495,7 +1496,7 @@
     {
       "coverageState": "Submitted and indexed",
       "indexingState": "INDEXING_ALLOWED",
-      "lastCrawl": "2026-09-09",
+      "lastCrawl": "2026-09-21",
       "robotsTxtState": "ALLOWED",
       "url": "https://monedario.cl/uf-hoy/",
       "verdict": "PASS"
