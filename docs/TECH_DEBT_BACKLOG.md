@@ -1,6 +1,6 @@
 # TECH_DEBT_BACKLOG
 
-Fecha de corte: 2026-05-30
+Fecha de corte: 2026-09-25
 
 ## TD-0097 — Política de antigüedad de dependencias bloquea los gates locales
 
@@ -15,14 +15,15 @@ Fecha de corte: 2026-05-30
 - **Esfuerzo estimado:** XS
 - **Propuesta de solución:** el owner confirma excepciones esperadas o regenera el lockfile tras el periodo de antigüedad; una tarea no relacionada no debe cambiar esta política.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] `pnpm run test` inicia Vitest sin modificación automática de política.
-  - [ ] Las excepciones, si existen, tienen revisión de supply chain explícita.
+  - [x] `pnpm run test` inicia Vitest sin modificación automática de política.
+  - [x] Las excepciones, si existen, tienen revisión de supply chain explícita.
 - **Owner:** Sin asignar
-- **Estado:** Backlog
+- **Estado:** Completado 2026-09-25
 - **Fecha de creación:** 2026-08-01
-- **Última actualización:** 2026-09-14
+- **Última actualización:** 2026-09-25
+- **Nota 2026-09-25 (cierre):** retiradas todas las cohortes maduradas del `minimumReleaseAgeExclude` (`@napi-rs/wasm-runtime`, unión `js-yaml 5.4.2`, cohortes rolldown 1.2.8 / clack / vite 8.3.0 / `@oxc-project/types` / `nanoid@3.3.19`) junto a sus comentarios transitorios. Verificado: `pnpm install --frozen-lockfile` pasa la política de supply chain sin tocar `pnpm-lock.yaml`, y `pnpm run test` inicia y pasa (174 archivos / 1.664 tests, 1 skipped). Permanecen solo `eslint-plugin-astro@2.1.1` y `postcss@8.5.25` (revisión de supply chain previa, sin fecha de maduración). Ambos criterios cerrados.
 - **Nota 2026-09-14 (plan 106, higiene supply-chain):** retiradas las exclusiones maduradas (`qs@6.16.0`, vencida 2026-09-05) y los comentarios huérfanos 2026-08 (nanoid/fast-uri); `pnpm install --frozen-lockfile` en verde tras cada retiro. Pines CVE ahora parent-aware con trigger de retiro (`fflate@<0.7.5` → quitar cuando satori resuelva fflate >=0.7.5; `sharp@<0.35.4` → quitar cuando wrangler/miniflare resuelva sharp >=0.35.4; resuelto hoy: 0.7.5/0.35.4).
-- **Pendiente por calendario (no retirar antes):** unión napi (`1.2.2 || 1.2.4`, ~2026-09-18), unión js-yaml (`|| 5.4.2`, ~2026-09-20), cohorte rolldown 1.2.8 (~2026-09-17/18), cohorte clack/vite (~2026-09-19/20); `eslint-plugin-astro@2.1.1` y `postcss@8.5.25` sin fecha (dejar).
+- **Historial:** cohortes pendientes por calendario (unión napi, unión js-yaml, rolldown 1.2.8, clack/vite) retiradas el 2026-09-25.
 - **Excepción `extract-zip@2.0.1` (solo dev):** los 2 HIGH de `pnpm audit` (`GHSA-jmr9-qjv8-65gv`, `GHSA-7pqw-9j4j-h8q3`) llegan solo por la cadena dev `@lhci/cli → lighthouse → puppeteer → extract-zip`; no hay advisory de runtime enmascarado. Sin parche publicado (máx. `2.0.1` del 2020-06-10; re-chequear el registro mensualmente por un `2.0.2` real y preferir el parche si aparece).
 - **Invocación canónica pip-audit (venv del proyecto):** `.venv/bin/python -m pip_audit` o `uv run --project . --frozen pip-audit`; el `uv run pip-audit` desnudo puede auditar otro intérprete (p. ej. hereda `VIRTUAL_ENV` externo) y no es señal válida.
 - **Seguimiento sin acción:** split zod (`4.4.3` vía @astrojs/rss+sitemap+knip vs `4.5.4` raíz/astro/openai; `3.25.76` vía chromium-bidi = ruta LHCI aceptada — solo seguir releases); float astro `^7.2.9` resuelve `7.3.1` (revisar changelog en el próximo bump; rollback = manifest + lockfile); sonda TS7 solo como nota mensual dispatch-only.
@@ -34,18 +35,22 @@ Fecha de corte: 2026-05-30
 
 ## Métricas
 
-### Total de items por urgencia
+### Total de items por urgencia (abiertos)
 
-- **P0:** 7
-- **P1:** 27 (+3 desde auditoría de drift 2026-05-20)
-- **P2:** 38 (−7: TD-0076, TD-0091, TD-0087, TD-0088, TD-0094, TD-0089 y TD-0092 cerrados)
-- **P3:** 12 (−2: TD-0078 y TD-0090 cerrados; TD-0093 también cerrado)
+_Actualizado 2026-09-25 desde las entradas `## TD-` (abierto = `Backlog*`, `Pendiente`, `ABIERTO*`)._
 
-### Estado de avance (2026-05-30)
+- **P0:** 0
+- **P1:** 1 — `TD-0107`
+- **P2:** 2 — `TD-0108`, `TD-0109`
+- **P3:** 4 — `TD-0095`, `TD-0096`, `TD-0103`, `TD-0110`
+- **Sin urgencia declarada:** 2 — `TD-0100` (Pendiente), `TD-0104` (ABIERTO)
+- **Total abiertos:** 9 de 111 entradas (`TD-0001`..`TD-0110`)
+- **Cerrados/completados:** 102
 
-- **Completados:** 91 TD únicos (`TD-0001`..`TD-0066`, `TD-0068`..`TD-0071`, `TD-0073`..`TD-0078` (excl. `TD-0079`), `TD-0080`, `TD-0082`..`TD-0094`) + 3 fixes puntuales (`FIX-MDX`, `FIX-LINKS-CALC`, `FIX-LINKS-GUIAS`)
-- **En progreso:** 0
-- **Backlog sin iniciar:** 2 (`TD-0095`, `TD-0096` — abiertos 2026-07-01, posteriores a este snapshot; no reflejados en los totales P0-P3 de arriba)
+### Estado de avance (2026-09-25)
+
+- **Completados/cerrados:** 102 entradas, incluida `TD-0097` (2026-09-25).
+- **Abiertos:** `TD-0095`, `TD-0096`, `TD-0100`, `TD-0103`, `TD-0104`, `TD-0107`, `TD-0108`, `TD-0109`, `TD-0110`.
 - **Cerrados sin ejecutar (premisa/ROI):** `TD-0067` (2026-06-25 — los use-cases ya retornan números puros; el formateo ya vive en las páginas), `TD-0081` (2026-06-25 — CI no usa esa secuencia y el único check lento es escritor; ahorro seguro ~0.2 s) y `TD-0079` (bloqueado por incompatibilidad WOFF2/Satori).
 - **Nota histórica:** `TD-0072` cerrado el 2026-06-23 (los 2 scripts restantes son código activo, no one-off).
 - **Nota histórica:** `TD-0095` y `TD-0096` abiertos el 2026-07-01, tras implementar `ADR-20260701-editorial-evergreen-tier.md` — ver entradas abajo.
@@ -72,6 +77,7 @@ Fecha de corte: 2026-05-30
 ### Top riesgos restantes
 
 - Auditoría de drift 2026-05-20 **cerrada al 100%** (`TD-0084`..`TD-0094`) el 2026-05-30. Riesgos restantes: ninguno en deuda técnica de código (`TD-0079` permanece bloqueado por WOFF2/Satori). `TD-0075`/`TD-0077` cerrados el 2026-06-25 (`ADR-20260625-astro-features-adoption.md`); `TD-0067` y `TD-0081` cerrados el 2026-06-25 (premisa/ROI invalidados, sin ejecutar).
+- Backlog abierto al 2026-09-25 (9 ítems): `TD-0107` (P1, timeliness semántico), `TD-0108`/`TD-0109` (P2), `TD-0095`/`TD-0096`/`TD-0103`/`TD-0110` (P3), `TD-0100`/`TD-0104` (sin urgencia declarada). Detalle en cada entrada.
 - Actualización de julio 2026: actualizar `imm` en `economic-parameters.snapshot.json` cuando se publique el decreto de reajuste del IMM.
 - Revisión humana de publish-packets de los 46 artículos YMYL (gate editorial, Carlos Ortega).
 
@@ -2414,3 +2420,23 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Estado:** Backlog
 - **Fecha de creación:** 2026-09-20
 - **Última actualización:** 2026-09-20
+
+## TD-0110 — Code scanning (CodeQL) no disponible en plan privado; SAST solo semanal
+
+- **ID:** TD-0110
+- **Título corto:** Cobertura SAST en PRs limitada a los checks del repo
+- **Descripción:** El workflow dinámico `CodeQL` figura listado, pero `code scanning` no está habilitado: en repo privado requiere GitHub Advanced Security (plan actual Free/User; la API responde 403 "Code scanning is not enabled"). Los jobs de `Security Scans` (Gitleaks, Opengrep, Trivy, pip-audit) corren en schedule semanal y `workflow_dispatch`; en PRs quedan en `skipping` por presupuesto de minutos (solo corre el escaneo de secrets del diff).
+- **Evidencia:** `gh api repos/cortega26/Monedario/code-scanning/default-setup` → 403 (2026-09-25); `gh workflow list --all` lista `CodeQL`; jobs de `security-scans.yml` condicionados a `schedule`/`workflow_dispatch`.
+- **Impacto:** Una regresión SAST introducida en un PR no se detecta hasta la corrida semanal; la ventana de detección es semanal, no por PR.
+- **Riesgo:** bajo-medio (mitigado por tests, lint, boundaries y revisión del diff).
+- **Severidad (1-5):** 2
+- **Urgencia:** P3
+- **Esfuerzo estimado:** S (documentar) / M (Opengrep en PRs)
+- **Propuesta de solución:** aceptar y documentar la cobertura semanal, o habilitar CodeQL si el repo pasa a público / se contrata GHAS; alternativa intermedia: job Opengrep en PRs con presupuesto acotado (solo `src/` o modo diff). Revisar la decisión cada 6 meses.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] Code scanning activo y produciendo alertas, **o**
+  - [ ] Decisión firmada (ADR/nota del owner) de aceptar cobertura SAST semanal con Opengrep.
+- **Owner:** Sin asignar
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-09-25
+- **Última actualización:** 2026-09-25

@@ -5,8 +5,9 @@
 # igual que antes (ver _SEMANTIC_AVAILABLE en monitor.py).
 #
 # Versiones pineadas con == (RM-022): compatibles con Python 3.9–3.13 en
-# CPU x86_64/aarch64 Linux (verificado a nivel de metadatos PyPI el
-# 2026-09-20: torch 2.8.0 y spacy 3.8.7 publican wheels cp313-manylinux;
+# CPU x86_64/aarch64 Linux (verificado a nivel de metadatos el
+# 2026-09-25: torch 2.13.0+cpu publica wheels cp313-manylinux_2_28 en el
+# indice CPU de PyTorch; spacy 3.8.7 wheels cp313-manylinux;
 # sentence-transformers 5.1.0 es py3-none-any; nltk es puro-Python).
 #
 # Como verificar SIN instalar en prod (solo metadatos, no toca nada):
@@ -26,7 +27,14 @@
 # principal — solo agrega el indice de wheels CPU-only de PyTorch como
 # fuente adicional, asi el resto de los paquetes se instalan normal.
 --extra-index-url https://download.pytorch.org/whl/cpu
-torch==2.12.1+cpu
+torch==2.13.0+cpu
 sentence-transformers==5.1.0
 spacy==3.8.7
+# nltk 3.10.3 (ultima publicada) tiene GHSA-8mgp-746c-j5xp sin parche:
+# bypass de sandbox en APIs de artefactos de modelo (TransitionParser,
+# AveragedPerceptron, PerceptronTagger.save_to_json, save_maxent_params).
+# Exposicion evaluada 2026-09-25: lexicon.py solo usa SnowballStemmer; no se
+# usan las APIs afectadas, no se activa pathsec.ENFORCE ni se aceptan rutas de
+# modelo de terceros (uso local, sin entrada no confiable). remove-when: exista
+# release con el parche.
 nltk==3.10.3
