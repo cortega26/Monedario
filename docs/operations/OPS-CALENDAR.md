@@ -62,6 +62,8 @@ Es el mismo topic del monitor de Reddit: un solo destino.
 - **Gate D:** cada lunes con el ritual semanal (W39-W43).
 - **Citación IA:** mensual (primera corrida parcial ya registrada).
 - **Wikis:** revisar el estado mensual en `/wikis`.
+- **Reponer borradores:** cada domingo durante el ensayo (4 y 11-oct) — 5-7
+  desde la cola viva para que el ritmo diario no se corte.
 
 ## Sin fecha (cuando puedas)
 
