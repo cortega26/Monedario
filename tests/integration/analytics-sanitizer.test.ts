@@ -656,6 +656,25 @@ describe("plan 100: every allowlisted event round-trips through both sanitizers"
     expect(scroll.params).not.toHaveProperty("article_title");
   });
 
+  it("affiliate_slot rejects 6+ digit runs that the weekly export would flag as PII", () => {
+    const params = (slot: string) => ({
+      calculator_id: "conversor-utm",
+      page_type: "calculator",
+      affiliate_slot: slot,
+      app_version: APP,
+    });
+    expect(
+      sanitizeAnalyticsPayload("affiliate_click", params("slot-123456"), {
+        rejectUnknown: true,
+      })
+    ).toBeNull();
+    expect(
+      sanitizeAnalyticsPayload("affiliate_click", params("slot-12345"), {
+        rejectUnknown: true,
+      })
+    ).not.toBeNull();
+  });
+
   it("scroll percent must be stringified at the emitter: raw numbers never transmit", () => {
     const strict = sanitizeAnalyticsPayload(
       "article_scroll_depth",

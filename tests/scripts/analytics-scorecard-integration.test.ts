@@ -171,6 +171,41 @@ describe("analytics scorecard integration", () => {
     expect(json.analyticsJson.totals.errors).toBe(5);
   });
 
+  it("surfaces affiliate_click and lead_submit in totals and markdown", () => {
+    const root = createTempRoot();
+    const week = "2026-W26";
+    const inputDir = path.join(root, week);
+    makeMinimalBundle(inputDir, week);
+
+    const analyticsDir = path.join(root, "analytics");
+    makeAnalyticsJson(analyticsDir, week, [
+      { date: "2026-06-22", event_name: "calculator_view", calculator_slug: "tool-a", dimensions: "", count: 10 },
+      { date: "2026-06-22", event_name: "affiliate_click", calculator_slug: "tool-a", dimensions: "utm-bajo-resultado", count: 4 },
+      { date: "2026-06-23", event_name: "lead_submit", calculator_slug: "tool-a", dimensions: "newsletter", count: 2 },
+    ]);
+
+    const watchlistPath = makeWatchlist(root);
+    const markdownOut = path.join(inputDir, "scorecard.md");
+    const jsonOut = path.join(inputDir, "scorecard.json");
+
+    const result = runScript([
+      "--input", inputDir,
+      "--watchlist", watchlistPath,
+      "--out", markdownOut,
+      "--json-out", jsonOut,
+      "--analytics-json-dir", analyticsDir,
+    ]);
+
+    expect(result.status).toBe(0);
+    const json = JSON.parse(readFileSync(jsonOut, "utf8"));
+    expect(json.analyticsJson.totals.affiliateClicks).toBe(4);
+    expect(json.analyticsJson.totals.leadSubmits).toBe(2);
+    expect(json.utilityLed.product.affiliateClicks).toBe(4);
+    const markdown = readFileSync(markdownOut, "utf8");
+    expect(markdown).toContain("affiliate clicks=4");
+    expect(markdown).toContain("lead submits=2");
+  });
+
   it("calculates explicit event ratios: views=100, starts=50, completes=25", () => {
     const root = createTempRoot();
     const week = "2026-W26";
