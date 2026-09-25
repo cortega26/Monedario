@@ -98,18 +98,21 @@ Siguiente paso y fecha:
 
 ## Tracker de conversaciones (meta: 10)
 
+Candidatos propuestos 2026-09-25 (validar y reemplazar por contactos reales;
+el orden no es prioridad):
+
 | # | Empresa / contacto | Hipótesis | Fecha | Resultado | Siguiente paso |
 |---|---|---|---|---|---|
-| 1 | | | | | |
-| 2 | | | | | |
-| 3 | | | | | |
-| 4 | | | | | |
-| 5 | | | | | |
-| 6 | | | | | |
-| 7 | | | | | |
-| 8 | | | | | |
-| 9 | | | | | |
-| 10 | | | | | |
+| 1 | Buk (payroll SaaS) | calculadoras propias envejecen con cada reforma | | | definir contacto (Producto) |
+| 2 | Rankmi (payroll/HR SaaS) | idem | | | definir contacto (Producto) |
+| 3 | Softland (ERP/nómina) | idem | | | definir contacto (Producto) |
+| 4 | Defontana (ERP/nómina) | idem | | | definir contacto (Producto) |
+| 5 | Empresa con nómina 200+ (retail/servicios) | consultas repetidas de colaboradores sobre sueldo/APV/finiquito | | | elegir 1–2 casos por red |
+| 6 | Fintual (fintech) | contenido explicativo con exactitud auditable | | | definir contacto (Contenido/Producto) |
+| 7 | Racional (fintech) | idem | | | definir contacto (Contenido/Producto) |
+| 8 | Pauta (medio) | reescribir UF/UTM a diario sin fuente estable | | | definir contacto (Redacción) |
+| 9 | Diario Financiero (medio) | idem | | | definir contacto (Datos/Redacción) |
+| 10 | Consultora boutique de remuneraciones | planillas propias sin SLA de exactitud | | | elegir por red |
 
 ## Criterios demo → piloto
 

@@ -13,14 +13,16 @@ Completado: Fases 0–3 salvo decisiones pendientes explícitas (`MON-301`, `MON
 
 Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados el 2026-05-20 en `docs/TECH_DEBT_BACKLOG.md`.
 
-### Siguiente orden recomendado
+### Siguiente orden recomendado (2026-09-25)
 
 | Orden | Item | Por qué ahora |
 |-------|------|---------------|
-| 1 | Validar CSP/Cloudflare después del despliegue | Confirmar que `no-transform` evita JSD sin relajar la CSP hash-only |
-| 2 | Cerrar guardrail LCP de UTM | Dos de tres corridas móviles superaron 1,7 s; conservar el umbral y corregir antes de cerrar |
-| 3 | Ejecutar ritual utility-led por dos semanas comparables | Medir utilidad, carga, costo, calidad, aprendizaje y reputación; ingresos siguen siendo opcionales |
-| 4 | Firmar (editor humano) el lote 0 de `impuestos-personas` | Los cuatro SLA vencidos ya se remediaron y verificaron (compliance adversarial en múltiples rondas): `CONDITIONAL` 9,3-9,45/10, cero defectos bloqueantes. `check:editorial-timeliness` ya no los reporta como stale. Falta solo la firma humana en `07-publish-packet.md` y decidir el merge de PR #423. Ver `PLAN-auditoria-corpus-publicado-2026-08-12.md` §18 |
+| 1 | Lectura primaria F5 de UTM (2026-09-30) | W39 es la primera semana completa post-deploy; decidir keep/revert/extender y desbloquear F2 UF |
+| 2 | Gate D semanal (W39–W43) | `utility-led-ops.json` sigue `INPUT_REQUIRED`; sin registro no se decide expansión el 2026-11-02 |
+| 3 | F2 B2B: 10 conversaciones antes del 2026-11-02 | Tracker sembrado con 10 candidatos en `docs/reports/B2B-DISCOVERY-MEMO-2026-09-16.md`; sin memo completo, la opción D no es elegible |
+| 4 | Distribución: semana 1 de siembra + corrida mensual de citación (sesión owner) | F1 ejecutada (3/25 evaluables, 0/20 temáticas); canales 1–2 activos |
+| 5 | Firmar (editor humano) el lote 0 de `impuestos-personas` | Los cuatro SLA vencidos ya se remediaron y verificaron (compliance adversarial en múltiples rondas): `CONDITIONAL` 9,3-9,45/10, cero defectos bloqueantes. `check:editorial-timeliness` ya no los reporta como stale. Falta solo la firma humana en `07-publish-packet.md` y decidir el merge de PR #423. Ver `PLAN-auditoria-corpus-publicado-2026-08-12.md` §18 |
+| 6 | Post-W40: instrumentación UTM landing + F3 citation-ready | No tocar superficies antes por ventanas de medición activas |
 
 ### Pendiente — implementación por código
 
