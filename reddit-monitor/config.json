@@ -139,7 +139,44 @@
       "claude-opus-5": {"input": 5.0, "output": 25.0}
     }
   },
-  "resource_map": [
+  "resource_map":   [
+    {
+      "label": "Calculadora de tarjeta de crédito",
+      "url": "https://monedario.cl/calculadoras/tarjeta-credito/",
+      "phrases": [
+        "pago minimo",
+        "tarjeta de credito",
+        "tarjeta credito",
+        "avance en efectivo",
+        "cupo de la tarjeta",
+        "cae de la tarjeta"
+      ]
+    },
+    {
+      "label": "Calculadora de finiquito",
+      "url": "https://monedario.cl/calculadoras/finiquito-indemnizacion/",
+      "phrases": [
+        "finiquito",
+        "me despidieron",
+        "me despidio",
+        "despido",
+        "indemnizacion",
+        "anos de servicio",
+        "desvinculacion",
+        "carta de aviso"
+      ]
+    },
+    {
+      "label": "Calculadora de seguro de cesantía",
+      "url": "https://monedario.cl/calculadoras/seguro-cesantia/",
+      "phrases": [
+        "seguro de cesantia",
+        "seguro cesantia",
+        "quede cesante",
+        "quedo cesante",
+        "cesantia"
+      ]
+    },
     {
       "label": "Simulador Operación Renta",
       "url": "https://monedario.cl/calculadoras/operacion-renta/",
@@ -148,26 +185,16 @@
         "devolucion de impuestos",
         "simulador renta",
         "formulario 22",
-        "declaracion de renta"
+        "declaracion de renta",
+        "devolucion de impuesto"
       ]
     },
     {
-      "label": "Calculadora de finiquito",
-      "url": "https://monedario.cl/calculadoras/finiquito-indemnizacion/",
+      "label": "Calculadora de APV",
+      "url": "https://monedario.cl/calculadoras/apv/",
       "phrases": [
-        "finiquito",
-        "indemnizacion por despido",
-        "indemnizacion despido"
-      ]
-    },
-    {
-      "label": "Calculadora de sueldo líquido",
-      "url": "https://monedario.cl/calculadoras/sueldo-liquido/",
-      "phrases": [
-        "sueldo liquido",
-        "de bruto a liquido",
-        "cuanto me descuentan del sueldo",
-        "sueldo bruto"
+        "apv",
+        "ahorro previsional"
       ]
     },
     {
@@ -187,13 +214,141 @@
       ]
     },
     {
+      "label": "Simulador de jubilación",
+      "url": "https://monedario.cl/calculadoras/simulador-jubilacion/",
+      "phrases": [
+        "jubilacion",
+        "jubilar",
+        "pension de vejez",
+        "pension de jubilacion",
+        "pgu"
+      ]
+    },
+    {
+      "label": "Calculadora de boleta de honorarios",
+      "url": "https://monedario.cl/calculadoras/boleta-honorarios-liquido/",
+      "phrases": [
+        "boleta de honorarios",
+        "boletas de honorarios",
+        "retencion de honorarios"
+      ]
+    },
+    {
+      "label": "Calculadora de sueldo líquido",
+      "url": "https://monedario.cl/calculadoras/sueldo-liquido/",
+      "phrases": [
+        "sueldo liquido",
+        "de bruto a liquido",
+        "cuanto me descuentan del sueldo",
+        "sueldo bruto",
+        "remuneracion",
+        "mi sueldo",
+        "descuentos legales"
+      ]
+    },
+    {
+      "label": "Calculadora de gratificación legal",
+      "url": "https://monedario.cl/calculadoras/gratificacion-legal/",
+      "phrases": [
+        "gratificacion"
+      ]
+    },
+    {
+      "label": "Calculadora de dividendo hipotecario",
+      "url": "https://monedario.cl/calculadoras/dividendo-hipotecario/",
+      "phrases": [
+        "credito hipotecario",
+        "hipotecario",
+        "dividendo",
+        "comprar propiedad",
+        "comprar casa",
+        "casa propia",
+        "departamento",
+        "propiedad"
+      ]
+    },
+    {
+      "label": "Calculadora de reajuste de arriendo",
+      "url": "https://monedario.cl/calculadoras/reajuste-arriendo/",
+      "phrases": [
+        "reajuste de arriendo",
+        "contrato de arriendo",
+        "arriendo",
+        "arrendar",
+        "arrendatario"
+      ]
+    },
+    {
+      "label": "Calculadora de interés compuesto",
+      "url": "https://monedario.cl/calculadoras/interes-compuesto/",
+      "phrases": [
+        "interes compuesto"
+      ]
+    },
+    {
+      "label": "Calculadora de depósito a plazo",
+      "url": "https://monedario.cl/calculadoras/deposito-a-plazo/",
+      "phrases": [
+        "deposito a plazo",
+        "cuenta de ahorro",
+        "cuenta de ahorros",
+        "ahorro a plazo",
+        "dap"
+      ]
+    },
+    {
+      "label": "Guía para salir del boletín comercial",
+      "url": "https://monedario.cl/posts/como-salir-boletin-comercial-chile/",
+      "phrases": [
+        "boletin comercial",
+        "salir de dicom",
+        "deudas en dicom",
+        "dicom"
+      ]
+    },
+    {
+      "label": "Guía de presupuesto mensual",
+      "url": "https://monedario.cl/posts/como-hacer-presupuesto-mensual-chile/",
+      "phrases": [
+        "presupuesto mensual",
+        "presupuesto familiar",
+        "presupuesto personal",
+        "finanzas personales",
+        "planificar mis gastos",
+        "organizar mis finanzas"
+      ]
+    },
+    {
+      "label": "Calculadora de crédito de consumo",
+      "url": "https://monedario.cl/calculadoras/credito-consumo/",
+      "phrases": [
+        "credito de consumo",
+        "renegociacion de deuda",
+        "prepago de credito",
+        "renegociar"
+      ]
+    },
+    {
       "label": "Conversor UF ↔ pesos",
       "url": "https://monedario.cl/calculadoras/conversor-uf/",
       "phrases": [
         "uf a pesos",
         "valor de la uf",
         "cuanto es la uf",
-        "convertir uf"
+        "convertir uf",
+        "unidad de fomento",
+        "uf hoy",
+        "en uf",
+        "de uf"
+      ]
+    },
+    {
+      "label": "Conversor UTM",
+      "url": "https://monedario.cl/calculadoras/conversor-utm/",
+      "phrases": [
+        "utm hoy",
+        "valor utm",
+        "utm"
       ]
     }
   ]

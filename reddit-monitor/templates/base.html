@@ -77,6 +77,9 @@ button.secondary { background: transparent; color: var(--muted); border: 1px sol
 .ai-box { border-left: 3px solid var(--accent); padding: 4px 0 4px 10px; margin: 8px 0; }
 .warn { font-size: 13px; color: var(--reciente); margin-top: 4px; }
 textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 15px; font-family: inherit; }
+select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 15px; }
+h2.batch { font-size: 15px; margin: 20px 0 8px; }
+code.link { display: block; word-break: break-all; font-size: 12px; color: var(--muted); }
 table { width: 100%; border-collapse: collapse; font-size: 14px; }
 th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--border); }
 </style>
@@ -86,6 +89,8 @@ th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--border);
   <h1>Monedario · Reddit monitor</h1>
   <nav>
     <a href="/" class="{% block nav_queue %}{% endblock %}">Cola</a>
+    <a href="/siembra" class="{% block nav_siembra %}{% endblock %}">Siembra</a>
+    <a href="/modmail" class="{% block nav_modmail %}{% endblock %}">Modmail</a>
     <a href="/atendidos" class="{% block nav_atendidos %}{% endblock %}">Atendidos</a>
     <a href="/revision" class="{% block nav_revision %}{% endblock %}">Revisión</a>
     <a href="/wikis" class="{% block nav_wikis %}{% endblock %}">Wikis</a>
@@ -94,5 +99,31 @@ th, td { text-align: left; padding: 8px; border-bottom: 1px solid var(--border);
 <main>
 {% block content %}{% endblock %}
 </main>
+<script>
+// Copiar y abrir: un clic deja el comentario en el portapapeles y abre el
+// hilo en otra pestaña. El envío a Reddit lo hace la persona (regla del kit:
+// automatizar = spam). Sin librerías: la app se mantiene robusta y sin JS.
+function copiarTexto(texto) {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(texto);
+  }
+  const ta = document.createElement("textarea");
+  ta.value = texto;
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } finally { ta.remove(); }
+  return Promise.resolve();
+}
+function copiarYAbrir(btn) {
+  const box = btn.closest(".variant") || btn.closest(".card");
+  const texto = box.querySelector("textarea").value;
+  copiarTexto(texto).then(function () {
+    const original = btn.dataset.label || btn.textContent;
+    btn.textContent = "✓ Copiado — pega en Reddit";
+    window.open(btn.dataset.url, "_blank", "noopener");
+    setTimeout(function () { btn.textContent = original; }, 4000);
+  });
+}
+</script>
 </body>
 </html>

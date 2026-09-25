@@ -117,3 +117,10 @@ branded + Cloudflare.
   cola del monitor (r/chile despido, r/chile Fonasa, r/FinanzasChile tarjeta);
   publicación manual pendiente. Plantillas F (Fonasa) y G (tarjeta/pago
   mínimo) añadidas al kit; lista de subs alineada con el monitor.
+- 2026-09-25 — Lote 2 (3 borradores) y reglas de links: `r/chile` (aprobación
+  previa) y `r/AskChile` (sin autopromoción) van **sin link**; `r/FinanzasChile`
+  con link al final. La web app (`reddit.monedario.cl/siembra` y `/modmail`)
+  opera los lotes y modmails con un clic (copiar + abrir + registrar estado),
+  sin publicar sola. `resource_map` de la cola ampliado a 19 grupos: las
+  sugerencias pasaron de 0 a 18 sobre la cola viva, sin falsos positivos
+  evidentes (se quitaron "uf", "presupuesto" y "pensión" sueltos).

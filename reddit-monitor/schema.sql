@@ -261,6 +261,69 @@ CREATE TABLE IF NOT EXISTS ai_runs (
     note        TEXT
 );
 
+-- [Siembra] Borradores de respuesta listos para publicar a mano. La app los
+-- importa de seed_content.py en cada arranque (idempotente por permalink) y
+-- NUNCA pisa el estado humano: status/status_note/published_at son de Carlos.
+-- Automatizar la publicación = spam (kill criterion del plan), así que la UI
+-- solo copia y abre; el envío sigue siendo manual. Aditiva: una DB v3 la
+-- recibe sola en el próximo connect(), sin subir schema_version.
+CREATE TABLE IF NOT EXISTS seed_drafts (
+    id            INTEGER PRIMARY KEY AUTOINCREMENT,
+    permalink     TEXT NOT NULL UNIQUE,
+    batch         TEXT NOT NULL,
+    planned_week  TEXT,
+    subreddit     TEXT NOT NULL,
+    thread_title  TEXT NOT NULL,
+    draft_text    TEXT NOT NULL,
+    link_url      TEXT,
+    utm_url       TEXT,
+    preflight     TEXT,
+    -- Qué permite el sub con los links (reglas leídas por API 2026-09-25):
+    -- 'link-permitido' | 'sin-link' | 'solo-con-aprobacion'. Los borradores
+    -- con link no permitido traen una versión sin link en draft_text_no_link.
+    link_policy       TEXT NOT NULL DEFAULT 'link-permitido'
+                      CHECK (link_policy IN ('link-permitido', 'sin-link',
+                                             'solo-con-aprobacion')),
+    link_policy_note  TEXT,
+    draft_text_no_link TEXT,
+    status        TEXT NOT NULL DEFAULT 'listo'
+                  CHECK (status IN ('listo', 'publicado', 'descartado')),
+    status_note   TEXT,
+    published_at  TEXT,
+    created_at    TEXT NOT NULL,
+    updated_at    TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_seed_drafts_status ON seed_drafts(status);
+
+-- [Siembra] Modmails a moderadores para pedir inclusión en la wiki de
+-- recursos (tráfico compuesto). Mismo criterio: la app copia y abre el
+-- compose de Reddit; el envío es manual y queda registrado aquí.
+CREATE TABLE IF NOT EXISTS modmail_drafts (
+    id            INTEGER PRIMARY KEY AUTOINCREMENT,
+    subreddit     TEXT NOT NULL UNIQUE,
+    subject       TEXT NOT NULL,
+    body          TEXT NOT NULL,
+    wiki_targets  TEXT,
+    status        TEXT NOT NULL DEFAULT 'borrador'
+                  CHECK (status IN ('borrador', 'enviado', 'respondido',
+                                    'aceptado', 'rechazado', 'descartado')),
+    status_note   TEXT,
+    sent_at       TEXT,
+    created_at    TEXT NOT NULL,
+    updated_at    TEXT NOT NULL
+);
+
+-- [Siembra] Resultado del escaneo de wikis por subreddit (API solo-lectura):
+-- dónde hay página de recursos, si Monedario está listado y qué URL revisar.
+-- Alimenta /wikis con el "qué hacer" por sub, no solo el checkbox.
+CREATE TABLE IF NOT EXISTS wiki_targets (
+    subreddit     TEXT PRIMARY KEY,
+    scan_status   TEXT NOT NULL,
+    index_url     TEXT,
+    target_pages  TEXT,
+    updated_at    TEXT NOT NULL
+);
+
 -- version simple de esquema, para poder saber si una VM/copia quedó atrasada
 -- [RM-016] v2 = Fase 0.6 (columnas ML en matches/discarded); v3 = columnas
 -- reason/on_topic/source en human_reviews. db.connect() falla rapido si la
