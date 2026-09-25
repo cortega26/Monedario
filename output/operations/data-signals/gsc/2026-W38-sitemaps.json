@@ -1,5 +1,5 @@
 {
-  "fetchedAt": "2026-09-21T11:55:37Z",
+  "fetchedAt": "2026-09-25T03:09:48Z",
   "schemaVersion": 1,
   "source": "gsc",
   "week": "2026-W38",
@@ -19,7 +19,7 @@
       "errors": "0",
       "isPending": false,
       "isSitemapsIndex": true,
-      "lastDownloaded": "2026-09-12",
+      "lastDownloaded": "2026-09-21",
       "lastSubmitted": "2026-03-08",
       "path": "https://monedario.cl/sitemap-index.xml",
       "warnings": "0"
