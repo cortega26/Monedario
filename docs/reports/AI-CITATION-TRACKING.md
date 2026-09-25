@@ -84,6 +84,26 @@ Monedario — la ventana de citación temática está abierta y es exactamente l
 que ataca F3 (páginas "citation-ready"). En esos temas los motores citan
 competidores y fuentes oficiales.
 
+### Hoja de corrida mensual (en blanco)
+
+`C` = citado · `—` = no citado · `N/E` = no evaluable (login/anti-bot). Copiar
+esta tabla para la próxima corrida; los resultados de la primera están arriba.
+
+| Consulta | ChatGPT | Perplexity | Gemini | Copilot |
+|---|---|---|---|---|
+| B1 | | | | |
+| B2 | | | | |
+| T1 | | | | |
+| T2 | | | | |
+| T3 | | | | |
+| T4 | | | | |
+| T5 | | | | |
+| T6 | | | | |
+| T7 | | | | |
+| T8 | | | | |
+| T9 | | | | |
+| T10 | | | | |
+
 ## Qué hacer con los resultados
 
 - **Tasa estancada en 0 tras 2–3 meses:** revisar que `llms.txt` y el sitemap

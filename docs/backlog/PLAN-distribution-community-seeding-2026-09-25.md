@@ -113,3 +113,7 @@ branded + Cloudflare.
 
 - 2026-09-25 — Plan creado. Pendiente primera semana de ejecución (2–3
   respuestas) y baseline de branded queries.
+- 2026-09-25 — Semana 1 preparada: 3 borradores listos con links UTM desde la
+  cola del monitor (r/chile despido, r/chile Fonasa, r/FinanzasChile tarjeta);
+  publicación manual pendiente. Plantillas F (Fonasa) y G (tarjeta/pago
+  mínimo) añadidas al kit; lista de subs alineada con el monitor.

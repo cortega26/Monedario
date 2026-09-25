@@ -89,13 +89,36 @@ autopromoción de **cada** subreddit antes de postear (varios exigen el 9:1 y ba
 
 **Calza con:** sueldo-liquido · descuentos-de-sueldo · sueldo-imponible-chile.
 
+### F. Fonasa / "cómo paso de tramo A" / "qué letra me corresponde"
+
+> El tramo no se elige: se calcula por tu ingreso imponible y tus cargas. Con 3
+> o más cargas subes un tramo (de D a C, por ejemplo). Desde 2022 hay Copago
+> Cero en la red pública para todos los tramos, así que "letra mejor" no
+> siempre significa pagar menos en CESFAM/hospitales. Los umbrales cambian:
+> confírmalos en fonasa.cl.
+> *(cierre opcional)* Comparativa Fonasa vs Isapre con fuentes y copagos:
+> monedario.cl/posts/fonasa-vs-isapre-comparativa/
+
+**Calza con:** fonasa-vs-isapre-comparativa · sueldo-liquido (cotización salud).
+
+### G. Tarjeta de crédito / "pago mínimo" / "me llegó el cupo"
+
+> La trampa es el pago mínimo: desde junio de 2026 el piso es 100% del monto no
+> financiable (intereses, comisiones) + 5% del monto financiable. Si te quedas
+> ahí, la deuda dura años. Paga el total facturado o bastante más que el
+> mínimo, y compara créditos por CAE, no por tasa.
+> *(cierre opcional)* Calculadora gratis que muestra cuánto se estira la deuda
+> según lo que pagues: monedario.cl/calculadoras/tarjeta-credito/
+
+**Calza con:** tarjeta-credito · tarjeta-credito-costo-real-chile · cae-costo-real-credito-chile.
+
 ---
 
 ## Dónde sembrar (Chile)
 
 | Canal | Notas |
 |---|---|
-| **Reddit** r/chile, r/RepublicaIndependiente, r/merval, r/Bolsa, r/EstoyBienChile | Lee reglas de autopromo de cada sub; construye karma antes; ratio 9:1 estricto |
+| **Reddit** (subs que escucha el monitor: r/chile, r/Santiago, r/RepublicadeChile, r/FinanzasChile, r/AskChile, r/ChileInversiones, r/derechoenchile, r/ChileStartup) | Lee reglas de autopromo de cada sub; construye karma antes; ratio 9:1 estricto |
 | **Grupos Facebook** finanzas personales Chile / emprendimiento | Más tolerantes; igual responde primero, link después |
 | **Quora español** | Preguntas perennes ("cómo calcular finiquito") que rankean solas con el tiempo |
 | **Foros** (p.ej. comunidades de inversión CL) | Alta intención; presencia sostenida > ráfaga |
