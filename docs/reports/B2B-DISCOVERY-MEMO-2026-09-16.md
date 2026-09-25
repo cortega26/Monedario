@@ -98,21 +98,30 @@ Siguiente paso y fecha:
 
 ## Tracker de conversaciones (meta: 10)
 
-Candidatos propuestos 2026-09-25 (validar y reemplazar por contactos reales;
-el orden no es prioridad):
+Secuencia aprobada 2026-09-25 (híbrida, "velocidad de sí" primero; los 10 se
+mantienen): **S1 6-10 oct** medios/fintech/consultora; **S2 12-16 oct**
+payroll/HR (prueban el embed pagado); **S3 19-30 oct** follow-ups, intros
+tibias y llamadas. Hook preferente: observación **verificada** de la
+superficie pública del target; si no hay hallazgo, ir por
+workflow/mantención — nunca inventar un error (auditorías:
+`output/operations/b2b-audits-2026-09-25.md`).
 
-| # | Empresa / contacto | Hipótesis | Fecha | Resultado | Siguiente paso |
-|---|---|---|---|---|---|
-| 1 | Buk (payroll SaaS) — `buk.cl` | calculadoras propias envejecen con cada reforma | | | LinkedIn de Producto / formulario del sitio |
-| 2 | Rankmi (payroll/HR SaaS) — `rankmi.com` | idem | | | LinkedIn de Producto / formulario del sitio |
-| 3 | Softland (ERP/nómina) — `softland.cl` | idem | | | LinkedIn de Producto / formulario del sitio |
-| 4 | Defontana (ERP/nómina) — `defontana.com` | idem | | | LinkedIn de Producto / formulario del sitio |
-| 5 | Empresa con nómina 200+ (retail/servicios) | consultas repetidas de colaboradores sobre sueldo/APV/finiquito | | | elegir 1–2 casos por red (intro tibia) |
-| 6 | Fintual (fintech) — `fintual.cl` | contenido explicativo con exactitud auditable | | | LinkedIn de Contenido/Producto |
-| 7 | Racional (fintech) — `racional.cl` | idem | | | LinkedIn de Contenido/Producto |
-| 8 | Pauta (medio) — `pauta.cl` | reescribir UF/UTM a diario sin fuente estable | | | contacto de Redacción |
-| 9 | Diario Financiero (medio) — `df.cl` | idem | | | contacto de Datos/Redacción |
-| 10 | Consultora boutique de remuneraciones | planillas propias sin SLA de exactitud | | | red personal |
+| # | Empresa / contacto | Segmento | Hook | Semana | Resultado | Siguiente paso |
+|---|---|---|---|---|---|---|
+| 1 | Pauta (medio) — `pauta.cl` | medio | workflow: UF diaria con verificación manual | S1 | | contacto de Redacción |
+| 2 | Diario Financiero (medio) — `df.cl` | medio | workflow: indicadores al día | S1 | | contacto de Datos/Redacción |
+| 3 | Fintual (fintech) — `fintual.cl` | fintech | exactitud auditable | S1 | | LinkedIn de Contenido/Producto |
+| 4 | Racional (fintech) — `racional.cl` | fintech | exactitud auditable | S1 | | LinkedIn de Contenido/Producto |
+| 5 | Consultora boutique de remuneraciones | consultoría | planillas propias sin SLA | S1 | | red personal |
+| 6 | Buk (payroll SaaS) — `buk.cl` | payroll SaaS | cobertura: calculadora al día, ¿quién la mantiene? | S2 | | LinkedIn de Producto / formulario del sitio |
+| 7 | Rankmi (payroll/HR SaaS) — `rankmi.com` | payroll SaaS | mantención de cálculos y beneficios | S2 | | LinkedIn de Producto / formulario del sitio |
+| 8 | Defontana (ERP/nómina) — `defontana.com` | ERP/nómina | fuente auditable en contenido | S2 | | LinkedIn de Producto / formulario del sitio |
+| 9 | Softland (ERP/nómina) — `softland.cl` | ERP/nómina | cálculo legal al día | S2 | | LinkedIn de Producto / formulario del sitio |
+| 10 | Empresa con nómina 200+ (retail/servicios) | HR | consultas repetidas de colaboradores | S2 | | elegir 1–2 casos por red (intro tibia) |
+
+Funnel objetivo por semana: 5 envíos → 2 respuestas → 1-2 llamadas. Registrar
+el **segmento** en cada fila para que la decisión del 2-nov lea qué segmento
+respondió y cuál mostró disposición a pagar.
 
 ## Criterios demo → piloto
 
@@ -132,6 +141,12 @@ el orden no es prioridad):
 | Piloto único (8–12 semanas) | primera validación | ≥ costo de mantención del período (E6) + margen |
 | Suscripción embed mensual | uso continuo | costo mensual de mantención + margen; sin fee por usuario |
 | Licencia de contenido/API | medios o fintech | por superficie y cadencia de refresco |
+
+**Supuesto de tarifa (owner a confirmar):** CLP 30.000/h. Con Gate D
+(8 h/semana de mantención) el piso de un embed con SLA completo es del orden
+de **CLP 1,0 M/mes**; el piloto de 8–12 semanas se cotiza sobre ese piso más
+margen. Sin tarifa declarada no se cotiza. Un piso que no cubra la mantención
++ margen se rechaza aunque haya interés.
 
 El contrato de calidad debe fijar: cadencia de refresco (UTM mensual, UF
 diaria, reformas), fuentes primarias por indicador, SLO de exactitud y
