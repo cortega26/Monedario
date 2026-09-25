@@ -103,16 +103,16 @@ el orden no es prioridad):
 
 | # | Empresa / contacto | Hipótesis | Fecha | Resultado | Siguiente paso |
 |---|---|---|---|---|---|
-| 1 | Buk (payroll SaaS) | calculadoras propias envejecen con cada reforma | | | definir contacto (Producto) |
-| 2 | Rankmi (payroll/HR SaaS) | idem | | | definir contacto (Producto) |
-| 3 | Softland (ERP/nómina) | idem | | | definir contacto (Producto) |
-| 4 | Defontana (ERP/nómina) | idem | | | definir contacto (Producto) |
-| 5 | Empresa con nómina 200+ (retail/servicios) | consultas repetidas de colaboradores sobre sueldo/APV/finiquito | | | elegir 1–2 casos por red |
-| 6 | Fintual (fintech) | contenido explicativo con exactitud auditable | | | definir contacto (Contenido/Producto) |
-| 7 | Racional (fintech) | idem | | | definir contacto (Contenido/Producto) |
-| 8 | Pauta (medio) | reescribir UF/UTM a diario sin fuente estable | | | definir contacto (Redacción) |
-| 9 | Diario Financiero (medio) | idem | | | definir contacto (Datos/Redacción) |
-| 10 | Consultora boutique de remuneraciones | planillas propias sin SLA de exactitud | | | elegir por red |
+| 1 | Buk (payroll SaaS) — `buk.cl` | calculadoras propias envejecen con cada reforma | | | LinkedIn de Producto / formulario del sitio |
+| 2 | Rankmi (payroll/HR SaaS) — `rankmi.com` | idem | | | LinkedIn de Producto / formulario del sitio |
+| 3 | Softland (ERP/nómina) — `softland.cl` | idem | | | LinkedIn de Producto / formulario del sitio |
+| 4 | Defontana (ERP/nómina) — `defontana.com` | idem | | | LinkedIn de Producto / formulario del sitio |
+| 5 | Empresa con nómina 200+ (retail/servicios) | consultas repetidas de colaboradores sobre sueldo/APV/finiquito | | | elegir 1–2 casos por red (intro tibia) |
+| 6 | Fintual (fintech) — `fintual.cl` | contenido explicativo con exactitud auditable | | | LinkedIn de Contenido/Producto |
+| 7 | Racional (fintech) — `racional.cl` | idem | | | LinkedIn de Contenido/Producto |
+| 8 | Pauta (medio) — `pauta.cl` | reescribir UF/UTM a diario sin fuente estable | | | contacto de Redacción |
+| 9 | Diario Financiero (medio) — `df.cl` | idem | | | contacto de Datos/Redacción |
+| 10 | Consultora boutique de remuneraciones | planillas propias sin SLA de exactitud | | | red personal |
 
 ## Criterios demo → piloto
 
