@@ -16,8 +16,11 @@ Cloudflare Access para mantener la superficie de configuracion minima.
 import json
 import os
 import secrets
+import sys
+from contextlib import asynccontextmanager
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
+from urllib.parse import quote
 
 from fastapi import FastAPI, Depends, Form, HTTPException, Request
 from fastapi.responses import RedirectResponse, HTMLResponse, PlainTextResponse
@@ -29,6 +32,7 @@ import db as dbmod
 import reviews
 import resources
 import review_sampling
+import seed_content
 import threads
 
 CHILE_TZ = timezone(timedelta(hours=-3))
@@ -41,7 +45,24 @@ DB_PATH = Path(os.environ.get("REDDIT_MONITOR_DB", BASE_DIR / "reddit_monitor.db
 WEB_PASSWORD = os.environ.get("WEB_PASSWORD", "")
 CONFIG_PATH = BASE_DIR / "config.json"
 
-app = FastAPI(title="Monedario — Reddit monitor")
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    """Importa/actualiza el contenido de siembra (seed_content.py) al
+    arrancar. Es idempotente y nunca pisa el estado humano; si falla, la app
+    igual parte (la cola no depende de esto)."""
+    try:
+        conn = dbmod.connect(DB_PATH)
+        try:
+            counts = seed_content.sync(conn)
+            print(f"[siembra] contenido sincronizado: {counts}")
+        finally:
+            conn.close()
+    except Exception as exc:  # noqa: BLE001
+        print(f"aviso: no se pudo sincronizar seed_content: {exc}", file=sys.stderr)
+    yield
+
+
+app = FastAPI(title="Monedario — Reddit monitor", lifespan=lifespan)
 templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
 security = HTTPBasic()
 
@@ -295,18 +316,37 @@ def descartar(
     return RedirectResponse(url="/", status_code=303)
 
 
+def reddit_permalink_url(permalink: str) -> str:
+    return f"https://reddit.com{permalink}"
+
+
+def reddit_compose_url(subreddit: str, subject: str) -> str:
+    """Compose de modmail a los mods de un sub. Reddit no acepta el cuerpo
+    por URL: la UI copia el cuerpo al portapapeles y abre esto con el asunto
+    ya puesto."""
+    return (
+        "https://www.reddit.com/message/compose?to="
+        f"{quote('/r/' + subreddit, safe='')}&subject={quote(subject, safe='')}"
+    )
+
+
 @app.get("/wikis", response_class=HTMLResponse)
 def wikis(request: Request, user: str = Depends(check_auth), conn=Depends(get_conn)):
-    subreddits = sorted({r["subreddit"] for r in conn.execute("SELECT DISTINCT subreddit FROM matches")})
+    subs = {r["subreddit"] for r in conn.execute("SELECT DISTINCT subreddit FROM matches")}
+    targets = {r["subreddit"]: dict(r) for r in conn.execute("SELECT * FROM wiki_targets")}
+    mails = {r["subreddit"]: dict(r) for r in conn.execute("SELECT * FROM modmail_drafts")}
+    subs |= set(targets) | set(mails)
     rows = {r["subreddit"]: r for r in conn.execute("SELECT * FROM subreddit_wiki_status")}
     items = []
-    for sub in subreddits:
+    for sub in sorted(subs):
         status = rows.get(sub)
         items.append({
             "subreddit": sub,
             "checked": bool(status["checked"]) if status else False,
             "has_monedario": bool(status["has_monedario"]) if status else False,
             "notes": status["notes"] if status else "",
+            "target": targets.get(sub),
+            "modmail": mails.get(sub),
         })
     return templates.TemplateResponse(request, "wikis.html", {"items": items})
 
@@ -332,6 +372,179 @@ def update_wiki(
             (subreddit, int(checked), int(has_monedario), notes.strip() or None, now_iso),
         )
     return RedirectResponse(url="/wikis", status_code=303)
+
+
+# --- Siembra: respuestas preparadas + modmails ------------------------------
+
+SEED_STATUS_LABELS = {"listo": "Listo", "publicado": "Publicado", "descartado": "Descartado"}
+MODMAIL_ESTADOS = ("borrador", "enviado", "respondido", "aceptado", "rechazado", "descartado")
+MODMAIL_ORDER = (
+    "CASE status WHEN 'borrador' THEN 0 WHEN 'enviado' THEN 1 "
+    "WHEN 'respondido' THEN 2 WHEN 'aceptado' THEN 3 ELSE 4 END"
+)
+
+
+def _seed_rows(conn):
+    rows = conn.execute(
+        "SELECT * FROM seed_drafts ORDER BY planned_week, "
+        "CASE status WHEN 'listo' THEN 0 WHEN 'publicado' THEN 1 ELSE 2 END, id"
+    ).fetchall()
+    items = []
+    for r in rows:
+        it = dict(r)
+        it["permalink_url"] = reddit_permalink_url(it["permalink"])
+        it["status_label"] = SEED_STATUS_LABELS.get(it["status"], it["status"])
+        items.append(it)
+    batches = []
+    for it in items:
+        if not batches or batches[-1]["label"] != it["batch"]:
+            batches.append({"label": it["batch"], "week": it.get("planned_week"), "items": []})
+        batches[-1]["items"].append(it)
+    return items, batches
+
+
+@app.get("/siembra", response_class=HTMLResponse)
+def siembra(request: Request, user: str = Depends(check_auth), conn=Depends(get_conn)):
+    items, batches = _seed_rows(conn)
+    week_ago = (datetime.now(tz=CHILE_TZ) - timedelta(days=7)).isoformat()
+    n_publicados_semana = conn.execute(
+        "SELECT COUNT(*) c FROM seed_drafts WHERE status='publicado' AND published_at >= ?",
+        (week_ago,),
+    ).fetchone()["c"]
+    return templates.TemplateResponse(request, "siembra.html", {
+        "batches": batches,
+        "n_listos": sum(1 for it in items if it["status"] == "listo"),
+        "n_publicados": sum(1 for it in items if it["status"] == "publicado"),
+        "n_descartados": sum(1 for it in items if it["status"] == "descartado"),
+        "n_publicados_semana": n_publicados_semana,
+    })
+
+
+@app.post("/siembra/{seed_id}/publicado")
+def seed_publicado(
+    seed_id: int,
+    request: Request,
+    nota: str = Form(""),
+    user: str = Depends(check_auth),
+    conn=Depends(get_conn),
+):
+    """Registra que el borrador se publicó a mano. Si el hilo está en la cola,
+    refleja lo mismo que /matches/{id}/atender: match atendido + acción con UTM
+    + etiqueta humana, para no contar dos veces ni perder atribución."""
+    require_same_origin(request)
+    row = conn.execute("SELECT * FROM seed_drafts WHERE id = ?", (seed_id,)).fetchone()
+    if not row:
+        raise HTTPException(status_code=404, detail="No existe ese borrador")
+    now = datetime.now(tz=CHILE_TZ).isoformat()
+    note = nota.strip() or None
+    match = conn.execute("SELECT * FROM matches WHERE permalink = ?", (row["permalink"],)).fetchone()
+    with conn:
+        conn.execute(
+            "UPDATE seed_drafts SET status='publicado', status_note=?, "
+            "published_at=?, updated_at=? WHERE id=?",
+            (note, now, now, seed_id),
+        )
+        if match:
+            conn.execute(
+                "UPDATE matches SET status='atendido', status_changed_at=? WHERE id=?",
+                (now, match["id"]),
+            )
+            conn.execute(
+                "INSERT INTO actions (match_id, responded_at, response_has_link, utm_url, notes) "
+                "VALUES (?, ?, ?, ?, ?) "
+                "ON CONFLICT(match_id) DO UPDATE SET responded_at=excluded.responded_at, "
+                "response_has_link=excluded.response_has_link, utm_url=excluded.utm_url, "
+                "notes=excluded.notes",
+                (match["id"], now, 1 if row["utm_url"] else 0, row["utm_url"], note),
+            )
+    if match:
+        reviews.record_review(conn, "accionable", match_id=match["id"], now_iso=now)
+    return RedirectResponse(url="/siembra", status_code=303)
+
+
+@app.post("/siembra/{seed_id}/descartar")
+def seed_descartar(
+    seed_id: int,
+    request: Request,
+    motivo: str = Form("tema_sin_accion"),
+    nota: str = Form(""),
+    user: str = Depends(check_auth),
+    conn=Depends(get_conn),
+):
+    require_same_origin(request)
+    if motivo not in MOTIVOS_DESCARTE:
+        raise HTTPException(status_code=422, detail="Motivo de descarte invalido")
+    row = conn.execute("SELECT * FROM seed_drafts WHERE id = ?", (seed_id,)).fetchone()
+    if not row:
+        raise HTTPException(status_code=404, detail="No existe ese borrador")
+    now = datetime.now(tz=CHILE_TZ).isoformat()
+    note = nota.strip() or motivo
+    match = conn.execute("SELECT * FROM matches WHERE permalink = ?", (row["permalink"],)).fetchone()
+    with conn:
+        conn.execute(
+            "UPDATE seed_drafts SET status='descartado', status_note=?, updated_at=? WHERE id=?",
+            (note, now, seed_id),
+        )
+        if match:
+            conn.execute(
+                "UPDATE matches SET status='descartado', status_note=?, status_changed_at=? WHERE id=?",
+                (motivo, now, match["id"]),
+            )
+    if match:
+        reviews.record_review(conn, motivo, match_id=match["id"], now_iso=now)
+    return RedirectResponse(url="/siembra", status_code=303)
+
+
+@app.get("/modmail", response_class=HTMLResponse)
+def modmail(request: Request, user: str = Depends(check_auth), conn=Depends(get_conn)):
+    rows = [dict(r) for r in conn.execute(
+        f"SELECT * FROM modmail_drafts ORDER BY {MODMAIL_ORDER}, subreddit"
+    )]
+    for it in rows:
+        it["compose_url"] = (
+            reddit_compose_url(it["subreddit"], it["subject"]) if it["subject"] else ""
+        )
+    return templates.TemplateResponse(request, "modmail.html", {
+        "items": rows,
+        "n_borradores": sum(1 for it in rows if it["status"] == "borrador"),
+        "n_enviados": sum(1 for it in rows if it["status"] in ("enviado", "respondido", "aceptado")),
+    })
+
+
+@app.post("/modmail/{subreddit}")
+def modmail_guardar(
+    subreddit: str,
+    request: Request,
+    estado: str = Form(...),
+    nota: str = Form(""),
+    user: str = Depends(check_auth),
+    conn=Depends(get_conn),
+):
+    require_same_origin(request)
+    if estado not in MODMAIL_ESTADOS:
+        raise HTTPException(status_code=422, detail="Estado invalido")
+    row = conn.execute("SELECT * FROM modmail_drafts WHERE subreddit = ?", (subreddit,)).fetchone()
+    if not row:
+        raise HTTPException(status_code=404, detail="No existe ese modmail")
+    now = datetime.now(tz=CHILE_TZ).isoformat()
+    contactado = estado in ("enviado", "respondido", "aceptado")
+    sent_at = row["sent_at"] or (now if contactado else None)
+    with conn:
+        conn.execute(
+            "UPDATE modmail_drafts SET status=?, status_note=?, sent_at=?, updated_at=? "
+            "WHERE subreddit=?",
+            (estado, nota.strip() or row["status_note"], sent_at, now, subreddit),
+        )
+        if contactado:
+            conn.execute(
+                "INSERT INTO subreddit_wiki_status (subreddit, checked, has_monedario, "
+                "notes, updated_at) VALUES (?, 1, ?, NULL, ?) "
+                "ON CONFLICT(subreddit) DO UPDATE SET checked=1, "
+                "has_monedario=CASE WHEN excluded.has_monedario=1 THEN 1 "
+                "ELSE subreddit_wiki_status.has_monedario END, updated_at=excluded.updated_at",
+                (subreddit, 1 if estado == "aceptado" else 0, now),
+            )
+    return RedirectResponse(url="/modmail", status_code=303)
 
 
 @app.get("/atendidos", response_class=HTMLResponse)

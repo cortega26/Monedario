@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Modmail — Monedario{% endblock %}
+{% block nav_modmail %}active{% endblock %}
+{% block content %}
+<p class="muted">Modmails a moderadores para pedir inclusión en la wiki de
+recursos del sub. Un clic copia el cuerpo y abre el compose con el asunto ya
+puesto; el envío es tuyo. Los links de wiki van <strong>sin UTM</strong> (son
+permanentes, no de campaña). Un mensaje por sub, un follow-up máximo.</p>
+
+<div class="stats">{{ n_borradores }} por enviar · {{ n_enviados }} contactados</div>
+
+{% for it in items %}
+<div class="card">
+  <div>
+    <span class="badge conf-Alta">r/{{ it.subreddit }}</span>
+    {% if it.status == 'borrador' %}
+    <span class="badge normal">Por enviar</span>
+    {% elif it.status == 'enviado' %}
+    <span class="badge reciente">Enviado</span>
+    {% elif it.status == 'respondido' %}
+    <span class="badge reciente">Respondido</span>
+    {% elif it.status == 'aceptado' %}
+    <span class="badge conf-Alta">Aceptado</span>
+    {% elif it.status == 'rechazado' %}
+    <span class="badge viejo">Rechazado</span>
+    {% else %}
+    <span class="badge viejo">No enviar</span>
+    {% endif %}
+  </div>
+
+  {% if it.wiki_targets %}
+  <div class="muted" style="margin-top:6px;">Objetivo: {{ it.wiki_targets }}</div>
+  {% endif %}
+  {% if it.status_note %}<div class="muted">Nota: {{ it.status_note }}</div>{% endif %}
+  {% if it.sent_at %}<div class="muted">Enviado: {{ it.sent_at[:16] }}</div>{% endif %}
+
+  {% if it.subject %}
+  <div style="font-weight:600;margin-top:6px;">Asunto: {{ it.subject }}</div>
+  <label>Cuerpo del mensaje</label>
+  <textarea readonly rows="9" onfocus="this.select()">{{ it.body }}</textarea>
+  <div class="actions">
+    <button type="button" class="primary" data-url="{{ it.compose_url }}"
+            data-label="Copiar y abrir modmail"
+            onclick="copiarYAbrir(this)">Copiar y abrir modmail</button>
+    <a class="btn secondary" href="{{ it.compose_url }}" target="_blank" rel="noopener">Abrir sin copiar</a>
+  </div>
+
+  <details>
+    <summary>Registrar estado</summary>
+    <form class="inline" method="post" action="/modmail/{{ it.subreddit }}">
+      <label>Estado
+        <select name="estado">
+          <option value="borrador">Borrador (aún no enviado)</option>
+          <option value="enviado">Enviado</option>
+          <option value="respondido">Respondieron</option>
+          <option value="aceptado">Aceptaron (Monedario listado)</option>
+          <option value="rechazado">Rechazaron</option>
+        </select>
+      </label>
+      <label>Nota (opcional)
+        <input type="text" name="nota" placeholder="ej: respondieron que lo revisarán en octubre">
+      </label>
+      <div class="actions">
+        <button type="submit" class="primary">Guardar estado</button>
+      </div>
+    </form>
+  </details>
+  {% else %}
+  <div class="muted" style="margin-top:6px;">{{ it.body }}</div>
+  {% endif %}
+</div>
+{% endfor %}
+{% endblock %}

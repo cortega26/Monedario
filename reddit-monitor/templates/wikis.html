@@ -6,6 +6,18 @@
 {% for it in items %}
 <div class="card">
   <div style="font-weight:600;">r/{{ it.subreddit }}</div>
+  {% if it.target %}
+  <div class="muted" style="margin-top:4px;">Estado wiki: {{ it.target.scan_status }}
+    {% if it.target.index_url %} · <a href="{{ it.target.index_url }}" target="_blank" rel="noopener">revisar wiki</a>{% endif %}
+  </div>
+  {% if it.target.target_pages %}<div class="muted">Objetivo: {{ it.target.target_pages }}</div>{% endif %}
+  {% endif %}
+  {% if it.modmail %}
+  <div class="muted">Modmail: <strong>{{ it.modmail.status }}</strong>
+    {% if it.modmail.status == 'borrador' %} · <a href="/modmail">copiar y abrir</a>{% endif %}
+    {% if it.modmail.sent_at %} · enviado {{ it.modmail.sent_at[:10] }}{% endif %}
+  </div>
+  {% endif %}
   <form class="inline" method="post" action="/wikis/{{ it.subreddit }}">
     <label><input type="checkbox" name="checked" value="true" {% if it.checked %}checked{% endif %}> Ya revisé la wiki de este subreddit</label>
     <label><input type="checkbox" name="has_monedario" value="true" {% if it.has_monedario %}checked{% endif %}> Monedario ya está listado ahí</label>

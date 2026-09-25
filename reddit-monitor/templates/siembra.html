@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block title %}Siembra — Monedario{% endblock %}
+{% block nav_siembra %}active{% endblock %}
+{% block content %}
+<p class="muted">Respuestas ya verificadas y con su link UTM listo. Un clic copia
+el comentario y abre el hilo; tú lo pegas y lo publicas (automatizar = spam,
+regla del kit). Después vuelves y marcas "ya lo publiqué" para que quede el
+registro y la atribución.</p>
+
+<div class="stats">{{ n_listos }} listos · {{ n_publicados }} publicados
+  ({{ n_publicados_semana }} en los últimos 7 días, objetivo 2–3) ·
+  {{ n_descartados }} descartados</div>
+
+{% for b in batches %}
+<h2 class="batch">{{ b.label }}{% if b.week %} · planificado {{ b.week }}{% endif %}</h2>
+
+{% for it in b["items"] %}
+<div class="card">
+  <div>
+    <span class="badge conf-Alta">r/{{ it.subreddit }}</span>
+    {% if it.status == 'listo' %}
+    <span class="badge normal">Listo para publicar</span>
+    {% elif it.status == 'publicado' %}
+    <span class="badge conf-Alta">Publicado</span>
+    {% else %}
+    <span class="badge viejo">Descartado</span>
+    {% endif %}
+    {% if it.link_policy != 'link-permitido' %}
+    <span class="badge reciente">Sin link · regla del sub</span>
+    {% endif %}
+  </div>
+  <div style="font-weight:600;margin-top:6px;">{{ it.thread_title }}</div>
+  <div class="muted">{{ it.preflight }}</div>
+  {% if it.link_policy_note %}<div class="warn">{{ it.link_policy_note }}</div>{% endif %}
+
+  {% set no_link = it.draft_text_no_link and it.link_policy != 'link-permitido' %}
+  <div class="variant">
+    <label>Comentario final {% if no_link %}(sin link, por regla del sub){% else %}(con el link incluido){% endif %}</label>
+    <textarea readonly rows="9" onfocus="this.select()">{{ it.draft_text_no_link if no_link else it.draft_text }}</textarea>
+    <div class="actions">
+      <button type="button" class="primary" data-url="{{ it.permalink_url }}"
+              data-label="Copiar y abrir hilo"
+              onclick="copiarYAbrir(this)">Copiar y abrir hilo</button>
+      <a class="btn secondary" href="{{ it.permalink_url }}" target="_blank" rel="noopener">Abrir sin copiar</a>
+    </div>
+  </div>
+
+  {% if no_link %}
+  <details>
+    <summary>Versión con link (solo si los mods la aprueban)</summary>
+    <div class="variant">
+      <textarea readonly rows="9" onfocus="this.select()">{{ it.draft_text }}</textarea>
+      <div class="actions">
+        <button type="button" class="secondary" data-url="{{ it.permalink_url }}"
+                data-label="Copiar versión con link"
+                onclick="copiarYAbrir(this)">Copiar versión con link</button>
+      </div>
+    </div>
+  </details>
+  {% endif %}
+
+  {% if it.link_url %}
+  <div class="muted" style="margin-top:6px;">Link limpio (wiki/modmail, sin UTM):
+    <code class="link">{{ it.link_url }}</code>
+  </div>
+  {% endif %}
+
+  {% if it.status == 'listo' %}
+  <details>
+    <summary>Marcar publicado (cuando ya lo pegaste en Reddit)</summary>
+    <form class="inline" method="post" action="/siembra/{{ it.id }}/publicado">
+      <label>Nota (opcional)
+        <input type="text" name="nota" placeholder="ej: publicado 28-sep, link al final">
+      </label>
+      <div class="actions">
+        <button type="submit" class="primary">Ya lo publiqué</button>
+      </div>
+    </form>
+  </details>
+  <details>
+    <summary>Descartar este borrador</summary>
+    <form class="inline" method="post" action="/siembra/{{ it.id }}/descartar">
+      <label>Motivo
+        <select name="motivo">
+          <option value="tema_sin_accion">Del tema, sin cómo aportar</option>
+          <option value="ya_resuelto">Ya resuelto en el hilo</option>
+          <option value="ruido">No es de finanzas</option>
+        </select>
+      </label>
+      <label>Nota (opcional)
+        <input type="text" name="nota" placeholder="ej: ya lo respondió otro usuario">
+      </label>
+      <div class="actions">
+        <button type="submit" class="secondary">Descartar</button>
+      </div>
+    </form>
+  </details>
+  {% else %}
+  <div class="muted" style="margin-top:8px;">Cerrado: {{ it.status_note or it.status_label }}
+    {% if it.published_at %} · {{ it.published_at[:16] }}{% endif %}</div>
+  {% endif %}
+</div>
+{% endfor %}
+{% endfor %}
+{% endblock %}

@@ -60,6 +60,7 @@ scp -i "$VM_KEY" \
     "$(dirname "$0")/run_weekly_report.sh" \
     "$(dirname "$0")/reddit-monitor.service" \
     "$(dirname "$0")/reddit-monitor.timer" \
+    "$(dirname "$0")/reddit-monitor-web.service" \
     "$(dirname "$0")/reddit-weekly-report.service" \
     "$(dirname "$0")/reddit-weekly-report.timer" \
     "$(dirname "$0")/reddit-assist.service" \
@@ -69,33 +70,53 @@ scp -i "$VM_KEY" \
 echo "== 5. Preguntando tu topic de ntfy.sh =="
 read -rp "Topic ntfy.sh a usar (ej: monedario-reddit-$(openssl rand -hex 4) — recomendado, no lo compartas): " NTFY_TOPIC
 set +x # RM-002: NTFY_TOPIC es secreto — fuera de xtrace y sin eco del valor
-ssh -i "$VM_KEY" "$VM_HOST" "cat > $REMOTE_DIR/.env <<EOF
-NTFY_TOPIC=$NTFY_TOPIC
-EOF
-chmod 600 $REMOTE_DIR/.env"
-echo "Topic guardado en el .env remoto (modo 600). Suscríbete en la app ntfy con el topic que escribiste (no se muestra aquí por seguridad)."
+# Actualiza SOLO NTFY_TOPIC: el .env remoto puede traer WEB_PASSWORD u otras
+# claves, y un `cat >` las borraba (la app quedaba sin auth).
+ssh -i "$VM_KEY" "$VM_HOST" bash -s <<REMOTE
+set -e
+touch "$REMOTE_DIR/.env"
+chmod 600 "$REMOTE_DIR/.env"
+grep -v '^NTFY_TOPIC=' "$REMOTE_DIR/.env" > "$REMOTE_DIR/.env.tmp" || true
+printf 'NTFY_TOPIC=%s\n' "$NTFY_TOPIC" >> "$REMOTE_DIR/.env.tmp"
+mv "$REMOTE_DIR/.env.tmp" "$REMOTE_DIR/.env"
+chmod 600 "$REMOTE_DIR/.env"
+REMOTE
+echo "Topic guardado en el .env remoto (modo 600, claves previas preservadas). Suscríbete en la app ntfy con el topic que escribiste (no se muestra aquí por seguridad)."
 set -x
 
 echo "== 6. Permisos e instalación de systemd =="
 ssh -i "$VM_KEY" "$VM_HOST" "
     chmod +x $REMOTE_DIR/run_monitor.sh $REMOTE_DIR/run_weekly_report.sh
     sudo cp $REMOTE_DIR/reddit-monitor.service $REMOTE_DIR/reddit-monitor.timer \
+           $REMOTE_DIR/reddit-monitor-web.service \
            $REMOTE_DIR/reddit-weekly-report.service $REMOTE_DIR/reddit-weekly-report.timer \
            $REMOTE_DIR/reddit-assist.service $REMOTE_DIR/reddit-assist.timer \
            /etc/systemd/system/
     sudo systemctl daemon-reload
     sudo systemctl enable --now reddit-monitor.timer
     sudo systemctl enable --now reddit-weekly-report.timer
+    # La interfaz web (siembra/modmail/cola): se reinicia para tomar el código
+    # nuevo; el contenido de seed_content.py se importa solo al arrancar.
+    sudo systemctl enable --now reddit-monitor-web.service
+    sudo systemctl restart reddit-monitor-web.service
     # reddit-assist.timer NO se activa aqui: necesita ANTHROPIC_API_KEY en .env
-    # (ver PLAYBOOK, seccion "Asistente IA").
+    # (ver PLAYBOOK, seccion \"Asistente IA\").
 "
 
 echo "== 7. Prueba inmediata =="
 ssh -i "$VM_KEY" "$VM_HOST" "sudo systemctl start reddit-monitor.service && sleep 2 && sudo journalctl -u reddit-monitor.service -n 40 --no-pager"
 
+echo "== 8. Chequeo del servicio web =="
+ssh -i "$VM_KEY" "$VM_HOST" "sudo systemctl is-active reddit-monitor-web.service"
+
 echo
 echo "Listo. Deberías haber visto el output de monitor.py arriba y, si hubo"
 echo "coincidencias nuevas, una notificación en tu celular vía ntfy en unos segundos."
 echo
+echo "Interfaz web (Basic Auth, usuario carlos):"
+echo "  Cola:     https://reddit.monedario.cl/"
+echo "  Siembra:  https://reddit.monedario.cl/siembra   ← borradores + UTM, un clic copia y abre"
+echo "  Modmail:  https://reddit.monedario.cl/modmail   ← solicitudes de wiki"
+echo
 echo "Para revisar logs después:"
-echo "  ssh -i $VM_KEY $VM_HOST 'journalctl -u reddit-monitor.service -n 50 --no-pager'"
+echo "  ssh -i $VM_KEY $VM_HOST 'journalctl -u reddit-monitor-web.service -n 50 --no-pager'"

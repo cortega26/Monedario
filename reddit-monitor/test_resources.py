@@ -2,9 +2,8 @@
 import json
 from pathlib import Path
 
-import pytest
-
 import db as dbmod
+import pytest
 import resources
 
 MAP = [
@@ -89,14 +88,23 @@ def test_config_real_del_repo_es_valida_y_sugiere_lo_esperado():
     (un typo en una URL o frase lo dejaria sin sugerencias en silencio)."""
     rmap = resources.load_resource_map(Path(__file__).parent / "config.json")
     raw = json.loads((Path(__file__).parent / "config.json").read_text(encoding="utf-8"))["resource_map"]
-    assert len(rmap) == len(raw) == 5
+    assert len(rmap) == len(raw) == 19
     cases = {
         "cuanto me toca de finiquito": "Calculadora de finiquito",
         "me conviene cambiarme de AFP por la comisión": "Comparador de comisiones AFP",
         "¿cuál es el valor de la UF hoy?": "Conversor UF ↔ pesos",
         "cómo calculo mi sueldo líquido": "Calculadora de sueldo líquido",
         "devolución de impuestos operación renta": "Simulador Operación Renta",
+        "no alcanzo a pagar el total de la tarjeta, pago minimo": "Calculadora de tarjeta de crédito",
+        "abrir cuenta de ahorro en coopeuch": "Calculadora de depósito a plazo",
+        "consulta por credito hipotecario y dividendo": "Calculadora de dividendo hipotecario",
+        "salir de dicom gratis": "Guía para salir del boletín comercial",
+        "reajuste de arriendo 2026": "Calculadora de reajuste de arriendo",
     }
     for text, label in cases.items():
         got = resources.suggest_resource(text, rmap)
         assert got and got["label"] == label, text
+    # frases anchas que daban falso positivo quedaron fuera del mapa
+    assert resources.suggest_resource("uf, tengo un monton de tips", rmap) is None
+    assert resources.suggest_resource("el presupuesto del estado", rmap) is None
+    assert resources.suggest_resource("pensión de alimentos", rmap) is None
