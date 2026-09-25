@@ -47,7 +47,16 @@ echo "== 1. Creando carpeta remota =="
 ssh -i "$VM_KEY" "$VM_HOST" "mkdir -p $REMOTE_DIR"
 
 echo "== 2. Copiando código y estado (sin credentials.json) =="
-rsync -avz --exclude credentials.json --exclude __pycache__ --exclude '.pytest_cache' \
+# Del PC viaja SOLO código. El estado vivo (DB, logs, digests) vive en la VM:
+# si el local está atrasado, copiarlo encima borra la cola y el historial
+# (pasó el 2026-09-25: 503 matches -> 86). Nunca quitar estos excludes.
+rsync -avz \
+    --exclude credentials.json \
+    --exclude __pycache__ --exclude '.pytest_cache' \
+    --exclude 'reddit_monitor.db*' --exclude 'backups/' \
+    --exclude runs.log --exclude scan_stats.jsonl --exclude descartados.jsonl \
+    --exclude ntfy_failures.jsonl --exclude 'digest-*.md' --exclude index.md \
+    --exclude .coverage --exclude catalog.json \
     -e "ssh -i $VM_KEY" \
     "$LOCAL_DIR"/ "$VM_HOST:$REMOTE_DIR/"
 
