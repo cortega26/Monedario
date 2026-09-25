@@ -162,3 +162,11 @@ Revert del PR de snippet/enlace correspondiente; re-correr
 - 2026-09-16 — Sign-off owner: F0 FIRMADO (baseline W36 congela como comparación para F5). F1 autorizado.
 - 2026-09-16 — F1 implementado (sin commit, por instrucción; TODO global sigue hasta F5). Solo `src/pages/calculadoras/conversor-utm.astro` (6+/6-): título `Valor UTM hoy: $X (fecha, SII) | Monedario`, descripción `Valor UTM hoy: $X vigente al [fecha] según el SII…`, H1 `Valor UTM hoy: $X`, primer párrafo del hero con valor+fecha+fuente en ≤120 chars; `CalculatorJsonLd` sincronizado a las mismas variables (patrón plan 067 verificado: este archivo no usa mecanismo `seoTitle` —solo posts/glosario vía `resolvePageTitle`— así que N/A). Sin tocar slugs, canonical, fórmulas, snapshot, UF ni analytics labels. Gates: `check:reader-facing-copy` OK (93 scanned, 0 issues), `check:dialect` OK (53 files), `astro check` 0 errores, `prettier --check` OK, `git diff --check` limpio. Sin test unitario que cubra el copy de conversor-utm (solo a11y Playwright por IDs, no afectados). STOP no triggered (sin ventana OBS/PR sobre UTM/UF, sin cambio de rutas). Supuesto inicio de medición F5: despliegue = día 0; comparar semanas completas de 7 días vs baseline W36 (2026-08-31→09-06) a 14–28 días.
 - 2026-09-16 — Deploy (push `cfaaf738`): day-0 F5. Lectura primaria día 14 (2026-09-30, pre-refresco octubre); extendida con confound anotado.
+- 2026-09-25 — Plantilla de lectura F5 creada:
+  `docs/reports/F5-UTM-READING-2026-09-30.md` (W36 baseline + W38
+  prellenados; W39 en blanco). Anota dos confounders además del refresco
+  de octubre: (1) W36 es pico de borde de mes, no nivel estable — los
+  clics se leen contra W35/W37/W38 como contexto y el +25% del plan solo
+  se evalúa a 28 días; (2) el panel post-resultado F1+F2 se desplegó en
+  el mismo commit `cfaaf738` (piloto UTM) y puede mover el funnel sin
+  tocar el snippet. Sin cambios on-site.

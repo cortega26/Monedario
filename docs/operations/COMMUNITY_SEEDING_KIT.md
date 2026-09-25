@@ -21,9 +21,50 @@ la siembra funciona porque la hace una persona real con criterio. Automatizarla 
 4. **Transparencia de autoría.** "Lo hice yo / soy de Monedario". Nunca link disfrazado de recomendación neutral.
 5. **Vende el diferencial honesto:** gratis, sin registro, sin publicidad, no guarda datos. Eso desarma el escepticismo.
 
+### El tono (no negociable)
+
+Esto se lee como persona, no como asistente. La diferencia se nota al toque:
+
+- Parte por la persona, no por el dato: "empatizo", "es súper común", "me pasó".
+- Frases cortas y palabras de todos los días. Cero negritas, encabezados ni
+  listas numeradas de manual.
+- Comparte lo que a ti te sirvió ("lo que a mí me ha funcionado"), no corrijas
+  desde arriba ni des cátedra.
+- Sin muletillas de IA: "en resumen", "es importante destacar", "la clave está
+  en", "cabe señalar".
+- El link, al final y suave ("por si te sirve"), nunca como remate de venta.
+- Si no sabes algo, dilo. Admitir un límite genera más confianza que sonar
+  impecable.
+
+Regla Carnegie: la otra persona tiene que sentir que te importa su problema,
+no que estás aprovechando su pregunta para dejar tu link.
+
 ### Cadencia
 2-3 respuestas útiles por semana, repartidas. Las ráfagas gatillan filtros de spam. Lee las reglas de
 autopromoción de **cada** subreddit antes de postear (varios exigen el 9:1 y banean por menos).
+
+### Dónde se opera
+
+- `reddit.monedario.cl/` — cola del monitor (triage de hilos).
+- `reddit.monedario.cl/siembra` — lotes de respuestas ya verificadas: un clic copia el comentario
+  (con su UTM) y abre el hilo; después se marca "ya lo publiqué" para dejar el registro y la atribución.
+- `reddit.monedario.cl/modmail` — solicitudes de inclusión en wikis: un clic copia el cuerpo y abre
+  el compose a los mods con el asunto puesto.
+- `reddit.monedario.cl/wikis` — estado por sub (escaneo + objetivo) y registro manual.
+
+El contenido de `/siembra` y `/modmail` vive en `reddit-monitor/seed_content.py` y se importa solo
+al desplegar (idempotente; nunca pisa el estado humano).
+
+### Reglas de links por sub (leídas 2026-09-25)
+
+| Sub | Regla | Cómo se publica |
+|---|---|---|
+| `r/chile` | autopromoción solo con aprobación previa de los mods y para usuarios activos | **sin link** hasta tener historial y aprobación; la GUI trae la versión sin link |
+| `r/AskChile` | spam y autopromoción prohibidos | **sin link**; la GUI trae la versión sin link |
+| `r/FinanzasChile` | prohíbe promover comunidades externas (no herramientas) | link al final, aporte primero |
+
+La regla general se mantiene: si el sub prohíbe links, se participa sin link (o no se participa).
+El link es el postre, no el plato.
 
 ---
 

@@ -9,6 +9,7 @@ Canonical audit reports and validation baselines.
 - UX audit: `docs/reports/ux-audit-2026-04-09.md`
 - AI citation tracking (recurring monthly checklist): `docs/reports/AI-CITATION-TRACKING.md`
 - CTR opportunity audit (regenerate via `node scripts/audit-ctr-opportunities.mjs`): `docs/reports/CTR-AUDIT-*.md`
+- F5 primary read UTM/UF template (fill 2026-09-30): `docs/reports/F5-UTM-READING-2026-09-30.md`
 - Cloudflare JS Detections source investigation (2026-08-19):
   `docs/reports/JSD-SOURCE-INVESTIGATION-2026-08-19.md`
 - Route baseline: `docs/reports/routes_snapshot_before.json`
