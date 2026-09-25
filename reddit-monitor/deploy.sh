@@ -68,20 +68,30 @@ scp -i "$VM_KEY" \
     "$VM_HOST:$REMOTE_DIR/"
 
 echo "== 5. Preguntando tu topic de ntfy.sh =="
-read -rp "Topic ntfy.sh a usar (ej: monedario-reddit-$(openssl rand -hex 4) — recomendado, no lo compartas): " NTFY_TOPIC
+# Con `set -e`, un `read` sin terminal (stdin cerrado) devuelve EOF y aborta
+# el script a mitad del deploy. Si no hay TTY se mantiene el topic actual.
+if [ -t 0 ]; then
+    read -rp "Topic ntfy.sh a usar (Enter = mantener el actual, no lo compartas): " NTFY_TOPIC
+else
+    NTFY_TOPIC=""
+    echo "(sin terminal interactiva: se mantiene el topic actual del .env remoto)"
+fi
 set +x # RM-002: NTFY_TOPIC es secreto — fuera de xtrace y sin eco del valor
-# Actualiza SOLO NTFY_TOPIC: el .env remoto puede traer WEB_PASSWORD u otras
-# claves, y un `cat >` las borraba (la app quedaba sin auth).
+# Actualiza SOLO NTFY_TOPIC y solo si escribiste uno: el .env remoto trae
+# WEB_PASSWORD y quizá el topic actual; un `cat >` borraba todo y un Enter
+# en el prompt borraba el topic.
 ssh -i "$VM_KEY" "$VM_HOST" bash -s <<REMOTE
 set -e
 touch "$REMOTE_DIR/.env"
 chmod 600 "$REMOTE_DIR/.env"
-grep -v '^NTFY_TOPIC=' "$REMOTE_DIR/.env" > "$REMOTE_DIR/.env.tmp" || true
-printf 'NTFY_TOPIC=%s\n' "$NTFY_TOPIC" >> "$REMOTE_DIR/.env.tmp"
-mv "$REMOTE_DIR/.env.tmp" "$REMOTE_DIR/.env"
+if [ -n "$NTFY_TOPIC" ]; then
+    grep -v '^NTFY_TOPIC=' "$REMOTE_DIR/.env" > "$REMOTE_DIR/.env.tmp" || true
+    printf 'NTFY_TOPIC=%s\n' "$NTFY_TOPIC" >> "$REMOTE_DIR/.env.tmp"
+    mv "$REMOTE_DIR/.env.tmp" "$REMOTE_DIR/.env"
+fi
 chmod 600 "$REMOTE_DIR/.env"
 REMOTE
-echo "Topic guardado en el .env remoto (modo 600, claves previas preservadas). Suscríbete en la app ntfy con el topic que escribiste (no se muestra aquí por seguridad)."
+echo "Listo: .env remoto en modo 600 con las claves previas preservadas (si no escribiste topic, quedó el actual)."
 set -x
 
 echo "== 6. Permisos e instalación de systemd =="
