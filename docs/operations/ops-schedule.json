@@ -112,6 +112,14 @@
       "plan": "backlog #2"
     },
     {
+      "id": "siembra-revision-ensayo",
+      "date": "2026-10-12",
+      "title": "Revisión del ensayo diario de siembra",
+      "detail": "Comparar actions + branded GSC del período 28-sep → 12-oct; si no hay señal o hubo remociones, volver a 2-3/semana.",
+      "owner": "carlos",
+      "plan": "PLAN-distribution-community-seeding-2026-09-25.md"
+    },
+    {
       "id": "b2b-batch-2",
       "date": "2026-10-12",
       "end_date": "2026-10-16",

@@ -43,6 +43,11 @@ no que estás aprovechando su pregunta para dejar tu link.
 2-3 respuestas útiles por semana, repartidas. Las ráfagas gatillan filtros de spam. Lee las reglas de
 autopromoción de **cada** subreddit antes de postear (varios exigen el 9:1 y banean por menos).
 
+**Ensayo vigente (28-sep → 12-oct): 1 respuesta/día** con máximo 2-3 links por semana
+(el resto aporte sin link) y rotación de subs. Es un experimento con fecha de revisión
+(2026-10-12): se compara `actions` + branded GSC y, si no hay señal o hay remociones,
+se vuelve a 2-3/semana.
+
 ### Dónde se opera
 
 - `reddit.monedario.cl/` — cola del monitor (triage de hilos).

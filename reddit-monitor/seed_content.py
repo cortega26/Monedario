@@ -48,6 +48,14 @@ LINK_POLICY = {
         "link-permitido",
         "r/FinanzasChile: la regla 7 prohíbe promover comunidades externas, no herramientas. Aporte primero, link al final.",
     ),
+    "ChileInversiones": (
+        "sin-link",
+        "r/ChileInversiones: reglas no accesibles por API; prudente publicar sin link hasta verificar en el navegador.",
+    ),
+    "RepublicadeChile": (
+        "sin-link",
+        "r/RepublicadeChile: prohíbe enlaces promocionales no solicitados. Publicar sin link.",
+    ),
 }
 
 
@@ -171,6 +179,46 @@ La plusvalía no la cuentes como renta, no está garantizada. Compáralo con la 
 
 Si quieres comparar el otro lado (UF vs pesos), hice una calculadora gratis y sin registro:
 https://monedario.cl/calculadoras/deposito-a-plazo/?utm_source=reddit&utm_medium=community&utm_campaign=AskChile&utm_content=cisterna-yield
+
+Soy de Monedario.""",
+    },
+    {
+        "permalink": "/r/FinanzasChile/comments/1wojxtz/tarjeta_de_crédito_para_2026/",
+        "batch": "Lote 3 · ensayo diario (28-sep → 12-oct)",
+        "planned_week": "2026-09-28",
+        "subreddit": "FinanzasChile",
+        "thread_title": "Tarjeta de crédito para 2026",
+        "preflight": "Verificado 2026-09-25: abierto; nadie menciona pago mínimo 2026 ni CAE (33 comentarios)",
+        "link_url": "https://monedario.cl/calculadoras/tarjeta-credito/",
+        "utm_url": "https://monedario.cl/calculadoras/tarjeta-credito/?utm_source=reddit&utm_medium=community&utm_campaign=FinanzasChile&utm_content=tarjeta-2026",
+        "draft_text": """Buena, primera pega y ya pensando en la TC, se agradece. Antes de elegir banco, ojo: la trampa no es la tarjeta, es el pago mínimo. Desde junio de 2026 cambió el piso (CMF): el mínimo ahora es 100% de lo no financiable (intereses, comisiones y cargos) + 5% de lo financiable. Si te quedas pagando el mínimo, una deuda chica se estira años.
+
+Lo que te recomiendo: úsala como si fuera débito, paga siempre el total facturado y no financies compras del día a día. Y para comparar tarjetas, mira la CAE, no la tasa ni los descuentos del super.
+
+Si quieres ver cuánto se estira una deuda según lo que pagues al mes, hice una calculadora gratis y sin registro:
+https://monedario.cl/calculadoras/tarjeta-credito/?utm_source=reddit&utm_medium=community&utm_campaign=FinanzasChile&utm_content=tarjeta-2026
+
+Soy de Monedario.""",
+    },
+    {
+        "permalink": "/r/ChileInversiones/comments/1wndhlu/primera_tarjeta_de_crédito/",
+        "batch": "Lote 3 · ensayo diario (28-sep → 12-oct)",
+        "planned_week": "2026-09-29",
+        "subreddit": "ChileInversiones",
+        "thread_title": "Primera tarjeta de crédito",
+        "preflight": "Verificado 2026-09-25: abierto; nadie explica el piso del pago mínimo ni la CAE",
+        "link_url": "https://monedario.cl/calculadoras/tarjeta-credito/",
+        "utm_url": "https://monedario.cl/calculadoras/tarjeta-credito/?utm_source=reddit&utm_medium=community&utm_campaign=ChileInversiones&utm_content=primera-tarjeta",
+        "draft_text": """Buen ojo con informarte antes. Dos cosas que ayudan:
+
+El "historial crediticio" en Chile no funciona como en EE.UU.: no hay un scoring público que te siga toda la vida. Lo que pesa cuando pides crédito es tu comportamiento de pago dentro del sistema (morosidad, deuda vigente) y tu renta.
+
+Y la trampa de cualquier tarjeta no es cuál eliges, sino el pago mínimo: desde junio de 2026 el mínimo tiene piso legal (100% de lo no financiable + 5% de lo financiable), así que quedarse pagando el mínimo estira la deuda años, aunque la tasa parezca baja.
+
+Con tu perfil (sin gastos, buena capacidad de ahorro), la jugada es usarla como débito y pagar el total todos los meses; el historial se construye solo. Y si comparas tarjetas, compara CAE, no tasa.
+
+Si quieres estimar cuánto se estira una deuda con el mínimo vs un pago fijo, hice una calculadora gratis y sin registro:
+https://monedario.cl/calculadoras/tarjeta-credito/?utm_source=reddit&utm_medium=community&utm_campaign=ChileInversiones&utm_content=primera-tarjeta
 
 Soy de Monedario.""",
     },
