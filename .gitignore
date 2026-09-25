@@ -91,7 +91,7 @@ docs/backlog/*
 !docs/backlog/PLAN-*.md
 !docs/backlog/UTILITY_LED_BLOCKED_PENDING_EVIDENCE.md
 !docs/backlog/prompt-*.md
-!docs/backlog/DECISION-PATHS-*.md
+!docs/backlog/DECISION-*.md
 !docs/backlog/CALCULATOR-CONSOLIDATION-*.md
 !docs/backlog/DIAGNOSTICO-*.md
 !docs/backlog/JOURNEY-THESIS-VEHICLE-*.md

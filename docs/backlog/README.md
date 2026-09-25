@@ -44,7 +44,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | CTR UTM/UF (tráfico P0) | `PLAN-growth-utm-ctr-2026-09-16.md` | F1 desplegado; lectura primaria F5 vence 2026-09-30; FOCO hasta 2026-11-02, sin URLs nuevas |
 | Panel post-resultado (funnel) | `PLAN-result-panel-conversion-2026-09-16.md` | F1+F2 desplegados; F4 dos semanas comparables desde 2026-09-16; piloto UTM, no ampliar sin umbral |
 | Refresco y consolidación contenido | `PLAN-content-refresh-consolidation-2026-09-16.md` | Piloto packet FIRMADO (publish); lote 1 artículo 2 en compliance CONDITIONAL; lotes 2–5 encolables tras firma |
-| Reevaluación monetización | `PLAN-monetization-reevaluation-2026-09-16.md` | En acumulación de evidencia (F1); discovery + ADR borrador, sin implementar |
+| Reevaluación monetización | `PLAN-monetization-reevaluation-2026-09-16.md` | En acumulación de evidencia (F1); paquete de decisión listo (`DECISION-monetization-2026-11-02.md`, kit B2B y ADR borrador), sin implementar |
 | Evolución visual/UX | `PLAN-ux-evolution-cta-2026-09-16.md` | S1 encolado post-panel-F4; slices S1–S4, sin rebrand |
 | Integridad medición (Sprint 0 adaptado) | `PLAN-measurement-integrity-2026-09-16.md` | **DONE (FIRMADO)** — pre-requisito panel F1 cumplido, sin GA4 ni trackers |
 
@@ -107,6 +107,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | `PLAN-result-panel-conversion-2026-09-16.md` | **IN PROGRESS**; F1+F2 desplegados, F4 dos semanas comparables desde 2026-09-16; umbrales pre-declarados |
 | `PLAN-content-refresh-consolidation-2026-09-16.md` | **IN PROGRESS**; piloto packet FIRMADO (publish), lote 1 artículo 2 en compliance CONDITIONAL; pipeline + ownership |
 | `PLAN-monetization-reevaluation-2026-09-16.md` | **IN PROGRESS**; en acumulación de evidencia (F1) + discovery B2B + ADR borrador, nada comercial sin gate |
+| `DECISION-monetization-2026-11-02.md` | **PREPARACIÓN (docs-only)**; checklist de evidencia, matriz A–E con umbrales pre-declarados y calendario; decisión del owner el 2026-11-02 |
 | `PLAN-ux-evolution-cta-2026-09-16.md` | **QUEUED**; S1 encolado post-panel-F4; slices S1–S4 evolución, LHCI/axe sin regresión |
 | `PLAN-measurement-integrity-2026-09-16.md` | **DONE (FIRMADO)**; auditoría + registry + metodología + reporte de cierre, pre-requisito panel F1 cumplido |
 | `PLAN-reddit-monitor-2026-09-19.md` | **CERRADO**; Waves 0–4 cerradas + CSRF gate + worker retirado (#509) + teardown ejecutado |
