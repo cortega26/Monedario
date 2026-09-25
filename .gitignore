@@ -108,5 +108,8 @@ coverage-html/
 .coverage
 .pytest_cache/
 
+# Vitest coverage (test:coverage)
+coverage/
+
 # Python bytecode
 __pycache__/
