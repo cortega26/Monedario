@@ -61,6 +61,14 @@
       "plan": "PLAN-growth-utm-ctr-2026-09-16.md"
     },
     {
+      "id": "reponer-borradores-1",
+      "date": "2026-10-04",
+      "title": "Reponer borradores de siembra (5-7)",
+      "detail": "Generar la tanda siguiente desde la cola viva (fit + frescura) para el ensayo diario; revisar si el lote 2 alcanzó.",
+      "owner": "carlos",
+      "plan": "PLAN-distribution-community-seeding-2026-09-25.md"
+    },
+    {
       "id": "w40-export",
       "date": "2026-10-05",
       "title": "Export W40 + ritual semanal + Gate D W40",
@@ -102,6 +110,14 @@
       "detail": "Recién aquí se pueden tocar superficies (ventanas de medición activas hasta W40).",
       "owner": "carlos",
       "plan": "backlog #6"
+    },
+    {
+      "id": "reponer-borradores-2",
+      "date": "2026-10-11",
+      "title": "Reponer borradores de siembra (5-7)",
+      "detail": "Segunda tanda del ensayo diario, antes de la revisión del 12-oct.",
+      "owner": "carlos",
+      "plan": "PLAN-distribution-community-seeding-2026-09-25.md"
     },
     {
       "id": "w41-export",
