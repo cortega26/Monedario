@@ -23,7 +23,38 @@
 | `affiliate_click` | Activación de un slot de afiliado firmado | definido, pero no emitido hasta firma de contrato (ADR-20260921). El slot es un token de desarrollo; el mapeo slot→URL vive fuera del payload |
 | `lead_submit` | Envío confirmado de un formulario propio (newsletter, alerta, contacto) | definido, pero no emitido hasta firma de contrato (ADR-20260921). `lead_type` es etiqueta, nunca datos del formulario |
 
-Propiedades permitidas, sin excepciones: `calculator_id`, `page_type`, `cluster`, `interaction_variant`, `next_step_id`, `source_type`, `error_category`, `share_method`, `support_location`, `utm_source`, `utm_medium`, `utm_campaign`, `app_version`, `affiliate_slot`, `lead_type`.
+### Eventos de interacción UI/CTA (plan 100)
+
+Definidos en el mismo contrato, emitidos por el tracker global de CTAs y los
+emisores de plan 100. Se listan aquí porque el export semanal los entrega y
+`METRICS_AUTHORITY.md` exige cruzarlos con este diccionario.
+
+| Evento | Momento exacto | Dedupe |
+|---|---|---|
+| `article_scroll_depth` | El artículo alcanza 25/50/75/100% de scroll | una vez por umbral/artículo y vista |
+| `article_calculator_cta_click` | Activación del CTA a calculadora dentro de un artículo | cada activación |
+| `calculator_mode_toggle` | Cambio de modo en una calculadora (bruto↔líquido, finiquito↔vacaciones) | cada activación |
+| `calculator_copy_link` | Copia del enlace de la calculadora | cada activación |
+| `calculator_copy_result` | Copia del resultado de la calculadora | cada activación |
+| `calculator_print_click` | Impresión del resultado | cada activación |
+| `calculator_share_click` | Compartir el resultado | cada activación |
+| `resume_cleared` | El usuario limpia el estado persistido de la calculadora | una vez por limpieza |
+| `cta_click` | Clic en cualquier `data-analytics-cta` sin evento propio (fallback del tracker global) | cada activación |
+| `calculator_trust_link_click` | Clic en fuente/metodología desde una calculadora | cada activación |
+| `hub_route_click` | Clic en una ruta de hub (header/footer/home) | cada activación |
+| `related_content_click` | Clic en una tarjeta de contenido relacionado | cada activación |
+| `search_chip_click` | Clic en un chip de búsqueda | cada activación |
+
+Cero observado no es ausencia probada: `calculator_copy_link`,
+`calculator_copy_result`, `calculator_print_click`, `calculator_share_click`,
+`resume_cleared`, `calculator_trust_link_click` y `search_chip_click` no
+registraron eventos en W38; verificar el export antes de concluir que no se
+emiten.
+
+Propiedades permitidas, sin excepciones: `calculator_id`, `page_type`, `cluster`, `interaction_variant`, `next_step_id`, `source_type`, `error_category`, `share_method`, `support_location`, `utm_source`, `utm_medium`, `utm_campaign`, `app_version`, `cta_type`, `cta_location`, `destination_url`, `outcome`, `mode`, `article_slug`, `scroll_depth_percent`, `affiliate_slot`, `lead_type`.
+
+`destination_url` solo admite URLs internas de `monedario.cl` (el contrato las
+valida); nunca destinos externos ni de partner.
 
 Las etiquetas UTM solo miden activaciones de enlaces propios en agregado. No prueban que una persona volvió, no enlazan sesiones y no permiten cohortes 7/30 días. “Retorno” solo puede describirse como tráfico agregado etiquetado, nunca como usuario recurrente.
 
