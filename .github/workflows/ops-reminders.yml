@@ -1,0 +1,127 @@
+name: Recordatorios de operación
+
+# Lee docs/operations/ops-schedule.json y mantiene al día el issue
+# "🗓️ Operación — pendientes y fechas": lo crea la primera vez con el
+# checklist completo y después actualiza un único comentario semanal con lo
+# que vence (y lo vencido reciente). No publica nada en el sitio.
+
+on:
+  schedule:
+    # Lunes 11:00 UTC = 08:00 en Chile (UTC-3)
+    - cron: "0 11 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  reminder:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Actualizar issue de pendientes
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const data = JSON.parse(
+              fs.readFileSync("docs/operations/ops-schedule.json", "utf8")
+            );
+            const HORIZON_DAYS = 14;
+            const GRACE_DAYS = 3;
+            const LABEL = "ops-reminder";
+            const MARKER = "<!-- ops-reminder-weekly -->";
+            const iso = (d) => d.toISOString().slice(0, 10);
+
+            const today = new Date();
+            const floor = new Date(today);
+            floor.setUTCDate(floor.getUTCDate() - GRACE_DAYS);
+            const limit = new Date(today);
+            limit.setUTCDate(limit.getUTCDate() + HORIZON_DAYS);
+
+            const due = data.items
+              .filter((it) => {
+                const end = it.end_date || it.date;
+                return it.date <= iso(limit) && end >= iso(floor);
+              })
+              .sort((a, b) => a.date.localeCompare(b.date));
+
+            const masterChecklist = [
+              ...data.items.map(
+                (it) =>
+                  `- [ ] **${it.date}** — ${it.title} · _${it.owner}_` +
+                  (it.end_date ? ` (hasta ${it.end_date})` : "")
+              ),
+              ...(data.undated || []).map(
+                (it) => `- [ ] (sin fecha) — ${it.title} · _${it.owner}_`
+              ),
+            ].join("\n");
+
+            const { owner, repo } = context.repo;
+            const open = await github.rest.issues.listForRepo({
+              owner,
+              repo,
+              state: "open",
+              labels: LABEL,
+              per_page: 5,
+            });
+
+            let issueNumber;
+            if (open.data.length === 0) {
+              const created = await github.rest.issues.create({
+                owner,
+                repo,
+                title: "🗓️ Operación — pendientes y fechas",
+                body:
+                  "Checklist completa generada desde `docs/operations/ops-schedule.json`.\n" +
+                  "Cada lunes se actualiza un comentario con lo que vence.\n\n" +
+                  masterChecklist,
+                labels: [LABEL],
+              });
+              issueNumber = created.data.number;
+              console.log(`Issue creado: #${issueNumber}`);
+            } else {
+              issueNumber = open.data[0].number;
+            }
+
+            if (due.length === 0) {
+              console.log("Sin pendientes en la ventana; no se comenta.");
+              return;
+            }
+
+            const lines = due.map((it) => {
+              const end = it.end_date ? ` (hasta ${it.end_date})` : "";
+              return `- [ ] **${it.date}${end}** — ${it.title} · _${it.owner}_`;
+            });
+            const body =
+              `${MARKER}\n### Pendientes al ${iso(today)}\n\n` +
+              `${lines.join("\n")}\n\n` +
+              `<sub>Fuente: \`docs/operations/ops-schedule.json\` · ` +
+              `ventana ${HORIZON_DAYS} días</sub>`;
+
+            const comments = await github.rest.issues.listComments({
+              owner,
+              repo,
+              issue_number: issueNumber,
+              per_page: 100,
+            });
+            const existing = comments.data.find((c) => c.body.includes(MARKER));
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: existing.id,
+                body,
+              });
+              console.log(`Comentario semanal actualizado en #${issueNumber}.`);
+            } else {
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: issueNumber,
+                body,
+              });
+              console.log(`Comentario semanal creado en #${issueNumber}.`);
+            }

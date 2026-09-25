@@ -1,0 +1,207 @@
+{
+  "updated": "2026-09-25",
+  "horizon_end": "2026-11-02",
+  "notes": "Fuente única de pendientes con fecha del programa activo (distribución + monetización + F5/Gate D). Lo leen scripts/ops_reminders.py (local) y .github/workflows/ops-reminders.yml (issue semanal). Las tareas sin fecha viven en 'undated'; el backlog completo está en docs/backlog/README.md.",
+  "items": [
+    {
+      "id": "w39-export",
+      "date": "2026-09-28",
+      "title": "Export W39 + ritual semanal",
+      "detail": "Generar el bundle W39 (GSC/analytics/cloudflare) y cerrar el issue semanal de search ops.",
+      "owner": "carlos",
+      "plan": "backlog #1 · W39 export lands Monday"
+    },
+    {
+      "id": "gate-d-w39",
+      "date": "2026-09-28",
+      "title": "Gate D W39 (inputs owner)",
+      "detail": "weeklyHours, weeklyCostClp, burnoutLevel1To5 en output/operations/weekly-search-performance/2026-W39/utility-led-ops.json.",
+      "owner": "carlos",
+      "plan": "DECISION-monetization-2026-11-02.md"
+    },
+    {
+      "id": "seeding-lote-1",
+      "date": "2026-09-28",
+      "end_date": "2026-10-02",
+      "title": "Publicar lote 1 de siembra",
+      "detail": "r/chile finiquito (versión SIN link) + r/FinanzasChile tarjeta (con link). Un clic en /siembra y luego 'Ya lo publiqué'. Cadencia 2-3/semana.",
+      "owner": "carlos",
+      "plan": "PLAN-distribution-community-seeding-2026-09-25.md"
+    },
+    {
+      "id": "modmail-finanzaschile",
+      "date": "2026-09-28",
+      "title": "Enviar modmail r/FinanzasChile",
+      "detail": "Un clic en /modmail (copiar y abrir); registrar estado enviado.",
+      "owner": "carlos",
+      "plan": "PLAN-distribution-community-seeding-2026-09-25.md"
+    },
+    {
+      "id": "f5-primaria",
+      "date": "2026-09-30",
+      "title": "Lectura primaria F5 (UTM/UF)",
+      "detail": "W39 vs W36 con docs/reports/F5-UTM-READING-2026-09-30.md; decidir keep/revert/extender y con eso el F2 UF.",
+      "owner": "carlos",
+      "plan": "PLAN-growth-utm-ctr-2026-09-16.md"
+    },
+    {
+      "id": "github-actions-reset",
+      "date": "2026-10-01",
+      "title": "Reinicio de cuota GitHub Actions",
+      "detail": "Se desbloquea CI (2.000 min/mes). Retomar checks normales y evaluar runner self-hosted o reducción de minutos.",
+      "owner": "carlos",
+      "plan": "ops"
+    },
+    {
+      "id": "utm-refresh-oct",
+      "date": "2026-10-01",
+      "title": "Refresco UTM de octubre (confounder F5)",
+      "detail": "El título interpolado cambia a mitad de la ventana extendida: anotarlo y no decidir solo con la lectura a 28 días.",
+      "owner": "sistema",
+      "plan": "PLAN-growth-utm-ctr-2026-09-16.md"
+    },
+    {
+      "id": "w40-export",
+      "date": "2026-10-05",
+      "title": "Export W40 + ritual semanal + Gate D W40",
+      "detail": "Bundle W40 + inputs de Gate D (horas/costo/burnout).",
+      "owner": "carlos",
+      "plan": "backlog #2"
+    },
+    {
+      "id": "seeding-lote-2",
+      "date": "2026-10-05",
+      "end_date": "2026-10-09",
+      "title": "Publicar lote 2 de siembra",
+      "detail": "3 borradores en /siembra: tarjeta pago mínimo 2026, comprar propiedad (sin link) y cisterna (sin link).",
+      "owner": "carlos",
+      "plan": "PLAN-distribution-community-seeding-2026-09-25.md"
+    },
+    {
+      "id": "panel-f4",
+      "date": "2026-10-05",
+      "title": "Lectura panel F4 (2 semanas comparables)",
+      "detail": "next_step_click/shown ≥3% con n≥99 y sin regresión; piloto UTM.",
+      "owner": "carlos",
+      "plan": "PLAN-result-panel-conversion-2026-09-16.md"
+    },
+    {
+      "id": "b2b-batch-1",
+      "date": "2026-10-05",
+      "end_date": "2026-10-09",
+      "title": "B2B: enviar batch 1 (3-4 mensajes)",
+      "detail": "Borradores en output/operations/b2b-outreach-2026-09-25.md; validar nombre/cargo antes de enviar.",
+      "owner": "carlos",
+      "plan": "B2B-DISCOVERY-MEMO-2026-09-16.md"
+    },
+    {
+      "id": "post-w40-instrumentacion",
+      "date": "2026-10-05",
+      "end_date": "2026-10-16",
+      "title": "Post-W40: instrumentación UTM landing + F3 citation-ready",
+      "detail": "Recién aquí se pueden tocar superficies (ventanas de medición activas hasta W40).",
+      "owner": "carlos",
+      "plan": "backlog #6"
+    },
+    {
+      "id": "w41-export",
+      "date": "2026-10-12",
+      "title": "Export W41 + ritual semanal + Gate D W41",
+      "detail": "Bundle W41 + inputs de Gate D.",
+      "owner": "carlos",
+      "plan": "backlog #2"
+    },
+    {
+      "id": "b2b-batch-2",
+      "date": "2026-10-12",
+      "end_date": "2026-10-16",
+      "title": "B2B: enviar batch 2 (3-4 mensajes)",
+      "detail": "Resto de la lista de candidatos; follow-up único a los 7 días.",
+      "owner": "carlos",
+      "plan": "B2B-DISCOVERY-MEMO-2026-09-16.md"
+    },
+    {
+      "id": "b2b-conversaciones",
+      "date": "2026-10-13",
+      "end_date": "2026-10-30",
+      "title": "B2B: conversaciones de discovery (2/semana)",
+      "detail": "Meta 10 conversaciones al 30-oct; 25 min cada una; notas en el tracker del memo.",
+      "owner": "carlos",
+      "plan": "B2B-DISCOVERY-MEMO-2026-09-16.md"
+    },
+    {
+      "id": "f5-extendida",
+      "date": "2026-10-14",
+      "title": "Lectura extendida F5 (28 días)",
+      "detail": "Con el confounder de octubre anotado; no decidir solo con esta lectura.",
+      "owner": "carlos",
+      "plan": "PLAN-growth-utm-ctr-2026-09-16.md"
+    },
+    {
+      "id": "w42-export",
+      "date": "2026-10-19",
+      "title": "Export W42 + ritual semanal + Gate D W42",
+      "detail": "Bundle W42 + inputs de Gate D.",
+      "owner": "carlos",
+      "plan": "backlog #2"
+    },
+    {
+      "id": "w43-export",
+      "date": "2026-10-26",
+      "title": "Export W43 + ritual semanal + Gate D W43",
+      "detail": "Bundle W43 + inputs de Gate D.",
+      "owner": "carlos",
+      "plan": "backlog #2"
+    },
+    {
+      "id": "citation-run-mensual",
+      "date": "2026-10-26",
+      "title": "Corrida mensual de citación IA",
+      "detail": "Hoja de corrida en docs/reports/AI-CITATION-TRACKING.md; requiere login (ChatGPT/Perplexity/Gemini/Copilot).",
+      "owner": "carlos",
+      "plan": "PLAN-distribution-citations-2026-09-25.md"
+    },
+    {
+      "id": "b2b-cierre",
+      "date": "2026-10-30",
+      "title": "B2B: memo completo (10 conversaciones) + ADR final",
+      "detail": "Sin memo completo, la opción D no es elegible el 2-nov.",
+      "owner": "carlos",
+      "plan": "DECISION-monetization-2026-11-02.md"
+    },
+    {
+      "id": "decision-monetizacion",
+      "date": "2026-11-02",
+      "title": "Decisión de monetización (A-E)",
+      "detail": "Matriz y umbrales pre-declarados en DECISION-monetization-2026-11-02.md; termina el FOCO ESTRICTO.",
+      "owner": "carlos",
+      "plan": "DECISION-monetization-2026-11-02.md"
+    }
+  ],
+  "undated": [
+    {
+      "id": "lote-0-firma",
+      "title": "Lote 0 impuestos-personas: firma humana",
+      "detail": "Firmar en 07-publish-packet.md (solo humano) y decidir el merge del PR #423.",
+      "owner": "carlos"
+    },
+    {
+      "id": "wikis-cerradas",
+      "title": "Revisar wikis cerradas al bot",
+      "detail": "ChileInversiones, AskChile, ChileStartup, chile_autos: mirar en el navegador si tienen lista de recursos.",
+      "owner": "carlos"
+    },
+    {
+      "id": "citation-parcial",
+      "title": "Completar corrida de citación (Perplexity/Copilot)",
+      "detail": "Requiere login una vez; el resto de la primera corrida ya está registrado.",
+      "owner": "carlos"
+    },
+    {
+      "id": "gitignore-b2b",
+      "title": "Commitear la línea b2b en .gitignore",
+      "detail": "Queda pendiente en el working tree; entra en el próximo PR.",
+      "owner": "sistema"
+    }
+  ]
+}
