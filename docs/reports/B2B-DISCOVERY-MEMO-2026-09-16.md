@@ -142,11 +142,13 @@ respondió y cuál mostró disposición a pagar.
 | Suscripción embed mensual | uso continuo | costo mensual de mantención + margen; sin fee por usuario |
 | Licencia de contenido/API | medios o fintech | por superficie y cadencia de refresco |
 
-**Supuesto de tarifa (owner a confirmar):** CLP 30.000/h. Con Gate D
-(8 h/semana de mantención) el piso de un embed con SLA completo es del orden
-de **CLP 1,0 M/mes**; el piloto de 8–12 semanas se cotiza sobre ese piso más
-margen. Sin tarifa declarada no se cotiza. Un piso que no cubra la mantención
-+ margen se rechaza aunque haya interés.
+**Tarifa declarada por el owner (2026-09-25): 0,5 UF/hora** (≈ CLP 20.508 con
+la UF del 2026-09-25; se reajusta con la UF). Con Gate D (8 h/semana de
+mantención) el piso de un embed con SLA completo es **17,3 UF/mes**
+(≈ CLP 711.000); un piloto de 8–12 semanas se cotiza en **32–48 UF**
+(≈ CLP 1,31–1,97 M) más margen. Sin cubrir ese piso no hay piloto, aunque
+haya interés. Cotizar en UF para que el precio no se erosione con la
+inflación.
 
 El contrato de calidad debe fijar: cadencia de refresco (UTM mensual, UF
 diaria, reformas), fuentes primarias por indicador, SLO de exactitud y
