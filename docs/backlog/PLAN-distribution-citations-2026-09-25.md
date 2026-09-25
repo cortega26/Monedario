@@ -30,14 +30,21 @@ se puede ganar por EMD (#401): **confianza y extractabilidad**.
 
 ### F1 — Primera corrida del log de citación (1 sesión, inmediato)
 
-Ejecutar exactamente el procedimiento de `AI-CITATION-TRACKING.md`: 20
-consultas fijas × 4 motores (ChatGPT búsqueda, Perplexity, Gemini, Copilot),
+Ejecutar exactamente el procedimiento de `AI-CITATION-TRACKING.md`: 12
+consultas fijas (B1–B2 + T1–T10) × 4 motores (ChatGPT búsqueda, Perplexity,
+Gemini, Copilot),
 sesión sin personalizar, registrar `Citado`, `Prominencia`, `Página citada`,
 `Notas` y tasa. Escribir la primera fila del log (no borrar el placeholder,
 reemplazar por la fila real).
 
 Gate F1: log con la primera corrida y observaciones; sin conclusiones de una
 sola corrida (es tendencia).
+
+Lección operativa (2026-09-25): la corrida no es automatizable de punta a
+punta. Copilot (OAuth) y la sesión canónica de ChatGPT/Gemini requieren login;
+Perplexity bloquea la automatización con verificación anti-bot (no se elude).
+La corrida mensual es una tarea humana de ~20 minutos; el modo invitado sirve
+como proxy etiquetado, no como sustituto.
 
 ### F2 — Diagnóstico y arreglos de citabilidad (inmediato, sin tocar ventanas)
 
@@ -118,7 +125,7 @@ citaciones IA que apunten a la página usada.
 
 | Métrica | Línea base | Objetivo inicial |
 |---|---|---|
-| Tasa de citación IA (20×4) | sin datos (primera corrida F1) | tener baseline; +1 cita temática al mes |
+| Tasa de citación IA (12×4 = 48) | 3/25 evaluables (12%); 0/20 temáticas (2026-09-25) | tener baseline; +1 cita temática al mes |
 | % consultas temáticas con cita | sin datos | >0 en 2–3 meses |
 | Backlinks nuevos (GSC) | sin datos | ≥1 por trimestre |
 | Errores de atribución | sin datos | 0 acumulados sin encolar |
@@ -139,4 +146,9 @@ citaciones IA que apunten a la página usada.
 
 ## Progress log
 
-- 2026-09-25 — Plan creado. Pendiente F1 (primera corrida del log).
+- 2026-09-25 — Plan creado.
+- 2026-09-25 — F1 ejecutada (parcial etiquetada): 25/48 combinaciones
+  evaluables; 3 citas (ChatGPT B1/B2, Perplexity B1) y 0/20 temáticas.
+  Hallazgo: la marca se cita, el tema no; la ventana temática queda para F3.
+  Detalle y método en `docs/reports/AI-CITATION-TRACKING.md`. Corrida
+  canónica mensual pendiente en la sesión normal del owner (incluye Copilot).
