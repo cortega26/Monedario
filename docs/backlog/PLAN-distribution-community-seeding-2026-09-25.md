@@ -60,6 +60,12 @@ Cinco reglas operativas:
 
 Cadencia: 2–3 respuestas/semana; ráfagas gatillan filtros de spam.
 
+**Ensayo (2026-09-28 → 2026-10-12): 1 respuesta/día.** Aprobado por el owner.
+Guardarraíles: máximo 2–3 con link por semana (el resto aporte sin link),
+`r/chile`/`r/AskChile`/`r/RepublicadeChile` sin link, y rotación de subs para
+no concentrar. Revisión el 2026-10-12 con `actions` + branded GSC: si no hay
+señal o aparece una remoción, se vuelve a 2–3/semana.
+
 ## Plantillas y munición
 
 - Reusar A–E del kit y añadir 2 plantillas para los temas de mayor demanda
@@ -124,3 +130,10 @@ branded + Cloudflare.
   sin publicar sola. `resource_map` de la cola ampliado a 19 grupos: las
   sugerencias pasaron de 0 a 18 sobre la cola viva, sin falsos positivos
   evidentes (se quitaron "uf", "presupuesto" y "pensión" sueltos).
+- 2026-09-25 — Ensayo diario aprobado (28-sep → 12-oct, 1 respuesta/día; máx
+  2-3 links/semana; links no permitidos en chile/AskChile/RepublicadeChile y
+  ChileInversiones sin verificar). Lote 3 con 2 borradores cargados en
+  `seed_content.py`. Incidente y recuperación: el deploy pisó la DB de la VM
+  (503→86 matches); restaurada desde backup del 25-sep + 26 matches de hoy
+  fusionados (439 pendientes, 4 actions) y `deploy.sh` ahora excluye el estado
+  vivo (PR #538).

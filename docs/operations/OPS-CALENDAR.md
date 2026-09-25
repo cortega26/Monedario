@@ -56,8 +56,9 @@ Es el mismo topic del monitor de Reddit: un solo destino.
 
 ## Recurrentes (sin fila propia)
 
-- **Siembra:** 2-3 respuestas/semana (lotes 1 y 2 cubren hasta el 9-oct; el
-  lote 3 sale de la cola viva cuando toque).
+- **Siembra:** ensayo de 1 respuesta/día (28-sep → 12-oct), máximo 2-3 con
+  link por semana y r/chile/AskChile/RepublicadeChile sin link; revisión del
+  ensayo el 12-oct (si no hay señal o hay remociones, vuelve a 2-3/semana).
 - **Gate D:** cada lunes con el ritual semanal (W39-W43).
 - **Citación IA:** mensual (primera corrida parcial ya registrada).
 - **Wikis:** revisar el estado mensual en `/wikis`.
