@@ -60,6 +60,12 @@ Con la corrida en mano:
 
 Gate F2: cero bots de cita bloqueados; errores de atribución registrados.
 
+Estado 2026-09-25: acceso edge verificado — `OAI-SearchBot`, `PerplexityBot`
+y `Claude-SearchBot` reciben 200 en `/llms.txt` y en
+`/calculadoras/conversor-utm/`; IndexNow con última corrida exitosa
+(2026-09-20). Pendiente: chequeo Bing/Copilot y registro de errores de
+atribución.
+
 ### F3 — Páginas "citation-ready" (on-site; después de ventanas de medición)
 
 Ventanas a respetar: F5 UTM/UF hasta 2026-09-30; panel F4 W39–W40; títulos
@@ -152,3 +158,6 @@ citaciones IA que apunten a la página usada.
   Hallazgo: la marca se cita, el tema no; la ventana temática queda para F3.
   Detalle y método en `docs/reports/AI-CITATION-TRACKING.md`. Corrida
   canónica mensual pendiente en la sesión normal del owner (incluye Copilot).
+- 2026-09-25 — F2 (parcial): acceso de bots de cita verificado (200 en
+  `/llms.txt` y en página de dinero); IndexNow OK. Pendiente Bing/Copilot y
+  errores de atribución.
