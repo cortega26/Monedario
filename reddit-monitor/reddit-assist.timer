@@ -1,0 +1,10 @@
+[Unit]
+Description=Corre reddit-assist.service cada 90 min (desfasado del escaneo de 75 min)
+
+[Timer]
+OnBootSec=20min
+OnUnitActiveSec=90min
+Persistent=false
+
+[Install]
+WantedBy=timers.target

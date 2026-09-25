@@ -13,6 +13,12 @@
   {% if it.status == 'descartado' and it.status_note %}
   <div class="muted">Motivo: {{ it.status_note }}</div>
   {% endif %}
+  {% if it.auto %}
+  <div class="warn"><strong>Descartado automáticamente por IA</strong>{% if it.ai %} ({{ it.ai.model }}): {{ it.ai.reason }}{% endif %}. No es una decisión tuya ni cuenta como etiqueta.</div>
+  <form class="inline" method="post" action="/matches/{{ it.id }}/restaurar">
+    <div class="actions"><button type="submit" class="secondary">Restaurar a la cola</button></div>
+  </form>
+  {% endif %}
   <div class="snippet">{{ it.snippet }}</div>
   <a class="reddit-link" href="https://reddit.com{{ it.permalink }}" target="_blank" rel="noopener">Ver en Reddit →</a>
   {% if it.utm_url %}
