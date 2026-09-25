@@ -63,7 +63,26 @@ con cita / total de combinaciones evaluadas.
 
 | Fecha | Motores probados | Consultas | Citado | Tasa | Observaciones |
 |---|---|---|---|---|---|
-| _(pendiente primera corrida)_ | | | | | |
+| 2026-09-25 | ChatGPT (invitado, con búsqueda), Gemini (invitado), Perplexity (1 consulta) | B1–B2 + T1–T10 | 3/25 evaluables | 12% | Corrida parcial: Copilot pide login; Perplexity bloqueó la automatización tras B1 (no se eludió la protección); 0/20 citas en consultas temáticas; la marca sí se cita. Detalle abajo. |
+
+### Detalle de la primera corrida (2026-09-25)
+
+Método: navegador limpio (sin sesión) y consultas del conjunto fijo. Las
+corridas mensuales canónicas deben hacerse en una sesión normal del owner;
+esta corrida en modo invitado es una línea base proxy y así queda etiquetada.
+
+| Motor | Evaluables | Citas | Detalle |
+|---|---:|---:|---|
+| ChatGPT (invitado, con búsqueda web) | 12/12 | **2** (B1, B2) | B1: varias citas inline a `monedario.cl` (home y página de autor); B2: tarjeta "Abrir la calculadora…" con fuente Monedario. T1–T10: 0/10; cita SII, TGR, Boletín Comercial y competidores. |
+| Gemini (invitado) | 12/12 | **0** | B1: menciona la marca en prosa pero cita `GitHub`, no Monedario. T2: fuentes Rankia Chile, cuantogano.cl, Talana, AFP Capital, Chiledeudas; T1 y T3–T10 sin Monedario. |
+| Perplexity | 1/12 | **1** (B1) | B1: citado como 1.ª fuente (home + `/calculadoras/`). Tras la primera consulta apareció verificación anti-bot de Cloudflare; no se insistió ni se intentó eludir. |
+| Microsoft Copilot | 0/12 | — | Redirige a login (OAuth) en sesión limpia; requiere la sesión del owner. |
+
+Lectura: la marca se reconoce y se cita (3 de 4 combinaciones de marca
+evaluadas), pero **ninguna** de las 20 combinaciones temáticas evaluadas cita
+Monedario — la ventana de citación temática está abierta y es exactamente lo
+que ataca F3 (páginas "citation-ready"). En esos temas los motores citan
+competidores y fuentes oficiales.
 
 ## Qué hacer con los resultados
 

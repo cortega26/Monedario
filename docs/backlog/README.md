@@ -110,7 +110,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | `PLAN-monetization-reevaluation-2026-09-16.md` | **IN PROGRESS**; en acumulación de evidencia (F1) + discovery B2B + ADR borrador, nada comercial sin gate |
 | `DECISION-monetization-2026-11-02.md` | **PREPARACIÓN (docs-only)**; checklist de evidencia, matriz A–E con umbrales pre-declarados y calendario; decisión del owner el 2026-11-02 |
 | `PLAN-zero-cost-distribution-2026-09-25.md` | **PROPUESTO**; programa de 4 canales con métricas, gates y kill criteria |
-| `PLAN-distribution-citations-2026-09-25.md` | **PROPUESTO**; F1 log de citación IA pendiente; cambios on-site post-W40 |
+| `PLAN-distribution-citations-2026-09-25.md` | **EN CURSO**; F1 ejecutada (baseline 3/25 evaluables, 0/20 temáticas); cambios on-site post-W40 |
 | `PLAN-distribution-community-seeding-2026-09-25.md` | **PROPUESTO**; cadencia manual 2–3 respuestas/semana |
 | `PLAN-distribution-embeddable-calculators-2026-09-25.md` | **PROPUESTO**; diseño F0 ahora, código post-2026-11-02 |
 | `PLAN-ux-evolution-cta-2026-09-16.md` | **QUEUED**; S1 encolado post-panel-F4; slices S1–S4 evolución, LHCI/axe sin regresión |
