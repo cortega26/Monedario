@@ -32,7 +32,12 @@ const SELECTORS = {
   resultLink: ".pagefind-ui__result-link",
   customInput: "#site-search",
   submitButton: '#search-form button[type="submit"]',
+  emptyState: "#search-empty-state",
+  clearButton: "#search-clear-button",
+  region: "#pagefind-search",
 } as const;
+
+const NO_MATCH_QUERY = "zzzqqqxyz-abracadabra";
 
 test.describe("Search — Pagefind functional regression", () => {
   test("search form initializes Pagefind UI on load", async ({ page }) => {
@@ -185,5 +190,71 @@ test.describe("Search — Pagefind functional regression", () => {
     // The custom input should be pre-filled with the query
     const inputValue = await page.locator(SELECTORS.customInput).inputValue();
     expect(inputValue).toBe("sueldo");
+  });
+});
+
+test.describe("Search — zero results, status and recovery (Plan 114)", () => {
+  test("a query with no matches shows a terminal empty state with recovery", async ({
+    page,
+  }) => {
+    await page.goto(`${SEARCH_PAGE}?q=${NO_MATCH_QUERY}`);
+    await page.waitForLoadState("networkidle");
+    await page.waitForSelector(SELECTORS.internalForm, {
+      state: "attached",
+      timeout: 10000,
+    });
+
+    const emptyState = page.locator(SELECTORS.emptyState);
+    await expect(emptyState).toBeVisible();
+    await expect(emptyState).toContainText("No encontramos resultados");
+    await expect(
+      emptyState.locator(SELECTORS.clearButton)
+    ).toBeVisible();
+
+    // The Pagefind message is announced to assistive technology.
+    const message = page.locator(SELECTORS.message);
+    await expect(message).toHaveAttribute("role", "status");
+    await expect(message).toHaveAttribute("aria-live", "polite");
+    await expect(message).toContainText("No se encontraron resultados");
+  });
+
+  test("the empty state clear action resets the query and hides the state", async ({
+    page,
+  }) => {
+    await page.goto(`${SEARCH_PAGE}?q=${NO_MATCH_QUERY}`);
+    await page.waitForLoadState("networkidle");
+    await page.waitForSelector(SELECTORS.internalForm, {
+      state: "attached",
+      timeout: 10000,
+    });
+    await expect(page.locator(SELECTORS.emptyState)).toBeVisible();
+
+    await page.locator(SELECTORS.clearButton).click();
+    await expect(page.locator(SELECTORS.emptyState)).toBeHidden();
+    await expect(page.locator(SELECTORS.customInput)).toHaveValue("");
+  });
+
+  test("a query with results keeps the empty state hidden and clears aria-busy", async ({
+    page,
+  }) => {
+    await page.goto(`${SEARCH_PAGE}?q=sueldo`);
+    await page.waitForLoadState("networkidle");
+    await page.waitForSelector(SELECTORS.internalForm, {
+      state: "attached",
+      timeout: 10000,
+    });
+    await page.waitForSelector(SELECTORS.results, { timeout: 10000 });
+    await page.waitForFunction(
+      () =>
+        document.querySelectorAll("#pagefind-search .pagefind-ui__loading")
+          .length === 0
+    );
+
+    await expect(page.locator(SELECTORS.emptyState)).toBeHidden();
+    await expect(page.locator(SELECTORS.message)).toContainText("resultados");
+    await expect(page.locator(SELECTORS.region)).not.toHaveAttribute(
+      "aria-busy",
+      "true"
+    );
   });
 });
