@@ -1,5 +1,18 @@
 # Implementation Plans
 
+## Auditoría UX externa 2026-09-28 — plan 114 (Fase 1)
+
+Selección del mantenedor: «Todas las net-positive». La auditoría adversarial
+completa quedó como evidencia en `docs/reports/AUDIT-UX-2026-09-28.md`; el
+plan 114 implementa la Fase 1 (F-01 a F-04 + guardas) y difiere F-05 a F-10 a
+Fase 2/3.
+
+| Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
+|------|-------|----------|--------|------------|--------|
+| 114 | [ux-audit-remediation-2026-09-28.md](114-ux-audit-remediation-2026-09-28.md) | P1 | L | — | DONE (Fase 1; Fase 2/3 diferidas) |
+
+Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
+
 ## Auditoría profunda 2026-09-14 — planes 097–113 (completa salvo 111 BLOCKED)
 
 Sobre `0e506a8b`, selección del mantenedor: **«All the net-positive ones»**.
