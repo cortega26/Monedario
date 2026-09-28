@@ -16,14 +16,14 @@ El **Ahorro Previsional Voluntario (APV)** es un mecanismo financiero creado por
 
 El gran incentivo del APV no es sólo la rentabilidad que pueda generar el fondo donde lo inviertas, sino los significativos **beneficios tributarios** asociados, los cuales se dividen en dos regímenes excluyentes:
 
-#### Régimen A (Para rentas medias o bajas)
+### Régimen A (Para rentas medias o bajas)
 
 El trabajador recibe una bonificación directa del Estado equivalente al **15% del monto total ahorrado en el año**.
 
 - Si ahorras $1.000.000 en el año, el Estado te regala $150.000 que van directo a tu fondo de pensión.
 - Existe un tope anual de bonificación (hasta 6 UTM).
 
-#### Régimen B (Para rentas altas)
+### Régimen B (Para rentas altas)
 
 El monto ahorrado se rebaja de tu base imponible para el cálculo del Impuesto Global Complementario.
 
