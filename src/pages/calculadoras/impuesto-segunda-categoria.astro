@@ -396,6 +396,10 @@ const calculatorNextStepItems = [
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
   import { formatCLP } from "@/utils/formatCLP";
+  import {
+    markResultState,
+    renderInvalidResultState,
+  } from "@/utils/calculatorResultState";
 
   declare global {
     interface Window {
@@ -436,6 +440,7 @@ const calculatorNextStepItems = [
   }
 
   function showInlineError(message: string) {
+    renderInvalidResultState();
     const errorBox = document.getElementById("segunda-categoria-error");
     if (!errorBox) return;
     errorBox.textContent = message;
@@ -540,6 +545,7 @@ const calculatorNextStepItems = [
         : "El impuesto anual es una estimación asumiendo el mismo imponible mensual los 12 meses.";
 
     contenido.replaceChildren(headline, ...rows, note);
+    markResultState(contenido, "result");
 
     document.dispatchEvent(
       new CustomEvent("calculator:result", {

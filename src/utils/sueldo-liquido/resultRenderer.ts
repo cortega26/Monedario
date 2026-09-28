@@ -3,6 +3,7 @@
 // ---------------------------------------------------------------------------
 
 import { formatCLP } from "@/utils/formatCLP";
+import { markResultState } from "@/utils/calculatorResultState";
 
 export const fmt = formatCLP;
 
@@ -335,9 +336,16 @@ export function updateResultDisplay(options: UpdateResultOptions): void {
       : "";
   assumption.textContent = `${baseNote} ① Solo AFC empleador; no incluye mutual de seguridad ni beneficios pactados.${gratiNote}`;
 
-  document
-    .getElementById("resultado-contenido")!
-    .replaceChildren(headline, bars, ...rows, totals, extraRows, assumption);
+  const resultContainer = document.getElementById("resultado-contenido");
+  resultContainer?.replaceChildren(
+    headline,
+    bars,
+    ...rows,
+    totals,
+    extraRows,
+    assumption
+  );
+  markResultState(resultContainer, "result");
 
   // Show action buttons after result renders
   const resultActions = document.getElementById("result-actions");

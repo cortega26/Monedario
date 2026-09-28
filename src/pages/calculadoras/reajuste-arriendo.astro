@@ -358,6 +358,10 @@ const calculatorNextStepItems = [
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
   import { formatCLP } from "@/utils/formatCLP";
+  import {
+    markResultState,
+    renderInvalidResultState,
+  } from "@/utils/calculatorResultState";
 
   declare global {
     interface Window {
@@ -391,6 +395,7 @@ const calculatorNextStepItems = [
   }
 
   function showInlineError(message: string): void {
+    renderInvalidResultState();
     const errorBox = document.getElementById("reajuste-error");
     if (!errorBox) return;
     errorBox.textContent = message;
@@ -462,7 +467,9 @@ const calculatorNextStepItems = [
         "Si tu contrato sí tiene cláusula de reajuste por UF o IPC, usa las otras opciones del formulario.";
 
       box.append(title, paragraph1, paragraph2);
-      document.getElementById("resultado-contenido")!.replaceChildren(box);
+      const fixedContainer = document.getElementById("resultado-contenido");
+      fixedContainer?.replaceChildren(box);
+      markResultState(fixedContainer, "result");
       document.dispatchEvent(
         new CustomEvent("calculator:result", {
           detail: {
@@ -541,22 +548,22 @@ const calculatorNextStepItems = [
       note.className = "mt-3 text-xs text-muted";
       note.textContent = `El arriendo en UF no "sube" - siempre son ${arriendoUF} UF. Lo que varía es el equivalente en pesos según el valor diario de la UF.`;
 
-      document
-        .getElementById("resultado-contenido")!
-        .replaceChildren(
-          header,
-          buildRow("Arriendo mes anterior", fmt(reajusteUf.previousRentClp)),
-          buildRow(
-            "Diferencia",
-            `${reajusteUf.differenceClp >= 0 ? "+ " : ""}${fmt(reajusteUf.differenceClp)}`,
-            reajusteUf.differenceClp > 0 ? "text-red-400" : "text-green-500"
-          ),
-          buildRow(
-            "Variación UF del período",
-            `${reajusteUf.ufVariationPercent.toFixed(2)}%`
-          ),
-          note
-        );
+      const ufContainer = document.getElementById("resultado-contenido");
+      ufContainer?.replaceChildren(
+        header,
+        buildRow("Arriendo mes anterior", fmt(reajusteUf.previousRentClp)),
+        buildRow(
+          "Diferencia",
+          `${reajusteUf.differenceClp >= 0 ? "+ " : ""}${fmt(reajusteUf.differenceClp)}`,
+          reajusteUf.differenceClp > 0 ? "text-red-400" : "text-green-500"
+        ),
+        buildRow(
+          "Variación UF del período",
+          `${reajusteUf.ufVariationPercent.toFixed(2)}%`
+        ),
+        note
+      );
+      markResultState(ufContainer, "result");
       document.dispatchEvent(
         new CustomEvent("calculator:result", {
           detail: {
@@ -631,27 +638,24 @@ const calculatorNextStepItems = [
       note.textContent =
         "El reajuste por IPC aplica sobre el monto en pesos pactado. Solo puede hacerse en la fecha de renovación anual indicada en el contrato.";
 
-      document
-        .getElementById("resultado-contenido")!
-        .replaceChildren(
-          header,
-          buildRow("Arriendo antes del reajuste", fmt(arriendoPesos)),
-          buildRow(
-            "Aumento mensual",
-            `+ ${fmt(reajusteIpc.differenceClp)}`,
-            "text-red-400"
-          ),
-          buildRow(
-            "Aumento anual",
-            `+ ${fmt(reajusteIpc.differenceClp * 12)}`,
-            "text-red-400"
-          ),
-          buildRow(
-            "Factor aplicado",
-            `×${reajusteIpc.appliedFactor.toFixed(4)}`
-          ),
-          note
-        );
+      const ipcContainer = document.getElementById("resultado-contenido");
+      ipcContainer?.replaceChildren(
+        header,
+        buildRow("Arriendo antes del reajuste", fmt(arriendoPesos)),
+        buildRow(
+          "Aumento mensual",
+          `+ ${fmt(reajusteIpc.differenceClp)}`,
+          "text-red-400"
+        ),
+        buildRow(
+          "Aumento anual",
+          `+ ${fmt(reajusteIpc.differenceClp * 12)}`,
+          "text-red-400"
+        ),
+        buildRow("Factor aplicado", `×${reajusteIpc.appliedFactor.toFixed(4)}`),
+        note
+      );
+      markResultState(ipcContainer, "result");
       document.dispatchEvent(
         new CustomEvent("calculator:result", {
           detail: {

@@ -11,6 +11,7 @@ import {
 } from "@/utils/calculatorScenariosUI";
 import { createScenarioSaveAdapter } from "@/utils/calculatorScenarioSave";
 import { parseCLNumber } from "@/utils/parseCLNumber";
+import { renderInvalidResultState } from "@/utils/calculatorResultState";
 import {
   renderAfpComparison,
   renderAfpComparisonInverso,
@@ -242,6 +243,7 @@ function handleCalculate(): void {
   hideError();
   if (rawInput <= 0) {
     showError("Por favor ingresa un monto válido.");
+    renderInvalidResultState();
     setLoading(false);
     return;
   }
@@ -266,6 +268,7 @@ function handleCalculate(): void {
           ? error.message
           : "No se pudo estimar el sueldo bruto."
       );
+      renderInvalidResultState();
       setLoading(false);
       return;
     }
@@ -374,6 +377,7 @@ function handleCalculate(): void {
           ? error.message
           : "No se pudo calcular el sueldo líquido."
       );
+      renderInvalidResultState();
       setLoading(false);
       return;
     }

@@ -330,6 +330,10 @@ const calculatorNextStepItems = [
     snapshotInputs,
   } from "@/utils/calculatorScenariosUI";
   import { createScenarioSaveAdapter } from "@/utils/calculatorScenarioSave";
+  import {
+    markResultState,
+    renderInvalidResultState,
+  } from "@/utils/calculatorResultState";
 
   declare global {
     interface Window {
@@ -352,6 +356,7 @@ const calculatorNextStepItems = [
   }
 
   function showInlineError(message: string) {
+    renderInvalidResultState();
     const errorBox = document.getElementById("jubilacion-error");
     if (!errorBox) return;
     errorBox.textContent = message;
@@ -602,41 +607,41 @@ const calculatorNextStepItems = [
     );
     scopeBox.append(scopeTitle, scopeList, sourceLine);
 
-    document
-      .getElementById("resultado-contenido")!
-      .replaceChildren(
-        headline,
-        comparisonLabel,
-        comparisonGrid,
-        buildRow(
-          "Pensión mensual estimada",
-          fmt(proyeccion.selectedScenario.estimatedMonthlyPension),
-          "text-accent"
-        ),
-        buildRow(
-          "Como % de tu sueldo actual",
-          `${proyeccion.selectedScenario.salaryReplacementPercent.toFixed(0)}%`
-        ),
-        buildRow(
-          "Años de pensión (vida estimada)",
-          `${proyeccion.pensionMonths / 12} años`
-        ),
-        buildRow(
-          "Lagunas previsionales asumidas",
-          `${lagunasPercent.toFixed(0)}% del tiempo restante`
-        ),
-        buildRow("Rentabilidad anual usada", `${rentAnual * 100}%`),
-        buildRow("Saldo inicial ingresado", fmt(saldoInicial)),
-        buildRow(
-          "Aporte empleador directo proyectado",
-          fmt(
-            proyeccion.selectedScenario
-              .totalEmployerContributionsToIndividualAccount
-          )
-        ),
-        hint,
-        scopeBox
-      );
+    const resultContainer = document.getElementById("resultado-contenido");
+    resultContainer?.replaceChildren(
+      headline,
+      comparisonLabel,
+      comparisonGrid,
+      buildRow(
+        "Pensión mensual estimada",
+        fmt(proyeccion.selectedScenario.estimatedMonthlyPension),
+        "text-accent"
+      ),
+      buildRow(
+        "Como % de tu sueldo actual",
+        `${proyeccion.selectedScenario.salaryReplacementPercent.toFixed(0)}%`
+      ),
+      buildRow(
+        "Años de pensión (vida estimada)",
+        `${proyeccion.pensionMonths / 12} años`
+      ),
+      buildRow(
+        "Lagunas previsionales asumidas",
+        `${lagunasPercent.toFixed(0)}% del tiempo restante`
+      ),
+      buildRow("Rentabilidad anual usada", `${rentAnual * 100}%`),
+      buildRow("Saldo inicial ingresado", fmt(saldoInicial)),
+      buildRow(
+        "Aporte empleador directo proyectado",
+        fmt(
+          proyeccion.selectedScenario
+            .totalEmployerContributionsToIndividualAccount
+        )
+      ),
+      hint,
+      scopeBox
+    );
+    markResultState(resultContainer, "result");
     scenarioLastInputs = scenarioCandidateInputs;
 
     document.dispatchEvent(

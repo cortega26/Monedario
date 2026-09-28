@@ -385,6 +385,10 @@ const dapFaqs = [
     snapshotInputs,
   } from "@/utils/calculatorScenariosUI";
   import { createScenarioSaveAdapter } from "@/utils/calculatorScenarioSave";
+  import {
+    markResultState,
+    renderInvalidResultState,
+  } from "@/utils/calculatorResultState";
 
   declare global {
     interface Window {
@@ -401,6 +405,7 @@ const dapFaqs = [
   }
 
   function showError(message: string) {
+    renderInvalidResultState();
     const el = document.getElementById("calc-error");
     if (!el) return;
     el.textContent = message;
@@ -511,6 +516,7 @@ const dapFaqs = [
       : "Sin retención de impuesto. Verifica tu situación tributaria con un asesor.";
 
     contenido.replaceChildren(headline, rows, extras, note);
+    markResultState(contenido, "result");
   }
 
   document.getElementById("calcBtn")?.addEventListener("click", () => {

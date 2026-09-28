@@ -99,12 +99,14 @@ const calculatorNextStepItems = [
             <div class="deuda-row flex items-center gap-2">
               <input
                 type="number"
+                aria-label="Monto de la deuda vencida 1 en pesos"
                 placeholder="Monto ($) Ej: 1.500.000"
                 min="0"
                 class="deuda-monto flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none"
               />
               <input
                 type="number"
+                aria-label="Días de mora de la deuda vencida 1"
                 placeholder="Días mora"
                 min="1"
                 max="5000"
@@ -115,12 +117,14 @@ const calculatorNextStepItems = [
             <div class="deuda-row flex items-center gap-2">
               <input
                 type="number"
+                aria-label="Monto de la deuda vencida 2 en pesos"
                 placeholder="Monto ($) Ej: 800.000"
                 min="0"
                 class="deuda-monto flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none"
               />
               <input
                 type="number"
+                aria-label="Días de mora de la deuda vencida 2"
                 placeholder="Días mora"
                 min="1"
                 max="5000"
@@ -408,6 +412,10 @@ const calculatorNextStepItems = [
   import { simulateDebtRenegotiation } from "@/application/use-cases/SimulateDebtRenegotiation";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { formatCLP } from "@/utils/formatCLP";
+  import {
+    markResultState,
+    renderInvalidResultState,
+  } from "@/utils/calculatorResultState";
 
   declare global {
     interface Window {
@@ -461,6 +469,10 @@ const calculatorNextStepItems = [
     const amountInput = document.createElement("input");
     amountInput.type = "number";
     amountInput.placeholder = "Monto ($)";
+    amountInput.setAttribute(
+      "aria-label",
+      "Monto de la deuda vencida en pesos"
+    );
     amountInput.min = "0";
     amountInput.className =
       "deuda-monto flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none";
@@ -468,6 +480,7 @@ const calculatorNextStepItems = [
     const overdueInput = document.createElement("input");
     overdueInput.type = "number";
     overdueInput.placeholder = "Días mora";
+    overdueInput.setAttribute("aria-label", "Días de mora de la deuda vencida");
     overdueInput.min = "1";
     overdueInput.max = "5000";
     overdueInput.value = "91";
@@ -477,6 +490,7 @@ const calculatorNextStepItems = [
     const removeButton = document.createElement("button");
     removeButton.type = "button";
     removeButton.textContent = "×";
+    removeButton.setAttribute("aria-label", "Eliminar deuda");
     removeButton.className =
       "eliminar-deuda text-lg leading-none text-muted hover:text-red-400";
     removeButton.addEventListener("click", () => row.remove());
@@ -492,6 +506,7 @@ const calculatorNextStepItems = [
   });
 
   function showError(message: string) {
+    renderInvalidResultState();
     const el = document.getElementById("calc-error");
     if (!el) return;
     el.textContent = message;
@@ -713,6 +728,7 @@ const calculatorNextStepItems = [
       advisory,
       guideLink
     );
+    markResultState(container, "result");
 
     // Comparison table — same debt/income/rate, different terms
     const compTerms = (() => {

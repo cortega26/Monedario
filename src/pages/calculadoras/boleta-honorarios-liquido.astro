@@ -253,6 +253,10 @@ const calculatorNextStepItems = [
   import { calculateHonorariosNet } from "@/application/use-cases/CalculateHonorariosNet";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
+  import {
+    markResultState,
+    renderInvalidResultState,
+  } from "@/utils/calculatorResultState";
 
   declare global {
     interface Window {
@@ -292,6 +296,7 @@ const calculatorNextStepItems = [
   }
 
   function showInlineError(message: string) {
+    renderInvalidResultState();
     const errorBox = document.getElementById("honorarios-error");
     if (!errorBox) return;
     errorBox.textContent = message;
@@ -379,52 +384,52 @@ const calculatorNextStepItems = [
       assumptions.appendChild(line);
     });
 
-    document
-      .getElementById("resultado-contenido")
-      ?.replaceChildren(
-        headline,
-        buildRow(
-          "Bruto de la boleta",
-          fmtCurrency(result.grossFee),
-          "text-green-500"
-        ),
-        buildRow(
-          `Retención (${result.withholdingRatePercent.toFixed(2)}%)`,
-          `− ${fmtCurrency(result.withholdingAmount)}`,
-          "text-red-400"
-        ),
-        buildRow(
-          "Líquido recibido hoy",
-          fmtCurrency(result.netFeeReceived),
-          "text-accent"
-        ),
-        buildRow(
-          "Bruto anual usado",
-          fmtCurrency(result.annualGrossFees),
-          "text-secondary"
-        ),
-        buildRow(
-          "Retención anual estimada",
-          fmtCurrency(result.annualWithholdingAmount),
-          "text-secondary"
-        ),
-        buildRow(
-          "Base anual de cobertura (80%)",
-          fmtCurrency(result.annualCoverageBase),
-          "text-secondary"
-        ),
-        buildRow(
-          "Equivalente mensual orientativo",
-          fmtCurrency(result.monthlyCoverageBaseEquivalent),
-          "text-secondary"
-        ),
-        buildRow(
-          "Ventana de cobertura estimada",
-          `${result.annualCoverageWindow.startsOn} → ${result.annualCoverageWindow.endsOn}`,
-          "text-secondary"
-        ),
-        assumptions
-      );
+    const honorariosContainer = document.getElementById("resultado-contenido");
+    honorariosContainer?.replaceChildren(
+      headline,
+      buildRow(
+        "Bruto de la boleta",
+        fmtCurrency(result.grossFee),
+        "text-green-500"
+      ),
+      buildRow(
+        `Retención (${result.withholdingRatePercent.toFixed(2)}%)`,
+        `− ${fmtCurrency(result.withholdingAmount)}`,
+        "text-red-400"
+      ),
+      buildRow(
+        "Líquido recibido hoy",
+        fmtCurrency(result.netFeeReceived),
+        "text-accent"
+      ),
+      buildRow(
+        "Bruto anual usado",
+        fmtCurrency(result.annualGrossFees),
+        "text-secondary"
+      ),
+      buildRow(
+        "Retención anual estimada",
+        fmtCurrency(result.annualWithholdingAmount),
+        "text-secondary"
+      ),
+      buildRow(
+        "Base anual de cobertura (80%)",
+        fmtCurrency(result.annualCoverageBase),
+        "text-secondary"
+      ),
+      buildRow(
+        "Equivalente mensual orientativo",
+        fmtCurrency(result.monthlyCoverageBaseEquivalent),
+        "text-secondary"
+      ),
+      buildRow(
+        "Ventana de cobertura estimada",
+        `${result.annualCoverageWindow.startsOn} → ${result.annualCoverageWindow.endsOn}`,
+        "text-secondary"
+      ),
+      assumptions
+    );
+    markResultState(honorariosContainer, "result");
 
     document.dispatchEvent(
       new CustomEvent("calculator:result", {

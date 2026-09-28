@@ -478,6 +478,10 @@ const operacionRentaFaqs = [
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
   import { formatCLP } from "@/utils/formatCLP";
+  import {
+    markResultState,
+    renderInvalidResultState,
+  } from "@/utils/calculatorResultState";
 
   declare global {
     interface Window {
@@ -495,6 +499,7 @@ const operacionRentaFaqs = [
   }
 
   function showFormError(message: string): void {
+    renderInvalidResultState();
     const el = document.getElementById("form-error");
     if (!el) return;
     el.textContent = message;
@@ -778,7 +783,7 @@ const operacionRentaFaqs = [
       impuestoCard,
       note
     );
-    contenido.removeAttribute("data-is-example");
+    markResultState(contenido, "result");
 
     document.dispatchEvent(
       new CustomEvent("calculator:result", {

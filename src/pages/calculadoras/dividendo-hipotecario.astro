@@ -112,7 +112,10 @@ const calculatorNextStepItems = [
 
         <!-- Valor de la propiedad -->
         <div class="mb-4">
-          <label class="mb-1 block text-sm font-medium text-secondary">
+          <label
+            for="propertyValue"
+            class="mb-1 block text-sm font-medium text-secondary"
+          >
             Valor de la propiedad
           </label>
           <!-- Moneda toggle -->
@@ -427,6 +430,10 @@ const calculatorNextStepItems = [
     snapshotInputs,
   } from "@/utils/calculatorScenariosUI";
   import { createScenarioSaveAdapter } from "@/utils/calculatorScenarioSave";
+  import {
+    markResultState,
+    renderInvalidResultState,
+  } from "@/utils/calculatorResultState";
 
   declare global {
     interface Window {
@@ -514,6 +521,7 @@ const calculatorNextStepItems = [
     .forEach(r => r.addEventListener("change", updateLoanDisplay));
 
   function showError(message: string) {
+    renderInvalidResultState();
     const el = document.getElementById("calc-error");
     if (!el) return;
     el.textContent = message;
@@ -691,9 +699,9 @@ const calculatorNextStepItems = [
       "mt-4 rounded-lg bg-foreground/5 p-3 text-xs text-secondary";
     insight.textContent = `En ${termYears} años pagas en intereses el ${interestRatio}% adicional de lo que financias. Cada UF adicional de deuda genera ~${interestRatio}% de interés total al mismo plazo y tasa.`;
 
-    document
-      .getElementById("resultado-contenido")!
-      .replaceChildren(headline, ...rows, insight);
+    const resultContainer = document.getElementById("resultado-contenido");
+    resultContainer?.replaceChildren(headline, ...rows, insight);
+    markResultState(resultContainer, "result");
 
     // --- AMORTIZATION TABLE ---
     const showDesg = (monthlyDesgravamenRatePercent ?? 0) > 0;

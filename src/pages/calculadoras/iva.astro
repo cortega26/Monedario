@@ -126,7 +126,7 @@ const fmtClp = formatCLP;
       <!-- RESULTADO -->
       <CalculatorResultPanel title="Resultado">
         <div
-          id="resultado"
+          id="resultado-contenido"
           data-is-example="true"
           data-ex-neto={fmtClp(ex.neto)}
           data-ex-iva={fmtClp(ex.iva)}
@@ -293,6 +293,10 @@ const fmtClp = formatCLP;
   import { calculateIva } from "@/application/use-cases/CalculateIva";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { formatCLP } from "@/utils/formatCLP";
+  import {
+    markResultState,
+    INVALID_RESULT_MESSAGE,
+  } from "@/utils/calculatorResultState";
 
   declare global {
     interface Window {
@@ -312,7 +316,7 @@ const fmtClp = formatCLP;
     "label[for='monto-input']"
   )!;
   const montoError = document.getElementById("monto-error")!;
-  const resultado = document.getElementById("resultado")!;
+  const resultado = document.getElementById("resultado-contenido")!;
   const resultadoNota = document.getElementById("resultado-nota")!;
   const resNeto = document.getElementById("res-neto")!;
   const resIva = document.getElementById("res-iva")!;
@@ -337,6 +341,12 @@ const fmtClp = formatCLP;
   function showError(message: string) {
     montoError.textContent = message;
     montoError.classList.remove("hidden");
+    resNeto.textContent = "—";
+    resIva.textContent = "—";
+    resBruto.textContent = "—";
+    resultado.classList.add("opacity-70");
+    resultadoNota.textContent = INVALID_RESULT_MESSAGE;
+    markResultState(resultado, "invalid");
   }
 
   function clearError() {
@@ -351,6 +361,7 @@ const fmtClp = formatCLP;
     resBruto.textContent = resultado.dataset.exBruto ?? "";
     resultado.classList.add("opacity-70");
     resultadoNota.textContent = `Ejemplo: monto neto de ${resultado.dataset.exNeto}. Escribe un monto para calcular el tuyo.`;
+    markResultState(resultado, "example");
   }
 
   function recalculate() {
@@ -386,6 +397,7 @@ const fmtClp = formatCLP;
     resIva.textContent = fmt(calcResult.iva);
     resBruto.textContent = fmt(calcResult.bruto);
     resultado.classList.remove("opacity-70");
+    markResultState(resultado, "result");
     resultadoNota.textContent =
       direction === "neto-a-bruto"
         ? "Resultado con IVA del 19% sobre tu monto neto."
