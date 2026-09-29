@@ -18,16 +18,17 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 ## Auditoría SEO 2026-09-28 — Fase 2 (planes 117–120)
 
 Derivados del informe `docs/reports/AUDIT-SEO-2026-09-28.md`; el plan 116 cerró
-la Fase 1 (SEO-01/03/04/07 + guardas). **Pendientes de selección del
-mantenedor** antes de implementar: 117 requiere decidir la prioridad de
-herramientas globales, 119 la intención primaria de Operación Renta, 120 la
-estrategia de tracking params (SEO-08); 118 es técnico y no requiere decisión.
+la Fase 1 (SEO-01/03/04/07 + guardas). Los cuatro planes de Fase 2 quedaron
+implementados con las decisiones recomendadas: 2 herramientas globales (117),
+guardas JSON-LD (118), piloto de gobernanza de intención — queda dedupe de
+contenido YMYL con revisión humana (119) y contrato de indexabilidad + ADR con
+SEO-08 opción A (120).
 
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|-------|----------|--------|------------|--------|
 | 117 | [linking interno por prioridad de producto](117-seo-linking-interno-2026-09-28.md) | P2 | M | decisión del mantenedor | DONE (2 globales; 12 estratégicas ≥ 3; `check:calculator-interlinks`) |
 | 118 | [structured data por template](118-seo-structured-data-2026-09-28.md) | P3 | M | — | DONE (claims stale; guardas `jsonld-parse` + `jsonld-breadcrumb-final-canonical`) |
-| 119 | [gobernanza de intención: Operación Renta](119-seo-intencion-operacion-renta-2026-09-28.md) | P2 | M | decisión del mantenedor + revisión editorial | TODO |
+| 119 | [gobernanza de intención: Operación Renta](119-seo-intencion-operacion-renta-2026-09-28.md) | P2 | M | decisión del mantenedor + revisión editorial | DONE (piloto opción A: guía como hub + guarda `guide-intent-registry`; dedupe de contenido YMYL remanente) |
 | 120 | [contrato de indexabilidad declarativo](120-seo-contrato-indexabilidad-2026-09-28.md) | P2 | L | decisión del mantenedor (SEO-08) + ADR | DONE (contrato + 5 guardas + ADR + invariante; SEO-08 opción A) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)

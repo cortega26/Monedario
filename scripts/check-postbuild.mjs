@@ -16,6 +16,10 @@
 
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
+import {
+  CANONICAL_TOPIC_REGISTRY,
+  GUIDE_INTENT_REGISTRY,
+} from "../src/config/editorial-topic-policy.mjs";
 
 const PAGE_BYTE_BUDGET = 5 * 1024 * 1024; // pagefind regression guard (plan 057)
 
@@ -224,6 +228,35 @@ export function hasNoindexFollow(html) {
 export function hasNoindex(html) {
   const content = robotsMetaContent(html);
   return content !== null && content.includes("noindex");
+}
+
+/**
+ * Guide landing intent registry issues (plan 119, SEO-018): declared path must
+ * be a /guias/ landing present in dist, with a registered canonical topic and
+ * a non-owner role (the topic owner is the registered post).
+ */
+export function findGuideIntentIssues(registry, canonicalRegistry, distDir) {
+  const issues = [];
+  for (const [pathname, entry] of Object.entries(registry)) {
+    if (!pathname.startsWith("/guias/")) {
+      issues.push(`${pathname}: no es una landing /guias/`);
+      continue;
+    }
+    const topic = canonicalRegistry[entry.cluster]?.[entry.canonicalTopic];
+    if (!topic) {
+      issues.push(
+        `${pathname}: canonicalTopic "${entry.canonicalTopic}" no registrado en ${entry.cluster}`
+      );
+    }
+    if (entry.role === "owner") {
+      issues.push(`${pathname}: una landing de guía no puede declararse owner`);
+    }
+    const htmlPath = path.join(distDir, pathname, "index.html");
+    if (!statSync(htmlPath, { throwIfNoEntry: false })) {
+      issues.push(`${pathname}: página no encontrada en dist`);
+    }
+  }
+  return issues;
 }
 
 /** Sitemap locs with tracking params or fragments (SEO-009). */
@@ -630,6 +663,17 @@ const CHECKS = [
         }
       }
       return errors;
+    },
+  },
+  {
+    id: "guide-intent-registry",
+    message: "Guide landings must declare a registered intent (plan 119, SEO-018).",
+    run(distDir) {
+      return findGuideIntentIssues(
+        GUIDE_INTENT_REGISTRY,
+        CANONICAL_TOPIC_REGISTRY,
+        distDir
+      ).map(issue => `${issue}:guide-intent-registry`);
     },
   },
   {
