@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-25",
+  "updated": "2026-09-29",
   "horizon_end": "2026-11-02",
   "notes": "Fuente única de pendientes con fecha del programa activo (distribución + monetización + F5/Gate D). Lo leen scripts/ops_reminders.py (local) y .github/workflows/ops-reminders.yml (issue semanal). Las tareas sin fecha viven en 'undated'; el backlog completo está en docs/backlog/README.md.",
   "items": [
@@ -48,7 +48,7 @@
       "id": "github-actions-reset",
       "date": "2026-10-01",
       "title": "Reinicio de cuota GitHub Actions",
-      "detail": "Se desbloquea CI (2.000 min/mes). Retomar checks normales y evaluar runner self-hosted o reducción de minutos.",
+      "detail": "Se desbloquea CI (2.000 min/mes). Retomar checks normales y evaluar runner self-hosted o reducción de minutos. Nota 2026-09-29: los workflows del 28-sep (data-signals, weekly-search-ops) no arrancaron por billing/spending limit; el export W39 se generó localmente.",
       "owner": "carlos",
       "plan": "ops"
     },
@@ -220,12 +220,6 @@
       "title": "Completar corrida de citación (Perplexity/Copilot)",
       "detail": "Requiere login una vez; el resto de la primera corrida ya está registrado.",
       "owner": "carlos"
-    },
-    {
-      "id": "gitignore-b2b",
-      "title": "Commitear la línea b2b en .gitignore",
-      "detail": "Queda pendiente en el working tree; entra en el próximo PR.",
-      "owner": "sistema"
     }
   ]
 }
