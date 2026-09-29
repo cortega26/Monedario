@@ -90,11 +90,19 @@ enlazado. Dónde publicar: bloque de verificación en URLs existentes; una
 página dedicada de auditorías es URL nueva (FOCO ESTRICTO hasta 2026-11-02 o
 excepción aprobada).
 
+**Los artefactos viven en el repositorio privado del proyecto**: nunca
+afirmar públicamente que son accesibles o que el repositorio es público. La
+divulgación pública, si ocurre, es un resumen redactado para la web (método,
+modelo, protocolo, fecha, veredicto y revisión humana), no el artefacto
+completo.
+
 ## 5. Integración
 
 - **Pipeline editorial** (`src/data/blog`): el resultado reemplaza/complementa
   `05-math-audit.md` en `docs/editorial/artifacts/editorial/<slug>/<run-id>/`.
 - **Calculadoras/dominio**: carpeta propia en `docs/editorial/audits/` (este
   protocolo).
-- **Fase 2 (pendiente)**: `check:audit-artifacts` en CI valida el esquema de
-  `02-result.json` y que `humanSignoff` exista antes de divulgar.
+- **Fase 2 (implementada 2026-09-29)**: `pnpm run check:audit-artifacts` valida
+  el esquema de cada `02-result.json` (plantilla pendiente o veredicto con
+  claims; FAIL/CONDITIONAL exigen defectos abiertos; `humanSignoff` validado
+  cuando existe). Corre en `check:ci` y en CI.

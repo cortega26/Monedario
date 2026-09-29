@@ -9,9 +9,12 @@ import {
   extractJsonLdBlocks,
   findAuthorProfileSchemaIssues,
   findBreadcrumbIssues,
+  findCspConnectSrcViolations,
   findDuplicateIds,
   findFutureLastmods,
   findGuideIntentIssues,
+  findMixedContent,
+  findPublicSourcemaps,
   findHeadingLevelJumps,
   findInvalidJsonLd,
   findNonCanonicalInternalHrefs,
@@ -227,6 +230,58 @@ describe("findGuideIntentIssues", () => {
     expect(issues.join("\n")).toContain("no puede declararse owner");
     expect(issues.join("\n")).toContain("no es una landing /guias/");
     expect(issues.join("\n")).toContain("página no encontrada");
+  });
+});
+
+describe("findMixedContent", () => {
+  it("detecta referencias http:// en atributos de recurso", () => {
+    expect(findMixedContent('<img src="http://x/a.png">')).toEqual([
+      "http://x/a.png",
+    ]);
+    expect(
+      findMixedContent(
+        '<a href="https://x/a">x</a><script src="/a.js"></script>'
+      )
+    ).toEqual([]);
+  });
+});
+
+describe("findPublicSourcemaps", () => {
+  it("detecta archivos .map y referencias sourceMappingURL", () => {
+    const dist = buildDist();
+    writePage(dist, "assets/a.js", "//# sourceMappingURL=a.js.map");
+    writeFileSync(path.join(dist, "assets/a.js.map"), "{}");
+    const issues = findPublicSourcemaps(dist).join("\n");
+    expect(issues).toContain("a.js.map");
+    expect(issues).toContain("sourceMappingURL");
+  });
+
+  it("pasa en un dist limpio", () => {
+    const dist = buildDist();
+    writePage(dist, "assets/a.js", "console.log(1)");
+    expect(findPublicSourcemaps(dist)).toEqual([]);
+  });
+});
+
+describe("findCspConnectSrcViolations", () => {
+  it("marca orígenes fuera del allowlist", () => {
+    const headers =
+      "Content-Security-Policy: default-src 'self'; connect-src 'self' https://evil.example.com";
+    expect(
+      findCspConnectSrcViolations(headers, [
+        "https://static.cloudflareinsights.com",
+      ])
+    ).toEqual(["https://evil.example.com"]);
+  });
+
+  it("acepta orígenes allowlisted", () => {
+    const headers =
+      "Content-Security-Policy: connect-src 'self' https://static.cloudflareinsights.com";
+    expect(
+      findCspConnectSrcViolations(headers, [
+        "https://static.cloudflareinsights.com",
+      ])
+    ).toEqual([]);
   });
 });
 
