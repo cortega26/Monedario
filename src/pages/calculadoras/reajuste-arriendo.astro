@@ -225,7 +225,7 @@ const calculatorNextStepItems = [
         </button>
         <div
           id="reajuste-error"
-          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
+          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
         >
         </div>
       </div>
@@ -450,7 +450,7 @@ const calculatorNextStepItems = [
         "rounded-lg border border-yellow-500/30 bg-yellow-500/10 p-4 text-sm text-secondary";
 
       const title = document.createElement("p");
-      title.className = "mb-2 font-bold text-yellow-500";
+      title.className = "mb-2 font-bold text-warning";
       title.textContent = "Sin reajuste automático";
 
       const paragraph1 = document.createElement("p");
@@ -556,7 +556,7 @@ const calculatorNextStepItems = [
         buildRow(
           "Diferencia",
           `${reajusteUf.differenceClp >= 0 ? "+ " : ""}${fmt(reajusteUf.differenceClp)}`,
-          reajusteUf.differenceClp > 0 ? "text-red-400" : "text-green-500"
+          reajusteUf.differenceClp > 0 ? "text-danger" : "text-success"
         ),
         buildRow(
           "Variación UF del período",
@@ -646,12 +646,12 @@ const calculatorNextStepItems = [
         buildRow(
           "Aumento mensual",
           `+ ${fmt(reajusteIpc.differenceClp)}`,
-          "text-red-400"
+          "text-danger"
         ),
         buildRow(
           "Aumento anual",
           `+ ${fmt(reajusteIpc.differenceClp * 12)}`,
-          "text-red-400"
+          "text-danger"
         ),
         buildRow("Factor aplicado", `×${reajusteIpc.appliedFactor.toFixed(4)}`),
         note

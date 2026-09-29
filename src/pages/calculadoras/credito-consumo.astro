@@ -214,7 +214,7 @@ const creditoConsumoFaqs = [
         </button>
         <div
           id="calc-error"
-          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
+          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
           role="alert"
         >
         </div>
@@ -559,11 +559,11 @@ const creditoConsumoFaqs = [
         `${resultado.caePercent.toFixed(2)}%`,
         "text-accent"
       ),
-      buildRow("Total intereses", fmt(resultado.totalInterest), "text-red-400"),
+      buildRow("Total intereses", fmt(resultado.totalInterest), "text-danger"),
       ...(gastos > 0
-        ? [buildRow("Gastos operacionales", fmt(gastos), "text-red-400")]
+        ? [buildRow("Gastos operacionales", fmt(gastos), "text-danger")]
         : []),
-      buildRow("Total a pagar", fmt(resultado.totalPaid), "text-red-400"),
+      buildRow("Total a pagar", fmt(resultado.totalPaid), "text-danger"),
     ];
 
     const resultContainer = document.getElementById("resultado-contenido");

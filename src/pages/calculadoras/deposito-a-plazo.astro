@@ -148,7 +148,7 @@ const dapFaqs = [
 
         <div
           id="calc-error"
-          class="mb-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
+          class="mb-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
           role="alert"
           aria-live="assertive"
         >
@@ -185,7 +185,7 @@ const dapFaqs = [
             </div>
             <div class="flex justify-between">
               <span class="text-secondary">Retención 4%</span>
-              <span class="text-red-600 dark:text-red-400">− $4.932</span>
+              <span class="text-danger">− $4.932</span>
             </div>
             <div class="flex justify-between">
               <span class="text-secondary">Interés neto</span>
@@ -449,7 +449,7 @@ const dapFaqs = [
     headlineValue.className = "text-4xl font-bold";
     headlineValue.textContent = fmt(result.finalAmount);
     const headlineSub = document.createElement("p");
-    headlineSub.className = "mt-1.5 text-xs text-foreground/60";
+    headlineSub.className = "mt-1.5 text-xs text-muted";
     headlineSub.textContent = `${result.termDays} días · TIR ${result.annualRatePercent.toFixed(2)}%`;
     headline.append(headlineLabel, headlineValue, headlineSub);
 
@@ -492,15 +492,11 @@ const dapFaqs = [
     rows.className = "space-y-0";
     rows.append(
       mkRow("Monto depositado", fmt(result.amount), "text-secondary"),
-      mkRow(
-        "Interés bruto",
-        fmt(result.grossInterest),
-        "text-green-700 dark:text-green-400"
-      ),
+      mkRow("Interés bruto", fmt(result.grossInterest), "text-success"),
       mkRow(
         `Retención impuesto 4%${result.applyWithholding ? "" : " (no aplica)"}`,
         result.applyWithholding ? `− ${fmt(result.withholdingTax)}` : "$0",
-        result.applyWithholding ? "text-red-400" : "text-muted"
+        result.applyWithholding ? "text-danger" : "text-muted"
       ),
       mkRow("Interés neto", fmt(result.netInterest), "text-accent")
     );

@@ -123,7 +123,7 @@ const calculatorNextStepItems = [
 
         <div
           id="honorarios-error"
-          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
+          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
           role="alert"
         >
         </div>
@@ -391,12 +391,12 @@ const calculatorNextStepItems = [
       buildRow(
         "Bruto de la boleta",
         fmtCurrency(result.grossFee),
-        "text-green-500"
+        "text-success"
       ),
       buildRow(
         `Retención (${result.withholdingRatePercent.toFixed(2)}%)`,
         `− ${fmtCurrency(result.withholdingAmount)}`,
-        "text-red-400"
+        "text-danger"
       ),
       buildRow(
         "Líquido recibido hoy",

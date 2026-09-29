@@ -112,10 +112,10 @@ export function renderAfpComparison(options: AfpComparisonOptions): void {
     if (isCurrent) {
       diffSpan.textContent = "";
     } else if (diff > 0) {
-      diffSpan.className += " text-green-500";
+      diffSpan.className += " text-success";
       diffSpan.textContent = "+" + formatCLP(diff);
     } else if (diff < 0) {
-      diffSpan.className += " text-red-400";
+      diffSpan.className += " text-danger";
       diffSpan.textContent = formatCLP(diff);
     } else {
       diffSpan.className += " text-muted";
@@ -247,10 +247,10 @@ export function renderAfpComparisonInverso(options: AfpInversoOptions): void {
         diffSpan.textContent = "";
       } else if (diff < 0) {
         // Less bruto needed => better
-        diffSpan.className += " text-green-500";
+        diffSpan.className += " text-success";
         diffSpan.textContent = formatCLP(diff);
       } else if (diff > 0) {
-        diffSpan.className += " text-red-400";
+        diffSpan.className += " text-danger";
         diffSpan.textContent = "+" + formatCLP(diff);
       } else {
         diffSpan.className += " text-muted";

@@ -126,7 +126,7 @@ const calculatorNextStepItems = [
         </button>
         <div
           id="calc-error"
-          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
+          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
           role="alert"
         >
         </div>
@@ -400,7 +400,7 @@ const calculatorNextStepItems = [
       "mb-5 rounded-lg border border-red-500/20 bg-red-500/10 p-4 text-center";
     const headlineLabel = document.createElement("p");
     headlineLabel.className =
-      "mb-1 text-xs font-bold tracking-widest text-red-400 uppercase";
+      "mb-1 text-xs font-bold tracking-widest text-danger uppercase";
     headlineLabel.textContent = `Total a pagar (con ${
       simulacion.usesFixedPayment ? "cuota fija" : "pago mínimo"
     })`;
@@ -435,7 +435,7 @@ const calculatorNextStepItems = [
       "mt-5 rounded-lg border border-green-500/30 bg-green-500/5 p-4";
     const doublePaymentLabel = document.createElement("p");
     doublePaymentLabel.className =
-      "mb-2 text-xs font-bold text-green-500 uppercase";
+      "mb-2 text-xs font-bold text-success uppercase";
     doublePaymentLabel.textContent = "✓ Si pagas el doble cada mes";
     doublePaymentBox.append(
       doublePaymentLabel,
@@ -445,7 +445,7 @@ const calculatorNextStepItems = [
       buildRow(
         "Ahorro vs mínimo",
         fmt(resultado.totalPaid - resultadoDoble.totalPaid),
-        "text-green-500"
+        "text-success"
       )
     );
 
@@ -455,9 +455,9 @@ const calculatorNextStepItems = [
       buildRow(
         "Intereses totales",
         fmt(resultado.totalInterest),
-        "text-red-400"
+        "text-danger"
       ),
-      buildRow("Tiempo para saldar", tiempoStr, "text-red-400"),
+      buildRow("Tiempo para saldar", tiempoStr, "text-danger"),
       buildRow(
         "Factor de costo",
         `×${(resultado.totalPaid / deuda).toFixed(2)}`

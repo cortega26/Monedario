@@ -186,7 +186,7 @@ const calculatorNextStepItems = [
         </button>
         <div
           id="segunda-categoria-error"
-          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
+          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
           role="alert"
         >
         </div>
@@ -528,7 +528,7 @@ const calculatorNextStepItems = [
       buildRow(
         "Impuesto mensual",
         fmt(result.taxAmount),
-        result.taxAmount > 0 ? "text-red-400" : "text-green-500"
+        result.taxAmount > 0 ? "text-danger" : "text-success"
       ),
       buildRow("Impuesto anual estimado", fmt(result.taxAmount * 12)),
       buildRow(

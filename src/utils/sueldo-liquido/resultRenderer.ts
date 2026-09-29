@@ -105,7 +105,7 @@ export function updateResultDisplay(options: UpdateResultOptions): void {
   if (isInverso) {
     const headlineSub = document.createElement("p");
     headlineSub.className =
-      "mt-2 inline-block rounded-full border border-border bg-surface-muted/60 px-3 py-1 text-xs text-foreground/70";
+      "mt-2 inline-block rounded-full border border-border bg-surface-muted/60 px-3 py-1 text-xs text-muted";
     headlineSub.textContent = `Bruto estimado para recibir ${fmt(netFinal)} al mes`;
     headline.append(headlineLabel, headlineValue, headlineSub);
   } else {
@@ -205,7 +205,7 @@ export function updateResultDisplay(options: UpdateResultOptions): void {
 
   // ── FILAS DE DETALLE ──
   const rows = [
-    buildRow("Sueldo bruto", fmt(resultado.grossSalary), "text-green-500"),
+    buildRow("Sueldo bruto", fmt(resultado.grossSalary), "text-success"),
     buildRow(
       "Sueldo imponible",
       fmt(resultado.taxableSalary),
