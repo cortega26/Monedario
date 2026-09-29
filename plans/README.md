@@ -9,7 +9,7 @@ Fase 2/3.
 
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|-------|----------|--------|------------|--------|
-| 114 | [ux-audit-remediation-2026-09-28.md](114-ux-audit-remediation-2026-09-28.md) | P1 | L | — | DONE (Fase 1 + Fase 2: F-05/F-06/F-07/F-08/IDs/axe 22) |
+| 114 | [ux-audit-remediation-2026-09-28.md](114-ux-audit-remediation-2026-09-28.md) | P1 | L | — | DONE (Fase 1 + Fase 2: F-05/F-06/F-07/F-08/IDs/axe 22+17/tokens) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
 
