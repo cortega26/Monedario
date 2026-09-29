@@ -14,9 +14,10 @@
 - **Depends on**: none
 - **Category**: correctness / datos / cumplimiento legal
 - **Planned at**: commit `7226c0ce`, 2026-09-28
-- **Status**: IN PROGRESS — Pasos 1–3 completos; paso 4 (F04 IPC) parcial:
-  fail-closed implementado, dataset bloqueado por fuente (`TD-0112`); paso 5
-  (F06/F07/F05) completo; pendiente paso 6 (paridad contenido/runtime).
+- **Status**: DONE — Pasos 1–3, 5 y 6 completos. Paso 4 (F04 IPC) con
+  fail-closed implementado y dataset pendiente por bloqueo de fuente
+  (`TD-0112`). Queda el math audit/compliance humano para el gate de
+  publicación.
 - **Evidence**: `docs/reports/AUDIT-CORRECTNESS-2026-09-28.md`
 
 ## Why this matters
@@ -235,6 +236,19 @@ contextos históricos.
 - **Tests**: 3 casos nuevos de elegibilidad/acreedor (7 en el archivo); build OK
   (9 guards); Playwright 195 passed.
 
+### 2026-09-29 — Paso 6 (F08/F09/F10) implementado
+
+- **F08**: el ejemplo ilustrativo de `sueldo-liquido` se genera en build con
+  `calculateNetSalary` (mismos supuestos: $1.200.000, Habitat 11,27%, Fonasa,
+  indefinido). Ahora muestra $973.347 e impuesto $213, igual que el runtime; el
+  test de paridad compara ejemplo y resultado real.
+- **F09**: el conversor UTM declara el período de la UTA: "12 × UTM de
+  diciembre de 2025, cierre del año comercial" (derivado de
+  `resolveEconomicIndicatorDate(..., "uta")`).
+- **F10**: la fuente "Portabilidad Financiera (prepago sin costo)" pasa a
+  "derecho a prepago sujeto a reglas y comisión aplicable".
+- **Evidencia**: build OK (9 guards), 196 Playwright tests en verde.
+
 ## Verification table
 
 | Purpose | Command | Expected |
@@ -258,7 +272,7 @@ contextos históricos.
       fuente: `TD-0112`) y assertion de frescura en CI.
 - [x] SuperIR exige ≥2 acreedores distintos; DICOM y APV corregidos con fuente
       primaria.
-- [ ] Ejemplos publicados iguales al runtime (test de paridad).
+- [x] Ejemplos publicados iguales al runtime (test de paridad).
 - [ ] Math audit + compliance YMYL registrados para los cambios de contenido.
 - [ ] Gates de la tabla en verde; plan 115 y `plans/README.md` actualizados.
 
