@@ -3,6 +3,7 @@ import { serializeJsonLd } from "@/utils/serializeJsonLd";
 import { ClientRouter } from "astro:transitions";
 import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 import { SITE } from "@/config";
+import { robotsMetaFor } from "@/config/indexability";
 import packageInfo from "../../package.json";
 import { getPath } from "@/utils/getPath";
 import "@/styles/global.css";
@@ -45,6 +46,9 @@ const {
 
 const siteContext = Astro.site ?? Astro.url;
 const resolvedCanonicalURL = new URL(canonicalURL, siteContext).href;
+// Indexabilidad declarativa (plan 120): el contrato decide el meta robots por
+// path; las páginas no lo hardcodean.
+const robotsMeta = robotsMetaFor(Astro.url.pathname);
 const socialImageURL = new URL(ogImage, siteContext);
 const defaultSocialImagePath = SITE.ogImage ? `/${SITE.ogImage}` : "/og.png";
 const defaultSocialImageURL = new URL(defaultSocialImagePath, siteContext);
@@ -187,6 +191,7 @@ const structuredData = !pubDatetime
     <meta name="apple-mobile-web-app-title" content={SITE.title} />
     <meta name="theme-color" content="#1a4f8a" />
     <link rel="canonical" href={resolvedCanonicalURL} />
+    {robotsMeta && <meta name="robots" content={robotsMeta} />}
     <meta name="generator" content={Astro.generator} />
 
     <!-- General Meta Tags -->

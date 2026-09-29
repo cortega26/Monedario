@@ -10,10 +10,14 @@ import {
   findAuthorProfileSchemaIssues,
   findBreadcrumbIssues,
   findDuplicateIds,
+  findFutureLastmods,
   findHeadingLevelJumps,
   findInvalidJsonLd,
   findNonCanonicalInternalHrefs,
+  findParametrizedCanonicals,
   findSitemapLastmodIssues,
+  findTrackingParamLocs,
+  hasNoindex,
   hasNoindexFollow,
   parseScriptSrc,
   readCanonicalFromHtml,
@@ -175,6 +179,60 @@ describe("findSitemapLastmodIssues", () => {
       "<urlset><url><loc>https://monedario.cl/a/</loc>" +
       "<lastmod>2026-09-01T00:00:00.000Z</lastmod></url></urlset>";
     expect(findSitemapLastmodIssues(xml)).toEqual([]);
+  });
+});
+
+describe("hasNoindex", () => {
+  it("accepts noindex with or without follow", () => {
+    expect(hasNoindex('<meta name="robots" content="noindex">')).toBe(true);
+    expect(hasNoindex('<meta name="robots" content="noindex,follow">')).toBe(
+      true
+    );
+    expect(hasNoindex('<meta name="robots" content="index,follow">')).toBe(
+      false
+    );
+    expect(hasNoindex("<html></html>")).toBe(false);
+  });
+});
+
+describe("findTrackingParamLocs", () => {
+  it("flags sitemap locs with query or fragment", () => {
+    const xml =
+      "<urlset>" +
+      "<url><loc>https://monedario.cl/apoyar/?src=footer</loc></url>" +
+      "<url><loc>https://monedario.cl/posts/a/</loc></url>" +
+      "</urlset>";
+    expect(findTrackingParamLocs(xml)).toEqual([
+      "https://monedario.cl/apoyar/?src=footer",
+    ]);
+  });
+});
+
+describe("findParametrizedCanonicals", () => {
+  it("flags canonicals with query or fragment", () => {
+    expect(
+      findParametrizedCanonicals(
+        '<link rel="canonical" href="https://monedario.cl/a/?x=1">'
+      )
+    ).toEqual(["https://monedario.cl/a/?x=1"]);
+    expect(
+      findParametrizedCanonicals(
+        '<link rel="canonical" href="https://monedario.cl/a/">'
+      )
+    ).toEqual([]);
+  });
+});
+
+describe("findFutureLastmods", () => {
+  it("flags only future dates", () => {
+    const xml =
+      "<urlset>" +
+      "<url><loc>https://monedario.cl/a/</loc><lastmod>2026-01-01</lastmod></url>" +
+      "<url><loc>https://monedario.cl/b/</loc><lastmod>2099-01-01</lastmod></url>" +
+      "</urlset>";
+    expect(findFutureLastmods(xml, new Date("2026-06-01"))).toEqual([
+      "https://monedario.cl/b/ (2099-01-01)",
+    ]);
   });
 });
 
@@ -407,13 +465,17 @@ describe("check-postbuild runner over a full mini-dist", () => {
     writePage(
       root,
       "posts/a/index.html",
-      '<html><head><title>A | Monedario</title></head><body><p>ok</p>' +
+      '<html><head><title>A | Monedario</title>' +
+        '<link rel="canonical" href="https://monedario.cl/posts/a/">' +
+        '</head><body><p>ok</p>' +
         '<script type="application/ld+json">{"a":"x"}</script></body></html>'
     );
     writePage(
       root,
       "posts/b/index.html",
-      '<html><head><title>B | Monedario</title></head><body><p>ok</p></body></html>'
+      '<html><head><title>B | Monedario</title>' +
+        '<link rel="canonical" href="https://monedario.cl/posts/b/">' +
+        "</head><body><p>ok</p></body></html>"
     );
 
     for (const [slug, seoTitle] of [

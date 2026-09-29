@@ -13,6 +13,7 @@ import {
 } from "@shikijs/transformers";
 import { transformerFileName } from "./src/utils/transformers/fileName";
 import { SITE } from "./src/config";
+import { isInSitemap } from "./src/config/indexability";
 import { getUiCopyForLocale } from "./src/i18n/ui";
 import { remarkPrefixInternalLinks } from "./src/remark-prefix-internal-links";
 import { remarkEconomicVariables } from "./src/remark-economic-variables";
@@ -26,16 +27,6 @@ import { swVersionIntegration } from "./src/integrations/sw-version";
 
 const tocUi = getUiCopyForLocale(SITE.lang);
 
-function escapeRegExp(value: string) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-function safeRegExp(pattern: string, flags = "i", maxLength = 256) {
-  if (pattern.length > maxLength) {
-    throw new Error(`RegExp pattern too long: ${pattern.slice(0, 32)}...`);
-  }
-  return new RegExp(pattern, flags);
-}
 const tocHeadingPattern = tocUi.toc.title;
 
 type RemarkTextNode = {
@@ -81,16 +72,11 @@ const SITE_BASE = new URL(SITE.website).pathname.replace(/\/$/, "") || "/";
 const HOME_PATH = SITE_BASE === "/" ? "/" : `${SITE_BASE}/`;
 const withBasePath = (path: string) =>
   SITE_BASE === "/" ? path : `${SITE_BASE}${path}`;
+// Excepciones dependientes de datos (posts `unlisted`); el resto de la
+// indexabilidad por path vive en `src/config/indexability.ts` (plan 120).
 const SITEMAP_EXCLUDED_PATHS = new Set([
   withBasePath("/posts/interes-compuesto-nota-metodologica/"),
 ]);
-const TAGS_ROOT_PATH = withBasePath("/tags/");
-const SEARCH_PATH = withBasePath("/search/");
-const BUSCAR_PATH = withBasePath("/buscar/");
-const PAGINATED_POSTS_PATTERN = safeRegExp(
-  `^${escapeRegExp(withBasePath("/posts/"))}\\d+/$`
-);
-const DEV_TOOLS_PATH = withBasePath("/dev/");
 const BUILD_DEV_PAGES = process.env.BUILD_DEV_PAGES === "1";
 type AstroConfigSetupOptions = Parameters<
   NonNullable<AstroIntegration["hooks"]["astro:config:setup"]>
@@ -183,16 +169,7 @@ export default defineConfig({
       filter: page => {
         const pathname = new URL(page).pathname;
         if (SITEMAP_EXCLUDED_PATHS.has(pathname)) return false;
-        if (pathname === SEARCH_PATH) return false;
-        if (pathname === BUSCAR_PATH) return false;
-        if (pathname.startsWith(DEV_TOOLS_PATH)) return false;
-        if (
-          pathname === TAGS_ROOT_PATH ||
-          pathname.startsWith(TAGS_ROOT_PATH)
-        ) {
-          return false;
-        }
-        if (PAGINATED_POSTS_PATTERN.test(pathname)) return false;
+        if (!isInSitemap(pathname)) return false;
         return SITE.showArchives || !page.endsWith("/archives/");
       },
       serialize(item) {
