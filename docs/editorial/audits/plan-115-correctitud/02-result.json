@@ -319,91 +319,104 @@
       "evidence": "evidence/21-recalc-independent.txt, evidence/23-engine-tests.txt",
       "id": "D1",
       "severity": "alta",
-      "status": "resolved"
+      "status": "resolved",
+      "surface": "product"
     },
     {
       "description": "D2 UF 39.643,59 vs 39.727,96: motor usa 39727.96; cap APV $23.836.776 = SII.",
       "evidence": "evidence/21-recalc-independent.txt",
       "id": "D2",
       "severity": "alta",
-      "status": "resolved"
+      "status": "resolved",
+      "surface": "product"
     },
     {
       "description": "D3 ≥2 acreedores distintos: motor exige ≥2 obligaciones calificadas; mismo acreedor califica.",
       "evidence": "evidence/23-engine-tests.txt (V5.mismo-acreedor)",
       "id": "D3",
       "severity": "media",
-      "status": "resolved"
+      "status": "resolved",
+      "surface": "product"
     },
     {
       "description": "D4 umbral ≥80: estricto >80 (80 exactas false, +$1 true).",
       "evidence": "evidence/23-engine-tests.txt",
       "id": "D4",
       "severity": "media",
-      "status": "resolved"
+      "status": "resolved",
+      "surface": "product"
     },
     {
       "description": "D5 art. 59 N°4: copy corregido a inciso 2° N°1 letras a)/g); N°4 = fletes 5%.",
       "evidence": "evidence/22-sources.md (S7)",
       "id": "D5",
       "severity": "media",
-      "status": "resolved"
+      "status": "resolved",
+      "surface": "product"
     },
     {
       "description": "D6 Ley 21.236: fuente de prepago = Ley 18.010 art. 10 (1 mes / 1,5 meses; ≤5.000 UF).",
       "evidence": "evidence/22-sources.md (S10)",
       "id": "D6",
       "severity": "media",
-      "status": "resolved"
+      "status": "resolved",
+      "surface": "product"
     },
     {
       "description": "D7 idNorma 1211138: scope S6 apunta a idNorma 1225354 (SHA verificado esta sesión).",
       "evidence": "evidence/22-sources.md (S10)",
       "id": "D7",
       "severity": "baja",
-      "status": "resolved"
+      "status": "resolved",
+      "surface": "audit-package"
     },
     {
       "description": "D8 APV sin cobertura ejecutable: calculateApvWithdrawalRate + tests + copy 'tasa media'.",
       "evidence": "evidence/23-engine-tests.txt",
       "id": "D8",
       "severity": "media",
-      "status": "resolved"
+      "status": "resolved",
+      "surface": "product"
     },
     {
       "description": "D9 mensaje 'acreedores distintos' en simulador: ahora 'de origen distinto (art. 260)'; JSDoc alineado al art. 261/260.",
       "evidence": "evidence/24-residuals.txt",
       "id": "D9",
       "severity": "baja",
-      "status": "resolved"
+      "status": "resolved",
+      "surface": "product"
     },
     {
       "description": "D10 harness audit-1 obsoleto: versionado como histórico en evidence/README.md; harness actual verde.",
       "evidence": "evidence/23-engine-tests.txt",
       "id": "D10",
       "severity": "baja",
-      "status": "resolved"
+      "status": "resolved",
+      "surface": "audit-package"
     },
     {
       "description": "D11 claims V3/V5 del scope: actualizados (N°1 a)/g); 'no acreedores distintos'). Resta V6 → D13.",
       "evidence": "evidence/24-residuals.txt",
       "id": "D11",
       "severity": "baja",
-      "status": "resolved"
+      "status": "resolved",
+      "surface": "audit-package"
     },
     {
       "description": "D12 highlight 150 vs 310: límites [13.5,30,50,70,90,120,310,Infinity]; 200 UTM ⇒ fila 35%; test dedicado verde.",
       "evidence": "evidence/24-residuals.txt",
       "id": "D12",
       "severity": "media",
-      "status": "resolved"
+      "status": "resolved",
+      "surface": "product"
     },
     {
       "description": "D13 (nuevo): 00-scope.json V6 cita 'UF dic-2025 $39.643,59' (UF del 1-dic) en vez de $39.727,96 (31-dic, art. 42 bis, SII 8.000 UF = $317.823.680, motor y dataset). Artefacto de alcance, sin efecto en código ni UI; guía al auditor al valor derogado de D2.",
       "evidence": "evidence/24-residuals.txt (D13)",
       "id": "D13",
       "severity": "baja",
-      "status": "resolved"
+      "status": "resolved",
+      "surface": "audit-package"
     }
   ],
   "humanSignoff": null,
