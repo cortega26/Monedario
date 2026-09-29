@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
+import ContentTypeBadge from "@/components/ContentTypeBadge.astro";
 import { getPath } from "@/utils/getPath";
 
 // Hub del cluster greenfield. Conserva el alcance definido en
@@ -69,6 +70,7 @@ const relacionados = [
 
   <main id="main-content" class="app-layout">
     <section class="border-b border-border py-8">
+      <ContentTypeBadge type="Guía" />
       <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
         Finanzas para migrantes en Chile
       </h1>

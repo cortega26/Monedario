@@ -1,0 +1,18 @@
+---
+interface Props {
+  type: "Artículo" | "Calculadora" | "Glosario" | "Guía";
+  class?: string;
+}
+
+const { type, class: className } = Astro.props;
+---
+
+<p
+  class:list={[
+    className,
+    "mb-2 text-xs font-semibold tracking-widest text-accent uppercase",
+  ]}
+  data-content-type={type}
+>
+  {type}
+</p>
