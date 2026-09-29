@@ -5,6 +5,7 @@ author: "Equipo Monedario"
 description: "Guía práctica para construir tu colchón de emergencia en Chile: cuánto ahorrar, en qué instrumentos con liquidez real y cómo hacerlo paso a paso."
 slug: fondo-emergencia-chile
 pubDate: 2026-05-03T12:00:00-04:00
+updatedDate: 2026-09-29T00:00:00Z
 tags:
   - fondo-emergencia
   - ahorro
@@ -24,7 +25,7 @@ articleLead:
   answer: "Un fondo de emergencia es dinero accesible para cubrir gastos urgentes inesperados. Una referencia habitual en educación financiera es acumular entre 3 y 6 meses de gastos esenciales, guardados en un instrumento con liquidez inmediata o de muy corto plazo."
   nextStepHref: "/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/"
   nextStepLabel: "Ver opciones de ahorro e inversión"
-  validAsOf: 2026-05-03
+  validAsOf: 2026-09-29
   officialSources:
     - label: "CMF — Comisión para el Mercado Financiero"
       href: "https://www.cmfchile.cl/portal/principal/613/w3-channel.html"
@@ -148,7 +149,7 @@ Una vez que el fondo esté consolidado, el paso siguiente es explorar [opciones 
 Sí, cumple con el criterio de liquidez inmediata. La desventaja es que no genera interés relevante. Si lo usas para este fin, asegúrate de que el saldo esté separado de tu sueldo y gastos cotidianos para no confundir montos.
 
 **¿El fondo de emergencia paga impuestos?**
-Los intereses generados en instrumentos como el DAP están sujetos al impuesto a los intereses (retención para personas naturales en Chile, con ajuste en Operación Renta si corresponde). Dado que el objetivo es preservar liquidez con instrumentos de bajo plazo y tasa baja, el efecto tributario suele ser menor, pero es relevante declararlo. Consulta con tu contador si tienes dudas sobre tu situación particular.
+Los intereses de un DAP son renta para el Impuesto Global Complementario: si eres residente en Chile, se suman a tus ingresos anuales y se declaran en la Operación Renta (el banco no te retiene por ellos). La retención del 4% del artículo 59 de la Ley de Impuesto a la Renta aplica solo a no residentes (Impuesto Adicional). Dado que el objetivo es preservar liquidez con instrumentos de bajo plazo y tasa baja, el efecto tributario suele ser menor, pero es relevante declararlo. Consulta con tu contador si tienes dudas sobre tu situación particular.
 
 **¿Cuánto tiempo tarda en formarse?**
 Depende del monto que puedas destinar cada mes. No hay un plazo único correcto: lo importante es empezar, aunque sea con un monto pequeño, y mantener la consistencia.

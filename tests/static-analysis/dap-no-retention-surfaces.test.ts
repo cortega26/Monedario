@@ -1,4 +1,5 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 
 /**
@@ -36,6 +37,41 @@ describe("DAP: superficies sin retención del 4%", () => {
       expect(surface, `${name}: no debe prometer impuesto/retención`).not.toMatch(
         /impuesto 4|retención de impuesto/i
       );
+    }
+  });
+});
+
+/**
+ * D17 (pass4): el mismo hecho reapareció en contenido relacionado. Barrido del
+ * corpus: toda mención de retención cerca de DAP/depósito a plazo debe aclarar
+ * que el 4% es Impuesto Adicional de no residentes (art. 59 LIR).
+ */
+const BLOG_DIR = "src/data/blog";
+const WINDOW = 180;
+
+describe("DAP: retención del 4% solo no residentes en contenido relacionado", () => {
+  it("ningún artículo atribuye retención por DAP a residentes", () => {
+    const files = readdirSync(BLOG_DIR).filter(
+      file => file.endsWith(".md") || file.endsWith(".mdx")
+    );
+
+    for (const file of files) {
+      const content = readFileSync(path.join(BLOG_DIR, file), "utf8");
+      let index = content.search(/retención/i);
+      while (index !== -1) {
+        const context = content.slice(
+          Math.max(0, index - WINDOW),
+          index + WINDOW
+        );
+        if (/DAP|depósito a plazo/i.test(context)) {
+          expect(
+            context,
+            `${file}: retención junto a DAP sin aclarar no residentes: ${context.slice(0, 100)}`
+          ).toMatch(/no residente|Impuesto Adicional/i);
+        }
+        const next = content.slice(index + 1).search(/retención/i);
+        index = next === -1 ? -1 : index + 1 + next;
+      }
     }
   });
 });

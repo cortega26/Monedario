@@ -47,7 +47,7 @@ Esta guía responde preguntas frecuentes sobre la campaña. Para la información
 >
 > **Excepciones:** Si trabajaste todo 2025 con un solo empleador y no tuviste ingresos adicionales, tu empleador ya declaró y pagó el impuesto por ti. Consulta el SII directamente para confirmar si tienes propuesta automática.
 >
-> **Vigencia:** Esta guía cubre la campaña 2026 para el año tributario 2025. El plazo de declaración por internet es el **8 de mayo de 2026**. Los plazos exactos se publican en sii.cl cada año.
+> **Vigencia:** Esta guía cubre la campaña 2026 (año tributario 2026, rentas de 2025). El plazo de declaración por internet es el **8 de mayo de 2026**. Los plazos exactos se publican en sii.cl cada año.
 >
 > **Fuentes:** Servicio de Impuestos Internos (sii.cl) — Ley de Impuesto a la Renta (Artículo 65 y siguientes); Tesorería General de la República (tgr.cl).
 
@@ -63,11 +63,11 @@ Si tuviste dos empleos simultáneos o sucesivos durante 2025 —aunque cada empl
 
 ### Trabajadores con ingresos por honorarios
 
-Si emitiste boletas de honorarios en 2025, tu cliente retuvo el 14,5% como pago provisional mensual (PPM) por cada boleta, según la tasa vigente establecida por la Ley 21.133 (para boletas emitidas en 2026 la tasa sube a 15,25%). Ese 14,5% aparece en el Formulario 22 como crédito a tu favor. El resultado final —si recibes devolución o debes pagar— depende de tus ingresos totales del año. Debes declarar si tus ingresos anuales por honorarios y otras rentas superaron los **$11.265.804** en 2025 (equivalente a 13,5 UTA). Consulta sii.cl para el monto exacto en UTA del año tributario 2025.
+Si emitiste boletas de honorarios en 2025, tu cliente retuvo el 14,5% como pago provisional mensual (PPM) por cada boleta, según la tasa vigente establecida por la Ley 21.133 (para boletas emitidas en 2026 la tasa sube a 15,25%). Ese 14,5% aparece en el Formulario 22 como crédito a tu favor. El resultado final —si recibes devolución o debes pagar— depende de tus ingresos totales del año. Debes declarar si tus ingresos anuales por honorarios y otras rentas superaron los **$11.265.804** en 2025 (equivalente a 13,5 UTA). Consulta sii.cl para el monto exacto en UTA de diciembre de 2025 (la que rige el año tributario 2026).
 
 ### Personas con rentas del exterior
 
-Cualquier ingreso recibido desde fuera de Chile —sueldos, honorarios, dividendos, arriendos— está sujeto a impuesto en Chile y obliga a declarar, sin importar el monto. Esta regla se mantiene vigente para el año tributario 2025 conforme al artículo 3° de la Ley de Impuesto a la Renta (DL 824); no hubo modificaciones a la obligación de declarar rentas del exterior en la Ley 21.210 ni en reformas posteriores.
+Cualquier ingreso recibido desde fuera de Chile —sueldos, honorarios, dividendos, arriendos— está sujeto a impuesto en Chile y obliga a declarar, sin importar el monto. Esta regla se mantiene vigente para el año tributario 2026 (rentas de 2025) conforme al artículo 3° de la Ley de Impuesto a la Renta (DL 824); no hubo modificaciones a la obligación de declarar rentas del exterior en la Ley 21.210 ni en reformas posteriores.
 
 ### Personas con ingresos por arriendo
 
@@ -95,11 +95,11 @@ Si trabajaste todo el año 2025 para un único empleador, con contrato de trabaj
 
 ### Pensionados con una sola pensión
 
-Si tu única renta durante 2025 fue una pensión de AFP u otro organismo previsional, y la entidad pagadora realizó las retenciones correspondientes sin otros ingresos adicionales, generalmente no necesitas declarar. Esta condición se mantiene para el año tributario 2025: pensionados con una sola fuente de pensión y retenciones efectuadas por la AFP o entidad pagadora no están obligados a declarar, conforme al Art. 43 N°1 LIR (impuesto de segunda categoría ya retenido en la fuente). Debes declarar si tuviste ingresos adicionales a la pensión (arriendo, honorarios, segunda pensión).
+Si tu única renta durante 2025 fue una pensión de AFP u otro organismo previsional, y la entidad pagadora realizó las retenciones correspondientes sin otros ingresos adicionales, generalmente no necesitas declarar. Esta condición se mantiene para el año tributario 2026 (rentas de 2025): pensionados con una sola fuente de pensión y retenciones efectuadas por la AFP o entidad pagadora no están obligados a declarar, conforme al Art. 43 N°1 LIR (impuesto de segunda categoría ya retenido en la fuente). Debes declarar si tuviste ingresos adicionales a la pensión (arriendo, honorarios, segunda pensión).
 
 ### Ingresos inferiores al umbral de exención
 
-Si tus ingresos anuales totales durante 2025 estuvieron por debajo del umbral de exención del impuesto global complementario, no debes impuesto y puedes no estar obligado a declarar. El umbral de exención del IGC para el año tributario 2025 es de **$11.265.804 anuales** (equivalente a 13,5 UTA, usando la UTA de diciembre de 2025: $834.504). Por debajo de este monto, el impuesto global complementario es cero.
+Si tus ingresos anuales totales durante 2025 estuvieron por debajo del umbral de exención del impuesto global complementario, no debes impuesto y puedes no estar obligado a declarar. El umbral de exención del IGC para el año tributario 2026 (rentas de 2025) es de **$11.265.804 anuales** (13,5 UTA, con la UTA de diciembre de 2025: $834.504). Por debajo de este monto, el impuesto global complementario es cero.
 
 ---
 
