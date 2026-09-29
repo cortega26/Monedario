@@ -2,6 +2,7 @@
   "datasets": {
     "economic.uf.value": {
       "label": "Valor UF",
+      "owner": "Carlos Ortega (editorial)",
       "refreshStrategy": "economic_snapshot",
       "unit": "clp",
       "canonicalSource": {
@@ -9,11 +10,15 @@
         "url": "https://si3.bcentral.cl/Indicadoressiete/secure/Indicadoresdiarios.aspx"
       },
       "fallbackSources": [
-        { "label": "mindicador.cl", "url": "https://mindicador.cl/api" }
+        {
+          "label": "mindicador.cl",
+          "url": "https://mindicador.cl/api"
+        }
       ]
     },
     "economic.utm.value": {
       "label": "Valor UTM",
+      "owner": "Carlos Ortega (editorial)",
       "refreshStrategy": "economic_snapshot",
       "unit": "clp",
       "canonicalSource": {
@@ -21,11 +26,15 @@
         "url": "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm"
       },
       "fallbackSources": [
-        { "label": "mindicador.cl", "url": "https://mindicador.cl/api" }
+        {
+          "label": "mindicador.cl",
+          "url": "https://mindicador.cl/api"
+        }
       ]
     },
     "economic.uta.value": {
       "label": "Valor UTA (Unidad Tributaria Anual)",
+      "owner": "Carlos Ortega (editorial)",
       "refreshStrategy": "economic_snapshot",
       "unit": "clp",
       "canonicalSource": {
@@ -33,11 +42,15 @@
         "url": "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm"
       },
       "fallbackSources": [
-        { "label": "mindicador.cl", "url": "https://mindicador.cl/api" }
+        {
+          "label": "mindicador.cl",
+          "url": "https://mindicador.cl/api"
+        }
       ]
     },
     "economic.ipc.monthly_variation": {
       "label": "IPC mensual",
+      "owner": "Carlos Ortega (editorial)",
       "refreshStrategy": "economic_snapshot",
       "unit": "percent",
       "canonicalSource": {
@@ -45,11 +58,15 @@
         "url": "https://www.ine.gob.cl/estadisticas-por-tema/precios-e-inflacion/indice-de-precios-al-consumidor"
       },
       "fallbackSources": [
-        { "label": "mindicador.cl", "url": "https://mindicador.cl/api" }
+        {
+          "label": "mindicador.cl",
+          "url": "https://mindicador.cl/api"
+        }
       ]
     },
     "economic.afc.monthly_taxable_cap_uf": {
       "label": "Tope imponible AFC",
+      "owner": "Carlos Ortega (editorial)",
       "refreshStrategy": "economic_snapshot",
       "unit": "uf",
       "canonicalSource": {
@@ -60,6 +77,7 @@
     },
     "pensions.previsional.monthly_taxable_cap_uf": {
       "label": "Tope imponible AFP y salud",
+      "owner": "Carlos Ortega (editorial)",
       "refreshStrategy": "economic_snapshot",
       "unit": "uf",
       "canonicalSource": {
@@ -70,6 +88,7 @@
     },
     "pensions.afp.worker_mandatory_contribution": {
       "label": "Cotización obligatoria trabajador AFP",
+      "owner": "Carlos Ortega (editorial)",
       "refreshStrategy": "official_page_extract",
       "unit": "percent",
       "canonicalSource": {
@@ -80,6 +99,7 @@
     },
     "pensions.afp.uno_commission": {
       "label": "Comisión AFP Uno",
+      "owner": "Carlos Ortega (editorial)",
       "refreshStrategy": "official_page_extract",
       "unit": "percent",
       "canonicalSource": {

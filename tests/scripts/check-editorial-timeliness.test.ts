@@ -24,6 +24,21 @@ function createTempProject() {
       {
         defaultCadenceDays: 60,
         defaultSourceMode: "manual_review",
+        semantics: {
+          notVerification: true,
+          staleMeans: "calendar cadence compliance only",
+          statement:
+            "stale=0 no certifica veracidad: solo indica cumplimiento de cadencia.",
+          veracitySignals: ["volatileData", "articleLead.officialSources"],
+        },
+        hardFacts: {
+          "demo.fact": {
+            label: "Hecho duro demo",
+            owner: "Equipo editorial",
+            verification: "fuente primaria demo",
+            cadenceDays: 365,
+          },
+        },
         categoryPolicies: {
           general: {
             cadenceDays: 60,
@@ -562,5 +577,99 @@ lang: es-CL`,
 
     expect(result.status).toBe(1);
     expect(result.stderr).toContain("missing review date");
+  });
+
+  it("warns explicitly, without failing, when a published article lacks validAsOf", () => {
+    const root = createTempProject();
+    writeArticle(
+      root,
+      "sin-valid-as-of.md",
+      `title: "Demo sin validAsOf"
+description: "Demo article"
+slug: sin-valid-as-of
+pubDate: "2026-03-01T00:00:00Z"
+updatedDate: "2026-03-20T00:00:00Z"
+author: "Equipo Monedario"
+category: general
+cluster: demo
+lang: es-CL`,
+      "Contenido"
+    );
+
+    const result = runTimelinessCheck(root);
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("[check-editorial-timeliness] OK.");
+    expect(result.stdout).toContain("missingValidAsOf=1");
+    expect(result.stdout).toContain("note:");
+    expect(result.stderr).toContain("[check-editorial-timeliness] warn:");
+    expect(result.stderr).toContain("without articleLead.validAsOf");
+    expect(result.stderr).toContain("TD-0108");
+    const report = JSON.parse(
+      readFileSync(
+        path.join(root, "output", "validation", "editorial-timeliness", "report.json"),
+        "utf8"
+      )
+    ) as {
+      semantics: { notVerification: boolean } | null;
+      missingValidAsOfCount: number;
+      missingValidAsOfSlugs: string[];
+    };
+    expect(report.semantics?.notVerification).toBe(true);
+    expect(report.missingValidAsOfCount).toBe(1);
+    expect(report.missingValidAsOfSlugs).toEqual(["sin-valid-as-of"]);
+  });
+
+  it("does not warn when the published article declares articleLead.validAsOf", () => {
+    const root = createTempProject();
+    writeArticle(
+      root,
+      "con-valid-as-of.md",
+      `title: "Demo con validAsOf"
+description: "Demo article"
+slug: con-valid-as-of
+pubDate: "2026-03-01T00:00:00Z"
+updatedDate: "2026-03-20T00:00:00Z"
+author: "Equipo Monedario"
+category: general
+cluster: demo
+lang: es-CL
+articleLead:
+  answer: "Respuesta suficientemente larga para pasar el schema local."
+  validAsOf: "2026-03-20"`,
+      "Contenido"
+    );
+
+    const result = runTimelinessCheck(root);
+
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("missingValidAsOf=0");
+    expect(result.stderr).not.toContain("without articleLead.validAsOf");
+  });
+
+  it("fails when policy semantics does not declare notVerification", () => {
+    const root = createTempProject();
+    const policyPath = path.join(root, "src", "config", "editorial-timeliness-policy.json");
+    const policy = JSON.parse(readFileSync(policyPath, "utf8"));
+    policy.semantics.notVerification = false;
+    writeFileSync(policyPath, JSON.stringify(policy, null, 2), "utf8");
+
+    const result = runTimelinessCheck(root);
+
+    expect(result.status).not.toBe(0);
+    expect(result.stderr).toContain("notVerification: true");
+  });
+
+  it("fails when a hardFacts entry lacks owner", () => {
+    const root = createTempProject();
+    const policyPath = path.join(root, "src", "config", "editorial-timeliness-policy.json");
+    const policy = JSON.parse(readFileSync(policyPath, "utf8"));
+    delete policy.hardFacts["demo.fact"].owner;
+    writeFileSync(policyPath, JSON.stringify(policy, null, 2), "utf8");
+
+    const result = runTimelinessCheck(root);
+
+    expect(result.status).not.toBe(0);
+    expect(result.stderr).toContain('hardFacts "demo.fact" requires a non-empty owner');
   });
 });

@@ -282,6 +282,7 @@ function main() {
   const volatileSnapshot = loadVolatileSnapshot();
   const files = listContentFiles(BLOG_DIR);
   const failures = [];
+  const warnings = [];
   const records = [];
 
   for (const filePath of files) {
@@ -330,6 +331,15 @@ function main() {
     if (record.stale) {
       failures.push(
         `${record.relativePath}: review SLA expired on ${record.dueDate} (${record.cadenceDays}d cadence, sourceMode=${record.sourceMode}).`
+      );
+    }
+
+    // TD-0108: a published data-bearing article without articleLead.validAsOf
+    // has no explicit validity anchor; the gate must say so instead of silently
+    // falling back to updatedDate/pubDate. Non-fatal: backfill is editorial work.
+    if (!record.validAsOf && record.sourceMode !== "evergreen") {
+      warnings.push(
+        `${record.relativePath}: published without articleLead.validAsOf (review anchored to ${record.reviewDate}); backfill with a primary source or route to audit (TD-0108).`
       );
     }
 
@@ -386,10 +396,14 @@ function main() {
         (dataset.expectedValue !== undefined && dataset.valueMatches === false))
     )
   );
+  const missingValidAsOfRecords = records.filter(
+    record => !record.validAsOf && record.sourceMode !== "evergreen"
+  );
 
   const report = {
     generatedAt: new Date().toISOString(),
     today: formatIsoDate(TODAY),
+    semantics: policy.semantics ?? null,
     economicSnapshotLastUpdated: loadEconomicSnapshotDate(),
     volatileSnapshotLastUpdated:
       typeof volatileSnapshot.lastUpdated === "string"
@@ -400,13 +414,23 @@ function main() {
     staleSlugs: staleRecords.map(record => record.slug),
     driftCount: driftRecords.length,
     driftSlugs: driftRecords.map(record => record.slug),
+    missingValidAsOfCount: missingValidAsOfRecords.length,
+    missingValidAsOfSlugs: missingValidAsOfRecords.map(record => record.slug),
     records,
   };
   writeReport(report);
 
   console.log(
-    `[check-editorial-timeliness] published=${records.length} stale=${staleRecords.length} drift=${driftRecords.length} report=${path.relative(REPO_ROOT, REPORT_PATH)}`
+    `[check-editorial-timeliness] published=${records.length} stale=${staleRecords.length} drift=${driftRecords.length} missingValidAsOf=${missingValidAsOfRecords.length} report=${path.relative(REPO_ROOT, REPORT_PATH)}`
   );
+
+  if (policy.semantics?.statement) {
+    console.log(`[check-editorial-timeliness] note: ${policy.semantics.statement}`);
+  }
+
+  for (const warning of warnings) {
+    console.warn(`[check-editorial-timeliness] warn: ${warning}`);
+  }
 
   if (failures.length > 0) {
     console.error("[check-editorial-timeliness] FAIL:");

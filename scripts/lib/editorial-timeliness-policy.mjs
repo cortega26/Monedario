@@ -12,6 +12,62 @@ export const EDITORIAL_TIMELINESS_SOURCE_MODES = new Set([
   "evergreen",
 ]);
 
+function validateSemantics(semantics) {
+  if (semantics === undefined) return;
+  if (semantics === null || typeof semantics !== "object" || Array.isArray(semantics)) {
+    throw new Error("editorial timeliness policy semantics must be an object when present.");
+  }
+  if (semantics.notVerification !== true) {
+    throw new Error(
+      'editorial timeliness policy semantics must declare notVerification: true (stale=0 does not certify veracity).'
+    );
+  }
+  if (typeof semantics.staleMeans !== "string" || semantics.staleMeans.trim().length === 0) {
+    throw new Error("editorial timeliness policy semantics requires a non-empty staleMeans.");
+  }
+  if (typeof semantics.statement !== "string" || semantics.statement.trim().length < 40) {
+    throw new Error(
+      "editorial timeliness policy semantics requires a statement of at least 40 characters."
+    );
+  }
+  if (
+    !Array.isArray(semantics.veracitySignals) ||
+    semantics.veracitySignals.length === 0 ||
+    semantics.veracitySignals.some(
+      signal => typeof signal !== "string" || signal.trim().length === 0
+    )
+  ) {
+    throw new Error(
+      "editorial timeliness policy semantics requires a non-empty veracitySignals array of strings."
+    );
+  }
+}
+
+function validateHardFacts(hardFacts) {
+  if (hardFacts === undefined) return;
+  if (hardFacts === null || typeof hardFacts !== "object" || Array.isArray(hardFacts)) {
+    throw new Error("editorial timeliness policy hardFacts must be an object when present.");
+  }
+  for (const [id, fact] of Object.entries(hardFacts)) {
+    if (!fact || typeof fact !== "object" || Array.isArray(fact)) {
+      throw new Error(`hardFacts "${id}" must be an object.`);
+    }
+    for (const field of ["label", "owner", "verification"]) {
+      if (typeof fact[field] !== "string" || fact[field].trim().length === 0) {
+        throw new Error(`hardFacts "${id}" requires a non-empty ${field}.`);
+      }
+    }
+    const hasCadence = Number.isInteger(fact.cadenceDays) && fact.cadenceDays > 0;
+    const hasDataset = typeof fact.dataset === "string" && fact.dataset.trim().length > 0;
+    const hasAuditRounds = Array.isArray(fact.auditRounds) && fact.auditRounds.length > 0;
+    if (!hasCadence && !hasDataset && !hasAuditRounds) {
+      throw new Error(
+        `hardFacts "${id}" requires cadenceDays > 0, a dataset reference, or auditRounds.`
+      );
+    }
+  }
+}
+
 export function loadEditorialTimelinessPolicy(policyPath) {
   const raw = JSON.parse(readFileSync(policyPath, "utf8"));
   if (!Number.isInteger(raw.defaultCadenceDays) || raw.defaultCadenceDays <= 0) {
@@ -49,6 +105,8 @@ export function loadEditorialTimelinessPolicy(policyPath) {
       throw new Error(`Slug override "${slug}" has unknown sourceMode "${override.sourceMode}".`);
     }
   }
+  validateSemantics(raw.semantics);
+  validateHardFacts(raw.hardFacts);
   return raw;
 }
 

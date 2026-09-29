@@ -37,20 +37,20 @@ Fecha de corte: 2026-09-25
 
 ### Total de items por urgencia (abiertos)
 
-_Actualizado 2026-09-25 desde las entradas `## TD-` (abierto = `Backlog*`, `Pendiente`, `ABIERTO*`)._
+_Actualizado 2026-09-29 desde las entradas `## TD-` (abierto = `Backlog*`, `Pendiente`, `ABIERTO*`, `En curso`)._
 
 - **P0:** 0
-- **P1:** 1 — `TD-0107`
-- **P2:** 2 — `TD-0108`, `TD-0109`
+- **P1:** 0
+- **P2:** 1 — `TD-0108` (en curso)
 - **P3:** 4 — `TD-0095`, `TD-0096`, `TD-0103`, `TD-0110`
 - **Sin urgencia declarada:** 2 — `TD-0100` (Pendiente), `TD-0104` (ABIERTO)
-- **Total abiertos:** 9 de 111 entradas (`TD-0001`..`TD-0110`)
-- **Cerrados/completados:** 102
+- **Total abiertos:** 7 de 112 entradas (`TD-0001`..`TD-0112`)
+- **Cerrados/completados:** 105
 
-### Estado de avance (2026-09-25)
+### Estado de avance (2026-09-29)
 
-- **Completados/cerrados:** 102 entradas, incluida `TD-0097` (2026-09-25).
-- **Abiertos:** `TD-0095`, `TD-0096`, `TD-0100`, `TD-0103`, `TD-0104`, `TD-0107`, `TD-0108`, `TD-0109`, `TD-0110`.
+- **Completados/cerrados:** 105 entradas, incluidas `TD-0097` (2026-09-25), `TD-0109`/`TD-0111`/`TD-0112` y `TD-0107` (2026-09-29).
+- **Abiertos:** `TD-0095`, `TD-0096`, `TD-0100`, `TD-0103`, `TD-0104`, `TD-0108` (en curso), `TD-0110`.
 - **Cerrados sin ejecutar (premisa/ROI):** `TD-0067` (2026-06-25 — los use-cases ya retornan números puros; el formateo ya vive en las páginas), `TD-0081` (2026-06-25 — CI no usa esa secuencia y el único check lento es escritor; ahorro seguro ~0.2 s) y `TD-0079` (bloqueado por incompatibilidad WOFF2/Satori).
 - **Nota histórica:** `TD-0072` cerrado el 2026-06-23 (los 2 scripts restantes son código activo, no one-off).
 - **Nota histórica:** `TD-0095` y `TD-0096` abiertos el 2026-07-01, tras implementar `ADR-20260701-editorial-evergreen-tier.md` — ver entradas abajo.
@@ -2342,14 +2342,23 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
   cobertura por rondas de auditoría adversarial como señal de veracidad, no solo
   el gate calendario.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] La política de timeliness declara explícito que `stale=0` ≠ verificado.
-  - [ ] Los hechos duros con más hallazgos repetidos tienen dataset/owner o
-    cadencia justificada.
-  - [ ] `pnpm run check:editorial-timeliness` sigue en verde tras el cambio.
-- **Owner:** Sin asignar
-- **Estado:** Backlog
+  - [x] La política de timeliness declara explícito que `stale=0` ≠ verificado:
+    `semantics.notVerification=true` + `statement` + `veracitySignals` en
+    `editorial-timeliness-policy.json`; invariante
+    `INVARIANT.EDITORIAL.TIMELINESS_REVIEW_SLA` actualizado; el reporte del gate
+    incluye `semantics` y nota en consola (plan 129).
+  - [x] Los hechos duros con más hallazgos repetidos tienen dataset/owner o
+    cadencia justificada: `hardFacts` con owner + verificación para tramos IUSC
+    (art. 52 bis), UF, SuperIR art. 260, retención DAP no residentes, tasa de
+    honorarios por año comercial y topes de finiquito; `owner` en los 8 datasets
+    del registry volátil; contrato estático en
+    `tests/static-analysis/timeliness-veracity-contract.test.ts`.
+  - [x] `pnpm run check:editorial-timeliness` sigue en verde tras el cambio
+    (2026-09-29, con warnings explícitos de TD-0108).
+- **Owner:** Carlos Ortega (editorial)
+- **Estado:** Cerrado
 - **Fecha de creación:** 2026-09-20
-- **Última actualización:** 2026-09-20
+- **Última actualización:** 2026-09-29
 
 ## TD-0108 — 13 artículos publicados sin `validAsOf`, absorbidos en silencio por el gate
 
@@ -2379,14 +2388,24 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
   `updatedDate` solo donde una fuente primaria lo respalde en sesión; el resto
   va a auditoría); (b) endurecer `check-frontmatter` o el gate de timeliness
   para exigir `validAsOf` en publicados y no absorber la ausencia en silencio.
+- **Actualización 2026-09-29 (plan 129):** los 13 tampoco tienen `articleLead`
+  completo (el schema exige `answer`); el backfill de `validAsOf` es autoría del
+  bloque lead + fuentes, y por `INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES` su
+  verificación va en sesión aparte. Cola con owner y ruta por artículo en
+  `plans/129-td-0107-0108-veracidad-timeliness-2026-09-29.md`.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] Los 13 artículos declaran `validAsOf` con fuente o están en auditoría.
-  - [ ] Un gate falla (o advierte explícitamente) ante publicado sin `validAsOf`.
-  - [ ] `pnpm run check:editorial-timeliness` sigue en verde tras el cambio.
-- **Owner:** Sin asignar
-- **Estado:** Backlog
+  - [x] Los 13 artículos están en la cola de auditoría versionada (plan 129) con
+    owner y ruta; el backfill de `articleLead` sigue pendiente.
+  - [x] El gate advierte explícitamente ante publicado sin `validAsOf`
+    (`warn: ... without articleLead.validAsOf`) y reporta
+    `missingValidAsOfCount`/`missingValidAsOfSlugs`, sin romper CI.
+  - [x] `pnpm run check:editorial-timeliness` sigue en verde tras el cambio
+    (13 warnings explícitos).
+- **Owner:** Carlos Ortega (editorial)
+- **Estado:** En curso — gate y cola listos; falta autoría de `articleLead` (13)
+  con auditoría independiente
 - **Fecha de creación:** 2026-09-20
-- **Última actualización:** 2026-09-20
+- **Última actualización:** 2026-09-29
 
 ## TD-0109 — Posible replicación de fórmula indemnización F1–F3 en calculadora (NHV-8, código productivo sin auditar)
 
