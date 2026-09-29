@@ -3,26 +3,28 @@ import {
   DAYS_PER_YEAR,
 } from "./shared/financialConstants";
 
-// LIR art. 59 N 4: retencion de 4% sobre intereses en el caso cubierto por la UI.
-const INTEREST_WITHHOLDING_RATE = 0.04;
-
+/**
+ * Interés de un depósito a plazo a interés simple proporcional al plazo.
+ *
+ * Los intereses de un DAP de una persona natural residente NO están sujetos a
+ * retención del banco: tributan en el Impuesto Global Complementario anual
+ * (SII, FAQ 001.140.2738, actualizada 2026-03-31). La retención del 4% del
+ * art. 59 N°4 LIR es Impuesto Adicional para personas sin domicilio ni
+ * residencia en Chile y no aplica a este caso.
+ */
 export interface TermDepositInput {
   amount: number;
   termDays: number;
   annualRatePercent: number;
-  applyWithholding: boolean;
 }
 
 export interface TermDepositOutput {
   amount: number;
   termDays: number;
   annualRatePercent: number;
-  applyWithholding: boolean;
   grossInterest: number;
-  withholdingTax: number;
-  netInterest: number;
   finalAmount: number;
-  netEffectiveAnnualRatePercent: number;
+  effectiveAnnualRatePercent: number;
 }
 
 function assertInput(input: TermDepositInput): void {
@@ -54,13 +56,9 @@ export function calculateTermDeposit(
   const annualRateDecimal = input.annualRatePercent / PERCENT_DENOMINATOR;
   const grossInterest =
     input.amount * annualRateDecimal * (input.termDays / DAYS_PER_YEAR);
-  const withholdingTax = input.applyWithholding
-    ? grossInterest * INTEREST_WITHHOLDING_RATE
-    : 0;
-  const netInterest = grossInterest - withholdingTax;
-  const finalAmount = input.amount + netInterest;
-  const netEffectiveAnnualRatePercent =
-    (netInterest / input.amount) *
+  const finalAmount = input.amount + grossInterest;
+  const effectiveAnnualRatePercent =
+    (grossInterest / input.amount) *
     (DAYS_PER_YEAR / input.termDays) *
     PERCENT_DENOMINATOR;
 
@@ -68,11 +66,8 @@ export function calculateTermDeposit(
     amount: input.amount,
     termDays: input.termDays,
     annualRatePercent: input.annualRatePercent,
-    applyWithholding: input.applyWithholding,
     grossInterest,
-    withholdingTax,
-    netInterest,
     finalAmount,
-    netEffectiveAnnualRatePercent,
+    effectiveAnnualRatePercent,
   };
 }
