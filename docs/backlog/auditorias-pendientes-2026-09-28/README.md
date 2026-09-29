@@ -7,7 +7,7 @@ Briefs adversariales entregados por el mantenedor el 2026-09-28. **No ejecutados
 | 01 | [Correctitud, consistencia y freshness](01-correctitud-consistencia-freshness.md) | Cálculos, datos, reglas, supuestos y vigencia tratados como caja negra | **REMEDIADO** — informe en `docs/reports/AUDIT-CORRECTNESS-2026-09-28.md`; plan 115 DONE, F04 cerrado (serie IPC 2026 vía BCCh/INE, `TD-0112` resuelto); falta math audit/compliance humano |
 | 02 | [SEO técnico y descubrimiento](02-seo-tecnico-descubrimiento.md) | Crawl, indexación, canonicalización y autoridad interna | **REMEDIADO** — informe en `docs/reports/AUDIT-SEO-2026-09-28.md`; plan 116 DONE (Fase 1) + planes 117–120 DONE (Fase 2: SEO-02/05/06/08); remanente: dedupe de contenido YMYL de Operación Renta (`docs/backlog/PLAN-operacion-renta-dedupe-2026-09-29.md`, revisión editorial humana) |
 | 03 | [Privacidad y seguridad pasiva](03-privacidad-seguridad-pasiva.md) | Fugas de datos, promesas públicas de privacidad y configuración defensiva | **REMEDIADO** — informe en `docs/reports/AUDIT-PRIVACY-2026-09-29.md`; plan 121 DONE (PRIV-01/02/03 resueltos; `test:privacy` + invariante) |
-| 04 | [Resiliencia y performance observable](04-resiliencia-performance-live.md) | Degradación, caché, redes lentas, CLS y calculadoras bajo condiciones adversas | **LISTO PARA EJECUCIÓN (externo)** |
+| 04 | [Resiliencia y performance observable](04-resiliencia-performance-live.md) | Degradación, caché, redes lentas, CLS y calculadoras bajo condiciones adversas | **RESULTADO RECIBIDO** — informe en `docs/reports/AUDIT-RESILIENCE-2026-09-29.md`; remediación en plan 122 (RES-01/02 no reproducidos; RES-03/04 accionables) |
 
 ## Bloqueador (resuelto 2026-09-29)
 

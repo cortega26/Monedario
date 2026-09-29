@@ -47,6 +47,20 @@ observabilidad/persistencia. Hardening central: convertir la propiedad
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
 
+## Auditoría de resiliencia y performance 2026-09-29 — plan 122
+
+Informe: `docs/reports/AUDIT-RESILIENCE-2026-09-29.md`. Resultado: sin P0/P1;
+CWV de campo PASS (LCP 1,2 s / INP 93 ms / CLS 0). Verificación del agente:
+RES-01 (input vacío → $0) y RES-02 (header sticky) **no reproducidos** en local
+ni producción; RES-03 (botón "Volver arriba" a zoom 400%) y RES-04 (fallback
+sin JS) accionables. Brecha de perf: PERF-005 (regresión móvil vs baseline).
+
+| Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
+|------|-------|----------|--------|------------|--------|
+| 122 | [resilience-remediation-2026-09-29.md](122-resilience-remediation-2026-09-29.md) | P2/P3 + hardening | M | — | TODO |
+
+Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
+
 ## Auditoría profunda 2026-09-14 — planes 097–113 (completa salvo 111 BLOCKED)
 
 Sobre `0e506a8b`, selección del mantenedor: **«All the net-positive ones»**.
