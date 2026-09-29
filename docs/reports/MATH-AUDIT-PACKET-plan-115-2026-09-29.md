@@ -12,6 +12,13 @@ Referencias: `docs/reports/AUDIT-CORRECTNESS-2026-09-28.md`,
 > registrarse aquí o en el artefacto equivalente y firmarse antes de cerrar el
 > gate de publicación.
 
+**Flujo de auditoría (2026-09-29):** este paquete es el input del piloto de
+auditoría independiente por IA bajo `docs/editorial/AI_AUDIT_PROTOCOL.md`
+(paquete ejecutable en `docs/editorial/audits/plan-115-correctitud/`). Orden:
+sesión fresca auditora (`MathAuditAgent`) → `02-result.json` + `03-report.md`
+con veredicto → firma humana (`humanSignoff`). La IA no reemplaza la firma
+humana.
+
 ## Qué revisar, por finding
 
 | Finding | Cambio (archivos) | Fuente primaria | Vector / regresión |

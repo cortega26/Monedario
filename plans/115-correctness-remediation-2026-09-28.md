@@ -17,7 +17,9 @@
 - **Status**: DONE — Pasos 1–6 completos. F04 cerrado end-to-end: fail-closed
   + serie IPC extendida a 2026-08 con fuente oficial BCCh/INE (`TD-0112`
   resuelto) y assertion de frescura serie↔snapshot en el check programado.
-  Queda solo el math audit/compliance humano para el gate de publicación.
+  Queda el gate de publicación: auditoría independiente por IA
+  (`AI_AUDIT_PROTOCOL v1`, piloto en `docs/editorial/audits/plan-115-correctitud/`)
+  + firma humana.
 - **Evidence**: `docs/reports/AUDIT-CORRECTNESS-2026-09-28.md`
 
 ## Why this matters
