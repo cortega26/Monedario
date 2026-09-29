@@ -98,6 +98,11 @@ const calculatorNextStepItems = [
           <p class="mb-3 text-sm font-medium text-secondary">
             Deudas vencidas (cada una con más de 90 días corridos)
           </p>
+          {
+            /* Excepción TD-0111: filas compuestas monto+días+acreedor que el JS
+              clona al agregar deudas (agregar-deuda); CalculatorField no aplica
+              a filas dinámicas con aria-label. */
+          }
           <div id="deudas-container" class="space-y-3">
             <div class="deuda-row flex flex-wrap items-center gap-2">
               <input

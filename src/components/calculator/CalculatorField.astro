@@ -2,6 +2,8 @@
 interface Props {
   id: string;
   label: string;
+  /** id for the <label> (e.g. when JS updates the label text). */
+  labelId?: string;
   type?: string;
   placeholder?: string;
   min?: string | number;
@@ -11,16 +13,21 @@ interface Props {
   hint?: string;
   required?: boolean;
   class?: string;
+  /** Replaces the wrapper's default `mb-4` (e.g. mb-5/mb-6 in legacy pages). */
+  wrapperClass?: string;
   /** id for the outer wrapper div (e.g. for JS-toggled visibility). */
   wrapperId?: string;
   /** Passed through to the <input> element (e.g. data-profile-bind). */
   inputAttrs?: Record<string, string>;
+  /** Extra classes appended to the input (e.g. text-lg for prominent fields). */
+  inputClass?: string;
   [key: string]: unknown;
 }
 
 const {
   id,
   label,
+  labelId,
   type = "number",
   placeholder,
   min,
@@ -30,8 +37,10 @@ const {
   hint,
   required,
   class: extraClass,
+  wrapperClass,
   wrapperId,
   inputAttrs,
+  inputClass,
   ...rest
 } = Astro.props;
 
@@ -39,8 +48,12 @@ const hasSlot = Astro.slots.has("default");
 const hintId = hint && !hasSlot ? `${id}-hint` : undefined;
 ---
 
-<div id={wrapperId} class:list={["mb-4", extraClass]} {...rest}>
-  <label for={id} class="mb-1 block text-sm font-medium text-secondary">
+<div id={wrapperId} class:list={[wrapperClass ?? "mb-4", extraClass]} {...rest}>
+  <label
+    id={labelId}
+    for={id}
+    class="mb-1 block text-sm font-medium text-secondary"
+  >
     {label}
   </label>
   {
@@ -68,7 +81,10 @@ const hintId = hint && !hasSlot ? `${id}-hint` : undefined;
         value={value}
         required={required}
         aria-describedby={hintId}
-        class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+        class:list={[
+          "w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none",
+          inputClass,
+        ]}
         {...(inputAttrs ?? {})}
       />
     )

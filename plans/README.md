@@ -9,7 +9,7 @@ Fase 2/3.
 
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|-------|----------|--------|------------|--------|
-| 114 | [ux-audit-remediation-2026-09-28.md](114-ux-audit-remediation-2026-09-28.md) | P1 | L | — | DONE (F-01 a F-10; remanente: pasada manual NVDA/VoiceOver y `TD-0111`) |
+| 114 | [ux-audit-remediation-2026-09-28.md](114-ux-audit-remediation-2026-09-28.md) | P1 | L | — | DONE (F-01 a F-10 y `TD-0111` resuelto; remanente: pasada manual NVDA/VoiceOver) |
 | 115 | [correctness-remediation-2026-09-28.md](115-correctness-remediation-2026-09-28.md) | P0 | L | — | DONE (F04 cerrado con extensión IPC oficial BCCh/INE; `TD-0112` resuelto; falta math audit/compliance humano) |
 | 116 | [seo-remediation-2026-09-28.md](116-seo-remediation-2026-09-28.md) | P1 | M | — | DONE (SEO-01/03/04/07 + guardas; Fase 2: SEO-02/05/06/08) |
 

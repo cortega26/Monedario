@@ -151,31 +151,26 @@ const calculatorNextStepItems = [
           min="0"
         />
 
+        <CalculatorField
+          id="tasa-credito"
+          label="Tasa de interés mensual (%)"
+          placeholder="Ej: 0.8"
+          min="0"
+          max="5"
+          step="0.01"
+          value="0.8"
+          hint="Hipotecarios: ~0.4–0.8% mensual. Consumo: ~1.5–3.5% mensual."
+        />
         <div class="mb-4">
-          <label
-            for="tasa-credito"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Tasa de interés mensual (%)
-          </label>
-          <input
-            type="number"
-            id="tasa-credito"
-            placeholder="Ej: 0.8"
-            min="0"
-            max="5"
-            step="0.01"
-            value="0.8"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-          />
-          <p class="mt-1 text-xs text-muted">
-            Hipotecarios: ~0.4–0.8% mensual. Consumo: ~1.5–3.5% mensual.
-          </p>
           <div
             class="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted"
           >
             <span>¿Solo conoces tu tasa anual o CAE?</span>
             <div class="flex items-center gap-1">
+              {
+                /* Excepción TD-0111: helper inline (input + "% anual" + resultado)
+                  dentro de una línea de texto; CalculatorField no cubre ese layout. */
+              }
               <input
                 id="tasa-anual-helper"
                 type="number"

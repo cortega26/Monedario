@@ -2466,13 +2466,22 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
   requiere ADR por ser refactor arquitectónico (regla de refactors durante
   bugfix tasks).
 - **Criterios de cierre (checklist verificable):**
-  - [ ] 0 inputs inline fuera de `CalculatorField` (salvo casos justificados y
+  - [x] 0 inputs inline fuera de `CalculatorField` (salvo casos justificados y
     comentados).
-  - [ ] Tests de labels, estados y axe en verde en cada lote.
+  - [x] Tests de labels, estados y axe en verde en cada lote.
+- **Resolución (2026-09-29):** migración por 4 lotes con capturas
+  antes/después en `output/validation/td-0111/` y `ADR-20260929-calculator-field-migration`.
+  Se migraron 26 inputs en 13 páginas; quedan 6 excepciones comentadas:
+  `dividendo-hipotecario` (input compuesto con selector de moneda),
+  `prepago-credito` (helper inline con `% anual`) y `simulador-renegociacion`
+  (4 en filas dinámicas monto+días+acreedor generadas por JS). El componente
+  ganó `inputClass`, `wrapperClass` y `labelId` (retrocompatible) para
+  preservar estilos, márgenes e ids que usa `formController`. Evidencia:
+  build 20 checks, 1743 tests, 196 Playwright a11y en verde.
 - **Owner:** Sin asignar
-- **Estado:** Backlog
+- **Estado:** Resuelto
 - **Fecha de creación:** 2026-09-28
-- **Última actualización:** 2026-09-28
+- **Última actualización:** 2026-09-29
 
 ## TD-0112 — Ingesta del IPC mensual 2026 bloqueada: mindicador no publica la serie
 
