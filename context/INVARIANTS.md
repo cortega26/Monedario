@@ -86,6 +86,7 @@ Change log:
 | `INVARIANT.EDITORIAL.HERO_IMAGE_TEXT_MATCH_REQUIRED` | Hero image selection must derive from article text and preserve situation-level match | Active | `node scripts/check-hero-prompts.mjs` + artifact review |
 | `INVARIANT.EDITORIAL.INLINE_IMAGE_AVIF_REQUIRED` | Inline article images must use AVIF unless explicitly justified | Active | `pnpm run check:images` |
 | `INVARIANT.URLCHECK.EXTERNAL_LINK_POLICY` | External links to official/trusted hosts must resolve live within the expected host family | Active (phase 1 non-blocking) | `pnpm run check:urls:external:ci` |
+| `INVARIANT.SEO.INDEXABILITY.CONTRACT` | Path-based indexability is declared in one contract consumed by Layout, sitemap and utility pages | Active | `pnpm run build` (check-postbuild guards) + `pnpm run test` |
 
 ## 3. Invariants
 
@@ -782,3 +783,19 @@ Change log:
   - Compliant: `https://www.bcentral.cl/estadisticas/` returns 200 with normal Banco Central content.
   - Violation: `https://www.bcentral.cl/publicacion-antigua/` returns 200 with "Página no encontrada" title.
   - Violation: `https://www.sii.cl/old-doc/` returns 404.
+
+### `INVARIANT.SEO.INDEXABILITY.CONTRACT`
+
+- Statement: Path-based indexability (meta robots and sitemap inclusion) is declared once in `src/config/indexability.ts` and consumed by `Layout.astro`, `astro.config.ts` and `search.astro`; pages must not hardcode `noindex` metas.
+- Canonical source: `docs/adr/ADR-20260929-declarative-indexability-contract.md`, `docs/reports/AUDIT-SEO-2026-09-28.md` (sistémico 1).
+- Rationale:
+  - Dispersed indexability produced SEO-01 (tags accidentally indexable).
+  - The sitemap must remain `canonical ∩ indexable ∩ successful`.
+  - One rule table makes guardrails derivable and reviewable.
+- Enforcement:
+  - `pnpm run build` → `check-postbuild` guards: `tags-noindex`, `utilitarias-noindex`, `sitemap-indexable-only`, `sitemap-canonical-match`, `no-tracking-params`, `no-future-lastmod`.
+  - `pnpm run test` — contract rules and guard helpers.
+- Exceptions (documented, outside the contract): `unlisted` posts (`PostDetails.astro` + `SITEMAP_EXCLUDED_PATHS`) and social image routes (`X-Robots-Tag` headers).
+- Examples:
+  - Compliant: `robotsMetaFor("/tags/afp/")` → `noindex,follow`; `/tags/**` excluded from `sitemap-0.xml`.
+  - Violation: a page rendering `<meta name="robots" content="noindex">` inline instead of relying on the contract.

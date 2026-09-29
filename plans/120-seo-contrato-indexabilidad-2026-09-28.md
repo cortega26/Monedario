@@ -14,7 +14,14 @@
 - **Depends on**: decisión del mantenedor solo para el paso 4 (SEO-08)
 - **Category**: arquitectura SEO / gobernanza de indexabilidad
 - **Planned at**: commit `da8e72da`, 2026-09-29
-- **Status**: TODO — requiere selección del mantenedor (Fase 2 SEO)
+- **Status**: DONE — contrato en `src/config/indexability.ts` consumido por
+  `Layout.astro`, `astro.config.ts` y `search.astro`; metas inline eliminadas
+  (excepciones documentadas: posts `unlisted` y rutas og). SEO-08 opción A:
+  se mantiene `?src=` con canonical limpia (verificada) y guarda
+  `no-tracking-params`. 5 guardas nuevas → build con 19 checks (14 + 5; el
+  plan estimaba 17 porque no contaba las 2 guardas del plan 118). ADR
+  `ADR-20260929-declarative-indexability-contract` + invariante
+  `INVARIANT.SEO.INDEXABILITY.CONTRACT`.
 - **Evidence**: `docs/reports/AUDIT-SEO-2026-09-28.md` (SEO-08, Fixes
   sistémicos 1 y 4, Regression checks SEO-001..013/021..023)
 
@@ -94,7 +101,7 @@ sitemap como `canonical ∩ indexable ∩ successful`.
 | Purpose | Command | Expected |
 |---|---|---|
 | Unit contrato | `pnpm run test` | tabla de casos verde |
-| Build + guardas | `pnpm run build` | 17 checks (12 + 5) |
+| Build + guardas | `pnpm run build` | 19 checks (14 + 5) |
 | Sitemap | comparar snapshot | sin URLs no indexables ni no-canónicas |
 | robots.txt | `dist/robots.txt` | coherente con el contrato |
 | CI mirror | `pnpm run check:ci` | exit 0 |
@@ -102,11 +109,13 @@ sitemap como `canonical ∩ indexable ∩ successful`.
 
 ## Done criteria
 
-- [ ] Contrato único consumido por Layout, sitemap, robots.txt y páginas.
-- [ ] 0 `noindex` inline fuera del contrato (excepto og routes justificadas).
-- [ ] Sitemap == `canonical ∩ indexable ∩ successful`.
-- [ ] SEO-08 decidido e implementado (A o B) con guarda.
-- [ ] Guardas con tests; ADR mergeado; gates en verde.
+- [x] Contrato único consumido por Layout, sitemap y páginas utilitarias
+      (robots.txt gobierna crawl y queda fuera, según el ADR).
+- [x] 0 `noindex` inline fuera del contrato (excepciones documentadas: posts
+      `unlisted` y rutas og).
+- [x] Sitemap == `canonical ∩ indexable ∩ successful`.
+- [x] SEO-08 decidido e implementado (opción A) con guarda.
+- [x] Guardas con tests; ADR mergeado; gates en verde.
 
 ## STOP conditions
 

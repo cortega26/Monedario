@@ -43,9 +43,6 @@ const pageDescription =
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <!-- Toda la taxonomía de tags es noindex (SEO-01): crawl permitido para que
-       el buscador observe la directiva, fuera del sitemap. -->
-  <meta name="robots" content="noindex,follow" slot="head" />
   <Header />
   <Main
     pageTitle={["Etiqueta:", `${tagName}`]}

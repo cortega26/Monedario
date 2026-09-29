@@ -205,15 +205,54 @@ export function findAuthorProfileSchemaIssues(html) {
   return issues;
 }
 
-/** True when the page declares noindex,follow for robots. */
-export function hasNoindexFollow(html) {
+function robotsMetaContent(html) {
   for (const match of html.matchAll(/<meta\b[^>]*>/g)) {
     const tag = match[0];
     if (!/name=["']robots["']/.test(tag)) continue;
-    const content = tag.match(/content=["']([^"']*)["']/)?.[1] ?? "";
-    if (content.includes("noindex") && content.includes("follow")) return true;
+    return tag.match(/content=["']([^"']*)["']/)?.[1] ?? "";
   }
-  return false;
+  return null;
+}
+
+/** True when the page declares noindex,follow for robots. */
+export function hasNoindexFollow(html) {
+  const content = robotsMetaContent(html);
+  return content !== null && content.includes("noindex") && content.includes("follow");
+}
+
+/** True when the page declares noindex (with or without follow). */
+export function hasNoindex(html) {
+  const content = robotsMetaContent(html);
+  return content !== null && content.includes("noindex");
+}
+
+/** Sitemap locs with tracking params or fragments (SEO-009). */
+export function findTrackingParamLocs(sitemapXml) {
+  return collectSitemapLocs(sitemapXml).filter(loc => /[?#]/.test(loc));
+}
+
+/** Canonical links carrying query or fragment (SEO-009/SEO-010). */
+export function findParametrizedCanonicals(html) {
+  const canonical = readCanonicalFromHtml(html);
+  return canonical && /[?#]/.test(canonical) ? [canonical] : [];
+}
+
+/** Lastmod dates in the future (SEO-013). */
+export function findFutureLastmods(sitemapXml, today = new Date()) {
+  const todayIso = today.toISOString().slice(0, 10);
+  const issues = [];
+  for (const block of sitemapXml.match(/<url>[\s\S]*?<\/url>/g) ?? []) {
+    const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1] ?? "(sin loc)";
+    const lastmod = block.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1];
+    if (
+      lastmod &&
+      /^\d{4}-\d{2}-\d{2}/.test(lastmod) &&
+      lastmod.slice(0, 10) > todayIso
+    ) {
+      issues.push(`${loc} (${lastmod.slice(0, 10)})`);
+    }
+  }
+  return issues;
 }
 
 /**
@@ -591,6 +630,103 @@ const CHECKS = [
         }
       }
       return errors;
+    },
+  },
+  {
+    id: "sitemap-indexable-only",
+    message: "Sitemap URLs must exist and be indexable (SEO-001/SEO-004).",
+    run(distDir) {
+      const errors = [];
+      const sitemapPath = path.join(distDir, "sitemap-0.xml");
+      if (!statSync(sitemapPath, { throwIfNoEntry: false })) return [];
+      const xml = readFileSync(sitemapPath, "utf8");
+      for (const loc of collectSitemapLocs(xml)) {
+        const filePath = sitemapUrlToDistPath(loc, distDir);
+        if (!statSync(filePath, { throwIfNoEntry: false })) {
+          errors.push(`${loc}:sitemap-indexable-only missing dist file`);
+          continue;
+        }
+        const html = readFileSync(filePath, "utf8");
+        if (hasNoindex(html)) {
+          errors.push(`${loc}:sitemap-indexable-only page is noindex`);
+        }
+      }
+      return errors;
+    },
+  },
+  {
+    id: "sitemap-canonical-match",
+    message: "Sitemap URL must equal the page canonical (SEO-003).",
+    run(distDir) {
+      const errors = [];
+      const sitemapPath = path.join(distDir, "sitemap-0.xml");
+      if (!statSync(sitemapPath, { throwIfNoEntry: false })) return [];
+      const xml = readFileSync(sitemapPath, "utf8");
+      for (const loc of collectSitemapLocs(xml)) {
+        const filePath = sitemapUrlToDistPath(loc, distDir);
+        if (!statSync(filePath, { throwIfNoEntry: false })) continue;
+        const html = readFileSync(filePath, "utf8");
+        const canonical = readCanonicalFromHtml(html);
+        if (!canonical) {
+          errors.push(`${loc}:sitemap-canonical-match missing canonical`);
+        } else if (
+          normalizeUrlForCompare(canonical) !== normalizeUrlForCompare(loc)
+        ) {
+          errors.push(`${loc}:sitemap-canonical-match canonical is ${canonical}`);
+        }
+      }
+      return errors;
+    },
+  },
+  {
+    id: "utilitarias-noindex",
+    message: "Utility and paginated pages must be noindex (SEO-007).",
+    run(distDir) {
+      const errors = [];
+      for (const file of listHtmlPages(distDir)) {
+        const isUtility =
+          file === "buscar/index.html" || file === "search/index.html";
+        const isPagination = /^posts\/\d+\/index\.html$/.test(file);
+        if (!isUtility && !isPagination) continue;
+        const html = readFileSync(path.join(distDir, file), "utf8");
+        if (!hasNoindex(html)) {
+          errors.push(`${file}:utilitarias-noindex missing noindex`);
+        }
+      }
+      return errors;
+    },
+  },
+  {
+    id: "no-tracking-params",
+    message: "Sitemap and canonicals must not carry tracking params (SEO-009).",
+    run(distDir) {
+      const errors = [];
+      const sitemapPath = path.join(distDir, "sitemap-0.xml");
+      if (statSync(sitemapPath, { throwIfNoEntry: false })) {
+        const xml = readFileSync(sitemapPath, "utf8");
+        for (const loc of findTrackingParamLocs(xml)) {
+          errors.push(`dist/sitemap-0.xml:no-tracking-params ${loc}`);
+        }
+      }
+      for (const file of listHtmlPages(distDir)) {
+        const html = readFileSync(path.join(distDir, file), "utf8");
+        for (const canonical of findParametrizedCanonicals(html)) {
+          errors.push(`${file}:no-tracking-params canonical ${canonical}`);
+        }
+      }
+      return errors;
+    },
+  },
+  {
+    id: "no-future-lastmod",
+    message: "Sitemap lastmod must not be in the future (SEO-013).",
+    run(distDir) {
+      const sitemapPath = path.join(distDir, "sitemap-0.xml");
+      if (!statSync(sitemapPath, { throwIfNoEntry: false })) return [];
+      const xml = readFileSync(sitemapPath, "utf8");
+      return findFutureLastmods(xml).map(
+        entry => `dist/sitemap-0.xml:no-future-lastmod ${entry}`
+      );
     },
   },
   {

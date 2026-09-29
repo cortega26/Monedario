@@ -30,11 +30,6 @@ const pageDescription = isPaginatedArchive
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  {
-    isPaginatedArchive && (
-      <meta name="robots" content="noindex,follow" slot="head" />
-    )
-  }
   <Header />
   <Main pageTitle="Artículos" pageDesc="Todos los artículos publicados.">
     <ul>

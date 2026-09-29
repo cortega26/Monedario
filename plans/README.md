@@ -28,7 +28,7 @@ estrategia de tracking params (SEO-08); 118 es técnico y no requiere decisión.
 | 117 | [linking interno por prioridad de producto](117-seo-linking-interno-2026-09-28.md) | P2 | M | decisión del mantenedor | DONE (2 globales; 12 estratégicas ≥ 3; `check:calculator-interlinks`) |
 | 118 | [structured data por template](118-seo-structured-data-2026-09-28.md) | P3 | M | — | DONE (claims stale; guardas `jsonld-parse` + `jsonld-breadcrumb-final-canonical`) |
 | 119 | [gobernanza de intención: Operación Renta](119-seo-intencion-operacion-renta-2026-09-28.md) | P2 | M | decisión del mantenedor + revisión editorial | TODO |
-| 120 | [contrato de indexabilidad declarativo](120-seo-contrato-indexabilidad-2026-09-28.md) | P2 | L | decisión del mantenedor (SEO-08) + ADR | TODO |
+| 120 | [contrato de indexabilidad declarativo](120-seo-contrato-indexabilidad-2026-09-28.md) | P2 | L | decisión del mantenedor (SEO-08) + ADR | DONE (contrato + 5 guardas + ADR + invariante; SEO-08 opción A) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
 
