@@ -232,7 +232,11 @@ const calculatorNextStepItems = [
           source={economicParameters.source}
           updatedDate={formatEconomicDate(economicParameters.lastUpdated)}
           variant="result"
-        />
+        >
+          {
+            ` · Tope imponible pensión/salud: ${economicParameters.previsionalTopes?.pensionAndHealthMonthlyTaxableCapUf ?? 90} UF/mes.`
+          }
+        </CalculatorDataFreshness>
       </CalculatorResultPanel>
     </section>
 

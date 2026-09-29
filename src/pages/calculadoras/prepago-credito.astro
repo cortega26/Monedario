@@ -325,7 +325,9 @@ const calculatorNextStepItems = [
           source={economicParameters.source}
           updatedDate={formatEconomicDate(economicParameters.lastUpdated)}
           variant="result"
-        />
+        >
+          {` · UF de referencia: ${fmtClp(economicParameters.uf)}.`}
+        </CalculatorDataFreshness>
       </div>
     </section>
 

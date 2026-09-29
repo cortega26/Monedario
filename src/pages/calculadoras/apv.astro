@@ -352,7 +352,11 @@ const calculatorNextStepItems = [
           source={economicParameters.source}
           updatedDate={formatEconomicDate(economicParameters.lastUpdated)}
           variant="result"
-        />
+        >
+          {
+            ` · UF usada: ${formatCurrency(economicParameters.uf)} · topes: 50 UF/mes y 600 UF/año.`
+          }
+        </CalculatorDataFreshness>
       </CalculatorResultPanel>
     </section>
 

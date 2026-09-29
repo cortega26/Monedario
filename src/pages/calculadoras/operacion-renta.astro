@@ -320,7 +320,9 @@ const operacionRentaFaqs = [
           source={economicParameters.source}
           updatedDate={formatEconomicDate(economicParameters.lastUpdated)}
           variant="result"
-        />
+        >
+          {` · UTM usada: ${formatPeso(economicParameters.utm)}.`}
+        </CalculatorDataFreshness>
       </CalculatorResultPanel>
     </section>
 

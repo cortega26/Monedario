@@ -310,7 +310,11 @@ const seguroCesantiaFaqs = [
           source={economicParameters.source}
           updatedDate={formatEconomicDate(economicParameters.lastUpdated)}
           variant="result"
-        />
+        >
+          {
+            ` · Tope imponible AFC: ${economicParameters.afcTopes?.monthlyTaxableCapUf ?? 131.9} UF/mes.`
+          }
+        </CalculatorDataFreshness>
       </CalculatorResultPanel>
     </section>
 
