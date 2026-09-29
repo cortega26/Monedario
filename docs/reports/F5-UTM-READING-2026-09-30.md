@@ -1,7 +1,7 @@
 # F5 — Lectura primaria UTM/UF (2026-09-30)
 
 **Plan:** `docs/backlog/PLAN-growth-utm-ctr-2026-09-16.md` (fase F5)
-**Estado:** PLANTILLA sin decidir — llenar el 2026-09-30 (día 14) y
+**Estado:** BORRADOR con datos W39 (2026-09-29) — decisión y firma pendientes del owner. Llenar el 2026-09-30 (día 14) y
 confirmar a 28 días (2026-10-14) con los confounders anotados.
 **Baseline firmado:** `docs/reports/CTR-BASELINE-W36-2026-09-16.md`
 (W36 = 2026-08-31 → 2026-09-06).
@@ -10,13 +10,13 @@ confirmar a 28 días (2026-10-14) con los confounders anotados.
 
 ## 0. Precondiciones (STOP si alguna falla)
 
-- [ ] Export W39 completado (lunes 2026-09-28):
+- [x] Export W39 completado (generado local el 2026-09-29: el workflow del 28-sep no arrancó por billing de Actions):
       `output/operations/data-signals/gsc/2026-W39-*.json`,
       `.../analytics/2026-W39.json`,
       `.../cloudflare/2026-W39-rum.json`.
-- [ ] Cada semana con 7 fechas verificadas (§2). Semana parcial (<7 días)
+- [x] Cada semana con 7 fechas verificadas (§2). Semana parcial (<7 días)
       → no decidir (STOP del plan).
-- [ ] `pnpm run check:routes` sin `added`/`removed` inesperado.
+- [ ] (no verificado en el borrador) `pnpm run check:routes` sin `added`/`removed` inesperado.
 - [ ] Sin ventana OBS/PR nueva sobre UTM/UF no declarada en el plan.
 - [ ] Sin afirmación YMYL numérica nueva sin fuente en el snapshot.
 
@@ -28,7 +28,7 @@ confirmar a 28 días (2026-10-14) con los confounders anotados.
 | W36 | 08-31 → 09-06 | pre | 1.484 | **baseline firmado** |
 | W37 | 09-07 → 09-13 | pre | 766 | contexto (5 días) |
 | W38 | 09-14 → 09-20 | 2 pre + 5 post | 423 | contexto (parcial) |
-| W39 | 09-21 → 09-27 | 100% post | — | **comparación primaria** |
+| W39 | 09-21 → 09-27 | 100% post | 114 | **comparación primaria** |
 | W40–W41 | 09-28 → 10-11 | post | — | lectura 28 días |
 
 **Advertencia de nivel (anotar, no ignorar):** W36 es un pico de borde
@@ -50,7 +50,14 @@ Confounders registrados:
    efectos por instrumento (GSC vs funnel) y no atribuir todo a F1.
 3. **Estacionalidad de demanda UTM** (§1): pico en borde de mes ya
    explicado; válido para clics, no para CTR/posición.
-4. (Añadir aquí cualquier confounder nuevo detectado al llenar.)
+4. **Posible zero-click por el propio snippet** (hipótesis, no confounder
+   externo): el título F1 (`5d47594d`) muestra el valor (`Valor UTM hoy:
+   $71.721 …`) directamente en la SERP; la intención «utm hoy» puede
+   resolverse sin clic. Con posición estable e impresiones al alza, esta es
+   la explicación más simple del colapso de CTR. No se verificó la SERP
+   (no se descartan features de Google tipo respuesta directa).
+5. **Fecha visible «1 de septiembre de 2026» a fines de mes**: el título
+   puede leerse como desactualizado frente a resultados con fecha de hoy.
 
 ## 2. Integridad de datos (pegar y correr)
 
@@ -67,47 +74,47 @@ for w in ("2026-W36", "2026-W38", "2026-W39"):
 EOF
 ```
 
-- [ ] W39 con 7 fechas y `fetchedAt` del lunes posterior.
+- [x] W39 con 7 fechas (2026-09-21 → 2026-09-27); `fetchedAt` 2026-09-29 (martes: re-export local por el fallo de CI).
 - [ ] W38 verificada como parcial de exposición (no como semana limpia).
 
 ## 3. GSC pages — URL del owner (llenar W39)
 
 | URL | Métrica | W36 baseline | W38 contexto | W39 lectura | Δ W39 vs W36 |
 |---|---|---:|---:|---:|---:|
-| `/calculadoras/conversor-utm/` | Clics | 1.484 | 423 | | |
-| | Impresiones | 170.074 | 105.735 | | |
-| | CTR | 0,87% | 0,40% | | |
-| | Posición | 7,25 | 7,31 | | |
-| `/calculadoras/conversor-uf/` | Clics | 6 | 18 | | |
-| | Impresiones | 24.831 | 51.150 | | |
-| | CTR | 0,02% | 0,04% | | |
-| | Posición | 9,69 | 9,39 | | |
+| `/calculadoras/conversor-utm/` | Clics | 1.484 | 423 | 114 | −92,3% |
+| | Impresiones | 170.074 | 105.735 | 133.037 | −21,8% |
+| | CTR | 0,87% | 0,40% | 0,09% | −0,78 pp |
+| | Posición | 7,25 | 7,31 | 7,48 | +0,23 (peor) |
+| `/calculadoras/conversor-uf/` | Clics | 6 | 18 | 12 | +6 |
+| | Impresiones | 24.831 | 51.150 | 83.104 | +234,7% |
+| | CTR | 0,02% | 0,04% | 0,01% | −0,01 pp |
+| | Posición | 9,69 | 9,39 | 9,46 | −0,23 (mejor) |
 
 ## 4. GSC queries (llenar W39)
 
 | Query | Métrica | W36 baseline | W38 contexto | W39 lectura | Umbral |
 |---|---|---:|---:|---:|---|
-| `utm` | Clics | 368 | 104 | | — |
-| | Impresiones | 20.658 | 11.075 | | — |
-| | CTR | 1,78% | 0,94% | | ≥4% |
-| | Posición | 6,73 | 6,80 | | no peor que base |
-| `utm hoy` | Clics | 253 | 47 | | — |
-| | Impresiones | 26.681 | 10.951 | | — |
-| | CTR | 0,95% | 0,43% | | ≥4% |
-| | Posición | 6,66 | 7,34 | | ≤4 y no peor que base |
+| `utm` | Clics | 368 | 104 | 27 | — |
+| | Impresiones | 20.658 | 11.075 | 13.121 | — |
+| | CTR | 1,78% | 0,94% | 0,21% | ≥4% ❌ |
+| | Posición | 6,73 | 6,80 | 6,94 | no peor que base ❌ (+0,21) |
+| `utm hoy` | Clics | 253 | 47 | 13 | — |
+| | Impresiones | 26.681 | 10.951 | 15.034 | — |
+| | CTR | 0,95% | 0,43% | 0,09% | ≥4% ❌ |
+| | Posición | 6,66 | 7,34 | 7,32 | ≤4 y no peor que base ❌ |
 
 ## 5. Funnel first-party (llenar W39)
 
 | Calculadora | Métrica | W36 baseline | W38 contexto | W39 lectura | Umbral |
 |---|---|---:|---:|---:|---|
-| `conversor-utm` | `calculator_view` | 1.280 | 565 | | — |
-| | `calculator_start` | 856 | 362 | | — |
-| | `calculator_complete` | 842 | 360 | | — |
-| | `complete/start` | 98,4% | 99,4% | | sin regresión |
-| `conversor-uf` | `calculator_view` | 169 | 123 | | — |
-| | `calculator_start` | 144 | 86 | | — |
-| | `calculator_complete` | 141 | 85 | | ≥163 (o tendencia) |
-| | `complete/start` | 97,9% | 98,8% | | sin regresión |
+| `conversor-utm` | `calculator_view` | 1.280 | 565 | 212 | — |
+| | `calculator_start` | 856 | 362 | 96 | — |
+| | `calculator_complete` | 842 | 360 | 95 | — |
+| | `complete/start` | 98,4% | 99,4% | 99,0% | sin regresión ✅ |
+| `conversor-uf` | `calculator_view` | 169 | 123 | 260 | — |
+| | `calculator_start` | 144 | 86 | 207 | — |
+| | `calculator_complete` | 141 | 85 | 201 | ≥163 ✅ |
+| | `complete/start` | 97,9% | 98,8% | 97,1% | leve baja (−0,8 pp) |
 
 Recordatorio: GSC-clics ≠ funnel (instrumentos distintos); no mezclar.
 
@@ -115,14 +122,14 @@ Recordatorio: GSC-clics ≠ funnel (instrumentos distintos); no mezclar.
 
 | Path | Métrica | W36 baseline | W38 contexto | W39 lectura | Regla |
 |---|---|---:|---:|---:|---|
-| `/calculadoras/conversor-utm/` | LCP p75 | 1.224 ms | 1.000 ms | | >1.700 ms = revert |
-| | INP p75 | 88 ms | 88 ms | | sin regresión |
-| | CLS p75 | 0 | 0,003 | | sin regresión |
-| | `count` | 1.800 | 600 | | anotar muestra |
-| `/calculadoras/conversor-uf/` | LCP p75 | 1.024 ms | 1.000 ms | | >1.700 ms = revert |
-| | INP p75 | 48 ms | 56 ms | | sin regresión |
-| | CLS p75 | 1 (sic) | 0,013 | | verificar export W36 |
-| | `count` | 280 | 120 | | anotar muestra |
+| `/calculadoras/conversor-utm/` | LCP p75 | 1.224 ms | 1.000 ms | 1.052 ms | >1.700 ms = revert ✅ |
+| | INP p75 | 88 ms | 88 ms | 80 ms | sin regresión ✅ |
+| | CLS p75 | 0 | 0,003 | 0 | sin regresión ✅ |
+| | `count` | 1.800 | 600 | 180 | anotar muestra |
+| `/calculadoras/conversor-uf/` | LCP p75 | 1.024 ms | 1.000 ms | 1.100 ms | >1.700 ms = revert ✅ |
+| | INP p75 | 48 ms | 56 ms | 48 ms | sin regresión ✅ |
+| | CLS p75 | 1 (sic) | 0,013 | 0,002 | verificar export W36 |
+| | `count` | 280 | 120 | 280 | anotar muestra |
 
 Nota: la referencia «~900 ms» del plan queda sustituida por los valores
 W36 verificados del archivo (1.224 ms UTM / 1.024 ms UF). El CLS W36 de UF
@@ -145,7 +152,16 @@ usarlo como ancla.
 
 Resultado y razonamiento (2–5 líneas):
 
-> …
+> **Recomendación del borrador (no es decisión): Revert.** Se cumple la
+> regla pre-declarada «CTR < baseline W36 en ambas queries» (`utm` 0,21%
+> vs 1,78%; `utm hoy` 0,09% vs 0,95%), con posición estable (≈7) e
+> impresiones de la URL en 133.037: la caída es de CTR, no de ranking, y
+> rompe el rango pre-deploy (W35–W37: 0,47–0,87%) → W38 parcial 0,40% →
+> W39 0,09%. RUM
+> sano, así que el snippet es el único candidato. F2 UF **no** debe
+> extenderse. Antes de firmar, conviene mirar la SERP de «utm hoy» para
+> descartar una feature de Google (respuesta directa) que también
+> explicaría el zero-click; si existe, revertir igual no cuesta nada.
 
 ## 8. Firma
 
