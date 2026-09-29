@@ -74,4 +74,30 @@ describe("DAP: retención del 4% solo no residentes en contenido relacionado", (
       }
     }
   });
+
+  it("ninguna página .astro de guías o calculadoras la atribuye a residentes", () => {
+    for (const dir of ["src/pages/guias", "src/pages/calculadoras"]) {
+      for (const entry of readdirSync(dir, { recursive: true })) {
+        const file = typeof entry === "string" ? entry : entry.toString();
+        if (!file.endsWith(".astro")) continue;
+        const full = path.join(dir, file);
+        const content = readFileSync(full, "utf8");
+        let index = content.search(/retención/i);
+        while (index !== -1) {
+          const context = content.slice(
+            Math.max(0, index - WINDOW),
+            index + WINDOW
+          );
+          if (/DAP|depósito a plazo/i.test(context)) {
+            expect(
+              context,
+              `${full}: retención junto a DAP sin aclarar no residentes: ${context.slice(0, 100)}`
+            ).toMatch(/no residente|Impuesto Adicional/i);
+          }
+          const next = content.slice(index + 1).search(/retención/i);
+          index = next === -1 ? -1 : index + 1 + next;
+        }
+      }
+    }
+  });
 });
