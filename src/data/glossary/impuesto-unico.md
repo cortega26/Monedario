@@ -3,27 +3,31 @@ term: "Impuesto Único de Segunda Categoría"
 shortDefinition: "Impuesto mensual progresivo para trabajadores dependientes en Chile. Aplica cuando el sueldo supera el primer tramo exento y se descuenta en la liquidación."
 relatedTerms:
   ["renta-imponible", "sueldo-bruto", "global-complementario", "sii", "utm"]
+reviewedDate: 2026-09-29
 ---
 
 El **impuesto único de segunda categoría** es el impuesto a la renta que pagan los trabajadores dependientes (con contrato) en Chile. Se llama "único" porque, si solo tienes un empleador, este impuesto reemplaza completamente la obligación anual del Global Complementario.
 
 ## ¿Cuándo aplica?
 
-Solo si tu **renta tributable mensual** supera el primer tramo exento de la tabla del SII. En 2026 ese umbral es aproximadamente **$943.501 mensuales**. Si ganas menos, no pagas impuesto de segunda categoría — la línea aparece en tu liquidación pero en cero.
+Solo si tu **renta tributable mensual** supera el primer tramo exento de la tabla del SII. En 2026 ese umbral es de 13,5 UTM (≈ [[utm * 13.5 | clp]] con la UTM vigente; la UTM cambia cada mes). Si ganas menos, no pagas impuesto de segunda categoría — la línea aparece en tu liquidación pero en cero.
 
 ## ¿Cómo se calcula?
 
 Es un impuesto **progresivo**: solo la parte del sueldo que supera cada tramo paga la tasa de ese tramo — no todo el sueldo.
 
-La tabla tiene varios tramos (el SII la actualiza mensualmente según UTM). Ejemplo simplificado para 2026:
+La tabla tiene varios tramos y se expresa en UTM (el SII publica los valores en pesos de cada mes). Tramos vigentes 2026 (tabla general del art. 43 N°1):
 
 | Renta tributable mensual | Tasa marginal |
 | ------------------------ | ------------- |
-| Hasta ~$943.000          | 0% (exento)   |
-| Hasta ~$2.094.000        | 4%            |
-| Hasta ~$3.490.000        | 8%            |
-| Hasta ~$4.886.000        | 13,5%         |
-| Tramos superiores        | Hasta 40%     |
+| Hasta 13,5 UTM           | 0% (exento)   |
+| Hasta 30 UTM             | 4%            |
+| Hasta 50 UTM             | 8%            |
+| Hasta 70 UTM             | 13,5%         |
+| Hasta 90 UTM             | 23%           |
+| Hasta 120 UTM            | 30,4%         |
+| Hasta 310 UTM            | 35%           |
+| Sobre 310 UTM            | 40%           |
 
 ## ¿Qué es la renta tributable?
 

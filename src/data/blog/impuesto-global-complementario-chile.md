@@ -96,7 +96,7 @@ El IGC consolida en una sola base todas las rentas del año:
 
 ## Tramos y tasas vigentes
 
-El IGC tiene 8 tramos progresivos, expresados en UTA (Unidad Tributaria Anual). La UTA se calcula como 12 × UTM del mes de diciembre del año tributario. La UTA vigente es **[[uta | clp]]**; el primer tramo exento cubre rentas anuales hasta **[[uta * 13.5 | clp]]** (13,5 UTA).
+El IGC tiene 8 tramos progresivos, expresados en UTA (Unidad Tributaria Anual). La UTA se calcula como 12 × UTM del mes de diciembre del año comercial (diciembre de 2025 para el año tributario 2026). La UTA vigente es **[[uta | clp]]**; el primer tramo exento cubre rentas anuales hasta **[[uta * 13.5 | clp]]** (13,5 UTA).
 
 **Tabla IGC** (tramos fijos por ley; rebaja en CLP = factor × UTA del año tributario). Fuente: [SII — Datos informativos AT 2026](https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html).
 

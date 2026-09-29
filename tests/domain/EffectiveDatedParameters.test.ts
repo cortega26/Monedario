@@ -33,9 +33,11 @@ const ENTRIES: EffectiveDatedEntry[] = [
 ];
 
 describe("isPeriodId", () => {
-  it("accepts YYYY-MM and rejects other shapes", () => {
+  it("accepts YYYY-MM and rejects other shapes or impossible months", () => {
     expect(isPeriodId("2025-12")).toBe(true);
-    expect(isPeriodId("2025-13")).toBe(true); // el resolver no valida mes
+    expect(isPeriodId("2025-01")).toBe(true);
+    expect(isPeriodId("2025-13")).toBe(false);
+    expect(isPeriodId("2025-00")).toBe(false);
     expect(isPeriodId("2025-1")).toBe(false);
     expect(isPeriodId("2025-12-01")).toBe(false);
     expect(isPeriodId("")).toBe(false);

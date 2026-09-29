@@ -27,7 +27,7 @@ export interface EffectiveDatedEntry {
   source: string;
 }
 
-const PERIOD_PATTERN = /^\d{4}-\d{2}$/;
+const PERIOD_PATTERN = /^\d{4}-(0[1-9]|1[0-2])$/;
 
 export function isPeriodId(value: string): value is PeriodId {
   return PERIOD_PATTERN.test(value);
