@@ -56,6 +56,7 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 | 125 | [reaudit-remediation-2026-09-29.md](125-reaudit-remediation-2026-09-29.md) | P1 (YMYL) | M | re-auditoría IA (CONDITIONAL) | DONE (D9–D12 + obs. 1/2 corregidos; pendiente re-auditoría final + firma humana) |
 | 126 | [audit-scope-sweep-2026-09-29.md](126-audit-scope-sweep-2026-09-29.md) | P3 | S | re-auditoría Muse Spark (D13) | DONE (V6/V4/S2 del scope + guarda de consistencia; propuesta de `surface` en el protocolo) |
 | 127 | [surfaces-sweep-d14-d15-2026-09-29.md](127-surfaces-sweep-d14-d15-2026-09-29.md) | P1 (YMYL) | M | re-auditoría pass3 (D14/D15) | DONE (superficies DAP y tasa de honorarios por año + 2 guardas + matriz de superficies + prompt v2; revisión editorial humana pendiente) |
+| 129 | [TD-0107/0108: veracidad explícita y gate de timeliness](129-td-0107-0108-veracidad-timeliness-2026-09-29.md) | P1 | M | — | DONE (semántica `stale=0` ≠ verificación + hardFacts con owner + gate con warning explícito + cola de 13; TD-0107 cerrado, TD-0108 en curso) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
 

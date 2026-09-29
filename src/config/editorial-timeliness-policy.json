@@ -1,6 +1,56 @@
 {
   "defaultCadenceDays": 180,
   "defaultSourceMode": "manual_review",
+  "semantics": {
+    "staleMeans": "calendar cadence compliance only",
+    "notVerification": true,
+    "statement": "stale=0 no certifica veracidad: indica solo que el artículo está dentro de su cadencia de revisión. La veracidad se sostiene con datasets volátiles, articleLead.officialSources, los gates legal-constants/legal-citations/economic-source-consistency/audit-artifacts y rondas de auditoría adversarial independientes; este gate no reemplaza la firma humana.",
+    "veracitySignals": [
+      "volatileData contra editorial-volatile-data-registry.json y su snapshot",
+      "articleLead.officialSources con fuente primaria y fecha",
+      "gates: check:legal-constants, check:legal-citations, check:economic-source-consistency, check:audit-artifacts",
+      "rondas de auditoría adversarial en docs/editorial/audits/"
+    ]
+  },
+  "hardFacts": {
+    "tax.iusc.tramos_utm": {
+      "label": "Tramos IUSC/IGC (art. 52 bis, en UTM) y sus tasas",
+      "owner": "Carlos Ortega (editorial)",
+      "verification": "SII AT vigente + check:legal-constants + ronda adversarial plan 115 (D1/D12)",
+      "cadenceDays": 365
+    },
+    "economic.uf.value": {
+      "label": "Valor UF vigente y fecha de vigencia",
+      "owner": "Carlos Ortega (editorial)",
+      "dataset": "economic.uf.value",
+      "verification": "snapshot económico + check:economic-source-consistency + ronda adversarial plan 115 (D2/D13)",
+      "cadenceDays": 30
+    },
+    "superir.art260.obligaciones_diversas": {
+      "label": "SuperIR art. 260: obligaciones diversas (no «acreedores distintos»)",
+      "owner": "Carlos Ortega (editorial)",
+      "verification": "texto legal + check:legal-citations + rondas plan 115 (D3/D9) y plan 126",
+      "cadenceDays": 365
+    },
+    "dap.retention.non_resident_4pct": {
+      "label": "Retención DAP 4% solo para no domiciliados (art. 59 inc. 2° N°1 a)/g))",
+      "owner": "Carlos Ortega (editorial)",
+      "verification": "texto legal + guarda dap-no-retention-surfaces + rondas plan 115 (D5/D14)",
+      "cadenceDays": 365
+    },
+    "honorarios.boleta.retencion_rate": {
+      "label": "Tasa de retención de boletas de honorarios por año comercial (AT2026 14,5% / boletas 2026 15,25%)",
+      "owner": "Carlos Ortega (editorial)",
+      "verification": "calendario SII AT + check:legal-constants + guarda honorarios-rate-year-consistency + ronda plan 115 (D15)",
+      "cadenceDays": 365
+    },
+    "finiquito.topes_y_recargos": {
+      "label": "Topes y recargos de finiquito (90 UF, art. 168 por causal)",
+      "owner": "Carlos Ortega (editorial)",
+      "verification": "texto legal + check:legal-constants + auditoría independiente plan 123 (pendiente de pasada)",
+      "cadenceDays": 365
+    }
+  },
   "categoryPolicies": {
     "ahorro-inversion": {
       "cadenceDays": 180,
