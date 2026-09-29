@@ -7,6 +7,7 @@ import {
   collectSitemapLocs,
   countTags,
   extractJsonLdBlocks,
+  findAuthorProfileSchemaIssues,
   findDuplicateIds,
   findHeadingLevelJumps,
   parseScriptSrc,
@@ -106,6 +107,62 @@ describe("parseScriptSrc", () => {
     const result = parseScriptSrc(headers);
     expect(result.hasHashes).toBe(false);
     expect(result.hasUnsafeInline).toBe(false);
+  });
+});
+
+describe("findAuthorProfileSchemaIssues", () => {
+  const graph = (profile: unknown, person: unknown) =>
+    `<script type="application/ld+json">${JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [profile, person],
+    })}</script>`;
+
+  it("accepts a linked ProfilePage + Person graph", () => {
+    const html = graph(
+      {
+        "@type": "ProfilePage",
+        "@id": "https://monedario.cl/autor/#profilepage",
+        mainEntity: { "@id": "https://monedario.cl/autor/" },
+      },
+      {
+        "@type": "Person",
+        "@id": "https://monedario.cl/autor/",
+        mainEntityOfPage: {
+          "@id": "https://monedario.cl/autor/#profilepage",
+        },
+      }
+    );
+    expect(findAuthorProfileSchemaIssues(html)).toEqual([]);
+  });
+
+  it("flags a missing ProfilePage", () => {
+    const html = graph(null, {
+      "@type": "Person",
+      "@id": "https://monedario.cl/autor/",
+    });
+    expect(findAuthorProfileSchemaIssues(html)).toContain(
+      "missing ProfilePage node"
+    );
+  });
+
+  it("flags an unlinked mainEntity reference", () => {
+    const html = graph(
+      {
+        "@type": "ProfilePage",
+        "@id": "https://monedario.cl/autor/#profilepage",
+        mainEntity: { "@id": "https://monedario.cl/otro/" },
+      },
+      {
+        "@type": "Person",
+        "@id": "https://monedario.cl/autor/",
+        mainEntityOfPage: {
+          "@id": "https://monedario.cl/autor/#profilepage",
+        },
+      }
+    );
+    expect(findAuthorProfileSchemaIssues(html)).toContain(
+      "ProfilePage.mainEntity must reference the Person @id"
+    );
   });
 });
 
