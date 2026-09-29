@@ -23,7 +23,8 @@
   **Remanente editorial (fuera de este plan por el STOP de YMYL)**: la
   deduplicación de secciones de contenido que repiten F22/plazos/devolución
   requiere revisión editorial humana; los metadatos ya no compiten
-  (title/H1/description verificados como distintos).
+  (title/H1/description verificados como distintos). Propuesta lista para
+  selección en `docs/backlog/PLAN-operacion-renta-dedupe-2026-09-29.md`.
 - **Evidence**: `docs/reports/AUDIT-SEO-2026-09-28.md` (SEO-05)
 
 ## Why this matters
