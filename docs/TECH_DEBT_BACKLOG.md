@@ -2473,3 +2473,39 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Estado:** Backlog
 - **Fecha de creación:** 2026-09-28
 - **Última actualización:** 2026-09-28
+
+## TD-0112 — Ingesta del IPC mensual 2026 bloqueada: mindicador no publica la serie
+
+- **ID:** TD-0112
+- **Título corto:** `ipc-historico.json` termina en dic-2025 pese a que la fuente
+  ya publicó 2026
+- **Descripción:** La serie histórica de IPC se ingesta desde mindicador.cl
+  (`scripts/fetch-economic-history.mjs`). Al 2026-09-29, `/api/ipc/2026` y
+  `/api/ipc` devuelven serie vacía y el consolidado `/api` solo trae el último
+  mes (fecha dic-2025), por lo que no es posible refrescar los meses de 2026
+  desde esa fuente. El snapshot propio sí registra el IPC de agosto 2026
+  (`indicatorUpdatedAt.ipc = 2026-08-01`). El dataset de datos.gob.cl del INE
+  (`package_show?id=ipc`) no tiene recursos descargables.
+- **Evidencia:** `curl https://mindicador.cl/api/ipc/2026` → `serie: []`;
+  `curl https://mindicador.cl/api` → `ipc.fecha = 2025-12-01` (2026-09-29);
+  `curl https://datos.gob.cl/api/3/action/package_show?id=ipc` →
+  `num_resources = 0`.
+- **Impacto:** La calculadora de inflación no puede cubrir 2026 completo. Ya
+  mitiga el riesgo de confianza con el aviso fail-closed (no afirma "última
+  cifra disponible" cuando la serie está atrasada), pero los ajustes que
+  incluyan meses de 2026 quedan subestimados.
+- **Riesgo:** medio-alto para YMYL (frescura).
+- **Severidad (1-5):** 3
+- **Urgencia:** P1
+- **Esfuerzo estimado:** M
+- **Propuesta de solución:** ingesta desde fuente primaria INE (boletines /
+  cuadros estadísticos publicados el 8 de cada mes, o su API si se habilita) con
+  `latest_period` explícito y assertion de frescura en el check diario; el
+  script de ingesta ya soporta `--solo=ipc`.
+- **Criterios de cierre (checklist verificable):**
+  - [ ] `ipc-historico.json` alcanza el último período publicado por INE.
+  - [ ] Assertion de frescura en CI (serie >= período del snapshot).
+- **Owner:** Sin asignar
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-09-29
+- **Última actualización:** 2026-09-29

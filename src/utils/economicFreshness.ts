@@ -22,6 +22,50 @@ function chileCalendarParts(now: Date): {
   return { year: get("year"), month: get("month"), day: get("day") };
 }
 
+export interface IpcSeriesFreshness {
+  status: "fresh" | "stale" | "unknown";
+  seriesLastPeriod: string;
+  expectedPeriod: string | null;
+  reason: string;
+}
+
+/**
+ * Compara el último período de la serie IPC cargada contra el último período
+ * publicado por la fuente (snapshot). `stale` obliga a la UI a no afirmar
+ * "última cifra disponible": los cálculos usan la serie disponible y pueden
+ * subestimar la inflación reciente (auditoría de correctitud F04).
+ */
+export function evaluateIpcSeriesFreshness(
+  seriesLastPeriod: string,
+  expectedLatestPeriod: string | null | undefined
+): IpcSeriesFreshness {
+  if (!expectedLatestPeriod || !/^\d{4}-\d{2}/.test(expectedLatestPeriod)) {
+    return {
+      status: "unknown",
+      seriesLastPeriod,
+      expectedPeriod: null,
+      reason: "sin período publicado de referencia",
+    };
+  }
+
+  const expectedPeriod = expectedLatestPeriod.slice(0, 7);
+  if (seriesLastPeriod >= expectedPeriod) {
+    return {
+      status: "fresh",
+      seriesLastPeriod,
+      expectedPeriod,
+      reason: `serie al día (${seriesLastPeriod})`,
+    };
+  }
+
+  return {
+    status: "stale",
+    seriesLastPeriod,
+    expectedPeriod,
+    reason: `la serie llega a ${seriesLastPeriod}; la fuente ya publicó ${expectedPeriod}`,
+  };
+}
+
 export function evaluateCriticalMonthlyFreshness(
   indicatorDate: string,
   now = new Date(),
