@@ -700,16 +700,22 @@ degradar silenciosamente una propiedad que hoy está funcionando muy bien.
   `connect-src 'self' https://static.cloudflareinsights.com
   https://api.web3forms.com`; `Referrer-Policy: strict-origin-when-cross-origin`;
   `Permissions-Policy` restrictiva; `X-Content-Type-Options: nosniff`;
-  `X-Frame-Options: DENY`.
-- **PRIV-02 → mecanismo confirmado en código**:
-  `src/utils/calculatorScenarios.ts` persiste en `localStorage` con key
-  `monedario_scenarios`, máximo 6 por calculadora, sin TTL. El hallazgo del
-  informe es limitación del inspector; falta el E2E save→reload.
-- **PRIV-01 → wiring cliente verificado, diagnóstico end-to-end pendiente**:
-  `SITE.analyticsTransport = true` (`src/config.ts:33`), atributo
-  `data-analytics-transport="enabled"` presente en `dist/`, gate de host de
-  producción (`monedario.cl`), ruta del worker
-  `monedario.cl/api/analytics/*` configurada en
-  `workers/analytics-collector/wrangler.toml`, y `calculator_complete` en el
-  allowlist con `calculator_slug`→`calculator_id` normalizado. Queda determinar
-  si el silencio observado es instrumentación/deploy o límite del inspector.
+  `X-Frame-Options: DENY`. Codificado en `scripts/check-headers-prod.mjs`
+  (`pnpm run check:headers:prod`), verde en vivo.
+- **PRIV-02 → RESUELTO**: `src/utils/calculatorScenarios.ts` persiste en
+  `localStorage` con key `monedario_scenarios`, máximo 6 por calculadora, sin
+  TTL. El E2E `tests/privacy/scenario-persistence.test.ts` verifica
+  guardar → reload → reaparece con 0 requests con el monto.
+- **PRIV-01 → RESUELTO (límite del inspector, no fallo del sitio)**:
+  - Verificación en producción con navegador headless (2026-09-29):
+    `POST https://monedario.cl/api/analytics/event` responde **202** con payload
+    allowlisted (`{"event":"calculator_complete","params":{"page_type":
+    "calculator","app_version":"5.5.1","calculator_id":"sueldo-liquido",
+    "outcome":"success","mode":"bruto-a-liquido"}}`).
+  - Beacon de Cloudflare Web Analytics presente
+    (`static.cloudflareinsights.com`, 1 request) — único tercero observado.
+  - Canarios financieros re-ejecutados contra producción: 4/4 LOCAL_ONLY
+    (`tests/privacy/financial-canaries.test.ts`).
+  - La ausencia de eventos del informe corresponde a una limitación del
+    instrumento (explicaciones B/C del propio informe), no a instrumentación
+    caída ni a drift de deploy.

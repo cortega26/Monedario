@@ -43,7 +43,7 @@ observabilidad/persistencia. Hardening central: convertir la propiedad
 
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|-------|----------|--------|------------|--------|
-| 121 | [privacy-remediation-2026-09-29.md](121-privacy-remediation-2026-09-29.md) | P3 + hardening | M | decisión del mantenedor (F1) | TODO |
+| 121 | [privacy-remediation-2026-09-29.md](121-privacy-remediation-2026-09-29.md) | P3 + hardening | M | decisión del mantenedor (F1) | DONE (PRIV-01/02/03 resueltos; `test:privacy` 8 tests + invariante + CI) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
 

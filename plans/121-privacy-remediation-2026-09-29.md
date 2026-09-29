@@ -16,7 +16,14 @@
   intencionalmente apagada?)
 - **Category**: privacidad / observabilidad / CI
 - **Planned at**: commit `96ac86af`, 2026-09-29
-- **Status**: TODO — requiere selección del mantenedor
+- **Status**: DONE — F1 resuelto: el transporte propio responde 202 en
+  producción con payload allowlisted y el beacon de Cloudflare Web Analytics
+  está presente (la ausencia de eventos del informe era límite del inspector);
+  F2 E2E escenarios (0 red, reload persiste); F3 `check:headers:prod` verde en
+  vivo; F4 suite `tests/privacy/` (8 tests: canarios 4/4 local y en
+  producción, contrato de analytics, escenarios, metamórfico 20 montos);
+  F5 invariante `INVARIANT.PRIVACY.NO_FINANCIAL_EGRESS` + paso de CI en el job
+  de a11y.
 - **Evidence**: `docs/reports/AUDIT-PRIVACY-2026-09-29.md`
 
 ## Contexto verificado (2026-09-29)
@@ -96,13 +103,13 @@
 
 ## Done criteria
 
-- [ ] `check:headers:prod` verde y corrida 2026-09-29 registrada (PRIV-03).
-- [ ] PRIV-01 cerrado con causa raíz documentada (instrumentación/deploy o fix
-      aplicado) y E2E de contrato en verde.
-- [ ] PRIV-02 cerrado con E2E save→reload (0 red) y key/TTL documentados.
-- [ ] Suite de canarios + metamórfico en verde y script `test:privacy`.
-- [ ] `INVARIANT.PRIVACY.NO_FINANCIAL_EGRESS` registrado con enforcement.
-- [ ] Gates en verde.
+- [x] `check:headers:prod` verde y corrida 2026-09-29 registrada (PRIV-03).
+- [x] PRIV-01 cerrado con causa raíz documentada (límite del inspector;
+      transporte 202 + beacon presentes) y E2E de contrato en verde.
+- [x] PRIV-02 cerrado con E2E save→reload (0 red) y key/TTL documentados.
+- [x] Suite de canarios + metamórfico en verde y script `test:privacy`.
+- [x] `INVARIANT.PRIVACY.NO_FINANCIAL_EGRESS` registrado con enforcement.
+- [x] Gates en verde.
 
 ## STOP conditions
 

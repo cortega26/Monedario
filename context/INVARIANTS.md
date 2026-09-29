@@ -42,6 +42,8 @@ Change log:
 - 2026-04-11: added competitive adaptation invariants for external benchmarking authority, differentiation, and ownership-before-expansion.
 - 2026-04-12: added external link policy invariant (INVARIANT.URLCHECK.EXTERNAL_LINK_POLICY) and CI gate for official/trusted host validation; see ADR-20260412-external-link-ci-gate.
 - 2026-04-25: updated INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES — role-identity framing replaced with agent-instance framing; added fresh-session requirement for same-family auditors; removed Gemini from canonical role examples; updated `context/EDITORIAL_AI_PIPELINE.md` with new role table (ChatGPT for ResearchAgent/MathAuditAgent; Claude Code fresh session for ComplianceAgent; Claude for all writing roles).
+- 2026-09-29: added indexability contract invariant (`INVARIANT.SEO.INDEXABILITY.CONTRACT`) with build guards; see ADR-20260929-declarative-indexability-contract.
+- 2026-09-29: added privacy invariant (`INVARIANT.PRIVACY.NO_FINANCIAL_EGRESS`) with `test:privacy` suite; see `docs/reports/AUDIT-PRIVACY-2026-09-29.md`.
 
 ## 2. Invariant Index
 
@@ -87,6 +89,7 @@ Change log:
 | `INVARIANT.EDITORIAL.INLINE_IMAGE_AVIF_REQUIRED` | Inline article images must use AVIF unless explicitly justified | Active | `pnpm run check:images` |
 | `INVARIANT.URLCHECK.EXTERNAL_LINK_POLICY` | External links to official/trusted hosts must resolve live within the expected host family | Active (phase 1 non-blocking) | `pnpm run check:urls:external:ci` |
 | `INVARIANT.SEO.INDEXABILITY.CONTRACT` | Path-based indexability is declared in one contract consumed by Layout, sitemap and utility pages | Active | `pnpm run build` (check-postbuild guards) + `pnpm run test` |
+| `INVARIANT.PRIVACY.NO_FINANCIAL_EGRESS` | Financial inputs/results never leave the browser (URL, requests, cookies, identifiers) | Active | `pnpm run test:privacy` |
 
 ## 3. Invariants
 
@@ -799,3 +802,21 @@ Change log:
 - Examples:
   - Compliant: `robotsMetaFor("/tags/afp/")` → `noindex,follow`; `/tags/**` excluded from `sitemap-0.xml`.
   - Violation: a page rendering `<meta name="robots" content="noindex">` inline instead of relying on the contract.
+
+### `INVARIANT.PRIVACY.NO_FINANCIAL_EGRESS`
+
+- Statement: Los inputs y resultados financieros de las calculadoras (sueldo, deuda, saldo, monto, impuesto) no pueden aparecer en URLs, requests salientes, cookies ni identificadores; la telemetría solo transporta eventos categóricos allowlisted.
+- Canonical source: `docs/reports/AUDIT-PRIVACY-2026-09-29.md`, `docs/adr/ADR-20260628-first-party-analytics.md`, `src/contracts/analytics-events.ts`.
+- Rationale:
+  - El usuario espera razonablemente que sus cifras permanezcan locales (YMYL).
+  - Una regresión en analytics, una librería nueva o una calculadora nueva podrían degradar la propiedad en silencio.
+- Enforcement:
+  - `pnpm run test:privacy` (canarios financieros, contrato de analytics, escenarios, metamórfico de 20 montos).
+  - Worker `workers/analytics-collector` rechaza claves desconocidas (`rejectUnknown`) y el cliente solo construye payloads allowlisted.
+  - `pnpm run check:headers:prod` cubre CSP/headers defensivos en producción (defensa en profundidad).
+- Detection:
+  - Fallo de `test:privacy`: canario en URL/request/cookie/storage o payload divergente entre montos.
+  - Payload de analytics con claves fuera del allowlist.
+- Examples:
+  - Compliant: `{"event":"calculator_complete","params":{"calculator_id":"sueldo-liquido","outcome":"success","mode":"bruto-a-liquido"}}` (202, sin montos).
+  - Violation: cualquier request con `?sueldo=…` o un body que contenga el monto introducido.
