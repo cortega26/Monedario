@@ -15,6 +15,23 @@ Fase 2/3.
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
 
+## Auditoría SEO 2026-09-28 — Fase 2 (planes 117–120)
+
+Derivados del informe `docs/reports/AUDIT-SEO-2026-09-28.md`; el plan 116 cerró
+la Fase 1 (SEO-01/03/04/07 + guardas). **Pendientes de selección del
+mantenedor** antes de implementar: 117 requiere decidir la prioridad de
+herramientas globales, 119 la intención primaria de Operación Renta, 120 la
+estrategia de tracking params (SEO-08); 118 es técnico y no requiere decisión.
+
+| Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
+|------|-------|----------|--------|------------|--------|
+| 117 | [linking interno por prioridad de producto](117-seo-linking-interno-2026-09-28.md) | P2 | M | decisión del mantenedor | TODO |
+| 118 | [structured data por template](118-seo-structured-data-2026-09-28.md) | P3 | M | — | TODO |
+| 119 | [gobernanza de intención: Operación Renta](119-seo-intencion-operacion-renta-2026-09-28.md) | P2 | M | decisión del mantenedor + revisión editorial | TODO |
+| 120 | [contrato de indexabilidad declarativo](120-seo-contrato-indexabilidad-2026-09-28.md) | P2 | L | decisión del mantenedor (SEO-08) + ADR | TODO |
+
+Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
+
 ## Auditoría profunda 2026-09-14 — planes 097–113 (completa salvo 111 BLOCKED)
 
 Sobre `0e506a8b`, selección del mantenedor: **«All the net-positive ones»**.
