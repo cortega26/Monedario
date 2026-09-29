@@ -16,6 +16,7 @@ import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParamete
 import { evaluateIpcSeriesFreshness } from "@/utils/economicFreshness";
 import { getPath } from "@/utils/getPath";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import ipcHistoricoRaw from "@/data/economic-history/ipc-historico.json";
 
 const ipcPath = getPath("/posts/que-es-el-ipc-chile-como-se-calcula/");
@@ -139,22 +140,15 @@ const calculatorNextStepItems = [
         id="calculator-form-card"
         class="rounded-xl border border-border p-6"
       >
-        <div class="mb-5">
-          <label
-            for="monto-input"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Monto original ($)
-          </label>
-          <input
-            type="number"
-            id="monto-input"
-            placeholder="Ej: 500.000"
-            min="1"
-            step="1"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-lg text-foreground focus:border-accent focus:outline-none"
-          />
-        </div>
+        <CalculatorField
+          id="monto-input"
+          label="Monto original ($)"
+          placeholder="Ej: 500.000"
+          min="1"
+          step="1"
+          inputClass="text-lg"
+          wrapperClass="mb-5"
+        />
 
         <div class="mb-5 grid grid-cols-2 gap-3">
           <div>

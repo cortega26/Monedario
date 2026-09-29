@@ -13,6 +13,7 @@ import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { getPath } from "@/utils/getPath";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
+import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import GlossaryContentWrapper from "@/components/GlossaryContentWrapper.astro";
 import { formatCLP } from "@/utils/formatCLP";
 import {
@@ -141,74 +142,44 @@ const gratiFaqs = [
 
         <!-- Campos Modalidad A -->
         <div id="campos-a">
-          <div class="mb-5">
-            <label
-              for="remuneracion-input"
-              class="mb-1 block text-sm font-medium text-secondary"
-            >
-              Remuneración mensual imponible ($)
-            </label>
-            <input
-              type="number"
-              id="remuneracion-input"
-              placeholder="Ej: 800.000"
-              min="1"
-              step="1"
-              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-lg text-foreground focus:border-accent focus:outline-none"
-            />
-          </div>
+          <CalculatorField
+            id="remuneracion-input"
+            label="Remuneración mensual imponible ($)"
+            placeholder="Ej: 800.000"
+            min="1"
+            step="1"
+            inputClass="text-lg"
+            wrapperClass="mb-5"
+          />
         </div>
 
         <!-- Campos Modalidad B -->
         <div id="campos-b" class="hidden">
-          <div class="mb-4">
-            <label
-              for="utilidades-input"
-              class="mb-1 block text-sm font-medium text-secondary"
-            >
-              Utilidades líquidas del empleador en el año ($)
-            </label>
-            <input
-              type="number"
-              id="utilidades-input"
-              placeholder="Ej: 50.000.000"
-              min="1"
-              step="1"
-              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-lg text-foreground focus:border-accent focus:outline-none"
-            />
-          </div>
-          <div class="mb-4">
-            <label
-              for="rem-trabajador-input"
-              class="mb-1 block text-sm font-medium text-secondary"
-            >
-              Remuneraciones anuales del trabajador ($)
-            </label>
-            <input
-              type="number"
-              id="rem-trabajador-input"
-              placeholder="Ej: 9.600.000"
-              min="1"
-              step="1"
-              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-lg text-foreground focus:border-accent focus:outline-none"
-            />
-          </div>
-          <div class="mb-5">
-            <label
-              for="rem-empresa-input"
-              class="mb-1 block text-sm font-medium text-secondary"
-            >
-              Remuneraciones anuales totales de la empresa ($)
-            </label>
-            <input
-              type="number"
-              id="rem-empresa-input"
-              placeholder="Ej: 300.000.000"
-              min="1"
-              step="1"
-              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-lg text-foreground focus:border-accent focus:outline-none"
-            />
-          </div>
+          <CalculatorField
+            id="utilidades-input"
+            label="Utilidades líquidas del empleador en el año ($)"
+            placeholder="Ej: 50.000.000"
+            min="1"
+            step="1"
+            inputClass="text-lg"
+          />
+          <CalculatorField
+            id="rem-trabajador-input"
+            label="Remuneraciones anuales del trabajador ($)"
+            placeholder="Ej: 9.600.000"
+            min="1"
+            step="1"
+            inputClass="text-lg"
+          />
+          <CalculatorField
+            id="rem-empresa-input"
+            label="Remuneraciones anuales totales de la empresa ($)"
+            placeholder="Ej: 300.000.000"
+            min="1"
+            step="1"
+            inputClass="text-lg"
+            wrapperClass="mb-5"
+          />
         </div>
 
         <button

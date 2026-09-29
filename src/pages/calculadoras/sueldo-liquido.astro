@@ -212,19 +212,14 @@ const calculatorNextStepItems = [
         />
 
         <div class="mb-4">
-          <label
-            for="sueldo"
-            id="sueldo-label"
-            class="mb-1 block text-sm font-medium text-secondary"
-          >
-            Sueldo bruto mensual ($)
-          </label>
-          <input
-            type="number"
+          <CalculatorField
             id="sueldo"
+            label="Sueldo bruto mensual ($)"
+            labelId="sueldo-label"
             placeholder="Ej: 1.200.000"
             min="0"
-            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+            wrapperClass="mb-0"
+            inputAttrs={{ "aria-describedby": "sueldo-hint" }}
           />
           <p id="sueldo-hint" class="mt-1 text-xs text-muted">
             El total antes de descuentos, incluyendo bonos o asignaciones no
@@ -404,119 +399,56 @@ const calculatorNextStepItems = [
                 y al mínimo legal de referencia.
               </p>
             </div>
+            <CalculatorField
+              id="gratificacion"
+              label="Gratificación mensual ($) - opcional"
+              placeholder="Ej: 150.000"
+              min="0"
+              wrapperClass="mb-0"
+              hint="Si recibes gratificación mensualizada, ingrésala aquí. Se suma al imponible."
+            />
+            <CalculatorField
+              id="horas-extra"
+              label="Horas extra ($) - opcional"
+              placeholder="Ej: 50.000"
+              min="0"
+              wrapperClass="mb-0"
+              hint="Monto total en pesos del mes (p. ej. 5 horas × valor hora × 1,5). Son imponibles y tributan. Desde abril de 2026 (Ley 40h), la jornada máxima es 42 h/semana: toda hora sobre ese límite es extra."
+            />
+            <CalculatorField
+              id="colacion"
+              label="Colación ($) - no imponible"
+              placeholder="Ej: 40.000"
+              min="0"
+              wrapperClass="mb-0"
+              hint="Si tu liquidación incluye asignación de colación, ingrésala aquí. Reduce el sueldo imponible (no se descuenta de AFP ni salud)."
+            />
+            <CalculatorField
+              id="movilizacion"
+              label="Movilización ($) - no imponible"
+              placeholder="Ej: 20.000"
+              min="0"
+              wrapperClass="mb-0"
+              hint="Asignación de movilización visible en tu liquidación. Reduce el imponible igual que la colación."
+            />
+            <CalculatorField
+              id="otros-descuentos"
+              label="Otros descuentos ($) - opcional"
+              placeholder="Ej: 50.000"
+              min="0"
+              wrapperClass="mb-0"
+              hint="Descuentos adicionales no previsionales (préstamo empresa, caja, etc.). Se restan del líquido final."
+            />
             <div>
-              <label
-                for="gratificacion"
-                class="mb-1 block text-sm font-medium text-secondary"
-              >
-                Gratificación mensual ($) - opcional
-              </label>
-              <input
-                type="number"
-                id="gratificacion"
-                placeholder="Ej: 150.000"
-                min="0"
-                class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-              />
-              <p class="mt-1 text-xs text-muted">
-                Si recibes gratificación mensualizada, ingrésala aquí. Se suma
-                al imponible.
-              </p>
-            </div>
-            <div>
-              <label
-                for="horas-extra"
-                class="mb-1 block text-sm font-medium text-secondary"
-              >
-                Horas extra ($) - opcional
-              </label>
-              <input
-                type="number"
-                id="horas-extra"
-                placeholder="Ej: 50.000"
-                min="0"
-                class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-              />
-              <p class="mt-1 text-xs text-muted">
-                Monto total en pesos del mes (p. ej. 5 horas × valor hora ×
-                1,5). Son imponibles y tributan. Desde abril de 2026 (Ley 40h),
-                la jornada máxima es 42 h/semana: toda hora sobre ese límite es
-                extra.
-              </p>
-            </div>
-            <div>
-              <label
-                for="colacion"
-                class="mb-1 block text-sm font-medium text-secondary"
-              >
-                Colación ($) - no imponible
-              </label>
-              <input
-                type="number"
-                id="colacion"
-                placeholder="Ej: 40.000"
-                min="0"
-                class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-              />
-              <p class="mt-1 text-xs text-muted">
-                Si tu liquidación incluye asignación de colación, ingrésala
-                aquí. Reduce el sueldo imponible (no se descuenta de AFP ni
-                salud).
-              </p>
-            </div>
-            <div>
-              <label
-                for="movilizacion"
-                class="mb-1 block text-sm font-medium text-secondary"
-              >
-                Movilización ($) - no imponible
-              </label>
-              <input
-                type="number"
-                id="movilizacion"
-                placeholder="Ej: 20.000"
-                min="0"
-                class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-              />
-              <p class="mt-1 text-xs text-muted">
-                Asignación de movilización visible en tu liquidación. Reduce el
-                imponible igual que la colación.
-              </p>
-            </div>
-            <div>
-              <label
-                for="otros-descuentos"
-                class="mb-1 block text-sm font-medium text-secondary"
-              >
-                Otros descuentos ($) - opcional
-              </label>
-              <input
-                type="number"
-                id="otros-descuentos"
-                placeholder="Ej: 50.000"
-                min="0"
-                class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-              />
-              <p class="mt-1 text-xs text-muted">
-                Descuentos adicionales no previsionales (préstamo empresa, caja,
-                etc.). Se restan del líquido final.
-              </p>
-            </div>
-            <div>
-              <label
-                for="apv-regimen-b"
-                class="mb-1 block text-sm font-medium text-secondary"
-              >
-                APV Régimen B ($) - opcional
-              </label>
-              <input
-                type="number"
+              <CalculatorField
                 id="apv-regimen-b"
+                label="APV Régimen B ($) - opcional"
                 placeholder="Ej: 100.000"
                 min="0"
-                class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+                wrapperClass="mb-0"
+                inputAttrs={{ "aria-describedby": "apv-regimen-b-hint" }}
               />
-              <p class="mt-1 text-xs text-muted">
+              <p id="apv-regimen-b-hint" class="mt-1 text-xs text-muted">
                 Aporte mensual a APV bajo <strong>Régimen B</strong>: reduce tu
                 base imponible mensual y por lo tanto el impuesto de 2ª
                 categoría (art. 42 bis LIR).

@@ -148,6 +148,10 @@ const calculatorNextStepItems = [
               </span>
             </label>
           </div>
+          {
+            /* Excepción TD-0111: input compuesto (label + selector de moneda UF/Pesos
+              + valor + equivalencia). CalculatorField no cubre ese layout. */
+          }
           <input
             type="number"
             id="propertyValue"

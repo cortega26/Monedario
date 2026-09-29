@@ -229,25 +229,14 @@ const operacionRentaFaqs = [
             hint="Total de boletas emitidas en 2025. El simulador aplica automáticamente los gastos presuntos legales (30%, tope 15 UTA)."
           />
 
-          <div class="mb-0">
-            <label
-              for="arriendos"
-              class="mb-1 block text-sm font-medium text-secondary"
-            >
-              Ingresos por arriendos anuales ($)
-            </label>
-            <input
-              type="number"
-              id="arriendos"
-              placeholder="Ej: 2400000"
-              min="0"
-              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-            />
-            <p class="mt-1 text-xs text-muted">
-              Rentas de arriendo percibidas durante el año. Ingrésalas tal como
-              las declararás en el F22.
-            </p>
-          </div>
+          <CalculatorField
+            id="arriendos"
+            label="Ingresos por arriendos anuales ($)"
+            placeholder="Ej: 2400000"
+            min="0"
+            wrapperClass="mb-0"
+            hint="Rentas de arriendo percibidas durante el año. Ingrésalas tal como las declararás en el F22."
+          />
         </div>
 
         <!-- Retenciones -->
@@ -262,29 +251,22 @@ const operacionRentaFaqs = [
             hint="Lo retiene tu empleador mensualmente. Está en el certificado de remuneraciones (F1887)."
           />
 
-          <div class="mb-0">
-            <label
-              for="ppm-honorarios"
-              class="mb-1 block text-sm font-medium text-secondary"
-            >
-              PPM de honorarios pagado ($)
-            </label>
-            <input
-              type="number"
-              id="ppm-honorarios"
-              placeholder="Ej: 490000"
-              min="0"
-              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-            />
-            <p class="mt-1 text-xs text-muted">
-              Retención del {
-                (taxYearParameters.honorariosPpmRate * 100).toLocaleString(
-                  "es-CL"
-                )
-              }% que hizo cada pagador de tus boletas emitidas en 2025 (AT2026).
-              Suma el total del año.
-            </p>
-          </div>
+          <CalculatorField
+            id="ppm-honorarios"
+            label="PPM de honorarios pagado ($)"
+            placeholder="Ej: 490000"
+            min="0"
+            wrapperClass="mb-0"
+            inputAttrs={{ "aria-describedby": "ppm-honorarios-hint" }}
+          />
+          <p id="ppm-honorarios-hint" class="mt-1 text-xs text-muted">
+            Retención del {
+              (taxYearParameters.honorariosPpmRate * 100).toLocaleString(
+                "es-CL"
+              )
+            }% que hizo cada pagador de tus boletas emitidas en 2025 (AT2026).
+            Suma el total del año.
+          </p>
         </div>
 
         <!-- Deducciones -->
@@ -295,48 +277,29 @@ const operacionRentaFaqs = [
             impuesto.
           </p>
 
-          <div class="mb-4">
-            <label
-              for="apv-regimen-b"
-              class="mb-1 block text-sm font-medium text-secondary"
-            >
-              APV Régimen B anual ($)
-            </label>
-            <input
-              type="number"
-              id="apv-regimen-b"
-              placeholder="Ej: 1200000"
-              min="0"
-              data-profile-bind="apvRegimenBAnual"
-              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-            />
-            <p class="mt-1 text-xs text-muted">
-              Solo Régimen B rebaja la base imponible del IGC. Tope: 600 UF.{
-                " "
-              }
-              <a href={apvPath} class="underline">¿Cuál régimen te conviene?</a>
-            </p>
-          </div>
+          <CalculatorField
+            id="apv-regimen-b"
+            label="APV Régimen B anual ($)"
+            placeholder="Ej: 1200000"
+            min="0"
+            inputAttrs={{
+              "data-profile-bind": "apvRegimenBAnual",
+              "aria-describedby": "apv-regimen-b-hint",
+            }}
+          />
+          <p id="apv-regimen-b-hint" class="mt-1 text-xs text-muted">
+            Solo Régimen B rebaja la base imponible del IGC. Tope: 600 UF.{" "}
+            <a href={apvPath} class="underline">¿Cuál régimen te conviene?</a>
+          </p>
 
-          <div class="mb-0">
-            <label
-              for="intereses-hipotecarios"
-              class="mb-1 block text-sm font-medium text-secondary"
-            >
-              Intereses hipotecarios pagados ($)
-            </label>
-            <input
-              type="number"
-              id="intereses-hipotecarios"
-              placeholder="Ej: 600000"
-              min="0"
-              class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
-            />
-            <p class="mt-1 text-xs text-muted">
-              Intereses de crédito hipotecario para vivienda propia. Tope: 8
-              UTA. Aparecen en el certificado del banco (línea 69 del F22).
-            </p>
-          </div>
+          <CalculatorField
+            id="intereses-hipotecarios"
+            label="Intereses hipotecarios pagados ($)"
+            placeholder="Ej: 600000"
+            min="0"
+            wrapperClass="mb-0"
+            hint="Intereses de crédito hipotecario para vivienda propia. Tope: 8 UTA. Aparecen en el certificado del banco (línea 69 del F22)."
+          />
         </div>
 
         <button
