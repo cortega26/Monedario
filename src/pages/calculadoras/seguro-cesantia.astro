@@ -255,7 +255,7 @@ const seguroCesantiaFaqs = [
         </button>
         <div
           id="cesantia-error"
-          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
+          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
           role="alert"
         >
         </div>
@@ -627,7 +627,7 @@ const seguroCesantiaFaqs = [
         "rounded-lg border border-red-500/30 bg-red-500/10 p-4 text-sm";
 
       const title = document.createElement("p");
-      title.className = "mb-1 font-bold text-red-400";
+      title.className = "mb-1 font-bold text-danger";
       title.textContent = "No cumples el mínimo aún";
 
       const message = document.createElement("p");
@@ -756,8 +756,8 @@ const seguroCesantiaFaqs = [
               ? "Revisar continuidad"
               : "No cumple mínimo",
           estimacion.eligibleForSolidarityFund
-            ? "bg-green-500/20 text-green-500"
-            : "bg-foreground/10 text-muted"
+            ? "bg-green-500/20 text-success"
+            : "bg-foreground/10 text-secondary"
         )
       );
       const solidarityMessage = document.createElement("p");

@@ -259,7 +259,7 @@ const operacionRentaFaqs = [
         </button>
         <div
           id="form-error"
-          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
+          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
           role="alert"
         >
         </div>
@@ -626,10 +626,10 @@ const operacionRentaFaqs = [
     bannerLabel.className =
       "text-xs font-bold tracking-widest uppercase mb-1 " +
       (isRefund
-        ? "text-green-400"
+        ? "text-success"
         : resultado.saldoFinal === 0
           ? "text-secondary"
-          : "text-amber-400");
+          : "text-warning");
     bannerLabel.textContent = isRefund
       ? "Devolución estimada"
       : resultado.saldoFinal === 0
@@ -640,10 +640,10 @@ const operacionRentaFaqs = [
     bannerAmount.className =
       "text-4xl font-bold " +
       (isRefund
-        ? "text-green-400"
+        ? "text-success"
         : resultado.saldoFinal === 0
           ? "text-foreground"
-          : "text-amber-400");
+          : "text-warning");
     bannerAmount.textContent = isRefund
       ? fmt(resultado.montoDevolución)
       : resultado.saldoFinal === 0
@@ -765,9 +765,9 @@ const operacionRentaFaqs = [
         (resultado.esDevolución ? "−" : "+") +
         fmt(Math.abs(resultado.saldoFinal)),
       className: resultado.esDevolución
-        ? "text-green-400 font-semibold"
+        ? "text-success font-semibold"
         : resultado.saldoFinal > 0
-          ? "text-amber-400 font-semibold"
+          ? "text-warning font-semibold"
           : "",
     });
     const impuestoCard = buildCard("IGC y créditos", impuestoRows);

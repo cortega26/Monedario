@@ -15,7 +15,8 @@
 - **Category**: UX/a11y correctness + regression guards
 - **Planned at**: commit `224b6f74`, 2026-09-28
 - **Status**: Fase 1 DONE y Fase 2 casi completa (F-05, F-06, F-07, F-08 en 17
-  páginas, guard de IDs, axe 22/22). Pendientes: F-08 completo (topes por
+  páginas, guard de IDs, axe 22/22 plantillas + 17/17 resultados calculados,
+  tokens semánticos de contraste). Pendientes: F-08 completo (topes por
   calculadora), F-09/F-10 y estructural (2026-09-28).
 - **Evidence**: `docs/reports/AUDIT-UX-2026-09-28.md`
 
@@ -208,6 +209,31 @@ estado inicial.
 - **Evidencia**: build OK (8 checks, 332 páginas); Playwright **160 passed**;
   `check:ci` exit 0.
 
+### 2026-09-28 — Fase 2, ronda 4: contraste en estados calculados
+
+- **Tokens semánticos** en `src/styles/global.css`: `--color-success-text`,
+  `--color-danger-text`, `--color-warning-text` (light 800/700/800; dark
+  400/400/400) expuestos como utilidades `text-success`, `text-danger`,
+  `text-warning` vía `@theme inline`, siguiendo el patrón de
+  `--color-accent-2-text`/`--color-highlight-text`.
+- **Reemplazo sistémico**: 92 clases `text-green-*`/`text-red-*`/
+  `text-yellow-*`/`text-amber-*` en 23 archivos de la superficie de
+  calculadoras (páginas + `src/utils/sueldo-liquido/**` +
+  `src/components/calculator/**`). Los estados calculados tenían fallos reales
+  AA: green-500 a 2.1:1 y red-400 a 2.74:1 sobre fondo claro.
+- **Nueva suite axe de resultados calculados**
+  (`tests/accessibility/calculator-result-a11y.test.ts`): 17 calculadoras con
+  receta válida; cada caso exige `data-result-state="result"` antes de escanear.
+  `reportViolations` se movió a `axe-helper.ts` (compartido con
+  `pages.test.ts`).
+- **Correcciones adicionales destapadas por la suite**: `text-foreground/60`
+  en depósito e interés compuesto → `text-muted`; `text-blue-500` en APV →
+  `text-blue-700 dark:text-blue-400`; `text-foreground/70` en el resultado
+  inverso de sueldo → `text-muted`; badge "Revisar continuidad" (seguro de
+  cesantía) `text-muted` → `text-secondary` sobre `bg-foreground/10`.
+- **Evidencia**: build OK (8 checks, 332 páginas); Playwright **177 passed**
+  (160 previos + 17 calculados); `check:ci` exit 0.
+
 ### Anexo CI (higiene, fuera del alcance UX)
 
 `check:ci` estaba rojo en `main` por dos tests preexistentes introducidos por
@@ -244,10 +270,13 @@ test y ADR-20260716). Sin cambios de comportamiento.
   "Ley {número}".
 - [x] **Axe sobre todas las plantillas de calculadora** (22/22, escritorio
   claro) con 3 correcciones de contraste.
+- [x] **Axe sobre estados calculados** (17/17) con tokens semánticos
+  `success`/`danger`/`warning` y correcciones AA adicionales.
 - [ ] **F-09/F-10**: contexto de página en hubs y compactación móvil con ancla.
 - [ ] **Estructural**: componentes `FinancialField` y `ResultPanel` con variantes
   de estado; migración de las 22 calculadoras; pasada manual con
-  NVDA/VoiceOver; axe sobre estados con resultado calculado.
+  NVDA/VoiceOver; contraste dark-mode de los estados calculados (hoy escaneados
+  en claro).
 - [ ] **F-08 completo**: fecha, base imponible y topes por calculadora dentro
   del bloque (requiere contrato por página).
 

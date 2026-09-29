@@ -267,7 +267,7 @@ const calculatorNextStepItems = [
         </button>
         <div
           id="calc-error"
-          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
+          class="mt-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
           role="alert"
         >
         </div>
@@ -679,7 +679,7 @@ const calculatorNextStepItems = [
       buildRow(
         "Total intereses (sin seguros)",
         fmtPesos(resultado.totalInterestPesos),
-        "text-red-400"
+        "text-danger"
       ),
       ...(hasInsurance
         ? [

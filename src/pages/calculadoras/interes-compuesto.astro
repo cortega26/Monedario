@@ -144,7 +144,7 @@ const interesCompuestoFaqs = [
 
         <div
           id="calc-error"
-          class="mb-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-red-500"
+          class="mb-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
           role="alert"
           aria-live="assertive"
         >
@@ -507,7 +507,7 @@ const interesCompuestoFaqs = [
     headlineValue.className = "text-4xl font-bold";
     headlineValue.textContent = fmt(result.finalAmount);
     const headlineSub = document.createElement("p");
-    headlineSub.className = "mt-1.5 text-xs text-foreground/60";
+    headlineSub.className = "mt-1.5 text-xs text-muted";
     headlineSub.textContent = `${result.years} años · capitalización ${frecuenciaLabel[result.compoundsPerYear] ?? result.compoundsPerYear + "x/año"}`;
     headline.append(headlineLabel, headlineValue, headlineSub);
 
@@ -554,7 +554,7 @@ const interesCompuestoFaqs = [
       mkRow(
         "Interés total generado",
         fmt(result.generatedInterest),
-        "text-green-500"
+        "text-success"
       ),
       mkRow(
         "Rentabilidad total",
