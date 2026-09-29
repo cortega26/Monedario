@@ -274,7 +274,7 @@ const operacionRentaFaqs = [
             <p
               class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
             >
-              Devolución estimada (Ejemplo)
+              Devolución estimada (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
               {formatPeso(exampleResult.montoDevolución)}
@@ -304,7 +304,8 @@ const operacionRentaFaqs = [
             Ejemplo: sueldos brutos {formatPeso(exampleResult.sueldosBrutos)}
             anuales, imp. único retenido {
               formatPeso(exampleResult.impuestoUnicoRetenido)
-            }, sin honorarios ni deducciones adicionales.
+            }, sin honorarios ni deducciones adicionales. Ingresa tus datos para
+            ver tu resultado.
           </p>
         </div>
         <div
@@ -318,6 +319,7 @@ const operacionRentaFaqs = [
         <CalculatorDataFreshness
           source={economicParameters.source}
           updatedDate={formatEconomicDate(economicParameters.lastUpdated)}
+          variant="result"
         />
       </CalculatorResultPanel>
     </section>

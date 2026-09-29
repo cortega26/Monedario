@@ -241,7 +241,7 @@ const calculatorNextStepItems = [
         </div>
       </div>
 
-      <CalculatorResultPanel title="Estimación orientativa">
+      <CalculatorResultPanel title="Estimación orientativa" disclaimer>
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
           <div
             class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
@@ -249,7 +249,7 @@ const calculatorNextStepItems = [
             <p
               class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
             >
-              Total estimado (Ejemplo)
+              Total estimado (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">$3.600.000</p>
           </div>
@@ -273,7 +273,7 @@ const calculatorNextStepItems = [
           </div>
           <p class="mt-4 text-xs text-muted">
             Ejemplo: sueldo $900.000, 3 años, necesidades de la empresa, sin
-            aviso previo. Ingresa tu caso real para estimar tu finiquito.
+            aviso previo. Ingresa tus datos para ver tu resultado.
           </p>
         </div>
       </CalculatorResultPanel>
@@ -406,6 +406,10 @@ const calculatorNextStepItems = [
   import { estimateFiniquito } from "@/application/use-cases/EstimateFiniquito";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
+  import {
+    markResultState,
+    renderInvalidResultState,
+  } from "@/utils/calculatorResultState";
 
   declare global {
     interface Window {
@@ -443,6 +447,7 @@ const calculatorNextStepItems = [
   }
 
   function showInlineError(message: string) {
+    renderInvalidResultState();
     const errorBox = document.getElementById("finiquito-error");
     if (!errorBox) return;
     errorBox.textContent = message;
@@ -578,37 +583,29 @@ const calculatorNextStepItems = [
       note.textContent =
         "Base: 1,25 días hábiles por mes trabajado (art. 71 CT). Valor diario = remuneración mensual ÷ 30.";
 
-      document
-        .getElementById("resultado-contenido")
-        ?.replaceChildren(
-          headline,
-          buildRow(
-            "Meses transcurridos",
-            `${vacationMonths}`,
-            "text-secondary"
-          ),
-          buildRow(
-            "Días adicionales",
-            `${vacationExtraDays}`,
-            "text-secondary"
-          ),
-          buildRow(
-            "Días proporcionales",
-            `${result.proportionalVacationDays.toFixed(2)}`,
-            "text-accent"
-          ),
-          buildRow(
-            "Valor diario",
-            fmtCurrency(monthlySalary / 30),
-            "text-secondary"
-          ),
-          buildRow(
-            "Monto feriado proporcional",
-            fmtCurrency(result.proportionalVacationAmount),
-            "text-accent"
-          ),
-          note
-        );
+      const vacationContainer = document.getElementById("resultado-contenido");
+      vacationContainer?.replaceChildren(
+        headline,
+        buildRow("Meses transcurridos", `${vacationMonths}`, "text-secondary"),
+        buildRow("Días adicionales", `${vacationExtraDays}`, "text-secondary"),
+        buildRow(
+          "Días proporcionales",
+          `${result.proportionalVacationDays.toFixed(2)}`,
+          "text-accent"
+        ),
+        buildRow(
+          "Valor diario",
+          fmtCurrency(monthlySalary / 30),
+          "text-secondary"
+        ),
+        buildRow(
+          "Monto feriado proporcional",
+          fmtCurrency(result.proportionalVacationAmount),
+          "text-accent"
+        ),
+        note
+      );
+      markResultState(vacationContainer, "result");
 
       document.dispatchEvent(
         new CustomEvent("calculator:result", {
@@ -737,62 +734,60 @@ const calculatorNextStepItems = [
       );
     }
 
-    document
-      .getElementById("resultado-contenido")
-      ?.replaceChildren(
-        headline,
-        buildRow(
-          "Años contados",
-          `${result.serviceYearsCounted}`,
-          "text-secondary"
-        ),
-        buildRow(
-          "Años con tope legal",
-          `${result.cappedServiceYears}`,
-          "text-secondary"
-        ),
-        buildRow(
-          "Días trabajados del mes sin pagar",
-          fmtCurrency(result.pendingSalaryAmount),
-          "text-secondary"
-        ),
-        buildRow(
-          "Feriado proporcional",
-          `${result.proportionalVacationDays.toFixed(2)} días`,
-          "text-secondary"
-        ),
-        buildRow(
-          "Monto por feriado proporcional",
-          fmtCurrency(result.proportionalVacationAmount),
-          "text-secondary"
-        ),
-        buildRow(
-          "Indemnización años de servicio",
-          fmtCurrency(result.yearsOfServiceIndemnity),
-          result.yearsOfServiceIndemnity > 0 ? "text-accent" : "text-secondary"
-        ),
-        buildRow(
-          "Aviso previo sustitutivo",
-          fmtCurrency(result.substituteNoticeIndemnity),
-          result.substituteNoticeIndemnity > 0
-            ? "text-accent"
-            : "text-secondary"
-        ),
-        buildRow(
-          "Gratificación proporcional (art. 47)",
-          fmtCurrency(result.gratificacionProporcionalAmount),
-          result.gratificacionProporcionalAmount > 0
-            ? "text-accent"
-            : "text-secondary"
-        ),
-        buildRow(
-          `Recargo despido injustificado (art. 168 — ${(result.art168SurchargePercent * 100).toFixed(0)}%)`,
-          fmtCurrency(result.art168SurchargeAmount),
-          result.art168SurchargeAmount > 0 ? "text-accent" : "text-secondary"
-        ),
-        flags,
-        notes
-      );
+    const resultContainer = document.getElementById("resultado-contenido");
+    resultContainer?.replaceChildren(
+      headline,
+      buildRow(
+        "Años contados",
+        `${result.serviceYearsCounted}`,
+        "text-secondary"
+      ),
+      buildRow(
+        "Años con tope legal",
+        `${result.cappedServiceYears}`,
+        "text-secondary"
+      ),
+      buildRow(
+        "Días trabajados del mes sin pagar",
+        fmtCurrency(result.pendingSalaryAmount),
+        "text-secondary"
+      ),
+      buildRow(
+        "Feriado proporcional",
+        `${result.proportionalVacationDays.toFixed(2)} días`,
+        "text-secondary"
+      ),
+      buildRow(
+        "Monto por feriado proporcional",
+        fmtCurrency(result.proportionalVacationAmount),
+        "text-secondary"
+      ),
+      buildRow(
+        "Indemnización años de servicio",
+        fmtCurrency(result.yearsOfServiceIndemnity),
+        result.yearsOfServiceIndemnity > 0 ? "text-accent" : "text-secondary"
+      ),
+      buildRow(
+        "Aviso previo sustitutivo",
+        fmtCurrency(result.substituteNoticeIndemnity),
+        result.substituteNoticeIndemnity > 0 ? "text-accent" : "text-secondary"
+      ),
+      buildRow(
+        "Gratificación proporcional (art. 47)",
+        fmtCurrency(result.gratificacionProporcionalAmount),
+        result.gratificacionProporcionalAmount > 0
+          ? "text-accent"
+          : "text-secondary"
+      ),
+      buildRow(
+        `Recargo despido injustificado (art. 168 — ${(result.art168SurchargePercent * 100).toFixed(0)}%)`,
+        fmtCurrency(result.art168SurchargeAmount),
+        result.art168SurchargeAmount > 0 ? "text-accent" : "text-secondary"
+      ),
+      flags,
+      notes
+    );
+    markResultState(resultContainer, "result");
 
     document.dispatchEvent(
       new CustomEvent("calculator:result", {

@@ -282,7 +282,7 @@ const calculatorNextStepItems = [
             <p
               class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
             >
-              Dividendo mensual (Ejemplo)
+              Dividendo mensual (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
               {fmtClp(exampleResult.totalPaymentMonth1Pesos)}
@@ -310,8 +310,14 @@ const calculatorNextStepItems = [
           </div>
           <p class="mt-4 text-xs text-muted">
             Ejemplo: propiedad de 3.000 UF, pie 20%, 25 años al 4,5% anual.
+            Ingresa tus datos para ver tu resultado.
           </p>
         </div>
+        <CalculatorDataFreshness
+          source={economicParameters.source}
+          updatedDate={formatEconomicDate(economicParameters.lastUpdated)}
+          variant="result"
+        />
       </CalculatorResultPanel>
     </section>
 

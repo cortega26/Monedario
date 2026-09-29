@@ -221,7 +221,7 @@ const creditoConsumoFaqs = [
       </div>
 
       <!-- RESULTADO -->
-      <CalculatorResultPanel title="Desglose del crédito">
+      <CalculatorResultPanel title="Desglose del crédito" disclaimer>
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
           <div
             class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
@@ -229,7 +229,7 @@ const creditoConsumoFaqs = [
             <p
               class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
             >
-              Cuota mensual (Ejemplo)
+              Cuota mensual (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
               {fmtClp(exampleResult.monthlyPaymentTotal)}
@@ -257,6 +257,7 @@ const creditoConsumoFaqs = [
           </div>
           <p class="mt-4 text-xs text-muted">
             Ejemplo: crédito de $2.000.000 a 24 meses con tasa 3,49% mensual.
+            Ingresa tus datos para ver tu resultado.
           </p>
         </div>
       </CalculatorResultPanel>

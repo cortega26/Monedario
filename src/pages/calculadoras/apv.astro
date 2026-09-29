@@ -309,7 +309,7 @@ const calculatorNextStepItems = [
             <p
               class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
             >
-              Beneficio anual Régimen B (Ejemplo)
+              Beneficio anual Régimen B (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
               {formatCurrency(exampleResult.regimeB.annualBenefit)}
@@ -337,7 +337,7 @@ const calculatorNextStepItems = [
           </div>
           <p class="mt-4 text-xs text-muted">
             Ejemplo: sueldo $1.500.000, aporte APV $100.000/mes, AFP 11,44%,
-            Fonasa.
+            Fonasa. Ingresa tus datos para ver tu resultado.
           </p>
         </div>
         <div
@@ -351,6 +351,7 @@ const calculatorNextStepItems = [
         <CalculatorDataFreshness
           source={economicParameters.source}
           updatedDate={formatEconomicDate(economicParameters.lastUpdated)}
+          variant="result"
         />
       </CalculatorResultPanel>
     </section>

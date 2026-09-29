@@ -91,10 +91,14 @@ import { SITE } from "@/config";
         </li>
       </ul>
       <p class="mt-3 max-w-2xl text-sm leading-relaxed text-secondary">
-        Fecha de la última auditoría automatizada: <strong
-          class="text-foreground">18 de mayo de 2026</strong
-        >. Esta página resume los criterios públicos y el alcance de esa
-        revisión.
+        Última verificación automatizada: <strong class="text-foreground"
+          >28 de septiembre de 2026</strong
+        >. Además de los 39 escaneos axe sobre trece plantillas, la suite suma
+        pruebas dirigidas de semántica de calculadoras, estados de resultado,
+        nombres accesibles de formularios y buscador (116 en total), que se
+        ejecutan junto al build. Próxima revisión programada: <strong
+          class="text-foreground">marzo de 2027</strong
+        >.
       </p>
     </section>
 
@@ -206,6 +210,29 @@ import { SITE } from "@/config";
           </p>
         </div>
       </div>
+    </section>
+
+    <!-- CHANGELOG -->
+    <section class="border-b border-border py-10">
+      <h2 class="mb-4 text-2xl font-bold">Changelog de accesibilidad</h2>
+      <ul
+        class="max-w-2xl list-disc space-y-2 pl-6 text-sm leading-relaxed text-secondary"
+      >
+        <li>
+          <strong class="text-foreground">28 de septiembre de 2026</strong> — nombres
+          accesibles en los controles numéricos de las calculadoras de crédito de
+          consumo, dividendo hipotecario y renegociación; jerarquía de encabezados
+          corregida en glosario y comparador de AFP; estado de resultado inválido
+          explícito en las calculadoras (el ejemplo ilustrativo ya no persiste ante
+          un error); estado vacío del buscador con recuperación y anuncio accesible;
+          bloque de estimación referencial junto a los resultados.
+        </li>
+        <li>
+          <strong class="text-foreground">18 de mayo de 2026</strong> — auditoría
+          automatizada axe-core 4.11 sobre trece plantillas en tres condiciones (39
+          escaneos), sin violaciones críticas ni serias.
+        </li>
+      </ul>
     </section>
 
     <!-- FEEDBACK -->

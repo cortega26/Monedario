@@ -78,6 +78,25 @@ export function readH1FromHtml(html) {
 }
 
 /**
+ * Collect duplicated `id` attributes in a page. Ignores <script>/<style>
+ * bodies so embedded JSON or CSS strings cannot create false positives.
+ * Returns [{ id, count }] sorted by id.
+ */
+export function findDuplicateIds(html) {
+  const stripped = html
+    .replace(/<script[\s\S]*?<\/script>/gi, "")
+    .replace(/<style[\s\S]*?<\/style>/gi, "");
+  const counts = new Map();
+  for (const match of stripped.matchAll(/\sid=["']([^"']+)["']/g)) {
+    counts.set(match[1], (counts.get(match[1]) ?? 0) + 1);
+  }
+  return [...counts.entries()]
+    .filter(([, count]) => count > 1)
+    .map(([id, count]) => ({ id, count }))
+    .sort((a, b) => a.id.localeCompare(b.id));
+}
+
+/**
  * Detect heading level jumps greater than one inside the first <main>.
  * Returns one entry per offending heading with its level, the previous level
  * and a short text label for the error message.
@@ -336,6 +355,22 @@ const CHECKS = [
         for (const jump of findHeadingLevelJumps(html)) {
           errors.push(
             `${file}:heading-hierarchy h${jump.from} → h${jump.to} near "${jump.text}"`
+          );
+        }
+      }
+      return errors;
+    },
+  },
+  {
+    id: "unique-element-ids",
+    message: "Every id attribute must be unique per page (plan 114 regression: duplicated #resultado).",
+    run(distDir) {
+      const errors = [];
+      for (const file of listHtmlPages(distDir)) {
+        const html = readFileSync(path.join(distDir, file), "utf8");
+        for (const { id, count } of findDuplicateIds(html)) {
+          errors.push(
+            `${file}:unique-element-ids id="${id}" appears ${count} times`
           );
         }
       }

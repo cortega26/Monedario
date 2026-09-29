@@ -240,7 +240,7 @@ const calculatorNextStepItems = [
             <p
               class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
             >
-              Nuevo arriendo (Ejemplo)
+              Nuevo arriendo (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
               {fmtClp(exampleRentNew)}
@@ -266,7 +266,7 @@ const calculatorNextStepItems = [
           </div>
           <p class="mt-4 text-xs text-muted">
             Ejemplo: arriendo de $400.000 reajustado por un IPC acumulado de
-            3,5%.
+            3,5%. Ingresa tus datos para ver tu resultado.
           </p>
         </div>
         <div
@@ -279,6 +279,7 @@ const calculatorNextStepItems = [
         <CalculatorDataFreshness
           source={economicParameters.source}
           updatedDate={formatEconomicDate(economicParameters.lastUpdated)}
+          variant="result"
         />
       </div>
     </section>

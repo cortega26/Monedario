@@ -141,6 +141,14 @@ const CALCULATORS: CalculatorStateConfig[] = [
     },
     errorSelector: "#prepago-error",
   },
+  {
+    slug: "finiquito-indemnizacion",
+    invalidate: async page => {
+      await page.locator("#monthly-salary").fill("0");
+      await page.locator("#calcBtn").click();
+    },
+    errorSelector: "#finiquito-error",
+  },
 ];
 
 const exampleLocator = (page: Page) =>
@@ -167,6 +175,20 @@ test.describe("Calculator result states (Plan 114)", () => {
       await expect(page.locator("[data-is-example='true']")).toHaveCount(0);
     });
   }
+
+  test.describe("result trust block (F-08)", () => {
+    for (const cfg of CALCULATORS) {
+      test(`${cfg.slug}: result states the estimate is referential`, async ({
+        page,
+      }) => {
+        await page.goto(`/calculadoras/${cfg.slug}/`);
+        await page.waitForLoadState("networkidle");
+        await expect(page.locator("main")).toContainText(
+          "Estimación referencial"
+        );
+      });
+    }
+  });
 
   test.describe("sueldo-liquido boundary inputs", () => {
     test.beforeEach(async ({ page }) => {

@@ -4,9 +4,17 @@ interface Props {
   headingId?: string;
   title?: string;
   class?: string;
+  /** Añade el bloque de estimación referencial bajo el resultado (F-08). */
+  disclaimer?: boolean;
 }
 
-const { id, headingId, title = "Resultado", class: extraClass } = Astro.props;
+const {
+  id,
+  headingId,
+  title = "Resultado",
+  class: extraClass,
+  disclaimer,
+} = Astro.props;
 ---
 
 <div
@@ -17,4 +25,14 @@ const { id, headingId, title = "Resultado", class: extraClass } = Astro.props;
     {title}
   </h2>
   <slot />
+  {
+    disclaimer && (
+      <p class="mt-4 rounded-lg border border-border bg-surface-muted/30 px-3 py-2 text-xs text-muted">
+        <span class="font-semibold text-foreground">
+          Estimación referencial.
+        </span>{" "}
+        No es una cotización ni una liquidación oficial.
+      </p>
+    )
+  }
 </div>
