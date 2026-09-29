@@ -90,6 +90,12 @@ enlazado. Dónde publicar: bloque de verificación en URLs existentes; una
 página dedicada de auditorías es URL nueva (FOCO ESTRICTO hasta 2026-11-02 o
 excepción aprobada).
 
+**Los artefactos viven en el repositorio privado del proyecto**: nunca
+afirmar públicamente que son accesibles o que el repositorio es público. La
+divulgación pública, si ocurre, es un resumen redactado para la web (método,
+modelo, protocolo, fecha, veredicto y revisión humana), no el artefacto
+completo.
+
 ## 5. Integración
 
 - **Pipeline editorial** (`src/data/blog`): el resultado reemplaza/complementa
