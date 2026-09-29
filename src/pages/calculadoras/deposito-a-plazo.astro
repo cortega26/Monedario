@@ -20,7 +20,6 @@ import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 import CalculatorScenarios from "@/components/calculator/CalculatorScenarios.astro";
 import CalculatorExplainerSection from "@/components/calculator/CalculatorExplainerSection.astro";
-import CalculatorRadioGroup from "@/components/calculator/CalculatorRadioGroup.astro";
 
 const currentCalculator = CALCULATOR_PORTFOLIO.find(
   calc => calc.slug === "deposito-a-plazo"
@@ -54,7 +53,7 @@ const dapFaqs = [
   {
     question: "¿Los depósitos a plazo pagan impuesto en Chile?",
     answer:
-      "Sí. Los intereses de depósitos a plazo para personas naturales sin actividad de primera categoría están sujetos a retención del 4% (art. 59 N°4 LIR). El banco retiene ese porcentaje directamente sobre el interés bruto. Esta calculadora muestra el estimado con y sin impuesto.",
+      "Los intereses tributan en el Impuesto Global Complementario anual, no con una retención del banco. El banco te paga el interés completo al vencimiento; la tributación se resuelve en tu declaración de renta, donde aplica el tramo exento general de 13,5 UTA y —si solo tienes rentas de sueldo o de pequeño contribuyente— una exención de hasta 20 UTM (SII, FAQ 001.140.2738). La retención del 4% del art. 59 N°4 LIR aplica a personas sin domicilio ni residencia en Chile (Impuesto Adicional), no a residentes.",
   },
   {
     question: "¿Qué es la TIR en un depósito a plazo?",
@@ -92,7 +91,7 @@ const dapFaqs = [
   >
     <CalculatorHero
       title="Calculadora de Depósito a Plazo"
-      description="Estima el rendimiento de tu DAP: interés bruto, retención de impuesto (4%) e interés neto final. Ingresa monto, plazo y tasa TIR."
+      description="Estima el rendimiento de tu DAP: interés pagado al vencimiento y monto final. Ingresa monto, plazo y tasa TIR."
       descriptionClass="max-w-lg text-sm leading-relaxed text-foreground"
     />
 
@@ -131,21 +130,6 @@ const dapFaqs = [
           hint="La TIR anual la informa el banco. Puedes usar la tasa de referencia BCCh como punto de comparación."
         />
 
-        <CalculatorRadioGroup
-          legend="¿Aplica retención de impuesto (4%)?"
-          name="aplica-impuesto"
-          hint="Art. 59 N°4 LIR: retención de 4% sobre intereses para personas naturales sin actividad de primera categoría."
-          options={[
-            {
-              id: "aplica-si",
-              value: "si",
-              label: "Sí (persona natural)",
-              checked: true,
-            },
-            { id: "aplica-no", value: "no", label: "No / Empresa" },
-          ]}
-        />
-
         <div
           id="calc-error"
           class="mb-3 hidden rounded-lg border border-red-500/30 bg-red-500/10 p-3 text-sm text-danger"
@@ -176,24 +160,21 @@ const dapFaqs = [
             >
               Monto al vencimiento (Ejemplo ilustrativo)
             </p>
-            <p class="text-4xl font-bold text-foreground/80">$5.118.356</p>
+            <p class="text-4xl font-bold text-foreground/80">$5.123.288</p>
           </div>
           <div class="space-y-2 text-sm">
             <div class="flex justify-between">
-              <span class="text-secondary">Interés bruto</span>
+              <span class="text-secondary">Capital</span>
+              <span class="font-medium text-foreground/80">$5.000.000</span>
+            </div>
+            <div class="flex justify-between">
+              <span class="text-secondary">Interés pagado al vencimiento</span>
               <span class="font-medium text-foreground/80">$123.288</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-secondary">Retención 4%</span>
-              <span class="text-danger">− $4.932</span>
-            </div>
-            <div class="flex justify-between">
-              <span class="text-secondary">Interés neto</span>
-              <span class="font-medium text-foreground/80">$118.356</span>
             </div>
           </div>
           <p class="mt-4 text-xs text-muted">
-            Ejemplo: $5.000.000 al 5% TIR por 180 días, con retención 4%.
+            Ejemplo: $5.000.000 al 5% TIR por 180 días. Los intereses tributan
+            en tu declaración anual de renta; el banco no aplica retención.
             Ingresa tus datos para ver tu resultado.
           </p>
         </div>
@@ -215,11 +196,16 @@ const dapFaqs = [
         <strong>Fórmula:</strong> Interés bruto = Monto × (TIR% / 100) × (días / 365).
       </p>
       <p>
-        Los intereses de DAP están sujetos a una retención del <strong
-          >4%</strong
+        Para una persona natural residente, el banco <strong
+          >no practica retención</strong
         >
-        (art. 59 N°4 Ley de Impuesto a la Renta) para personas naturales sin actividad
-        de primera categoría. Este impuesto lo retiene directamente el banco.
+        sobre los intereses: te paga el interés completo al vencimiento y la tributación
+        se resuelve en tu <strong>declaración anual de renta</strong>
+        (Impuesto Global Complementario). Ahí aplica el tramo exento general de 13,5
+        UTA y, si solo tienes rentas de sueldo o de pequeño contribuyente, una exención
+        de hasta <strong>20 UTM</strong> (SII, FAQ 001.140.2738). La retención del
+        4% del art. 59 N°4 LIR corresponde al Impuesto Adicional de personas sin domicilio
+        ni residencia en Chile.
       </p>
       <p>
         Para comparar si conviene un DAP en UF versus pesos, revisa el artículo
@@ -271,11 +257,13 @@ const dapFaqs = [
             >
           </summary>
           <div class="border-t border-border px-4 py-3 text-sm text-secondary">
-            Sí, para personas naturales sin actividad de primera categoría. El
-            banco retiene el 4% del interés bruto directamente (art. 59 N°4
-            LIR). Este impuesto es una retención, no necesariamente el impuesto
-            final — en la declaración de renta anual puede ajustarse según tu
-            situación.
+            Los intereses se suman a tus rentas del año y tributan en el
+            Impuesto Global Complementario. El banco no retiene nada al pagarte
+            el interés. En la declaración anual aplica el tramo exento general
+            de 13,5 UTA y, si solo tienes rentas de sueldo o de pequeño
+            contribuyente, una exención de hasta 20 UTM (SII, FAQ 001.140.2738).
+            La retención del 4% del art. 59 N°4 LIR es Impuesto Adicional para
+            personas sin domicilio ni residencia en Chile.
           </div>
         </details>
 
@@ -342,12 +330,17 @@ const dapFaqs = [
     />
     <MethodologyBlock
       example={termDepositWorkedExample.example}
-      notes="Esta calculadora aplica la fórmula lineal de interés simple proporcional al plazo: Interés bruto = Monto × (TIR/100) × (días/365). La retención del 4% sobre intereses se aplica bajo art. 59 N°4 LIR para personas naturales sin actividad de primera categoría. El monto final = monto inicial + interés neto. Los resultados son de referencia; el impuesto final depende de la situación tributaria de cada contribuyente."
+      notes="Esta calculadora aplica interés simple proporcional al plazo: Interés = Monto × (TIR/100) × (días/365) y el monto al vencimiento = monto + interés. Para personas naturales residentes el banco no aplica retención: los intereses tributan en el Impuesto Global Complementario anual (tramo exento general de 13,5 UTA; exención de hasta 20 UTM si solo hay rentas de sueldo o de pequeño contribuyente). La retención del 4% del art. 59 N°4 LIR es Impuesto Adicional para personas sin domicilio ni residencia en Chile. Los resultados son de referencia; el impuesto final depende de la situación tributaria de cada contribuyente."
       sources={[
         {
-          name: "SII — Art. 59 N°4 LIR: retención de impuesto sobre intereses",
-          url: "https://www.sii.cl/normativa_legislacion/leyimpuestoalarenta.pdf",
-          date: "2026-05",
+          name: "SII — ¿Cómo tributan los intereses de depósitos a plazo? (FAQ 001.140.2738)",
+          url: "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_2738.htm",
+          date: "2026-03",
+        },
+        {
+          name: "SII — Oficio N° 2047: Impuesto Adicional a personas sin domicilio ni residencia (art. 59 LIR)",
+          url: "https://www.sii.cl/pagina/jurisprudencia/adminis/2011/renta/ja2047.htm",
+          date: "2011-09",
         },
         {
           name: "CMF Educa — Depósitos a plazo",
@@ -492,33 +485,30 @@ const dapFaqs = [
     rows.className = "space-y-0";
     rows.append(
       mkRow("Monto depositado", fmt(result.amount), "text-secondary"),
-      mkRow("Interés bruto", fmt(result.grossInterest), "text-success"),
       mkRow(
-        `Retención impuesto 4%${result.applyWithholding ? "" : " (no aplica)"}`,
-        result.applyWithholding ? `− ${fmt(result.withholdingTax)}` : "$0",
-        result.applyWithholding ? "text-danger" : "text-muted"
-      ),
-      mkRow("Interés neto", fmt(result.netInterest), "text-accent")
+        "Interés pagado al vencimiento",
+        fmt(result.grossInterest),
+        "text-success"
+      )
     );
 
     const extras = document.createElement("div");
     extras.className = "mt-2 space-y-1";
     extras.append(
       mkInfoRow(
-        "Rentabilidad neta del período",
-        `${((result.netInterest / result.amount) * 100).toFixed(3)}%`
+        "Rentabilidad del período",
+        `${((result.grossInterest / result.amount) * 100).toFixed(3)}%`
       ),
       mkInfoRow(
-        "Tasa efectiva anual neta",
-        `${result.netEffectiveAnnualRatePercent.toFixed(2)}%`
+        "Tasa efectiva anual",
+        `${result.effectiveAnnualRatePercent.toFixed(2)}%`
       )
     );
 
     const note = document.createElement("p");
     note.className = "mt-3 text-xs text-muted";
-    note.textContent = result.applyWithholding
-      ? "Retención art. 59 N°4 LIR (4% sobre interés bruto). Impuesto final depende de declaración de renta."
-      : "Sin retención de impuesto. Verifica tu situación tributaria con un asesor.";
+    note.textContent =
+      "El banco paga el interés completo al vencimiento y no aplica retención a personas naturales residentes. Los intereses tributan en el Impuesto Global Complementario anual (SII, FAQ 001.140.2738).";
 
     contenido.replaceChildren(headline, rows, extras, note);
     markResultState(contenido, "result");
@@ -540,13 +530,6 @@ const dapFaqs = [
     const tirPct = parseFloat(
       (document.getElementById("tasa-tir") as HTMLInputElement).value
     );
-    const aplicaImpuesto =
-      (
-        document.querySelector(
-          "input[name='aplica-impuesto']:checked"
-        ) as HTMLInputElement
-      )?.value === "si";
-
     if (!Number.isFinite(monto) || monto <= 0) {
       showError("Ingresa un monto válido mayor que 0.");
       return;
@@ -564,7 +547,6 @@ const dapFaqs = [
       amount: monto,
       termDays: plazo,
       annualRatePercent: tirPct,
-      applyWithholding: aplicaImpuesto,
     });
     scenarioLastResult = result;
     renderResultado(result);
@@ -610,8 +592,10 @@ const dapFaqs = [
         const r = scenarioLastResult;
         return [
           { label: "Monto al vencimiento", value: fmt(r.finalAmount) },
-          { label: "Interés bruto", value: fmt(r.grossInterest) },
-          { label: "Interés neto", value: fmt(r.netInterest) },
+          {
+            label: "Interés pagado al vencimiento",
+            value: fmt(r.grossInterest),
+          },
         ];
       },
     });

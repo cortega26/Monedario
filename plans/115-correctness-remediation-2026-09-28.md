@@ -14,8 +14,8 @@
 - **Depends on**: none
 - **Category**: correctness / datos / cumplimiento legal
 - **Planned at**: commit `7226c0ce`, 2026-09-28
-- **Status**: IN PROGRESS — Paso 1 (F01 + F02) implementado y verificado;
-  pendientes pasos 2–6.
+- **Status**: IN PROGRESS — Pasos 1 (F01/F02) y 2 (F03 DAP) implementados y
+  verificados; pendientes pasos 3–6.
 - **Evidence**: `docs/reports/AUDIT-CORRECTNESS-2026-09-28.md`
 
 ## Why this matters
@@ -154,6 +154,21 @@ contextos históricos.
 - **Pendiente de proceso**: math audit + compliance YMYL (firma humana) antes
   de considerar el cambio publicado como verificado; y pasos 2–6 del plan.
 
+### 2026-09-29 — Paso 2 (F03 DAP) implementado
+
+- **Fuente primaria verificada**: SII FAQ 001.140.2738 (actualizada
+  2026-03-31): los intereses de DAP de una persona natural tributan en el
+  Impuesto Global Complementario anual (tramo exento de 13,5 UTA; exención de
+  hasta 20 UTM si solo hay rentas de sueldo o de pequeño contribuyente) y no
+  hay retención del banco. El 4% del art. 59 N°4 LIR es Impuesto Adicional para
+  personas sin domicilio ni residencia en Chile (SII, Oficio N° 2047).
+- **Código**: `CalculateTermDeposit` ya no aplica retención
+  (`applyWithholding` eliminado); devuelve interés pagado al vencimiento y
+  monto final. Página sin el selector de retención, con ejemplo, FAQ, explicador
+  y metodología reescritos y fuentes SII citadas.
+- **Tests**: `CalculateTermDeposit` actualizado; snapshot de escenarios sin
+  `r:aplica-impuesto`; 1690 unit + 195 Playwright en verde; build OK.
+
 ## Verification table
 
 | Purpose | Command | Expected |
@@ -170,7 +185,7 @@ contextos históricos.
 
 - [x] AT2026 usa parámetros del período correcto; $18M ⇒ $269.368.
 - [x] Cambiar la UTM vigente no altera AT2026 (test de aislamiento).
-- [ ] DAP sin retención automática para persona natural residente.
+- [x] DAP sin retención automática para persona natural residente.
 - [ ] `ipc-historico.json` con el último período publicado y freshness
       assertion.
 - [ ] SuperIR exige ≥2 acreedores distintos; DICOM y APV corregidos con fuente

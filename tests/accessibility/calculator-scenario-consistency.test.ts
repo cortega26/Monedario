@@ -87,7 +87,6 @@ const CALCULATORS: CalcConfig[] = [
     editId: "monto-dap",
     valueB: "2000000",
     errorSelector: "#calc-error",
-    expectKeys: { "r:aplica-impuesto": "si" },
   },
   {
     slug: "dividendo-hipotecario",
