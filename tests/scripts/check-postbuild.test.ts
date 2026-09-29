@@ -7,6 +7,7 @@ import {
   collectSitemapLocs,
   countTags,
   extractJsonLdBlocks,
+  findDuplicateIds,
   findHeadingLevelJumps,
   parseScriptSrc,
   readH1FromHtml,
@@ -105,6 +106,32 @@ describe("parseScriptSrc", () => {
     const result = parseScriptSrc(headers);
     expect(result.hasHashes).toBe(false);
     expect(result.hasUnsafeInline).toBe(false);
+  });
+});
+
+describe("findDuplicateIds", () => {
+  it("flags a duplicated id with its count", () => {
+    const html = '<div id="resultado"></div><p id="resultado"></p>';
+    expect(findDuplicateIds(html)).toEqual([{ id: "resultado", count: 2 }]);
+  });
+
+  it("returns [] when every id is unique", () => {
+    expect(
+      findDuplicateIds('<div id="a"></div><p id="b"></p>')
+    ).toEqual([]);
+  });
+
+  it("ignores ids inside script and style bodies", () => {
+    const html =
+      '<div id="a"></div><script>const x = \'id="a"\';</script>' +
+      "<style>#a { color: red }</style>";
+    expect(findDuplicateIds(html)).toEqual([]);
+  });
+
+  it("supports single-quoted attributes", () => {
+    expect(findDuplicateIds("<div id='a'></div><p id='a'></p>")).toEqual([
+      { id: "a", count: 2 },
+    ]);
   });
 });
 
