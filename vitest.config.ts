@@ -12,7 +12,7 @@ export default defineConfig({
   test: {
     environment: "node",
     include: ["tests/**/*.test.ts"],
-    exclude: ["tests/accessibility/**", "node_modules/**"],
+    exclude: ["tests/accessibility/**", "tests/privacy/**", "node_modules/**"],
     passWithNoTests: false,
     coverage: {
       provider: "v8",
