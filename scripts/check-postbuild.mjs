@@ -77,6 +77,37 @@ export function readH1FromHtml(html) {
   return match[1].replace(/<[^>]+>/g, "").trim();
 }
 
+/**
+ * Detect heading level jumps greater than one inside the first <main>.
+ * Returns one entry per offending heading with its level, the previous level
+ * and a short text label for the error message.
+ */
+export function findHeadingLevelJumps(html) {
+  const mainMatch = html.match(/<main(?:\s[^>]*)?>([\s\S]*?)<\/main>/i);
+  if (!mainMatch) return [];
+  const content = mainMatch[1];
+  const jumps = [];
+  let previous = 0;
+  for (const match of content.matchAll(
+    /<h([1-6])(?:\s[^>]*)?>([\s\S]*?)<\/h\1>/gi
+  )) {
+    const level = Number(match[1]);
+    if (previous > 0 && level > previous + 1) {
+      jumps.push({
+        from: previous,
+        to: level,
+        text: match[2]
+          .replace(/<[^>]+>/g, " ")
+          .replace(/\s+/g, " ")
+          .trim()
+          .slice(0, 80),
+      });
+    }
+    previous = level;
+  }
+  return jumps;
+}
+
 /** Count opening/closing tag occurrences in a page (uses `<p\s|>` to avoid matching <pre> etc.). */
 export function countTags(html, tag) {
   const open = tag === "p" ? /<p(?:\s|>)/g : new RegExp(`<${tag}(?:\\s|>)`, "g");
@@ -290,6 +321,22 @@ const CHECKS = [
         const { open, close } = countTags(html, "p");
         if (open !== close) {
           errors.push(`${file}:spacing-sanity unbalanced <p> count (${open} open vs ${close} close)`);
+        }
+      }
+      return errors;
+    },
+  },
+  {
+    id: "heading-hierarchy",
+    message: "Heading levels inside <main> must not skip more than one level (plan 114).",
+    run(distDir) {
+      const errors = [];
+      for (const file of listHtmlPages(distDir)) {
+        const html = readFileSync(path.join(distDir, file), "utf8");
+        for (const jump of findHeadingLevelJumps(html)) {
+          errors.push(
+            `${file}:heading-hierarchy h${jump.from} → h${jump.to} near "${jump.text}"`
+          );
         }
       }
       return errors;

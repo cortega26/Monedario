@@ -7,6 +7,7 @@ import {
   collectSitemapLocs,
   countTags,
   extractJsonLdBlocks,
+  findHeadingLevelJumps,
   parseScriptSrc,
   readH1FromHtml,
   readTitleFromHtml,
@@ -104,6 +105,39 @@ describe("parseScriptSrc", () => {
     const result = parseScriptSrc(headers);
     expect(result.hasHashes).toBe(false);
     expect(result.hasUnsafeInline).toBe(false);
+  });
+});
+
+describe("findHeadingLevelJumps", () => {
+  it("flags an h1→h3 jump inside main", () => {
+    const html =
+      "<main><h1>Título</h1><h3>Ahorro anual estimado</h3></main>";
+    expect(findHeadingLevelJumps(html)).toEqual([
+      { from: 1, to: 3, text: "Ahorro anual estimado" },
+    ]);
+  });
+
+  it("flags an h2→h4 jump with tags stripped from the label", () => {
+    const html =
+      "<main><h2>Atractivo</h2><h4>Régimen <strong>A</strong></h4></main>";
+    expect(findHeadingLevelJumps(html)).toEqual([
+      { from: 2, to: 4, text: "Régimen A" },
+    ]);
+  });
+
+  it("accepts a strictly sequential hierarchy", () => {
+    const html =
+      "<main><h1>A</h1><h2>B</h2><h3>C</h3><h3>D</h3><h2>E</h2></main>";
+    expect(findHeadingLevelJumps(html)).toEqual([]);
+  });
+
+  it("ignores headings outside main and pages without main", () => {
+    expect(
+      findHeadingLevelJumps("<header><h1>A</h1><h4>B</h4></header>")
+    ).toEqual([]);
+    expect(
+      findHeadingLevelJumps("<body><h1>A</h1></body><main><h2>B</h2></main>")
+    ).toEqual([]);
   });
 });
 

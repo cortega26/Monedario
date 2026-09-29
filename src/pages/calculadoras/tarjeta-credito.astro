@@ -268,6 +268,10 @@ const calculatorNextStepItems = [
     snapshotInputs,
   } from "@/utils/calculatorScenariosUI";
   import { createScenarioSaveAdapter } from "@/utils/calculatorScenarioSave";
+  import {
+    markResultState,
+    renderInvalidResultState,
+  } from "@/utils/calculatorResultState";
 
   declare global {
     interface Window {
@@ -285,6 +289,7 @@ const calculatorNextStepItems = [
   }
 
   function showError(message: string) {
+    renderInvalidResultState();
     const el = document.getElementById("calc-error");
     if (!el) return;
     el.textContent = message;
@@ -443,23 +448,23 @@ const calculatorNextStepItems = [
       )
     );
 
-    document
-      .getElementById("resultado-contenido")!
-      .replaceChildren(
-        headline,
-        buildRow(
-          "Intereses totales",
-          fmt(resultado.totalInterest),
-          "text-red-400"
-        ),
-        buildRow("Tiempo para saldar", tiempoStr, "text-red-400"),
-        buildRow(
-          "Factor de costo",
-          `×${(resultado.totalPaid / deuda).toFixed(2)}`
-        ),
-        ...(primerasCuotas.length > 0 ? [firstPaymentsBox] : []),
-        doublePaymentBox
-      );
+    const resultContainer = document.getElementById("resultado-contenido");
+    resultContainer?.replaceChildren(
+      headline,
+      buildRow(
+        "Intereses totales",
+        fmt(resultado.totalInterest),
+        "text-red-400"
+      ),
+      buildRow("Tiempo para saldar", tiempoStr, "text-red-400"),
+      buildRow(
+        "Factor de costo",
+        `×${(resultado.totalPaid / deuda).toFixed(2)}`
+      ),
+      ...(primerasCuotas.length > 0 ? [firstPaymentsBox] : []),
+      doublePaymentBox
+    );
+    markResultState(resultContainer, "result");
     scenarioLastInputs = scenarioCandidateInputs;
 
     document.dispatchEvent(

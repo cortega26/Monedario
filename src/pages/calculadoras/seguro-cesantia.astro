@@ -416,6 +416,10 @@ const seguroCesantiaFaqs = [
   import { animateCount } from "@/utils/animateCount";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
+  import {
+    markResultState,
+    renderInvalidResultState,
+  } from "@/utils/calculatorResultState";
 
   declare global {
     interface Window {
@@ -475,6 +479,7 @@ const seguroCesantiaFaqs = [
   }
 
   function showInlineError(message: string) {
+    renderInvalidResultState();
     const errorBox = document.getElementById("cesantia-error");
     if (!errorBox) return;
     errorBox.textContent = message;
@@ -640,7 +645,9 @@ const seguroCesantiaFaqs = [
       missing.textContent = `Te faltan ${remaining} ${remaining === 1 ? "mes" : "meses"}.`;
 
       warning.append(title, message, missing);
-      document.getElementById("resultado-contenido")!.replaceChildren(warning);
+      const warningContainer = document.getElementById("resultado-contenido");
+      warningContainer?.replaceChildren(warning);
+      markResultState(warningContainer, "result");
       trackAnalyticsEvent("calculator_complete", {
         calculator_slug: "seguro-cesantia",
         calculator_name: "Calculadora de Seguro de Cesantia",
@@ -796,18 +803,18 @@ const seguroCesantiaFaqs = [
       afcLink.textContent = "Sucursal Virtual de AFC";
       finalNote.append(afcLink, " con tu ClaveÚnica.");
 
-      document
-        .getElementById("resultado-contenido")!
-        .replaceChildren(
-          header,
-          contributionBox,
-          payoutsLabel,
-          ...payoutRows,
-          totalCoverage,
-          solidarityBox,
-          assumptionsList,
-          finalNote
-        );
+      const resultContainer = document.getElementById("resultado-contenido");
+      resultContainer?.replaceChildren(
+        header,
+        contributionBox,
+        payoutsLabel,
+        ...payoutRows,
+        totalCoverage,
+        solidarityBox,
+        assumptionsList,
+        finalNote
+      );
+      markResultState(resultContainer, "result");
       document.dispatchEvent(
         new CustomEvent("calculator:result", {
           detail: {

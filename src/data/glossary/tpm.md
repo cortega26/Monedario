@@ -8,7 +8,7 @@ La **Tasa de Política Monetaria (TPM)** es la principal herramienta que tiene e
 
 ## ¿Cómo afecta a tus finanzas?
 
-#### Subida de la TPM (Política Contraccionista)
+### Subida de la TPM (Política Contraccionista)
 
 Cuando la economía nacional consume muy rápido, los precios suben y la inflación (IPC) se dispara. Para frenar esto, el Banco Central **sube la TPM**.
 Como a los bancos les cuesta más dinero recibir fondos prestados, ellos traspasan esa alza subiendo las tasas de interés de los **Créditos de Consumo, Tarjetas y Líneas de Crédito**. Es decir:
@@ -18,7 +18,7 @@ Como a los bancos les cuesta más dinero recibir fondos prestados, ellos traspas
 - El consumo baja y, gradualmente, la inflación cae.
 - (Por contraparte, los Depósitos a Plazo se vuelven muy atractivos porque pagan altas tasas).
 
-#### Bajada de la TPM (Política Expansiva)
+### Bajada de la TPM (Política Expansiva)
 
 Para reactivar la economía en periodos lentos o post-crisis, el Banco Central **baja la TPM**.
 

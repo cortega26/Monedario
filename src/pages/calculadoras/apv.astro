@@ -606,6 +606,10 @@ const calculatorNextStepItems = [
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { emitApvError, resetApvErrorDedupe } from "@/utils/apvErrorTelemetry";
   import { formatCLP } from "@/utils/formatCLP";
+  import {
+    markResultState,
+    renderInvalidResultState,
+  } from "@/utils/calculatorResultState";
 
   declare global {
     interface Window {
@@ -623,6 +627,7 @@ const calculatorNextStepItems = [
   }
 
   function showFormError(message: string): void {
+    renderInvalidResultState();
     const errorBox = document.getElementById("form-error");
     if (!errorBox) return;
     errorBox.textContent = message;
@@ -973,16 +978,16 @@ const calculatorNextStepItems = [
       note.className = "mt-2 text-xs text-muted";
       note.textContent = `El bono del Régimen A se acredita en tu cuenta APV al año siguiente (Operación Renta). En Régimen B, los descuentos por planilla tienen tope mensual de 50 UF (~${fmt(resultado.regimeB.monthlyContributionCap)}) y los aportes con beneficio comparten además un tope anual conjunto de 600 UF (~${fmt(resultado.regimeB.annualContributionCap)}). Si incluyes depósitos directos, esta tarjeta muestra equivalentes mensuales para aproximar un beneficio que normalmente se regulariza en Operación Renta.`;
 
-      document
-        .getElementById("resultado-contenido")!
-        .replaceChildren(
-          summary,
-          strategyMessage,
-          regimeACard,
-          regimeBCard,
-          ...(mixedCard ? [mixedCard] : []),
-          note
-        );
+      const resultContainer = document.getElementById("resultado-contenido");
+      resultContainer?.replaceChildren(
+        summary,
+        strategyMessage,
+        regimeACard,
+        regimeBCard,
+        ...(mixedCard ? [mixedCard] : []),
+        note
+      );
+      markResultState(resultContainer, "result");
 
       const _annualBenefit =
         resultado.recommendedStrategy === "A"

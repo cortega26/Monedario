@@ -399,6 +399,10 @@ const calculatorNextStepItems = [
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
   import { formatCLP } from "@/utils/formatCLP";
+  import {
+    markResultState,
+    renderInvalidResultState,
+  } from "@/utils/calculatorResultState";
 
   declare global {
     interface Window {
@@ -476,6 +480,7 @@ const calculatorNextStepItems = [
   }
 
   function showInlineError(message: string): void {
+    renderInvalidResultState();
     const errorBox = document.getElementById("prepago-error");
     if (!errorBox) return;
     errorBox.textContent = message;
@@ -719,6 +724,7 @@ const calculatorNextStepItems = [
       investmentBox,
       finalNote
     );
+    markResultState(container, "result");
 
     document.dispatchEvent(
       new CustomEvent("calculator:result", {

@@ -12,6 +12,7 @@ const expectedRunner = "${{ vars.ACTIONS_RUNNER_LABEL || 'ubuntu-latest' }}";
 // file stays on hardcoded ubuntu-latest.
 const fullyOutOfScopeFiles = new Set([
   "deploy-analytics-collector.yml",
+  "ops-reminders.yml",
   "validate-committed-artifacts.yml",
 ]);
 

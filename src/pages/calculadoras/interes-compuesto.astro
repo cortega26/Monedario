@@ -399,6 +399,10 @@ const interesCompuestoFaqs = [
     snapshotInputs,
   } from "@/utils/calculatorScenariosUI";
   import { createScenarioSaveAdapter } from "@/utils/calculatorScenarioSave";
+  import {
+    markResultState,
+    renderInvalidResultState,
+  } from "@/utils/calculatorResultState";
 
   declare global {
     interface Window {
@@ -420,6 +424,7 @@ const interesCompuestoFaqs = [
   }
 
   function showError(message: string) {
+    renderInvalidResultState();
     const el = document.getElementById("calc-error");
     if (!el) return;
     el.textContent = message;
@@ -567,6 +572,7 @@ const interesCompuestoFaqs = [
     );
 
     contenido.replaceChildren(headline, rows, extras);
+    markResultState(contenido, "result");
   }
 
   document.getElementById("calcBtn")?.addEventListener("click", () => {

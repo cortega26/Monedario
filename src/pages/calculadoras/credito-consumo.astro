@@ -134,41 +134,46 @@ const creditoConsumoFaqs = [
         />
 
         <div class="mb-4">
+          <fieldset class="border-0 p-0">
+            <legend class="mb-1 block text-sm font-medium text-secondary">
+              Tipo de tasa
+            </legend>
+            <div class="mb-2 flex gap-2">
+              <label class="flex-1 cursor-pointer">
+                <input
+                  type="radio"
+                  name="tasa-tipo"
+                  value="mensual"
+                  checked
+                  class="peer sr-only"
+                />
+                <span
+                  class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
+                >
+                  Mensual
+                </span>
+              </label>
+              <label class="flex-1 cursor-pointer">
+                <input
+                  type="radio"
+                  name="tasa-tipo"
+                  value="anual"
+                  class="peer sr-only"
+                />
+                <span
+                  class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
+                >
+                  Anual
+                </span>
+              </label>
+            </div>
+          </fieldset>
           <label
-            for="tasa-tipo"
-            class="mb-1 block text-sm font-medium text-secondary"
+            for="tasa"
+            class="mt-2 mb-1 block text-sm font-medium text-secondary"
           >
-            Tipo de tasa
+            Tasa de interés (%)
           </label>
-          <div class="mb-2 flex gap-2">
-            <label class="flex-1 cursor-pointer">
-              <input
-                type="radio"
-                name="tasa-tipo"
-                value="mensual"
-                checked
-                class="peer sr-only"
-              />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
-                Mensual
-              </span>
-            </label>
-            <label class="flex-1 cursor-pointer">
-              <input
-                type="radio"
-                name="tasa-tipo"
-                value="anual"
-                class="peer sr-only"
-              />
-              <span
-                class="block rounded-lg border border-border px-3 py-2 text-center text-sm font-medium transition-all peer-checked:border-accent peer-checked:text-accent"
-              >
-                Anual
-              </span>
-            </label>
-          </div>
           <input
             type="number"
             id="tasa"
@@ -380,6 +385,10 @@ const creditoConsumoFaqs = [
     snapshotInputs,
   } from "@/utils/calculatorScenariosUI";
   import { createScenarioSaveAdapter } from "@/utils/calculatorScenarioSave";
+  import {
+    markResultState,
+    renderInvalidResultState,
+  } from "@/utils/calculatorResultState";
 
   declare global {
     interface Window {
@@ -397,6 +406,7 @@ const creditoConsumoFaqs = [
   }
 
   function showError(message: string) {
+    renderInvalidResultState();
     const el = document.getElementById("calc-error");
     if (!el) return;
     el.textContent = message;
@@ -555,9 +565,9 @@ const creditoConsumoFaqs = [
       buildRow("Total a pagar", fmt(resultado.totalPaid), "text-red-400"),
     ];
 
-    document
-      .getElementById("resultado-contenido")!
-      .replaceChildren(headline, ...rows, insight);
+    const resultContainer = document.getElementById("resultado-contenido");
+    resultContainer?.replaceChildren(headline, ...rows, insight);
+    markResultState(resultContainer, "result");
     scenarioLastInputs = scenarioCandidateInputs;
 
     document.dispatchEvent(
