@@ -51,6 +51,21 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | Integridad medición (Sprint 0 adaptado) | `PLAN-measurement-integrity-2026-09-16.md` | **DONE (FIRMADO)** — pre-requisito panel F1 cumplido, sin GA4 ni trackers |
 | Distribución sin presupuesto | `PLAN-zero-cost-distribution-2026-09-25.md` (+ 3 canales) | Canales 1–2 manuales activables ya; canal 4 (embeds) gated a 2026-11-02 con excepción + ADR |
 
+### Pendiente — auditorías adversariales (lote 2026-09-28)
+
+Briefs entregados el 2026-09-28; **no ejecutados**. Carpeta:
+[`auditorias-pendientes-2026-09-28/`](auditorias-pendientes-2026-09-28/README.md).
+
+| Orden | Brief | Estado |
+|-------|-------|--------|
+| 01 | Correctitud, consistencia y freshness | PENDIENTE |
+| 02 | SEO técnico y descubrimiento | PENDIENTE |
+| 03 | Privacidad y seguridad pasiva | PENDIENTE |
+| 04 | Resiliencia y performance observable | PENDIENTE |
+
+Bloqueador: prerequisito previo indicado por el mantenedor el 2026-09-28 (por
+confirmar). No iniciar hasta resolverlo.
+
 ### Bloqueado — requiere acción humana
 
 | Artefacto | Estado | Qué se necesita |

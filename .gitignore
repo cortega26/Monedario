@@ -93,6 +93,8 @@ docs/backlog/*
 !docs/backlog/ux-backlog.md
 !docs/backlog/PLAN-*.md
 !docs/backlog/UTILITY_LED_BLOCKED_PENDING_EVIDENCE.md
+!docs/backlog/auditorias-pendientes-2026-09-28/
+!docs/backlog/auditorias-pendientes-2026-09-28/**
 !docs/backlog/prompt-*.md
 !docs/backlog/DECISION-*.md
 !docs/backlog/CALCULATOR-CONSOLIDATION-*.md
