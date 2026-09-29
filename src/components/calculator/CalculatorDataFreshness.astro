@@ -23,6 +23,7 @@ const {
 } = Astro.props;
 const label = resolveEconomicSourceLabel(source);
 const isResult = variant === "result";
+const hasDetail = Astro.slots.has("default");
 ---
 
 <div
@@ -38,8 +39,9 @@ const isResult = variant === "result";
     )
   }
   <p class:list={[isResult && "mt-0.5"]}>
-    Datos al {updatedDate} · {label}{
-      isResult ? ". No es una cotización ni una liquidación oficial." : null
-    }<slot />
+    {`Datos al ${updatedDate} · ${label}`}
+    {isResult && !hasDetail ? "." : null}
+    <slot />
+    {isResult ? " No es una cotización ni una liquidación oficial." : null}
   </p>
 </div>
