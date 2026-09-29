@@ -135,29 +135,40 @@ const CALCULATORS: ResultConfig[] = [
   },
 ];
 
-test.describe("WCAG 2.2 AA — calculated result states", () => {
-  for (const cfg of CALCULATORS) {
-    test(`${cfg.slug}: result after a valid calculation has no critical or serious violations`, async ({
-      page,
-    }) => {
-      await page.goto(`/calculadoras/${cfg.slug}/`);
-      await page.waitForLoadState("networkidle");
-
-      await cfg.fill(page);
-      if (cfg.submit !== false) {
-        await page.locator("#calcBtn").click();
-      }
-
-      await expect(
-        page.locator("[data-result-state='result']").first()
-      ).toBeAttached();
-
-      const { violations } = await runAxe(page);
-      const criticalAndSerious = violations.filter(
-        v => v.impact === "critical" || v.impact === "serious"
-      );
-      reportViolations(`${cfg.slug} (result)`, criticalAndSerious);
-      expect(criticalAndSerious).toEqual([]);
+async function scanResult(page: Page, cfg: ResultConfig, theme: "light" | "dark") {
+  await page.goto(`/calculadoras/${cfg.slug}/`);
+  await page.waitForLoadState("networkidle");
+  if (theme === "dark") {
+    await page.evaluate(() => {
+      document.documentElement.setAttribute("data-theme", "dark");
     });
   }
-});
+
+  await cfg.fill(page);
+  if (cfg.submit !== false) {
+    await page.locator("#calcBtn").click();
+  }
+
+  await expect(
+    page.locator("[data-result-state='result']").first()
+  ).toBeAttached();
+
+  const { violations } = await runAxe(page);
+  const criticalAndSerious = violations.filter(
+    v => v.impact === "critical" || v.impact === "serious"
+  );
+  reportViolations(`${cfg.slug} (result, ${theme})`, criticalAndSerious);
+  expect(criticalAndSerious).toEqual([]);
+}
+
+for (const theme of ["light", "dark"] as const) {
+  test.describe(`WCAG 2.2 AA — calculated result states (${theme})`, () => {
+    for (const cfg of CALCULATORS) {
+      test(`${cfg.slug}: result has no critical or serious violations`, async ({
+        page,
+      }) => {
+        await scanResult(page, cfg, theme);
+      });
+    }
+  });
+}
