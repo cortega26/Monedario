@@ -15,7 +15,8 @@
 - **Category**: correctness / datos / cumplimiento legal
 - **Planned at**: commit `7226c0ce`, 2026-09-28
 - **Status**: IN PROGRESS — Pasos 1 (F01/F02), 2 (F03 DAP) y 3 (registry
-  effective-dated + ADR) implementados y verificados; pendientes pasos 4–6.
+  effective-dated + ADR) completos; paso 4 (F04 IPC) parcial: fail-closed
+  implementado, dataset bloqueado por fuente (`TD-0112`); pendientes pasos 5–6.
 - **Evidence**: `docs/reports/AUDIT-CORRECTNESS-2026-09-28.md`
 
 ## Why this matters
@@ -189,6 +190,23 @@ contextos históricos.
 - **Evidencia**: 1713 unit tests (incluye resolver, registry y guarda), build OK
   (9 guards), `astro check` 0 errores.
 
+### 2026-09-29 — Paso 4 (F04 IPC) parcial
+
+- **Fail-closed implementado**: `evaluateIpcSeriesFreshness()` compara el último
+  período de la serie con el publicado por la fuente
+  (`resolveEconomicIndicatorDate(..., "ipc")` del snapshot). La página muestra
+  un aviso (`role="status"`) cuando está atrasada y ya no afirma "última cifra
+  disponible del INE"; en dist hoy se ve: "La serie de IPC cargada llega hasta
+  diciembre 2025; el INE ya publicó el IPC de agosto 2026…".
+- **Ingesta**: `scripts/fetch-economic-history.mjs` soporta `--solo=ipc`
+  (refresco por serie sin reescribir UF/UTM/sidecars).
+- **Bloqueo de fuente documentado** (`TD-0112`): mindicador.cl devuelve la serie
+  IPC 2026 vacía y el consolidado con fecha dic-2025; datos.gob.cl no expone
+  recursos del dataset INE. El refresco de 2026 queda pendiente de una ingesta
+  INE primaria.
+- **Tests**: `evaluateIpcSeriesFreshness` (fresh/stale/unknown) en
+  `tests/utils/economicFreshness.test.ts`; build OK (9 guards).
+
 ## Verification table
 
 | Purpose | Command | Expected |
@@ -206,8 +224,10 @@ contextos históricos.
 - [x] AT2026 usa parámetros del período correcto; $18M ⇒ $269.368.
 - [x] Cambiar la UTM vigente no altera AT2026 (test de aislamiento).
 - [x] DAP sin retención automática para persona natural residente.
-- [ ] `ipc-historico.json` con el último período publicado y freshness
-      assertion.
+- [x] Freshness fail-closed en la calculadora de inflación (no afirma "última
+      cifra disponible" cuando la serie está atrasada).
+- [ ] `ipc-historico.json` con el último período publicado (bloqueado por
+      fuente: `TD-0112`) y assertion de frescura en CI.
 - [ ] SuperIR exige ≥2 acreedores distintos; DICOM y APV corregidos con fuente
       primaria.
 - [ ] Ejemplos publicados iguales al runtime (test de paridad).
