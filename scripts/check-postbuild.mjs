@@ -23,6 +23,13 @@ import {
 
 const PAGE_BYTE_BUDGET = 5 * 1024 * 1024; // pagefind regression guard (plan 057)
 
+// Orígenes externos permitidos en connect-src (PRIV-018): analytics edge de
+// Cloudflare y formulario de contacto. Cualquier otro origen es un hallazgo.
+const CSP_CONNECT_SRC_ALLOWLIST = [
+  "https://static.cloudflareinsights.com",
+  "https://api.web3forms.com",
+];
+
 // Hardcoded slugs per plan 081 (maintenance note: if these posts change or
 // die, update this constant — the check will fail loudly otherwise).
 const SEO_TITLE_CASES = [
@@ -392,6 +399,58 @@ export function findBreadcrumbIssues(html) {
   return issues;
 }
 
+/** Referencias http:// en atributos de recurso (PRIV-015). */
+export function findMixedContent(html) {
+  const issues = [];
+  for (const match of html.matchAll(
+    /(?:src|href|srcset)=["'](http:\/\/[^"'\s]+)["']/g
+  )) {
+    issues.push(match[1]);
+  }
+  return issues;
+}
+
+/** Archivos .map o referencias sourceMappingURL en assets (PRIV-016). */
+export function findPublicSourcemaps(distDir) {
+  const issues = [];
+  const stack = [distDir];
+  while (stack.length > 0) {
+    const current = stack.pop();
+    for (const entry of readdirSync(current, { withFileTypes: true })) {
+      if (entry.name.startsWith(".")) continue;
+      const full = path.join(current, entry.name);
+      if (entry.isDirectory()) {
+        stack.push(full);
+        continue;
+      }
+      const rel = path.relative(distDir, full).replace(/\\/g, "/");
+      if (entry.name.endsWith(".map")) {
+        issues.push(`${rel} (.map)`);
+        continue;
+      }
+      if (entry.name.endsWith(".js") || entry.name.endsWith(".css")) {
+        if (readFileSync(full, "utf8").includes("sourceMappingURL")) {
+          issues.push(`${rel} (sourceMappingURL)`);
+        }
+      }
+    }
+  }
+  return issues;
+}
+
+/** Tokens de connect-src fuera del allowlist (PRIV-018). */
+export function findCspConnectSrcViolations(headersText, allowedOrigins) {
+  const cspLine = headersText
+    .split("\n")
+    .find(line => line.includes("Content-Security-Policy"));
+  const connectSrc = cspLine?.match(/connect-src\s+([^;]+)/)?.[1] ?? "";
+  const allowed = new Set(["'self'", ...allowedOrigins]);
+  return connectSrc
+    .split(/\s+/)
+    .filter(Boolean)
+    .filter(token => !allowed.has(token));
+}
+
 /** Total bytes of a directory tree. */
 export function totalDirBytes(dir) {
   let total = 0;
@@ -663,6 +722,44 @@ const CHECKS = [
         }
       }
       return errors;
+    },
+  },
+  {
+    id: "no-mixed-content",
+    message: "No http:// resource references in dist HTML (PRIV-015).",
+    run(distDir) {
+      const errors = [];
+      for (const file of listHtmlPages(distDir)) {
+        const html = readFileSync(path.join(distDir, file), "utf8");
+        for (const url of findMixedContent(html)) {
+          errors.push(`${file}:no-mixed-content ${url}`);
+        }
+      }
+      return errors;
+    },
+  },
+  {
+    id: "no-public-sourcemaps",
+    message: "No sourceMappingURL references or .map files in dist (PRIV-016).",
+    run(distDir) {
+      return findPublicSourcemaps(distDir).map(
+        entry => `dist/${entry}:no-public-sourcemaps`
+      );
+    },
+  },
+  {
+    id: "csp-connect-src-allowlist",
+    message: "CSP connect-src must match the declared allowlist (PRIV-018).",
+    run(distDir) {
+      const headersPath = path.join(distDir, "_headers");
+      if (!statSync(headersPath, { throwIfNoEntry: false })) return [];
+      const headers = readFileSync(headersPath, "utf8");
+      return findCspConnectSrcViolations(
+        headers,
+        CSP_CONNECT_SRC_ALLOWLIST
+      ).map(
+        token => `dist/_headers:csp-connect-src-allowlist unexpected ${token}`
+      );
     },
   },
   {

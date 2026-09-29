@@ -96,6 +96,9 @@ jobs:
       - name: "📖 Check docs structure"
         run: pnpm run check:docs
 
+      - name: "🧾 Check audit artifacts schema"
+        run: pnpm run check:audit-artifacts
+
       - name: "🔧 Check workers typecheck"
         run: pnpm run check:workers
 

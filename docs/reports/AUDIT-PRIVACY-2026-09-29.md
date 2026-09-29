@@ -706,6 +706,12 @@ degradar silenciosamente una propiedad que hoy está funcionando muy bien.
   `localStorage` con key `monedario_scenarios`, máximo 6 por calculadora, sin
   TTL. El E2E `tests/privacy/scenario-persistence.test.ts` verifica
   guardar → reload → reaparece con 0 requests con el monto.
+- **Checks del informe automatizados (2026-09-29)**: PRIV-015 (sin mixed
+  content), PRIV-016 (sin sourcemaps públicos) y PRIV-018 (connect-src contra
+  allowlist declarada) quedaron como guardas de `check-postbuild` (23 checks);
+  PRIV-019 (Referer) queda cubierto por la composición de `Referrer-Policy`
+  verificado en `check:headers:prod` + canarios que garantizan que no hay
+  estado financiero en la URL.
 - **PRIV-01 → RESUELTO (límite del inspector, no fallo del sitio)**:
   - Verificación en producción con navegador headless (2026-09-29):
     `POST https://monedario.cl/api/analytics/event` responde **202** con payload
