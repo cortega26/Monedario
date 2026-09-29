@@ -33,6 +33,20 @@ SEO-08 opción A (120).
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
 
+## Auditoría de privacidad y seguridad pasiva 2026-09-29 — plan 121
+
+Informe: `docs/reports/AUDIT-PRIVACY-2026-09-29.md`. Resultado: PASS fuerte en
+canarios (4/4 LOCAL_ONLY); sin P0/P1. PRIV-03 (headers) quedó resuelto con
+evidencia live en la verificación del agente; PRIV-01/02 son P3 de
+observabilidad/persistencia. Hardening central: convertir la propiedad
+"input/resultado financiero ∩ payload saliente = ∅" en invariante con E2E.
+
+| Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
+|------|-------|----------|--------|------------|--------|
+| 121 | [privacy-remediation-2026-09-29.md](121-privacy-remediation-2026-09-29.md) | P3 + hardening | M | decisión del mantenedor (F1) | TODO |
+
+Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
+
 ## Auditoría profunda 2026-09-14 — planes 097–113 (completa salvo 111 BLOCKED)
 
 Sobre `0e506a8b`, selección del mantenedor: **«All the net-positive ones»**.
