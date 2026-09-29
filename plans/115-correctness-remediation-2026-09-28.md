@@ -14,9 +14,9 @@
 - **Depends on**: none
 - **Category**: correctness / datos / cumplimiento legal
 - **Planned at**: commit `7226c0ce`, 2026-09-28
-- **Status**: IN PROGRESS — Pasos 1 (F01/F02), 2 (F03 DAP) y 3 (registry
-  effective-dated + ADR) completos; paso 4 (F04 IPC) parcial: fail-closed
-  implementado, dataset bloqueado por fuente (`TD-0112`); pendientes pasos 5–6.
+- **Status**: IN PROGRESS — Pasos 1–3 completos; paso 4 (F04 IPC) parcial:
+  fail-closed implementado, dataset bloqueado por fuente (`TD-0112`); paso 5
+  (F06/F07/F05) completo; pendiente paso 6 (paridad contenido/runtime).
 - **Evidence**: `docs/reports/AUDIT-CORRECTNESS-2026-09-28.md`
 
 ## Why this matters
@@ -207,6 +207,34 @@ contextos históricos.
 - **Tests**: `evaluateIpcSeriesFreshness` (fresh/stale/unknown) en
   `tests/utils/economicFreshness.test.ts`; build OK (9 guards).
 
+### 2026-09-29 — Paso 5 (F06/F07/F05) implementado
+
+- **Fuentes primarias verificadas**:
+  - **F06**: Ley 20.720 art. 260 (BCN idNorma=1058072) y SuperIR: "dos o más
+    obligaciones vencidas por más de 90 días corridos… provenientes de
+    obligaciones diversas, cuyo monto total sea superior a 80 UF".
+  - **F07**: Ley 19.628 arts. 17–18 (BCN idNorma=141599): 5 años desde que la
+    obligación se hizo exigible; no comunicar después de pagada/extinguida; no
+    comunicar repactadas/renegociadas/novadas con modalidad pendiente. Ley
+    21.214 aplica solo a deudas educacionales.
+  - **F05**: art. 42 bis N°3 LIR: impuesto único con tasa = tasa marginal del
+    retiro × 1,1 + 3 pp; retención del 15% como abono; sin recargos para
+    pensionados o quienes cumplen requisitos de edad/pensión.
+- **Código**:
+  - SuperIR: `DebtItemInput` exige `creditor`; nuevo check
+    `hasTwoOrMoreDistinctCreditors` (deduplicado, case-insensitive) integrado a
+    `meetsBasicEligibility`; la página pide acreedor por deuda (estática y
+    dinámica), valida y muestra el requisito en el checklist; fuentes del
+    MethodologyBlock corregidas (la de Superir apuntaba a CMF).
+  - DICOM: párrafo reescrito desde Ley 19.628; se eliminó la atribución falsa a
+    Ley 21.214 y la regla "5 años desde el pago".
+  - APV: FAQ, tabla, explicador y FAQ final reescritos con la fórmula legal
+    (× 1,1 + 3 pp, retención 15%, excepción de pensionados).
+  - `LEGAL_CITATION_REGISTRY`: idNorma 1058072 registrado como conocido sin
+    página de ley.
+- **Tests**: 3 casos nuevos de elegibilidad/acreedor (7 en el archivo); build OK
+  (9 guards); Playwright 195 passed.
+
 ## Verification table
 
 | Purpose | Command | Expected |
@@ -228,7 +256,7 @@ contextos históricos.
       cifra disponible" cuando la serie está atrasada).
 - [ ] `ipc-historico.json` con el último período publicado (bloqueado por
       fuente: `TD-0112`) y assertion de frescura en CI.
-- [ ] SuperIR exige ≥2 acreedores distintos; DICOM y APV corregidos con fuente
+- [x] SuperIR exige ≥2 acreedores distintos; DICOM y APV corregidos con fuente
       primaria.
 - [ ] Ejemplos publicados iguales al runtime (test de paridad).
 - [ ] Math audit + compliance YMYL registrados para los cambios de contenido.
