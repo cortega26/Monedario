@@ -185,7 +185,7 @@ const dapFaqs = [
             </div>
             <div class="flex justify-between">
               <span class="text-secondary">Retención 4%</span>
-              <span class="text-red-500">− $4.932</span>
+              <span class="text-red-600 dark:text-red-400">− $4.932</span>
             </div>
             <div class="flex justify-between">
               <span class="text-secondary">Interés neto</span>
@@ -492,7 +492,11 @@ const dapFaqs = [
     rows.className = "space-y-0";
     rows.append(
       mkRow("Monto depositado", fmt(result.amount), "text-secondary"),
-      mkRow("Interés bruto", fmt(result.grossInterest), "text-green-500"),
+      mkRow(
+        "Interés bruto",
+        fmt(result.grossInterest),
+        "text-green-700 dark:text-green-400"
+      ),
       mkRow(
         `Retención impuesto 4%${result.applyWithholding ? "" : " (no aplica)"}`,
         result.applyWithholding ? `− ${fmt(result.withholdingTax)}` : "$0",

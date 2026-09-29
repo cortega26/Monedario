@@ -131,9 +131,14 @@ const fmtClp = formatCLP;
           data-ex-neto={fmtClp(ex.neto)}
           data-ex-iva={fmtClp(ex.iva)}
           data-ex-bruto={fmtClp(ex.bruto)}
-          class="opacity-70 transition-opacity"
           aria-live="polite"
         >
+          <p
+            id="resultado-example-badge"
+            class="mb-3 text-center text-xs font-bold tracking-widest text-muted uppercase"
+          >
+            Ejemplo ilustrativo — no es tu resultado
+          </p>
           <div class="grid grid-cols-3 gap-3 text-center">
             <div>
               <p
@@ -318,6 +323,9 @@ const fmtClp = formatCLP;
   const montoError = document.getElementById("monto-error")!;
   const resultado = document.getElementById("resultado-contenido")!;
   const resultadoNota = document.getElementById("resultado-nota")!;
+  const resultadoExampleBadge = document.getElementById(
+    "resultado-example-badge"
+  );
   const resNeto = document.getElementById("res-neto")!;
   const resIva = document.getElementById("res-iva")!;
   const resBruto = document.getElementById("res-bruto")!;
@@ -344,7 +352,7 @@ const fmtClp = formatCLP;
     resNeto.textContent = "—";
     resIva.textContent = "—";
     resBruto.textContent = "—";
-    resultado.classList.add("opacity-70");
+    resultadoExampleBadge?.classList.add("hidden");
     resultadoNota.textContent = INVALID_RESULT_MESSAGE;
     markResultState(resultado, "invalid");
   }
@@ -359,7 +367,7 @@ const fmtClp = formatCLP;
     resNeto.textContent = resultado.dataset.exNeto ?? "";
     resIva.textContent = resultado.dataset.exIva ?? "";
     resBruto.textContent = resultado.dataset.exBruto ?? "";
-    resultado.classList.add("opacity-70");
+    resultadoExampleBadge?.classList.remove("hidden");
     resultadoNota.textContent = `Ejemplo: monto neto de ${resultado.dataset.exNeto}. Escribe un monto para calcular el tuyo.`;
     markResultState(resultado, "example");
   }
@@ -396,7 +404,7 @@ const fmtClp = formatCLP;
     resNeto.textContent = fmt(calcResult.neto);
     resIva.textContent = fmt(calcResult.iva);
     resBruto.textContent = fmt(calcResult.bruto);
-    resultado.classList.remove("opacity-70");
+    resultadoExampleBadge?.classList.add("hidden");
     markResultState(resultado, "result");
     resultadoNota.textContent =
       direction === "neto-a-bruto"
