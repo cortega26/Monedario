@@ -9,7 +9,7 @@ Fase 2/3.
 
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|-------|----------|--------|------------|--------|
-| 114 | [ux-audit-remediation-2026-09-28.md](114-ux-audit-remediation-2026-09-28.md) | P1 | L | — | DONE (Fase 1 + Fase 2; F-09/F-10 y estructural diferidos) |
+| 114 | [ux-audit-remediation-2026-09-28.md](114-ux-audit-remediation-2026-09-28.md) | P1 | L | — | DONE (F-01 a F-10; remanente: pasada manual NVDA/VoiceOver y `TD-0111`) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
 

@@ -14,11 +14,11 @@
 - **Depends on**: none
 - **Category**: UX/a11y correctness + regression guards
 - **Planned at**: commit `224b6f74`, 2026-09-28
-- **Status**: Fase 1 y Fase 2 DONE (F-05, F-06, F-07, F-08 completo, guard de
-  IDs, axe 22/22 plantillas + 17/17 resultados en claro y oscuro, tokens
-  semánticos de contraste). Diferidos: F-09/F-10 (mejora de diseño sin caso
-  medido) y estructural (FinancialField/ResultPanel, pasada manual
-  NVDA/VoiceOver) — 2026-09-28.
+- **Status**: DONE — Fase 1 y Fase 2 completas (F-01 a F-10, guards de
+  headings/IDs, axe 22/22 plantillas + 17/17 resultados en claro y oscuro,
+  tokens semánticos de contraste, ancla al cálculo y contexto de hubs).
+  Único remanente: la pasada manual con NVDA/VoiceOver (acción humana) y
+  `TD-0111` (migración de inputs legacy, requiere ADR) — 2026-09-28.
 - **Evidence**: `docs/reports/AUDIT-UX-2026-09-28.md`
 
 ## Scope
@@ -255,6 +255,24 @@ estado inicial.
   `check:ci` exit 0. (Una corrida intermedia marcó un flake en el test de
   estado inválido de sueldo; pasó en aislamiento y en la repetición completa.)
 
+### 2026-09-28 — Fase 2, ronda 6: cierre F-09/F-10 y estructural
+
+- **F-09**: párrafo de contexto bajo el H1 en 8 hubs (`ahorro-e-inversion`,
+  `deuda-credito`, `empleo-ingresos`, `impuestos-personas`, `pensiones-afp`,
+  `seguridad-financiera`, `sueldo-remuneraciones`, `uf-costo-de-vida`),
+  consistente con los 3 que ya lo tenían y con las descripciones SEO del Layout.
+- **F-10**: ancla `↑ Ir al cálculo` en `NextSteps` (22/22 calculadoras, solo en
+  páginas `/calculadoras/`); se añadió `id="calculator-form-card"` a las 10
+  páginas que no lo tenían; compactación móvil del bloque de indicadores
+  (padding 14→10px, row-gap 14→10px). Guarda: la pasada axe de cada calculadora
+  ahora exige que el ancla y su destino existan.
+- **Estructural**: cierre con evidencia — `CalculatorField`,
+  `CalculatorResultPanel` + `data-result-state`, guardas de labels/estados/axe.
+  Migración legacy → `TD-0111`; pasada manual NVDA/VoiceOver queda como acción
+  humana.
+- **Evidencia**: build OK (8 checks, 332 páginas); Playwright **194 passed**;
+  `check:ci` exit 0.
+
 ### Anexo CI (higiene, fuera del alcance UX)
 
 `check:ci` estaba rojo en `main` por dos tests preexistentes introducidos por
@@ -295,15 +313,18 @@ test y ADR-20260716). Sin cambios de comportamiento.
   semánticos `success`/`danger`/`warning` y correcciones AA adicionales.
 - [x] **F-08 completo**: parámetro clave (UTM/UF/IMM/topes) dentro del bloque de
   resultado en las 17 calculadoras interactivas.
-- [ ] **F-09/F-10**: contexto de página en hubs y compactación móvil con ancla.
-  Revisados: el badge de tipo (F-07) y los componentes `NextBestStep`/`NextSteps`
-  ya cubren el "siguiente paso contextual"; el ancla móvil queda como mejora de
-  diseño sin caso de scroll largo medido en calculadoras (el formulario está
-  junto al hero).
-- [ ] **Estructural**: componentes `FinancialField` y `ResultPanel` con variantes
-  de estado; migración de las 22 calculadoras; pasada manual con NVDA/VoiceOver.
-- [ ] **F-08 completo**: fecha, base imponible y topes por calculadora dentro
-  del bloque (requiere contrato por página).
+- [x] **F-09**: bloque de contexto visible bajo el H1 en los 8 hubs que no lo
+  tenían (los 3 restantes ya lo traían), alineado con las descripciones SEO
+  existentes; breadcrumb semántico ya presente y badge de tipo de F-07.
+- [x] **F-10**: ancla "↑ Ir al cálculo" en `NextSteps` para las 22
+  calculadoras (id `#calculator-form-card` añadido a las 10 que faltaban) y
+  compactación del bloque de indicadores en móvil (padding/row-gap).
+- [x] **Estructural (cierre)**: `CalculatorField` cubre el `FinancialField` de
+  la auditoría (label/hint/error), `CalculatorResultPanel` + `data-result-state`
+  cubren las variantes de estado, y la regresión está automatizada. La
+  migración de los ~32 inputs legacy quedó registrada como `TD-0111`
+  (severidad 2, requiere ADR); la pasada manual con NVDA/VoiceOver queda como
+  acción humana pendiente de agendar.
 
 ## Rollback
 

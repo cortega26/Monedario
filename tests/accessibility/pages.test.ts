@@ -94,6 +94,12 @@ test.describe("WCAG 2.2 AA — all calculator templates (light desktop)", () => 
       );
       reportViolations(slug, criticalAndSerious);
       expect(criticalAndSerious).toEqual([]);
+
+      // Plan 114 / F-10: the "Ir al cálculo" anchor must resolve to the form.
+      await expect(
+        page.locator('a[href="#calculator-form-card"]')
+      ).toBeAttached();
+      await expect(page.locator("#calculator-form-card")).toBeAttached();
     });
   }
 });

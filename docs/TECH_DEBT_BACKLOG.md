@@ -2440,3 +2440,36 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Estado:** Backlog
 - **Fecha de creación:** 2026-09-25
 - **Última actualización:** 2026-09-25
+
+## TD-0111 — Migración legacy de inputs de calculadoras a `CalculatorField`
+
+- **ID:** TD-0111
+- **Título corto:** ~32 inputs numéricos inline sin componente de campo
+- **Descripción:** La auditoría UX/UI 2026-09-28 recomendó un componente de campo
+  único (`FinancialField`) y migrar las calculadoras. `CalculatorField` ya existe
+  (label asociado, hint, `aria-describedby`, min/max/step) y las guardas de
+  nombres accesibles cubren el 100% de los controles, pero quedan ~32 inputs
+  inline en 14 páginas (`sueldo-liquido`, `simulador-renegociacion`,
+  `operacion-renta`, `gratificacion-legal`, `prepago-credito`, `conversor-uf`,
+  entre otras). La migración es consistencia de mantenimiento, no un defecto
+  visible para la persona usuaria.
+- **Evidencia:** conteo `type="number"` vs `<CalculatorField` por página
+  (2026-09-28); `tests/accessibility/form-labels.test.ts` en verde.
+- **Impacto:** Deriva de estilos y atributos entre calculadoras; cada mejora de
+  campo debe replicarse a mano.
+- **Riesgo:** bajo (sin impacto funcional actual).
+- **Severidad (1-5):** 2
+- **Urgencia:** P3
+- **Esfuerzo estimado:** M–L (14 páginas, riesgo de layout)
+- **Propuesta de solución:** migrar por lotes de 2–3 páginas con captura visual
+  antes/después y `pnpm exec playwright test tests/accessibility/` en verde;
+  requiere ADR por ser refactor arquitectónico (regla de refactors durante
+  bugfix tasks).
+- **Criterios de cierre (checklist verificable):**
+  - [ ] 0 inputs inline fuera de `CalculatorField` (salvo casos justificados y
+    comentados).
+  - [ ] Tests de labels, estados y axe en verde en cada lote.
+- **Owner:** Sin asignar
+- **Estado:** Backlog
+- **Fecha de creación:** 2026-09-28
+- **Última actualización:** 2026-09-28
