@@ -162,7 +162,11 @@ const dapFaqs = [
       </div>
 
       <!-- RESULTADO -->
-      <CalculatorResultPanel headingId="resultado-heading" title="Resultado">
+      <CalculatorResultPanel
+        headingId="resultado-heading"
+        title="Resultado"
+        disclaimer
+      >
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
           <div
             class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
@@ -170,7 +174,7 @@ const dapFaqs = [
             <p
               class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
             >
-              Monto al vencimiento (Ejemplo)
+              Monto al vencimiento (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">$5.118.356</p>
           </div>
@@ -190,6 +194,7 @@ const dapFaqs = [
           </div>
           <p class="mt-4 text-xs text-muted">
             Ejemplo: $5.000.000 al 5% TIR por 180 días, con retención 4%.
+            Ingresa tus datos para ver tu resultado.
           </p>
         </div>
       </CalculatorResultPanel>

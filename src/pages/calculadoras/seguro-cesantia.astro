@@ -270,7 +270,7 @@ const seguroCesantiaFaqs = [
             <p
               class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
             >
-              Cobertura total estimada (Ejemplo)
+              Cobertura total estimada (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
               {fmtClp(exampleResult.totalCoverage)}
@@ -292,7 +292,8 @@ const seguroCesantiaFaqs = [
           </div>
           <p class="mt-4 text-xs text-muted">
             Ejemplo: contrato indefinido, sueldo $800.000, 24 cotizaciones,
-            despido por necesidad de la empresa.
+            despido por necesidad de la empresa. Ingresa tus datos para ver tu
+            resultado.
           </p>
         </div>
         <div
@@ -308,6 +309,7 @@ const seguroCesantiaFaqs = [
         <CalculatorDataFreshness
           source={economicParameters.source}
           updatedDate={formatEconomicDate(economicParameters.lastUpdated)}
+          variant="result"
         />
       </CalculatorResultPanel>
     </section>

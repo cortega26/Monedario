@@ -205,7 +205,7 @@ const calculatorNextStepItems = [
             <p
               class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
             >
-              Impuesto mensual (Ejemplo)
+              Impuesto mensual (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
               {fmt(exampleResult.taxAmount)}
@@ -230,7 +230,8 @@ const calculatorNextStepItems = [
             </div>
           </div>
           <p class="mt-4 text-xs text-muted">
-            Ejemplo: sueldo imponible de $1.200.000 con la UTM vigente.
+            Ejemplo: sueldo imponible de $1.200.000 con la UTM vigente. Ingresa
+            tus datos para ver tu resultado.
           </p>
         </div>
         <div
@@ -243,6 +244,7 @@ const calculatorNextStepItems = [
         <CalculatorDataFreshness
           source={economicParameters.source}
           updatedDate={formatEconomicDate(utmLastUpdated)}
+          variant="result"
         >
           {" · "}Valor usado: {fmt(utm)}.
         </CalculatorDataFreshness>

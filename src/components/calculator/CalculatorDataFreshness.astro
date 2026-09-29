@@ -5,14 +5,41 @@ interface Props {
   source: "live" | "snapshot" | "fallback";
   /** Fecha larga ya formateada, p. ej. "1 de mayo de 2026". */
   updatedDate: string;
+  /**
+   * `footer` (por defecto): línea de procedencia de datos.
+   * `result`: bloque compacto junto al resultado, con carácter referencial
+   * explícito (auditoría UX F-08).
+   */
+  variant?: "footer" | "result";
   /** Clase de margen/contenedor; por defecto el espaciado de pie de calculadora. */
   class?: string;
 }
 
-const { source, updatedDate, class: className = "mt-3" } = Astro.props;
+const {
+  source,
+  updatedDate,
+  variant = "footer",
+  class: className = "mt-3",
+} = Astro.props;
 const label = resolveEconomicSourceLabel(source);
+const isResult = variant === "result";
 ---
 
-<p class:list={[className, "text-xs text-muted"]}>
-  Datos al {updatedDate} · {label}<slot />
-</p>
+<div
+  class:list={[
+    className,
+    "text-xs text-muted",
+    isResult && "rounded-lg border border-border bg-surface-muted/30 px-3 py-2",
+  ]}
+>
+  {
+    isResult && (
+      <p class="font-semibold text-foreground">Estimación referencial</p>
+    )
+  }
+  <p class:list={[isResult && "mt-0.5"]}>
+    Datos al {updatedDate} · {label}{
+      isResult ? ". No es una cotización ni una liquidación oficial." : null
+    }<slot />
+  </p>
+</div>

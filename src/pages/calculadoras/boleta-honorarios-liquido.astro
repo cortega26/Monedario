@@ -129,7 +129,7 @@ const calculatorNextStepItems = [
         </div>
       </div>
 
-      <CalculatorResultPanel title="Resultado orientativo">
+      <CalculatorResultPanel title="Resultado orientativo" disclaimer>
         <div id="resultado-contenido" data-is-example="true" aria-live="polite">
           <div
             class="mb-5 rounded-lg border border-border bg-surface-muted/40 p-4 text-center"
@@ -137,7 +137,7 @@ const calculatorNextStepItems = [
             <p
               class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
             >
-              Recibes líquido (Ejemplo)
+              Recibes líquido (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
               {fmtClp(exampleResult.netFeeReceived)}
@@ -157,7 +157,8 @@ const calculatorNextStepItems = [
           </div>
           <p class="mt-4 text-xs text-muted">
             Ejemplo: boleta de $500.000 con retención de 15,25%. Retención
-            verificada: marzo 2026 (SII).
+            verificada: marzo 2026 (SII). Ingresa tus datos para ver tu
+            resultado.
           </p>
         </div>
       </CalculatorResultPanel>

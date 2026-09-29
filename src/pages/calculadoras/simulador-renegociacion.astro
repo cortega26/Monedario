@@ -246,7 +246,7 @@ const calculatorNextStepItems = [
             <p
               class="mb-1 text-xs font-bold tracking-widest text-muted uppercase"
             >
-              Cuota renegociada (Ejemplo)
+              Cuota renegociada (Ejemplo ilustrativo)
             </p>
             <p class="text-4xl font-bold text-foreground/80">
               {fmtClp(exampleResult.monthlyPayment)}
@@ -274,12 +274,13 @@ const calculatorNextStepItems = [
           </div>
           <p class="mt-4 text-xs text-muted">
             Ejemplo: dos deudas ($2.000.000 + $1.500.000), ingreso $700.000,
-            plazo 36 meses.
+            plazo 36 meses. Ingresa tus datos para ver tu resultado.
           </p>
         </div>
         <CalculatorDataFreshness
           source={economicParameters.source}
           updatedDate={formatEconomicDate(economicParameters.lastUpdated)}
+          variant="result"
         />
       </div>
     </section>
