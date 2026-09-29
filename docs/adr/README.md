@@ -26,6 +26,7 @@ Crea un ADR cuando cambie alguno de estos ejes:
 | `ADR-20260716-temporary-self-hosted-actions-bridge.md` | Accepted | Puente temporal de runner self-hosted ante agotamiento de minutos | CI, operations |
 | `ADR-20260929-effective-dated-economic-parameters.md` | Accepted | Parámetros fiscales congelados por año tributario y modelo effective-dated | domain, data, tax |
 | `ADR-20260929-calculator-field-migration.md` | Accepted | Migración de inputs de calculadoras a `CalculatorField` por lotes | components, UX, maintenance |
+| `ADR-20260929-ai-independent-audit-protocol.md` | Accepted | Auditorías independientes por IA con protocolo anti-alucinación como pre-gate YMYL | editorial, governance, YMYL |
 
 ## Convencion minima
 

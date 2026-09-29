@@ -1,0 +1,23 @@
+{
+  "auditId": "plan-115-correctitud",
+  "protocolVersion": "v1",
+  "scope": {
+    "commit": null,
+    "files": [],
+    "vectors": []
+  },
+  "auditor": {
+    "role": "MathAuditAgent",
+    "model": null,
+    "session": null,
+    "date": null
+  },
+  "method": {
+    "commands": [],
+    "edgeCases": []
+  },
+  "claims": [],
+  "defects": [],
+  "verdict": null,
+  "humanSignoff": null
+}

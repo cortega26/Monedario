@@ -1,0 +1,115 @@
+{
+  "auditId": "plan-115-correctitud",
+  "protocolVersion": "v1",
+  "createdAt": "2026-09-29",
+  "status": "PENDING_EXECUTION",
+  "scope": {
+    "description": "Cambios de cálculo y copy YMYL del plan 115 (auditoría de correctitud 2026-09-28) y el desbloqueo F04 de la serie IPC.",
+    "commits": [
+      "beb0401e (#556 F01/F02: AT2026 congelado y renta neta)",
+      "95c82807 (#557 F03: DAP sin retención)",
+      "854105cc (#559 registry effective-dated)",
+      "ae28d6d3 (#560 F04: freshness fail-closed)",
+      "a616dc53 (#561 F05/F06/F07: APV, SuperIR, DICOM)",
+      "61b8a0ae (#562 F08/F09/F10: paridad sueldo, UTA, prepago)",
+      "48b84eba (#564 copy bold-glue)",
+      "186cdc13 (#573 F04 dataset IPC vía BCCh/INE)"
+    ],
+    "files": [
+      "src/domain/taxation/TaxYearParameters.ts",
+      "src/domain/taxation/TaxEngine.ts",
+      "src/domain/taxation/TaxYearRegistry.ts",
+      "src/domain/economic/EffectiveDatedParameters.ts",
+      "src/application/use-cases/CalculateTermDeposit.ts",
+      "src/application/use-cases/SimulateDebtRenegotiation.ts",
+      "src/application/use-cases/SimulateDebtRenegotiation.methodology.ts",
+      "src/pages/calculadoras/operacion-renta.astro",
+      "src/pages/calculadoras/deposito-a-plazo.astro",
+      "src/pages/calculadoras/apv.astro",
+      "src/pages/calculadoras/simulador-renegociacion.astro",
+      "src/pages/calculadoras/sueldo-liquido.astro",
+      "src/pages/calculadoras/conversor-utm.astro",
+      "src/pages/calculadoras/dividendo-hipotecario.astro",
+      "src/utils/economicFreshness.ts",
+      "scripts/fetch-economic-history.mjs",
+      "scripts/economic-history-ipc.mjs",
+      "src/data/economic-history/ipc-historico.json"
+    ],
+    "vectors": [
+      {
+        "id": "V1",
+        "claim": "$18.000.000 de renta neta ⇒ IGC $269.367,84 (AT2026)",
+        "test": "tests/application/SimulateOperacionRenta.test.ts:32"
+      },
+      {
+        "id": "V2",
+        "claim": "Sueldo bruto $1.200.000 ⇒ líquido $973.347 e impuesto 2ª categoría $213",
+        "test": "tests/accessibility/calculator-states.test.ts:197"
+      },
+      {
+        "id": "V3",
+        "claim": "DAP persona natural residente: sin retención automática (4% solo Impuesto Adicional, art. 59 N°4 LIR)",
+        "test": "tests/application/CalculateTermDeposit.test.ts"
+      },
+      {
+        "id": "V4",
+        "claim": "APV art. 42 bis: tasa marginal × 1,1 + 3 pp; retención 15%; exención pensionados",
+        "test": "tests/domain/TaxEngine.test.ts"
+      },
+      {
+        "id": "V5",
+        "claim": "SuperIR exige acreedor por deuda y ≥2 acreedores distintos (Ley 20.720 art. 260)",
+        "test": "tests/application/FinancialUseCases.regression.test.ts:372"
+      },
+      {
+        "id": "V6",
+        "claim": "Serie IPC 2026: ene 0,4 / feb 0 / mar 1,0 / abr 1,3 / may 0,2 / jun 0 / jul 0,1 / ago 0,6; UTA dic-2025 $834.504; UF dic-2025 $39.643,59",
+        "test": "tests/scripts/economic-history-ipc.test.ts + tests/data/economic-history.test.ts"
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "label": "SII FAQ DAP sin retención (001.140.2738)",
+        "url": "https://www.sii.cl/preguntas_frecuentes/"
+      },
+      {
+        "id": "S2",
+        "label": "Art. 59 N°4 LIR (retención 4% Impuesto Adicional)",
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=6368"
+      },
+      {
+        "id": "S3",
+        "label": "Art. 42 bis N°3 LIR (APV)",
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=6368"
+      },
+      {
+        "id": "S4",
+        "label": "Ley 20.720 art. 260 (SuperIR)",
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=1058072"
+      },
+      {
+        "id": "S5",
+        "label": "Ley 19.628 arts. 17-18 (DICOM)",
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=141599"
+      },
+      {
+        "id": "S6",
+        "label": "Ley 21.830 (IMM retroactivo 01-05-2026)",
+        "url": "https://www.bcn.cl/leychile/navegar?idNorma=1211138"
+      },
+      {
+        "id": "S7",
+        "label": "BCCh serie G073.IPC.VAR.2023.M (IPC INE, variación mensual, empalme base 2023=100)",
+        "url": "https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx"
+      }
+    ],
+    "recommendedCommands": [
+      "pnpm install --frozen-lockfile",
+      "pnpm run test",
+      "pnpm run build",
+      "SMALL_DETAILS_ENFORCE=1 pnpm run check:small-details",
+      "pnpm run check:economic-snapshot-freshness"
+    ]
+  }
+}
