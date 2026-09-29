@@ -5,7 +5,7 @@ description: "Con sueldo y boletas de honorarios debes declarar siempre. Aprende
 slug: rentas-mixtas-sueldo-honorarios
 author: "Equipo Monedario"
 pubDate: 2026-04-09T12:00:00Z
-updatedDate: 2026-08-12T00:00:00Z
+updatedDate: 2026-09-29T00:00:00Z
 tags:
   - impuestos
   - rentas-mixtas
@@ -48,9 +48,9 @@ faqs:
   - q: "¿Qué pasa con el Impuesto de Segunda Categoría que ya me retuvieron del sueldo?"
     a: "El impuesto de segunda categoría retenido mensualmente por tu empleador se convierte en crédito contra el Impuesto Global Complementario. Si el total retenido supera el impuesto final calculado, obtienes devolución. Si es menor, debes pagar la diferencia."
   - q: "¿Cómo se calcula si me corresponde pagar más o recuperar?"
-    a: "Se suman tus rentas brutas anuales (sueldo + honorarios), se aplica el Global Complementario (mismos tramos que segunda categoría pero sobre base anual) y el resultado se compara con lo retenido: segunda categoría del sueldo más la retención del 15,25% de las boletas. La diferencia es positiva (pago adicional) o negativa (devolución)."
+    a: "Se suman tus rentas brutas anuales (sueldo + honorarios), se aplica el Global Complementario (mismos tramos que segunda categoría pero sobre base anual) y el resultado se compara con lo retenido: segunda categoría del sueldo más la retención del 14,5% de las boletas. La diferencia es positiva (pago adicional) o negativa (devolución)."
   - q: "¿Qué es el PPM en operación renta para honorarios?"
-    a: "La retención del 15,25% que el pagador descuenta al momento de emitir cada boleta actúa como pago provisional mensual (PPM) para efectos del F22. Esa retención acumulada durante el año se descuenta del impuesto anual final."
+    a: "La retención del 14,5% que el pagador descuenta al momento de emitir cada boleta actúa como pago provisional mensual (PPM) para efectos del F22. Esa retención acumulada durante el año se descuenta del impuesto anual final."
   - q: "¿Puedo tener sueldo, boletas y aun así quedar exento del Global Complementario?"
     a: "Sí, si tu renta total anual (sueldo bruto + honorarios brutos) no supera el tramo exento del Global Complementario (13,5 UTA anuales para AT 2026, $11.265.804 anuales), no pagas impuesto adicional. Pero igual debes declarar."
 reviewPolicy:
@@ -91,7 +91,7 @@ _Resumen orientativo. Verifica tu situación específica en [sii.cl](https://www
 El SII construye la propuesta a partir de la información que recibe de los **agentes informantes**: empleadores, pensionadores y pagadores de honorarios que reportan lo que te pagaron y lo que retuvieron. El problema es que cada uno de ellos sólo conoce su parte:
 
 - Tu empleador retuvo Impuesto de Segunda Categoría mensualmente, calculando el impuesto solo sobre tu sueldo.
-- Cada pagador de honorarios retuvo 15,25% (tasa 2026) al momento de emitir cada boleta, sin saber cuánto ganaste como dependiente.
+- Cada pagador de honorarios retuvo 14,5% (tasa 14,5% para boletas 2025) al momento de emitir cada boleta, sin saber cuánto ganaste como dependiente.
 
 La renta total gravada con **Impuesto Global Complementario (IGC)** es la suma de ambas. Ese cálculo unificado solo puede hacerse en el F22, donde el SII cruza todas las fuentes. Por eso la propuesta existe pero no es definitiva para tu caso.
 
@@ -103,7 +103,7 @@ La lógica central es la siguiente:
 2. **Aplicación del Global Complementario:** Sobre esa suma total se aplica la tabla del IGC (Art. 52 de la Ley sobre Impuesto a la Renta), que usa los mismos tramos progresivos que el Impuesto de Segunda Categoría pero sobre base **anual**.
 3. **Créditos disponibles:**
    - Impuesto de Segunda Categoría retenido mensualmente por el empleador.
-   - Retención del 15,25% aplicada en cada boleta de honorarios (actúa como PPM).
+   - Retención del 14,5% aplicada en cada boleta de honorarios (actúa como PPM).
 4. **Resultado:**
    - Si **créditos > impuesto calculado** → **devolución** de la diferencia.
    - Si **impuesto calculado > créditos** → **pago adicional** de la diferencia.
@@ -132,7 +132,7 @@ Para simular tu resultado completo antes de abrir el F22: [Simulador Operación 
 
 Los escenarios que suelen generar impuesto adicional a pagar:
 
-- **Honorarios en tramo superior:** Tus boletas de honorarios suman lo suficiente para que la renta total quede en un tramo más alto que el que tu empleador usó para retenerte. El 15,25% de retención puede ser insuficiente si tu tramo real es 23% o mayor.
+- **Honorarios en tramo superior:** Tus boletas de honorarios suman lo suficiente para que la renta total quede en un tramo más alto que el que tu empleador usó para retenerte. El 14,5% de retención puede ser insuficiente si tu tramo real es 23% o mayor.
 - **Dos empleadores + honorarios:** Cada empleador calculó la retención sin saber del otro. Al sumar sueldo 1 + sueldo 2 + honorarios, el IGC resulta mayor que la suma de retenciones individuales.
 - **Inicio tardío de honorarios en el año:** Si comenzaste a emitir boletas en el segundo semestre, solo retuvieron en esos meses, pero el Global Complementario evalúa toda tu renta del año.
 
@@ -142,7 +142,7 @@ Escenarios típicos de devolución:
 
 - **Honorarios muy bajos:** Tu renta de honorarios es pequeña y tu empleador ya retuvo en exceso por el método de proyección anual del sueldo (el empleador retiene como si el sueldo del mes se recibiera durante todo el año, lo que sobreestima el impuesto mensual en algunos meses).
 - **APV Régimen B:** Si realizaste aportes a APV bajo Régimen B (rebaja de tu base imponible del IGC, con tope de 600 UF anuales), eso reduce tu impuesto determinado y puede generar o aumentar una devolución. El Régimen A no participa de este cálculo: su beneficio es una bonificación estatal del 15% sobre los aportes (tope 6 UTM anuales) que la Tesorería General de la República deposita directamente en tu cuenta de ahorro previsional, no un crédito en el F22.
-- **Solo un empleador estable y pocas boletas:** Si tienes un sueldo fijo alto con retención precisa y emitiste boletas pequeñas con el 15,25%, la retención total puede superar el IGC calculado.
+- **Solo un empleador estable y pocas boletas:** Si tienes un sueldo fijo alto con retención precisa y emitiste boletas pequeñas con el 14,5%, la retención total puede superar el IGC calculado.
 
 Para entender mejor cómo funciona el Impuesto de Segunda Categoría mensualmente: [Calculadora de Impuesto de Segunda Categoría](/calculadoras/impuesto-segunda-categoria/).
 
@@ -152,7 +152,7 @@ Para entender mejor cómo funciona el Impuesto de Segunda Categoría mensualment
 
 - **Certificado de remuneraciones y retenciones** del año (tu empleador debe entregártelo antes de fin de marzo; también aparece en el SII bajo "Agentes informantes").
 - **Registro de boletas emitidas** (disponible en SII.cl → Registro de boletas electrónicas, o el resumen anual que envía el SII).
-- **Total de retenciones** aplicadas en tus boletas (suma del 15,25% de cada una).
+- **Total de retenciones** aplicadas en tus boletas (suma del 14,5% de cada una).
 - (Opcional) Comprobante de APV si realizaste aportes durante 2025.
 
 ### Dónde y cómo declarar
@@ -160,7 +160,7 @@ Para entender mejor cómo funciona el Impuesto de Segunda Categoría mensualment
 1. Entra a **sii.cl → Servicios online → Renta → Declaración de Renta**.
 2. Abre el F22 propuesto. Verifica que aparezcan correctamente:
    - Tu empleador como agente informante (línea de sueldos y retenciones).
-   - Tus boletas de honorarios y la retención acumulada del 15,25%.
+   - Tus boletas de honorarios y la retención acumulada del 14,5%.
 3. Si falta información, agrégala manualmente en las líneas correspondientes.
 4. Revisa el resultado (línea "Impuesto determinado" vs. "Total créditos").
 5. Envía la declaración.
@@ -174,7 +174,7 @@ Para los detalles del proceso de revisión y los errores más frecuentes, consul
 | Ingresos del trabajo   | Sueldos brutos del año (según certificado del empleador)          |
 | Retenciones de sueldo  | Total de Impuesto de Segunda Categoría retenido por empleador(es) |
 | Ingresos de honorarios | Total de honorarios brutos emitidos en el año                     |
-| Retenciones boletas    | Total del 15,25% retenido en todas las boletas del año            |
+| Retenciones boletas    | Total del 14,5% retenido en todas las boletas del año            |
 
 _Resumen orientativo. El F22 real puede tener códigos de línea específicos que varían por año tributario. Revisa el instructivo oficial del SII para AT 2026._
 

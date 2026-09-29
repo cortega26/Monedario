@@ -112,7 +112,27 @@ divulgación pública, si ocurre, es un resumen redactado para la web (método,
 modelo, protocolo, fecha, veredicto y revisión humana), no el artefacto
 completo.
 
-## 5. Integración
+## 5. Matriz de superficies (cierre por clase)
+
+Un mismo hecho (una tasa, un tope, una fórmula) vive en varias superficies.
+Toda remediación debe barrer **las seis** y la auditoría debe verificarlas:
+
+| Superficie | Ejemplos |
+|---|---|
+| Cuerpo | copy de página/artículo, ejemplos numéricos |
+| Metadatos | `<title>`, `seoTitle`, meta description |
+| Datos estructurados | JSON-LD (`CalculatorJsonLd`, `Article`, FAQ) |
+| Catálogo / LLM | `src/config/calculatorPortfolio.ts`, `llms-full.txt` |
+| Contenido relacionado | posts, glosario, guías y hubs que citan el hecho |
+| Motor y tests | dominio/use-cases + vectores y guardas |
+
+Regla de cierre: por cada hallazgo se (a) barren las seis superficies buscando
+el valor y **sus variantes** (15,25 vs 14,5; "4%"; "N°4"; 150 vs 310), (b) se
+agrega una guarda de regresión que impida la reaparición, y (c) la auditoría
+re-verifica con esta matriz, no ad-hoc. Estos defectos son
+`surface: "product"`.
+
+## 6. Integración
 
 - **Pipeline editorial** (`src/data/blog`): el resultado reemplaza/complementa
   `05-math-audit.md` en `docs/editorial/artifacts/editorial/<slug>/<run-id>/`.

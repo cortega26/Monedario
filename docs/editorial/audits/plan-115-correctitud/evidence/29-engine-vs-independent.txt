@@ -1,0 +1,135 @@
+### Harness pass-3 motor vs independiente (commit 9e195743, 2026-09-29)
+### comando: pnpm exec vitest run --config evidence/vitest.pass3.config.ts --reporter=verbose --silent=false
+
+
+ RUN  v4.1.11 /home/carlos/VS_Code_Projects/products/monedario/docs/editorial/audits/plan-115-correctitud/evidence
+
+stdout | pass3.independent.audit.test.ts > pass 3 — recálculo independiente vs motor (plan 115) > resumen del harness
+
+=== PASS 3 COMPARISON (97 checks) ===
+OK   V1.igc motor: independiente=269367.83999999997 motor=269367.83999999997 delta=0
+OK   V1.igc use case: independiente=269367.83999999997 motor=269367.83999999997 delta=0
+OK   V1.variante bug UTM sep×12 (esperado 255.247,92): independiente=255247.92 motor=255247.91999999998 delta=2.9103830456733704e-11
+OK   IGC.13.5UTA: independiente=0 motor=0 delta=0
+OK   IGC.14UTA: independiente=16690.079999999958 motor=16690.079999999958 delta=0
+OK   IGC.29.99UTA: independiente=550438.8383999999 motor=550438.8383999999 delta=0
+OK   IGC.30UTA: independiente=550772.64 motor=550772.64 delta=0
+OK   IGC.30.0001UTA: independiente=550779.3160319999 motor=550779.3160319999 delta=0
+OK   IGC.50UTA: independiente=1885979.04 motor=1885979.04 delta=0
+OK   IGC.70UTA: independiente=4139139.840000001 motor=4139139.8400000003 delta=4.656612873077393e-10
+OK   IGC.90UTA: independiente=7977858.24 motor=7977858.24 delta=0
+OK   IGC.120UTA: independiente=15588534.719999997 motor=15588534.719999999 delta=1.862645149230957e-9
+OK   IGC.310UTA: independiente=71083050.72 motor=71083050.72 delta=0
+OK   IGC.320UTA: independiente=74421066.72 motor=74421066.72 delta=0
+OK   IGC.400UTA: independiente=101125194.72 motor=101125194.72 delta=0
+OK   IUSC.13.5UTM: independiente=0 motor=0 delta=0
+OK   IUSC.30UTM: independiente=47335.85999999999 motor=47335.85999999999 delta=0
+OK   IUSC.50UTM: independiente=162089.46000000002 motor=162089.46 delta=2.9103830456733704e-11
+OK   IUSC.70UTM: independiente=355736.16000000003 motor=355736.16000000003 delta=0
+OK   IUSC.90UTM: independiente=685652.7599999999 motor=685652.7599999999 delta=0
+OK   IUSC.120UTM: independiente=1339748.28 motor=1339748.2800000003 delta=2.3283064365386963e-10
+OK   IUSC.310UTM: independiente=6109194.779999999 motor=6109194.779999999 delta=0
+OK   IUSC.320UTM: independiente=6396078.779999999 motor=6396078.779999999 delta=0
+OK   IUSC.salto frontera 13.5 UTM (tabla publicada): independiente=0.03999999999359716 motor=0.03999999999359716 delta=0
+OK   IUSC.salto frontera 30 UTM (tabla publicada): independiente=0.0800000000235741 motor=0.08000000000902219 delta=1.4551915228366852e-11
+OK   IUSC.salto frontera 50 UTM (tabla publicada): independiente=0.13499999995110556 motor=0.1349999999802094 delta=2.9103830456733704e-11
+OK   IUSC.salto frontera 70 UTM (tabla publicada): independiente=0.22999999998137355 motor=0.22999999998137355 delta=0
+OK   IUSC.salto frontera 90 UTM (tabla publicada): independiente=0.3040000001201406 motor=0.30400000035297126 delta=2.3283064365386963e-10
+OK   IUSC.salto frontera 120 UTM (tabla publicada): independiente=0.34999999962747097 motor=0.34999999962747097 delta=0
+OK   IUSC.salto frontera 310 UTM (tabla publicada): independiente=0.40000000037252903 motor=0.40000000037252903 delta=0
+OK   IGC.320UTA no usa art. 52 bis (diferencia $6.676.032): independiente=6676032 motor=6676032 delta=0
+OK   V2.base: independiente=973560 motor=973560 delta=0
+OK   V2.tax: independiente=213.05999999999767 motor=213.05999999999767 delta=0
+OK   V2.net: independiente=973346.94 motor=973346.94 delta=0
+OK   V2.afp: independiente=135240 motor=135240 delta=0
+OK   V2.salud: independiente=84000.00000000001 motor=84000.00000000001 delta=0
+OK   V2.afc: independiente=7200 motor=7200 delta=0
+OK   V2.con UTM oct el impuesto sería 0: independiente=0 motor=0 delta=0
+OK   V2.tope previsional base: independiente=3694410.9000000004 motor=3694410.9000000004 delta=0
+OK   V2.tope AFC base: independiente=5549826.152 motor=5549826.152 delta=0
+OK   V2.base 6M: independiente=5291732.171658 motor=5291732.171658 delta=0
+OK   V2.tax 6M: independiente=418126.45948134 motor=418126.45948134 delta=0
+OK   V2.plazo-fijo AFC 0: independiente=980258.94 motor=980258.94 delta=0
+OK   V2.frontera exenta 13,5 UTM: independiente=0 motor=0 delta=0
+OK   V3.5000000/180d/5%: independiente=123287.6712328767 motor=123287.6712328767 delta=0
+OK   V3.final 5000000/180: independiente=5123287.671232876 motor=5123287.671232876 delta=0
+OK   V3.2000000/365d/4.5%: independiente=90000 motor=90000 delta=0
+OK   V3.final 2000000/365: independiente=2090000 motor=2090000 delta=0
+OK   V3.1000000/1d/0.01%: independiente=0.273972602739726 motor=0.273972602739726 delta=0
+OK   V3.final 1000000/1: independiente=1000000.2739726028 motor=1000000.2739726028 delta=0
+OK   V3.1000000/366d/7.35%: independiente=73701.36986301371 motor=73701.36986301371 delta=0
+OK   V3.final 1000000/366: independiente=1073701.3698630137 motor=1073701.3698630137 delta=0
+OK   V3.variante 4% rechazada: independiente=118356.16438356163 motor=118356.16438356163 delta=0
+OK   V4.delta 90/50UTA: independiente=13452204.479999999 motor=13452204.480000002 delta=3.725290298461914e-9
+OK   V4.tasa 90/50UTA: independiente=0.38464 motor=0.3846400000000001 delta=1.1102230246251565e-16
+OK   V4.delta 200/10UTA: independiente=2920763.9999999925 motor=2920764 delta=7.450580596923828e-9
+OK   V4.tasa 200/10UTA: independiente=0.41499999999999904 motor=0.41500000000000004 delta=9.992007221626409e-16
+OK   V4.delta 0/5UTA: independiente=0 motor=0 delta=0
+OK   V4.tasa 0/5UTA: independiente=0.03 motor=0.03 delta=0
+OK   V4.delta 10/5UTA: independiente=50070.23999999999 motor=50070.23999999999 delta=0
+OK   V4.tasa 10/5UTA: independiente=0.0432 motor=0.0432 delta=0
+OK   V4.delta 30/0.1UTA: independiente=6676.0320000000065 motor=6676.0320000000065 delta=0
+OK   V4.tasa 30/0.1UTA: independiente=0.11800000000000009 motor=0.11800000000000009 delta=0
+OK   V4.delta 29.9/0.2UTA: independiente=10014.048000000068 motor=10014.048000000068 delta=0
+OK   V4.tasa 29.9/0.2UTA: independiente=0.09600000000000045 motor=0.09600000000000045 delta=0
+OK   V4.delta 310/200UTA: independiente=66760320 motor=66760320 delta=0
+OK   V4.tasa 310/200UTA: independiente=0.4700000000000001 motor=0.4700000000000001 delta=0
+OK   V4.delta 120/120UTA: independiente=35049168 motor=35049168 delta=0
+OK   V4.tasa 120/120UTA: independiente=0.41500000000000004 motor=0.41500000000000004 delta=0
+OK   V5.uf: independiente=101.78117048346056 motor=101.78117048346056 delta=0
+OK   V5.cuota: independiente=110110.20773611861 motor=110110.20773611861 delta=0
+OK   V5.totalPagado: independiente=5285289.971333694 motor=5285289.971333694 delta=0
+OK   V5.carga%: independiente=9.17585064467655 motor=9.17585064467655 delta=0
+OK   V5.80 UF exactas: independiente=false motor=false
+OK   V5.80 UF + $1: independiente=true motor=true
+OK   V5.90 días no califica / 91 sí: independiente=false motor=false
+OK   V5.mismo acreedor califica (obligaciones diversas): independiente=true motor=true
+OK   V5.una sola deuda: independiente=false motor=false
+OK   V5.deuda $0 no cuenta: independiente=false motor=false
+OK   V6.ipc 2026-01-01: independiente=0.4 motor=0.4 delta=0
+OK   V6.ipc 2026-02-01: independiente=0 motor=0 delta=0
+OK   V6.ipc 2026-03-01: independiente=1 motor=1 delta=0
+OK   V6.ipc 2026-04-01: independiente=1.3 motor=1.3 delta=0
+OK   V6.ipc 2026-05-01: independiente=0.2 motor=0.2 delta=0
+OK   V6.ipc 2026-06-01: independiente=0 motor=0 delta=0
+OK   V6.ipc 2026-07-01: independiente=0.1 motor=0.1 delta=0
+OK   V6.ipc 2026-08-01: independiente=0.6 motor=0.6 delta=0
+OK   V6.acumulado encadenado %: independiente=3.648807945707024 motor=3.648807945707011 delta=1.2878587085651816e-14
+OK   V6.$1M dic-25→ago-26: independiente=1036488.0794570702 motor=1036488.0794570701 delta=1.1641532182693481e-10
+OK   V6.UF 31-12-2025: independiente=39727.96 motor=39727.96 delta=0
+OK   V6.UF dic-2025 día 1 (derogada en D2): independiente=39643.59 motor=39643.59 delta=0
+OK   V6.UTA = 12 × 69.542: independiente=834504 motor=834504 delta=0
+OK   V6.AT2026.uta: independiente=834504 motor=834504 delta=0
+OK   V6.AT2026.ufDecember: independiente=39727.96 motor=39727.96 delta=0
+OK   F04.serie IPC vs snapshot: independiente=fresh motor=fresh
+OK   F04.snapshot.utm: independiente=71721 motor=71721 delta=0
+OK   F04.snapshot.uta: independiente=834504 motor=834504 delta=0
+=== FAILS: 0 ===
+
+ ✓ pass3.independent.audit.test.ts > pass 3 — recálculo independiente vs motor (plan 115) > V1 — $18.000.000 renta neta ⇒ IGC $269.367,84 (AT2026) 3ms
+ ✓ pass3.independent.audit.test.ts > pass 3 — recálculo independiente vs motor (plan 115) > IGC — bordes y tabla general 310/38,82 vs art. 52 bis 150 1ms
+ ✓ pass3.independent.audit.test.ts > pass 3 — recálculo independiente vs motor (plan 115) > V2 — sueldo líquido $1.200.000 y topes previsionales 1ms
+ ✓ pass3.independent.audit.test.ts > pass 3 — recálculo independiente vs motor (plan 115) > V3 — DAP interés simple y rechazo del 4% universal 2ms
+ ✓ pass3.independent.audit.test.ts > pass 3 — recálculo independiente vs motor (plan 115) > V4 — APV art. 42 bis N°3: tasa media del retiro 1ms
+ ✓ pass3.independent.audit.test.ts > pass 3 — recálculo independiente vs motor (plan 115) > V5 — SuperIR art. 260: bordes y anualidad 2ms
+ ✓ pass3.independent.audit.test.ts > pass 3 — recálculo independiente vs motor (plan 115) > V6 — dataset IPC, UF 31-12-2025, UTA y snapshot 6ms
+ ✓ pass3.independent.audit.test.ts > pass 3 — recálculo independiente vs motor (plan 115) > F04 — frescura IPC fail-closed y effective-dated 18ms
+ ✓ pass3.independent.audit.test.ts > pass 3 — recálculo independiente vs motor (plan 115) > resumen del harness 4ms
+
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+   Start at  18:13:47
+   Duration  477ms (transform 198ms, setup 0ms, import 252ms, tests 40ms, environment 0ms)
+
+
+### Tests de vectores del repo (targeted)
+### comando: pnpm exec vitest run tests/application/SimulateOperacionRenta.test.ts tests/application/CalculateTermDeposit.test.ts tests/domain/TaxEngine.test.ts tests/domain/TaxYearParameters.test.ts tests/domain/TaxYearRegistry.test.ts tests/domain/EffectiveDatedParameters.test.ts tests/utils/economicFreshness.test.ts tests/scripts/economic-history-ipc.test.ts tests/data/economic-history.test.ts tests/application/FinancialUseCases.regression.test.ts tests/application/SimulateDebtRenegotiation.test.ts
+
+ RUN  v4.1.11 /home/carlos/VS_Code_Projects/products/monedario
+
+
+ Test Files  11 passed (11)
+      Tests  137 passed (137)
+   Start at  18:13:59
+   Duration  2.29s (transform 1.85s, setup 0ms, import 3.86s, tests 669ms, environment 4ms)
+

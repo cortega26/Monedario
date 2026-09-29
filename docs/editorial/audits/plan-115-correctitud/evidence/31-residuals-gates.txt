@@ -1,0 +1,285 @@
+### Gates y barrido adversarial — commit 9e195743 (2026-09-29)
+
+## 1. check:economic-snapshot-freshness
+[check-economic-snapshot-freshness] OK. capturedAt 0.1d old; uf/dólar within daily thresholds, UTM within the monthly 7d gate and IPC series aligned with the snapshot.
+exit=0
+
+## 2. check:audit-artifacts (estado pre-actualización de 02-result.json)
+[check-audit-artifacts] OK docs/editorial/audits/plan-115-correctitud/02-result.json (verdict=CONDITIONAL)
+[check-audit-artifacts] 1 artefacto(s) válidos.
+exit=0
+
+## 3. SMALL_DETAILS_ENFORCE=1 check:small-details
+[check-small-details] mode=enforce calculator_pages=22 errors=0 warnings=2 blocking=0
+[check-small-details] report=output/validation/small-details/report.json
+[check-small-details] WARN src/pages/calculadoras/sueldo-liquido.astro:469 ASD-101/error-node-without-selector - Error container "calc-error" is not referenced by document.getElementById.
+[check-small-details] WARN output/validation/urlcheck/external-summary.json:1 ASD-002/external-url-summary-missing - External URL audit summary is missing; run pnpm run check:urls:external:audit before trust-detail triage.
+exit=0
+
+## 4. EDITORIAL_ENFORCE=1 check:editorial
+editorial-structure exit=0
+dialect exit=0
+[check-reader-facing-copy] scope=all diff="-" scanned=94 issues=0
+[check-reader-facing-copy] OK. No blocking issues found.
+reader-facing-copy exit=0
+
+## 5. Barrido adversarial de residuales
+
+### 5.1 "art. 59 N°4" en src/tests/scope
+src/data/laws/codigo-del-trabajo.md:72:| Art. 159 N°4 | Vencimiento del plazo                          | No (salvo que sea reiterado)           |
+src/data/blog/seguro-de-cesantia.md:123:   - Vencimiento del plazo convenido (art. 159 N°4)
+src/data/blog/seguro-cesantia-cuenta-individual-vs-fondo-solidario.md:100:**Habilitan el FCS:** necesidades de la empresa (art. 161), quiebra del empleador, vencimiento de plazo convenido (art. 159 N°4), conclusión de obra o faena (art. 159 N°5), caso fortuito o fuerza mayor (art. 159 N°6), término por acuerdo mutuo bajo art. 163 bis.
+src/data/blog/indemnizacion-anos-de-servicio-chile.md:89:- Vencimiento del plazo convenido (art. 159 N°4).
+
+### 5.2 "acreedores distintos" en src/tests/blog
+tests/application/SimulateDebtRenegotiation.test.ts:69:  it("acepta dos obligaciones del mismo acreedor (art. 260: obligaciones diversas, no acreedores distintos)", () => {
+tests/application/SimulateDebtRenegotiation.test.ts:89:  it("acepta dos obligaciones de acreedores distintos", () => {
+tests/scripts/audit-scope-consistency.test.ts:44:    // V5 puede mencionar "acreedores distintos" solo para negarlo.
+src/application/use-cases/SimulateDebtRenegotiation.ts:9:   * "provenientes de obligaciones diversas", no por acreedores distintos.
+src/application/use-cases/SimulateDebtRenegotiation.ts:110:  // acreedores distintos: dos deudas con el mismo acreedor califican.
+
+### 5.3 "prepago sin costo"
+src/data/blog/credito-hipotecario-chile-guia-completa.md:58:    a: "Puedes prepagar (abonos extraordinarios o prepago total), pero no es sin costo: la propia Ley 21.236 contempla la comisión de prepago dentro del costo total de prepago (art. 3 N° 3). Según la CMF, en mutuos la comisión equivale a 1–1,5 meses de intereses sobre el capital prepagado, y en letras el banco puede cobrar el equivalente al interés de un período de amortización (generalmente ~3 meses), además del capital e intereses devengados. Conviene hacerlo cuando tienes excedentes, porque reduce el capital y el total de intereses."
+src/data/blog/fondo-emergencia-chile.md:96:Liquidez inmediata: puedes girar en cualquier momento sin costo adicional. La desventaja es que no genera prácticamente ningún interés. Es la opción más segura para el tramo de "acceso de emergencia rápida" — el equivalente a uno o dos meses de gastos esenciales que quieres poder tocar hoy mismo.
+src/data/blog/cae-costo-real-credito-chile.md:74:La **CAE (Carga Anual Equivalente)** es un indicador expresado como porcentaje anual que resume el costo total de un crédito: tasa de interés, seguros asociados, comisiones y gastos. Lo establece el SERNAC Financiero como estándar de comparación para que no puedas ser engañado comparando una tasa mensual sin costos con otra que sí los incluye.
+src/data/blog/cae-costo-real-credito-chile.md:211:1. **Comparar tasa mensual sin preguntar si tiene seguros incluidos.** La tasa sin costos adicionales puede parecer mejor y ser más cara en total.
+src/data/blog/fondos-afp-a-b-c-d-e.md:187:Sí, y es gratuito e ilimitado. Puedes cambiarte de fondo cuantas veces quieras sin costo. El trámite se hace directamente en el sitio web o app de tu AFP en minutos.
+src/data/blog/bancos-y-fintech-chile.md:118:Aquí está el miedo de siempre: los cobros escondidos. La buena noticia es que **muchas transacciones del día a día no tienen costo**. En la CuentaRUT, por ejemplo, BancoEstado lista como sin costo "todas las transferencias de fondos entre Cuentas BancoEstado" y también "hacia Cuentas de Otros Bancos e instituciones Financieras a través de nuestra App o Banca en Línea", además de los giros en sus cajeros, las consultas de saldo y la reposición de tarjeta por deterioro.
+src/data/blog/fonasa-vs-isapre-comparativa.md:55:**Respuesta rápida (regla general):** Fonasa conviene a la mayoría de los trabajadores chilenos porque garantiza cobertura universal sin discriminar por enfermedades previas, incluye cargas familiares sin costo adicional y cubre las patologías del GES igual que cualquier Isapre. Isapre puede convenir si tienes ingresos altos, no tienes preexistencias relevantes y priorizas atención en clínicas privadas.
+src/data/blog/fonasa-vs-isapre-comparativa.md:196:Sí. Las cargas familiares (cónyuge, hijos menores de 18 años, mayores de 18 con discapacidad o que estudian, y padres mayores bajo ciertas condiciones) están cubiertas con la cotización del titular, **sin costo adicional**. En Isapre, cada carga aumenta el precio del plan, salvo las cargas no natas y los menores de 2 años, cuyo cobro está prohibido desde el 01-12-2022 ([Ley 21.674, art. 2°](https://www.bcn.cl/leychile/navegar?idNorma=1203779)).
+src/data/blog/donde-ver-si-estoy-en-dicom-gratis.md:76:4. Puedes descargarlo sin costo
+
+### 5.4 UF "39.643" (valor derogado) en src/ y scope
+src/data/economic-history/uf-historico.json:37781:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37785:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37789:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37793:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37797:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37801:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37805:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37809:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37813:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37817:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37821:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37825:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37829:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37833:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37837:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37841:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37845:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37849:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37853:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37857:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37861:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37865:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37869:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37873:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37877:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37881:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37885:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37889:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37893:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37897:      "valor": 39643.59
+src/data/economic-history/uf-historico.json:37901:      "valor": 39643.59
+src/data/economic-history/uf-mensual.json:1254:      "valor": 39643.59
+
+### 5.5 APV copy: "tasa marginal" vs "tasa media"
+51:      "Régimen A conviene si tus ingresos son bajos o medianos y el bono estatal del 15% supera al ahorro tributario. Régimen B conviene si tienes ingresos altos y una tasa marginal elevada en el Impuesto Global Complementario, ya que el aporte reduce tu base imponible.",
+284:          > Solo cuando tu tasa marginal supera el 15% que ofrece el Régimen A. Si
+286:          El simulador calculará tu tasa marginal con el imponible que ingresaste
+388:            b: "Sin tope de beneficio — depende de tu tasa marginal y del aporte",
+397:            a: "Tramo cero o bajo (tasa marginal < 15%)",
+398:            b: "Tramo alto (tasa marginal ≥ 23%)",
+403:            b: "Impuesto único: tasa media del retiro × 1,1 + 3 pp (AFP retiene 15% como abono)",
+442:        >: su tasa es la tasa media del retiro (ΔIGC ÷ monto retirado) <strong
+562:        > conviene si tienes ingresos altos y pagas una tasa marginal elevada en el
+575:        cuya tasa es la tasa media del retiro (ΔIGC ÷ monto retirado) <strong
+827:      marginalStrong.textContent = "Tu tasa marginal de impuesto:";
+
+### 5.6 SuperIR copy del simulador
+102:            /* Excepción TD-0111: filas compuestas monto+días+acreedor que el JS
+128:                class="deuda-acreedor min-w-[8rem] flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none"
+152:                class="deuda-acreedor min-w-[8rem] flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none"
+326:        acreedores para acordar nuevas condiciones de pago. No necesitas abogado y
+376:        acreedores reportan a los burós de información financiera; el acuerdo de
+381:        condiciones, tus acreedores deben actualizar tu estado en el buró. En la
+401:        renegociación queda vigente, los acreedores deben actualizar tu estado en
+420:      notes="El filtro de elegibilidad verifica los requisitos del artículo 260 de la Ley 20.720 (dos o más obligaciones vencidas por más de 90 días, provenientes de obligaciones diversas, que sumen más de 80 UF) y la documentación del artículo 261. La cuota orientativa usa la tasa máxima convencional como referencia y no considera descuentos ni acuerdos particulares con acreedores."
+539:      "deuda-acreedor min-w-[8rem] flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none";
+589:    const deudas: { monto: number; dias: number; acreedor: string }[] = [];
+600:      const acreedor =
+602:          fila.querySelector(".deuda-acreedor") as HTMLInputElement
+
+### 5.7 DICOM / Ley 21.214
+src/pages/calculadoras/simulador-renegociacion.astro:371:      <h2>¿Cómo afecta la renegociación Superir a mi DICOM?</h2>
+src/pages/calculadoras/simulador-renegociacion.astro:374:          >no limpia automáticamente tu historial DICOM</strong
+src/pages/calculadoras/simulador-renegociacion.astro:375:        >. El DICOM (Equifax/TransUnion) refleja deudas impagadas que los
+src/pages/calculadoras/simulador-renegociacion.astro:389:        <strong>Ley 19.628</strong> (artículos 17 y 18). Reglas clave: los datos de
+src/pages/calculadoras/simulador-renegociacion.astro:399:        <strong>Ley 21.214 («Educación sin DICOM»)</strong> aplica específicamente
+src/pages/calculadoras/simulador-renegociacion.astro:405:          data-analytics-label="Guia DICOM gratis"
+src/pages/calculadoras/simulador-renegociacion.astro:407:          >consultar tu DICOM gratis</a
+src/pages/calculadoras/simulador-renegociacion.astro:433:          name: "BCN — Ley 19.628, artículos 17 y 18 (comunicación de deudas)",
+
+### 5.8 DAP: retención mencionada solo como no aplicable
+src/application/use-cases/CalculateTermDeposit.ts:10: * retención del banco: tributan en el Impuesto Global Complementario anual
+src/application/use-cases/CalculateTermDeposit.ts:11: * (SII, FAQ 001.140.2738, actualizada 2026-03-31). La retención del 4% del
+src/pages/calculadoras/deposito-a-plazo.astro:56:      "Los intereses tributan en el Impuesto Global Complementario anual, no con una retención del banco. El banco te paga el interés completo al vencimiento; la tributación se resuelve en tu declaración de renta, donde aplica el tramo exento general de 13,5 UTA y —si solo tienes rentas de sueldo o de pequeño contribuyente— una exención de hasta 20 UTM (SII, FAQ 001.140.2738). La retención del 4% del art. 59 inciso 2° N°1 letras a) y g) LIR aplica a personas sin domicilio ni residencia en Chile (Impuesto Adicional), no a residentes.",
+src/pages/calculadoras/deposito-a-plazo.astro:73:  description="Calcula el interés bruto, impuesto 4% y monto neto de tu depósito a plazo. Ingresa monto, plazo en días y tasa TIR. Gratis y actualizado 2026."
+src/pages/calculadoras/deposito-a-plazo.astro:77:    description="Calcula el interés bruto, impuesto 4% y monto neto de tu depósito a plazo en Chile. Ingresa monto, plazo en días y tasa TIR."
+src/pages/calculadoras/deposito-a-plazo.astro:177:            en tu declaración anual de renta; el banco no aplica retención.
+src/pages/calculadoras/deposito-a-plazo.astro:200:          >no practica retención</strong
+src/pages/calculadoras/deposito-a-plazo.astro:206:        de hasta <strong>20 UTM</strong> (SII, FAQ 001.140.2738). La retención del
+src/pages/calculadoras/deposito-a-plazo.astro:207:        4% del art. 59 inciso 2° N°1 letras a) y g) LIR corresponde al Impuesto Adicional
+src/pages/calculadoras/deposito-a-plazo.astro:265:            La retención del 4% del art. 59 inciso 2° N°1 letras a) y g) LIR es
+src/pages/calculadoras/deposito-a-plazo.astro:334:      notes="Esta calculadora aplica interés simple proporcional al plazo: Interés = Monto × (TIR/100) × (días/365) y el monto al vencimiento = monto + interés. Para personas naturales residentes el banco no aplica retención: los intereses tributan en el Impuesto Global Complementario anual (tramo exento general de 13,5 UTA; exención de hasta 20 UTM si solo hay rentas de sueldo o de pequeño contribuyente). La retención del 4% del art. 59 inciso 2° N°1 letras a) y g) LIR es Impuesto Adicional para personas sin domicilio ni residencia en Chile. Los resultados son de referencia; el impuesto final depende de la situación tributaria de cada contribuyente."
+src/pages/calculadoras/deposito-a-plazo.astro:512:      "El banco paga el interés completo al vencimiento y no aplica retención a personas naturales residentes. Los intereses tributan en el Impuesto Global Complementario anual (SII, FAQ 001.140.2738).";
+
+### 5.9 Otros residuales F01/F02/F05/F08/F10
+
+## "255.248" o "255.247" (IGC bug F01)
+(sin coincidencias)
+
+## "15,25%" PPM (F02)
+src/config/hubPillarConfig.ts:16:      "Calcula retención del 15,25%, líquido recibido y cobertura previsional de tus boletas.",
+src/data/blog/impuesto-global-complementario-chile.md:126:La retención aplicada a tus boletas de honorarios es un crédito contra el IGC. Para el año tributario 2026, la tasa de retención es **15,25%** (verifica en el [SII](https://www.sii.cl/) ante posibles actualizaciones). Si cotizaste como trabajador independiente, también están sujetas cotizaciones previsionales obligatorias sobre tus honorarios según la Ley 21.133 (entrada en vigor progresiva desde 2019) — revisa el F22 del SII o consulta a un contador para el monto aplicable a tu año tributario.
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:51:    a: "Se suman tus rentas brutas anuales (sueldo + honorarios), se aplica el Global Complementario (mismos tramos que segunda categoría pero sobre base anual) y el resultado se compara con lo retenido: segunda categoría del sueldo más la retención del 15,25% de las boletas. La diferencia es positiva (pago adicional) o negativa (devolución)."
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:53:    a: "La retención del 15,25% que el pagador descuenta al momento de emitir cada boleta actúa como pago provisional mensual (PPM) para efectos del F22. Esa retención acumulada durante el año se descuenta del impuesto anual final."
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:94:- Cada pagador de honorarios retuvo 15,25% (tasa 2026) al momento de emitir cada boleta, sin saber cuánto ganaste como dependiente.
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:106:   - Retención del 15,25% aplicada en cada boleta de honorarios (actúa como PPM).
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:135:- **Honorarios en tramo superior:** Tus boletas de honorarios suman lo suficiente para que la renta total quede en un tramo más alto que el que tu empleador usó para retenerte. El 15,25% de retención puede ser insuficiente si tu tramo real es 23% o mayor.
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:145:- **Solo un empleador estable y pocas boletas:** Si tienes un sueldo fijo alto con retención precisa y emitiste boletas pequeñas con el 15,25%, la retención total puede superar el IGC calculado.
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:155:- **Total de retenciones** aplicadas en tus boletas (suma del 15,25% de cada una).
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:163:   - Tus boletas de honorarios y la retención acumulada del 15,25%.
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:177:| Retenciones boletas    | Total del 15,25% retenido en todas las boletas del año            |
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:187:Para más detalles sobre cómo funciona la retención y la cobertura previsional anual en boletas: [Boleta de honorarios 2026: retención 15,25%, líquido recibido y cobertura anual](/posts/boleta-honorarios-2026-retencion-cobertura/).
+src/data/blog/boleta-honorarios-2026-retencion-cobertura.md:2:title: "Boleta de honorarios 2026: retención 15,25%, líquido recibido y cobertura anual"
+src/data/blog/boleta-honorarios-2026-retencion-cobertura.md:55:Desde el 1 de enero de 2026, la retención de boletas sube a **15,25%**. Este aumento forma parte del escalamiento gradual establecido por la **[Ley N° 21.133](/leyes/ley-21133-honorarios-retencion/)**, cuyo cronograma hasta 2028 es:
+src/data/blog/boleta-honorarios-2026-retencion-cobertura.md:60:| **2026** | **15,25%** ← vigente            |
+src/data/blog/boleta-honorarios-2026-retencion-cobertura.md:69:- Retención 15,25% = $15.250.
+src/data/blog/boleta-honorarios-2026-retencion-cobertura.md:72:1. Calcula tu líquido por boleta con retención 2026: 15,25%.
+src/data/blog/boleta-honorarios-2026-retencion-cobertura.md:89:| Independiente con boletas regulares y monto anual sobre 5 IMM | Sí, 15,25%                     | Sí                                                        | Menor líquido mensual, pero acceso a cobertura anual según reglas vigentes.                  |
+src/data/blog/boleta-honorarios-2026-retencion-cobertura.md:90:| Independiente con boletas anuales bajo 5 IMM                  | Sí, 15,25% al emitir           | Puede quedar eximido de cotización obligatoria en OR 2026 | Mantiene retención mensual, pero la obligación previsional anual cambia según tope y normas. |
+src/data/blog/boleta-honorarios-2026-retencion-cobertura.md:91:| Pensionado (salvo invalidez parcial)                          | Sí, 15,25% al emitir           | Puede estar eximido por norma específica                  | Revisar condición previsional antes de asumir cobertura nueva.                               |
+src/data/blog/boleta-honorarios-2026-retencion-cobertura.md:92:| Trabajador intermitente a honorarios                          | Sí, 15,25% en meses con boleta | Depende del total anual y reglas de cobertura             | Puede tener meses sin ingresos, pero evaluación anual igual aplica.                          |
+src/data/blog/boleta-honorarios-2026-retencion-cobertura.md:96:- Si **solo quieres calcular líquido de una boleta**: aplica 15,25% de retención y resta.
+src/data/blog/boleta-honorarios-2026-retencion-cobertura.md:116:<summary>¿La retención de boletas en 2026 es 15,25%?</summary>
+src/data/blog/boleta-honorarios-2026-retencion-cobertura.md:125:Retención: $76.250 (15,25%). Líquido: $423.750.
+src/data/blog/boleta-honorarios-2026-retencion-cobertura.md:152:- SII, retención 2026 de boletas (15,25%) y progresión a 2028: https://www.sii.cl/noticias/2025/261225noti01smn.htm
+src/data/blog/operacion-renta-centro.md:66:Si emitiste boletas de honorarios en 2025, tu cliente retuvo el 15,25% como pago provisional mensual (PPM) por cada boleta, según la tasa vigente establecida por la Ley 21.133. Ese 15,25% aparece en el Formulario 22 como crédito a tu favor. El resultado final —si recibes devolución o debes pagar— depende de tus ingresos totales del año. Debes declarar si tus ingresos anuales por honorarios y otras rentas superaron los **$11.265.804** en 2025 (equivalente a 13,5 UTA). Consulta sii.cl para el monto exacto en UTA del año tributario 2025.
+src/data/blog/operacion-renta-centro.md:174:| Retenciones de honorarios (PPM)  | 15,25% retenido por clientes                  | Sí — calculado automáticamente                 |
+src/data/blog/operacion-renta-centro.md:203:## Retención de honorarios: el 15,25% explicado
+src/data/blog/operacion-renta-centro.md:205:Si emitiste boletas de honorarios en 2025, cada boleta tuvo una retención del **15,25%** que el cliente (la empresa que pagó tus servicios) envió directamente al SII como pago provisional mensual (PPM). Este porcentaje fue establecido por la Ley 21.133.
+src/data/blog/operacion-renta-centro.md:209:El 15,25% retenido aparece como crédito en tu declaración. Si tu impuesto calculado sobre el total de tus rentas es menor que lo que te retuvieron durante el año, esa diferencia te la devuelven. Si es mayor, debes pagar la diferencia.
+src/data/blog/operacion-renta-centro.md:213:Si emitiste $1.000.000 en boletas de honorarios, tus clientes retuvieron y enviaron al SII $152.500 (15,25%). Al declarar, el SII calcula el impuesto que corresponde sobre tu renta total del año. Si ese impuesto es $80.000, el SII te devuelve $72.500. Si es $200.000, debes pagar $47.500 adicionales.
+src/pages/guias/impuestos-personas/index.astro:48:      name: "Boleta de honorarios 2026: retención 15,25%, líquido recibido y cobertura anual",
+src/pages/guias/impuestos-personas/index.astro:81:      "Boleta de honorarios 2026: retención 15,25%, líquido recibido y cobertura anual",
+src/pages/guias/impuestos-personas/operacion-renta/index.astro:74:      "Cómo impacta la retención del 15,25% en tu líquido mensual y en la declaración anual.",
+src/pages/guias/impuestos-personas/operacion-renta/index.astro:366:        Retención de honorarios: el 15,25% explicado
+src/pages/guias/impuestos-personas/operacion-renta/index.astro:370:        retención del <strong>15,25%</strong> que tu cliente envió directamente al
+src/pages/guias/impuestos-personas/operacion-renta/index.astro:378:          al SII $152.500 (15,25%). Al declarar, el SII calcula el impuesto que
+src/pages/guias/impuestos-personas/operacion-renta/index.astro:449:          La retención de honorarios se mantiene en <strong>15,25%</strong> para el
+src/pages/calculadoras/boleta-honorarios-liquido.astro:24:  withholdingRatePercent: 15.25,
+src/pages/calculadoras/boleta-honorarios-liquido.astro:116:          value="15.25"
+src/pages/calculadoras/boleta-honorarios-liquido.astro:117:          hint="En 2026 la referencia vigente es 15,25%. Solo cámbiala si estás revisando otro año."
+src/pages/calculadoras/boleta-honorarios-liquido.astro:155:              <span class="text-secondary">Retención (15,25%)</span>
+src/pages/calculadoras/boleta-honorarios-liquido.astro:162:            Ejemplo: boleta de $500.000 con retención de 15,25%. Retención
+src/pages/calculadoras/boleta-honorarios-liquido.astro:231:      notes="La retención del 15,25% sobre el bruto es la tasa transitoria vigente para el año tributario 2026 (cambia gradualmente hasta llegar al 17%). El líquido a recibir = bruto − retención. Para emisión oficial usa el Portal del SII con tu RUT y Clave Tributaria."
+src/pages/calculadoras/boleta-honorarios-liquido.astro:234:          name: "SII — Tasas de retención boleta de honorarios (transitoria 15,25%)",
+src/data/glossary/boleta-honorarios.md:20:Desde 2021 las boletas de honorarios son electrónicas obligatoriamente, y desde 2022 el receptor (quien paga el servicio) retiene un porcentaje del monto y lo entera al SII. En 2026 esa retención es del **15,25%** del monto bruto.
+src/data/glossary/boleta-honorarios.md:29:- Retiene $152.500 (15,25%) y lo paga al SII.
+src/application/use-cases/CalculateHonorariosNet.ts:6:const DEFAULT_WITHHOLDING_RATE_PERCENT = 15.25;
+src/data/economic-history/uf-historico.json:34901:      "valor": 36515.25
+src/application/use-cases/CalculateHonorariosNet.methodology.ts:14:  input: { grossFee: 500_000, withholdingRatePercent: 15.25 },
+src/application/use-cases/CalculateHonorariosNet.methodology.ts:18:      "Emites una boleta de $500.000 con la retención vigente del 15,25%.",
+src/application/use-cases/CalculateHonorariosNet.methodology.ts:21:        label: "Calcula la retención que adelanta el SII (15,25% del bruto).",
+src/application/use-cases/CalculateHonorariosNet.methodology.ts:22:        expression: "$500.000 × 15,25%",
+
+## "973.560"/"973560" (F08)
+(sin coincidencias)
+
+## sobretasa 3% APV (F05)
+(sin coincidencias)
+
+## "sin costo" en dividendo-hipotecario (F10)
+(sin coincidencias)
+
+## DICOM: "$2.500.000"/"2,5 millones" o "5 años desde el pago" (F07)
+(sin coincidencias)
+
+## D14 — DAP: superficies con "impuesto 4%" pese a que el motor no retiene
+src/pages/calculadoras/deposito-a-plazo.astro:73:  description="Calcula el interés bruto, impuesto 4% y monto neto de tu depósito a plazo. Ingresa monto, plazo en días y tasa TIR. Gratis y actualizado 2026."
+src/pages/calculadoras/deposito-a-plazo.astro:77:    description="Calcula el interés bruto, impuesto 4% y monto neto de tu depósito a plazo en Chile. Ingresa monto, plazo en días y tasa TIR."
+src/config/calculatorPortfolio.ts:654:      "Calcula interés bruto, retención de impuesto (4%) e interés neto de tu DAP. Ingresa monto, plazo en días y tasa TIR.",
+src/config/calculatorPortfolio.ts:659:      "Saber cuánto ganas neto en un DAP, después de impuesto, con tu monto y plazo.",
+src/config/calculatorPortfolio.ts:661:      "Cuando tienes o evalúas un depósito a plazo y quieres el rendimiento real después de retención.",
+
+## D14 — el motor no contiene ningún cálculo de 4% de retención (solo doc)
+(sin cálculo de retención en el use case)
+
+## CalculatorJsonLd propaga description a structured data
+
+interface Props {
+  name: string;
+  description: string;
+  faqs?: CalculatorFaq[];
+  /**
+   * Fecha ISO (YYYY-MM-DD) del dato subyacente de la calculadora. Cuando se
+   * provee, emite `dateModified` en el schema WebApplication como señal de
+   * frescura. Útil en conversores cuyo valor (UF, UTM) cambia a diario o
+   * mensualmente.
+   */
+  dateModified?: string;
+}
+
+const { name, description, faqs, dateModified: dateModifiedProp } = Astro.props;
+const dateModified = dateModifiedProp ?? getPageLastmod(Astro.url.pathname);
+
+const SITE_URL = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
+  /\/$/,
+  ""
+);
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url).href;
+
+const applicationSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name,
+  description,
+  url: canonicalUrl,
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web",
+  inLanguage: "es-CL",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "CLP",
+## 6. check:afp-commissions (Previred en vivo, 2026-09-29)
+comando: node scripts/check-afp-commissions.mjs
+
+=== AFP Commission Rate Checker ===
+Date: 2026-09-29
+Source: https://www.previred.com/indicadores-previsionales/
+
+Current values in src/config/afpCommissions.ts:
+  Capital    commission=1.44%  total=11.44%
+  Cuprum     commission=1.44%  total=11.44%
+  Habitat    commission=1.27%  total=11.27%
+  Modelo     commission=0.58%  total=10.58%
+  PlanVital  commission=1.16%  total=11.16%
+  ProVida    commission=1.45%  total=11.45%
+  Uno        commission=0.46%  total=10.46%
+
+Fetching https://www.previred.com/indicadores-previsionales/ ...
+Previred values (cargo del trabajador dependiente):
+  Capital    total=11.44%
+  Cuprum     total=11.44%
+  Habitat    total=11.27%
+  Modelo     total=10.58%
+  PlanVital  total=11.16%
+  ProVida    total=11.45%
+  Uno        total=10.46%
+
+✓ All AFP commission rates match Previred official figures.
+
+PASS
+exit=0

@@ -651,14 +651,14 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     slug: "deposito-a-plazo",
     title: "Calculadora Depósito a Plazo",
     description:
-      "Calcula interés bruto, retención de impuesto (4%) e interés neto de tu DAP. Ingresa monto, plazo en días y tasa TIR.",
+      "Calcula el interés bruto y el monto neto al vencimiento de tu DAP, y cómo tributa al año siguiente.",
     icon: "building-bank",
     tag: "Ahorro",
     family: "ahorro-prevision",
     primaryJtbd:
-      "Saber cuánto ganas neto en un DAP, después de impuesto, con tu monto y plazo.",
+      "Saber cuánto ganas bruto y neto en un DAP y cómo tributa al año siguiente.",
     whenToUse:
-      "Cuando tienes o evalúas un depósito a plazo y quieres el rendimiento real después de retención.",
+      "Cuando tienes o evalúas un depósito a plazo y quieres el rendimiento al vencimiento y su tributación anual.",
     notFor:
       "No compara DAPs entre bancos ni cubre instrumentos en UF o dólares — solo pesos y tasa TIR.",
     related: [

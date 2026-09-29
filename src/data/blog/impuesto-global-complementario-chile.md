@@ -52,7 +52,7 @@ reviewPolicy:
     - registry:categoryPolicies.impuestos
     - template:uta
   computedAt: "2026-09-20"
-updatedDate: 2026-09-20T00:00:00Z
+updatedDate: 2026-09-29T00:00:00Z
 ---
 
 > **Información vigente al 2026-08-19.** Los tramos del IGC se expresan en UTA (Unidad Tributaria Anual), que varía cada año. Verifica la tabla vigente en el [SII](https://www.sii.cl/) antes de tu Operación Renta. Este artículo no cubre ganancias de capital.
@@ -123,7 +123,7 @@ Varios pagos realizados durante el año se convierten en créditos que reducen e
 Lo que tu empleador descontó mes a mes como Impuesto de Segunda Categoría se imputa directamente contra el IGC. Es el crédito más importante para los trabajadores dependientes.
 
 **Retenciones de boletas de honorarios**
-La retención aplicada a tus boletas de honorarios es un crédito contra el IGC. Para el año tributario 2026, la tasa de retención es **15,25%** (verifica en el [SII](https://www.sii.cl/) ante posibles actualizaciones). Si cotizaste como trabajador independiente, también están sujetas cotizaciones previsionales obligatorias sobre tus honorarios según la Ley 21.133 (entrada en vigor progresiva desde 2019) — revisa el F22 del SII o consulta a un contador para el monto aplicable a tu año tributario.
+La retención aplicada a tus boletas de honorarios es un crédito contra el IGC. Para el año tributario 2026 (boletas emitidas en 2025), la tasa de retención es **14,5%**; para boletas emitidas en 2026 sube a **15,25%** (verifica en el [SII](https://www.sii.cl/) ante posibles actualizaciones). Si cotizaste como trabajador independiente, también están sujetas cotizaciones previsionales obligatorias sobre tus honorarios según la Ley 21.133 (entrada en vigor progresiva desde 2019) — revisa el F22 del SII o consulta a un contador para el monto aplicable a tu año tributario.
 
 **APV Modalidad A vs Modalidad B**
 
