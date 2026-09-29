@@ -8,8 +8,8 @@ describe("simulateDebtRenegotiation", () => {
   it("requires more than 90 days of arrears, not just 90", () => {
     const result = simulateDebtRenegotiation({
       debts: [
-        { amount: 2000000, overdueDays: 90 },
-        { amount: 1800000, overdueDays: 91 },
+        { amount: 2000000, overdueDays: 90, creditor: "Banco A" },
+        { amount: 1800000, overdueDays: 91, creditor: "Retail B" },
       ],
       monthlyIncome: 1000000,
       termMonths: 36,
@@ -29,8 +29,8 @@ describe("simulateDebtRenegotiation", () => {
   it("blocks the legal filter when there was first-category activity in the last 24 months", () => {
     const result = simulateDebtRenegotiation({
       debts: [
-        { amount: 2000000, overdueDays: 120 },
-        { amount: 1800000, overdueDays: 150 },
+        { amount: 2000000, overdueDays: 120, creditor: "Banco A" },
+        { amount: 1800000, overdueDays: 150, creditor: "Retail B" },
       ],
       monthlyIncome: 1000000,
       termMonths: 36,
@@ -49,8 +49,8 @@ describe("simulateDebtRenegotiation", () => {
   it("distinguishes between meeting the basic filter and being ready to submit formally", () => {
     const result = simulateDebtRenegotiation({
       debts: [
-        { amount: 2000000, overdueDays: 120 },
-        { amount: 1800000, overdueDays: 150 },
+        { amount: 2000000, overdueDays: 120, creditor: "Banco A" },
+        { amount: 1800000, overdueDays: 150, creditor: "Retail B" },
       ],
       monthlyIncome: 1000000,
       termMonths: 36,
@@ -64,6 +64,62 @@ describe("simulateDebtRenegotiation", () => {
     expect(result.meetsBasicEligibility).toBe(true);
     expect(result.requirementChecks.hasRequiredDocuments).toBe(false);
     expect(result.canSubmitApplication).toBe(false);
+  });
+
+  it("no considera elegible dos deudas del mismo acreedor", () => {
+    const result = simulateDebtRenegotiation({
+      debts: [
+        { amount: 2000000, overdueDays: 120, creditor: "Banco A" },
+        { amount: 1800000, overdueDays: 150, creditor: "banco a" },
+      ],
+      monthlyIncome: 1000000,
+      termMonths: 36,
+      monthlyRatePercent: 1.2,
+      ufValue: UF,
+      hasFirstCategoryActivityLast24Months: false,
+      hasNotifiedExecutiveProceeding: false,
+      hasRequiredDocuments: true,
+    });
+
+    expect(result.requirementChecks.hasTwoOrMoreQualifiedDebts).toBe(true);
+    expect(result.requirementChecks.hasTwoOrMoreDistinctCreditors).toBe(false);
+    expect(result.meetsBasicEligibility).toBe(false);
+    expect(result.canSubmitApplication).toBe(false);
+  });
+
+  it("acepta dos obligaciones de acreedores distintos", () => {
+    const result = simulateDebtRenegotiation({
+      debts: [
+        { amount: 2000000, overdueDays: 120, creditor: "Banco A" },
+        { amount: 1800000, overdueDays: 150, creditor: "Retail B" },
+      ],
+      monthlyIncome: 1000000,
+      termMonths: 36,
+      monthlyRatePercent: 1.2,
+      ufValue: UF,
+      hasFirstCategoryActivityLast24Months: false,
+      hasNotifiedExecutiveProceeding: false,
+      hasRequiredDocuments: true,
+    });
+
+    expect(result.qualifiedCreditorCount).toBe(2);
+    expect(result.requirementChecks.hasTwoOrMoreDistinctCreditors).toBe(true);
+    expect(result.meetsBasicEligibility).toBe(true);
+  });
+
+  it("exige identificar al acreedor de cada deuda", () => {
+    expect(() =>
+      simulateDebtRenegotiation({
+        debts: [{ amount: 2000000, overdueDays: 120, creditor: "   " }],
+        monthlyIncome: 1000000,
+        termMonths: 36,
+        monthlyRatePercent: 1.2,
+        ufValue: UF,
+        hasFirstCategoryActivityLast24Months: false,
+        hasNotifiedExecutiveProceeding: false,
+        hasRequiredDocuments: true,
+      })
+    ).toThrow("acreedor");
   });
 
   describe("ejemplo de metodología — anti-drift", () => {

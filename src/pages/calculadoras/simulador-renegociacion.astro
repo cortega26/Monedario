@@ -26,8 +26,8 @@ const { parameters: economicParameters } = await getEconomicParameters();
 const fmtClp = formatCLP;
 const exampleResult = simulateDebtRenegotiation({
   debts: [
-    { amount: 2_000_000, overdueDays: 120 },
-    { amount: 1_500_000, overdueDays: 100 },
+    { amount: 2_000_000, overdueDays: 120, creditor: "Banco A" },
+    { amount: 1_500_000, overdueDays: 100, creditor: "Retail B" },
   ],
   monthlyIncome: 700_000,
   termMonths: 36,
@@ -99,13 +99,13 @@ const calculatorNextStepItems = [
             Deudas vencidas (cada una con más de 90 días corridos)
           </p>
           <div id="deudas-container" class="space-y-3">
-            <div class="deuda-row flex items-center gap-2">
+            <div class="deuda-row flex flex-wrap items-center gap-2">
               <input
                 type="number"
                 aria-label="Monto de la deuda vencida 1 en pesos"
                 placeholder="Monto ($) Ej: 1.500.000"
                 min="0"
-                class="deuda-monto flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none"
+                class="deuda-monto min-w-[8rem] flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none"
               />
               <input
                 type="number"
@@ -114,16 +114,22 @@ const calculatorNextStepItems = [
                 min="1"
                 max="5000"
                 value="91"
-                class="deuda-dias w-28 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none"
+                class="deuda-dias w-24 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none"
+              />
+              <input
+                type="text"
+                aria-label="Acreedor de la deuda vencida 1"
+                placeholder="Acreedor (ej: Banco X)"
+                class="deuda-acreedor min-w-[8rem] flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none"
               />
             </div>
-            <div class="deuda-row flex items-center gap-2">
+            <div class="deuda-row flex flex-wrap items-center gap-2">
               <input
                 type="number"
                 aria-label="Monto de la deuda vencida 2 en pesos"
                 placeholder="Monto ($) Ej: 800.000"
                 min="0"
-                class="deuda-monto flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none"
+                class="deuda-monto min-w-[8rem] flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none"
               />
               <input
                 type="number"
@@ -132,7 +138,13 @@ const calculatorNextStepItems = [
                 min="1"
                 max="5000"
                 value="91"
-                class="deuda-dias w-28 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none"
+                class="deuda-dias w-24 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none"
+              />
+              <input
+                type="text"
+                aria-label="Acreedor de la deuda vencida 2"
+                placeholder="Acreedor (ej: Retail Y)"
+                class="deuda-acreedor min-w-[8rem] flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none"
               />
             </div>
           </div>
@@ -368,10 +380,21 @@ const calculatorNextStepItems = [
         una vez que el acuerdo quede vigente.
       </p>
       <p>
-        La <strong>Ley 21.214 («Ley DICOM»)</strong> establece que las deudas inferiores
-        a 2,5 millones de pesos que queden totalmente pagadas se eliminan del registro.
-        Para deudas de mayor monto, el antecedente permanece por 5 años contados desde
-        la fecha del pago total. Si quieres revisar tu situación actual, puedes <a
+        Tu historial en los registros comerciales se rige por la{" "}
+        <strong>Ley 19.628</strong> (artículos 17 y 18). Reglas clave: los datos de
+        deudas morosas solo pueden comunicarse si la obligación está vigente y <strong
+          >hasta 5 años desde que se hizo exigible</strong
+        >;{" "}
+        <strong
+          >una deuda pagada o extinguida no puede seguir comunicándose</strong
+        >
+        (no existe un plazo de "5 años desde el pago"); y las deudas{" "}
+        <strong>repactadas, renegociadas o novadas</strong> con modalidad pendiente
+        tampoco pueden comunicarse. La{" "}
+        <strong>Ley 21.214 («Educación sin DICOM»)</strong> aplica específicamente
+        a deudas educacionales, no a una regla general de montos. Si tu acuerdo de
+        renegociación queda vigente, los acreedores deben actualizar tu estado en
+        el registro. Si quieres revisar tu situación actual, puedes <a
           href={dicomGuidePath}
           data-analytics-cta="calculator-guide"
           data-analytics-label="Guia DICOM gratis"
@@ -389,17 +412,27 @@ const calculatorNextStepItems = [
     <ShareCalculatorResult />
     <MethodologyBlock
       example={debtRenegotiationWorkedExample.example}
-      notes="El filtro de elegibilidad Superir verifica umbrales de deuda y documentación según la normativa CMF vigente. La cuota orientativa usa la tasa máxima convencional como referencia y no considera descuentos ni acuerdos particulares con acreedores."
+      notes="El filtro de elegibilidad verifica los requisitos del artículo 260 de la Ley 20.720 (dos o más obligaciones vencidas por más de 90 días, de acreedores distintos, que sumen más de 80 UF) y la documentación del artículo 261. La cuota orientativa usa la tasa máxima convencional como referencia y no considera descuentos ni acuerdos particulares con acreedores."
       sources={[
+        {
+          name: "BCN — Ley 20.720, artículo 260 (requisitos de la renegociación)",
+          url: "https://www.bcn.cl/leychile/navegar?idNorma=1058072",
+          date: "2026-09",
+        },
+        {
+          name: "Superir — Requisitos para iniciar la renegociación",
+          url: "https://www.superir.gob.cl/perfil-deudor-requisito-renegociacion",
+          date: "2026-09",
+        },
+        {
+          name: "BCN — Ley 19.628, artículos 17 y 18 (comunicación de deudas)",
+          url: "https://www.bcn.cl/leychile/navegar?idNorma=141599",
+          date: "2026-09",
+        },
         {
           name: "CMF Chile — Tasa máxima convencional vigente",
           url: "https://www.cmfchile.cl/portal/principal/613/w3-channel.html",
           date: "2026-03",
-        },
-        {
-          name: "Superir — Proceso de renegociación",
-          url: "https://www.cmfchile.cl/portal/principal/613/w3-channel.html",
-          date: "2026-01",
         },
       ]}
     />
@@ -470,7 +503,7 @@ const calculatorNextStepItems = [
 
   function createDebtRow(): HTMLDivElement {
     const row = document.createElement("div");
-    row.className = "deuda-row flex items-center gap-2";
+    row.className = "deuda-row flex flex-wrap items-center gap-2";
 
     const amountInput = document.createElement("input");
     amountInput.type = "number";
@@ -481,7 +514,7 @@ const calculatorNextStepItems = [
     );
     amountInput.min = "0";
     amountInput.className =
-      "deuda-monto flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none";
+      "deuda-monto min-w-[8rem] flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none";
 
     const overdueInput = document.createElement("input");
     overdueInput.type = "number";
@@ -491,7 +524,14 @@ const calculatorNextStepItems = [
     overdueInput.max = "5000";
     overdueInput.value = "91";
     overdueInput.className =
-      "deuda-dias w-28 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none";
+      "deuda-dias w-24 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none";
+
+    const creditorInput = document.createElement("input");
+    creditorInput.type = "text";
+    creditorInput.placeholder = "Acreedor (ej: Banco X)";
+    creditorInput.setAttribute("aria-label", "Acreedor de la deuda vencida");
+    creditorInput.className =
+      "deuda-acreedor min-w-[8rem] flex-1 rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none";
 
     const removeButton = document.createElement("button");
     removeButton.type = "button";
@@ -501,7 +541,7 @@ const calculatorNextStepItems = [
       "eliminar-deuda text-lg leading-none text-muted hover:text-danger";
     removeButton.addEventListener("click", () => row.remove());
 
-    row.append(amountInput, overdueInput, removeButton);
+    row.append(amountInput, overdueInput, creditorInput, removeButton);
     return row;
   }
 
@@ -541,7 +581,7 @@ const calculatorNextStepItems = [
     if (!guideUrl || !Number.isFinite(ufValue) || ufValue <= 0) return;
 
     const filas = document.querySelectorAll(".deuda-row");
-    const deudas: { monto: number; dias: number }[] = [];
+    const deudas: { monto: number; dias: number; acreedor: string }[] = [];
 
     filas.forEach(fila => {
       const monto =
@@ -552,7 +592,11 @@ const calculatorNextStepItems = [
         parseInt(
           (fila.querySelector(".deuda-dias") as HTMLInputElement).value
         ) || 0;
-      if (monto > 0) deudas.push({ monto, dias });
+      const acreedor =
+        (
+          fila.querySelector(".deuda-acreedor") as HTMLInputElement
+        )?.value?.trim() ?? "";
+      if (monto > 0) deudas.push({ monto, dias, acreedor });
     });
 
     const ingreso =
@@ -591,12 +635,21 @@ const calculatorNextStepItems = [
       return;
     }
 
+    if (deudas.some(deuda => deuda.acreedor.length === 0)) {
+      showError(
+        "Indica el acreedor de cada deuda: la ley exige dos o más obligaciones de acreedores distintos."
+      );
+      setLoading(false);
+      return;
+    }
+
     let simulacion;
     try {
       simulacion = simulateDebtRenegotiation({
         debts: deudas.map(deuda => ({
           amount: deuda.monto,
           overdueDays: deuda.dias,
+          creditor: deuda.acreedor,
         })),
         monthlyIncome: ingreso,
         termMonths: plazo,
@@ -652,6 +705,10 @@ const calculatorNextStepItems = [
       buildChecklistLine(
         simulacion.requirementChecks.hasTwoOrMoreQualifiedDebts,
         `Con más de 90 días corridos: ${simulacion.qualifiedDebtCount} califican`
+      ),
+      buildChecklistLine(
+        simulacion.requirementChecks.hasTwoOrMoreDistinctCreditors,
+        `Acreedores distintos: ${simulacion.qualifiedCreditorCount} identificado${simulacion.qualifiedCreditorCount === 1 ? "" : "s"}`
       ),
       buildChecklistLine(
         simulacion.requirementChecks.reachesMinimumUf,
@@ -759,6 +816,7 @@ const calculatorNextStepItems = [
             debts: deudas.map(deuda => ({
               amount: deuda.monto,
               overdueDays: deuda.dias,
+              creditor: deuda.acreedor,
             })),
             monthlyIncome: ingreso,
             termMonths: term,

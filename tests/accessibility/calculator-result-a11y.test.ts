@@ -60,6 +60,7 @@ const CALCULATORS: ResultConfig[] = [
     slug: "simulador-renegociacion",
     fill: async page => {
       await page.locator(".deuda-monto").first().fill("2000000");
+      await page.locator(".deuda-acreedor").first().fill("Banco X");
       await page.locator("#ingreso").fill("700000");
       await page.locator("#primera-categoria").selectOption("no");
       await page.locator("#juicio-ejecutivo").selectOption("no");

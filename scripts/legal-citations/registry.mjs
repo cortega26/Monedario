@@ -177,6 +177,11 @@ export const KNOWN_IDS_WITHOUT_LAW_PAGES = [
     idNorma: "16346",
     label: "D.S. 950 — Reglamento del Boletín de Informaciones Comerciales",
   },
+  {
+    idNorma: "1058072",
+    label:
+      "Ley 20.720 — Reorganización y liquidación de empresas y personas; procedimiento concursal de renegociación (art. 260)",
+  },
 ];
 
 export function getHistoryUrl(historyPageId) {
