@@ -1,0 +1,70 @@
+# Residuales D9–D12 / obs. 1–2 + barrido adversarial de copy — commit dd1e8f63
+
+## D12 (media) — RESUELTO
+src/pages/calculadoras/impuesto-segunda-categoria.astro:423:
+  const BRACKET_UPPER_LIMITS_UTM = [13.5, 30, 50, 70, 90, 120, 310, Infinity];
+Reproducción node de highlightBracket con UTM 71721:
+  100 UTM: filas [5] | esperado 5
+  150 UTM: filas [6] | esperado 6
+  200 UTM: filas [6] | esperado 6   (antes: [7] — defecto)
+  310 UTM: filas [6] | esperado 6   (tope inclusivo, coherente con motor <=)
+  320 UTM: filas [7] | esperado 7
+Cubierto además por tests/pages/calculator-iusc-highlight.test.ts (verde, §23.2).
+
+## D9 (baja) — RESUELTO
+simulador-renegociacion.astro:645:
+  "Indica el acreedor de cada deuda: la ley exige dos o más obligaciones
+   vencidas de origen distinto (art. 260)."
+JSDoc DebtItemInput.creditor (SimulateDebtRenegotiation.ts:6-11): justifica el
+campo por el art. 261 (identificación para la solicitud) y declara que la
+elegibilidad del art. 260 es por "obligaciones diversas", no por acreedores
+distintos. Motor (§12/23): mismo acreedor con 2 obligaciones ⇒ true.
+Barrido: "acreedores distintos" solo sobrevive en comentarios que lo NIEGAN
+("no por acreedores distintos", "dos deudas con el mismo acreedor califican").
+
+## D10 (baja) — RESUELTO (documentado como histórico)
+evidence/README.md versiona audit-1/ como histórico ("falla en HEAD por diseño")
+y vitest.reaudit.config.ts como actual (verde, §23.1).
+
+## D11 (baja) — PARCIALMENTE RESUELTO, residual nuevo D13
+00-scope.json V3 ahora: "art. 59 inciso 2° N°1 letras a) y g)" ✓
+00-scope.json V5 ahora: "≥2 obligaciones vencidas (no acreedores distintos)" ✓
+00-scope.json V6 todavía: "UF dic-2025 $39.643,59" ✗ → D13 (abierto, baja).
+  $ python3: 2025-12-01 = 39643.59; 2025-12-31 = 39727.96;
+  SII 317823680/8000 = 39727.96; motor AT2026.ufDecember = 39727.96.
+  El valor del scope es la UF del día 1, no la del 31 que exige el art. 42 bis
+  ("según el valor de ésta al 31 de diciembre").
+
+## Obs. 1 — RESUELTA
+src/data/blog/renegociacion-superir.md:202:
+  "**Una sola deuda grande.** La ley exige dos o más obligaciones vencidas,
+  aunque sean del mismo acreedor (art. 260: «provenientes de obligaciones
+  diversas»). Una única deuda de 200 UF no califica, por grande que sea."
+
+## Obs. 2 — RESUELTA
+uf-historico.json: actualizadoEl 2026-09-29, hastaFecha 2026-10-09, n=9777.
+(Los valores de octubre son publicación anticipada normal de la UF.)
+Gate con assertion nueva: check-economic-snapshot-freshness OK (§23.4).
+
+## Barrido adversarial de copy (2026-09-29)
+$ grep -rn "acreedores distintos" src/ → solo negaciones en comentarios (arriba).
+$ grep -rn "59 N°4" src/ → solo Código del Trabajo art. 159 N°4 (ajeno a LIR).
+$ grep -rn "prepago sin costo" src/ → sin resultados (exit 1).
+$ grep -rn "39.643|39643" src/ tests/ scripts/ → solo serie diaria de
+  uf-historico.json (valores 1–20 dic correctos) + 00-scope.json V6 (D13).
+F08: sueldo-liquido.astro:50-56 ejemplo generado por calculateNetSalary (§23.3).
+F09: conversor-utm.astro:76-86 etiqueta UTA con período explícito
+  (utaPeriodLabel desde indicatorUpdatedAt.uta = 2025-12-01 → "diciembre de 2025").
+F10: dividendo-hipotecario.astro:418 cita Ley 18.010 art. 10 (1 mes / 1,5 meses;
+  ≤5.000 UF); sin "prepago sin costo".
+F02: operacion-renta.astro:264/369/412 usa taxYearParameters.honorariosPpmRate
+  (0.145 congelado, boletas 2025) en hint y cálculo.
+F07: simulador-renegociacion.astro:389-399/433 — Ley 19.628 arts. 17-18
+  (5 años desde exigibilidad; no comunicar tras el pago) + Ley 21.214 solo
+  educacional.
+V4 copy: apv.astro:56 ("multiplicada por 1,1 y aumentada en 3 puntos
+  porcentuales ... AFP retiene 15% ... pensionados ... no pagan esos recargos"),
+  :403, :442-447, :575-579 ("tasa media del retiro × 1,1 + 3 pp").
+  Nota: el scope V4 abrevia "tasa marginal × 1,1" — el motor implementa
+  correctamente ΔIGC/retiro (media), que solo equivale a la marginal dentro de
+  un tramo; imprecisión de redacción del alcance, sin efecto en código/tests.
