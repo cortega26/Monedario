@@ -14,10 +14,11 @@
 - **Depends on**: none
 - **Category**: UX/a11y correctness + regression guards
 - **Planned at**: commit `224b6f74`, 2026-09-28
-- **Status**: Fase 1 DONE y Fase 2 casi completa (F-05, F-06, F-07, F-08 en 17
-  páginas, guard de IDs, axe 22/22 plantillas + 17/17 resultados calculados,
-  tokens semánticos de contraste). Pendientes: F-08 completo (topes por
-  calculadora), F-09/F-10 y estructural (2026-09-28).
+- **Status**: Fase 1 y Fase 2 DONE (F-05, F-06, F-07, F-08 completo, guard de
+  IDs, axe 22/22 plantillas + 17/17 resultados en claro y oscuro, tokens
+  semánticos de contraste). Diferidos: F-09/F-10 (mejora de diseño sin caso
+  medido) y estructural (FinancialField/ResultPanel, pasada manual
+  NVDA/VoiceOver) — 2026-09-28.
 - **Evidence**: `docs/reports/AUDIT-UX-2026-09-28.md`
 
 ## Scope
@@ -234,6 +235,26 @@ estado inicial.
 - **Evidencia**: build OK (8 checks, 332 páginas); Playwright **177 passed**
   (160 previos + 17 calculados); `check:ci` exit 0.
 
+### 2026-09-28 — Fase 2, ronda 5: F-08 completo y resultados en modo oscuro
+
+- **F-08 completo**: `CalculatorDataFreshness variant="result"` ahora acepta
+  detalle por slot y ordena la advertencia al final. Se añadió el parámetro
+  clave del cálculo en 8 calculadoras:
+  - sueldo: `UTM usada · IMM`; APV: `UF usada · topes 50/600 UF`;
+    operación renta: `UTM usada`; seguro de cesantía: `tope imponible AFC`;
+    simulador de jubilación: `tope imponible pensión/salud`;
+    dividendo, renegociación y prepago: `UF usada`/`UF de referencia`.
+  - impuesto 2ª categoría ya mostraba `Valor usado: UTM`.
+  - Las 9 restantes (IVA, interés compuesto, depósito, honorarios, crédito de
+    consumo, tarjeta, finiquito) no usan parámetros económicos y mantienen el
+    bloque de advertencia.
+- **Resultados en modo oscuro**: `calculator-result-a11y.test.ts` escanea
+  ahora cada resultado en claro y oscuro (34 casos). Sin violaciones nuevas:
+  los tokens `success`/`danger`/`warning` resuelven AA en ambos temas.
+- **Evidencia**: build OK (8 checks, 332 páginas); Playwright **194 passed**;
+  `check:ci` exit 0. (Una corrida intermedia marcó un flake en el test de
+  estado inválido de sueldo; pasó en aislamiento y en la repetición completa.)
+
 ### Anexo CI (higiene, fuera del alcance UX)
 
 `check:ci` estaba rojo en `main` por dos tests preexistentes introducidos por
@@ -270,13 +291,17 @@ test y ADR-20260716). Sin cambios de comportamiento.
   "Ley {número}".
 - [x] **Axe sobre todas las plantillas de calculadora** (22/22, escritorio
   claro) con 3 correcciones de contraste.
-- [x] **Axe sobre estados calculados** (17/17) con tokens semánticos
-  `success`/`danger`/`warning` y correcciones AA adicionales.
+- [x] **Axe sobre estados calculados** (17/17 en claro y oscuro) con tokens
+  semánticos `success`/`danger`/`warning` y correcciones AA adicionales.
+- [x] **F-08 completo**: parámetro clave (UTM/UF/IMM/topes) dentro del bloque de
+  resultado en las 17 calculadoras interactivas.
 - [ ] **F-09/F-10**: contexto de página en hubs y compactación móvil con ancla.
+  Revisados: el badge de tipo (F-07) y los componentes `NextBestStep`/`NextSteps`
+  ya cubren el "siguiente paso contextual"; el ancla móvil queda como mejora de
+  diseño sin caso de scroll largo medido en calculadoras (el formulario está
+  junto al hero).
 - [ ] **Estructural**: componentes `FinancialField` y `ResultPanel` con variantes
-  de estado; migración de las 22 calculadoras; pasada manual con
-  NVDA/VoiceOver; contraste dark-mode de los estados calculados (hoy escaneados
-  en claro).
+  de estado; migración de las 22 calculadoras; pasada manual con NVDA/VoiceOver.
 - [ ] **F-08 completo**: fecha, base imponible y topes por calculadora dentro
   del bloque (requiere contrato por página).
 
