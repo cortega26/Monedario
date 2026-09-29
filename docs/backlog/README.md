@@ -58,7 +58,7 @@ Briefs entregados el 2026-09-28; **no ejecutados**. Carpeta:
 
 | Orden | Brief | Estado |
 |-------|-------|--------|
-| 01 | Correctitud, consistencia y freshness | PENDIENTE |
+| 01 | Correctitud, consistencia y freshness | **RESULTADO RECIBIDO** (`docs/reports/AUDIT-CORRECTNESS-2026-09-28.md`; plan 115) |
 | 02 | SEO técnico y descubrimiento | PENDIENTE |
 | 03 | Privacidad y seguridad pasiva | PENDIENTE |
 | 04 | Resiliencia y performance observable | PENDIENTE |
