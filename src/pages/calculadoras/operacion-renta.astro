@@ -13,7 +13,7 @@ import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
 import NextSteps from "@/components/NextSteps.astro";
 import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
 import { simulateOperacionRenta } from "@/application/use-cases/SimulateOperacionRenta";
-import { AT2026 } from "@/domain/taxation/TaxYearParameters";
+import { getTaxYearParameters } from "@/domain/taxation/TaxYearRegistry";
 import { operacionRentaWorkedExample } from "@/application/use-cases/SimulateOperacionRenta.methodology";
 import { getPath } from "@/utils/getPath";
 import { formatCLP } from "@/utils/formatCLP";
@@ -32,6 +32,8 @@ const glosarioOperacionRentaPath = getPath("/glosario/operacion-renta/");
 
 const formatPeso = formatCLP;
 
+const taxYearParameters = getTaxYearParameters(2026);
+
 const exampleResult = simulateOperacionRenta({
   sueldosRentaNeta: 18_000_000,
   sueldosBaseMode: "declarada",
@@ -41,7 +43,7 @@ const exampleResult = simulateOperacionRenta({
   ppmHonorarios: 0,
   apvRegimenB: 0,
   interesesHipotecarios: 0,
-  taxYear: AT2026,
+  taxYear: taxYearParameters,
 });
 const currentCalculator = CALCULATOR_PORTFOLIO.find(
   calc => calc.slug === "operacion-renta"
@@ -276,7 +278,9 @@ const operacionRentaFaqs = [
             />
             <p class="mt-1 text-xs text-muted">
               Retención del {
-                (AT2026.honorariosPpmRate * 100).toLocaleString("es-CL")
+                (taxYearParameters.honorariosPpmRate * 100).toLocaleString(
+                  "es-CL"
+                )
               }% que hizo cada pagador de tus boletas emitidas en 2025 (AT2026).
               Suma el total del año.
             </p>
@@ -399,7 +403,7 @@ const operacionRentaFaqs = [
           variant="result"
         >
           {
-            ` · Parámetros AT2026 (año comercial 2025): UTA ${formatPeso(AT2026.uta)} · retención de honorarios ${(AT2026.honorariosPpmRate * 100).toLocaleString("es-CL")}%.`
+            ` · Parámetros AT2026 (año comercial 2025): UTA ${formatPeso(taxYearParameters.uta)} · retención de honorarios ${(taxYearParameters.honorariosPpmRate * 100).toLocaleString("es-CL")}%.`
           }
         </CalculatorDataFreshness>
       </CalculatorResultPanel>
@@ -441,8 +445,9 @@ const operacionRentaFaqs = [
         <li>
           <strong>Créditos acreditables:</strong> el impuesto único retenido por el
           empleador y el PPM de boletas de honorarios emitidas en 2025 (
-          {(AT2026.honorariosPpmRate * 100).toLocaleString("es-CL")}%) se
-          descuentan directamente del IGC calculado.
+          {
+            (taxYearParameters.honorariosPpmRate * 100).toLocaleString("es-CL")
+          }%) se descuentan directamente del IGC calculado.
         </li>
       </ul>
       <h3>Limitaciones de este simulador</h3>
@@ -561,7 +566,7 @@ const operacionRentaFaqs = [
   import "@/scripts/calculator-prefill";
   import { calculateNetSalary } from "@/application/use-cases/CalculateNetSalary";
   import { simulateOperacionRenta } from "@/application/use-cases/SimulateOperacionRenta";
-  import { AT2026 } from "@/domain/taxation/TaxYearParameters";
+  import { getTaxYearParameters } from "@/domain/taxation/TaxYearRegistry";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
   import { formatCLP } from "@/utils/formatCLP";
@@ -599,6 +604,8 @@ const operacionRentaFaqs = [
     el.textContent = "";
     el.classList.add("hidden");
   }
+
+  const taxYearParameters = getTaxYearParameters(2026);
 
   let sueldosBaseMode: "declarada" | "estimada" = "declarada";
 
@@ -660,8 +667,8 @@ const operacionRentaFaqs = [
           healthSystem,
           contractType,
           economicParameters: {
-            uf: AT2026.ufDecember,
-            utm: AT2026.uta / 12,
+            uf: taxYearParameters.ufDecember,
+            utm: taxYearParameters.uta / 12,
           },
         });
         // Renta Total Neta Pagada ≈ base imponible mensual menos cotizaciones
@@ -723,7 +730,7 @@ const operacionRentaFaqs = [
         ppmHonorarios: val("ppm-honorarios"),
         apvRegimenB: val("apv-regimen-b"),
         interesesHipotecarios: val("intereses-hipotecarios"),
-        taxYear: AT2026,
+        taxYear: taxYearParameters,
       });
     } catch (error) {
       showFormError(

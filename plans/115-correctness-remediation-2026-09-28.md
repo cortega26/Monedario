@@ -14,8 +14,8 @@
 - **Depends on**: none
 - **Category**: correctness / datos / cumplimiento legal
 - **Planned at**: commit `7226c0ce`, 2026-09-28
-- **Status**: IN PROGRESS — Pasos 1 (F01/F02) y 2 (F03 DAP) implementados y
-  verificados; pendientes pasos 3–6.
+- **Status**: IN PROGRESS — Pasos 1 (F01/F02), 2 (F03 DAP) y 3 (registry
+  effective-dated + ADR) implementados y verificados; pendientes pasos 4–6.
 - **Evidence**: `docs/reports/AUDIT-CORRECTNESS-2026-09-28.md`
 
 ## Why this matters
@@ -168,6 +168,26 @@ contextos históricos.
   y metodología reescritos y fuentes SII citadas.
 - **Tests**: `CalculateTermDeposit` actualizado; snapshot de escenarios sin
   `r:aplica-impuesto`; 1690 unit + 195 Playwright en verde; build OK.
+
+### 2026-09-29 — Paso 3 (registry effective-dated) implementado
+
+- **ADR** `docs/adr/ADR-20260929-effective-dated-economic-parameters.md`
+  (Accepted): parámetros fiscales congelados por año tributario; la capa
+  tributaria no lee indicadores vigentes; modelo effective-dated con período
+  obligatorio y fail-closed.
+- **Modelo** `src/domain/economic/EffectiveDatedParameters.ts`:
+  `EffectiveDatedEntry` (`periodId`, `effectiveFrom`, `effectiveTo`,
+  `publicationDate`, `source`) y `resolveEffectiveValue()` con vigencia
+  `[effectiveFrom, effectiveTo)` y sin cobertura → `undefined`.
+- **Registry** `src/domain/taxation/TaxYearRegistry.ts`:
+  `getTaxYearParameters(2026)` / `getTaxYearForCommercialYear(2025)`, falla
+  cerrado para años no registrados. La página de Operación Renta ya accede vía
+  registry (frontmatter y cliente).
+- **Guarda** `tests/static-analysis/tax-current-params-guard.test.ts`: la capa
+  tributaria no puede importar `GetEconomicParameters`, `infrastructure/economic`
+  ni el snapshot.
+- **Evidencia**: 1713 unit tests (incluye resolver, registry y guarda), build OK
+  (9 guards), `astro check` 0 errores.
 
 ## Verification table
 
