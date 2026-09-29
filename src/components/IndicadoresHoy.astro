@@ -273,6 +273,13 @@ const indicadoresEndpoint = getPath("/api/indicadores-hoy.json");
     row-gap: 14px;
   }
 
+  @media (max-width: 639px) {
+    .indicadores-grid {
+      padding: 10px 0;
+      row-gap: 10px;
+    }
+  }
+
   @media (min-width: 640px) {
     .indicadores-grid {
       grid-template-columns: repeat(var(--cols, 3), 1fr) auto;

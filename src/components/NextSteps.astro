@@ -59,10 +59,11 @@ const visibleItems = items
 // mantenimiento del plan 083): en `/calculadoras/<slug>/` resuelve el slug;
 // en cualquier otro origen (índice, artículos) queda `undefined` a propósito.
 const resolvedCalculatorId = deriveCalculatorId(currentHref);
+const isCalculatorPage = currentHref.startsWith("/calculadoras/");
 ---
 
 {
-  visibleItems.length > 0 && (
+  (visibleItems.length > 0 || isCalculatorPage) && (
     <section
       class="mt-10 border-t border-border pt-8 pb-10"
       data-next-steps-cluster={cluster}
@@ -81,6 +82,16 @@ const resolvedCalculatorId = deriveCalculatorId(currentHref);
         {description && (
           <p class="mt-2 text-sm leading-relaxed text-secondary">
             {description}
+          </p>
+        )}
+        {isCalculatorPage && (
+          <p class="mt-4">
+            <a
+              href="#calculator-form-card"
+              class="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-sm font-medium text-accent transition-colors hover:border-accent/60"
+            >
+              ↑ Ir al cálculo
+            </a>
           </p>
         )}
       </div>
