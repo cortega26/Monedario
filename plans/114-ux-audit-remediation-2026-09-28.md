@@ -14,9 +14,9 @@
 - **Depends on**: none
 - **Category**: UX/a11y correctness + regression guards
 - **Planned at**: commit `224b6f74`, 2026-09-28
-- **Status**: Fase 1 DONE y Fase 2 parcial (F-05, F-06, F-08 en 17 páginas,
-  guard de IDs). Pendientes: F-07, F-08 completo, F-09/F-10 y estructural
-  (2026-09-28).
+- **Status**: Fase 1 DONE y Fase 2 casi completa (F-05, F-06, F-07, F-08 en 17
+  páginas, guard de IDs, axe 22/22). Pendientes: F-08 completo (topes por
+  calculadora), F-09/F-10 y estructural (2026-09-28).
 - **Evidence**: `docs/reports/AUDIT-UX-2026-09-28.md`
 
 ## Scope
@@ -186,6 +186,28 @@ estado inicial.
   332 HTML pages`; `playwright tests/accessibility` → **134 passed**;
   `check:ci` → exit 0.
 
+### 2026-09-28 — Fase 2, ronda 3
+
+- **F-07**: nuevo `ContentTypeBadge.astro` con `data-content-type`; integrado en
+  `CalculatorHero` (22 calculadoras), `PostDetails` (artículos), glosario y 9
+  hubs de guías (los hubs de sueldo y UF ya tenían eyebrow propio). Breadcrumb
+  capitaliza los slugs multi-palabra ("sueldo liquido" → "Sueldo liquido") sin
+  tocar acrónimos ("apv").
+- **Cobertura axe de calculadoras**: `pages.test.ts` escanea ahora las 22
+  plantillas de calculadora en escritorio claro (antes solo 2). La pasada
+  destapó 3 violaciones de contraste preexistentes, corregidas:
+  - `comisiones-afp`: celda "referencia" `text-green-500` → `text-green-800
+    dark:text-green-400` (4.32:1 → AA).
+  - `deposito-a-plazo`: retención del ejemplo `text-red-500` → `text-red-600
+    dark:text-red-400`.
+  - `iva`: el contenedor usaba `opacity-70` en estado ejemplo, lo que bajaba el
+    contraste efectivo de todos los textos; se reemplazó por un badge explícito
+    "Ejemplo ilustrativo — no es tu resultado" (alineado con F-06) y toggles de
+    visibilidad en JS.
+- **Tests**: `pages.test.ts` +26 (22 calculadoras + 4 badges de tipo).
+- **Evidencia**: build OK (8 checks, 332 páginas); Playwright **160 passed**;
+  `check:ci` exit 0.
+
 ### Anexo CI (higiene, fuera del alcance UX)
 
 `check:ci` estaba rojo en `main` por dos tests preexistentes introducidos por
@@ -217,12 +239,15 @@ test y ADR-20260716). Sin cambios de comportamiento.
   7 con `disclaimer` en el panel). Faltan conversores y calculadoras sin
   ejemplo.
 - [x] **Guard de IDs duplicados**: `unique-element-ids` en `check-postbuild`.
-- [ ] **F-07**: identificador de tipo de contenido en breadcrumb/encabezado
-  (`Guía`, `Artículo`, `Calculadora`, `Glosario`, `Ley`).
+- [x] **F-07**: badge de tipo de contenido en encabezados (calculadora,
+  artículo, glosario, guía) + capitalización de breadcrumbs. Leyes ya mostraban
+  "Ley {número}".
+- [x] **Axe sobre todas las plantillas de calculadora** (22/22, escritorio
+  claro) con 3 correcciones de contraste.
 - [ ] **F-09/F-10**: contexto de página en hubs y compactación móvil con ancla.
 - [ ] **Estructural**: componentes `FinancialField` y `ResultPanel` con variantes
-  de estado; migración de las 22 calculadoras; axe sobre todas las plantillas de
-  calculadora; pasada manual con NVDA/VoiceOver.
+  de estado; migración de las 22 calculadoras; pasada manual con
+  NVDA/VoiceOver; axe sobre estados con resultado calculado.
 - [ ] **F-08 completo**: fecha, base imponible y topes por calculadora dentro
   del bloque (requiere contrato por página).
 
