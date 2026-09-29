@@ -14,10 +14,10 @@
 - **Depends on**: none
 - **Category**: correctness / datos / cumplimiento legal
 - **Planned at**: commit `7226c0ce`, 2026-09-28
-- **Status**: DONE — Pasos 1–3, 5 y 6 completos. Paso 4 (F04 IPC) con
-  fail-closed implementado y dataset pendiente por bloqueo de fuente
-  (`TD-0112`). Queda el math audit/compliance humano para el gate de
-  publicación.
+- **Status**: DONE — Pasos 1–6 completos. F04 cerrado end-to-end: fail-closed
+  + serie IPC extendida a 2026-08 con fuente oficial BCCh/INE (`TD-0112`
+  resuelto) y assertion de frescura serie↔snapshot en el check programado.
+  Queda solo el math audit/compliance humano para el gate de publicación.
 - **Evidence**: `docs/reports/AUDIT-CORRECTNESS-2026-09-28.md`
 
 ## Why this matters
@@ -268,13 +268,14 @@ contextos históricos.
 - [x] DAP sin retención automática para persona natural residente.
 - [x] Freshness fail-closed en la calculadora de inflación (no afirma "última
       cifra disponible" cuando la serie está atrasada).
-- [ ] `ipc-historico.json` con el último período publicado (bloqueado por
-      fuente: `TD-0112`) y assertion de frescura en CI.
+- [x] `ipc-historico.json` con el último período publicado (extensión oficial
+      BCCh/INE; `TD-0112` resuelto) y assertion de frescura en CI.
 - [x] SuperIR exige ≥2 acreedores distintos; DICOM y APV corregidos con fuente
       primaria.
 - [x] Ejemplos publicados iguales al runtime (test de paridad).
-- [ ] Math audit + compliance YMYL registrados para los cambios de contenido.
-- [ ] Gates de la tabla en verde; plan 115 y `plans/README.md` actualizados.
+- [ ] Math audit + compliance YMYL registrados para los cambios de contenido
+      (tarea humana; separación de funciones).
+- [x] Gates de la tabla en verde; plan 115 y `plans/README.md` actualizados.
 
 ## STOP conditions
 

@@ -14,9 +14,13 @@
  * El script es re-ejecutable; sobreescribe los archivos de salida.
  */
 
-import { writeFileSync, mkdirSync } from "node:fs";
+import { writeFileSync, mkdirSync, existsSync, readFileSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  extendSeriesByDate,
+  parseBcchIpcObservations,
+} from "./economic-history-ipc.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, "..");
@@ -25,6 +29,27 @@ const OUT_DIR = join(ROOT, "src/data/economic-history");
 const BASE_URL = "https://mindicador.cl/api";
 const TIMEOUT_MS = 15_000;
 const DELAY_MS = 300; // pausa entre requests para no saturar la API
+
+// Extensión oficial del IPC: mindicador.cl dejó de publicar la serie después
+// de dic-2025 (TD-0112), así que los meses faltantes se completan con la serie
+// del BCCh (IPC INE, variación mensual, empalme base 2023=100). Requiere
+// BCCH_USER/BCCH_PASSWORD (p. ej. en .env.local); sin credenciales se omite.
+const BCCH_ENDPOINT = "https://si3.bcentral.cl/SieteRestWS/SieteRestWS.ashx";
+const BCCH_IPC_SERIES = "G073.IPC.VAR.2023.M";
+
+function loadEnvLocal() {
+  const envPath = join(ROOT, ".env.local");
+  if (!existsSync(envPath)) return;
+  for (const line of readFileSync(envPath, "utf8").split("\n")) {
+    const match = line.match(/^([A-Z0-9_]+)=(.*)$/);
+    if (!match) continue;
+    if (process.env[match[1]] === undefined) {
+      process.env[match[1]] = match[2].replace(/^["']|["']$/g, "");
+    }
+  }
+}
+
+loadEnvLocal();
 
 // --- Parseo de argumentos --------------------------------------------------
 
@@ -82,6 +107,35 @@ async function fetchYearSerie(indicador, year) {
     .map(e => ({ fecha: toIsoDate(e.fecha), valor: e.valor }))
     .filter(e => e.fecha && typeof e.valor === "number" && isFinite(e.valor))
     .sort((a, b) => a.fecha.localeCompare(b.fecha)); // ascendente
+}
+
+/**
+ * Serie IPC mensual del BCCh (Siete REST WS, Latin-1). Devuelve null si no
+ * hay credenciales; nunca registra la URL (contiene las credenciales).
+ */
+async function fetchBcchIpcSerie(firstDateIso, lastDateIso) {
+  const user = process.env.BCCH_USER;
+  const password = process.env.BCCH_PASSWORD;
+  if (!user || !password) return null;
+
+  const params = new URLSearchParams({
+    user,
+    pass: password,
+    function: "GetSeries",
+    timeseries: BCCH_IPC_SERIES,
+    firstdate: firstDateIso,
+    lastdate: lastDateIso,
+  });
+  const res = await fetch(`${BCCH_ENDPOINT}?${params.toString()}`, {
+    signal: AbortSignal.timeout(TIMEOUT_MS),
+  });
+  if (!res.ok) throw new Error(`BCCh HTTP ${res.status}`);
+  const text = new TextDecoder("iso-8859-1").decode(await res.arrayBuffer());
+  const data = JSON.parse(text);
+  if (data?.Codigo !== 0 || !Array.isArray(data?.Series?.Obs)) {
+    throw new Error(`BCCh Codigo ${data?.Codigo}: ${data?.Descripcion}`);
+  }
+  return parseBcchIpcObservations(data.Series.Obs);
 }
 
 // --- Ingesta por indicador ------------------------------------------------
@@ -149,6 +203,37 @@ const ipcData = incluyeIndicador("ipc")
         "Para calcular poder adquisitivo acumulado es necesario encadenar las variaciones."
     )
   : null;
+
+if (ipcData) {
+  try {
+    const extension = await fetchBcchIpcSerie(
+      `${FROM_YEAR}-01-01`,
+      `${TO_YEAR}-12-31`
+    );
+    if (extension && extension.length > 0) {
+      const { serie, added } = extendSeriesByDate(ipcData.serie, extension);
+      ipcData.serie = serie;
+      ipcData.totalEntradas = serie.length;
+      ipcData.desdeFecha = serie[0]?.fecha ?? "";
+      ipcData.hastaFecha = serie[serie.length - 1]?.fecha ?? "";
+      ipcData.fuente =
+        "INE (IPC mensual) vía mindicador.cl; extensión vía Banco Central de Chile (G073.IPC.VAR.2023.M, base 2023=100)";
+      ipcData.nota +=
+        " Los meses sin dato en mindicador.cl se completan con la serie oficial del BCCh (IPC INE, empalme base 2023=100).";
+      console.log(
+        `  BCCh: +${added} mes(es); serie hasta ${ipcData.hastaFecha}`
+      );
+    } else {
+      console.warn(
+        "  BCCh: sin credenciales BCCH_USER/BCCH_PASSWORD — extensión omitida"
+      );
+    }
+  } catch (err) {
+    console.warn(
+      `  BCCh: error — ${err.message} (se conserva la serie mindicador)`
+    );
+  }
+}
 
 const files = [
   { name: "uf-historico.json", data: ufData },
