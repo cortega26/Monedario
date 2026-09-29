@@ -1,5 +1,36 @@
 import { describe, expect, it } from "vitest";
-import { evaluateCriticalMonthlyFreshness } from "@/utils/economicFreshness";
+import {
+  evaluateCriticalMonthlyFreshness,
+  evaluateIpcSeriesFreshness,
+} from "@/utils/economicFreshness";
+
+describe("evaluateIpcSeriesFreshness", () => {
+  it("declara stale cuando la serie no alcanza el período publicado", () => {
+    const result = evaluateIpcSeriesFreshness("2025-12", "2026-08-01");
+    expect(result.status).toBe("stale");
+    expect(result.expectedPeriod).toBe("2026-08");
+    expect(result.reason).toContain("2026-08");
+  });
+
+  it("declara fresh cuando la serie alcanza el período publicado", () => {
+    expect(evaluateIpcSeriesFreshness("2026-08", "2026-08-01").status).toBe(
+      "fresh"
+    );
+    expect(evaluateIpcSeriesFreshness("2026-09", "2026-08-01").status).toBe(
+      "fresh"
+    );
+  });
+
+  it("declara unknown sin período de referencia", () => {
+    expect(evaluateIpcSeriesFreshness("2025-12", null).status).toBe("unknown");
+    expect(evaluateIpcSeriesFreshness("2025-12", undefined).status).toBe(
+      "unknown"
+    );
+    expect(evaluateIpcSeriesFreshness("2025-12", "sin-fecha").status).toBe(
+      "unknown"
+    );
+  });
+});
 
 describe("evaluateCriticalMonthlyFreshness", () => {
   it("accepts the current reference month", () => {

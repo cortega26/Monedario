@@ -11,6 +11,9 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
 import NextSteps from "@/components/NextSteps.astro";
 import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
+import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+import { resolveEconomicIndicatorDate } from "@/domain/economic/EconomicParameters";
+import { evaluateIpcSeriesFreshness } from "@/utils/economicFreshness";
 import { getPath } from "@/utils/getPath";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import ipcHistoricoRaw from "@/data/economic-history/ipc-historico.json";
@@ -39,6 +42,22 @@ const MESES = [
 ];
 const lastMonthLabel = MESES[lastMonthNum - 1];
 const lastDateLabel = `${lastMonthLabel} ${lastYear}`;
+
+// Freshness real (auditoría F04): la serie no puede afirmar "última cifra
+// disponible" si va detrás del último período publicado por la fuente.
+const { parameters: economicParameters } = await getEconomicParameters();
+const ipcFreshness = evaluateIpcSeriesFreshness(
+  ipcLastKey,
+  resolveEconomicIndicatorDate(economicParameters, "ipc")
+);
+const expectedIpcLabel = ipcFreshness.expectedPeriod
+  ? (() => {
+      const [expectedYear, expectedMonth] = ipcFreshness.expectedPeriod
+        .split("-")
+        .map(Number);
+      return `${MESES[expectedMonth - 1]} ${expectedYear}`;
+    })()
+  : null;
 
 // Años disponibles para el selector de origen (primer año hasta penúltimo mes disponible)
 const firstYear = Number(ipcFirstKey.split("-")[0]);
@@ -187,9 +206,34 @@ const calculatorNextStepItems = [
         </div>
         <p id="resultado-error" class="mt-3 hidden text-sm text-danger"></p>
 
-        <p class="mt-4 text-xs text-muted">
-          Datos actualizados al {lastDateLabel} (última cifra disponible del INE).
-        </p>
+        {
+          ipcFreshness.status === "fresh" && (
+            <p class="mt-4 text-xs text-muted">
+              Datos actualizados al {lastDateLabel} (última cifra disponible del
+              INE).
+            </p>
+          )
+        }
+        {
+          ipcFreshness.status === "stale" && (
+            <p
+              class="mt-4 rounded-lg border border-amber-500/30 bg-amber-500/10 p-3 text-xs text-secondary"
+              role="status"
+            >
+              La serie de IPC cargada llega hasta {lastDateLabel}; el INE ya
+              publicó el IPC de {expectedIpcLabel}. Los cálculos usan la serie
+              disponible y pueden subestimar la inflación más reciente.
+            </p>
+          )
+        }
+        {
+          ipcFreshness.status === "unknown" && (
+            <p class="mt-4 text-xs text-muted">
+              Serie de IPC cargada hasta {lastDateLabel}. Verifica la última
+              cifra publicada por el INE.
+            </p>
+          )
+        }
       </div>
 
       <!-- COLUMNA DERECHA -->

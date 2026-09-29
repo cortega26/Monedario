@@ -40,6 +40,17 @@ const args = Object.fromEntries(
 const currentYear = new Date().getUTCFullYear();
 const FROM_YEAR = parseInt(args.desde ?? "2000", 10);
 const TO_YEAR   = parseInt(args.hasta ?? String(currentYear), 10);
+// --solo=ipc,uf permite refrescar una o más series sin reescribir el resto.
+const SOLO = args.solo
+  ? String(args.solo)
+      .split(",")
+      .map(value => value.trim())
+      .filter(Boolean)
+  : null;
+
+function incluyeIndicador(indicador) {
+  return !SOLO || SOLO.includes(indicador);
+}
 
 // --- Utilidades -----------------------------------------------------------
 
@@ -117,31 +128,33 @@ mkdirSync(OUT_DIR, { recursive: true });
 console.log(`Ingesta económica histórica — ${FROM_YEAR} a ${TO_YEAR}`);
 console.log(`Destino: ${OUT_DIR}`);
 
-const ufData = await ingestIndicador(
-  "uf",
-  "diaria",
-  "Valor diario de la UF en pesos chilenos."
-);
+const ufData = incluyeIndicador("uf")
+  ? await ingestIndicador("uf", "diaria", "Valor diario de la UF en pesos chilenos.")
+  : null;
 
-const utmData = await ingestIndicador(
-  "utm",
-  "mensual",
-  "Valor mensual de la UTM en pesos chilenos."
-);
+const utmData = incluyeIndicador("utm")
+  ? await ingestIndicador(
+      "utm",
+      "mensual",
+      "Valor mensual de la UTM en pesos chilenos."
+    )
+  : null;
 
-const ipcData = await ingestIndicador(
-  "ipc",
-  "mensual",
-  "Variación porcentual mensual del IPC según el INE, publicada por mindicador.cl. " +
-  "Este campo refleja la variación del período (%), NO un índice acumulado. " +
-  "Para calcular poder adquisitivo acumulado es necesario encadenar las variaciones."
-);
+const ipcData = incluyeIndicador("ipc")
+  ? await ingestIndicador(
+      "ipc",
+      "mensual",
+      "Variación porcentual mensual del IPC según el INE, publicada por mindicador.cl. " +
+        "Este campo refleja la variación del período (%), NO un índice acumulado. " +
+        "Para calcular poder adquisitivo acumulado es necesario encadenar las variaciones."
+    )
+  : null;
 
 const files = [
-  { name: "uf-historico.json",  data: ufData },
+  { name: "uf-historico.json", data: ufData },
   { name: "utm-historico.json", data: utmData },
   { name: "ipc-historico.json", data: ipcData },
-];
+].filter(file => file.data !== null);
 
 for (const { name, data } of files) {
   const path = join(OUT_DIR, name);
@@ -155,42 +168,46 @@ for (const { name, data } of files) {
 // Evitan parsear los ~638 KB de uf-historico.json por dos strings (rango) o
 // ~60 puntos mensuales (gráfico). Derivan de los mismos datos ya ingeridos.
 
-const ufRango = {
-  first: ufData.desdeFecha,
-  last: ufData.hastaFecha,
-  count: ufData.totalEntradas,
-};
-writeFileSync(
-  join(OUT_DIR, "uf-rango.json"),
-  JSON.stringify(ufRango, null, 2) + "\n",
-  "utf8"
-);
-console.log(
-  `\n✓ uf-rango.json — ${ufRango.count} entradas (${ufRango.first} → ${ufRango.last})`
-);
-
-// Un punto por mes (primera fecha disponible del mes, serie ascendente).
-const ufMesesVistos = new Set();
-const ufPuntosMensuales = [];
-for (const entry of ufData.serie) {
-  const mes = entry.fecha.slice(0, 7);
-  if (ufMesesVistos.has(mes)) continue;
-  ufMesesVistos.add(mes);
-  ufPuntosMensuales.push({ fecha: entry.fecha, valor: entry.valor });
+if (ufData) {
+  const ufRango = {
+    first: ufData.desdeFecha,
+    last: ufData.hastaFecha,
+    count: ufData.totalEntradas,
+  };
+  writeFileSync(
+    join(OUT_DIR, "uf-rango.json"),
+    JSON.stringify(ufRango, null, 2) + "\n",
+    "utf8"
+  );
+  console.log(
+    `\n✓ uf-rango.json — ${ufRango.count} entradas (${ufRango.first} → ${ufRango.last})`
+  );
 }
-const ufMensual = {
-  fuente: "mindicador.cl",
-  indicador: "uf",
-  granularidad: "mensual",
-  actualizadoEl: ufData.actualizadoEl,
-  count: ufPuntosMensuales.length,
-  puntos: ufPuntosMensuales,
-};
-writeFileSync(
-  join(OUT_DIR, "uf-mensual.json"),
-  JSON.stringify(ufMensual, null, 2) + "\n",
-  "utf8"
-);
-console.log(`uf-mensual.json: ${ufMensual.count} puntos mensuales`);
+
+if (ufData) {
+  // Un punto por mes (primera fecha disponible del mes, serie ascendente).
+  const ufMesesVistos = new Set();
+  const ufPuntosMensuales = [];
+  for (const entry of ufData.serie) {
+    const mes = entry.fecha.slice(0, 7);
+    if (ufMesesVistos.has(mes)) continue;
+    ufMesesVistos.add(mes);
+    ufPuntosMensuales.push({ fecha: entry.fecha, valor: entry.valor });
+  }
+  const ufMensual = {
+    fuente: "mindicador.cl",
+    indicador: "uf",
+    granularidad: "mensual",
+    actualizadoEl: ufData.actualizadoEl,
+    count: ufPuntosMensuales.length,
+    puntos: ufPuntosMensuales,
+  };
+  writeFileSync(
+    join(OUT_DIR, "uf-mensual.json"),
+    JSON.stringify(ufMensual, null, 2) + "\n",
+    "utf8"
+  );
+  console.log(`uf-mensual.json: ${ufMensual.count} puntos mensuales`);
+}
 
 console.log("Ingesta completada.");
