@@ -4,9 +4,9 @@ export interface DebtItemInput {
   amount: number;
   overdueDays: number;
   /**
-   * Identidad del acreedor. La Ley 20.720 art. 260 exige dos o más
-   * obligaciones vencidas "provenientes de obligaciones diversas"; sin
-   * identificar al acreedor no es posible verificar que sean distintas.
+   * Identidad del acreedor, necesaria para la solicitud (art. 261). La
+   * elegibilidad del art. 260 se evalúa por obligaciones vencidas
+   * "provenientes de obligaciones diversas", no por acreedores distintos.
    */
   creditor: string;
 }

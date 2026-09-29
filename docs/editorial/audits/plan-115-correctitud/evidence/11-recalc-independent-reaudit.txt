@@ -1,0 +1,111 @@
+==============================================================================
+R1/R3 — recálculo independiente (Python) — commit 8b73793 — 2026-09-29
+==============================================================================
+
+[TABLA] rebajas vs SII publicado (UTA AT2026 y UTM sep-2026)
+  tasa 0.04  rebaja   0.54 UTA/UTM → $450.632 (UTA) | SII sep-2026 $38.729: OK
+  tasa 0.08  rebaja   1.74 UTA/UTM → $1.452.037 (UTA)
+  tasa 0.135 rebaja   4.49 UTA/UTM → $3.746.923 (UTA)
+  tasa 0.23  rebaja  11.14 UTA/UTM → $9.296.375 (UTA)
+  tasa 0.304 rebaja   17.8 UTA/UTM → $14.854.171 (UTA)
+  tasa 0.35  rebaja  23.32 UTA/UTM → $19.460.633 (UTA) | SII sep-2026 $1.672.534: OK
+  tasa 0.4   rebaja  38.82 UTA/UTM → $32.395.445 (UTA) | SII sep-2026 $2.784.209: OK
+  SII publica además: rebaja 2º tramo $450.632,16 = $450.632 OK
+  SII publica: 310 UTA = $258.696.240 OK
+                      310 UTM = $22.233.510 OK
+
+[TABLA] fronteras y continuidad (salto < $1 por peso)
+   13.5 UTA: en tope=$0  +$1=$0  salto=0.0400
+   13.5 UTM: en tope=$0  +$1=$0  salto=0.0400
+
+   30.0 UTA: en tope=$550.773  +$1=$550.773  salto=0.0800
+   30.0 UTM: en tope=$47.336  +$1=$47.336  salto=0.0800
+
+   50.0 UTA: en tope=$1.885.979  +$1=$1.885.979  salto=0.1350
+   50.0 UTM: en tope=$162.089  +$1=$162.090  salto=0.1350
+
+   70.0 UTA: en tope=$4.139.140  +$1=$4.139.140  salto=0.2300
+   70.0 UTM: en tope=$355.736  +$1=$355.736  salto=0.2300
+
+   90.0 UTA: en tope=$7.977.858  +$1=$7.977.859  salto=0.3040
+   90.0 UTM: en tope=$685.653  +$1=$685.653  salto=0.3040
+
+  120.0 UTA: en tope=$15.588.535  +$1=$15.588.535  salto=0.3500
+  120.0 UTM: en tope=$1.339.748  +$1=$1.339.749  salto=0.3500
+
+  310.0 UTA: en tope=$71.083.051  +$1=$71.083.051  salto=0.4000
+  310.0 UTM: en tope=$6.109.195  +$1=$6.109.195  salto=0.4000
+
+
+[V1] $18.000.000 renta neta ⇒ IGC AT2026
+  IGC = 18.000.000 × 4% − 0,54×834.504 = $720.000 − $450.632 = 269367.83999999997
+  redondeado $269.368 | tasa marginal 4.000000%
+  repro informe original con UTA=12×UTM sep-2026: 255247.91999999998 ($255.248)
+
+[V1] IGC 200 UTA y 320 UTA (tramo general 310 vs art. 52 bis 150)
+  200 UTA → $38.954.647 (tasa 35.000000%)
+  310 UTA → $71.083.051 (tasa 35.000000%)
+  320 UTA → $74.421.067 (tasa 40.000000%)
+  contraste 200 UTA: general=$38.954.647 vs art.52bis=$38.954.647 delta=0.00
+  contraste 320 UTA: general=$74.421.067 vs art.52bis=$81.097.099 delta=-6676032.00
+
+[V2] sueldo bruto $1.200.000, AFP 11,27%, Fonasa 7%, AFC 0,6%, indefinido
+  AFP=135240.0 salud=84000.00000000001 AFC=7200.0 base=973560.0
+  IUSC=213.05999999999767 ($213) marginal=4.000000%
+  líquido=973346.94 → display $973.347
+  tramo exento 13,5 UTM sep-2026 = 968233.5
+
+[V3] DAP $5.000.000 / 180 días / 5% (365 días año)
+  interés = 123287.67123287672 → $123.288
+  con retención 4% (modelo rechazado): 118356.16438356164
+
+[V4] APV art. 42 bis N°3: (ΔIGC / retiro) × 1,1 + 3 pp
+  base 90 UTA retiro 50 UTA → ΔIGC=13452204.479999999 tasa=38.464000%
+  base 200 UTA retiro 10 UTA → ΔIGC=2920763.9999999925 tasa=41.500000%
+  base 0 UTA retiro 5 UTA → ΔIGC=0.0 tasa=3.000000%
+  base 10 UTA retiro 5 UTA → ΔIGC=50070.23999999999 tasa=4.320000%
+  contraste marginal 35% × 1,1 + 3 pp = 41.500000%
+
+[V5] SuperIR art. 260 — anualidad y filtros
+  case1: deuda=$4.000.000 UF=101.78117048346056 calificada=101.78117048346056 cuota=110110.20773611861 checks={'two_or_more_debts': True, 'two_or_more_qualified': True, 'strictly_more_than_80uf': True}
+  mismo acreedor 2 obligaciones: calificada=101.78117048346056 checks={'two_or_more_debts': True, 'two_or_more_qualified': True, 'strictly_more_than_80uf': True}
+  80 UF exactas: q=80.0 elegible=False
+  80 UF + $1 : q=80.00002544529262 elegible=True
+  90 vs 91 días: calificadas=1 elegible=False
+
+[V6] serie IPC 2026 y acumulado
+  mes | repo | SII | ok
+  2026-01 | 0.4 | 0.4 | True
+  2026-02 | 0 | 0.0 | True
+  2026-03 | 1 | 1.0 | True
+  2026-04 | 1.3 | 1.3 | True
+  2026-05 | 0.2 | 0.2 | True
+  2026-06 | 0 | 0.0 | True
+  2026-07 | 0.1 | 0.1 | True
+  2026-08 | 0.6 | 0.6 | True
+  acumulado ene–ago = 3.648807945707011% (SII publica 3,6)
+  1.000.000 ajustado dic-2025→ago-2026 = 1036488.0794570701
+
+[V6] UTA dic-2025 y UF
+  UTA dic-2025 = 12 × 69.542 = 834504 (AT2026 usa 834504)
+  UF 2025-12-01 repo = 39643.59 | UF 2025-12-31 repo = 39727.96
+  UF 31.12.2025 desde SII (317.823.680/8.000) = 39727.96
+  cap APV 600 UF: con 39.727,96 = $23.836.776; con 39.643,59 = $23.786.154; delta = 50622.00
+
+[EDGE] entradas inválidas
+  IGC base negativa: ValueError(base negativa)
+  APV retiro 0: ValueError(withdrawal debe ser > 0)
+
+[REPO] frescura IPC (implementación independiente de la regla)
+  fresh(2026-08,2026-08) = fresh
+  stale(2026-08,2026-09) = stale
+  unknown(2026-08,None)  = unknown
+  dataset IPC last = 2026-08 (SII publicó 2026-08 ⇒ fresh)
+  dataset UF historico last = 2026-07-09 (fuera de vector; ver informe)
+
+[REPO] snapshot económico vs SII
+  snapshot utm=71721 (SII sep-2026 71721) OK
+  snapshot uta=834504 (SII dic-2025 834504) OK
+  snapshot uf=41049.01 (indicadorUpdatedAt 2026-09-29)
+  snapshot ipc=0.6 (último mes 2026-08; SII 0,6) OK
+  snapshot imm=553553 desde 2026-05-01 (Ley 21.830: 553.553 desde 2026-05-01) OK

@@ -28,6 +28,15 @@ function writeIpcSeries(root: string, hastaFecha: string) {
   );
 }
 
+function writeUfSeries(root: string, hastaFecha: string) {
+  const dir = path.join(root, "src", "data", "economic-history");
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(
+    path.join(dir, "uf-historico.json"),
+    JSON.stringify({ hastaFecha, serie: [] })
+  );
+}
+
 function run(root: string, now: string) {
   return spawnSync("node", [SCRIPT], {
     env: {
@@ -117,6 +126,22 @@ describe("check-economic-snapshot-freshness", () => {
     };
     const root = writeSnapshot(snapshot);
     writeIpcSeries(root, "2026-06-01");
+    const r = run(root, "2026-06-19T00:00:00.000Z");
+    expect(r.status).toBe(0);
+  });
+
+  it("fails when the ingested UF series is abandoned (re-audit obs. 2)", () => {
+    const root = writeSnapshot(fresh); // uf snapshot = 2026-06-17
+    writeUfSeries(root, "2026-05-01");
+    const r = run(root, "2026-06-19T00:00:00.000Z");
+    expect(r.status).toBe(1);
+    expect(r.stderr).toContain("uf-historico.json");
+    expect(r.stderr).toContain("--solo=uf");
+  });
+
+  it("passes when the UF series is current or published ahead", () => {
+    const root = writeSnapshot(fresh);
+    writeUfSeries(root, "2026-07-09"); // la UF se publica con anticipación
     const r = run(root, "2026-06-19T00:00:00.000Z");
     expect(r.status).toBe(0);
   });

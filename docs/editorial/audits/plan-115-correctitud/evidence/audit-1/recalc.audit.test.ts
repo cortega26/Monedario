@@ -33,7 +33,7 @@ function log(tag: string, payload: unknown): void {
   console.log(`${EVIDENCE}${tag}|${JSON.stringify(payload)}`);
 }
 
-const REPO_ROOT = fileURLToPath(new URL("../../../../../", import.meta.url));
+const REPO_ROOT = fileURLToPath(new URL("../../../../../../", import.meta.url));
 
 // ---------------------------------------------------------------------------
 // Constantes de entrada (no se usan valores "de memoria" para los parámetros:

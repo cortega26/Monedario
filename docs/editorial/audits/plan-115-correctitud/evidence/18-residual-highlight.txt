@@ -1,0 +1,38 @@
+D12 — Resaltado de tramo obsoleto (150 en vez de 310) en
+src/pages/calculadoras/impuesto-segunda-categoria.astro:423
+
+Lógica extraída del archivo (node, sin motor):
+  const BRACKET_UPPER_LIMITS_UTM = [13.5, 30, 50, 70, 90, 120, 150, Infinity];
+  function highlightBracket(taxableIncome) {
+    BRACKET_UPPER_LIMITS_UTM.forEach((limit, i) => {
+      const row = document.getElementById(`tramo-${i}`);
+      const isActive = taxableIncome <= limit * utm;
+      const prevActive = i === 0 || taxableIncome > BRACKET_UPPER_LIMITS_UTM[i-1] * utm;
+      row.classList.toggle("bg-accent/10", isActive && prevActive);
+    });
+  }
+
+Reproducción con UTM sep-2026 = 71.721 (node -e):
+$ node -e '...'   # ver más abajo el comando exacto
+  100 UTM (7172100): filas resaltadas=[5] | esperado=5
+  150 UTM (10758150): filas resaltadas=[6] | esperado=6
+  200 UTM (14344200): filas resaltadas=[7] | esperado=6   <-- DEFECTO
+  310 UTM (22233510): filas resaltadas=[7] | esperado=7
+  320 UTM (22950720): filas resaltadas=[7] | esperado=7
+
+Comando exacto:
+$ node -e "const utm=71721;const limits=[13.5,30,50,70,90,120,150,Infinity];for(const n of [100,150,200,310,320]){const income=n*utm;const active=[];limits.forEach((limit,i)=>{const isActive=income<=limit*utm;const prev=i===0||income>limits[i-1]*utm;if(isActive&&prev)active.push(i);});console.log(n+' UTM: filas '+JSON.stringify(active)+' | esperado '+(n<=120?5:n<310?6:7));}"
+
+Evidencia de navegador (build limpio en worktree /tmp/opencode/monedario-head,
+`astro preview --port 4322`, Chrome DevTools MCP, 2026-09-29):
+- Entrada: 14.344.200 (200 UTM) → clic "Calcular impuesto →".
+- Resultado en pantalla: "Tasa marginal 35.0%" · "Impuesto mensual $3.347.936".
+- Fila resaltada: `tramo-7` = "310–∞ UTM · 40% · $2.784.209" (incorrecta).
+- Fila que corresponde: `tramo-6` = "120–310 UTM · 35% · $1.672.534".
+- Extracto crudo de la evaluación DOM:
+  {"highlighted":["tramo-7"],"tramo-7":"310–∞ UTM Sin límite 40% $2.784.209",
+   "tramo-6":"120–310 UTM $22.233.510 35% $1.672.534",
+   "content":"IMPUESTO MENSUAL $3.347.936 ... Tasa marginal 35.0% ..."}
+
+La tabla estática de la página sí muestra 120–310 al 35% (fue corregida en #589),
+pero el resaltado dinámico quedó con la estructura del art. 52 bis (150).

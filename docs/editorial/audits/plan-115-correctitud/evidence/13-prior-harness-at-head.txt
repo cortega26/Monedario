@@ -1,0 +1,182 @@
+
+ RUN  v4.1.11 /home/carlos/VS_Code_Projects/products/monedario/docs/editorial/audits/plan-115-correctitud/evidence
+
+stdout | recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > D1(a) — IGC anual: 200 UTA y 320 UTA, motor vs tabla oficial art. 52
+EVIDENCE|D1.annual-igc|[{"utaMultiplier":200,"income":166900800,"engine":38954646.72,"engineRate":0.35,"official":38954646.72,"diff":0},{"utaMultiplier":320,"income":267041280,"engine":74421066.72,"engineRate":0.4,"official":74421066.72,"diff":0}]
+
+stdout | recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > D1(b) — IUSC mensual: 200 UTM y 320 UTM, motor vs tabla oficial art. 43 N°1 (sep-2026)
+EVIDENCE|D1.monthly-iusc|[{"utmMultiplier":200,"income":14344200,"engine":3347936.2800000003,"engineRate":0.35,"official":3347936.2800000003,"diff":0},{"utmMultiplier":320,"income":22950720,"engine":6396078.779999999,"engineRate":0.4,"official":6396078.779999999,"diff":0}]
+
+stdout | recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > uso del caso de uso completo (SimulateOperacionRenta) vs reimplementación
+EVIDENCE|V1.usecase-grid|[{"income":10000000,"engine":0,"independent":0,"engineMarginal":0,"independentMarginal":0},{"income":11265804,"engine":0,"independent":0,"engineMarginal":0,"independentMarginal":0},{"income":11265805,"engine":0.03999999997904524,"independent":0.03999999997904524,"engineMarginal":0.04,"independentMarginal":0.04},{"income":20000000,"engine":349367.83999999997,"independent":349367.83999999997,"engineMarginal":0.04,"independentMarginal":0.04},{"income":50000000,"engine":3003077.0399999996,"independent":3003077.0399999996,"engineMarginal":0.135,"independentMarginal":0.135},{"income":130000000,"engine":26039366.720000003,"independent":26280586.72,"engineMarginal":0.35,"independentMarginal":0.4}]
+
+stdout | recalc.audit.test.ts > AUDIT V5 — SuperIR (Ley 20.720 art. 260) > borde del informe (y del motor): exactamente 80 UF y 2 acreedores
+EVIDENCE|V5.exactly-80uf|{"independent":{"qualifiedCount":2,"distinctCreditors":2,"sumUf":80,"eligibleStrict":false,"eligibleInclusive":true},"engine":{"qualifiedDebtUf":80,"reachesMinimumUf":false,"meets":false}}
+
+stdout | recalc.audit.test.ts > AUDIT V5 — SuperIR (Ley 20.720 art. 260) > dos deudas del mismo acreedor (case/espacios) ⇒ no distintas
+EVIDENCE|V5.same-creditor|{"meets":true}
+
+stdout | recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > UTA/UTM/UF/IMM del snapshot
+EVIDENCE|V6.snapshot|{"uta":834504,"utm":71721,"uf":41049.01,"imm":553553,"immEffectiveDate":"2026-05-01","indicatorUpdatedAt":{"uf":"2026-09-29","utm":"2026-09-01","uta":"2025-12-01","ipc":"2026-08-01","dolar":"2026-09-29"}}
+
+stdout | recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > D2 — UF dic-2025: SII usa $39.727,96 (31.12.2025); AT2026 congela $39.643,59
+EVIDENCE|D2.uf-dic-2025|{"at2026_ufDecember":39727.96,"ufDataset2025_12_01":39643.59,"ufDataset2025_12_31":39727.96,"siiImplicitFrom8000Uf":39727.96,"apvCapEngine":23836776,"apvCapOfficial":23836776,"apvCapDiff":0}
+
+stdout | recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > D2(b) — efecto del cap APV en SimulateOperacionRenta (600 UF dic)
+EVIDENCE|D2.apv-cap-effect|{"apvCap":23836776,"apvAplicado":23836776,"apvCapOficial":23836776}
+
+ ❯ recalc.audit.test.ts (38 tests | 9 failed) 34ms
+     × continuidad en fronteras 30/50/70/90/120/150 UTA 5ms
+     × D1(a) — IGC anual: 200 UTA y 320 UTA, motor vs tabla oficial art. 52 2ms
+     × D1(b) — IUSC mensual: 200 UTM y 320 UTM, motor vs tabla oficial art. 43 N°1 (sep-2026) 1ms
+     × uso del caso de uso completo (SimulateOperacionRenta) vs reimplementación 2ms
+     × borde del informe (y del motor): exactamente 80 UF y 2 acreedores 2ms
+     × dos deudas del mismo acreedor (case/espacios) ⇒ no distintas 1ms
+     × UTA/UTM/UF/IMM del snapshot 1ms
+     × D2 — UF dic-2025: SII usa $39.727,96 (31.12.2025); AT2026 congela $39.643,59 1ms
+     × D2(b) — efecto del cap APV en SimulateOperacionRenta (600 UF dic) 1ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 9 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > continuidad en fronteras 30/50/70/90/120/150 UTA
+AssertionError: expected 24350827.069999997 to be close to 24350827.120000005, received difference is 0.05000000819563866, but expected 5e-7
+ ❯ recalc.audit.test.ts:286:31
+    284|       expect(Math.abs(above.taxAmount - below.taxAmount)).toBeLessThan…
+    285|       expect(below.taxAmount).toBeCloseTo(independentBelow, 6);
+    286|       expect(above.taxAmount).toBeCloseTo(independentAbove, 6);
+       |                               ^
+    287|     }
+    288|     log("V1.continuity", results);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/9]⎯
+
+ FAIL  recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > D1(a) — IGC anual: 200 UTA y 320 UTA, motor vs tabla oficial art. 52
+AssertionError: expected 38954646.72 to not be close to 38954646.72, received difference is 0, but expected 0.005
+ ❯ recalc.audit.test.ts:311:33
+    309|     // La tabla general art. 52 mantiene 35% hasta 310 UTA; el motor a…
+    310|     // desde 150 UTA (tabla art. 52 bis). Divergencia material.
+    311|     expect(cases[0].engine).not.toBeCloseTo(cases[0].official, 2);
+       |                                 ^
+    312|     expect(cases[0].diff).toBeCloseTo(2_086_260, 0);
+    313|     expect(cases[1].engine).not.toBeCloseTo(cases[1].official, 2);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/9]⎯
+
+ FAIL  recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > D1(b) — IUSC mensual: 200 UTM y 320 UTM, motor vs tabla oficial art. 43 N°1 (sep-2026)
+AssertionError: expected 3347936.2800000003 to not be close to 3347936.2800000003, received difference is 0, but expected 0.005
+ ❯ recalc.audit.test.ts:335:33
+    333|     });
+    334|     log("D1.monthly-iusc", cases);
+    335|     expect(cases[0].engine).not.toBeCloseTo(cases[0].official, 2);
+       |                                 ^
+    336|     expect(cases[0].diff).toBeCloseTo(2.5 * UTM_SEP_2026, 3);
+    337|     expect(cases[1].engine).not.toBeCloseTo(cases[1].official, 2);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/9]⎯
+
+ FAIL  recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > uso del caso de uso completo (SimulateOperacionRenta) vs reimplementación
+AssertionError: expected 26039366.720000003 to be close to 26280586.72, received difference is 241219.99999999627, but expected 5e-7
+ ❯ recalc.audit.test.ts:390:26
+    388|     log("V1.usecase-grid", rows);
+    389|     for (const row of rows) {
+    390|       expect(row.engine).toBeCloseTo(row.independent, 6);
+       |                          ^
+    391|       expect(row.engineMarginal).toBeCloseTo(row.independentMarginal, …
+    392|     }
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/9]⎯
+
+ FAIL  recalc.audit.test.ts > AUDIT V5 — SuperIR (Ley 20.720 art. 260) > borde del informe (y del motor): exactamente 80 UF y 2 acreedores
+AssertionError: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ recalc.audit.test.ts:658:42
+    656|     expect(independent.sumUf).toBe(80);
+    657|     expect(independent.eligibleStrict).toBe(false);
+    658|     expect(engine.meetsBasicEligibility).toBe(true);
+       |                                          ^
+    659|   });
+    660|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/9]⎯
+
+ FAIL  recalc.audit.test.ts > AUDIT V5 — SuperIR (Ley 20.720 art. 260) > dos deudas del mismo acreedor (case/espacios) ⇒ no distintas
+AssertionError: expected undefined to be 2 // Object.is equality
+
+- Expected:
+2
+
++ Received:
+undefined
+
+ ❯ recalc.audit.test.ts:688:43
+    686|       meets: engine.meetsBasicEligibility,
+    687|     });
+    688|     expect(engine.qualifiedCreditorCount).toBe(2);
+       |                                           ^
+    689|     expect(engine.meetsBasicEligibility).toBe(true);
+    690|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/9]⎯
+
+ FAIL  recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > UTA/UTM/UF/IMM del snapshot
+AssertionError: expected 39727.96 to be 39643.59 // Object.is equality
+
+- Expected
++ Received
+
+- 39643.59
++ 39727.96
+
+ ❯ recalc.audit.test.ts:823:31
+    821|     expect(snapshot.uta).toBe(UTA_AT2026);
+    822|     expect(snapshot.uta).toBe(AT2026.uta);
+    823|     expect(AT2026.ufDecember).toBe(UF_DIC_2025);
+       |                               ^
+    824|     expect(snapshot.utm).toBe(UTM_SEP_2026);
+    825|     expect(snapshot.indicatorUpdatedAt.uta).toBe("2025-12-01");
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/9]⎯
+
+ FAIL  recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > D2 — UF dic-2025: SII usa $39.727,96 (31.12.2025); AT2026 congela $39.643,59
+AssertionError: expected 39727.96 to be 39643.59 // Object.is equality
+
+- Expected
++ Received
+
+- 39643.59
++ 39727.96
+
+ ❯ recalc.audit.test.ts:840:31
+    838|       apvCapDiff: 600 * (ufDatasetDec31 - AT2026.ufDecember),
+    839|     });
+    840|     expect(AT2026.ufDecember).toBe(39_643.59);
+       |                               ^
+    841|     expect(ufDatasetDec31).toBe(39_727.96);
+    842|     expect(AT2026.ufDecember).not.toBe(ufDatasetDec31);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/9]⎯
+
+ FAIL  recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > D2(b) — efecto del cap APV en SimulateOperacionRenta (600 UF dic)
+AssertionError: expected 23836776 to be close to 23786154, received difference is 50622, but expected 5e-7
+ ❯ recalc.audit.test.ts:867:27
+    865|     });
+    866|     expect(result.apvCap).toBe(600 * AT2026.ufDecember);
+    867|     expect(result.apvCap).toBeCloseTo(23_786_154, 6);
+       |                           ^
+    868|   });
+    869|   it("freshness: dataset 2026-08 vs snapshot 2026-08 ⇒ fresh; 2026-09 …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/9]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  9 failed | 29 passed (38)
+   Start at  16:47:44
+   Duration  313ms (transform 103ms, setup 0ms, import 136ms, tests 34ms, environment 0ms)
+

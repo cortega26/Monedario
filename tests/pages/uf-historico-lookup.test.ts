@@ -185,8 +185,8 @@ describe("uf-historico-lookup GET (dataset real)", () => {
       last: string;
     };
     expect(payload.first).toBe("2000-01-01");
-    expect(payload.last).toBe("2026-07-09");
-    expect(Object.keys(payload.lookup)).toHaveLength(9685);
+    expect(payload.last).toBe("2026-10-09");
+    expect(Object.keys(payload.lookup)).toHaveLength(9777);
     expect(payload.lookup["2000-01-01"]).toBeCloseTo(15067.93, 2);
   });
 

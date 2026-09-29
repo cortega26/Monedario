@@ -1,0 +1,26 @@
+audit timestamp UTC: 2026-09-29T19:39:41Z
+HEAD: 8b73793f4d62ee79aa01ff3ff42f90623a92c237
+8b73793f4d62ee79aa01ff3ff42f90623a92c237
+Carlos Ortega González
+Tue Sep 29 16:33:30 2026 -0300
+fix(auditoría-115): corregir D1–D8 del veredicto CONDITIONAL (plan 124) (#589)
+node: v24.19.0
+pnpm: 11.7.0
+python: Python 3.13.12
+platform: Linux 7.0.0-34-generic x86_64
+
+--- scope files vs HEAD (should be empty) ---
+--- full working tree ---
+ M docs/editorial/audits/plan-115-correctitud/01-auditor-prompt.md
+ M scripts/hero-images/build-prompts.mjs
+ M scripts/hero-images/config.mjs
+ M scripts/hero-images/prompt-plan.mjs
+ M scripts/hero-images/scan-articles.mjs
+ M src/tools/hero-images/HeroPromptWorkspace.jsx
+?? docs/backlog/PLAN-renovacion-visual-editorial-2026-09-29.md
+?? docs/editorial/audits/plan-115-correctitud/evidence/10-env-reaudit.txt
+?? scripts/hero-images/build-delivery.mjs
+?? scripts/hero-images/delivery.mjs
+?? src/generated/
+?? src/utils/editorialImages.ts
+?? todo.md

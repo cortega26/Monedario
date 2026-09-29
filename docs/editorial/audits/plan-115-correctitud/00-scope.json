@@ -48,7 +48,7 @@
       },
       {
         "id": "V3",
-        "claim": "DAP persona natural residente: sin retención automática (4% solo Impuesto Adicional, art. 59 N°4 LIR)",
+        "claim": "DAP persona natural residente: sin retención automática (4% solo Impuesto Adicional, art. 59 inciso 2° N°1 letras a) y g) LIR)",
         "test": "tests/application/CalculateTermDeposit.test.ts"
       },
       {
@@ -58,7 +58,7 @@
       },
       {
         "id": "V5",
-        "claim": "SuperIR exige acreedor por deuda y ≥2 acreedores distintos (Ley 20.720 art. 260)",
+        "claim": "SuperIR exige acreedor por deuda y ≥2 obligaciones vencidas (no acreedores distintos) (Ley 20.720 art. 260)",
         "test": "tests/application/FinancialUseCases.regression.test.ts:372"
       },
       {
