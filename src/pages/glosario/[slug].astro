@@ -5,6 +5,7 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
+import ContentTypeBadge from "@/components/ContentTypeBadge.astro";
 import GlossaryJsonLd from "@/components/GlossaryJsonLd.astro";
 import { getPath } from "@/utils/getPath";
 import { resolvePageTitle } from "@/utils/seoTitle";
@@ -74,6 +75,7 @@ if (relatedTerms.length > 0) {
 
   <main id="main-content" class="app-layout">
     <article class="mx-auto max-w-3xl pt-8 pb-12">
+      <ContentTypeBadge type="Glosario" />
       <h1 class="text-3xl font-bold tracking-tight text-accent sm:text-4xl">
         {term}
       </h1>

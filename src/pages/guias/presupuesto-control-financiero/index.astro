@@ -4,6 +4,7 @@ import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb.astro";
+import ContentTypeBadge from "@/components/ContentTypeBadge.astro";
 import ResumeWidget from "@/components/ResumeWidget.astro";
 import StartHere from "@/components/StartHere.astro";
 import { getPath } from "@/utils/getPath";
@@ -71,6 +72,7 @@ const articulosSeccion = [
 
   <main id="main-content" class="app-layout">
     <section class="border-b border-border py-8">
+      <ContentTypeBadge type="Guía" />
       <h1 class="mb-4 text-3xl font-bold sm:text-4xl">
         Presupuesto y control financiero en Chile
       </h1>

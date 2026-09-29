@@ -61,7 +61,10 @@ const routeLabels: Record<string, string> = {
 const labels = crumbs.map(c => {
   const decoded = decodeURIComponent(c.seg);
   const mapped = routeLabels[decoded];
-  return mapped ? mapped : decoded.replace(/-/g, " ");
+  if (mapped) return mapped;
+  if (!decoded.includes("-")) return decoded;
+  const words = decoded.replace(/-/g, " ");
+  return words.charAt(0).toUpperCase() + words.slice(1);
 });
 
 // Display tweaks

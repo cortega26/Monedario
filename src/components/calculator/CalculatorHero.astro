@@ -1,4 +1,6 @@
 ---
+import ContentTypeBadge from "@/components/ContentTypeBadge.astro";
+
 interface Props {
   title: string;
   description?: string;
@@ -13,7 +15,8 @@ const {
 ---
 
 <section class="border-b border-border pt-8 pb-6">
-  <h1 class="my-4 text-3xl font-bold sm:text-4xl">{title}</h1>
+  <ContentTypeBadge type="Calculadora" class="mt-4" />
+  <h1 class="mb-4 text-3xl font-bold sm:text-4xl">{title}</h1>
   {description && <p class={descriptionClass}>{description}</p>}
   <slot />
 </section>

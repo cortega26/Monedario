@@ -1,3 +1,4 @@
+import { readdirSync } from "node:fs";
 import { test, expect } from "@playwright/test";
 import { runAxe } from "./axe-helper";
 
@@ -96,6 +97,46 @@ test.describe("WCAG 2.2 AA — mobile viewport coverage", () => {
       );
       reportViolations(`${pageDef.name} (mobile)`, criticalAndSerious);
       expect(criticalAndSerious).toEqual([]);
+    });
+  }
+});
+
+const CALCULATOR_SLUGS = readdirSync("src/pages/calculadoras")
+  .filter(file => file.endsWith(".astro") && file !== "index.astro")
+  .map(file => file.replace(/\.astro$/, ""));
+
+test.describe("WCAG 2.2 AA — all calculator templates (light desktop)", () => {
+  for (const slug of CALCULATOR_SLUGS) {
+    test(`/calculadoras/${slug}/ should have no critical or serious violations`, async ({
+      page,
+    }) => {
+      await page.goto(`/calculadoras/${slug}/`);
+      await page.waitForLoadState("networkidle");
+
+      const { violations } = await runAxe(page);
+      const criticalAndSerious = violations.filter(
+        v => v.impact === "critical" || v.impact === "serious"
+      );
+      reportViolations(slug, criticalAndSerious);
+      expect(criticalAndSerious).toEqual([]);
+    });
+  }
+});
+
+test.describe("Content type badges (Plan 114 / F-07)", () => {
+  const CASES = [
+    { url: "/calculadoras/sueldo-liquido/", type: "Calculadora" },
+    { url: "/posts/como-calcular-sueldo-liquido/", type: "Artículo" },
+    { url: "/glosario/cae/", type: "Glosario" },
+    { url: "/guias/deuda-credito/", type: "Guía" },
+  ] as const;
+
+  for (const entry of CASES) {
+    test(`${entry.url} shows the "${entry.type}" badge`, async ({ page }) => {
+      await page.goto(entry.url);
+      await expect(
+        page.locator(`main [data-content-type="${entry.type}"]`).first()
+      ).toBeVisible();
     });
   }
 });
