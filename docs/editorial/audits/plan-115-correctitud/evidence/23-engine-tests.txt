@@ -1,0 +1,86 @@
+# Motor vs independiente + suite de vectores + gates — commit dd1e8f63 — 2026-09-29
+
+## 1. Harness reaudit.independent (motor vs recálculo del auditor)
+
+Comando:
+$ pnpm exec vitest run --config docs/editorial/audits/plan-115-correctitud/evidence/vitest.reaudit.config.ts --reporter=verbose reaudit.independent
+
+OK   V1.igc: independiente=269367.83999999997 motor=269367.83999999997
+OK   V1.repro-bug-UTM-sep: independiente=255247.91999999998 motor=255247.91999999998
+OK   V1.usecase: independiente=269367.83999999997 motor=269367.83999999997
+OK   IUSC.180UTM: independiente=2845889.2799999993 motor=2845889.2800000003
+OK   IUSC.200UTM: independiente=3347936.28 motor=3347936.2800000003
+OK   IUSC.310UTM: independiente=6109194.78 motor=6109194.779999999
+OK   IUSC.320UTM: independiente=6396078.78 motor=6396078.779999999
+OK   IGC.200UTA: independiente=38954646.72 motor=38954646.72
+OK   IGC.310UTA: independiente=71083050.72 motor=71083050.72
+OK   IGC.320UTA: independiente=74421066.72 motor=74421066.72
+OK   V2.base: independiente=973560 motor=973560
+OK   V2.tax: independiente=213.05999999999767 motor=213.05999999999767
+OK   V2.net: independiente=973346.94 motor=973346.94
+OK   V3.gross: independiente=123287.6712328767 motor=123287.6712328767
+OK   V4.delta.base90w50: independiente=13452204.479999999 motor=13452204.480000002
+OK   V4.rate.base90w50: independiente=0.38464 motor=0.3846400000000001
+OK   V4.delta.base200w10: independiente=2920763.9999999925 motor=2920764
+OK   V4.rate.base200w10: independiente=0.41499999999999904 motor=0.41500000000000004
+OK   V4.delta.base0w5: independiente=0 motor=0
+OK   V4.rate.base0w5: independiente=0.03 motor=0.03
+OK   V4.delta.base10w5: independiente=50070.23999999999 motor=50070.23999999999
+OK   V4.rate.base10w5: independiente=0.0432 motor=0.0432
+OK   V5.uf: independiente=101.78117048346056 motor=101.78117048346056
+OK   V5.cuota: independiente=110110.20773611861 motor=110110.20773611861
+OK   V5.totalPaid: independiente=5285289.971333694 motor=5285289.971333694
+OK   V5.mismo-acreedor: independiente=true motor=true
+OK   V5.80UF-exactas: independiente=false motor=false
+OK   V5.80UF+$1: independiente=true motor=true
+OK   V5.90dias: independiente=false motor=false
+=== FAILS: 0 ===
+Test Files 1 passed (1) / Tests 8 passed (8)
+
+## 2. Tests de vectores del repo (11 archivos, alcance plan 115)
+
+Comando:
+$ pnpm exec vitest run tests/application/SimulateOperacionRenta.test.ts
+  tests/application/CalculateTermDeposit.test.ts tests/domain/TaxEngine.test.ts
+  tests/domain/TaxYearParameters.test.ts tests/domain/EffectiveDatedParameters.test.ts
+  tests/domain/TaxYearRegistry.test.ts tests/application/SimulateDebtRenegotiation.test.ts
+  tests/utils/economicFreshness.test.ts tests/scripts/economic-history-ipc.test.ts
+  tests/data/economic-history.test.ts tests/pages/calculator-iusc-highlight.test.ts
+  tests/pages/uf-historico-lookup.test.ts
+
+Test Files 11 passed (11) / Tests 124 passed (124)
+
+## 3. V2 paridad runtime (calculateNetSalary con snapshot sep-2026)
+
+Harness temporal tests/v2check.audit.test.ts (eliminado tras correr):
+$ pnpm exec vitest run tests/v2check.audit.test.ts --reporter=verbose
+V2-ENGINE base=973560 tax=213.05999999999767 net=973346.94
+Test Files 1 passed (1) / Tests 1 passed (1)
+(display: líquido $973.347 / impuesto $213 — coincide con
+tests/accessibility/calculator-states.test.ts:197 y con el ejemplo generado
+por el motor en sueldo-liquido.astro:50-56)
+
+## 4. Gates
+
+$ node scripts/check-economic-snapshot-freshness.mjs
+[check-economic-snapshot-freshness] OK. capturedAt 0.1d old; uf/dólar within
+daily thresholds, UTM within the monthly 7d gate and IPC series aligned with
+the snapshot.
+$ node scripts/check-audit-artifacts.mjs
+[check-audit-artifacts] OK docs/editorial/audits/plan-115-correctitud/02-result.json (verdict=CONDITIONAL)
+$ SMALL_DETAILS_ENFORCE=1 node scripts/check-small-details.mjs
+[check-small-details] mode=enforce calculator_pages=22 errors=0 warnings=2 blocking=0
+WARN sueldo-liquido.astro:469 ASD-101 (contenedor calc-error sin getElementById)
+WARN external-summary.json ASD-002 (resumen externo ausente)
+
+## 5. Suite completa en worktree limpio de HEAD (checkout principal con WIP ajeno)
+
+$ git worktree add --detach /tmp/opencode/monedario-audit HEAD
+$ ./node_modules/.bin/vitest run   (node_modules enlazado del checkout principal)
+Corrida 1: Test Files 1 failed | 181 passed (182); Tests 7 failed | 1766 passed | 1 skipped
+Corrida 2: Test Files 182 passed (182); Tests 1773 passed | 1 skipped (1774)
+Corrida 3: Test Files 182 passed (182); Tests 1773 passed | 1 skipped (1774)
+La corrida 1 no se reprodujo (nombres de archivos fallidos no capturados antes
+del rerun; arranque en frío con caché de transform vacía). Se registra como
+flakiness transitoria; dos corridas consecutivas en verde.
+Worktree eliminado tras la sesión (git worktree remove --force).

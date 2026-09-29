@@ -1,0 +1,8 @@
+# Entorno — auditoría plan 115 — commit dd1e8f63 — 2026-09-29
+Node v24.19.0 / pnpm 11.7.0 / Python 3.13.12
+Linux i5-12600K 7.0.0-34-generic x86_64 GNU/Linux
+HEAD dd1e8f6389e02b4274b3d655e02f6e625e03b81f (main, detached worktree para suite limpia)
+Checkout principal con WIP ajeno (hero-images + PLAN-renovacion-visual + todo.md);
+la auditoría no modificó src/ (R8). Solo se añadieron artefactos en
+docs/editorial/audits/plan-115-correctitud/ (02-result.json, 03-report.md,
+evidence/21-25).

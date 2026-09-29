@@ -1,0 +1,84 @@
+R1/R3 — recálculo independiente (Python, sin imports del repo) — commit dd1e8f63 — 2026-09-29
+Comando: python3 /tmp/opencode/mathaudit_independent.py
+CWD: /home/carlos/VS_Code_Projects/products/monedario
+
+== TABLA: rebajas publicadas vs 0.xx*unidad (UTA y UTM sep) ==
+  tasa=0.04   rebaja=0.54   -> UTA $   450,632.16 | UTMsep $  38,729.34
+  tasa=0.08   rebaja=1.74   -> UTA $ 1,452,036.96 | UTMsep $ 124,794.54
+  tasa=0.135  rebaja=4.49   -> UTA $ 3,746,922.96 | UTMsep $ 322,027.29
+  tasa=0.23   rebaja=11.14  -> UTA $ 9,296,374.56 | UTMsep $ 798,971.94
+  tasa=0.304  rebaja=17.8   -> UTA $14,854,171.20 | UTMsep $1,276,633.80
+  tasa=0.35   rebaja=23.32  -> UTA $19,460,633.28 | UTMsep $1,672,533.72
+  tasa=0.4    rebaja=38.82  -> UTA $32,395,445.28 | UTMsep $2,784,209.22
+== V1: 18.000.000 renta neta, IGC AT2026 ==
+  IGC=269367.83999999997 marginal=0.04 (display $269,367.84 -> $269,368)
+  repro-bug UTMsep x12: 255247.91999999998 (debe ser ~255247.92 y el motor NO debe darlo)
+== Fronteras (tope exacto y +$1), UTA y UTM ==
+    13.5 UTA: tope=$0.00(t=0.0) +$1=$0.04(t=0.04) salto=0.0400
+    13.5 UTM: tope=$0.00(t=0.0) +$1=$0.04(t=0.04) salto=0.0400
+      30 UTA: tope=$550,772.64(t=0.04) +$1=$550,772.72(t=0.08) salto=0.0800
+      30 UTM: tope=$47,335.86(t=0.04) +$1=$47,335.94(t=0.08) salto=0.0800
+      50 UTA: tope=$1,885,979.04(t=0.08) +$1=$1,885,979.18(t=0.135) salto=0.1350
+      50 UTM: tope=$162,089.46(t=0.08) +$1=$162,089.59(t=0.135) salto=0.1350
+      70 UTA: tope=$4,139,139.84(t=0.135) +$1=$4,139,140.07(t=0.23) salto=0.2300
+      70 UTM: tope=$355,736.16(t=0.135) +$1=$355,736.39(t=0.23) salto=0.2300
+      90 UTA: tope=$7,977,858.24(t=0.23) +$1=$7,977,858.54(t=0.304) salto=0.3040
+      90 UTM: tope=$685,652.76(t=0.23) +$1=$685,653.06(t=0.304) salto=0.3040
+     120 UTA: tope=$15,588,534.72(t=0.304) +$1=$15,588,535.07(t=0.35) salto=0.3500
+     120 UTM: tope=$1,339,748.28(t=0.304) +$1=$1,339,748.63(t=0.35) salto=0.3500
+     310 UTA: tope=$71,083,050.72(t=0.35) +$1=$71,083,051.12(t=0.4) salto=0.4000
+     310 UTM: tope=$6,109,194.78(t=0.35) +$1=$6,109,195.18(t=0.4) salto=0.4000
+== IGC/ IUSC 180/200/310/320 (tabla general 310 vs art52bis 150) ==
+  180 UTM: $2,845,889.28 t=0.35
+  200 UTM: $3,347,936.28 t=0.35
+  310 UTM: $6,109,194.78 t=0.35
+  320 UTM: $6,396,078.78 t=0.4
+  200 UTA: $38,954,646.72 t=0.35
+  310 UTA: $71,083,050.72 t=0.35
+  320 UTA: $74,421,066.72 t=0.4
+== V2: sueldo bruto 1.200.000 ==
+  AFP=135240.0 salud=84000.00000000001 AFC=7200.0 base=973560.0 IUSC=213.05999999999767(t=0.04) liquido=973346.94 -> display $973,347 / $213
+  exento 13.5 UTMsep = 968233.5
+  base==13.5UTM -> IUSC=0.0 t=0.0; base+1 -> (0.03999999999359716, 0.04)
+  tope previsional 90UF(snapshot 41049.01) = 3,694,410.90; AFC plazo fijo 0% -> base=980760.0
+== V3: DAP 5M / 180d / 5% ==
+  interes=123287.6712328767 final=5123287.671232876 (display $123,287.67)
+  con 4% rechazado: 118356.16438356163
+  2M/365d/4.5%: interes=90000.0
+== V4: APV (dIGC/retiro)*1.1+3pp ==
+  base=90U retiro=50U -> dIGC=13452204.479999999 tasa=0.38464 (38.4640%)
+  base=200U retiro=10U -> dIGC=2920763.9999999925 tasa=0.41499999999999904 (41.5000%)
+  base=0U retiro=5U -> dIGC=0.0 tasa=0.03 (3.0000%)
+  base=10U retiro=5U -> dIGC=50070.23999999999 tasa=0.0432 (4.3200%)
+  marginal 35% x1.1+3pp = 0.41500000000000004
+== V5: SuperIR ==
+  total=4000000 UF=101.78117048346056
+  80UF exactas con UF=39300: 3144000.0 -> califica=False ; +$1: 80.00002544529262 califica=True
+  mismo acreedor 2 obligaciones: cuenta por obligacion, no por acreedor -> True
+  90 dias: minimo es 91 -> 90 no califica; 91 sí
+== V6: IPC / UTA / UF ==
+  2026-01: repo=0.4 SII=0.4 ok=True
+  2026-02: repo=0.0 SII=0.0 ok=True
+  2026-03: repo=1.0 SII=1.0 ok=True
+  2026-04: repo=1.3 SII=1.3 ok=True
+  2026-05: repo=0.2 SII=0.2 ok=True
+  2026-06: repo=0.0 SII=0.0 ok=True
+  2026-07: repo=0.1 SII=0.1 ok=True
+  2026-08: repo=0.6 SII=0.6 ok=True
+  acumulado ene-ago=3.648807945707011% (SII publica 3,6)
+  1M dic25->ago26: 1036488.0794570701
+  UTA dic2025 = 12 x 69542 = 834504
+  UF 31.12.2025 = 317823680/8000 = 39727.96
+  cap APV 600UF(39727.96) = 23836776.0; con 39643.59 = 23786153.999999996; delta=50622.000000003725
+  gastos presuntos tope 15UTA = 12517560.0; intereses hipotecarios tope 8UTA = 6676032.0
+  IMM Ley 21.830 desde 01-05-2026 = 553553 (snapshot imm=553553)
+== dataset IPC del repo ==
+  hastaFecha=2026-08-01 actualizadoEl=2026-09-29 n=320
+  2026-01: dataset=0.4 ok=True
+  2026-02: dataset=0 ok=True
+  2026-03: dataset=1 ok=True
+  2026-04: dataset=1.3 ok=True
+  2026-05: dataset=0.2 ok=True
+  2026-06: dataset=0 ok=True
+  2026-07: dataset=0.1 ok=True
+  2026-08: dataset=0.6 ok=True
