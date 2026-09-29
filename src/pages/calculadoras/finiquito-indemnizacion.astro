@@ -19,6 +19,9 @@ import CalculatorField from "@/components/calculator/CalculatorField.astro";
 import CalculatorRadioGroup from "@/components/calculator/CalculatorRadioGroup.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 import CalculatorExplainerSection from "@/components/calculator/CalculatorExplainerSection.astro";
+import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
+
+const { parameters: economicParameters } = await getEconomicParameters();
 
 const finiquitoGuidePath = getPath(
   "/posts/finiquito-e-indemnizaciones-en-chile/"
@@ -130,6 +133,7 @@ const calculatorNextStepItems = [
           label="Última remuneración mensual ($)"
           min="0"
           placeholder="Ej: 900.000"
+          hint="No incluyas horas extra ni bonos anuales (aguinaldos, gratificaciones): la ley los excluye de la base (art. 172). Si tienes remuneraciones variables, usa el promedio de los últimos 3 meses."
           inputAttrs={{ "data-profile-bind": "sueldoImponible" }}
         />
 
@@ -174,6 +178,37 @@ const calculatorNextStepItems = [
             >
           </select>
         </CalculatorField>
+
+        <CalculatorField
+          id="judicial-declaration"
+          label="Tipo de declaración judicial (art. 168)"
+          wrapperId="judicial-declaration-field"
+          class="hidden"
+        >
+          <select
+            id="judicial-declaration"
+            class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+          >
+            <option value="">No especificado — lo fija el tribunal</option>
+            <option value="improcedente-161"
+              >Improcedente del art. 161 (recargo 30%)</option
+            >
+            <option value="injustificada-159"
+              >Injustificada del art. 159 o sin causal (recargo 50%)</option
+            >
+            <option value="indebida-160"
+              >Indebida del art. 160 (recargo 80%)</option
+            >
+          </select>
+        </CalculatorField>
+
+        <div
+          id="economic-parameters"
+          data-uf={String(economicParameters.uf)}
+          class="hidden"
+          aria-hidden="true"
+        >
+        </div>
 
         <CalculatorRadioGroup
           legend="¿Te avisaron con 30 días de anticipación?"
@@ -489,10 +524,24 @@ const calculatorNextStepItems = [
       .forEach(el =>
         (el as HTMLElement).classList.toggle("hidden", esVacaciones)
       );
+
+    // El tipo de declaración judicial solo aplica con causal "judicial".
+    const judicialField = document.getElementById("judicial-declaration-field");
+    const cause = (
+      document.getElementById("termination-cause") as HTMLSelectElement | null
+    )?.value;
+    judicialField?.classList.toggle(
+      "hidden",
+      esVacaciones || cause !== "judicial"
+    );
   }
 
   // Run on load to handle browser form state restoration (e.g. after refresh).
   updateModoUI();
+
+  document
+    .getElementById("termination-cause")
+    ?.addEventListener("change", updateModoUI);
 
   document.querySelectorAll("input[name='finiquito-modo']").forEach(radio => {
     radio.addEventListener("change", () => {
@@ -651,11 +700,19 @@ const calculatorNextStepItems = [
       'input[name="gratificacion-anual"]:checked'
     ) as HTMLInputElement | null;
     const gratificacionAnual = gratificacionAnualEl?.value === "si";
+    const ufValue = Number(
+      (document.getElementById("economic-parameters") as HTMLElement | null)
+        ?.dataset?.uf
+    );
+    const judicialDeclarationType = (
+      document.getElementById("judicial-declaration") as HTMLSelectElement
+    )?.value as "improcedente-161" | "injustificada-159" | "indebida-160" | "";
 
     let result;
     try {
       result = estimateFiniquito({
         monthlySalary,
+        ufValue: Number.isFinite(ufValue) && ufValue > 0 ? ufValue : undefined,
         yearsWorked,
         additionalMonthsWorked: monthsWorked,
         pendingSalaryDays,
@@ -669,6 +726,8 @@ const calculatorNextStepItems = [
           | "vencimiento-obra"
           | "judicial",
         noticeGiven,
+        judicialDeclarationType:
+          judicialDeclarationType === "" ? undefined : judicialDeclarationType,
         gratificacionAnual,
       });
     } catch (error) {
@@ -767,6 +826,20 @@ const calculatorNextStepItems = [
         fmtCurrency(result.yearsOfServiceIndemnity),
         result.yearsOfServiceIndemnity > 0 ? "text-accent" : "text-secondary"
       ),
+      buildRow(
+        "Indemnización obra o faena (art. 163)",
+        fmtCurrency(result.obraFaenaIndemnity),
+        result.obraFaenaIndemnity > 0 ? "text-accent" : "text-secondary"
+      ),
+      ...(result.baseSalaryCappedByUf
+        ? [
+            buildRow(
+              "Base topada a 90 UF (art. 172)",
+              fmtCurrency(result.cappedSalaryBase),
+              "text-secondary"
+            ),
+          ]
+        : []),
       buildRow(
         "Aviso previo sustitutivo",
         fmtCurrency(result.substituteNoticeIndemnity),
