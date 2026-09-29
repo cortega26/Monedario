@@ -5,7 +5,7 @@ description: "Preguntas frecuentes sobre Operación Renta 2026: quién debe decl
 slug: operacion-renta-centro
 author: "Equipo Monedario"
 pubDate: 2026-04-29T00:00:00Z
-updatedDate: 2026-08-09T00:00:00Z
+updatedDate: 2026-09-29T00:00:00Z
 tags:
   - impuestos
   - operacion-renta
@@ -63,7 +63,7 @@ Si tuviste dos empleos simultáneos o sucesivos durante 2025 —aunque cada empl
 
 ### Trabajadores con ingresos por honorarios
 
-Si emitiste boletas de honorarios en 2025, tu cliente retuvo el 15,25% como pago provisional mensual (PPM) por cada boleta, según la tasa vigente establecida por la Ley 21.133. Ese 15,25% aparece en el Formulario 22 como crédito a tu favor. El resultado final —si recibes devolución o debes pagar— depende de tus ingresos totales del año. Debes declarar si tus ingresos anuales por honorarios y otras rentas superaron los **$11.265.804** en 2025 (equivalente a 13,5 UTA). Consulta sii.cl para el monto exacto en UTA del año tributario 2025.
+Si emitiste boletas de honorarios en 2025, tu cliente retuvo el 14,5% como pago provisional mensual (PPM) por cada boleta, según la tasa vigente establecida por la Ley 21.133 (para boletas emitidas en 2026 la tasa sube a 15,25%). Ese 14,5% aparece en el Formulario 22 como crédito a tu favor. El resultado final —si recibes devolución o debes pagar— depende de tus ingresos totales del año. Debes declarar si tus ingresos anuales por honorarios y otras rentas superaron los **$11.265.804** en 2025 (equivalente a 13,5 UTA). Consulta sii.cl para el monto exacto en UTA del año tributario 2025.
 
 ### Personas con rentas del exterior
 
@@ -171,7 +171,7 @@ El Formulario 22 en línea pre-carga la mayoría de los datos desde las declarac
 | -------------------------------- | --------------------------------------------- | ---------------------------------------------- |
 | Rentas del trabajo (empleados)   | Sueldos, gratificaciones, horas extra         | Sí — desde DJ de empleadores                   |
 | Honorarios (boletas)             | Total de boletas emitidas en 2025             | Sí — desde plataforma boletas electrónicas SII |
-| Retenciones de honorarios (PPM)  | 15,25% retenido por clientes                  | Sí — calculado automáticamente                 |
+| Retenciones de honorarios (PPM)  | 14,5% retenido por clientes (boletas 2025)                  | Sí — calculado automáticamente                 |
 | Bienes raíces / arriendos        | Ingresos por arriendo                         | No — ingreso manual                            |
 | Créditos (educación, APV, etc.)  | Crédito por gastos en educación, APV          | Parcialmente — verificar                       |
 | Impuesto determinado             | Total impuesto según tabla de tramos          | Auto-calculado                                 |
@@ -200,17 +200,17 @@ Declarar fuera de plazo genera multa automática conforme al Art. 97 N°2 del C�
 
 ---
 
-## Retención de honorarios: el 15,25% explicado
+## Retención de honorarios: el 14,5% explicado (boletas 2025)
 
-Si emitiste boletas de honorarios en 2025, cada boleta tuvo una retención del **15,25%** que el cliente (la empresa que pagó tus servicios) envió directamente al SII como pago provisional mensual (PPM). Este porcentaje fue establecido por la Ley 21.133.
+Si emitiste boletas de honorarios en 2025, cada boleta tuvo una retención del **14,5%** que el cliente (la empresa que pagó tus servicios) envió directamente al SII como pago provisional mensual (PPM). Este porcentaje fue establecido por la Ley 21.133.
 
 **¿Qué significa en tu Formulario 22?**
 
-El 15,25% retenido aparece como crédito en tu declaración. Si tu impuesto calculado sobre el total de tus rentas es menor que lo que te retuvieron durante el año, esa diferencia te la devuelven. Si es mayor, debes pagar la diferencia.
+El 14,5% retenido aparece como crédito en tu declaración. Si tu impuesto calculado sobre el total de tus rentas es menor que lo que te retuvieron durante el año, esa diferencia te la devuelven. Si es mayor, debes pagar la diferencia.
 
 **Ejemplo conceptual (sin cifras reales):**
 
-Si emitiste $1.000.000 en boletas de honorarios, tus clientes retuvieron y enviaron al SII $152.500 (15,25%). Al declarar, el SII calcula el impuesto que corresponde sobre tu renta total del año. Si ese impuesto es $80.000, el SII te devuelve $72.500. Si es $200.000, debes pagar $47.500 adicionales.
+Si emitiste $1.000.000 en boletas de honorarios, tus clientes retuvieron y enviaron al SII $145.000 (14,5%). Al declarar, el SII calcula el impuesto que corresponde sobre tu renta total del año. Si ese impuesto es $80.000, el SII te devuelve $65.000. Si es $200.000, debes pagar $55.000 adicionales.
 
 > Los tramos de impuesto son progresivos y se aplican sobre la Renta Líquida Imponible (RLI) total del año, no solo sobre los honorarios. Los tramos del IGC para el año tributario 2026 (rentas de 2025) están publicados en [sii.cl/valores_y_fechas/renta/2026/personas_naturales.html](https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html). El primer tramo exento aplica hasta 13,5 UTA anuales ($11.265.804, usando la UTA de diciembre de 2025: $834.504); la tasa marginal máxima es 40% sobre rentas que superen 310 UTA (~$259 millones), vigente desde Ley 21.210.
 

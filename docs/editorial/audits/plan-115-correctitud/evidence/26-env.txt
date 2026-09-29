@@ -1,0 +1,40 @@
+== MathAuditAgent pass 2026-09-29 (fresh session) ==
+commit: 9e19574367ecacebac70f9d834cf8ddcc1c32653
+commit short: 9e195743
+branch: main
+date: 2026-09-29T18:06:41-03:00 (UTC 2026-09-29T21:06:41+00:00)
+node: v24.19.0
+pnpm: 11.7.0
+python: Python 3.13.12
+os: Linux 7.0.0-34-generic x86_64 GNU/Linux
+
+== git status --porcelain (WIP, unrelated) ==
+ M scripts/hero-images/build-prompts.mjs
+ M scripts/hero-images/config.mjs
+ M scripts/hero-images/prompt-plan.mjs
+ M scripts/hero-images/scan-articles.mjs
+ M src/tools/hero-images/HeroPromptWorkspace.jsx
+?? docs/backlog/PLAN-renovacion-visual-editorial-2026-09-29.md
+?? docs/editorial/audits/plan-115-correctitud/evidence/26-env.txt
+?? scripts/hero-images/build-delivery.mjs
+?? scripts/hero-images/delivery.mjs
+?? src/generated/
+?? src/utils/editorialImages.ts
+?? todo.md
+
+== commits in scope ==
+beb0401e fix(operacion-renta): congelar AT2026 y base de renta neta (plan 115 F01/F02) (#556)
+95c82807 fix(dap): eliminar retención inexistente y explicar la tributación anual (plan 115 F03) (#557)
+854105cc feat(tributación): registry effective-dated y ADR (plan 115 paso 3) (#559)
+ae28d6d3 fix(inflación): freshness fail-closed y refresco IPC por serie (plan 115 F04) (#560)
+a616dc53 fix(superir,dicom,apv): correcciones legales con fuente primaria (plan 115 F05/F06/F07) (#561)
+61b8a0ae fix(paridad): ejemplo de sueldo desde el motor y etiquetas legales (plan 115 F08/F09/F10) (#562)
+48b84eba fix(copy): espacio entre negritas y texto adyacente en APV y DAP (plan 115) (#564)
+186cdc13 feat(economic): desbloquear serie IPC 2026 con fuente oficial BCCh/INE (plan 115 F04) (#573)
+e56ad995 content(superir): corregir requisito de acreedores distintos (art. 260) — re-auditoría obs. 1 (#591)
+8b73793f fix(auditoría-115): corregir D1–D8 del veredicto CONDITIONAL (plan 124) (#589)
+dd1e8f63 docs(auditoría): addendum de re-auditoría final del plan 115 (#592)
+e044e66a fix(reauditoría-115): corregir D9–D12 y serie UF (plan 125) (#590)
+4d51acac fix(auditoría-115): barrido del scope (D13/V4/S2) y guarda de consistencia (plan 126) (#593)
+2a8e073f docs(auditoría): registrar informe y evidencia de la re-auditoría Muse Spark (#594)
+9e195743 feat(auditoría): superficie de defecto product|audit-package en el protocolo IA (#595)

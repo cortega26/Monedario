@@ -1,0 +1,103 @@
+==============================================================================
+RECÁLCULO INDEPENDIENTE — plan 115 pass 3 — HEAD 9e195743
+Reimplementación propia (Decimal 50 dígitos) con tablas publicadas SII.
+==============================================================================
+
+## 0. Coherencia tabla publicada ↔ parámetros (R1)
+OK   IGC 2º tramo rebaja 0,54 × UTA: independiente=Decimal('450632.16') motor=450632.16 delta=0.0
+OK   IGC 3º tramo rebaja 1,74 × UTA: independiente=Decimal('1452036.96') motor=1452036.96 delta=0.0
+OK   IGC 4º tramo rebaja 4,49 × UTA: independiente=Decimal('3746922.96') motor=3746922.96 delta=0.0
+OK   IGC 5º tramo rebaja 11,14 × UTA: independiente=Decimal('9296374.56') motor=9296374.56 delta=0.0
+OK   IGC 6º tramo rebaja 17,80 × UTA: independiente=Decimal('14854171.2') motor=14854171.2 delta=0.0
+OK   IGC 7º tramo rebaja 23,32 × UTA: independiente=Decimal('19460633.28') motor=19460633.28 delta=0.0
+OK   IGC 8º tramo rebaja 38,82 × UTA: independiente=Decimal('32395445.28') motor=32395445.28 delta=0.0
+OK   IGC tope 35% = 310 × UTA: independiente=Decimal('258696240') motor=258696240.0 delta=0.0
+OK   IGC exención = 13,5 × UTA: independiente=Decimal('11265804.0') motor=11265804.0 delta=0.0
+OK   IUSC exención = 13,5 × UTM sep: independiente=Decimal('968233.5') motor=968233.5 delta=0.0
+OK   IUSC rebaja 4% = 0,54 × UTM sep: independiente=Decimal('38729.34') motor=38729.34 delta=0.0
+OK   IUSC tope 35% = 310 × UTM sep: independiente=Decimal('22233510') motor=22233510.0 delta=0.0
+OK   IUSC rebaja 40% = 38,82 × UTM sep: independiente=Decimal('2784209.22') motor=2784209.22 delta=0.0
+OK   UTA dic-2025 = 12 × UTM dic-2025: independiente=Decimal('834504') motor=834504.0 delta=0.0
+OK   UF 31-12-2025 = 317.823.680 / 8.000: independiente=Decimal('39727.96') motor=39727.96 delta=0.0
+
+## V1 — $18.000.000 renta neta ⇒ IGC (AT2026, UTA dic-2025 $834.504)
+tramo: 18.000.000 cae en 11.265.804,01–25.035.120 ⇒ tasa 4% (marginal 0.04)
+18.000.000 × 0.04 − 450.632,16 = 269367.84
+OK   V1.igc independiente vs valor publicado del claim (269.367,84): independiente=Decimal('269367.84') motor=269367.84 delta=0.0
+variante bug (UTA = 12 × UTM sep-2026 = 860.652): 255247.92 (debe ser 255.247,92)
+OK   V1.repro-bug: independiente=Decimal('255247.92') motor=255247.92 delta=0.0
+borde IGC 13,5 UTA exactas: impuesto=0 tasa=0
+borde IGC 13,5 UTA + $1: impuesto=0.040 tasa=0.04
+borde IGC 30 UTA exactas: impuesto=550772.64 tasa=0.04
+borde IGC 30 UTA + $1: impuesto=550772.72 tasa=0.08
+IGC(30 UTA) vs IGC(30 UTA + $1): salto continuo ≤ 0,04 (0.080000)
+
+## V2 — bruto $1.200.000 ⇒ líquido (supuestos del ejemplo publicado)
+AFP 11,27% = 135240.0000; Fonasa 7% = 84000.00; AFC 0,6% = 7200.000
+base = 973560.0000; IUSC 4% = 213.060000; líquido = 973346.940000
+display: base $973560, impuesto $213, líquido $973347
+OK   V2.base: independiente=Decimal('973560.0000') motor=973560.0 delta=0.0
+OK   V2.tax: independiente=Decimal('213.060000') motor=213.06 delta=0.0
+OK   V2.net: independiente=Decimal('973346.940000') motor=973346.94 delta=0.0
+con UTM octubre 72.151 el impuesto sería -19.140000 (≤0 ⇒ exento; el ejemplo sigue con UTM septiembre)
+topes con UF 41.049,01: previsional 90 UF = 3694410.90; AFC 135,2 UF = 5549826.152
+bruto 1200000: base previsional=1200000 AFC=1200000 baseImp=973560.0000 descuentos=226440.0000
+bruto 3694411: base previsional=3694410.90 AFC=3694411 baseImp=2997275.662570 descuentos=697135.337430
+bruto 3694410.90: base previsional=3694410.90 AFC=3694410.90 baseImp=2997275.563170 descuentos=697135.336830
+bruto 3694411.90: base previsional=3694410.90 AFC=3694411.90 baseImp=2997276.557170 descuentos=697135.342830
+bruto 6000000: base previsional=3694410.90 AFC=5549826.152 baseImp=5291732.171658 descuentos=708267.828342
+
+## V3 — DAP $5.000.000 / 180 días / 5% (sin retención del banco)
+interés = 5.000.000 × 0,05 × 180/365 = 123287.67123287671232876712328767123287671232876712
+monto final = 5123287.6712328767123287671232876712328767123287671; variante 4% rechazada = 118356.16438356164383561643835616438356164383561644
+OK   V3.grossInterest: independiente=Decimal('123287.67123287671232876712328767123287671232876712') motor=123287.6712328767 delta=1.4551915228366852e-11
+OK   V3.finalAmount: independiente=Decimal('5123287.6712328767123287671232876712328767123287671') motor=5123287.671232876 delta=0.0
+plazo 1d: interés=684.93150684931506849315068493150684931506849315068 tasaEfectivaAnual=5.0000000000000000000000000000000000000000000000001%
+plazo 90d: interés=61643.835616438356164383561643835616438356164383562 tasaEfectivaAnual=4.9999999999999999999999999999999999999999999999999%
+plazo 180d: interés=123287.67123287671232876712328767123287671232876712 tasaEfectivaAnual=4.9999999999999999999999999999999999999999999999999%
+plazo 365d: interés=250000.00 tasaEfectivaAnual=5.00%
+plazo 366d: interés=250684.93150684931506849315068493150684931506849315 tasaEfectivaAnual=5.0000000000000000000000000000000000000000000000000%
+
+## V4 — tasa retiro APV (art. 42 bis N°3 LIR; retiro reajustado = nominal aquí)
+base 90 UTA, retiro 50 UTA: ΔIGC=13452204.48 CLP; tasa=0.38464 (38.46400%)
+base 200 UTA, retiro 10 UTA: ΔIGC=2920764.00 CLP; tasa=0.415 (41.500%)
+base 0 UTA, retiro 5 UTA: ΔIGC=0 CLP; tasa=0.03 (3.00%)
+base 10 UTA, retiro 5 UTA: ΔIGC=50070.24 CLP; tasa=0.0432 (4.3200%)
+base 30 UTA, retiro 0.1 UTA: ΔIGC=6676.032 CLP; tasa=0.118 (11.800%)
+base 29.9 UTA, retiro 0.2 UTA: ΔIGC=10014.048 CLP; tasa=0.096 (9.600%)
+base 310 UTA, retiro 200 UTA: ΔIGC=66760320.00 CLP; tasa=0.470 (47.000%)
+OK   V4.90U/50U ΔIGC: independiente=Decimal('13452204.48') motor=13452204.48 delta=0.0
+OK   V4.90U/50U tasa: independiente=Decimal('0.38464') motor=0.38464 delta=0.0
+OK   V4.200U/10U tasa (marginal 35%): independiente=Decimal('0.415') motor=0.415 delta=0.0
+OK   V4.base0/retiro<13,5UTA tasa=3%: independiente=Decimal('0.03') motor=0.03 delta=0.0
+OK   V4.retiro0 lanza (motor exige withdrawal > 0)
+
+## V5 — SuperIR: ≥2 obligaciones vencidas >90 días, exigibles, total >80 UF
+caso1: totalUF=101.78117048346055979643765903307888040712468193384 cuota=110110.20773611868589790002009758533594241788438791 totalPagado=5285289.9713336969230992009646840961252360584506197 carga=9.1758506446765571581583350081321113285348236989925%
+OK   V5.qualifiedUf: independiente=Decimal('101.78117048346055979643765903307888040712468193384') motor=101.78117048346056 delta=0.0
+OK   V5.cuota: independiente=Decimal('110110.20773611868589790002009758533594241788438791') motor=110110.20773611861 delta=7.275957614183426e-11
+OK   V5.totalPagado: independiente=Decimal('5285289.9713336969230992009646840961252360584506197') motor=5285289.971333694 delta=2.7939677238464355e-09
+OK   V5.carga%: independiente=Decimal('9.1758506446765571581583350081321113285348236989925') motor=9.17585064467655 delta=7.105427357601002e-15
+borde SuperIR «80 UF exactas»: basic=False (calificadas=2, UF=80) esperado=False
+borde SuperIR «80 UF + $1»: basic=True (calificadas=2, UF=80.000025445292620865139949109414758269720101781170) esperado=True
+borde SuperIR «90 días (1 de 2 vencida)»: basic=False (calificadas=1, UF=50.890585241730279898218829516539440203562340966921) esperado=False
+borde SuperIR «91 días ambas»: basic=True (calificadas=2, UF=101.78117048346055979643765903307888040712468193384) esperado=True
+borde SuperIR «mismo acreedor (2 obligaciones)»: basic=True (calificadas=2, UF=101.78117048346055979643765903307888040712468193384) esperado=True
+borde SuperIR «una sola deuda»: basic=False (calificadas=1, UF=254.45292620865139949109414758269720101781170483461) esperado=False
+borde SuperIR «deuda $0 no cuenta»: basic=False (calificadas=1, UF=101.78117048346055979643765903307888040712468193384) esperado=False
+borde SuperIR «total apenas >100 UF, una sola calificada»: basic=False (calificadas=1, UF=127.22646310432569974554707379134860050890585241730) esperado=False
+sin documentos: basic=True canSubmit=False
+con actividad 1ª categoría: basic=False
+con juicio ejecutivo notificado: basic=False
+
+## V6 — IPC 2026 / UTA dic-2025 / UF 31-12-2025
+serie SII ene–ago 2026: ['0.4', '0', '1.0', '1.3', '0.2', '0', '0.1', '0.6']
+acumulado encadenado = 3.64880794570702400% (SII publica 3,6 redondeado)
+$1.000.000 dic-2025 → ago-2026 = 1036488.07945707024000000
+UTA dic-2025 = 12 × 69.542 = 834504 (SII)
+UF 31-12-2025 = 317.823.680 / 8.000 = 39727.96 (SII)
+topes APV/intereses: 600 UF = 23836776.00; 8 UTA = 6676032; 15 UTA = 12517560
+
+==============================================================================
+RESULTADO: 0 divergencia(s) en la reimplementación independiente
+==============================================================================

@@ -1,0 +1,9 @@
+
+ RUN  v4.1.11 /tmp/opencode/plan115-pass3/wt-head
+
+
+ Test Files  183 passed (183)
+      Tests  1778 passed | 1 skipped (1779)
+   Start at  18:14:19
+   Duration  12.32s (transform 44.93s, setup 0ms, import 67.64s, tests 39.17s, environment 3.43s)
+

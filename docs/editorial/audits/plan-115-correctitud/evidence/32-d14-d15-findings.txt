@@ -1,0 +1,66 @@
+### Hallazgos D14/D15 — evidencia cruda (2026-09-29, commit 9e195743)
+
+======================== D14 ========================
+DAP: superficies afirman 'impuesto 4%'/'retención (4%)' aunque el motor no retiene nada
+
+--- superficies (rg) ---
+src/pages/calculadoras/deposito-a-plazo.astro:73:  description="Calcula el interés bruto, impuesto 4% y monto neto de tu depósito a plazo. Ingresa monto, plazo en días y tasa TIR. Gratis y actualizado 2026."
+src/pages/calculadoras/deposito-a-plazo.astro:77:    description="Calcula el interés bruto, impuesto 4% y monto neto de tu depósito a plazo en Chile. Ingresa monto, plazo en días y tasa TIR."
+src/config/calculatorPortfolio.ts:654:      "Calcula interés bruto, retención de impuesto (4%) e interés neto de tu DAP. Ingresa monto, plazo en días y tasa TIR.",
+src/config/calculatorPortfolio.ts:659:      "Saber cuánto ganas neto en un DAP, después de impuesto, con tu monto y plazo.",
+src/config/calculatorPortfolio.ts:661:      "Cuando tienes o evalúas un depósito a plazo y quieres el rendimiento real después de retención.",
+
+--- el use case no contiene ninguna operación de retención (solo JSDoc) ---
+(sin cálculo de retención)
+
+--- V3 verificado sin retención (29-engine-vs-independent.txt) ---
+OK   V3.5000000/180d/5%: independiente=123287.6712328767 motor=123287.6712328767 delta=0
+OK   V3.variante 4% rechazada: independiente=118356.16438356163 motor=118356.16438356163 delta=0
+
+--- fuente: el 4% es Impuesto Adicional de no residentes (S5/S7) ---
+1) Intereses. Estarán afectos a este impuesto, pero con una tasa del 4%, los
+intereses provenientes de:
+a) Depósitos en cuenta corriente y a plazo en moneda extranjera ...
+
+--- origen: F03 del informe 2026-09-28 ---
+| F03 | P1 | CONFIRMED | `/calculadoras/deposito-a-plazo/` | Retención general del 4% inexistente para la persona natural residente descrita | UI "Sí (persona natural)" resta 4% citando art. 59 N°4 | SII: intereses DAP no sujetos a esa retención; eventual IGC con exención de 20 UTM en ciertos casos | Eliminar descuento automático; separar monto al vencimiento de tributación anual |
+
+======================== D15 ========================
+F02 residual en editorial: boletas del año comercial 2025 declaradas en AT2026 citan 15,25% (debe ser 14,50%)
+
+--- fuente primaria: SII FAQ 001.140.7297.004 (año comercial 2025 = 14,50%) ---
+## S5b — SII FAQ 001.140.7297 (tasas de retención de honorarios por año comercial)
+
+URL: https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_7297.htm
+SHA-256: `857d9db78cd2f39d51527829b2b3ad2c843fe7e70351826c5cfaf3043f7b7f71`
+(5.025 bytes) — ID 001.140.7297.004, actualización **01/04/2026**.
+
+```
+Las tasas de retenciones de honorarios, de acuerdo con cada año comercial, son las siguientes:
+10,75% 2020 · 11,50% 2021 · 12,25% 2022 · 13,00% 2023 · 13,75% 2024 ·
+14,50% 2025 · 15,25% 2026 · 16,00% 2027 · 17,00% 2028
+```
+
+## S5c — SII noticia 26-12-2025 (alza 14,5% → 15,25% desde el 1-1-2026)
+--- parámetro congelado del motor ---
+23:  honorariosPpmRate: number;
+45:  honorariosPpmRate: 0.145,
+
+--- ocurrencias editoriales (rg de 15,25 en los 3 artículos) ---
+src/data/blog/operacion-renta-centro.md:66:Si emitiste boletas de honorarios en 2025, tu cliente retuvo el 15,25% como pago provisional mensual (PPM) por cada boleta, según la tasa vigente establecida por la Ley 21.133. Ese 15,25% aparece en el Formulario 22 como crédito a tu favor. El resultado final —si recibes devolución o debes pagar— depende de tus ingresos totales del año. Debes declarar si tus ingresos anuales por honorarios y otras rentas superaron los **$11.265.804** en 2025 (equivalente a 13,5 UTA). Consulta sii.cl para el monto exacto en UTA del año tributario 2025.
+src/data/blog/operacion-renta-centro.md:174:| Retenciones de honorarios (PPM)  | 15,25% retenido por clientes                  | Sí — calculado automáticamente                 |
+src/data/blog/operacion-renta-centro.md:203:## Retención de honorarios: el 15,25% explicado
+src/data/blog/operacion-renta-centro.md:205:Si emitiste boletas de honorarios en 2025, cada boleta tuvo una retención del **15,25%** que el cliente (la empresa que pagó tus servicios) envió directamente al SII como pago provisional mensual (PPM). Este porcentaje fue establecido por la Ley 21.133.
+src/data/blog/operacion-renta-centro.md:209:El 15,25% retenido aparece como crédito en tu declaración. Si tu impuesto calculado sobre el total de tus rentas es menor que lo que te retuvieron durante el año, esa diferencia te la devuelven. Si es mayor, debes pagar la diferencia.
+src/data/blog/operacion-renta-centro.md:213:Si emitiste $1.000.000 en boletas de honorarios, tus clientes retuvieron y enviaron al SII $152.500 (15,25%). Al declarar, el SII calcula el impuesto que corresponde sobre tu renta total del año. Si ese impuesto es $80.000, el SII te devuelve $72.500. Si es $200.000, debes pagar $47.500 adicionales.
+src/data/blog/impuesto-global-complementario-chile.md:126:La retención aplicada a tus boletas de honorarios es un crédito contra el IGC. Para el año tributario 2026, la tasa de retención es **15,25%** (verifica en el [SII](https://www.sii.cl/) ante posibles actualizaciones). Si cotizaste como trabajador independiente, también están sujetas cotizaciones previsionales obligatorias sobre tus honorarios según la Ley 21.133 (entrada en vigor progresiva desde 2019) — revisa el F22 del SII o consulta a un contador para el monto aplicable a tu año tributario.
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:51:    a: "Se suman tus rentas brutas anuales (sueldo + honorarios), se aplica el Global Complementario (mismos tramos que segunda categoría pero sobre base anual) y el resultado se compara con lo retenido: segunda categoría del sueldo más la retención del 15,25% de las boletas. La diferencia es positiva (pago adicional) o negativa (devolución)."
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:53:    a: "La retención del 15,25% que el pagador descuenta al momento de emitir cada boleta actúa como pago provisional mensual (PPM) para efectos del F22. Esa retención acumulada durante el año se descuenta del impuesto anual final."
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:94:- Cada pagador de honorarios retuvo 15,25% (tasa 2026) al momento de emitir cada boleta, sin saber cuánto ganaste como dependiente.
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:106:   - Retención del 15,25% aplicada en cada boleta de honorarios (actúa como PPM).
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:135:- **Honorarios en tramo superior:** Tus boletas de honorarios suman lo suficiente para que la renta total quede en un tramo más alto que el que tu empleador usó para retenerte. El 15,25% de retención puede ser insuficiente si tu tramo real es 23% o mayor.
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:145:- **Solo un empleador estable y pocas boletas:** Si tienes un sueldo fijo alto con retención precisa y emitiste boletas pequeñas con el 15,25%, la retención total puede superar el IGC calculado.
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:155:- **Total de retenciones** aplicadas en tus boletas (suma del 15,25% de cada una).
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:163:   - Tus boletas de honorarios y la retención acumulada del 15,25%.
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:177:| Retenciones boletas    | Total del 15,25% retenido en todas las boletas del año            |
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:187:Para más detalles sobre cómo funciona la retención y la cobertura previsional anual en boletas: [Boleta de honorarios 2026: retención 15,25%, líquido recibido y cobertura anual](/posts/boleta-honorarios-2026-retencion-cobertura/).

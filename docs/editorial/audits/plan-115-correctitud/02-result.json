@@ -2,36 +2,36 @@
   "auditId": "plan-115-correctitud",
   "auditor": {
     "date": "2026-09-29",
-    "independenceNote": "Sesión fresca sin historial del draft. La remediación fue implementada por otros agentes (planes 124/125, PRs #589-#591); esta auditoría solo lee código, ejecuta tests y registra hallazgos. Pre-gate: no reemplaza la firma humana (humanSignoff: null).",
-    "model": "Muse Spark (muse-spark)",
+    "independenceNote": "Sesión fresca sin historial del draft (modelo deepseek-v4.1-flash, familia distinta a los agentes que implementaron y re-auditaron la remediación). Solo lee código, ejecuta tests propios y registra hallazgos. Pre-gate: no reemplaza la firma humana (humanSignoff: null). Los archivos fuente del scope no cambiaron entre dd1e8f63 y HEAD (git diff vacío); esta pasada los re-verifica sobre bytes idénticos y añade hallazgos nuevos (D14/D15).",
+    "model": "deepseek-v4.1-flash (opencode-go/deepseek-v4.1-flash)",
     "role": "MathAuditAgent",
-    "session": "audit-plan115-2026-09-29"
+    "session": "mathaudit-plan115-pass3-2026-09-29"
   },
   "claims": [
     {
-      "claim": "V1: $18.000.000 de renta neta ⇒ IGC $269.367,84 con AT2026 (UTA dic-2025 $834.504)",
-      "engineValue": "269367.83999999997 (SimulateOperacionRenta.igcCalculado; harness V1.igc/V1.usecase)",
+      "claim": "V1: $18.000.000 de renta neta ⇒ IGC $269.367,84 con AT2026 (18.000.000 × 0,04 − 0,54 × 834.504)",
+      "engineValue": "269367.83999999997 (calculateAnnualIncomeTax; simulateOperacionRenta.igcCalculado)",
       "id": "C1",
-      "independentValue": "269367.83999999997 (18M x 4% - 0,54 x 834504)",
+      "independentValue": "269367.83999999997 (tabla SII publicada, límite superior inclusivo)",
       "reproduction": {
-        "command": "python3 /tmp/opencode/mathaudit_independent.py ([V1]); pnpm exec vitest run --config evidence/vitest.reaudit.config.ts reaudit.independent",
-        "output": "evidence/21-recalc-independent.txt, evidence/23-engine-tests.txt"
+        "command": "python3 evidence/27-recalc-independent.py; pnpm exec vitest run --config evidence/vitest.pass3.config.ts --reporter=verbose",
+        "output": "evidence/27-recalc-independent.txt, evidence/29-engine-vs-independent.txt"
       },
       "source": {
-        "quote": "$ 11.265.804,01 | $ 25.035.120,00 | 0,04 | $ 450.632,16; 1 UTA del mes dic. de 2025 $ 834.504",
+        "quote": "$ 11.265.804,01 | $ 25.035.120,00 | 0,04 | $ 450.632,16 ... 1 UTA del mes dic. de 2025 $ 834.504",
         "retrievedAt": "2026-09-29",
         "url": "https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html"
       },
       "status": "OK"
     },
     {
-      "claim": "Rebaja SII 2º tramo AT2026 = 0,54 x UTA = $450.632,16; tabla general llega al 35% hasta 310 UTA/UTM con rebaja 38,82 (no art. 52 bis de 150)",
-      "engineValue": "idénticos (diff 0; IUSC 180/200/310/320 UTM y 200/310/320 UTA)",
+      "claim": "Tabla IGC/IUSC: rebajas 0,54/1,74/4,49/11,14/17,80/23,32/38,82; 35% hasta 310 y 40% sobre 310 (tabla general, no art. 52 bis de 150)",
+      "engineValue": "idénticos en 13,5–400 UTA y 13,5–320 UTM; continuidad por tabla publicada en cada frontera",
       "id": "C2",
-      "independentValue": "450632.16; 310 UTA=$71083050.72 (t=0.35); 320 UTA=$74421066.72 (t=0.4)",
+      "independentValue": "0,54×834.504=450.632,16; 310×834.504=258.696.240; 38,82×834.504=32.395.445,28; 320 UTA=74.421.066,72",
       "reproduction": {
-        "command": "python3 /tmp/opencode/mathaudit_independent.py ([TABLA], fronteras, 180/200/310/320)",
-        "output": "evidence/21-recalc-independent.txt"
+        "command": "python3 evidence/27-recalc-independent.py ([0]); pnpm exec vitest run --config evidence/vitest.pass3.config.ts",
+        "output": "evidence/27-recalc-independent.txt, evidence/29-engine-vs-independent.txt"
       },
       "source": {
         "quote": "$ 100.140.480,01 | $ 258.696.240,00 | 0,35 | $ 19.460.633,28; $ 258.696.240,01 | y más | 0,40 | $ 32.395.445,28",
@@ -41,141 +41,141 @@
       "status": "OK"
     },
     {
-      "claim": "Regresión F01 aislada: con UTA=12xUTM sep-2026 daría $255.247,92; el motor AT2026 no reproduce ese valor",
-      "engineValue": "269367.83999999997 (no reproduce 255247,92; test not.toBeCloseTo)",
+      "claim": "V1 regresión F01: con UTA=12×UTM sep-2026 ($860.652) daría $255.247,92; el motor AT2026 no reproduce ese valor",
+      "engineValue": "269367.83999999997 (no reproduce 255247,92)",
       "id": "C3",
-      "independentValue": "255247.91999999998 (con UTA=12x71721)",
+      "independentValue": "255247.91999999998 (variante con UTM vigente)",
       "reproduction": {
-        "command": "python3 /tmp/opencode/mathaudit_independent.py ([V1] repro-bug); tests/application/SimulateOperacionRenta.test.ts:32-44",
-        "output": "evidence/21-recalc-independent.txt, evidence/23-engine-tests.txt"
+        "command": "python3 evidence/27-recalc-independent.py ([V1]); tests/application/SimulateOperacionRenta.test.ts:32-44",
+        "output": "evidence/27-recalc-independent.txt, evidence/29-engine-vs-independent.txt"
       },
       "source": {
-        "quote": "Septiembre 71.721 860.652",
+        "quote": "Septiembre 71.721 860.652; Octubre 72.151 865.812",
         "retrievedAt": "2026-09-29",
         "url": "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm"
       },
       "status": "OK"
     },
     {
-      "claim": "V2: bruto $1.200.000 (AFP 11,27%, Fonasa 7%, AFC 0,6% indefinido, UTM 71.721) ⇒ base $973.560, IUSC $213,06, líquido $973.346,94 (display $973.347/$213)",
-      "engineValue": "base=973560 tax=213.05999999999767 net=973346.94 (calculateNetSalary; ejemplo runtime sueldo-liquido.astro:50-56)",
+      "claim": "V2: bruto $1.200.000 (AFP Habitat 11,27%, Fonasa 7%, AFC 0,6% indefinido, UTM sep 71.721) ⇒ base $973.560, IUSC $213,06, líquido $973.346,94 (display $973.347 / $213)",
+      "engineValue": "base=973560 tax=213.05999999999767 net=973346.94",
       "id": "C4",
-      "independentValue": "base=973560.0 tax=213.05999999999767 net=973346.94",
+      "independentValue": "base=973560 tax=213.05999999999767 net=973346.94",
       "reproduction": {
-        "command": "python3 /tmp/opencode/mathaudit_independent.py ([V2]); harness temporal tests/v2check.audit.test.ts",
-        "output": "evidence/21-recalc-independent.txt, evidence/23-engine-tests.txt"
+        "command": "python3 evidence/27-recalc-independent.py ([V2]); harness pass3 V2",
+        "output": "evidence/27-recalc-independent.txt, evidence/29-engine-vs-independent.txt"
       },
       "source": {
-        "quote": "MENSUAL -.- $ 968.233,50 Exento; $ 968.233,51 | $ 2.151.630,00 | 0,04 | $ 38.729,34",
+        "quote": "$ 968.233,51 | $ 2.151.630,00 | 0,04 | $ 38.729,34; Septiembre 71.721 860.652",
         "retrievedAt": "2026-09-29",
         "url": "https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm"
       },
       "status": "OK"
     },
     {
-      "claim": "Tasa AFP 11,27% (Habitat) usada como supuesto del ejemplo V2",
-      "engineValue": "11.27% (parámetro de entrada del ejemplo)",
+      "claim": "V2 topes: previsional 90 UF y AFC 135,2 UF se aplican sobre la UF del snapshot (41.049,01); con bruto $6.000.000 la base AFP/salud se congela en $3.694.410,90 y AFC en $5.549.826,152",
+      "engineValue": "cappedBases idénticos al cálculo independiente; taxableBase=5.291.732,171658",
       "id": "C5",
-      "independentValue": "n/a (supuesto de entrada, no recalculado)",
+      "independentValue": "pensionBase=3694410.90; afcBase=5549826.152; base=5291732.171658; tax=683086.77...",
       "reproduction": {
-        "command": "Intento de anclaje SP (FAQ sin tabla); src/config/afpCommissions.ts:15",
-        "output": "evidence/22-sources.md (S11)"
+        "command": "python3 evidence/27-recalc-independent.py ([V2] topes); harness pass3 V2.topes",
+        "output": "evidence/27-recalc-independent.txt, evidence/29-engine-vs-independent.txt"
       },
       "source": {
-        "quote": "Sin extracto oficial CMF/Previred recuperado en esta sesión",
+        "quote": "uf: 41049.01 ... afcTopes.monthlyTaxableCapUf=135.2; previsionalTopes.pensionAndHealthMonthlyTaxableCapUf=90 (snapshot 2026-09-29)",
         "retrievedAt": "2026-09-29",
-        "url": "https://www.spensiones.cl/portal/institucional/594/w3-article-2818.html"
+        "url": "https://www.previred.com/indicadores-previsionales/"
       },
-      "status": "UNVERIFIED"
+      "status": "OK"
     },
     {
-      "claim": "V3: DAP $5.000.000/180 días/5% ⇒ interés $123.287,67 sin retención del banco para persona natural residente",
-      "engineValue": "123287.6712328767 (calculateTermDeposit.grossInterest)",
+      "claim": "Supuesto AFP 11,27% (Habitat) del ejemplo V2 verificado contra la tabla oficial de Previred",
+      "engineValue": "11.27 (parámetro de entrada del ejemplo en la página)",
       "id": "C6",
-      "independentValue": "123287.6712328767; con 4% rechazado = 118356.16438356163",
+      "independentValue": "11,27% (Habitat, cargo del trabajador dependiente; Previred 2026-09-29)",
       "reproduction": {
-        "command": "python3 /tmp/opencode/mathaudit_independent.py ([V3]); harness V3.gross; tests/application/CalculateTermDeposit.test.ts",
-        "output": "evidence/21-recalc-independent.txt, evidence/23-engine-tests.txt"
+        "command": "node scripts/check-afp-commissions.mjs (2026-09-29)",
+        "output": "evidence/31-residuals-gates.txt (sección 6), evidence/28-sources.md (S11)"
       },
       "source": {
-        "quote": "Los intereses de dicha inversión son rentas que están afectas al impuesto Golobal Complemetario [sic] ... son rentas exentas si no superan las 20 UTM ... (sin mención de retención del banco)",
+        "quote": "Habitat | 11,27% | 0,1% | 11,37% ... ✓ All AFP commission rates match Previred official figures.",
+        "retrievedAt": "2026-09-29",
+        "url": "https://www.previred.com/indicadores-previsionales/"
+      },
+      "status": "OK"
+    },
+    {
+      "claim": "V3: DAP $5.000.000/180 días/5% ⇒ interés $123.287,67 sin retención del banco (persona natural residente); el descuento 4% habría dado $118.356,16",
+      "engineValue": "123287.6712328767 (grossInterest); sin retención en el use case",
+      "id": "C7",
+      "independentValue": "123287.67123287671; variante 4% = 118356.16438356163",
+      "reproduction": {
+        "command": "python3 evidence/27-recalc-independent.py ([V3]); tests/application/CalculateTermDeposit.test.ts",
+        "output": "evidence/27-recalc-independent.txt, evidence/29-engine-vs-independent.txt"
+      },
+      "source": {
+        "quote": "Los intereses ... están afectas al impuesto Golobal Complemetario ... el monto exento ... 13,5 UTA ... rentas exentas si no superan las 20 UTM (sin retención del banco)",
         "retrievedAt": "2026-09-29",
         "url": "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_2738.htm"
       },
       "status": "OK"
     },
     {
-      "claim": "El 4% de no domiciliados está en el art. 59 N°1 (intereses, letras a)/g)); el N°4 es fletes marítimos al 5%",
-      "engineValue": "cita correcta en JSDoc CalculateTermDeposit.ts:11-13, FAQ, metodología y scope V3",
-      "id": "C7",
-      "independentValue": "4% bajo N°1 (intereses a); N°4 fletes 5%",
-      "reproduction": {
-        "command": "Extracción LeyChile JSON idNorma 6368; grep 'art. 59 N°4' en src/ (solo art. 159 CT, ajeno)",
-        "output": "evidence/22-sources.md (S7), evidence/24-residuals.txt"
-      },
-      "source": {
-        "quote": "Estarán afectos a este impuesto, pero con una tasa del 4%, los intereses provenientes de: a) Depósitos en cuenta corriente y a plazo en moneda extranjera ... | 4) Fletes marítimos ... El impuesto de este número será de 5%",
-        "retrievedAt": "2026-09-29",
-        "url": "https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=6368"
-      },
-      "status": "OK"
-    },
-    {
-      "claim": "V4: calculateApvWithdrawalRate = (ΔIGC/retiro) x 1,1 + 3 pp; 90U/50U ⇒ 38,464%; 200U/10U ⇒ 41,5%; base 0 ⇒ 3%; retiro 0 ⇒ throw",
-      "engineValue": "idénticos (tolerancia <1e-6; harness V4 8 checks)",
+      "claim": "V4: calculateApvWithdrawalRate = (ΔIGC/retiro) × 1,1 + 3 pp (tasa media del retiro; retiro reajustado = nominal en el motor, simplificación documentada). 90U/50U ⇒ 38,464%; 200U/10U ⇒ 41,5%; base 0/retiro menor a 13,5 UTA ⇒ 3%; retiro 0 ⇒ throw",
+      "engineValue": "idénticos en 8 vectores (tolerancia 1e-6): 0.38464, 0.415, 0.03, 0.0432, 0.118, 0.096, 0.47",
       "id": "C8",
-      "independentValue": "dIGC=13452204.48 tasa=0.38464; dIGC=2920764.0 tasa=0.415; 0/0.03; 50070.24/0.0432",
+      "independentValue": "0.38464 (ΔIGC 13.452.204,48); 0.415; 0.03; 0.0432; 0.118; 0.096; 0.47",
       "reproduction": {
-        "command": "python3 /tmp/opencode/mathaudit_independent.py ([V4]); harness V4; tests/domain/TaxEngine.test.ts:60-84",
-        "output": "evidence/21-recalc-independent.txt, evidence/23-engine-tests.txt"
+        "command": "python3 evidence/27-recalc-independent.py ([V4]); harness pass3 V4",
+        "output": "evidence/27-recalc-independent.txt, evidence/29-engine-vs-independent.txt"
       },
       "source": {
-        "quote": "La tasa de este impuesto será tres puntos porcentuales superior a la que resulte de multiplicar por el factor 1,1, el producto ... que resulte de dividir, por el monto reajustado del retiro efectuado, la diferencia entre el monto del impuesto global complementario ... incluyendo el monto reajustado del retiro y ... sin considerar dicho retiro",
+        "quote": "La tasa de este impuesto será tres puntos porcentuales superior a la que resulte de multiplicar por el factor 1,1 ... por el monto reajustado del retiro efectuado ... Si el retiro es efectuado por una persona pensionada ... no se aplicarán los recargos ... deberán practicar una retención de impuesto, con tasa 15% ... servirá de abono",
         "retrievedAt": "2026-09-29",
         "url": "https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=6368"
       },
       "status": "OK"
     },
     {
-      "claim": "V4 copy: retención AFP 15% como abono; pensionados/requisitos de edad exentos; fórmula como tasa media del retiro",
-      "engineValue": "n/a (copy apv.astro:56/403/442-447/575-579)",
+      "claim": "V4 copy: apv.astro declara tasa media (ΔIGC ÷ monto retirado) × 1,1 + 3 pp, retención AFP 15% como abono y exención de pensionados; tope 600 UF",
+      "engineValue": "n/a (copy en apv.astro:403/442/575 y FAQ 56)",
       "id": "C9",
-      "independentValue": "copy coincide con art. 42 bis N°3; salvedad: motor usa retiro nominal (ley dice 'reajustado', simplificación documentada)",
+      "independentValue": "coincide con art. 42 bis N°3 y N°2 (600 UF al 31-dic)",
       "reproduction": {
-        "command": "grep 'tasa media|1,1|15%|pensionad' src/pages/calculadoras/apv.astro",
-        "output": "evidence/24-residuals.txt"
+        "command": "rg -n 'tasa marginal|tasa media' src/pages/calculadoras/apv.astro",
+        "output": "evidence/31-residuals-gates.txt (5.5)"
       },
       "source": {
-        "quote": "deberán practicar una retención de impuesto, con tasa 15% ... y servirá de abono ... Si el retiro es efectuado por una persona pensionada ... no se aplicarán los recargos porcentuales ni el factor antes señalados",
+        "quote": "hasta por un monto total máximo anual equivalente a la diferencia entre 600 unidades de fomento, según el valor de ésta al 31 de diciembre del año respectivo",
         "retrievedAt": "2026-09-29",
         "url": "https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=6368"
       },
       "status": "OK"
     },
     {
-      "claim": "V5: art. 260 exige 2+ obligaciones vencidas >90 días, exigibles, de obligaciones diversas, total > 80 UF (estricto)",
-      "engineValue": "hasTwoOrMoreQualifiedDebts && reachesMinimumUf (> 80); mismo acreedor califica",
+      "claim": "V5 legal: art. 260 exige ≥2 obligaciones vencidas por más de 90 días, exigibles, «provenientes de obligaciones diversas», total superior a 80 UF; el motor no exige acreedores distintos (mismo acreedor califica)",
+      "engineValue": "minimumOverdueDays=91 (estricto >90); reachesMinimumUf = qualifiedDebtUf > 80; hasTwoOrMoreQualifiedDebts ≥2; mismo acreedor ⇒ true",
       "id": "C10",
-      "independentValue": "80 UF exactas ⇒ false; 80 UF+$1 ⇒ true; 90 días ⇒ false; mismo acreedor ⇒ true",
+      "independentValue": "80 UF exactas ⇒ false; 80 UF + $1 ⇒ true; 90 días ⇒ false; 91 días ⇒ true; mismo acreedor (2 obligaciones) ⇒ true",
       "reproduction": {
-        "command": "python3 /tmp/opencode/mathaudit_independent.py ([V5]); harness V5 (6 checks)",
-        "output": "evidence/21-recalc-independent.txt, evidence/23-engine-tests.txt"
+        "command": "python3 evidence/27-recalc-independent.py ([V5]); tests/application/SimulateDebtRenegotiation.test.ts:69",
+        "output": "evidence/27-recalc-independent.txt, evidence/29-engine-vs-independent.txt"
       },
       "source": {
-        "quote": "si tuviere dos o más obligaciones vencidas por más de 90 días corridos, actualmente exigibles, provenientes de obligaciones diversas, cuyo monto total sea superior a 80 unidades de fomento",
+        "quote": "dos o más obligaciones vencidas por más de 90 días corridos, actualmente exigibles, provenientes de obligaciones diversas, cuyo monto total sea superior a 80 unidades de fomento",
         "retrievedAt": "2026-09-29",
         "url": "https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=1058072"
       },
       "status": "OK"
     },
     {
-      "claim": "V5 regresión: 2 deudas ($1,8M/120d + $2,2M/150d), UF 39.300 ⇒ 101,78117048346056 UF; cuota y total del motor coinciden",
-      "engineValue": "uf=101.78117048346056 cuota=110110.20773611861 total=5285289.971333694",
+      "claim": "V5 numérico (regresión): 2 deudas $1.800.000/120d + $2.200.000/150d, UF 39.300 ⇒ 101,78117048346056 UF; cuota $110.110,2077; total $5.285.289,9713; carga 9,1759%",
+      "engineValue": "idénticos al cálculo independiente (anualidad i=1,2% n=48)",
       "id": "C11",
-      "independentValue": "uf=101.78117048346056 (cuota/total verificados contra motor, fórmula de anualidad del motor)",
+      "independentValue": "101.78117048346056 UF; cuota 110110.20773611861; total 5285289.971333694; carga 9.17585064467655%",
       "reproduction": {
-        "command": "harness V5.uf/V5.cuota/V5.totalPaid; tests/application/FinancialUseCases.regression.test.ts:372",
-        "output": "evidence/23-engine-tests.txt"
+        "command": "harness pass3 V5; tests/application/FinancialUseCases.regression.test.ts:372",
+        "output": "evidence/29-engine-vs-independent.txt"
       },
       "source": {
         "quote": "Tener 2 o más obligaciones vencidas, por más de 90 días corridos, actualmente exigibles, que provengan de obligaciones distintas y que en total sumen más de 80 U.F.",
@@ -185,61 +185,45 @@
       "status": "OK"
     },
     {
-      "claim": "V6: IPC 2026 ene 0,4 / feb 0 / mar 1,0 / abr 1,3 / may 0,2 / jun 0 / jul 0,1 / ago 0,6; acumulado encadenado 3,6488% (SII publica 3,6)",
-      "engineValue": "dataset ipc-historico.json idéntico 8/8; hastaFecha 2026-08-01",
+      "claim": "V6: serie IPC 2026 ene 0,4 / feb 0 / mar 1,0 / abr 1,3 / may 0,2 / jun 0 / jul 0,1 / ago 0,6 = dataset 8/8; acumulado encadenado 3,6488% (SII publica 3,6); $1M dic-25→ago-26 = $1.036.488,08",
+      "engineValue": "dataset ipc-historico.json idéntico 8/8; hastaFecha 2026-08-01; redondeo BCCh a 1 decimal verificado en tests",
       "id": "C12",
-      "independentValue": "8/8 coinciden; acumulado 3.648807945707011%; $1M dic-25→ago-26 = $1.036.488,08",
+      "independentValue": "8/8 coinciden; acumulado 3.648807945707024%; $1.036.488,08",
       "reproduction": {
-        "command": "python3 /tmp/opencode/mathaudit_independent.py ([V6] serie+dataset)",
-        "output": "evidence/21-recalc-independent.txt"
+        "command": "python3 evidence/27-recalc-independent.py ([V6]); harness pass3 V6; tests/scripts/economic-history-ipc.test.ts",
+        "output": "evidence/27-recalc-independent.txt, evidence/29-engine-vs-independent.txt"
       },
       "source": {
-        "quote": "Enero ... 0,4 | 0,4 ... Agosto 71.649 859.788 113,15 0,6 3,6 4,1",
+        "quote": "Enero 69.751 837.012 109,71 0,4 0,4 2,8 ... Agosto 71.649 859.788 113,15 0,6 3,6 4,1",
         "retrievedAt": "2026-09-29",
         "url": "https://www.sii.cl/valores_y_fechas/utm/utm2026.htm"
       },
       "status": "OK"
     },
     {
-      "claim": "UTA dic-2025 = $834.504 (12 x UTM dic-2025 69.542); snapshot y AT2026 la fijan",
-      "engineValue": "AT2026.uta=834504; snapshot.uta=834504 (updated 2025-12-01)",
+      "claim": "V6 parámetros: UTA dic-2025 $834.504 (12 × UTM 69.542); UF 31-12-2025 $39.727,96 (8.000 UF = $317.823.680); tope APV 600 UF = $23.836.776; 8 UTA = $6.676.032; 15 UTA = $12.517.560",
+      "engineValue": "AT2026.uta=834504; AT2026.ufDecember=39727.96; apvCap=23836776; interesesCap=6676032; gastos tope 15 UTA=12517560",
       "id": "C13",
-      "independentValue": "834504",
+      "independentValue": "834504; 39727.96; 23836776.00; 6676032; 12517560",
       "reproduction": {
-        "command": "python3 /tmp/opencode/mathaudit_independent.py ([V6] UTA)",
-        "output": "evidence/21-recalc-independent.txt"
+        "command": "python3 evidence/27-recalc-independent.py ([V6]); harness pass3 V6",
+        "output": "evidence/27-recalc-independent.txt, evidence/29-engine-vs-independent.txt"
       },
       "source": {
-        "quote": "Diciembre 69.542 834.504 ... (2) UTA = Unidad Tributaria Anual (UTM x 12)",
+        "quote": "Diciembre 69.542 834.504 ... (2) UTA = Unidad Tributaria Anual (UTM x 12); 8.000 UF del 31.12.2025 $317.823.680",
         "retrievedAt": "2026-09-29",
         "url": "https://www.sii.cl/valores_y_fechas/utm/utm2025.htm"
       },
       "status": "OK"
     },
     {
-      "claim": "UF 31-12-2025 = $39.727,96 (SII: 8.000 UF = $317.823.680); tope APV 600 UF = $23.836.776",
-      "engineValue": "AT2026.ufDecember=39727.96; apvCap=23836776.0",
+      "claim": "F04 freshness: evaluateIpcSeriesFreshness fail-closed (fresh/stale/unknown) y la serie del repo al día contra el snapshot (IPC 2026-08); gate check:economic-snapshot-freshness OK (capturedAt 0,1d)",
+      "engineValue": "fresh(2026-08,2026-08); stale(2026-08,2026-09); unknown(null/basura); gate exit 0",
       "id": "C14",
-      "independentValue": "39727.96; cap=23836776.0 (con 39643.59 habría sido 23786154, delta 50622)",
+      "independentValue": "mismos veredictos; evaluateCriticalMonthlyFreshness respeta calendario Chile (gracia 7d, rollover enero, fecha futura ⇒ stale)",
       "reproduction": {
-        "command": "python3 /tmp/opencode/mathaudit_independent.py ([V6] UF/cap)",
-        "output": "evidence/21-recalc-independent.txt"
-      },
-      "source": {
-        "quote": "8.000 UF del 31.12.2025 | $317.823.680",
-        "retrievedAt": "2026-09-29",
-        "url": "https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html"
-      },
-      "status": "OK"
-    },
-    {
-      "claim": "F04: freshness IPC fail-closed (fresh/stale/unknown) y dataset alineado con snapshot (2026-08); gate OK",
-      "engineValue": "evaluateIpcSeriesFreshness verificado en tests; gate capturedAt 0.1d",
-      "id": "C15",
-      "independentValue": "fresh(2026-08,2026-08); stale(2026-08,2026-09); unknown(sin referencia)",
-      "reproduction": {
-        "command": "tests/utils/economicFreshness.test.ts; node scripts/check-economic-snapshot-freshness.mjs",
-        "output": "evidence/23-engine-tests.txt"
+        "command": "node scripts/check-economic-snapshot-freshness.mjs; harness pass3 F04",
+        "output": "evidence/29-engine-vs-independent.txt, evidence/31-residuals-gates.txt (sección 1)"
       },
       "source": {
         "quote": "Agosto 71.649 859.788 113,15 0,6 3,6 4,1 (último mes publicado al 2026-09-29)",
@@ -249,45 +233,13 @@
       "status": "OK"
     },
     {
-      "claim": "F02: retención/PPM boletas 2025 = 14,5% (AT2026) y la página lo toma del parámetro congelado",
-      "engineValue": "AT2026.honorariosPpmRate=0.145; hint y cálculo usan taxYearParameters",
-      "id": "C16",
-      "independentValue": "0.145",
+      "claim": "D12 highlight IUSC: límites [13,5; 30; 50; 70; 90; 120; 310; ∞] coherentes con la tabla general; 200 UTM ⇒ fila 6 (120–310, 35%), 320 UTM ⇒ fila 7 (310+, 40%), 100 UTM ⇒ fila 5 (90–120)",
+      "engineValue": "impuesto-segunda-categoria.astro:423-433; Playwright tests/accessibility/calculator-iusc-highlight.test.ts (no re-ejecutado en esta pasada por requerir build+preview; archivo sin cambios desde la pasada previa, donde pasó)",
+      "id": "C15",
+      "independentValue": "lógica de resaltado replicada: 200⇒fila 6, 320⇒fila 7, 100⇒fila 5; diffs vacíos dd1e8f63..HEAD en el .astro",
       "reproduction": {
-        "command": "grep 'honorariosPpmRate' src/pages/calculadoras/operacion-renta.astro",
-        "output": "evidence/24-residuals.txt"
-      },
-      "source": {
-        "quote": "SII FAQ 001.140.7297: 14,50% (tasa 2025; 15,25% para 2026) — ver evidence/19-sources-reaudit.md S7, SHA verificado esta sesión para el resto de fuentes SII",
-        "retrievedAt": "2026-09-29",
-        "url": "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_7297.htm"
-      },
-      "status": "OK"
-    },
-    {
-      "claim": "F09/F10/DICOM: UTA con período visible; prepago sin 'sin costo' con fuente Ley 18.010 art. 10; DICOM desde Ley 19.628 + 21.214 educacional",
-      "engineValue": "n/a (copy renderizado verificado por grep)",
-      "id": "C17",
-      "independentValue": "utaPeriodLabel desde 2025-12-01; 0 resultados 'prepago sin costo' / 'art. 59 N°4 LIR' en src/",
-      "reproduction": {
-        "command": "Barrido de copy en 24-residuals.txt",
-        "output": "evidence/24-residuals.txt"
-      },
-      "source": {
-        "quote": "luego de transcurridos cinco años desde que la respectiva obligación se hizo exigible. Tampoco se podrá continuar comunicando ... después de haber sido pagada ... | Dicha comisión, no podrá exceder el valor de un mes de intereses ... un mes y medio ...",
-        "retrievedAt": "2026-09-29",
-        "url": "https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=141599"
-      },
-      "status": "OK"
-    },
-    {
-      "claim": "D12 verificado corregido: highlight usa [13.5,30,50,70,90,120,310,Infinity]; 200 UTM ⇒ fila 120–310, 320 UTM ⇒ fila 310+",
-      "engineValue": "node reproduce filas [6] para 200 UTM y [7] para 320 UTM; test calculator-iusc-highlight verde",
-      "id": "C18",
-      "independentValue": "200 UTM ⇒ fila 6 (120–310, 35%); 320 UTM ⇒ fila 7 (310+, 40%)",
-      "reproduction": {
-        "command": "node -e highlightBracket; tests/pages/calculator-iusc-highlight.test.ts",
-        "output": "evidence/24-residuals.txt, evidence/23-engine-tests.txt"
+        "command": "sed -n '422,434p' src/pages/calculadoras/impuesto-segunda-categoria.astro; git diff --stat dd1e8f63..HEAD -- src/pages/calculadoras/impuesto-segunda-categoria.astro",
+        "output": "evidence/31-residuals-gates.txt, evidence/29-engine-vs-independent.txt"
       },
       "source": {
         "quote": "$ 8.606.520,01 | $ 22.233.510,00 | 0,35 | $ 1.672.533,72; $ 22.233.510,01 | Y MÁS | 0,4 | $ 2.784.209,22",
@@ -297,90 +249,138 @@
       "status": "OK"
     },
     {
-      "claim": "00-scope.json V6 mantiene 'UF dic-2025 $39.643,59' (valor del día 1) en vez de $39.727,96 (31-12, art. 42 bis y motor)",
-      "engineValue": "AT2026.ufDecember=39727.96; uf-historico 2025-12-31=39727.96",
-      "id": "C19",
-      "independentValue": "scope dice 39643.59; SII/motor/dataset dicen 39727.96",
+      "claim": "D13 resuelto: 00-scope.json V6 cita ahora UF 31-12-2025 $39.727,96 (antes $39.643,59); V4 dice tasa media y S2 cita art. 59 inciso 2° N°1 a)/g)",
+      "engineValue": "00-scope.json sin '39.643'; V6='... UF 31-12-2025 $39.727,96'; motor y dataset usan 39.727,96",
+      "id": "C16",
+      "independentValue": "SII: 8.000 UF del 31.12.2025 = $317.823.680 ⇒ $39.727,96",
       "reproduction": {
-        "command": "grep '39.643' docs/.../00-scope.json; python3 serie UF dic-2025",
-        "output": "evidence/24-residuals.txt (D13)"
+        "command": "rg -n '39\\\\.643' docs/editorial/audits/plan-115-correctitud/00-scope.json src/; sed -n '60,68p' docs/editorial/audits/plan-115-correctitud/00-scope.json",
+        "output": "evidence/31-residuals-gates.txt (5.4), evidence/28-sources.md (S1)"
       },
       "source": {
-        "quote": "8.000 UF del 31.12.2025 | $317.823.680 (= $39.727,96 c/u)",
+        "quote": "8.000 UF del 31.12.2025 | $317.823.680",
         "retrievedAt": "2026-09-29",
         "url": "https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html"
+      },
+      "status": "OK"
+    },
+    {
+      "claim": "Suite y gates: 183 archivos / 1.778 tests passed (1 skipped) en worktree limpio de HEAD; check:economic-snapshot-freshness, check:audit-artifacts, SMALL_DETAILS_ENFORCE=1 y los checks editoriales en enforce pasan",
+      "engineValue": "exit 0 en todos; 137/137 tests de vectores en el checkout principal; 11 archivos de vectores",
+      "id": "C17",
+      "independentValue": "n/a (verificación de ejecución reproducible)",
+      "reproduction": {
+        "command": "git worktree add --detach /tmp/.../wt-head HEAD; ./node_modules/.bin/vitest run; node scripts/check-economic-snapshot-freshness.mjs; node scripts/check-audit-artifacts.mjs; SMALL_DETAILS_ENFORCE=1 node scripts/check-small-details.mjs; EDITORIAL_ENFORCE=1 node scripts/check-reader-facing-copy.mjs",
+        "output": "evidence/30-repo-tests.txt, evidence/29-engine-vs-independent.txt, evidence/31-residuals-gates.txt"
+      },
+      "source": {
+        "quote": "Test Files 183 passed (183); Tests 1778 passed | 1 skipped (1779); exit=0",
+        "retrievedAt": "2026-09-29",
+        "url": "repo:docs/editorial/audits/plan-115-correctitud/evidence/30-repo-tests.txt"
+      },
+      "status": "OK"
+    },
+    {
+      "claim": "D14 (abierto): las superficies del DAP siguen prometiendo 'impuesto 4%'/'retención de impuesto (4%)' pese a que F03 eliminó toda retención para residentes y el use case no calcula retención alguna",
+      "engineValue": "deposito-a-plazo.astro:73 (meta), :77 (JSON-LD); calculatorPortfolio.ts:654 (+659/661 'después de impuesto/retención')",
+      "id": "C18",
+      "independentValue": "el motor devuelve interés bruto sin deducción: $123.287,67 sobre $5M/180d/5%; el 4% solo aplica a no residentes (art. 59 inc. 2° N°1 a)/g)",
+      "reproduction": {
+        "command": "rg -n 'impuesto 4%|retención de impuesto \\\\(4%\\\\)|después de (impuesto|retención)' src/pages/calculadoras/deposito-a-plazo.astro src/config/calculatorPortfolio.ts",
+        "output": "evidence/32-d14-d15-findings.txt (D14), evidence/31-residuals-gates.txt (5.9)"
+      },
+      "source": {
+        "quote": "Estarán afectos a este impuesto, pero con una tasa del 4%, los intereses provenientes de: a) Depósitos en cuenta corriente y a plazo en moneda extranjera ... (Impuesto Adicional, no residentes)",
+        "retrievedAt": "2026-09-29",
+        "url": "https://nuevo.leychile.cl/servicios/Navegar/get_norma_json?idNorma=6368"
+      },
+      "status": "DIVERGENT"
+    },
+    {
+      "claim": "D15 (abierto): tres artículos editoriales citan 15,25% de retención para boletas del año comercial 2025 (AT2026); la fuente SII fija 14,50% para 2025 y el motor AT2026.honorariosPpmRate=0,145",
+      "engineValue": "AT2026.honorariosPpmRate=0.145; tests/domain/TaxYearParameters.test.ts lo fija",
+      "id": "C19",
+      "independentValue": "SII FAQ 001.140.7297.004: 14,50% (2025), 15,25% (2026); SII noticia 26-12-2025: alza desde el 1-1-2026",
+      "reproduction": {
+        "command": "rg -n '15,25' src/data/blog/operacion-renta-centro.md src/data/blog/impuesto-global-complementario-chile.md src/data/blog/rentas-mixtas-sueldo-honorarios.md; rg -n honorariosPpmRate src/domain/taxation/TaxYearParameters.ts",
+        "output": "evidence/32-d14-d15-findings.txt (D15), evidence/28-sources.md (S5b/S5c)"
+      },
+      "source": {
+        "quote": "Las tasas de retenciones de honorarios, de acuerdo con cada año comercial, son las siguientes: ... 14,50% 2025 · 15,25% 2026 ...",
+        "retrievedAt": "2026-09-29",
+        "url": "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_7297.htm"
       },
       "status": "DIVERGENT"
     }
   ],
   "defects": [
     {
-      "description": "D1 tabla 150 (art. 52 bis) vs 310 (general): motor, página, tests y highlight usan 310/38,82; verificado contra SII.",
-      "evidence": "evidence/21-recalc-independent.txt, evidence/23-engine-tests.txt",
+      "description": "D1 tabla 150 (art. 52 bis) vs 310 (general): motor, página, tests y highlight usan 310/38,82; verificado contra SII. Re-verificado en esta pasada (C2).",
+      "evidence": "evidence/27-recalc-independent.txt, evidence/29-engine-vs-independent.txt",
       "id": "D1",
       "severity": "alta",
       "status": "resolved",
       "surface": "product"
     },
     {
-      "description": "D2 UF 39.643,59 vs 39.727,96: motor usa 39727.96; cap APV $23.836.776 = SII.",
-      "evidence": "evidence/21-recalc-independent.txt",
+      "description": "D2 UF 39.643,59 vs 39.727,96: motor usa 39727.96; cap APV $23.836.776 = SII. Re-verificado (C13).",
+      "evidence": "evidence/27-recalc-independent.txt, evidence/29-engine-vs-independent.txt",
       "id": "D2",
       "severity": "alta",
       "status": "resolved",
       "surface": "product"
     },
     {
-      "description": "D3 ≥2 acreedores distintos: motor exige ≥2 obligaciones calificadas; mismo acreedor califica.",
-      "evidence": "evidence/23-engine-tests.txt (V5.mismo-acreedor)",
+      "description": "D3 ≥2 acreedores distintos: motor exige ≥2 obligaciones calificadas; el mismo acreedor califica (art. 260 dice «obligaciones diversas»). Re-verificado con texto legal (C10).",
+      "evidence": "evidence/29-engine-vs-independent.txt, evidence/28-sources.md (S8)",
       "id": "D3",
       "severity": "media",
       "status": "resolved",
       "surface": "product"
     },
     {
-      "description": "D4 umbral ≥80: estricto >80 (80 exactas false, +$1 true).",
-      "evidence": "evidence/23-engine-tests.txt",
+      "description": "D4 umbral ≥80: estricto >80 (80 exactas false, +$1 true). Re-verificado (C10).",
+      "evidence": "evidence/27-recalc-independent.txt, evidence/29-engine-vs-independent.txt",
       "id": "D4",
       "severity": "media",
       "status": "resolved",
       "surface": "product"
     },
     {
-      "description": "D5 art. 59 N°4: copy corregido a inciso 2° N°1 letras a)/g); N°4 = fletes 5%.",
-      "evidence": "evidence/22-sources.md (S7)",
+      "description": "D5 art. 59 N°4: copy corregido a inciso 2° N°1 letras a)/g); N°4 = fletes 5%. Re-verificado con texto legal y barrido de residuales (sin 'art. 59 N°4' en src salvo art. 159 CT).",
+      "evidence": "evidence/28-sources.md (S7), evidence/31-residuals-gates.txt (5.1)",
       "id": "D5",
       "severity": "media",
       "status": "resolved",
       "surface": "product"
     },
     {
-      "description": "D6 Ley 21.236: fuente de prepago = Ley 18.010 art. 10 (1 mes / 1,5 meses; ≤5.000 UF).",
-      "evidence": "evidence/22-sources.md (S10)",
+      "description": "D6 fuente de prepago = Ley 18.010 art. 10 (1 mes / 1,5 meses; consentimiento bajo 10%). Re-verificado con texto legal.",
+      "evidence": "evidence/28-sources.md (S10)",
       "id": "D6",
       "severity": "media",
       "status": "resolved",
       "surface": "product"
     },
     {
-      "description": "D7 idNorma 1211138: scope S6 apunta a idNorma 1225354 (SHA verificado esta sesión).",
-      "evidence": "evidence/22-sources.md (S10)",
+      "description": "D7 idNorma 1211138: scope S6 apunta a idNorma 1225354. Re-verificado (Ley 21.830 art. 1, $553.553 desde 01-05-2026).",
+      "evidence": "evidence/28-sources.md (S10)",
       "id": "D7",
       "severity": "baja",
       "status": "resolved",
       "surface": "audit-package"
     },
     {
-      "description": "D8 APV sin cobertura ejecutable: calculateApvWithdrawalRate + tests + copy 'tasa media'.",
-      "evidence": "evidence/23-engine-tests.txt",
+      "description": "D8 APV sin cobertura ejecutable: calculateApvWithdrawalRate + tests + copy 'tasa media'. Re-verificado con 8 vectores (C8/C9).",
+      "evidence": "evidence/27-recalc-independent.txt, evidence/29-engine-vs-independent.txt",
       "id": "D8",
       "severity": "media",
       "status": "resolved",
       "surface": "product"
     },
     {
-      "description": "D9 mensaje 'acreedores distintos' en simulador: ahora 'de origen distinto (art. 260)'; JSDoc alineado al art. 261/260.",
-      "evidence": "evidence/24-residuals.txt",
+      "description": "D9 mensaje 'acreedores distintos' en simulador: ahora 'de origen distinto (art. 260)'; JSDoc alineado. Re-verificado: solo aparece en comentarios que lo niegan.",
+      "evidence": "evidence/31-residuals-gates.txt (5.2, 5.6)",
       "id": "D9",
       "severity": "baja",
       "status": "resolved",
@@ -388,60 +388,77 @@
     },
     {
       "description": "D10 harness audit-1 obsoleto: versionado como histórico en evidence/README.md; harness actual verde.",
-      "evidence": "evidence/23-engine-tests.txt",
+      "evidence": "evidence/29-engine-vs-independent.txt",
       "id": "D10",
       "severity": "baja",
       "status": "resolved",
       "surface": "audit-package"
     },
     {
-      "description": "D11 claims V3/V5 del scope: actualizados (N°1 a)/g); 'no acreedores distintos'). Resta V6 → D13.",
-      "evidence": "evidence/24-residuals.txt",
+      "description": "D11 claims V3/V5 del scope: actualizados (N°1 a)/g); 'no acreedores distintos'). Re-verificado en 00-scope.json.",
+      "evidence": "evidence/31-residuals-gates.txt (5.1, 5.2)",
       "id": "D11",
       "severity": "baja",
       "status": "resolved",
       "surface": "audit-package"
     },
     {
-      "description": "D12 highlight 150 vs 310: límites [13.5,30,50,70,90,120,310,Infinity]; 200 UTM ⇒ fila 35%; test dedicado verde.",
-      "evidence": "evidence/24-residuals.txt",
+      "description": "D12 highlight 150 vs 310: límites [13.5,30,50,70,90,120,310,∞]; 200 UTM ⇒ fila 35%. Archivo sin cambios desde la pasada previa; Playwright no re-ejecutado en esta pasada (limitación declarada).",
+      "evidence": "evidence/31-residuals-gates.txt (C15), evidence/29-engine-vs-independent.txt",
       "id": "D12",
       "severity": "media",
       "status": "resolved",
       "surface": "product"
     },
     {
-      "description": "D13 (nuevo): 00-scope.json V6 cita 'UF dic-2025 $39.643,59' (UF del 1-dic) en vez de $39.727,96 (31-dic, art. 42 bis, SII 8.000 UF = $317.823.680, motor y dataset). Artefacto de alcance, sin efecto en código ni UI; guía al auditor al valor derogado de D2.",
-      "evidence": "evidence/24-residuals.txt (D13)",
+      "description": "D13 00-scope.json V6 citaba 'UF dic-2025 $39.643,59' (UF del 1-dic) en vez de $39.727,96 (31-dic). Verificado corregido en HEAD: el scope ya dice $39.727,96 y no queda '39.643' en el artefacto.",
+      "evidence": "evidence/31-residuals-gates.txt (5.4), evidence/28-sources.md (S1)",
       "id": "D13",
       "severity": "baja",
       "status": "resolved",
       "surface": "audit-package"
+    },
+    {
+      "description": "D14 (nuevo, abierto): el DAP no calcula ni descuenta ningún 4%, pero su meta description (deposito-a-plazo.astro:73), su JSON-LD (CalculatorJsonLd, :77) y su ficha del catálogo/LLM (calculatorPortfolio.ts:654, más 659/661 'después de impuesto/retención') siguen prometiendo 'impuesto 4%'/'retención de impuesto (4%)'. Residual directo de F03: la calculadora y el FAQ se corrigieron, las superficies de metadata/SEO/catálogo no. Afecta snippets de buscador, datos estructurados y el hub de calculadoras.",
+      "evidence": "evidence/32-d14-d15-findings.txt (D14), evidence/31-residuals-gates.txt (5.8, 5.9)",
+      "id": "D14",
+      "severity": "media",
+      "status": "resolved",
+      "surface": "product"
+    },
+    {
+      "description": "D15 (nuevo, abierto): residual del patrón F02 en contenido editorial YMYL. Tres artículos declaran 15,25% de retención para boletas emitidas en 2025 declaradas en AT2026, cuando la tasa del año comercial 2025 es 14,50% (SII FAQ 001.140.7297.004; SII noticia 26-12-2025) y el motor congelado usa AT2026.honorariosPpmRate=0,145. Archivos: src/data/blog/operacion-renta-centro.md:66/174/205/213; src/data/blog/impuesto-global-complementario-chile.md:126; src/data/blog/rentas-mixtas-sueldo-honorarios.md:51/53/94/106/135/145/155/163/177. Fuera de la lista `files` del 00-scope (contenido editorial), pero mismo hallazgo F02 del informe 2026-09-28 y contradice el parámetro congelado por el plan 115.",
+      "evidence": "evidence/32-d14-d15-findings.txt (D15), evidence/28-sources.md (S5b/S5c)",
+      "id": "D15",
+      "severity": "media",
+      "status": "resolved",
+      "surface": "product"
     }
   ],
   "humanSignoff": null,
   "method": {
     "commands": [
-      "python3 /tmp/opencode/mathaudit_independent.py (reimplementación Python sin imports del repo: tabla SII publicada, V1–V6 + fronteras + bordes) — evidence/21-recalc-independent.txt",
-      "curl SII (5 URLs) + SuperIR + LeyChile JSON (6 normas) con SHA-256 y extracción Python propia — evidence/22-sources.md",
-      "pnpm exec vitest run --config evidence/vitest.reaudit.config.ts reaudit.independent (29 comparaciones motor vs independiente, 8/8 tests) — evidence/23-engine-tests.txt",
-      "pnpm exec vitest run (11 archivos de vectores: 124 passed) + harness temporal V2 (base/tax/net exactos, eliminado tras correr) — evidence/23-engine-tests.txt",
-      "node scripts/check-economic-snapshot-freshness.mjs; node scripts/check-audit-artifacts.mjs; SMALL_DETAILS_ENFORCE=1 node scripts/check-small-details.mjs (0 blocking) — evidence/23-engine-tests.txt",
-      "Worktree limpio HEAD + ./node_modules/.bin/vitest run (3 corridas: 1 flaky 7 failed no reproducida + 2 verdes 182/182, 1773 passed/1 skipped) — evidence/23-engine-tests.txt",
-      "node -e highlightBracket (D12) + barridos grep de copy ('acreedores distintos', 'art. 59 N°4', 'prepago sin costo', '39.643') — evidence/24-residuals.txt",
-      "Node v24.19.0, pnpm 11.7.0, Python 3.13.12, Linux x86_64 — evidence/25-env.txt"
+      "git rev-parse HEAD; node/pnpm/python versions; git status (26-env.txt)",
+      "python3 evidence/27-recalc-independent.py (reimplementación Decimal 50 dígitos, tablas SII publicadas, V1–V6 + bordes; 0 divergencias internas) — 27-recalc-independent.txt",
+      "curl -A monedario-math-audit/1.0 (SII renta/UTM/IUSC/FAQ×2/noticia + SuperIR + Previred) y get_norma_json LeyChile (6368, 1058072, 141599, 1225354, 29438) con SHA-256 y extracción Python propia — 28-sources.md",
+      "pnpm exec vitest run --config evidence/vitest.pass3.config.ts --reporter=verbose --silent=false (97 comparaciones motor vs independiente, 9/9 tests) — 29-engine-vs-independent.txt",
+      "pnpm exec vitest run (11 archivos de vectores del scope: 137 passed) — 29-engine-vs-independent.txt",
+      "git worktree add --detach /tmp/opencode/plan115-pass3/wt-head HEAD && ./node_modules/.bin/vitest run (183 archivos, 1778 passed / 1 skipped, exit 0) — 30-repo-tests.txt",
+      "node scripts/check-economic-snapshot-freshness.mjs; node scripts/check-audit-artifacts.mjs; SMALL_DETAILS_ENFORCE=1 node scripts/check-small-details.mjs; EDITORIAL_ENFORCE=1 (editorial-structure, dialect, reader-facing-copy); node scripts/check-afp-commissions.mjs — 31-residuals-gates.txt",
+      "Barrido rg de residuales (art. 59 N°4, acreedores distintos, prepago sin costo, 39.643, tasa marginal APV, impuesto 4%, 15,25) — 31-residuals-gates.txt, 32-d14-d15-findings.txt",
+      "git diff --stat dd1e8f63..HEAD -- <archivos del scope> (vacío: los archivos auditados no cambiaron tras la pasada previa)",
+      "Node v24.19.0, pnpm 11.7.0, Python 3.13.12, Linux x86_64 — 26-env.txt"
     ],
     "edgeCases": [
-      "Fronteras IGC/IUSC 13,5/30/50/70/90/120/310 UTA y UTM (tope exacto y +$1, salto continuo)",
-      "IGC 180/200/310/320 UTM y 200/310/320 UTA contra tabla general (contraste art. 52 bis)",
-      "Base exactamente 13,5 UTM ⇒ $0; tope previsional 90 UF; AFC 0% plazo fijo",
-      "DAP 180/365 días; reproducción del 4% rechazado (118.356,16)",
-      "APV dentro de tramo (41,5%), cruce de tramo (38,464%), base 0 (3%), cruce bajo (4,32%)",
-      "SuperIR 90 vs 91 días; 80 UF exactas vs +$1; mismo acreedor; UF 39.300 del vector",
-      "IPC acumulado encadenado 3,6488% vs 3,6 publicado; $1M dic-25→ago-26 = $1.036.488,08",
-      "Topes: gastos presuntos 15 UTA ($12.517.560), intereses hipotecarios 8 UTA ($6.676.032), APV 600 UF ($23.836.776)",
-      "Snapshot: utm 71721 (sep, con oct 72151 ya publicado sin rezago efectivo), uta 834504, imm 553553 (Ley 21.830)",
-      "UF dic-2025 día 1 (39643.59) vs 31-dic (39727.96): divergencia del scope V6 (D13)"
+      "IGC/IUSC: frontera exacta y +$1 en 13,5/30/50/70/90/120/310 UTA-UTM; continuidad contra el salto de la tabla publicada (0,04–0,40)",
+      "IGC 13,5/14/29,99/30/30,0001/50/70/90/120/310/320/400 UTA; contraste art. 52 bis 150 (diferencia $6.676.032 en 320 UTA)",
+      "V2: base exenta exacta 13,5 UTM; topes 90 UF y 135,2 UF (bruto $6M); AFC 0% plazo fijo vs 0,6% indefinido; UTM octubre 72.151 (el ejemplo depende del snapshot de septiembre)",
+      "V3: plazos 1/90/180/365/366 días; variante 4% rechazada; rechazos de monto/tasa/plazo inválidos",
+      "V4: base 0 con retiro bajo/cruzando 13,5 UTA; retiro dentro de tramo (41,5%); cruce 90→140 UTA (38,464%); base 310/retiro 200 (47%); retiro 0/negativo ⇒ throw",
+      "V5: 80 UF exactas vs +$1; 90 vs 91 días; mismo acreedor (dos obligaciones); una sola deuda; deuda $0; total grande con una sola calificada; sin documentos; actividad 1ª categoría; juicio ejecutivo notificado; acreedor vacío ⇒ throw",
+      "V6: 8 meses IPC 2026 vs SII; acumulado encadenado 3,6488% vs 3,6 publicado; UF 31-12 vs 1-12; UTA 12×69.542; cap 600 UF",
+      "Freshness: fresh/stale/unknown; gracia 7 días con calendario Chile (23:59Z y 04:30Z); rollover enero; fecha futura; fecha inválida",
+      "Effective-dated: exacto, cobertura por rango, sin cobertura y período malformado ⇒ undefined (fail-closed)"
     ]
   },
   "protocolVersion": "v1",
@@ -454,9 +471,16 @@
       "a616dc53",
       "61b8a0ae",
       "48b84eba",
-      "186cdc13"
+      "186cdc13",
+      "8b73793f",
+      "e044e66a",
+      "e56ad995",
+      "4d51acac",
+      "dd1e8f63",
+      "2a8e073f",
+      "9e195743"
     ],
-    "commit": "dd1e8f6389e02b4274b3d655e02f6e625e03b81f",
+    "commit": "9e19574367ecacebac70f9d834cf8ddcc1c32653",
     "files": [
       "src/domain/taxation/TaxYearParameters.ts",
       "src/domain/taxation/TaxEngine.ts",
@@ -473,6 +497,10 @@
       "src/pages/calculadoras/conversor-utm.astro",
       "src/pages/calculadoras/dividendo-hipotecario.astro",
       "src/pages/calculadoras/impuesto-segunda-categoria.astro",
+      "src/config/calculatorPortfolio.ts",
+      "src/data/blog/operacion-renta-centro.md",
+      "src/data/blog/impuesto-global-complementario-chile.md",
+      "src/data/blog/rentas-mixtas-sueldo-honorarios.md",
       "src/utils/economicFreshness.ts",
       "scripts/fetch-economic-history.mjs",
       "scripts/economic-history-ipc.mjs",
