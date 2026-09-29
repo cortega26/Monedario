@@ -171,7 +171,7 @@ El Formulario 22 en línea pre-carga la mayoría de los datos desde las declarac
 | -------------------------------- | --------------------------------------------- | ---------------------------------------------- |
 | Rentas del trabajo (empleados)   | Sueldos, gratificaciones, horas extra         | Sí — desde DJ de empleadores                   |
 | Honorarios (boletas)             | Total de boletas emitidas en 2025             | Sí — desde plataforma boletas electrónicas SII |
-| Retenciones de honorarios (PPM)  | 14,5% retenido por clientes (boletas 2025)                  | Sí — calculado automáticamente                 |
+| Retenciones de honorarios (PPM)  | 14,5% retenido por clientes (boletas 2025)    | Sí — calculado automáticamente                 |
 | Bienes raíces / arriendos        | Ingresos por arriendo                         | No — ingreso manual                            |
 | Créditos (educación, APV, etc.)  | Crédito por gastos en educación, APV          | Parcialmente — verificar                       |
 | Impuesto determinado             | Total impuesto según tabla de tramos          | Auto-calculado                                 |

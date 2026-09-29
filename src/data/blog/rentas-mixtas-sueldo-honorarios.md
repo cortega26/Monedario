@@ -174,7 +174,7 @@ Para los detalles del proceso de revisión y los errores más frecuentes, consul
 | Ingresos del trabajo   | Sueldos brutos del año (según certificado del empleador)          |
 | Retenciones de sueldo  | Total de Impuesto de Segunda Categoría retenido por empleador(es) |
 | Ingresos de honorarios | Total de honorarios brutos emitidos en el año                     |
-| Retenciones boletas    | Total del 14,5% retenido en todas las boletas del año            |
+| Retenciones boletas    | Total del 14,5% retenido en todas las boletas del año             |
 
 _Resumen orientativo. El F22 real puede tener códigos de línea específicos que varían por año tributario. Revisa el instructivo oficial del SII para AT 2026._
 
