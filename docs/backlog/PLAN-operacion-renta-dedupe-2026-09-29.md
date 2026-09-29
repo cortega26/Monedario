@@ -1,10 +1,25 @@
 # PLAN — Deduplicación editorial del cluster Operación Renta (remanente plan 119)
 
 Fecha: 2026-09-29
-Estado: **PENDIENTE DE SELECCIÓN Y REVISIÓN EDITORIAL HUMANA** (YMYL).
-Origen: plan 119 (SEO-05, opción A) dejó declarada la gobernanza de intención
-(guía = hub, owner = checklist F22) y la metadata diferenciada, pero la
-deduplicación de **contenido** quedó fuera por el STOP de YMYL.
+Estado: **A1 EJECUTADA** — pendiente revisión editorial humana final (YMYL) y
+monitoreo GSC W+4. Origen: plan 119 (SEO-05, opción A) dejó declarada la
+gobernanza de intención (guía = hub, owner = checklist F22) y la metadata
+diferenciada, pero la deduplicación de **contenido** quedó fuera por el STOP de
+YMYL.
+
+### Ejecución (2026-09-29)
+
+- Guía: 2.939 → 1.211 palabras visibles (dedupe ~60 %).
+- Secciones duplicadas reemplazadas por resúmenes + enlace a la superficie
+  responsable: ¿debo declarar?, ¿quién debe/no debe?, plazos + devolución
+  (→ "Fechas clave 2026" compacta + enlace al centro), secciones del F22
+  (→ checklist owner), qué hacer si debes pagar (→ centro).
+- Se conservan el valor de hub: ruta (StartHere), calculadora, "Elige tu
+  situación específica", retención de honorarios (intención distinta), FAQ
+  propia (se retiró la pregunta duplicada de propuesta automática), canales
+  oficiales y "Qué cambió en 2026".
+- Schema `Article` actualizado (headline/description/dateModified 2026-09-29).
+- Evidencia: build 20 checks; Playwright a11y 196 passed; `check:ci` exit 0.
 
 ## Situación actual
 
