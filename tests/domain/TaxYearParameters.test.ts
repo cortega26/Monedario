@@ -13,7 +13,7 @@ describe("TaxYearParameters.AT2026", () => {
 
   it("usa la UTA de cierre dic-2025 y la UF de diciembre", () => {
     expect(AT2026.uta).toBe(834_504);
-    expect(AT2026.ufDecember).toBe(39_643.59);
+    expect(AT2026.ufDecember).toBe(39_727.96);
   });
 
   it("reproduce la rebaja SII del segundo tramo ($450.632,16)", () => {

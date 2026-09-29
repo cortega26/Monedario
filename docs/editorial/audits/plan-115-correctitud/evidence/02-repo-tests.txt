@@ -1,0 +1,10 @@
+$ vitest run
+
+ RUN  v4.1.11 /home/carlos/VS_Code_Projects/products/monedario
+
+
+ Test Files  182 passed (182)
+      Tests  1767 passed | 1 skipped (1768)
+   Start at  16:06:50
+   Duration  20.27s (transform 84.36s, setup 0ms, import 126.13s, tests 60.59s, environment 4.86s)
+

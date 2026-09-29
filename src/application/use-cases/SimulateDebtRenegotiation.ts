@@ -31,11 +31,9 @@ export interface DebtRenegotiationOutput {
   qualifiedDebtCount: number;
   minimumOverdueDays: number;
   minimumDebtUf: number;
-  qualifiedCreditorCount: number;
   requirementChecks: {
     hasTwoOrMoreDebts: boolean;
     hasTwoOrMoreQualifiedDebts: boolean;
-    hasTwoOrMoreDistinctCreditors: boolean;
     reachesMinimumUf: boolean;
     hasNoFirstCategoryActivity: boolean;
     hasNoNotifiedExecutiveProceeding: boolean;
@@ -107,13 +105,12 @@ export function simulateDebtRenegotiation(
 
   const hasTwoOrMoreDebts =
     input.debts.filter(debt => debt.amount > 0).length >= 2;
+  // art. 260 Ley 20.720: "dos o más obligaciones ... provenientes de
+  // obligaciones diversas". El requisito es por obligaciones, no por
+  // acreedores distintos: dos deudas con el mismo acreedor califican.
   const hasTwoOrMoreQualifiedDebts = qualifiedDebts.length >= 2;
-  const qualifiedCreditors = new Set(
-    qualifiedDebts.map(debt => debt.creditor.trim().toLowerCase())
-  );
-  const qualifiedCreditorCount = qualifiedCreditors.size;
-  const hasTwoOrMoreDistinctCreditors = qualifiedCreditorCount >= 2;
-  const reachesMinimumUf = qualifiedDebtUf >= minimumDebtUf;
+  // "monto total sea superior a 80 UF" (umbral estricto).
+  const reachesMinimumUf = qualifiedDebtUf > minimumDebtUf;
   const hasNoFirstCategoryActivity =
     !input.hasFirstCategoryActivityLast24Months;
   const hasNoNotifiedExecutiveProceeding =
@@ -121,7 +118,6 @@ export function simulateDebtRenegotiation(
   const meetsBasicEligibility =
     hasTwoOrMoreDebts &&
     hasTwoOrMoreQualifiedDebts &&
-    hasTwoOrMoreDistinctCreditors &&
     reachesMinimumUf &&
     hasNoFirstCategoryActivity &&
     hasNoNotifiedExecutiveProceeding;
@@ -143,13 +139,11 @@ export function simulateDebtRenegotiation(
     totalDebtUf,
     qualifiedDebtUf,
     qualifiedDebtCount: qualifiedDebts.length,
-    qualifiedCreditorCount,
     minimumOverdueDays,
     minimumDebtUf,
     requirementChecks: {
       hasTwoOrMoreDebts,
       hasTwoOrMoreQualifiedDebts,
-      hasTwoOrMoreDistinctCreditors,
       reachesMinimumUf,
       hasNoFirstCategoryActivity,
       hasNoNotifiedExecutiveProceeding,

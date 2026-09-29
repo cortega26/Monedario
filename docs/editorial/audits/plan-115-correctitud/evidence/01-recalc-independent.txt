@@ -1,0 +1,153 @@
+
+ RUN  v4.1.11 /home/carlos/VS_Code_Projects/products/monedario/docs/editorial/audits/plan-115-correctitud/evidence
+
+stdout | recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > vector dorado $18.000.000 con UTA dic-2025
+EVIDENCE|V1.golden|{"income":18000000,"uta":834504,"independent":269367.83999999997,"engine":269367.83999999997,"marginal":0.04,"diff":0}
+
+stdout | recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > reproduce el valor original del informe ($255.247,92 con UTM sep-2026 ×12)
+EVIDENCE|V1.bug-repro|{"utmSep2026x12":860652,"bugValue":255247.91999999998}
+
+stdout | recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > rebaja SII publicada = 0,54 × UTA
+EVIDENCE|V1.rebaja|{"engine":450632.16000000003,"expected":450632.16}
+
+stdout | recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > UTA derivada de UTM dic-2025: 12 × 69.542 = 834.504
+EVIDENCE|V1.uta-derivation|{"utmDic2025":69542,"times12":834504}
+
+stdout | recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > coeficientes de rebaja derivados coinciden con tabla SII (en UTA)
+EVIDENCE|V1.rebajas|{"rebajasEnUta":[0,0.54,1.74,4.49,11.14,17.8,23.319999999999997,30.82]}
+
+stdout | recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > frontera exenta 13,5 UTA: exacta ⇒ 0; +$1 ⇒ 0,04
+EVIDENCE|V1.boundary-13.5|{"limit":11265804,"below":0,"above":0.03999999997904524}
+
+stdout | recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > continuidad en fronteras 30/50/70/90/120/150 UTA
+EVIDENCE|V1.continuity|[{"limitUta":30,"engineJump":0.07999999995809048,"independentJump":0.07999999995809048},{"limitUta":50,"engineJump":0.13500000024214387,"independentJump":0.13500000024214387},{"limitUta":70,"engineJump":0.22999999998137355,"independentJump":0.22999999998137355},{"limitUta":90,"engineJump":0.303999999538064,"independentJump":0.303999999538064},{"limitUta":120,"engineJump":0.3500000052154064,"independentJump":0.3500000052154064},{"limitUta":150,"engineJump":0.4000000022351742,"independentJump":0.4000000022351742}]
+
+stdout | recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > D1(a) — IGC anual: 200 UTA y 320 UTA, motor vs tabla oficial art. 52
+EVIDENCE|D1.annual-igc|[{"utaMultiplier":200,"income":166900800,"engine":41040906.72,"engineRate":0.4,"official":38954646.72,"diff":2086260},{"utaMultiplier":320,"income":267041280,"engine":81097098.72,"engineRate":0.4,"official":74421066.72,"diff":6676032}]
+
+stdout | recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > D1(b) — IUSC mensual: 200 UTM y 320 UTM, motor vs tabla oficial art. 43 N°1 (sep-2026)
+EVIDENCE|D1.monthly-iusc|[{"utmMultiplier":200,"income":14344200,"engine":3527238.78,"engineRate":0.4,"official":3347936.2800000003,"diff":179302.49999999953},{"utmMultiplier":320,"income":22950720,"engine":6969846.779999999,"engineRate":0.4,"official":6396078.779999999,"diff":573768}]
+
+stdout | recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > D1(c) — el contrato real sigue siendo continuo (la tabla equivocada es la del art. 52 bis)
+EVIDENCE|D1.continuity-150uta|{"limit":125175600,"engine":24350826.720000003,"official":24350826.72}
+
+stdout | recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > entradas inválidas: negativo lanza; cero ⇒ 0
+EVIDENCE|V1.zero|{"tax":0,"rate":0}
+
+stdout | recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > uso del caso de uso completo (SimulateOperacionRenta) vs reimplementación
+EVIDENCE|V1.usecase-grid|[{"income":10000000,"engine":0,"independent":0,"engineMarginal":0,"independentMarginal":0},{"income":11265804,"engine":0,"independent":0,"engineMarginal":0,"independentMarginal":0},{"income":11265805,"engine":0.03999999997904524,"independent":0.03999999997904524,"engineMarginal":0.04,"independentMarginal":0.04},{"income":20000000,"engine":349367.83999999997,"independent":349367.83999999997,"engineMarginal":0.04,"independentMarginal":0.04},{"income":50000000,"engine":3003077.0399999996,"independent":3003077.0399999996,"engineMarginal":0.135,"independentMarginal":0.135},{"income":130000000,"engine":26280586.72,"independent":26280586.72,"engineMarginal":0.4,"independentMarginal":0.4}]
+
+stdout | recalc.audit.test.ts > AUDIT V2 — sueldo líquido $1.200.000 (apor. Habitat 11,27%, Fonasa, indefinido) > vector: líquido $973.347, impuesto $213 (display redondeado)
+EVIDENCE|V2.vector|{"independent":{"afp":135240,"health":84000.00000000001,"afc":7200,"taxable":973560,"tax":213.05999999999767,"net":973346.94},"engine":{"afp":135240,"health":84000.00000000001,"afc":7200,"taxableBase":973560,"tax":213.05999999999767,"net":973346.94}}
+
+stdout | recalc.audit.test.ts > AUDIT V2 — sueldo líquido $1.200.000 (apor. Habitat 11,27%, Fonasa, indefinido) > borde: base imponible exactamente 13,5 UTM ⇒ impuesto 0
+EVIDENCE|V2.boundary-13.5utm|{"base":968233.5,"gross":1193434.611117959,"taxableEngine":0,"independentTax":0}
+
+stdout | recalc.audit.test.ts > AUDIT V2 — sueldo líquido $1.200.000 (apor. Habitat 11,27%, Fonasa, indefinido) > tope previsional 90 UF cuando el sueldo lo supera
+EVIDENCE|V2.prev-cap|{"prevCap":3694410.9000000004,"gross":4000000,"independent":{"afp":416360.10843,"health":258608.76300000006,"taxable":3301031.1285699997},"engine":{"capped":3694410.9000000004,"afp":416360.10843,"health":258608.76300000006,"taxable":3301031.1285699997}}
+
+stdout | recalc.audit.test.ts > AUDIT V2 — sueldo líquido $1.200.000 (apor. Habitat 11,27%, Fonasa, indefinido) > contrato plazo fijo: AFC trabajador = 0
+EVIDENCE|V2.plazo-fijo|{"engineAfc":0,"independentAfc":0}
+
+stdout | recalc.audit.test.ts > AUDIT V3 — DAP sin retención (residente) > vector $5.000.000 / 180 días / 5%: interés 123.287,67 sin retención
+EVIDENCE|V3.vector|{"independent":{"interest":123287.6712328767,"final":5123287.671232876,"oldNetWith4Pct":118356.16438356163,"oldFinalWith4Pct":5118356.164383561},"engine":{"grossInterest":123287.6712328767,"finalAmount":5123287.671232876,"tir":5}}
+
+stdout | recalc.audit.test.ts > AUDIT V3 — DAP sin retención (residente) > reproduce el vector del informe original (5M/90d/6% → neto viejo 71.014)
+EVIDENCE|V3.bug-repro|{"interest":73972.60273972602,"final":5073972.602739726,"oldNetWith4Pct":71013.69863013698,"oldFinalWith4Pct":5071013.698630137}
+
+stdout | recalc.audit.test.ts > AUDIT V3 — DAP sin retención (residente) > 365 días reproduce la tasa anual exacta
+EVIDENCE|V3.365d|{"engine":90000,"independent":90000}
+
+stdout | recalc.audit.test.ts > AUDIT V3 — DAP sin retención (residente) > no existe parámetro de residencia en el contrato: 4% no modelable (limitación)
+EVIDENCE|V3.residency-limitation|{"outputKeys":["amount","termDays","annualRatePercent","grossInterest","finalAmount","effectiveAnnualRatePercent"],"note":"sin entrada de residencia; el caso no domiciliado (4% Impuesto Adicional) no se modela"}
+
+stdout | recalc.audit.test.ts > AUDIT V5 — SuperIR (Ley 20.720 art. 260) > regresión: 2 acreedores, montos suman > 80 UF ⇒ elegible
+EVIDENCE|V5.case1|{"independent":{"qualifiedCount":2,"distinctCreditors":2,"sumUf":101.78117048346056,"eligibleStrict":true,"eligibleInclusive":true},"engine":{"qualifiedDebtUf":101.78117048346056,"creditors":2,"meets":true,"payment":110110.20773611861,"totalPaid":5285289.971333694},"annuity":110110.20773611861}
+
+stdout | recalc.audit.test.ts > AUDIT V5 — SuperIR (Ley 20.720 art. 260) > borde del informe (y del motor): exactamente 80 UF y 2 acreedores
+EVIDENCE|V5.exactly-80uf|{"independent":{"qualifiedCount":2,"distinctCreditors":2,"sumUf":80,"eligibleStrict":false,"eligibleInclusive":true},"engine":{"qualifiedDebtUf":80,"reachesMinimumUf":true,"meets":true}}
+
+stdout | recalc.audit.test.ts > AUDIT V5 — SuperIR (Ley 20.720 art. 260) > borde 90 días exactos: no califica (se exige >90)
+EVIDENCE|V5.90-days|{"qualifiedCount":1,"minimumOverdueDays":91,"meets":false}
+
+stdout | recalc.audit.test.ts > AUDIT V5 — SuperIR (Ley 20.720 art. 260) > dos deudas del mismo acreedor (case/espacios) ⇒ no distintas
+EVIDENCE|V5.same-creditor|{"qualifiedCreditorCount":2,"meets":true}
+
+stdout | recalc.audit.test.ts > AUDIT V5 — SuperIR (Ley 20.720 art. 260) > adversarial: monto negativo es aceptado y contamina la deuda total
+EVIDENCE|V5.negative-amount|{"totalDebtClp":2000000,"qualifiedDebtUf":63.61323155216285,"meets":false,"payment":55055.103868059305}
+
+stdout | recalc.audit.test.ts > AUDIT V5 — SuperIR (Ley 20.720 art. 260) > 80 UF y un peso más ⇒ elegible por ambos criterios
+EVIDENCE|V5.80uf-plus-1|{"independent":{"qualifiedCount":2,"distinctCreditors":2,"sumUf":80.000025,"eligibleStrict":true,"eligibleInclusive":true},"engineMeets":true,"reaches":true}
+
+stdout | recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > meses 2026 del dataset coinciden con el claim
+EVIDENCE|V6.ipc-2026|[["2026-01",0.4],["2026-02",0],["2026-03",1],["2026-04",1.3],["2026-05",0.2],["2026-06",0],["2026-07",0.1],["2026-08",0.6]]
+
+stdout | recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > acumulado ene–ago 2026 ≈ +3,65% (informe: +3,6%)
+EVIDENCE|V6.accumulated-2026|{"factor":1.03648807945707,"pct":3.648807945707011}
+
+stdout | recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > metadatos del dataset y última entrada
+EVIDENCE|V6.dataset-meta|{"actualizadoEl":"2026-09-29","desdeFecha":"2000-01-01","hastaFecha":"2026-08-01","totalEntradas":320,"last":{"fecha":"2026-08-01","valor":0.6}}
+
+stdout | recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > UTA/UTM/UF/IMM del snapshot
+EVIDENCE|V6.snapshot|{"uta":834504,"utm":71721,"uf":41049.01,"imm":553553,"immEffectiveDate":"2026-05-01","indicatorUpdatedAt":{"uf":"2026-09-29","utm":"2026-09-01","uta":"2025-12-01","ipc":"2026-08-01","dolar":"2026-09-29"}}
+
+stdout | recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > D2 — UF dic-2025: SII usa $39.727,96 (31.12.2025); AT2026 congela $39.643,59
+EVIDENCE|D2.uf-dic-2025|{"at2026_ufDecember":39643.59,"ufDataset2025_12_01":39643.59,"ufDataset2025_12_31":39727.96,"siiImplicitFrom8000Uf":39727.96,"apvCapEngine":23786153.999999996,"apvCapOfficial":23836776,"apvCapDiff":50622.00000000157}
+
+stdout | recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > D2(b) — efecto del cap APV en SimulateOperacionRenta (600 UF dic)
+EVIDENCE|D2.apv-cap-effect|{"apvCap":23786153.999999996,"apvAplicado":23786153.999999996,"apvCapOficial":23836776}
+
+stdout | recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > freshness: dataset 2026-08 vs snapshot 2026-08 ⇒ fresh; 2026-09 ⇒ stale
+EVIDENCE|V6.freshness|{"fresh":{"status":"fresh","seriesLastPeriod":"2026-08","expectedPeriod":"2026-08","reason":"serie al día (2026-08)"},"stale":{"status":"stale","seriesLastPeriod":"2026-08","expectedPeriod":"2026-09","reason":"la serie llega a 2026-08; la fuente ya publicó 2026-09"}}
+
+stdout | recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > resolver effective-dated: UTA dic-2025 exacta y no fuga a 2026-01
+EVIDENCE|V6.effective-dated|{"exact":{"indicator":"uta","periodId":"2025-12","value":834504,"effectiveFrom":"2025-12-01","effectiveTo":"2026-01-01","source":"SII"}}
+
+stdout | recalc.audit.test.ts > AUDIT V4 — copy APV (art. 42 bis N°3) sin motor asociado > la página declara la fórmula legal; no hay módulo que la ejecute
+EVIDENCE|V4.copy-checks|{"formula110":true,"pp3":true,"retention15":true,"pensioners":true,"art42bis":true,"withdrawalTaxInEngine":false}
+EVIDENCE|V4.formula-arith|{"marginal":0.35,"resulting":0.41500000000000004,"retentionAbono":0.15}
+
+ ✓ recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > vector dorado $18.000.000 con UTA dic-2025 3ms
+ ✓ recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > reproduce el valor original del informe ($255.247,92 con UTM sep-2026 ×12) 1ms
+ ✓ recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > rebaja SII publicada = 0,54 × UTA 0ms
+ ✓ recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > UTA derivada de UTM dic-2025: 12 × 69.542 = 834.504 0ms
+ ✓ recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > coeficientes de rebaja derivados coinciden con tabla SII (en UTA) 1ms
+ ✓ recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > frontera exenta 13,5 UTA: exacta ⇒ 0; +$1 ⇒ 0,04 0ms
+ ✓ recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > continuidad en fronteras 30/50/70/90/120/150 UTA 1ms
+ ✓ recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > D1(a) — IGC anual: 200 UTA y 320 UTA, motor vs tabla oficial art. 52 0ms
+ ✓ recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > D1(b) — IUSC mensual: 200 UTM y 320 UTM, motor vs tabla oficial art. 43 N°1 (sep-2026) 0ms
+ ✓ recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > D1(c) — el contrato real sigue siendo continuo (la tabla equivocada es la del art. 52 bis) 0ms
+ ✓ recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > entradas inválidas: negativo lanza; cero ⇒ 0 1ms
+ ✓ recalc.audit.test.ts > AUDIT V1 — IGC AT2026 (operación renta) > uso del caso de uso completo (SimulateOperacionRenta) vs reimplementación 1ms
+ ✓ recalc.audit.test.ts > AUDIT V2 — sueldo líquido $1.200.000 (apor. Habitat 11,27%, Fonasa, indefinido) > vector: líquido $973.347, impuesto $213 (display redondeado) 1ms
+ ✓ recalc.audit.test.ts > AUDIT V2 — sueldo líquido $1.200.000 (apor. Habitat 11,27%, Fonasa, indefinido) > borde: base imponible exactamente 13,5 UTM ⇒ impuesto 0 0ms
+ ✓ recalc.audit.test.ts > AUDIT V2 — sueldo líquido $1.200.000 (apor. Habitat 11,27%, Fonasa, indefinido) > tope previsional 90 UF cuando el sueldo lo supera 0ms
+ ✓ recalc.audit.test.ts > AUDIT V2 — sueldo líquido $1.200.000 (apor. Habitat 11,27%, Fonasa, indefinido) > contrato plazo fijo: AFC trabajador = 0 0ms
+ ✓ recalc.audit.test.ts > AUDIT V2 — sueldo líquido $1.200.000 (apor. Habitat 11,27%, Fonasa, indefinido) > inválidos: sueldo 0 o negativo lanza 0ms
+ ✓ recalc.audit.test.ts > AUDIT V3 — DAP sin retención (residente) > vector $5.000.000 / 180 días / 5%: interés 123.287,67 sin retención 0ms
+ ✓ recalc.audit.test.ts > AUDIT V3 — DAP sin retención (residente) > reproduce el vector del informe original (5M/90d/6% → neto viejo 71.014) 0ms
+ ✓ recalc.audit.test.ts > AUDIT V3 — DAP sin retención (residente) > 365 días reproduce la tasa anual exacta 0ms
+ ✓ recalc.audit.test.ts > AUDIT V3 — DAP sin retención (residente) > inválidos: monto/plazo/tasa no positivos lanzan 0ms
+ ✓ recalc.audit.test.ts > AUDIT V3 — DAP sin retención (residente) > no existe parámetro de residencia en el contrato: 4% no modelable (limitación) 0ms
+ ✓ recalc.audit.test.ts > AUDIT V5 — SuperIR (Ley 20.720 art. 260) > regresión: 2 acreedores, montos suman > 80 UF ⇒ elegible 1ms
+ ✓ recalc.audit.test.ts > AUDIT V5 — SuperIR (Ley 20.720 art. 260) > borde del informe (y del motor): exactamente 80 UF y 2 acreedores 0ms
+ ✓ recalc.audit.test.ts > AUDIT V5 — SuperIR (Ley 20.720 art. 260) > borde 90 días exactos: no califica (se exige >90) 0ms
+ ✓ recalc.audit.test.ts > AUDIT V5 — SuperIR (Ley 20.720 art. 260) > dos deudas del mismo acreedor (case/espacios) ⇒ no distintas 0ms
+ ✓ recalc.audit.test.ts > AUDIT V5 — SuperIR (Ley 20.720 art. 260) > adversarial: monto negativo es aceptado y contamina la deuda total 0ms
+ ✓ recalc.audit.test.ts > AUDIT V5 — SuperIR (Ley 20.720 art. 260) > 80 UF y un peso más ⇒ elegible por ambos criterios 0ms
+ ✓ recalc.audit.test.ts > AUDIT V5 — SuperIR (Ley 20.720 art. 260) > exige acreedor en cada deuda (no vacío) 0ms
+ ✓ recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > meses 2026 del dataset coinciden con el claim 0ms
+ ✓ recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > acumulado ene–ago 2026 ≈ +3,65% (informe: +3,6%) 0ms
+ ✓ recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > metadatos del dataset y última entrada 0ms
+ ✓ recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > UTA/UTM/UF/IMM del snapshot 0ms
+ ✓ recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > D2 — UF dic-2025: SII usa $39.727,96 (31.12.2025); AT2026 congela $39.643,59 0ms
+ ✓ recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > D2(b) — efecto del cap APV en SimulateOperacionRenta (600 UF dic) 0ms
+ ✓ recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > freshness: dataset 2026-08 vs snapshot 2026-08 ⇒ fresh; 2026-09 ⇒ stale 0ms
+ ✓ recalc.audit.test.ts > AUDIT V6 — IPC 2026, UTA y UF > resolver effective-dated: UTA dic-2025 exacta y no fuga a 2026-01 0ms
+ ✓ recalc.audit.test.ts > AUDIT V4 — copy APV (art. 42 bis N°3) sin motor asociado > la página declara la fórmula legal; no hay módulo que la ejecute 1ms
+
+ Test Files  1 passed (1)
+      Tests  38 passed (38)
+   Start at  16:10:40
+   Duration  295ms (transform 110ms, setup 0ms, import 145ms, tests 18ms, environment 0ms)
+

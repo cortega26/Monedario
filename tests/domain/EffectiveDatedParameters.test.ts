@@ -17,7 +17,7 @@ const ENTRIES: EffectiveDatedEntry[] = [
   {
     indicator: "uf",
     periodId: "2025-12",
-    value: 39_643.59,
+    value: 39_727.96,
     effectiveFrom: "2025-12-01",
     effectiveTo: "2026-01-01",
     source: "BCCh",

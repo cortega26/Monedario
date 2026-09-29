@@ -35,7 +35,11 @@ export function buildSecondCategoryTaxBrackets(
   const d5 = 70 * utm * (0.23 - 0.135) + d4; // 11.14 UTM
   const d6 = 90 * utm * (0.304 - 0.23) + d5; // 17.80 UTM
   const d7 = 120 * utm * (0.35 - 0.304) + d6; // 23.32 UTM
-  const d8 = 150 * utm * (0.4 - 0.35) + d7; // 30.82 UTM
+  // Tabla general (art. 43 N°1 IUSC / art. 52 IGC, SII): el 35% llega hasta
+  // 310 UTM/UTA y el 40% aplica sobre ese tope con rebaja de 38,82 UTM/UTA.
+  // (El tramo 150 con rebaja 30,82 es el art. 52 bis, solo para Presidente,
+  // ministros, subsecretarios, senadores y diputados.)
+  const d8 = 310 * utm * (0.4 - 0.35) + d7; // 38.82 UTM
 
   return [
     { upperLimit: 13.5 * utm, rate: 0, deduction: 0 },
@@ -44,7 +48,7 @@ export function buildSecondCategoryTaxBrackets(
     { upperLimit: 70 * utm, rate: 0.135, deduction: d4 },
     { upperLimit: 90 * utm, rate: 0.23, deduction: d5 },
     { upperLimit: 120 * utm, rate: 0.304, deduction: d6 },
-    { upperLimit: 150 * utm, rate: 0.35, deduction: d7 },
+    { upperLimit: 310 * utm, rate: 0.35, deduction: d7 },
     { upperLimit: Number.POSITIVE_INFINITY, rate: 0.4, deduction: d8 },
   ] as const;
 }
@@ -82,4 +86,33 @@ export function calculateAnnualIncomeTax(input: {
     taxableIncome: input.taxableIncome,
     utm: input.uta,
   });
+}
+
+/**
+ * art. 42 bis N°3 LIR — tasa del impuesto único por retiro APV no destinado a
+ * pensión: `(ΔIGC / monto reajustado del retiro) × 1,1 + 3 pp`, donde ΔIGC es
+ * la diferencia entre el IGC determinado con el retiro y sin él. Equivale a
+ * la tasa marginal solo si el retiro no cruza tramos (tasa media del retiro).
+ * La exención para pensionados/requisitos de edad se aplica fuera de esta
+ * función.
+ */
+export function calculateApvWithdrawalRate(input: {
+  baseIncome: number;
+  withdrawal: number;
+  uta: number;
+}): { rate: number; igcDelta: number } {
+  if (!Number.isFinite(input.withdrawal) || input.withdrawal <= 0) {
+    throw new Error("withdrawal must be a finite number > 0.");
+  }
+  const igcWithout = calculateAnnualIncomeTax({
+    taxableIncome: input.baseIncome,
+    uta: input.uta,
+  }).taxAmount;
+  const igcWith = calculateAnnualIncomeTax({
+    taxableIncome: input.baseIncome + input.withdrawal,
+    uta: input.uta,
+  }).taxAmount;
+  const igcDelta = igcWith - igcWithout;
+  const rate = (igcDelta / input.withdrawal) * 1.1 + 0.03;
+  return { rate, igcDelta };
 }

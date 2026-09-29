@@ -1,0 +1,6 @@
+
+Running 1 test using 1 worker
+
+  ✓  1 tests/accessibility/calculator-states.test.ts:179:3 › Calculator result states (Plan 114) › sueldo-liquido: el ejemplo ilustrativo coincide con el cálculo real (1.1s)
+
+  1 passed (1.7s)

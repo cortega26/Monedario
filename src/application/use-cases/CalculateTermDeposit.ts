@@ -9,7 +9,7 @@ import {
  * Los intereses de un DAP de una persona natural residente NO están sujetos a
  * retención del banco: tributan en el Impuesto Global Complementario anual
  * (SII, FAQ 001.140.2738, actualizada 2026-03-31). La retención del 4% del
- * art. 59 N°4 LIR es Impuesto Adicional para personas sin domicilio ni
+ * art. 59 inciso 2° N°1 letras a) y g) LIR es Impuesto Adicional para personas sin domicilio ni
  * residencia en Chile y no aplica a este caso.
  */
 export interface TermDepositInput {

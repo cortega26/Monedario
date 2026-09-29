@@ -66,7 +66,7 @@ describe("simulateDebtRenegotiation", () => {
     expect(result.canSubmitApplication).toBe(false);
   });
 
-  it("no considera elegible dos deudas del mismo acreedor", () => {
+  it("acepta dos obligaciones del mismo acreedor (art. 260: obligaciones diversas, no acreedores distintos)", () => {
     const result = simulateDebtRenegotiation({
       debts: [
         { amount: 2000000, overdueDays: 120, creditor: "Banco A" },
@@ -82,9 +82,8 @@ describe("simulateDebtRenegotiation", () => {
     });
 
     expect(result.requirementChecks.hasTwoOrMoreQualifiedDebts).toBe(true);
-    expect(result.requirementChecks.hasTwoOrMoreDistinctCreditors).toBe(false);
-    expect(result.meetsBasicEligibility).toBe(false);
-    expect(result.canSubmitApplication).toBe(false);
+    expect(result.meetsBasicEligibility).toBe(true);
+    expect(result.canSubmitApplication).toBe(true);
   });
 
   it("acepta dos obligaciones de acreedores distintos", () => {
@@ -102,9 +101,27 @@ describe("simulateDebtRenegotiation", () => {
       hasRequiredDocuments: true,
     });
 
-    expect(result.qualifiedCreditorCount).toBe(2);
-    expect(result.requirementChecks.hasTwoOrMoreDistinctCreditors).toBe(true);
     expect(result.meetsBasicEligibility).toBe(true);
+  });
+
+  it("no califica con exactamente 80 UF (el umbral es estricto: más de 80 UF)", () => {
+    const result = simulateDebtRenegotiation({
+      debts: [
+        { amount: 40 * UF, overdueDays: 120, creditor: "Banco A" },
+        { amount: 40 * UF, overdueDays: 150, creditor: "Retail B" },
+      ],
+      monthlyIncome: 1000000,
+      termMonths: 36,
+      monthlyRatePercent: 1.2,
+      ufValue: UF,
+      hasFirstCategoryActivityLast24Months: false,
+      hasNotifiedExecutiveProceeding: false,
+      hasRequiredDocuments: true,
+    });
+
+    expect(result.requirementChecks.hasTwoOrMoreQualifiedDebts).toBe(true);
+    expect(result.requirementChecks.reachesMinimumUf).toBe(false);
+    expect(result.meetsBasicEligibility).toBe(false);
   });
 
   it("exige identificar al acreedor de cada deuda", () => {
