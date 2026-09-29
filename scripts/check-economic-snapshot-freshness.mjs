@@ -23,6 +23,10 @@ const SNAPSHOT_PATH = path.join(
   REPO_ROOT,
   "src/infrastructure/economic/economic-parameters.snapshot.json"
 );
+const IPC_SERIES_PATH = path.join(
+  REPO_ROOT,
+  "src/data/economic-history/ipc-historico.json"
+);
 
 // Generous thresholds (days). The point is to catch a DEAD pipeline, not to
 // chase every publication lag. UF/dólar are ~daily; UTM is monthly.
@@ -118,6 +122,32 @@ function main() {
     }
   }
 
+  // TD-0112: la serie IPC ingerida no puede ir detrás del último período
+  // publicado en el snapshot (la extensión oficial se ingiere vía BCCh).
+  const snapshotIpcPeriod = String(snapshot.indicatorUpdatedAt?.ipc ?? "").slice(
+    0,
+    7
+  );
+  if (/^\d{4}-\d{2}$/.test(snapshotIpcPeriod)) {
+    try {
+      const series = JSON.parse(readFileSync(IPC_SERIES_PATH, "utf8"));
+      const lastPeriod = String(series.hastaFecha ?? "").slice(0, 7);
+      if (!/^\d{4}-\d{2}$/.test(lastPeriod)) {
+        errors.push(
+          `ipc-historico.json sin hastaFecha válida: ${series.hastaFecha}`
+        );
+      } else if (lastPeriod < snapshotIpcPeriod) {
+        errors.push(
+          `ipc-historico.json llega a ${lastPeriod} pero el snapshot publica ${snapshotIpcPeriod} — corre \`pnpm run fetch-economic-history --solo=ipc\``
+        );
+      }
+    } catch (err) {
+      if (err.code !== "ENOENT") {
+        errors.push(`no se pudo leer ipc-historico.json: ${err.message}`);
+      }
+    }
+  }
+
   if (errors.length > 0) {
     console.error(
       `[check-economic-snapshot-freshness] FAIL: ${errors.length} stale signal(s):`
@@ -130,7 +160,7 @@ function main() {
   }
 
   console.log(
-    `[check-economic-snapshot-freshness] OK. capturedAt ${captureAge.toFixed(1)}d old; uf/dólar within daily thresholds and UTM within the monthly 7d gate.`
+    `[check-economic-snapshot-freshness] OK. capturedAt ${captureAge.toFixed(1)}d old; uf/dólar within daily thresholds, UTM within the monthly 7d gate and IPC series aligned with the snapshot.`
   );
 }
 

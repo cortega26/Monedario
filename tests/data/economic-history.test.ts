@@ -42,7 +42,13 @@ describe("economic-history datasets", () => {
       const ds = loadDataset(file);
 
       it("tiene metadatos requeridos", () => {
-        expect(ds.fuente).toBe("mindicador.cl");
+        if (ds.indicador === "ipc") {
+          // Histórico vía mindicador/INE + extensión oficial vía BCCh (TD-0112).
+          expect(ds.fuente).toContain("mindicador.cl");
+          expect(ds.fuente).toContain("Banco Central de Chile");
+        } else {
+          expect(ds.fuente).toBe("mindicador.cl");
+        }
         expect(ds.indicador).toMatch(/^(uf|utm|ipc)$/);
         expect(["diaria", "mensual"]).toContain(ds.granularidad);
         expect(ISO_DATE.test(ds.actualizadoEl)).toBe(true);

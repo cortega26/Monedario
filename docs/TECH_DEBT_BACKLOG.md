@@ -2503,9 +2503,20 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
   `latest_period` explícito y assertion de frescura en el check diario; el
   script de ingesta ya soporta `--solo=ipc`.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] `ipc-historico.json` alcanza el último período publicado por INE.
-  - [ ] Assertion de frescura en CI (serie >= período del snapshot).
+  - [x] `ipc-historico.json` alcanza el último período publicado por INE.
+  - [x] Assertion de frescura en CI (serie >= período del snapshot).
+- **Resolución (2026-09-29):** La extensión 2026 de la serie se ingiere desde
+  la fuente oficial Banco Central de Chile, serie `G073.IPC.VAR.2023.M` (IPC
+  INE, variación mensual, empalme base 2023=100), vía Siete REST WS con
+  credenciales `BCCH_USER`/`BCCH_PASSWORD` (`.env.local`, nunca commiteadas).
+  `scripts/fetch-economic-history.mjs` completa solo los meses ausentes en
+  mindicador (la historia existente no se reescribe: el empalme BCCh difiere
+  en 33 meses históricos) y `scripts/economic-history-ipc.mjs` contiene los
+  helpers puros con tests. La assertion serie↔snapshot quedó en
+  `check:economic-snapshot-freshness` (job programado). Verificado: serie
+  2000-01 → 2026-08 (320 entradas), valores 2026 coincidentes con INE
+  (abr 1,3 / ago 0,6) y la calculadora muestra el aviso "fresh" en dist.
 - **Owner:** Sin asignar
-- **Estado:** Backlog
+- **Estado:** Resuelto
 - **Fecha de creación:** 2026-09-29
 - **Última actualización:** 2026-09-29

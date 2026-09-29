@@ -19,6 +19,15 @@ function writeSnapshot(snapshot: unknown): string {
   return root;
 }
 
+function writeIpcSeries(root: string, hastaFecha: string) {
+  const dir = path.join(root, "src", "data", "economic-history");
+  mkdirSync(dir, { recursive: true });
+  writeFileSync(
+    path.join(dir, "ipc-historico.json"),
+    JSON.stringify({ hastaFecha, serie: [] })
+  );
+}
+
 function run(root: string, now: string) {
   return spawnSync("node", [SCRIPT], {
     env: {
@@ -86,6 +95,30 @@ describe("check-economic-snapshot-freshness", () => {
     const r = run(writeSnapshot(stale), "2026-07-08T12:00:00.000Z");
     expect(r.status).toBe(1);
     expect(r.stderr).toContain("month-boundary grace");
+  });
+
+  it("fails when the ingested IPC series lags the snapshot period (TD-0112)", () => {
+    const snapshot = {
+      ...fresh,
+      indicatorUpdatedAt: { ...fresh.indicatorUpdatedAt, ipc: "2026-06-01" },
+    };
+    const root = writeSnapshot(snapshot);
+    writeIpcSeries(root, "2026-05-01");
+    const r = run(root, "2026-06-19T00:00:00.000Z");
+    expect(r.status).toBe(1);
+    expect(r.stderr).toContain("ipc-historico.json");
+    expect(r.stderr).toContain("--solo=ipc");
+  });
+
+  it("passes when the IPC series matches the snapshot period", () => {
+    const snapshot = {
+      ...fresh,
+      indicatorUpdatedAt: { ...fresh.indicatorUpdatedAt, ipc: "2026-06-01" },
+    };
+    const root = writeSnapshot(snapshot);
+    writeIpcSeries(root, "2026-06-01");
+    const r = run(root, "2026-06-19T00:00:00.000Z");
+    expect(r.status).toBe(0);
   });
 
   it("fails clearly when the snapshot file is missing", () => {
