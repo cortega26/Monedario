@@ -249,6 +249,77 @@ export function findSitemapLastmodIssues(xml) {
   return issues;
 }
 
+/** Invalid JSON-LD blocks (SEO-019). */
+export function findInvalidJsonLd(html) {
+  const issues = [];
+  extractJsonLdBlocks(html).forEach((block, index) => {
+    try {
+      JSON.parse(block);
+    } catch (error) {
+      issues.push(`bloque ${index}: ${error.message}`);
+    }
+  });
+  return issues;
+}
+
+/** Canonical URL declared in the page head. */
+export function readCanonicalFromHtml(html) {
+  for (const match of html.matchAll(/<link\b[^>]*>/g)) {
+    const tag = match[0];
+    if (!/rel=["']canonical["']/.test(tag)) continue;
+    const href = tag.match(/href=["']([^"']+)["']/)?.[1];
+    if (href) return href;
+  }
+  return null;
+}
+
+function normalizeUrlForCompare(url) {
+  return url.replace(/\/+$/, "");
+}
+
+/**
+ * BreadcrumbList issues: missing final item or final item != canonical
+ * (SEO-020).
+ */
+export function findBreadcrumbIssues(html) {
+  const issues = [];
+  const canonical = readCanonicalFromHtml(html);
+  for (const block of extractJsonLdBlocks(html)) {
+    let data;
+    try {
+      data = JSON.parse(block);
+    } catch {
+      continue; // jsonld-parse reports invalid blocks
+    }
+    const breadcrumbs = [];
+    const collect = node => {
+      if (Array.isArray(node)) {
+        node.forEach(collect);
+        return;
+      }
+      if (!node || typeof node !== "object") return;
+      if (node["@type"] === "BreadcrumbList") breadcrumbs.push(node);
+      if (node["@graph"]) collect(node["@graph"]);
+    };
+    collect(data);
+    for (const breadcrumb of breadcrumbs) {
+      const items = Array.isArray(breadcrumb.itemListElement)
+        ? breadcrumb.itemListElement
+        : [];
+      const finalItem = items[items.length - 1]?.item;
+      if (!finalItem) {
+        issues.push("BreadcrumbList sin item final");
+      } else if (
+        canonical &&
+        normalizeUrlForCompare(finalItem) !== normalizeUrlForCompare(canonical)
+      ) {
+        issues.push(`breadcrumb final ${finalItem} != canonical ${canonical}`);
+      }
+    }
+  }
+  return issues;
+}
+
 /** Total bytes of a directory tree. */
 export function totalDirBytes(dir) {
   let total = 0;
@@ -492,6 +563,34 @@ const CHECKS = [
       return findSitemapLastmodIssues(xml).map(
         url => `dist/sitemap-0.xml:sitemap-lastmod-complete missing lastmod for ${url}`
       );
+    },
+  },
+  {
+    id: "jsonld-parse",
+    message: "Every application/ld+json block must parse (SEO-019).",
+    run(distDir) {
+      const errors = [];
+      for (const file of listHtmlPages(distDir)) {
+        const html = readFileSync(path.join(distDir, file), "utf8");
+        for (const issue of findInvalidJsonLd(html)) {
+          errors.push(`${file}:jsonld-parse ${issue}`);
+        }
+      }
+      return errors;
+    },
+  },
+  {
+    id: "jsonld-breadcrumb-final-canonical",
+    message: "BreadcrumbList must end at the page canonical (SEO-020).",
+    run(distDir) {
+      const errors = [];
+      for (const file of listHtmlPages(distDir)) {
+        const html = readFileSync(path.join(distDir, file), "utf8");
+        for (const issue of findBreadcrumbIssues(html)) {
+          errors.push(`${file}:jsonld-breadcrumb-final-canonical ${issue}`);
+        }
+      }
+      return errors;
     },
   },
   {

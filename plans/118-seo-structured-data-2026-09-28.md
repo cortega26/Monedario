@@ -14,7 +14,14 @@
 - **Depends on**: none (no requiere decisión de producto)
 - **Category**: SEO técnico / datos estructurados
 - **Planned at**: commit `da8e72da`, 2026-09-29
-- **Status**: TODO — requiere selección del mantenedor (Fase 2 SEO)
+- **Status**: DONE — los claims del informe resultaron staleness: el build
+  actual ya emite `WebApplication`+FAQ+Breadcrumb en calculadoras,
+  `Legislation`+Breadcrumb en leyes, `DefinedTerm`+Breadcrumb en glosario
+  (final = canónica) y `ItemList`+Breadcrumb en hubs. No hubo gaps de
+  templates que cerrar; se añadieron las guardas `jsonld-parse` (SEO-019) y
+  `jsonld-breadcrumb-final-canonical` (SEO-020) con tests (14 checks de
+  build). El builder común de breadcrumbs no se extrajo: sin gaps, sería un
+  refactor sin justificación.
 - **Evidence**: `docs/reports/AUDIT-SEO-2026-09-28.md` (SEO-06)
 
 ## Why this matters
@@ -88,10 +95,10 @@ gaps reales** y fijarlos con guardas.
 
 ## Done criteria
 
-- [ ] Claims SEO-06 re-verificados y documentados (real vs staleness).
-- [ ] Gaps confirmados cerrados; 0 bloques JSON-LD inválidos.
-- [ ] Breadcrumb final == canonical en toda página con `BreadcrumbList`.
-- [ ] Guardas con tests; gates en verde.
+- [x] Claims SEO-06 re-verificados y documentados (real vs staleness).
+- [x] Gaps confirmados cerrados (ninguno); 0 bloques JSON-LD inválidos.
+- [x] Breadcrumb final == canonical en toda página con `BreadcrumbList`.
+- [x] Guardas con tests; gates en verde.
 
 ## STOP conditions
 

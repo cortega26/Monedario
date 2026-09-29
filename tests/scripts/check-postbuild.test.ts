@@ -8,12 +8,15 @@ import {
   countTags,
   extractJsonLdBlocks,
   findAuthorProfileSchemaIssues,
+  findBreadcrumbIssues,
   findDuplicateIds,
   findHeadingLevelJumps,
+  findInvalidJsonLd,
   findNonCanonicalInternalHrefs,
   findSitemapLastmodIssues,
   hasNoindexFollow,
   parseScriptSrc,
+  readCanonicalFromHtml,
   readH1FromHtml,
   readTitleFromHtml,
   sitemapUrlToDistPath,
@@ -172,6 +175,94 @@ describe("findSitemapLastmodIssues", () => {
       "<urlset><url><loc>https://monedario.cl/a/</loc>" +
       "<lastmod>2026-09-01T00:00:00.000Z</lastmod></url></urlset>";
     expect(findSitemapLastmodIssues(xml)).toEqual([]);
+  });
+});
+
+describe("findInvalidJsonLd", () => {
+  it("accepts valid blocks and reports invalid ones", () => {
+    const valid = '<script type="application/ld+json">{"@type":"WebPage"}</script>';
+    const invalid = '<script type="application/ld+json">{oops</script>';
+    expect(findInvalidJsonLd(valid)).toEqual([]);
+    expect(findInvalidJsonLd(invalid)).toHaveLength(1);
+  });
+});
+
+describe("readCanonicalFromHtml", () => {
+  it("extracts the canonical URL regardless of attribute order", () => {
+    expect(
+      readCanonicalFromHtml(
+        '<link rel="canonical" href="https://monedario.cl/posts/a/">'
+      )
+    ).toBe("https://monedario.cl/posts/a/");
+    expect(
+      readCanonicalFromHtml(
+        '<link href="https://monedario.cl/posts/a/" rel="canonical">'
+      )
+    ).toBe("https://monedario.cl/posts/a/");
+    expect(readCanonicalFromHtml("<html></html>")).toBeNull();
+  });
+});
+
+describe("findBreadcrumbIssues", () => {
+  const page = (breadcrumb: object) =>
+    '<link rel="canonical" href="https://monedario.cl/posts/a/">' +
+    `<script type="application/ld+json">${JSON.stringify(breadcrumb)}</script>`;
+
+  it("accepts a breadcrumb ending at the canonical URL", () => {
+    expect(
+      findBreadcrumbIssues(
+        page({
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, item: "https://monedario.cl/" },
+            {
+              "@type": "ListItem",
+              position: 2,
+              item: "https://monedario.cl/posts/a/",
+            },
+          ],
+        })
+      )
+    ).toEqual([]);
+  });
+
+  it("flags a breadcrumb ending elsewhere or missing its final item", () => {
+    expect(
+      findBreadcrumbIssues(
+        page({
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, item: "https://monedario.cl/" },
+          ],
+        })
+      )
+    ).toHaveLength(1);
+    expect(
+      findBreadcrumbIssues(
+        page({ "@type": "BreadcrumbList", itemListElement: [] })
+      )
+    ).toHaveLength(1);
+  });
+
+  it("finds breadcrumbs nested in @graph and ignores pages without one", () => {
+    const nested = page({
+      "@context": "https://schema.org",
+      "@graph": [
+        { "@type": "WebSite", url: "https://monedario.cl/" },
+        {
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              item: "https://monedario.cl/posts/b",
+            },
+          ],
+        },
+      ],
+    });
+    expect(findBreadcrumbIssues(nested)).toHaveLength(1);
+    expect(findBreadcrumbIssues("<html></html>")).toEqual([]);
   });
 });
 
