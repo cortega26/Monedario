@@ -8,8 +8,14 @@ const DARK = "dark";
 const initialColorScheme = "";
 
 function getPreferTheme(): string {
-  // get theme data from local storage (user's explicit choice)
-  const currentTheme = localStorage.getItem(THEME);
+  // get theme data from local storage (user's explicit choice).
+  // Resiliencia RES-035/036 (plan 122): storage bloqueado no debe romper.
+  let currentTheme: string | null = null;
+  try {
+    currentTheme = localStorage.getItem(THEME);
+  } catch {
+    // storage no disponible: se usa el fallback del sistema
+  }
   if (currentTheme) return currentTheme;
 
   // return initial color scheme if it is set (site default)
@@ -29,7 +35,11 @@ function getThemeAriaLabel(): string {
 }
 
 function setPreference(): void {
-  localStorage.setItem(THEME, themeValue);
+  try {
+    localStorage.setItem(THEME, themeValue);
+  } catch {
+    // storage no disponible: la preferencia no persiste, pero la UI funciona
+  }
   reflectPreference();
 }
 

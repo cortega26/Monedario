@@ -44,6 +44,7 @@ Change log:
 - 2026-04-25: updated INVARIANT.EDITORIAL.SEPARATION_OF_DUTIES — role-identity framing replaced with agent-instance framing; added fresh-session requirement for same-family auditors; removed Gemini from canonical role examples; updated `context/EDITORIAL_AI_PIPELINE.md` with new role table (ChatGPT for ResearchAgent/MathAuditAgent; Claude Code fresh session for ComplianceAgent; Claude for all writing roles).
 - 2026-09-29: added indexability contract invariant (`INVARIANT.SEO.INDEXABILITY.CONTRACT`) with build guards; see ADR-20260929-declarative-indexability-contract.
 - 2026-09-29: added privacy invariant (`INVARIANT.PRIVACY.NO_FINANCIAL_EGRESS`) with `test:privacy` suite; see `docs/reports/AUDIT-PRIVACY-2026-09-29.md`.
+- 2026-09-29: added resilience invariants (`INVARIANT.RESILIENCE.*`) with `test:resilience` suite; see `docs/reports/AUDIT-RESILIENCE-2026-09-29.md`.
 
 ## 2. Invariant Index
 
@@ -90,6 +91,10 @@ Change log:
 | `INVARIANT.URLCHECK.EXTERNAL_LINK_POLICY` | External links to official/trusted hosts must resolve live within the expected host family | Active (phase 1 non-blocking) | `pnpm run check:urls:external:ci` |
 | `INVARIANT.SEO.INDEXABILITY.CONTRACT` | Path-based indexability is declared in one contract consumed by Layout, sitemap and utility pages | Active | `pnpm run build` (check-postbuild guards) + `pnpm run test` |
 | `INVARIANT.PRIVACY.NO_FINANCIAL_EGRESS` | Financial inputs/results never leave the browser (URL, requests, cookies, identifiers) | Active | `pnpm run test:privacy` |
+| `INVARIANT.RESILIENCE.CONTENT_WITHOUT_JS` | Essential content renders without JavaScript | Active | `pnpm run test:resilience` |
+| `INVARIANT.RESILIENCE.CALC_LOCAL_DEPS` | Calculator runtime has no third-party/API dependencies | Active | `pnpm run test:resilience` |
+| `INVARIANT.RESILIENCE.INPUT_STATE_COHERENT` | Result matches current inputs; invalid required input never yields a valid-looking result; submit is idempotent | Active | `pnpm run test:resilience` |
+| `INVARIANT.RESILIENCE.SAVED_STATE_ISOLATED` | Blocked/unavailable storage never breaks the calculation | Active | `pnpm run test:resilience` |
 
 ## 3. Invariants
 
@@ -820,3 +825,39 @@ Change log:
 - Examples:
   - Compliant: `{"event":"calculator_complete","params":{"calculator_id":"sueldo-liquido","outcome":"success","mode":"bruto-a-liquido"}}` (202, sin montos).
   - Violation: cualquier request con `?sueldo=…` o un body que contenga el monto introducido.
+
+### `INVARIANT.RESILIENCE.CONTENT_WITHOUT_JS`
+
+- Statement: el contenido esencial (home, hubs, artículos) se renderiza sin JavaScript; en calculadoras, sin JS el formulario se muestra explícitamente no operativo con un aviso.
+- Canonical source: `docs/reports/AUDIT-RESILIENCE-2026-09-29.md`, `src/layouts/Layout.astro` (fallback `<noscript>`).
+- Enforcement: `pnpm run test:resilience` (RES-001..003/054 con `javaScriptEnabled: false`).
+- Examples:
+  - Compliant: artículo legible sin JS; calculadora con aviso "Esta calculadora necesita JavaScript…" y controles atenuados.
+  - Violation: calculadora que parece operable sin JS y no responde.
+
+### `INVARIANT.RESILIENCE.CALC_LOCAL_DEPS`
+
+- Statement: el cálculo no depende de terceros, analytics, imágenes ni APIs externas en runtime; bloquearlos no cambia el resultado.
+- Canonical source: `docs/reports/AUDIT-RESILIENCE-2026-09-29.md`; arquitectura de snapshots (plan 120 / ADR de snapshot).
+- Enforcement: `pnpm run test:resilience` (RES-004..006 con rutas abortadas).
+- Examples:
+  - Compliant: cálculo correcto con terceros/analytics/imágenes bloqueados.
+  - Violation: un resultado que deja de aparecer cuando falla un recurso no esencial.
+
+### `INVARIANT.RESILIENCE.INPUT_STATE_COHERENT`
+
+- Statement: el resultado corresponde a los inputs visibles actuales; un required vacío/espacio/0 no produce un resultado con apariencia válida; doble submit no duplica estado.
+- Canonical source: `docs/reports/AUDIT-RESILIENCE-2026-09-29.md` (RES-01 verificado como no-defecto).
+- Enforcement: `pnpm run test:resilience` (RES-010..025).
+- Examples:
+  - Compliant: input vacío → error visible + estado inválido; recalcular con otro monto cambia el resultado; reingresar el monto original reproduce el resultado.
+  - Violation: `$0` presentado como resultado válido o resultado viejo con input nuevo.
+
+### `INVARIANT.RESILIENCE.SAVED_STATE_ISOLATED`
+
+- Statement: `localStorage`/`sessionStorage`/cookies bloqueados o lanzando excepciones no rompen el cálculo; el draft efímero no se mezcla con escenarios persistidos.
+- Canonical source: `docs/reports/AUDIT-RESILIENCE-2026-09-29.md` (RES-035..037), `src/utils/resumeState.ts`.
+- Enforcement: `pnpm run test:resilience` (RES-030..037 con storage lanzando y cookies bloqueadas).
+- Examples:
+  - Compliant: cálculo correcto con storage bloqueado; sesión nueva no restaura draft.
+  - Violation: excepción de storage que impide calcular o restaura un resultado de otra sesión.

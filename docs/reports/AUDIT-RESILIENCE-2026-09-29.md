@@ -850,3 +850,23 @@ de vista de resiliencia eso es una ventaja considerable.
   warn-only, workflow semanal `lighthouse-ci.yml`), más los scripts
   `perf:ci`/`perf:ci:mobile`. Cubre la mayor parte de PERF-001..004; PERF-005
   (regresión vs baseline móvil) es la brecha.
+- **RES-030 (reload) → matiz**: la restauración de input observada por el
+  auditor corresponde a la restauración nativa de formularios del navegador
+  (no reproduce en headless Chromium ni está en la lógica de la app: el draft
+  es efímero). La regresión fija la propiedad relevante: tras reload sin input
+  no queda un resultado stale de otro input.
+
+## Remediación ejecutada (plan 122, 2026-09-29)
+
+- **RES-03**: `BackToTopButton` oculto con viewport efectivo ≤360px
+  (`max-[360px]:hidden`), con regression a 320/390px.
+- **RES-04**: `<noscript>` en calculadoras con aviso explícito y formulario
+  atenuado/no operable (`pointer-events: none`), sin duplicar lógica de
+  cálculo.
+- **Endurecimiento de storage**: `theme.ts` y el script inline de tema envuelven
+  `localStorage` en try/catch (storage bloqueado no rompe render ni cálculo).
+- **Suite** `pnpm run test:resilience` (21 tests): validación/coherencia de
+  inputs, degradación sin JS, terceros/analytics/imágenes bloqueados, estado de
+  sesión y storage, viewports/zoom, consola y requests esenciales.
+- **Invariantes** `INVARIANT.RESILIENCE.{CONTENT_WITHOUT_JS,CALC_LOCAL_DEPS,
+  INPUT_STATE_COHERENT,SAVED_STATE_ISOLATED}` + paso de CI.

@@ -371,6 +371,9 @@ jobs:
       - name: "🔒 Run privacy tests"
         run: pnpm run test:privacy
 
+      - name: "🛡️ Run resilience tests"
+        run: pnpm run test:resilience
+
       - name: "📤 Upload accessibility report"
         if: always()
         # Diagnostic only; a storage-quota failure must not make this

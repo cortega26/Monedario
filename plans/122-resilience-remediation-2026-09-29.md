@@ -14,7 +14,14 @@
 - **Depends on**: none
 - **Category**: resiliencia / UX / tests
 - **Planned at**: commit `f74ee0e1`, 2026-09-29
-- **Status**: TODO — requiere selección del mantenedor
+- **Status**: DONE — RES-01/02 cerrados como no-defecto con regresión (21 tests
+  en `tests/resilience/`); RES-03 corregido (botón oculto ≤360px efectivos);
+  RES-04 implementado (`<noscript>` con aviso + formulario atenuado en
+  calculadoras); storage/theme endurecidos (try/catch); invariantes
+  `INVARIANT.RESILIENCE.*` registrados; `test:resilience` + paso de CI.
+  Nota: la restauración de input tras reload del informe es restauración nativa
+  del navegador (no reproduce en headless); el test fija la propiedad que
+  importa: sin stale state.
 - **Evidence**: `docs/reports/AUDIT-RESILIENCE-2026-09-29.md`
 
 ## Verificación previa (2026-09-29)
@@ -108,12 +115,12 @@
 
 ## Done criteria
 
-- [ ] RES-01/02 cerrados como no-defecto con regresión que fija el
+- [x] RES-01/02 cerrados como no-defecto con regresión que fija el
       comportamiento (local y reproducible en CI).
-- [ ] RES-03 corregido y con regression a viewport estrecho/zoom.
-- [ ] RES-04 implementado (fallback `<noscript>` explícito) con regression.
-- [ ] `test:resilience` en verde y en CI; invariantes registrados.
-- [ ] Gates en verde.
+- [x] RES-03 corregido y con regression a viewport estrecho/zoom.
+- [x] RES-04 implementado (fallback `<noscript>` explícito) con regression.
+- [x] `test:resilience` en verde y en CI; invariantes registrados.
+- [x] Gates en verde.
 
 ## STOP conditions
 

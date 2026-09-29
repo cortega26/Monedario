@@ -7,6 +7,10 @@ import IconArrowNarrowUp from "@/assets/icons/IconArrowNarrowUp.svg";
   id="btt-btn-container"
   class:list={[
     "fixed end-4 bottom-8 z-50",
+    // Auditoría de resiliencia RES-03: en viewports efectivos muy estrechos
+    // (zoom alto / pantallas ≤360px) el botón flotante puede tapar texto o
+    // enlaces; se oculta y el scroll sigue disponible por gesto/teclado.
+    "max-[360px]:hidden",
     "md:sticky md:end-auto md:float-end md:me-1",
     "translate-y-14 opacity-0 transition duration-500",
   ]}
