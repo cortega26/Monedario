@@ -1,6 +1,6 @@
 import { readdirSync } from "node:fs";
 import { test, expect } from "@playwright/test";
-import { runAxe } from "./axe-helper";
+import { reportViolations, runAxe } from "./axe-helper";
 
 const TEST_PAGES = [
   { name: "Homepage", url: "/" },
@@ -17,31 +17,6 @@ const TEST_PAGES = [
   { name: "Tag page", url: "/tags/afp/" },
   { name: "Guides hub", url: "/guias/" },
 ] as const;
-
-function reportViolations(
-  context: string,
-  violations: Array<{
-    impact?: string | null;
-    id: string;
-    help: string;
-    helpUrl: string;
-    nodes: Array<{ target: unknown; html: string }>;
-  }>
-) {
-  if (violations.length === 0) return;
-  // eslint-disable-next-line no-console
-  console.log(`\n=== ${context} — ${violations.length} violations ===`);
-  for (const v of violations) {
-    // eslint-disable-next-line no-console
-    console.log(`  [${v.impact}] ${v.id}: ${v.help}`);
-    // eslint-disable-next-line no-console
-    console.log(`  Help: ${v.helpUrl}`);
-    // eslint-disable-next-line no-console
-    console.log(
-      `  Elements: ${v.nodes.map(n => n.html.slice(0, 200)).join(" || ")}`
-    );
-  }
-}
 
 test.describe("WCAG 2.2 AA — automated scan (light desktop)", () => {
   for (const pageDef of TEST_PAGES) {

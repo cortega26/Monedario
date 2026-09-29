@@ -27,3 +27,31 @@ export function violationsByImpact(
 ) {
   return violations.filter(v => v.impact === impact);
 }
+
+/**
+ * Log a readable report for the given violations (no-op when empty).
+ */
+export function reportViolations(
+  context: string,
+  violations: Array<{
+    impact?: string | null;
+    id: string;
+    help: string;
+    helpUrl: string;
+    nodes: Array<{ target: unknown; html: string }>;
+  }>
+) {
+  if (violations.length === 0) return;
+  // eslint-disable-next-line no-console
+  console.log(`\n=== ${context} — ${violations.length} violations ===`);
+  for (const v of violations) {
+    // eslint-disable-next-line no-console
+    console.log(`  [${v.impact}] ${v.id}: ${v.help}`);
+    // eslint-disable-next-line no-console
+    console.log(`  Help: ${v.helpUrl}`);
+    // eslint-disable-next-line no-console
+    console.log(
+      `  Elements: ${v.nodes.map(n => n.html.slice(0, 200)).join(" || ")}`
+    );
+  }
+}
