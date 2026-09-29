@@ -72,6 +72,17 @@ const conversorUtmDescription = `Valor UTM hoy: $${utmDisplay} vigente al ${utmD
 const utaDisplay = economicParameters.uta
   ? "$" + Math.round(economicParameters.uta).toLocaleString("es-CL")
   : null;
+// La UTA es la del cierre del año comercial (diciembre), no la "vigente hoy"
+// (auditoría de correctitud F09): el período se declara explícitamente.
+const utaPeriodLabel = new Intl.DateTimeFormat("es-CL", {
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+}).format(
+  new Date(
+    `${resolveEconomicIndicatorDate(economicParameters, "uta")}T00:00:00.000Z`
+  )
+);
 
 const currentCalculator = CALCULATOR_PORTFOLIO.find(
   calc => calc.slug === "conversor-utm"
@@ -268,7 +279,8 @@ const conversorUtmFaqs = [
           {
             utaDisplay ? (
               <p class="mt-1 text-xs text-muted">
-                UTA de referencia anual: {utaDisplay} (12 × UTM de diciembre).
+                UTA de referencia anual: {utaDisplay} (12 × UTM de{" "}
+                {utaPeriodLabel}, cierre del año comercial).
               </p>
             ) : null
           }
