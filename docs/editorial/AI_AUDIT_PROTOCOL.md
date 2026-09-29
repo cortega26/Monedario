@@ -104,5 +104,6 @@ completo.
   protocolo).
 - **Fase 2 (implementada 2026-09-29)**: `pnpm run check:audit-artifacts` valida
   el esquema de cada `02-result.json` (plantilla pendiente o veredicto con
-  claims; FAIL/CONDITIONAL exigen defectos abiertos; `humanSignoff` validado
-  cuando existe). Corre en `check:ci` y en CI.
+  claims; FAIL/CONDITIONAL exigen defectos declarados, que pueden quedar en
+  `resolved` tras la remediación a la espera de la re-auditoría;
+  `humanSignoff` validado cuando existe). Corre en `check:ci` y en CI.

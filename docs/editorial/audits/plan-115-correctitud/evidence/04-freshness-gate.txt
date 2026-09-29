@@ -1,0 +1,2 @@
+$ node scripts/check-economic-snapshot-freshness.mjs
+[check-economic-snapshot-freshness] OK. capturedAt 0.0d old; uf/dólar within daily thresholds, UTM within the monthly 7d gate and IPC series aligned with the snapshot.

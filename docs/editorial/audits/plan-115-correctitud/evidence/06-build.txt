@@ -1,0 +1,455 @@
+$ pnpm run check:images && pnpm run check:hero-images && pnpm run check:frontmatter && pnpm run check:legal-citations && astro check && astro build && pnpm run check:indexable-url-freeze && pnpm run check:toc-i18n && pnpm run check:editorial-guard && rm -rf dist/pagefind && pagefind --site dist && node -e "require('fs').appendFileSync('dist/pagefind/pagefind-worker.js','/* _headers-csp-v2 */\\n')" && cp -r dist/pagefind public/ && pnpm run check:urls && node scripts/check-postbuild.mjs dist
+$ pnpm run images:convert && pnpm run og:jpegs && node scripts/check-images.mjs
+$ node scripts/png-to-avif.mjs --dir public/images/hero
+  No se encontraron archivos PNG en la ruta indicada.
+$ node scripts/generate-og-jpegs.mjs
+[generate-og-jpegs] 0 converted, 162 up-to-date.
+[check:images] Directory /home/carlos/VS_Code_Projects/products/monedario/src/assets/images/blog not found, skipping asset budget scan.
+[check:images] ✅ All blog images pass format and size constraints. assets=0 inline=1
+$ node scripts/check-hero-images.mjs
+[check-hero-images] Checked published articles: 54
+[check-hero-images] Path mode: legacy-compatible
+[check-hero-images] OK
+$ node scripts/check-frontmatter.mjs
+[check-frontmatter] Scanned 54 articles.
+[check-frontmatter] Deprecation counters:
+- pubDatetime: 0
+- modDatetime: 0
+- canonicalURL: 0
+- ogImage: 0
+[check-frontmatter] Transition defaults:
+- slug_missing: 0
+- category_missing: 0
+[check-frontmatter] Quality warnings (Level 2):
+- title_range: 0
+- description_range: 0
+[check-frontmatter] OK (no blocking errors).
+$ node scripts/check-legal-citations.mjs
+[check-legal-citations] OK. laws=23 blog=54 pages=63 registry=21
+16:14:36 [content] Syncing content
+16:14:36 [content] Synced content
+16:14:36 [types] Generated 800ms
+16:14:36 [check] Getting diagnostics for Astro files in /home/carlos/VS_Code_Projects/products/monedario...
+Result (611 files): 
+- 0 errors
+- 0 warnings
+- 0 hints
+
+16:15:05 [vite] Re-optimizing dependencies because vite config has changed
+16:15:06 [content] Syncing content
+16:15:06 [content] Synced content
+16:15:06 [types] Generated 897ms
+16:15:06 [build] output: "static"
+16:15:06 [build] mode: "static"
+16:15:06 [build] directory: /home/carlos/VS_Code_Projects/products/monedario/dist/
+16:15:06 [build] Collecting build info...
+16:15:06 [build] ✓ Completed in 989ms.
+16:15:06 [build] Building static entrypoints...
+16:15:08 [vite] ✓ built in 1.98s
+16:15:08 [vite] ✓ built in 223ms
+16:15:08 [build] Rearranging server assets...
+
+ generating static routes 
+16:15:09   ├─ /404.html (+38ms) 
+16:15:09   ├─ /accessibilidad/index.html (+6ms) 
+16:15:09   ├─ /acerca-de/index.html (+8ms) 
+16:15:09   ├─ /api/indicadores-hoy.json (+10ms) 
+16:15:09   ├─ /api/uf-historico-lookup.json (+17ms) 
+16:15:09   ├─ /apoyar/index.html (+6ms) 
+16:15:09   ├─ /archives/index.html (+23ms) 
+16:15:09   ├─ /autor/index.html (+8ms) 
+16:15:09   ├─ /buscar/index.html (+6ms) 
+16:15:09   ├─ /calculadoras/actualizador-inflacion/index.html (+12ms) 
+16:15:09   ├─ /calculadoras/apv/index.html (+13ms) 
+16:15:09   ├─ /calculadoras/boleta-honorarios-liquido/index.html (+6ms) 
+16:15:09   ├─ /calculadoras/comisiones-afp/index.html (+5ms) 
+16:15:09   ├─ /calculadoras/conversor-uf/index.html (+10ms) 
+16:15:09   ├─ /calculadoras/conversor-utm/index.html (+9ms) 
+16:15:09   ├─ /calculadoras/credito-consumo/index.html (+9ms) 
+16:15:09   ├─ /calculadoras/deposito-a-plazo/index.html (+7ms) 
+16:15:09   ├─ /calculadoras/dividendo-hipotecario/index.html (+9ms) 
+16:15:09   ├─ /calculadoras/finiquito-indemnizacion/index.html (+7ms) 
+16:15:09   ├─ /calculadoras/gratificacion-legal/index.html (+7ms) 
+16:15:09   ├─ /calculadoras/impuesto-segunda-categoria/index.html (+5ms) 
+16:15:09   ├─ /calculadoras/interes-compuesto/index.html (+4ms) 
+16:15:09   ├─ /calculadoras/iva/index.html (+7ms) 
+16:15:09   ├─ /calculadoras/operacion-renta/index.html (+7ms) 
+16:15:09   ├─ /calculadoras/prepago-credito/index.html (+5ms) 
+16:15:09   ├─ /calculadoras/reajuste-arriendo/index.html (+6ms) 
+16:15:09   ├─ /calculadoras/seguro-cesantia/index.html (+5ms) 
+16:15:09   ├─ /calculadoras/simulador-jubilacion/index.html (+1.19s) 
+16:15:10   ├─ /calculadoras/simulador-renegociacion/index.html (+5ms) 
+16:15:10   ├─ /calculadoras/sueldo-liquido/index.html (+10ms) 
+16:15:10   ├─ /calculadoras/tarjeta-credito/index.html (+4ms) 
+16:15:10   ├─ /calculadoras/index.html (+6ms) 
+16:15:10   ├─ /calendario/index.html (+5ms) 
+16:15:10   ├─ /como-usamos-los-datos/index.html (+4ms) 
+16:15:10   ├─ /cookies/index.html (+3ms) 
+16:15:10   ├─ /glosario/afc/index.html (+8ms) 
+16:15:10   ├─ /glosario/afp/index.html (+2ms) 
+16:15:10   ├─ /glosario/apv/index.html (+1ms) 
+16:15:10   ├─ /glosario/boleta-honorarios/index.html (+2ms) 
+16:15:10   ├─ /glosario/cae/index.html (+1ms) 
+16:15:10   ├─ /glosario/caec/index.html (+2ms) 
+16:15:10   ├─ /glosario/cic/index.html (+3ms) 
+16:15:10   ├─ /glosario/clave-unica/index.html (+4ms) 
+16:15:10   ├─ /glosario/cmf/index.html (+3ms) 
+16:15:10   ├─ /glosario/copago/index.html (+2ms) 
+16:15:10   ├─ /glosario/corredor-bolsa/index.html (+1ms) 
+16:15:10   ├─ /glosario/credito-aval-estado/index.html (+4ms) 
+16:15:10   ├─ /glosario/credito-hipotecario/index.html (+2ms) 
+16:15:10   ├─ /glosario/ctc/index.html (+2ms) 
+16:15:10   ├─ /glosario/cuenta-2/index.html (+3ms) 
+16:15:10   ├─ /glosario/cuenta-rut/index.html (+1ms) 
+16:15:10   ├─ /glosario/custodia/index.html (+1ms) 
+16:15:10   ├─ /glosario/dicom/index.html (+2ms) 
+16:15:10   ├─ /glosario/dividendo-hipotecario/index.html (+2ms) 
+16:15:10   ├─ /glosario/etf/index.html (+2ms) 
+16:15:10   ├─ /glosario/finiquito/index.html (+1ms) 
+16:15:10   ├─ /glosario/fonasa/index.html (+1ms) 
+16:15:10   ├─ /glosario/fondo-emergencia/index.html (+1ms) 
+16:15:10   ├─ /glosario/fondo-mutuo/index.html (+1ms) 
+16:15:10   ├─ /glosario/fondo-solidario/index.html (+2ms) 
+16:15:10   ├─ /glosario/ges/index.html (+1ms) 
+16:15:10   ├─ /glosario/global-complementario/index.html (+1ms) 
+16:15:10   ├─ /glosario/gratificacion/index.html (+1ms) 
+16:15:10   ├─ /glosario/impuesto-unico/index.html (+1ms) 
+16:15:10   ├─ /glosario/indemnizacion/index.html (+1ms) 
+16:15:10   ├─ /glosario/inflacion/index.html (+2ms) 
+16:15:10   ├─ /glosario/ipc/index.html (+3ms) 
+16:15:10   ├─ /glosario/isapre/index.html (+2ms) 
+16:15:10   ├─ /glosario/iva/index.html (+2ms) 
+16:15:10   ├─ /glosario/liquidez/index.html (+2ms) 
+16:15:10   ├─ /glosario/lpc/index.html (+2ms) 
+16:15:10   ├─ /glosario/multifondo/index.html (+2ms) 
+16:15:10   ├─ /glosario/operacion-renta/index.html (+3ms) 
+16:15:10   ├─ /glosario/renta-imponible/index.html (+3ms) 
+16:15:10   ├─ /glosario/renta-variable/index.html (+2ms) 
+16:15:10   ├─ /glosario/rescate/index.html (+2ms) 
+16:15:10   ├─ /glosario/sbif/index.html (+2ms) 
+16:15:10   ├─ /glosario/seguro-cesantia/index.html (+2ms) 
+16:15:10   ├─ /glosario/sernac/index.html (+1ms) 
+16:15:10   ├─ /glosario/sii/index.html (+1ms) 
+16:15:10   ├─ /glosario/spread/index.html (+1ms) 
+16:15:10   ├─ /glosario/sueldo-bruto/index.html (+1ms) 
+16:15:10   ├─ /glosario/tmc/index.html (+1ms) 
+16:15:10   ├─ /glosario/tope-imponible/index.html (+2ms) 
+16:15:10   ├─ /glosario/tpm/index.html (+2ms) 
+16:15:10   ├─ /glosario/uf/index.html (+4ms) 
+16:15:10   ├─ /glosario/uta/index.html (+3ms) 
+16:15:10   ├─ /glosario/utm/index.html (+3ms) 
+16:15:10   ├─ /glosario/volatilidad/index.html (+2ms) 
+16:15:10   ├─ /glosario/index.html (+6ms) 
+16:15:10   ├─ /guias/ahorro-e-inversion/index.html (+6ms) 
+16:15:10   ├─ /guias/bancos-fintech/index.html (+9ms) 
+16:15:10   ├─ /guias/deuda-credito/index.html (+11ms) 
+16:15:10   ├─ /guias/empleo-ingresos/licencia-medica-wizard/index.html (+8ms) 
+16:15:10   ├─ /guias/empleo-ingresos/index.html (+5ms) 
+16:15:10   ├─ /guias/finanzas-migrantes/index.html (+4ms) 
+16:15:10   ├─ /guias/impuestos-personas/operacion-renta/index.html (+3ms) 
+16:15:10   ├─ /guias/impuestos-personas/index.html (+3ms) 
+16:15:10   ├─ /guias/pensiones-afp/index.html (+9ms) 
+16:15:10   ├─ /guias/presupuesto-control-financiero/index.html (+4ms) 
+16:15:10   ├─ /guias/seguridad-financiera/fraude-cargo-no-reconocido/index.html (+4ms) 
+16:15:10   ├─ /guias/seguridad-financiera/index.html (+7ms) 
+16:15:10   ├─ /guias/sueldo-remuneraciones/index.html (+4ms) 
+16:15:10   ├─ /guias/uf-costo-de-vida/indicadores-economicos/index.html (+4ms) 
+16:15:10   ├─ /guias/uf-costo-de-vida/index.html (+4ms) 
+16:15:10   ├─ /guias/index.html (+3ms) 
+16:15:10   ├─ /leyes/codigo-del-trabajo/index.html (+11ms) 
+16:15:10   ├─ /leyes/dfl-1-1998-impuesto-territorial/index.html (+6ms) 
+16:15:10   ├─ /leyes/dl-3500-sistema-afp/index.html (+5ms) 
+16:15:10   ├─ /leyes/dl-824-impuesto-renta/index.html (+3ms) 
+16:15:10   ├─ /leyes/dl-830-codigo-tributario/index.html (+4ms) 
+16:15:10   ├─ /leyes/ley-18010-credito-dinero/index.html (+5ms) 
+16:15:10   ├─ /leyes/ley-18469-fonasa/index.html (+4ms) 
+16:15:10   ├─ /leyes/ley-18933-isapres/index.html (+5ms) 
+16:15:10   ├─ /leyes/ley-19496-proteccion-consumidor/index.html (+3ms) 
+16:15:10   ├─ /leyes/ley-19628-proteccion-datos/index.html (+3ms) 
+16:15:10   ├─ /leyes/ley-19728-seguro-cesantia/index.html (+2ms) 
+16:15:10   ├─ /leyes/ley-20009-tarjetas-fraude/index.html (+2ms) 
+16:15:10   ├─ /leyes/ley-20027-credito-aval-estado/index.html (+3ms) 
+16:15:10   ├─ /leyes/ley-20555-sernac-financiero/index.html (+2ms) 
+16:15:10   ├─ /leyes/ley-20575-datos-comerciales/index.html (+3ms) 
+16:15:10   ├─ /leyes/ley-21130-modernizacion-bancaria/index.html (+4ms) 
+16:15:10   ├─ /leyes/ley-21133-honorarios-retencion/index.html (+5ms) 
+16:15:10   ├─ /leyes/ley-21236-portabilidad-financiera/index.html (+3ms) 
+16:15:10   ├─ /leyes/ley-21521-fintech/index.html (+2ms) 
+16:15:10   ├─ /leyes/ley-21561-reduccion-jornada/index.html (+3ms) 
+16:15:10   ├─ /leyes/ley-21680-registro-deuda-consolidada/index.html (+5ms) 
+16:15:11   ├─ /leyes/ley-21719-proteccion-datos-modernizacion/index.html (+3ms) 
+16:15:11   ├─ /leyes/proyecto-reforma-previsional-2025/index.html (+2ms) 
+16:15:11   ├─ /leyes/index.html (+3ms) 
+16:15:11   ├─ /llms-full.txt (+10ms) 
+16:15:11   ├─ /llms.txt (+3ms) 
+16:15:11   ├─ /metodologia/index.html (+3ms) 
+16:15:11   ├─ /og-image (+484ms) 
+16:15:11   ├─ /og.jpg (+357ms) 
+16:15:11   ├─ /og.png (+307ms) 
+16:15:12   ├─ /posts/index.html (+11ms) 
+16:15:12   ├─ /posts/2/index.html (+6ms) 
+16:15:12   ├─ /posts/3/index.html (+5ms) 
+16:15:12   ├─ /posts/4/index.html (+6ms) 
+16:15:12   ├─ /posts/5/index.html (+5ms) 
+16:15:12   ├─ /posts/6/index.html (+4ms) 
+16:15:12   ├─ /posts/7/index.html (+5ms) 
+16:15:12   ├─ /posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/index.html (+10ms) 
+16:15:12   ├─ /posts/bancos-y-fintech-chile/index.html (+10ms) 
+16:15:12   ├─ /posts/boleta-honorarios-2026-retencion-cobertura/index.html (+9ms) 
+16:15:12   ├─ /posts/cae-costo-real-credito-chile/index.html (+24ms) 
+16:15:12   ├─ /posts/como-calcular-sueldo-liquido/index.html (+14ms) 
+16:15:12   ├─ /posts/como-cambiarse-de-afp/index.html (+6ms) 
+16:15:12   ├─ /posts/como-elegir-inversion-segun-plazo-riesgo-objetivos/index.html (+11ms) 
+16:15:12   ├─ /posts/como-hacer-presupuesto-mensual-chile/index.html (+11ms) 
+16:15:12   ├─ /posts/como-invertir-en-etfs-desde-chile/index.html (+6ms) 
+16:15:12   ├─ /posts/como-leer-cartola-afp-chile/index.html (+8ms) 
+16:15:12   ├─ /posts/como-salir-boletin-comercial-chile/index.html (+9ms) 
+16:15:12   ├─ /posts/contribuciones-bienes-raices-chile/index.html (+4ms) 
+16:15:12   ├─ /posts/cotizacion-voluntaria-afp-independiente/index.html (+8ms) 
+16:15:12   ├─ /posts/credito-hipotecario-chile-guia-completa/index.html (+8ms) 
+16:15:12   ├─ /posts/cuanto-descuenta-la-afp-de-tu-sueldo/index.html (+5ms) 
+16:15:12   ├─ /posts/deposito-a-plazo-uf-vs-pesos/index.html (+11ms) 
+16:15:12   ├─ /posts/descuentos-de-sueldo/index.html (+8ms) 
+16:15:12   ├─ /posts/devolucion-impuestos-fechas-compensaciones/index.html (+10ms) 
+16:15:12   ├─ /posts/donde-ver-si-estoy-en-dicom-gratis/index.html (+5ms) 
+16:15:12   ├─ /posts/el-poder-del-interes-compuesto/index.html (+11ms) 
+16:15:12   ├─ /posts/estafas-financieras-chile-vishing-smishing-marketplace/index.html (+5ms) 
+16:15:12   ├─ /posts/finanzas-para-migrantes-chile/index.html (+8ms) 
+16:15:12   ├─ /posts/finiquito-e-indemnizaciones-en-chile/index.html (+5ms) 
+16:15:12   ├─ /posts/fonasa-vs-isapre-comparativa/index.html (+8ms) 
+16:15:12   ├─ /posts/fondo-emergencia-chile/index.html (+8ms) 
+16:15:12   ├─ /posts/fondos-afp-a-b-c-d-e/index.html (+6ms) 
+16:15:12   ├─ /posts/fondos-mutuos-comisiones-rescate-impuestos/index.html (+5ms) 
+16:15:12   ├─ /posts/fraude-tarjeta-que-hacer/index.html (+7ms) 
+16:15:12   ├─ /posts/gratificacion-legal-chile/index.html (+5ms) 
+16:15:12   ├─ /posts/impuesto-global-complementario-chile/index.html (+7ms) 
+16:15:12   ├─ /posts/indemnizacion-anos-de-servicio-chile/index.html (+17ms) 
+16:15:12   ├─ /posts/informe-deudas-cmf-vs-dicom/index.html (+8ms) 
+16:15:12   ├─ /posts/interes-compuesto-nota-metodologica/index.html (+8ms) 
+16:15:12   ├─ /posts/licencia-medica-desde-que-dia-pagan/index.html (+7ms) 
+16:15:12   ├─ /posts/liquidacion-de-sueldo/index.html (+6ms) 
+16:15:12   ├─ /posts/operacion-renta-centro/index.html (+7ms) 
+16:15:12   ├─ /posts/operacion-renta-f22-checklist/index.html (+7ms) 
+16:15:12   ├─ /posts/pgu-pension-garantizada-universal/index.html (+9ms) 
+16:15:12   ├─ /posts/prepago-credito-cuando-conviene-chile/index.html (+7ms) 
+16:15:12   ├─ /posts/primer-empleo-chile-guia-completa/index.html (+6ms) 
+16:15:12   ├─ /posts/que-es-el-apv/index.html (+11ms) 
+16:15:12   ├─ /posts/que-es-el-ipc-chile-como-se-calcula/index.html (+7ms) 
+16:15:12   ├─ /posts/que-es-la-cuenta-2-afp/index.html (+5ms) 
+16:15:12   ├─ /posts/que-es-la-uf/index.html (+7ms) 
+16:15:12   ├─ /posts/reajuste-arriendo-uf-ipc-chile/index.html (+5ms) 
+16:15:12   ├─ /posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/index.html (+4ms) 
+16:15:12   ├─ /posts/renegociacion-superir/index.html (+6ms) 
+16:15:12   ├─ /posts/rentas-mixtas-sueldo-honorarios/index.html (+10ms) 
+16:15:12   ├─ /posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/index.html (+10ms) 
+16:15:12   ├─ /posts/seguro-de-cesantia/index.html (+7ms) 
+16:15:12   ├─ /posts/sueldo-imponible-chile/index.html (+8ms) 
+16:15:12   ├─ /posts/suplantacion-identidad-creditos-no-reconocidos/index.html (+5ms) 
+16:15:12   ├─ /posts/tarjeta-credito-costo-real-chile/index.html (+6ms) 
+16:15:12   ├─ /posts/utm-chile-que-es-como-funciona/index.html (+11ms) 
+16:15:12   ├─ /privacidad/index.html (+3ms) 
+16:15:12   ├─ /robots.txt (+2ms) 
+16:15:12   ├─ /rss.xml (+46ms) 
+16:15:12   ├─ /search/index.html (+3ms) 
+16:15:12   ├─ /tags/adultos-mayores/index.html (+3ms) 
+16:15:12   ├─ /tags/afc/index.html (+4ms) 
+16:15:12   ├─ /tags/afiliacion-voluntaria/index.html (+3ms) 
+16:15:12   ├─ /tags/afp/index.html (+6ms) 
+16:15:12   ├─ /tags/afp/2/index.html (+3ms) 
+16:15:12   ├─ /tags/ahorro/index.html (+5ms) 
+16:15:12   ├─ /tags/amortizacion/index.html (+2ms) 
+16:15:12   ├─ /tags/apv/index.html (+3ms) 
+16:15:12   ├─ /tags/arriendo/index.html (+3ms) 
+16:15:12   ├─ /tags/arriendos/index.html (+3ms) 
+16:15:12   ├─ /tags/bancos/index.html (+2ms) 
+16:15:12   ├─ /tags/bienes-raices/index.html (+2ms) 
+16:15:12   ├─ /tags/boletas/index.html (+4ms) 
+16:15:12   ├─ /tags/boletin-comercial/index.html (+3ms) 
+16:15:12   ├─ /tags/bolsa/index.html (+2ms) 
+16:15:12   ├─ /tags/cae/index.html (+1ms) 
+16:15:12   ├─ /tags/cambio-afp/index.html (+1ms) 
+16:15:12   ├─ /tags/cartola/index.html (+2ms) 
+16:15:12   ├─ /tags/cesantia/index.html (+5ms) 
+16:15:12   ├─ /tags/chile/index.html (+3ms) 
+16:15:12   ├─ /tags/cmf/index.html (+2ms) 
+16:15:12   ├─ /tags/cobertura/index.html (+2ms) 
+16:15:12   ├─ /tags/codigo-del-trabajo/index.html (+2ms) 
+16:15:12   ├─ /tags/comisiones/index.html (+3ms) 
+16:15:12   ├─ /tags/consumo/index.html (+5ms) 
+16:15:12   ├─ /tags/contrato/index.html (+3ms) 
+16:15:12   ├─ /tags/contribuciones/index.html (+2ms) 
+16:15:12   ├─ /tags/control-financiero/index.html (+1ms) 
+16:15:12   ├─ /tags/corredoras/index.html (+1ms) 
+16:15:12   ├─ /tags/costo-de-vida/index.html (+2ms) 
+16:15:12   ├─ /tags/cotizaciones/index.html (+2ms) 
+16:15:12   ├─ /tags/credito/index.html (+3ms) 
+16:15:12   ├─ /tags/credito-hipotecario/index.html (+2ms) 
+16:15:12   ├─ /tags/creditos/index.html (+1ms) 
+16:15:12   ├─ /tags/cuenta-2/index.html (+2ms) 
+16:15:12   ├─ /tags/cuenta-vista/index.html (+2ms) 
+16:15:12   ├─ /tags/cuentarut/index.html (+2ms) 
+16:15:12   ├─ /tags/declaracion-renta/index.html (+2ms) 
+16:15:12   ├─ /tags/deposito-a-plazo/index.html (+4ms) 
+16:15:12   ├─ /tags/derechos/index.html (+4ms) 
+16:15:12   ├─ /tags/descuentos/index.html (+8ms) 
+16:15:12   ├─ /tags/desempleo/index.html (+7ms) 
+16:15:12   ├─ /tags/despido/index.html (+4ms) 
+16:15:12   ├─ /tags/deuda/index.html (+6ms) 
+16:15:12   ├─ /tags/deudas/index.html (+7ms) 
+16:15:12   ├─ /tags/devolucion/index.html (+5ms) 
+16:15:12   ├─ /tags/dicom/index.html (+6ms) 
+16:15:12   ├─ /tags/dividendo/index.html (+7ms) 
+16:15:12   ├─ /tags/educacion-financiera/index.html (+4ms) 
+16:15:12   ├─ /tags/empleador/index.html (+2ms) 
+16:15:12   ├─ /tags/empleo/index.html (+3ms) 
+16:15:12   ├─ /tags/empleo-ingresos/index.html (+4ms) 
+16:15:12   ├─ /tags/etf/index.html (+2ms) 
+16:15:12   ├─ /tags/f22/index.html (+3ms) 
+16:15:12   ├─ /tags/finanzas-personales/index.html (+3ms) 
+16:15:12   ├─ /tags/finiquito/index.html (+3ms) 
+16:15:12   ├─ /tags/fintech/index.html (+5ms) 
+16:15:12   ├─ /tags/fonasa/index.html (+3ms) 
+16:15:12   ├─ /tags/fondo-emergencia/index.html (+10ms) 
+16:15:12   ├─ /tags/fondos/index.html (+3ms) 
+16:15:12   ├─ /tags/fondos-generacionales/index.html (+4ms) 
+16:15:12   ├─ /tags/fondos-mutuos/index.html (+3ms) 
+16:15:12   ├─ /tags/fraude/index.html (+2ms) 
+16:15:12   ├─ /tags/freelance/index.html (+2ms) 
+16:15:12   ├─ /tags/gasto-hormiga/index.html (+3ms) 
+16:15:12   ├─ /tags/gratificacion/index.html (+3ms) 
+16:15:12   ├─ /tags/historial-crediticio/index.html (+3ms) 
+16:15:12   ├─ /tags/honorarios/index.html (+3ms) 
+16:15:12   ├─ /tags/igc/index.html (+2ms) 
+16:15:12   ├─ /tags/impuesto-global-complementario/index.html (+3ms) 
+16:15:12   ├─ /tags/impuesto-segunda-categoria/index.html (+4ms) 
+16:15:12   ├─ /tags/impuesto-territorial/index.html (+2ms) 
+16:15:12   ├─ /tags/impuestos/index.html (+5ms) 
+16:15:12   ├─ /tags/impuestos/2/index.html (+3ms) 
+16:15:12   ├─ /tags/indemnizacion/index.html (+3ms) 
+16:15:12   ├─ /tags/independientes/index.html (+2ms) 
+16:15:12   ├─ /tags/inflacion/index.html (+3ms) 
+16:15:12   ├─ /tags/interes/index.html (+3ms) 
+16:15:12   ├─ /tags/interes-compuesto/index.html (+2ms) 
+16:15:12   ├─ /tags/inversion/index.html (+2ms) 
+16:15:12   ├─ /tags/inversiones/index.html (+5ms) 
+16:15:12   ├─ /tags/ipc/index.html (+4ms) 
+16:15:12   ├─ /tags/ips/index.html (+2ms) 
+16:15:12   ├─ /tags/isapre/index.html (+2ms) 
+16:15:12   ├─ /tags/jubilacion/index.html (+2ms) 
+16:15:12   ├─ /tags/ley-20009/index.html (+2ms) 
+16:15:12   ├─ /tags/licencia-medica/index.html (+3ms) 
+16:15:12   ├─ /tags/liquidacion/index.html (+6ms) 
+16:15:13   ├─ /tags/liquidez/index.html (+2ms) 
+16:15:13   ├─ /tags/migrantes/index.html (+2ms) 
+16:15:13   ├─ /tags/nasdaq-100/index.html (+2ms) 
+16:15:13   ├─ /tags/operacion-renta/index.html (+3ms) 
+16:15:13   ├─ /tags/pension/index.html (+2ms) 
+16:15:13   ├─ /tags/pensiones/index.html (+3ms) 
+16:15:13   ├─ /tags/pgu/index.html (+2ms) 
+16:15:13   ├─ /tags/plazo/index.html (+2ms) 
+16:15:13   ├─ /tags/portabilidad/index.html (+3ms) 
+16:15:13   ├─ /tags/prepago/index.html (+4ms) 
+16:15:13   ├─ /tags/presupuesto/index.html (+3ms) 
+16:15:13   ├─ /tags/prevision/index.html (+2ms) 
+16:15:13   ├─ /tags/previsión/index.html (+2ms) 
+16:15:13   ├─ /tags/primer-empleo/index.html (+1ms) 
+16:15:13   ├─ /tags/primera-vivienda/index.html (+2ms) 
+16:15:13   ├─ /tags/proteccion-social/index.html (+5ms) 
+16:15:13   ├─ /tags/reforma-pensiones/index.html (+6ms) 
+16:15:13   ├─ /tags/reforma-previsional/index.html (+3ms) 
+16:15:13   ├─ /tags/remuneraciones/index.html (+3ms) 
+16:15:13   ├─ /tags/renegociacion/index.html (+3ms) 
+16:15:13   ├─ /tags/renta/index.html (+3ms) 
+16:15:13   ├─ /tags/rentas-mixtas/index.html (+4ms) 
+16:15:13   ├─ /tags/retencion/index.html (+3ms) 
+16:15:13   ├─ /tags/riesgo/index.html (+2ms) 
+16:15:13   ├─ /tags/rut/index.html (+2ms) 
+16:15:13   ├─ /tags/salud/index.html (+4ms) 
+16:15:13   ├─ /tags/seguridad-financiera/index.html (+6ms) 
+16:15:13   ├─ /tags/seguridad-social/index.html (+4ms) 
+16:15:13   ├─ /tags/sii/index.html (+3ms) 
+16:15:13   ├─ /tags/sis/index.html (+2ms) 
+16:15:13   ├─ /tags/smishing/index.html (+3ms) 
+16:15:13   ├─ /tags/sobreendeudamiento/index.html (+2ms) 
+16:15:13   ├─ /tags/subsidio/index.html (+1ms) 
+16:15:13   ├─ /tags/sueldo/index.html (+10ms) 
+16:15:13   ├─ /tags/sueldo-imponible/index.html (+3ms) 
+16:15:13   ├─ /tags/superir/index.html (+3ms) 
+16:15:13   ├─ /tags/suplantacion/index.html (+7ms) 
+16:15:13   ├─ /tags/suseso/index.html (+4ms) 
+16:15:13   ├─ /tags/tarjeta-credito/index.html (+4ms) 
+16:15:13   ├─ /tags/tarjetas/index.html (+4ms) 
+16:15:13   ├─ /tags/tgr/index.html (+5ms) 
+16:15:13   ├─ /tags/tmc/index.html (+5ms) 
+16:15:13   ├─ /tags/trabajo/index.html (+5ms) 
+16:15:13   ├─ /tags/uf/index.html (+9ms) 
+16:15:13   ├─ /tags/uta/index.html (+5ms) 
+16:15:13   ├─ /tags/utm/index.html (+6ms) 
+16:15:13   ├─ /tags/vishing/index.html (+5ms) 
+16:15:13   ├─ /tags/vivienda/index.html (+3ms) 
+16:15:13   ├─ /tags/index.html (+11ms) 
+16:15:13   ├─ /terminos/index.html (+6ms) 
+16:15:13   ├─ /uf-hoy/index.html (+12ms) 
+16:15:13   ├─ /index.html (+10ms) 
+16:15:13 ✓ Completed in 4.29s.
+
+16:15:13 [build] ✓ Completed in 6.57s.
+16:15:13 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+16:15:14 [inline-link-spacing] inline-link-spacing: normalized 187 static HTML page(s)
+16:15:14 [csp-hashes] csp-hashes: injected 19 sha256 hash(es) into script-src
+16:15:14 [sw-version] sw-version: cache stamped with version "mun239yu"
+16:15:14 [build] 332 page(s) built in 8.72s
+16:15:14 [build] Complete!
+$ node scripts/check-indexable-url-freeze.mjs
+[indexable-url-freeze] PASS approved=184 generated=185 approved_additions=1
+$ node scripts/check-toc-i18n.mjs
+[check-toc-i18n] OK: TOC i18n is consistent in source and build output.
+$ node scripts/check-editorial-guard.mjs
+[check-editorial-guard] OK: 54 blog files, 23 calculator files, and 40 page files validated.
+
+Running Pagefind v1.5.2 (Extended)
+Running from: "/home/carlos/VS_Code_Projects/products/monedario"
+Source:       "dist"
+Output:       "dist/pagefind"
+
+[Walking source directory]
+Found 332 files matching **/*.{html}
+
+[Parsing files]
+Found a data-pagefind-body element on the site.
+↳ Ignoring pages without this tag.
+
+[Reading languages]
+Discovered 1 language: es
+
+[Building search indexes]
+Total: 
+  Indexed 1 language
+  Indexed 53 pages
+  Indexed 4468 words
+  Indexed 0 filters
+  Indexed 0 sorts
+
+Finished in 0.170 seconds
+$ node scripts/check-urls.mjs
+URL CHECK REPORT
+mode: local
+scanned_links: 7254
+
+internal_broken:
+  none: 0
+
+external_failures:
+  none: 0
+
+top_external_hosts_by_failures:
+  none: 0
+
+retries:
+  total_retries: 0
+  by_host:
+    none: 0
+[check-urls] artifacts: output/validation/urlcheck/internal-broken.json, output/validation/urlcheck/internal-broken.csv, output/validation/urlcheck/urlcheck-report.json
+[check-urls] baseline_policy.max_internal_broken_total=0
+[check-urls] OK. scanned=7254 internal_broken=0 external_failures=0
+[check-postbuild] OK. 23 checks passed over 332 HTML pages.

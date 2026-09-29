@@ -1,0 +1,16 @@
+== R7 ENTORNO DE AUDITORÍA ==
+fecha_utc: 2026-09-29T19:03:59Z
+commit: d1b1237444bb234535f6b140ac4fe76ab10ed4c3
+git describe: d1b12374 docs(auditoría): fijar prompt exacto del auditor (incluye instrucción de cierre) (#586)
+node: v24.19.0
+pnpm: 11.7.0
+os: Linux 7.0.0-34-generic x86_64
+scope_commits:
+  beb0401e fix(operacion-renta): congelar AT2026 y base de renta neta (plan 115 F01/F02) (#556)
+  95c82807 fix(dap): eliminar retención inexistente y explicar la tributación anual (plan 115 F03) (#557)
+  854105cc feat(tributación): registry effective-dated y ADR (plan 115 paso 3) (#559)
+  ae28d6d3 fix(inflación): freshness fail-closed y refresco IPC por serie (plan 115 F04) (#560)
+  a616dc53 fix(superir,dicom,apv): correcciones legales con fuente primaria (plan 115 F05/F06/F07) (#561)
+  61b8a0ae fix(paridad): ejemplo de sueldo desde el motor y etiquetas legales (plan 115 F08/F09/F10) (#562)
+  48b84eba fix(copy): espacio entre negritas y texto adyacente en APV y DAP (plan 115) (#564)
+  186cdc13 feat(economic): desbloquear serie IPC 2026 con fuente oficial BCCh/INE (plan 115 F04) (#573)

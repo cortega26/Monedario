@@ -53,7 +53,7 @@ const apvFaqs = [
   {
     question: "¿Puedo retirar mi APV antes de jubilar?",
     answer:
-      "Sí, pero un retiro anticipado tiene costo tributario. En Régimen A debes devolver la bonificación estatal. En Régimen B, el retiro no destinado a pensión paga un impuesto único cuya tasa es tu tasa marginal del retiro multiplicada por 1,1 y aumentada en 3 puntos porcentuales (art. 42 bis N°3 LIR); la AFP retiene 15% como abono a ese impuesto. Quienes ya son pensionados o cumplen los requisitos de edad y pensión del DL 3.500 no pagan esos recargos.",
+      "Sí, pero un retiro anticipado tiene costo tributario. En Régimen A debes devolver la bonificación estatal. En Régimen B, el retiro no destinado a pensión paga un impuesto único cuya tasa es la del retiro (el IGC que genera el retiro dividido por su monto reajustado) multiplicada por 1,1 y aumentada en 3 puntos porcentuales (art. 42 bis N°3 LIR); la AFP retiene 15% como abono a ese impuesto. Quienes ya son pensionados o cumplen los requisitos de edad y pensión del DL 3.500 no pagan esos recargos.",
   },
   {
     question: "¿Cuánto es el monto máximo de APV que puedo aportar al año?",
@@ -400,7 +400,7 @@ const calculatorNextStepItems = [
           {
             aspecto: "Retiro anticipado",
             a: "Debes devolver el bono recibido",
-            b: "Impuesto único: tasa marginal × 1,1 + 3 pp (AFP retiene 15% como abono)",
+            b: "Impuesto único: tasa media del retiro × 1,1 + 3 pp (AFP retiene 15% como abono)",
           },
         ]}
         nota="Valores de referencia calculados con parámetros económicos vigentes. Para casos individuales, revisa la guía completa de APV."
@@ -439,7 +439,7 @@ const calculatorNextStepItems = [
         Si retiras antes de jubilar, en Régimen A devuelves el bono. En Régimen
         B, el retiro no destinado a pensión paga un <strong
           >impuesto único</strong
-        >: su tasa es tu tasa marginal del retiro <strong
+        >: su tasa es la tasa media del retiro (ΔIGC ÷ monto retirado) <strong
           >multiplicada por 1,1</strong
         >{" "}
         y <strong>aumentada en 3 puntos porcentuales</strong> (art. 42 bis N°3 LIR).
@@ -572,7 +572,7 @@ const calculatorNextStepItems = [
         retirado no destinado a pensión paga un <strong>impuesto único</strong>{
           " "
         }
-        cuya tasa es tu tasa marginal del retiro <strong
+        cuya tasa es la tasa media del retiro (ΔIGC ÷ monto retirado) <strong
           >multiplicada por 1,1</strong
         >{" "}
         más <strong>3 puntos porcentuales</strong> (art. 42 bis N°3 LIR); la AFP retiene

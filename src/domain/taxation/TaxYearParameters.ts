@@ -31,7 +31,8 @@ export interface TaxYearParameters {
  * - Tabla IGC AT2026: factor 4% y rebaja $450.632,16 para el segundo tramo
  *   (0,54 UTA × $834.504).
  * - UTA diciembre 2025: $834.504 (SII).
- * - UF diciembre 2025: $39.643,59 (Banco Central de Chile).
+ * - UF diciembre 2025: $39.727,96 (UF del 31-12-2025, Banco Central de Chile;
+ *   art. 42 bis LIR valora los topes en UF "al 31 de diciembre").
  * - Retención de boletas de honorarios emitidas en 2025: 14,5% (Ley 21.133,
  *   gradual).
  */
@@ -40,10 +41,10 @@ export const AT2026: TaxYearParameters = {
   commercialYear: 2025,
   filingYear: 2026,
   uta: 834_504,
-  ufDecember: 39_643.59,
+  ufDecember: 39_727.96,
   honorariosPpmRate: 0.145,
   source:
-    "SII — tabla IGC AT2026 (rebaja $450.632,16) y UTA dic-2025 $834.504; BCCh — UF dic-2025 $39.643,59; Ley 21.133 — retención honorarios 14,5% para boletas 2025.",
+    "SII — tabla IGC AT2026 (rebaja $450.632,16) y UTA dic-2025 $834.504; BCCh — UF 31-12-2025 $39.727,96 (art. 42 bis); Ley 21.133 — retención honorarios 14,5% para boletas 2025.",
 };
 
 /** Rebaja del segundo tramo del IGC publicada por el SII para el AT dado. */

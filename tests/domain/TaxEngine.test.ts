@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   calculateAnnualIncomeTax,
+  calculateApvWithdrawalRate,
   calculateSecondCategoryTax,
 } from "@/domain/taxation/TaxEngine";
 import { secondCategoryTaxWorkedExample } from "@/domain/taxation/calculateSecondCategoryTax.methodology";
@@ -36,14 +37,50 @@ describe("TaxEngine.calculateSecondCategoryTax", () => {
     expect(result.marginalRate).toBe(0.04);
   });
 
-  it("transitions to the top bracket for extreme income", () => {
+  it("aplica 35% hasta 310 UTM (tabla general, no art. 52 bis)", () => {
     const result = calculateSecondCategoryTax({
       taxableIncome: 180 * UTM,
       utm: UTM,
     });
-    // d8 = 30.82 × UTM = 2,074,001.08 → tax = 180×UTM×0.4 − d8 = 2,771,166.92
-    expect(result.taxAmount).toBeCloseTo(2771166.92, 2);
+    // 180×0.35 − 23.32 = 39.68 UTM
+    expect(result.taxAmount).toBeCloseTo(39.68 * UTM, 2);
+    expect(result.marginalRate).toBe(0.35);
+  });
+
+  it("transiciona al 40% sobre 310 UTM con rebaja 38,82 UTM", () => {
+    const result = calculateSecondCategoryTax({
+      taxableIncome: 320 * UTM,
+      utm: UTM,
+    });
+    // 320×0.4 − 38.82 = 89.18 UTM
+    expect(result.taxAmount).toBeCloseTo(89.18 * UTM, 2);
     expect(result.marginalRate).toBe(0.4);
+  });
+
+  it("APV: retiro que cruza tramos usa la tasa media (ΔIGC/retiro), no la marginal", () => {
+    const uta = 834_504;
+    const { rate, igcDelta } = calculateApvWithdrawalRate({
+      baseIncome: 90 * uta,
+      withdrawal: 50 * uta,
+      uta,
+    });
+    expect(igcDelta).toBeGreaterThan(0);
+    // Marginal del tramo alcanzado (35%) sería 0.35×1.1+0.03 = 0.415; al
+    // cruzar desde 30,4% la tasa media es menor.
+    expect(rate).toBeLessThan(0.35 * 1.1 + 0.03);
+    // ΔIGC = IGC(140 UTA) − IGC(90 UTA) = 25.68 − 9.56 = 16.12 UTA
+    expect(igcDelta).toBeCloseTo(16.12 * uta, 2);
+    expect(rate).toBeCloseTo((16.12 / 50) * 1.1 + 0.03, 9);
+  });
+
+  it("APV: retiro dentro de un tramo equivale a la tasa marginal × 1,1 + 3 pp", () => {
+    const uta = 834_504;
+    const { rate } = calculateApvWithdrawalRate({
+      baseIncome: 200 * uta,
+      withdrawal: 10 * uta,
+      uta,
+    });
+    expect(rate).toBeCloseTo(0.35 * 1.1 + 0.03, 9);
   });
 
   it("produces continuous tax at the bracket 2/3 boundary (30 UTM)", () => {

@@ -66,13 +66,14 @@ export function findAuditArtifactIssues(audit) {
     if (!Array.isArray(audit.claims) || audit.claims.length === 0) {
       issues.push(`verdict ${audit.verdict} sin claims verificados`);
     }
-    if (audit.verdict !== "PASS" && Array.isArray(audit.defects)) {
-      const open = audit.defects.filter(
-        defect => isObject(defect) && defect.status === "open"
-      );
-      if (open.length === 0) {
-        issues.push(`verdict ${audit.verdict} sin defectos abiertos`);
-      }
+    // FAIL/CONDITIONAL deben declarar los defectos que los motivan. Tras la
+    // remediación pueden quedar todos en `resolved` (el veredicto cambia con
+    // la re-auditoría, no editando este artefacto).
+    if (
+      audit.verdict !== "PASS" &&
+      (!Array.isArray(audit.defects) || audit.defects.length === 0)
+    ) {
+      issues.push(`verdict ${audit.verdict} sin defectos declarados`);
     }
   }
 

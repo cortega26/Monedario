@@ -1,0 +1,142 @@
+
+ RUN  v4.1.11 /home/carlos/VS_Code_Projects/products/monedario
+
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > uf-historico.json > tiene metadatos requeridos 4ms
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > uf-historico.json > tiene al menos 9000 entradas 1ms
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > uf-historico.json > todas las fechas son ISO YYYY-MM-DD válidas 215ms
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > uf-historico.json > todos los valores son números finitos (IPC puede ser negativo) 177ms
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > uf-historico.json > fechas están en orden ascendente sin duplicados 236ms
+ ✓ tests/utils/economicFreshness.test.ts > evaluateIpcSeriesFreshness > declara stale cuando la serie no alcanza el período publicado 4ms
+ ✓ tests/utils/economicFreshness.test.ts > evaluateIpcSeriesFreshness > declara fresh cuando la serie alcanza el período publicado 0ms
+ ✓ tests/utils/economicFreshness.test.ts > evaluateIpcSeriesFreshness > declara unknown sin período de referencia 0ms
+ ✓ tests/utils/economicFreshness.test.ts > evaluateCriticalMonthlyFreshness > accepts the current reference month 18ms
+ ✓ tests/utils/economicFreshness.test.ts > evaluateCriticalMonthlyFreshness > allows only seven days of month-boundary grace (Chilean calendar) 2ms
+ ✓ tests/utils/economicFreshness.test.ts > evaluateCriticalMonthlyFreshness > does not declare stale up to 4h before the grace expires in Chile (month boundary) 1ms
+ ✓ tests/utils/economicFreshness.test.ts > evaluateCriticalMonthlyFreshness > keeps the same verdict for non-boundary instants (regression) 0ms
+ ✓ tests/utils/economicFreshness.test.ts > evaluateCriticalMonthlyFreshness > rejects invalid and future dates 0ms
+ ✓ tests/utils/economicFreshness.test.ts > evaluateCriticalMonthlyFreshness > marks 2-month-old indicators as stale even inside the grace week 0ms
+ ✓ tests/utils/economicFreshness.test.ts > evaluateCriticalMonthlyFreshness > marks 3-month-old indicators as stale even inside the grace week 0ms
+ ✓ tests/utils/economicFreshness.test.ts > evaluateCriticalMonthlyFreshness > grants grace only to the previous month on day <= 7 1ms
+ ✓ tests/utils/economicFreshness.test.ts > evaluateCriticalMonthlyFreshness > marks the previous month as stale from day 8 onward 0ms
+ ✓ tests/utils/economicFreshness.test.ts > evaluateCriticalMonthlyFreshness > handles the January to previous-December boundary 1ms
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > uf-historico.json > cubre desde el año 2000 o antes 0ms
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > uf-historico.json > desdeFecha y hastaFecha coinciden con la serie 0ms
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > utm-historico.json > tiene metadatos requeridos 0ms
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > utm-historico.json > tiene al menos 300 entradas 4ms
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > utm-historico.json > todas las fechas son ISO YYYY-MM-DD válidas 18ms
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > utm-historico.json > todos los valores son números finitos (IPC puede ser negativo) 4ms
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > utm-historico.json > fechas están en orden ascendente sin duplicados 4ms
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > utm-historico.json > cubre desde el año 2000 o antes 0ms
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > utm-historico.json > desdeFecha y hastaFecha coinciden con la serie 0ms
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > ipc-historico.json > tiene metadatos requeridos 0ms
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > ipc-historico.json > tiene al menos 290 entradas 0ms
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > ipc-historico.json > todas las fechas son ISO YYYY-MM-DD válidas 3ms
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > ipc-historico.json > todos los valores son números finitos (IPC puede ser negativo) 4ms
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > ipc-historico.json > fechas están en orden ascendente sin duplicados 2ms
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > ipc-historico.json > cubre desde el año 2000 o antes 0ms
+ ✓ tests/data/economic-history.test.ts > economic-history datasets > ipc-historico.json > desdeFecha y hastaFecha coinciden con la serie 0ms
+ ✓ tests/scripts/economic-history-ipc.test.ts > parseBcchIpcObservations > convierte DD-MM-YYYY a ISO y redondea a 1 decimal 15ms
+ ✓ tests/scripts/economic-history-ipc.test.ts > parseBcchIpcObservations > ignora observaciones no-OK o malformadas 1ms
+ ✓ tests/scripts/economic-history-ipc.test.ts > parseBcchIpcObservations > deduplica por fecha quedándose con el último valor 1ms
+ ✓ tests/scripts/economic-history-ipc.test.ts > extendSeriesByDate > agrega solo los meses faltantes y ordena 1ms
+ ✓ tests/scripts/economic-history-ipc.test.ts > extendSeriesByDate > no muta la serie base 1ms
+ ✓ tests/domain/TaxYearParameters.test.ts > TaxYearParameters.AT2026 > congela los años comercial, tributario y de presentación 3ms
+ ✓ tests/domain/TaxYearParameters.test.ts > TaxYearParameters.AT2026 > usa la UTA de cierre dic-2025 y la UF de diciembre 0ms
+ ✓ tests/domain/TaxYearParameters.test.ts > TaxYearParameters.AT2026 > reproduce la rebaja SII del segundo tramo ($450.632,16) 0ms
+ ✓ tests/domain/TaxYearParameters.test.ts > TaxYearParameters.AT2026 > fija la retención de honorarios de boletas 2025 en 14,5% 1ms
+ ✓ tests/domain/TaxYearRegistry.test.ts > TaxYearRegistry > exposes the registered tax years 7ms
+ ✓ tests/domain/TaxYearRegistry.test.ts > TaxYearRegistry > resolves parameters by tax year 2ms
+ ✓ tests/domain/TaxYearRegistry.test.ts > TaxYearRegistry > resolves parameters by commercial year 0ms
+ ✓ tests/domain/TaxYearRegistry.test.ts > TaxYearRegistry > fails closed for an unregistered tax year 1ms
+ ✓ tests/domain/TaxYearRegistry.test.ts > TaxYearRegistry > fails closed for an unregistered commercial year 0ms
+ ✓ tests/domain/EffectiveDatedParameters.test.ts > isPeriodId > accepts YYYY-MM and rejects other shapes 4ms
+ ✓ tests/domain/EffectiveDatedParameters.test.ts > resolveEffectiveValue > returns the exact period entry 1ms
+ ✓ tests/domain/EffectiveDatedParameters.test.ts > resolveEffectiveValue > returns the entry covering the period start 0ms
+ ✓ tests/domain/EffectiveDatedParameters.test.ts > resolveEffectiveValue > does not leak a later period into an earlier query 0ms
+ ✓ tests/domain/EffectiveDatedParameters.test.ts > resolveEffectiveValue > treats effectiveTo as exclusive 0ms
+ ✓ tests/domain/EffectiveDatedParameters.test.ts > resolveEffectiveValue > returns undefined for an unknown indicator or invalid period 0ms
+ ✓ tests/domain/EffectiveDatedParameters.test.ts > resolveEffectiveValue > prefers the exact period over an open-ended older entry 0ms
+ ✓ tests/domain/EffectiveDatedParameters.test.ts > resolveEffectiveValue > uses the latest effectiveFrom when no exact period matches 30ms
+ ✓ tests/domain/TaxEngine.test.ts > TaxEngine.calculateSecondCategoryTax > returns zero tax for zero taxable income 3ms
+ ✓ tests/domain/TaxEngine.test.ts > TaxEngine.calculateSecondCategoryTax > keeps first bracket upper boundary exempt 1ms
+ ✓ tests/domain/TaxEngine.test.ts > TaxEngine.calculateSecondCategoryTax > applies second bracket immediately above the first boundary 1ms
+ ✓ tests/domain/TaxEngine.test.ts > TaxEngine.calculateSecondCategoryTax > transitions to the top bracket for extreme income 0ms
+ ✓ tests/domain/TaxEngine.test.ts > TaxEngine.calculateSecondCategoryTax > produces continuous tax at the bracket 2/3 boundary (30 UTM) 0ms
+ ✓ tests/domain/TaxEngine.test.ts > TaxEngine.calculateSecondCategoryTax > produces continuous tax at the bracket 3/4 boundary (50 UTM) 0ms
+ ✓ tests/domain/TaxEngine.test.ts > TaxEngine.calculateSecondCategoryTax > produces continuous tax at the bracket 4/5 boundary (70 UTM) 0ms
+ ✓ tests/domain/TaxEngine.test.ts > TaxEngine.calculateSecondCategoryTax > computes exact tax for an income in bracket 4 (60 UTM) 0ms
+ ✓ tests/domain/TaxEngine.test.ts > TaxEngine.calculateSecondCategoryTax > maintains monotonic tax amount as taxable income increases 0ms
+ ✓ tests/domain/TaxEngine.test.ts > TaxEngine.calculateSecondCategoryTax > uses stable rounding to CLP pesos for UI presentation 0ms
+ ✓ tests/domain/TaxEngine.test.ts > TaxEngine.calculateSecondCategoryTax > throws on invalid taxable income 2ms
+ ✓ tests/domain/TaxEngine.test.ts > TaxEngine.calculateSecondCategoryTax > throws on invalid UTM value 0ms
+ ✓ tests/domain/TaxEngine.test.ts > TaxEngine.calculateSecondCategoryTax > ejemplo de metodología — anti-drift > el impuesto real coincide con el ejemplo publicado 7ms
+ ✓ tests/domain/TaxEngine.test.ts > TaxEngine.calculateAnnualIncomeTax > usa la UTA congelada del año tributario, no la UTM vigente 0ms
+ ✓ tests/domain/TaxEngine.test.ts > TaxEngine.calculateAnnualIncomeTax > mantiene el tramo exento hasta 13,5 UTA 0ms
+ ✓ tests/domain/TaxEngine.test.ts > TaxEngine.calculateAnnualIncomeTax > rechaza una UTA inválida 0ms
+ ✓ tests/application/CalculateTermDeposit.test.ts > calculateTermDeposit > calcula interés y monto final sin retención del banco 6ms
+ ✓ tests/application/CalculateTermDeposit.test.ts > calculateTermDeposit > reproduce la tasa anual exacta en un plazo de 365 días 1ms
+ ✓ tests/application/CalculateTermDeposit.test.ts > calculateTermDeposit > rejects invalid input values 3ms
+ ✓ tests/application/CalculateTermDeposit.test.ts > calculateTermDeposit > ejemplo de metodología — anti-drift > el interés real coincide con el ejemplo publicado 1ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > reproduce la rebaja SII del segundo tramo (0,54 × UTA dic-2025) 2ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > vector dorado SII: $18.000.000 de renta neta ⇒ IGC $269.367,84 2ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > aísla el cálculo del año tributario de la UTM vigente 0ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > devuelve IGC cero bajo el tramo exento anual 0ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > calcula el tramo 4% (13,5–30 UTA) con la UTA congelada 0ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > calcula el tramo 23% (70–90 UTA) 0ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > aplica APV Régimen B con tope de 600 UF de diciembre 2ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > capea APV Régimen B en 600 UF 1ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > genera devolución cuando los créditos superan el IGC 2ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > aplica gastos presuntos (30%, tope 15 UTA) para honorarios 1ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > marca la base de sueldos como declarada o estimada 0ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > rechaza cuando todas las fuentes de ingreso son cero 1ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > rechaza una UTA inválida 0ms
+ ✓ tests/application/SimulateOperacionRenta.test.ts > simulateOperacionRenta (AT2026) > ejemplo de metodología — anti-drift > el resultado real coincide con el ejemplo publicado 0ms
+ ✓ tests/application/SimulateDebtRenegotiation.test.ts > simulateDebtRenegotiation > requires more than 90 days of arrears, not just 90 12ms
+ ✓ tests/application/SimulateDebtRenegotiation.test.ts > simulateDebtRenegotiation > blocks the legal filter when there was first-category activity in the last 24 months 1ms
+ ✓ tests/application/SimulateDebtRenegotiation.test.ts > simulateDebtRenegotiation > distinguishes between meeting the basic filter and being ready to submit formally 0ms
+ ✓ tests/application/SimulateDebtRenegotiation.test.ts > simulateDebtRenegotiation > no considera elegible dos deudas del mismo acreedor 0ms
+ ✓ tests/application/SimulateDebtRenegotiation.test.ts > simulateDebtRenegotiation > acepta dos obligaciones de acreedores distintos 0ms
+ ✓ tests/application/SimulateDebtRenegotiation.test.ts > simulateDebtRenegotiation > exige identificar al acreedor de cada deuda 1ms
+ ✓ tests/application/SimulateDebtRenegotiation.test.ts > simulateDebtRenegotiation > ejemplo de metodología — anti-drift > la cuota consolidada real coincide con el ejemplo publicado 12ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Sueldo Líquido > case 1 3ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Sueldo Líquido > case 2 1ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Sueldo Líquido > case 3 1ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - APV > case 1 1ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - APV > case 2 1ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - APV > case 3 1ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Conversor UF > case 1 1ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Conversor UF > case 2 0ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Conversor UF > case 3 0ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Conversor UTM > case 1 — UTM a CLP 0ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Conversor UTM > case 2 — CLP a UTM 0ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Conversor UTM > case 3 — monto no redondo 0ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Conversor UTM > case 4 — entrada inválida lanza error 1ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Seguro de Cesantía > case 1 1ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Seguro de Cesantía > case 2 0ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Seguro de Cesantía > case 3 0ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Crédito de Consumo > case 1 0ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Crédito de Consumo > case 2 0ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Crédito de Consumo > case 3 0ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Tarjeta de Crédito > case 1 1ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Tarjeta de Crédito > case 2 0ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Tarjeta de Crédito > case 3 0ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Prepago de Crédito > case 1 1ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Prepago de Crédito > case 2 0ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Prepago de Crédito > case 3 0ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Renegociación > case 1 1ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Renegociación > case 2 0ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Renegociación > case 3 0ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Reajuste de Arriendo > case 1 (UF) 1ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Reajuste de Arriendo > case 2 (UF) 0ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Reajuste de Arriendo > case 3 (IPC) 0ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Simulador de Jubilación > case 1 12ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Simulador de Jubilación > case 2 7ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Simulador de Jubilación > case 3 40ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Simulador Operación Renta > case A — sueldo + retenciones (devolución) 1ms
+ ✓ tests/application/FinancialUseCases.regression.test.ts > Regression - Simulador Operación Renta > case B — ingresos mixtos con APV 0ms
+
+ Test Files  11 passed (11)
+      Tests  133 passed (133)
+   Start at  16:07:18
+   Duration  3.45s (transform 7.06s, setup 0ms, import 10.21s, tests 971ms, environment 7ms)
+

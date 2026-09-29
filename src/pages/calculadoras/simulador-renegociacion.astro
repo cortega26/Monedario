@@ -417,7 +417,7 @@ const calculatorNextStepItems = [
     <ShareCalculatorResult />
     <MethodologyBlock
       example={debtRenegotiationWorkedExample.example}
-      notes="El filtro de elegibilidad verifica los requisitos del artículo 260 de la Ley 20.720 (dos o más obligaciones vencidas por más de 90 días, de acreedores distintos, que sumen más de 80 UF) y la documentación del artículo 261. La cuota orientativa usa la tasa máxima convencional como referencia y no considera descuentos ni acuerdos particulares con acreedores."
+      notes="El filtro de elegibilidad verifica los requisitos del artículo 260 de la Ley 20.720 (dos o más obligaciones vencidas por más de 90 días, provenientes de obligaciones diversas, que sumen más de 80 UF) y la documentación del artículo 261. La cuota orientativa usa la tasa máxima convencional como referencia y no considera descuentos ni acuerdos particulares con acreedores."
       sources={[
         {
           name: "BCN — Ley 20.720, artículo 260 (requisitos de la renegociación)",
@@ -710,10 +710,6 @@ const calculatorNextStepItems = [
       buildChecklistLine(
         simulacion.requirementChecks.hasTwoOrMoreQualifiedDebts,
         `Con más de 90 días corridos: ${simulacion.qualifiedDebtCount} califican`
-      ),
-      buildChecklistLine(
-        simulacion.requirementChecks.hasTwoOrMoreDistinctCreditors,
-        `Acreedores distintos: ${simulacion.qualifiedCreditorCount} identificado${simulacion.qualifiedCreditorCount === 1 ? "" : "s"}`
       ),
       buildChecklistLine(
         simulacion.requirementChecks.reachesMinimumUf,

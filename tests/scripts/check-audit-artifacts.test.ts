@@ -43,16 +43,23 @@ describe("findAuditArtifactIssues", () => {
     expect(findAuditArtifactIssues(passing)).toEqual([]);
   });
 
-  it("exige defectos abiertos para FAIL/CONDITIONAL", () => {
+  it("exige defectos declarados para FAIL/CONDITIONAL (resueltos tras remediar)", () => {
     const conditional = { ...passing, verdict: "CONDITIONAL" };
     expect(findAuditArtifactIssues(conditional).join("\n")).toContain(
-      "sin defectos abiertos"
+      "sin defectos declarados"
     );
     const withDefect = {
       ...conditional,
       defects: [{ id: "D1", severity: "alta", status: "open" }],
     };
     expect(findAuditArtifactIssues(withDefect)).toEqual([]);
+    // Tras la remediación todos pueden quedar resolved, a la espera de la
+    // re-auditoría que actualice el veredicto.
+    const remediated = {
+      ...conditional,
+      defects: [{ id: "D1", severity: "alta", status: "resolved" }],
+    };
+    expect(findAuditArtifactIssues(remediated)).toEqual([]);
   });
 
   it("exige claims cuando hay veredicto", () => {
