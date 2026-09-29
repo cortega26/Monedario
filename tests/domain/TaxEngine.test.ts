@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { calculateSecondCategoryTax } from "@/domain/taxation/TaxEngine";
+import {
+  calculateAnnualIncomeTax,
+  calculateSecondCategoryTax,
+} from "@/domain/taxation/TaxEngine";
 import { secondCategoryTaxWorkedExample } from "@/domain/taxation/calculateSecondCategoryTax.methodology";
 
 const UTM = 67294;
@@ -142,5 +145,35 @@ describe("TaxEngine.calculateSecondCategoryTax", () => {
         secondCategoryTaxWorkedExample.expectedMarginalRate
       );
     });
+  });
+});
+
+describe("TaxEngine.calculateAnnualIncomeTax", () => {
+  const UTA_AT2026 = 834_504;
+
+  it("usa la UTA congelada del año tributario, no la UTM vigente", () => {
+    const result = calculateAnnualIncomeTax({
+      taxableIncome: 18_000_000,
+      uta: UTA_AT2026,
+    });
+
+    expect(result.taxAmount).toBeCloseTo(269_367.84, 2);
+    expect(result.marginalRate).toBeCloseTo(0.04, 6);
+  });
+
+  it("mantiene el tramo exento hasta 13,5 UTA", () => {
+    const result = calculateAnnualIncomeTax({
+      taxableIncome: 13.5 * UTA_AT2026,
+      uta: UTA_AT2026,
+    });
+
+    expect(result.taxAmount).toBe(0);
+    expect(result.marginalRate).toBe(0);
+  });
+
+  it("rechaza una UTA inválida", () => {
+    expect(() =>
+      calculateAnnualIncomeTax({ taxableIncome: 1_000_000, uta: 0 })
+    ).toThrow("utm must be a finite number > 0.");
   });
 });

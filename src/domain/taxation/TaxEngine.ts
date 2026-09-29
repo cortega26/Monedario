@@ -67,3 +67,19 @@ export function calculateSecondCategoryTax(input: TaxInput): TaxResult {
     marginalRate: bracket.rate,
   };
 }
+
+/**
+ * IGC anual: la tabla del Impuesto Global Complementario usa la misma
+ * estructura progresiva que el impuesto único mensual pero expresada en UTA
+ * (Unidad Tributaria Anual). Recibe la UTA congelada del año tributario
+ * (`TaxYearParameters`), nunca la UTM vigente.
+ */
+export function calculateAnnualIncomeTax(input: {
+  taxableIncome: number;
+  uta: number;
+}): TaxResult {
+  return calculateSecondCategoryTax({
+    taxableIncome: input.taxableIncome,
+    utm: input.uta,
+  });
+}
