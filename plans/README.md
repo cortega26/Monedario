@@ -47,6 +47,14 @@ observabilidad/persistencia. Hardening central: convertir la propiedad
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
 
+## Deuda técnica 2026-09-29 — plan 123 (TD-0109)
+
+| Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
+|------|-------|----------|--------|------------|--------|
+| 123 | [finiquito-audit-remediation-2026-09-29.md](123-finiquito-audit-remediation-2026-09-29.md) | P2 (YMYL) | M | — | DONE (6 defectos corregidos con vectores dorados; pendiente auditoría IA del fix + firma humana) |
+
+Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
+
 ## Auditoría de resiliencia y performance 2026-09-29 — plan 122
 
 Informe: `docs/reports/AUDIT-RESILIENCE-2026-09-29.md`. Resultado: sin P0/P1;

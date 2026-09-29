@@ -2413,12 +2413,20 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
   primarias DT/SUSESO en sesión), y tests de regresión numérica que fijen los
   valores correctos.
 - **Criterios de cierre (checklist verificable):**
-  - [ ] F1–F3 del código productivo verificadas contra fuentes primarias.
-  - [ ] Tests de regresión numérica fijan los valores correctos.
-  - [ ] `pnpm run test` y `pnpm run check` en verde.
+  - [x] F1–F3 del código productivo verificadas contra fuentes primarias.
+  - [x] Tests de regresión numérica fijan los valores correctos.
+  - [x] `pnpm run test` y `pnpm run check` en verde.
+- **Resolución (2026-09-29, plan 123):** auditoría contra SUSESO/BCN encontró
+  6 defectos: sin tope de 90 UF (art. 172), sin requisito de ≥1 año, umbral de
+  fracción ≥6 en vez de >6 (art. 163), **art. 168 con tramos por antigüedad
+  (texto derogado) reemplazado por causal (30/50/80)**, obra/faena pagaba 0
+  (art. 163 inc. 3: 2,5 días/mes) y base sin advertencia de exclusiones.
+  Corregidos con vectores dorados (+19 tests). Pendiente: auditoría
+  independiente IA del fix + firma humana (gate de publicación YMYL).
 - **Owner:** Sin asignar
-- **Estado:** Backlog
+- **Estado:** Resuelto
 - **Fecha de creación:** 2026-09-20
+- **Última actualización:** 2026-09-29
 - **Última actualización:** 2026-09-20
 
 ## TD-0110 — Code scanning (CodeQL) no disponible en plan privado; SAST solo semanal
