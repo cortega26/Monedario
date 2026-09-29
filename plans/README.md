@@ -54,6 +54,7 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 | 123 | [finiquito-audit-remediation-2026-09-29.md](123-finiquito-audit-remediation-2026-09-29.md) | P2 (YMYL) | M | — | DONE (6 defectos corregidos con vectores dorados; pendiente auditoría IA del fix + firma humana) |
 | 124 | [audit-ai-remediation-2026-09-29.md](124-audit-ai-remediation-2026-09-29.md) | P1 (YMYL) | M–L | auditoría IA plan 115 (CONDITIONAL) | DONE (D1–D8 corregidos; pendiente re-auditoría en sesión fresca + firma humana) |
 | 125 | [reaudit-remediation-2026-09-29.md](125-reaudit-remediation-2026-09-29.md) | P1 (YMYL) | M | re-auditoría IA (CONDITIONAL) | DONE (D9–D12 + obs. 1/2 corregidos; pendiente re-auditoría final + firma humana) |
+| 126 | [audit-scope-sweep-2026-09-29.md](126-audit-scope-sweep-2026-09-29.md) | P3 | S | re-auditoría Muse Spark (D13) | DONE (V6/V4/S2 del scope + guarda de consistencia; propuesta de `surface` en el protocolo) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
 

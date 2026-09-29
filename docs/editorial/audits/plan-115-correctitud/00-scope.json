@@ -53,7 +53,7 @@
       },
       {
         "id": "V4",
-        "claim": "APV art. 42 bis: tasa marginal × 1,1 + 3 pp; retención 15%; exención pensionados",
+        "claim": "APV art. 42 bis: tasa media del retiro (ΔIGC/retiro reajustado) × 1,1 + 3 pp; retención 15%; exención pensionados",
         "test": "tests/domain/TaxEngine.test.ts"
       },
       {
@@ -63,7 +63,7 @@
       },
       {
         "id": "V6",
-        "claim": "Serie IPC 2026: ene 0,4 / feb 0 / mar 1,0 / abr 1,3 / may 0,2 / jun 0 / jul 0,1 / ago 0,6; UTA dic-2025 $834.504; UF dic-2025 $39.643,59",
+        "claim": "Serie IPC 2026: ene 0,4 / feb 0 / mar 1,0 / abr 1,3 / may 0,2 / jun 0 / jul 0,1 / ago 0,6; UTA dic-2025 $834.504; UF 31-12-2025 $39.727,96",
         "test": "tests/scripts/economic-history-ipc.test.ts + tests/data/economic-history.test.ts"
       }
     ],
@@ -75,7 +75,7 @@
       },
       {
         "id": "S2",
-        "label": "Art. 59 N°4 LIR (retención 4% Impuesto Adicional)",
+        "label": "Art. 59 inciso 2° N°1 letras a) y g) LIR (retención 4% Impuesto Adicional)",
         "url": "https://www.bcn.cl/leychile/navegar?idNorma=6368"
       },
       {
