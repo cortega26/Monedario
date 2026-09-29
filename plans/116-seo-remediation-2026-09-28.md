@@ -12,6 +12,10 @@
 - **Depends on**: none
 - **Category**: SEO técnico / gobernanza de indexabilidad
 - **Planned at**: commit `61b8a0ae`, 2026-09-29
+- **Status**: DONE — SEO-01/03/04/07 + guardas implementados y verificados:
+  build 12 checks, 185/185 URLs con lastmod, 137/137 tags `noindex,follow`,
+  196 Playwright a11y, `check:ci` exit 0. Fase 2 (SEO-02/05/06/08) fuera de
+  alcance.
 - **Evidence**: `docs/reports/AUDIT-SEO-2026-09-28.md`
 
 ## Scope
@@ -69,11 +73,11 @@
 
 ## Done criteria
 
-- [ ] 100% de `/tags/**` con `noindex,follow`; 0 tags en sitemap.
-- [ ] 0 hrefs internos de un segmento sin trailing slash.
-- [ ] 185/185 URLs del sitemap con `lastmod`.
-- [ ] `/archives/` recibe al menos un enlace interno desde `/posts/`.
-- [ ] Guardas con tests; gates en verde.
+- [x] 100% de `/tags/**` con `noindex,follow`; 0 tags en sitemap.
+- [x] 0 hrefs internos de un segmento sin trailing slash.
+- [x] 185/185 URLs del sitemap con `lastmod`.
+- [x] `/archives/` recibe al menos un enlace interno desde `/posts/`.
+- [x] Guardas con tests; gates en verde.
 
 ## STOP conditions
 
