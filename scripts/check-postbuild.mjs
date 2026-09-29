@@ -205,6 +205,50 @@ export function findAuthorProfileSchemaIssues(html) {
   return issues;
 }
 
+/** True when the page declares noindex,follow for robots. */
+export function hasNoindexFollow(html) {
+  for (const match of html.matchAll(/<meta\b[^>]*>/g)) {
+    const tag = match[0];
+    if (!/name=["']robots["']/.test(tag)) continue;
+    const content = tag.match(/content=["']([^"']*)["']/)?.[1] ?? "";
+    if (content.includes("noindex") && content.includes("follow")) return true;
+  }
+  return false;
+}
+
+/**
+ * Internal hrefs that do not use the canonical trailing slash (SEO-07).
+ * File links (with an extension) are allowed; query/hash are ignored.
+ */
+export function findNonCanonicalInternalHrefs(html) {
+  const issues = [];
+  const seen = new Set();
+  for (const match of html.matchAll(/href=["'](\/[^"'#?]*)["']/g)) {
+    const href = match[1];
+    if (href.endsWith("/")) continue;
+    const last = href.split("/").pop() ?? "";
+    if (last.includes(".")) continue;
+    if (!seen.has(href)) {
+      seen.add(href);
+      issues.push(href);
+    }
+  }
+  return issues;
+}
+
+/** Sitemap URLs without a valid ISO lastmod (SEO-04). */
+export function findSitemapLastmodIssues(xml) {
+  const issues = [];
+  for (const block of xml.match(/<url>[\s\S]*?<\/url>/g) ?? []) {
+    const loc = block.match(/<loc>([^<]+)<\/loc>/)?.[1] ?? "(sin loc)";
+    const lastmod = block.match(/<lastmod>([^<]+)<\/lastmod>/)?.[1];
+    if (!lastmod || !/^\d{4}-\d{2}-\d{2}/.test(lastmod)) {
+      issues.push(loc);
+    }
+  }
+  return issues;
+}
+
 /** Total bytes of a directory tree. */
 export function totalDirBytes(dir) {
   let total = 0;
@@ -400,6 +444,54 @@ const CHECKS = [
         }
       }
       return errors;
+    },
+  },
+  {
+    id: "tags-noindex",
+    message: "All /tags/** pages must be noindex,follow and absent from the sitemap (SEO-01).",
+    run(distDir) {
+      const errors = [];
+      for (const file of listHtmlPages(distDir)) {
+        if (!file.startsWith("tags/")) continue;
+        const html = readFileSync(path.join(distDir, file), "utf8");
+        if (!hasNoindexFollow(html)) {
+          errors.push(`${file}:tags-noindex missing noindex,follow`);
+        }
+      }
+      const sitemapPath = path.join(distDir, "sitemap-0.xml");
+      if (statSync(sitemapPath, { throwIfNoEntry: false })) {
+        const xml = readFileSync(sitemapPath, "utf8");
+        if (/<loc>[^<]*\/tags\//.test(xml)) {
+          errors.push("dist/sitemap-0.xml:tags-noindex contains /tags/ URL");
+        }
+      }
+      return errors;
+    },
+  },
+  {
+    id: "internal-links-trailing-slash",
+    message: "Internal links must use the canonical trailing slash (SEO-07).",
+    run(distDir) {
+      const errors = [];
+      for (const file of listHtmlPages(distDir)) {
+        const html = readFileSync(path.join(distDir, file), "utf8");
+        for (const href of findNonCanonicalInternalHrefs(html)) {
+          errors.push(`${file}:internal-links-trailing-slash href="${href}"`);
+        }
+      }
+      return errors;
+    },
+  },
+  {
+    id: "sitemap-lastmod-complete",
+    message: "Every sitemap URL must declare a valid lastmod (SEO-04).",
+    run(distDir) {
+      const sitemapPath = path.join(distDir, "sitemap-0.xml");
+      if (!statSync(sitemapPath, { throwIfNoEntry: false })) return [];
+      const xml = readFileSync(sitemapPath, "utf8");
+      return findSitemapLastmodIssues(xml).map(
+        url => `dist/sitemap-0.xml:sitemap-lastmod-complete missing lastmod for ${url}`
+      );
     },
   },
   {

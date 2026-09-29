@@ -10,6 +10,9 @@ import {
   findAuthorProfileSchemaIssues,
   findDuplicateIds,
   findHeadingLevelJumps,
+  findNonCanonicalInternalHrefs,
+  findSitemapLastmodIssues,
+  hasNoindexFollow,
   parseScriptSrc,
   readH1FromHtml,
   readTitleFromHtml,
@@ -107,6 +110,68 @@ describe("parseScriptSrc", () => {
     const result = parseScriptSrc(headers);
     expect(result.hasHashes).toBe(false);
     expect(result.hasUnsafeInline).toBe(false);
+  });
+});
+
+describe("hasNoindexFollow", () => {
+  it("accepts noindex,follow regardless of attribute order", () => {
+    expect(
+      hasNoindexFollow('<meta name="robots" content="noindex,follow">')
+    ).toBe(true);
+    expect(
+      hasNoindexFollow('<meta content="noindex, follow" name="robots">')
+    ).toBe(true);
+  });
+
+  it("rejects missing or different robots directives", () => {
+    expect(hasNoindexFollow("<html></html>")).toBe(false);
+    expect(
+      hasNoindexFollow('<meta name="robots" content="index,follow">')
+    ).toBe(false);
+  });
+});
+
+describe("findNonCanonicalInternalHrefs", () => {
+  it("flags internal paths without the trailing slash", () => {
+    expect(
+      findNonCanonicalInternalHrefs('<a href="/metodologia">x</a>')
+    ).toEqual(["/metodologia"]);
+  });
+
+  it("allows canonical paths, files and external links", () => {
+    const html =
+      '<a href="/metodologia/">x</a>' +
+      '<a href="/rss.xml">x</a>' +
+      '<a href="https://example.com/metodologia">x</a>' +
+      '<a href="#top">x</a>';
+    expect(findNonCanonicalInternalHrefs(html)).toEqual([]);
+  });
+
+  it("deduplicates repeated offenders", () => {
+    const html = '<a href="/metodologia">x</a><a href="/metodologia">y</a>';
+    expect(findNonCanonicalInternalHrefs(html)).toEqual(["/metodologia"]);
+  });
+});
+
+describe("findSitemapLastmodIssues", () => {
+  it("flags urls without lastmod or with invalid dates", () => {
+    const xml =
+      "<urlset>" +
+      "<url><loc>https://monedario.cl/a/</loc><lastmod>2026-09-01</lastmod></url>" +
+      "<url><loc>https://monedario.cl/b/</loc></url>" +
+      "<url><loc>https://monedario.cl/c/</loc><lastmod>ayer</lastmod></url>" +
+      "</urlset>";
+    expect(findSitemapLastmodIssues(xml)).toEqual([
+      "https://monedario.cl/b/",
+      "https://monedario.cl/c/",
+    ]);
+  });
+
+  it("accepts a complete sitemap", () => {
+    const xml =
+      "<urlset><url><loc>https://monedario.cl/a/</loc>" +
+      "<lastmod>2026-09-01T00:00:00.000Z</lastmod></url></urlset>";
+    expect(findSitemapLastmodIssues(xml)).toEqual([]);
   });
 });
 
@@ -243,8 +308,8 @@ describe("check-postbuild runner over a full mini-dist", () => {
 
     const sitemap =
       "<urlset>" +
-      "<url><loc>https://monedario.cl/posts/a/</loc></url>" +
-      "<url><loc>https://monedario.cl/posts/b/</loc></url>" +
+      "<url><loc>https://monedario.cl/posts/a/</loc><lastmod>2026-09-01</lastmod></url>" +
+      "<url><loc>https://monedario.cl/posts/b/</loc><lastmod>2026-09-01</lastmod></url>" +
       "</urlset>";
     writeFileSync(path.join(root, "sitemap-0.xml"), sitemap, "utf8");
 

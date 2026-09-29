@@ -25,6 +25,17 @@ import path from "node:path";
 const PAGES_DIR = "src/pages";
 const OUT = "context/page-lastmod-index.json";
 
+// Rutas dinámicas por colección: el nombre del archivo es el slug público.
+const DATA_COLLECTIONS = [
+  { dir: "src/data/blog", urlPrefix: "/posts/", extensions: [".md", ".mdx"] },
+  {
+    dir: "src/data/glossary",
+    urlPrefix: "/glosario/",
+    extensions: [".md", ".mdx"],
+  },
+  { dir: "src/data/laws", urlPrefix: "/leyes/", extensions: [".md", ".mdx"] },
+];
+
 function walkAstroPages(dir) {
   const found = [];
   for (const entry of readdirSync(dir, { withFileTypes: true })) {
@@ -32,6 +43,21 @@ function walkAstroPages(dir) {
     if (entry.isDirectory()) {
       found.push(...walkAstroPages(full));
     } else if (entry.isFile() && entry.name.endsWith(".astro")) {
+      found.push(full);
+    }
+  }
+  return found;
+}
+
+function walkDataFiles(dir, extensions) {
+  const found = [];
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const full = path.posix.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      found.push(...walkDataFiles(full, extensions));
+      continue;
+    }
+    if (entry.isFile() && extensions.some(ext => entry.name.endsWith(ext))) {
       found.push(full);
     }
   }
@@ -68,6 +94,25 @@ for (const file of walkAstroPages(PAGES_DIR)) {
   if (date) pages[urlPath] = date;
 }
 
+// Colecciones con ruta dinámica: blog (fallback de posts sin updatedDate),
+// glosario y leyes, que no tienen página estática que indexar.
+for (const collection of DATA_COLLECTIONS) {
+  for (const file of walkDataFiles(collection.dir, collection.extensions)) {
+    const slug = path.posix.basename(file).replace(/\.mdx?$/, "");
+    const date = lastCommitDate(file);
+    if (date) pages[`${collection.urlPrefix}${slug}/`] = date;
+  }
+}
+
+// Portadas generadas por rutas dinámicas (no cubiertas por walkAstroPages).
+const DYNAMIC_INDEX_PAGES = [
+  { file: "src/pages/posts/[...page].astro", urlPath: "/posts/" },
+];
+for (const { file, urlPath } of DYNAMIC_INDEX_PAGES) {
+  const date = lastCommitDate(file);
+  if (date) pages[urlPath] = date;
+}
+
 const sortedPages = Object.fromEntries(
   Object.entries(pages).sort(([a], [b]) => a.localeCompare(b))
 );
@@ -76,7 +121,8 @@ const json = {
   schemaVersion: 1,
   generatedBy: "scripts/build-page-lastmod.mjs",
   note: "Generated file. Do not edit manually; regenerate via node scripts/build-page-lastmod.mjs",
-  source: "src/pages/**/*.astro (static routes only)",
+  source:
+    "src/pages/**/*.astro (static routes) + src/data/{blog,glossary,laws} (dynamic routes)",
   pageCount: Object.keys(sortedPages).length,
   pages: sortedPages,
 };

@@ -216,7 +216,10 @@ export default defineConfig({
 
         if (pathParts.length === 2) {
           if (section === "posts") {
-            const lastmod = articleDateMap.get(pathname);
+            // Frontmatter updatedDate manda; si falta, cae al último commit
+            // del archivo (SEO-04).
+            const lastmod =
+              articleDateMap.get(pathname) ?? pageLastmodMap.get(pathname);
             return {
               ...item,
               ...(lastmod ? { lastmod } : {}),

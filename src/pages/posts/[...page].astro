@@ -9,6 +9,7 @@ import Card from "@/components/Card.astro";
 import Pagination from "@/components/Pagination.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
 import postFilter from "@/utils/postFilter";
+import { getPath } from "@/utils/getPath";
 import { SITE } from "@/config";
 
 export const getStaticPaths = (async ({ paginate }) => {
@@ -39,6 +40,15 @@ const pageDescription = isPaginatedArchive
     <ul>
       {page.data.map(data => <Card {...data} />)}
     </ul>
+    <p class="mt-8 text-sm text-secondary">
+      ¿Buscas por fecha? Revisa el{" "}
+      <a
+        href={getPath("/archives/")}
+        class="text-accent underline underline-offset-4 hover:opacity-80"
+      >
+        archivo cronológico completo
+      </a>.
+    </p>
   </Main>
 
   <Pagination {page} />
