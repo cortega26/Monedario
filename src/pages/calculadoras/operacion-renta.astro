@@ -12,19 +12,19 @@ import Breadcrumb from "@/components/Breadcrumb.astro";
 import CalculatorTrustBadge from "@/components/CalculatorTrustBadge.astro";
 import NextSteps from "@/components/NextSteps.astro";
 import { CALCULATOR_PORTFOLIO } from "@/config/calculatorPortfolio";
-import { getEconomicParameters } from "@/application/use-cases/GetEconomicParameters";
 import { simulateOperacionRenta } from "@/application/use-cases/SimulateOperacionRenta";
+import { AT2026 } from "@/domain/taxation/TaxYearParameters";
 import { operacionRentaWorkedExample } from "@/application/use-cases/SimulateOperacionRenta.methodology";
 import { getPath } from "@/utils/getPath";
 import { formatCLP } from "@/utils/formatCLP";
 import CalculatorHero from "@/components/calculator/CalculatorHero.astro";
 import GlossaryContentWrapper from "@/components/GlossaryContentWrapper.astro";
 import CalculatorField from "@/components/calculator/CalculatorField.astro";
+import CalculatorRadioGroup from "@/components/calculator/CalculatorRadioGroup.astro";
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
+import { AFP_COMMISSIONS_PERCENT } from "@/config/afpCommissions";
 import CalculatorDataFreshness from "@/components/calculator/CalculatorDataFreshness.astro";
-import { formatEconomicDate } from "@/domain/economic/economicSourcePresentation";
 
-const { parameters: economicParameters } = await getEconomicParameters();
 const f22GuidePath = getPath("/posts/operacion-renta-f22-checklist/");
 const apvPath = getPath("/calculadoras/apv/");
 const glosarioGlobalPath = getPath("/glosario/global-complementario/");
@@ -33,17 +33,15 @@ const glosarioOperacionRentaPath = getPath("/glosario/operacion-renta/");
 const formatPeso = formatCLP;
 
 const exampleResult = simulateOperacionRenta({
-  sueldosBrutos: 18_000_000,
+  sueldosRentaNeta: 18_000_000,
+  sueldosBaseMode: "declarada",
   honorariosBrutos: 0,
   arriendos: 0,
   impuestoUnicoRetenido: 1_150_000,
   ppmHonorarios: 0,
   apvRegimenB: 0,
   interesesHipotecarios: 0,
-  economicParameters: {
-    uf: economicParameters.uf,
-    utm: economicParameters.utm,
-  },
+  taxYear: AT2026,
 });
 const currentCalculator = CALCULATOR_PORTFOLIO.find(
   calc => calc.slug === "operacion-renta"
@@ -80,7 +78,7 @@ const operacionRentaFaqs = [
   {
     question: "¿Qué necesito para simular mi devolución de impuestos 2026?",
     answer:
-      "Tus ingresos brutos del año 2025 (sueldos, boletas de honorarios y arriendos), las retenciones ya pagadas (impuesto único de segunda categoría y PPM de honorarios) y las deducciones disponibles (APV Régimen B e intereses hipotecarios). Con esos datos el simulador estima si el SII te devuelve o debes pagar.",
+      "La renta neta pagada por sueldos del año comercial 2025 (certificado de rentas o F22 precargado), las boletas de honorarios brutas y los arriendos, las retenciones ya pagadas (impuesto único de segunda categoría y PPM de honorarios) y las deducciones disponibles (APV Régimen B e intereses hipotecarios). Con esos datos el simulador estima si el SII te devuelve o debes pagar.",
   },
   {
     question: "¿Cuándo es la Operación Renta 2026?",
@@ -130,12 +128,96 @@ const operacionRentaFaqs = [
           <h2 class="mb-5 text-lg font-semibold">Ingresos del año</h2>
 
           <CalculatorField
-            id="sueldos-brutos"
-            label="Sueldos brutos anuales ($)"
-            placeholder="Ej: 18000000"
+            id="renta-neta-sueldos"
+            label="Renta neta pagada por sueldos ($)"
+            placeholder="Ej: 15000000"
             min="0"
-            hint="Suma todos los sueldos brutos del año. Encuéntralo en el certificado de remuneraciones (F1887) que emite tu empleador."
+            hint="Renta Total Neta Pagada del año comercial 2025: remuneraciones imponibles menos cotizaciones previsionales. Está en el certificado de rentas de tu empleador o en el F22 precargado del SII. No uses el sueldo bruto."
           />
+
+          <details
+            id="sueldos-estimacion"
+            class="mb-4 rounded-lg border border-border bg-surface-muted/30 p-3"
+          >
+            <summary class="cursor-pointer text-sm font-medium text-accent">
+              ¿No tienes el dato? Estimar desde tu sueldo bruto
+            </summary>
+            <div class="mt-3 space-y-1">
+              <p class="mb-2 text-xs leading-relaxed text-muted">
+                Estimación referencial con el motor de planilla del sitio (AFP,
+                salud y contrato). Reemplaza el valor de arriba y marca la base
+                como estimada. Para la declaración, usa el dato del certificado
+                o del F22.
+              </p>
+              <CalculatorField
+                id="est-sueldo-bruto"
+                label="Sueldo bruto mensual ($)"
+                placeholder="Ej: 1500000"
+                min="0"
+              />
+              <CalculatorField id="est-afp" label="AFP">
+                <select
+                  id="est-afp"
+                  class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
+                >
+                  {
+                    AFP_COMMISSIONS_PERCENT.map(afp => (
+                      <option
+                        value={afp.name}
+                        data-commission={String(afp.total)}
+                        selected={afp.name === "Habitat"}
+                      >
+                        {afp.name} – {afp.total.toFixed(2)}%
+                      </option>
+                    ))
+                  }
+                </select>
+              </CalculatorField>
+              <CalculatorRadioGroup
+                legend="Sistema de salud"
+                name="est-salud"
+                options={[
+                  {
+                    id: "est-fonasa",
+                    value: "fonasa",
+                    label: "Fonasa",
+                    checked: true,
+                  },
+                  { id: "est-isapre", value: "isapre", label: "Isapre" },
+                ]}
+              />
+              <CalculatorRadioGroup
+                legend="Tipo de contrato"
+                name="est-contrato"
+                options={[
+                  {
+                    id: "est-indefinido",
+                    value: "indefinido",
+                    label: "Indefinido",
+                    checked: true,
+                  },
+                  {
+                    id: "est-plazo-fijo",
+                    value: "plazo-fijo",
+                    label: "Plazo fijo",
+                  },
+                ]}
+              />
+              <button
+                type="button"
+                id="est-aplicar"
+                class="mt-2 w-full rounded-lg border border-accent/40 bg-accent/10 px-4 py-2 text-sm font-semibold text-accent transition-colors hover:bg-accent/20"
+              >
+                Usar esta estimación
+              </button>
+              <p
+                id="est-feedback"
+                class="mt-2 text-xs text-muted"
+                aria-live="polite"
+              >
+              </p>
+            </div>
+          </details>
 
           <CalculatorField
             id="honorarios-brutos"
@@ -193,8 +275,10 @@ const operacionRentaFaqs = [
               class="w-full rounded-lg border border-border bg-background px-3 py-2 text-foreground focus:border-accent focus:outline-none"
             />
             <p class="mt-1 text-xs text-muted">
-              Retención del 15.25% que hizo cada pagador de tus boletas. Suma el
-              total del año.
+              Retención del {
+                (AT2026.honorariosPpmRate * 100).toLocaleString("es-CL")
+              }% que hizo cada pagador de tus boletas emitidas en 2025 (AT2026).
+              Suma el total del año.
             </p>
           </div>
         </div>
@@ -282,9 +366,9 @@ const operacionRentaFaqs = [
           </div>
           <div class="space-y-2 text-sm">
             <div class="flex justify-between">
-              <span class="text-secondary">Sueldos brutos anuales</span>
+              <span class="text-secondary">Renta neta por sueldos</span>
               <span class="font-medium text-foreground/80">
-                {formatPeso(exampleResult.sueldosBrutos)}
+                {formatPeso(exampleResult.sueldosRentaNeta)}
               </span>
             </div>
             <div class="flex justify-between">
@@ -301,27 +385,22 @@ const operacionRentaFaqs = [
             </div>
           </div>
           <p class="mt-4 text-xs text-muted">
-            Ejemplo: sueldos brutos {formatPeso(exampleResult.sueldosBrutos)}
-            anuales, imp. único retenido {
+            Ejemplo: renta neta por sueldos de {
+              formatPeso(exampleResult.sueldosRentaNeta)
+            } (año comercial 2025), imp. único retenido {
               formatPeso(exampleResult.impuestoUnicoRetenido)
             }, sin honorarios ni deducciones adicionales. Ingresa tus datos para
             ver tu resultado.
           </p>
         </div>
-        <div
-          id="economic-parameters"
-          data-utm={String(economicParameters.utm)}
-          data-uf={String(economicParameters.uf)}
-          class="hidden"
-          aria-hidden="true"
-        >
-        </div>
         <CalculatorDataFreshness
-          source={economicParameters.source}
-          updatedDate={formatEconomicDate(economicParameters.lastUpdated)}
+          source="snapshot"
+          updatedDate="31 de diciembre de 2025"
           variant="result"
         >
-          {` · UTM usada: ${formatPeso(economicParameters.utm)}.`}
+          {
+            ` · Parámetros AT2026 (año comercial 2025): UTA ${formatPeso(AT2026.uta)} · retención de honorarios ${(AT2026.honorariosPpmRate * 100).toLocaleString("es-CL")}%.`
+          }
         </CalculatorDataFreshness>
       </CalculatorResultPanel>
     </section>
@@ -338,10 +417,11 @@ const operacionRentaFaqs = [
           ><a href={glosarioGlobalPath}>Impuesto Global Complementario (IGC)</a
           ></strong
         > que corresponde pagar en la{" "}
-        <a href={glosarioOperacionRentaPath}>Operación Renta</a> de 2026 (año tributario
-        2025). El IGC consolida todos tus ingresos del año —sueldos, honorarios y
-        arriendos— y aplica la tabla progresiva anual. Contra ese impuesto se acreditan
-        las retenciones ya pagadas durante el año.
+        <a href={glosarioOperacionRentaPath}>Operación Renta</a> AT2026 (ingresos
+        del año comercial 2025). El IGC consolida todos tus ingresos del año —renta
+        neta por sueldos, honorarios y arriendos— y aplica la tabla progresiva anual
+        con los parámetros de cierre de diciembre de 2025. Contra ese impuesto se
+        acreditan las retenciones ya pagadas durante el año.
       </p>
       <h3>¿Cómo se calcula cada parte?</h3>
       <ul>
@@ -360,8 +440,9 @@ const operacionRentaFaqs = [
         </li>
         <li>
           <strong>Créditos acreditables:</strong> el impuesto único retenido por el
-          empleador y el PPM de boletas de honorarios (15.25%) se descuentan directamente
-          del IGC calculado.
+          empleador y el PPM de boletas de honorarios emitidas en 2025 (
+          {(AT2026.honorariosPpmRate * 100).toLocaleString("es-CL")}%) se
+          descuentan directamente del IGC calculado.
         </li>
       </ul>
       <h3>Limitaciones de este simulador</h3>
@@ -446,7 +527,7 @@ const operacionRentaFaqs = [
     />
     <MethodologyBlock
       example={operacionRentaWorkedExample.example}
-      notes="El Impuesto Global Complementario (IGC) se calcula aplicando la tabla de tramos progresivos del SII usando la UTA (12 UTM). La estimación no incluye: crédito de primera categoría, dividendos ni situaciones de dos empleadores simultáneos. Para el cálculo oficial, usa la propuesta del SII en www.sii.cl."
+      notes="El Impuesto Global Complementario (IGC) se calcula aplicando la tabla de tramos progresivos del SII con la UTA de cierre del año comercial (diciembre de 2025 para el AT2026). La estimación no incluye: crédito de primera categoría, dividendos ni situaciones de dos empleadores simultáneos. Para el cálculo oficial, usa la propuesta del SII en www.sii.cl."
       sources={[
         {
           name: "SII — Retención honorarios (Ley 21.133, tasa 2026)",
@@ -478,7 +559,9 @@ const operacionRentaFaqs = [
 
 <script>
   import "@/scripts/calculator-prefill";
+  import { calculateNetSalary } from "@/application/use-cases/CalculateNetSalary";
   import { simulateOperacionRenta } from "@/application/use-cases/SimulateOperacionRenta";
+  import { AT2026 } from "@/domain/taxation/TaxYearParameters";
   import { trackAnalyticsEvent } from "@/utils/analytics";
   import { renderHeadlineDelta } from "@/utils/calculatorDelta";
   import { formatCLP } from "@/utils/formatCLP";
@@ -517,17 +600,86 @@ const operacionRentaFaqs = [
     el.classList.add("hidden");
   }
 
-  function readEconomicParameters(): { uf: number; utm: number } {
-    const element = document.getElementById("economic-parameters");
-    const uf = Number(element?.dataset?.uf);
-    const utm = Number(element?.dataset?.utm);
-    if (!Number.isFinite(uf) || uf <= 0 || !Number.isFinite(utm) || utm <= 0) {
-      throw new Error("No se pudieron cargar los parámetros económicos.");
-    }
-    return { uf, utm };
-  }
+  let sueldosBaseMode: "declarada" | "estimada" = "declarada";
 
-  const economicParameters = readEconomicParameters();
+  function initSueldosEstimacion(): void {
+    const aplicar = document.getElementById(
+      "est-aplicar"
+    ) as HTMLButtonElement | null;
+    const sueldoInput = document.getElementById(
+      "est-sueldo-bruto"
+    ) as HTMLInputElement | null;
+    const afpSelect = document.getElementById(
+      "est-afp"
+    ) as HTMLSelectElement | null;
+    const rentaInput = document.getElementById(
+      "renta-neta-sueldos"
+    ) as HTMLInputElement | null;
+    const feedback = document.getElementById("est-feedback");
+
+    if (!aplicar || !sueldoInput || !afpSelect || !rentaInput) return;
+
+    rentaInput.addEventListener("input", () => {
+      sueldosBaseMode = "declarada";
+    });
+
+    aplicar.addEventListener("click", () => {
+      const grossSalary = parseFloat(sueldoInput.value);
+      if (!Number.isFinite(grossSalary) || grossSalary <= 0) {
+        if (feedback) {
+          feedback.textContent =
+            "Ingresa tu sueldo bruto mensual para estimar la renta neta.";
+        }
+        return;
+      }
+
+      const afpRatePercent = parseFloat(
+        afpSelect.options[afpSelect.selectedIndex]?.dataset.commission ?? "0"
+      );
+      const healthSystem =
+        (
+          document.querySelector(
+            "input[name='est-salud']:checked"
+          ) as HTMLInputElement | null
+        )?.value === "isapre"
+          ? "isapre"
+          : "fonasa";
+      const contractType =
+        (
+          document.querySelector(
+            "input[name='est-contrato']:checked"
+          ) as HTMLInputElement | null
+        )?.value === "plazo-fijo"
+          ? "plazo-fijo"
+          : "indefinido";
+
+      try {
+        const payroll = calculateNetSalary({
+          grossSalary,
+          afpRatePercent,
+          healthSystem,
+          contractType,
+          economicParameters: {
+            uf: AT2026.ufDecember,
+            utm: AT2026.uta / 12,
+          },
+        });
+        // Renta Total Neta Pagada ≈ base imponible mensual menos cotizaciones
+        // previsionales (AFP, salud y AFC del trabajador) × 12.
+        const annualTaxable = Math.round(payroll.taxableBase * 12);
+        rentaInput.value = String(annualTaxable);
+        sueldosBaseMode = "estimada";
+        if (feedback) {
+          feedback.textContent = `Estimación aplicada: renta neta anual ≈ ${fmt(annualTaxable)} (base estimada, 12 meses). Edítala si tienes el dato del certificado.`;
+        }
+      } catch {
+        if (feedback) {
+          feedback.textContent =
+            "No se pudo estimar con esos datos. Revisa el sueldo bruto ingresado.";
+        }
+      }
+    });
+  }
 
   function val(id: string): number {
     const raw = (document.getElementById(id) as HTMLInputElement).value;
@@ -544,14 +696,16 @@ const operacionRentaFaqs = [
     return parseFloat(sanitized) || 0;
   }
 
+  initSueldosEstimacion();
+
   document.getElementById("calcBtn")?.addEventListener("click", () => {
     clearFormError();
 
-    const sueldosBrutos = val("sueldos-brutos");
+    const sueldosRentaNeta = val("renta-neta-sueldos");
     const honorariosBrutos = val("honorarios-brutos");
     const arriendos = val("arriendos");
 
-    if (sueldosBrutos + honorariosBrutos + arriendos <= 0) {
+    if (sueldosRentaNeta + honorariosBrutos + arriendos <= 0) {
       showFormError(
         "Ingresa al menos una fuente de ingreso: sueldos, honorarios o arriendos."
       );
@@ -561,14 +715,15 @@ const operacionRentaFaqs = [
     let resultado;
     try {
       resultado = simulateOperacionRenta({
-        sueldosBrutos,
+        sueldosRentaNeta,
+        sueldosBaseMode,
         honorariosBrutos,
         arriendos,
         impuestoUnicoRetenido: val("impuesto-unico"),
         ppmHonorarios: val("ppm-honorarios"),
         apvRegimenB: val("apv-regimen-b"),
         interesesHipotecarios: val("intereses-hipotecarios"),
-        economicParameters,
+        taxYear: AT2026,
       });
     } catch (error) {
       showFormError(
@@ -675,10 +830,10 @@ const operacionRentaFaqs = [
       value: string;
       className?: string;
     }> = [];
-    if (resultado.sueldosBrutos > 0) {
+    if (resultado.sueldosRentaNeta > 0) {
       ingresosRows.push({
-        label: "Sueldos brutos",
-        value: fmt(resultado.sueldosBrutos),
+        label: `Renta neta por sueldos (${resultado.sueldosBaseMode})`,
+        value: fmt(resultado.sueldosRentaNeta),
       });
     }
     if (honorariosBrutos > 0) {
@@ -703,8 +858,8 @@ const operacionRentaFaqs = [
       });
     }
     ingresosRows.push({
-      label: "Renta bruta global",
-      value: fmt(resultado.rentaBrutaGlobal),
+      label: "Renta neta global",
+      value: fmt(resultado.rentaNetaGlobal),
       className: "font-semibold text-foreground",
     });
     const ingresosCard = buildCard("Ingresos", ingresosRows);
@@ -776,8 +931,7 @@ const operacionRentaFaqs = [
 
     const note = document.createElement("p");
     note.className = "mt-2 text-xs text-muted";
-    note.textContent =
-      "Estimación orientativa. No incluye dividendos, crédito 1ª categoría ni situaciones especiales de dos empleadores. Usa la propuesta del SII como fuente oficial.";
+    note.textContent = `Estimación orientativa para el año tributario ${resultado.taxYear} (ingresos del año comercial ${resultado.commercialYear}). Base de sueldos: renta neta ${resultado.sueldosBaseMode === "declarada" ? "declarada en tu certificado de rentas o F22" : "estimada desde tu sueldo bruto"}. No incluye dividendos, crédito 1ª categoría ni situaciones especiales de dos empleadores. Usa la propuesta del SII como fuente oficial.`;
 
     const contenido = document.getElementById("resultado-contenido")!;
     contenido.replaceChildren(
