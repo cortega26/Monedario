@@ -57,6 +57,7 @@
     "audit:cannibalization": "node scripts/audit-cannibalization.mjs",
     "audit:striking-distance": "node scripts/audit-striking-distance.mjs",
     "audit:calculator-interlinks": "node scripts/audit-calculator-interlinks.mjs",
+    "check:calculator-interlinks": "node scripts/audit-calculator-interlinks.mjs --strict",
     "scorecard:opportunities": "node scripts/scorecard-opportunities.mjs",
     "fetch:economic-history": "node scripts/fetch-economic-history.mjs",
     "check:no-postid-urls": "node scripts/check-no-postid-urls.mjs",

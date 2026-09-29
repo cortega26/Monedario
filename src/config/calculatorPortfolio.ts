@@ -240,7 +240,6 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     icon: "trending-up",
     tag: "Decisión APV",
     family: "ahorro-prevision",
-    footerShortcutRank: 2,
     footerShortcutLabel: "Simular APV",
     primaryJtbd:
       "Elegir cómo aportar al APV según el beneficio tributario que realmente puedes capturar hoy.",
@@ -316,7 +315,6 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     icon: "building-bank",
     tag: "Oferta nueva",
     family: "deuda-credito",
-    footerShortcutRank: 3,
     footerShortcutLabel: "Evaluar crédito",
     primaryJtbd: "Comparar ofertas antes de tomar una deuda nueva.",
     whenToUse:
@@ -433,7 +431,7 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
     icon: "refresh",
     tag: "Referencia",
     family: "vivienda-uf",
-    footerShortcutRank: 4,
+    footerShortcutRank: 2,
     footerShortcutLabel: "Convertir UF",
     primaryJtbd:
       "Traducir un monto indexado a UF o pesos sin agregar reglas contractuales extra.",
@@ -673,6 +671,9 @@ export const CALCULATOR_PORTFOLIO: CalculatorPortfolioEntry[] = [
   },
 ];
 
+// SEO-02 (plan 117): el bloque sitewide se limita a 2 herramientas de máxima
+// demanda (sueldo líquido y conversor UF). El resto del portafolio se enlaza
+// contextualmente por cluster para no aplanar la jerarquía interna.
 export const CALCULATOR_FOOTER_SHORTCUTS = CALCULATOR_PORTFOLIO.filter(
   calculator => typeof calculator.footerShortcutRank === "number"
 )

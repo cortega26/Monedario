@@ -104,6 +104,8 @@ Trabajador con sueldo imponible mensual de **$800.000**, año completo:
 
 En este ejemplo la gratificación bruta anual no supera el tope, por lo que se paga la gratificación bruta completa. Si se provisiona mensualmente: $2.400.000 ÷ 12 = **$200.000 por mes**. El tope mensual de referencia (útil cuando el sueldo es alto) es $2.629.377 ÷ 12 = **$219.115 por mes**.
 
+Si prefieres no repetir la fórmula a mano, la [calculadora de gratificación legal](/calculadoras/gratificacion-legal/) aplica el 25% con el tope de 4,75 IMM vigente.
+
 Para entender cómo se integra la gratificación al total de tu sueldo, consulta [cómo calcular tu sueldo líquido](/posts/como-calcular-sueldo-liquido/).
 
 ## ¿Cuándo y cómo se paga? Mensual, anual y proporcional

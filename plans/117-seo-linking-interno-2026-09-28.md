@@ -14,7 +14,12 @@
 - **Depends on**: decisión del mantenedor (paso 1)
 - **Category**: SEO interno / prioridad de producto
 - **Planned at**: commit `da8e72da`, 2026-09-29
-- **Status**: TODO — requiere selección del mantenedor (Fase 2 SEO)
+- **Status**: DONE — decisión aplicada: 2 globales (`sueldo-liquido` rank 1,
+  `conversor-uf` rank 2); `apv` y `credito-consumo` salen del bloque sitewide.
+  Linking contextual añadido para `gratificacion-legal` (post owner +
+  descuentos), `actualizador-inflacion` (post IPC + hub UF) e `iva` (hub
+  impuestos + presupuesto); auditor con floors estratégicos y
+  `check:calculator-interlinks` en verde (0 under-linked).
 - **Evidence**: `docs/reports/AUDIT-SEO-2026-09-28.md` (SEO-02 + Grafo interno)
 
 ## Why this matters
@@ -88,10 +93,10 @@ refleje la prioridad de producto, no el accidente de un componente.
 
 ## Done criteria
 
-- [ ] ≤ 2 herramientas en el bloque sitewide (decisión documentada).
-- [ ] Las 12 estratégicas del grafo con ≥ 3 enlaces editoriales.
-- [ ] Auditor extendido con floor por prioridad + tests.
-- [ ] 0 URLs nuevas; gates en verde.
+- [x] ≤ 2 herramientas en el bloque sitewide (decisión documentada).
+- [x] Las 12 estratégicas del grafo con ≥ 3 enlaces editoriales.
+- [x] Auditor extendido con floor por prioridad + tests.
+- [x] 0 URLs nuevas; gates en verde.
 
 ## STOP conditions
 

@@ -116,10 +116,9 @@ describe("calculator portfolio registry", () => {
     const hrefs = new Set(CALCULATOR_PORTFOLIO.map(calculator => calculator.href));
     const shortcutHrefs = CALCULATOR_FOOTER_SHORTCUTS.map(shortcut => shortcut.href);
 
+    // SEO-02 (plan 117): el bloque sitewide se limita a 2 herramientas.
     expect(shortcutHrefs).toEqual([
       "/calculadoras/sueldo-liquido/",
-      "/calculadoras/apv/",
-      "/calculadoras/credito-consumo/",
       "/calculadoras/conversor-uf/",
     ]);
 
