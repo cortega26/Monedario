@@ -240,6 +240,23 @@ export const CANONICAL_TOPIC_REGISTRY = {
   },
 };
 
+// Landings de guías (páginas .astro fuera de las colecciones) que cubren un
+// cluster. `role: "hub"` declara la landing como centro de recursos; el owner
+// del topic sigue siendo el post registrado en CANONICAL_TOPIC_REGISTRY
+// (plan 119, SEO-018). Piloto: Operación Renta.
+export const GUIDE_INTENT_REGISTRY = {
+  "/guias/impuestos-personas/operacion-renta/": {
+    cluster: "impuestos-personas",
+    canonicalTopic: "f22-revisar-enviar",
+    role: "hub",
+    note: "Centro del cluster; el owner del topic es el checklist F22.",
+  },
+};
+
+export function getGuideIntentEntry(pathname) {
+  return GUIDE_INTENT_REGISTRY[pathname] ?? null;
+}
+
 export const TRANSITIONAL_OWNERSHIP_REGISTRY = {};
 
 export function getTransitionalOwnershipEntry(slug) {

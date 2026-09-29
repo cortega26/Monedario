@@ -15,7 +15,15 @@
   si hay consolidación
 - **Category**: SEO de intención / gobernanza editorial
 - **Planned at**: commit `da8e72da`, 2026-09-29
-- **Status**: TODO — requiere selección del mantenedor (Fase 2 SEO)
+- **Status**: DONE (piloto, opción A) — la guía quedó declarada como `hub` en
+  `GUIDE_INTENT_REGISTRY` (canonicalTopic `f22-revisar-enviar`; el owner sigue
+  siendo el checklist F22). Title/description de la guía diferenciados a
+  intención de centro y enlace a la orientación (centro) desde la intro; la
+  guarda `guide-intent-registry` valida el registry en cada build (20 checks).
+  **Remanente editorial (fuera de este plan por el STOP de YMYL)**: la
+  deduplicación de secciones de contenido que repiten F22/plazos/devolución
+  requiere revisión editorial humana; los metadatos ya no compiten
+  (title/H1/description verificados como distintos).
 - **Evidence**: `docs/reports/AUDIT-SEO-2026-09-28.md` (SEO-05)
 
 ## Why this matters
@@ -95,11 +103,11 @@ su rol no está gobernado. El informe pide resolverlo antes de AT2027.
 
 ## Done criteria
 
-- [ ] Opción A/B/C elegida por el mantenedor y documentada.
-- [ ] Guías cubiertas por el registry de intención con rol declarado.
-- [ ] ≤1 owner por `canonicalTopic` en `impuestos-personas` (guarda activa).
-- [ ] Sin solapamiento de intención detectable en title/H1/description.
-- [ ] Si hubo consolidación: snapshots + ADR + revisión editorial humana.
+- [x] Opción A elegida y documentada (piloto Operación Renta).
+- [x] Guía cubierta por el registry de intención con rol `hub` declarado.
+- [x] ≤1 owner por `canonicalTopic` en `impuestos-personas` (guarda activa).
+- [x] Sin solapamiento de intención detectable en title/H1/description.
+- [x] Consolidación: no aplica (opción A); sin cambios de URL.
 
 ## STOP conditions
 

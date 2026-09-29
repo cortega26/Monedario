@@ -11,6 +11,7 @@ import {
   findBreadcrumbIssues,
   findDuplicateIds,
   findFutureLastmods,
+  findGuideIntentIssues,
   findHeadingLevelJumps,
   findInvalidJsonLd,
   findNonCanonicalInternalHrefs,
@@ -179,6 +180,53 @@ describe("findSitemapLastmodIssues", () => {
       "<urlset><url><loc>https://monedario.cl/a/</loc>" +
       "<lastmod>2026-09-01T00:00:00.000Z</lastmod></url></urlset>";
     expect(findSitemapLastmodIssues(xml)).toEqual([]);
+  });
+});
+
+describe("findGuideIntentIssues", () => {
+  const canonicalRegistry = {
+    "impuestos-personas": {
+      "f22-revisar-enviar": { ownerSlug: "operacion-renta-f22-checklist" },
+    },
+  };
+
+  it("accepts a hub landing present in dist with a registered topic", () => {
+    const dist = buildDist();
+    writePage(
+      dist,
+      "guias/impuestos-personas/operacion-renta/index.html",
+      "<html></html>"
+    );
+    const registry = {
+      "/guias/impuestos-personas/operacion-renta/": {
+        cluster: "impuestos-personas",
+        canonicalTopic: "f22-revisar-enviar",
+        role: "hub",
+      },
+    };
+    expect(findGuideIntentIssues(registry, canonicalRegistry, dist)).toEqual([]);
+  });
+
+  it("flags unknown topics, owner roles and missing pages", () => {
+    const dist = buildDist();
+    const registry = {
+      "/guias/x/": {
+        cluster: "nope",
+        canonicalTopic: "nope",
+        role: "owner",
+      },
+      "/posts/not-a-guide/": {
+        cluster: "impuestos-personas",
+        canonicalTopic: "f22-revisar-enviar",
+        role: "hub",
+      },
+    };
+    const issues = findGuideIntentIssues(registry, canonicalRegistry, dist);
+    expect(issues).toHaveLength(4);
+    expect(issues.join("\n")).toContain("no registrado");
+    expect(issues.join("\n")).toContain("no puede declararse owner");
+    expect(issues.join("\n")).toContain("no es una landing /guias/");
+    expect(issues.join("\n")).toContain("página no encontrada");
   });
 });
 
@@ -494,6 +542,13 @@ describe("check-postbuild runner over a full mini-dist", () => {
       "posts/deposito-a-plazo-uf-vs-pesos/index.html",
       '<html><head><title>Depósito a plazo: UF vs pesos — qué conviene y cuándo | Monedario</title></head>' +
         '<body><h1>Depósito a plazo: UF vs pesos — qué conviene y cuándo</h1><p>x</p></body></html>'
+    );
+
+    writePage(
+      root,
+      "guias/impuestos-personas/operacion-renta/index.html",
+      '<html><head><title>Centro Operación Renta | Monedario</title></head>' +
+        "<body><p>ok</p></body></html>"
     );
 
     const pagefindDir = path.join(root, "pagefind");
