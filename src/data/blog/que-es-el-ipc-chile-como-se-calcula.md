@@ -116,7 +116,7 @@ El INE publica el IPC mensual en [ine.gob.cl](https://www.ine.gob.cl). El inform
 - Variación a 12 meses (%): la "inflación".
 - Desglose por división (alimentos, vivienda, transporte, etc.).
 
-El dato más útil para decisiones personales es la **variación a 12 meses**, porque refleja cuánto ha subido el nivel de precios en el último año completo.
+El dato más útil para decisiones personales es la **variación a 12 meses**, porque refleja cuánto ha subido el nivel de precios en el último año completo. Si quieres traducir esa variación a pesos, el [actualizador por inflación](/calculadoras/actualizador-inflacion/) ajusta un monto histórico al valor de hoy.
 
 ---
 

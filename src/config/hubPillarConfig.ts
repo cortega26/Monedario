@@ -55,6 +55,14 @@ export const impuestosPersonasCalcCards: LinkCard[] = [
     href: "/calculadoras/operacion-renta/",
     cta: "Calcular renta anual",
   },
+  {
+    kind: "Calculadora",
+    title: "Calculadora de IVA Chile 19%",
+    description:
+      "Obtén el monto neto, el IVA y el bruto de un precio en segundos.",
+    href: "/calculadoras/iva/",
+    cta: "Calcular IVA",
+  },
 ];
 
 export const pensionesAfpCalcCards: LinkCard[] = [

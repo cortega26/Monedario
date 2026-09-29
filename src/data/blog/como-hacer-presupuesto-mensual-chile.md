@@ -78,6 +78,8 @@ Hay dos clasificaciones que importan:
 
 El error clásico: presupuesto solo con fijos. Los variables y los irregulares son la causa de la mayoría de los desbalances.
 
+Los precios que ves en Chile incluyen IVA (19%). Si necesitas desglosarlo —por ejemplo, para separar el impuesto de un gasto— usa la [calculadora de IVA](/calculadoras/iva/).
+
 ### Por prioridad
 
 1. **No negociables:** arriendo/dividendo, alimentación básica, servicios básicos.

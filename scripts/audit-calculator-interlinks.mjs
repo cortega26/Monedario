@@ -23,6 +23,7 @@
 
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const args = new Set(process.argv.slice(2));
 const JSON_OUTPUT = args.has("--json");
@@ -32,6 +33,33 @@ const MIN_EDITORIAL = (() => {
   const n = flag ? Number.parseInt(flag.slice("--min=".length), 10) : 3;
   return Number.isFinite(n) && n >= 0 ? n : 3;
 })();
+
+// SEO-02 (plan 117): calculadoras estratégicas del grafo interno del informe
+// SEO 2026-09-28 y su floor de enlaces editoriales. Con --strict el audit falla
+// si alguna queda bajo su floor; el resto usa MIN_EDITORIAL.
+export const STRATEGIC_LINK_FLOORS = {
+  "actualizador-inflacion": 3,
+  "gratificacion-legal": 3,
+  iva: 3,
+  "boleta-honorarios-liquido": 3,
+  "deposito-a-plazo": 3,
+  "dividendo-hipotecario": 3,
+  "simulador-renegociacion": 3,
+  "seguro-cesantia": 3,
+  "comisiones-afp": 3,
+  "impuesto-segunda-categoria": 3,
+  "tarjeta-credito": 3,
+};
+
+export function resolveFloor(slug, minEditorial = MIN_EDITORIAL) {
+  return STRATEGIC_LINK_FLOORS[slug] ?? minEditorial;
+}
+
+export function findUnderLinked(rows, minEditorial = MIN_EDITORIAL) {
+  return rows.filter(
+    row => row.inboundEditorial < resolveFloor(row.slug, minEditorial)
+  );
+}
 
 const REPO_ROOT = process.env.CALC_INTERLINKS_ROOT || process.cwd();
 const CALC_PAGES_DIR = path.join(REPO_ROOT, "src", "pages", "calculadoras");
@@ -101,32 +129,34 @@ function main() {
     })
     .sort((a, b) => a.inboundEditorial - b.inboundEditorial || a.slug.localeCompare(b.slug));
 
-  const underLinked = rows.filter(r => r.inboundEditorial < MIN_EDITORIAL);
+  const underLinked = findUnderLinked(rows);
 
   if (JSON_OUTPUT) {
     console.log(
-      JSON.stringify({ minEditorial: MIN_EDITORIAL, underLinked: underLinked.map(r => r.slug), rows }, null, 2)
+      JSON.stringify({ minEditorial: MIN_EDITORIAL, strategicFloors: STRATEGIC_LINK_FLOORS, underLinked: underLinked.map(r => r.slug), rows }, null, 2)
     );
   } else {
     console.log(`[audit-calculator-interlinks] active calculators: ${rows.length}`);
     console.log(`[audit-calculator-interlinks] editorial-link floor (min): ${MIN_EDITORIAL}`);
     console.log("");
-    console.log("  editorial  total  calculator");
+    console.log("  editorial  floor  total  calculator");
     for (const r of rows) {
-      const flag = r.inboundEditorial < MIN_EDITORIAL ? " ⚠ under-linked" : "";
+      const floor = resolveFloor(r.slug);
+      const flag = r.inboundEditorial < floor ? " ⚠ under-linked" : "";
+      const strategic = r.slug in STRATEGIC_LINK_FLOORS ? " ◆" : "";
       console.log(
-        `  ${String(r.inboundEditorial).padStart(9)}  ${String(r.inboundTotal).padStart(5)}  ${r.slug}${flag}`
+        `  ${String(r.inboundEditorial).padStart(9)}  ${String(floor).padStart(5)}  ${String(r.inboundTotal).padStart(5)}  ${r.slug}${strategic}${flag}`
       );
     }
     console.log("");
     if (underLinked.length === 0) {
       console.log(
-        `[audit-calculator-interlinks] under-linked calculators (< ${MIN_EDITORIAL} editorial): none`
+        "[audit-calculator-interlinks] under-linked calculators: none"
       );
     } else {
       console.log(
-        `[audit-calculator-interlinks] under-linked calculators (< ${MIN_EDITORIAL} editorial): ${underLinked
-          .map(r => r.slug)
+        `[audit-calculator-interlinks] under-linked calculators: ${underLinked
+          .map(r => `${r.slug} (< ${resolveFloor(r.slug)})`)
           .join(", ")}`
       );
     }
@@ -138,4 +168,11 @@ function main() {
   process.exit(0);
 }
 
-main();
+const __filename = fileURLToPath(import.meta.url);
+const isDirectRun =
+  process.argv[1] !== undefined &&
+  path.resolve(process.argv[1]) === path.resolve(__filename);
+
+if (isDirectRun) {
+  main();
+}
