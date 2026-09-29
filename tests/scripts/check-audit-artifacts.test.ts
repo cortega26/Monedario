@@ -79,6 +79,57 @@ describe("findAuditArtifactIssues", () => {
     ).toContain("claims debe ser un array");
   });
 
+  it("PASS admite defectos abiertos de paquete pero no de producto", () => {
+    const openPackage = {
+      ...passing,
+      defects: [
+        {
+          id: "D1",
+          severity: "baja",
+          surface: "audit-package",
+          status: "open",
+        },
+      ],
+    };
+    expect(findAuditArtifactIssues(openPackage)).toEqual([]);
+
+    const openProduct = {
+      ...passing,
+      defects: [
+        { id: "D1", severity: "media", surface: "product", status: "open" },
+      ],
+    };
+    expect(findAuditArtifactIssues(openProduct).join("\n")).toContain(
+      "defecto(s) de producto abierto(s)"
+    );
+
+    // Sin `surface`, el default es product (conservador).
+    const unclassified = {
+      ...passing,
+      defects: [{ id: "D1", severity: "media", status: "open" }],
+    };
+    expect(findAuditArtifactIssues(unclassified).join("\n")).toContain(
+      "defecto(s) de producto abierto(s)"
+    );
+  });
+
+  it("rechaza surface inválida", () => {
+    const invalid = {
+      ...passing,
+      defects: [
+        {
+          id: "D1",
+          severity: "baja",
+          surface: "site",
+          status: "resolved",
+        },
+      ],
+    };
+    expect(findAuditArtifactIssues(invalid).join("\n")).toContain(
+      "surface inválida"
+    );
+  });
+
   it("valida humanSignoff cuando existe", () => {
     expect(
       findAuditArtifactIssues({

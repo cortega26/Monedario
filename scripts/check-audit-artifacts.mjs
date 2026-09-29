@@ -16,6 +16,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const VERDICTS = new Set(["FAIL", "CONDITIONAL", "PASS"]);
+const SURFACES = new Set(["product", "audit-package"]);
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 
 function isObject(value) {
@@ -62,6 +63,20 @@ export function findAuditArtifactIssues(audit) {
     }
   }
 
+  if (Array.isArray(audit.defects)) {
+    audit.defects.forEach((defect, index) => {
+      if (!isObject(defect)) {
+        issues.push(`defects[${index}] inválido`);
+        return;
+      }
+      if (defect.surface !== undefined && !SURFACES.has(defect.surface)) {
+        issues.push(
+          `defects[${index}].surface inválida: ${String(defect.surface)}`
+        );
+      }
+    });
+  }
+
   if (audit.verdict) {
     if (!Array.isArray(audit.claims) || audit.claims.length === 0) {
       issues.push(`verdict ${audit.verdict} sin claims verificados`);
@@ -74,6 +89,21 @@ export function findAuditArtifactIssues(audit) {
       (!Array.isArray(audit.defects) || audit.defects.length === 0)
     ) {
       issues.push(`verdict ${audit.verdict} sin defectos declarados`);
+    }
+    // PASS exige 0 defectos de producto abiertos; los de paquete de auditoría
+    // (scope/evidencia/prompt) se corrigen sin bloquear la publicación.
+    if (audit.verdict === "PASS" && Array.isArray(audit.defects)) {
+      const openProduct = audit.defects.filter(
+        defect =>
+          isObject(defect) &&
+          defect.status === "open" &&
+          (defect.surface ?? "product") === "product"
+      );
+      if (openProduct.length > 0) {
+        issues.push(
+          `PASS con ${openProduct.length} defecto(s) de producto abierto(s)`
+        );
+      }
     }
   }
 

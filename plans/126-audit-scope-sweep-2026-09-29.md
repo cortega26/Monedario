@@ -41,11 +41,15 @@ misma clase que el informe no marcó como defecto**:
 - `pnpm exec vitest run tests/scripts/audit-scope-consistency.test.ts` → 3/3.
 - `pnpm run check:audit-artifacts` → OK.
 
-## Observación de proceso (para decisión del mantenedor)
+## Observación de proceso — IMPLEMENTADA (2026-09-29)
 
 D10, D11 y D13 son defectos del **paquete de auditoría** (scope/evidencia), no
-del producto. El protocolo actual exige `PASS` solo con 0 defectos abiertos,
-sin distinguir superficie, lo que convierte typos del alcance en rondas
-CONDITIONAL adicionales. Propuesta: campo `surface: "product" | "audit-package"`
-en `defects[]`; `PASS` exige 0 abiertos de producto; los del paquete se
-corrigen y se listan, sin bloquear la publicación.
+del producto. El protocolo exigía `PASS` solo con 0 defectos abiertos, sin
+distinguir superficie, lo que convertía typos del alcance en rondas
+CONDITIONAL adicionales.
+
+Implementado: `surface: "product" | "audit-package"` en `defects[]`
+(`AI_AUDIT_PROTOCOL` §3/§5, ADR `ADR-20260929-ai-independent-audit-protocol`,
+`check:audit-artifacts` con regla «PASS sin defectos de producto abiertos» y
+default conservador `product`), tests del checker (8/8) y artefacto actual con
+D1–D13 etiquetados.

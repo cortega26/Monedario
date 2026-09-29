@@ -27,7 +27,7 @@ Base: `docs/adr/ADR-20260929-ai-independent-audit-protocol.md`,
 | R3 | **Reimplementación independiente.** El auditor recalcula cada vector por su cuenta y compara con el motor; divergencia = defecto. | `claims[].independentValue` + comparación exacta (tolerancia 0; redondeos documentados). |
 | R4 | **Trazabilidad claim→evidencia.** Ninguna afirmación sin evidencia asociada. | Sin `evidenceRef` → claim inválido. |
 | R5 | **Adversarial, no confirmatorio.** El objetivo es encontrar errores: bordes (topes, límites de tramo, exenciones, negativos, redondeos, períodos). | Lista de casos borde ejecutados en el artefacto. |
-| R6 | **Veredicto explícito.** `FAIL` / `CONDITIONAL` / `PASS` + defectos con severidad y estado. | `verdict` y `defects[]` obligatorios. |
+| R6 | **Veredicto explícito.** `FAIL` / `CONDITIONAL` / `PASS` + defectos con severidad, superficie (`product`/`audit-package`) y estado. | `verdict` y `defects[]` obligatorios. |
 | R7 | **Reproducibilidad.** Commit SHA, entorno y comandos exactos; un tercero debe poder repetir el audit. | Campos `scope.commit`, `method.commands`. |
 | R8 | **No arreglar durante el audit.** Los hallazgos se registran; el fix va en otro cambio con su propio ciclo. | El audit no modifica `src/`. |
 
@@ -65,16 +65,32 @@ Carpeta por scope: `docs/editorial/audits/<scope-id>/`.
     }
   ],
   "defects": [
-    { "id": "D1", "severity": "alta|media|baja", "description": "...", "evidence": "evidence/D1.txt", "status": "open|resolved" }
+    {
+      "id": "D1",
+      "severity": "alta|media|baja",
+      "surface": "product | audit-package",
+      "description": "...",
+      "evidence": "evidence/D1.txt",
+      "status": "open|resolved"
+    }
   ],
   "verdict": "FAIL | CONDITIONAL | PASS",
   "humanSignoff": null
 }
 ```
 
-Reglas de cierre: `PASS` solo sin defectos abiertos; `CONDITIONAL` bloquea
-hasta resolver; `humanSignoff` se completa con la revisión humana (fecha +
-responsable) antes de cualquier divulgación pública.
+**Superficie del defecto** (`surface`, refinamiento 2026-09-29): `product` es
+un defecto del sitio auditado (código, copy, datos, UI); `audit-package` es un
+defecto del propio paquete de auditoría (scope, prompts, evidencia,
+versionado). Ausente ⇒ `product` (default conservador: lo no clasificado
+bloquea).
+
+Reglas de cierre: `PASS` exige **0 defectos abiertos de `product`**; los
+`audit-package` abiertos se corrigen y quedan listados sin bloquear la
+publicación (un typo del alcance no debe costar una ronda CONDITIONAL).
+`CONDITIONAL` bloquea mientras haya defectos de producto abiertos;
+`humanSignoff` se completa con la revisión humana (fecha + responsable) antes
+de cualquier divulgación pública.
 
 ## 4. Divulgación pública (plantilla aprobada)
 
@@ -105,5 +121,6 @@ completo.
 - **Fase 2 (implementada 2026-09-29)**: `pnpm run check:audit-artifacts` valida
   el esquema de cada `02-result.json` (plantilla pendiente o veredicto con
   claims; FAIL/CONDITIONAL exigen defectos declarados, que pueden quedar en
-  `resolved` tras la remediación a la espera de la re-auditoría;
+  `resolved` tras la remediación a la espera de la re-auditoría; `surface`
+  válida cuando existe y `PASS` sin defectos `product` abiertos;
   `humanSignoff` validado cuando existe). Corre en `check:ci` y en CI.

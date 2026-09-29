@@ -27,6 +27,11 @@ bajo `docs/editorial/AI_AUDIT_PROTOCOL.md`:
   `FAIL/CONDITIONAL/PASS`;
 - la firma humana se mantiene: la IA no reemplaza el gate humano de
   publicación, lo antecede con mejor evidencia;
+- **superficie del defecto (refinamiento 2026-09-29)**: cada defecto declara
+  `surface: "product" | "audit-package"`; `PASS` exige 0 defectos de producto
+  abiertos y los del paquete de auditoría (scope, prompts, evidencia,
+  versionado) se corrigen sin bloquear la publicación — un typo del alcance no
+  debe costar una ronda CONDITIONAL completa;
 - divulgación pública limitada a la plantilla aprobada (modelo, protocolo,
   versión, commit, fecha; revisión humana explícita), en URLs existentes
   (bloque de verificación) o página dedicada post-2026-11-02 por FOCO ESTRICTO.
