@@ -164,6 +164,47 @@ export function extractJsonLdBlocks(html) {
   return blocks;
 }
 
+/**
+ * Validate the author entity graph on /autor/: a ProfilePage linked to a
+ * Person via mainEntity / mainEntityOfPage (E-E-A-T, plan 115).
+ * Returns human-readable issues ([] when valid).
+ */
+export function findAuthorProfileSchemaIssues(html) {
+  const issues = [];
+  let profilePage = null;
+  let person = null;
+
+  for (const block of extractJsonLdBlocks(html)) {
+    let data;
+    try {
+      data = JSON.parse(block);
+    } catch {
+      continue;
+    }
+    const nodes = Array.isArray(data["@graph"]) ? data["@graph"] : [data];
+    for (const node of nodes) {
+      if (node && node["@type"] === "ProfilePage") profilePage = node;
+      if (node && node["@type"] === "Person") person = node;
+    }
+  }
+
+  if (!profilePage) issues.push("missing ProfilePage node");
+  if (!person) issues.push("missing Person node");
+
+  if (profilePage && person) {
+    const pageId = profilePage["@id"];
+    const personId = person["@id"];
+    if (!profilePage.mainEntity?.["@id"] || profilePage.mainEntity["@id"] !== personId) {
+      issues.push("ProfilePage.mainEntity must reference the Person @id");
+    }
+    if (!person.mainEntityOfPage?.["@id"] || person.mainEntityOfPage["@id"] !== pageId) {
+      issues.push("Person.mainEntityOfPage must reference the ProfilePage @id");
+    }
+  }
+
+  return issues;
+}
+
 /** Total bytes of a directory tree. */
 export function totalDirBytes(dir) {
   let total = 0;
@@ -359,6 +400,18 @@ const CHECKS = [
         }
       }
       return errors;
+    },
+  },
+  {
+    id: "author-profile-schema",
+    message: "dist/autor must publish a ProfilePage linked to its Person node (E-E-A-T, plan 115).",
+    run(distDir) {
+      const htmlPath = path.join(distDir, "autor", "index.html");
+      if (!statSync(htmlPath, { throwIfNoEntry: false })) return [];
+      const html = readFileSync(htmlPath, "utf8");
+      return findAuthorProfileSchemaIssues(html).map(
+        issue => `dist/autor/index.html:author-profile-schema ${issue}`
+      );
     },
   },
   {

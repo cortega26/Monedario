@@ -15,10 +15,25 @@ const SITE_URL = (Astro.site ?? new URL(Astro.url.origin)).href.replace(
   ""
 );
 
+const PROFILE_PAGE_ID = `${CANONICAL_URL}#profilepage`;
+
+const profilePageSchema = {
+  "@type": "ProfilePage",
+  "@id": PROFILE_PAGE_ID,
+  url: CANONICAL_URL,
+  name: `${SITE.authorFullName} — Autor | ${SITE.title}`,
+  description:
+    "Perfil del autor de Monedario: formación, metodología editorial, proyectos y perfiles verificables.",
+  inLanguage: "es-CL",
+  isPartOf: { "@id": `${SITE_URL}/#website` },
+  about: { "@id": CANONICAL_URL },
+  mainEntity: { "@id": CANONICAL_URL },
+};
+
 const personSchema = {
-  "@context": "https://schema.org",
   "@type": "Person",
   "@id": CANONICAL_URL,
+  mainEntityOfPage: { "@id": PROFILE_PAGE_ID },
   name: SITE.authorFullName,
   url: CANONICAL_URL,
   image: new URL(SITE.authorImage, Astro.site ?? Astro.url.origin).href,
@@ -70,6 +85,11 @@ const personSchema = {
     url: SITE_URL,
   },
 };
+
+const authorStructuredData = {
+  "@context": "https://schema.org",
+  "@graph": [profilePageSchema, personSchema],
+};
 ---
 
 <Layout
@@ -81,7 +101,7 @@ const personSchema = {
     type="application/ld+json"
     is:inline
     slot="head"
-    set:html={serializeJsonLd(personSchema)}
+    set:html={serializeJsonLd(authorStructuredData)}
   />
   <Header />
   <Breadcrumb />
