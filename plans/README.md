@@ -10,7 +10,7 @@ Fase 2/3.
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|-------|----------|--------|------------|--------|
 | 114 | [ux-audit-remediation-2026-09-28.md](114-ux-audit-remediation-2026-09-28.md) | P1 | L | — | DONE (F-01 a F-10; remanente: pasada manual NVDA/VoiceOver y `TD-0111`) |
-| 115 | [correctness-remediation-2026-09-28.md](115-correctness-remediation-2026-09-28.md) | P0 | L | — | TODO (F01 Operación Renta primero) |
+| 115 | [correctness-remediation-2026-09-28.md](115-correctness-remediation-2026-09-28.md) | P0 | L | — | IN PROGRESS (F01/F02 hechos; pasos 2–6 pendientes) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
 

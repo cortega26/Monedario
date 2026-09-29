@@ -53,7 +53,7 @@ const CALCULATORS: ResultConfig[] = [
   {
     slug: "operacion-renta",
     fill: async page => {
-      await page.locator("#sueldos-brutos").fill("12000000");
+      await page.locator("#renta-neta-sueldos").fill("12000000");
     },
   },
   {

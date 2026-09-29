@@ -58,7 +58,7 @@ const CALCULATORS: CalculatorStateConfig[] = [
   {
     slug: "operacion-renta",
     invalidate: async page => {
-      await page.locator("#sueldos-brutos").fill("0");
+      await page.locator("#renta-neta-sueldos").fill("0");
       await page.locator("#calcBtn").click();
     },
     errorSelector: "#form-error",
@@ -175,6 +175,25 @@ test.describe("Calculator result states (Plan 114)", () => {
       await expect(page.locator("[data-is-example='true']")).toHaveCount(0);
     });
   }
+
+  test("operacion-renta: la estimación desde sueldo bruto marca la base como estimada", async ({
+    page,
+  }) => {
+    await page.goto("/calculadoras/operacion-renta/");
+    await page.waitForLoadState("networkidle");
+
+    await page.locator("#sueldos-estimacion summary").click();
+    await page.locator("#est-sueldo-bruto").fill("1500000");
+    await page.locator("#est-aplicar").click();
+
+    // Habitat 11,27% + Fonasa 7% + AFC 0,6% sobre $1.500.000 × 12.
+    await expect(page.locator("#renta-neta-sueldos")).toHaveValue("14603400");
+
+    await page.locator("#calcBtn").click();
+    await expect(page.locator("#resultado-contenido")).toContainText(
+      "renta neta estimada"
+    );
+  });
 
   test.describe("result trust block (F-08)", () => {
     for (const cfg of CALCULATORS) {

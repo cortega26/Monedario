@@ -3,10 +3,10 @@ import type { OperacionRentaInput } from "./SimulateOperacionRenta";
 
 /**
  * Ejemplo resuelto del simulador de Operación Renta, atado a
- * `simulateOperacionRenta`. Usa valores UTM/UF de referencia explícitos
- * (ilustrativos); el simulador en producción aplica los valores vigentes del
- * año tributario. El test verifica que el resultado documentado siga
- * coincidiendo con la función real (anti-drift).
+ * `simulateOperacionRenta`. Usa un año tributario ilustrativo con UTA/UF de
+ * referencia explícitas; el simulador en producción usa el bundle congelado
+ * del año tributario correspondiente. El test verifica que el resultado
+ * documentado siga coincidiendo con la función real (anti-drift).
  */
 export const operacionRentaWorkedExample: {
   input: OperacionRentaInput;
@@ -19,14 +19,23 @@ export const operacionRentaWorkedExample: {
   example: WorkedExample;
 } = {
   input: {
-    sueldosBrutos: 0,
+    sueldosRentaNeta: 0,
+    sueldosBaseMode: "declarada",
     honorariosBrutos: 10_000_000,
     arriendos: 0,
     impuestoUnicoRetenido: 0,
     ppmHonorarios: 1_450_000,
     apvRegimenB: 0,
     interesesHipotecarios: 0,
-    economicParameters: { utm: 68_923, uf: 40_000 },
+    taxYear: {
+      taxYear: 2026,
+      commercialYear: 2025,
+      filingYear: 2026,
+      uta: 827_076,
+      ufDecember: 40_000,
+      honorariosPpmRate: 0.145,
+      source: "valores ilustrativos del ejemplo resuelto",
+    },
   },
   expected: {
     rentaNetaHonorarios: 7_000_000,
@@ -36,7 +45,7 @@ export const operacionRentaWorkedExample: {
   },
   example: {
     scenario:
-      "Un trabajador a honorarios que emitió $10.000.000 en boletas durante el año, con $1.450.000 retenidos como PPM (UTM de referencia: $68.923).",
+      "Un trabajador a honorarios que emitió $10.000.000 en boletas durante el año comercial 2025, con $1.450.000 retenidos como PPM (tasa 14,5%; UTA de referencia del ejemplo: $827.076).",
     steps: [
       {
         label: "Aplica el 30% de gastos presuntos (con tope de 15 UTA).",

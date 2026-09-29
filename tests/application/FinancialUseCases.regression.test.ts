@@ -566,12 +566,23 @@ describe("Regression - Simulador Operación Renta", () => {
   // UTM/UF constants at the top of this file which belong to an earlier snapshot).
   const UTM_RENTA = 69889;
   const UF_RENTA = 39868;
-  // UTA = UTM_RENTA × 12 = 838_668 (used as the "utm" parameter to the annual IGC engine)
+  // UTA = UTM_RENTA × 12 = 838_668 (unidad de la tabla IGC del caso)
+  const UTA_RENTA = UTM_RENTA * 12;
+  // Parámetros fiscales congelados e ilustrativos del caso de regresión.
+  const TAX_YEAR_REGRESSION = {
+    taxYear: 2026,
+    commercialYear: 2025,
+    filingYear: 2026,
+    uta: UTA_RENTA,
+    ufDecember: UF_RENTA,
+    honorariosPpmRate: 0.145,
+    source: "valores ilustrativos del caso de regresión",
+  };
 
   it("case A — sueldo + retenciones (devolución)", () => {
     // Derived:
     //   gastosPresuntos = 0 (no honorarios)
-    //   rentaBrutaGlobal = 18_000_000
+    //   rentaNetaGlobal = 18_000_000
     //   baseImponibleIGC = 18_000_000 (no deductions)
     //   18_000_000 falls in the 4% bracket (13.5–30 UTA)
     //   d2 = 13.5 × 838_668 × 0.04 = 452_880.72
@@ -579,14 +590,15 @@ describe("Regression - Simulador Operación Renta", () => {
     //   totalCréditos = 1_150_000
     //   saldoFinal = 267_119.28 − 1_150_000 = −882_880.72  → devolución
     const result = simulateOperacionRenta({
-      sueldosBrutos: 18_000_000,
+      sueldosRentaNeta: 18_000_000,
+      sueldosBaseMode: "declarada",
       honorariosBrutos: 0,
       arriendos: 0,
       impuestoUnicoRetenido: 1_150_000,
       ppmHonorarios: 0,
       apvRegimenB: 0,
       interesesHipotecarios: 0,
-      economicParameters: { utm: UTM_RENTA, uf: UF_RENTA },
+      taxYear: TAX_YEAR_REGRESSION,
     });
 
     expect(result.esDevolución).toBe(true);
@@ -600,7 +612,7 @@ describe("Regression - Simulador Operación Renta", () => {
     // Derived:
     //   gastosPresuntos = min(4_000_000 × 0.3, 15 × 838_668) = min(1_200_000, 12_580_020) = 1_200_000
     //   rentaNetaHonorarios = 4_000_000 − 1_200_000 = 2_800_000
-    //   rentaBrutaGlobal = 18_000_000 + 2_800_000 = 20_800_000
+    //   rentaNetaGlobal = 18_000_000 + 2_800_000 = 20_800_000
     //   apvAplicado = min(1_200_000, 600 × 39_868) = 1_200_000 (below 600-UF cap)
     //   baseImponibleIGC = 20_800_000 − 1_200_000 = 19_600_000
     //   19_600_000 falls in the 4% bracket (13.5–30 UTA)
@@ -609,14 +621,15 @@ describe("Regression - Simulador Operación Renta", () => {
     //   totalCréditos = 800_000 + 490_000 = 1_290_000
     //   saldoFinal = 331_119.28 − 1_290_000 = −958_880.72  → devolución
     const result = simulateOperacionRenta({
-      sueldosBrutos: 18_000_000,
+      sueldosRentaNeta: 18_000_000,
+      sueldosBaseMode: "declarada",
       honorariosBrutos: 4_000_000,
       arriendos: 0,
       impuestoUnicoRetenido: 800_000,
       ppmHonorarios: 490_000,
       apvRegimenB: 1_200_000,
       interesesHipotecarios: 0,
-      economicParameters: { utm: UTM_RENTA, uf: UF_RENTA },
+      taxYear: TAX_YEAR_REGRESSION,
     });
 
     expect(round2(result.baseImponibleIGC)).toBe(19_600_000);
