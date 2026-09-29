@@ -57,7 +57,7 @@ sin JS) accionables. Brecha de perf: PERF-005 (regresión móvil vs baseline).
 
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|-------|----------|--------|------------|--------|
-| 122 | [resilience-remediation-2026-09-29.md](122-resilience-remediation-2026-09-29.md) | P2/P3 + hardening | M | — | TODO |
+| 122 | [resilience-remediation-2026-09-29.md](122-resilience-remediation-2026-09-29.md) | P2/P3 + hardening | M | — | DONE (RES-01/02 no-defecto con regresión; RES-03/04 corregidos; `test:resilience` 21 tests + invariantes + CI) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
 

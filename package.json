@@ -19,6 +19,7 @@
     "test:all": "pnpm run test && pnpm run test:a11y",
     "test:a11y": "pnpm exec playwright test",
     "test:privacy": "pnpm exec playwright test --config playwright.privacy.config.ts",
+    "test:resilience": "pnpm exec playwright test --config playwright.resilience.config.ts",
     "check:context": "node scripts/check-context.mjs",
     "check:policy-registry": "node scripts/check-policy-registry.mjs",
     "check:docs": "node scripts/check-docs-structure.mjs",

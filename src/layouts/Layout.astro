@@ -49,6 +49,9 @@ const resolvedCanonicalURL = new URL(canonicalURL, siteContext).href;
 // Indexabilidad declarativa (plan 120): el contrato decide el meta robots por
 // path; las páginas no lo hardcodean.
 const robotsMeta = robotsMetaFor(Astro.url.pathname);
+// Resiliencia RES-04 (plan 122): en calculadoras, sin JS el formulario debe
+// verse explícitamente no operativo (el cálculo es client-side por diseño).
+const isCalculatorPage = /^\/calculadoras\/.+/.test(Astro.url.pathname);
 const socialImageURL = new URL(ogImage, siteContext);
 const defaultSocialImagePath = SITE.ogImage ? `/${SITE.ogImage}` : "/og.png";
 const defaultSocialImageURL = new URL(defaultSocialImagePath, siteContext);
@@ -143,7 +146,7 @@ const structuredData = !pubDatetime
 <html
   dir={SITE.dir}
   lang={SITE.lang ?? "es"}
-  class={scrollSmooth ? "scroll-smooth" : undefined}
+  class:list={["no-js", scrollSmooth && "scroll-smooth"]}
   data-analytics-transport={SITE.analyticsTransport ? "enabled" : undefined}
   data-app-version={packageInfo.version}
 >
@@ -284,7 +287,17 @@ const structuredData = !pubDatetime
     <script is:inline>
       (function () {
         const initialColorScheme = ""; // "light" | "dark"
-        const currentTheme = localStorage.getItem("theme");
+        // Resiliencia RES-04 (plan 122): con JS disponible, el formulario de
+        // calculadora vuelve a ser operable (el CSS de .no-js lo atenúa).
+        document.documentElement.classList.remove("no-js");
+        // Resiliencia RES-035/036 (plan 122): storage bloqueado no debe
+        // impedir el render ni el cálculo.
+        let currentTheme = null;
+        try {
+          currentTheme = localStorage.getItem("theme");
+        } catch {
+          currentTheme = null;
+        }
 
         function getPreferTheme() {
           if (currentTheme) return currentTheme;
@@ -328,6 +341,20 @@ const structuredData = !pubDatetime
     </script>
   </head>
   <body>
+    {
+      isCalculatorPage && (
+        <noscript>
+          <div
+            class="app-layout mt-4 rounded-lg border border-amber-500/30 bg-amber-500/10 p-3 text-sm text-secondary"
+            role="status"
+          >
+            Esta calculadora necesita JavaScript para calcular. Puedes leer la
+            explicación y los valores de referencia; para usar el formulario,
+            activa JavaScript en tu navegador.
+          </div>
+        </noscript>
+      )
+    }
     <slot />
 
     <!-- Load full theme logic -->
