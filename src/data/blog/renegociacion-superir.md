@@ -3,7 +3,7 @@ title: "Renegociación Superir: qué es, quién puede pedir y cómo hacerlo sin 
 seoTitle: "Renegociación Superir: Qué Es y Cómo Pedirla | Monedario"
 author: "Equipo Monedario"
 pubDate: 2026-02-24T14:00:00Z
-updatedDate: 2026-09-17T18:45:00Z
+updatedDate: 2026-09-29T00:00:00Z
 slug: renegociacion-superir
 featured: false
 lang: es-CL
@@ -199,7 +199,7 @@ Estos son los más comunes, para que no los repitas:
 
 **Deudas con menos de 90 días de mora.** El plazo debe estar cumplido al día de presentar la solicitud, no al día de la audiencia.
 
-**Una sola deuda grande.** La ley exige mínimo dos acreedores distintos. Una deuda de 200 UF con un solo banco no califica.
+**Una sola deuda grande.** La ley exige dos o más obligaciones vencidas, aunque sean del mismo acreedor (art. 260: «provenientes de obligaciones diversas»). Una única deuda de 200 UF no califica, por grande que sea.
 
 **Declarar solo las deudas vencidas.** La declaración debe incluir **todas** tus deudas, incluyendo las que estás pagando al día. Ocultar deudas es causal de rechazo y puede tener consecuencias legales.
 
