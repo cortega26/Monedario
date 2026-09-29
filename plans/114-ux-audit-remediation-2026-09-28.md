@@ -14,8 +14,9 @@
 - **Depends on**: none
 - **Category**: UX/a11y correctness + regression guards
 - **Planned at**: commit `224b6f74`, 2026-09-28
-- **Status**: Fase 1 DONE (2026-09-28). Fase 2/3 (F-05, F-06 rollout visual,
-  F-07, F-08) quedan planificadas abajo y sin ejecutar.
+- **Status**: Fase 1 DONE y Fase 2 parcial (F-05, F-06, F-08 en 17 páginas,
+  guard de IDs). Pendientes: F-07, F-08 completo, F-09/F-10 y estructural
+  (2026-09-28).
 - **Evidence**: `docs/reports/AUDIT-UX-2026-09-28.md`
 
 ## Scope
@@ -160,6 +161,31 @@ estado inicial.
   `astro preview` con el `dist` del build).
 - `pnpm run check:ci`: **exit 0**.
 
+### 2026-09-28 — Fase 2, ronda 2
+
+- **Hueco de F-01 cerrado**: `finiquito-indemnizacion` era la 17.ª página con
+  `data-is-example` y había quedado fuera del rollout de la Fase 1; ahora usa
+  el helper (estado inválido + `markResultState` en sus dos renders) y está en
+  la suite de estados.
+- **F-06**: rótulo "(Ejemplo)" → "(Ejemplo ilustrativo)" en 15 calculadoras y
+  guía "Ingresa tus datos para ver tu resultado" en la nota del ejemplo.
+- **F-08 (parcial)**: `CalculatorDataFreshness` con variante `result`
+  ("Estimación referencial · no es una cotización ni liquidación oficial") en
+  10 calculadoras; `CalculatorResultPanel` con prop `disclaimer` para las 7 que
+  no usan parámetros económicos (depósito, honorarios, crédito de consumo, IVA,
+  tarjeta, interés compuesto, finiquito). Cobertura total: 17/17 páginas con
+  resultado interactivo. Quedan fuera los conversores y las calculadoras sin
+  ejemplo (Fase 3).
+- **Guard nuevo**: `unique-element-ids` en `check-postbuild` (detecta IDs
+  duplicados por página; el caso `iva.astro` de la Fase 1 fue el disparador) con
+  tests del helper puro.
+- **F-05**: declaración de accesibilidad con última verificación
+  (28-09-2026), próxima revisión (marzo 2027), conteo real de la suite (134
+  pruebas) y changelog de accesibilidad.
+- **Evidencia**: `pnpm run build` → `[check-postbuild] OK. 8 checks passed over
+  332 HTML pages`; `playwright tests/accessibility` → **134 passed**;
+  `check:ci` → exit 0.
+
 ### Anexo CI (higiene, fuera del alcance UX)
 
 `check:ci` estaba rojo en `main` por dos tests preexistentes introducidos por
@@ -181,23 +207,24 @@ test y ADR-20260716). Sin cambios de comportamiento.
 - Playwright no puede ejecutarse en el entorno (el test estructural debe
   existir y pasar antes de cerrar).
 
-## Fase 2/3 (no ejecutada en esta corrida)
+## Fase 2/3 — estado
 
-- **F-05**: actualizar `/accessibilidad/` con fecha de próxima revisión, build
-  cubierto y changelog; alinear el conteo de plantillas con la suite real.
-- **F-06 rollout visual**: etiqueta "Ejemplo ilustrativo" diferenciada en las 15
-  calculadoras restantes (hoy ya invalidan el ejemplo, pero el rótulo inicial
-  varía).
-- **F-07**: identificador de tipo de contenido en breadcrumb/encabezado
+- [x] **F-05**: `/accessibilidad/` con verificación, próxima revisión, conteo
+  real de la suite y changelog.
+- [x] **F-06**: "Ejemplo ilustrativo" + guía de ingreso en las 15 calculadoras.
+- [x] **F-08 (parcial)**: bloque de estimación referencial en las 17 páginas con
+  resultado interactivo (10 con `CalculatorDataFreshness variant="result"`,
+  7 con `disclaimer` en el panel). Faltan conversores y calculadoras sin
+  ejemplo.
+- [x] **Guard de IDs duplicados**: `unique-element-ids` en `check-postbuild`.
+- [ ] **F-07**: identificador de tipo de contenido en breadcrumb/encabezado
   (`Guía`, `Artículo`, `Calculadora`, `Glosario`, `Ley`).
-- **F-08**: bloque compacto "Calculado con" (fecha, base, topes, fuente,
-  advertencia) junto al resultado.
-- **F-09/F-10**: contexto de página en hubs y compactación móvil con ancla.
-- **Estructural**: componentes `FinancialField` y `ResultPanel` con variantes de
-  estado; migración de las 22 calculadoras; axe sobre todas las plantillas de
+- [ ] **F-09/F-10**: contexto de página en hubs y compactación móvil con ancla.
+- [ ] **Estructural**: componentes `FinancialField` y `ResultPanel` con variantes
+  de estado; migración de las 22 calculadoras; axe sobre todas las plantillas de
   calculadora; pasada manual con NVDA/VoiceOver.
-- **Deuda detectada**: el guard de headings cubre saltos, no IDs duplicados
-  (el caso `iva.astro` se corrigió a mano); evaluar un check de IDs únicos.
+- [ ] **F-08 completo**: fecha, base imponible y topes por calculadora dentro
+  del bloque (requiere contrato por página).
 
 ## Rollback
 
