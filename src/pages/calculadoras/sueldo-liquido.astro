@@ -26,6 +26,7 @@ import CalculatorRadioGroup from "@/components/calculator/CalculatorRadioGroup.a
 import CalculatorResultPanel from "@/components/calculator/CalculatorResultPanel.astro";
 import CalculatorExplainerSection from "@/components/calculator/CalculatorExplainerSection.astro";
 import CalculatorDataFreshness from "@/components/calculator/CalculatorDataFreshness.astro";
+import { calculateNetSalary } from "@/application/use-cases/CalculateNetSalary";
 import { formatEconomicDate } from "@/domain/economic/economicSourcePresentation";
 import { DEFAULT_IMM } from "@/domain/economic/immConstants";
 import { SITE } from "@/config";
@@ -42,6 +43,36 @@ const immEffectiveDateLabel = economicParameters.immEffectiveDate
   : null;
 const firstTaxExemptBracketLabel =
   "$" + Math.round(firstTaxExemptBracket).toLocaleString("es-CL");
+
+// Ejemplo ilustrativo generado con el mismo motor que el cálculo interactivo
+// (auditoría de correctitud F08: el ejemplo estático no puede divergir).
+const EXAMPLE_GROSS = 1_200_000;
+const exampleNet = calculateNetSalary({
+  grossSalary: EXAMPLE_GROSS,
+  afpRatePercent: 11.27,
+  healthSystem: "fonasa",
+  contractType: "indefinido",
+  economicParameters,
+});
+const exampleFmt = (value: number) =>
+  "$" + Math.round(value).toLocaleString("es-CL");
+const examplePct = (value: number) => `${value.toFixed(2)}%`;
+const exampleWidth = (value: number) =>
+  `${((value / exampleNet.grossSalary) * 100).toFixed(2)}%`;
+const exampleSegments = [
+  { label: "AFP", value: exampleNet.deductions.afp, tw: "bg-accent" },
+  { label: "Salud", value: exampleNet.deductions.health, tw: "bg-accent/60" },
+  {
+    label: "Imp. 2ª cat.",
+    value: exampleNet.deductions.tax,
+    tw: "bg-accent/35",
+  },
+  {
+    label: "Seg. cesantía",
+    value: exampleNet.deductions.unemploymentInsurance,
+    tw: "bg-accent/15",
+  },
+];
 const sueldoLiquidoFaqs = [
   {
     question: "¿Cómo se calcula el sueldo líquido en Chile?",
@@ -542,94 +573,104 @@ const calculatorNextStepItems = [
               class="font-display text-5xl font-semibold text-secondary tabular-nums"
               style="letter-spacing:-0.02em;line-height:1"
             >
-              $973.560
+              {exampleFmt(exampleNet.netSalary)}
             </p>
           </div>
-          <!-- barra apilada estática: AFP 11.3% | Salud 7% | Ces. 0.6% | Líquido 81.1% -->
+          <!-- barra apilada generada desde el motor (auditoría F08) -->
           <div class="mb-3">
             <div
               class="flex h-3 w-full gap-px overflow-hidden rounded-full bg-border"
             >
-              <div
-                class="h-full bg-accent"
-                style="width:11.27%"
-                title="AFP: $135.240 (11.3%)"
-              >
-              </div>
-              <div
-                class="h-full bg-accent/60"
-                style="width:7%"
-                title="Salud: $84.000 (7.0%)"
-              >
-              </div>
-              <div
-                class="h-full bg-accent/15"
-                style="width:0.6%"
-                title="Seg. cesantía: $7.200 (0.6%)"
-              >
-              </div>
+              {
+                exampleSegments.map(segment => (
+                  <div
+                    class={`h-full ${segment.tw}`}
+                    style={`width:${exampleWidth(segment.value)}`}
+                    title={`${segment.label}: ${exampleFmt(segment.value)}`}
+                  />
+                ))
+              }
               <div
                 class="h-full"
-                style="width:81.13%;background-color:var(--color-accent-2)"
-                title="Líquido: $973.560 (81.1%)"
+                style={`width:${exampleWidth(exampleNet.netSalary)};background-color:var(--color-accent-2)`}
+                title={`Líquido: ${exampleFmt(exampleNet.netSalary)}`}
               >
               </div>
             </div>
             <div class="mt-2 flex flex-wrap gap-x-3 gap-y-1">
-              <span class="flex items-center gap-1 text-xs text-muted"
-                ><span
-                  class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-accent"
-                ></span>AFP 11.3%</span
-              >
-              <span class="flex items-center gap-1 text-xs text-muted"
-                ><span
-                  class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-accent/60"
-                ></span>Salud 7.0%</span
-              >
-              <span class="flex items-center gap-1 text-xs text-muted"
-                ><span
-                  class="inline-block h-2 w-2 flex-shrink-0 rounded-full bg-accent/15"
-                ></span>Seg. cesantía 0.6%</span
-              >
-              <span class="flex items-center gap-1 text-xs"
-                ><span
+              {
+                exampleSegments.map(segment => (
+                  <span class="flex items-center gap-1 text-xs text-muted">
+                    <span
+                      class={`inline-block h-2 w-2 flex-shrink-0 rounded-full ${segment.tw}`}
+                    />
+                    {segment.label}{" "}
+                    {examplePct((segment.value / exampleNet.grossSalary) * 100)}
+                  </span>
+                ))
+              }
+              <span class="flex items-center gap-1 text-xs">
+                <span
                   class="inline-block h-2 w-2 flex-shrink-0 rounded-full"
-                  style="background-color:var(--color-accent-2)"></span><span
-                  class="font-semibold text-foreground">Líquido 81.1%</span
-                ></span
-              >
+                  style="background-color:var(--color-accent-2)"></span>
+                <span class="font-semibold text-foreground">
+                  Líquido{" "}
+                  {
+                    examplePct(
+                      (exampleNet.netSalary / exampleNet.grossSalary) * 100
+                    )
+                  }
+                </span>
+              </span>
             </div>
           </div>
           <div class="space-y-2 text-sm">
             <div class="flex justify-between">
               <span class="text-secondary">Sueldo bruto</span><span
-                class="font-medium tabular-nums">$1.200.000</span
+                class="font-medium tabular-nums"
+                >{exampleFmt(exampleNet.grossSalary)}</span
               >
             </div>
             <div class="flex justify-between">
-              <span class="text-secondary">AFP (11.27%)</span><span
-                class="tabular-nums">− $135.240</span
+              <span class="text-secondary"
+                >AFP ({examplePct(exampleNet.effectiveRates.afpPercent)})</span
+              ><span class="tabular-nums"
+                >− {exampleFmt(exampleNet.deductions.afp)}</span
               >
             </div>
             <div class="flex justify-between">
-              <span class="text-secondary">Salud (7%)</span><span
-                class="tabular-nums">− $84.000</span
+              <span class="text-secondary"
+                >Salud ({
+                  examplePct(exampleNet.effectiveRates.healthPercent)
+                })</span
+              ><span class="tabular-nums"
+                >− {exampleFmt(exampleNet.deductions.health)}</span
               >
             </div>
             <div class="flex justify-between">
-              <span class="text-secondary">Seg. cesantía (0.6%)</span><span
-                class="tabular-nums">− $7.200</span
+              <span class="text-secondary"
+                >Seg. cesantía ({
+                  examplePct(
+                    exampleNet.effectiveRates.unemploymentInsurancePercent
+                  )
+                })</span
+              ><span class="tabular-nums"
+                >− {
+                  exampleFmt(exampleNet.deductions.unemploymentInsurance)
+                }</span
               >
             </div>
             <div class="flex justify-between">
               <span class="text-secondary">Imp. 2ª categoría</span><span
-                class="tabular-nums">− $0</span
+                class="tabular-nums"
+                >− {exampleFmt(exampleNet.deductions.tax)}</span
               >
             </div>
           </div>
           <p class="mt-4 text-xs text-muted">
-            Ejemplo para sueldo bruto $1.200.000 con Fonasa y Habitat. Ingresa
-            tus datos para calcular tu caso real.
+            Ejemplo para sueldo bruto {exampleFmt(EXAMPLE_GROSS)} con Fonasa y Habitat,
+            generado con el mismo motor de cálculo. Ingresa tus datos para calcular
+            tu caso real.
           </p>
         </div>
         <div

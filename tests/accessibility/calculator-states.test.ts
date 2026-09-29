@@ -176,6 +176,36 @@ test.describe("Calculator result states (Plan 114)", () => {
     });
   }
 
+  test("sueldo-liquido: el ejemplo ilustrativo coincide con el cálculo real", async ({
+    page,
+  }) => {
+    await page.goto("/calculadoras/sueldo-liquido/");
+    await page.waitForLoadState("networkidle");
+
+    const exampleText = await page
+      .locator("#resultado-contenido")
+      .innerText();
+
+    await page.locator("#sueldo").fill("1200000");
+    await page.locator("#calcBtn").click();
+    const resultText = await page
+      .locator("#resultado-contenido")
+      .innerText();
+
+    // Mismos montos que el motor real (auditoría F08).
+    for (const amount of [
+      "$973.347",
+      "$1.200.000",
+      "$135.240",
+      "$84.000",
+      "$7.200",
+      "$213",
+    ]) {
+      expect(exampleText).toContain(amount);
+      expect(resultText).toContain(amount);
+    }
+  });
+
   test("operacion-renta: la estimación desde sueldo bruto marca la base como estimada", async ({
     page,
   }) => {
