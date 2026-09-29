@@ -3,6 +3,12 @@ import { calculateAnnuityPayment } from "./shared/creditAmortization";
 export interface DebtItemInput {
   amount: number;
   overdueDays: number;
+  /**
+   * Identidad del acreedor. La Ley 20.720 art. 260 exige dos o más
+   * obligaciones vencidas "provenientes de obligaciones diversas"; sin
+   * identificar al acreedor no es posible verificar que sean distintas.
+   */
+  creditor: string;
 }
 
 export interface DebtRenegotiationInput {
@@ -25,9 +31,11 @@ export interface DebtRenegotiationOutput {
   qualifiedDebtCount: number;
   minimumOverdueDays: number;
   minimumDebtUf: number;
+  qualifiedCreditorCount: number;
   requirementChecks: {
     hasTwoOrMoreDebts: boolean;
     hasTwoOrMoreQualifiedDebts: boolean;
+    hasTwoOrMoreDistinctCreditors: boolean;
     reachesMinimumUf: boolean;
     hasNoFirstCategoryActivity: boolean;
     hasNoNotifiedExecutiveProceeding: boolean;
@@ -44,6 +52,14 @@ export interface DebtRenegotiationOutput {
 function assertInput(input: DebtRenegotiationInput): void {
   if (!Array.isArray(input.debts) || input.debts.length === 0) {
     throw new Error("debts must include at least one item.");
+  }
+  for (const debt of input.debts) {
+    if (
+      typeof debt.creditor !== "string" ||
+      debt.creditor.trim().length === 0
+    ) {
+      throw new Error("Cada deuda debe indicar su acreedor.");
+    }
   }
   if (!Number.isFinite(input.monthlyIncome) || input.monthlyIncome <= 0) {
     throw new Error("monthlyIncome must be a finite number greater than 0.");
@@ -92,6 +108,11 @@ export function simulateDebtRenegotiation(
   const hasTwoOrMoreDebts =
     input.debts.filter(debt => debt.amount > 0).length >= 2;
   const hasTwoOrMoreQualifiedDebts = qualifiedDebts.length >= 2;
+  const qualifiedCreditors = new Set(
+    qualifiedDebts.map(debt => debt.creditor.trim().toLowerCase())
+  );
+  const qualifiedCreditorCount = qualifiedCreditors.size;
+  const hasTwoOrMoreDistinctCreditors = qualifiedCreditorCount >= 2;
   const reachesMinimumUf = qualifiedDebtUf >= minimumDebtUf;
   const hasNoFirstCategoryActivity =
     !input.hasFirstCategoryActivityLast24Months;
@@ -100,6 +121,7 @@ export function simulateDebtRenegotiation(
   const meetsBasicEligibility =
     hasTwoOrMoreDebts &&
     hasTwoOrMoreQualifiedDebts &&
+    hasTwoOrMoreDistinctCreditors &&
     reachesMinimumUf &&
     hasNoFirstCategoryActivity &&
     hasNoNotifiedExecutiveProceeding;
@@ -121,11 +143,13 @@ export function simulateDebtRenegotiation(
     totalDebtUf,
     qualifiedDebtUf,
     qualifiedDebtCount: qualifiedDebts.length,
+    qualifiedCreditorCount,
     minimumOverdueDays,
     minimumDebtUf,
     requirementChecks: {
       hasTwoOrMoreDebts,
       hasTwoOrMoreQualifiedDebts,
+      hasTwoOrMoreDistinctCreditors,
       reachesMinimumUf,
       hasNoFirstCategoryActivity,
       hasNoNotifiedExecutiveProceeding,

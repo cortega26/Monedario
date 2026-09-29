@@ -369,8 +369,8 @@ describe("Regression - Renegociación", () => {
   it("case 1", () => {
     const result = simulateDebtRenegotiation({
       debts: [
-        { amount: 1800000, overdueDays: 120 },
-        { amount: 2200000, overdueDays: 150 },
+        { amount: 1800000, overdueDays: 120, creditor: "Banco A" },
+        { amount: 2200000, overdueDays: 150, creditor: "Retail B" },
       ],
       monthlyIncome: 1200000,
       termMonths: 48,
@@ -391,9 +391,9 @@ describe("Regression - Renegociación", () => {
   it("case 2", () => {
     const result = simulateDebtRenegotiation({
       debts: [
-        { amount: 500000, overdueDays: 120 },
-        { amount: 900000, overdueDays: 60 },
-        { amount: 700000, overdueDays: 180 },
+        { amount: 500000, overdueDays: 120, creditor: "Banco A" },
+        { amount: 900000, overdueDays: 60, creditor: "Retail B" },
+        { amount: 700000, overdueDays: 180, creditor: "Caja C" },
       ],
       monthlyIncome: 900000,
       termMonths: 36,
@@ -414,9 +414,9 @@ describe("Regression - Renegociación", () => {
   it("case 3", () => {
     const result = simulateDebtRenegotiation({
       debts: [
-        { amount: 4000000, overdueDays: 300 },
-        { amount: 3500000, overdueDays: 360 },
-        { amount: 2200000, overdueDays: 210 },
+        { amount: 4000000, overdueDays: 300, creditor: "Banco A" },
+        { amount: 3500000, overdueDays: 360, creditor: "Retail B" },
+        { amount: 2200000, overdueDays: 210, creditor: "Caja C" },
       ],
       monthlyIncome: 2500000,
       termMonths: 60,

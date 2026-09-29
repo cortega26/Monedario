@@ -24,8 +24,8 @@ export const debtRenegotiationWorkedExample: {
 } = {
   input: {
     debts: [
-      { amount: 3_000_000, overdueDays: 120 },
-      { amount: 2_000_000, overdueDays: 100 },
+      { amount: 3_000_000, overdueDays: 120, creditor: "Banco A" },
+      { amount: 2_000_000, overdueDays: 100, creditor: "Retail B" },
     ],
     monthlyIncome: 800_000,
     termMonths: 36,
