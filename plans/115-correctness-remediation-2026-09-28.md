@@ -14,6 +14,8 @@
 - **Depends on**: none
 - **Category**: correctness / datos / cumplimiento legal
 - **Planned at**: commit `7226c0ce`, 2026-09-28
+- **Status**: IN PROGRESS — Paso 1 (F01 + F02) implementado y verificado;
+  pendientes pasos 2–6.
 - **Evidence**: `docs/reports/AUDIT-CORRECTNESS-2026-09-28.md`
 
 ## Why this matters
@@ -126,6 +128,32 @@ contextos históricos.
 3. "Prepago sin costo" → "derecho a prepago sujeto a reglas/comisión
    aplicable".
 
+## Progress log
+
+### 2026-09-28 — Paso 1 (F01 + F02) implementado
+
+- **Bundle AT2026 congelado**: nuevo `src/domain/taxation/TaxYearParameters.ts`
+  con UTA dic-2025 $834.504, UF dic-2025 $39.643,59, retención de honorarios
+  14,5% y los años comercial/tributario/presentación, con fuente citada.
+- **Motor**: `calculateAnnualIncomeTax` en `TaxEngine` deja explícito que la
+  tabla IGC es la estructura progresiva en UTA (ya no se deriva `UTM × 12`).
+- **Contrato**: `SimulateOperacionRenta` recibe `sueldosRentaNeta` (Renta Total
+  Neta Pagada), `sueldosBaseMode` (`declarada`/`estimada`) y `taxYear`; el
+  output expone `rentaNetaGlobal` y la trazabilidad del año/base.
+- **Híbrido en la página**: input primario "Renta neta pagada por sueldos" con
+  guía del certificado/F22; `<details>` "Estimar desde sueldo bruto" que usa el
+  motor de planilla (`calculateNetSalary`) con AFP/salud/contrato y marca la
+  base como estimada. Etiquetas de año comercial/tributario y PPM 14,5%
+  corregidas; bloque de frescura con parámetros AT2026.
+- **Tests**: vector dorado SII $18M ⇒ $269.367,84; aislamiento temporal (el
+  contrato no acepta UTM vigente); golden de `TaxYearParameters`
+  (0,54 × UTA = $450.632,16); regresión de casos A/B actualizada; Playwright
+  con caso de estimación (195 en total).
+- **Evidencia**: `pnpm run build` OK (8 guards, 332 páginas); `pnpm run test`
+  1690 passed; Playwright 195 passed.
+- **Pendiente de proceso**: math audit + compliance YMYL (firma humana) antes
+  de considerar el cambio publicado como verificado; y pasos 2–6 del plan.
+
 ## Verification table
 
 | Purpose | Command | Expected |
@@ -140,8 +168,8 @@ contextos históricos.
 
 ## Done criteria
 
-- [ ] AT2026 usa parámetros del período correcto; $18M ⇒ $269.368.
-- [ ] Cambiar la UTM vigente no altera AT2026 (test de aislamiento).
+- [x] AT2026 usa parámetros del período correcto; $18M ⇒ $269.368.
+- [x] Cambiar la UTM vigente no altera AT2026 (test de aislamiento).
 - [ ] DAP sin retención automática para persona natural residente.
 - [ ] `ipc-historico.json` con el último período publicado y freshness
       assertion.
