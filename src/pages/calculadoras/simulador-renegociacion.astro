@@ -642,7 +642,7 @@ const calculatorNextStepItems = [
 
     if (deudas.some(deuda => deuda.acreedor.length === 0)) {
       showError(
-        "Indica el acreedor de cada deuda: la ley exige dos o más obligaciones de acreedores distintos."
+        "Indica el acreedor de cada deuda: la ley exige dos o más obligaciones vencidas de origen distinto (art. 260)."
       );
       setLoading(false);
       return;

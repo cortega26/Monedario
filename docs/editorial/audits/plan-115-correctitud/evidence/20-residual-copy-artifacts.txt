@@ -1,0 +1,95 @@
+# Residuales y hallazgos fuera de vector — re-auditoría (commit 8b73793)
+
+## D9 — mensaje de validación del simulador SuperIR (baja, abierto)
+
+`src/pages/calculadoras/simulador-renegociacion.astro:643-646`:
+
+```ts
+if (deudas.some(deuda => deuda.acreedor.length === 0)) {
+  showError(
+    "Indica el acreedor de cada deuda: la ley exige dos o más obligaciones de acreedores distintos."
+  );
+```
+
+El art. 260 verificado (S11) exige "obligaciones ... provenientes de
+obligaciones diversas"; no exige "acreedores distintos". El motor corregido en
+#589 (D3) tampoco exige acreedores distintos, y la nota de metodología de la
+misma página ya dice "provenientes de obligaciones diversas"
+(`simulador-renegociacion.astro:420`). El mensaje es el último resto del
+criterio antiguo.
+
+Cadena en el build limpio (worktree, dist de `pnpm run build`):
+
+```
+dist/_astro/simulador-renegociacion.astro_astro_type_script_index_0_lang.0GfvEoX7.js:
+Indica el acreedor de cada deuda: la ley exige dos o más obligaciones de acreedores distintos.
+```
+
+También el JSDoc de `DebtItemInput.creditor` (SimulateDebtRenegotiation.ts:6-11)
+sigue justificando el campo con "sin identificar al acreedor no es posible
+verificar que sean distintas", criterio que el motor ya no aplica.
+
+## D10 — harness de la auditoría anterior quedó obsoleto (baja, abierto)
+
+`evidence/recalc.audit.test.ts` (38 checks, commit d1b1237) quedó commiteado en
+#589 con aserciones que fijan el comportamiento *previo* a la remediación. Al
+ejecutarlo en HEAD:
+
+```
+$ pnpm exec vitest run --config .../vitest.audit.config.ts recalc.audit
+ Test Files  1 failed (1)
+      Tests  9 failed | 29 passed (38)
+```
+
+Evidencia: `13-prior-harness-at-head.txt`. Las 9 fallas son exactamente D1–D5
+(v.gr. `expect(AT2026.ufDecember).toBe(39_643.59)`, `expect(apvCap).toBeCloseTo(23_786_154)`,
+frontera 150 UTA). Un tercero que reproduzca el paquete tal como está obtiene
+fallos que ya no representan el estado del repo.
+
+## D11 — claims V3/V5 de `00-scope.json` sin actualizar (baja, abierto)
+
+`docs/editorial/audits/plan-115-correctitud/00-scope.json`:
+
+- V3: "sin retención automática (4% solo Impuesto Adicional, **art. 59 N°4
+  LIR**)" — el 4% de intereses está en el art. 59 inciso 2° **N°1** letras a)
+  y g) (S10); el N°4 es fletes marítimos al 5% (esto era D5).
+- V5: "SuperIR exige acreedor por deuda y **≥2 acreedores distintos** (Ley
+  20.720 art. 260)" — el texto legal dice "obligaciones ... provenientes de
+  obligaciones diversas", no acreedores distintos (S11; esto era D3).
+
+La remediación actualizó la página, el motor y S6 (D7), pero no estos dos
+claims del alcance, que siguen guiando a un auditor hacia el criterio viejo.
+
+## D12 — resaltado de tramo de IUSC con la estructura de 150 UTM (media, abierto)
+
+`src/pages/calculadoras/impuesto-segunda-categoria.astro:423`:
+`const BRACKET_UPPER_LIMITS_UTM = [13.5, 30, 50, 70, 90, 120, 150, Infinity];`
+(debería terminar `120, 310, Infinity`, como `bracketRows`). Evidencia
+reproducida en navegador y en node: ver `18-residual-highlight.txt`. Con
+200 UTM el resultado muestra "Tasa marginal 35.0%" pero se resalta la fila
+`tramo-7` (310–∞, 40%, rebaja $2.784.209), contradiciendo la tabla y el motor.
+
+## Observaciones fuera de alcance (no bloquean por sí solas)
+
+1. `src/data/blog/renegociacion-superir.md:202` ("La ley exige mínimo dos
+   acreedores distintos. Una deuda de 200 UF con un solo banco no califica")
+   contradice el art. 260 verificado y el motor corregido; también se publica
+   en `dist/posts/renegociacion-superir/index.html` y `dist/llms-full.txt`.
+   No está en la lista de archivos del alcance; requiere decisión editorial.
+2. `src/data/economic-history/uf-historico.json` termina en 2026-07-09
+   (`actualizadoEl 2026-06-21`); `uf-mensual.json` en 2026-07-01. El conversor
+   UF histórico falla cerrado avisando el rango ("El dataset histórico llega
+   hasta el …"), pero el dato queda ~2,5 meses atrás del snapshot. No es un
+   cambio del plan 115 ni cubierto por `check:economic-snapshot-freshness`
+   (que sí valida IPC y snapshot).
+3. `calculateApvWithdrawalRate` usa el retiro nominal; la ley habla del "monto
+   reajustado del retiro". La función documenta que el llamador provee el monto;
+   no modela el reajuste (simplificación declarada, no defecto del cambio).
+4. La tasa AFP 11,27% (Habitat) del ejemplo V2 proviene de
+   `src/config/afpCommissions.ts` con comentario "Previred … abril 2026"; no se
+   localizó extracto oficial CMF/Previred en esta sesión (claim UNVERIFIED).
+5. `check:small-details` en modo enforce: 0 blocking, 2 warnings
+   (ASD-101 contenedor de error en sueldo-liquido; resumen externo de URLs
+   ausente). El árbol de trabajo principal está sucio (working tree con WIP de
+   hero-images) — por eso la suite completa allí da 7 fallas ajenas al alcance;
+   en worktree limpio HEAD: 182/182 archivos OK (ver `15-repo-tests-clean-head.txt`).

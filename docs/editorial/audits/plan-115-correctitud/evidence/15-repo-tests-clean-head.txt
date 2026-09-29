@@ -1,0 +1,9 @@
+
+ RUN  v4.1.11 /tmp/opencode/monedario-head
+
+
+ Test Files  182 passed (182)
+      Tests  1771 passed | 1 skipped (1772)
+   Start at  16:49:24
+   Duration  9.02s (transform 34.69s, setup 0ms, import 51.95s, tests 30.44s, environment 2.49s)
+

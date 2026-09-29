@@ -1,180 +1,161 @@
-# Auditoría matemática adversarial — plan 115 (correctitud)
+# Re-auditoría matemática adversarial — plan 115 (correctitud), commit 8b73793
 
 - **Rol:** `MathAuditAgent` (adversarial) — `AI_AUDIT_PROTOCOL` v1
-- **Auditor:** opencode / deepseek-v4.1-flash (sesión `audit-plan115-2026-09-29`)
+- **Auditor:** opencode / deepseek-v4.1-flash (sesión `reaudit-plan115-2026-09-29`)
 - **Fecha:** 2026-09-29 (UTC)
-- **Commit auditado:** `d1b1237444bb234535f6b140ac4fe76ab10ed4c3`
-  (contiene los commits del alcance: `beb0401e`, `95c82807`, `854105cc`,
-  `ae28d6d3`, `a616dc53`, `61b8a0ae`, `48b84eba`, `186cdc13`)
-- **Veredicto:** **CONDITIONAL** — bloquea publicación hasta resolver
-  D1–D4 (y decidir D5–D8). `humanSignoff: null`.
-- **Naturaleza:** pre-gate de IA; no reemplaza la firma humana.
+- **Commit auditado:** `8b73793f4d62ee79aa01ff3ff42f90623a92c237`
+  (remediación de D1–D8, #589). Auditoría previa: `d1b1237444bb234535f6b140ac4fe76ab10ed4c3`.
+- **Naturaleza:** re-auditoría en sesión fresca de una remediación redactada por
+  otro agente (OpenAI Codex, #589). Es un **pre-gate**: no reemplaza la firma
+  humana (`humanSignoff: null`).
+- **Veredicto:** **CONDITIONAL** — D1–D8 verificados resueltos, pero quedan
+  **D9 (baja), D10 (baja), D11 (baja) y D12 (media)** abiertos. `CONDITIONAL`
+  bloquea publicación hasta resolverlos.
 
 Este informe no modifica `src/`. Todos los números se obtuvieron ejecutando
-código (harness Vitest propio + suites del repositorio + build). Los parámetros
-se anclaron a fuente primaria con extracto (ver `evidence/08-sources.md`).
+código (Python independiente + harness Vitest contra el motor + Chrome DevTools
+sobre el build limpio). Cada parámetro se ancló a fuente primaria con extracto
+(`evidence/19-sources-reaudit.md`).
 
-## 1. Método y reproducibilidad
+## 1. Método y reproducibilidad (R1, R4, R7)
 
-Entorno (R7): Node v24.19.0, pnpm 11.7.0, Linux x86_64; commit y fecha en
-`evidence/00-env.txt`.
+Entorno: Node v24.19.0, pnpm 11.7.0, Python 3.13.12, Linux x86_64
+(`evidence/10-env-reaudit.txt`). El árbol de trabajo principal tiene WIP local
+de hero-images (ajeno al alcance): para los gates se usó un **worktree limpio
+de HEAD** (`git worktree add --detach /tmp/opencode/monedario-head HEAD`), sin
+tocar el checkout del usuario ([1]).
 
 | Comando | Resultado | Evidencia |
 |---|---|---|
-| `pnpm exec vitest run --config docs/editorial/audits/plan-115-correctitud/evidence/vitest.audit.config.ts` | 38/38 checks propios OK | `evidence/01-recalc-independent.txt` |
-| `pnpm run test` | 182 archivos, 1767 passed / 1 skipped | `evidence/02-repo-tests.txt` |
-| `pnpm exec vitest run` (11 suites de vectores) | 133 passed | `evidence/03-vector-tests.txt` |
-| `pnpm run build` | 23 checks postbuild, 332 HTML, URL check OK | `evidence/06-build.txt` |
-| `pnpm run check:economic-snapshot-freshness` | OK (capturedAt 0.0 d; IPC alineado) | `evidence/04-freshness-gate.txt` |
-| `SMALL_DETAILS_ENFORCE=1 pnpm run check:small-details` | 0 blocking / 2 warnings | `evidence/05-small-details.txt` |
-| Playwright paridad sueldo-líquido | 1 passed | `evidence/07-a11y-parity.txt` |
-| Fuentes primarias (SII, BCN/LeyChile API, SuperIR, D.O., MDSF) | extractos con URL y fecha | `evidence/08-sources.md` |
+| `python3 reaudit_independent.py` (reimplementación Python, sin imports del repo) | V1–V6 + bordes | `11-recalc-independent-reaudit.txt` |
+| `vitest run … --reporter=verbose reaudit.independent` (harness propio vs motor) | **29/29 comparaciones OK**, 8/8 tests | `12-engine-vs-independent.txt` |
+| `vitest run … recalc.audit` (harness de la auditoría previa) | **9/38 fallan** (aserciones pre-fix, D10) | `13-prior-harness-at-head.txt` |
+| `pnpm run test` en checkout sucio | 1764 passed / 7 failed (solo hero-images WIP) | `14-repo-tests-reaudit.txt` |
+| `vitest run` en worktree limpio HEAD | **182 files, 1771 passed / 1 skipped** | `15-repo-tests-clean-head.txt` |
+| `CI=true pnpm run build` en worktree limpio | **23 checks postbuild, 332 HTML, URL check 0 roto** | `16-build-clean-head.txt` |
+| `check:economic-snapshot-freshness`, `SMALL_DETAILS_ENFORCE=1 check:small-details`, `check:audit-artifacts` | OK / 0 blocking / OK | `17-gates-clean-head.txt` |
+| Chrome DevTools sobre `astro preview` del build limpio | IUSC 200 UTM, UTA dic-2025, sueldo-líquido, dividendo | `18-residual-highlight.txt` |
+| `curl` SII/BCN/SuperIR/SUSESO + extracción Python (SHA-256 por archivo) | quotes con URL y fecha | `19-sources-reaudit.md` |
 
-El harness independiente (`evidence/recalc.audit.test.ts`) reimplementa desde
-cero tabla IGC/IUSC, sueldo líquido, interés simple, anualidad y elegibilidad
-SuperIR, y compara contra el motor real con tolerancia 0 documentada
-(`toBeCloseTo(..., 9)`; display redondeado se distingue).
-
-### Casos borde ejecutados (R5)
-
-- Fronteras IGC/IUSC 13,5 / 30 / 50 / 70 / 90 / 120 / 150 / 200 / 310 / 320
-  UTM y UTA; frontera exenta exacta 13,5 UTA ⇒ $0 y +$1 ⇒ $0,04.
-- Sueldo: base exactamente 13,5 UTM ⇒ impuesto 0; tope previsional 90 UF;
-  AFC trabajador 0% en plazo fijo; sueldo 0/negativo ⇒ throw.
-- DAP: 180 y 365 días; negativos; reproducción del 4% eliminado.
-- SuperIR: 90 vs 91 días; exactamente 80 UF vs 80 UF + $1; mismo acreedor con
-  distinto case/espacios; monto negativo; acreedor vacío.
-- IPC: acumulado ene–ago 2026; freshness fresh/stale; effective-dated con
-  `effectiveTo` exclusivo (no fuga dic-2025 → ene-2026).
+La reimplementación independiente usa la tabla publicada del SII (rebajas por
+tramo 0,54 / 1,74 / 4,49 / 11,14 / 17,80 / 23,32 / 38,82 UTM-UTA), no la
+fórmula recursiva del motor. Los vectores del build limpio se sirvieron con
+`astro preview` local; el servidor se detuvo al terminar.
 
 ## 2. Vectores: valor independiente vs motor
 
 | Vector | Claim | Independiente | Motor | Estado |
 |---|---|---|---|---|
-| V1 | $18.000.000 renta neta ⇒ IGC $269.367,84 (AT2026) | 269.367,8399… | 269.367,8399… | **OK** (tasa 4%) |
-| V1-bug | $255.247,92 con UTM sep-2026 ×12 | 255.247,92 | — (aislado) | **OK**: la regresión ya no ocurre |
-| V2 | Bruto $1.200.000 ⇒ líquido $973.347 / IUSC $213 | 973.346,94 / 213,06 | 973.346,94 / 213,06 | **OK** |
-| V3 | DAP $5M/180d/5% sin retención | 123.287,6712 | 123.287,6712 | **OK** (4% no aplicado: neto viejo 118.356,16) |
-| V4 | APV art. 42 bis N°3: ×1,1 + 3 pp; retención 15%; pensionados | fórmula legal confirmada | sin motor (copy) | **OK** con salvedades D8 |
-| V5 | SuperIR art. 260 | regresión 101,78 UF / cuota 110.110,21 | idéntico | **OK** en el caso; D3/D4 en bordes |
-| V6 | IPC 2026 + UTA dic-2025 + UF dic-2025 | IPC y UTA exactos; UF oficial 39.727,96 | dataset IPC ok; UF 39.643,59 | IPC/UTA **OK**, UF **DIVERGENT** (D2) |
-| F02 | PPM honorarios 2025 = 14,5% | 14,5% | 0,145 | **OK** |
-| F04 | Freshness IPC fresh/stale + gate | fresh/stale | fresh/stale; gate OK | **OK** |
-| F08 | Ejemplo estático = runtime | Playwright pasa | — | **OK** |
-| F09 | UTA etiquetada con período | “diciembre de 2025” | — | **OK** |
-| F10 | “Prepago sin costo” eliminado | sustancia correcta | — | **OK** con salvedad D6 |
+| V1 | $18.000.000 renta neta ⇒ IGC $269.367,84 | 269.367,8399… | 269.367,8399… | **OK** |
+| V1-bug | $255.247,92 con UTM sep-2026 ×12 | 255.247,92 | no reproducido | **OK** (regresión aislada) |
+| V2 | bruto $1.200.000 ⇒ líquido $973.346,94 / IUSC $213,06 | 973.346,94 / 213,06 | 973.346,94 / 213,06 | **OK** (display $973.347 / $213) |
+| V3 | DAP $5M/180d/5% ⇒ $123.287,67 sin retención | 123.287,6712 | 123.287,6712 | **OK** |
+| V4 | APV art. 42 bis N°3: ΔIGC/retiro ×1,1 + 3 pp | 90U/50U: 38,464%; 200U/10U: 41,5%; base 0: 3% | idénticos | **OK** |
+| V5 | SuperIR art. 260: 101,7812 UF / cuota $110.110,21 | 101,78117048346056 / 110.110,2077 | idénticos | **OK** |
+| V6 | IPC 2026 (8 meses) / UTA dic-2025 / UF dic-2025 | 8/8 = SII; UTA 834.504; UF 39.727,96 | dataset y AT2026 idénticos | **OK** |
 
-## 3. Defectos (todos abiertos)
+Datos completos de la tabla en `12-engine-vs-independent.txt`. La tabla
+general 310 UTM/UTA del art. 43 N°1 / art. 52 (D1) coincide con el SII en
+180/200/310/320 UTM y 200/310/320 UTA; el contraste con la estructura del
+art. 52 bis (150 / 30,82) daría −$6.676.032 a 320 UTA, confirmando que el
+motor usa la tabla correcta.
 
-### D1 — media — Tabla IUSC/IGC usa el tramo del art. 52 bis (150 UTM/UTA) y no la tabla general (310 UTM/UTA)
+### Bordes ejecutados (R5)
 
-`TaxEngine.buildSecondCategoryTaxBrackets` cierra el tramo 35% en 150 UTM/UTA
-y aplica 40% desde ahí (rebaja 30,82). La tabla SII vigente (art. 43 N°1 para
-el IUSC y art. 52 para el IGC) mantiene 35% hasta **310** UTM/UTA y aplica 40%
-sobre ese tope (rebaja **38,82**). La estructura de 150 es la del art. 52 bis
-(Presidente, ministros, subsecretarios, senadores y diputados).
+Fronteras 13,5 / 30 / 50 / 70 / 90 / 120 / 310 UTM-UTA (tope exacto y +$1);
+rebajas publicadas vs calculadas; base exenta exacta 13,5 UTM ⇒ $0; tope
+previsional 90 UF; AFC 0% plazo fijo; DAP 180/365 días e inválidos; APV con
+retiro dentro de tramo, cruce de tramo, base 0 y retiro 0 (throw); SuperIR
+90 vs 91 días, 80 UF exactas vs +$1, mismo acreedor, acreedor vacío; IPC
+acumulado; freshness fresh/stale/unknown; `effectiveTo` exclusivo (no fuga
+dic-2025 → ene-2026).
 
-Evidencia numérica (Sep-2026, UTM $71.721; AT2026, UTA $834.504):
+## 3. Estado de D1–D8 (verificados resueltos)
 
-| Base | Motor | Oficial | Diferencia |
-|---|---:|---:|---:|
-| 200 UTM ($14.344.200) | $3.527.238,78 | $3.347.936,28 | **+$179.302,50** (2,5 UTM) |
-| 320 UTM ($22.950.720) | $6.969.846,78 | $6.396.078,78 | **+$573.768** (8 UTM) |
-| 200 UTA ($166.900.800) | $41.040.906,72 | $38.954.646,72 | **+$2.086.260** |
-| 320 UTA ($267.041.280) | $81.097.098,72 | $74.421.066,72 | **+$6.676.032** |
+| Defecto previo | Verificación de la re-auditoría | Evidencia |
+|---|---|---|
+| D1 tabla 150 vs 310 | Tabla general 310/38,82 en motor, página y tests; SII S3/S5 | `12`, `18` |
+| D2 UF 39.643,59 vs 39.727,96 | `AT2026.ufDecember = 39727.96`; cap APV $23.836.776 = SII (8.000 UF) | `11`, `12` |
+| D3 ≥2 acreedores distintos | Motor exige ≥2 obligaciones calificadas; mismo acreedor califica | `12` |
+| D4 umbral ≥ 80 | Estricto `> 80`: 80 exactas false, +$1 true | `12` |
+| D5 art. 59 N°4 | Copy corregido a inciso 2° N°1 letras a) y g); N°4 = fletes 5% | `19` (S10) |
+| D6 Ley 21.236 | Fuente de prepago = Ley 18.010 art. 10 (1 mes / 1,5 meses; ≤5.000 UF) | `19` (S14) |
+| D7 idNorma 1211138 | `00-scope.json` S6 apunta a idNorma 1225354 | `00-scope.json` |
+| D8 APV sin cobertura | `calculateApvWithdrawalRate` ejecutable + tests + copy "tasa media" | `12`; `TaxEngine.test.ts` |
 
-La tabla errónea se **renderiza al usuario** en
-`/calculadoras/impuesto-segunda-categoria/` (`bracketRows`, filas 120–150 →
-35% y 150→∞ → 40%, `impuesto-segunda-categoria.astro:82-95`), afecta a
-`CalculateNetSalary` y `SimulateOperacionRenta` (y a todo consumidor de
-`calculateAnnualIncomeTax`), y el test `tests/domain/TaxEngine.test.ts:39-47`
-fija el valor del tramo equivocado (180 UTM ⇒ $2.771.166,92). Evidencia:
-`evidence/01-recalc-independent.txt` (`D1.annual-igc`, `D1.monthly-iusc`);
-fuentes `evidence/08-sources.md` S-A/S-B/S-C.
+## 4. Defectos abiertos
 
-### D2 — media — UF de diciembre congelada es la del 01-12-2025 ($39.643,59), no la del 31-12-2025 ($39.727,96)
+### D12 — media — El resaltado de tramo de IUSC sigue con la estructura de 150 UTM
 
-El art. 42 bis LIR exige valorar el tope de 600 UF “al 31 de diciembre del año
-respectivo”; el SII publica la UF del 31.12.2025 = $39.727,96 (8.000 UF =
-$317.823.680) y la propia serie del repo (`uf-historico.json`) registra
-2025-12-31 = 39.727,96 (2025-12-01 = 39.643,59). Efecto en el tope APV
-Régimen B: 600 × 39.643,59 = **$23.786.154** vs 600 × 39.727,96 =
-**$23.836.776** (−$50.622). El fixture `EffectiveDatedParameters.test.ts:21`
-también rotula 39.643,59 como “2025-12”. Evidencia:
-`evidence/01-recalc-independent.txt` (`D2.*`), `evidence/06-uf-dataset-check.txt`,
-fuentes S-F/S-H.
+`src/pages/calculadoras/impuesto-segunda-categoria.astro:423`:
+`BRACKET_UPPER_LIMITS_UTM = [13.5, 30, 50, 70, 90, 120, 150, Infinity]`.
 
-### D3 — media — SuperIR: el motor exige ≥2 acreedores distintos; la ley exige ≥2 obligaciones diversas
+`bracketRows` y el motor ya usan 120–310 al 35% y 310+ al 40% (D1), pero
+`highlightBracket()` no. Reproducido en navegador sobre el build limpio: para
+**200 UTM ($14.344.200)** el resultado muestra **"Tasa marginal 35.0%"** y
+**$3.347.936**, pero se resalta la fila `tramo-7` (**310–∞, 40%, rebaja
+$2.784.209**); la fila correcta es `tramo-6` (120–310, 35%). Evidencia:
+`18-residual-highlight.txt` (node + extracto DOM).
 
-`hasTwoOrMoreDistinctCreditors` deduplica por acreedor
-(`SimulateDebtRenegotiation.ts:111-115`). El art. 260 habla de “dos o más
-obligaciones … provenientes de obligaciones diversas” y la SuperIR de
-“obligaciones distintas”; ninguna fuente dice “acreedores distintos”. Dos
-obligaciones diferentes con el mismo acreedor quedarían bloqueadas (falso
-negativo). Requiere decisión legal/editorial antes de cambiar el filtro.
-Evidencia: `V5.same-creditor` en `evidence/01-recalc-independent.txt`;
-fuentes S-J/S-K.
+### D9 — baja — Mensaje del simulador SuperIR conserva "acreedores distintos"
 
-### D4 — baja — El umbral de 80 UF se aplica de forma inclusiva
+`simulador-renegociacion.astro:645` (y JSDoc de `DebtItemInput.creditor`). El
+art. 260 verificado exige "obligaciones … provenientes de obligaciones
+diversas"; el motor corregido tampoco deduplica por acreedor. El mensaje
+aparece en el bundle construido. Evidencia:
+`20-residual-copy-artifacts.txt` (D9).
 
-`reachesMinimumUf` usa `>= 80`; la ley y la SuperIR dicen “más de 80 UF”.
-Con exactamente 80 UF el motor declara elegible (falso positivo de borde).
-Evidencia: `V5.exactly-80uf`; fuentes S-J/S-K.
+### D10 — baja — El harness de la auditoría previa quedó obsoleto
 
-### D5 — baja — Cita errónea “art. 59 N°4 LIR” para la retención del 4%
+`evidence/recalc.audit.test.ts` (commiteado en #589) fija los valores
+pre-remediación: **9/38 checks fallan en HEAD** (v.gr.
+`expect(AT2026.ufDecember).toBe(39_643.59)`). Evidencia:
+`13-prior-harness-at-head.txt`.
 
-El 4% aplicable a intereses de no domiciliados/no residentes está en el art. 59
-inciso segundo **N°1** (letras a) y g), que cubre instrumentos en moneda
-nacional); el **N°4** regula fletes marítimos con tasa 5%. La sustancia del
-copy (no retención para residentes; 4% solo Impuesto Adicional) es correcta.
-Ubicaciones: `deposito-a-plazo.astro:207/265/333/341`,
-`CalculateTermDeposit.ts:6-13`. Evidencia: fuente S-I.
+### D11 — baja — Claims V3/V5 de `00-scope.json` sin actualizar
 
-### D6 — baja — Fuente de prepago: se cita Ley 21.236 en vez de Ley 18.010 art. 10
+V3 cita "art. 59 N°4" (corregido en D5) y V5 afirma "≥2 acreedores distintos"
+(corregido en D3). Evidencia: `20-residual-copy-artifacts.txt` (D11).
 
-Los topes de comisión de prepago (1 mes no reajustable / 1,5 meses reajustable,
-operaciones ≤5.000 UF; consentimiento bajo 20%) están en la Ley 18.010 art. 10.
-La Ley 21.236 regula la portabilidad y no fija esos topes.
-`dividendo-hipotecario.astro:418`. Evidencia: fuente S-O.
+## 5. Observaciones y limitaciones
 
-### D7 — baja — `00-scope.json` S6 apunta a idNorma equivocado
+1. **Fuera de alcance / editorial:** `src/data/blog/renegociacion-superir.md:202`
+   ("La ley exige mínimo dos acreedores distintos…") contradice el art. 260 y el
+   motor corregido; se publica en `dist/posts/renegociacion-superir/` y
+   `dist/llms-full.txt`. Requiere decisión editorial aparte.
+2. **UF histórica rezagada:** `uf-historico.json` termina el 2026-07-09
+   (`actualizadoEl 2026-06-21`); el conversor UF histórico falla cerrado avisando
+   el rango, pero el dataset queda ~2,5 meses atrás. No es cambio del plan 115 y
+   `check:economic-snapshot-freshness` no cubre esa serie (sí IPC y snapshot).
+3. **APV "reajustado":** `calculateApvWithdrawalRate` usa el retiro nominal; la
+   ley habla del monto reajustado. Es una simplificación documentada (el
+   llamador debe proveer el monto), no un error de cálculo.
+4. **Tasa AFP 11,27% (Habitat):** proviene de `src/config/afpCommissions.ts`
+   ("Previred … abril 2026"); no se localizó extracto oficial CMF/Previred en
+   esta sesión ⇒ claim C6 `UNVERIFIED`. No afecta la aritmética de V2 bajo el
+   supuesto declarado.
+5. **Alcance no cubierto:** fuzzing completo de las 22 calculadoras, comisiones
+   AFP por fecha, supuestos actuariales, CAE/TMC, exenciones completas de
+   Operación Renta y contenido editorial (`src/data/`).
+6. **`check:small-details` (enforce):** 0 blocking, 2 warnings preexistentes.
+7. **Independencia:** la remediación la redactó OpenAI Codex (#589); esta sesión
+   auditora corre en deepseek-v4.1-flash, familia distinta. La auditoría previa
+   fue del mismo modelo que esta re-auditoría (limitación de variedad de
+   familias, documentada en `02-result.json`).
 
-S6 usa `idNorma=1211138` (decreto 2024 de comisión de servicio del MINVU). La
-Ley 21.830 es `idNorma=1225354` (D.O. 22-06-2026). El valor IMM $553.553 y la
-vigencia retroactiva 01-05-2026 usados por el sitio son correctos.
-Evidencia: fuente S-M.
+## 6. Conclusión
 
-### D8 — baja — V4 sin cobertura ejecutable y definición imprecisa de la tasa
+Los seis vectores del alcance se reproducen de forma exacta e independiente en
+`8b73793`, y **D1–D8 quedan verificados como resueltos** con fuente primaria.
+Sin embargo, la remediación dejó tres residuales de copy/artefacto (D9–D11) y
+una contradicción visible en la UI de la calculadora de IUSC (D12, media: el
+resaltado de tramo usa 150 en vez de 310). Por la regla de cierre del protocolo
+(`PASS` solo sin defectos abiertos), el veredicto es **CONDITIONAL**: no
+publicar hasta corregir D12 y los residuales, y registrar la firma humana
+(`humanSignoff` sigue `null`).
 
-El vector V4 cita `tests/domain/TaxEngine.test.ts`, que no prueba la fórmula de
-retiro APV. El copy dice “tasa marginal del retiro”; la ley define el cociente
-ΔIGC/retiro reajustado × 1,1 + 3 pp (tasa media del tramo retirado cuando este
-cruza tramos). Evidencia: `V4.copy-checks`; fuente S-H.
+---
 
-## 4. Observaciones y limitaciones
-
-1. **No auditado / fuera de alcance:** fuzzing completo de las 22
-   calculadoras; comisiones AFP por fecha (la tasa 11,27% de Habitat es un
-   supuesto declarado del ejemplo, no verificado contra CMF en este audit);
-   supuestos actuariales; CAE/TMC; exenciones completas de Operación Renta.
-2. **DAP no domiciliados:** el motor no expone entrada de residencia; modela
-   solo el caso residente. Un no residente que use la calculadora obtendría el
-   interés bruto sin la retención del 4% (la FAQ de la página sí explica el
-   caso). Limitación de alcance, no defecto del cambio auditado.
-3. **SuperIR:** el motor no modela “actualmente exigibles” ni las exclusiones
-   legales (alimentos, delitos, multas) del art. 260; el copy lo advierte como
-   filtro básico.
-4. **PPM de honorarios:** el input del simulador pide el PPM efectivamente
-   pagado; la tasa 14,5% se muestra como referencia (correcta para 2025).
-5. La verificación de fuentes se hizo el 2026-09-29; toda divulgación pública
-   debe usar la plantilla del protocolo y no afirmar más de lo verificado.
-
-## 5. Conclusión
-
-Los seis vectores del alcance se reproducen de forma independiente, con una
-excepción: la UF de diciembre congelada (D2) y el tratamiento de bordes
-SuperIR (D3/D4). Además, el arreglo F01 introdujo un consumidor nuevo
-(`calculateAnnualIncomeTax`) sobre una tabla que no corresponde a la del IGC
-general (D1), visible al usuario en la calculadora de IUSC. Por ello el
-veredicto es **CONDITIONAL**: no publicar hasta corregir D1–D4 (mínimo) y
-resolver o aceptar formalmente D5–D8, con re-auditoría del alcance corregido.
+[1] El worktree se eliminó al cerrar la sesión (`git worktree remove`). El
+checkout principal nunca se modificó por esta auditoría (solo se añadieron los
+artefactos de salida en `docs/editorial/audits/plan-115-correctitud/`).

@@ -20,6 +20,9 @@ export default [
       ".nyc_output/**",
       "playwright-report/**",
       "test-results/**",
+      // Evidencia de auditorías (harness propios con su vitest config); no es
+      // código del sitio, igual que en tsconfig/vitest.
+      "docs/editorial/audits/**",
     ],
   },
   ...tseslint.configs.recommended,

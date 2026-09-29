@@ -27,6 +27,13 @@ const IPC_SERIES_PATH = path.join(
   REPO_ROOT,
   "src/data/economic-history/ipc-historico.json"
 );
+const UF_SERIES_PATH = path.join(
+  REPO_ROOT,
+  "src/data/economic-history/uf-historico.json"
+);
+// La UF se publica con días de anticipación y la serie se refresca manualmente;
+// se tolera un rezago acotado para detectar solo series abandonadas.
+const UF_SERIES_MAX_LAG_DAYS = 14;
 
 // Generous thresholds (days). The point is to catch a DEAD pipeline, not to
 // chase every publication lag. UF/dólar are ~daily; UTM is monthly.
@@ -119,6 +126,34 @@ function main() {
       errors.push(
         `utm reference month ${utmMonth} is stale after the ${UTM_MONTH_BOUNDARY_GRACE_DAYS}d month-boundary grace; expected ${currentMonth}`
       );
+    }
+  }
+
+  // Re-auditoría 2026-09-29 (obs. 2): la serie UF ingerida no puede quedar
+  // abandonada respecto de la UF del snapshot (se publica con anticipación,
+  // así que solo se evalúa el rezago).
+  const snapshotUfDate = String(snapshot.indicatorUpdatedAt?.uf ?? "");
+  if (/^\d{4}-\d{2}-\d{2}$/.test(snapshotUfDate)) {
+    try {
+      const series = JSON.parse(readFileSync(UF_SERIES_PATH, "utf8"));
+      const lastDate = String(series.hastaFecha ?? "");
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(lastDate)) {
+        errors.push(`uf-historico.json sin hastaFecha válida: ${series.hastaFecha}`);
+      } else {
+        const lagDays =
+          (new Date(snapshotUfDate).getTime() -
+            new Date(lastDate).getTime()) /
+          86_400_000;
+        if (lagDays > UF_SERIES_MAX_LAG_DAYS) {
+          errors.push(
+            `uf-historico.json llega a ${lastDate} (rezago ${lagDays.toFixed(1)}d vs snapshot ${snapshotUfDate}) — corre \`pnpm run fetch-economic-history --solo=uf\``
+          );
+        }
+      }
+    } catch (err) {
+      if (err.code !== "ENOENT") {
+        errors.push(`no se pudo leer uf-historico.json: ${err.message}`);
+      }
     }
   }
 

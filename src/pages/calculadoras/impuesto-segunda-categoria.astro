@@ -419,8 +419,8 @@ const calculatorNextStepItems = [
 
   const utm = readUtm();
 
-  // Highlight the active bracket row
-  const BRACKET_UPPER_LIMITS_UTM = [13.5, 30, 50, 70, 90, 120, 150, Infinity];
+  // Highlight the active bracket row (tabla general: 35% hasta 310 UTM)
+  const BRACKET_UPPER_LIMITS_UTM = [13.5, 30, 50, 70, 90, 120, 310, Infinity];
 
   function highlightBracket(taxableIncome: number) {
     BRACKET_UPPER_LIMITS_UTM.forEach((limit, i) => {

@@ -1,0 +1,458 @@
+$ pnpm run check:images && pnpm run check:hero-images && pnpm run check:frontmatter && pnpm run check:legal-citations && astro check && astro build && pnpm run check:indexable-url-freeze && pnpm run check:toc-i18n && pnpm run check:editorial-guard && rm -rf dist/pagefind && pagefind --site dist && node -e "require('fs').appendFileSync('dist/pagefind/pagefind-worker.js','/* _headers-csp-v2 */\\n')" && cp -r dist/pagefind public/ && pnpm run check:urls && node scripts/check-postbuild.mjs dist
+$ pnpm run images:convert && pnpm run og:jpegs && node scripts/check-images.mjs
+$ node scripts/png-to-avif.mjs --dir public/images/hero
+  No se encontraron archivos PNG en la ruta indicada.
+$ node scripts/generate-og-jpegs.mjs
+  ✓ cotizacion-voluntaria-afp-independiente.avif → cotizacion-voluntaria-afp-independiente.jpg
+  ✓ cotizacion-voluntaria-afp-independiente@mobile.avif → cotizacion-voluntaria-afp-independiente@mobile.jpg
+  ✓ cotizacion-voluntaria-afp-independiente@tablet.avif → cotizacion-voluntaria-afp-independiente@tablet.jpg
+[generate-og-jpegs] 3 converted, 159 up-to-date.
+[check:images] Directory /tmp/opencode/monedario-head/src/assets/images/blog not found, skipping asset budget scan.
+[check:images] ✅ All blog images pass format and size constraints. assets=0 inline=1
+$ node scripts/check-hero-images.mjs
+[check-hero-images] Checked published articles: 54
+[check-hero-images] Path mode: legacy-compatible
+[check-hero-images] OK
+$ node scripts/check-frontmatter.mjs
+[check-frontmatter] Scanned 54 articles.
+[check-frontmatter] Deprecation counters:
+- pubDatetime: 0
+- modDatetime: 0
+- canonicalURL: 0
+- ogImage: 0
+[check-frontmatter] Transition defaults:
+- slug_missing: 0
+- category_missing: 0
+[check-frontmatter] Quality warnings (Level 2):
+- title_range: 0
+- description_range: 0
+[check-frontmatter] OK (no blocking errors).
+$ node scripts/check-legal-citations.mjs
+[check-legal-citations] OK. laws=23 blog=54 pages=63 registry=21
+[2m16:51:21[22m [34m[content][39m Syncing content
+[2m16:51:25[22m [34m[content][39m Synced content
+[2m16:51:25[22m [34m[types][39m Generated [2m5.86s[22m
+[2m16:51:25[22m [34m[check][39m Getting diagnostics for Astro files in /tmp/opencode/monedario-head...
+Result (609 files): 
+- 0 errors
+- 0 warnings
+- 0 hints
+
+[2m16:51:52[22m [34m[vite][39m Re-optimizing dependencies because vite config has changed
+[2m16:51:52[22m [34m[content][39m Syncing content
+[2m16:51:53[22m [34m[content][39m Synced content
+[2m16:51:53[22m [34m[types][39m Generated [2m624ms[22m
+[2m16:51:53[22m [34m[build][39m output: [34m"static"[39m
+[2m16:51:53[22m [34m[build][39m mode: [34m"static"[39m
+[2m16:51:53[22m [34m[build][39m directory: [34m/tmp/opencode/monedario-head/dist/[39m
+[2m16:51:53[22m [34m[build][39m Collecting build info...
+[2m16:51:53[22m [34m[build][39m [32m✓ Completed in 667ms.[39m
+[2m16:51:53[22m [34m[build][39m Building static entrypoints...
+[2m16:51:54[22m [34m[vite][39m [32m✓ built in 1.26s[39m
+[2m16:51:54[22m [34m[vite][39m [32m✓ built in 136ms[39m
+[2m16:51:54[22m [34m[build][39m Rearranging server assets...
+
+[42m[30m generating static routes [39m[49m
+[2m16:51:54[22m   [34m├─[39m [2m/404.html[22m [2m(+31ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/accessibilidad/index.html[22m [2m(+4ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/acerca-de/index.html[22m [2m(+3ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/api/indicadores-hoy.json[22m [2m(+9ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/api/uf-historico-lookup.json[22m [2m(+18ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/apoyar/index.html[22m [2m(+3ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/archives/index.html[22m [2m(+18ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/autor/index.html[22m [2m(+4ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/buscar/index.html[22m [2m(+4ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/calculadoras/actualizador-inflacion/index.html[22m [2m(+8ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/calculadoras/apv/index.html[22m [2m(+14ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/calculadoras/boleta-honorarios-liquido/index.html[22m [2m(+5ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/calculadoras/comisiones-afp/index.html[22m [2m(+5ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/calculadoras/conversor-uf/index.html[22m [2m(+4ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/calculadoras/conversor-utm/index.html[22m [2m(+7ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/calculadoras/credito-consumo/index.html[22m [2m(+6ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/calculadoras/deposito-a-plazo/index.html[22m [2m(+6ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/calculadoras/dividendo-hipotecario/index.html[22m [2m(+5ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/calculadoras/finiquito-indemnizacion/index.html[22m [2m(+4ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/calculadoras/gratificacion-legal/index.html[22m [2m(+3ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/calculadoras/impuesto-segunda-categoria/index.html[22m [2m(+3ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/calculadoras/interes-compuesto/index.html[22m [2m(+3ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/calculadoras/iva/index.html[22m [2m(+3ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/calculadoras/operacion-renta/index.html[22m [2m(+4ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/calculadoras/prepago-credito/index.html[22m [2m(+5ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/calculadoras/reajuste-arriendo/index.html[22m [2m(+4ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/calculadoras/seguro-cesantia/index.html[22m [2m(+6ms)[22m 
+[2m16:51:54[22m   [34m├─[39m [2m/calculadoras/simulador-jubilacion/index.html[22m [31m(+868ms)[39m 
+[2m16:51:55[22m   [34m├─[39m [2m/calculadoras/simulador-renegociacion/index.html[22m [2m(+4ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/calculadoras/sueldo-liquido/index.html[22m [2m(+7ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/calculadoras/tarjeta-credito/index.html[22m [2m(+4ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/calculadoras/index.html[22m [2m(+5ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/calendario/index.html[22m [2m(+4ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/como-usamos-los-datos/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/cookies/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/afc/index.html[22m [2m(+4ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/afp/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/apv/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/boleta-honorarios/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/cae/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/caec/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/cic/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/clave-unica/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/cmf/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/copago/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/corredor-bolsa/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/credito-aval-estado/index.html[22m [2m(+4ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/credito-hipotecario/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/ctc/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/cuenta-2/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/cuenta-rut/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/custodia/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/dicom/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/dividendo-hipotecario/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/etf/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/finiquito/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/fonasa/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/fondo-emergencia/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/fondo-mutuo/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/fondo-solidario/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/ges/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/global-complementario/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/gratificacion/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/impuesto-unico/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/indemnizacion/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/inflacion/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/ipc/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/isapre/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/iva/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/liquidez/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/lpc/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/multifondo/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/operacion-renta/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/renta-imponible/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/renta-variable/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/rescate/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/sbif/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/seguro-cesantia/index.html[22m [2m(+4ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/sernac/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/sii/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/spread/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/sueldo-bruto/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/tmc/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/tope-imponible/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/tpm/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/uf/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/uta/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/utm/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/volatilidad/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/glosario/index.html[22m [2m(+7ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/guias/ahorro-e-inversion/index.html[22m [2m(+6ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/guias/bancos-fintech/index.html[22m [2m(+5ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/guias/deuda-credito/index.html[22m [2m(+6ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/guias/empleo-ingresos/licencia-medica-wizard/index.html[22m [2m(+5ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/guias/empleo-ingresos/index.html[22m [2m(+5ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/guias/finanzas-migrantes/index.html[22m [2m(+4ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/guias/impuestos-personas/operacion-renta/index.html[22m [2m(+5ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/guias/impuestos-personas/index.html[22m [2m(+4ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/guias/pensiones-afp/index.html[22m [2m(+4ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/guias/presupuesto-control-financiero/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/guias/seguridad-financiera/fraude-cargo-no-reconocido/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/guias/seguridad-financiera/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/guias/sueldo-remuneraciones/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/guias/uf-costo-de-vida/indicadores-economicos/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/guias/uf-costo-de-vida/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/guias/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/codigo-del-trabajo/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/dfl-1-1998-impuesto-territorial/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/dl-3500-sistema-afp/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/dl-824-impuesto-renta/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/dl-830-codigo-tributario/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/ley-18010-credito-dinero/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/ley-18469-fonasa/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/ley-18933-isapres/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/ley-19496-proteccion-consumidor/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/ley-19628-proteccion-datos/index.html[22m [2m(+11ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/ley-19728-seguro-cesantia/index.html[22m [2m(+4ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/ley-20009-tarjetas-fraude/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/ley-20027-credito-aval-estado/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/ley-20555-sernac-financiero/index.html[22m [2m(+3ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/ley-20575-datos-comerciales/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/ley-21130-modernizacion-bancaria/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/ley-21133-honorarios-retencion/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/ley-21236-portabilidad-financiera/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/ley-21521-fintech/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/ley-21561-reduccion-jornada/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/ley-21680-registro-deuda-consolidada/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/ley-21719-proteccion-datos-modernizacion/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/proyecto-reforma-previsional-2025/index.html[22m [2m(+1ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/leyes/index.html[22m [2m(+2ms)[22m 
+[2m16:51:55[22m   [34m├─[39m [2m/llms-full.txt[22m [2m(+7ms)[22m 
+[2m16:51:56[22m   [34m├─[39m [2m/llms.txt[22m [2m(+2ms)[22m 
+[2m16:51:56[22m   [34m├─[39m [2m/metodologia/index.html[22m [2m(+3ms)[22m 
+[2m16:51:56[22m   [34m├─[39m [2m/og-image[22m [2m(+382ms)[22m 
+[2m16:51:56[22m   [34m├─[39m [2m/og.jpg[22m [2m(+372ms)[22m 
+[2m16:51:56[22m   [34m├─[39m [2m/og.png[22m [2m(+259ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/index.html[22m [2m(+6ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/2/index.html[22m [2m(+6ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/3/index.html[22m [2m(+5ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/4/index.html[22m [2m(+6ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/5/index.html[22m [2m(+4ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/6/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/7/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/index.html[22m [2m(+7ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/bancos-y-fintech-chile/index.html[22m [2m(+6ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/boleta-honorarios-2026-retencion-cobertura/index.html[22m [2m(+10ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/cae-costo-real-credito-chile/index.html[22m [2m(+10ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/como-calcular-sueldo-liquido/index.html[22m [2m(+20ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/como-cambiarse-de-afp/index.html[22m [2m(+9ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/como-elegir-inversion-segun-plazo-riesgo-objetivos/index.html[22m [2m(+13ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/como-hacer-presupuesto-mensual-chile/index.html[22m [2m(+7ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/como-invertir-en-etfs-desde-chile/index.html[22m [2m(+7ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/como-leer-cartola-afp-chile/index.html[22m [2m(+6ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/como-salir-boletin-comercial-chile/index.html[22m [2m(+8ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/contribuciones-bienes-raices-chile/index.html[22m [2m(+5ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/cotizacion-voluntaria-afp-independiente/index.html[22m [2m(+8ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/credito-hipotecario-chile-guia-completa/index.html[22m [2m(+7ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/cuanto-descuenta-la-afp-de-tu-sueldo/index.html[22m [2m(+8ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/deposito-a-plazo-uf-vs-pesos/index.html[22m [2m(+8ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/descuentos-de-sueldo/index.html[22m [2m(+6ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/devolucion-impuestos-fechas-compensaciones/index.html[22m [2m(+6ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/donde-ver-si-estoy-en-dicom-gratis/index.html[22m [2m(+4ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/el-poder-del-interes-compuesto/index.html[22m [2m(+12ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/estafas-financieras-chile-vishing-smishing-marketplace/index.html[22m [2m(+5ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/finanzas-para-migrantes-chile/index.html[22m [2m(+5ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/finiquito-e-indemnizaciones-en-chile/index.html[22m [2m(+4ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/fonasa-vs-isapre-comparativa/index.html[22m [2m(+5ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/fondo-emergencia-chile/index.html[22m [2m(+5ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/fondos-afp-a-b-c-d-e/index.html[22m [2m(+7ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/fondos-mutuos-comisiones-rescate-impuestos/index.html[22m [2m(+7ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/fraude-tarjeta-que-hacer/index.html[22m [2m(+6ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/gratificacion-legal-chile/index.html[22m [2m(+4ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/impuesto-global-complementario-chile/index.html[22m [2m(+6ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/indemnizacion-anos-de-servicio-chile/index.html[22m [2m(+8ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/informe-deudas-cmf-vs-dicom/index.html[22m [2m(+4ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/interes-compuesto-nota-metodologica/index.html[22m [2m(+14ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/licencia-medica-desde-que-dia-pagan/index.html[22m [2m(+7ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/liquidacion-de-sueldo/index.html[22m [2m(+8ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/operacion-renta-centro/index.html[22m [2m(+7ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/operacion-renta-f22-checklist/index.html[22m [2m(+5ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/pgu-pension-garantizada-universal/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/prepago-credito-cuando-conviene-chile/index.html[22m [2m(+4ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/primer-empleo-chile-guia-completa/index.html[22m [2m(+5ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/que-es-el-apv/index.html[22m [2m(+8ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/que-es-el-ipc-chile-como-se-calcula/index.html[22m [2m(+7ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/que-es-la-cuenta-2-afp/index.html[22m [2m(+5ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/que-es-la-uf/index.html[22m [2m(+5ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/reajuste-arriendo-uf-ipc-chile/index.html[22m [2m(+6ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/reforma-previsional-2025-que-cambia-y-como-te-afecta/index.html[22m [2m(+5ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/renegociacion-superir/index.html[22m [2m(+5ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/rentas-mixtas-sueldo-honorarios/index.html[22m [2m(+5ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/index.html[22m [2m(+5ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/seguro-de-cesantia/index.html[22m [2m(+4ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/sueldo-imponible-chile/index.html[22m [2m(+5ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/suplantacion-identidad-creditos-no-reconocidos/index.html[22m [2m(+5ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/tarjeta-credito-costo-real-chile/index.html[22m [2m(+4ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/posts/utm-chile-que-es-como-funciona/index.html[22m [2m(+5ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/privacidad/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/robots.txt[22m [2m(+1ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/rss.xml[22m [2m(+49ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/search/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/adultos-mayores/index.html[22m [2m(+6ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/afc/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/afiliacion-voluntaria/index.html[22m [2m(+9ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/afp/index.html[22m [2m(+8ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/afp/2/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/ahorro/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/amortizacion/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/apv/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/arriendo/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/arriendos/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/bancos/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/bienes-raices/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/boletas/index.html[22m [2m(+1ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/boletin-comercial/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/bolsa/index.html[22m [2m(+1ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/cae/index.html[22m [2m(+1ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/cambio-afp/index.html[22m [2m(+1ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/cartola/index.html[22m [2m(+1ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/cesantia/index.html[22m [2m(+1ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/chile/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/cmf/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/cobertura/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/codigo-del-trabajo/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/comisiones/index.html[22m [2m(+1ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/consumo/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/contrato/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/contribuciones/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/control-financiero/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/corredoras/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/costo-de-vida/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/cotizaciones/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/credito/index.html[22m [2m(+4ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/credito-hipotecario/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/creditos/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/cuenta-2/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/cuenta-vista/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/cuentarut/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/declaracion-renta/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/deposito-a-plazo/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/derechos/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/descuentos/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/desempleo/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/despido/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/deuda/index.html[22m [2m(+4ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/deudas/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/devolucion/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/dicom/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/dividendo/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/educacion-financiera/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/empleador/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/empleo/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/empleo-ingresos/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/etf/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/f22/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/finanzas-personales/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/finiquito/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/fintech/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/fonasa/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/fondo-emergencia/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/fondos/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/fondos-generacionales/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/fondos-mutuos/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/fraude/index.html[22m [2m(+13ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/freelance/index.html[22m [2m(+5ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/gasto-hormiga/index.html[22m [2m(+4ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/gratificacion/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/historial-crediticio/index.html[22m [2m(+4ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/honorarios/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/igc/index.html[22m [2m(+1ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/impuesto-global-complementario/index.html[22m [2m(+1ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/impuesto-segunda-categoria/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/impuesto-territorial/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/impuestos/index.html[22m [2m(+7ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/impuestos/2/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/indemnizacion/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/independientes/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/inflacion/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/interes/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/interes-compuesto/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/inversion/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/inversiones/index.html[22m [2m(+4ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/ipc/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/ips/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/isapre/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/jubilacion/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/ley-20009/index.html[22m [2m(+1ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/licencia-medica/index.html[22m [2m(+1ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/liquidacion/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/liquidez/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/migrantes/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/nasdaq-100/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/operacion-renta/index.html[22m [2m(+5ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/pension/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/pensiones/index.html[22m [2m(+4ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/pgu/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/plazo/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/portabilidad/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/prepago/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/presupuesto/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/prevision/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/previsión/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/primer-empleo/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/primera-vivienda/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/proteccion-social/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/reforma-pensiones/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/reforma-previsional/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/remuneraciones/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/renegociacion/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/renta/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/rentas-mixtas/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/retencion/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/riesgo/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/rut/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/salud/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/seguridad-financiera/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/seguridad-social/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/sii/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/sis/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/smishing/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/sobreendeudamiento/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/subsidio/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/sueldo/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/sueldo-imponible/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/superir/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/suplantacion/index.html[22m [2m(+8ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/suseso/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/tarjeta-credito/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/tarjetas/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/tgr/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/tmc/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/trabajo/index.html[22m [2m(+4ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/uf/index.html[22m [2m(+5ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/uta/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/utm/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/vishing/index.html[22m [2m(+2ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/vivienda/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/tags/index.html[22m [2m(+7ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/terminos/index.html[22m [2m(+3ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/uf-hoy/index.html[22m [2m(+6ms)[22m 
+[2m16:51:57[22m   [34m├─[39m [2m/index.html[22m [2m(+9ms)[22m 
+[2m16:51:57[22m [32m✓ Completed in 3.40s.
+[39m
+[2m16:51:57[22m [34m[build][39m [32m✓ Completed in 4.84s.[39m
+[2m16:51:57[22m [34m[@astrojs/sitemap][39m `sitemap-index.xml` created at `dist`
+[2m16:51:58[22m [34m[inline-link-spacing][39m inline-link-spacing: normalized 187 static HTML page(s)
+[2m16:51:58[22m [34m[csp-hashes][39m csp-hashes: injected 19 sha256 hash(es) into script-src
+[2m16:51:58[22m [34m[sw-version][39m sw-version: cache stamped with version "mun3eius"
+[2m16:51:58[22m [34m[build][39m 332 page(s) built in [1m6.37s[22m
+[2m16:51:58[22m [34m[build][39m [1mComplete![22m
+$ node scripts/check-indexable-url-freeze.mjs
+[indexable-url-freeze] PASS approved=184 generated=185 approved_additions=1
+$ node scripts/check-toc-i18n.mjs
+[check-toc-i18n] OK: TOC i18n is consistent in source and build output.
+$ node scripts/check-editorial-guard.mjs
+[check-editorial-guard] OK: 54 blog files, 23 calculator files, and 40 page files validated.
+
+Running Pagefind v1.5.2 (Extended)
+Running from: "/tmp/opencode/monedario-head"
+Source:       "dist"
+Output:       "dist/pagefind"
+
+[Walking source directory]
+Found 332 files matching **/*.{html}
+
+[Parsing files]
+Found a data-pagefind-body element on the site.
+↳ Ignoring pages without this tag.
+
+[Reading languages]
+Discovered 1 language: es
+
+[Building search indexes]
+Total: 
+  Indexed 1 language
+  Indexed 53 pages
+  Indexed 4468 words
+  Indexed 0 filters
+  Indexed 0 sorts
+
+Finished in 0.166 seconds
+$ node scripts/check-urls.mjs
+URL CHECK REPORT
+mode: local
+scanned_links: 7254
+
+internal_broken:
+  none: 0
+
+external_failures:
+  none: 0
+
+top_external_hosts_by_failures:
+  none: 0
+
+retries:
+  total_retries: 0
+  by_host:
+    none: 0
+[check-urls] artifacts: output/validation/urlcheck/internal-broken.json, output/validation/urlcheck/internal-broken.csv, output/validation/urlcheck/urlcheck-report.json
+[check-urls] baseline_policy.max_internal_broken_total=0
+[check-urls] OK. scanned=7254 internal_broken=0 external_failures=0
+[check-postbuild] OK. 23 checks passed over 332 HTML pages.

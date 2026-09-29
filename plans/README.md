@@ -53,6 +53,7 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 |------|-------|----------|--------|------------|--------|
 | 123 | [finiquito-audit-remediation-2026-09-29.md](123-finiquito-audit-remediation-2026-09-29.md) | P2 (YMYL) | M | — | DONE (6 defectos corregidos con vectores dorados; pendiente auditoría IA del fix + firma humana) |
 | 124 | [audit-ai-remediation-2026-09-29.md](124-audit-ai-remediation-2026-09-29.md) | P1 (YMYL) | M–L | auditoría IA plan 115 (CONDITIONAL) | DONE (D1–D8 corregidos; pendiente re-auditoría en sesión fresca + firma humana) |
+| 125 | [reaudit-remediation-2026-09-29.md](125-reaudit-remediation-2026-09-29.md) | P1 (YMYL) | M | re-auditoría IA (CONDITIONAL) | DONE (D9–D12 + obs. 1/2 corregidos; pendiente re-auditoría final + firma humana) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
 

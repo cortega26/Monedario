@@ -2,8 +2,8 @@
   "fuente": "mindicador.cl",
   "indicador": "uf",
   "granularidad": "mensual",
-  "actualizadoEl": "2026-06-21",
-  "count": 319,
+  "actualizadoEl": "2026-09-29",
+  "count": 322,
   "puntos": [
     {
       "fecha": "2000-01-01",
@@ -1280,6 +1280,18 @@
     {
       "fecha": "2026-07-01",
       "valor": 40823.03
+    },
+    {
+      "fecha": "2026-08-01",
+      "valor": 40844.79
+    },
+    {
+      "fecha": "2026-09-01",
+      "valor": 40875.09
+    },
+    {
+      "fecha": "2026-10-01",
+      "valor": 41065.38
     }
   ]
 }
