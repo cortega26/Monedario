@@ -1,0 +1,255 @@
+{
+  "fetchedAt": "2026-09-29T11:34:47Z",
+  "schemaVersion": 1,
+  "source": "cloudflare-rum",
+  "week": "2026-W39",
+  "window": {
+    "from": "2026-09-21",
+    "to": "2026-09-27"
+  },
+  "data": [
+    {
+      "clsP75": 0.002,
+      "count": 280,
+      "inpP75Ms": 48,
+      "lcpP75Ms": 1100,
+      "path": "/calculadoras/conversor-uf/"
+    },
+    {
+      "clsP75": 0,
+      "count": 180,
+      "inpP75Ms": 80,
+      "lcpP75Ms": 1052,
+      "path": "/calculadoras/conversor-utm/"
+    },
+    {
+      "clsP75": 0,
+      "count": 90,
+      "inpP75Ms": 120,
+      "lcpP75Ms": 1512,
+      "path": "/calculadoras/impuesto-segunda-categoria/"
+    },
+    {
+      "clsP75": 0,
+      "count": 90,
+      "inpP75Ms": 112,
+      "lcpP75Ms": 1492,
+      "path": "/"
+    },
+    {
+      "clsP75": 0,
+      "count": 80,
+      "inpP75Ms": 136,
+      "lcpP75Ms": 972,
+      "path": "/calculadoras/deposito-a-plazo/"
+    },
+    {
+      "clsP75": 0,
+      "count": 50,
+      "inpP75Ms": 96,
+      "lcpP75Ms": 728,
+      "path": "/calculadoras/operacion-renta/"
+    },
+    {
+      "clsP75": 0,
+      "count": 40,
+      "inpP75Ms": 40,
+      "lcpP75Ms": 1356,
+      "path": "/calculadoras/seguro-cesantia/"
+    },
+    {
+      "clsP75": 0,
+      "count": 40,
+      "inpP75Ms": 16,
+      "lcpP75Ms": 704,
+      "path": "/calculadoras/sueldo-liquido/"
+    },
+    {
+      "clsP75": 0,
+      "count": 30,
+      "inpP75Ms": 16,
+      "lcpP75Ms": 864,
+      "path": "/posts/descuentos-de-sueldo/"
+    },
+    {
+      "clsP75": 0,
+      "count": 30,
+      "inpP75Ms": 56,
+      "lcpP75Ms": 1160,
+      "path": "/calculadoras/apv/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": null,
+      "lcpP75Ms": 1712,
+      "path": "/posts/licencia-medica-desde-que-dia-pagan/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": null,
+      "lcpP75Ms": 360,
+      "path": "/calculadoras/"
+    },
+    {
+      "clsP75": null,
+      "count": 20,
+      "inpP75Ms": null,
+      "lcpP75Ms": 549,
+      "path": "/guias/ahorro-e-inversion/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": 16,
+      "lcpP75Ms": 1160,
+      "path": "/calculadoras/prepago-credito/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": 96,
+      "lcpP75Ms": 336,
+      "path": "/calculadoras/credito-consumo/"
+    },
+    {
+      "clsP75": 0,
+      "count": 20,
+      "inpP75Ms": 624,
+      "lcpP75Ms": 1152,
+      "path": "/posts/deposito-a-plazo-uf-vs-pesos/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 8,
+      "lcpP75Ms": 668,
+      "path": "/posts/como-invertir-en-etfs-desde-chile/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 8,
+      "lcpP75Ms": 188,
+      "path": "/buscar/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 0,
+      "lcpP75Ms": 572,
+      "path": "/calculadoras/simulador-renegociacion/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 96,
+      "lcpP75Ms": 788,
+      "path": "/posts/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 104,
+      "lcpP75Ms": 1276,
+      "path": "/calculadoras/actualizador-inflacion/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 912,
+      "path": "/posts/suplantacion-identidad-creditos-no-reconocidos/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 80,
+      "lcpP75Ms": 996,
+      "path": "/posts/informe-deudas-cmf-vs-dicom/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 8,
+      "lcpP75Ms": 2136,
+      "path": "/posts/donde-ver-si-estoy-en-dicom-gratis/"
+    },
+    {
+      "clsP75": null,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": null,
+      "path": "/posts/sueldo-imponible-chile/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 816,
+      "path": "/posts/que-es-el-apv/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 56,
+      "lcpP75Ms": 736,
+      "path": "/calculadoras/simulador-jubilacion/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 40,
+      "lcpP75Ms": 884,
+      "path": "/posts/como-hacer-presupuesto-mensual-chile/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 1528,
+      "path": "/posts/renegociacion-superir/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 620,
+      "path": "/posts/boleta-honorarios-2026-retencion-cobertura/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": 264,
+      "lcpP75Ms": 500,
+      "path": "/posts/fraude-tarjeta-que-hacer/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 214,
+      "path": "/calculadoras/interes-compuesto/"
+    },
+    {
+      "clsP75": 0,
+      "count": 10,
+      "inpP75Ms": null,
+      "lcpP75Ms": 540,
+      "path": "/posts/utm-chile-que-es-como-funciona/"
+    }
+  ],
+  "_meta": {
+    "totalRawRoutes": 34,
+    "keptRoutes": 33,
+    "discardedRoutes": 1,
+    "discarded": [
+      {
+        "path": "/glosario/cae/",
+        "count": 10,
+        "reason": "route_not_in_site_inventory"
+      }
+    ]
+  }
+}

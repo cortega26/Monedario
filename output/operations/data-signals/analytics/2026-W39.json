@@ -1,0 +1,6374 @@
+{
+  "source": "first-party-events",
+  "schemaVersion": 2,
+  "week": "2026-W39",
+  "window": {
+    "from": "2026-09-21",
+    "to": "2026-09-27"
+  },
+  "data": [
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026:25",
+      "count": 5,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026:50",
+      "count": 4,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026:75",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:cae-costo-real-credito-chile:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:cae-costo-real-credito-chile:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:cae-costo-real-credito-chile:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:como-elegir-inversion-segun-plazo-riesgo-objetivos:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:como-elegir-inversion-segun-plazo-riesgo-objetivos:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:como-elegir-inversion-segun-plazo-riesgo-objetivos:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:como-hacer-presupuesto-mensual-chile:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:como-hacer-presupuesto-mensual-chile:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:como-hacer-presupuesto-mensual-chile:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:como-invertir-en-etfs-desde-chile:100",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:como-invertir-en-etfs-desde-chile:25",
+      "count": 4,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:como-invertir-en-etfs-desde-chile:50",
+      "count": 3,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:como-invertir-en-etfs-desde-chile:75",
+      "count": 3,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:deposito-a-plazo-uf-vs-pesos:25",
+      "count": 5,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:deposito-a-plazo-uf-vs-pesos:50",
+      "count": 5,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:deposito-a-plazo-uf-vs-pesos:75",
+      "count": 3,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:descuentos-de-sueldo:25",
+      "count": 3,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:descuentos-de-sueldo:50",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:descuentos-de-sueldo:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:donde-ver-si-estoy-en-dicom-gratis:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:el-poder-del-interes-compuesto:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:el-poder-del-interes-compuesto:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:el-poder-del-interes-compuesto:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondo-emergencia-chile:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondo-emergencia-chile:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondo-emergencia-chile:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondos-mutuos-comisiones-rescate-impuestos:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondos-mutuos-comisiones-rescate-impuestos:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:informe-deudas-cmf-vs-dicom:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:licencia-medica-desde-que-dia-pagan:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:licencia-medica-desde-que-dia-pagan:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:que-es-el-apv:25",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:que-es-el-apv:50",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:que-es-el-apv:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:que-es-la-cuenta-2-afp:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:seguro-de-cesantia:100",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:seguro-de-cesantia:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:seguro-de-cesantia:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:seguro-de-cesantia:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 49,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 12,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 4,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 5,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "dividendo-hipotecario"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 14,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 3,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 4,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 2,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:bruto-a-liquido:success",
+      "count": 3,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:liquido-a-bruto:success",
+      "count": 1,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_mode_toggle",
+      "dimensions": "5.5.1:liquido-a-bruto",
+      "count": 1,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 2,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:input",
+      "count": 2,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:button",
+      "count": 1,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 48,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 12,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 6,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 8,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "dividendo-hipotecario"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 11,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:input",
+      "count": 4,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 3,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:input",
+      "count": 1,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 7,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 2,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 4,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:input",
+      "count": 1,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 3,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 61,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 48,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 7,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 11,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 4,
+      "calculator_id": "dividendo-hipotecario"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 18,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 7,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "reajuste-arriendo"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 8,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "simulador-renegociacion"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 5,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=intro_primary:cta_type=article-decision-intro:destination_url=https\\://monedario.cl/calculadoras/deposito-a-plazo/",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=intro_secondary:cta_type=article-decision-intro:destination_url=https\\://monedario.cl/posts/informe-deudas-cmf-vs-dicom/",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=calculator_family_ahorro-prevision_button:cta_type=calculator-index:destination_url=https\\://monedario.cl/calculadoras/apv/",
+      "count": 1,
+      "calculator_id": "calculator-index"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=home_hero:cta_type=home-hero-cta:destination_url=https\\://monedario.cl/calculadoras/sueldo-liquido/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=home_hero:cta_type=home-hero-cta:destination_url=https\\://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=home_problem_cards:cta_type=home-problem-card:destination_url=https\\://monedario.cl/guias/ahorro-e-inversion/",
+      "count": 4,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_guides:cta_type=hub-route:destination_url=https\\://monedario.cl/guias/sueldo-remuneraciones/",
+      "count": 1,
+      "calculator_id": "calculator"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_primary:cta_type=hub-route:destination_url=https\\://monedario.cl/calculadoras/",
+      "count": 2,
+      "calculator_id": "calculator"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=footer_topics:cta_type=hub-route:destination_url=https\\://monedario.cl/guias/ahorro-e-inversion/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_guides:cta_type=hub-route:destination_url=https\\://monedario.cl/guias/ahorro-e-inversion/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_primary:cta_type=hub-route:destination_url=https\\://monedario.cl/calculadoras/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_click",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:posts-como-elegir-inversion-segun-plazo-riesgo-objetivos",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_click",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:posts-como-invertir-en-etfs-desde-chile",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_click",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:posts-deposito-a-plazo-uf-vs-pesos",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_click",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:posts-fondos-mutuos-comisiones-rescate-impuestos",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_click",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:posts-que-es-el-apv",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_click",
+      "dimensions": "5.5.1:presupuesto-control-financiero:contextual_v1:posts-ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_click",
+      "dimensions": "5.5.1:presupuesto-control-financiero:contextual_v1:posts-fondo-emergencia-chile",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_click",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-simulador-renegociacion",
+      "count": 1,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:apv-to-sl",
+      "count": 2,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:calculadoras-interes-compuesto",
+      "count": 3,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:guias-ahorro-e-inversion",
+      "count": 11,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:guias-pensiones-afp",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:posts-ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:posts-como-elegir-inversion-segun-plazo-riesgo-objetivos",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:posts-como-invertir-en-etfs-desde-chile",
+      "count": 3,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:posts-deposito-a-plazo-uf-vs-pesos",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:posts-fondos-mutuos-comisiones-rescate-impuestos",
+      "count": 3,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:posts-que-es-el-apv",
+      "count": 3,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:posts-que-es-la-cuenta-2-afp",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:posts-reforma-previsional-2025-que-cambia-y-como-te-afecta",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:calculadoras-prepago-credito",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:guias-deuda-credito",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:posts-renegociacion-superir",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:empleo-ingresos:contextual_v1:guias-empleo-ingresos",
+      "count": 3,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:empleo-ingresos:contextual_v1:posts-primer-empleo-chile-guia-completa",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:empleo-ingresos:contextual_v1:posts-seguro-cesantia-cuenta-individual-vs-fondo-solidario",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:empleo-ingresos:contextual_v1:posts-seguro-de-cesantia",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:presupuesto-control-financiero:contextual_v1:guias-presupuesto-control-financiero",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:presupuesto-control-financiero:contextual_v1:posts-ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:presupuesto-control-financiero:contextual_v1:posts-fondo-emergencia-chile",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:sueldo-remuneraciones:contextual_v1:guias-sueldo-remuneraciones",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:sueldo-remuneraciones:contextual_v1:posts-como-calcular-sueldo-liquido",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:sueldo-remuneraciones:contextual_v1:posts-liquidacion-de-sueldo",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-actualizador-inflacion",
+      "count": 3,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-conversor-uf",
+      "count": 3,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-impuesto-segunda-categoria",
+      "count": 3,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:convert-uf",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:guia-utm",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-prepago-credito",
+      "count": 1,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-tarjeta-credito",
+      "count": 1,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-interes-compuesto",
+      "count": 1,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-sueldo-liquido",
+      "count": 1,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:isc-to-apv",
+      "count": 2,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:isc-to-sl",
+      "count": 14,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-apv",
+      "count": 1,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-boleta-honorarios-liquido",
+      "count": 1,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-credito-consumo",
+      "count": 1,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-simulador-renegociacion",
+      "count": 1,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:guias-ahorro-e-inversion",
+      "count": 1,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-finiquito-indemnizacion",
+      "count": 1,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-sueldo-liquido",
+      "count": 1,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:posts-seguro-cesantia-cuenta-individual-vs-fondo-solidario",
+      "count": 1,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-apv",
+      "count": 1,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-prepago-credito",
+      "count": 1,
+      "calculator_id": "simulador-renegociacion"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-tarjeta-credito",
+      "count": 1,
+      "calculator_id": "simulador-renegociacion"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:sl-to-apv-midhigh",
+      "count": 1,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "source_click",
+      "dimensions": "5.5.1:official",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-21",
+      "event_name": "source_click",
+      "dimensions": "5.5.1:official",
+      "count": 1,
+      "calculator_id": "unknown"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_calculator_cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=article_body:cta_type=article-calculator-cta:destination_url=https\\://monedario.cl/calculadoras/deposito-a-plazo/",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:como-invertir-en-etfs-desde-chile:25",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:como-leer-cartola-afp-chile:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:credito-hipotecario-chile-guia-completa:100",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:credito-hipotecario-chile-guia-completa:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:credito-hipotecario-chile-guia-completa:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:credito-hipotecario-chile-guia-completa:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:deposito-a-plazo-uf-vs-pesos:25",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:deposito-a-plazo-uf-vs-pesos:50",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:deposito-a-plazo-uf-vs-pesos:75",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:descuentos-de-sueldo:25",
+      "count": 4,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:descuentos-de-sueldo:50",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:donde-ver-si-estoy-en-dicom-gratis:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:finanzas-para-migrantes-chile:100",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:finanzas-para-migrantes-chile:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:finanzas-para-migrantes-chile:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:finanzas-para-migrantes-chile:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondos-mutuos-comisiones-rescate-impuestos:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondos-mutuos-comisiones-rescate-impuestos:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:impuesto-global-complementario-chile:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:impuesto-global-complementario-chile:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:liquidacion-de-sueldo:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:reajuste-arriendo-uf-ipc-chile:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:renegociacion-superir:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:renegociacion-superir:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:renegociacion-superir:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:sueldo-imponible-chile:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:suplantacion-identidad-creditos-no-reconocidos:100",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:suplantacion-identidad-creditos-no-reconocidos:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:suplantacion-identidad-creditos-no-reconocidos:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:suplantacion-identidad-creditos-no-reconocidos:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 5,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 2,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 38,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 22,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 3,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 5,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "dividendo-hipotecario"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:finiquito-completo:success",
+      "count": 1,
+      "calculator_id": "finiquito-indemnizacion"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 5,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "interes-compuesto"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 7,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 4,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:minimum-not-met",
+      "count": 1,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:bruto-a-liquido:success",
+      "count": 4,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:liquido-a-bruto:success",
+      "count": 1,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_mode_toggle",
+      "dimensions": "5.5.1:bruto-a-liquido",
+      "count": 2,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_mode_toggle",
+      "dimensions": "5.5.1:liquido-a-bruto",
+      "count": 3,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:button",
+      "count": 1,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 5,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 2,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:input",
+      "count": 3,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:button",
+      "count": 3,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 36,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 22,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 4,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 8,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "dividendo-hipotecario"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "finiquito-indemnizacion"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 6,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "interes-compuesto"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 11,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 7,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 5,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 4,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:input",
+      "count": 1,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 6,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 8,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "comisiones-afp"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 53,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 39,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 10,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 14,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "dividendo-hipotecario"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "finiquito-indemnizacion"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 9,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "interes-compuesto"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 11,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 9,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 9,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 9,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=article_body:cta_type=glossary-inline-link:destination_url=https\\://monedario.cl/glosario/sii/",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=intro_primary:cta_type=article-decision-intro:destination_url=https\\://monedario.cl/calculadoras/credito-consumo/",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=intro_primary:cta_type=article-decision-intro:destination_url=https\\://monedario.cl/calculadoras/sueldo-liquido/",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_type=primary-cta:destination_url=https\\://monedario.cl/posts/cae-costo-real-credito-chile/",
+      "count": 1,
+      "calculator_id": "calculator"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=calculator_family_ahorro-prevision_button:cta_type=calculator-index:destination_url=https\\://monedario.cl/calculadoras/apv/",
+      "count": 1,
+      "calculator_id": "calculator-index"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=calculator_family_vivienda-uf_button:cta_type=calculator-index:destination_url=https\\://monedario.cl/calculadoras/dividendo-hipotecario/",
+      "count": 1,
+      "calculator_id": "calculator-index"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=home_hero:cta_type=home-hero-cta:destination_url=https\\://monedario.cl/calculadoras/finiquito-indemnizacion/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=home_hero:cta_type=home-hero-cta:destination_url=https\\://monedario.cl/calculadoras/sueldo-liquido/",
+      "count": 6,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=home_hero:cta_type=home-hero-cta:destination_url=https\\://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=home_problem_cards:cta_type=home-problem-card:destination_url=https\\://monedario.cl/guias/ahorro-e-inversion/",
+      "count": 4,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_primary:cta_type=hub-route:destination_url=https\\://monedario.cl/calculadoras/",
+      "count": 1,
+      "calculator_id": "calculator"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_guides:cta_type=hub-route:destination_url=https\\://monedario.cl/guias/ahorro-e-inversion/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_guides:cta_type=hub-route:destination_url=https\\://monedario.cl/guias/bancos-fintech/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_primary:cta_type=hub-route:destination_url=https\\://monedario.cl/metodologia/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_guides:cta_type=hub-route:destination_url=https\\://monedario.cl/guias/ahorro-e-inversion/",
+      "count": 3,
+      "calculator_id": "unknown"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_primary:cta_type=hub-route:destination_url=https\\://monedario.cl/calculadoras/",
+      "count": 1,
+      "calculator_id": "unknown"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_primary:cta_type=hub-route:destination_url=https\\://monedario.cl/glosario/",
+      "count": 1,
+      "calculator_id": "unknown"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-conversor-uf",
+      "count": 2,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-conversor-utm",
+      "count": 2,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-reajuste-arriendo",
+      "count": 2,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:apv-to-sl",
+      "count": 5,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-simulador-jubilacion",
+      "count": 1,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:calculadoras-interes-compuesto",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:guias-ahorro-e-inversion",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:posts-que-es-el-apv",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:calculadoras-prepago-credito",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:guias-deuda-credito",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:posts-tarjeta-credito-costo-real-chile",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:finanzas-migrantes:contextual_v1:guias-finanzas-migrantes",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:finanzas-migrantes:contextual_v1:posts-bancos-y-fintech-chile",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:impuestos-personas:contextual_v1:guias-impuestos-personas",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:impuestos-personas:contextual_v1:posts-devolucion-impuestos-fechas-compensaciones",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:impuestos-personas:contextual_v1:posts-operacion-renta-f22-checklist",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:seguridad-financiera:contextual_v1:guias-seguridad-financiera",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-reajuste-arriendo",
+      "count": 1,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-actualizador-inflacion",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-impuesto-segunda-categoria",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 4,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-interes-compuesto",
+      "count": 4,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-sueldo-liquido",
+      "count": 3,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:isc-to-apv",
+      "count": 3,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:isc-to-sl",
+      "count": 5,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-deposito-a-plazo",
+      "count": 1,
+      "calculator_id": "interes-compuesto"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-credito-consumo",
+      "count": 4,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-simulador-renegociacion",
+      "count": 4,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:guias-ahorro-e-inversion",
+      "count": 4,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-finiquito-indemnizacion",
+      "count": 2,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-sueldo-liquido",
+      "count": 2,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:posts-seguro-cesantia-cuenta-individual-vs-fondo-solidario",
+      "count": 2,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-22",
+      "event_name": "source_click",
+      "dimensions": "5.5.1:official",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "alert_interest_shown",
+      "dimensions": "5.5.1:contextual_v1",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:bancos-y-fintech-chile:100",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:bancos-y-fintech-chile:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:bancos-y-fintech-chile:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:bancos-y-fintech-chile:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:boleta-honorarios-2026-retencion-cobertura:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:boleta-honorarios-2026-retencion-cobertura:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:cuanto-descuenta-la-afp-de-tu-sueldo:100",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:cuanto-descuenta-la-afp-de-tu-sueldo:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:cuanto-descuenta-la-afp-de-tu-sueldo:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:cuanto-descuenta-la-afp-de-tu-sueldo:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:descuentos-de-sueldo:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:descuentos-de-sueldo:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:descuentos-de-sueldo:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:que-es-la-cuenta-2-afp:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:reajuste-arriendo-uf-ipc-chile:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:reajuste-arriendo-uf-ipc-chile:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:renegociacion-superir:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:renegociacion-superir:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:renegociacion-superir:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:rentas-mixtas-sueldo-honorarios:100",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:rentas-mixtas-sueldo-honorarios:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:rentas-mixtas-sueldo-honorarios:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:rentas-mixtas-sueldo-honorarios:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:sueldo-imponible-chile:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:sueldo-imponible-chile:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:suplantacion-identidad-creditos-no-reconocidos:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:suplantacion-identidad-creditos-no-reconocidos:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:utm-chile-que-es-como-funciona:25",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 5,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "comisiones-afp"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 26,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 19,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 3,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 3,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "dividendo-hipotecario"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 9,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 5,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 2,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 2,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:basic-filter-pass",
+      "count": 1,
+      "calculator_id": "simulador-renegociacion"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:missing-documents",
+      "count": 1,
+      "calculator_id": "simulador-renegociacion"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:bruto-a-liquido:success",
+      "count": 4,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "tarjeta-credito"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_mode_toggle",
+      "dimensions": "5.5.1:bruto-a-liquido",
+      "count": 1,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_mode_toggle",
+      "dimensions": "5.5.1:liquido-a-bruto",
+      "count": 2,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 5,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:input",
+      "count": 4,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "boleta-honorarios-liquido"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:input",
+      "count": 1,
+      "calculator_id": "comisiones-afp"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:button",
+      "count": 3,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 23,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:button",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 18,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 4,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 3,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "dividendo-hipotecario"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 9,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:input",
+      "count": 1,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 5,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 3,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:input",
+      "count": 1,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 2,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 3,
+      "calculator_id": "simulador-renegociacion"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 5,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 2,
+      "calculator_id": "tarjeta-credito"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 10,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "boleta-honorarios-liquido"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "comisiones-afp"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 30,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 36,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 5,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 4,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "dividendo-hipotecario"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "gratificacion-legal"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 11,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "interes-compuesto"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 10,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 7,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "reajuste-arriendo"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 4,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 4,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 3,
+      "calculator_id": "simulador-renegociacion"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 8,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "tarjeta-credito"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=calculator_result_next_actions:cta_type=result-next-action:destination_url=https\\://monedario.cl/calculadoras/tarjeta-credito/",
+      "count": 1,
+      "calculator_id": "calculator"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_type=primary-cta:destination_url=https\\://monedario.cl/calculadoras/apv/",
+      "count": 1,
+      "calculator_id": "calculator"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_type=primary-cta:destination_url=https\\://monedario.cl/posts/tarjeta-credito-costo-real-chile/",
+      "count": 1,
+      "calculator_id": "calculator"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=calculator_family_deuda-credito_button:cta_type=calculator-index:destination_url=https\\://monedario.cl/calculadoras/credito-consumo/",
+      "count": 2,
+      "calculator_id": "calculator-index"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=calculator_family_ingresos_button:cta_type=calculator-index:destination_url=https\\://monedario.cl/calculadoras/operacion-renta/",
+      "count": 1,
+      "calculator_id": "calculator-index"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=calculator_family_ingresos_button:cta_type=calculator-index:destination_url=https\\://monedario.cl/calculadoras/seguro-cesantia/",
+      "count": 1,
+      "calculator_id": "calculator-index"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=home_calculators:cta_type=home-calculators:destination_url=https\\://monedario.cl/calculadoras/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=home_hero:cta_type=home-hero-cta:destination_url=https\\://monedario.cl/calculadoras/sueldo-liquido/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=home_hero:cta_type=home-hero-cta:destination_url=https\\://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=home_problem_cards:cta_type=home-problem-card:destination_url=https\\://monedario.cl/guias/ahorro-e-inversion/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_primary:cta_type=hub-route:destination_url=https\\://monedario.cl/calculadoras/",
+      "count": 1,
+      "calculator_id": "calculator"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_primary:cta_type=hub-route:destination_url=https\\://monedario.cl/calculadoras/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_primary:cta_type=hub-route:destination_url=https\\://monedario.cl/glosario/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_primary:cta_type=hub-route:destination_url=https\\://monedario.cl/metodologia/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_click",
+      "dimensions": "5.5.1:apv-to-sl",
+      "count": 1,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_click",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-simulador-jubilacion",
+      "count": 1,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_click",
+      "dimensions": "5.5.1:isc-to-sl",
+      "count": 1,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_click",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_click",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-apv",
+      "count": 1,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:apv-to-opren",
+      "count": 2,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:apv-to-sl",
+      "count": 7,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-simulador-jubilacion",
+      "count": 1,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:bancos-fintech:contextual_v1:guias-bancos-fintech",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:bancos-fintech:contextual_v1:posts-boleta-honorarios-2026-retencion-cobertura",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:posts-cae-costo-real-credito-chile",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:posts-donde-ver-si-estoy-en-dicom-gratis",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:posts-informe-deudas-cmf-vs-dicom",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:impuestos-personas:contextual_v1:guias-impuestos-personas",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:impuestos-personas:contextual_v1:posts-operacion-renta-centro",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:impuestos-personas:contextual_v1:posts-operacion-renta-f22-checklist",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:sueldo-remuneraciones:contextual_v1:guias-sueldo-remuneraciones",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:sueldo-remuneraciones:contextual_v1:posts-como-calcular-sueldo-liquido",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:sueldo-remuneraciones:contextual_v1:posts-descuentos-de-sueldo",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:sueldo-remuneraciones:contextual_v1:posts-liquidacion-de-sueldo",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:sueldo-remuneraciones:contextual_v1:posts-reforma-previsional-2025-que-cambia-y-como-te-afecta",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "boleta-honorarios-liquido"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-sueldo-liquido",
+      "count": 1,
+      "calculator_id": "boleta-honorarios-liquido"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:convert-uf",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:guia-utm",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:isc-to-apv",
+      "count": 2,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:isc-to-sl",
+      "count": 8,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-deposito-a-plazo",
+      "count": 1,
+      "calculator_id": "interes-compuesto"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-simulador-jubilacion",
+      "count": 1,
+      "calculator_id": "interes-compuesto"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-apv",
+      "count": 1,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-boleta-honorarios-liquido",
+      "count": 1,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-credito-consumo",
+      "count": 2,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-simulador-renegociacion",
+      "count": 2,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:guias-ahorro-e-inversion",
+      "count": 2,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 2,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-apv",
+      "count": 2,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-prepago-credito",
+      "count": 2,
+      "calculator_id": "simulador-renegociacion"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-tarjeta-credito",
+      "count": 1,
+      "calculator_id": "simulador-renegociacion"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 2,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-seguro-cesantia",
+      "count": 2,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-credito-consumo",
+      "count": 1,
+      "calculator_id": "tarjeta-credito"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-simulador-renegociacion",
+      "count": 1,
+      "calculator_id": "tarjeta-credito"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "search_chip_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=search_chips:cta_type=search-chip:destination_url=https\\://monedario.cl/glosario/cae/",
+      "count": 1,
+      "calculator_id": "unknown"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "source_click",
+      "dimensions": "5.5.1:official",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "source_click",
+      "dimensions": "5.5.1:official",
+      "count": 1,
+      "calculator_id": "calculator"
+    },
+    {
+      "date": "2026-09-23",
+      "event_name": "support_shown",
+      "dimensions": "5.5.1:post_result",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "alert_interest_shown",
+      "dimensions": "5.5.1:contextual_v1",
+      "count": 2,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_calculator_cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=article_body:cta_type=article-calculator-cta:destination_url=https\\://monedario.cl/calculadoras/credito-consumo/",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_calculator_cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=article_body:cta_type=article-calculator-cta:destination_url=https\\://monedario.cl/calculadoras/sueldo-liquido/",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:cae-costo-real-credito-chile:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:cae-costo-real-credito-chile:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:cae-costo-real-credito-chile:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:como-invertir-en-etfs-desde-chile:25",
+      "count": 3,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:como-invertir-en-etfs-desde-chile:50",
+      "count": 3,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:credito-hipotecario-chile-guia-completa:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:credito-hipotecario-chile-guia-completa:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:credito-hipotecario-chile-guia-completa:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:cuanto-descuenta-la-afp-de-tu-sueldo:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:descuentos-de-sueldo:25",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:descuentos-de-sueldo:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:estafas-financieras-chile-vishing-smishing-marketplace:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:estafas-financieras-chile-vishing-smishing-marketplace:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondos-afp-a-b-c-d-e:25",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondos-afp-a-b-c-d-e:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondos-mutuos-comisiones-rescate-impuestos:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondos-mutuos-comisiones-rescate-impuestos:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondos-mutuos-comisiones-rescate-impuestos:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fraude-tarjeta-que-hacer:25",
+      "count": 3,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fraude-tarjeta-que-hacer:50",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fraude-tarjeta-que-hacer:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:liquidacion-de-sueldo:25",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:liquidacion-de-sueldo:50",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:liquidacion-de-sueldo:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:que-es-la-cuenta-2-afp:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:que-es-la-cuenta-2-afp:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:tarjeta-credito-costo-real-chile:100",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:tarjeta-credito-costo-real-chile:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:tarjeta-credito-costo-real-chile:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:tarjeta-credito-costo-real-chile:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 39,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 14,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 2,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 2,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "dividendo-hipotecario"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "gratificacion-legal"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 7,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "iva"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 2,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 5,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:uf",
+      "count": 1,
+      "calculator_id": "reajuste-arriendo"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 4,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:bruto-a-liquido:success",
+      "count": 7,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:liquido-a-bruto:success",
+      "count": 4,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_mode_toggle",
+      "dimensions": "5.5.1:bruto-a-liquido",
+      "count": 1,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_mode_toggle",
+      "dimensions": "5.5.1:liquido-a-bruto",
+      "count": 5,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 2,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:input",
+      "count": 2,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:input",
+      "count": 1,
+      "calculator_id": "comisiones-afp"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:button",
+      "count": 2,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 40,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 14,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 3,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 4,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "dividendo-hipotecario"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "gratificacion-legal"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 6,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:input",
+      "count": 2,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "iva"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 3,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 9,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:input",
+      "count": 1,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 3,
+      "calculator_id": "reajuste-arriendo"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 5,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 8,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:input",
+      "count": 6,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 4,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 3,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "boleta-honorarios-liquido"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 3,
+      "calculator_id": "comisiones-afp"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 50,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 24,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 7,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 7,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "dividendo-hipotecario"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "finiquito-indemnizacion"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "gratificacion-legal"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 9,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "interes-compuesto"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "iva"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 4,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 11,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 3,
+      "calculator_id": "reajuste-arriendo"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 7,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "simulador-renegociacion"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 17,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=article_body:cta_type=glossary-inline-link:destination_url=https\\://monedario.cl/glosario/cmf/",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=intro_primary:cta_type=article-decision-intro:destination_url=https\\://monedario.cl/calculadoras/prepago-credito/",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=intro_primary:cta_type=article-decision-intro:destination_url=https\\://monedario.cl/calculadoras/sueldo-liquido/",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=intro_secondary:cta_type=article-decision-intro:destination_url=https\\://monedario.cl/posts/seguro-cesantia-cuenta-individual-vs-fondo-solidario/",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=calculator_result_next_actions:cta_type=result-next-action:destination_url=https\\://monedario.cl/posts/liquidacion-de-sueldo/",
+      "count": 1,
+      "calculator_id": "calculator"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_type=primary-cta:destination_url=https\\://monedario.cl/posts/cae-costo-real-credito-chile/",
+      "count": 1,
+      "calculator_id": "calculator"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_type=primary-cta:destination_url=https\\://monedario.cl/posts/liquidacion-de-sueldo/",
+      "count": 1,
+      "calculator_id": "calculator"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_type=primary-cta:destination_url=https\\://monedario.cl/posts/prepago-credito-cuando-conviene-chile/",
+      "count": 1,
+      "calculator_id": "calculator"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_type=primary-cta:destination_url=https\\://monedario.cl/posts/seguro-de-cesantia/",
+      "count": 1,
+      "calculator_id": "calculator"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=calculator_family_ingresos_button:cta_type=calculator-index:destination_url=https\\://monedario.cl/calculadoras/iva/",
+      "count": 1,
+      "calculator_id": "calculator-index"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=fraude_wizard_explainer:cta_type=wizard-to-article:destination_url=https\\://monedario.cl/posts/fraude-tarjeta-que-hacer/",
+      "count": 1,
+      "calculator_id": "unknown"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=presupuesto_hub:cta_type=hub-tool:destination_url=https\\://monedario.cl/calculadoras/sueldo-liquido/",
+      "count": 1,
+      "calculator_id": "unknown"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_type=context-link:destination_url=https\\://monedario.cl/posts/cuanto-descuenta-la-afp-de-tu-sueldo/",
+      "count": 1,
+      "calculator_id": "unknown"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=footer_topics:cta_type=hub-route:destination_url=https\\://monedario.cl/guias/sueldo-remuneraciones/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_primary:cta_type=hub-route:destination_url=https\\://monedario.cl/glosario/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_primary:cta_type=hub-route:destination_url=https\\://monedario.cl/calculadoras/",
+      "count": 2,
+      "calculator_id": "unknown"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_primary:cta_type=hub-route:destination_url=https\\://monedario.cl/metodologia/",
+      "count": 1,
+      "calculator_id": "unknown"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_click",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-sueldo-liquido",
+      "count": 1,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-conversor-uf",
+      "count": 2,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-conversor-utm",
+      "count": 2,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-reajuste-arriendo",
+      "count": 2,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:apv-to-sl",
+      "count": 1,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:guias-ahorro-e-inversion",
+      "count": 3,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:guias-pensiones-afp",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:posts-deposito-a-plazo-uf-vs-pesos",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:posts-fondos-mutuos-comisiones-rescate-impuestos",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:posts-que-es-la-cuenta-2-afp",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:ahorro-e-inversion:contextual_v1:posts-reforma-previsional-2025-que-cambia-y-como-te-afecta",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:calculadoras-prepago-credito",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:guias-deuda-credito",
+      "count": 3,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:posts-cae-costo-real-credito-chile",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:posts-renegociacion-superir",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:posts-tarjeta-credito-costo-real-chile",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:pensiones-afp:contextual_v1:guias-pensiones-afp",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:pensiones-afp:contextual_v1:https---www.ips.gob.cl",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:seguridad-financiera:contextual_v1:guias-seguridad-financiera",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:seguridad-financiera:contextual_v1:posts-suplantacion-identidad-creditos-no-reconocidos",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-simulador-jubilacion",
+      "count": 1,
+      "calculator_id": "comisiones-afp"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-sueldo-liquido",
+      "count": 1,
+      "calculator_id": "comisiones-afp"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-reajuste-arriendo",
+      "count": 1,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-actualizador-inflacion",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-conversor-uf",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-impuesto-segunda-categoria",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:convert-uf",
+      "count": 2,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:guia-utm",
+      "count": 2,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-conversor-uf",
+      "count": 1,
+      "calculator_id": "dividendo-hipotecario"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-prepago-credito",
+      "count": 1,
+      "calculator_id": "dividendo-hipotecario"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 2,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-sueldo-liquido",
+      "count": 2,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:isc-to-apv",
+      "count": 2,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:isc-to-sl",
+      "count": 7,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-deposito-a-plazo",
+      "count": 1,
+      "calculator_id": "interes-compuesto"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-simulador-jubilacion",
+      "count": 1,
+      "calculator_id": "interes-compuesto"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "iva"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-conversor-utm",
+      "count": 1,
+      "calculator_id": "iva"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-impuesto-segunda-categoria",
+      "count": 1,
+      "calculator_id": "iva"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-apv",
+      "count": 1,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-boleta-honorarios-liquido",
+      "count": 1,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-credito-consumo",
+      "count": 1,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-simulador-renegociacion",
+      "count": 1,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:guias-ahorro-e-inversion",
+      "count": 1,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-finiquito-indemnizacion",
+      "count": 1,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-sueldo-liquido",
+      "count": 1,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:posts-seguro-cesantia-cuenta-individual-vs-fondo-solidario",
+      "count": 1,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-prepago-credito",
+      "count": 1,
+      "calculator_id": "simulador-renegociacion"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-tarjeta-credito",
+      "count": 1,
+      "calculator_id": "simulador-renegociacion"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:sl-to-apv-midhigh",
+      "count": 1,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:sl-to-cesantia",
+      "count": 1,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-24",
+      "event_name": "support_shown",
+      "dimensions": "5.5.1:post_result",
+      "count": 2,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "alert_interest_shown",
+      "dimensions": "5.5.1:contextual_v1",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:cotizacion-voluntaria-afp-independiente:25",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:cotizacion-voluntaria-afp-independiente:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:descuentos-de-sueldo:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:donde-ver-si-estoy-en-dicom-gratis:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondo-emergencia-chile:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondo-emergencia-chile:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondo-emergencia-chile:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondos-afp-a-b-c-d-e:25",
+      "count": 4,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondos-afp-a-b-c-d-e:50",
+      "count": 3,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fraude-tarjeta-que-hacer:100",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fraude-tarjeta-que-hacer:25",
+      "count": 3,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fraude-tarjeta-que-hacer:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fraude-tarjeta-que-hacer:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:licencia-medica-desde-que-dia-pagan:25",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:licencia-medica-desde-que-dia-pagan:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:licencia-medica-desde-que-dia-pagan:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:operacion-renta-f22-checklist:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:operacion-renta-f22-checklist:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:seguro-cesantia-cuenta-individual-vs-fondo-solidario:25",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 3,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 23,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 14,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 2,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 2,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 13,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 4,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 2,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:uf",
+      "count": 1,
+      "calculator_id": "reajuste-arriendo"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:minimum-not-met",
+      "count": 1,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 2,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:bruto-a-liquido:success",
+      "count": 2,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:liquido-a-bruto:success",
+      "count": 2,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_mode_toggle",
+      "dimensions": "5.5.1:finiquito",
+      "count": 1,
+      "calculator_id": "finiquito-indemnizacion"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_mode_toggle",
+      "dimensions": "5.5.1:vacaciones",
+      "count": 1,
+      "calculator_id": "finiquito-indemnizacion"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_mode_toggle",
+      "dimensions": "5.5.1:bruto-a-liquido",
+      "count": 1,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_mode_toggle",
+      "dimensions": "5.5.1:liquido-a-bruto",
+      "count": 4,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 3,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:input",
+      "count": 2,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 23,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 15,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 2,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 3,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "finiquito-indemnizacion"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 13,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:input",
+      "count": 3,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:button",
+      "count": 1,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 3,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:input",
+      "count": 1,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 3,
+      "calculator_id": "reajuste-arriendo"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 6,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 3,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:input",
+      "count": 3,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_trust_link_click",
+      "dimensions": "5.5.1:calculator_header:calculator-trust-link",
+      "count": 1,
+      "calculator_id": "calculator"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 3,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 6,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 29,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 31,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 3,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 6,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "finiquito-indemnizacion"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 23,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "iva"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 6,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 3,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 5,
+      "calculator_id": "reajuste-arriendo"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 8,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 11,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "tarjeta-credito"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=intro_secondary:cta_type=article-decision-intro:destination_url=https\\://monedario.cl/posts/donde-ver-si-estoy-en-dicom-gratis/",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=calculator_family_ingresos_button:cta_type=calculator-index:destination_url=https\\://monedario.cl/calculadoras/sueldo-liquido/",
+      "count": 2,
+      "calculator_id": "calculator-index"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=home_hero:cta_type=home-hero-cta:destination_url=https\\://monedario.cl/calculadoras/finiquito-indemnizacion/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_guides:cta_type=hub-route:destination_url=https\\://monedario.cl/guias/finanzas-migrantes/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_primary:cta_type=hub-route:destination_url=https\\://monedario.cl/calculadoras/",
+      "count": 2,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "hub_route_click",
+      "dimensions": "5.5.1:footer_trust:hub-route",
+      "count": 1,
+      "calculator_id": "unknown"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_click",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_click",
+      "dimensions": "5.5.1:isc-to-sl",
+      "count": 2,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:apv-to-sl",
+      "count": 4,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 2,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-simulador-jubilacion",
+      "count": 2,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:guias-deuda-credito",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:posts-credito-hipotecario-chile-guia-completa",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:empleo-ingresos:contextual_v1:guias-empleo-ingresos",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:empleo-ingresos:contextual_v1:posts-seguro-de-cesantia",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:presupuesto-control-financiero:contextual_v1:guias-presupuesto-control-financiero",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:presupuesto-control-financiero:contextual_v1:posts-ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:seguridad-financiera:contextual_v1:guias-seguridad-financiera",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:seguridad-financiera:contextual_v1:posts-suplantacion-identidad-creditos-no-reconocidos",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:convert-uf",
+      "count": 2,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:guia-utm",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-interes-compuesto",
+      "count": 2,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "finiquito-indemnizacion"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-seguro-cesantia",
+      "count": 1,
+      "calculator_id": "finiquito-indemnizacion"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 4,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-sueldo-liquido",
+      "count": 4,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:isc-to-apv",
+      "count": 2,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:isc-to-sl",
+      "count": 20,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-credito-consumo",
+      "count": 1,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-simulador-renegociacion",
+      "count": 1,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:guias-ahorro-e-inversion",
+      "count": 1,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "reajuste-arriendo"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-conversor-uf",
+      "count": 1,
+      "calculator_id": "reajuste-arriendo"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-apv",
+      "count": 1,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-seguro-cesantia",
+      "count": 1,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:sl-to-apv-midhigh",
+      "count": 2,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:sl-to-cesantia",
+      "count": 1,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-credito-consumo",
+      "count": 1,
+      "calculator_id": "tarjeta-credito"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-simulador-renegociacion",
+      "count": 1,
+      "calculator_id": "tarjeta-credito"
+    },
+    {
+      "date": "2026-09-25",
+      "event_name": "support_shown",
+      "dimensions": "5.5.1:post_result",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:cae-costo-real-credito-chile:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:cuanto-descuenta-la-afp-de-tu-sueldo:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:deposito-a-plazo-uf-vs-pesos:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondos-afp-a-b-c-d-e:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondos-afp-a-b-c-d-e:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:impuesto-global-complementario-chile:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:informe-deudas-cmf-vs-dicom:25",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:informe-deudas-cmf-vs-dicom:50",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:informe-deudas-cmf-vs-dicom:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:que-es-el-apv:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 6,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 7,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 4,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 2,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:uf",
+      "count": 2,
+      "calculator_id": "reajuste-arriendo"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 2,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:bruto-a-liquido:success",
+      "count": 1,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_mode_toggle",
+      "dimensions": "5.5.1:liquido-a-bruto",
+      "count": 1,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 3,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:button",
+      "count": 1,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 7,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 7,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 2,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 5,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 2,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 2,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 3,
+      "calculator_id": "reajuste-arriendo"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 2,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 3,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "comisiones-afp"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 10,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 17,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 6,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "finiquito-indemnizacion"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 4,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 4,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 5,
+      "calculator_id": "reajuste-arriendo"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "simulador-renegociacion"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "tarjeta-credito"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=calculator_family_vivienda-uf_button:cta_type=calculator-index:destination_url=https\\://monedario.cl/calculadoras/reajuste-arriendo/",
+      "count": 1,
+      "calculator_id": "calculator-index"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=home_hero:cta_type=home-hero-cta:destination_url=https\\://monedario.cl/calculadoras/sueldo-liquido/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=home_problem_cards:cta_type=home-problem-card:destination_url=https\\://monedario.cl/guias/ahorro-e-inversion/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=home_problem_cards:cta_type=home-problem-card:destination_url=https\\://monedario.cl/posts/liquidacion-de-sueldo/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_primary:cta_type=hub-route:destination_url=https\\://monedario.cl/glosario/",
+      "count": 1,
+      "calculator_id": "calculator"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_primary:cta_type=hub-route:destination_url=https\\://monedario.cl/metodologia/",
+      "count": 1,
+      "calculator_id": "unknown"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_click",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "reajuste-arriendo"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:apv-to-sl",
+      "count": 1,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-simulador-jubilacion",
+      "count": 1,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:posts-cae-costo-real-credito-chile",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:posts-donde-ver-si-estoy-en-dicom-gratis",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:posts-informe-deudas-cmf-vs-dicom",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:posts-renegociacion-superir",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:pensiones-afp:contextual_v1:posts-como-cambiarse-de-afp",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:pensiones-afp:contextual_v1:posts-reforma-previsional-2025-que-cambia-y-como-te-afecta",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:seguridad-financiera:contextual_v1:guias-seguridad-financiera",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:seguridad-financiera:contextual_v1:posts-suplantacion-identidad-creditos-no-reconocidos",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-reajuste-arriendo",
+      "count": 1,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-conversor-uf",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-impuesto-segunda-categoria",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:isc-to-sl",
+      "count": 1,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-apv",
+      "count": 1,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-boleta-honorarios-liquido",
+      "count": 1,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-credito-consumo",
+      "count": 3,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-simulador-renegociacion",
+      "count": 3,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:guias-ahorro-e-inversion",
+      "count": 3,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "reajuste-arriendo"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-conversor-uf",
+      "count": 1,
+      "calculator_id": "reajuste-arriendo"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-prepago-credito",
+      "count": 1,
+      "calculator_id": "simulador-renegociacion"
+    },
+    {
+      "date": "2026-09-26",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-tarjeta-credito",
+      "count": 1,
+      "calculator_id": "simulador-renegociacion"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "alert_interest_shown",
+      "dimensions": "5.5.1:contextual_v1",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:descuentos-de-sueldo:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:descuentos-de-sueldo:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:descuentos-de-sueldo:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondos-afp-a-b-c-d-e:100",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondos-afp-a-b-c-d-e:25",
+      "count": 5,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondos-afp-a-b-c-d-e:50",
+      "count": 3,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:fondos-afp-a-b-c-d-e:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:informe-deudas-cmf-vs-dicom:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:que-es-la-uf:100",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:que-es-la-uf:25",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:que-es-la-uf:50",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "article_scroll_depth",
+      "dimensions": "5.5.1:que-es-la-uf:75",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 1,
+      "calculator_id": "boleta-honorarios-liquido"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 20,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 5,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 2,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 5,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 2,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 3,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 3,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:uf",
+      "count": 1,
+      "calculator_id": "reajuste-arriendo"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_complete",
+      "dimensions": "5.5.1:success",
+      "count": 3,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 2,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "boleta-honorarios-liquido"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:button",
+      "count": 1,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 19,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 7,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 2,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 6,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 2,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 3,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 4,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:input",
+      "count": 1,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "reajuste-arriendo"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 3,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_start",
+      "dimensions": "5.5.1:focus",
+      "count": 1,
+      "calculator_id": "simulador-renegociacion"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 3,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "boleta-honorarios-liquido"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 27,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 17,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 5,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 7,
+      "calculator_id": "deposito-a-plazo"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 3,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "interes-compuesto"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 7,
+      "calculator_id": "operacion-renta"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 7,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 3,
+      "calculator_id": "reajuste-arriendo"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 3,
+      "calculator_id": "seguro-cesantia"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 1,
+      "calculator_id": "simulador-renegociacion"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "calculator_view",
+      "dimensions": "5.5.1",
+      "count": 2,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=intro_secondary:cta_type=article-decision-intro:destination_url=https\\://monedario.cl/calculadoras/interes-compuesto/",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "cta_click",
+      "dimensions": "v2:app_version=5.5.1:cta_type=primary-cta:destination_url=https\\://monedario.cl/posts/deposito-a-plazo-uf-vs-pesos/",
+      "count": 1,
+      "calculator_id": "calculator"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_primary:cta_type=hub-route:destination_url=https\\://monedario.cl/calculadoras/",
+      "count": 1,
+      "calculator_id": "calculator-index"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=header_primary:cta_type=hub-route:destination_url=https\\://monedario.cl/calculadoras/",
+      "count": 1,
+      "calculator_id": "home"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "hub_route_click",
+      "dimensions": "v2:app_version=5.5.1:cta_location=footer_trust:cta_type=hub-route:destination_url=https\\://monedario.cl/autor/",
+      "count": 9,
+      "calculator_id": "unknown"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-reajuste-arriendo",
+      "count": 1,
+      "calculator_id": "actualizador-inflacion"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:apv-to-sl",
+      "count": 2,
+      "calculator_id": "apv"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:calculadoras-prepago-credito",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:guias-deuda-credito",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:deuda-credito:contextual_v1:posts-tarjeta-credito-costo-real-chile",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:impuestos-personas:contextual_v1:guias-impuestos-personas",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:impuestos-personas:contextual_v1:posts-contribuciones-bienes-raices-chile",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:impuestos-personas:contextual_v1:posts-operacion-renta-f22-checklist",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:pensiones-afp:contextual_v1:guias-pensiones-afp",
+      "count": 2,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:pensiones-afp:contextual_v1:posts-boleta-honorarios-2026-retencion-cobertura",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:pensiones-afp:contextual_v1:posts-como-cambiarse-de-afp",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:pensiones-afp:contextual_v1:posts-fondos-afp-a-b-c-d-e",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:pensiones-afp:contextual_v1:posts-reforma-previsional-2025-que-cambia-y-como-te-afecta",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:seguridad-financiera:contextual_v1:posts-fraude-tarjeta-que-hacer",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:sueldo-remuneraciones:contextual_v1:guias-sueldo-remuneraciones",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:sueldo-remuneraciones:contextual_v1:posts-como-calcular-sueldo-liquido",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:sueldo-remuneraciones:contextual_v1:posts-descuentos-de-sueldo",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:uf-costo-de-vida:contextual_v1:guias-uf-costo-de-vida",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:uf-costo-de-vida:contextual_v1:posts-reajuste-arriendo-uf-ipc-chile",
+      "count": 1,
+      "calculator_id": "article"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "boleta-honorarios-liquido"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-sueldo-liquido",
+      "count": 1,
+      "calculator_id": "boleta-honorarios-liquido"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 2,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-reajuste-arriendo",
+      "count": 2,
+      "calculator_id": "conversor-uf"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-actualizador-inflacion",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-conversor-uf",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-impuesto-segunda-categoria",
+      "count": 2,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:convert-uf",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:guia-utm",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-prepago-credito",
+      "count": 2,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-tarjeta-credito",
+      "count": 2,
+      "calculator_id": "credito-consumo"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:isc-to-sl",
+      "count": 3,
+      "calculator_id": "impuesto-segunda-categoria"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-credito-consumo",
+      "count": 1,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-simulador-renegociacion",
+      "count": 1,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:guias-ahorro-e-inversion",
+      "count": 1,
+      "calculator_id": "prepago-credito"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 1,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-apv",
+      "count": 1,
+      "calculator_id": "simulador-jubilacion"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras",
+      "count": 2,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "next_step_shown",
+      "dimensions": "5.5.1:contextual_v1:calculadoras-seguro-cesantia",
+      "count": 2,
+      "calculator_id": "sueldo-liquido"
+    },
+    {
+      "date": "2026-09-27",
+      "event_name": "support_shown",
+      "dimensions": "5.5.1:post_result",
+      "count": 1,
+      "calculator_id": "conversor-utm"
+    }
+  ]
+}
