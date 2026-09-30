@@ -2418,8 +2418,9 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
   `fondos-mutuos-comisiones-rescate-impuestos`). Los otros 6 de los 13 quedaron
   **evergreen** con la decisión del mismo día y ya no requieren `validAsOf`.
   El gate pasó de `missingValidAsOf=13` a **3**. Pendiente: auditoría
-  independiente de los 7 borradores (sesión fresca) y verificación primaria de
-  los 3 restantes.
+  independiente de los 7 borradores (sesión fresca; prompt en
+  `docs/backlog/prompt-td-0108-auditoria-articlelead.md`) y verificación
+  primaria de los 3 restantes.
 - **Owner:** Carlos Ortega (editorial)
 - **Estado:** En curso — autoría completa; falta auditoría independiente de los
   7 borradores y verificación primaria de los 3 sin `validAsOf`
