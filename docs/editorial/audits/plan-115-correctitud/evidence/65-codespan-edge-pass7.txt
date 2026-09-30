@@ -1,0 +1,28 @@
+Pass7 — borde: [[…|…]] dentro de code spans/blocks (worktree bdf26fe7)
+
+Hipótesis adversarial: el plugin remark salta nodos code/inlineCode/html
+(SKIP_TYPES en src/remark-economic-variables.ts:7), pero interpolateEconomicText
+sobre texto plano de llms-full.txt NO distingue código — si un artículo usara
+[[expr | fmt]] dentro de un code span/block, el HTML lo mostraría crudo (correcto)
+y llms-full.txt lo interpolaría (divergencia de superficies) o viceversa.
+
+Método: script Python propio — recorre src/data/blog + src/data/glossary (+ src/data),
+rastrea cercas ``` y code spans `...` por línea, y reporta [[…|…]] dentro de código.
+  $ python3 (fence-aware + inline-span scan)
+  files scanned: 131
+  hits in code: 0
+
+Inventario total de plantillas en src/data (rg '\[\[[^\]\n|]+\|[^\]\n]+\]\]'):
+  src/data/blog/impuesto-global-complementario-chile.md:2 (líneas con [[)
+  src/data/blog/sueldo-imponible-chile.md:5
+  src/data/glossary/impuesto-unico.md:1
+  src/data/glossary/sueldo-bruto.md:1
+  → 9 líneas con plantillas en 4 archivos, TODAS en prosa (párrafos/tablas),
+    ninguna en código. Las 2 de glosario se verifican renderizadas en HTML
+    (dist/glosario/sueldo-bruto: $968.234 presente, 0 [[; dist/glosario/impuesto-unico: 0 [[).
+
+Conclusión: el borde no existe en el corpus actual → NO es defecto.
+Riesgo residual documentado: un autor futuro podría poner [[…|…]] en código y
+provocar divergencia HTML vs llms-full; mitigado por el check
+llms-full-no-raw-interpolation (falla si la interpolación de texto plano deja
+restos) pero no por una guarda de "no [[ en código" — fuera del alcance de D25.

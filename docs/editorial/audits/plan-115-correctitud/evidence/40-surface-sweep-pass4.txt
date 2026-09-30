@@ -1,0 +1,167 @@
+=== 40 — Barrido matriz de superficies (pass4, worktree HEAD 72d14e66) ===
+fecha_utc=2026-09-29T22:45:00Z
+
+########## 1) DAP / retención 4% — superficies src ##########
+--- 1a. cuerpos (calculadora) ---
+56:      "Los intereses tributan en el Impuesto Global Complementario anual, no con una retención del banco. El banco te paga el interés completo al vencimiento; la tributación se resuelve en tu declaración de renta, donde aplica el tramo exento general de 13,5 UTA y —si solo tienes rentas de sueldo o de pequeño contribuyente— una exención de hasta 20 UTM (SII, FAQ 001.140.2738). La retención del 4% del art. 59 inciso 2° N°1 letras a) y g) LIR aplica a personas sin domicilio ni residencia en Chile (Impuesto Adicional), no a residentes.",
+177:            en tu declaración anual de renta; el banco no aplica retención.
+200:          >no practica retención</strong
+206:        de hasta <strong>20 UTM</strong> (SII, FAQ 001.140.2738). La retención del
+207:        4% del art. 59 inciso 2° N°1 letras a) y g) LIR corresponde al Impuesto Adicional
+265:            La retención del 4% del art. 59 inciso 2° N°1 letras a) y g) LIR es
+266:            Impuesto Adicional para personas sin domicilio ni residencia en
+334:      notes="Esta calculadora aplica interés simple proporcional al plazo: Interés = Monto × (TIR/100) × (días/365) y el monto al vencimiento = monto + interés. Para personas naturales residentes el banco no aplica retención: los intereses tributan en el Impuesto Global Complementario anual (tramo exento general de 13,5 UTA; exención de hasta 20 UTM si solo hay rentas de sueldo o de pequeño contribuyente). La retención del 4% del art. 59 inciso 2° N°1 letras a) y g) LIR es Impuesto Adicional para personas sin domicilio ni residencia en Chile. Los resultados son de referencia; el impuesto final depende de la situación tributaria de cada contribuyente."
+342:          name: "SII — Oficio N° 2047: Impuesto Adicional a personas sin domicilio ni residencia (art. 59 LIR)",
+512:      "El banco paga el interés completo al vencimiento y no aplica retención a personas naturales residentes. Los intereses tributan en el Impuesto Global Complementario anual (SII, FAQ 001.140.2738).";
+--- 1b. metadata/JSON-LD ---
+72:  title="Calculadora Depósito a Plazo Chile 2026 | Interés bruto y neto"
+73:  description="Calcula el interés bruto y el monto neto al vencimiento de tu depósito a plazo, y entiende cómo tributa al año siguiente. Ingresa monto, plazo en días y tasa TIR."
+77:    description="Calcula el interés bruto y el monto neto al vencimiento de tu depósito a plazo en Chile, y entiende cómo tributa al año siguiente."
+90:    data-site-title={SITE.title}
+93:      title="Calculadora de Depósito a Plazo"
+94:      description="Estima el rendimiento de tu DAP: interés pagado al vencimiento y monto final. Ingresa monto, plazo y tasa TIR."
+--- 1c. catálogo/LLM (portfolio) ---
+    href: "/calculadoras/deposito-a-plazo/",
+    slug: "deposito-a-plazo",
+    title: "Calculadora Depósito a Plazo",
+    description:
+      "Calcula el interés bruto y el monto neto al vencimiento de tu DAP, y cómo tributa al año siguiente.",
+    icon: "building-bank",
+    tag: "Ahorro",
+    family: "ahorro-prevision",
+    primaryJtbd:
+      "Saber cuánto ganas bruto y neto en un DAP y cómo tributa al año siguiente.",
+    whenToUse:
+      "Cuando tienes o evalúas un depósito a plazo y quieres el rendimiento al vencimiento y su tributación anual.",
+    notFor:
+      "No compara DAPs entre bancos ni cubre instrumentos en UF o dólares — solo pesos y tasa TIR.",
+    related: [
+      {
+        href: "/calculadoras/interes-compuesto/",
+        label: "Interés compuesto",
+        when: "si quieres proyectar un ahorro en el largo plazo con reinversión, no un DAP de plazo fijo.",
+--- 1d. contenido relacionado que cita el hecho (retención DAP) ---
+src/data/blog/fondo-emergencia-chile.md:151:Los intereses generados en instrumentos como el DAP están sujetos al impuesto a los intereses (retención para personas naturales en Chile, con ajuste en Operación Renta si corresponde). Dado que el objetivo es preservar liquidez con instrumentos de bajo plazo y tasa baja, el efecto tributario suele ser menor, pero es relevante declararlo. Consulta con tu contador si tienes dudas sobre tu situación particular.
+--- 1e. motor (sin retención) ---
+10: * retención del banco: tributan en el Impuesto Global Complementario anual
+11: * (SII, FAQ 001.140.2738, actualizada 2026-03-31). La retención del 4% del
+(solo JSDoc)
+--- 1f. dist HTML: 'impuesto 4' en calculadoras ---
+(vacío=OK)
+
+########## 2) Honorarios 14,5/15,25 — superficies ##########
+--- 2a. todas las ocurrencias de 15,25 ---
+src/application/use-cases/CalculateHonorariosNet.methodology.ts
+src/config/editorial-timeliness-policy.json
+src/config/hubPillarConfig.ts
+src/data/blog/boleta-honorarios-2026-retencion-cobertura.md
+src/data/blog/impuesto-global-complementario-chile.md
+src/data/blog/operacion-renta-centro.md
+src/data/blog/rentas-mixtas-sueldo-honorarios.md
+src/data/glossary/boleta-honorarios.md
+src/pages/calculadoras/boleta-honorarios-liquido.astro
+src/pages/guias/impuestos-personas/index.astro
+src/pages/guias/impuestos-personas/operacion-renta/index.astro
+--- 2b. ocurrencias de 14,5 ---
+src/application/use-cases/SimulateOperacionRenta.methodology.ts
+src/config/editorial-timeliness-policy.json
+src/data/blog/boleta-honorarios-2026-retencion-cobertura.md
+src/data/blog/impuesto-global-complementario-chile.md
+src/data/blog/operacion-renta-centro.md
+src/data/blog/rentas-mixtas-sueldo-honorarios.md
+src/domain/taxation/TaxYearParameters.ts
+src/pages/guias/impuestos-personas/operacion-renta/index.astro
+--- 2c. catálogo/LLM ---
+src/config/hubPillarConfig.ts:16:      "Calcula retención del 15,25%, líquido recibido y cobertura previsional de tus boletas.",
+--- 2d. dist/llms-full.txt: contextos 15,25 ---
+ para boletas emitidas en 2026 sube a **15,25%** (verifica en el [SII](https://www.si
+boletas emitidas en 2026 la tasa sube a 15,25%). Ese 14,5% aparece en el Formulario 2
+: [Boleta de honorarios 2026: retención 15,25%, líquido recibido y cobertura anual](/
+ 2026, la retención de boletas sube a **15,25%**. Este aumento forma parte del escala
+gulares y monto anual sobre 5 IMM | Sí, 15,25%                     | Sí              
+uales bajo 5 IMM                  | Sí, 15,25% al emitir           | Puede quedar exi
+parcial)                          | Sí, 15,25% al emitir           | Puede estar exim
+norarios                          | Sí, 15,25% en meses con boleta | Depende del tota
+--- 2e. dist/llms-full.txt: contextos 14,5 ---
+das en 2025), la tasa de retención es **14,5%**; para boletas emitidas en 2026 sube 
+onorarios en 2025, tu cliente retuvo el 14,5% como pago provisional mensual (PPM) po
+das en 2026 la tasa sube a 15,25%). Ese 14,5% aparece en el Formulario 22 como crédi
+5, cada boleta tuvo una retención del **14,5%** que el cliente (la empresa que pagó 
+ retuvieron y enviaron al SII $145.000 (14,5%). Al declarar, el SII calcula el impue
+agador de honorarios retuvo 14,5% (tasa 14,5% para boletas 2025) al momento de emiti
+que tu empleador usó para retenerte. El 14,5% de retención puede ser insuficiente si
+cisa y emitiste boletas pequeñas con el 14,5%, la retención total puede superar el I
+
+########## 3) IGC/IUSC tabla (310/38,82 vs 150/30,82) ##########
+--- 3a. src ---
+src/data/blog/sueldo-imponible-chile.md:129:| 120–310 UTM   | 35%    | 23,32 × UTM      |
+src/data/blog/sueldo-imponible-chile.md:130:| Sobre 310 UTM | 40%    | 38,82 × UTM      |
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:124:| Más de 120 a 310 UTA | 35%           | hasta 27,5%                    |
+src/data/blog/rentas-mixtas-sueldo-honorarios.md:125:| Más de 310 UTA       | 40%           | más de 27,5%                   |
+src/data/blog/operacion-renta-centro.md:215:> Los tramos de impuesto son progresivos y se aplican sobre la Renta Líquida Imponible (RLI) total del año, no solo sobre los honorarios. Los tramos del IGC para el año tributario 2026 (rentas de 2025) están publicados en [sii.cl/valores_y_fechas/renta/2026/personas_naturales.html](https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html). El primer tramo exento aplica hasta 13,5 UTA anuales ($11.265.804, usando la UTA de diciembre de 2025: $834.504); la tasa marginal máxima es 40% sobre rentas que superen 310 UTA (~$259 millones), vigente desde Ley 21.210.
+src/data/blog/impuesto-global-complementario-chile.md:111:| 120–310 UTA   | 35%    | 23,32 × UTA      |
+src/data/blog/impuesto-global-complementario-chile.md:112:| Sobre 310 UTA | 40%    | 38,82 × UTA      |
+src/pages/calculadoras/impuesto-segunda-categoria.astro:422:  // Highlight the active bracket row (tabla general: 35% hasta 310 UTM)
+src/domain/taxation/TaxEngine.ts:39:  // 310 UTM/UTA y el 40% aplica sobre ese tope con rebaja de 38,82 UTM/UTA.
+src/domain/taxation/TaxEngine.ts:40:  // (El tramo 150 con rebaja 30,82 es el art. 52 bis, solo para Presidente,
+--- 3b. JSON-LD/meta valores de tabla ---
+83:| 120–310 UTA   | 35%    | 23,32 × UTA      |
+84:| Sobre 310 UTA | 40%    | 38,82 × UTA      |
+308:> Los tramos de impuesto son progresivos y se aplican sobre la Renta Líquida Imponible (RLI) total del año, no solo sobre los honorarios. Los tramos del IGC para el año tributario 2026 (rentas de 2025) están publicados en [sii.cl/valores_y_fechas/renta/2026/personas_naturales.html](https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html). El primer tramo exento aplica hasta 13,5 UTA anuales ($11.265.804, usando la UTA de diciembre de 2025: $834.504); la tasa marginal máxima es 40% sobre rentas que superen 310 UTA (~$259 millones), vigente desde Ley 21.210.
+599:**Fuentes:** [SII — Boletas de honorarios](https://www.sii.cl/destacados/boletas_honorarios/); [SII — Información AT 2026 Personas Naturales](https://www.sii.cl/valores_y_fechas/renta/2026/personas_naturales.html); [SII — Calendario Operación Renta AT2026](https://www.sii.cl/noticias/2026/310326noti01pcr.htm).
+646:| Más de 120 a 310 UTA | 35%           | hasta 27,5%                    |
+--- 3c. tests del highlight (D12) ---
+5: * tabla general (35% hasta 310 UTM), no la estructura del art. 52 bis (150).
+19:  // 200 UTM: tramo 35% (120–310), no el 40% (310+).
+22:  await expect(page.locator("#tramo-6")).toHaveClass(/bg-accent\/10/);
+23:  await expect(page.locator("#tramo-7")).not.toHaveClass(/bg-accent\/10/);
+28:  await expect(page.locator("#tramo-7")).toHaveClass(/bg-accent\/10/);
+29:  await expect(page.locator("#tramo-6")).not.toHaveClass(/bg-accent\/10/);
+
+########## 4) UF ##########
+--- 4a. valor AT2026 en src ---
+src/domain/taxation/TaxYearParameters.ts:34: * - UF diciembre 2025: $39.727,96 (UF del 31-12-2025, Banco Central de Chile;
+src/domain/taxation/TaxYearParameters.ts:44:  ufDecember: 39_727.96,
+src/domain/taxation/TaxYearParameters.ts:47:    "SII — tabla IGC AT2026 (rebaja $450.632,16) y UTA dic-2025 $834.504; BCCh — UF 31-12-2025 $39.727,96 (art. 42 bis); Ley 21.133 — retención honorarios 14,5% para boletas 2025.",
+src/data/blog/interes-compuesto-nota-metodologica.md:257:El capital final de **$118,0 millones CLP** equivale aproximadamente a **2.970 [UF](/guias/uf-costo-de-vida/)**, usando una UF de $39.727,96 al 31 de diciembre de 2025. En esa lógica, el resultado permite comprar al contado una unidad en el rango inferior de las comunas listadas o una propiedad de mayor estándar en varias ciudades regionales.
+--- 4b. dataset diario 31-12-2025 ---
+[{'fecha': '2025-12-31', 'valor': 39727.96}]
+--- 4c. dist: '39.643' ---
+(vacío=OK)
+
+########## 5) SuperIR ##########
+--- 5a. motor/copy ---
+src/application/use-cases/SimulateDebtRenegotiation.ts:9:   * "provenientes de obligaciones diversas", no por acreedores distintos.
+src/application/use-cases/SimulateDebtRenegotiation.ts:23:  minimumOverdueDays?: number;
+src/application/use-cases/SimulateDebtRenegotiation.ts:32:  minimumOverdueDays: number;
+src/application/use-cases/SimulateDebtRenegotiation.ts:95:  const minimumOverdueDays = input.minimumOverdueDays ?? 91;
+src/application/use-cases/SimulateDebtRenegotiation.ts:101:    debt => debt.amount > 0 && debt.overdueDays >= minimumOverdueDays
+src/application/use-cases/SimulateDebtRenegotiation.ts:109:  // obligaciones diversas". El requisito es por obligaciones, no por
+src/application/use-cases/SimulateDebtRenegotiation.ts:110:  // acreedores distintos: dos deudas con el mismo acreedor califican.
+src/application/use-cases/SimulateDebtRenegotiation.ts:112:  // "monto total sea superior a 80 UF" (umbral estricto).
+src/application/use-cases/SimulateDebtRenegotiation.ts:142:    minimumOverdueDays,
+src/pages/calculadoras/simulador-renegociacion.astro:332:          días corridos que sumen más de 80 UF en total.
+src/pages/calculadoras/simulador-renegociacion.astro:420:      notes="El filtro de elegibilidad verifica los requisitos del artículo 260 de la Ley 20.720 (dos o más obligaciones vencidas por más de 90 días, provenientes de obligaciones diversas, que sumen más de 80 UF) y la documentación del artículo 261. La cuota orientativa usa la tasa máxima convencional como referencia y no considera descuentos ni acuerdos particulares con acreedores."
+--- 5b. contenido relacionado ---
+202:**Una sola deuda grande.** La ley exige dos o más obligaciones vencidas, aunque sean del mismo acreedor (art. 260: «provenientes de obligaciones diversas»). Una única deuda de 200 UF no califica, por grande que sea.
+--- 5c. fuentes del simulador (BCN/SuperIR) ---
+23:const renegociacionGuidePath = getPath("/posts/renegociacion-superir/");
+352:          href="https://www.superir.gob.cl"
+354:          rel="noopener noreferrer">superir.gob.cl</a
+414:      href="/posts/renegociacion-superir/"
+420:      notes="El filtro de elegibilidad verifica los requisitos del artículo 260 de la Ley 20.720 (dos o más obligaciones vencidas por más de 90 días, provenientes de obligaciones diversas, que sumen más de 80 UF) y la documentación del artículo 261. La cuota orientativa usa la tasa máxima convencional como referencia y no considera descuentos ni acuerdos particulares con acreedores."
+
+########## 6) APV 1,1 + 3 pp / 15% / pensionados ##########
+46:      "El APV es un ahorro complementario y voluntario a la cotización obligatoria del 10% en la AFP. Tiene beneficios tributarios que el ahorro común no ofrece (Régimen A: bonificación estatal del 15%; Régimen B: deducción de la base imponible del IGC).",
+51:      "Régimen A conviene si tus ingresos son bajos o medianos y el bono estatal del 15% supera al ahorro tributario. Régimen B conviene si tienes ingresos altos y una tasa marginal elevada en el Impuesto Global Complementario, ya que el aporte reduce tu base imponible.",
+56:      "Sí, pero un retiro anticipado tiene costo tributario. En Régimen A debes devolver la bonificación estatal. En Régimen B, el retiro no destinado a pensión paga un impuesto único cuya tasa es la del retiro (el IGC que genera el retiro dividido por su monto reajustado) multiplicada por 1,1 y aumentada en 3 puntos porcentuales (art. 42 bis N°3 LIR); la AFP retiene 15% como abono a ese impuesto. Quienes ya son pensionados o cumplen los requisitos de edad y pensión del DL 3.500 no pagan esos recargos.",
+61:      "El tope con beneficio tributario es 600 UF anuales en Régimen B. En Régimen A, el bono estatal se topa en 6 UTM anuales (15% sobre lo aportado hasta ese límite).",
+284:          > Solo cuando tu tasa marginal supera el 15% que ofrece el Régimen A. Si
+382:            a: "El Estado deposita un bono directo del 15% sobre lo ahorrado",
+397:            a: "Tramo cero o bajo (tasa marginal < 15%)",
+403:            b: "Impuesto único: tasa media del retiro × 1,1 + 3 pp (AFP retiene 15% como abono)",
+423:          15% de lo que ahorraste, con tope de 6 UTM anuales (~{
+443:          >multiplicada por 1,1</strong
+445:        y <strong>aumentada en 3 puntos porcentuales</strong> (art. 42 bis N°3 LIR).
+446:        La AFP retiene 15% al momento del retiro como abono a ese impuesto. Quienes
+

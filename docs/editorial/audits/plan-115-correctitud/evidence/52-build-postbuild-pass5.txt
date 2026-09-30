@@ -1,0 +1,32 @@
+=== 52 — Build + postbuild (worktree c1701ad5) ===
+
+--- 52.1 pnpm run build (tail; BUILD_EXIT=0) ---
+  Indexed 0 sorts
+
+Finished in 0.291 seconds
+$ node scripts/check-urls.mjs
+URL CHECK REPORT
+mode: local
+scanned_links: 7254
+
+internal_broken:
+  none: 0
+
+external_failures:
+  none: 0
+
+top_external_hosts_by_failures:
+  none: 0
+
+retries:
+  total_retries: 0
+  by_host:
+    none: 0
+[check-urls] artifacts: output/validation/urlcheck/internal-broken.json, output/validation/urlcheck/internal-broken.csv, output/validation/urlcheck/urlcheck-report.json
+[check-urls] baseline_policy.max_internal_broken_total=0
+[check-urls] OK. scanned=7254 internal_broken=0 external_failures=0
+[check-postbuild] OK. 23 checks passed over 332 HTML pages.
+
+--- 52.2 node scripts/check-postbuild.mjs dist ---
+[check-postbuild] OK. 23 checks passed over 332 HTML pages.
+POSTBUILD_EXIT=0

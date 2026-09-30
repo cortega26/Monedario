@@ -1,0 +1,33 @@
+Pass7 delta — entorno (worktree limpio de bdf26fe7, PR #603)
+
+Comandos (2026-09-30 UTC, checkout principal con WIP ajeno intacto):
+  git worktree add --detach /tmp/opencode/plan115-pass7/wt bdf26fe7
+  cd /tmp/opencode/plan115-pass7/wt && pnpm install --frozen-lockfile
+
+Salida:
+  Preparando árbol de trabajo (HEAD desacoplado bdf26fe7)
+  HEAD está ahora en bdf26fe7 fix(remediación-115): D25 interpolación económica en llms-full.txt + check postbuild (#603)
+
+  $ git rev-parse HEAD
+  bdf26fe7393f9c0ea9bdfee8f85e04a8efc241c9
+
+  $ node --version; pnpm --version; python3 --version; uname -a
+  v24.19.0
+  11.7.0
+  Python 3.13.12
+  Linux i5-12600K 7.0.0-34-generic #34~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Fri Sep  4 15:38:29 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+
+  $ pnpm install --frozen-lockfile 2>&1 | tail -3
+  + wrangler 4.131.0
+  . prepare$ husky
+  . prepare: Done
+  Done in 9.4s using pnpm v11.7.0
+
+Reproducción:
+  git worktree add --detach /tmp/wt bdf26fe7 && cd /tmp/wt
+  pnpm install --frozen-lockfile
+  pnpm run build && node scripts/check-postbuild.mjs dist
+
+Nota: no se modificó src/ (R8). Todo el trabajo de verificación corrió en el
+worktree; en el checkout principal solo se editaron los artefactos de auditoría
+(02-result.json, 03-report.md, evidence/62–66).

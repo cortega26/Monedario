@@ -1,0 +1,42 @@
+Pass7 — regresiones obligatorias (worktree limpio bdf26fe7, 2026-09-30 UTC)
+
+$ pnpm run test > test-pass7.log 2>&1; echo "TEST_EXIT=$?"
+TEST_EXIT=0
+ Test Files  188 passed (188)
+      Tests  1804 passed | 1 skipped (1805)
+(+1 archivo / +6 tests vs pass6 187/1798: tests/unit/economicInterpolation.test.ts
+ con 4 tests + 2 casos nuevos en tests/scripts/check-postbuild.test.ts —
+ crecimiento esperado del propio fix, sin fallos.)
+
+$ pnpm run check:ci > checkci-pass7.log 2>&1; echo "CI_EXIT=$?"
+CI_EXIT=0
+(lint, format, coverage, boundaries, context, policy, docs, audit-artifacts,
+ frontmatter, legal, hero, editorial, timeliness, routes, astro check, workers,
+ catálogo, registro, hosts, homepage, small-details en modo warn-only)
+
+$ SMALL_DETAILS_ENFORCE=1 pnpm run check:small-details 2>&1 | tail -3; echo "SD_EXIT=$?"
+[check-small-details] mode=enforce … errors=0 blocking=0
+WARN … sueldo-liquido.astro:469 ASD-101/error-node-without-selector (preexistente)
+WARN … external-summary.json:1 ASD-002/external-url-summary-missing (preexistente)
+SD_EXIT=0
+→ D16 no volvió (0 blocking).
+
+$ ./node_modules/.bin/vitest run tests/static-analysis/dap-no-retention-surfaces.test.ts
+  tests/static-analysis/at-taxonomy-consistency.test.ts
+  tests/static-analysis/honorarios-rate-year-consistency.test.ts
+  tests/scripts/audit-scope-consistency.test.ts 2>&1 | tail -4
+ Test Files  4 passed (4)
+      Tests  15 passed (15)
+
+$ pnpm run build > build-pass7.log 2>&1; echo "BUILD_EXIT=$?"
+BUILD_EXIT=0
+[check-postbuild] OK. 24 checks passed over 332 HTML pages.
+$ node scripts/check-postbuild.mjs dist 2>&1 | tail -1
+[check-postbuild] OK. 24 checks passed over 332 HTML pages.
+(23 checks en pass6 → 24 con llms-full-no-raw-interpolation.)
+
+No se re-ejecutó Playwright (mismo criterio que pass6: bdf26fe7 solo toca
+interpolación de texto/markdown + 2 tests nuevos, sin lógica de calculadoras;
+el build + postbuild cubrieron el render). V1–V6 no se recalcularon (el motor
+no cambió desde c1701ad5/02b878a7; el refactor extrae el evaluador sin alterar
+valores — verificado por los 7 tests de contrato en evidence/64).

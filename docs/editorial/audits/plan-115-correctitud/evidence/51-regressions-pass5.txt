@@ -1,0 +1,239 @@
+=== 51 — Regresiones obligatorias (worktree c1701ad5) ===
+fecha_utc=2026-09-29T23:37:57Z
+
+--- 51.1 pnpm run test (suite completa) ---
+$ vitest run
+
+ RUN  v4.1.11 /tmp/opencode/plan115-pass5/wt
+
+
+ Test Files  187 passed (187)
+      Tests  1796 passed | 1 skipped (1797)
+   Start at  20:35:06
+   Duration  16.09s (transform 73.05s, setup 0ms, import 106.21s, tests 46.75s, environment 3.59s)
+
+
+--- 51.2 pnpm run check:ci (\$? capturado) ---
+$ pnpm run lint && pnpm run format:check && pnpm run test:coverage && pnpm run check:boundaries && pnpm run check:context && pnpm run check:policy-registry && pnpm run check:legal-constants && pnpm run check:docs && pnpm run check:audit-artifacts && pnpm run check:frontmatter && pnpm run check:legal-citations && pnpm run check:hero-images && pnpm run check:hero-prompts && pnpm run check:editorial && pnpm run check:editorial-timeliness && pnpm run check:no-postid-urls && pnpm run check:routes && pnpm run astro check && pnpm run check:workers && pnpm run check:economic-source-consistency && pnpm run check:catalog-drift && pnpm run check:article-registration && pnpm run check:official-host-registry && pnpm run check:homepage-surface-freshness && pnpm run check:small-details
+$ astro sync && eslint .
+20:32:42 [vite] Re-optimizing dependencies because vite config has changed
+20:32:43 [content] Syncing content
+20:32:43 [content] Synced content
+20:32:43 [types] Generated 1.73s
+$ prettier --check .
+Checking formatting...
+All matched files use Prettier code style!
+$ vitest run --coverage
+
+ RUN  v4.1.11 /tmp/opencode/plan115-pass5/wt
+      Coverage enabled with v8
+
+
+ Test Files  187 passed (187)
+      Tests  1796 passed | 1 skipped (1797)
+   Start at  20:33:27
+   Duration  21.81s (transform 79.53s, setup 0ms, import 119.10s, tests 54.88s, environment 3.86s)
+
+ % Coverage report from v8
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |   90.12 |    83.92 |    95.6 |    91.1 |                   
+ ...tion/use-cases |   91.32 |    87.77 |     100 |   91.39 |                   
+  ...Comparison.ts |    87.5 |    81.08 |     100 |    87.5 | ...09,112,118,126 
+  ...ndInterest.ts |      96 |    94.44 |     100 |   95.83 | 52                
+  ...umerCredit.ts |    93.1 |    91.66 |     100 |   92.85 | 27,30             
+  ...orariosNet.ts |    87.5 |    89.74 |     100 |   87.09 | 64,72,82,90       
+  ...Adjustment.ts |   92.59 |       90 |     100 |   95.65 | 50                
+  ...ayrollBase.ts |   88.23 |    89.36 |     100 |   88.23 | 58,67,73,82       
+  ...teMortgage.ts |      98 |    93.33 |     100 |   97.95 | 74                
+  ...eNetSalary.ts |   80.64 |    81.25 |     100 |      80 | 52,55,61,70,76,82 
+  ...ommissions.ts |   86.36 |    81.25 |     100 |   86.36 | 29,32,37          
+  ...eFiniquito.ts |   93.93 |    92.64 |     100 |   93.93 | 112,138,147,152   
+  ...ntCoverage.ts |   93.75 |    88.23 |     100 |   93.33 | 75,81,87          
+  ...storicalUf.ts |   96.77 |       95 |     100 |     100 | 48                
+  ...storicalUf.ts |    92.3 |       90 |     100 |   95.23 | 45                
+  ...itCardCost.ts |   95.65 |       95 |     100 |   95.65 | 32                
+  ...Prepayment.ts |   83.33 |       84 |     100 |   83.33 | ...,49,86,104,145 
+  ...egotiation.ts |   81.39 |    81.39 |     100 |      80 | ...72,75,78,83,86 
+  ...acionRenta.ts |   85.71 |    83.33 |     100 |   85.71 | 53,56,59,68,77    
+  ...Projection.ts |   88.46 |    75.92 |     100 |   88.15 | ...17,125,131,214 
+ ...e-cases/shared |   97.22 |    94.44 |     100 |     100 |                   
+  ...ortization.ts |   95.45 |    91.66 |     100 |     100 | 29                
+ ...domain/content |   78.57 |    63.63 |     100 |   81.81 |                   
+  path.ts          |   78.57 |    63.63 |     100 |   81.81 | 16-18             
+ ...omain/economic |   95.58 |    91.02 |     100 |   95.23 |                   
+  ...Parameters.ts |   92.85 |    88.88 |     100 |   92.68 | 82,86,90          
+ ...omain/taxation |    97.5 |    88.88 |     100 |   97.43 |                   
+  TaxEngine.ts     |   96.15 |    85.71 |     100 |      96 | 105               
+ src/domain/wizard |   84.61 |    69.56 |     100 |     100 |                   
+  ...zardConfig.ts |   84.61 |    69.56 |     100 |     100 | ...19,31-50,54-63 
+ src/i18n          |    90.9 |    76.92 |     100 |    90.9 |                   
+  ui.ts            |    90.9 |    76.92 |     100 |    90.9 | 32                
+ ...cture/economic |   85.05 |    72.36 |      90 |   85.88 |                   
+  ...erProvider.ts |   85.05 |    72.36 |      90 |   85.88 | ...58-364,377-378 
+ src/integrations  |   88.59 |    90.54 |    87.5 |   88.67 |                   
+  ...nk-spacing.ts |   82.19 |    90.32 |   66.66 |   81.53 | 71,142-159        
+  sw-version.ts    |     100 |       75 |     100 |     100 | 9                 
+ src/utils         |   88.88 |    81.77 |   93.12 |   89.78 |                   
+  analytics.ts     |   93.93 |    89.47 |     100 |   96.77 | 84                
+  articleView.ts   |   81.81 |    78.12 |     100 |   84.21 | 44-46             
+  ...esultState.ts |   28.57 |    35.29 |   33.33 |   28.12 | 35-61,80-92       
+  ...rScenarios.ts |   90.74 |    89.58 |     100 |   95.55 | 40,87             
+  dates.ts         |      80 |      100 |      80 |      80 | 53-54             
+  ...cFreshness.ts |     100 |    95.83 |     100 |     100 | 21                
+  ...teOgImages.ts |   81.81 |      100 |      80 |   81.81 | 24-25             
+  getPath.ts       |     100 |    94.44 |     100 |     100 | 11                
+  getUniqueTags.ts |     100 |    83.33 |     100 |     100 | 47                
+  homepage.ts      |   79.71 |    59.57 |   82.35 |      80 | ...,32-35,132-143 
+  indicadores.ts   |      80 |     87.5 |   66.66 |      80 | 32,70-71          
+  ...ssaryLinks.ts |   94.73 |    80.48 |     100 |   94.28 | 64-65,137,141     
+  llmsTxt.ts       |     100 |       50 |     100 |     100 | 68                
+  ...GoogleFont.ts |   84.21 |    44.44 |     100 |   84.21 | 54,62,72          
+  metadataDate.ts  |   88.88 |    83.33 |     100 |   88.88 | 10                
+  nextBestStep.ts  |     100 |    94.11 |     100 |     100 | 34                
+  nextSteps.ts     |     100 |       50 |     100 |     100 | 22                
+  pageLastmod.ts   |      90 |    83.33 |     100 |   88.88 | 13                
+  postFilter.ts    |     100 |       75 |     100 |     100 | 10                
+  userProfile.ts   |   91.48 |       84 |     100 |    97.5 | 70                
+ ...-collector/src |   87.27 |    73.39 |   94.28 |   89.96 |                   
+  worker-v2.ts     |   87.27 |    73.39 |   94.28 |   89.96 | ...56,783,832-837 
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 90.12% ( 1980/2197 )
+Branches     : 83.92% ( 1389/1655 )
+Functions    : 95.6% ( 370/387 )
+Lines        : 91.1% ( 1865/2047 )
+================================================================================
+$ node scripts/check-domain-boundaries.mjs
+Found 12 matching domain source files.
+Scanned 12 domain files from /tmp/opencode/plan115-pass5/wt/src/domain
+Domain boundary check passed.
+$ node scripts/check-context.mjs
+[check-context] OK. validated=4 invariantIds=46 contractIds=29
+$ node scripts/check-policy-registry.mjs
+[check-policy-registry] Registry: docs/operations/POLICY_REGISTRY.json
+[check-policy-registry] Report: output/validation/policy-registry/report.json
+[check-policy-registry] Policies=28 ManifestGates=22 Entrypoints=7
+[check-policy-registry] OK
+$ node scripts/check-legal-constants.mjs
+[check-legal-constants] OK. 4 constantes verificadas en 16 mirrors.
+$ node scripts/check-docs-structure.mjs
+[check-docs-structure] OK. trackedMarkdown=897 rootMarkdown=9 adrFiles=57
+$ node scripts/check-audit-artifacts.mjs
+[check-audit-artifacts] OK docs/editorial/audits/plan-115-correctitud/02-result.json (verdict=CONDITIONAL)
+[check-audit-artifacts] 1 artefacto(s) válidos.
+$ node scripts/check-frontmatter.mjs
+[check-frontmatter] Scanned 54 articles.
+[check-frontmatter] Deprecation counters:
+- pubDatetime: 0
+- modDatetime: 0
+- canonicalURL: 0
+- ogImage: 0
+[check-frontmatter] Transition defaults:
+- slug_missing: 0
+- category_missing: 0
+[check-frontmatter] Quality warnings (Level 2):
+- title_range: 0
+- description_range: 0
+[check-frontmatter] OK (no blocking errors).
+$ node scripts/check-legal-citations.mjs
+[check-legal-citations] OK. laws=23 blog=54 pages=63 registry=21
+$ node scripts/check-hero-images.mjs
+[check-hero-images] Checked published articles: 54
+[check-hero-images] Path mode: legacy-compatible
+[check-hero-images] OK
+$ node scripts/check-hero-prompts.mjs
+[check-hero-prompts] Manifest: scripts/hero-images/manifest.json
+[check-hero-prompts] Prompts: scripts/hero-images/prompts.json
+[check-hero-prompts] Checked entries: 54
+[check-hero-prompts] Fallback mode: warn
+[check-hero-prompts] OK
+$ node scripts/check-editorial-structure.mjs && node scripts/check-dialect.mjs && node scripts/check-reader-facing-copy.mjs && node scripts/check-editorial-artifacts.mjs && node scripts/check-prompt-injection-guardrails.mjs
+[check-editorial-structure] WARN. long_warning=2 (recommended max 155, hard max 200).
+- src/data/blog/bancos-y-fintech-chile.md: description length 160 exceeds recommended max 155 (non-blocking).
+- src/data/blog/finanzas-para-migrantes-chile.md: description length 175 exceeds recommended max 155 (non-blocking).
+[check-editorial-structure] WARN. cluster_missing=0 cluster_invalid=0 cluster_link_warning=2 cluster_coverage_pct=100 cluster_with_value=54 validated=54 min_cluster_internal_links=1 (warning-first rollout).
+- src/data/blog/bancos-y-fintech-chile.md: has 0 intra-cluster internal links (min 1).
+- src/data/blog/finanzas-para-migrantes-chile.md: has 0 intra-cluster internal links (min 1).
+[check-editorial-structure] OK. validated=54 cluster_with_value=54 cluster_coverage_pct=100 cluster_missing=0 cluster_invalid=0 cluster_link_warning=2 title_missing=0 title_meaningless=0 markdown_h1_present=0 title_slug_warning=0 internal_links_warning=0 skipped_internal_links=0 duplicate_titles=0 duplicate_slugs=0 missing=0 short=0 long_fail=0 long_warning=2 duplicates=0 min_h2=2 min_section_words=8 min_internal_links=1 min_cluster_internal_links=1
+[check-dialect] OK. validated=54 files skipped_by_marker=0
+[check-reader-facing-copy] scope=all diff="-" scanned=94 issues=0
+[check-reader-facing-copy] OK. No blocking issues found.
+[check-editorial-artifacts] mode=warn-only enforce=0 min_sources=1 allowlist_entries=0 scope=all
+[check-editorial-artifacts] SUMMARY total_posts=54 ymyl_posts=48 compliant=48 non_compliant=0
+[check-editorial-artifacts] WARN: Gate in warn-only mode. Set EDITORIAL_ENFORCE=1 to fail on violations.
+[check-prompt-injection-guardrails] OK: 4 guardrail group(s) validated.
+$ node scripts/check-editorial-timeliness.mjs
+[check-editorial-timeliness] published=54 stale=0 drift=0 missingValidAsOf=13 report=output/validation/editorial-timeliness/report.json
+[check-editorial-timeliness] note: stale=0 no certifica veracidad: indica solo que el artículo está dentro de su cadencia de revisión. La veracidad se sostiene con datasets volátiles, articleLead.officialSources, los gates legal-constants/legal-citations/economic-source-consistency/audit-artifacts y rondas de auditoría adversarial independientes; este gate no reemplaza la firma humana.
+[check-editorial-timeliness] warn: src/data/blog/ahorro-e-inversion-en-chile-instrumentos-costos-impuestos-2026.md: published without articleLead.validAsOf (review anchored to 2026-04-22); backfill with a primary source or route to audit (TD-0108).
+[check-editorial-timeliness] warn: src/data/blog/como-cambiarse-de-afp.md: published without articleLead.validAsOf (review anchored to 2026-09-20); backfill with a primary source or route to audit (TD-0108).
+[check-editorial-timeliness] warn: src/data/blog/como-hacer-presupuesto-mensual-chile.md: published without articleLead.validAsOf (review anchored to 2026-09-17); backfill with a primary source or route to audit (TD-0108).
+[check-editorial-timeliness] warn: src/data/blog/como-invertir-en-etfs-desde-chile.md: published without articleLead.validAsOf (review anchored to 2026-04-22); backfill with a primary source or route to audit (TD-0108).
+[check-editorial-timeliness] warn: src/data/blog/estafas-financieras-chile-vishing-smishing-marketplace.md: published without articleLead.validAsOf (review anchored to 2026-04-22); backfill with a primary source or route to audit (TD-0108).
+[check-editorial-timeliness] warn: src/data/blog/fondos-mutuos-comisiones-rescate-impuestos.md: published without articleLead.validAsOf (review anchored to 2026-04-22); backfill with a primary source or route to audit (TD-0108).
+[check-editorial-timeliness] warn: src/data/blog/fraude-tarjeta-que-hacer.md: published without articleLead.validAsOf (review anchored to 2026-04-22); backfill with a primary source or route to audit (TD-0108).
+[check-editorial-timeliness] warn: src/data/blog/interes-compuesto-nota-metodologica.md: published without articleLead.validAsOf (review anchored to 2026-09-17); backfill with a primary source or route to audit (TD-0108).
+[check-editorial-timeliness] warn: src/data/blog/licencia-medica-desde-que-dia-pagan.md: published without articleLead.validAsOf (review anchored to 2026-05-11); backfill with a primary source or route to audit (TD-0108).
+[check-editorial-timeliness] warn: src/data/blog/que-es-el-ipc-chile-como-se-calcula.md: published without articleLead.validAsOf (review anchored to 2026-08-03); backfill with a primary source or route to audit (TD-0108).
+[check-editorial-timeliness] warn: src/data/blog/que-es-la-uf.md: published without articleLead.validAsOf (review anchored to 2026-08-03); backfill with a primary source or route to audit (TD-0108).
+[check-editorial-timeliness] warn: src/data/blog/reajuste-arriendo-uf-ipc-chile.md: published without articleLead.validAsOf (review anchored to 2026-08-03); backfill with a primary source or route to audit (TD-0108).
+[check-editorial-timeliness] warn: src/data/blog/suplantacion-identidad-creditos-no-reconocidos.md: published without articleLead.validAsOf (review anchored to 2026-04-22); backfill with a primary source or route to audit (TD-0108).
+[check-editorial-timeliness] OK.
+$ node scripts/check-no-postid-urls.mjs
+[check-no-postid-urls] OK. Scanned 274 source files, no forbidden post.id URL patterns found.
+$ node scripts/snapshot-routes.mjs --out output/validation/routes_snapshot_after.json && pnpm run routes:compare
+[snapshot-routes] No route changes. Kept existing snapshot at /tmp/opencode/plan115-pass5/wt/output/validation/routes_snapshot_after.json
+$ node scripts/compare-routes.mjs docs/reports/routes_snapshot_before.json output/validation/routes_snapshot_after.json
+[compare-routes] Approved route additions: 1
+- /posts/cotizacion-voluntaria-afp-independiente/
+[compare-routes] before=53 after=54
+$ astro check
+20:34:07 [content] Syncing content
+20:34:07 [content] Synced content
+20:34:07 [types] Generated 1.49s
+20:34:07 [check] Getting diagnostics for Astro files in /tmp/opencode/plan115-pass5/wt...
+Result (615 files): 
+- 0 errors
+- 0 warnings
+- 0 hints
+
+$ pnpm run worker:analytics:typecheck && pnpm run worker:economic-snapshot:typecheck
+$ npx tsc --noEmit -p workers/analytics-collector/tsconfig.json
+$ npx tsc --noEmit -p workers/economic-snapshot-refresh/tsconfig.json
+$ node scripts/check-economic-source-consistency.mjs
+[check-economic-source-consistency] OK: 6 indicators aligned with ADR-20260516 (official issuer primary, mindicador.cl fallback).
+$ node scripts/check-catalog-drift.mjs
+[check-catalog-drift] OK. published=51 via_cluster=51 via_tags=0 hub_clusters=11
+$ node scripts/check-article-registration.mjs
+[check-article-registration] mode=warn-only published=54 registered_topics=48 drift=0 stale=0 blocking=0
+[check-article-registration] OK: sin drift ni entradas stale.
+$ node scripts/check-official-host-registry.mjs
+[check-official-host-registry] OK. hosts=38 suffixes=.gob.cl,.gov.cl (analytics + urlcheck derive from the canonical registry).
+$ node scripts/check-homepage-surface-freshness.mjs
+[check-homepage-surface-freshness] OK. No manual dates; 4 cluster-derived card date(s) resolve from published posts.
+$ node scripts/check-small-details.mjs
+[check-small-details] mode=warn-only calculator_pages=22 errors=0 warnings=2 blocking=0
+[check-small-details] report=output/validation/small-details/report.json
+[check-small-details] WARN src/pages/calculadoras/sueldo-liquido.astro:469 ASD-101/error-node-without-selector - Error container "calc-error" is not referenced by document.getElementById.
+[check-small-details] WARN output/validation/urlcheck/external-summary.json:1 ASD-002/external-url-summary-missing - External URL audit summary is missing; run pnpm run check:urls:external:audit before trust-detail triage.
+CHECK_CI_EXIT=0 (capturado en la corrida; log arriba)
+
+--- 51.3 SMALL_DETAILS_ENFORCE=1 (D16 no puede volver) ---
+[check-small-details] mode=enforce calculator_pages=22 errors=0 warnings=2 blocking=0
+[check-small-details] report=output/validation/small-details/report.json
+[check-small-details] WARN src/pages/calculadoras/sueldo-liquido.astro:469 ASD-101/error-node-without-selector - Error container "calc-error" is not referenced by document.getElementById.
+[check-small-details] WARN output/validation/urlcheck/external-summary.json:1 ASD-002/external-url-summary-missing - External URL audit summary is missing; run pnpm run check:urls:external:audit before trust-detail triage.
+SMALL_DETAILS_ENFORCE_EXIT=0
+
+--- 51.4 gates extra (reader-facing-copy enforce, freshness, audit-artifacts) ---
+[check-reader-facing-copy] scope=all diff="-" scanned=94 issues=0
+[check-reader-facing-copy] OK. No blocking issues found.
+READER_COPY_EXIT=0
+[check-economic-snapshot-freshness] OK. capturedAt 0.2d old; uf/dólar within daily thresholds, UTM within the monthly 7d gate and IPC series aligned with the snapshot.
+FRESHNESS_EXIT=0
+[check-audit-artifacts] OK docs/editorial/audits/plan-115-correctitud/02-result.json (verdict=CONDITIONAL)
+[check-audit-artifacts] 1 artefacto(s) válidos.
+AUDIT_ARTIFACTS_EXIT=0

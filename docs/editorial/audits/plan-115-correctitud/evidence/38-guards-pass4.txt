@@ -1,0 +1,92 @@
+=== 38-guards-pass4 — worktree limpio 72d14e66 (2026-09-29T22:29:51Z) ===
+
+--- 1) dap-no-retention-surfaces ---
+
+ RUN  v4.1.11 /tmp/opencode/plan115-pass4/wt-head
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  19:29:51
+   Duration  467ms (transform 55ms, setup 0ms, import 84ms, tests 8ms, environment 0ms)
+
+EXIT=0
+
+--- 2) honorarios-rate-year-consistency ---
+
+ RUN  v4.1.11 /tmp/opencode/plan115-pass4/wt-head
+
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  19:29:53
+   Duration  332ms (transform 40ms, setup 0ms, import 72ms, tests 5ms, environment 0ms)
+
+EXIT=0
+
+--- 3) audit-scope-consistency ---
+
+ RUN  v4.1.11 /tmp/opencode/plan115-pass4/wt-head
+
+
+ Test Files  1 passed (1)
+      Tests  3 passed (3)
+   Start at  19:29:54
+   Duration  381ms (transform 59ms, setup 0ms, import 105ms, tests 25ms, environment 0ms)
+
+EXIT=0
+
+--- 4) gates del repo (worktree limpio) ---
+[a] check:economic-snapshot-freshness
+[check-economic-snapshot-freshness] OK. capturedAt 0.2d old; uf/dólar within daily thresholds, UTM within the monthly 7d gate and IPC series aligned with the snapshot.
+EXIT=0
+
+[b] check:audit-artifacts (pass3 result en HEAD)
+[check-audit-artifacts] OK docs/editorial/audits/plan-115-correctitud/02-result.json (verdict=CONDITIONAL)
+[check-audit-artifacts] 1 artefacto(s) válidos.
+EXIT=0
+
+[c] SMALL_DETAILS_ENFORCE=1 check:small-details
+[check-small-details] mode=enforce calculator_pages=22 errors=2 warnings=2 blocking=2
+[check-small-details] report=output/validation/small-details/report.json
+[check-small-details] ERROR src/pages/guias/impuestos-personas/operacion-renta/index.astro:449 ASD-004/bold-glue - Bold text is glued to adjacent text; add a space on the same line as the tag boundary.
+  remediation: Put the space between text and <strong> on the same line (Astro drops whitespace across line breaks).
+[check-small-details] ERROR src/pages/guias/impuestos-personas/operacion-renta/index.astro:450 ASD-004/bold-glue - Bold text is glued to adjacent text; add a space on the same line as the tag boundary.
+  remediation: Put the space between text and <strong> on the same line (Astro drops whitespace across line breaks).
+[check-small-details] WARN src/pages/calculadoras/sueldo-liquido.astro:469 ASD-101/error-node-without-selector - Error container "calc-error" is not referenced by document.getElementById.
+[check-small-details] WARN output/validation/urlcheck/external-summary.json:1 ASD-002/external-url-summary-missing - External URL audit summary is missing; run pnpm run check:urls:external:audit before trust-detail triage.
+EXIT=1
+
+[d] EDITORIAL_ENFORCE=1 check-reader-facing-copy
+[check-reader-facing-copy] scope=all diff="-" scanned=94 issues=0
+[check-reader-facing-copy] OK. No blocking issues found.
+EXIT=0
+
+[e] afp commissions (Previred en vivo)
+=== AFP Commission Rate Checker ===
+Date: 2026-09-29
+Source: https://www.previred.com/indicadores-previsionales/
+
+Current values in src/config/afpCommissions.ts:
+  Capital    commission=1.44%  total=11.44%
+  Cuprum     commission=1.44%  total=11.44%
+  Habitat    commission=1.27%  total=11.27%
+  Modelo     commission=0.58%  total=10.58%
+  PlanVital  commission=1.16%  total=11.16%
+  ProVida    commission=1.45%  total=11.45%
+  Uno        commission=0.46%  total=10.46%
+
+Fetching https://www.previred.com/indicadores-previsionales/ ...
+Previred values (cargo del trabajador dependiente):
+  Capital    total=11.44%
+  Cuprum     total=11.44%
+  Habitat    total=11.27%
+  Modelo     total=10.58%
+  PlanVital  total=11.16%
+  ProVida    total=11.45%
+  Uno        total=10.46%
+
+✓ All AFP commission rates match Previred official figures.
+
+PASS
+EXIT=0

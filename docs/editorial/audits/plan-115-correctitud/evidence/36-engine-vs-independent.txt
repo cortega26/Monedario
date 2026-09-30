@@ -1,0 +1,99 @@
+
+ RUN  v4.1.11 /tmp/opencode/plan115-pass4/wt-head/docs/editorial/audits/plan-115-correctitud/evidence
+
+V1.1 tabla publicada engine=269367.84 independent=269367.84 delta=0 OK
+V1.2 motor simulateOperacionRenta.igcCalculado engine=269367.83999999997 independent=269367.84 delta=-5.820766091346741e-11 OK
+V1.3 calculateAnnualIncomeTax engine=269367.83999999997 independent=269367.84 delta=-5.820766091346741e-11 OK
+V1.4 variante bug (UTA sep-26 ×12 = 860.652) engine=255247.92 independent=255247.91999999998 delta=2.9103830456733704e-11 OK
+V1.b exact 11265804 engine=0 independent=0 delta=0 OK
+V1.b +0,01 11265804 engine=0.0003999999607913196 independent=0.0004000000189989805 delta=-5.820766091346741e-11 OK
+V1.b exact 25035120 engine=550772.64 independent=550772.6400000001 delta=-1.1641532182693481e-10 OK
+V1.b +0,01 25035120 engine=550772.6408000002 independent=550772.6408000002 delta=0 OK
+V1.b exact 41725200 engine=1885979.04 independent=1885979.04 delta=0 OK
+V1.b +0,01 41725200 engine=1885979.04135 independent=1885979.0413500005 delta=-4.656612873077393e-10 OK
+V1.b exact 58415280 engine=4139139.8400000003 independent=4139139.840000001 delta=-4.656612873077393e-10 OK
+V1.b +0,01 58415280 engine=4139139.8422999997 independent=4139139.8422999997 delta=0 OK
+V1.b exact 75105360 engine=7977858.24 independent=7977858.24 delta=0 OK
+V1.b +0,01 75105360 engine=7977858.243040003 independent=7977858.243040003 delta=0 OK
+V1.b exact 100140480 engine=15588534.719999999 independent=15588534.719999999 delta=0 OK
+V1.b +0,01 100140480 engine=15588534.723500002 independent=15588534.723499998 delta=3.725290298461914e-9 OK
+V1.b exact 258696240 engine=71083050.72 independent=71083050.72 delta=0 OK
+V1.b +0,01 258696240 engine=71083050.724 independent=71083050.724 delta=0 OK
+V1.b 320 UTA general engine=74421066.72 independent=74421066.72 delta=0 OK
+V2.1 base imponible engine=973560 independent=973560 delta=0 OK
+V2.2 AFP engine=135240 independent=135240 delta=0 OK
+V2.3 salud engine=84000.00000000001 independent=84000.00000000001 delta=0 OK
+V2.4 AFC engine=7200 independent=7200 delta=0 OK
+V2.5 IUSC engine=213.05999999999767 independent=213.06000000000495 delta=-7.275957614183426e-12 OK
+V2.6 líquido engine=973346.94 independent=973346.94 delta=0 OK
+V2.t pensionAndHealthBase engine=3694410.9000000004 independent=3694410.9000000004 delta=0 OK
+V2.t unemploymentBase engine=5549826.152 independent=5549826.152 delta=0 OK
+V2.t base imponible engine=5291732.171658 independent=5291732.171658 delta=0 OK
+V2.t IUSC engine=418126.45948134 independent=418126.45948134013 delta=-1.1641532182693481e-10 OK
+V2.t exento exacto engine=0 independent=0 delta=0 OK
+V2.t exento +0,01 engine=0.0003999999971711077 independent=0.0004 delta=-2.8288923395632104e-12 OK
+V2.afc base engine=980760 independent=980760 delta=0 OK
+V3.1 interés bruto engine=123287.6712328767 independent=123287.67123287672 delta=-1.4551915228366852e-11 OK
+V3.2 monto final engine=5123287.671232876 independent=5123287.671232876 delta=0 OK
+V3.3 tasa efectiva anual engine=5 independent=5 delta=0 OK
+V3.4 variante 4% (no aplicada) engine=118356.16438356164 independent=118356.16438356164 delta=0 OK
+V3.1d engine=684.931506849315 independent=684.931506849315 delta=0 OK
+V3.90d engine=61643.83561643835 independent=61643.83561643836 delta=-7.275957614183426e-12 OK
+V3.365d engine=250000 independent=250000 delta=0 OK
+V3.366d engine=250684.93150684933 independent=250684.9315068493 delta=2.9103830456733704e-11 OK
+V4 retiro < 13,5 UTA (exento) ΔIGC engine=0 independent=0 delta=0 OK
+V4 retiro < 13,5 UTA (exento) rate engine=0.03 independent=0.03 delta=0 OK
+V4 retiro = 1 UTA desde base 0 ΔIGC engine=0 independent=0 delta=0 OK
+V4 retiro = 1 UTA desde base 0 rate engine=0.03 independent=0.03 delta=0 OK
+V4 base 13,5 UTA + retiro 1 UTA ΔIGC engine=33380.159999999974 independent=33380.16000000003 delta=-5.820766091346741e-11 OK
+V4 base 13,5 UTA + retiro 1 UTA rate engine=0.07399999999999997 independent=0.07400000000000005 delta=-8.326672684688674e-17 OK
+V4 retiro cruza la exención (14 UTA) ΔIGC engine=16690.079999999958 independent=16690.080000000016 delta=-5.820766091346741e-11 OK
+V4 retiro cruza la exención (14 UTA) rate engine=0.03157142857142857 independent=0.03157142857142857 delta=0 OK
+V4 base 90 UTA + retiro 50 UTA ΔIGC engine=13452204.480000002 independent=13452204.479999999 delta=3.725290298461914e-9 OK
+V4 base 90 UTA + retiro 50 UTA rate engine=0.3846400000000001 independent=0.38464 delta=1.1102230246251565e-16 OK
+V4 base 200 UTA + retiro 10 UTA ΔIGC engine=2920764 independent=2920763.9999999925 delta=7.450580596923828e-9 OK
+V4 base 200 UTA + retiro 10 UTA rate engine=0.41500000000000004 independent=0.41499999999999904 delta=9.992007221626409e-16 OK
+V4 base 310 UTA + retiro 200 UTA ΔIGC engine=66760320 independent=66760320 delta=0 OK
+V4 base 310 UTA + retiro 200 UTA rate engine=0.4700000000000001 independent=0.4700000000000001 delta=0 OK
+V4 base 400 UTA + retiro 100 UTA ΔIGC engine=33380160 independent=33380160 delta=0 OK
+V4 base 400 UTA + retiro 100 UTA rate engine=0.4700000000000001 independent=0.4700000000000001 delta=0 OK
+V5.1 qualifiedDebtUf engine=101.78117048346056 independent=101.78117048346056 delta=0 OK
+V5.2 cuota (misma anualidad) engine=110110.20773611861 independent=110110.20773611861 delta=0 OK
+V5.3 total pagado engine=5285289.971333694 independent=5285289.971333694 delta=0 OK
+V5.4 carga ingreso % engine=9.17585064467655 independent=9.17585064467655 delta=0 OK
+V6 2026-01-01 engine=0.4 independent=0.4 delta=0 OK
+V6 2026-02-01 engine=0 independent=0 delta=0 OK
+V6 2026-03-01 engine=1 independent=1 delta=0 OK
+V6 2026-04-01 engine=1.3 independent=1.3 delta=0 OK
+V6 2026-05-01 engine=0.2 independent=0.2 delta=0 OK
+V6 2026-06-01 engine=0 independent=0 delta=0 OK
+V6 2026-07-01 engine=0.1 independent=0.1 delta=0 OK
+V6 2026-08-01 engine=0.6 independent=0.6 delta=0 OK
+V6 acumulado encadenado % engine=3.648807945707011 independent=3.648807945707024 delta=-1.2878587085651816e-14 OK
+V6 $1M ajustado engine=1036488.0794570701 independent=1036488.0794570702 delta=-1.1641532182693481e-10 OK
+V6 cap APV 600 UF engine=23836776 independent=23836776 delta=0 OK
+V6 8 UTA engine=6676032 independent=6676032 delta=0 OK
+V6 15 UTA engine=12517560 independent=12517560 delta=0 OK
+stdout | pass4.independent.audit.test.ts > pass4 — salida cruda > imprime la tabla de comparación
+
+73 checks independientes; 0 divergencias
+
+ ✓ pass4.independent.audit.test.ts > pass4 — vectores independientes vs motor (R3) > V1 IGC AT2026 $18.000.000 = 269.367,84 (y no el bug 255.247,92) 14ms
+ ✓ pass4.independent.audit.test.ts > pass4 — vectores independientes vs motor (R3) > V1-bordes: fronteras exactas y +$1 en toda la tabla general 3ms
+ ✓ pass4.independent.audit.test.ts > pass4 — vectores independientes vs motor (R3) > V2 sueldo $1.200.000: base 973.560, IUSC 213,06, líquido 973.346,94 6ms
+ ✓ pass4.independent.audit.test.ts > pass4 — vectores independientes vs motor (R3) > V2-topes: bruto $6.000.000 congela AFP/salud en 90 UF y AFC en 135,2 UF 1ms
+ ✓ pass4.independent.audit.test.ts > pass4 — vectores independientes vs motor (R3) > V2 AFC: contrato plazo fijo ⇒ aporte trabajador 0% 0ms
+ ✓ pass4.independent.audit.test.ts > pass4 — vectores independientes vs motor (R3) > V3 DAP $5M/180d/5%: interés bruto sin retención 6ms
+ ✓ pass4.independent.audit.test.ts > pass4 — vectores independientes vs motor (R3) > V3-bordes: 1/90/365/366 días y rechazos de entrada 4ms
+ ✓ pass4.independent.audit.test.ts > pass4 — vectores independientes vs motor (R3) > V4 APV art. 42 bis N°3: (ΔIGC/retiro) × 1,1 + 3 pp 1ms
+ ✓ pass4.independent.audit.test.ts > pass4 — vectores independientes vs motor (R3) > V5 SuperIR: cuota consolidada y umbral legal 1ms
+ ✓ pass4.independent.audit.test.ts > pass4 — vectores independientes vs motor (R3) > V5-bordes: >80 UF estricto, ≥91 días, mismo acreedor, rechazos 3ms
+ ✓ pass4.independent.audit.test.ts > pass4 — vectores independientes vs motor (R3) > V6 serie IPC 2026 8/8 y parámetros congelados AT2026 3ms
+ ✓ pass4.independent.audit.test.ts > pass4 — vectores independientes vs motor (R3) > F04 freshness IPC/UTM y effective-dated fail-closed 19ms
+ ✓ pass4.independent.audit.test.ts > pass4 — salida cruda > imprime la tabla de comparación 8ms
+
+ Test Files  1 passed (1)
+      Tests  13 passed (13)
+   Start at  19:28:01
+   Duration  686ms (transform 253ms, setup 0ms, import 354ms, tests 75ms, environment 0ms)
+

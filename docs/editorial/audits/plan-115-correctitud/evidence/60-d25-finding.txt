@@ -1,0 +1,30 @@
+=== 60 — D25 (nuevo): [[...]] sin interpolar en dist/llms-full.txt ===
+--- 60.1 lineas crudas en llms-full.txt del build ---
+189:El IGC tiene 8 tramos progresivos, expresados en UTA (Unidad Tributaria Anual). La UTA se calcula como 12 × UTM del mes de diciembre del año comercial (diciembre de 2025 para el año tributario 2026). La UTA vigente es **[[uta | clp]]**; el primer tramo exento cubre rentas anuales hasta **[[uta * 13.5 | clp]]** (13,5 UTA).
+204:Con UTA = [[uta | clp]] (AT 2026): el tramo exento cubre hasta [[uta * 13.5 | clp]], el del 4% hasta [[uta * 30 | clp]] (rebaja: [[uta * 0.54 | clp]]), el del 8% hasta [[uta * 50 | clp]] (rebaja: [[uta * 1.74 | clp]]), el del 13,5% hasta [[uta * 70 | clp]] (rebaja: [[uta * 4.49 | clp]]). Los tramos en UTA son fijos por ley ([art. 52 LIR](https://www.bcn.cl/leychile/navegar?idNorma=6368), modificado por Ley 21.210 desde 2020).
+2175:El ISC tiene 8 tramos expresados en UTM (1 exento + 7 afectos), con tasas desde 4% hasta 40%. UTM vigente: **[[utm | clp]]** — tramo exento hasta **[[utm * 13.5 | clp]]** (13,5 UTM).
+2190:Con UTM = [[utm | clp]]: el tramo del 4% va de [[utm * 13.5 | clp]] a [[utm * 30 | clp]] (rebaja: [[utm * 0.54 | clp]]); el del 8% hasta [[utm * 50 | clp]] (rebaja: [[utm * 1.74 | clp]]); el del 13,5% hasta [[utm * 70 | clp]] (rebaja: [[utm * 4.49 | clp]]). Los tramos en UTM son fijos por ley.
+2192:El **tramo del 4%** (entre [[utm * 13.5 | clp]] y [[utm * 30 | clp]]) cubre al trabajador del ejemplo ($1.200.000 de imponible): tasa 4%, rebaja [[utm * 0.54 | clp]].
+2215:5. ISC (tramo del 4%: [[utm * 13.5 | clp]]–[[utm * 30 | clp]], rebaja [[utm * 0.54 | clp]]): **[[1200000 * 0.04 - utm * 0.54 | clp]]** → $1.200.000 × 0,04 − [[utm * 0.54 | clp]] ([fuente: SII](https://www.sii.cl/valores_y_fechas/impuesto_2da_categoria/impuesto2026.htm))
+2216:6. **Sueldo líquido orientativo: ~[[934800 + utm * 0.54 | clp]]** ($1.200.000 − $126.000 − $84.000 − $7.200 − [[1200000 * 0.04 - utm * 0.54 | clp]]). La comisión AFP no está incluida — varía por institución.
+--- 60.2 fuentes (blog; glosario no va a llms-full) ---
+src/data/blog/sueldo-imponible-chile.md:5
+src/data/blog/impuesto-global-complementario-chile.md:2
+(glosario en llms rc=1; 1 = ausente)
+--- 60.3 mecanismo: body crudo sin remark ---
+55:${bodyToPlainMarkdown(post.body ?? "")}`;
+57: * Sobre contenido `.md` puro es prácticamente un no-op: el patrón JSX exige una
+--- 60.4 HTML limpio (ver 59.6: 0/332) ---
+render: 'UTM vigente: <strong>$71.721</strong> — tramo exento hasta <strong>$968.234</strong> (13,5 UTM).</p>'
+--- 60.5 preexistencia (remediacion 02b878a7 no toco estos archivos) ---
+c1701ad5 fix(remediación-115): D17–D21 pass4 (taxonomía AT, DAP en contenido, isPeriodId, glosario IUSC) (#599)
+commit 02b878a7ccdc70c2a7b9edd9fc4463613a60d154
+Author: Carlos Ortega González <75342750+cortega26@users.noreply.github.com>
+Date:   Tue Sep 29 21:01:32 2026 -0300
+
+    fix(remediación-115): D23–D24 pass5 (DAP en guías, umbral IUSC del glosario) (#601)
+    
+    * fix(remediación-115): D23–D24 pass5 (DAP en guías, umbral IUSC del glosario)
+    
+    * fix(glosario): interpolación UTM fuera de la celda de tabla
+    

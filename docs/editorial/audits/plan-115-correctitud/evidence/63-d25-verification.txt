@@ -1,0 +1,67 @@
+Pass7 — verificación D25 (worktree bdf26fe7, dist construido por pnpm run build)
+
+§63.1 dist/llms-full.txt: cero sintaxis cruda
+  $ rg -c '\[\[' dist/llms-full.txt || echo "0 matches (rg exit $?)"
+  0 matches (rg exit 1)
+  $ rg -n '\[\[' dist/llms-full.txt || echo NONE
+  NONE
+  (pass6 reportaba 7 líneas crudas en 189/204/2175/2190/2192/2215/2216)
+
+§63.2 Valores resueltos presentes en dist/llms-full.txt
+  $ rg -n '\$968\.234|\$71\.721|\$834\.504|\$11\.265\.804|\$2\.151\.630' dist/llms-full.txt | head
+  189: … La UTA vigente es **$834.504**; el primer tramo exento cubre rentas anuales hasta **$11.265.804** (13,5 UTA).
+  204: Con UTA = $834.504 (AT 2026): el tramo exento cubre hasta $11.265.804, el del 4% hasta $25.035.120 (rebaja: $450.632), …
+  2175: … UTM vigente: **$71.721** — tramo exento hasta **$968.234** (13,5 UTM).
+  2190: Con UTM = $71.721: el tramo del 4% va de $968.234 a $2.151.630 (rebaja: $38.729); …
+  2192: El **tramo del 4%** (entre $968.234 y $2.151.630) cubre al trabajador del ejemplo ($1.200.000 de imponible): tasa 4%, rebaja $38.729.
+  2215: 5. ISC (tramo del 4%: $968.234–$2.151.630, rebaja $38.729): **$9.271** → $1.200.000 × 0,04 − $38.729 …
+  2216: 6. **Sueldo líquido orientativo: ~$973.529** ($1.200.000 − $126.000 − $84.000 − $7.200 − $9.271). …
+
+§63.3 Recálculo independiente (Python Decimal, nada de aritmética de memoria)
+  snapshot: src/infrastructure/economic/economic-parameters.snapshot.json → utm=71721, uta=834504, uf=41049.01
+  $ python3 -c "from decimal import Decimal, getcontext; ..."
+  utm*13.5 = 968233.5            → $968.234  (llms-full:2190 ✓)
+  utm*30 = 2151630               → $2.151.630 (✓)
+  utm*0.54 = 38729.34            → $38.729   (✓)
+  1200000*0.04-utm*0.54 = 9270.66 → $9.271   (llms-full:2215 ✓)
+  934800+utm*0.54 = 973529.34    → $973.529  (llms-full:2216 ✓)
+  uta = 834504                   → $834.504  (✓)
+  uta*13.5 = 11265804.0          → $11.265.804 (✓)
+  uta*30 = 25035120              → $25.035.120 (✓)
+  uta*0.54 = 450632.16           → $450.632  (✓)
+  Todos los valores interpolados coinciden con el cálculo independiente
+  (redondeo half-up a CLP, formato es-CL con punto de miles).
+
+§63.4 HTML de los 2 posts: sin [[ y con valores
+  $ rg -l '\[\[' dist/posts/impuesto-global-complementario-chile/ dist/posts/sueldo-imponible-chile/ || echo "NONE (exit $?)"
+  NONE (exit 1)
+  $ rg -c '\[\[' dist/posts/impuesto-global-complementario-chile/index.html dist/posts/sueldo-imponible-chile/index.html
+  (sin salida: 0 ocurrencias en ambas)
+  $ rg -o '\$968\.234|\$71\.721|\$834\.504|\$11\.265\.804' dist/posts/sueldo-imponible-chile/index.html | sort | uniq -c
+        2 $71.721
+        4 $968.234
+        2 $11.265.804
+        2 $834.504
+  $ rg -o '\$[0-9.]+' dist/posts/impuesto-global-complementario-chile/index.html | sort | uniq -c | sort -rn | head -8
+        2 $834.504
+        2 $11.265.804
+        1 $58.415.280
+        1 $450.632
+        1 $41.725.200
+        1 $3.746.923
+        1 $25.035.120
+        1 $1.452.037
+
+§63.5 Fuente: las 7 plantillas siguen en src (2 posts) y ahora se resuelven
+  $ rg -n '\[\[' src/data/blog/impuesto-global-complementario-chile.md src/data/blog/sueldo-imponible-chile.md
+  impuesto-global-complementario-chile.md:99:  … [[uta | clp]] … [[uta * 13.5 | clp]] …
+  impuesto-global-complementario-chile.md:114: … [[uta | clp]] … [[uta * 13.5 | clp]] … [[uta * 30 | clp]] … [[uta * 0.54 | clp]] … [[uta * 50 | clp]] … [[uta * 1.74 | clp]] … [[uta * 70 | clp]] … [[uta * 4.49 | clp]] …
+  sueldo-imponible-chile.md:117: … [[utm | clp]] … [[utm * 13.5 | clp]] …
+  sueldo-imponible-chile.md:132: … [[utm | clp]] … [[utm * 13.5 | clp]] … [[utm * 30 | clp]] … [[utm * 0.54 | clp]] … [[utm * 50 | clp]] … [[utm * 1.74 | clp]] … [[utm * 70 | clp]] … [[utm * 4.49 | clp]] …
+  sueldo-imponible-chile.md:134: … [[utm * 13.5 | clp]] … [[utm * 30 | clp]] … [[utm * 0.54 | clp]]
+  sueldo-imponible-chile.md:157: … [[utm * 13.5 | clp]]–[[utm * 30 | clp]] … [[utm * 0.54 | clp]] … [[1200000 * 0.04 - utm * 0.54 | clp]] … [[utm * 0.54 | clp]] …
+  sueldo-imponible-chile.md:158: … [[934800 + utm * 0.54 | clp]] … [[1200000 * 0.04 - utm * 0.54 | clp]] …
+  Mecanismo verificado: src/pages/llms-full.txt.ts aplica interpolateEconomicText(bodyToPlainMarkdown(post.body))
+  sobre el snapshot utm=71721/uta=834504 — las 7 líneas crudas de pass6 ahora salen resueltas.
+
+Veredicto D25: RESUELTO (status: resolved). Detalle del fix y contrato en evidence/64.

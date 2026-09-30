@@ -1,0 +1,22 @@
+=== 44 — Entorno, SHA y reproducibilidad (pass5 delta, plan 115) ===
+run_id=pass5-20260929T233749Z
+fecha_utc=2026-09-29T23:37:49Z
+worktree=/tmp/opencode/plan115-pass5/wt
+worktree_HEAD=c1701ad5f4205f06ced78234af466ace93496671
+worktree_branch=HEAD
+worktree_clean_tracked=1 (src/ sin cambios; git status --porcelain -- src | wc -l = 0)
+main_HEAD_al_auditar=b5620625672782ca7c7a39e08e50ea7b13db52e4
+node=v24.19.0
+pnpm=11.7.0
+python=Python 3.13.12
+vitest=vitest/4.1.11 linux-x64 node-v24.19.0
+os=Linux 7.0.0-34-generic x86_64
+pnpm-lock.sha256=bd2e7f031cc9ff1c20c9c2990ccdee91bc4dc8c5877cfa4fb5424ac512e9e392
+
+--- Reproducir ---
+git worktree add --detach /tmp/wt-pass5 c1701ad5 && cd /tmp/wt-pass5
+pnpm install --frozen-lockfile
+bash <evidence>/pass5.generate-evidence.sh "$PWD" <evidence>
+pnpm run test && pnpm run check:ci
+SMALL_DETAILS_ENFORCE=1 node scripts/check-small-details.mjs
+pnpm run build && node scripts/check-postbuild.mjs dist

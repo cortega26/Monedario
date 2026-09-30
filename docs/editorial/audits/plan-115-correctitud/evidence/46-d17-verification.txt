@@ -1,0 +1,46 @@
+=== 46 — D17: retención DAP en contenido relacionado (worktree c1701ad5) ===
+fecha_utc=2026-09-29T23:37:50Z
+
+--- 46.1 frase vieja: "impuesto a los intereses" (esperado 0) ---
+$ rg -n 'impuesto a los intereses' src/data/blog dist/llms-full.txt
+rc=1 (1 = sin coincidencias)
+
+--- 46.2 frase nueva en fuente y render ---
+$ rg -n 'el banco no te retiene por ellos' src/data/blog/fondo-emergencia-chile.md dist/llms-full.txt
+src/data/blog/fondo-emergencia-chile.md:152:Los intereses de un DAP son renta para el Impuesto Global Complementario: si eres residente en Chile, se suman a tus ingresos anuales y se declaran en la Operación Renta (el banco no te retiene por ellos). La retención del 4% del artículo 59 de la Ley de Impuesto a la Renta aplica solo a no residentes (Impuesto Adicional). Dado que el objetivo es preservar liquidez con instrumentos de bajo plazo y tasa baja, el efecto tributario suele ser menor, pero es relevante declararlo. Consulta con tu contador si tienes dudas sobre tu situación particular.
+dist/llms-full.txt:130:Los intereses de un DAP son renta para el Impuesto Global Complementario: si eres residente en Chile, se suman a tus ingresos anuales y se declaran en la Operación Renta (el banco no te retiene por ellos). La retención del 4% del artículo 59 de la Ley de Impuesto a la Renta aplica solo a no residentes (Impuesto Adicional). Dado que el objetivo es preservar liquidez con instrumentos de bajo plazo y tasa baja, el efecto tributario suele ser menor, pero es relevante declararlo. Consulta con tu contador si tienes dudas sobre tu situación particular.
+
+--- 46.3 sweep heurístico src (ventana±400; script pass5.dap-retention-sweep.py) ---
+$ python3 pass5.dap-retention-sweep.py src
+FLAG pages/calculadoras/deposito-a-plazo.astro:~56 [retención] Cómo se calcula el interés de un depósito a plazo?",     answer:       "El interés bruto se calcula como: Monto × (TIR% / 100) × (días / 365). Por ejemplo, $5.000.000 al 5% TIR por 180 días genera un interés bruto de $123.288.",   },   {     question: "¿Los de
+FLAG pages/calculadoras/deposito-a-plazo.astro:~177 [retención]  justify-between">               <span class="text-secondary">Interés pagado al vencimiento</span>               <span class="font-medium text-foreground/80">$123.288</span>             </div>           </div>           <p class="mt-4 text-xs text-muted">     
+FLAG pages/guias/ahorro-e-inversion/index.astro:~208 [retención]  href: "/posts/deposito-a-plazo-uf-vs-pesos/",         },         {           step: 4,           title: "Simulador APV",           description:             "Calcula el ahorro tributario real de tu aporte mensual.",           href: "/calculadoras/apv/",        
+FLAG utils/llmsTxt.ts:~29 [retención] deudores, ahorrantes e inversores principiantes. El contenido no aplica fuera del sistema tributario y previsional chileno.`; }  /** Sección de cobertura temática y límites de alcance. */ export function buildLlmsScope(): string {   return `## Cobertura temáti
+[sweep] archivos=410 ret*junto_a_DAP=15 aclaradas=11 sin_aclarar=4
+rc=1
+
+--- 46.4 sweep heurístico dist (html + llms-full) ---
+$ python3 pass5.dap-retention-sweep.py dist
+FLAG archives/index.html:~211 [retencion] !-- Descripción --><p class="text-sm leading-relaxed text-secondary" data-astro-cid-yk4hkwyg>Cómo elegir entre ETF, DAP y fondos mutuos en Chile: criterios de plazo, riesgo y costo total para tomar la decisión correcta según tu objetivo.</p></li><li class="car
+FLAG calculadoras/deposito-a-plazo/index.html:~55 [retención] ,"acceptedAnswer":{"@type":"Answer","text":"El interés bruto se calcula como: Monto × (TIR% / 100) × (días / 365). Por ejemplo, $5.000.000 al 5% TIR por 180 días genera un interés bruto de $123.288."}},{"@type":"Question","name":"¿Los depósitos a plazo pagan i
+FLAG calculadoras/deposito-a-plazo/index.html:~55 [retención] epósito a plazo (DAP) es un instrumento de ahorro en el que depositas dinero por un período fijo y el banco te paga un interés al vencimiento. El rendimiento se expresa como TIR anual y el interés se calcula proporcionalmente al plazo en días.</p><p><strong>Fó
+FLAG guias/ahorro-e-inversion/index.html:~223 [retención] -surface-muted p-5"><span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent text-sm font-bold text-background" aria-hidden="true">5</span><div> <a href="/calculadoras/deposito-a-plazo/" class="font-semibold text-foreground underli
+FLAG llms-full.txt:~17 [retención] omplemento de `/llms.txt` (el índice de navegación). Última actualización del contenido: 2026-09-29. Las cifras con fecha de vigencia pueden haber cambiado desde entonces: cada artículo enlaza su URL original, que es siempre la fuente vigente.  ## Cobertura te
+FLAG llms.txt:~76 [retención] s://monedario.cl/accessibilidad/) - [Política de privacidad](https://monedario.cl/privacidad/) - [Contenido completo en markdown](https://monedario.cl/llms-full.txt) — texto íntegro de todos los artículos publicados, para ingestión por modelos  ## Cobertura te
+[sweep] archivos=342 ret*junto_a_DAP=14 aclaradas=8 sin_aclarar=6
+rc=1
+
+[nota auditor] Sweep heurístico por proximidad (DAP ↔ retención, ±400 chars).
+Falsos positivos verificados manualmente: deposito-a-plazo.astro (el copy aclara
+"no residentes" a <600 chars y el JSON-LD lo incluye), llmsTxt.ts (lista temática),
+archives/index.html (tarjetas contiguas de posts distintos), llms-full.txt linea 130
+(FAQ corregida; la aclaración está en la misma oración). Residual real: guía de
+ahorro (D23) — ver 54-surface-sweep-pass5.txt.
+--- 46.5 guarda extendida ---
+$ ./node_modules/.bin/vitest run tests/static-analysis/dap-no-retention-surfaces.test.ts
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  20:37:53
+   Duration  355ms (transform 69ms, setup 0ms, import 90ms, tests 12ms, environment 0ms)
+

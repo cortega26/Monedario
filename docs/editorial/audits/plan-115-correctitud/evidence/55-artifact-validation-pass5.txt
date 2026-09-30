@@ -1,0 +1,45 @@
+=== 55 — Validación del artefacto actualizado + diff de la remediación ===
+fecha_utc=2026-09-29T23:45:08Z
+
+--- 55.1 diff 30d6e39a..c1701ad5 (remediación) ---
+ plans/130-remediation-pass4-d17-d21-2026-09-29.md  | 42 ++++++++++++++++++++++
+ plans/README.md                                    |  1 +
+ src/data/blog/fondo-emergencia-chile.md            |  5 +--
+ .../blog/impuesto-global-complementario-chile.md   |  2 +-
+ src/data/blog/operacion-renta-centro.md            | 10 +++---
+ src/data/glossary/impuesto-unico.md                | 18 ++++++----
+ src/domain/economic/EffectiveDatedParameters.ts    |  2 +-
+ .../calculadoras/boleta-honorarios-liquido.astro   |  4 +--
+ tests/domain/EffectiveDatedParameters.test.ts      |  6 ++--
+ .../at-taxonomy-consistency.test.ts                | 41 +++++++++++++++++++++
+ .../dap-no-retention-surfaces.test.ts              | 38 +++++++++++++++++++-
+ 11 files changed, 148 insertions(+), 21 deletions(-)
+
+--- 55.2 dominio afectado (solo EffectiveDatedParameters fuera de contenido/astr) ---
+ src/domain/economic/EffectiveDatedParameters.ts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+--- 55.3 check-audit-artifacts sobre el artefacto pass5 ---
+[check-audit-artifacts] OK docs/editorial/audits/plan-115-correctitud/02-result.json (verdict=CONDITIONAL)
+[check-audit-artifacts] 1 artefacto(s) válidos.
+AUDIT_ARTIFACTS_EXIT=0
+
+--- 55.4 resumen machine-readable del artefacto ---
+{
+ "commit": "c1701ad5f4205f06ced78234af466ace93496671",
+ "verdict": "CONDITIONAL",
+ "claims": 33,
+ "defects": 24,
+ "openProduct": [
+  "D23",
+  "D24"
+ ],
+ "resolvedPass5": [
+  "D17",
+  "D18",
+  "D19",
+  "D20",
+  "D21"
+ ],
+ "humanSignoff": null
+}
