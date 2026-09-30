@@ -31,7 +31,7 @@ articleLead:
   nextStepHref: "/guias/ahorro-e-inversion/"
   nextStepLabel: "Ver la guía de ahorro e inversión"
   officialSources:
-    - label: "CMF Educa — Ahorro e inversión"
+    - label: "CMF Educa — Fondos Mutuos"
       href: "https://www.cmfchile.cl/educa/621/w3-propertyvalue-988.html"
     - label: "SII — Declaración de renta"
       href: "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0597.htm"

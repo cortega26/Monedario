@@ -32,10 +32,10 @@ articleLead:
   nextStepHref: "/guias/seguridad-financiera/"
   nextStepLabel: "Ver la guía de seguridad financiera"
   officialSources:
-    - label: "CMF — Reclamos y fraudes con tarjetas"
-      href: "https://www.cmfchile.cl/portal/principal/613/w3-propertyvalue-43332.html"
-    - label: "SERNAC"
-      href: "https://www.sernac.cl/"
+    - label: "CMF — Reclamos contra entidades supervisadas"
+      href: "https://www.cmfchile.cl/portal/principal/623/w4-propertyvalue-48790.html"
+    - label: "SERNAC — Especial Ley de Fraude"
+      href: "https://www.sernac.cl/portal/604/w3-propertyname-791.html"
   covers:
     - "Qué hacer en las primeras 24 horas tras un cargo no reconocido."
     - "Cómo funciona la restitución de la Ley 20.009 y sus plazos."
