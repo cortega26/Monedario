@@ -10,7 +10,7 @@ Fase 2/3.
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|-------|----------|--------|------------|--------|
 | 114 | [ux-audit-remediation-2026-09-28.md](114-ux-audit-remediation-2026-09-28.md) | P1 | L | — | DONE (F-01 a F-10 y `TD-0111` resuelto; remanente: pasada manual NVDA/VoiceOver) |
-| 115 | [correctness-remediation-2026-09-28.md](115-correctness-remediation-2026-09-28.md) | P0 | L | — | DONE (F04 cerrado con extensión IPC oficial BCCh/INE; `TD-0112` resuelto; auditoría adversarial independiente **PASS** — 0 defectos de producto, commit `bdf26fe7`, evidencia 01–66; **firma humana pendiente**) |
+| 115 | [correctness-remediation-2026-09-28.md](115-correctness-remediation-2026-09-28.md) | P0 | L | — | DONE (F04 cerrado con extensión IPC oficial BCCh/INE; `TD-0112` resuelto; auditoría adversarial independiente **PASS** — 0 defectos de producto, commit `bdf26fe7`, evidencia 01–66; firma humana registrada (Carlos Ortega, 2026-09-29)) |
 | 116 | [seo-remediation-2026-09-28.md](116-seo-remediation-2026-09-28.md) | P1 | M | — | DONE (SEO-01/03/04/07 + guardas; Fase 2: SEO-02/05/06/08) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
@@ -52,7 +52,7 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 | Plan | Título | Prioridad | Esfuerzo | Depende de | Estado |
 |------|-------|----------|--------|------------|--------|
 | 123 | [finiquito-audit-remediation-2026-09-29.md](123-finiquito-audit-remediation-2026-09-29.md) | P2 (YMYL) | M | — | DONE (6 defectos corregidos con vectores dorados; pendiente auditoría IA del fix + firma humana) |
-| 124 | [audit-ai-remediation-2026-09-29.md](124-audit-ai-remediation-2026-09-29.md) | P1 (YMYL) | M–L | auditoría IA plan 115 (PASS) | DONE (D1–D8 corregidos; pass3–pass7 verificadas, PASS en `bdf26fe7`; firma humana pendiente) |
+| 124 | [audit-ai-remediation-2026-09-29.md](124-audit-ai-remediation-2026-09-29.md) | P1 (YMYL) | M–L | auditoría IA plan 115 (PASS) | DONE (D1–D8 corregidos; pass3–pass7 verificadas, PASS en `bdf26fe7`; firma humana registrada (2026-09-29)) |
 | 125 | [reaudit-remediation-2026-09-29.md](125-reaudit-remediation-2026-09-29.md) | P1 (YMYL) | M | re-auditoría IA (CONDITIONAL) | DONE (D9–D12 + obs. 1/2 corregidos; pendiente re-auditoría final + firma humana) |
 | 126 | [audit-scope-sweep-2026-09-29.md](126-audit-scope-sweep-2026-09-29.md) | P3 | S | re-auditoría Muse Spark (D13) | DONE (V6/V4/S2 del scope + guarda de consistencia; propuesta de `surface` en el protocolo) |
 | 127 | [surfaces-sweep-d14-d15-2026-09-29.md](127-surfaces-sweep-d14-d15-2026-09-29.md) | P1 (YMYL) | M | re-auditoría pass3 (D14/D15) | DONE (superficies DAP y tasa de honorarios por año + 2 guardas + matriz de superficies + prompt v2; revisión editorial humana pendiente) |
