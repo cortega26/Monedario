@@ -2408,11 +2408,23 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
     `missingValidAsOfCount`/`missingValidAsOfSlugs`, sin romper CI.
   - [x] `pnpm run check:editorial-timeliness` sigue en verde tras el cambio
     (13 warnings explícitos).
+- **Actualización 2026-09-30 (autoría):** redactados los `articleLead` de los 7
+  artículos no-evergreen de la cola (answer + covers + limits + fuentes
+  oficiales); 4 con `validAsOf` respaldado por datasets (`que-es-la-uf`,
+  `que-es-el-ipc-chile-como-se-calcula`, `reajuste-arriendo-uf-ipc-chile`,
+  `como-cambiarse-de-afp`) y 3 en cola de auditoría por depender de fuentes
+  primarias aún no verificadas en sesión (`fraude-tarjeta-que-hacer`,
+  `ahorro-e-inversion-en-chile-...-2026`,
+  `fondos-mutuos-comisiones-rescate-impuestos`). Los otros 6 de los 13 quedaron
+  **evergreen** con la decisión del mismo día y ya no requieren `validAsOf`.
+  El gate pasó de `missingValidAsOf=13` a **3**. Pendiente: auditoría
+  independiente de los 7 borradores (sesión fresca) y verificación primaria de
+  los 3 restantes.
 - **Owner:** Carlos Ortega (editorial)
-- **Estado:** En curso — gate y cola listos; falta autoría de `articleLead` (13)
-  con auditoría independiente
+- **Estado:** En curso — autoría completa; falta auditoría independiente de los
+  7 borradores y verificación primaria de los 3 sin `validAsOf`
 - **Fecha de creación:** 2026-09-20
-- **Última actualización:** 2026-09-29
+- **Última actualización:** 2026-09-30
 
 ## TD-0109 — Posible replicación de fórmula indemnización F1–F3 en calculadora (NHV-8, código productivo sin auditar)
 

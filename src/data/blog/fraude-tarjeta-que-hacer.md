@@ -27,6 +27,22 @@ reviewPolicy:
   derivationFactors:
     - registry:categoryPolicies.seguridad-financiera
   computedAt: "2026-05-06"
+articleLead:
+  answer: "Si ves un cargo que no hiciste, avisa de inmediato a tu banco y haz la denuncia formal —no solo la constancia— en la comisaría o Fiscalía. La Ley 20.009 obliga al banco a restituir los montos no autorizados cuando cumples los pasos y plazos: guarda el comprobante de la denuncia y entrégalo dentro del plazo."
+  nextStepHref: "/guias/seguridad-financiera/"
+  nextStepLabel: "Ver la guía de seguridad financiera"
+  officialSources:
+    - label: "CMF — Reclamos y fraudes con tarjetas"
+      href: "https://www.cmfchile.cl/portal/principal/613/w3-propertyvalue-43332.html"
+    - label: "SERNAC"
+      href: "https://www.sernac.cl/"
+  covers:
+    - "Qué hacer en las primeras 24 horas tras un cargo no reconocido."
+    - "Cómo funciona la restitución de la Ley 20.009 y sus plazos."
+    - "Denuncia formal vs constancia y por qué importa la diferencia."
+  limits:
+    - "No reemplaza asesoría legal para casos complejos."
+    - "Los plazos y topes dependen del texto vigente de la Ley 20.009."
 ---
 
 Revisas tu cuenta y ves un cargo que no hiciste. O peor: te llega un aviso de una transferencia que nunca autorizaste. Lo primero que sientes es pánico. Lo segundo debería ser este artículo.

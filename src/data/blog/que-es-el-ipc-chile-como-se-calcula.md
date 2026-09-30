@@ -33,6 +33,23 @@ reviewPolicy:
   derivationFactors:
     - registry:slugOverrides.que-es-el-ipc-chile-como-se-calcula
   computedAt: "2026-05-06"
+articleLead:
+  answer: "El IPC mide la variación mensual de los precios de una canasta representativa y lo publica el INE: es la referencia oficial de la inflación en Chile. Afecta reajustes pactados por IPC, el cálculo diario de la UF y tu poder de compra, aunque tu percepción de precios no siempre coincida con el promedio."
+  nextStepHref: "/guias/uf-costo-de-vida/"
+  nextStepLabel: "Ver la guía UF, inflación y costo de vida"
+  validAsOf: 2026-08-03
+  officialSources:
+    - label: "INE — Índice de Precios al Consumidor"
+      href: "https://www.ine.gob.cl/estadisticas-por-tema/precios-e-inflacion/indice-de-precios-al-consumidor"
+    - label: "Banco Central de Chile — Metodología UF"
+      href: "https://si3.bcentral.cl/estadisticas/Principal1/Metodologias/EMF/UF.pdf"
+  covers:
+    - "Qué mide el IPC y cómo lo calcula el INE."
+    - "Cómo se relaciona con la UF y los reajustes de arriendo."
+    - "Por qué tu percepción de inflación puede diferir del dato."
+  limits:
+    - "No entrega proyecciones de inflación futura."
+    - "El dato mensual se actualiza; verifica el último publicado por el INE."
 ---
 
 Cuando sale el dato del IPC cada mes, los medios hablan de "inflación" y tú ves que las cosas cuestan más. Pero ¿cómo se mide exactamente? ¿Por qué a veces el IPC baja pero igual sientes que todo cuesta más? Y lo más importante: ¿qué decisiones afecta directamente en tu vida?
