@@ -42,15 +42,15 @@ _Actualizado 2026-09-29 desde las entradas `## TD-` (abierto = `Backlog*`, `Pend
 - **P0:** 0
 - **P1:** 0
 - **P2:** 1 — `TD-0108` (en curso)
-- **P3:** 4 — `TD-0095`, `TD-0096`, `TD-0103`, `TD-0110`
-- **Sin urgencia declarada:** 2 — `TD-0100` (Pendiente), `TD-0104` (ABIERTO)
-- **Total abiertos:** 7 de 112 entradas (`TD-0001`..`TD-0112`)
-- **Cerrados/completados:** 105
+- **P3:** 3 — `TD-0095`, `TD-0096`, `TD-0103`
+- **Sin urgencia declarada:** 0
+- **Total abiertos:** 4 de 112 entradas (`TD-0001`..`TD-0112`)
+- **Cerrados/completados:** 108
 
-### Estado de avance (2026-09-29)
+### Estado de avance (2026-09-30)
 
-- **Completados/cerrados:** 105 entradas, incluidas `TD-0097` (2026-09-25), `TD-0109`/`TD-0111`/`TD-0112` y `TD-0107` (2026-09-29).
-- **Abiertos:** `TD-0095`, `TD-0096`, `TD-0100`, `TD-0103`, `TD-0104`, `TD-0108` (en curso), `TD-0110`.
+- **Completados/cerrados:** 108 entradas, incluidas `TD-0097` (2026-09-25), `TD-0109`/`TD-0111`/`TD-0112`, `TD-0107` (2026-09-29) y `TD-0100`/`TD-0104`/`TD-0110` (2026-09-30).
+- **Abiertos:** `TD-0095`, `TD-0096`, `TD-0103`, `TD-0108` (en curso).
 - **Cerrados sin ejecutar (premisa/ROI):** `TD-0067` (2026-06-25 — los use-cases ya retornan números puros; el formateo ya vive en las páginas), `TD-0081` (2026-06-25 — CI no usa esa secuencia y el único check lento es escritor; ahorro seguro ~0.2 s) y `TD-0079` (bloqueado por incompatibilidad WOFF2/Satori).
 - **Nota histórica:** `TD-0072` cerrado el 2026-06-23 (los 2 scripts restantes son código activo, no one-off).
 - **Nota histórica:** `TD-0095` y `TD-0096` abiertos el 2026-07-01, tras implementar `ADR-20260701-editorial-evergreen-tier.md` — ver entradas abajo.
@@ -2221,10 +2221,11 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Descripción:** Lighthouse baseline encontró CLS 0,000259 en tres de tres runs de `/calculadoras/sueldo-liquido/`; el umbral contractual es 0.
 - **Evidencia:** `pnpm run perf:ci` del 2026-08-02; las demás rutas completaron la medición.
 - **Severidad (1-5):** 2
-- **Estado:** Pendiente
-- **Mitigación:** diagnosticar en tarea separada y conservar el umbral; el trabajo UTM debe demostrar no regresión contra esta línea base.
+- **Estado:** Cerrado (2026-09-30)
+- **Resolución:** causa identificada — el salario inicial cambiaba de Georgia a Fraunces al descubrirse la fuente — y corregida con precarga de Fraunces solo en `sueldo-liquido` (`b0db4567`, #461; `src/layouts/Layout.astro`). Re-medición `pnpm run perf:ci` sobre `a503aad2` (plan 133): 15/15 runs con CLS 0 y assertion `cumulative-layout-shift maxNumericValue: 0` en verde (5 URLs × 3 runs, desktop); diagnóstico en `artifacts/lighthouse/sueldo-font-preload-2026-09-05.json`.
 - **Owner:** —
 - **Fecha:** 2026-08-02
+- **Última actualización:** 2026-09-30
 
 ## TD-0101 — LCP móvil de UTM excede el guardrail en dos de tres corridas
 - **Descripción:** tres corridas móviles aisladas de `/calculadoras/conversor-utm/` obtuvieron LCP de 1.657 ms, 1.807 ms y 1.807 ms. Aunque Lighthouse marca performance 99, accesibilidad 100, SEO 100, CLS 0 y TBT 0, dos corridas superan el contrato de LCP ≤1,7 s.
@@ -2275,9 +2276,11 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Fix propuesto:** script `check-workspace-exclusions.mjs` que parsea `pnpm-workspace.yaml` + `pnpm-lock.yaml` y falla (exit 1) si una entrada de `minimumReleaseAgeExclude` no existe como clave resuelta en el lockfile — con la excepción explícita de las exclusiones "vencidas pero aún presentes" (nanoid/fast-uri-style, que envejecen por fecha). Cablear en `check` + ci.yml. Tests con fixtures (patrón de `check-legal-constants`).
 - **Riesgo:** bajo; esfuerzo S; sin impacto en resolución.
 - **Severidad (1-5):** 2
-- **Estado:** ABIERTO (recomendación del audit del plan 074, 2026-08-10)
+- **Estado:** Cerrado (2026-09-30)
+- **Resolución:** implementado `scripts/check-pnpm-release-age-excludes.mjs` (`check:pnpm-release-age-excludes`): toda entrada debe existir en `packages:` de `pnpm-lock.yaml` (nombre pelado = alguna versión); falla con la lista de muertas y remediación. Al implementarlo detectó y retiró 2 entradas ya muertas (`eslint-plugin-astro@2.1.1`, `postcss@8.5.25`; el lockfile tiene 3.1.0 / 8.5.26+). Cableado en `check`, `check:ci` y `ci.yml`; 7 tests (fixtures + política real). Plan 133.
 - **Owner:** Carlos
 - **Fecha:** 2026-08-10
+- **Última actualización:** 2026-09-30
 
 ## TD-0105 — Plan 052 perdido: trigger manual de workers con secret en query string sigue en producción
 
@@ -2462,11 +2465,11 @@ Hallazgos abiertos por la auditoría estática del 2026-05-15 documentada en `do
 - **Propuesta de solución:** aceptar y documentar la cobertura semanal, o habilitar CodeQL si el repo pasa a público / se contrata GHAS; alternativa intermedia: job Opengrep en PRs con presupuesto acotado (solo `src/` o modo diff). Revisar la decisión cada 6 meses.
 - **Criterios de cierre (checklist verificable):**
   - [ ] Code scanning activo y produciendo alertas, **o**
-  - [ ] Decisión firmada (ADR/nota del owner) de aceptar cobertura SAST semanal con Opengrep.
-- **Owner:** Sin asignar
-- **Estado:** Backlog
+  - [x] Decisión documentada (nota del owner) de aceptar cobertura SAST semanal con Opengrep: runbook `docs/operations/runbooks/security-scans.md` (cobertura real por disparador, limitación CodeQL/GHAS 403, mitigaciones, cómo correr cada scan) + comentario del workflow corregido. Revisión de la decisión cada 6 meses.
+- **Owner:** Carlos Ortega
+- **Estado:** Cerrado (2026-09-30)
 - **Fecha de creación:** 2026-09-25
-- **Última actualización:** 2026-09-25
+- **Última actualización:** 2026-09-30
 
 ## TD-0111 — Migración legacy de inputs de calculadoras a `CalculatorField`
 

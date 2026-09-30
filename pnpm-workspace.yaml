@@ -39,6 +39,8 @@ minimumReleaseAge: 10080
 # subject to minimumReleaseAge and these entries can be removed after aging out.
 # Cohortes 2026-09-07..12 retiradas el 2026-09-25 tras madurar (TD-0097);
 # el lockfile pasa la política sin ellas.
-minimumReleaseAgeExclude:
-  - 'eslint-plugin-astro@2.1.1'
-  - 'postcss@8.5.25'
+# Sin excepciones vivas al 2026-09-30 (TD-0104): las 2 últimas
+# (`eslint-plugin-astro@2.1.1`, `postcss@8.5.25`) ya no existían en el
+# lockfile y fueron retiradas; `check:pnpm-release-age-excludes` impide que se
+# acumulen entradas muertas otra vez.
+minimumReleaseAgeExclude: []
