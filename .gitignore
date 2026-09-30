@@ -96,6 +96,7 @@ docs/backlog/*
 !docs/backlog/auditorias-pendientes-2026-09-28/
 !docs/backlog/auditorias-pendientes-2026-09-28/**
 !docs/backlog/EEAT-STRATEGY-*.md
+!docs/backlog/SEO-SERP-STRATEGY-*.md
 !docs/backlog/prompt-*.md
 !docs/backlog/DECISION-*.md
 !docs/backlog/CALCULATOR-CONSOLIDATION-*.md

@@ -1,6 +1,6 @@
 # Backlog Monedario.cl — Estado actual
 
-> Generado el 2026-04-08. Última actualización: 2026-09-25.
+> Generado el 2026-04-08. Última actualización: 2026-09-29.
 > Lectura obligatoria antes de ejecutar cualquier ticket: `AGENTS.md` y `context/INVARIANTS.md`.
 
 ---
@@ -50,6 +50,7 @@ Deuda técnica: incluye los findings de drift `TD-0084`..`TD-0094` registrados e
 | Evolución visual/UX | `PLAN-ux-evolution-cta-2026-09-16.md` | S1 encolado post-panel-F4; slices S1–S4, sin rebrand |
 | Integridad medición (Sprint 0 adaptado) | `PLAN-measurement-integrity-2026-09-16.md` | **DONE (FIRMADO)** — pre-requisito panel F1 cumplido, sin GA4 ni trackers |
 | Distribución sin presupuesto | `PLAN-zero-cost-distribution-2026-09-25.md` (+ 3 canales) | Canales 1–2 manuales activables ya; canal 4 (embeds) gated a 2026-11-02 con excepción + ADR |
+| Estrategia SEO/SERP (investigación externa 2026-09-29) | `SEO-SERP-STRATEGY-2026-09-29.md` | Docs-only: la matriz query×page, los audits y los títulos sueldo/APV ya existen en repo; N1–N7 con gates. Validado con GSC W32–W39 (plan 128, §8): glosario 37/54 sin impresiones, sueldo/APV fuera de rango on-page, `/archives/` con evidencia para decisión. Ejecución condicionada a freeze (~2026-10-14), ventanas y FOCO hasta 2026-11-02 |
 
 ### Pendiente — auditorías adversariales (lote 2026-09-28)
 

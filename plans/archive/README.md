@@ -118,6 +118,7 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [113](113-gate-d-titular-citation.md) | Rutina de captura Gate-D + taxonomía titular en tres vías (`INPUT_REQUIRED`≠`WATCH`, vía `SIN REGISTRO`) + cita APV a W34/W35 HALT con veredicto intacto + 2 tests mapping | 2026-09-14 | sí (merge `04ccef30`; commit `d4d5e273`) |
 | [114](114-apv-error-implementation.md) | Emisiones `calculator_error` E1–E4 en APV (helper + dedupe + reset, wiring, 16 tests) + pin estático; progreso NO creado (propuesta) | 2026-09-15 | sí (merge `d4981b2c`; helper+tests → wiring) |
 | [115](115-conformance-sweep.md) | Runbook titular conformado a 3 vías + excepción `APV-*` en gitignore (2 líneas) | 2026-09-15 | sí (merge `c908edad`; 1 commit) |
+| [128](128-seo-serp-report-validation-2026-09-29.md) | Validación con datos GSC del informe SEO/SERP externo — spike read-only W32–W39 (agregado, striking distance, canibalización, glosario, `/archives/`, país/dispositivo) con retriage N1–N7; entregable `docs/backlog/SEO-SERP-STRATEGY-2026-09-29.md` §8 | 2026-09-29 | sí (commit directo a `main`, 2026-09-30) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
