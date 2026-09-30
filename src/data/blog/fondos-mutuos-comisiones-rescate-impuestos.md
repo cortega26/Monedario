@@ -26,6 +26,22 @@ reviewPolicy:
   derivationFactors:
     - registry:categoryPolicies.ahorro-inversion
   computedAt: "2026-05-06"
+articleLead:
+  answer: "Antes de invertir en un fondo mutuo revisa tres cosas: la remuneración de administración, la comisión y el plazo de rescate (hasta 10 días hábiles según el reglamento interno), y el tratamiento tributario del mayor valor al rescatar. El reglamento interno del fondo es la fuente vinculante."
+  nextStepHref: "/guias/ahorro-e-inversion/"
+  nextStepLabel: "Ver la guía de ahorro e inversión"
+  officialSources:
+    - label: "CMF Educa — Fondos mutuos"
+      href: "https://www.cmfchile.cl/educa/621/w3-propertyvalue-504.html"
+    - label: "SII — Rentas de capitales mobiliarios"
+      href: "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_8415.htm"
+  covers:
+    - "Qué comisiones cobra un fondo mutuo y dónde verlas."
+    - "Cómo funcionan los plazos de rescate."
+    - "Cómo tributa el mayor valor al rescatar."
+  limits:
+    - "No compara fondos ni administradoras específicas."
+    - "Los reglamentos internos y comisiones cambian; revisa el del fondo que evalúas."
 ---
 
 Los fondos mutuos tienen costos reales que no siempre aparecen en el primer número que ves. La remuneración de administración, la comisión de rescate y el tratamiento tributario del mayor valor son los tres puntos donde más se pierde por no haber leído bien antes de invertir. Esta guía los desglosa sin rodeos.

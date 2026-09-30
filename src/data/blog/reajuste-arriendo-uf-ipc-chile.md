@@ -32,6 +32,23 @@ reviewPolicy:
   derivationFactors:
     - registry:slugOverrides.reajuste-arriendo-uf-ipc-chile
   computedAt: "2026-05-06"
+articleLead:
+  answer: "El reajuste de tu arriendo depende de lo pactado en el contrato: si es en UF, el monto en pesos sube con el valor diario de la UF; si es por IPC, se reajusta según la variación anual del IPC. Sin cláusula de reajuste, no existe un aumento automático por ley."
+  nextStepHref: "/calculadoras/reajuste-arriendo/"
+  nextStepLabel: "Calcula el reajuste de tu arriendo"
+  validAsOf: 2026-08-03
+  officialSources:
+    - label: "BCN — Ley 18.101 sobre arrendamiento"
+      href: "https://www.bcn.cl/leychile/navegar?idNorma=29526"
+    - label: "Banco Central de Chile — Valor diario de la UF"
+      href: "https://si3.bcentral.cl/Indicadoressiete/secure/Indicadoresdiarios.aspx"
+  covers:
+    - "UF vs IPC: qué significa cada tipo de reajuste."
+    - "Cómo calcular el nuevo monto según tu contrato."
+    - "Qué hacer si el aumento no coincide con lo pactado."
+  limits:
+    - "No interpreta tu contrato en particular ni reemplaza asesoría legal."
+    - "El valor de la UF y el IPC cambian; usa los datos vigentes al momento del reajuste."
 ---
 
 Llegó el aviso de pago y el arriendo subió. O el arrendador avisa que el próximo mes cambia el monto. La primera reacción suele ser preguntarse si corresponde — y la respuesta depende de una sola cosa: lo que dice el contrato.

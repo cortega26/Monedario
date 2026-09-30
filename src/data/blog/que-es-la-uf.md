@@ -32,6 +32,23 @@ reviewPolicy:
   derivationFactors:
     - registry:slugOverrides.que-es-la-uf
   computedAt: "2026-05-06"
+articleLead:
+  answer: "La UF es una unidad de cuenta reajustable según el IPC del mes anterior; su valor lo publica el Banco Central y cambia a diario. Se usa en créditos hipotecarios, arriendos y contratos para preservar el poder de compra: tu dividendo o arriendo en pesos sube cuando la UF sube."
+  nextStepHref: "/calculadoras/conversor-uf/"
+  nextStepLabel: "Convierte UF a pesos"
+  validAsOf: 2026-08-03
+  officialSources:
+    - label: "Banco Central de Chile — Valor diario de la UF"
+      href: "https://si3.bcentral.cl/Indicadoressiete/secure/Indicadoresdiarios.aspx"
+    - label: "Banco Central de Chile — Metodología UF"
+      href: "https://si3.bcentral.cl/estadisticas/Principal1/Metodologias/EMF/UF.pdf"
+  covers:
+    - "Qué es la UF y por qué cambia todos los días."
+    - "Cómo se calcula a partir del IPC."
+    - "Dónde se usa: hipotecas, arriendos y contratos."
+  limits:
+    - "No proyecta el valor futuro de la UF."
+    - "El valor diario cambia; consulta siempre el publicado por el Banco Central."
 ---
 
 Tu arriendo sube todos los años "por la UF" y tu dividendo también. Pero casi nadie sabe exactamente qué es la UF ni por qué cambia todos los días. Acá te explicamos de verdad — con números y sin fórmulas intimidantes. Si quieres ver esta historia ordenada junto con IPC, reajustes y herramientas prácticas, parte por la [guía UF, inflación y costo de vida](/guias/uf-costo-de-vida/). Si quieres ver cómo se conecta con créditos y deudas, también puedes complementar con la [sección Deuda y Crédito](/guias/deuda-credito/).

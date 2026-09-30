@@ -26,6 +26,22 @@ reviewPolicy:
   derivationFactors:
     - registry:categoryPolicies.ahorro-inversion
   computedAt: "2026-05-06"
+articleLead:
+  answer: "Elige el instrumento según tu objetivo y plazo: DAP para dinero que necesitas pronto con tasa conocida, fondos mutuos para diversificar sin decidir cada compra, y ETFs para exposición amplia con costos bajos. Compara el costo total —comisiones, custodia y tributación— y no solo la rentabilidad pasada."
+  nextStepHref: "/guias/ahorro-e-inversion/"
+  nextStepLabel: "Ver la guía de ahorro e inversión"
+  officialSources:
+    - label: "CMF Educa — Ahorro e inversión"
+      href: "https://www.cmfchile.cl/educa/621/w3-propertyvalue-988.html"
+    - label: "SII — Declaración de renta"
+      href: "https://www.sii.cl/preguntas_frecuentes/declaracion_renta/001_140_0597.htm"
+  covers:
+    - "Criterios para elegir entre DAP, fondos mutuos y ETFs."
+    - "Cómo se comparan costos, liquidez y riesgo en Chile."
+    - "Tratamiento tributario básico de cada instrumento."
+  limits:
+    - "No recomienda productos ni instituciones específicas."
+    - "Las comisiones y reglamentos de cada producto pueden cambiar; verifica antes de invertir."
 ---
 
 Elegir en qué instrumento poner tu plata es una de las decisiones financieras más frecuentes —y más mal tomadas— por personas que ya tienen claro que quieren ahorrar, pero no saben bien cómo organizarlo. Esta guía te ayuda a comparar depósitos a plazo, fondos mutuos y ETFs según plazo, riesgo, costo real y tributación, sin rodeos y con foco en Chile 2026.

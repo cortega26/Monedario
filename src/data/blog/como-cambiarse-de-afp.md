@@ -32,6 +32,21 @@ reviewPolicy:
     - registry:slugOverrides.como-cambiarse-de-afp
   computedAt: "2026-09-20"
 updatedDate: 2026-09-20T00:00:00Z
+articleLead:
+  answer: "Puedes cambiarte de AFP presentando la solicitud en tu nueva administradora (online o presencial); el traspaso se hace efectivo el primer día del mes siguiente. Antes de decidir, compara comisiones y rentabilidad por tipo de fondo en la Superintendencia de Pensiones y revisa qué cambia con la Reforma de Pensiones (Ley 21.735)."
+  nextStepHref: "/calculadoras/comisiones-afp/"
+  nextStepLabel: "Compara comisiones de AFP"
+  validAsOf: 2026-09-20
+  officialSources:
+    - label: "Superintendencia de Pensiones — Cambio de AFP"
+      href: "https://www.spensiones.cl/portal/institucional/594/w3-propertyvalue-9585.html"
+  covers:
+    - "Cómo se hace el trámite de cambio de AFP y cuánto tarda."
+    - "Qué comparar antes de cambiarte: comisión, multifondos y rentabilidad."
+    - "Reglas de permanencia y cambios de la Ley 21.735 que te afectan."
+  limits:
+    - "No recomienda una AFP específica."
+    - "Las comisiones y rentabilidades cambian; verifica los valores vigentes en la Superintendencia de Pensiones."
 ---
 
 Cambiarse de AFP es uno de los trámites más simples que puedes hacer para mejorar tu situación previsional, y sin embargo la mayoría de las personas nunca lo hace. En esta guía te explicamos cómo funciona el proceso, qué debes evaluar y qué cambia con la Reforma de Pensiones aprobada en 2025.
