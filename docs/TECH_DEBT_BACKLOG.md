@@ -135,10 +135,14 @@ _Actualizado 2026-09-29 desde las entradas `## TD-` (abierto = `Backlog*`, `Pend
 - [ ] La tabla de 21 candidatos fue revisada y confirmada (o editada) por un editor humano.
 - [ ] `slugOverrides` refleja la lista confirmada con `sourceMode: evergreen`.
 - [ ] `pnpm run check:editorial-timeliness` sigue en verde tras el cambio.
+- **Actualización 2026-09-30:** propuesta de decisión lista para confirmación
+  humana en `docs/backlog/DECISION-evergreen-tier-2026-09-30.md` (incluye el
+  filtro mecánico actualizado: `liquidacion-de-sueldo` y
+  `como-leer-cartola-afp-chile` ya declaran `volatileData` y quedan excluidos).
 - **Owner:** Sin asignar
-- **Estado:** Backlog — pendiente confirmación editorial
+- **Estado:** Backlog — pendiente confirmación editorial (documento listo)
 - **Fecha de creación:** 2026-07-01
-- **Última actualización:** 2026-07-01
+- **Última actualización:** 2026-09-30
 
 ## TD-0095 — Clasificación pendiente: 11 artículos "dudosos" y gap de volatileData en IMM/PGU
 
@@ -156,10 +160,14 @@ _Actualizado 2026-09-29 desde las entradas `## TD-` (abierto = `Backlog*`, `Pend
 - [ ] Los 11 slugs dudosos tienen una clasificación explícita en `editorial-timeliness-policy.json` (no quedan en el default implícito por omisión).
 - [ ] Se documentó la decisión sobre si IMM/PGU necesitan `volatileData` dedicado o si la cadencia de 90 días es suficiente.
 - [ ] Si se agregan datasets nuevos, `pnpm run check:editorial-timeliness` y `pnpm run editorial:volatile-data:refresh` los cubren sin error.
+- **Actualización 2026-09-30:** propuesta de decisión lista para confirmación
+  humana en `docs/backlog/DECISION-evergreen-tier-2026-09-30.md` (A: 10
+  dudosos únicos —el TD duplicaba `credito-hipotecario-chile-guia-completa`—,
+  B: IMM recomendado como dataset, PGU recomendado mantener cadencia).
 - **Owner:** Sin asignar
-- **Estado:** Backlog
+- **Estado:** Backlog — pendiente confirmación editorial (documento listo)
 - **Fecha de creación:** 2026-07-01
-- **Última actualización:** 2026-07-01
+- **Última actualización:** 2026-09-30
 
 ## TD-0094 — Taxonomía de fuentes oficiales dispersa e incompleta
 - **ID:** TD-0094
