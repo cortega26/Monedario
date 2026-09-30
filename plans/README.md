@@ -1402,6 +1402,15 @@ de la séptima auditoría 057–081, ya completa — 052 fue cerrado con PR #420
 
 ## Completados — archivados
 
+### SEO/SERP 2026-09-30 — planes 135–136 (archivados 2026-09-30)
+
+| Plan | Título | Cierre |
+| --- | --- | --- |
+| [135](archive/135-auditoria-glosario-n2-2026-09-30.md) | Auditoría read-only del glosario (N2 del informe SEO/SERP) | **DONE 2026-09-30**; commit directo a `main` (`docs(seo): ejecuta planes 135–136`); reporte `docs/reports/AUDIT-GLOSSARY-2026-09-30.md`: 45 mantener / 8 enriquecer / 1 consolidar candidato / 0 noindex; sin cambios en `src/` ni contenido |
+| [136](archive/136-habilitadores-decision-seo-serp-2026-09-30.md) | Habilitadores de decisión (N1/N4/N7 + briefing `/archives/`) | **DONE 2026-09-30**; 4 experimentos registrados en el registry (ejecución post-freeze), cadencia mensual N1 en el ritual, briefing `/archives/` (decisión del owner) y procedimiento N7 documentado |
+
+Movidos a [`plans/archive/`](archive/README.md).
+
 ### Validación GSC del informe SEO/SERP 2026-09-29 — plan 128 (archivado 2026-09-30)
 
 | Plan | Título | Cierre |

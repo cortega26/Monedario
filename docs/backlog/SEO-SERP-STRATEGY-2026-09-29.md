@@ -76,7 +76,7 @@ decisión; el informe original no se reemplaza, se referencia.
 | 5 | APV: promesa A vs B sin incentivo comercial | **Title ya posiciona A/B**; validación §8: `simulador apv` pos 45,5 y `simulador apv habitat` pos 23,1 → snippet no mueve posición | N4 re-scoped; coordinar con plan 086 y `DIAGNOSTICO-apv-completion-2026-09-04.md` | Post-freeze; depende de distribución |
 | 6 | Prepago: escenarios cuota vs. plazo / prepagar vs. invertir | Superficie completa (spike `DECISION-PATHS-AFC-PREPAGO-CREDITO-2026-08-02.md`); validación §8: `conviene prepagar` 97i/0c pos 14,8 | N4 (candidato de producto, requiere registro) | Post panel F4 |
 | 7 | Auditar glosario antes de expandirlo | **Validado con datos** (§8): 37/54 sin impresiones, 15 de 17 visibles con 0 clics, 55/55 indexadas, canibalización mínima; gap audit 2026-05-25 y plan 119 como antecedentes | N2 | Auditoría ahora; cambios después |
-| 8 | `/archives/` fuera del índice | **Evidencia recibida** (§8): 0i/0c en 8 semanas y «Crawled - currently not indexed»; el plan 116 SEO-03 lo mantuvo y enlazó | Decisión del owner vía contrato plan 120 | Post-W40 (no urgente) |
+| 8 | `/archives/` fuera del índice | **Evidencia recibida** y briefing listo: `docs/backlog/DECISION-archives-indexabilidad-2026-09-30.md` (opciones A–D; recomendación operativa: diferir). Sin ejecutar | Decisión del owner vía contrato plan 120 + ADR si aplica | Post-W40 (no urgente) |
 | 9 | Retirar `priority`/`changefreq` del sitemap | **Siguen emitiéndose** (`astro.config.ts:185-245`); Google los ignora | N6 | Higiene P3, oportunista |
 | 10 | Dataset citable (AFP/tributario) + `Dataset` schema | Alineado con `EEAT-STRATEGY-2026-09-28.md` #4; URLs nuevas bloqueadas por FOCO | N5 | Post-2026-11-02 o excepción |
 | 11 | Link earning por activos, no outreach vacío | **Parcial**: planes de distribución vigentes (citación F5, community seeding, zero-cost); sin datos de backlinks | Ejecutar esos planes, no uno nuevo | Continuo |
@@ -109,13 +109,13 @@ pipeline editorial completo.
 
 | ID | Candidato | Prioridad | Esfuerzo | Depende de | Gate de activación |
 |---|---|---|---|---|---|
-| N1 | **Cadencia de decisión** sobre la matriz y los audits existentes del repo (`audit:striking-distance` / `audit:cannibalization`, ya corridos en plan 128 §8): bandas 8–20, CTR-gap, canibalización, cruce con ventanas activas | P1 | S | — | En curso: solo falta cadencia/owner (el tooling ya existe) |
-| N2 | **Auditoría del glosario** (54 entradas): la señal GSC ya está (§8); completar con enlaces internos, backlinks (GSC Links), fuentes y cobertura; salida = recomendación por URL (mantener/enriquecer/consolidar/noindex) | P1 | M | datos §8 | Inmediato en lectura; cambios solo post-W40 y bajo plan 120 + ADR + firma |
+| N1 | **Cadencia de decisión** sobre la matriz y los audits existentes del repo (`audit:striking-distance` / `audit:cannibalization`, ya corridos en plan 128 §8): bandas 8–20, CTR-gap, canibalización, cruce con ventanas activas | P1 | S | — | **Cadencia definida 2026-09-30** (plan 136): anexo N1 en `docs/operations/runbooks/weekly-search-performance-ritual.md`; mensual, owner = operador del ritual |
+| N2 | **Auditoría del glosario** (54 entradas): señal GSC (§8) + enlaces internos, fuentes y cobertura; salida = recomendación por URL | P1 | M | datos §8 | **Ejecutada 2026-09-30** (plan 135): `docs/reports/AUDIT-GLOSSARY-2026-09-30.md` — 45 mantener / 8 enriquecer / 1 consolidar (`sbif`) / 0 noindex; cambios solo post-W40 y bajo plan 120 + ADR + firma |
 | N3 | **Cohortes de alarma de defensa** en el scorecard semanal para páginas en posiciones 1–3 (caída de posición/CTR) y 4–10 (potencial), con umbrales pre-declarados | P1 | S–M | N1 | Post-W40 |
-| N4 | **Registro de experimentos** en `UTILITY_LED_EXPERIMENT_REGISTRY.md`; priorizar por datos §8: CTR de conversores UTM en banda 8–20, intención «simular» en seguro de cesantía (pos 8,6–10,8), «conviene prepagar» (pos 14,8), tabla 2026 en impuesto 2ª (pos 9–10); sueldo/APV quedan fuera hasta resolver posición | P1/P2 | S registro / M–L implementación | registry + freeze | Registro ahora; ejecución post-2026-10-14 y post panel F4 |
+| N4 | **Registro de experimentos** en `UTILITY_LED_EXPERIMENT_REGISTRY.md`; priorizar por datos §8: CTR de conversores UTM en banda 8–20, intención «simular» en seguro de cesantía (pos 8,6–10,8), «conviene prepagar» (pos 14,8), tabla 2026 en impuesto 2ª (pos 9–10); sueldo/APV quedan fuera hasta resolver posición | P1/P2 | S registro / M–L implementación | registry + freeze | **Registrado 2026-09-30** (plan 136): 4 experimentos con umbrales y `n_min`; ejecución post-2026-10-14 y post panel F4 |
 | N5 | **Primer dataset citable** (AFP/tributario) con metadata, CSV/JSON, documentación y `Dataset` schema, conectado a una calculadora que ya funciona | P2 | M | FOCO + `EEAT-STRATEGY` #4 | Post-2026-11-02 o excepción aprobada |
 | N6 | **Higiene de sitemap**: retirar `changefreq`/`priority` (`astro.config.ts:185-245`) cuando se toque el sitemap por otra razón | P3 | S | — | Oportunista |
-| N7 | **Vista Generative AI de GSC**: verificar disponibilidad en la cuenta, y si existe, fijar método de lectura mensual y registrarla junto al scorecard (sin inferir presencia en AIO por búsquedas manuales) | P2 | S | verificación en GSC del owner | Inmediato (verificación) |
+| N7 | **Vista Generative AI de GSC**: verificar disponibilidad en la cuenta, y si existe, fijar método de lectura mensual y registrarla junto al scorecard (sin inferir presencia en AIO por búsquedas manuales) | P2 | S | verificación en GSC del owner | **Procedimiento documentado 2026-09-30** (plan 136, anexo del ritual); disponibilidad en la cuenta no verificada — acción del owner |
 
 ### Regla de promoción a `plans/`
 
@@ -226,3 +226,9 @@ exports actuales (dimensiones query/page/country/device); W39 está completa
 - 2026-09-29 — Validación con datos GSC (plan 128): agregado W32–W39, audits de
   striking distance y canibalización, análisis de glosario, `/archives/`,
   país/dispositivo e indexación. Resultados en §8; N1–N4 re-scopados.
+- 2026-09-30 — Planes 135–136: auditoría del glosario ejecutada (45 mantener /
+  8 enriquecer / 1 consolidar candidato; reporte en
+  `docs/reports/AUDIT-GLOSSARY-2026-09-30.md`), 4 experimentos registrados en el
+  registry, cadencia mensual N1 fijada en el ritual, briefing de `/archives/`
+  (`docs/backlog/DECISION-archives-indexabilidad-2026-09-30.md`) y verificación
+  N7 documentada. Nada tocó `src/`, contenido ni indexabilidad.

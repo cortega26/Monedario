@@ -124,3 +124,26 @@ llamada semanal de parar/expandir (ventana hasta 2026-11-02):
 `SIN REGISTRO` no es un valor del titular: es la línea del Gate D que se
 imprime en la sección operativa cuando el estado de operaciones es
 `INPUT_REQUIRED`, y el titular muestra `INPUT_REQUIRED` en ese caso.
+
+## Experimentos SEO/SERP (registro 2026-09-30, plan 136)
+
+Origen: validación GSC W32–W39 del plan 128 (§8 de
+`docs/backlog/SEO-SERP-STRATEGY-2026-09-29.md`). **Registro ahora; ejecución
+después del freeze de títulos (~2026-10-14) y del panel F4**, con confirmación
+del owner y sin tocar superficies en ventana. Reglas comunes:
+
+- Métrica GSC query×page contra ventana comparable previa (mínimo 4 semanas);
+  la posición nunca debe empeorar (guardarraíl).
+- Sin veredicto bajo `n_min` (`SIN DATOS SUFICIENTES`); sin declarar causalidad
+  mientras el spam update siga en rollout.
+- No crean identificadores ni eventos nuevos: leen GSC.
+- Sueldo y APV quedan fuera hasta resolver posición/authority (plan 128 §8).
+- Umbrales pre-declarados aquí; el owner los confirma al activar cada
+  experimento.
+
+| ID | Superficie / intención | Baseline §8 | Cambio propuesto (no ejecutado) | GREEN | WATCH | HALT | `n_min` |
+|---|---|---|---:|---|---:|---:|---:|---:|
+| SEO-EXP-1 | Conversor UTM, banda 8–20 (`valor utm`: 116.695i, pos 8,35, CTR 0,34 %) | CTR 0,34 % | Snippet/primer scroll del conversor (sujeto al cierre de F5) | CTR ≥0,6 % | 0,4–0,59 % | <0,4 % tras 4 semanas comparables | 498 (p=0,6 %) |
+| SEO-EXP-2 | Seguro de cesantía, intención «simular» (pos 8,6–10,8) | `calcular seguro de cesantia`: 506i/28c pos 4,74 CTR 5,5 %; «simular» pos 8,6–10,8 | Sección/CTA de simulación en la superficie de seguro de cesantía | «simular» en top 8 y CTR ≥2 % | top 8–10 | sin cambio tras 4 semanas | 149 (p=2 %) |
+| SEO-EXP-3 | Prepago, decisión (`conviene prepagar un credito de consumo`: 97i/0c pos 14,8) | pos 14,8, 0 clics | Escenarios cuota vs plazo / prepagar vs invertir | pos ≤10 y ≥1 clic | pos 10–14 | sin cambio tras 4 semanas | 299 (p=1 %) |
+| SEO-EXP-4 | Impuesto 2ª, queries «2026» (pos 9–10, CTR 0–0,5 %; página 5.107i/50c) | CTR 0–0,5 % en queries «2026» | Tabla 2026 accesible + snippet de sección | CTR ≥2 % en el grupo | 0,5–1,9 % | sin cambio tras 4 semanas | 149 (p=2 %) |

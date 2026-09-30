@@ -305,3 +305,48 @@ La semana queda cerrada solo si existen:
 - el estado de analytics documentado y cualquier ausencia/invalidez tratada como
   incidente;
 - una nota clara de indexación/cobertura para Google y Bing.
+
+## Anexos SEO/SERP (plan 136, 2026-09-30)
+
+### Cadencia mensual de decisión sobre la matriz query×page (N1)
+
+El tooling ya existe (plan 128); lo que faltaba era la cadencia. Regla:
+
+- **Responsable:** el operador del ritual semanal.
+- **Frecuencia:** primera corrida semanal de cada mes (los demás lunes se
+  mantiene el scorecard normal). Los datos se leen en ventanas multi-semana, no
+  semana a semana.
+- **Comandos** (desde `main`; salidas en `output/validation/`, regenerables):
+
+  ```bash
+  pnpm run data-signals:gsc:aggregate -- --weeks=8
+  pnpm run audit:striking-distance -- --file=output/operations/data-signals/gsc/aggregate-query-page.json --top=30 --json
+  pnpm run audit:cannibalization -- --file=output/operations/data-signals/gsc/aggregate-query-page.json --top=25 --json
+  ```
+
+- **Regla de decisión:** elegir 1–3 candidatos (banda 8–20 con ≥10
+  impresiones, CTR-gap, canibalización nueva) y llevarlos al
+  `UTILITY_LED_EXPERIMENT_REGISTRY.md` (si es experimento) o a `plans/` (si es
+  ejecución). Nada se ejecuta dentro de ventanas de medición activas ni durante
+  el freeze de títulos.
+- **Salida:** reportes JSON en `output/validation/striking-distance/` y
+  `output/validation/cannibalization/`, más una nota con las decisiones en el
+  issue/bundle semanal.
+- **Referencia:** plan 128 §8 y `docs/backlog/SEO-SERP-STRATEGY-2026-09-29.md`
+  §4 (N1/N3).
+
+### Vista Generative AI de GSC (N7 — verificación pendiente)
+
+Estado inicial (2026-09-30): disponibilidad **no verificada** en la cuenta.
+
+- **Cómo verificar (owner):** Search Console → Performance → Search results →
+  filtro de tipo de búsqueda; el desglose de IA (AI Overviews/AI Mode) aparece
+  solo si Google lo habilitó para la propiedad. No se infiere presencia en AIO
+  por búsquedas manuales.
+- **Si existe:** exportar la vista con la misma convención semanal
+  (`output/operations/data-signals/gsc/<semana>-generative.json`) y fijar
+  lectura mensual junto al scorecard.
+- **Si no existe:** registrar «no disponible» en la lectura mensual y
+  re-verificar cada trimestre.
+- Sin automatización ni identificadores nuevos; verificación y registro
+  manuales.

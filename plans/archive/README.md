@@ -119,6 +119,8 @@ actualizados y sin enlaces residuales a su ubicación anterior.
 | [114](114-apv-error-implementation.md) | Emisiones `calculator_error` E1–E4 en APV (helper + dedupe + reset, wiring, 16 tests) + pin estático; progreso NO creado (propuesta) | 2026-09-15 | sí (merge `d4981b2c`; helper+tests → wiring) |
 | [115](115-conformance-sweep.md) | Runbook titular conformado a 3 vías + excepción `APV-*` en gitignore (2 líneas) | 2026-09-15 | sí (merge `c908edad`; 1 commit) |
 | [128](128-seo-serp-report-validation-2026-09-29.md) | Validación con datos GSC del informe SEO/SERP externo — spike read-only W32–W39 (agregado, striking distance, canibalización, glosario, `/archives/`, país/dispositivo) con retriage N1–N7; entregable `docs/backlog/SEO-SERP-STRATEGY-2026-09-29.md` §8 | 2026-09-29 | sí (commit directo a `main`, 2026-09-30) |
+| [135](135-auditoria-glosario-n2-2026-09-30.md) | Auditoría read-only del glosario (N2): 54 entradas clasificadas con GSC W32–W39, indexación W39, enlaces internos, fuentes y canibalización; reporte `docs/reports/AUDIT-GLOSSARY-2026-09-30.md` (45 mantener / 8 enriquecer / 1 consolidar candidato / 0 noindex) | 2026-09-30 | sí (commit directo a `main`, `docs(seo): ejecuta planes 135–136`) |
+| [136](136-habilitadores-decision-seo-serp-2026-09-30.md) | Habilitadores de decisión SEO/SERP: N4 (4 experimentos registrados con umbrales y `n_min`), N1 (cadencia mensual en el ritual), briefing `/archives/` (opciones A–D, decisión del owner) y N7 (procedimiento Generative AI) | 2026-09-30 | sí (commit directo a `main`, `docs(seo): ejecuta planes 135–136`) |
 
 ## Planes 004–019 (completados, sin archivo en el árbol)
 
