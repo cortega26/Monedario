@@ -12,9 +12,11 @@ on:
       - reopened
   workflow_dispatch:
   schedule:
-    # Semanal (miércoles 05:30 UTC). Antes diario; los scans siguen corriendo en
-    # cada PR. El scan completo semanal cubre CVEs nuevas (Trivy DB) y el
-    # pip-audit (job solo-scheduled). Reducido para ahorrar minutos de Actions.
+    # Semanal (miércoles 05:30 UTC). Antes diario; en PRs solo corre el escaneo
+    # de secrets del diff (gitleaks-pr, bloqueante) y el resto es semanal o
+    # manual — ver docs/operations/runbooks/security-scans.md. El scan completo
+    # semanal cubre CVEs nuevas (Trivy DB) y el pip-audit (job solo-scheduled).
+    # Reducido para ahorrar minutos de Actions.
     - cron: "30 5 * * 3"
 
 concurrency:

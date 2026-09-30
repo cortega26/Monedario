@@ -90,6 +90,9 @@ jobs:
       - name: "🧭 Check policy registry"
         run: pnpm run check:policy-registry
 
+      - name: "🔒 Check pnpm release-age excludes"
+        run: pnpm run check:pnpm-release-age-excludes
+
       - name: "🧮 Check mirrored legal constants"
         run: pnpm run check:legal-constants
 
