@@ -42,15 +42,15 @@ _Actualizado 2026-09-29 desde las entradas `## TD-` (abierto = `Backlog*`, `Pend
 - **P0:** 0
 - **P1:** 0
 - **P2:** 1 — `TD-0108` (en curso)
-- **P3:** 3 — `TD-0095`, `TD-0096`, `TD-0103`
+- **P3:** 1 — `TD-0103`
 - **Sin urgencia declarada:** 0
-- **Total abiertos:** 4 de 112 entradas (`TD-0001`..`TD-0112`)
-- **Cerrados/completados:** 108
+- **Total abiertos:** 2 de 112 entradas (`TD-0001`..`TD-0112`)
+- **Cerrados/completados:** 110
 
 ### Estado de avance (2026-09-30)
 
-- **Completados/cerrados:** 108 entradas, incluidas `TD-0097` (2026-09-25), `TD-0109`/`TD-0111`/`TD-0112`, `TD-0107` (2026-09-29) y `TD-0100`/`TD-0104`/`TD-0110` (2026-09-30).
-- **Abiertos:** `TD-0095`, `TD-0096`, `TD-0103`, `TD-0108` (en curso).
+- **Completados/cerrados:** 110 entradas, incluidas `TD-0097` (2026-09-25), `TD-0109`/`TD-0111`/`TD-0112`, `TD-0107` (2026-09-29) y `TD-0100`/`TD-0104`/`TD-0110`/`TD-0095`/`TD-0096` (2026-09-30).
+- **Abiertos:** `TD-0103`, `TD-0108` (en curso).
 - **Cerrados sin ejecutar (premisa/ROI):** `TD-0067` (2026-06-25 — los use-cases ya retornan números puros; el formateo ya vive en las páginas), `TD-0081` (2026-06-25 — CI no usa esa secuencia y el único check lento es escritor; ahorro seguro ~0.2 s) y `TD-0079` (bloqueado por incompatibilidad WOFF2/Satori).
 - **Nota histórica:** `TD-0072` cerrado el 2026-06-23 (los 2 scripts restantes son código activo, no one-off).
 - **Nota histórica:** `TD-0095` y `TD-0096` abiertos el 2026-07-01, tras implementar `ADR-20260701-editorial-evergreen-tier.md` — ver entradas abajo.
@@ -132,15 +132,12 @@ _Actualizado 2026-09-29 desde las entradas `## TD-` (abierto = `Backlog*`, `Pend
 - **Esfuerzo estimado:** S (una vez confirmada la lista, es solo edición de `slugOverrides` en `editorial-timeliness-policy.json`)
 - **Propuesta de solución:** Un editor humano revisa la tabla de 21 (tachar/agregar según corresponda) y confirma. Al confirmar, agregar `"<slug>": { "sourceMode": "evergreen" }` a `slugOverrides` en `src/config/editorial-timeliness-policy.json` para los slugs confirmados — sin tocar código, tests ni ADR (el mecanismo ya quedó probado en el PR de `ADR-20260701`).
 - **Criterios de cierre (checklist verificable):**
-- [ ] La tabla de 21 candidatos fue revisada y confirmada (o editada) por un editor humano.
-- [ ] `slugOverrides` refleja la lista confirmada con `sourceMode: evergreen`.
-- [ ] `pnpm run check:editorial-timeliness` sigue en verde tras el cambio.
-- **Actualización 2026-09-30:** propuesta de decisión lista para confirmación
-  humana en `docs/backlog/DECISION-evergreen-tier-2026-09-30.md` (incluye el
-  filtro mecánico actualizado: `liquidacion-de-sueldo` y
-  `como-leer-cartola-afp-chile` ya declaran `volatileData` y quedan excluidos).
-- **Owner:** Sin asignar
-- **Estado:** Backlog — pendiente confirmación editorial (documento listo)
+- [x] La tabla de 21 candidatos fue revisada y confirmada por el editor (2026-09-30, `DECISION-evergreen-tier-2026-09-30.md`): 7 evergreen directos, 9 condicionados confirmados, 3 mantienen cadencia; 2 quedaron excluidos por declarar `volatileData`.
+- [x] `slugOverrides` refleja la lista confirmada con `sourceMode: evergreen` (19 slugs) — plan 134.
+- [x] `pnpm run check:editorial-timeliness` verde tras el cambio.
+- **Resolución 2026-09-30:** aplicado en `editorial-timeliness-policy.json` (plan 134) tras la confirmación del editor; los 2 excluidos (`liquidacion-de-sueldo`, `como-leer-cartola-afp-chile`) mantienen su modo por declarar `volatileData`.
+- **Owner:** Carlos Ortega
+- **Estado:** Cerrado (2026-09-30)
 - **Fecha de creación:** 2026-07-01
 - **Última actualización:** 2026-09-30
 
@@ -157,15 +154,12 @@ _Actualizado 2026-09-29 desde las entradas `## TD-` (abierto = `Backlog*`, `Pend
 - **Esfuerzo estimado:** M
 - **Propuesta de solución:** (a) Revisar los 11 slugs uno por uno con un editor humano y clasificarlos en `slugOverrides` (evergreen, cadencia ajustada, o sin cambios). (b) Si se decide modelar IMM/PGU como `volatileData`, registrar datasets nuevos (ej. `labor.imm.monthly_value`, `pensions.pgu.monthly_amount`) con fuente canónica (Dirección del Trabajo / IPS-ChileAtiende) y extender `scripts/refresh-editorial-volatile-data.mjs` para poblarlos.
 - **Criterios de cierre (checklist verificable):**
-- [ ] Los 11 slugs dudosos tienen una clasificación explícita en `editorial-timeliness-policy.json` (no quedan en el default implícito por omisión).
-- [ ] Se documentó la decisión sobre si IMM/PGU necesitan `volatileData` dedicado o si la cadencia de 90 días es suficiente.
-- [ ] Si se agregan datasets nuevos, `pnpm run check:editorial-timeliness` y `pnpm run editorial:volatile-data:refresh` los cubren sin error.
-- **Actualización 2026-09-30:** propuesta de decisión lista para confirmación
-  humana en `docs/backlog/DECISION-evergreen-tier-2026-09-30.md` (A: 10
-  dudosos únicos —el TD duplicaba `credito-hipotecario-chile-guia-completa`—,
-  B: IMM recomendado como dataset, PGU recomendado mantener cadencia).
-- **Owner:** Sin asignar
-- **Estado:** Backlog — pendiente confirmación editorial (documento listo)
+- [x] Los 10 dudosos únicos tienen clasificación explícita en `editorial-timeliness-policy.json` (3 evergreen, 5 `manual_review` explícito, 2 con override/volatileData preexistente) — plan 134.
+- [x] Decisión documentada (2026-09-30, `DECISION-evergreen-tier-2026-09-30.md`): IMM pasa a dataset `volatileData`; PGU mantiene cadencia 90d (extractor propio fuera de alcance).
+- [x] Dataset nuevo cubierto: `economic.imm.value` registrado + mapping en `refresh-editorial-volatile-data.mjs` + snapshot refrescado; `check:editorial-timeliness` verde y 4 artículos con `sync: strict` (drift automático).
+- **Resolución 2026-09-30:** aplicado en el plan 134; el duplicado del TD (`credito-hipotecario-chile-guia-completa` dos veces) quedó corregido al tratar 10 dudosos únicos.
+- **Owner:** Carlos Ortega
+- **Estado:** Cerrado (2026-09-30)
 - **Fecha de creación:** 2026-07-01
 - **Última actualización:** 2026-09-30
 

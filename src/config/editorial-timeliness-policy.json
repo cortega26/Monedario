@@ -139,6 +139,78 @@
     "pgu-pension-garantizada-universal": {
       "cadenceDays": 90,
       "sourceMode": "manual_review_with_official_sources"
+    },
+    "el-poder-del-interes-compuesto": {
+      "sourceMode": "evergreen"
+    },
+    "interes-compuesto-nota-metodologica": {
+      "sourceMode": "evergreen"
+    },
+    "como-hacer-presupuesto-mensual-chile": {
+      "sourceMode": "evergreen"
+    },
+    "donde-ver-si-estoy-en-dicom-gratis": {
+      "sourceMode": "evergreen"
+    },
+    "suplantacion-identidad-creditos-no-reconocidos": {
+      "sourceMode": "evergreen"
+    },
+    "estafas-financieras-chile-vishing-smishing-marketplace": {
+      "sourceMode": "evergreen"
+    },
+    "fondo-emergencia-chile": {
+      "sourceMode": "evergreen"
+    },
+    "como-elegir-inversion-segun-plazo-riesgo-objetivos": {
+      "sourceMode": "evergreen"
+    },
+    "como-salir-boletin-comercial-chile": {
+      "sourceMode": "evergreen"
+    },
+    "informe-deudas-cmf-vs-dicom": {
+      "sourceMode": "evergreen"
+    },
+    "prepago-credito-cuando-conviene-chile": {
+      "sourceMode": "evergreen"
+    },
+    "finiquito-e-indemnizaciones-en-chile": {
+      "sourceMode": "evergreen"
+    },
+    "indemnizacion-anos-de-servicio-chile": {
+      "sourceMode": "evergreen"
+    },
+    "seguro-de-cesantia": {
+      "sourceMode": "evergreen"
+    },
+    "seguro-cesantia-cuenta-individual-vs-fondo-solidario": {
+      "sourceMode": "evergreen"
+    },
+    "licencia-medica-desde-que-dia-pagan": {
+      "sourceMode": "evergreen"
+    },
+    "renegociacion-superir": {
+      "sourceMode": "evergreen"
+    },
+    "como-invertir-en-etfs-desde-chile": {
+      "sourceMode": "evergreen"
+    },
+    "finanzas-para-migrantes-chile": {
+      "sourceMode": "evergreen"
+    },
+    "bancos-y-fintech-chile": {
+      "sourceMode": "manual_review"
+    },
+    "fonasa-vs-isapre-comparativa": {
+      "sourceMode": "manual_review"
+    },
+    "cae-costo-real-credito-chile": {
+      "sourceMode": "manual_review"
+    },
+    "fondos-mutuos-comisiones-rescate-impuestos": {
+      "sourceMode": "manual_review"
+    },
+    "credito-hipotecario-chile-guia-completa": {
+      "sourceMode": "manual_review"
     }
   }
 }

@@ -75,6 +75,17 @@
       },
       "fallbackSources": []
     },
+    "economic.imm.value": {
+      "label": "Ingreso Mínimo Mensual (IMM)",
+      "owner": "Carlos Ortega (editorial)",
+      "refreshStrategy": "economic_snapshot",
+      "unit": "clp",
+      "canonicalSource": {
+        "label": "Dirección del Trabajo",
+        "url": "https://www.dt.gob.cl/portal/1626/w3-channel.html"
+      },
+      "fallbackSources": []
+    },
     "pensions.previsional.monthly_taxable_cap_uf": {
       "label": "Tope imponible AFP y salud",
       "owner": "Carlos Ortega (editorial)",

@@ -48,6 +48,10 @@ reviewPolicy:
   derivationFactors:
     - registry:slugOverrides.gratificacion-legal-chile
   computedAt: "2026-05-06"
+volatileData:
+  - id: "economic.imm.value"
+    sync: strict
+    expectedValue: 553553
 ---
 
 > **Información vigente al 2026-08-03 según el Código del Trabajo y el IMM vigente a esa fecha.** El Ingreso Mínimo Mensual se actualiza periódicamente por ley; ante cambios, verifica el valor actual en el Ministerio del Trabajo antes de hacer cualquier cálculo.

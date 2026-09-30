@@ -27,5 +27,9 @@ describe("editorial volatile snapshot contract", () => {
     expect(
       snapshot.datasets["pensions.afp.worker_mandatory_contribution"].value
     ).toBe(10);
+    expect(snapshot.datasets["economic.imm.value"].value).toBeTypeOf("number");
+    expect(snapshot.datasets["economic.imm.value"].reviewTriggerDate).toMatch(
+      /^\d{4}-\d{2}-\d{2}$/
+    );
   });
 });
