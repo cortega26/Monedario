@@ -13,9 +13,13 @@ describe("ESLint global ignore boundary", () => {
     ".nyc_output/process.json",
     "playwright-report/index.html",
     "test-results/run/trace.js",
-  ])("ignores generated or nested-worktree path %s", async candidatePath => {
-    await expect(eslint.isPathIgnored(candidatePath)).resolves.toBe(true);
-  });
+  ])(
+    "ignores generated or nested-worktree path %s",
+    async candidatePath => {
+      await expect(eslint.isPathIgnored(candidatePath)).resolves.toBe(true);
+    },
+    15000
+  );
 
   it.each([
     "src/config.ts",

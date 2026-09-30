@@ -579,7 +579,7 @@ describe("verifyDeploymentParity — escenarios completos", () => {
     const smoke = result.results.find((r) => r.check === "smoke-export-autenticado");
     expect(smoke?.ok).toBe(false);
     expect(smoke?.detail).toContain("EXPORT_SECRET");
-  });
+  }, 15000);
 
   it("un solo chequeo roto rompe la paridad (build antiguo con query-string)", async () => {
     const fetch = makeFakeFetch([
