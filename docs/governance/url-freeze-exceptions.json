@@ -15,6 +15,20 @@
       "approvedBy": "Carlos Ortega",
       "approvedAt": "2026-09-17",
       "expiresAt": "2026-11-02"
+    },
+    {
+      "url": "https://monedario.cl/correcciones/",
+      "problem": "El sitio no tenía un registro público de correcciones materiales; la política de correcciones de /metodologia/ no era verificable por terceros.",
+      "evidence": "Nueve correcciones materiales publicadas entre el 2026-09-28 y el 2026-09-29 (planes 115, 123-131: Operación Renta AT2026, tramos IUSC 35%/40%, DAP 4%, APV régimen B, SuperIR/DICOM, finiquito, glosario, sueldo líquido, IPC).",
+      "hypothesis": "Un registro público de correcciones con causa y control de recurrencia hace auditable la política editorial (E-E-A-T/YMYL) sin crear una página de autodeclaración.",
+      "cost": "Página estática sin dependencias; entradas como datos en src/pages/correcciones.astro.",
+      "maintenance": "Añadir una entrada por cada corrección material futura; sin cadencia fija.",
+      "metric": "Página enlazada desde footer y /metodologia/#correcciones; sin objetivo de tráfico.",
+      "threshold": "No aplica: página institucional de transparencia.",
+      "decision": "APPROVED",
+      "approvedBy": "Carlos Ortega",
+      "approvedAt": "2026-09-29",
+      "expiresAt": "2027-09-29"
     }
   ]
 }
