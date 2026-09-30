@@ -19,6 +19,7 @@ import {
   findInvalidJsonLd,
   findNonCanonicalInternalHrefs,
   findParametrizedCanonicals,
+  findRawEconomicInterpolations,
   findSitemapLastmodIssues,
   findTrackingParamLocs,
   hasNoindex,
@@ -552,6 +553,17 @@ describe("extractJsonLdBlocks", () => {
   });
 });
 
+describe("findRawEconomicInterpolations", () => {
+  it("detects raw interpolation templates and ignores resolved text", () => {
+    expect(
+      findRawEconomicInterpolations("UTM [[utm * 13.5 | clp]] y $968.234")
+    ).toEqual(["[[utm * 13.5 | clp]]"]);
+    expect(findRawEconomicInterpolations("UTM $968.234 ya interpolado")).toEqual(
+      []
+    );
+  });
+});
+
 describe("check-postbuild runner over a full mini-dist", () => {
   function writeValidMiniDist(root: string) {
     const headers =
@@ -606,6 +618,12 @@ describe("check-postbuild runner over a full mini-dist", () => {
         "<body><p>ok</p></body></html>"
     );
 
+    writeFileSync(
+      path.join(root, "llms-full.txt"),
+      "Artículo con $968.234 ya interpolado\n",
+      "utf8"
+    );
+
     const pagefindDir = path.join(root, "pagefind");
     mkdirSync(pagefindDir, { recursive: true });
     writeFileSync(path.join(pagefindDir, "pagefind-entry.json"), "{}", "utf8");
@@ -642,5 +660,18 @@ describe("check-postbuild runner over a full mini-dist", () => {
     expect(r.stderr).toContain("unsafe-inline");
     expect(r.stderr).toContain("spacing-sanity");
     expect(r.stderr).toContain("jsonld-no-script-breakout");
+  });
+
+  it("fails when llms-full.txt exposes raw interpolation syntax", () => {
+    const root = buildDist();
+    writeValidMiniDist(root);
+    writeFileSync(
+      path.join(root, "llms-full.txt"),
+      "Tramo exento hasta [[utm * 13.5 | clp]]\n",
+      "utf8"
+    );
+    const r = run(root);
+    expect(r.status).toBe(1);
+    expect(r.stderr).toContain("llms-full-no-raw-interpolation");
   });
 });

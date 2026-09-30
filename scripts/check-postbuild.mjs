@@ -496,6 +496,15 @@ export function listHtmlPages(distDir) {
 // plan dependency is not in main must self-disable (they are all in main as of
 // plan 081 execution).
 
+/** Raw `[[expr | fmt]]` economic interpolation left un-resolved in a plain-text surface (D25, plan 132). */
+export function findRawEconomicInterpolations(text) {
+  const matches = [];
+  for (const match of text.matchAll(/\[\[[^\]\n|]+\|[^\]\n]+\]\]/g)) {
+    matches.push(match[0]);
+  }
+  return matches;
+}
+
 const CHECKS = [
   {
     id: "csp-hashes-injected",
@@ -744,6 +753,22 @@ const CHECKS = [
     run(distDir) {
       return findPublicSourcemaps(distDir).map(
         entry => `dist/${entry}:no-public-sourcemaps`
+      );
+    },
+  },
+  {
+    id: "llms-full-no-raw-interpolation",
+    message:
+      "dist/llms-full.txt must not expose raw [[expr | fmt]] interpolation syntax (D25).",
+    run(distDir) {
+      const llmsPath = path.join(distDir, "llms-full.txt");
+      if (!statSync(llmsPath, { throwIfNoEntry: false })) {
+        return [
+          "dist/llms-full.txt:llms-full-no-raw-interpolation missing llms-full.txt",
+        ];
+      }
+      return findRawEconomicInterpolations(readFileSync(llmsPath, "utf8")).map(
+        raw => `dist/llms-full.txt:llms-full-no-raw-interpolation raw ${raw}`
       );
     },
   },

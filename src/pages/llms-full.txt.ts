@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import { SITE } from "@/config";
 import { getCanonicalPathFromSlug } from "@/domain/content/path";
 import { toArticleView } from "@/utils/articleView";
+import { interpolateEconomicText } from "@/utils/economicInterpolation";
 import getSortedPosts from "@/utils/getSortedPosts";
 import {
   bodyToPlainMarkdown,
@@ -52,7 +53,7 @@ async function buildLlmsFullTxt(site: URL): Promise<string> {
 - Publicado: ${isoDate(article.pubDate)}${updated}
 - Resumen: ${article.description}${advisory}
 
-${bodyToPlainMarkdown(post.body ?? "")}`;
+${interpolateEconomicText(bodyToPlainMarkdown(post.body ?? ""))}`;
     })
     .join("\n\n---\n\n");
 
