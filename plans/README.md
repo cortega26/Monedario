@@ -61,6 +61,7 @@ Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJE
 | 131 | [Remediación pass5 (D23–D24)](131-remediation-pass5-d23-d24-2026-09-29.md) | P1 (YMYL) | S | — | DONE (DAP en guías + umbral IUSC del glosario + guardas extendidas; verificación final = re-auditoría pass6) |
 | 132 | [Remediación pass6 (D25)](132-remediation-pass6-d25-2026-09-29.md) | P1 | S | — | DONE (interpolación económica compartida + `llms-full.txt` sin `[[` + check postbuild; verificación final = re-auditoría pass7) |
 | 133 | [Deuda sev-2: TD-0104 guard, TD-0110 doc SAST, TD-0100 CLS](133-deuda-sev2-td-0100-0104-0110-2026-09-30.md) | P2 | M | — | DONE (guard de exclusiones + 2 muertas retiradas; runbook SAST; CLS re-medido 15/15 = 0; TD-0100/0104/0110 cerrados) |
+| 134 | [Aplicación evergreen + dataset IMM](134-evergreen-e-imm-aplicacion-2026-09-30.md) | P2 | M | decisión evergreen confirmada | DONE (19 evergreen + 5 overrides explícitos + `economic.imm.value` con drift estricto en 4 artículos; TD-0095/0096 cerrados) |
 
 Status values: TODO | IN PROGRESS | DONE | BLOCKED (with one-line reason) | REJECTED (with one-line rationale)
 

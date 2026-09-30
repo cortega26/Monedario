@@ -63,6 +63,10 @@ reviewPolicy:
   derivationFactors:
     - registry:categoryPolicies.prevision
   computedAt: "2026-09-17"
+volatileData:
+  - id: "economic.imm.value"
+    sync: strict
+    expectedValue: 553553
 ---
 
 > **Información vigente al 2026-09-17.** El ingreso mínimo mensual y la tasa del Seguro de Invalidez y Sobrevivencia (SIS) se reajustan periódicamente. Verifica los valores actualizados en la [Superintendencia de Pensiones](https://www.spensiones.cl/) antes de cotizar.

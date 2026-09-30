@@ -123,6 +123,11 @@ function buildEconomicDatasets(registry, previousSnapshot) {
       economicSnapshot.previsionalTopes?.pensionAndHealthMonthlyTaxableCapUf,
       economicSnapshot.indicatorUpdatedAt?.previsionalTopes,
     ],
+    [
+      "economic.imm.value",
+      economicSnapshot.imm,
+      economicSnapshot.immEffectiveDate,
+    ],
   ];
 
   for (const [datasetId, value, indicatorUpdatedAt] of economicMappings) {

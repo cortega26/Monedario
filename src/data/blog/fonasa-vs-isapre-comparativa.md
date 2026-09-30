@@ -42,6 +42,10 @@ reviewPolicy:
   derivationFactors:
     - registry:categoryPolicies.seguridad-financiera
   computedAt: "2026-05-06"
+volatileData:
+  - id: "economic.imm.value"
+    sync: strict
+    expectedValue: 553553
 ---
 
 Fonasa sirve a más del 80% de los chilenos. Isapre, al resto. Pero la única pregunta que importa es: ¿cuál te conviene a ti?
